@@ -1,26 +1,56 @@
 # Modernization Workbook
 
-A clean, standalone modernization workbook focused on identity, addressing, policy, and governance patterns.
+**A clean, standalone modernization project focused on identity, addressing, policy, and governance patterns.**
 
-This repository extracts and re-frames practical modernization concepts — Single Source of Truth (authoritative origin), attribute-driven organizational structure, explicit drift detection, evidence-driven change, and no-rip-and-replace migration — without UIAO, OrgPath, OrgComp, or OrgMod branding.
+This repository extracts practical modernization concepts — single source of truth, attribute-driven structure, explicit drift detection, evidence-driven change, and no-rip-and-replace migration — and presents them as a usable project plan and workbook. No internal branding or document identifiers.
 
-## Purpose
+![Modernization Principles Overview](docs/images/principles-overview.jpg)
 
-Provide a coherent, independently usable set of principles, assessment frameworks, target architectures, and domain playbooks for enterprise modernization (particularly directory, identity, policy, and hybrid cloud transitions).
+## Start here
 
-## Intended Contents
+| Step | Document | Why |
+|------|----------|-----|
+| 1 | [Principles](docs/PRINCIPLES.md) | The rules. Read this first. |
+| 2 | [Project Charter](PROJECT-CHARTER.md) | Purpose, scope, and success criteria. |
+| 3 | [Project Plan](PROJECT-PLAN.md) | Phased roadmap and domain workstreams. |
+| 4 | [Why Modernization Is Hard](docs/narratives/why-modernization-is-hard.md) | Leadership framing of the problem. |
+| 5 | [Client-Server to Hybrid-Cloud series](docs/client-server-to-hybrid-cloud/README.md) | The eleven-chapter technical narrative. |
 
-- **Principles** — SSOT / authoritative origin, identity as root namespace, drift is explicit, evidence-driven change
-- **Assessment** — Discovery of hidden governance surfaces and legacy dependencies
-- **Target Architecture** — Attribute-oriented structure, dynamic groups / equivalent constructs, layered control planes
-- **Domain Playbooks** — Identity, policy, services (DDI), compute, access plane
-- **Program Management** — Waves, gates, provenance closure, continuous evidence
-- **Reference Materials** — Worked examples (e.g., AD → Entra patterns) and generalizable patterns
+## Contents
+
+### Architecture
+- [Single Source of Truth](docs/architecture/single-source-of-truth.md)
+- [Where Data Lives](docs/architecture/where-data-lives.md)
+- [Attribute-Driven Structure](docs/architecture/attribute-driven-structure.md)
+- [Drift Detection](docs/architecture/drift-detection.md)
+- [Change Control and Provenance](docs/architecture/change-control-and-provenance.md)
+- [Directory Migration Bridge](docs/architecture/directory-migration/README.md)
+
+### Guides
+- [Device and Server Modernization](docs/guides/device-and-server-modernization/README.md)
+- [HR-Driven Lifecycle](docs/guides/hr-driven-lifecycle.md)
+
+### Case Studies
+- [SQL Server Identity Transformation (overview)](docs/case-studies/sql-server-identity.md)
+- [SQL Server Narrative Series (Books 01–10)](docs/case-studies/sql-server-narrative/README.md)
+
+### Whitepapers
+- [Whitepapers index](docs/whitepapers/README.md)
+
+### Program
+- [Education, Training, and Test Plans](docs/program/)
+
+### Libraries
+- [Principles extracts](docs/libraries/README.md)
 
 ## Status
 
-Initial repository. Content extraction and rebranding in progress.
+High-value content extraction and cleaning is complete. The repository is usable as a standalone modernization project plan and workbook.
 
 ## Origin
 
-Concepts derived from public modernization materials at https://whalermike.github.io/uiao/ and the associated source repository, restructured for independent use.
+Concepts derived from public modernization materials and restructured for independent use. No internal branding or document identifiers remain in the finished artifacts.
+
+---
+
+*For project use. No internal branding or document identifiers.*
