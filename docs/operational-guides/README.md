@@ -10,6 +10,7 @@ Practical how-to documents for modernization activities.
 | [DNS Modernization Guide](dns-modernization.md) | Phased migration from AD-integrated DNS to hybrid resolution. |
 | [PKI Modernization Guide](pki-modernization.md) | Phased migration from AD CS to cloud PKI and certificate-based authentication. |
 | [Read-Only AD Assessment Guide](read-only-ad-assessment.md) | Safe discovery of Active Directory state before any modernization action. |
+| [PIM Self-Request with Approval](pim-self-request-approval.md) | Just-in-time privileged access pattern with recorded approval. |
 
 ---
 
