@@ -36,6 +36,7 @@
 | Single Source of Truth definition | `docs/architecture/single-source-of-truth.md` | Done |
 | Where data lives (three-layer storage model) | `docs/architecture/where-data-lives.md` | Done |
 | SQL Server Identity Transformation case study overview | `docs/case-studies/sql-server-identity.md` | Done |
+| HR-driven identity lifecycle | `docs/guides/hr-driven-lifecycle.md` | Done |
 
 ---
 
@@ -43,7 +44,6 @@
 
 | Item | Source | Target | Notes |
 |------|--------|--------|-------|
-| HR-driven identity pipeline | OrgComp HRIT execution plan | `docs/guides/hr-driven-lifecycle.md` | Significant rewrite required |
 | Target surface libraries | Intune policy templates, CA library, modernization specs | `docs/libraries/` | Mine selectively; avoid full copy |
 | Program education / training / test plans | `docs/narrative/program-*.qmd` | `docs/program/` | Short supporting pages |
 
@@ -51,10 +51,9 @@
 
 ## Suggested Order of Work
 
-All Priority 1, Priority 2, and the foundational / high-value case-study items are complete.
+All Priority 1, Priority 2, and the high-value Priority 3 items are complete.
 
-Next options (Priority 3, selective):
-- HR-driven lifecycle
+Next options (remaining Priority 3, selective):
 - Program education / training / test plans
 - Target surface libraries (selective)
 
