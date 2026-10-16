@@ -4,6 +4,9 @@
 
 ## The program claim
 
+![Diagram](../images/cshc/migration-roadmap.svg)
+
+
 Every modernization this series describes is achievable in a **fifty-two-week program** with five parallel workstreams (identity, policy, services, compute, access) and seven named gates. The roadmap is a reviewable document in the authoritative repository, updated on a regular cadence, with gate criteria that are mechanical to evaluate.
 
 This chapter is how you sequence the work of Chapters 01–08 into a governed program that actually ships.
