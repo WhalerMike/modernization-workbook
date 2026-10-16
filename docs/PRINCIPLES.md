@@ -204,4 +204,32 @@ Windows Authentication was good engineering for its world. The destination is cl
 
 ---
 
+## 15. Zero Trust Governance Principles
+
+Programs that read a Zero Trust maturity model as a five-pillar shopping list and buy a tool per pillar stall at Initial or low Advanced maturity. Maturity is defined as five pillars *operated through* three cross-cutting capabilities: Visibility and Analytics, Automation and Orchestration, and Governance. Governance is the capability most programs shortchange.
+
+**Five governance principles:**
+
+1. **Identity is a necessary anchor, not a sufficient one.** Identity must function as the addressing root the other pillars resolve against, and that root must be defended as the highest-value target. It is not self-authenticating once established. Continuous access evaluation, short token lifetimes, and phishing-resistant credentials are required.
+2. **Privileged and administrative identity needs controls of its own.** Administrative identity is the root of the root. Privileged access is time-boxed and just-in-time, not standing. Break-glass accounts are governed artifacts, not unwritten exceptions.
+3. **Continuous evidence is a governance property, not a tool feature.** Evidence must be reproducible, machine-readable, and regenerable from the closure stream. Per-tool evidence that cannot be re-executed is an assertion, not evidence.
+4. **Governance must enforce, not only observe.** A program that names an owner and writes a policy but never wires in automated, preventive enforcement has built a reporting system, not a control.
+5. **The cloud boundary must be modeled, not assumed away.** Network, every cloud service provider, and on-premises virtualization must be assessed as one governed system. A cloud service provider’s own tool can only ever see its own platform; the organization is the only party positioned to hold one Zero Trust posture across all of them.
+
+---
+
+## 16. Modernization Journey Principles
+
+The path forward from session-based, perimeter-era architecture to continuous verification rests on five principles:
+
+1. **Single source of truth.** Every important claim has exactly one authoritative origin. Other systems hold derived or subordinate copies.
+2. **Application-aware networking.** Policy is written against named services and identities, not just packets and addresses.
+3. **Token-based identity.** Short-lived, continuously evaluated tokens replace long-lived sessions.
+4. **Active governance.** Continuous drift detection and evidence replace periodic assessment.
+5. **Fewer synchronous round-trips.** Architecture reduces the number of times an application must reach a distant authority.
+
+These principles separate the system of record from the in-path enforcer. Every era conflates the two; the destination is to keep them distinct.
+
+---
+
 *Consolidated principles for project use. No internal branding or document identifiers.*
