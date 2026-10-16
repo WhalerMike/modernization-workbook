@@ -12,6 +12,14 @@ The Federal Compliance Series - Moderate covers the network, identity, data-plat
 | [Executive Summary](executive-summary.md) | Technical compendium — thesis, doctrine, control-closure framing |
 | [Series Overview](../federal-compliance-series-moderate-overview.md) | Volume map and lifecycle |
 
+## Volume overviews
+
+| Volume | Document | Theme |
+|--------|----------|-------|
+| Vol I | [Foundation & Transport](vol-i-foundation-transport.md) | Naming, identity, and transport substrate |
+| Vol II | [Data Platform](vol-ii-data-platform.md) | Applying the substrate to the database tier |
+| Vol III | [Security Operations](vol-iii-security-operations.md) | Actuation is platform-native; evidence is unified |
+
 ## Eleven volumes
 
 | Volume | Theme |
@@ -46,4 +54,4 @@ No closure counts unless it carries its proof.
 
 ---
 
-*Cleaned extraction for project use. No internal branding or document identifiers. Full sixty-book series remains in source materials; this is the engine-neutral framing.*
+*Cleaned extraction for project use. No internal branding or document identifiers. Volume overviews I–III extracted; remaining volumes and full books remain in source materials.*
