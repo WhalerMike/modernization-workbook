@@ -8,6 +8,8 @@ Everything the modernization framework does — every analysis, every plan, ever
 
 This is a deliberate, governed choice, not a simplification.
 
+![Platform Host — Five Roles](../images/cshc/platform-host.svg)
+
 ## Why one host
 
 The platform host is a governance substrate, not an application server. Governance substrates have properties that ordinary application servers do not:
