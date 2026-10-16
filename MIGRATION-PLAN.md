@@ -39,6 +39,8 @@
 | Education, Training, and Test Plans overviews | `docs/program/` | Done |
 | Principles extracts from large libraries | `docs/libraries/` | Done |
 | Consolidated principles document with diagram | `docs/PRINCIPLES.md` | Done |
+| Learning (AD vs Entra reference + Entra Security Baseline crosswalk) | `docs/learning/` | Done |
+| Executive Briefs (modernization, Zero Trust, drift engine) | `docs/executive-briefs/` | Done |
 
 ---
 
@@ -47,16 +49,18 @@
 | Item | Source | Target | Notes |
 |------|--------|--------|-------|
 | Target surface libraries | Policy templates, access library, modernization specs | `docs/libraries/` | **Deferred** — short principles extracts created; full catalogs remain in source materials |
+| Remaining whitepapers | Federal compliance primer, Zero Trust governance principles, federal SSOT alignment, TIC/SD-WAN, Infoblox | `docs/whitepapers/` | Selective — prefer externally-sourced papers |
+| Architecture Series | Six-plane model, three-layer rules, boundary-impact, evidence chain | `docs/architecture/` | Conceptual explainers; clean if requested |
+| Case Studies | Framing-pattern narratives | `docs/case-studies/` | Lower priority; synthetic framing |
+| OrgPath / OrgComp series | Long-form substrate and compliance programs | — | Deferred — heavy branding |
 
 ---
 
 ## Status
 
-**Migration of the high-value, extractable content is complete.**
+**High-value extraction from the customer-documents portal is underway.**
 
-The remaining item (full target surface libraries) is intentionally deferred. Short principles extracts have been created. Full catalogs remain in the source materials.
-
-The full SQL Server narrative series (Books 01–10) has been cleaned and migrated to `docs/case-studies/sql-server-narrative/`.
+Learning section and Executive Briefs have been cleaned and migrated. Remaining whitepapers, Architecture Series, and Case Studies are available for selective continuation.
 
 ---
 
@@ -77,4 +81,4 @@ The full SQL Server narrative series (Books 01–10) has been cleaned and migrat
 Update this file as items are completed. When a document is finished, move it from its priority section to the “Already Completed” table and note the destination path and commit date.
 
 **Last updated:** 2026-10-16  
-**Status:** High-value migration complete. Full SQL Server narrative series migrated.
+**Status:** Learning and Executive Briefs migrated from customer-documents portal.
