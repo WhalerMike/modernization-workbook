@@ -34,6 +34,7 @@
 | Drift Detection walkthrough | `docs/architecture/drift-detection.md` | Done |
 | Device and Server Modernization (overview + manual path) | `docs/guides/device-and-server-modernization/` | Done |
 | Single Source of Truth definition | `docs/architecture/single-source-of-truth.md` | Done |
+| Where data lives (three-layer storage model) | `docs/architecture/where-data-lives.md` | Done |
 
 ---
 
@@ -45,16 +46,14 @@
 | SQL Server Identity Transformation | `docs/customer-documents/sql-server-narrative/` | `docs/case-studies/sql-server-identity.md` | Useful worked example after cleaning |
 | Target surface libraries | Intune policy templates, CA library, modernization specs | `docs/libraries/` | Mine selectively; avoid full copy |
 | Program education / training / test plans | `docs/narrative/program-*.qmd` | `docs/program/` | Short supporting pages |
-| Where data lives | `where-data-lives.qmd` (+ devices) | `docs/architecture/where-data-lives.md` | Provenance and location map |
 
 ---
 
 ## Suggested Order of Work
 
-All Priority 1, Priority 2, and the foundational Single Source of Truth item are complete.
+All Priority 1, Priority 2, and the foundational items (Single Source of Truth, Where data lives) are complete.
 
 Next options (Priority 3, selective):
-- Where data lives
 - SQL Server Identity Transformation case study
 - HR-driven lifecycle
 - Program education / training / test plans
