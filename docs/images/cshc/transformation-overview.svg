@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 200" font-family="system-ui, sans-serif">
+  <rect width="800" height="200" fill="#f8f9fa"/>
+  <text x="400" y="30" text-anchor="middle" font-size="18" font-weight="600" fill="#1a1a2e">Client-Server → Hybrid-Cloud Transformation</text>
+  
+  <rect x="40" y="60" width="180" height="80" rx="6" fill="#742a2a"/>
+  <text x="130" y="95" text-anchor="middle" font-size="13" fill="white" font-weight="500">Client-Server</text>
+  <text x="130" y="115" text-anchor="middle" font-size="10" fill="#fed7d7">Perimeter · Session · Hierarchy</text>
+  
+  <polygon points="230,100 260,100 260,90 290,100 260,110 260,100" fill="#4a5568"/>
+  
+  <rect x="310" y="60" width="180" height="80" rx="6" fill="#744210"/>
+  <text x="400" y="95" text-anchor="middle" font-size="13" fill="white" font-weight="500">Bridging</text>
+  <text x="400" y="115" text-anchor="middle" font-size="10" fill="#feebc8">Coexistence · Attribute Map</text>
+  
+  <polygon points="500,100 530,100 530,90 560,100 530,110 530,100" fill="#4a5568"/>
+  
+  <rect x="580" y="60" width="180" height="80" rx="6" fill="#1a365d"/>
+  <text x="670" y="95" text-anchor="middle" font-size="13" fill="white" font-weight="500">Hybrid-Cloud</text>
+  <text x="670" y="115" text-anchor="middle" font-size="10" fill="#bee3f8">Token · Attribute · Evidence</text>
+</svg>
