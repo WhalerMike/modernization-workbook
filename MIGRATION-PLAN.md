@@ -27,17 +27,19 @@
 | Project Charter | `PROJECT-CHARTER.md` | Done |
 | Project Plan | `PROJECT-PLAN.md` | Done |
 | Why Modernization Is Hard narrative | `docs/narratives/why-modernization-is-hard.md` | Done |
-| Whitepapers (structural problem, modernization journey, hybrid join) | `docs/whitepapers/` | Done |
+| Whitepapers (structural problem, modernization journey, hybrid join, session vs. telemetry, network transport) | `docs/whitepapers/` | Done |
 | Directory Migration Bridge overview + eight core concepts | `docs/architecture/directory-migration/` | Done |
 | MACD-R / Change Control and Provenance Doctrine | `docs/architecture/change-control-and-provenance.md` | Done |
 | Attribute-Driven Structure reference | `docs/architecture/attribute-driven-structure.md` | Done |
 | Drift Detection walkthrough | `docs/architecture/drift-detection.md` | Done |
-| Device and Server Modernization (overview + manual path) | `docs/guides/device-and-server-modernization/` | Done |
+| Device and Server Modernization (overview + manual path + governed/retrofit paths) | `docs/guides/device-and-server-modernization/` | Done |
 | Single Source of Truth definition | `docs/architecture/single-source-of-truth.md` | Done |
 | Where data lives (three-layer storage model) | `docs/architecture/where-data-lives.md` | Done |
-| SQL Server Identity Transformation case study overview | `docs/case-studies/sql-server-identity.md` | Done |
+| SQL Server Identity Transformation case study (expanded with chapter substance) | `docs/case-studies/sql-server-identity.md` | Done |
 | HR-driven identity lifecycle | `docs/guides/hr-driven-lifecycle.md` | Done |
 | Education, Training, and Test Plans overviews | `docs/program/` | Done |
+| Principles extracts from large libraries | `docs/libraries/` | Done |
+| Consolidated principles document with diagram | `docs/PRINCIPLES.md` | Done |
 
 ---
 
@@ -45,7 +47,7 @@
 
 | Item | Source | Target | Notes |
 |------|--------|--------|-------|
-| Target surface libraries | Intune policy templates, CA library, modernization specs | `docs/libraries/` | **Deferred** — mine selectively if needed; full copy not recommended |
+| Target surface libraries | Intune policy templates, CA library, modernization specs | `docs/libraries/` | **Deferred** — short principles extracts created; full catalogs remain in source repository |
 
 ---
 
@@ -53,7 +55,9 @@
 
 **Migration of the high-value, extractable content is complete.**
 
-The remaining item (target surface libraries) is intentionally deferred. Those materials are large, platform-specific libraries best kept in the source repository and referenced rather than duplicated.
+The remaining item (full target surface libraries) is intentionally deferred. Short principles extracts have been created. Full catalogs remain in the source repository.
+
+Previously noted gaps (session-vs-telemetry, network/infrastructure track, governed/retrofit paths, SQL Server chapter substance) have been filled.
 
 ---
 
@@ -74,4 +78,4 @@ The remaining item (target surface libraries) is intentionally deferred. Those m
 Update this file as items are completed. When a document is finished, move it from its priority section to the “Already Completed” table and note the destination path and commit date.
 
 **Last updated:** 2026-10-16  
-**Status:** High-value migration complete.
+**Status:** High-value migration complete. Previously noted gaps filled.
