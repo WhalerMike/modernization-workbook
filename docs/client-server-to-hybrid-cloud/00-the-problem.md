@@ -8,6 +8,8 @@ Active Directory was never just an identity store. It was the **implicit governa
 
 This series is about not doing that.
 
+![Silent Dependencies](../images/cshc/silent-dependencies.svg)
+
 ## What was sold in 1999
 
 When Microsoft shipped Active Directory with Windows 2000, it was presented as an identity directory — a modern, replicated, Kerberos-anchored replacement for NT domains. That framing was true but incomplete.
