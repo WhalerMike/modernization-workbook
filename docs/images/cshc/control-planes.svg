@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 380" font-family="system-ui, sans-serif">
+  <rect width="600" height="380" fill="#f8f9fa"/>
+  <text x="300" y="30" text-anchor="middle" font-size="18" font-weight="600" fill="#1a1a2e">Layered Control Planes</text>
+  
+  <rect x="100" y="50" width="400" height="40" rx="4" fill="#1a365d"/>
+  <text x="300" y="75" text-anchor="middle" font-size="13" fill="white">Identity</text>
+  
+  <rect x="100" y="100" width="400" height="40" rx="4" fill="#2c5282"/>
+  <text x="300" y="125" text-anchor="middle" font-size="13" fill="white">Structure</text>
+  
+  <rect x="100" y="150" width="400" height="40" rx="4" fill="#2b6cb0"/>
+  <text x="300" y="175" text-anchor="middle" font-size="13" fill="white">Policy</text>
+  
+  <rect x="100" y="200" width="400" height="40" rx="4" fill="#3182ce"/>
+  <text x="300" y="225" text-anchor="middle" font-size="13" fill="white">Governance</text>
+  
+  <rect x="100" y="250" width="400" height="40" rx="4" fill="#4299e1"/>
+  <text x="300" y="275" text-anchor="middle" font-size="13" fill="white">Network / Addressing</text>
+  
+  <rect x="100" y="300" width="400" height="40" rx="4" fill="#63b3ed"/>
+  <text x="300" y="325" text-anchor="middle" font-size="13" fill="#1a365d">Compute / Access</text>
+</svg>
