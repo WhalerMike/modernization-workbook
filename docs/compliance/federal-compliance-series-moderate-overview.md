@@ -42,7 +42,7 @@ Each book generates its “Authorities Closed Here” table from a single compli
 
 ## Entry points
 
-- **Leadership:** two-page executive brief, then executive summary and product inventory questionnaire.
+- **Leadership:** [two-page executive brief](federal-compliance-series-moderate/executive-brief.md), then [executive summary](federal-compliance-series-moderate/executive-summary.md) and product inventory questionnaire.
 - **Practitioners:** core pathway (spine plus labs) and deployable automation kits.
 - **Full academy:** training and certification volume with two tracks (compliance and implementation).
 
