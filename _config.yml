@@ -1,0 +1,10 @@
+title: Modernization Workbook
+description: A clean, standalone modernization project
+theme: minima
+markdown: kramdown
+plugins:
+  - jekyll-feed
+exclude:
+  - MIGRATION-*.md
+  - STATUS.md
+  - OUTLINE.md
