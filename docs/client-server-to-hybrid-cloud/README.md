@@ -4,6 +4,8 @@
 
 An eleven-chapter narrative covering the end-to-end transformation from a Client/Server-era Active Directory forest through analysis, planning, and delivery to a governed Hybrid-Cloud estate.
 
+![Transformation Overview](../images/cshc/transformation-overview.svg)
+
 ## Why this series exists
 
 Most modernization guides answer narrow questions. This series answers the large one: *We have an AD forest. Where are we going, how do we get there, and what does the finished state look like?*
