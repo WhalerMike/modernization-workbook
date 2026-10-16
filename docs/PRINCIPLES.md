@@ -4,6 +4,8 @@
 
 This document collects the core principles extracted from the cleaned architecture, guides, and libraries. It is written for program leadership, architects, and operators who need the rules without the full narrative.
 
+![Modernization Principles Overview](images/principles-overview.jpg)
+
 ---
 
 ## 1. Single Source of Truth
