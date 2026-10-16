@@ -43,6 +43,8 @@
 | Consolidated principles document with diagram | `docs/PRINCIPLES.md` | Done |
 | Learning (AD vs Entra reference + Entra Security Baseline crosswalk) | `docs/learning/` | Done |
 | Executive Briefs (modernization, Zero Trust, drift engine) | `docs/executive-briefs/` | Done |
+| Executive Governance Series (landing + Chapter 1) | `docs/executive-governance-series/` | Done (Chapter 1; remaining chapters indexed) |
+| Active Governance (platform control-plane overview) | `docs/platform/active-governance.md` | Done |
 
 ---
 
@@ -51,6 +53,7 @@
 | Item | Source | Target | Notes |
 |------|--------|--------|-------|
 | Target surface libraries | Policy templates, access library, modernization specs | `docs/libraries/` | **Deferred** — short principles extracts created; full catalogs remain in source materials |
+| Executive Governance Series (chapters 2–9) | Long-form governance narrative | `docs/executive-governance-series/` | Indexed; extract on request |
 | OrgPath / OrgComp series | Long-form substrate and compliance programs | — | Deferred — heavy branding |
 
 ---
@@ -59,7 +62,7 @@
 
 **High-value extraction from the customer-documents portal is complete.**
 
-Learning, Executive Briefs, whitepapers (including DNS), Architecture Series, and Case Studies (framing patterns) have been cleaned and migrated. The long-form OrgPath/OrgComp series and full target-surface libraries remain deferred.
+Learning, Executive Briefs, whitepapers, Architecture Series, Case Studies, Executive Governance Series (Chapter 1 + index), and Active Governance have been cleaned and migrated. Remaining chapters of the Executive Governance Series, the long-form OrgPath/OrgComp series, and full target-surface libraries remain deferred or indexed for selective continuation.
 
 ---
 
@@ -80,4 +83,4 @@ Learning, Executive Briefs, whitepapers (including DNS), Architecture Series, an
 Update this file as items are completed. When a document is finished, move it from its priority section to the “Already Completed” table and note the destination path and commit date.
 
 **Last updated:** 2026-10-16  
-**Status:** Next Generation DNS whitepaper and Case Studies framing patterns migrated.
+**Status:** Executive Governance Series (Chapter 1) and Active Governance migrated.
