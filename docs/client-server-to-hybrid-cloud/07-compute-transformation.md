@@ -4,6 +4,9 @@
 
 ## The compute claim
 
+![Diagram](../images/cshc/compute-transformation.svg)
+
+
 Compute objects — domain-joined PCs and servers — are the single largest remaining Active Directory dependency once identity (Chapter 04), policy (Chapter 05), and services (Chapter 06) have moved. PCs retire into cloud-joined + device management. Servers retire into hybrid management + guest configuration. Kerberos-bound applications lose their domain-join anchor and migrate to modern authentication or are retired.
 
 This chapter ends at “no device authenticates to Active Directory.” That is the final precondition for Active Directory Domain Services retirement.
