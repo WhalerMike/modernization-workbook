@@ -4,6 +4,8 @@
 
 The modernization control surface decomposes into **six control planes**. Each plane is authoritative for its domain, and all six operate as a single deterministic system.
 
+![Six-Plane Architecture](../../images/architecture/six-plane-architecture.svg)
+
 ## The six planes
 
 | Plane | Role |
