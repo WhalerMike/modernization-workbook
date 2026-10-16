@@ -2,6 +2,8 @@
 
 **Eleven-volume, engine-neutral FedRAMP Moderate compliance program**
 
+![Series Overview](../../images/compliance/series-overview.svg)
+
 The Federal Compliance Series - Moderate covers the network, identity, data-platform, security-operations, governance, training, automation, multi-cloud DNS/DHCP/IPAM, and day-2 architecture required for FedRAMP Moderate authorization under FedRAMP 20x rules.
 
 ## Start here
@@ -28,6 +30,8 @@ The Federal Compliance Series - Moderate covers the network, identity, data-plat
 | Vol X | [Governance-Substrate Integration](vol-x-governance-substrate-integration.md) | Optional binding to a governance substrate |
 
 ## Engine-neutral by design
+
+![Evidence Contract](../../images/compliance/evidence-contract.svg)
 
 The series speaks only to an open Evidence & Authorization Contract that any conformant evidence engine can satisfy. It stands alone without any particular identity or modernization substrate.
 
