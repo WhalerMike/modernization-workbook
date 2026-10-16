@@ -29,50 +29,15 @@
 | Why Modernization Is Hard narrative | `docs/narratives/why-modernization-is-hard.md` | Done |
 | Whitepapers (structural problem, modernization journey, hybrid join) | `docs/whitepapers/` | Done |
 | Directory Migration Bridge overview + eight core concepts | `docs/architecture/directory-migration/` | Done |
+| MACD-R / Change Control and Provenance Doctrine | `docs/architecture/change-control-and-provenance.md` | Done |
+| Attribute-Driven Structure reference | `docs/architecture/attribute-driven-structure.md` | Done |
+| Drift Detection walkthrough | `docs/architecture/drift-detection.md` | Done |
 
 ---
 
-## Priority 1 — High-leverage, relatively self-contained
+## Priority 2 — Remaining
 
-### 1.1 Whitepapers — Done
-Cleaned versions of the structural migration problem, modernization journey, and hybrid-join-without-governance whitepapers are in `docs/whitepapers/`.
-
-### 1.2 Directory Migration Bridge — Done (overview)
-Cleaned overview and eight core concepts are in `docs/architecture/directory-migration/`. Detailed AD dependency inventory can be added as a follow-on if needed.
-
-### 1.3 MACD-R / Change Control and Provenance Doctrine — Next
-**Source:** OrgComp Vol 0 Book 00 sections on MACD-R lifecycle and SSOT Registry (referenced from OrgMod hub)
-
-**Target:** `docs/architecture/change-control-and-provenance.md`
-
-**Checklist:**
-- [ ] Locate the five-clause path (originate from SSOT → authorize → least-privilege execution → provenance closure → evidence)
-- [ ] Extract and rewrite without OrgComp / UIAO framing
-- [ ] Include non-human class SSOTs (devices, infrastructure, human owner requirement)
-- [ ] Commit as a standalone doctrine page
-- [ ] Reference from Project Plan and series Chapter 03
-
----
-
-## Priority 2 — Valuable but more tightly coupled
-
-### 2.1 Attribute-Driven Structure Reference Set
-**Sources:**
-- `docs/customer-documents/reference-architecture/orgtree.qmd`
-- `codebook.qmd`
-- `dynamic-groups.qmd`
-- `delegation.qmd`
-- `hybrid-orgpath-model.qmd` (selectively)
-
-**Target:** `docs/architecture/attribute-driven-structure/`
-
-**Checklist:**
-- [ ] Clean and combine into a coherent reference (or keep as separate short pages)
-- [ ] Replace OrgPath / OrgTree with “coded organizational attributes” / “attribute-driven structure”
-- [ ] Preserve the three query patterns, administrative-unit model, and HR lifecycle
-- [ ] Commit and link from series Chapter 04
-
-### 2.2 Intune + Azure Arc Modernization
+### 2.2 Intune + Azure Arc Modernization — Next
 **Source:** `docs/customer-documents/operational-guides/intune-arc-modernization/`
 
 **Target:** `docs/guides/device-and-server-modernization/`
@@ -82,16 +47,6 @@ Cleaned overview and eight core concepts are in `docs/architecture/directory-mig
 - [ ] Strip OrgPath-governed framing; keep runnable patterns
 - [ ] Commit cleaned set
 - [ ] Link from series Chapters 05 and 07
-
-### 2.3 Drift Detection Walkthrough
-**Source:** `docs/customer-documents/reference-architecture/drift-walkthrough.qmd`
-
-**Target:** `docs/architecture/drift-detection.md`
-
-**Checklist:**
-- [ ] Extract categories and examples
-- [ ] Remove internal identifiers
-- [ ] Commit and link from series Chapter 03 and Project Plan
 
 ---
 
@@ -111,11 +66,11 @@ Cleaned overview and eight core concepts are in `docs/architecture/directory-mig
 ## Suggested Order of Work
 
 1. Whitepapers — Done
-2. Directory migration bridge — Done (overview)
-3. MACD-R / change-control doctrine — Next
-4. Attribute-driven structure reference set
-5. Drift detection
-6. Device and server modernization guide
+2. Directory migration bridge — Done
+3. MACD-R / change-control doctrine — Done
+4. Attribute-driven structure reference — Done
+5. Drift detection — Done
+6. Device and server modernization guide — Next
 7. Remaining selective items as needed
 
 ---
