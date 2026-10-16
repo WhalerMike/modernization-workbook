@@ -27,45 +27,20 @@
 | Project Charter | `PROJECT-CHARTER.md` | Done |
 | Project Plan | `PROJECT-PLAN.md` | Done |
 | Why Modernization Is Hard narrative | `docs/narratives/why-modernization-is-hard.md` | Done |
+| Whitepapers (structural problem, modernization journey, hybrid join) | `docs/whitepapers/` | Done |
+| Directory Migration Bridge overview + eight core concepts | `docs/architecture/directory-migration/` | Done |
 
 ---
 
 ## Priority 1 — High-leverage, relatively self-contained
 
-### 1.1 Whitepapers
-**Sources:**
-- `docs/customer-documents/whitepapers/ad-to-entraid-migration-problem.qmd`
-- `docs/customer-documents/whitepapers/modernization-journey.qmd`
-- `docs/customer-documents/whitepapers/hybrid-join-without-governance.qmd`
-- `docs/customer-documents/whitepapers/reading-guide.qmd` (selectively)
+### 1.1 Whitepapers — Done
+Cleaned versions of the structural migration problem, modernization journey, and hybrid-join-without-governance whitepapers are in `docs/whitepapers/`.
 
-**Target:** `docs/whitepapers/`
+### 1.2 Directory Migration Bridge — Done (overview)
+Cleaned overview and eight core concepts are in `docs/architecture/directory-migration/`. Detailed AD dependency inventory can be added as a follow-on if needed.
 
-**Checklist:**
-- [ ] Pull each source file
-- [ ] Strip frontmatter branding and internal IDs
-- [ ] Remove Org* / UIAO references; rephrase as “framework” or “governed approach”
-- [ ] Preserve argument, diagrams (Mermaid), and tables
-- [ ] Commit cleaned versions
-- [ ] Add short index in `docs/whitepapers/README.md`
-
-### 1.2 Directory Migration Bridge
-**Sources:**
-- `docs/customer-documents/reference-architecture/directory-migration.qmd`
-- Supporting files under `src/uiao/modernization/directory-migration/` (eight core concepts, AD dependency inventory)
-- Operational guides under `docs/customer-documents/operational-guides/directory-migration/`
-
-**Target:** `docs/architecture/directory-migration/`
-
-**Checklist:**
-- [ ] Pull reference-architecture page and supporting markdown
-- [ ] Extract eight core concepts into a clean document
-- [ ] Extract AD dependency inventory (eleven categories)
-- [ ] Strip adapter document IDs (DM_*) and replace with descriptive names
-- [ ] Commit under `docs/architecture/directory-migration/`
-- [ ] Cross-link from series Chapter 00 and Chapter 02 where appropriate
-
-### 1.3 MACD-R / Change Control and Provenance Doctrine
+### 1.3 MACD-R / Change Control and Provenance Doctrine — Next
 **Source:** OrgComp Vol 0 Book 00 sections on MACD-R lifecycle and SSOT Registry (referenced from OrgMod hub)
 
 **Target:** `docs/architecture/change-control-and-provenance.md`
@@ -135,9 +110,9 @@
 
 ## Suggested Order of Work
 
-1. Whitepapers (structural problem + modernization journey)
-2. Directory migration bridge (concepts + inventory)
-3. MACD-R / change-control doctrine
+1. Whitepapers — Done
+2. Directory migration bridge — Done (overview)
+3. MACD-R / change-control doctrine — Next
 4. Attribute-driven structure reference set
 5. Drift detection
 6. Device and server modernization guide
