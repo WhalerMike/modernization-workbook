@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 140" font-family="system-ui, sans-serif">
+  <rect width="700" height="140" fill="#f8f9fa"/>
+  <text x="350" y="25" text-anchor="middle" font-size="16" font-weight="600" fill="#1a1a2e">Compute Transformation</text>
+  <rect x="30" y="50" width="140" height="50" rx="4" fill="#742a2a"/>
+  <text x="100" y="80" text-anchor="middle" font-size="11" fill="white">Domain-Joined</text>
+  <polygon points="170,75 200,75 200,65 220,75 200,85 200,75" fill="#4a5568"/>
+  <rect x="220" y="50" width="140" height="50" rx="4" fill="#744210"/>
+  <text x="290" y="80" text-anchor="middle" font-size="11" fill="white">Hybrid Join</text>
+  <polygon points="360,75 390,75 390,65 410,75 390,85 390,75" fill="#4a5568"/>
+  <rect x="410" y="50" width="140" height="50" rx="4" fill="#1a365d"/>
+  <text x="480" y="80" text-anchor="middle" font-size="11" fill="white">Cloud Identity</text>
+  <polygon points="550,75 580,75 580,65 600,75 580,85 580,75" fill="#4a5568"/>
+  <rect x="600" y="50" width="80" height="50" rx="4" fill="#2c5282"/>
+  <text x="640" y="80" text-anchor="middle" font-size="11" fill="white">Arc</text>
+  <text x="350" y="125" text-anchor="middle" font-size="11" fill="#4a5568">Observe before change. Domain-unjoin is separate.</text>
+</svg>
