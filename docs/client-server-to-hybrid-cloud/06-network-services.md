@@ -4,6 +4,9 @@
 
 ## The services claim
 
+![Diagram](../images/cshc/services-transformation.svg)
+
+
 DNS, DHCP, and IP address management are the three network services that organizations almost always defer when they modernize Active Directory. The assumption is that because these services still work, they do not need to move.
 
 That assumption is wrong. Active Directory-integrated DNS, Active Directory-joined DHCP servers, and informal IP address management are among the most common sources of post-migration governance regression. They look fine from the outside and are silently broken on the inside. This chapter addresses that.
