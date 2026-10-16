@@ -32,21 +32,7 @@
 | MACD-R / Change Control and Provenance Doctrine | `docs/architecture/change-control-and-provenance.md` | Done |
 | Attribute-Driven Structure reference | `docs/architecture/attribute-driven-structure.md` | Done |
 | Drift Detection walkthrough | `docs/architecture/drift-detection.md` | Done |
-
----
-
-## Priority 2 — Remaining
-
-### 2.2 Intune + Azure Arc Modernization — Next
-**Source:** `docs/customer-documents/operational-guides/intune-arc-modernization/`
-
-**Target:** `docs/guides/device-and-server-modernization/`
-
-**Checklist:**
-- [ ] Inventory chapters / pages
-- [ ] Strip OrgPath-governed framing; keep runnable patterns
-- [ ] Commit cleaned set
-- [ ] Link from series Chapters 05 and 07
+| Device and Server Modernization (overview + manual path) | `docs/guides/device-and-server-modernization/` | Done |
 
 ---
 
@@ -65,13 +51,14 @@
 
 ## Suggested Order of Work
 
-1. Whitepapers — Done
-2. Directory migration bridge — Done
-3. MACD-R / change-control doctrine — Done
-4. Attribute-driven structure reference — Done
-5. Drift detection — Done
-6. Device and server modernization guide — Next
-7. Remaining selective items as needed
+All Priority 1 and Priority 2 items are complete.
+
+Next options (Priority 3, selective):
+- Single Source of Truth definition
+- Where data lives
+- SQL Server Identity Transformation case study
+- HR-driven lifecycle
+- Program education / training / test plans
 
 ---
 
