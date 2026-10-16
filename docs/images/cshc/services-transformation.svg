@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 140" font-family="system-ui, sans-serif">
+  <rect width="700" height="140" fill="#f8f9fa"/>
+  <text x="350" y="25" text-anchor="middle" font-size="16" font-weight="600" fill="#1a1a2e">Services Transformation</text>
+  <rect x="40" y="50" width="180" height="50" rx="4" fill="#742a2a"/>
+  <text x="130" y="80" text-anchor="middle" font-size="12" fill="white">AD DNS/DHCP</text>
+  <polygon points="230,75 270,75 270,65 290,75 270,85 270,75" fill="#4a5568"/>
+  <rect x="300" y="50" width="180" height="50" rx="4" fill="#1a365d"/>
+  <text x="390" y="80" text-anchor="middle" font-size="12" fill="white">Governed IPAM</text>
+  <polygon points="490,75 530,75 530,65 550,75 530,85 530,75" fill="#4a5568"/>
+  <rect x="560" y="50" width="110" height="50" rx="4" fill="#2c5282"/>
+  <text x="615" y="80" text-anchor="middle" font-size="11" fill="white">Private DNS</text>
+  <text x="350" y="125" text-anchor="middle" font-size="11" fill="#4a5568">Naming plane is the asset-identity join key</text>
+</svg>
