@@ -7,8 +7,8 @@ Cleaned, externally usable versions of high-value modernization whitepapers.
 | [AD to Entra ID — The Structural Migration Problem](ad-to-entraid-migration-problem.md) | Why the governance gap is structural, not technical. Mapping of Active Directory concepts to Entra equivalents and the two limits that decide whether the mapping works. |
 | [Modernization Journey](modernization-journey.md) | Forty-year arc from mainframe single source of truth through decentralization, the security era, and the breaking point, to five principles for the way forward. |
 | [Hybrid Join Without Governance](hybrid-join-without-governance.md) | Why converting 50,000 devices to hybrid join is a near-effortless tenant switch, and the loss ledger that results if the switch is taken without governance. |
-
-Additional whitepapers (session vs. telemetry, network and infrastructure track) can be added as they are cleaned.
+| [Session vs. Telemetry](session-vs-telemetry.md) | Why persistent session-based identity and continuous-verification telemetry are incompatible, and what the bridge requires. |
+| [Network Transport and Governance](network-transport-and-governance.md) | Transport is a physics decision; control is a compliance decision. Why local breakout without a governing control plane is a compliance regression. |
 
 ---
 
