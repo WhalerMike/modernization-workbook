@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 180" font-family="system-ui, sans-serif">
+  <rect width="700" height="180" fill="#f8f9fa"/>
+  <text x="350" y="25" text-anchor="middle" font-size="16" font-weight="600" fill="#1a1a2e">Identity Transformation</text>
+  <rect x="40" y="50" width="180" height="70" rx="4" fill="#742a2a"/>
+  <text x="130" y="80" text-anchor="middle" font-size="12" fill="white">Hierarchical OU</text>
+  <text x="130" y="100" text-anchor="middle" font-size="10" fill="#fed7d7">Implicit governance</text>
+  <polygon points="230,85 270,85 270,75 290,85 270,95 270,85" fill="#4a5568"/>
+  <rect x="300" y="50" width="180" height="70" rx="4" fill="#1a365d"/>
+  <text x="390" y="80" text-anchor="middle" font-size="12" fill="white">Attribute-Driven</text>
+  <text x="390" y="100" text-anchor="middle" font-size="10" fill="#bee3f8">Explicit structure</text>
+  <polygon points="490,85 530,85 530,75 550,85 530,95 530,85" fill="#4a5568"/>
+  <rect x="560" y="50" width="120" height="70" rx="4" fill="#2c5282"/>
+  <text x="620" y="80" text-anchor="middle" font-size="11" fill="white">Dynamic</text>
+  <text x="620" y="98" text-anchor="middle" font-size="11" fill="white">Groups + AUs</text>
+  <text x="350" y="155" text-anchor="middle" font-size="11" fill="#4a5568">Organizational position expressed through coded attributes</text>
+</svg>
