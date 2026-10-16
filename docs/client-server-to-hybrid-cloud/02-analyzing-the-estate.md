@@ -4,6 +4,9 @@
 
 ## The assessment discipline
 
+![Diagram](../images/cshc/analysis-pipeline.svg)
+
+
 You cannot modernize what you have not enumerated. Every modernization begins with a **read-only, least-privilege, provenance-bound analysis** of the existing Client/Server estate. The output of this phase is a structured, versioned artifact set — one per dependency category — committed to the authoritative repository and consumed by every downstream chapter.
 
 No writes. No guesses. No “we will handle that later.”
