@@ -46,7 +46,7 @@
 | Executive Governance Series (all nine chapters) | `docs/executive-governance-series/` | Done |
 | Active Governance (platform control-plane overview) | `docs/platform/active-governance.md` | Done |
 | Federal Organization Compliance Series overview | `docs/compliance/orgcomp-series-overview.md` | Done |
-| Modernization Specs (identity, zero-trust, telemetry domain overviews) | `docs/modernization-specs/` | Done |
+| Modernization Specs (all six domain overviews) | `docs/modernization-specs/` | Done |
 
 ---
 
@@ -57,7 +57,6 @@
 | Target surface libraries | Policy templates, access library | `docs/libraries/` | **Deferred** — short principles extracts created; full catalogs remain in source materials |
 | OrgPath series | Long-form substrate narrative | — | **Skipped** per direction — heavy branding |
 | OrgComp full series | Sixty-book compliance program | — | Overview extracted; full books remain in source materials |
-| Remaining modernization specs | Cloud, SASE, SD-WAN domain pages | `docs/modernization-specs/` | Domain overviews available; full adapter detail deferred |
 
 ---
 
@@ -65,7 +64,7 @@
 
 **High-value extraction from the customer-documents portal is complete.**
 
-All major sections have been cleaned and migrated except OrgPath (skipped per direction) and full catalogs. Remaining items are full books or catalogs that remain in source materials.
+All major sections have been cleaned and migrated except OrgPath (skipped per direction) and full catalogs/books. Remaining items are full books or catalogs that remain in source materials.
 
 ---
 
@@ -86,4 +85,4 @@ All major sections have been cleaned and migrated except OrgPath (skipped per di
 Update this file as items are completed. When a document is finished, move it from its priority section to the “Already Completed” table and note the destination path and commit date.
 
 **Last updated:** 2026-10-16  
-**Status:** OrgComp overview and Modernization Specs domain overviews migrated. OrgPath skipped.
+**Status:** All modernization specs domain overviews migrated. OrgPath skipped.
