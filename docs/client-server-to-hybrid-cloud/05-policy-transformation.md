@@ -4,6 +4,9 @@
 
 ## The policy claim
 
+![Diagram](../images/cshc/policy-transformation.svg)
+
+
 Group Policy was Active Directory’s most ambitious delivery system — configuration, security, software deployment, scripts, drive mappings, and more, inheriting down an organizational-unit tree and filtered by security groups. The replacement surface is not one product; it is several: device management (configuration and compliance), Conditional Access (access control), hybrid server configuration, and tenant policy settings.
 
 The framework maps every Group Policy category to the correct modern target, keeps the mapping versioned in the authoritative repository, and delivers policies through the same plan-and-deliver pipeline used for identity.
