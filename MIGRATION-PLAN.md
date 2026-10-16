@@ -1,17 +1,15 @@
 # Migration Plan and Checklist
 
-**Purpose:** Extract and clean high-value modernization content from the original repository into this project so it can be used as standalone project guidance. No UIAO, OrgPath, OrgComp, OrgMod, ADR numbers, or internal document identifiers in the finished artifacts.
+**Purpose:** Extract and clean high-value modernization content from the original materials into this project so it can be used as standalone project guidance. No internal branding or document identifiers in the finished artifacts.
 
-**Source repository:** `WhalerMike/uiao`  
-**Target repository:** `WhalerMike/modernization-workbook`  
-**Public reference site:** https://whalermike.github.io/uiao/orgmod/
+**Target repository:** `WhalerMike/modernization-workbook`
 
 ---
 
 ## Guiding Rules
 
 - Preserve technical and programmatic substance.
-- Remove all branding (UIAO, Org*, substrate, canon document IDs).
+- Remove all internal branding and document identifiers.
 - Remove internal cross-references and promotional sections.
 - Generalize platform-specific language only where it does not lose meaning.
 - Place cleaned material under `docs/` in a clear structure.
@@ -48,7 +46,7 @@
 
 | Item | Source | Target | Notes |
 |------|--------|--------|-------|
-| Target surface libraries | Intune policy templates, CA library, modernization specs | `docs/libraries/` | **Deferred** — short principles extracts created; full catalogs remain in source repository |
+| Target surface libraries | Policy templates, access library, modernization specs | `docs/libraries/` | **Deferred** — short principles extracts created; full catalogs remain in source materials |
 
 ---
 
@@ -56,7 +54,7 @@
 
 **Migration of the high-value, extractable content is complete.**
 
-The remaining item (full target surface libraries) is intentionally deferred. Short principles extracts have been created. Full catalogs remain in the source repository.
+The remaining item (full target surface libraries) is intentionally deferred. Short principles extracts have been created. Full catalogs remain in the source materials.
 
 The full SQL Server narrative series (Books 01–10) has been cleaned and migrated to `docs/case-studies/sql-server-narrative/`.
 
@@ -64,9 +62,9 @@ The full SQL Server narrative series (Books 01–10) has been cleaned and migrat
 
 ## Quality Checklist (apply to every migrated document)
 
-- [ ] No occurrence of “UIAO”, “OrgPath”, “OrgTree”, “OrgComp”, “OrgMod”, or “OrgLink”
-- [ ] No ADR numbers or UIAO_NNN / DM_NNN identifiers
-- [ ] No internal “Posted” or “Canon” cross-references
+- [ ] No internal branding or product-family names
+- [ ] No internal document identifiers
+- [ ] No internal cross-references
 - [ ] Diagrams and tables preserved or cleanly rewritten
 - [ ] Language usable by an external program team or leadership audience
 - [ ] File placed under a logical `docs/` path
