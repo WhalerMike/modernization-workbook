@@ -6,20 +6,25 @@ The workbook supplies the principles, architecture, and governance framing. Thes
 
 ## Available
 
-| Project | Charter | Plan | Priority |
-|---------|---------|------|----------|
-| Identity Lifecycle & Provisioning | [Charter](identity-lifecycle-charter.md) | [Plan](identity-lifecycle-plan.md) | Highest |
+| Project | Charter | Plan |
+|---------|---------|------|
+| Identity Lifecycle & Provisioning | [Charter](identity-lifecycle-charter.md) | [Plan](identity-lifecycle-plan.md) |
+| Endpoint & Device Modernization | [Charter](endpoint-device-charter.md) | [Plan](endpoint-device-plan.md) |
+| Network & Access Modernization | [Charter](network-access-charter.md) | [Plan](network-access-plan.md) |
+| Continuous Monitoring & Evidence Fabric | [Charter](continuous-monitoring-charter.md) | [Plan](continuous-monitoring-plan.md) |
+| Privileged Access & Administrative Identity | [Charter](privileged-access-charter.md) | [Plan](privileged-access-plan.md) |
+| Data Platform Identity Transformation | [Charter](data-platform-charter.md) | [Plan](data-platform-plan.md) |
+| Supply Chain & Software Bill of Materials | [Charter](supply-chain-charter.md) | [Plan](supply-chain-plan.md) |
 
-## Planned
+## Suggested sequence
 
-| Project | Focus |
-|---------|-------|
-| Endpoint & Device Modernization | Group Policy Object sunset, Conditional Access baseline, NTLM restriction, device lifecycle |
-| Network & Access Modernization | Zero Trust Network Access / Secure Access Service Edge, naming plane, customer-edge enforcement |
-| Continuous Monitoring & Evidence Fabric | Multi-source evidence aggregation, drift detection operations, authorization package assembly |
-| Privileged Access & Administrative Identity | Just-in-time elevation, administrative unit design, non-human identity governance |
-| Data Platform Identity Transformation | Database and application-tier identity beyond SQL Server |
-| Supply Chain & Software Bill of Materials | Software bill of materials pipeline, risk-based remediation, vendor authorization tracking |
+1. Identity Lifecycle & Provisioning
+2. Endpoint & Device Modernization
+3. Network & Access Modernization
+4. Continuous Monitoring & Evidence Fabric
+5. Privileged Access & Administrative Identity
+6. Data Platform Identity Transformation
+7. Supply Chain & Software Bill of Materials
 
 ---
 
