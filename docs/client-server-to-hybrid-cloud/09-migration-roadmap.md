@@ -144,6 +144,9 @@ Exit gate (Gate G5 — Active Directory Retired):
 
 ### Phase 6 — Steady State (week 49+)
 
+> **Calibration:** The week-49 retirement is illustrative. Real programs with large estates run multi-year. Treat the timeline as a sequencing model, not a schedule.
+
+
 **Goal.** Operate the modernized environment under governed control.
 
 Steady state is the permanent post-modernization state. It has properties:
