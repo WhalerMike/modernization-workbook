@@ -17,3 +17,4 @@ Practical how-to documents for modernization activities.
 ---
 
 *Cleaned extractions for project use.*
+| [HRIT to HR-Driven IAM Execution Plan](hrit-to-hr-driven-iam-execution-plan.md) | Execution plan for HR-agnostic provisioning against Federal HR 2.0. |
