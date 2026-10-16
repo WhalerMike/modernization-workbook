@@ -4,6 +4,8 @@
 
 The evidence chain turns runtime telemetry into assessor-ready compliance artifacts with traceable provenance at every step. The chain is deterministic: same inputs, same authoritative version, same evidence bundle.
 
+![Evidence Chain](../../images/architecture/evidence-chain.svg)
+
 ## Four-stage pipeline
 
 1. **Telemetry event capture** — components at the system boundary emit structured events. Each event carries authoritative source classification from the moment of emission.
