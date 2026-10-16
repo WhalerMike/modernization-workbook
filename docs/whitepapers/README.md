@@ -15,6 +15,7 @@ Cleaned, externally usable versions of high-value modernization whitepapers.
 | [SD-WAN vs. DIA Under TIC 3.0](tic3-sdwan-vs-dia.md) | Transport is a physics decision; control is a compliance decision. |
 | [Ticket-to-Machine, Not Ticket-to-Human](ticket-to-machine-not-ticket-to-human.md) | Why changing state isn’t compliance evidence. |
 | [Attribute-Oriented Directory and Identity Model](aodim-executive-whitepaper.md) | Making identity attributes the authoritative driver of access, policy, and governance. |
+| [Next Generation DNS](next-generation-dns.md) | How DNS became the application surface, security enforcement plane, and identity substrate of the hybrid multi-cloud enterprise. |
 
 ---
 
