@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 140" font-family="system-ui, sans-serif">
+  <rect width="700" height="140" fill="#f8f9fa"/>
+  <text x="350" y="25" text-anchor="middle" font-size="16" font-weight="600" fill="#1a1a2e">Access Plane</text>
+  <rect x="40" y="50" width="140" height="50" rx="4" fill="#742a2a"/>
+  <text x="110" y="80" text-anchor="middle" font-size="11" fill="white">Perimeter / VPN</text>
+  <polygon points="190,75 230,75 230,65 250,75 230,85 230,75" fill="#4a5568"/>
+  <rect x="260" y="50" width="180" height="50" rx="4" fill="#1a365d"/>
+  <text x="350" y="80" text-anchor="middle" font-size="12" fill="white">Identity-Driven</text>
+  <polygon points="450,75 490,75 490,65 510,75 490,85 490,75" fill="#4a5568"/>
+  <rect x="520" y="50" width="140" height="50" rx="4" fill="#2c5282"/>
+  <text x="590" y="75" text-anchor="middle" font-size="11" fill="white">ZTNA / SASE</text>
+  <text x="590" y="92" text-anchor="middle" font-size="9" fill="#bee3f8">+ Cert Auth</text>
+  <text x="350" y="125" text-anchor="middle" font-size="11" fill="#4a5568">Access decisions consume identity claims</text>
+</svg>
