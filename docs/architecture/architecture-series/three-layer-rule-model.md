@@ -4,6 +4,8 @@
 
 Rule authoring is separated into **three distinct layers** so that policy intent, evaluation logic, and runtime enforcement can be reasoned about, versioned, and drift-detected independently. Mixing them — the typical “policy-as-config” failure mode — collapses three different change boundaries into one and loses the ability to assess each layer for its own risk profile.
 
+![Three-Layer Rule Model](../../images/architecture/three-layer-rules.svg)
+
 ## The three layers
 
 | Layer | Authoritative for | Change boundary |
