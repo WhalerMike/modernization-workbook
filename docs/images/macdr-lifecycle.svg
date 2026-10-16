@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 280" font-family="system-ui, sans-serif">
+  <rect width="800" height="280" fill="#f8f9fa"/>
+  <text x="400" y="35" text-anchor="middle" font-size="20" font-weight="600" fill="#1a1a2e">MACD-R Lifecycle</text>
+  
+  <rect x="30" y="70" width="130" height="70" rx="6" fill="#1a365d"/>
+  <text x="95" y="100" text-anchor="middle" font-size="12" fill="white">1. Originate</text>
+  <text x="95" y="118" text-anchor="middle" font-size="10" fill="#bee3f8">from SSOT</text>
+  
+  <polygon points="160,105 180,105 180,95 200,105 180,115 180,105" fill="#4a5568"/>
+  
+  <rect x="200" y="70" width="130" height="70" rx="6" fill="#2c5282"/>
+  <text x="265" y="100" text-anchor="middle" font-size="12" fill="white">2. Authorize</text>
+  <text x="265" y="118" text-anchor="middle" font-size="10" fill="#bee3f8">authority model</text>
+  
+  <polygon points="330,105 350,105 350,95 370,105 350,115 350,105" fill="#4a5568"/>
+  
+  <rect x="370" y="70" width="130" height="70" rx="6" fill="#2b6cb0"/>
+  <text x="435" y="100" text-anchor="middle" font-size="12" fill="white">3. Execute</text>
+  <text x="435" y="118" text-anchor="middle" font-size="10" fill="#bee3f8">least privilege</text>
+  
+  <polygon points="500,105 520,105 520,95 540,105 520,115 520,105" fill="#4a5568"/>
+  
+  <rect x="540" y="70" width="130" height="70" rx="6" fill="#3182ce"/>
+  <text x="605" y="100" text-anchor="middle" font-size="12" fill="white">4. Close</text>
+  <text x="605" y="118" text-anchor="middle" font-size="10" fill="#bee3f8">with provenance</text>
+  
+  <polygon points="670,105 690,105 690,95 710,105 690,115 690,105" fill="#4a5568"/>
+  
+  <rect x="30" y="170" width="740" height="70" rx="6" fill="#2d3748"/>
+  <text x="400" y="200" text-anchor="middle" font-size="14" fill="white" font-weight="500">5. Emit Evidence</text>
+  <text x="400" y="220" text-anchor="middle" font-size="12" fill="#a0aec0">Verified, secured evidence flows to continuous monitoring. No human assembly.</text>
+</svg>
