@@ -28,6 +28,8 @@ DNS was designed in 1983–1987 to map hostnames to IP addresses. That era is ov
 
 ### Three DNS Perspectives Under a Single Control Plane
 
+![Figure 1. Unified DDI Control Plane](../images/ddi/figure-01.jpg)
+
 A unified DDI platform manages DNS from three interconnected perspectives:
 
 - **Enterprise (Internal):** On-premises DNS, Microsoft DNS, DNS views, HA/Anycast, RBAC for data centers, branches, and private clouds.
@@ -38,17 +40,25 @@ The hybrid multi-cloud landscape for most agencies spans on-premises AD DNS, AWS
 
 ### Hybrid Cloud IPAM and DHCP
 
+![Figure 2. Hybrid Cloud IPAM and DHCP](../images/ddi/figure-02.jpg)
+
 A central IPAM source of truth with policy enforcement and cloud federation prevents overlaps across on-premises and multi-cloud address space. DHCP delivers real-time updates to IPAM and DDNS for automatic record lifecycle. This supplies the address layer of the continuous inventory required by Zero Trust architectures.
 
 ## Part 2 — Split-Brain DNS: The Structural Problem
+
+![Figure 3. What is Split-Brain DNS?](../images/ddi/figure-03.jpg)
 
 Split-brain DNS is the condition in which a query for the same name returns different answers depending on where the query originates. Intentional split-brain is common and legitimate. Unintentional split-brain is structurally guaranteed when five independent DNS systems have no shared state.
 
 ### Private IP Split-Brain
 
+![Figure 4. Private IP Split-Brain](../images/ddi/figure-04.jpg)
+
 When an Azure Storage account uses a private endpoint, Azure publishes a record that resolves the FQDN to a VNet-scoped private address. Inside the linked VNet the query returns the private address. An EC2 instance in AWS requires a Route 53 outbound resolver rule that forwards the private zone correctly. If that rule is missing or stale, the name still resolves — but to a public IP. The failure is invisible without query logging because the name resolves successfully.
 
 ### Security Policy Split-Brain
+
+![Figure 5. Security Policy Split-Brain](../images/ddi/figure-05.jpg)
 
 DNS security policy is enforced at the resolver that answers the query. A domain blocked in the agency-controlled resolver may be allowed by a cloud DNS service if the rule is not synchronized. The effective posture is only as strong as the weakest system.
 
@@ -58,25 +68,37 @@ A FedRAMP Moderate authorization exists for one DDI platform in AWS GovCloud (Ju
 
 ### NIST SP 800-81 Rev. 3
 
+![Figure 6. NIST SP 800-81 Rev. 3](../images/ddi/figure-06.jpg)
+
 Published March 19, 2026, SP 800-81r3 treats DNS as critical infrastructure and an active security control. Core recommendations include employing Protective DNS, encrypting DNS traffic where feasible, deploying DNSSEC, maintaining hygiene, comprehensive logging, and positioning DNS as a Policy Enforcement Point in Zero Trust architectures.
 
 ## Part 4 — Active Directory to Entra ID Transition
+
+![Figure 7. VMware and Entra ID Transition](../images/ddi/figure-07.jpg)
 
 Active Directory has been the hidden DNS substrate for on-premises federal networks for twenty years. SRV, LDAP, and Kerberos records do not migrate automatically when workloads move to Entra ID. A unified DDI plane provides coexistence and phased modernization while preserving required records. This decouples DDI from the identity platform for resiliency and reduced attack surface.
 
 ## Part 5 — SD-WAN DNS Interception
 
+![Figure 8. Cisco SD-WAN with Agency-Controlled Resolver](../images/ddi/figure-08.jpg)
+
 Cisco Catalyst SD-WAN can intercept DNS via its redirect-dns data policy. The destination determines whether agency policy is applied. The correct path routes through a network-addressable agency-controlled resolver into the DDI policy plane. A bypassed path sends queries to an external resolver and the agency policy plane becomes invisible.
 
 ## Part 6 — Risks of Fragmented DDI
+
+![Figure 9. Risks of Fragmented DDI](../images/ddi/figure-09.jpg)
 
 Organizations that rely on fragmented or DIY DDI face higher outage frequency, slower response, reduced visibility, and lower rates of leveraging DNS for protection. Configuration drift, stale records, IP overlaps, and siloed management create compliance gaps. For SASE and Zero Trust, ungoverned DNS is the first trust decision.
 
 ## Part 7 — DNS Identity as Foundation
 
+![Figure 10. DNS Identity Foundation](../images/ddi/figure-10.jpg)
+
 DNS identity — the authoritative mapping of names to addresses, ownership, and lifecycle — is a prerequisite for certificate-based security, Application-Aware Networking, and token/identity-centric controls. DNS-01 challenges require controlled TXT record authority. DNSSEC supports DANE/TLSA. Application-Aware Networking and ZTNA depend on reliable FQDN-based policy. Token-based security operates after the initial connection that DNS determines.
 
 ## Part 8 — Reference Architecture and Five Critical Decisions
+
+![Figure 11. Reference Architecture: Single Authoritative DDI Policy Plane](../images/ddi/figure-11.jpg)
 
 The five decisions that carry essentially all operational risk are:
 
@@ -98,6 +120,8 @@ The five decisions that carry essentially all operational risk are:
 
 ## Part 10 — Phased Migration Sequence
 
+![Figure 15. Phased Migration Sequence](../images/ddi/figure-15.jpg)
+
 1. **Inventory and baseline.** Export all AD DNS zones, SRV records, conditional forwarders, and DHCP scopes.
 2. **Deploy coexistence.** Stand up the unified DDI plane with bidirectional sync. Establish conditional forwarding so both systems can answer during transition.
 3. **Migrate authority.** Move authoritative zones and DHCP scopes. Update SD-WAN redirect-dns targets.
@@ -105,23 +129,16 @@ The five decisions that carry essentially all operational risk are:
 5. **Decommission AD DNS/DHCP.** Only after full inventory reconciliation and successful failover testing.
 6. **Policy and compliance hardening.** Enable Protective DNS, encrypted DNS, DNSSEC where required, and continuous monitoring.
 
-## Parts 11–22 — Additional Topics
+## Additional Figures
 
-The full document covers:
+The remaining figures illustrate:
 
-- Encrypted DNS and bypass controls
-- DHCP Option-6 and rogue DHCP
-- Monitoring, telemetry, and compliance evidence
-- IPv6 lifecycle and dual-stack considerations
-- Cost, staffing, and success measures
-- Residual risk and limitations
-- Sample evidence checklist
-- DNSSEC validation under agency control
-- Azure Private Endpoint resolution consistency
-- Moving from per-CSP local syncs to a unified control plane
-- SDN–IPAM consistency across CSPs and VMware
-- Multi-division governance, ServiceNow integration, and continuous reporting
-- DNS record type catalog and ecosystem integrations
+- ![Figure 12. Encrypted DNS Bypass Paths](../images/ddi/figure-12.jpg)
+- ![Figure 13. SDN–IPAM Consistency](../images/ddi/figure-13.jpg)
+- ![Figure 14. Multi-Division Access Views](../images/ddi/figure-14.jpg)
+- ![Figure 16. Residual Risks](../images/ddi/figure-16.jpg)
+- ![Figure 17. DNSSEC Validation](../images/ddi/figure-17.jpg)
+- ![Figure 18. Azure Private Endpoint Resolution](../images/ddi/figure-18.jpg)
 
 ## Conclusion
 
