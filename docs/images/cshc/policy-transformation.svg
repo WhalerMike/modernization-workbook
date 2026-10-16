@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 140" font-family="system-ui, sans-serif">
+  <rect width="700" height="140" fill="#f8f9fa"/>
+  <text x="350" y="25" text-anchor="middle" font-size="16" font-weight="600" fill="#1a1a2e">Policy Transformation</text>
+  <rect x="40" y="50" width="160" height="50" rx="4" fill="#742a2a"/>
+  <text x="120" y="80" text-anchor="middle" font-size="12" fill="white">Group Policy</text>
+  <polygon points="210,75 250,75 250,65 270,75 250,85 250,75" fill="#4a5568"/>
+  <rect x="280" y="50" width="180" height="50" rx="4" fill="#1a365d"/>
+  <text x="370" y="80" text-anchor="middle" font-size="12" fill="white">Intune + CA</text>
+  <polygon points="470,75 510,75 510,65 530,75 510,85 510,75" fill="#4a5568"/>
+  <rect x="540" y="50" width="130" height="50" rx="4" fill="#2c5282"/>
+  <text x="605" y="80" text-anchor="middle" font-size="11" fill="white">Regenerate</text>
+  <text x="350" y="125" text-anchor="middle" font-size="11" fill="#4a5568">Not copy. Report-only first. Break-glass excluded.</text>
+</svg>
