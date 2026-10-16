@@ -45,7 +45,7 @@
 | Executive Briefs (modernization, Zero Trust, drift engine) | `docs/executive-briefs/` | Done |
 | Executive Governance Series (all nine chapters) | `docs/executive-governance-series/` | Done |
 | Active Governance (platform control-plane overview) | `docs/platform/active-governance.md` | Done |
-| Federal Organization Compliance Series overview | `docs/compliance/orgcomp-series-overview.md` | Done |
+| Federal Compliance Series - Moderate (overview + executive brief + executive summary) | `docs/compliance/federal-compliance-series-moderate/` | Done |
 | Modernization Specs (all six domain overviews) | `docs/modernization-specs/` | Done |
 
 ---
@@ -56,7 +56,7 @@
 |------|--------|--------|-------|
 | Target surface libraries | Policy templates, access library | `docs/libraries/` | **Deferred** — short principles extracts created; full catalogs remain in source materials |
 | OrgPath series | Long-form substrate narrative | — | **Skipped** per direction — heavy branding |
-| OrgComp full series | Sixty-book compliance program | — | Overview extracted; full books remain in source materials |
+| Federal Compliance Series - Moderate full series | Sixty-book compliance program | — | Overview, brief, and summary extracted; full books remain in source materials |
 
 ---
 
@@ -65,6 +65,8 @@
 **High-value extraction from the customer-documents portal is complete.**
 
 All major sections have been cleaned and migrated except OrgPath (skipped per direction) and full catalogs/books. Remaining items are full books or catalogs that remain in source materials.
+
+**Note:** The former OrgComp series has been renamed to Federal Compliance Series - Moderate. Legacy paths under `docs/compliance/orgcomp-series/` may still exist; the canonical location is `docs/compliance/federal-compliance-series-moderate/`.
 
 ---
 
@@ -85,4 +87,4 @@ All major sections have been cleaned and migrated except OrgPath (skipped per di
 Update this file as items are completed. When a document is finished, move it from its priority section to the “Already Completed” table and note the destination path and commit date.
 
 **Last updated:** 2026-10-16  
-**Status:** All modernization specs domain overviews migrated. OrgPath skipped.
+**Status:** OrgComp renamed to Federal Compliance Series - Moderate.
