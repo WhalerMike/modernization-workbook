@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 320" font-family="system-ui, sans-serif">
+  <rect width="700" height="320" fill="#ffffff"/>
+  <text x="350" y="30" text-anchor="middle" font-size="18" font-weight="600" fill="#1a1a2e">Conditional Access Policy Tiers</text>
+  <rect x="50" y="50" width="600" height="35" rx="4" fill="#1a365d"/>
+  <text x="350" y="73" text-anchor="middle" font-size="13" fill="white">Baseline</text>
+  <rect x="50" y="95" width="600" height="35" rx="4" fill="#2c5282"/>
+  <text x="350" y="118" text-anchor="middle" font-size="13" fill="white">Device</text>
+  <rect x="50" y="140" width="600" height="35" rx="4" fill="#2b6cb0"/>
+  <text x="350" y="163" text-anchor="middle" font-size="13" fill="white">Environment / Location</text>
+  <rect x="50" y="185" width="600" height="35" rx="4" fill="#3182ce"/>
+  <text x="350" y="208" text-anchor="middle" font-size="13" fill="white">Application</text>
+  <rect x="50" y="230" width="600" height="35" rx="4" fill="#4299e1"/>
+  <text x="350" y="253" text-anchor="middle" font-size="13" fill="#1a365d">Governance / Break-glass</text>
+  <text x="350" y="295" text-anchor="middle" font-size="12" fill="#4a5568">Additive evaluation. Report-only before enforce.</text>
+</svg>
