@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 200" font-family="system-ui, sans-serif">
+  <rect width="700" height="200" fill="#ffffff"/>
+  <text x="350" y="28" text-anchor="middle" font-size="16" font-weight="600" fill="#1a1a2e">Intune + Azure Arc Paths</text>
+  <rect x="40" y="50" width="180" height="80" rx="6" fill="#744210"/>
+  <text x="130" y="85" text-anchor="middle" font-size="13" fill="white">Manual Path</text>
+  <text x="130" y="105" text-anchor="middle" font-size="10" fill="#feebc8">Operator owns change record</text>
+  <rect x="260" y="50" width="180" height="80" rx="6" fill="#1a365d"/>
+  <text x="350" y="85" text-anchor="middle" font-size="13" fill="white">Governed Path</text>
+  <text x="350" y="105" text-anchor="middle" font-size="10" fill="#bee3f8">Control plane + evidence</text>
+  <rect x="480" y="50" width="180" height="80" rx="6" fill="#2c5282"/>
+  <text x="570" y="85" text-anchor="middle" font-size="13" fill="white">Retrofit Path</text>
+  <text x="570" y="105" text-anchor="middle" font-size="10" fill="#bee3f8">Add governance later</text>
+  <text x="350" y="165" text-anchor="middle" font-size="12" fill="#4a5568">Same technical end state. Different ownership and evidence model.</text>
+</svg>
