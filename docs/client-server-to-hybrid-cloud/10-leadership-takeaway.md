@@ -4,6 +4,9 @@
 
 ## The framing that matters
 
+![Diagram](../images/cshc/leadership-takeaway.svg)
+
+
 Microsoft provides the instruments. The framework provides the orchestra.
 
 Cloud identity, device management, hybrid management, Conditional Access, private DNS, privileged identity management, and baseline assessment tools — each is an outstanding piece of technology. None of them, individually or collectively, tells an organization how to govern the transformation from the Active Directory-centric Client/Server era into the Hybrid-Cloud Zero-Trust era.
