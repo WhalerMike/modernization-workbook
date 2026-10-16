@@ -4,6 +4,9 @@
 
 ## The pipeline contract
 
+![Diagram](../images/cshc/analysis-plan-delivery.svg)
+
+
 The modernization framework turns an Active Directory assessment into a delivered Hybrid-Cloud change through three sequential stages: **Analyze**, **Plan**, **Deliver**. Each stage produces a signed, versioned artifact in the authoritative repository. Each stage has a distinct responsibility (governance review or execution) and a distinct authorization gate. Nothing skips a stage. Nothing touches the target surface without a plan. No plan touches the target surface without authorization.
 
 ## Why three stages (not one)
