@@ -1,22 +1,20 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" font-family="system-ui, sans-serif">
-  <rect width="800" height="500" fill="#f8f9fa"/>
-  <text x="400" y="40" text-anchor="middle" font-size="22" font-weight="600" fill="#1a1a2e">Modernization Principles</text>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 400" font-family="system-ui, sans-serif">
+  <rect width="800" height="400" fill="#ffffff"/>
+  <text x="400" y="30" text-anchor="middle" font-size="20" font-weight="600" fill="#1a1a2e">Modernization Principles</text>
   
-  <!-- Foundation -->
-  <rect x="50" y="70" width="700" height="70" rx="8" fill="#1a365d"/>
-  <text x="400" y="112" text-anchor="middle" font-size="16" fill="white" font-weight="500">Foundation: Single Source of Truth · Provenance · Drift is Explicit</text>
+  <rect x="50" y="55" width="700" height="70" rx="6" fill="#1a365d"/>
+  <text x="400" y="85" text-anchor="middle" font-size="14" fill="white" font-weight="500">Foundation</text>
+  <text x="400" y="105" text-anchor="middle" font-size="11" fill="#bee3f8">SSOT · Provenance · MACD-R · Drift as first-class</text>
   
-  <!-- Structure -->
-  <rect x="50" y="160" width="700" height="70" rx="8" fill="#2c5282"/>
-  <text x="400" y="202" text-anchor="middle" font-size="16" fill="white" font-weight="500">Structure: Attribute-Driven · Dynamic Membership · Identity as Root</text>
+  <rect x="50" y="140" width="700" height="70" rx="6" fill="#2c5282"/>
+  <text x="400" y="170" text-anchor="middle" font-size="14" fill="white" font-weight="500">Structure</text>
+  <text x="400" y="190" text-anchor="middle" font-size="11" fill="#bee3f8">Attribute-oriented · Dynamic groups · Explicit hierarchy</text>
   
-  <!-- Migration -->
-  <rect x="50" y="250" width="700" height="70" rx="8" fill="#2b6cb0"/>
-  <text x="400" y="292" text-anchor="middle" font-size="16" fill="white" font-weight="500">Migration: No Rip-and-Replace · Bridging · Regenerate Not Copy</text>
+  <rect x="50" y="225" width="700" height="70" rx="6" fill="#2b6cb0"/>
+  <text x="400" y="255" text-anchor="middle" font-size="14" fill="white" font-weight="500">Migration & Transformation</text>
+  <text x="400" y="275" text-anchor="middle" font-size="11" fill="#bee3f8">No rip-and-replace · Regenerate not copy · Evidence closure</text>
   
-  <!-- Zero Trust -->
-  <rect x="50" y="340" width="700" height="70" rx="8" fill="#3182ce"/>
-  <text x="400" y="382" text-anchor="middle" font-size="16" fill="white" font-weight="500">Zero Trust & Journey: Token-Based · Continuous Evidence · Fewer Round-Trips</text>
-  
-  <text x="400" y="470" text-anchor="middle" font-size="13" fill="#4a5568">Every claim has one authoritative origin. All else is a provenance-anchored pointer.</text>
+  <rect x="50" y="310" width="700" height="70" rx="6" fill="#3182ce"/>
+  <text x="400" y="340" text-anchor="middle" font-size="14" fill="white" font-weight="500">Zero Trust & Journey</text>
+  <text x="400" y="360" text-anchor="middle" font-size="11" fill="#bee3f8">Continuous verification · Identity-driven access · Governed tempo</text>
 </svg>
