@@ -1,8 +1,11 @@
 # Modernization Workbook
 
+> **Provenance:** This workbook is a cleaned derivative of prior internal work. Migration scaffolding files (MIGRATION-*.md, STATUS.md, OUTLINE.md) retain source references for traceability and are excluded from the public site build.
+
+
 **A clean, standalone modernization project focused on identity, addressing, policy, and governance patterns.**
 
-This repository extracts practical modernization concepts — single source of truth, attribute-driven structure, explicit drift detection, evidence-driven change, and no-rip-and-replace migration — and presents them as a usable project plan and workbook. No internal branding or document identifiers.
+This repository extracts practical modernization concepts — single source of truth, attribute-driven structure, explicit drift detection, evidence-driven change, and no-rip-and-replace migration — and presents them as a usable project plan and workbook. Cleaned for external use or document identifiers.
 
 ![Modernization Principles Overview](docs/images/principles-overview.jpg)
 
@@ -49,8 +52,8 @@ High-value content extraction and cleaning is complete. The repository is usable
 
 ## Origin
 
-Concepts derived from public modernization materials and restructured for independent use. No internal branding or document identifiers remain in the finished artifacts.
+Concepts derived from public modernization materials and restructured for independent use. Cleaned for external use or document identifiers remain in the finished artifacts.
 
 ---
 
-*For project use. No internal branding or document identifiers.*
+*For project use. Cleaned for external use or document identifiers.*
