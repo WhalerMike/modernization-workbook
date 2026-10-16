@@ -4,6 +4,9 @@
 
 ## The identity claim
 
+![Diagram](../images/cshc/identity-transformation.svg)
+
+
 The Active Directory organizational-unit tree was never just a folder structure. It encoded delegation, policy inheritance, operational accountability, and security scope in a single hierarchical graph. A flat cloud directory has none of that by default.
 
 The attribute-driven structure reconstructs those governance properties inside a flat directory using four governed mechanisms — **coded organizational attributes**, **dynamic groups**, **administrative units**, and **Conditional Access targeting** — stitched together into one deterministic model.
