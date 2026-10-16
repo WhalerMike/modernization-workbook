@@ -17,3 +17,5 @@ These narratives illustrate intended modernization behavior using synthetic agen
 ---
 
 *Cleaned extraction for project use. No internal branding or document identifiers. Framing patterns, not deployed references.*
+
+| [HRIT to Entra Reference Deployment](hrit-to-entra-reference-deployment.md) | Federal civilian pattern for OPM HRIT inbound provisioning to Entra ID. |
