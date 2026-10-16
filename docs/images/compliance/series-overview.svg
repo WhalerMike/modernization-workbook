@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 280" font-family="system-ui, sans-serif">
+  <rect width="800" height="280" fill="#f8f9fa"/>
+  <text x="400" y="30" text-anchor="middle" font-size="18" font-weight="600" fill="#1a1a2e">Federal Compliance Series — Eleven Volumes</text>
+  
+  <rect x="40" y="55" width="100" height="40" rx="4" fill="#1a365d"/>
+  <text x="90" y="80" text-anchor="middle" font-size="10" fill="white">Vol 0</text>
+  
+  <rect x="150" y="55" width="100" height="40" rx="4" fill="#2c5282"/>
+  <text x="200" y="80" text-anchor="middle" font-size="10" fill="white">Vol I</text>
+  
+  <rect x="260" y="55" width="100" height="40" rx="4" fill="#2b6cb0"/>
+  <text x="310" y="80" text-anchor="middle" font-size="10" fill="white">Vol II</text>
+  
+  <rect x="370" y="55" width="100" height="40" rx="4" fill="#3182ce"/>
+  <text x="420" y="80" text-anchor="middle" font-size="10" fill="white">Vol III</text>
+  
+  <rect x="480" y="55" width="100" height="40" rx="4" fill="#4299e1"/>
+  <text x="530" y="80" text-anchor="middle" font-size="10" fill="#1a365d">Vol IV</text>
+  
+  <rect x="590" y="55" width="100" height="40" rx="4" fill="#63b3ed"/>
+  <text x="640" y="80" text-anchor="middle" font-size="10" fill="#1a365d">Vol V</text>
+  
+  <rect x="40" y="110" width="100" height="40" rx="4" fill="#1a365d"/>
+  <text x="90" y="135" text-anchor="middle" font-size="10" fill="white">Vol VI</text>
+  
+  <rect x="150" y="110" width="100" height="40" rx="4" fill="#2c5282"/>
+  <text x="200" y="135" text-anchor="middle" font-size="10" fill="white">Vol VII</text>
+  
+  <rect x="260" y="110" width="100" height="40" rx="4" fill="#2b6cb0"/>
+  <text x="310" y="135" text-anchor="middle" font-size="10" fill="white">Vol VIII</text>
+  
+  <rect x="370" y="110" width="100" height="40" rx="4" fill="#3182ce"/>
+  <text x="420" y="135" text-anchor="middle" font-size="10" fill="white">Vol IX</text>
+  
+  <rect x="480" y="110" width="100" height="40" rx="4" fill="#4299e1"/>
+  <text x="530" y="135" text-anchor="middle" font-size="10" fill="#1a365d">Vol X</text>
+  
+  <text x="400" y="190" text-anchor="middle" font-size="12" fill="#4a5568">Engine-neutral · Evidence & Authorization Contract</text>
+  <text x="400" y="215" text-anchor="middle" font-size="12" fill="#4a5568">Five-clause lifecycle: Originate → Authorize → Execute → Close → Emit</text>
+  <text x="400" y="250" text-anchor="middle" font-size="11" fill="#718096">FedRAMP Moderate · Continuous evidence · No rip-and-replace</text>
+</svg>
