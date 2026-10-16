@@ -43,8 +43,10 @@
 | Consolidated principles document with diagram | `docs/PRINCIPLES.md` | Done |
 | Learning (AD vs Entra reference + Entra Security Baseline crosswalk) | `docs/learning/` | Done |
 | Executive Briefs (modernization, Zero Trust, drift engine) | `docs/executive-briefs/` | Done |
-| Executive Governance Series (landing + Chapter 1) | `docs/executive-governance-series/` | Done (Chapter 1; remaining chapters indexed) |
+| Executive Governance Series (all nine chapters) | `docs/executive-governance-series/` | Done |
 | Active Governance (platform control-plane overview) | `docs/platform/active-governance.md` | Done |
+| Federal Organization Compliance Series overview | `docs/compliance/orgcomp-series-overview.md` | Done |
+| Modernization Specs (identity, zero-trust, telemetry domain overviews) | `docs/modernization-specs/` | Done |
 
 ---
 
@@ -52,9 +54,10 @@
 
 | Item | Source | Target | Notes |
 |------|--------|--------|-------|
-| Target surface libraries | Policy templates, access library, modernization specs | `docs/libraries/` | **Deferred** — short principles extracts created; full catalogs remain in source materials |
-| Executive Governance Series (chapters 2–9) | Long-form governance narrative | `docs/executive-governance-series/` | Indexed; extract on request |
-| OrgPath / OrgComp series | Long-form substrate and compliance programs | — | Deferred — heavy branding |
+| Target surface libraries | Policy templates, access library | `docs/libraries/` | **Deferred** — short principles extracts created; full catalogs remain in source materials |
+| OrgPath series | Long-form substrate narrative | — | **Skipped** per direction — heavy branding |
+| OrgComp full series | Sixty-book compliance program | — | Overview extracted; full books remain in source materials |
+| Remaining modernization specs | Cloud, SASE, SD-WAN domain pages | `docs/modernization-specs/` | Domain overviews available; full adapter detail deferred |
 
 ---
 
@@ -62,7 +65,7 @@
 
 **High-value extraction from the customer-documents portal is complete.**
 
-Learning, Executive Briefs, whitepapers, Architecture Series, Case Studies, Executive Governance Series (Chapter 1 + index), and Active Governance have been cleaned and migrated. Remaining chapters of the Executive Governance Series, the long-form OrgPath/OrgComp series, and full target-surface libraries remain deferred or indexed for selective continuation.
+All major sections have been cleaned and migrated except OrgPath (skipped per direction) and full catalogs. Remaining items are full books or catalogs that remain in source materials.
 
 ---
 
@@ -83,4 +86,4 @@ Learning, Executive Briefs, whitepapers, Architecture Series, Case Studies, Exec
 Update this file as items are completed. When a document is finished, move it from its priority section to the “Already Completed” table and note the destination path and commit date.
 
 **Last updated:** 2026-10-16  
-**Status:** Executive Governance Series (Chapter 1) and Active Governance migrated.
+**Status:** OrgComp overview and Modernization Specs domain overviews migrated. OrgPath skipped.
