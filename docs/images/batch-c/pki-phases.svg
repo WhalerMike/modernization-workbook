@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 180" font-family="system-ui, sans-serif">
+  <rect width="700" height="180" fill="#ffffff"/>
+  <text x="350" y="25" text-anchor="middle" font-size="16" font-weight="600" fill="#1a1a2e">PKI Modernization Sequence</text>
+  <rect x="30" y="45" width="90" height="40" rx="4" fill="#742a2a"/>
+  <text x="75" y="70" text-anchor="middle" font-size="10" fill="white">Assess</text>
+  <rect x="135" y="45" width="90" height="40" rx="4" fill="#744210"/>
+  <text x="180" y="70" text-anchor="middle" font-size="10" fill="white">Design</text>
+  <rect x="240" y="45" width="90" height="40" rx="4" fill="#2c5282"/>
+  <text x="285" y="70" text-anchor="middle" font-size="10" fill="white">Pilot</text>
+  <rect x="345" y="45" width="90" height="40" rx="4" fill="#2b6cb0"/>
+  <text x="390" y="70" text-anchor="middle" font-size="10" fill="white">Scale</text>
+  <rect x="450" y="45" width="90" height="40" rx="4" fill="#3182ce"/>
+  <text x="495" y="70" text-anchor="middle" font-size="10" fill="white">Cutover</text>
+  <rect x="555" y="45" width="110" height="40" rx="4" fill="#1a365d"/>
+  <text x="610" y="70" text-anchor="middle" font-size="10" fill="white">Decommission</text>
+  <text x="350" y="120" text-anchor="middle" font-size="12" fill="#4a5568">OCSP/CRL reachability and strong mapping are critical throughout.</text>
+</svg>
