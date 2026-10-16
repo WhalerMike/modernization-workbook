@@ -37,7 +37,7 @@ Hardcoded absolute paths and sibling-checkout fallbacks are forbidden outside te
 Every artifact the system produces cites the governance document and version it was derived from:
 
 - Derived artifacts (reports, exports, evidence packets) carry a `provenance` block with `source`, `version`, `derived_at`, and `derived_by`.
-- Documents classified as derived require provenance; documents classified as canonical do not derive from anything and are leaves of the chain.
+- Documents classified as derived require provenance; documents classified as authoritative origins do not derive from anything and are leaves of the chain.
 - Cryptographic anchoring uses a content hash over the claim content.
 
 ## Drift baseline
