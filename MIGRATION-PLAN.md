@@ -37,6 +37,7 @@
 | Where data lives (three-layer storage model) | `docs/architecture/where-data-lives.md` | Done |
 | SQL Server Identity Transformation case study overview | `docs/case-studies/sql-server-identity.md` | Done |
 | HR-driven identity lifecycle | `docs/guides/hr-driven-lifecycle.md` | Done |
+| Education, Training, and Test Plans overviews | `docs/program/` | Done |
 
 ---
 
@@ -44,18 +45,15 @@
 
 | Item | Source | Target | Notes |
 |------|--------|--------|-------|
-| Target surface libraries | Intune policy templates, CA library, modernization specs | `docs/libraries/` | Mine selectively; avoid full copy |
-| Program education / training / test plans | `docs/narrative/program-*.qmd` | `docs/program/` | Short supporting pages |
+| Target surface libraries | Intune policy templates, CA library, modernization specs | `docs/libraries/` | **Deferred** — mine selectively if needed; full copy not recommended |
 
 ---
 
-## Suggested Order of Work
+## Status
 
-All Priority 1, Priority 2, and the high-value Priority 3 items are complete.
+**Migration of the high-value, extractable content is complete.**
 
-Next options (remaining Priority 3, selective):
-- Program education / training / test plans
-- Target surface libraries (selective)
+The remaining item (target surface libraries) is intentionally deferred. Those materials are large, platform-specific libraries best kept in the source repository and referenced rather than duplicated.
 
 ---
 
@@ -75,4 +73,5 @@ Next options (remaining Priority 3, selective):
 
 Update this file as items are completed. When a document is finished, move it from its priority section to the “Already Completed” table and note the destination path and commit date.
 
-**Last updated:** 2026-10-16
+**Last updated:** 2026-10-16  
+**Status:** High-value migration complete.
