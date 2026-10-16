@@ -33,6 +33,7 @@
 | Attribute-Driven Structure reference | `docs/architecture/attribute-driven-structure.md` | Done |
 | Drift Detection walkthrough | `docs/architecture/drift-detection.md` | Done |
 | Device and Server Modernization (overview + manual path) | `docs/guides/device-and-server-modernization/` | Done |
+| Single Source of Truth definition | `docs/architecture/single-source-of-truth.md` | Done |
 
 ---
 
@@ -44,17 +45,15 @@
 | SQL Server Identity Transformation | `docs/customer-documents/sql-server-narrative/` | `docs/case-studies/sql-server-identity.md` | Useful worked example after cleaning |
 | Target surface libraries | Intune policy templates, CA library, modernization specs | `docs/libraries/` | Mine selectively; avoid full copy |
 | Program education / training / test plans | `docs/narrative/program-*.qmd` | `docs/program/` | Short supporting pages |
-| Single Source of Truth definition | `src/uiao/canon/UIAO-SSOT.md` | `docs/architecture/single-source-of-truth.md` | Foundational; high value once cleaned |
 | Where data lives | `where-data-lives.qmd` (+ devices) | `docs/architecture/where-data-lives.md` | Provenance and location map |
 
 ---
 
 ## Suggested Order of Work
 
-All Priority 1 and Priority 2 items are complete.
+All Priority 1, Priority 2, and the foundational Single Source of Truth item are complete.
 
 Next options (Priority 3, selective):
-- Single Source of Truth definition
 - Where data lives
 - SQL Server Identity Transformation case study
 - HR-driven lifecycle
