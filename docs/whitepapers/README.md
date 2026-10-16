@@ -16,6 +16,7 @@ Cleaned, externally usable versions of high-value modernization whitepapers.
 | [Ticket-to-Machine, Not Ticket-to-Human](ticket-to-machine-not-ticket-to-human.md) | Why changing state isn’t compliance evidence. |
 | [Attribute-Oriented Directory and Identity Model](aodim-executive-whitepaper.md) | Making identity attributes the authoritative driver of access, policy, and governance. |
 | [Next Generation DNS](next-generation-dns.md) | How DNS became the application surface, security enforcement plane, and identity substrate of the hybrid multi-cloud enterprise. |
+| [Next Generation DDI](next-generation-ddi.md) | Full-depth treatment of governing DNS, DHCP, and IPAM as the hybrid multi-cloud control plane, including split-brain, FedRAMP Moderate, SD-WAN interception, and the five critical configuration decisions. |
 
 ---
 
