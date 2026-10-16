@@ -4,13 +4,15 @@
 
 This document collects the core principles extracted from the cleaned architecture, guides, and libraries. It is written for program leadership, architects, and operators who need the rules without the full narrative.
 
-![Modernization Principles Overview](images/principles-overview.jpg)
+![Modernization Principles Overview](images/principles-overview.svg)
 
 ---
 
 ## 1. Single Source of Truth
 
 Every important claim has exactly one authoritative origin. All other representations are provenance-anchored pointers, not copies.
+
+![Single Source of Truth Topology](images/ssot-topology.svg)
 
 - Runtime systems read from the authoritative source; they do not write to it except through a governed change process.
 - Every derived artifact cites the document and version it was derived from.
@@ -22,6 +24,8 @@ Every important claim has exactly one authoritative origin. All other representa
 ## 2. Change Control and Provenance (MACD-R)
 
 Every operational change — every Move, Add, Change, Deletion, and Reset — travels five clauses. An operation that skips one is unauthorized by construction:
+
+![MACD-R Lifecycle](images/macdr-lifecycle.svg)
 
 1. **It originates with the single source of truth.** Work is created by divergence between the source of truth and the estate.
 2. **It carries an authoritative authorization.** The approval resolves from the authority model, not from whoever is nearby.
@@ -49,6 +53,8 @@ Hierarchical governance (organizational units, Group Policy inheritance, delegat
 ## 4. Where Data Lives
 
 Organizational attributes live in three places at once:
+
+![Three-Layer Data Model](images/three-layer-data.svg)
 
 | Layer | Where it lives | Role |
 |-------|----------------|------|
@@ -171,6 +177,8 @@ Three related but distinct programs:
 ## 12. Drift Detection
 
 The drift engine does not believe the assumption that the HR system, the directory, and the codebook still agree. It re-checks on a schedule and emits a structured finding when they do not.
+
+![Drift Detection Loop](images/drift-loop.svg)
 
 **Six-phase loop:** Snapshot → Compare → Classify → Alert → Remediate → Verify.
 
