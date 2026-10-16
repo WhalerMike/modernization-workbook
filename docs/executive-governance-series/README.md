@@ -12,11 +12,11 @@ Each chapter is a standalone document. They can be read in sequence as a program
 | 2 | [The Compliance Paradox](compliance-paradox.md) | Why compliance accumulates risk between audit cycles |
 | 3 | [Drift as the Primary Threat](drift-as-primary-threat.md) | Drift as the substrate-level threat |
 | 4 | [Deterministic Governance](deterministic-governance.md) | Reproducible, hash-verifiable governance |
-| 5 | Adapter Model | Tool integration via a dual-axis taxonomy |
-| 6 | Evidence over Attestation | Inverting which artifact is primary |
-| 7 | Operational Tempo | Cadence of detection, remediation, escalation |
-| 8 | Governance at Scale | Scaling across programs and boundaries |
-| 9 | Governance Operating System | Synthesis |
+| 5 | [The Adapter Model](adapter-model.md) | Tool integration via a dual-axis taxonomy |
+| 6 | [Evidence over Attestation](evidence-over-attestation.md) | Inverting which artifact is primary |
+| 7 | [Operational Tempo](operational-tempo.md) | Cadence of detection, remediation, escalation |
+| 8 | [Governance at Scale](governance-at-scale.md) | Scaling across programs and boundaries |
+| 9 | [The Governance Operating System](governance-operating-system.md) | Synthesis |
 
 ## Reading paths
 
@@ -27,4 +27,4 @@ Each chapter is a standalone document. They can be read in sequence as a program
 
 ---
 
-*Cleaned extraction for project use. No internal branding or document identifiers. Chapters 1–4 extracted; remaining chapters indexed for selective continuation.*
+*Cleaned extraction for project use. No internal branding or document identifiers. All nine chapters extracted.*
