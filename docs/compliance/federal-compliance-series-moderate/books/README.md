@@ -1,5 +1,8 @@
 # Federal Compliance Series — Book Summaries
 
+> **Note:** These are cleaned summaries of the source series. Full book text is not reproduced here. Extract specific volumes on request.
+
+
 Cleaned summaries of the 60-book series, organized by volume.
 
 | Volume | File | Books |
