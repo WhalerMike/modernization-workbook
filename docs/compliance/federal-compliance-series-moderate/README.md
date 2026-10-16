@@ -19,22 +19,13 @@ The Federal Compliance Series - Moderate covers the network, identity, data-plat
 | Vol I | [Foundation & Transport](vol-i-foundation-transport.md) | Naming, identity, and transport substrate |
 | Vol II | [Data Platform](vol-ii-data-platform.md) | Applying the substrate to the database tier |
 | Vol III | [Security Operations](vol-iii-security-operations.md) | Actuation is platform-native; evidence is unified |
-
-## Eleven volumes
-
-| Volume | Theme |
-|--------|-------|
-| Vol 0 | Executive Summary, Questionnaire & Control Crosswalk |
-| Vol I | Foundation & Transport |
-| Vol II | Data Platform |
-| Vol III | Security Operations |
-| Vol IV | Governance & Assurance |
-| Vol V | Training & Certification |
-| Vol VI | Implementation |
-| Vol VII | Automation |
-| Vol VIII | Multi-Cloud DNS/DHCP/IPAM |
-| Vol IX | Day-2 Operations |
-| Vol X | Governance-Substrate Integration (optional binding) |
+| Vol IV | [Governance & Assurance](vol-iv-governance-assurance.md) | Turning technical evidence into a federal authorization |
+| Vol V | [Training & Certification](vol-v-training-certification.md) | Enablement layer that teaches the series and evidences the training slot |
+| Vol VI | [Implementation](vol-vi-implementation.md) | Deployable-artifact layer |
+| Vol VII | [Automation](vol-vii-automation.md) | Coordination layer |
+| Vol VIII | [Multi-Cloud DNS/DHCP/IPAM](vol-viii-multi-cloud-ddi.md) | Deployable realization of the naming plane across clouds |
+| Vol IX | [Day-2 Operations](vol-ix-day2-operations.md) | Governed day-2 catalog |
+| Vol X | [Governance-Substrate Integration](vol-x-governance-substrate-integration.md) | Optional binding to a governance substrate |
 
 ## Engine-neutral by design
 
@@ -54,4 +45,4 @@ No closure counts unless it carries its proof.
 
 ---
 
-*Cleaned extraction for project use. No internal branding or document identifiers. Volume overviews I–III extracted; remaining volumes and full books remain in source materials.*
+*Cleaned extraction for project use. No internal branding or document identifiers. All eleven volume overviews extracted; full individual books remain in source materials.*
