@@ -1,5 +1,5 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 480" font-family="system-ui, sans-serif">
-  <rect width="700" height="480" fill="#f8f9fa"/>
+  <rect width="700" height="480" fill="#ffffff"/>
   <text x="350" y="35" text-anchor="middle" font-size="20" font-weight="600" fill="#1a1a2e">Six-Plane Architecture</text>
   
   <rect x="150" y="55" width="400" height="50" rx="4" fill="#1a365d"/>
@@ -15,7 +15,7 @@
   <text x="350" y="265" text-anchor="middle" font-size="14" fill="white">Governance Plane</text>
   
   <rect x="150" y="295" width="400" height="50" rx="4" fill="#4299e1"/>
-  <text x="350" y="325" text-anchor="middle" font-size="14" fill="white">Network / Addressing Plane</text>
+  <text x="350" y="325" text-anchor="middle" font-size="14" fill="#1a365d">Network / Addressing Plane</text>
   
   <rect x="150" y="355" width="400" height="50" rx="4" fill="#63b3ed"/>
   <text x="350" y="385" text-anchor="middle" font-size="14" fill="#1a365d">Compute / Access Plane</text>
