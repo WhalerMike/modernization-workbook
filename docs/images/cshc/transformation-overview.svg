@@ -1,5 +1,5 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 200" font-family="system-ui, sans-serif">
-  <rect width="800" height="200" fill="#f8f9fa"/>
+  <rect width="800" height="200" fill="#ffffff"/>
   <text x="400" y="30" text-anchor="middle" font-size="18" font-weight="600" fill="#1a1a2e">Client-Server → Hybrid-Cloud Transformation</text>
   
   <rect x="40" y="60" width="180" height="80" rx="6" fill="#742a2a"/>
