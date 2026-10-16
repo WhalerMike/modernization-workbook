@@ -9,9 +9,9 @@ Each chapter is a standalone document. They can be read in sequence as a program
 | # | Document | Topic |
 |---|----------|-------|
 | 1 | [Why Governance Fails](why-governance-fails.md) | The four structural failure modes |
-| 2 | Compliance Paradox | Why compliance accumulates risk between audit cycles |
-| 3 | Drift as Primary Threat | Drift as the substrate-level threat |
-| 4 | Deterministic Governance | Reproducible, hash-verifiable governance |
+| 2 | [The Compliance Paradox](compliance-paradox.md) | Why compliance accumulates risk between audit cycles |
+| 3 | [Drift as the Primary Threat](drift-as-primary-threat.md) | Drift as the substrate-level threat |
+| 4 | [Deterministic Governance](deterministic-governance.md) | Reproducible, hash-verifiable governance |
 | 5 | Adapter Model | Tool integration via a dual-axis taxonomy |
 | 6 | Evidence over Attestation | Inverting which artifact is primary |
 | 7 | Operational Tempo | Cadence of detection, remediation, escalation |
@@ -27,4 +27,4 @@ Each chapter is a standalone document. They can be read in sequence as a program
 
 ---
 
-*Cleaned extraction for project use. No internal branding or document identifiers. Chapter 1 is fully extracted; remaining chapters are indexed for selective continuation.*
+*Cleaned extraction for project use. No internal branding or document identifiers. Chapters 1–4 extracted; remaining chapters indexed for selective continuation.*
