@@ -25,11 +25,12 @@
 | Project Charter | `PROJECT-CHARTER.md` | Done |
 | Project Plan | `PROJECT-PLAN.md` | Done |
 | Why Modernization Is Hard narrative | `docs/narratives/why-modernization-is-hard.md` | Done |
-| Whitepapers (structural problem, modernization journey, hybrid join, session vs. telemetry, network transport) | `docs/whitepapers/` | Done |
+| Whitepapers (structural, journey, hybrid join, session vs. telemetry, network, federal compliance, Zero Trust principles, federal SSOT) | `docs/whitepapers/` | Done |
 | Directory Migration Bridge overview + eight core concepts | `docs/architecture/directory-migration/` | Done |
 | MACD-R / Change Control and Provenance Doctrine | `docs/architecture/change-control-and-provenance.md` | Done |
 | Attribute-Driven Structure reference | `docs/architecture/attribute-driven-structure.md` | Done |
 | Drift Detection walkthrough | `docs/architecture/drift-detection.md` | Done |
+| Architecture Series (six-plane, three-layer rules, drift engine, evidence chain) | `docs/architecture/architecture-series/` | Done |
 | Device and Server Modernization (overview + manual path + governed/retrofit paths) | `docs/guides/device-and-server-modernization/` | Done |
 | Single Source of Truth definition | `docs/architecture/single-source-of-truth.md` | Done |
 | Where data lives (three-layer storage model) | `docs/architecture/where-data-lives.md` | Done |
@@ -49,8 +50,7 @@
 | Item | Source | Target | Notes |
 |------|--------|--------|-------|
 | Target surface libraries | Policy templates, access library, modernization specs | `docs/libraries/` | **Deferred** — short principles extracts created; full catalogs remain in source materials |
-| Remaining whitepapers | Federal compliance primer, Zero Trust governance principles, federal SSOT alignment, TIC/SD-WAN, Infoblox | `docs/whitepapers/` | Selective — prefer externally-sourced papers |
-| Architecture Series | Six-plane model, three-layer rules, boundary-impact, evidence chain | `docs/architecture/` | Conceptual explainers; clean if requested |
+| Additional whitepapers | TIC/SD-WAN, Infoblox/DNS, ticket-to-machine, AODIM executive | `docs/whitepapers/` | Selective — available if requested |
 | Case Studies | Framing-pattern narratives | `docs/case-studies/` | Lower priority; synthetic framing |
 | OrgPath / OrgComp series | Long-form substrate and compliance programs | — | Deferred — heavy branding |
 
@@ -58,9 +58,9 @@
 
 ## Status
 
-**High-value extraction from the customer-documents portal is underway.**
+**High-value extraction from the customer-documents portal continues.**
 
-Learning section and Executive Briefs have been cleaned and migrated. Remaining whitepapers, Architecture Series, and Case Studies are available for selective continuation.
+Learning, Executive Briefs, additional whitepapers, and Architecture Series have been cleaned and migrated. Case Studies and the long-form OrgPath/OrgComp series remain deferred.
 
 ---
 
@@ -81,4 +81,4 @@ Learning section and Executive Briefs have been cleaned and migrated. Remaining 
 Update this file as items are completed. When a document is finished, move it from its priority section to the “Already Completed” table and note the destination path and commit date.
 
 **Last updated:** 2026-10-16  
-**Status:** Learning and Executive Briefs migrated from customer-documents portal.
+**Status:** Architecture Series migrated.
