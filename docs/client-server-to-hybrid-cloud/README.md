@@ -1,5 +1,7 @@
 # Microsoft Client-Server to Hybrid-Cloud Transformation
 
+![Client-Server to Hybrid-Cloud Cover](../images/cshc/cover.jpg)
+
 **AD, GPO, DNS, DHCP, Kerberos, and PKI → Entra ID, Intune, Azure Arc, IPAM, SASE, and Zero Trust**
 
 An eleven-chapter narrative covering the end-to-end transformation from a Client/Server-era Active Directory forest through analysis, planning, and delivery to a governed Hybrid-Cloud estate.
