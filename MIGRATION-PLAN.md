@@ -35,7 +35,8 @@
 | Device and Server Modernization (overview + manual path + governed/retrofit paths) | `docs/guides/device-and-server-modernization/` | Done |
 | Single Source of Truth definition | `docs/architecture/single-source-of-truth.md` | Done |
 | Where data lives (three-layer storage model) | `docs/architecture/where-data-lives.md` | Done |
-| SQL Server Identity Transformation case study (expanded with chapter substance) | `docs/case-studies/sql-server-identity.md` | Done |
+| SQL Server Identity Transformation case study overview | `docs/case-studies/sql-server-identity.md` | Done |
+| SQL Server narrative series (Books 01–10) | `docs/case-studies/sql-server-narrative/` | Done |
 | HR-driven identity lifecycle | `docs/guides/hr-driven-lifecycle.md` | Done |
 | Education, Training, and Test Plans overviews | `docs/program/` | Done |
 | Principles extracts from large libraries | `docs/libraries/` | Done |
@@ -57,7 +58,7 @@
 
 The remaining item (full target surface libraries) is intentionally deferred. Short principles extracts have been created. Full catalogs remain in the source repository.
 
-Previously noted gaps (session-vs-telemetry, network/infrastructure track, governed/retrofit paths, SQL Server chapter substance) have been filled.
+The full SQL Server narrative series (Books 01–10) has been cleaned and migrated to `docs/case-studies/sql-server-narrative/`.
 
 ---
 
@@ -78,4 +79,4 @@ Previously noted gaps (session-vs-telemetry, network/infrastructure track, gover
 Update this file as items are completed. When a document is finished, move it from its priority section to the “Already Completed” table and note the destination path and commit date.
 
 **Last updated:** 2026-10-16  
-**Status:** High-value migration complete. Previously noted gaps filled.
+**Status:** High-value migration complete. Full SQL Server narrative series migrated.
