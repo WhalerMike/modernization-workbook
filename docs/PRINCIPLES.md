@@ -46,7 +46,7 @@ Hierarchical governance (organizational units, Group Policy inheritance, delegat
 - Administrative units cannot nest. An organizational-unit tree becomes a flat set of attribute-selected administrative units.
 - For synced users, the facets that drive administrative-unit membership are Active Directory-mastered, not cloud-mastered.
 
-**Five drift categories:** Schema, Value, Hierarchy, Orphan, Phantom.
+**Five drift categories:** Format, Value, Slot, Orphan, Phantom.
 
 ---
 
