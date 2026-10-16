@@ -38,18 +38,47 @@ The client authenticates to the cloud identity platform with multi-factor authen
 
 Windows Authentication, SQL Authentication, Kerberos, NTLM, and domain-controller dependency are eliminated.
 
-## Reading sequence (conceptual)
+## Chapter substance
 
-1. Name the inheritance — Windows Authentication was good engineering for its world.
-2. Assess and consolidate the estate before touching authentication.
-3. Authentication audit — what is actually using Windows Authentication, SQL Authentication, and NTLM.
-4. Hybrid-management identity bridge — attach the management plane.
-5. Login migration — introduce cloud-identity logins alongside Windows logins.
-6. NTLM elimination at the SQL layer.
-7. Access control — dynamic groups driven by organizational attributes replace manual database-administrator provisioning.
-8. Upstream application chain — applications that depend on Windows Authentication or LDAP.
-9. Transformed steady state and the milestone timeline.
-10. Certificate-authority dependency — the layer the other steps depend on but rarely name.
+### Book 01 — The inheritance
+
+Windows Authentication was good engineering for its world. Kerberos tickets, service principal names, and the assumption of domain-controller proximity worked when everything was local. The failure mode is silent NTLM fallback when the service principal name is missing or when the domain controller is unreachable.
+
+### Book 02 — Assess and consolidate first
+
+Three forms of sprawl: orphaned instances, duplicate databases, and service accounts that no one owns. Discovery instruments must inventory what is actually running before any authentication change is attempted. Rationalization lenses decide retain, consolidate, or retire. The gate is evidence, not opinion.
+
+### Book 03 — Authentication audit
+
+What is actually using Windows Authentication, SQL Authentication, and NTLM. The audit produces a principal-type inventory and a connection-string inventory. No migration plan is valid without this baseline.
+
+### Book 04 — Hybrid-management identity bridge
+
+Attach the management plane so the server can receive policy and telemetry without requiring domain membership for authentication. Managed identity for the engine process is the destination for the service account.
+
+### Book 05 — Login migration
+
+Introduce cloud-identity logins alongside Windows logins. Parallel-run is the controlled risk period. Type-U (Windows) and type-E (cloud identity) logins coexist until the connection-string migration is complete.
+
+### Book 06 — NTLM elimination at the SQL layer
+
+NTLM is the silent fallback. Eliminating it requires first repairing service principal names, then restricting the protocol, then verifying that no application falls back. Premature restriction breaks legacy clients.
+
+### Book 07 — Access control
+
+Dynamic groups driven by organizational attributes replace manual database-administrator provisioning. Administrative-unit delegation scopes who can manage which databases. The attribute infrastructure must precede the dynamic-group work.
+
+### Book 08 — Upstream application chain
+
+Applications that depend on Windows Authentication or LDAP bind must be migrated or wrapped. Four classes of applications: those that can use tokens natively, those that need a proxy, those that need a code change, and those that must be retired.
+
+### Book 09 — Transformed steady state
+
+The 2027 milestone: no domain controller in the authentication path, no NTLM, no SQL Authentication for human principals, managed identity for the engine, Conditional Access for every human connection.
+
+### Book 10 — Certificate-authority dependency
+
+The layer the other steps depend on but rarely name. Certificate services, auto-enrollment, and the trust relationships that Kerberos and token validation both rely on. Certificate-authority failure is a silent failure that surfaces only when tickets or tokens cannot be validated.
 
 ## Relationship to attribute-driven structure
 
