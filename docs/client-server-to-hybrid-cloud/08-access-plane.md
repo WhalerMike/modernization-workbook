@@ -4,6 +4,9 @@
 
 ## The access claim
 
+![Diagram](../images/cshc/access-plane.svg)
+
+
 Active Directory retirement removes the network perimeter as an authorization boundary. The replacement is an **identity-bound access plane** built on four coordinated surfaces — **Zero Trust** (architectural model), **Conditional Access** (policy enforcement, covered in Chapter 05), **SASE** (edge delivery), and **phishing-resistant multi-factor authentication + certificate-based authentication** (proof of identity). The framework integrates all four into one governed surface targeted by organizational attributes.
 
 The outcome: every access decision is a per-request evaluation of identity + device + signal, made at the cloud edge, logged, and visible to the drift engine.
