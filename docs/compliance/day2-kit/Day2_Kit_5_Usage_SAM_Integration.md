@@ -1,0 +1,17 @@
+---
+title: "Compliance Day-2 Automation Kit — SAM Integration Usage Guide"
+subtitle: "Operating the SailPoint IdentityIQ-push (SAM) to ServiceNow integration"
+doc-type: kit-reference
+audience: "IGA / integration admins"
+family: orgcomp-series
+lifecycle: adopted
+tiers_adopted: [1]
+lifecycle_review: 2027-01-21
+format:
+  html: {css: lz-style.css, toc: true, toc-depth: 3, toc-title: "Contents"}
+  docx: {reference-doc: orgcomp-reference.docx, toc: true, toc-depth: 3}
+---
+
+{{< include servicenow-day2/KIT-USAGE-SAM-INTEGRATION.md >}}
+
+![The IdentityIQ-push path: IdentityIQ decides and approves by risk tier, its SDIM pushes the RITM to the inbound endpoint, ServiceNow correlates and runs the governed flow, and the closure carries the SAM request id back to attestation.](servicenow-day2/figs/day2kit-fig-03-sam-iiq-push.png){fig-alt="House-style sequence on white. SailPoint IdentityIQ Lifecycle Manager with a tiered approval chain pushes via SDIM to a POST inbound endpoint that fails closed on a bad request. ServiceNow correlates the RITM with SAM-to-subject lineage and runs the governed Authorize, Elevate, Actuate, Verify, Evidence flow, actuating Entra and Azure through the MID and feeding attestation. SDIM writes the RITM number back onto the IdentityRequest." width="100%"}
