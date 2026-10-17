@@ -1,0 +1,51 @@
+---
+title: "Substrate"
+subtitle: "The shared spine — tooling, core architecture, and execution patterns that serve all three Org expressions"
+doc-type: pillar-landing
+audience: "Architects · platform engineers · canon stewards"
+canon-source: "docs/planning/customer-documents-taxonomy.md §2.3"
+pillar: substrate
+date: 2026-04-24
+aspirational: true
+lifecycle: adopted
+tiers_adopted: [1]
+lifecycle_review: 2026-11-22
+---
+
+# Substrate {.unnumbered}
+
+::: {.callout-tip}
+## Download the full section
+**[substrate-bundle.docx]** — every page in this section concatenated into one Word document. Regenerated on every site deploy.
+:::
+
+The **shared spine the Org family — the organizational-attribute model, OrgComp, OrgMod — rides on.** These components aren't
+governance, compliance, *or* modernization — they're the machinery that lets
+all three exist: the monorepo, the render pipeline, the architecture
+abstractions, and the execution patterns that distinguish governance from
+execution.
+
+Splitting these across the three expressions would duplicate canon. They live
+here so the organizational-attribute model, OrgComp, and OrgMod pages cross-reference them instead of
+redefining them.
+
+![The substrate as the shared spine the three Org expressions ride on](images/index-image-01-substrate-shared-spine.png){#fig-index-image-01 fig-alt="Diagram showing the substrate as a shared spine. Three expression boxes at the top — the organizational-attribute model (governance: canon as source of truth, governed addressing), OrgComp (compliance: FedRAMP, OSCAL, KSI, continuous monitoring), and OrgMod (modernization: client-server to hybrid-cloud transformation) — all fed by upward arrows from a central teal Substrate band containing three sub-category cards: Platform and tooling (monorepo, Quarto pipeline, CLI, canon sync, CI/CD, Academy), Core architecture (Six-Plane, Three-Layer Rule, Drift Engine, Evidence Chain, Boundary), and Execution patterns (Two-Brain Execution, AODIM, Instruments vs. Orchestra). A navy footer band lists the three canonical invariants. Engineering blueprint style, navy and teal on white, no human figures, 16:9 landscape." width="100%"}
+
+## Sub-categories
+
+| Section | Scope | Leaf count |
+|---|---|---|
+| [Platform & tooling](platform-tooling/index.html) | GitHub/Gitea monorepo · Quarto pipeline · canon sync · CI/CD · Customer Documents portal · CLI · Academy | 8 |
+| [Core architecture](core-architecture/index.html) | Six-Plane Architecture · Three-Layer Rule Model · Drift Engine · Evidence Chain · Boundary Impact Model · Two-Way Governance | 6 |
+| [Execution patterns](execution-patterns/index.html) | Two-Brain Execution (Copilot + Execution Substrate) · AODIM · "Instruments vs. Orchestra" positioning | 3 |
+
+## Canonical invariants
+
+- **Tenant agnosticism:** substrate artifacts carry no tenant-specific
+  identifiers. Values are injected at deployment time.
+- **Single source:** there is one monorepo, one canon registry, one render
+  pipeline. Mirrors and derived copies are non-canonical.
+- **Governance ≠ execution:** Copilot reviews and authorizes; the Execution
+  Substrate executes. The two never co-mingle.
+
+![Governance is not execution: the Two-Brain split](images/index-image-02-governance-vs-execution-two-brain.png){#fig-index-image-02 fig-alt="Two-Brain split diagram. Left panel 'Governance brain — Copilot reviews and authorizes': reads the diff and the canon it must satisfy, validates against schema/boundary/safety, approves or rejects at the authorization gate, never touches a live tenant; output is an authorized, signed plan committed to Gitea. A one-way teal 'authorized plan' handoff arrow points to the right panel 'Execution brain — Execution Substrate executes': accepts only an authorized plan, applies idempotent writes via adapters, records evidence for every action, has no policy discretion; output is applied change plus evidence record, drift-checked afterward. An amber footer explains the separation is structural: nothing reaches a tenant without passing the gate. Engineering blueprint style, navy and teal on white, no human figures, 16:9 landscape." width="100%"}
