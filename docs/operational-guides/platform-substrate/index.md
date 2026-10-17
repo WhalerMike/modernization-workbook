@@ -1,0 +1,43 @@
+---
+title: "A. Platform Substrate"
+subtitle: "The host that runs the modernization program — WS2025 + IIS + Gitea + Kerberos + PKI"
+doc-type: subcategory-landing
+pillar: modernization
+sub-category: A
+status: scaffold
+date: 2026-04-24
+aspirational: true
+lifecycle: adopted
+tiers_adopted: [1]
+lifecycle_review: 2026-11-22
+---
+
+# A. Platform Substrate {.unnumbered}
+
+The concrete infrastructure that hosts the modernization program's governance substrate. Every
+modernization action — every analysis, plan, and delivery — runs on this
+host. One Windows Server 2025 machine runs Gitea behind IIS, authenticates
+against AD and Entra, enrolls in Intune + Azure Arc, and serves the canonical
+monorepo.
+
+## Leaves
+
+- **A.1** Windows Server 2025 base configuration
+- **A.2** IIS reverse proxy
+- **A.3** Gitea canonical repo host
+- **A.4** Kerberos bridge (legacy auth → modern)
+- **A.5** Enterprise PKI / ADCS
+- **A.6** TLS certificate lifecycle
+- **A.7** Backup, replication, DR
+- **A.8** Security hardening (CIS, AppLocker, WDAC)
+
+## Current pages
+
+- [Platform Server Build Guide](../../platform/platform-server-build.html) — 14-phase
+  canonical runbook (WS2025 + IIS + Gitea + Intune + Arc + OrgTree).
+  *Will re-home to this sub-category in Phase 3 of migration.*
+
+::: {.callout-note title="Scaffold"}
+Remaining leaves are authoring backlog. See the internal taxonomy
+working doc (§3) for source-of-truth mapping.
+:::
