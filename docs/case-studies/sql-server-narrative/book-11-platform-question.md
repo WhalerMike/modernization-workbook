@@ -2,6 +2,10 @@
 
 **What the authentication transformation reveals about the database platform layer**
 
+
+
+![PostgreSQL in the federal stack](../../images/sql-server/postgresql-federal.png)
+
 ## The authentication transformation reveals what it does not fix
 
 Books 01 through 10 described one transformation: moving the SQL Server estate from Windows Authentication to cloud identity. At the end of that transformation, every retained instance is re-authenticated. The Kerberos ticket is gone, the NTLM fallback is gone, the service account tied to the domain is gone, and in its place is an OAuth 2.0 token. That transformation is real and significant.
