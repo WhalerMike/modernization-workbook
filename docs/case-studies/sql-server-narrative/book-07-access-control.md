@@ -2,6 +2,12 @@
 
 **Dynamic groups and administrative-unit delegation**
 
+
+
+![Access control](../../images/sql-server/during-overview.png)
+
+*Access control diagram.*
+
 ## Why this book exists
 
 Access control is the point at which the organizational-attribute model is consumed by SQL Server. Dynamic security groups whose membership rules reference organizational attributes drive SQL Server access without manual database-administrator provisioning.
