@@ -2,41 +2,40 @@
 
 **Parallel-run of Windows and cloud-identity logins**
 
+## The parallel-run pattern
 
+Login migration does not flip a switch. It runs both authentication paths simultaneously until the new path is proven, then retires the old path. The SQL Server accepts both type-U (Windows) and type-E (Entra) logins during the window. Legacy clients continue to present Kerberos or fall back to NTLM. Migrated clients authenticate to the cloud identity platform and present an OAuth 2.0 token.
 
 ![Parallel-run pattern](../../images/sql-server/during-parallel.png)
 
+*Three phases: add the cloud-identity login alongside the Windows login, run both in parallel and validate against real traffic, then disable, observe, and drop the Windows login.*
+
 ![Migration state](../../images/sql-server/migration-state.png)
 
-## Why this book exists
+*Both authentication paths live simultaneously. The SQL Server accepts both type-U and type-E logins.*
 
-Login migration is the period during which both authentication paths live simultaneously. Windows logins (type-U) and cloud-identity logins (type-E) coexist until every connection string has been migrated and every application has been verified.
+## Principal type mappings
 
-## Parallel-run
+SQL Server 2022 supports three principal types for Entra authentication via the FROM EXTERNAL PROVIDER syntax:
 
-The SQL Server accepts both login types during the parallel-run window. Legacy clients continue to use Kerberos or fall back to NTLM. Migrated clients authenticate to the cloud identity platform and present a token.
+- **User** — an individual Entra ID user. The login maps to a specific principal.
+- **Group** — an Entra ID security group. Membership is dynamic; access follows group membership without manual DBA action.
+- **Service principal** — an application or managed identity. Used for application connections and the engine process itself.
 
-This hybrid state is a controlled risk. Progress is measured across:
+The Azure.Identity SDK DefaultAzureCredential chain handles token acquisition. Conditional Access evaluates the token issuance request before the token reaches SQL Server. If the policy requires MFA and the principal has not completed it, the token is denied. If the device is non-compliant, the token is denied. The policy has leverage because the token is the credential SQL Server accepts.
 
-- Estate consolidation (Book 02)
-- Hybrid-management enrollment (Book 04)
-- Login migration (this book)
-- NTLM elimination (Book 06)
-- Connection-string migration (Book 08)
+## The parallel-run sequence
 
-## Login types
+1. **Create** the Entra login alongside the existing Windows login. Both exist. Both can authenticate.
+2. **Validate** against real traffic. Confirm that migrated clients connect successfully and that the token carries the expected claims.
+3. **Disable** the Windows login. Observe for a defined window. Confirm that no legitimate traffic is blocked.
+4. **Drop** the Windows login only after the observation window confirms the new path is stable.
 
-- **Type-U (Windows).** Logins that map to directory principals. These are the inheritance.
-- **Type-E (cloud identity).** Logins that map to cloud identity principals. These are the destination.
-- **Type-S (SQL Authentication).** Logins that use credentials stored in the master database. These are eliminated for human principals and retained only for break-glass where required.
+Never drop before you observe. The parallel-run window is the safety margin that prevents access disruption.
 
-## Migration order
+## What Book 05 establishes
 
-Human principals are migrated first. Service accounts are migrated after the engine process has a managed identity. Break-glass accounts are reviewed last and retained only if they are still required.
-
-## The gate
-
-No NTLM restriction begins until the login migration for the pilot cohort is complete and the connection-string inventory shows that no remaining connection requires NTLM.
+Login migration is a parallel-run, not a cutover. The SQL Server accepts both Windows and Entra logins during the window. Principal types map to users, groups, and service principals. Conditional Access evaluates the token before it reaches the engine. The sequence is create, validate, disable, observe, drop — never drop before you observe.
 
 ---
 
