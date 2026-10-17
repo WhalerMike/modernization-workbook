@@ -38,7 +38,7 @@ specific platform. Concrete next steps are laid out in the **Call to
 Action** at the end of this document.
 
 +-----------------------------------------------------------------------+
-| ![](media/rId19.png){width="5.833333333333333in" |
+| ![](../images/whitepapers/rId19.png){width="5.833333333333333in" |
 | height="3.111111111111111in"} |
 | |
 | Figure 1: Forty years of federal IT architecture in one view --- from |
@@ -73,7 +73,7 @@ that *enforced* access to it. Truth and enforcement lived in one box.
 Remember that; it is the seed of everything that follows.
 
 +-----------------------------------------------------------------------+
-| ![](media/rId24.png){width="5.833333333333333in" |
+| ![](../images/whitepapers/rId24.png){width="5.833333333333333in" |
 | height="3.111111111111111in"} |
 | |
 | Figure 2: The Mainframe Era: stark elegance of centralized truth --- |
@@ -111,7 +111,7 @@ schemas, their own business logic, their own definitions of what a
 "benefit" even meant.
 
 +-----------------------------------------------------------------------+
-| ![](media/rId29.png){width="5.833333333333333in" |
+| ![](../images/whitepapers/rId29.png){width="5.833333333333333in" |
 | height="3.111111111111111in"} |
 | |
 | Figure 3: Act 1 --- The Great Decentralization: one mainframe became |
@@ -146,7 +146,7 @@ had to traverse security devices designed to *break* sessions --- to
 inspect, decrypt, re-encrypt, verify, block.
 
 +-----------------------------------------------------------------------+
-| ![](media/rId37.png){width="5.833333333333333in" |
+| ![](../images/whitepapers/rId37.png){width="5.833333333333333in" |
 | height="3.111111111111111in"} |
 | |
 | Figure 4: Act 2 --- When Security Ate the Architecture: a |
@@ -240,7 +240,7 @@ offices to regional data centers that were increasingly just logical
 boundaries, not physical anchors.
 
 +-----------------------------------------------------------------------+
-| ![](media/rId43.png){width="5.833333333333333in" |
+| ![](../images/whitepapers/rId43.png){width="5.833333333333333in" |
 | height="3.111111111111111in"} |
 | |
 | Figure 5: Act 3 --- The Breaking Point: the same employee, Jane |
@@ -288,7 +288,7 @@ respond when it degrades, and no way to know whether it is actually the
 best available path to your destination.
 
 +-----------------------------------------------------------------------+
-| ![](media/rId48.png){width="5.833333333333333in" |
+| ![](../images/whitepapers/rId48.png){width="5.833333333333333in" |
 | height="3.013888888888889in"} |
 | |
 | Figure 6: Physics the network cannot escape: terrestrial fiber at |
@@ -367,7 +367,7 @@ authorize them to access. The network enforces policy against the full
 context of the transaction --- not against a packet.
 
 +-----------------------------------------------------------------------+
-| ![](media/rId55.png){width="5.833333333333333in" |
+| ![](../images/whitepapers/rId55.png){width="5.833333333333333in" |
 | height="3.111111111111111in"} |
 | |
 | Figure 7: Packet-layer network versus application-aware network: the |
@@ -395,7 +395,7 @@ three things on each path independently: **latency**, **jitter**, and
 **packet loss**. When a path degrades, the overlay knows within seconds.
 
 +-----------------------------------------------------------------------+
-| ![](media/rId61.png){width="5.833333333333333in" |
+| ![](../images/whitepapers/rId61.png){width="5.833333333333333in" |
 | height="3.111111111111111in"} |
 | |
 | Figure 8: SD-WAN active-active multipath: a branch edge distributes |
@@ -600,7 +600,7 @@ providers, enforcement points, and data platforms remain the runtime
 data planes.
 
 +-----------------------------------------------------------------------+
-| ![](media/rId71.png){width="5.833333333333333in" |
+| ![](../images/whitepapers/rId71.png){width="5.833333333333333in" |
 | height="3.888888888888889in"} |
 | |
 | Figure 9: Act 4: the five principles of application-aware |
@@ -634,7 +634,7 @@ system of record for each data type, with a documented data lineage from
 source to decision.
 
 +-----------------------------------------------------------------------+
-| ![](media/rId75.png){width="5.833333333333333in" |
+| ![](../images/whitepapers/rId75.png){width="5.833333333333333in" |
 | height="3.111111111111111in"} |
 | |
 | Figure 10: Principle 1 --- SSOT Restoration: twelve regional silos |
@@ -698,7 +698,7 @@ network or call back to a domain controller --- it just verifies the
 signature.
 
 +-----------------------------------------------------------------------+
-| ![](media/rId81.png){width="5.833333333333333in" |
+| ![](../images/whitepapers/rId81.png){width="5.833333333333333in" |
 | height="3.111111111111111in"} |
 | |
 | Figure 11: Principle 3 --- Token vs Session: session-based Kerberos |
@@ -780,7 +780,7 @@ direction is correct.
 - **June 11, 2027:** No new Rev5 certifications accepted
 
 +-----------------------------------------------------------------------+
-| ![](media/rId90.png){width="5.833333333333333in" |
+| ![](../images/whitepapers/rId90.png){width="5.833333333333333in" |
 | height="2.9814807524059495in"} |
 | |
 | Figure 12: FedRAMP 20x timeline from Consolidated Rules publication |
@@ -839,7 +839,7 @@ that authenticate, route, resolve, and store at runtime.
  -----------------------------------------------------------------------
 
 +-----------------------------------------------------------------------+
-| ![](media/rId94.png){width="5.833333333333333in" |
+| ![](../images/whitepapers/rId94.png){width="5.833333333333333in" |
 | height="3.111111111111111in"} |
 | |
 | Figure 13: Active Governance: control plane and actuation ladder --- |
@@ -955,7 +955,7 @@ federal gap here is not a technology gap; it is the same adoption lag
 documented throughout this whitepaper.
 
 +-----------------------------------------------------------------------+
-| ![](media/rId106.png){width="5.833333333333333in" |
+| ![](../images/whitepapers/rId106.png){width="5.833333333333333in" |
 | height="3.111111111111111in"} |
 | |
 | Figure 14: Mainframe access modernization: native 3270/RACF/SAF |
@@ -1115,14 +1115,14 @@ want to know where Act 4's claims come from in the UIAO substrate, and
 it can be dropped when the paper is handed to an audience that is not
 evaluating a platform.
 
-The same arc also circulates as [the compliance series Vol I Book
-05](../orgcomp-series/Vol_I_Book_05_the compliance series_Network_Modernization.qmd),
+The same arc also circulates as the compliance series Vol I Book
+05,
 which carries the federal control-closure framing (NIST 800-53, FedRAMP
 20x KSI, TIC 3.0) and the SD-WAN / INR implementation appendix. That
 book names no automation engine at all --- the the compliance series series is
 adoptable on its own --- so **this appendix is the canonical home of the
 mapping below.** The modernization pillar's curated entry points for the
-arc are collected at the [OrgMod hub](../../orgmod/index.qmd).
+arc are collected at the [OrgMod hub](../../orgmod/index.md).
 
 Acts 1--3 are the agency's lived history and are not canon claims. Act 4
 is anchored --- here is the line-by-line provenance, including where
@@ -1153,7 +1153,7 @@ earlier framings were corrected to match canon.
  canonical concept."
 
  Vendor products (SD-WAN [the program decision §2](../../../src/uiao/canon/adr/adr-092-active-governance.md), **Softened:** canon
- platform, cloud [Book_17](../orgpath-narrative/Book_17.qmd) names a neutral
+ platform, cloud [Book_17](../orgpath-narrative/Book_17.md) names a neutral
  on-ramp) `sdwan-fabric` slot,
  Azure Policy,
  ISE/ClearPass/Entra
