@@ -1,0 +1,18 @@
+---
+title: "Modernization Workbook"
+---
+
+A clean, standalone project for federal IT modernization — extracted from source architecture and written for reuse without internal branding.
+
+## Start here
+
+- [**Principles**](docs/PRINCIPLES.md) — the governing ideas
+- [**SQL Server Identity Transformation**](docs/case-studies/sql-server-narrative/README.md) — from Windows Authentication to cloud identity
+- [**Client-Server to Hybrid-Cloud**](docs/client-server-to-hybrid-cloud/README.md) — the architectural narrative
+- [**Whitepapers**](docs/whitepapers/README.md) — deeper analyses
+
+## Project documents
+
+- [Project Charter](PROJECT-CHARTER.md)
+- [Project Plan](PROJECT-PLAN.md)
+- [How to Use](HOW-TO-USE.md)
