@@ -126,12 +126,12 @@ in the federal enterprise:
  For the per-CSP implementation of the architecture this paper argues for —
  landing-zone-level Infoblox DDI build-out on Azure, AWS, GCP, OCI, and
  VMware with a governed ServiceNow front door — see the companion
- [Volume VIII — Multi-Cloud DDI Landing-Zone Automation](../orgcomp-series/Vol_VIII_Book_00_the compliance series_DDI_Automation_Overview.qmd)
+ Volume VIII — Multi-Cloud DDI Landing-Zone Automation
  of the Federal Organization Compliance series. The architecture-level
  foundation — Infoblox as the SDN-aware IPAM control plane inside a
  federal cloud landing zone, with the NIST 800-53 control mappings and
  FedRAMP evidence this paper deliberately does not carry — is
- [Vol I Book 01 (Cloud Landing Zone, IPAM, FedRAMP)](../orgcomp-series/Vol_I_Book_01_the compliance series_Cloud_Landing_Zone_IPAM_FedRAMP.qmd)
+ Vol I Book 01 (Cloud Landing Zone, IPAM, FedRAMP)
  of the same series. This paper owns the argument; those volumes own the
  build and the control closure.
 
@@ -1486,7 +1486,7 @@ contracts, the greenfield deployment sequence, and the machine-enforced
 contract fixture that encodes the INR unavailability itself (FINDING-001,
 `tests/fixtures/contract/m365/informed-network-routing-unavailable-gcc-moderate.yaml`)
 — is maintained in
-[Vol I Book 05, Appendix A](../orgcomp-series/Vol_I_Book_05_the compliance series_Network_Modernization.qmd#appendix-cisco-inr)
+Vol I Book 05, Appendix A
 of the Federal Organization Compliance series. This paper owns the
 resolution-chain analysis (Parts 8–9); the appendix owns the federal
 build-out.

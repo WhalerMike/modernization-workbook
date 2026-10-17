@@ -322,7 +322,7 @@ is validated by
 [`codebook.schema.json`],
 and is loaded by the drift engine and every adapter at runtime. The
 narrative counterpart is
-[FMP_151]( modernization program_151_the organizational-attribute model_Codebook.md);
+FMP_151;
 the reader-facing walkthrough is the
 [the organizational-attribute model Codebook page](../reference-architecture/codebook.md).
 
@@ -1163,7 +1163,7 @@ The operator surface, and where it is maintained.
 ## Canonical Structure
 
 The `FMP.the organizational-attribute model` PowerShell module
-([`tools/powershell/FMP.the organizational-attribute model/`]( modernization program.the organizational-attribute model))
+(`tools/powershell/FMP.the organizational-attribute model/`)
 ships four functions, covered by Pester tests in CI:
 
 | Function | Does |

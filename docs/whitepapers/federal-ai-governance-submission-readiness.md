@@ -124,7 +124,7 @@ exist.
 The compliance series holds the same object from the registry side: the
 agency AI use-case inventory is a designated SSOT object class with a full
 joiner/mover/leaver lifecycle in the
-[Federal Organization Compliance series' SSOT Registry (Vol 0 Book 00)](../orgcomp-series/Vol_0_Book_00_the compliance series_Executive_Summary.qmd).
+Federal Organization Compliance series' SSOT Registry (Vol 0 Book 00).
 
 ## Where we are strong
 
@@ -185,5 +185,5 @@ one activated non-Microsoft target — both achievable without new doctrine.
 - the program decision — Single-ATO Reciprocity
 - the program decision — Active Governance
 - Choose Your Partners — The the organizational-attribute model Composability Matrix
-- [the compliance series Vol I Book 03 — Machine and Workload Identity](../orgcomp-series/Vol_I_Book_03_the compliance series_Certificates_Tokens_Cryptographic_Identity.qmd)
+- the compliance series Vol I Book 03 — Machine and Workload Identity
 - Book 21 — the organizational-attribute model and Federal AI Governance

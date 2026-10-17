@@ -14,7 +14,6 @@ aliases:
   - /customer-documents/reference-architecture/locpath.html
 ---
 
-{{< lifecycle-banner >}}
 
 > **LocPath is a second addressing dimension, not a sixteenth the organizational-attribute model facet.** the organizational-attribute model answers *where does this identity sit organizationally*; LocPath answers *where is it physically assigned*. The two are governed symmetrically, queried together as a matrix, and deliberately kept apart — per the program decision, LocPath claims no `extensionAttribute` slot and never will without its own binding profile. The canonical definition is the [LocPath Codebook (FMP_194)](../../canon/FMP_194_LocPath_Codebook.qmd).
 

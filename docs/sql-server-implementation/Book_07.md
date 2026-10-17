@@ -58,7 +58,7 @@ Access-control transformation is inventory-then-provision. **Inventory** the AD 
 
 ### `Export-FMPEntraGroups` — the Entra group inventory
 
-The `FMPIdentityAssessment` module ([`tools/powershell/FMPIdentityAssessment/`]( modernization programIdentityAssessment)) ships `Export-FMPEntraGroups`, which inventories Entra groups and memberships into a sealed evidence envelope. It reads live via `Get-MgGroup` or replays a `-SnapshotPath`, so it runs offline against an export.
+The `FMPIdentityAssessment` module (`tools/powershell/FMPIdentityAssessment/`) ships `Export-FMPEntraGroups`, which inventories Entra groups and memberships into a sealed evidence envelope. It reads live via `Get-MgGroup` or replays a `-SnapshotPath`, so it runs offline against an export.
 
 | Parameter | Purpose |
 |---|---|

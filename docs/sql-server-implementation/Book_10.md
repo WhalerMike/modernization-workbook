@@ -94,7 +94,7 @@ Narrative Book 10 Chapter 1 names three distinct SQL Server capabilities that de
 
 ## Step 3 — Order the CA-migration dependencies
 
-CAs carry parent/child trust edges — an issuing CA depends on its root. The shipped **`New-FMPPKIMigrationPlan`** (in [`tools/powershell/FMPPlanGenerators/`]( modernization programPlanGenerators)) derives a deterministic, dependency-ordered migration sequence from a PKI assessment envelope:
+CAs carry parent/child trust edges — an issuing CA depends on its root. The shipped **`New-FMPPKIMigrationPlan`** (in `tools/powershell/FMPPlanGenerators/`) derives a deterministic, dependency-ordered migration sequence from a PKI assessment envelope:
 
 | Parameter | Purpose |
 |---|---|

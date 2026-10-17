@@ -1136,7 +1136,7 @@ earlier framings were corrected to match canon.
  conflated directory + 
  DC 
 
- the organizational-attribute model restores [UIAO_151](../../../src/uiao/canon/UIAO_151_the organizational-attribute model_Codebook.md), [the program decision **Corrected:** the organizational-attribute model
+ the organizational-attribute model restores UIAO_151, [the program decision **Corrected:** the organizational-attribute model
  addressable truth §2](../../../src/uiao/canon/adr/adr-092-active-governance.md) is an *addressing
  attribute every object
  carries*, not a

@@ -14,7 +14,6 @@ aliases:
   - /customer-documents/reference-architecture/gpo-cloud-governance-gaps.html
 ---
 
-{{< lifecycle-banner >}}
 
 ::: {.callout-note}
 ## Why this page exists

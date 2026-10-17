@@ -14,7 +14,6 @@ aliases:
   - /customer-documents/reference-architecture/dynamic-groups.html
 ---
 
-{{< lifecycle-banner >}}
 
 > **Model C — boolean composition over 15 facets (per the program decision).** Membership rules compose facet predicates (`attr2 -eq "IT" and attr3 -eq "CyberOps"`) instead of text-parsing a single composite path. See [the organizational-attribute model Codebook](codebook.md) for the facet/slot model.
 
@@ -128,5 +127,5 @@ The OR / set form replaces Model A's regex hack and Branch/Node distinction. Bra
 
 ::: {.callout-tip}
 ## Source
-Canonical narrative: [`FMP_152_Dynamic_Group_Library.md`]( modernization program_152_Dynamic_Group_Library.md). Facet definitions: [the organizational-attribute model Codebook](codebook.md). Per-facet drift classifier: [Drift Detection Walk-through](drift-walkthrough.md).
+Canonical narrative: `FMP_152_Dynamic_Group_Library.md`. Facet definitions: [the organizational-attribute model Codebook](codebook.md). Per-facet drift classifier: [Drift Detection Walk-through](drift-walkthrough.md).
 :::

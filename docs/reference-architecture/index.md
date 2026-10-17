@@ -15,7 +15,6 @@ aliases:
   - /customer-documents/reference-architecture/index.html
 ---
 
-{{< lifecycle-banner >}}
 
 ::: {.callout-tip}
 ## Download the full section

@@ -1441,7 +1441,7 @@ Each component is defined in its own appendix.
 ***Canonical Hierarchy Encoding — Model C***
 
 ::: {.callout-important title="Model C reset — Appendix A is now superseded by the per-facet codebook"}
-The canonical the organizational-attribute model codebook is no longer a single composite path with `<Enterprise>/<Region>/<Division>/<Location>/<Department>` segments. Per the program decision, the codebook is 10 named **facets**, each with its own per-facet enumeration or typed pattern, declared in [`codebook.yaml`] (`schema_version: 2.0.0`) and narrated in [FMP_151]( modernization program_151_the organizational-attribute model_Codebook.md) v4.0. The Model B content below is preserved as historical reference for tenants migrating from the prior shape.
+The canonical the organizational-attribute model codebook is no longer a single composite path with `<Enterprise>/<Region>/<Division>/<Location>/<Department>` segments. Per the program decision, the codebook is 10 named **facets**, each with its own per-facet enumeration or typed pattern, declared in [`codebook.yaml`] (`schema_version: 2.0.0`) and narrated in FMP_151 v4.0. The Model B content below is preserved as historical reference for tenants migrating from the prior shape.
 :::
 
 ------------------------------------------------------------------------

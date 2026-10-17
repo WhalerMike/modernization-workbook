@@ -156,8 +156,8 @@ continuous monitoring.
 
 The Federal Organization Compliance (the compliance series) series quantifies this gap
 against FedRAMP 20x's Key Security Indicators, in the section
-["Why This Series — Not SCuBA, ZTTT, or Any Single-Vendor Assessment
-Tool"](../orgcomp-series/Vol_0_Book_00_the compliance series_Executive_Summary.qmd) of Book
+"Why This Series — Not SCuBA, ZTTT, or Any Single-Vendor Assessment
+Tool" of Book
 00. The arithmetic generalizes directly to the BOD-25-01 case:
 
 **SCuBA-based rules attest 10 of 29 rules in the series' internal KSI
@@ -266,7 +266,7 @@ This is the mechanism that turns BOD-25-01's "remediate deviations" and
 "continuous reporting" clauses from a narrative claim into something a 3PAO
 or CISA can independently verify: a deterministic, re-runnable disposition of
 every open finding, dated, owned, and aging against an SLA.
-[Vol VII Book 02](../orgcomp-series/Vol_VII_Book_02_the compliance series_M365_Control_Compliance_Automation.qmd)
+Vol VII Book 02
 of the the compliance series series documents the operating model that turns SCuBA baseline
 drift specifically into typed remediation tasks with closure evidence — the
 same pattern this whitepaper argues for at the directive level.

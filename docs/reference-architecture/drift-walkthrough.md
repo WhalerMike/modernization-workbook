@@ -14,14 +14,13 @@ aliases:
   - /customer-documents/reference-architecture/drift-walkthrough.html
 ---
 
-{{< lifecycle-banner >}}
 
 > **Model C — per-facet drift over 15 attribute slots (per the program decision).** Examples below use the per-facet model: each slot (`extensionAttribute1`–`15`) validates independently against its facet's enumeration or typed pattern. See [the organizational-attribute model Codebook](codebook.md) for the facet/slot definitions.
 
 ::: {.callout-note}
 ## Companion to the storage explainer
 
-If you have not yet read [Where OrgTree & the organizational-attribute model Data Lives](../architecture/where-data-lives.md), start there. This page picks up from that mental model and answers the next question: *once the storage layers exist, how does the governance engine catch when they disagree?* The authoritative spec is [FMP_163 (Drift Detection Engine)]( modernization program_163_Drift_Detection_Engine_Specification.md); this page is the prose tour.
+If you have not yet read [Where OrgTree & the organizational-attribute model Data Lives](../architecture/where-data-lives.md), start there. This page picks up from that mental model and answers the next question: *once the storage layers exist, how does the governance engine catch when they disagree?* The authoritative spec is FMP_163 (Drift Detection Engine); this page is the prose tour.
 :::
 
 ![Drift Detection Engine — six-phase control loop with five drift categories fanning out from Classify and a severity-to-SLA ladder hanging off Alert.](../../images/canonical/FMP-FIG-013-drift-engine-six-phase-loop.png){#fig-drift-engine-loop fig-alt="the Federal Modernization Program Drift Detection Engine six-phase control loop: Snapshot → Compare → Classify → Alert → Remediate → Verify, with a feedback re-scan arrow closing the loop back to Snapshot. Five drift categories fan out from the Classify stage. A severity-to-SLA ladder (P1 through P4) hangs off the Alert stage. Handoff arrow from Alert to the Evidence Fabric for immutable, hash-chained recording. 16:9 pipeline-flow diagram, navy and teal palette." width="100%"}
@@ -217,6 +216,6 @@ Format and Slot are P1 because they break governance *structure* — typed-facet
 - [Where OrgTree & the organizational-attribute model Data Lives](../architecture/where-data-lives.md) — the three-layer storage model this walk-through assumes
 - [the organizational-attribute model Codebook (FMP_151)](codebook.md) — the canonical per-facet enumeration the engine validates against
 - OrgTree A-Z Suite — the full 27-artifact governance stack
-- [FMP_163 Drift Detection Engine Specification]( modernization program_163_Drift_Detection_Engine_Specification.md) — the canon (per-facet rewrite scheduled for the program decision Phase 6)
-- [FMP_167 SLA Escalation Playbooks]( modernization program_167_SLA_Escalation_Playbooks.md) — the severity-to-escalation ladder
-- [FMP_173 Canonical Error Taxonomy]( modernization program_173_Canonical_Error_Taxonomy.md) — the full `DRIFT-*` error code dictionary
+- FMP_163 Drift Detection Engine Specification — the canon (per-facet rewrite scheduled for the program decision Phase 6)
+- FMP_167 SLA Escalation Playbooks — the severity-to-escalation ladder
+- FMP_173 Canonical Error Taxonomy — the full `DRIFT-*` error code dictionary

@@ -113,8 +113,8 @@ say — is visible to whichever pillar consumes that identity, rather than
 surfacing as two disconnected findings a human has to manually correlate.
 For the credential-family detail behind `KSI-IA-02` — why PIV and
 FIDO2/WebAuthn qualify as phishing-resistant and OTP/push/SMS do not — see
-[the compliance series Vol I Book 03, "Certificate-Based Authentication and
-Phishing-Resistant MFA"](../orgcomp-series/Vol_I_Book_03_the compliance series_Certificates_Tokens_Cryptographic_Identity.qmd).
+the compliance series Vol I Book 03, "Certificate-Based Authentication and
+Phishing-Resistant MFA".
 
 **Devices, in practice.** A managed endpoint's compliance state (Intune)
 and its Conditional Access risk signal (Entra) are captured by two

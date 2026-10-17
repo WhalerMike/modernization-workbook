@@ -14,7 +14,6 @@ aliases:
   - /customer-documents/reference-architecture/intune-first.html
 ---
 
-{{< lifecycle-banner >}}
 
 ::: {.callout-important}
 ## Scope: net-new devices only (per the program decision)

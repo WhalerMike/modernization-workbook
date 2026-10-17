@@ -156,7 +156,7 @@ middleware. The middleware:
 
 1. Receives canonical-schema records from the adapter
 2. Runs the the organizational-attribute model population pipeline
-   ([`Spec2-D3.5`](../../../src/uiao/canon/specs/Spec2-D3.5-the organizational-attribute modelPopulationPipeline.md))
+   (`Spec2-D3.5`)
    to resolve each record's `organization_code` / `division` /
    `department` / `cost_center` to an the organizational-attribute model value
 3. Derives the UPN per the agency's UPN-generation rules

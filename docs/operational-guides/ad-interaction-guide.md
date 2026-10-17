@@ -316,7 +316,7 @@ Parse XML reports to extract and categorize every configured setting by policy a
 
 5.5 Unlinked and Empty GPO Detection
 
-\# Detect unlinked GPOs \$UnlinkedGPOs = \$GPOLinks \| Where-Object { \$\_.IsUnlinked -eq \$true } Write-Host \"Found \$(\$UnlinkedGPOs.Count) unlinked GPOs.\" -ForegroundColor Yellow \# Detect empty GPOs (no settings configured) \$EmptyGPOs = foreach (\$GPO in (Get-GPO -All)) { \$Report = \[xml\](Get-GPOReport -Guid \$GPO.Id -ReportType XML) \$HasComputer = \$Report.GPO.Computer.ExtensionData -ne \$null \$HasUser = \$Report.GPO.User.ExtensionData -ne \$null if (-not \$HasComputer -and -not \$HasUser) { \[PSCustomObject\]@{ GPOName = \$GPO.DisplayName GPOGUID = \$GPO.Id.ToString CreationTime = \$GPO.CreationTime Owner = \$GPO.Owner } } } Write-Host \"Found \$(\$EmptyGPOs.Count) empty GPOs.\" -ForegroundColor Yellow
+\# Detect unlinked GPOs \$UnlinkedGPOs = \$GPOLinks \| Where-Object { \$\_.IsUnlinked -eq \$true } Write-Host \"Found \$(\$UnlinkedGPOs.Count) unlinked GPOs.\" -ForegroundColor Yellow \# Detect empty GPOs (no settings configured) \$EmptyGPOs = foreach (\$GPO in (Get-GPO -All)) { \$Report = \xml\ \$HasComputer = \$Report.GPO.Computer.ExtensionData -ne \$null \$HasUser = \$Report.GPO.User.ExtensionData -ne \$null if (-not \$HasComputer -and -not \$HasUser) { \[PSCustomObject\]@{ GPOName = \$GPO.DisplayName GPOGUID = \$GPO.Id.ToString CreationTime = \$GPO.CreationTime Owner = \$GPO.Owner } } } Write-Host \"Found \$(\$EmptyGPOs.Count) empty GPOs.\" -ForegroundColor Yellow
 
 5.6 Conflicting GPO Detection
 

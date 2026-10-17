@@ -275,7 +275,7 @@ conformance evidence is the natural artifact an agency attaches there
 to demonstrate the boundary's risk is being continuously verified. The
 operating model that turns SCuBA baseline drift into typed remediation
 tasks with closure evidence is developed in
-[Vol VII Book 02 — M365 Control & Compliance Automation](../orgcomp-series/Vol_VII_Book_02_the compliance series_M365_Control_Compliance_Automation.qmd)
+Vol VII Book 02 — M365 Control & Compliance Automation
 of the Federal Organization Compliance series.
 
 **Drift taxonomy cross-walk.** ScubaGear findings map onto the

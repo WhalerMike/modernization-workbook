@@ -14,7 +14,6 @@ aliases:
   - /customer-documents/reference-architecture/directory-migration.html
 ---
 
-{{< lifecycle-banner >}}
 
 Directory migration is the flagship journey of **OrgMod (Organizational
 Modernization)** — the modernization member of the Org family, alongside
