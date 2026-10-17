@@ -48,6 +48,7 @@ The client authenticates to the cloud identity platform with multi-factor authen
 | [08](book-08-upstream-chain.md) | The Upstream Application Chain | Applications that depend on Windows Authentication or LDAP |
 | [09](book-09-steady-state.md) | Transformed Steady State | The destination and the milestone |
 | [10](book-10-certificate-authority.md) | Certificate-Authority Dependency | The layer the other steps depend on but rarely name |
+| [11](book-11-platform-question.md) | The Platform Question | Database consolidation toward SSOT — PostgreSQL and Oracle as federal targets |
 
 ## Relationship to attribute-driven structure
 
