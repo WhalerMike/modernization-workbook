@@ -2,29 +2,29 @@
 
 **Hybrid-management attachment and managed identity for the engine**
 
-## Why this book exists
+## What hybrid management provides
 
-The SQL Server engine process needs a new identity before the directory is removed as the authoritative identity source. The only credential-free, cloud-native identity available for an on-premises server is the system-assigned managed identity that hybrid management provides.
+Azure Arc Connected Machine agent provides the system-assigned Managed Identity that replaces the AD-anchored service account. The agent registers the host with Azure, installs the Azure extension for SQL Server, and exposes the Instance Metadata Service (IMDS) endpoint for credential-free token acquisition.
 
-## Hybrid-management attachment
+The engine process acquires a token from IMDS without a stored credential. The token is presented to Entra ID. Conditional Access evaluates the request. The token is issued and validated by SQL Server. No password traverses the network. No credential is stored in a configuration file.
 
-Hybrid management attaches the management plane so the server can receive policy and telemetry without requiring domain membership for authentication. Attachment does not imply domain unjoin. Domain unjoin is a separately sequenced decision.
+![Identity bridge](../../images/sql-server/during-overview.png)
 
-The attachment produces a managed identity for the host. That identity is the destination for the engine process.
+*The identity bridge: Arc provides the managed identity; the engine acquires a token from IMDS; Conditional Access evaluates; SQL Server validates.*
 
-## Managed identity for the engine
+## Layer 1 and Layer 2
 
-The engine process is reconfigured to run under the system-assigned managed identity. The managed identity is credential-free: there is no password to rotate, no secret to store, and no domain account to maintain.
+SQL-engine Entra authentication (Layer 1) does not depend on OS-level domain unjoin (Layer 2). Layer 1 can proceed while the host remains domain-joined. Layer 2 — domain unjoin — is a separate decision that follows the authentication migration, not a prerequisite for it.
 
-The managed identity is used for network connections that the engine makes — file shares, linked servers, and monitoring sinks. It is also the identity that the engine presents when it authenticates to the cloud identity platform for its own operations.
+This distinction must be communicated to every stakeholder. SQL-engine Entra authentication must never be blocked waiting for OS-level domain unjoin.
 
-## Sequencing
+## Deployment sequencing
 
-Hybrid-management attachment precedes login migration. The engine must have a managed identity before the directory is removed. Login migration can proceed in parallel once the engine has a stable identity, but the engine identity is the prerequisite.
+Arc deployment respects linked-server dependency order. The host that is the target of a linked server must be enrolled before the host that originates the linked-server connection. Outbound HTTPS connectivity through the GCC-Moderate egress proxy must be verified before enrollment. The IMDS token test serves as the gate that authorizes login migration.
 
-## The gate
+## What Book 04 establishes
 
-No instance is considered ready for login migration until hybrid management is attached and the engine process is running under the managed identity. Evidence of the attachment and the identity change is recorded.
+Arc provides the managed identity that replaces the AD-anchored service account. The engine acquires a token from IMDS without a stored credential. Layer 1 (SQL-engine Entra auth) does not depend on Layer 2 (OS-level domain unjoin). Deployment sequencing respects linked-server dependency order. The IMDS token test is the gate that authorizes login migration.
 
 ---
 
