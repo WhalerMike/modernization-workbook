@@ -2,6 +2,12 @@
 
 **The layer the other steps depend on but rarely name**
 
+
+
+![Certificate authority](../../images/sql-server/after-token.png)
+
+*Certificate authority diagram.*
+
 ## Why this book exists
 
 Certificate services, auto-enrollment, and the trust relationships that Kerberos and token validation both rely on are the layer the other steps depend on but rarely name. Certificate-authority failure is a silent failure that surfaces only when tickets or tokens cannot be validated.
