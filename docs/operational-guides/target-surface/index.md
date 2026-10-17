@@ -1,0 +1,35 @@
+---
+title: "E. Target Surface (Hybrid Cloud)"
+subtitle: "Entra ID, Intune, Azure Arc, M365 — where transformed data lands"
+doc-type: subcategory-landing
+pillar: modernization
+sub-category: E
+status: scaffold
+date: 2026-04-24
+aspirational: true
+lifecycle: adopted
+tiers_adopted: [1]
+lifecycle_review: 2026-11-22
+---
+
+# E. Target Surface (Hybrid Cloud) {.unnumbered}
+
+::: {.callout-tip}
+## Download the full section
+**[target-surface-bundle.docx]** — every page in this section concatenated into one Word document. Regenerated on every site deploy.
+:::
+
+The Hybrid-Cloud estate where the modernization program delivers governed identity, device,
+and policy data. Every target has a canonical adapter in
+[adapter-specs](../../adapter-specs/index.html) and a validation suite in
+[validation-suites](../../validation-suites/index.html).
+
+## Leaves
+
+- **E.1** Entra ID tenant — [adapter](../../adapter-specs/entra-id/entra-id.html)
+- **E.2** Administrative Units — [the modernization program_154](../../../customer-documents/reference-architecture/delegation.html)
+- **E.3** Intune — [adapter](../../adapter-specs/intune/intune.html)
+- **E.4** Azure Arc — (adapter pending)
+- **E.5** Microsoft 365 SaaS — [adapter](../../adapter-specs/m365/m365.html)
+- **E.6** Conditional Access targeting — (see Compliance D.1)
+- **E.7** PIM + Access Reviews + Entitlement Management — (adapter pending)
