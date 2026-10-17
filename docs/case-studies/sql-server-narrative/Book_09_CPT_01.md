@@ -13,6 +13,10 @@ lifecycle_review: 2027-01-01
 
 # Chapter 1 — The Closure Condition for the SQL Server Authentication Transformation
 
+![After: application-aware token](../../images/sql-server/after-token.png)
+
+![Token session lifecycle](../../images/sql-server/token-lifecycle.png)
+
 *Transformations do not complete — they achieve a posture, and a posture is something you keep proving.*
 
 ::: {.callout-note}
