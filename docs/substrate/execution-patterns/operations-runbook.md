@@ -1,0 +1,727 @@
+---
+title: "the modernization program Operations Runbook"
+subtitle: "Day-to-day platform administration guide"
+doc-type: runbook
+audience: [Customer, Technical]
+author: Michael Stratton
+date: "April 2026"
+status: Active
+canon-source: "inbox/Posted/the modernization program Operations Runbook.docx"
+repo-path: docs/customer-documents/substrate/execution-patterns/operations-runbook.qmd
+created-at: 2026-04-26
+updated-at: 2026-04-26
+format:
+  html:
+    toc: true
+    toc-depth: 3
+  docx:
+    toc: true
+lifecycle: adopted
+tiers_adopted: [1]
+lifecycle_review: 2026-11-22
+---
+
+![Platform architecture topology (OPS-001 placeholder reference)](images/operations-runbook-image-01-platform-architecture-topology-o.png){#fig-operations-runbook-image-01 fig-alt="Platform architecture topology (OPS-001 placeholder reference). Engineering blueprint style, neutral slate background, federal navy (#1F3A5F) for primary structural elements, teal (#1A9E8F) for secondary/integration elements, amber (#D4A017) for governance/audit/registry overlays, monospace labels for identifiers, no human figures, 16:9 landscape." width="100%"}
+
+
+the modernization program Operations Runbook
+
+Day-to-Day Platform Administration Guide
+
+the modernization program Governance OS --- Controlled
+
+Author: Michael Stratton \| Boundary: GCC-Moderate \| April 21, 2026
+
+Repository: https://github.com/WhalerMike/uiao
+
++--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| **❗ Classification Notice**                                                                                                                                                                                                   |
+|                                                                                                                                                                                                                                |
+| This document is classified **Controlled** within a **GCC-Moderate** boundary. Handle, store, and transmit in accordance with organizational information-handling policies. Do not distribute outside of authorized personnel. |
++--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+1\. Platform Architecture Overview
+
+The the modernization program Governance OS is a self-hosted governance, compliance, and infrastructure-assessment platform built on Windows Server 2025. It combines a Gitea-based version-control backbone with automated PowerShell assessment modules, a Quarto-rendered analytics dashboard, and active-passive replication for disaster resilience. All components interact on a single primary server, with data mirrored to a secondary server and an external GitHub repository.
+
+1.1 Core Components
+
+  ------------------------------------------------------------------------------------------------------------------------------------------------------------------
+  **Component**              **Description**
+  -------------------------- ---------------------------------------------------------------------------------------------------------------------------------------
+  **Primary Server**         Windows Server 2025 --- hosts all platform services
+
+  **Gitea v1.26.0**          Self-hosted Git service on localhost:3000. Windows service name: gitea. Runs as DOMAIN\\svc-gitea
+
+  **IIS 10 Reverse Proxy**   HTTPS on port 443 via Application Request Routing (ARR) + URL Rewrite modules. Terminates TLS and forwards to Gitea on localhost:3000
+
+  **DNS**                    git.uiao.local --- Gitea web and Git endpoints docs.uiao.local --- Quarto governance dashboard
+
+  **Git Replication**        Active-passive mirror push from primary to secondary server for disaster recovery
+
+  **GitHub Mirror**          External mirror at github.com/WhalerMike/uiao --- synchronized every 6 hours
+
+  **Assessment Pipeline**    PowerShell modules → JSON output → Gitea commits → Quarto dashboard rendering
+  ------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+1.2 Service Accounts
+
+  ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+  **Account**               **Purpose**                   **Permissions**                                                                 **Password Policy**
+  ------------------------- ----------------------------- ------------------------------------------------------------------------------- -----------------------------------
+  DOMAIN\\svc-gitea         Gitea application service     Local admin on Gitea server, D:\\ full control                                  20-char managed, rotate quarterly
+
+  DOMAIN\\svc-uiao-assess   Assessment module execution   Read-only AD (Authenticated Users), D:\\the modernization program\\Assessment write                  20-char managed, rotate quarterly
+
+  DOMAIN\\svc-uiao-backup   Backup orchestration          D:\\the modernization program\\Backups write, \\\\backup-server share write, secondary server push   20-char managed, rotate quarterly
+  ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+1.3 Directory Structure
+
+  ------------------------------------------------------------------------------------------------------------------------------
+  **Path**                           **Contents**
+  ---------------------------------- -------------------------------------------------------------------------------------------
+  D:\\Gitea\\                        Gitea binary, data, custom configuration
+
+  D:\\Gitea\\custom\\conf\\app.ini   Gitea application configuration file
+
+  D:\\GitRepos\\                     Bare Git repositories
+
+  D:\\the modernization program\\Assessment\\             Assessment JSON output (AD, DNS, PKI subdirectories)
+
+  D:\\the modernization program\\Logs\\                   Application and audit logs (git-audit.jsonl, canon-changes.jsonl, backup.log, health.log)
+
+  D:\\the modernization program\\Backups\\                Local backup staging (db\\, config\\, certs\\)
+
+  D:\\the modernization program\\Modules\\                PowerShell modules (the modernization programADAssessment, the modernization programDNSAssessment, the modernization programPKIAssessment, etc.)
+
+  D:\\the modernization program\\Docs\\                   Quarto source files and rendered output
+
+  D:\\the modernization program\\Scripts\\                Operational scripts (backup, health check, sync)
+  ------------------------------------------------------------------------------------------------------------------------------
+
+*\[Placeholder --- Diagram OPS-001: Platform Architecture --- 900×500px --- Shows Windows Server 2025 with Gitea, IIS, PowerShell modules, assessment pipeline, replication flows, and external integrations (GitHub, AD, Entra ID)\]*
+
+2\. Daily Operations
+
+2.1 Morning Health Check
+
+Run the daily health check script each morning (automated at 06:00 via scheduled task, or manually on demand). The script validates all platform components and writes results to both the console and a JSON log file.
+
+**Script:** D:\\the modernization program\\Scripts\\Invoke-the modernization programDailyHealthCheck.ps1
+
+#Requires -RunAsAdministrator \<# .SYNOPSIS the modernization program Daily Health Check --- validates all platform components. .DESCRIPTION Performs 14 ordered checks across server health, Gitea, IIS, TLS, backups, replication, GitHub mirror, scheduled tasks, event logs, assessment pipeline, and audit log status. Outputs color-coded console results and writes JSON to D:\\the modernization program\\Logs\\health-YYYYMMDD.json. .NOTES Author : Michael Stratton Version: 1.0 Run As : svc-uiao-assess (scheduled) or local admin (manual) #\> param( \[string\]\$LogPath = \"D:\\the modernization program\\Logs\" ) \$dateStamp = Get-Date -Format \"yyyyMMdd\" \$timestamp = Get-Date -Format \"o\" \$logFile = Join-Path \$LogPath \"health-\$dateStamp.json\" \$results = @ function Add-CheckResult { param( \[string\]\$CheckName, \[string\]\$Status, \# OK, WARN, CRITICAL \[string\]\$Message ) \$color = switch (\$Status) { \"OK\" { \"Green\" } \"WARN\" { \"Yellow\" } \"CRITICAL\" { \"Red\" } } Write-Host \"\[\$Status\] \$CheckName --- \$Message\" -ForegroundColor \$color \$script:results += \[PSCustomObject\]@{ Check = \$CheckName Status = \$Status Message = \$Message Timestamp = (Get-Date -Format \"o\") } } \# ── Check 1: Windows Server Uptime & Pending Reboots ── try { \$os = Get-CimInstance Win32_OperatingSystem \$uptime = (Get-Date) - \$os.LastBootUpTime \$pendingReboot = Test-Path \"HKLM:\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Component Based Servicing\\RebootPending\" if (\$pendingReboot) { Add-CheckResult \"ServerUptime\" \"WARN\" \"Uptime: \$(\[math\]::Round(\$uptime.TotalHours,1))h --- REBOOT PENDING\" } else { Add-CheckResult \"ServerUptime\" \"OK\" \"Uptime: \$(\[math\]::Round(\$uptime.TotalDays,1)) days, no pending reboot\" } } catch { Add-CheckResult \"ServerUptime\" \"CRITICAL\" \"Failed to query server uptime: \$\_\" } \# ── Check 2: Disk Space (C:\\ and D:\\) ── foreach (\$drive in @(\"C\",\"D\")) { try { \$vol = Get-PSDrive \$drive -ErrorAction Stop \$freeGB = \[math\]::Round(\$vol.Free / 1GB, 2) \$totalGB = \[math\]::Round((\$vol.Used + \$vol.Free) / 1GB, 2) \$freePct = \[math\]::Round((\$vol.Free / (\$vol.Used + \$vol.Free)) \* 100, 1) if (\$freePct -lt 10) { Add-CheckResult \"DiskSpace-\$drive\" \"CRITICAL\" \"\$freeGB GB free (\$freePct%) of \$totalGB GB\" } elseif (\$freePct -lt 20) { Add-CheckResult \"DiskSpace-\$drive\" \"WARN\" \"\$freeGB GB free (\$freePct%) of \$totalGB GB\" } else { Add-CheckResult \"DiskSpace-\$drive\" \"OK\" \"\$freeGB GB free (\$freePct%) of \$totalGB GB\" } } catch { Add-CheckResult \"DiskSpace-\$drive\" \"CRITICAL\" \"Cannot query drive \${drive}: \$\_\" } } \# ── Check 3: Gitea Service Status ── try { \$giteaSvc = Get-Service gitea -ErrorAction Stop if (\$giteaSvc.Status -eq \"Running\") { Add-CheckResult \"GiteaService\" \"OK\" \"Gitea service is running\" } else { Add-CheckResult \"GiteaService\" \"CRITICAL\" \"Gitea service status: \$(\$giteaSvc.Status)\" } } catch { Add-CheckResult \"GiteaService\" \"CRITICAL\" \"Gitea service not found: \$\_\" } \# ── Check 4: Gitea API Health ── try { \$apiResult = Invoke-RestMethod -Uri \"http://localhost:3000/api/v1/version\" -TimeoutSec 10 Add-CheckResult \"GiteaAPI\" \"OK\" \"Gitea API responding --- version \$(\$apiResult.version)\" } catch { Add-CheckResult \"GiteaAPI\" \"CRITICAL\" \"Gitea API unreachable: \$\_\" } \# ── Check 5: IIS W3SVC Service Status ── try { \$iisSvc = Get-Service W3SVC -ErrorAction Stop if (\$iisSvc.Status -eq \"Running\") { Add-CheckResult \"IISService\" \"OK\" \"W3SVC is running\" } else { Add-CheckResult \"IISService\" \"CRITICAL\" \"W3SVC status: \$(\$iisSvc.Status)\" } } catch { Add-CheckResult \"IISService\" \"CRITICAL\" \"W3SVC service not found: \$\_\" } \# ── Check 6: HTTPS Endpoint ── try { \$webResult = Invoke-WebRequest -Uri \"https://git.uiao.local\" -UseBasicParsing -TimeoutSec 15 if (\$webResult.StatusCode -eq 200) { Add-CheckResult \"HTTPSEndpoint\" \"OK\" \"https://git.uiao.local returned HTTP 200\" } else { Add-CheckResult \"HTTPSEndpoint\" \"WARN\" \"Unexpected status code: \$(\$webResult.StatusCode)\" } } catch { Add-CheckResult \"HTTPSEndpoint\" \"CRITICAL\" \"HTTPS endpoint unreachable: \$\_\" } \# ── Check 7: TLS Certificate Expiry ── try { \$cert = Get-ChildItem Cert:\\LocalMachine\\My \| Where-Object { \$\_.Subject -match \"git.uiao.local\" } \| Sort-Object NotAfter -Descending \| Select-Object -First 1 if (\$cert) { \$daysLeft = (\$cert.NotAfter - (Get-Date)).Days if (\$daysLeft -lt 7) { Add-CheckResult \"TLSCertExpiry\" \"CRITICAL\" \"Certificate expires in \$daysLeft days (\$(\$cert.NotAfter))\" } elseif (\$daysLeft -lt 30) { Add-CheckResult \"TLSCertExpiry\" \"WARN\" \"Certificate expires in \$daysLeft days (\$(\$cert.NotAfter))\" } else { Add-CheckResult \"TLSCertExpiry\" \"OK\" \"Certificate valid for \$daysLeft days (expires \$(\$cert.NotAfter))\" } } else { Add-CheckResult \"TLSCertExpiry\" \"CRITICAL\" \"No certificate found matching git.uiao.local\" } } catch { Add-CheckResult \"TLSCertExpiry\" \"CRITICAL\" \"Certificate check failed: \$\_\" } \# ── Check 8: Last Backup Age ── try { \$backupLog = Get-Content \"D:\\the modernization program\\Logs\\backup.log\" -Tail 5 -ErrorAction Stop \$lastLine = (\$backupLog \| Where-Object { \$\_ -match \"SUCCESS\" } \| Select-Object -Last 1) if (\$lastLine -match \"\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}\") { \$lastBackup = \[datetime\]::Parse(\$Matches\[0\]) \$ageHours = \[math\]::Round(((Get-Date) - \$lastBackup).TotalHours, 1) if (\$ageHours -gt 25) { Add-CheckResult \"BackupAge\" \"WARN\" \"Last successful backup was \$ageHours hours ago\" } else { Add-CheckResult \"BackupAge\" \"OK\" \"Last successful backup \$ageHours hours ago\" } } else { Add-CheckResult \"BackupAge\" \"WARN\" \"Could not parse last backup timestamp\" } } catch { Add-CheckResult \"BackupAge\" \"CRITICAL\" \"Cannot read backup log: \$\_\" } \# ── Check 9: Replication Lag to Secondary ── try { \$primary = git ls-remote https://git.uiao.local/uiao/uiao.git HEAD 2\>&1 \$secondary = git ls-remote https://git-dr.uiao.local/uiao/uiao.git HEAD 2\>&1 if (\$primary -and \$secondary -and (\$primary.Split(\"\`t\")\[0\] -eq \$secondary.Split(\"\`t\")\[0\])) { Add-CheckResult \"ReplicationLag\" \"OK\" \"Primary and secondary HEAD refs match\" } else { Add-CheckResult \"ReplicationLag\" \"WARN\" \"Replication lag detected --- HEAD refs differ\" } } catch { Add-CheckResult \"ReplicationLag\" \"CRITICAL\" \"Replication check failed: \$\_\" } \# ── Check 10: GitHub Mirror Sync Status ── try { \$giteaHead = git ls-remote https://git.uiao.local/uiao/uiao.git HEAD 2\>&1 \$ghHead = git ls-remote https://github.com/WhalerMike/uiao.git HEAD 2\>&1 if (\$giteaHead -and \$ghHead -and (\$giteaHead.Split(\"\`t\")\[0\] -eq \$ghHead.Split(\"\`t\")\[0\])) { Add-CheckResult \"GitHubMirror\" \"OK\" \"GitHub mirror is in sync\" } else { Add-CheckResult \"GitHubMirror\" \"WARN\" \"GitHub mirror may be behind --- HEAD refs differ\" } } catch { Add-CheckResult \"GitHubMirror\" \"WARN\" \"GitHub mirror check failed: \$\_\" } \# ── Check 11: Scheduled Task Health ── try { \$tasks = Get-ScheduledTask -TaskPath \"\\the modernization program\\\" -ErrorAction Stop \$failedTasks = @ foreach (\$task in \$tasks) { \$info = Get-ScheduledTaskInfo -TaskName \$task.TaskName -TaskPath \$task.TaskPath if (\$info.LastTaskResult -ne 0) { \$failedTasks += \"\$(\$task.TaskName) (result: \$(\$info.LastTaskResult))\" } } if (\$failedTasks.Count -eq 0) { Add-CheckResult \"ScheduledTasks\" \"OK\" \"All \$(\$tasks.Count) the modernization program tasks last ran successfully\" } else { Add-CheckResult \"ScheduledTasks\" \"WARN\" \"Failed tasks: \$(\$failedTasks -join \', \')\" } } catch { Add-CheckResult \"ScheduledTasks\" \"CRITICAL\" \"Cannot query scheduled tasks: \$\_\" } \# ── Check 12: Event Log Scan (Last 24 Hours) ── try { \$yesterday = (Get-Date).AddHours(-24) \$appErrors = (Get-WinEvent -FilterHashtable \@{ LogName=\'Application\'; Level=2; StartTime=\$yesterday } -ErrorAction SilentlyContinue).Count \$sysErrors = (Get-WinEvent -FilterHashtable \@{ LogName=\'System\'; Level=2; StartTime=\$yesterday } -ErrorAction SilentlyContinue).Count \$total = \$appErrors + \$sysErrors if (\$total -gt 20) { Add-CheckResult \"EventLogErrors\" \"WARN\" \"\$total errors in last 24h (App: \$appErrors, Sys: \$sysErrors)\" } else { Add-CheckResult \"EventLogErrors\" \"OK\" \"\$total errors in last 24h (App: \$appErrors, Sys: \$sysErrors)\" } } catch { Add-CheckResult \"EventLogErrors\" \"WARN\" \"Event log scan failed: \$\_\" } \# ── Check 13: Assessment Pipeline --- Last Run ── try { \$assessDirs = @(\"AD\",\"DNS\",\"PKI\") \$stale = @ foreach (\$dir in \$assessDirs) { \$path = \"D:\\the modernization program\\Assessment\\\$dir\" if (Test-Path \$path) { \$latest = Get-ChildItem \$path -File \| Sort-Object LastWriteTime -Descending \| Select-Object -First 1 if (\$latest -and ((Get-Date) - \$latest.LastWriteTime).TotalDays -gt 8) { \$stale += \"\$dir (\$(\'{0:yyyy-MM-dd}\' -f \$latest.LastWriteTime))\" } } else { \$stale += \"\$dir (directory missing)\" } } if (\$stale.Count -eq 0) { Add-CheckResult \"AssessmentPipeline\" \"OK\" \"All assessment outputs are current (within 8 days)\" } else { Add-CheckResult \"AssessmentPipeline\" \"WARN\" \"Stale or missing assessments: \$(\$stale -join \', \')\" } } catch { Add-CheckResult \"AssessmentPipeline\" \"CRITICAL\" \"Assessment check failed: \$\_\" } \# ── Check 14: Audit Log Size & Rotation ── try { \$auditLog = Get-Item \"D:\\the modernization program\\Logs\\git-audit.jsonl\" -ErrorAction Stop \$sizeMB = \[math\]::Round(\$auditLog.Length / 1MB, 2) if (\$sizeMB -gt 500) { Add-CheckResult \"AuditLogStatus\" \"WARN\" \"git-audit.jsonl is \$sizeMB MB --- rotation may be needed\" } else { Add-CheckResult \"AuditLogStatus\" \"OK\" \"git-audit.jsonl size: \$sizeMB MB\" } } catch { Add-CheckResult \"AuditLogStatus\" \"WARN\" \"Cannot check audit log: \$\_\" } \# ── Write JSON Log ── \$report = \[PSCustomObject\]@{ RunTimestamp = \$timestamp ServerName = \$env:COMPUTERNAME TotalChecks = \$results.Count Critical = (\$results \| Where-Object Status -eq \"CRITICAL\").Count Warnings = (\$results \| Where-Object Status -eq \"WARN\").Count Passed = (\$results \| Where-Object Status -eq \"OK\").Count Results = \$results } \$report \| ConvertTo-Json -Depth 4 \| Out-File \$logFile -Encoding UTF8 Write-Host \"\`n=== Health Check Complete ===\" -ForegroundColor Cyan Write-Host \"Critical: \$(\$report.Critical) Warnings: \$(\$report.Warnings) OK: \$(\$report.Passed)\" -ForegroundColor Cyan Write-Host \"Log written to: \$logFile\"
+
++------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| **💡 Tip**                                                                                                                                                             |
+|                                                                                                                                                                        |
+| Run the health check manually at any time: D:\\the modernization program\\Scripts\\Invoke-the modernization programDailyHealthCheck.ps1. The automated scheduled task runs daily at 06:00 under svc-uiao-assess. |
++------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+2.2 Dashboard Review
+
+After the health check completes, review the governance dashboard for data integrity and active alerts.
+
+1.  Navigate to https://docs.uiao.local in a browser.
+
+2.  Verify the **Last Updated** timestamp --- it should reflect the most recent the modernization program-DashboardRender task run (daily at 08:00).
+
+3.  Review **Drift Detection Alerts** --- any new drift items since the last review should be triaged.
+
+4.  Review the **SLA Compliance Heatmap** --- confirm all zones show green or yellow; red zones require immediate investigation.
+
+5.  Check for any **red/critical items** that require action and create tickets as needed.
+
+2.3 Log Review
+
+Review the following log files daily for anomalies, errors, and unauthorized access attempts.
+
+  -------------------------------------------------------------------------------------------------------------------------------------------------------
+  **Log File**           **Path**                        **What to Look For**
+  ---------------------- ------------------------------- ------------------------------------------------------------------------------------------------
+  git-audit.jsonl        D:\\the modernization program\\Logs\\                All Git push/pull operations --- look for unauthorized access, unusual hours, unknown accounts
+
+  canon-changes.jsonl    D:\\the modernization program\\Logs\\                Any canon/ modifications --- these require stewardship review before approval
+
+  backup.log             D:\\the modernization program\\Logs\\                Backup success/failure --- confirm all scheduled backups completed
+
+  gitea.log              D:\\Gitea\\log\\                Application errors, failed logins, database issues
+
+  Windows Event Viewer   Application & System logs       Error-level events --- service crashes, security warnings
+
+  IIS Logs               C:\\inetpub\\logs\\LogFiles\\   HTTP error patterns --- 5xx server errors, repeated 4xx from same source
+  -------------------------------------------------------------------------------------------------------------------------------------------------------
+
+3\. Scheduled Task Inventory
+
+All the modernization program scheduled tasks reside under the \\the modernization program\\ task path. The table below provides the complete inventory of automated operations.
+
+  -------------------------------------------------------------------------------------------------------------------------------
+  **Task Name**           **Schedule**       **Script / Command**              **Run As**        **Criticality**   **Duration**
+  ----------------------- ------------------ --------------------------------- ----------------- ----------------- --------------
+  the modernization program-DailyHealthCheck   Daily 06:00        Invoke-the modernization programDailyHealthCheck.ps1   svc-uiao-assess   **High**          \<2 min
+
+  the modernization program-BackupDB           Hourly :00         Backup-the modernization programGiteaDB.ps1            svc-uiao-backup   **Critical**      \<5 min
+
+  the modernization program-BackupRepos        Every 4 hours      Backup-the modernization programRepositories.ps1       svc-uiao-backup   **Critical**      \<10 min
+
+  the modernization program-BackupConfig       Daily 01:00        Backup-the modernization programConfig.ps1             svc-uiao-backup   **High**          \<3 min
+
+  the modernization program-BackupCerts        Weekly Sun 00:00   Backup-the modernization programCertificates.ps1       svc-uiao-backup   Medium            \<1 min
+
+  the modernization program-FullBackup         Daily 02:00        Invoke-the modernization programBackup.ps1             svc-uiao-backup   **Critical**      \<15 min
+
+  the modernization program-ADAssessment       Weekly Mon 03:00   Invoke-the modernization programADAssessment           svc-uiao-assess   **High**          15--45 min
+
+  the modernization program-DNSAssessment      Weekly Mon 04:00   Invoke-the modernization programDNSAssessment          svc-uiao-assess   Medium            5--15 min
+
+  the modernization program-PKIAssessment      Weekly Mon 05:00   Export-the modernization programPKIAssessment          svc-uiao-assess   Medium            5--15 min
+
+  the modernization program-DriftDetection     Daily 07:00        Invoke-the modernization programDriftReport            svc-uiao-assess   **High**          5--20 min
+
+  the modernization program-DashboardRender    Daily 08:00        quarto render D:\\the modernization program\\Docs\\    svc-gitea         Medium            2--5 min
+
+  the modernization program-GitHubSync         Every 6 hours      Sync-the modernization programToGitHub.ps1             svc-gitea         Medium            \<5 min
+
+  the modernization program-LogRotation        Daily 23:00        Rotate-the modernization programLogs.ps1               svc-uiao-backup   Low               \<1 min
+
+  the modernization program-CertExpiryCheck    Daily 06:30        Test-the modernization programCertExpiry.ps1           svc-uiao-assess   **High**          \<1 min
+  -------------------------------------------------------------------------------------------------------------------------------
+
+3.1 Task Registration Script
+
+Use the following PowerShell script to register all the modernization program scheduled tasks. Run as Administrator.
+
+#Requires -RunAsAdministrator \<# .SYNOPSIS Registers all the modernization program scheduled tasks under \\the modernization program\\ task path. .NOTES Author: Michael Stratton Run once during initial setup or when re-creating tasks. Update \$domain to match your environment. #\> \$domain = \"DOMAIN\" \$scriptRoot = \"D:\\the modernization program\\Scripts\" \$psExe = \"C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe\" \$psArgs = \"-NoProfile -ExecutionPolicy Bypass -File\" \$commonSettings = New-ScheduledTaskSettingsSet \` -AllowStartIfOnBatteries \` -DontStopIfGoingOnBatteries \` -StartWhenAvailable \` -ExecutionTimeLimit (New-TimeSpan -Hours 1) \` -RestartCount 2 \` -RestartInterval (New-TimeSpan -Minutes 5) \# ── the modernization program-DailyHealthCheck --- Daily 06:00 ── \$trigger = New-ScheduledTaskTrigger -Daily -At \"06:00\" \$action = New-ScheduledTaskAction -Execute \$psExe \` -Argument \"\$psArgs \`\"\$scriptRoot\\Invoke-the modernization programDailyHealthCheck.ps1\`\"\" \$principal = New-ScheduledTaskPrincipal -UserId \"\$domain\\svc-uiao-assess\" \` -LogonType Password -RunLevel Highest Register-ScheduledTask -TaskName \"the modernization program-DailyHealthCheck\" -TaskPath \"\\the modernization program\\\" \` -Trigger \$trigger -Action \$action -Principal \$principal \` -Settings \$commonSettings -Description \"Daily platform health check\" \# ── the modernization program-BackupDB --- Hourly ── \$trigger = New-ScheduledTaskTrigger -Once -At \"00:00\" \` -RepetitionInterval (New-TimeSpan -Hours 1) \$action = New-ScheduledTaskAction -Execute \$psExe \` -Argument \"\$psArgs \`\"\$scriptRoot\\Backup-the modernization programGiteaDB.ps1\`\"\" \$principal = New-ScheduledTaskPrincipal -UserId \"\$domain\\svc-uiao-backup\" \` -LogonType Password -RunLevel Highest Register-ScheduledTask -TaskName \"the modernization program-BackupDB\" -TaskPath \"\\the modernization program\\\" \` -Trigger \$trigger -Action \$action -Principal \$principal \` -Settings \$commonSettings -Description \"Hourly Gitea database backup\" \# ── the modernization program-BackupRepos --- Every 4 Hours ── \$trigger = New-ScheduledTaskTrigger -Once -At \"00:00\" \` -RepetitionInterval (New-TimeSpan -Hours 4) \$action = New-ScheduledTaskAction -Execute \$psExe \` -Argument \"\$psArgs \`\"\$scriptRoot\\Backup-the modernization programRepositories.ps1\`\"\" \$principal = New-ScheduledTaskPrincipal -UserId \"\$domain\\svc-uiao-backup\" \` -LogonType Password -RunLevel Highest Register-ScheduledTask -TaskName \"the modernization program-BackupRepos\" -TaskPath \"\\the modernization program\\\" \` -Trigger \$trigger -Action \$action -Principal \$principal \` -Settings \$commonSettings -Description \"Repository backup every 4 hours\" \# ── the modernization program-BackupConfig --- Daily 01:00 ── \$trigger = New-ScheduledTaskTrigger -Daily -At \"01:00\" \$action = New-ScheduledTaskAction -Execute \$psExe \` -Argument \"\$psArgs \`\"\$scriptRoot\\Backup-the modernization programConfig.ps1\`\"\" \$principal = New-ScheduledTaskPrincipal -UserId \"\$domain\\svc-uiao-backup\" \` -LogonType Password -RunLevel Highest Register-ScheduledTask -TaskName \"the modernization program-BackupConfig\" -TaskPath \"\\the modernization program\\\" \` -Trigger \$trigger -Action \$action -Principal \$principal \` -Settings \$commonSettings -Description \"Daily configuration backup\" \# ── the modernization program-BackupCerts --- Weekly Sunday 00:00 ── \$trigger = New-ScheduledTaskTrigger -Weekly -DaysOfWeek Sunday -At \"00:00\" \$action = New-ScheduledTaskAction -Execute \$psExe \` -Argument \"\$psArgs \`\"\$scriptRoot\\Backup-the modernization programCertificates.ps1\`\"\" \$principal = New-ScheduledTaskPrincipal -UserId \"\$domain\\svc-uiao-backup\" \` -LogonType Password -RunLevel Highest Register-ScheduledTask -TaskName \"the modernization program-BackupCerts\" -TaskPath \"\\the modernization program\\\" \` -Trigger \$trigger -Action \$action -Principal \$principal \` -Settings \$commonSettings -Description \"Weekly certificate backup\" \# ── the modernization program-FullBackup --- Daily 02:00 ── \$trigger = New-ScheduledTaskTrigger -Daily -At \"02:00\" \$action = New-ScheduledTaskAction -Execute \$psExe \` -Argument \"\$psArgs \`\"\$scriptRoot\\Invoke-the modernization programBackup.ps1\`\"\" \$principal = New-ScheduledTaskPrincipal -UserId \"\$domain\\svc-uiao-backup\" \` -LogonType Password -RunLevel Highest \$fullBackupSettings = New-ScheduledTaskSettingsSet \` -AllowStartIfOnBatteries -DontStopIfGoingOnBatteries \` -StartWhenAvailable -ExecutionTimeLimit (New-TimeSpan -Hours 2) \` -RestartCount 2 -RestartInterval (New-TimeSpan -Minutes 10) Register-ScheduledTask -TaskName \"the modernization program-FullBackup\" -TaskPath \"\\the modernization program\\\" \` -Trigger \$trigger -Action \$action -Principal \$principal \` -Settings \$fullBackupSettings -Description \"Full platform backup\" \# ── the modernization program-ADAssessment --- Weekly Monday 03:00 ── \$trigger = New-ScheduledTaskTrigger -Weekly -DaysOfWeek Monday -At \"03:00\" \$action = New-ScheduledTaskAction -Execute \$psExe \` -Argument \"-NoProfile -ExecutionPolicy Bypass -Command \`\"Import-Module D:\\the modernization program\\Modules\\the modernization programADAssessment; Invoke-the modernization programADAssessment -OutputPath D:\\the modernization program\\Assessment\\AD\`\"\" \$principal = New-ScheduledTaskPrincipal -UserId \"\$domain\\svc-uiao-assess\" \` -LogonType Password -RunLevel Highest \$assessSettings = New-ScheduledTaskSettingsSet \` -AllowStartIfOnBatteries -DontStopIfGoingOnBatteries \` -StartWhenAvailable -ExecutionTimeLimit (New-TimeSpan -Hours 2) Register-ScheduledTask -TaskName \"the modernization program-ADAssessment\" -TaskPath \"\\the modernization program\\\" \` -Trigger \$trigger -Action \$action -Principal \$principal \` -Settings \$assessSettings -Description \"Weekly Active Directory assessment\" \# ── the modernization program-DNSAssessment --- Weekly Monday 04:00 ── \$trigger = New-ScheduledTaskTrigger -Weekly -DaysOfWeek Monday -At \"04:00\" \$action = New-ScheduledTaskAction -Execute \$psExe \` -Argument \"-NoProfile -ExecutionPolicy Bypass -Command \`\"Import-Module D:\\the modernization program\\Modules\\the modernization programDNSAssessment; Invoke-the modernization programDNSAssessment\`\"\" \$principal = New-ScheduledTaskPrincipal -UserId \"\$domain\\svc-uiao-assess\" \` -LogonType Password -RunLevel Highest Register-ScheduledTask -TaskName \"the modernization program-DNSAssessment\" -TaskPath \"\\the modernization program\\\" \` -Trigger \$trigger -Action \$action -Principal \$principal \` -Settings \$assessSettings -Description \"Weekly DNS assessment\" \# ── the modernization program-PKIAssessment --- Weekly Monday 05:00 ── \$trigger = New-ScheduledTaskTrigger -Weekly -DaysOfWeek Monday -At \"05:00\" \$action = New-ScheduledTaskAction -Execute \$psExe \` -Argument \"-NoProfile -ExecutionPolicy Bypass -Command \`\"Import-Module D:\\the modernization program\\Modules\\the modernization programPKIAssessment; Export-the modernization programPKIAssessment\`\"\" \$principal = New-ScheduledTaskPrincipal -UserId \"\$domain\\svc-uiao-assess\" \` -LogonType Password -RunLevel Highest Register-ScheduledTask -TaskName \"the modernization program-PKIAssessment\" -TaskPath \"\\the modernization program\\\" \` -Trigger \$trigger -Action \$action -Principal \$principal \` -Settings \$assessSettings -Description \"Weekly PKI assessment\" \# ── the modernization program-DriftDetection --- Daily 07:00 ── \$trigger = New-ScheduledTaskTrigger -Daily -At \"07:00\" \$action = New-ScheduledTaskAction -Execute \$psExe \` -Argument \"-NoProfile -ExecutionPolicy Bypass -Command \`\"Import-Module D:\\the modernization program\\Modules\\the modernization programDriftDetection; Invoke-the modernization programDriftReport\`\"\" \$principal = New-ScheduledTaskPrincipal -UserId \"\$domain\\svc-uiao-assess\" \` -LogonType Password -RunLevel Highest Register-ScheduledTask -TaskName \"the modernization program-DriftDetection\" -TaskPath \"\\the modernization program\\\" \` -Trigger \$trigger -Action \$action -Principal \$principal \` -Settings \$commonSettings -Description \"Daily drift detection report\" \# ── the modernization program-DashboardRender --- Daily 08:00 ── \$trigger = New-ScheduledTaskTrigger -Daily -At \"08:00\" \$action = New-ScheduledTaskAction -Execute \"C:\\Program Files\\Quarto\\bin\\quarto.exe\" \` -Argument \"render D:\\the modernization program\\Docs\\\" \$principal = New-ScheduledTaskPrincipal -UserId \"\$domain\\svc-gitea\" \` -LogonType Password -RunLevel Highest Register-ScheduledTask -TaskName \"the modernization program-DashboardRender\" -TaskPath \"\\the modernization program\\\" \` -Trigger \$trigger -Action \$action -Principal \$principal \` -Settings \$commonSettings -Description \"Daily Quarto dashboard render\" \# ── the modernization program-GitHubSync --- Every 6 Hours ── \$trigger = New-ScheduledTaskTrigger -Once -At \"00:00\" \` -RepetitionInterval (New-TimeSpan -Hours 6) \$action = New-ScheduledTaskAction -Execute \$psExe \` -Argument \"\$psArgs \`\"\$scriptRoot\\Sync-the modernization programToGitHub.ps1\`\"\" \$principal = New-ScheduledTaskPrincipal -UserId \"\$domain\\svc-gitea\" \` -LogonType Password -RunLevel Highest Register-ScheduledTask -TaskName \"the modernization program-GitHubSync\" -TaskPath \"\\the modernization program\\\" \` -Trigger \$trigger -Action \$action -Principal \$principal \` -Settings \$commonSettings -Description \"GitHub mirror sync every 6 hours\" \# ── the modernization program-LogRotation --- Daily 23:00 ── \$trigger = New-ScheduledTaskTrigger -Daily -At \"23:00\" \$action = New-ScheduledTaskAction -Execute \$psExe \` -Argument \"\$psArgs \`\"\$scriptRoot\\Rotate-the modernization programLogs.ps1\`\"\" \$principal = New-ScheduledTaskPrincipal -UserId \"\$domain\\svc-uiao-backup\" \` -LogonType Password -RunLevel Highest Register-ScheduledTask -TaskName \"the modernization program-LogRotation\" -TaskPath \"\\the modernization program\\\" \` -Trigger \$trigger -Action \$action -Principal \$principal \` -Settings \$commonSettings -Description \"Daily log rotation and archival\" \# ── the modernization program-CertExpiryCheck --- Daily 06:30 ── \$trigger = New-ScheduledTaskTrigger -Daily -At \"06:30\" \$action = New-ScheduledTaskAction -Execute \$psExe \` -Argument \"\$psArgs \`\"\$scriptRoot\\Test-the modernization programCertExpiry.ps1\`\"\" \$principal = New-ScheduledTaskPrincipal -UserId \"\$domain\\svc-uiao-assess\" \` -LogonType Password -RunLevel Highest Register-ScheduledTask -TaskName \"the modernization program-CertExpiryCheck\" -TaskPath \"\\the modernization program\\\" \` -Trigger \$trigger -Action \$action -Principal \$principal \` -Settings \$commonSettings -Description \"Daily TLS certificate expiry check\" Write-Host \"All 14 the modernization program scheduled tasks registered successfully.\" -ForegroundColor Green
+
+4\. Assessment Operations
+
+4.1 Manual Assessment Runs
+
+Use the following procedures to run assessment modules manually outside of their scheduled windows. All commands should be run from an elevated PowerShell session.
+
+Active Directory Assessment
+
+Import-Module D:\\the modernization program\\Modules\\the modernization programADAssessment Invoke-the modernization programADAssessment -OutputPath D:\\the modernization program\\Assessment\\AD
+
+Expected output: JSON files in D:\\the modernization program\\Assessment\\AD\\ with timestamp-prefixed filenames. Duration: 15--45 minutes depending on forest size.
+
+DNS Assessment
+
+Import-Module D:\\the modernization program\\Modules\\the modernization programDNSAssessment Invoke-the modernization programDNSAssessment
+
+Expected output: JSON files in D:\\the modernization program\\Assessment\\DNS\\. Duration: 5--15 minutes.
+
+PKI Assessment
+
+Import-Module D:\\the modernization program\\Modules\\the modernization programPKIAssessment Export-the modernization programPKIAssessment
+
+Expected output: JSON files in D:\\the modernization program\\Assessment\\PKI\\. Duration: 5--15 minutes.
+
+Read-Only Assessment
+
+Import-Module D:\\the modernization program\\Modules\\the modernization programReadOnlyAssessment Invoke-the modernization programReadOnlyAssessment
+
+Expected output: JSON files in D:\\the modernization program\\Assessment\\ReadOnly\\. Safe to run during business hours --- performs no writes to AD.
+
+Identity Assessment
+
+Import-Module D:\\the modernization program\\Modules\\the modernization programIdentityAssessment Invoke-the modernization programIdentityAssessment
+
+Expected output: JSON files in D:\\the modernization program\\Assessment\\Identity\\. Queries user and group objects, service accounts, and privilege assignments.
+
+4.2 Assessment Troubleshooting
+
+  ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+  **Symptom**                           **Cause**                                                               **Resolution**
+  ------------------------------------- ----------------------------------------------------------------------- ----------------------------------------------------------------------------------------------------------------------------------------------
+  \"Access denied\" during AD queries   svc-uiao-assess not in Authenticated Users, or LDAP connectivity lost   Verify group membership: Get-ADUser svc-uiao-assess -Properties MemberOf. Test LDAP: Test-NetConnection \<DC\> -Port 389
+
+  Empty JSON output                     Module import failure or domain controller unreachable                  Confirm module loads: Get-Module -ListAvailable the modernization programADAssessment. Test DC: nltest /dsgetdc:DOMAIN
+
+  Stale data in dashboard               Scheduled task did not run or assessment output not committed           Check task: Get-ScheduledTaskInfo -TaskName \"the modernization program-ADAssessment\" -TaskPath \"\\the modernization program\\\". Verify output timestamps in assessment directories
+
+  Module not found                      D:\\the modernization program\\Modules\\ not in \$env:PSModulePath                           Add permanently: \[Environment\]::SetEnvironmentVariable(\'PSModulePath\', \$env:PSModulePath + \';D:\\the modernization program\\Modules\', \'Machine\')
+
+  Timeout on large forests              Assessment query exceeds default timeout                                Increase timeout parameters in module config. Consider running per-domain: Invoke-the modernization programADAssessment -DomainName child.domain.local
+  ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+4.3 Assessment Data Management
+
+- **Output location:** D:\\the modernization program\\Assessment\\{AD,DNS,PKI,Identity,ReadOnly}\\
+
+- **Retention:** Keep last 90 days of assessment JSON locally. Archive older files to \\\\backup-server.
+
+- **Committing to Gitea:**
+
+cd D:\\the modernization program git add assessments/ git commit -m \"assessment: \$(Get-Date -Format \'yyyy-MM-dd\') run\" git push origin main
+
+- **Comparing baselines:**
+
+Compare-the modernization programDrift -BaselinePath D:\\the modernization program\\Assessment\\AD\\baseline.json \` -CurrentPath D:\\the modernization program\\Assessment\\AD\\latest.json
+
+5\. Gitea Administration
+
+5.1 User Management
+
+LDAP User Provisioning
+
+Users are auto-provisioned on first login via LDAP authentication configured in D:\\Gitea\\custom\\conf\\app.ini. No manual user creation is needed for domain accounts.
+
+Local Admin Accounts (Emergency Access)
+
+D:\\Gitea\\gitea.exe admin user create \--config D:\\Gitea\\custom\\conf\\app.ini \` \--username emergency-admin \--password \<secure-password\> \` \--email admin@uiao.local \--admin \--must-change-password
+
++-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| **⚠ Warning**                                                                                                                                                                                         |
+|                                                                                                                                                                                                       |
+| Local admin accounts are for emergency access only. Document creation in the change log and disable after use. Store emergency credentials in a sealed envelope or approved secret management system. |
++-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+Disabling / Removing Users
+
+\# Disable (preferred --- preserves history): \# Via Gitea Admin Panel: Site Administration \> User Accounts \> Edit \> Prohibit Login \# Delete (removes all user data --- use with caution): D:\\Gitea\\gitea.exe admin user delete \--config D:\\Gitea\\custom\\conf\\app.ini \` \--username \<username\>
+
+Managing SSH Keys and API Tokens
+
+- **SSH keys:** Users manage their own keys via Settings \> SSH / GPG Keys. Admins can review all keys in the admin panel.
+
+- **API tokens:** Users create tokens at Settings \> Applications. Review and revoke unused tokens periodically.
+
+- **Login audit:** Filter gitea.log for sign-in activity:
+
+Select-String -Path D:\\Gitea\\log\\gitea.log -Pattern \"Successful Sign In\|Failed Sign In\" \| Select-Object -Last 50
+
+5.2 Repository Management
+
+- **Naming convention:** All repositories use lowercase with dashes (e.g., uiao-assessment-modules).
+
+- **Branch protection:** The main branch should have protection rules requiring at least one review and passing status checks before merge.
+
+- **Webhooks:** Configure via Repository Settings \> Webhooks for CI/CD or notification integrations.
+
+- **Repository maintenance:**
+
+\# Optimize repository storage cd D:\\GitRepos\\\<repo\>.git git gc \--aggressive \--prune=now git prune \# Check repository integrity git fsck \--full
+
+- **Git LFS:** Large binary files should use Git LFS. Configure tracked patterns in .gitattributes.
+
+5.3 Gitea Maintenance
+
+Gitea Doctor
+
+\# Run diagnostic checks (read-only): D:\\Gitea\\gitea.exe doctor check \--config D:\\Gitea\\custom\\conf\\app.ini \# Run checks and auto-fix issues: D:\\Gitea\\gitea.exe doctor \--fix \--config D:\\Gitea\\custom\\conf\\app.ini
+
+Regeneration Commands
+
+\# Regenerate Git hooks for all repositories: D:\\Gitea\\gitea.exe admin regenerate hooks \--config D:\\Gitea\\custom\\conf\\app.ini \# Regenerate authorized_keys file: D:\\Gitea\\gitea.exe admin regenerate keys \--config D:\\Gitea\\custom\\conf\\app.ini
+
+Database Optimization (PostgreSQL)
+
+Gitea's relational state lives in the external PostgreSQL database `uiao_gitea` on `pg01.corp.contoso.com:5432` (per the program decision), not in a local file --- so there is no need to stop the Gitea service to maintain it, and PostgreSQL autovacuum handles routine reclamation automatically. Periodic manual optimization is run by the database team against `pg01` via `psql`; it does not require a Gitea outage:
+
+\# Run against the uiao_gitea database on pg01 (database team): psql -h pg01.corp.contoso.com -U uiao_gitea -d uiao_gitea -c \"VACUUM (ANALYZE);\"
+
+Temporary Upload Cleanup
+
+\# Remove orphaned temporary upload files older than 24 hours: Get-ChildItem D:\\Gitea\\data\\tmp\\uploads -Recurse \| Where-Object { \$\_.LastWriteTime -lt (Get-Date).AddHours(-24) } \| Remove-Item -Force
+
+5.4 Gitea Upgrade Procedure
+
+1.  **Read release notes** at the Gitea release page for breaking changes, migration notes, and deprecated features.
+
+2.  **Create full backup:** D:\\the modernization program\\Scripts\\Invoke-the modernization programBackup.ps1
+
+3.  **Stop Gitea service:** Stop-Service gitea
+
+4.  **Rename current binary:** Rename-Item D:\\Gitea\\gitea.exe D:\\Gitea\\gitea-old.exe
+
+5. **Copy new binary:** Copy-Item \<new-binary-path\> D:\\Gitea\\gitea.exe
+
+6. **Run database migrations:** D:\\Gitea\\gitea.exe migrate \--config D:\\Gitea\\custom\\conf\\app.ini
+
+7. **Start Gitea service:** Start-Service gitea
+
+8. **Verify:** Test UI at https://git.uiao.local and API at http://localhost:3000/api/v1/version.
+
+9. **Run doctor:** D:\\Gitea\\gitea.exe doctor check \--config D:\\Gitea\\custom\\conf\\app.ini
+
+10. **Update references:** Update any module or script version references that depend on the Gitea version.
+
++----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| **❗ Rollback Procedure**                                                                                                                                                                                                                    |
+|                                                                                                                                                                                                                                              |
+| If the upgrade fails: Stop-Service gitea → Remove-Item D:\\Gitea\\gitea.exe → Rename-Item D:\\Gitea\\gitea-old.exe D:\\Gitea\\gitea.exe → Start-Service gitea. If database migrations ran, restore the database from the pre-upgrade backup. |
++----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+6\. IIS Administration
+
+6.1 App Pool Management
+
+\# View app pool status: Get-WebAppPoolState DefaultAppPool \# Recycle the app pool: Restart-WebAppPool DefaultAppPool \# Configure scheduled recycling (daily at 04:00): Set-ItemProperty \"IIS:\\AppPools\\DefaultAppPool\" -Name Recycling.periodicRestart.schedule \` -Value \@{value=\"04:00:00\"} \# Set private memory limit (4 GB): Set-ItemProperty \"IIS:\\AppPools\\DefaultAppPool\" \` -Name Recycling.periodicRestart.privateMemory -Value 4194304
+
+6.2 TLS Certificate Management
+
+View Current Certificate
+
+Get-ChildItem Cert:\\LocalMachine\\My \| Where-Object { \$\_.Subject -match \'git.uiao.local\' } \| Select-Object Subject, Thumbprint, NotBefore, NotAfter, \@{N=\'DaysRemaining\';E={(\$\_.NotAfter - (Get-Date)).Days}}
+
+Certificate Renewal Process
+
+1. **Generate CSR:** Use certreq or IIS Manager to create a certificate signing request.
+
+2. **Submit to CA:** Submit the CSR to your internal PKI or commercial CA.
+
+3. **Import certificate:** Import the issued certificate into Cert:\\LocalMachine\\My.
+
+4. **Update IIS binding:**
+
+\# Update HTTPS binding with new certificate: \$newCert = Get-ChildItem Cert:\\LocalMachine\\My \| Where-Object { \$\_.Subject -match \'git.uiao.local\' } \| Sort-Object NotAfter -Descending \| Select-Object -First 1 \# Remove old binding and add new: Remove-WebBinding -Name \"git.uiao.local\" -Protocol https -Port 443 New-WebBinding -Name \"git.uiao.local\" -Protocol https -Port 443 -SslFlags 1 \$binding = Get-WebBinding -Name \"git.uiao.local\" -Protocol https \$binding.AddSslCertificate(\$newCert.Thumbprint, \"My\")
+
+Emergency Certificate Replacement
+
+\# Import certificate from backup PFX: \$pwd = Read-Host -AsSecureString \"Enter PFX password\" Import-PfxCertificate -FilePath D:\\the modernization program\\Backups\\certs\\git-uiao-local.pfx \` -CertStoreLocation Cert:\\LocalMachine\\My -Password \$pwd \# Then update the IIS binding as shown above
+
+6.3 IIS Troubleshooting
+
+  ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+  **HTTP Error**                **Cause**                                                      **Resolution**
+  ----------------------------- -------------------------------------------------------------- ------------------------------------------------------------------------------------------------------------------------------------------
+  **502.3 Bad Gateway**         Gitea not running or not listening on port 3000                Check: Get-Service gitea. Test: Invoke-WebRequest http://localhost:3000. Start if needed: Start-Service gitea
+
+  **403.14 Forbidden**          Directory browsing disabled, URL Rewrite rules misconfigured   Verify URL Rewrite rules in IIS Manager. Check web.config syntax. Re-import ARR rules if needed
+
+  **500.52 URL Rewrite**        ARR module issue or corrupt rewrite rules                      Reinstall ARR module. Verify proxy settings in Server Farms. Reset: appcmd clear config -section:system.webServer/rewrite/rules
+
+  **503 Service Unavailable**   App pool stopped or crashed                                    Start: Start-WebAppPool DefaultAppPool. Check Event Viewer for crash reason. Review Rapid-Fail Protection settings
+
+  **SSL/TLS Errors**            Certificate expired, missing, or binding incorrect             Check cert expiry (see 6.2). Verify binding: Get-WebBinding -Protocol https. Replace from backup PFX if needed
+
+  **Slow Responses**            Gitea performance degradation or high server load              Check Gitea logs for slow queries. Enable IIS output caching for static assets. Review server CPU/memory via Task Manager or Get-Process
+  ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+7\. Replication Operations
+
+7.1 Monitoring Replication
+
+Compare HEAD refs between primary and secondary servers to detect replication lag.
+
+\# Quick replication status check: \$primary = git ls-remote https://git.uiao.local/uiao/uiao.git HEAD \$secondary = git ls-remote https://git-dr.uiao.local/uiao/uiao.git HEAD Write-Host \"Primary : \$(\$primary.Split(\"\`t\")\[0\])\" Write-Host \"Secondary: \$(\$secondary.Split(\"\`t\")\[0\])\" if (\$primary.Split(\"\`t\")\[0\] -eq \$secondary.Split(\"\`t\")\[0\]) { Write-Host \"Replication: IN SYNC\" -ForegroundColor Green } else { Write-Warning \"Replication lag detected --- HEAD refs differ\" }
+
+This check is also performed as part of the daily health check (Check 9). For continuous monitoring, the the modernization program-GitHubSync task implicitly validates connectivity every 6 hours.
+
+7.2 Manual Failover
+
++---------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| **⚠ Warning**                                                                                                                                                 |
+|                                                                                                                                                               |
+| Failover is a **P1 event**. Follow the Incident Response steps in Section 10 in parallel. Coordinate with stakeholders before promoting the secondary server. |
++---------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+1. **Confirm primary is down:** Verify via multiple methods --- ping, RDP, service checks, console access. Rule out network issues.
+
+2. **Update DNS:** Change git.uiao.local A record to point to the secondary server IP. Reduce TTL beforehand if possible.
+
+3. **Verify secondary Gitea:** Confirm the Gitea service is running on the secondary server and the UI is accessible.
+
+4. **Notify users:** Inform all users that the platform is in read-only mode on the secondary server until promotion is complete.
+
+5. **Promote secondary:**
+
+    - Update app.ini: Set ROOT_URL to https://git.uiao.local
+
+    - Enable write access by removing mirror/read-only configuration
+
+    - Restart Gitea service on secondary
+
+6. **When primary is restored:**
+
+    - Reverse the mirror direction (secondary → primary)
+
+    - Re-synchronize all repositories
+
+    - Re-establish the original replication flow
+
+    - Update DNS back to primary
+
+    - Demote secondary back to passive mirror
+
+7.3 Replication Troubleshooting
+
+  --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+  **Issue**           **Diagnosis**                                                     **Resolution**
+  ------------------- ----------------------------------------------------------------- ------------------------------------------------------------------------------------------------------------------------------------------------------------------
+  Mirror push fails   SSH key auth broken, network issue, or disk full on secondary     Test SSH: ssh -T git@git-dr.uiao.local. Test network: Test-NetConnection git-dr.uiao.local -Port 22. Check disk on secondary
+
+  Lag increasing      Large Git LFS objects, massive pushes, or bandwidth constraints   Check recent push sizes in audit log. Review LFS objects. Consider scheduling large pushes during off-hours
+
+  Split-brain risk    Writes enabled on both primary and secondary simultaneously       **NEVER** enable writes on the secondary without failing over DNS first. If split-brain occurs, manually reconcile refs using the primary as the source of truth
+  --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+8\. Drift Detection Operations
+
+8.1 Baseline Management
+
+\# Set a new baseline from the latest assessment data: Set-the modernization programBaseline -SourcePath D:\\the modernization program\\Assessment\\AD -BaselineName \"2026-Q2\" \# View the current active baseline: Get-the modernization programBaseline \# Compare current state against a named baseline: Compare-the modernization programDrift -BaselineName \"2026-Q2\" \# View drift history (last 30 entries): Get-the modernization programDriftHistory -Last 30
+
+8.2 Alert Response
+
+When a drift detection alert triggers (via the daily the modernization program-DriftDetection task at 07:00 or via dashboard notification), follow this workflow:
+
+1. **Review drift report:** Open the latest drift JSON in D:\\the modernization program\\Assessment\\ or view in the Quarto dashboard at https://docs.uiao.local.
+
+2. **Classify the change:**
+
+    - **Expected change:** Matches an approved change ticket or known maintenance activity.
+
+    - **Unexpected drift:** No corresponding change record --- potential unauthorized modification.
+
+3. **If expected:** Update the baseline with the new assessment data to acknowledge the change: Set-the modernization programBaseline -SourcePath D:\\the modernization program\\Assessment\\AD -BaselineName \"2026-Q2-updated\"
+
+4. **If unexpected:** Investigate root cause. Escalate per severity classification (see Section 10). Engage security team if unauthorized access is suspected.
+
+5. **Document:** Commit the drift resolution to Gitea with the associated ticket reference:
+
+git add assessments/ baselines/ git commit -m \"drift: resolved TICKET-1234 --- OU structure change approved\" git push origin main
+
+8.3 Reporting
+
+- **Daily drift summary:** Generated automatically by the the modernization program-DriftDetection task at 07:00. Review on the dashboard or in D:\\the modernization program\\Logs\\.
+
+- **Weekly governance report:** Compile manually or use the automated Quarto render to generate a weekly summary covering drift events, SLA compliance, and assessment results.
+
+- **Quarterly trend analysis:** Compare drift frequency and severity across baselines to identify systemic issues, recurring drift patterns, and areas requiring tighter controls.
+
+9\. Change Management
+
+9.1 Pre-Change Checklist
+
+Complete all items before executing any platform change.
+
+  ---------------------------------------------------------------------------------------------------------
+  **☐**   **Pre-Change Item**                     **Verification**
+  ------- --------------------------------------- ---------------------------------------------------------
+  ☐       Change documented and approved          Change ticket number recorded
+
+  ☐       Full backup completed                   Invoke-the modernization programBackup.ps1 --- confirm success in backup.log
+
+  ☐       Rollback plan documented                Step-by-step rollback in change ticket
+
+  ☐       Maintenance window communicated         User notification sent ≥48 hours ahead
+
+  ☐       Secondary server verified operational   Replication in sync, Gitea running on secondary
+
+  ☐       Health check baseline captured          Invoke-the modernization programDailyHealthCheck.ps1 --- all checks OK
+  ---------------------------------------------------------------------------------------------------------
+
+9.2 Post-Change Checklist
+
+Complete all items after executing a platform change to confirm system integrity.
+
+  --------------------------------------------------------------------------------------------------------------
+  **☐**   **Post-Change Item**                      **Verification**
+  ------- ----------------------------------------- ------------------------------------------------------------
+  ☐       Health check passed                       Invoke-the modernization programDailyHealthCheck.ps1 --- 0 critical, 0 warnings
+
+  ☐       Gitea UI accessible and functional        Browse https://git.uiao.local --- login, navigate repos
+
+  ☐       Git operations working                    Test clone, push, and pull against a test repository
+
+  ☐       Replication active                        HEAD refs match between primary and secondary
+
+  ☐       Dashboard rendering                       Browse https://docs.uiao.local --- data is current
+
+  ☐       Assessment pipeline operational           Run a quick read-only assessment to confirm
+
+  ☐       Audit logging active                      Confirm new entries in git-audit.jsonl
+
+  ☐       Change documentation committed to Gitea   Change log updated, commit pushed to main
+  --------------------------------------------------------------------------------------------------------------
+
+10\. Incident Response Quick Reference
+
+10.1 Severity Classification
+
+  ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+  **Severity**          **Description**                                         **Response Time**   **Update Cadence**   **Examples**
+  --------------------- ------------------------------------------------------- ------------------- -------------------- -----------------------------------------------------------------
+  **P1 --- Critical**   Complete platform outage, data loss, security breach    15 min              Every 30 min         Server down, ransomware, DB corruption
+
+  **P2 --- High**       Partial outage, degraded service, replication failure   1 hour              Every 2 hours        IIS down (Gitea on :3000 accessible), replication lag \>4 hours
+
+  **P3 --- Medium**     Non-critical feature failure, performance degradation   4 hours             Daily                Dashboard not rendering, one assessment failing, slow responses
+
+  **P4 --- Low**        Minor issue, cosmetic, enhancement request              Next business day   Weekly               Log rotation missed, non-critical scheduled task failed
+  ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+10.2 Escalation Matrix
+
+  -------------------------------------------------------------------------------------------------------------------------
+  **Severity**   **First Responder**      **Escalation (30 min)**      **Escalation (2 hours)**     **Mgmt Notification**
+  -------------- ------------------------ ---------------------------- ---------------------------- -----------------------
+  **P1**         Platform Administrator   Senior Infrastructure Lead   CISO / IT Director           Immediate
+
+  **P2**         Platform Administrator   Senior Infrastructure Lead   IT Director                  Within 1 hour
+
+  **P3**         Platform Administrator   ---                          Senior Infrastructure Lead   Daily summary
+
+  **P4**         Platform Administrator   ---                          ---                          Weekly summary
+  -------------------------------------------------------------------------------------------------------------------------
+
+10.3 Incident Response Steps
+
+1. **DETECT:** Incident identified via health check alert, monitoring notification, or user report. Record the time of detection.
+
+2. **TRIAGE:** Classify severity (P1--P4) using the table above. Assign an incident number and notify per the escalation matrix.
+
+3. **CONTAIN:** Prevent further impact. Isolate affected components if needed (e.g., stop a compromised service, block a source IP, disable a user account).
+
+4. **DIAGNOSE:** Perform root cause analysis using logs (Section 2.3), health check output, Event Viewer, and Gitea diagnostics.
+
+5. **RESOLVE:** Apply the fix or execute the applicable recovery runbook (Gitea upgrade rollback, failover procedure, backup restoration, etc.).
+
+6. **VERIFY:** Run the full health check (Invoke-the modernization programDailyHealthCheck.ps1) and complete the post-change checklist (Section 9.2) to confirm restoration.
+
+7. **DOCUMENT:** Write an incident report with timeline, root cause, resolution, and lessons learned. Update this runbook if new failure modes are identified. Commit the report to Gitea.
+
+11\. Maintenance Windows
+
+11.1 Standard Maintenance Windows
+
+  ----------------------------------------------------------------------------------------------------------------------------------------------------------------
+  **Cadence**     **Window**                      **Activities**
+  --------------- ------------------------------- ----------------------------------------------------------------------------------------------------------------
+  **Weekly**      Sunday 00:00--04:00             Automated backups, certificate checks, log rotation, repo maintenance (git gc)
+
+  **Monthly**     First Sunday 00:00--06:00       OS patching (Windows Update), Gitea minor upgrades, IIS module updates, database optimization
+
+  **Quarterly**   Scheduled per change calendar   DR failover test, full platform review, service account password rotation, certificate renewal, baseline reset
+  ----------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+11.2 Maintenance Window Procedures
+
+Pre-Maintenance
+
+- Notify all users at least 48 hours before the maintenance window via email and dashboard banner.
+
+- Run a full backup: D:\\the modernization program\\Scripts\\Invoke-the modernization programBackup.ps1
+
+- Verify the secondary server is operational and replication is in sync.
+
+- Capture a health check baseline for comparison after maintenance.
+
+During Maintenance
+
+- Follow the pre-change and post-change checklists (Section 9) for every change applied.
+
+- Maintain a running log of all actions taken with timestamps.
+
+- Post status updates at least every 30 minutes during the window.
+
+- If maintenance overruns the window, escalate and communicate an extended timeline.
+
+Post-Maintenance
+
+- Run the full health check: Invoke-the modernization programDailyHealthCheck.ps1
+
+- Compare post-maintenance health check against the pre-maintenance baseline.
+
+- Notify users that maintenance is complete and normal operations have resumed.
+
+- Commit the maintenance log and any runbook updates to Gitea.
+
+Appendix A --- Quick Command Reference
+
+  -------------------------------------------------------------------------------------------------------------------------
+  **Task**                  **Command**
+  ------------------------- -----------------------------------------------------------------------------------------------
+  Check Gitea service       Get-Service gitea
+
+  Start Gitea               Start-Service gitea
+
+  Stop Gitea                Stop-Service gitea
+
+  Restart IIS               iisreset /restart
+
+  Check IIS sites           Get-Website
+
+  Gitea doctor              D:\\Gitea\\gitea.exe doctor check \--config D:\\Gitea\\custom\\conf\\app.ini
+
+  Manual backup             D:\\the modernization program\\Scripts\\Invoke-the modernization programBackup.ps1
+
+  Health check              D:\\the modernization program\\Scripts\\Invoke-the modernization programDailyHealthCheck.ps1
+
+  View audit log            Get-Content D:\\the modernization program\\Logs\\git-audit.jsonl -Tail 20 \| ConvertFrom-Json
+
+  Check disk space          Get-PSDrive C, D \| Select-Object Name, \@{N=\'FreeGB\';E={\[math\]::Round(\$\_.Free/1GB,2)}}
+
+  Check cert expiry         Get-ChildItem Cert:\\LocalMachine\\My \| Select-Object Subject, NotAfter
+
+  List scheduled tasks      Get-ScheduledTask -TaskPath \'\\the modernization program\\\'
+
+  Run AD assessment         Import-Module the modernization programADAssessment; Invoke-the modernization programADAssessment
+
+  Compare drift             Compare-the modernization programDrift -BaselineName \'current\'
+
+  Mirror to GitHub          D:\\the modernization program\\Scripts\\Sync-the modernization programToGitHub.ps1
+
+  View replication status   git ls-remote https://git-dr.uiao.local/uiao/uiao.git HEAD
+  -------------------------------------------------------------------------------------------------------------------------
+
+Appendix B --- Log File Reference
+
+  --------------------------------------------------------------------------------------------------------------
+  **Log File**           **Path**                        **Format**   **Rotation Policy**        **Retention**
+  ---------------------- ------------------------------- ------------ -------------------------- ---------------
+  git-audit.jsonl        D:\\the modernization program\\Logs\\                JSONL        Daily archive              1 year
+
+  canon-changes.jsonl    D:\\the modernization program\\Logs\\                JSONL        Daily archive              1 year
+
+  backup.log             D:\\the modernization program\\Logs\\                Plain text   Monthly rotate             6 months
+
+  health-YYYYMMDD.json   D:\\the modernization program\\Logs\\                JSON         Daily (one file per day)   90 days
+
+  gitea.log              D:\\Gitea\\log\\                Plain text   Size-based (100 MB)        30 days
+
+  IIS logs               C:\\inetpub\\logs\\LogFiles\\   W3C          Weekly                     90 days
+  --------------------------------------------------------------------------------------------------------------
+
+Appendix C --- Cross-References
+
+The following companion documents provide detailed coverage of specific topics referenced throughout this runbook.
+
+  --------------------------------------------------------------------------------------------------------------------------------------------------------
+  **Document**                                    **Purpose**
+  ----------------------------------------------- --------------------------------------------------------------------------------------------------------
+  **the modernization program Disaster Recovery Playbook**             Detailed recovery procedures for all failure scenarios, RTO/RPO targets, and DR test plans
+
+  **the modernization program Platform Server Build Guide**            Initial server setup, OS configuration, Gitea installation, IIS configuration, and baseline hardening
+
+  **the modernization program Active-Passive Git Replication Guide**   Detailed replication architecture, mirror configuration, SSH key setup, and failover procedures
+
+  **the modernization program Git on Windows Server 2025 with IIS**    IIS reverse proxy configuration, ARR setup, URL Rewrite rules, TLS binding, and web.config reference
+
+  **the modernization program PowerShell Module Reference**            Complete function documentation for all the modernization program PowerShell modules (parameters, examples, output schemas)
+  --------------------------------------------------------------------------------------------------------------------------------------------------------
+
+the modernization program Operations Runbook \| Classification: Controlled \| Boundary: GCC-Moderate
+
+Author: Michael Stratton \| Last Updated: April 21, 2026 \| Repository: github.com/WhalerMike/uiao
+
+© 2026 the modernization program Governance OS. All rights reserved.
+
+---
+
+## Compliance Amendment — Change Advisory, Incident Severity, and Maintenance Windows (`CM-3`, `IR-4`, `MA-2`)
+
+### Change Advisory Board (`CM-3`)
+
+Configuration changes follow a formal change-control process. A Change Advisory Board (CAB) reviews and authorizes non-emergency changes; each change record captures rationale, risk, rollback plan, and approver. Emergency changes use an expedited path with retrospective CAB review. All changes are committed through the governed repository with traceable commit messages.
+
+### Incident severity classification (`IR-4`)
+
+Operational incidents are classified by the Severity 1–4 matrix defined in the Incident Response Plan (`the modernization program_186` §1) and handled per its response lifecycle. Drift-engine `unauthorized` findings open at minimum Severity 2.
+
+### Maintenance window policy (`MA-2`)
+
+Controlled maintenance is performed within defined maintenance windows with advance notification. Maintenance activities, the personnel performing them, and the maintenance records are logged per `MA-2`; remote and non-local maintenance follows the access controls in the access plane.
