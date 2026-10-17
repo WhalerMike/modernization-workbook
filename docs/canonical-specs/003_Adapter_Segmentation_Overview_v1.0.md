@@ -11,7 +11,7 @@ date: 2026-04-16
 
 This page renders the canonical the modernization program_003 source verbatim. The
 authoritative source is at
-Per [the program decision](../adr/adr-072-canon-publication-policy.qmd), this
+Per the program decision, this
 canonical page is generated as an `include`-style wrapper.
 :::
 

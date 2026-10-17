@@ -21,16 +21,16 @@ lifecycle_review: 2026-12-08
 # Intune + Azure Arc — Governed Path (the modernization program / the organizational-attribute model) {.unnumbered}
 
 The governed path reaches the **same end state** as the
-[manual path](manual-path.qmd) — Arc-onboarded servers, Intune-enrolled
+[manual path](manual-path.md) — Arc-onboarded servers, Intune-enrolled
 endpoints, NTLM eliminated, SPNs clean, SQL hardened, Conditional Access
 enforced — but binds every change to organizational intent. The
-[same scripts](manual-path.qmd) run; you add an the organizational-attribute model, an actuation rung, and a
+[same scripts](manual-path.md) run; you add an the organizational-attribute model, an actuation rung, and a
 recorded approval.
 
 ::: {.callout-important title="What the modernization program is (and what these docs do not invent)"}
 **the modernization program** is the *Unified Identity-Addressing-Overlay Architecture* — an **active
 reconciliation control plane** that *governs* provider data planes, per
-[the program decision](../../../adr/adr-092-active-governance.html). It is **not** "Unified IT
+the program decision. It is **not** "Unified IT
 Architecture Oversight" or "Universal Identity and Access Operations," and it is
 not a five-product suite layered over Azure. It holds desired state, observes
 actual state, classifies drift, and reconciles toward intent. The providers
@@ -93,7 +93,7 @@ technical scope line up.
 If you do not yet know each object's the organizational-attribute model — e.g. you are adopting an estate
 built the manual way — `Get-the organizational-attribute modelSurvey.ps1` *proposes* one per object from the
 structure that already exists (Arc tags, AD OUs), advisory and read-only. See
-[Add the organizational-attribute model later (retrofit)](retrofit-path.qmd#step-2--derive-orgpath-from-existing-structure).
+Add the organizational-attribute model later (retrofit).
 
 ## 4. The actuation maturity ladder
 
@@ -151,7 +151,7 @@ acronym were not.
 
 ## 7. Running the governed path
 
-Identical run order to the [manual path](manual-path.qmd#0-phases-and-run-order),
+Identical run order to the [manual path](manual-path.md#0-phases-and-run-order),
 with two additions on every state-changing call:
 
 ```powershell
@@ -182,15 +182,15 @@ Over the manual end state, the governed path delivers:
 - continuous, exportable **evidence** (provenance-anchored, not assembled at audit time);
 - drift caught and classified by the loop rather than discovered by incident.
 
-If you have not yet stood up a control plane, build the [manual path](manual-path.qmd)
-now and [retrofit the organizational-attribute model later](retrofit-path.qmd) — the work you do now carries forward.
+If you have not yet stood up a control plane, build the [manual path](manual-path.md)
+now and retrofit the organizational-attribute model later — the work you do now carries forward.
 
 ## 9. Rollback
 
 The governed path layers governance on top of the same operational back-outs as the
 manual path. Roll back in two layers if needed.
 
-**Operational back-out (same as [manual path §9](manual-path.qmd#9-rollback)):**
+**Operational back-out (same as [manual path §9](manual-path.md#9-rollback)):**
 
 - **Intune:** un-enroll devices and re-apply the GPO baseline.
 - **Arc:** `azcmagent disconnect` then uninstall the agent.

@@ -15,7 +15,7 @@ format:
 # Compliance — HRIT to HR-Driven IAM — Execution Plan {.unnumbered}
 
 **Date Code:** 2026-07-23 10:22 ET
-**Status:** Published (execution companion to [Vol I Book 04](Vol_I_Book_04_Compliance_HRIT_Identity_Org_SSOT.qmd))
+**Status:** Published (execution companion to [Vol I Book 04](Vol_I_Book_04_HRIT_Identity_Org_SSOT.md))
 **Scope:** FedRAMP Moderate (GCC Moderate) · Executive Branch civilian workforce under Federal HR 2.0
 
 ---
@@ -23,7 +23,7 @@ format:
 ## 0. Why this document exists
 
 Until mid-2026, the HR side of this architecture had to be planned *agnostically*:
-the government-wide HCM vendor was undecided, so [the program decision](../../adr/adr-003-api-driven-inbound-provisioning.qmd)
+the government-wide HCM vendor was undecided, so the program decision
 deliberately chose an integration path that works with any source, and the
 governance substrate's transformation project plan (**Spec 2 — HR-Agnostic
 Provisioning Architecture**) was written without naming a product.
@@ -81,7 +81,7 @@ Two planning consequences follow directly:
 
 ## 2. The decision record: why this pipe and no other
 
-[the program decision](../../adr/adr-003-api-driven-inbound-provisioning.qmd) (Accepted
+the program decision (Accepted
 2026-04-28; reaffirmed 2026-07-23) fixes the canonical path: **API-driven inbound
 provisioning via Microsoft Graph `bulkUpload`, fed by a substrate-owned middleware
 layer.** The award resolved the ADR's central uncertainty in the direction that

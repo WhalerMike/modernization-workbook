@@ -127,12 +127,12 @@ themselves drift findings.
 ## Validation pairing
 
 Pairs with the
-[Telemetry Validation Suite](../../validation-suites/domains/telemetry/telemetry.qmd).
+Telemetry Validation Suite.
 
 ## Related documents
 
-- [Modernization Specs Index](../index.qmd)
-- [Architecture Series — Evidence Chain](../../architecture-series/evidence-chain.qmd)
-- [Provenance Profile (canon)](../../../docs/15_ProvenanceProfile.qmd)
-- [the program decision: Evidence Determinism](../../../../src/uiao/canon/adr/adr-006-evidence-determinism.md)
-- [the program decision: Evidence Bundle Lifecycle](../../../../src/uiao/canon/adr/adr-016-evidence-bundle-lifecycle.md)
+- Modernization Specs Index
+- Architecture Series — Evidence Chain
+- Provenance Profile (canon)
+- the program decision: Evidence Determinism
+- the program decision: Evidence Bundle Lifecycle

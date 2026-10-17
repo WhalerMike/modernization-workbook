@@ -29,7 +29,7 @@ Specific metrics, agency identifiers, and timelines are intentionally
 absent until real material is reviewed.
 :::
 
-![Identity migration engagement pattern diagram](images/identity-modernization-case-stud-image-01-identity-migration-engagement-pa.png){#fig-identity-modernization-case-study-image-01 fig-alt="Five-phase horizontal sequence (Canon-First → Modernization Adapters → Drift-Driven Cleanup pre-cutover → Cutover → Post-Cutover). Each phase shows the substrate's role: canon authoring, adapter registration, drift findings remediation, identity-plane source switch, continuous remediation. Above the sequence, a \"Substrate behaviors\" panel lists the four metrics a real engagement would document (provenance breakage rate, attribute-quality drift, cross-pillar correlation health, AODIM realization). Clean engineering blueprint style, dark navy (#0D1B2E) and teal (#1E8C8C) on white background. No photographs, purely diagrammatic." width="100%"}
+![Identity migration engagement pattern diagram](../images/case-studies/identity-modernization-case-stud-image-01-identity-migration-engagement-pa.png){#fig-identity-modernization-case-study-image-01 fig-alt="Five-phase horizontal sequence (Canon-First → Modernization Adapters → Drift-Driven Cleanup pre-cutover → Cutover → Post-Cutover). Each phase shows the substrate's role: canon authoring, adapter registration, drift findings remediation, identity-plane source switch, continuous remediation. Above the sequence, a \"Substrate behaviors\" panel lists the four metrics a real engagement would document (provenance breakage rate, attribute-quality drift, cross-pillar correlation health, AODIM realization). Clean engineering blueprint style, dark navy (#0D1B2E) and teal (#1E8C8C) on white background. No photographs, purely diagrammatic." width="100%"}
 
 ## Engagement archetype
 
@@ -38,7 +38,7 @@ multi-forest topology, decade-old OU hierarchy) plans transition to
 Entra ID under GCC-Moderate. The program has identified the technical
 migration tooling but has not addressed the **architectural inversion**
 from hierarchical placement to attribute-driven access (see
-[Modernization Governance Whitepaper](../whitepapers/modernization-governance-whitepaper.qmd)).
+[Modernization Governance Whitepaper](../whitepapers/modernization-governance-whitepaper.md)).
 
 Without a substrate, the program risks inheriting the OU-driven model
 in Entra ID and losing most cloud-native value.
@@ -144,7 +144,7 @@ should expect, not a specific engagement outcome.
 
 ## Related documents
 
-- [Whitepaper — Modernization Governance](../whitepapers/modernization-governance-whitepaper.qmd)
-- [Architecture Series — AODIM](../architecture-series/aodim-architecture.qmd)
-- [Modernization Spec — Identity](../modernization-specs/identity/identity.qmd)
-- [the program decision: Zero Trust Identity](../../../src/uiao/canon/adr/adr-008-zero-trust-identity.md)
+- [Whitepaper — Modernization Governance](../whitepapers/modernization-governance-whitepaper.md)
+- [Architecture Series — AODIM](../architecture/aodim-architecture.md)
+- [Modernization Spec — Identity](../modernization-specs/identity/identity.md)
+- the program decision: Zero Trust Identity

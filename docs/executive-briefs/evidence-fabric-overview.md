@@ -24,7 +24,7 @@ The intended chain is:
 
 1. **Telemetry event capture** from adapters and governance controls.
 2. **Canonical claim normalization** under the provenance envelope defined in
-   [15_ProvenanceProfile.qmd](../../15_ProvenanceProfile.qmd).
+   15_ProvenanceProfile.qmd.
 3. **Evidence bundling and mapping** into OSCAL-native outputs for assessors.
 
 This creates a lineage from source signal to compliance statement, so a 3PAO
@@ -33,7 +33,7 @@ can trace any finding back to a concrete, hashed source record.
 ## Determinism and reproducibility
 
 Per
-[the program decision](../../../src/uiao/canon/adr/adr-006-evidence-determinism.md),
+the program decision,
 the fabric is designed for deterministic behavior: no silent drops, append-only
 writes, ordered records, integrity hashing, and idempotent ingestion. In
 practice this means **same inputs produce the same evidence bundle**, enabling
@@ -59,7 +59,7 @@ the modernization program currently emits or assembles the following evidence su
 - **Component Definitions**
 
 Bundle lifecycle controls (assemble → seal → submit → close) are defined in
-[the program decision](../../../src/uiao/canon/adr/adr-016-evidence-bundle-lifecycle.md)
+the program decision
 to support governed handoff to federal assessors.
 
 ## Maturity and current-state honesty
@@ -71,9 +71,9 @@ remains a target-state capability and is represented here as aspirational.
 
 ## Where to go deeper
 
-- **[Architecture Series — Evidence Chain](../architecture-series/evidence-chain.qmd)** —
+- **Architecture Series — Evidence Chain** —
   the event → claim → OSCAL lineage in design detail.
-- **[KSI Conformance Overview](ksi-conformance-overview.qmd)** — the
+- **[KSI Conformance Overview](ksi-conformance-overview.md)** — the
   machine-checkable indicators that populate the bundle.
-- **[Reciprocity & Single-ATO Overview](reciprocity-single-ato-overview.qmd)** —
+- **[Reciprocity & Single-ATO Overview](reciprocity-single-ato-overview.md)** —
   self-verifying per-agency evidence bundles in practice.

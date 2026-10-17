@@ -16,7 +16,7 @@ aliases:
 
 {{< lifecycle-banner >}}
 
-> **Model C — Administrative Units scoped by facet tuples (per [the program decision](../../adr/adr-078-orgpath-attribute-schema-15-facet.qmd)).** AU membership rules compose facet predicates from the 15-slot model rather than `-startsWith` on a composite-hyphen path. See [the organizational-attribute model Codebook](codebook.qmd) for the facet/slot definitions.
+> **Model C — Administrative Units scoped by facet tuples (per the program decision).** AU membership rules compose facet predicates from the 15-slot model rather than `-startsWith` on a composite-hyphen path. See [the organizational-attribute model Codebook](codebook.md) for the facet/slot definitions.
 
 ## The Delegation Problem
 
@@ -126,9 +126,9 @@ An unrestricted AU is classified as **CRITICAL drift** and triggers immediate re
 | Missing AU — canonical entry with no tenant AU | HIGH | Yes |
 | Stale facet citation — rule references a facet value not in the codebook enumeration | HIGH | No — fix codebook or rule |
 
-The per-facet drift model (see [Drift Detection Walk-through](drift-walkthrough.qmd)) classifies AU rule drift per clause: if `(attr2 -eq "IT") and (attr3 -eq "OldDivision")` references a now-deprecated `OldDivision` value, the second clause surfaces independently as a phantom-facet finding while the first clause continues to validate cleanly.
+The per-facet drift model (see [Drift Detection Walk-through](drift-walkthrough.md)) classifies AU rule drift per clause: if `(attr2 -eq "IT") and (attr3 -eq "OldDivision")` references a now-deprecated `OldDivision` value, the second clause surfaces independently as a phantom-facet finding while the first clause continues to validate cleanly.
 
 ::: {.callout-tip}
 ## Source
-Canonical narrative: [`the modernization program_154_Delegation_Matrix_AUs_Roles.md`]( modernization program_154_Delegation_Matrix_AUs_Roles.md). Facet definitions: [the organizational-attribute model Codebook](codebook.qmd). Per-facet drift classifier: [Drift Detection Walk-through](drift-walkthrough.qmd).
+Canonical narrative: [`the modernization program_154_Delegation_Matrix_AUs_Roles.md`]( modernization program_154_Delegation_Matrix_AUs_Roles.md). Facet definitions: [the organizational-attribute model Codebook](codebook.md). Per-facet drift classifier: [Drift Detection Walk-through](drift-walkthrough.md).
 :::

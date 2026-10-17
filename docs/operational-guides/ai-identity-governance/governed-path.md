@@ -20,7 +20,7 @@ lifecycle_review: 2026-12-18
 
 # Federal AI Identity Governance — Governed Path {.unnumbered}
 
-This path extends the [manual path](manual-path.qmd) with the modernization program's the organizational-attribute model
+This path extends the manual path with the modernization program's the organizational-attribute model
 governance substrate. The same scripts run; the same findings are produced.
 What changes is that each finding is bound to a canonical the organizational-attribute model record, routed
 through the drift engine (the program decision), and reconciled against the ATO reciprocity
@@ -204,5 +204,5 @@ for the proposed OMB schema-extension letter that accompanies this kit.
 
 - [`src/uiao/canon/specs/Spec4-AI-D1.1-AISystemIdentityRecord.md`](../../../../src/uiao/canon/specs/Spec4-AI-D1.1-AISystemIdentityRecord.md) — the modernization program_196 AI System Identity Record schema
 - [`src/uiao/canon/specs/Spec4-AI-D1.2-AISystemJMLLifecycle.md`](../../../../src/uiao/canon/specs/Spec4-AI-D1.2-AISystemJMLLifecycle.md) — the modernization program_197 AI System JML Lifecycle
-- [the program decision](../../../adr/adr-112-federal-ai-usecase-governance.qmd) — Federal AI Use Case Governance
-- [the program decision](../../../adr/adr-114-ai-system-jml-lifecycle.qmd) — AI System JML Lifecycle
+- the program decision — Federal AI Use Case Governance
+- the program decision — AI System JML Lifecycle

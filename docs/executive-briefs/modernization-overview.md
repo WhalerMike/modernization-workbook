@@ -12,9 +12,9 @@ tiers_adopted: [1]
 lifecycle_review: 2026-11-22
 ---
 
-![Six-step modernization arc (identity to governance)](images/zero-trust-overview-image-01-mission-class-placement-for-zero.png){#fig-modernization-overview-image-01 fig-alt="Six-step modernization arc (identity to governance). Engineering blueprint style, neutral slate background, federal navy (#1F3A5F) for primary structural elements, teal (#1A9E8F) for secondary/integration elements, amber (#D4A017) for governance/audit/registry overlays, monospace labels for identifiers, no human figures, 16:9 landscape." width="100%"}
+![Six-step modernization arc (identity to governance)](../images/executive-briefs/zero-trust-overview-image-01-mission-class-placement-for-zero.png){#fig-modernization-overview-image-01 fig-alt="Six-step modernization arc (identity to governance). Engineering blueprint style, neutral slate background, federal navy (#1F3A5F) for primary structural elements, teal (#1A9E8F) for secondary/integration elements, amber (#D4A017) for governance/audit/registry overlays, monospace labels for identifiers, no human figures, 16:9 landscape." width="100%"}
 
-![Three-phase program model (A/B/C)](images/modernization-overview-image-02-three-phase-program-model-abc.png){#fig-modernization-overview-image-02 fig-alt="Three-phase program model (A/B/C). Engineering blueprint style, neutral slate background, federal navy (#1F3A5F) for primary structural elements, teal (#1A9E8F) for secondary/integration elements, amber (#D4A017) for governance/audit/registry overlays, monospace labels for identifiers, no human figures, 16:9 landscape." width="100%"}
+![Three-phase program model (A/B/C)](../images/executive-briefs/modernization-overview-image-02-three-phase-program-model-abc.png){#fig-modernization-overview-image-02 fig-alt="Three-phase program model (A/B/C). Engineering blueprint style, neutral slate background, federal navy (#1F3A5F) for primary structural elements, teal (#1A9E8F) for secondary/integration elements, amber (#D4A017) for governance/audit/registry overlays, monospace labels for identifiers, no human figures, 16:9 landscape." width="100%"}
 
 
 ![The manual compliance grind](../../images/canonical/the modernization program-FIG-002-manual-compliance-grind.png){fig-alt="Current-state pain of manual, fragmented compliance workflows across federal agencies — spreadsheets, memos, and disconnected reporting that the modernization program replaces with continuous, canon-anchored governance." width="100%"}
@@ -125,9 +125,9 @@ program maturity and avoid overstating implementation status.
 
 ## Where to go deeper
 
-- **[Governance through Modernization whitepaper](../whitepapers/modernization-governance-whitepaper.qmd)** —
+- **[Governance through Modernization whitepaper](../whitepapers/modernization-governance-whitepaper.md)** —
   the long-form program treatment.
-- **[Operational Guide — the modernization program Modernization Program](../operational-guides/uiao-modernization-program/index.qmd)** —
+- **Operational Guide — the modernization program Modernization Program** —
   the chapter-by-chapter delivery playbook.
-- **[Adapter Ecosystem Overview](adapter-ecosystem-overview.qmd)** — the
+- **[Adapter Ecosystem Overview](adapter-ecosystem-overview.md)** — the
   modernization adapter set that executes the arc.

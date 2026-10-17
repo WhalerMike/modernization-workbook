@@ -15,14 +15,14 @@ lifecycle_review: 2026-11-22
 UIAO decomposes the federal modernization control surface into **six control
 planes**. Each plane is authoritative for its domain, and all six operate as
 a single deterministic system — the substrate the
-[Governance OS](../executive-briefs/governance-os-overview.qmd) sits on.
+[Governance OS](../executive-briefs/governance-os-overview.md) sits on.
 
 This explainer is the architectural complement to the
-[Governance OS Overview](../executive-briefs/governance-os-overview.qmd) brief.
+[Governance OS Overview](../executive-briefs/governance-os-overview.md) brief.
 Where the brief states that UIAO is canon-anchored and drift-detected, this
 page describes the planes that the canon governs and the drift engine watches.
 
-![Six-plane reference architecture diagram](images/six-plane-architecture-image-01-six-plane-reference-architecture.png){#fig-six-plane-architecture-image-01 fig-alt="Six horizontal lanes stacked vertically, top to bottom: Identity (root namespace icon), Network (overlay routing icon), Addressing (deterministic IPAM icon), Telemetry & Location (signal-flow icon), Security & Compliance (Zero Trust shield icon), Management (governance/CMDB gear icon). One-directional arrows on the right side flow downward through all six lanes indicating canonical input flow. A small recurrent feedback arrow on the left shows runtime drift findings re-entering the Identity lane. Title \"UIAO Six-Plane Reference Model\". Clean engineering blueprint style, dark navy (#0D1B2E) and teal (#1E8C8C) color scheme on white background. No photographs, purely diagrammatic." width="100%"}
+![Six-plane reference architecture diagram](../images/architecture/six-plane-architecture-image-01-six-plane-reference-architecture.png){#fig-six-plane-architecture-image-01 fig-alt="Six horizontal lanes stacked vertically, top to bottom: Identity (root namespace icon), Network (overlay routing icon), Addressing (deterministic IPAM icon), Telemetry & Location (signal-flow icon), Security & Compliance (Zero Trust shield icon), Management (governance/CMDB gear icon). One-directional arrows on the right side flow downward through all six lanes indicating canonical input flow. A small recurrent feedback arrow on the left shows runtime drift findings re-entering the Identity lane. Title \"UIAO Six-Plane Reference Model\". Clean engineering blueprint style, dark navy (#0D1B2E) and teal (#1E8C8C) color scheme on white background. No photographs, purely diagrammatic." width="100%"}
 
 ## The six planes
 
@@ -74,7 +74,7 @@ identity plane, not maintained as an independent source.
 
 ### Telemetry & Location plane
 Real-time signal carrier. Every adapter emits telemetry in canonical claim
-form (per the [Provenance Profile](../../docs/15_ProvenanceProfile.qmd)).
+form (per the Provenance Profile).
 Telemetry is treated as control input, not as after-the-fact reporting:
 drift findings, evidence claims, and policy decisions all originate as
 telemetry events.
@@ -88,8 +88,8 @@ derived from this plane, not authored separately.
 ### Management plane
 Governance and CMDB. Where the substrate is run from: drift detection,
 canon stewardship, OSCAL evidence regeneration, device compliance reporting.
-This is the plane the [Drift Engine](drift-engine.qmd) and
-[Evidence Chain](evidence-chain.qmd) operate within.
+This is the plane the [Drift Engine](drift-engine.md) and
+[Evidence Chain](evidence-chain.md) operate within.
 
 ## How the planes interact
 
@@ -103,7 +103,7 @@ This matters for governance because it means **every plane has exactly one
 authoritative input** and any deviation surfaces as a drift finding rather
 than as silent inconsistency.
 
-![the program decision tier-A versus tier-B framing diagram](images/six-plane-architecture-image-02-adr-030-tier-a-versus-tier-b-fra.png){#fig-six-plane-architecture-image-02 fig-alt="Left panel labeled \"Tier A — Four-Layer Prose Model\" showing four stacked rectangles: Authority Plane / Control Plane / Overlay Fabric / Physical Underlay. Right panel labeled \"Tier B — Six-Plane Decomposition\" showing the six planes from this document fitted entirely inside the Control Plane region of the left panel. Bidirectional connector arrow between the panels labeled \"same substrate, different granularity\". Clean engineering blueprint style, dark navy (#0D1B2E) and teal (#1E8C8C) color scheme on white background. No photographs, purely diagrammatic." width="100%"}
+![the program decision tier-A versus tier-B framing diagram](../images/architecture/six-plane-architecture-image-02-adr-030-tier-a-versus-tier-b-fra.png){#fig-six-plane-architecture-image-02 fig-alt="Left panel labeled \"Tier A — Four-Layer Prose Model\" showing four stacked rectangles: Authority Plane / Control Plane / Overlay Fabric / Physical Underlay. Right panel labeled \"Tier B — Six-Plane Decomposition\" showing the six planes from this document fitted entirely inside the Control Plane region of the left panel. Bidirectional connector arrow between the panels labeled \"same substrate, different granularity\". Clean engineering blueprint style, dark navy (#0D1B2E) and teal (#1E8C8C) color scheme on white background. No photographs, purely diagrammatic." width="100%"}
 
 ## Positioning under the program decision
 

@@ -13,7 +13,7 @@ lifecycle_review: 2027-01-01
 listing:
   - id: book-chapters
     contents:
-      - "Book_04_CPT_*.qmd"
+      - "Book_04_CPT_*.md"
     type: table
     fields: [title]
     sort: "series-order asc"
@@ -43,5 +43,5 @@ Without Arc, the SQL Server engine has no cloud-native identity; without that id
 
 ::: {.callout-tip}
 ## Continue the series
-[← Previous: Book 03 — Discovery](Book_03.qmd) · [Index](index.qmd) · [Next: Book 05 — The Login Migration →](Book_05.qmd)
+[← Previous: Book 03 — Discovery](Book_03.md) · [Index](index.md) · [Next: Book 05 — The Login Migration →](Book_05.md)
 :::

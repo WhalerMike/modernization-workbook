@@ -27,7 +27,7 @@ lifecycle_review: 2027-02-05
 
 ::: {.content-visible when-format="html"}
 ::: {.callout-tip appearance="simple"}
-**[Download this whitepaper as DOCX](field-office-wan-transformation-dp-consolidation.docx)** — a Word copy of
+**[Download this whitepaper as DOCX](docx/field-office-wan-transformation-dp-consolidation.docx)** — a Word copy of
 this page, regenerated on every site deploy. (Also available from the
 **Other Formats** link in the page sidebar.)
 :::
@@ -81,8 +81,8 @@ less, delivers more, and is a prerequisite for the Microsoft Intune
 migration already underway.
 
 This paper shares its transport argument with
-[SD-WAN vs. DIA Under TIC 3.0](tic3-sdwan-vs-dia.qmd) and its INR/GCC
-finding with [Next Generation DNS](infoblox-hybrid-dns-unified-ddi.qmd);
+[SD-WAN vs. DIA Under TIC 3.0](tic3-sdwan-vs-dia.md) and its INR/GCC
+finding with [Next Generation DNS](infoblox-hybrid-dns-unified-ddi.md);
 both are cited rather than re-derived. Its own contribution is the
 distribution-point unit-economics argument in Sections 2–3, the
 distribution-point-vs.-Intune compliance comparison in Section 3.4
@@ -410,7 +410,7 @@ at 1,500 sites is a multi-year zero-trust undertaking. Breakout at 12
 sites is achievable within a single accreditation package, which is why
 regional breakout is the standard federal stepping stone. This is the
 same physics-and-accreditation argument made in
-[SD-WAN vs. DIA Under TIC 3.0](tic3-sdwan-vs-dia.qmd); this paper does
+[SD-WAN vs. DIA Under TIC 3.0](tic3-sdwan-vs-dia.md); this paper does
 not re-derive it.
 
 ### 4.3 Content tier — 24 distribution points
@@ -472,8 +472,8 @@ aware routing and segmentation; this paper illustrates the bill of
 materials with one vendor's product line (Cisco Catalyst SD-WAN) as a
 worked example, not as an exclusive recommendation — the underlying
 sizing and topology argument is vendor-neutral, and UIAO's own
-[SD-WAN modernization spec](../modernization-specs/sdwan/sdwan.qmd) and
-[the organizational-attribute model composability matrix](orgpath-composability-matrix.qmd) treat
+[SD-WAN modernization spec](../modernization-specs/sdwan/sdwan.md) and
+the organizational-attribute model composability matrix treat
 SD-WAN as an adapter class rather than a single-vendor commitment.
 
 | Tier | Sites | Seats | Primary circuit | Edge platform |
@@ -509,7 +509,7 @@ cloud-delivered security stack replacing the inspection previously
 performed at the centralized gateway. The full argument for why TIC 3.0
 governs this decision — and why transport and governance are separate
 questions — is made in
-[SD-WAN vs. DIA Under TIC 3.0](tic3-sdwan-vs-dia.qmd); this section
+[SD-WAN vs. DIA Under TIC 3.0](tic3-sdwan-vs-dia.md); this section
 states only the consequence for this program.
 
 This is the program critical path. Circuits can be ordered in ninety
@@ -537,7 +537,7 @@ China clouds."* This is not an item pending confirmation — it is a
 documented exclusion that applies directly to this program's scope, and
 is analyzed in full, with a machine-enforced contract fixture encoding
 the exclusion, in
-[Next Generation DNS](infoblox-hybrid-dns-unified-ddi.qmd), Part 9, and
+[Next Generation DNS](infoblox-hybrid-dns-unified-ddi.md), Part 9, and
 in Vol I Book 05, Appendix A of the Federal Organization Compliance
 series.
 
@@ -962,7 +962,7 @@ different maturity levels of the same one:
 | **Compliance boundary** | On-premises Windows Server + IIS site system role; the agency owns the entire customer-side stack | SaaS; the underlying service is covered by the Microsoft 365 GCC Moderate FedRAMP ATO, inherited by the agency through the standard FedRAMP customer responsibility matrix |
 | **Hardening baseline** | DISA Windows Server STIG and IIS STIG apply and must be scanned independently, per server | Agency responsibility is limited to configuration (compliance policies, configuration profiles); the underlying service's own hardening is Microsoft's inherited CSP responsibility |
 | **Vulnerability management (RA-5, SI-2)** | The agency runs vulnerability scanning and patch management against every distribution point's OS and IIS stack, indefinitely, for as many distribution points as exist | RA-5/SI-2 for the service backend is Microsoft's responsibility under the FedRAMP ATO; the agency's remaining SI-2 exposure is the endpoint OS layer, which is scanned regardless of whether a distribution point exists |
-| **Continuous compliance evidence (CA-7)** | A distribution point has no compliance state of its own — successful content delivery is not a compliance claim, and a stalled or compromised distribution point is invisible to continuous monitoring unless separately instrumented | Native, continuous per-device compliance evaluation feeding Conditional Access in real time — the machine-verified evidence stream this corpus documents in [Ticket-to-Machine, Not Ticket-to-Human](ticket-to-machine-not-ticket-to-human.qmd) |
+| **Continuous compliance evidence (CA-7)** | A distribution point has no compliance state of its own — successful content delivery is not a compliance claim, and a stalled or compromised distribution point is invisible to continuous monitoring unless separately instrumented | Native, continuous per-device compliance evaluation feeding Conditional Access in real time — the machine-verified evidence stream this corpus documents in [Ticket-to-Machine, Not Ticket-to-Human](ticket-to-machine-not-ticket-to-human.md) |
 | **Transmission confidentiality (SC-8)** | Configurable — an HTTPS distribution point with a FIPS-validated certificate closes it — but this is a per-server configuration choice that must be verified, not a default | TLS to Microsoft's FedRAMP-authorized endpoints is standard by default |
 | **System Security Plan footprint** | Every distribution point is its own system component: its own SSP entry, its own POA&M line items, its own place in the authorization boundary | Not a separate SSP component; already covered under the M365 GCC ATO boundary claimed for Intune-managed endpoints |
 
@@ -992,7 +992,7 @@ if Section 6.3's sensitivity analysis had come out unfavorably.
 **NIST SP 800-53 controls a flat MPLS branch with centralized-only
 inspection leaves unclaimed or weakly claimed.** The full mapping —
 control by control, with the evidence source for each — is maintained
-in [SD-WAN vs. DIA Under TIC 3.0](tic3-sdwan-vs-dia.qmd), §5, and in
+in [SD-WAN vs. DIA Under TIC 3.0](tic3-sdwan-vs-dia.md), §5, and in
 Vol I Book 07 of the Federal Organization Compliance series; this
 section states only which of those closures land at field offices
 specifically, not the derivation:
@@ -1026,7 +1026,7 @@ not two different ones.
 **CISA's Zero Trust Maturity Model v2.0 cross-cutting capabilities**
 — Visibility and Analytics, Automation and Orchestration, and
 Governance — run underneath every pillar, not beside them, per
-[Zero Trust Governance Principles](zero-trust-governance-principles.qmd).
+[Zero Trust Governance Principles](zero-trust-governance-principles.md).
 A flat MPLS branch fleet is opaque to all three: there is no correlated
 telemetry to see, no policy surface to automate against, and nothing
 for governance to enforce. Twelve governed hub sites with SD-WAN and
@@ -1040,7 +1040,7 @@ CISA [Binding Operational Directive 25-01](https://www.cisa.gov/news-events/dire
 governs Microsoft 365 tenant configuration, not branch network
 architecture — it is not itself a network mandate, and this paper does
 not claim otherwise. What transfers is the sequencing lesson
-[Assessment Tools vs. Closing BOD-25-01 Findings](bod-25-01-close-before-assess.qmd)
+[Assessment Tools vs. Closing BOD-25-01 Findings](bod-25-01-close-before-assess.md)
 documents for M365 baselines: an assessment tool that measures
 deviation from a control is not the same claim as having closed it.
 Running a ZTMM self-assessment or a network vulnerability scan against
@@ -1057,12 +1057,12 @@ network layer exactly as it applies to the tenant layer.
 - [Co-management workloads (Microsoft Learn)](https://learn.microsoft.com/en-us/intune/configmgr/comanage/workloads) — the seven workload sliders underlying the all-in gates (Section 4.7).
 - [Prerequisites for Windows Autopatch (Microsoft Learn)](https://learn.microsoft.com/en-us/windows/deployment/windows-autopatch/prepare/windows-autopatch-prerequisites) — the update-workload pairing cited as Gate 2 (Section 4.7).
 - [Microsoft Connected Cache with Configuration Manager (Microsoft Learn)](https://learn.microsoft.com/en-us/intune/configmgr/core/plan-design/hierarchy/microsoft-connected-cache#support-for-intune-win32-apps) — the DP-hosted-MCC nuance behind Gate 4 (Section 4.7).
-- [SD-WAN vs. DIA Under TIC 3.0](tic3-sdwan-vs-dia.qmd), §5 — the full NIST SP 800-53 control-closure mapping this paper draws its field-office-specific closures from (Sections 4.2, 4.5, 4.8).
-- [Next Generation DNS](infoblox-hybrid-dns-unified-ddi.qmd), Part 9 — the INR/GCC-Moderate exclusion finding this paper cites (Section 4.6).
-- [Zero Trust Governance Principles](zero-trust-governance-principles.qmd) — the CISA ZTMM v2.0 cross-cutting capabilities argument (Appendix A.2).
-- [Assessment Tools vs. Closing BOD-25-01 Findings](bod-25-01-close-before-assess.qmd) — the remediate-before-assess sequencing this paper extends from the M365 tenant layer to the network layer (Appendix A.2).
+- [SD-WAN vs. DIA Under TIC 3.0](tic3-sdwan-vs-dia.md), §5 — the full NIST SP 800-53 control-closure mapping this paper draws its field-office-specific closures from (Sections 4.2, 4.5, 4.8).
+- [Next Generation DNS](infoblox-hybrid-dns-unified-ddi.md), Part 9 — the INR/GCC-Moderate exclusion finding this paper cites (Section 4.6).
+- [Zero Trust Governance Principles](zero-trust-governance-principles.md) — the CISA ZTMM v2.0 cross-cutting capabilities argument (Appendix A.2).
+- [Assessment Tools vs. Closing BOD-25-01 Findings](bod-25-01-close-before-assess.md) — the remediate-before-assess sequencing this paper extends from the M365 tenant layer to the network layer (Appendix A.2).
 - [Binding Operational Directive 25-01 (CISA)](https://www.cisa.gov/news-events/directives/bod-25-01-implementing-secure-practices-cloud-services) — cited directly for scope, to state plainly what it does and does not govern (Appendix A.2).
-- [Ticket-to-Machine, Not Ticket-to-Human](ticket-to-machine-not-ticket-to-human.qmd) — the continuous machine-verified evidence model contrasted against distribution points in Appendix A.1.
+- [Ticket-to-Machine, Not Ticket-to-Human](ticket-to-machine-not-ticket-to-human.md) — the continuous machine-verified evidence model contrasted against distribution points in Appendix A.1.
 - the program decision, Intune-First Asset Onboarding — the co-management doctrine this paper's Phase 1 framing reconciles to (Section 2.2).
 - [*The Journey to Zero Trust: Using Secure Access Service Edge in a Modern TIC 3.0 Solution*](https://www.cisa.gov/resources-tools/resources/using-sase-modern-tic-30-solution) (CISA, June 2026) — the CLAW/E1E telemetry-replacement mechanism, the three-way onboarding coordination requirement, Protective DNS via DoH satisfying OMB M-22-09, and the TIC PEP Security Capability Groups mapping (Section 4.9).
 

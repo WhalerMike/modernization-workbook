@@ -278,7 +278,7 @@ assignment with continuous compliance evaluation *is* the persistent
 evaluation; a spreadsheet of resources somebody checked once is not.
 
 The repo's Azure Arc policy library covers the adjacent hybrid-server case:
-[Azure Arc policy library](../../substrate/platform-tooling/azure-arc-policy-library.qmd).
+[Azure Arc policy library](../../substrate/platform-tooling/azure-arc-policy-library.md).
 
 ## Verify emission
 
@@ -323,5 +323,5 @@ as the AU-2 coverage metric and these queries as liveness checks on top of it.
 
 ## Next
 
-[Microsoft 365 unified audit](03-m365-unified-audit.qmd) — the third plane,
+[Microsoft 365 unified audit](03-m365-unified-audit.md) — the third plane,
 which neither of the diagnostic-settings pipelines above touches.

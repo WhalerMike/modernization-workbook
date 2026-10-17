@@ -13,7 +13,7 @@ aliases:
 ## Two academies on this site
 This is the **Compliance Training Program** — the two-track curriculum over the
 Federal Organization Compliance book series. The host site also publishes a
-separate **[engine Academy](../../../academy/index.qmd)** — the governance
+separate **engine Academy** — the governance
 engine's own contributor/operator curriculum. Within Compliance, **Vol V of the
 series is this program's narrative layer; the pages here are the courseware.**
 :::
@@ -204,7 +204,7 @@ pages ships a reference engine satisfying the contract, alongside the
 the curriculum is derived from. The fixture path is: clone the
 repository, install the reference engine per its README, substitute its
 CLI name for `<engine>`, and run the three commands above — no cloud
-footprint required (see the [lab tiers](labs/index.html#lab-tiers)).
+footprint required (see the lab tiers).
 
 ## Completion criteria
 
@@ -234,7 +234,7 @@ directory):
   original research-queue vendors (Zscaler, Netskope, ServiceNow, Linux
   Foundation/OpenSSF, ISACA, IAPP, Tenable, Qualys) are now catalog rows
   with verified training-portal URLs.
-- ✅ **Lab environments** — shipped: the [lab hub](labs/index.html) with
+- ✅ **Lab environments** — shipped: the lab hub with
   scripted setups for DDI ([B1](labs/lab-b1-ddi.html)), PIM
   ([B5](labs/lab-b5-pim.html)), Sentinel
   ([B6](labs/lab-b6-sentinel.html)), and Purview
@@ -270,5 +270,5 @@ directory):
 - **Compliance staff** → [Track A — Compliance track](compliance-track.html),
   scored by the [assessment rubrics](assessment-rubrics.html)
 - **Engineers** → [Track B — Implementation track](implementation-track.html),
-  with [lab environments](labs/index.html)
+  with lab environments
 - **Everyone** → [Vendor training catalog](vendor-training-catalog.html)

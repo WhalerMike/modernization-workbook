@@ -25,7 +25,7 @@ lifecycle_review: 2026-11-22
 
 ![target Cloud PKI + Intune SCEP/PKCS topology](images/read-only-ad-assessment-image-02-read-only-assessment-capability.png){#fig-pki-modernization-image-02 fig-alt="target Cloud PKI + Intune SCEP/PKCS topology. Engineering blueprint style, neutral slate background, federal navy (#1F3A5F) for primary structural elements, teal (#1A9E8F) for secondary/integration elements, amber (#D4A017) for governance/audit/registry overlays, monospace labels for identifiers, no human figures, 16:9 landscape." width="100%"}
 
-![hybrid coexistence and cross-trust pattern](images/read-only-ad-assessment-image-03-output-directory-gitea-manifest.png){#fig-pki-modernization-image-03 fig-alt="hybrid coexistence and cross-trust pattern. Engineering blueprint style, neutral slate background, federal navy (#1F3A5F) for primary structural elements, teal (#1A9E8F) for secondary/integration elements, amber (#D4A017) for governance/audit/registry overlays, monospace labels for identifiers, no human figures, 16:9 landscape." width="100%"}
+![hybrid coexistence and cross-trust pattern](../images/operational-guides/read-only-ad-assessment-image-03-output-directory-gitea-manifest.png){#fig-pki-modernization-image-03 fig-alt="hybrid coexistence and cross-trust pattern. Engineering blueprint style, neutral slate background, federal navy (#1F3A5F) for primary structural elements, teal (#1A9E8F) for secondary/integration elements, amber (#D4A017) for governance/audit/registry overlays, monospace labels for identifiers, no human figures, 16:9 landscape." width="100%"}
 
 ![six-phase migration playbook with gates](images/pki-modernization-image-04-six-phase-migration-playbook-wit.png){#fig-pki-modernization-image-04 fig-alt="six-phase migration playbook with gates. Engineering blueprint style, neutral slate background, federal navy (#1F3A5F) for primary structural elements, teal (#1A9E8F) for secondary/integration elements, amber (#D4A017) for governance/audit/registry overlays, monospace labels for identifiers, no human figures, 16:9 landscape." width="100%"}
 
@@ -1101,7 +1101,7 @@ The the modernization program the organizational-attribute model model uses Entr
 
 Site is **not** an the organizational-attribute model facet. Physical place is LocPath's axis
 (`/Country/Region/Site/Building/Floor/Space`, with Site as the minimum
-governance unit), and per [the program decision](../../adr/adr-102-locpath-location-addressing.qmd)
+governance unit), and per the program decision
 §D5 LocPath claims no `extensionAttribute` slot at all — so there is no
 `device.extensionAttributeN -eq \"HQ\"` rule to write, and reaching for one
 puts a place name in a facet that means something else.

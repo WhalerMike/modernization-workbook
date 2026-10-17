@@ -25,7 +25,7 @@ lifecycle_review: 2026-11-22
 
 ![read-only assessment capability matrix](images/read-only-ad-assessment-image-02-read-only-assessment-capability.png){#fig-read-only-ad-assessment-image-02 fig-alt="read-only assessment capability matrix. Engineering blueprint style, neutral slate background, federal navy (#1F3A5F) for primary structural elements, teal (#1A9E8F) for secondary/integration elements, amber (#D4A017) for governance/audit/registry overlays, monospace labels for identifiers, no human figures, 16:9 landscape." width="100%"}
 
-![output directory + Gitea manifest flow](images/read-only-ad-assessment-image-03-output-directory-gitea-manifest.png){#fig-read-only-ad-assessment-image-03 fig-alt="output directory + Gitea manifest flow. Engineering blueprint style, neutral slate background, federal navy (#1F3A5F) for primary structural elements, teal (#1A9E8F) for secondary/integration elements, amber (#D4A017) for governance/audit/registry overlays, monospace labels for identifiers, no human figures, 16:9 landscape." width="100%"}
+![output directory + Gitea manifest flow](../images/operational-guides/read-only-ad-assessment-image-03-output-directory-gitea-manifest.png){#fig-read-only-ad-assessment-image-03 fig-alt="output directory + Gitea manifest flow. Engineering blueprint style, neutral slate background, federal navy (#1F3A5F) for primary structural elements, teal (#1A9E8F) for secondary/integration elements, amber (#D4A017) for governance/audit/registry overlays, monospace labels for identifiers, no human figures, 16:9 landscape." width="100%"}
 
 
   ------------------------------------------------------------

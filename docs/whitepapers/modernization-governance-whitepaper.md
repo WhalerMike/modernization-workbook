@@ -71,14 +71,14 @@ provides the canonical fabric that makes the migration a one-way
 modernization rather than a reversible re-platforming.
 
 The companion executive brief is
-[Modernization Overview](../executive-briefs/modernization-overview.qmd),
+[Modernization Overview](../executive-briefs/modernization-overview.md),
 and the modernization pillar's curated surfaces — the transformation
 series and the adapter interfaces this paper's approach rides on — are
-collected at the [OrgMod hub](../../orgmod/index.qmd).
+collected at the OrgMod hub.
 The migration's specific failure-mode-and-fix is documented in
-[AD to Entra ID Migration Problem](ad-to-entraid-migration-problem.qmd)
+[AD to Entra ID Migration Problem](ad-to-entraid-migration-problem.md)
 and the
-[AODIM Executive Whitepaper](aodim-executive-whitepaper.qmd). The
+[AODIM Executive Whitepaper](aodim-executive-whitepaper.md). The
 substrate this paper names as UIAO's is the same one the the compliance series
 series' own
 [Vol X — Governance Substrate Integration Overview](../orgcomp-series/Vol_X_Book_00_the compliance series_Governance_Substrate_Integration_Overview.qmd)
@@ -161,12 +161,12 @@ attributes define organizational structure, and access is computed
 from them rather than assigned. AODIM's authoritative-attribute set,
 computed-group model, and policy-as-data mechanics are documented in
 full in the
-[AODIM Executive Whitepaper](aodim-executive-whitepaper.qmd).
+[AODIM Executive Whitepaper](aodim-executive-whitepaper.md).
 
 ### 4. The substrate's role in migration
 
 The
-[Governance OS](uiao-governance-os-whitepaper.qmd) provides four
+Governance OS provides four
 structural mechanisms that make AODIM-anchored migration tractable:
 
 | Mechanism | Migration role |
@@ -197,7 +197,7 @@ the source of truth" claim above.
 ### 5. Phased modernization
 
 The substrate's
-[Modernization Timeline](../../docs/08_ModernizationTimeline.qmd) is the
+Modernization Timeline is the
 canonical month-by-month program plan (six months, workstreams A–D). The
 five phases below are this paper's distillation of how governance
 sequences within that plan:
@@ -211,7 +211,7 @@ sequences within that plan:
  canonical claims with full provenance from day one.
 3. **Compensating-enforcement phase.** Where platform features are
  unavailable (especially in GCC-Moderate per the
- [Boundary Impact Model](../architecture-series/boundary-impact-model.qmd)),
+ [Boundary Impact Model](../architecture/boundary-impact-model.md)),
  stand up compensating enforcement adapters whose evidence flows
  through the same chain.
 4. **Cutover.** The directory transition is itself a substrate event:

@@ -100,7 +100,7 @@ cannot get from an attestation package:
 - **Tamper-evident lineage** — modification anywhere breaks the
   bundle hash.
 - **Drift-coupled remediation** — a `DRIFT-PROVENANCE` finding from
-  the [Drift Engine](../../architecture-series/drift-engine.qmd)
+  the Drift Engine
   identifies the affected claim(s) directly.
 
 Attestations remain in the package. They are no longer the primary
@@ -161,12 +161,12 @@ Three properties intentionally remain:
 ::: {.callout-tip}
 ## Continue the series
 
-Next: [Chapter 7 — Operational Tempo](../ch07-operational-tempo/index.qmd) — the cadence at which detection, remediation, and escalation must run for the evidence to stay truthful.
+Next: [Chapter 7 — Operational Tempo](../ch07-operational-tempo/index.md) — the cadence at which detection, remediation, and escalation must run for the evidence to stay truthful.
 :::
 
 ## Related documents
 
 - [Executive Governance Series Index](../index.html)
-- [Chapter 4: Deterministic Governance](../ch04-deterministic-governance/index.qmd)
-- [Architecture Series — Evidence Chain](../../architecture-series/evidence-chain.qmd)
-- [Provenance Profile (canon)](../../../docs/15_ProvenanceProfile.qmd)
+- [Chapter 4: Deterministic Governance](../ch04-deterministic-governance/index.md)
+- Architecture Series — Evidence Chain
+- Provenance Profile (canon)

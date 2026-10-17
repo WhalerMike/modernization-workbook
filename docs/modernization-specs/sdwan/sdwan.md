@@ -119,11 +119,11 @@ before registration.
 ## Validation pairing
 
 Pairs with the
-[SD-WAN Validation Suite](../../validation-suites/domains/sdwan/sdwan.qmd).
+SD-WAN Validation Suite.
 
 ## Related documents
 
-- [Modernization Specs Index](../index.qmd)
-- [Architecture Series — Six-Plane Architecture](../../architecture-series/six-plane-architecture.qmd)
-- [Unified Architecture (canon)](../../../docs/01_UnifiedArchitecture.qmd)
-- [Modernization Registry (canon)](../../../../src/uiao/canon/modernization-registry.yaml)
+- Modernization Specs Index
+- Architecture Series — Six-Plane Architecture
+- Unified Architecture (canon)
+- Modernization Registry (canon)

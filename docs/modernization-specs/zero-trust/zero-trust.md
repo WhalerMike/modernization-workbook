@@ -26,7 +26,7 @@ Cross-adapter specification for Zero Trust modernization under the
 the modernization program substrate. Covers ZTMM pillar mapping, identity-as-root-namespace
 posture, runtime policy decision/enforcement, and the canonical claim
 emissions ZT adapters must produce. The companion narrative is the
-[Zero Trust Governance Whitepaper](../../whitepapers/zero-trust-governance-whitepaper.qmd).
+[Zero Trust Governance Whitepaper](../../whitepapers/zero-trust-governance-whitepaper.md).
 
 ![Zero Trust modernization domain diagram](images/zero-trust-image-01-zero-trust-modernization-domain.png){#fig-zero-trust-image-01 fig-alt="Five vertical pillar columns labeled Identity, Devices, Networks, Applications & Workloads, Data — each with one or two adapter slot icons (e.g. entra-id, intune, scubagear, evidence pipeline). At the top of each column, a small ZTMM maturity bar shows current substrate posture (teal for Initial-to-Advanced, dashed extension for Optimal target). At the base, a horizontal \"Identity-as-root-namespace\" bar runs across all five columns, showing identity-plane primacy. Clean engineering blueprint style, dark navy (#0D1B2E) and teal (#1E8C8C) on white background. No photographs, purely diagrammatic." width="100%"}
 
@@ -34,7 +34,7 @@ emissions ZT adapters must produce. The companion narrative is the
 
 Zero Trust adapters span all five ZTMM pillars but inherit the
 substrate's identity-first posture per
-[the program decision](../../../../src/uiao/canon/adr/adr-008-zero-trust-identity.md):
+the program decision:
 
 - **Identity is the root namespace.** Devices, addresses, workloads,
   and data classifications are *named* via identity; they do not
@@ -113,7 +113,7 @@ typically focus on the P1/P2 envelope.
   adapter.
 - Some ZT analytics that commercial M365 customers consume as
   platform features are unavailable in GCC-Moderate (per the
-  [Boundary Impact Model](../../architecture-series/boundary-impact-model.qmd)).
+  [Boundary Impact Model](../../architecture/boundary-impact-model.md)).
   Compensating-enforcement adapters fill the gaps; the spec does not
   paper over them.
 - Decision-record retention is canonical (per adapter
@@ -123,11 +123,11 @@ typically focus on the P1/P2 envelope.
 ## Validation pairing
 
 Pairs with the
-[Zero Trust Validation Suite](../../validation-suites/domains/zero-trust/zero-trust.qmd).
+Zero Trust Validation Suite.
 
 ## Related documents
 
-- [Modernization Specs Index](../index.qmd)
-- [Whitepaper: Zero Trust Governance](../../whitepapers/zero-trust-governance-whitepaper.qmd)
-- [Executive Brief: Zero Trust Overview](../../executive-briefs/zero-trust-overview.qmd)
-- [the program decision: Zero Trust Identity](../../../../src/uiao/canon/adr/adr-008-zero-trust-identity.md)
+- Modernization Specs Index
+- [Whitepaper: Zero Trust Governance](../../whitepapers/zero-trust-governance-whitepaper.md)
+- [Executive Brief: Zero Trust Overview](../../executive-briefs/zero-trust-overview.md)
+- the program decision: Zero Trust Identity

@@ -7,7 +7,7 @@ audience: [Technical, Customer]
 family: sql-server-implementation
 series-order: 03
 status: active
-canon-source: "src/uiao/canon/the directory modernization program
+canon-source: "src/uiao/canon/the directory modernization program"
 lifecycle: active
 tiers_adopted: []
 lifecycle_review: 2027-01-01
@@ -122,4 +122,4 @@ This entire book is read-only. The discovery-only invocation (example 1) touches
 
 ---
 
-*Companion to [narrative Book 03](../sql-server-narrative/Book_03.qmd). Scripts: `tools/discovery/Spec3-D1.8`, `Spec1-D1.4/1.5`, `Spec3-D1.7/1.10/1.12`. Canon: the directory modernization program §3.2, the modernization program_136 Spec 1/3, the program decision, the program decision.*
+*Companion to narrative Book 03. Scripts: `tools/discovery/Spec3-D1.8`, `Spec1-D1.4/1.5`, `Spec3-D1.7/1.10/1.12`. Canon: the directory modernization program §3.2, the modernization program_136 Spec 1/3, the program decision, the program decision.*

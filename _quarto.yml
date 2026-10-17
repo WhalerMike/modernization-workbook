@@ -8,6 +8,10 @@ project:
     - "!MIGRATION-*.md"
     - "!STATUS.md"
     - "!OUTLINE.md"
+    # Day-2 kit wrappers include ServiceNow kit files not yet in this repo;
+    # kept in the repo, excluded from the build until the kit is imported.
+    - "!docs/compliance/day2-kit/"
+    - "!docs/compliance/ServiceNow_Kit_Expansion_Roadmap_page.md"
 
 website:
   title: "Modernization Workbook"

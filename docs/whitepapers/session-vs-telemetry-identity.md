@@ -41,12 +41,12 @@ anchor, and deterministic addressing so SASE can actually be run.
 **Ask.** Stop diagnosing these failures as application bugs or WAN problems,
 and stop closing them with a POA&M and a proxy. Name the divide explicitly in
 the modernization program and fund the substrate that bridges it; then read
-the [parent paper](ad-to-entraid-migration-problem.qmd) for the AD-to-Entra
+the [parent paper](ad-to-entraid-migration-problem.md) for the AD-to-Entra
 governance mapping this mechanism sits beneath.
 :::
 
 This paper is extracted from
-[AD to Entra ID — The Structural Migration Problem](ad-to-entraid-migration-problem.qmd),
+[AD to Entra ID — The Structural Migration Problem](ad-to-entraid-migration-problem.md),
 where this argument originated as a supporting thread inside a broader
 governance-gap argument about Active Directory and Entra ID. It stands on
 its own here because the underlying claim is not really about Active
@@ -134,7 +134,7 @@ incrementalism.
 
 ## 5. What UIAO Actually Is
 
-![Bridge architecture diagram showing UIAO as a governance layer spanning between...](images/ad-to-entraid-migration-problem-image-02-bridge-architecture-diagram-show.png){#fig-session-vs-telemetry-identity-bridge-diagram fig-alt="Bridge architecture diagram showing UIAO as a governance layer spanning between..." width="100%"}
+![Bridge architecture diagram showing UIAO as a governance layer spanning between...](../images/whitepapers/ad-to-entraid-migration-problem-image-02-bridge-architecture-diagram-show.png){#fig-session-vs-telemetry-identity-bridge-diagram fig-alt="Bridge architecture diagram showing UIAO as a governance layer spanning between..." width="100%"}
 
 
 UIAO isn't just a compliance automation tool. It's the **architectural
@@ -171,7 +171,7 @@ persistent-session trust model is forced through a continuous-verification
 boundary, and FedRAMP is simply the clearest, most codified place that
 collision shows up in federal environments today. AD-to-Entra migration is
 one visible instance of it, which is why it surfaces in the
-[parent paper](ad-to-entraid-migration-problem.qmd), but the same mechanism
+[parent paper](ad-to-entraid-migration-problem.md), but the same mechanism
 applies to any legacy client/server application an agency pushes through a
 Zero Trust or SASE boundary. The fix is not a better proxy or a faster WAN
 link; it is a governance substrate --- SSOT, identity as the root namespace,

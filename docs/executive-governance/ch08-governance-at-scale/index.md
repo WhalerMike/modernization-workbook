@@ -85,8 +85,8 @@ automatically.
 
 ## How the consolidation supports scale
 
-Per [the program decision](../../../../src/uiao/canon/adr/adr-028-monorepo-consolidation-gos-integration.md)
-and [the program decision](../../../../src/uiao/canon/adr/adr-032-single-package-consolidation.md),
+Per the program decision
+and the program decision,
 the substrate consolidated four predecessor repos into a single
 monorepo with a single installable Python package. The consolidation
 matters for scale because it eliminates a class of substrate-level
@@ -129,7 +129,7 @@ GCC-Moderate (the substrate's primary), the two named Commercial
 exceptions per the program decision (Amazon Connect, SailPoint NERM), classified
 boundaries, agency-to-agency federation. Each boundary impacts
 telemetry, identity, enforcement, and provenance per the
-[Boundary Impact Model](../../architecture-series/boundary-impact-model.qmd).
+[Boundary Impact Model](../../architecture/boundary-impact-model.md).
 
 The substrate scales across boundaries by treating each as a
 **first-class canonical object** rather than as an implicit
@@ -185,13 +185,13 @@ loop — and removes everything else.
 ::: {.callout-tip}
 ## Continue the series
 
-Next: [Chapter 9 — The Governance Operating System](../ch09-governance-operating-system/index.qmd) — the synthesis that ties the eight prior chapters into a single operating-system framing.
+Next: [Chapter 9 — The Governance Operating System](../ch09-governance-operating-system/index.md) — the synthesis that ties the eight prior chapters into a single operating-system framing.
 :::
 
 ## Related documents
 
 - [Executive Governance Series Index](../index.html)
-- [Chapter 5: The Adapter Model](../ch05-adapter-model/index.qmd)
-- [Substrate Manifest (canon)](../../../../src/uiao/canon/substrate-manifest.yaml)
-- [the program decision: Monorepo Consolidation](../../../../src/uiao/canon/adr/adr-028-monorepo-consolidation-gos-integration.md)
-- [the program decision: Single-Package Consolidation](../../../../src/uiao/canon/adr/adr-032-single-package-consolidation.md)
+- [Chapter 5: The Adapter Model](../ch05-adapter-model/index.md)
+- Substrate Manifest (canon)
+- the program decision: Monorepo Consolidation
+- the program decision: Single-Package Consolidation

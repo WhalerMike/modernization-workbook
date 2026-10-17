@@ -13,7 +13,7 @@ lifecycle_review: 2027-01-01
 listing:
   - id: book-chapters
     contents:
-      - "Book_05_CPT_*.qmd"
+      - "Book_05_CPT_*.md"
     type: table
     fields: [title]
     sort: "series-order asc"
@@ -43,5 +43,5 @@ Everything in Books 01 through 04 is prerequisite; everything in Books 06 throug
 
 ::: {.callout-tip}
 ## Continue the series
-[← Previous: Book 04 — Arc as the Identity Bridge](Book_04.qmd) · [Index](index.qmd) · [Next: Book 06 — Eliminating NTLM at the SQL Layer →](Book_06.qmd)
+[← Previous: Book 04 — Arc as the Identity Bridge](Book_04.md) · [Index](index.md) · [Next: Book 06 — Eliminating NTLM at the SQL Layer →](Book_06.md)
 :::

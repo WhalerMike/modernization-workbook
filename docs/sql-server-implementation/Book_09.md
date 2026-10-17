@@ -7,7 +7,7 @@ audience: [Technical, Customer]
 family: sql-server-implementation
 series-order: 09
 status: active
-canon-source: "src/uiao/canon/the directory modernization program
+canon-source: "src/uiao/canon/the directory modernization program"
 lifecycle: active
 tiers_adopted: []
 lifecycle_review: 2027-01-01
@@ -119,4 +119,4 @@ Everything in this book is **read-only**: scheduled `Spec3-D1.8` runs in invento
 
 ---
 
-*Companion to [narrative Book 09](../sql-server-narrative/Book_09.qmd) and the program decision §5. Audit script-backed: `tools/discovery/Spec3-D1.8` (continuous mode). CCM-BIR ingestion + diff: `tools/powershell/the modernization programSqlServerMigration` (`New-the modernization programClosureRecord`, `Compare-the modernization programClosureRun`). The behavioral/MFA layer (Defender for SQL, Entra sign-in logs) is referenced as an external join by design. Canon: the program decision §5, the program decision Phase C, the directory modernization program Transformation #7.*
+*Companion to narrative Book 09 and the program decision §5. Audit script-backed: `tools/discovery/Spec3-D1.8` (continuous mode). CCM-BIR ingestion + diff: `tools/powershell/the modernization programSqlServerMigration` (`New-the modernization programClosureRecord`, `Compare-the modernization programClosureRun`). The behavioral/MFA layer (Defender for SQL, Entra sign-in logs) is referenced as an external join by design. Canon: the program decision §5, the program decision Phase C, the directory modernization program Transformation #7.*

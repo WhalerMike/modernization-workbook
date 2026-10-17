@@ -152,12 +152,12 @@ These three are *program health metrics*, not just operations metrics.
 ::: {.callout-tip}
 ## Continue the series
 
-Next: [Chapter 8 — Governance at Scale](../ch08-governance-at-scale/index.qmd) — how the same tempo and taxonomy hold across hundreds of adapters, many programs, and multiple authorization boundaries.
+Next: [Chapter 8 — Governance at Scale](../ch08-governance-at-scale/index.md) — how the same tempo and taxonomy hold across hundreds of adapters, many programs, and multiple authorization boundaries.
 :::
 
 ## Related documents
 
 - [Executive Governance Series Index](../index.html)
-- [Chapter 3: Drift as the Primary Threat](../ch03-drift-as-primary-threat/index.qmd)
-- [Architecture Series — Drift Engine](../../architecture-series/drift-engine.qmd)
-- [Drift Detection Standard (canon)](../../../docs/16_DriftDetectionStandard.qmd)
+- [Chapter 3: Drift as the Primary Threat](../ch03-drift-as-primary-threat/index.md)
+- Architecture Series — Drift Engine
+- Drift Detection Standard (canon)

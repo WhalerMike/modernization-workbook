@@ -25,13 +25,13 @@ lifecycle_review: 2026-11-22
 
 # Entra OrgTree Modernization Architecture --- Governance OS
 
-![Four-layer architecture stack (Identity > Structure > Policy > Governance) on M3...](images/governance-os-canonical-suite-image-01-four-layer-architecture-stack-id.png){#fig-governance-os-canonical-suite-image-01 fig-alt="Four-layer architecture stack (Identity > Structure > Policy > Governance) on M365 GCC-Mod boundary. Engineering blueprint style, neutral slate background, federal navy (#1F3A5F) for primary structural elements, teal (#1A9E8F) for secondary/integration elements, amber (#D4A017) for governance/audit/registry overlays, monospace labels for identifiers, no human figures, 16:9 landscape." width="100%"}
+![Four-layer architecture stack (Identity > Structure > Policy > Governance) on M3...](../images/executive-governance/governance-os-canonical-suite-image-01-four-layer-architecture-stack-id.png){#fig-governance-os-canonical-suite-image-01 fig-alt="Four-layer architecture stack (Identity > Structure > Policy > Governance) on M365 GCC-Mod boundary. Engineering blueprint style, neutral slate background, federal navy (#1F3A5F) for primary structural elements, teal (#1A9E8F) for secondary/integration elements, amber (#D4A017) for governance/audit/registry overlays, monospace labels for identifiers, no human figures, 16:9 landscape." width="100%"}
 
-![Seven governance principles as keystone arch](images/governance-os-canonical-suite-image-02-seven-governance-principles-as-k.png){#fig-governance-os-canonical-suite-image-02 fig-alt="Seven governance principles as keystone arch. Engineering blueprint style, neutral slate background, federal navy (#1F3A5F) for primary structural elements, teal (#1A9E8F) for secondary/integration elements, amber (#D4A017) for governance/audit/registry overlays, monospace labels for identifiers, no human figures, 16:9 landscape." width="100%"}
+![Seven governance principles as keystone arch](../images/executive-governance/governance-os-canonical-suite-image-02-seven-governance-principles-as-k.png){#fig-governance-os-canonical-suite-image-02 fig-alt="Seven governance principles as keystone arch. Engineering blueprint style, neutral slate background, federal navy (#1F3A5F) for primary structural elements, teal (#1A9E8F) for secondary/integration elements, amber (#D4A017) for governance/audit/registry overlays, monospace labels for identifiers, no human figures, 16:9 landscape." width="100%"}
 
-![Lifecycle state machine (Author > Validate > Publish > Monitor > Drift > Remedia...](images/governance-os-canonical-suite-image-03-lifecycle-state-machine-author-v.png){#fig-governance-os-canonical-suite-image-03 fig-alt="Lifecycle state machine (Author > Validate > Publish > Monitor > Drift > Remediate > Re-validate). Engineering blueprint style, neutral slate background, federal navy (#1F3A5F) for primary structural elements, teal (#1A9E8F) for secondary/integration elements, amber (#D4A017) for governance/audit/registry overlays, monospace labels for identifiers, no human figures, 16:9 landscape." width="100%"}
+![Lifecycle state machine (Author > Validate > Publish > Monitor > Drift > Remedia...](../images/executive-governance/governance-os-canonical-suite-image-03-lifecycle-state-machine-author-v.png){#fig-governance-os-canonical-suite-image-03 fig-alt="Lifecycle state machine (Author > Validate > Publish > Monitor > Drift > Remediate > Re-validate). Engineering blueprint style, neutral slate background, federal navy (#1F3A5F) for primary structural elements, teal (#1A9E8F) for secondary/integration elements, amber (#D4A017) for governance/audit/registry overlays, monospace labels for identifiers, no human figures, 16:9 landscape." width="100%"}
 
-![26 appendices A-Z map showing categories and dependencies](images/governance-os-canonical-suite-image-04-26-appendices-a-z-map-showing-ca.png){#fig-governance-os-canonical-suite-image-04 fig-alt="26 appendices A-Z map showing categories and dependencies. Engineering blueprint style, neutral slate background, federal navy (#1F3A5F) for primary structural elements, teal (#1A9E8F) for secondary/integration elements, amber (#D4A017) for governance/audit/registry overlays, monospace labels for identifiers, no human figures, 16:9 landscape." width="100%"}
+![26 appendices A-Z map showing categories and dependencies](../images/executive-governance/governance-os-canonical-suite-image-04-26-appendices-a-z-map-showing-ca.png){#fig-governance-os-canonical-suite-image-04 fig-alt="26 appendices A-Z map showing categories and dependencies. Engineering blueprint style, neutral slate background, federal navy (#1F3A5F) for primary structural elements, teal (#1A9E8F) for secondary/integration elements, amber (#D4A017) for governance/audit/registry overlays, monospace labels for identifiers, no human figures, 16:9 landscape." width="100%"}
 
 ![the organizational-attribute model codebook hierarchy decomposition](images/governance-os-canonical-suite-image-05-orgpath-codebook-hierarchy-decom.png){#fig-governance-os-canonical-suite-image-05 fig-alt="the organizational-attribute model codebook hierarchy decomposition. Engineering blueprint style, neutral slate background, federal navy (#1F3A5F) for primary structural elements, teal (#1A9E8F) for secondary/integration elements, amber (#D4A017) for governance/audit/registry overlays, monospace labels for identifiers, no human figures, 16:9 landscape." width="100%"}
 
@@ -324,7 +324,7 @@ and is loaded by the drift engine and every adapter at runtime. The
 narrative counterpart is
 [the modernization program_151]( modernization program_151_the organizational-attribute model_Codebook.md);
 the reader-facing walkthrough is the
-[the organizational-attribute model Codebook page](../reference-architecture/codebook.qmd).
+[the organizational-attribute model Codebook page](../reference-architecture/codebook.md).
 
 ## Scope
 
@@ -335,10 +335,10 @@ never transcribed here.
 ## Canonical Structure
 
 Organizational identity is **not** a composite path string. Per
-[the program decision](../../adr/adr-078-orgpath-attribute-schema-15-facet.qmd) it is a
+the program decision it is a
 set of independently-validated facets, each bound to one
 `onPremisesExtensionAttribute` slot, and per
-[the program decision](../../adr/adr-127-orgpath-hybrid-derived-path.qmd) a derived
+the program decision a derived
 canonical path is recomputed from the hierarchy facets on slot 15. Two
 layers, one codebook:
 
@@ -346,7 +346,7 @@ layers, one codebook:
   Department, Division, Role, CostCenter, Classification, HireDate,
   TermDate, ClearanceLevel, AccountType on slots 1--10, and the
   tenant-extension facets AdminTier, DeviceType and Environment on slots
-  11--13 per [the program decision](../../adr/adr-137-tenant-extension-facets.qmd).
+  11--13 per the program decision.
   Each value is validated against **its own** enumeration, so a bad
   Division is one finding about Division rather than a malformed path.
 
@@ -357,7 +357,7 @@ layers, one codebook:
   value that differs from the recomputation is drift.
 
 Not every defined facet is written. Per
-[the program decision](../../adr/adr-121-orgpath-projection-subset.qmd) only the
+the program decision only the
 *projected* subset is stamped to a directory slot; the rest keep their
 semantics without consuming one. The projected count is a property of the
 codebook, so read it from the codebook.
@@ -882,7 +882,7 @@ principals. Devices are cloud-mastered and take the direct Graph write. The
 substrate enforces the distinction: `uiao.adapters.entra_facet_writer`
 surfaces the Graph error per operation, and the ServiceNow kit refuses to
 actuate on an object whose `onPremisesSyncEnabled` it cannot classify.
-See [the hybrid-sync trap](../reference-architecture/orgpath-minimal-implementation.qmd) and the program decision.
+See the hybrid-sync trap and the program decision.
 :::
 
 \# Provision the organizational-attribute model for each user foreach (\$Mapping in \$Userthe organizational-attribute modelMappings) { try { \$UserParams = \@{ UserId = \$Mapping.EntraUserId OnPremisesExtensionAttributes = \@{ extensionAttribute1 = \$Mapping.Region extensionAttribute2 = \$Mapping.Department extensionAttribute3 = \$Mapping.Division extensionAttribute15 = New-the organizational-attribute model -Region \$Mapping.Region -Department \$Mapping.Department -Division \$Mapping.Division } } Update-MgUser \@UserParams Write-Verbose \"Updated user \$(\$Mapping.EntraUserId) with the organizational-attribute model \$(\$Mapping.the organizational-attribute model)\" } catch { Write-Error \"Failed to update user \$(\$Mapping.EntraUserId): \$\_\" } } \# Verify provisioning \$ProvisionedUsers = Get-MgUser -All -Property \"Id,OnPremisesExtensionAttributes\" \| Where-Object { \$\_.OnPremisesExtensionAttributes.ExtensionAttribute15 -ne \$null } Write-Verbose \"Provisioned users: \$(\$ProvisionedUsers.Count)\" \# Identify failures \$UnprovisionedUsers = Get-MgUser -All -Property \"Id,OnPremisesExtensionAttributes\" \| Where-Object { \[string\]::IsNullOrEmpty(\$\_.OnPremisesExtensionAttributes.ExtensionAttribute15) } Write-Verbose \"Unprovisioned users: \$(\$UnprovisionedUsers.Count)\" \# Update migration status for successful provisions foreach (\$User in \$ProvisionedUsers) { Write-MigrationLog -UserId \$User.Id -Status \"COMPLETED\" \# status belongs in the migration log, not in the Role facet slot }

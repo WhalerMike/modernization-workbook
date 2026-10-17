@@ -12,8 +12,8 @@ date: 2026-04-18
 This page renders the canonical the modernization program_005 source verbatim. The
 authoritative source is at
 A customer-audience narrative summary is at
-[SCuBA Value Proposition (customer doc)](../customer-documents/uiao-orgcomp-integration/11-scuba-value-proposition.qmd).
-Per [the program decision](../adr/adr-072-canon-publication-policy.qmd), this
+SCuBA Value Proposition (customer doc).
+Per the program decision, this
 canonical page is generated as an `include`-style wrapper.
 :::
 

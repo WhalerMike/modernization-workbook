@@ -20,11 +20,11 @@ prioritizes, and remediates the gap between *declared* canonical state and
 *observed* runtime reality.
 
 The companion executive brief is
-[Drift Engine Overview](../executive-briefs/drift-engine-overview.qmd). This
+[Drift Engine Overview](../executive-briefs/drift-engine-overview.md). This
 page is the architectural depth: how the engine is structured, what it
 catches today, and what is reserved for runtime maturity.
 
-![Drift taxonomy state diagram](images/drift-engine-image-01-drift-taxonomy-state-diagram.png){#fig-drift-engine-image-01 fig-alt="Central horizontal bar labeled \"Canonical Truth\" in dark navy. Five vertical channels rise above the bar, each one a labeled drift class (DRIFT-SCHEMA, DRIFT-SEMANTIC, DRIFT-PROVENANCE, DRIFT-AUTHZ, DRIFT-IDENTITY). Each channel terminates in a small severity badge (P1 red, P2 amber, P3 yellow, P4 gray) showing typical severity for that class. Below the canonical truth bar, two detection-surface lanes — left lane \"CI Substrate Walker\" highlighting SCHEMA + PROVENANCE columns, right lane \"Runtime Conformance Runner\" highlighting SEMANTIC + AUTHZ + IDENTITY columns. Clean engineering blueprint style, dark navy (#0D1B2E) and teal (#1E8C8C) accents on white background, with red (#C74040) reserved for P1 only. No photographs, purely diagrammatic." width="100%"}
+![Drift taxonomy state diagram](../images/architecture/drift-engine-image-01-drift-taxonomy-state-diagram.png){#fig-drift-engine-image-01 fig-alt="Central horizontal bar labeled \"Canonical Truth\" in dark navy. Five vertical channels rise above the bar, each one a labeled drift class (DRIFT-SCHEMA, DRIFT-SEMANTIC, DRIFT-PROVENANCE, DRIFT-AUTHZ, DRIFT-IDENTITY). Each channel terminates in a small severity badge (P1 red, P2 amber, P3 yellow, P4 gray) showing typical severity for that class. Below the canonical truth bar, two detection-surface lanes — left lane \"CI Substrate Walker\" highlighting SCHEMA + PROVENANCE columns, right lane \"Runtime Conformance Runner\" highlighting SEMANTIC + AUTHZ + IDENTITY columns. Clean engineering blueprint style, dark navy (#0D1B2E) and teal (#1E8C8C) accents on white background, with red (#C74040) reserved for P1 only. No photographs, purely diagrammatic." width="100%"}
 
 ## Five-class taxonomy
 
@@ -58,14 +58,14 @@ Every drift finding carries a severity, also canonically defined:
 Severity is computed deterministically from the drift class plus the liveness
 of the affected claim — it is not a judgment call.
 
-![Remediation contract flow diagram](images/drift-engine-image-02-remediation-contract-flow-diagra.png){#fig-drift-engine-image-02 fig-alt="Left side shows a \"Drift Detected\" event entering an evaluator that classifies it as one of P1–P4. Three branches emerge: P1 → Halt + Alert (immediate, red), P2 → Auto-remediate if deterministic (1 hour SLA, amber), P3/P4 → Queue for auto-remediation (24 / 72 hour SLA, teal). Each branch outputs a \"Remediation Contract\" record with timestamp, action, evidence hash, and escalation path field. The records flow into a single output bin labeled \"Evidence Chain (canonical claim)\". Clean engineering blueprint style, dark navy (#0D1B2E) and teal (#1E8C8C) on white background, with red (#C74040) reserved for P1. No photographs, purely diagrammatic." width="100%"}
+![Remediation contract flow diagram](../images/architecture/drift-engine-image-02-remediation-contract-flow-diagra.png){#fig-drift-engine-image-02 fig-alt="Left side shows a \"Drift Detected\" event entering an evaluator that classifies it as one of P1–P4. Three branches emerge: P1 → Halt + Alert (immediate, red), P2 → Auto-remediate if deterministic (1 hour SLA, amber), P3/P4 → Queue for auto-remediation (24 / 72 hour SLA, teal). Each branch outputs a \"Remediation Contract\" record with timestamp, action, evidence hash, and escalation path field. The records flow into a single output bin labeled \"Evidence Chain (canonical claim)\". Clean engineering blueprint style, dark navy (#0D1B2E) and teal (#1E8C8C) on white background, with red (#C74040) reserved for P1. No photographs, purely diagrammatic." width="100%"}
 
 ## Detection surfaces
 
 ### CI substrate walker (shipped today)
 
 `uiao substrate walk` and `uiao substrate drift`
-([source](../../../src/uiao/substrate/walker.py)) emit two drift classes
+(source) emit two drift classes
 on every PR via `substrate-drift.yml`:
 
 - **`DRIFT-SCHEMA`** — verifies module paths declared in
@@ -102,7 +102,7 @@ The **Drift Fabric** view ties the detection surfaces above into a single
 pipeline — canonical state read, delta comparison, classification, and the
 HIGH/CRITICAL escalation arrow into the Governance Plane:
 
-![A 16:9 technical architecture schematic in the UIAO federal-whitepaper style — dark navy (#0D1B2E) and teal (#1E8C8C), with a severity accent in amber (#D4A017) reserved for HIGH/CRITICAL escalation, on a white...](images/drift-engine-image-03-a-169-technical-architecture-sch.png){#fig-drift-engine-image-03 fig-alt="Layout: a left-to-right pipeline of five labeled rectangular nodes connected by directional arrows. From left to right: 1. Truth Fabric State Reader — entry node with an inbound arrow from an off-canvas Truth Fabric labeled \"canonical state records\". 2. Drift Comparator — pictogram of two overlapping documents with a delta (Δ) symbol between them; computes deltas between observed and canonical state. 3. Drift Classifier — central node, slightly larger than its neighbours; assigns drift type (DT-01 through DT-05) and severity (LOW / MODERATE / HIGH / CRITICAL). A small severity color legend sits beneath the node showing four chips: teal for LOW/MODERATE, amber for HIGH/CRITICAL. 4. Evidence Fabric Writer — emits immutable Drift Records via an outbound arrow on the right edge labeled \"Drift Records →\" pointing off-canvas toward an unseen Evidence Fabric (sibling diagram). 5. Reconciliation Trigger — branches off the Drift Classifier upward with an amber-highlighted arrow that escalates HIGH/CRITICAL drift to a \"Governance Plane\" component drawn in the upper-right corner of the canvas. The HIGH/CRITICAL escalation path is visually distinct — amber arrow and amber border on the Reconciliation Trigger node — versus the teal horizontal pipeline arrows. Clean engineering blueprint style, no photographs, no people, no vendor logos. Publication-grade, suitable for inclusion in OSCAL-adjacent deliverables." width="100%"}
+![A 16:9 technical architecture schematic in the UIAO federal-whitepaper style — dark navy (#0D1B2E) and teal (#1E8C8C), with a severity accent in amber (#D4A017) reserved for HIGH/CRITICAL escalation, on a white...](../images/architecture/drift-engine-image-03-a-169-technical-architecture-sch.svg){#fig-drift-engine-image-03 fig-alt="Layout: a left-to-right pipeline of five labeled rectangular nodes connected by directional arrows. From left to right: 1. Truth Fabric State Reader — entry node with an inbound arrow from an off-canvas Truth Fabric labeled \"canonical state records\". 2. Drift Comparator — pictogram of two overlapping documents with a delta (Δ) symbol between them; computes deltas between observed and canonical state. 3. Drift Classifier — central node, slightly larger than its neighbours; assigns drift type (DT-01 through DT-05) and severity (LOW / MODERATE / HIGH / CRITICAL). A small severity color legend sits beneath the node showing four chips: teal for LOW/MODERATE, amber for HIGH/CRITICAL. 4. Evidence Fabric Writer — emits immutable Drift Records via an outbound arrow on the right edge labeled \"Drift Records →\" pointing off-canvas toward an unseen Evidence Fabric (sibling diagram). 5. Reconciliation Trigger — branches off the Drift Classifier upward with an amber-highlighted arrow that escalates HIGH/CRITICAL drift to a \"Governance Plane\" component drawn in the upper-right corner of the canvas. The HIGH/CRITICAL escalation path is visually distinct — amber arrow and amber border on the Reconciliation Trigger node — versus the teal horizontal pipeline arrows. Clean engineering blueprint style, no photographs, no people, no vendor logos. Publication-grade, suitable for inclusion in OSCAL-adjacent deliverables." width="100%"}
 
 ## Maturity matrix
 
@@ -115,7 +115,7 @@ HIGH/CRITICAL escalation arrow into the Governance Plane:
 | `DRIFT-IDENTITY` | n/a | **DESIGN-ONLY** |
 
 For an authoritative shipped-vs-target snapshot, see
-[Substrate Status](../../docs/substrate-status.qmd).
+Substrate Status.
 
 ## Why this is different from a config-drift tool
 
@@ -132,7 +132,7 @@ configuration-drift tooling:
    classifier run correctly?"
 3. **Remediation contracts are first-class evidence.** Every remediation —
    auto or human — emits an evidence record that flows back through the
-   [Evidence Chain](evidence-chain.qmd) into OSCAL artifacts. There is no
+   [Evidence Chain](evidence-chain.md) into OSCAL artifacts. There is no
    parallel "drift log" disconnected from the SSP.
 
 ## What this means for an ATO package

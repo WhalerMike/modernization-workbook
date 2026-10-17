@@ -35,7 +35,7 @@ each build step to the NIST SP 800-53 Rev 5 controls that FedRAMP Moderate
 inherits.
 
 It is deliberately narrower than the
-[Privileged Access Management book](../../orgcomp-series/Vol_III_Book_01_Compliance_Privileged_Access_Management.qmd),
+[Privileged Access Management book](../../compliance/Vol_III_Book_01_Privileged_Access_Management.md),
 which covers the whole PAM estate — PIM, Arc JIT server access, and Privileged
 Access Workstations. Read that for the programme; read this to build and
 evidence the approval gate.
@@ -62,7 +62,7 @@ evidence the approval gate.
   blades differ. Where a resource-role equivalent exists it is noted, but the
   build steps here target directory roles only.
 - Arc-based just-in-time **server** access and PAW baselines — see the
-  [PAM book](../../orgcomp-series/Vol_III_Book_01_Compliance_Privileged_Access_Management.qmd).
+  [PAM book](../../compliance/Vol_III_Book_01_Privileged_Access_Management.md).
 - Entitlement management access packages — see the note below on the two
   layers of self-request.
 
@@ -698,7 +698,7 @@ prove to use it*.
 :::
 
 The agency's CA policy set for this pattern belongs in the
-[Conditional Access library](conditional-access-library.qmd).
+[Conditional Access library](conditional-access-library.md).
 
 ### Step 5a — Close the loop with protected actions {#step-5a-close-the-loop-with-protected-actions}
 
@@ -835,7 +835,7 @@ review that finds unneeded eligibility actually removes it.
 Where a **group** is assigned to a directory role, the review acts on the
 group's assignment, not on individual membership. If the agency uses
 role-assignable groups (the PAG pattern described in the
-[Help Desk Administrative Responsibilities Guide](../helpdesk-entra-operations/help-desk-administrative-responsibilities.qmd)),
+[Help Desk Administrative Responsibilities Guide](../helpdesk-entra-operations/help-desk-administrative-responsibilities.md)),
 pair the role review with a membership review of the group itself — otherwise
 membership drift is invisible to the role review.
 :::
@@ -1108,7 +1108,7 @@ the NIST OSCAL publication of SP 800-53 Rev 5.
 
 ## Related the modernization program documents
 
-- [Privileged Access Management — Entra PIM, JIT Access, and PAWs](../../orgcomp-series/Vol_III_Book_01_Compliance_Privileged_Access_Management.qmd) — the whole-estate PAM programme this guide sits inside
-- [Conditional Access Library](conditional-access-library.qmd) — where the Step 5 policies belong
-- [Help Desk Administrative Responsibilities Guide](../helpdesk-entra-operations/help-desk-administrative-responsibilities.qmd) — the PAG / eligible-not-active model for delegated operations
-- [Entra ID Governance adapter spec](../../adapter-specs/entra-id-governance/entra-id-governance.qmd) — how PIM state is read into the substrate as conformance evidence
+- [Privileged Access Management — Entra PIM, JIT Access, and PAWs](../../compliance/Vol_III_Book_01_Privileged_Access_Management.md) — the whole-estate PAM programme this guide sits inside
+- [Conditional Access Library](conditional-access-library.md) — where the Step 5 policies belong
+- [Help Desk Administrative Responsibilities Guide](../helpdesk-entra-operations/help-desk-administrative-responsibilities.md) — the PAG / eligible-not-active model for delegated operations
+- Entra ID Governance adapter spec — how PIM state is read into the substrate as conformance evidence

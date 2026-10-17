@@ -31,8 +31,8 @@ lifecycle_review: 2027-03-14
 
 | Field | Value |
 | --- | --- |
-| **Attaches to** | SC-7(4) traffic-flow exception — [M365 Optimize endpoint set at branch DIA](sc7-4-exception-memo.qmd) |
-| **Scope** | Sites listed at [Attachment A](attachment-a-site-register.qmd), version *[n]* |
+| **Attaches to** | SC-7(4) traffic-flow exception — M365 Optimize endpoint set at branch DIA |
+| **Scope** | Sites listed at [Attachment A](attachment-a-site-register.md), version *[n]* |
 | **Prepared by** | *[Name, title]* |
 | **Reviewed by** | *[Architecture review board / date convened]* |
 | **Guidance used** | TIC 3.0 Security Capabilities Catalog **v3.3 (July 2025)**; Reference Architecture *[version]*; Branch Office Use Case |

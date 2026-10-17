@@ -263,4 +263,4 @@ $findings.Rules |
 | Target | Windows Server with RSAT (GroupPolicy + ActiveDirectory modules) |
 | Output | JSON array; stdout by default, file via `-OutputPath` |
 | Optional module | `the modernization program.ConfigTools` v1.2.0 (prereq validation + transcript logging) |
-| Related | [`Invoke-GpoMigrationTriage.ps1`](invoke-gpo-migration-triage.qmd), [the modernization program PowerShell Module Reference](powershell-module-reference.qmd) |
+| Related | [`Invoke-GpoMigrationTriage.ps1`](invoke-gpo-migration-triage.qmd), the modernization program PowerShell Module Reference |

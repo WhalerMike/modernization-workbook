@@ -32,8 +32,8 @@ how per-agency remediation flows from the central findings.
 
 ::: {.callout-note title="Relationship to other paths"}
 This page describes the OFCIO-central operational model. If your agency is
-running the scanner independently, see the [manual path](manual-path.qmd). If
-your agency has deployed the modernization program the organizational-attribute model, see the [governed path](governed-path.qmd).
+running the scanner independently, see the manual path. If
+your agency has deployed the modernization program the organizational-attribute model, see the [governed path](governed-path.md).
 :::
 
 ## The CDM analogy
@@ -173,8 +173,8 @@ credential lifecycle tooling (the `sailpoint-machine-identity` adapter in the
 target architecture) that can observe and govern the credential directly, not
 just the inventory record that references it.
 
-The Tier 3 path is described in [Governed Path](governed-path.qmd) and in
-[Book 21, Chapter 8 — The Machine-Identity Lifecycle](../../orgpath-narrative/Book_21_CPT_08.qmd).
+The Tier 3 path is described in [Governed Path](governed-path.md) and in
+Book 21, Chapter 8 — The Machine-Identity Lifecycle.
 
 ## The missing enforcement mechanism
 
@@ -239,6 +239,6 @@ findings/
 ---
 
 *For background on the identity governance gap this scan addresses, see
-[Book 21 — The Invisible Identity Surface](../../orgpath-narrative/Book_21.qmd).
-For the manual agency path, see [Manual Path](manual-path.qmd). For the
-full the modernization program governed path, see [Governed Path](governed-path.qmd).*
+Book 21 — The Invisible Identity Surface.
+For the manual agency path, see Manual Path. For the
+full the modernization program governed path, see [Governed Path](governed-path.md).*

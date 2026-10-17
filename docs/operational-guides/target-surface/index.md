@@ -21,13 +21,13 @@ lifecycle_review: 2026-11-22
 
 The Hybrid-Cloud estate where the modernization program delivers governed identity, device,
 and policy data. Every target has a canonical adapter in
-[adapter-specs](../../adapter-specs/index.html) and a validation suite in
-[validation-suites](../../validation-suites/index.html).
+adapter-specs and a validation suite in
+validation-suites.
 
 ## Leaves
 
 - **E.1** Entra ID tenant — [adapter](../../adapter-specs/entra-id/entra-id.html)
-- **E.2** Administrative Units — [the modernization program_154](../../../customer-documents/reference-architecture/delegation.html)
+- **E.2** Administrative Units — [the modernization program_154](../../reference-architecture/delegation.md)
 - **E.3** Intune — [adapter](../../adapter-specs/intune/intune.html)
 - **E.4** Azure Arc — (adapter pending)
 - **E.5** Microsoft 365 SaaS — [adapter](../../adapter-specs/m365/m365.html)

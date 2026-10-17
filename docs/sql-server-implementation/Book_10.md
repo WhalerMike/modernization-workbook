@@ -7,7 +7,7 @@ audience: [Technical, Customer]
 family: sql-server-implementation
 series-order: 10
 status: active
-canon-source: "src/uiao/canon/the directory modernization program
+canon-source: "src/uiao/canon/the directory modernization program"
 lifecycle: active
 tiers_adopted: []
 lifecycle_review: 2027-01-01
@@ -120,4 +120,4 @@ This entire book is **read-only**: the D1.10 audit reads AD and (with `-IncludeP
 
 ---
 
-*Companion to [narrative Book 10](../sql-server-narrative/Book_10.qmd). Discovery script-backed: `tools/discovery/Spec3-D1.10`; SQL-specific extraction + CA-replacement sequence via `tools/powershell/the modernization programSqlServerMigration` (`New-the modernization programSqlCertificatePlan`); general PKI sequencing via `tools/powershell/the modernization programPlanGenerators` (`New-the modernization programPKIMigrationPlan`). Analytical — no normative ADCS-migration ADR exists, so every emitted action is review-required. Canon: the directory modernization program §3.3, the program decision.*
+*Companion to narrative Book 10. Discovery script-backed: `tools/discovery/Spec3-D1.10`; SQL-specific extraction + CA-replacement sequence via `tools/powershell/the modernization programSqlServerMigration` (`New-the modernization programSqlCertificatePlan`); general PKI sequencing via `tools/powershell/the modernization programPlanGenerators` (`New-the modernization programPKIMigrationPlan`). Analytical — no normative ADCS-migration ADR exists, so every emitted action is review-required. Canon: the directory modernization program §3.3, the program decision.*

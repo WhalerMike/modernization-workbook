@@ -220,7 +220,7 @@ uses "last blob retrieved" as a high-water mark, will silently drop events.
 Track ingestion by `contentId`, deduplicate on it, and re-scan a trailing
 window. This is a direct instance of the the program decision determinism requirement — no
 silent drops — that the
-[Telemetry Modernization Spec](../../modernization-specs/telemetry/telemetry.qmd)
+[Telemetry Modernization Spec](../../modernization-specs/telemetry/telemetry.md)
 imposes on every telemetry adapter.
 :::
 
@@ -269,7 +269,7 @@ Exchange, SharePoint, and Teams activity into the `OfficeActivity` table
 without a custom Management API client. Use the connector for the
 SOC-detection path and the Management Activity API for the substrate's
 evidence path, where the
-[SIEM adapter spec](../../adapter-specs/siem/siem.qmd) requires a
+SIEM adapter spec requires a
 provenance envelope the connector does not produce.
 
 Where both are running, they are independent readers of the same UAL. The
@@ -305,6 +305,6 @@ happened" from "nothing is being captured."
 
 ## Next
 
-[Compliance crosswalk and verification](04-compliance-crosswalk.qmd) — mapping
+Compliance crosswalk and verification — mapping
 all three planes to M-21-31 tiers, NIST controls, CISA baselines, and FedRAMP
 KSIs, and setting the retention that makes the evidence admissible.

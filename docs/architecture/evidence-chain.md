@@ -20,11 +20,11 @@ provenance at every step**. The chain is deterministic: same inputs, same
 canon version, same evidence bundle.
 
 The companion executive brief is
-[Evidence Fabric Overview](../executive-briefs/evidence-fabric-overview.qmd).
+[Evidence Fabric Overview](../executive-briefs/evidence-fabric-overview.md).
 This page is the architectural depth — the four-stage pipeline, the
 provenance envelope, and the determinism guarantees.
 
-![Four-stage evidence pipeline diagram](images/evidence-chain-image-01-four-stage-evidence-pipeline-dia.png){#fig-evidence-chain-image-01 fig-alt="Horizontal flow with four labeled stages connected by arrows: (1) Telemetry Event Capture — adapter boundary icon, (2) Canonical Claim Normalization — provenance envelope wrapper icon, (3) Bundle Assembly + Seal — sealed envelope with hash badge, (4) OSCAL Artifact Emission — three small document icons labeled SSP, POA&M, KSI, Component Definition. Below the pipeline, a parallel canonical-source bar labeled \"src/uiao/canon/\" with three reference points feeding into stages 2, 3, 4 with light teal arrows. Each stage shows its canonical anchor underneath (UIAO_PP_001, the program decision, the program decision). Clean engineering blueprint style, dark navy (#0D1B2E) and teal (#1E8C8C) on white background. No photographs, purely diagrammatic." width="100%"}
+![Four-stage evidence pipeline diagram](../images/architecture/evidence-chain-image-01-four-stage-evidence-pipeline-dia.png){#fig-evidence-chain-image-01 fig-alt="Horizontal flow with four labeled stages connected by arrows: (1) Telemetry Event Capture — adapter boundary icon, (2) Canonical Claim Normalization — provenance envelope wrapper icon, (3) Bundle Assembly + Seal — sealed envelope with hash badge, (4) OSCAL Artifact Emission — three small document icons labeled SSP, POA&M, KSI, Component Definition. Below the pipeline, a parallel canonical-source bar labeled \"src/uiao/canon/\" with three reference points feeding into stages 2, 3, 4 with light teal arrows. Each stage shows its canonical anchor underneath (UIAO_PP_001, the program decision, the program decision). Clean engineering blueprint style, dark navy (#0D1B2E) and teal (#1E8C8C) on white background. No photographs, purely diagrammatic." width="100%"}
 
 ## Four-stage pipeline
 
@@ -41,7 +41,7 @@ Stage-by-stage responsibility:
    [`15_ProvenanceProfile.qmd` §3](../../docs/15_ProvenanceProfile.qmd).
    This is the chain's structural backbone (see below).
 3. **Evidence bundle assembly + sealing** — claims are grouped into bundles
-   per [the program decision](../../../src/uiao/canon/adr/adr-016-evidence-bundle-lifecycle.md)
+   per the program decision
    (assemble → seal → submit → close). Bundles are validated against
    [`evidence-bundle.schema.json`](../../../src/uiao/schemas/ksi/evidence-bundle.schema.json)
    which enforces hash-bearing provenance at item and bundle scope.
@@ -53,7 +53,7 @@ The **Truth Fabric** view of stages 1–2 is the canonical claim-intake
 pipeline that turns adapter-signed events into the Canonical State Store
 the rest of the chain reads from:
 
-![A 16:9 technical architecture schematic in the UIAO federal-whitepaper style — dark navy (#0D1B2E) and teal (#1E8C8C) on a white background — depicting the UIAO Truth Fabric claim intake pipeline](images/evidence-chain-image-03-a-169-technical-architecture-sch.png){#fig-evidence-chain-image-03 fig-alt="Layout: a left-to-right horizontal pipeline of seven labeled rectangular nodes connected by directional arrows. From left to right: 1. Claim Ingress API — entry node with an inbound arrow labeled \"signed Canonical Claims from adapters\". 2. Schema Validator — gear icon; validates against the Canonical Claim Schema. Pipeline edge to the next node carries an \"accept / reject\" branch label. 3. Signature Verifier — key/lock icon; verifies adapter digital signatures. 4. Identity Anchoring Engine — anchor icon; correlates subject identifiers to Canonical Identity Records. 5. Canonical State Store — large database cylinder, slightly larger than other nodes and visually emphasized as the central authority; authoritative storage for accepted claims and identity records. 6. Control Mapping Engine — branches off the Canonical State Store toward an outbound arrow labeled \"Compliance Attestations\". 7. Drift Fabric Interface — outbound arrow on the right edge labeled \"canonical state for drift queries\", pointing off-canvas toward an unseen Drift Fabric (sibling diagram). Mid-blue (#2E75B6) accent for the Canonical State Store cylinder. Clean engineering blueprint style, no photographs, no people, no vendor logos. Publication-grade, suitable for inclusion in OSCAL-adjacent deliverables." width="100%"}
+![A 16:9 technical architecture schematic in the UIAO federal-whitepaper style — dark navy (#0D1B2E) and teal (#1E8C8C) on a white background — depicting the UIAO Truth Fabric claim intake pipeline](../images/architecture/evidence-chain-image-03-a-169-technical-architecture-sch.svg){#fig-evidence-chain-image-03 fig-alt="Layout: a left-to-right horizontal pipeline of seven labeled rectangular nodes connected by directional arrows. From left to right: 1. Claim Ingress API — entry node with an inbound arrow labeled \"signed Canonical Claims from adapters\". 2. Schema Validator — gear icon; validates against the Canonical Claim Schema. Pipeline edge to the next node carries an \"accept / reject\" branch label. 3. Signature Verifier — key/lock icon; verifies adapter digital signatures. 4. Identity Anchoring Engine — anchor icon; correlates subject identifiers to Canonical Identity Records. 5. Canonical State Store — large database cylinder, slightly larger than other nodes and visually emphasized as the central authority; authoritative storage for accepted claims and identity records. 6. Control Mapping Engine — branches off the Canonical State Store toward an outbound arrow labeled \"Compliance Attestations\". 7. Drift Fabric Interface — outbound arrow on the right edge labeled \"canonical state for drift queries\", pointing off-canvas toward an unseen Drift Fabric (sibling diagram). Mid-blue (#2E75B6) accent for the Canonical State Store cylinder. Clean engineering blueprint style, no photographs, no people, no vendor logos. Publication-grade, suitable for inclusion in OSCAL-adjacent deliverables." width="100%"}
 
 ## Provenance envelope
 
@@ -90,11 +90,11 @@ Three properties of this envelope matter for assessor review:
    extraction time. The bundle hash is computed over those hashes, giving
    a tamper-evident tree.
 
-![Tamper-evident hash tree diagram](images/evidence-chain-image-02-tamper-evident-hash-tree-diagram.png){#fig-evidence-chain-image-02 fig-alt="Top of the tree shows a \"Bundle Hash\" root node. Below it, three \"Per-Claim Hash\" nodes branch out. Each per-claim node connects down to a small \"Source Record\" leaf labeled with extraction timestamp, source classification (authoritative / derived / synthesized), and lineage_hash. A side panel highlights one claim's transformation_chain as an append-only sequence of three steps. A footer note reads \"Modification anywhere breaks the bundle hash.\" Clean engineering blueprint style, dark navy (#0D1B2E) and teal (#1E8C8C) on white background, with subtle red (#C74040) on the broken-hash example only. No photographs, purely diagrammatic." width="100%"}
+![Tamper-evident hash tree diagram](../images/architecture/evidence-chain-image-02-tamper-evident-hash-tree-diagram.png){#fig-evidence-chain-image-02 fig-alt="Top of the tree shows a \"Bundle Hash\" root node. Below it, three \"Per-Claim Hash\" nodes branch out. Each per-claim node connects down to a small \"Source Record\" leaf labeled with extraction timestamp, source classification (authoritative / derived / synthesized), and lineage_hash. A side panel highlights one claim's transformation_chain as an append-only sequence of three steps. A footer note reads \"Modification anywhere breaks the bundle hash.\" Clean engineering blueprint style, dark navy (#0D1B2E) and teal (#1E8C8C) on white background, with subtle red (#C74040) on the broken-hash example only. No photographs, purely diagrammatic." width="100%"}
 
 ## Determinism guarantees (the program decision)
 
-Per [the program decision](../../../src/uiao/canon/adr/adr-006-evidence-determinism.md),
+Per the program decision,
 the evidence chain is built for **deterministic regeneration**. Concretely:
 
 - **No silent drops.** Every input event is either accepted, rejected with
@@ -118,7 +118,7 @@ anchoring into Active (≤ 90 days) and Archive (3–7 year) storage tiers,
 both readable by the Correlation Engine that serves diff and re-run
 queries:
 
-![A 16:9 technical architecture schematic in the UIAO federal-whitepaper style — dark navy (#0D1B2E) and teal (#1E8C8C) with a mid-blue (#2E75B6) accent for the storage tier on a white background — depicting the UIAO...](images/evidence-chain-image-04-a-169-technical-architecture-sch.png){#fig-evidence-chain-image-04 fig-alt="Layout: a left-to-right pipeline that forks vertically into two storage cylinders, with a Correlation Engine sitting beneath both stores. From left to right: 1. Event Ingress — entry node with an inbound arrow labeled \"adapter-signed governance events\". 2. Signature Verifier — validates adapter signature; deduplicates by event_id. Pipeline edge to the next node carries a \"dedup\" annotation. 3. Evidence Fabric Countersigner — chain-link icon; adds Evidence Fabric countersignature. 4. Hash Chain Writer — small hash-chain pictogram (linked hexagons); appends content hash and chain link. 5. The pipeline forks into two storage cylinders drawn side-by-side to the right of the Hash Chain Writer: Active Storage (left cylinder, larger, primary tier) labeled \"≤ 90 days\"; Archive Storage (right cylinder, smaller, secondary tier) labeled \"3–7 year retention\". 6. Correlation Engine — sits below the two storage cylinders, centered, with read arrows up from both Active and Archive Storage into the engine. An outbound arrow on the right edge of the Correlation Engine is labeled \"correlation & diff queries\". Both storage cylinders use the mid-blue (#2E75B6) accent fill so they stand out from the teal pipeline nodes. Clean engineering blueprint style, no photographs, no people, no vendor logos. Publication-grade, suitable for inclusion in OSCAL-adjacent deliverables." width="100%"}
+![A 16:9 technical architecture schematic in the UIAO federal-whitepaper style — dark navy (#0D1B2E) and teal (#1E8C8C) with a mid-blue (#2E75B6) accent for the storage tier on a white background — depicting the UIAO...](../images/architecture/evidence-chain-image-04-a-169-technical-architecture-sch.svg){#fig-evidence-chain-image-04 fig-alt="Layout: a left-to-right pipeline that forks vertically into two storage cylinders, with a Correlation Engine sitting beneath both stores. From left to right: 1. Event Ingress — entry node with an inbound arrow labeled \"adapter-signed governance events\". 2. Signature Verifier — validates adapter signature; deduplicates by event_id. Pipeline edge to the next node carries a \"dedup\" annotation. 3. Evidence Fabric Countersigner — chain-link icon; adds Evidence Fabric countersignature. 4. Hash Chain Writer — small hash-chain pictogram (linked hexagons); appends content hash and chain link. 5. The pipeline forks into two storage cylinders drawn side-by-side to the right of the Hash Chain Writer: Active Storage (left cylinder, larger, primary tier) labeled \"≤ 90 days\"; Archive Storage (right cylinder, smaller, secondary tier) labeled \"3–7 year retention\". 6. Correlation Engine — sits below the two storage cylinders, centered, with read arrows up from both Active and Archive Storage into the engine. An outbound arrow on the right edge of the Correlation Engine is labeled \"correlation & diff queries\". Both storage cylinders use the mid-blue (#2E75B6) accent fill so they stand out from the teal pipeline nodes. Clean engineering blueprint style, no photographs, no people, no vendor logos. Publication-grade, suitable for inclusion in OSCAL-adjacent deliverables." width="100%"}
 
 ## What ships today
 
@@ -149,7 +149,7 @@ get from a screenshot-based evidence package:
 3. **Tamper-evident lineage.** The hash tree binds every claim to a source
    record; modification anywhere in the chain breaks the bundle hash.
 4. **Drift-coupled.** A `DRIFT-PROVENANCE` finding from the
-   [Drift Engine](drift-engine.qmd) directly identifies the affected
+   [Drift Engine](drift-engine.md) directly identifies the affected
    claim(s) in the evidence bundle, so remediation is scoped, not
    rebuild-the-whole-package.
 

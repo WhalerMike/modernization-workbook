@@ -33,7 +33,7 @@ This document is a **draft proposal** developed by the **CSI Team (Cloud Service
 ::: {.aan-note}
 **Relationship to the published whitepaper.** This narrative is also
 published, in provenance-anchored form, as the whitepaper
-[Modernization Journey](../whitepapers/modernization-journey.qmd),
+[Modernization Journey](../whitepapers/modernization-journey.md),
 whose closing section maps each Act-4 claim line-by-line to the governance
 engine's decision records. That publication owns the narrative and its
 provenance mapping; this book owns the federal control-closure framing
@@ -133,7 +133,7 @@ Before leaving Act 2, follow its signature artifact to its ending. The load bala
 |---|---|---|
 | Forward proxy / VPN concentrator / secure web gateway appliance | SASE/SSE — cloud-delivered SWG, CASB, ZTNA | Policy enforcement plane |
 | Hardware ADC / reverse proxy / TLS offload | Cloud-native delivery services provisioned in the landing zone (application gateways, cloud load balancers, global front doors) | Application delivery plane — a landing-zone function |
-| GSLB / global traffic steering | DNS-based traffic steering — health-checked, policy-weighted authoritative DNS responses | Naming and addressing plane — a DDI control-plane function ([Vol I Book 01](Vol_I_Book_01_Compliance_Cloud_Landing_Zone_IPAM_FedRAMP.qmd)) |
+| GSLB / global traffic steering | DNS-based traffic steering — health-checked, policy-weighted authoritative DNS responses | Naming and addressing plane — a DDI control-plane function ([Vol I Book 01](Vol_I_Book_01_Cloud_Landing_Zone_IPAM_FedRAMP.md)) |
 
 : The Dissolution of the Load-Balancer / Proxy Tier {.striped .hover}
 
@@ -221,7 +221,7 @@ Traditional WAN design is **active-passive**: MPLS is the primary circuit, DIA b
 
 ![Why Kerberos Breaks in the Cloud: The Session Contract Assumption](figs/mf-fig-10-kerberos-breaks.png){fig-alt="Two-panel comparison diagram. Left panel, Kerberos 1988 design on-premises: an AD domain controller and a user at a desk share the same LAN; a Kerberos ticket is issued and authentication succeeds on a short round-trip to the KDC. Right panel, Kerberos in the 2020+ cloud world: the user now works in a cloud tenancy while the domain controller remains on-premises; the authentication path crosses the WAN and inline proxies at 100-150ms round-trip, so DC-dependent operations — initial TGT acquisition at logon, SYSVOL/GPO retrieval, password changes — slow or time out, and where the KDC is unreachable Windows can fall back to NTLM, which is unaudited and replayable. NAT itself does not invalidate a ticket: Windows KILE writes no client addresses into tickets by default. Bottom box, token-based solution: an Entra ID token travels via HTTPS with no DC roundtrip, works across any cloud, any WAN path, any latency — authentication succeeds regardless of RTT. Navy, green, red palette on white background." width="100%"}
 
-> Note the mechanism in the figure's right panel: the failure is *KDC unreachability at ticket issuance* and *middlebox session breaks* — not the multipath overlay, which resequences packets and holds the transport session across path switches. [Vol I Book 03](Vol_I_Book_03_Compliance_Certificates_Tokens_Cryptographic_Identity.qmd) develops the full corrected argument.
+> Note the mechanism in the figure's right panel: the failure is *KDC unreachability at ticket issuance* and *middlebox session breaks* — not the multipath overlay, which resequences packets and holds the transport session across path switches. [Vol I Book 03](Vol_I_Book_03_Certificates_Tokens_Cryptographic_Identity.md) develops the full corrected argument.
 
 > **Why this matters specifically for Kerberos and session-based authentication:** A Kerberos ticket exchange that is mid-flight when a path fails is retransmitted automatically. Under active-passive failover, the client times out after several seconds — this is the "logon takes 45 seconds" symptom field offices report. Under active-active multipath, the request was already distributed across multiple paths. The user experiences a 50 ms pause rather than a 30-second timeout.
 
@@ -277,7 +277,7 @@ When agencies present DIA as a modernization achievement, they have solved a con
 
 > **The precise relationship: DIA enables compliance; AAN and SASE achieve it.** DIA provides the connectivity that makes cloud-hosted services reachable without the MPLS hairpin. It is necessary. It is not sufficient. When an agency presents "we have DIA" as a compliance achievement, the correct technical response is: **you have the pipe. Where is the control stack?**
 
-TIC 3.0 is the policy frame that turns this from good engineering advice into a compliance requirement. Under TIC 3.0, an agency may move enforcement from the consolidated TIC access point to a **distributed policy enforcement point** — but only if the TIC security capabilities catalog is satisfied *at that PEP*. The SASE stack is that distributed PEP. This is what makes DIA lawful: the pipe is permissible precisely and only when the enforcement point travels with it. A DIA circuit deployed without the distributed PEP has not modernized the TIC boundary — it has deleted it, and deleted boundaries surface as findings. The use-case-by-use-case mapping of the TIC 3.0 catalog onto distributed egress is developed in [Vol I Book 06](Vol_I_Book_06_Compliance_Federal_Telecommunications_Modernization.qmd).
+TIC 3.0 is the policy frame that turns this from good engineering advice into a compliance requirement. Under TIC 3.0, an agency may move enforcement from the consolidated TIC access point to a **distributed policy enforcement point** — but only if the TIC security capabilities catalog is satisfied *at that PEP*. The SASE stack is that distributed PEP. This is what makes DIA lawful: the pipe is permissible precisely and only when the enforcement point travels with it. A DIA circuit deployed without the distributed PEP has not modernized the TIC boundary — it has deleted it, and deleted boundaries surface as findings. The use-case-by-use-case mapping of the TIC 3.0 catalog onto distributed egress is developed in [Vol I Book 06](Vol_I_Book_06_Federal_Telecommunications_Modernization.md).
 
 # Act 4 — The Way Forward: Application-Aware Modernization
 
@@ -393,7 +393,7 @@ The following table maps each concept in this narrative to the federal mandate, 
 # Appendix A — Cisco Catalyst SD-WAN and Microsoft 365 Informed Network Routing: Federal Implementation Reference {#appendix-cisco-inr}
 
 ::: {.aan-note}
-**Canonical split.** The DNS-resolution interaction of this combination — how Cisco Catalyst SD-WAN DNS interception meets the Infoblox DDI resolution chain, and the DNSSEC forwarder-position analysis — is developed canonically in the [Next Generation DNS whitepaper, Parts 8–9](../whitepapers/infoblox-hybrid-dns-unified-ddi.qmd); this appendix owns the federal implementation reference (boundary partitioning, KSI evidence contracts, deployment sequence).
+**Canonical split.** The DNS-resolution interaction of this combination — how Cisco Catalyst SD-WAN DNS interception meets the Infoblox DDI resolution chain, and the DNSSEC forwarder-position analysis — is developed canonically in the [Next Generation DNS whitepaper, Parts 8–9](../whitepapers/infoblox-hybrid-dns-unified-ddi.md); this appendix owns the federal implementation reference (boundary partitioning, KSI evidence contracts, deployment sequence).
 
 **Scope: FedRAMP Moderate civilian agencies using Microsoft 365 GCC.** This appendix is scoped to **FedRAMP Moderate** — civilian federal agencies operating M365 GCC tenants. GCC High, DoD IL4/IL5, and FedRAMP High authorizations are out of scope. Vol I Book 05's main narrative describes SD-WAN in platform-neutral terms. This appendix addresses the specific combination that most FedRAMP Moderate agencies encounter: **Cisco Catalyst SD-WAN** as the branch transport platform and **Microsoft 365 Informed Network Routing (INR)** as the M365 traffic optimization layer.
 :::
@@ -515,7 +515,7 @@ In a Cisco Catalyst SD-WAN + Microsoft INR deployment, the boundary documentatio
 :::
 
 ::: {.aan-important}
-**A ThousandEyes agent registers to the commercial platform unless it is told not to.** Where [the program decision](../../adr/adr-057-thousandeyes-networks-pillar-scope.qmd)'s rebuild path puts Cisco ThousandEyes in the architecture, note that **ThousandEyes for Government is a separate platform instance**, not a setting inside the commercial one. Agents have to be directed to it: for a Linux-package agent that means adding the `-m advanced` option to the installation script with the value set to `FEDRAMP`. Docker installs carry their own government-instance prerequisites, taken from the ThousandEyes for Government documentation rather than the general installation pages.
+**A ThousandEyes agent registers to the commercial platform unless it is told not to.** Where the program decision's rebuild path puts Cisco ThousandEyes in the architecture, note that **ThousandEyes for Government is a separate platform instance**, not a setting inside the commercial one. Agents have to be directed to it: for a Linux-package agent that means adding the `-m advanced` option to the installation script with the value set to `FEDRAMP`. Docker installs carry their own government-instance prerequisites, taken from the ThousandEyes for Government documentation rather than the general installation pages.
 
 An agent installed without that step registers to the **commercial** platform, placing agency branch-path telemetry outside the authorized boundary. That is a data-placement incident rather than a configuration defect, and a component inventory will not catch it — the agent is present, healthy and reporting, just to the wrong platform. Make registration an explicit build step with a post-install check that each agent appears in the government console and nowhere else.
 :::

@@ -13,7 +13,7 @@ lifecycle_review: 2027-01-01
 listing:
   - id: book-chapters
     contents:
-      - "Book_07_CPT_*.qmd"
+      - "Book_07_CPT_*.md"
     type: table
     fields: [title]
     sort: "series-order asc"
@@ -41,5 +41,5 @@ The migration changes the identity authority for SQL Server's groups from Active
 
 ::: {.callout-tip}
 ## Continue the series
-[← Previous: Book 06 — Eliminating NTLM at the SQL Layer](Book_06.qmd) · [Index](index.qmd) · [Next: Book 08 — The Application Chain →](Book_08.qmd)
+[← Previous: Book 06 — Eliminating NTLM at the SQL Layer](Book_06.md) · [Index](index.md) · [Next: Book 08 — The Application Chain →](Book_08.md)
 :::

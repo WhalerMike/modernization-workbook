@@ -23,7 +23,7 @@ context is fragmented across services, telemetry cannot be correlated into one
 control narrative, and evidence is assembled as point-in-time reporting rather
 than continuous, provenance-linked assurance.
 
-![Layered substrate diagram showing the the modernization program Governance OS as the operating layer beneath three consumer surfaces](images/governance-os-overview-image-01-layered-substrate-diagram-showin.png){#fig-governance-os-overview-image-01 fig-alt="Bottom layer Canon (SSOT) labeled with \"src/uiao/canon/\" and a small registry icon. Middle layer Substrate Services with three lanes — Schema-First Governance, Drift Engine (5-class taxonomy: SCHEMA / SEMANTIC / PROVENANCE / AUTHZ / IDENTITY), Evidence Chain (deterministic OSCAL emission). Top layer Consumer Surfaces — three pillars: Identity Operations, Compliance Reporting, Modernization Programs. Each top-layer pillar reaches down with arrows to the substrate services. Clean engineering blueprint style, dark navy (#0D1B2E) and teal (#1E8C8C) color scheme on white background. No photographs, purely diagrammatic." width="100%"}
+![Layered substrate diagram showing the the modernization program Governance OS as the operating layer beneath three consumer surfaces](../images/executive-briefs/governance-os-overview-image-01-layered-substrate-diagram-showin.png){#fig-governance-os-overview-image-01 fig-alt="Bottom layer Canon (SSOT) labeled with \"src/uiao/canon/\" and a small registry icon. Middle layer Substrate Services with three lanes — Schema-First Governance, Drift Engine (5-class taxonomy: SCHEMA / SEMANTIC / PROVENANCE / AUTHZ / IDENTITY), Evidence Chain (deterministic OSCAL emission). Top layer Consumer Surfaces — three pillars: Identity Operations, Compliance Reporting, Modernization Programs. Each top-layer pillar reaches down with arrows to the substrate services. Clean engineering blueprint style, dark navy (#0D1B2E) and teal (#1E8C8C) color scheme on white background. No photographs, purely diagrammatic." width="100%"}
 
 ## What "governance OS" means in the modernization program
 
@@ -44,7 +44,7 @@ Three substrate-wide principles, declared in
    `DRIFT-SEMANTIC`, `DRIFT-PROVENANCE`, `DRIFT-AUTHZ`, `DRIFT-IDENTITY`)
    surfaces structural and provenance mismatch as first-class findings, not as
    exception reports. See
-   [Drift Engine Overview](drift-engine-overview.qmd).
+   [Drift Engine Overview](drift-engine-overview.md).
 
 Per [the program decision],
 three further principles — Two-Brain Execution, Boundary Enforcement, and
@@ -86,17 +86,17 @@ The substrate already enforces the operating model in CI:
 | Continuous event-time evidence capture | **TARGET** |
 
 For the authoritative shipped-vs-target view, see the
-[the modernization program Substrate Status](../../substrate-status.qmd) page.
+the modernization program Substrate Status page.
 
 ## Where to go deeper
 
-- **[the modernization program Governance OS whitepaper](../whitepapers/uiao-governance-os-whitepaper.qmd)** —
+- **the modernization program Governance OS whitepaper** —
   the long-form treatment of the operating model summarized here.
-- **[Architecture Series — Six-Plane Architecture](../architecture-series/six-plane-architecture.qmd)** —
+- **Architecture Series — Six-Plane Architecture** —
   how the substrate decomposes into planes.
-- **[Universal-Enterprise Positioning](universal-enterprise-positioning-overview.qmd)** —
+- **Universal-Enterprise Positioning** —
   why the engine is vertical-agnostic and federal is one adapter pack.
-- **[Adapter Ecosystem Overview](adapter-ecosystem-overview.qmd)** — how
+- **[Adapter Ecosystem Overview](adapter-ecosystem-overview.md)** — how
   consumer surfaces reach incumbent systems.
 
 ## Leadership takeaway

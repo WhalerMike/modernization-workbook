@@ -39,7 +39,7 @@ is reviewed and externally releasable. The narrative below is the
 attested reference.
 
 Status badge in the family index: **Framing-Pattern** per the
-[Whitepapers status conventions](../whitepapers/index.qmd).
+Whitepapers status conventions.
 :::
 
 ![Reference deployment timeline diagram showing five horizontal phases — Discover, Normalize, Map, Migrate, Validate — across the top](images/reference-deployment-fedciv-ad-t-image-01-reference-deployment-timeline-di.png){#fig-reference-deployment-fedciv-ad-to-entra-image-01 fig-alt="Below each phase, a small stack of artifacts: AD survey + spn_inventory (pre-migration phase tag), COR records + the organizational-attribute model assignment, Modernization adapters (PKI, RADIUS, LDAP-proxy, sql-server, sync-engine), Provenance chain + certificate-anchored migration events, Post-migration spn_inventory + drift findings + Evidence Bundle. Two parallel rails run beneath the timeline: the on-premises rail (AD forests, SQL Server instances, ADCS, RADIUS, IPAM) and the cloud rail (Entra ID GCC-Moderate, Intune, Purview data map, OneLake mirroring, Fabric Domains). Vertical arrows from on-prem rail up through the substrate down to the cloud rail at each phase. Bottom-right corner shows the GCC Moderate boundary as a dashed enclosure with the B.1.1 three-way conflict finding (TIC 3.0 × Zero Trust × FedRAMP 20x) called out as a P1 compliance artifact. Clean engineering blueprint style, dark navy (#0D1B2E) and teal (#1E8C8C) on white background. No photographs, purely diagrammatic." width="100%"}
@@ -77,7 +77,7 @@ This is the engagement pattern the modernization program is built for, and the s
 behavior across the five phases below is what this case study
 illustrates. For the federal mandate alignment that makes this work
 necessary, see the
-[Federal SSOT Alignment whitepaper](../whitepapers/federal-ssot-alignment.qmd).
+[Federal SSOT Alignment whitepaper](../whitepapers/federal-ssot-alignment.md).
 
 ## Phase 1 — Discover
 
@@ -240,12 +240,12 @@ zero P1 findings remain.
 
 With the identity migration complete, the agency's data plane joins
 the substrate. The pattern is the one developed in
-[the modernization program the organizational-attribute model chapter 07a](../orgpath-narrative/Book_07a.qmd):
+the modernization program the organizational-attribute model chapter 07a:
 the organizational-attribute model as the join key across two policy planes, not as a single
 inheritance chain.
 
 On the user plane, the existing Adaptive Policy Scopes from
-[chapter 07](../orgpath-narrative/Book_07.qmd) target
+chapter 07 target
 each segment's labels, DLP rules, retention schedules, and eDiscovery
 custodian queries. On the data plane, Fabric Domains are created to
 mirror the OrgTree hierarchy; the agency provisions one domain per
@@ -259,7 +259,7 @@ five — instances whose post-migration drift is still being remediated
 — are deferred until the drift cycle closes.
 
 The Purview Information Protection telemetry constraint catalogued in
-[B.1.1 §3](../orgcomp-series/boundary/B1-1-gcc-moderate-three-way-conflict.qmd)
+B.1.1 §3
 applies: every sensitivity-label trust assertion in the GCC-Moderate
 tenant inherits the boundary's verification gap. The substrate's role
 at this boundary is not to remediate it (it is structural) but to
@@ -302,7 +302,7 @@ rebuilding it. A subsequent SI engagement — for the next modernization
 program, the next directory consolidation, the next data-governance
 expansion — anchors on the substrate's state rather than starting from
 zero. This is the cost-shape inversion the
-[Federal SSOT Alignment whitepaper §6](../whitepapers/federal-ssot-alignment.qmd)
+[Federal SSOT Alignment whitepaper §6](../whitepapers/federal-ssot-alignment.md)
 describes: re-engagement consumes canon; it does not rediscover it.
 
 The substrate behaviors a real engagement would document and that this
@@ -325,13 +325,13 @@ the Evidence Bundle is produced into.
 
 ## Cross-references
 
-- [Federal SSOT Alignment whitepaper](../whitepapers/federal-ssot-alignment.qmd) — federal mandate alignment over the identity layer
-- [the modernization program the organizational-attribute model 07a — the modernization program Beneath the Azure SSOT Stack](../orgpath-narrative/Book_07a.qmd) — Azure SSOT identity-substrate role
-- [the modernization program the organizational-attribute model 07 — the organizational-attribute model and Microsoft Purview](../orgpath-narrative/Book_07.qmd) — user-plane Adaptive Policy Scope mechanism
-- [B.1 GCC-Moderate Boundary Model](../orgcomp-series/boundary/B1-gcc-moderate-boundary-model.qmd) — abstract boundary model
-- [B.1.1 Three-Way GCC-Moderate Compliance Conflict](../orgcomp-series/boundary/B1-1-gcc-moderate-three-way-conflict.qmd) — TIC 3.0 × Zero Trust × FedRAMP 20x finding
-- [Drift Detection Standard](../../docs/16_DriftDetectionStandard.qmd) — drift taxonomy, severity model, and §7.1 SPN drift detection
-- [Directory Migration README](../../../src/uiao/modernization/directory-migration/README.md) — discovery and inventory artifacts
-- [SQL Server Adapter Interface](../../../src/uiao/modernization/directory-migration/adapters/sql-server/sql-server-adapter-interface.md) — DM_090 adapter contract
-- [Identity Modernization — Case Study](identity-modernization-case-study.qmd) — identity-plane case-study companion
-- [Cloud Boundary — Case Study](cloud-boundary-case-study.qmd) — GCC-Moderate boundary establishment companion
+- [Federal SSOT Alignment whitepaper](../whitepapers/federal-ssot-alignment.md) — federal mandate alignment over the identity layer
+- the modernization program the organizational-attribute model 07a — the modernization program Beneath the Azure SSOT Stack — Azure SSOT identity-substrate role
+- the modernization program the organizational-attribute model 07 — the organizational-attribute model and Microsoft Purview — user-plane Adaptive Policy Scope mechanism
+- B.1 GCC-Moderate Boundary Model — abstract boundary model
+- B.1.1 Three-Way GCC-Moderate Compliance Conflict — TIC 3.0 × Zero Trust × FedRAMP 20x finding
+- Drift Detection Standard — drift taxonomy, severity model, and §7.1 SPN drift detection
+- Directory Migration README — discovery and inventory artifacts
+- SQL Server Adapter Interface — DM_090 adapter contract
+- [Identity Modernization — Case Study](identity-modernization-case-study.md) — identity-plane case-study companion
+- [Cloud Boundary — Case Study](cloud-boundary-case-study.md) — GCC-Moderate boundary establishment companion
