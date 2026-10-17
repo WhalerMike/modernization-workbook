@@ -1,0 +1,495 @@
+---
+title: "Invoke-GpoMigrationTriage"
+subtitle: "Classify every GPO for migration to Intune (workstations) or Azure Arc (servers), with side-by-side classification + per-setting sizing"
+doc-type: operational-guide
+audience: [Customer, Operator, Technical]
+author: Michael Stratton
+date: "May 2026"
+status: Active
+repo-path: docs/customer-documents/substrate/platform-tooling/invoke-gpo-migration-triage.qmd
+created-at: 2026-05-25
+updated-at: 2026-06-25
+format:
+  html:
+    toc: true
+    toc-depth: 3
+lifecycle: adopted
+tiers_adopted: [1]
+lifecycle_review: 2026-11-22
+---
+
+`Invoke-GpoMigrationTriage.ps1` is the companion to
+[`Invoke-GpoObsoleteAudit.ps1`](invoke-gpo-obsolete-audit.qmd): instead of
+flagging dead GPOs, it classifies every **live** GPO for migration. Each
+GPO is sorted onto a target plane — **Intune** for workstation-scope
+policy and **Azure Arc** for server-scope policy — using two
+independent classifiers run side by side, plus a per-setting sizing
+walk that maps every GPO extension to its most-likely Intune Settings
+Catalog and Azure Arc Guest Configuration destination.
+
+The two classifiers (OU OS predominance + OU name heuristic) are
+deliberately run together so disagreements surface explicitly rather
+than being hidden behind a single opaque guess.
+
+## Download
+
+| Artifact | Version | SHA256 |
+|---|---|---|
+| [`Invoke-GpoMigrationTriage.ps1`](scripts/Invoke-GpoMigrationTriage.ps1) | 1.0 | `afe88fb798e41acd61c714341420551fb7e06d0c8f80d58d31f84e98080ba603` |
+
+::: {.callout-note title="Need offline the modernization program install media?"}
+Download the full CLI kit from [Downloads → the modernization program CLI Kit](../../../download/index.qmd#uiao-cli-kit):
+[`uiao-cli.zip`]
+includes this script, `the modernization program.ConfigTools`, and an offline Python installer — no internet needed at install time.
+:::
+
+Verify integrity after download:
+
+```powershell
+Get-FileHash .\Invoke-GpoMigrationTriage.ps1 -Algorithm SHA256
+```
+
+## Prerequisites
+
+| Requirement | Notes |
+|---|---|
+| PowerShell 5.1 or 7.x | Script declares `#Requires -Modules GroupPolicy, ActiveDirectory` |
+| RSAT: Group Policy Management | Provides `GroupPolicy` module |
+| RSAT: Active Directory module | Provides `ActiveDirectory` module |
+| Read access to all GPOs | Default `Authenticated Users` GPO read is sufficient |
+| Read access to Computer objects in linked OUs | Needed for OU OS predominance classifier — skip with `-SkipComputerEnumeration` if unavailable |
+
+The script writes a temporary XML report per GPO into `$env:TEMP` and
+cleans it up in a `finally` block — temp files are removed even if a
+parse fails.
+
+## What the script does
+
+For every GPO in the domain the script produces two artifacts:
+
+1. **Summary record** (one per GPO) — side-by-side target-plane
+   classification, per-link OU counts, and a per-extension migration
+   table with complexity tags.
+2. **Detail record** (one per `(GPO, Section, Extension)` tuple) — flat
+   shape for migration sizing in BI / spreadsheet tools.
+
+### Classification — side by side
+
+Each GPO link is classified twice, independently:
+
+| Classifier | How it works | When it's right |
+|---|---|---|
+| **`ByOuOSPredominance`** | Reads every Computer object under the linked OU (`Get-ADComputer -SearchBase $ouDN -SearchScope OneLevel`) and tallies the `OperatingSystem` attribute against `-WorkstationOSPattern` and `-ServerOSPattern`. Returns the plane that wins the count. | Accurate to actual placement, including OUs whose name doesn't reveal their content. |
+| **`ByOuNameHeuristic`** | Wildcard-matches the OU's canonical path against `-WorkstationOUNamePattern` and `-ServerOUNamePattern`. | Fast and resilient to read-permission gaps on Computer objects, but only as good as local naming conventions. |
+
+The summary record sets `Classification.Agreement = true` when both
+classifiers return the same non-`Unknown` plane. Disagreements are
+counted in the host roll-up at the end of the run — start triage with
+the disagreements; they're the GPOs whose placement doesn't match
+their name.
+
+### Plane assignment
+
+A single GPO link is one of `Intune`, `Arc`, `Both`, or `Unknown`. A
+GPO with multiple links is rolled up to:
+
+- the single plane if every link agrees on one non-`Unknown` value
+- `Both` if links span Intune and Arc
+- `Unknown` if no link can be classified
+
+Domain-root and Site links are treated as `Both` — they apply to every
+Computer object in the domain.
+
+### Settings mapping (Intune + Arc lanes)
+
+The script walks `Computer/ExtensionData/Extension` and
+`User/ExtensionData/Extension` in every GPO report and applies a
+built-in mapping table (`$migrationMap`). For each extension you get:
+
+- `IntuneTarget` — most likely Intune Settings Catalog / Endpoint
+  Security / Update-for-Business destination
+- `ArcTarget` — most likely Azure Arc destination (Guest Configuration,
+  Azure Update Manager, Defender for Servers, Universal Print, etc.)
+- `Complexity` — `Low` / `Medium` / `High`
+
+Unknown extensions fall through to a `DEFAULT` entry that flags the
+setting for manual review rather than guessing.
+
+## Parameters
+
+| Parameter | Type | Default | Purpose |
+|---|---|---|---|
+| `-OutputDirectory` | `string` | `'.'` | Directory for the two output files. Created if missing. Falls back to the `the modernization program_OUTPUT` environment variable when the parameter is omitted. |
+| `-WorkstationOSPattern` | `string[]` | `Windows 10*`, `Windows 11*`, `Windows 7*`, `Windows 8*` | Wildcard patterns matched against Computer `OperatingSystem`. |
+| `-ServerOSPattern` | `string[]` | `Windows Server*` | Wildcard patterns matched against Computer `OperatingSystem`. |
+| `-WorkstationOUNamePattern` | `string[]` | `*Workstation*`, `*Desktop*`, `*Laptop*`, `*Client*`, `*Endpoint*`, `*PC*` | Wildcard patterns matched against the OU canonical path. |
+| `-ServerOUNamePattern` | `string[]` | `*Server*`, `*DC*`, `*SQL*`, `*Domain Controllers` | Wildcard patterns matched against the OU canonical path. |
+| `-SkipComputerEnumeration` | `switch` | off | Skip OU OS predominance. The summary still emits the name-heuristic classification. Use on very large directories. |
+| `-CheckPrereqs` | `switch` | off | Run `the modernization program.ConfigTools` prereq validation before the triage: checks `GroupPolicy` + `ActiveDirectory` modules, `Get-GPO` / `Get-GPOReport` availability, and AD connectivity. Silently ignored when `the modernization program.ConfigTools` is not installed. |
+| `-EnableLogging` | `switch` | off | Start a timestamped PowerShell transcript under `<OutputDirectory>\logs\`. Requires `the modernization program.ConfigTools`; silently ignored when the module is absent. |
+
+Standard `-Verbose` is honoured and logs OU count + GPO count during
+pre-load.
+
+### Environment variables
+
+| Variable | Overrides |
+|---|---|
+| `the modernization program_OUTPUT` | Default value of `-OutputDirectory` |
+
+Set `the modernization program_OUTPUT` in a profile or CI job to avoid repeating the path across multiple scripts.
+
+### the modernization program.ConfigTools integration
+
+When the `the modernization program.ConfigTools` shared module (included in `uiao-cli.zip` under
+`scripts\the modernization program.ConfigTools\`) is installed, the script uses it for structured
+output and optional transcript logging. If the module is absent, the script
+falls back to plain coloured `Write-Host` output — no hard dependency.
+
+Install the module:
+
+```powershell
+$dest = "$env:USERPROFILE\Documents\PowerShell\Modules\the modernization program.ConfigTools"
+Copy-Item .\uiao-cli\scripts\the modernization program.ConfigTools $dest -Recurse -Force
+Import-Module the modernization program.ConfigTools
+```
+
+Run with prereq check and logging:
+
+```powershell
+.\Invoke-GpoMigrationTriage.ps1 -OutputDirectory C:\Triage -CheckPrereqs -EnableLogging
+```
+
+## Usage
+
+### Default run
+
+```powershell
+.\Invoke-GpoMigrationTriage.ps1 -OutputDirectory C:\Triage
+```
+
+Console output reports the roll-up totals:
+
+```text
+Triage complete.
+  Summary : C:\Triage\gpo-migration-triage-summary.json
+  Detail  : C:\Triage\gpo-migration-triage-detail.json
+
+Plane roll-up (preferring OU OS predominance):
+  Intune  : 184
+  Arc     : 91
+  Both    : 27
+  Unknown : 14
+
+Classifier disagreement (both available, planes differ): 9
+```
+
+### Custom OU-name conventions
+
+If the directory uses `WKS-*` / `SRV-*` rather than the default
+`*Workstation*` / `*Server*`:
+
+```powershell
+.\Invoke-GpoMigrationTriage.ps1 -OutputDirectory C:\Triage `
+    -WorkstationOUNamePattern '*WKS*','*Desktop*' `
+    -ServerOUNamePattern      '*SRV*','*Server*'
+```
+
+### Skip Computer enumeration
+
+For very large directories or when the run principal lacks Computer
+read:
+
+```powershell
+.\Invoke-GpoMigrationTriage.ps1 -SkipComputerEnumeration -Verbose
+```
+
+The summary keeps the `ByOuOSPredominance` field but it will be
+`Unknown` on every link; the name heuristic still drives the roll-up.
+
+## Output schema
+
+### Summary — `gpo-migration-triage-summary.json`
+
+```json
+[
+  {
+    "GpoName": "Workstation Security Baseline",
+    "GpoId": "12345678-...",
+    "ReportError": null,
+    "Classification": {
+      "ByOuOSPredominance": "Intune",
+      "ByOuNameHeuristic": "Intune",
+      "Agreement": true
+    },
+    "Links": [
+      {
+        "SOMType": "OU",
+        "SOMPath": "contoso.com/Workstations/Engineering",
+        "ByOuOSPredominance": "Intune",
+        "ByOuNameHeuristic": "Intune",
+        "OuComputerCounts": {
+          "Workstation": 312,
+          "Server": 0,
+          "Other": 4,
+          "Total": 316
+        }
+      }
+    ],
+    "ExtensionCount": 6,
+    "ComplexityTally": { "Low": 2, "Medium": 3, "High": 1 },
+    "Extensions": [
+      {
+        "Section": "Computer",
+        "ExtensionName": "Windows Defender Antivirus",
+        "IntuneTarget": "Endpoint Security > Antivirus",
+        "ArcTarget": "Defender for Servers (Plan 2)",
+        "Complexity": "Low"
+      }
+    ]
+  }
+]
+```
+
+### Detail — `gpo-migration-triage-detail.json`
+
+Flat, one row per `(GpoId, Section, ExtensionName)` — built for direct
+spreadsheet / BI ingestion:
+
+```json
+[
+  {
+    "GpoName": "Workstation Security Baseline",
+    "GpoId": "12345678-...",
+    "Section": "Computer",
+    "ExtensionName": "Windows Defender Antivirus",
+    "IntuneTarget": "Endpoint Security > Antivirus",
+    "ArcTarget": "Defender for Servers (Plan 2)",
+    "Complexity": "Low"
+  }
+]
+```
+
+## Triage workflows
+
+### List the disagreement set
+
+The most valuable starting query: GPOs whose two classifiers disagree.
+These usually indicate either a naming gap (server GPO living in a
+workstation OU, or vice-versa) or a mixed-purpose GPO that should be
+split before migration.
+
+```powershell
+$s = Get-Content C:\Triage\gpo-migration-triage-summary.json -Raw | ConvertFrom-Json
+$s | Where-Object {
+    -not $_.Classification.Agreement -and
+    $_.Classification.ByOuOSPredominance -ne 'Unknown' -and
+    $_.Classification.ByOuNameHeuristic  -ne 'Unknown'
+} | Select-Object GpoName,
+    @{n='ByOS';   e={$_.Classification.ByOuOSPredominance}},
+    @{n='ByName'; e={$_.Classification.ByOuNameHeuristic}}
+```
+
+### Sizing by complexity
+
+```powershell
+$d = Get-Content C:\Triage\gpo-migration-triage-detail.json -Raw | ConvertFrom-Json
+$d | Group-Object Complexity | Format-Table Name, Count
+```
+
+### Settings most commonly bound for Intune
+
+```powershell
+$d | Group-Object IntuneTarget |
+    Sort-Object Count -Descending |
+    Select-Object -First 15 Name, Count
+```
+
+### Cross-pivot — extensions × target plane
+
+```powershell
+$s | ForEach-Object {
+    $plane = $_.Classification.ByOuOSPredominance
+    if ($plane -eq 'Unknown') { $plane = $_.Classification.ByOuNameHeuristic }
+    foreach ($e in $_.Extensions) {
+        [pscustomobject]@{
+            Plane       = $plane
+            Extension   = $e.ExtensionName
+            Complexity  = $e.Complexity
+        }
+    }
+} | Group-Object Plane, Extension | Sort-Object Count -Descending |
+    Select-Object -First 25 Count, Name
+```
+
+## Interpreting the results
+
+The triage report surfaces three broad compatibility bands for each GPO.
+Use the `ComplexityTally` and the `Classification` fields together to
+place each GPO:
+
+| Band | Signal | What to do |
+|---|---|---|
+| **High Intune compatibility** — most extensions map to Intune | `ByOuOSPredominance: "Intune"`, low `High` complexity count | Immediate migration candidate. Replicate in Intune Endpoint Configuration Profiles or Settings Catalog; pilot against a small device group while the GPO is still live, then unlink once verified. |
+| **Mixed compatibility** — Intune + Arc extensions, or `Both` plane | `Classification.Agreement: false` or plane `"Both"` | Split the GPO: create an Intune profile for the workstation-side extensions and an Azure Policy / DSC configuration for the server-side extensions. |
+| **Low compatibility** — many extensions flagged `DEFAULT` or high complexity | Many `High` complexity entries, `IntuneTarget` shows `"Manual review"` | Audit whether each unsupported setting is still needed. If it is, see [Handling unsupported settings](#handling-unsupported-settings) below. If it isn't, retire the GPO. |
+
+### Reading the classifier-disagreement set
+
+Start every triage session here — disagreements are the highest-signal
+output:
+
+- **ByOS says Arc, ByName says Intune** — a server GPO living in a
+  workstation-named OU, or a naming convention drift. Verify the actual
+  Computer objects before migrating.
+- **ByOS says Intune, ByName says Arc** — an OU named `*Server*` that
+  predominantly hosts workstations. Common after OS upgrades or device
+  moves.
+- **Either side Unknown** — the OU has no Computer objects (empty OU) or
+  the OU name matches no pattern. Use `-WorkstationOUNamePattern` /
+  `-ServerOUNamePattern` to add site-specific patterns.
+
+## Planning with triage results
+
+### Quick wins — Intune-ready GPOs
+
+GPOs where all or nearly all extensions map to Intune are ready to
+migrate now. Typical examples: Windows Update policy, Microsoft Edge
+baseline, Windows Defender Antivirus, BitLocker, account lockout.
+
+1. In **Intune → Devices → Configuration**, create a new profile for
+   each GPO. Use **Settings Catalog** for individual settings or a
+   **Template** profile for ADMX-backed policies (Administrative
+   Templates). Setting names are close enough to GPO extension names
+   that the `IntuneTarget` field in the detail artifact is a usable
+   search term.
+2. Where a GPO maps entirely to a Microsoft-published
+   **Security Baseline** (Windows, Edge, Defender, etc.), deploy that
+   baseline instead of recreating individual settings — it ships with a
+   pre-vetted configuration and simplifies future updates.
+3. Assign the Intune profile to a pilot Entra group while the GPO is
+   still linked. Verify the device shows the intended configuration in
+   **Intune → Monitor → Device configuration**. Once clean, unlink the
+   GPO and expand the Intune assignment.
+
+### Server GPOs — Azure Arc path
+
+Server-scope GPOs (`ArcTarget` populated, plane `"Arc"` or `"Both"`)
+cannot be managed by Intune. The migration path runs through Azure Arc.
+
+1. **Onboard servers to Azure Arc.** This registers each on-premises
+   server as an Azure resource, enabling Azure Policy and Azure
+   Automation to govern it.
+2. **Map each Arc extension to the corresponding Azure service:**
+   - Security and compliance settings → **Azure Policy Guest
+     Configuration** (custom or built-in policy definitions)
+   - Patch management → **Azure Update Manager**
+   - Endpoint protection → **Defender for Servers Plan 2**
+   - State configuration → **Azure Automation DSC** (mirrors what a GPO
+     Computer Configuration script or registry preference does)
+3. **Deploy in audit mode first.** Azure Policy's Guest Configuration
+   audit-only mode reports compliance without enforcing changes, letting
+   you verify equivalence before you remove the GPO.
+4. For server GPOs that cannot be covered by any Azure service yet,
+   keep them in place with minimal scope (link only to the specific OUs
+   that still need them) and document the gap for the next planning
+   cycle.
+
+### Handling unsupported settings {#handling-unsupported-settings}
+
+Settings that fall through to `"Manual review"` in the `IntuneTarget`
+column have no direct cloud equivalent. Common examples: network drive
+mappings, legacy software installation via Group Policy Software
+Installation, or settings for very old application versions.
+
+**Reevaluate necessity first.** A migration is a good time to retire
+settings for software or OS versions that no longer exist in the
+environment. If the setting is not needed, delete it from the GPO and
+re-run the triage to see the clean result.
+
+**Find a workaround if the setting is still needed:**
+
+- **Intune PowerShell scripts** — Intune can deploy a `.ps1` that runs
+  with admin rights and replicates the effect of a GPO setting (for
+  example, copying a file, setting a registry key, or mapping a drive
+  via `net use`). Go to **Intune → Devices → Scripts and remediations**.
+- **Win32 app deployment** — for Group Policy Software Installation
+  settings, repackage the software as a Win32 app or `.intunewin`
+  package and deploy it via Intune.
+- **Application vendor cloud management** — many enterprise applications
+  now expose their own cloud-based configuration channel. Check whether
+  the application has been updated to support Intune or a cloud policy
+  SDK before keeping a GPO alive for it.
+
+**Temporary hybrid state** — document any GPOs kept deliberately.
+Reduce their scope to the minimum set of OUs that still need them so
+the rest of the fleet can move to cloud management. Set a calendar
+reminder to revisit each one at the next planning cycle.
+
+## How the mapping table is sourced
+
+The `$migrationMap` hash table inside the script reconciles three
+sources:
+
+1. The `$intuneMap` lookup in
+   [`tools/discovery/Spec1-D1.3-Get-GPODeviceDependencyMap.ps1`]
+   — workstation-side Intune Settings Catalog equivalents.
+2. The the modernization program modernization registry (`src/uiao/canon/modernization-registry.yaml`)
+   — sanctioned change-making adapters.
+3. The published Azure Arc topology for server-side policy delivery:
+   Guest Configuration, Azure Policy, Azure Update Manager, Defender
+   for Servers, Universal Print, Azure Bastion + JIT.
+
+Extensions not in the table fall through to a `DEFAULT` entry that
+flags the setting for manual review rather than emitting a guess.
+Contribute additions back to the script when you encounter unmapped
+extensions.
+
+## Tuning notes
+
+- **`-SkipComputerEnumeration`** — the OU OS scan is the single
+  heaviest operation. On directories with hundreds of thousands of
+  Computer objects, run with the switch first, review the
+  name-heuristic results, then re-run without it on the disagreement
+  set only.
+- **OU-name conventions** — environments with `WKS-*` / `SRV-*`
+  prefixes or non-English naming benefit from custom `-Workstation…`
+  / `-Server…` patterns. The script does not infer conventions; it
+  uses what you pass.
+- **Domain-root and site links** — treated as `Both`. If your local
+  policy forbids domain-root GPOs, post-process the summary to flag
+  any record whose `Links[*].SOMType` is `Domain` or `Site`.
+- **Mixed-purpose GPOs** — a `Both` plane on the summary is almost
+  always a sign the GPO should be split. The detail artifact tells
+  you which extensions push which way.
+
+## Troubleshooting
+
+| Symptom | Cause | Fix |
+|---|---|---|
+| Empty or partial summary — some GPOs missing | Run principal lacks read permission on those GPOs | Run as a Domain Admin or a user explicitly granted GPO read. Default `Authenticated Users` is sufficient in most domains but can be restricted per-GPO. |
+| `Get-GPO` not recognised | GroupPolicy RSAT module not installed | Install RSAT: Group Policy Management via **Settings → Optional Features** or `Add-WindowsFeature GPMC` on a server. |
+| Very short runtime, 0 GPOs processed | `-OutputDirectory` or domain auto-detection pointed at the wrong environment | Verify `$env:USERDNSDOMAIN` resolves to the intended domain, or pass the domain explicitly if the script accepts it as a parameter. |
+| Script blocked by execution policy | PowerShell execution policy set to `Restricted` | Run `Get-ExecutionPolicy`. Set to `RemoteSigned` or unblock: `Unblock-File -Path .\Invoke-GpoMigrationTriage.ps1`. |
+| OU OS predominance classifier returns `Unknown` for most GPOs | OUs have no Computer objects (staged or empty OUs) | Run with `-SkipComputerEnumeration` to rely on name heuristics, or populate the OU-name patterns to match your conventions. |
+| Classifier disagreements are unexpectedly high | OU naming conventions don't match the default patterns | Add site-specific patterns with `-WorkstationOUNamePattern` and `-ServerOUNamePattern` (e.g., `'*WKS*'`, `'*SRV*'`). |
+| Progress tracking across multiple runs | Comparing runs manually | Re-run the script at regular intervals (weekly or after each migration sprint) and diff the `Classification` planes to measure GPOs moving from `Arc`/`Both`/`Unknown` to `Intune`. Keep historical output files for the comparison. |
+
+## Relationship to the obsolete-audit tool
+
+Run [`Invoke-GpoObsoleteAudit.ps1`](invoke-gpo-obsolete-audit.qmd)
+**first** to identify GPOs that should be retired rather than
+migrated. Feed the surviving (clean) GPOs into this triage tool. The
+two scripts are intentionally single-purpose and produce JSON arrays
+keyed by `GpoId`, so a downstream Evidence-Ledger join is trivial.
+
+## Provenance
+
+| Field | Value |
+|---|---|
+| Script version | 1.1 |
+| Script SHA256 | `afe88fb798e41acd61c714341420551fb7e06d0c8f80d58d31f84e98080ba603` (v1.0 base) |
+| Target | Windows Server with RSAT (GroupPolicy + ActiveDirectory modules) |
+| Outputs | `gpo-migration-triage-summary.json`, `gpo-migration-triage-detail.json` |
+| Optional module | `the modernization program.ConfigTools` v1.2.0 (prereq validation + transcript logging) |
+| Related | [`Invoke-GpoObsoleteAudit.ps1`](invoke-gpo-obsolete-audit.qmd), [`the modernization program.ConfigTools` module reference](powershell-module-reference.qmd), `tools/discovery/Spec1-D1.3-Get-GPODeviceDependencyMap.ps1` |
