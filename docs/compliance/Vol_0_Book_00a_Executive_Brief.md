@@ -4,10 +4,10 @@ subtitle: "Two-page decision brief for authorizing officials, program executives
 author: "Federal Cloud Services"
 date: "2026-07-19T20:10:00-04:00"
 format:
- html:
- css: lz-style.css
- docx:
- reference-doc: assets/reference-mslearn.docx
+  html:
+    css: lz-style.css
+  docx:
+    reference-doc: assets/reference-mslearn.docx
 
 aliases:
  - /customer-documents/federal-aan-series/Vol_0_Book_00a_FedAAN_Executive_Brief.html
