@@ -71,7 +71,7 @@ legal basis, on roughly the same timeline. That's the distinction this
 paper exists to make explicit.
 
 +-----------------------------------------------------------------------+
-| ![](media/rId10.png){width="5.833333333333333in" height="3.28125in"} |
+| ![](../images/whitepapers/rId10.png){width="5.833333333333333in" height="3.28125in"} |
 | |
 | Figure 1: The federal cybersecurity legal stack: the agency-binding |
 | track (FISMA, 44 U.S.C. § 3551 et seq. → NIST SP 800-53 Rev 5 / SP |
@@ -87,7 +87,7 @@ paper exists to make explicit.
 +-----------------------------------------------------------------------+
 
  -----------------------------------------------------------------------
- ![](media/rId14.png){width="0.16666666666666666in"
+ ![](../images/whitepapers/rId14.png){width="0.16666666666666666in"
  height="0.16666666666666666in"}
 
  -----------------------------------------------------------------------
@@ -139,12 +139,12 @@ timeline risks losing the ability to sell to federal agencies at all
 once Rev5 stops being issued.
 
 **Read deeper:** [Federal Application Aware Networking
-Architecture](federal-application-aware-networking-architecture.qmd) §
+Architecture](federal-application-aware-networking-architecture.md) §
 "FedRAMP 20x Consolidated Rules" covers the KSI evidence-format
 mechanics and a worked Call to Action built around these dates. For the
 full control-by-control mapping and the fuller federal compliance clock
-this timeline is drawn from, see the [the compliance series series' Executive
-Summary](../orgcomp-series/Vol_0_Book_00_the compliance series_Executive_Summary.qmd)
+this timeline is drawn from, see the the compliance series series' Executive
+Summary
 ("FedRAMP 20x Hard Deadlines" and "The Broader Federal Clock").
 
 ## 2. NIST SP 800-53 / SP 800-37 (the Risk Management Framework) --- binds agencies directly for systems they operate
@@ -177,9 +177,9 @@ doing RMF work for a specific domain --- see the [routing
 table](#where-to-read-deeper-by-mandate) for which paper covers which
 control family. For the full authorization-package mechanics --- the
 OSCAL bundle, the KSI scorecard, and how continuous evidence actually
-assembles into an AP/AR/POA&M set --- see the [the compliance series series'
+assembles into an AP/AR/POA&M set --- see the the compliance series series'
 Authorization Package and ConMon
-book](../orgcomp-series/Vol_IV_Book_06_the compliance series_Authorization_Package_ConMon.qmd).
+book.
 
 ## 3. CISA Binding Operational Directive 25-01 (SCuBA) --- binds agencies directly, on a fixed timeline
 
@@ -207,12 +207,12 @@ directly bound by BOD 25-01 --- the directive's obligations run to the
 agency operating the tenant, not to the platform or tool vendor.
 
 **Read deeper:** [Assessment Tools vs. Closing BOD-25-01
-Findings](bod-25-01-close-before-assess.qmd) is this paper's dedicated
+Findings](bod-25-01-close-before-assess.md) is this paper's dedicated
 treatment of the directive, including why "run the assessor" and "close
 the findings" are different obligations and the correct sequencing
 between them. [ScubaGear
-Integration](scubagear-integration-whitepaper.qmd) and [ZTA and SCuBA
---- How They Relate](zta-scuba-relationship.qmd) cover the tooling layer
+Integration](scubagear-integration-whitepaper.md) and [ZTA and SCuBA
+--- How They Relate](zta-scuba-relationship.md) cover the tooling layer
 this directive requires.
 
 ## 4. CISA BOD 26-04 (risk-based vulnerability remediation) --- binds agencies directly
@@ -253,7 +253,7 @@ December 7, 2026 date for exactly that reason.
 
 **Read deeper:** this directive is new enough that no whitepaper in this
 section yet carries a dedicated treatment --- [Assessment Tools
-vs. Closing BOD-25-01 Findings](bod-25-01-close-before-assess.qmd)'s
+vs. Closing BOD-25-01 Findings](bod-25-01-close-before-assess.md)'s
 remediate-before-assess sequencing argument applies directly to BOD
 26-04's remediation clock, even though that paper predates BOD 26-04's
 issuance and doesn't name it.
@@ -286,12 +286,12 @@ maturity model, but no vendor's tool, on its own, satisfies the model
 --- that's the paper's own central argument, not incidental to it.
 
 **Read deeper:** [Zero Trust Governance
-Principles](zero-trust-governance-principles.qmd) is the primary
+Principles](zero-trust-governance-principles.md) is the primary
 treatment; its companion [Zero Trust Requires Whole-Agency
-Scope](zero-trust-whole-agency-unification.qmd) covers why Network,
+Scope](zero-trust-whole-agency-unification.md) covers why Network,
 every CSP, and any on-premises virtualization estate have to be assessed
 as one system. [Zero Trust
-Governance](zero-trust-governance-whitepaper.qmd) maps the five pillars
+Governance](zero-trust-governance-whitepaper.md) maps the five pillars
 to specific canon-anchored mechanisms.
 
 ## 6. OMB M-22-09 (Federal Zero Trust Strategy) --- the policy memo that makes ZTMM the reference standard
@@ -314,11 +314,11 @@ bind vendors directly --- it shapes what agencies procure, which shapes
 vendor roadmaps indirectly.
 
 **Read deeper:** [Federal Application Aware Networking
-Architecture](federal-application-aware-networking-architecture.qmd) and
+Architecture](federal-application-aware-networking-architecture.md) and
 its UIAO-branded sibling [From Mainframe to Application-Aware
-Modernization](modernization-journey.qmd) both build their core argument
+Modernization](modernization-journey.md) both build their core argument
 on M-22-09's identity-and-application-aware-networking direction --- see
-the [Reading Guide](reading-guide.qmd) for which of the two fits your
+the [Reading Guide](reading-guide.md) for which of the two fits your
 audience.
 
 ## 7. TIC 3.0 (OMB M-19-26) --- agency-facing policy, satisfied through vendor infrastructure
@@ -347,11 +347,11 @@ to satisfy TIC 3.0, but no vendor is itself bound by the directive ---
 the compliance obligation, and the accountability for it, stays with the
 agency regardless of which vendor stack it procures.
 
-**Read deeper:** [SD-WAN vs. DIA Under TIC 3.0](tic3-sdwan-vs-dia.qmd)
+**Read deeper:** [SD-WAN vs. DIA Under TIC 3.0](tic3-sdwan-vs-dia.md)
 is the dedicated treatment --- the "pipe vs. governor" argument, the
 physics budget behind TIC 3.0's use cases, and the five-step decision
 sequence for an actual transport/SD-WAN procurement. [Next Generation
-DNS](infoblox-hybrid-dns-unified-ddi.qmd) covers the DNS-layer piece of
+DNS](infoblox-hybrid-dns-unified-ddi.md) covers the DNS-layer piece of
 the same distributed-egress architecture.
 
 ## 8. OMB M-25-21 (Federal AI governance) --- agency-facing, and the newest mandate in this set
@@ -386,7 +386,7 @@ hooks a vendor's AI product exposes --- an accountable official cannot
 govern what isn't visible as a record.
 
 **Read deeper:** [Federal AI Governance --- Submission
-Readiness](federal-ai-governance-submission-readiness.qmd) is the
+Readiness](federal-ai-governance-submission-readiness.md) is the
 dedicated treatment, including an honest coverage ledger of what's
 deployed versus proposed against M-25-21's specific gates.
 
@@ -396,49 +396,49 @@ deployed versus proposed against M-25-21's specific gates.
  Mandate Binds directly Companion paper(s)
  ----------------------- ----------------------- -----------------------------------------------------------------------
  FedRAMP 20x CSP/vendor [Federal Application Aware Networking
- Consolidated Rules Architecture](federal-application-aware-networking-architecture.qmd)
+ Consolidated Rules Architecture](federal-application-aware-networking-architecture.md)
 
  NIST SP 800-53 / 800-37 Agency Cited throughout this section by control number; see each paper's own
  (RMF, ATO) citations
 
  CISA BOD 25-01 (SCuBA) Agency [Assessment Tools vs. Closing BOD-25-01
- Findings](bod-25-01-close-before-assess.qmd), [ScubaGear
- Integration](scubagear-integration-whitepaper.qmd), [ZTA and SCuBA ---
- How They Relate](zta-scuba-relationship.qmd)
+ Findings](bod-25-01-close-before-assess.md), [ScubaGear
+ Integration](scubagear-integration-whitepaper.md), [ZTA and SCuBA ---
+ How They Relate](zta-scuba-relationship.md)
 
  CISA BOD 26-04 Agency No dedicated paper yet in this section --- see [§4](#bod-26-04) and the
  (risk-based sequencing argument in [Assessment Tools vs. Closing BOD-25-01
- vulnerability Findings](bod-25-01-close-before-assess.qmd)
+ vulnerability Findings](bod-25-01-close-before-assess.md)
  remediation) 
 
  CISA Zero Trust Agency (measurement [Zero Trust Governance
- Maturity Model v2.0 framework) Principles](zero-trust-governance-principles.qmd), [Zero Trust Requires
- Whole-Agency Scope](zero-trust-whole-agency-unification.qmd), [Zero
- Trust Governance](zero-trust-governance-whitepaper.qmd)
+ Maturity Model v2.0 framework) Principles](zero-trust-governance-principles.md), [Zero Trust Requires
+ Whole-Agency Scope](zero-trust-whole-agency-unification.md), [Zero
+ Trust Governance](zero-trust-governance-whitepaper.md)
 
  OMB M-22-09 (Zero Trust Agency [Federal Application Aware Networking
- Strategy) Architecture](federal-application-aware-networking-architecture.qmd),
+ Strategy) Architecture](federal-application-aware-networking-architecture.md),
  [From Mainframe to Application-Aware
- Modernization](modernization-journey.qmd)
+ Modernization](modernization-journey.md)
 
- OMB M-19-26 (TIC 3.0) Agency [SD-WAN vs. DIA Under TIC 3.0](tic3-sdwan-vs-dia.qmd), [Next Generation
- DNS](infoblox-hybrid-dns-unified-ddi.qmd)
+ OMB M-19-26 (TIC 3.0) Agency [SD-WAN vs. DIA Under TIC 3.0](tic3-sdwan-vs-dia.md), [Next Generation
+ DNS](infoblox-hybrid-dns-unified-ddi.md)
 
  OMB M-25-21 (Federal AI Agency [Federal AI Governance --- Submission
- governance) Readiness](federal-ai-governance-submission-readiness.qmd)
+ governance) Readiness](federal-ai-governance-submission-readiness.md)
 
- Federal data-governance Agency [Federal SSOT Alignment](federal-ssot-alignment.qmd)
+ Federal data-governance Agency [Federal SSOT Alignment](federal-ssot-alignment.md)
  mandates (Evidence Act, 
  Federal Data Strategy) 
 
  Closure-evidence Agency (operational) [Ticket-to-Machine, Not
- standard across cloud Ticket-to-Human](ticket-to-machine-not-ticket-to-human.qmd)
+ standard across cloud Ticket-to-Human](ticket-to-machine-not-ticket-to-human.md)
  platforms 
  -----------------------------------------------------------------------------------------------------------------------
 
 For a fuller map of how all 27 papers in this section relate --- not
 just the mandate-focused ones above --- start at the [Reading
-Guide](reading-guide.qmd).
+Guide](reading-guide.md).
 
 ## Honest limits and scope
 
@@ -459,8 +459,8 @@ Guide](reading-guide.qmd).
  NIST SP 800-53's own biannual minor-release cadence. None of those
  made the cut for this primer's eight sections --- they're real,
  agency-facing, and out of scope here on length grounds, not because
- they don't matter. See the [the compliance series series' Executive
- Summary](../orgcomp-series/Vol_0_Book_00_the compliance series_Executive_Summary.qmd)
+ they don't matter. See the the compliance series series' Executive
+ Summary
  for the fuller clock.
 - **Scope is federal civilian, Moderate baseline.** DoD environments
  (IL4/IL5), state and local government compliance regimes, and
