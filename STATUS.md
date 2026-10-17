@@ -6,19 +6,22 @@
 
 | Item | Owner | Notes |
 |------|-------|-------|
-| Enable GitHub Pages | Manual | Set Source to GitHub Actions under Settings → Pages. Workflow is already present. |
-| Public site URL confirmation | Manual | Once Pages is enabled, verify https://whalermike.github.io/modernization-workbook/ |
+| Diagram style consistency pass | Optional | SVG diagrams exist under `docs/images/`. Confirm white-background style on any remaining dark-background holdovers. |
+| Full compliance books | Deferred | Volume overviews are present. Extract individual books only when a specific control area is needed. |
 | Target surface libraries | Deferred | Short principles extracts are in `docs/libraries/`. Full catalogs remain in source materials. |
 
 ## Done
 
 | Item | Completed |
 |------|-----------|
+| How-to-use guide for external readers | 2026-10-17 |
+| README index updated to include architecture series, operational guides, HRIT, compliance | 2026-10-17 |
+| Lightweight governance note (CONTRIBUTING.md) | 2026-10-17 |
+| High-value migrations (Tier 1/2 remaining candidates) | 2026-10-16 |
 | Root README orientation (principles-first start-here path) | 2026-10-16 |
 | Repository made public | 2026-10-16 |
 | Consistency pass (residual branding removed) | 2026-10-16 |
 | Full SQL Server narrative series (Books 01–10) | 2026-10-16 |
-| Session-vs-telemetry, network, governed/retrofit paths | 2026-10-16 |
 | Consolidated principles document + diagram | 2026-10-16 |
 
 ## How to use
