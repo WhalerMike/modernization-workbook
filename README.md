@@ -2,10 +2,9 @@
 
 > **Provenance:** This workbook is a cleaned derivative of prior internal work. Migration scaffolding files (MIGRATION-*.md, STATUS.md, OUTLINE.md) retain source references for traceability and are excluded from the public site build.
 
-
 **A clean, standalone modernization project focused on identity, addressing, policy, and governance patterns.**
 
-This repository extracts practical modernization concepts — single source of truth, attribute-driven structure, explicit drift detection, evidence-driven change, and no-rip-and-replace migration — and presents them as a usable project plan and workbook. Cleaned for external use or document identifiers.
+This repository extracts practical modernization concepts — single source of truth, attribute-driven structure, explicit drift detection, evidence-driven change, and no-rip-and-replace migration — and presents them as a usable project plan and workbook.
 
 ![Modernization Principles Overview](docs/images/principles-overview.jpg)
 
@@ -13,47 +12,67 @@ This repository extracts practical modernization concepts — single source of t
 
 | Step | Document | Why |
 |------|----------|-----|
-| 1 | [Principles](docs/PRINCIPLES.md) | The rules. Read this first. |
-| 2 | [Project Charter](PROJECT-CHARTER.md) | Purpose, scope, and success criteria. |
-| 3 | [Project Plan](PROJECT-PLAN.md) | Phased roadmap and domain workstreams. |
-| 4 | [Why Modernization Is Hard](docs/narratives/why-modernization-is-hard.md) | Leadership framing of the problem. |
-| 5 | [Client-Server to Hybrid-Cloud series](docs/client-server-to-hybrid-cloud/README.md) | The eleven-chapter technical narrative. |
+| 1 | [How to Use This Repo](docs/HOW-TO-USE.md) | Orientation for new readers. |
+| 2 | [Principles](docs/PRINCIPLES.md) | The rules. Read this first. |
+| 3 | [Project Charter](PROJECT-CHARTER.md) | Purpose, scope, and success criteria. |
+| 4 | [Project Plan](PROJECT-PLAN.md) | Phased roadmap and domain workstreams. |
+| 5 | [Why Modernization Is Hard](docs/narratives/why-modernization-is-hard.md) | Leadership framing of the problem. |
+| 6 | [Client-Server to Hybrid-Cloud series](docs/client-server-to-hybrid-cloud/README.md) | The eleven-chapter technical narrative. |
 
 ## Contents
 
 ### Architecture
+- [Architecture Series](docs/architecture/architecture-series/README.md) — six-plane, three-layer rules, drift engine, evidence chain
 - [Single Source of Truth](docs/architecture/single-source-of-truth.md)
 - [Where Data Lives](docs/architecture/where-data-lives.md)
 - [Attribute-Driven Structure](docs/architecture/attribute-driven-structure.md)
-- [Drift Detection](docs/architecture/drift-detection.md)
+- [Drift Detection](docs/architecture/drift-detection.md) and [Walkthrough](docs/architecture/drift-detection-walkthrough.md)
 - [Change Control and Provenance](docs/architecture/change-control-and-provenance.md)
 - [Directory Migration Bridge](docs/architecture/directory-migration/README.md)
+- [GPO-to-Cloud Governance Gaps](docs/architecture/gpo-to-cloud-governance-gaps.md)
+- [Dynamic Group Library](docs/architecture/dynamic-group-library.md)
+- [Delegation Matrix](docs/architecture/delegation-matrix.md)
 
-### Guides
-- [Device and Server Modernization](docs/guides/device-and-server-modernization/README.md)
-- [HR-Driven Lifecycle](docs/guides/hr-driven-lifecycle.md)
+### Operational Guides
+- [Operational Guides index](docs/operational-guides/README.md)
+- [GPO Sunset Program](docs/operational-guides/gpo-sunset-program.md)
+- [Conditional Access Policy Library](docs/operational-guides/conditional-access-policy-library.md)
+- [Intune + Azure Arc paths](docs/operational-guides/intune-arc-modernization/)
+- [DNS Modernization](docs/operational-guides/dns-modernization.md)
+- [PKI Modernization](docs/operational-guides/pki-modernization.md)
+- [Read-Only AD Assessment](docs/operational-guides/read-only-ad-assessment.md)
 
 ### Case Studies
 - [SQL Server Identity Transformation (overview)](docs/case-studies/sql-server-identity.md)
 - [SQL Server Narrative Series (Books 01–10)](docs/case-studies/sql-server-narrative/README.md)
+- [HRIT to Entra reference deployment](docs/case-studies/hrit-to-entra-reference-deployment.md)
 
 ### Whitepapers
 - [Whitepapers index](docs/whitepapers/README.md)
 
+### Compliance
+- [Federal Compliance Series – Moderate](docs/compliance/federal-compliance-series-moderate/)
+
 ### Program
 - [Education, Training, and Test Plans](docs/program/)
+- [Executive Briefs](docs/executive-briefs/)
+- [Executive Governance Series](docs/executive-governance-series/)
 
 ### Libraries
 - [Principles extracts](docs/libraries/README.md)
 
+## Governance
+
+See [CONTRIBUTING.md](CONTRIBUTING.md) for the quality bar and how to propose changes.
+
 ## Status
 
-High-value content extraction and cleaning is complete. The repository is usable as a standalone modernization project plan and workbook.
+High-value content extraction and cleaning is complete. Operational guides and architecture items from the remaining-candidate list have been migrated. Full compliance books and large catalogs remain deferred by design.
 
 ## Origin
 
-Concepts derived from public modernization materials and restructured for independent use. Cleaned for external use or document identifiers remain in the finished artifacts.
+Concepts derived from public modernization materials and restructured for independent use.
 
 ---
 
-*For project use. Cleaned for external use or document identifiers.*
+*For project use. Cleaned for external use.*
