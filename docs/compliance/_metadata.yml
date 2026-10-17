@@ -1,0 +1,21 @@
+# Directory metadata for the compliance volumes.
+#
+# Quarto merges this file into every document in docs/compliance, so the
+# `{{< meta agency.* >}}` placeholders in the books resolve. Without it they
+# render as unresolved shortcodes.
+#
+# These are the generic (federal) values. To produce an edition for a specific
+# agency, change them here; no book needs editing.
+agency:
+  # Bare proper noun so it composes: "Agency-wide", "Agency's estate".
+  short: "Agency"
+  full: "Agency"
+  # Formal name, including any acronym gloss on first use.
+  formal: "Agency"
+  domain: "agency.gov"
+  tenant: "tenant.onmicrosoft.com"
+  statute: "the agency's enabling statute"
+
+# The books' `date:` values are ISO-8601 with the Eastern offset; render them
+# back as a minute-accurate date code.
+date-format: "YYYY-MM-DD HH:mm [ET]"
