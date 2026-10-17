@@ -1,15 +1,61 @@
 ---
 title: "Modernization Workbook"
+subtitle: "Public-facing documentation for federal IT modernization"
+listing:
+  - id: case-studies
+    contents:
+      - docs/case-studies/sql-server-narrative/series-overview.md
+      - docs/case-studies/README.md
+    type: table
+    fields: [title, description]
+  - id: series
+    contents:
+      - docs/client-server-to-hybrid-cloud/00-the-problem.md
+    type: table
+    fields: [title, description]
+  - id: whitepapers
+    contents:
+      - docs/whitepapers/README.md
+    type: table
+    fields: [title, description]
 ---
 
-A clean, standalone project for federal IT modernization — extracted from source architecture and written for reuse without internal branding.
+# Modernization Workbook
 
-## Start here
+A clean, standalone project for federal IT modernization. Content is written for reuse without internal branding or source-system identifiers.
 
-- [**Principles**](docs/PRINCIPLES.md) — the governing ideas
-- [**SQL Server Identity Transformation**](docs/case-studies/sql-server-narrative/README.md) — from Windows Authentication to cloud identity
-- [**Client-Server to Hybrid-Cloud**](docs/client-server-to-hybrid-cloud/README.md) — the architectural narrative
-- [**Whitepapers**](docs/whitepapers/README.md) — deeper analyses
+## What lives here
+
+- **SQL Server Identity Transformation** — an eleven-book reading sequence on moving from Windows Authentication to cloud identity authentication for SQL Server.
+- **Client-Server to Hybrid-Cloud** — the architectural narrative of the modernization journey.
+- **Whitepapers** — long-form analyses of specific modernization topics.
+- **Principles** — the governing ideas that shape the work.
+- **Compliance Series** — federal compliance documentation organized by volume.
+- **Case Studies** — deployment patterns and lessons learned.
+- **Executive Briefs** — single-page leadership summaries.
+
+## Navigate
+
+### Case Studies
+
+::: {#case-studies}
+:::
+
+### Series
+
+::: {#series}
+:::
+
+### Whitepapers
+
+::: {#whitepapers}
+:::
+
+## Download as DOCX
+
+Every page renders to Microsoft Word (`.docx`) alongside the HTML view. Use the DOCX link in the page header, or access the file directly.
+
+A complete series can be downloaded as a ZIP from the series index pages.
 
 ## Project documents
 
