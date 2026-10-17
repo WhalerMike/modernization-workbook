@@ -4,20 +4,20 @@ subtitle: "Executive Summary — Complete Control Closure Across the Compliance 
 author: "Federal Cloud Services"
 date: "2026-07-29T14:17:00-04:00"
 format:
- html:
- css: lz-style.css
- number-sections: true
- toc: true
- toc-depth: 3
- toc-title: "Contents"
- docx:
- reference-doc: assets/reference-mslearn.docx
- number-sections: true
- fig-width: 6.5
+  html:
+    css: lz-style.css
+    number-sections: true
+    toc: true
+    toc-depth: 3
+    toc-title: "Contents"
+  docx:
+    reference-doc: assets/reference-mslearn.docx
+    number-sections: true
+    fig-width: 6.5
 fig-align: center
 out-width: "100%"
 execute:
- echo: false
+  echo: false
 
 aliases:
  - /customer-documents/federal-aan-series/Vol_0_Book_00_FedAAN_Executive_Summary.html
