@@ -55,7 +55,7 @@ exposes once a Windows Server 2025 host has been brought up through the
 14-phase runbook in
 [`platform-server-build.qmd`](../platform/platform-server-build.qmd) under
 the architecture set by
-[the program decision — UIAO Git Infrastructure](../../../src/uiao/canon/adr/adr-041-uiao-git-infrastructure.md).
+the program decision — UIAO Git Infrastructure.
 
 Where the build guide answers *"how do I install it?"*, this paper answers
 *"once it is installed, what does it talk to, what talks to it, and what
@@ -133,7 +133,7 @@ service**. In the baseline (cold) DR posture, a passive replica exists
 for the 24-hour-RPO / 4-hour-RTO cold-restore target and shares the
 interface contract identically, but only the active node terminates
 client traffic.
-[the program decision — Substrate High Availability](../../../src/uiao/canon/adr/adr-090-substrate-high-availability.md)
+the program decision — Substrate High Availability
 (accepted 2026-06-02) adds an **opt-in hot-standby** posture on top of
 that baseline: a synchronously-replicated standby with split-brain-safe
 (witness-gated) automatic failover, raising the recovery target to
@@ -732,7 +732,7 @@ hop before any group recalculates. Microsoft additionally warns against
 keying dynamic-group rules on attributes that are writable elsewhere — here
 the mitigation is that the facets have exactly one writer, the governance
 plane, and drift against it is a finding rather than an accepted edit.
-See [the hybrid-sync trap](../reference-architecture/orgpath-minimal-implementation.qmd).
+See the hybrid-sync trap.
 
 A move in the HR feed propagates through dynamic-group recalculation
 into a Gitea permission change in roughly fifteen minutes; no
@@ -750,7 +750,7 @@ evaluate` run:
 - **KSI-SI-4 family** — system-monitoring evidence freshness
 - **KSI-RECIP family** (v0.6.0) — reciprocity-record health for the
  ATO surface (see
- [federal-hrit-productization](./federal-hrit-productization.qmd))
+ [federal-hrit-productization](federal-hrit-productization.md))
 
 Failure of any KSI in these families opens an SLA ticket through
 UIAO_167 and gates the next ATO recertification.

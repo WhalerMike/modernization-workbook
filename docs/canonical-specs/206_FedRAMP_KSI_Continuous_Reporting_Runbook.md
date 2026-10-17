@@ -13,7 +13,7 @@ This page renders the canonical the modernization program_206 source verbatim. T
 source is at
 It is the operational companion to the FedRAMP 20x evidence surface
 (the modernization program_138 / the modernization program_139 + the program decision) and to the agency-side migration ceremony in
-the modernization program_205. Per [the program decision](../adr/adr-072-canon-publication-policy.qmd), this
+the modernization program_205. Per the program decision, this
 canonical page is generated as an `include`-style wrapper.
 :::
 

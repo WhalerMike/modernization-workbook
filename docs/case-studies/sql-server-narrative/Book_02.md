@@ -43,5 +43,5 @@ You do not migrate the estate in the shape you discover it. After twenty years a
 
 ::: {.callout-tip}
 ## Continue the series
-[← Previous: Book 01 — The Authentication Inheritance Problem](Book_01.qmd) · [Index](index.qmd) · [Next: Book 03 — Discovery →](Book_03.qmd)
+[← Previous: Book 01 — The Authentication Inheritance Problem](Book_01.md) · [Index](index.md) · [Next: Book 03 — Discovery →](Book_03.md)
 :::

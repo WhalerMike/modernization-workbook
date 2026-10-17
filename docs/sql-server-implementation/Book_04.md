@@ -117,4 +117,4 @@ Arc enrollment is reversible: `azcmagent disconnect` removes the machine resourc
 
 ---
 
-*Companion to [narrative Book 04](../sql-server-narrative/Book_04.qmd). Shipped automation: `tools/powershell/the modernization programSqlServerMigration/` (`Test-the modernization programArcAgentStatus`, `Test-the modernization programArcManagedIdentityToken`, `Test-the modernization programArcSqlExtension`, `Invoke-the modernization programArcOnboarding`) — validation read-only; onboarding review-required (`-WhatIf` by default). Canon: the program decision, the program decision, the directory modernization program Transformation #7.*
+*Companion to narrative Book 04. Shipped automation: `tools/powershell/the modernization programSqlServerMigration/` (`Test-the modernization programArcAgentStatus`, `Test-the modernization programArcManagedIdentityToken`, `Test-the modernization programArcSqlExtension`, `Invoke-the modernization programArcOnboarding`) — validation read-only; onboarding review-required (`-WhatIf` by default). Canon: the program decision, the program decision, the directory modernization program Transformation #7.*

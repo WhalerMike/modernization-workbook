@@ -48,7 +48,7 @@ share a logical store when every request carries a cryptographically verifiable
 statement of who is asking and what they are entitled to, and the store
 enforces scoping on that statement.
 
-![Perimeter model forces fragmentation; token-based zero-trust model permits one shared store across many trust domains](images/ssot-network-physics-cpt02-diagram-01-token-security-consolidation.png){#fig-ssot-cpt02-diagram-01 fig-alt="Blueprint split diagram. Left panel shows a red-dashed perimeter enclosing two separate domain stores with a shared-secret credential risk callout. Right panel shows a central navy shared store served by two ice tenant boxes via teal tid-claim token arrows, with an outbound short-lived token arrow to a PostgreSQL Flexible Server and a green callout stating the highest-value secret is eliminated. White background." width="100%"}
+![Perimeter model forces fragmentation; token-based zero-trust model permits one shared store across many trust domains](../images/ssot-network-physics/ssot-network-physics-cpt02-diagram-01-token-security-consolidation.svg){#fig-ssot-cpt02-diagram-01 fig-alt="Blueprint split diagram. Left panel shows a red-dashed perimeter enclosing two separate domain stores with a shared-secret credential risk callout. Right panel shows a central navy shared store served by two ice tenant boxes via teal tid-claim token arrows, with an outbound short-lived token arrow to a PostgreSQL Flexible Server and a green callout stating the highest-value secret is eliminated. White background." width="100%"}
 
 ## How the modernization program makes this concrete
 

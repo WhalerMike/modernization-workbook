@@ -16,7 +16,7 @@ aliases:
 
 {{< lifecycle-banner >}}
 
-> **LocPath is a second addressing dimension, not a sixteenth the organizational-attribute model facet.** the organizational-attribute model answers *where does this identity sit organizationally*; LocPath answers *where is it physically assigned*. The two are governed symmetrically, queried together as a matrix, and deliberately kept apart — per [the program decision](../../adr/adr-102-locpath-location-addressing.qmd), LocPath claims no `extensionAttribute` slot and never will without its own binding profile. The canonical definition is the [LocPath Codebook (the modernization program_194)](../../canon/the modernization program_194_LocPath_Codebook.qmd).
+> **LocPath is a second addressing dimension, not a sixteenth the organizational-attribute model facet.** the organizational-attribute model answers *where does this identity sit organizationally*; LocPath answers *where is it physically assigned*. The two are governed symmetrically, queried together as a matrix, and deliberately kept apart — per the program decision, LocPath claims no `extensionAttribute` slot and never will without its own binding profile. The canonical definition is the [LocPath Codebook (the modernization program_194)](../../canon/the modernization program_194_LocPath_Codebook.qmd).
 
 ## The problem nobody owns
 
@@ -75,8 +75,8 @@ The rule that keeps this honest: dynamic context **never overrides** the governe
 
 | Layer | Where | What it holds |
 |---|---|---|
-| **Hierarchy** | `src/uiao/canon/data/locpath/location-registry.yaml` (Git) | The governed location nodes, validated against [location.schema.json](../../reference/schemas/location.schema.qmd) + [location-registry.schema.json](../../reference/schemas/location-registry.schema.qmd) |
-| **Translation** | `src/uiao/canon/data/locpath/duty-station-map.yaml` (Git) | The HR `locationCode` → LocPath map, validated against [duty-station-map.schema.json](../../reference/schemas/duty-station-map.schema.qmd); every target must resolve at Site or deeper |
+| **Hierarchy** | `src/uiao/canon/data/locpath/location-registry.yaml` (Git) | The governed location nodes, validated against location.schema.json + location-registry.schema.json |
+| **Translation** | `src/uiao/canon/data/locpath/duty-station-map.yaml` (Git) | The HR `locationCode` → LocPath map, validated against duty-station-map.schema.json; every target must resolve at Site or deeper |
 | **Assignment** | The Primary-LocPath assignment plan, derived per identity | Employee → LocPath + governing Site + provenance |
 | **Authority** | The HR system of record (duty station) | The upstream truth, extending the same doctrine the program decision fixed for organizational placement |
 
@@ -116,7 +116,7 @@ Scope guardrails are doctrine (the program decision §D7), not aspiration:
 
 ## Where to go next
 
-- [the program decision — the decision record](../../adr/adr-102-locpath-location-addressing.qmd): drivers, scope, consequences
+- the program decision — the decision record: drivers, scope, consequences
 - [the modernization program_194 — the LocPath Codebook](../../canon/the modernization program_194_LocPath_Codebook.qmd): path syntax, attribute catalog, governance rules, normative schema
-- [OrgTree — Identity Modernization](orgtree.qmd): the organizational axis this page mirrors
-- [the organizational-attribute model FAQ](orgpath-faq.qmd): operator questions, including how location relates to facets
+- OrgTree — Identity Modernization: the organizational axis this page mirrors
+- the organizational-attribute model FAQ: operator questions, including how location relates to facets

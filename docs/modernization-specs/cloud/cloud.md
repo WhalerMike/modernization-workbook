@@ -28,7 +28,7 @@ substrate. Covers tenant model, authorization boundary treatment, named
 exceptions, in-boundary telemetry, and the canonical claim emissions
 cloud adapters must produce. The spec is GCC-Moderate-anchored;
 boundary-crossing concerns are handled per the
-[Boundary Impact Model](../../architecture-series/boundary-impact-model.qmd).
+[Boundary Impact Model](../../architecture/boundary-impact-model.md).
 
 ![Cloud modernization domain diagram](images/cloud-image-01-cloud-modernization-domain-diagr.png){#fig-cloud-image-01 fig-alt="Center shows the GCC-Moderate authorization boundary as a labeled rectangle. Inside the boundary: M365 GCC-Moderate, Azure Government, in-boundary adapter slots (intune, m365, entra-id, scubagear). Outside the boundary on the right: two named Commercial exceptions per the program decision — Amazon Connect (FedRAMP Moderate / AWS GovCloud), SailPoint NERM (FedRAMP Moderate / AWS GovCloud). Each exception is connected to the boundary by a labeled arrow showing its authorizing ADR. Below the diagram, a footer band reads \"gcc-boundary schema: discrete enum values per ADR\". Clean engineering blueprint style, dark navy (#0D1B2E) and teal (#1E8C8C) on white background. No photographs, purely diagrammatic." width="100%"}
 
@@ -96,7 +96,7 @@ boundary-aware OSCAL emission possible.
 The cloud domain maps onto NIST 800-53 SC / SI / SR families and onto
 FedRAMP CR26 cloud-specific controls. Where GCC-Moderate feature gaps
 require compensation (per the
-[Boundary Impact Model](../../architecture-series/boundary-impact-model.qmd)),
+[Boundary Impact Model](../../architecture/boundary-impact-model.md)),
 the spec requires an explicit compensating-mechanism declaration in
 the OSCAL package.
 
@@ -125,11 +125,11 @@ the OSCAL package.
 ## Validation pairing
 
 Pairs with the
-[Cloud Validation Suite](../../validation-suites/domains/cloud/cloud.qmd).
+Cloud Validation Suite.
 
 ## Related documents
 
-- [Modernization Specs Index](../index.qmd)
-- [Architecture Series — Boundary Impact Model](../../architecture-series/boundary-impact-model.qmd)
-- [GCC Moderate Solution Architecture (canon)](../../../docs/gcc-boundary-solution-architecture.qmd)
-- [the program decision: Named Commercial Exceptions](../../../../src/uiao/canon/adr/adr-059-sailpoint-adapter-family.md)
+- Modernization Specs Index
+- [Architecture Series — Boundary Impact Model](../../architecture/boundary-impact-model.md)
+- GCC Moderate Solution Architecture (canon)
+- the program decision: Named Commercial Exceptions

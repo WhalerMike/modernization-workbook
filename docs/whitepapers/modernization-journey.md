@@ -1122,7 +1122,7 @@ which carries the federal control-closure framing (NIST 800-53, FedRAMP
 book names no automation engine at all --- the the compliance series series is
 adoptable on its own --- so **this appendix is the canonical home of the
 mapping below.** The modernization pillar's curated entry points for the
-arc are collected at the [OrgMod hub](../../orgmod/index.md).
+arc are collected at the OrgMod hub.
 
 Acts 1--3 are the agency's lived history and are not canon claims. Act 4
 is anchored --- here is the line-by-line provenance, including where
@@ -1131,7 +1131,7 @@ earlier framings were corrected to match canon.
  ----------------------------------------------------------------------------------------------------------------------------------------------------------
  Narrative claim Canon anchor Reconciliation note
  ----------------------- ---------------------------------------------------------------------------------------------------------- -----------------------
- Separate truth from [the program decision §1](../../../src/uiao/canon/adr/adr-092-active-governance.md) Verbatim doctrine; the
+ Separate truth from the program decision §1 Verbatim doctrine; the
  runtime enforcement; AD spine of Act 4.
  conflated directory + 
  DC 
@@ -1146,13 +1146,13 @@ earlier framings were corrected to match canon.
  the organizational-attribute model." Decisions
  *compose against* it.
 
- Application-aware [the program decision](../../../src/uiao/canon/adr/adr-066-application-aware-networking-and-token-bound-transport.md) Proposed (amended by
+ Application-aware the program decision Proposed (amended by
  networking; token-bound the program decision); generalized
  per-call transport by accepted the program decision.
  "Session is no longer a
  canonical concept."
 
- Vendor products (SD-WAN [the program decision §2](../../../src/uiao/canon/adr/adr-092-active-governance.md), **Softened:** canon
+ Vendor products (SD-WAN the program decision §2, **Softened:** canon
  platform, cloud [Book_17](../orgpath-narrative/Book_17.md) names a neutral
  on-ramp) `sdwan-fabric` slot,
  Azure Policy,
@@ -1163,16 +1163,16 @@ earlier framings were corrected to match canon.
  incorporated as
  providers.
 
- Session→token identity; [the program decision](../../../src/uiao/canon/adr/adr-068-kerberos-ntlm-elimination.md), Canonical. NTLM
- CBA replaces Kerberos [the program decision](../../../src/uiao/canon/adr/adr-004-workload-identity-federation-default.md) elimination + CBA +
+ Session→token identity; the program decision, Canonical. NTLM
+ CBA replaces Kerberos the program decision elimination + CBA +
  Cloud Kerberos trust.
 
- Active Governance; [the program decision §3--4](../../../src/uiao/canon/adr/adr-092-active-governance.md) Verbatim; the keystone
+ Active Governance; the program decision §3--4 Verbatim; the keystone
  L0--L4 ladder; federal of the way forward.
  L3 ceiling 
 
- Restore single source [the program decision](../../../src/uiao/canon/adr/adr-074-drift-ssot-contention.md), Canonical, framed as
- of truth / provenance [the program decision](../../../src/uiao/canon/adr/adr-040-drift-engine.md) **governance /
+ Restore single source the program decision, Canonical, framed as
+ of truth / provenance the program decision **governance /
  accountability /
  integrity**.
  Program-integrity

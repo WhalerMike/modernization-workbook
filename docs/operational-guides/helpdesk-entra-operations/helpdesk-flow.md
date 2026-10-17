@@ -212,7 +212,7 @@ ServiceNow, with the Entra audit-log reference attached.
 ::: {.callout-note title="Companion kit"}
 The runnable companion — the implementation-path guide, the routing module, and
 the request-triage classifier — ships in the
-[Help Desk / Cloud Services Operations Kit](../../../download/index.qmd#help-desk--cloud-services).
+Help Desk / Cloud Services Operations Kit.
 This page is reference material for review and adaptation, not validated against a
 live tenant; pilot the Exchange rule and Inbound Email Action before tenant-wide
 enablement.

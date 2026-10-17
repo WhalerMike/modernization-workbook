@@ -43,5 +43,5 @@ An upstream application that has migrated its user authentication to Entra ID bu
 
 ::: {.callout-tip}
 ## Continue the series
-[← Previous: Book 07 — Access Control](Book_07.qmd) · [Index](index.qmd) · [Next: Book 09 — The Transformed Posture →](Book_09.qmd)
+[← Previous: Book 07 — Access Control](Book_07.md) · [Index](index.md) · [Next: Book 09 — The Transformed Posture →](Book_09.md)
 :::

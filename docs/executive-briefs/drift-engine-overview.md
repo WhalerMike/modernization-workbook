@@ -57,11 +57,11 @@ the modernization program uses five classes (verbatim from the Drift Detection S
 
 ## Where to go deeper
 
-- **[Architecture Series — Drift Engine](../architecture-series/drift-engine.qmd)** —
+- **Architecture Series — Drift Engine** —
   the design-level treatment of the six-phase loop and taxonomy.
-- **[Reference Architecture — Drift Walkthrough](../reference-architecture/drift-walkthrough.qmd)** —
+- **[Reference Architecture — Drift Walkthrough](../reference-architecture/drift-walkthrough.md)** —
   a concrete, end-to-end detection example.
-- **[Governance OS Overview](governance-os-overview.qmd)** — how drift fits the
+- **[Governance OS Overview](governance-os-overview.md)** — how drift fits the
   broader substrate operating model.
 
 **Leadership takeaway:** the modernization program already ships structural/provenance drift enforcement in CI, with the same taxonomy and severity contract extending to runtime semantic, authorization, and identity drift as those controls are completed.

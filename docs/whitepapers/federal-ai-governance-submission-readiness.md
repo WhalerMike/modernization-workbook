@@ -55,7 +55,7 @@ the three moves that most raise win probability.
 
 ## What M-25-21 actually requires
 
-Per [the program decision](/docs/adr/adr-112-federal-ai-usecase-governance.html) and Book 21
+Per the program decision and Book 21
 Chapter 2:
 
 1. **Seven minimum risk-management practices for high-impact AI**, set by
@@ -105,7 +105,7 @@ that gap, and saying which practices need evidence from outside the inventory,
 is a more credible differentiator than claiming to satisfy a gate that does not
 exist.
 
-![M-25-21 coverage ledger — deployed versus proposed](images/federal-ai-governance-submission-readiness-diagram-01-m2521-coverage-ledger.png){#fig-federal-ai-diagram-01 fig-alt="Nine-row status ledger titled M-25-21 Coverage Ledger — Deployed vs. Proposed, columns Requirement/Capability, UIAO Mechanism, State. Four teal Active rows above a red dashed \"deployed core above this line\" divider: owner anchor / the organizational-attribute model placement (Active, Microsoft), drift detection via the six-phase drift engine (Active), provenance-anchored evidence (Active), and SaaS deployment — Azure Container Apps the program decision with AWS CDK the program decision (Active Azure / IaC landed AWS). Below the divider, grey rows: AI system as governed identity record — AISystemRecord UIAO_196 with the ai_inventory L1 scanner (Scanner built, the program decision Proposed); ATO enumeration and reciprocity reconciliation (Active / Proposed); multi-cloud / non-MS IdP storage via binding profiles (Proposed / Profile-only); agentic-AI P1 finding (Proposed); and an ice-blue Reserved row for the SailPoint NERM non-employee branch. Bottom evaluator note: demo surface today is Microsoft/Entra plus drift plus evidence; SailPoint and GCP/VMware bindings are roadmap; the AI scanner is built and awaits the program decision activation. White background, navy/teal/ice palette." width="100%"}
+![M-25-21 coverage ledger — deployed versus proposed](../images/whitepapers/federal-ai-governance-submission-readiness-diagram-01-m2521-coverage-ledger.svg){#fig-federal-ai-diagram-01 fig-alt="Nine-row status ledger titled M-25-21 Coverage Ledger — Deployed vs. Proposed, columns Requirement/Capability, UIAO Mechanism, State. Four teal Active rows above a red dashed \"deployed core above this line\" divider: owner anchor / the organizational-attribute model placement (Active, Microsoft), drift detection via the six-phase drift engine (Active), provenance-anchored evidence (Active), and SaaS deployment — Azure Container Apps the program decision with AWS CDK the program decision (Active Azure / IaC landed AWS). Below the divider, grey rows: AI system as governed identity record — AISystemRecord UIAO_196 with the ai_inventory L1 scanner (Scanner built, the program decision Proposed); ATO enumeration and reciprocity reconciliation (Active / Proposed); multi-cloud / non-MS IdP storage via binding profiles (Proposed / Profile-only); agentic-AI P1 finding (Proposed); and an ice-blue Reserved row for the SailPoint NERM non-employee branch. Bottom evaluator note: demo surface today is Microsoft/Entra plus drift plus evidence; SailPoint and GCP/VMware bindings are roadmap; the AI scanner is built and awaits the program decision activation. White background, navy/teal/ice palette." width="100%"}
 
 ## Coverage ledger — deployed vs. proposed
 
@@ -154,7 +154,7 @@ joiner/mover/leaver lifecycle in the
  guide](../operational-guides/ai-identity-governance/index.qmd) is the kit
  that will operationalize it; it is proposed, not yet deployed.
 
-![Three moves that most raise win probability](images/federal-ai-governance-submission-readiness-diagram-02-three-moves-win-probability.png){#fig-federal-ai-diagram-02 fig-alt="Three dark-navy columns labeled Move 1, Move 2, Move 3 with teal headers and teal action boxes. Move 1: Lead with deployed core, stage the rest honestly - demo live Entra facet stamping plus drift plus M-25-21-as-IAM. Move 2: Resolve the authorization story explicitly - state UIAO operates inside customer boundary, SailPoint NERM FedRAMP-Moderate on AWS GovCloud. Move 3: Activate one non-Microsoft target end-to-end - Keycloak recommended path. Bottom ice-blue bar summarizes bottom line. White background, navy/teal/ice palette." width="100%"}
+![Three moves that most raise win probability](../images/whitepapers/federal-ai-governance-submission-readiness-diagram-02-three-moves-win-probability.svg){#fig-federal-ai-diagram-02 fig-alt="Three dark-navy columns labeled Move 1, Move 2, Move 3 with teal headers and teal action boxes. Move 1: Lead with deployed core, stage the rest honestly - demo live Entra facet stamping plus drift plus M-25-21-as-IAM. Move 2: Resolve the authorization story explicitly - state UIAO operates inside customer boundary, SailPoint NERM FedRAMP-Moderate on AWS GovCloud. Move 3: Activate one non-Microsoft target end-to-end - Keycloak recommended path. Bottom ice-blue bar summarizes bottom line. White background, navy/teal/ice palette." width="100%"}
 
 ## The three moves that most raise win probability
 
@@ -181,9 +181,9 @@ one activated non-Microsoft target — both achievable without new doctrine.
 
 ## References
 
-- [the program decision — Federal AI Use Case Governance](/docs/adr/adr-112-federal-ai-usecase-governance.html)
-- [the program decision — Single-ATO Reciprocity](/docs/adr/adr-054-single-ato-reciprocity.html)
-- [the program decision — Active Governance](/docs/adr/adr-092-active-governance.html)
-- [Choose Your Partners — The the organizational-attribute model Composability Matrix](orgpath-composability-matrix.qmd)
+- the program decision — Federal AI Use Case Governance
+- the program decision — Single-ATO Reciprocity
+- the program decision — Active Governance
+- Choose Your Partners — The the organizational-attribute model Composability Matrix
 - [the compliance series Vol I Book 03 — Machine and Workload Identity](../orgcomp-series/Vol_I_Book_03_the compliance series_Certificates_Tokens_Cryptographic_Identity.qmd)
-- [Book 21 — the organizational-attribute model and Federal AI Governance](../orgpath-narrative/Book_21.qmd)
+- Book 21 — the organizational-attribute model and Federal AI Governance

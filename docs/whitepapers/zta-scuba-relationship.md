@@ -157,7 +157,7 @@ ZT-only (Microsoft Purview).
  maturity side: in a GCC-Moderate tenant, ZTMM maturity in the Identity,
  Devices, and Networks pillars is structurally capped near Initial without
  agency-built analytics — see the
- [B.1 boundary model §4](../orgcomp-series/boundary/B1-gcc-moderate-boundary-model.qmd).
+ B.1 boundary model §4.
 - **Treat all output as Controlled.** Both reports are effectively a map of where
  the tenant is weak; keep them in-boundary and remediate through normal
  change-control.
@@ -172,7 +172,7 @@ uiao zta overlap --input .\ZeroTrustAssessmentReport.html # shared vs ZT-only fo
 uiao zta remediate --input .\ZeroTrustAssessmentReport.html -o . # per-finding fix guidance
 ```
 
-See the [Zero Trust Assessment Dashboard guide](../operational-guides/zero-trust-assessment/index.qmd)
+See the [Zero Trust Assessment Dashboard guide](../operational-guides/zero-trust-assessment/index.md)
 for the full workflow. UIAO treats both ScubaGear and the Zero Trust Assessment
 as evidence sources it incorporates — not competitors — and reconciles their
 findings in a common, control-mapped evidence layer.

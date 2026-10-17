@@ -29,7 +29,7 @@ covering all consuming agencies**, with per-agency differences expressed as
 
 ## How reciprocity is recorded
 
-Per [the modernization program_140](../../../src/uiao/canon/specs/single-ato-reciprocity-model.md),
+Per the modernization program_140,
 each consuming agency receives a **signed reciprocity record** — not a new
 authorization, but a cryptographic acknowledgement that it operates under the
 controlling ATO. the modernization program ships the full operational surface today:
@@ -59,7 +59,7 @@ any file breaks the manifest hash.
 
 "Configuration-only differentiation" is not a loophole. Each agency's elections
 are bounded by the SSP's latitude table, and deviations surface as first-class
-[drift findings](drift-engine-overview.qmd): a configuration the SSP forbids is a
+[drift findings](drift-engine-overview.md): a configuration the SSP forbids is a
 `DRIFT-AUTHZ` P1; an unrecognized tenant principal is a `DRIFT-IDENTITY` P1.
 Eight KSIs (**KSI-RECIP-001..008**) continuously check the program's health —
 legal-basis citation, controlling-ATO linkage, no silent expirations, SSP cadence
@@ -89,12 +89,12 @@ be continuously proven.
 
 ## Where to go deeper
 
-- **[Federal HRIT Productization whitepaper](../whitepapers/federal-hrit-productization.qmd)** —
+- **[Federal HRIT Productization whitepaper](../whitepapers/federal-hrit-productization.md)** —
   the primary narrative: how authoritative HR events flow into Entra ID under a
   single ATO, with reciprocity as a byproduct of normal operations.
-- **[KSI Conformance Overview](ksi-conformance-overview.qmd)** — the KSI-RECIP
+- **[KSI Conformance Overview](ksi-conformance-overview.md)** — the KSI-RECIP
   family in context.
-- **[Evidence Fabric Overview](evidence-fabric-overview.qmd)** — the signing and
+- **[Evidence Fabric Overview](evidence-fabric-overview.md)** — the signing and
   provenance substrate the bundles rely on.
 
 ## Leadership takeaway

@@ -27,14 +27,14 @@ closes that gap.
 
 It is runnable **two ways**:
 
-- a **[manual path](manual-path.qmd)** — a standalone agency runbook that
+- a **manual path** — a standalone agency runbook that
   applies M-25-21 identity governance without any external control plane; and
-- a **[the modernization program / the organizational-attribute model-governed path](governed-path.qmd)** — the same outcome,
+- a **[the modernization program / the organizational-attribute model-governed path](governed-path.md)** — the same outcome,
   with every AI system's identity record bound to the organizational-attribute model, the drift engine,
   and the ATO reciprocity model.
 
 ::: {.callout-tip title="Download the runnable kit"}
-[**Invoke-AIInventoryScan.ps1**](scripts/Invoke-AIInventoryScan.ps1) scans
+**Invoke-AIInventoryScan.ps1** scans
 your agency's OMB inventory extract for identity governance gaps and produces a
 prioritized findings report. No external dependencies; runs anywhere
 PowerShell 7 is available.
@@ -71,7 +71,7 @@ enable.
 ## Background reading
 
 This kit is the operational realization of
-[Book_21 — the organizational-attribute model and Federal AI Governance](../../orgpath-narrative/Book_21.qmd).
+Book_21 — the organizational-attribute model and Federal AI Governance.
 Chapter 1 of that book explains why the AI identity surface is invisible and
 what goes wrong when it is. This guide is the tool that makes it visible. The
 [Federal AI Governance — Submission Readiness
@@ -81,9 +81,9 @@ this kit as the path to operationalizing the
 
 The normative specifications are:
 
-- [the program decision — Federal AI Use Case Governance](/docs/adr/adr-112-federal-ai-usecase-governance.html)
+- the program decision — Federal AI Use Case Governance
 - [the modernization program_196 — AI System Identity Record](/docs/specs/Spec4-AI-D1.1-AISystemIdentityRecord.html)
-- [the program decision — Active Governance](/docs/adr/adr-092-active-governance.html)
+- the program decision — Active Governance
 
 ## Deployment options
 
@@ -97,4 +97,4 @@ finding types are produced without connecting to any external system.
 **the organizational-attribute model-governed (the modernization program adopters):** The `ai-inventory-governance` adapter
 slot (`adapter-registry.yaml`) binds scanner output to the organizational-attribute model, the drift
 engine, and the the program decision ATO reciprocity model. See
-[governed path](governed-path.qmd) for activation steps.
+[governed path](governed-path.md) for activation steps.

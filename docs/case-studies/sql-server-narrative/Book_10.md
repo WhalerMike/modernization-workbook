@@ -43,5 +43,5 @@ This book documents a **"Not Yet Defined"** gap from the transformation inventor
 
 ::: {.callout-tip}
 ## Continue the series
-[← Previous: Book 09 — The Transformed Posture](Book_09.qmd) · [Index](index.qmd)
+[← Previous: Book 09 — The Transformed Posture](Book_09.md) · [Index](index.md)
 :::

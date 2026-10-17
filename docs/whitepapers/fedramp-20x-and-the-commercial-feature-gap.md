@@ -94,7 +94,7 @@ mechanisms actually exist for changing it, and — as important — which do not
 ## Relationship to existing papers
 This paper supplies the framework and vendor-documentation half of the
 argument. The telemetry half lives in
-[B.1.3 - Rebuilding Boundary-Blocked Analytics](../orgcomp-series/boundary/B1-3-rebuilding-boundary-blocked-analytics.qmd),
+B.1.3 - Rebuilding Boundary-Blocked Analytics,
 which carries the per-signal rebuild analysis, and in
 `gcc-moderate-telemetry-gaps.yaml`, which remains authoritative over both. Only
 the **eight vendor-confirmed** rows of that register are used here. The former
@@ -356,7 +356,7 @@ documentation contains no FedRAMP reference at all. The Marketplace does, and it
 was read on 9 September 2026. The certified offering is **`MSO365MT`** —
 **Class C (Moderate)**, FedRAMP Certified since 2014-11-20, **99
 authorizations** across roughly ninety agencies. See
-[FINDING-PGM-006](../../findings/gcc-marketplace-listing-class-d-in-process.qmd).
+FINDING-PGM-006.
 
 So "GCC-Moderate" is right about the level and loose about the name — but the
 claim needs stating more narrowly than it was. **"GCC Moderate" is not a
@@ -431,13 +431,13 @@ three of them are strengthened rather than weakened by 20x.
 - FedRAMP Consolidated Rules for 2026, official ruleset `2026.06.24.01`, vendored
  at `src/uiao/canon/compliance/reference/fedramp-cr26/official/` — the primary
  rules authority per the program decision D1
-- [the program decision — FedRAMP 20x Boundary Model Refinement](../../adr/adr-141-fedramp-20x-boundary-model-refinement.qmd)
-- [the program decision — FedRAMP 20x Integration](../../adr/adr-106-fedramp-20x-integration.qmd)
-- [FINDING-PGM-005 — FedRAMP 20x has no CSP authorization boundary](../../findings/fedramp-20x-replaces-the-authorization-boundary.qmd)
+- the program decision — FedRAMP 20x Boundary Model Refinement
+- the program decision — FedRAMP 20x Integration
+- FINDING-PGM-005 — FedRAMP 20x has no CSP authorization boundary
 - `src/uiao/canon/data/gcc-moderate-telemetry-gaps.yaml` — authoritative over the
  telemetry gap matrix
 - Microsoft Docset Cross-Check, 4 September 2026 — Microsoft 365 for enterprise
  (o365-worldwide) docset, 1,529 pages, generated 22 August 2026. All Microsoft
  facts in this paper trace to that cross-check's page citations.
-- [B.1 GCC-Moderate Boundary Model](../orgcomp-series/boundary/B1-gcc-moderate-boundary-model.qmd),
+- B.1 GCC-Moderate Boundary Model,
  §0 — terminology

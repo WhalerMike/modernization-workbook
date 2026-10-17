@@ -13,7 +13,7 @@ This page renders the canonical the modernization program_002 source verbatim. T
 authoritative source is at
 A customer-audience value narrative is at
 [SCuBA Value Proposition (the modernization program_005)](the modernization program_005_SCuBA_Value_Proposition_v1.0.qmd).
-Per [the program decision](../adr/adr-072-canon-publication-policy.qmd), this
+Per the program decision, this
 canonical page is generated as an `include`-style wrapper.
 :::
 

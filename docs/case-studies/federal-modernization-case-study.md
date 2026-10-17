@@ -28,14 +28,14 @@ metrics, and timelines are intentionally absent until real engagement
 material is reviewed and cleared for external release.
 :::
 
-![End-to-end federal modernization engagement diagram](images/federal-modernization-case-study-image-01-end-to-end-federal-modernization.png){#fig-federal-modernization-case-study-image-01 fig-alt="Horizontal program timeline with five phases: (1) Substrate Adoption, (2) Identity Modernization, (3) Boundary Treatment, (4) Continuous Drift Tempo, (5) ATO Package Migration. Each phase shows substrate artifacts produced (canon authored, adapters registered, evidence emitted, drift findings remediated). Across the bottom, a continuous \"Substrate truth (deterministic evidence)\" bar indicates ATO-package readiness across all phases. To the right, an outcome panel listing four AO-visible properties: per-plane control narrative, canon citations, drift findings between audits, reproducible bundles. Clean engineering blueprint style, dark navy (#0D1B2E) and teal (#1E8C8C) on white background. No photographs, purely diagrammatic." width="100%"}
+![End-to-end federal modernization engagement diagram](../images/case-studies/federal-modernization-case-study-image-01-end-to-end-federal-modernization.png){#fig-federal-modernization-case-study-image-01 fig-alt="Horizontal program timeline with five phases: (1) Substrate Adoption, (2) Identity Modernization, (3) Boundary Treatment, (4) Continuous Drift Tempo, (5) ATO Package Migration. Each phase shows substrate artifacts produced (canon authored, adapters registered, evidence emitted, drift findings remediated). Across the bottom, a continuous \"Substrate truth (deterministic evidence)\" bar indicates ATO-package readiness across all phases. To the right, an outcome panel listing four AO-visible properties: per-plane control narrative, canon citations, drift findings between audits, reproducible bundles. Clean engineering blueprint style, dark navy (#0D1B2E) and teal (#1E8C8C) on white background. No photographs, purely diagrammatic." width="100%"}
 
 ## Engagement archetype
 
 A federal agency executes a multi-quarter modernization program
 spanning identity, cloud boundary, telemetry, and zero-trust
 controls. The program touches every concern in the
-[Executive Governance Series](../executive-governance-series/index.qmd):
+Executive Governance Series:
 fragmented identity, uncorrelated telemetry, point-in-time evidence,
 boundary opacity. the modernization program's intervention is structural — adopting the
 substrate as the governance OS underneath the existing tool stack
@@ -69,15 +69,15 @@ effect: structural drift becomes visible.
 ### Phase 2 — identity modernization
 
 Apply the identity-modernization pattern (see
-[Identity Case Study](identity-modernization-case-study.qmd) and
-[Modernization Governance Whitepaper](../whitepapers/modernization-governance-whitepaper.qmd)):
+[Identity Case Study](identity-modernization-case-study.md) and
+[Modernization Governance Whitepaper](../whitepapers/modernization-governance-whitepaper.md)):
 canon-first AODIM model, modernization adapters, drift-driven
 cleanup, cutover, post-cutover.
 
 ### Phase 3 — boundary treatment
 
 Apply the cloud-boundary pattern (see
-[Cloud Boundary Case Study](cloud-boundary-case-study.qmd)): boundary
+[Cloud Boundary Case Study](cloud-boundary-case-study.md)): boundary
 probe, in-boundary telemetry, compensating enforcement, ATO
 documentation surface.
 
@@ -163,9 +163,9 @@ is documented when reviewed material is available.
 
 ## Related documents
 
-- [Whitepaper — the modernization program Governance OS](../whitepapers/uiao-governance-os-whitepaper.qmd)
-- [Executive Governance Series](../executive-governance-series/index.qmd)
-- [Identity Case Study](identity-modernization-case-study.qmd)
-- [Cloud Boundary Case Study](cloud-boundary-case-study.qmd)
-- [Program Vision (canon)](../../docs/06_ProgramVision.qmd)
-- [Modernization Timeline (canon)](../../docs/08_ModernizationTimeline.qmd)
+- Whitepaper — the modernization program Governance OS
+- Executive Governance Series
+- [Identity Case Study](identity-modernization-case-study.md)
+- [Cloud Boundary Case Study](cloud-boundary-case-study.md)
+- Program Vision (canon)
+- Modernization Timeline (canon)

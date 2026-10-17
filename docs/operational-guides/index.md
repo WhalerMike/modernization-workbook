@@ -21,12 +21,12 @@ Modernization**, one of the four operational expressions of the the modernizatio
 substrate (alongside the organizational-attribute model, which governs, Compliance, which proves
 compliance, and OrgLink, which governs external interconnection) —
 adoptable together or entirely independently. The
-[OrgMod hub](../../orgmod/index.qmd) is the pillar's front door.
+OrgMod hub is the pillar's front door.
 
 **[operational-guides-bundle.docx]** — every page in this section (all sub-categories, including the the organizational-attribute model implementation guides) concatenated into one Word document. Regenerated on every site deploy.
 
 For just the the organizational-attribute model Intune & Azure Arc deployment path, grab the focused
-[the organizational-attribute model implementation guide bundle](orgpath-implementation/index.html#downloads).
+the organizational-attribute model implementation guide bundle.
 :::
 
 ::: {.callout-note title="Five sub-sections here belong to a sibling pillar"}
@@ -40,17 +40,17 @@ happens to bind the organizational-attribute model, such as the
 is still OrgMod.
 
 Four sub-sections are the organizational-attribute model's and ship in the
-[the organizational-attribute model kit](../../download/index.qmd#orgpath-governance-series):
+the organizational-attribute model kit:
 
-- [the organizational-attribute model implementation](orgpath-implementation/index.html) — the seven-step rollout.
+- the organizational-attribute model implementation — the seven-step rollout.
 - [Active Governance Directory](active-governance-directory/index.html) — the in-path LDAP projection of the the organizational-attribute model substrate.
 - [Federal AI identity governance](ai-identity-governance/index.html) — the organizational-attribute model governance applied to the M-25-21 AI inventory.
 - [Help Desk / Cloud Services — Entra ID operations](helpdesk-entra-operations/index.html) — the steady-state authority model for an already-hybrid estate.
 
 One is Compliance's and ships in the
-[Compliance kit](../../download/index.qmd#federal-organization-compliance-series):
+Compliance kit:
 
-- [SIEM Telemetry Emission](siem-telemetry-emission/index.html) — the *emission* side of the evidence pipeline whose *consumption* side is [Vol III Book 06](../orgcomp-series/Vol_III_Book_06_Compliance_SIEM_XDR_Detection.qmd).
+- SIEM Telemetry Emission — the *emission* side of the evidence pipeline whose *consumption* side is [Vol III Book 06](../compliance/Vol_III_Book_06_SIEM_XDR_Detection.md).
 
 Every page in this tree reaches exactly one of the three kits; the section
 bundle above still carries all of them.
@@ -63,7 +63,7 @@ domain-joined devices — and governs its replacement in the Hybrid-Cloud
 target surface of Entra ID, Intune, Azure Arc, IPAM, SASE, and Zero Trust.
 
 ::: {.callout-note title="Narrative entry point"}
-New here? Start with [Client-Server to Hybrid-Cloud](client-server-to-hybrid-cloud/index.html)
+New here? Start with Client-Server to Hybrid-Cloud
 — the 11-chapter narrative series that walks the full transformation arc,
 from AD's hidden governance surface to the Hybrid-Cloud access plane.
 :::
@@ -74,7 +74,7 @@ from AD's hidden governance surface to the Hybrid-Cloud access plane.
 |---|---|---|
 | [A. Platform Substrate](platform-substrate/index.html) | WS2025, IIS, Gitea, Kerberos, PKI, backup, hardening — the host that runs everything | 8 |
 | [B. Transformation Engine](transformation-engine/index.html) | PowerShell + Python + API scripts that analyse, plan, and deliver | 7 |
-| [C. Identity (OrgTree / MOD_\*)](identity-orgtree/index.html) | the organizational-attribute model, dynamic groups, AUs, delegation, migration runbook | 11 |
+| C. Identity (OrgTree / MOD_\*) | the organizational-attribute model, dynamic groups, AUs, delegation, migration runbook | 11 |
 | [D. Directory Migration (DM_\*)](directory-migration/index.html) | IPAM, DNS, DHCP, PKI, RADIUS, LDAP, sync, devices, NTP, DFS, SPN, Trusts | 12 |
 | [E. Target Surface](target-surface/index.html) | Entra ID, Intune, Azure Arc, M365, AUs, CA, PIM | 7 |
 | [F. Access Plane](access-plane/index.html) | MFA, Zero Trust, SASE, CBA, PAM, break-glass | 6 |
@@ -86,19 +86,19 @@ from AD's hidden governance surface to the Hybrid-Cloud access plane.
 Guides that span several of the sub-categories above rather than sitting
 inside one of them:
 
-- [SIEM Telemetry Emission](siem-telemetry-emission/index.html) — configuring
+- SIEM Telemetry Emission — configuring
   Entra ID, Azure, and Microsoft 365 to emit audit events to a SIEM at the
   fidelity and retention OMB M-26-14, NIST SP 800-53, CISA, and FedRAMP
   require. Touches Target Surface (E), Access Plane (F), and Program
   Management (H); the emission side of the evidence pipeline whose
   consumption side is
-  [Vol III Book 06](../orgcomp-series/Vol_III_Book_06_Compliance_SIEM_XDR_Detection.qmd).
+  [Vol III Book 06](../compliance/Vol_III_Book_06_SIEM_XDR_Detection.md).
   Because that is what it is, it ships in the **Compliance** kit's
   `Evidence_Emission/` folder rather than the OrgMod one — see the note above.
 
 ## Flagship narrative
 
-- [Client-Server to Hybrid-Cloud](client-server-to-hybrid-cloud/index.html) — 11 chapters
+- Client-Server to Hybrid-Cloud — 11 chapters
   covering the full modernization arc from AD forest to governed Hybrid-Cloud
   target surface.
 
@@ -112,7 +112,7 @@ Every page respects:
   confidentiality, integrity, or availability of federal information — not
   by a drawn network perimeter. Resources and most metadata that meet
   neither prong sit outside the assessed scope. See
-  [the program decision](../../adr/adr-106-fedramp-20x-integration.html).
+  the program decision.
 - **Deployment boundary:** GCC-Moderate for M365 SaaS; IaaS (Arc, Azure) per
   the program decision commercial-FedRAMP exception. This is a deployment fact about
   where the estate runs, distinct from the assessment scope above.
@@ -121,7 +121,7 @@ Every page respects:
   Rules for 2026 (CR26)** catalog — 10 themes, 46 indicators — not an SSP
   narrative. CR26 is mandatory for all FedRAMP stakeholders from
   **2027-01-01**; no new Rev5 certifications are issued after 2027-06-11.
-  See [the program decision](../../adr/adr-126-fedramp-cr26-official-rules-adoption.html).
+  See the program decision.
 - **Source of truth:** every target surface state derives from a canonical
   plan stored in Gitea. the modernization program does not mutate SSOT; it governs it.
 - **Determinism:** the same inputs produce the same outputs. No hidden state,

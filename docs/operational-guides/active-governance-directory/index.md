@@ -33,13 +33,13 @@ feed it, and how its write path behaves.
 The doctrine lives in four ADRs — read them for the *why*; this guide is the
 *how*:
 
-- [the program decision — the in-path read projection and the read-only data-plane exception](../../../adr/adr-100-active-governance-directory-ldap.qmd)
-- [the program decision — SASL/GSSAPI (Kerberos) gate-only bind](../../../adr/adr-101-active-governance-directory-sasl-kerberos.qmd)
-- [the program decision — writes as governed intent, not store mutation](../../../adr/adr-109-active-governance-directory-write-as-intent.qmd)
-- [the program decision — the read-only AD-compatibility schema veneer](../../../adr/adr-110-active-governance-directory-ad-schema-veneer.qmd)
+- the program decision — the in-path read projection and the read-only data-plane exception
+- the program decision — SASL/GSSAPI (Kerberos) gate-only bind
+- the program decision — writes as governed intent, not store mutation
+- the program decision — the read-only AD-compatibility schema veneer
 
 The command surface is summarized in the
-[CLI reference §3.12](../../../docs/cli-reference.qmd); this guide is the
+CLI reference §3.12; this guide is the
 deployment narrative around it.
 
 ## 1. What the AGD is — and is not

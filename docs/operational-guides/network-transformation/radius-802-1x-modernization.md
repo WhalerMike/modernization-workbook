@@ -38,7 +38,7 @@ experience, it is a total access failure.
 
 DM_030 is rated **CRITICAL** in the directory-migration adapter priority
 matrix for that reason; see
-[Directory Migration Adapters — RADIUS / Network Policy Server](../../../customer-documents/reference-architecture/adapters.qmd#radius)
+[Directory Migration Adapters — RADIUS / Network Policy Server](../../reference-architecture/adapters.md#radius)
 for the full risk profile and migration sequence.
 
 ## Registered implementations
@@ -62,7 +62,7 @@ for the full risk profile and migration sequence.
 ## What goes here when this scaffold is filled in
 
 A complete G.6 guide will mirror the structure of
-[G.3 DNS Modernization](dns-modernization.qmd):
+[G.3 DNS Modernization](dns-modernization.md):
 
 1. **Landscape decomposition** — current NPS policies, RADIUS clients
    (APs, VPN concentrators, switches), AD-group dependencies, EAP-method
@@ -82,6 +82,6 @@ A complete G.6 guide will mirror the structure of
 
 - [DM_030 RADIUS / NPS Adapter Interface]
   — canonical adapter spec
-- [Directory Migration Adapters — RADIUS](../../../customer-documents/reference-architecture/adapters.qmd#radius)
+- [Directory Migration Adapters — RADIUS](../../reference-architecture/adapters.md#radius)
   — narrative view with priority matrix
-- [G. Network Transformation — index](index.qmd) — sibling leaves
+- [G. Network Transformation — index](index.md) — sibling leaves

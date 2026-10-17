@@ -243,18 +243,18 @@ Boundaries matter as much as capabilities:
 
 Pointers to the latest additions on both sides of the project:
 
-**New on GitHub** ([whalermike/uiao](https://github.com/whalermike/uiao))
+**New on GitHub** (whalermike/uiao)
 
-- [CHANGELOG.md](https://github.com/whalermike/uiao/blob/main/CHANGELOG.md) — every release, every breaking change, every notable canon update.
-- [RELEASE_NOTES.md](https://github.com/whalermike/uiao/blob/main/RELEASE_NOTES.md) — narrative release notes (the "why" behind each version).
-- [Releases page](https://github.com/whalermike/uiao/releases) — tagged versions and downloadable artifacts.
-- [Recent commits](https://github.com/whalermike/uiao/commits/main) — day-to-day activity on `main`.
-- [Pull requests](https://github.com/whalermike/uiao/pulls?q=is%3Apr) — in-flight work and recently merged changes.
+- CHANGELOG.md — every release, every breaking change, every notable canon update.
+- RELEASE_NOTES.md — narrative release notes (the "why" behind each version).
+- Releases page — tagged versions and downloadable artifacts.
+- Recent commits — day-to-day activity on `main`.
+- Pull requests — in-flight work and recently merged changes.
 
-**New on this site** ([whalermike.github.io/uiao](../../../../index.html))
+**New on this site** (whalermike.github.io/uiao)
 
-- [Site index](../../../../index.html) — top-level landing page; the "what's new" callouts surface here first.
-- [Modernization canon](../../../customer-documents/reference-architecture/orgtree.html) — the modernization program_151–the modernization program_176 governance specs; new IDs land here.
+- Site index — top-level landing page; the "what's new" callouts surface here first.
+- Modernization canon — the modernization program_151–the modernization program_176 governance specs; new IDs land here.
 - [Customer document series](../../../series.html) — chapter additions to this series and its siblings.
 - [Operational dashboard](../../../operational-dashboard.html) — current readiness, drift, and coverage signals.
 
@@ -268,8 +268,8 @@ Pointers to the latest additions on both sides of the project:
 - **the program decision Substrate High Availability** — the hot-standby replica with
   automatic, split-brain-safe failover that extends the program decision for
   customers requiring sub-4-hour RTO.
-- **Modernization canon** — [the modernization program_151–the modernization program_176](../../../customer-documents/reference-architecture/orgtree.html)
-  for governance, [DM_010..080](../../../customer-documents/reference-architecture/directory-migration.html)
+- **Modernization canon** — the modernization program_151–the modernization program_176
+  for governance, [DM_010..080](../../reference-architecture/directory-migration.md)
   for adapters.
 
 ---

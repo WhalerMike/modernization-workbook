@@ -74,7 +74,7 @@ Five is not a number arrived at by abstraction. Each class corresponds
 to a distinct failure mode that requires a distinct remediation
 contract. Collapsing them into "configuration drift" loses the
 ability to assign deterministic severity. See
-[Architecture Series — Drift Engine](../../architecture-series/drift-engine.qmd)
+Architecture Series — Drift Engine
 for the architectural depth.
 
 ## From taxonomy to operational discipline
@@ -157,12 +157,12 @@ continuous monitoring of a deterministic signal.
 ::: {.callout-tip}
 ## Continue the series
 
-Next: [Chapter 4 — Deterministic Governance](../ch04-deterministic-governance/index.qmd) — what it takes to make every drift finding assessor-reproducible, byte-for-byte.
+Next: [Chapter 4 — Deterministic Governance](../ch04-deterministic-governance/index.md) — what it takes to make every drift finding assessor-reproducible, byte-for-byte.
 :::
 
 ## Related documents
 
 - [Executive Governance Series Index](../index.html)
-- [Chapter 4: Deterministic Governance](../ch04-deterministic-governance/index.qmd)
-- [Architecture Series — Drift Engine](../../architecture-series/drift-engine.qmd)
-- [Drift Detection Standard (canon)](../../../docs/16_DriftDetectionStandard.qmd)
+- [Chapter 4: Deterministic Governance](../ch04-deterministic-governance/index.md)
+- Architecture Series — Drift Engine
+- Drift Detection Standard (canon)

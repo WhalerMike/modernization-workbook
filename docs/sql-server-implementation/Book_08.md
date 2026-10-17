@@ -145,4 +145,4 @@ Note the **data-plane audience** (`https://database.usgovcloudapi.net/` in Azure
 
 ---
 
-*Companion to [narrative Book 08](../sql-server-narrative/Book_08.qmd). Inventory script-backed: `tools/discovery/Spec3-D1.9`. Correlation + the program decision classification + connection-string plan: `tools/powershell/the modernization programSqlServerMigration` (`New-the modernization programAppConnectionPlan`). The connection-string change itself is a review-required, in-config step. Canon: the program decision, the program decision, the program decision, the directory modernization program §3.2.*
+*Companion to narrative Book 08. Inventory script-backed: `tools/discovery/Spec3-D1.9`. Correlation + the program decision classification + connection-string plan: `tools/powershell/the modernization programSqlServerMigration` (`New-the modernization programAppConnectionPlan`). The connection-string change itself is a review-required, in-config step. Canon: the program decision, the program decision, the program decision, the directory modernization program §3.2.*

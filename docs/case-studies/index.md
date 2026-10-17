@@ -30,7 +30,7 @@ available and reviewed before external release.
 
 ## Pages in this section
 
-Status badges follow the [Whitepapers status conventions](../whitepapers/index.qmd).
+Status badges follow the Whitepapers status conventions.
 Case studies additionally use the **Framing-Pattern** status — the
 narrative illustrates the substrate's intended behavior using a
 synthetic agency archetype rather than an attributed real-world

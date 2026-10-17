@@ -28,7 +28,7 @@ Executive Summary
 Modern enterprises using cloud identity platforms face a mismatch between dynamic organizational structures and static access control models. AODIM addresses this by making identity attributes the authoritative driver of access, enabling automated, deterministic, and scalable identity governance.
 
 This document tracks the canonical AODIM specification,
-[UIAO_006 — AODIM Architecture (v1.1)](../../../src/uiao/canon/UIAO_006_AODIM_Architecture_v1.0.md).
+UIAO_006 — AODIM Architecture (v1.1).
 
 Core Principle
 
@@ -48,7 +48,7 @@ Traditional directory systems rely on hierarchical placement (OUs), which do not
 
 Architecture Overview
 
-![Technical architecture diagram showing the AODIM attribute flow: HR System...](images/aodim-architecture-image-01-technical-architecture-diagram-s.png){#fig-aodim-architecture-image-01 fig-alt="Technical architecture diagram showing the AODIM attribute flow: HR System..." width="100%"}
+![Technical architecture diagram showing the AODIM attribute flow: HR System...](../images/architecture/aodim-architecture-image-01-technical-architecture-diagram-s.png){#fig-aodim-architecture-image-01 fig-alt="Technical architecture diagram showing the AODIM attribute flow: HR System..." width="100%"}
 
 
 HR System → Identity Attributes → Dynamic Groups → Access & Policy Enforcement
@@ -56,7 +56,7 @@ HR System → Identity Attributes → Dynamic Groups → Access & Policy Enforce
 Attribute Model
 
 the organizational-attribute model is not a single hierarchical string. Under Model C
-([the program decision](../../../src/uiao/canon/adr/adr-078-orgpath-attribute-schema-15-facet.md))
+(the program decision)
 the organizational position of every principal is decomposed into 10 named
 facets, each bound to exactly one Entra `extensionAttribute` slot:
 
@@ -103,20 +103,20 @@ Example Rules:
 (attr1 -in ["NCR","EASTUS","WESTUS"])         # All US-region users
 ```
 
-See the [Dynamic Group Library (UIAO_152)](../../../src/uiao/canon/UIAO_152_Dynamic_Group_Library.md)
+See the Dynamic Group Library (UIAO_152)
 for the canonical rule inventory.
 
 Delegation Model
 
-![Side-by-side comparison diagram: Left panel labeled 'Legacy OU-Based...](images/aodim-architecture-image-02-side-by-side-comparison-diagram.png){#fig-aodim-architecture-image-02 fig-alt="Side-by-side comparison diagram: Left panel labeled 'Legacy OU-Based..." width="100%"}
+![Side-by-side comparison diagram: Left panel labeled 'Legacy OU-Based...](../images/architecture/aodim-architecture-image-02-side-by-side-comparison-diagram.png){#fig-aodim-architecture-image-02 fig-alt="Side-by-side comparison diagram: Left panel labeled 'Legacy OU-Based..." width="100%"}
 
 
 Administrative Units and scoped roles replace OU-based delegation. AU membership is driven by the same canonical facets, per the
-[Delegation Matrix (UIAO_154)](../../../src/uiao/canon/UIAO_154_Delegation_Matrix_AUs_Roles.md).
+Delegation Matrix (UIAO_154).
 
 Operational Flow
 
-![Operational flow diagram showing the AODIM runtime cycle: Identity Event...](images/aodim-architecture-image-03-operational-flow-diagram-showing.png){#fig-aodim-architecture-image-03 fig-alt="Operational flow diagram showing the AODIM runtime cycle: Identity Event..." width="100%"}
+![Operational flow diagram showing the AODIM runtime cycle: Identity Event...](../images/architecture/aodim-architecture-image-03-operational-flow-diagram-showing.png){#fig-aodim-architecture-image-03 fig-alt="Operational flow diagram showing the AODIM runtime cycle: Identity Event..." width="100%"}
 
 
 HR updates → Attribute change → Group recalculation → Access update

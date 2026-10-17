@@ -19,7 +19,7 @@ aliases:
 ::: {.callout-important}
 ## Scope: net-new devices only (per the program decision)
 
-This page is the canon for **Intune-First Asset Onboarding** — the doctrine for devices that have *never* been on the network. For replacing GPOs on the **existing** fleet, see the [GPO Sunset Program](../operational-guides/target-surface/intune-policy-templates.qmd) (a different program, different stakeholders, different timeline). For the policy-authoring philosophy that governs how GPO Sunset Program authors replacement policies, see the [Policy Transformation Pattern](../operational-guides/client-server-to-hybrid-cloud/05-policy-transformation.qmd) ("regenerate, not copy"). Per [the program decision], "Intune-First" by itself is reserved for *this* page's net-new doctrine and should not be used to refer to the GPO replacement program.
+This page is the canon for **Intune-First Asset Onboarding** — the doctrine for devices that have *never* been on the network. For replacing GPOs on the **existing** fleet, see the [GPO Sunset Program](../operational-guides/target-surface/intune-policy-templates.md) (a different program, different stakeholders, different timeline). For the policy-authoring philosophy that governs how GPO Sunset Program authors replacement policies, see the [Policy Transformation Pattern](../client-server-to-hybrid-cloud/05-policy-transformation.md) ("regenerate, not copy"). Per [the program decision], "Intune-First" by itself is reserved for *this* page's net-new doctrine and should not be used to refer to the GPO replacement program.
 :::
 
 ## What "Intune-First" Means
@@ -35,7 +35,7 @@ same governance plane — from the moment it first powers on. There is
 - enters production without a compliance evaluation,
 - or skips the procurement-side organizational positioning step.
 
-This is the inverse of the [Directory Migration](directory-migration.qmd)
+This is the inverse of the [Directory Migration](directory-migration.md)
 path. Migration takes a device that already exists and brings it under
 governance. Intune-First refuses the existence of any ungoverned device
 in the first place.
@@ -43,7 +43,7 @@ in the first place.
 ## Why This Canon Exists
 
 the modernization program already had a mature canon for **migrating** AD-joined endpoints
-into Entra ID + Intune (covered by the [Directory Migration](directory-migration.qmd)
+into Entra ID + Intune (covered by the [Directory Migration](directory-migration.md)
 adapter family). What did not exist: the operational doctrine and
 procurement-to-validation process for net-new assets.
 
@@ -65,7 +65,7 @@ The Intune-First canon closes all three.
 
 ## The Five Doctrine Pillars
 
-Per [the program decision](../../src/uiao/canon/adr/adr-071-intune-first-asset-onboarding.md)
+Per the program decision
 and the full doctrine at [`src/uiao/modernization/intune-first-onboarding/doctrine.md`](../../src/uiao/modernization/intune-first-onboarding/doctrine.md):
 
 | # | Pillar | What it asserts |
@@ -85,16 +85,16 @@ justification, compensating control, and an audit entry:
 |---|---|---|
 | **A — User-driven enrollment for BYOD** | Personally-owned devices being enrolled to a corporate work profile or partition (iOS user-enrolled, Android work-profile, Windows registered) | Refusing to govern BYOD at all would push users to entirely-unmanaged access via personal browsers. Governed at a lower assurance level is better than ungoverned. |
 | **B — Linux endpoint with Arc fallback** | Linux endpoints that cannot use Microsoft Intune's Linux MDM surface (developer workstations requiring root, embedded Linux, air-gapped) | Microsoft's Intune Linux MDM is GA but limited; Arc + Azure Policy Guest Configuration is the substitute governance plane. |
-| **C — Pre-Server-2025 Windows servers** | Windows Server 2019 and 2022 hosts whose OS upgrade is not yet feasible | [the program decision](../../src/uiao/canon/adr/adr-002-arc-entra-join-no-domain-join.md) explicitly notes Server 2019/2022 cannot use AADLoginForWindows. Arc-managed-only is acceptable as an interim state. |
+| **C — Pre-Server-2025 Windows servers** | Windows Server 2019 and 2022 hosts whose OS upgrade is not yet feasible | the program decision explicitly notes Server 2019/2022 cannot use AADLoginForWindows. Arc-managed-only is acceptable as an interim state. |
 
 Full text in [`src/uiao/modernization/intune-first-onboarding/doctrine.md`](../../src/uiao/modernization/intune-first-onboarding/doctrine.md) §4.
 
 ## the organizational-attribute model Assignment for Non-AD-Migrated Devices
 
 Every governed device must carry an the organizational-attribute model value matching an Active
-node in the [OrgTree](orgtree.qmd) registry (Pillar 1). For devices
+node in the OrgTree registry (Pillar 1). For devices
 that **do** originate in Active Directory, the
-[Directory Migration](directory-migration.qmd) path derives the organizational-attribute model
+[Directory Migration](directory-migration.md) path derives the organizational-attribute model
 from the AD-side computer object via `the program decision` device-plane mapping.
 
 For devices that **do not** originate in AD — every asset onboarded
@@ -215,7 +215,7 @@ live in dedicated annexes:
 
 | Platform | Vendor program | the organizational-attribute model carrier | Trust elevation state | Annex |
 |---|---|---|---|---|
-| **Windows endpoint** | Windows Autopilot Device Preparation (v2) | Group Tag (`the organizational-attribute model:/path/value`) | Microsoft Entra Join (per [the program decision](../../src/uiao/canon/adr/adr-001-haadj-deprecated-entra-join-only.md)) | [`platforms/windows-autopilot.md`](../../src/uiao/modernization/intune-first-onboarding/platforms/windows-autopilot.md) |
+| **Windows endpoint** | Windows Autopilot Device Preparation (v2) | Group Tag (`the organizational-attribute model:/path/value`) | Microsoft Entra Join (per the program decision) | [`platforms/windows-autopilot.md`](../../src/uiao/modernization/intune-first-onboarding/platforms/windows-autopilot.md) |
 | **Microsoft Surface** *(sub-pattern of Windows endpoint)* | Surface direct via Microsoft CSP, or authorized reseller (CDW, Insight, Connection) | Group Tag (`the organizational-attribute model:/path/value`) + DFCI profile applied at ESP Device Setup | Entra Join + DFCI firmware lockdown + Pluton attestation (Pro 11 / Laptop 6+) | [`platforms/windows-surface.md`](../../src/uiao/modernization/intune-first-onboarding/platforms/windows-surface.md) |
 | **macOS endpoint** | Apple Business Manager (ABM) or Apple School Manager (ASM) ADE | ABM device note | Supervised + ADE-enrolled | [`platforms/macos-abm-ade.md`](../../src/uiao/modernization/intune-first-onboarding/platforms/macos-abm-ade.md) |
 | **iOS / iPadOS** | Apple ABM/ASM ADE | ABM device note | Supervised | [`platforms/mobile-ios-android.md`](../../src/uiao/modernization/intune-first-onboarding/platforms/mobile-ios-android.md) Part A |
@@ -250,17 +250,17 @@ The doctrinal anchor is [`src/uiao/canon/adr/adr-071-intune-first-asset-onboardi
 
 ## Related
 
-- [Directory Migration](directory-migration.qmd) — the sibling track
+- [Directory Migration](directory-migration.md) — the sibling track
   that handles existing AD-joined fleet (where Intune-First applies
   to net-new acquisition, Directory Migration handles the legacy
   estate)
-- [OrgTree Modernization](orgtree.qmd) — provides the the organizational-attribute model
+- OrgTree Modernization — provides the the organizational-attribute model
   primitive that Intune-First consumes at procurement time
-- [the program decision](../../src/uiao/canon/adr/adr-001-haadj-deprecated-entra-join-only.md)
+- the program decision
   — controlling precedent for Windows endpoint join target (Entra
   Join only; HAADJ deprecated)
-- [the program decision](../../src/uiao/canon/adr/adr-002-arc-entra-join-no-domain-join.md)
+- the program decision
   — controlling precedent for server identity (Arc + Entra Join,
   WORKGROUP state required)
-- [the program decision](../../src/uiao/canon/adr/adr-071-intune-first-asset-onboarding.md)
+- the program decision
   — establishes the Intune-First doctrine

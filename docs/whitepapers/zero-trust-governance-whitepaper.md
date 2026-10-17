@@ -57,7 +57,7 @@ unable to reach Advanced or Optimal because the substrate the pillars sit
 on cannot produce continuous, canonical, drift-detected evidence.
 
 UIAO closes that structural gap. This whitepaper explains how the
-[Governance OS](uiao-governance-os-whitepaper.qmd) maps onto the five ZTMM
+Governance OS maps onto the five ZTMM
 pillars, why Advanced/Optimal maturity requires a substrate (not just
 better tools), and what an agency can ship today versus what remains
 target-state.
@@ -73,7 +73,7 @@ require are structurally out of reach. The full argument — three named
 failure patterns, each grounded in a specific documented incident
 (Storm-0558, the ESXiArgs and ESXi AD-integration CVEs) rather than
 asserted in the abstract — is made in
-[Zero Trust Governance Principles §1](zero-trust-governance-principles.qmd);
+[Zero Trust Governance Principles §1](zero-trust-governance-principles.md);
 this paper does not repeat it and instead moves directly to UIAO's
 contribution.
 
@@ -139,9 +139,9 @@ different artifact type that needs its own tooling.
 
 CISA's identity pillar treats identity as one of five concerns. UIAO's
 canon takes a stronger position, declared in
-[the program decision](../../../src/uiao/canon/adr/adr-008-zero-trust-identity.md):
+the program decision:
 **identity is the root namespace.** (Operationally this is the
-[the organizational-attribute model](../../orgpath/index.qmd) governance pillar — the governed
+the organizational-attribute model governance pillar — the governed
 addressing plane the ZT policy subject composes against.) Devices, addresses, network paths,
 applications, and data classifications are *named* via identity; they do
 not have parallel naming systems.
@@ -164,7 +164,7 @@ This is a naming and addressing claim, not a trust claim: identity as
 root namespace means every other pillar resolves its objects through the
 identity plane, not that a validated identity should be trusted
 unconditionally once issued.
-[Zero Trust Governance Principles §4](zero-trust-governance-principles.qmd)
+[Zero Trust Governance Principles §4](zero-trust-governance-principles.md)
 makes the point directly — treating identity as a self-authenticating
 root recreates the same failure mode Zero Trust is supposed to retire —
 which is exactly why the identity plane itself still needs the
@@ -222,9 +222,9 @@ constraint: many of the platform-emitted signals that commercial Microsoft
 365 customers use for ZT analytics are **silently unavailable** in
 GCC-Moderate (Endpoint Analytics, Device Health Attestation, Network Fence,
 ARC Server Monitoring). See the
-[Boundary Impact Model](../architecture-series/boundary-impact-model.qmd)
+[Boundary Impact Model](../architecture/boundary-impact-model.md)
 and the
-[GCC-Moderate Boundary Problem Statement](../../docs/gcc-boundary-problem-statement.qmd).
+GCC-Moderate Boundary Problem Statement.
 
 UIAO addresses the boundary structurally rather than waiting for platform
 fixes:
@@ -247,7 +247,7 @@ lockstep with its authorizing ADR. The substrate's posture is that
 boundary exceptions are governed, not glossed over. The compliance
 pillar's full treatment of this territory — boundary volumes, evidence
 and ConMon packaging, and the network enforcement substrate — is the
-[the compliance series — Federal Organization Compliance series](../orgcomp-series/index.qmd). The boundary
+the compliance series — Federal Organization Compliance series. The boundary
 landscape has since widened beyond GCC-Moderate: the program decision added the
 `commercial-general` boundary (non-federal commercial regimes, with the
 SOC 2 pack registered active under it) and the program decision added `state-local`
@@ -309,7 +309,7 @@ that compounds.
  revocation on a risk signal — depends on Entra Continuous Access
  Evaluation (CAE) fidelity, which is inferred degraded inside
  GCC-Moderate; see
- [FINDING-006](../../findings/fedramp-gcc-moderate-cae-realtime-degraded.qmd)
+ FINDING-006
  for the tracked gap and the compensating controls it recommends.
 
 ### 10. Conclusion

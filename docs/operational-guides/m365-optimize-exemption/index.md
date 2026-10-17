@@ -50,9 +50,9 @@ hold.
 
 | Document | What it decides | Who signs |
 | --- | --- | --- |
-| [SC-7(4) traffic-flow exception memo](sc7-4-exception-memo.qmd) | Whether to grant the exception, on named controls and stated compensating controls | Authorizing Official |
-| [Attachment A — pilot site register](attachment-a-site-register.qmd) | Which sites and circuits are in scope, why each needs it, and when it ends | System owner, cited by the memo |
-| [Attachment B — architecture review determination](attachment-b-architecture-review.qmd) | Whether the design is TIC 3.0 conformant and where each PEP capability now sits | Architecture review board |
+| SC-7(4) traffic-flow exception memo | Whether to grant the exception, on named controls and stated compensating controls | Authorizing Official |
+| [Attachment A — pilot site register](attachment-a-site-register.md) | Which sites and circuits are in scope, why each needs it, and when it ends | System owner, cited by the memo |
+| [Attachment B — architecture review determination](attachment-b-architecture-review.md) | Whether the design is TIC 3.0 conformant and where each PEP capability now sits | Architecture review board |
 
 **Keeping the memo and Attachment B separate is deliberate.** The architecture
 review answers whether the design is conformant and where capabilities moved;
@@ -89,7 +89,7 @@ mechanism for documenting a bounded departure rather than denying there is one.
 
 ## Related material
 
-- [SD-WAN vs. DIA Under TIC 3.0](../../whitepapers/tic3-sdwan-vs-dia.qmd) —
+- [SD-WAN vs. DIA Under TIC 3.0](../../whitepapers/tic3-sdwan-vs-dia.md) —
   §5.5 owns the transport-versus-control argument these instruments implement.
 - [Vol I Book 05 — Network
   Modernization](../../orgcomp-series/Vol_I_Book_05_Compliance_Network_Modernization.qmd),

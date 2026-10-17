@@ -33,7 +33,7 @@ A canon-change ADR may later promote a generalized authorization-boundary
 canon document; until then, this model is GCC-Moderate-anchored.
 :::
 
-![Boundary impact four-dimension diagram](images/boundary-impact-model-image-01-boundary-impact-four-dimension-d.png){#fig-boundary-impact-model-image-01 fig-alt="A vertical boundary line down the center labeled \"Authorization Boundary\" splits the page into left (\"Outside\" — commercial / non-boundary side) and right (\"Inside\" — GCC-Moderate side). Four horizontal lanes cross the boundary, each labeled with one impact dimension: Telemetry Fidelity, Identity Authority, Enforcement Responsibility, Provenance Classification. On each lane the boundary line shows a transformation badge (e.g. \"authoritative → derived\"). Below each lane, a small drift-class badge indicates the drift class that fires on violation (DRIFT-SCHEMA, DRIFT-IDENTITY, DRIFT-AUTHZ, DRIFT-SEMANTIC). Clean engineering blueprint style, dark navy (#0D1B2E) and teal (#1E8C8C) on white background. No photographs, purely diagrammatic." width="100%"}
+![Boundary impact four-dimension diagram](../images/architecture/boundary-impact-model-image-01-boundary-impact-four-dimension-d.png){#fig-boundary-impact-model-image-01 fig-alt="A vertical boundary line down the center labeled \"Authorization Boundary\" splits the page into left (\"Outside\" — commercial / non-boundary side) and right (\"Inside\" — GCC-Moderate side). Four horizontal lanes cross the boundary, each labeled with one impact dimension: Telemetry Fidelity, Identity Authority, Enforcement Responsibility, Provenance Classification. On each lane the boundary line shows a transformation badge (e.g. \"authoritative → derived\"). Below each lane, a small drift-class badge indicates the drift class that fires on violation (DRIFT-SCHEMA, DRIFT-IDENTITY, DRIFT-AUTHZ, DRIFT-SEMANTIC). Clean engineering blueprint style, dark navy (#0D1B2E) and teal (#1E8C8C) on white background. No photographs, purely diagrammatic." width="100%"}
 
 ## What the model captures
 
@@ -63,7 +63,7 @@ quantifies independently.
 | **Provenance classification** | Is the claim still authoritative on this side, or only derived? | `DRIFT-SEMANTIC` |
 
 The model deliberately maps onto the
-[Drift Engine](drift-engine.qmd)'s five-class taxonomy. Boundary crossings
+[Drift Engine](drift-engine.md)'s five-class taxonomy. Boundary crossings
 are the most common source of multi-class drift, and treating boundary
 modeling as a drift problem (rather than a separate compliance concern)
 keeps both surfaces in one operational language.
@@ -99,11 +99,11 @@ Mapped onto the four-dimension model:
 
 Treating these as a single boundary impact rather than four unrelated
 issues is what allows the
-[B.1 GCC-Moderate Boundary Model](../orgcomp-series/boundary/B1-gcc-moderate-boundary-model.qmd)
+B.1 GCC-Moderate Boundary Model
 leaf to produce a single coherent SSP narrative instead of four disjoint
 ones.
 
-![GCC-Moderate invisible-boundary visualization](images/boundary-impact-model-image-02-gcc-moderate-invisible-boundary.png){#fig-boundary-impact-model-image-02 fig-alt="Top half shows the M365 GCC-Moderate admin portal with five tiles labeled Endpoint Analytics / Device Health Attestation / Locations & Network Fence / ARC Server Monitoring / Expedited Updates — all displayed as available (green check). Bottom half shows what actually functions inside the boundary — the same five tiles redrawn empty or grayed out (red X), with explanatory captions like \"telemetry blocked\", \"planning phase\", \"explicitly unavailable\". Between the two halves, a horizontal \"Invisible Boundary\" line indicates where appearance and reality diverge. Right margin shows four UIAO compensating mechanisms (Boundary Probe, In-Boundary Telemetry, Compensating Enforcement, ATO Documentation Surface) as small numbered boxes. Clean engineering diagram, dark navy (#0D1B2E) and teal (#1E8C8C) primary, with red (#C74040) reserved for the unavailable-state tiles. No photographs, purely diagrammatic." width="100%"}
+![GCC-Moderate invisible-boundary visualization](../images/architecture/boundary-impact-model-image-02-gcc-moderate-invisible-boundary.png){#fig-boundary-impact-model-image-02 fig-alt="Top half shows the M365 GCC-Moderate admin portal with five tiles labeled Endpoint Analytics / Device Health Attestation / Locations & Network Fence / ARC Server Monitoring / Expedited Updates — all displayed as available (green check). Bottom half shows what actually functions inside the boundary — the same five tiles redrawn empty or grayed out (red X), with explanatory captions like \"telemetry blocked\", \"planning phase\", \"explicitly unavailable\". Between the two halves, a horizontal \"Invisible Boundary\" line indicates where appearance and reality diverge. Right margin shows four UIAO compensating mechanisms (Boundary Probe, In-Boundary Telemetry, Compensating Enforcement, ATO Documentation Surface) as small numbered boxes. Clean engineering diagram, dark navy (#0D1B2E) and teal (#1E8C8C) primary, with red (#C74040) reserved for the unavailable-state tiles. No photographs, purely diagrammatic." width="100%"}
 
 ## How UIAO compensates: in-boundary equivalents
 
@@ -121,7 +121,7 @@ than waiting for Microsoft to fix the platform:
    unavailable commercial signal.
 3. **Compensating enforcement** — agency-side enforcement adapters for
    controls that platform features cannot provide, with their evidence
-   flowing through the same [Evidence Chain](evidence-chain.qmd).
+   flowing through the same [Evidence Chain](evidence-chain.md).
 4. **ATO documentation surface** — the boundary impact is captured as a
    first-class artifact that the SSP, POA&M, and Component Definition all
    reference, rather than as a series of footnotes.

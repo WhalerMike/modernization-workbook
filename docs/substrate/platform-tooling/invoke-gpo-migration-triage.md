@@ -38,7 +38,7 @@ than being hidden behind a single opaque guess.
 | [`Invoke-GpoMigrationTriage.ps1`](scripts/Invoke-GpoMigrationTriage.ps1) | 1.0 | `afe88fb798e41acd61c714341420551fb7e06d0c8f80d58d31f84e98080ba603` |
 
 ::: {.callout-note title="Need offline the modernization program install media?"}
-Download the full CLI kit from [Downloads → the modernization program CLI Kit](../../../download/index.qmd#uiao-cli-kit):
+Download the full CLI kit from Downloads → the modernization program CLI Kit:
 [`uiao-cli.zip`]
 includes this script, `the modernization program.ConfigTools`, and an offline Python installer — no internet needed at install time.
 :::

@@ -17,9 +17,9 @@ lifecycle_review: 2027-01-01
 ## the organizational-attribute model examples in this chapter predate Hybrid-C+Path
 
 The dynamic-group rule examples below use the retired Model A/B form — the whole
-the organizational-attribute model as one composite string in a single slot. [the program decision](/docs/adr/adr-078-orgpath-attribute-schema-15-facet.html)
+the organizational-attribute model as one composite string in a single slot. the program decision
 replaced that with named facets (`extensionAttribute1` is the **region** facet),
-and [the program decision](/docs/adr/adr-127-orgpath-hybrid-derived-path.html) moved the
+and the program decision moved the
 derived canonical path to `extensionAttribute15`. A *subtree* rule reads
 `(user.extensionAttribute15 -startsWith "Region=NCR|Department=Finance|")` —
 anchored at `Region=`, because the derived path is composed region, department,
@@ -165,4 +165,4 @@ Once every SQL login is a type-E login backed by an Entra principal, Conditional
 
 ---
 
-*Companion to [narrative Book 07](../sql-server-narrative/Book_07.qmd). Inventory script-backed: `tools/powershell/the modernization programIdentityAssessment` (`Export-the modernization programEntraGroups`, `Export-the modernization programConditionalAccess`). Classification + group-login emission: `tools/powershell/the modernization programSqlServerMigration` (`New-the modernization programEntraGroupClassification`, `New-the modernization programGroupLoginScript`). Provisioning via the `entra-admin-units` (the modernization program_154) and `entra-dynamic-groups` (the modernization program_152) modernization adapters — review-required. Canon: the program decision, the program decision, the program decision, the program decision, the directory modernization program §3.2.*
+*Companion to narrative Book 07. Inventory script-backed: `tools/powershell/the modernization programIdentityAssessment` (`Export-the modernization programEntraGroups`, `Export-the modernization programConditionalAccess`). Classification + group-login emission: `tools/powershell/the modernization programSqlServerMigration` (`New-the modernization programEntraGroupClassification`, `New-the modernization programGroupLoginScript`). Provisioning via the `entra-admin-units` (the modernization program_154) and `entra-dynamic-groups` (the modernization program_152) modernization adapters — review-required. Canon: the program decision, the program decision, the program decision, the program decision, the directory modernization program §3.2.*

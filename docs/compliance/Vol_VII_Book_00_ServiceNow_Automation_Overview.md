@@ -189,14 +189,14 @@ Volume VII **depends on** Volume I's naming plane (Vol I Book 01) for the CM-8 j
 
 # Provenance
 
-This overview establishes the coordination layer of the Federal Organization Compliance series. It follows the series authoring conventions: functions and planes are named, not organizations; ServiceNow is the deployed coordination example named because the coordination role is itself a named product decision (Expansion Plan §16), and the substitution path is preserved where a workflow/GRC platform is interchangeable. Every book carries a Date Code and cites vendor sources for vendor-specific claims — per the [Vendor Currency Doctrine](Vol_0_Book_00_Compliance_Executive_Summary.qmd#vendor-currency), those claims are dated snapshots, not standing commitments, and confirming current vendor roadmaps directly is essential before this volume informs a Project Plan. The volume map above is authored as committed house-style SVG (rasterized to PNG); further per-book figures follow in the PPTX→DOCX sync pass.
+This overview establishes the coordination layer of the Federal Organization Compliance series. It follows the series authoring conventions: functions and planes are named, not organizations; ServiceNow is the deployed coordination example named because the coordination role is itself a named product decision (Expansion Plan §16), and the substitution path is preserved where a workflow/GRC platform is interchangeable. Every book carries a Date Code and cites vendor sources for vendor-specific claims — per the [Vendor Currency Doctrine](Vol_0_Book_00_Executive_Summary.md#vendor-currency), those claims are dated snapshots, not standing commitments, and confirming current vendor roadmaps directly is essential before this volume informs a Project Plan. The volume map above is authored as committed house-style SVG (rasterized to PNG); further per-book figures follow in the PPTX→DOCX sync pass.
 
 # Where This Volume's Evidence Lands — Volume X (Optional)
 
 Where the closures and evidence this volume produces bind to the governance
 substrate — the conformance layer, the surface slots, and the evidence
 contract — is documented once, for the whole series, in
-**[Vol X Book 00 — Governance-Substrate Integration](Vol_X_Book_00_Compliance_Governance_Substrate_Integration_Overview.qmd)**.
+**[Vol X Book 00 — Governance-Substrate Integration](Vol_X_Book_00_Governance_Substrate_Integration_Overview.md)**.
 The binding is **optional and separable**: this volume, and the series it
 belongs to, stands complete at FedRAMP Moderate with no substrate engagement
 at all; adopting the substrate adds machine-checked scoring and drift-gating

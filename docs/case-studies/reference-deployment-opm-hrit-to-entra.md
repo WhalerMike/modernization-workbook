@@ -42,22 +42,22 @@ the **substrate's behavior** against the archetype, not a deployed-
 and-attested reference.
 
 Status badge in the family index: **Framing-Pattern** per the
-[Whitepapers status conventions](../whitepapers/index.qmd).
+Whitepapers status conventions.
 
 Companion to the
-[AD → Entra ID + SQL Estate reference deployment](reference-deployment-fedciv-ad-to-entra.qmd):
+[AD → Entra ID + SQL Estate reference deployment](reference-deployment-fedciv-ad-to-entra.md):
 that case study covers the **directory migration** dimension; this one
 covers the **inbound provisioning** dimension. Both are required for a
 federal-civilian identity plane that is continuously trustworthy from
 the HR event through to the Azure SSOT stack.
 :::
 
-![HRIT inbound provisioning pipeline diagram](images/reference-deployment-opm-hrit-to-image-01-hrit-inbound-provisioning-pipeli.png){#fig-reference-deployment-opm-hrit-to-entra-image-01 fig-alt="Top of frame: HR System of Record (e.g. NFC EmpowHR / Treasury HR Connect / DCPDS / DOI IBC) with a per-source adapter labeled \"Pattern A\" feeding into a \"Canonical HR Schema (Spec2-D1.1)\" box. Below that, a middleware pipeline labeled \"Spec2-D3.2\" with three lanes labeled \"the organizational-attribute model population (D3.5)\", \"UPN derivation\", and \"SCIM 2.0 payload construction (D1.3 mapping)\" converging on a \"Microsoft Graph bulkUpload\" output box that feeds \"OPM Entra (Government Cloud)\". To the left of the SoR, a \"Pattern B\" lane shows USA Staffing -> HR SoR via SOAP RPI (Req #66) as the Joiner trigger source. To the right of the SoR, a \"Pattern B downstream\" lane shows GRB / EHRI / eOPF consuming provisioning events. Across the bottom, a \"Trust Chain (Pattern C)\" rail shows USAccess (PIV) -> OPM Entra (SAML) -> Consuming-Agency Tenant. A dashed \"GCC Moderate boundary\" enclosure groups the middleware + OPM Entra; B.1.1 three-way conflict appears as a small called-out P1 finding. Clean engineering blueprint style, dark navy (#0D1B2E) and teal (#1E8C8C) on white background. No photographs, purely diagrammatic." width="100%"}
+![HRIT inbound provisioning pipeline diagram](../images/case-studies/reference-deployment-opm-hrit-to-image-01-hrit-inbound-provisioning-pipeli.png){#fig-reference-deployment-opm-hrit-to-entra-image-01 fig-alt="Top of frame: HR System of Record (e.g. NFC EmpowHR / Treasury HR Connect / DCPDS / DOI IBC) with a per-source adapter labeled \"Pattern A\" feeding into a \"Canonical HR Schema (Spec2-D1.1)\" box. Below that, a middleware pipeline labeled \"Spec2-D3.2\" with three lanes labeled \"the organizational-attribute model population (D3.5)\", \"UPN derivation\", and \"SCIM 2.0 payload construction (D1.3 mapping)\" converging on a \"Microsoft Graph bulkUpload\" output box that feeds \"OPM Entra (Government Cloud)\". To the left of the SoR, a \"Pattern B\" lane shows USA Staffing -> HR SoR via SOAP RPI (Req #66) as the Joiner trigger source. To the right of the SoR, a \"Pattern B downstream\" lane shows GRB / EHRI / eOPF consuming provisioning events. Across the bottom, a \"Trust Chain (Pattern C)\" rail shows USAccess (PIV) -> OPM Entra (SAML) -> Consuming-Agency Tenant. A dashed \"GCC Moderate boundary\" enclosure groups the middleware + OPM Entra; B.1.1 three-way conflict appears as a small called-out P1 finding. Clean engineering blueprint style, dark navy (#0D1B2E) and teal (#1E8C8C) on white background. No photographs, purely diagrammatic." width="100%"}
 
 ## Engagement archetype
 
 The same agency archetype the
-[AD reference deployment](reference-deployment-fedciv-ad-to-entra.qmd)
+[AD reference deployment](reference-deployment-fedciv-ad-to-entra.md)
 introduced — a federal civilian agency of approximately fifty thousand
 employees and several thousand active contractors — but here from the
 HR-source-feeding-Entra-ID angle. The agency's HR system of record is
@@ -93,14 +93,14 @@ pattern the modernization program_136 (Spec 2) is built for, and the substrate's
 across the phases below is what this case study illustrates.
 
 For the federal mandate landscape that makes this work necessary, see
-the [Federal HRIT Productization whitepaper](../whitepapers/federal-hrit-productization.qmd).
+the [Federal HRIT Productization whitepaper](../whitepapers/federal-hrit-productization.md).
 
 ## Phase 1 — Adapter onboarding (Spec2-D5.4)
 
 The substrate's first action is to make the HR-source adapter explicit
 and canon-anchored. The agency's existing bespoke NFC EmpowHR connector
 is replaced with a per-source adapter conforming to the
-[Spec2-D1.1 Canonical HR Attribute Schema](../../../src/uiao/canon/specs/Spec2-D1.1-CanonicalHRAttributeSchema.md):
+Spec2-D1.1 Canonical HR Attribute Schema:
 
 - The adapter consumes NFC's published change-data feed (SOAP via the
   Personnel Records Interconnection; some agencies receive flat-file
@@ -161,7 +161,7 @@ middleware. The middleware:
    `department` / `cost_center` to an the organizational-attribute model value
 3. Derives the UPN per the agency's UPN-generation rules
 4. Constructs the SCIM 2.0 payload using the
-   [Spec2-D1.3 HR → Entra Attribute Mapping Matrix](../../../src/uiao/canon/specs/Spec2-D1.3-HRToEntraAttributeMappingMatrix.md)
+   Spec2-D1.3 HR → Entra Attribute Mapping Matrix
    (ISO-3166 alpha-2 `country` → Entra `usageLocation`,
    canonical-schema `displayName` → Entra `displayName`, etc.)
 5. Calls Microsoft Graph `bulkUpload` against OPM Entra Government
@@ -196,7 +196,7 @@ Once the pipeline is operating, the substrate continuously monitors
 for drift between the HR system and Entra ID per
 [`Spec2-D5.5`](../../../src/uiao/canon/specs/Spec2-D5.5-ProvisioningDriftDetectionRules.md).
 The drift surface maps to the canonical five-class taxonomy in
-[Doc 16](../../docs/16_DriftDetectionStandard.qmd):
+Doc 16:
 
 | Condition | Drift class | Severity | Detection signal |
 |---|---|---|---|
@@ -249,9 +249,9 @@ from the substrate's HRIT pipeline artifacts. The bundle includes:
 - The the organizational-attribute model codebook state at each inventory pass
 - All Joiner / Mover / Leaver workflow events with full provenance
 - All drift findings — severity, class, remediation evidence per the
-  [drift standard §4 remediation contract](../../docs/16_DriftDetectionStandard.qmd)
+  drift standard §4 remediation contract
 - AAL recordings per principal (substrate's NIST SP 800-63 surface
-  per [A.9 NIST + FICAM Cross-Walk](../uiao-orgcomp-integration/12-nist-icam-crosswalk.qmd))
+  per A.9 NIST + FICAM Cross-Walk)
 - The B.1.1 GCC-Moderate compliance-conflict finding
   (`GCC-BOUNDARY-3WAY-001`) with the agency's HRIT-pipeline
   compensating controls — telemetry routing under GCC-Moderate is the
@@ -298,16 +298,16 @@ JML pipeline. Re-engagements consume canon; they do not rediscover it.
 
 ## Cross-references
 
-- [Federal HRIT Productization whitepaper](../whitepapers/federal-hrit-productization.qmd) — customer-facing companion to Spec2-D6.1; federal mandate landscape and the 9-system federal HR ecosystem
-- [AD → Entra ID + SQL Estate Reference Deployment](reference-deployment-fedciv-ad-to-entra.qmd) — the directory-migration dimension; shares the agency archetype
-- [Federal SSOT Alignment whitepaper](../whitepapers/federal-ssot-alignment.qmd) — federal mandate alignment over the identity layer
-- [A.9 NIST + FICAM Cross-Walk](../uiao-orgcomp-integration/12-nist-icam-crosswalk.qmd) — NIST IR 8011, SP 800-157, SP 800-63 series, FICAM v3
-- [B.1.1 Three-Way GCC-Moderate Compliance Conflict](../orgcomp-series/boundary/B1-1-gcc-moderate-three-way-conflict.qmd) — boundary-side compliance triangle
-- [Drift Detection Standard](../../docs/16_DriftDetectionStandard.qmd) — five-class drift taxonomy and §7 Federal SSOT Context
-- [Spec2-D6.1 Federal HRIT Integration Runbook](../../../src/uiao/canon/specs/Spec2-D6.1-FederalHRITIntegrationRunbook.md) — canonical operational runbook
-- [Spec2-D1.1 Canonical HR Attribute Schema](../../../src/uiao/canon/specs/Spec2-D1.1-CanonicalHRAttributeSchema.md) — schema the adapter conforms to
-- [Spec2-D2.1 Joiner Workflow](../../../src/uiao/canon/specs/Spec2-D2.1-JoinerWorkflowSpecification.md) — JML lifecycle
-- [Spec2-D5.5 Provisioning Drift Detection Rules](../../../src/uiao/canon/specs/Spec2-D5.5-ProvisioningDriftDetectionRules.md) — drift surface
+- [Federal HRIT Productization whitepaper](../whitepapers/federal-hrit-productization.md) — customer-facing companion to Spec2-D6.1; federal mandate landscape and the 9-system federal HR ecosystem
+- [AD → Entra ID + SQL Estate Reference Deployment](reference-deployment-fedciv-ad-to-entra.md) — the directory-migration dimension; shares the agency archetype
+- [Federal SSOT Alignment whitepaper](../whitepapers/federal-ssot-alignment.md) — federal mandate alignment over the identity layer
+- A.9 NIST + FICAM Cross-Walk — NIST IR 8011, SP 800-157, SP 800-63 series, FICAM v3
+- B.1.1 Three-Way GCC-Moderate Compliance Conflict — boundary-side compliance triangle
+- Drift Detection Standard — five-class drift taxonomy and §7 Federal SSOT Context
+- Spec2-D6.1 Federal HRIT Integration Runbook — canonical operational runbook
+- Spec2-D1.1 Canonical HR Attribute Schema — schema the adapter conforms to
+- Spec2-D2.1 Joiner Workflow — JML lifecycle
+- Spec2-D5.5 Provisioning Drift Detection Rules — drift surface
 
 When real engagement material becomes externally releasable, specific
 metrics (provisioning latency, drift-rate decomposition by class and

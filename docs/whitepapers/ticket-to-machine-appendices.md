@@ -25,11 +25,11 @@ lifecycle_review: 2027-02-03
 
 # Ticket-to-Machine Appendices — Code Review, Access Governance, PKI, and Vendor Landscape {.unnumbered}
 
-This is the companion appendix set to **[Ticket-to-Machine, Not Ticket-to-Human](ticket-to-machine-not-ticket-to-human.qmd)**. The core paper states the Closure Necessity argument — native consoles change state, only a coordination layer produces the owned, clocked, evidenced record an assessor traces — and keeps its own body to §§1–7, 10, and 12 so it stays the single-document read its own frontmatter promises. The four sections below were originally part of that paper (§5.1, §8, §9, and §11) and are reproduced here in full, unabridged: a Day-2 kit code walkthrough with disclosed security findings, an access-governance domain extension, the PKI/certificates exception, and a vendor-landscape / build-vs-buy analysis. The core paper links into each appendix from the point where it used to carry this content in full; nothing below has been softened or trimmed relative to the original.
+This is the companion appendix set to **[Ticket-to-Machine, Not Ticket-to-Human](ticket-to-machine-not-ticket-to-human.md)**. The core paper states the Closure Necessity argument — native consoles change state, only a coordination layer produces the owned, clocked, evidenced record an assessor traces — and keeps its own body to §§1–7, 10, and 12 so it stays the single-document read its own frontmatter promises. The four sections below were originally part of that paper (§5.1, §8, §9, and §11) and are reproduced here in full, unabridged: a Day-2 kit code walkthrough with disclosed security findings, an access-governance domain extension, the PKI/certificates exception, and a vendor-landscape / build-vs-buy analysis. The core paper links into each appendix from the point where it used to carry this content in full; nothing below has been softened or trimmed relative to the original.
 
 ## Appendix A — Day-2 Kit Code Review {#appendix-a-day-2-kit-code-review}
 
-*(Originally §5.1 of [Ticket-to-Machine, Not Ticket-to-Human](ticket-to-machine-not-ticket-to-human.qmd), which states the Closure Necessity pattern in its §§3, 5–7.)*
+*(Originally §5.1 of [Ticket-to-Machine, Not Ticket-to-Human](ticket-to-machine-not-ticket-to-human.md), which states the Closure Necessity pattern in its §§3, 5–7.)*
 
 Sections 3 and 5–7 of the core paper state the Closure Necessity pattern in prose and back it with three platform books quoting the identical claim about configuration, vulnerability, and patch controls. The claim does not stop at that boundary, and proving it does not require taking the compliance series's word for it: the **ServiceNow Day-2 Automation Kit** (`docs/customer-documents/orgcomp-series/servicenow-day2/`, Volume IX of this series) is buildable ServiceNow source — Script Includes, ATF test specs, build-time gates — implementing the same five-step discipline for a different control family: AC-2/AC-3/AC-6 identity lifecycle, rather than CM-6/RA-5/SI-2 configuration drift.
 
@@ -55,14 +55,14 @@ The kit is reference material, not a turnkey product: the Script Includes, ATF s
 
 ## Appendix B — Access Governance and SailPoint ISC {#appendix-b-access-governance-and-sailpoint-isc}
 
-*(Originally §8 of [Ticket-to-Machine, Not Ticket-to-Human](ticket-to-machine-not-ticket-to-human.qmd).)*
+*(Originally §8 of [Ticket-to-Machine, Not Ticket-to-Human](ticket-to-machine-not-ticket-to-human.md).)*
 
 Everything in the core paper's §§1–7 concerns configuration, vulnerability, and patch controls (CM-6, RA-5, SI-2) — the domain the ServiceNow-fronting pattern is built and deployed for today. The user's premise widens the claim to a second domain: **access governance** — who has an identity, who granted it, and who periodically recertifies it — resting on a different set of controls (principally AC-2 Account Management, AC-3 Access Enforcement, and AC-6 Least Privilege).
 
 The same structural argument extends cleanly to this domain: Azure RBAC role assignments and AWS IAM policies can be inspected and even remediated natively, but a native IAM console has the identical evidence gap the configuration-drift argument describes — a role binding is not, by itself, a record of who requested it, who approved it, and when it was last reviewed. **SailPoint ISC Governance (the CIEM add-on)** performs exactly the detection function this domain needs — over-privileged accounts, entitlements idle 90+ days, over-broad role bindings — natively across Azure, AWS, and GCP.
 
 ::: {.callout-tip}
-## Closed, 2026-07-28 — [the program decision](../../../src/uiao/canon/adr/adr-135-sailpoint-isc-governance-option-b-ratification.md) + [Vol VII Book 08](../orgcomp-series/Vol_VII_Book_08_the compliance series_Native_IAM_RBAC_Access_Governance.qmd)
+## Closed, 2026-07-28 — the program decision + [Vol VII Book 08](../orgcomp-series/Vol_VII_Book_08_the compliance series_Native_IAM_RBAC_Access_Governance.qmd)
 This was an open gap as of this paper's first draft, earlier the same day: the series had a reserved SailPoint slot (`sailpoint-isc-governance`, landed in PR #924 citing the program decision's deferred Option B) but no ADR had ever ratified it, and no book documented the coordination pattern. **the program decision ratifies the Option-B decision and binds `sailpoint-isc-governance` to the program decision's Active Governance identity control-plane slot** at rung L1 (Observe); **Vol VII Book 08 closes AC-2/AC-3/AC-6** for Azure RBAC and AWS IAM entitlements using the identical test → detect drift → raise task → actuate-native → close-with-evidence loop as Books 03/06/07. Consistent with this paper's own [Appendix D finding](#appendix-d-vendor-landscape-and-build-vs-buy) — SailPoint's own architecture routes findings into ServiceNow rather than around it — Book 08 explicitly does **not** stand up a second, SailPoint-fronted coordination layer; SailPoint ISC Governance is one more detection engine feeding the same ServiceNow pipeline every other control family in this paper uses. One front door.
 :::
 
@@ -75,7 +75,7 @@ Everything above concerns **SailPoint ISC Governance**. The agency separately ru
 | What it is | The agency's internal brand for a SailPoint **IdentityIQ** deployment | SailPoint **Identity Security Cloud** plus the CIEM add-on |
 | Hosting | Customer-hosted, on agency infrastructure | SailPoint-hosted SaaS |
 | Integration surface | SCIM 2.0 plus a core REST API tied to the installed release | Continuously-versioned cloud REST API |
-| Canon slot | `sailpoint-iiq-governance` ([the program decision](../../../src/uiao/canon/adr/adr-136-sailpoint-identityiq-option-c-slot-allocation.md), contract pinned by [UIAO_210](../../../src/uiao/canon/specs/external/sailpoint-iiq/UIAO_210_identityiq-api-contract-pin.md)) | `sailpoint-isc-governance` ([the program decision](../../../src/uiao/canon/adr/adr-135-sailpoint-isc-governance-option-b-ratification.md)) |
+| Canon slot | `sailpoint-iiq-governance` (the program decision, contract pinned by UIAO_210) | `sailpoint-isc-governance` (the program decision) |
 | Boundary cost | None — `gcc-moderate` already covers it | A Commercial exception |
 | Role in this argument | **Front end** — pushes an approved access request into ServiceNow, correlated to a RITM, with closure written back | **Detection engine** — pushes cloud-entitlement findings into ServiceNow tasks |
 
@@ -89,7 +89,7 @@ No evidence was found, after direct research, that SailPoint's CIEM add-on reach
 
 ## Appendix C — The Certificates Exception {#appendix-c-the-certificates-exception}
 
-*(Originally §9 of [Ticket-to-Machine, Not Ticket-to-Human](ticket-to-machine-not-ticket-to-human.qmd): why PKI doesn't take the same path.)*
+*(Originally §9 of [Ticket-to-Machine, Not Ticket-to-Human](ticket-to-machine-not-ticket-to-human.md): why PKI doesn't take the same path.)*
 
 Certificates are a large share of the actual operational work in this estate, which makes it tempting to assume they belong on the same ServiceNow-fronted path as everything else in the core paper. They don't — not for the routine lifecycle, and the reason is a deliberate, already-documented doctrine call, not an oversight.
 
@@ -108,7 +108,7 @@ The reasoning is volume, not principle. A CM-6 configuration-drift finding happe
 
 ## Appendix D — Vendor Landscape and Build-vs-Buy {#appendix-d-vendor-landscape-and-build-vs-buy}
 
-*(Originally §11 of [Ticket-to-Machine, Not Ticket-to-Human](ticket-to-machine-not-ticket-to-human.qmd): External Validation and Build-vs-Buy, 2026-07-28.)*
+*(Originally §11 of [Ticket-to-Machine, Not Ticket-to-Human](ticket-to-machine-not-ticket-to-human.md): External Validation and Build-vs-Buy, 2026-07-28.)*
 
 The core paper's central claim — that a native console cannot be the evidence system of record — is not just an the compliance series position. Independent research outside this repo, done the same week the paper was drafted, backs it directly and updates two of the paper's own assumptions:
 
@@ -179,9 +179,9 @@ Binding Operational Directives are issued by **CISA**, under its directive autho
 
 : BOD 25-01's five obligations, and which one this paper's loop is for {.striped .hover}
 
-Four of the five rows are satisfiable without closing a single finding: report a tenant name, install a PowerShell tool, wire up a feed. **Row 5 is the architectural one, and it is the row the directive is actually for.** A ScubaGear report that faithfully lists forty deviations every week satisfies rows 1–4 and fails row 5 — the argument [Assessment Tools vs. Closing BOD-25-01 Findings](bod-25-01-close-before-assess.qmd) makes at length, and the reason that paper and this one are companions rather than duplicates.
+Four of the five rows are satisfiable without closing a single finding: report a tenant name, install a PowerShell tool, wire up a feed. **Row 5 is the architectural one, and it is the row the directive is actually for.** A ScubaGear report that faithfully lists forty deviations every week satisfies rows 1–4 and fails row 5 — the argument [Assessment Tools vs. Closing BOD-25-01 Findings](bod-25-01-close-before-assess.md) makes at length, and the reason that paper and this one are companions rather than duplicates.
 
-**In force — BOD 26-04.** CISA [BOD 26-04](https://cyber.dhs.gov/bod/26-04/) (*Prioritizing Security Updates Based on Risk*, issued **2026-06-10**) is not forward-looking: it **revoked BOD 22-01 and BOD 19-02** on issue, replacing their flat 15/25-day KEV clocks with a four-variable risk model (public exposure, KEV listing, exploitation automatability, technical impact) selecting one of five remediation windows. Agency policy updates were due **2026-08-07**; full compliance is due **2026-12-07**. Canon's response is [the program decision](../../../src/uiao/canon/adr/adr-111-bod-26-04-risk-based-vulnerability-sla.md), still **PROPOSED** at this writing — cite it as a direction of travel, not a settled position, and re-check its status before planning against it.
+**In force — BOD 26-04.** CISA [BOD 26-04](https://cyber.dhs.gov/bod/26-04/) (*Prioritizing Security Updates Based on Risk*, issued **2026-06-10**) is not forward-looking: it **revoked BOD 22-01 and BOD 19-02** on issue, replacing their flat 15/25-day KEV clocks with a four-variable risk model (public exposure, KEV listing, exploitation automatability, technical impact) selecting one of five remediation windows. Agency policy updates were due **2026-08-07**; full compliance is due **2026-12-07**. Canon's response is the program decision, still **PROPOSED** at this writing — cite it as a direction of travel, not a settled position, and re-check its status before planning against it.
 
 ### E.4 What non-compliance actually costs an agency
 

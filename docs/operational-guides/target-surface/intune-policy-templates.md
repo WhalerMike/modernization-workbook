@@ -31,11 +31,11 @@ lifecycle_review: 2026-11-22
 ::: {.callout-note}
 ## About this program
 
-**GPO Sunset Program** is one of three distinct programs in the the modernization program governance corpus that touch Intune. Per [the program decision](../../../adr/adr-080-intune-first-scope-disambiguation.qmd) (Intune-First Scope Disambiguation), do not conflate them:
+**GPO Sunset Program** is one of three distinct programs in the the modernization program governance corpus that touch Intune. Per the program decision (Intune-First Scope Disambiguation), do not conflate them:
 
-- **[Intune-First Asset Onboarding](../../../customer-documents/reference-architecture/intune-first.qmd)** — the canon doctrine for **net-new devices** (procurement-time governance, 5-phase Procure→Validate). Not this page.
+- **[Intune-First Asset Onboarding](../../reference-architecture/intune-first.md)** — the canon doctrine for **net-new devices** (procurement-time governance, 5-phase Procure→Validate). Not this page.
 - **GPO Sunset Program** *(this page)* — the **existing-fleet** program. 7-phase replacement of GPOs on currently-deployed endpoints, ending in formal GPO retirement. ~34-week timeline.
-- **[Policy Transformation Pattern](../client-server-to-hybrid-cloud/05-policy-transformation.qmd)** ("Regenerate, Not Copy") — the **philosophy** governing how this program authors replacement policies. Not a separate program.
+- **[Policy Transformation Pattern](../../client-server-to-hybrid-cloud/05-policy-transformation.md)** ("Regenerate, Not Copy") — the **philosophy** governing how this program authors replacement policies. Not a separate program.
 
 The 50-row GPO→Intune mapping later in this document is a **Semantic Translation Reference** — engineers' lookup card for "what's the closest Intune equivalent for this GPO setting." It is *not* a literal 1:1 copy prescription. The "regenerate, not copy" philosophy applies to policy authoring decisions; this reference applies to setting-level translation.
 :::
@@ -1028,9 +1028,9 @@ Settings (additions/modifications from AP-001)
 ::: {.callout-important}
 ## Reference, not prescription (per the program decision)
 
-The table below is a **Semantic Translation Reference** — engineers' lookup card for "what is the closest Intune surface for this GPO setting?" Per [the program decision](../../../adr/adr-080-intune-first-scope-disambiguation.qmd), it is **not** a literal 1:1 copy prescription. Use it to find the right Intune target surface for a given GPO setting; do not use it as authority for what the policy *value* should be in the new system.
+The table below is a **Semantic Translation Reference** — engineers' lookup card for "what is the closest Intune surface for this GPO setting?" Per the program decision, it is **not** a literal 1:1 copy prescription. Use it to find the right Intune target surface for a given GPO setting; do not use it as authority for what the policy *value* should be in the new system.
 
-The "**regenerate, not copy**" philosophy — defined in [Client-Server-to-Hybrid-Cloud chapter 05](../client-server-to-hybrid-cloud/05-policy-transformation.qmd) — governs the policy-authoring decision. Replacement policies are authored from current policy intent (compliance baseline, persona model, Conditional Access strategy, the organizational-attribute model-scoped dynamic group targeting), with this reference as one input among several. Faithfully porting old GPO conflict-resolution semantics or OU-filter targeting into Intune reproduces ancient drift in a new surface; the table tells you where to land, not what to land with.
+The "**regenerate, not copy**" philosophy — defined in [Client-Server-to-Hybrid-Cloud chapter 05](../../client-server-to-hybrid-cloud/05-policy-transformation.md) — governs the policy-authoring decision. Replacement policies are authored from current policy intent (compliance baseline, persona model, Conditional Access strategy, the organizational-attribute model-scoped dynamic group targeting), with this reference as one input among several. Faithfully porting old GPO conflict-resolution semantics or OU-filter targeting into Intune reproduces ancient drift in a new surface; the table tells you where to land, not what to land with.
 :::
 
 The following table maps the top 50 most commonly deployed GPO settings in enterprise environments to their nearest Intune surface, including the the modernization program policy ID where the setting is configured.

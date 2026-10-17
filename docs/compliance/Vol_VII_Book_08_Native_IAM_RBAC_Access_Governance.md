@@ -65,7 +65,7 @@ SailPoint Identity Security Cloud's Cloud Infrastructure Entitlement Management 
 
 # Continuous Monitoring Roll-Up (CA-7)
 
-The engine's loop emits its result into the continuous-monitoring feed: entitlement-review completion, open over-privilege findings by age, idle-entitlement remediation SLA conformance. ServiceNow rolls these into a per-control identity posture that [Vol VII Book 04](Vol_VII_Book_04_Compliance_Control_Attestation_Evidence_KSI.qmd) turns into attestation and KSI evidence, keyed to the same reconciled asset identity the M365, Azure, AWS, and VMware postures use — one compliance picture, not a fifth parallel one.
+The engine's loop emits its result into the continuous-monitoring feed: entitlement-review completion, open over-privilege findings by age, idle-entitlement remediation SLA conformance. ServiceNow rolls these into a per-control identity posture that [Vol VII Book 04](Vol_VII_Book_04_Control_Attestation_Evidence_KSI.md) turns into attestation and KSI evidence, keyed to the same reconciled asset identity the M365, Azure, AWS, and VMware postures use — one compliance picture, not a fifth parallel one.
 
 # Closure Necessity
 
@@ -104,7 +104,7 @@ Generated from the series compliance spine (`orgcomp-compliance-spine.yml`) by `
 
 # Provenance
 
-Draft. SailPoint ISC Governance / CIEM, Azure RBAC, and AWS IAM are deployed examples; the detect→raise→actuate-native→close→evidence loop is the invariant, identical to the M365, Azure, AWS, and VMware books. Vendor claims cite vendor documentation (see References) and are dated, not permanent — see the [Vendor Currency Doctrine](Vol_0_Book_00_Compliance_Executive_Summary.qmd#vendor-currency). This book's entire premise rests on a capability inventory (SailPoint CIEM's cloud coverage, its VMware gap) taken directly from that week's vendor research; confirm SailPoint's, and each CSP's, current entitlement-governance roadmap before this book informs a Project Plan. The compliance-loop figure is authored as committed house-style SVG.
+Draft. SailPoint ISC Governance / CIEM, Azure RBAC, and AWS IAM are deployed examples; the detect→raise→actuate-native→close→evidence loop is the invariant, identical to the M365, Azure, AWS, and VMware books. Vendor claims cite vendor documentation (see References) and are dated, not permanent — see the [Vendor Currency Doctrine](Vol_0_Book_00_Executive_Summary.md#vendor-currency). This book's entire premise rests on a capability inventory (SailPoint CIEM's cloud coverage, its VMware gap) taken directly from that week's vendor research; confirm SailPoint's, and each CSP's, current entitlement-governance roadmap before this book informs a Project Plan. The compliance-loop figure is authored as committed house-style SVG.
 
 # References
 
