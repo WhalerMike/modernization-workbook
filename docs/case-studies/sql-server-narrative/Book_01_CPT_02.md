@@ -13,6 +13,8 @@ lifecycle_review: 2027-01-01
 
 # Chapter 2 — Why the Inheritance Must End
 
+![During: two paths](../../images/sql-server/during-overview.png)
+
 *Three drivers, each as well-reasoned as the original design, and their dependency structure.*
 
 ::: {.callout-note}
