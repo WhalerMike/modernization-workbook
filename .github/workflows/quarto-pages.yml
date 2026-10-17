@@ -24,8 +24,27 @@ jobs:
       - name: Setup Quarto
         uses: quarto-dev/quarto-actions/setup@v2
 
-      - name: Render site
-        run: quarto render
+      - name: Render HTML site
+        run: quarto render --to html
+
+      - name: Render DOCX
+        run: quarto render --to docx
+
+      - name: Create series ZIPs
+        run: |
+          mkdir -p _site/downloads
+          # SQL Server narrative series
+          if [ -d docs/case-studies/sql-server-narrative ]; then
+            cd docs/case-studies/sql-server-narrative
+            zip -r ../../../_site/downloads/sql-server-narrative-series.zip *.md *.docx 2>/dev/null || true
+            cd -
+          fi
+          # Client-server series
+          if [ -d docs/client-server-to-hybrid-cloud ]; then
+            cd docs/client-server-to-hybrid-cloud
+            zip -r ../../_site/downloads/client-server-to-hybrid-cloud-series.zip *.md 2>/dev/null || true
+            cd -
+          fi
 
       - name: Setup Pages
         uses: actions/configure-pages@v5
