@@ -2,40 +2,49 @@
 
 **Assess and consolidate before you touch authentication**
 
-## Why this book exists
+## The shape of twenty years
 
-You cannot migrate the authentication of an estate you have not first assessed and consolidated. After twenty years across an Active Directory forest, the estate is larger and more tangled than any team’s mental model of it. Consolidation and inventory precede authentication migration.
+You do not migrate the estate in the shape you discover it. After twenty years across an Active Directory forest, the SQL Server estate is larger, older, and more entangled than any single team’s mental model of it — and a meaningful fraction of it should not survive the transformation in its current shape.
 
-## Three forms of sprawl
+The order matters because effort is finite and each release narrows the window. Migrating the logins of an instance to Entra ID, only to retire that instance three months later, is wasted work that also delays the instances that most need attention. The consolidation assessment classifies every instance **retain**, **consolidate**, or **retire** before any login is touched.
 
-1. **Orphaned instances.** SQL Server instances that no one owns, that no application claims, and that no monitoring system tracks. They consume licenses, patch cycles, and risk surface without producing value.
-2. **Duplicate databases.** The same database copied across multiple instances for reporting, testing, or historical reasons. Each copy has its own logins, its own permissions, and its own drift from the original.
-3. **Service accounts that no one owns.** Domain accounts created for a specific application, never rotated, never reviewed, and still used by connections that no one has documented.
+![Estate assessment](../../images/sql-server/before-kerberos.png)
 
-## Discovery instruments
+*Assessment triages twenty years of forest sprawl into retain, consolidate, and retire before any login is touched.*
 
-The estate must be inventoried before any authentication change is attempted. Discovery instruments produce:
+## Instance sprawl
 
-- A list of every SQL Server instance, its version, its authentication mode, and its service account.
-- A list of every database, its size, its last access, and its owning application.
-- A list of every login, its type (Windows, SQL, cloud identity), and its last use.
-- A list of every connection string found in application configurations, scheduled tasks, and linked-server definitions.
+A SQL Server estate does not grow by design. It grows by accretion. A development instance becomes a production instance because a project shipped and nobody rebuilt it on the production tier. A test instance set up for a vendor evaluation is never decommissioned. An application installer drops a named instance on an application server and the instance is never inventoried. A linked server created for a one-time data load remains in place for a decade.
 
-No migration plan is valid without this baseline.
+The result is an estate that contains instances nobody owns, databases nobody queries, and linked-server chains that cross domain boundaries the directory modernization program intends to remove. An authentication transformation that begins before this sprawl is assessed will migrate the authentication of servers that should not survive the transformation at all.
 
-## Rationalization lenses
+## The three forcing functions
 
-Each instance and each database is evaluated against three lenses:
+Three independent pressures are converging. None of them, on its own, is a flag-day switch; together they make “stay fully on-premises, Active-Directory-anchored, never touch Arc, keep Windows Authentication” progressively untenable.
 
-- **Retain.** The instance or database is still required. It will be migrated.
-- **Consolidate.** The instance or database can be merged into another. It will be retired after the merge.
-- **Retire.** The instance or database is no longer required. It will be decommissioned before any authentication work begins.
+| # | Forcing function | What it is | What it forces |
+| --- | --- | --- | --- |
+| 1 | Version end-of-support | Each SQL Server version carries roughly five years of mainstream + five years of extended support, after which security updates stop. | A version upgrade — not Arc by itself. An out-of-support engine receives no patches and becomes an audit and ATO liability. |
+| 2 | ESU gated behind Azure Arc | Past end-of-support, Extended Security Updates keep critical patches flowing. The streamlined, pay-as-you-go ESU path is delivered and billed through Azure Arc. | Arc enablement as the practical price of staying patched on an out-of-support version. |
+| 3 | NTLM deprecation | Microsoft is actively deprecating NTLM and hardening defaults toward Kerberos. SQL Server’s silent NTLM fallback breaks when NTLM is blocked network-wide. | A move off Windows Authentication’s NTLM fallback toward Kerberos and ultimately Entra token authentication. |
 
-The gate is evidence, not opinion. An instance is retained only if an application owner signs for it. An instance is retired only if the discovery instruments show no recent connections.
+## Forced versus chosen
 
-## The order of the series
+The forced part is an authentication-layer change; the chosen part is a platform-layer change. They are sequenced, not simultaneous — and the authentication work comes first regardless of the destination, because it is what produces the rationalized estate inventory that scopes any platform move.
 
-Assessment and consolidation are not optional pre-work. They are the first book because every subsequent book spends effort only on instances that survive. Migrating authentication on an instance that will be retired is wasted work. Consolidating after authentication migration is harder than consolidating before it.
+**Forced (the floor moves regardless of what you decide):**
+- Move off NTLM and off Windows Authentication’s silent NTLM fallback.
+- Move off end-of-support engine versions — patch or leave the version.
+- If you stay on an out-of-support version, Arc enablement becomes the practical path to keep receiving Extended Security Updates.
+
+**Chosen (yours to decide):**
+- Where you land — stay on SQL Server, or consolidate onto PostgreSQL or Oracle.
+- How far you consolidate — re-authenticate the silos in place, or dissolve them toward a single authoritative database.
+- Your timeline within the forced windows — which instances move first.
+
+## What Book 02 establishes
+
+The estate must be measured and rationalized before authentication is touched. Instance sprawl, database sprawl, and forest entanglement accumulate over two decades. The consolidation assessment classifies every instance retain, consolidate, or retire. Effort spent migrating the authentication of an instance that will be retired is wasted effort. The inventory that Book 03 audits is the inventory that Book 02 has already rationalized.
 
 ---
 
