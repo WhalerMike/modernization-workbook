@@ -4,11 +4,13 @@
 
 ![Series cover: From Windows Authentication to the Identity Plane](../../images/sql-server/series-cover.jpg)
 
-**Full overview:** [Series Overview](series-overview.md) — the complete cleaned narrative with diagrams.
+**Full narrative bundle:** [sql-server-narrative-bundle.docx](sql-server-narrative-bundle.docx) — the complete original series (Books 01–11 plus decision brief and division of labor). Content preserved as-is.
+
+**Series overview:** [Series Overview](series-overview.md) — cleaned summary with updated diagrams.
 
 ## Status
 
-This is a cleaned multi-chapter narrative. It is written as an engineering argument, not a runbook. Treat the patterns as guidance that must be validated against the specific estate.
+The full original narrative is available as a single DOCX bundle. Individual cleaned Markdown chapters are also present. The bundle retains source references (UIAO, ADR, OrgPath) that appear in the original text.
 
 ## The destination
 
@@ -56,4 +58,4 @@ This transformation consumes the organizational-attribute model. Dynamic securit
 
 ---
 
-*Cleaned extraction for project use. No internal branding or document identifiers.*
+*Full original bundle preserved. Cleaned Markdown chapters also available.*
