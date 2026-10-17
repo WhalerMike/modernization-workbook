@@ -2,6 +2,12 @@
 
 **Silent fallback, service principal name repair, and protocol restriction**
 
+
+
+![NTLM elimination](../../images/sql-server/kerberos-lifecycle.png)
+
+*NTLM elimination diagram.*
+
 ## Why this book exists
 
 NTLM is the silent fallback. Eliminating it requires first repairing Service Principal Names, then restricting the protocol, then verifying that no application falls back. Premature restriction breaks legacy clients.
