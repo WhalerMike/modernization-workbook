@@ -13,6 +13,9 @@ lifecycle_review: 2027-01-01
 
 # Chapter 1 — NTLMv1, NTLMv2, and the Patterns That Generate NTLM
 
+![NTLM elimination](../../images/sql-server/kerberos-lifecycle.png)
+
+
 *NTLM is a protocol, not a setting — so eliminating it means naming every connection pattern that produces it.*
 
 ::: {.callout-note}
