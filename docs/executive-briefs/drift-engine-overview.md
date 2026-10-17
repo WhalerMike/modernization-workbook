@@ -1,38 +1,67 @@
-# Executive Brief — Drift Engine Overview
+---
+title: Drift Engine Overview — Executive Brief
+doc-type: executive-brief
+status: Active
+canon-source: docs/docs/16_DriftDetectionStandard.qmd
+derived-from: uiao canon
+lifecycle: adopted
+tiers_adopted: [1]
+lifecycle_review: 2026-11-22
+---
 
-**Continuous drift detection and bounded remediation**
+# Drift Engine Overview — Executive Brief
 
-## What it answers
+![Continuous monitoring pipeline](../../images/canonical/the modernization program-FIG-003-continuous-monitoring-pipeline.png){fig-alt="the modernization program continuous monitoring pipeline checking tenant configuration against 323 FedRAMP Moderate Rev 5 controls plus SCuBA and [BOD 25-01](https://cyber.dhs.gov/bod/25-01/) baselines." width="100%"}
 
-The drift engine continuously answers: “Are we still operating exactly as the authoritative policy, identity, and evidence rules require?” It classifies drift using one taxonomy, assigns operational urgency, and drives a bounded remediation path.
+For federal CIO/CISO leadership, the modernization program’s drift engine is the control that continuously answers: *“Are we still operating exactly as canonized policy, identity, and evidence rules require?”* It classifies drift using one taxonomy, assigns operational urgency, and drives a bounded remediation path.
 
-## Drift classes
+## Canonical drift classes
 
-- **Schema** — structure no longer matches the authoritative schema.
-- **Semantic** — structure is valid, but meaning is stale or inconsistent.
-- **Provenance** — evidence chain is incomplete, invalid, or broken.
-- **Authorization** — data moved outside its authorized envelope.
-- **Identity** — issuer cannot be resolved to a verified identity object.
+the modernization program uses five classes (verbatim from the Drift Detection Standard):
 
-## Severity and operational obligation
+- `DRIFT-SCHEMA` — structure no longer matches canonical schema.
+- `DRIFT-SEMANTIC` — structure is valid, but meaning is stale or inconsistent.
+- `DRIFT-PROVENANCE` — evidence chain is incomplete, invalid, or broken.
+- `DRIFT-AUTHZ` — data moved outside its authorized consent envelope.
+- `DRIFT-IDENTITY` — issuer cannot be resolved to a verified identity object.
+
+## Severity model and operational obligation
 
 | Severity | Meaning | Operational obligation |
-|----------|---------|------------------------|
-| P1 | Active-use claim with provenance or identity risk | Halt affected flow, alert immediately, escalate |
-| P2 | Live schema or semantic drift | Auto-remediate when deterministic; otherwise escalate within 1 hour |
-| P3 | Dormant or historical drift | Queue remediation and close within 24 hours |
-| P4 | Style or metadata drift with no semantic impact | Log and auto-remediate within 72 hours |
+|---|---|---|
+| `P1` | Active-use claim with provenance/identity risk | Halt affected flow, alert immediately, escalate to governance leadership (Canon Steward / Architecture Lead / CISO path) |
+| `P2` | Live schema/semantic drift | Auto-remediate when deterministic; otherwise escalate within 1 hour |
+| `P3` | Dormant/historical drift | Queue remediation and close within 24 hours |
+| `P4` | Style/metadata drift with no semantic impact | Log and auto-remediate within 72 hours |
+
+## Where drift is detected
+
+1. **CI substrate walker** (`uiao substrate walk`, `substrate-drift.yml`) detects shipped classes now: `DRIFT-SCHEMA` and `DRIFT-PROVENANCE`.
+2. **Runtime conformance runner** detects runtime drift during adapter execution and emits remediation-contract records (`drift_class`, `severity`, timestamps, remediation action, evidence, escalation path).
 
 ## How leaders should consume drift output
 
-- Every material event becomes a tracked governance action with explicit owner and SLA.
-- Drift outcomes trigger regeneration of affected evidence artifacts so authorization narratives stay accurate.
-- Remediation outcomes (halt, fix, flag, log) feed enforcement behavior to reduce repeat drift.
+- **Governance tickets:** every material event becomes a tracked governance action with explicit owner and SLA.
+- **OSCAL evidence regeneration:** drift outcomes trigger regeneration of affected evidence artifacts so SSP/POA&M narratives stay canon-accurate.
+- **Enforcement adapter feedback:** remediation outcomes (`halt | fix | flag | log`) feed enforcement behavior to reduce repeat drift.
 
-## Leadership takeaway
+## Maturity snapshot (current)
 
-Structural and provenance drift can be enforced in continuous integration today. The same taxonomy and severity contract extends to runtime semantic, authorization, and identity drift as those controls are completed.
+| Drift class | Maturity |
+|---|---|
+| `DRIFT-SCHEMA` | **SHIPPED** |
+| `DRIFT-PROVENANCE` | **SHIPPED** |
+| `DRIFT-SEMANTIC` | **TARGET** (partial runtime design) |
+| `DRIFT-AUTHZ` | **DESIGN-ONLY** (pending runtime implementation) |
+| `DRIFT-IDENTITY` | **DESIGN-ONLY** (pending runtime implementation) |
 
----
+## Where to go deeper
 
-*Cleaned extraction for project use. No internal branding or document identifiers.*
+- **[Architecture Series — Drift Engine](../architecture-series/drift-engine.qmd)** —
+  the design-level treatment of the six-phase loop and taxonomy.
+- **[Reference Architecture — Drift Walkthrough](../reference-architecture/drift-walkthrough.qmd)** —
+  a concrete, end-to-end detection example.
+- **[Governance OS Overview](governance-os-overview.qmd)** — how drift fits the
+  broader substrate operating model.
+
+**Leadership takeaway:** the modernization program already ships structural/provenance drift enforcement in CI, with the same taxonomy and severity contract extending to runtime semantic, authorization, and identity drift as those controls are completed.
