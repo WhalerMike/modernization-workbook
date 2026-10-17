@@ -2,6 +2,12 @@
 
 **The destination and the milestone**
 
+
+
+![After: application-aware token](../../images/sql-server/after-token.png)
+
+![Token session lifecycle](../../images/sql-server/token-lifecycle.png)
+
 ## Why this book exists
 
 The destination is not a partial migration. It is a state in which no domain controller is in the authentication path, no NTLM is used, no SQL Authentication is used for human principals, the engine runs under a managed identity, and Conditional Access evaluates every human connection.
