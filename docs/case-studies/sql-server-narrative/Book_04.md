@@ -11,14 +11,14 @@ lifecycle: active
 tiers_adopted: []
 lifecycle_review: 2027-01-01
 listing:
- - id: book-chapters
- contents:
- - "Book_04_CPT_*.qmd"
- type: table
- fields: [title]
- sort: "series-order asc"
- sort-ui: false
- filter-ui: false
+  - id: book-chapters
+    contents:
+      - "Book_04_CPT_*.qmd"
+    type: table
+    fields: [title]
+    sort: "series-order asc"
+    sort-ui: false
+    filter-ui: false
 ---
 
 ::: {.content-visible when-format="docx"}
