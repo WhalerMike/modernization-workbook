@@ -72,7 +72,7 @@ canonical claims, and what an agency can do today versus what extends
 the integration into target maturity.
 
 The companion technical surface is the
-[ScubaGear Adapter Spec](../adapter-specs/scubagear/scubagear.qmd), which
+ScubaGear Adapter Spec, which
 documents the runtime contract, configuration, and outputs in adapter-
 implementer terms.
 
@@ -168,7 +168,7 @@ canonical attribute that the OSCAL emission consumes.
 ### 3. Where ScubaGear lands in the evidence chain
 
 The four-stage evidence pipeline (see
-[Evidence Chain](../architecture-series/evidence-chain.qmd)):
+Evidence Chain):
 
 ```
 ScubaGear run → claim normalization → bundle assembly+seal → OSCAL artifact
@@ -194,7 +194,7 @@ months after the original audit and verify the bundle hash.
 
 ScubaGear is interesting in GCC-Moderate because it sits **inside the
 boundary** and reads tenant state via in-boundary APIs. Per the
-[Boundary Impact Model](../architecture-series/boundary-impact-model.qmd),
+[Boundary Impact Model](../architecture/boundary-impact-model.md),
 this means:
 
 - **Telemetry fidelity:** ScubaGear can read the configuration state
@@ -244,7 +244,7 @@ identity posture an agency carries through the AD → Entra ID transition,
 not just the cloud baseline at a moment in time.
 
 **Federal mandate alignment.** The
-[Federal SSOT Alignment whitepaper](federal-ssot-alignment.qmd)
+[Federal SSOT Alignment whitepaper](federal-ssot-alignment.md)
 catalogues the federal mandates that the substrate as a whole supports
 (Evidence Act, Federal Data Strategy, OMB M-22-09, FedRAMP 20x, NIST
 800-63 AAL, DAMA-DMBOK, CDO Data Governance Board). ScubaGear's role in
@@ -264,7 +264,7 @@ ScubaGear operates inside the GCC-Moderate boundary and its policies
 were authored against features the boundary actually exposes. The
 boundary itself, however, produces a structural compliance conflict
 catalogued as a first-class finding in
-[B.1.1 The Three-Way GCC-Moderate Compliance Conflict](../orgcomp-series/boundary/B1-1-gcc-moderate-three-way-conflict.qmd)
+B.1.1 The Three-Way GCC-Moderate Compliance Conflict
 (TIC 3.0 × Zero Trust × FedRAMP 20x). ScubaGear does not surface this
 conflict directly — it is structural, not a per-policy finding — but
 ScubaGear's evidence is one of the artifacts the agency uses to
@@ -339,7 +339,7 @@ in a real run — pass, fail, manual, or not-applicable — takes the same
 four hops; `MS.AAD.1.1v1` is simply a concrete stand-in for the class.
 
 **Identity foundation beneath the Azure SSOT stack.** The
-[UIAO the organizational-attribute model chapter 07a — UIAO Beneath the Azure SSOT Stack](../orgpath-narrative/Book_07a.qmd)
+UIAO the organizational-attribute model chapter 07a — UIAO Beneath the Azure SSOT Stack
 positions the identity-governance substrate beneath the Microsoft
 Fabric + OneLake + Purview Azure SSOT stack. ScubaGear is the
 configuration-baseline assessor for the Entra ID identity plane that
@@ -354,7 +354,7 @@ OrgTree readiness bundle, the B.1.1 three-way conflict finding, the SQL
 Server adapter, and the Azure SSOT bridge — the deployment pattern
 whose Evidence Bundle ScubaGear's conformance output slots into as the
 M365 layer — see
-[Federal Civilian AD → Entra ID + SQL Estate — Reference Deployment Pattern](../case-studies/reference-deployment-fedciv-ad-to-entra.qmd).
+[Federal Civilian AD → Entra ID + SQL Estate — Reference Deployment Pattern](../case-studies/reference-deployment-fedciv-ad-to-entra.md).
 (The case study itself does not run ScubaGear; it walks the bundle
 ScubaGear's output joins.)
 

@@ -121,7 +121,7 @@ This overview establishes the deployable-artifact layer of the Federal Organizat
 Where the closures and evidence this volume produces bind to the governance
 substrate — the conformance layer, the surface slots, and the evidence
 contract — is documented once, for the whole series, in
-**[Vol X Book 00 — Governance-Substrate Integration](Vol_X_Book_00_Compliance_Governance_Substrate_Integration_Overview.qmd)**.
+**[Vol X Book 00 — Governance-Substrate Integration](Vol_X_Book_00_Governance_Substrate_Integration_Overview.md)**.
 The binding is **optional and separable**: this volume, and the series it
 belongs to, stands complete at FedRAMP Moderate with no substrate engagement
 at all; adopting the substrate adds machine-checked scoring and drift-gating

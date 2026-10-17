@@ -13,7 +13,7 @@ lifecycle_review: 2027-01-01
 listing:
   - id: book-chapters
     contents:
-      - "Book_06_CPT_*.qmd"
+      - "Book_06_CPT_*.md"
     type: table
     fields: [title]
     sort: "series-order asc"
@@ -41,5 +41,5 @@ SQL Server is one of the most common sources of NTLM traffic in a federal enviro
 
 ::: {.callout-tip}
 ## Continue the series
-[← Previous: Book 05 — The Login Migration](Book_05.qmd) · [Index](index.qmd) · [Next: Book 07 — Access Control →](Book_07.qmd)
+[← Previous: Book 05 — The Login Migration](Book_05.md) · [Index](index.md) · [Next: Book 07 — Access Control →](Book_07.md)
 :::

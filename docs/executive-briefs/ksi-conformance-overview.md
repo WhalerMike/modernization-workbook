@@ -70,7 +70,7 @@ which emits OSCAL observation objects for assessor consumption.
 ## FedRAMP 20x alignment: a tagging discipline, not a rewrite
 
 Per [the program decision]
-and [the modernization program_133](../../../src/uiao/canon/specs/fedramp-20x-integration.md), KSI
+and the modernization program_133, KSI
 emission is designed as a **tag on the existing OSCAL pipeline**, not a second
 evidence path: generated artifacts carry `fedramp:ksi-themes`,
 `ksi-mapping-source`, and `ksi-freshness-cadence` metadata. This keeps a single
@@ -90,11 +90,11 @@ expects.
 
 ## Where to go deeper
 
-- **[Evidence Fabric Overview](evidence-fabric-overview.qmd)** — how KSI results
+- **[Evidence Fabric Overview](evidence-fabric-overview.md)** — how KSI results
   become signed, reproducible evidence.
-- **[Architecture Series — Evidence Chain](../architecture-series/evidence-chain.qmd)** —
+- **Architecture Series — Evidence Chain** —
   the event → claim → OSCAL lineage KSIs ride on.
-- **[Reciprocity & Single-ATO Overview](reciprocity-single-ato-overview.qmd)** —
+- **[Reciprocity & Single-ATO Overview](reciprocity-single-ato-overview.md)** —
   where the KSI-RECIP family does its work.
 
 ## Leadership takeaway

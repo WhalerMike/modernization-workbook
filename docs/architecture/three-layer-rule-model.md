@@ -21,7 +21,7 @@ versioned, and drift-detected independently. Mixing them — the typical
 boundaries into one and loses the ability to assess each layer for its own
 risk profile.
 
-![Three-layer rule model stack diagram](images/three-layer-rule-model-image-01-three-layer-rule-model-stack-dia.png){#fig-three-layer-rule-model-image-01 fig-alt="Three horizontal layers stacked top to bottom: top layer \"Runtime (Enforcement)\" — adapter and enforcement runtime icons, middle layer \"Policy (Mapping)\" — registry and KSI mapping icons, bottom layer \"Canon (Rule Definition)\" — schema-locked SSOT icon. Each layer has a small badge on the right showing its change cadence (Runtime: PR + tests, Policy: PR + schema validation, Canon: ADR + governance review). Vertical arrows on the left side of the stack show \"read-only consumption upward\" flowing from canon up to runtime; arrows on the right side show \"evidence and drift findings flow downward\" back into the layers. Clean engineering blueprint style, dark navy (#0D1B2E) and teal (#1E8C8C) on white background. No photographs, purely diagrammatic." width="100%"}
+![Three-layer rule model stack diagram](../images/architecture/three-layer-rule-model-image-01-three-layer-rule-model-stack-dia.png){#fig-three-layer-rule-model-image-01 fig-alt="Three horizontal layers stacked top to bottom: top layer \"Runtime (Enforcement)\" — adapter and enforcement runtime icons, middle layer \"Policy (Mapping)\" — registry and KSI mapping icons, bottom layer \"Canon (Rule Definition)\" — schema-locked SSOT icon. Each layer has a small badge on the right showing its change cadence (Runtime: PR + tests, Policy: PR + schema validation, Canon: ADR + governance review). Vertical arrows on the left side of the stack show \"read-only consumption upward\" flowing from canon up to runtime; arrows on the right side show \"evidence and drift findings flow downward\" back into the layers. Clean engineering blueprint style, dark navy (#0D1B2E) and teal (#1E8C8C) on white background. No photographs, purely diagrammatic." width="100%"}
 
 ## The three layers
 
@@ -43,7 +43,7 @@ The canon layer is the **single source of truth** for rule existence and
 semantics. It lives under `src/uiao/rules/` and is shipped as package data
 inside the installable `uiao` distribution. Canon is read at runtime via
 `importlib.resources` per the
-[Canon Consumer rule](../../../src/uiao/rules/canon-consumer.md) — never
+Canon Consumer rule — never
 from filesystem paths, never written to.
 
 A canon rule declares:
@@ -85,7 +85,7 @@ rules and policy mappings against live state. It lives in two places:
 - **Adapter code** under `src/uiao/adapters/<adapter>/` — each adapter
   implements the conformance contract for its `mission-class` and emits
   drift findings + evidence per the
-  [Evidence Chain](evidence-chain.qmd).
+  [Evidence Chain](evidence-chain.md).
 - **Enforcement runtime** under `src/uiao/enforcement/` — library-only
   today (UIAO_111). Policies are Python callables; there is no CLI surface
   for the enforcement runtime, by design — see

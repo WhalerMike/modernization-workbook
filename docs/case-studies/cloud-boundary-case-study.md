@@ -27,7 +27,7 @@ boundary case study. Specific agency identifiers and metrics are
 intentionally absent until real engagement material is reviewed.
 :::
 
-![GCC-Moderate boundary engagement pattern diagram](images/cloud-boundary-case-study-image-01-gcc-moderate-boundary-engagement.png){#fig-cloud-boundary-case-study-image-01 fig-alt="Center shows the GCC-Moderate authorization boundary as a vertical line. Left of the line: M365 Commercial reference (with full feature availability). Right of the line: M365 GCC-Moderate (with five named features in dimmed/red boxes — Endpoint Analytics, Device Health Attestation, Locations & Network Fence, ARC Server Monitoring, Expedited Updates). Below the boundary line, a horizontal \"the modernization program compensation pattern\" band shows four mechanisms: Boundary Probe, In-Boundary Telemetry, Compensating Enforcement, ATO Documentation Surface. To the right, an outcome panel labeled \"Boundary impacts as first-class governed objects\". Clean engineering blueprint style, dark navy (#0D1B2E) and teal (#1E8C8C) on white background, with red (#C74040) reserved for unavailable-feature highlights. No photographs, purely diagrammatic." width="100%"}
+![GCC-Moderate boundary engagement pattern diagram](../images/case-studies/cloud-boundary-case-study-image-01-gcc-moderate-boundary-engagement.png){#fig-cloud-boundary-case-study-image-01 fig-alt="Center shows the GCC-Moderate authorization boundary as a vertical line. Left of the line: M365 Commercial reference (with full feature availability). Right of the line: M365 GCC-Moderate (with five named features in dimmed/red boxes — Endpoint Analytics, Device Health Attestation, Locations & Network Fence, ARC Server Monitoring, Expedited Updates). Below the boundary line, a horizontal \"the modernization program compensation pattern\" band shows four mechanisms: Boundary Probe, In-Boundary Telemetry, Compensating Enforcement, ATO Documentation Surface. To the right, an outcome panel labeled \"Boundary impacts as first-class governed objects\". Clean engineering blueprint style, dark navy (#0D1B2E) and teal (#1E8C8C) on white background, with red (#C74040) reserved for unavailable-feature highlights. No photographs, purely diagrammatic." width="100%"}
 
 ## Engagement archetype
 
@@ -35,7 +35,7 @@ A federal agency operating M365 in GCC-Moderate discovers — typically
 late in an ATO cycle or during ZT analytics rollout — that a cluster
 of features advertised in admin portals and referenced in the SSP do
 not function as documented. The pattern matches the
-[GCC-Moderate Boundary Problem Statement](../../docs/gcc-boundary-problem-statement.qmd):
+GCC-Moderate Boundary Problem Statement:
 features appear available, are described in commercial documentation,
 and are referenced in migration plans, but silently produce no data,
 emit no errors, and have no documented resolution path.
@@ -139,7 +139,7 @@ lessons; sponsor-side review and approval.
 
 ## Related documents
 
-- [Architecture Series — Boundary Impact Model](../architecture-series/boundary-impact-model.qmd)
-- [GCC-Moderate Problem Statement (canon)](../../docs/gcc-boundary-problem-statement.qmd)
-- [GCC-Moderate Solution Architecture (canon)](../../docs/gcc-boundary-solution-architecture.qmd)
-- [B.1 GCC-Moderate Boundary Model](../orgcomp-series/boundary/B1-gcc-moderate-boundary-model.qmd)
+- [Architecture Series — Boundary Impact Model](../architecture/boundary-impact-model.md)
+- GCC-Moderate Problem Statement (canon)
+- GCC-Moderate Solution Architecture (canon)
+- B.1 GCC-Moderate Boundary Model

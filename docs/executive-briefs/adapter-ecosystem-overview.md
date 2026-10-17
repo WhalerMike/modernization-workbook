@@ -73,7 +73,7 @@ per-adapter ADR) or *proposed*.
 
 - `scubagear` — CISA ScubaGear M365 SCuBA assessor across seven workloads
   (Entra ID, Defender, Exchange Online, Power BI, Power Platform, SharePoint,
-  Teams). See the [ScubaGear integration whitepaper](../whitepapers/scubagear-integration-whitepaper.qmd).
+  Teams). See the [ScubaGear integration whitepaper](../whitepapers/scubagear-integration-whitepaper.md).
 - `uiao-git-server` — health and evidence telemetry for the self-hosted
   Windows Server 2025 / IIS Git service.
 
@@ -90,7 +90,7 @@ shipped adapters are exercised through the IR and evidence pipelines.
 ## How an adapter earns "active"
 
 Status is not self-asserted. Per the adapter test strategy
-([the modernization program_131](../../../src/uiao/canon/specs/adapter-test-strategy.md)), an adapter
+(the modernization program_131), an adapter
 advances through three test tiers before its registry `status` may move toward
 `active`:
 
@@ -100,7 +100,7 @@ advances through three test tiers before its registry `status` may move toward
 | **Tier 2** | GCC-Moderate-specific behavior against recorded contract fixtures | Every PR (`pytest`, zero network) |
 | **Tier 3** | Behavior against a real reference GCC-Moderate tenant | Quarterly, exported as signed OSCAL evidence |
 
-The [Adapter Conformance CI gate](../../../src/uiao/canon/specs/adapter-test-strategy.md)
+The Adapter Conformance CI gate
 validates both registries against the schema and runs the full conformance
 criteria on every PR that touches an adapter; a single failure blocks merge.
 Adapter capability is declared per the five-tier conformance model in
@@ -119,11 +119,11 @@ Adapter capability is declared per the five-tier conformance model in
 
 ## Where to go deeper
 
-- **[Adapter specs](../adapter-specs/index.qmd)** — one technical spec per
+- **Adapter specs** — one technical spec per
   adapter, frontmatter regenerated from canon on every sync.
-- **[Validation suites](../validation-suites/index.qmd)** — adapter tests,
+- **Validation suites** — adapter tests,
   evidence expectations, and drift procedures, paired 1:1 with each adapter.
-- **[Reference architecture — Adapters](../reference-architecture/adapters.qmd)** —
+- **[Reference architecture — Adapters](../reference-architecture/adapters.md)** —
   how adapters sit in the six-plane architecture.
 
 ## Leadership takeaway

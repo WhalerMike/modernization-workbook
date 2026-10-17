@@ -35,9 +35,9 @@ live in the linked canon and reference pages.
 This page takes the **GPO device-policy plane** lens specifically. For
 the broader structural argument that the AD→Entra gap is structural
 rather than technical, see
-[AD to Entra ID — The Structural Migration Problem](../whitepapers/ad-to-entraid-migration-problem.qmd);
+[AD to Entra ID — The Structural Migration Problem](../whitepapers/ad-to-entraid-migration-problem.md);
 for the tool-by-tool comparison (including Group Policy Analytics), see
-[the modernization program vs Microsoft Native Tools](../whitepapers/uiao-vs-native-tools.qmd).
+the modernization program vs Microsoft Native Tools.
 This page does not restate their claims — it focuses on *what is lost in
 the policy plane and where the organizational-attribute model restores it*.
 :::
@@ -57,7 +57,7 @@ govern consistently at scale without a strong canonical model
 underneath it. The organizations that feel the loss earliest and most
 acutely are exactly the ones trying to *maintain or improve* strong,
 deterministic, auditable governance through the transition — which is
-the class of problem [the organizational-attribute model](orgpath-faq.qmd) is built to address.
+the class of problem the organizational-attribute model is built to address.
 
 The rest of this page breaks that down: first what is lost, then how
 the migration is actually going, then how the organizational-attribute model restores each
@@ -88,7 +88,7 @@ longer free: it has to be *manufactured* by a canonical attribute model.
 Without one, organizations lose the "single source of truth" feeling for
 why a given device or user receives a particular policy, and group
 membership quietly becomes a manual spreadsheet exercise. See
-[Dynamic Groups](dynamic-groups.qmd) for the boolean-composition pattern
+[Dynamic Groups](dynamic-groups.md) for the boolean-composition pattern
 that re-introduces determinism on top of attributes.
 
 ### Fine-grained control over legacy and complex settings
@@ -123,7 +123,7 @@ cloud-dependent, and **cross-plane** visibility (how an identity change
 ripples into device policy, server workloads, applications, and data
 access) is weak natively. Drift becomes harder to *detect*, let alone
 remediate. This is precisely the gap a drift engine fills: the
-[Drift Detection Walk-through](drift-walkthrough.qmd) shows per-facet
+[Drift Detection Walk-through](drift-walkthrough.md) shows per-facet
 drift surfacing as explicit `DRIFT-*` findings rather than silent
 divergence.
 
@@ -133,7 +133,7 @@ On-prem delegation was well understood: who can create, edit, or link a
 GPO, at which OU level. The cloud equivalent — Intune roles, RBAC,
 policy ownership, scope tags — is a different shape, and to traditional
 GPO teams it can feel less granular or less auditable. The
-[Delegation](delegation.qmd) reference covers how the organizational-attribute model facets carry a
+[Delegation](delegation.md) reference covers how the organizational-attribute model facets carry a
 delegation boundary forward so scope is canonical rather than
 reconstructed per-admin.
 
@@ -191,12 +191,12 @@ gap above maps to a concrete artifact:
 
 | Governance gap | the organizational-attribute model restoration | Reference |
 |---|---|---|
-| Deterministic targeting / inheritance | Named facets on every principal; policy composed by boolean facet predicates | [Dynamic Groups](dynamic-groups.qmd) · [Codebook](codebook.qmd) |
-| "Single source of truth" for *why* a policy applies | Canonical codebook vocabulary + HR-driven assignment | [the organizational-attribute model FAQ](orgpath-faq.qmd) · [Where Data Lives](where-data-lives.qmd) |
-| Drift detection across planes | Continuous per-facet drift as `DRIFT-*` findings | [Drift Walk-through](drift-walkthrough.qmd) |
-| Delegation / auditable change | Delegation boundary carried as a canonical facet | [Delegation](delegation.qmd) |
-| Legacy-setting triage | Per-GPO, per-setting classification before cutover | [GPO Migration Triage](../substrate/platform-tooling/invoke-gpo-migration-triage.qmd) |
-| Portability beyond one cloud | Vendor-neutral facet carriage / binding profiles | [the organizational-attribute model Portability](orgpath-portability.qmd) |
+| Deterministic targeting / inheritance | Named facets on every principal; policy composed by boolean facet predicates | [Dynamic Groups](dynamic-groups.md) · [Codebook](codebook.md) |
+| "Single source of truth" for *why* a policy applies | Canonical codebook vocabulary + HR-driven assignment | the organizational-attribute model FAQ · [Where Data Lives](../architecture/where-data-lives.md) |
+| Drift detection across planes | Continuous per-facet drift as `DRIFT-*` findings | [Drift Walk-through](drift-walkthrough.md) |
+| Delegation / auditable change | Delegation boundary carried as a canonical facet | [Delegation](delegation.md) |
+| Legacy-setting triage | Per-GPO, per-setting classification before cutover | [GPO Migration Triage](../substrate/platform-tooling/invoke-gpo-migration-triage.md) |
+| Portability beyond one cloud | Vendor-neutral facet carriage / binding profiles | the organizational-attribute model Portability |
 
 The through-line: the OU tree *was* the governance model, and a flat
 Entra directory does not carry it forward by itself. the organizational-attribute model re-encodes
@@ -221,12 +221,12 @@ close.
 
 ## Where to go next
 
-- **Plain-language operator answers:** [the organizational-attribute model FAQ](orgpath-faq.qmd)
-- **Why a policy applies — the data model:** [Where OrgTree & the organizational-attribute model Data Lives](where-data-lives.qmd)
-- **Restore determinism on attributes:** [Dynamic Groups](dynamic-groups.qmd)
-- **See drift surface explicitly:** [Drift Detection Walk-through](drift-walkthrough.qmd)
-- **Triage the legacy GPO surface:** [Invoke-GpoMigrationTriage](../substrate/platform-tooling/invoke-gpo-migration-triage.qmd)
-- **Carry governance beyond one cloud:** [the organizational-attribute model Portability](orgpath-portability.qmd)
-- **Whole-of-transition framing:** [Modernization Canon (section index)](index.qmd)
-- **Structural-gap argument:** [AD to Entra ID — The Structural Migration Problem](../whitepapers/ad-to-entraid-migration-problem.qmd)
-- **Tool-by-tool comparison:** [the modernization program vs Microsoft Native Tools](../whitepapers/uiao-vs-native-tools.qmd)
+- **Plain-language operator answers:** the organizational-attribute model FAQ
+- **Why a policy applies — the data model:** [Where OrgTree & the organizational-attribute model Data Lives](../architecture/where-data-lives.md)
+- **Restore determinism on attributes:** [Dynamic Groups](dynamic-groups.md)
+- **See drift surface explicitly:** [Drift Detection Walk-through](drift-walkthrough.md)
+- **Triage the legacy GPO surface:** [Invoke-GpoMigrationTriage](../substrate/platform-tooling/invoke-gpo-migration-triage.md)
+- **Carry governance beyond one cloud:** the organizational-attribute model Portability
+- **Whole-of-transition framing:** [Modernization Canon (section index)](index.md)
+- **Structural-gap argument:** [AD to Entra ID — The Structural Migration Problem](../whitepapers/ad-to-entraid-migration-problem.md)
+- **Tool-by-tool comparison:** the modernization program vs Microsoft Native Tools

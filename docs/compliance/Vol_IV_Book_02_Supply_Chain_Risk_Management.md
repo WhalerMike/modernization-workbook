@@ -570,7 +570,7 @@ Every SBOM generation run produces a signed manifest:
 | SLSA v1.0 Framework | Build integrity levels and provenance requirements |
 | NIST SP 800-53 Rev 5 — SR Family | SR-1 through SR-11 control requirements |
 | FedRAMP 20x Consolidated Rules (Jun 25, 2026) | KSI-SCR and KSI-CMT requirements |
-| [Vol III Book 02 — Vulnerability Management](Vol_III_Book_02_Compliance_Vulnerability_Management.qmd) | Defender VM + KEV integration; extends to SBOM-sourced CVE triage |
-| [Vol III Book 06 — SIEM / XDR / Detection Engineering](Vol_III_Book_06_Compliance_SIEM_XDR_Detection.qmd) | Sentinel ingestion of SBOM/VDR telemetry; KQL analytic rules |
+| [Vol III Book 02 — Vulnerability Management](Vol_III_Book_02_Vulnerability_Management.md) | Defender VM + KEV integration; extends to SBOM-sourced CVE triage |
+| [Vol III Book 06 — SIEM / XDR / Detection Engineering](Vol_III_Book_06_SIEM_XDR_Detection.md) | Sentinel ingestion of SBOM/VDR telemetry; KQL analytic rules |
 
 : Reference Documents {.striped .hover}

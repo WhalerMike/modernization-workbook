@@ -29,7 +29,7 @@ together or entirely independently.
 `Modernization_Specs/`, `Directory_Migration_Bridge/`, `Whitepapers/`, and
 `SQL_Server_Transformation/`. Rebuilt from source on
 every site deploy; open `INDEX.md` first. See the
-[Downloads page](../download/index.qmd#orgmod-modernization-series) for what each folder holds.
+Downloads page for what each folder holds.
 :::
 
 ## Ways in
@@ -38,32 +38,32 @@ Pick the entry point that matches your role:
 
 | Entry point | For | Start here |
 |---|---|---|
-| **The infrastructure bridge** | Architects planning what replaces AD's eleven implicit roles | [Directory Migration — the AD infrastructure bridge](../customer-documents/reference-architecture/directory-migration.qmd), and the [eight adapter interfaces](../customer-documents/operational-guides/directory-migration/index.qmd) behind it |
-| **The transformation series** | Program teams running the end-to-end journey | [Microsoft Client-Server to Hybrid-Cloud](../customer-documents/operational-guides/client-server-to-hybrid-cloud/index.qmd) — AD, GPO, DNS, DHCP, Kerberos, and PKI → Entra ID, Intune, Azure Arc, IPAM, SASE, and Zero Trust |
-| **The device and server planes** | Operators modernizing endpoints and servers | [Intune + Azure Arc Modernization](../customer-documents/operational-guides/intune-arc-modernization/index.qmd) — runnable manually or the organizational-attribute model-governed |
-| **The HR-driven identity pipeline** | Identity teams building the joiner/mover/leaver feed against Federal HR 2.0 (Oracle Core HCM) | [HRIT to HR-Driven IAM Execution Plan](../customer-documents/orgcomp-series/Compliance_HRIT_HR_Driven_IAM_Execution_Plan.qmd) — the provisioning pipe to today's AD-mastered estate and the cloud-native target, on the program's wave clock |
-| **The full guide shelf** | Everything task-oriented in one place | The [Modernization guides](../customer-documents/operational-guides/index.qmd) — transformation engine, target surface, and program management |
-| **The long-form case** | Readers who need the argument before the runbook | The modernization whitepapers — [the structural migration problem](../customer-documents/whitepapers/ad-to-entraid-migration-problem.qmd), [the modernization journey](../customer-documents/whitepapers/modernization-journey.qmd), and the [network and infrastructure track](../customer-documents/whitepapers/reading-guide.qmd) behind the transport, DNS, and field-office decisions |
+| **The infrastructure bridge** | Architects planning what replaces AD's eleven implicit roles | [Directory Migration — the AD infrastructure bridge](../reference-architecture/directory-migration.md), and the eight adapter interfaces behind it |
+| **The transformation series** | Program teams running the end-to-end journey | Microsoft Client-Server to Hybrid-Cloud — AD, GPO, DNS, DHCP, Kerberos, and PKI → Entra ID, Intune, Azure Arc, IPAM, SASE, and Zero Trust |
+| **The device and server planes** | Operators modernizing endpoints and servers | Intune + Azure Arc Modernization — runnable manually or the organizational-attribute model-governed |
+| **The HR-driven identity pipeline** | Identity teams building the joiner/mover/leaver feed against Federal HR 2.0 (Oracle Core HCM) | HRIT to HR-Driven IAM Execution Plan — the provisioning pipe to today's AD-mastered estate and the cloud-native target, on the program's wave clock |
+| **The full guide shelf** | Everything task-oriented in one place | The Modernization guides — transformation engine, target surface, and program management |
+| **The long-form case** | Readers who need the argument before the runbook | The modernization whitepapers — [the structural migration problem](../whitepapers/ad-to-entraid-migration-problem.md), [the modernization journey](../whitepapers/modernization-journey.md), and the [network and infrastructure track](../whitepapers/reading-guide.md) behind the transport, DNS, and field-office decisions |
 
 ## What Modernization modernizes
 
 - **The assessment engine** — enumerate what the legacy estate actually does
  before deciding what replaces it; the
- [modernization program](../customer-documents/operational-guides/uiao-modernization-program/index.qmd)
+ modernization program
  carries the engine, target surface, and program-management discipline.
-- **The target surface** — [Intune policy templates](../customer-documents/operational-guides/target-surface/intune-policy-templates.qmd),
- the [Conditional Access library](../customer-documents/operational-guides/access-plane/conditional-access-library.qmd),
- and the cross-adapter [modernization specs](../customer-documents/modernization-specs/index.qmd).
+- **The target surface** — [Intune policy templates](../operational-guides/target-surface/intune-policy-templates.md),
+ the [Conditional Access library](../operational-guides/access-plane/conditional-access-library.md),
+ and the cross-adapter modernization specs.
 - **A worked consumer** — the
- [SQL Server Identity Transformation](../customer-documents/sql-server-narrative/index.qmd)
+ SQL Server Identity Transformation
  series migrates a twenty-year SQL estate off Windows Authentication onto
  Entra ID, end to end.
 - **The long-form argument** — the modernization tracks of the
- [whitepaper reading guide](../customer-documents/whitepapers/reading-guide.qmd):
+ [whitepaper reading guide](../whitepapers/reading-guide.md):
  Track 2 carries the AD → Entra ID arc from
- [the structural migration problem](../customer-documents/whitepapers/ad-to-entraid-migration-problem.qmd)
+ [the structural migration problem](../whitepapers/ad-to-entraid-migration-problem.md)
  through
- [flipping 50,000 devices to hybrid join](../customer-documents/whitepapers/hybrid-join-without-governance.qmd),
+ [flipping 50,000 devices to hybrid join](../whitepapers/hybrid-join-without-governance.md),
  and Track 4 carries the network and infrastructure decisions — transport
  under TIC 3.0, DNS in the hybrid multi-cloud, and the field-office WAN
  case. These ship in the Modernization kit's `Whitepapers/` folder.
@@ -73,7 +73,7 @@ Pick the entry point that matches your role:
  *not* carry is steady-state governance operations: the Active Governance
  Directory, federal AI identity governance, and the Help Desk / Cloud
  Services authority model sit in the same `operational-guides/` tree but
- are [the organizational-attribute model's](../orgpath/index.qmd), because their deliverable is an
+ are the organizational-attribute model's, because their deliverable is an
  estate governed rather than an estate moved.
 
 ## One lifecycle, three pillars {#macdr}
@@ -95,12 +95,12 @@ migrated must carry a human owner resolvable in the HR SSOT — an ownerless
 item is an orphan finding before it is a migration candidate. The full
 doctrine — including Closure Provenance ("no closure counts unless it
 carries its proof") and the per-class
-[SSOT Registry](../customer-documents/orgcomp-series/Vol_0_Book_00_Compliance_Executive_Summary.qmd#ssot-registry)
+[SSOT Registry](../compliance/Vol_0_Book_00_Executive_Summary.md#ssot-registry)
 — is stated in
-[Compliance Vol 0 Book 00](../customer-documents/orgcomp-series/Vol_0_Book_00_Compliance_Executive_Summary.qmd#macdr-lifecycle).
+[Compliance Vol 0 Book 00](../compliance/Vol_0_Book_00_Executive_Summary.md#macdr-lifecycle).
 
 ## Current state
 
 Modernization's adoption state is tracked component-by-component on the
-[Substrate Status](../docs/substrate-status.qmd) page — the candid map of
+Substrate Status page — the candid map of
 what is implemented, partial, and aspirational today.

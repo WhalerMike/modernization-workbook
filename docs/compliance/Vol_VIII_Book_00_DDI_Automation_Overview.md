@@ -58,7 +58,7 @@ The architecture volumes name the naming plane as a truth plane: authoritative D
 The strategic argument for unified DDI — why per-CSP DNS sync fails, the AD
 DNS departure, the certificate-DNS surface, and the Cisco Catalyst SD-WAN
 interception problem — is developed in the companion whitepaper
-[Next Generation DNS](../whitepapers/infoblox-hybrid-dns-unified-ddi.qmd);
+[Next Generation DNS](../whitepapers/infoblox-hybrid-dns-unified-ddi.md);
 this volume is the per-platform build-out beneath that argument.
 
 Because DDI is the join key the rest of the series reconciles to — the CMDB (Vol VII Book 01), the multi-CSP patch queue (Vol III Book 03), and the evidence fabric (Vol III Book 07) all key on the authoritative asset identity IPAM owns — this volume is upstream of much of the program. It is placed last in reading order only because it is the deepest implementation detail; in dependency order it is near the root.
@@ -138,7 +138,7 @@ This overview merges the InfoBlox DDI landing-zone kit into the Federal Organiza
 Where the closures and evidence this volume produces bind to the governance
 substrate — the conformance layer, the surface slots, and the evidence
 contract — is documented once, for the whole series, in
-**[Vol X Book 00 — Governance-Substrate Integration](Vol_X_Book_00_Compliance_Governance_Substrate_Integration_Overview.qmd)**.
+**[Vol X Book 00 — Governance-Substrate Integration](Vol_X_Book_00_Governance_Substrate_Integration_Overview.md)**.
 The binding is **optional and separable**: this volume, and the series it
 belongs to, stands complete at FedRAMP Moderate with no substrate engagement
 at all; adopting the substrate adds machine-checked scoring and drift-gating

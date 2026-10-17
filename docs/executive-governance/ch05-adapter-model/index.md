@@ -178,13 +178,13 @@ The adapter taxonomy delivers four properties to the AO:
 ::: {.callout-tip}
 ## Continue the series
 
-Next: [Chapter 6 — Evidence over Attestation](../ch06-evidence-over-attestation/index.qmd) — why the substrate treats machine-verifiable evidence, not a human signature, as the primary artifact.
+Next: [Chapter 6 — Evidence over Attestation](../ch06-evidence-over-attestation/index.md) — why the substrate treats machine-verifiable evidence, not a human signature, as the primary artifact.
 :::
 
 ## Related documents
 
 - [Executive Governance Series Index](../index.html)
-- [Architecture Series — Three-Layer Rule Model](../../architecture-series/three-layer-rule-model.qmd)
-- [Adapter Registry (canon)](../../../../src/uiao/canon/adapter-registry.yaml)
-- [Modernization Registry (canon)](../../../../src/uiao/canon/modernization-registry.yaml)
-- [the program decision: Adapter Retirement](../../../../src/uiao/canon/adr/adr-027-adapter-retirement.md)
+- Architecture Series — Three-Layer Rule Model
+- Adapter Registry (canon)
+- Modernization Registry (canon)
+- the program decision: Adapter Retirement

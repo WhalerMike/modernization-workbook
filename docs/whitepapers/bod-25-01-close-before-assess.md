@@ -30,7 +30,7 @@ lifecycle_review: 2027-01-31
 
 ::: {.content-visible when-format="html"}
 ::: {.callout-tip appearance="simple"}
-**[Download this whitepaper as DOCX](bod-25-01-close-before-assess.docx)** — a Word copy of
+**[Download this whitepaper as DOCX](docx/bod-25-01-close-before-assess.docx)** — a Word copy of
 this page, regenerated on every site deploy. (Also available from the
 **Other Formats** link in the page sidebar.)
 :::
@@ -90,7 +90,7 @@ findings with no mechanism to act on them coherently. Run in the right order,
 the same tools become exactly what the directive intends: confirmation that a
 built architecture is holding, continuously, in evidence an assessor can trust.
 
-![Six-phase sequence — architecture before assessment](images/bod-25-01-close-before-assess-diagram-01-six-phase-sequence.png){#fig-bod-25-01-close-before-assess-diagram-01 fig-alt="A horizontal six-box sequence on a white background. Boxes 1 through 4 — Understand (gaps and root causes), Design (closure patterns), Implement (runbooks and deploys), and Govern (SCRM, POA&M, RACI) — are filled solid navy with white text and connected by teal arrows. Box 5, Validate, is highlighted with a light teal fill and navy border, labeled 'ScubaGear + ZTA'. Box 6, Authorize, is filled medium blue, labeled 'KSI-ready evidence'. Each box carries a small numbered navy badge (1-6) in its top-left corner. Below boxes 1-4, a navy bracket is labeled 'CLOSE FINDINGS FIRST — build the architecture the finding depends on'. Below boxes 5-6, a teal bracket is labeled 'THEN ASSESS & AUTHORIZE — confirmation, not discovery'. A light ice-blue callout bar spans the bottom, reading: BOD-25-01's \"remediate deviations\" clause is phases 1-4, not phase 5. Running the assessor before the architecture exists produces an accurate, growing findings list — not a closed one. Clean engineering blueprint style, dark navy (#0D1B2E) and teal (#1E8C8C) on white background. No photographs, purely diagrammatic." width="100%"}
+![Six-phase sequence — architecture before assessment](../images/whitepapers/bod-25-01-close-before-assess-diagram-01-six-phase-sequence.svg){#fig-bod-25-01-close-before-assess-diagram-01 fig-alt="A horizontal six-box sequence on a white background. Boxes 1 through 4 — Understand (gaps and root causes), Design (closure patterns), Implement (runbooks and deploys), and Govern (SCRM, POA&M, RACI) — are filled solid navy with white text and connected by teal arrows. Box 5, Validate, is highlighted with a light teal fill and navy border, labeled 'ScubaGear + ZTA'. Box 6, Authorize, is filled medium blue, labeled 'KSI-ready evidence'. Each box carries a small numbered navy badge (1-6) in its top-left corner. Below boxes 1-4, a navy bracket is labeled 'CLOSE FINDINGS FIRST — build the architecture the finding depends on'. Below boxes 5-6, a teal bracket is labeled 'THEN ASSESS & AUTHORIZE — confirmation, not discovery'. A light ice-blue callout bar spans the bottom, reading: BOD-25-01's \"remediate deviations\" clause is phases 1-4, not phase 5. Running the assessor before the architecture exists produces an accurate, growing findings list — not a closed one. Clean engineering blueprint style, dark navy (#0D1B2E) and teal (#1E8C8C) on white background. No photographs, purely diagrammatic." width="100%"}
 
 ### 1. What BOD-25-01 actually requires
 
@@ -116,12 +116,12 @@ five is not optional under the directive's own text.
 
 ScubaGear and Microsoft's Zero Trust Assessment are both, in UIAO's adapter
 taxonomy, `class: conformance` instruments — see the
-[ScubaGear Integration whitepaper](scubagear-integration-whitepaper.qmd) for
+[ScubaGear Integration whitepaper](scubagear-integration-whitepaper.md) for
 the full canonical treatment. Neither writes to a tenant. Both read
 configuration state and score it against a baseline (SCuBA's prescriptive
 SHALL/SHOULD policies) or a maturity model (ZTTT's pillar-scored checks against
 Microsoft's Zero Trust guidance). The
-[Microsoft Zero Trust Assessment and CISA SCuBA whitepaper](zta-scuba-relationship.qmd)
+[Microsoft Zero Trust Assessment and CISA SCuBA whitepaper](zta-scuba-relationship.md)
 covers the two tools' relationship in detail — they overlap almost entirely on
 one surface (Entra identity) and otherwise cover different ground (SCuBA:
 Exchange, Defender for Office 365, Teams, Power Platform; ZTTT: Intune devices,
@@ -140,7 +140,7 @@ run — the answer there is "both, for different questions" — it is what
  agency operates. ScubaGear can tell you DNSSEC is disabled; it cannot build
  the naming-and-addressing plane underneath it.
 - **Resolve the GCC-Moderate boundary conflict** documented in
- [B.1.1](../orgcomp-series/boundary/B1-1-gcc-moderate-three-way-conflict.qmd),
+ B.1.1,
  where TIC 3.0, Zero Trust, and FedRAMP 20x pull in genuinely different
  directions. Both assessors report symptoms of that conflict as separate
  findings; neither identifies the conflict as structural, because that is not
@@ -248,10 +248,10 @@ is newly introduced" versus "this deviation is a known, governed exception."
 UIAO's toolkit builds that layer directly on top of the assessors' output,
 without reimplementing either assessor:
 
-- **[ScubaDrift](../../../tools/scubadrift/README.md)** layers drift,
+- **ScubaDrift** layers drift,
  exception-lifecycle, and continuous-monitoring gating on top of ScubaGear's
  pass/fail policy verdicts.
-- **[ZTTTdrift](../../../tools/ztttdrift/README.md)** does the same for
+- **ZTTTdrift** does the same for
  Zero Trust maturity-stage assessments (Microsoft ZTTT / CISA ZTMM-style
  self-assessments): it splits every below-target finding into
  **actionable new drift**, **lapsed acceptance**, or **governed exception**,
@@ -289,7 +289,7 @@ same pattern this whitepaper argues for at the directive level.
  many agencies run for broader Zero Trust posture. Conflating the two — or
  assuming ZTTT coverage substitutes for SCuBA's federal baseline, or vice
  versa — reintroduces the gap the
- [ZTA/SCuBA relationship whitepaper](zta-scuba-relationship.qmd) exists to
+ [ZTA/SCuBA relationship whitepaper](zta-scuba-relationship.md) exists to
  close.
 - **Coverage arithmetic (10 of 29) is the the compliance series series' internal KSI
  decomposition**, not a FedRAMP-published figure. It is a useful proxy for

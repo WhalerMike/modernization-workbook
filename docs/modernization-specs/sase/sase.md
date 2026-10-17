@@ -35,7 +35,7 @@ anchored overlay, and canonical claim emission for access decisions.
 
 SASE adapters span the Identity, Network, Addressing, and Security &
 Compliance planes (per
-[Six-Plane Architecture](../../architecture-series/six-plane-architecture.qmd)).
+Six-Plane Architecture).
 They inherit:
 
 - **Identity-derived access** — every access decision consumes
@@ -110,11 +110,11 @@ Maps onto:
 ## Validation pairing
 
 Pairs with the
-[SASE Validation Suite](../../validation-suites/domains/sase/sase.qmd).
+SASE Validation Suite.
 
 ## Related documents
 
-- [Modernization Specs Index](../index.qmd)
-- [Architecture Series — Six-Plane Architecture](../../architecture-series/six-plane-architecture.qmd)
-- [Architecture Series — Boundary Impact Model](../../architecture-series/boundary-impact-model.qmd)
-- [Modernization Registry (canon)](../../../../src/uiao/canon/modernization-registry.yaml)
+- Modernization Specs Index
+- Architecture Series — Six-Plane Architecture
+- [Architecture Series — Boundary Impact Model](../../architecture/boundary-impact-model.md)
+- Modernization Registry (canon)

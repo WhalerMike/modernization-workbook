@@ -25,7 +25,7 @@ Briefs and the deeper technical specifications.
 
 ## Pages in this section
 
-Status badges follow the [Whitepapers status conventions](../whitepapers/index.qmd).
+Status badges follow the Whitepapers status conventions.
 
 | Slug | Topic | Status | Canon anchor |
 |---|---|---|---|

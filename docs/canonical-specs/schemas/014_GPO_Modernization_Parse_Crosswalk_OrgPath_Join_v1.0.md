@@ -11,9 +11,9 @@ date: 2026-06-21
 
 This page renders the canonical the modernization program_014 source verbatim. The
 authoritative source is at
-Its decision record is [the program decision](../adr/adr-122-gpo-modernization-parse-crosswalk-orgpath.qmd);
+Its decision record is the program decision;
 its doctrinal home is Gap #3 of the modernization program_009 §3.3. Per
-[the program decision](../adr/adr-072-canon-publication-policy.qmd), this canonical
+the program decision, this canonical
 page is generated as an `include`-style wrapper.
 :::
 

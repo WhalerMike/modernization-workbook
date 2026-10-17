@@ -13,7 +13,7 @@ This page renders the canonical the modernization program_015 source verbatim. T
 authoritative source is at
 It is the governance-plane sibling of the modernization program_009 (Microsoft Coverage And
 Gap Doctrine), covering SailPoint and ServiceNow. Per
-[the program decision](../adr/adr-072-canon-publication-policy.qmd), this canonical
+the program decision, this canonical
 page is generated as an `include`-style wrapper.
 :::
 

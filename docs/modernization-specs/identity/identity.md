@@ -27,7 +27,7 @@ Cross-adapter specification for identity modernization under the the modernizati
 substrate. Covers the directory transition (typically AD → Entra ID),
 attribute model, group computation, delegation, and the canonical claim
 emissions identity adapters must produce. Vendor-specific detail lives
-in adapter specs (see [Adapter Specs](../../adapter-specs/index.html));
+in adapter specs (see Adapter Specs);
 this spec is the substrate contract every identity adapter inherits.
 
 ![Identity modernization domain diagram](images/identity-image-01-identity-modernization-domain-di.png){#fig-identity-image-01 fig-alt="Center shows the canonical Identity Plane as a labeled rectangle with sub-zones for Attributes, Computed Groups, Delegation, and Authentication context. Around the perimeter, four modernization adapter slots labeled (entra-id, active-directory, piv-usaccess, attribute-services) connect with bidirectional arrows to the central plane. Below the plane, a thin horizontal bar labeled \"AODIM canonical attribute set: assignment scope, organizational role, classification clearance\" anchors the model. Clean engineering blueprint style, dark navy (#0D1B2E) and teal (#1E8C8C) on white background. No photographs, purely diagrammatic." width="100%"}
@@ -64,7 +64,7 @@ The list grows as additional identity adapters register.
 
 ## Integration shape: AODIM
 
-Per the [AODIM Architecture](../../architecture-series/aodim-architecture.qmd),
+Per the [AODIM Architecture](../../architecture/aodim-architecture.md),
 identities carry **attributes**, and access is **computed** from those
 attributes. Identity adapters emit canonical claims in this shape:
 
@@ -122,12 +122,12 @@ applies regardless.
 ## Validation pairing
 
 This spec pairs with the
-[Identity Validation Suite](../../validation-suites/domains/identity/identity.qmd)
+Identity Validation Suite
 under Phase 6. Together they form the identity-domain MTS/MVS pair.
 
 ## Related documents
 
-- [Modernization Specs Index](../index.qmd)
-- [Architecture Series — AODIM](../../architecture-series/aodim-architecture.qmd)
-- [Whitepaper: Modernization Governance](../../whitepapers/modernization-governance-whitepaper.qmd)
-- [Modernization Registry (canon)](../../../../src/uiao/canon/modernization-registry.yaml)
+- Modernization Specs Index
+- [Architecture Series — AODIM](../../architecture/aodim-architecture.md)
+- [Whitepaper: Modernization Governance](../../whitepapers/modernization-governance-whitepaper.md)
+- Modernization Registry (canon)

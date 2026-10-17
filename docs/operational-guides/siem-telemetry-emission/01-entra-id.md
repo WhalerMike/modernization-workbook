@@ -203,7 +203,7 @@ accounts only"
 Setting `days: 3650` here and believing you have satisfied AU-11 or M-21-31 is
 a common and expensive mistake — the retention that counts is configured
 per-table on the workspace. See
-[Compliance crosswalk and verification](04-compliance-crosswalk.qmd#retention).
+Compliance crosswalk and verification.
 :::
 
 ## Path C — `az rest`
@@ -255,7 +255,7 @@ az rest --method GET \
 
 Replace `management.azure.com` with `management.usgovcloudapi.net` for Azure
 Government. Entra portal and Graph endpoints shift too — see the
-[endpoint table](index.qmd#sovereign-cloud-endpoints). GCC (the current the modernization program
+endpoint table. GCC (the current the modernization program
 boundary) stays on the worldwide ARM and Graph endpoints.
 :::
 
@@ -378,14 +378,14 @@ data connector surfaces the same categories through the connector UI rather
 than the Entra diagnostic-settings blade. They write to the same tables;
 enabling both does not duplicate data. Connector setup, expected EPS at
 5,000 users, and the detection rules built on these tables are covered in
-[Vol III Book 06 §Connector: Entra ID](../../orgcomp-series/Vol_III_Book_06_Compliance_SIEM_XDR_Detection.qmd).
+[Vol III Book 06 §Connector: Entra ID](../../compliance/Vol_III_Book_06_SIEM_XDR_Detection.md).
 
 ## What this page does not cover
 
 Entra diagnostic settings emit **identity** events. They do not emit Azure
-resource activity (see [Azure platform](02-azure-platform.qmd)) and they do
+resource activity (see [Azure platform](02-azure-platform.md)) and they do
 not emit the Microsoft 365 unified audit log (see
-[M365 unified audit](03-m365-unified-audit.qmd)). Nor do they recover the
+[M365 unified audit](03-m365-unified-audit.md)). Nor do they recover the
 26 telemetry signals the FedRAMP Moderate boundary blocks outright — that
 accounting is in
-[B.1.3 - Rebuilding Boundary-Blocked Analytics](../../orgcomp-series/boundary/B1-3-rebuilding-boundary-blocked-analytics.qmd).
+B.1.3 - Rebuilding Boundary-Blocked Analytics.

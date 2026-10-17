@@ -1008,6 +1008,6 @@ authority model and the ServiceNow / SAM approval pipelines, and filling only th
 residual gaps the spoke does not cover (OneDrive, ImmutableID hard-match,
 Conditional Access). It runs ServiceNow-first: requests enter a triage queue, are
 classified by required authority, and route to the ServiceNow or SAM pipeline. See
-[Help Desk Flow — Intake, Triage, and Routing](helpdesk-flow.qmd) for the full
+[Help Desk Flow — Intake, Triage, and Routing](helpdesk-flow.md) for the full
 mechanisms and the task ↔ Spoke capability crosswalk.
 :::

@@ -7,7 +7,7 @@ audience: [Technical, Customer]
 family: sql-server-implementation
 series-order: 01
 status: active
-canon-source: "src/uiao/canon/the directory modernization program
+canon-source: "src/uiao/canon/the directory modernization program"
 lifecycle: active
 tiers_adopted: []
 lifecycle_review: 2027-01-01
@@ -101,7 +101,7 @@ The books chain; later books operate on the surviving set the earlier ones defin
 
 ## Provenance
 
-This companion introduces no new doctrine — it is the operational rendering of decisions already recorded in canon ([the directory modernization program Transformation #7; [the program decision](../../adr/adr-091-sql-server-authentication-transformation.qmd), [the program decision](../../adr/adr-068-kerberos-ntlm-elimination.qmd), the program decision, the program decision). Each book traces to its canon source and to the specific `Spec`/function it documents.
+This companion introduces no new doctrine — it is the operational rendering of decisions already recorded in canon ([the directory modernization program Transformation #7; the program decision, the program decision, the program decision, the program decision). Each book traces to its canon source and to the specific `Spec`/function it documents.
 
 ## Safety
 
@@ -109,4 +109,4 @@ This book installs and orients; it runs nothing against a live estate. The first
 
 ---
 
-*Companion to [narrative Book 01](../sql-server-narrative/Book_01.qmd). Orientation for the toolchain in `tools/discovery/` and `tools/powershell/` (`the modernization programSqlServerMigration`, `the modernization programIdentityAssessment`, `the modernization programPlanGenerators`). Canon: the directory modernization program Transformation #7; the program decision, the program decision, the program decision, the program decision.*
+*Companion to narrative Book 01. Orientation for the toolchain in `tools/discovery/` and `tools/powershell/` (`the modernization programSqlServerMigration`, `the modernization programIdentityAssessment`, `the modernization programPlanGenerators`). Canon: the directory modernization program Transformation #7; the program decision, the program decision, the program decision, the program decision.*

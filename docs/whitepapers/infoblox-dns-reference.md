@@ -27,14 +27,14 @@ lifecycle_review: 2027-02-03
 
 ::: {.content-visible when-format="html"}
 ::: {.callout-tip appearance="simple"}
-**[Download this whitepaper as DOCX](infoblox-dns-reference.docx)** — a
+**[Download this whitepaper as DOCX](docx/infoblox-dns-reference.docx)** — a
 Word copy of this page, regenerated on every site deploy. (Also available from
 the **Other Formats** link in the page sidebar.)
 :::
 :::
 
 This is the reference companion to
-[Next Generation DNS](infoblox-hybrid-dns-unified-ddi.qmd), split out so the
+[Next Generation DNS](infoblox-hybrid-dns-unified-ddi.md), split out so the
 record-type catalog and the Universal DDI ecosystem-integration table have
 their own bookmarkable home, separate from that paper's split-brain DNS
 argument and its Part 10.2 configuration decisions. Nothing here is new
@@ -46,7 +46,7 @@ configuration decisions that make or break a federal deployment — see the
 parent paper.
 
 This document carries the same source citations as its parent; see
-[Appendix A of Next Generation DNS](infoblox-hybrid-dns-unified-ddi.qmd#appendix-a---source-inventory)
+[Appendix A of Next Generation DNS](infoblox-hybrid-dns-unified-ddi.md#appendix-a---source-inventory)
 for the full source inventory.
 
 ---
@@ -88,7 +88,7 @@ SRV records are the most security-consequential record type in Active Directory 
 - `_ldap._tcp.pdc._msdcs.<domain>` — Primary Domain Controller
 - `_msdcs.<domain>` — entire subtree of AD-specific service records
 
-When Active Directory is deprecated, none of these records migrate automatically. Applications that perform SRV lookups for LDAP or Kerberos — including many legacy Java applications, Linux hosts joined to AD, and network devices — begin failing silently or with cryptic errors when the SRV records disappear. [Part 4 — The Active Directory DNS Departure](infoblox-hybrid-dns-unified-ddi.qmd) of the parent whitepaper covers this in detail; the key point here is that SRV records are the DNS-layer representation of service topology, and their lifecycle must be governed independently of the servers they point to.
+When Active Directory is deprecated, none of these records migrate automatically. Applications that perform SRV lookups for LDAP or Kerberos — including many legacy Java applications, Linux hosts joined to AD, and network devices — begin failing silently or with cryptic errors when the SRV records disappear. [Part 4 — The Active Directory DNS Departure](infoblox-hybrid-dns-unified-ddi.md) of the parent whitepaper covers this in detail; the key point here is that SRV records are the DNS-layer representation of service topology, and their lifecycle must be governed independently of the servers they point to.
 
 Beyond Active Directory, SRV records are used by:
 

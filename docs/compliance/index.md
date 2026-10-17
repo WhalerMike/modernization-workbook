@@ -47,8 +47,8 @@ working; application-aware networking itself remains a technical subject of
 Vol I, unchanged.
 :::
 
-Start with the **[two-page Executive Brief](Vol_0_Book_00a_Compliance_Executive_Brief.qmd)**,
-then the **[Executive Summary and control compendium](Vol_0_Book_00_Compliance_Executive_Summary.qmd)**.
+Start with the **[two-page Executive Brief](Vol_0_Book_00a_Executive_Brief.md)**,
+then the **[Executive Summary and control compendium](Vol_0_Book_00_Executive_Summary.md)**.
 Every book is browsable here and carries a Word download button.
 
 The series is engine-neutral by design: wherever a book needs evidence or
@@ -64,9 +64,9 @@ still be there:
 
 | Entry point | For | Start here |
 |---|---|---|
-| **Executive Brief** | Leadership, sponsors, procurement | The [two-page Executive Brief](Vol_0_Book_00a_Compliance_Executive_Brief.qmd), then the [Executive Summary](Vol_0_Book_00_Compliance_Executive_Summary.qmd) and the [Product Inventory Questionnaire](Vol_0_Book_01_Compliance_Product_Inventory_Questionnaire.qmd) |
-| **Practitioner Quickstart** | ISSOs and engineers who need the working core first | The training program's [Core Compliance Pathway](Compliance-Training-Program/index.qmd#core-aan-pathway) (nine-book spine + four labs), the [`<engine>` tooling note](Compliance-Training-Program/index.qmd#tooling-stack), and the deployable kits — the [ServiceNow compliance app](Vol_VII_Book_05_Compliance_ServiceNow_Compliance_App.qmd) and the Day-2 catalog (Vol IX) — via [the Downloads page](../../download/index.qmd#federal-organization-compliance-series) |
-| **Full Academy** | Anyone pursuing the credentials | [Vol V — Training & Certification](Vol_V_Book_00_Compliance_Training_Certification_Overview.qmd) and the two-track [Compliance Training Program](Compliance-Training-Program/index.qmd) with its capstones and rubrics |
+| **Executive Brief** | Leadership, sponsors, procurement | The [two-page Executive Brief](Vol_0_Book_00a_Executive_Brief.md), then the [Executive Summary](Vol_0_Book_00_Executive_Summary.md) and the [Product Inventory Questionnaire](Vol_0_Book_01_Product_Inventory_Questionnaire.md) |
+| **Practitioner Quickstart** | ISSOs and engineers who need the working core first | The training program's Core Compliance Pathway (nine-book spine + four labs), the [`<engine>` tooling note](Compliance-Training-Program/index.qmd#tooling-stack), and the deployable kits — the [ServiceNow compliance app](Vol_VII_Book_05_ServiceNow_Compliance_App.md) and the Day-2 catalog (Vol IX) — via the Downloads page |
+| **Full Academy** | Anyone pursuing the credentials | [Vol V — Training & Certification](Vol_V_Book_00_Training_Certification_Overview.md) and the two-track Compliance Training Program with its capstones and rubrics |
 
 ## One lifecycle, three pillars {#macdr}
 
@@ -80,13 +80,13 @@ attestation: drift against the compliance spine originates the work, the
 day-2 lanes carry the authorization and elevation discipline, and the
 closure stream is what the attestation pipeline (Vol VII Book 04) lifts
 into OSCAL and KSI evidence. Clause 1 is answered per object class by the
-**[SSOT Registry](Vol_0_Book_00_Compliance_Executive_Summary.qmd#ssot-registry)**
+**[SSOT Registry](Vol_0_Book_00_Executive_Summary.md#ssot-registry)**
 — one designated source of truth for every class including the non-human
 ones (service accounts, devices, AI systems, declared infrastructure),
 each anchored to a human owner resolvable in the HR SSOT. The doctrine —
 including Closure Provenance ("no closure counts unless it carries its
 proof") — is stated in
-[Vol 0 Book 00](Vol_0_Book_00_Compliance_Executive_Summary.qmd#macdr-lifecycle).
+[Vol 0 Book 00](Vol_0_Book_00_Executive_Summary.md#macdr-lifecycle).
 
 ::: {.callout-tip}
 ## Download the full series
@@ -95,7 +95,7 @@ and training-academy page concatenated into one Word document.
 
 For the complete kit — one `.docx` volume bundle per volume plus every book as
 `.pptx`, per-volume folders, plus the deployable operator kits — see
-**[the Downloads page](../../download/index.qmd#federal-organization-compliance-series)**.
+**the Downloads page**.
 :::
 
 ::: {.callout-note}

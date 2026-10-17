@@ -715,6 +715,6 @@ in the {{< meta agency.short >}} GCC Moderate boundary:
 
 *End of Vol IV Book 04 — PII Processing and Transparency*
 
-*Previous: [Vol IV Book 03 — Program Management Governance](Vol_IV_Book_03_Compliance_Program_Management_Governance.qmd)*
+*Previous: [Vol IV Book 03 — Program Management Governance](Vol_IV_Book_03_Program_Management_Governance.md)*
 
 *Series: Federal Organization Compliance for {{< meta agency.short >}} GCC Moderate FedRAMP 20x*

@@ -130,11 +130,11 @@ The remaining chapters address the failure modes in turn:
 ::: {.callout-tip}
 ## Continue the series
 
-Next: [Chapter 2 — The Compliance Paradox](../ch02-compliance-paradox/index.qmd) — why compliance-driven programs accumulate risk *between* audit cycles, and how deterministic evidence collapses the gap.
+Next: [Chapter 2 — The Compliance Paradox](../ch02-compliance-paradox/index.md) — why compliance-driven programs accumulate risk *between* audit cycles, and how deterministic evidence collapses the gap.
 :::
 
 ## Related documents
 
 - [Executive Governance Series Index](../index.html)
-- [Governance OS Canonical Suite](../governance-os-canonical-suite.qmd)
+- [Governance OS Canonical Suite](../governance-os-canonical-suite.md)
 - [Document Index](../../document-index.html)

@@ -30,7 +30,7 @@ individually as its own `.docx` from its page.
 These pages are the **canonical the modernization program specifications** — the single-source-of-truth
 (SSOT) layer of the substrate. Each page renders its authoritative source
 **verbatim** from `src/uiao/canon/` through an
-[the program decision](../adr/adr-072-canon-publication-policy.qmd) include-style wrapper:
+the program decision include-style wrapper:
 the published page is generated, the `.md` under `src/uiao/canon/` is the
 authority, and every downstream document traces its provenance back here.
 

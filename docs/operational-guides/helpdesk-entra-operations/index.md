@@ -32,7 +32,7 @@ Desk performs only the residual manual action that automation cannot reach — a
 never makes an access-governance decision on its own.
 
 ::: {.callout-tip title="Download the runnable kit"}
-The companion **[Help Desk / Cloud Services Operations Kit](../../../download/index.qmd#help-desk--cloud-services)**
+The companion **Help Desk / Cloud Services Operations Kit**
 ships these documents alongside an implementation-path guide, a request-triage
 classifier, and six Microsoft Graph scripts (inventory, PAG/PIM setup,
 group-to-app assignment, ImmutableID repair, access-certification export). Every
@@ -45,14 +45,14 @@ below — so the published kit cannot drift from what these pages document.
 
 | Document | What it covers |
 |---|---|
-| [Help Desk Administrative Responsibilities Guide](help-desk-administrative-responsibilities.qmd) | The operations reference — authority boundaries, the Privileged Access Group (PAG) and PIM eligible-not-active model, the SAM/ServiceNow/Entra three-platform workflow, and the per-task procedures the Help Desk executes. |
-| [Enterprise Application Access Governance and Approval Model](enterprise-application-access-governance.qmd) | The governing policy — risk-tiered approval chains, the RACI matrix, application ownership, group-based access, and the three approval workflows (standard, Admin Consent, and emergency / break-glass). |
-| [the organizational-attribute model Identity Governance Structure](orgpath-identity-governance-structure.qmd) | The design concept underneath both — the four-layer governance model (Requester → Departmental Owner → Application Owner → Identity Governance Authority) that gives Entra ID the routing hierarchy it lacks natively. |
+| [Help Desk Administrative Responsibilities Guide](help-desk-administrative-responsibilities.md) | The operations reference — authority boundaries, the Privileged Access Group (PAG) and PIM eligible-not-active model, the SAM/ServiceNow/Entra three-platform workflow, and the per-task procedures the Help Desk executes. |
+| [Enterprise Application Access Governance and Approval Model](enterprise-application-access-governance.md) | The governing policy — risk-tiered approval chains, the RACI matrix, application ownership, group-based access, and the three approval workflows (standard, Admin Consent, and emergency / break-glass). |
+| the organizational-attribute model Identity Governance Structure | The design concept underneath both — the four-layer governance model (Requester → Departmental Owner → Application Owner → Identity Governance Authority) that gives Entra ID the routing hierarchy it lacks natively. |
 
 ## The operations flow
 
 Where the three documents above say *who owns what* and *who approves what*, the
-[Help Desk Flow — Intake, Triage, and Routing](helpdesk-flow.qmd) page is the
+[Help Desk Flow — Intake, Triage, and Routing](helpdesk-flow.md) page is the
 *how*: how an email request is redirected into a ServiceNow triage queue,
 classified by required authority, routed to the ServiceNow or SAM pipeline, and
 executed through the **Microsoft Entra ID Spoke** where an action exists. It
@@ -83,7 +83,7 @@ tenant, and keep input and output inside your authorization boundary.
 | [`Export-AccessCertification.ps1`](scripts/Export-AccessCertification.ps1) | Produce a per-application access roster for owner certification. |
 
 ::: {.callout-note title="Kit conformance (the program decision): governed-only by design"}
-[the program decision](../../../adr/adr-105-operational-guide-kit-conventions.qmd) asks a
+the program decision asks a
 transformation kit to ship a without-the modernization program **manual path** alongside its governed
 path. This kit takes the **governance-only exemption** the program decision §D3 allows, with
 rationale: its subject *is* the governance and approval-routing model — *who may
@@ -91,7 +91,7 @@ approve what, and where the work is executed* — not a Microsoft-surface
 transformation an operator could perform standalone. There is no "manual vs
 governed" end state to split here; the routing authority *is* the product. The
 residual manual actions the Help Desk executes are already documented per-task in
-the [Administrative Responsibilities Guide](help-desk-administrative-responsibilities.qmd).
+the [Administrative Responsibilities Guide](help-desk-administrative-responsibilities.md).
 :::
 
 ## The one control that ties them together
@@ -100,5 +100,5 @@ Across all three documents a single, unconditional control recurs: **Admin
 Consent approval authority is reserved to Layer 4 — the Identity Governance
 Authority — and is non-delegable.** The Help Desk triages and routes consent
 requests; Application Owners sponsor them; only the IGO approves. Start with the
-[the organizational-attribute model Identity Governance Structure](orgpath-identity-governance-structure.qmd)
+the organizational-attribute model Identity Governance Structure
 if you want the *why* before the *how*.

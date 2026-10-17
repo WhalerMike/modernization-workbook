@@ -16,7 +16,7 @@ aliases:
 
 {{< lifecycle-banner >}}
 
-> **Model C — 15-facet multi-attribute (per [the program decision](../../adr/adr-078-orgpath-attribute-schema-15-facet.qmd)).** The Model A composite-hyphen path (`extensionAttribute1: ORG-FIN-AP-EAST`) is retired. The executable canon is [`codebook.yaml`] (`schema_version: 2.1.0` — Hybrid-C+Path per [the program decision](../../adr/adr-127-orgpath-hybrid-derived-path.qmd)); the canon narrative is [the modernization program_151]( modernization program_151_the organizational-attribute model_Codebook.md) v4.1. <!-- orgpath-slot-allow: names the retired Model A binding in order to declare it retired -->
+> **Model C — 15-facet multi-attribute (per the program decision).** The Model A composite-hyphen path (`extensionAttribute1: ORG-FIN-AP-EAST`) is retired. The executable canon is [`codebook.yaml`] (`schema_version: 2.1.0` — Hybrid-C+Path per the program decision); the canon narrative is [the modernization program_151]( modernization program_151_the organizational-attribute model_Codebook.md) v4.1. <!-- orgpath-slot-allow: names the retired Model A binding in order to declare it retired -->
 
 ## Why This Is the Most Important Document in the Suite
 
@@ -41,9 +41,9 @@ Model C decomposes the organizational-attribute model into **15 facets**, each c
 
 Dynamic group rules, AU memberships, and CA targeting compose facets via standard boolean operators rather than text-parsing a single composite string. Per-facet validation means a drift finding on one slot (e.g., unknown `Region`) is independent of validation on every other slot.
 
-See [Where OrgTree & the organizational-attribute model Data Lives](where-data-lives.qmd) for the storage model (Codebook in Git → Entra `extensionAttribute1`–`15` slots → HR authority).
+See [Where OrgTree & the organizational-attribute model Data Lives](../architecture/where-data-lives.md) for the storage model (Codebook in Git → Entra `extensionAttribute1`–`15` slots → HR authority).
 
-![the organizational-attribute model Model C slot map. Fifteen facets, each occupying one Entra ID onPremisesExtensionAttribute slot, arranged in three groups. The hierarchy facets on slots 1 to 3 — Region, Department, Division — are highlighted and marked as the only facets that compose the path. The governance facets on slots 4 to 13 — Role, CostCenter, Classification, HireDate, TermDate, ClearanceLevel, AccountType, AdminTier, DeviceType, Environment — are available to boolean composition only. Slot 14 is reserved for a tenant-declared facet pending a governed PR. An arrow labelled "composed in order" runs from the hierarchy group down to a dark band showing slot 15, the derived the organizational-attribute model, carrying the literal value Region=NCR|Department=IT|Division=CyberOps| with its trailing delimiter. Footnotes state that composition truncates at the first unpopulated hierarchy facet and that a stored value differing from the recomputation is flagged DRIFT-SEMANTIC::derived-path.](images/codebook-image-01-model-c-slot-map.png){width="100%"}
+![the organizational-attribute model Model C slot map. Fifteen facets, each occupying one Entra ID onPremisesExtensionAttribute slot, arranged in three groups. The hierarchy facets on slots 1 to 3 — Region, Department, Division — are highlighted and marked as the only facets that compose the path. The governance facets on slots 4 to 13 — Role, CostCenter, Classification, HireDate, TermDate, ClearanceLevel, AccountType, AdminTier, DeviceType, Environment — are available to boolean composition only. Slot 14 is reserved for a tenant-declared facet pending a governed PR. An arrow labelled "composed in order" runs from the hierarchy group down to a dark band showing slot 15, the derived the organizational-attribute model, carrying the literal value Region=NCR|Department=IT|Division=CyberOps| with its trailing delimiter. Footnotes state that composition truncates at the first unpopulated hierarchy facet and that a stored value differing from the recomputation is flagged DRIFT-SEMANTIC::derived-path.](../images/reference-architecture/codebook-image-01-model-c-slot-map.svg){width="100%"}
 
 ## Canonical Attribute Assignments
 
@@ -175,7 +175,7 @@ Per [the modernization program_154]( modernization program_154_Delegation_Matrix
 | **Orphan** | A facet enumeration value has zero matching principals | P3 | Flag only |
 | **Phantom** | A principal carries a deprecated value | P3 | Reassign (when `replaced_by` is set) |
 
-Per-facet classification: a principal with valid Region but unknown Department gets one `DRIFT-SEMANTIC` finding for the Department slot only — the Region facet passes independently. See [Drift Detection Walk-through](drift-walkthrough.qmd) for worked Model C examples and per-facet payload shapes.
+Per-facet classification: a principal with valid Region but unknown Department gets one `DRIFT-SEMANTIC` finding for the Department slot only — the Region facet passes independently. See [Drift Detection Walk-through](drift-walkthrough.md) for worked Model C examples and per-facet payload shapes.
 
 ## Implementation Sequence
 

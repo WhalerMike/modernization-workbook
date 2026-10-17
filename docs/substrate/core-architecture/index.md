@@ -27,5 +27,5 @@ Three-Layer Rule Model is non-canonical by definition.
 - **S.A.2** Three-Layer Rule Model — [architecture-series](../../architecture-series/three-layer-rule-model.html)
 - **S.A.3** Drift Engine — [architecture-series](../../architecture-series/drift-engine.html)
 - **S.A.4** Evidence Chain — [architecture-series](../../architecture-series/evidence-chain.html)
-- **S.A.5** Boundary Impact Model — [architecture-series](../../architecture-series/boundary-impact-model.html)
+- **S.A.5** Boundary Impact Model — [architecture-series](../../architecture/boundary-impact-model.md)
 - **S.A.6** Two-Way Governance (SCuBA assesses · ScubaConnect automates · the modernization program governs)

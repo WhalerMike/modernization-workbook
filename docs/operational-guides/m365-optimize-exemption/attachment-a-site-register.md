@@ -35,7 +35,7 @@ once real rows exist**, so no reader has to work out which is which.
 
 | Field | Value |
 | --- | --- |
-| **Attaches to** | SC-7(4) traffic-flow exception — [M365 Optimize endpoint set at branch DIA](sc7-4-exception-memo.qmd) |
+| **Attaches to** | SC-7(4) traffic-flow exception — M365 Optimize endpoint set at branch DIA |
 | **Prepared by** | *[Name, title]* |
 | **Version** | *[n]* — *[date]* |
 | **Site count** | *[N]* sites, *[N]* circuits, approx. *[N]* users |

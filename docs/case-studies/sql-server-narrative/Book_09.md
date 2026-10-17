@@ -13,7 +13,7 @@ lifecycle_review: 2027-01-01
 listing:
   - id: book-chapters
     contents:
-      - "Book_09_CPT_*.qmd"
+      - "Book_09_CPT_*.md"
     type: table
     fields: [title]
     sort: "series-order asc"
@@ -41,5 +41,5 @@ A transformation that achieves a completed state and then stops monitoring is a 
 
 ::: {.callout-tip}
 ## Continue the series
-[← Previous: Book 08 — The Application Chain](Book_08.qmd) · [Index](index.qmd) · [Next: Book 10 — Certificate Authority →](Book_10.qmd)
+[← Previous: Book 08 — The Application Chain](Book_08.md) · [Index](index.md) · [Next: Book 10 — Certificate Authority →](Book_10.md)
 :::

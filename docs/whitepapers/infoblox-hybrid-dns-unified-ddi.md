@@ -27,7 +27,7 @@ lifecycle_review: 2026-12-22
 
 ::: {.content-visible when-format="html"}
 ::: {.callout-tip appearance="simple"}
-**[Download this whitepaper as DOCX](infoblox-hybrid-dns-unified-ddi.docx)** — a
+**[Download this whitepaper as DOCX](docx/infoblox-hybrid-dns-unified-ddi.docx)** — a
 Word copy of this page, regenerated on every site deploy. (Also available from
 the **Other Formats** link in the page sidebar.)
 :::
@@ -511,7 +511,7 @@ reference document so they can be bookmarked and searched independently
 of this paper's argument.
 
 For the full record-type catalog, including the security-integration
-matrix, see [DNS Record Types and Universal DDI Ecosystem Integrations — Reference Companion](infoblox-dns-reference.qmd#dns-record-type-catalog).
+matrix, see [DNS Record Types and Universal DDI Ecosystem Integrations — Reference Companion](infoblox-dns-reference.md#dns-record-type-catalog).
 
 ---
 
@@ -1207,7 +1207,7 @@ controls. This material — including the full partner-by-partner
 ecosystem-integration table — has been moved into its own reference
 document so it can be bookmarked independently of this paper's argument.
 
-For the full ecosystem-integration table, see [DNS Record Types and Universal DDI Ecosystem Integrations — Reference Companion](infoblox-dns-reference.qmd#universal-ddi-ecosystem-integrations).
+For the full ecosystem-integration table, see [DNS Record Types and Universal DDI Ecosystem Integrations — Reference Companion](infoblox-dns-reference.md#universal-ddi-ecosystem-integrations).
 
 ### 7.6 BloxOne Threat Defense: DNS as the security enforcement plane
 

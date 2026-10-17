@@ -183,12 +183,12 @@ all, but realize less of the leverage.
 ::: {.callout-tip}
 ## Where to go next
 
-You've reached the end of the series. Return to the [Executive Governance Series index](../index.html) for the reading paths, or pick up the companion [the modernization program the organizational-attribute model](../../orgpath-narrative/index.qmd) narrative for the substrate's identity-and-position story end to end.
+You've reached the end of the series. Return to the [Executive Governance Series index](../index.html) for the reading paths, or pick up the companion the modernization program the organizational-attribute model narrative for the substrate's identity-and-position story end to end.
 :::
 
 ## Related documents
 
 - [Executive Governance Series Index](../index.html)
-- [Whitepaper: the modernization program Governance OS](../../whitepapers/uiao-governance-os-whitepaper.qmd)
-- [Executive Brief: Governance OS Overview](../../executive-briefs/governance-os-overview.qmd)
-- [Substrate Manifest (canon)](../../../../src/uiao/canon/substrate-manifest.yaml)
+- Whitepaper: the modernization program Governance OS
+- [Executive Brief: Governance OS Overview](../../executive-briefs/governance-os-overview.md)
+- Substrate Manifest (canon)

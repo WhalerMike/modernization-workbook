@@ -7,7 +7,7 @@ audience: [Technical, Customer]
 family: sql-server-implementation
 series-order: 06
 status: active
-canon-source: "src/uiao/canon/the directory modernization program
+canon-source: "src/uiao/canon/the directory modernization program"
 lifecycle: active
 tiers_adopted: []
 lifecycle_review: 2027-01-01
@@ -124,4 +124,4 @@ NTLM elimination is sequenced, not a single cutover:
 
 ---
 
-*Companion to [narrative Book 06](../sql-server-narrative/Book_06.qmd). Detection scripts: `tools/discovery/Spec1-D1.5`, `Spec3-D1.7`, `Spec1-D1.4`. Remediation planning (shipped, audit-first, enforces nothing): `tools/powershell/the modernization programSqlServerMigration/` (`New-the modernization programSpnRemediationPlan`, `Get-the modernization programNtlmGpoReport`); the `setspn` / GPO changes themselves stay review-required. Canon: the program decision, the program decision, the directory modernization program §3.2.*
+*Companion to narrative Book 06. Detection scripts: `tools/discovery/Spec1-D1.5`, `Spec3-D1.7`, `Spec1-D1.4`. Remediation planning (shipped, audit-first, enforces nothing): `tools/powershell/the modernization programSqlServerMigration/` (`New-the modernization programSpnRemediationPlan`, `Get-the modernization programNtlmGpoReport`); the `setspn` / GPO changes themselves stay review-required. Canon: the program decision, the program decision, the directory modernization program §3.2.*

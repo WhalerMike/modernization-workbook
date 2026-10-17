@@ -5,14 +5,14 @@ doc-type: section-landing
 audience: [Executive, Technical, Customer]
 family: sql-server-narrative
 listing:
- - id: chapters
- contents:
- - "Book_[0-9][0-9].qmd"
- type: table
- fields: [title, subtitle, description]
- sort: "series-order asc"
- sort-ui: false
- filter-ui: false
+  - id: chapters
+    contents:
+      - "Book_[0-9][0-9].md"
+    type: table
+    fields: [title, subtitle, description]
+    sort: "series-order asc"
+    sort-ui: false
+    filter-ui: false
 lifecycle: active
 tiers_adopted: []
 lifecycle_review: 2027-01-01
@@ -38,7 +38,7 @@ and this series is reviewed against it.
 
 ::: {.callout-note appearance="default"}
 ## Companion series — the executable layer
-This narrative is the *why*. Its book-for-book companion, the **[SQL Server Identity Transformation — Implementation Companion](../sql-server-implementation/index.qmd)**, is the *how*: the runbooks, scripts, parameters, output schemas, and failure modes — each implementation book the executable counterpart to the narrative book of the same number.
+This narrative is the *why*. Its book-for-book companion, the **SQL Server Identity Transformation — Implementation Companion**, is the *how*: the runbooks, scripts, parameters, output schemas, and failure modes — each implementation book the executable counterpart to the narrative book of the same number.
 :::
 
 The transformation inventory classifies the SQL Server authentication
@@ -93,7 +93,7 @@ This narrative is the explanatory foundation for several governance decisions:
 
 ## Relationship to the organizational-attribute model
 
-This series is a sibling to the [the organizational-attribute model](../orgpath-narrative/index.qmd)
+This series is a sibling to the the organizational-attribute model
 reading sequence and is best read alongside it. the organizational-attribute model builds the
 organizational-identity substrate — the `extensionAttribute` lineage carried on
 Entra ID user objects. This series consumes that substrate: Book 07 describes
@@ -105,7 +105,7 @@ described here.
 The seams where the two series meet — dynamic-group access, DBA delegation,
 migration sequencing, the Conditional Access perimeter, and closure-and-drift —
 are documented in full, with a recommended cross-series reading order, in
-[the organizational-attribute model × SQL Server — The Integration Bridge](bridge-orgpath-sql.qmd).
+the organizational-attribute model × SQL Server — The Integration Bridge.
 
 ## Audience
 

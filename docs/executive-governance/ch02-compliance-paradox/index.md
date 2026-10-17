@@ -83,7 +83,7 @@ produces the same evidence bundle, and the bundle is regeneratable on
 demand without operator coordination.
 
 Four properties define deterministic compliance, drawn from
-[the program decision](../../../../src/uiao/canon/adr/adr-006-evidence-determinism.md):
+the program decision:
 
 1. **No silent drops** — every input is accepted, rejected with reason,
    or queued.
@@ -149,12 +149,12 @@ process.
 ::: {.callout-tip}
 ## Continue the series
 
-Next: [Chapter 3 — Drift as the Primary Threat](../ch03-drift-as-primary-threat/index.qmd) — why the silent divergence the paradox describes is itself the substrate's first-class threat, and how the modernization program classifies it.
+Next: [Chapter 3 — Drift as the Primary Threat](../ch03-drift-as-primary-threat/index.md) — why the silent divergence the paradox describes is itself the substrate's first-class threat, and how the modernization program classifies it.
 :::
 
 ## Related documents
 
 - [Executive Governance Series Index](../index.html)
-- [Chapter 1: Why Governance Fails](../ch01-why-governance-fails/index.qmd)
-- [Chapter 6: Evidence over Attestation](../ch06-evidence-over-attestation/index.qmd)
-- [the program decision: Evidence Determinism](../../../../src/uiao/canon/adr/adr-006-evidence-determinism.md)
+- [Chapter 1: Why Governance Fails](../ch01-why-governance-fails/index.md)
+- [Chapter 6: Evidence over Attestation](../ch06-evidence-over-attestation/index.md)
+- the program decision: Evidence Determinism

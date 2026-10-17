@@ -31,8 +31,8 @@ attestation-based compliance. The defining property: given the same
 canon and the same inputs, the substrate always produces the same
 evidence — byte-for-byte. This chapter explains what determinism buys
 operationally, why it is the response to the
-[compliance paradox](../ch02-compliance-paradox/index.qmd) and to
-[drift](../ch03-drift-as-primary-threat/index.qmd), and how the
+[compliance paradox](../ch02-compliance-paradox/index.md) and to
+[drift](../ch03-drift-as-primary-threat/index.md), and how the
 substrate enforces it.
 :::
 
@@ -66,7 +66,7 @@ gives a 3PAO independent verification.
 
 ## Why determinism is the response to the paradox
 
-The [compliance paradox](../ch02-compliance-paradox/index.qmd) emerges
+The [compliance paradox](../ch02-compliance-paradox/index.md) emerges
 because reported state and substrate state diverge between audit
 cycles. Determinism collapses the cycle:
 
@@ -98,7 +98,7 @@ findings exist but are not assessor-reproducible.
 
 ## How the substrate enforces it
 
-[the program decision](../../../../src/uiao/canon/adr/adr-006-evidence-determinism.md)
+the program decision
 declares the four properties evidence emission must satisfy:
 
 1. **No silent drops.**
@@ -106,7 +106,7 @@ declares the four properties evidence emission must satisfy:
 3. **Ordered records.**
 4. **Idempotent ingestion.**
 
-[the program decision](../../../../src/uiao/canon/adr/adr-016-evidence-bundle-lifecycle.md)
+the program decision
 declares the bundle lifecycle: assemble → seal → submit → close.
 Once sealed, the bundle is immutable; updates produce new bundles
 that supersede prior ones with explicit provenance.
@@ -159,13 +159,13 @@ For program leadership, three operational properties:
 ::: {.callout-tip}
 ## Continue the series
 
-Next: [Chapter 5 — The Adapter Model](../ch05-adapter-model/index.qmd) — how tools and control planes enter the deterministic substrate without absorbing their idiosyncrasies into canon.
+Next: [Chapter 5 — The Adapter Model](../ch05-adapter-model/index.md) — how tools and control planes enter the deterministic substrate without absorbing their idiosyncrasies into canon.
 :::
 
 ## Related documents
 
 - [Executive Governance Series Index](../index.html)
-- [Chapter 6: Evidence over Attestation](../ch06-evidence-over-attestation/index.qmd)
-- [Architecture Series — Evidence Chain](../../architecture-series/evidence-chain.qmd)
-- [the program decision: Evidence Determinism](../../../../src/uiao/canon/adr/adr-006-evidence-determinism.md)
-- [the program decision: Evidence Bundle Lifecycle](../../../../src/uiao/canon/adr/adr-016-evidence-bundle-lifecycle.md)
+- [Chapter 6: Evidence over Attestation](../ch06-evidence-over-attestation/index.md)
+- Architecture Series — Evidence Chain
+- the program decision: Evidence Determinism
+- the program decision: Evidence Bundle Lifecycle

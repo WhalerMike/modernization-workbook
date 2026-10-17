@@ -358,7 +358,7 @@ the same distributed-egress architecture.
 
 **Who it binds:** federal agencies deploying or procuring AI systems.
 Per
-[the program decision](../../docs/adr/adr-112-federal-ai-usecase-governance.html),
+the program decision,
 OMB M-25-21 carries four obligations on the agency: a Chief AI Officer
 (due within 60 days); an AI use-case inventory to OMB at least annually;
 **§4(b)'s seven minimum risk-management practices** for high-impact AI

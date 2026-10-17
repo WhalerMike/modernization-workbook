@@ -13,7 +13,7 @@ lifecycle_review: 2027-01-01
 listing:
   - id: book-chapters
     contents:
-      - "Book_03_CPT_*.qmd"
+      - "Book_03_CPT_*.md"
     type: table
     fields: [title]
     sort: "series-order asc"
@@ -41,5 +41,5 @@ Where Book 02 measured the estate to decide what survives, this book measures th
 
 ::: {.callout-tip}
 ## Continue the series
-[← Previous: Book 02 — The Estate Itself](Book_02.qmd) · [Index](index.qmd) · [Next: Book 04 — Arc as the Identity Bridge →](Book_04.qmd)
+[← Previous: Book 02 — The Estate Itself](Book_02.md) · [Index](index.md) · [Next: Book 04 — Arc as the Identity Bridge →](Book_04.md)
 :::

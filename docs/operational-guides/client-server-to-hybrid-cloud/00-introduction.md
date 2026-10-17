@@ -116,7 +116,7 @@ Administrative Units, and Conditional Access are powerful tools — but
 Microsoft did not provide a framework for how to use them together to
 replace what the OU tree was doing.
 
-That framework is the **OrgTree canon** ([Chapter 04](04-identity-transformation.html)).
+That framework is the **OrgTree canon** ([Chapter 04](../../client-server-to-hybrid-cloud/04-identity-transformation.md)).
 It encodes the OU hierarchy into a single user attribute (`the organizational-attribute model`), uses
 dynamic groups to materialise every subtree, uses Administrative Units to
 scope delegation, and uses Conditional Access to enforce policy. The result

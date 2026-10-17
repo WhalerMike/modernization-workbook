@@ -7,7 +7,7 @@ audience: [Technical, Customer]
 family: sql-server-implementation
 series-order: 05
 status: active
-canon-source: "src/uiao/canon/the directory modernization program
+canon-source: "src/uiao/canon/the directory modernization program"
 lifecycle: active
 tiers_adopted: []
 lifecycle_review: 2027-01-01
@@ -137,4 +137,4 @@ ALTER LOGIN [sa] DISABLE;
 
 ---
 
-*Companion to [narrative Book 05](../sql-server-narrative/Book_05.qmd) and the program decision §1. Shipped automation: `tools/powershell/the modernization programSqlServerMigration/` (`New-the modernization programEntraLoginMapping` codifies the mapping from the modernization program_181, `New-the modernization programEntraLoginScript` generates dry-run T-SQL, `Test-the modernization programLoginParallelRun` evaluates the cutover exit criteria) — review-required; the generated T-SQL executes nothing on generation. Canon: the program decision, the modernization program_181, the directory modernization program §3.2.*
+*Companion to narrative Book 05 and the program decision §1. Shipped automation: `tools/powershell/the modernization programSqlServerMigration/` (`New-the modernization programEntraLoginMapping` codifies the mapping from the modernization program_181, `New-the modernization programEntraLoginScript` generates dry-run T-SQL, `Test-the modernization programLoginParallelRun` evaluates the cutover exit criteria) — review-required; the generated T-SQL executes nothing on generation. Canon: the program decision, the modernization program_181, the directory modernization program §3.2.*

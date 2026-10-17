@@ -7,7 +7,7 @@ audience: [Technical, Customer]
 family: sql-server-implementation
 series-order: 02
 status: active
-canon-source: "src/uiao/canon/the directory modernization program
+canon-source: "src/uiao/canon/the directory modernization program"
 lifecycle: active
 tiers_adopted: []
 lifecycle_review: 2027-01-01
@@ -161,4 +161,4 @@ Every script and query in this book is **read-only** discovery against live inst
 
 ---
 
-*Companion to [narrative Book 02](../sql-server-narrative/Book_02.qmd) and the program decision §1. Script-backed: `tools/discovery/Spec3-D1.8` (discovery-only), `Spec1-D1.5`, and the fused Phase-0 instrument `New-the modernization programEstateInventory` (`tools/powershell/the modernization programSqlServerMigration/`). Canon: the program decision §1, the directory modernization program §3.2.*
+*Companion to narrative Book 02 and the program decision §1. Script-backed: `tools/discovery/Spec3-D1.8` (discovery-only), `Spec1-D1.5`, and the fused Phase-0 instrument `New-the modernization programEstateInventory` (`tools/powershell/the modernization programSqlServerMigration/`). Canon: the program decision §1, the directory modernization program §3.2.*
