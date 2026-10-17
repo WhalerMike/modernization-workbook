@@ -11,16 +11,14 @@ format:
  toc-depth: 3
  toc-title: "Contents"
  docx:
- reference-doc: orgcomp-reference.docx
- toc: true
- toc-depth: 3
+ reference-doc: assets/reference-mslearn.docx
  number-sections: true
  fig-width: 6.5
 fig-align: center
 out-width: "100%"
 execute:
  echo: false
-filters: [orgcomp-callouts.lua]
+
 aliases:
  - /customer-documents/federal-aan-series/Vol_0_Book_00_FedAAN_Executive_Summary.html
 
