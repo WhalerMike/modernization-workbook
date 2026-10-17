@@ -13,6 +13,9 @@ lifecycle_review: 2027-01-01
 
 # Chapter 1 — What Arc Provides to SQL Server
 
+![Identity bridge](../../images/sql-server/during-overview.png)
+
+
 *Arc is not an end state — it is the bridge that gives the SQL Server engine a cloud-native identity.*
 
 ::: {.callout-note}
