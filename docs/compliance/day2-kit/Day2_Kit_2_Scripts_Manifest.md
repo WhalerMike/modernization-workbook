@@ -9,7 +9,7 @@ tiers_adopted: [1]
 lifecycle_review: 2027-01-21
 format:
   html: {css: lz-style.css, toc: true, toc-depth: 3, toc-title: "Contents"}
-  docx: {reference-doc: orgcomp-reference.docx, toc: true, toc-depth: 3}
+  docx: {reference-doc: assets/reference-mslearn.docx, toc: true, toc-depth: 3}
 ---
 
 {{< include servicenow-day2/KIT-SCRIPTS.md >}}
