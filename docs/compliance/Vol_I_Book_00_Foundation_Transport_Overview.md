@@ -4,19 +4,19 @@ subtitle: "Volume Purpose — the naming, identity, and transport substrate ever
 author: "Federal Cloud Services"
 date: "2026-07-19T16:20:00-04:00"
 format:
- html:
- css: lz-style.css
- number-sections: true
- toc: true
- toc-depth: 2
- toc-title: "Contents"
- docx:
- reference-doc: assets/reference-mslearn.docx
- number-sections: true
+  html:
+    css: lz-style.css
+    number-sections: true
+    toc: true
+    toc-depth: 2
+    toc-title: "Contents"
+  docx:
+    reference-doc: assets/reference-mslearn.docx
+    number-sections: true
 fig-align: center
 out-width: "100%"
 execute:
- echo: false
+  echo: false
 
 aliases:
  - /customer-documents/federal-aan-series/Vol_I_Book_00_FedAAN_Foundation_Transport_Overview.html
