@@ -1,6 +1,7 @@
-# SQL Server Identity Transformation — Highlighted References
+# SQL Server Identity Transformation — Neutralized
 
-Search for `[[UIAO`, `[[ADR-`, `the organizational-attribute model`, `[[Spec3`, or `the continuous compliance monitoring baseline` to find all source references.
+
+Source identifiers have been replaced with plain-language equivalents while preserving surrounding context.
 
 ---
 
