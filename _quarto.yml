@@ -1,6 +1,13 @@
 project:
   type: website
   output-dir: _site
+  render:
+    - "*.qmd"
+    - "docs/**/*.md"
+    - "!index.md"
+    - "!MIGRATION-*.md"
+    - "!STATUS.md"
+    - "!OUTLINE.md"
 
 website:
   title: "Modernization Workbook"
