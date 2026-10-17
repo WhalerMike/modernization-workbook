@@ -2,35 +2,33 @@
 
 **The destination and the milestone**
 
+## No domain controller in the authentication path
 
+In the transformed state, no domain controller participates in SQL Server authentication. The client authenticates to the cloud identity platform with multi-factor authentication. Conditional Access evaluates identity and device. An OAuth 2.0 token is issued. The SQL Server validates the token. The token carries context — how you authenticated, which groups you belong to, whether your device is compliant.
 
 ![After: application-aware token](../../images/sql-server/after-token.png)
 
+*No domain controller in the authentication path. Conditional Access evaluates identity and device. The SQL Server validates the token.*
+
 ![Token session lifecycle](../../images/sql-server/token-lifecycle.png)
 
-## Why this book exists
+*Auth + MFA to the cloud identity platform, Conditional Access evaluation, signed token issued, token presented to SQL, validation, connection open, and silent token refresh.*
 
-The destination is not a partial migration. It is a state in which no domain controller is in the authentication path, no NTLM is used, no SQL Authentication is used for human principals, the engine runs under a managed identity, and Conditional Access evaluates every human connection.
+## Closure conditions
 
-## The milestone
+The transformation is complete when five conditions are simultaneously true across every production instance:
 
-The milestone is the date by which the migration must already be complete. It is not a completion date for the migration. It is the date by which NTLM is blocked at the Local Security Authority layer across the estate. Any connection that still requires NTLM on that date fails.
+1. Every human principal authenticates via Entra ID. No Windows logins remain for human access.
+2. The engine process authenticates via managed identity. No domain service account or gMSA remains.
+3. NTLM is blocked at the Local Security Authority layer. No silent fallback remains.
+4. Conditional Access policies enforce device compliance and MFA for every SQL Server connection.
+5. Continuous monitoring instruments are in production. Drift is detected and treated as a compliance violation.
 
-## What the steady state looks like
+The posture is not declared. It is measured. Continuous monitoring instruments must be in production before the migration is declared done.
 
-- Every surviving instance accepts only cloud-identity logins for human principals.
-- Every engine process runs under a system-assigned managed identity.
-- Every human connection is evaluated by Conditional Access before the token is issued.
-- No Service Principal Name is required for human authentication because the authentication path no longer uses Kerberos.
-- No domain controller is in the authentication path.
+## What Book 09 establishes
 
-## Evidence
-
-The steady state is not declared. It is evidenced. The authentication audit is re-run. The fraction of connections that use NTLM is zero. The fraction of human logins that are type-E is one. The engine process identity is the managed identity. The evidence is recorded.
-
-## The gate
-
-The milestone is not declared complete until the evidence shows that the steady state has been reached for the entire surviving estate.
+The destination is a state in which no domain controller participates in SQL Server authentication. The client authenticates to the cloud identity platform. Conditional Access evaluates the request. An OAuth 2.0 token is issued and validated by the engine. Five closure conditions must be simultaneously true. The posture is measured, not declared.
 
 ---
 
