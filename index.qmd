@@ -1,23 +1,6 @@
 ---
 title: "Modernization Workbook"
 subtitle: "Public-facing documentation for federal IT modernization"
-listing:
-  - id: case-studies
-    contents:
-      - docs/case-studies/sql-server-narrative/series-overview.md
-      - docs/case-studies/README.md
-    type: table
-    fields: [title, description]
-  - id: series
-    contents:
-      - docs/client-server-to-hybrid-cloud/00-the-problem.md
-    type: table
-    fields: [title, description]
-  - id: whitepapers
-    contents:
-      - docs/whitepapers/README.md
-    type: table
-    fields: [title, description]
 ---
 
 # Modernization Workbook
@@ -26,39 +9,24 @@ A clean, standalone project for federal IT modernization. Content is written for
 
 ## What lives here
 
-- **SQL Server Identity Transformation** — an eleven-book reading sequence on moving from Windows Authentication to cloud identity authentication for SQL Server.
-- **Client-Server to Hybrid-Cloud** — the architectural narrative of the modernization journey.
-- **Whitepapers** — long-form analyses of specific modernization topics.
-- **Principles** — the governing ideas that shape the work.
-- **Compliance Series** — federal compliance documentation organized by volume.
-- **Case Studies** — deployment patterns and lessons learned.
-- **Executive Briefs** — single-page leadership summaries.
-
-## Navigate
-
-### Case Studies
-
-::: {#case-studies}
-:::
-
-### Series
-
-::: {#series}
-:::
-
-### Whitepapers
-
-::: {#whitepapers}
-:::
+- **[SQL Server Identity Transformation](docs/case-studies/sql-server-narrative/series-overview.md)** — an eleven-book reading sequence on moving from Windows Authentication to cloud identity authentication for SQL Server.
+- **[Client-Server to Hybrid-Cloud](docs/client-server-to-hybrid-cloud/00-the-problem.md)** — the architectural narrative of the modernization journey.
+- **[Whitepapers](docs/whitepapers/README.md)** — long-form analyses of specific modernization topics.
+- **[Principles](docs/PRINCIPLES.md)** — the governing ideas that shape the work.
+- **[Compliance Series](docs/compliance/federal-compliance-series-moderate/executive-summary.md)** — federal compliance documentation organized by volume.
+- **[Case Studies](docs/case-studies/README.md)** — deployment patterns and lessons learned.
+- **[Executive Briefs](docs/executive-briefs/modernization-overview.md)** — single-page leadership summaries.
 
 ## Download as DOCX
 
-Every page renders to Microsoft Word (`.docx`) alongside the HTML view. Use the DOCX link in the page header, or access the file directly.
+Every page renders to Microsoft Word (`.docx`) alongside the HTML view. Access the DOCX directly (e.g., `docs/case-studies/sql-server-narrative/series-overview.docx`).
 
-A complete series can be downloaded as a ZIP from the series index pages.
+Complete series are available as ZIP downloads:
+
+- [SQL Server Narrative Series](downloads/sql-server-narrative-series.zip)
+- [Client-Server to Hybrid-Cloud Series](downloads/client-server-to-hybrid-cloud-series.zip)
 
 ## Project documents
 
 - [Project Charter](PROJECT-CHARTER.md)
 - [Project Plan](PROJECT-PLAN.md)
-- [How to Use](HOW-TO-USE.md)
