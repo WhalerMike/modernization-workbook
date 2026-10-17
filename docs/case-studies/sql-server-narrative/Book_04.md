@@ -13,7 +13,7 @@ lifecycle_review: 2027-01-01
 listing:
   - id: book-chapters
     contents:
-      - "Book_04_CPT_*.qmd"
+      - "Book_04_CPT_*.md"
     type: table
     fields: [title]
     sort: "series-order asc"

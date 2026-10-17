@@ -5,14 +5,14 @@ doc-type: section-landing
 audience: [Executive, Technical, Customer]
 family: sql-server-narrative
 listing:
- - id: chapters
- contents:
- - "Book_[0-9][0-9].qmd"
- type: table
- fields: [title, subtitle, description]
- sort: "series-order asc"
- sort-ui: false
- filter-ui: false
+  - id: chapters
+    contents:
+      - "Book_[0-9][0-9].md"
+    type: table
+    fields: [title, subtitle, description]
+    sort: "series-order asc"
+    sort-ui: false
+    filter-ui: false
 lifecycle: active
 tiers_adopted: []
 lifecycle_review: 2027-01-01

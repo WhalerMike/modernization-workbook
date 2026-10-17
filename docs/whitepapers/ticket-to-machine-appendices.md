@@ -13,11 +13,11 @@ created-at: 2026-08-03
 updated-at: 2026-09-01
 version: "1.2"
 format:
- html:
- toc: true
- toc-depth: 3
- docx:
- toc: true
+  html:
+    toc: true
+    toc-depth: 3
+  docx:
+    toc: true
 lifecycle: adopted
 tiers_adopted: [1]
 lifecycle_review: 2027-02-03
