@@ -6,7 +6,6 @@
 
 | Item | Owner | Notes |
 |------|-------|-------|
-| Diagram style consistency pass | Optional | SVG diagrams exist under `docs/images/`. Confirm white-background style on any remaining dark-background holdovers. |
 | Full compliance books | Deferred | Volume overviews are present. Extract individual books only when a specific control area is needed. |
 | Target surface libraries | Deferred | Short principles extracts are in `docs/libraries/`. Full catalogs remain in source materials. |
 
@@ -14,6 +13,7 @@
 
 | Item | Completed |
 |------|-----------|
+| Diagram style consistency pass | 2026-10-17 |
 | How-to-use guide for external readers | 2026-10-17 |
 | README index updated to include architecture series, operational guides, HRIT, compliance | 2026-10-17 |
 | Lightweight governance note (CONTRIBUTING.md) | 2026-10-17 |
@@ -23,6 +23,10 @@
 | Consistency pass (residual branding removed) | 2026-10-16 |
 | Full SQL Server narrative series (Books 01–10) | 2026-10-16 |
 | Consolidated principles document + diagram | 2026-10-16 |
+
+## Diagram style note
+
+SVG diagrams under `docs/images/` already use white or light backgrounds (`#ffffff` or `#f8f9fa`) with dark navy content boxes for contrast. This matches the preferred white-background style. No further conversion required for the current set.
 
 ## How to use
 
