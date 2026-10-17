@@ -5,12 +5,10 @@ author: "Federal Cloud Services"
 date: "2026-07-18T00:56:00-04:00"
 format:
  docx:
- reference-doc: orgcomp-reference.docx
- toc: true
- toc-depth: 3
+ reference-doc: assets/reference-mslearn.docx
  number-sections: true
 classification: "INTERNAL — NOT FOR PUBLIC DISTRIBUTION"
-filters: [orgcomp-callouts.lua]
+
 aliases:
  - /customer-documents/federal-aan-series/Vol_IV_Book_06_FedAAN_Authorization_Package_ConMon.html
 
