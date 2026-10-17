@@ -1,0 +1,34 @@
+---
+title: "G. Network Transformation"
+subtitle: "SD-WAN, IPAM, DNS, DHCP, firewall, 802.1X — in the Hybrid-Cloud model"
+doc-type: subcategory-landing
+pillar: modernization
+sub-category: G
+status: scaffold
+date: 2026-04-24
+aspirational: true
+lifecycle: adopted
+tiers_adopted: [1]
+lifecycle_review: 2026-11-22
+---
+
+# G. Network Transformation {.unnumbered}
+
+::: {.callout-tip}
+## Download the full section
+**[network-transformation-bundle.docx]** — every page in this section concatenated into one Word document. Regenerated on every site deploy.
+:::
+
+Network services that AD silently governed — DNS, DHCP, RADIUS/802.1X,
+and the network-perimeter model itself — must be re-anchored to the
+Hybrid-Cloud access plane. This sub-category covers the network-side
+transformation; identity is covered in C, and access enforcement in F.
+
+## Leaves
+
+- **G.1** SD-WAN — [modernization-specs/sdwan](../../modernization-specs/sdwan/sdwan.html)
+- **G.2** IPAM (hybrid address governance) — see DM_010 (§D.1)
+- **G.3** DNS (hybrid resolution) — see DM_015 (§D.2, gap)
+- **G.4** DHCP (scoped, governed) — see DM_016 (§D.3, gap)
+- **G.5** Palo Alto (firewall / edge) — [adapter](../../adapter-specs/palo-alto/palo-alto.html)
+- **G.6** RADIUS / 802.1X modernization — [scaffold](radius-802-1x-modernization.qmd); see DM_030 (§D.5)
