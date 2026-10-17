@@ -1,0 +1,46 @@
+---
+title: "Case Studies"
+subtitle: "Real-world deployment patterns and lessons learned"
+doc-type: section-landing
+audience: "Modernization sponsors · program leads · prospective customers"
+canon-source: "src/uiao/canon/"
+derived-from: "uiao canon"
+aspirational: true
+lifecycle: adopted
+tiers_adopted: [1]
+lifecycle_review: 2026-11-22
+---
+
+# Case Studies {.unnumbered}
+
+::: {.callout-tip}
+## Download the full section
+**[case-studies-bundle.docx]** — every page in this section concatenated into one Word document. Regenerated on every site deploy.
+:::
+
+Grounded deployment narratives. Each case study documents one engagement:
+the starting state, the the modernization program intervention, the observed behavior, and the
+lessons that propagated back into canon.
+
+::: {.callout-important title="Authoring posture"}
+Case studies require shipped or late-stage TARGET capability to make
+credible claims. Entries are drafted from real engagement material when
+available and reviewed before external release.
+:::
+
+## Pages in this section
+
+Status badges follow the [Whitepapers status conventions](../whitepapers/index.qmd).
+Case studies additionally use the **Framing-Pattern** status — the
+narrative illustrates the substrate's intended behavior using a
+synthetic agency archetype rather than an attributed real-world
+engagement; useful for planning conversations, not citable as a
+deployed-and-validated reference.
+
+| Slug | Engagement | Status | Canon anchor |
+|---|---|---|---|
+| [`identity-modernization-case-study`](identity-modernization-case-study.html) | OrgTree rollout and codebook adoption | Framing-Pattern | `src/uiao/canon/adr/adr-008-zero-trust-identity.md` |
+| [`cloud-boundary-case-study`](cloud-boundary-case-study.html) | GCC-Moderate boundary establishment | Framing-Pattern | `docs/docs/gcc-boundary-solution-architecture.qmd` |
+| [`federal-modernization-case-study`](federal-modernization-case-study.html) | End-to-end federal agency modernization | Framing-Pattern | `docs/docs/06_ProgramVision.qmd` |
+| [`reference-deployment-fedciv-ad-to-entra`](reference-deployment-fedciv-ad-to-entra.html) | Federal civilian AD → Entra ID + SQL estate, end-to-end through the five-phase substrate | Framing-Pattern | `the modernization program_007` + directory-migration README + drift §7.1 + B.1.1 + spn_inventory artifact |
+| [`reference-deployment-opm-hrit-to-entra`](reference-deployment-opm-hrit-to-entra.html) | Federal civilian OPM HRIT → Entra ID inbound provisioning, end-to-end through Spec 2 (companion to the AD reference deployment) | Framing-Pattern | `Spec2-D6.1` + the modernization program_136 family + Spec2-D1.1 / D2.1 / D3.5 / D5.5 + hrit_record_inventory artifact |
