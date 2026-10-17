@@ -11,7 +11,6 @@ date: 2026-08-20
 
 This page renders the canonical the modernization program_211 source verbatim. The
 authoritative source is at
-[`src/uiao/canon/specs/external/servicenow/the modernization program_211_servicenow-deployment-contract-pin.md`](../../src/uiao/canon/specs/external/servicenow/the modernization program_211_servicenow-deployment-contract-pin.md).
 Per [the program decision](../adr/adr-072-canon-publication-policy.qmd), this
 canonical page is generated as an `include`-style wrapper.
 :::
