@@ -4,9 +4,9 @@ subtitle: "Agency Authorization Package (20x KSI Evidence Schema), Continuous Mo
 author: "Federal Cloud Services"
 date: "2026-07-18T00:56:00-04:00"
 format:
- docx:
- reference-doc: assets/reference-mslearn.docx
- number-sections: true
+  docx:
+    reference-doc: assets/reference-mslearn.docx
+    number-sections: true
 classification: "INTERNAL — NOT FOR PUBLIC DISTRIBUTION"
 
 aliases:
