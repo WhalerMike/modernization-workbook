@@ -1,0 +1,49 @@
+project:
+  type: website
+  output-dir: _site
+
+website:
+  title: "Modernization Workbook"
+  site-url: https://whalermike.github.io/modernization-workbook/
+
+  page-navigation: true
+  back-to-top-navigation: true
+  bread-crumbs: true
+
+  navbar:
+    title: "Modernization Workbook"
+    background: dark
+    left:
+      - href: index.qmd
+        text: "Home"
+      - href: docs/PRINCIPLES.md
+        text: "Principles"
+      - text: "Case Studies"
+        menu:
+          - href: docs/case-studies/sql-server-narrative/README.md
+            text: "SQL Server Identity Transformation"
+      - text: "Series"
+        menu:
+          - href: docs/client-server-to-hybrid-cloud/README.md
+            text: "Client-Server to Hybrid-Cloud"
+      - href: docs/whitepapers/README.md
+        text: "Whitepapers"
+    right:
+      - href: https://github.com/WhalerMike/modernization-workbook
+        text: "GitHub"
+        icon: github
+
+  page-footer:
+    left: "Modernization Workbook — a clean, standalone project for federal IT modernization."
+    right:
+      - href: https://github.com/WhalerMike/modernization-workbook
+        text: "Source"
+
+format:
+  html:
+    theme: cosmo
+    toc: true
+    fig-responsive: true
+    fig-align: center
+    link-external-newwindow: true
+    link-external-icon: true
