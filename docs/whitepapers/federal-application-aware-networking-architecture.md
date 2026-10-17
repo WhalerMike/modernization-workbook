@@ -38,7 +38,7 @@ specific platform. Concrete next steps are laid out in the **Call to
 Action** at the end of this document.
 
 +-----------------------------------------------------------------------+
-| ![](media/rId17.png){width="5.833333333333333in" |
+| ![](../images/whitepapers/rId17.png){width="5.833333333333333in" |
 | height="3.111111111111111in"} |
 | |
 | Figure 1: Forty years of federal IT architecture in one view --- from |
@@ -73,7 +73,7 @@ that *enforced* access to it. Truth and enforcement lived in one box.
 Remember that; it is the seed of everything that follows.
 
 +-----------------------------------------------------------------------+
-| ![](media/rId22.png){width="5.833333333333333in" |
+| ![](../images/whitepapers/rId22.png){width="5.833333333333333in" |
 | height="3.111111111111111in"} |
 | |
 | Figure 2: The Mainframe Era: stark elegance of centralized truth --- |
@@ -111,7 +111,7 @@ schemas, their own business logic, their own definitions of what a
 "benefit" even meant.
 
 +-----------------------------------------------------------------------+
-| ![](media/rId27.png){width="5.833333333333333in" |
+| ![](../images/whitepapers/rId27.png){width="5.833333333333333in" |
 | height="3.111111111111111in"} |
 | |
 | Figure 3: Act 1 --- The Great Decentralization: one mainframe became |
@@ -146,7 +146,7 @@ had to traverse security devices designed to *break* sessions --- to
 inspect, decrypt, re-encrypt, verify, block.
 
 +-----------------------------------------------------------------------+
-| ![](media/rId35.png){width="5.833333333333333in" |
+| ![](../images/whitepapers/rId35.png){width="5.833333333333333in" |
 | height="3.111111111111111in"} |
 | |
 | Figure 4: Act 2 --- When Security Ate the Architecture: a |
@@ -240,7 +240,7 @@ offices to regional data centers that were increasingly just logical
 boundaries, not physical anchors.
 
 +-----------------------------------------------------------------------+
-| ![](media/rId41.png){width="5.833333333333333in" |
+| ![](../images/whitepapers/rId41.png){width="5.833333333333333in" |
 | height="3.111111111111111in"} |
 | |
 | Figure 5: Act 3 --- The Breaking Point: the same employee, Jane |
@@ -288,7 +288,7 @@ respond when it degrades, and no way to know whether it is actually the
 best available path to your destination.
 
 +-----------------------------------------------------------------------+
-| ![](media/rId46.png){width="5.833333333333333in" |
+| ![](../images/whitepapers/rId46.png){width="5.833333333333333in" |
 | height="3.013888888888889in"} |
 | |
 | Figure 6: Physics the network cannot escape: terrestrial fiber at |
@@ -367,7 +367,7 @@ authorize them to access. The network enforces policy against the full
 context of the transaction --- not against a packet.
 
 +-----------------------------------------------------------------------+
-| ![](media/rId53.png){width="5.833333333333333in" |
+| ![](../images/whitepapers/rId53.png){width="5.833333333333333in" |
 | height="3.111111111111111in"} |
 | |
 | Figure 7: Packet-layer network versus application-aware network: the |
@@ -395,7 +395,7 @@ three things on each path independently: **latency**, **jitter**, and
 **packet loss**. When a path degrades, the overlay knows within seconds.
 
 +-----------------------------------------------------------------------+
-| ![](media/rId59.png){width="5.833333333333333in" |
+| ![](../images/whitepapers/rId59.png){width="5.833333333333333in" |
 | height="3.111111111111111in"} |
 | |
 | Figure 8: SD-WAN active-active multipath: a branch edge distributes |
@@ -600,7 +600,7 @@ providers, enforcement points, and data platforms remain the runtime
 data planes.
 
 +-----------------------------------------------------------------------+
-| ![](media/rId69.png){width="5.833333333333333in" |
+| ![](../images/whitepapers/rId69.png){width="5.833333333333333in" |
 | height="3.888888888888889in"} |
 | |
 | Figure 9: Act 4: the five principles of application-aware |
@@ -634,7 +634,7 @@ system of record for each data type, with a documented data lineage from
 source to decision.
 
 +-----------------------------------------------------------------------+
-| ![](media/rId73.png){width="5.833333333333333in" |
+| ![](../images/whitepapers/rId73.png){width="5.833333333333333in" |
 | height="3.111111111111111in"} |
 | |
 | Figure 10: Principle 1 --- SSOT Restoration: twelve regional silos |
@@ -698,7 +698,7 @@ network or call back to a domain controller --- it just verifies the
 signature.
 
 +-----------------------------------------------------------------------+
-| ![](media/rId79.png){width="5.833333333333333in" |
+| ![](../images/whitepapers/rId79.png){width="5.833333333333333in" |
 | height="3.111111111111111in"} |
 | |
 | Figure 11: Principle 3 --- Token vs Session: session-based Kerberos |
@@ -780,7 +780,7 @@ direction is correct.
 - **June 11, 2027:** No new Rev5 certifications accepted
 
 +-----------------------------------------------------------------------+
-| ![](media/rId88.png){width="5.833333333333333in" |
+| ![](../images/whitepapers/rId88.png){width="5.833333333333333in" |
 | height="2.9814807524059495in"} |
 | |
 | Figure 12: FedRAMP 20x timeline from Consolidated Rules publication |
@@ -839,7 +839,7 @@ that authenticate, route, resolve, and store at runtime.
  -----------------------------------------------------------------------
 
 +-----------------------------------------------------------------------+
-| ![](media/rId92.png){width="5.833333333333333in" |
+| ![](../images/whitepapers/rId92.png){width="5.833333333333333in" |
 | height="3.111111111111111in"} |
 | |
 | Figure 13: Active Governance: control plane and actuation ladder --- |
@@ -955,7 +955,7 @@ federal gap here is not a technology gap; it is the same adoption lag
 documented throughout this whitepaper.
 
 +-----------------------------------------------------------------------+
-| ![](media/rId104.png){width="5.833333333333333in" |
+| ![](../images/whitepapers/rId104.png){width="5.833333333333333in" |
 | height="3.111111111111111in"} |
 | |
 | Figure 14: Mainframe access modernization: native 3270/RACF/SAF |
