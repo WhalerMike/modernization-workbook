@@ -1,0 +1,104 @@
+---
+title: "Help Desk / Cloud Services — Entra ID Operations"
+subtitle: "A vendor-neutral governance kit for moving routine identity tasks to the Help Desk on a Hybrid AD → Entra ID estate"
+doc-type: operational-guide
+audience: [Customer, Operator, Technical]
+author: Michael Stratton
+date: "June 2026"
+status: Active
+repo-path: docs/customer-documents/operational-guides/helpdesk-entra-operations/index.qmd
+created-at: 2026-06-08
+updated-at: 2026-06-08
+format:
+  html:
+    toc: true
+    toc-depth: 2
+lifecycle: adopted
+tiers_adopted: [1]
+lifecycle_review: 2026-12-08
+---
+
+# Help Desk / Cloud Services — Entra ID Operations {.unnumbered}
+
+These three reference documents define how an agency moves routine Microsoft
+Entra ID identity work to the Help Desk / Cloud Services team **without** moving
+governance authority with it. They name only the platforms an agency already
+runs — Entra ID, SAM (SailPoint IGA), ServiceNow, and Microsoft PIM — and assume
+an existing Hybrid AD → Entra ID estate.
+
+The throughline across all three: **SAM governs and approves, ServiceNow routes
+and tracks the work, and Entra ID is where the change is executed.** The Help
+Desk performs only the residual manual action that automation cannot reach — and
+never makes an access-governance decision on its own.
+
+::: {.callout-tip title="Download the runnable kit"}
+The companion **[Help Desk / Cloud Services Operations Kit](../../../download/index.qmd#help-desk--cloud-services)**
+ships these documents alongside an implementation-path guide, a request-triage
+classifier, and six Microsoft Graph scripts (inventory, PAG/PIM setup,
+group-to-app assignment, ImmutableID repair, access-certification export). Every
+state-changing script honors `-WhatIf`. The scripts and their shared module now
+live in the repo under [`scripts/`](scripts/) — see [The runnable scripts](#the-runnable-scripts)
+below — so the published kit cannot drift from what these pages document.
+:::
+
+## The three documents
+
+| Document | What it covers |
+|---|---|
+| [Help Desk Administrative Responsibilities Guide](help-desk-administrative-responsibilities.qmd) | The operations reference — authority boundaries, the Privileged Access Group (PAG) and PIM eligible-not-active model, the SAM/ServiceNow/Entra three-platform workflow, and the per-task procedures the Help Desk executes. |
+| [Enterprise Application Access Governance and Approval Model](enterprise-application-access-governance.qmd) | The governing policy — risk-tiered approval chains, the RACI matrix, application ownership, group-based access, and the three approval workflows (standard, Admin Consent, and emergency / break-glass). |
+| [the organizational-attribute model Identity Governance Structure](orgpath-identity-governance-structure.qmd) | The design concept underneath both — the four-layer governance model (Requester → Departmental Owner → Application Owner → Identity Governance Authority) that gives Entra ID the routing hierarchy it lacks natively. |
+
+## The operations flow
+
+Where the three documents above say *who owns what* and *who approves what*, the
+[Help Desk Flow — Intake, Triage, and Routing](helpdesk-flow.qmd) page is the
+*how*: how an email request is redirected into a ServiceNow triage queue,
+classified by required authority, routed to the ServiceNow or SAM pipeline, and
+executed through the **Microsoft Entra ID Spoke** where an action exists. It
+includes the task ↔ Spoke capability crosswalk and the method for describing,
+modifying, and creating a task flow.
+
+The throughline: this kit **integrates and customizes** the Entra / Azure functions
+ServiceNow already ships (the Microsoft Entra ID Spoke) into the agency's Help Desk
+model — it does not reinvent them.
+
+## The runnable scripts
+
+The kit's shared module and six Microsoft Graph scripts are committed in-repo
+under [`scripts/`](scripts/). They are a **reference implementation for review and
+adaptation** — written against current Microsoft Graph PowerShell but not run
+against a live tenant; anything environment-specific is marked `# CONFIGURE:`.
+Every state-changing script honors `-WhatIf`; dry-run before touching a live
+tenant, and keep input and output inside your authorization boundary.
+
+| Script | What it does |
+|---|---|
+| [`HelpDeskEntra.psm1`](scripts/HelpDeskEntra.psm1) | Shared module: the Connect helper, the Task Authority & Routing Matrix (the single source of truth behind both the human runbook and the triage classifier), the critical-permission reference list, and shared logging. |
+| [`Invoke-RequestTriage.ps1`](scripts/Invoke-RequestTriage.ps1) | Triage the Help Desk shared mailbox — classify each request by required authority (A0–A3 / out-of-scope) and route it to ServiceNow or SAM. |
+| [`Get-EnterpriseAppInventory.ps1`](scripts/Get-EnterpriseAppInventory.ps1) | Build the Enterprise Application inventory (with risk tiering and orphaned-app detection) that every governance step reads. |
+| [`New-HelpDeskPAG.ps1`](scripts/New-HelpDeskPAG.ps1) | Stand up the Help Desk Privileged Access Group (PAG) — role-assignable group + PIM eligible-not-active assignment. |
+| [`Add-AppAccessGroup.ps1`](scripts/Add-AppAccessGroup.ps1) | Assign a security group to an Enterprise Application role (the A2 group-to-app step), with a nested-group guard. |
+| [`Repair-ImmutableId.ps1`](scripts/Repair-ImmutableId.ps1) | Repair a Hybrid AD → Entra ID `onPremisesImmutableId` hard-match break. |
+| [`Export-AccessCertification.ps1`](scripts/Export-AccessCertification.ps1) | Produce a per-application access roster for owner certification. |
+
+::: {.callout-note title="Kit conformance (the program decision): governed-only by design"}
+[the program decision](../../../adr/adr-105-operational-guide-kit-conventions.qmd) asks a
+transformation kit to ship a without-the modernization program **manual path** alongside its governed
+path. This kit takes the **governance-only exemption** the program decision §D3 allows, with
+rationale: its subject *is* the governance and approval-routing model — *who may
+approve what, and where the work is executed* — not a Microsoft-surface
+transformation an operator could perform standalone. There is no "manual vs
+governed" end state to split here; the routing authority *is* the product. The
+residual manual actions the Help Desk executes are already documented per-task in
+the [Administrative Responsibilities Guide](help-desk-administrative-responsibilities.qmd).
+:::
+
+## The one control that ties them together
+
+Across all three documents a single, unconditional control recurs: **Admin
+Consent approval authority is reserved to Layer 4 — the Identity Governance
+Authority — and is non-delegable.** The Help Desk triages and routes consent
+requests; Application Owners sponsor them; only the IGO approves. Start with the
+[the organizational-attribute model Identity Governance Structure](orgpath-identity-governance-structure.qmd)
+if you want the *why* before the *how*.
