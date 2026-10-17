@@ -1,0 +1,190 @@
+---
+title: "Chapter 5: The Adapter Model"
+subtitle: "Executive Governance Series"
+doc-type: executive-governance-chapter
+audience: [Executive, Customer]
+family: executive-governance-series
+series-order: 5
+status: Active
+canon-source: "src/uiao/canon/adapter-registry.yaml"
+canon-reference:
+  - "src/uiao/canon/modernization-registry.yaml"
+  - "src/uiao/canon/adr/adr-027-adapter-retirement.md"
+repo-path: docs/customer-documents/executive-governance-series/ch05-adapter-model
+created-at: 2026-04-26
+updated-at: 2026-05-10
+lifecycle: adopted
+tiers_adopted: [1]
+lifecycle_review: 2026-11-22
+---
+
+# The Adapter Model
+
+![2x5 dual-axis adapter matrix with canon invariants footer](images/index-image-02-2x5-dual-axis-adapter-matrix-wit.png){#fig-index-image-02 fig-alt="2x5 dual-axis adapter matrix with canon invariants footer. Engineering blueprint style, neutral slate background, federal navy (#1F3A5F) for primary structural elements, teal (#1A9E8F) for secondary/integration elements, amber (#D4A017) for governance/audit/registry overlays, monospace labels for identifiers, no human figures, 16:9 landscape." width="100%"}
+
+![Two-registry separation: conformance-registry (read-only) vs modernization-regis...](images/index-image-03-two-registry-separation-conforma.png){#fig-index-image-03 fig-alt="Two-registry separation: conformance-registry (read-only) vs modernization-registry (mutating) with file-level boundary. Engineering blueprint style, neutral slate background, federal navy (#1F3A5F) for primary structural elements, teal (#1A9E8F) for secondary/integration elements, amber (#D4A017) for governance/audit/registry overlays, monospace labels for identifiers, no human figures, 16:9 landscape." width="100%"}
+
+
+::: {.callout-note}
+## In this chapter
+
+The the modernization program adapter is the substrate's mechanism for **bringing tools and
+control planes into a canonical governance surface** without absorbing
+their idiosyncrasies into canon. This chapter explains the dual-axis
+taxonomy that makes adapters governable, the two-registry model that
+keeps modernization separate from conformance, and the canon
+invariants that constrain every adapter regardless of vendor.
+:::
+
+![Dual-axis adapter taxonomy diagram](images/index-image-01-dual-axis-adapter-taxonomy-diagr.png){#fig-index-image-01 fig-alt="A 2-by-5 matrix. Rows are the two adapter classes — Modernization (change-making) and Conformance (read-only observation). Columns are the five mission classes — Identity, Telemetry, Policy, Enforcement, Integration. Filled cells show example adapters in each combination (e.g. Modernization × Identity: bluecat-address-manager; Conformance × Policy: scubagear). Below the matrix, four canon invariants are labeled as a footer band: gcc-boundary: gcc-moderate, ssot-mutation: never-without-modernization-class, certificate-anchored: true, object-identity-only: true. Clean engineering blueprint style, dark navy (#0D1B2E) and teal (#1E8C8C) on white background. No photographs, purely diagrammatic." width="100%"}
+
+## The dual-axis taxonomy
+
+Per the modernization program_003, every adapter declares two attributes:
+
+- **`class`**: `modernization` or `conformance`.
+  - *Modernization* adapters are change-making. They mutate state in
+    pursuit of a target architecture (e.g. moving identities from AD
+    to Entra ID, reshaping the addressing plane).
+  - *Conformance* adapters are read-only. They observe state and emit
+    canonical claims; they do not mutate.
+- **`mission-class`**: one of `identity`, `telemetry`, `policy`,
+  `enforcement`, or `integration`. Each adapter belongs to exactly
+  one mission class — the canonical concern it primarily serves.
+
+The cross-product yields a 2×5 matrix. Every adapter lands in exactly
+one cell. The taxonomy is canonical (declared in
+[`adapter-registry.yaml`](../../../../src/uiao/canon/adapter-registry.yaml)
+and
+[`modernization-registry.yaml`](../../../../src/uiao/canon/modernization-registry.yaml))
+and validated in CI by `adapter-conformance.yml`.
+
+## Why two registries
+
+The two registries are not bureaucratic. They reflect a substrate
+invariant: **conformance adapters must not mutate state**. A
+`conformance` entry in the wrong registry would silently violate the
+SSOT principle, so the canon enforces the separation by *file*, not by
+field.
+
+> **The separation is enforced by *file*, not by field** — so a reviewer can
+> verify the invariant before reading a single line of adapter code.
+
+Operationally:
+
+- A vendor-supplied policy assessor (ScubaGear) ships as a
+  `conformance / policy` adapter. It observes M365 state and emits
+  canonical claims. It cannot mutate the tenant.
+- A directory-migration adapter (bluecat-address-manager) ships as a
+  `modernization / identity` adapter. It is *expected* to mutate state;
+  the modernization registry is the file that grants that authority.
+
+A reviewer auditing a PR can check the file-level invariant before
+reading any code: a conformance adapter editing the modernization
+registry is a structural error.
+
+**At a glance — the two registries:**
+
+| | Conformance adapter | Modernization adapter |
+|---|---|---|
+| Example | ScubaGear (`conformance / policy`) | bluecat-address-manager (`modernization / identity`) |
+| Behavior | Observes state, emits canonical claims | Mutates state toward a target architecture |
+| SSOT mutation | Never | Governed by canonical change records |
+| Registry file | `adapter-registry.yaml` | `modernization-registry.yaml` |
+
+## Canon invariants every adapter inherits
+
+Every adapter, regardless of class, inherits four canon invariants:
+
+| Invariant | Meaning |
+|---|---|
+| `gcc-boundary: gcc-moderate` | Adapter operates within the GCC-Moderate authorization boundary (or a named exception per the program decision) |
+| `ssot-mutation: never` (conformance) / `governed` (modernization) | Conformance never mutates SSOT; modernization mutations are governed by canonical change records |
+| `certificate-anchored: true` | mTLS-anchored emission of canonical claims |
+| `object-identity-only: true` | Identity claims resolve to identity-plane objects, not to opaque strings |
+
+These are not suggestions. They are schema-validated on every PR.
+
+## Microsoft Graph adapter convention
+
+Adapters that read from Microsoft Graph resolve their endpoint via
+`uiao.adapters._graph_clouds.resolve_graph_base` rather than
+hardcoding hostnames. Accepted config keys:
+
+- `cloud`: `commercial` / `gcc-high` / `dod` (default `commercial`,
+  also serving GCC-Moderate per the program decision).
+- `graph_api_version`: per-adapter default (`beta` for IntuneAdapter;
+  `v1.0` for EntraAdapter, M365Adapter, EntraDynamicGroupsAdapter,
+  EntraAdminUnitsAdapter, InBoundaryTelemetry).
+- An explicit URL override (`graph_endpoint` for most adapters;
+  `api_base_url` for the two Entra group/AU adapters that pre-dated
+  the convention).
+
+Unknown clouds fail closed at construction. The convention is what
+makes the substrate cloud-portable without per-adapter rewrites.
+
+## Adapter retirement (the program decision)
+
+Adapters do not vanish; they retire. the program decision defines the retirement
+path: an adapter that is no longer maintained or whose target
+capability has been superseded transitions through `deprecated` →
+`retired` states with explicit canonical successor pointers.
+Substrate-walker findings catch references to retired adapters as
+`DRIFT-PROVENANCE`, ensuring no consumer silently keeps using them.
+
+This is what allows the substrate to evolve without forcing a forklift
+upgrade: retirement is a substrate transition, not a removal.
+
+## What changes for an authorizing official
+
+The adapter taxonomy delivers four properties to the AO:
+
+- **Per-adapter evidence trail.** Every adapter's findings are
+  identifiable by `class` × `mission-class`, allowing per-pillar
+  control mapping.
+- **Conformance / modernization separation in the package.**
+  Read-only assessor evidence is structurally distinct from
+  change-making evidence; the AO can treat them differently.
+- **Canon invariants verifiable by inspection.** Boundary, SSOT
+  mutation posture, certificate anchoring, and identity binding are
+  declared, not narrated.
+- **Retirement traceability.** A retired adapter's evidence remains
+  reproducible from canon-archived state; the AO does not lose access
+  to past findings when an adapter retires.
+
+## Honest limits
+
+- The taxonomy is opinionated. Tools that do not fit a single
+  mission-class either decompose into multiple adapters or wait for a
+  taxonomy ADR. There is no "miscellaneous" mission-class.
+- Adapter authoring is engineering work. The substrate provides the
+  contract and the registry; vendors and agencies provide the
+  per-tool implementations.
+- The two-registry separation does not preserve adapters that mutate
+  conformance behavior at runtime. A conformance adapter that
+  silently mutates is a substrate-level violation, caught by drift
+  detection and resolved by an ADR.
+
+## Key takeaways
+
+- Adapters are the substrate's tool-integration mechanism.
+- The dual-axis taxonomy (class × mission-class) is canonical and
+  enforced.
+- Two registries (conformance / modernization) reflect a substrate
+  invariant about mutation authority.
+- Four canon invariants apply to every adapter regardless of vendor.
+- Retirement is a governed substrate transition, not a removal.
+
+::: {.callout-tip}
+## Continue the series
+
+Next: [Chapter 6 — Evidence over Attestation](../ch06-evidence-over-attestation/index.qmd) — why the substrate treats machine-verifiable evidence, not a human signature, as the primary artifact.
+:::
+
+## Related documents
+
+- [Executive Governance Series Index](../index.html)
+- [Architecture Series — Three-Layer Rule Model](../../architecture-series/three-layer-rule-model.qmd)
+- [Adapter Registry (canon)](../../../../src/uiao/canon/adapter-registry.yaml)
+- [Modernization Registry (canon)](../../../../src/uiao/canon/modernization-registry.yaml)
+- [the program decision: Adapter Retirement](../../../../src/uiao/canon/adr/adr-027-adapter-retirement.md)
