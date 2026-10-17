@@ -13,6 +13,10 @@ lifecycle_review: 2027-01-01
 
 # Chapter 1 — What Windows Authentication Actually Is
 
+![Kerberos overview](../../images/sql-server/before-kerberos.png)
+
+![Kerberos session lifecycle](../../images/sql-server/kerberos-lifecycle.png)
+
 *The inheritance, named precisely, before the case for replacing it.*
 
 ::: {.callout-note}
