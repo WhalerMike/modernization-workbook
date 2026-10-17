@@ -1,49 +1,133 @@
-# Executive Brief — Modernization Overview
+---
+title: "Executive Brief — Modernization Overview"
+subtitle: "the modernization program-anchored end-to-end modernization program arc for federal leadership"
+doc-type: executive-brief
+status: Active
+canon-source:
+  - "docs/docs/06_ProgramVision.qmd"
+  - "docs/docs/08_ModernizationTimeline.qmd"
+derived-from: "uiao canon"
+lifecycle: adopted
+tiers_adopted: [1]
+lifecycle_review: 2026-11-22
+---
 
-**End-to-end modernization program arc for leadership**
+![Six-step modernization arc (identity to governance)](images/zero-trust-overview-image-01-mission-class-placement-for-zero.png){#fig-modernization-overview-image-01 fig-alt="Six-step modernization arc (identity to governance). Engineering blueprint style, neutral slate background, federal navy (#1F3A5F) for primary structural elements, teal (#1A9E8F) for secondary/integration elements, amber (#D4A017) for governance/audit/registry overlays, monospace labels for identifiers, no human figures, 16:9 landscape." width="100%"}
+
+![Three-phase program model (A/B/C)](images/modernization-overview-image-02-three-phase-program-model-abc.png){#fig-modernization-overview-image-02 fig-alt="Three-phase program model (A/B/C). Engineering blueprint style, neutral slate background, federal navy (#1F3A5F) for primary structural elements, teal (#1A9E8F) for secondary/integration elements, amber (#D4A017) for governance/audit/registry overlays, monospace labels for identifiers, no human figures, 16:9 landscape." width="100%"}
+
+
+![The manual compliance grind](../../images/canonical/the modernization program-FIG-002-manual-compliance-grind.png){fig-alt="Current-state pain of manual, fragmented compliance workflows across federal agencies — spreadsheets, memos, and disconnected reporting that the modernization program replaces with continuous, canon-anchored governance." width="100%"}
+
+This executive brief summarizes what a **the modernization program-anchored modernization program**
+looks like end to end for a federal CIO/CISO audience, and the expected
+delivery arc from foundation to governance.
 
 ## Executive summary
 
-Modernization is an incremental, dependency-aware transformation that starts with identity trust, extends into deterministic addressing and overlay controls, and matures into telemetry-driven management and governance. The program is structured to deliver mission value early while reducing long-tail authorization and drift risk.
+the modernization program modernization is an incremental, dependency-aware transformation that
+starts with identity trust, extends into deterministic addressing and overlay
+controls, and matures into telemetry-driven management and governance. The
+program is structured to deliver mission value early while reducing long-tail
+authorization and drift risk.
 
-## The modernization arc
+The canonical modernization adapter inventory is governed in
+`src/uiao/canon/modernization-registry.yaml`. Treat that registry as the
+authoritative source for the active modernization adapter set (with one
+reserved planning entry) rather than maintaining per-brief adapter lists.
 
-Sequencing is intentional:
+## The modernization arc (what changes first, and why)
 
-1. **Identity-first** — establish authoritative identity context and policy enforcement anchors.
-2. **Addressing modernization** — bind identity to deterministic network addressing and service location.
-3. **Overlay activation** — enforce certificate-anchored, policy-aware paths without requiring rip-and-replace of incumbent platforms.
-4. **Telemetry integration** — convert telemetry from passive reporting into a live control input for routing, security, and compliance decisions.
-5. **Management automation** — operationalize drift detection, configuration reconciliation, and policy execution through repeatable workflows.
-6. **Governance at runtime** — continuously generate evidence and maintain authorization posture as an ongoing operating function.
+the modernization program sequencing is intentional:
 
-## Program model
+1. **Identity-first** — establish authoritative identity context and policy
+   enforcement anchors.
+2. **Addressing modernization** — bind identity to deterministic network
+   addressing and service location.
+3. **Overlay activation** — enforce certificate-anchored, policy-aware paths
+   without requiring rip-and-replace of incumbent platforms.
+4. **Telemetry integration** — convert telemetry from passive reporting into a
+   live control input for routing, security, and compliance decisions.
+5. **Management automation** — operationalize drift detection, CMDB
+   reconciliation, and policy execution through repeatable workflows.
+6. **Governance at runtime** — continuously generate evidence and maintain
+   authorization posture as an ongoing operating function.
+
+This arc aligns with the program vision of a drop-in overlay that restores
+cross-service telemetry and deterministic identity correlation in FedRAMP
+Moderate environments.
+
+## Program model: from discovery to enterprise operation
+
+The program executes in three leadership-facing phases:
 
 ### Phase A — Pre-overlay discovery and design
-Baseline identity, network, addressing, and telemetry posture. Confirm control-plane dependencies and authoritative data sources. Approve designs for identity, addressing, overlay, telemetry, and governance workstreams. Define objective readiness gates for pilot entry.
+
+- Baseline identity, network, addressing, and telemetry posture.
+- Confirm control-plane dependencies and authoritative data sources.
+- Approve high-level and low-level designs for identity, addressing, overlay,
+  telemetry, and governance workstreams.
+- Define objective readiness gates for pilot entry.
 
 ### Phase B — Pilot implementation
-Stand up identity and network pilots first, then attach deterministic addressing and telemetry ingestion. Validate correlation and policy determinism with limited blast radius. Exercise change and rollback paths before broad rollout. Produce early evidence artifacts.
+
+- Stand up identity and network pilots first, then attach deterministic
+  addressing and telemetry ingestion.
+- Validate conversation-level correlation and policy determinism with limited
+  blast radius.
+- Exercise change and rollback paths through governance workflows before broad
+  rollout.
+- Produce early evidence artifacts to validate control intent and operational
+  feasibility.
 
 ### Phase C — Enterprise rollout and continuous operations
-Expand proven patterns across domains and mission systems. Shift from milestone-only reviews to continuous telemetry and evidence cycles. Institutionalize drift detection and remediation as normal operations. Maintain momentum without disruptive cutovers.
 
-## Relationship to continuous authorization
+- Expand proven patterns across domains and mission systems.
+- Shift from milestone-only reviews to continuous telemetry/evidence cycles.
+- Institutionalize drift detection and remediation as normal operations.
+- Maintain modernization momentum without disruptive “big-bang” cutovers.
 
-Modernization supports the shift from periodic, document-heavy authorization behavior to machine-assisted continuous assurance:
-- Telemetry-backed validation replaces point-in-time posture assumptions.
-- Automated evidence generation supports recurring control verification.
-- Deterministic identity and policy outcomes reduce ambiguity during review.
-- Structured evidence flows improve repeatability and auditability.
+## FedRAMP 20x continuous authorization relationship
 
-Modernization is not separate from authorization: modernization produces the operational conditions required for continuous authorization to be credible.
+the modernization program modernization directly supports FedRAMP 20x direction by shifting from
+periodic, document-heavy authorization behavior to machine-assisted continuous
+assurance:
+
+- **Telemetry-backed validation** replaces point-in-time posture assumptions.
+- **Automated evidence generation** supports recurring control verification.
+- **Deterministic identity and policy outcomes** reduce ambiguity during
+  assessor and authorizing-official review.
+- **OSCAL-ready evidence flows** improve repeatability and auditability.
+
+In practice, this means modernization is not separate from authorization:
+modernization produces the operational conditions required for continuous
+authorization to be credible.
+
+## Maturity and delivery expectation
+
+Most modernization components in this program are currently **TARGET** or
+**DESIGN-ONLY** maturity. Leadership should treat the roadmap as a governed
+delivery arc with active build-out, not as a claim of full operational
+completion across every workstream today.
+
+Accordingly, this brief is marked `aspirational: true` to reflect current
+program maturity and avoid overstating implementation status.
 
 ## Leadership implications
 
 - Fund and govern the program as a sequence, not as independent projects.
-- Hold phase gates on evidence quality and operational determinism, not only on schedule milestones.
-- Treat the roadmap as a governed delivery arc, not as a claim of full operational completion across every workstream today.
+- Hold phase gates on evidence quality and operational determinism, not only
+  on schedule milestones.
+- Use the modernization registry and canon documents as the single source of
+  truth for scope and maturity decisions.
+- Start Phase 2 architecture-series deep dives immediately after this Phase 1
+  executive-brief set is complete.
 
----
+## Where to go deeper
 
-*Cleaned extraction for project use. No internal branding or document identifiers.*
+- **[Governance through Modernization whitepaper](../whitepapers/modernization-governance-whitepaper.qmd)** —
+  the long-form program treatment.
+- **[Operational Guide — the modernization program Modernization Program](../operational-guides/uiao-modernization-program/index.qmd)** —
+  the chapter-by-chapter delivery playbook.
+- **[Adapter Ecosystem Overview](adapter-ecosystem-overview.qmd)** — the
+  modernization adapter set that executes the arc.
