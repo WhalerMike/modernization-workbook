@@ -7,8 +7,8 @@ format:
  html:
  css: lz-style.css
  docx:
- reference-doc: orgcomp-reference.docx
-filters: [orgcomp-callouts.lua]
+ reference-doc: assets/reference-mslearn.docx
+
 aliases:
  - /customer-documents/federal-aan-series/Vol_0_Book_00a_FedAAN_Executive_Brief.html
 
