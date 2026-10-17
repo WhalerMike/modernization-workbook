@@ -10,6 +10,10 @@ SSPI examines the available authentication protocols and determines whether Kerb
 
 The engine validates the ticket’s cryptographic signature using the session key derived from the service account’s credentials, extracts the principal, and maps it to a SQL Server login. No password has traversed the network. No credential has been stored in any application configuration file. The authentication is mutual. This is genuinely good security architecture.
 
+![Kerberos overview](../../images/sql-server/before-kerberos.png)
+
+![Kerberos session lifecycle](../../images/sql-server/kerberos-lifecycle.png)
+
 The Service Principal Name must be registered against the service account running the SQL Server engine process. Without a correctly registered Service Principal Name, the Key Distribution Center cannot issue a service ticket. SSPI silently falls back to NTLM.
 
 This silent fallback is the first and most consequential fault in the inheritance. It is invisible at the application layer, produces no error in the SQL Server error log under default configuration, and means that environments which believe they are running Kerberos are, in a significant fraction of connections, running NTLM. The fraction can be measured, but it cannot be known without measurement.
@@ -41,6 +45,8 @@ It was not a security compromise. It was the application of the existing Windows
 ## Why the inheritance must end
 
 Three drivers require replacing Windows Authentication for SQL Server:
+
+![During: two paths](../../images/sql-server/during-overview.png)
 
 1. **NTLM elimination.** Microsoft has deprecated NTLM and is disabling it by default across successive Windows releases. Any SQL Server connection that relies on NTLM — because a Service Principal Name is missing, because the client cannot negotiate Kerberos, or because the host has been migrated to a non-domain-joined state — will fail when NTLM is blocked at the Local Security Authority layer.
 2. **Zero Trust requirement.** Conditional Access policies enforce device compliance, network-location restrictions, multi-factor authentication, and sign-in risk by intercepting the token issuance request. If the authentication protocol is Kerberos or NTLM, there is no token issuance request. The cloud identity plane is not in the path.
