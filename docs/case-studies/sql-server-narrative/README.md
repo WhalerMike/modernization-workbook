@@ -4,6 +4,8 @@
 
 ![Series cover: From Windows Authentication to the Identity Plane](../../images/sql-server/series-cover.jpg)
 
+**Full overview:** [Series Overview](series-overview.md) — the complete cleaned narrative with diagrams.
+
 ## Status
 
 This is a cleaned multi-chapter narrative. It is written as an engineering argument, not a runbook. Treat the patterns as guidance that must be validated against the specific estate.
