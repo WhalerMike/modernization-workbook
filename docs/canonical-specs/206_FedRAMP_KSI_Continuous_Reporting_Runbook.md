@@ -11,11 +11,9 @@ date: 2026-06-25
 
 This page renders the canonical the modernization program_206 source verbatim. The authoritative
 source is at
-[`src/uiao/canon/the modernization program_206_FedRAMP_KSI_Continuous_Reporting_Runbook.md`](../../src/uiao/canon/the modernization program_206_FedRAMP_KSI_Continuous_Reporting_Runbook.md).
 It is the operational companion to the FedRAMP 20x evidence surface
 (the modernization program_138 / the modernization program_139 + the program decision) and to the agency-side migration ceremony in
 the modernization program_205. Per [the program decision](../adr/adr-072-canon-publication-policy.qmd), this
 canonical page is generated as an `include`-style wrapper.
 :::
 
-{{< include ../../src/uiao/canon/the modernization program_206_FedRAMP_KSI_Continuous_Reporting_Runbook.md >}}
