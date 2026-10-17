@@ -1,45 +1,494 @@
+# Table of contents {#table-of-contents .TOC-Heading}
+
 # Federal Compliance for Moderate Agencies
 
-**Which mandates bind the agency, which bind the vendor, and where to read deeper**
+## The problem this paper resolves
 
-## Problem, solution, ask
+Every mandate in this space --- FedRAMP, NIST SP 800-53, CISA's
+directives, OMB's memos, TIC 3.0 --- gets discussed as if it applies to
+"the government" undifferentiated. It doesn't. Some of these bind a
+**Cloud Service Provider** seeking or keeping an authorization to sell
+into the federal market. Some bind a **federal agency** operating its
+own systems, whether on-premises or on top of an authorized cloud. A few
+bind both, in different ways, at different points in the same supply
+chain. Conflating the two produces two opposite failure modes this paper
+exists to prevent: agencies that assume "FedRAMP" is someone else's
+problem and miss their own continuous-monitoring obligation, and
+agencies that pour effort into vendor-shaped compliance work --- chasing
+a CSP's authorization paperwork --- that was never theirs to do.
 
-**Problem.** FedRAMP, NIST SP 800-53, CISA’s directives, OMB’s memos, and TIC 3.0 get discussed as if they bind “the government” undifferentiated. Some bind the cloud service provider, some bind the agency, a few bind both — and conflating them produces agencies that treat FedRAMP as someone else’s problem while missing their own continuous-monitoring obligation, or that pour effort into vendor-shaped paperwork that was never theirs to do.
-
-**Solution.** One question per mandate — who does this actually bind? — with the deadlines that matter.
-
-**Ask.** Sort every open compliance item into “ours” and “our vendor’s”; put the CSP-facing dates on the calendar anyway, because the agency’s own authorization and reciprocity decisions depend on them.
+This paper answers one question per mandate --- **who does this actually
+bind?** --- states the deadlines that matter, and then gets out of the
+way: every mandate below is covered in far more depth by a companion
+whitepaper in this section, and this page's job is to route you to the
+right one, not to re-derive what they already establish. **Scope:**
+federal civilian agencies operating at the FedRAMP Moderate baseline
+(GCC-Moderate for Microsoft 365 tenants specifically). DoD/IL4-IL5,
+state and local, and commercial-non-federal compliance regimes are out
+of scope --- see [Honest limits](#honest-limits-and-scope).
 
 ## Executive summary
 
-Three distinct actors sit inside “federal compliance,” and almost every mandate binds exactly one of them directly:
+Three distinct actors sit inside "federal compliance," and almost every
+mandate below binds exactly one of them directly:
 
-| Actor | Role | Directly bound by |
-|-------|------|-------------------|
-| **Cloud Service Provider / vendor** | Builds and operates a Cloud Service Offering it sells into the federal market | FedRAMP (the baseline itself, and the 20x Consolidated Rules) |
-| **Federal agency** (AO, ISSO, CISO, mission owner) | Operates systems — its own, or built on top of an authorized CSO — and holds its own Authority to Operate | NIST SP 800-53/800-37 (its own ATO), CISA’s directives, OMB’s policy memos |
-| **Independent assessor** | Validates either side’s evidence | Whichever framework it is assessing against |
+ -----------------------------------------------------------------------
+ Actor Role Directly bound by
+ ----------------------- ----------------------- -----------------------
+ **Cloud Service Builds and operates a FedRAMP (the baseline
+ Provider (CSP) / Cloud Service Offering itself, and the 20x
+ vendor** (CSO) it sells into the Consolidated Rules
+ federal market specifically)
 
-The confusion is that FedRAMP 20x’s headline change — continuous, machine-readable evidence instead of periodic assessment — is a CSP-facing authorization requirement, but the same evidentiary bar is also rising for agencies’ own systems under NIST SP 800-37’s continuous-monitoring requirement (CA-7) and OMB Circular A-130. An agency reading “FedRAMP 20x” and concluding “not my problem” misses that its own ATO package is being held to the same rising bar, on a different legal basis.
+ **Federal agency** (AO, Operates systems --- NIST SP 800-53/800-37
+ ISSO, CISO, mission its own, or built on (its own ATO), CISA's
+ owner) top of an authorized directives (BOD 25-01,
+ CSO --- and holds its the Zero Trust Maturity
+ own Authority to Model), OMB's policy
+ Operate memos (M-22-09,
+ M-25-21, M-19-26/TIC
+ 3.0)
 
-## Key distinctions
+ **Independent assessor Validates either side's Whichever framework
+ (3PAO, or an agency's evidence it's assessing against
+ own assessment --- FedRAMP's
+ function)** assessment requirements
+ for a CSP, or the
+ agency's own RMF/ATO
+ process for
+ agency-operated systems
+ -----------------------------------------------------------------------
 
-### FedRAMP and the 20x Consolidated Rules
-Binds vendors directly. Agencies inherit the evidence. An agency does not submit into the FedRAMP 20x pipeline the way a CSP does. What changes for the agency is what it can now expect to receive: continuous evidence from its authorized cloud providers instead of a stale point-in-time assessment package.
+The confusion is that FedRAMP 20x's headline change --- continuous,
+machine-readable evidence instead of periodic assessment --- is a
+**CSP-facing authorization requirement**, but the same evidentiary bar
+(continuous, machine-readable, not point-in-time) is *also* rising for
+agencies' own systems under NIST SP 800-37's continuous-monitoring
+requirement (CA-7) and OMB Circular A-130. An agency reading "FedRAMP
+20x" and concluding "not my problem, that's a CSP thing" misses that its
+own ATO package is being held to the same rising bar, on a different
+legal basis, on roughly the same timeline. That's the distinction this
+paper exists to make explicit.
 
-### NIST SP 800-53 / SP 800-37
-Binds agencies directly for systems they operate. Running on top of a FedRAMP-authorized offering inherits that offering’s controls but does not relieve the agency of its own ATO for the system it built on top of it. CA-7 continuous monitoring is the agency-side analog of FedRAMP 20x’s evidence requirement.
++-----------------------------------------------------------------------+
+| ![](../images/whitepapers/rId10.png){width="5.833333333333333in" height="3.28125in"} |
+| |
+| Figure 1: The federal cybersecurity legal stack: the agency-binding |
+| track (FISMA, 44 U.S.C. § 3551 et seq. → NIST SP 800-53 Rev 5 / SP |
+| 800-37 RMF → executive policy --- EO 14028 through EO 14306, OMB |
+| memos → CISA Binding Operational Directives under 44 U.S.C. § |
+| 3553(b)(2) → the SCuBA technical baseline assessed by |
+| ScubaGear/ScubaGoggles) alongside the parallel CSP-binding track (the |
+| FedRAMP Authorization Act, 44 U.S.C. § 3607 → CSP authorization), |
+| which shares the same NIST 800-53 control baseline. No layer is "most |
+| important" --- each authorizes the one below it; BOD 25-01/SCuBA is |
+| the narrowest-scope, most time-boxed obligation, not the top of the |
+| hierarchy. |
++-----------------------------------------------------------------------+
 
-### CISA BOD 25-01 (SCuBA)
-Binds agencies directly, on a fixed timeline. Requires agencies to identify Microsoft 365 tenants, implement secure configuration baselines, deploy assessment tooling, integrate with continuous-monitoring infrastructure, and remediate deviations — not merely report them. The remediation clause is the part agencies most often under-invest in.
+ -----------------------------------------------------------------------
+ ![](../images/whitepapers/rId14.png){width="0.16666666666666666in"
+ height="0.16666666666666666in"}
 
-### CISA BOD 26-04
-Binds agencies directly for risk-based vulnerability remediation.
+ -----------------------------------------------------------------------
 
-## Honest limits
+## 1. FedRAMP and the 20x Consolidated Rules --- binds vendors directly; agencies inherit the evidence
 
-Scope is federal civilian agencies operating at the FedRAMP Moderate baseline. DoD, state and local, and commercial-non-federal regimes are out of scope.
+**Who it binds:** FedRAMP authorizes Cloud Service Offerings. The
+Consolidated Rules --- published June 25, 2026 --- are requirements a
+**CSP** meets to obtain and keep that authorization: machine-readable
+Key Security Indicators (KSIs), submitted through one of three
+certification pipelines, replacing the prior periodic-assessment model.
 
----
+**What it means for agencies:** an agency does not submit into the
+FedRAMP 20x pipeline the way a CSP does. What changes for the agency is
+what it can now *expect to receive*: continuous KSI evidence from its
+FedRAMP-authorized cloud providers instead of a stale point-in-time
+assessment package, and a narrower window in which an older-style (Rev5)
+authorization remains valid at all. An agency's own procurement and
+ATO-reciprocity decisions --- which CSOs it relies on, and how it cites
+that reliance in its own SSP --- depend on tracking these dates:
 
-*Cleaned extraction for project use. No internal branding or document identifiers. This is a routing primer; companion papers cover each mandate in depth.*
+- **June 25, 2026** --- FedRAMP publishes the Consolidated Rules for
+ 2026; the machine-readable KSI evidence regime is defined.
+- **July 6, 2026** --- 20x Marketplace listings open; CSPs may enter
+ the initial implementation stage.
+- **July 28, 2026** --- FedRAMP Ready submissions cease; no new Ready
+ pathway.
+- **August 3, 2026** --- Class A pipeline opens (first
+ new-authorization submission window).
+- **August 10, 2026** --- Temporary Rev5 Program Certification opens
+ (Class B/C Ready-conversion and lost-sponsor paths).
+- **August 31, 2026** --- Class B and C pipelines open --- Class C
+ (Moderate) is the class the CSOs a Moderate-baseline agency actually
+ relies on (M365 GCC, GovCloud, DDI providers) will enter. This is
+ the pipeline your vendors submit into; it is not an agency
+ submission window.
+- **December 7, 2026** --- FedRAMP's Vulnerability Detection &
+ Response (VDR) and Vulnerability Evaluation & Reporting (VER) rules
+ become mandatory, aligned to CISA BOD 26-04's remediation timelines
+ taking effect the same date (see [§4](#bod-26-04)).
+- **January 1, 2027** --- Consolidated Rules mandatory for all
+ certified systems; the legacy Rev5 path closes for new
+ authorizations.
+- **June 11, 2027** --- no new Rev5 certifications accepted.
+
+**What it means for vendors:** everything above is the actual compliance
+work. A CSP not moving toward Consolidated-Rules certification on this
+timeline risks losing the ability to sell to federal agencies at all
+once Rev5 stops being issued.
+
+**Read deeper:** [Federal Application Aware Networking
+Architecture](federal-application-aware-networking-architecture.md) §
+"FedRAMP 20x Consolidated Rules" covers the KSI evidence-format
+mechanics and a worked Call to Action built around these dates. For the
+full control-by-control mapping and the fuller federal compliance clock
+this timeline is drawn from, see the the compliance series series' Executive
+Summary
+("FedRAMP 20x Hard Deadlines" and "The Broader Federal Clock").
+
+## 2. NIST SP 800-53 / SP 800-37 (the Risk Management Framework) --- binds agencies directly for systems they operate
+
+**Who it binds:** any federal agency operating an information system,
+regardless of where it runs (on-premises, in an authorized CSP's cloud,
+or hybrid). The agency's Authorizing Official (AO) issues and owns the
+Authority to Operate (ATO) under NIST SP 800-37's Risk Management
+Framework, against the control baseline NIST SP 800-53 defines (Moderate
+baseline, for the GCC-Moderate scope this paper covers).
+
+**What it means for agencies:** this is the mandate most directly
+"yours" of everything in this paper. Running on top of a
+FedRAMP-authorized CSO inherits that CSO's own controls but does **not**
+relieve the agency of its own ATO for the system it built on top of it
+--- a common point of confusion this paper exists partly to close. NIST
+SP 800-37's CA-7 continuous-monitoring requirement is the agency-side
+analog of FedRAMP 20x's KSI evidence --- same "continuous, not periodic"
+shift, different legal basis (the agency's own RMF obligation, not a
+CSP's FedRAMP authorization).
+
+**What it means for vendors:** a CSP's FedRAMP authorization is an input
+to an agency's risk decision, not a substitute for the agency completing
+its own ATO. A vendor selling "FedRAMP authorized" as if it closes the
+agency's compliance work oversells what the authorization covers.
+
+**Read deeper:** every whitepaper in this section that cites specific
+NIST SP 800-53 controls (SC-7, SC-8, AC-4, SI-3, CM-8, and others) is
+doing RMF work for a specific domain --- see the [routing
+table](#where-to-read-deeper-by-mandate) for which paper covers which
+control family. For the full authorization-package mechanics --- the
+OSCAL bundle, the KSI scorecard, and how continuous evidence actually
+assembles into an AP/AR/POA&M set --- see the the compliance series series'
+Authorization Package and ConMon
+book.
+
+## 3. CISA Binding Operational Directive 25-01 (SCuBA) --- binds agencies directly, on a fixed timeline
+
+**Who it binds:** federal civilian executive branch agencies operating
+Microsoft 365 tenants. [BOD 25-01](https://cyber.dhs.gov/bod/25-01/),
+*Implementing Secure Practices for Cloud Services*, requires agencies to
+identify their M365 tenants, implement CISA's SCuBA Secure Configuration
+Baselines against them, deploy the ScubaGear assessment tool, integrate
+with CISA's continuous-monitoring infrastructure, and **remediate
+deviations** from the baselines --- not merely report them. Tenant
+identification was due February 21, 2025; ScubaGear deployment followed
+on a subsequent deadline.
+
+**What it means for agencies:** this directive is unambiguously
+agency-facing --- there is no vendor party BOD 25-01 binds. The
+remediation clause is the part agencies most often under-invest in:
+running the assessor and reporting findings satisfies the letter of
+"assess," but not "remediate deviations," and a growing, un-closed
+deviation list is not a defensible posture under the directive's own
+text.
+
+**What it means for vendors:** Microsoft (as the M365 platform owner)
+and any third-party tooling vendor selling into this space are not
+directly bound by BOD 25-01 --- the directive's obligations run to the
+agency operating the tenant, not to the platform or tool vendor.
+
+**Read deeper:** [Assessment Tools vs. Closing BOD-25-01
+Findings](bod-25-01-close-before-assess.md) is this paper's dedicated
+treatment of the directive, including why "run the assessor" and "close
+the findings" are different obligations and the correct sequencing
+between them. [ScubaGear
+Integration](scubagear-integration-whitepaper.md) and [ZTA and SCuBA
+--- How They Relate](zta-scuba-relationship.md) cover the tooling layer
+this directive requires.
+
+## 4. CISA BOD 26-04 (risk-based vulnerability remediation) --- binds agencies directly
+
+**Who it binds:** federal civilian executive branch agencies. BOD 26-04,
+issued June 10, 2026, replaces flat CVSS-severity remediation windows
+with a four-variable risk model --- exposure, presence on CISA's Known
+Exploited Vulnerabilities (KEV) catalog, whether the vulnerability is
+automatable, and mission impact --- producing remediation timelines that
+range from three days for the highest-risk combination down to a
+deferral path for genuinely low-risk findings. It **revokes BOD 22-01
+and BOD 19-02 outright** --- CISA now publishes the BOD 22-01 page at a
+`-revoked` URL --- and with them the flat 15/25-day KEV clocks and the
+older, cruder "CVSS 9+ closes in 15 days" style of policy still common
+in agency vulnerability-management SOPs.
+
+**What it means for agencies:** two concrete dates matter. Agency
+vulnerability-management policy has to support the four-variable,
+risk-based remediation model by **August 7, 2026**; the remediation
+timelines themselves take legal effect **December 7, 2026**, the same
+date FedRAMP's own VDR/VER (Vulnerability Detection & Response /
+Vulnerability Evaluation & Reporting) rules become mandatory for CSPs
+(§1). An agency's existing BOD 22-01 (KEV remediation) program is the
+closest predecessor process, but the relationship is replacement, not
+accretion: **BOD 26-04 revoked BOD 22-01**, and KEV listing survives as
+**one of the four risk variables** inside the new model rather than as a
+free-standing obligation with its own clock. An agency that keeps its
+KEV programme running unchanged and treats exposure, automatability and
+technical impact as additions has kept a remediation SLA keyed to a
+revoked directive.
+
+**What it means for vendors:** a CSP's own VDR/VER disclosure
+obligations under FedRAMP (§1) are the vendor-side mirror of this
+directive --- a vulnerability an agency has to risk-score and remediate
+against BOD 26-04's clock is frequently one a vendor is separately
+obligated to have already disclosed. The two obligations run on the same
+December 7, 2026 date for exactly that reason.
+
+**Read deeper:** this directive is new enough that no whitepaper in this
+section yet carries a dedicated treatment --- [Assessment Tools
+vs. Closing BOD-25-01 Findings](bod-25-01-close-before-assess.md)'s
+remediate-before-assess sequencing argument applies directly to BOD
+26-04's remediation clock, even though that paper predates BOD 26-04's
+issuance and doesn't name it.
+
+## 5. CISA Zero Trust Maturity Model v2.0 --- agency-facing maturity guidance, not a binding directive with its own deadline
+
+**Who it binds:** no agency is legally required to hit a specific ZTMM
+maturity stage by a specific date the way BOD 25-01 sets a hard
+deadline. The Maturity Model --- four stages, Traditional through
+Initial, Advanced, and Optimal, across five pillars (Identity, Devices,
+Networks, Applications & Workloads, Data) plus three cross-cutting
+capabilities (Visibility and Analytics, Automation and Orchestration,
+Governance) --- is CISA's own maturity guidance, referenced by OMB
+M-22-09 as the framework agencies should measure progress against,
+rather than itself the source of a compliance deadline.
+
+**What it means for agencies:** most federal Zero Trust programs stall
+below Advanced maturity for structural reasons --- pillar tools
+administered independently rather than governed as one system, evidence
+that's per-tool rather than per-claim, and Network/CSP/VMware estates
+assessed as three disconnected exercises instead of one architecture.
+Buying another per-pillar tool doesn't fix a structural stall; the
+companion papers below argue this in depth, with named incidents
+(Storm-0558, the ESXiArgs ransomware campaign, the VMware ESXi
+AD-integration bypass) as evidence, not assertion.
+
+**What it means for vendors:** CSP-native and third-party security
+tooling vendors sell products that can *move* an agency along the
+maturity model, but no vendor's tool, on its own, satisfies the model
+--- that's the paper's own central argument, not incidental to it.
+
+**Read deeper:** [Zero Trust Governance
+Principles](zero-trust-governance-principles.md) is the primary
+treatment; its companion [Zero Trust Requires Whole-Agency
+Scope](zero-trust-whole-agency-unification.md) covers why Network,
+every CSP, and any on-premises virtualization estate have to be assessed
+as one system. [Zero Trust
+Governance](zero-trust-governance-whitepaper.md) maps the five pillars
+to specific canon-anchored mechanisms.
+
+## 6. OMB M-22-09 (Federal Zero Trust Strategy) --- the policy memo that makes ZTMM the reference standard
+
+**Who it binds:** federal agencies. OMB Memorandum M-22-09 is the policy
+instrument that directs agencies to adopt Zero Trust architecture
+principles and use CISA's Zero Trust Maturity Model as the measurement
+framework --- it's the piece connecting §4's maturity model to an actual
+OMB-issued agency obligation, rather than the maturity model being
+purely advisory.
+
+**What it means for agencies:** M-22-09 is cited throughout this section
+wherever a paper argues that a specific architectural move
+(application-aware networking, phishing-resistant MFA, Conditional
+Access, SD-WAN local breakout) is not optional best practice but a
+policy-driven expectation.
+
+**What it means for vendors:** as with M-25-21 below, M-22-09 does not
+bind vendors directly --- it shapes what agencies procure, which shapes
+vendor roadmaps indirectly.
+
+**Read deeper:** [Federal Application Aware Networking
+Architecture](federal-application-aware-networking-architecture.md) and
+its UIAO-branded sibling [From Mainframe to Application-Aware
+Modernization](modernization-journey.md) both build their core argument
+on M-22-09's identity-and-application-aware-networking direction --- see
+the [Reading Guide](reading-guide.md) for which of the two fits your
+audience.
+
+## 7. TIC 3.0 (OMB M-19-26) --- agency-facing policy, satisfied through vendor infrastructure
+
+**Who it binds:** federal agencies. OMB Memorandum M-19-26, *Update to
+the Trusted Internet Connections (TIC) Initiative*, directs agencies to
+adopt one of CISA's TIC 3.0 use cases for their network architecture,
+replacing the prior single-hairpin TIC model. The obligation runs to the
+agency; the means of satisfying it is almost always a vendor product
+(SD-WAN, SASE, Direct Internet Access transport).
+
+**What it means for agencies:** TIC 3.0 is the policy gate that makes
+Direct Internet Access *lawful* for a distributed-egress architecture
+--- but DIA on its own satisfies none of the protection controls TIC 3.0
+actually requires (SC-7 boundary protection, SC-8 confidentiality, AC-4
+flow enforcement, SI-3 malware protection). Those come from the
+SD-WAN/SASE governance stack layered on top of the transport, not from
+the transport itself. An agency that reads "TIC 3.0 allows DIA" and
+stops there --- buying faster internet circuits without the governance
+stack --- has a compliance regression with better latency, not
+modernization.
+
+**What it means for vendors:** SD-WAN, SASE, and transport providers
+(fiber, MPLS, LEO satellite, 5G) sell the infrastructure an agency uses
+to satisfy TIC 3.0, but no vendor is itself bound by the directive ---
+the compliance obligation, and the accountability for it, stays with the
+agency regardless of which vendor stack it procures.
+
+**Read deeper:** [SD-WAN vs. DIA Under TIC 3.0](tic3-sdwan-vs-dia.md)
+is the dedicated treatment --- the "pipe vs. governor" argument, the
+physics budget behind TIC 3.0's use cases, and the five-step decision
+sequence for an actual transport/SD-WAN procurement. [Next Generation
+DNS](infoblox-hybrid-dns-unified-ddi.md) covers the DNS-layer piece of
+the same distributed-egress architecture.
+
+## 8. OMB M-25-21 (Federal AI governance) --- agency-facing, and the newest mandate in this set
+
+**Who it binds:** federal agencies deploying or procuring AI systems.
+Per
+[the program decision](../../docs/adr/adr-112-federal-ai-usecase-governance.html),
+OMB M-25-21 carries four obligations on the agency: a Chief AI Officer
+(due within 60 days); an AI use-case inventory to OMB at least annually;
+**§4(b)'s seven minimum risk-management practices** for high-impact AI
+(pre-deployment testing, an AI impact assessment, ongoing monitoring,
+human training, human oversight and intervention, remedies and appeals,
+and public feedback); and compliance plans at 180 days and every two
+years thereafter until 2036. All of those deadlines have now passed.
+M-25-22 is the companion memo governing AI *acquisition*. It is the most
+recent mandate in this paper and the one with the least field-tested
+guidance behind it.
+
+**What it means for agencies:** an AI system has to be governed as an
+identity-bearing, inventoried record --- not just a model deployment.
+Note what M-25-21 does **not** say: it imposes no AI-specific
+Authorization to Operate and instead directs agencies to keep applying
+their existing authorization requirements to AI systems. This is a live
+gap for most agencies: mature AI-inventory and governance tooling for
+this specific mandate is newer than the tooling maturity for FedRAMP,
+NIST, or BOD 25-01.
+
+**What it means for vendors:** vendors selling AI capabilities into
+federal agencies are not directly bound by M-25-21, but an agency's own
+compliance posture increasingly depends on what inventory and governance
+hooks a vendor's AI product exposes --- an accountable official cannot
+govern what isn't visible as a record.
+
+**Read deeper:** [Federal AI Governance --- Submission
+Readiness](federal-ai-governance-submission-readiness.md) is the
+dedicated treatment, including an honest coverage ledger of what's
+deployed versus proposed against M-25-21's specific gates.
+
+## Where to read deeper, by mandate
+
+ -----------------------------------------------------------------------------------------------------------------------
+ Mandate Binds directly Companion paper(s)
+ ----------------------- ----------------------- -----------------------------------------------------------------------
+ FedRAMP 20x CSP/vendor [Federal Application Aware Networking
+ Consolidated Rules Architecture](federal-application-aware-networking-architecture.md)
+
+ NIST SP 800-53 / 800-37 Agency Cited throughout this section by control number; see each paper's own
+ (RMF, ATO) citations
+
+ CISA BOD 25-01 (SCuBA) Agency [Assessment Tools vs. Closing BOD-25-01
+ Findings](bod-25-01-close-before-assess.md), [ScubaGear
+ Integration](scubagear-integration-whitepaper.md), [ZTA and SCuBA ---
+ How They Relate](zta-scuba-relationship.md)
+
+ CISA BOD 26-04 Agency No dedicated paper yet in this section --- see [§4](#bod-26-04) and the
+ (risk-based sequencing argument in [Assessment Tools vs. Closing BOD-25-01
+ vulnerability Findings](bod-25-01-close-before-assess.md)
+ remediation) 
+
+ CISA Zero Trust Agency (measurement [Zero Trust Governance
+ Maturity Model v2.0 framework) Principles](zero-trust-governance-principles.md), [Zero Trust Requires
+ Whole-Agency Scope](zero-trust-whole-agency-unification.md), [Zero
+ Trust Governance](zero-trust-governance-whitepaper.md)
+
+ OMB M-22-09 (Zero Trust Agency [Federal Application Aware Networking
+ Strategy) Architecture](federal-application-aware-networking-architecture.md),
+ [From Mainframe to Application-Aware
+ Modernization](modernization-journey.md)
+
+ OMB M-19-26 (TIC 3.0) Agency [SD-WAN vs. DIA Under TIC 3.0](tic3-sdwan-vs-dia.md), [Next Generation
+ DNS](infoblox-hybrid-dns-unified-ddi.md)
+
+ OMB M-25-21 (Federal AI Agency [Federal AI Governance --- Submission
+ governance) Readiness](federal-ai-governance-submission-readiness.md)
+
+ Federal data-governance Agency [Federal SSOT Alignment](federal-ssot-alignment.md)
+ mandates (Evidence Act, 
+ Federal Data Strategy) 
+
+ Closure-evidence Agency (operational) [Ticket-to-Machine, Not
+ standard across cloud Ticket-to-Human](ticket-to-machine-not-ticket-to-human.md)
+ platforms 
+ -----------------------------------------------------------------------------------------------------------------------
+
+For a fuller map of how all 27 papers in this section relate --- not
+just the mandate-focused ones above --- start at the [Reading
+Guide](reading-guide.md).
+
+## Honest limits and scope
+
+- **This paper is a routing layer, not a primary source.** Every
+ specific control number, deadline, and mechanism claim above is
+ already cited, in more depth, by the companion paper it points to.
+ Where this page and a companion paper appear to disagree, the
+ companion paper is authoritative --- this page should be corrected
+ to match it, not the reverse.
+- **Eight mandates, not the whole federal compliance clock --- named,
+ not silently dropped.** The Federal Organization Compliance
+ (the compliance series) series this paper draws its FedRAMP timeline from tracks a
+ materially larger set: BOD 18-01 (DMARC/HTTPS), BOD 26-04
+ (risk-based remediation, revoking BOD 22-01 and BOD 19-02), BOD
+ 23-01 (asset visibility), BOD 23-02 (management-interface exposure),
+ OMB M-26-14 (event logging), M-21-07 (IPv6), M-23-02 and NIST FIPS
+ 203/204/205 (post-quantum cryptography, migration through 2035), and
+ NIST SP 800-53's own biannual minor-release cadence. None of those
+ made the cut for this primer's eight sections --- they're real,
+ agency-facing, and out of scope here on length grounds, not because
+ they don't matter. See the the compliance series series' Executive
+ Summary
+ for the fuller clock.
+- **Scope is federal civilian, Moderate baseline.** DoD environments
+ (IL4/IL5), state and local government compliance regimes, and
+ non-federal commercial regulatory frameworks are out of scope.
+ Several mandates above (FedRAMP in particular) have GCC-High and
+ DoD-specific variants this paper does not address.
+- **Dates are a snapshot.** The FedRAMP 20x timeline in §1 reflects
+ the Consolidated Rules as published June 25, 2026; OMB and CISA
+ guidance in this space has moved on shorter cycles than typical
+ review cadences before. Verify current dates directly against
+ FedRAMP.gov and CISA.gov before treating any date above as
+ load-bearing for a procurement or ATO decision.
+- **This is not legal or compliance advice.** It is a navigational aid
+ for a specific, common confusion --- which mandate binds which actor
+ --- not a substitute for an agency's own legal, compliance, or ISSO
+ review of its specific posture against any mandate named here.
+- **The three-actor model is a simplification.** Some real
+ arrangements don't fit neatly --- an agency operating its own
+ GovCloud tenant is simultaneously acting in something closer to the
+ CSP role for the systems it hosts there, and a systems integrator
+ building on top of an authorized CSO for an agency client sits in a
+ fourth position this paper doesn't model separately. Treat the
+ three-actor framing as the common case, not an exhaustive taxonomy.
+
+## Call to Action
+
+None of this requires resolving every mandate at once. It requires
+knowing, for each open compliance question, whether the answer starts
+with "we have to" or "our vendor has to" --- and reading the paper in
+this section that actually goes deep on whichever one it turns out to
+be.

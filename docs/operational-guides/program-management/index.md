@@ -1,0 +1,34 @@
+---
+title: "H. Program Management"
+subtitle: "Master Project Plan, roadmap, ADRs, ServiceNow, SAM, training"
+doc-type: subcategory-landing
+pillar: modernization
+sub-category: H
+status: scaffold
+date: 2026-04-24
+aspirational: true
+lifecycle: adopted
+tiers_adopted: [1]
+lifecycle_review: 2026-11-22
+---
+
+# H. Program Management {.unnumbered}
+
+::: {.callout-tip}
+## Download the full section
+**[program-management-bundle.docx]** — every page in this section concatenated into one Word document. Regenerated on every site deploy.
+:::
+
+The program-level artifacts that govern modernization execution at the
+organization scale: the capstone plan, the phased roadmap, the
+architecture decision log, change-management integration, and end-user
+enablement.
+
+## Leaves
+
+- **H.1** Master Project Plan (capstone)
+- **H.2** Migration Roadmap
+- **H.3** Architecture Decision Records (ADRs)
+- **H.4** ServiceNow change / incident integration — [adapter](../../adapter-specs/service-now/service-now.html)
+- **H.5** SAM (software asset management)
+- **H.6** End-user training

@@ -1,0 +1,35 @@
+---
+title: "F. Access Plane"
+subtitle: "MFA, Zero Trust, SASE, Certificate-Based Auth, Privileged Access"
+doc-type: subcategory-landing
+pillar: modernization
+sub-category: F
+status: scaffold
+date: 2026-04-24
+aspirational: true
+lifecycle: adopted
+tiers_adopted: [1]
+lifecycle_review: 2026-11-22
+---
+
+# F. Access Plane {.unnumbered}
+
+::: {.callout-tip}
+## Download the full section
+**[access-plane-bundle.docx]** — every page in this section concatenated into one Word document. Regenerated on every site deploy.
+:::
+
+Identity-bound network + application access controls. The access plane is
+the enforcement surface for every Conditional Access policy, every Zero
+Trust segment, and every privileged-access workflow. It replaces the
+AD-centric network-perimeter model with identity + device posture.
+
+## Leaves
+
+- **F.1** MFA (methods, phishing resistance, FIDO2)
+- **F.2** Zero Trust model — [modernization-specs/zero-trust](../../modernization-specs/zero-trust/zero-trust.html)
+- **F.3** SASE — [modernization-specs/sase](../../modernization-specs/sase/sase.html)
+- **F.4** Certificate-Based Authentication (Entra CBA)
+- **F.5** Privileged Access Management — [PIM self-request with approval](pim-self-request-approval.qmd)
+  · [CyberArk adapter](../../adapter-specs/cyberark/cyberark.html)
+- **F.6** Break-glass accounts

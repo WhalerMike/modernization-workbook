@@ -1,0 +1,244 @@
+---
+title: "Federal AI Identity Governance — Centralized OFCIO Deployment Model"
+subtitle: "How the L1 scanner runs centrally for all 56 agencies — the CDM-pattern path"
+doc-type: operational-guide
+audience: [Executive, Customer, Operator]
+author: Michael Stratton
+date: "June 2026"
+status: Active
+repo-path: docs/customer-documents/operational-guides/ai-identity-governance/central-deployment.qmd
+created-at: 2026-06-19
+updated-at: 2026-06-19
+format:
+  html:
+    toc: true
+    toc-depth: 2
+lifecycle: proposed
+tiers_adopted: []
+lifecycle_review: 2026-12-19
+---
+
+# Federal AI Identity Governance — Centralized OFCIO Deployment Model {.unnumbered}
+
+The `Invoke-AIInventoryScan.ps1` scanner and its Python counterpart run against
+the **public** OMB inventory CSV. They require no agency-side infrastructure.
+That property makes a centralized deployment model possible: OFCIO runs the
+scanner once for all 56 agencies, produces structured findings per agency, and
+delivers them to each agency CISO — the same pattern the Continuous Diagnostics
+and Mitigation (CDM) program uses for device and software asset enumeration.
+
+This page documents that model: who runs what, what each agency receives, and
+how per-agency remediation flows from the central findings.
+
+::: {.callout-note title="Relationship to other paths"}
+This page describes the OFCIO-central operational model. If your agency is
+running the scanner independently, see the [manual path](manual-path.qmd). If
+your agency has deployed the modernization program the organizational-attribute model, see the [governed path](governed-path.qmd).
+:::
+
+## The CDM analogy
+
+CDM did not require each agency to build its own vulnerability scanner. DHS/CISA
+ran discovery centrally against agency-provided data and pushed structured
+findings to each agency CISO for remediation. The CDM pattern separates
+**discovery** (who has visibility into the data) from **remediation** (who
+must act on the findings).
+
+Federal AI identity governance has the same structure:
+
+| CDM component | AI identity governance equivalent |
+|---|---|
+| Asset discovery feed | OMB Annual AI Use Case Inventory (public CSV) |
+| Central scanner operator | OFCIO (one scan covers all 56 agencies) |
+| Agency-level finding delivery | Structured report per agency, scoped to their inventory subset |
+| Remediation actor | Agency CISO and bureau governance contacts |
+| Enforcement mechanism | The agency's own authorization policy, enumerated through the OMB inventory (M-25-21 imposes no AI-specific ATO gate) |
+
+The OMB inventory is the CDM feed for the AI identity surface. It is already
+published, already public, and already structured. The scanner already runs
+against it in under two minutes for all 1,480 live systems. The only gap is
+operationalizing the central scan and the finding-delivery workflow.
+
+## The four-tier model
+
+![Central deployment four-tier cascade — Tier 0 OFCIO scan → Tier 1 CISO notification → Tier 2 remediation tooling → Tier 3 the modernization program deployment (target architecture).](../../../images/canonical/the modernization program-FIG-025-central-deployment-tiers.png){#fig-central-deployment fig-alt="A four-tier vertical cascade joined by teal arrows. Tier 0 OFCIO central scan (public OMB CSV, 1346 findings across 56 agencies). Tier 1 Agency CISO notification (scoped findings, P1 72-hour, P2 30-day). Tier 2 Agency remediation tooling (credential owners, existing IGA, optional the organizational-attribute model binding). Tier 3 Agency the modernization program deployment, the teal-bordered target architecture (the organizational-attribute model stamps, drift engine, JML, SailPoint machine-identity adapter)." width="100%"}
+
+Tier 3 is not required for the central scan to deliver value. Tiers 0–2 are
+fully operational with the existing open-source scanner.
+
+## Tier 0: The central scan
+
+**Input:** OMB Annual AI Use Case Inventory CSV (public,
+data.gov / ai.gov). No agency data sharing agreement required.
+
+**Scanner:** `python -m uiao.governance.ai_inventory.scanner --input
+omb_inventory.csv --output findings/` or `Invoke-AIInventoryScan.ps1
+-InventoryPath omb_inventory.csv -OutputPath findings/`
+
+**Output per run:**
+- `findings_summary.json` — aggregate counts across all agencies
+- `findings_by_agency/DOD.json`, `findings_by_agency/HHS.json`, … — one
+  structured file per agency, scoped to that agency's inventory subset
+- `p1_gate_halt.json` — all Priority 1 findings (agentic AI without ATO),
+  flagged for immediate action
+
+**Finding types produced:**
+
+| Code | Severity | Trigger |
+|---|---|---|
+| `DRIFT-COMPLIANCE::ai-agentic-ungoverned` | P1 | Agentic AI, no ATO |
+| `DRIFT-IDENTITY::ai-shadow` | P1 | the modernization program registry entry absent from OMB inventory |
+| `DRIFT-COMPLIANCE::ai-ato-gap` | P2 | Deployed/pilot system, `have_ato ≠ Yes` |
+| `DRIFT-IDENTITY::ai-no-orgpath` | P2 | Blank or unresolvable `agency_bureau` |
+| `DRIFT-IDENTITY::ai-unowned` | P2 | Blank `contact_email` |
+| `DRIFT-COMPLIANCE::ai-pii-no-pia` | P2 | `has_pii = Yes`, no `pia_url` |
+
+**2025 inventory results (1,480 live systems):**
+
+| Finding | Count | Share |
+|---|---|---|
+| `ai-agentic-ungoverned` (P1) | 14 | <1% |
+| `ai-ato-gap` | 596 | 40% |
+| `ai-unowned` | 488 | 33% |
+| `ai-pii-no-pia` | 248 | 17% |
+| **Total findings** | **1,346** | — |
+
+## Tier 1: Agency CISO notification
+
+Each agency's finding file contains only that agency's systems. The delivery
+format is structured JSON, renderable as a prioritized HTML report via the
+included `--format html` flag.
+
+**P1 findings (agentic AI without ATO) — 72-hour action window:**
+
+OFCIO delivers P1 findings directly to the agency CISO and the bureau-level
+governance contact identified in the `contact_email` field (where present).
+P1 systems are autonomous actors inside the federal identity substrate without
+a governing authorization — post the April 15, 2026 compliance deadline, these
+are documented failures, not pending risks.
+
+**P2 findings — 30-day action window:**
+
+The agency CISO distributes P2 findings to bureau governance contacts for
+remediation tracking. Each P2 finding includes:
+- The system name and inventory use-case ID
+- The specific governance obligation not met (ATO, owner, PIA)
+- The remediation action required (assert owner, initiate ATO, author PIA)
+- The NIST control(s) the gap affects
+
+## Tier 2: Per-agency remediation
+
+Remediation at Tier 2 requires no new tooling. Agencies use their existing
+Identity Governance and Administration (IGA) platform to:
+
+1. **Assign credential owners** — assert a bureau governance contact for each
+   system flagged `ai-unowned`; record in the OMB inventory `contact_email`
+   field and in the agency IGA system
+2. **Initiate ATO process** — for each system flagged `ai-ato-gap`, engage the
+   Authorizing Official to begin or expedite the ATO package
+3. **Author Privacy Impact Assessments** — for each system flagged
+   `ai-pii-no-pia`, engage the agency Privacy Officer to author and publish a
+   PIA and record the URL in the inventory
+4. **Confirm agentic system governance** — for each P1 system, confirm or
+   initiate an ATO specific to agentic operation; document the governance mode
+   (L1–L3 per the program decision)
+
+OFCIO receives remediation confirmation by the agency updating the OMB
+inventory record. The next annual vintage scan produces a new findings set that
+reflects the remediation — closing the loop without requiring direct OFCIO
+visibility into agency internal systems.
+
+## What is not required at Tiers 0–2
+
+- No agency-side the modernization program deployment
+- No SailPoint or IGA platform integration
+- No data sharing agreement (the OMB inventory is public)
+- No new compliance reporting — remediation is recorded by updating the
+  existing OMB inventory fields the agency already manages
+
+The central scan works against the data agencies have already published. The
+findings are derived, not asserted — OFCIO is not making claims about agency
+systems beyond what the agencies themselves reported.
+
+## The gap the central scan cannot close
+
+The central scan operates on the inventory record, not on the credential itself.
+It can identify that a system has no documented owner (`contact_email` blank)
+but cannot verify whether the credential was actually rotated on schedule or
+whether the credential was revoked when the system retired.
+
+That gap — between what the inventory records and what the credential surface
+actually is — is the Tier 3 problem. It requires per-agency deployment of
+credential lifecycle tooling (the `sailpoint-machine-identity` adapter in the
+target architecture) that can observe and govern the credential directly, not
+just the inventory record that references it.
+
+The Tier 3 path is described in [Governed Path](governed-path.qmd) and in
+[Book 21, Chapter 8 — The Machine-Identity Lifecycle](../../orgpath-narrative/Book_21_CPT_08.qmd).
+
+## The missing enforcement mechanism
+
+M-25-21 creates the inventory transparency obligation but has no enforcement
+mechanism for credential governance post-ATO. CISA BOD 23-01 covers
+device and software asset enumeration — not AI system credentials.
+
+The central scan model described here is technically available today. The
+operational and policy question is whether OFCIO formalizes it — whether the
+finding delivery to agency CISOs becomes a structured program with defined
+response timelines, analogous to the BOD 23-01 asset enumeration cycle.
+
+A concept paper for a future Binding Operational Directive covering AI system
+credential enumeration and lifecycle is tracked in GitHub Issue
+[#978].
+
+## Running the central scan
+
+```powershell
+# Download the 2025 OMB inventory
+# Published annually by OMB (URL varies by fiscal year):
+# https://github.com/ombegov/2025-Federal-Agency-AI-Use-Case-Inventory
+Invoke-WebRequest -Uri "<OMB-inventory-download-url>" `
+  -OutFile omb_inventory_2025.csv
+
+# Run the scanner (produces per-agency finding files)
+.\Invoke-AIInventoryScan.ps1 `
+  -InventoryPath omb_inventory_2025.csv `
+  -OutputPath findings/ `
+  -Format html `
+  -SplitByAgency
+```
+
+For the Python scanner:
+
+```bash
+python -m uiao.governance.ai_inventory.scanner \
+  --input omb_inventory_2025.csv \
+  --output findings/ \
+  --split-by-agency \
+  --format html
+```
+
+Output structure:
+
+```
+findings/
+  summary.json              # aggregate counts
+  gate_halt_p1.json         # all P1 findings — immediate action
+  by_agency/
+    DOD.json
+    HHS.json
+    DOJ.json
+    …                       # one file per agency with live systems
+  report/
+    index.html              # full findings report
+    DOD.html
+    HHS.html
+    …
+```
+
+---
+
+*For background on the identity governance gap this scan addresses, see
+[Book 21 — The Invisible Identity Surface](../../orgpath-narrative/Book_21.qmd).
+For the manual agency path, see [Manual Path](manual-path.qmd). For the
+full the modernization program governed path, see [Governed Path](governed-path.qmd).*

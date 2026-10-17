@@ -1,0 +1,36 @@
+---
+title: "Architecture Series"
+subtitle: "Conceptual explainers for the UIAO governance model"
+doc-type: section-landing
+audience: "Enterprise architects · technical leads · assessors"
+canon-source: "docs/docs/01_UnifiedArchitecture.qmd"
+derived-from: "uiao canon"
+aspirational: true
+lifecycle: adopted
+tiers_adopted: [1]
+lifecycle_review: 2026-11-22
+---
+
+# Architecture Series {.unnumbered}
+
+::: {.callout-tip}
+## Download the full section
+**[architecture-series-bundle.docx]** — every page in this section concatenated into one Word document. Regenerated on every site deploy.
+:::
+
+Published architecture narratives under the pseudonymous byline per docs
+governance. Each explainer targets 2–4 pages of readable prose and one or
+two canonical diagrams. The series is the bridge between the Executive
+Briefs and the deeper technical specifications.
+
+## Pages in this section
+
+Status badges follow the [Whitepapers status conventions](../whitepapers/index.qmd).
+
+| Slug | Topic | Status | Canon anchor |
+|---|---|---|---|
+| `six-plane-architecture` | The six-plane UIAO reference model | Draft | `docs/docs/01_UnifiedArchitecture.qmd` |
+| `three-layer-rule-model` | Rule layering: canon, policy, runtime | Draft | `src/uiao/rules/` |
+| `boundary-impact-model` | Authorization boundary and impact scoring | Draft | `docs/docs/gcc-boundary-solution-architecture.qmd` |
+| `drift-engine` | How drift is detected and remediated | Draft | `docs/docs/16_DriftDetectionStandard.qmd` |
+| `evidence-chain` | Certificate-anchored evidence propagation | Draft | `docs/docs/15_ProvenanceProfile.qmd` |

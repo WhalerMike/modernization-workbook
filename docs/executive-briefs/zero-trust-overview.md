@@ -1,27 +1,58 @@
+---
+title: "Zero-Trust Overview"
+doc-type: executive-brief
+status: Active
+canon-source: src/uiao/canon/adr/adr-008-zero-trust-identity.md
+derived-from: uiao canon
+lifecycle: adopted
+tiers_adopted: [1]
+lifecycle_review: 2026-11-22
+---
+
 # Executive Brief — Zero-Trust Identity Anchoring
 
-**Identity-anchored zero-trust execution across incumbent controls**
+![Mission-class placement for zero-trust policy (5-class lane diagram)](images/zero-trust-overview-image-01-mission-class-placement-for-zero.png){#fig-zero-trust-overview-image-01 fig-alt="Mission-class placement for zero-trust policy (5-class lane diagram). Engineering blueprint style, neutral slate background, federal navy (#1F3A5F) for primary structural elements, teal (#1A9E8F) for secondary/integration elements, amber (#D4A017) for governance/audit/registry overlays, monospace labels for identifiers, no human figures, 16:9 landscape." width="100%"}
 
-## What this means
 
-Zero trust is applied by anchoring every claim, certificate event, and governance decision to an identity that is verified, not assumed. Anchor bindings are untrusted by default and must be backed by cryptographic proof, independent corroboration, or explicit governance authorization.
+the modernization program applies zero trust by anchoring every claim, certificate event, and
+governance decision to an identity that is verified, not assumed. Per the program decision,
+anchor bindings are untrusted by default and must be backed by cryptographic
+proof, independent corroboration, or explicit governance authorization.
 
-This is an overlay, not a replacement identity platform. It is designed to sit above systems already running, normalize their identity-linked signals, and enforce traceable policy outcomes across them.
+## What this means for your existing stack
 
-## Mission-class placement
+the modernization program is an overlay, not a replacement identity platform. It is designed to sit
+above systems you already run (for example Entra ID, Cisco ISE, and Palo Alto),
+normalize their identity-linked signals, and enforce traceable policy outcomes
+across them.
+
+## Mission-class placement for zero-trust policy
 
 | Mission class | How zero-trust policy lands |
-|---------------|-----------------------------|
+|---|---|
 | **Identity** | Establishes identity truth and binding confidence before trust decisions are made. |
 | **Telemetry** | Continuously ingests identity-linked events and detects drift or anomalous behavior. |
 | **Policy** | Encodes conditional-access, separation, and compliance rules as auditable decisions. |
 | **Enforcement** | Pushes approved decisions into control points (session revocation, network/device controls). |
 | **Integration** | Coordinates execution across incumbent tools so controls are applied consistently end-to-end. |
 
+## Leaver killswitch maturity (honest status)
+
+the modernization program canon sets a **target** of under **120 seconds** for leaver revocation
+latency across identity and dependent access surfaces. This is a TARGET-state
+objective and should not be read as shipped production performance.
+
 ## Executive takeaway
 
-If identity, network, and endpoint controls are already in place, the missing layer is correlation and governance: identity-anchored, cross-system, and evidence-ready zero-trust execution without forcing a rip-and-replace of the existing stack.
+If your agency already has identity, network, and endpoint controls in place,
+the modernization program provides the missing correlation and governance layer: identity-anchored,
+cross-system, and evidence-ready zero-trust execution without forcing a rip-and-
+replace of your existing stack.
 
----
+## Where to go deeper
 
-*Cleaned extraction for project use. No internal branding or document identifiers.*
+- **[Zero-Trust Governance whitepaper](../whitepapers/zero-trust-governance-whitepaper.qmd)** —
+  the long-form pattern, anchored to the program decision.
+- **[Adapter Ecosystem Overview](adapter-ecosystem-overview.qmd)** — the
+  identity, telemetry, policy, enforcement, and integration adapters that land
+  these decisions in incumbent tools.

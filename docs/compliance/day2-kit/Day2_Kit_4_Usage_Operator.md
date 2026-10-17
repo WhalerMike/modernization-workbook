@@ -1,0 +1,17 @@
+---
+title: "Compliance Day-2 Automation Kit — Operator Usage Guide"
+subtitle: "Running the governed catalog tasks day to day"
+doc-type: kit-reference
+audience: "Service-desk / CST operators"
+family: orgcomp-series
+lifecycle: adopted
+tiers_adopted: [1]
+lifecycle_review: 2027-01-21
+format:
+  html: {css: lz-style.css, toc: true, toc-depth: 3, toc-title: "Contents"}
+  docx: {reference-doc: assets/reference-mslearn.docx, toc: true, toc-depth: 3}
+---
+
+{{< include servicenow-day2/KIT-USAGE-OPERATOR.md >}}
+
+![Every catalog task on one page: its MACD-R verb, where it originates, the client that actuates it through the MID Server, the NIST 800-53 control its evidenced closure emits, and the FedRAMP KSI it feeds.](servicenow-day2/figs/day2kit-fig-02-task-control-ksi.png){fig-alt="House-style matrix on white with eleven task rows — password reset, MFA reset, joiner, mover, leaver, group membership, Azure RBAC, license, guest invite, admin consent, morning check. Columns: Task, MACD-R verb (color-coded Add/Move/Change/Deletion/Reset/Evidence), Origin SSOT, Actuator via MID, NIST control, and KSI. The task's evidenced closure is what emits the control and the KSI." width="100%"}

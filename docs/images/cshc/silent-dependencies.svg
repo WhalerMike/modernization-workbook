@@ -1,22 +1,28 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 300" font-family="system-ui, sans-serif">
-  <rect width="700" height="300" fill="#f8f9fa"/>
-  <text x="350" y="30" text-anchor="middle" font-size="18" font-weight="600" fill="#1a1a2e">Silent Dependencies</text>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 400">
+  <rect width="800" height="400" fill="#f8f9fa"/>
+  <text x="400" y="30" text-anchor="middle" font-size="16" font-weight="bold" fill="#1a365d">Silent Dependencies</text>
   
-  <rect x="250" y="50" width="200" height="50" rx="6" fill="#1a365d"/>
-  <text x="350" y="80" text-anchor="middle" font-size="14" fill="white">Active Directory</text>
+  <rect x="50" y="80" width="200" height="100" rx="8" fill="#e2e8f0" stroke="#4a5568"/>
+  <text x="150" y="120" text-anchor="middle" font-size="14" font-weight="bold" fill="#2d3748">Active Directory</text>
+  <text x="150" y="145" text-anchor="middle" font-size="11" fill="#2d3748">Users and Computers</text>
+  <text x="150" y="160" text-anchor="middle" font-size="11" fill="#2d3748">Groups and GPOs</text>
   
-  <text x="100" y="140" font-size="11" fill="#2d3748">• Users & Computers</text>
-  <text x="100" y="160" font-size="11" fill="#2d3748">• Security Groups</text>
-  <text x="100" y="180" font-size="11" fill="#2d3748">• Group Policy</text>
-  <text x="100" y="200" font-size="11" fill="#2d3748">• Service Accounts</text>
-  <text x="100" y="220" font-size="11" fill="#2d3748">• DNS / DHCP</text>
-  <text x="100" y="240" font-size="11" fill="#2d3748">• PKI / Certificates</text>
+  <rect x="300" y="80" width="200" height="100" rx="8" fill="#fed7d7" stroke="#c53030"/>
+  <text x="400" y="120" text-anchor="middle" font-size="14" font-weight="bold" fill="#c53030">Hidden Coupling</text>
+  <text x="400" y="145" text-anchor="middle" font-size="11" fill="#742a2a">Undocumented links</text>
+  <text x="400" y="160" text-anchor="middle" font-size="11" fill="#742a2a">Implicit dependencies</text>
   
-  <text x="380" y="140" font-size="11" fill="#2d3748">• RADIUS / 802.1X</text>
-  <text x="380" y="160" font-size="11" fill="#2d3748">• LDAP</text>
-  <text x="380" y="180" font-size="11" fill="#2d3748">• Service Principal Names</text>
-  <text x="380" y="200" font-size="11" fill="#2d3748">• Trust Relationships</text>
-  <text x="380" y="220" font-size="11" fill="#2d3748">• Delegation Boundaries</text>
+  <rect x="550" y="80" width="200" height="100" rx="8" fill="#c6f6d5" stroke="#276749"/>
+  <text x="650" y="120" text-anchor="middle" font-size="14" font-weight="bold" fill="#276749">Explicit Contracts</text>
+  <text x="650" y="145" text-anchor="middle" font-size="11" fill="#22543d">Documented interfaces</text>
+  <text x="650" y="160" text-anchor="middle" font-size="11" fill="#22543d">Versioned schemas</text>
   
-  <text x="350" y="280" text-anchor="middle" font-size="12" fill="#c53030">When AD is removed, these fail silently.</text>
+  <path d="M250 130 L300 130" stroke="#4a5568" stroke-width="2" marker-end="url(#arrow)"/>
+  <path d="M500 130 L550 130" stroke="#4a5568" stroke-width="2" marker-end="url(#arrow)"/>
+  
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#4a5568"/>
+    </marker>
+  </defs>
 </svg>

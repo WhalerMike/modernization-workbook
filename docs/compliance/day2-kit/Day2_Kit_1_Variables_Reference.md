@@ -1,0 +1,15 @@
+---
+title: "Compliance Day-2 Automation Kit — Variables Reference"
+subtitle: "The configuration contract for the ServiceNow / Entra / Azure / SailPoint SAM automation kit"
+doc-type: kit-reference
+audience: "ServiceNow / Entra / Azure / SAM admins"
+family: orgcomp-series
+lifecycle: adopted
+tiers_adopted: [1]
+lifecycle_review: 2027-01-21
+format:
+  html: {css: lz-style.css, toc: true, toc-depth: 3, toc-title: "Contents"}
+  docx: {reference-doc: assets/reference-mslearn.docx, toc: true, toc-depth: 3}
+---
+
+{{< include servicenow-day2/KIT-VARIABLES-REFERENCE.md >}}

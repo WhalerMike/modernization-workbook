@@ -1,0 +1,100 @@
+---
+title: "Federal AI Identity Governance"
+subtitle: "Applying the organizational-attribute model identity governance to the M-25-21 AI Use Case Inventory — a standalone kit and a the modernization program-governed path"
+doc-type: operational-guide
+audience: [Customer, Operator, Technical, Executive]
+author: Michael Stratton
+date: "June 2026"
+status: Active
+repo-path: docs/customer-documents/operational-guides/ai-identity-governance/index.qmd
+created-at: 2026-06-18
+updated-at: 2026-06-18
+format:
+  html:
+    toc: true
+    toc-depth: 2
+lifecycle: proposed
+tiers_adopted: []
+lifecycle_review: 2026-12-18
+---
+
+# Federal AI Identity Governance {.unnumbered}
+
+Federal agencies have deployed over 1,800 AI systems under OMB M-25-21 — and
+almost none of those systems are governed at the identity layer. No
+organizational placement. No owned credential. No lifecycle process. This kit
+closes that gap.
+
+It is runnable **two ways**:
+
+- a **[manual path](manual-path.qmd)** — a standalone agency runbook that
+  applies M-25-21 identity governance without any external control plane; and
+- a **[the modernization program / the organizational-attribute model-governed path](governed-path.qmd)** — the same outcome,
+  with every AI system's identity record bound to the organizational-attribute model, the drift engine,
+  and the ATO reciprocity model.
+
+::: {.callout-tip title="Download the runnable kit"}
+[**Invoke-AIInventoryScan.ps1**](scripts/Invoke-AIInventoryScan.ps1) scans
+your agency's OMB inventory extract for identity governance gaps and produces a
+prioritized findings report. No external dependencies; runs anywhere
+PowerShell 7 is available.
+:::
+
+::: {.callout-note title="The problem this kit solves"}
+The OMB 2025 Federal AI Use Case Inventory has no fields for identity
+governance: no service account, no credential tier, no owner, no organizational
+placement. This kit adds that layer — making the invisible identity surface
+visible before it becomes a breach surface.
+:::
+
+## What the kit does
+
+| Phase | What runs | Output |
+|---|---|---|
+| 1 — Inventory | Download or load OMB CSV; parse all deployed and pilot entries | Structured record set with the organizational-attribute model derived from agency/bureau |
+| 2 — Scan | Detect six identity governance gaps per M-25-21 obligations | Findings list with severity (P1 / P2) and drift class |
+| 3 — Report | Produce a prioritized HTML or CSV findings report | Actionable gap list, ATO cross-walk, shadow AI candidates |
+| 4 — Remediate (governed) | the organizational-attribute model stamp, owner assignment, ATO reciprocity lookup | Updated identity records in the modernization program registry |
+
+## Who this is for
+
+**Agency identity governance teams** running a M-25-21 compliance program who
+need to verify that their inventoried AI systems have identity governance coverage.
+
+**Federal ISSO/AO staff** reviewing ATO packages for AI systems who need to
+confirm that the credential lifecycle is documented.
+
+**OMB/OFCIO program staff** evaluating whether the 2026 inventory schema should
+add identity governance fields. This kit demonstrates what those fields would
+enable.
+
+## Background reading
+
+This kit is the operational realization of
+[Book_21 — the organizational-attribute model and Federal AI Governance](../../orgpath-narrative/Book_21.qmd).
+Chapter 1 of that book explains why the AI identity surface is invisible and
+what goes wrong when it is. This guide is the tool that makes it visible. The
+[Federal AI Governance — Submission Readiness
+Brief](../../whitepapers/federal-ai-governance-submission-readiness.qmd) names
+this kit as the path to operationalizing the
+`DRIFT-COMPLIANCE::ai-agentic-ungoverned` P1 finding.
+
+The normative specifications are:
+
+- [the program decision — Federal AI Use Case Governance](/docs/adr/adr-112-federal-ai-usecase-governance.html)
+- [the modernization program_196 — AI System Identity Record](/docs/specs/Spec4-AI-D1.1-AISystemIdentityRecord.html)
+- [the program decision — Active Governance](/docs/adr/adr-092-active-governance.html)
+
+## Deployment options
+
+The kit ships as open-source Python and PowerShell. No managed service or
+external control plane is required to run it.
+
+**Standalone (any agency, no the modernization program dependency):** Run
+`Invoke-AIInventoryScan.ps1` against your OMB inventory extract. All six
+finding types are produced without connecting to any external system.
+
+**the organizational-attribute model-governed (the modernization program adopters):** The `ai-inventory-governance` adapter
+slot (`adapter-registry.yaml`) binds scanner output to the organizational-attribute model, the drift
+engine, and the the program decision ATO reciprocity model. See
+[governed path](governed-path.qmd) for activation steps.

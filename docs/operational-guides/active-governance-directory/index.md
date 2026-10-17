@@ -1,0 +1,267 @@
+---
+title: "Active Governance Directory — Operator & Implementation Guide"
+subtitle: "Standing up the in-path LDAP projection of the the organizational-attribute model governance substrate"
+doc-type: subcategory-landing
+audience: [Customer, Technical]
+author: Michael Stratton
+date: "June 2026"
+status: Active
+repo-path: docs/customer-documents/operational-guides/active-governance-directory/index.qmd
+created-at: 2026-06-18
+updated-at: 2026-06-18
+format:
+  html:
+    toc: true
+    toc-depth: 3
+  docx:
+    toc: true
+    toc-depth: 3
+lifecycle: adopted
+tiers_adopted: [1]
+lifecycle_review: 2026-12-18
+---
+
+# Active Governance Directory — Operator Guide {.unnumbered}
+
+The **Active Governance Directory (AGD)** is the modernization program's *protocol-projection plane*:
+an in-path LDAPv3 server that exposes the the organizational-attribute model governance substrate over the
+LDAP wire protocol, so the large installed base of directory-bound tooling can
+query governance state in the protocol it already speaks. This guide is the
+operator how-to: what the AGD is, where it sits, how to run and secure it, how to
+feed it, and how its write path behaves.
+
+The doctrine lives in four ADRs — read them for the *why*; this guide is the
+*how*:
+
+- [the program decision — the in-path read projection and the read-only data-plane exception](../../../adr/adr-100-active-governance-directory-ldap.qmd)
+- [the program decision — SASL/GSSAPI (Kerberos) gate-only bind](../../../adr/adr-101-active-governance-directory-sasl-kerberos.qmd)
+- [the program decision — writes as governed intent, not store mutation](../../../adr/adr-109-active-governance-directory-write-as-intent.qmd)
+- [the program decision — the read-only AD-compatibility schema veneer](../../../adr/adr-110-active-governance-directory-ad-schema-veneer.qmd)
+
+The command surface is summarized in the
+[CLI reference §3.12](../../../docs/cli-reference.qmd); this guide is the
+deployment narrative around it.
+
+## 1. What the AGD is — and is not
+
+**It is** an LDAPv3 server (`uiao.directory`) that answers `BIND`, `SEARCH`,
+`UNBIND`, StartTLS, and — opt-in — `MODIFY`. Its Directory Information Tree (DIT)
+is *computed* from the the organizational-attribute model Codebook (the modernization program_151) plus a principal snapshot, and
+every governed facet is surfaced under its canonical `uiaothe organizational-attribute model<Facet>`
+attribute from the `ldap` binding profile (the modernization program_193). Because the tree is a
+projection, **read-only is a property of construction** — there is no stored
+entry to mutate.
+
+**It is not** a domain controller, a KDC, or a writable directory of record. It
+issues no production credential, holds no password store, and (per the program decision)
+synthesizes only *non-authoritative* AD attributes for read correlation. A write
+at the LDAP edge never mutates the projection; it becomes a governed intent
+routed to the provider of record.
+
+::: {.callout-important}
+## Deployment placement
+The AGD is a **separate process** from the FastAPI service
+(`deploy/windows-server/`) and the Azure SaaS plane (`deploy/azure/`). It is
+**not** hosted inside either today — you launch it directly from the `uiao`
+CLI, typically as a managed service/daemon next to the substrate. Treat it as
+its own network-reachable surface with its own TLS and bind policy.
+:::
+
+## 2. Posture: where it may run, and how exposed
+
+| Posture | Transport | Bind | Use |
+|---|---|---|---|
+| **Default** | plaintext, `127.0.0.1:1389` | anonymous | Local inspection, CI, first bring-up. |
+| **Hardened read** | LDAPS or StartTLS | anonymous + simple/SASL | Non-loopback read projection for directory-bound tooling. |
+| **Governed write** | LDAPS/StartTLS **required** | authenticated (simple or SASL/GSSAPI) | `modify` of governed facets as dry-run intent or gated L3 actuation. |
+
+The AGD **must not leave loopback without TLS** (the program decision §4). Sensitive facets
+(clearance, cost-center) are redacted for anonymous binds and disclosed only to
+an authenticated bind (the program decision §5 read scoping).
+
+## 3. Feeding the projection
+
+The DIT is computed from a **principal snapshot** — a list of
+`{principal_id, principal_type, attributes}` where `attributes` maps
+`extensionAttributeN` slots to facet values. There are two supported feeds, and
+they are mutually exclusive.
+
+### 3.1 Hand-authored / runtime snapshot (`--snapshot`)
+
+The the organizational-attribute model-runtime snapshot shape — the same one `uiao orgtree govern` consumes:
+
+```json
+{
+  "principals": [
+    {"principal_id": "alice@uiao.gov", "principal_type": "user",
+     "attributes": {"extensionAttribute1": "NCR", "extensionAttribute2": "IT"}}
+  ]
+}
+```
+
+```bash
+uiao directory tree --snapshot snapshot.json     # emit LDIF for inspection
+```
+
+### 3.2 Straight from an the organizational-attribute model producer (`--from-assessment`)
+
+The cleaner production feed: take the output of `uiao orgtree assess` — the AD
+survey → facet assessment — and project it directly. The AGD re-keys each
+record's facet-name values onto the Codebook's `extensionAttribute` slots, so the
+projection traces to governed assessment output rather than a static file.
+
+```bash
+# 1. Assess Active Directory (live LDAP or an offline export) into facet assignments.
+uiao orgtree assess --from-export ad-users.json --out assignments.json
+
+# 2. Project the assessment straight into the AGD.
+uiao directory tree  --from-assessment assignments.json
+uiao directory serve --from-assessment assignments.json --check
+```
+
+This is the recommended wiring: **AD survey → assess → AGD projection**, no
+hand-authored intermediate.
+
+::: {.callout-note}
+The snapshot is a point-in-time projection. Re-run the feed (and restart/reload
+`serve`) to reflect new assessment output — the AGD does not yet subscribe to a
+live change stream (see [§7 Gaps](#sec-gaps)).
+:::
+
+## 4. Running the server
+
+```bash
+# Validate inputs and print the listen plan without binding a socket (CI-friendly).
+uiao directory serve --from-assessment assignments.json --check
+
+# Loopback plaintext (default) — local bring-up only.
+uiao directory serve --from-assessment assignments.json
+
+# LDAPS-on-connect (conventional ldaps://, port 636).
+uiao directory serve --from-assessment assignments.json \
+    --tls-cert agd.pem --tls-key agd.key
+
+# StartTLS in-band upgrade on the plaintext port (Python 3.11+).
+uiao directory serve --from-assessment assignments.json \
+    --starttls --tls-cert agd.pem --tls-key agd.key
+```
+
+Point any LDAP client at the suffix (default `dc=agd,dc=uiao,dc=gov`, override
+with `--base-dn`):
+
+```bash
+ldapsearch -H ldaps://agd.example.gov:636 -b "ou=people,dc=agd,dc=uiao,dc=gov" \
+  "(uiaothe organizational-attribute modelDepartment=IT)" uiaothe organizational-attribute modelRegion uiaothe organizational-attribute modelRole
+```
+
+## 5. Authentication & read scoping
+
+| Bind | What it unlocks |
+|---|---|
+| **Anonymous** (empty DN + password) | The projection with **sensitive facets redacted** (clearance, cost-center). |
+| **Simple** (`--bind name=password`) | The full projection including sensitive facets; required for writes. |
+| **SASL/GSSAPI** (`--sasl-gssapi`) | Kerberos ticket validation (gate-only, the program decision); maps the validated principal into read scope. Needs the `[kerberos]` extra and the host keytab. |
+
+```bash
+# Simple-bind credentials are repeatable; each is an operator-issued reader/writer identity.
+uiao directory serve --from-assessment assignments.json \
+    --bind svc-reports=$REPORT_PW --bind svc-admin=$ADMIN_PW \
+    --tls-cert agd.pem --tls-key agd.key
+
+# Kerberos (gate-only) — validate the ticket your KDC signed; the AGD is not a KDC.
+uiao directory serve --from-assessment assignments.json --sasl-gssapi \
+    --gssapi-service ldap@agd.example.gov --tls-cert agd.pem --tls-key agd.key
+```
+
+The AGD **never stores user passwords**. Simple-bind credentials are an
+operator-supplied reader/writer map for gating; SASL/GSSAPI validates a ticket
+the incumbent KDC issued and holds only its own service keytab.
+
+## 6. Writes — governed intent and gated actuation
+
+Writes are **off by default**. The AGD never mutates its own projection; a write
+is translated to a per-facet `FacetOperation`, Codebook-validated, and either
+planned or routed to the provider of record. There are three rungs:
+
+| Flags | Rung | Behavior |
+|---|---|---|
+| *(none)* | **L1** | Read-only. A `modify` is refused `unwillingToPerform`. |
+| `--enable-writes` | **L2 (plan)** | A governed `uiaothe organizational-attribute model<Facet>` `modify` is translated, validated, and **planned** (dry-run). Nothing is applied; the projection is untouched. |
+| `--enable-writes --apply --provider …` | **L3 (gated actuation)** | The planned operations are routed to the selected **provider of record**. Requires an authenticated bind. |
+
+### 6.1 Choosing a provider of record (`--provider`)
+
+L3 actuation routes each governed write to one of two providers:
+
+| `--provider` | Target | Addressing | Required flags |
+|---|---|---|---|
+| `ldap` *(default)* | A commercial/on-prem directory via the `ldap` binding-profile transport | the principal's DN | `--provider-host` (+ `--provider-bind-dn` / `--provider-password`) |
+| `entra` | Entra principals via Graph `PATCH onPremisesExtensionAttributes` | the resolved principal **id + type** (`/users/{id}`, `/devices/{id}`) | `--provider-cloud` (default `commercial`); `the modernization program_ENTRA_*` creds + the `[api]` extra |
+
+The AGD resolves the projected entry DN to the real `(principal_id, principal_type)` before routing, so the Entra target hits the right `/users` or `/devices` object even though the wire `modify` named a projected DN.
+
+```bash
+# L2 — plan only. Safe to expose to write tooling; it changes nothing.
+uiao directory serve --from-assessment assignments.json --enable-writes \
+    --bind admin=$PW --tls-cert agd.pem --tls-key agd.key
+
+# L3 (ldap) — route accepted writes to a directory of record.
+uiao directory serve --from-assessment assignments.json --enable-writes --apply \
+    --provider ldap --bind admin=$PW \
+    --provider-host dc01.contoso.com \
+    --provider-bind-dn 'cn=svc-uiao,ou=svc,dc=contoso,dc=com' \
+    --provider-password $PROVIDER_PW \
+    --tls-cert agd.pem --tls-key agd.key
+
+# L3 (entra) — route accepted writes to Entra via Graph (onPremisesExtensionAttributes).
+uiao directory serve --from-assessment assignments.json --enable-writes --apply \
+    --provider entra --provider-cloud commercial --bind admin=$PW \
+    --tls-cert agd.pem --tls-key agd.key
+```
+
+::: {.callout-warning}
+For an `onPremisesSyncEnabled` (AD-synced) Entra user, Graph treats
+`onPremisesExtensionAttributes` as **read-only** (on-prem is the source of
+authority). The `entra` provider therefore writes successfully for **cloud-only
+users and devices**; a synced user surfaces the Graph error per operation rather
+than silently no-op'ing. `servicePrincipal` has no such container and is refused.
+:::
+
+Boundary behavior, enforced on the wire:
+
+- A `modify` of a **non-governed** attribute (`cn`, `objectClass`, AD-veneer
+  attrs) → `unwillingToPerform`.
+- A `modify` **without an authenticated bind** → `insufficientAccessRights`.
+- An un-translatable or non-Codebook value → refused, never partially applied.
+- **L4 (autonomous write) is not available** for the AGD; actuation is the
+  explicit `--apply` opt-in only.
+
+## 7. Gaps & roadmap {#sec-gaps}
+
+The AGD is a working plane with known, bounded edges as of this guide:
+
+- **Live snapshot feed.** `--from-assessment` / `--snapshot` are point-in-time;
+  the AGD does not yet subscribe to a streaming the organizational-attribute model change feed. Re-run the
+  feed and reload to refresh.
+- **Write actuation targets.** `--apply --provider ldap` (a directory) and
+  `--apply --provider entra` (Graph `onPremisesExtensionAttributes`) are wired.
+  Synced-user Entra writes are read-only at Graph (see §6.1); other enforcement
+  surfaces (AWS, GCP, Okta) are not yet `--apply` targets.
+- **`remove` semantics.** A facet removal is routed as an empty-value write
+  (LDAP) / a `null` slot (Entra); native attribute deletion is a follow-up.
+- **Deployment packaging.** No service-unit / IIS / Container Apps packaging
+  ships yet — run `serve` under your platform's process supervisor.
+- **Status.** the program decision/101/109/110 are PROPOSED (built ahead of Governance Board
+  ratification); SASL/GSSAPI is gated behind the `[kerberos]` extra and deferred
+  for any federal-boundary deployment until keytab custody is signed off.
+
+## 8. Quick reference
+
+```bash
+uiao directory tree  --from-assessment assignments.json            # LDIF inspection
+uiao directory serve --from-assessment assignments.json --check    # validate, don't bind
+uiao directory serve --snapshot snap.json --tls-cert c.pem --tls-key k.key   # LDAPS read
+uiao directory serve --snapshot snap.json --enable-writes --bind a=$PW ...    # L2 plan
+uiao directory serve --snapshot snap.json --enable-writes --apply --provider ldap --provider-host ...   # L3 ldap
+uiao directory serve --snapshot snap.json --enable-writes --apply --provider entra --provider-cloud ... # L3 entra
+```

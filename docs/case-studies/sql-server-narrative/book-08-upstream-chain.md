@@ -2,6 +2,12 @@
 
 **Applications that depend on Windows Authentication or LDAP**
 
+
+
+![Upstream chain](../../images/sql-server/during-parallel.png)
+
+*Upstream chain diagram.*
+
 ## Why this book exists
 
 The SQL Server authentication migration is not complete until the applications that connect to it have been migrated. Applications that depend on Windows Authentication or LDAP bind must be migrated or wrapped.

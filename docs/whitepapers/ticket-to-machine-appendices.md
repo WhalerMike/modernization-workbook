@@ -1,0 +1,223 @@
+---
+title: "Ticket-to-Machine Appendices — Code Review, Access Governance, PKI, and Vendor Landscape"
+subtitle: "Supporting technical detail for Ticket-to-Machine, Not Ticket-to-Human, split out so the core paper stays the single-document read its frontmatter promises"
+doc-type: whitepaper
+audience: [Architect, Engineer, Assessor, Technical-Lead]
+author: Michael Stratton
+date: "August 2026"
+status: Draft
+canon-source: "src/uiao/canon/"
+derived-from: "Extracted from ticket-to-machine-not-ticket-to-human.qmd §5.1/§8/§9/§11 (2026-08-03); carries the same canon anchors and vendor-currency caveats as its parent paper."
+repo-path: docs/customer-documents/whitepapers/ticket-to-machine-appendices.qmd
+created-at: 2026-08-03
+updated-at: 2026-09-01
+version: "1.2"
+format:
+ html:
+ toc: true
+ toc-depth: 3
+ docx:
+ toc: true
+lifecycle: adopted
+tiers_adopted: [1]
+lifecycle_review: 2027-02-03
+---
+
+# Ticket-to-Machine Appendices — Code Review, Access Governance, PKI, and Vendor Landscape {.unnumbered}
+
+This is the companion appendix set to **[Ticket-to-Machine, Not Ticket-to-Human](ticket-to-machine-not-ticket-to-human.qmd)**. The core paper states the Closure Necessity argument — native consoles change state, only a coordination layer produces the owned, clocked, evidenced record an assessor traces — and keeps its own body to §§1–7, 10, and 12 so it stays the single-document read its own frontmatter promises. The four sections below were originally part of that paper (§5.1, §8, §9, and §11) and are reproduced here in full, unabridged: a Day-2 kit code walkthrough with disclosed security findings, an access-governance domain extension, the PKI/certificates exception, and a vendor-landscape / build-vs-buy analysis. The core paper links into each appendix from the point where it used to carry this content in full; nothing below has been softened or trimmed relative to the original.
+
+## Appendix A — Day-2 Kit Code Review {#appendix-a-day-2-kit-code-review}
+
+*(Originally §5.1 of [Ticket-to-Machine, Not Ticket-to-Human](ticket-to-machine-not-ticket-to-human.qmd), which states the Closure Necessity pattern in its §§3, 5–7.)*
+
+Sections 3 and 5–7 of the core paper state the Closure Necessity pattern in prose and back it with three platform books quoting the identical claim about configuration, vulnerability, and patch controls. The claim does not stop at that boundary, and proving it does not require taking the compliance series's word for it: the **ServiceNow Day-2 Automation Kit** (`docs/customer-documents/orgcomp-series/servicenow-day2/`, Volume IX of this series) is buildable ServiceNow source — Script Includes, ATF test specs, build-time gates — implementing the same five-step discipline for a different control family: AC-2/AC-3/AC-6 identity lifecycle, rather than CM-6/RA-5/SI-2 configuration drift.
+
+The kit's `MacdrOrchestrator.js` Script Include is designed to run every governed identity request through five ordered clauses it calls the MACD-R lifecycle (Vol 0 Book 00), stopping the chain — refusing to treat the task as closed — if any clause fails. As of the remediated build (commit `7d2423c74`, 2026-07-30), all five clauses are enforced in code the way the table below describes; clause 1 previously was not — `run` accepted `request.ritm` and `request.sam_request_id` without validating either — and that is the specific gap the remediation closed:
+
+| The core paper's loop (§3) | MACD-R clause | What the code actually does |
+|---|---|---|
+| Test / raise against the reconciled record | 1 · Origin | **Enforced.** `_clauseOrigin` resolves the origin record from `request.ritm`/`request.sam_request_id` and refuses when it cannot; a caller with no lineage record can no longer invoke the chain. A dedicated negative test, `atf-negative-no-origin.xml`, now exercises this refusal directly. |
+| Detect drift / raise a typed task | 2 · Authorize | `EntraHelpdeskGate.preflight` checks separation-of-duties and least-privilege expiry, fail-closed |
+| Actuate (native) | 3 · Elevate, 4 · Actuate | `PimActivationClient.activate` grants a time-boxed PAG activation — no activation id, no actuation — then the caller-supplied Graph/ARM (or AD) write runs |
+| Close with evidence | 4 · Verify, 5 · Evidence | **Now true for both legs.** `EntraHelpdeskGate.verify` re-reads post-state via Graph — a 2xx response is not closure — before one record is written, including for a *refused* task. The AD leg now has an equivalent: `AdHybridClient` exposes `getUserAd`/`getGroupMembersAd`/`isGroupMemberAd`/`resolveDispatch`, and a write returns `{ok, dispatched, ecc_sys_id}` without asserting post-state on its own. |
+
+This is the same code-level discipline §7 of the core paper describes for `x_fed_compliance`'s Ingest/Reconcile/Gate: actuation stays on the native surface (Graph/ARM, through the in-boundary MID Server), the coordination layer never writes the resource, and "closed" is meant to mean a re-read confirmed the change, not that a script returned success — a guarantee both legs now keep. The kit ships the mechanism to *prove* the discipline it enforces rather than assert it — `atf/atf-negative-*.xml` are automated tests that the chain actually refuses self-approval, standing privilege, unreconciled targets, a missing origin, and now hostile AD parameter names directly. Previously, every one of the 12 original specs ran with `test_mode = true`, which short-circuited `AdHybridClient` before its PowerShell-rendering code path, so the AD leg's behavior under hostile input had never been exercised by the kit's own tests; that gap is itself closed as of the same remediation (`test_mode` now refuses outright on a production instance), and `atf-negative-ad-parameter-injection.xml` exercises the previously-untested path directly. `check_l3_ceiling.py` and `check_actuator_coverage.py` are build-time gates, not documentation, that fail a build where a catalog item claims autonomous write with no the program decision Governance-Plane decision behind it, or where a control-map entry names no real actuator method — a different, narrower guarantee than "the code does what this appendix says it does," which currently has no equivalent build-time check.
+
+**What this adds to the paper's argument.** §§3, 5–7 of the core paper show the pattern is identical across four vendor stacks by quoting each book's own Closure Necessity claim; the Day-2 kit shows the same pattern is identical across control *domains* — configuration drift and identity lifecycle — down to buildable, tested code, not parallel prose. Read against [Appendix B](#appendix-b-access-governance-and-sailpoint-isc)'s extension into access governance, the kit is where that domain's coordination loop is not only argued but actually implemented and testable end to end.
+
+::: {.callout-caution}
+## Honest scope note
+The kit is reference material, not a turnkey product: the Script Includes, ATF specs, control maps, and build-time gates ship as source, but the ServiceNow platform records themselves — tables, ACLs, the assembled update-set XML — are built on an instance and exported per `KIT-BUILD-SPEC.md`, not shipped pre-built. Treat it as a working reference implementation to build from and test against, per its own "Is / Is not" framing and no-warranty disclaimer in `START-HERE.md`, not as evidence that a specific agency's instance is already running it.
+:::
+
+**On the disclosed security findings.** The core paper's §4 carries the full external adversarial security review of the AD leg — command injection via unescaped parameter names in `_render`, target substitution via `_merge` precedence, a cleartext password transiting `ecc_queue`, and the missing AD post-state read-back — verified directly against the shipped code on 2026-07-29, and the remediation that closed all four the following day. That record is not duplicated here to avoid drift between two copies of the same finding; read it in the core paper's §4 callout, "Verified, then remediated — the AD leg's P0s are closed." This appendix's MACD-R table above documents the same ground from the orchestration-clause angle: clause 1, once unenforced, is now enforced, and clauses 4–5 are now proven on the AD leg because `test_mode` no longer bypasses the vulnerable path. The two write-ups describe the same underlying remediation from two different vantage points (the code review vs. the orchestration contract) and neither is a softened version of the other.
+
+## Appendix B — Access Governance and SailPoint ISC {#appendix-b-access-governance-and-sailpoint-isc}
+
+*(Originally §8 of [Ticket-to-Machine, Not Ticket-to-Human](ticket-to-machine-not-ticket-to-human.qmd).)*
+
+Everything in the core paper's §§1–7 concerns configuration, vulnerability, and patch controls (CM-6, RA-5, SI-2) — the domain the ServiceNow-fronting pattern is built and deployed for today. The user's premise widens the claim to a second domain: **access governance** — who has an identity, who granted it, and who periodically recertifies it — resting on a different set of controls (principally AC-2 Account Management, AC-3 Access Enforcement, and AC-6 Least Privilege).
+
+The same structural argument extends cleanly to this domain: Azure RBAC role assignments and AWS IAM policies can be inspected and even remediated natively, but a native IAM console has the identical evidence gap the configuration-drift argument describes — a role binding is not, by itself, a record of who requested it, who approved it, and when it was last reviewed. **SailPoint ISC Governance (the CIEM add-on)** performs exactly the detection function this domain needs — over-privileged accounts, entitlements idle 90+ days, over-broad role bindings — natively across Azure, AWS, and GCP.
+
+::: {.callout-tip}
+## Closed, 2026-07-28 — [the program decision](../../../src/uiao/canon/adr/adr-135-sailpoint-isc-governance-option-b-ratification.md) + [Vol VII Book 08](../orgcomp-series/Vol_VII_Book_08_the compliance series_Native_IAM_RBAC_Access_Governance.qmd)
+This was an open gap as of this paper's first draft, earlier the same day: the series had a reserved SailPoint slot (`sailpoint-isc-governance`, landed in PR #924 citing the program decision's deferred Option B) but no ADR had ever ratified it, and no book documented the coordination pattern. **the program decision ratifies the Option-B decision and binds `sailpoint-isc-governance` to the program decision's Active Governance identity control-plane slot** at rung L1 (Observe); **Vol VII Book 08 closes AC-2/AC-3/AC-6** for Azure RBAC and AWS IAM entitlements using the identical test → detect drift → raise task → actuate-native → close-with-evidence loop as Books 03/06/07. Consistent with this paper's own [Appendix D finding](#appendix-d-vendor-landscape-and-build-vs-buy) — SailPoint's own architecture routes findings into ServiceNow rather than around it — Book 08 explicitly does **not** stand up a second, SailPoint-fronted coordination layer; SailPoint ISC Governance is one more detection engine feeding the same ServiceNow pipeline every other control family in this paper uses. One front door.
+:::
+
+::: {.callout-important}
+## SAM and ISC are two SailPoint products, not one name for one thing
+Everything above concerns **SailPoint ISC Governance**. The agency separately runs **SAM (Systems Access Management)** — its internal brand for a **SailPoint IdentityIQ** deployment, and the access-request and certification front end its users actually see. Reading the two as one product binds SAM work to the wrong product, the wrong contract, and the wrong boundary value.
+
+| | **SAM** | **SailPoint ISC Governance** |
+|---|---|---|
+| What it is | The agency's internal brand for a SailPoint **IdentityIQ** deployment | SailPoint **Identity Security Cloud** plus the CIEM add-on |
+| Hosting | Customer-hosted, on agency infrastructure | SailPoint-hosted SaaS |
+| Integration surface | SCIM 2.0 plus a core REST API tied to the installed release | Continuously-versioned cloud REST API |
+| Canon slot | `sailpoint-iiq-governance` ([the program decision](../../../src/uiao/canon/adr/adr-136-sailpoint-identityiq-option-c-slot-allocation.md), contract pinned by [UIAO_210](../../../src/uiao/canon/specs/external/sailpoint-iiq/UIAO_210_identityiq-api-contract-pin.md)) | `sailpoint-isc-governance` ([the program decision](../../../src/uiao/canon/adr/adr-135-sailpoint-isc-governance-option-b-ratification.md)) |
+| Boundary cost | None — `gcc-moderate` already covers it | A Commercial exception |
+| Role in this argument | **Front end** — pushes an approved access request into ServiceNow, correlated to a RITM, with closure written back | **Detection engine** — pushes cloud-entitlement findings into ServiceNow tasks |
+
+Both are `reserved` read-only observers at the program decision rung L1 (Observe); neither is activated, and activation requires a per-adapter ADR in each case. The asymmetry in the boundary row is the general rule the program decision states rather than a quirk of these two: the deployment model, not the vendor, determines what a slot costs. None of this weakens the appendix's argument — the detection engine for cloud entitlements is ISC, the request-and-certification front end is SAM, and both converge on the same ServiceNow front door.
+:::
+
+::: {.callout-caution}
+## Honest limit that remains — VMware/vCenter identity governance
+No evidence was found, after direct research, that SailPoint's CIEM add-on reaches VMware/vCenter permissions — every source describes AWS/Azure/GCP coverage only. Book 08 states this plainly rather than implying coverage that doesn't exist. This is a genuinely open gap, not a scope deferred by choice.
+:::
+
+## Appendix C — The Certificates Exception {#appendix-c-the-certificates-exception}
+
+*(Originally §9 of [Ticket-to-Machine, Not Ticket-to-Human](ticket-to-machine-not-ticket-to-human.qmd): why PKI doesn't take the same path.)*
+
+Certificates are a large share of the actual operational work in this estate, which makes it tempting to assume they belong on the same ServiceNow-fronted path as everything else in the core paper. They don't — not for the routine lifecycle, and the reason is a deliberate, already-documented doctrine call, not an oversight.
+
+[Vol I Book 03](../orgcomp-series/Vol_I_Book_03_the compliance series_Certificates_Tokens_Cryptographic_Identity.qmd) covers certificate and token lifecycle (IA-5(2), SC-12, SC-17) and states the opposite pattern from the core paper's argument, explicitly:
+
+::: {.callout-tip}
+## Certificates — the deliberate exception
+*"There is no staffing level at which manual key custody closes SC-12 for a machine-scale estate; the arithmetic, not the ambition, is the constraint."* ... *"No owner is named anywhere in this book, because none needs to be."* — Vol I Book 03, Theme D
+:::
+
+The reasoning is volume, not principle. A CM-6 configuration-drift finding happens occasionally and each one is worth a human decision. A certificate estate with 30–90 day validity periods generates **thousands of issuance and renewal events a week** — routing each through a ServiceNow approval ticket would not add rigor, it would make the queue meaningless and train reviewers to rubber-stamp it. So Book 03 closes IA-5(2)/SC-12/SC-17 with **protocol-enforced automation** instead: ACME/SCEP/EST issuance gates, CAA records making issuance policy machine-enforced at the DNS layer, and short-lived certificates with non-renewal replacing revocation as the normal end-of-life path. This is the same underlying principle as the rest of the core paper — evidence has to come from something stronger than "trust me it's fine" — just applied correctly to a domain where the volume math rules out ticket-per-event.
+
+**What still needs the front door.** The exceptions and anomalies in the certificate estate are structurally identical to a CM-6 finding and belong on the same ServiceNow path as everything else: onboarding a new CA, approving a non-standard certificate lifetime, a trust-anchor change, or — the important one — a **drift finding from the certificate inventory**: an unknown-issuer certificate discovered, or a CAA-violation attempt. Those are rare, high-stakes, human-decision events. Routine issuance within policy is not one of them.
+
+**Recommended tool: CyberArk Certificate Manager (Venafi).** The agency already runs CyberArk for privileged access management (the program decision names CyberArk as a candidate incorporated provider); CyberArk acquired Venafi in 2024, so **CyberArk Certificate Manager is the same vendor relationship extended to certificates, not a new one.** It is FedRAMP authorized, discovers and orchestrates certificates across CAs without needing to be the issuing CA itself, and integrates with ServiceNow for the CMDB/exception side. The competing option, **Keyfactor for Government CLAaaS**, achieved FedRAMP Moderate authorization in May 2026 and has a deeper native ServiceNow ITOM/ACME integration plus its own issuing CA (EJBCA) — a stronger single-vendor pick if there were no existing relationship, but consolidating onto the vendor already in the estate outweighs that for an agency that already has a CyberArk contract, support relationship, and operational familiarity. Neither vendor's VMware/vCenter certificate coverage could be confirmed externally — treat that as an open question, consistent with the VMware blind spot found across every tool surveyed in this paper (SailPoint CIEM, the CNAPP vendors) — not an assumption of coverage.
+
+## Appendix D — Vendor Landscape and Build-vs-Buy {#appendix-d-vendor-landscape-and-build-vs-buy}
+
+*(Originally §11 of [Ticket-to-Machine, Not Ticket-to-Human](ticket-to-machine-not-ticket-to-human.qmd): External Validation and Build-vs-Buy, 2026-07-28.)*
+
+The core paper's central claim — that a native console cannot be the evidence system of record — is not just an the compliance series position. Independent research outside this repo, done the same week the paper was drafted, backs it directly and updates two of the paper's own assumptions:
+
+- **The market agrees on the structural claim.** *"CSPM complements GRC — findings need owners and closure proof"* and *"no single tool covers everything inside a FedRAMP boundary... programs rely on a coordinated stack"* (Continuum GRC; Knox Systems, 2026) — independent confirmation of the core paper's §1 Key Finding, not a restatement of it.
+- **ServiceNow↔VMware integration is not greenfield.** Contrary to Book 07's framing, real vendor-built connectors exist today: the **VMware Aria Operations Management Pack for ServiceNow** and the **VCF Automation ITSM plugin** — CMDB mapping and Day-2 catalog operations out of the box. Book 07 should be corrected to cite these rather than imply the ServiceNow-VMware surface is unbuilt.
+- **A commercial FedRAMP 20x KSI product already exists.** **C1Secure SmartRAMP 20x** (launched July 2026) runs natively on the ServiceNow platform, validates KSI evidence on FedRAMP's own cadence, and auto-opens Integrated Risk Management remediation — a real alternative to Book 05's custom `x_fed_compliance` app for the KSI-attestation slice specifically. Worth a build-vs-buy pass before further custom investment there.
+- **SailPoint's own architecture confirms [Appendix B](#appendix-b-access-governance-and-sailpoint-isc)'s framing, not the SAM-as-second-front-door version of it.** SailPoint ISC + its CIEM add-on natively governs AWS/Azure/GCP cloud IAM entitlements (over-privileged accounts, idle entitlements, over-broad roles) — genuinely strong. But SailPoint's own integration docs route findings *into* ServiceNow's Service Desk for ticketing and audit tracking — even SailPoint does not claim to be a standalone evidence/ticketing system. No evidence was found of SailPoint CIEM reaching VMware/vCenter permissions specifically — that gap is confirmed, not assumed.
+- **Alternative architectures a critical reviewer will raise.** **Wiz** is the only major CNAPP with explicit native VMware vSphere support alongside AWS/Azure/GCP/OCI — a candidate to replace three separate native per-CSP posture engines with one, without changing the ServiceNow-front-door architecture. **Vanta / RegScale / Paramify** represent a different bet entirely: an OSCAL-first, FedRAMP-20x-native compliance platform that self-generates the KSI package, bypassing ServiceNow/SailPoint coordination altogether (Vanta is FedRAMP 20x Moderate Authorized as of April 2026). Neither is adopted by the core paper's recommendation, but both are the alternatives a sharp reviewer will name — see them cited so the paper isn't caught flat-footed by the question.
+
+**The consistency implication.** Because SailPoint's own architecture already routes through ServiceNow rather than around it, the identity/access-governance domain ([Appendix B](#appendix-b-access-governance-and-sailpoint-isc)) should extend the *same* ServiceNow-fronted loop the core paper documents for CM-6/RA-5/SI-2 — SailPoint CIEM as one more detection engine feeding ServiceNow, structurally identical to how Security Hub, Defender, and Aria Operations feed it — rather than standing up SailPoint as a second, parallel coordination layer. One front door, not two — implemented in [Vol VII Book 08](../orgcomp-series/Vol_VII_Book_08_the compliance series_Native_IAM_RBAC_Access_Governance.qmd).
+
+::: {.callout-important}
+## Vendor currency caveat — read before building a Project Plan on this appendix
+This appendix names specific, dated vendor capabilities — SmartRAMP 20x, the VMware Aria/ServiceNow connectors, SailPoint CIEM's cloud coverage, Wiz, Vanta, CyberArk/Keyfactor — and this market moves in weeks, not review cycles: this appendix's own findings corrected two assumptions this same series made only days earlier (VMware↔ServiceNow integration; FedRAMP 20x KSI tooling availability). Per the [the compliance series series' Vendor Currency Doctrine](../orgcomp-series/Vol_0_Book_00_the compliance series_Executive_Summary.qmd#vendor-currency), every vendor claim here — and in [Appendix B](#appendix-b-access-governance-and-sailpoint-isc)'s SailPoint coverage and [Appendix C](#appendix-c-the-certificates-exception)'s CyberArk/Keyfactor comparison — is a dated snapshot, not a standing commitment. **Confirming current roadmaps directly with ServiceNow, SailPoint, VMware/Broadcom, and each CSP (Microsoft, AWS, GCP) is essential before this paper's or its appendices' claims become the basis of an implementation Project Plan, procurement action, or acquisition decision.**
+:::
+
+## Appendix E — Authority Mapping and Non-Compliance Exposure {#appendix-e-authority-mapping}
+
+*(New in this edition. The core paper argues from control families throughout; this appendix states the specific guidelines behind those claims in one place, and what an agency is actually exposed to when the remediation obligation goes unclosed.)*
+
+### E.1 NIST SP 800-53 Rev 5 — the controls this loop closes
+
+The catalog is **NIST SP 800-53 Revision 5**, at the **FedRAMP Moderate** baseline. Control titles and KSI bindings below are taken from the the compliance series compliance spine rather than restated from memory.
+
+| Control | Title | What closes it in this paper's loop | FedRAMP 20x KSI |
+|---|---|---|---|
+| **CM-6** | Configuration Settings | Native engine detects baseline drift; ServiceNow supplies owner, clock, approval, re-test evidence | KSI-CMT |
+| **RA-5** | Vulnerability Monitoring and Scanning | Native scanner detects; the SLA clock and owned task live in ServiceNow | KSI-MLA |
+| **SI-2** | Flaw Remediation | Native patch/remediation actuates; closure evidence is the ticket record | KSI-SVC, KSI-MLA |
+| **AC-2** | Account Management | Entitlement detection feeds a governed request-and-approval record | KSI-IAM |
+| **AC-3** | Access Enforcement | Role binding actuated natively, authorized by an approved record | KSI-IAM |
+| **AC-6** | Least Privilege | Over-privilege findings become owned, clocked remediation tasks | KSI-IAM |
+| **CA-2** | Control Assessments | Scheduled control test reads actioned posture, renders pass/fail/partial with evidence | KSI-MLA |
+| **CA-5** | Plan of Action and Milestones | Any fail becomes an owned POA&M item with milestone and closure evidence | KSI-MLA |
+| **CA-7** | Continuous Monitoring | Roll-up emitted as OSCAL assessment-results and KSI evidence | KSI-MLA |
+| **IA-5(2)** | Public Key-Based Authentication | Protocol-enforced issuance, not ticket-per-event — the deliberate exception | KSI-IAM |
+| **SC-17** | PKI Certificates | Same exception path; anomalies route through the front door, routine issuance does not | KSI-IAM |
+
+: Controls this paper's loop closes, and the KSI each feeds {.striped .hover}
+
+**Not tool-attestable alone.** Every row above is marked `Tool-attestable: No` in the platform books' control-closure tables — the structural finding the core paper's §1 states. The native engine is necessary and not sufficient; the ownership/clock/approval/evidence record is what makes the control assessable.
+
+The Rev 5 Moderate baseline enhancements that actually mandate automation for this argument — **CM-3(2), CM-5(1), CM-6(1), SI-2(2)** — are worked control-by-control in [Vol VII Book 07](../orgcomp-series/Vol_VII_Book_07_the compliance series_VMware_Control_Compliance_Automation.qmd), checked against FedRAMP's published baseline profile rather than asserted.
+
+### E.2 FedRAMP 20x — what the loop emits, and on what clock
+
+- **Evidence emission (CA-7).** The closed task stream is lifted into assessed control state and emitted as OSCAL assessment-results plus KSI evidence into the authorization package — the pipeline [Vol VII Book 04](../orgcomp-series/Vol_VII_Book_04_the compliance series_Control_Attestation_Evidence_KSI.qmd) documents.
+- **KSI families touched:** KSI-CMT (change management), KSI-MLA (monitoring, logging, auditing), KSI-IAM (identity and access management), KSI-SVC (service configuration).
+- **KSI-CMT-RMV / VTD / RVP** — redeploy version-controlled resources rather than modify directly. Note the core paper's §4 caveat: RMV is qualified *wherever reasonable*, an engineering preference with a documented-exception path, not a prohibition.
+- **The SLA clock is a published table, not a policy sentiment.** FedRAMP's Vulnerability Detection and Response ruleset (**VDR-TFR-PVR**) sets remediation timeframes by PAIN rating crossed with exploitability and internet-reachability — 4 to 192 days — plus KEV-catalog-driven due dates regardless of PAIN rating. A console has no mechanism to enforce that clock against an owner.
+
+**What 20x obligates is cadence and format, not merely a one-time package.** KSI evidence is a continuous obligation; evidence that was true at authorization and is not refreshed is a ConMon deficiency in its own right, independent of whether the underlying control still holds.
+
+### E.3 CISA BOD 25-01 — the remediation row *is* this paper's loop
+
+::: {.callout-note}
+## Attribution — BOD 25-01 is CISA's, not OPM's
+Binding Operational Directives are issued by **CISA**, under its directive authority over federal civilian executive branch agencies. OPM issues memoranda and HR-domain guidance; it does not issue BODs. This appendix therefore maps to **CISA [BOD 25-01](https://cyber.dhs.gov/bod/25-01/), *Implementing Secure Practices for Cloud Services***, which is the directive that governs the M365/SCuBA scope this paper touches.
+:::
+
+| # | BOD 25-01 obligation | Nature of the work | Does this paper's loop address it? |
+|---|---|---|---|
+| 1 | Report every in-scope M365 tenant and its system-owning component | Administrative, one-time | No — inventory action |
+| 2 | Configure each tenant to the published SCuBA Secure Configuration Baselines | Architectural, ongoing as baselines revise | Partly — the loop closes drift against the baseline |
+| 3 | Deploy ScubaGear against every in-scope tenant | Mechanical | No — tool install |
+| 4 | Integrate ScubaGear output with CISA's continuous-monitoring infrastructure | Mechanical, then ongoing | No — feed wiring |
+| 5 | **Remediate deviations from the baselines** | **Architectural, open-ended** | **Yes — this is precisely the loop** |
+
+: BOD 25-01's five obligations, and which one this paper's loop is for {.striped .hover}
+
+Four of the five rows are satisfiable without closing a single finding: report a tenant name, install a PowerShell tool, wire up a feed. **Row 5 is the architectural one, and it is the row the directive is actually for.** A ScubaGear report that faithfully lists forty deviations every week satisfies rows 1–4 and fails row 5 — the argument [Assessment Tools vs. Closing BOD-25-01 Findings](bod-25-01-close-before-assess.qmd) makes at length, and the reason that paper and this one are companions rather than duplicates.
+
+**In force — BOD 26-04.** CISA [BOD 26-04](https://cyber.dhs.gov/bod/26-04/) (*Prioritizing Security Updates Based on Risk*, issued **2026-06-10**) is not forward-looking: it **revoked BOD 22-01 and BOD 19-02** on issue, replacing their flat 15/25-day KEV clocks with a four-variable risk model (public exposure, KEV listing, exploitation automatability, technical impact) selecting one of five remediation windows. Agency policy updates were due **2026-08-07**; full compliance is due **2026-12-07**. Canon's response is [the program decision](../../../src/uiao/canon/adr/adr-111-bod-26-04-risk-based-vulnerability-sla.md), still **PROPOSED** at this writing — cite it as a direction of travel, not a settled position, and re-check its status before planning against it.
+
+### E.4 What non-compliance actually costs an agency
+
+| Authority | What makes it binding | Who acts on a failure | What actually happens |
+|---|---|---|---|
+| CISA BOD 25-01 | Binding operational directive authority over federal civilian executive branch agencies | CISA, reporting to OMB and the agency head | Status is tracked and reported; unclosed deviations persist as a reported deficiency and accumulate visibly |
+| NIST SP 800-53 Rev 5 | Not self-executing — it binds through FISMA and OMB Circular A-130, which require an authorization built on the catalog | Agency Inspector General; OMB | Control deficiencies become audit findings and POA&M items; sustained failures can be escalated to a material weakness |
+| FedRAMP 20x continuous monitoring | Authorization is conditional on maintained, current evidence | Authorizing Official; FedRAMP PMO | Stale or absent KSI evidence puts authorized status at risk — corrective action, and in the limit suspension or withdrawal |
+| The ATO itself | A revocable risk acceptance, not a permanent grant | The agency's Authorizing Official | An AO can shorten the authorization term, attach conditions, or decline to reauthorize on the strength of an open findings list |
+
+: Non-compliance exposure by authority {.striped .hover}
+
+**The honest shape of the exposure.** None of these authorities carries a fine, and it is worth saying so plainly rather than implying a penalty that does not exist. The consequences are of three kinds: an **authorization** that can be conditioned, shortened, or withdrawn; **audit findings** that persist across reporting cycles and compound; and a **deviation list that grows**, which is itself the documentary evidence that the remediation obligation went unmet. The third is the one that matters most in practice — an assessment tool running faithfully against an unremediated estate produces an accurate, lengthening record of non-closure, and that record is discoverable by every auditor who asks. The operational risk of an unremediated deviation also simply remains: the misconfiguration is still exploitable regardless of how it is reported.
+
+**Currency caveat on this section.** Enforcement mechanics are stated at the level of the governing statute and standing OMB policy as of this document's date. Directive status, deadlines, and reporting regimes change; confirm current CISA directive status and OMB memoranda before this section becomes the basis of a compliance strategy or a remediation-funding argument.
+
+## References
+
+| Claim | Source |
+|---|---|
+| MACD-R five-clause orchestration (Origin/Authorize/Elevate/Actuate/Evidence), the Appendix A code-level reference implementation — all five clauses now enforced, including Origin | `docs/customer-documents/orgcomp-series/servicenow-day2/script-includes/MacdrOrchestrator.js` (this repo) |
+| Appendix A's "working reference implementation" claims — MID-Server-dispatched AD writes under a delegated service account, "ServiceNow ... NEVER writes to the estate," the approver-gated password-reset fallback, the automated morning-check reconciliation | `docs/customer-documents/orgcomp-series/servicenow-day2/script-includes/AdHybridClient.js`, `Day2NativeActuator.js`, `CURRENT-STATE-OPERATOR-USAGE.md` (this repo) — sampled, not exhaustively audited; the sampling surfaced exploitable AD-leg defects, now remediated, see the core paper's §4 callout |
+| AD-leg security findings (2026-07-29) — unescaped parameter names in `_render` (command injection), target substitution via `_merge` precedence, cleartext password in `ecc_queue`, no AD post-state read-back, clause 1 (Origin) unenforced — **all remediated 2026-07-30** | External adversarial security review, 2026-07-29 (this repo's inbox review process); remediation verified directly against the current `AdHybridClient.js`, `MacdrOrchestrator.js`, `EntraHelpdeskGate.js`, `sam_inbound_ritm.js`, `SamCorrelationClient.js` (this repo, commit `7d2423c74`) — full disclosure carried in the core paper's §4 |
+| The morning-check RDP anti-pattern the Day-2 kit's automated reconciliation replaces | `docs/customer-documents/orgcomp-series/the compliance series_Operator_Runbook_Day2_Compliant.qmd`, Task 6 |
+| SAM (SailPoint IGA) canon status — distinct from reserved `sailpoint-nerm` slot (the program decision) | `docs/customer-documents/orgcomp-series/servicenow-day2/START-HERE.md` |
+| SailPoint CIEM — native AWS/Azure/GCP cloud IAM entitlement governance | SailPoint — <https://www.sailpoint.com/products/identity-security-cloud/atlas/add-ons/cloud-infrastructure-entitlement-management> |
+| SailPoint routes findings into ServiceNow's Service Desk for ticketing/audit tracking | SailPoint — <https://www.sailpoint.com/products/connectivity-and-integrations/catalog/servicenow> |
+| Certificates as the deliberate volume-driven exception ("no owner is named... because none needs to be") | `docs/customer-documents/orgcomp-series/Vol_I_Book_03_the compliance series_Certificates_Tokens_Cryptographic_Identity.qmd`, Theme D |
+| Keyfactor for Government CLAaaS — FedRAMP Moderate authorization (May 2026) | Keyfactor — <https://www.keyfactor.com/press-releases/keyfactor-attains-fedramp-moderate-authorization/> |
+| CyberArk Certificate Manager (Venafi) — CA-agnostic discovery/orchestration, ServiceNow integration | CyberArk — <https://www.cyberark.com/products/certificate-manager/> |
+| Keyfactor/DigiCert/AppViewX native ServiceNow CMDB and ITOM integrations for certificate lifecycle | Keyfactor — <https://www.keyfactor.com/blog/keyfactor-simplifies-enterprise-pki-certificate-management-with-new-servicenow-integrations/>; DigiCert — <https://docs.digicert.com/en/trust-lifecycle-manager/build-your-inventory-and-ecosystem/connectors/it-service-management/link-to-servicenow.html>; ServiceNow — <https://www.servicenow.com/products/certificate-management.html> |
+| "CSPM complements GRC — findings need owners and closure proof"; no single tool covers a FedRAMP boundary alone | Continuum GRC — <https://continuumgrc.com/audit-compliance-solutions-fedramp/> |
+| Coordinated-stack requirement; ticketing/SLA ownership as a FedRAMP necessity | Knox Systems — <https://knoxsystems.com/resources/continuous-compliance-fedramp> |
+| C1Secure SmartRAMP 20x — ServiceNow-native FedRAMP 20x KSI platform (build-vs-buy context for Book 05) | PR Newswire — <https://www.prnewswire.com/news-releases/c1secure-launches-smartramp-20x-a-servicenow-native-platform-built-for-the-fedramp-20x-model-302824168.html> |
+| VMware Aria Operations Management Pack for ServiceNow (native connector, corrects Book 07's "unbuilt" framing) | Broadcom TechDocs — <https://techdocs.broadcom.com/us/en/vmware-cis/aria/aria-operations-for-integrations/9-0/management-pack-for-servicenow-9-0/management-pack-for-servicenow.html> |
+| VCF Automation ITSM plugin for ServiceNow | ServiceNow Store — <https://store.servicenow.com/store/app/0349abae1be06a50a85b16db234bcbbb> |
+| ServiceNow AWS Integration for Security Exposure Management (Inspector + Security Hub) | ServiceNow Store — <https://store.servicenow.com/store/app/fc71081b47804f90040ae738436d43e0> |
+| Wiz native multi-cloud + VMware vSphere coverage (alternative single-engine architecture) | Reintech — <https://reintech.io/blog/wiz-vs-orca-vs-prisma-cloud-comparison-2026> |
+| Vanta FedRAMP 20x Moderate Authorization; OSCAL/KSI self-generation (alternative architecture) | Vanta — <https://www.vanta.com/products/fedramp-20x> |

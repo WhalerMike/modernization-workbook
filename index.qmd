@@ -1,18 +1,31 @@
 ---
 title: "Modernization Workbook"
+subtitle: "Public-facing documentation for federal IT modernization"
 ---
 
-A clean, standalone project for federal IT modernization — extracted from source architecture and written for reuse without internal branding.
+# Modernization Workbook
+
+A clean, standalone project for federal IT modernization. Content is written for reuse without internal branding or source-system identifiers.
 
 ## Start here
 
-- [**Principles**](docs/PRINCIPLES.md) — the governing ideas
-- [**SQL Server Identity Transformation**](docs/case-studies/sql-server-narrative/README.md) — from Windows Authentication to cloud identity
-- [**Client-Server to Hybrid-Cloud**](docs/client-server-to-hybrid-cloud/README.md) — the architectural narrative
-- [**Whitepapers**](docs/whitepapers/README.md) — deeper analyses
+| Topic | HTML | DOCX |
+|-------|------|------|
+| Principles | [Principles](docs/PRINCIPLES.html) | [DOCX](docs/PRINCIPLES.docx) |
+| SQL Server Identity Transformation | [Series Overview](docs/case-studies/sql-server-narrative/series-overview.html) | [DOCX](docs/case-studies/sql-server-narrative/series-overview.docx) |
+| Client-Server to Hybrid-Cloud | [Chapter 00](docs/client-server-to-hybrid-cloud/00-the-problem.html) | [DOCX](docs/client-server-to-hybrid-cloud/00-the-problem.docx) |
+| Whitepapers | [Whitepapers](docs/whitepapers/README.html) | [DOCX](docs/whitepapers/README.docx) |
+| Case Studies | [Case Studies](docs/case-studies/README.html) | [DOCX](docs/case-studies/README.docx) |
+| Executive Briefs | [Modernization Overview](docs/executive-briefs/modernization-overview.html) | [DOCX](docs/executive-briefs/modernization-overview.docx) |
+| Compliance Series | [Executive Summary](docs/compliance/federal-compliance-series-moderate/executive-summary.html) | [DOCX](docs/compliance/federal-compliance-series-moderate/executive-summary.docx) |
+
+## Download complete series
+
+- [SQL Server Narrative Series (ZIP)](downloads/sql-server-narrative-series.zip) — Markdown, modern images, and rendered DOCX
+- [SQL Server Narrative Bundle (DOCX)](downloads/sql-server-narrative-bundle.docx) — all books combined into one Word document
+- [Client-Server to Hybrid-Cloud Series (ZIP)](downloads/client-server-to-hybrid-cloud-series.zip)
 
 ## Project documents
 
 - [Project Charter](PROJECT-CHARTER.md)
 - [Project Plan](PROJECT-PLAN.md)
-- [How to Use](HOW-TO-USE.md)

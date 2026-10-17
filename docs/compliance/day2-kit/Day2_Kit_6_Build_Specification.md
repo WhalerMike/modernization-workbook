@@ -1,0 +1,17 @@
+---
+title: "Compliance Day-2 Automation Kit — Build Specification"
+subtitle: "The platform records an implementation team builds on an instance: tables, ACLs, roles, the 50-item catalog roster, the Flow, and the update-set export"
+doc-type: kit-reference
+audience: "The implementation team — ServiceNow + Entra/Azure + SAM"
+family: orgcomp-series
+lifecycle: adopted
+tiers_adopted: [1]
+lifecycle_review: 2027-01-21
+format:
+  html: {css: lz-style.css, toc: true, toc-depth: 3, toc-title: "Contents"}
+  docx: {reference-doc: assets/reference-mslearn.docx, toc: true, toc-depth: 3}
+---
+
+{{< include servicenow-day2/KIT-BUILD-SPEC.md >}}
+
+![The control surface the build must produce: each catalog task, its MACD-R verb, the actuator client the Flow calls through the MID Server, and the NIST 800-53 control and FedRAMP KSI its evidenced closure emits — the acceptance target for the roster and the Flow.](servicenow-day2/figs/day2kit-fig-02-task-control-ksi.png){fig-alt="House-style matrix on white with eleven task rows — password reset, MFA reset, joiner, mover, leaver, group membership, Azure RBAC, license, guest invite, admin consent, morning check. Columns: Task, MACD-R verb color-coded, Origin SSOT, Actuator via MID naming EntraHelpdeskClient and AzureArmClient methods, NIST control, and KSI." width="100%"}

@@ -2,9 +2,12 @@ project:
   type: website
   output-dir: _site
   render:
-    - "**/*.qmd"
-    - "**/*.md"
+    - "*.qmd"
+    - "docs/**/*.md"
     - "!index.md"
+    - "!MIGRATION-*.md"
+    - "!STATUS.md"
+    - "!OUTLINE.md"
 
 website:
   title: "Modernization Workbook"
@@ -28,7 +31,7 @@ website:
             text: "SQL Server Identity Transformation"
       - text: "Series"
         menu:
-          - href: docs/client-server-to-hybrid-cloud/README.md
+          - href: docs/client-server-to-hybrid-cloud/00-the-problem.md
             text: "Client-Server to Hybrid-Cloud"
       - href: docs/whitepapers/README.md
         text: "Whitepapers"
@@ -51,3 +54,10 @@ format:
     fig-align: center
     link-external-newwindow: true
     link-external-icon: true
+  docx:
+    reference-doc: assets/reference-mslearn.docx
+    toc: true
+    toc-depth: 3
+    fig-width: 6
+    fig-height: 4
+    fig-align: center
