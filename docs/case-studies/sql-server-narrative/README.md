@@ -2,6 +2,8 @@
 
 **From Windows Authentication to cloud identity — a reading sequence on transforming the SQL Server estate**
 
+![Series cover: From Windows Authentication to the Identity Plane](../../images/sql-server/series-cover.jpg)
+
 ## Status
 
 This is a cleaned multi-chapter narrative. It is written as an engineering argument, not a runbook. Treat the patterns as guidance that must be validated against the specific estate.
@@ -9,6 +11,26 @@ This is a cleaned multi-chapter narrative. It is written as an engineering argum
 ## The destination
 
 Windows Authentication and SQL Authentication are eliminated and replaced with cloud identity authentication for SQL Server 2022 and later. Authentication is enforced through OAuth 2.0 tokens, a managed identity for the engine process, and multi-factor authentication for every human principal.
+
+## The journey in three states
+
+### Before — the domain is the trust boundary
+
+![Before: Domain trust boundary](../../images/sql-server/before-domain.jpg)
+
+Every party is domain-joined. The domain controller is the authentication authority. Kerberos is the protocol. NTLM is the silent fallback when the service principal name is missing. The cloud identity plane is not in the path.
+
+### During — both paths live simultaneously
+
+![During: Parallel authentication paths](../../images/sql-server/during-parallel.jpg)
+
+Legacy clients still use Kerberos or fall back to NTLM. Migrated clients authenticate to the cloud identity platform and present a token. The SQL Server accepts both Windows logins and cloud-identity logins during the parallel-run window.
+
+### After — no domain controller in the authentication path
+
+![After: No domain controller in the path](../../images/sql-server/after-cloud.jpg)
+
+The client authenticates to the cloud identity platform with multi-factor authentication. Conditional Access evaluates identity and device. An OAuth 2.0 token is issued. The SQL Server validates the token. The token carries context — how you authenticated, which groups you belong to, whether your device is compliant.
 
 ## Reading sequence
 
@@ -24,20 +46,6 @@ Windows Authentication and SQL Authentication are eliminated and replaced with c
 | [08](book-08-upstream-chain.md) | The Upstream Application Chain | Applications that depend on Windows Authentication or LDAP |
 | [09](book-09-steady-state.md) | Transformed Steady State | The destination and the milestone |
 | [10](book-10-certificate-authority.md) | Certificate-Authority Dependency | The layer the other steps depend on but rarely name |
-
-## The journey in three states
-
-### Before — the domain is the trust boundary
-
-Every party is domain-joined. The domain controller is the authentication authority. Kerberos is the protocol. NTLM is the silent fallback when the service principal name is missing. The cloud identity plane is not in the path.
-
-### During — both paths live simultaneously
-
-Legacy clients still use Kerberos or fall back to NTLM. Migrated clients authenticate to the cloud identity platform and present a token. The SQL Server accepts both Windows logins and cloud-identity logins during the parallel-run window.
-
-### After — no domain controller in the authentication path
-
-The client authenticates to the cloud identity platform with multi-factor authentication. Conditional Access evaluates identity and device. An OAuth 2.0 token is issued. The SQL Server validates the token. The token carries context — how you authenticated, which groups you belong to, whether your device is compliant.
 
 ## Relationship to attribute-driven structure
 
