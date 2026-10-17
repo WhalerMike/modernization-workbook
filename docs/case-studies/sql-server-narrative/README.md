@@ -2,39 +2,41 @@
 
 **From Windows Authentication to cloud identity — a reading sequence on transforming the SQL Server estate**
 
-![Series cover: From Windows Authentication to the Identity Plane](../../images/sql-server/series-cover.jpg)
+![Series cover](../../images/sql-server/series-cover-original.png)
 
-**Full narrative bundle:** [sql-server-narrative-bundle.docx](sql-server-narrative-bundle.docx) — the complete original series (Books 01–11 plus decision brief and division of labor). Content preserved as-is.
+**Full narrative bundle:** [sql-server-narrative-bundle.docx](sql-server-narrative-bundle.docx) — the complete original series.
 
-**Series overview:** [Series Overview](series-overview.md) — cleaned summary with updated diagrams.
+**Neutralized Markdown:** [sql-server-narrative-neutralized.md](sql-server-narrative-neutralized.md) — source identifiers replaced with plain language.
+
+**Series overview:** [Series Overview](series-overview.md) — cleaned summary with original diagrams.
 
 ## Status
 
-The full original narrative is available as a single DOCX bundle. Individual cleaned Markdown chapters are also present. The bundle retains source references (UIAO, ADR, OrgPath) that appear in the original text.
+The full original narrative is available as a single DOCX bundle. Individual cleaned Markdown chapters are also present. Original diagrams from the source bundle are referenced in the overview and index.
 
 ## The destination
 
 Windows Authentication and SQL Authentication are eliminated and replaced with cloud identity authentication for SQL Server 2022 and later. Authentication is enforced through OAuth 2.0 tokens, a managed identity for the engine process, and multi-factor authentication for every human principal.
 
-## The journey in three states
+## The journey in diagrams
 
-### Before — the domain is the trust boundary
+### Before — Kerberos overview
 
-![Before: Domain trust boundary](../../images/sql-server/before-domain.jpg)
+![Before: Kerberos overview](../../images/sql-server/before-kerberos.png)
 
-Every party is domain-joined. The domain controller is the authentication authority. Kerberos is the protocol. NTLM is the silent fallback when the service principal name is missing. The cloud identity plane is not in the path.
+Every party is domain-joined. The domain controller is the authentication authority. Kerberos is the protocol. NTLM is the silent fallback when the service principal name is missing.
 
-### During — both paths live simultaneously
+### During — two paths
 
-![During: Parallel authentication paths](../../images/sql-server/during-parallel.jpg)
+![During: two paths](../../images/sql-server/during-overview.png)
 
-Legacy clients still use Kerberos or fall back to NTLM. Migrated clients authenticate to the cloud identity platform and present a token. The SQL Server accepts both Windows logins and cloud-identity logins during the parallel-run window.
+Legacy clients still use Kerberos or fall back to NTLM. Migrated clients authenticate to the cloud identity platform and present a token.
 
-### After — no domain controller in the authentication path
+### After — token authentication
 
-![After: No domain controller in the path](../../images/sql-server/after-cloud.jpg)
+![After: token authentication](../../images/sql-server/after-token.png)
 
-The client authenticates to the cloud identity platform with multi-factor authentication. Conditional Access evaluates identity and device. An OAuth 2.0 token is issued. The SQL Server validates the token. The token carries context — how you authenticated, which groups you belong to, whether your device is compliant.
+No domain controller in the authentication path. Conditional Access evaluates identity and device. The SQL Server validates the OAuth token.
 
 ## Reading sequence
 
@@ -50,7 +52,7 @@ The client authenticates to the cloud identity platform with multi-factor authen
 | [08](book-08-upstream-chain.md) | The Upstream Application Chain | Applications that depend on Windows Authentication or LDAP |
 | [09](book-09-steady-state.md) | Transformed Steady State | The destination and the milestone |
 | [10](book-10-certificate-authority.md) | Certificate-Authority Dependency | The layer the other steps depend on but rarely name |
-| [11](book-11-platform-question.md) | The Platform Question | Database consolidation toward SSOT — PostgreSQL and Oracle as federal targets |
+| [11](book-11-platform-question.md) | The Platform Question | Database consolidation toward SSOT |
 
 ## Relationship to attribute-driven structure
 
@@ -58,4 +60,4 @@ This transformation consumes the organizational-attribute model. Dynamic securit
 
 ---
 
-*Full original bundle preserved. Cleaned Markdown chapters also available.*
+*Original diagrams from the source bundle. Paths are relative and resolve for both HTML and DOCX.*
