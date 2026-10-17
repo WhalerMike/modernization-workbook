@@ -13,6 +13,9 @@ lifecycle_review: 2027-01-01
 
 # Chapter 1 — Where SQL Server Touches ADCS
 
+![Certificate dependencies](../../images/sql-server/after-token.png)
+
+
 *The certificate dependencies a decommission plan cannot see, named before any decommission plan exists.*
 
 ::: {.callout-note}
