@@ -13,6 +13,10 @@ lifecycle_review: 2027-01-01
 
 # Chapter 1 — Three Principal Types — User, Group, Service Principal
 
+![Parallel-run pattern](../../images/sql-server/during-parallel.png)
+
+![Migration state](../../images/sql-server/migration-state.png)
+
 *The moment the engine stops accepting Kerberos and NTLM and starts accepting Entra-issued tokens.*
 
 ::: {.callout-note}
