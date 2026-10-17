@@ -4,19 +4,19 @@ subtitle: "Appendix: Master NIST SP 800-53 Rev 5 Control -> Volume/Book Index Ac
 author: "Federal Cloud Services"
 date: "2026-07-19T20:10:00-04:00"
 format:
- html:
- css: lz-style.css
- number-sections: true
- toc: true
- toc-depth: 2
- toc-title: "Contents"
- docx:
- reference-doc: assets/reference-mslearn.docx
- number-sections: true
+  html:
+    css: lz-style.css
+    number-sections: true
+    toc: true
+    toc-depth: 2
+    toc-title: "Contents"
+  docx:
+    reference-doc: assets/reference-mslearn.docx
+    number-sections: true
 fig-align: center
 out-width: "100%"
 execute:
- echo: false
+  echo: false
 
 aliases:
  - /customer-documents/federal-aan-series/Vol_0_Book_02_FedAAN_Control_Crosswalk.html
