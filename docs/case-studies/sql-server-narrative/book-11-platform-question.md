@@ -1,65 +1,36 @@
-# Book 11 — The Platform Question: Database Consolidation Toward SSOT
+# Book 11 — The Platform Question
 
-**What the authentication transformation reveals about the database platform layer**
+**Database consolidation toward a single source of truth**
 
+## The fragmentation cost
 
+The authentication transformation produces a rationalized estate. The platform question asks what to do with that estate. Twenty years of accretion have produced overlapping instances, duplicated data domains, and no single authoritative source for any given subject. The SSOT goal is to dissolve the silos toward one authoritative database per data domain.
 
 ![PostgreSQL in the federal stack](../../images/sql-server/postgresql-federal.png)
 
-## The authentication transformation reveals what it does not fix
+*PostgreSQL as a consolidation target: logical replication, row-level security, JSONB, and foreign data wrappers toward one authoritative database.*
 
-Books 01 through 10 described one transformation: moving the SQL Server estate from Windows Authentication to cloud identity. At the end of that transformation, every retained instance is re-authenticated. The Kerberos ticket is gone, the NTLM fallback is gone, the service account tied to the domain is gone, and in its place is an OAuth 2.0 token. That transformation is real and significant.
+## Three destinations
 
-What it does not change is the topology. An estate that entered the transformation with forty instances exits with forty instances. Each instance remains an independently provisioned server, an independently administered schema, and an independently held copy of data that overlaps with data held by the others. The authentication transformation made each instance more secure. It did not reduce the number.
+Every retained instance ends at one of three destinations. All three satisfy the forced requirement — authentication that is observable and conditionable in the identity plane. They differ in effort, licensing, and how far they advance the SSOT goal.
 
-Single Source of Truth is not a security posture. It is an architectural property. A system has SSOT for a given data domain when there is exactly one authoritative origin for that data, and every consumer reads from it. An estate with forty SQL Server instances almost certainly does not have SSOT for any significant data domain, because each instance is a candidate source for the data it holds, and the question of which instance is authoritative when they disagree is either unresolved or resolved informally.
+| Dimension | A · Stay on SQL Server | B · Consolidate to PostgreSQL | C · Consolidate to Oracle |
+| --- | --- | --- | --- |
+| What it is | SQL Server 2022, Arc-enabled, Entra token auth | Re-platform onto PostgreSQL (Crunchy on ROSA, RDS/Aurora, or Azure DB for PostgreSQL) | Re-platform onto Oracle (19c on OpenShift Virtualization, or Autonomous DB in OCI US Gov Cloud) |
+| Auth model | Entra OAuth 2.0 token | Entra-native on Azure DB for PostgreSQL; attribute-driven roles + RLS elsewhere | Oracle auth integrated to the chosen identity plane |
+| Engine effort | Low — upgrade, Arc-enable, migrate logins | High — schema + T-SQL→PL/pgSQL conversion | High — T-SQL→PL/SQL conversion |
+| Licensing | Continues SQL Server per-core | Eliminates SQL Server licensing | Oracle licensing — low incremental cost only if a site license already exists |
+| SSOT advance | None — re-authenticates the silos | High — logical replication, RLS, JSONB, FDW | High — consolidation onto an existing Oracle authority |
 
-## What sprawl does to data authority
+## Decision sequence
 
-SQL Server sprawl accumulated through a mechanism that was sensible at each step and costly in aggregate. A new application needed a database. The application team provisioned a SQL Server instance or shared one that was already running. They loaded their schema. If the data overlapped with data held by another instance, the overlap was noted and deferred. Over two decades, that deferred coordination produced an estate where the same concept — an employee, a contractor, an asset, an authorization — is represented in multiple databases, with no formally designated authority between them.
+1. Audit and rationalize first. Inventory every instance, surface silent NTLM fallback, and classify each instance retire / consolidate / retain.
+2. Do the forced authentication move on the retain set: Arc-enable, stand up Entra logins alongside Windows logins, cut over, retire the old logins.
+3. Then make the platform choice per data domain. Re-platform follows the same parallel-run discipline — establish the target, validate in parallel, cut over only after the validation window. Never drop before you observe.
 
-Data consumers who need the authoritative version of any frequently-represented concept cannot find it by reading the database topology. They must either know which instance is authoritative by institutional knowledge, or make a judgment about which version to use, or query multiple instances and reconcile. Institutional knowledge does not survive staff turnover. Judgment introduces inconsistency. Multi-instance reconciliation is expensive and still does not resolve authority.
+## What Book 11 establishes
 
-## The SSOT case against SQL Server sprawl
-
-The case against SQL Server sprawl is not a case against SQL Server. The case is against multiplicity. Each additional instance:
-
-1. **Subdivides data authority.** Every instance that holds data overlapping with another instance creates a potential authority conflict.
-2. **Multiplies administrative surface.** Each instance requires licensing, patching, backup, monitoring, and access administration. The authentication transformation reduces the per-instance credential surface. It does not reduce the instance count.
-3. **Resists SSOT architecture.** If forty instances each independently implement access control, the governance model for all forty must be designed, deployed, and kept synchronized. One authoritative database that applications read reduces that problem from a forty-instance problem to a one-instance problem.
-4. **Accumulates licensing cost.** Per-core licensing charges for each instance independently. An estate with forty instances running at low average utilization pays for work that could, in many cases, be consolidated onto fewer instances or onto an open-source platform.
-
-## Two federal consolidation targets
-
-Two platforms have meaningful vendor support, authorized hosting paths, and relevance to common federal environments.
-
-### PostgreSQL
-
-PostgreSQL is an open-source relational database with a feature set that closely parallels SQL Server for many federal workloads: transactional integrity, schema-based access control, stored procedures, replication, partitioning, and JSON document storage. It has multiple authorized hosting paths — managed services on major cloud providers, and Kubernetes-native operators on container platforms.
-
-Migration toolchains exist from multiple vendors: schema conversion tools, data migration services with change data capture for minimal downtime, and application code analysis for dependency remediation. Relevant SSOT capabilities include logical replication for consolidating data from multiple sources, row-level security for access policies, and foreign data wrappers for phased migration views.
-
-### Oracle Database
-
-Oracle is a commercially licensed relational database with a deep federal footprint. Agencies that have significant procedural application logic, multi-tier partitioning, or Oracle-specific workloads have a different consolidation calculus than agencies whose SQL Server workloads are primarily schema-and-procedure applications. Authorized hosting paths exist for both on-premises virtualization and cloud government regions.
-
-## Decision framework
-
-The platform decision is a forced-timeline choice driven by three pressures: version end-of-support, extended security updates gated behind hybrid management, and NTLM deprecation. These pressures retire the directory-anchored, Windows-Authentication SQL Server estate. The authentication-layer change is forced. The platform destination remains chosen.
-
-Agencies select one of three destinations per data domain:
-
-| Destination | When it fits | Effort | SSOT effect |
-|-------------|--------------|--------|-------------|
-| **Stay on SQL Server** | Low instance count, tight timeline, SQL-specific feature dependencies | Lowest | Does not advance SSOT; continues per-core licensing |
-| **Consolidate onto PostgreSQL** | Container-platform preference, licensing-exit goal, CRUD-heavy workloads, high sprawl | High | Enables consolidation primitives; eliminates SQL Server licensing |
-| **Consolidate onto Oracle** | Significant existing Oracle estate, large procedural logic corpus, existing site license | High | Reduces platform count by folding into existing infrastructure |
-
-The realistic outcome for many agencies is a blend: retain some SQL Server instances for specific workloads, consolidate the long tail onto PostgreSQL, and fold Oracle-adjacent data into an existing Oracle estate. The goal is fewer authoritative platforms than the initial sprawl.
-
-## Relationship to the authentication series
-
-The authentication transformation produces a classified estate: retire, consolidate, or retain. The platform question asks a further question about the retain group. It is not a question the authentication transformation resolves. It is a question the authentication transformation makes possible to ask clearly, because for the first time the estate is inventoried, rationalized, and documented.
+The authentication transformation produces the inventory that scopes the platform decision. Three destinations satisfy the forced authentication requirement. They differ in effort, licensing, and SSOT advance. The decision is per data domain, not per agency. Two estates, two answers is normal. The goal is fewer authoritative platforms — not a single vendor.
 
 ---
 
