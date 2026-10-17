@@ -1,0 +1,142 @@
+---
+title: "Directory Migration — AD Infrastructure Bridge"
+subtitle: "Everything Active Directory Was Holding Together"
+date: 2026-04-19
+format:
+  html:
+    toc: true
+    toc-depth: 3
+  docx:
+    toc: true
+lifecycle: aspirational
+lifecycle_review: 2026-11-22
+aliases:
+  - /customer-documents/reference-architecture/directory-migration.html
+---
+
+{{< lifecycle-banner >}}
+
+Directory migration is the flagship journey of **OrgMod (Organizational
+Modernization)** — the modernization member of the Org family, alongside
+the organizational-attribute model (governance) and OrgComp (compliance). Like its siblings, OrgMod is
+designed to be adopted together with them or entirely on its own.
+
+![The Org family: four operational expressions — the organizational-attribute model (governance), OrgComp (Federal Organizational Compliance), OrgMod (Organizational Modernization), and OrgLink (external interconnection) — standing on one governance substrate of identity, addressing, evidence, and policy-bearing control planes. OrgComp connects to the substrate through a dashed Evidence & Authorization Contract seam, and a footer band states the four are adoptable together or each on its own.](../orgcomp-series/figs/org-family-substrate.png){width="100%"}
+
+## The Hidden Migration Surface
+
+When organizations plan their "AD to Entra ID migration," they think about users and groups.
+They forget about everything else Active Directory was silently holding together.
+
+Active Directory was the implicit governance model for eleven categories of infrastructure
+objects. When AD goes away, every one of these services loses its governance anchor — and
+most of them fail silently. No errors. No alerts. Just certificates that stop renewing,
+RADIUS authentications that stop working, DNS records that go stale, and LDAP-dependent
+applications that quietly break.
+
+## The Eleven AD Dependency Object Types
+
+| # | Object Type | What AD Was Doing | What Breaks Without Governance |
+|---|------------|-------------------|-------------------------------|
+| 1 | **Users** | Identity lifecycle, OU placement, attribute authority | Orphaned accounts, privilege drift, compliance gaps |
+| 2 | **Computers** | Domain join, GPO targeting, machine certificates | Unmanaged endpoints, missing patches, security exposure |
+| 3 | **Service Accounts** | SPNs, Kerberos delegation, password management | Application authentication failures, silent service outages |
+| 4 | **Security Groups** | Access control, policy scoping, resource permissions | Permission sprawl, ungoverned access, audit failures |
+| 5 | **Group Policy Objects** | Device configuration, security baselines, software deployment | Configuration drift, inconsistent baselines, compliance gaps |
+| 6 | **DNS / DHCP** | Name resolution, IP allocation, AD-integrated zones | Name resolution failures, IP conflicts, split-brain DNS |
+| 7 | **PKI / Certificate Services** | Certificate issuance, auto-enrollment, CRL distribution | Silent certificate expiration, authentication failures, mTLS breaks |
+| 8 | **RADIUS / NPS** | 802.1X network access, VPN authentication, Wi-Fi auth | Network access failures, VPN outages, unauthorized access |
+| 9 | **LDAP** | Application authentication, directory queries, legacy integrations | Application login failures, directory query errors, broken integrations |
+| 10 | **SPNs / App Registrations** | Kerberos service principal names, application identity | Application SSO breaks, delegation failures, service identity loss |
+| 11 | **Trust Relationships** | Cross-domain authentication, forest trusts, selective authentication | Cross-domain access failures, authentication breaks between orgs |
+
+## Eight Adapter Interfaces
+
+Each AD-dependent service gets a dedicated adapter interface that defines the governance
+model for migrating that service away from Active Directory. Every adapter follows the
+same structure:
+
+- **Discovery** — what to inventory and how to find it in AD
+- **Risk Assessment** — what fails if this is not migrated correctly
+- **Target Architecture** — the modern equivalent and how governance works there
+- **Migration Path** — step-by-step governance-driven migration
+- **Validation** — how to confirm the migration preserved governance integrity
+- **Rollback** — what to do if the migration causes failures
+
+### CRITICAL Priority — Silent Failure Risk
+
+These adapters address services that fail *silently* when AD governance is removed.
+No error messages, no alerts — just things that stop working.
+
+| ID | Adapter | Risk Profile |
+|----|---------|-------------|
+| DM_020 | **PKI / Certificate Services** | Certificates stop auto-enrolling. mTLS connections fail weeks later when certs expire. Nobody notices until production breaks. |
+| DM_030 | **RADIUS / 802.1X / VPN** | Network access control stops authenticating against AD groups. Devices fall off the network. VPN stops accepting machine certificates. |
+| DM_040 | **LDAP Proxy** | Legacy applications that authenticate via LDAP bind stop working. This is the largest hidden attack surface in most enterprises — hundreds of apps nobody inventoried. |
+
+### HIGH Priority — Operational Impact
+
+| ID | Adapter | Risk Profile |
+|----|---------|-------------|
+| DM_010 | **IPAM (InfoBlox / BlueCat)** | IP address management loses its AD-integrated authority model. Includes vendor-specific adapter manifests for InfoBlox and BlueCat. |
+| DM_050 | **Sync Engine (Entra Connect)** | The bridge between AD and Entra ID. This adapter defines the retirement criteria — when is it safe to turn off Entra Connect? Includes a 12-point Retirement Readiness Checklist. |
+| DM_060 | **Device Management** | SCCM/MECM to Intune transition. GPO-to-configuration-profile translation. Co-management state machine. |
+
+### MEDIUM Priority — Operational Continuity
+
+| ID | Adapter | Risk Profile |
+|----|---------|-------------|
+| DM_070 | **NTP / Time Services** | Kerberos requires clock synchronization within 5 minutes. AD provided this implicitly via the PDC emulator. Entra ID does not. Clock skew causes authentication failures that look like identity problems. |
+| DM_080 | **DFS / File Services** | DFS namespaces and UNC paths that reference AD domain names. User-facing file access breaks when the domain name changes. Migration requires namespace redirection and GPO-based drive mapping updates. |
+
+## The Eight Core Concepts
+
+Every adapter is grounded in the modernization program's eight universal core concepts:
+
+| Core Concept | Definition | Adapter Relevance |
+|-------------|-----------|-------------------|
+| **SSOT** | Every claim has one authoritative origin | Each adapter defines its SSOT for governance decisions |
+| **Conversation as atomic unit** | Every interaction binds identity, certificates, addressing, path, QoS, and telemetry | Adapter migrations must preserve complete conversation integrity |
+| **Identity as root namespace** | Every IP, certificate, subnet, policy, and telemetry event derives from identity | All adapter governance traces back to identity authority |
+| **Deterministic addressing** | Addressing is identity-derived and policy-driven | IPAM and DNS adapters enforce deterministic address assignment |
+| **Certificate-anchored overlay** | mTLS anchors tunnels, services, and trust relationships | PKI adapter is the foundation — other adapters depend on it |
+| **Telemetry as control** | Telemetry is a real-time control input, not passive reporting | Every adapter emits governance telemetry for drift detection |
+| **Embedded governance** | Governance is executed through orchestrated workflows, not manual tickets | Adapter migrations are governed workflows, not ad-hoc projects |
+| **User experience first** | The migration is invisible to end users if governance was done right | The ultimate validation: users notice nothing |
+
+## The Six Migration Phases
+
+Every adapter follows the same six-phase governance-driven migration:
+
+| Phase | What Happens | Governance Gate |
+|-------|-------------|-----------------|
+| **1. Discover** | Complete inventory of what AD encodes for this service | Inventory signed off by service owner |
+| **2. Normalize** | Rationalize decades of organic growth into a clean model | Normalized model reviewed against the organizational-attribute model codebook |
+| **3. Map** | Translate AD governance constructs to modern equivalents | Mapping validated — no governance gaps, no orphaned objects |
+| **4. Migrate** | Execute with continuous validation | Every step validated before proceeding — no big-bang cutover |
+| **5. Validate** | Confirm governance integrity is preserved post-migration | Full drift scan, telemetry confirmation, user experience validation |
+| **6. Decommission** | Formally retire legacy infrastructure after validation passes a stability window | Legacy systems offline; rollback window expired with no incidents; provenance archived for audit |
+
+Adapter migrations that add a net-new capability without retiring any legacy infrastructure may declare Phase 6 as `N/A — net-new capability` in their registry entry with a brief justification. See [the program decision] for the canonical phase model and the customer-side mapping pattern (DNS 11→6, PKI 6→6).
+
+## Adapter Registration Schema
+
+Every adapter registers in the `migration-adapter-registry.yaml` with standardized metadata. The contract is declared in [`src/uiao/schemas/migration-adapter-registry/migration-adapter-registry.schema.json`] (the program decision Phase 2):
+
+- **Adapter ID and name**
+- **Priority tier** (CRITICAL / HIGH / MEDIUM)
+- **Migration phase** (current state in the six-phase model per [the program decision]; valid values: `Discover`, `Normalize`, `Map`, `Migrate`, `Validate`, `Decommission`, or `N/A — net-new capability`)
+- **Dependencies** (which other adapters must complete first)
+- **Validation criteria** (machine-checkable success conditions)
+- **Canon crosswalk** (links to relevant the modernization program_xxx canon documents; the legacy MOD_xxx namespace was retired into the modernization program_xxx per [the program decision])
+
+## Source Files
+
+All Directory Migration source files are in the monorepo at
+`src/uiao/modernization/directory-migration/`. The adapter registry is at
+`src/uiao/modernization/directory-migration/migration-adapter-registry.yaml`.
+
+Companion documents in the module:
+
+- [`src/uiao/modernization/directory-migration/eight-core-concepts.md`] — the eight universal architectural concepts grounding every adapter
+- [`src/uiao/modernization/directory-migration/ad-dependency-inventory.md`] — comprehensive inventory of the eleven AD-dependent object types and their migration risks
