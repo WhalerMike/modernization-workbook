@@ -1,0 +1,30 @@
+---
+title: "Platform & Tooling"
+subtitle: "Monorepo, Quarto pipeline, canon sync, CI/CD, CLI, Academy"
+doc-type: subcategory-landing
+pillar: substrate
+sub-category: platform-tooling
+status: scaffold
+date: 2026-04-24
+aspirational: true
+lifecycle: adopted
+tiers_adopted: [1]
+lifecycle_review: 2026-11-22
+---
+
+# Platform & Tooling {.unnumbered}
+
+The day-to-day machinery that every canon author, every automation, and
+every reader interacts with. These tools are shared — modernization and
+compliance both ride on them.
+
+## Leaves
+
+- **S.P.1** GitHub / Gitea monorepo
+- **S.P.2** Quarto render pipeline
+- **S.P.3** Canon sync (`sync_canon.py`)
+- **S.P.4** CI/CD (GitHub Actions)
+- **S.P.5** Customer Documents portal
+- **S.P.6** the modernization program CLI
+- **S.P.7** PowerShell Module Reference
+- **S.P.8** the modernization program Academy (training platform)
