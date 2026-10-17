@@ -11,14 +11,12 @@ format:
  toc-depth: 3
  toc-title: "Contents"
  docx:
- reference-doc: orgcomp-reference.docx
- toc: true
- toc-depth: 3
+ reference-doc: assets/reference-mslearn.docx
  number-sections: true
  fig-width: 6.5
 fig-align: center
 out-width: "100%"
-filters: [orgcomp-callouts.lua]
+
 aliases:
  - /customer-documents/federal-aan-series/Vol_I_Book_05_FedAAN_Network_Modernization.html
 
