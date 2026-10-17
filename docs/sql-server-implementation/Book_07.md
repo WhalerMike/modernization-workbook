@@ -1,7 +1,7 @@
 ---
 title: "Implementation Book 07 — Groups, Administrative Units & the Conditional Access Perimeter"
-subtitle: "Inventory the AD groups behind SQL access with the real Entra group export, classify them by the the program decision four-type taxonomy with New-the modernization programEntraGroupClassification, then provision the organizational-attribute model dynamic groups and the DBA Administrative Unit and emit the group-logins — review-required, dry-run first"
-description: "How to transform the access-control layer of SQL Server from AD groups to Entra. Documents the shipped read-only inventory (the modernization programIdentityAssessment Export-the modernization programEntraGroups / Export-the modernization programConditionalAccess, including dynamic-rule capture), the the program decision four-type classification New-the modernization programEntraGroupClassification derives from it, and New-the modernization programGroupLoginScript, which emits the dry-run CREATE LOGIN FROM EXTERNAL PROVIDER for the access-backing groups — then the review-required provisioning patterns routed through the entra-dynamic-groups (the modernization program_152) and entra-admin-units (the modernization program_154) modernization adapters, with the AU-before-groups sequencing the program decision requires."
+subtitle: "Inventory the AD groups behind SQL access with the real Entra group export, classify them by the the program decision four-type taxonomy with New-FMPEntraGroupClassification, then provision the organizational-attribute model dynamic groups and the DBA Administrative Unit and emit the group-logins — review-required, dry-run first"
+description: "How to transform the access-control layer of SQL Server from AD groups to Entra. Documents the shipped read-only inventory (FMPIdentityAssessment Export-FMPEntraGroups / Export-FMPConditionalAccess, including dynamic-rule capture), the the program decision four-type classification New-FMPEntraGroupClassification derives from it, and New-FMPGroupLoginScript, which emits the dry-run CREATE LOGIN FROM EXTERNAL PROVIDER for the access-backing groups — then the review-required provisioning patterns routed through the entra-dynamic-groups (FMP_152) and entra-admin-units (FMP_154) modernization adapters, with the AU-before-groups sequencing the program decision requires."
 doc-type: sql-server-implementation-book
 audience: [Technical, Customer]
 family: sql-server-implementation
@@ -39,7 +39,7 @@ unchanged. Do not copy the slot numbers or value shapes; the authoritative map i
 # Implementation Book 07 — Groups, Administrative Units & the Conditional Access Perimeter
 :::
 
-![Groups are classified before they become logins: export the group estate, classify each group by what it should govern, emit the group-login script, and bound it with the Conditional Access perimeter.](images/book07-image-01-groups-and-aus.png){#fig-impl-book07 fig-alt="A schematic on a white background. Three stages flow left to right under teal arrows: Export-the modernization programEntraGroups (with Export-the modernization programConditionalAccess; export, read-only), New-the modernization programEntraGroupClassification (role-bearing → SQL login; structural / stale → not a login), and New-the modernization programGroupLoginScript (emits a CREATE LOGIN FROM EXTERNAL PROVIDER script). Below, a dashed blue 'Conditional Access perimeter' encloses three boxes: 'group → SQL login', 'administrative units — scoped delegation', and 'CA policy — device · MFA · network bound'. Federal navy, teal and blue palette; no photographs." width="100%"}
+![Groups are classified before they become logins: export the group estate, classify each group by what it should govern, emit the group-login script, and bound it with the Conditional Access perimeter.](images/book07-image-01-groups-and-aus.png){#fig-impl-book07 fig-alt="A schematic on a white background. Three stages flow left to right under teal arrows: Export-FMPEntraGroups (with Export-FMPConditionalAccess; export, read-only), New-FMPEntraGroupClassification (role-bearing → SQL login; structural / stale → not a login), and New-FMPGroupLoginScript (emits a CREATE LOGIN FROM EXTERNAL PROVIDER script). Below, a dashed blue 'Conditional Access perimeter' encloses three boxes: 'group → SQL login', 'administrative units — scoped delegation', and 'CA policy — device · MFA · network bound'. Federal navy, teal and blue palette; no photographs." width="100%"}
 
 ::: {.callout-tip}
 ## Download this book
@@ -56,9 +56,9 @@ Access-control transformation is inventory-then-provision. **Inventory** the AD 
 
 ## Phase 1 — Inventory (read-only, script-backed)
 
-### `Export-the modernization programEntraGroups` — the Entra group inventory
+### `Export-FMPEntraGroups` — the Entra group inventory
 
-The `the modernization programIdentityAssessment` module ([`tools/powershell/the modernization programIdentityAssessment/`]( modernization programIdentityAssessment)) ships `Export-the modernization programEntraGroups`, which inventories Entra groups and memberships into a sealed evidence envelope. It reads live via `Get-MgGroup` or replays a `-SnapshotPath`, so it runs offline against an export.
+The `FMPIdentityAssessment` module ([`tools/powershell/FMPIdentityAssessment/`]( modernization programIdentityAssessment)) ships `Export-FMPEntraGroups`, which inventories Entra groups and memberships into a sealed evidence envelope. It reads live via `Get-MgGroup` or replays a `-SnapshotPath`, so it runs offline against an export.
 
 | Parameter | Purpose |
 |---|---|
@@ -66,21 +66,21 @@ The `the modernization programIdentityAssessment` module ([`tools/powershell/the
 | `-SnapshotPath` | Replay a captured Graph export instead of querying live |
 | `-IncludeDynamic` | Capture the **`membershipRule`** for dynamic groups (and flag them); without it dynamic groups are listed but the rule is omitted |
 | `-OutputPath` | Where the sealed envelope is written |
-| `-Cloud` / `-GraphApiVersion` / `-GraphEndpoint` | Cloud-aware endpoint resolution (GCC-Moderate uses the cloud-correct Graph base via `Resolve-the modernization programGraphBase`) |
+| `-Cloud` / `-GraphApiVersion` / `-GraphEndpoint` | Cloud-aware endpoint resolution (GCC-Moderate uses the cloud-correct Graph base via `Resolve-FMPGraphBase`) |
 
 Each record carries `id`, `display_name`, **`is_dynamic`**, **`security_enabled`**, **`mail_enabled`**, `membership_rule` (when `-IncludeDynamic` and dynamic), `member_count`, and `source_fields`. Those three flags are exactly the signal the the program decision classification needs: `security_enabled` + `mail_enabled` together distinguish the four types, and `is_dynamic` / `membership_rule` show whether a group is already the organizational-attribute model-driven.
 
 ```powershell
-Import-Module ./tools/powershell/the modernization programIdentityAssessment
+Import-Module ./tools/powershell/FMPIdentityAssessment
 # Live, with dynamic membership rules captured — read-only
-Export-the modernization programEntraGroups -TenantId <tenant-guid> -IncludeDynamic -OutputPath .\output
+Export-FMPEntraGroups -TenantId <tenant-guid> -IncludeDynamic -OutputPath .\output
 # Or offline against a captured snapshot
-Export-the modernization programEntraGroups -SnapshotPath .\snapshots\groups.json -IncludeDynamic -OutputPath .\output
+Export-FMPEntraGroups -SnapshotPath .\snapshots\groups.json -IncludeDynamic -OutputPath .\output
 ```
 
-### `Export-the modernization programConditionalAccess` — the perimeter inventory
+### `Export-FMPConditionalAccess` — the perimeter inventory
 
-The same module ships `Export-the modernization programConditionalAccess` (live `Get-MgIdentityConditionalAccessPolicy` or `-SnapshotPath`), emitting per-policy `id`, `display_name`, and `state`. Use it to confirm the Conditional Access posture that will become the SQL access perimeter once every login is type-E — the narrative's binary outer boundary. (the program decision)
+The same module ships `Export-FMPConditionalAccess` (live `Get-MgIdentityConditionalAccessPolicy` or `-SnapshotPath`), emitting per-policy `id`, `display_name`, and `state`. Use it to confirm the Conditional Access posture that will become the SQL access perimeter once every login is type-E — the narrative's binary outer boundary. (the program decision)
 
 ### Mapping to the the program decision four-type taxonomy
 
@@ -93,11 +93,11 @@ Narrative Book 07 Chapter 1 classifies every migrating AD security group into on
 | **Type 3 — distribution list** | mail-enabled, security **off** | Microsoft 365 Group (`securityEnabled: false`) | **no SQL login** — Agent operator email only |
 | **Type 4 — mail-enabled security** | security **and** mail enabled | **split**: M365 Group (mail) + assigned security group (access), correlated by an the organizational-attribute model attribute | type-E login on the security half only |
 
-**`New-the modernization programEntraGroupClassification`** (`tools/powershell/the modernization programSqlServerMigration/`) is the deterministic type-assignment pass over the envelope. It reads the `Export-the modernization programEntraGroups` output and assigns each group exactly one the program decision type from its observable shape (`groupTypes` / `mail_enabled` / `security_enabled` / `membership_rule`), attaching each group's target state, transformation, provisioning adapter, and a `becomes_sql_login` flag (true for the access-backing types — assigned security, OrgTree dynamic, and the access half of a mail-enabled split). A group with no usable signal lands in `review` rather than being mis-typed.
+**`New-FMPEntraGroupClassification`** (`tools/powershell/FMPSqlServerMigration/`) is the deterministic type-assignment pass over the envelope. It reads the `Export-FMPEntraGroups` output and assigns each group exactly one the program decision type from its observable shape (`groupTypes` / `mail_enabled` / `security_enabled` / `membership_rule`), attaching each group's target state, transformation, provisioning adapter, and a `becomes_sql_login` flag (true for the access-backing types — assigned security, OrgTree dynamic, and the access half of a mail-enabled split). A group with no usable signal lands in `review` rather than being mis-typed.
 
 ```powershell
-Import-Module ./tools/powershell/the modernization programSqlServerMigration
-New-the modernization programEntraGroupClassification -GroupExportPath .\output\entra-groups.json -OutputPath .\output\group-classification.json
+Import-Module ./tools/powershell/FMPSqlServerMigration
+New-FMPEntraGroupClassification -GroupExportPath .\output\entra-groups.json -OutputPath .\output\group-classification.json
 ```
 
 It is **read-only derivation** over the reviewed export — it reads no live directory and writes only the sealed classification, which is the input both the provisioning adapters and the group-login emitter consume.
@@ -119,13 +119,13 @@ the program decision makes Administrative Unit provisioning a **prerequisite** f
 
 Provisioning the AU before the groups it will hold avoids the transitional window in which new Entra groups exist but only a tenant-wide administrator can manage them — the exact concentration of privilege the exercise removes.
 
-### Provision the DBA Administrative Unit (entra-admin-units / the modernization program_154)
+### Provision the DBA Administrative Unit (entra-admin-units / FMP_154)
 
-The Administrative Unit is provisioned through the **`entra-admin-units`** modernization adapter (the modernization program_154 in `src/uiao/canon/modernization-registry.yaml`), aligned to the the organizational-attribute model boundary the DBA team owns so the delegation boundary and the access boundary describe the same scope. the program decision's restricted-management invariant and cross-canon integrity checks (which reject an AU whose referenced groups or the organizational-attribute model values do not resolve to live canon) are enforced by the adapter. Run it dry-run first, review the planned AU and the scoped assignment, then apply.
+The Administrative Unit is provisioned through the **`entra-admin-units`** modernization adapter (FMP_154 in `src/uiao/canon/modernization-registry.yaml`), aligned to the the organizational-attribute model boundary the DBA team owns so the delegation boundary and the access boundary describe the same scope. the program decision's restricted-management invariant and cross-canon integrity checks (which reject an AU whose referenced groups or the organizational-attribute model values do not resolve to live canon) are enforced by the adapter. Run it dry-run first, review the planned AU and the scoped assignment, then apply.
 
-### Provision the organizational-attribute model dynamic groups (entra-dynamic-groups / the modernization program_152)
+### Provision the organizational-attribute model dynamic groups (entra-dynamic-groups / FMP_152)
 
-Type 1 (OU-derived) groups become dynamic security groups whose `membershipRule` references the organizational-attribute model attributes — provisioned through the **`entra-dynamic-groups`** modernization adapter (the modernization program_152). the organizational-attribute model attribute values are populated by the the organizational-attribute model HR-synchronization pipeline, not managed by hand, so migrating a Type 1 group is two things: confirm the the organizational-attribute model attribute infrastructure is in place (an the organizational-attribute model-narrative dependency), and author the rule that expresses the original group's organizational logic — for example `(user.extensionAttribute5 -eq "ORG/DEPT/TEAM") -and (user.jobTitle -contains "DBA")`. Validate the rule against the captured inventory before applying. (the program decision)
+Type 1 (OU-derived) groups become dynamic security groups whose `membershipRule` references the organizational-attribute model attributes — provisioned through the **`entra-dynamic-groups`** modernization adapter (FMP_152). the organizational-attribute model attribute values are populated by the the organizational-attribute model HR-synchronization pipeline, not managed by hand, so migrating a Type 1 group is two things: confirm the the organizational-attribute model attribute infrastructure is in place (an the organizational-attribute model-narrative dependency), and author the rule that expresses the original group's organizational logic — for example `(user.extensionAttribute5 -eq "ORG/DEPT/TEAM") -and (user.jobTitle -contains "DBA")`. Validate the rule against the captured inventory before applying. (the program decision)
 
 Type 2 (explicit-role) groups are flat **assigned** security groups: create the group, populate from the AD source members, and manage membership thereafter through the AU-scoped role assignment rather than a helpdesk ticket. Type 3 (distribution lists) become mail-only M365 Groups with **no** SQL login — only the SQL Agent operator's notification address is repointed. Type 4 (mail-enabled security) splits into the two-object pattern, correlated by an the organizational-attribute model extension attribute recorded in the migration audit.
 
@@ -144,10 +144,10 @@ CREATE USER [sql-app-readers] FOR LOGIN [sql-app-readers];
 ALTER ROLE [db_datareader] ADD MEMBER [sql-app-readers];
 ```
 
-**`New-the modernization programGroupLoginScript`** (`tools/powershell/the modernization programSqlServerMigration/`) generates these statements from the the program decision-classified inventory, idempotent and dry-run, the way Book 05 generates per-principal logins from the audit CSV. It emits a `CREATE LOGIN ... FROM EXTERNAL PROVIDER` only for groups whose `becomes_sql_login` flag is true; mail-only distribution / Unified groups and `review` groups appear as commented-out lines, so a distribution list can never become a SQL login. Like Book 05's emitter it has no `-Server` or `-Execute` surface — it opens no SQL connection and the script is the deliverable.
+**`New-FMPGroupLoginScript`** (`tools/powershell/FMPSqlServerMigration/`) generates these statements from the the program decision-classified inventory, idempotent and dry-run, the way Book 05 generates per-principal logins from the audit CSV. It emits a `CREATE LOGIN ... FROM EXTERNAL PROVIDER` only for groups whose `becomes_sql_login` flag is true; mail-only distribution / Unified groups and `review` groups appear as commented-out lines, so a distribution list can never become a SQL login. Like Book 05's emitter it has no `-Server` or `-Execute` surface — it opens no SQL connection and the script is the deliverable.
 
 ```powershell
-New-the modernization programGroupLoginScript -ClassificationPath .\output\group-classification.json -OutputPath .\output\create-group-logins.sql
+New-FMPGroupLoginScript -ClassificationPath .\output\group-classification.json -OutputPath .\output\create-group-logins.sql
 ```
 
 The database-user mapping and role grant above (the `USE [AppDb]; CREATE USER ...; ALTER ROLE ...` block) stays a review-required, per-database step: which database role each group inherits is a grant decision the emitter deliberately leaves to change control.
@@ -156,7 +156,7 @@ The database-user mapping and role grant above (the `USE [AppDb]; CREATE USER ..
 
 - **Verify dynamic membership** resolved correctly: confirm expected principals appear in the dynamic group before binding any SQL login to it (a too-broad rule grants SQL access too broadly).
 - **Verify the AU boundary**: the scoped role assignment can manage members of groups *inside* the AU and is denied on groups outside it and on tenant-level identity actions.
-- **Verify the perimeter**: a connection from a non-compliant device or outside Named Locations is denied a token (re-run `Export-the modernization programConditionalAccess` to confirm the policy state covers the SQL resource).
+- **Verify the perimeter**: a connection from a non-compliant device or outside Named Locations is denied a token (re-run `Export-FMPConditionalAccess` to confirm the policy state covers the SQL resource).
 - **Rollback**: Entra groups, dynamic rules, and AUs created by the adapters are reversible (delete the object / revert the rule); the SQL group-login is reversible by `DROP LOGIN` once no user depends on it. Because the AU is restricted and provisioned first, the delegation can be validated long before any group lands inside it.
 
 ## The perimeter dividend
@@ -165,4 +165,4 @@ Once every SQL login is a type-E login backed by an Entra principal, Conditional
 
 ---
 
-*Companion to narrative Book 07. Inventory script-backed: `tools/powershell/the modernization programIdentityAssessment` (`Export-the modernization programEntraGroups`, `Export-the modernization programConditionalAccess`). Classification + group-login emission: `tools/powershell/the modernization programSqlServerMigration` (`New-the modernization programEntraGroupClassification`, `New-the modernization programGroupLoginScript`). Provisioning via the `entra-admin-units` (the modernization program_154) and `entra-dynamic-groups` (the modernization program_152) modernization adapters — review-required. Canon: the program decision, the program decision, the program decision, the program decision, the directory modernization program §3.2.*
+*Companion to narrative Book 07. Inventory script-backed: `tools/powershell/FMPIdentityAssessment` (`Export-FMPEntraGroups`, `Export-FMPConditionalAccess`). Classification + group-login emission: `tools/powershell/FMPSqlServerMigration` (`New-FMPEntraGroupClassification`, `New-FMPGroupLoginScript`). Provisioning via the `entra-admin-units` (FMP_154) and `entra-dynamic-groups` (FMP_152) modernization adapters — review-required. Canon: the program decision, the program decision, the program decision, the program decision, the directory modernization program §3.2.*

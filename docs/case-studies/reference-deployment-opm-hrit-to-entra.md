@@ -89,7 +89,7 @@ prior modernization, no canonical schema enforcement, manual
 exception handling for the organizational-attribute model assignment, no continuous drift
 detection between NFC EmpowHR and Entra ID, no Evidence Bundle
 artifact emitted from the provisioning pipeline. This is the engagement
-pattern the modernization program_136 (Spec 2) is built for, and the substrate's behavior
+pattern FMP_136 (Spec 2) is built for, and the substrate's behavior
 across the phases below is what this case study illustrates.
 
 For the federal mandate landscape that makes this work necessary, see

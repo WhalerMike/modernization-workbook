@@ -19,7 +19,7 @@ lifecycle_review: 2026-11-22
 :::
 
 Grounded deployment narratives. Each case study documents one engagement:
-the starting state, the the modernization program intervention, the observed behavior, and the
+the starting state, the Federal Modernization Program intervention, the observed behavior, and the
 lessons that propagated back into canon.
 
 ::: {.callout-important title="Authoring posture"}
@@ -42,5 +42,5 @@ deployed-and-validated reference.
 | [`identity-modernization-case-study`](identity-modernization-case-study.html) | OrgTree rollout and codebook adoption | Framing-Pattern | `src/uiao/canon/adr/adr-008-zero-trust-identity.md` |
 | [`cloud-boundary-case-study`](cloud-boundary-case-study.html) | GCC-Moderate boundary establishment | Framing-Pattern | `docs/docs/gcc-boundary-solution-architecture.qmd` |
 | [`federal-modernization-case-study`](federal-modernization-case-study.html) | End-to-end federal agency modernization | Framing-Pattern | `docs/docs/06_ProgramVision.qmd` |
-| [`reference-deployment-fedciv-ad-to-entra`](reference-deployment-fedciv-ad-to-entra.html) | Federal civilian AD → Entra ID + SQL estate, end-to-end through the five-phase substrate | Framing-Pattern | `the modernization program_007` + directory-migration README + drift §7.1 + B.1.1 + spn_inventory artifact |
-| [`reference-deployment-opm-hrit-to-entra`](reference-deployment-opm-hrit-to-entra.html) | Federal civilian OPM HRIT → Entra ID inbound provisioning, end-to-end through Spec 2 (companion to the AD reference deployment) | Framing-Pattern | `Spec2-D6.1` + the modernization program_136 family + Spec2-D1.1 / D2.1 / D3.5 / D5.5 + hrit_record_inventory artifact |
+| [`reference-deployment-fedciv-ad-to-entra`](reference-deployment-fedciv-ad-to-entra.html) | Federal civilian AD → Entra ID + SQL estate, end-to-end through the five-phase substrate | Framing-Pattern | `FMP_007` + directory-migration README + drift §7.1 + B.1.1 + spn_inventory artifact |
+| [`reference-deployment-opm-hrit-to-entra`](reference-deployment-opm-hrit-to-entra.html) | Federal civilian OPM HRIT → Entra ID inbound provisioning, end-to-end through Spec 2 (companion to the AD reference deployment) | Framing-Pattern | `Spec2-D6.1` + FMP_136 family + Spec2-D1.1 / D2.1 / D3.5 / D5.5 + hrit_record_inventory artifact |

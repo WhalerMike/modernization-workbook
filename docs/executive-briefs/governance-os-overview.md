@@ -11,9 +11,9 @@ lifecycle_review: 2026-11-22
 
 # Governance OS Overview — Executive Brief
 
-![the modernization program Governance OS](../../images/canonical/the modernization program-FIG-001-governance-os-overview.png){fig-alt="High-level overview of the the modernization program Governance OS — identity, mission, and value proposition for federal agencies running Microsoft 365 in GCC-Moderate." width="100%"}
+![the Federal Modernization Program Governance OS](../../images/canonical/FMP-FIG-001-governance-os-overview.png){fig-alt="High-level overview of the Federal Modernization Program Governance OS — identity, mission, and value proposition for federal agencies running Microsoft 365 in GCC-Moderate." width="100%"}
 
-the modernization program is a **canon-anchored governance substrate** (not a standalone product)
+The Federal Modernization Program is a **canon-anchored governance substrate** (not a standalone product)
 that keeps identity, policy, and compliance operations tied to a single source
 of truth and continuously drift-detected against that canon.
 
@@ -23,14 +23,14 @@ context is fragmented across services, telemetry cannot be correlated into one
 control narrative, and evidence is assembled as point-in-time reporting rather
 than continuous, provenance-linked assurance.
 
-![Layered substrate diagram showing the the modernization program Governance OS as the operating layer beneath three consumer surfaces](../images/executive-briefs/governance-os-overview-image-01-layered-substrate-diagram-showin.png){#fig-governance-os-overview-image-01 fig-alt="Bottom layer Canon (SSOT) labeled with \"src/uiao/canon/\" and a small registry icon. Middle layer Substrate Services with three lanes — Schema-First Governance, Drift Engine (5-class taxonomy: SCHEMA / SEMANTIC / PROVENANCE / AUTHZ / IDENTITY), Evidence Chain (deterministic OSCAL emission). Top layer Consumer Surfaces — three pillars: Identity Operations, Compliance Reporting, Modernization Programs. Each top-layer pillar reaches down with arrows to the substrate services. Clean engineering blueprint style, dark navy (#0D1B2E) and teal (#1E8C8C) color scheme on white background. No photographs, purely diagrammatic." width="100%"}
+![Layered substrate diagram showing the Federal Modernization Program Governance OS as the operating layer beneath three consumer surfaces](../images/executive-briefs/governance-os-overview-image-01-layered-substrate-diagram-showin.png){#fig-governance-os-overview-image-01 fig-alt="Bottom layer Canon (SSOT) labeled with \"src/uiao/canon/\" and a small registry icon. Middle layer Substrate Services with three lanes — Schema-First Governance, Drift Engine (5-class taxonomy: SCHEMA / SEMANTIC / PROVENANCE / AUTHZ / IDENTITY), Evidence Chain (deterministic OSCAL emission). Top layer Consumer Surfaces — three pillars: Identity Operations, Compliance Reporting, Modernization Programs. Each top-layer pillar reaches down with arrows to the substrate services. Clean engineering blueprint style, dark navy (#0D1B2E) and teal (#1E8C8C) color scheme on white background. No photographs, purely diagrammatic." width="100%"}
 
-## What "governance OS" means in the modernization program
+## What "governance OS" means in the Federal Modernization Program
 
-the modernization program operates underneath implementation tooling rather than alongside it.
+The Federal Modernization Program operates underneath implementation tooling rather than alongside it.
 Three substrate-wide principles, declared in
 [`substrate-manifest.yaml`](../../../src/uiao/canon/substrate-manifest.yaml)
-(the modernization program_200), define the operating model:
+(FMP_200), define the operating model:
 
 1. **Single Source of Truth (SSOT).** Canonical governance artifacts under
    `src/uiao/canon/` define structure, policy intent, and registry authority
@@ -67,7 +67,7 @@ The substrate already enforces the operating model in CI:
   `substrate-drift.yml`.
 - **Adapter taxonomy.** Every adapter declares `class` (modernization /
   conformance) × `mission-class` (identity / telemetry / policy / enforcement
-  / integration) per the modernization program_003, registered in
+  / integration) per FMP_003, registered in
   `adapter-registry.yaml` or `modernization-registry.yaml` and validated by
   `adapter-conformance.yml`.
 - **Evidence pipeline.** OSCAL-native SSP, POA&M, KSI, and Component
@@ -86,11 +86,11 @@ The substrate already enforces the operating model in CI:
 | Continuous event-time evidence capture | **TARGET** |
 
 For the authoritative shipped-vs-target view, see the
-the modernization program Substrate Status page.
+The Federal Modernization Program Substrate Status page.
 
 ## Where to go deeper
 
-- **the modernization program Governance OS whitepaper** —
+- **The Federal Modernization Program Governance OS whitepaper** —
   the long-form treatment of the operating model summarized here.
 - **Architecture Series — Six-Plane Architecture** —
   how the substrate decomposes into planes.
@@ -101,7 +101,7 @@ the modernization program Substrate Status page.
 
 ## Leadership takeaway
 
-the modernization program delivers a disciplined governance operating model **today**:
+The Federal Modernization Program delivers a disciplined governance operating model **today**:
 schema-enforced canon, drift detection for shipped classes, a defined adapter
 taxonomy, OSCAL-native evidence, and CI gates that block provenance and
 structural regressions before merge. The same substrate defines target-state

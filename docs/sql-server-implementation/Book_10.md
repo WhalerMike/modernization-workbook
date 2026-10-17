@@ -1,7 +1,7 @@
 ---
 title: "Implementation Book 10 — Certificate Discovery for SQL Server's ADCS Dependencies"
-subtitle: "Run the real Spec3-D1.10 certificate audit to find SQL Server's three ADCS dependencies — TLS, certificate-mapped logins, and CBA as the NTLM-replacement posture — extract and sequence them with New-the modernization programSqlCertificatePlan, before any ADCS decommission date is set"
-description: "How to discover, ahead of an ADCS decommission, the certificate dependencies that break SQL Server if the certificate authority is removed without a replacement. Documents the shipped Spec3-D1.10 Get-CertBasedAuthAudit audit with its real parameters, the six analysis sections, and its machine/user-certificate and PKI output schema, then New-the modernization programSqlCertificatePlan — which extracts SQL Server's three dependency classes from that output and sequences the dependency-ordered CA-replacement (CBA-issuance) bridge — and the general PKI planner New-the modernization programPKIMigrationPlan. Analytical — the directory modernization program §3.3 marks the ADCS-to-Cloud-PKI transformation Not Yet Defined and no normative ADR governs it, so every emitted action is review-required."
+subtitle: "Run the real Spec3-D1.10 certificate audit to find SQL Server's three ADCS dependencies — TLS, certificate-mapped logins, and CBA as the NTLM-replacement posture — extract and sequence them with New-FMPSqlCertificatePlan, before any ADCS decommission date is set"
+description: "How to discover, ahead of an ADCS decommission, the certificate dependencies that break SQL Server if the certificate authority is removed without a replacement. Documents the shipped Spec3-D1.10 Get-CertBasedAuthAudit audit with its real parameters, the six analysis sections, and its machine/user-certificate and PKI output schema, then New-FMPSqlCertificatePlan — which extracts SQL Server's three dependency classes from that output and sequences the dependency-ordered CA-replacement (CBA-issuance) bridge — and the general PKI planner New-FMPPKIMigrationPlan. Analytical — the directory modernization program §3.3 marks the ADCS-to-Cloud-PKI transformation Not Yet Defined and no normative ADR governs it, so every emitted action is review-required."
 doc-type: sql-server-implementation-book
 audience: [Technical, Customer]
 family: sql-server-implementation
@@ -17,7 +17,7 @@ lifecycle_review: 2027-01-01
 # Implementation Book 10 — Certificate Discovery for SQL Server's ADCS Dependencies
 :::
 
-![Map the SQL ↔ ADCS dependency chain before retiring the certificate authority: audit which SQL surfaces depend on it, plan their migration, and sequence PKI so no dependent loses its issuer.](images/book10-image-01-certificate-dependencies.png){#fig-impl-book10 fig-alt="A schematic on a white background. A top row flows left to right under teal arrows: Spec3-D1.10-Get-CertBasedAuthAudit (read-only / analytical), New-the modernization programSqlCertificatePlan (derive), and New-the modernization programPKIMigrationPlan (sequence retirement). Below, a navy 'ADCS / PKI certificate authority' node fans out by red arrows to three red-bordered dependent boxes: 'TLS / Force Encryption — SQL endpoint certificate', 'certificate-based logins — service / app authentication', and 'Always Encrypted / TDE — data-protection keys'. Federal navy, teal and red palette; no photographs." width="100%"}
+![Map the SQL ↔ ADCS dependency chain before retiring the certificate authority: audit which SQL surfaces depend on it, plan their migration, and sequence PKI so no dependent loses its issuer.](images/book10-image-01-certificate-dependencies.png){#fig-impl-book10 fig-alt="A schematic on a white background. A top row flows left to right under teal arrows: Spec3-D1.10-Get-CertBasedAuthAudit (read-only / analytical), New-FMPSqlCertificatePlan (derive), and New-FMPPKIMigrationPlan (sequence retirement). Below, a navy 'ADCS / PKI certificate authority' node fans out by red arrows to three red-bordered dependent boxes: 'TLS / Force Encryption — SQL endpoint certificate', 'certificate-based logins — service / app authentication', and 'Always Encrypted / TDE — data-protection keys'. Federal navy, teal and red palette; no photographs." width="100%"}
 
 ::: {.callout-tip}
 ## Download this book
@@ -56,17 +56,17 @@ It runs six analysis sections: PKI infrastructure inventory (Enterprise root/sub
 
 ### Output schema
 
-Under `-OutputPath`: `the modernization program_Spec3_D1.10_CertBasedAuthAudit_<domain>_<timestamp>.json` (summary + PKI infra + the certificate arrays), plus `*_machines.csv` and `*_users.csv`. Machine records carry the `userCertificate` EKU set (Client Auth, Server Auth, IPsec, 802.1X), issuer, template, and expiration. User records carry `AuthenticationType`, **`SmartCardRequired`** (from the UAC `SMARTCARD_REQUIRED` bit), `AltSecIdentityCount` (the `altSecurityIdentities` cert-to-user binding), `HasSmartCardLogon`, and a `MigrationPath` (smart card → Entra CBA / FIDO2 / Windows Hello). The summary counts smart-card-required and certificate-based users and the smart-card-capable templates.
+Under `-OutputPath`: `FMP_Spec3_D1.10_CertBasedAuthAudit_<domain>_<timestamp>.json` (summary + PKI infra + the certificate arrays), plus `*_machines.csv` and `*_users.csv`. Machine records carry the `userCertificate` EKU set (Client Auth, Server Auth, IPsec, 802.1X), issuer, template, and expiration. User records carry `AuthenticationType`, **`SmartCardRequired`** (from the UAC `SMARTCARD_REQUIRED` bit), `AltSecIdentityCount` (the `altSecurityIdentities` cert-to-user binding), `HasSmartCardLogon`, and a `MigrationPath` (smart card → Entra CBA / FIDO2 / Windows Hello). The summary counts smart-card-required and certificate-based users and the smart-card-capable templates.
 
 ### What D1.10 does and does not give you
 
 D1.10 is an **AD-wide** certificate audit — machine and user certificates, smart cards, PKI infrastructure, LDAPS on DCs. It captures the issuing CA for each certificate, which is exactly the signal needed to know *what depends on ADCS*. It does **not** reach into a SQL Server instance to enumerate the engine's bound TLS certificate or its type-C certificate-mapped logins — those live in the instance's certificate store and in `master`, not in AD.
 
-**`New-the modernization programSqlCertificatePlan`** (`tools/powershell/the modernization programSqlServerMigration/`) is the SQL-specific extraction. It reads the D1.10 output and isolates the three dependencies SQL Server has on ADCS — `tls_server_cert` (scoped to SQL hosts via `-SqlHostFilter`), `certificate_mapped_login`, and `cba_posture` (the NTLM-replacement readiness) — then derives the dependency-ordered CA-replacement sequence (roots before issuing CAs), the CBA-issuance bridge. Every record is `requires_review`; the function is analytical and changes nothing.
+**`New-FMPSqlCertificatePlan`** (`tools/powershell/FMPSqlServerMigration/`) is the SQL-specific extraction. It reads the D1.10 output and isolates the three dependencies SQL Server has on ADCS — `tls_server_cert` (scoped to SQL hosts via `-SqlHostFilter`), `certificate_mapped_login`, and `cba_posture` (the NTLM-replacement readiness) — then derives the dependency-ordered CA-replacement sequence (roots before issuing CAs), the CBA-issuance bridge. Every record is `requires_review`; the function is analytical and changes nothing.
 
 ```powershell
-Import-Module ./tools/powershell/the modernization programSqlServerMigration
-New-the modernization programSqlCertificatePlan -CertAuditPath .\output\*CertBasedAuthAudit*.json -SqlHostFilter 'SQL' -OutputPath .\output\sql-cert-plan.json
+Import-Module ./tools/powershell/FMPSqlServerMigration
+New-FMPSqlCertificatePlan -CertAuditPath .\output\*CertBasedAuthAudit*.json -SqlHostFilter 'SQL' -OutputPath .\output\sql-cert-plan.json
 ```
 
 Reading the engine's *bound* TLS certificate and its type-C certificate-mapped logins requires a live connection into the instance, which this module deliberately never opens (the same no-SQL-connection doctrine as Books 05 and 07). Those remain a read-only, in-engine step — capture their output and feed it alongside the D1.10 audit:
@@ -84,7 +84,7 @@ WHERE   sp.type = 'C';
 
 ## Step 2 — Map the audit to SQL Server's three dependencies
 
-Narrative Book 10 Chapter 1 names three distinct SQL Server capabilities that depend on ADCS-issued certificates. `New-the modernization programSqlCertificatePlan` classifies the D1.10 output (the issuing CA on every certificate) into these three, with the in-engine reads above supplying the bound-certificate detail:
+Narrative Book 10 Chapter 1 names three distinct SQL Server capabilities that depend on ADCS-issued certificates. `New-FMPSqlCertificatePlan` classifies the D1.10 output (the issuing CA on every certificate) into these three, with the in-engine reads above supplying the bound-certificate detail:
 
 | Dependency | What it is | What breaks if ADCS is decommissioned first | Migration direction |
 |---|---|---|---|
@@ -94,7 +94,7 @@ Narrative Book 10 Chapter 1 names three distinct SQL Server capabilities that de
 
 ## Step 3 — Order the CA-migration dependencies
 
-CAs carry parent/child trust edges — an issuing CA depends on its root. The shipped **`New-the modernization programPKIMigrationPlan`** (in [`tools/powershell/the modernization programPlanGenerators/`]( modernization programPlanGenerators)) derives a deterministic, dependency-ordered migration sequence from a PKI assessment envelope:
+CAs carry parent/child trust edges — an issuing CA depends on its root. The shipped **`New-FMPPKIMigrationPlan`** (in [`tools/powershell/FMPPlanGenerators/`]( modernization programPlanGenerators)) derives a deterministic, dependency-ordered migration sequence from a PKI assessment envelope:
 
 | Parameter | Purpose |
 |---|---|
@@ -104,8 +104,8 @@ CAs carry parent/child trust edges — an issuing CA depends on its root. The sh
 It topologically orders the CAs (**root before issuing**) and **flags cycles and cross-domain dependencies as blockers** — exactly the cross-domain entanglement Book 02 surfaces. The plan it emits is a sequence of `migrate_ca` steps plus a blocker list, sealed as a derived-from-assessment envelope.
 
 ```powershell
-Import-Module ./tools/powershell/the modernization programPlanGenerators
-New-the modernization programPKIMigrationPlan -AssessmentPath .\output\pki-assessment.json -OutputPath .\output
+Import-Module ./tools/powershell/FMPPlanGenerators
+New-FMPPKIMigrationPlan -AssessmentPath .\output\pki-assessment.json -OutputPath .\output
 ```
 
 This plan is the CA-sequencing skeleton; it does not decide the replacement CA or the enrollment mechanism — that is the decision the missing ADCS-migration ADR must make.
@@ -116,8 +116,8 @@ The three dependencies converge on one question the audit makes concrete: **does
 
 ## Safety
 
-This entire book is **read-only**: the D1.10 audit reads AD and (with `-IncludePKIAudit`) CA configuration; the in-engine queries are inventory reads; `New-the modernization programSqlCertificatePlan` and `New-the modernization programPKIMigrationPlan` derive over captured output and emit plans. Nothing here issues, binds, or revokes a certificate, and nothing decommissions a CA — those are governed actions awaiting the ADCS-migration ADR.
+This entire book is **read-only**: the D1.10 audit reads AD and (with `-IncludePKIAudit`) CA configuration; the in-engine queries are inventory reads; `New-FMPSqlCertificatePlan` and `New-FMPPKIMigrationPlan` derive over captured output and emit plans. Nothing here issues, binds, or revokes a certificate, and nothing decommissions a CA — those are governed actions awaiting the ADCS-migration ADR.
 
 ---
 
-*Companion to narrative Book 10. Discovery script-backed: `tools/discovery/Spec3-D1.10`; SQL-specific extraction + CA-replacement sequence via `tools/powershell/the modernization programSqlServerMigration` (`New-the modernization programSqlCertificatePlan`); general PKI sequencing via `tools/powershell/the modernization programPlanGenerators` (`New-the modernization programPKIMigrationPlan`). Analytical — no normative ADCS-migration ADR exists, so every emitted action is review-required. Canon: the directory modernization program §3.3, the program decision.*
+*Companion to narrative Book 10. Discovery script-backed: `tools/discovery/Spec3-D1.10`; SQL-specific extraction + CA-replacement sequence via `tools/powershell/FMPSqlServerMigration` (`New-FMPSqlCertificatePlan`); general PKI sequencing via `tools/powershell/FMPPlanGenerators` (`New-FMPPKIMigrationPlan`). Analytical — no normative ADCS-migration ADR exists, so every emitted action is review-required. Canon: the directory modernization program §3.3, the program decision.*

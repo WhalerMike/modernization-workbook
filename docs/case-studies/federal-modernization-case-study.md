@@ -37,7 +37,7 @@ spanning identity, cloud boundary, telemetry, and zero-trust
 controls. The program touches every concern in the
 Executive Governance Series:
 fragmented identity, uncorrelated telemetry, point-in-time evidence,
-boundary opacity. the modernization program's intervention is structural — adopting the
+boundary opacity. The Federal Modernization Program's intervention is structural — adopting the
 substrate as the governance OS underneath the existing tool stack
 rather than replacing tools individually.
 
@@ -57,7 +57,7 @@ infeasible.
 - Telemetry from 20+ tools, normalized partially in a SIEM.
 - Compliance findings backlog with multi-year tail.
 
-## the modernization program intervention pattern
+## The Federal Modernization Program intervention pattern
 
 ### Phase 1 — substrate adoption
 
@@ -163,7 +163,7 @@ is documented when reviewed material is available.
 
 ## Related documents
 
-- Whitepaper — the modernization program Governance OS
+- Whitepaper — the Federal Modernization Program Governance OS
 - Executive Governance Series
 - [Identity Case Study](identity-modernization-case-study.md)
 - [Cloud Boundary Case Study](cloud-boundary-case-study.md)

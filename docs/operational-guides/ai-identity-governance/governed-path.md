@@ -1,6 +1,6 @@
 ---
 title: "Federal AI Identity Governance — Governed Path"
-subtitle: "AI system identity records bound to the organizational-attribute model, the drift engine, and the ATO reciprocity model — the the modernization program-managed path"
+subtitle: "AI system identity records bound to the organizational-attribute model, the drift engine, and the ATO reciprocity model — the FMP-managed path"
 doc-type: operational-guide
 audience: [Customer, Operator, Technical]
 author: Michael Stratton
@@ -20,7 +20,7 @@ lifecycle_review: 2026-12-18
 
 # Federal AI Identity Governance — Governed Path {.unnumbered}
 
-This path extends the manual path with the modernization program's the organizational-attribute model
+This path extends the manual path with the Federal Modernization Program's the organizational-attribute model
 governance substrate. The same scripts run; the same findings are produced.
 What changes is that each finding is bound to a canonical the organizational-attribute model record, routed
 through the drift engine (the program decision), and reconciled against the ATO reciprocity
@@ -39,8 +39,8 @@ first time your agency has applied identity governance to its AI inventory.
 
 In addition to the manual path prerequisites:
 
-- the modernization program substrate deployed with the `ai-inventory-governance` SaaS adapter
-  activated (see §Activation below), **or** the modernization program installed locally with
+- The Federal Modernization Program substrate deployed with the `ai-inventory-governance` SaaS adapter
+  activated (see §Activation below), **or** the Federal Modernization Program installed locally with
   `src/uiao/governance/ai_inventory/` package
 - the organizational-attribute model codebook populated with your agency's bureau hierarchy (the program decision)
 - `sailpoint-machine-identity` adapter slot promoted from `reserved` to
@@ -52,28 +52,28 @@ In addition to the manual path prerequisites:
 
 | Manual path | Governed path addition |
 |---|---|
-| CSV scan → findings report | Findings ingested as `Finding` objects into the modernization program drift engine |
+| CSV scan → findings report | Findings ingested as `Finding` objects into the Federal Modernization Program drift engine |
 | the organizational-attribute model derived as a label | the organizational-attribute model bound to the program decision codebook; validated against the OrgTree registry |
 | ATO gap flagged in report | ATO gap cross-walked against the program decision reciprocity records; finding routed to AO |
 | Unowned system listed | Owner assignment workflow triggered via the program decision governance review queue |
 | Annual manual re-scan | Annual inventory vintage triggers automatic re-scan; delta findings surfaced |
-| Shadow AI: manual lookup | Shadow AI compared against the modernization program machine-identity registry automatically |
+| Shadow AI: manual lookup | Shadow AI compared against the Federal Modernization Program machine-identity registry automatically |
 
 ---
 
 ## Activation
 
-### Option A — the modernization program adapter (recommended for the modernization program deployers)
+### Option A — the Federal Modernization Program adapter (recommended for the Federal Modernization Program deployers)
 
 The `ai-inventory-governance` conformance adapter in `adapter-registry.yaml`
-binds the scanner to the the modernization program governance substrate. To activate:
+binds the scanner to the Federal Modernization Program governance substrate. To activate:
 
 1. Submit a governance-board request to promote the slot from `reserved` to
    `active` (follow the program decision adapter activation lifecycle).
 2. Configure the OMB inventory URL or supply the CSV path in the adapter config.
 3. Set the `agency_filter` list to your agency abbreviation(s).
 4. The adapter runs annually on OMB inventory publication, and on-demand via
-   the the modernization program CLI:
+   the Federal Modernization Program CLI:
 
 ```bash
 uiao ai-inventory scan \
@@ -103,7 +103,7 @@ decision = gate(result.findings)
 
 For each live AI system record, the governed path:
 
-1. Derives the the organizational-attribute model prefix from `agency + agency_bureau` (the modernization program_196 §2)
+1. Derives the the organizational-attribute model prefix from `agency + agency_bureau` (FMP_196 §2)
 2. Validates the prefix against the OrgTree codebook (the program decision)
 3. If the bureau exists in the codebook, stamps the AI system's machine-identity
    record with the full the organizational-attribute model value
@@ -141,8 +141,8 @@ The six AI drift classes extend the the program decision taxonomy:
 
 ## ATO reciprocity cross-walk (the program decision)
 
-The governed path cross-walks each `system_name_ato` value against the modernization program's ATO
-reciprocity registry (the modernization program_140, the program decision):
+The governed path cross-walks each `system_name_ato` value against the Federal Modernization Program's ATO
+reciprocity registry (FMP_140, the program decision):
 
 - **Match found**: the system inherits the platform ATO; no ATO gap finding
 - **Match not found + `have_ato = Yes`**: candidate for reciprocity registration
@@ -167,7 +167,7 @@ When OMB publishes the next-vintage inventory:
    governance review cycle
 
 The `inventory_vintage` field in `ScanResult` records the year; a staleness
-warning fires if the vintage is more than 13 months old (the modernization program_196 §6).
+warning fires if the vintage is more than 13 months old (FMP_196 §6).
 
 ---
 
@@ -202,7 +202,7 @@ for the proposed OMB schema-extension letter that accompanies this kit.
 
 ## Normative references
 
-- [`src/uiao/canon/specs/Spec4-AI-D1.1-AISystemIdentityRecord.md`](../../../../src/uiao/canon/specs/Spec4-AI-D1.1-AISystemIdentityRecord.md) — the modernization program_196 AI System Identity Record schema
-- [`src/uiao/canon/specs/Spec4-AI-D1.2-AISystemJMLLifecycle.md`](../../../../src/uiao/canon/specs/Spec4-AI-D1.2-AISystemJMLLifecycle.md) — the modernization program_197 AI System JML Lifecycle
+- [`src/uiao/canon/specs/Spec4-AI-D1.1-AISystemIdentityRecord.md`](../../../../src/uiao/canon/specs/Spec4-AI-D1.1-AISystemIdentityRecord.md) — FMP_196 AI System Identity Record schema
+- [`src/uiao/canon/specs/Spec4-AI-D1.2-AISystemJMLLifecycle.md`](../../../../src/uiao/canon/specs/Spec4-AI-D1.2-AISystemJMLLifecycle.md) — FMP_197 AI System JML Lifecycle
 - the program decision — Federal AI Use Case Governance
 - the program decision — AI System JML Lifecycle

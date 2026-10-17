@@ -1,12 +1,12 @@
 ---
-title: "the modernization program End User Training Guide"
+title: "The Federal Modernization Program End User Training Guide"
 subtitle: "Transition to modern authentication and cloud services"
 doc-type: training-guide
 audience: [Customer, End-User]
 author: Michael Stratton
 date: "April 21, 2026"
 status: Active
-canon-source: "inbox/Posted/the modernization program End User Training Guide.docx"
+canon-source: "inbox/Posted/FMP End User Training Guide.docx"
 repo-path: docs/customer-documents/operational-guides/end-user-training.qmd
 created-at: 2026-04-26
 updated-at: 2026-05-10
@@ -23,7 +23,7 @@ lifecycle_review: 2026-11-22
 
 **CONTROLLED \| GCC-MODERATE**
 
-the modernization program End User Training Guide
+The Federal Modernization Program End User Training Guide
 
 Your Transition to Modern Authentication and Cloud Services
 
@@ -609,23 +609,23 @@ Here are the key terms used in this guide, explained in plain language:
 
 ## Appendix B --- Cross-References
 
-The following companion documents are available in the the modernization program repository for IT administrators and technical staff. These provide deeper technical detail behind the user-facing changes described in this guide.
+The following companion documents are available in the Federal Modernization Program repository for IT administrators and technical staff. These provide deeper technical detail behind the user-facing changes described in this guide.
 
   -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
   **Document**                                 **Description**                                                                                                **Audience**
   -------------------------------------------- -------------------------------------------------------------------------------------------------------------- -------------------
-  **the modernization program Identity Modernization Guide**        Comprehensive guide for IT administrators managing the identity transition from Active Directory to Entra ID   IT Administrators
+  **The Federal Modernization Program Identity Modernization Guide**        Comprehensive guide for IT administrators managing the identity transition from Active Directory to Entra ID   IT Administrators
 
-  **the modernization program Conditional Access Policy Library**   Reference library for IT administrators configuring and managing Conditional Access policies                   IT Administrators
+  **The Federal Modernization Program Conditional Access Policy Library**   Reference library for IT administrators configuring and managing Conditional Access policies                   IT Administrators
 
-  **the modernization program Intune Policy Templates**             Templates and configuration guides for IT administrators managing device compliance through Intune             IT Administrators
+  **The Federal Modernization Program Intune Policy Templates**             Templates and configuration guides for IT administrators managing device compliance through Intune             IT Administrators
 
-  **the modernization program Operations Runbook**                  Day-to-day operational procedures for IT administrators handling identity, device, and access management       IT Administrators
+  **The Federal Modernization Program Operations Runbook**                  Day-to-day operational procedures for IT administrators handling identity, device, and access management       IT Administrators
   -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-All documents are maintained in the the modernization program repository: https://github.com/WhalerMike/uiao
+All documents are maintained in the Federal Modernization Program repository: https://github.com/WhalerMike/uiao
 
-**the modernization program End User Training Guide** --- Version 1.0.0 --- April 21, 2026
+**The Federal Modernization Program End User Training Guide** --- Version 1.0.0 --- April 21, 2026
 
 Author: Michael Stratton
 
@@ -639,7 +639,7 @@ Repository: https://github.com/WhalerMike/uiao
 
 ## Compliance Amendment — IT Staff Training, Records, and Phishing Simulation (`AT-3`, `AT-4`)
 
-This end-user material is complemented by the role-based requirements in the the modernization program Security Awareness and Training Program (`the modernization program_187`).
+This end-user material is complemented by the role-based requirements in the Federal Modernization Program Security Awareness and Training Program (`FMP_187`).
 
 ### IT staff security training (`AT-3`)
 

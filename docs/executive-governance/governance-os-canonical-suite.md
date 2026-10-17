@@ -1,12 +1,12 @@
 ---
-title: "the modernization program Governance OS — Full A-Z Canonical Document Suite"
+title: "The Federal Modernization Program Governance OS — Full A-Z Canonical Document Suite"
 subtitle: "Canonical front door for identity modernization"
 doc-type: canonical-suite
 audience: [Executive, Customer, Technical]
 author: Michael Stratton
 date: "April 2026"
 status: Active
-canon-source: ".claude/worktrees/relaxed-leakey-71169b/inbox/the modernization program Governance OS - Full A-Z Canonical Document Suite.docx"
+canon-source: ".claude/worktrees/relaxed-leakey-71169b/inbox/FMP Governance OS - Full A-Z Canonical Document Suite.docx"
 repo-path: docs/customer-documents/executive-governance-series/governance-os-canonical-suite.qmd
 created-at: 2026-04-26
 updated-at: 2026-04-26
@@ -21,7 +21,7 @@ tiers_adopted: [1]
 lifecycle_review: 2026-11-22
 ---
 
-**the modernization program GOVERNANCE OS**
+**The Federal Modernization Program GOVERNANCE OS**
 
 # Entra OrgTree Modernization Architecture --- Governance OS
 
@@ -40,13 +40,13 @@ lifecycle_review: 2026-11-22
 
 Canonical Front Door for Identity Modernization
 
-**the modernization program Governance OS**
+**The Federal Modernization Program Governance OS**
 
 April 2026 \| Full A--Z Canonical Document Suite
 
 # Section 1: Executive Summary
 
-The the modernization program Governance Operating System (Governance OS) is a complete, deterministic, drift-resistant operating system for identity modernization using Microsoft Entra ID within the M365 GCC-Moderate boundary. It provides every artifact, schema, decision tree, validation module, and operational runbook required to design, deploy, govern, and sustain a modern identity hierarchy---the OrgTree---without ambiguity, without discretionary interpretation, and without dependency on any single human actor.
+The Federal Modernization Program Governance Operating System (Governance OS) is a complete, deterministic, drift-resistant operating system for identity modernization using Microsoft Entra ID within the M365 GCC-Moderate boundary. It provides every artifact, schema, decision tree, validation module, and operational runbook required to design, deploy, govern, and sustain a modern identity hierarchy---the OrgTree---without ambiguity, without discretionary interpretation, and without dependency on any single human actor.
 
 The OrgTree is a hierarchical identity structure that replaces legacy Organizational Unit (OU)-based Active Directory models with a portable, attribute-driven hierarchy encoded as independently-validated facets in Entra ID extension attributes. Each identity object carries an the organizational-attribute model---a deterministic, codebook-validated set of facets (Region, Department, Division and the rest), plus a derived canonical path recomputed from them---that encodes its exact position in the organizational hierarchy. Dynamic groups, Administrative Units, role-based delegation, Conditional Access policies, and telemetry all derive from this single canonical attribute, eliminating structural duplication and ensuring that every governance decision is traceable to a single source of truth.
 
@@ -102,7 +102,7 @@ The governance perimeter is defined by the M365 GCC-Moderate SaaS boundary. Ever
 
 # Section 3: Governance Principles
 
-Per [the program decision], the Governance OS declares **3 universal substrate principles + 3 tier-specific principles**, canonically declared in [`src/uiao/canon/substrate-manifest.yaml`] (the modernization program_200). The substrate manifest is the code SSOT.
+Per [the program decision], the Governance OS declares **3 universal substrate principles + 3 tier-specific principles**, canonically declared in [`src/uiao/canon/substrate-manifest.yaml`] (FMP_200). The substrate manifest is the code SSOT.
 
 ## 3.1 Universal Substrate Principles
 
@@ -120,9 +120,9 @@ These become operational only at the named [the program decision] tier (inclusiv
 
 | Principle | Applies at tier | Rationale for tier scope |
 |---|---|---|
-| **Two-Brain Execution** — Copilot governs (canonical review, policy enforcement, validation); Execution Substrate executes (PowerShell, Graph API, tenant provisioning); governance logic and execution logic never co-mingle | **Tier 3+** (Active Substrate) | At Tiers 1–2 there is no active runtime to split between governance and execution. The principle becomes operational only when the modernization program writes agency state. |
-| **Boundary Enforcement** — No governance artifact, automation script, API call, or execution path may extend beyond the M365 GCC-Moderate SaaS boundary. Any artifact referencing an out-of-scope service is non-canonical and rejected at the validation gate (Appendix V) | **Tier 4+** (Active Services / Platform Server) | At Tiers 1–3, boundary is a documented scope; at Tier 4 it becomes an enforced runtime contract on agency-deployed the modernization program services. |
-| **Tenant Agnosticism** — All artifacts are portable across any M365 GCC-Moderate tenant. No tenant-specific identifiers, UPNs, or GUIDs. All environment values are injected at deployment time | **Tier 5** (Embedded Libraries) | At Tiers 1–4, the modernization program runs agency-side and may carry tenant-local context. At Tier 5, code shipped to third parties (PyPI, NuGet, adapter SDK) MUST be portable. |
+| **Two-Brain Execution** — Copilot governs (canonical review, policy enforcement, validation); Execution Substrate executes (PowerShell, Graph API, tenant provisioning); governance logic and execution logic never co-mingle | **Tier 3+** (Active Substrate) | At Tiers 1–2 there is no active runtime to split between governance and execution. The principle becomes operational only when the Federal Modernization Program writes agency state. |
+| **Boundary Enforcement** — No governance artifact, automation script, API call, or execution path may extend beyond the M365 GCC-Moderate SaaS boundary. Any artifact referencing an out-of-scope service is non-canonical and rejected at the validation gate (Appendix V) | **Tier 4+** (Active Services / Platform Server) | At Tiers 1–3, boundary is a documented scope; at Tier 4 it becomes an enforced runtime contract on agency-deployed the Federal Modernization Program services. |
+| **Tenant Agnosticism** — All artifacts are portable across any M365 GCC-Moderate tenant. No tenant-specific identifiers, UPNs, or GUIDs. All environment values are injected at deployment time | **Tier 5** (Embedded Libraries) | At Tiers 1–4, the Federal Modernization Program runs agency-side and may carry tenant-local context. At Tier 5, code shipped to third parties (PyPI, NuGet, adapter SDK) MUST be portable. |
 
 ## 3.3 Historical names ("Seven Non-Negotiable Principles")
 
@@ -322,7 +322,7 @@ is validated by
 [`codebook.schema.json`],
 and is loaded by the drift engine and every adapter at runtime. The
 narrative counterpart is
-[the modernization program_151]( modernization program_151_the organizational-attribute model_Codebook.md);
+[FMP_151]( modernization program_151_the organizational-attribute model_Codebook.md);
 the reader-facing walkthrough is the
 [the organizational-attribute model Codebook page](../reference-architecture/codebook.md).
 
@@ -1162,8 +1162,8 @@ The operator surface, and where it is maintained.
 
 ## Canonical Structure
 
-The `the modernization program.the organizational-attribute model` PowerShell module
-([`tools/powershell/the modernization program.the organizational-attribute model/`]( modernization program.the organizational-attribute model))
+The `FMP.the organizational-attribute model` PowerShell module
+([`tools/powershell/FMP.the organizational-attribute model/`]( modernization program.the organizational-attribute model))
 ships four functions, covered by Pester tests in CI:
 
 | Function | Does |
@@ -2799,7 +2799,7 @@ Terms are sorted alphabetically with definition, first-defined reference, and re
 
   Governance Layer                The topmost layer of the OrgTree architecture responsible for drift detection, enforcement testing, telemetry, SLA tracking, and provenance logging.                                                            Section 2              Layer Model, Drift Detection, Telemetry
 
-  Governance OS                   The complete operating system for identity modernization governance, comprising the master document and Appendices A through Z.                                                                                 Section 1              Canonical Corpus, OrgTree, the modernization program
+  Governance OS                   The complete operating system for identity modernization governance, comprising the master document and Appendices A through Z.                                                                                 Section 1              Canonical Corpus, OrgTree, the Federal Modernization Program
 
   Governance Steward              A designated role responsible for maintaining governance artifacts, reviewing changes, and ensuring canonical compliance.                                                                                       Appendix E             CODEOWNERS, Role, Owner
 
@@ -2881,7 +2881,7 @@ Terms are sorted alphabetically with definition, first-defined reference, and re
 
   Two-Brain Model                 The execution architecture (Principle 6) separating governance reasoning (Copilot) from execution (Chrome-Claude).                                                                                              Section 7              Copilot, Chrome-Claude, Instruction Set
 
-  the modernization program                            The organizational framework under which the Governance OS operates, providing the institutional context for identity modernization.                                                                            Title Block            Governance OS, OrgTree
+  The Federal Modernization Program                            The organizational framework under which the Governance OS operates, providing the institutional context for identity modernization.                                                                            Title Block            Governance OS, OrgTree
 
   Validation                      The process of verifying that a governance artifact or tenant configuration conforms to canonical schemas, codebooks, and governance rules.                                                                     Section 5              Test Suite, Schema, PowerShell Module
 
@@ -2910,6 +2910,6 @@ End of Document --- Entra OrgTree Modernization Architecture --- Governance OS
 
 Appendices A through Z --- Full Canonical Corpus
 
-**No --- the modernization program Governance OS**
+**No --- the Federal Modernization Program Governance OS**
 
-**NO --- the modernization program GOVERNANCE OS**
+**NO --- the Federal Modernization Program GOVERNANCE OS**

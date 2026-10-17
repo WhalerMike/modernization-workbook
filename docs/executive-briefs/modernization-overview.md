@@ -1,6 +1,6 @@
 ---
 title: "Executive Brief — Modernization Overview"
-subtitle: "the modernization program-anchored end-to-end modernization program arc for federal leadership"
+subtitle: "FMP-anchored end-to-end modernization program arc for federal leadership"
 doc-type: executive-brief
 status: Active
 canon-source:
@@ -17,15 +17,15 @@ lifecycle_review: 2026-11-22
 ![Three-phase program model (A/B/C)](../images/executive-briefs/modernization-overview-image-02-three-phase-program-model-abc.png){#fig-modernization-overview-image-02 fig-alt="Three-phase program model (A/B/C). Engineering blueprint style, neutral slate background, federal navy (#1F3A5F) for primary structural elements, teal (#1A9E8F) for secondary/integration elements, amber (#D4A017) for governance/audit/registry overlays, monospace labels for identifiers, no human figures, 16:9 landscape." width="100%"}
 
 
-![The manual compliance grind](../../images/canonical/the modernization program-FIG-002-manual-compliance-grind.png){fig-alt="Current-state pain of manual, fragmented compliance workflows across federal agencies — spreadsheets, memos, and disconnected reporting that the modernization program replaces with continuous, canon-anchored governance." width="100%"}
+![The manual compliance grind](../../images/canonical/FMP-FIG-002-manual-compliance-grind.png){fig-alt="Current-state pain of manual, fragmented compliance workflows across federal agencies — spreadsheets, memos, and disconnected reporting that the Federal Modernization Program replaces with continuous, canon-anchored governance." width="100%"}
 
-This executive brief summarizes what a **the modernization program-anchored modernization program**
+This executive brief summarizes what a **FMP-anchored modernization program**
 looks like end to end for a federal CIO/CISO audience, and the expected
 delivery arc from foundation to governance.
 
 ## Executive summary
 
-the modernization program modernization is an incremental, dependency-aware transformation that
+The Federal Modernization Program modernization is an incremental, dependency-aware transformation that
 starts with identity trust, extends into deterministic addressing and overlay
 controls, and matures into telemetry-driven management and governance. The
 program is structured to deliver mission value early while reducing long-tail
@@ -38,7 +38,7 @@ reserved planning entry) rather than maintaining per-brief adapter lists.
 
 ## The modernization arc (what changes first, and why)
 
-the modernization program sequencing is intentional:
+The Federal Modernization Program sequencing is intentional:
 
 1. **Identity-first** — establish authoritative identity context and policy
    enforcement anchors.
@@ -89,7 +89,7 @@ The program executes in three leadership-facing phases:
 
 ## FedRAMP 20x continuous authorization relationship
 
-the modernization program modernization directly supports FedRAMP 20x direction by shifting from
+The Federal Modernization Program modernization directly supports FedRAMP 20x direction by shifting from
 periodic, document-heavy authorization behavior to machine-assisted continuous
 assurance:
 
@@ -127,7 +127,7 @@ program maturity and avoid overstating implementation status.
 
 - **[Governance through Modernization whitepaper](../whitepapers/modernization-governance-whitepaper.md)** —
   the long-form program treatment.
-- **Operational Guide — the modernization program Modernization Program** —
+- **Operational Guide — the Federal Modernization Program Modernization Program** —
   the chapter-by-chapter delivery playbook.
 - **[Adapter Ecosystem Overview](adapter-ecosystem-overview.md)** — the
   modernization adapter set that executes the arc.

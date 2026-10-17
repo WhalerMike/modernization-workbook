@@ -1,7 +1,7 @@
 ---
 title: "Implementation Book 02 — Estate Discovery & the Consolidation Gate"
-subtitle: "The Phase-0 runbook for building the estate inventory and the retain / consolidate / retire classification that gates every later book — fused into one inventory by New-the modernization programEstateInventory"
-description: "How to assess and consolidate a twenty-year SQL Server estate before any login is touched. Documents the real discovery the audit family provides (Spec3-D1.8 instance enumeration, Spec1-D1.5 MSSQLSvc SPN trail), the broader Find-DbaInstance / SPN-trail / Azure Migrate sweep, and New-the modernization programEstateInventory — the shipped Phase-0 instrument that fuses those sources into one deduplicated inventory and applies the the program decision §1 retain / consolidate / retire gate the whole series depends on. Read-only discovery; consolidation execution is review-required."
+subtitle: "The Phase-0 runbook for building the estate inventory and the retain / consolidate / retire classification that gates every later book — fused into one inventory by New-FMPEstateInventory"
+description: "How to assess and consolidate a twenty-year SQL Server estate before any login is touched. Documents the real discovery the audit family provides (Spec3-D1.8 instance enumeration, Spec1-D1.5 MSSQLSvc SPN trail), the broader Find-DbaInstance / SPN-trail / Azure Migrate sweep, and New-FMPEstateInventory — the shipped Phase-0 instrument that fuses those sources into one deduplicated inventory and applies the the program decision §1 retain / consolidate / retire gate the whole series depends on. Read-only discovery; consolidation execution is review-required."
 doc-type: sql-server-implementation-book
 audience: [Technical, Customer]
 family: sql-server-implementation
@@ -17,7 +17,7 @@ lifecycle_review: 2027-01-01
 # Implementation Book 02 — Estate Discovery & the Consolidation Gate
 :::
 
-![New-the modernization programEstateInventory fuses instance discovery, the SPN inventory, and the authentication audit into one sealed read, producing the retain / consolidate / retire gate every later book operates on.](images/book02-image-01-estate-inventory.png){#fig-impl-book02 fig-alt="A schematic on a white background. On the left, three monospace source-read boxes — Find-DbaInstance, Spec1-D1.5-Get-KerberosSPNInventory, and Spec3-D1.8-Get-SQLServerAuthAudit — feed a teal arrow into a central ice-blue box labelled New-the modernization programEstateInventory (read-only, sealed envelope). A second teal arrow points to three stacked decision panels on the right: a teal 'Retain' band, a blue 'Consolidate' band, and a red 'Retire' band. Federal navy, teal, blue and red palette; no photographs." width="100%"}
+![New-FMPEstateInventory fuses instance discovery, the SPN inventory, and the authentication audit into one sealed read, producing the retain / consolidate / retire gate every later book operates on.](images/book02-image-01-estate-inventory.png){#fig-impl-book02 fig-alt="A schematic on a white background. On the left, three monospace source-read boxes — Find-DbaInstance, Spec1-D1.5-Get-KerberosSPNInventory, and Spec3-D1.8-Get-SQLServerAuthAudit — feed a teal arrow into a central ice-blue box labelled New-FMPEstateInventory (read-only, sealed envelope). A second teal arrow points to three stacked decision panels on the right: a teal 'Retain' band, a blue 'Consolidate' band, and a red 'Retire' band. Federal navy, teal, blue and red palette; no photographs." width="100%"}
 
 ::: {.callout-tip}
 ## Download this book
@@ -30,7 +30,7 @@ Companion to **narrative Book 02**. The narrative explains *why* you assess and 
 
 ::: {.callout-note}
 ## The Phase-0 instrument
-Narrative Book 02 Chapter 2 named the the program decision §1 **Phase 0** denominator as a gap: the authentication audit (`Spec3-D1.8`, Book 03) enumerates instances that are already known and measures their *auth posture*, but estate discovery runs earlier and casts wider to establish the **denominator**. That gap is now closed by **`New-the modernization programEstateInventory`** (`tools/powershell/the modernization programSqlServerMigration/`), which fuses the shipped discovery outputs into one deduplicated inventory and applies the retain / consolidate / retire gate. The individual instruments below remain the sources it consumes.
+Narrative Book 02 Chapter 2 named the the program decision §1 **Phase 0** denominator as a gap: the authentication audit (`Spec3-D1.8`, Book 03) enumerates instances that are already known and measures their *auth posture*, but estate discovery runs earlier and casts wider to establish the **denominator**. That gap is now closed by **`New-FMPEstateInventory`** (`tools/powershell/FMPSqlServerMigration/`), which fuses the shipped discovery outputs into one deduplicated inventory and applies the retain / consolidate / retire gate. The individual instruments below remain the sources it consumes.
 :::
 
 ## Why this book runs before everything else
@@ -72,15 +72,15 @@ setspn -T * -Q MSSQLSvc/* > .\output\estate-spn-trail.txt
 
 Microsoft's migration-assessment tooling (Azure Migrate dependency analysis, the MAP Toolkit, the Data Migration Assistant) is the third instrument: it captures workload, dependency, and version-compatibility data the first two cannot, and it is useful here for what it reveals about the estate regardless of any decision to land on Azure.
 
-### 1c — Fuse the sources into one inventory: `New-the modernization programEstateInventory`
+### 1c — Fuse the sources into one inventory: `New-FMPEstateInventory`
 
-No single instrument finds every instance, and run side by side they double-count the ones they all see. **`New-the modernization programEstateInventory`** (`tools/powershell/the modernization programSqlServerMigration/`) is the Phase-0 instrument that fuses them: it reads the shipped `Spec3-D1.8` discovery output and, optionally, the `Spec1-D1.5` SPN trail and a `Find-DbaInstance` export, keys every instance on host\instance so the same instance seen by multiple instruments deduplicates, and records a `discovered_by` set so coverage is auditable. It then applies the gate (Step 3) to each instance and emits a sealed, reproducible inventory envelope — the **denominator** the rest of the series operates on.
+No single instrument finds every instance, and run side by side they double-count the ones they all see. **`New-FMPEstateInventory`** (`tools/powershell/FMPSqlServerMigration/`) is the Phase-0 instrument that fuses them: it reads the shipped `Spec3-D1.8` discovery output and, optionally, the `Spec1-D1.5` SPN trail and a `Find-DbaInstance` export, keys every instance on host\instance so the same instance seen by multiple instruments deduplicates, and records a `discovered_by` set so coverage is auditable. It then applies the gate (Step 3) to each instance and emits a sealed, reproducible inventory envelope — the **denominator** the rest of the series operates on.
 
 ```powershell
-Import-Module ./tools/powershell/the modernization programSqlServerMigration
+Import-Module ./tools/powershell/FMPSqlServerMigration
 
 # Fuse the discovery outputs; classify; emit the sealed estate inventory.
-New-the modernization programEstateInventory `
+New-FMPEstateInventory `
     -AuthAuditPath    .\output\sqlserver-auth-audit.json `
     -SpnInventoryPath .\output\kerberos-spn-inventory.json `
     -FindInstancePath .\output\estate-find-dbainstance.csv `
@@ -157,8 +157,8 @@ The classified inventory is the surface Books 03–10 operate on. The forest-spa
 
 ## Safety
 
-Every script and query in this book is **read-only** discovery against live instances and AD. The shipped `Spec3-D1.8` (discovery-only) and `Spec1-D1.5` change nothing; `Find-DbaInstance`, `setspn -Q`, and the DMV queries are inventory reads; and `New-the modernization programEstateInventory` derives over their captured output without touching anything live. Nothing here alters a production security posture — that begins in Book 04 (Arc) and Book 05 (logins), and only on the **retain** / **target** set this book defines.
+Every script and query in this book is **read-only** discovery against live instances and AD. The shipped `Spec3-D1.8` (discovery-only) and `Spec1-D1.5` change nothing; `Find-DbaInstance`, `setspn -Q`, and the DMV queries are inventory reads; and `New-FMPEstateInventory` derives over their captured output without touching anything live. Nothing here alters a production security posture — that begins in Book 04 (Arc) and Book 05 (logins), and only on the **retain** / **target** set this book defines.
 
 ---
 
-*Companion to narrative Book 02 and the program decision §1. Script-backed: `tools/discovery/Spec3-D1.8` (discovery-only), `Spec1-D1.5`, and the fused Phase-0 instrument `New-the modernization programEstateInventory` (`tools/powershell/the modernization programSqlServerMigration/`). Canon: the program decision §1, the directory modernization program §3.2.*
+*Companion to narrative Book 02 and the program decision §1. Script-backed: `tools/discovery/Spec3-D1.8` (discovery-only), `Spec1-D1.5`, and the fused Phase-0 instrument `New-FMPEstateInventory` (`tools/powershell/FMPSqlServerMigration/`). Canon: the program decision §1, the directory modernization program §3.2.*

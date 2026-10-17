@@ -24,7 +24,7 @@ lifecycle_review: 2026-11-22
 ## Scope
 
 Cross-adapter specification for telemetry modernization under the
-the modernization program substrate. Covers the canonical claim shape, provenance envelope
+The Federal Modernization Program substrate. Covers the canonical claim shape, provenance envelope
 requirements, evidence pipeline integration, and the determinism
 guarantees telemetry adapters must honor. This spec is the substrate
 contract every telemetry-emitting adapter inherits, regardless of
@@ -37,7 +37,7 @@ mission-class.
 Every telemetry-emitting adapter inherits:
 
 - **`mission-class: telemetry`** (or telemetry as secondary concern).
-- **Provenance envelope per the modernization program_PP_001** — every claim carries the
+- **Provenance envelope per FMP_PP_001** — every claim carries the
   full envelope (claim_id, issuer_identity, source_classification,
   extraction_timestamp, transformation_chain, lineage_hash,
   schema_version, signature).

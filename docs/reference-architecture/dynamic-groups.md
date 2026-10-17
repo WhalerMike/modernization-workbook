@@ -26,7 +26,7 @@ Entra ID dynamic groups solve this — membership is computed from user attribut
 
 But dynamic groups without a governance library are just a different kind of sprawl. Instead of manually-managed groups drifting, you get hundreds of dynamic groups with inconsistent naming, overlapping membership rules, and no canonical source of truth.
 
-The Dynamic Group Library (the modernization program_152) is that source of truth.
+The Dynamic Group Library (FMP_152) is that source of truth.
 
 ## Three Composition Patterns
 
@@ -116,7 +116,7 @@ The OR / set form replaces Model A's regex hack and Branch/Node distinction. Bra
 | **Phantom Group** | `OrgTree-` group exists in tenant but not in library | MEDIUM | No |
 | **Missing Group** | Library entry has no corresponding tenant group | HIGH | Yes |
 | **Name Drift** | Correct rule, wrong name | LOW | Yes |
-| **Membership Drift** | Unexpected member count — root cause is facet values in the codebook (the modernization program_151) | MEDIUM | Fix at source |
+| **Membership Drift** | Unexpected member count — root cause is facet values in the codebook (FMP_151) | MEDIUM | Fix at source |
 
 ## Governance Rules
 
@@ -124,9 +124,9 @@ The OR / set form replaces Model A's regex hack and Branch/Node distinction. Bra
 2. **One rule per group** — no multi-rule groups; split into separate groups
 3. **Deterministic naming** — name derives from facet(s) + value(s) + purpose suffix (e.g., `OrgTree-IT-CyberOps-CA`)
 4. **Single-facet preferred** — multi-facet compositions only when the cross-facet selection is operationally distinct
-5. **Governed changes only** — additions/modifications follow the modernization program_155 Workflow 3
+5. **Governed changes only** — additions/modifications follow FMP_155 Workflow 3
 
 ::: {.callout-tip}
 ## Source
-Canonical narrative: [`the modernization program_152_Dynamic_Group_Library.md`]( modernization program_152_Dynamic_Group_Library.md). Facet definitions: [the organizational-attribute model Codebook](codebook.md). Per-facet drift classifier: [Drift Detection Walk-through](drift-walkthrough.md).
+Canonical narrative: [`FMP_152_Dynamic_Group_Library.md`]( modernization program_152_Dynamic_Group_Library.md). Facet definitions: [the organizational-attribute model Codebook](codebook.md). Per-facet drift classifier: [Drift Detection Walk-through](drift-walkthrough.md).
 :::

@@ -17,7 +17,7 @@ lifecycle_review: 2027-01-01
 # Implementation Book 06 — NTLM Detection & Remediation
 :::
 
-![NTLM is eliminated audit-first: detect where Kerberos falls back, plan the SPN fixes, then move the NTLM Group Policy through audit mode before enforcement so nothing is locked out by surprise.](images/book06-image-01-ntlm-remediation.png){#fig-impl-book06 fig-alt="A schematic on a white background. Three stages flow left to right under teal arrows: '1 · Audit (read-only)' listing Spec1-D1.4-Get-AuthenticationProtocolAudit and Spec3-D1.7-Get-SPNCollisionReport; '2 · Plan (derive)' showing New-the modernization programSpnRemediationPlan; and a red-bordered '3 · GPO (review-required)' showing Get-the modernization programNtlmGpoReport. Below, an amber band runs from 'Audit mode — log what would break' to a red 'Enforce — only after the audit report is clean and change-approved'. Federal navy, teal, amber and red palette; no photographs." width="100%"}
+![NTLM is eliminated audit-first: detect where Kerberos falls back, plan the SPN fixes, then move the NTLM Group Policy through audit mode before enforcement so nothing is locked out by surprise.](images/book06-image-01-ntlm-remediation.png){#fig-impl-book06 fig-alt="A schematic on a white background. Three stages flow left to right under teal arrows: '1 · Audit (read-only)' listing Spec1-D1.4-Get-AuthenticationProtocolAudit and Spec3-D1.7-Get-SPNCollisionReport; '2 · Plan (derive)' showing New-FMPSpnRemediationPlan; and a red-bordered '3 · GPO (review-required)' showing Get-FMPNtlmGpoReport. Below, an amber band runs from 'Audit mode — log what would break' to a red 'Enforce — only after the audit report is clean and change-approved'. Federal navy, teal, amber and red palette; no photographs." width="100%"}
 
 ::: {.callout-tip}
 ## Download this book
@@ -77,7 +77,7 @@ Finds the delegation configurations (unconstrained, KCD, RBCD) and NTLM dependen
 
 ::: {.callout-warning}
 ## These change production
-SPN edits, linked-server reconfiguration, and Group Policy changes alter live authentication. The remediation **planning** is now shipped and **audit-first**: `New-the modernization programSpnRemediationPlan` and `Get-the modernization programNtlmGpoReport` (`tools/powershell/the modernization programSqlServerMigration/`) emit reviewable plans and posture reports but enforce **nothing** — they run no `setspn` and set no GPO. The `setspn` and Group Policy patterns below remain the verified actions, to be run in a change window after the plan is reviewed. Validate each in audit mode, capture the planned change, and route it through change control and security review before enforcement.
+SPN edits, linked-server reconfiguration, and Group Policy changes alter live authentication. The remediation **planning** is now shipped and **audit-first**: `New-FMPSpnRemediationPlan` and `Get-FMPNtlmGpoReport` (`tools/powershell/FMPSqlServerMigration/`) emit reviewable plans and posture reports but enforce **nothing** — they run no `setspn` and set no GPO. The `setspn` and Group Policy patterns below remain the verified actions, to be run in a change window after the plan is reviewed. Validate each in audit mode, capture the planned change, and route it through change control and security review before enforcement.
 :::
 
 ### Register a missing `MSSQLSvc` SPN
@@ -100,7 +100,7 @@ setspn -D MSSQLSvc/sqlhost:1433 CONTOSO\old-or-disabled-account
 
 A cross-object-type or 2+-enabled-account collision (severity CRITICAL) must be reduced to a single enabled owner before Kerberos will succeed.
 
-**Available** — `New-the modernization programSpnRemediationPlan` (`tools/powershell/the modernization programSqlServerMigration/`) consumes the Spec3-D1.7 collision report and derives this minimal action set per collision: a `setspn -D` for each disabled/shadowing account, and — for a cross-object-type collision — a `setspn -D` of the user-object SPN plus a workload-identity migration recommendation (the program decision). It can scope to `MSSQLSvc` with `-ServiceClassFilter` and emit the safe `setspn -S` registration preview for a **missing** SPN. Every action carries `mutating=true` / `requires_review=true` and a `command_preview`; the plan is the deliverable — it runs no `setspn`. (Canon: the program decision, the program decision, the directory modernization program §3.2.)
+**Available** — `New-FMPSpnRemediationPlan` (`tools/powershell/FMPSqlServerMigration/`) consumes the Spec3-D1.7 collision report and derives this minimal action set per collision: a `setspn -D` for each disabled/shadowing account, and — for a cross-object-type collision — a `setspn -D` of the user-object SPN plus a workload-identity migration recommendation (the program decision). It can scope to `MSSQLSvc` with `-ServiceClassFilter` and emit the safe `setspn -S` registration preview for a **missing** SPN. Every action carries `mutating=true` / `requires_review=true` and a `command_preview`; the plan is the deliverable — it runs no `setspn`. (Canon: the program decision, the program decision, the directory modernization program §3.2.)
 
 ### Linked-server passthrough
 
@@ -114,7 +114,7 @@ NTLM elimination is sequenced, not a single cutover:
 - **Phase B — restrict NTLMv2** to documented exception groups via Group Policy.
 - **Phase C — full block** at the program's **2027-04-01** backstop (the program's own planning date — *not* an external FedRAMP or Microsoft mandate; see narrative Book 06 and the program decision).
 
-**Available** — `Get-the modernization programNtlmGpoReport` (`tools/powershell/the modernization programSqlServerMigration/`) reports each in-scope GPO's NTLM-reduction posture against this phased plan — classifying it `unconfigured` / `below_target` / `phase_b_ntlmv2_only` / `phase_c_full_block` from the LAN Manager authentication level and the Restrict NTLM settings — and records the 2027-04-01 date explicitly as the program backstop, not an external mandate. It is **read-only**: it audits posture and never calls `Set-GPRegistryValue` / `Set-GPO`, so the phased enforcement stays a reviewed change.
+**Available** — `Get-FMPNtlmGpoReport` (`tools/powershell/FMPSqlServerMigration/`) reports each in-scope GPO's NTLM-reduction posture against this phased plan — classifying it `unconfigured` / `below_target` / `phase_b_ntlmv2_only` / `phase_c_full_block` from the LAN Manager authentication level and the Restrict NTLM settings — and records the 2027-04-01 date explicitly as the program backstop, not an external mandate. It is **read-only**: it audits posture and never calls `Set-GPRegistryValue` / `Set-GPO`, so the phased enforcement stays a reviewed change.
 
 ## Verification & rollback
 
@@ -124,4 +124,4 @@ NTLM elimination is sequenced, not a single cutover:
 
 ---
 
-*Companion to narrative Book 06. Detection scripts: `tools/discovery/Spec1-D1.5`, `Spec3-D1.7`, `Spec1-D1.4`. Remediation planning (shipped, audit-first, enforces nothing): `tools/powershell/the modernization programSqlServerMigration/` (`New-the modernization programSpnRemediationPlan`, `Get-the modernization programNtlmGpoReport`); the `setspn` / GPO changes themselves stay review-required. Canon: the program decision, the program decision, the directory modernization program §3.2.*
+*Companion to narrative Book 06. Detection scripts: `tools/discovery/Spec1-D1.5`, `Spec3-D1.7`, `Spec1-D1.4`. Remediation planning (shipped, audit-first, enforces nothing): `tools/powershell/FMPSqlServerMigration/` (`New-FMPSpnRemediationPlan`, `Get-FMPNtlmGpoReport`); the `setspn` / GPO changes themselves stay review-required. Canon: the program decision, the program decision, the directory modernization program §3.2.*

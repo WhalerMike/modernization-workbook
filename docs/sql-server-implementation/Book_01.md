@@ -1,7 +1,7 @@
 ---
 title: "Implementation Book 01 — Prerequisites & Using This Companion"
 subtitle: "The toolchain, the evidence model, the safety model, and the run order the rest of the books assume — the executable counterpart to the narrative's conceptual opening"
-description: "Where to start with the SQL Server Identity Transformation Implementation Companion. Documents the shipped toolchain (the tools/discovery Spec family and the the modernization programSqlServerMigration / the modernization programIdentityAssessment / the modernization programPlanGenerators PowerShell modules), the provenance-sealed evidence-envelope model every function emits, the read-only-vs-review-required safety model, the offline/snapshot testing pattern, and the run order that chains Books 02-10. Read this first; it changes nothing."
+description: "Where to start with the SQL Server Identity Transformation Implementation Companion. Documents the shipped toolchain (the tools/discovery Spec family and the FMPSqlServerMigration / FMPIdentityAssessment / FMPPlanGenerators PowerShell modules), the provenance-sealed evidence-envelope model every function emits, the read-only-vs-review-required safety model, the offline/snapshot testing pattern, and the run order that chains Books 02-10. Read this first; it changes nothing."
 doc-type: sql-server-implementation-book
 audience: [Technical, Customer]
 family: sql-server-implementation
@@ -34,15 +34,15 @@ The narrative stays conceptual; this companion is the executable layer. Each lat
 
 | Book | Shipped automation | Tier |
 |---|---|---|
-| 02 — Estate discovery | `Spec3-D1.8` / `Spec1-D1.5` / `Find-DbaInstance`, fused by **`New-the modernization programEstateInventory`** | read-only |
+| 02 — Estate discovery | `Spec3-D1.8` / `Spec1-D1.5` / `Find-DbaInstance`, fused by **`New-FMPEstateInventory`** | read-only |
 | 03 — Authentication audit | `Spec3-D1.8-Get-SQLServerAuthAudit` (+ the `Spec*-D1.*` family) | read-only |
-| 04 — Arc & managed identity | `Test-the modernization programArcAgentStatus` / `…ManagedIdentityToken` / `…SqlExtension`, `Invoke-the modernization programArcOnboarding` | validate read-only; onboard review-required |
-| 05 — Login migration | `New-the modernization programEntraLoginMapping`, `New-the modernization programEntraLoginScript`, `Test-the modernization programLoginParallelRun` | derive / dry-run |
-| 06 — NTLM remediation | `Spec3-D1.7` / `Spec1-D1.5`, `New-the modernization programSpnRemediationPlan`, `Get-the modernization programNtlmGpoReport` | audit-first |
-| 07 — Groups & AUs | `Export-the modernization programEntraGroups`, **`New-the modernization programEntraGroupClassification`**, **`New-the modernization programGroupLoginScript`** | derive / dry-run |
-| 08 — Application chain | `Spec3-D1.9`, **`New-the modernization programAppConnectionPlan`** | derive (conn-string change in-config) |
-| 09 — Continuous monitoring | `Spec3-D1.8` (scheduled), **`New-the modernization programClosureRecord`**, **`Compare-the modernization programClosureRun`** | read-only |
-| 10 — Certificates | `Spec3-D1.10`, **`New-the modernization programSqlCertificatePlan`**, `New-the modernization programPKIMigrationPlan` | read-only / analytical |
+| 04 — Arc & managed identity | `Test-FMPArcAgentStatus` / `…ManagedIdentityToken` / `…SqlExtension`, `Invoke-FMPArcOnboarding` | validate read-only; onboard review-required |
+| 05 — Login migration | `New-FMPEntraLoginMapping`, `New-FMPEntraLoginScript`, `Test-FMPLoginParallelRun` | derive / dry-run |
+| 06 — NTLM remediation | `Spec3-D1.7` / `Spec1-D1.5`, `New-FMPSpnRemediationPlan`, `Get-FMPNtlmGpoReport` | audit-first |
+| 07 — Groups & AUs | `Export-FMPEntraGroups`, **`New-FMPEntraGroupClassification`**, **`New-FMPGroupLoginScript`** | derive / dry-run |
+| 08 — Application chain | `Spec3-D1.9`, **`New-FMPAppConnectionPlan`** | derive (conn-string change in-config) |
+| 09 — Continuous monitoring | `Spec3-D1.8` (scheduled), **`New-FMPClosureRecord`**, **`Compare-FMPClosureRun`** | read-only |
+| 10 — Certificates | `Spec3-D1.10`, **`New-FMPSqlCertificatePlan`**, `New-FMPPKIMigrationPlan` | read-only / analytical |
 
 There is no Book 01 *script*: the conceptual opening has no executable layer of its own. This book is the setup and orientation the executable books assume.
 
@@ -54,9 +54,9 @@ There is no Book 01 *script*: the conceptual opening has no executable layer of 
 - **The modules** are imported from the repo:
 
 ```powershell
-Import-Module ./tools/powershell/the modernization programSqlServerMigration     # Books 02, 04, 05, 06, 07, 08, 09, 10
-Import-Module ./tools/powershell/the modernization programIdentityAssessment     # Book 07 group / Conditional Access export
-Import-Module ./tools/powershell/the modernization programPlanGenerators         # Book 10 PKI sequencing
+Import-Module ./tools/powershell/FMPSqlServerMigration     # Books 02, 04, 05, 06, 07, 08, 09, 10
+Import-Module ./tools/powershell/FMPIdentityAssessment     # Book 07 group / Conditional Access export
+Import-Module ./tools/powershell/FMPPlanGenerators         # Book 10 PKI sequencing
 ```
 
 Live Azure/Graph operations (Arc onboarding, Graph/ARM writes) additionally require the relevant CLIs (`azcmagent`, `az`) or the `[api]` extra, and are reachable only behind an explicit opt-in switch — every function is fully exercisable **offline** without them.
@@ -76,7 +76,7 @@ Write each step's envelope under a dated output directory and keep it under vers
 The companion draws one bright line, enforced in code:
 
 - **Read-only / derivation functions run directly** — discovery, audits, classifications, plans, closure records, diffs. They read captured or live-read inputs and change nothing.
-- **State-changing functions are gated.** They either declare `SupportsShouldProcess` and default to a `-WhatIf`-style preview (e.g. `Invoke-the modernization programArcOnboarding`), or they generate a reviewable script/plan and execute nothing (e.g. `New-the modernization programEntraLoginScript`, `New-the modernization programGroupLoginScript`). The login/group emitters have **no `-Server` or `-Execute` surface at all** — they never open a SQL connection.
+- **State-changing functions are gated.** They either declare `SupportsShouldProcess` and default to a `-WhatIf`-style preview (e.g. `Invoke-FMPArcOnboarding`), or they generate a reviewable script/plan and execute nothing (e.g. `New-FMPEntraLoginScript`, `New-FMPGroupLoginScript`). The login/group emitters have **no `-Server` or `-Execute` surface at all** — they never open a SQL connection.
 - **No secrets are embedded.** Tenant, subscription, cloud, endpoints, and credentials are all parameters; sovereign clouds (GCC-Moderate / Azure Government) resolve the cloud-correct audience and fail closed on an unknown cloud.
 
 ::: {.callout-warning}
@@ -86,7 +86,7 @@ Anything that touches **service accounts, SQL logins, SPNs, GPOs, or the domain*
 
 ## Step 4 — The offline / snapshot pattern
 
-Every function accepts captured input — a JSON/CSV snapshot of a live read — so the entire chain is exercisable and testable without touching a live estate. Capture once (the `Spec*` audits, `Export-the modernization program*` exports, `azcmagent show -j`, an IMDS token), then run the derivations against the captured files. This is also how the Pester suite validates the module fully offline.
+Every function accepts captured input — a JSON/CSV snapshot of a live read — so the entire chain is exercisable and testable without touching a live estate. Capture once (the `Spec*` audits, `Export-FMP*` exports, `azcmagent show -j`, an IMDS token), then run the derivations against the captured files. This is also how the Pester suite validates the module fully offline.
 
 ## Step 5 — The run order
 
@@ -109,4 +109,4 @@ This book installs and orients; it runs nothing against a live estate. The first
 
 ---
 
-*Companion to narrative Book 01. Orientation for the toolchain in `tools/discovery/` and `tools/powershell/` (`the modernization programSqlServerMigration`, `the modernization programIdentityAssessment`, `the modernization programPlanGenerators`). Canon: the directory modernization program Transformation #7; the program decision, the program decision, the program decision, the program decision.*
+*Companion to narrative Book 01. Orientation for the toolchain in `tools/discovery/` and `tools/powershell/` (`FMPSqlServerMigration`, `FMPIdentityAssessment`, `FMPPlanGenerators`). Canon: the directory modernization program Transformation #7; the program decision, the program decision, the program decision, the program decision.*

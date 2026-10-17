@@ -25,6 +25,6 @@ compliance both ride on them.
 - **S.P.3** Canon sync (`sync_canon.py`)
 - **S.P.4** CI/CD (GitHub Actions)
 - **S.P.5** Customer Documents portal
-- **S.P.6** the modernization program CLI
+- **S.P.6** the Federal Modernization Program CLI
 - **S.P.7** PowerShell Module Reference
-- **S.P.8** the modernization program Academy (training platform)
+- **S.P.8** the Federal Modernization Program Academy (training platform)

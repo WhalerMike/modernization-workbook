@@ -1,5 +1,5 @@
 ---
-title: "Chapter 01 — The the modernization program Platform Server"
+title: "Chapter 01 — The Federal Modernization Program Platform Server"
 subtitle: "Windows Server 2025 + IIS + Gitea + Kerberos + enterprise PKI — the host that runs the transformation"
 doc-type: series-chapter
 series-id: client-server-to-hybrid-cloud
@@ -13,17 +13,17 @@ tiers_adopted: [1]
 lifecycle_review: 2026-11-22
 ---
 
-# Chapter 01 — The the modernization program Platform Server {.unnumbered}
+# Chapter 01 — The Federal Modernization Program Platform Server {.unnumbered}
 
 ![Five-role stack on one WS2025 host](images/01-platform-foundation-image-03-five-role-stack-on-one-ws2025-ho.png){#fig-01-platform-foundation-image-03 fig-alt="Five-role stack on one WS2025 host. Engineering blueprint style, neutral slate background, federal navy (#1F3A5F) for primary structural elements, teal (#1A9E8F) for secondary/integration elements, amber (#D4A017) for governance/audit/registry overlays, monospace labels for identifiers, no human figures, 16:9 landscape." width="100%"}
 
 
 *Windows Server 2025 + IIS + Gitea + Kerberos + enterprise PKI*
 
-![the modernization program Platform Server: five roles on one Windows Server 2025 host](images/01-platform-foundation-image-02-figure-1.png){#fig-01-platform-foundation-image-02 fig-alt="Single large labeled server rectangle titled \"the modernization program Platform Server — Windows Server 2025\" with five horizontal role-strip layers stacked inside from top to bottom: Gitea (canonical source-of-truth), MkDocs/Quarto rendering, Python automation runtime, PowerShell orchestration, Azure CLI + Arc agent. To the right an arrow points to a downstream cloud cluster labeled \"Azure / Entra / Intune target tenant\". Clean engineering blueprint style, dark navy (#0D1B2E) and teal (#1E8C8C) color scheme on white background. No photographs, purely diagrammatic." width="100%"}
+![the Federal Modernization Program Platform Server: five roles on one Windows Server 2025 host](images/01-platform-foundation-image-02-figure-1.png){#fig-01-platform-foundation-image-02 fig-alt="Single large labeled server rectangle titled \"the Federal Modernization Program Platform Server — Windows Server 2025\" with five horizontal role-strip layers stacked inside from top to bottom: Gitea (canonical source-of-truth), MkDocs/Quarto rendering, Python automation runtime, PowerShell orchestration, Azure CLI + Arc agent. To the right an arrow points to a downstream cloud cluster labeled \"Azure / Entra / Intune target tenant\". Clean engineering blueprint style, dark navy (#0D1B2E) and teal (#1E8C8C) color scheme on white background. No photographs, purely diagrammatic." width="100%"}
 
 ::: {.callout-important title="The architectural claim"}
-Everything the modernization program does — every analysis, every plan, every delivery, every
+Everything the Federal Modernization Program does — every analysis, every plan, every delivery, every
 evidence artifact — runs on one Windows Server 2025 host. Not a cluster,
 not a microservice mesh, not a cloud-native control plane. One host.
 
@@ -33,7 +33,7 @@ explains why.
 
 ## Why one host
 
-The the modernization program platform server is a governance substrate, not an application.
+The Federal Modernization Program platform server is a governance substrate, not an application.
 Governance substrates have properties that application servers don't:
 
 - **Single source of truth.** There is exactly one Gitea repo that holds
@@ -63,7 +63,7 @@ by fanning out the governance substrate.
 
 ## The five roles
 
-![Layered platform architecture diagram showing the the modernization program substrate stack from...](images/01-platform-foundation-image-01-layered-platform-architecture-di.png){#fig-01-platform-foundation-image-01 fig-alt="Layered platform architecture diagram showing the the modernization program substrate stack from..." width="100%"}
+![Layered platform architecture diagram showing the Federal Modernization Program substrate stack from...](images/01-platform-foundation-image-01-layered-platform-architecture-di.png){#fig-01-platform-foundation-image-01 fig-alt="Layered platform architecture diagram showing the Federal Modernization Program substrate stack from..." width="100%"}
 
 
 A single host plays five distinct roles. Each maps to a specific
@@ -94,7 +94,7 @@ HSTS, HTTP/2, and forwards to Gitea on loopback port 3000. IIS is
 also the AD LDAPS-aware auth landing point for Gitea's
 `source-config` lookups.
 
-This is the architecture endorsed by **the program decision (the modernization program Git Infrastructure)**
+This is the architecture endorsed by **the program decision (the Federal Modernization Program Git Infrastructure)**
 in `src/uiao/canon/adr/adr-041-uiao-git-infrastructure.md` — Gitea behind
 IIS reverse proxy. Option A (IIS + `git-http-backend` alone) was evaluated
 and rejected on auth integration + operational complexity grounds; the
@@ -116,7 +116,7 @@ memberships:
   and a **client certificate** for Arc + Intune enrollment.
 
 The bridges are not redundant. The AD side is read-only by policy (the
-`the modernization programADAssessment` PowerShell module runs with a least-privilege
+`FMPADAssessment` PowerShell module runs with a least-privilege
 account that has only the forest-reader rights it needs). The Entra
 side is read-write (the transformation engine's plans land there).
 
@@ -129,7 +129,7 @@ assessment, planning, and delivery actually happen.
   GroupPolicy, DnsServer, DhcpServer modules), Gitea API calls,
   local-file provenance writes, and the Pester test harness.
 - **Python** (3.12+) handles graph analysis (networkx for OU trees,
-  dependency graphs), OSCAL authoring, schema validation (the modernization program_158
+  dependency graphs), OSCAL authoring, schema validation (FMP_158
   JSON schema), and anything that benefits from a richer type
   system or library ecosystem than PowerShell provides.
 - **API integrators** wrap vendor APIs — Graph, ARM, Intune
@@ -143,14 +143,14 @@ with correlation IDs that tie back to a plan + commit.
 
 ### 5. Adapter dispatcher
 
-**DM_* and the modernization program_159 glue.** When the transformation engine needs to touch
+**DM_* and FMP_159 glue.** When the transformation engine needs to touch
 a specific AD-dependency category (PKI, RADIUS, LDAP, DHCP, etc.), it
 dispatches through the DM_* adapter interface. Each adapter
 implementation (Infoblox, ADCS, Entrust, Cisco ISE, etc.) plugs in
 behind the adapter interface; the engine never hard-codes vendor
 specifics.
 
-The adapter dispatcher is also how the modernization program stays vendor-pluggable. A new
+The adapter dispatcher is also how the Federal Modernization Program stays vendor-pluggable. A new
 IPAM vendor slots into DM_010 by implementing the adapter contract —
 no transformation-engine changes required.
 
@@ -186,7 +186,7 @@ governed by an adapter spec and a validation suite.
 
 | Integration | Direction | Adapter | Purpose |
 |---|---|---|---|
-| AD Forest (legacy) | Read-only | the modernization program_159 + the modernization programADAssessment | Forest/domain/OU discovery, GPO inventory, DNS/DHCP read, Kerberos SPN audit |
+| AD Forest (legacy) | Read-only | FMP_159 + FMPADAssessment | Forest/domain/OU discovery, GPO inventory, DNS/DHCP read, Kerberos SPN audit |
 | ADCS (legacy PKI) | Read-only | DM_020 | Template analysis, ESC1-8 vulnerability check, certificate inventory |
 | Entra ID | Read-write | adapter-specs/entra-id | User/group/device/AU/policy provisioning |
 | Intune | Read-write | adapter-specs/intune | Compliance policies, configuration profiles, Autopilot |
@@ -214,9 +214,9 @@ has the following operational properties:
   (NCR / IT / InfraOps), lives in an Administrative Unit
   (`AU-NCR-IT-InF-PLATFORM`), and is targeted by an the organizational-attribute model-scoped
   Intune compliance policy.
-- **Drift-monitored** — the modernization program_163 reports the server's state on a schedule
+- **Drift-monitored** — FMP_163 reports the server's state on a schedule
   (the organizational-attribute model, AU membership, Gitea team mapping, Arc heartbeat). Any
-  drift opens an SLA ticket per the modernization program_167.
+  drift opens an SLA ticket per FMP_167.
 - **DR-ready / HA-capable** — nightly backup to Azure Blob plus a standby
   replica with documented RPO/RTO targets; the baseline is manual
   failover to a cold standby, upgradable to automatic, witness-gated
@@ -234,7 +234,7 @@ Boundaries matter as much as capabilities:
   (or Arc-projected IaaS) so it survives tenant-level events.
 - **Not a product**. The platform server is a governed deployment of
   well-known components (WS2025, IIS, Gitea) configured together in a
-  specific, canonical way. There's no proprietary the modernization program binary to ship.
+  specific, canonical way. There's no proprietary the Federal Modernization Program binary to ship.
 - **Not a Copilot replacement.** Copilot is the governance brain. The
   platform server hosts the execution substrate + canon. Copilot still
   reviews and authorizes.
@@ -254,7 +254,7 @@ Pointers to the latest additions on both sides of the project:
 **New on this site** (whalermike.github.io/uiao)
 
 - Site index — top-level landing page; the "what's new" callouts surface here first.
-- Modernization canon — the modernization program_151–the modernization program_176 governance specs; new IDs land here.
+- Modernization canon — FMP_151–FMP_176 governance specs; new IDs land here.
 - [Customer document series](../../../series.html) — chapter additions to this series and its siblings.
 - [Operational dashboard](../../../operational-dashboard.html) — current readiness, drift, and coverage signals.
 
@@ -268,7 +268,7 @@ Pointers to the latest additions on both sides of the project:
 - **the program decision Substrate High Availability** — the hot-standby replica with
   automatic, split-brain-safe failover that extends the program decision for
   customers requiring sub-4-hour RTO.
-- **Modernization canon** — the modernization program_151–the modernization program_176
+- **Modernization canon** — FMP_151–FMP_176
   for governance, [DM_010..080](../../reference-architecture/directory-migration.md)
   for adapters.
 

@@ -22,7 +22,7 @@ lifecycle_review: 2027-02-21
 
 # PIM Self-Request with Approval {.unnumbered}
 
-**Series:** the modernization program Access Plane — F.5 Privileged Access Management ·
+**Series:** the Federal Modernization Program Access Plane — F.5 Privileged Access Management ·
 **Boundary:** GCC-Moderate · **Classification:** Controlled
 
 ::: {.callout-note title="What this guide is"}
@@ -1106,7 +1106,7 @@ the NIST OSCAL publication of SP 800-53 Rev 5.
 - NIST SP 800-53B Moderate baseline, OSCAL resolved profile — [`usnistgov/oscal-content`](https://github.com/usnistgov/oscal-content/blob/main/nist.gov/SP800-53/rev5/json/NIST_SP-800-53_rev5_MODERATE-baseline-resolved-profile_catalog.json)
 - [FedRAMP](https://www.fedramp.gov/) — for the current authorized Moderate baseline and its parameter values
 
-## Related the modernization program documents
+## Related the Federal Modernization Program documents
 
 - [Privileged Access Management — Entra PIM, JIT Access, and PAWs](../../compliance/Vol_III_Book_01_Privileged_Access_Management.md) — the whole-estate PAM programme this guide sits inside
 - [Conditional Access Library](conditional-access-library.md) — where the Step 5 policies belong

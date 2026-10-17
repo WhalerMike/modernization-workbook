@@ -1,12 +1,12 @@
 ---
-title: "the modernization program Master Project Plan"
+title: "The Federal Modernization Program Master Project Plan"
 subtitle: "Assessment phase through full modernization"
 doc-type: project-plan
 audience: [Customer, Executive]
 author: Michael Stratton
 date: "April 2026"
 status: Active
-canon-source: "inbox/Posted/the modernization program Master Project Plan — Assessment Phase Through Full Modernization.docx"
+canon-source: "inbox/Posted/FMP Master Project Plan — Assessment Phase Through Full Modernization.docx"
 repo-path: docs/customer-documents/operational-guides/program-management/master-project-plan.qmd
 created-at: 2026-04-26
 updated-at: 2026-04-26
@@ -31,14 +31,14 @@ lifecycle_review: 2026-11-22
 ![phase-gate review/approval flow](images/master-project-plan-image-04-phase-gate-reviewapproval-flow.png){#fig-master-project-plan-image-04 fig-alt="phase-gate review/approval flow. Engineering blueprint style, neutral slate background, federal navy (#1F3A5F) for primary structural elements, teal (#1A9E8F) for secondary/integration elements, amber (#D4A017) for governance/audit/registry overlays, monospace labels for identifiers, no human figures, 16:9 landscape." width="100%"}
 
 
-the modernization program Master Project Plan
+The Federal Modernization Program Master Project Plan
 
 **Assessment Phase Through Full Modernization**
 
-the modernization program Governance OS --- Capstone Planning Document
+The Federal Modernization Program Governance OS --- Capstone Planning Document
 
   ----------------------------------------------------------
-  **Document ID:**      the modernization program_013_Master_Project_Plan_v1.0
+  **Document ID:**      FMP_013_Master_Project_Plan_v1.0
   --------------------- ------------------------------------
   **Classification:**   Controlled
 
@@ -56,45 +56,45 @@ the modernization program Governance OS --- Capstone Planning Document
 +-------------------------------------------------------------------------------------------------------+
 | **Companion Document Corpus**                                                                         |
 |                                                                                                       |
-| This Master Project Plan references and unifies the following twelve the modernization program documents produced to date: |
+| This Master Project Plan references and unifies the following twelve the Federal Modernization Program documents produced to date: |
 |                                                                                                       |
 | > 1\. AD Computer Object Conversion Guide                                                             |
 | >                                                                                                     |
 | > 2\. Git on Windows Server 2025 with IIS --- Step-by-Step Implementation Guide                       |
 | >                                                                                                     |
-| > 3\. the modernization program Git Server --- Windows Server 2025 with IIS Implementation Guide                           |
+| > 3\. The Federal Modernization Program Git Server --- Windows Server 2025 with IIS Implementation Guide                           |
 | >                                                                                                     |
-| > 4\. the modernization program Git Infrastructure --- Architecture Decision Record                                        |
+| > 4\. The Federal Modernization Program Git Infrastructure --- Architecture Decision Record                                        |
 | >                                                                                                     |
-| > 5\. the modernization program Platform Server Build Guide --- Windows Server 2025 with Gitea and IIS                     |
+| > 5\. The Federal Modernization Program Platform Server Build Guide --- Windows Server 2025 with Gitea and IIS                     |
 | >                                                                                                     |
-| > 6\. the modernization program CLI and Operations Guide                                                                   |
+| > 6\. The Federal Modernization Program CLI and Operations Guide                                                                   |
 | >                                                                                                     |
-| > 7\. the modernization program Active Directory Interaction Guide                                                         |
+| > 7\. The Federal Modernization Program Active Directory Interaction Guide                                                         |
 | >                                                                                                     |
-| > 8\. the modernization program Identity Modernization Guide                                                               |
+| > 8\. The Federal Modernization Program Identity Modernization Guide                                                               |
 | >                                                                                                     |
-| > 9\. the modernization program DNS Modernization Guide                                                                    |
+| > 9\. The Federal Modernization Program DNS Modernization Guide                                                                    |
 | >                                                                                                     |
-| > 10\. the modernization program Read-Only AD Assessment Guide                                                             |
+| > 10\. The Federal Modernization Program Read-Only AD Assessment Guide                                                             |
 | >                                                                                                     |
-| > 11\. the modernization program vs Microsoft Native Tools --- Gap Analysis                                                |
+| > 11\. The Federal Modernization Program vs Microsoft Native Tools --- Gap Analysis                                                |
 | >                                                                                                     |
-| > 12\. the modernization program PKI Modernization Guide                                                                   |
+| > 12\. The Federal Modernization Program PKI Modernization Guide                                                                   |
 +-------------------------------------------------------------------------------------------------------+
 
 1\. Executive Summary
 
-The the modernization program Modernization Program transforms legacy Active Directory infrastructure into a cloud-native, governance-driven, drift-resistant operating model. The program spans five transformation pillars --- **Identity**, **Devices**, **DNS**, **PKI**, and **Server Management** --- and replaces fragile, GUI-configured infrastructure with machine-readable canonical artifacts managed through the the modernization program Governance OS pipeline backed by Gitea on Windows Server 2025.
+The Federal Modernization Program Modernization Program transforms legacy Active Directory infrastructure into a cloud-native, governance-driven, drift-resistant operating model. The program spans five transformation pillars --- **Identity**, **Devices**, **DNS**, **PKI**, and **Server Management** --- and replaces fragile, GUI-configured infrastructure with machine-readable canonical artifacts managed through the Federal Modernization Program Governance OS pipeline backed by Gitea on Windows Server 2025.
 
-This Master Project Plan is the capstone planning document for the the modernization program corpus. It defines the full lifecycle from initial assessment through steady-state governance, organized into **seven phases** with **48 milestones** across a **52-week execution timeline**. Every phase is milestone-gated: no phase transition occurs without formal review, documented approval, and artifact commitment to the the modernization program Gitea repository.
+This Master Project Plan is the capstone planning document for the Federal Modernization Program corpus. It defines the full lifecycle from initial assessment through steady-state governance, organized into **seven phases** with **48 milestones** across a **52-week execution timeline**. Every phase is milestone-gated: no phase transition occurs without formal review, documented approval, and artifact commitment to the Federal Modernization Program Gitea repository.
 
 The plan is structured around one central principle:
 
 +------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 | **Core Principle: Assessment Before Action**                                                                                                                                                                                                                                                                                                                                                                                       |
 |                                                                                                                                                                                                                                                                                                                                                                                                                                    |
-| No migration activity begins until the complete Active Directory forest has been inventoried, classified, and committed to the the modernization program Gitea governance pipeline as machine-readable canonical artifacts. Every modernization plan --- computer, identity, GPO, DNS, PKI --- is generated *from* assessment data, not designed in isolation. The assessment phase produces every planning artifact that drives all subsequent phases. |
+| No migration activity begins until the complete Active Directory forest has been inventoried, classified, and committed to the Federal Modernization Program Gitea governance pipeline as machine-readable canonical artifacts. Every modernization plan --- computer, identity, GPO, DNS, PKI --- is generated *from* assessment data, not designed in isolation. The assessment phase produces every planning artifact that drives all subsequent phases. |
 +------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 
 **Phase 1 (Assessment) is the most detailed phase in this document** because it produces every planning artifact that drives all subsequent phases. The assessment generates 23 canonical deliverables spanning 12 AD domains. These deliverables feed eight modernization plans that define the exact scope, sequence, and success criteria for every action taken in Phases 2 through 6. Without a complete, committed, and approved assessment, the program cannot proceed.
@@ -106,7 +106,7 @@ Program Timeline Summary
   ---------------------------------------------------------------------------------------------------------
   **Phase**   **Name**            **Duration**   **Weeks**   **Key Milestone**
   ----------- ------------------- -------------- ----------- ----------------------------------------------
-  **0**       Platform Build      3 weeks        1--3        the modernization program Gitea server operational
+  **0**       Platform Build      3 weeks        1--3        the Federal Modernization Program Gitea server operational
 
   **1**       Assessment          6 weeks        4--9        Full AD forest assessment committed to Gitea
 
@@ -122,11 +122,11 @@ Program Timeline Summary
   ---------------------------------------------------------------------------------------------------------
 
 +:--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------:+
-| **\[Diagram: the modernization program Program Timeline --- Gantt Overview\]**                                                                                                                        |
+| **\[Diagram: The Federal Modernization Program Program Timeline --- Gantt Overview\]**                                                                                                                        |
 |                                                                                                                                                                                  |
 | Seven-phase horizontal timeline showing parallel workstreams per pillar (Identity, Devices, DNS, PKI, Server), milestone diamonds at phase gates, and critical path highlighted. |
 |                                                                                                                                                                                  |
-| **Diagram ID: the modernization program-MPP-D001 \| Dimensions: 780 × 320 px**                                                                                                                        |
+| **Diagram ID: FMP-MPP-D001 \| Dimensions: 780 × 320 px**                                                                                                                        |
 +----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 
 2\. Program Governance Structure
@@ -185,7 +185,7 @@ Program Timeline Summary
 
 2.4 Artifact Management
 
-All project artifacts are committed to Gitea under the the modernization program repository. The governance pipeline ensures every artifact is versioned, reviewed, and traceable.
+All project artifacts are committed to Gitea under the Federal Modernization Program repository. The governance pipeline ensures every artifact is versioned, reviewed, and traceable.
 
 **Branch Strategy:**
 
@@ -198,7 +198,7 @@ All project artifacts are committed to Gitea under the the modernization program
 **Naming Convention:**
 
   --------------------------------------
-  the modernization program_NNN_Short_Title_vMajor.Minor.md
+  FMP_NNN_Short_Title_vMajor.Minor.md
 
   --------------------------------------
 
@@ -220,9 +220,9 @@ All project artifacts are committed to Gitea under the the modernization program
 
 3\. Phase 0: Platform Build (Weeks 1--3)
 
-**Objective:** Deploy the the modernization program Governance OS platform server --- Gitea on Windows Server 2025 behind IIS reverse proxy, integrated with Active Directory LDAP and Entra ID OAuth2 --- establishing the canonical repository that will govern all subsequent phases.
+**Objective:** Deploy the Federal Modernization Program Governance OS platform server --- Gitea on Windows Server 2025 behind IIS reverse proxy, integrated with Active Directory LDAP and Entra ID OAuth2 --- establishing the canonical repository that will govern all subsequent phases.
 
-**Reference Documents:** the modernization program Platform Server Build Guide --- Windows Server 2025 with Gitea and IIS (primary), the modernization program Git Infrastructure --- Architecture Decision Record, the modernization program CLI and Operations Guide, Git on Windows Server 2025 with IIS --- Step-by-Step Implementation Guide.
+**Reference Documents:** the Federal Modernization Program Platform Server Build Guide --- Windows Server 2025 with Gitea and IIS (primary), the Federal Modernization Program Git Infrastructure --- Architecture Decision Record, the Federal Modernization Program CLI and Operations Guide, Git on Windows Server 2025 with IIS --- Step-by-Step Implementation Guide.
 
 3.1 Phase 0 Milestone Table
 
@@ -237,7 +237,7 @@ All project artifacts are committed to Gitea under the the modernization program
 
   M-004    Entra ID OAuth2 configured       W3         Gitea SSO via Entra ID OIDC                            Entra SSO login verified; MFA enforced for all Gitea sessions           Identity Lead
 
-  M-005    the modernization program repo mirrored from GitHub   W3         https://github.com/WhalerMike/uiao mirrored to Gitea   All branches, tags, and full commit history verified                    Canon Steward
+  M-005    the Federal Modernization Program repo mirrored from GitHub   W3         https://github.com/WhalerMike/uiao mirrored to Gitea   All branches, tags, and full commit history verified                    Canon Steward
 
   M-006    Governance hooks deployed        W3         Pre-receive, post-receive, update hooks operational    FOUO rejection verified; branch protection enforced                     Canon Steward
 
@@ -259,7 +259,7 @@ M-001 --- Server Provisioned (Week 1)
 
   T-001.4    Install Windows Updates, enable automatic update schedule, configure WSUS if applicable          2h          T-001.3                Platform Server Build Guide §4
 
-  T-001.5    Create D:\\the modernization program directory structure, configure NTFS permissions for Gitea service account        1h          T-001.2                Platform Server Build Guide §5
+  T-001.5    Create D:\\FMP directory structure, configure NTFS permissions for Gitea service account        1h          T-001.2                Platform Server Build Guide §5
   -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 M-002 --- IIS + Gitea Operational (Week 2)
@@ -306,12 +306,12 @@ M-004 --- Entra ID OAuth2 Configured (Week 3)
   T-004.4    Validate SSO login flow, MFA prompt, and account linking between LDAP and OAuth2 identities   2h          T-004.2, T-004.3               Platform Server Build Guide §11
   -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-M-005 --- the modernization program Repo Mirrored (Week 3)
+M-005 --- the Federal Modernization Program Repo Mirrored (Week 3)
 
   -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
   **Task**   **Description**                                                                                **Hours**   **Dependencies**          **Reference**
   ---------- ---------------------------------------------------------------------------------------------- ----------- ------------------------- -----------------------------
-  T-005.1    Create the modernization program organization in Gitea with team structure (CanonStewards, Contributors, Readers)   1h          M-002                     CLI and Operations Guide §4
+  T-005.1    Create the Federal Modernization Program organization in Gitea with team structure (CanonStewards, Contributors, Readers)   1h          M-002                     CLI and Operations Guide §4
 
   T-005.2    Configure Gitea mirror from https://github.com/WhalerMike/uiao with scheduled sync             2h          T-005.1, outbound HTTPS   CLI and Operations Guide §5
 
@@ -337,7 +337,7 @@ M-007 --- Azure Arc Enrollment (Week 3)
   -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
   **Task**   **Description**                                                                         **Hours**   **Dependencies**            **Reference**
   ---------- --------------------------------------------------------------------------------------- ----------- --------------------------- ----------------------------------------
-  T-007.1    Install Azure Connected Machine agent on the modernization program Git Server                                1h          M-001, Azure subscription   AD Computer Object Conversion Guide §8
+  T-007.1    Install Azure Connected Machine agent on the Federal Modernization Program Git Server                                1h          M-001, Azure subscription   AD Computer Object Conversion Guide §8
 
   T-007.2    Apply the organizational-attribute model tags to Arc resource (Region, Site, Department, Role = GitServer)         1h          T-007.1                     AD Computer Object Conversion Guide §2
 
@@ -355,7 +355,7 @@ M-007 --- Azure Arc Enrollment (Week 3)
 | >                                                                                                        |
 | > • AD LDAP and Entra ID OAuth2 authentication both operational and tested                               |
 | >                                                                                                        |
-| > • the modernization program repository fully mirrored with complete commit history from GitHub                              |
+| > • the Federal Modernization Program repository fully mirrored with complete commit history from GitHub                              |
 | >                                                                                                        |
 | > • Governance hooks rejecting FOUO markings and enforcing branch protection --- test evidence committed |
 | >                                                                                                        |
@@ -374,38 +374,38 @@ M-007 --- Azure Arc Enrollment (Week 3)
 | This is the most critical and detailed section of the entire project plan. Phase 1 produces every planning artifact that drives all subsequent phases. **No migration activity begins until Phase 1 is complete and approved.** The assessment covers 12 domains across the complete AD forest, generating 23 canonical deliverables that feed 8 modernization plans. |
 +-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 
-**Reference Documents:** the modernization program Active Directory Interaction Guide (primary), the modernization program Read-Only AD Assessment Guide, the modernization program vs Microsoft Native Tools --- Gap Analysis.
+**Reference Documents:** the Federal Modernization Program Active Directory Interaction Guide (primary), the Federal Modernization Program Read-Only AD Assessment Guide, the Federal Modernization Program vs Microsoft Native Tools --- Gap Analysis.
 
 4.1 Assessment Scope
 
-The assessment covers 12 domains across the complete AD forest. Each domain has a dedicated the modernization program assessment function, a defined output artifact, and a reference to the companion document containing the detailed procedure.
+The assessment covers 12 domains across the complete AD forest. Each domain has a dedicated the Federal Modernization Program assessment function, a defined output artifact, and a reference to the companion document containing the detailed procedure.
 
   ------------------------------------------------------------------------------------------------------------------------------------------------------------
   **Domain**            **Assessment Tool**                  **Output**                                  **Companion Document**
   --------------------- ------------------------------------ ------------------------------------------- -----------------------------------------------------
-  Forest Topology       Export-the modernization programForestTopology            ForestTopology.json                         AD Interaction Guide §3
+  Forest Topology       Export-FMPForestTopology            ForestTopology.json                         AD Interaction Guide §3
 
-  OU Hierarchy          Export-the modernization programOUHierarchy               OUHierarchy.json, OUTree.txt                AD Interaction Guide §4
+  OU Hierarchy          Export-FMPOUHierarchy               OUHierarchy.json, OUTree.txt                AD Interaction Guide §4
 
-  GPO Inventory         Export-the modernization programGPOInventory              GPOInventory.json, XML reports              AD Interaction Guide §5
+  GPO Inventory         Export-FMPGPOInventory              GPOInventory.json, XML reports              AD Interaction Guide §5
 
-  DNS Infrastructure    Export-the modernization programDNSAssessment             DNSInventory.json                           AD Interaction Guide §6, DNS Modernization Guide §4
+  DNS Infrastructure    Export-FMPDNSAssessment             DNSInventory.json                           AD Interaction Guide §6, DNS Modernization Guide §4
 
-  PKI / ADCS            Export-the modernization programPKIInventory              PKIInventory.json, ESCVulnerabilities.csv   AD Interaction Guide §7, PKI Modernization Guide §3
+  PKI / ADCS            Export-FMPPKIInventory              PKIInventory.json, ESCVulnerabilities.csv   AD Interaction Guide §7, PKI Modernization Guide §3
 
-  Computer Objects      Export-the modernization programComputerInventory         ComputerInventory.json                      AD Interaction Guide §8
+  Computer Objects      Export-FMPComputerInventory         ComputerInventory.json                      AD Interaction Guide §8
 
-  User Objects          Export-the modernization programUserInventory             UserInventory.json, PrivilegedUsers.csv     AD Interaction Guide §9
+  User Objects          Export-FMPUserInventory             UserInventory.json, PrivilegedUsers.csv     AD Interaction Guide §9
 
-  Group Memberships     Export-the modernization programGroupInventory            GroupInventory.json                         AD Interaction Guide §9
+  Group Memberships     Export-FMPGroupInventory            GroupInventory.json                         AD Interaction Guide §9
 
-  Trust Relationships   Export-the modernization programTrustMap                  TrustMap.json                               AD Interaction Guide §10
+  Trust Relationships   Export-FMPTrustMap                  TrustMap.json                               AD Interaction Guide §10
 
-  Service Accounts      Export-the modernization programServiceAccountInventory   ServiceAccounts.csv                         Identity Modernization Guide §6
+  Service Accounts      Export-FMPServiceAccountInventory   ServiceAccounts.csv                         Identity Modernization Guide §6
 
-  ACL / Delegation      Export-the modernization programACLReport                 OUDelegation.json                           AD Interaction Guide §11
+  ACL / Delegation      Export-FMPACLReport                 OUDelegation.json                           AD Interaction Guide §11
 
-  Schema Extensions     Export-the modernization programSchemaExtensions          SchemaExtensions.json                       AD Interaction Guide §12
+  Schema Extensions     Export-FMPSchemaExtensions          SchemaExtensions.json                       AD Interaction Guide §12
   ------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 4.2 Assessment Execution Sequence
@@ -422,9 +422,9 @@ The assessment covers 12 domains across the complete AD forest. Each domain has 
 
   T-4.2         Install RSAT modules                    Install ActiveDirectory, GroupPolicy, DnsServer, and ADCSAdministration RSAT modules. Verify module import succeeds.                                                                                                                                    2h          Read-Only AD Assessment Guide §3
 
-  T-4.3         Run Test-the modernization programReadAccess                 Execute permission discovery to determine what can be assessed with current user credentials without any delegation. Document accessible vs. restricted domains.                                                                                        2h          Read-Only AD Assessment Guide §4
+  T-4.3         Run Test-FMPReadAccess                 Execute permission discovery to determine what can be assessed with current user credentials without any delegation. Document accessible vs. restricted domains.                                                                                        2h          Read-Only AD Assessment Guide §4
 
-  T-4.4         Execute Invoke-the modernization programReadOnlyAssessment   Run the master read-only orchestrator. Captures approximately 87% of total assessment value including forest topology, OU hierarchy, computer objects, user objects, group memberships, and basic GPO inventory --- all without elevated permissions.   8h          Read-Only AD Assessment Guide §5
+  T-4.4         Execute Invoke-FMPReadOnlyAssessment   Run the master read-only orchestrator. Captures approximately 87% of total assessment value including forest topology, OU hierarchy, computer objects, user objects, group memberships, and basic GPO inventory --- all without elevated permissions.   8h          Read-Only AD Assessment Guide §5
 
   T-4.5         Commit read-only assessment to Gitea    Stage all output under *assessments/readonly/{domain}/{timestamp}/* and push to feature/phase1-assessment branch. Create pull request for Canon Steward review.                                                                                         2h          CLI and Operations Guide §6
 
@@ -446,13 +446,13 @@ The assessment covers 12 domains across the complete AD forest. Each domain has 
   --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
   **Task ID**   **Task**                                **Description**                                                                                                                                                                                                **Hours**   **Reference**
   ------------- --------------------------------------- -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- ----------- -----------------------------------------------------
-  T-5.1         Receive delegated read access           AD team grants read-only delegated access for DNS zones, PKI certificate authority, deleted objects container, and GPO backup permissions. Verify with Test-the modernization programReadAccess re-run.                             2h          Read-Only AD Assessment Guide §8
+  T-5.1         Receive delegated read access           AD team grants read-only delegated access for DNS zones, PKI certificate authority, deleted objects container, and GPO backup permissions. Verify with Test-FMPReadAccess re-run.                             2h          Read-Only AD Assessment Guide §8
 
-  T-5.2         Execute full DNS assessment             Run Get-the modernization programDNSAssessment with DnsServer module access. Enumerate all forward/reverse zones, zone types (AD-integrated, primary, stub, conditional forwarder), aging/scavenging settings, and record counts.   4h          AD Interaction Guide §6, DNS Modernization Guide §4
+  T-5.2         Execute full DNS assessment             Run Get-FMPDNSAssessment with DnsServer module access. Enumerate all forward/reverse zones, zone types (AD-integrated, primary, stub, conditional forwarder), aging/scavenging settings, and record counts.   4h          AD Interaction Guide §6, DNS Modernization Guide §4
 
-  T-5.3         Execute full PKI assessment             Run Get-the modernization programPKIInventory with CA Admin read access. Enumerate all CAs (root, issuing, policy), certificate templates, enrollment permissions, template security descriptors, and CRL distribution points.      6h          AD Interaction Guide §7, PKI Modernization Guide §3
+  T-5.3         Execute full PKI assessment             Run Get-FMPPKIInventory with CA Admin read access. Enumerate all CAs (root, issuing, policy), certificate templates, enrollment permissions, template security descriptors, and CRL distribution points.      6h          AD Interaction Guide §7, PKI Modernization Guide §3
 
-  T-5.4         Execute full GPO backup                 Run Backup-GPO -All to capture all GPO settings as XML. Parse XML reports with Export-the modernization programGPOInventory to create structured JSON with per-setting classification.                                              4h          AD Interaction Guide §5
+  T-5.4         Execute full GPO backup                 Run Backup-GPO -All to capture all GPO settings as XML. Parse XML reports with Export-FMPGPOInventory to create structured JSON with per-setting classification.                                              4h          AD Interaction Guide §5
 
   T-5.5         Execute deleted objects enumeration     Enumerate tombstoned objects in the AD recycled objects container to identify recently deleted accounts, groups, and computer objects that may impact migration planning.                                      2h          AD Interaction Guide §12
 
@@ -474,15 +474,15 @@ The assessment covers 12 domains across the complete AD forest. Each domain has 
   -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
   **Task ID**   **Task**                                         **Description**                                                                                                                                                                                                 **Hours**   **Reference**
   ------------- ------------------------------------------------ --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- ----------- ----------------------------------------------------
-  T-6.1         Run ESC vulnerability analysis                   Execute Test-the modernization programESCVulnerabilities against all certificate templates. Identify ESC1 through ESC8 misconfigurations. Output ESCVulnerabilities.csv with per-template severity and remediation recommendation.   6h          PKI Modernization Guide §3
+  T-6.1         Run ESC vulnerability analysis                   Execute Test-FMPESCVulnerabilities against all certificate templates. Identify ESC1 through ESC8 misconfigurations. Output ESCVulnerabilities.csv with per-template severity and remediation recommendation.   6h          PKI Modernization Guide §3
 
   T-6.2         Run privileged access audit                      Enumerate all accounts with AdminCount=1, Kerberoastable SPNs, unconstrained delegation, AS-REP roastable accounts, password-never-expires, and stale privileged accounts (\>90 days inactive).                 4h          Identity Modernization Guide §5
 
-  T-6.3         Import Defender for Identity findings            If Microsoft Defender for Identity is deployed, export Secure Score findings and import via Import-DefenderForIdentityFindings adapter. Merge with the modernization program findings.                                               3h          the modernization program vs Microsoft Native Tools --- Gap Analysis §7
+  T-6.3         Import Defender for Identity findings            If Microsoft Defender for Identity is deployed, export Secure Score findings and import via Import-DefenderForIdentityFindings adapter. Merge with the Federal Modernization Program findings.                                               3h          the Federal Modernization Program vs Microsoft Native Tools --- Gap Analysis §7
 
-  T-6.4         Import PingCastle / Purple Knight results        If third-party AD security tools have been run, import and correlate findings with the modernization program assessment data. Reconcile overlapping findings to eliminate duplicates.                                                3h          the modernization program vs Microsoft Native Tools --- Gap Analysis §9
+  T-6.4         Import PingCastle / Purple Knight results        If third-party AD security tools have been run, import and correlate findings with the Federal Modernization Program assessment data. Reconcile overlapping findings to eliminate duplicates.                                                3h          the Federal Modernization Program vs Microsoft Native Tools --- Gap Analysis §9
 
-  T-6.5         Generate consolidated security findings report   Merge all sources (the modernization program, Defender for Identity, PingCastle) into a single SecurityFindings.json with deduplicated, normalized findings.                                                                         4h          ---
+  T-6.5         Generate consolidated security findings report   Merge all sources (the Federal Modernization Program, Defender for Identity, PingCastle) into a single SecurityFindings.json with deduplicated, normalized findings.                                                                         4h          ---
 
   T-6.6         Classify findings by severity                    Assign each finding: **Critical** (blocks migration), **High** (must remediate before Phase 3), **Medium** (remediate during Phase 4), **Low** (accept or track).                                               4h          ---
 
@@ -501,7 +501,7 @@ The assessment covers 12 domains across the complete AD forest. Each domain has 
 
   -----------------------------------------
 
-From the assessment data, the following eight planning documents are generated. Each planning document is machine-readable JSON, produced by a the modernization program plan generator function, and driven entirely by assessment output --- not by manual design.
+From the assessment data, the following eight planning documents are generated. Each planning document is machine-readable JSON, produced by a Federal Modernization Program plan generator function, and driven entirely by assessment output --- not by manual design.
 
   --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
   **Task ID**   **Planning Document**                **Description**                                                                                                                                                                                                                      **Input Artifacts**                                            **Reference**
@@ -591,35 +591,35 @@ From the assessment data, the following eight planning documents are generated. 
   -------------------------------------------------------------------------------------------------------------------------------------------------------
   **Deliverable**                  **Format**   **Gitea Path**                  **Produced By**                      **Consumed By**
   -------------------------------- ------------ ------------------------------- ------------------------------------ ------------------------------------
-  ForestTopology.json              JSON         assessments/full/               Invoke-the modernization programADAssessment              All planning documents
+  ForestTopology.json              JSON         assessments/full/               Invoke-FMPADAssessment              All planning documents
 
-  OUHierarchy.json                 JSON         assessments/full/               Export-the modernization programOUHierarchy               the organizational-attribute model Design, GPO Migration Plan
+  OUHierarchy.json                 JSON         assessments/full/               Export-FMPOUHierarchy               the organizational-attribute model Design, GPO Migration Plan
 
-  GPOInventory.json                JSON         assessments/full/               Export-the modernization programGPOInventory              GPO Migration Plan
+  GPOInventory.json                JSON         assessments/full/               Export-FMPGPOInventory              GPO Migration Plan
 
   GPO XML Reports                  XML          assessments/full/GPO/Reports/   Get-GPOReport                        GPO Migration Plan
 
-  DNSInventory.json                JSON         assessments/full/               Export-the modernization programDNSAssessment             DNS Modernization Plan
+  DNSInventory.json                JSON         assessments/full/               Export-FMPDNSAssessment             DNS Modernization Plan
 
-  PKIInventory.json                JSON         assessments/full/               Export-the modernization programPKIInventory              PKI Modernization Plan
+  PKIInventory.json                JSON         assessments/full/               Export-FMPPKIInventory              PKI Modernization Plan
 
-  ESCVulnerabilities.csv           CSV          assessments/full/PKI/           Test-the modernization programESCVulnerabilities          Security Remediation Plan
+  ESCVulnerabilities.csv           CSV          assessments/full/PKI/           Test-FMPESCVulnerabilities          Security Remediation Plan
 
-  ComputerInventory.json           JSON         assessments/full/               Export-the modernization programComputerInventory         Computer Modernization Plan
+  ComputerInventory.json           JSON         assessments/full/               Export-FMPComputerInventory         Computer Modernization Plan
 
-  UserInventory.json               JSON         assessments/full/               Export-the modernization programUserInventory             Identity Modernization Plan
+  UserInventory.json               JSON         assessments/full/               Export-FMPUserInventory             Identity Modernization Plan
 
-  GroupInventory.json              JSON         assessments/full/               Export-the modernization programGroupInventory            Identity Modernization Plan
+  GroupInventory.json              JSON         assessments/full/               Export-FMPGroupInventory            Identity Modernization Plan
 
-  ServiceAccounts.csv              CSV          assessments/full/               Export-the modernization programServiceAccountInventory   Identity Modernization Plan
+  ServiceAccounts.csv              CSV          assessments/full/               Export-FMPServiceAccountInventory   Identity Modernization Plan
 
-  TrustMap.json                    JSON         assessments/full/               Export-the modernization programTrustMap                  Trust Decommission Plan
+  TrustMap.json                    JSON         assessments/full/               Export-FMPTrustMap                  Trust Decommission Plan
 
-  OUDelegation.json                JSON         assessments/full/               Export-the modernization programACLReport                 Identity Modernization Plan
+  OUDelegation.json                JSON         assessments/full/               Export-FMPACLReport                 Identity Modernization Plan
 
-  SchemaExtensions.json            JSON         assessments/full/               Export-the modernization programSchemaExtensions          the organizational-attribute model Design
+  SchemaExtensions.json            JSON         assessments/full/               Export-FMPSchemaExtensions          the organizational-attribute model Design
 
-  AssessmentManifest.json          JSON         assessments/full/               Invoke-the modernization programADAssessment              Governance tracking
+  AssessmentManifest.json          JSON         assessments/full/               Invoke-FMPADAssessment              Governance tracking
 
   ComputerModernizationPlan.json   JSON         plans/                          Phase 1 Week 7                       Phase 3--5
 
@@ -870,7 +870,7 @@ M-020 --- Cloud PKI Design (Week 13)
 
 - Each wave follows the same validation checklist proven during pilot (Section 6.3)
 
-- **Drift detection active** from Wave 1 --- Invoke-the modernization programDriftDetection runs daily against migrated scope
+- **Drift detection active** from Wave 1 --- Invoke-FMPDriftDetection runs daily against migrated scope
 
 - Wave 1 starts with the lowest-risk region; each subsequent wave expands to higher-complexity environments
 
@@ -1012,16 +1012,16 @@ M-020 --- Cloud PKI Design (Week 13)
 
 9\. Phase 6: Steady State (Week 42+)
 
-**Objective:** Operate the modernized environment under continuous governance with automated drift detection, scheduled re-assessment, and periodic access reviews --- all tracked through the the modernization program Gitea pipeline.
+**Objective:** Operate the modernized environment under continuous governance with automated drift detection, scheduled re-assessment, and periodic access reviews --- all tracked through the Federal Modernization Program Gitea pipeline.
 
 9.1 Continuous Governance Operations
 
   --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
   **Operation**                 **Cadence**        **Tool / Process**                                                                **Output**
   ----------------------------- ------------------ --------------------------------------------------------------------------------- ---------------------------------------------------------------
-  **Scheduled re-assessment**   Weekly             Invoke-the modernization programADAssessment runs as scheduled task; diffs committed to Gitea          assessments/weekly/{YYYY-WNN}/delta.json
+  **Scheduled re-assessment**   Weekly             Invoke-FMPADAssessment runs as scheduled task; diffs committed to Gitea          assessments/weekly/{YYYY-WNN}/delta.json
 
-  **Drift detection**           Daily              Invoke-the modernization programDriftDetection compares current state against canonical plans          Gitea issues created with assigned owner and SLA per severity
+  **Drift detection**           Daily              Invoke-FMPDriftDetection compares current state against canonical plans          Gitea issues created with assigned owner and SLA per severity
 
   **Compliance monitoring**     Continuous         Intune compliance dashboard, Azure Policy compliance, Entra sign-in health        Monthly compliance report committed to Gitea
 
@@ -1113,11 +1113,11 @@ M-020 --- Cloud PKI Design (Week 13)
 11\. Dependency Map
 
 +:---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------:+
-| **\[Diagram: the modernization program Milestone Dependency Network\]**                                                                                                                                                                    |
+| **\[Diagram: The Federal Modernization Program Milestone Dependency Network\]**                                                                                                                                                                    |
 |                                                                                                                                                                                                                       |
 | Directed acyclic graph showing milestone-to-milestone dependencies. Critical path highlighted in blue: M-001 → M-002 → M-005 → M-008 → M-009 → M-011 → M-012 → M-022 → M-023 → M-024 → M-031 → M-032 → M-035 → M-044. |
 |                                                                                                                                                                                                                       |
-| **Diagram ID: the modernization program-MPP-D002 \| Dimensions: 780 × 450 px**                                                                                                                                                             |
+| **Diagram ID: FMP-MPP-D002 \| Dimensions: 780 × 450 px**                                                                                                                                                             |
 +-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 
 11.1 Milestone Dependency Table
@@ -1244,7 +1244,7 @@ The critical path through the project is:
 |                                                                                                                                                                                                                                       |
 | Flowchart showing the seven phases as sequential blocks with gate review diamonds between each phase. Each gate diamond shows the Go/No-Go decision with criteria summary. Parallel pillar workstreams shown within each phase block. |
 |                                                                                                                                                                                                                                       |
-| **Diagram ID: the modernization program-MPP-D003 \| Dimensions: 780 × 280 px**                                                                                                                                                                             |
+| **Diagram ID: FMP-MPP-D003 \| Dimensions: 780 × 280 px**                                                                                                                                                                             |
 +---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 
 12\. Budget and Resource Estimate
@@ -1272,7 +1272,7 @@ The critical path through the project is:
   ---------------------------------------------------------------------------------------------------------------------------------------------------------------------
   **Resource**                            **Specification**                                   **Phase**   **Cost Estimate**
   --------------------------------------- --------------------------------------------------- ----------- -------------------------------------------------------------
-  the modernization program Git Server (Windows Server 2025)   4 vCPU, 8 GB RAM, 100 GB SSD                        Phase 0     Hardware/VM cost (existing infra or \~\$200/mo VM)
+  The Federal Modernization Program Git Server (Windows Server 2025)   4 vCPU, 8 GB RAM, 100 GB SSD                        Phase 0     Hardware/VM cost (existing infra or \~\$200/mo VM)
 
   Assessment Workstation (PAW)            2 vCPU, 4 GB RAM, 50 GB SSD                         Phase 1     Hardware/VM cost (temporary --- decommission after Phase 1)
 
@@ -1318,15 +1318,15 @@ This section defines how Copilot Code should proceed to operationalize this Mast
   -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
   **\#**   **Deliverable**                                 **Description**                                                                                                                                                                                                                                                                                  **Source Document**
   -------- ----------------------------------------------- ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ ---------------------------------
-  1        the modernization programADAssessment.psm1                           PowerShell module implementing all assessment functions: Export-the modernization programForestTopology, Export-the modernization programOUHierarchy, Export-the modernization programGPOInventory, Export-the modernization programComputerInventory, Export-the modernization programUserInventory, Export-the modernization programGroupInventory, Export-the modernization programTrustMap, Export-the modernization programACLReport, Export-the modernization programSchemaExtensions   AD Interaction Guide
+  1        FMPADAssessment.psm1                           PowerShell module implementing all assessment functions: Export-FMPForestTopology, Export-FMPOUHierarchy, Export-FMPGPOInventory, Export-FMPComputerInventory, Export-FMPUserInventory, Export-FMPGroupInventory, Export-FMPTrustMap, Export-FMPACLReport, Export-FMPSchemaExtensions   AD Interaction Guide
 
-  2        the modernization programReadOnlyAssessment.psm1                     Module implementing Test-the modernization programReadAccess and Invoke-the modernization programReadOnlyAssessment master orchestrator for non-delegated assessment                                                                                                                                                                       Read-Only AD Assessment Guide
+  2        FMPReadOnlyAssessment.psm1                     Module implementing Test-FMPReadAccess and Invoke-FMPReadOnlyAssessment master orchestrator for non-delegated assessment                                                                                                                                                                       Read-Only AD Assessment Guide
 
-  3        the modernization programPKIAssessment.psm1                          Module implementing Export-the modernization programPKIInventory and Test-the modernization programESCVulnerabilities (ESC1--ESC8 detection)                                                                                                                                                                                               PKI Modernization Guide
+  3        FMPPKIAssessment.psm1                          Module implementing Export-FMPPKIInventory and Test-FMPESCVulnerabilities (ESC1--ESC8 detection)                                                                                                                                                                                               PKI Modernization Guide
 
-  4        the modernization programDNSAssessment.psm1                          Module implementing Export-the modernization programDNSAssessment (zone enumeration, record inventory, aging analysis)                                                                                                                                                                                                DNS Modernization Guide
+  4        FMPDNSAssessment.psm1                          Module implementing Export-FMPDNSAssessment (zone enumeration, record inventory, aging analysis)                                                                                                                                                                                                DNS Modernization Guide
 
-  5        Invoke-the modernization programFullAssessment                       Master orchestrator calling all assessment modules, generating AssessmentManifest.json, and staging output for Gitea commit                                                                                                                                                                      All assessment guides
+  5        Invoke-FMPFullAssessment                       Master orchestrator calling all assessment modules, generating AssessmentManifest.json, and staging output for Gitea commit                                                                                                                                                                      All assessment guides
 
   6        app.ini (Gitea configuration)                   Complete Gitea configuration file with LDAP, OAuth2, repository settings, and governance parameters                                                                                                                                                                                              Platform Server Build Guide
 
@@ -1342,21 +1342,21 @@ This section defines how Copilot Code should proceed to operationalize this Mast
   -------- -------------------------------------------- ---------------------------------------------------------------------------------------------- ----------------------------------------
   1        Import-GPOAnalyticsReport adapter            Imports GPO Analytics results from Intune portal and correlates with GPOInventory.json         Gap Analysis §9
 
-  2        Import-DefenderForIdentityFindings adapter   Imports Defender for Identity Secure Score findings and normalizes to the modernization program finding format      Gap Analysis §7
+  2        Import-DefenderForIdentityFindings adapter   Imports Defender for Identity Secure Score findings and normalizes to the Federal Modernization Program finding format      Gap Analysis §7
 
-  3        New-the modernization programComputerModernizationPlan            Consumes ComputerInventory.json; classifies each object into migration path                    AD Computer Object Conversion Guide
+  3        New-FMPComputerModernizationPlan            Consumes ComputerInventory.json; classifies each object into migration path                    AD Computer Object Conversion Guide
 
-  4        New-the modernization programIdentityModernizationPlan            Consumes UserInventory.json + GroupInventory.json; classifies identities into migration path   Identity Modernization Guide
+  4        New-FMPIdentityModernizationPlan            Consumes UserInventory.json + GroupInventory.json; classifies identities into migration path   Identity Modernization Guide
 
-  5        New-the modernization programGPOMigrationPlan                     Consumes GPOInventory.json; decomposes GPOs into intents with per-intent Intune mapping        AD Computer Object Conversion Guide §4
+  5        New-FMPGPOMigrationPlan                     Consumes GPOInventory.json; decomposes GPOs into intents with per-intent Intune mapping        AD Computer Object Conversion Guide §4
 
-  6        New-the modernization programDNSModernizationPlan                 Consumes DNSInventory.json; classifies zones and records into migration path                   DNS Modernization Guide
+  6        New-FMPDNSModernizationPlan                 Consumes DNSInventory.json; classifies zones and records into migration path                   DNS Modernization Guide
 
-  7        New-the modernization programPKIModernizationPlan                 Consumes PKIInventory.json; classifies templates into MIGRATE/BRIDGE/RETAIN/RETIRE             PKI Modernization Guide §4
+  7        New-FMPPKIModernizationPlan                 Consumes PKIInventory.json; classifies templates into MIGRATE/BRIDGE/RETAIN/RETIRE             PKI Modernization Guide §4
 
-  8        New-the modernization programthe organizational-attribute modelDesign                        Consumes OUHierarchy.json + SchemaExtensions.json; generates the organizational-attribute model dimension design          AD Computer Object Conversion Guide §2
+  8        New-FMPthe organizational-attribute modelDesign                        Consumes OUHierarchy.json + SchemaExtensions.json; generates the organizational-attribute model dimension design          AD Computer Object Conversion Guide §2
 
-  9        Invoke-the modernization programDriftDetection                    Scheduled task scripts for daily drift detection against canonical plans                       CLI and Operations Guide
+  9        Invoke-FMPDriftDetection                    Scheduled task scripts for daily drift detection against canonical plans                       CLI and Operations Guide
   ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 13.3 Medium-Term Actions (Sprint 4--6 --- Weeks 7--12)
@@ -1372,47 +1372,47 @@ This section defines how Copilot Code should proceed to operationalize this Mast
 
   4        Cloud PKI provisioning scripts                  Graph API scripts for Cloud PKI root/issuing CA creation and SCEP profile deployment             PKI Modernization Guide §5
 
-  5        the modernization program Governance Dashboard                       HTML/Quarto rendering pipeline producing drift, compliance, and SLA dashboards from Gitea data   All guides
+  5        the Federal Modernization Program Governance Dashboard                       HTML/Quarto rendering pipeline producing drift, compliance, and SLA dashboards from Gitea data   All guides
   -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 13.4 Module Architecture
 
   -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-  D:\\the modernization program\\Modules\\ ├── the modernization programADAssessment\\ │ ├── the modernization programADAssessment.psd1 │ └── the modernization programADAssessment.psm1 ├── the modernization programReadOnlyAssessment\\ │ ├── the modernization programReadOnlyAssessment.psd1 │ └── the modernization programReadOnlyAssessment.psm1 ├── the modernization programPKIAssessment\\ │ ├── the modernization programPKIAssessment.psd1 │ └── the modernization programPKIAssessment.psm1 ├── the modernization programDNSAssessment\\ │ ├── the modernization programDNSAssessment.psd1 │ └── the modernization programDNSAssessment.psm1 ├── the modernization programIdentityAssessment\\ │ ├── the modernization programIdentityAssessment.psd1 │ └── the modernization programIdentityAssessment.psm1 ├── the modernization programImportAdapters\\ │ ├── the modernization programImportAdapters.psd1 │ └── the modernization programImportAdapters.psm1 ├── the modernization programPlanGenerators\\ │ ├── the modernization programPlanGenerators.psd1 │ └── the modernization programPlanGenerators.psm1 └── the modernization programDriftDetection\\ ├── the modernization programDriftDetection.psd1 └── the modernization programDriftDetection.psm1
+  D:\\FMP\\Modules\\ ├── FMPADAssessment\\ │ ├── FMPADAssessment.psd1 │ └── FMPADAssessment.psm1 ├── FMPReadOnlyAssessment\\ │ ├── FMPReadOnlyAssessment.psd1 │ └── FMPReadOnlyAssessment.psm1 ├── FMPPKIAssessment\\ │ ├── FMPPKIAssessment.psd1 │ └── FMPPKIAssessment.psm1 ├── FMPDNSAssessment\\ │ ├── FMPDNSAssessment.psd1 │ └── FMPDNSAssessment.psm1 ├── FMPIdentityAssessment\\ │ ├── FMPIdentityAssessment.psd1 │ └── FMPIdentityAssessment.psm1 ├── FMPImportAdapters\\ │ ├── FMPImportAdapters.psd1 │ └── FMPImportAdapters.psm1 ├── FMPPlanGenerators\\ │ ├── FMPPlanGenerators.psd1 │ └── FMPPlanGenerators.psm1 └── FMPDriftDetection\\ ├── FMPDriftDetection.psd1 └── FMPDriftDetection.psm1
 
   -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 14\. Follow-On Document Roadmap
 
-The following documents are identified as necessary to complete the the modernization program corpus beyond the 12 existing companion documents. Priority reflects execution dependency.
+The following documents are identified as necessary to complete the Federal Modernization Program corpus beyond the 12 existing companion documents. Priority reflects execution dependency.
 
   ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
   **Priority**   **Document Title**                       **Purpose**                                                                                                               **Dependency**                        **Target Phase**
   -------------- ---------------------------------------- ------------------------------------------------------------------------------------------------------------------------- ------------------------------------- ------------------
-  **P1**         the modernization program Conditional Access Policy Library   15+ policy templates with JSON export, grant/session controls, named locations, and authentication strength definitions   Identity Modernization Guide          Phase 2
+  **P1**         the Federal Modernization Program Conditional Access Policy Library   15+ policy templates with JSON export, grant/session controls, named locations, and authentication strength definitions   Identity Modernization Guide          Phase 2
 
-  **P1**         the modernization program Intune Policy Templates             Settings Catalog configurations mapped from GPO analysis, with per-platform profiles and compliance policy pairings       AD Computer Object Conversion Guide   Phase 2
+  **P1**         the Federal Modernization Program Intune Policy Templates             Settings Catalog configurations mapped from GPO analysis, with per-platform profiles and compliance policy pairings       AD Computer Object Conversion Guide   Phase 2
 
-  **P1**         the modernization program PowerShell Module Reference         Combined API reference for all the modernization program modules --- parameter documentation, examples, pipeline integration                   All assessment guides                 Phase 1
+  **P1**         the Federal Modernization Program PowerShell Module Reference         Combined API reference for all the Federal Modernization Program modules --- parameter documentation, examples, pipeline integration                   All assessment guides                 Phase 1
 
-  **P2**         the modernization program Active-Passive Replication Guide    Git server replication, backup strategy, and disaster recovery for Gitea on Windows Server                                Platform Server Build Guide           Phase 0
+  **P2**         the Federal Modernization Program Active-Passive Replication Guide    Git server replication, backup strategy, and disaster recovery for Gitea on Windows Server                                Platform Server Build Guide           Phase 0
 
-  **P2**         the modernization program Quarto Pipeline Integration Guide   Documentation build pipeline from Gitea webhooks to rendered HTML/PDF output                                              Platform Server Build Guide           Phase 0
+  **P2**         the Federal Modernization Program Quarto Pipeline Integration Guide   Documentation build pipeline from Gitea webhooks to rendered HTML/PDF output                                              Platform Server Build Guide           Phase 0
 
-  **P2**         the modernization program Azure Arc Policy Library            Guest Configuration policies for Windows Server 2025 with compliance baselines                                            AD Computer Object Conversion Guide   Phase 3
+  **P2**         the Federal Modernization Program Azure Arc Policy Library            Guest Configuration policies for Windows Server 2025 with compliance baselines                                            AD Computer Object Conversion Guide   Phase 3
 
-  **P2**         the modernization program Governance Dashboard Design         HTML/Quarto dashboard specification for drift detection, compliance, and SLA visualization                                All guides                            Phase 6
+  **P2**         the Federal Modernization Program Governance Dashboard Design         HTML/Quarto dashboard specification for drift detection, compliance, and SLA visualization                                All guides                            Phase 6
 
-  **P3**         the modernization program Disaster Recovery Playbook          Full DR procedures for all modernized services including Gitea, Entra Connect, Cloud PKI, DNS                             All guides                            Phase 5
+  **P3**         the Federal Modernization Program Disaster Recovery Playbook          Full DR procedures for all modernized services including Gitea, Entra Connect, Cloud PKI, DNS                             All guides                            Phase 5
 
-  **P3**         the modernization program Training Guide --- End Users        Passwordless enrollment, self-service password reset, new authentication workflows, device enrollment                     Identity Modernization Guide          Phase 4
+  **P3**         the Federal Modernization Program Training Guide --- End Users        Passwordless enrollment, self-service password reset, new authentication workflows, device enrollment                     Identity Modernization Guide          Phase 4
 
-  **P3**         the modernization program Runbook --- Operations              Day-to-day operational procedures for steady-state governance including incident response                                 All guides                            Phase 6
+  **P3**         the Federal Modernization Program Runbook --- Operations              Day-to-day operational procedures for steady-state governance including incident response                                 All guides                            Phase 6
   ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 15\. Companion Document Cross-Reference Matrix
 
-This matrix shows which existing the modernization program companion documents are referenced in each project phase. **✓** indicates the document contains procedures or specifications executed during that phase.
+This matrix shows which existing the Federal Modernization Program companion documents are referenced in each project phase. **✓** indicates the document contains procedures or specifications executed during that phase.
 
   ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
   **Document**                                      **Ph 0**   **Ph 1**   **Ph 2**   **Ph 3**   **Ph 4**   **Ph 5**   **Ph 6**   **Primary Milestones**
@@ -1421,15 +1421,15 @@ This matrix shows which existing the modernization program companion documents a
 
   Git on Windows Server 2025 with IIS Guide         **✓**                                                                        M-002
 
-  the modernization program Git Server Implementation Guide              **✓**                                                                        M-002, M-003
+  The Federal Modernization Program Git Server Implementation Guide              **✓**                                                                        M-002, M-003
 
-  the modernization program Git Infrastructure ADR                       **✓**                                                                        M-002
+  The Federal Modernization Program Git Infrastructure ADR                       **✓**                                                                        M-002
 
   Platform Server Build Guide                       **✓**                                                                        M-001--M-006
 
-  the modernization program CLI and Operations Guide                     **✓**      **✓**                                                  **✓**      M-005--M-006, M-008--M-009, M-045
+  The Federal Modernization Program CLI and Operations Guide                     **✓**      **✓**                                                  **✓**      M-005--M-006, M-008--M-009, M-045
 
-  the modernization program AD Interaction Guide                                    **✓**                                                  **✓**      M-008--M-011, M-045
+  The Federal Modernization Program AD Interaction Guide                                    **✓**                                                  **✓**      M-008--M-011, M-045
 
   Identity Modernization Guide                                 **✓**      **✓**      **✓**      **✓**      **✓**      **✓**      M-010--M-012, M-017--M-018, M-022, M-025--M-026, M-038, M-042
 
@@ -1437,7 +1437,7 @@ This matrix shows which existing the modernization program companion documents a
 
   Read-Only AD Assessment Guide                                **✓**                                                             M-008
 
-  the modernization program vs Microsoft Native Tools --- Gap Analysis              **✓**      **✓**                                                  M-010, M-016
+  The Federal Modernization Program vs Microsoft Native Tools --- Gap Analysis              **✓**      **✓**                                                  M-010, M-016
 
   PKI Modernization Guide                                      **✓**      **✓**      **✓**      **✓**      **✓**      **✓**      M-009--M-011, M-020, M-028--M-029, M-039, M-045
   ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -1455,7 +1455,7 @@ Appendix A --- Complete Milestone Register
 
   M-004    Entra ID OAuth2 configured          0           W3         Identity Lead   M-002              Entra SSO verified, MFA enforced                                                PLANNED
 
-  M-005    the modernization program repo mirrored                  0           W3         Canon Steward   M-002, M-003       All branches, tags, history verified                                            PLANNED
+  M-005    the Federal Modernization Program repo mirrored                  0           W3         Canon Steward   M-002, M-003       All branches, tags, history verified                                            PLANNED
 
   M-006    Governance hooks deployed           0           W3         Canon Steward   M-005, M-004       FOUO rejection and branch protection verified                                   PLANNED
 
@@ -1753,9 +1753,9 @@ Appendix E --- Glossary
 
   **BYOCA**                 Bring Your Own Certificate Authority --- a Cloud PKI deployment model where an existing on-premises root CA signs the cloud issuing CA certificate.
 
-  **Canon / Canonical**     In the the modernization program context, the authoritative, approved version of a governance artifact committed to the main branch of Gitea.
+  **Canon / Canonical**     In the Federal Modernization Program context, the authoritative, approved version of a governance artifact committed to the main branch of Gitea.
 
-  **Canon Steward**         The individual with final authority over the modernization program governance artifacts, repository integrity, and phase gate approvals.
+  **Canon Steward**         The individual with final authority over the Federal Modernization Program governance artifacts, repository integrity, and phase gate approvals.
 
   **CBA**                   Certificate-Based Authentication --- Entra ID feature enabling passwordless authentication using X.509 certificates.
 
@@ -1775,7 +1775,7 @@ Appendix E --- Glossary
 
   **ESC1--ESC8**            Escalation vulnerability classes (ESC1 through ESC8) in Active Directory Certificate Services, as documented by SpecterOps. Each class represents a distinct misconfiguration pattern that could allow privilege escalation.
 
-  **Gitea**                 A lightweight, self-hosted Git service used as the the modernization program governance repository platform.
+  **Gitea**                 A lightweight, self-hosted Git service used as the Federal Modernization Program governance repository platform.
 
   **gMSA**                  Group Managed Service Account --- an AD account type that provides automatic password management for service accounts.
 
@@ -1785,7 +1785,7 @@ Appendix E --- Glossary
 
   **Hybrid Join**           A device registration state where a device is joined to both on-premises AD and Entra ID simultaneously.
 
-  **IIS**                   Internet Information Services --- Microsoft\'s web server platform used as the reverse proxy for Gitea in the the modernization program architecture.
+  **IIS**                   Internet Information Services --- Microsoft\'s web server platform used as the reverse proxy for Gitea in the Federal Modernization Program architecture.
 
   **Intune**                Microsoft Intune --- a cloud-based endpoint management service for device configuration, compliance, and application management.
 
@@ -1799,7 +1799,7 @@ Appendix E --- Glossary
 
   **OMA-URI**               Open Mobile Alliance Uniform Resource Identifier --- a custom Intune policy format for settings not available in the Settings Catalog.
 
-  **the organizational-attribute model**               The the modernization program organizational taxonomy system that assigns canonical dimensions (Region, Site, Department, Role, Environment) to every managed object via extension attributes, enabling dynamic group membership and policy targeting.
+  **the organizational-attribute model**               The Federal Modernization Program organizational taxonomy system that assigns canonical dimensions (Region, Site, Department, Role, Environment) to every managed object via extension attributes, enabling dynamic group membership and policy targeting.
 
   **PAW**                   Privileged Access Workstation --- a hardened workstation used for security-sensitive administrative tasks.
 
@@ -1819,7 +1819,7 @@ Appendix E --- Glossary
 
   **Settings Catalog**      The modern Intune policy configuration surface that provides granular, per-setting control equivalent to Group Policy.
 
-  **SLA**                   Service Level Agreement --- a defined target for detection and remediation timeframes, used in the the modernization program drift remediation framework.
+  **SLA**                   Service Level Agreement --- a defined target for detection and remediation timeframes, used in the Federal Modernization Program drift remediation framework.
 
   **SPN**                   Service Principal Name --- a Kerberos identifier for a service instance, relevant for Kerberoasting risk assessment.
 
@@ -1827,12 +1827,12 @@ Appendix E --- Glossary
 
   **Strong Mapping**        A certificate-to-identity binding method required by Microsoft\'s KB5014754 enforcement for certificate-based authentication against AD.
 
-  **the modernization program**                  Unified Infrastructure Administration and Operations --- the governance framework and toolset for managing AD modernization as code.
+  **The Federal Modernization Program**                  Unified Infrastructure Administration and Operations --- the governance framework and toolset for managing AD modernization as code.
 
   **Workload Identity**     Microsoft Entra Workload Identity --- cloud-native identity for applications and services, replacing traditional service accounts.
   -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-the modernization program_013_Master_Project_Plan_v1.0 \| Classification: Controlled \| Boundary: GCC-Moderate\
+FMP_013_Master_Project_Plan_v1.0 \| Classification: Controlled \| Boundary: GCC-Moderate\
 Generated 21 April 2026 \| Canon Steward: Michael \| Repository: https://github.com/WhalerMike/uiao\
 Status: DRAFT --- Pending Canon Steward review and steering committee approval
 
@@ -1842,8 +1842,8 @@ Status: DRAFT --- Pending Canon Steward review and steering committee approval
 
 ### Milestone-to-control-family traceability (`PL-2`)
 
-Each program milestone is mapped to the NIST 800-53 control families it advances, so that program progress is traceable to control coverage. This traceability complements the SSP (`the modernization program_185`), which holds the authoritative per-control disposition; the program plan references control families at the milestone level.
+Each program milestone is mapped to the NIST 800-53 control families it advances, so that program progress is traceable to control coverage. This traceability complements the SSP (`FMP_185`), which holds the authoritative per-control disposition; the program plan references control families at the milestone level.
 
 ### Risk register (`RA-3`)
 
-The program maintains a risk register recording identified program and security risks, their likelihood/impact rating, owner, mitigation, and status. Security risks with residual exposure are cross-referenced to POA&M items (`the modernization program_189`); the register is reviewed at each phase gate per `RA-3`.
+The program maintains a risk register recording identified program and security risks, their likelihood/impact rating, owner, mitigation, and status. Security risks with residual exposure are cross-referenced to POA&M items (`FMP_189`); the register is reviewed at each phase gate per `RA-3`.

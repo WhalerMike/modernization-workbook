@@ -14,11 +14,11 @@ lifecycle_review: 2026-11-22
 
 # Reciprocity & Single-ATO Overview — Executive Brief
 
-![Before and after the modernization program](../../images/canonical/the modernization program-FIG-004-before-after-uiao.png){fig-alt="Before: each consuming agency repeats its own authorization. After: one controlling ATO with signed per-agency reciprocity records under a single source of evidence." width="100%"}
+![Before and after the Federal Modernization Program](../../images/canonical/FMP-FIG-004-before-after-uiao.png){fig-alt="Before: each consuming agency repeats its own authorization. After: one controlling ATO with signed per-agency reciprocity records under a single source of evidence." width="100%"}
 
 The Single-ATO Reciprocity Model answers a specific federal problem: when one
 platform (for example, an OPM-operated HRIT service) is consumed by many
-agencies, do you re-authorize it N times, or once? the modernization program's canon
+agencies, do you re-authorize it N times, or once? The Federal Modernization Program's canon
 ([the program decision])
 is unambiguous: **one System Security Plan, one controlling Authority to Operate,
 covering all consuming agencies**, with per-agency differences expressed as
@@ -29,10 +29,10 @@ covering all consuming agencies**, with per-agency differences expressed as
 
 ## How reciprocity is recorded
 
-Per the modernization program_140,
+Per FMP_140,
 each consuming agency receives a **signed reciprocity record** — not a new
 authorization, but a cryptographic acknowledgement that it operates under the
-controlling ATO. the modernization program ships the full operational surface today:
+controlling ATO. The Federal Modernization Program ships the full operational surface today:
 
 | Command | What it does |
 |---|---|
@@ -44,13 +44,13 @@ controlling ATO. the modernization program ships the full operational surface to
 Each record names the controlling ATO, the consuming agency, the legal basis
 (e.g. FedRAMP Rev 5, OMB M-24-15, FISMA §3554), and the agency's configuration
 elections — and is anchored as an `ato-decision → reciprocity-record` edge in the
-evidence graph (the modernization program_113 v1.2).
+evidence graph (FMP_113 v1.2).
 
 ## Self-verifying per-agency bundles
 
-A consuming agency's authorizing official should not need the modernization program access — or even
+A consuming agency's authorizing official should not need the Federal Modernization Program access — or even
 a network connection — to trust their evidence. The per-agency reciprocity
-bundle (the modernization program_140 §7) packages the reciprocity record, scoped component
+bundle (FMP_140 §7) packages the reciprocity record, scoped component
 definition, assessment results, and a hashed manifest so the bundle
 **self-verifies with nothing but the Python standard library**. Tampering with
 any file breaks the manifest hash.
@@ -79,7 +79,7 @@ be continuously proven.
 
 | Capability | Maturity |
 |---|---|
-| Reciprocity doctrine (the program decision) + model spec (the modernization program_140) | **SHIPPED** (canon) |
+| Reciprocity doctrine (the program decision) + model spec (FMP_140) | **SHIPPED** (canon) |
 | `reciprocity` CLI (onboard-agency / list-records / verify) | **SHIPPED** |
 | Signed record emitter + self-verifying bundle | **SHIPPED** |
 | `conmon ato-cadence-check` SLA validator | **SHIPPED** |
@@ -99,7 +99,7 @@ be continuously proven.
 
 ## Leadership takeaway
 
-the modernization program turns reciprocity from a paperwork promise into a cryptographic, continuously
+The Federal Modernization Program turns reciprocity from a paperwork promise into a cryptographic, continuously
 monitored fact: one ATO, signed per-agency records that auditors can verify
 offline, configuration latitude bounded by drift detection, and eight standing
 indicators on program health. The remaining gap is the full OSCAL SSP/POA&M

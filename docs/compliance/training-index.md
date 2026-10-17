@@ -24,7 +24,7 @@ The Compliance book series and this training program are **companion material fo
 the federal vertical — they are not part of the governance engine**. The reference implementation's core is
 vertical-agnostic; the Compliance corpus is external federal-modernization content that the reference implementation's
 conformance tooling happens to consume as evidence. Nothing on these pages
-is host-repo canon, defines engine doctrine, or is scoped for a `the modernization program_NNN`
+is host-repo canon, defines engine doctrine, or is scoped for a `FMP_NNN`
 allocation. These pages are hosted here for convenience alongside the
 adapter that binds the books' evidence.
 :::
@@ -262,7 +262,7 @@ directory):
   [post-implementation KPIs](assessment-rubrics.html#post-implementation-kpis),
   and stable Date Codes replacing render-time dates on every page.
 - **A permanent home** — this material is not the governance engine's and will not be
-  canonized as a `the modernization program_NNN` spec; if the Compliance corpus moves to its own
+  canonized as a `FMP_NNN` spec; if the Compliance corpus moves to its own
   repo/product, the program moves with it.
 
 ## Next

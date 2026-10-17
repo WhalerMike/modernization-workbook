@@ -23,7 +23,7 @@ lifecycle_review: 2026-11-22
 ## Scope
 
 Cross-adapter specification for Secure Access Service Edge (SASE)
-modernization under the the modernization program substrate. SASE replaces perimeter-and-VPN
+modernization under the Federal Modernization Program substrate. SASE replaces perimeter-and-VPN
 remote access with identity-driven, network-overlay security delivered
 as a converged service. This spec defines the substrate contract that
 SASE adapters must honor: identity-derived addressing, certificate-

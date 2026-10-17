@@ -23,7 +23,7 @@ lifecycle_review: 2026-12-18
 
 # Active Governance Directory — Operator Guide {.unnumbered}
 
-The **Active Governance Directory (AGD)** is the modernization program's *protocol-projection plane*:
+The **Active Governance Directory (AGD)** is the Federal Modernization Program's *protocol-projection plane*:
 an in-path LDAPv3 server that exposes the the organizational-attribute model governance substrate over the
 LDAP wire protocol, so the large installed base of directory-bound tooling can
 query governance state in the protocol it already speaks. This guide is the
@@ -46,9 +46,9 @@ deployment narrative around it.
 
 **It is** an LDAPv3 server (`uiao.directory`) that answers `BIND`, `SEARCH`,
 `UNBIND`, StartTLS, and — opt-in — `MODIFY`. Its Directory Information Tree (DIT)
-is *computed* from the the organizational-attribute model Codebook (the modernization program_151) plus a principal snapshot, and
+is *computed* from the the organizational-attribute model Codebook (FMP_151) plus a principal snapshot, and
 every governed facet is surfaced under its canonical `uiaothe organizational-attribute model<Facet>`
-attribute from the `ldap` binding profile (the modernization program_193). Because the tree is a
+attribute from the `ldap` binding profile (FMP_193). Because the tree is a
 projection, **read-only is a property of construction** — there is no stored
 entry to mutate.
 
@@ -196,7 +196,7 @@ L3 actuation routes each governed write to one of two providers:
 | `--provider` | Target | Addressing | Required flags |
 |---|---|---|---|
 | `ldap` *(default)* | A commercial/on-prem directory via the `ldap` binding-profile transport | the principal's DN | `--provider-host` (+ `--provider-bind-dn` / `--provider-password`) |
-| `entra` | Entra principals via Graph `PATCH onPremisesExtensionAttributes` | the resolved principal **id + type** (`/users/{id}`, `/devices/{id}`) | `--provider-cloud` (default `commercial`); `the modernization program_ENTRA_*` creds + the `[api]` extra |
+| `entra` | Entra principals via Graph `PATCH onPremisesExtensionAttributes` | the resolved principal **id + type** (`/users/{id}`, `/devices/{id}`) | `--provider-cloud` (default `commercial`); `FMP_ENTRA_*` creds + the `[api]` extra |
 
 The AGD resolves the projected entry DN to the real `(principal_id, principal_type)` before routing, so the Entra target hits the right `/users` or `/devices` object even though the wire `modify` named a projected DN.
 

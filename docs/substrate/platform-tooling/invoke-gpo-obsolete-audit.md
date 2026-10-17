@@ -20,7 +20,7 @@ lifecycle_review: 2026-11-22
 
 `Invoke-GpoObsoleteAudit.ps1` walks every Group Policy Object in an
 Active Directory domain and evaluates each one against six obsolescence
-rules. Output is a JSON array shaped for direct ingestion into a the modernization program
+rules. Output is a JSON array shaped for direct ingestion into a Federal Modernization Program
 Evidence Ledger or Drift Engine — every GPO appears in the result set,
 including clean ones with an empty `Rules` array, so consumers never
 have to reconcile "missing" GPOs against an external inventory.
@@ -69,8 +69,8 @@ removes it in a `finally` block — even when a parse failure triggers
 |---|---|---|---|
 | `-StaleDays` | `int` (1–3650) | `365` | Threshold for `OBSOLETE_STALE`. |
 | `-OutputPath` | `string` | `''` | Optional file path. When set, JSON is written to disk with `Encoding UTF8` and a summary is printed to the host. When omitted, JSON is written to stdout — suitable for piping. |
-| `-CheckPrereqs` | `switch` | off | Run `the modernization program.ConfigTools` prereq validation before the audit: checks `GroupPolicy` + `ActiveDirectory` modules, AD connectivity, and `Get-GPOReport` availability. Silently ignored when `the modernization program.ConfigTools` is not installed. |
-| `-EnableLogging` | `switch` | off | Start a timestamped PowerShell transcript alongside the output directory. Requires `the modernization program.ConfigTools`; silently ignored when the module is absent. |
+| `-CheckPrereqs` | `switch` | off | Run `FMP.ConfigTools` prereq validation before the audit: checks `GroupPolicy` + `ActiveDirectory` modules, AD connectivity, and `Get-GPOReport` availability. Silently ignored when `FMP.ConfigTools` is not installed. |
+| `-EnableLogging` | `switch` | off | Start a timestamped PowerShell transcript alongside the output directory. Requires `FMP.ConfigTools`; silently ignored when the module is absent. |
 
 The script also honours the standard `-Verbose` common parameter and
 will log domain-context load steps, OU count, and the GPO count being
@@ -80,21 +80,21 @@ processed.
 
 | Variable | Effect |
 |---|---|
-| `the modernization program_OUTPUT` | Used as the log root directory when `-OutputPath` is not set and `-EnableLogging` is active |
+| `FMP_OUTPUT` | Used as the log root directory when `-OutputPath` is not set and `-EnableLogging` is active |
 
-### the modernization program.ConfigTools integration
+### FMP.ConfigTools integration
 
-When the `the modernization program.ConfigTools` shared module (included in `uiao-cli.zip` under
-`scripts\the modernization program.ConfigTools\`) is installed, the script uses it for structured
+When the `FMP.ConfigTools` shared module (included in `uiao-cli.zip` under
+`scripts\FMP.ConfigTools\`) is installed, the script uses it for structured
 coloured output and optional transcript logging. If the module is absent, the
 script falls back to plain `Write-Host` — no hard dependency.
 
 Install the module:
 
 ```powershell
-$dest = "$env:USERPROFILE\Documents\PowerShell\Modules\the modernization program.ConfigTools"
-Copy-Item .\uiao-cli\scripts\the modernization program.ConfigTools $dest -Recurse -Force
-Import-Module the modernization program.ConfigTools
+$dest = "$env:USERPROFILE\Documents\PowerShell\Modules\FMP.ConfigTools"
+Copy-Item .\uiao-cli\scripts\FMP.ConfigTools $dest -Recurse -Force
+Import-Module FMP.ConfigTools
 ```
 
 Run with prereq check and logging:
@@ -175,7 +175,7 @@ The result is a JSON array. Each element has a stable, ordered shape:
 ```
 
 Clean GPOs are emitted with an empty `Rules` array. This is intentional
-— it lets a the modernization program Evidence Ledger or Drift Engine reconcile coverage
+— it lets a Federal Modernization Program Evidence Ledger or Drift Engine reconcile coverage
 directly from the result set without joining against an external GPO
 inventory.
 
@@ -191,7 +191,7 @@ Per-rule fields beyond `RuleId` and `Description`:
 
 ## Integration patterns
 
-### the modernization program Evidence Ledger ingestion
+### The Federal Modernization Program Evidence Ledger ingestion
 
 The JSON array is the evidence payload. Wrap it with a provenance
 envelope (run timestamp, executing principal, domain) before posting to
@@ -218,9 +218,9 @@ permissions listed in [Prerequisites](#prerequisites). Direct
 
 ```powershell
 $action  = New-ScheduledTaskAction -Execute 'pwsh.exe' `
-    -Argument '-NoProfile -File C:\the modernization program\Invoke-GpoObsoleteAudit.ps1 -OutputPath C:\the modernization program\Evidence\gpo-audit.json'
+    -Argument '-NoProfile -File C:\FMP\Invoke-GpoObsoleteAudit.ps1 -OutputPath C:\FMP\Evidence\gpo-audit.json'
 $trigger = New-ScheduledTaskTrigger -Weekly -DaysOfWeek Sunday -At 2am
-Register-ScheduledTask -TaskName 'the modernization program-GpoObsoleteAudit' `
+Register-ScheduledTask -TaskName 'FMP-GpoObsoleteAudit' `
     -Action $action -Trigger $trigger -User 'CONTOSO\svc-uiao-audit' -RunLevel Highest
 ```
 
@@ -262,5 +262,5 @@ $findings.Rules |
 | Script SHA256 | `958010c1f2f13da203074df76b0cca5c04f6b308abceffc4e2ca95ef6245342f` (v1.0 base) |
 | Target | Windows Server with RSAT (GroupPolicy + ActiveDirectory modules) |
 | Output | JSON array; stdout by default, file via `-OutputPath` |
-| Optional module | `the modernization program.ConfigTools` v1.2.0 (prereq validation + transcript logging) |
-| Related | [`Invoke-GpoMigrationTriage.ps1`](invoke-gpo-migration-triage.qmd), the modernization program PowerShell Module Reference |
+| Optional module | `FMP.ConfigTools` v1.2.0 (prereq validation + transcript logging) |
+| Related | [`Invoke-GpoMigrationTriage.ps1`](invoke-gpo-migration-triage.qmd), the Federal Modernization Program PowerShell Module Reference |

@@ -22,7 +22,7 @@ aliases:
 **[reference-architecture-bundle.docx]** — every page in this section concatenated into one Word document, figures embedded. Regenerated on every site deploy.
 :::
 
-![A clean 16:9 architecture illustration of the AD-to-Entra-ID modernization journey](../images/reference-architecture/index-image-01-a-clean-169-architecture-illustr.svg){#fig-index-image-01 fig-alt="LEFT: a fading legacy enterprise — an Active Directory forest tree with Organizational Units, surrounded by satellite icons for DNS, DHCP, PKI, RADIUS, LDAP, Group Policy, and file services, all rendered in muted gray to signal end-of-life. RIGHT: a modern M365 / Entra ID cloud boundary containing Administrative Units, Dynamic Groups, Conditional Access, and Intune device policy, rendered in clean navy and teal. A single horizontal arrow runs left-to-right labeled \"the organizational-attribute model governance preserved.\" Above the arrow, a thin parallel arrow labeled \"Identity Modernization (the modernization program_xxx)\"; below it, a parallel arrow labeled \"Directory Migration (DM_xxx).\" Style: editorial flat vector, white background, McKinsey/Deloitte whitepaper feel. No people, no baked text other than the labels described. Palette: navy #0D1B2E, teal #1E8C8C, steel gray #5A5A5A, white." width="100%"}
+![A clean 16:9 architecture illustration of the AD-to-Entra-ID modernization journey](../images/reference-architecture/index-image-01-a-clean-169-architecture-illustr.svg){#fig-index-image-01 fig-alt="LEFT: a fading legacy enterprise — an Active Directory forest tree with Organizational Units, surrounded by satellite icons for DNS, DHCP, PKI, RADIUS, LDAP, Group Policy, and file services, all rendered in muted gray to signal end-of-life. RIGHT: a modern M365 / Entra ID cloud boundary containing Administrative Units, Dynamic Groups, Conditional Access, and Intune device policy, rendered in clean navy and teal. A single horizontal arrow runs left-to-right labeled \"the organizational-attribute model governance preserved.\" Above the arrow, a thin parallel arrow labeled \"Identity Modernization (FMP_xxx)\"; below it, a parallel arrow labeled \"Directory Migration (DM_xxx).\" Style: editorial flat vector, white background, McKinsey/Deloitte whitepaper feel. No people, no baked text other than the labels described. Palette: navy #0D1B2E, teal #1E8C8C, steel gray #5A5A5A, white." width="100%"}
 
 ## The Problem
 
@@ -50,7 +50,7 @@ LDAP — lose their governance anchor entirely.
 
 ## The Solution
 
-The the modernization program Modernization Canon is that missing framework.
+The Federal Modernization Program Modernization Canon is that missing framework.
 
 It provides the complete, deterministic, drift-resistant architecture for governing the
 AD-to-Entra ID transition — not just user migration, but the full governance surface
@@ -59,7 +59,7 @@ entire migration surface:
 
 | Domain | Namespace | Scope | Documents |
 |--------|-----------|-------|-----------|
-| **Identity Modernization** | the modernization program_xxx (formerly MOD_xxx; retired by [the program decision]) | User hierarchy, the organizational-attribute model attributes, dynamic groups, AUs, HR-driven lifecycle, delegation, Conditional Access | 27 files (the modernization program_150 + the A–Z series the modernization program_151–the modernization program_176) |
+| **Identity Modernization** | FMP_xxx (formerly MOD_xxx; retired by [the program decision]) | User hierarchy, the organizational-attribute model attributes, dynamic groups, AUs, HR-driven lifecycle, delegation, Conditional Access | 27 files (FMP_150 + the A–Z series FMP_151–FMP_176) |
 | **Directory Migration** | DM_xxx | DNS, DHCP, PKI, RADIUS, LDAP, sync engines, device management, NTP, DFS | 12 files (DM_000–DM_090): 8 adapter interfaces + 4 framework docs |
 
 Both canons share a universal design principle:
@@ -78,20 +78,20 @@ responsibility, explicit dependency relationships, and canonical artifacts.
 
 | Layer | Responsibility | Key Artifacts |
 |-------|---------------|---------------|
-| **Governance Layer** | Drift detection, telemetry, escalation, boundary impact, provenance, error taxonomy | the modernization program_163 (Drift Engine); the modernization program_167 (SLA Escalation Playbooks); the modernization program_174 (Telemetry) |
-| **Policy Layer** | Validation cmdlets, enforcement test suite, decision trees, SLA tracking | the modernization program_159 (PowerShell Validation); the modernization program_161 (Decision Trees); the modernization program_162 (SLA Heatmap) |
-| **Structure Layer** | Administrative-Unit delegation, workflow catalog, migration runbook, schemas | the modernization program_154 (Delegation Matrix); the modernization program_156 (Migration Runbook); the modernization program_158 (the organizational-attribute model JSON Schema) |
-| **Identity Layer** | the organizational-attribute model assignment, dynamic-group library, attribute mapping, extension attributes | the modernization program_150 (Executive Summary); the modernization program_151 (the organizational-attribute model Codebook); the modernization program_152 (Dynamic Groups); the modernization program_153 (Attribute Mapping) |
+| **Governance Layer** | Drift detection, telemetry, escalation, boundary impact, provenance, error taxonomy | FMP_163 (Drift Engine); FMP_167 (SLA Escalation Playbooks); FMP_174 (Telemetry) |
+| **Policy Layer** | Validation cmdlets, enforcement test suite, decision trees, SLA tracking | FMP_159 (PowerShell Validation); FMP_161 (Decision Trees); FMP_162 (SLA Heatmap) |
+| **Structure Layer** | Administrative-Unit delegation, workflow catalog, migration runbook, schemas | FMP_154 (Delegation Matrix); FMP_156 (Migration Runbook); FMP_158 (the organizational-attribute model JSON Schema) |
+| **Identity Layer** | the organizational-attribute model assignment, dynamic-group library, attribute mapping, extension attributes | FMP_150 (Executive Summary); FMP_151 (the organizational-attribute model Codebook); FMP_152 (Dynamic Groups); FMP_153 (Attribute Mapping) |
 
 ![A clean 16:9 layered-stack diagram showing the four-layer OrgTree governance stack](../images/reference-architecture/index-image-03-a-clean-169-layered-stack-diagra.svg){#fig-index-image-03 fig-alt="Four horizontal translucent layers stacked like glass shelves, bottom-to-top: (1) \"Identity Layer\" — widest, navy — small icons for the organizational-attribute model code, dynamic group, attribute. (2) \"Structure Layer\" — teal — small icons for an Administrative Unit boundary, a runbook page, a JSON schema. (3) \"Policy Layer\" — steel gray — small icons for a validation cmdlet, a decision tree, an SLA gauge. (4) \"Governance Layer\" — narrowest, top, dark navy with a soft glow — small icons for a drift signal, an escalation alert, a provenance seal. A vertical arrow runs through all four layers labeled \"Every artifact cites its layer.\" White background. No people. No baked text other than the four layer names and the vertical arrow label. Style: clean isometric/flat hybrid, modern government whitepaper feel. Palette: navy #0D1B2E, teal #1E8C8C, steel gray #5A5A5A, accent amber #D4A017, white." width="100%"}
 
 ## Governance Principles — 3 Universal + 3 Tier-Specific
 
-Per [the program decision], the modernization program ships **6 governance principles in two scopes**, declared canonically in [`src/uiao/canon/substrate-manifest.yaml`] (the modernization program_200). The substrate manifest is the code SSOT for principles; the descriptions below mirror it verbatim.
+Per [the program decision], the Federal Modernization Program ships **6 governance principles in two scopes**, declared canonically in [`src/uiao/canon/substrate-manifest.yaml`] (FMP_200). The substrate manifest is the code SSOT for principles; the descriptions below mirror it verbatim.
 
 ### 3 Universal Substrate Principles
 
-These apply at all 5 conformance tiers per [the program decision]. Every the modernization program deployment honors all three.
+These apply at all 5 conformance tiers per [the program decision]. Every the Federal Modernization Program deployment honors all three.
 
 1. **Single Source of Truth (SSOT).** Canonical governance artifacts under `src/uiao/canon/` define structure, policy intent, and registry authority exactly once. Downstream systems consume those artifacts via `importlib.resources` rather than duplicating policy logic.
 
@@ -105,9 +105,9 @@ These become operational only at the named the program decision tier (inclusive 
 
 | Principle | Applies at tier | Rationale for tier scope |
 |---|---|---|
-| **Two-Brain Execution** — Copilot governs (canonical review, policy enforcement, validation); Execution Substrate executes (PowerShell, Graph API, tenant provisioning); governance logic and execution logic never co-mingle | **Tier 3+** (Active Substrate) | At Tiers 1–2 there is no active runtime to split between governance and execution. The principle becomes operational only when the modernization program writes agency state. |
-| **Boundary Enforcement** — No governance artifact may extend beyond the M365 GCC-Moderate SaaS boundary. Out-of-scope references are non-canonical and rejected at validation | **Tier 4+** (Active Services / Platform Server) | At Tiers 1–3, boundary is a documented scope; at Tier 4 it becomes an enforced runtime contract on agency-deployed the modernization program services. |
-| **Tenant Agnosticism** — All artifacts are portable across any M365 GCC-Moderate tenant. No tenant-specific identifiers, UPNs, or GUIDs. All environment values are injected at deployment time | **Tier 5** (Embedded Libraries) | At Tiers 1–4, the modernization program runs agency-side and may carry tenant-local context. At Tier 5, code shipped to third parties (PyPI, NuGet, adapter SDK) MUST be portable. |
+| **Two-Brain Execution** — Copilot governs (canonical review, policy enforcement, validation); Execution Substrate executes (PowerShell, Graph API, tenant provisioning); governance logic and execution logic never co-mingle | **Tier 3+** (Active Substrate) | At Tiers 1–2 there is no active runtime to split between governance and execution. The principle becomes operational only when the Federal Modernization Program writes agency state. |
+| **Boundary Enforcement** — No governance artifact may extend beyond the M365 GCC-Moderate SaaS boundary. Out-of-scope references are non-canonical and rejected at validation | **Tier 4+** (Active Services / Platform Server) | At Tiers 1–3, boundary is a documented scope; at Tier 4 it becomes an enforced runtime contract on agency-deployed the Federal Modernization Program services. |
+| **Tenant Agnosticism** — All artifacts are portable across any M365 GCC-Moderate tenant. No tenant-specific identifiers, UPNs, or GUIDs. All environment values are injected at deployment time | **Tier 5** (Embedded Libraries) | At Tiers 1–4, the Federal Modernization Program runs agency-side and may carry tenant-local context. At Tier 5, code shipped to third parties (PyPI, NuGet, adapter SDK) MUST be portable. |
 
 ### Historical names ("Seven Non-Negotiable Principles")
 
@@ -120,7 +120,7 @@ Earlier framings of this canon listed seven principles. Per the program decision
 | Provenance Traceability | Canon-Anchored Evidence (same property, different label) |
 | Drift Resistance | Drift Is Explicit (same property; the 5-class taxonomy is the canonical drift surface) |
 
-The other three names (Boundary Enforcement, Two-Brain Execution, Tenant Agnosticism) remain canonical, now scoped to the tiers where they bind. The "seven principles" phrasing should not be cited in new material; refer to the 3 + 3 split above or to the substrate manifest directly. "Assessment Before Action" (sometimes quoted from the the modernization program the organizational-attribute model) is treated as an operational discipline — a corollary of Drift Is Explicit and Canon-Anchored Evidence — not a first-class substrate principle.
+The other three names (Boundary Enforcement, Two-Brain Execution, Tenant Agnosticism) remain canonical, now scoped to the tiers where they bind. The "seven principles" phrasing should not be cited in new material; refer to the 3 + 3 split above or to the substrate manifest directly. "Assessment Before Action" (sometimes quoted from the Federal Modernization Program the organizational-attribute model) is treated as an operational discipline — a corollary of Drift Is Explicit and Canon-Anchored Evidence — not a first-class substrate principle.
 
 ## Who This Is For
 
@@ -139,7 +139,7 @@ The other three names (Boundary Enforcement, Two-Brain Execution, Tenant Agnosti
 
 | Section | What is There |
 |---------|-------------|
-| [Identity Modernization (OrgTree)](orgtree.html) | The A-Z Suite: 27 canonical artifacts (the modernization program_150 + the modernization program_151–the modernization program_176) governing user hierarchy, dynamic groups, delegation, migration, drift detection, and operational governance |
+| [Identity Modernization (OrgTree)](orgtree.html) | The A-Z Suite: 27 canonical artifacts (FMP_150 + FMP_151–FMP_176) governing user hierarchy, dynamic groups, delegation, migration, drift detection, and operational governance |
 | [Directory Migration](directory-migration.html) | 8 adapter interfaces for every infrastructure service AD was holding together: IPAM, PKI, RADIUS, LDAP, sync engines, devices, NTP, DFS |
 
 ### Explainers and walk-throughs

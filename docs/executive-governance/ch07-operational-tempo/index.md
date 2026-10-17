@@ -30,7 +30,7 @@ classification, remediation, escalation, and SLA enforcement run.
 Without an explicit tempo, even a deterministic substrate degrades —
 findings pile up, remediation contracts are not honored, and the
 substrate's evidence reflects neglect rather than discipline. This
-chapter explains the tempo the modernization program declares and what it requires of the
+chapter explains the tempo the Federal Modernization Program declares and what it requires of the
 operating program.
 :::
 
@@ -48,7 +48,7 @@ declares severity-to-SLA mapping verbatim:
 | `P3` (medium) | Yes | 24 hours |
 | `P4` (low) | Yes | 72 hours |
 
-This is the substrate's tempo. Programs that adopt the modernization program inherit the
+This is the substrate's tempo. Programs that adopt the Federal Modernization Program inherit the
 tempo as a canonical commitment, not as a target to negotiate.
 
 ## What the tempo requires of the program

@@ -1,5 +1,5 @@
 ---
-title: "Intune + Azure Arc — Governed Path (the modernization program / the organizational-attribute model)"
+title: "Intune + Azure Arc — Governed Path (the Federal Modernization Program / the organizational-attribute model)"
 subtitle: "The same modernization end state, bound to canon governance: control-plane-governs-data-plane, the organizational-attribute model scoping, the L0–L4 actuation ladder, and the drift-detection loop"
 doc-type: operational-guide
 audience: [Customer, Operator, Technical]
@@ -18,7 +18,7 @@ tiers_adopted: [1]
 lifecycle_review: 2026-12-08
 ---
 
-# Intune + Azure Arc — Governed Path (the modernization program / the organizational-attribute model) {.unnumbered}
+# Intune + Azure Arc — Governed Path (the Federal Modernization Program / the organizational-attribute model) {.unnumbered}
 
 The governed path reaches the **same end state** as the
 [manual path](manual-path.md) — Arc-onboarded servers, Intune-enrolled
@@ -27,24 +27,24 @@ enforced — but binds every change to organizational intent. The
 [same scripts](manual-path.md) run; you add an the organizational-attribute model, an actuation rung, and a
 recorded approval.
 
-::: {.callout-important title="What the modernization program is (and what these docs do not invent)"}
-**the modernization program** is the *Unified Identity-Addressing-Overlay Architecture* — an **active
+::: {.callout-important title="What the Federal Modernization Program is (and what these docs do not invent)"}
+**The Federal Modernization Program** is the *Unified Identity-Addressing-Overlay Architecture* — an **active
 reconciliation control plane** that *governs* provider data planes, per
 the program decision. It is **not** "Unified IT
 Architecture Oversight" or "Universal Identity and Access Operations," and it is
 not a five-product suite layered over Azure. It holds desired state, observes
 actual state, classifies drift, and reconciles toward intent. The providers
-(Entra, Intune, Azure Policy, AD) remain the runtime data planes; the modernization program is on the
+(Entra, Intune, Azure Policy, AD) remain the runtime data planes; the Federal Modernization Program is on the
 truth-and-reconciliation side of that line.
 :::
 
 ## 1. The one rule: control plane governs, data plane executes
 
 Active Directory conflated the directory (truth) with the domain controller (the
-in-path enforcer). The modern split keeps them separate, and the modernization program is deliberately
+in-path enforcer). The modern split keeps them separate, and the Federal Modernization Program is deliberately
 on the truth side:
 
-> the modernization program **governs** — it holds desired state, observes actual state, classifies
+> The Federal Modernization Program **governs** — it holds desired state, observes actual state, classifies
 > drift, and reconciles toward intent. The provider **executes** at runtime — it
 > authenticates, authorizes, routes, resolves, or stores. A modernization
 > adapter MAY make change-making calls into a provider's *management* surface; it
@@ -54,28 +54,28 @@ Every script in this kit obeys that line: `Invoke-ArcOnboarding` calls the Azure
 management plane; `Deploy-ConditionalAccessBaseline` calls the Graph policy API;
 none of them sit in a runtime auth path.
 
-![the modernization program holds desired state and reconciles; Entra, Intune, Azure Policy, and AD remain the data planes that authenticate, enroll, enforce, and store at runtime. Change-making adapters call provider management surfaces only.](images/intune-arc-diagram-02-control-data-plane.png){#fig-planes fig-alt="Control plane (the modernization program desired state + reconciliation) governing provider data planes via management-surface adapters"}
+![the Federal Modernization Program holds desired state and reconciles; Entra, Intune, Azure Policy, and AD remain the data planes that authenticate, enroll, enforce, and store at runtime. Change-making adapters call provider management surfaces only.](images/intune-arc-diagram-02-control-data-plane.png){#fig-planes fig-alt="Control plane (the Federal Modernization Program desired state + reconciliation) governing provider data planes via management-surface adapters"}
 
 ## 2. Providers are incorporated, not replaced
 
 Each provider in this kit is a **seat-holder** governed through the
 provider-incorporation contract, not displaced:
 
-| Provider (data plane) | Role at runtime | How the modernization program governs it |
+| Provider (data plane) | Role at runtime | How the Federal Modernization Program governs it |
 |---|---|---|
 | Microsoft Entra ID | authenticates, enforces CA | desired CA + identity state; drift vs canon |
 | Microsoft Intune | enrolls, enforces device policy | desired profile/compliance state; posture observe |
 | Azure Policy / Arc | evaluates Guest Configuration | desired baseline; compliance reconcile |
 | Active Directory | issues Kerberos tickets, holds SPNs | NTLM/SPN desired state; audit + repair plan |
 
-the modernization program does not reimplement any of these functions. It reconciles their state
+The Federal Modernization Program does not reimplement any of these functions. It reconciles their state
 against canon and emits evidence.
 
 ## 3. the organizational-attribute model — the addressing overlay
 
 Every governed object carries an **the organizational-attribute model**, so a server, an endpoint, a CA
 policy, and an SPN are all addressable in the same terms. the organizational-attribute model is the key by
-which the modernization program routes approvals, assigns ownership, and scopes policy.
+which the Federal Modernization Program routes approvals, assigns ownership, and scopes policy.
 
 On the governed path you stamp it on every change:
 
@@ -106,7 +106,7 @@ autonomous (L4) actuation is refused in-boundary.
 | L0 | Record | desired state in canon only | the modernization spine table |
 | L1 | Observe | collect actual state, detect drift (read-only) | NTLM/SPN/SQL/Intune audits, drift report |
 | L2 | Advise | generate the corrective change-set, surface it | the `-WhatIf` previews |
-| L3 | Gated | a human approves; the modernization program executes via the provider API | every state-changing script with `-the organizational-attribute model` + `-ApprovalRef` |
+| L3 | Gated | a human approves; the Federal Modernization Program executes via the provider API | every state-changing script with `-the organizational-attribute model` + `-ApprovalRef` |
 | L4 | Auto | the loop closes without a human | **above the ceiling — refused** |
 
 `Assert-GovernanceApproval` enforces this: it refuses any write above the
@@ -135,7 +135,7 @@ domain:
 
 ## 6. Mapping the draft's model to canon
 
-The source "WITH-GOVERNANCE" draft described the modernization program as five products. Those concepts
+The source "WITH-GOVERNANCE" draft described the Federal Modernization Program as five products. Those concepts
 exist in canon — but as machinery already named, not new components:
 
 | Draft term | Canon equivalent |
@@ -247,7 +247,7 @@ evidence for a bounded slice of that catalog:
 
 Indicators this kit does **not** evidence, and should not be cited for:
 recovery planning (KSI-RPL), supply chain risk (KSI-SCR), cybersecurity
-education (KSI-CED), and incident-response process (KSI-INR). The the modernization program
+education (KSI-CED), and incident-response process (KSI-INR). The Federal Modernization Program
 substrate does carry rules for these themes, but their evidence comes from
 sources outside this kit's Intune/Arc surface — contingency-plan review
 records, SBOM/VDR tooling, training records, SOAR playbooks.

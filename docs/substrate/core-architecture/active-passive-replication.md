@@ -1,5 +1,5 @@
 ---
-title: "the modernization program Active-Passive Replication Guide"
+title: "The Federal Modernization Program Active-Passive Replication Guide"
 subtitle: "Replication, failover, and integrity assurance for the Git substrate"
 doc-type: guide
 audience: [Customer, Technical]
@@ -22,7 +22,7 @@ lifecycle_review: 2026-12-05
 
 ## Purpose and scope
 
-This guide is the standalone reference for the the modernization program Git substrate's
+This guide is the standalone reference for the Federal Modernization Program Git substrate's
 active-passive replication posture. It consolidates the replication content
 previously embedded in the Platform Server Build Guide and the Disaster
 Recovery Playbook into a single operational surface, and adds the
@@ -141,5 +141,5 @@ sanctioned copy of the substrate.
 
 ---
 
-the modernization program Active-Passive Replication Guide v1.0 | Classification: Controlled | Boundary: GCC-Moderate\
+The Federal Modernization Program Active-Passive Replication Guide v1.0 | Classification: Controlled | Boundary: GCC-Moderate\
 Author: Michael Stratton | June 5, 2026 | Repository: https://github.com/WhalerMike/uiao

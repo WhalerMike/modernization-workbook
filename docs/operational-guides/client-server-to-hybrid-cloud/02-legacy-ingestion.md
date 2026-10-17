@@ -5,7 +5,7 @@ doc-type: series-chapter
 series-id: client-server-to-hybrid-cloud
 chapter: 2
 audience: "Assessment engineers · identity architects · forest admins"
-canon-source: "Posted AD Interaction Guide + Read-Only AD Assessment Guide + the modernization program_159 PowerShell Validation Module + the modernization programADAssessment"
+canon-source: "Posted AD Interaction Guide + Read-Only AD Assessment Guide + FMP_159 PowerShell Validation Module + FMPADAssessment"
 date: 2026-04-24
 aspirational: true
 lifecycle: adopted
@@ -28,7 +28,7 @@ ADCS analysis*
 ![Eleven ingestion streams feed a single provenance-bound artifact set in Gitea](images/02-legacy-ingestion-image-01-figure-2.png){#fig-02-legacy-ingestion-image-01 fig-alt="Funnel diagram with eleven labeled input streams on the left (AD, DNS, DHCP, GPO, PKI, RADIUS, IPAM, NTP, file shares, scheduled tasks, service accounts) feeding into a central pipeline labeled \"Read-only assessment ingest — provenance-bound\". Single output on the right: \"Gitea artifact set (hash-stamped, signed)\". Clean engineering blueprint style, dark navy (#0D1B2E) and teal (#1E8C8C) color scheme on white background. No photographs, purely diagrammatic." width="100%"}
 
 ::: {.callout-important title="The assessment discipline"}
-You cannot modernize what you have not enumerated. Every the modernization program
+You cannot modernize what you have not enumerated. Every the Federal Modernization Program
 modernization begins with a **read-only, least-privilege, provenance-bound
 analysis** of the existing Client/Server estate. The output of this phase
 is a structured, versioned artifact set — one per AD-dependency category —
@@ -59,13 +59,13 @@ full, structured, attestation-grade record.
 
 ## Three design principles
 
-The the modernization program assessment layer enforces three principles that distinguish it
+The Federal Modernization Program assessment layer enforces three principles that distinguish it
 from a general-purpose AD scan.
 
 ### 1. Read-only by policy
 
 Every assessment operation is constrained to read-only Active Directory
-rights. The service account running `the modernization programADAssessment` has exactly the
+rights. The service account running `FMPADAssessment` has exactly the
 permissions it needs to read — and zero beyond that. No group
 memberships are changed, no GPOs edited, no password resets issued.
 This is enforced at the account level (least-privilege delegation),
@@ -131,7 +131,7 @@ Get-ADTrust -Filter * | ConvertTo-UiaoTrustRecord
 ```
 
 **Output.** `assessments/<run-id>/forest-topology.json` — normalised
-to the modernization program_158 schema.
+to FMP_158 schema.
 
 **Feeds.** Chapter 04 (identity strategy); DM_090 (Trust Relationships);
 Chapter 09 (migration roadmap — trust relationships define cutover
@@ -224,7 +224,7 @@ Get-ADGroupMember -Identity each -Recursive
 **Output.** `assessments/<run-id>/groups.jsonl`.
 
 **Feeds.** Chapter 04 (dynamic-group authoring from the organizational-attribute model rules);
-the modernization program_152 (Dynamic Group Library target).
+FMP_152 (Dynamic Group Library target).
 
 ### Stream 7 — Group Policy Objects
 
@@ -352,7 +352,7 @@ Gitea under `assessments/<run-id>/`. The run-id is
 
 ```
 assessments/
-└── 2026-04-24-1030-the modernization program-GIT01-tierB/
+└── 2026-04-24-1030-FMP-GIT01-tierB/
     ├── provenance.yaml              ← who/what/when/hash
     ├── forest-topology.json
     ├── ou-hierarchy.json
@@ -396,13 +396,13 @@ Only together do they produce governed modernization.
 
 ## Reference material
 
-- **Posted: the modernization program Active Directory Interaction Guide** (11,677 words) —
+- **Posted: The Federal Modernization Program Active Directory Interaction Guide** (11,677 words) —
   the Tier B reference implementation.
-- **Posted: the modernization program Read-Only AD Assessment Guide** (10,858 words) — the
+- **Posted: The Federal Modernization Program Read-Only AD Assessment Guide** (10,858 words) — the
   Tier A reference implementation (least-privilege, ~87% coverage).
-- **Posted: the modernization program PowerShell Module Reference** (9,248 words) — the
-  `the modernization programADAssessment` module surface.
-- **Canon:** the modernization program_159 PowerShell Validation Module; the modernization program_158 the organizational-attribute model JSON
+- **Posted: The Federal Modernization Program PowerShell Module Reference** (9,248 words) — the
+  `FMPADAssessment` module surface.
+- **Canon:** FMP_159 PowerShell Validation Module; FMP_158 the organizational-attribute model JSON
   Schema.
 
 ---

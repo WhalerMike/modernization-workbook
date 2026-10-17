@@ -28,7 +28,7 @@ lifecycle_review: 2026-11-22
 ::: {.callout-note}
 ## In this chapter
 
-The the modernization program adapter is the substrate's mechanism for **bringing tools and
+The Federal Modernization Program adapter is the substrate's mechanism for **bringing tools and
 control planes into a canonical governance surface** without absorbing
 their idiosyncrasies into canon. This chapter explains the dual-axis
 taxonomy that makes adapters governable, the two-registry model that
@@ -40,7 +40,7 @@ invariants that constrain every adapter regardless of vendor.
 
 ## The dual-axis taxonomy
 
-Per the modernization program_003, every adapter declares two attributes:
+Per FMP_003, every adapter declares two attributes:
 
 - **`class`**: `modernization` or `conformance`.
   - *Modernization* adapters are change-making. They mutate state in

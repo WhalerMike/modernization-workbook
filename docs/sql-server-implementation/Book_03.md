@@ -32,7 +32,7 @@ This is the implementation companion to **narrative Book 03**. The narrative exp
 
 Every later step — consolidation, Arc enablement, login migration, NTLM elimination — depends on knowing what you actually have. The audit produces that inventory. Run it first, keep its output under version control, and re-run it after every change to measure progress.
 
-The scripts live in [`tools/discovery/`] as the `Spec*-D1.*` family (provenance: the modernization program_136 Spec 1 and Spec 3, Phase 1; aligned to the program decision). They are pure PowerShell, emit JSON + CSV, and require no write access to anything.
+The scripts live in [`tools/discovery/`] as the `Spec*-D1.*` family (provenance: FMP_136 Spec 1 and Spec 3, Phase 1; aligned to the program decision). They are pure PowerShell, emit JSON + CSV, and require no write access to anything.
 
 ## The primary script — `Spec3-D1.8-Get-SQLServerAuthAudit.ps1`
 
@@ -122,4 +122,4 @@ This entire book is read-only. The discovery-only invocation (example 1) touches
 
 ---
 
-*Companion to narrative Book 03. Scripts: `tools/discovery/Spec3-D1.8`, `Spec1-D1.4/1.5`, `Spec3-D1.7/1.10/1.12`. Canon: the directory modernization program §3.2, the modernization program_136 Spec 1/3, the program decision, the program decision.*
+*Companion to narrative Book 03. Scripts: `tools/discovery/Spec3-D1.8`, `Spec1-D1.4/1.5`, `Spec3-D1.7/1.10/1.12`. Canon: the directory modernization program §3.2, FMP_136 Spec 1/3, the program decision, the program decision.*

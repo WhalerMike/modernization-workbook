@@ -5,7 +5,7 @@ doc-type: series-chapter
 series-id: ssot-network-physics
 chapter: 0
 audience: "Executive stakeholders · architects · CISO"
-canon-source: "Synthesized analysis; the modernization program claims trace to the program decision, the program decision, the program decision"
+canon-source: "Synthesized analysis; the Federal Modernization Program claims trace to the program decision, the program decision, the program decision"
 date: 2026-06-22
 aspirational: true
 lifecycle: draft
@@ -87,9 +87,9 @@ response, therefore, is not to make global synchronization fast — it is to
 free, and let everything that crosses a continent be asynchronous,
 eventually-consistent, or merge-friendly by design.
 
-## The the modernization program reference example
+## The Federal Modernization Program reference example
 
-the modernization program's own SaaS data plane already embodies this doctrine, and the paper uses
+The Federal Modernization Program's own SaaS data plane already embodies this doctrine, and the paper uses
 it as the worked example throughout:
 
 - **One shared, single-region PostgreSQL store** is the tenant registry and
@@ -102,7 +102,7 @@ it as the worked example throughout:
   resources *only* for customers whose compliance posture requires it — the
   distribute-where-you-must escape hatch, kept as an exception rather than the
   default (the program decision).
-- **No global synchronous write path exists**, on purpose — the modernization program's answer to
+- **No global synchronous write path exists**, on purpose — the Federal Modernization Program's answer to
   the speed-of-light tax is to not span it synchronously in the first place.
 
 ## How to read this paper
@@ -114,5 +114,5 @@ SD-WAN can and cannot buy a database tier. Chapter 5 — forward-looking, on the
 proposed the program decision transport plane — extends token-based security from data
 *access* to the network *path* itself, so "identity is the new boundary" holds
 on both planes. Chapter 6 unifies the data and network layers into a single
-design rule. Chapter 7 walks the the modernization program implementation end to end and names the
+design rule. Chapter 7 walks the Federal Modernization Program implementation end to end and names the
 one risk this whole bet imports.

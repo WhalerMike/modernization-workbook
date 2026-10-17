@@ -5,7 +5,7 @@ doc-type: series-chapter
 series-id: ssot-network-physics
 chapter: 1
 audience: "Architects · platform engineers · data owners"
-canon-source: "Synthesized analysis; the modernization program SSOT principle per AGENTS.md operating principle 1 and the program decision"
+canon-source: "Synthesized analysis; the Federal Modernization Program SSOT principle per AGENTS.md operating principle 1 and the program decision"
 date: 2026-06-22
 aspirational: true
 lifecycle: draft
@@ -51,7 +51,7 @@ A single authoritative source of record is not merely tidier — it is
 | Drift surface | One per copy, multiplied by every replication path | Minimized to the derived copies you explicitly create |
 | Mental model | N schemas and their interactions | One schema and its invariants |
 
-This is the heart of the modernization program's own operating doctrine. The substrate's first
+This is the heart of the Federal Modernization Program's own operating doctrine. The substrate's first
 operating principle is unambiguous: *every claim has exactly one canonical
 source; all other representations are provenance-anchored pointers* (see
 `AGENTS.md` operating principles and `the program decision`). Drift is not an accident to be
@@ -95,7 +95,7 @@ that is ending. Small databases are flourishing in two repurposed roles:
    exactly the SD-WAN question of Chapter 4.)
 2. **As compliance-stamped exceptions.** Where a customer's regulatory posture
    demands hard physical isolation, a dedicated small store is provisioned for
-   that tenant. the modernization program implements precisely this as the control-plane "stamp"
+   that tenant. The Federal Modernization Program implements precisely this as the control-plane "stamp"
    pattern (Chapter 7, the program decision) — the exception, not the default.
 
 Meanwhile the small-database *movement* is expanding, not contracting:

@@ -27,13 +27,13 @@ lifecycle_review: 2026-11-22
 ## In this chapter
 
 Attestation is a human signing that something is true. Evidence is a
-machine-verifiable artifact showing that it is. the modernization program's substrate
+machine-verifiable artifact showing that it is. The Federal Modernization Program's substrate
 treats evidence as the primary artifact and attestation as a
 supplemental layer rather than the other way around. This chapter
 explains why the inversion matters and what changes operationally.
 :::
 
-![Attestation-versus-evidence-stack diagram](images/index-image-01-attestation-versus-evidence-stac.png){#fig-index-image-01 fig-alt="Two parallel vertical stacks. Left stack labeled \"Attestation primary\" shows a thin \"machine evidence\" base topped by a thick \"human attestation\" cap; an arrow shows the human cap as the primary artifact. Right stack labeled \"Evidence primary (the modernization program)\" shows a thick \"canonical machine evidence\" base with a thin \"human review\" cap; an arrow shows the evidence base as the primary artifact. A footer line emphasizes \"human review remains, but is not load-bearing for verification\". Clean engineering blueprint style, dark navy (#0D1B2E) and teal (#1E8C8C) on white background. No photographs, purely diagrammatic." width="100%"}
+![Attestation-versus-evidence-stack diagram](images/index-image-01-attestation-versus-evidence-stac.png){#fig-index-image-01 fig-alt="Two parallel vertical stacks. Left stack labeled \"Attestation primary\" shows a thin \"machine evidence\" base topped by a thick \"human attestation\" cap; an arrow shows the human cap as the primary artifact. Right stack labeled \"Evidence primary (the Federal Modernization Program)\" shows a thick \"canonical machine evidence\" base with a thin \"human review\" cap; an arrow shows the evidence base as the primary artifact. A footer line emphasizes \"human review remains, but is not load-bearing for verification\". Clean engineering blueprint style, dark navy (#0D1B2E) and teal (#1E8C8C) on white background. No photographs, purely diagrammatic." width="100%"}
 
 ## What attestation is and is not
 
@@ -60,7 +60,7 @@ on top.
 | What it is | A human signing that something is true | A machine-verifiable artifact showing it is |
 | Temporal scope | Point-in-time | Continuous between events |
 | Verification | Re-read | Re-execute and hash-check |
-| Role in the modernization program | Human accountability wrapper | Primary artifact |
+| Role in the Federal Modernization Program | Human accountability wrapper | Primary artifact |
 
 ## What "evidence" means in canon
 
@@ -90,7 +90,7 @@ verification, not just *cheaper*.
 
 ## What changes for the assessor
 
-A 3PAO assessing a the modernization program-anchored package gets four properties they
+A 3PAO assessing an FMP-anchored package gets four properties they
 cannot get from an attestation package:
 
 - **Independent re-execution** — they re-run the OSCAL pipeline and

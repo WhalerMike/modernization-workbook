@@ -1,6 +1,6 @@
 ---
 title: "Executive Briefs"
-subtitle: "Single-page leadership summaries of the modernization program capability areas"
+subtitle: "Single-page leadership summaries of the Federal Modernization Program capability areas"
 doc-type: section-landing
 audience: "Agency CIO · CISO · modernization sponsors"
 canon-source: "src/uiao/canon/"
@@ -22,7 +22,7 @@ questions about one capability area:
 
 1. **What it is** — the capability in one paragraph.
 2. **Why it matters** — the governance or mission problem it solves.
-3. **What the modernization program delivers** — shipped and target behavior.
+3. **What the Federal Modernization Program delivers** — shipped and target behavior.
 4. **What is still target vs. shipped** — honest adoption posture.
 
 ## Pages in this section
@@ -31,10 +31,10 @@ Status badges follow the Whitepapers status conventions.
 
 | Slug | Topic | Status | Canon anchor |
 |---|---|---|---|
-| uiao-executive-brief | The flagship the modernization program brief — full federal scenario | Active | `docs/publications/01-executive-brief/` |
+| uiao-executive-brief | The flagship the Federal Modernization Program brief — full federal scenario | Active | `docs/publications/01-executive-brief/` |
 | universal-enterprise-positioning-overview | Vertical-agnostic engine; federal as one adapter pack | Active | `src/uiao/canon/adr/adr-085-universal-enterprise-positioning.md` |
-| [governance-os-overview](governance-os-overview.md) | The the modernization program Governance OS in one page | Active | `src/uiao/canon/substrate-manifest.yaml` |
-| [adapter-ecosystem-overview](adapter-ecosystem-overview.md) | The dual-axis adapter taxonomy and registries | Active | `src/uiao/canon/the modernization program_003_Adapter_Segmentation_Overview_v1.0.md` |
+| [governance-os-overview](governance-os-overview.md) | The Federal Modernization Program Governance OS in one page | Active | `src/uiao/canon/substrate-manifest.yaml` |
+| [adapter-ecosystem-overview](adapter-ecosystem-overview.md) | The dual-axis adapter taxonomy and registries | Active | `src/uiao/canon/FMP_003_Adapter_Segmentation_Overview_v1.0.md` |
 | [drift-engine-overview](drift-engine-overview.md) | Drift-detection capability brief | Active | `docs/docs/16_DriftDetectionStandard.qmd` |
 | [evidence-fabric-overview](evidence-fabric-overview.md) | Provenance and evidence pipeline brief | Active | `docs/docs/15_ProvenanceProfile.qmd` |
 | [ksi-conformance-overview](ksi-conformance-overview.md) | Machine-checkable Key Security Indicators | Active | `src/uiao/rules/ksi/` |
