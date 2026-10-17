@@ -4,16 +4,16 @@ subtitle: "How Federal Agencies Lost Their Single Source of Truth Across Forty Y
 author: "Michael Stratton"
 date: "2026-07-18T00:33:00-04:00"
 format:
- html:
- css: lz-style.css
- number-sections: true
- toc: true
- toc-depth: 3
- toc-title: "Contents"
- docx:
- reference-doc: assets/reference-mslearn.docx
- number-sections: true
- fig-width: 6.5
+  html:
+    css: lz-style.css
+    number-sections: true
+    toc: true
+    toc-depth: 3
+    toc-title: "Contents"
+  docx:
+    reference-doc: assets/reference-mslearn.docx
+    number-sections: true
+    fig-width: 6.5
 fig-align: center
 out-width: "100%"
 
