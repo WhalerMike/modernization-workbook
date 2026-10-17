@@ -1,0 +1,15 @@
+---
+title: "Compliance Day-2 Automation Kit — Current State — Operator Usage"
+subtitle: "Each catalog task with its current-state write path (AD leg vs cloud leg), one diagram per task"
+doc-type: kit-reference
+audience: "Service-desk / CST operators on today's hybrid estate"
+family: orgcomp-series
+lifecycle: adopted
+tiers_adopted: [1]
+lifecycle_review: 2027-01-21
+format:
+  html: {css: lz-style.css, toc: true, toc-depth: 3, toc-title: "Contents"}
+  docx: {reference-doc: orgcomp-reference.docx, toc: true, toc-depth: 3}
+---
+
+{{< include servicenow-day2/CURRENT-STATE-OPERATOR-USAGE.md >}}
