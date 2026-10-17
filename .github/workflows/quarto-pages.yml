@@ -41,21 +41,40 @@ jobs:
             cp "$f" "$dest"
           done
 
-      - name: Create series ZIPs with modern images
+      - name: Create series ZIPs and combined bundle
         run: |
           mkdir -p _site/downloads
 
-          # SQL Server narrative series — Markdown + modern images, exclude old bundle
+          # SQL Server narrative series ZIP — Markdown + modern images + rendered DOCX
           mkdir -p /tmp/sql-zip
           cp docs/case-studies/sql-server-narrative/*.md /tmp/sql-zip/
           mkdir -p /tmp/sql-zip/images
           cp docs/images/sql-server/*.png docs/images/sql-server/*.jpg /tmp/sql-zip/images/ 2>/dev/null || true
-          # Also include the rendered DOCX (modern)
           if [ -d _docx/docs/case-studies/sql-server-narrative ]; then
             cp _docx/docs/case-studies/sql-server-narrative/*.docx /tmp/sql-zip/ 2>/dev/null || true
           fi
-          (cd /tmp/sql-zip && zip -r /tmp/sql-server-narrative-series.zip . -x "*.bundle.docx" -x "*highlighted*" -x "*neutralized*")
+          (cd /tmp/sql-zip && zip -r /tmp/sql-server-narrative-series.zip . -x "*bundle*" -x "*highlighted*" -x "*neutralized*")
           cp /tmp/sql-server-narrative-series.zip _site/downloads/
+
+          # Combined series bundle DOCX (concatenate rendered books)
+          if command -v pandoc >/dev/null && [ -d _docx/docs/case-studies/sql-server-narrative ]; then
+            mkdir -p /tmp/bundle-src
+            # Order: series overview, then books 01-11
+            for f in series-overview book-01-the-inheritance book-02-the-estate book-03-authentication-audit \
+                     book-04-identity-bridge book-05-login-migration book-06-ntlm-elimination book-07-access-control \
+                     book-08-upstream-chain book-09-steady-state book-10-certificate-authority book-11-platform-question; do
+              src="_docx/docs/case-studies/sql-server-narrative/${f}.docx"
+              if [ -f "$src" ]; then
+                pandoc "$src" -o "/tmp/bundle-src/${f}.md" 2>/dev/null || true
+              fi
+            done
+            if ls /tmp/bundle-src/*.md >/dev/null 2>&1; then
+              cat /tmp/bundle-src/*.md > /tmp/bundle-src/combined.md
+              pandoc /tmp/bundle-src/combined.md -o _site/downloads/sql-server-narrative-bundle.docx \
+                --reference-doc=assets/reference-mslearn.docx 2>/dev/null || \
+              pandoc /tmp/bundle-src/combined.md -o _site/downloads/sql-server-narrative-bundle.docx
+            fi
+          fi
 
           # Client-server series
           if [ -d docs/client-server-to-hybrid-cloud ]; then
