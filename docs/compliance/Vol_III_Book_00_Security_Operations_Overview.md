@@ -11,15 +11,13 @@ format:
  toc-depth: 2
  toc-title: "Contents"
  docx:
- reference-doc: orgcomp-reference.docx
- toc: true
- toc-depth: 2
+ reference-doc: assets/reference-mslearn.docx
  number-sections: true
 fig-align: center
 out-width: "100%"
 execute:
  echo: false
-filters: [orgcomp-callouts.lua]
+
 aliases:
  - /customer-documents/federal-aan-series/Vol_III_Book_00_FedAAN_Security_Operations_Overview.html
 
