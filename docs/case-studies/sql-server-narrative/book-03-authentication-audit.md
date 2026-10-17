@@ -2,6 +2,12 @@
 
 **What is actually using Windows Authentication, SQL Authentication, and NTLM**
 
+
+
+![Authentication audit](../../images/sql-server/before-kerberos.png)
+
+*Authentication audit diagram.*
+
 ## Why this book exists
 
 The authentication audit produces the baseline that every subsequent decision depends on. Without it, the program does not know which connections will break when NTLM is restricted, which logins can be migrated to cloud identity, and which applications must be changed.
