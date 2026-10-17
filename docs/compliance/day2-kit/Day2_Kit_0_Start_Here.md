@@ -1,0 +1,17 @@
+---
+title: "Compliance Day-2 Automation Kit — START HERE"
+subtitle: "The implementer's on-ramp: the ordered steps, the disclaimers, the debug options, and the sandbox-first rule"
+doc-type: kit-reference
+audience: "The implementer standing this up for the first time"
+family: orgcomp-series
+lifecycle: adopted
+tiers_adopted: [1]
+lifecycle_review: 2027-01-21
+format:
+  html: {css: lz-style.css, toc: true, toc-depth: 3, toc-title: "Contents"}
+  docx: {reference-doc: orgcomp-reference.docx, toc: true, toc-depth: 3}
+---
+
+{{< include servicenow-day2/START-HERE.md >}}
+
+![The whole kit at a glance: a SAM or ServiceNow request travels the five MACD-R clauses, actuates Entra Graph and Azure ARM through the in-boundary MID Server, and emits the NIST 800-53 controls and FedRAMP KSIs.](servicenow-day2/figs/day2kit-fig-01-end-to-end-path.png){fig-alt="Four-column house-style diagram on white. Origin: SAM SailPoint IdentityIQ and ServiceNow catalog. Orchestrate: the five MACD-R clauses Authorize, Elevate PIM, Actuate, Verify, Evidence. Actuate: in-boundary MID Server feeding Entra Microsoft Graph and Azure ARM. Emit: evidence store to NIST 800-53 controls and FedRAMP 20x KSIs." width="100%"}
