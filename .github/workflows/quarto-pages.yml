@@ -45,16 +45,24 @@ jobs:
         run: |
           mkdir -p _site/downloads
 
-          # SQL Server narrative series ZIP — Markdown + modern images + rendered DOCX
-          mkdir -p /tmp/sql-zip
-          cp docs/case-studies/sql-server-narrative/*.md /tmp/sql-zip/
-          mkdir -p /tmp/sql-zip/images
-          cp docs/images/sql-server/*.png docs/images/sql-server/*.jpg /tmp/sql-zip/images/ 2>/dev/null || true
+          # DOCX-only bundles for each series
+          for series in architecture executive-briefs executive-governance modernization-specs                         reference-architecture operational-guides case-studies whitepapers                         compliance sql-server-implementation ssot-network-physics substrate                         modernization client-server-to-hybrid-cloud; do
+            src="_docx/docs/${series}"
+            if [ -d "$src" ]; then
+              echo "Creating bundle for $series"
+              (cd "$src" && zip -r "/tmp/${series}-series.zip" *.docx 2>/dev/null || true)
+              if [ -f "/tmp/${series}-series.zip" ]; then
+                cp "/tmp/${series}-series.zip" _site/downloads/
+                echo "Created ${series}-series.zip"
+              fi
+            fi
+          done
+
+          # SQL Server narrative series ZIP — DOCX only
           if [ -d _docx/docs/case-studies/sql-server-narrative ]; then
-            cp _docx/docs/case-studies/sql-server-narrative/*.docx /tmp/sql-zip/ 2>/dev/null || true
+            (cd _docx/docs/case-studies/sql-server-narrative && zip -r /tmp/sql-server-narrative-series.zip *.docx 2>/dev/null || true)
+            cp /tmp/sql-server-narrative-series.zip _site/downloads/ 2>/dev/null || true
           fi
-          (cd /tmp/sql-zip && zip -r /tmp/sql-server-narrative-series.zip . -x "*bundle*" -x "*highlighted*" -x "*neutralized*")
-          cp /tmp/sql-server-narrative-series.zip _site/downloads/
 
           # Combined series bundle DOCX (concatenate rendered books)
           if command -v pandoc >/dev/null && [ -d _docx/docs/case-studies/sql-server-narrative ]; then
