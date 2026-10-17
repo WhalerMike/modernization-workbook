@@ -13,6 +13,9 @@ lifecycle_review: 2027-01-01
 
 # Chapter 1 — The Shape of Twenty Years
 
+![Estate assessment](../../images/sql-server/before-kerberos.png)
+
+
 *Why the estate you must transform is not the estate anyone remembers building.*
 
 ::: {.callout-note}
