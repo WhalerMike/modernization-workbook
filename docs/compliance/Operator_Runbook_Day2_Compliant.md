@@ -10,7 +10,7 @@ lifecycle_review: 2027-01-21
 format:
   html: {css: lz-style.css, number-sections: true, toc: true, toc-depth: 3, toc-title: "Contents"}
   docx: {reference-doc: assets/reference-mslearn.docx, toc: true, toc-depth: 3, number-sections: true}
-filters: [orgcomp-callouts.lua]
+
 ---
 
 ::: {.aan-warning}
