@@ -21,7 +21,8 @@ A clean, standalone project for federal IT modernization. Content is written for
 
 ## Download complete series
 
-- [SQL Server Narrative Series (ZIP)](downloads/sql-server-narrative-series.zip)
+- [SQL Server Narrative Series (ZIP)](downloads/sql-server-narrative-series.zip) — Markdown, modern images, and rendered DOCX
+- [SQL Server Narrative Bundle (DOCX)](downloads/sql-server-narrative-bundle.docx) — all books combined into one Word document
 - [Client-Server to Hybrid-Cloud Series (ZIP)](downloads/client-server-to-hybrid-cloud-series.zip)
 
 ## Project documents
