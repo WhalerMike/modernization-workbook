@@ -41,18 +41,25 @@ jobs:
             cp "$f" "$dest"
           done
 
-      - name: Create series ZIPs
+      - name: Create series ZIPs with modern images
         run: |
           mkdir -p _site/downloads
-          if [ -d docs/case-studies/sql-server-narrative ]; then
-            (cd docs/case-studies/sql-server-narrative && zip -r ../../../_site/downloads/sql-server-narrative-series.zip *.md 2>/dev/null || true)
+
+          # SQL Server narrative series — Markdown + modern images, exclude old bundle
+          mkdir -p /tmp/sql-zip
+          cp docs/case-studies/sql-server-narrative/*.md /tmp/sql-zip/
+          mkdir -p /tmp/sql-zip/images
+          cp docs/images/sql-server/*.png docs/images/sql-server/*.jpg /tmp/sql-zip/images/ 2>/dev/null || true
+          # Also include the rendered DOCX (modern)
+          if [ -d _docx/docs/case-studies/sql-server-narrative ]; then
+            cp _docx/docs/case-studies/sql-server-narrative/*.docx /tmp/sql-zip/ 2>/dev/null || true
           fi
+          (cd /tmp/sql-zip && zip -r /tmp/sql-server-narrative-series.zip . -x "*.bundle.docx" -x "*highlighted*" -x "*neutralized*")
+          cp /tmp/sql-server-narrative-series.zip _site/downloads/
+
+          # Client-server series
           if [ -d docs/client-server-to-hybrid-cloud ]; then
             (cd docs/client-server-to-hybrid-cloud && zip -r ../../_site/downloads/client-server-to-hybrid-cloud-series.zip *.md 2>/dev/null || true)
-          fi
-          # Also zip the rendered DOCX
-          if [ -d _docx/docs/case-studies/sql-server-narrative ]; then
-            (cd _docx/docs/case-studies/sql-server-narrative && zip -r ../../../../_site/downloads/sql-server-narrative-docx.zip *.docx 2>/dev/null || true)
           fi
 
       - name: Setup Pages
