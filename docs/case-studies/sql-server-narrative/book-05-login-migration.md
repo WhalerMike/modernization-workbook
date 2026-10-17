@@ -2,6 +2,12 @@
 
 **Parallel-run of Windows and cloud-identity logins**
 
+
+
+![Parallel-run pattern](../../images/sql-server/during-parallel.png)
+
+![Migration state](../../images/sql-server/migration-state.png)
+
 ## Why this book exists
 
 Login migration is the period during which both authentication paths live simultaneously. Windows logins (type-U) and cloud-identity logins (type-E) coexist until every connection string has been migrated and every application has been verified.
