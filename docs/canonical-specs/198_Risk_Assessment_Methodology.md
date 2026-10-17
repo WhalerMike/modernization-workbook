@@ -11,9 +11,7 @@ date: 2026-06-19
 
 This page renders the canonical the modernization program_198 source verbatim. The
 authoritative source is at
-[`src/uiao/canon/the modernization program_198_Risk_Assessment_Methodology.md`](../../src/uiao/canon/the modernization program_198_Risk_Assessment_Methodology.md).
 Per [the program decision](../adr/adr-072-canon-publication-policy.qmd), this
 canonical page is generated as an `include`-style wrapper.
 :::
 
-{{< include ../../src/uiao/canon/the modernization program_198_Risk_Assessment_Methodology.md >}}
