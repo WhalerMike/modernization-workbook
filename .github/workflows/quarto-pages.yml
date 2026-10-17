@@ -59,6 +59,8 @@ jobs:
           # Combined series bundle DOCX (concatenate rendered books)
           if command -v pandoc >/dev/null && [ -d _docx/docs/case-studies/sql-server-narrative ]; then
             mkdir -p /tmp/bundle-src
+            echo "Looking for DOCX files in _docx/docs/case-studies/sql-server-narrative/"
+            ls _docx/docs/case-studies/sql-server-narrative/*.docx 2>/dev/null | head -5 || echo "No DOCX files found"
             # Order: index, then books 01-10 with chapters
             for f in index Book_01 Book_01_CPT_01 Book_01_CPT_02 Book_02 Book_02_CPT_01 Book_02_CPT_02 \
                      Book_02_CPT_03 Book_02_CPT_04 Book_03 Book_03_CPT_01 Book_03_CPT_02 \
@@ -68,15 +70,23 @@ jobs:
                      Book_10 Book_10_CPT_01; do
               src="_docx/docs/case-studies/sql-server-narrative/${f}.docx"
               if [ -f "$src" ]; then
-                pandoc "$src" -o "/tmp/bundle-src/${f}.md" 2>/dev/null || true
+                echo "Converting $src"
+                pandoc "$src" -o "/tmp/bundle-src/${f}.md" || echo "Failed to convert $src"
+              else
+                echo "Missing: $src"
               fi
             done
             if ls /tmp/bundle-src/*.md >/dev/null 2>&1; then
+              echo "Combining $(ls /tmp/bundle-src/*.md | wc -l) files"
               cat /tmp/bundle-src/*.md > /tmp/bundle-src/combined.md
               pandoc /tmp/bundle-src/combined.md -o _site/downloads/sql-server-narrative-bundle.docx \
-                --reference-doc=assets/reference-mslearn.docx 2>/dev/null || \
-              pandoc /tmp/bundle-src/combined.md -o _site/downloads/sql-server-narrative-bundle.docx
+                --reference-doc=assets/reference-mslearn.docx && echo "Bundle created" || \
+              (pandoc /tmp/bundle-src/combined.md -o _site/downloads/sql-server-narrative-bundle.docx && echo "Bundle created without reference doc")
+            else
+              echo "No markdown files to combine"
             fi
+          else
+            echo "pandoc not found or _docx directory missing"
           fi
 
           # Client-server series
