@@ -1,0 +1,266 @@
+---
+title: "Intune-First Asset Onboarding — Net-New Devices into Governance from Day Zero"
+subtitle: "The Inverse of the AD Migration Path: Refuse the Existence of Any Ungoverned Device"
+date: 2026-05-15
+format:
+  html:
+    toc: true
+    toc-depth: 3
+  docx:
+    toc: true
+lifecycle: aspirational
+lifecycle_review: 2026-11-22
+aliases:
+  - /customer-documents/reference-architecture/intune-first.html
+---
+
+{{< lifecycle-banner >}}
+
+::: {.callout-important}
+## Scope: net-new devices only (per the program decision)
+
+This page is the canon for **Intune-First Asset Onboarding** — the doctrine for devices that have *never* been on the network. For replacing GPOs on the **existing** fleet, see the [GPO Sunset Program](../operational-guides/target-surface/intune-policy-templates.qmd) (a different program, different stakeholders, different timeline). For the policy-authoring philosophy that governs how GPO Sunset Program authors replacement policies, see the [Policy Transformation Pattern](../operational-guides/client-server-to-hybrid-cloud/05-policy-transformation.qmd) ("regenerate, not copy"). Per [the program decision], "Intune-First" by itself is reserved for *this* page's net-new doctrine and should not be used to refer to the GPO replacement program.
+:::
+
+## What "Intune-First" Means
+
+A net-new asset (laptop just unboxed, server just racked, phone just
+issued) is governed by Intune — or, for servers, Azure Arc into the
+same governance plane — from the moment it first powers on. There is
+**no intermediate state** where the device:
+
+- joins on-prem Active Directory and waits for a future migration,
+- is provisioned by SCCM and later co-managed,
+- runs without an the organizational-attribute model assignment,
+- enters production without a compliance evaluation,
+- or skips the procurement-side organizational positioning step.
+
+This is the inverse of the [Directory Migration](directory-migration.qmd)
+path. Migration takes a device that already exists and brings it under
+governance. Intune-First refuses the existence of any ungoverned device
+in the first place.
+
+## Why This Canon Exists
+
+the modernization program already had a mature canon for **migrating** AD-joined endpoints
+into Entra ID + Intune (covered by the [Directory Migration](directory-migration.qmd)
+adapter family). What did not exist: the operational doctrine and
+procurement-to-validation process for net-new assets.
+
+The [`intune-native/` sub-adapter slot](../../src/uiao/modernization/directory-migration/adapters/device-management/device-adapter-interface.md)
+under `device-management/` had been registered but never authored.
+Operationally, this meant net-new asset acquisition followed an
+implicit pattern with three failure modes:
+
+1. **Procurement-time the organizational-attribute model assignment was missed.** Devices ended
+   up wherever the runtime user-derivation script placed them — not
+   where procurement intended.
+2. **Cross-platform inconsistency.** Windows had Autopilot; macOS,
+   iOS, Android, and Arc-managed servers each had bespoke handling.
+3. **Co-management drift.** Net-new Windows endpoints occasionally
+   entered SCCM co-management because it was operationally convenient
+   — each one a future migration ticket and a present compliance gap.
+
+The Intune-First canon closes all three.
+
+## The Five Doctrine Pillars
+
+Per [the program decision](../../src/uiao/canon/adr/adr-071-intune-first-asset-onboarding.md)
+and the full doctrine at [`src/uiao/modernization/intune-first-onboarding/doctrine.md`](../../src/uiao/modernization/intune-first-onboarding/doctrine.md):
+
+| # | Pillar | What it asserts |
+|---|---|---|
+| 1 | **No ungoverned device, ever** | Every asset must be governance-enrolled before transitioning to production use. Quarantine (`/UNPOSITIONED`) is the safety valve, not the steady state. |
+| 2 | **Procurement is the first governance step** | Asset the organizational-attribute model is determined when the PO is issued, not when the device arrives. Procurement systems integrate with the governance pipeline as a peer of HR systems for user provisioning. |
+| 3 | **Zero-touch only** | Manual enrollment is a controlled exception requiring written justification, compensating controls, a finite duration, and an audit entry. |
+| 4 | **One management plane per asset; no co-management for new assets** | Intune for endpoints; Arc + Intune Settings Catalog for servers. No greenfield SCCM, no greenfield GPO, no greenfield HAADJ. |
+| 5 | **Quarantine on failure; never silently degrade** | Onboarding failures produce a quarantine entry and a governance ticket — never a silently-degraded production device. |
+
+## The Three Documented Exception Paths
+
+Doctrine carve-outs for unavoidable cases. Each requires written
+justification, compensating control, and an audit entry:
+
+| Path | Applies to | Why it's permissible |
+|---|---|---|
+| **A — User-driven enrollment for BYOD** | Personally-owned devices being enrolled to a corporate work profile or partition (iOS user-enrolled, Android work-profile, Windows registered) | Refusing to govern BYOD at all would push users to entirely-unmanaged access via personal browsers. Governed at a lower assurance level is better than ungoverned. |
+| **B — Linux endpoint with Arc fallback** | Linux endpoints that cannot use Microsoft Intune's Linux MDM surface (developer workstations requiring root, embedded Linux, air-gapped) | Microsoft's Intune Linux MDM is GA but limited; Arc + Azure Policy Guest Configuration is the substitute governance plane. |
+| **C — Pre-Server-2025 Windows servers** | Windows Server 2019 and 2022 hosts whose OS upgrade is not yet feasible | [the program decision](../../src/uiao/canon/adr/adr-002-arc-entra-join-no-domain-join.md) explicitly notes Server 2019/2022 cannot use AADLoginForWindows. Arc-managed-only is acceptable as an interim state. |
+
+Full text in [`src/uiao/modernization/intune-first-onboarding/doctrine.md`](../../src/uiao/modernization/intune-first-onboarding/doctrine.md) §4.
+
+## the organizational-attribute model Assignment for Non-AD-Migrated Devices
+
+Every governed device must carry an the organizational-attribute model value matching an Active
+node in the [OrgTree](orgtree.qmd) registry (Pillar 1). For devices
+that **do** originate in Active Directory, the
+[Directory Migration](directory-migration.qmd) path derives the organizational-attribute model
+from the AD-side computer object via `the program decision` device-plane mapping.
+
+For devices that **do not** originate in AD — every asset onboarded
+under this doctrine, plus BYOD and exception-path devices that never
+had an AD record — the organizational-attribute model comes from one of four sources, evaluated
+in strict priority order. This is the **the organizational-attribute model assignment authority
+chain**, canonicalized in
+[`doctrine.md`](../../src/uiao/modernization/intune-first-onboarding/doctrine.md) §5.
+
+| # | Source | When it applies |
+|---|---|---|
+| 1 | **Procurement record** — the the organizational-attribute model written to the vendor-program carrier at Phase 2 (Autopilot Group Tag, ABM device note, Android Zero-Touch / Knox managed config, or Arc onboarding resource tag) | Asset acquired through the procurement integration; this is the authoritative source for every net-new device |
+| 2 | **Hardware-hash mapping CSV** — `governance/{platform}/orgpath-mapping.csv`, pre-staged to the device via a configuration profile | The vendor-program carrier failed to write or was stripped; the mapping CSV preserves procurement intent out-of-band |
+| 3 | **User derivation** — the provisioning user's the organizational-attribute model, read from their Entra ID user object via Graph | Asset has no procurement record (pre-doctrine asset, BYOD under Exception Path A, or user-driven enrollment carve-out) |
+| 4 | **Quarantine `/UNPOSITIONED`** — the terminal fallback | No prior source produced a value matching an Active OrgTree node |
+
+A source produces a value only if that value is non-empty **and**
+resolves to a Status: Active node in the OrgTree registry as of stamp
+time. A source that fails either check is treated as having produced
+no value; evaluation falls through to the next priority.
+
+The chain is implemented by the platform-specific stamping mechanism in
+Phase 4 — a PowerShell script on Windows, a LaunchAgent shell script
+on macOS, an Intune-side Azure Function on iOS / iPadOS / Android (where
+on-device scripts are forbidden), and the Arc onboarding resource tag
+write on servers. The mechanism varies by platform; the priority order
+does not.
+
+### Why procurement is priority 1 (not user-derivation)
+
+The historical default used user-derivation as the primary source.
+That works, but it is non-deterministic — a Finance laptop provisioned
+by an IT technician would inherit the technician's the organizational-attribute model until a
+later ETL pass corrected it. Procurement-first ordering gives three
+properties the user-derivation-first ordering did not:
+
+- **Determinism** — the the organizational-attribute model stamped at enrollment is the the organizational-attribute model
+  intended at PO time, not a function of whoever happened to power on
+  the device.
+- **Auditability** — the procurement record provides chain-of-custody
+  from "the organization decided to buy this asset" through "the
+  device now carries that the organizational-attribute model in production."
+- **Pre-user-logon governance** — self-deploying and shared-device
+  enrollment vectors complete with no user signed in. Under
+  user-derivation-first ordering these devices have no the organizational-attribute model source
+  at enrollment time; procurement-first ordering stamps them
+  correctly without any user present.
+
+User-derivation is preserved at priority 3 to keep backward
+compatibility with deployments that have not yet implemented
+procurement-side integration, and to handle the BYOD / Exception
+Path A case where procurement-time assignment is structurally
+impossible.
+
+### Pre-doctrine and procurement-record-absent devices
+
+Devices that pre-date the doctrine or arrived outside procurement
+(grey-market, user-funded, historical inventory, BYOD) have no
+procurement record and no Phase 2 vendor-program carrier. The chain
+still applies — sources 1 and 2 produce no value, evaluation falls
+through to source 3 (user derivation), and on failure to source 4
+(`/UNPOSITIONED`).
+
+Such devices surface as `DRIFT-PROCUREMENT-RECORD-ABSENT` findings
+(see [`validation-and-evidence.md`](../../src/uiao/modernization/intune-first-onboarding/validation-and-evidence.md) §2.5)
+and are reconciled through governance review — either by retroactively
+filing a procurement record, by re-classifying as migration assets,
+or by quarantine-then-disposition.
+
+The chain guarantees that **every device enrolled in Intune carries
+some the organizational-attribute model value**, even if only `/UNPOSITIONED`. No enrolled device
+has an empty extension attribute. That invariant is what keeps the
+OrgTree-* dynamic group population deterministic and the drift
+detection engine's correlation joins sound.
+
+## The Five-Phase Onboarding Process
+
+Every net-new asset, regardless of platform, follows the same five
+phases. What changes per platform is the vendor program used in
+Phase 2 and the enrollment vector used in Phase 4.
+
+| Phase | Owner | Trigger | Output | Gate to next phase |
+|---|---|---|---|---|
+| **1. Procure** | Procurement | Business request for an asset | Approved PO with the organizational-attribute model assignment | the organizational-attribute model validated against the OrgTree registry |
+| **2. Pre-stage** | Procurement + Vendor | PO submitted to vendor | Vendor program record (Autopilot device profile, ABM device assignment, etc.) | Vendor program record carries the the organizational-attribute model tag |
+| **3. Position** | Governance pipeline | Vendor confirms hardware-hash registration | Pre-staged Entra ID device object placeholder OR procurement-side mapping table entry | Mapping committed to governance repo and reviewed |
+| **4. Provision** | End user (zero-touch) or IT (assisted zero-touch) | Asset arrives at recipient location | Enrolled, the organizational-attribute model-stamped, compliant device | Compliance policy returns Compliant; CA grants access |
+| **5. Validate** | Governance pipeline | Device first compliance evaluation completes | Validation record in the governance audit log | All Phase 5 checks pass; device removed from quarantine if applicable |
+
+Full process spec in [`src/uiao/modernization/intune-first-onboarding/process.md`](../../src/uiao/modernization/intune-first-onboarding/process.md).
+Reference latency target: **PO issuance to production-governed within
+14 calendar days** for standard hardware, **5 calendar days** for
+expedited orders.
+
+## Procurement is the First Governance Step
+
+Phase 1 — Procure is where the doctrine departs most sharply from
+historical practice. Asset the organizational-attribute model is captured **at PO time** in a
+structured field, not inferred downstream from whoever provisions the
+device.
+
+Required intake fields, per [`procurement-handoff.md`](../../src/uiao/modernization/intune-first-onboarding/procurement-handoff.md) §2:
+
+- `recipient_upn`, `recipient_orgpath` (resolved from Entra ID)
+- `asset_class` (windows-endpoint / macos-endpoint / ios-tablet / etc.)
+- `asset_assignment_type` (personal / shared / kiosk / lab / service)
+- `asset_orgpath` and `asset_orgnodeid` (validated against OrgTree registry)
+- `vendor`, `vendor_program` (autopilot-direct, apple-abm, android-zerotouch, samsung-knox-me, arc-direct)
+
+The procurement system commits a JSON procurement record to
+`governance/procurement/orders/{PO-number}.json` and writes the
+the organizational-attribute model tag to the appropriate vendor program at Phase 2.
+
+## Per-Platform Onboarding Annexes
+
+The five-phase process is platform-neutral. Per-platform mechanics
+live in dedicated annexes:
+
+| Platform | Vendor program | the organizational-attribute model carrier | Trust elevation state | Annex |
+|---|---|---|---|---|
+| **Windows endpoint** | Windows Autopilot Device Preparation (v2) | Group Tag (`the organizational-attribute model:/path/value`) | Microsoft Entra Join (per [the program decision](../../src/uiao/canon/adr/adr-001-haadj-deprecated-entra-join-only.md)) | [`platforms/windows-autopilot.md`](../../src/uiao/modernization/intune-first-onboarding/platforms/windows-autopilot.md) |
+| **Microsoft Surface** *(sub-pattern of Windows endpoint)* | Surface direct via Microsoft CSP, or authorized reseller (CDW, Insight, Connection) | Group Tag (`the organizational-attribute model:/path/value`) + DFCI profile applied at ESP Device Setup | Entra Join + DFCI firmware lockdown + Pluton attestation (Pro 11 / Laptop 6+) | [`platforms/windows-surface.md`](../../src/uiao/modernization/intune-first-onboarding/platforms/windows-surface.md) |
+| **macOS endpoint** | Apple Business Manager (ABM) or Apple School Manager (ASM) ADE | ABM device note | Supervised + ADE-enrolled | [`platforms/macos-abm-ade.md`](../../src/uiao/modernization/intune-first-onboarding/platforms/macos-abm-ade.md) |
+| **iOS / iPadOS** | Apple ABM/ASM ADE | ABM device note | Supervised | [`platforms/mobile-ios-android.md`](../../src/uiao/modernization/intune-first-onboarding/platforms/mobile-ios-android.md) Part A |
+| **Android Enterprise** | Android Zero-Touch (Google) or Knox Mobile Enrollment (Samsung) | Custom JSON managed config | Device Owner mode | [`platforms/mobile-ios-android.md`](../../src/uiao/modernization/intune-first-onboarding/platforms/mobile-ios-android.md) Part B |
+| **Server (Windows 2025+ / Linux)** | Azure Arc onboarding | Azure resource tag on Arc machine | WORKGROUP + Arc-onboarded; Entra-joined via AADLoginForWindows for Server 2025+ | [`platforms/arc-managed-servers.md`](../../src/uiao/modernization/intune-first-onboarding/platforms/arc-managed-servers.md) |
+
+## Validation, Drift Classes, and Evidence
+
+Phase 5 validation runs a checklist of platform-neutral and platform-
+specific checks ([`validation-and-evidence.md`](../../src/uiao/modernization/intune-first-onboarding/validation-and-evidence.md) §1).
+Failures quarantine the device per Pillar 5.
+
+The doctrine introduces **five new drift classes**:
+
+| Drift class | What it detects |
+|---|---|
+| `DRIFT-PROCUREMENT-MISMATCH` | the organizational-attribute model stamped on the device differs from the procurement-record value |
+| `DRIFT-VENDOR-PROGRAM-CARRIER` | the organizational-attribute model in the vendor program record (Autopilot Group Tag, ABM device note, etc.) differs from the procurement record |
+| `DRIFT-ENROLLMENT-VECTOR` | Device enrolled via a non-zero-touch path without an exception path grant |
+| `DRIFT-CO-MANAGEMENT-NEW` | Net-new Windows endpoint landed in SCCM co-management instead of Intune-first |
+| `DRIFT-PROCUREMENT-RECORD-ABSENT` | Device enrolled in Intune with no corresponding procurement record |
+
+Each detection produces an HMAC-signed evidence artifact under
+`governance/evidence/intune-first/` and supports FedRAMP Moderate
+control families AC-2, AC-19, CM-2, CM-7, CM-8, IA-3, MA-2, SC-15.
+
+## Source Files
+
+All Intune-First Asset Onboarding canon lives in the monorepo at
+[`src/uiao/modernization/intune-first-onboarding/`](../../src/uiao/modernization/intune-first-onboarding/README.md).
+The doctrinal anchor is [`src/uiao/canon/adr/adr-071-intune-first-asset-onboarding.md`](../../src/uiao/canon/adr/adr-071-intune-first-asset-onboarding.md).
+
+## Related
+
+- [Directory Migration](directory-migration.qmd) — the sibling track
+  that handles existing AD-joined fleet (where Intune-First applies
+  to net-new acquisition, Directory Migration handles the legacy
+  estate)
+- [OrgTree Modernization](orgtree.qmd) — provides the the organizational-attribute model
+  primitive that Intune-First consumes at procurement time
+- [the program decision](../../src/uiao/canon/adr/adr-001-haadj-deprecated-entra-join-only.md)
+  — controlling precedent for Windows endpoint join target (Entra
+  Join only; HAADJ deprecated)
+- [the program decision](../../src/uiao/canon/adr/adr-002-arc-entra-join-no-domain-join.md)
+  — controlling precedent for server identity (Arc + Entra Join,
+  WORKGROUP state required)
+- [the program decision](../../src/uiao/canon/adr/adr-071-intune-first-asset-onboarding.md)
+  — establishes the Intune-First doctrine
