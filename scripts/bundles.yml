@@ -138,6 +138,76 @@ bundles:
     pages: [Appendix_B_ATO_Kit.md]
 
   # ---------------------------------------------------------------------
+  # Next Generation DDI (modernization book): the whole book, then one
+  # bundle per chapter.
+  # ---------------------------------------------------------------------
+  - output: next-generation-ddi-bundle.docx
+    title: "Next Generation DDI"
+    subtitle: "Governing DNS, DHCP and IPAM as the hybrid multi-cloud control plane"
+    root: docs/next-generation-ddi
+    image_dir: docs/images/ddi
+    warn_unlisted: ["*.md"]
+    pages:
+      - index.md
+      - 01-dns-is-the-control-plane.md
+      - 02-split-brain-dns.md
+      - 03-federal-requirements.md
+      - 04-active-directory-dns-departure.md
+      - 05-edge-interception-and-bypass.md
+      - 06-dns-identity-and-dnssec.md
+      - 07-cloud-private-endpoints-and-ipam.md
+      - 08-reference-architecture.md
+      - 09-migration-sequence.md
+      - 10-operating-the-control-plane.md
+      - 11-selection-cost-and-residual-risk.md
+      - appendix-a-dns-record-types.md
+
+  - output: next-generation-ddi-ch01-bundle.docx
+    subtitle: "Next Generation DDI — Chapter 01"
+    root: docs/next-generation-ddi
+    pages: [01-dns-is-the-control-plane.md]
+  - output: next-generation-ddi-ch02-bundle.docx
+    subtitle: "Next Generation DDI — Chapter 02"
+    root: docs/next-generation-ddi
+    pages: [02-split-brain-dns.md]
+  - output: next-generation-ddi-ch03-bundle.docx
+    subtitle: "Next Generation DDI — Chapter 03"
+    root: docs/next-generation-ddi
+    pages: [03-federal-requirements.md]
+  - output: next-generation-ddi-ch04-bundle.docx
+    subtitle: "Next Generation DDI — Chapter 04"
+    root: docs/next-generation-ddi
+    pages: [04-active-directory-dns-departure.md]
+  - output: next-generation-ddi-ch05-bundle.docx
+    subtitle: "Next Generation DDI — Chapter 05"
+    root: docs/next-generation-ddi
+    pages: [05-edge-interception-and-bypass.md]
+  - output: next-generation-ddi-ch06-bundle.docx
+    subtitle: "Next Generation DDI — Chapter 06"
+    root: docs/next-generation-ddi
+    pages: [06-dns-identity-and-dnssec.md]
+  - output: next-generation-ddi-ch07-bundle.docx
+    subtitle: "Next Generation DDI — Chapter 07"
+    root: docs/next-generation-ddi
+    pages: [07-cloud-private-endpoints-and-ipam.md]
+  - output: next-generation-ddi-ch08-bundle.docx
+    subtitle: "Next Generation DDI — Chapter 08"
+    root: docs/next-generation-ddi
+    pages: [08-reference-architecture.md]
+  - output: next-generation-ddi-ch09-bundle.docx
+    subtitle: "Next Generation DDI — Chapter 09"
+    root: docs/next-generation-ddi
+    pages: [09-migration-sequence.md]
+  - output: next-generation-ddi-ch10-bundle.docx
+    subtitle: "Next Generation DDI — Chapter 10"
+    root: docs/next-generation-ddi
+    pages: [10-operating-the-control-plane.md]
+  - output: next-generation-ddi-ch11-bundle.docx
+    subtitle: "Next Generation DDI — Chapter 11"
+    root: docs/next-generation-ddi
+    pages: [11-selection-cost-and-residual-risk.md]
+
+  # ---------------------------------------------------------------------
   # Section bundles: every published page in the section folder, index first.
   # ---------------------------------------------------------------------
   - output: architecture-series-bundle.docx
