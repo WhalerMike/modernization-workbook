@@ -15,7 +15,7 @@ That is the gap the framework fills.
 
 ## The thesis, one more time
 
-Chapter 00 opened with a claim: Active Directory was never just an identity store; it was the implicit governance model for every network service an organization ran. Twenty-five years of accretion made it so. Microsoft is now deprecating the entire stack that built up around Active Directory — and is supplying replacements that are individually excellent.
+Chapter 00 opened with a claim: Active Directory was never just an identity store; it was the implicit governance model for every network service an organization ran. Twenty-five years of accretion made it so. Microsoft now steers new investment toward a cloud-first identity model — and supplies replacements that are individually excellent — while AD DS remains supported.
 
 The problem is that collective replacement requires something the platform vendor does not provide: a framework that decides what the target looks like, how to get there, how to prove it was done right, and how to keep it right afterward. Without that framework, organizations migrate in pieces, lose governance continuity, and finish with a modernized surface that cannot answer the questions their auditors were asking six months earlier.
 
@@ -31,14 +31,14 @@ The framework is an **orchestration + governance + evidence layer** that runs ab
 - A **canonical repository** of governance artifacts — policies, plans, evidence — stored as versioned, signed files.
 - A **transformation engine** — PowerShell + Python + API integrators — that reads the Client/Server estate, produces deterministic plans, and delivers them into the Hybrid-Cloud target surface (Chapters 02–03).
 - A **target surface** — identity, policy, services, compute, access — each governed through a matching chapter of this series (Chapters 04–08).
-- A **fifty-two-week program roadmap** with seven gates, five parallel workstreams, and mechanically evaluable exit criteria (Chapter 09).
+- An **illustrative fifty-two-week program roadmap** with seven gates, five parallel workstreams, and mechanically evaluable exit criteria (Chapter 09).
 
 ### What it is not
 
 - **Not a platform-tool replacement.** The framework does not replace cloud identity, device management, hybrid management, or any other native tool. It orchestrates them.
-- **Not a proprietary product.** The framework is a governed deployment of well-known components configured in a defined way. Nothing to buy a license for.
-- **Not a consultant’s methodology.** The framework is a documented set of artifacts, versioned in the repository, auditable line-by-line. No slideware-based engagement can ship this.
-- **Not optional for regulated modernization.** The “do this without a framework” alternative produces the failure modes enumerated in Chapter 09. Organizations that skip the orchestration step finish with half-migrations, drift, and audit failures.
+- **Not a proprietary product.** The framework is a reference architecture: a governed deployment of well-known components configured in a defined way. The framework itself needs no license, though the platform services it orchestrates do (for example, Entra ID P1/P2 or ID Governance, and Intune).
+- **Not a slide-based methodology.** The framework is meant to be built as a documented set of artifacts, versioned in the repository and auditable line by line.
+- **Not a shortcut.** The “do this without a framework” alternative tends to produce the failure modes enumerated in Chapter 09: half-migrations, drift, and audit findings.
 
 ## The instruments, revisited
 
@@ -89,7 +89,7 @@ Once the program is underway, five standing questions reveal whether it is actua
 
 1. **What is the drift count?** Trend, not point-in-time. Rising drift is the single strongest leading indicator of a failing modernization.
 2. **What percentage of production changes had a signed plan?** One hundred percent is the only acceptable answer in steady state. Anything less means ad-hoc changes have re-entered the flow.
-3. **What percentage of employees have valid organizational attributes?** Below ninety-five percent is a Gate G1 regression.
+3. **What percentage of employees have valid organizational attributes?** Set a threshold (for example, ninety-five percent) and treat falling below it as a regression.
 4. **How many Group Policy Objects are active?** Should be declining every month of Phase 4. Plateauing before zero is a blocker.
 5. **How many hybrid-joined devices have been in that state for more than one hundred eighty days?** Zero. Any other answer is a modernization stuck at Chapter 07.
 
@@ -101,17 +101,17 @@ Three concrete next steps:
 
 1. **Use the series as project guidance.** Everything this series describes can be turned into versioned artifacts in a repository — adapter interfaces, policy libraries, validation approaches. The series is the narrative; the artifacts are the authority.
 
-2. **Run an assessment** (Chapter 02). Not a theoretical exercise — a real, read-only, least-privilege enumeration of your forest. The output is the input to every downstream decision. An assessment takes about a week and produces a complete picture you probably do not have today.
+2. **Run an assessment** (Chapter 02). Not a theoretical exercise — a real, read-only, least-privilege enumeration of your forest. The output is the input to every downstream decision. A first assessment typically takes days to a few weeks, depending on forest size and access approvals, and produces a complete picture you probably do not have today.
 
 3. **Stand up the platform host** (Chapter 01). A governed modernization begins with one Windows Server 2025 host running version control, a reverse proxy, and the canonical repository. From that host, everything else follows.
 
 ## The bottom line
 
-Microsoft retired Active Directory because the Client/Server era ended. They gave you the instruments to play in the new era. They did not give you the orchestra.
+The Client/Server era is ending, and Microsoft has given you the instruments to play in the new one. It has not given you the orchestra.
 
 The framework is the orchestra. This series is the score.
 
-Active Directory retirement is not a migration project. It is a governance transformation. Run it governed, or do not run it.
+Active Directory retirement is not a migration project. It is a governance transformation, and it should be run as one.
 
 ---
 

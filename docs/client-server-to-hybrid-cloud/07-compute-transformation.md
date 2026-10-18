@@ -18,10 +18,10 @@ The device-join model has several states. Understanding them is the precondition
 | State | Primary auth | Managed by | When to use |
 |-------|--------------|------------|-------------|
 | **Domain-Joined** (legacy) | Active Directory Kerberos | Group Policy | Legacy — migration origin |
-| **Cloud-registered** | Personal or work account overlay | Device management (optional) | Bring-your-own-device; rarely used in regulated environments |
+| **Entra registered** | Personal device with a work account added | Device management (optional) | Bring-your-own-device; rarely used in regulated environments |
 | **Hybrid-joined** | Both Active Directory + cloud identity (simultaneous) | Group Policy + device management | Transition state — not a target |
-| **Cloud-joined** | Cloud identity only | Device management | Target for user PCs |
-| **Hybrid-connected server** | Managed identity | Hybrid management + guest configuration | Target for servers |
+| **Entra joined** (cloud-joined) | Cloud identity only | Device management | Target for user PCs |
+| **Arc-connected server** | Local or domain logon unchanged; system-assigned managed identity for Azure-plane operations | Azure Arc + Azure Policy machine configuration | Target for servers |
 
 Two architectural rules apply:
 
@@ -54,9 +54,9 @@ This is operationally heavy for the user (loss of local customization unless syn
 
 ### Pattern 3 — Hybrid-then-cloud
 
-For fleets where reset-and-re-enroll is not operationally feasible, devices are first hybrid-joined (both Active Directory and cloud identity). Over a planned period (typically three to twelve months), workloads migrate from Group Policy to device management; then the device is converted to cloud-joined only; the Active Directory side is dropped.
+For fleets where an immediate reset is not operationally feasible, devices are first hybrid-joined (both Active Directory and cloud identity). Over a planned period, workloads move from Group Policy to device management. There is no supported in-place conversion from hybrid join to Entra join, so the final step is still a reset and Autopilot re-provisioning (or a third-party migration tool), timed to the device's refresh or a scheduled window.
 
-This is the common transition. It is the slowest of the three but causes the least operational disruption. Drift detection monitors every step so a device does not get stuck hybrid-joined forever.
+This is the common transition. It is the slowest of the three and defers, rather than avoids, the reset. Drift detection monitors every step so a device does not get stuck hybrid-joined forever.
 
 ## Servers — the hybrid management path
 
@@ -64,7 +64,7 @@ Windows and Linux servers do not go through the same device-management path as u
 
 ### What hybrid management does
 
-Hybrid management projects an on-premises (or other-cloud) server into the cloud as a resource. The server appears in a cloud subscription; it gets a managed identity; it can receive policy and guest-configuration assignments; it appears in security and monitoring services; it is governed the same way a native cloud virtual machine is governed.
+Hybrid management projects an on-premises (or other-cloud) server into the cloud as a resource. The server appears in a cloud subscription; it gets a system-assigned managed identity for Azure-plane operations (its operating-system logon is unchanged); it can receive policy and guest-configuration assignments; it appears in security and monitoring services; it is governed the same way a native cloud virtual machine is governed.
 
 Critically, hybrid management does not require the server to be in the cloud. The server stays where it lives physically. Hybrid management is the governance projection; the physical host is unchanged.
 
@@ -76,14 +76,14 @@ Every hybrid-projected server is tagged with its organizational attributes. Clou
 
 For each domain-joined server:
 
-1. **Enroll in compliance tracking.** Server agent reports compliance; Conditional Access uses the signal for server-to-server authentication policies.
-2. **Hybrid-connect.** Install the agent; register; apply organizational attribute tags.
+1. **Arc-connect.** Install the Connected Machine agent; register; apply organizational tags.
+2. **Onboard security and compliance reporting.** Defender for Servers and Azure Policy machine configuration report the server's posture. (Conditional Access governs user and workload sign-ins to Entra-protected resources; it does not evaluate server compliance for server-to-server traffic.)
 3. **Assign policy / guest configuration.** Settings that previously came from Group Policy now come from hybrid management.
 4. **Validate.** Guest configuration reports compliant; expected settings present; drift engine reports zero.
 5. **Domain-unjoin.** Only once all legacy Active Directory dependencies are resolved (all Kerberos-bound clients migrated, no Active Directory-anchored local administrators).
 6. **Post-unjoin validation.** Server reboots clean; hybrid heartbeat continues; guest configuration re-applies without Active Directory.
 
-Most server fleets complete this sequence over six to eighteen months depending on the Kerberos-application inventory.
+Duration depends mainly on the Kerberos-application inventory; budget it per application, not per server.
 
 ## Kerberos and service principal name retirement
 
@@ -97,7 +97,7 @@ The service-principal-name-to-application mapping determines the sequence: no se
 
 ## Organizational attributes on devices
 
-User devices carry organizational attributes just like users. This drives:
+User devices carry organizational attributes just like users (for devices, typically through device extension attributes set via Microsoft Graph, or through rules on properties such as the enrollment profile). This drives:
 
 - **Device dynamic groups.** Attribute queries capture devices in a given organizational segment.
 - **Device-management compliance scoping.** Attribute-scoped groups are the target for segment-specific compliance policies.
@@ -109,7 +109,7 @@ Drift detection monitors device attributes the same way it monitors user attribu
 
 When domain-joined PCs go away, smart-card logon anchored in Active Directory Certificate Services goes with them. The replacement is cloud certificate-based authentication.
 
-Cloud certificate-based authentication accepts certificates issued by a trusted certificate authority and authenticates the user to the cloud identity platform. Smart-card logon keeps working; the chain just ends in the cloud identity platform instead of Active Directory. The device-side prerequisite is that every user PC has the client and a valid user certificate.
+Microsoft Entra certificate-based authentication accepts certificates issued by a certificate authority in the tenant's trust store and authenticates the user to Entra ID. Windows smart-card sign-in to Entra-joined devices keeps working; the chain just ends in Entra ID instead of Active Directory. The prerequisites are a smart-card reader and a valid user certificate whose binding to the user is configured (Chapter 08). Access from Entra-joined devices to remaining on-premises Kerberos resources continues to depend on AD until those resources are retired.
 
 ## Lifecycle — enrollment and the device-reset pattern
 

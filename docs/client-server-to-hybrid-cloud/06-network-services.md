@@ -27,12 +27,12 @@ The framework treats all three as one governance domain, with matched adapters a
 
 ### The current-state problem
 
-Active Directory-integrated DNS zones live inside the Active Directory replication graph. Every domain controller is a DNS server; every zone update propagates via Active Directory replication; zone access-control lists use Active Directory security groups. This means:
+Active Directory-integrated DNS zones live inside the Active Directory replication graph. In most forests every domain controller is also a DNS server; every zone update propagates via Active Directory replication; zone access-control lists use Active Directory security groups. This means:
 
 - Every domain controller is in the name-resolution trust path.
 - Retiring Active Directory requires moving DNS first or accepting a multi-week name-resolution outage window.
 - Zones that have accumulated stale records (from decommissioned computer objects) cannot be cleaned up without Active Directory-side coordination.
-- External applications that depend on DNS-over-LDAPS enumeration will stop working at Active Directory retirement.
+- Domain-joined clients and applications locate domain controllers through AD-registered SRV records, so DNS and AD retirement have to be sequenced together.
 
 ### The target architecture
 
@@ -40,11 +40,11 @@ DNS migrates in a three-layer pattern:
 
 | Layer | Target | Purpose |
 |-------|--------|---------|
-| **Authoritative on-premises** | Private DNS zone (linked to on-premises resolver) | Canonical records for on-premises namespace |
-| **Hybrid resolution** | Private resolver (inbound and outbound endpoints) | Bidirectional name resolution between virtual networks and on-premises |
-| **Authoritative cloud** | Private DNS zone (private link) | Records for cloud services and SaaS endpoints |
+| **Authoritative on-premises** | Non-AD-integrated DNS servers (file-backed Windows DNS or a DDI appliance) | Canonical records for the on-premises namespace once AD-integrated zones retire |
+| **Hybrid resolution** | Azure DNS Private Resolver (inbound and outbound endpoints, forwarding rulesets) | Bidirectional name resolution between virtual networks and on-premises |
+| **Authoritative cloud** | Azure Private DNS zones linked to virtual networks (including Private Link zones) | Records for cloud workloads and private endpoints |
 
-Conditional forwarders on remaining on-premises DNS servers point to the private resolver’s inbound endpoint. Virtual-network resolution (for hybrid-projected servers, for example) points to the private resolver’s outbound endpoint, which forwards to the on-premises authoritative layer.
+Conditional forwarders on on-premises DNS servers point to the private resolver's inbound endpoint, which resolves names in the private DNS zones linked to its virtual network. Workloads in virtual networks keep using Azure-provided DNS; a DNS forwarding ruleset, attached to the resolver's outbound endpoint and linked to those virtual networks, forwards on-premises domains to the on-premises authoritative servers. (Arc-connected servers stay on-premises and resolve through on-premises DNS.)
 
 ### The DNS adapter interface
 
@@ -54,7 +54,7 @@ The DNS adapter interface includes:
 - **Risk assessment.** Stale records, zones with no identifiable owner, aliases pointing to decommissioned resources.
 - **Target architecture proposal.** For each zone, propose authoritative target (private DNS versus keep-on-premises versus retire) and produce a migration plan.
 - **Migration path.** Phased cutover of zones, one zone at a time, with rollback per zone.
-- **Validation.** Record-by-record comparison after cutover; TTL normalization; certificate-revocation-list distribution-point health.
+- **Validation.** Record-by-record comparison after cutover; TTL normalization; resolution tests for names that other services depend on (for example, certificate-revocation-list distribution points).
 - **Rollback.** Re-enable Active Directory-integrated zone; restore conditional forwarders to prior state.
 
 ### Attribute tagging of DNS records
@@ -67,14 +67,14 @@ DNS records are tagged with the organizational attributes of the owning object. 
 2. **Target proposal.** Analysis classifies every zone into one of three targets. A steward reviews and adjusts.
 3. **Pilot zone.** Pick one low-risk zone; migrate; validate for a defined period.
 4. **Zone-by-zone cutover.** Phased migration with conditional-forwarder updates per zone. Validation gate per zone.
-5. **Active Directory-integrated zone retirement.** Once all zones are migrated and validated, the Active Directory-integrated zone is deleted.
+5. **Active Directory-integrated zone retirement.** Once all zones are migrated and validated, the Active Directory-integrated zones are deleted. The forest's own `_msdcs` and domain zones retire last, with the domain controllers.
 6. **Steady state.** Private resolution handles all name resolution; drift detection reports zero DNS drift.
 
 ## DHCP — Active Directory-joined → governed hybrid DHCP
 
 ### The current-state problem
 
-Microsoft DHCP running on Active Directory-joined servers is authenticated by Active Directory. DHCP server authorization lives in the forest. DHCP scopes have reservations keyed to MAC addresses; option sets inherit from server defaults. Common findings include:
+Microsoft DHCP servers in an AD environment must be authorized in the forest before they will lease addresses; that authorization (rogue-server detection) lives in AD. DHCP scopes have reservations keyed to MAC addresses; option sets inherit from server defaults. Common findings include:
 
 - Reservations pointing at MAC addresses that have not been seen in years.
 - Option sets that push Active Directory-integrated DNS servers whose addresses will change.
@@ -86,7 +86,7 @@ Microsoft DHCP running on Active Directory-joined servers is authenticated by Ac
 DHCP modernization is less dramatic than DNS but no less important. Three variants by environment:
 
 - **On-premises-heavy environments.** Keep DHCP on-premises; decouple from Active Directory (forest authorization removed); re-home to dedicated DHCP hosts governed by the framework.
-- **Cloud-forward environments.** Move DHCP to cloud-native services or third-party virtual appliances running as hybrid-projected virtual machines.
+- **Cloud-forward environments.** Azure virtual networks assign addresses through built-in platform DHCP, which needs no scope management; on-premises subnets still need a DHCP service (Windows DHCP on non-domain-joined hosts or a DDI appliance).
 - **Hybrid environments.** Split — on-premises scopes stay on-premises; cloud virtual networks use cloud-native; all governed via IP address management as the single source of truth.
 
 ### The DHCP adapter interface
@@ -101,9 +101,9 @@ Key discovery points:
 
 Write methods: add, update, or retire scopes and reservations, governed via the plan pipeline.
 
-### Location tagging of DHCP
+### Site tagging of DHCP
 
-DHCP scopes are tagged with the location of the site they serve. A scope for a given office carries location metadata. This enables drift detection on scope ownership and blast-radius analysis for address-pool changes.
+DHCP scopes are tagged with the site they serve. A scope for a given office carries that site's identifier. This enables drift detection on scope ownership and blast-radius analysis for address-pool changes.
 
 ## IP address management — informal → governed
 
@@ -120,7 +120,7 @@ The migration goal is **one governed IP address management system** with full co
 
 ### The IP address management adapter
 
-The adapter contract standardizes:
+Options include Azure Virtual Network Manager IP address management (for Azure address space) and DDI products that cover on-premises networks. The adapter contract standardizes:
 
 - Network range discovery.
 - Host record sync with DNS.
@@ -176,4 +176,4 @@ A forest that retains Active Directory-integrated DNS is not actually retired. D
 ---
 
 **Previous:** [Chapter 05 — Policy Transformation](05-policy-transformation.md)  
-**Next:** Chapter 07 — Compute Transformation
+**Next:** [Chapter 07 — Compute Transformation](07-compute-transformation.md)
