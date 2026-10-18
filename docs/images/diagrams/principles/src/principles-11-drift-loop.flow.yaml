@@ -1,0 +1,30 @@
+# PRINCIPLES §11 — the six-phase drift loop and the four finding categories.
+rankdir: TB
+graph: {nodesep: 0.25, ranksep: 0.45}
+nodes:
+  snap: {kind: pill, tone: slate, text: "Snapshot"}
+  cmp: {kind: pill, tone: slate, text: "Compare"}
+  cls: {kind: pill, tone: violet, text: "Classify"}
+  alrt: {kind: pill, tone: amber, text: "Alert"}
+  rem: {kind: pill, tone: blue, text: "Remediate"}
+  ver: {kind: pill, tone: green, text: "Verify"}
+  t:
+    kind: table
+    tone: violet
+    columns: ["Category", "Finding", "Handling"]
+    widths: [90, 250, 200]
+    rows:
+      - [{text: "Format", tone: red}, "Typed value fails its expected pattern", "Critical; no auto-fix; halts the remediation pass"]
+      - [{text: "Value", tone: amber}, "Enumerated value not in the enumeration", "High; sometimes auto-fixed"]
+      - ["Orphan", "Enumeration value with no matching principals", "Medium; flag only"]
+      - ["Phantom", "Principal carries a deprecated value", "Medium; reassign when a successor is defined"]
+edges:
+  - [snap, cmp]
+  - [cmp, cls]
+  - [cls, alrt]
+  - [alrt, rem]
+  - [rem, ver]
+  - [ver, snap, {style: dashed, attrs: "constraint=false", label: "next cycle"}]
+  - [cls, t, {style: invis}]
+order:
+  - [snap, cmp, cls, alrt, rem, ver]

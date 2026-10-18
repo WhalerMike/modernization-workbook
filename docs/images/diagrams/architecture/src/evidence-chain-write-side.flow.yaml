@@ -1,0 +1,23 @@
+# Evidence Chain — write side (stages 3–4): countersigned, hash-chained events
+# in two storage tiers that back deterministic regeneration.
+rankdir: TB
+graph: {nodesep: 0.3, ranksep: 0.4}
+nodes:
+  in: {tone: slate, width: 140, title: "Event ingress", body: ["=Adapter-signed events"], size: 12}
+  sig: {tone: slate, width: 140, title: "Verify and dedupe", body: ["=Signature; dedupe by event_id"], size: 12}
+  cs: {tone: blue, width: 140, title: "Countersign", body: ["=Evidence countersignature"], size: 12}
+  hc: {tone: blue, width: 140, title: "Hash chain", body: ["=Content hash and chain link appended"], size: 12}
+  act: {tone: green, width: 170, title: "Active storage", body: ["=≤ 90 days"], size: 12}
+  arc: {tone: green, width: 170, title: "Archive storage", body: ["=3–7 year retention"], size: 12}
+  cor: {tone: violet, width: 220, title: "Correlation engine", body: ["=Reads both tiers; serves diff and re-run queries"], size: 12}
+edges:
+  - [in, sig]
+  - [sig, cs]
+  - [cs, hc]
+  - [hc, act]
+  - [hc, arc]
+  - [act, cor, {style: dashed}]
+  - [arc, cor, {style: dashed}]
+order:
+  - [in, sig, cs, hc]
+  - [act, arc]

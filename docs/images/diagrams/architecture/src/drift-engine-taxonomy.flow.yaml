@@ -1,0 +1,14 @@
+# Drift Engine — the five drift classes, where each is detected, and what ships.
+rankdir: TB
+nodes:
+  t:
+    kind: table
+    tone: violet
+    columns: ["Class", "Meaning", "CI substrate walker", "Runtime conformance runner"]
+    widths: [150, 250, 125, 135]
+    rows:
+      - ["`DRIFT-SCHEMA`", "Claim structure no longer matches the canonical schema", {text: "Shipped", tone: green}, {text: "Shipped", tone: green}]
+      - ["`DRIFT-PROVENANCE`", "Provenance envelope incomplete, invalid, or chain broken", {text: "Shipped", tone: green}, {text: "Shipped", tone: green}]
+      - ["`DRIFT-SEMANTIC`", "Structure valid, meaning stale or inconsistent", "n/a", {text: "Target (partial)", tone: amber}]
+      - ["`DRIFT-AUTHZ`", "Claim transmitted outside its authorized consent envelope", "n/a", {text: "Design only", tone: slate}]
+      - ["`DRIFT-IDENTITY`", "Issuer can't be resolved to a verified identity-plane object", "n/a", {text: "Design only", tone: slate}]

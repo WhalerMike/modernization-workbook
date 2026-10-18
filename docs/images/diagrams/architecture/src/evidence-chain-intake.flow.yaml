@@ -1,0 +1,21 @@
+# Evidence Chain — claim intake (stages 1–2): adapter-signed claims become the
+# canonical state store the rest of the chain reads.
+rankdir: TB
+graph: {nodesep: 0.25, ranksep: 0.35}
+nodes:
+  in: {tone: slate, width: 150, title: "Claim ingress", body: ["=Signed canonical claims from adapters"], size: 12}
+  sch: {tone: slate, width: 150, title: "Schema validator", body: ["=Accept or reject against the claim schema"], size: 12}
+  sig: {tone: slate, width: 150, title: "Signature verifier", body: ["=Adapter signature"], size: 12}
+  idn: {tone: blue, width: 150, title: "Identity anchoring", body: ["=Subject correlated to canonical identity records"], size: 12}
+  store: {tone: green, width: 250, title: "Canonical state store", body: ["=Authoritative storage for accepted claims and identity records"], size: 12}
+  ctl: {tone: violet, width: 170, title: "Control mapping", body: ["=Compliance attestations"], size: 12}
+  dft: {tone: violet, width: 170, title: "Drift interface", body: ["=Canonical state for drift queries"], size: 12}
+edges:
+  - [in, sch]
+  - [sch, sig]
+  - [sig, idn]
+  - [idn, store]
+  - [store, ctl]
+  - [store, dft]
+order:
+  - [in, sch, sig, idn]

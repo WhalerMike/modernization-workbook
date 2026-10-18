@@ -1,0 +1,14 @@
+# PRINCIPLES §1 — one authoritative origin; everything else points back to it.
+rankdir: TB
+graph: {nodesep: 0.3, ranksep: 0.45}
+nodes:
+  sot: {tone: green, width: 300, title: "Authoritative origin", body: ["=Exactly one per claim; changed only through a governed change process"], size: 12}
+  r1: {tone: blue, width: 165, title: "Runtime system", body: ["=Reads from the source"], size: 12}
+  r2: {tone: blue, width: 165, title: "Derived artifact", body: ["=Cites the document and version it came from"], size: 12}
+  r3: {tone: violet, width: 165, title: "Drift evaluation", body: ["=Measured against the source"], size: 12}
+edges:
+  - [sot, r1, {label: "read"}]
+  - [sot, r2, {label: "derive"}]
+  - [sot, r3, {label: "compare"}]
+order:
+  - [r1, r2, r3]

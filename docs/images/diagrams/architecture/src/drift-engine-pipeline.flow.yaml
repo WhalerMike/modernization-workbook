@@ -1,0 +1,15 @@
+# Drift Engine — the detection pipeline: read canonical state, compare,
+# classify, record; critical and high findings escalate.
+rankdir: LR
+graph: {nodesep: 0.3, ranksep: 0.35}
+nodes:
+  read: {tone: slate, width: 130, title: "Read canonical state", body: ["=From the canonical state store"], size: 12}
+  cmp: {tone: slate, width: 130, title: "Compare", body: ["=Delta between observed and canonical state"], size: 12}
+  cls: {tone: violet, width: 140, title: "Classify", body: ["=Drift class and severity (P1–P4)"], size: 12}
+  rec: {tone: blue, width: 140, title: "Record", body: ["=Immutable drift record into the evidence chain"], size: 12}
+  esc: {tone: amber, width: 170, title: "Escalate", body: ["=P1 and P2 findings go to the Governance Plane"], size: 12}
+edges:
+  - [read, cmp]
+  - [cmp, cls]
+  - [cls, rec]
+  - [cls, esc, {tone: amber}]

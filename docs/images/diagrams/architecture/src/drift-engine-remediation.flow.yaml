@@ -1,0 +1,20 @@
+# Drift Engine — severity is computed from class plus liveness; each severity
+# has a fixed remediation path, and every path emits a remediation contract.
+rankdir: LR
+graph: {nodesep: 0.2, ranksep: 0.45}
+nodes:
+  det: {tone: slate, width: 150, title: "Drift detected", body: ["=Severity = class + liveness of the claim"], size: 12}
+  p1: {tone: red, width: 230, tag: "P1 critical · immediate", title: "Halt and alert", body: ["=Active-use claim with provenance or identity drift; no auto-remediation"], size: 12}
+  p2: {tone: amber, width: 230, tag: "P2 high · 1 hour", title: "Auto-remediate if deterministic", body: ["=Live schema or semantic drift"], size: 12}
+  p3: {tone: blue, width: 230, tag: "P3 medium · 24 hours", title: "Auto-remediate", body: ["=Dormant or historical claim"], size: 12}
+  p4: {tone: slate, width: 230, tag: "P4 low · 72 hours", title: "Auto-remediate", body: ["=Style or metadata drift"], size: 12}
+  rc: {tone: violet, width: 170, title: "Remediation contract", body: ["=Class, severity, timestamps, action, evidence, escalation path; flows into the evidence chain"], size: 12}
+edges:
+  - [det, p1, {tone: red}]
+  - [det, p2, {tone: amber}]
+  - [det, p3]
+  - [det, p4]
+  - [p1, rc]
+  - [p2, rc]
+  - [p3, rc]
+  - [p4, rc]
