@@ -16,7 +16,7 @@ The full original narrative is available as a single DOCX bundle. Individual cle
 
 ## The destination
 
-Windows Authentication and SQL Authentication are eliminated and replaced with cloud identity authentication for SQL Server 2022 and later. Authentication is enforced through OAuth 2.0 tokens, a managed identity for the engine process, and multi-factor authentication for every human principal.
+Windows Authentication and SQL Authentication are eliminated and replaced with cloud identity authentication for SQL Server 2022 and later. Authentication is enforced through OAuth 2.0 tokens, a Microsoft Entra identity for each instance (the Arc managed identity on SQL Server 2025, an app registration on SQL Server 2022), and multi-factor authentication for every human principal.
 
 ## The journey in diagrams
 
@@ -31,7 +31,7 @@ Before, every party is domain-joined and NTLM is the silent fallback when the se
 | [01](book-01-the-inheritance.md) | The Authentication Inheritance Problem | What Windows Authentication actually is, and why it must end |
 | [02](book-02-the-estate.md) | The Estate Itself | Assess and consolidate before you touch authentication |
 | [03](book-03-authentication-audit.md) | The Authentication Audit | What is actually using Windows Authentication, SQL Authentication, and NTLM |
-| [04](book-04-identity-bridge.md) | The Identity Bridge | Hybrid-management attachment and managed identity for the engine |
+| [04](book-04-identity-bridge.md) | The Identity Bridge | Hybrid-management attachment and an Entra identity for the engine |
 | [05](book-05-login-migration.md) | Login Migration | Parallel-run of Windows and cloud-identity logins |
 | [06](book-06-ntlm-elimination.md) | NTLM Elimination | Silent fallback, service principal name repair, and protocol restriction |
 | [07](book-07-access-control.md) | Access Control | Dynamic groups and administrative-unit delegation |

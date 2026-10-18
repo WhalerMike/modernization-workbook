@@ -1,7 +1,7 @@
 ---
 title: "Book_04 — Arc as the Identity Bridge"
 subtitle: "How the Azure Connected Machine Agent Gives the SQL Server Engine a Cloud-Native Identity"
-description: "Arc is not an end state — it is the bridge. Before a SQL Server instance can accept Entra ID-issued tokens, the host must have a cloud-native identity, and that identity comes from the Azure Connected Machine agent. Describes what Arc provides (the ARM resource identity and system-assigned Managed Identity), the architecturally-independent two-layer distinction between SQL engine Entra auth and OS-level Entra login, and the Arc deployment sequencing for SQL Server hosts."
+description: "Arc is not an end state — it is the bridge. Before a SQL Server instance can accept Entra ID-issued tokens, the host must have a cloud-native identity, and that identity comes from the Azure Connected Machine agent. Describes what Arc provides (the ARM resource identity, the system-assigned managed identity, and the instance's Entra identity — an app registration with a Key Vault certificate on SQL Server 2022, the managed identity itself on SQL Server 2025), the architecturally-independent two-layer distinction between SQL engine Entra auth and OS-level Entra login, and the Arc deployment sequencing for SQL Server hosts."
 doc-type: sql-server-narrative-book
 audience: [Technical, Customer]
 family: sql-server-narrative
@@ -26,7 +26,7 @@ listing:
 :::
 
 ::: {.callout-note}
-Without Arc, the SQL Server engine has no cloud-native identity; without that identity, there is no Managed Identity to replace the AD service account and no mechanism to accept Entra ID-issued tokens. This book explains exactly what Arc does and does not change — and why SQL engine Entra auth (Layer 1) must not be blocked on the domain unjoin that OS-level Entra login (Layer 2) requires.
+Without Arc, the SQL Server engine has no cloud-native identity; without that identity, there is nothing to anchor the instance's Entra identity — the managed identity on SQL Server 2025, or the app registration certificate the Arc agent installs on SQL Server 2022 — and no mechanism to accept Entra ID-issued tokens. This book explains exactly what Arc does and does not change — and why SQL engine Entra auth (Layer 1) must not be blocked on the domain unjoin that OS-level Entra login (Layer 2) requires.
 :::
 
 ![What Azure Arc connects: the on-premises host, Azure Resource Manager and Microsoft Entra ID.](../../images/sql-server/diagrams/svg/book-04-arc-identity-bridge.svg){fig-alt="The Connected Machine agent on the on-premises host projects it into Azure Resource Manager; the Azure extension for SQL Server and the instance's Entra identity let the engine validate Entra tokens."}

@@ -58,7 +58,7 @@ Where a connection cannot reach Kerberos or Entra OAuth before that deadline, Ce
 
 ## Decision 5 — The Per-Instance Compliance Record Is the Closure Artifact
 
-The decision records the closure condition. The SQL Server authentication transformation is closed for an instance when its per-instance compliance record simultaneously shows `LoginMode = 1` (Windows Authentication Only), zero active type-S logins outside the exception registry, zero active type-U or type-G logins, `sa` disabled and renamed, the Arc Connected Machine agent enrolled and healthy, the Azure extension for SQL Server deployed with the Managed Identity active, and — for human principals — Conditional Access MFA enforcement satisfied for SQL Server resource sign-ins over a defined validation period.
+The decision records the closure condition. The SQL Server authentication transformation is closed for an instance when its per-instance compliance record simultaneously shows `LoginMode = 1` (Windows Authentication Only), zero active type-S logins outside the exception registry, zero active type-U or type-G logins, `sa` disabled and renamed, the Arc Connected Machine agent enrolled and healthy, the Azure extension for SQL Server deployed with Entra authentication configured, and — for human principals — Conditional Access MFA enforcement satisfied for SQL Server resource sign-ins over a defined validation period.
 
 The earlier draft observed that without a defined evidence artifact there was no enforceable completion criterion. The decision supplies exactly that field set: the specific values that, populated correctly, constitute proof that the instance has completed the transformation. "Done" stops being a subjective claim and becomes a queryable posture.
 

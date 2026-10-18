@@ -2,10 +2,10 @@
 rankdir: TB
 graph: {nodesep: 0.3, ranksep: 0.45}
 nodes:
-  mon: {tone: violet, width: 640, title: "Continuous monitoring (never switched off)", body: ["=Scheduled audit · Entra sign-in logs · Defender for SQL · Conditional Access reporting · exception registry"], size: 12}
+  mon: {tone: violet, width: 640, title: "Continuous monitoring (never switched off)", body: ["=Scheduled audit · Entra sign-in logs · host logs in Log Analytics · Defender for SQL alerts · Conditional Access reporting · exception registry"], size: 12}
   e1: {tone: green, width: 200, tag: "Evidence 1", title: "Compliance records", body: ["=Every production instance satisfied"], size: 12}
   e2: {tone: green, width: 200, tag: "Evidence 2", title: "Entra sign-in logs", body: ["=No fallback to NTLM or Kerberos for SQL Server over the validation period"], size: 12}
-  e3: {tone: green, width: 200, tag: "Evidence 3", title: "NTLM telemetry", body: ["=Zero NTLM authentication events over the same period (Defender, Windows security logs)"], size: 12}
+  e3: {tone: green, width: 200, tag: "Evidence 3", title: "NTLM telemetry", body: ["=Zero NTLM authentication events over the same period (Windows Security and NTLM logs)"], size: 12}
   e4: {tone: green, width: 200, tag: "Evidence 4", title: "sa status report", body: ["=Disabled on every instance"], size: 12}
   e5: {tone: green, width: 200, tag: "Evidence 5", title: "Conditional Access report", body: ["=MFA satisfied for 100% of human SQL Server sign-ins"], size: 12}
   e6: {tone: amber, width: 200, tag: "Evidence 6", title: "Exception registry", body: ["=Justification, compensating control and sunset date for each exception"], size: 12}

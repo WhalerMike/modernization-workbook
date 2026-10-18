@@ -1,7 +1,7 @@
 ---
-title: "Book_10 — Certificate Authority: From ADCS to Cloud PKI"
+title: "Book_10 — Certificate Authority: From ADCS to Microsoft Cloud PKI"
 subtitle: "The Infrastructure Dependency Most SQL Server Transformation Documents Ignore"
-description: "The transformation inventory classifies the ADCS-to-Cloud PKI transformation as 'Not Yet Defined.' Documents why the SQL Server narrative cannot be complete without addressing certificate infrastructure: three distinct SQL Server capabilities — TLS encryption, certificate-mapped logins, and Certificate-Based Authentication as the Kerberos/NTLM-elimination program's NTLM-replacement interim posture — depend on ADCS-issued certificates. Analytical and motivational; cites no normative architecture decision because none has been authored."
+description: "The transformation inventory classifies the ADCS-to-Microsoft Cloud PKI transformation as 'Not Yet Defined.' Documents why the SQL Server narrative cannot be complete without addressing certificate infrastructure: three distinct SQL Server capabilities — TLS encryption, certificate-mapped logins, and Certificate-Based Authentication as the Kerberos/NTLM-elimination program's NTLM-replacement interim posture — depend on ADCS-issued certificates. Analytical and motivational; cites no normative architecture decision because none has been authored."
 doc-type: sql-server-narrative-book
 audience: [Technical, Customer]
 family: sql-server-narrative
@@ -22,7 +22,7 @@ listing:
 ---
 
 ::: {.content-visible when-format="docx"}
-# Book_10 — Certificate Authority: From ADCS to Cloud PKI
+# Book_10 — Certificate Authority: From ADCS to Microsoft Cloud PKI
 :::
 
 ::: {.callout-warning}
