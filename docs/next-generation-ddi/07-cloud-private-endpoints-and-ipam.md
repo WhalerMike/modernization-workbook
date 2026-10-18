@@ -22,7 +22,7 @@ lifecycle_review: 2027-01-01
 
 ## Azure DNS and Private Endpoints
 
-![Every origin forwards the privatelink zone to one resolution point.](../images/ddi/diagrams/svg/ddi-07-private-endpoint-forwarding.svg){fig-alt="On-premises resolvers, a Route 53 Resolver outbound rule, a Cloud DNS forwarding zone and the branch SD-WAN path all forward to the Azure DNS Private Resolver inbound endpoint, which answers from the Private DNS zone privatelink.blob.core.windows.net with the private endpoint address."}
+![Every origin forwards the privatelink zone to one resolution point.](../images/diagrams/next-generation-ddi/svg/ch07-private-endpoint-forwarding.svg){fig-alt="On-premises resolvers, a Route 53 Resolver outbound rule, a Cloud DNS forwarding zone and the branch SD-WAN path all forward to the Azure DNS Private Resolver inbound endpoint, which answers from the Private DNS zone privatelink.blob.core.windows.net with the private endpoint address."}
 
 Azure private endpoints are the most common source of private-IP split-brain in hybrid environments. Getting them right takes deliberate DNS design rather than reliance on Azure's default public resolution.
 
@@ -42,7 +42,7 @@ DDI platforms that synchronize records with Azure DNS each have documented limit
 
 ## SDN–IPAM Consistency Across Cloud Providers and VMware
 
-![Enterprise IPAM is the authority; integration depth differs by platform.](../images/ddi/diagrams/svg/ddi-07-sdn-ipam.svg){fig-alt="Enterprise IPAM, where address blocks are reserved first, feeds AWS VPC IPAM, which can allocate from an external IPAM in commercial Regions but not GovCloud, and VMware Cloud Foundation 9.1 and NSX, which have native allocation and FQDN registration. Azure Virtual Network Manager IPAM and Google Cloud internal ranges rely on discovery and reconciliation, with process or API for allocation."}
+![Enterprise IPAM is the authority; integration depth differs by platform.](../images/diagrams/next-generation-ddi/svg/ch07-sdn-ipam.svg){fig-alt="Enterprise IPAM, where address blocks are reserved first, feeds AWS VPC IPAM, which can allocate from an external IPAM in commercial Regions but not GovCloud, and VMware Cloud Foundation 9.1 and NSX, which have native allocation and FQDN registration. Azure Virtual Network Manager IPAM and Google Cloud internal ranges rely on discovery and reconciliation, with process or API for allocation."}
 
 Each cloud provider, and VMware, has its own software-defined networking constructs and native address management. Unintegrated, they allocate address space independently of the enterprise DDI plane, recreating for addresses the same divergence that split-brain DNS creates for names.
 

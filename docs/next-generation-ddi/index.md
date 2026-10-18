@@ -45,7 +45,7 @@ The result is split-brain DNS that breaks private connectivity, certificate trus
 
 ## The arc
 
-![The reading path: five parts and eleven chapters.](../images/ddi/diagrams/svg/ddi-00-reading-path.svg){fig-alt="Five parts left to right: Part I the problem (chapters 01 and 02), Part II the requirements (03), Part III the hard surfaces (04 to 07), Part IV the answer (08 and 09), and Part V running it (10 and 11)."}
+![The reading path: five parts and eleven chapters.](../images/diagrams/next-generation-ddi/svg/series-00-reading-path.svg){fig-alt="Five parts left to right: Part I the problem (chapters 01 and 02), Part II the requirements (03), Part III the hard surfaces (04 to 07), Part IV the answer (08 and 09), and Part V running it (10 and 11)."}
 
 Start with **[Applicability](00-applicability.md)** if you work in GCC High, DoD or an air-gapped environment. It sets out which statements in later chapters change at higher impact levels.
 

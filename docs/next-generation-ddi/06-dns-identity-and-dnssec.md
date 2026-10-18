@@ -22,7 +22,7 @@ lifecycle_review: 2027-01-01
 
 ## DNS Identity as the Foundation for Certificates, Application-Aware Networking and Tokens
 
-![DNS identity is the first link in the trust chain.](../images/ddi/diagrams/svg/ddi-06-trust-chain.svg){fig-alt="Four steps in sequence: the name resolves to the authentic endpoint; the certificate validates (SAN, OCSP and CRL, CAA, DNS-01); FQDN-based policy applies (ZTNA, application-aware networking); and the token reaches the right audience (OAuth 2.0, Entra ID)."}
+![DNS identity is the first link in the trust chain.](../images/diagrams/next-generation-ddi/svg/ch06-trust-chain.svg){fig-alt="Four steps in sequence: the name resolves to the authentic endpoint; the certificate validates (SAN, OCSP and CRL, CAA, DNS-01); FQDN-based policy applies (ZTNA, application-aware networking); and the token reaches the right audience (OAuth 2.0, Entra ID)."}
 
 DNS identity, meaning the authoritative mapping of names to addresses, owners and lifecycle, is a prerequisite for certificate-based security, application-aware networking and token-based controls.
 
@@ -46,7 +46,7 @@ DNSSEC uses a chain of trust from the DNS root through the top-level domains to 
 
 ### Why It Matters in Hybrid Multi-Cloud and Federal Environments
 
-![Validation belongs on a resolver the agency controls.](../images/ddi/diagrams/svg/ddi-06-dnssec-validation.svg){fig-alt="A non-validating client stub sends queries either to an agency-controlled resolver that validates with agency trust anchors and returns SERVFAIL on a bad signature, or to an upstream resolver outside agency control whose validation policy and trust anchors the agency does not manage. Both query signed authoritative zones."}
+![Validation belongs on a resolver the agency controls.](../images/diagrams/next-generation-ddi/svg/ch06-dnssec-validation.svg){fig-alt="A non-validating client stub sends queries either to an agency-controlled resolver that validates with agency trust anchors and returns SERVFAIL on a bad signature, or to an upstream resolver outside agency control whose validation policy and trust anchors the agency does not manage. Both query signed authoritative zones."}
 
 - DNSSEC mitigates cache poisoning and on-path tampering with DNS answers.
 - It is the foundation for DANE and TLSA records.

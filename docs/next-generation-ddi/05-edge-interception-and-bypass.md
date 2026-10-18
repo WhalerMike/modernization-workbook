@@ -22,7 +22,7 @@ lifecycle_review: 2027-01-01
 
 ## SD-WAN DNS Interception
 
-![The redirect-dns destination decides whether agency policy applies at all.](../images/ddi/diagrams/svg/ddi-05-redirect-dns.svg){fig-alt="A branch client sends plain DNS on UDP 53 to the SD-WAN edge, whose redirect-dns data policy sends it either to an agency-controlled resolver, where RPZ, DNSSEC validation and logging apply before forwarding upstream to Protective DNS, or to an external resolver that the agency policy plane never sees."}
+![The redirect-dns destination decides whether agency policy applies at all.](../images/diagrams/next-generation-ddi/svg/ch05-redirect-dns.svg){fig-alt="A branch client sends plain DNS on UDP 53 to the SD-WAN edge, whose redirect-dns data policy sends it either to an agency-controlled resolver, where RPZ, DNSSEC validation and logging apply before forwarding upstream to Protective DNS, or to an external resolver that the agency policy plane never sees."}
 
 SD-WAN edges can intercept DNS regardless of the resolver a client was configured with. In Cisco Catalyst SD-WAN this is the redirect-dns action of a centralized data policy: the edge router matches DNS traffic and sends it to a policy-designated resolver. Cisco documents the feature for IPv4 DNS over UDP only; DNS over TCP and DNS carried inside overlay tunnels are not redirected. The destination decides whether agency policy applies:
 
@@ -37,7 +37,7 @@ Microsoft 365 Informed Network Routing (INR) lets a supported SD-WAN share netwo
 
 ## Encrypted DNS and Bypass Controls
 
-![What an edge can and cannot do with each DNS transport.](../images/ddi/diagrams/svg/ddi-05-encrypted-dns-paths.svg){fig-alt="Table of four transports. Plain DNS on UDP 53 can be intercepted and redirected to the agency resolver. DNS over TLS on TCP 853 and DNS over QUIC on UDP 853 cannot be redirected without breaking the session, so block port 853 except to approved resolvers. DNS over HTTPS on TCP 443 cannot be seen or redirected, so it needs endpoint policy or TLS inspection."}
+![What an edge can and cannot do with each DNS transport.](../images/diagrams/next-generation-ddi/svg/ch05-encrypted-dns-paths.svg){fig-alt="Table of four transports. Plain DNS on UDP 53 can be intercepted and redirected to the agency resolver. DNS over TLS on TCP 853 and DNS over QUIC on UDP 853 cannot be redirected without breaking the session, so block port 853 except to approved resolvers. DNS over HTTPS on TCP 443 cannot be seen or redirected, so it needs endpoint policy or TLS inspection."}
 
 Client-side encrypted DNS to a public resolver is the most common bypass. M-22-09 requires encrypted DNS wherever it is technically supported, and CISA's implementation guidance requires that agency egress resolution still pass through Protective DNS. The goal is therefore not to prohibit encrypted DNS but to make sure it terminates at an agency-controlled or CISA Protective DNS resolver rather than an ungoverned public service. Practical controls:
 

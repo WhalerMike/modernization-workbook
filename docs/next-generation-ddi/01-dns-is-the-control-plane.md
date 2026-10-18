@@ -44,7 +44,7 @@ DNS was specified in 1983 (RFC 882 and 883) and redefined in 1987 (RFC 1034 and 
 
 ### Three DNS Perspectives Under a Single Control Plane
 
-![One authoritative policy plane governs the enterprise, cloud and internet DNS perspectives.](../images/ddi/diagrams/svg/ddi-01-three-perspectives.svg){fig-alt="A policy plane at the top connects to three perspectives: enterprise internal DNS, cloud DNS services, and external authoritative DNS."}
+![One authoritative policy plane governs the enterprise, cloud and internet DNS perspectives.](../images/diagrams/next-generation-ddi/svg/ch01-three-perspectives.svg){fig-alt="A policy plane at the top connects to three perspectives: enterprise internal DNS, cloud DNS services, and external authoritative DNS."}
 
 A unified DDI control plane manages DNS from three interconnected perspectives:
 
@@ -56,7 +56,7 @@ The typical agency landscape spans on-premises AD DNS or a DDI grid; Route 53 pu
 
 ### Hybrid Cloud IPAM and DHCP
 
-![Enterprise IPAM is the address-layer source of truth for DHCP, cloud address managers, DNS records and the asset inventory.](../images/ddi/diagrams/svg/ddi-01-ipam-source-of-truth.svg){fig-alt="DHCP servers and cloud address managers feed an enterprise IPAM, which keeps DNS records in step and supplies the address layer of the asset inventory."}
+![Enterprise IPAM is the address-layer source of truth for DHCP, cloud address managers, DNS records and the asset inventory.](../images/diagrams/next-generation-ddi/svg/ch01-ipam-source-of-truth.svg){fig-alt="DHCP servers and cloud address managers feed an enterprise IPAM, which keeps DNS records in step and supplies the address layer of the asset inventory."}
 
 A central IPAM is the authoritative record of the address plan, reservations and ownership across on-premises and cloud address space, and it is what prevents overlaps. DHCP lease data and dynamic DNS updates keep address and name records in step through each record's lifecycle. Existing Microsoft DHCP servers can be discovered and brought under the same inventory during transition. This is also the address layer of the continuous asset inventory that Zero Trust architectures depend on.
 

@@ -22,7 +22,7 @@ lifecycle_review: 2027-01-01
 
 ## The End-to-End Resolution Flow and Five Decisions
 
-![Reference architecture: a single authoritative DDI policy plane and the five decisions.](../images/ddi/diagrams/svg/ddi-08-reference-architecture.svg){fig-alt="A branch client's query passes the SD-WAN redirect-dns edge (Decision 1) to an agency-controlled resolver that is the first hop under agency policy (Decision 2), then to the DDI policy plane holding policy, RPZ, DNSSEC, IPAM and conditional forwarding (Decision 3), and on to per-cloud private zones. AD DNS is inventoried before decommissioning (Decision 4), and OCSP and CRL endpoints resolve from every origin (Decision 5)."}
+![Reference architecture: a single authoritative DDI policy plane and the five decisions.](../images/diagrams/next-generation-ddi/svg/ch08-reference-architecture.svg){fig-alt="A branch client's query passes the SD-WAN redirect-dns edge (Decision 1) to an agency-controlled resolver that is the first hop under agency policy (Decision 2), then to the DDI policy plane holding policy, RPZ, DNSSEC, IPAM and conditional forwarding (Decision 3), and on to per-cloud private zones. AD DNS is inventoried before decommissioning (Decision 4), and OCSP and CRL endpoints resolve from every origin (Decision 5)."}
 
 The end-to-end resolution flow runs from the SD-WAN branch edge, through a network-addressable agency-controlled resolver, into the DDI policy plane (policy, response policy zones, DNSSEC, IPAM) and on to per-cloud private zones and authoritative services. Internet-bound recursion leaves through CISA Protective DNS. Five decisions carry almost all of the operational risk:
 

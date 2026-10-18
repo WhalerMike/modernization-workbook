@@ -22,7 +22,7 @@ lifecycle_review: 2027-01-01
 
 ## Phased Migration and Cutover Sequence
 
-![Six-phase migration sequence.](../images/ddi/diagrams/svg/ddi-09-migration-phases.svg){fig-alt="Six phases top to bottom: inventory and baseline; deploy coexistence; migrate authority; cloud federation; decommission AD DNS and DHCP; policy and compliance hardening."}
+![Six-phase migration sequence.](../images/diagrams/next-generation-ddi/svg/ch09-migration-phases.svg){fig-alt="Six phases top to bottom: inventory and baseline; deploy coexistence; migrate authority; cloud federation; decommission AD DNS and DHCP; policy and compliance hardening."}
 
 A practical sequence for moving from AD-integrated DNS and DHCP plus independent cloud DNS to a unified DDI plane, while keeping services running:
 

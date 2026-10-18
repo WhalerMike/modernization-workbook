@@ -20,7 +20,7 @@ lifecycle_review: 2027-01-01
 **[next-generation-ddi-ch03-bundle.docx](../../downloads/next-generation-ddi-ch03-bundle.docx)**: this chapter as a Word document, with its figures. The [whole book](../../downloads/next-generation-ddi-bundle.docx) is also available.
 :::
 
-![The federal drivers that land on the name layer.](../images/ddi/diagrams/svg/ddi-03-federal-drivers.svg){fig-alt="Five requirement cards: OMB M-22-09 encrypted DNS wherever technically supported; Protective DNS for egress resolution under 6 U.S.C. 663 note and CISA; DNS logging under OMB M-21-31 from tier EL-1; DNSSEC under OMB M-08-23 and SP 800-53 SC-20 and SC-21; and OMB M-21-07 IPv6 targets."}
+![The federal drivers that land on the name layer.](../images/diagrams/next-generation-ddi/svg/ch03-federal-drivers.svg){fig-alt="Five requirement cards: OMB M-22-09 encrypted DNS wherever technically supported; Protective DNS for egress resolution under 6 U.S.C. 663 note and CISA; DNS logging under OMB M-21-31 from tier EL-1; DNSSEC under OMB M-08-23 and SP 800-53 SC-20 and SC-21; and OMB M-21-07 IPv6 targets."}
 
 ## What the Mandates Say
 

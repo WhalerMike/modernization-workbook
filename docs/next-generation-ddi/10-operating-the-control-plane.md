@@ -24,7 +24,7 @@ A single policy plane only works if the divisions that own their own networks ca
 
 ## Delegated Administration Across Divisions
 
-![Delegated administration: divisional autonomy, corporate visibility, one audit trail.](../images/ddi/diagrams/svg/ddi-10-delegated-administration.svg){fig-alt="Corporate administrators have full visibility and policy over the whole estate. Division A and Division B each have a scope covering their own zones, IP spaces and DHCP scopes, with human roles (manager, operator, auditor) and scoped automation accounts. Everything feeds one audit trail."}
+![Delegated administration: divisional autonomy, corporate visibility, one audit trail.](../images/diagrams/next-generation-ddi/svg/ch10-delegated-administration.svg){fig-alt="Corporate administrators have full visibility and policy over the whole estate. Division A and Division B each have a scope covering their own zones, IP spaces and DHCP scopes, with human roles (manager, operator, auditor) and scoped automation accounts. Everything feeds one audit trail."}
 
 The policy plane should let corporate administrators keep full visibility while giving divisional teams scoped autonomy:
 

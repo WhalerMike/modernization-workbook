@@ -44,7 +44,7 @@ Options to evaluate against these criteria include:
 
 ## Residual Risk and Limitations
 
-![Residual risks of a unified control plane.](../images/ddi/diagrams/svg/ddi-11-residual-risks.svg){fig-alt="Four risks around a single authoritative DDI policy plane: sync lag or failure, the new source of divergence; control-plane outage, where changes are blocked but resolution continues from local state; encrypted DNS bypass if endpoint controls are incomplete; and authorization scope, since a Moderate authorization does not cover High or DoD."}
+![Residual risks of a unified control plane.](../images/diagrams/next-generation-ddi/svg/ch11-residual-risks.svg){fig-alt="Four risks around a single authoritative DDI policy plane: sync lag or failure, the new source of divergence; control-plane outage, where changes are blocked but resolution continues from local state; encrypted DNS bypass if endpoint controls are incomplete; and authorization scope, since a Moderate authorization does not cover High or DoD."}
 
 The residual risks are real:
 

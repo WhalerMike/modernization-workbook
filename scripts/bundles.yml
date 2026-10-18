@@ -145,7 +145,7 @@ bundles:
     title: "Next Generation DDI"
     subtitle: "Governing DNS, DHCP and IPAM as the hybrid multi-cloud control plane"
     root: docs/next-generation-ddi
-    image_dir: docs/images/ddi
+    image_dir: docs/images/diagrams/next-generation-ddi
     warn_unlisted: ["*.md"]
     pages:
       - index.md
