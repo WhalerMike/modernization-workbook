@@ -49,6 +49,8 @@ reference example throughout.
 
 ## Chapters
 
+![The chapters build one argument: the case for centralization, the physical wall, what transport can and cannot do, and the synthesis.](../images/diagrams/ssot-network-physics/svg/series-00-argument-path.svg){fig-alt="Five cards left to right: Chapter 00, the question (three forces push toward logical centralization); Chapters 01–02, the case for (one source of truth, token security); Chapter 03, the wall (the propagation floor); Chapters 04–05, the transport (SD-WAN narrows the gap; the proposed governed path); Chapters 06–07, the synthesis (match consistency to network class; the SaaS data plane worked example)."}
+
 - **00** — [Executive Summary — The Centralization Question](./00-executive-summary.html)
   - The pendulum, the three forces, and the wall that does not move
   - *Audience:* Executive stakeholders · architects · CISO
@@ -97,7 +99,8 @@ claim rests on a Federal Modernization Program decision, the ADR is named inline
 
 ## A note on figures
 
-Per **the program decision**, this white paper uses no generative-AI raster figures and no
-inline Mermaid. Structure is carried by tables and Quarto callouts; any future
-diagram will be authored as a committed SVG against the house style in
-`src/fmp/canon/svg-style/` and rasterized deterministically at build time.
+This white paper uses no generative-AI raster figures and no inline Mermaid.
+Each figure is generated from a committed source in
+`docs/images/diagrams/ssot-network-physics/` with the site's shared diagram
+renderer (`scripts/diagrams/render.py`): SVG for the web, a 2x PNG for the Word
+edition.

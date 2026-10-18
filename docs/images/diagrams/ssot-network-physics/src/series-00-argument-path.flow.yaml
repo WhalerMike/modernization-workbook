@@ -1,0 +1,14 @@
+# Index — how the eight chapters build the argument.
+rankdir: LR
+graph: {nodesep: 0.22, ranksep: 0.3}
+nodes:
+  c00: {tone: slate, width: 128, tag: "Chapter 00", title: "The question", body: ["=Three forces push toward logical centralization"], size: 12}
+  c01: {tone: blue, width: 128, tag: "Chapters 01–02", title: "The case for", body: ["=One source of truth; token security makes one store safe for many trust domains"], size: 12}
+  c03: {tone: red, width: 128, tag: "Chapter 03", title: "The wall", body: ["=Propagation delay sets a floor no optimization crosses"], size: 12}
+  c04: {tone: amber, width: 128, tag: "Chapters 04–05", title: "The transport", body: ["=SD-WAN shrinks the gap; the governed path (proposed) binds transport to tokens"], size: 12}
+  c06: {tone: green, width: 128, tag: "Chapters 06–07", title: "The synthesis", body: ["=Match consistency to network class; the SaaS data plane as worked example"], size: 12}
+edges:
+  - [c00, c01]
+  - [c01, c03]
+  - [c03, c04]
+  - [c04, c06]

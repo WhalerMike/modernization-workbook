@@ -42,7 +42,7 @@ center. The microservices-era fragmentation created drift that the original
 gospel never budgeted for; consolidating the *truth* is a defensible, and
 increasingly common, correction.
 
-![Three forces driving logical centralization, and the speed-of-light wall that physical centralization cannot cross](../images/ssot-network-physics/ssot-network-physics-cpt00-diagram-01-three-forces-consolidation.svg){#fig-ssot-cpt00-diagram-01 fig-alt="Blueprint diagram showing three forces — Fat Application-Aware WAN, Token-Based Security, and SSOT Discipline — converging via teal arrows onto a central navy Logical Centralization box, which leads right to a Physical Centralization option and a red Speed-of-Light Floor constraint box. White background, navy and teal palette." width="100%"}
+![Three forces push toward logical centralization; physical centralization stops at the speed-of-light floor.](../images/diagrams/ssot-network-physics/svg/ch00-three-forces.svg){fig-alt="Three blue cards (fat application-aware WAN; token-based security; SSOT discipline) point down to a green Logical centralization card. Below it, an amber Physical centralization card (only within a region) is bounded, by a dashed red arrow, by a red Speed-of-light floor card."}
 
 ## The distinction that prevents the trap
 
