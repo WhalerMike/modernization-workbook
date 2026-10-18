@@ -1,8 +1,8 @@
 # SQL Server Identity Transformation
 
-**From Windows Authentication to cloud identity — a ten-book reading sequence on transforming the SQL Server estate, from twenty years of forest sprawl to cloud-only authentication**
+**From Windows Authentication to cloud identity — a ten-book reading sequence, with an epilogue, on transforming the SQL Server estate from twenty years of forest sprawl to cloud-only authentication**
 
-![The eleven books in the order they depend on each other.](../../images/sql-server/diagrams/svg/series-00-reading-path.svg){fig-alt="The eleven books in stages: why and what survives (Books 01 to 03), migrating the engine (Books 04 to 06), and extending outward then sustaining (Books 07 to 09), with Book 10, the certificate authority dependency, and Book 11, the platform question, alongside the whole series."}
+![The ten books and the epilogue, in the order they depend on each other.](../../images/sql-server/diagrams/svg/series-00-reading-path.svg){fig-alt="The ten books and the epilogue in stages: why and what survives (Books 01 to 03), migrating the engine (Books 04 to 06), and extending outward then sustaining (Books 07 to 09), with Book 10, the certificate authority dependency, alongside the whole series, and Book 11, the platform question, as the epilogue."}
 
 ## Status
 
@@ -22,7 +22,7 @@ Book 01 names the inheritance: SQL Server’s Windows Authentication was good en
 
 ### Before, during and after
 
-![How a connection authenticates before, during and after the transformation.](../../images/sql-server/diagrams/svg/series-01-before-during-after.svg){fig-alt="Before: a domain-joined client gets a Kerberos ticket or falls back to NTLM, invisible to Entra ID. During: legacy and migrated clients coexist, with two authorities and old logins disabled after validation. After: users, apps and managed identities get an Entra token under Conditional Access, SQL Server accepts only Entra logins, and every sign-in is logged."}
+![How a connection authenticates before, during and after the transformation.](../../images/sql-server/diagrams/svg/series-01-before-during-after.svg){fig-alt="Before: a domain-joined client gets a Kerberos ticket or falls back to NTLM, invisible to Entra ID. During: legacy and migrated clients coexist, with two authorities and old logins disabled after validation. After: users, apps and managed identities get an Entra token under Conditional Access, only Entra logins remain in use on SQL Server, and every sign-in is logged."}
 
 Before, every party is domain-joined, the domain controller is the authentication authority, and NTLM is the silent fallback when the service principal name is missing; the cloud identity plane never sees the sign-in. During the parallel run, legacy and migrated clients coexist and the SQL Server accepts both kinds of login. After, the client authenticates to Microsoft Entra ID, Conditional Access evaluates the request, and the SQL Server validates the token.
 
@@ -66,7 +66,7 @@ The organizing principle of the series — what the platform vendor provides ver
 | [08](book-08-upstream-chain.md) | The Upstream Application Chain | Applications that depend on Windows Authentication or LDAP |
 | [09](book-09-steady-state.md) | Transformed Steady State | The destination and the milestone |
 | [10](book-10-certificate-authority.md) | Certificate-Authority Dependency | The layer the other steps depend on but rarely name |
-| [11](book-11-platform-question.md) | The Platform Question | Database consolidation toward SSOT |
+| [11](book-11-platform-question.md) | Epilogue — The Platform Question | Database consolidation toward SSOT, after the transformation |
 
 ## Relationship to identity governance
 

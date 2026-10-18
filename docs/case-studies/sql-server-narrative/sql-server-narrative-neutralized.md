@@ -1503,7 +1503,7 @@ Chapter 3 — Oracle as the Enterprise Alternative (destination C)
 
 Chapter 4 — The Decision Under a Forcing Function (the narrative form of this brief)
 
-Division of Labor — Microsoft vs. You — what the platform provides vs. what only the program can solve, across all eleven books.
+Division of Labor — Microsoft vs. You — what the platform provides vs. what only the program can solve, across the ten books and the epilogue.
 
 Series index — the full reading sequence.
 
@@ -1511,7 +1511,7 @@ Series index — the full reading sequence.
 
 Division of Labor — Microsoft vs. You
 
-What the platform provides across all ten books, and what only the program can solve
+What the platform provides across the ten books and the epilogue, and what only the program can solve
 
 Division of Labor
 

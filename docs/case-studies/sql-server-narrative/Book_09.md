@@ -1,7 +1,7 @@
 ---
 title: "Book_09 — The Transformed Posture: Continuous Governance and the 2027 Milestone"
 subtitle: "What Done Looks Like — Closure Conditions, Drift Detection, and the Network-Level NTLM Block"
-description: "Transformations do not complete — they achieve a posture. Describes the operational steady-state of a fully transformed SQL Server estate, the five closure conditions for the SQL Server authentication transformation, how regression is detected through compliance drift events and Defender for SQL telemetry, and the program's 2027-04-01 NTLM backstop in its proper context: not a completion date, but the date the network block is applied."
+description: "Transformations do not complete — they achieve a posture. Describes the operational steady-state of a fully transformed SQL Server estate, the five closure conditions for the SQL Server authentication transformation, how regression is detected through compliance drift events and behavioral telemetry, and the program's 2027-04-01 NTLM backstop in its proper context: not a completion date, but the date the network block is applied."
 doc-type: sql-server-narrative-book
 audience: [Technical, Customer]
 family: sql-server-narrative

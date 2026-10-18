@@ -28,7 +28,7 @@ A Category 1 classification is the program's best starting position. It means th
 
 The Managed Identity for the server is available, and the SQL Server extension has registered the instance with the Arc data services plane. Nothing in the infrastructure stack remains to be built.
 
-The migration work for a Category 1 instance therefore begins with the login inventory from the audit: how many Windows logins exist, what AD groups are mapped to SQL Server roles, and whether any SQL Authentication logins need to be addressed before or alongside the Windows login migration. The specific migration steps are documented in Book 04.
+The migration work for a Category 1 instance therefore begins with the login inventory from the audit: how many Windows logins exist, what AD groups are mapped to SQL Server roles, and whether any SQL Authentication logins need to be addressed before or alongside the Windows login migration. The specific migration steps are documented in Book 05.
 
 The point here is that the audit has done its job for a Category 1 instance when it delivers a precise login inventory. The infrastructure work is already done, and the migration can proceed without any further prerequisites.
 

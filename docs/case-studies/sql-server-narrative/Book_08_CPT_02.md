@@ -32,7 +32,7 @@ For an application using a service principal with a client credential, the strin
 
 ## The Gate Conditions
 
-The change is the simplest step technically, but it cannot be executed on demand. Three conditions must hold first. The Entra ID login must already exist on the target SQL Server instance — the `FROM EXTERNAL PROVIDER` login created in the work Book 04 covers — because a connection string that names an Entra identity with no corresponding login on the instance fails at connection time.
+The change is the simplest step technically, but it cannot be executed on demand. Three conditions must hold first. The Entra ID login must already exist on the target SQL Server instance — the `FROM EXTERNAL PROVIDER` login created in the work Book 05 covers — because a connection string that names an Entra identity with no corresponding login on the instance fails at connection time.
 
 The application's service principal or Managed Identity must have been granted the appropriate SQL Server database role, so that authentication succeeds and authorization follows. And the change must have been tested in a non-production environment whose Arc and SQL Server extension configuration matches production, because token acquisition and validation depend on that infrastructure being present and correctly configured. A connection-string change that works against a developer's laptop but has never been exercised against a production-equivalent Arc and extension stack is not a tested change. Only when all three gates are satisfied is the production cutover safe to perform.
 

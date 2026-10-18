@@ -74,7 +74,7 @@ bundles:
       - Book_09_CPT_02.md
       - Book_10.md
       - Book_10_CPT_01.md
-      - book-11-platform-question.md     # Book 11 is a single page
+      - Book_11.md                       # Book 11, the epilogue, is a single page
 
   # One bundle per book: the book page, then its chapters in order.
   - output: Book_01-bundle.docx
@@ -117,6 +117,10 @@ bundles:
     subtitle: "SQL Server Identity Transformation — Narrative Series"
     root: docs/case-studies/sql-server-narrative
     pages: [Book_10.md, "Book_10_CPT_*.md"]
+  - output: Book_11-bundle.docx
+    subtitle: "SQL Server Identity Transformation — Narrative Series"
+    root: docs/case-studies/sql-server-narrative
+    pages: [Book_11.md]
 
   # ---------------------------------------------------------------------
   # Section bundles: every published page in the section folder, index first.
