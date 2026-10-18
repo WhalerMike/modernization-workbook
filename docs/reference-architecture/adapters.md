@@ -234,5 +234,5 @@ decommission is authorized.
 ::: {.callout-tip}
 ## Source
 Full adapter interface specifications with vendor manifests:
-`src/uiao/modernization/directory-migration/adapters/`
+`src/fmp/modernization/directory-migration/adapters/`
 :::

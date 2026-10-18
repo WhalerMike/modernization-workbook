@@ -26,7 +26,7 @@ and, importantly, shows where the one residual risk lives.
 
 The authoritative sources for everything in this chapter are **the program decision** (Azure
 SaaS architecture), **the program decision** (passwordless Entra Postgres auth), and
-**the program decision** (the GCC-Moderate boundary) under `src/uiao/canon/adr/`.
+**the program decision** (the GCC-Moderate boundary) under `src/fmp/canon/adr/`.
 
 ## The decision, in the paper's terms
 
@@ -53,13 +53,13 @@ escape hatch (Chapters 1 and 2), expressed as an accepted decision.
 |---|---|---|
 | One logical source of truth | Single PostgreSQL Flexible Server holds the `saas_tenants` registry and per-tenant state | the program decision, Decision 3 |
 | Token security, inbound | Per-request `tid`-claim verification against the issuing tenant's JWKS (RS256); non-onboarded / non-active tenants rejected with 403 | the program decision, Security |
-| Token security, outbound | Passwordless auth — a short-lived Entra token used *as* the Postgres password; no long-lived DB secret exists | the program decision; `uiao.saas.pg_auth` |
+| Token security, outbound | Passwordless auth — a short-lived Entra token used *as* the Postgres password; no long-lived DB secret exists | the program decision; `fmp.saas.pg_auth` |
 | Distribute the copies | Evidence bundles in Blob Storage; per-tenant secrets in Key Vault — derived, subordinate stores keyed by the same namespace | the program decision, Decision 3 |
 | Compliance-stamped exception | Control-plane `ProvisioningService` stamps dedicated DB schema / Blob prefix / Key Vault scope for hard-isolation customers | the program decision, Decision 2 |
 | Refuse to span light synchronously | Single-region writer; no global synchronous multi-master commit path exists | the program decision (single Flexible Server) |
 | Sovereign-cloud readiness | OSSRDBMS token audience and issuer/Graph/ARM resolution already branch per cloud (US Gov vs. commercial) | the program decision, the program decision |
 
-![the Federal Modernization Program SaaS data plane: one shared PostgreSQL source of truth, token-based auth on both sides, derived subordinate stores, and the compliance stamp escape hatch](../images/ssot-network-physics/ssot-network-physics-cpt07-diagram-01-uiao-saas-data-plane.svg){#fig-ssot-cpt07-diagram-01 fig-alt="Blueprint architecture diagram. Left: three ice Entra tenant boxes send teal token arrows to a central navy the Federal Modernization Program Data Plane service block that verifies tid claims and scopes namespaces. A teal outbound short-lived token arrow flows to a large navy PostgreSQL Flexible Server box labeled single-region writer with no long-lived DB password. Grey dashed arrows from the store point right to two ice derived stores: Blob Storage and Key Vault, both keyed by tenant namespace. Below the service a dashed Compliance Stamp box shows the ProvisioningService exception path. A red callout names the blast-radius risk in the tenant-resolution path. White background." width="100%"}
+![the Federal Modernization Program SaaS data plane: one shared PostgreSQL source of truth, token-based auth on both sides, derived subordinate stores, and the compliance stamp escape hatch](../images/ssot-network-physics/ssot-network-physics-cpt07-diagram-01-fmp-saas-data-plane.svg){#fig-ssot-cpt07-diagram-01 fig-alt="Blueprint architecture diagram. Left: three ice Entra tenant boxes send teal token arrows to a central navy the Federal Modernization Program Data Plane service block that verifies tid claims and scopes namespaces. A teal outbound short-lived token arrow flows to a large navy PostgreSQL Flexible Server box labeled single-region writer with no long-lived DB password. Grey dashed arrows from the store point right to two ice derived stores: Blob Storage and Key Vault, both keyed by tenant namespace. Below the service a dashed Compliance Stamp box shows the ProvisioningService exception path. A red callout names the blast-radius risk in the tenant-resolution path. White background." width="100%"}
 
 ## The source of truth: one registry, one writer
 
@@ -67,7 +67,7 @@ The tenant registry is the system of record for *who is onboarded and in what
 state.* A tenant is identified by its Entra directory GUID and carries an
 explicit lifecycle state machine —
 `PENDING → ACTIVE → SUSPENDED → ACTIVE / → DEPROVISIONED` — with illegal
-transitions rejected at the model boundary (`uiao.saas.tenant`). There is
+transitions rejected at the model boundary (`fmp.saas.tenant`). There is
 exactly one authoritative copy of this truth. Every other representation —
 evidence in Blob, secrets in Key Vault — is keyed by the `data_namespace`
 derived deterministically from the tenant GUID (`t-<guid>`), so the derived

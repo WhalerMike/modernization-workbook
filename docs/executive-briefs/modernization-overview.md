@@ -6,7 +6,7 @@ status: Active
 canon-source:
   - "docs/docs/06_ProgramVision.qmd"
   - "docs/docs/08_ModernizationTimeline.qmd"
-derived-from: "uiao canon"
+derived-from: "fmp canon"
 lifecycle: adopted
 tiers_adopted: [1]
 lifecycle_review: 2026-11-22
@@ -16,8 +16,6 @@ lifecycle_review: 2026-11-22
 
 ![Three-phase program model (A/B/C)](../images/executive-briefs/modernization-overview-image-02-three-phase-program-model-abc.png){#fig-modernization-overview-image-02 fig-alt="Three-phase program model (A/B/C). Engineering blueprint style, neutral slate background, federal navy (#1F3A5F) for primary structural elements, teal (#1A9E8F) for secondary/integration elements, amber (#D4A017) for governance/audit/registry overlays, monospace labels for identifiers, no human figures, 16:9 landscape." width="100%"}
 
-
-![The manual compliance grind](../../images/canonical/FMP-FIG-002-manual-compliance-grind.png){fig-alt="Current-state pain of manual, fragmented compliance workflows across federal agencies — spreadsheets, memos, and disconnected reporting that the Federal Modernization Program replaces with continuous, canon-anchored governance." width="100%"}
 
 This executive brief summarizes what a **FMP-anchored modernization program**
 looks like end to end for a federal CIO/CISO audience, and the expected
@@ -32,7 +30,7 @@ program is structured to deliver mission value early while reducing long-tail
 authorization and drift risk.
 
 The canonical modernization adapter inventory is governed in
-`src/uiao/canon/modernization-registry.yaml`. Treat that registry as the
+`src/fmp/canon/modernization-registry.yaml`. Treat that registry as the
 authoritative source for the active modernization adapter set (with one
 reserved planning entry) rather than maintaining per-brief adapter lists.
 

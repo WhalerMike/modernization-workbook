@@ -3,15 +3,13 @@ title: Evidence Fabric Overview — Executive Brief
 doc-type: executive-brief
 status: Active
 canon-source: docs/docs/15_ProvenanceProfile.qmd
-derived-from: uiao/canon
+derived-from: fmp/canon
 lifecycle: adopted
 tiers_adopted: [1]
 lifecycle_review: 2026-11-22
 ---
 
 # Evidence Fabric Overview
-
-![Immutable provenance chain](../../images/canonical/FMP-FIG-006-immutable-provenance-chain.png){fig-alt="Cryptographically signed immutable evidence chain — every check, result, and timestamp stored with signatures for audit replay." width="100%"}
 
 The Federal Modernization Program’s Evidence Fabric is designed to turn runtime telemetry into assessor-ready
 compliance artifacts with traceable provenance at every step. Instead of a
@@ -44,7 +42,7 @@ resolution.
 
 Evidence integrity is anchored with cryptographic hashes in the provenance
 envelope and bundle-level provenance fields defined by
-[`evidence-bundle.schema.json`](../../../src/uiao/schemas/ksi/evidence-bundle.schema.json).
+`evidence-bundle.schema.json`.
 The schema enforces hash-bearing provenance structures at item and bundle scope,
 providing the verification substrate for signed, tamper-evident evidence
 packages.

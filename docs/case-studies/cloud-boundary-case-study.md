@@ -9,15 +9,13 @@ canon-reference:
   - "docs/docs/gcc-boundary-problem-statement.qmd"
   - "docs/customer-documents/architecture-series/boundary-impact-model.qmd"
   - "docs/customer-documents/orgcomp-series/boundary/B1-gcc-moderate-boundary-model.qmd"
-derived-from: "uiao canon"
+derived-from: "fmp canon"
 lifecycle: adopted
 tiers_adopted: [1]
 lifecycle_review: 2026-11-22
 ---
 
 # Cloud Boundary — Case Study
-
-![Boundary feature-disposition matrix](images/reference-deployment-opm-hrit-to-image-02-hrit-inbound-provisioning-pipeli.png){#fig-cloud-boundary-case-study-image-02 fig-alt="Boundary feature-disposition matrix. Engineering blueprint style, neutral slate background, federal navy (#1F3A5F) for primary structural elements, teal (#1A9E8F) for secondary/integration elements, amber (#D4A017) for governance/audit/registry overlays, monospace labels for identifiers, no human figures, 16:9 landscape." width="100%"}
 
 
 ::: {.callout-important}
@@ -59,7 +57,7 @@ does not clearly document which features behave this way.
 
 The substrate addresses each impact dimension via in-boundary
 mechanisms (per
-[`gcc-boundary-solution-architecture.qmd`](../../docs/gcc-boundary-solution-architecture.qmd)):
+`gcc-boundary-solution-architecture.qmd`):
 
 ### 1. Boundary probe
 
@@ -125,7 +123,7 @@ Two distinctions matter:
 A real engagement typically yields:
 
 - New entries in the boundary capability disposition data
-  (`src/uiao/canon/data/gcc-moderate-telemetry-gaps.yaml`).
+  (`src/fmp/canon/data/gcc-moderate-telemetry-gaps.yaml`).
 - Refinements to the boundary impact model where new dimensions
   emerge (rare, but possible — would require an ADR).
 - Compensating-enforcement adapter additions to

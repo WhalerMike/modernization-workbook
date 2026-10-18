@@ -29,14 +29,6 @@ lifecycle_review: 2026-11-22
 
 > **Model C — 15-facet multi-attribute (per the program decision).** This guide was originally authored against Model B (composite-slash path, `extensionAttribute1: CORP/US/EAST/BALTIMORE/IT`). Model B is superseded; the canonical the organizational-attribute model schema is now 15 facets across `extensionAttribute1`–`15`. Section 2 has been rewritten Model C-native, and the rule/group/AU code examples throughout sections 3+ have been swept to use the per-facet boolean composition form (see the **Model C Translation Key** callout immediately after Section 2). The manager-spine / governance / delegation / lifecycle prose in sections 3+ remains structurally correct — those workflow patterns are attribute-model-independent — and the Appendix sections (A, B, D, G, H, I, J) carry per-appendix Model C reset callouts pointing to the canonical Model C artifacts. For the Model C-native treatment of the codebook, dynamic groups, AUs, and drift detection, see [Reference Architecture → the organizational-attribute model Codebook](../../reference-architecture/codebook.md), [Dynamic Groups](../../reference-architecture/dynamic-groups.md), [Delegation Matrix](../../reference-architecture/delegation.md), and [Drift Walk-through](../../reference-architecture/drift-walkthrough.md).
 
-![AD X](images/index-image-01-orgpathorgtree-stack-overview-co.png){#fig-ad-to-entraid-tree-image-01 fig-alt="AD X.500 OU tree vs Entra flat directory side-by-side. Engineering blueprint style, neutral slate background, federal navy (#1F3A5F) for primary structural elements, teal (#1A9E8F) for secondary/integration elements, amber (#D4A017) for governance/audit/registry overlays, monospace labels for identifiers, no human figures, 16:9 landscape." width="100%"}
-
-![the organizational-attribute model attribute encoding scheme](images/ad-to-entraid-tree-image-02-orgpath-attribute-encoding-schem.png){#fig-ad-to-entraid-tree-image-02 fig-alt="the organizational-attribute model attribute encoding scheme. Engineering blueprint style, neutral slate background, federal navy (#1F3A5F) for primary structural elements, teal (#1A9E8F) for secondary/integration elements, amber (#D4A017) for governance/audit/registry overlays, monospace labels for identifiers, no human figures, 16:9 landscape." width="100%"}
-
-![dynamic-group rule fanout from the organizational-attribute model prefix](images/ad-to-entraid-tree-image-03-dynamic-group-rule-fanout-from-o.png){#fig-ad-to-entraid-tree-image-03 fig-alt="dynamic-group rule fanout from the organizational-attribute model prefix. Engineering blueprint style, neutral slate background, federal navy (#1F3A5F) for primary structural elements, teal (#1A9E8F) for secondary/integration elements, amber (#D4A017) for governance/audit/registry overlays, monospace labels for identifiers, no human figures, 16:9 landscape." width="100%"}
-
-![manager-spine HR org chart with access-package approval flow](images/ad-to-entraid-tree-image-04-manager-spine-hr-org-chart-with.png){#fig-ad-to-entraid-tree-image-04 fig-alt="manager-spine HR org chart with access-package approval flow. Engineering blueprint style, neutral slate background, federal navy (#1F3A5F) for primary structural elements, teal (#1A9E8F) for secondary/integration elements, amber (#D4A017) for governance/audit/registry overlays, monospace labels for identifiers, no human figures, 16:9 landscape." width="100%"}
-
 
   -------------------------------------------------------------------------------------------------------------------------------------------
   Active Directory has orgtree style X.500 structure. EntraID has flat Structure. How can EntraID mimic an OrgTree for HR based management?
@@ -2006,7 +1998,7 @@ Auto-Removal on Denial
 ***Per-Facet Codebook Schema (JSON Schema 2020-12)***
 
 ::: {.callout-important title="Model C reset — Appendix H is superseded by the per-facet codebook schema"}
-The canonical the organizational-attribute model JSON Schema is no longer a single-string pattern matching 5 slash-separated segments. Per the program decision the canonical schema validates a per-facet **Codebook** document declaring each of the 10 named facets with its slot binding, kind (enumerated / typed / reserved), and per-facet enumeration or typed pattern. The executable schema is [`schemas/orgpath/codebook.schema.json`] (`$schema` draft 2020-12; `schema_version: 2.0.0`); the Python loader at [`uiao.modernization.orgtree.codebook`] additionally enforces the slot-uniqueness invariant (cross-property uniqueness is not expressible in JSON Schema). The Model B single-string schema below is preserved as historical reference.
+The canonical the organizational-attribute model JSON Schema is no longer a single-string pattern matching 5 slash-separated segments. Per the program decision the canonical schema validates a per-facet **Codebook** document declaring each of the 10 named facets with its slot binding, kind (enumerated / typed / reserved), and per-facet enumeration or typed pattern. The executable schema is [`schemas/orgpath/codebook.schema.json`] (`$schema` draft 2020-12; `schema_version: 2.0.0`); the Python loader at [`fmp.modernization.orgtree.codebook`] additionally enforces the slot-uniqueness invariant (cross-property uniqueness is not expressible in JSON Schema). The Model B single-string schema below is preserved as historical reference.
 :::
 
 ------------------------------------------------------------------------
@@ -2063,7 +2055,7 @@ The canonical Model C schema (excerpt — see [`codebook.schema.json`] for the f
 ***Per-Facet the organizational-attribute model Enforcement + Dynamic Group Safety Checks***
 
 ::: {.callout-important title="Model C reset — Appendix I is superseded by per-facet validation"}
-The canonical validation surface is no longer a single composite-path regex. Per the program decision, validation happens **per-facet**: each of the 10 named `extensionAttribute*` slots is checked against its facet's enumeration (or typed pattern for HireDate/TermDate) independently. The Model C PowerShell helper signature is `Test-the organizational-attribute modelFacets -UserPrincipalName <UPN>` (returns a per-facet result array). The Python loader at [`uiao.modernization.orgtree.codebook`] is the canonical validator; the PowerShell helper is scheduled for rebuild in the program decision Phase 5 (a stub is included in the canon Implementation Sequence in FMP_151 v4.0). The Model B single-string module below is preserved as historical reference; do not deploy it against Model C tenants.
+The canonical validation surface is no longer a single composite-path regex. Per the program decision, validation happens **per-facet**: each of the 10 named `extensionAttribute*` slots is checked against its facet's enumeration (or typed pattern for HireDate/TermDate) independently. The Model C PowerShell helper signature is `Test-the organizational-attribute modelFacets -UserPrincipalName <UPN>` (returns a per-facet result array). The Python loader at [`fmp.modernization.orgtree.codebook`] is the canonical validator; the PowerShell helper is scheduled for rebuild in the program decision Phase 5 (a stub is included in the canon Implementation Sequence in FMP_151 v4.0). The Model B single-string module below is preserved as historical reference; do not deploy it against Model C tenants.
 :::
 
 ------------------------------------------------------------------------
@@ -3231,7 +3223,7 @@ Define the **canonical repository structure** for storing:
 
 **R.2 Canonical Repository Layout**
 
-uiao-governance-os/
+fmp-governance-os/
 
 ├── 00-Master/
 
@@ -5988,7 +5980,7 @@ Here's a concise "ALL" package you can spin into tasks (Copilot or Claude):
 
 3.  **GitHub Repository Structure**
 
-    - uiao-governance-os/ + uiao-ldap-adapter/ + uiao-telemetry/ + uiao-intune-integration/ + uiao-contact-center/.
+    - fmp-governance-os/ + fmp-ldap-adapter/ + fmp-telemetry/ + fmp-intune-integration/ + fmp-contact-center/.
 
 4.  **Chrome‑Claude Execution Plan**
 
@@ -6848,7 +6840,7 @@ GET /telemetry/device/{id}
 
 **📘 3. GITHUB REPOSITORY STRUCTURE --- the Federal Modernization Program Governance OS**
 
-uiao-governance-os/
+fmp-governance-os/
 
 ├── 00-Master/
 

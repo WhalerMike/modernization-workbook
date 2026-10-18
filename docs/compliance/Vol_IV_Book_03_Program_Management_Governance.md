@@ -115,8 +115,6 @@ whether technical controls can achieve sustainable outcomes:
 > is closed by documents, not technology, is what makes those assertions
 > credible.
 
-![FedRAMP 20x Program Management Governance Structure](figs/pmg-fig-01-pm-governance.png){fig-alt="Hierarchical governance diagram. Top tier: Authorizing Official (AO) who accepts organizational risk, signs ATO, and owns POA&M risk threshold. Second tier: SAISO/CISO who maintains ISPP, chairs ConMon review, and owns the risk register. Three governance columns flow from SAISO: Strategic Governance (PM-1 ISPP, PM-7 Enterprise Architecture, PM-11 Mission Mapping); Organizational Infrastructure (PM-2 Leadership Roles, PM-5 System Inventory, PM-15 Security Contacts); Risk and Compliance Management (PM-9 Risk Strategy, PM-14 T&T&M Plan, PM-30 SCRM Charter). Bottom integration note, labeled Integration with Technical Evidence (Vol III Book 06, Vol IV Books 01–02): PM-30 SCRM Charter connects to the Vol IV Book 02 SBOM/VDR/VEX pipeline; PM-9 Risk Register grounds all POA&M items; PM-14 tracks KSI evidence cadence." width="100%"}
-
 ---
 
 # Information Security Program Plan (PM-1, PM-7, PM-11)
@@ -267,7 +265,7 @@ defines accountabilities for security program activities.
 > must be {{< meta agency.short >}} employees; the ISSO may be a contractor with documented oversight.
 > The 3PAO must be FedRAMP-recognized.
 
-![Leadership RACI — Accountable, Responsible, and the constraints that make it PM-2 evidence](figs/pmg-fig-02-leadership-raci.png){#fig-pmg02 fig-alt="Three-column card grid titled 'The leadership RACI names who owns each decision' under an Accountability (PM-2) heading. Column 1, Accountable (tagged AO / CISO): the AO owns the ATO decision and organizational risk acceptance, while the CISO is accountable for the assessment, POA&M oversight, KSI monitoring, and training. Column 2, Responsible (tagged ISSO / DevSecOps / SOC): the ISSO runs day-to-day control operation and the POA&M; DevSecOps owns the SBOM pipeline and CI gates; the SOC owns Sentinel monitoring and incident response. Column 3, Constraints (tagged Named individuals): the AO and CISO must be {{< meta agency.short >}} employees, the ISSO may be a contractor with documented oversight, and the 3PAO must be FedRAMP-recognized. A summary banner states a RACI with role titles is a template, but a RACI with named individuals against each activity is the PM-2 evidence artifact. White background. Source: Vol IV Book 03 Program Management & Governance briefing deck, Date Code 2026-07-09 17:00 ET." width="100%"}
+} employees, the ISSO may be a contractor with documented oversight, and the 3PAO must be FedRAMP-recognized. A summary banner states a RACI with role titles is a template, but a RACI with named individuals against each activity is the PM-2 evidence artifact. White background. Source: Vol IV Book 03 Program Management & Governance briefing deck, Date Code 2026-07-09 17:00 ET." width="100%"}
 
 ---
 
@@ -387,8 +385,6 @@ For each identified risk the ISSO documents the chosen response:
 2. **Transfer:** Contractually shift risk to a cloud service provider or vendor
 3. **Accept:** Document acceptance with AO concurrence (time-bounded for score > 4)
 4. **Avoid:** Remove the system component or functionality that generates the risk
-
-![Every risk scored, owned, and time-bounded — the scoring model, remediation clock, responses, and tiers](figs/pmg-fig-03-risk-scoring.png){#fig-pmg03 fig-alt="Four-quadrant card grid titled 'Every risk scored, owned, and time-bounded' under a Risk Scoring & Response heading. Card 1, The scoring model: Score equals likelihood (1 rare to 5 certain) times impact (1 negligible to 5 catastrophic), a single number that sets the remediation clock and the escalation path. Card 2, The remediation clock: scores 1-4 accept and monitor; 5-9 mitigate within 90 days; 10-15 mitigate within 30 days; 16-25 escalate to the AO with a POA&M within 15 days. Card 3, Four responses: mitigate by strengthening a control, transfer by shifting to a CSP contractually, accept with AO concurrence and time bounding above score 4, or avoid by removing the component. Card 4, The three tiers: NIST SP 800-39 organizational risk framing, mission-level risk assessment, and system-level risk response, with the register living at the system tier reviewed monthly. A summary banner notes the register is reviewed monthly by the ISSO and quarterly by the CISO, and a score above 4 cannot be accepted indefinitely. White background. Source: Vol IV Book 03 Program Management & Governance briefing deck, Date Code 2026-07-09 17:00 ET." width="100%"}
 
 ---
 
@@ -519,8 +515,6 @@ NIST SP 800-161r1:
 | **Vulnerable components** | Known CVEs in SBOM dependencies | SR-5, SR-6, SR-11 | VDR (Grype output), KEV integration |
 | **Unauthorized access by supplier** | Vendor with excessive access | SR-6, AC-21 | Vol I Book 05 vendor access review |
 | **Vendor financial/operational risk** | Vendor bankruptcy, PSIRT closure | SR-8, PM-9 | Vendor disclosure matrix (Vol IV Book 02) |
-
-![SCRM risk categories — five categories each mapped to specific SR controls and concrete evidence](figs/pmg-fig-04-scrm-categories.png){#fig-pmg04 fig-alt="Four-quadrant card grid titled 'Five categories, each mapped to controls and evidence' under an SCRM Risk Categories heading (the fifth category, supplier access, is drawn out as its own card). Card 1, Counterfeit / tampered: fake open-source packages, typosquatting, and compromised build pipelines, countered by SR-3, SR-10, and SA-10/11 through the SBOM plus Cosign verification and SLSA provenance. Card 2, Vulnerable components: known CVEs in SBOM dependencies, countered by SR-5, SR-6, and SR-11 via the Grype VDR and the CISA KEV integration that escalates exploited CVEs. Card 3, Supplier access: a vendor with excessive access to agency systems, countered by SR-6 and AC-21 through the vendor access review in the identity plane (Vol I Book 05). Card 4, Vendor viability: vendor bankruptcy or a closed PSIRT leaving CVEs unaddressed, countered by SR-8 and PM-9 through the vendor disclosure matrix and the risk register. A summary banner notes the charter's five categories align to NIST SP 800-161r1 and each maps to specific SR controls and concrete Vol IV Book 02-03 evidence, not abstract policy. White background. Source: Vol IV Book 03 Program Management & Governance briefing deck, Date Code 2026-07-09 17:00 ET." width="100%"}
 
 ## SCRM Risk Assessment Process
 

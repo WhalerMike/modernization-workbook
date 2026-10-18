@@ -7,7 +7,7 @@ audience: [Technical, Customer]
 family: sql-server-implementation
 series-order: 07
 status: active
-canon-source: "src/uiao/canon/the directory modernization program"
+canon-source: "src/fmp/canon/the directory modernization program"
 lifecycle: active
 tiers_adopted: []
 lifecycle_review: 2027-01-01
@@ -38,8 +38,6 @@ unchanged. Do not copy the slot numbers or value shapes; the authoritative map i
 ::: {.content-visible when-format="docx"}
 # Implementation Book 07 — Groups, Administrative Units & the Conditional Access Perimeter
 :::
-
-![Groups are classified before they become logins: export the group estate, classify each group by what it should govern, emit the group-login script, and bound it with the Conditional Access perimeter.](images/book07-image-01-groups-and-aus.png){#fig-impl-book07 fig-alt="A schematic on a white background. Three stages flow left to right under teal arrows: Export-FMPEntraGroups (with Export-FMPConditionalAccess; export, read-only), New-FMPEntraGroupClassification (role-bearing → SQL login; structural / stale → not a login), and New-FMPGroupLoginScript (emits a CREATE LOGIN FROM EXTERNAL PROVIDER script). Below, a dashed blue 'Conditional Access perimeter' encloses three boxes: 'group → SQL login', 'administrative units — scoped delegation', and 'CA policy — device · MFA · network bound'. Federal navy, teal and blue palette; no photographs." width="100%"}
 
 ::: {.callout-tip}
 ## Download this book
@@ -121,7 +119,7 @@ Provisioning the AU before the groups it will hold avoids the transitional windo
 
 ### Provision the DBA Administrative Unit (entra-admin-units / FMP_154)
 
-The Administrative Unit is provisioned through the **`entra-admin-units`** modernization adapter (FMP_154 in `src/uiao/canon/modernization-registry.yaml`), aligned to the the organizational-attribute model boundary the DBA team owns so the delegation boundary and the access boundary describe the same scope. the program decision's restricted-management invariant and cross-canon integrity checks (which reject an AU whose referenced groups or the organizational-attribute model values do not resolve to live canon) are enforced by the adapter. Run it dry-run first, review the planned AU and the scoped assignment, then apply.
+The Administrative Unit is provisioned through the **`entra-admin-units`** modernization adapter (FMP_154 in `src/fmp/canon/modernization-registry.yaml`), aligned to the the organizational-attribute model boundary the DBA team owns so the delegation boundary and the access boundary describe the same scope. the program decision's restricted-management invariant and cross-canon integrity checks (which reject an AU whose referenced groups or the organizational-attribute model values do not resolve to live canon) are enforced by the adapter. Run it dry-run first, review the planned AU and the scoped assignment, then apply.
 
 ### Provision the organizational-attribute model dynamic groups (entra-dynamic-groups / FMP_152)
 

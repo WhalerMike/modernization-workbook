@@ -6,9 +6,9 @@ audience: [Executive, Customer]
 family: executive-governance-series
 series-order: 9
 status: Active
-canon-source: "src/uiao/canon/substrate-manifest.yaml"
+canon-source: "src/fmp/canon/substrate-manifest.yaml"
 canon-reference:
-  - "docs/customer-documents/whitepapers/uiao-governance-os-whitepaper.qmd"
+  - "docs/customer-documents/whitepapers/fmp-governance-os-whitepaper.qmd"
   - "docs/customer-documents/executive-briefs/governance-os-overview.qmd"
 repo-path: docs/customer-documents/executive-governance-series/ch09-governance-operating-system
 created-at: 2026-04-26
@@ -19,10 +19,6 @@ lifecycle_review: 2026-11-22
 ---
 
 # The Governance Operating System
-
-![Eight-chapter synthesis funnel into Governance OS box with three outputs](images/index-image-02-eight-chapter-synthesis-funnel-i.png){#fig-index-image-02 fig-alt="Eight-chapter synthesis funnel into Governance OS box with three outputs. Engineering blueprint style, neutral slate background, federal navy (#1F3A5F) for primary structural elements, teal (#1A9E8F) for secondary/integration elements, amber (#D4A017) for governance/audit/registry overlays, monospace labels for identifiers, no human figures, 16:9 landscape." width="100%"}
-
-![OS-level properties: process model / resource arbitration / syscall interface (c...](images/index-image-03-os-level-properties-process-mode.png){#fig-index-image-03 fig-alt="OS-level properties: process model / resource arbitration / syscall interface (canon-API) mapped to substrate components. Engineering blueprint style, neutral slate background, federal navy (#1F3A5F) for primary structural elements, teal (#1A9E8F) for secondary/integration elements, amber (#D4A017) for governance/audit/registry overlays, monospace labels for identifiers, no human figures, 16:9 landscape." width="100%"}
 
 
 ::: {.callout-note}
@@ -39,8 +35,6 @@ operating system**, and the OS framing is what makes the previous
 eight properties hold together.
 :::
 
-![Synthesis diagram showing eight chapters as inputs feeding into a single Governance OS box](images/index-image-01-synthesis-diagram-showing-eight.png){#fig-index-image-01 fig-alt="Eight labeled arrows enter from the left side: ch01 Why Governance Fails / ch02 Compliance Paradox / ch03 Drift / ch04 Deterministic Governance / ch05 Adapter Model / ch06 Evidence over Attestation / ch07 Operational Tempo / ch08 Governance at Scale. The central box is labeled \"the Federal Modernization Program Governance OS\" and shows three core layers (Canon SSOT, Substrate Services, Consumer Surfaces). Three outputs flow out the right: ATO-package-ready evidence, drift findings as continuous signal, modernization-anchored adapters. Clean engineering blueprint style, dark navy (#0D1B2E) and teal (#1E8C8C) on white background. No photographs, purely diagrammatic." width="100%"}
-
 ## Why an "OS," not a framework
 
 The naming is deliberate, and the chapter makes it explicit. A
@@ -55,7 +49,7 @@ three OS-level properties:
    substrate's scheduler — only one canonical truth exists at a time
    for any concern.
 3. **Stable system call interface.** Code reads canon via
-   `importlib.resources.files("uiao.canon")` regardless of
+   `importlib.resources.files("fmp.canon")` regardless of
    installation mode. The canon API is the substrate's syscall
    interface.
 
@@ -137,7 +131,7 @@ The target-state work extends the same model.
 
 The book's call to action is structural, not vendor-driven:
 
-1. **Run `uiao substrate walk` on the agency's tree.** Schema and
+1. **Run `fmp substrate walk` on the agency's tree.** Schema and
    provenance findings are immediate signal.
 2. **Author a substrate manifest** that names the agency's modules.
 3. **Bring one adapter under the canonical taxonomy.** Pick the

@@ -6,7 +6,7 @@ audience: [Executive, Customer]
 family: executive-governance-series
 series-order: 2
 status: Active
-canon-source: "src/uiao/canon/adr/adr-006-evidence-determinism.md"
+canon-source: "src/fmp/canon/adr/adr-006-evidence-determinism.md"
 canon-reference:
   - "docs/customer-documents/executive-governance-series/governance-os-canonical-suite.qmd"
 repo-path: docs/customer-documents/executive-governance-series/ch02-compliance-paradox
@@ -18,8 +18,6 @@ lifecycle_review: 2026-11-22
 ---
 
 # The Compliance Paradox
-
-![Paradox curve: reported vs actual substrate truth over time with accumulating ri...](images/index-image-02-paradox-curve-reported-vs-actual.png){#fig-index-image-02 fig-alt="Paradox curve: reported vs actual substrate truth over time with accumulating risk gap. Engineering blueprint style, neutral slate background, federal navy (#1F3A5F) for primary structural elements, teal (#1A9E8F) for secondary/integration elements, amber (#D4A017) for governance/audit/registry overlays, monospace labels for identifiers, no human figures, 16:9 landscape." width="100%"}
 
 
 ::: {.callout-note}
@@ -33,8 +31,6 @@ less true with each cycle. The paradox is structural, and the response
 is not "more compliance" — it is *deterministic, reproducible* compliance
 anchored on canon.
 :::
-
-![Compliance paradox curve diagram](images/index-image-01-compliance-paradox-curve-diagram.png){#fig-index-image-01 fig-alt="Horizontal axis labeled \"Time\", vertical axis labeled \"Substrate truth (vs reported state)\". Two curves diverge: a teal curve labeled \"Reported compliance state\" stays flat (high), and a navy curve labeled \"Actual substrate state\" trends downward over time. The widening gap between curves is shaded red and labeled \"Accumulated risk\". A dashed vertical line at the right edge labeled \"Audit cycle\" shows where the gap is rediscovered. Clean engineering blueprint style, dark navy (#0D1B2E) and teal (#1E8C8C) on white background, with red (#C74040) reserved for the risk-gap shading. No photographs, purely diagrammatic." width="100%"}
 
 ## The paradox stated
 

@@ -6,7 +6,7 @@ audience: [Executive, Architect, Assessor, Technical-Lead]
 author: Michael Stratton
 date: "August 2026"
 status: Active
-canon-source: "src/uiao/canon/"
+canon-source: "src/fmp/canon/"
 derived-from: "Extracted from ad-to-entraid-migration-problem.qmd's Session vs. Telemetry Divide / FedRAMP Boundary Problem sections (2026-08-03) to let this architectural argument stand on its own; carries the same canon anchors as its parent paper."
 repo-path: docs/customer-documents/whitepapers/session-vs-telemetry-identity.qmd
 created-at: 2026-08-03
@@ -132,12 +132,12 @@ disruptive. The people making decisions don't have the technical depth to
 evaluate whether the diagnosis is correct, so they default to
 incrementalism.
 
-## 5. What UIAO Actually Is
+## 5. What FMP Actually Is
 
-![Bridge architecture diagram showing UIAO as a governance layer spanning between...](../images/whitepapers/ad-to-entraid-migration-problem-image-02-bridge-architecture-diagram-show.png){#fig-session-vs-telemetry-identity-bridge-diagram fig-alt="Bridge architecture diagram showing UIAO as a governance layer spanning between..." width="100%"}
+![Bridge architecture diagram showing FMP as a governance layer spanning between...](../images/whitepapers/ad-to-entraid-migration-problem-image-02-bridge-architecture-diagram-show.png){#fig-session-vs-telemetry-identity-bridge-diagram fig-alt="Bridge architecture diagram showing FMP as a governance layer spanning between..." width="100%"}
 
 
-UIAO isn't just a compliance automation tool. It's the **architectural
+FMP isn't just a compliance automation tool. It's the **architectural
 bridge** between the session-based world agencies are living in and the
 telemetry-based world they need to get to. The fact that it was built
 around identity as the root namespace, telemetry as control, and
@@ -150,14 +150,14 @@ migrate from sessions to telemetry without knowing what its authoritative
 identity state is. It can't implement Zero Trust if identity isn't the root
 namespace. It can't run SASE if addressing isn't deterministic.
 
-UIAO was built as the solution to a problem its builders were living inside
+FMP was built as the solution to a problem its builders were living inside
 a federal agency. That most organizations don't yet see the problem in
 these terms doesn't mean the diagnosis is wrong. It means the gap between
 where they are conceptually and where the architecture has to go is very
 large.
 
 **The thing worth documenting** --- and this may be the most important
-thing for UIAO --- is this precise narrative. Not just "here's a compliance
+thing for FMP --- is this precise narrative. Not just "here's a compliance
 tool" but "here's why the architecture is broken, here's what has to be
 true for the transition to work, and here's how this platform makes it
 tractable." That narrative is what turns a technical project into

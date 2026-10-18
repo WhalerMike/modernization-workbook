@@ -4,20 +4,18 @@ subtitle: "Identity plane governance during a large-scale directory migration"
 doc-type: case-study-pattern
 audience: [Customer, Sponsor, Program Lead]
 status: framing-pattern
-canon-source: "src/uiao/canon/adr/adr-008-zero-trust-identity.md"
+canon-source: "src/fmp/canon/adr/adr-008-zero-trust-identity.md"
 canon-reference:
   - "docs/customer-documents/whitepapers/modernization-governance-whitepaper.qmd"
   - "docs/customer-documents/architecture-series/aodim-architecture.qmd"
   - "docs/customer-documents/modernization-specs/identity/identity.qmd"
-derived-from: "uiao canon"
+derived-from: "fmp canon"
 lifecycle: adopted
 tiers_adopted: [1]
 lifecycle_review: 2026-11-22
 ---
 
 # Identity Modernization — Case Study
-
-![Five-phase engagement pattern](images/reference-deployment-opm-hrit-to-image-02-hrit-inbound-provisioning-pipeli.png){#fig-identity-modernization-case-study-image-02 fig-alt="Five-phase engagement pattern. Engineering blueprint style, neutral slate background, federal navy (#1F3A5F) for primary structural elements, teal (#1A9E8F) for secondary/integration elements, amber (#D4A017) for governance/audit/registry overlays, monospace labels for identifiers, no human figures, 16:9 landscape." width="100%"}
 
 
 ::: {.callout-important}

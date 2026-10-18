@@ -12,7 +12,7 @@ canon-reference:
  - "docs/customer-documents/executive-briefs/modernization-overview.qmd"
  - "docs/customer-documents/whitepapers/ad-to-entraid-migration-problem.qmd"
  - "docs/customer-documents/orgcomp-series/Vol_X_Book_00_the compliance series_Governance_Substrate_Integration_Overview.qmd"
-derived-from: "uiao canon"
+derived-from: "fmp canon"
 created-at: 2026-06-18
 updated-at: 2026-09-16
 version: "1.4"
@@ -59,14 +59,14 @@ network, telemetry, and compliance planes.
 
 Most agency programs treat the migration as a tools project: deploy
 Entra Connect, run hybrid sync, extend MFA, retire on-premises domain
-controllers. UIAO's position is that this framing is structurally
+controllers. FMP's position is that this framing is structurally
 incomplete: migration is an **architectural inversion** of the identity
 plane, and an agency that runs it as a tools project will inherit the
 old directory's hierarchical assumptions in the new tenant — and lose
 most of the cloud-native value.
 
 This whitepaper explains what changes structurally, why governance must
-lead the migration rather than follow it, and how UIAO's substrate
+lead the migration rather than follow it, and how FMP's substrate
 provides the canonical fabric that makes the migration a one-way
 modernization rather than a reversible re-platforming.
 
@@ -79,12 +79,10 @@ The migration's specific failure-mode-and-fix is documented in
 [AD to Entra ID Migration Problem](ad-to-entraid-migration-problem.md)
 and the
 [AODIM Executive Whitepaper](aodim-executive-whitepaper.md). The
-substrate this paper names as UIAO's is the same one the the compliance series
+substrate this paper names as FMP's is the same one the the compliance series
 series' own
 Vol X — Governance Substrate Integration Overview
 documents from the product-neutral side — see §4 below.
-
-![AD-to-Entra inversion diagram](images/modernization-governance-whitepa-image-01-ad-to-entra-inversion-diagram.png){#fig-modernization-governance-whitepaper-image-01 fig-alt="Two side-by-side panels with an arrow between them. Left panel labeled \"Active Directory — hierarchical placement model\" shows a tree of OUs with users positioned at leaves; thick lines indicate access flowing from placement. Right panel labeled \"Entra ID — attribute-driven model\" shows a flat layer of users carrying attribute tags, feeding into a Policy Engine box that emits per-action access decisions. The central arrow is labeled \"Architectural inversion — same identities, different governance\". A small footer note reads \"Migration is the moment to make the inversion explicit.\" Clean engineering blueprint style, dark navy (#0D1B2E) and teal (#1E8C8C) on white background. No photographs, purely diagrammatic." width="100%"}
 
 ### 1. The architectural inversion
 
@@ -119,7 +117,7 @@ governance:
 
 Agencies that approach the migration as "lift the existing directory
 into the cloud" inherit the OU-driven model in Entra ID and lose
-attribute-driven value. UIAO's modernization-governance posture is that
+attribute-driven value. FMP's modernization-governance posture is that
 the migration is the moment to make the inversion explicit and govern
 it deliberately.
 
@@ -146,16 +144,14 @@ authored against the old directory cannot be regenerated against the
 new tenant if the canonical claim definitions changed. Every ATO touch
 becomes a re-engineering exercise.
 
-The UIAO approach is to **canonize the identity plane before cutover** —
+The FMP approach is to **canonize the identity plane before cutover** —
 declare the attribute model, the group computation rules, and the
-provenance envelope in `src/uiao/canon/` — so the migration is a
+provenance envelope in `src/fmp/canon/` — so the migration is a
 substrate change rather than a tooling change.
-
-![AODIM attribute flow diagram](images/modernization-governance-whitepa-image-02-aodim-attribute-flow-diagram.png){#fig-modernization-governance-whitepaper-image-02 fig-alt="Horizontal sequence: HR System (authoritative source) → Identity Attributes (canonical attribute set: scope, role, classification) → Computed Groups (dynamic group rules) → Access Policies (conditional access, PIM, entitlement management) → Resource Authorization. Each stage is labeled with a small governance checkpoint (e.g. \"schema validation\", \"drift detection\", \"evidence emission\"). A side panel highlights three authoritative attributes: assignment scope, organizational role, classification clearance. Clean engineering blueprint style, dark navy (#0D1B2E) and teal (#1E8C8C) on white background. No photographs, purely diagrammatic." width="100%"}
 
 ### 3. AODIM — the attribute-oriented directory and identity model
 
-The architectural pattern UIAO uses to govern the inversion is
+The architectural pattern FMP uses to govern the inversion is
 **AODIM** (Attribute-Oriented Directory & Identity Model): identity
 attributes define organizational structure, and access is computed
 from them rather than assigned. AODIM's authoritative-attribute set,
@@ -182,7 +178,7 @@ from canon plus telemetry, deterministically, before *and* after cutover.
 
 The same four mechanisms are what Vol X of the Federal Organization
 Compliance series
-calls, without naming UIAO, "a governance substrate that sits underneath
+calls, without naming FMP, "a governance substrate that sits underneath
 the whole series... general-purpose... not itself tied to this series."
 Vol X's canon SSOT and drift-gate mechanics bind the the compliance series series' own
 Identity-slot evidence (organizational-user authentication, account
@@ -191,8 +187,6 @@ provenance envelope depends on — a second, independently-authored corpus
 proving the substrate carries a regime it was never written for, which
 is the concrete version of this paper's "canon, not the directory, is
 the source of truth" claim above.
-
-![Five-phase canonical modernization timeline](images/modernization-governance-whitepa-image-03-five-phase-canonical-modernizati.png){#fig-modernization-governance-whitepaper-image-03 fig-alt="Horizontal Gantt-style bars for: Phase 1 Canon-First (longest teal bar, leftmost), Phase 2 Modernization-Adapter (overlapping with Phase 1 tail, teal), Phase 3 Compensating-Enforcement (smaller teal bar mid-timeline), Phase 4 Cutover (single thin amber decision-point bar), Phase 5 Drift-Driven Cleanup (long teal bar extending right past cutover). Below each phase, a brief deliverable label (canon authored, adapters registered, in-boundary telemetry, identity-plane source switched, drift findings remediated). A vertical line at Phase 4 labeled \"AO checkpoint\" indicates the technical cutover. Clean engineering blueprint style, dark navy (#0D1B2E) and teal (#1E8C8C) primary, with amber for the single Phase 4 cutover bar. No photographs, purely diagrammatic." width="100%"}
 
 ### 5. Phased modernization
 
@@ -203,7 +197,7 @@ five phases below are this paper's distillation of how governance
 sequences within that plan:
 
 1. **Canon-first phase.** Author the attribute model, group computation
- rules, and provenance envelope in `src/uiao/canon/`. The substrate
+ rules, and provenance envelope in `src/fmp/canon/`. The substrate
  walker passes against the new canon before any runtime change.
 2. **Modernization-adapter phase.** Stand up the modernization adapters
  for identity (Entra ID), addressing (BlueCat / Infoblox), and the
@@ -233,7 +227,7 @@ authoritative attribute — **classification clearance** — from canon
 authoring through post-cutover cleanup:
 
 1. **Canon-first.** Classification clearance is authored in
- `src/uiao/canon/` as one of AODIM's authoritative attributes: its
+ `src/fmp/canon/` as one of AODIM's authoritative attributes: its
  allowed values, its authoritative source (the HR/personnel system of
  record), and the policies permitted to consume it are declared
  before any tenant work begins.
@@ -281,7 +275,7 @@ phase's drift findings are themselves a measure of program quality.
 ### 7. Honest limits
 
 - The migration is a multi-quarter program for a typical federal
- agency. UIAO compresses the *governance* timeline by canonizing the
+ agency. FMP compresses the *governance* timeline by canonizing the
  model up front; it does not compress the technical migration.
 - Several runtime drift classes (identity, authorization, semantic) are
  only partially implemented today. Agencies in mid-migration will run
@@ -289,7 +283,7 @@ phase's drift findings are themselves a measure of program quality.
  coverage; full Optimal-grade runtime drift is engineering work
  ahead.
 - AODIM is opinionated. Agencies that elect to keep an OU-driven model
- in Entra ID can still use UIAO, but they will not realize most of
+ in Entra ID can still use FMP, but they will not realize most of
  the substrate's value — the substrate's leverage is in
  attribute-driven access.
 
@@ -299,7 +293,7 @@ The AD → Entra ID migration is one of the rare programs where doing it
 right and doing it well are the same thing. Doing it well requires a
 substrate that canonizes the identity model independently of the
 directory product, governs the migration as a substrate change, and
-emits reproducible evidence at every phase. UIAO's Governance OS is
+emits reproducible evidence at every phase. FMP's Governance OS is
 that substrate.
 
 Agencies that adopt this posture do not just migrate. They modernize

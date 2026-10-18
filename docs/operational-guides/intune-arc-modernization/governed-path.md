@@ -54,8 +54,6 @@ Every script in this kit obeys that line: `Invoke-ArcOnboarding` calls the Azure
 management plane; `Deploy-ConditionalAccessBaseline` calls the Graph policy API;
 none of them sit in a runtime auth path.
 
-![the Federal Modernization Program holds desired state and reconciles; Entra, Intune, Azure Policy, and AD remain the data planes that authenticate, enroll, enforce, and store at runtime. Change-making adapters call provider management surfaces only.](images/intune-arc-diagram-02-control-data-plane.png){#fig-planes fig-alt="Control plane (the Federal Modernization Program desired state + reconciliation) governing provider data planes via management-surface adapters"}
-
 ## 2. Providers are incorporated, not replaced
 
 Each provider in this kit is a **seat-holder** governed through the
@@ -112,8 +110,6 @@ autonomous (L4) actuation is refused in-boundary.
 `Assert-GovernanceApproval` enforces this: it refuses any write above the
 ceiling, refuses a gated write with no approval reference, and logs every
 decision.
-
-![The L0–L4 actuation ladder: record, observe, advise, gated actuation, autonomous. The federal default ceiling sits at L3; the kit's writes are gated actuation requiring an approval reference.](images/intune-arc-diagram-03-actuation-ladder.png){#fig-ladder fig-alt="Five-rung actuation ladder L0 to L4 with a federal ceiling marked at L3"}
 
 ## 5. The reconciliation loop
 

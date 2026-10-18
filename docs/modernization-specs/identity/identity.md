@@ -3,22 +3,18 @@ title: "Identity Modernization Spec"
 subtitle: "Identity plane governance and migration specification"
 doc-type: modernization-spec
 audience: [Customer, Architect, Assessor]
-canon-source: "src/uiao/canon/modernization-registry.yaml"
+canon-source: "src/fmp/canon/modernization-registry.yaml"
 canon-reference:
-  - "src/uiao/canon/adr/adr-008-zero-trust-identity.md"
+  - "src/fmp/canon/adr/adr-008-zero-trust-identity.md"
   - "docs/customer-documents/architecture-series/aodim-architecture.qmd"
   - "docs/customer-documents/whitepapers/modernization-governance-whitepaper.qmd"
-derived-from: "uiao canon"
+derived-from: "fmp canon"
 lifecycle: adopted
 tiers_adopted: [1]
 lifecycle_review: 2026-11-22
 ---
 
 # Identity Modernization Spec
-
-![Current state (AD-anchored OU-driven model)](images/identity-image-02-current-state-ad-anchored-ou-dri.png){#fig-identity-image-02 fig-alt="Current state (AD-anchored OU-driven model). Engineering blueprint style, neutral slate background, federal navy (#1F3A5F) for primary structural elements, teal (#1A9E8F) for secondary/integration elements, amber (#D4A017) for governance/audit/registry overlays, monospace labels for identifiers, no human figures, 16:9 landscape." width="100%"}
-
-![Target state (Entra ID with AODIM canonical attribute plane + adapter slots)](images/identity-image-03-target-state-entra-id-with-aodim.png){#fig-identity-image-03 fig-alt="Target state (Entra ID with AODIM canonical attribute plane + adapter slots). Engineering blueprint style, neutral slate background, federal navy (#1F3A5F) for primary structural elements, teal (#1A9E8F) for secondary/integration elements, amber (#D4A017) for governance/audit/registry overlays, monospace labels for identifiers, no human figures, 16:9 landscape." width="100%"}
 
 
 ## Scope
@@ -29,8 +25,6 @@ attribute model, group computation, delegation, and the canonical claim
 emissions identity adapters must produce. Vendor-specific detail lives
 in adapter specs (see Adapter Specs);
 this spec is the substrate contract every identity adapter inherits.
-
-![Identity modernization domain diagram](images/identity-image-01-identity-modernization-domain-di.png){#fig-identity-image-01 fig-alt="Center shows the canonical Identity Plane as a labeled rectangle with sub-zones for Attributes, Computed Groups, Delegation, and Authentication context. Around the perimeter, four modernization adapter slots labeled (entra-id, active-directory, piv-usaccess, attribute-services) connect with bidirectional arrows to the central plane. Below the plane, a thin horizontal bar labeled \"AODIM canonical attribute set: assignment scope, organizational role, classification clearance\" anchors the model. Clean engineering blueprint style, dark navy (#0D1B2E) and teal (#1E8C8C) on white background. No photographs, purely diagrammatic." width="100%"}
 
 ## Substrate contract
 
@@ -70,7 +64,7 @@ attributes. Identity adapters emit canonical claims in this shape:
 
 ```yaml
 provenance:
-  claim_id: "urn:uiao:claim:identity:{attribute_kind}:{uuid}"
+  claim_id: "urn:fmp:claim:identity:{attribute_kind}:{uuid}"
   issuer_identity: "{entra_object_id | agency_issuer_id}"
   source_classification: "authoritative | derived | synthesized"
   ...
@@ -89,7 +83,7 @@ declared in canon.
 
 The identity domain maps onto NIST 800-53 IA / AC families and onto
 CISA ZTMM Identity pillar. KSI rules under
-`src/uiao/rules/ksi/iam/` declare the bindings. Each adapter
+`src/fmp/rules/ksi/iam/` declare the bindings. Each adapter
 declaration in `modernization-registry.yaml` references the KSI rules
 it satisfies.
 

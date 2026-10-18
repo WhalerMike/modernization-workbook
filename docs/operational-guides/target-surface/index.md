@@ -26,10 +26,10 @@ validation-suites.
 
 ## Leaves
 
-- **E.1** Entra ID tenant — [adapter](../../adapter-specs/entra-id/entra-id.html)
+- **E.1** Entra ID tenant — adapter
 - **E.2** Administrative Units — [FMP_154](../../reference-architecture/delegation.md)
-- **E.3** Intune — [adapter](../../adapter-specs/intune/intune.html)
+- **E.3** Intune — adapter
 - **E.4** Azure Arc — (adapter pending)
-- **E.5** Microsoft 365 SaaS — [adapter](../../adapter-specs/m365/m365.html)
+- **E.5** Microsoft 365 SaaS — adapter
 - **E.6** Conditional Access targeting — (see Compliance D.1)
 - **E.7** PIM + Access Reviews + Entitlement Management — (adapter pending)

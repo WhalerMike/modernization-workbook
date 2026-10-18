@@ -50,7 +50,7 @@ personnel, and **do not publish raw findings**. Remediation guidance is
 
 - **PowerShell 7+** — [install guide](https://learn.microsoft.com/powershell/scripting/install/installing-powershell).
 - **Python 3.11+** on `PATH`.
-- **The Federal Modernization Program toolkit** (provides the `uiao` command): `pip install uiao` from the
+- **The Federal Modernization Program toolkit** (provides the `fmp` command): `pip install fmp` from the
   repository, which brings in the `openpyxl` and `matplotlib` dependencies the
   dashboard needs.
 - A **`ZeroTrustAssessmentReport.html`** (or `.json`) from a completed assessment
@@ -58,8 +58,8 @@ personnel, and **do not publish raw findings**. Remediation guidance is
 
 ```powershell
 # one-time: confirm the toolkit is available
-uiao --version
-uiao zta --help
+fmp --version
+fmp zta --help
 ```
 
 ## Step 1 — Run the Zero Trust Assessment
@@ -92,14 +92,14 @@ against the report:
 That is a thin wrapper over the toolkit; the equivalent direct call is:
 
 ```powershell
-uiao zta dashboard --input .\ZeroTrustReport\ZeroTrustAssessmentReport.html --out-dir .\zt-dashboard
+fmp zta dashboard --input .\ZeroTrustReport\ZeroTrustAssessmentReport.html --out-dir .\zt-dashboard
 ```
 
 You can also produce the lighter text/CSV digests (executive summary, Markdown,
 worklist) with:
 
 ```powershell
-uiao zta digest --input .\ZeroTrustReport\ZeroTrustAssessmentReport.html --out-dir .\zt-digest
+fmp zta digest --input .\ZeroTrustReport\ZeroTrustAssessmentReport.html --out-dir .\zt-digest
 ```
 
 ## Step 3 — Build a remediation playbook
@@ -107,7 +107,7 @@ uiao zta digest --input .\ZeroTrustReport\ZeroTrustAssessmentReport.html --out-d
 To get a per-finding **how-to-fix** guide, run:
 
 ```powershell
-uiao zta remediate --input .\ZeroTrustReport\ZeroTrustAssessmentReport.html --out-dir .\zt-remediation
+fmp zta remediate --input .\ZeroTrustReport\ZeroTrustAssessmentReport.html --out-dir .\zt-remediation
 ```
 
 This writes a Markdown **playbook** and a CSV **tracker**. For each failed check
@@ -164,7 +164,7 @@ scoring it as a pass overstates the posture.
 
 | Symptom | Fix |
 |---|---|
-| `uiao: command not found` | The toolkit isn't installed/active. `pip install uiao`, or the wrapper will fall back to `python -m uiao.cli.app` if Python is on `PATH`. |
+| `fmp: command not found` | The toolkit isn't installed/active. `pip install fmp`, or the wrapper will fall back to `python -m fmp.cli.app` if Python is on `PATH`. |
 | Unicode / `cp1252` errors in the console | Run `"$env:PYTHONUTF8 = 1"` before invoking, or use PowerShell 7. |
 | `could not locate an embedded reportData object` | The input isn't a Zero Trust Assessment report — point `-ReportPath` at the real `…Report.html` or a `.json` export. |
 
@@ -176,7 +176,7 @@ scoring it as a pass overstates the posture.
 |---|---|---|---|
 | `-ReportPath` | `string` | *(required)* | Path to the `ZeroTrustAssessmentReport.html` or `.json` export. Falls back to the `FMP_REPORTPATH` environment variable when the parameter is omitted. |
 | `-OutputDirectory` | `string` | `./zt-dashboard` | Where to write the dashboard, charts, and Power BI CSV. Falls back to the `FMP_OUTPUT` environment variable when omitted. |
-| `-CheckPrereqs` | `switch` | off | Run `FMP.ConfigTools` prereq validation before executing: checks PowerShell 7+, Python 3.11+, the `uiao` package, and Microsoft Graph context. Silently ignored when `FMP.ConfigTools` is not installed. |
+| `-CheckPrereqs` | `switch` | off | Run `FMP.ConfigTools` prereq validation before executing: checks PowerShell 7+, Python 3.11+, the `fmp` package, and Microsoft Graph context. Silently ignored when `FMP.ConfigTools` is not installed. |
 | `-EnableLogging` | `switch` | off | Start a timestamped transcript under `<OutputDirectory>\logs\`. Requires `FMP.ConfigTools`; silently ignored when the module is absent. |
 
 ### Environment variables
@@ -188,7 +188,7 @@ scoring it as a pass overstates the posture.
 
 ### FMP.ConfigTools integration
 
-When the `FMP.ConfigTools` shared module (included in `uiao-cli.zip` under
+When the `FMP.ConfigTools` shared module (included in `fmp-cli.zip` under
 `scripts\FMP.ConfigTools\`) is installed, the script uses it for structured
 coloured output and optional transcript logging. Absent the module, it falls
 back to plain `Write-Host`.
@@ -196,7 +196,7 @@ back to plain `Write-Host`.
 ```powershell
 # Install the module from the kit
 $dest = "$env:USERPROFILE\Documents\PowerShell\Modules\FMP.ConfigTools"
-Copy-Item .\uiao-cli\scripts\FMP.ConfigTools $dest -Recurse -Force
+Copy-Item .\fmp-cli\scripts\FMP.ConfigTools $dest -Recurse -Force
 
 # Run with prereq check and logging
 .\Invoke-ZtDashboard.ps1 -ReportPath .\ZeroTrustReport\ZeroTrustAssessmentReport.html `
@@ -207,7 +207,7 @@ Copy-Item .\uiao-cli\scripts\FMP.ConfigTools $dest -Recurse -Force
 
 | Script | Version | SHA-256 |
 |---|---|---|
-| [`Invoke-ZtDashboard.ps1`](scripts/Invoke-ZtDashboard.ps1) | 1.1 | `f30811fd01616e2960e12dd0e870a4d19cd52a7c5c79f0e3bcc592ca5d13d509` (v1.0 base) |
+| `Invoke-ZtDashboard.ps1` | 1.1 | `f30811fd01616e2960e12dd0e870a4d19cd52a7c5c79f0e3bcc592ca5d13d509` (v1.0 base) |
 
 Verify the download before running it:
 

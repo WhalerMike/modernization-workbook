@@ -7,7 +7,7 @@ audience: [Technical, Customer]
 family: sql-server-implementation
 series-order: 01
 status: active
-canon-source: "src/uiao/canon/the directory modernization program"
+canon-source: "src/fmp/canon/the directory modernization program"
 lifecycle: active
 tiers_adopted: []
 lifecycle_review: 2027-01-01
@@ -16,8 +16,6 @@ lifecycle_review: 2027-01-01
 ::: {.content-visible when-format="docx"}
 # Implementation Book 01 — Prerequisites & Using This Companion
 :::
-
-![Book 01 sets up the toolchain, the sealed-evidence model, and the safety line, then chains Books 02–10 in run order — it installs and orients, but runs nothing against a live estate.](images/book01-image-01-the-toolchain.png){#fig-impl-book01 fig-alt="A schematic on a white background. A top row of three stages flows left to right under teal arrows: '1 · Install' (PowerShell 7+, python3 stdlib seal, Import-Module …Migration), '2 · Evidence' (sealed envelope per step: schema · data · provenance; reproducible content_hash), and '3 · Safety line' (read-only / derive run direct in teal; state-changing gated in red; -WhatIf preview). Below, a panel titled '4 · The run order' shows a teal 'estate inventory — retain / consolidate / retire gate' box (Book 02) feeding a chain of boxes labelled 03–04, 05–06, 07–08, 09–10. Federal navy, teal, ice-blue and red palette; no photographs." width="100%"}
 
 ::: {.callout-tip}
 ## Download this book
@@ -49,7 +47,7 @@ There is no Book 01 *script*: the conceptual opening has no executable layer of 
 ## Step 1 — Install the toolchain
 
 - **PowerShell 7+** is the runtime the modules target (the `tools/powershell` Pester CI pins PowerShell 7).
-- **A stdlib Python interpreter** (`python3` on PATH) is the one external dependency: it computes the canonical integrity seal (`json` + `hashlib`), byte-identical to `uiao.ir.models.core.canonical_hash`. The `uiao` package is **not** imported, so no editable install is needed to produce sealed evidence.
+- **A stdlib Python interpreter** (`python3` on PATH) is the one external dependency: it computes the canonical integrity seal (`json` + `hashlib`), byte-identical to `fmp.ir.models.core.canonical_hash`. The `fmp` package is **not** imported, so no editable install is needed to produce sealed evidence.
 - **The discovery Specs** are pure PowerShell under `tools/discovery/`; run them directly.
 - **The modules** are imported from the repo:
 

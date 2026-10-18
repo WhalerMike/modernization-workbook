@@ -15,17 +15,9 @@ lifecycle_review: 2026-11-22
 
 # Chapter 02 — Analyzing the Client/Server Estate {.unnumbered}
 
-![Eleven streams into Gitea funnel](images/02-legacy-ingestion-image-02-eleven-streams-into-gitea-funnel.png){#fig-02-legacy-ingestion-image-02 fig-alt="Eleven streams into Gitea funnel. Engineering blueprint style, neutral slate background, federal navy (#1F3A5F) for primary structural elements, teal (#1A9E8F) for secondary/integration elements, amber (#D4A017) for governance/audit/registry overlays, monospace labels for identifiers, no human figures, 16:9 landscape." width="100%"}
-
-![Tier A vs Tier B coverage matrix (87% vs 100%)](images/02-legacy-ingestion-image-03-tier-a-vs-tier-b-coverage-matrix.png){#fig-02-legacy-ingestion-image-03 fig-alt="Tier A vs Tier B coverage matrix (87% vs 100%). Engineering blueprint style, neutral slate background, federal navy (#1F3A5F) for primary structural elements, teal (#1A9E8F) for secondary/integration elements, amber (#D4A017) for governance/audit/registry overlays, monospace labels for identifiers, no human figures, 16:9 landscape." width="100%"}
-
-![Provenance envelope: who/when/what/profile/hash/commit chain](images/02-legacy-ingestion-image-04-provenance-envelope-whowhenwhatp.png){#fig-02-legacy-ingestion-image-04 fig-alt="Provenance envelope: who/when/what/profile/hash/commit chain. Engineering blueprint style, neutral slate background, federal navy (#1F3A5F) for primary structural elements, teal (#1A9E8F) for secondary/integration elements, amber (#D4A017) for governance/audit/registry overlays, monospace labels for identifiers, no human figures, 16:9 landscape." width="100%"}
-
 
 *Forest discovery, GPO inventory, DNS/DHCP scraping, Kerberos SPN audit,
 ADCS analysis*
-
-![Eleven ingestion streams feed a single provenance-bound artifact set in Gitea](images/02-legacy-ingestion-image-01-figure-2.png){#fig-02-legacy-ingestion-image-01 fig-alt="Funnel diagram with eleven labeled input streams on the left (AD, DNS, DHCP, GPO, PKI, RADIUS, IPAM, NTP, file shares, scheduled tasks, service accounts) feeding into a central pipeline labeled \"Read-only assessment ingest — provenance-bound\". Single output on the right: \"Gitea artifact set (hash-stamped, signed)\". Clean engineering blueprint style, dark navy (#0D1B2E) and teal (#1E8C8C) color scheme on white background. No photographs, purely diagrammatic." width="100%"}
 
 ::: {.callout-important title="The assessment discipline"}
 You cannot modernize what you have not enumerated. Every the Federal Modernization Program
@@ -124,10 +116,10 @@ intervals, FSMO holders, DNS integration mode, Exchange schema level.
 
 **Cmdlet skeleton.**
 ```powershell
-Get-ADForest | ConvertTo-UiaoForestRecord
-Get-ADDomain  -Identity each | ConvertTo-UiaoDomainRecord
-Get-ADReplicationSiteLink -Filter * | ConvertTo-UiaoSiteLinkRecord
-Get-ADTrust -Filter * | ConvertTo-UiaoTrustRecord
+Get-ADForest | ConvertTo-FmpForestRecord
+Get-ADDomain  -Identity each | ConvertTo-FmpDomainRecord
+Get-ADReplicationSiteLink -Filter * | ConvertTo-FmpSiteLinkRecord
+Get-ADTrust -Filter * | ConvertTo-FmpTrustRecord
 ```
 
 **Output.** `assessments/<run-id>/forest-topology.json` — normalised
@@ -145,7 +137,7 @@ computer counts.
 
 **Cmdlet skeleton.**
 ```powershell
-Get-ADOrganizationalUnit -Filter * -Properties * | ConvertTo-UiaoOuRecord
+Get-ADOrganizationalUnit -Filter * -Properties * | ConvertTo-FmpOuRecord
 ```
 
 **Output.** `assessments/<run-id>/ou-hierarchy.json` — a graph
@@ -163,7 +155,7 @@ location, and (if populated) HR-system-sourced attributes.
 
 **Cmdlet skeleton.**
 ```powershell
-Get-ADUser -Filter * -Properties * | ConvertTo-UiaoUserRecord
+Get-ADUser -Filter * -Properties * | ConvertTo-FmpUserRecord
 ```
 
 **Output.** `assessments/<run-id>/users.jsonl` — one record per line,
@@ -182,7 +174,7 @@ msDS-SupportedEncryptionTypes.
 
 **Cmdlet skeleton.**
 ```powershell
-Get-ADComputer -Filter * -Properties * | ConvertTo-UiaoComputerRecord
+Get-ADComputer -Filter * -Properties * | ConvertTo-FmpComputerRecord
 ```
 
 **Output.** `assessments/<run-id>/computers.jsonl`.
@@ -238,7 +230,7 @@ per section.
 **Cmdlet skeleton.**
 ```powershell
 Get-GPO -All
-Get-GPOReport -All -ReportType Xml | ConvertTo-UiaoGpoRecord
+Get-GPOReport -All -ReportType Xml | ConvertTo-FmpGpoRecord
 ```
 
 **Output.** `assessments/<run-id>/gpos/*.xml` + normalised
@@ -327,7 +319,7 @@ biggest source of modernization blockers in most forests.
 PowerShell is excellent at AD reads; it is less excellent at graph
 analysis. Every stream that produces relational data (OU hierarchy,
 GPO link graph, SPN-to-app map, trust-relationship graph) is
-post-processed by a Python analyzer (`uiao.assess.graph`) that
+post-processed by a Python analyzer (`fmp.assess.graph`) that
 produces:
 
 - **Dependency graphs** — which OUs inherit which GPOs; which apps
@@ -407,4 +399,4 @@ Only together do they produce governed modernization.
 
 ---
 
-**Next:** [Chapter 03 — Analysis → Plan → Delivery](03-transformation-pipeline.html)
+**Next:** Chapter 03 — Analysis → Plan → Delivery

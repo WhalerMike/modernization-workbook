@@ -20,8 +20,6 @@ to govern heterogeneous stacks beyond that single journey.
 **Modernization** modernizes — three expressions of one substrate, adoptable
 together or entirely independently.
 
-![The Org family: four operational expressions — the organizational-attribute model (governance), Compliance (Federal Organizational Compliance), Modernization (Organizational Modernization), and external interconnection (external interconnection) — standing on one governance substrate of identity, addressing, evidence, and policy-bearing control planes. Compliance connects to the substrate through a dashed Evidence & Authorization Contract seam, and a footer band states the four are adoptable together or each on its own.](../customer-documents/orgcomp-series/figs/org-family-substrate.png){width="100%"}
-
 ::: {.callout-tip}
 ## Download the whole family
 **[orgmod-modernization-series-latest.zip]**

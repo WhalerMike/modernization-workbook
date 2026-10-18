@@ -7,7 +7,7 @@ audience: [Technical, Customer]
 family: sql-server-implementation
 series-order: 04
 status: active
-canon-source: "src/uiao/canon/the directory modernization program"
+canon-source: "src/fmp/canon/the directory modernization program"
 lifecycle: active
 tiers_adopted: []
 lifecycle_review: 2027-01-01
@@ -16,8 +16,6 @@ lifecycle_review: 2027-01-01
 ::: {.content-visible when-format="docx"}
 # Implementation Book 04 — Arc Deployment & the Managed Identity
 :::
-
-![Arc gives each retained host a system-assigned managed identity: validate the agent (read-only), onboard behind a -WhatIf gate, then prove the token and SQL extension — the identity Book 05's Entra logins are issued against.](images/book04-image-01-arc-managed-identity.png){#fig-impl-book04 fig-alt="A schematic on a white background. A navy 'SQL Server host' box on the left connects by teal arrow to three stacked stages: Test-FMPArcAgentStatus (validate, read-only), a red-bordered Invoke-FMPArcOnboarding (review-required, SupportsShouldProcess, -WhatIf preview), and Test-FMPArcManagedIdentityToken / Test-FMPArcSqlExtension (prove, read-only). A teal arrow leads to an ice-blue 'Azure Arc · Microsoft Entra' panel containing 'system-assigned managed identity → IMDS token' and 'cloud-aware audience (GCC-Moderate / Gov) — fails closed'. Federal navy, teal, ice-blue and red palette; no photographs." width="100%"}
 
 ::: {.callout-tip}
 ## Download this book

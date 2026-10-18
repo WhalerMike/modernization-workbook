@@ -6,7 +6,7 @@ audience: [Executive, Customer, Technical]
 author: Michael Stratton
 date: "June 2026"
 status: Active
-canon-source: "src/uiao/canon/adapter-registry.yaml#scubagear"
+canon-source: "src/fmp/canon/adapter-registry.yaml#scubagear"
 repo-path: docs/customer-documents/whitepapers/zta-scuba-relationship.qmd
 created-at: 2026-06-03
 updated-at: 2026-09-16
@@ -39,7 +39,7 @@ control level (NIST 800-53 / FedRAMP Moderate), not tool to tool.
 
 **Ask.** Keep ScubaGear for BOD 25-01, add the Zero Trust Assessment for
 breadth, line both up against a common control spine, treat all output as
-Controlled and keep it in-boundary — and run `uiao zta overlap` against your
+Controlled and keep it in-boundary — and run `fmp zta overlap` against your
 own report to replace this paper's illustrative split with your tenant's.
 :::
 
@@ -81,8 +81,6 @@ demo report. Your tenant's split comes from running the assessment on your own
 environment. Assessment output is sensitive — treat it as Controlled and keep it
 inside your authorization boundary.
 :::
-
-![SCuBA vs. Zero Trust Assessment — complementary coverage areas](images/zta-scuba-relationship-diagram-01-scuba-vs-zta-overlap.png){#fig-zta-scuba-diagram-01 fig-alt="Two partially overlapping ellipses on white background. Left ellipse navy: ScubaGear CISA SCuBA, compliance question, BOD 25-01 driver, lists SCuBA-only coverage including Exchange Online, SPF/DKIM/DMARC, SharePoint, Teams, Power Platform. Right ellipse teal: Zero Trust Assessment, maturity question, Microsoft SFI driver, lists ZT-only coverage including Intune devices, Azure networking, Azure infrastructure, Microsoft Purview data. Shared overlap region shows Entra identity: legacy auth, MFA, Conditional Access, privileged roles, app consent, risky users. Bottom navy bar: recommendation to run both." width="100%"}
 
 ## The two tools at a glance
 
@@ -164,15 +162,15 @@ ZT-only (Microsoft Purview).
 
 ## Producing your own figures
 
-The UIAO toolkit can ingest a Zero Trust Assessment report and emit this overlap
+The FMP toolkit can ingest a Zero Trust Assessment report and emit this overlap
 split for your tenant, alongside a prioritized remediation playbook:
 
 ```powershell
-uiao zta overlap --input .\ZeroTrustAssessmentReport.html # shared vs ZT-only for your tenant
-uiao zta remediate --input .\ZeroTrustAssessmentReport.html -o . # per-finding fix guidance
+fmp zta overlap --input .\ZeroTrustAssessmentReport.html # shared vs ZT-only for your tenant
+fmp zta remediate --input .\ZeroTrustAssessmentReport.html -o . # per-finding fix guidance
 ```
 
 See the [Zero Trust Assessment Dashboard guide](../operational-guides/zero-trust-assessment/index.md)
-for the full workflow. UIAO treats both ScubaGear and the Zero Trust Assessment
+for the full workflow. FMP treats both ScubaGear and the Zero Trust Assessment
 as evidence sources it incorporates — not competitors — and reconciles their
 findings in a common, control-mapped evidence layer.

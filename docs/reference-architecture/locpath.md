@@ -15,7 +15,7 @@ aliases:
 ---
 
 
-> **LocPath is a second addressing dimension, not a sixteenth the organizational-attribute model facet.** the organizational-attribute model answers *where does this identity sit organizationally*; LocPath answers *where is it physically assigned*. The two are governed symmetrically, queried together as a matrix, and deliberately kept apart — per the program decision, LocPath claims no `extensionAttribute` slot and never will without its own binding profile. The canonical definition is the [LocPath Codebook (FMP_194)](../../canon/FMP_194_LocPath_Codebook.qmd).
+> **LocPath is a second addressing dimension, not a sixteenth the organizational-attribute model facet.** the organizational-attribute model answers *where does this identity sit organizationally*; LocPath answers *where is it physically assigned*. The two are governed symmetrically, queried together as a matrix, and deliberately kept apart — per the program decision, LocPath claims no `extensionAttribute` slot and never will without its own binding profile. The canonical definition is the LocPath Codebook (FMP_194).
 
 ## The problem nobody owns
 
@@ -74,8 +74,8 @@ The rule that keeps this honest: dynamic context **never overrides** the governe
 
 | Layer | Where | What it holds |
 |---|---|---|
-| **Hierarchy** | `src/uiao/canon/data/locpath/location-registry.yaml` (Git) | The governed location nodes, validated against location.schema.json + location-registry.schema.json |
-| **Translation** | `src/uiao/canon/data/locpath/duty-station-map.yaml` (Git) | The HR `locationCode` → LocPath map, validated against duty-station-map.schema.json; every target must resolve at Site or deeper |
+| **Hierarchy** | `src/fmp/canon/data/locpath/location-registry.yaml` (Git) | The governed location nodes, validated against location.schema.json + location-registry.schema.json |
+| **Translation** | `src/fmp/canon/data/locpath/duty-station-map.yaml` (Git) | The HR `locationCode` → LocPath map, validated against duty-station-map.schema.json; every target must resolve at Site or deeper |
 | **Assignment** | The Primary-LocPath assignment plan, derived per identity | Employee → LocPath + governing Site + provenance |
 | **Authority** | The HR system of record (duty station) | The upstream truth, extending the same doctrine the program decision fixed for organizational placement |
 
@@ -83,7 +83,7 @@ Notice what is **not** in that table: an Entra attribute. Per the program decisi
 
 ## What ships today
 
-All five the program decision §D6 deliverables are in the substrate (`uiao.modernization.locpath`):
+All five the program decision §D6 deliverables are in the substrate (`fmp.modernization.locpath`):
 
 | Capability | Module | What it does |
 |---|---|---|
@@ -116,6 +116,6 @@ Scope guardrails are doctrine (the program decision §D7), not aspiration:
 ## Where to go next
 
 - the program decision — the decision record: drivers, scope, consequences
-- [FMP_194 — the LocPath Codebook](../../canon/FMP_194_LocPath_Codebook.qmd): path syntax, attribute catalog, governance rules, normative schema
+- FMP_194 — the LocPath Codebook: path syntax, attribute catalog, governance rules, normative schema
 - OrgTree — Identity Modernization: the organizational axis this page mirrors
 - the organizational-attribute model FAQ: operator questions, including how location relates to facets

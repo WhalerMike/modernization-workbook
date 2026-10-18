@@ -44,10 +44,10 @@ deployment narrative around it.
 
 ## 1. What the AGD is — and is not
 
-**It is** an LDAPv3 server (`uiao.directory`) that answers `BIND`, `SEARCH`,
+**It is** an LDAPv3 server (`fmp.directory`) that answers `BIND`, `SEARCH`,
 `UNBIND`, StartTLS, and — opt-in — `MODIFY`. Its Directory Information Tree (DIT)
 is *computed* from the the organizational-attribute model Codebook (FMP_151) plus a principal snapshot, and
-every governed facet is surfaced under its canonical `uiaothe organizational-attribute model<Facet>`
+every governed facet is surfaced under its canonical `fmpOrgPath<Facet>`
 attribute from the `ldap` binding profile (FMP_193). Because the tree is a
 projection, **read-only is a property of construction** — there is no stored
 entry to mutate.
@@ -62,7 +62,7 @@ routed to the provider of record.
 ## Deployment placement
 The AGD is a **separate process** from the FastAPI service
 (`deploy/windows-server/`) and the Azure SaaS plane (`deploy/azure/`). It is
-**not** hosted inside either today — you launch it directly from the `uiao`
+**not** hosted inside either today — you launch it directly from the `fmp`
 CLI, typically as a managed service/daemon next to the substrate. Treat it as
 its own network-reachable surface with its own TLS and bind policy.
 :::
@@ -88,35 +88,35 @@ they are mutually exclusive.
 
 ### 3.1 Hand-authored / runtime snapshot (`--snapshot`)
 
-The the organizational-attribute model-runtime snapshot shape — the same one `uiao orgtree govern` consumes:
+The the organizational-attribute model-runtime snapshot shape — the same one `fmp orgtree govern` consumes:
 
 ```json
 {
   "principals": [
-    {"principal_id": "alice@uiao.gov", "principal_type": "user",
+    {"principal_id": "alice@fmp.gov", "principal_type": "user",
      "attributes": {"extensionAttribute1": "NCR", "extensionAttribute2": "IT"}}
   ]
 }
 ```
 
 ```bash
-uiao directory tree --snapshot snapshot.json     # emit LDIF for inspection
+fmp directory tree --snapshot snapshot.json     # emit LDIF for inspection
 ```
 
 ### 3.2 Straight from an the organizational-attribute model producer (`--from-assessment`)
 
-The cleaner production feed: take the output of `uiao orgtree assess` — the AD
+The cleaner production feed: take the output of `fmp orgtree assess` — the AD
 survey → facet assessment — and project it directly. The AGD re-keys each
 record's facet-name values onto the Codebook's `extensionAttribute` slots, so the
 projection traces to governed assessment output rather than a static file.
 
 ```bash
 # 1. Assess Active Directory (live LDAP or an offline export) into facet assignments.
-uiao orgtree assess --from-export ad-users.json --out assignments.json
+fmp orgtree assess --from-export ad-users.json --out assignments.json
 
 # 2. Project the assessment straight into the AGD.
-uiao directory tree  --from-assessment assignments.json
-uiao directory serve --from-assessment assignments.json --check
+fmp directory tree  --from-assessment assignments.json
+fmp directory serve --from-assessment assignments.json --check
 ```
 
 This is the recommended wiring: **AD survey → assess → AGD projection**, no
@@ -132,26 +132,26 @@ live change stream (see [§7 Gaps](#sec-gaps)).
 
 ```bash
 # Validate inputs and print the listen plan without binding a socket (CI-friendly).
-uiao directory serve --from-assessment assignments.json --check
+fmp directory serve --from-assessment assignments.json --check
 
 # Loopback plaintext (default) — local bring-up only.
-uiao directory serve --from-assessment assignments.json
+fmp directory serve --from-assessment assignments.json
 
 # LDAPS-on-connect (conventional ldaps://, port 636).
-uiao directory serve --from-assessment assignments.json \
+fmp directory serve --from-assessment assignments.json \
     --tls-cert agd.pem --tls-key agd.key
 
 # StartTLS in-band upgrade on the plaintext port (Python 3.11+).
-uiao directory serve --from-assessment assignments.json \
+fmp directory serve --from-assessment assignments.json \
     --starttls --tls-cert agd.pem --tls-key agd.key
 ```
 
-Point any LDAP client at the suffix (default `dc=agd,dc=uiao,dc=gov`, override
+Point any LDAP client at the suffix (default `dc=agd,dc=fmp,dc=gov`, override
 with `--base-dn`):
 
 ```bash
-ldapsearch -H ldaps://agd.example.gov:636 -b "ou=people,dc=agd,dc=uiao,dc=gov" \
-  "(uiaothe organizational-attribute modelDepartment=IT)" uiaothe organizational-attribute modelRegion uiaothe organizational-attribute modelRole
+ldapsearch -H ldaps://agd.example.gov:636 -b "ou=people,dc=agd,dc=fmp,dc=gov" \
+  "(fmpOrgPathDepartment=IT)" fmpOrgPathRegion fmpOrgPathRole
 ```
 
 ## 5. Authentication & read scoping
@@ -164,12 +164,12 @@ ldapsearch -H ldaps://agd.example.gov:636 -b "ou=people,dc=agd,dc=uiao,dc=gov" \
 
 ```bash
 # Simple-bind credentials are repeatable; each is an operator-issued reader/writer identity.
-uiao directory serve --from-assessment assignments.json \
+fmp directory serve --from-assessment assignments.json \
     --bind svc-reports=$REPORT_PW --bind svc-admin=$ADMIN_PW \
     --tls-cert agd.pem --tls-key agd.key
 
 # Kerberos (gate-only) — validate the ticket your KDC signed; the AGD is not a KDC.
-uiao directory serve --from-assessment assignments.json --sasl-gssapi \
+fmp directory serve --from-assessment assignments.json --sasl-gssapi \
     --gssapi-service ldap@agd.example.gov --tls-cert agd.pem --tls-key agd.key
 ```
 
@@ -186,7 +186,7 @@ planned or routed to the provider of record. There are three rungs:
 | Flags | Rung | Behavior |
 |---|---|---|
 | *(none)* | **L1** | Read-only. A `modify` is refused `unwillingToPerform`. |
-| `--enable-writes` | **L2 (plan)** | A governed `uiaothe organizational-attribute model<Facet>` `modify` is translated, validated, and **planned** (dry-run). Nothing is applied; the projection is untouched. |
+| `--enable-writes` | **L2 (plan)** | A governed `fmpOrgPath<Facet>` `modify` is translated, validated, and **planned** (dry-run). Nothing is applied; the projection is untouched. |
 | `--enable-writes --apply --provider …` | **L3 (gated actuation)** | The planned operations are routed to the selected **provider of record**. Requires an authenticated bind. |
 
 ### 6.1 Choosing a provider of record (`--provider`)
@@ -202,19 +202,19 @@ The AGD resolves the projected entry DN to the real `(principal_id, principal_ty
 
 ```bash
 # L2 — plan only. Safe to expose to write tooling; it changes nothing.
-uiao directory serve --from-assessment assignments.json --enable-writes \
+fmp directory serve --from-assessment assignments.json --enable-writes \
     --bind admin=$PW --tls-cert agd.pem --tls-key agd.key
 
 # L3 (ldap) — route accepted writes to a directory of record.
-uiao directory serve --from-assessment assignments.json --enable-writes --apply \
+fmp directory serve --from-assessment assignments.json --enable-writes --apply \
     --provider ldap --bind admin=$PW \
     --provider-host dc01.contoso.com \
-    --provider-bind-dn 'cn=svc-uiao,ou=svc,dc=contoso,dc=com' \
+    --provider-bind-dn 'cn=svc-fmp,ou=svc,dc=contoso,dc=com' \
     --provider-password $PROVIDER_PW \
     --tls-cert agd.pem --tls-key agd.key
 
 # L3 (entra) — route accepted writes to Entra via Graph (onPremisesExtensionAttributes).
-uiao directory serve --from-assessment assignments.json --enable-writes --apply \
+fmp directory serve --from-assessment assignments.json --enable-writes --apply \
     --provider entra --provider-cloud commercial --bind admin=$PW \
     --tls-cert agd.pem --tls-key agd.key
 ```
@@ -258,10 +258,10 @@ The AGD is a working plane with known, bounded edges as of this guide:
 ## 8. Quick reference
 
 ```bash
-uiao directory tree  --from-assessment assignments.json            # LDIF inspection
-uiao directory serve --from-assessment assignments.json --check    # validate, don't bind
-uiao directory serve --snapshot snap.json --tls-cert c.pem --tls-key k.key   # LDAPS read
-uiao directory serve --snapshot snap.json --enable-writes --bind a=$PW ...    # L2 plan
-uiao directory serve --snapshot snap.json --enable-writes --apply --provider ldap --provider-host ...   # L3 ldap
-uiao directory serve --snapshot snap.json --enable-writes --apply --provider entra --provider-cloud ... # L3 entra
+fmp directory tree  --from-assessment assignments.json            # LDIF inspection
+fmp directory serve --from-assessment assignments.json --check    # validate, don't bind
+fmp directory serve --snapshot snap.json --tls-cert c.pem --tls-key k.key   # LDAPS read
+fmp directory serve --snapshot snap.json --enable-writes --bind a=$PW ...    # L2 plan
+fmp directory serve --snapshot snap.json --enable-writes --apply --provider ldap --provider-host ...   # L3 ldap
+fmp directory serve --snapshot snap.json --enable-writes --apply --provider entra --provider-cloud ... # L3 entra
 ```

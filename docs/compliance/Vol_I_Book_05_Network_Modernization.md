@@ -65,11 +65,7 @@ This document tells the story of how your agency's IT architecture evolved acros
 **The one sentence the whole story turns on:** Active Directory conflated **the directory (truth)** with **the domain controller (the in-path enforcer)**. Every act of this story is a consequence of that conflation. NIST SP 800-207 and OMB M-22-09 require agencies to separate these roles: a governance layer holds and reconciles authoritative state; identity providers, network enforcement points, and data platforms remain the runtime data planes beneath it.
 :::
 
-![Forty Years of Federal IT Architecture — Four Acts](figs/mf-fig-01-four-acts.png){fig-alt="Timeline showing four acts of federal IT architecture evolution. Prologue 1940s-1990: Mainframe, one source of truth, truth enforcer in one box. Act 1 1988-2000: Decentralization, 12 regional offices, original sin of distributed truth. Act 2 2010-2020: Security Era, firewalls stacked, proxies inline, Kerberos breaks, compliance scans not truth. Act 3 2020-2026: Breaking Point, M365 cloud forced, 4 environments now, 12 AD domains linger, duplicate payments. Act 4 Now: Way Forward with NIST SP 800-207 and OMB M-22-09. The one sentence shown: AD conflated directory with domain controller." width="100%"}
-
 # Prologue — The Mainframe Era (1940s–1990s)
-
-![The Mainframe Era: Brutal Elegance of Centralized Truth](figs/mf-fig-07-mainframe-scene.png){fig-alt="Large IBM-style mainframe computer center-left with glowing SSOT database cylinder inside. Multiple green-screen terminal icons connected via lines. Label 1940s-1990s One Source of Truth. Right side shows what this provided: one version of every record, no regional discrepancies, physical security equals network security, truth and enforcement in one box. Arrow pointing right to the architecture that worked until it did not." width="100%"}
 
 Your agency's entire operation ran on mainframes. IBM systems, mostly. One massive computer in a locked room. Everything happened there: all the data, all the logic, all the state.
 
@@ -82,8 +78,6 @@ Security was implicit. If you weren't sitting at a terminal physically connected
 And crucially: the machine that *held* the truth was the same machine that *enforced* access to it. Truth and enforcement lived in one box. Remember that; it is the seed of everything that follows.
 
 # Act 1 — The Great Decentralization (Late 1980s–2000)
-
-![Act 1 — The Great Decentralization: One Became Twelve](figs/mf-fig-08-decentralization.png){fig-alt="Before and after comparison. Left 1940s-1988: single mainframe with one glowing database, all terminals connected to it, green glow of unity. Arrow Late 1980s PC Revolution. Right 1988-2000: same mainframe broken into 12 small server boxes scattered in circular arrangement labeled California, New York, Texas, Florida, Illinois and others. Each has own database icon. Dashed arrows between servers showing inconsistent sync with question marks. Red Schema drift callout. Label The Original Sin: Distributed Truth." width="100%"}
 
 By the late 1980s, the entire world was rejecting the mainframe model — not because mainframes stopped working, but because the economics broke and the technology changed.
 
@@ -100,8 +94,6 @@ The vision of distributed intelligence was real and good. But it came at a cost:
 That became the original sin — the moment the architecture started to drift. The regional variations that seemed like flexibility in 1993 would calcify into incompatible silos by 2020.
 
 # Act 2 — When Security Ate the Architecture (2010–2020)
-
-![Act 2 — When Security Ate the Architecture: Stacked Defense Broke Sessions](figs/mf-fig-09-security-stacking.png){fig-alt="Visual of a request trying to flow from branch office laptop to data center server, passing through five inline security devices each adding delay: Firewall adding 15ms, NAT adding 8ms, IDS inline probe adding 12ms, Proxy and DLP scanner adding 20ms, Compliance scanner adding 25ms. Total clock at right shows 80ms added versus Kerberos 5ms timeout limit. Kerberos ticket shown breaking as cracked icon. Request arrow enters at left, Session broken with red X at bottom. Note: latency kills sessions by exceeding timeouts, security devices designed to break sessions do exactly that." width="100%"}
 
 Around 2010, your agency started consolidating compute. Simultaneously — and this is the critical inflection — **cybersecurity became a board-level imperative.** Not just "have a firewall." Defense-in-depth. Layered security. Multiple inspection points.
 
@@ -123,8 +115,6 @@ Asymmetric routing occurs when the outbound path of a session and the return pat
 
 **How SD-WAN overlay eliminates asymmetric routing:** The SD-WAN overlay tunnel is established between two edge devices as a single logical connection. Inside the tunnel, individual packets may physically traverse any available path. But at the application layer, both directions of every session enter and exit the same SD-WAN edge device. The stateful inspection happens at the tunnel endpoint, which sees both directions. Asymmetric physical routing below the tunnel is structurally removed.
 
-![Asymmetric routing — broken with perfect latency, structurally removed by the overlay](figs/mf-fig-17-asymmetric-routing.svg){fig-alt="Diagram of the asymmetric routing failure. A client sends a SYN along the outbound path through stateful firewall A, which creates a session entry, to the server. The server's SYN-ACK returns along a different route through stateful firewall B, which sees a SYN-ACK with no session entry and drops it — the TCP three-way handshake never completes. Right panel, the SD-WAN fix: the overlay tunnel is one logical connection — both directions enter and exit the same edge device, and asymmetry below the tunnel is structurally removed. Bottom panel: independent killers that compound — latency kills sessions by exceeding protocol timeouts; asymmetric routing kills them by preventing the handshake from completing at all, even with perfect sub-millisecond latency on both paths; in environments where both conditions exist simultaneously — the federal standard — they compound. White background. Source: Vol I Book 05 Network Modernization, Date Code 2026-07-28." width="100%"}
-
 ## Where the Inline Tier Went: The Dissolution of the Load Balancer
 
 Before leaving Act 2, follow its signature artifact to its ending. The load balancers that became inline proxies — and the forward proxies, VPN concentrators, and hardware application delivery controllers stacked beside them — do not survive into the modern architecture. But they do not migrate to any single successor either, and that is where modernization plans most often make a category error. The inline tier **dissolves into three separate functional planes**, and each of its legacy functions lands in a different one:
@@ -141,8 +131,6 @@ The category error this table pre-empts: "SD-WAN replaces the load balancer." It
 
 # Act 3 — The Breaking Point (2020–2026)
 
-![Act 3 — Four Environments, No Single Identity: The Breaking Point](figs/mf-fig-11-four-environments.png){fig-alt="Four overlapping environments shown as quadrants: VMware on-premises at left, AWS GovCloud at upper right, Azure and M365 at lower right, Oracle OCI with OPM HRIT at bottom. Identity siloed in twelve Regional AD Domains at center with arrows pointing to all four environments but failing to cross boundaries with red X marks. Field office laptop at lower left shows user stuck between environments. Label: Identity was here, Compute went there. Arrow: The twelve AD domains cannot follow. Color: navy, teal, amber." width="100%"}
-
 Then M365 happened. Microsoft forced the issue. Your agency migrated to Microsoft 365 — Exchange Online, Teams, SharePoint. Suddenly your email and collaboration lived in Azure, managed by Microsoft, unreachable by your session-based authentication model.
 
 And here is the critical moment: the agency still had **twelve regional Active Directory domains.** Still had the OU tree structure designed for when compute lived regionally. Still had MPLS circuits connecting field offices to regional data centers that were increasingly just logical boundaries, not physical anchors.
@@ -154,8 +142,6 @@ Now a field office in Portland authenticates to a regional DC physically in Wash
 Meanwhile, the regional variations that started in Act 1 had calcified into institutional silos. California's benefit calculation differed from Massachusetts's. Regional databases had evolved incompatible schemas. And because single source of truth had never been restored, **nobody could see the discrepancies.** The fragmentation that made the system agile in 1995 had become the hiding place for systemic error — duplicate payments across states, records that should have been closed years ago, reconciliations nobody could complete.
 
 # The Physics Argument Decision Makers Have Not Heard
-
-![Physics Floor: Fiber vs. LEO Satellite vs. 5G](figs/mf-fig-02-physics-floor.png){fig-alt="Two panels comparing terrestrial fiber at 200,000 km/s with squiggly path routing, versus LEO satellite at 299,792 km/s in vacuum with direct arc path at 550km altitude. Bar chart shows: Portland via MPLS through DC at 100-130ms one-way, Portland DIA to AWS us-west-2 at 5-15ms, 5G MEC at 5-10ms, Starlink LEO for long haul at 20–40 ms. 5G architecture note explains CUPS and MEC local breakout advantage for rural field offices." width="100%"}
 
 When a decision maker hears "the MPLS hairpin is causing latency problems," the response is almost always: "add a Direct Internet Access circuit at the branch." DIA eliminates the geographic hairpin. That improvement is real.
 
@@ -185,8 +171,6 @@ For the longest domestic paths — Pacific Northwest to mid-Atlantic — the ter
 
 # What Application-Aware Networking Actually Means
 
-![Packet-Layer Network vs. Application-Aware Network](figs/mf-fig-03-packet-vs-aan.png){fig-alt="Split comparison. Left panel: Packet-Layer Network shows firewall seeing only Source IP 10.2.0.47, Destination 52.108.8.0, Port 443 TCP. Policy question: should this IP reach this port? Cannot answer who the user is, device compliance, which application, whether authorized by role, behavioral patterns, or what data is accessed. Cannot satisfy AC-4, SC-7, SI-4, AU-12, CA-7. Right panel: Application-Aware Network sees full transaction: user John Doe Entra verified, managed gov laptop compliant, Microsoft Teams not personal cloud storage, SharePoint Internal classification, normal work hours. Policy question: should this user on this device from this location using this app access this data right now? Can satisfy all NIST controls." width="100%"}
-
 The phrase "application-aware networking" appears in policy documents and vendor briefings without ever being explained in plain terms. Here is the plain version.
 
 **Your current network sees a packet.** Specifically, it sees: source IP address, destination IP address, source port, destination port, protocol. It has no idea who sent the packet, what application it belongs to, whether the user is who they claim to be, whether the device is managed and compliant, or whether the data being accessed is the data policy says they should access. It sees a packet. It checks a rule. It allows or denies.
@@ -203,8 +187,6 @@ The agency does not need to decide in advance that Starlink is better than DIA f
 
 # SD-WAN Active-Active Multipath
 
-![SD-WAN Active-Active Multipath: Four Transports, One Application View](figs/mf-fig-04-multipath.png){fig-alt="Flow diagram showing Branch SD-WAN Edge distributing packets across four simultaneous paths: MPLS at 22ms 0% loss, DIA Broadband at 21ms 0.1% loss, 5G MEC at 8ms 0.3% loss, Starlink LEO at 28ms 0.4% loss. Packets are distributed with sequence numbers. Resequencing Buffer holds early arrivals and delivers in-order using FEC to fill lost packets. Application sees one ordered byte stream with no awareness of four physical paths. Effective aggregate bandwidth 160-190 Mbps from four paths." width="100%"}
-
 An SD-WAN overlay runs continuous, simultaneous probes on every available transport using sub-second probe intervals. The probes measure three things on each path independently: **latency**, **jitter**, and **packet loss**. When a path degrades, the overlay knows within seconds.
 
 ## Forward Error Correction: Recovering Toward the Physics Floor
@@ -218,8 +200,6 @@ FEC does not make the signal travel faster. It removes the latency tax that loss
 Traditional WAN design is **active-passive**: MPLS is the primary circuit, DIA broadband is the standby. During switchover — typically 30–90 seconds — authentication sessions time out. VPN tunnels drop. Users re-authenticate.
 
 **Active-active multipath** carries traffic on all available paths simultaneously, all the time. When a path fails or degrades, the remaining paths absorb its load within milliseconds. The voice session continues from the RTP sequence number where the failed path left off. **The Teams call did not drop. The authentication session did not timeout.**
-
-![Why Kerberos Breaks in the Cloud: The Session Contract Assumption](figs/mf-fig-10-kerberos-breaks.png){fig-alt="Two-panel comparison diagram. Left panel, Kerberos 1988 design on-premises: an AD domain controller and a user at a desk share the same LAN; a Kerberos ticket is issued and authentication succeeds on a short round-trip to the KDC. Right panel, Kerberos in the 2020+ cloud world: the user now works in a cloud tenancy while the domain controller remains on-premises; the authentication path crosses the WAN and inline proxies at 100-150ms round-trip, so DC-dependent operations — initial TGT acquisition at logon, SYSVOL/GPO retrieval, password changes — slow or time out, and where the KDC is unreachable Windows can fall back to NTLM, which is unaudited and replayable. NAT itself does not invalidate a ticket: Windows KILE writes no client addresses into tickets by default. Bottom box, token-based solution: an Entra ID token travels via HTTPS with no DC roundtrip, works across any cloud, any WAN path, any latency — authentication succeeds regardless of RTT. Navy, green, red palette on white background." width="100%"}
 
 > Note the mechanism in the figure's right panel: the failure is *KDC unreachability at ticket issuance* and *middlebox session breaks* — not the multipath overlay, which resequences packets and holds the transport session across path switches. [Vol I Book 03](Vol_I_Book_03_Certificates_Tokens_Cryptographic_Identity.md) develops the full corrected argument.
 
@@ -281,15 +261,11 @@ TIC 3.0 is the policy frame that turns this from good engineering advice into a 
 
 # Act 4 — The Way Forward: Application-Aware Modernization
 
-![The Four Principles of Application-Aware Modernization](figs/mf-fig-05-four-principles.png){fig-alt="Hub diagram with Separated Truth from Enforcement center (NIST SP 800-207, OMB M-22-09). Four principle boxes: Principle 1 Single Source of Truth showing collapse 12 regional silos, one authoritative record, FICAM and Evidence Act 2018. Principle 2 Application-Aware Networking showing SD-WAN and SASE, OMB M-22-09 and TIC 3.0. Principle 3 Token-Based Identity showing OAuth 2.0 OIDC, CBA, eliminate NTLM, BOD 25-01. Principle 4 Active Governance showing control plane over data planes, gated actuation, FedRAMP ConMon. Arrow shows P3 depends on P1: tokens must assert authorizations that are true." width="100%"}
-
 You can't fix this by patching the old model. You can't bolt Zero Trust onto a Kerberos-in-MPLS architecture. You can't add more proxies. The only way forward is to rebuild the foundation around one structural move and four principles that follow from it.
 
 The structural move is the one sentence this whole story turns on. Active Directory conflated **the directory (truth)** with **the domain controller (the in-path enforcer)**. NIST SP 800-207 and OMB M-22-09 require the modern architecture to keep these separate: the governance layer holds and reconciles authoritative state, while identity providers, enforcement points, and data platforms remain the runtime data planes.
 
 ## Principle 1 — Restore a Single Source of Truth
-
-![Principle 1 — SSOT Restoration: Collapsing Twelve Regional Silos Into One Authoritative Model](figs/mf-fig-14-ssot-restoration.png){fig-alt="Before panel on left shows twelve siloed regional database cylinders, each with slightly different schema, connected to each other with dotted conflict arrows and question marks. After panel on right shows a single SSOT hub cylinder at center labeled authoritative source, with clean solid arrows to twelve regional endpoints labeled derived and auditable. Evidence Act 2018 badge and Federal Data Strategy badge shown below. Bottom note: regional variation is transparent and traceable to policy, not hidden in schema drift. Navy, teal, amber palette, white background." width="100%"}
 
 Every data type the federal government manages must have **one authoritative source.** Not twelve regional databases with eventual consistency. Not caches that drift. One source, cryptographically verifiable, auditable: you must know where every piece of data came from, who accessed it, when, and why.
 
@@ -311,8 +287,6 @@ That is application-aware networking. **NIST SP 800-207's** seven zero trust ten
 
 ## Principle 3 — Move From Session-Based to Token-Based Identity
 
-![Principle 3 — Token vs Session: How Modern Identity Works Across Networks](figs/mf-fig-12-token-vs-session.png){fig-alt="Split comparison diagram. Left panel Session-Based AD Kerberos shows field office laptop sending Kerberos ticket to domain controller in regional DC, DC calling back to validate, session maintained as stateful link, red X when VPN or network drops. Right panel Token-Based Entra ID shows laptop requesting JWT access token from Entra ID cloud, receiving signed token, presenting token directly to app server at AWS GovCloud; server verifies signature without calling back, green checkmark. Badges: BOD 25-01 SCuBA, OMB M-22-09, CISA ZTMM Identity Optimal. Caption: the token carries proof; the session assumed trust." width="100%"}
-
 Active Directory Kerberos assumes clients and servers are in the same room. Tokens assume they are strangers on the Internet.
 
 A token is a cryptographically signed assertion: *this user is who they claim to be; this device is compliant; this request is authorized; timestamp now; signature here.* The server doesn't need to trust the network or call back to a domain controller — it just verifies the signature.
@@ -320,8 +294,6 @@ A token is a cryptographically signed assertion: *this user is who they claim to
 Entra ID, Conditional Access, and device-compliance policies are the token-based equivalents of what AD used to do. **BOD 25-01** mandates SCuBA secure configuration baselines for Microsoft 365 that require modern authentication throughout. **OMB M-22-09** requires phishing-resistant MFA government-wide. The **CISA Zero Trust Maturity Model v2.0** Identity pillar at Advanced and Optimal levels requires Certificate-Based Authentication (CBA) as the primary mechanism. NTLM has no zero-trust story: every NTLM event is opaque to telemetry, invisible to audit logs, and must be eliminated.
 
 > **Tokens only work if the authoritative identity model is correct.** If you don't know what a user is actually authorized to do — if that is still encoded in twelve regional OU trees with no authoritative HR-derived source — tokens won't save you. You will just be signing broken authorizations very efficiently. **That is why Principle 3 depends on Principle 1: the token must assert an authorization that is *true* rather than merely *well-formed.***
-
-![FedRAMP 20x — From Periodic Assessment to Continuous Machine-Readable Evidence](figs/mf-fig-13-fedramp-20x-mainframe.png){fig-alt="Timeline with two eras separated by a vertical line labeled Jan 1 2027. Left era labeled FedRAMP Rev 5 shows stack: Annual Assessment binder, manual evidence assembly, auditor review meeting, ATO letter at end of 12 months. Right era labeled FedRAMP 20x shows stack: KSI JSON records emitted continuously, automated drift detection, machine-readable compliance report, no manual assembly. Key dates shown as milestones along top rail: Jun 25 2026 Consolidated Rules published, Aug 3 2026 Class A opens, Aug 31 2026 Class B plus C open, Jul 28 2026 FedRAMP Ready ceases, Jun 11 2027 new Rev5 certs cease. Active Governance control plane icon shown feeding KSI records to FedRAMP 20x pipeline. Navy, teal, amber, white background." width="100%"}
 
 ## FedRAMP 20x Consolidated Rules — What Modernization Must Achieve {#sec-fedramp-20x-mainframe}
 
@@ -354,8 +326,6 @@ For agencies on the mainframe-to-AAN modernization path, this is not a complianc
 :::
 
 ## Principle 4 — Govern Actively: The Control Plane Over the Data Plane
-
-![Active Governance: Control Plane and Actuation Ladder](figs/mf-fig-06-active-governance.png){fig-alt="Governance Control Plane at top showing it holds desired state, observes actual state, classifies drift, reconciles toward intent, and NEVER becomes the in-path enforcer. Five data planes below: Entra ID, SD-WAN/SASE, InfoBlox DDI, MDM/EDR, SIEM. Actuation ladder shows four levels: Traditional record and observe only, Initial observe and advise, Advanced gated actuation marked as federal ceiling and AO-signable with star, Optimal autonomous within guardrails. FedRAMP 20x requirement: continuous automated machine-readable evidence." width="100%"}
 
 A governance substrate that embodies these principles is not a passive registry that records desired state and reports divergence. It is an **active reconciliation control plane**: it holds desired state, observes actual state, classifies drift, and reconciles toward intent — while identity providers, network fabrics, endpoint management platforms, DDI systems, and SIEM platforms remain the **data planes** that authenticate, route, resolve, and store at runtime.
 
@@ -421,8 +391,6 @@ The platform has four functional planes:
 
 : Cisco Catalyst SD-WAN Functional Planes {.striped .hover}
 
-![Cisco Catalyst SD-WAN — Four Functional Planes](figs/mf-fig-15-cisco-sdwan-planes.png){fig-alt="Architecture diagram showing Cisco Catalyst SD-WAN's four functional planes side by side: Management (SD-WAN Manager/vManage) for policy authoring and telemetry; Control (vSmart Controller) distributing routing policy via OMP; Orchestration (vBond Validator) for zero-touch provisioning; Data (WAN Edge cEdge/ISR/ASR) carrying all agency traffic. FedRAMP boundary note at bottom: only SD-WAN Manager is cloud-hosted in the cloud-delivered model; data plane stays inside the agency boundary." width="100%"}
-
 **The FedRAMP boundary implication:** Only SD-WAN Manager (the management plane) is a cloud-hosted SaaS component when using the cloud-delivered model. The data plane (cEdge at the branch) is hardware deployed within the agency boundary. The control and orchestration planes operate at the agency-managed FedRAMP boundary or in GovCloud. This boundary partitioning is the first question an Authorizing Official must document.
 
 ::: {.aan-important}
@@ -450,8 +418,6 @@ The model works as follows:
 3. **Differentiate M365 traffic categories.** Microsoft publishes three endpoint categories — **Optimize** (Teams media, SharePoint Online), **Allow** (general M365), and **Default** (non-M365). The **Optimize** category carries the strictest routing requirements: no inspection, no proxy, no detour. Cisco Catalyst SD-WAN DPI signatures for the Optimize category steer that traffic directly to the best available local path with maximum priority.
 
 > **Optimize-category bypass and SC-8 — reconciled, not in tension.** The Optimize category's "no inspection, no proxy, no detour" requirement means Teams media steered by Cloud OnRamp may egress outside the IPsec overlay entirely. That is not an SC-8 gap; it is the per-flow closure the coverage-completeness doctrine already concedes — Teams media is SRTP-encrypted and M365 sessions ride FIPS-validated TLS — while the overlay continues to close SC-8 for every flow that does not carry its own validated encryption. What the WAN Edge adds is that the exemption is **deliberate and attestable**: the DPI classification that steers an Optimize flow around the overlay is itself a logged, per-flow record of which traffic rests on application-layer encryption and which rides the IPsec tunnel — SI-4 telemetry over flows the overlay does not carry. State the split this way in the boundary documentation and Microsoft's connectivity principles and the SC-8 closure claim never collide.
-
-![Microsoft 365 Informed Network Routing — Local Breakout vs. Backhaul](figs/mf-fig-16-inr-routing.png){fig-alt="Side-by-side comparison of two routing paths for M365 traffic. Left panel (Legacy Backhaul): Portland field office sends traffic via MPLS to Agency DC in Washington DC, then to internet, entering Microsoft network at suboptimal Ashburn PoP — 80ms+ total latency. Right panel (AAN Local Breakout): Portland field office sends traffic directly via DIA or 5G to Microsoft's nearest Seattle front door PoP — 18ms total latency. Bottom section shows M365 endpoint categories: Optimize (Teams media, no proxy, maximum priority), Allow (general M365, proxy OK), Default (standard inspection). Satisfies SC-8, AC-4, TIC 3.0 Use Case E." width="100%"}
 
 ## A.3 — The Integration: How Cisco Catalyst SD-WAN Activates Microsoft INR
 
@@ -586,8 +552,6 @@ The following table maps the Compliance evidence layer to FedRAMP 20x KSI themes
 ## A.6 — Implementation Sequence for a Greenfield FedRAMP Moderate Deployment
 
 The following sequence reflects what a Cisco Catalyst SD-WAN + Microsoft INR deployment looks like in a FedRAMP Moderate civilian environment, from authorization to production.
-
-![The greenfield implementation sequence — boundary first, evidence last](figs/mf-fig-18-inr-implementation-sequence.png){fig-alt="Six numbered step cards in two rows. 1 boundary documentation: classify every component, verify Cisco SaaS FedRAMP status, draft ISAs for M365 GCC and Azure Virtual WAN. 2 baseline templates: per-archetype cEdge templates — FIPS mode, no local management, Umbrella DNS, AES-256-GCM, agency NTP, SNMP off. 3 Cloud OnRamp for M365: Optimize and Allow endpoint lists for GCC, Teams media to the best DIA or 5G path never a proxy, graceful MPLS fallback. 4 Umbrella integration: all branch DNS through Umbrella with no local fallback, malicious domains blocked, M365 tenant restriction on. 5 SIEM telemetry wiring: streaming telemetry to Sentinel — flow events, change audit, path quality, device compliance, AU-12 per flow. 6 FedRAMP 20x KSI validation: verify the SIEM receives every required structured event and the format passes the OSCAL bundle generator. Scope note: decision-maker orientation, not an engineering runbook — site surveys, MAPS carrier qualification, and template development belong to certified Catalyst SD-WAN engineers. White background. Source: Vol I Book 05 Network Modernization briefing deck, Date Code 2026-07-07 11:36 ET." width="100%"}
 
 **Step 1 — Boundary documentation.** Classify every SD-WAN component against the FedRAMP Moderate boundary table in §A.4.1. Determine whether SD-WAN Manager will be self-hosted or cloud-delivered (Cisco SaaS); verify that the cloud-delivered option holds a current FedRAMP Moderate authorization on the FedRAMP Marketplace before including it in the authorization boundary. Draft ISAs for all external service connections (Microsoft M365 GCC, Azure VWan if used).
 

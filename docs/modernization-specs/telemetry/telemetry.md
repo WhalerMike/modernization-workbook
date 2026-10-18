@@ -5,20 +5,16 @@ doc-type: modernization-spec
 audience: [Customer, Architect, Assessor]
 canon-source: "docs/docs/15_ProvenanceProfile.qmd"
 canon-reference:
-  - "src/uiao/canon/adr/adr-006-evidence-determinism.md"
-  - "src/uiao/canon/adr/adr-016-evidence-bundle-lifecycle.md"
+  - "src/fmp/canon/adr/adr-006-evidence-determinism.md"
+  - "src/fmp/canon/adr/adr-016-evidence-bundle-lifecycle.md"
   - "docs/customer-documents/architecture-series/evidence-chain.qmd"
-derived-from: "uiao canon"
+derived-from: "fmp canon"
 lifecycle: adopted
 tiers_adopted: [1]
 lifecycle_review: 2026-11-22
 ---
 
 # Telemetry Modernization Spec
-
-![Current state (vendor-specific log dumps, gaps)](images/telemetry-image-02-current-state-vendor-specific-lo.png){#fig-telemetry-image-02 fig-alt="Current state (vendor-specific log dumps, gaps). Engineering blueprint style, neutral slate background, federal navy (#1F3A5F) for primary structural elements, teal (#1A9E8F) for secondary/integration elements, amber (#D4A017) for governance/audit/registry overlays, monospace labels for identifiers, no human figures, 16:9 landscape." width="100%"}
-
-![Target state (canonical envelope + the program decision lifecycle)](images/telemetry-image-03-target-state-canonical-envelope.png){#fig-telemetry-image-03 fig-alt="Target state (canonical envelope + the program decision lifecycle). Engineering blueprint style, neutral slate background, federal navy (#1F3A5F) for primary structural elements, teal (#1A9E8F) for secondary/integration elements, amber (#D4A017) for governance/audit/registry overlays, monospace labels for identifiers, no human figures, 16:9 landscape." width="100%"}
 
 
 ## Scope
@@ -29,8 +25,6 @@ requirements, evidence pipeline integration, and the determinism
 guarantees telemetry adapters must honor. This spec is the substrate
 contract every telemetry-emitting adapter inherits, regardless of
 mission-class.
-
-![Telemetry domain pipeline diagram](images/telemetry-image-01-telemetry-domain-pipeline-diagra.png){#fig-telemetry-image-01 fig-alt="Horizontal flow from left to right: Adapter Boundary (telemetry capture) → Provenance Envelope Wrapper (canonical claim normalization) → Bundle Assembler (per the program decision lifecycle) → OSCAL Emission (SSP / POA&M / KSI / Component Definition). Below the pipeline, a \"Determinism Guards\" footer band lists the four the program decision properties (no silent drops, append-only, ordered, idempotent). To the right of the pipeline, a small panel showing per-adapter retention contract per modernization-registry entry. Clean engineering blueprint style, dark navy (#0D1B2E) and teal (#1E8C8C) on white background. No photographs, purely diagrammatic." width="100%"}
 
 ## Substrate contract
 
@@ -67,7 +61,7 @@ Canonical claim emission shape:
 
 ```yaml
 provenance:
-  claim_id: "urn:uiao:claim:{domain}:{event_type}:{uuid}"
+  claim_id: "urn:fmp:claim:{domain}:{event_type}:{uuid}"
   issuer_identity: "{adapter_runtime_identity}"
   source_system: "{system_name}:{version}"
   source_classification: "authoritative | derived | synthesized"
@@ -96,7 +90,7 @@ Maps onto:
 - **FedRAMP CR26** continuous monitoring controls.
 - **OMB M-26-14** federal log retention (six months actively searchable, one year retrievable; rescinded M-21-31 on 22 May 2026).
 
-KSI bindings under `src/uiao/rules/ksi/monitoring-logging/`.
+KSI bindings under `src/fmp/rules/ksi/monitoring-logging/`.
 
 ## Drift considerations
 

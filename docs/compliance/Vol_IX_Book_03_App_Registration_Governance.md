@@ -38,8 +38,6 @@ This book governs the whole lifecycle as catalog work, closing AC-2, IA-5(2), SC
 
 # The Lifecycle
 
-![The app-registration lifecycle — request, scoped consent, short-lived credential, owner-approved rotation, attestation](figs/vol9b03-fig-01-appreg-lifecycle.png){#fig-vol9b03-lifecycle fig-alt="A house-style five-step pipeline titled App Registration Governance (Vol IX Book 03), subtitle 'App registrations as machine JML — request, consent, credential, rotate, attest', on a white background. Five navy-headed cards joined left to right by teal arrows: Step 1 Request — owner, purpose, and the specific scopes needed (AC-2); Step 2 Consent — scoped admin consent, privileged scopes gated by a security approver (AC-6); Step 3 Credential, drawn with a teal header and an amber ring labeled 'short-lived — no long-lived secrets' — a short-lived certificate (ACME) or a secret with a mandatory expiry; Step 4 Rotate — raised automatically before expiry, the owner approves, not a human's memory; Step 5 Attest — ownership and scope re-attested, orphaned or expired registrations flagged (feeds CA-7). A footer states no long-lived secrets in config — certificate-based, short-lived workload identity (IA-5(2) / SC-17), Moderate and GCC Moderate. White background. Authored house-style diagram." width="100%"}
-
 | Stage | What happens | Control |
 |---|---|---|
 | **1. Request** | An app-registration request captures owner, purpose, and the *specific* scopes needed | AC-2 |

@@ -19,10 +19,6 @@ lifecycle_review: 2026-11-22
 
 # Drift as the Primary Threat
 
-![Drift hierarchy with five-class taxonomy strip](images/index-image-02-drift-hierarchy-with-five-class.png){#fig-index-image-02 fig-alt="Drift hierarchy with five-class taxonomy strip. Engineering blueprint style, neutral slate background, federal navy (#1F3A5F) for primary structural elements, teal (#1A9E8F) for secondary/integration elements, amber (#D4A017) for governance/audit/registry overlays, monospace labels for identifiers, no human figures, 16:9 landscape." width="100%"}
-
-![Detect > classify > remediate > emit-as-evidence loop with adapter and CI feeds](images/index-image-03-detect-classify-remediate-emit-a.png){#fig-index-image-03 fig-alt="Detect > classify > remediate > emit-as-evidence loop with adapter and CI feeds. Engineering blueprint style, neutral slate background, federal navy (#1F3A5F) for primary structural elements, teal (#1A9E8F) for secondary/integration elements, amber (#D4A017) for governance/audit/registry overlays, monospace labels for identifiers, no human figures, 16:9 landscape." width="100%"}
-
 
 ::: {.callout-note}
 ## In this chapter
@@ -35,8 +31,6 @@ declared canon and observed runtime. This chapter explains why drift
 deserves first-class status, how the Federal Modernization Program classifies it, and what it
 changes operationally.
 :::
-
-![Drift threat hierarchy diagram](images/index-image-01-drift-threat-hierarchy-diagram.png){#fig-index-image-01 fig-alt="A central dark navy bar labeled \"Substrate Drift — the primary governance threat\" anchors the page. Above it, four smaller threat categories (phishing, supply chain, insider risk, configuration error) shown as boxes with arrows pointing down at the central bar — indicating \"drift is the substrate-level threat the others manifest through\". Below the central bar, the five the Federal Modernization Program drift classes (SCHEMA, SEMANTIC, PROVENANCE, AUTHZ, IDENTITY) shown as a horizontal taxonomy strip in teal. Clean engineering blueprint style, dark navy (#0D1B2E) and teal (#1E8C8C) on white background. No photographs, purely diagrammatic." width="100%"}
 
 ## Why drift is the primary threat
 
@@ -60,7 +54,7 @@ Three properties make drift the substrate-level threat:
 ## The five-class taxonomy
 
 The Federal Modernization Program names the failure modes exactly. From
-[`16_DriftDetectionStandard.qmd`](../../../docs/16_DriftDetectionStandard.qmd):
+`16_DriftDetectionStandard.qmd`:
 
 | Class | What it means |
 |---|---|
@@ -82,7 +76,7 @@ for the architectural depth.
 Naming the classes is not enough. The substrate's operational
 discipline is:
 
-1. **Detect deterministically.** `uiao substrate walk` runs in CI on
+1. **Detect deterministically.** `fmp substrate walk` runs in CI on
    every PR and emits SCHEMA + PROVENANCE findings. Runtime adapters
    emit SEMANTIC + AUTHZ + IDENTITY findings as they execute.
 2. **Classify deterministically.** Severity is a pure function of

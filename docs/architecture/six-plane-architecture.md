@@ -1,10 +1,10 @@
 ---
 title: "Six-Plane Architecture"
-subtitle: "UIAO's six control planes and their governance roles"
+subtitle: "FMP's six control planes and their governance roles"
 doc-type: architecture-explainer
 audience: [Customer, Technical]
 canon-source: "docs/docs/01_UnifiedArchitecture.qmd"
-derived-from: "uiao canon"
+derived-from: "fmp canon"
 lifecycle: adopted
 tiers_adopted: [1]
 lifecycle_review: 2026-11-22
@@ -12,17 +12,17 @@ lifecycle_review: 2026-11-22
 
 # Six-Plane Architecture
 
-UIAO decomposes the federal modernization control surface into **six control
+FMP decomposes the federal modernization control surface into **six control
 planes**. Each plane is authoritative for its domain, and all six operate as
 a single deterministic system — the substrate the
 [Governance OS](../executive-briefs/governance-os-overview.md) sits on.
 
 This explainer is the architectural complement to the
 [Governance OS Overview](../executive-briefs/governance-os-overview.md) brief.
-Where the brief states that UIAO is canon-anchored and drift-detected, this
+Where the brief states that FMP is canon-anchored and drift-detected, this
 page describes the planes that the canon governs and the drift engine watches.
 
-![Six-plane reference architecture diagram](../images/architecture/six-plane-architecture-image-01-six-plane-reference-architecture.png){#fig-six-plane-architecture-image-01 fig-alt="Six horizontal lanes stacked vertically, top to bottom: Identity (root namespace icon), Network (overlay routing icon), Addressing (deterministic IPAM icon), Telemetry & Location (signal-flow icon), Security & Compliance (Zero Trust shield icon), Management (governance/CMDB gear icon). One-directional arrows on the right side flow downward through all six lanes indicating canonical input flow. A small recurrent feedback arrow on the left shows runtime drift findings re-entering the Identity lane. Title \"UIAO Six-Plane Reference Model\". Clean engineering blueprint style, dark navy (#0D1B2E) and teal (#1E8C8C) color scheme on white background. No photographs, purely diagrammatic." width="100%"}
+![Six-plane reference architecture diagram](../images/architecture/six-plane-architecture-image-01-six-plane-reference-architecture.png){#fig-six-plane-architecture-image-01 fig-alt="Six horizontal lanes stacked vertically, top to bottom: Identity (root namespace icon), Network (overlay routing icon), Addressing (deterministic IPAM icon), Telemetry & Location (signal-flow icon), Security & Compliance (Zero Trust shield icon), Management (governance/CMDB gear icon). One-directional arrows on the right side flow downward through all six lanes indicating canonical input flow. A small recurrent feedback arrow on the left shows runtime drift findings re-entering the Identity lane. Title \"FMP Six-Plane Reference Model\". Clean engineering blueprint style, dark navy (#0D1B2E) and teal (#1E8C8C) color scheme on white background. No photographs, purely diagrammatic." width="100%"}
 
 ## The six planes
 
@@ -35,7 +35,7 @@ page describes the planes that the canon governs and the drift engine watches.
 | **Security & Compliance** | Zero Trust enforcement and FedRAMP alignment |
 | **Management** | Governance, drift detection, CMDB, device compliance |
 
-Source: [`docs/docs/01_UnifiedArchitecture.qmd` §4](../../docs/01_UnifiedArchitecture.qmd).
+Source: `docs/docs/01_UnifiedArchitecture.qmd` §4.
 
 ## Why six planes (and not, say, three or twelve)
 
@@ -48,7 +48,7 @@ smallest decomposition that:
    evaluate during ATO review.
 2. **Maps cleanly to the adapter taxonomy** — every adapter's `mission-class`
    (identity / telemetry / policy / enforcement / integration) lands inside
-   exactly one plane. See `adapter-registry.yaml` and UIAO_003.
+   exactly one plane. See `adapter-registry.yaml` and FMP_003.
 3. **Avoids the "everything is identity" overload** that collapses
    addressing, telemetry, and management into the identity plane and loses
    the ability to drift-detect them independently.
@@ -117,15 +117,15 @@ architectural depth.
 
 ## What this means for an ATO package
 
-An authorizing official reviewing a UIAO-anchored SSP can expect:
+An authorizing official reviewing an FMP-anchored SSP can expect:
 
 - A **per-plane control narrative** rather than a perimeter-centric one.
 - **Canon citations** for every policy intent (each plane points to a numbered
-  canon document under `src/uiao/canon/`).
+  canon document under `src/fmp/canon/`).
 - **Drift findings scoped per plane** — identity drift, addressing drift,
   telemetry drift each carry their own evidence trail rather than collapsing
   into a single "system drift" line item.
 
-That per-plane decomposition is what makes UIAO's evidence reproducibly
+That per-plane decomposition is what makes FMP's evidence reproducibly
 reviewable, and is the architectural basis for the rest of this Architecture
 Series.

@@ -64,7 +64,7 @@ The **per-book "Authorities Closed Here" tables are generated** from
 `orgcomp-compliance-spine.yml` by `render_authorities_table.py`, and a CI drift gate
 (`--check`, `.github/workflows/orgcomp-authorities-drift.yml`) blocks any partial
 that diverges from the spine. A **spine-derived crosswalk is now generated too**
-— `render_crosswalk.py` renders [`Compliance_Spine_Crosswalk.md`](Compliance_Spine_Crosswalk.md)
+— `render_crosswalk.py` renders `Compliance_Spine_Crosswalk.md`
 from the same closures and is behind the same drift gate, so the machine-derived
 slice can never silently fall out of sync with the spine. That slice currently
 covers the **106 closures across 21 of 72 books** the spine carries (53 distinct
@@ -106,7 +106,7 @@ treats that control as a first-class subject in the named book.
  authorities tables are rendered from it and CI-gated against drift. The spine is
  being progressively back-filled book by book (~21 of 72 books carry closure rows
  today). A **machine-derived slice of this crosswalk is now rendered from the spine**
- by `render_crosswalk.py` into [`Compliance_Spine_Crosswalk.md`](Compliance_Spine_Crosswalk.md),
+ by `render_crosswalk.py` into `Compliance_Spine_Crosswalk.md`,
  behind the same drift gate as the per-book tables — so the spine-provable subset
  is auto-generated and cannot drift. **This master crosswalk remains
  hand-maintained** for the controls in books the spine has not yet back-filled, so
@@ -115,8 +115,8 @@ treats that control as a first-class subject in the named book.
  for the generated slice to reach every book and this table to become fully
  spine-rendered.
 - **Claim → evidence → test.** For the closure-bearing books, the spine now
- renders a generated, CI-gated [claim → evidence → test traceability
- matrix](Compliance_Claim_Evidence_Test_Matrix.md): each of the 106 closure claims maps
+ renders a generated, CI-gated claim → evidence → test traceability
+ matrix: each of the 106 closure claims maps
  to its evidence slot, its implementing kit (where one exists), and the named
  falsifying test that would disprove it. It states the coverage honestly — the
  spine's generated closures cover **21 of 72 books**, and only **13 of 106**

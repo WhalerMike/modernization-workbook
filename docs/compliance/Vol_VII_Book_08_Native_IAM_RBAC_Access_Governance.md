@@ -34,8 +34,6 @@ Books 03, 06, and 07 close CM-6/RA-5/SI-2 by routing native configuration, postu
 
 **Consistency, not a parallel system.** This book does not stand up SailPoint as a second coordination layer alongside ServiceNow. SailPoint's own product architecture routes its findings into ServiceNow's Service Desk for ticketing and audit tracking rather than trying to be a standalone evidence system — so this book routes SailPoint ISC Governance findings into the identical ServiceNow pipeline Books 02–07 already use. One front door, regardless of which control family the finding belongs to.
 
-![The five-step compliance loop, extended to Azure RBAC and AWS IAM entitlements — test, detect drift, raise task, actuate on the native surface, close with evidence](figs/vol7b08-fig-01-iam-rbac-loop.png){#fig-vol7-loop-iam fig-alt="A house-style five-step pipeline titled The IAM/RBAC Compliance Loop (Vol VII Book 08), subtitle 'One coordination pattern, extended to cloud entitlements — actuation stays platform-native', on a white background. Five navy-headed cards joined left to right by teal arrows: Step 1 Test — read Azure RBAC and AWS IAM entitlement state via SailPoint ISC Governance (CIEM); Step 2 Detect Drift — over-privileged, idle (90+ day), or over-broad entitlements are candidate findings; Step 3 Raise Task — a typed Change against the reconciled CI with control id, severity, SLA, and an approver; Step 4 Actuate (native), drawn with a teal header and an amber ring and labeled 'platform-native — not ServiceNow, not SailPoint' — an Azure RBAC role revoke or an AWS IAM policy rescope; Step 5 Close plus Evidence — re-test confirms closure, and the task, approval trail, and re-test become the evidence record. A dashed teal return arrow runs from Step 5 back to Step 1, labeled 'Continuous — the loop re-runs each cycle; results roll up to attestation (Book 04) and the KSI evidence pipeline'. A footer band states the scope is FedRAMP Moderate, Azure RBAC and AWS IAM only, and that VMware/vCenter permissions are an honest gap, not covered here. White background. Authored house-style diagram." width="100%"}
-
 # The IAM/RBAC Control Engine and Its Coordination Role
 
 Unlike the configuration/posture/patch books, where each cloud carries three distinct native engines, the identity/entitlement surface is covered by **one cross-cloud detection engine** reading two native surfaces:
@@ -100,7 +98,7 @@ Generated from the series compliance spine (`orgcomp-compliance-spine.yml`) by `
 - **Vol VII Book 03 (Azure) / Book 06 (AWS) / Book 07 (VMware)** — the sibling coordination books this one extends into the identity/entitlement plane; all now reconcile into the same ServiceNow queues.
 - **Vol VII Book 01** — the reconciled CIs every IAM/RBAC task is raised against; **Vol VII Book 04** — where the identity posture roll-up becomes attestation.
 - **Vol IX Book 06 (Identity & Access Governance)** — the JML-automation and certification-campaign lane this book does not duplicate; see Honest Limits.
-- [`ticket-to-machine-not-ticket-to-human` whitepaper](../whitepapers/ticket-to-machine-not-ticket-to-human.qmd) — the customer-facing synthesis this book's closure supports.
+- [`ticket-to-machine-not-ticket-to-human` whitepaper](../whitepapers/ticket-to-machine-not-ticket-to-human.md) — the customer-facing synthesis this book's closure supports.
 
 # Provenance
 

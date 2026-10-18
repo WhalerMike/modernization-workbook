@@ -6,10 +6,10 @@ audience: [Executive, Customer]
 family: executive-governance-series
 series-order: 8
 status: Active
-canon-source: "src/uiao/canon/substrate-manifest.yaml"
+canon-source: "src/fmp/canon/substrate-manifest.yaml"
 canon-reference:
-  - "src/uiao/canon/adr/adr-028-monorepo-consolidation-gos-integration.md"
-  - "src/uiao/canon/adr/adr-032-single-package-consolidation.md"
+  - "src/fmp/canon/adr/adr-028-monorepo-consolidation-gos-integration.md"
+  - "src/fmp/canon/adr/adr-032-single-package-consolidation.md"
 repo-path: docs/customer-documents/executive-governance-series/ch08-governance-at-scale
 created-at: 2026-04-26
 updated-at: 2026-05-10
@@ -19,10 +19,6 @@ lifecycle_review: 2026-11-22
 ---
 
 # Governance at Scale
-
-![Three-ring scaling diagram (small canon > many mappings > many adapters)](images/index-image-02-three-ring-scaling-diagram-small.png){#fig-index-image-02 fig-alt="Three-ring scaling diagram (small canon > many mappings > many adapters). Engineering blueprint style, neutral slate background, federal navy (#1F3A5F) for primary structural elements, teal (#1A9E8F) for secondary/integration elements, amber (#D4A017) for governance/audit/registry overlays, monospace labels for identifiers, no human figures, 16:9 landscape." width="100%"}
-
-![Monorepo consolidation: 4 predecessor repos collapsing into single package elimi...](images/index-image-03-monorepo-consolidation-4-predece.png){#fig-index-image-03 fig-alt="Monorepo consolidation: 4 predecessor repos collapsing into single package eliminating cross-repo skew. Engineering blueprint style, neutral slate background, federal navy (#1F3A5F) for primary structural elements, teal (#1A9E8F) for secondary/integration elements, amber (#D4A017) for governance/audit/registry overlays, monospace labels for identifiers, no human figures, 16:9 landscape." width="100%"}
 
 
 ::: {.callout-note}
@@ -36,14 +32,12 @@ it deliberately keeps small, what it lets grow, and why the scaling
 properties are structural rather than operational.
 :::
 
-![Substrate scaling diagram](images/index-image-01-substrate-scaling-diagram.png){#fig-index-image-01 fig-alt="Three concentric layers. Innermost (small) layer labeled \"Canon (small, stable, ADR-governed)\" with a single tight ring. Middle layer labeled \"Policy mappings (large, registry-managed)\" with a broader ring filled with many small registry-entry icons. Outermost layer labeled \"Runtime adapters (per-tool, per-program)\" with the broadest ring filled with adapter icons fanning outward. Arrows indicate \"small canon → many mappings → many adapters\" as the scaling vector. Clean engineering blueprint style, dark navy (#0D1B2E) and teal (#1E8C8C) on white background. No photographs, purely diagrammatic." width="100%"}
-
 ## What stays small
 
 Three substrate properties are deliberately kept small at scale:
 
 1. **Canon.** The canonical document set is small — schemas, ADRs,
-   numbered governance documents under `src/uiao/canon/`. Adding a
+   numbered governance documents under `src/fmp/canon/`. Adding a
    document requires a FMP_NNN allocation and (for doctrinal
    changes) an ADR. The substrate is designed so canon does not
    linearly inflate with the program.
@@ -96,7 +90,7 @@ drift that no individual program could solve:
   ship together. There is no scenario where canon advances and
   runtime lags.
 - **Single import root.** Code reads canon via
-  `importlib.resources.files("uiao.canon")`; no sibling-checkout
+  `importlib.resources.files("fmp.canon")`; no sibling-checkout
   fallbacks, no per-program path manipulation.
 - **One CI surface.** Schema validation, drift detection, adapter
   conformance, and tests all run on the same merge gate. Adding an

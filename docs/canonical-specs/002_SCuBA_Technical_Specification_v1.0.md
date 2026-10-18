@@ -12,7 +12,7 @@ date: 2026-04-14
 This page renders the canonical FMP_002 source verbatim. The
 authoritative source is at
 A customer-audience value narrative is at
-[SCuBA Value Proposition (FMP_005)](FMP_005_SCuBA_Value_Proposition_v1.0.qmd).
+[SCuBA Value Proposition (FMP_005)](005_SCuBA_Value_Proposition_v1.0.md).
 Per the program decision, this
 canonical page is generated as an `include`-style wrapper.
 :::

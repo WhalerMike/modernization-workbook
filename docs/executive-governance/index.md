@@ -3,8 +3,8 @@ title: "Executive Governance Series"
 subtitle: "Long-form governance narrative in nine chapters"
 doc-type: section-landing
 audience: "Authorizing officials · CIO · CISO · program leadership"
-canon-source: "src/uiao/canon/"
-derived-from: "uiao canon"
+canon-source: "src/fmp/canon/"
+derived-from: "fmp canon"
 aspirational: true
 lifecycle: adopted
 tiers_adopted: [1]
@@ -24,7 +24,7 @@ directory; they can be read in sequence as a program primer or drawn on
 individually as reference material.
 
 The canonical source for this series is
-[`governance-os-canonical-suite.qmd`](governance-os-canonical-suite.qmd)
+[`governance-os-canonical-suite.qmd`](governance-os-canonical-suite.md)
 (~2,865 lines). The chapters below are the customer-facing presentation,
 each anchored on a slice of the canonical suite plus the relevant
 architecture-series and executive-briefs surfaces.

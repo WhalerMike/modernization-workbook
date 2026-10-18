@@ -3,22 +3,18 @@ title: "Cloud Modernization Spec"
 subtitle: "Cloud boundary governance and migration specification"
 doc-type: modernization-spec
 audience: [Customer, Architect, Assessor]
-canon-source: "src/uiao/canon/modernization-registry.yaml"
+canon-source: "src/fmp/canon/modernization-registry.yaml"
 canon-reference:
   - "docs/docs/gcc-boundary-solution-architecture.qmd"
   - "docs/customer-documents/architecture-series/boundary-impact-model.qmd"
-  - "src/uiao/canon/adr/adr-059-sailpoint-adapter-family.md"
-derived-from: "uiao canon"
+  - "src/fmp/canon/adr/adr-059-sailpoint-adapter-family.md"
+derived-from: "fmp canon"
 lifecycle: adopted
 tiers_adopted: [1]
 lifecycle_review: 2026-11-22
 ---
 
 # Cloud Modernization Spec
-
-![Current state (commercial cloud, undifferentiated)](images/cloud-image-02-current-state-commercial-cloud-u.png){#fig-cloud-image-02 fig-alt="Current state (commercial cloud, undifferentiated). Engineering blueprint style, neutral slate background, federal navy (#1F3A5F) for primary structural elements, teal (#1A9E8F) for secondary/integration elements, amber (#D4A017) for governance/audit/registry overlays, monospace labels for identifiers, no human figures, 16:9 landscape." width="100%"}
-
-![Target state (GCC-Moderate boundary + named exceptions, existing)](images/cloud-image-03-target-state-gcc-moderate-bounda.png){#fig-cloud-image-03 fig-alt="Target state (GCC-Moderate boundary + named exceptions, existing). Engineering blueprint style, neutral slate background, federal navy (#1F3A5F) for primary structural elements, teal (#1A9E8F) for secondary/integration elements, amber (#D4A017) for governance/audit/registry overlays, monospace labels for identifiers, no human figures, 16:9 landscape." width="100%"}
 
 
 ## Scope
@@ -29,8 +25,6 @@ exceptions, in-boundary telemetry, and the canonical claim emissions
 cloud adapters must produce. The spec is GCC-Moderate-anchored;
 boundary-crossing concerns are handled per the
 [Boundary Impact Model](../../architecture/boundary-impact-model.md).
-
-![Cloud modernization domain diagram](images/cloud-image-01-cloud-modernization-domain-diagr.png){#fig-cloud-image-01 fig-alt="Center shows the GCC-Moderate authorization boundary as a labeled rectangle. Inside the boundary: M365 GCC-Moderate, Azure Government, in-boundary adapter slots (intune, m365, entra-id, scubagear). Outside the boundary on the right: two named Commercial exceptions per the program decision — Amazon Connect (FedRAMP Moderate / AWS GovCloud), SailPoint NERM (FedRAMP Moderate / AWS GovCloud). Each exception is connected to the boundary by a labeled arrow showing its authorizing ADR. Below the diagram, a footer band reads \"gcc-boundary schema: discrete enum values per ADR\". Clean engineering blueprint style, dark navy (#0D1B2E) and teal (#1E8C8C) on white background. No photographs, purely diagrammatic." width="100%"}
 
 ## Substrate contract
 

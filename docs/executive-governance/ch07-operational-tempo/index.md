@@ -19,8 +19,6 @@ lifecycle_review: 2026-11-22
 
 # Operational Tempo
 
-![Four-lane SLA cadence timeline with P1-P4 burn-down](images/index-image-02-four-lane-sla-cadence-timeline-w.png){#fig-index-image-02 fig-alt="Four-lane SLA cadence timeline with P1-P4 burn-down. Engineering blueprint style, neutral slate background, federal navy (#1F3A5F) for primary structural elements, teal (#1A9E8F) for secondary/integration elements, amber (#D4A017) for governance/audit/registry overlays, monospace labels for identifiers, no human figures, 16:9 landscape." width="100%"}
-
 
 ::: {.callout-note}
 ## In this chapter
@@ -34,11 +32,9 @@ chapter explains the tempo the Federal Modernization Program declares and what i
 operating program.
 :::
 
-![Operational tempo cadence diagram](images/index-image-01-operational-tempo-cadence-diagra.png){#fig-index-image-01 fig-alt="A horizontal time axis with four parallel lanes labeled by SLA tier: P1 (Immediate, red), P2 (1 hour, amber), P3 (24 hours, yellow), P4 (72 hours, teal). Each lane shows event markers — drift findings — at characteristic intervals, with arrow markers indicating remediation completion within the SLA. A vertical \"now\" line on the right edge shows the substrate's continuous-detection posture; findings to the left of \"now\" should be remediated; findings to the right are future detections waiting to fire. Clean engineering blueprint style, dark navy (#0D1B2E) and teal (#1E8C8C) primary, with the four severity colors used only on lane headers. No photographs, purely diagrammatic." width="100%"}
-
 ## The tempo declared in canon
 
-[`16_DriftDetectionStandard.qmd`](../../../docs/16_DriftDetectionStandard.qmd)
+`16_DriftDetectionStandard.qmd`
 declares severity-to-SLA mapping verbatim:
 
 | Severity | Auto-remediate? | SLA |
@@ -55,7 +51,7 @@ tempo as a canonical commitment, not as a target to negotiate.
 
 Three operating commitments:
 
-1. **Continuous detection.** `uiao substrate walk` runs in CI; runtime
+1. **Continuous detection.** `fmp substrate walk` runs in CI; runtime
    adapters emit findings as they execute. Detection is not
    audit-cycle.
 2. **Bounded remediation.** Every finding has an SLA; auto-remediation

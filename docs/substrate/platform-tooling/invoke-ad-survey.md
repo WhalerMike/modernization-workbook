@@ -283,7 +283,7 @@ $action  = New-ScheduledTaskAction -Execute 'pwsh.exe' `
     -WorkingDirectory 'C:\FMP'
 $trigger = New-ScheduledTaskTrigger -Weekly -DaysOfWeek Sunday -At 2am
 Register-ScheduledTask -TaskName 'FMP-ADSurvey' `
-    -Action $action -Trigger $trigger -User 'CORP\svc-uiao-survey' -RunLevel Highest
+    -Action $action -Trigger $trigger -User 'CORP\svc-fmp-survey' -RunLevel Highest
 ```
 
 ### Topology triage

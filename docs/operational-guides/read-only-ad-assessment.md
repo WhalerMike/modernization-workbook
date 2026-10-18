@@ -21,10 +21,6 @@ tiers_adopted: [1]
 lifecycle_review: 2026-11-22
 ---
 
-![Authenticated-Users permission boundary map](images/read-only-ad-assessment-image-01-authenticated-users-permission-b.png){#fig-read-only-ad-assessment-image-01 fig-alt="Authenticated-Users permission boundary map. Engineering blueprint style, neutral slate background, federal navy (#1F3A5F) for primary structural elements, teal (#1A9E8F) for secondary/integration elements, amber (#D4A017) for governance/audit/registry overlays, monospace labels for identifiers, no human figures, 16:9 landscape." width="100%"}
-
-![read-only assessment capability matrix](images/read-only-ad-assessment-image-02-read-only-assessment-capability.png){#fig-read-only-ad-assessment-image-02 fig-alt="read-only assessment capability matrix. Engineering blueprint style, neutral slate background, federal navy (#1F3A5F) for primary structural elements, teal (#1A9E8F) for secondary/integration elements, amber (#D4A017) for governance/audit/registry overlays, monospace labels for identifiers, no human figures, 16:9 landscape." width="100%"}
-
 ![output directory + Gitea manifest flow](../images/operational-guides/read-only-ad-assessment-image-03-output-directory-gitea-manifest.png){#fig-read-only-ad-assessment-image-03 fig-alt="output directory + Gitea manifest flow. Engineering blueprint style, neutral slate background, federal navy (#1F3A5F) for primary structural elements, teal (#1A9E8F) for secondary/integration elements, amber (#D4A017) for governance/audit/registry overlays, monospace labels for identifiers, no human figures, 16:9 landscape." width="100%"}
 
 
@@ -557,7 +553,7 @@ The Federal Modernization Program Assessment Team has completed the Phase 0 (rea
 
 - **Time-bound.** Delegations should expire after \[30 days / assessment window\].
 
-- **Dedicated account.** All delegations to be granted to service account DOMAIN\\svc-uiao-assess, which is a standard user with no existing elevated group memberships.
+- **Dedicated account.** All delegations to be granted to service account DOMAIN\\svc-fmp-assess, which is a standard user with no existing elevated group memberships.
 
 - **Audit-enabled.** All queries from the assessment account will generate standard audit events. SOC has been notified of the assessment window.
 
@@ -565,7 +561,7 @@ The Federal Modernization Program Assessment Team has completed the Phase 0 (rea
 
 The following commands can be executed by a Domain Admin to grant the requested delegations:
 
-\# Define assessment account \$AssessmentAccount = \"DOMAIN\\svc-uiao-assess\" \# 1. Grant read on DNS zones (DomainDnsZones) dsacls \"CN=MicrosoftDNS,DC=DomainDnsZones,DC=contoso,DC=com\" \` /G \"\${AssessmentAccount}:GR\" /I:T \# 2. Grant read on DNS zones (ForestDnsZones) dsacls \"CN=MicrosoftDNS,DC=ForestDnsZones,DC=contoso,DC=com\" \` /G \"\${AssessmentAccount}:GR\" /I:T \# 3. Grant read on Deleted Objects container dsacls \"CN=Deleted Objects,DC=contoso,DC=com\" \` /G \"\${AssessmentAccount}:GR\" /I:S \# 4. Verify delegation (run as assessment account) \# Test-FMPReadAccess -Verbose
+\# Define assessment account \$AssessmentAccount = \"DOMAIN\\svc-fmp-assess\" \# 1. Grant read on DNS zones (DomainDnsZones) dsacls \"CN=MicrosoftDNS,DC=DomainDnsZones,DC=contoso,DC=com\" \` /G \"\${AssessmentAccount}:GR\" /I:T \# 2. Grant read on DNS zones (ForestDnsZones) dsacls \"CN=MicrosoftDNS,DC=ForestDnsZones,DC=contoso,DC=com\" \` /G \"\${AssessmentAccount}:GR\" /I:T \# 3. Grant read on Deleted Objects container dsacls \"CN=Deleted Objects,DC=contoso,DC=com\" \` /G \"\${AssessmentAccount}:GR\" /I:S \# 4. Verify delegation (run as assessment account) \# Test-FMPReadAccess -Verbose
 
 9\. Security Considerations for Read-Only Assessment
 
@@ -577,7 +573,7 @@ Read-only queries carry near-zero operational risk --- no objects are modified, 
 
 - **Large LDAP queries can trigger monitoring alerts.** Queries that return thousands of objects (e.g., Get-ADUser -Filter \* -Properties \*) may trigger SIEM correlation rules for reconnaissance or LDAP enumeration. Notify the security team of expected query patterns.
 
-- **Assessment account activity is logged.** Use a dedicated service account (svc-uiao-assess) so all assessment queries are attributable and distinguishable from normal user activity.
+- **Assessment account activity is logged.** Use a dedicated service account (svc-fmp-assess) so all assessment queries are attributable and distinguishable from normal user activity.
 
 9.2 Performance Management
 
@@ -603,7 +599,7 @@ Read-only queries carry near-zero operational risk --- no objects are modified, 
 
 - **Use a dedicated workstation.** Run assessment from a PAW (Privileged Access Workstation) or dedicated assessment workstation --- not a general-purpose endpoint.
 
-- **Disable account after assessment.** Disable svc-uiao-assess immediately upon assessment completion.
+- **Disable account after assessment.** Disable svc-fmp-assess immediately upon assessment completion.
 
 10\. Integration with the Federal Modernization Program Assessment Pipeline
 
@@ -631,7 +627,7 @@ Pipeline Flow
 | To commit assessment output to Gitea, use the Federal Modernization Program CLI: |
 +---------------------------------------------------------+
 
-uiao assessment commit \` \--path \"D:\\FMP\\Assessment\\ReadOnly\\contoso.com\\2026-04-20T2032\" \` \--repo \"assessments\" \` \--branch \"main\" \` \--message \"Read-only assessment: contoso.com 2026-04-20\"
+fmp assessment commit \` \--path \"D:\\FMP\\Assessment\\ReadOnly\\contoso.com\\2026-04-20T2032\" \` \--repo \"assessments\" \` \--branch \"main\" \` \--message \"Read-only assessment: contoso.com 2026-04-20\"
 
 11\. Companion Document Cross-Reference
 
@@ -644,7 +640,7 @@ This document is part of the Federal Modernization Program Canon. The following 
 
   **The Federal Modernization Program Platform Server Build Guide**          Defines the Gitea server infrastructure that receives and stores assessment output. Assessment JSONs are committed to the Gitea repository per the pipeline described in Section 10.
 
-  **The Federal Modernization Program CLI and Operations Guide**             Documents the uiao CLI commands for committing assessment results, triggering validation pipelines, and generating drift reports.
+  **The Federal Modernization Program CLI and Operations Guide**             Documents the fmp CLI commands for committing assessment results, triggering validation pipelines, and generating drift reports.
 
   **AD Computer Object Conversion Guide**       Consumes the ComputerInventory.json output from this assessment. Computer object data drives OS classification, staleness analysis, and migration planning for compute modernization.
 
@@ -726,7 +722,7 @@ Pre-Engagement
 
   ☐       Output directory resides on encrypted volume (BitLocker or equivalent)
 
-  ☐       Service account provisioned (svc-uiao-assess) --- standard user, no elevated group memberships
+  ☐       Service account provisioned (svc-fmp-assess) --- standard user, no elevated group memberships
 
   ☐       Service account expiration date set to end of assessment window
 
@@ -763,7 +759,7 @@ Appendix D --- Sample Assessment Manifest
 
 The following is a representative AssessmentManifest.json generated by the Invoke-FMPReadOnlyAssessment orchestrator.
 
-{ \"AssessmentType\": \"ReadOnly\", \"Framework\": \"FMP\", \"ForestName\": \"contoso.com\", \"AssessedBy\": \"CONTOSO\\\\svc-uiao-assess\", \"Timestamp\": \"2026-04-20T20:32:00Z\", \"Classification\": \"Controlled\", \"Boundary\": \"GCC-Moderate\", \"CoverageScore\": 87, \"ModuleVersion\": \"1.0.0\", \"Domains\": \[ { \"Name\": \"contoso.com\", \"DomainMode\": \"Windows2016Domain\", \"DomainControllers\": 4, \"Sites\": 3, \"OUs\": 142, \"Users\": 3847, \"Computers\": 2156, \"Groups\": 891 } \], \"Outputs\": \[ { \"Name\": \"ReadAccessReport\", \"File\": \"ReadAccessReport.json\", \"Status\": \"Complete\", \"Passed\": 8, \"Failed\": 0, \"Partial\": 0 }, { \"Name\": \"ForestTopology\", \"File\": \"ForestTopology.json\", \"Status\": \"Success\", \"DCCount\": 4, \"SiteCount\": 3, \"TrustCount\": 1 }, { \"Name\": \"OUHierarchy\", \"File\": \"OUHierarchy.json\", \"Status\": \"Success\", \"OUCount\": 142 }, { \"Name\": \"GPOInventory\", \"File\": \"GPO/GPOInventory.json\", \"Status\": \"Success\", \"TotalGPOs\": 87, \"UnlinkedGPOs\": 12, \"EmptyGPOs\": 5 }, { \"Name\": \"ComputerInventory\", \"File\": \"Computers/ComputerInventory.json\", \"Status\": \"Success\", \"TotalComputers\": 2156, \"StaleComputers\": 341, \"LAPSEnabled\": 1892 }, { \"Name\": \"UserInventory\", \"File\": \"Users/UserInventory.json\", \"Status\": \"Success\", \"TotalUsers\": 3847, \"PrivilegedUsers\": 23, \"ServiceAccounts\": 47, \"StaleUsers\": 612 }, { \"Name\": \"GroupInventory\", \"File\": \"Groups/GroupInventory.json\", \"Status\": \"Success\", \"TotalGroups\": 891, \"EmptyGroups\": 134, \"NestingIssues\": 7 }, { \"Name\": \"TrustMap\", \"File\": \"Trusts/TrustMap.json\", \"Status\": \"Success\", \"TrustCount\": 1 }, { \"Name\": \"PKIInventory\", \"File\": \"PKI/PKIInventory.json\", \"Status\": \"Success\", \"CACount\": 2, \"TemplateCount\": 34, \"ESCVulnerabilities\": 3 }, { \"Name\": \"DNSBaseline\", \"File\": \"DNS/DNSBaseline.json\", \"Status\": \"Success\", \"ZoneCount\": 4, \"SRVFailures\": 0 }, { \"Name\": \"ACLReport\", \"File\": \"ACLs/OUDelegation.json\", \"Status\": \"Success\", \"DelegationEntries\": 89 }, { \"Name\": \"SchemaExtensions\", \"File\": \"Schema/SchemaExtensions.json\", \"Status\": \"Success\", \"ExtensionAttributes\": 14, \"ConfidentialAttributes\": 6 } \], \"Gaps\": \[ \"DNS Scavenging Configuration (requires DNS Admin)\", \"Deleted Objects / Tombstones (requires delegation to CN=Deleted Objects)\", \"Issued Certificate Database (requires CA Admin)\", \"LAPS Passwords (requires ms-Mcs-AdmPwd read delegation)\", \"BitLocker Recovery Keys (requires ms-FVE-RecoveryPassword read delegation)\", \"Event Logs on Domain Controllers (requires local admin)\", \"Replication Health Details (requires Replicating Directory Changes)\" \], \"Hashes\": \[ { \"File\": \"./ReadAccessReport.json\", \"SHA256\": \"a1b2c3d4e5f6\...\" }, { \"File\": \"./ForestTopology.json\", \"SHA256\": \"b2c3d4e5f6a1\...\" }, { \"File\": \"./OUHierarchy.json\", \"SHA256\": \"c3d4e5f6a1b2\...\" }, { \"File\": \"./GPO/GPOInventory.json\", \"SHA256\": \"d4e5f6a1b2c3\...\" } \] }
+{ \"AssessmentType\": \"ReadOnly\", \"Framework\": \"FMP\", \"ForestName\": \"contoso.com\", \"AssessedBy\": \"CONTOSO\\\\svc-fmp-assess\", \"Timestamp\": \"2026-04-20T20:32:00Z\", \"Classification\": \"Controlled\", \"Boundary\": \"GCC-Moderate\", \"CoverageScore\": 87, \"ModuleVersion\": \"1.0.0\", \"Domains\": \[ { \"Name\": \"contoso.com\", \"DomainMode\": \"Windows2016Domain\", \"DomainControllers\": 4, \"Sites\": 3, \"OUs\": 142, \"Users\": 3847, \"Computers\": 2156, \"Groups\": 891 } \], \"Outputs\": \[ { \"Name\": \"ReadAccessReport\", \"File\": \"ReadAccessReport.json\", \"Status\": \"Complete\", \"Passed\": 8, \"Failed\": 0, \"Partial\": 0 }, { \"Name\": \"ForestTopology\", \"File\": \"ForestTopology.json\", \"Status\": \"Success\", \"DCCount\": 4, \"SiteCount\": 3, \"TrustCount\": 1 }, { \"Name\": \"OUHierarchy\", \"File\": \"OUHierarchy.json\", \"Status\": \"Success\", \"OUCount\": 142 }, { \"Name\": \"GPOInventory\", \"File\": \"GPO/GPOInventory.json\", \"Status\": \"Success\", \"TotalGPOs\": 87, \"UnlinkedGPOs\": 12, \"EmptyGPOs\": 5 }, { \"Name\": \"ComputerInventory\", \"File\": \"Computers/ComputerInventory.json\", \"Status\": \"Success\", \"TotalComputers\": 2156, \"StaleComputers\": 341, \"LAPSEnabled\": 1892 }, { \"Name\": \"UserInventory\", \"File\": \"Users/UserInventory.json\", \"Status\": \"Success\", \"TotalUsers\": 3847, \"PrivilegedUsers\": 23, \"ServiceAccounts\": 47, \"StaleUsers\": 612 }, { \"Name\": \"GroupInventory\", \"File\": \"Groups/GroupInventory.json\", \"Status\": \"Success\", \"TotalGroups\": 891, \"EmptyGroups\": 134, \"NestingIssues\": 7 }, { \"Name\": \"TrustMap\", \"File\": \"Trusts/TrustMap.json\", \"Status\": \"Success\", \"TrustCount\": 1 }, { \"Name\": \"PKIInventory\", \"File\": \"PKI/PKIInventory.json\", \"Status\": \"Success\", \"CACount\": 2, \"TemplateCount\": 34, \"ESCVulnerabilities\": 3 }, { \"Name\": \"DNSBaseline\", \"File\": \"DNS/DNSBaseline.json\", \"Status\": \"Success\", \"ZoneCount\": 4, \"SRVFailures\": 0 }, { \"Name\": \"ACLReport\", \"File\": \"ACLs/OUDelegation.json\", \"Status\": \"Success\", \"DelegationEntries\": 89 }, { \"Name\": \"SchemaExtensions\", \"File\": \"Schema/SchemaExtensions.json\", \"Status\": \"Success\", \"ExtensionAttributes\": 14, \"ConfidentialAttributes\": 6 } \], \"Gaps\": \[ \"DNS Scavenging Configuration (requires DNS Admin)\", \"Deleted Objects / Tombstones (requires delegation to CN=Deleted Objects)\", \"Issued Certificate Database (requires CA Admin)\", \"LAPS Passwords (requires ms-Mcs-AdmPwd read delegation)\", \"BitLocker Recovery Keys (requires ms-FVE-RecoveryPassword read delegation)\", \"Event Logs on Domain Controllers (requires local admin)\", \"Replication Health Details (requires Replicating Directory Changes)\" \], \"Hashes\": \[ { \"File\": \"./ReadAccessReport.json\", \"SHA256\": \"a1b2c3d4e5f6\...\" }, { \"File\": \"./ForestTopology.json\", \"SHA256\": \"b2c3d4e5f6a1\...\" }, { \"File\": \"./OUHierarchy.json\", \"SHA256\": \"c3d4e5f6a1b2\...\" }, { \"File\": \"./GPO/GPOInventory.json\", \"SHA256\": \"d4e5f6a1b2c3\...\" } \] }
 
 The Federal Modernization Program Read-Only AD Assessment Guide --- Version 1.0 DRAFT\
 Classification: Controlled \| Boundary: GCC-Moderate\

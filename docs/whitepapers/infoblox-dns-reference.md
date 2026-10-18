@@ -6,7 +6,7 @@ audience: [Architect, Engineer, Technical-Lead]
 author: Michael Stratton
 date: "August 2026"
 status: Draft
-canon-source: "src/uiao/canon/"
+canon-source: "src/fmp/canon/"
 derived-from: "Extracted from infoblox-hybrid-dns-unified-ddi.qmd Part 3 and Part 7.5 (2026-08-03) to give the reference material its own bookmarkable home separate from the argument-driven parent paper; carries the same source citations as its parent."
 repo-path: docs/customer-documents/whitepapers/infoblox-dns-reference.qmd
 created-at: 2026-08-03

@@ -103,8 +103,6 @@ converts statutory privacy obligations into auditable program artifacts.
   The RACI defined in Vol IV Book 03 §3 assigns Privacy Officer accountability across
   all PT controls.
 
-![PII Processing Lifecycle — Privacy Controls and Authority Chain](figs/pii-fig-01-pii-lifecycle.png){fig-alt="Horizontal lifecycle diagram with six stages: 1 Collect (PT-2 Authority, PT-3 Purpose, PT-5 Notice, PT-4 Consent — statute/SORN/OMB M-03-22 notice, consent mechanism); 2 Process (PT-3 Purpose limit, PT-7 De-ID — Purview data map enforcement); 3 Store (SI-12, MP-6, SC-28 at-rest encryption — retention schedule, AES-256, accessibility log); 4 Share/Disclose (PT-6 SORN, PT-8 Computer Matching, CA-3 ISA — inter-agency ISA, ROUTINE USE match, recipient audit log); 5 Retain (PT-3 retention, SI-12, AU-11 — NARA schedule, audit log min 3 years); 6 Dispose (MP-6, SR-12, PT-3 purpose end — NIST 800-88 purge, disposal certificate). Return arrow shows annual SORN review cycle. Bottom left: Special Categories (SSN, medical, financial, biometric) requiring heightened protection. Bottom right: Microsoft Purview integration for automated purpose-limitation enforcement." width="100%"}
-
 ## Scope
 
 This document applies to any {{< meta agency.short >}} GCC Moderate system that processes PII, including
@@ -211,8 +209,6 @@ as the ISPP. Cross-reference Vol IV Book 03 §3 RACI for the Privacy Officer rol
 PT-2 requires the organization to identify the legal authority that permits the
 collection, use, maintenance, and sharing of PII and restricts the collection
 of PII to the minimum necessary for the identified purpose.
-
-![PT-2 authority — every PII category traces to a specific statute and a published SORN](figs/pii-fig-02-authority-sorn.png){#fig-pii02 fig-alt="Four-quadrant card grid titled 'Every category traces to a statute and a SORN' under a PT-2 Authority to Process heading. Card 1, Specific citation: each PII category needs a specific legal citation, such as SSN to the enabling statute's identifier section and payment records to its disclosure section, and general mission authority is not sufficient. Card 2, Minimum necessary: collection is restricted to the minimum PII necessary for the identified purpose, and SSN is not collected if the statute does not require it. Card 3, SORN when retrieved by identifier: any system that retrieves PII by name, SSN, or case number is a Privacy Act system of records and needs a published SORN before live collection. Card 4, Retention plus disposal per row: the authority matrix names the retention period and NIST 800-88 disposal method for every category, so disposal is planned at collection, not later. A caution banner states that no SORN yet is a POA&M item with a milestone no later than 30 days before go-live, published in the Federal Register. White background. Source: Vol IV Book 04 PII Processing and Transparency briefing deck, Date Code 2026-07-09 17:00 ET." width="100%"}
 
 ## Legal Authority Matrix
 
@@ -323,8 +319,6 @@ PT-4 requires the organization to implement consent mechanisms that provide
 individuals with the opportunity to consent to the collection and use of their
 PII. For federal systems, many collections are authorized by statute rather
 than consent; PT-4 requires the agency to explicitly distinguish the two cases.
-
-![PT-4 consent — statute plus notice, or voluntary plus consent, across four collection patterns](figs/pii-fig-03-consent-mechanisms.png){#fig-pii03 fig-alt="Four-quadrant card grid titled 'Statute plus notice, or voluntary plus consent' under a PT-4 Consent Requirements heading. Card 1, Statutory notice only: when a statute authorizes collection such as benefit application PII, consent is not required but the PT-5 notice still is. Card 2, Voluntary consent: optional collection such as email for alerts needs an unchecked opt-in checkbox naming what is collected, how it is used, and that refusal carries no penalty. Card 3, Automated notice at point: call recording under statutory authority uses a clear notice before collection begins and the caller may disconnect, with no pre-checked boxes. Card 4, Inter-agency the DSA governs: PII received from another agency is governed by the data-sharing agreement, and individuals are notified through the sending agency's SORN routine use. A summary banner states PT-4's job is to force the agency to distinguish, in writing, statutory collection from voluntary, because the two demand different mechanisms. White background. Source: Vol IV Book 04 PII Processing and Transparency briefing deck, Date Code 2026-07-09 17:00 ET." width="100%"}
 
 ## Federal Consent vs. Statutory Authority
 
@@ -570,8 +564,6 @@ The data flow map is the single artifact that makes that knowledge auditable.
 It must be maintained current and reviewed at each annual privacy assessment.
 Microsoft Purview Data Map lineage (Vol III Book 05 §3) provides automated discovery of
 data flows; this template captures the authoritative human-reviewed record.
-
-![The PII data flow map — one row per flow, four required scenarios, reconciled to Purview lineage](figs/pii-fig-04-data-flow-map.png){#fig-pii04 fig-alt="Four-quadrant card grid titled 'The data flow map — knowing where PII is' under a heading, The Auditable Artifact. Card 1, One row per flow: each discrete PII flow gets a Flow ID with source, categories, purpose, destination, cross-boundary flag, encryption, retention, and disposal. Card 2, Four required scenarios: citizen portal intake, Amazon Connect contact center, HR/workforce, and cross-agency API — all four documented before authorization. Card 3, Reconciled to Purview lineage: a quarterly Purview lineage scan is compared to the manual registry, and any flow in lineage but not the registry is investigated before the annual review. Card 4, Reviewed annually: the map is maintained current and reviewed at each annual privacy assessment, because undocumented flows would constitute unauthorized secondary use. A summary banner states PT-2 through PT-7 all require the agency to know where its PII is, and the data flow map is the single artifact that makes that auditable. White background. Source: Vol IV Book 04 PII Processing and Transparency briefing deck, Date Code 2026-07-09 17:00 ET." width="100%"}
 
 ## PII Data Flow Registry
 

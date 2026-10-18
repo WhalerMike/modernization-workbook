@@ -61,8 +61,6 @@ operationalizing the central scan and the finding-delivery workflow.
 
 ## The four-tier model
 
-![Central deployment four-tier cascade — Tier 0 OFCIO scan → Tier 1 CISO notification → Tier 2 remediation tooling → Tier 3 the Federal Modernization Program deployment (target architecture).](../../../images/canonical/FMP-FIG-025-central-deployment-tiers.png){#fig-central-deployment fig-alt="A four-tier vertical cascade joined by teal arrows. Tier 0 OFCIO central scan (public OMB CSV, 1346 findings across 56 agencies). Tier 1 Agency CISO notification (scoped findings, P1 72-hour, P2 30-day). Tier 2 Agency remediation tooling (credential owners, existing IGA, optional the organizational-attribute model binding). Tier 3 Agency the Federal Modernization Program deployment, the teal-bordered target architecture (the organizational-attribute model stamps, drift engine, JML, SailPoint machine-identity adapter)." width="100%"}
-
 Tier 3 is not required for the central scan to deliver value. Tiers 0–2 are
 fully operational with the existing open-source scanner.
 
@@ -71,7 +69,7 @@ fully operational with the existing open-source scanner.
 **Input:** OMB Annual AI Use Case Inventory CSV (public,
 data.gov / ai.gov). No agency data sharing agreement required.
 
-**Scanner:** `python -m uiao.governance.ai_inventory.scanner --input
+**Scanner:** `python -m fmp.governance.ai_inventory.scanner --input
 omb_inventory.csv --output findings/` or `Invoke-AIInventoryScan.ps1
 -InventoryPath omb_inventory.csv -OutputPath findings/`
 
@@ -211,7 +209,7 @@ Invoke-WebRequest -Uri "<OMB-inventory-download-url>" `
 For the Python scanner:
 
 ```bash
-python -m uiao.governance.ai_inventory.scanner \
+python -m fmp.governance.ai_inventory.scanner \
   --input omb_inventory_2025.csv \
   --output findings/ \
   --split-by-agency \

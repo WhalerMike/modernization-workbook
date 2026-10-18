@@ -7,7 +7,7 @@ audience: [Technical, Customer]
 family: sql-server-implementation
 series-order: 05
 status: active
-canon-source: "src/uiao/canon/the directory modernization program"
+canon-source: "src/fmp/canon/the directory modernization program"
 lifecycle: active
 tiers_adopted: []
 lifecycle_review: 2027-01-01
@@ -16,8 +16,6 @@ lifecycle_review: 2027-01-01
 ::: {.content-visible when-format="docx"}
 # Implementation Book 05 — Login Migration & Parallel-Run Validation
 :::
-
-![Logins migrate behind a parallel-run window: map the principal, emit a reviewable CREATE LOGIN FROM EXTERNAL PROVIDER script (no open connection), then validate both paths resolve before the old login is removed.](images/book05-image-01-login-parallel-run.png){#fig-impl-book05 fig-alt="A schematic on a white background. Three stages flow left to right under teal arrows: New-FMPEntraLoginMapping (derive, read-only), New-FMPEntraLoginScript (emits a CREATE LOGIN FROM EXTERNAL PROVIDER script, no -Server/-Execute surface), and Test-FMPLoginParallelRun (validate, dry-run). Below, a horizontal timeline labelled 'The parallel-run window' shows three segments: 'old Windows login active', an amber 'both valid — applications repoint' overlap, and a teal 'Entra login only — old login removed'. Federal navy, teal and amber palette; no photographs." width="100%"}
 
 ::: {.callout-tip}
 ## Download this book

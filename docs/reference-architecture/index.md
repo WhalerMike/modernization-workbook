@@ -65,7 +65,7 @@ Both canons share a universal design principle:
 
 ::: {.callout-important}
 ## Canon Rule
-uiao-gos is a universal enterprise product. It is NOT government-specific. Federal
+fmp-gos is a universal enterprise product. It is NOT government-specific. Federal
 compliance (FedRAMP, OSCAL, KSI) is one vertical adapter on top of the universal core.
 Never frame the core engine as federal-only.
 :::
@@ -86,13 +86,13 @@ responsibility, explicit dependency relationships, and canonical artifacts.
 
 ## Governance Principles — 3 Universal + 3 Tier-Specific
 
-Per [the program decision], the Federal Modernization Program ships **6 governance principles in two scopes**, declared canonically in [`src/uiao/canon/substrate-manifest.yaml`] (FMP_200). The substrate manifest is the code SSOT for principles; the descriptions below mirror it verbatim.
+Per [the program decision], the Federal Modernization Program ships **6 governance principles in two scopes**, declared canonically in [`src/fmp/canon/substrate-manifest.yaml`] (FMP_200). The substrate manifest is the code SSOT for principles; the descriptions below mirror it verbatim.
 
 ### 3 Universal Substrate Principles
 
 These apply at all 5 conformance tiers per [the program decision]. Every the Federal Modernization Program deployment honors all three.
 
-1. **Single Source of Truth (SSOT).** Canonical governance artifacts under `src/uiao/canon/` define structure, policy intent, and registry authority exactly once. Downstream systems consume those artifacts via `importlib.resources` rather than duplicating policy logic.
+1. **Single Source of Truth (SSOT).** Canonical governance artifacts under `src/fmp/canon/` define structure, policy intent, and registry authority exactly once. Downstream systems consume those artifacts via `importlib.resources` rather than duplicating policy logic.
 
 2. **Canon-Anchored Evidence.** Every artifact the substrate produces — SSP, POA&M, KSI dashboards, component definitions — cites the canon document ID and version it derives from. Reviewers trace findings back to requirements deterministically.
 
@@ -138,7 +138,7 @@ The other three names (Boundary Enforcement, Two-Brain Execution, Tenant Agnosti
 
 | Section | What is There |
 |---------|-------------|
-| [Identity Modernization (OrgTree)](orgtree.html) | The A-Z Suite: 27 canonical artifacts (FMP_150 + FMP_151–FMP_176) governing user hierarchy, dynamic groups, delegation, migration, drift detection, and operational governance |
+| Identity Modernization (OrgTree) | The A-Z Suite: 27 canonical artifacts (FMP_150 + FMP_151–FMP_176) governing user hierarchy, dynamic groups, delegation, migration, drift detection, and operational governance |
 | [Directory Migration](directory-migration.html) | 8 adapter interfaces for every infrastructure service AD was holding together: IPAM, PKI, RADIUS, LDAP, sync engines, devices, NTP, DFS |
 
 ### Explainers and walk-throughs
@@ -161,5 +161,5 @@ The other three names (Boundary Enforcement, Two-Brain Execution, Tenant Agnosti
 
 All canonical source files are maintained in the monorepo:
 
-- **Identity Modernization:** `src/uiao/modernization/orgtree/`
-- **Directory Migration:** `src/uiao/modernization/directory-migration/`
+- **Identity Modernization:** `src/fmp/modernization/orgtree/`
+- **Directory Migration:** `src/fmp/modernization/directory-migration/`

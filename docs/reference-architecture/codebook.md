@@ -183,9 +183,9 @@ Per-facet classification: a principal with valid Region but unknown Department g
 3. **Populate** all 10 slots via HR-driven inbound provisioning (HR system → Entra Connect → 10-slot population); IT never manually edits these
 4. **Author** dynamic groups starting with single-facet groups, growing to multi-facet compositions as CA targeting matures
 5. **Create** Administrative Units mirroring the dynamic group pattern; mark each Restricted Management
-6. **Validate** with `uiao orgtree validate codebook` (Python loader) and the per-facet PowerShell flow (see FMP_151 for the validation script)
+6. **Validate** with `fmp orgtree validate codebook` (Python loader) and the per-facet PowerShell flow (see FMP_151 for the validation script)
 7. **Enable** drift detection (FMP_163; rebuilt per-facet in the program decision Phase 5+) for continuous per-slot monitoring
 
 ## Source
 
-Canonical narrative: `FMP_151_the organizational-attribute model_Codebook.md` v4.0. Executable YAML: [`data/orgpath/codebook.yaml`] `schema_version: 2.0.0`. JSON Schema: [`schemas/orgpath/codebook.schema.json`]. Python loader: [`uiao.modernization.orgtree.codebook`].
+Canonical narrative: `FMP_151_the organizational-attribute model_Codebook.md` v4.0. Executable YAML: [`data/orgpath/codebook.yaml`] `schema_version: 2.0.0`. JSON Schema: [`schemas/orgpath/codebook.schema.json`]. Python loader: [`fmp.modernization.orgtree.codebook`].

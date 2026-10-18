@@ -3,8 +3,8 @@ title: "Case Studies"
 subtitle: "Real-world deployment patterns and lessons learned"
 doc-type: section-landing
 audience: "Modernization sponsors · program leads · prospective customers"
-canon-source: "src/uiao/canon/"
-derived-from: "uiao canon"
+canon-source: "src/fmp/canon/"
+derived-from: "fmp canon"
 aspirational: true
 lifecycle: adopted
 tiers_adopted: [1]
@@ -39,7 +39,7 @@ deployed-and-validated reference.
 
 | Slug | Engagement | Status | Canon anchor |
 |---|---|---|---|
-| [`identity-modernization-case-study`](identity-modernization-case-study.html) | OrgTree rollout and codebook adoption | Framing-Pattern | `src/uiao/canon/adr/adr-008-zero-trust-identity.md` |
+| [`identity-modernization-case-study`](identity-modernization-case-study.html) | OrgTree rollout and codebook adoption | Framing-Pattern | `src/fmp/canon/adr/adr-008-zero-trust-identity.md` |
 | [`cloud-boundary-case-study`](cloud-boundary-case-study.html) | GCC-Moderate boundary establishment | Framing-Pattern | `docs/docs/gcc-boundary-solution-architecture.qmd` |
 | [`federal-modernization-case-study`](federal-modernization-case-study.html) | End-to-end federal agency modernization | Framing-Pattern | `docs/docs/06_ProgramVision.qmd` |
 | [`reference-deployment-fedciv-ad-to-entra`](reference-deployment-fedciv-ad-to-entra.html) | Federal civilian AD → Entra ID + SQL estate, end-to-end through the five-phase substrate | Framing-Pattern | `FMP_007` + directory-migration README + drift §7.1 + B.1.1 + spn_inventory artifact |

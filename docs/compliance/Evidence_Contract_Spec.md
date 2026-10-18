@@ -51,8 +51,6 @@ any specific downstream implementation.
 An evidence engine is **Compliance-conformant** if it accepts the three inputs in §2–§4
 and produces the two outputs in §5–§6, honoring the invariants in §7.
 
-![The Compliance Evidence & Authorization Contract: the Compliance books emit three inputs (compliance spine, evidence slot records, cadence and dispositions) to any conformant evidence engine across an open OSCAL boundary, which produces two outputs — the OSCAL AP+AR+POA&M authorization bundle and a continuous-monitoring stream — governed by five conformance invariants. Blueprint diagram, Compliance house style.](figs/evc-diagram-01-evidence-contract.png)
-
 ---
 
 ## 2. Input 1 — The compliance spine

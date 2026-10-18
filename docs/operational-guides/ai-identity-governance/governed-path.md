@@ -41,7 +41,7 @@ In addition to the manual path prerequisites:
 
 - The Federal Modernization Program substrate deployed with the `ai-inventory-governance` SaaS adapter
   activated (see §Activation below), **or** the Federal Modernization Program installed locally with
-  `src/uiao/governance/ai_inventory/` package
+  `src/fmp/governance/ai_inventory/` package
 - the organizational-attribute model codebook populated with your agency's bureau hierarchy (the program decision)
 - `sailpoint-machine-identity` adapter slot promoted from `reserved` to
   `active` if SailPoint ISC is in scope (the program decision Option B)
@@ -76,7 +76,7 @@ binds the scanner to the Federal Modernization Program governance substrate. To 
    the Federal Modernization Program CLI:
 
 ```bash
-uiao ai-inventory scan \
+fmp ai-inventory scan \
     --csv data/2025_individually_reported_AI_use_cases.csv \
     --agency GSA \
     --output findings.json
@@ -85,7 +85,7 @@ uiao ai-inventory scan \
 ### Option B — Local Python package
 
 ```python
-from uiao.governance.ai_inventory import scan_inventory
+from fmp.governance.ai_inventory import scan_inventory
 
 result = scan_inventory(
     "data/2025_individually_reported_AI_use_cases.csv",
@@ -93,7 +93,7 @@ result = scan_inventory(
 )
 print(result.summary)
 # Route findings to drift engine
-from uiao.governance.drift_core import gate
+from fmp.governance.drift_core import gate
 decision = gate(result.findings)
 ```
 
@@ -194,7 +194,7 @@ only the manual path produces the same findings as the governed path — the
 difference is what happens next. The governed path automates disposition;
 the manual path leaves it to the operator. Both are valid starting points.
 
-See [`inbox/drafts/omb-ai-governance-comment.md`](../../../../inbox/drafts/omb-ai-governance-comment.md)
+See `inbox/drafts/omb-ai-governance-comment.md`
 for the proposed OMB schema-extension letter that accompanies this kit.
 :::
 
@@ -202,7 +202,7 @@ for the proposed OMB schema-extension letter that accompanies this kit.
 
 ## Normative references
 
-- [`src/uiao/canon/specs/Spec4-AI-D1.1-AISystemIdentityRecord.md`](../../../../src/uiao/canon/specs/Spec4-AI-D1.1-AISystemIdentityRecord.md) — FMP_196 AI System Identity Record schema
-- [`src/uiao/canon/specs/Spec4-AI-D1.2-AISystemJMLLifecycle.md`](../../../../src/uiao/canon/specs/Spec4-AI-D1.2-AISystemJMLLifecycle.md) — FMP_197 AI System JML Lifecycle
+- `src/fmp/canon/specs/Spec4-AI-D1.1-AISystemIdentityRecord.md` — FMP_196 AI System Identity Record schema
+- `src/fmp/canon/specs/Spec4-AI-D1.2-AISystemJMLLifecycle.md` — FMP_197 AI System JML Lifecycle
 - the program decision — Federal AI Use Case Governance
 - the program decision — AI System JML Lifecycle

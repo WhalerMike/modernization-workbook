@@ -3,21 +3,17 @@ title: "SASE Modernization Spec"
 subtitle: "Secure Access Service Edge governance specification"
 doc-type: modernization-spec
 audience: [Customer, Architect, Assessor]
-canon-source: "src/uiao/canon/modernization-registry.yaml"
+canon-source: "src/fmp/canon/modernization-registry.yaml"
 canon-reference:
   - "docs/customer-documents/architecture-series/six-plane-architecture.qmd"
   - "docs/customer-documents/architecture-series/boundary-impact-model.qmd"
-derived-from: "uiao canon"
+derived-from: "fmp canon"
 lifecycle: adopted
 tiers_adopted: [1]
 lifecycle_review: 2026-11-22
 ---
 
 # SASE Modernization Spec
-
-![Current state (perimeter+VPN)](images/sase-image-02-current-state-perimetervpn.png){#fig-sase-image-02 fig-alt="Current state (perimeter+VPN). Engineering blueprint style, neutral slate background, federal navy (#1F3A5F) for primary structural elements, teal (#1A9E8F) for secondary/integration elements, amber (#D4A017) for governance/audit/registry overlays, monospace labels for identifiers, no human figures, 16:9 landscape." width="100%"}
-
-![Target state (identity-driven SASE overlay across 6 planes)](images/sase-image-03-target-state-identity-driven-sas.png){#fig-sase-image-03 fig-alt="Target state (identity-driven SASE overlay across 6 planes). Engineering blueprint style, neutral slate background, federal navy (#1F3A5F) for primary structural elements, teal (#1A9E8F) for secondary/integration elements, amber (#D4A017) for governance/audit/registry overlays, monospace labels for identifiers, no human figures, 16:9 landscape." width="100%"}
 
 
 ## Scope
@@ -28,8 +24,6 @@ remote access with identity-driven, network-overlay security delivered
 as a converged service. This spec defines the substrate contract that
 SASE adapters must honor: identity-derived addressing, certificate-
 anchored overlay, and canonical claim emission for access decisions.
-
-![SASE modernization domain diagram](images/sase-image-01-sase-modernization-domain-diagra.png){#fig-sase-image-01 fig-alt="Center shows the six-plane architecture as a vertical stack (Identity at top down to Management at bottom). On the right side, three SASE service icons (CASB, SWG, ZTNA) connect into the Network and Security & Compliance planes. On the left side, an \"Identity-derived addressing\" arrow flows from the Identity plane down through the Addressing plane into the Network plane. Below the diagram, a footer band reads \"SASE = identity-driven overlay; perimeter VPN replaced by certificate-anchored access\". Clean engineering blueprint style, dark navy (#0D1B2E) and teal (#1E8C8C) on white background. No photographs, purely diagrammatic." width="100%"}
 
 ## Substrate contract
 

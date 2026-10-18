@@ -1,5 +1,5 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 720" font-family="Arial, Helvetica, sans-serif">
-  <!-- UIAO blueprint (ADR-093) · navy #0D1B2E · teal #1E8C8C · red #C0392B · ice #EAF1FB -->
+  <!-- FMP blueprint (ADR-093) · navy #0D1B2E · teal #1E8C8C · red #C0392B · ice #EAF1FB -->
   <rect x="0" y="0" width="1280" height="720" fill="#FFFFFF"/>
   <defs>
     <marker id="arr-teal" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
@@ -14,7 +14,7 @@
   </defs>
 
   <!-- Title -->
-  <text x="60" y="58" font-family="Georgia, serif" font-size="34" font-weight="bold" fill="#0D1B2E">UIAO SaaS Data Plane — Reference Architecture</text>
+  <text x="60" y="58" font-family="Georgia, serif" font-size="34" font-weight="bold" fill="#0D1B2E">FMP SaaS Data Plane — Reference Architecture</text>
   <text x="60" y="86" font-size="17" fill="#5A5A5A">ADR-096 · ADR-116 · ADR-033 · Centralize the truth · Distribute the copies · Refuse to span the speed of light synchronously</text>
 
   <!-- INBOUND: Tenants on left -->
@@ -32,14 +32,14 @@
   <text x="120" y="287" text-anchor="middle" font-size="14" font-weight="bold" fill="#0D1B2E">Entra Tenant C</text>
   <text x="120" y="306" text-anchor="middle" font-size="12" fill="#1E8C8C">Entra access token (tid=C)</text>
 
-  <!-- Arrows to UIAO service -->
+  <!-- Arrows to FMP service -->
   <line x1="210" y1="155" x2="328" y2="220" stroke="#1E8C8C" stroke-width="2" marker-end="url(#arr-teal)"/>
   <line x1="210" y1="223" x2="328" y2="248" stroke="#1E8C8C" stroke-width="2" marker-end="url(#arr-teal)"/>
   <line x1="210" y1="291" x2="328" y2="276" stroke="#1E8C8C" stroke-width="2" marker-end="url(#arr-teal)"/>
 
-  <!-- UIAO Service layer -->
+  <!-- FMP Service layer -->
   <rect x="330" y="175" width="260" height="160" rx="12" fill="#0D1B2E"/>
-  <text x="460" y="208" text-anchor="middle" font-size="16" font-weight="bold" fill="#FFFFFF">UIAO Data Plane</text>
+  <text x="460" y="208" text-anchor="middle" font-size="16" font-weight="bold" fill="#FFFFFF">FMP Data Plane</text>
   <text x="460" y="228" text-anchor="middle" font-size="13" fill="#1E8C8C">TenantResolutionMiddleware</text>
   <text x="460" y="248" text-anchor="middle" font-size="12" fill="#9BB8CC">verify token signature (JWKS/RS256)</text>
   <text x="460" y="266" text-anchor="middle" font-size="12" fill="#9BB8CC">bind tenant context from tid claim</text>
@@ -94,7 +94,7 @@
   <line x1="930" y1="424" x2="944" y2="424" stroke="#1E8C8C" stroke-width="1.5" marker-end="url(#arr-teal)"/>
   <text x="952" y="424" font-size="12" fill="#5A5A5A">SUSPENDED</text>
   <text x="820" y="448" text-anchor="middle" font-size="12" fill="#5A5A5A">illegal transitions rejected at model boundary</text>
-  <text x="820" y="466" text-anchor="middle" font-size="11" fill="#1E8C8C">uiao.saas.tenant</text>
+  <text x="820" y="466" text-anchor="middle" font-size="11" fill="#1E8C8C">fmp.saas.tenant</text>
 
   <!-- Arrow service → lifecycle -->
   <line x1="460" y1="335" x2="690" y2="400" stroke="#6B7A8D" stroke-width="1.5" stroke-dasharray="5,3" marker-end="url(#arr-grey)"/>

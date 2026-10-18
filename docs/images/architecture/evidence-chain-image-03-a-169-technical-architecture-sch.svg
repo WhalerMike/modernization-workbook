@@ -6,7 +6,7 @@
 </defs>
 
 <!-- Title -->
-<text x="60" y="58" font-family="Georgia, 'Times New Roman', serif" font-size="30" font-weight="bold" fill="#0D1B2E" text-anchor="start">UIAO Truth Fabric — Claim Intake Pipeline</text>
+<text x="60" y="58" font-family="Georgia, 'Times New Roman', serif" font-size="30" font-weight="bold" fill="#0D1B2E" text-anchor="start">FMP Truth Fabric — Claim Intake Pipeline</text>
 <text x="60" y="92" font-family="Arial, 'Helvetica Neue', Helvetica, sans-serif" font-size="15" fill="#6B7A8D" text-anchor="start">From adapter-signed Canonical Claim to authoritative canonical state</text>
 
 <!-- Inbound source arrow + label -->
