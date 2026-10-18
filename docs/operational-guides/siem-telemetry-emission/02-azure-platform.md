@@ -278,7 +278,7 @@ assignment with continuous compliance evaluation *is* the persistent
 evaluation; a spreadsheet of resources somebody checked once is not.
 
 The repo's Azure Arc policy library covers the adjacent hybrid-server case:
-[Azure Arc policy library](../../substrate/platform-tooling/azure-arc-policy-library.md).
+Azure Arc policy library.
 
 ## Verify emission
 

@@ -38,6 +38,11 @@ project:
     # kept in the repo, excluded from the build until the kit is imported.
     - "!docs/compliance/day2-kit/"
     - "!docs/compliance/ServiceNow_Kit_Expansion_Roadmap_page.md"
+    # Source-system internals, kept in the repo but not published: the
+    # substrate runbooks, and canonical-specs (module specs, plus security
+    # templates that are stubs pointing at the source system's own package).
+    - "!docs/substrate/"
+    - "!docs/canonical-specs/"
 
 website:
   title: "Modernization Workbook"
