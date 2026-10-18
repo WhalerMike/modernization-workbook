@@ -33,7 +33,7 @@ The assessment layer enforces three principles that distinguish it from a genera
 
 Every assessment operation is constrained to read-only Active Directory rights. The service account has exactly the permissions it needs to read — and zero beyond that. No group memberships are changed, no Group Policy Objects are edited, and no password resets are issued. This is enforced at the account level (least-privilege delegation), at the code level (no write cmdlets imported), and at the audit level (every call logged with operation class).
 
-The practical benefit: an assessment can run against the production forest without any change-control gate. Read-only is not an honor system; it is a provable property.
+The practical benefit: because the assessment makes no changes, it usually qualifies for a lighter, standard change process than a write operation would. Whether it needs a change record is the agency's configuration-management decision. Read-only is not an honor system; it is enforced at the account, code, and audit levels.
 
 ### 2. Least-privilege delegation
 
@@ -67,7 +67,7 @@ The assessment layer produces one artifact stream per dependency category, mirro
 Captures forest functional level, domain trust relationships, site topology, domain-controller role assignments, replication intervals, FSMO holders, DNS integration mode, and related schema levels. Feeds identity strategy and migration-roadmap cutover gates.
 
 ### Stream 2 — Organizational-unit hierarchy
-Captures every organizational unit, full distinguished name, parent-child relationships, linked Group Policy Objects, delegation access-control lists (if Tier B), and user + computer counts. Feeds attribute-model authoring and policy-linkage mapping.
+Captures every organizational unit, full distinguished name, parent-child relationships, linked Group Policy Objects, delegation access-control lists (if Tier B), and user + computer counts. Feeds attribute mapping and policy-linkage mapping.
 
 ### Stream 3 — Users
 Captures every user object — UPN, samAccountName, distinguished name, enabled state, password last-set, last-logon, manager, group memberships, extension attributes, mail, employee identifier, department, office location, and (if populated) HR-system-sourced attributes. Feeds user migration and attribute-mapping plans. Production exports may redact identifiers according to data-handling rules.
@@ -76,7 +76,7 @@ Captures every user object — UPN, samAccountName, distinguished name, enabled 
 Captures every computer object — distinguished name, DNS hostname, operating system, version, last password-set, service principal names, last-logon timestamp, trusted-for-delegation state, and supported encryption types. Feeds compute migration and risk scoring for stale or unconstrained-delegation hosts.
 
 ### Stream 5 — Service accounts + service principal names
-Captures all accounts with populated servicePrincipalName values, grouped by likely application boundary; delegation targets; group managed service account status; and password-last-set gaps that indicate stale credentials. Feeds policy migration (Kerberos-bound applications need modern application-registration equivalents).
+Captures all accounts with populated servicePrincipalName values, grouped by likely application boundary; delegation targets; group managed service account status; and password-last-set gaps that indicate stale credentials. Feeds compute and application migration (Kerberos-bound applications need modern application-registration equivalents or a documented Kerberos island).
 
 ### Stream 6 — Security and distribution groups
 Captures every group — distinguished name, samAccountName, group scope, type, members, member-of, and whether membership is static or rule-based. Feeds dynamic-group authoring from attribute rules.
@@ -130,7 +130,7 @@ assessments/
     ├── ldap-bindings.jsonl
     ├── kerberos-spn-map.json
     └── analysis/
-        ├── attribute-proposal.md
+        ├── attribute-mapping.md
         ├── risk-scorecard.md
         ├── dependency-graph.json
         └── gap-findings.md
@@ -147,4 +147,4 @@ Assessment and planning are deliberately separate steps. An assessment without a
 ---
 
 **Previous:** [Chapter 01 — Platform Foundation](01-platform-foundation.md)  
-**Next:** Chapter 03 — Analysis → Plan → Delivery
+**Next:** [Chapter 03 — Analysis → Plan → Delivery](03-analysis-plan-delivery.md)

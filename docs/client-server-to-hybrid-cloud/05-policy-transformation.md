@@ -18,9 +18,10 @@ Every Group Policy Object falls into one of several categories. Each category ha
 | Group Policy category | Modern target | Attribute-scoped? |
 |-----------------------|---------------|-------------------|
 | **Device configuration** (lockscreen, power, printers, drive maps) | Configuration profiles | Yes |
-| **Security baselines** (password, lockout, audit, UAC) | Security baselines + authentication methods | Yes |
+| **Security baselines** (local password and lockout, audit, UAC) | Intune security baselines and settings catalog (device and local accounts); Entra authentication methods and smart lockout (cloud accounts) | Yes |
 | **Software deployment** (.msi, scripts) | Application deployment + enrollment | Yes |
-| **Access control** (startup, logon scripts, drive-letter mapping) | Conditional Access + session controls | Yes |
+| **Scripts and mappings** (startup and logon scripts, drive-letter mapping) | Intune platform scripts and remediations; OneDrive / SharePoint for file shares | Yes |
+| **Access control** (user rights, logon restrictions) | Conditional Access + session controls; Intune user-rights policy | Yes |
 | **Server configuration** (roles, features, registry hardening) | Hybrid guest configuration + policy | Yes |
 | **Browser / mailbox config** | Settings catalog + productivity-suite policies | Yes |
 
@@ -38,7 +39,7 @@ The correct pattern is **regenerate, not copy**. For each Group Policy category 
 
 ## Configuration profiles — the workhorse
 
-Roughly seventy percent of Group Policy settings map to device-management configuration profiles. Configuration profiles are opinionated policy bundles targeting user or device dynamic groups.
+In most estates the majority of Group Policy settings map to device-management configuration profiles; Intune Group Policy analytics reports the actual supported percentage for each imported GPO. Configuration profiles are opinionated policy bundles targeting user or device dynamic groups.
 
 ### Policy authoring
 
@@ -55,10 +56,10 @@ scope:
   exclude_groups:
     - Structure-Enterprise-BreakGlass-Devices
 settings:
-  - path: Security/Account/MaximumPasswordAge
-    value: 60
-  - path: Security/Lockout/LockoutDuration
+  - path: DeviceLock/MaxInactivityTimeDeviceLock
     value: 15
+  - path: LocalPoliciesSecurityOptions/InteractiveLogon_MachineInactivityLimit
+    value: 900
   - path: Device/Experience/LockScreenMessage
     value: "Authorized use only."
   - path: Browser/Edge/SmartScreen/Enable
@@ -96,7 +97,7 @@ A typical compliance catalog includes:
 - Specific required applications installed
 - Specific prohibited applications absent
 
-Each policy is attribute-scoped and evaluates on a schedule. Noncompliant devices are excluded from the compliant-devices dynamic group, which is the Conditional Access signal for downstream enforcement.
+Each policy is attribute-scoped and evaluates on a schedule. Conditional Access reads the device's compliance state directly through the "require device to be marked as compliant" grant control; no separate compliant-devices group is needed.
 
 ## Conditional Access — the access gate
 
@@ -143,7 +144,7 @@ Adding a new policy picks the next open number in the right range; every policy 
 
 ### Block versus require — the policy discipline
 
-Policies lean heavily on “require” controls rather than “block” controls. The rationale: a block policy with a bad rule locks users out; a require policy with a bad rule requires a step that can be fixed. Block policies exist only for clear-cut deny cases (legacy authentication, high-risk sign-ins, impossible travel). Everything else is a require (multi-factor authentication, compliant device, session lifetime).
+Policies lean heavily on “require” controls rather than “block” controls. The rationale: a block policy with a bad rule locks users out; a require policy with a bad rule requires a step that can be fixed. Block policies exist only for clear-cut deny cases (legacy authentication, high-risk sign-ins as detected by Entra ID Protection). Everything else is a require (multi-factor authentication, compliant device, session lifetime).
 
 ## Hybrid server configuration — the server equivalent
 
@@ -163,7 +164,7 @@ A typical policy-run plan has tens to hundreds of actions. The evidence packet c
 
 ## Conflict resolution
 
-When two profiles target the same device with conflicting settings, the platform applies a documented precedence. The framework enforces a **canonical precedence order** to keep conflicts predictable:
+When two Intune profiles set the same setting to different values on the same device, Intune does not merge them by scope; it reports a conflict, and the outcome is not something to rely on. The framework therefore treats this order as an **authoring rule**, so that any given setting is owned by exactly one layer:
 
 1. Enterprise baseline profiles
 2. Division profiles
@@ -171,7 +172,7 @@ When two profiles target the same device with conflicting settings, the platform
 4. Role-scoped profiles
 5. Device-specific profiles (emergency patches)
 
-Conflicts that would violate this order are flagged at plan-validation time — the plan fails until the conflict is resolved.
+A plan that would set the same setting in two layers for the same device is flagged at plan-validation time and fails until the conflict is resolved.
 
 For Conditional Access, a similar order is enforced, and policies that require at a broader scope while blocking at a narrower scope are prohibited (a pattern that produces user lockouts that are hard to debug).
 
@@ -194,7 +195,7 @@ No policy reaches production without all four. The pipeline enforces this; polic
 
 ## Retiring legacy Group Policy Objects
 
-The end state: every user account is device-management-managed, every server is hybrid-projected, every Conditional Access policy is attribute-scoped. Legacy Group Policy Objects can then be retired.
+The end state: every user device is device-management-managed, every server is hybrid-projected, every Conditional Access policy is attribute-scoped. Legacy Group Policy Objects can then be retired.
 
 Retirement proceeds in phases:
 
@@ -202,7 +203,7 @@ Retirement proceeds in phases:
 - **Phase 2.** Unlinked Group Policy Objects are marked deprecated and kept for a defined window (for example, ninety days) as a rollback window.
 - **Phase 3.** After the window with zero drift findings in the modern surface, Group Policy Objects are deleted via a governed deprecation change.
 
-The last Group Policy Object to go is typically a password-policy object that legacy Kerberos-bound applications depend on. That object retires only when the compute migration is complete.
+The last Group Policy Object to go is typically the domain password and account policy, which governs the remaining AD accounts (including service accounts on Kerberos-bound applications). That object retires only when the compute migration is complete and no AD accounts remain in use.
 
 ## Verification
 

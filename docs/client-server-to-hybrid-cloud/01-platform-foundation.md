@@ -4,9 +4,9 @@
 
 ## The architectural claim
 
-Everything the modernization framework does — every analysis, every plan, every delivery, every evidence artifact — can run on one Windows Server 2025 host. Not a cluster, not a microservice mesh, not a cloud-native control plane. One host.
+Everything the modernization framework does — every analysis, every plan, every delivery, every evidence artifact — can run on one Windows Server 2025 host. Not a cluster, not a microservice mesh, not a cloud-native control plane. One authoritative host, with a standby for recovery.
 
-This is a deliberate, governed choice, not a simplification.
+This is a deliberate design choice, not a simplification. The property that matters is a *single authoritative writer*; "one host" is the simplest way to get it. The framework described here is a reference architecture to be built from standard components, not an existing product.
 
 ![Platform Host — Five Roles](../images/cshc/platform-host.svg)
 
@@ -42,8 +42,8 @@ This pattern keeps the authoritative repository off the public network while sti
 **Kerberos + enterprise PKI.** The platform host holds simultaneous memberships:
 
 - It is **domain-joined** to the legacy Active Directory forest (for Kerberos-anchored reads of the forest, Group Policy, DNS zones, and certificate services).
-- It is **cloud-registered** (for modern inbound authentication and Graph API outbound calls).
-- It holds an **enterprise-CA-issued server certificate** for TLS and a **client certificate** for device-management and Arc enrollment.
+- It is **Azure Arc-connected** (for a system-assigned managed identity that authenticates outbound calls to Azure Resource Manager; Microsoft Graph calls use a workload identity granted only the permissions it needs).
+- It holds an **enterprise-CA-issued server certificate** for TLS. Arc onboarding uses a service principal or interactive sign-in, not a client certificate from the enterprise CA.
 
 The bridges are not redundant. The Active Directory side is read-only by policy (assessment tooling runs with a least-privilege account that has only the forest-reader rights it needs). The cloud side is read-write (transformation plans land there).
 
@@ -97,8 +97,8 @@ Every integration is bidirectional-or-less. The drift detection process re-valid
 A fully configured host has the following operational properties:
 
 - **Tier-0 classification** — hardened baseline, application control, code integrity, endpoint protection, and security-information-and-event-management forwarding.
-- **Provenance-bound** — every configuration file change is a commit; administrative-portal clicks are not permitted; device-management policy enforces this.
-- **Attribute-governed** — the server carries its own organizational attributes, lives in an administrative unit, and is targeted by attribute-scoped compliance policy.
+- **Provenance-bound** — every configuration file change is a commit; administrative-portal changes are prohibited by procedure and detected by drift monitoring.
+- **Attribute-governed** — the server carries its organizational tags in Azure Resource Manager and is targeted by tag-scoped Azure Policy and machine configuration.
 - **Drift-monitored** — state (attributes, administrative-unit membership, repository team mapping, hybrid heartbeat) is reported on a schedule. Drift opens a tracked item.
 - **Disaster-recovery ready** — nightly backup plus a standby replica with documented recovery objectives. The baseline is manual failover to a cold standby, upgradable to automatic, witness-gated failover to a hot standby.
 
@@ -106,7 +106,7 @@ A fully configured host has the following operational properties:
 
 Boundaries matter as much as capabilities:
 
-- **Not a domain controller.** The platform host is domain-joined, not domain-hosting. When the legacy forest is eventually retired, the platform host stays; the domain controllers go away.
+- **Not a domain controller.** The platform host is domain-joined, not domain-hosting. When the legacy forest is eventually retired, the platform host is rebuilt or re-joined as a non-domain (workgroup, Arc-managed) server; the domain controllers go away.
 - **Not a target-surface component.** The platform host governs the cloud identity, device management, and hybrid management surfaces — it does not live inside them. It is deliberately on-premises (or Arc-projected) so it survives tenant-level events.
 - **Not a proprietary product.** The platform host is a governed deployment of well-known components configured together in a specific way. There is no proprietary binary to ship.
 - **Not a replacement for human review.** The governance layer still reviews and authorizes. The platform host hosts the execution layer and the authoritative repository.
@@ -118,5 +118,5 @@ Boundaries matter as much as capabilities:
 
 ---
 
-**Previous:** [Chapter 00 — The Problem](00-the-problem.md)  
+**Previous:** [Applicability and scope](00a-applicability.md)  
 **Next:** [Chapter 02 — Analyzing the Client/Server Estate](02-analyzing-the-estate.md)
