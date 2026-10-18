@@ -38,7 +38,7 @@ The first is a domain service account: a named Active Directory user with a non-
 
 The third form is the NT SERVICE\MSSQLSERVER virtual account, a Windows-local account that uses the computer’s domain account for network authentication. This pattern is also AD-anchored, because it is the domain-joined computer account that provides the Kerberos credential for network connections.
 
-In every one of these patterns, Active Directory is the identity authority for the engine process. The engine’s ability to authenticate to any network resource depends on AD. When the directory modernization program removes AD as the authoritative identity source, the service account pattern loses its foundation, and the engine must acquire a new identity — the system-assigned Managed Identity that hybrid management provides for the host. That transition is the subject of Book 04.
+In every one of these patterns, Active Directory is the identity authority for the engine process. The engine’s ability to authenticate to any network resource depends on AD. When the directory modernization program removes AD as the authoritative identity source, the service account pattern loses its foundation, and the engine must acquire a new identity in Microsoft Entra ID — on SQL Server 2025, the system-assigned managed identity that hybrid management provides for the host; on SQL Server 2022, an app registration whose certificate is kept in Azure Key Vault. That transition is the subject of Book 04.
 
 ## The sa account
 
@@ -64,7 +64,7 @@ Three drivers require replacing Windows Authentication for SQL Server.
 
 ### Driver One — NTLM elimination
 
-Microsoft formally deprecated NTLM in June 2024 and is disabling it by default — not removing it — across successive Windows releases, from enhanced auditing in Windows Server 2025 / Windows 11 24H2, to the BlockNTLMv1SSO enforcement default arriving via Windows Update in October 2026, to network NTLM off by default in the next major Windows Server release. Microsoft has not published a fixed calendar date for that final step. The program treats these milestones as risk indicators and eliminates NTLM as operational readiness allows, staying ahead of vendor defaults rather than chasing a fixed date.
+Microsoft formally deprecated NTLM in June 2024 and is disabling it by default — not removing it — across successive Windows releases, from enhanced auditing in Windows Server 2025 / Windows 11 24H2, to the BlockNTLMv1SSO enforcement default arriving via Windows Update in October 2026, to network NTLM off by default in the next major Windows Server release. Microsoft has not published a fixed calendar date for that final step. The program sets its own dates ahead of it: NTLMv1 is blocked in Phase B (targeted 2026-Q3), and network NTLM is blocked estate-wide at the program's 2027-04-01 backstop — a planning anchor, not a vendor deadline.
 
 Any SQL Server connection that relies on NTLM — because an SPN is missing, because the client cannot negotiate Kerberos, because the connection crosses a trust boundary, or because the host has already been migrated to a non-domain-joined state — will face increasing friction as Microsoft tightens defaults, and will fail once NTLM is blocked at the Local Security Authority layer.
 
@@ -82,7 +82,7 @@ Entra ID authentication for SQL Server changes this entirely. When a principal a
 
 When Active Directory is removed as the authoritative identity source, the AD service accounts and gMSAs that currently authorize the SQL Server engine process for network access lose their governance foundation. They are objects in a directory that no longer exists as an authoritative identity source. The engine must acquire a new identity before that removal occurs.
 
-The only credential-free, cloud-native identity available for an on-premises server in this architecture is the system-assigned Managed Identity that the Azure Arc Connected Machine agent provides. Arc deployment is therefore not an optional enhancement for SQL Server hosts; it is a prerequisite for the service-account migration the engine requires before the directory modernization can complete.
+For an on-premises instance, both of those Entra identities arrive through Azure Arc. The Connected Machine agent provides the server's system-assigned managed identity — the only credential-free, cloud-native identity available to an on-premises server in this architecture, which SQL Server 2025 uses directly — and on SQL Server 2022 the Arc agent uses that identity to retrieve the app registration's certificate from Key Vault and install it on the host. Arc deployment is therefore not an optional enhancement for SQL Server hosts; it is a prerequisite for the service-account migration the engine requires before the directory modernization can complete.
 
 The sequencing implication follows directly from the dependency structure of these three drivers. You assess and consolidate the estate first, so effort is spent only on instances that survive; then Arc enablement; then the login migration; then NTLM elimination. That order is the architecture of this series.
 

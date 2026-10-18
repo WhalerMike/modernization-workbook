@@ -16,7 +16,7 @@ SQL Server 2022 supports three principal types for Entra authentication via the 
 
 - **User** — an individual Entra ID user. The login maps to a specific principal.
 - **Group** — an Entra ID security group. Membership is dynamic; access follows group membership without manual DBA action.
-- **Service principal** — an application or managed identity. Used for application connections and the engine process itself.
+- **Service principal** — an application or managed identity. Used for application connections. The instance's own Entra identity is configured in Book 04, not created as a login.
 
 The Azure.Identity SDK DefaultAzureCredential chain handles token acquisition. Conditional Access evaluates the token issuance request before the token reaches SQL Server. If the policy requires MFA and the principal has not completed it, the token is denied. If the device is non-compliant, the token is denied. The policy has leverage because the token is the credential SQL Server accepts.
 
