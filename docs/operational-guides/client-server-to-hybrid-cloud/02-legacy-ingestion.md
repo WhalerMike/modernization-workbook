@@ -141,9 +141,9 @@ Get-ADOrganizationalUnit -Filter * -Properties * | ConvertTo-FmpOuRecord
 ```
 
 **Output.** `assessments/<run-id>/ou-hierarchy.json` — a graph
-structure consumed by the Python the organizational-attribute model-proposal generator (Chapter 03).
+structure consumed by the Python transformation engine (Chapter 03).
 
-**Feeds.** Chapter 04 (the organizational-attribute model codebook authoring); Chapter 05 (GPO
+**Feeds.** Chapter 04 (identity transformation); Chapter 05 (GPO
 linkage map).
 
 ### Stream 3 — Users
@@ -215,7 +215,7 @@ Get-ADGroupMember -Identity each -Recursive
 
 **Output.** `assessments/<run-id>/groups.jsonl`.
 
-**Feeds.** Chapter 04 (dynamic-group authoring from the organizational-attribute model rules);
+**Feeds.** Chapter 04 (dynamic-group authoring);
 FMP_152 (Dynamic Group Library target).
 
 ### Stream 7 — Group Policy Objects
@@ -326,9 +326,6 @@ produces:
   depend on which SPNs.
 - **Risk scores** — stale accounts, over-privileged delegation,
   ESC1–8 exposures.
-- **the organizational-attribute model proposals** — a first-pass mapping from OU DN to proposed
-  the organizational-attribute model code. The steward reviews and edits; the engine does not
-  auto-publish.
 - **Gap analysis reports** — OUs with no linked GPOs, GPOs with no
   enabled settings, groups with zero members, computers that haven't
   logged on in 90+ days.
@@ -393,8 +390,7 @@ Only together do they produce governed modernization.
   Tier A reference implementation (least-privilege, ~87% coverage).
 - **Posted: The Federal Modernization Program PowerShell Module Reference** (9,248 words) — the
   `FMPADAssessment` module surface.
-- **Canon:** FMP_159 PowerShell Validation Module; FMP_158 the organizational-attribute model JSON
-  Schema.
+- **Canon:** FMP_159 PowerShell Validation Module.
 
 ---
 

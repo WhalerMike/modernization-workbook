@@ -30,7 +30,7 @@ same governance plane — from the moment it first powers on. There is
 
 - joins on-prem Active Directory and waits for a future migration,
 - is provisioned by SCCM and later co-managed,
-- runs without an the organizational-attribute model assignment,
+- runs without an organizational assignment,
 - enters production without a compliance evaluation,
 - or skips the procurement-side organizational positioning step.
 
@@ -51,7 +51,7 @@ under `device-management/` had been registered but never authored.
 Operationally, this meant net-new asset acquisition followed an
 implicit pattern with three failure modes:
 
-1. **Procurement-time the organizational-attribute model assignment was missed.** Devices ended
+1. **Procurement-time organizational assignment was missed.** Devices ended
    up wherever the runtime user-derivation script placed them — not
    where procurement intended.
 2. **Cross-platform inconsistency.** Windows had Autopilot; macOS,
@@ -70,7 +70,7 @@ and the full doctrine at `src/fmp/modernization/intune-first-onboarding/doctrine
 | # | Pillar | What it asserts |
 |---|---|---|
 | 1 | **No ungoverned device, ever** | Every asset must be governance-enrolled before transitioning to production use. Quarantine (`/UNPOSITIONED`) is the safety valve, not the steady state. |
-| 2 | **Procurement is the first governance step** | Asset the organizational-attribute model is determined when the PO is issued, not when the device arrives. Procurement systems integrate with the governance pipeline as a peer of HR systems for user provisioning. |
+| 2 | **Procurement is the first governance step** | Asset organizational assignment is determined when the PO is issued, not when the device arrives. Procurement systems integrate with the governance pipeline as a peer of HR systems for user provisioning. |
 | 3 | **Zero-touch only** | Manual enrollment is a controlled exception requiring written justification, compensating controls, a finite duration, and an audit entry. |
 | 4 | **One management plane per asset; no co-management for new assets** | Intune for endpoints; Arc + Intune Settings Catalog for servers. No greenfield SCCM, no greenfield GPO, no greenfield HAADJ. |
 | 5 | **Quarantine on failure; never silently degrade** | Onboarding failures produce a quarantine entry and a governance ticket — never a silently-degraded production device. |
@@ -88,87 +88,6 @@ justification, compensating control, and an audit entry:
 
 Full text in `src/fmp/modernization/intune-first-onboarding/doctrine.md` §4.
 
-## the organizational-attribute model Assignment for Non-AD-Migrated Devices
-
-Every governed device must carry an the organizational-attribute model value matching an Active
-node in the OrgTree registry (Pillar 1). For devices
-that **do** originate in Active Directory, the
-[Directory Migration](directory-migration.md) path derives the organizational-attribute model
-from the AD-side computer object via `the program decision` device-plane mapping.
-
-For devices that **do not** originate in AD — every asset onboarded
-under this doctrine, plus BYOD and exception-path devices that never
-had an AD record — the organizational-attribute model comes from one of four sources, evaluated
-in strict priority order. This is the **the organizational-attribute model assignment authority
-chain**, canonicalized in
-`doctrine.md` §5.
-
-| # | Source | When it applies |
-|---|---|---|
-| 1 | **Procurement record** — the the organizational-attribute model written to the vendor-program carrier at Phase 2 (Autopilot Group Tag, ABM device note, Android Zero-Touch / Knox managed config, or Arc onboarding resource tag) | Asset acquired through the procurement integration; this is the authoritative source for every net-new device |
-| 2 | **Hardware-hash mapping CSV** — `governance/{platform}/hardware-hash-mapping.csv`, pre-staged to the device via a configuration profile | The vendor-program carrier failed to write or was stripped; the mapping CSV preserves procurement intent out-of-band |
-| 3 | **User derivation** — the provisioning user's the organizational-attribute model, read from their Entra ID user object via Graph | Asset has no procurement record (pre-doctrine asset, BYOD under Exception Path A, or user-driven enrollment carve-out) |
-| 4 | **Quarantine `/UNPOSITIONED`** — the terminal fallback | No prior source produced a value matching an Active OrgTree node |
-
-A source produces a value only if that value is non-empty **and**
-resolves to a Status: Active node in the OrgTree registry as of stamp
-time. A source that fails either check is treated as having produced
-no value; evaluation falls through to the next priority.
-
-The chain is implemented by the platform-specific stamping mechanism in
-Phase 4 — a PowerShell script on Windows, a LaunchAgent shell script
-on macOS, an Intune-side Azure Function on iOS / iPadOS / Android (where
-on-device scripts are forbidden), and the Arc onboarding resource tag
-write on servers. The mechanism varies by platform; the priority order
-does not.
-
-### Why procurement is priority 1 (not user-derivation)
-
-The historical default used user-derivation as the primary source.
-That works, but it is non-deterministic — a Finance laptop provisioned
-by an IT technician would inherit the technician's the organizational-attribute model until a
-later ETL pass corrected it. Procurement-first ordering gives three
-properties the user-derivation-first ordering did not:
-
-- **Determinism** — the the organizational-attribute model stamped at enrollment is the the organizational-attribute model
-  intended at PO time, not a function of whoever happened to power on
-  the device.
-- **Auditability** — the procurement record provides chain-of-custody
-  from "the organization decided to buy this asset" through "the
-  device now carries that the organizational-attribute model in production."
-- **Pre-user-logon governance** — self-deploying and shared-device
-  enrollment vectors complete with no user signed in. Under
-  user-derivation-first ordering these devices have no the organizational-attribute model source
-  at enrollment time; procurement-first ordering stamps them
-  correctly without any user present.
-
-User-derivation is preserved at priority 3 to keep backward
-compatibility with deployments that have not yet implemented
-procurement-side integration, and to handle the BYOD / Exception
-Path A case where procurement-time assignment is structurally
-impossible.
-
-### Pre-doctrine and procurement-record-absent devices
-
-Devices that pre-date the doctrine or arrived outside procurement
-(grey-market, user-funded, historical inventory, BYOD) have no
-procurement record and no Phase 2 vendor-program carrier. The chain
-still applies — sources 1 and 2 produce no value, evaluation falls
-through to source 3 (user derivation), and on failure to source 4
-(`/UNPOSITIONED`).
-
-Such devices surface as `DRIFT-PROCUREMENT-RECORD-ABSENT` findings
-(see `validation-and-evidence.md` §2.5)
-and are reconciled through governance review — either by retroactively
-filing a procurement record, by re-classifying as migration assets,
-or by quarantine-then-disposition.
-
-The chain guarantees that **every device enrolled in Intune carries
-some the organizational-attribute model value**, even if only `/UNPOSITIONED`. No enrolled device
-has an empty extension attribute. That invariant is what keeps the
-OrgTree-* dynamic group population deterministic and the drift
-detection engine's correlation joins sound.
-
 ## The Five-Phase Onboarding Process
 
 Every net-new asset, regardless of platform, follows the same five
@@ -177,10 +96,10 @@ Phase 2 and the enrollment vector used in Phase 4.
 
 | Phase | Owner | Trigger | Output | Gate to next phase |
 |---|---|---|---|---|
-| **1. Procure** | Procurement | Business request for an asset | Approved PO with the organizational-attribute model assignment | the organizational-attribute model validated against the OrgTree registry |
-| **2. Pre-stage** | Procurement + Vendor | PO submitted to vendor | Vendor program record (Autopilot device profile, ABM device assignment, etc.) | Vendor program record carries the the organizational-attribute model tag |
+| **1. Procure** | Procurement | Business request for an asset | Approved PO with organizational assignment | Assignment validated against the OrgTree registry |
+| **2. Pre-stage** | Procurement + Vendor | PO submitted to vendor | Vendor program record (Autopilot device profile, ABM device assignment, etc.) | Vendor program record carries the organizational assignment |
 | **3. Position** | Governance pipeline | Vendor confirms hardware-hash registration | Pre-staged Entra ID device object placeholder OR procurement-side mapping table entry | Mapping committed to governance repo and reviewed |
-| **4. Provision** | End user (zero-touch) or IT (assisted zero-touch) | Asset arrives at recipient location | Enrolled, the organizational-attribute model-stamped, compliant device | Compliance policy returns Compliant; CA grants access |
+| **4. Provision** | End user (zero-touch) or IT (assisted zero-touch) | Asset arrives at recipient location | Enrolled, assigned, compliant device | Compliance policy returns Compliant; CA grants access |
 | **5. Validate** | Governance pipeline | Device first compliance evaluation completes | Validation record in the governance audit log | All Phase 5 checks pass; device removed from quarantine if applicable |
 
 Full process spec in `src/fmp/modernization/intune-first-onboarding/process.md`.
@@ -191,7 +110,7 @@ expedited orders.
 ## Procurement is the First Governance Step
 
 Phase 1 — Procure is where the doctrine departs most sharply from
-historical practice. Asset the organizational-attribute model is captured **at PO time** in a
+historical practice. Asset organizational assignment is captured **at PO time** in a
 structured field, not inferred downstream from whoever provisions the
 device.
 
@@ -205,17 +124,17 @@ Required intake fields, per `procurement-handoff.md` §2:
 
 The procurement system commits a JSON procurement record to
 `governance/procurement/orders/{PO-number}.json` and writes the
-the organizational-attribute model tag to the appropriate vendor program at Phase 2.
+organizational assignment to the appropriate vendor program at Phase 2.
 
 ## Per-Platform Onboarding Annexes
 
 The five-phase process is platform-neutral. Per-platform mechanics
 live in dedicated annexes:
 
-| Platform | Vendor program | the organizational-attribute model carrier | Trust elevation state | Annex |
+| Platform | Vendor program | Assignment carrier | Trust elevation state | Annex |
 |---|---|---|---|---|
-| **Windows endpoint** | Windows Autopilot Device Preparation (v2) | Group Tag (`the organizational-attribute model:/path/value`) | Microsoft Entra Join (per the program decision) | `platforms/windows-autopilot.md` |
-| **Microsoft Surface** *(sub-pattern of Windows endpoint)* | Surface direct via Microsoft CSP, or authorized reseller (CDW, Insight, Connection) | Group Tag (`the organizational-attribute model:/path/value`) + DFCI profile applied at ESP Device Setup | Entra Join + DFCI firmware lockdown + Pluton attestation (Pro 11 / Laptop 6+) | `platforms/windows-surface.md` |
+| **Windows endpoint** | Windows Autopilot Device Preparation (v2) | Group Tag | Microsoft Entra Join (per the program decision) | `platforms/windows-autopilot.md` |
+| **Microsoft Surface** *(sub-pattern of Windows endpoint)* | Surface direct via Microsoft CSP, or authorized reseller (CDW, Insight, Connection) | Group Tag + DFCI profile applied at ESP Device Setup | Entra Join + DFCI firmware lockdown + Pluton attestation (Pro 11 / Laptop 6+) | `platforms/windows-surface.md` |
 | **macOS endpoint** | Apple Business Manager (ABM) or Apple School Manager (ASM) ADE | ABM device note | Supervised + ADE-enrolled | `platforms/macos-abm-ade.md` |
 | **iOS / iPadOS** | Apple ABM/ASM ADE | ABM device note | Supervised | `platforms/mobile-ios-android.md` Part A |
 | **Android Enterprise** | Android Zero-Touch (Google) or Knox Mobile Enrollment (Samsung) | Custom JSON managed config | Device Owner mode | `platforms/mobile-ios-android.md` Part B |
@@ -231,8 +150,8 @@ The doctrine introduces **five new drift classes**:
 
 | Drift class | What it detects |
 |---|---|
-| `DRIFT-PROCUREMENT-MISMATCH` | the organizational-attribute model stamped on the device differs from the procurement-record value |
-| `DRIFT-VENDOR-PROGRAM-CARRIER` | the organizational-attribute model in the vendor program record (Autopilot Group Tag, ABM device note, etc.) differs from the procurement record |
+| `DRIFT-PROCUREMENT-MISMATCH` | Organizational assignment on the device differs from the procurement-record value |
+| `DRIFT-VENDOR-PROGRAM-CARRIER` | Organizational assignment in the vendor program record (Autopilot Group Tag, ABM device note, etc.) differs from the procurement record |
 | `DRIFT-ENROLLMENT-VECTOR` | Device enrolled via a non-zero-touch path without an exception path grant |
 | `DRIFT-CO-MANAGEMENT-NEW` | Net-new Windows endpoint landed in SCCM co-management instead of Intune-first |
 | `DRIFT-PROCUREMENT-RECORD-ABSENT` | Device enrolled in Intune with no corresponding procurement record |
@@ -253,8 +172,6 @@ The doctrinal anchor is `src/fmp/canon/adr/adr-071-intune-first-asset-onboarding
   that handles existing AD-joined fleet (where Intune-First applies
   to net-new acquisition, Directory Migration handles the legacy
   estate)
-- OrgTree Modernization — provides the the organizational-attribute model
-  primitive that Intune-First consumes at procurement time
 - the program decision
   — controlling precedent for Windows endpoint join target (Entra
   Join only; HAADJ deprecated)

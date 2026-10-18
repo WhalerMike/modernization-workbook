@@ -111,7 +111,7 @@ Microsoft did not provide a framework for how to use them together to
 replace what the OU tree was doing.
 
 That framework is the **OrgTree canon** ([Chapter 04](../../client-server-to-hybrid-cloud/04-identity-transformation.md)).
-It encodes the OU hierarchy into a single user attribute (`the organizational-attribute model`), uses
+It encodes the OU hierarchy into user extension attributes, uses
 dynamic groups to materialise every subtree, uses Administrative Units to
 scope delegation, and uses Conditional Access to enforce policy. The result
 is governance that is equivalent to — and in several ways cleaner than —
@@ -175,7 +175,7 @@ The chapters that follow walk the full arc:
 | 01 | **The Platform.** One WS2025 host. What runs on it and why. |
 | 02 | **Analyzing the legacy.** Forest discovery. GPO inventory. DNS/DHCP scraping. Kerberos SPN audit. ADCS analysis. |
 | 03 | **The engine.** How the Federal Modernization Program turns analysis into a plan and a plan into delivered state. |
-| 04 | **Identity.** OrgTree, the organizational-attribute model, dynamic groups, AUs. The OU-tree replacement. |
+| 04 | **Identity.** OrgTree, dynamic groups, AUs. The OU-tree replacement. |
 | 05 | **Policy.** GPO retirement. Intune compliance. Conditional Access. |
 | 06 | **Services.** DNS + DHCP + IPAM in the Hybrid-Cloud model. |
 | 07 | **Compute.** Device transformation. Domain-joined → Entra + Intune + Arc. |

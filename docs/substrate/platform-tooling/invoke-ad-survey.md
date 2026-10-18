@@ -26,7 +26,7 @@ enumeration of an on-premises forest and emits one structured JSON object that
 the Federal Modernization Program AD adapter (`survey.py`) consumes directly.
 
 It runs the **forest / tree / trust topology pass first**, before walking the OU
-tree — deliberately. the organizational-attribute model is the DN-encoded organizational spine, and a
+tree — deliberately. The OU tree is the DN-encoded organizational spine, and a
 `distinguishedName` only carries meaning once you know the forest root, the
 constituent domains (trees), and the trust boundaries that join them. So the
 survey establishes that context up front, then descends into OUs, users,
@@ -118,7 +118,6 @@ Unconstrained:   3 delegation accounts
 Computer Objs:   0 (0 stale)
 Sites:           5 (1 stale/no-subnet)
 GPOs:            187 (41 not modified 5+ years)
-Existing the organizational-attribute model: 0 users already have extensionAttribute1
 ```
 
 ### Include computer objects
@@ -204,7 +203,7 @@ arrays are the object inventories.
     { "distinguishedName": "OU=Finance,DC=corp,DC=contoso,DC=com", "name": "Finance", "hasGpo": true, "hasDelegationOwner": false, "whenCreated": "2009-03-14T00:00:00", "ageYears": 17 }
   ],
   "users": [
-    { "distinguishedName": "CN=Alice,OU=Finance,DC=corp,DC=contoso,DC=com", "samAccountName": "alice", "employeeId": "E1001", "department": "Finance", "jobTitle": "Analyst", "hasManager": true, "lastLogonDays": 2, "passwordAgeDays": 41, "existingthe organizational-attribute model": null, "existingRegion": null, "existingLifecycle": null, "existingMigStatus": null }
+    { "distinguishedName": "CN=Alice,OU=Finance,DC=corp,DC=contoso,DC=com", "samAccountName": "alice", "employeeId": "E1001", "department": "Finance", "jobTitle": "Analyst", "hasManager": true, "lastLogonDays": 2, "passwordAgeDays": 41, "existingRegion": null, "existingLifecycle": null, "existingMigStatus": null }
   ],
   "serviceAccounts": [ ],
   "computers": [ ],
@@ -226,8 +225,7 @@ arrays are the object inventories.
     "siteCount": 5,
     "staleSiteCount": 1,
     "gpoCount": 187,
-    "staleGpoCount": 41,
-    "usersWithExistingthe organizational-attribute model": 0
+    "staleGpoCount": 41
   }
 }
 ```
@@ -316,4 +314,4 @@ $survey.forest.trusts | Where-Object sidFilteringRisk |
 | Canonical source | [`scripts/ad-survey/Invoke-ADSurvey.ps1`] |
 | Target | Windows host with RSAT (ActiveDirectory module; GroupPolicy optional) |
 | Output | Single JSON object on stdout (`-OutputJson`) or a console summary |
-| Related canon | the Federal Modernization Program PowerShell Module Reference for the broader assessment-output schema; `FMP_007 OrgTree Modernization` for the the organizational-attribute model spine this discovery feeds |
+| Related canon | the Federal Modernization Program PowerShell Module Reference for the broader assessment-output schema; `FMP_007 OrgTree Modernization` for the organizational spine this discovery feeds |

@@ -138,9 +138,7 @@ different artifact type that needs its own tooling.
 CISA's identity pillar treats identity as one of five concerns. FMP's
 canon takes a stronger position, declared in
 the program decision:
-**identity is the root namespace.** (Operationally this is the
-the organizational-attribute model governance pillar — the governed
-addressing plane the ZT policy subject composes against.) Devices, addresses, network paths,
+**identity is the root namespace.** Devices, addresses, network paths,
 applications, and data classifications are *named* via identity; they do
 not have parallel naming systems.
 

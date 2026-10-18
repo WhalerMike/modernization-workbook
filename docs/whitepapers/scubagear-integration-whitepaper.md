@@ -331,16 +331,6 @@ That is the full round trip for one finding. Every SCuBA policy result
 in a real run — pass, fail, manual, or not-applicable — takes the same
 four hops; `MS.AAD.1.1v1` is simply a concrete stand-in for the class.
 
-**Identity foundation beneath the Azure SSOT stack.** The
-FMP the organizational-attribute model chapter 07a — FMP Beneath the Azure SSOT Stack
-positions the identity-governance substrate beneath the Microsoft
-Fabric + OneLake + Purview Azure SSOT stack. ScubaGear is the
-configuration-baseline assessor for the Entra ID identity plane that
-chapter 07a depends on. When chapter 07a says "the Azure SSOT stack
-assumes a trusted, consistent, continuously-verified Entra ID identity
-plane," ScubaGear's interval-evidence emission is one of the substrate
-mechanisms that produces that continuous verification.
-
 **Reference deployment.** For a synthetic end-to-end engagement that
 exercises the AD survey adapter, the spn_inventory artifact, the
 OrgTree readiness bundle, the B.1.1 three-way conflict finding, the SQL

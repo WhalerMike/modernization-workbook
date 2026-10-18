@@ -42,7 +42,7 @@ The Federal Modernization Program Governance Operating System (Governance OS) is
 
 The OrgTree is a hierarchical identity structure that replaces legacy Organizational Unit (OU)-based Active Directory models with a portable, attribute-driven hierarchy encoded as independently-validated facets in Entra ID extension attributes. Each identity object carries an the organizational-attribute model---a deterministic, codebook-validated set of facets (Region, Department, Division and the rest), plus a derived canonical path recomputed from them---that encodes its exact position in the organizational hierarchy. Dynamic groups, Administrative Units, role-based delegation, Conditional Access policies, and telemetry all derive from this single canonical attribute, eliminating structural duplication and ensuring that every governance decision is traceable to a single source of truth.
 
-This master document, together with Appendices A through Z, constitutes the full canonical corpus. Every appendix is a standalone, internally complete governance artifact. Taken together, the corpus defines: the codebook of valid the organizational-attribute models (Appendix A), the dynamic groups that implement them (Appendix B), the attribute mappings from legacy to modern (Appendix C), the delegation model (Appendix D), every governance workflow (Appendix E), a step-by-step migration runbook (Appendix F), all architectural diagrams in text-rendered form (Appendix G), the JSON schemas (Appendix H), PowerShell validation modules (Appendix I), enforcement test suites (Appendix J), decision trees (Appendix K), SLA models (Appendix L), drift detection engines (Appendix M), the Chrome-Claude execution substrate integration (Appendix N), a mock tenant test harness (Appendix O), boundary impact models (Appendix P), escalation playbooks (Appendix Q), the canonical repository structure (Appendix R), the governance state machine (Appendix S), identity risk scoring (Appendix T), multi-cloud boundary rules (Appendix U), contributor workflows (Appendix V), the error taxonomy (Appendix W), telemetry models (Appendix X), identity graph normalization (Appendix Y), and the complete glossary (Appendix Z).
+This master document, together with Appendices B through Z, constitutes the full canonical corpus. Every appendix is a standalone, internally complete governance artifact. Taken together, the corpus defines: the dynamic groups (Appendix B), the attribute mappings from legacy to modern (Appendix C), the delegation model (Appendix D), every governance workflow (Appendix E), a step-by-step migration runbook (Appendix F), all architectural diagrams in text-rendered form (Appendix G), PowerShell validation modules (Appendix I), enforcement test suites (Appendix J), decision trees (Appendix K), SLA models (Appendix L), drift detection engines (Appendix M), the Chrome-Claude execution substrate integration (Appendix N), a mock tenant test harness (Appendix O), boundary impact models (Appendix P), escalation playbooks (Appendix Q), the canonical repository structure (Appendix R), the governance state machine (Appendix S), identity risk scoring (Appendix T), multi-cloud boundary rules (Appendix U), contributor workflows (Appendix V), the error taxonomy (Appendix W), telemetry models (Appendix X), identity graph normalization (Appendix Y), and the complete glossary (Appendix Z).
 
 +------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 | **Canon Rule**                                                                                                                                                                                       |
@@ -136,7 +136,6 @@ The following table enumerates all 26 appendices that comprise the full canonica
   ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
   **Letter**   **Title**                                        **Category**    **Status**   **Description**
   ------------ ------------------------------------------------ --------------- ------------ --------------------------------------------------------------------------------------
-  A            the organizational-attribute model Codebook                                 Codebook        Canonical    Complete enumeration of the organizational-attribute model hierarchy codes and validation rules
 
   B            Dynamic Group Library                            Library         Canonical    All dynamic group definitions implementing OrgTree membership
 
@@ -149,8 +148,6 @@ The following table enumerates all 26 appendices that comprise the full canonica
   F            Migration Runbook (OU to Entra)                  Runbook         Canonical    Step-by-step migration from legacy OU structure to OrgTree
 
   G            Diagram Pack (Text-Rendered)                     Specification   Canonical    All architectural and workflow diagrams in ASCII format
-
-  H            the organizational-attribute model JSON Schema                              Schema          Canonical    JSON Schema 2020-12 definitions for all OrgTree data objects
 
   I            PowerShell Validation Module                     Runbook         Canonical    PowerShell functions for OrgTree validation and reporting
 
@@ -193,7 +190,7 @@ The following table enumerates all 26 appendices that comprise the full canonica
 
 Every governance artifact traverses a defined lifecycle from creation to archival. The lifecycle is a directed acyclic state machine with seven primary states and governed transitions. No artifact may skip states, and every transition requires both an authorized actor and a satisfied guard condition.
 
-**Author:** A governance steward drafts a new artifact or modification, following the contributor workflow (Appendix V) and conforming to canonical schemas (Appendix H).
+**Author:** A governance steward drafts a new artifact or modification, following the contributor workflow (Appendix V).
 
 **Validate:** The artifact undergoes automated validation against JSON schemas, PowerShell lint rules, boundary compliance checks, and governance enforcement tests (Appendix J). Validation is deterministic: an artifact either passes all gates or is returned to the Author state with specific error codes (Appendix W).
 
@@ -299,104 +296,6 @@ The Governance OS employs a two-brain architecture that separates governance rea
 
 Full Canonical Corpus
 
-# Appendix A --- the organizational-attribute model Codebook
-
-## Purpose
-
-This appendix used to carry a full enumeration of the organizational-attribute model codes. It no
-longer does, and that is deliberate: a second copy of the codebook in a
-narrative document is a second source of truth, and it drifted from the
-real one.
-
-The codebook is **executable canon**, not prose. It lives at
-[`src/fmp/canon/data/orgpath/codebook.yaml`],
-is validated by
-[`codebook.schema.json`],
-and is loaded by the drift engine and every adapter at runtime. The
-narrative counterpart is
-FMP_151;
-the reader-facing walkthrough is the
-the organizational-attribute model Codebook page.
-
-## Scope
-
-What the model is, in one page. Anything more specific --- the facet
-enumerations, the slot map, deprecations --- is read from the codebook,
-never transcribed here.
-
-## Canonical Structure
-
-Organizational identity is **not** a composite path string. Per
-the program decision it is a
-set of independently-validated facets, each bound to one
-`onPremisesExtensionAttribute` slot, and per
-the program decision a derived
-canonical path is recomputed from the hierarchy facets on slot 15. Two
-layers, one codebook:
-
-- **Governance layer** --- one semantic facet per slot: Region,
-  Department, Division, Role, CostCenter, Classification, HireDate,
-  TermDate, ClearanceLevel, AccountType on slots 1--10, and the
-  tenant-extension facets AdminTier, DeviceType and Environment on slots
-  11--13 per the program decision.
-  Each value is validated against **its own** enumeration, so a bad
-  Division is one finding about Division rather than a malformed path.
-
-- **Inheritance layer** --- `extensionAttribute15` carries the derived
-  the organizational-attribute model, composed Region, Department, Division in that order as
-  `Label=value|` segments with the trailing delimiter always present. It
-  is never hand-authored: it is recomputed on every stamp, and any stored
-  value that differs from the recomputation is drift.
-
-Not every defined facet is written. Per
-the program decision only the
-*projected* subset is stamped to a directory slot; the rest keep their
-semantics without consuming one. The projected count is a property of the
-codebook, so read it from the codebook.
-
-Rules select on whichever layer answers the question: a department-wide or
-cross-cutting scope is boolean facet composition, a node-exact scope adds
-the division facet, and only a **subtree** scope uses the derived path ---
-anchored at `Region=` and delimiter-terminated, because the path is
-composed region-first.
-
-## Boundary Rules
-
-- The codebook is the only source of valid facet values. This document
-  does not restate them, and a value is valid because the codebook says
-  so, not because prose here agrees.
-
-- Slot assignments for the named facets are canonical and MUST NOT be
-  remapped without a superseding ADR. `extensionAttribute14` remains the
-  one unclaimed extension slot.
-
-- Physical place is **not** an the organizational-attribute model facet. Site, building and floor are
-  LocPath's axis, which claims no `extensionAttribute` slot at all
-  (the program decision §D5); governance rules predicate on the the organizational-attribute model × LocPath
-  matrix.
-
-- the organizational-attribute model facet values are stored in their codebook slots and the derived
-  path on `extensionAttribute15`, all on the Entra ID directory object and
-  therefore within the M365 GCC-Moderate boundary.
-
-- No the organizational-attribute model may reference external systems or identifiers outside the
-  M365 SaaS perimeter.
-
-
-## Drift Considerations
-
-- **Value Drift:** A facet slot holds a value that is not in that facet\'s own enumeration. Reported per facet, so a bad Division is one finding about Division. Severity: High. Auto-remediate: No (requires investigation).
-
-- **Derived-path Drift:** The stored `extensionAttribute15` does not equal the value recomputed from the hierarchy facets. Because the path is a pure function of those facets, this is mechanically detectable rather than a matter of judgement. Severity: Critical. Auto-remediate: No (recompute and restamp under change control).
-
-- **Schema Drift:** A rule or object references a slot the codebook does not bind, or populates a slot still marked reserved. Severity: Critical. Auto-remediate: No.
-
-- **Phantom Drift:** A facet value has been deprecated in the codebook but is still present on principals. The codebook names the governed successor. Severity: Medium. Auto-remediate: Yes (flag for reassignment).
-
-## Governance Alignment
-
-This appendix implements Principle 2 (Schema Fixity): the facet-to-slot bindings are fixed and move only by superseding ADR; facet *values* change through the the organizational-attribute model Registration workflow (Appendix E, Workflow 1), applied to `codebook.yaml` by governed PR rather than to this page. Every addition, deprecation, or modification to this codebook requires a governed PR through the contributor workflow (Appendix V), passing all validation gates (Appendix J, Schema Tests), and receiving approval from the Governance Board.
-
 # Appendix B --- Dynamic Group Library
 
 ## Purpose
@@ -472,11 +371,11 @@ beginning at `Department=` matches nothing at all (the program decision).
 
 - **Phantom Group:** A group exists in the tenant with OrgTree- prefix but has no entry in this library. Severity: Medium. Auto-remediate: No (investigate, then delete or canonize).
 
-- **Membership Drift:** Group membership does not reflect expected user set due to stale attribute values. Root cause is in Appendix A (the organizational-attribute model values), not group rules.
+- **Membership Drift:** Group membership does not reflect expected user set due to stale attribute values. Root cause is in the attribute values, not group rules.
 
 ## Governance Alignment
 
-This library implements Principle 1 (Deterministic State): every group\'s membership is fully determined by its rule and the current state of user attributes. No discretionary membership exists. Changes to this library follow Workflow 3 (Dynamic Group Creation/Modification) in Appendix E and require validation per Appendix J Group Tests.
+This library implements Principle 1 (Deterministic State): every group\'s membership is fully determined by its rule and the current state of user attributes. No discretionary membership exists. Changes to this library follow Workflow 1 (Dynamic Group Creation/Modification) in Appendix E and require validation per Appendix J Group Tests.
 
 # Appendix C --- Attribute Mapping Table
 
@@ -560,7 +459,7 @@ Each mapping defines a one-to-one correspondence between a legacy AD attribute a
 
 ## Governance Alignment
 
-This mapping implements Principle 2 (Schema Fixity): the set of mapped attributes and their types are fixed. Validation rules are enforced by the PowerShell module (Appendix I) and tested by the enforcement test suite (Appendix J). Any change to this mapping requires Workflow 4 (Attribute Schema Change Request) in Appendix E.
+This mapping implements Principle 2 (Schema Fixity): the set of mapped attributes and their types are fixed. Validation rules are enforced by the PowerShell module (Appendix I) and tested by the enforcement test suite (Appendix J). Any change to this mapping requires Workflow 2 (Attribute Schema Change Request) in Appendix E.
 
 # Appendix D --- Delegation Matrix (AUs + Roles)
 
@@ -659,7 +558,7 @@ delegation it carries quietly applies to no one.
 
 - Restricted management AUs prevent unscoped Global Administrators from managing members without explicit AU-scoped assignment.
 
-- Role assignments must use Entra ID built-in roles only; custom role definitions require governance approval through Appendix E, Workflow 5.
+- Role assignments must use Entra ID built-in roles only; custom role definitions require governance approval through Appendix E, Workflow 3.
 
 ## Drift Considerations
 
@@ -671,7 +570,7 @@ delegation it carries quietly applies to no one.
 
 ## Governance Alignment
 
-This matrix implements Principle 1 (Deterministic State) for administration: every administrative action has exactly one authorized path. It also enforces Principle 5 (Boundary Enforcement): no delegation extends beyond M365 GCC-Moderate. Changes follow Workflow 5 (Delegation Change) in Appendix E.
+This matrix implements Principle 1 (Deterministic State) for administration: every administrative action has exactly one authorized path. It also enforces Principle 5 (Boundary Enforcement): no delegation extends beyond M365 GCC-Moderate. Changes follow Workflow 3 (Delegation Change) in Appendix E.
 
 # Appendix E --- Governance Workflow Catalog
 
@@ -689,27 +588,7 @@ Each workflow is defined by its trigger event, a set of ordered states, transiti
 
 ## Technical Scaffolding
 
-### Workflow 1: New the organizational-attribute model Registration
-
-**Trigger:** Request to add a new the organizational-attribute model code to the codebook (Appendix A).
-
-**States:** Requested → Validated → Approved → Provisioned → Verified → Canonical
-
-**SLA:** 5 business days end-to-end. **Owner:** Governance Steward. **Escalation:** Governance Board at SLA+2 days.
-
-\[Requested\]\--validate format\--\>\[Validated\]\--governance review\--\>\[Approved\] \| \| \| invalid reject provision v v in tenant \[Rejected\] \[Rejected\] \| v \[Provisioned\] \| run tests v \[Verified\] \| merge to repo v \[Canonical\]
-
-### Workflow 2: the organizational-attribute model Deprecation
-
-**Trigger:** Request to deprecate an existing the organizational-attribute model code.
-
-**States:** Requested → Impact Assessed → Users Reassigned → Groups Updated → AUs Updated → Deprecated → Archived
-
-**SLA:** 10 business days. **Owner:** Governance Steward. **Escalation:** Governance Board at SLA+3 days.
-
-\[Requested\]\--assess impact\--\>\[Impact Assessed\]\--reassign users\--\>\[Users Reassigned\] \| update groups v \[Groups Updated\] \| update AUs v \[AUs Updated\] \| set status=deprecated v \[Deprecated\] \| after 90 days v \[Archived\]
-
-### Workflow 3: Dynamic Group Creation/Modification
+### Workflow 1: Dynamic Group Creation/Modification
 
 **Trigger:** New group needed or existing group rule change.
 
@@ -717,7 +596,7 @@ Each workflow is defined by its trigger event, a set of ordered states, transiti
 
 **SLA:** 3 business days. **Owner:** Identity Engineer. **Escalation:** Governance Steward at SLA+1 day.
 
-### Workflow 4: Attribute Schema Change Request
+### Workflow 2: Attribute Schema Change Request
 
 **Trigger:** Request to add, modify, or remove an attribute mapping (Appendix C).
 
@@ -725,7 +604,7 @@ Each workflow is defined by its trigger event, a set of ordered states, transiti
 
 **SLA:** 10 business days. **Owner:** Governance Steward. **Escalation:** Governance Board at SLA+3 days.
 
-### Workflow 5: Delegation Change (AU/Role Modification)
+### Workflow 3: Delegation Change (AU/Role Modification)
 
 **Trigger:** Request to add, modify, or remove an AU or role assignment (Appendix D).
 
@@ -733,7 +612,7 @@ Each workflow is defined by its trigger event, a set of ordered states, transiti
 
 **SLA:** 5 business days. **Owner:** Security Steward. **Escalation:** Governance Board at SLA+2 days.
 
-### Workflow 6: Drift Detection Response
+### Workflow 4: Drift Detection Response
 
 **Trigger:** Drift detection engine (Appendix M) raises an alert.
 
@@ -743,7 +622,7 @@ Each workflow is defined by its trigger event, a set of ordered states, transiti
 
 \[Detected\]\--classify\--\>\[Classified\]\--assign owner\--\>\[Assigned\] \| investigate v \[Investigating\] \| apply fix v \[Remediating\] \| run validation v \[Verified\]\--pass\--\>\[Closed\] \| fail v \[Remediating\] (loop)
 
-### Workflow 7: SLA Breach Escalation
+### Workflow 5: SLA Breach Escalation
 
 **Trigger:** SLA timer exceeds threshold for any governance operation.
 
@@ -751,7 +630,7 @@ Each workflow is defined by its trigger event, a set of ordered states, transiti
 
 **SLA:** Defined per escalation level (see Appendix Q). **Owner:** Current operation owner. **Escalation:** Automatic per ladder.
 
-### Workflow 8: Governance Artifact Update (PR-Based)
+### Workflow 6: Governance Artifact Update (PR-Based)
 
 **Trigger:** Any change to any canonical document in the Governance OS repository.
 
@@ -773,7 +652,7 @@ Each workflow is defined by its trigger event, a set of ordered states, transiti
 
 - A change executed outside a defined workflow is drift by definition.
 
-- Workflow state must be tracked; if a workflow stalls in a non-terminal state beyond its SLA, the SLA Breach Escalation workflow (Workflow 7) triggers automatically.
+- Workflow state must be tracked; if a workflow stalls in a non-terminal state beyond its SLA, the SLA Breach Escalation workflow (Workflow 5) triggers automatically.
 
 ## Governance Alignment
 
@@ -823,13 +702,13 @@ The migration consists of eight sequential phases. Each phase has prerequisites,
 
 ### Phase 2: the organizational-attribute model Mapping
 
-**Prerequisites:** Phase 1 discovery report completed; the organizational-attribute model Codebook (Appendix A) finalized.
+**Prerequisites:** Phase 1 discovery report completed.
 
 **Estimated Duration:** 5--7 business days. **Owner:** Governance Steward.
 
 **Steps:**
 
-1. For each legacy OU, identify the corresponding the organizational-attribute model code from Appendix A.
+1. For each legacy OU, identify the corresponding the organizational-attribute model code.
 
 2. Create a mapping table: Legacy OU Distinguished Name → the organizational-attribute model Code.
 
@@ -1084,56 +963,11 @@ Time Elapsed Escalation Level Action \-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\
 
 ## Drift Considerations
 
-- Diagrams are governance artifacts; if the architecture they depict changes, the diagrams must be updated through the Governance Artifact Update workflow (Appendix E, Workflow 8).
+- Diagrams are governance artifacts; if the architecture they depict changes, the diagrams must be updated through the Governance Artifact Update workflow (Appendix E, Workflow 6).
 
 ## Governance Alignment
 
 These diagrams implement the Governance OS commitment to transparency and determinism. Every architectural relationship is visible, every state transition is documented, and every boundary is marked.
-
-# Appendix H --- the organizational-attribute model JSON Schema
-
-## Purpose
-
-This appendix used to inline a JSON Schema for a single the organizational-attribute model code
-entry. It no longer does. That schema described the retired Model A
-shape --- one composite code with a parent path and a child regex --- and
-a schema transcribed into a narrative document is a second contract that
-cannot be validated against the first.
-
-## Scope
-
-Where the real schemas live, and what each one governs.
-
-## Canonical Structure
-
-| Contract | Schema | Governs |
-| :--- | :--- | :--- |
-| The codebook itself | [`schemas/orgpath/codebook.schema.json`] | Facet declarations: the slot each facet binds to, its kind (`enumerated` / `typed` / `reserved`), its enumeration or value pattern, whether it is projected, and whether an empty slot is legitimate |
-| Binding profiles | [`schemas/orgpath/binding-profile.schema.json`] | How facets are carried on non-Entra targets (the program decision) |
-| Readiness evidence | [`schemas/orgtree-readiness/`] | The auditor-facing readiness bundle |
-
-Every schema under `src/fmp/schemas/` is enforced in CI by the
-schema-validation workflow, so a change to a contract fails the build
-rather than diverging quietly from prose. There is no per-code entry
-schema, because there are no codes --- there are facets, and the codebook
-schema governs them.
-
-
-## Boundary Rules
-
-- All schema \$id URIs are namespace identifiers only; they do not imply an external hosting dependency.
-
-- Schemas validate data structures used within M365 GCC-Moderate operations exclusively.
-
-## Drift Considerations
-
-- **Schema Drift:** If a data object in the repository does not validate against its schema, that constitutes schema drift. Severity: Critical.
-
-- Schema changes must follow Workflow 4 (Attribute Schema Change Request) in Appendix E.
-
-## Governance Alignment
-
-These schemas are the machine-readable expression of Principle 2 (Schema Fixity). The additionalProperties: false constraint on every schema ensures that no ungovern attributes can be introduced without a schema change, which requires a governed workflow.
 
 # Appendix I --- PowerShell Validation Module
 
@@ -1180,7 +1014,7 @@ and canon drift apart.
 
 ## Drift Considerations
 
-- The validation module itself is a governance artifact; changes to function logic require Workflow 8 (Governance Artifact Update).
+- The validation module itself is a governance artifact; changes to function logic require Workflow 6 (Governance Artifact Update).
 
 - Function outputs are the primary input to drift classification (Appendix M).
 
@@ -1267,7 +1101,7 @@ Each test has a unique ID, name, category, defined input, expected output, pass 
 
   GOV-TST-030   Restricted AU prevents unscoped mgmt       Delegation     AU with restricted=Y                      Only scoped admins can manage   Restriction flag is set              High
 
-  GOV-TST-031   No custom roles without approval           Delegation     All role definitions                      Only built-in roles used        Custom roles require Workflow 5      Medium
+  GOV-TST-031   No custom roles without approval           Delegation     All role definitions                      Only built-in roles used        Custom roles require Workflow 3      Medium
 
   GOV-TST-032   Delegation does not cross boundary         Delegation     All role assignments                      All within M365 GCC-Mod         No external service references       Critical
 
@@ -1277,7 +1111,7 @@ Each test has a unique ID, name, category, defined input, expected output, pass 
 
   GOV-TST-035   Schema violation classified correctly      Drift          the organizational-attribute model = ORG-fin (lowercase)             SchemaViolation category        Correct drift category assigned      High
 
-  GOV-TST-036   Authorized change not flagged as drift     Drift          the organizational-attribute model change via Workflow 1             No drift alert                  Provenance tag suppresses alert      High
+  GOV-TST-036   Authorized change not flagged as drift     Drift          the organizational-attribute model change via approved workflow             No drift alert                  Provenance tag suppresses alert      High
 
   GOV-TST-037   Group rule change detected                 Drift          MembershipRule modified in tenant         Rule drift entry                Test-DynamicGroupAlignment catches   Critical
 
@@ -1296,7 +1130,7 @@ Each test has a unique ID, name, category, defined input, expected output, pass 
 
 ## Drift Considerations
 
-- The test suite itself is a governance artifact. Adding, removing, or modifying tests requires Workflow 8.
+- The test suite itself is a governance artifact. Adding, removing, or modifying tests requires Workflow 6.
 
 - A test suite that does not pass prevents any canonical publication (hard gate).
 
@@ -1312,7 +1146,7 @@ This appendix defines deterministic decision trees for all governance enforcemen
 
 ## Scope
 
-Covers five decision trees: the organizational-attribute model Validation, Drift Classification, Escalation, Migration Readiness, and Boundary Compliance. All decisions apply within the M365 GCC-Moderate boundary.
+Covers four decision trees: Drift Classification, Escalation, Migration Readiness, and Boundary Compliance. All decisions apply within the M365 GCC-Moderate boundary.
 
 ## Canonical Structure
 
@@ -1320,29 +1154,25 @@ Each decision tree has labeled decision nodes (questions), branch conditions (ye
 
 ## Technical Scaffolding
 
-### Decision Tree 1: the organizational-attribute model Validation
-
-\[INPUT: facet name + value\] \| v \[Q1\] Does the codebook bind that facet to a slot? \| \| YES NO \--\> REJECT: GOV-SCH-001 (Unbound or reserved slot) \| v \[Q2\] Is the value in that facet\'s own enumeration (or empty on an optional facet)? \| \| YES NO \--\> REJECT: GOV-VAL-001 (Orphan path) \| v \[Q3\] Is hierarchy depth within maxDepth of parent? \| \| YES NO \--\> REJECT: GOV-HIR-002 (Depth exceeded) \| v \[Q4\] Is the organizational-attribute model status = \"active\" in codebook? \| \| YES NO \--\> REJECT: GOV-SCH-002 (Deprecated/pending) \| v ACCEPT: the organizational-attribute model is valid.
-
-### Decision Tree 2: Drift Classification
+### Decision Tree 1: Drift Classification
 
 \[INPUT: Detected change on identity object\] \| v \[Q1\] Is the attribute that changed part of the OrgTree schema (Appendix C)? \| \| YES NO \--\> CLASSIFY: Out-of-Scope (not OrgTree drift) \| v \[Q2\] Was the change executed through a governed workflow (Appendix E)? \| \| YES NO \--\> Go to Q3 \| v CLASSIFY: Authorized Change (no action required) \[Q3\] Does the new value conform to the attribute\'s validation rule? \| \| YES NO \--\> CLASSIFY: Schema Violation \| Severity: Critical v Auto-remediate: No \[Q4\] Does the new value exist in the codebook/enumeration? \| \| YES NO \--\> CLASSIFY: Value Drift \| Severity: High v Auto-remediate: No \[Q5\] Is the parent-child relationship still valid? \| \| YES NO \--\> CLASSIFY: Hierarchy Drift \| Severity: Critical v Auto-remediate: No CLASSIFY: Unauthorized Drift Severity: High Auto-remediate: No Action: Assign to owner for investigation
 
-### Decision Tree 3: Escalation
+### Decision Tree 2: Escalation
 
 \[INPUT: Governance operation with SLA timer\] \| v \[Q1\] What is the severity of the operation? \| \| \| \| CRITICAL HIGH MEDIUM LOW \| \| \| \| v v v v SLA=4hr SLA=8hr SLA=24hr SLA=72hr \| v \[Q2\] Has 75% of SLA elapsed? \| \| YES NO \--\> NORMAL: Owner continues working \| v ESCALATE Level 1: Notify owner (warning) \[Q3\] Has 100% of SLA elapsed? \| \| YES NO \--\> MONITOR: Level 1 active \| v ESCALATE Level 2: Notify manager, escalate ticket \[Q4\] Has 150% of SLA elapsed? \| \| YES NO \--\> MONITOR: Level 2 active \| v ESCALATE Level 3: Governance Board review, assign backup \[Q5\] Has 200% of SLA elapsed OR severity = CRITICAL? \| \| YES NO \--\> MONITOR: Level 3 active \| v ESCALATE Level 4: EMERGENCY Executive notification Mandatory remediation within 4 hours
 
-### Decision Tree 4: Migration Readiness
+### Decision Tree 3: Migration Readiness
 
 \[INPUT: Request to begin migration phase N\] \| v \[Q1\] Has Phase N-1 validation criteria been met? \| \| YES NO \--\> HOLD: Blocker MIG-BLK-001 (prerequisite unmet) \| v \[Q2\] Are all required roles assigned to migration team? \| \| YES NO \--\> HOLD: Blocker MIG-BLK-002 (missing roles) \| v \[Q3\] Is the rollback procedure documented and tested? \| \| YES NO \--\> HOLD: Blocker MIG-BLK-003 (no rollback) \| v \[Q4\] Has the governance steward signed off on phase plan? \| \| YES NO \--\> HOLD: Blocker MIG-BLK-004 (no approval) \| v PROCEED: Begin Phase N execution.
 
-### Decision Tree 5: Boundary Compliance
+### Decision Tree 4: Boundary Compliance
 
 \[INPUT: Governance artifact or instruction set\] \| v \[Q1\] Does the artifact reference any external service by name or endpoint? \| \| YES NO \--\> COMPLIANT: No boundary references \| v \[Q2\] Is the referenced service in the M365 GCC-Moderate service list (Appendix U)? \| \| YES NO \--\> NON-COMPLIANT: GOV-BND-001 \| Violation: Out-of-scope service v Action: Reject artifact \[Q3\] Does the artifact use the GCC-Moderate API endpoint for that service? \| \| YES NO \--\> NON-COMPLIANT: GOV-BND-002 \| Violation: Wrong endpoint v COMPLIANT: All service references are within boundary.
 
 ## Boundary Rules
 
-- Decision Tree 5 is itself the boundary compliance enforcement mechanism.
+- Decision Tree 4 is itself the boundary compliance enforcement mechanism.
 
 - All decision outcomes reference error codes from the Error Taxonomy (Appendix W).
 
@@ -1350,7 +1180,7 @@ Each decision tree has labeled decision nodes (questions), branch conditions (ye
 
 - If a decision tree is not followed for a governance action, the action itself constitutes procedural drift.
 
-- Decision trees are governance artifacts; changes require Workflow 8.
+- Decision trees are governance artifacts; changes require Workflow 6.
 
 ## Governance Alignment
 
@@ -1384,10 +1214,6 @@ SLAs are defined per operation type with severity, target duration, escalation t
   Medium Drift Remediation      24 hours         Medium         18 hours                   Identity Engineer
 
   Low Drift Remediation         72 hours         Low            54 hours                   Identity Engineer
-
-  New the organizational-attribute model Registration      40 hours         Medium         30 hours                   Governance Steward
-
-  the organizational-attribute model Deprecation           80 hours         Medium         60 hours                   Governance Steward
 
   Dynamic Group Change          24 hours         High           18 hours                   Identity Engineer
 
@@ -1428,7 +1254,7 @@ SLAs are defined per operation type with severity, target duration, escalation t
 
 ### Heatmap Template
 
-Operation \| Week 1 \| Week 2 \| Week 3 \| Week 4 \-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\--+\-\-\-\-\-\-\-\--+\-\-\-\-\-\-\-\--+\-\-\-\-\-\-\-\--+\-\-\-\-\-\-\-- Critical Drift Remed. \| \[OK\] \| \[OK\] \| \[WARN\] \| \[OK\] High Drift Remed. \| \[OK\] \| \[BREACH\]\| \[OK\] \| \[OK\] the organizational-attribute model Registration \| \[OK\] \| \[OK\] \| \[OK\] \| \[WARN\] Dynamic Group Change \| \[OK\] \| \[OK\] \| \[OK\] \| \[OK\] Delegation Change \| \[OK\] \| \[OK\] \| \[BREACH\]\| \[OK\] PR Review Completion \| \[WARN\] \| \[OK\] \| \[OK\] \| \[OK\] Test Suite Execution \| \[OK\] \| \[OK\] \| \[OK\] \| \[OK\] Boundary Violation Resp.\| \[OK\] \| \[CRIT\] \| \[OK\] \| \[OK\] Legend: \[OK\]=Within SLA \[WARN\]=Approaching \[BREACH\]=Exceeded \[CRIT\]=Critical
+Operation \| Week 1 \| Week 2 \| Week 3 \| Week 4 \-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\--+\-\-\-\-\-\-\-\--+\-\-\-\-\-\-\-\--+\-\-\-\-\-\-\-\--+\-\-\-\-\-\-\-- Critical Drift Remed. \| \[OK\] \| \[OK\] \| \[WARN\] \| \[OK\] High Drift Remed. \| \[OK\] \| \[BREACH\]\| \[OK\] \| \[OK\] Dynamic Group Change \| \[OK\] \| \[OK\] \| \[OK\] \| \[OK\] Delegation Change \| \[OK\] \| \[OK\] \| \[BREACH\]\| \[OK\] PR Review Completion \| \[WARN\] \| \[OK\] \| \[OK\] \| \[OK\] Test Suite Execution \| \[OK\] \| \[OK\] \| \[OK\] \| \[OK\] Boundary Violation Resp.\| \[OK\] \| \[CRIT\] \| \[OK\] \| \[OK\] Legend: \[OK\]=Within SLA \[WARN\]=Approaching \[BREACH\]=Exceeded \[CRIT\]=Critical
 
 ### Reliability Dashboard Data Model
 
@@ -1458,7 +1284,7 @@ Operation \| Week 1 \| Week 2 \| Week 3 \| Week 4 \-\-\-\-\-\-\-\-\-\-\-\-\-\-\-
 
 ## Drift Considerations
 
-- SLA definitions are governance artifacts; changes require Workflow 8.
+- SLA definitions are governance artifacts; changes require Workflow 6.
 
 - A persistently breached SLA category indicates systemic drift in governance capacity.
 
@@ -1566,7 +1392,7 @@ FUNCTION CompareTenantToBaseline(baseline, current): driftEntries = \[\] FOR EAC
 
 ## Drift Considerations
 
-- The engine specification itself is a governance artifact subject to Workflow 8.
+- The engine specification itself is a governance artifact subject to Workflow 6.
 
 - If the engine fails to detect a known drift condition, that constitutes an engine defect requiring immediate remediation.
 
@@ -1614,7 +1440,7 @@ The integration follows a request-response pattern: Copilot produces an instruct
 
 1. Copilot generates an instruction set conforming to the schema above.
 
-2. Copilot validates the instruction against all boundary rules (Appendix K, Decision Tree 5).
+2. Copilot validates the instruction against all boundary rules (Appendix K, Decision Tree 4).
 
 3. Copilot dispatches the validated instruction to Chrome-Claude.
 
@@ -1656,7 +1482,7 @@ The integration follows a request-response pattern: Copilot produces an instruct
 
 - If Chrome-Claude executes an instruction that Copilot did not generate, that constitutes execution substrate drift. Severity: Critical.
 
-- Integration layer changes require Workflow 8.
+- Integration layer changes require Workflow 6.
 
 ## Governance Alignment
 
@@ -1716,7 +1542,7 @@ The mock tenant is an in-memory data structure (PowerShell hashtable) that simul
 
 ## Drift Considerations
 
-- The mock tenant is a testing artifact; drift in mock data is intentional (for testing). Drift in the harness code itself requires Workflow 8.
+- The mock tenant is a testing artifact; drift in mock data is intentional (for testing). Drift in the harness code itself requires Workflow 6.
 
 ## Governance Alignment
 
@@ -1786,7 +1612,7 @@ Each boundary change is assessed across five impact categories with severity sco
 
 - An implemented boundary change without a completed impact assessment constitutes governance drift.
 
-- Impact model changes require Workflow 8.
+- Impact model changes require Workflow 6.
 
 ## Governance Alignment
 
@@ -1928,7 +1754,7 @@ Covers the complete repository layout including documentation, schemas, PowerShe
 
 ## Canonical Structure
 
-fmp-governance-os/ \|\-- README.md \# Repository overview and quick-start guide \|\-- GOVERNANCE.md \# Governance principles and contribution rules \|\-- .github/ \| \|\-- CODEOWNERS \# Maps directories to governance role reviewers \| \|\-- workflows/ \| \|\-- validate-schema.yml \# CI: Validates JSON schemas on every PR \| \|\-- validate-powershell.yml \# CI: Lints PowerShell modules on every PR \| \|\-- drift-check.yml \# Scheduled: Runs drift detection daily \|\-- docs/ \| \|\-- master-document.md \# Part 1: Master document (Sections 1-7) \| \|\-- appendices/ \| \|\-- A-orgpath-codebook.md \# Appendix A \| \|\-- B-dynamic-group-library.md \# Appendix B \| \|\-- C-attribute-mapping.md \# Appendix C \| \|\-- D-delegation-matrix.md \# Appendix D \| \|\-- E-governance-workflows.md \# Appendix E \| \|\-- F-migration-runbook.md \# Appendix F \| \|\-- G-diagram-pack.md \# Appendix G \| \|\-- H-json-schemas.md \# Appendix H \| \|\-- I-powershell-module.md \# Appendix I \| \|\-- J-test-suite.md \# Appendix J \| \|\-- K-decision-trees.md \# Appendix K \| \|\-- L-sla-model.md \# Appendix L \| \|\-- M-drift-engine.md \# Appendix M \| \|\-- N-chrome-claude-integration.md \# Appendix N \| \|\-- O-mock-tenant.md \# Appendix O \| \|\-- P-boundary-impact.md \# Appendix P \| \|\-- Q-escalation-playbooks.md \# Appendix Q \| \|\-- R-repo-structure.md \# Appendix R (this document) \| \|\-- S-state-machine.md \# Appendix S \| \|\-- T-risk-scoring.md \# Appendix T \| \|\-- U-boundary-model.md \# Appendix U \| \|\-- V-contributor-workflow.md \# Appendix V \| \|\-- W-error-taxonomy.md \# Appendix W \| \|\-- X-telemetry-model.md \# Appendix X \| \|\-- Y-normalization-model.md \# Appendix Y \| \|\-- Z-glossary.md \# Appendix Z \|\-- schemas/ \| \|\-- orgpath-entry.schema.json \# the organizational-attribute modelEntry JSON Schema \| \|\-- orgpath-codebook.schema.json \# the organizational-attribute modelCodebook JSON Schema \| \|\-- dynamic-group.schema.json \# DynamicGroupDefinition JSON Schema \| \|\-- attribute-mapping.schema.json \# AttributeMapping JSON Schema \| \|\-- instruction-set.schema.json \# InstructionSet JSON Schema \| \|\-- drift-report.schema.json \# DriftReport JSON Schema \|\-- modules/ \| \|\-- OrgTreeValidation/ \| \|\-- OrgTreeValidation.psd1 \# Module manifest \| \|\-- OrgTreeValidation.psm1 \# Module script (6 functions) \| \|\-- Tests/ \| \|\-- OrgTreeValidation.Tests.ps1 \# Pester tests for module \|\-- tests/ \| \|\-- governance-enforcement/ \# Test definitions from Appendix J \| \|\-- mock-tenant/ \# Mock tenant harness from Appendix O \|\-- telemetry/ \| \|\-- schemas/ \# Telemetry event schemas \| \|\-- dashboards/ \# Dashboard specifications \|\-- diagrams/ \# ASCII diagram source files
+fmp-governance-os/ \|\-- README.md \# Repository overview and quick-start guide \|\-- GOVERNANCE.md \# Governance principles and contribution rules \|\-- .github/ \| \|\-- CODEOWNERS \# Maps directories to governance role reviewers \| \|\-- workflows/ \| \|\-- validate-schema.yml \# CI: Validates JSON schemas on every PR \| \|\-- validate-powershell.yml \# CI: Lints PowerShell modules on every PR \| \|\-- drift-check.yml \# Scheduled: Runs drift detection daily \|\-- docs/ \| \|\-- master-document.md \# Part 1: Master document (Sections 1-7) \| \|\-- appendices/ \| \|\-- B-dynamic-group-library.md \# Appendix B \| \|\-- C-attribute-mapping.md \# Appendix C \| \|\-- D-delegation-matrix.md \# Appendix D \| \|\-- E-governance-workflows.md \# Appendix E \| \|\-- F-migration-runbook.md \# Appendix F \| \|\-- G-diagram-pack.md \# Appendix G \| \|\-- I-powershell-module.md \# Appendix I \| \|\-- J-test-suite.md \# Appendix J \| \|\-- K-decision-trees.md \# Appendix K \| \|\-- L-sla-model.md \# Appendix L \| \|\-- M-drift-engine.md \# Appendix M \| \|\-- N-chrome-claude-integration.md \# Appendix N \| \|\-- O-mock-tenant.md \# Appendix O \| \|\-- P-boundary-impact.md \# Appendix P \| \|\-- Q-escalation-playbooks.md \# Appendix Q \| \|\-- R-repo-structure.md \# Appendix R (this document) \| \|\-- S-state-machine.md \# Appendix S \| \|\-- T-risk-scoring.md \# Appendix T \| \|\-- U-boundary-model.md \# Appendix U \| \|\-- V-contributor-workflow.md \# Appendix V \| \|\-- W-error-taxonomy.md \# Appendix W \| \|\-- X-telemetry-model.md \# Appendix X \| \|\-- Y-normalization-model.md \# Appendix Y \| \|\-- Z-glossary.md \# Appendix Z \|\-- schemas/ \| \|\-- orgpath-entry.schema.json \# the organizational-attribute modelEntry JSON Schema \| \|\-- orgpath-codebook.schema.json \# the organizational-attribute modelCodebook JSON Schema \| \|\-- dynamic-group.schema.json \# DynamicGroupDefinition JSON Schema \| \|\-- attribute-mapping.schema.json \# AttributeMapping JSON Schema \| \|\-- instruction-set.schema.json \# InstructionSet JSON Schema \| \|\-- drift-report.schema.json \# DriftReport JSON Schema \|\-- modules/ \| \|\-- OrgTreeValidation/ \| \|\-- OrgTreeValidation.psd1 \# Module manifest \| \|\-- OrgTreeValidation.psm1 \# Module script (6 functions) \| \|\-- Tests/ \| \|\-- OrgTreeValidation.Tests.ps1 \# Pester tests for module \|\-- tests/ \| \|\-- governance-enforcement/ \# Test definitions from Appendix J \| \|\-- mock-tenant/ \# Mock tenant harness from Appendix O \|\-- telemetry/ \| \|\-- schemas/ \# Telemetry event schemas \| \|\-- dashboards/ \# Dashboard specifications \|\-- diagrams/ \# ASCII diagram source files
 
 ### CODEOWNERS Rules
 
@@ -2138,7 +1964,7 @@ This user scores 84.4 → **Critical tier**. Required action: immediate remediat
 
 ## Drift Considerations
 
-- Risk factor weights and thresholds are governance artifacts; changes require Workflow 8.
+- Risk factor weights and thresholds are governance artifacts; changes require Workflow 6.
 
 - A consistently high average risk score across the tenant indicates systemic governance drift.
 
@@ -2268,7 +2094,7 @@ External systems cannot directly interact with the Governance OS. If an external
 
 - Any governance artifact that references an excluded service constitutes boundary drift. Detection rule DDE-015 (Appendix M) monitors for this.
 
-- Service availability changes by Microsoft must be reflected in this table through Workflow 8.
+- Service availability changes by Microsoft must be reflected in this table through Workflow 6.
 
 ## Governance Alignment
 
@@ -2314,7 +2140,7 @@ The workflow is a linear, gated process with automated and manual validation che
 
 ### PR Template
 
-\## Change Summary \[Brief description of what changed and why\] \## Change Type - \[ \] Codebook Update (Appendix A) - \[ \] Schema Change (Appendix H) - \[ \] Module Update (Appendix I) - \[ \] Workflow Modification (Appendix E) - \[ \] Documentation Update - \[ \] New Artifact - \[ \] Other: \_\_\_\_\_\_\_\_\_\_\_\_\_\_\_ \## Affected Appendices \[List all appendices affected by this change\] \## Boundary Impact - \[ \] No boundary impact - \[ \] Boundary impact assessed (attach assessment) \## Drift Risk Assessment \[Describe any new drift vectors this change introduces\] \## Rollback Plan \[Steps to reverse this change if post-merge validation fails\] \## Validation Checklist - \[ \] JSON schemas validate against JSON Schema 2020-12 - \[ \] PowerShell passes PSScriptAnalyzer with zero warnings - \[ \] No references to excluded services (Appendix U) - \[ \] All the organizational-attribute model codes match regex \^ORG(-\[A-Z\]{2,6}){0,4}\$ - \[ \] No tenant-specific values, GUIDs, or PII - \[ \] Error codes follow GOV-\[CAT\]-\[NUM\] format (Appendix W)
+\## Change Summary \[Brief description of what changed and why\] \## Change Type - \[ \] Module Update (Appendix I) - \[ \] Workflow Modification (Appendix E) - \[ \] Documentation Update - \[ \] New Artifact - \[ \] Other: \_\_\_\_\_\_\_\_\_\_\_\_\_\_\_ \## Affected Appendices \[List all appendices affected by this change\] \## Boundary Impact - \[ \] No boundary impact - \[ \] Boundary impact assessed (attach assessment) \## Drift Risk Assessment \[Describe any new drift vectors this change introduces\] \## Rollback Plan \[Steps to reverse this change if post-merge validation fails\] \## Validation Checklist - \[ \] JSON schemas validate against JSON Schema 2020-12 - \[ \] PowerShell passes PSScriptAnalyzer with zero warnings - \[ \] No references to excluded services (Appendix U) - \[ \] All the organizational-attribute model codes match regex \^ORG(-\[A-Z\]{2,6}){0,4}\$ - \[ \] No tenant-specific values, GUIDs, or PII - \[ \] Error codes follow GOV-\[CAT\]-\[NUM\] format (Appendix W)
 
 ### Validation Gates
 
@@ -2411,9 +2237,9 @@ Error codes follow the format GOV-\[CATEGORY\]-\[NUMBER\] where CATEGORY is a th
 
   GOV-DEL-004      Delegation     High           Restricted management flag not set on AU \'{auName}\' (expected Y)                             Enable restricted management                         Y
 
-  GOV-DEL-005      Delegation     Critical       Custom role definition \'{roleName}\' deployed without Workflow 5 approval                     Remove custom role; require proper approval          N
+  GOV-DEL-005      Delegation     Critical       Custom role definition \'{roleName}\' deployed without Workflow 3 approval                     Remove custom role; require proper approval          N
 
-  GOV-DRF-001      Drift          High           Value drift detected: \'{attribute}\' changed from \'{old}\' to \'{new}\' without provenance   Investigate and remediate per Workflow 6             N
+  GOV-DRF-001      Drift          High           Value drift detected: \'{attribute}\' changed from \'{old}\' to \'{new}\' without provenance   Investigate and remediate per Workflow 4             N
 
   GOV-DRF-002      Drift          Critical       Schema drift detected: object structure does not match canonical schema                        Restore canonical schema compliance                  N
 
@@ -2494,7 +2320,7 @@ Error codes follow the format GOV-\[CATEGORY\]-\[NUMBER\] where CATEGORY is a th
 
 ## Drift Considerations
 
-- An error condition that has no corresponding error code constitutes taxonomy drift. The taxonomy must be updated through Workflow 8.
+- An error condition that has no corresponding error code constitutes taxonomy drift. The taxonomy must be updated through Workflow 6.
 
 - Error codes are immutable once published; deprecated codes are retained with a \"DEPRECATED\" suffix in the message template.
 
@@ -2618,7 +2444,7 @@ Each telemetry event captures a discrete governance operation with a unique ID, 
 
 - Gaps in telemetry collection (missing events for known operations) constitute telemetry drift.
 
-- Event schema changes require Workflow 8 and schema migration for existing data.
+- Event schema changes require Workflow 6 and schema migration for existing data.
 
 ## Governance Alignment
 
@@ -2735,13 +2561,11 @@ Terms are sorted alphabetically with definition, first-defined reference, and re
 
   Boundary                        The defined perimeter of M365 GCC-Moderate SaaS services within which all Governance OS operations must execute. No artifact or action may extend beyond this boundary.                                         Section 6              GCC-Moderate, Boundary Enforcement, In-Scope Service
 
-  Boundary Enforcement            The governance principle (Principle 5) requiring that no artifact, script, or execution path references services outside M365 GCC-Moderate.                                                                     Section 3              Boundary, Decision Tree 5, GOV-BND error codes
+  Boundary Enforcement            The governance principle (Principle 5) requiring that no artifact, script, or execution path references services outside M365 GCC-Moderate.                                                                     Section 3              Boundary, Decision Tree 4, GOV-BND error codes
 
   Canonical                       The authoritative, validated, published state of a governance artifact. A Canonical artifact is the single source of truth for its domain.                                                                      Section 1              State Machine, Governance Artifact, Schema Fixity
 
   Chrome-Claude                   The execution substrate (execution brain) in the two-brain model. Responsible for PowerShell execution, Graph API calls, and tenant provisioning. Executes instructions from Copilot without interpretation.    Section 7              Copilot, Two-Brain Model, Instruction Set, Execution Substrate
-
-  Codebook                        The canonical enumeration of valid the organizational-attribute model codes (Appendix A). Every valid the organizational-attribute model must exist in the codebook.                                                                                                  Appendix A             the organizational-attribute model, Enumeration, Schema Fixity
 
   Conditional Access              An Entra ID policy engine that enforces access controls based on conditions such as user identity, device state, location, and risk. Part of the Policy Layer.                                                  Section 2              Policy Layer, RBAC, Entra ID
 
@@ -2799,7 +2623,7 @@ Terms are sorted alphabetically with definition, first-defined reference, and re
 
   Heatmap                         A text-based grid visualization showing SLA compliance status across operations and time periods.                                                                                                               Appendix L             SLA, Dashboard, Telemetry
 
-  Hierarchy                       The parent-child tree structure of the organizational-attribute model codes, from the enterprise root (ORG) down to team level (Level 4).                                                                                                  Appendix A             the organizational-attribute model, Level, Parent Path
+  Hierarchy                       The parent-child tree structure of the organizational-attribute model codes, from the enterprise root (ORG) down to team level (Level 4).                                                                                                  Section 1              the organizational-attribute model, Level, Parent Path
 
   Identity Engineer               A technical role responsible for implementing identity configurations, running migration scripts, and managing dynamic groups and AUs.                                                                          Appendix E             Chrome-Claude, PowerShell, Execution
 
@@ -2839,7 +2663,7 @@ Terms are sorted alphabetically with definition, first-defined reference, and re
 
   Provenance                      The complete record of who performed what action, when, through which workflow, and with what result. Implements Principle 3.                                                                                   Section 3              Traceability, Telemetry, Audit
 
-  Remediation                     The process of correcting a drift condition to restore canonical compliance.                                                                                                                                    Section 5              Drift, Workflow 6, Verification
+  Remediation                     The process of correcting a drift condition to restore canonical compliance.                                                                                                                                    Section 5              Drift, Workflow 4, Verification
 
   Restricted Management           An AU configuration that prevents Global Administrators from managing AU members unless they have an explicit scoped role assignment within that AU.                                                            Appendix D             Administrative Unit, Delegation, Security
 
@@ -2890,7 +2714,7 @@ Terms are sorted alphabetically with definition, first-defined reference, and re
 
 ## Drift Considerations
 
-- A term used in any appendix that does not appear in this glossary constitutes glossary drift. The glossary must be updated through Workflow 8.
+- A term used in any appendix that does not appear in this glossary constitutes glossary drift. The glossary must be updated through Workflow 6.
 
 - Definition changes require Governance Steward approval to prevent semantic drift.
 

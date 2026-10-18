@@ -1136,16 +1136,6 @@ earlier framings were corrected to match canon.
  conflated directory + 
  DC 
 
- the organizational-attribute model restores FMP_151, the program decision **Corrected:** the organizational-attribute model
- addressable truth §2 is an *addressing
- attribute every object
- carries*, not a
- "governance primitive,"
- and **not** "every
- token includes an
- the organizational-attribute model." Decisions
- *compose against* it.
-
  Application-aware the program decision Proposed (amended by
  networking; token-bound the program decision); generalized
  per-call transport by accepted the program decision.

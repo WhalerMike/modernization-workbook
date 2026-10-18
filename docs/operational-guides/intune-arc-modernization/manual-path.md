@@ -32,8 +32,7 @@ rollback. Document accepted risks in a change record before you begin, and treat
 every first run as a `-WhatIf` dry run.
 
 ::: {.callout-important}
-If you expect to add governance later, this path is designed so you can — see
-Add the organizational-attribute model later (retrofit). Nothing here forecloses it.
+If you expect to add governance later, this path is designed so you can. Nothing here forecloses it.
 :::
 
 ## 0. Phases and run order
@@ -115,8 +114,7 @@ restrict the SP to the onboarding role only.
 
 **Tag taxonomy** (apply consistently — tags drive policy scope, cost, and
 operational queries): `Environment`, `Workload`, `Criticality`, `Owner`,
-`CostCenter`, plus `PatchGroup` and `ArcOnboardedDate`. On the governed path the
-same taxonomy carries an `the organizational-attribute model` tag.
+`CostCenter`, plus `PatchGroup` and `ArcOnboardedDate`.
 
 ## 3. Intune endpoint modernization (workstations)
 

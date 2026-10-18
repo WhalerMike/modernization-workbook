@@ -49,7 +49,7 @@ Existing-fleet GPO Replacement --- 7-Phase Migration to Intune (per the program 
 +-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 | **Document Purpose**                                                                                                                                                                                                                                                                                                                                                                                  |
 |                                                                                                                                                                                                                                                                                                                                                                                                       |
-| This document provides a complete, production-ready library of Microsoft Intune policy templates designed to replace Active Directory Group Policy Objects (GPOs) in organizations modernizing to cloud-native endpoint management. Every policy includes full settings tables, GPO equivalence mappings, the organizational-attribute model-based targeting guidance, and deployment methodology aligned to the Federal Modernization Program framework. |
+| This document provides a complete, production-ready library of Microsoft Intune policy templates designed to replace Active Directory Group Policy Objects (GPOs) in organizations modernizing to cloud-native endpoint management. Every policy includes full settings tables, GPO equivalence mappings, attribute-based targeting guidance,                          and deployment methodology aligned to the Federal Modernization Program framework. |
 +-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 
 Table of Contents
@@ -109,21 +109,17 @@ This document establishes a complete policy template library for transitioning G
 
   The Federal Modernization Program Conditional Access Policy Library   Compliance policies (this document) are consumed by Conditional Access as grant controls (\"Require device to be marked as compliant\")
 
-  The Federal Modernization Program the organizational-attribute model Taxonomy                    extensionAttribute1--6 schema used for dynamic group targeting of all policies herein
-
   The Federal Modernization Program Drift Detection Module              Monitors for policy drift and configuration regression post-deployment
   ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-1.4 the organizational-attribute model Alignment
+1.4 Extension Attribute Schema
 
-All policies in this document are targeted via dynamic Azure AD (Entra ID) groups built from the the organizational-attribute model extension attribute schema. This eliminates OU-based GPO targeting and replaces it with attribute-based, cloud-native group membership:
+All policies in this document are targeted via dynamic Azure AD (Entra ID) groups built from the following extension attribute schema. This eliminates OU-based GPO targeting and replaces it with attribute-based, cloud-native group membership:
 
   --------------------------------------------------------------------------------------
   **Extension Attribute**   **Purpose**             **Example Values**
   ------------------------- ----------------------- ------------------------------------
   extensionAttribute1       Region                  East, West, Central, EMEA
-
-  (not a facet)             Site / Location         LocPath axis - see the program decision D5      
 
   extensionAttribute3       Department / Function   Governance, Engineering, Finance
 
@@ -154,7 +150,7 @@ All policies in this document are targeted via dynamic Azure AD (Entra ID) group
 
 2.2 Policy Assignment Strategy
 
-All policies are assigned to dynamic Entra ID groups based on the organizational-attribute model extension attributes. This replaces OU-linked GPO scoping with attribute-driven, cloud-native targeting:
+All policies are assigned to dynamic Entra ID groups based on extension attributes. This replaces OU-linked GPO scoping with attribute-driven, cloud-native targeting:
 
 - **Include groups:** Dynamic device groups matching the policy\'s intended tier, environment, and role.
 
@@ -231,7 +227,7 @@ Compliance policies define the minimum security posture a device must meet befor
 
 **Policy ID: CP-001 \| Platform: Windows 10/11 \| Target: All corporate workstations**
 
-**the organizational-attribute model Targeting:** Dynamic group --- All devices where extensionAttribute4 -in \[\"Tier0\", \"Tier1\", \"Tier2\"\]
+**Targeting:** Dynamic group --- All devices where extensionAttribute4 -in \[\"Tier0\", \"Tier1\", \"Tier2\"\]
 
 **GPO Equivalent:** Aggregate of multiple GPO settings across Security Settings, BitLocker, Defender, and system health policies.
 
@@ -285,7 +281,7 @@ Non-Compliance Actions
 
 **Policy ID: CP-002 \| Platform: Windows 10/11 \| Target: Privileged Access Workstations**
 
-**the organizational-attribute model Targeting:** Dynamic group --- device.extensionAttribute11 -eq \"Tier0\"
+**Targeting:** Dynamic group --- device.extensionAttribute11 -eq \"Tier0\"
 
 **Description:** Enforces the strictest compliance posture for Tier 0 privileged workstations. All CP-001 requirements apply, plus additional hardening. Grace period is zero --- immediate non-compliance.
 
@@ -325,7 +321,7 @@ Non-Compliance Actions
 
 **Policy ID: CP-003 \| Platform: Windows 10/11 \| Target: Standard end-user workstations**
 
-**the organizational-attribute model Targeting:** Dynamic group --- device.extensionAttribute11 -eq \"Tier2\"
+**Targeting:** Dynamic group --- device.extensionAttribute11 -eq \"Tier2\"
 
 Settings
 
@@ -363,7 +359,7 @@ Non-Compliance Actions
 
 **Policy ID: CP-004 \| Platform: Windows Server 2025 \| Target: Azure Arc-managed servers**
 
-**the organizational-attribute model Targeting:** Dynamic group --- device.extensionAttribute11 -eq \"Tier1\"
+**Targeting:** Dynamic group --- device.extensionAttribute11 -eq \"Tier1\"
 
 **Prerequisite:** Servers must be enrolled in Intune via Azure Arc for server management.
 
@@ -397,7 +393,7 @@ Non-Compliance Actions
 
 **Policy ID: CP-005 \| Platform: Windows 10/11 \| Target: Kiosk and shared devices**
 
-**the organizational-attribute model Targeting:** Dynamic group --- device.extensionAttribute12 -eq \"Kiosk\"
+**Targeting:** Dynamic group --- device.extensionAttribute12 -eq \"Kiosk\"
 
 Settings
 
@@ -451,7 +447,7 @@ Settings Catalog profiles replace ADMX-backed Group Policy settings with cloud-n
 
 **Policy ID: SC-001 \| Platform: Windows 10/11 \| Target: All corporate devices**
 
-**the organizational-attribute model Targeting:** Dynamic group --- All devices where extensionAttribute4 -in \[\"Tier0\", \"Tier1\", \"Tier2\"\]
+**Targeting:** Dynamic group --- All devices where extensionAttribute4 -in \[\"Tier0\", \"Tier1\", \"Tier2\"\]
 
 Account Lockout Settings
 
@@ -517,7 +513,7 @@ Windows Firewall (Baseline)
 
 **Policy ID: SC-002 \| Platform: Windows 10/11 \| Target: All corporate devices**
 
-**the organizational-attribute model Targeting:** All managed devices
+**Targeting:** All managed devices
 
 Core Protection Settings
 
@@ -763,7 +759,7 @@ Inbound Rules for Management
 
 **Policy ID: SC-009 \| Platform: Windows 10/11 \| Target: Tier 0 and Tier 1 devices only**
 
-**the organizational-attribute model Targeting:** Dynamic group --- device.extensionAttribute4 -in \[\"Tier0\", \"Tier1\"\]
+**Targeting:** Dynamic group --- device.extensionAttribute4 -in \[\"Tier0\", \"Tier1\"\]
 
 **GPO Equivalent:** Computer Configuration \> Administrative Templates \> Windows Components \> Remote Desktop Services
 
@@ -1024,7 +1020,7 @@ Settings (additions/modifications from AP-001)
 
 The table below is a **Semantic Translation Reference** — engineers' lookup card for "what is the closest Intune surface for this GPO setting?" Per the program decision, it is **not** a literal 1:1 copy prescription. Use it to find the right Intune target surface for a given GPO setting; do not use it as authority for what the policy *value* should be in the new system.
 
-The "**regenerate, not copy**" philosophy — defined in [Client-Server-to-Hybrid-Cloud chapter 05](../../client-server-to-hybrid-cloud/05-policy-transformation.md) — governs the policy-authoring decision. Replacement policies are authored from current policy intent (compliance baseline, persona model, Conditional Access strategy, the organizational-attribute model-scoped dynamic group targeting), with this reference as one input among several. Faithfully porting old GPO conflict-resolution semantics or OU-filter targeting into Intune reproduces ancient drift in a new surface; the table tells you where to land, not what to land with.
+The "**regenerate, not copy**" philosophy — defined in [Client-Server-to-Hybrid-Cloud chapter 05](../../client-server-to-hybrid-cloud/05-policy-transformation.md) — governs the policy-authoring decision. Replacement policies are authored from current policy intent (compliance baseline, persona model, Conditional Access strategy, attribute-scoped dynamic group targeting), with this reference as one input among several. Faithfully porting old GPO conflict-resolution semantics or OU-filter targeting into Intune reproduces ancient drift in a new surface; the table tells you where to land, not what to land with.
 :::
 
 The following table maps the top 50 most commonly deployed GPO settings in enterprise environments to their nearest Intune surface, including the Federal Modernization Program policy ID where the setting is configured.
@@ -1135,7 +1131,7 @@ The following table maps the top 50 most commonly deployed GPO settings in enter
 
 8\. Dynamic Group Templates
 
-The following PowerShell and Microsoft Graph examples create the dynamic device groups used for policy targeting throughout this document. All groups use the the organizational-attribute model extension attribute schema.
+The following PowerShell and Microsoft Graph examples create the dynamic device groups used for policy targeting throughout this document. All groups use the extension attribute schema (Section 1.4).
 
 8.1 Tier-Based Groups
 
@@ -1177,7 +1173,7 @@ Tier 2 Standard Workstations
 8.4 Region, Site, and Department Groups
 
   ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-  \# Region --- East New-MgGroup -DisplayName \"FMP-Devices-Region-East\" \` -Description \"Devices in East region\" \` -MailEnabled:\$false -MailNickname \"fmp-devices-east\" \` -SecurityEnabled:\$true -GroupTypes @(\"DynamicMembership\") \` -MembershipRule \'(device.extensionAttribute1 -eq \"EASTUS\")\' \` -MembershipRuleProcessingState \"On\" \# Site --- Annapolis HQ. Site is the LocPath axis, not an the organizational-attribute model facet: per the program decision D5, LocPath claims no extensionAttribute slot, so a site group has no membership rule to write. It is planned by the LocPath Entra exposure as an assigned-membership group, with members read from the governed Primary-LocPath assignments. New-MgGroup -DisplayName \"LocPath-Site-ANNAPOLIS-HQ-Users\" \` -Description \"Devices and users at the Annapolis HQ site (LocPath /USA/MD/ANNAPOLIS-HQ)\" \` -MailEnabled:\$false -MailNickname \"locpath-site-annapolis-hq\" \` -SecurityEnabled:\$true \` -MembershipRuleProcessingState \"On\" \# Department --- Governance New-MgGroup -DisplayName \"FMP-Devices-Dept-Governance\" \` -Description \"Devices assigned to Governance department\" \` -MailEnabled:\$false -MailNickname \"fmp-devices-governance\" \` -SecurityEnabled:\$true -GroupTypes @(\"DynamicMembership\") \` -MembershipRule \'(device.extensionAttribute3 -eq \"Governance\")\' \` -MembershipRuleProcessingState \"On\"
+  \# Region --- East New-MgGroup -DisplayName \"FMP-Devices-Region-East\" \` -Description \"Devices in East region\" \` -MailEnabled:\$false -MailNickname \"fmp-devices-east\" \` -SecurityEnabled:\$true -GroupTypes @(\"DynamicMembership\") \` -MembershipRule \'(device.extensionAttribute1 -eq \"EASTUS\")\' \` -MembershipRuleProcessingState \"On\" \# Department --- Governance New-MgGroup -DisplayName \"FMP-Devices-Dept-Governance\" \` -Description \"Devices assigned to Governance department\" \` -MailEnabled:\$false -MailNickname \"fmp-devices-governance\" \` -SecurityEnabled:\$true -GroupTypes @(\"DynamicMembership\") \` -MembershipRule \'(device.extensionAttribute3 -eq \"Governance\")\' \` -MembershipRuleProcessingState \"On\"
 
   ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 

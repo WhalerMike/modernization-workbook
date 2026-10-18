@@ -149,12 +149,12 @@ adoption facts govern it:
    contract on top of closures that already exist. Nothing in Volumes 0–IX
    has to be reworked to bind later — the conformance layer maps existing
    artifacts to surface slots; it does not reshape them.
-3. **The Org family implements together or entirely independently.** This
-   series — **Compliance**, Federal Compliance — is one of three
-   operational expressions of one governance substrate, alongside **the organizational-attribute model**
-   (governance) and **OrgMod** (modernization). The three share a substrate by
-   design, and each is adoptable on its own, in any order, with no expression
-   a prerequisite for another. An agency may run Compliance alone, the organizational-attribute model
-   alone, all three, or any pair — the evidence and authorization contract is
+3. **Compliance and OrgMod implement together or entirely independently.** This
+   series — **Compliance**, Federal Compliance — is one of two
+   operational expressions of one governance substrate, alongside **OrgMod**
+   (modernization). The two share a substrate by
+   design, and each is adoptable on its own, in any order, with neither
+   a prerequisite for the other. An agency may run Compliance alone, OrgMod
+   alone, or both — the evidence and authorization contract is
    the seam that lets any conformant engine satisfy whichever expressions are
    adopted.

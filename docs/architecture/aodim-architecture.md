@@ -53,47 +53,15 @@ Architecture Overview
 
 HR System → Identity Attributes → Dynamic Groups → Access & Policy Enforcement
 
-Attribute Model
-
-the organizational-attribute model is not a single hierarchical string. Under Model C
-(the program decision)
-the organizational position of every principal is decomposed into 10 named
-facets, each bound to exactly one Entra `extensionAttribute` slot:
-
-\- Region (`extensionAttribute1`), Department (`extensionAttribute2`), Division (`extensionAttribute3`), Role (`extensionAttribute4`)
-
-\- CostCenter (`extensionAttribute5`), Classification (`extensionAttribute6`)
-
-\- HireDate (`extensionAttribute7`), TermDate (`extensionAttribute8`)
-
-\- ClearanceLevel (`extensionAttribute9`), AccountType (`extensionAttribute10`)
-
-Slots `extensionAttribute11`–`14` are reserved for tenant-declared facets
-introduced via governed PR. The native `manager` relationship is consumed
-alongside these facets but is a standard directory attribute, not an
-the organizational-attribute model facet. See the
-the organizational-attribute model Codebook (FMP_151)
-for the canonical facet-to-slot map.
-
-Example (per-facet values on one principal):
-
-```
-extensionAttribute1 = EASTUS        # Region
-extensionAttribute2 = IT            # Department
-extensionAttribute3 = InfraOps      # Division
-extensionAttribute4 = Engineer      # Role
-```
-
 Dynamic Group Model
 
-Groups are defined by boolean composition over facet predicates — not by
-text-parsing a composite path:
+Groups are defined by boolean composition over attribute predicates:
 
-\- Single-facet rules (`-eq` / `-in`) — all principals carrying a value in one facet
+\- Single-attribute rules (`-eq` / `-in`) — all principals carrying a value in one attribute
 
-\- Multi-facet AND rules — principals matching every clause across multiple facets
+\- Multi-attribute AND rules — principals matching every clause across multiple attributes
 
-\- Multi-facet OR / set rules — cross-cutting groupings
+\- Multi-attribute OR / set rules — cross-cutting groupings
 
 Example Rules:
 
@@ -111,7 +79,7 @@ Delegation Model
 ![Side-by-side comparison diagram: Left panel labeled 'Legacy OU-Based...](../images/architecture/aodim-architecture-image-02-side-by-side-comparison-diagram.png){#fig-aodim-architecture-image-02 fig-alt="Side-by-side comparison diagram: Left panel labeled 'Legacy OU-Based..." width="100%"}
 
 
-Administrative Units and scoped roles replace OU-based delegation. AU membership is driven by the same canonical facets, per the
+Administrative Units and scoped roles replace OU-based delegation. AU membership is driven by the same attributes, per the
 Delegation Matrix (FMP_154).
 
 Operational Flow
@@ -154,17 +122,16 @@ CLI Example
 Commands:
 
 ```shell
-# Assign per-facet the organizational-attribute model values from an AD export and report findings
+# Assign attribute values from an AD export and report findings
 fmp orgtree assess --from-export ad-users.json --out assignments.json
 
 # Run one governance pass over a tenant snapshot (dry-run by default):
-# detects per-facet drift and reports the remediation it would apply
+# detects drift and reports the remediation it would apply
 fmp orgtree govern snapshot.json --out report.json
 ```
 
 `fmp orgtree govern` in its default dry-run mode is the simulation and
-explanation surface: it recomputes per-facet assignments against the
-codebook and reports the access recalculation a transfer or role change
+explanation surface: it recomputes attribute assignments and reports the access recalculation a transfer or role change
 would produce, without writing.
 
 Strategic Impact

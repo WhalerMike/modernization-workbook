@@ -15,12 +15,12 @@ aliases:
 ---
 
 
-> **Model C — per-facet drift over 15 attribute slots (per the program decision).** Examples below use the per-facet model: each slot (`extensionAttribute1`–`15`) validates independently against its facet's enumeration or typed pattern. See the organizational-attribute model Codebook for the facet/slot definitions.
+> **Model C — per-facet drift over 15 attribute slots (per the program decision).** Examples below use the per-facet model: each slot (`extensionAttribute1`–`15`) validates independently against its facet's enumeration or typed pattern.
 
 ::: {.callout-note}
 ## Companion to the storage explainer
 
-If you have not yet read [Where OrgTree & the organizational-attribute model Data Lives](../architecture/where-data-lives.md), start there. This page picks up from that mental model and answers the next question: *once the storage layers exist, how does the governance engine catch when they disagree?* The authoritative spec is FMP_163 (Drift Detection Engine); this page is the prose tour.
+This page answers the question: *once the storage layers exist, how does the governance engine catch when they disagree?* The authoritative spec is FMP_163 (Drift Detection Engine); this page is the prose tour.
 :::
 
 ## The job of the drift engine
@@ -35,7 +35,7 @@ Snapshot ──▶ Compare ──▶ Classify ──▶ Alert ──▶ Remediat
    └──────────────────────── re-scan ◀────────────────────────────┘
 ```
 
-1. **Snapshot.** Pull current tenant state via Microsoft Graph — users, groups, AUs, role assignments, device records. The the organizational-attribute model portion is the 10 `extensionAttribute*` slot values per principal.
+1. **Snapshot.** Pull current tenant state via Microsoft Graph — users, groups, AUs, role assignments, device records. The organizational portion is the 10 `extensionAttribute*` slot values per principal.
 2. **Compare.** Diff each principal's 10 facet values against the codebook (per-facet enumeration membership; typed-facet pattern match).
 3. **Classify.** Map each per-facet diff to one of the five categories below, with severity (P1–P4) and an auto-fix policy.
 4. **Alert.** Emit `DriftFinding` objects into the Evidence Fabric for immutable, hash-chained recording.
@@ -211,8 +211,6 @@ Format and Slot are P1 because they break governance *structure* — typed-facet
 
 ## Related
 
-- [Where OrgTree & the organizational-attribute model Data Lives](../architecture/where-data-lives.md) — the three-layer storage model this walk-through assumes
-- the organizational-attribute model Codebook (FMP_151) — the canonical per-facet enumeration the engine validates against
 - OrgTree A-Z Suite — the full 27-artifact governance stack
 - FMP_163 Drift Detection Engine Specification — the canon (per-facet rewrite scheduled for the program decision Phase 6)
 - FMP_167 SLA Escalation Playbooks — the severity-to-escalation ladder

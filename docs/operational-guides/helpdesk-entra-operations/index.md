@@ -47,7 +47,7 @@ below — so the published kit cannot drift from what these pages document.
 |---|---|
 | [Help Desk Administrative Responsibilities Guide](help-desk-administrative-responsibilities.md) | The operations reference — authority boundaries, the Privileged Access Group (PAG) and PIM eligible-not-active model, the SAM/ServiceNow/Entra three-platform workflow, and the per-task procedures the Help Desk executes. |
 | [Enterprise Application Access Governance and Approval Model](enterprise-application-access-governance.md) | The governing policy — risk-tiered approval chains, the RACI matrix, application ownership, group-based access, and the three approval workflows (standard, Admin Consent, and emergency / break-glass). |
-| the organizational-attribute model Identity Governance Structure | The design concept underneath both — the four-layer governance model (Requester → Departmental Owner → Application Owner → Identity Governance Authority) that gives Entra ID the routing hierarchy it lacks natively. |
+| Identity Governance Structure | The design concept underneath both — the four-layer governance model (Requester → Departmental Owner → Application Owner → Identity Governance Authority) that gives Entra ID the routing hierarchy it lacks natively. |
 
 ## The operations flow
 
@@ -100,5 +100,5 @@ Across all three documents a single, unconditional control recurs: **Admin
 Consent approval authority is reserved to Layer 4 — the Identity Governance
 Authority — and is non-delegable.** The Help Desk triages and routes consent
 requests; Application Owners sponsor them; only the IGO approves. Start with the
-the organizational-attribute model Identity Governance Structure
+Identity Governance Structure
 if you want the *why* before the *how*.

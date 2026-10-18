@@ -65,7 +65,6 @@ domain controller locations through SRV records (`_kerberos._tcp`, `_ldap._tcp`,
 - SRV record migration (`_kerberos`, `_ldap`, `_gc`)
 - Side-by-side operation with AD-integrated DNS during hybrid window
 - DHCP scope inventory and rogue DHCP detection
-- Subnet-to-the organizational-attribute model mapping for IP governance
 
 **Registered implementations:** InfoBlox NIOS (FedRAMP authorized), BlueCat Address Manager, Generic RFC-compliant IPAM
 

@@ -1,6 +1,6 @@
 ---
 title: "Implementation Book 07 — Groups, Administrative Units & the Conditional Access Perimeter"
-subtitle: "Inventory the AD groups behind SQL access with the real Entra group export, classify them by the the program decision four-type taxonomy with New-FMPEntraGroupClassification, then provision the organizational-attribute model dynamic groups and the DBA Administrative Unit and emit the group-logins — review-required, dry-run first"
+subtitle: "Inventory the AD groups behind SQL access with the real Entra group export, classify them by the the program decision four-type taxonomy with New-FMPEntraGroupClassification, then provision attribute-based dynamic groups and the DBA Administrative Unit and emit the group-logins — review-required, dry-run first"
 description: "How to transform the access-control layer of SQL Server from AD groups to Entra. Documents the shipped read-only inventory (FMPIdentityAssessment Export-FMPEntraGroups / Export-FMPConditionalAccess, including dynamic-rule capture), the the program decision four-type classification New-FMPEntraGroupClassification derives from it, and New-FMPGroupLoginScript, which emits the dry-run CREATE LOGIN FROM EXTERNAL PROVIDER for the access-backing groups — then the review-required provisioning patterns routed through the entra-dynamic-groups (FMP_152) and entra-admin-units (FMP_154) modernization adapters, with the AU-before-groups sequencing the program decision requires."
 doc-type: sql-server-implementation-book
 audience: [Technical, Customer]
@@ -12,27 +12,6 @@ lifecycle: active
 tiers_adopted: []
 lifecycle_review: 2027-01-01
 ---
-
-::: {.callout-note}
-## the organizational-attribute model examples in this chapter predate Hybrid-C+Path
-
-The dynamic-group rule examples below use the retired Model A/B form — the whole
-the organizational-attribute model as one composite string in a single slot. the program decision
-replaced that with named facets (`extensionAttribute1` is the **region** facet),
-and the program decision moved the
-derived canonical path to `extensionAttribute15`. A *subtree* rule reads
-`(user.extensionAttribute15 -startsWith "Region=NCR|Department=Finance|")` —
-anchored at `Region=`, because the derived path is composed region, department,
-division in that order, and with the trailing delimiter, which is mandatory. A
-rule for "all of Finance, in every region" is not a subtree at all: it is the
-facet predicate `(user.extensionAttribute2 -eq "Finance")`.
-
-The examples are retained as written because the *pattern* they teach —
-OU-derived groups become dynamic groups keyed on organizational attributes — is
-unchanged. Do not copy the slot numbers or value shapes; the authoritative map is
-[`codebook.yaml`].
-:::
-
 
 ::: {.content-visible when-format="docx"}
 # Implementation Book 07 — Groups, Administrative Units & the Conditional Access Perimeter
@@ -49,7 +28,7 @@ Companion to **narrative Book 07**. The narrative explains why the group-based a
 
 ## The two phases
 
-Access-control transformation is inventory-then-provision. **Inventory** the AD groups that gate SQL access and the Entra objects that already exist (read-only, shipped scripts). **Provision** the Entra targets — the organizational-attribute model dynamic groups, the assigned groups, the DBA Administrative Unit — and bind each access-bearing group to a SQL Server type-E login (review-required, no big-bang).
+Access-control transformation is inventory-then-provision. **Inventory** the AD groups that gate SQL access and the Entra objects that already exist (read-only, shipped scripts). **Provision** the Entra targets — attribute-based dynamic groups, the assigned groups, the DBA Administrative Unit — and bind each access-bearing group to a SQL Server type-E login (review-required, no big-bang).
 
 ## Phase 1 — Inventory (read-only, script-backed)
 
@@ -65,7 +44,7 @@ The `FMPIdentityAssessment` module (`tools/powershell/FMPIdentityAssessment/`) s
 | `-OutputPath` | Where the sealed envelope is written |
 | `-Cloud` / `-GraphApiVersion` / `-GraphEndpoint` | Cloud-aware endpoint resolution (GCC-Moderate uses the cloud-correct Graph base via `Resolve-FMPGraphBase`) |
 
-Each record carries `id`, `display_name`, **`is_dynamic`**, **`security_enabled`**, **`mail_enabled`**, `membership_rule` (when `-IncludeDynamic` and dynamic), `member_count`, and `source_fields`. Those three flags are exactly the signal the the program decision classification needs: `security_enabled` + `mail_enabled` together distinguish the four types, and `is_dynamic` / `membership_rule` show whether a group is already the organizational-attribute model-driven.
+Each record carries `id`, `display_name`, **`is_dynamic`**, **`security_enabled`**, **`mail_enabled`**, `membership_rule` (when `-IncludeDynamic` and dynamic), `member_count`, and `source_fields`. Those three flags are exactly the signal the the program decision classification needs: `security_enabled` + `mail_enabled` together distinguish the four types, and `is_dynamic` / `membership_rule` show whether a group is already attribute-driven.
 
 ```powershell
 Import-Module ./tools/powershell/FMPIdentityAssessment
@@ -85,10 +64,10 @@ Narrative Book 07 Chapter 1 classifies every migrating AD security group into on
 
 | the program decision type | Inventory signal | Entra target | SQL consequence |
 |---|---|---|---|
-| **Type 1 — OU-derived** | security-enabled, organizational naming | the organizational-attribute model **dynamic** security group (the program decision) | type-E login for the group |
+| **Type 1 — OU-derived** | security-enabled, organizational naming | attribute-based **dynamic** security group (the program decision) | type-E login for the group |
 | **Type 2 — explicit role-assignment** | security-enabled, no org-derivation | flattened **assigned** security group | type-E login for the group |
 | **Type 3 — distribution list** | mail-enabled, security **off** | Microsoft 365 Group (`securityEnabled: false`) | **no SQL login** — Agent operator email only |
-| **Type 4 — mail-enabled security** | security **and** mail enabled | **split**: M365 Group (mail) + assigned security group (access), correlated by an the organizational-attribute model attribute | type-E login on the security half only |
+| **Type 4 — mail-enabled security** | security **and** mail enabled | **split**: M365 Group (mail) + assigned security group (access), correlated by an extension attribute | type-E login on the security half only |
 
 **`New-FMPEntraGroupClassification`** (`tools/powershell/FMPSqlServerMigration/`) is the deterministic type-assignment pass over the envelope. It reads the `Export-FMPEntraGroups` output and assigns each group exactly one the program decision type from its observable shape (`groupTypes` / `mail_enabled` / `security_enabled` / `membership_rule`), attaching each group's target state, transformation, provisioning adapter, and a `becomes_sql_login` flag (true for the access-backing types — assigned security, OrgTree dynamic, and the access half of a mail-enabled split). A group with no usable signal lands in `review` rather than being mis-typed.
 
@@ -118,13 +97,13 @@ Provisioning the AU before the groups it will hold avoids the transitional windo
 
 ### Provision the DBA Administrative Unit (entra-admin-units / FMP_154)
 
-The Administrative Unit is provisioned through the **`entra-admin-units`** modernization adapter (FMP_154 in `src/fmp/canon/modernization-registry.yaml`), aligned to the the organizational-attribute model boundary the DBA team owns so the delegation boundary and the access boundary describe the same scope. the program decision's restricted-management invariant and cross-canon integrity checks (which reject an AU whose referenced groups or the organizational-attribute model values do not resolve to live canon) are enforced by the adapter. Run it dry-run first, review the planned AU and the scoped assignment, then apply.
+The Administrative Unit is provisioned through the **`entra-admin-units`** modernization adapter (FMP_154 in `src/fmp/canon/modernization-registry.yaml`), aligned to the organizational boundary the DBA team owns so the delegation boundary and the access boundary describe the same scope. the program decision's restricted-management invariant and cross-canon integrity checks (which reject an AU whose referenced groups or attribute values do not resolve to live canon) are enforced by the adapter. Run it dry-run first, review the planned AU and the scoped assignment, then apply.
 
-### Provision the organizational-attribute model dynamic groups (entra-dynamic-groups / FMP_152)
+### Provision attribute-based dynamic groups (entra-dynamic-groups / FMP_152)
 
-Type 1 (OU-derived) groups become dynamic security groups whose `membershipRule` references the organizational-attribute model attributes — provisioned through the **`entra-dynamic-groups`** modernization adapter (FMP_152). the organizational-attribute model attribute values are populated by the the organizational-attribute model HR-synchronization pipeline, not managed by hand, so migrating a Type 1 group is two things: confirm the the organizational-attribute model attribute infrastructure is in place (an the organizational-attribute model-narrative dependency), and author the rule that expresses the original group's organizational logic — for example `(user.extensionAttribute5 -eq "ORG/DEPT/TEAM") -and (user.jobTitle -contains "DBA")`. Validate the rule against the captured inventory before applying. (the program decision)
+Type 1 (OU-derived) groups become dynamic security groups whose `membershipRule` references organizational extension attributes — provisioned through the **`entra-dynamic-groups`** modernization adapter (FMP_152). Attribute values are populated by the HR-synchronization pipeline, not managed by hand, so migrating a Type 1 group is two things: confirm the attribute infrastructure is in place, and author the rule that expresses the original group's organizational logic — for example `(user.department -eq "Finance") -and (user.jobTitle -contains "DBA")`. Validate the rule against the captured inventory before applying. (the program decision)
 
-Type 2 (explicit-role) groups are flat **assigned** security groups: create the group, populate from the AD source members, and manage membership thereafter through the AU-scoped role assignment rather than a helpdesk ticket. Type 3 (distribution lists) become mail-only M365 Groups with **no** SQL login — only the SQL Agent operator's notification address is repointed. Type 4 (mail-enabled security) splits into the two-object pattern, correlated by an the organizational-attribute model extension attribute recorded in the migration audit.
+Type 2 (explicit-role) groups are flat **assigned** security groups: create the group, populate from the AD source members, and manage membership thereafter through the AU-scoped role assignment rather than a helpdesk ticket. Type 3 (distribution lists) become mail-only M365 Groups with **no** SQL login — only the SQL Agent operator's notification address is repointed. Type 4 (mail-enabled security) splits into the two-object pattern, correlated by an extension attribute recorded in the migration audit.
 
 ### Bind the group to a SQL Server type-E login
 
