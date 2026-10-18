@@ -1,0 +1,25 @@
+---
+title: "Site Map"
+subtitle: "Every page on this site, on one page"
+toc: true
+toc-depth: 2
+---
+
+This page lists **every page on the site in one place**, grouped by
+section, so you can scan or search (`Ctrl`/`Cmd`+`F`) the whole workbook
+at once. Use the page contents (right) to jump between sections. Each
+entry links to the rendered page.
+
+::: {.callout-note}
+This list is **generated on every site build** from the pages the build
+renders, by
+[`scripts/generate_sitemap.py`](https://github.com/WhalerMike/modernization-workbook/blob/main/scripts/generate_sitemap.py),
+so it always matches the site. To regenerate it locally without a full
+build:
+
+```bash
+python scripts/generate_sitemap.py
+```
+:::
+
+{{< include _sitemap-tree.md >}}

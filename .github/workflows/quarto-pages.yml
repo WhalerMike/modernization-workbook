@@ -37,6 +37,11 @@ jobs:
           cp assets/reference-mslearn.docx docs/compliance/day2-kit/reference-mslearn.docx
           cp assets/reference-mslearn.docx docs/compliance/day2-kit/assets/reference-mslearn.docx
 
+      - name: Generate site map
+        # Quarto resolves the include in sitemap.qmd before any pre-render
+        # script runs, so the tree must exist before the first render.
+        run: python3 scripts/generate_sitemap.py
+
       - name: Render DOCX to temporary directory
         run: |
           quarto render --to docx --output-dir _docx
