@@ -57,8 +57,6 @@ The Federal Modernization Program uses five classes (verbatim from the Drift Det
 
 - **Architecture Series — Drift Engine** —
   the design-level treatment of the six-phase loop and taxonomy.
-- **[Reference Architecture — Drift Walkthrough](../reference-architecture/drift-walkthrough.md)** —
-  a concrete, end-to-end detection example.
 - **[Governance OS Overview](governance-os-overview.md)** — how drift fits the
   broader substrate operating model.
 

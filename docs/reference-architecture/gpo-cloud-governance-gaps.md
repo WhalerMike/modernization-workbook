@@ -83,9 +83,7 @@ Catalog policies**. That is more flexible, but the determinism is no
 longer free: it has to be *manufactured* by a canonical attribute model.
 Without one, organizations lose the "single source of truth" feeling for
 why a given device or user receives a particular policy, and group
-membership quietly becomes a manual spreadsheet exercise. See
-[Dynamic Groups](dynamic-groups.md) for the boolean-composition pattern
-that re-introduces determinism on top of attributes.
+membership quietly becomes a manual spreadsheet exercise.
 
 ### Fine-grained control over legacy and complex settings
 
@@ -118,9 +116,8 @@ centralized reporting. Intune policy application is more asynchronous and
 cloud-dependent, and **cross-plane** visibility (how an identity change
 ripples into device policy, server workloads, applications, and data
 access) is weak natively. Drift becomes harder to *detect*, let alone
-remediate. This is precisely the gap a drift engine fills: the
-[Drift Detection Walk-through](drift-walkthrough.md) shows
-drift surfacing as explicit `DRIFT-*` findings rather than silent
+remediate. This is precisely the gap a drift engine fills, surfacing
+drift as explicit `DRIFT-*` findings rather than silent
 divergence.
 
 ### Delegation, auditing, and change management
@@ -191,8 +188,6 @@ basic IGA tool — to avoid losing critical control and visibility.
 
 ## Where to go next
 
-- **Restore determinism on attributes:** [Dynamic Groups](dynamic-groups.md)
-- **See drift surface explicitly:** [Drift Detection Walk-through](drift-walkthrough.md)
 - **Triage the legacy GPO surface:** Invoke-GpoMigrationTriage
 - **Whole-of-transition framing:** [Modernization Canon (section index)](index.md)
 - **Structural-gap argument:** [AD to Entra ID — The Structural Migration Problem](../whitepapers/ad-to-entraid-migration-problem.md)

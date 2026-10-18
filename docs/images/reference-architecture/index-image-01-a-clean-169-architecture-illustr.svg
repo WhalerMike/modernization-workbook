@@ -77,7 +77,7 @@
   <text x="1125" y="434" text-anchor="middle" dominant-baseline="central" font-size="18" font-weight="bold" fill="#0D1B2E">Policy</text>
 
   <line x1="850" y1="500" x2="1190" y2="500" stroke="#1E8C8C" stroke-width="2"/>
-  <text x="1020" y="524" text-anchor="middle" font-size="16" font-weight="bold" fill="#1E8C8C">All read organizational facets</text>
+  <text x="1020" y="524" text-anchor="middle" font-size="16" font-weight="bold" fill="#1E8C8C">All read organizational attributes</text>
 
   <!-- ===== CENTER: three parallel transition arrows ===== -->
   <text x="640" y="286" text-anchor="middle" font-size="14" font-weight="bold" fill="#1E3A66">Identity Modernization (FMP_xxx)</text>

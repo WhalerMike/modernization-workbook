@@ -11,7 +11,7 @@ Delegation defines who may perform which actions on which scope of objects. In a
 | Principle | Implication |
 |-----------|-------------|
 | Least privilege | Role is limited to the minimum actions required |
-| Scoped by attribute | Scope is a facet value or combination, not a manual group |
+| Scoped by attribute | Scope is an attribute value or combination, not a manual group |
 | Time-bound where possible | Standing access is the exception |
 | Recorded | Every delegation has an owner, a scope, and a review date |
 | Separated | Requestor and approver are different people for high-privilege actions |

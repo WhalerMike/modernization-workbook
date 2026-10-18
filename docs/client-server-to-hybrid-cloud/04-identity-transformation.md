@@ -1,6 +1,6 @@
 # Chapter 04 — Identity: Hierarchical Directory → Flat Cloud Identity + Attribute-Driven Structure
 
-**How the organizational-unit tree becomes coded attributes, dynamic groups, administrative units, and Conditional Access**
+**How the organizational-unit tree becomes organizational attributes, dynamic groups, administrative units, and Conditional Access**
 
 ## The identity claim
 
@@ -9,7 +9,7 @@
 
 The Active Directory organizational-unit tree was never just a folder structure. It encoded delegation, policy inheritance, operational accountability, and security scope in a single hierarchical graph. A flat cloud directory has none of that by default.
 
-The attribute-driven structure reconstructs those governance properties inside a flat directory using four governed mechanisms — **coded organizational attributes**, **dynamic groups**, **administrative units**, and **Conditional Access targeting** — stitched together into one deterministic model.
+The attribute-driven structure reconstructs those governance properties inside a flat directory using four governed mechanisms — **organizational attributes**, **dynamic groups**, **administrative units**, and **Conditional Access targeting** — stitched together into one deterministic model.
 
 This chapter describes how it works.
 
@@ -19,16 +19,16 @@ Cloud identity platforms provide individually powerful tools. The framework uses
 
 | Mechanism | What it replaces |
 |-----------|------------------|
-| **Coded organizational attributes** | Organizational-unit placement |
+| **Organizational attributes** | Organizational-unit placement |
 | **Dynamic groups** | Organizational-unit-derived security groups |
 | **Administrative units** | Organizational-unit-level delegation |
 | **Conditional Access targeting** | Group Policy-based policy inheritance |
 
 Each mechanism is individually documented by the platform vendor; the innovation is **the contract that binds them together** so that a single act (setting a user’s organizational attributes) produces consistent downstream effects (group membership, administrative-unit scope, policy targeting, license assignment, drift-detector visibility).
 
-## Coded organizational attributes — the single source of hierarchy
+## Organizational attributes
 
-Organizational position is carried as a deterministic, attribute-encoded hierarchy on every governed user (and, where applicable, device and group) object.
+Organizational position is carried in attributes on every governed user (and, where applicable, device and group) object.
 
 ### What the attributes drive
 
@@ -36,7 +36,7 @@ One stamped set of attributes drives five downstream outcomes:
 
 1. **Dynamic group membership** — every user with a matching department attribute is in the corresponding dynamic group.
 2. **Administrative unit scoping** — the administrative unit scopes on the same attributes; delegated administrators of that unit manage only those users.
-3. **Conditional Access targeting** — policies include or exclude groups keyed to attribute segments.
+3. **Conditional Access targeting** — policies include or exclude groups keyed to attribute values.
 4. **License assignment** — group-based licensing flows from attribute-scoped dynamic groups.
 5. **Drift detection** — every user’s attributes are validated against the HR-system source of truth.
 
@@ -70,7 +70,7 @@ Produces: every IT user whose title includes “Security,” in every region.
 
 Every governed dynamic group follows a consistent pattern, for example `Structure-[SCOPE]-[PURPOSE]`:
 
-- `Structure-FIN-Users` — branch query, Finance subtree
+- `Structure-FIN-Users` — Finance users
 - `Structure-IT-SEC-SOC-Users` — SOC analysts
 - `Structure-HR-Licensed` — HR users targeted for specific licenses
 - `Structure-EXEC-CA` — Executive users targeted by specific Conditional Access policies

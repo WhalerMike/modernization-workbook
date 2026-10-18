@@ -94,7 +94,7 @@ Identity lifecycle is still largely manual or semi-automated. Joiner, mover, and
 - Confirm the authoritative origin for human identity lifecycle events.
 - Inventory non-human identity classes and name owners.
 - Define the pilot population and success measures for the first joiner/mover/leaver wave.
-- Document the attribute facets that will drive dynamic membership.
+- Document the attributes that will drive dynamic membership.
 - Establish the provenance and evidence expectations for every lifecycle change.
 
 ---

@@ -78,7 +78,7 @@ per-adapter ADR) or *proposed*.
 **Modernization (change-making) — shipped:** `entra-id`, `m365`,
 `service-now`, `palo-alto`, `scuba`, `terraform`, `cyberark`, `infoblox`,
 `bluecat-address-manager`, and `active-directory` (read-only discovery
-today per the program decision Model C).
+today).
 
 Two adapters are reachable directly from the CLI today —
 `fmp adapter run servicenow` and `fmp adapter run entra` — and ScubaGear

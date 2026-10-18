@@ -1,5 +1,5 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 720" font-family="Arial, Helvetica, sans-serif">
-  <!-- index-image-03 — the four-layer OrgTree governance stack (ADR-093 house style).
+  <!-- index-image-03 — the four-layer governance stack (ADR-093 house style).
        Bottom-to-top, widest-to-narrowest: Identity, Structure, Policy, Governance.
        A vertical teal arrow runs through all four: "Every artifact cites its layer."
        White bg; navy / teal / steel-grey, amber reserved for the escalation artifact. -->
@@ -12,7 +12,7 @@
   <rect x="0" y="0" width="1280" height="720" fill="#FFFFFF"/>
   <rect x="0" y="0" width="1280" height="6" fill="#1E8C8C"/>
 
-  <text x="660" y="60" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="36" font-weight="bold" fill="#0D1B2E">The OrgTree Governance Stack</text>
+  <text x="660" y="60" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="36" font-weight="bold" fill="#0D1B2E">The Governance Stack</text>
   <text x="660" y="98" text-anchor="middle" font-size="19" fill="#6B7A8D">Four layers &#8212; every artifact cites the layer it belongs to</text>
 
   <!-- ===== vertical "cite your layer" arrow (left rail) ===== -->
@@ -41,5 +41,5 @@
   <rect x="135" y="530" width="1030" height="112" rx="12" fill="#1E3A66"/>
   <rect x="135" y="530" width="9" height="112" rx="4" fill="#1E8C8C"/>
   <text x="650" y="570" text-anchor="middle" dominant-baseline="central" font-family="Georgia, 'Times New Roman', serif" font-size="26" font-weight="bold" fill="#FFFFFF">Identity Layer</text>
-  <text x="650" y="608" text-anchor="middle" dominant-baseline="central" font-size="16" fill="#D7F2EE">Organizational code  &#183;  Dynamic group  &#183;  Attribute</text>
+  <text x="650" y="608" text-anchor="middle" dominant-baseline="central" font-size="16" fill="#D7F2EE">Dynamic group  &#183;  Attribute</text>
 </svg>

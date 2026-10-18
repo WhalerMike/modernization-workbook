@@ -45,9 +45,8 @@ a Call to Action, the box points at it rather than restating it. Read
 the box first if you have two minutes; read the paper if the ask is
 yours to act on.
 
-Three papers — [`ad-to-entraid-migration-problem`](ad-to-entraid-migration-problem.md),
-[`aodim-executive-whitepaper`](aodim-executive-whitepaper.md), and
-[`fmp-vs-native-tools`](fmp-vs-native-tools.md) — predate both
+Two papers — [`ad-to-entraid-migration-problem`](ad-to-entraid-migration-problem.md)
+and [`fmp-vs-native-tools`](fmp-vs-native-tools.md) — predate both
 genres: they're docx imports from before the canon-anchoring convention
 existed. They carry real content (the original business case for the
 whole program) but are the corpus's least structurally current papers;
@@ -90,7 +89,6 @@ The AD → Entra ID arc.
 |---|---|---|
 | [AD-to-Entra ID Structural Migration Problem](ad-to-entraid-migration-problem.md) | Active *(pre-canon import)* | Original statement of the structural migration problem — read for the business case. |
 | [The Session vs. Telemetry Divide](session-vs-telemetry-identity.md) | Active | The architectural-tension argument split out of the paper above 2026-08-03 — strong enough to stand alone, was diluting the parent's focus. Read right after it. |
-| [AODIM Executive Whitepaper](aodim-executive-whitepaper.md) | Active *(pre-canon import)* | The attribute-oriented directory/identity model — oldest architectural core of the program. |
 | [Modernization Journey](modernization-journey.md) | Draft | The mainframe→cloud arc end to end. **The argument is vendor-neutral and product-neutral** — written to hand to an audience that isn't evaluating a platform — and a separable [closing appendix](modernization-journey.md#appendix-narrative-provenance-this-arc-mapped-to-fmp-canon) maps Act 4 to the ADRs behind it. Cross-listed as the flagship of Track 4. |
 | [Flipping 50,000 Devices to Hybrid Join](hybrid-join-without-governance.md) | Draft | One concrete operation *inside* the arc above — governed vs. ungoverned hybrid join. Read after *Modernization Journey*; it assumes that paper's control-plane/data-plane framing. |
 | [Federal SSOT Alignment](federal-ssot-alignment.md) | Active | Same identity-modernization event, read through the data-governance/SSOT-mandate lens instead of the architecture lens. |

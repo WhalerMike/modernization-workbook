@@ -4,7 +4,6 @@ subtitle: "End-to-end substrate walkthrough for a mid-size federal agency with t
 doc-type: case-study-pattern
 audience: [Customer, Sponsor, Program Lead, Architect, Assessor]
 status: framing-pattern
-canon-source: "src/fmp/canon/FMP_007_OrgTree_Modernization_AD_to_EntraID_v1.0.md"
 canon-reference:
   - "docs/customer-documents/whitepapers/federal-ssot-alignment.qmd"
   - "docs/customer-documents/federal-compliance-series/boundary/B1-gcc-moderate-boundary-model.qmd"
@@ -96,9 +95,7 @@ this archetype has roughly four hundred service accounts with at least
 one SPN registration; the survey flags approximately sixty of them as
 critical and another hundred as high-risk.
 
-The SPN inventory artifact introduced in PR #395 — defined in
-`src/fmp/schemas/orgtree-readiness/orgtree-readiness.schema.json`
-`#/definitions/spnInventory` — captures the agency's `MSSQLSvc/*`
+The SPN inventory artifact introduced in PR #395 captures the agency's `MSSQLSvc/*`
 registrations with a `phase: pre_migration` tag, the discovery
 timestamp, and the organizational attribution resolved via the service-
 account principal (preferred) or the hosting computer (fallback).
@@ -108,7 +105,7 @@ accounts predate any organizational attribution the agency can
 defend. These ten are flagged as P2 conditions that must be remediated
 through explicit owner reassignment before migration begins.
 
-The discovery phase ends with an OrgTree readiness bundle, HMAC-
+The discovery phase ends with a readiness bundle, HMAC-
 signed, ready to be consumed by the next phase. The bundle's
 provenance section names the substrate canon documents it derives from
 and binds the bundle to the agency's specific run.
@@ -119,14 +116,14 @@ The discovery output is not yet authoritative. The agency's two
 forests carry overlapping organizational hierarchies — both have an
 "Operations" OU at the top level, but the Operations group in forest
 A is a completely different population than Operations in forest B,
-and the merged tenant cannot tolerate that ambiguity. The OrgTree
+and the merged tenant cannot tolerate that ambiguity. The organizational
 registry, populated from the discovery output and refined through the
 agency's organizational chart of record, becomes the source of truth
 for organizational position. The collision is resolved in the
 registry, not at the group level.
 
 The normalization phase emits `DRIFT-IDENTITY` findings for principals
-that the OrgTree population cannot attribute. In the archetype, roughly
+that the registry cannot attribute. In the archetype, roughly
 two thousand users and several hundred service accounts fall into this
 bucket on the first pass. Each finding includes a suggested organizational
 attribution candidate derived from OU placement, manager chain, or computer-account
@@ -232,7 +229,7 @@ the substrate.
 On the user plane, the existing Adaptive Policy Scopes target
 each segment's labels, DLP rules, retention schedules, and eDiscovery
 custodian queries. On the data plane, Fabric Domains are created to
-mirror the OrgTree hierarchy; the agency provisions one domain per
+mirror the organizational hierarchy; the agency provisions one domain per
 `FabricDomainBoundary`-flagged node, and each Fabric workspace is
 assigned to the domain that matches the workspace's owning
 segment. The ninety SQL instances are registered into the Purview
@@ -255,7 +252,7 @@ verify them continuously.
 At any point after Phase 2 begins, the agency can produce an Evidence
 Bundle from the substrate's accumulated artifacts. The bundle includes:
 
-- The OrgTree readiness bundle from each phase, HMAC-signed
+- The readiness bundle from each phase, HMAC-signed
 - Both phase-tagged SPN inventories (pre- and post-migration) with
   drift comparison results
 - The provenance chain of every adapter operation

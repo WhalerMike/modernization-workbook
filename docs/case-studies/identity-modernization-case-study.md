@@ -7,7 +7,6 @@ status: framing-pattern
 canon-source: "src/fmp/canon/adr/adr-008-zero-trust-identity.md"
 canon-reference:
   - "docs/customer-documents/whitepapers/modernization-governance-whitepaper.qmd"
-  - "docs/customer-documents/architecture-series/aodim-architecture.qmd"
   - "docs/customer-documents/modernization-specs/identity/identity.qmd"
 derived-from: "fmp canon"
 lifecycle: adopted
@@ -26,8 +25,6 @@ can be anchored on top when it becomes externally releasable.
 Specific metrics, agency identifiers, and timelines are intentionally
 absent until real material is reviewed.
 :::
-
-![Identity migration engagement pattern diagram](../images/case-studies/identity-modernization-case-stud-image-01-identity-migration-engagement-pa.png){#fig-identity-modernization-case-study-image-01 fig-alt="Five-phase horizontal sequence (Canon-First → Modernization Adapters → Drift-Driven Cleanup pre-cutover → Cutover → Post-Cutover). Each phase shows the substrate's role: canon authoring, adapter registration, drift findings remediation, identity-plane source switch, continuous remediation. Above the sequence, a \"Substrate behaviors\" panel lists the four metrics a real engagement would document (provenance breakage rate, attribute-quality drift, cross-pillar correlation health, AODIM realization). Clean engineering blueprint style, dark navy (#0D1B2E) and teal (#1E8C8C) on white background. No photographs, purely diagrammatic." width="100%"}
 
 ## Engagement archetype
 
@@ -55,7 +52,7 @@ in Entra ID and losing most cloud-native value.
 
 ### Phase 1 — canon-first
 
-Author the AODIM attribute model in canon:
+Author the canonical attribute set in canon:
 
 - Canonical attribute set (`assignment_scope`, `organizational_role`,
   `classification_clearance`).
@@ -105,7 +102,7 @@ A real engagement would document, with metrics, behaviors such as:
 - **Cross-pillar correlation health** — whether the same identity
   resolves identically across PIV, Entra, and HR systems post-
   cutover.
-- **AODIM realization** — what fraction of access decisions are
+- **Attribute-computed access** — what fraction of access decisions are
   attribute-computed vs. manually-administered post-cutover.
 
 These metrics are the credible-claim surface for an externally
@@ -116,7 +113,7 @@ authoring requires real engagement material.
 
 A real engagement typically reveals:
 
-- Edge cases in the AODIM attribute model that require canon-change
+- Edge cases in the canonical attribute set that require canon-change
   ADRs.
 - Adapter conformance gaps (where a vendor's API does not cleanly map
   to the canonical claim shape).
@@ -143,6 +140,5 @@ should expect, not a specific engagement outcome.
 ## Related documents
 
 - [Whitepaper — Modernization Governance](../whitepapers/modernization-governance-whitepaper.md)
-- [Architecture Series — AODIM](../architecture/aodim-architecture.md)
 - [Modernization Spec — Identity](../modernization-specs/identity/identity.md)
 - the program decision: Zero Trust Identity

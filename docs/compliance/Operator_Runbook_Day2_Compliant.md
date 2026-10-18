@@ -200,7 +200,7 @@ entitlements are a binary choice, not SSOT-derived.
    plus the identity team.
 3. **Least privilege by derivation.** Group, license, and role membership
    are **derived from the identity's attributes** (department, role,
-   location) against the codebook — not a hand-picked group. The
+   location) — not a hand-picked group. The
    least-privilege baseline is the derivation, not the operator's judgment.
    Usage-location and sync-filter attributes are set from the record so the
    account is well-formed on creation.

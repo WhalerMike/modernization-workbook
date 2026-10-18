@@ -16,7 +16,7 @@ The authoritative layout places governance artifacts in a version-controlled rep
 
 | Surface | Role |
 |---------|------|
-| Governance documents | Single source of truth — policies, codebooks, plans, evidence |
+| Governance documents | Single source of truth — policies, plans, evidence |
 | Schemas | Schema authority |
 | Rules | Consumer rules and validation logic |
 

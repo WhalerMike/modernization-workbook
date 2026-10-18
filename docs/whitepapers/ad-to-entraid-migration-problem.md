@@ -8,7 +8,7 @@
 
 **Solution.** Treat the migration as governance discovery, normalization, mapping, continuity, and validation — not a tools project. Every Active Directory delegation concept has an explicit Entra counterpart (administrative units, privileged identity management, Conditional Access, entitlement management) that has to be built explicitly rather than inherited from a tree.
 
-**Ask.** Before any directory-synchronization setting is touched, commission the discovery of what the current Active Directory actually encodes, and design around the two limits that decide whether the mapping works: administrative units cannot nest, and the facets that drive administrative-unit membership are Active Directory-mastered for every synced user.
+**Ask.** Before any directory-synchronization setting is touched, commission the discovery of what the current Active Directory actually encodes, and design around the two limits that decide whether the mapping works: administrative units cannot nest, and the attributes that drive administrative-unit membership are Active Directory-mastered for every synced user.
 
 ## The Core Problem
 
@@ -54,7 +54,7 @@ The reconstruction is not guesswork. Every Active Directory delegation concept h
 | Organizational-unit-scoped delegation | Entra role scoped to administrative unit | Same role (for example, User Administrator) — different scope binding. |
 | Group Policy inheritance down organizational-unit tree | Device-management policy sets targeted at dynamic groups | Group rule replaces organizational-unit position. |
 | Domain Admin | Global Administrator | Privileged-identity-management-eligible only; never permanently active. |
-| Helpdesk delegation on leaf organizational unit | Authentication Administrator scoped to administrative unit | Administrative-unit membership rule matches organizational facets. |
+| Helpdesk delegation on leaf organizational unit | Authentication Administrator scoped to administrative unit | Administrative-unit membership rule matches organizational attributes. |
 | Site-linked Group Policy Object (network policy) | Conditional Access + named locations | Token-based, not session/proximity-based. |
 | Organizational-unit read delegation for service accounts | Microsoft Graph scoped API + least-privilege Entra role | Explicit scope; no implicit organizational-unit traversal. |
 | Security group creation by department admin | Groups Administrator scoped to department administrative unit | Role + administrative unit together replace organizational-unit access-control list. |
@@ -64,7 +64,7 @@ The reconstruction is not guesswork. Every Active Directory delegation concept h
 
 **Administrative units cannot nest.** An organizational-unit tree does not become an administrative-unit tree. It becomes a flat set of administrative units whose membership is selected by attribute, so any governance that depended on inheritance *down* the organizational-unit tree has to be re-expressed as an explicit predicate per administrative unit rather than carried by containment.
 
-**The facets that drive administrative-unit membership are Active Directory-mastered, not cloud-mastered.** For a user with directory synchronization enabled, Microsoft Graph treats the on-premises extension attributes as **read-only** — the source of authority is on-premises Active Directory. In a hybrid organization that is every user, so the facet values the administrative-unit rules match on are written in Active Directory and reach Entra by directory sync. Two consequences: the migration cannot stamp facets cloud-side for synced users, and every administrative-unit membership change inherits a sync-latency hop. Device extension attributes are cloud-mastered and *are* writable, which is why the device plane and the user plane behave differently.
+**The attributes that drive administrative-unit membership are Active Directory-mastered, not cloud-mastered.** For a user with directory synchronization enabled, Microsoft Graph treats the on-premises extension attributes as **read-only** — the source of authority is on-premises Active Directory. In a hybrid organization that is every user, so the attribute values the administrative-unit rules match on are written in Active Directory and reach Entra by directory sync. Two consequences: the migration cannot stamp attributes cloud-side for synced users, and every administrative-unit membership change inherits a sync-latency hop. Device extension attributes are cloud-mastered and *are* writable, which is why the device plane and the user plane behave differently.
 
 The mapping step operationalizes this table: for each delegation record found in discovery, it produces the administrative-unit definition, the membership rule (attribute predicate), and the role-assignment record needed in Entra. The output is executable guidance, not a spreadsheet.
 

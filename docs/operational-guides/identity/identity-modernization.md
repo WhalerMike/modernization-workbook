@@ -7,7 +7,7 @@ author: Michael Stratton
 date: "May 2026"
 status: Active
 canon-source: "inbox/Posted/FMP Identity Modernization Guide — Active Directory to Entra ID.docx"
-repo-path: docs/customer-documents/operational-guides/identity-orgtree/identity-modernization.qmd
+repo-path: docs/customer-documents/operational-guides/identity/identity-modernization.qmd
 created-at: 2026-04-26
 updated-at: 2026-05-11
 format:

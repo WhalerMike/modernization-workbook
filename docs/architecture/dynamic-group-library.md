@@ -10,7 +10,7 @@ Dynamic groups replace OU-based targeting. Membership is computed from attribute
 
 | Pattern | Example rule | Use |
 |---------|--------------|-----|
-| Single facet | `department -eq "Finance"` | Department-scoped policy |
+| Single attribute | `department -eq "Finance"` | Department-scoped policy |
 | Boolean combination | `department -eq "Finance" -and location -eq "HQ"` | Intersection targeting |
 | Hierarchy roll-up | `division -in ("IT","Security")` | Broader inclusion |
 | Exclusion | `department -eq "Finance" -and employeeType -ne "Contractor"` | Refined population |

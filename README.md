@@ -24,8 +24,6 @@ This repository extracts practical modernization concepts — single source of t
 ### Architecture
 - [Architecture Series](docs/architecture/architecture-series/README.md) — six-plane, three-layer rules, drift engine, evidence chain
 - [Single Source of Truth](docs/architecture/single-source-of-truth.md)
-- [Attribute-Driven Structure](docs/architecture/attribute-driven-structure.md)
-- [Drift Detection](docs/architecture/drift-detection.md) and [Walkthrough](docs/architecture/drift-detection-walkthrough.md)
 - [Change Control and Provenance](docs/architecture/change-control-and-provenance.md)
 - [Directory Migration Bridge](docs/architecture/directory-migration/README.md)
 - [GPO-to-Cloud Governance Gaps](docs/architecture/gpo-to-cloud-governance-gaps.md)

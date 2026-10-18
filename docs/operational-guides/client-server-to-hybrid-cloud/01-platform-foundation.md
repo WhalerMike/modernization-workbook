@@ -204,7 +204,7 @@ has the following operational properties:
   SIEM forwarding.
 - **Provenance-bound** — every config file change is a Git commit; no
   admin-portal clicks permitted; Intune baseline policy enforces this.
-- **OrgTree-governed** — server carries its organizational attributes
+- **Attribute-governed** — server carries its organizational attributes
   (NCR / IT / InfraOps), lives in an Administrative Unit
   (`AU-NCR-IT-InF-PLATFORM`), and is targeted by an attribute-scoped
   Intune compliance policy.

@@ -27,7 +27,7 @@ A single host plays five distinct roles. Each maps to a capability the transform
 
 ### 1. Canonical source of truth
 
-**Version control (for example, Gitea).** Every governance artifact — attribute codebook entries, dynamic group rules, delegation matrices, transformation plans, policy libraries, adapter manifests, drift reports — lives as a versioned file in the repository. Nothing is an admin-portal click. Nothing is a verbal assurance. Every change is a commit; every commit is signed; every commit is attributable.
+**Version control (for example, Gitea).** Every governance artifact — dynamic group rules, delegation matrices, transformation plans, policy libraries, adapter manifests, drift reports — lives as a versioned file in the repository. Nothing is an admin-portal click. Nothing is a verbal assurance. Every change is a commit; every commit is signed; every commit is attributable.
 
 The repository sits behind a reverse proxy (never exposed directly), is anchored to enterprise PKI for client-certificate and HTTPS, and is replicated to a standby. The baseline posture is a cold standby with manual failover and explicit recovery-point and recovery-time objectives. An HA-enabled deployment uses a hot standby with automatic, witness-gated failover. Off-premises backup remains the floor for total-site loss.
 
