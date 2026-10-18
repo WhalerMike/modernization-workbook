@@ -2,6 +2,8 @@
 
 **How the organizational-unit tree becomes organizational attributes, dynamic groups, administrative units, and Conditional Access**
 
+> **Dependency chain:** Inventory → Plan → **Identity** → Policy → Network services → Devices and servers → Access plane → Retire AD DS → Prove steady state
+
 ## The identity claim
 
 ![Diagram](../images/cshc/identity-transformation.svg)
@@ -191,28 +193,11 @@ Migration passes when:
 
 Only when every box is ticked is the tenant in steady state.
 
-## What this buys
+## Key takeaways
 
-The tangible outcomes, once the attribute-driven structure is in place:
-
-- **Delegation is provable.** Audit questions such as “who can manage Finance users?” have a literal answer in the role matrix.
-- **Reorganizations are cheap.** A division name change propagates through dynamic groups and administrative units in one reviewed change.
-- **Access reviews have structure.** Reviewers see governed groups with clear scope semantics.
-- **Compliance queries are cacheable.** “Who has access to sensitive resources?” is a dynamic-group query, not a spreadsheet reconciliation.
-- **Drift is visible before audit.** Findings are tracked long before they reach an external assessor.
-
-
-## Authoritative references
-
-- Microsoft Learn, [Manage users or devices for an administrative unit with rules for dynamic membership groups - Microsoft Entra ID](https://learn.microsoft.com/en-us/entra/identity/role-based-access-control/admin-units-members-dynamic)
-- Microsoft Learn, [Restricted management administrative units in Microsoft Entra ID - Microsoft Entra ID](https://learn.microsoft.com/en-us/entra/identity/role-based-access-control/admin-units-restricted-management)
-- Microsoft Learn, [Use Microsoft Entra groups to manage role assignments - Microsoft Entra ID](https://learn.microsoft.com/en-us/entra/identity/role-based-access-control/groups-concept)
-- Microsoft Learn, [Privileged Identity Management (PIM) for Groups - Microsoft Entra ID Governance](https://learn.microsoft.com/en-us/entra/id-governance/privileged-identity-management/concept-pim-for-groups)
-- Microsoft Learn, [Prevent Attacks Using Smart Lockout - Microsoft Entra ID](https://learn.microsoft.com/en-us/entra/identity/authentication/howto-password-smart-lockout)
-- Microsoft Learn, [What are lifecycle workflows? - Microsoft Entra ID Governance](https://learn.microsoft.com/en-us/entra/id-governance/what-are-lifecycle-workflows)
-- Microsoft Learn, [Plan cloud HR application to Microsoft Entra user provisioning - Microsoft Entra ID](https://learn.microsoft.com/en-us/entra/identity/app-provisioning/plan-cloud-hr-provision)
-- Microsoft Learn, [Administrative units in Microsoft Entra ID - Microsoft Entra ID](https://learn.microsoft.com/en-us/entra/identity/role-based-access-control/administrative-units)
-- Microsoft Learn, [Manage rules for dynamic membership groups in Microsoft Entra ID - Microsoft Entra ID](https://learn.microsoft.com/en-us/entra/identity/users/groups-dynamic-membership)
+1. Delegation moves from OU access-control lists to administrative units and PIM-managed, role-assignable groups.
+2. HR-driven provisioning and lifecycle workflows, not administrators, keep identity data current.
+3. Identity is first in the chain because policy, devices, and access all target identity groups.
 
 ---
 

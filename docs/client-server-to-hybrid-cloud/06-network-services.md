@@ -2,6 +2,8 @@
 
 **Active Directory-integrated DNS → private resolution · Active Directory DHCP → governed hybrid DHCP · informal IPAM → governed IP address management**
 
+> **Dependency chain:** Inventory → Plan → Identity → Policy → **Network services** → Devices and servers → Access plane → Retire AD DS → Prove steady state
+
 ## The services claim
 
 ![Diagram](../images/cshc/services-transformation.svg)
@@ -173,6 +175,12 @@ The common pattern: modernize identity and policy, leave DNS, DHCP, and IP addre
 
 A forest that retains Active Directory-integrated DNS is not actually retired. Do not pretend otherwise. The services migration is part of the core modernization, not a follow-on.
 
+
+## Key takeaways
+
+1. DNS, DHCP, and IP address management move together, with IPAM as the source of truth.
+2. Hybrid resolution uses Azure DNS Private Resolver; AD-integrated zones retire last, with the domain controllers.
+3. A forest that still hosts DNS has not been retired.
 
 ## Authoritative references
 

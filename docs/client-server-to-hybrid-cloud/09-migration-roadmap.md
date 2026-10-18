@@ -2,6 +2,8 @@
 
 **Seven phases, five parallel workstreams, named gates, deterministic rollback**
 
+> **Dependency chain:** Inventory → Plan → Identity → Policy → Network services → Devices and servers → Access plane → **Retire AD DS** → **Prove steady state** — this chapter sequences the whole chain as a program.
+
 ## The program claim
 
 ![Diagram](../images/cshc/migration-roadmap.svg)
@@ -247,6 +249,12 @@ In week forty-nine (Phase 6 steady state), the program meeting looks like this:
 
 The program is not “done” — steady state is the operational mode — but the modernization is complete. The organization runs governed; Active Directory is gone, or reduced to documented Kerberos islands with end-of-life dates; the authoritative source is the operational truth.
 
+
+## Key takeaways
+
+1. Workstreams run in parallel, but gates follow the dependency chain.
+2. Gate criteria are evaluated from data, not executive signature.
+3. Week numbers are illustrative; large estates run multi-year.
 
 ## Authoritative references
 
