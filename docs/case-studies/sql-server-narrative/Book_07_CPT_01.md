@@ -1,5 +1,5 @@
 ---
-title: "AD Group Types and the Entra Perimeter"
+title: "Groups, Roles, and How Membership Reaches the Engine"
 doc-type: sql-server-narrative-chapter
 audience: [Technical, Customer]
 family: sql-server-narrative
@@ -11,92 +11,93 @@ tiers_adopted: []
 lifecycle_review: 2027-01-01
 ---
 
-::: {.callout-note}
-## the organizational-attribute model examples in this chapter predate Hybrid-C+Path
+# Chapter 1 — Groups, Roles, and How Membership Reaches the Engine
 
-The dynamic-group rule examples below use the retired Model A/B form — the whole
-the organizational-attribute model as one composite string in a single slot. the program decision
-replaced that with named facets (`extensionAttribute1` is the **region** facet),
-and the program decision moved the
-derived canonical path to `extensionAttribute15`. A *subtree* rule reads
-`(user.extensionAttribute15 -startsWith "Region=NCR|Department=Finance|")` —
-anchored at `Region=`, because the derived path is composed region, department,
-division in that order, and with the trailing delimiter, which is mandatory. A
-rule for "all of Finance, in every region" is not a subtree at all: it is the
-facet predicate `(user.extensionAttribute2 -eq "Finance")`.
-
-The examples are retained as written because the *pattern* they teach —
-OU-derived groups become dynamic groups keyed on organizational attributes — is
-unchanged. Do not copy the slot numbers or value shapes; the authoritative map is
-[`codebook.yaml`].
-:::
-
-
-# Chapter 1 — AD Group Types and the Entra Perimeter
-
-*The group-based access model survives the migration; its lifecycle and its outer boundary do not.*
+*Group-based authorization survives the migration. Its plumbing, its timing, and its outer boundary do not.*
 
 ::: {.callout-note}
 ## In this chapter
-How the four canonical AD-to-Entra group types of the AD group-type taxonomy rationalization framework map onto SQL Server roles, why an the organizational-attribute model-driven dynamic security group replaces the helpdesk-ticket membership model, how the mail-enabled security group splits into two Entra objects, why Conditional Access becomes a binary outer perimeter that covers every type-E SQL Server connection and none of the Windows ones, and why that binary is a governed steady state rather than a false dichotomy — with compensating controls accommodated as time-bound exceptions, not co-equal destinations.
+How an Entra security group becomes a SQL Server login and a database role member. Why each group should grant exactly one role. Why the group model should stay flat. When a membership change actually takes effect at the engine. How the four kinds of AD group found in a SQL Server estate migrate. Why Conditional Access becomes the outer perimeter once every login is Entra-backed.
 :::
 
-The access control model for SQL Server has historically lived entirely inside SQL Server: server-level roles, database-level roles, and the AD security groups mapped to them. The migration from AD-backed Windows logins to Entra-backed type-E logins changes the identity authority for those groups from Active Directory to Microsoft Entra ID, but it does not eliminate the group-based pattern itself.
+SQL Server's access model has always had two halves. Inside the engine are server roles, database roles, and the permissions granted to them. Outside it is the directory, which decides who belongs to the groups those roles are granted to. For twenty years the outside half was Active Directory. A DBA mapped `DOMAIN\SQL-Reporting-Readers` to a login, added the login to a database role, and from then on access was managed by whoever could change that AD group's membership.
 
-What changes is the group lifecycle. Where an AD security group required a helpdesk ticket to add or remove a member, an Entra dynamic security group whose membership rule references the organizational-attribute model attributes updates itself continuously as HR data changes. The DBA manual cycle — grant access, verify access, revoke access — is replaced by an attribute-driven policy that requires no DBA action for routine changes.
+The transformation replaces the outside half and leaves the inside half nearly untouched. Server and database roles, `GRANT` and `DENY`, ownership chains, and module signing all work as before. What changes is the principal those roles are granted to (an Entra group instead of an AD group), the mechanism that proves membership (an Entra token instead of a Kerberos ticket), and the moment a membership change takes effect. Most of this book is about the outside half: how the groups are designed, populated, delegated, and governed. This chapter starts at the seam between the two halves.
 
-The AD group-type taxonomy classifies every migrating AD security group into exactly one of four canonical types, each with a defined Entra target and transformation pattern. The remainder of this chapter walks those four types, maps each to its SQL Server consequence, and then turns to the perimeter the completed migration enables.
+## How an Entra Group Becomes SQL Server Access
 
-## Type 1 — OU-Derived Security Groups Become the organizational-attribute model Dynamic Groups
+An Entra security group enters SQL Server the same way an AD group did: as a server-level login. `CREATE LOGIN [SQL-PRD-FIN01-Ledger-Reader] FROM EXTERNAL PROVIDER` creates a login for the group by display name. SQL Server records it in `sys.server_principals` with type `X`, `EXTERNAL_GROUP`. That differs from type `E`, `EXTERNAL_LOGIN`, which SQL Server uses for individual Entra users and applications. The distinction matters for the continuous audit in Book 09. A posture query that counts only type-E principals will miss every group login, and group logins are where most access should live. Inside each database the group gets a user (`CREATE USER … FROM LOGIN`), and the user is added to a database role with `ALTER ROLE … ADD MEMBER`, exactly as before.
 
-The first type in the AD group-type taxonomy is the security group used for OU-derived access: groups that exist because users in a given organizational unit needed access to a SQL Server database or server role. In the AD world these are typically named for the unit they serve — `OU-DEPT-DBA-PROD` — and members are added by organizational position.
+The instance's Microsoft Entra administrator works the same way. It's configured when Entra authentication is enabled, it receives `sysadmin`, and it can be an individual or a group. In an estate of any size it should be a group, and that group is the subject of the privileged-access design in Chapter 2. To resolve users, groups, and applications, the instance's Entra identity is granted read permissions on Microsoft Graph: `User.Read.All`, `GroupMember.Read.All`, and `Application.Read.All`. Granting them takes a Privileged Role Administrator, so it is a step for the identity team, not the DBA team.
 
-The AD group-type taxonomy maps this type to the dynamic-group pattern that the dynamic-group provisioning model defines. In Entra ID these become dynamic security groups whose membership rule references the organizational-attribute model attributes, expressing the organizational logic that was previously encoded in the group name and maintained by hand. A rule such as `(user.extensionAttribute5 -eq "ORG/DEPT/TEAM") -and (user.jobTitle -contains "DBA")` admits any principal whose the organizational-attribute model attribute matches and whose title contains "DBA," automatically and continuously.
+```sql
+-- Instance level: one login per Entra group
+CREATE LOGIN [SQL-PRD-FIN01-Ledger-Reader] FROM EXTERNAL PROVIDER;
 
-the organizational-attribute model attribute values are populated by the the organizational-attribute model Narrative's HR-data synchronization pipeline; they are not manually managed. Migrating a Type 1 group therefore requires two things: confirming the the organizational-attribute model attribute infrastructure is in place — a dependency on the the organizational-attribute model Narrative — and authoring the dynamic membership rule that correctly expresses the original group's organizational logic.
+-- Database level: the group becomes a member of exactly one role
+USE Ledger;
+CREATE USER [SQL-PRD-FIN01-Ledger-Reader] FROM LOGIN [SQL-PRD-FIN01-Ledger-Reader];
+ALTER ROLE ledger_reader ADD MEMBER [SQL-PRD-FIN01-Ledger-Reader];
+```
 
-## Type 2 — Explicit Role-Assignment Groups
+The Implementation Companion carries the full runbook. The narrative point is that nothing about authorization inside the engine has to be redesigned. Only the principal changes.
 
-Type 2 groups exist specifically to grant a named role or permission on SQL Server — `PROD-SQL-SYSADMIN`, `DB-REPORTING-READONLY`. They carry no organizational-derivation logic; members are added explicitly because they need the specific permission. In Entra ID these become flat assigned security groups: no dynamic rule, membership managed by direct assignment, and — per the AD group-type taxonomy — flattened, with no nested transitive groups carried over.
+## One Group, One Role
 
-The difference from the AD equivalent is in the maintenance model. Modifying membership of an assigned Entra security group requires an Entra role assignment — User Administrator scope, or a delegated role within an Administrative Unit per the Administrative Unit provisioning model — rather than a helpdesk ticket to an AD administrator. That is the governance improvement.
+The most consequential design decision in this book is also the simplest: **each Entra group grants exactly one role, on one database, in one environment.** In practice, a user-defined database role holds a coherent permission set, and the group that maps to it is named for that role, that database, and that environment. A user who needs to read the ledger and also run the month-end job belongs to two groups, not one group built to cover both.
 
-The migration itself is operationally straightforward: create the Entra security group, populate it with the AD group's members, create the SQL Server type-E login for the Entra group, and validate. The process is simple; the improvement is in the ongoing model, which Chapter 2 shows depends on the Administrative Unit being provisioned first.
+Three things follow from the rule, and each is a reason to keep it. First, the group's name is a complete statement of what it grants, so an access review (Chapter 2) can be answered by someone who has never opened SQL Server Management Studio. Second, revoking one capability never revokes another by accident. Third, the rule makes dynamic membership tractable. A rule that answers "who should read the ledger?" can be written and tested. A rule that answers "who should have whatever this legacy group happened to grant?" cannot.
 
-## Type 3 — Distribution Lists for SQL Server Agent Notifications
+Least privilege then becomes a property of the role catalog, not of individual grants. Permissions go to user-defined database roles, never directly to group users, and fixed roles such as `db_owner` and `sysadmin` are kept for the handful of principals whose job requires them. A migration is the right time to do this. Every legacy AD group mapped to `db_owner` "because the application needed it" is a finding to resolve before its replacement is created, not after.
 
-Type 3 groups are not access control groups at all — they are routing artifacts. SQL Server Agent jobs can send completion and failure notifications to an email address, and many environments have used AD distribution lists, mail-enabled groups with security disabled, as the target.
+## Flat by Design
 
-In Entra ID, the AD group-type taxonomy maps a distribution list to a Microsoft 365 Group with `securityEnabled: false` — mail-only, and explicitly never used for access control. Migrating a Type 3 group is an email-routing migration, not a SQL Server access control migration. The SQL Server Agent operator definition that holds the notification address must be updated to reference the new M365 Group's email.
+Active Directory estates are full of nested groups: a departmental group inside an application group inside a server-access group. It's tempting to rebuild that tree in Entra ID. Don't. The new platform's constraints point toward a flat model.
 
-No SQL Server login is created for a Type 3 group, because it carries no access role. The AD group-type taxonomy makes this exclusion explicit: distribution lists are removed from the login migration and handled on the mail-routing path instead.
+- **Dynamic groups can't contain groups.** A dynamic rule selects users (or devices) by attribute, never other groups.
+- **The `memberOf` operator is ending.** It was the preview workaround for building a dynamic group from other groups. Microsoft has announced that its public preview ends on 3 November 2026. After that date, groups that use it stop updating and stay in their last-known state.
+- **Role-assignable groups can't nest.** These are the groups with the strongest protection against privilege escalation, and they accept no group members at all.
+- **Group claims are capped.** Applications that read group membership straight from the token get at most 200 groups in a JWT, and above that receive an overage indicator instead of the list.
+- **Nested-group evaluation is undocumented for SQL Server.** Microsoft's SQL Server documentation doesn't describe how nested Entra group membership is evaluated for an on-premises instance's group logins.
 
-## Type 4 — Mail-Enabled Security Groups Split in Two
+A design that depends on nesting is therefore building on behavior that is either unsupported, ending, or undocumented. The flat alternative costs a few more groups and gives up nothing. Each role-mapped group lists its members directly, either by rule or by assignment. If several populations need the same role, use one group whose rule covers all of them. Where a login *must* be reached through a nested chain, test that path explicitly on the target instance version before relying on it.
 
-Type 4 is the most complex case: a single group that is both a security group, used for SQL Server access, and mail-enabled, used for Agent notifications. The AD group-type taxonomy specifies a two-object pattern. The one mail-enabled security group is split into an M365 Group for mail routing — taking the email address and the distribution membership — and an assigned Entra security group for access — taking the security membership and the SQL Server role.
+## When a Change Takes Effect
 
-The two objects are correlated by an the organizational-attribute model extension attribute so the organizational relationship between them is preserved and a future engagement can re-correlate them. The SQL Server login is created against the security group; the Agent operator is pointed at the M365 Group's email.
+Under Windows Authentication, a membership change reached SQL Server when the user next obtained a Kerberos ticket, which usually meant the next logon. The Entra model has a longer and more varied chain, and the DBA team should be able to explain each link in it:
 
-The operational result is identical to the original — the right people get access, the right people get job notifications — but the model is cleaner, because the access group and the mail group now have independent lifecycles. The AD group-type taxonomy accepts the cost: the split doubles the migration object count for this class, and every split is recorded in the migration audit with its correlation attribute.
+1. **Rule processing.** A dynamic group is recalculated when a relevant attribute changes. Microsoft documents that this usually completes within a few hours, but that it can take more than 24 hours in large tenants, after bulk changes, or with complex rules.
+2. **Token lifetime.** An access token already issued to the user stays valid until it expires. By default that's a randomized 60 to 90 minutes.
+3. **Session and pool lifetime.** An open SQL Server session keeps the security context it was established with. A connection pool can keep that session open for hours.
+
+For routine joiners, movers, and leavers this latency is acceptable. It is often faster than the ticket queue it replaces. For urgent removal it is not. The urgent path doesn't wait for a rule: disable the Entra account, revoke the user's sign-in sessions, and end the user's SQL Server sessions (`KILL`, or disabling the individual or group login if the threat is broader). Write this path into the operations runbook before the first dynamic group grants production access.
+
+## Migrating the Four AD Group Patterns
+
+The groups found in a twenty-year SQL Server estate fall into four recognizable patterns, and each one migrates differently.
+
+**Organization-derived access groups** exist because everyone in a given part of the organization needs a given access, and an administrator kept membership in step with the org chart by hand. These are the natural candidates for **dynamic membership**. The rule restates the organizational intent in terms of directory attributes that HR data keeps current, such as `department`, `companyName`, `jobTitle`, an `extensionAttribute`, or a directory extension property. Chapter 2 covers which attributes are safe to use and how to test the rule before it grants anything.
+
+**Explicit role-assignment groups**, such as `PROD-SQL-SYSADMIN` or `DB-REPORTING-READONLY`, exist because specific people were given a specific permission. Organizational position doesn't define them, so a rule shouldn't either. They become **assigned** Entra security groups, flattened, with membership changed by a delegated administrator or, for privileged roles, granted just-in-time through PIM (Chapter 2).
+
+**Distribution lists** used for SQL Server Agent notifications are not access control at all. They become mail-only groups. The Agent operator's address is updated, and no login is created.
+
+**Mail-enabled security groups** that do both jobs are split in two: a mail-only group for notifications and an assigned security group for access. Record the pairing in each group's description and in the migration record, so the two lifecycles can diverge without losing their history.
 
 ## Conditional Access as the Outer Perimeter
 
-The architectural dividend of completing the access control migration is that Conditional Access — a Microsoft Entra capability, not a SQL Server feature — becomes the outer perimeter for all SQL Server access. When every login is a type-E login backed by an Entra principal, every connection attempt requires an Entra access token, and every token request passes through Conditional Access evaluation before the token is issued.
+Completing the access-control migration delivers the architectural dividend. Once every login is an Entra user, group, or application, every connection needs an Entra token, and every token request passes Conditional Access before it is issued. A DBA on an unmanaged or non-compliant device is refused a token, so the connection never opens. So is a sign-in from outside the program's named locations, and so is a sign-in that Entra ID Protection rates as high risk.
 
-A DBA connecting from a device that is not registered in Entra ID, or registered but out of compliance with the device policy, receives a token denial; the connection never opens. A DBA connecting from a network address outside the program's Named Locations is denied. A DBA whose sign-in risk is elevated to "high" by Entra ID Protection — an unusual location, or a credential flagged in a breach report — is denied or challenged for remediation.
-
-None of these controls exist in the Windows Authentication model, and none apply to a type-U or type-G login backed by an AD principal. The perimeter is binary: it covers all connections or it covers none, because a single Windows-backed login is a bypass path around every Conditional Access control. This is the zero-trust posture the program's boundary requires, with continuous verification replacing the perimeter trust of the domain-joined world.
-
-## The Binary Perimeter Is Not a False Binary
-
-A reviewer is right to interrogate the word *binary*, and the claim deserves a precise defense. The assertion is not that no other control can touch a surviving Windows or SQL-Authentication login — it is that no other control delivers the same assurance, which is why the SQL Server engine-authentication decision treats every such login as a time-bound exception rather than a co-equal steady state.
-
-The compensating controls a skeptical panel will raise are real and worth naming. A privileged-access workstation (PAW) or Azure Bastion constrains *where* an administrative connection originates. Network segmentation and host firewalls constrain *which* hosts can reach the instance. Just-in-time elevation through Privileged Identity Management, and credential vaulting through a privileged-access-management (PAM) system, constrain *when* a standing credential is live and *who* can check it out. Each reduces the exposure of a Windows-backed login, and each is appropriate during the migration window.
-
-What none of them provides is identity-conditioned, continuous, per-connection evaluation. A bastion host authorizes the jump, but the SQL connection that leaves it still authenticates with Kerberos or NTLM beneath the Entra plane — the device-compliance state, the sign-in-risk signal, and the MFA freshness that Conditional Access evaluates *at token issuance, on every connection* are invisible to it. Network controls are perimeter controls: they do not travel with the identity, they do not re-evaluate as risk changes mid-session, and the credential itself stays outside the Entra plane, where Defender for Identity cannot correlate it. A PAM vault still hands out a credential that, once retrieved, authenticates without any of those checks.
-
-This is why the SQL Server engine-authentication decision does not forbid the compensating-control posture — it *governs* it. A login that cannot yet move to the Entra plane is permitted only as a **documented exception** carrying the inability-to-migrate reason, a **named compensating control**, and a **sunset date**; where a connection genuinely cannot reach Kerberos or Entra OAuth before the 2027-04-01 block, **Certificate-Based Authentication is the authorized interim posture per the Kerberos/NTLM-elimination program**. Compensating controls are the governed bridge across the migration window, not an equivalent destination. The steady state remains binary because the assurance the program's boundary requires — OMB M-22-09 phishing-resistant, Conditional-Access-conditioned access, operationalized through AC-17 and IA-2 — is achievable only when the credential SQL Server accepts is the Entra token the policy controls.
+None of these controls reach a Windows-backed or SQL-authenticated login, which is why the perimeter is binary. A single surviving Windows login is a path around every policy. Compensating controls such as privileged-access workstations, bastion hosts, segmentation, and credential vaulting are legitimate while the migration is in progress, but none of them evaluate identity, device, and risk on every connection. Book 05 and the SQL Server engine-authentication decision therefore treat each surviving legacy login as a documented, sunset-dated exception rather than a co-equal end state.
 
 ::: {.callout-note title="What Book 07 establishes — Chapter 1"}
-The AD group-type taxonomy rationalization framework classifies every migrating AD security group into one of four canonical types: OU-derived groups become the organizational-attribute model-driven dynamic security groups (per the dynamic-group provisioning model); explicit role-assignment groups become flattened assigned security groups; distribution lists become mail-only Microsoft 365 Groups with no access role; and mail-enabled security groups split into a two-object pattern — an M365 Group for mail plus an assigned security group for access, correlated by an the organizational-attribute model attribute. The access-bearing types map to SQL Server type-E logins, and once every login is Entra-backed, Conditional Access becomes a binary outer perimeter — device compliance, Named Locations, and sign-in risk — that a single surviving Windows login would entirely bypass. That binary is the steady-state target, not a false dichotomy: the SQL Server engine-authentication decision accommodates compensating controls (PAW/bastion, segmentation, JIT, PAM) only as documented, sunset-dated exceptions, with Certificate-Based Authentication as the authorized interim posture per the Kerberos/NTLM-elimination program.
+An Entra security group reaches SQL Server as a type-X (`EXTERNAL_GROUP`) login, becomes a database user, and joins a database role. Authorization inside the engine is unchanged. Each group grants exactly one role, on one database, in one environment. That makes access reviewable, revocation precise, and dynamic rules writable. The group model stays flat, because dynamic groups can't contain groups, the `memberOf` preview ends on 3 November 2026, role-assignable groups can't nest, and nested evaluation for SQL Server group logins is undocumented. Membership changes reach the engine only after rule processing, token expiry, and session or pool turnover, so urgent removal needs its own runbook. Organization-derived AD groups become dynamic groups, explicit role groups become assigned groups, distribution lists become mail-only groups, and mail-enabled security groups split in two. With every login Entra-backed, Conditional Access becomes the binary outer perimeter.
 :::
+
+## Microsoft references
+
+- [CREATE LOGIN — Microsoft Entra group logins](https://learn.microsoft.com/en-us/sql/t-sql/statements/create-login-transact-sql?view=sql-server-ver17) and [sys.server_principals principal types](https://learn.microsoft.com/en-us/sql/relational-databases/system-catalog-views/sys-server-principals-transact-sql?view=sql-server-ver17)
+- [Set up Microsoft Entra authentication for SQL Server enabled by Azure Arc](https://learn.microsoft.com/en-us/sql/sql-server/azure-arc/entra-authentication-setup-tutorial?view=sql-server-ver17) and [Managed identity for SQL Server enabled by Azure Arc](https://learn.microsoft.com/en-us/sql/sql-server/azure-arc/managed-identity?view=sql-server-ver17) (Graph permissions)
+- [Rules for dynamic membership groups](https://learn.microsoft.com/en-us/entra/identity/users/groups-dynamic-membership) and [the memberOf preview and its end date](https://learn.microsoft.com/en-us/entra/identity/users/groups-dynamic-rule-member-of)
+- [Role-assignable groups](https://learn.microsoft.com/en-us/entra/identity/role-based-access-control/groups-concept) and [group claims limits](https://learn.microsoft.com/en-us/entra/identity/hybrid/connect/how-to-connect-fed-group-claims)
+- [Dynamic group processing times](https://learn.microsoft.com/en-us/entra/identity/users/manage-dynamic-group) and [access token lifetimes](https://learn.microsoft.com/en-us/entra/identity-platform/configurable-token-lifetimes)

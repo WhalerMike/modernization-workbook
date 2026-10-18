@@ -1,7 +1,7 @@
 ---
-title: "Book_07 — Access Control: Groups, Roles, and the Entra Perimeter"
-subtitle: "From AD Groups to the organizational-attribute model-Driven Dynamic Entra Groups, and Conditional Access as the Outer Perimeter"
-description: "What happens to the SQL Server access control model when AD groups are replaced by Entra security groups. Examines the AD group-type taxonomy as the organizing framework, how the organizational-attribute model-driven dynamic membership eliminates manual DBA provisioning, Administrative Unit delegation for DBA teams, and Conditional Access as the binary outer perimeter for all SQL Server access."
+title: "Book_07 — Access Control: Groups, Roles, and Dynamic Membership"
+subtitle: "Designing the Entra Groups Behind SQL Server Access — Role-Mapped Groups, Attribute-Driven Membership, Scoped Delegation, and Just-in-Time Privilege"
+description: "What replaces the AD security group as the unit of SQL Server authorization. Explains how Entra group membership reaches SQL Server logins and database roles, why each group should map to exactly one role, how dynamic membership rules keyed on HR-sourced user attributes keep access current without DBA tickets, and the governance that makes that safe — attribute source of truth, rule testing and processing limits, administrative-unit delegation, PIM for Groups, access reviews, break-glass, and monitoring. Conditional Access becomes the outer perimeter once every login is Entra-backed."
 doc-type: sql-server-narrative-book
 audience: [Technical, Customer]
 family: sql-server-narrative
@@ -22,11 +22,11 @@ listing:
 ---
 
 ::: {.content-visible when-format="docx"}
-# Book_07 — Access Control: Groups, Roles, and the Entra Perimeter
+# Book_07 — Access Control: Groups, Roles, and Dynamic Membership
 :::
 
 ::: {.callout-note}
-The migration changes the identity authority for SQL Server's groups from Active Directory to Entra ID, but it does not eliminate group-based access control — it transforms the group lifecycle. Where an AD group required a helpdesk ticket, an the organizational-attribute model-driven dynamic Entra group updates itself as HR data changes. The governance dividend is Conditional Access as the outer perimeter.
+The migration moves SQL Server's groups from Active Directory to Microsoft Entra ID, but it keeps group-based authorization. What changes is who maintains the groups and how. A group that maps to a single database role can keep itself current from HR-sourced attributes, which removes the helpdesk ticket. That only works if the attributes are trustworthy, the rules are tested, delegation is scoped, and privileged access is just-in-time. This book covers that design and the governance it needs.
 :::
 
 ::: {.callout-tip}
