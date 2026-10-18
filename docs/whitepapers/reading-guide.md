@@ -75,7 +75,6 @@ Start here for "what is FMP."
 
 | Paper | Status | Role |
 |---|---|---|
-| FMP Governance OS | Active | **Flagship.** Defines the substrate, the three operating principles, the evidence chain. Everything downstream assumes this. |
 | [Zero Trust Governance](zero-trust-governance-whitepaper.md) | Active | Maps the substrate onto CISA's five ZTMM pillars, pillar by pillar. |
 | [Zero Trust Governance Principles](zero-trust-governance-principles.md) | Active | Broader and newer than the paper above — whole-agency (Network+CSP+VMware) scope, cross-cutting capabilities, the "why programs stall below Advanced" argument. Read *after* the pillar-mapping paper, not instead of it. |
 | [Zero Trust Requires Whole-Agency Scope](zero-trust-whole-agency-unification.md) | Active | Companion to the paper above — the whole-agency unification argument and SCuBA/ZTA worked example, split out 2026-08-03 so the parent paper's core argument stays finishable in one sitting. Read immediately after it, not standalone. |
@@ -155,8 +154,7 @@ alphabetical file list.
 
 **A federal CIO/CISO with 30 minutes (first exposure)**
 
-1. FMP Governance OS — what the substrate is and why "operating system," not "framework."
-2. [Modernization Journey](modernization-journey.md) — the compliance-deadline argument (FedRAMP 20x) and its Call to Action, written to be handed off without modification.
+1. [Modernization Journey](modernization-journey.md) — the compliance-deadline argument (FedRAMP 20x) and its Call to Action, written to be handed off without modification.
 
 **An assessor validating BOD-25-01 / ZTMM claims**
 

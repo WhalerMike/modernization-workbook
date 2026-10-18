@@ -1,0 +1,57 @@
+# Redirects for pages that were removed or merged into another page.
+# scripts/write_redirects.py (a Quarto post-render step) writes a small
+# HTML page at each old URL that forwards the reader to the new one, so
+# bookmarks and external links keep working. Paths are relative to the
+# site root, as .html output paths.
+redirects:
+  # SQL Server narrative: the short book-* series and the neutralized twin
+  # were folded into the canonical Book_* series.
+  docs/case-studies/sql-server-narrative/book-01-the-inheritance.html: docs/case-studies/sql-server-narrative/Book_01.html
+  docs/case-studies/sql-server-narrative/book-02-the-estate.html: docs/case-studies/sql-server-narrative/Book_02.html
+  docs/case-studies/sql-server-narrative/book-03-authentication-audit.html: docs/case-studies/sql-server-narrative/Book_03.html
+  docs/case-studies/sql-server-narrative/book-04-identity-bridge.html: docs/case-studies/sql-server-narrative/Book_04.html
+  docs/case-studies/sql-server-narrative/book-05-login-migration.html: docs/case-studies/sql-server-narrative/Book_05.html
+  docs/case-studies/sql-server-narrative/book-06-ntlm-elimination.html: docs/case-studies/sql-server-narrative/Book_06.html
+  docs/case-studies/sql-server-narrative/book-07-access-control.html: docs/case-studies/sql-server-narrative/Book_07.html
+  docs/case-studies/sql-server-narrative/book-08-upstream-chain.html: docs/case-studies/sql-server-narrative/Book_08.html
+  docs/case-studies/sql-server-narrative/book-09-steady-state.html: docs/case-studies/sql-server-narrative/Book_09.html
+  docs/case-studies/sql-server-narrative/book-10-certificate-authority.html: docs/case-studies/sql-server-narrative/Book_10.html
+  docs/case-studies/sql-server-narrative/book-11-platform-question.html: docs/case-studies/sql-server-narrative/Book_11.html
+  docs/case-studies/sql-server-narrative/sql-server-narrative-neutralized.html: docs/case-studies/sql-server-narrative/README.html
+
+  # Executive Governance: the flat summary copy was removed; the chapter
+  # folders are canonical.
+  docs/executive-governance-series/README.html: docs/executive-governance/index.html
+  docs/executive-governance-series/index.html: docs/executive-governance/index.html
+  docs/executive-governance-series/why-governance-fails.html: docs/executive-governance/ch01-why-governance-fails/index.html
+  docs/executive-governance-series/compliance-paradox.html: docs/executive-governance/ch02-compliance-paradox/index.html
+  docs/executive-governance-series/drift-as-primary-threat.html: docs/executive-governance/ch03-drift-as-primary-threat/index.html
+  docs/executive-governance-series/deterministic-governance.html: docs/executive-governance/ch04-deterministic-governance/index.html
+  docs/executive-governance-series/adapter-model.html: docs/executive-governance/ch05-adapter-model/index.html
+  docs/executive-governance-series/evidence-over-attestation.html: docs/executive-governance/ch06-evidence-over-attestation/index.html
+  docs/executive-governance-series/operational-tempo.html: docs/executive-governance/ch07-operational-tempo/index.html
+  docs/executive-governance-series/governance-at-scale.html: docs/executive-governance/ch08-governance-at-scale/index.html
+  docs/executive-governance-series/governance-operating-system.html: docs/executive-governance/index.html
+  docs/executive-governance/ch09-governance-operating-system/index.html: docs/executive-governance/index.html
+
+  # Retired content.
+  docs/executive-briefs/governance-os-overview.html: docs/executive-briefs/index.html
+  docs/whitepapers/fmp-governance-os-whitepaper.html: docs/whitepapers/README.html
+  docs/platform/active-governance.html: index.html
+
+  # Modernization Specs: nested copies merged into the flat specs.
+  docs/modernization-specs/cloud/cloud.html: docs/modernization-specs/cloud.html
+  docs/modernization-specs/identity/identity.html: docs/modernization-specs/identity.html
+  docs/modernization-specs/sase/sase.html: docs/modernization-specs/sase.html
+  docs/modernization-specs/sdwan/sdwan.html: docs/modernization-specs/sdwan.html
+  docs/modernization-specs/telemetry/telemetry.html: docs/modernization-specs/telemetry.html
+  docs/modernization-specs/zero-trust/zero-trust.html: docs/modernization-specs/zero-trust.html
+
+  # Architecture duplicates.
+  docs/architecture/architecture-series/evidence-chain.html: docs/architecture/evidence-chain.html
+  docs/architecture/six-plane-architecture.html: docs/architecture/architecture-series/six-plane-architecture.html
+  docs/architecture/directory-migration/README.html: docs/reference-architecture/directory-migration.html
+  docs/architecture/directory-migration/index.html: docs/reference-architecture/directory-migration.html
+
+  # Whitepapers: 99% duplicate.
+  docs/whitepapers/federal-application-aware-networking-architecture.html: docs/whitepapers/modernization-journey.html

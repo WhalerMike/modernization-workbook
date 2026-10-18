@@ -26,7 +26,7 @@ transformation; identity is covered in C, and access enforcement in F.
 
 ## Leaves
 
-- **G.1** SD-WAN — [modernization-specs/sdwan](../../modernization-specs/sdwan/sdwan.html)
+- **G.1** SD-WAN — [modernization-specs/sdwan](../../modernization-specs/sdwan.html)
 - **G.2** IPAM (hybrid address governance) — see DM_010 (§D.1)
 - **G.3** DNS (hybrid resolution) — see DM_015 (§D.2, gap)
 - **G.4** DHCP (scoped, governed) — see DM_016 (§D.3, gap)
