@@ -269,7 +269,7 @@ Native HR connectors, where they exist for a given HCM, are permitted as acceler
 
 The pattern this book describes has a first-party name in the Microsoft documentation: **HR-driven provisioning**. Awareness of this cannot be assumed, so it is worth stating plainly — the architecture above is not custom middleware glue. Microsoft ships it as a generally available, documented feature family in which the HR system is the start-of-authority for identity lifecycle and the Entra provisioning service carries its records into the directory targets.
 
-Two on-ramps exist: prebuilt cloud-HR connectors (Workday, SAP SuccessFactors), and the **API-driven inbound provisioning** path — the Graph `bulkUpload` endpoint accepting SCIM 2.0 payloads — which is source-agnostic and is the canonical Spec2-D3.1 architecture above. In both cases the provisioning service applies **scoping filters** (who provisions at all) and **expression-based attribute mappings** (how HR fields become directory attributes).
+Two on-ramps exist: prebuilt cloud-HR connectors (Workday, SAP SuccessFactors), and the **API-driven inbound provisioning** path — the Graph `bulkUpload` endpoint accepting SCIM 2.0 payloads — which is source-agnostic and is the architecture described above. In both cases the provisioning service applies **scoping filters** (who provisions at all) and **expression-based attribute mappings** (how HR fields become directory attributes).
 
 The consequential fact for a coexisting estate: the same HR feed can land in **two different zones**, separately or simultaneously —
 
@@ -440,7 +440,7 @@ Produce the attribute authority map as a governed artifact: every attribute cons
 
 ## Phase 2 — Inbound Provisioning Pilot (Weeks 7–14)
 
-Stand up the Spec2-D3.1 pipeline — source adapter, middleware normalization and provenance emission, `bulkUpload` submission — against a pilot population, in shadow mode first: the pipeline computes what it *would* do, and its output is diffed against the directory's actual state. Shadow-mode drift reports are the last data-quality net before automation acts. Size the envelope against the verified limits (batching toward 50 operations per call; daily call budget against the tenant cap) and deploy the provisioning-agent tier where AD writeback persists during coexistence.
+Stand up the inbound provisioning pipeline — source adapter, middleware normalization and provenance emission, `bulkUpload` submission — against a pilot population, in shadow mode first: the pipeline computes what it *would* do, and its output is diffed against the directory's actual state. Shadow-mode drift reports are the last data-quality net before automation acts. Size the envelope against the verified limits (batching toward 50 operations per call; daily call budget against the tenant cap) and deploy the provisioning-agent tier where AD writeback persists during coexistence.
 
 **Gate:** thirty days of shadow operation in which every pipeline-versus-directory difference is explained — either a directory error (fixed downstream) or a source error (fixed in HR); provenance records emitted for 100% of events.
 
@@ -461,7 +461,7 @@ Load the supervisory organization and position records; stamp organizational att
 | Phase | Output | Gate |
 |---|---|---|
 | 1 — Attribute authority agreement | Signed authority map; source data remediated; account-to-worker correlation baseline | Every enabled account correlated or on a dated exception list |
-| 2 — Inbound provisioning pilot | Spec2-D3.1 pipeline live in shadow mode; provenance stream; sized throttling envelope | 30 days with every pipeline-versus-directory difference explained |
+| 2 — Inbound provisioning pilot | Inbound provisioning pipeline live in shadow mode; provenance stream; sized throttling envelope | 30 days with every pipeline-versus-directory difference explained |
 | 3 — Lifecycle automation | Joiner/mover/leaver executing from HR events; measured intervals; exception paths | Zero missed leavers over a full cycle; hours-scale revocation; creation tickets retired |
 | 4 — Org-SSOT-derived access | Attributes stamped; dynamic groups and access packages re-based; OU dependencies retiring | Test reorganization propagates with zero manual directory changes |
 
