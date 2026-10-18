@@ -88,7 +88,7 @@ proof") — is stated in
 
 ::: {.callout-tip}
 ## Download the full series
-**[federal-compliance-series-bundle.docx]** — every book
+**[federal-compliance-series-bundle.docx](../../downloads/federal-compliance-series-bundle.docx)** — every book
 and training-academy page concatenated into one Word document.
 
 For the complete kit — one `.docx` volume bundle per volume plus every book as
@@ -109,17 +109,17 @@ boundary, and the published tree cannot render it.
 
 | Volume | Theme | Books | One Word file |
 |---|---|---|---|
-| **Vol 0** | Executive Summary, Questionnaire & Control Crosswalk | 4 | [`Vol_0-Executive Summary, Questionnaire & Control Crosswalk-Bundle.docx`] |
-| **Vol I** | Foundation & Transport | 8 | [`Vol_I-Foundation & Transport-Bundle.docx`] |
-| **Vol II** | Data Platform | 4 | [`Vol_II-Data Platform-Bundle.docx`] |
-| **Vol III** | Security Operations | 8 | [`Vol_III-Security Operations-Bundle.docx`] |
-| **Vol IV** | Governance & Assurance | 7 | [`Vol_IV-Governance & Assurance-Bundle.docx`] |
-| **Vol V** | Training & Certification | 5 | [`Vol_V-Training & Certification-Bundle.docx`] |
-| **Vol VI** | Implementation | 9 | [`Vol_VI-Implementation-Bundle.docx`] |
-| **Vol VII** | ServiceNow Automation | 6 | [`Vol_VII-ServiceNow Automation-Bundle.docx`] |
-| **Vol VIII** | Multi-Cloud DDI | 1 | [`Vol_VIII-Multi-Cloud DDI-Bundle.docx`] |
-| **Vol IX** | Day-2 Operations | 7 | [`Vol_IX-Day-2 Operations-Bundle.docx`] |
-| **Vol X** | Governance-Substrate Integration (optional binding) | 1 | [`Vol_X-Governance-Substrate Integration-Bundle.docx`] |
+| **Vol 0** | Executive Summary, Questionnaire & Control Crosswalk | 4 | [`Vol_0-Executive Summary, Questionnaire & Control Crosswalk-Bundle.docx`](<../../downloads/Vol_0-Executive Summary, Questionnaire & Control Crosswalk-Bundle.docx>) |
+| **Vol I** | Foundation & Transport | 8 | [`Vol_I-Foundation & Transport-Bundle.docx`](<../../downloads/Vol_I-Foundation & Transport-Bundle.docx>) |
+| **Vol II** | Data Platform | 4 | [`Vol_II-Data Platform-Bundle.docx`](<../../downloads/Vol_II-Data Platform-Bundle.docx>) |
+| **Vol III** | Security Operations | 8 | [`Vol_III-Security Operations-Bundle.docx`](<../../downloads/Vol_III-Security Operations-Bundle.docx>) |
+| **Vol IV** | Governance & Assurance | 7 | [`Vol_IV-Governance & Assurance-Bundle.docx`](<../../downloads/Vol_IV-Governance & Assurance-Bundle.docx>) |
+| **Vol V** | Training & Certification | 5 | [`Vol_V-Training & Certification-Bundle.docx`](<../../downloads/Vol_V-Training & Certification-Bundle.docx>) |
+| **Vol VI** | Implementation | 9 | [`Vol_VI-Implementation-Bundle.docx`](../../downloads/Vol_VI-Implementation-Bundle.docx) |
+| **Vol VII** | ServiceNow Automation | 6 | [`Vol_VII-ServiceNow Automation-Bundle.docx`](<../../downloads/Vol_VII-ServiceNow Automation-Bundle.docx>) |
+| **Vol VIII** | Multi-Cloud DDI | 1 | [`Vol_VIII-Multi-Cloud DDI-Bundle.docx`](<../../downloads/Vol_VIII-Multi-Cloud DDI-Bundle.docx>) |
+| **Vol IX** | Day-2 Operations | 7 | [`Vol_IX-Day-2 Operations-Bundle.docx`](<../../downloads/Vol_IX-Day-2 Operations-Bundle.docx>) |
+| **Vol X** | Governance-Substrate Integration (optional binding) | 1 | [`Vol_X-Governance-Substrate Integration-Bundle.docx`](<../../downloads/Vol_X-Governance-Substrate Integration-Bundle.docx>) |
 | **Total** | — | **60** | — |
 
 A companion **Training Academy** — 20 per-book courseware modules, 5 vendor labs,

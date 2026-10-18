@@ -31,7 +31,7 @@ This book documents a **"Not Yet Defined"** gap from the transformation inventor
 
 ::: {.callout-tip}
 ## Download this book
-**[Book_10-bundle.docx]** — every chapter of this book concatenated into one Word document. Regenerated on every site deploy.
+**[Book_10-bundle.docx](../../../downloads/Book_10-bundle.docx)** — every chapter of this book concatenated into one Word document. Regenerated on every site deploy.
 :::
 
 ## Chapters

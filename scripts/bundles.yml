@@ -1,0 +1,255 @@
+# Word bundles published under /downloads/ on every site deploy.
+# Built by scripts/build_bundles.py (run it with --list to see each manifest).
+#
+# Manifest rules
+#   output     File name under downloads/. Pages link to it as
+#              <../ per folder level>downloads/<output>.
+#   root       Folder the page paths are relative to. If the folder no longer
+#              exists, the bundle is skipped (with a warning).
+#   pages      Reading order. Each entry is either
+#                - a literal path: it must exist, or the build fails; or
+#                - a glob (*, ?, [..], ** for any depth): pages that match,
+#                  in folder order (index.md and README.md first in each
+#                  folder, then front-matter `order`/`series-order`, then
+#                  natural name order, then sub-folders). Globs follow the
+#                  folder, so adding or deleting pages never breaks the build.
+#              A page is included once, at its first match. Pages the site
+#              does not publish (see project.render in _quarto.yml) are skipped.
+#   exclude    Globs removed from the result.
+#   title      Title page. Default: the first page's front-matter title.
+#   subtitle   Subtitle line. Default: defaults.subtitle.
+#   aliases    Extra file names that get a copy of the same bundle.
+#   image_dir  Optional: report images in this folder that the bundle does
+#              not use.
+#   warn_unlisted  Globs; warn if a published page matching one is not in
+#              the manifest (catches pages added to an explicit manifest).
+
+defaults:
+  reference_doc: assets/reference-mslearn.docx
+  toc_depth: 2
+  subtitle: "Modernization Workbook — Word edition"
+
+bundles:
+  # ---------------------------------------------------------------------
+  # SQL Server Identity Transformation narrative
+  # ---------------------------------------------------------------------
+  - output: sql-server-narrative-bundle.docx
+    # index.md advertises the "standalone" name for the same document.
+    aliases: [sql-server-narrative-standalone-bundle.docx]
+    title: "SQL Server Identity Transformation"
+    subtitle: "Narrative Series — combined edition"
+    root: docs/case-studies/sql-server-narrative
+    image_dir: docs/images/sql-server
+    warn_unlisted: ["Book_*.md"]
+    pages:
+      - index.md
+      - Book_01.md
+      - Book_01_CPT_01.md
+      - Book_01_CPT_02.md
+      - Book_02.md
+      - Book_02_CPT_01.md
+      - Book_02_CPT_02.md
+      - Book_02_CPT_03.md
+      - Book_02_CPT_04.md
+      - Book_03.md
+      - Book_03_CPT_01.md
+      - Book_03_CPT_02.md
+      - Book_04.md
+      - Book_04_CPT_01.md
+      - Book_04_CPT_02.md
+      - Book_05.md
+      - Book_05_CPT_01.md
+      - Book_05_CPT_02.md
+      - Book_06.md
+      - Book_06_CPT_01.md
+      - Book_06_CPT_02.md
+      - Book_07.md
+      - Book_07_CPT_01.md
+      - Book_07_CPT_02.md
+      - Book_08.md
+      - Book_08_CPT_01.md
+      - Book_08_CPT_02.md
+      - Book_09.md
+      - Book_09_CPT_01.md
+      - Book_09_CPT_02.md
+      - Book_10.md
+      - Book_10_CPT_01.md
+      - book-11-platform-question.md     # Book 11 is a single page
+
+  # One bundle per book: the book page, then its chapters in order.
+  - output: Book_01-bundle.docx
+    subtitle: "SQL Server Identity Transformation — Narrative Series"
+    root: docs/case-studies/sql-server-narrative
+    pages: [Book_01.md, "Book_01_CPT_*.md"]
+  - output: Book_02-bundle.docx
+    subtitle: "SQL Server Identity Transformation — Narrative Series"
+    root: docs/case-studies/sql-server-narrative
+    pages: [Book_02.md, "Book_02_CPT_*.md"]
+  - output: Book_03-bundle.docx
+    subtitle: "SQL Server Identity Transformation — Narrative Series"
+    root: docs/case-studies/sql-server-narrative
+    pages: [Book_03.md, "Book_03_CPT_*.md"]
+  - output: Book_04-bundle.docx
+    subtitle: "SQL Server Identity Transformation — Narrative Series"
+    root: docs/case-studies/sql-server-narrative
+    pages: [Book_04.md, "Book_04_CPT_*.md"]
+  - output: Book_05-bundle.docx
+    subtitle: "SQL Server Identity Transformation — Narrative Series"
+    root: docs/case-studies/sql-server-narrative
+    pages: [Book_05.md, "Book_05_CPT_*.md"]
+  - output: Book_06-bundle.docx
+    subtitle: "SQL Server Identity Transformation — Narrative Series"
+    root: docs/case-studies/sql-server-narrative
+    pages: [Book_06.md, "Book_06_CPT_*.md"]
+  - output: Book_07-bundle.docx
+    subtitle: "SQL Server Identity Transformation — Narrative Series"
+    root: docs/case-studies/sql-server-narrative
+    pages: [Book_07.md, "Book_07_CPT_*.md"]
+  - output: Book_08-bundle.docx
+    subtitle: "SQL Server Identity Transformation — Narrative Series"
+    root: docs/case-studies/sql-server-narrative
+    pages: [Book_08.md, "Book_08_CPT_*.md"]
+  - output: Book_09-bundle.docx
+    subtitle: "SQL Server Identity Transformation — Narrative Series"
+    root: docs/case-studies/sql-server-narrative
+    pages: [Book_09.md, "Book_09_CPT_*.md"]
+  - output: Book_10-bundle.docx
+    subtitle: "SQL Server Identity Transformation — Narrative Series"
+    root: docs/case-studies/sql-server-narrative
+    pages: [Book_10.md, "Book_10_CPT_*.md"]
+
+  # ---------------------------------------------------------------------
+  # Section bundles: every published page in the section folder, index first.
+  # ---------------------------------------------------------------------
+  - output: architecture-series-bundle.docx
+    root: docs/architecture
+    pages: ["index.md", "**/*.md"]
+
+  - output: case-studies-bundle.docx
+    root: docs/case-studies
+    pages: ["index.md", "**/*.md"]
+
+  - output: executive-briefs-bundle.docx
+    root: docs/executive-briefs
+    pages: ["index.md", "**/*.md"]
+
+  - output: executive-governance-series-bundle.docx
+    root: docs/executive-governance
+    pages: ["index.md", "**/*.md"]
+
+  - output: operational-guides-bundle.docx
+    root: docs/operational-guides
+    pages: ["index.md", "**/*.md"]
+
+  - output: access-plane-bundle.docx
+    root: docs/operational-guides/access-plane
+    pages: ["index.md", "**/*.md"]
+
+  - output: network-transformation-bundle.docx
+    root: docs/operational-guides/network-transformation
+    pages: ["index.md", "**/*.md"]
+
+  - output: program-management-bundle.docx
+    root: docs/operational-guides/program-management
+    pages: ["index.md", "**/*.md"]
+
+  - output: target-surface-bundle.docx
+    root: docs/operational-guides/target-surface
+    pages: ["index.md", "**/*.md"]
+
+  - output: reference-architecture-bundle.docx
+    root: docs/reference-architecture
+    pages: ["index.md", "**/*.md"]
+
+  - output: ssot-network-physics-bundle.docx
+    root: docs/ssot-network-physics
+    pages: ["index.md", "**/*.md"]
+
+  # ---------------------------------------------------------------------
+  # Federal Compliance Series: the whole series, then one bundle per volume.
+  # ---------------------------------------------------------------------
+  - output: federal-compliance-series-bundle.docx
+    root: docs/compliance
+    pages:
+      - index.md
+      - "federal-compliance-series-overview.md"
+      - "federal-compliance-series-moderate-overview.md"
+      - "Vol_0_Book_*.md"
+      - "Vol_I_Book_*.md"
+      - "Vol_II_Book_*.md"
+      - "Vol_III_Book_*.md"
+      - "Vol_IV_Book_*.md"
+      - "Vol_V_Book_*.md"
+      - "Vol_VI_Book_*.md"
+      - "Vol_VII_Book_*.md"
+      - "Vol_VIII_Book_*.md"
+      - "Vol_IX_Book_*.md"
+      - "Vol_X_Book_*.md"
+      - "training-index.md"
+      - "**/*.md"                      # everything else in the section
+
+  - output: "Vol_0-Executive Summary, Questionnaire & Control Crosswalk-Bundle.docx"
+    title: "Volume 0 — Executive Summary, Questionnaire & Control Crosswalk"
+    subtitle: "Federal Compliance Series"
+    root: docs/compliance
+    pages: ["Vol_0_Book_*.md"]
+
+  - output: "Vol_I-Foundation & Transport-Bundle.docx"
+    title: "Volume I — Foundation & Transport"
+    subtitle: "Federal Compliance Series"
+    root: docs/compliance
+    pages: ["Vol_I_Book_*.md"]
+
+  - output: "Vol_II-Data Platform-Bundle.docx"
+    title: "Volume II — Data Platform"
+    subtitle: "Federal Compliance Series"
+    root: docs/compliance
+    pages: ["Vol_II_Book_*.md"]
+
+  - output: "Vol_III-Security Operations-Bundle.docx"
+    title: "Volume III — Security Operations"
+    subtitle: "Federal Compliance Series"
+    root: docs/compliance
+    pages: ["Vol_III_Book_*.md"]
+
+  - output: "Vol_IV-Governance & Assurance-Bundle.docx"
+    title: "Volume IV — Governance & Assurance"
+    subtitle: "Federal Compliance Series"
+    root: docs/compliance
+    pages: ["Vol_IV_Book_*.md"]
+
+  - output: "Vol_V-Training & Certification-Bundle.docx"
+    title: "Volume V — Training & Certification"
+    subtitle: "Federal Compliance Series"
+    root: docs/compliance
+    pages: ["Vol_V_Book_*.md"]
+
+  - output: "Vol_VI-Implementation-Bundle.docx"
+    title: "Volume VI — Implementation"
+    subtitle: "Federal Compliance Series"
+    root: docs/compliance
+    pages: ["Vol_VI_Book_*.md"]
+
+  - output: "Vol_VII-ServiceNow Automation-Bundle.docx"
+    title: "Volume VII — ServiceNow Automation"
+    subtitle: "Federal Compliance Series"
+    root: docs/compliance
+    pages: ["Vol_VII_Book_*.md"]
+
+  - output: "Vol_VIII-Multi-Cloud DDI-Bundle.docx"
+    title: "Volume VIII — Multi-Cloud DDI"
+    subtitle: "Federal Compliance Series"
+    root: docs/compliance
+    pages: ["Vol_VIII_Book_*.md"]
+
+  - output: "Vol_IX-Day-2 Operations-Bundle.docx"
+    title: "Volume IX — Day-2 Operations"
+    subtitle: "Federal Compliance Series"
+    root: docs/compliance
+    pages: ["Vol_IX_Book_*.md"]
+
+  - output: "Vol_X-Governance-Substrate Integration-Bundle.docx"
+    title: "Volume X — Governance-Substrate Integration"
+    subtitle: "Federal Compliance Series"
+    root: docs/compliance
+    pages: ["Vol_X_Book_*.md"]
