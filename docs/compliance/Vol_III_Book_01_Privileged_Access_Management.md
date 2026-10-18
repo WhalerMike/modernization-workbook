@@ -1,5 +1,5 @@
 ---
-title: "Vol III Book 01 — Federal Organization Compliance — Privileged Access Management"
+title: "Vol III Book 01 — Federal Compliance — Privileged Access Management"
 subtitle: "Privileged Access Management: Entra PIM, Just-in-Time Access, and Privileged Access Workstations"
 author: "Federal Cloud Services"
 date: "2026-07-08T16:07:00-04:00"
@@ -41,7 +41,7 @@ This document is a **draft proposal** developed by the **CSI Team (Cloud Service
 :::
 
 ::: {.aan-important}
-**Series Context** — This document is Vol III Book 01 (Privileged Access Management) of the Federal Organization Compliance series. The Volume I network-and-identity books and the Volume II database books establish Landing Zone IPAM/DDI/PKI, Network Access Control, Certificates and Tokens, Network Modernization, Telecommunications Modernization, SQL Server Authentication Modernization, SQL Server Implementation, and Database Consolidation and Network Physics. This part addresses the privileged access layer — the administrative credential surface that remains exploitable even after all token-based authentication controls from the Volume I and Volume II books are in place.
+**Series Context** — This document is Vol III Book 01 (Privileged Access Management) of the Federal Compliance series. The Volume I network-and-identity books and the Volume II database books establish Landing Zone IPAM/DDI/PKI, Network Access Control, Certificates and Tokens, Network Modernization, Telecommunications Modernization, SQL Server Authentication Modernization, SQL Server Implementation, and Database Consolidation and Network Physics. This part addresses the privileged access layer — the administrative credential surface that remains exploitable even after all token-based authentication controls from the Volume I and Volume II books are in place.
 :::
 
 # What This Document Addresses
@@ -1039,4 +1039,4 @@ Agencies implementing this document should reference the FedRAMP 20x Machine-Rea
 
 ---
 
-*Federal Organization Compliance — Vol III Book 01 of the series. Vol III Book 06 (SIEM/XDR Detection) addresses audit log architecture and SIEM integration: structured log forwarding from Arc servers, SQL Server extended events, Entra ID sign-in logs, and PIM audit events into a centralized Log Analytics workspace with Sentinel analytics rules. CyberArk's Privileged Session Manager (PSM) component — the proxying, time-boxing, and recording layer this book's vaulting/session-isolation closure relies on — is also the compensating-control evidence source [Vol VII Book 07 (VMware)](Vol_VII_Book_07_VMware_Control_Compliance_Automation.md) cites for manual, out-of-band vCenter script actuation where no orchestrator yet reaches: a PSM-recorded session, gated by a ServiceNow task's approval, in place of a "run successfully" reply.*
+*Federal Compliance — Vol III Book 01 of the series. Vol III Book 06 (SIEM/XDR Detection) addresses audit log architecture and SIEM integration: structured log forwarding from Arc servers, SQL Server extended events, Entra ID sign-in logs, and PIM audit events into a centralized Log Analytics workspace with Sentinel analytics rules. CyberArk's Privileged Session Manager (PSM) component — the proxying, time-boxing, and recording layer this book's vaulting/session-isolation closure relies on — is also the compensating-control evidence source [Vol VII Book 07 (VMware)](Vol_VII_Book_07_VMware_Control_Compliance_Automation.md) cites for manual, out-of-band vCenter script actuation where no orchestrator yet reaches: a PSM-recorded session, gated by a ServiceNow task's approval, in place of a "run successfully" reply.*

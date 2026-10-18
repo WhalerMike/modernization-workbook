@@ -1,5 +1,5 @@
 ---
-title: "Vol VII Book 05 — Federal Organization Compliance — The ServiceNow Compliance App"
+title: "Vol VII Book 05 — Federal Compliance — The ServiceNow Compliance App"
 subtitle: "The deployable artifact: a scoped app with connectors, Flows, catalog items, ATF tests, and one assemblable update set"
 author: "Federal Cloud Services"
 date: "2026-07-18T00:33:00-04:00"
@@ -48,7 +48,7 @@ The scoped app is `x_fed_compliance`. Its records implement the five-step loop (
 | `script-includes/ComplianceReconcile.js` | `sys_script_include` | Matches each finding's asset to the authoritative IPAM/DDI CI (CM-8 join) before a task is raised; routes unmatched assets to the reconcile-exception queue (Vol VII Book 01) |
 | `script-includes/ComplianceGate.js` | `sys_script_include` | Post-actuation validation — re-reads the native surface, confirms closure, and stamps the re-test evidence on the task |
 | `rest/` (spec — `rest/README.md`) | `sys_rest_message` (+ `_fn`) | Outbound REST to Microsoft Graph and Azure Resource Manager — endpoint/auth from a credential alias, **routed via the MID Server**. Exported per tenant per `rest/README.md`; the XML is deliberately not committed |
-| `data/control-map.json` | app data (machine-readable) | The finding→(control, task type, approval, actuation, KSI slot) binding — a projection of `orgcomp-compliance-spine.yml`; CI-checked against the spine |
+| `data/control-map.json` | app data (machine-readable) | The finding→(control, task type, approval, actuation, KSI slot) binding — a projection of `federal-compliance-compliance-spine.yml`; CI-checked against the spine |
 | `flow/flow-blueprint.md` | Flow Designer blueprint | The "Detect & Route Control Drift" flow, the exception-review flow, and the attestation-emit job, with inline Action scripts |
 | `mid/compliance-validate.sh` | MID Server script | Runs the per-surface read/validate scripts on the in-boundary MID host; emits one JSON verdict |
 | `atf/` (spec — `atf/README.md`) | ATF test suites | Happy-path (drift→task→close→evidence) + negative (unreconciled asset, self-approval block, SLA breach escalation), runnable via `test_mode` with no live cloud. Built per `atf/README.md` |
@@ -68,7 +68,7 @@ The scoped app is `x_fed_compliance`. Its records implement the five-step loop (
 2. Add the three **Script Includes** and the two **REST Messages**.
 3. Create **Connection & Credential aliases** `x_fed_compliance.graph` and `x_fed_compliance.arm`, each with the MID Server selected, pointing at the in-boundary Graph and ARM endpoints (GCC/Gov cloud hosts per the tenant).
 4. Set app properties: `x_fed_compliance.mid_server`, `x_fed_compliance.boundary` (fixed to `gcc-moderate` for this scope), `x_fed_compliance.mid_scripts_dir`, and `x_fed_compliance.acknowledge_saas_boundary`. Under GCC Moderate the Graph and ARM callouts resolve to the commercial endpoints that serve the GCC Moderate boundary (`graph.microsoft.com` / `management.azure.com`, per the series cloud-resolution convention). The GCC High and DoD endpoints are a later follow-up and are intentionally not offered here.
-5. Load `data/control-map.json` and run the CI check against `orgcomp-compliance-spine.yml` so the app's control bindings match the series SSOT.
+5. Load `data/control-map.json` and run the CI check against `federal-compliance-compliance-spine.yml` so the app's control bindings match the series SSOT.
 6. Copy `mid/compliance-validate.sh` and the per-surface read scripts to the MID host under `mid_scripts_dir/<surface>/`.
 7. Build the **Flows** per `flow/flow-blueprint.md`, publish the **catalog items** (control-exception request, POA&M item, remediation change), and run the **ATF suites** in `test_mode` before enabling live connectors.
 
@@ -78,7 +78,7 @@ Identical discipline to the rest of the series and the in-repo DDI app: a FedRAM
 
 # The Control Map — Data, Checked Against the Spine
 
-The finding-to-task binding lives in `data/control-map.json`, not in code, so it is reviewable and CI-checked. Each entry corresponds to a control closed in `orgcomp-compliance-spine.yml`:
+The finding-to-task binding lives in `data/control-map.json`, not in code, so it is reviewable and CI-checked. Each entry corresponds to a control closed in `federal-compliance-compliance-spine.yml`:
 
 ```jsonc
 // data/control-map.json — finding class → task binding. Projection of the spine.

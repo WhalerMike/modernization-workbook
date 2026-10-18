@@ -14,7 +14,7 @@ The pattern is consistent with the workbook’s principles: authoritative origin
 
 | Layer | Typical Role | Can Be Separated? |
 |-------|--------------|-------------------|
-| **Identity / governance** | Authoritative origin for attributes, OrgPath-style structure, dynamic groups, policy scope, drift detection | Yes — remains the root |
+| **Identity / governance** | Authoritative origin for attributes, dynamic groups, policy scope, drift detection | Yes — remains the root |
 | **Collaboration / email** | Day-to-day productivity (mail, docs, chat, meetings, AI assistants) | Yes — can be federated or provisioned from the identity plane |
 | **Access control** | Conditional access, app access, Zero Trust signals | Usually stays with the identity platform |
 

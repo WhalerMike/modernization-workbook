@@ -47,7 +47,7 @@ deployment narrative around it.
 **It is** an LDAPv3 server (`fmp.directory`) that answers `BIND`, `SEARCH`,
 `UNBIND`, StartTLS, and — opt-in — `MODIFY`. Its Directory Information Tree (DIT)
 is *computed* from the the organizational-attribute model Codebook (FMP_151) plus a principal snapshot, and
-every governed facet is surfaced under its canonical `fmpOrgPath<Facet>`
+every governed facet is surfaced under its canonical `fmp<Facet>`
 attribute from the `ldap` binding profile (FMP_193). Because the tree is a
 projection, **read-only is a property of construction** — there is no stored
 entry to mutate.
@@ -151,7 +151,7 @@ with `--base-dn`):
 
 ```bash
 ldapsearch -H ldaps://agd.example.gov:636 -b "ou=people,dc=agd,dc=fmp,dc=gov" \
-  "(fmpOrgPathDepartment=IT)" fmpOrgPathRegion fmpOrgPathRole
+  "(fmpDepartment=IT)" fmpRegion fmpRole
 ```
 
 ## 5. Authentication & read scoping
@@ -186,7 +186,7 @@ planned or routed to the provider of record. There are three rungs:
 | Flags | Rung | Behavior |
 |---|---|---|
 | *(none)* | **L1** | Read-only. A `modify` is refused `unwillingToPerform`. |
-| `--enable-writes` | **L2 (plan)** | A governed `fmpOrgPath<Facet>` `modify` is translated, validated, and **planned** (dry-run). Nothing is applied; the projection is untouched. |
+| `--enable-writes` | **L2 (plan)** | A governed `fmp<Facet>` `modify` is translated, validated, and **planned** (dry-run). Nothing is applied; the projection is untouched. |
 | `--enable-writes --apply --provider …` | **L3 (gated actuation)** | The planned operations are routed to the selected **provider of record**. Requires an authenticated bind. |
 
 ### 6.1 Choosing a provider of record (`--provider`)

@@ -1,6 +1,6 @@
 ---
 title: "Compliance Training Program"
-subtitle: "Two-track curriculum over the 20 core books (Book 00-19) of the Federal Organization Compliance series — compliance and implementation"
+subtitle: "Two-track curriculum over the 20 core books (Book 00-19) of the Federal Compliance series — compliance and implementation"
 date: "2026-07-18"
 date-format: "MMMM D, YYYY"
 description: "Program charter for the Compliance Training Program: Track A trains compliance staff against the 20 core books (Book 00-19) of the Compliance series (FedRAMP 20x KSI categories, NIST SP 800-53 Rev 5 anchors, evidence slots); Track B trains engineers to implement the architectures the books describe. Includes a living catalog of external vendor training."
@@ -12,7 +12,7 @@ aliases:
 ::: {.callout-tip}
 ## Two academies on this site
 This is the **Compliance Training Program** — the two-track curriculum over the
-Federal Organization Compliance book series. The host site also publishes a
+Federal Compliance book series. The host site also publishes a
 separate **engine Academy** — the governance
 engine's own contributor/operator curriculum. Within Compliance, **Vol V of the
 series is this program's narrative layer; the pages here are the courseware.**
@@ -40,7 +40,7 @@ assessment rubrics, and additional vendor offerings. See
 
 ## What this program is
 
-The Federal Organization Compliance (Compliance) series spans eleven volumes;
+The Federal Compliance series spans eleven volumes;
 this training program covers its **20 core books** (Book 00 through Book 19)
 that document a complete federal network modernization: landing zone and IPAM, network access control, cryptographic
 identity, the HR-driven identity and organizational SSOT, network and
@@ -49,7 +49,7 @@ management, data protection, detection engineering, business continuity,
 supply-chain risk, program governance, PII transparency, cybersecurity
 training, and the authorization package / ConMon wrapper. The books live on
 the published site at
-[`docs/customer-documents/orgcomp-series/`]
+[`docs/customer-documents/federal-compliance-series/`]
 and are bound to FedRAMP 20x evidence slots by the
 [`fedramp_aan_catalog` adapter].
 
@@ -82,7 +82,7 @@ federal/compliance training sources (CISA, FedRAMP, NIST).
 
 ::: {.callout-warning}
 ## Provenance status
-The Compliance books are published under `docs/customer-documents/orgcomp-series/`.
+The Compliance books are published under `docs/customer-documents/federal-compliance-series/`.
 They are external companion material, not host-repo canon, and are not
 on a canonization path. If the books move to their own home, the links
 below follow them. Treat control-closure counts as working figures from the

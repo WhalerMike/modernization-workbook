@@ -1,5 +1,5 @@
 ---
-title: "Vol VII Book 00 — Federal Organization Compliance — Volume VII Overview: ServiceNow Automation for Federal Control Compliance"
+title: "Vol VII Book 00 — Federal Compliance — Volume VII Overview: ServiceNow Automation for Federal Control Compliance"
 subtitle: "The coordination layer: turning M365, Azure, AWS, and VMware control state into tracked tasks, evidence, and authorization-package input"
 author: "Federal Cloud Services"
 date: "2026-07-27T19:57:00-04:00"
@@ -40,7 +40,7 @@ This document is a **draft proposal** developed by the **CSI Team (Cloud Service
 :::
 
 ::: {.aan-important}
-**Series Context** — This is the Volume VII overview of the Federal Organization Compliance series. Volumes I–IV establish the architecture (*what must be true and why*); Volume V covers training; Volume VI carries the deployable infrastructure-as-code, detection, and evidence artifacts. **Volume VII is the coordination layer: the ServiceNow workflow, CMDB, and governance-risk-compliance (GRC) automation that turns M365, Azure, AWS, and VMware control state into tracked tasks, reviewable change, machine-readable evidence, and authorization-package input.** Where Volume VI *deploys* a control as code, Volume VII *operates* it — routing drift to an owner, gating change, and rolling posture up into the continuous-monitoring package.
+**Series Context** — This is the Volume VII overview of the Federal Compliance series. Volumes I–IV establish the architecture (*what must be true and why*); Volume V covers training; Volume VI carries the deployable infrastructure-as-code, detection, and evidence artifacts. **Volume VII is the coordination layer: the ServiceNow workflow, CMDB, and governance-risk-compliance (GRC) automation that turns M365, Azure, AWS, and VMware control state into tracked tasks, reviewable change, machine-readable evidence, and authorization-package input.** Where Volume VI *deploys* a control as code, Volume VII *operates* it — routing drift to an owner, gating change, and rolling posture up into the continuous-monitoring package.
 :::
 
 ::: {.aan-note}
@@ -187,7 +187,7 @@ Volume VII **depends on** Volume I's naming plane (Vol I Book 01) for the CM-8 j
 
 # Provenance
 
-This overview establishes the coordination layer of the Federal Organization Compliance series. It follows the series authoring conventions: functions and planes are named, not organizations; ServiceNow is the deployed coordination example named because the coordination role is itself a named product decision (Expansion Plan §16), and the substitution path is preserved where a workflow/GRC platform is interchangeable. Every book carries a Date Code and cites vendor sources for vendor-specific claims — per the [Vendor Currency Doctrine](Vol_0_Book_00_Executive_Summary.md#vendor-currency), those claims are dated snapshots, not standing commitments, and confirming current vendor roadmaps directly is essential before this volume informs a Project Plan. The volume map above is authored as committed house-style SVG (rasterized to PNG); further per-book figures follow in the PPTX→DOCX sync pass.
+This overview establishes the coordination layer of the Federal Compliance series. It follows the series authoring conventions: functions and planes are named, not organizations; ServiceNow is the deployed coordination example named because the coordination role is itself a named product decision (Expansion Plan §16), and the substitution path is preserved where a workflow/GRC platform is interchangeable. Every book carries a Date Code and cites vendor sources for vendor-specific claims — per the [Vendor Currency Doctrine](Vol_0_Book_00_Executive_Summary.md#vendor-currency), those claims are dated snapshots, not standing commitments, and confirming current vendor roadmaps directly is essential before this volume informs a Project Plan. The volume map above is authored as committed house-style SVG (rasterized to PNG); further per-book figures follow in the PPTX→DOCX sync pass.
 
 # Where This Volume's Evidence Lands — Volume X (Optional)
 

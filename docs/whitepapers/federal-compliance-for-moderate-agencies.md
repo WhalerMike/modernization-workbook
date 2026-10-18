@@ -449,7 +449,7 @@ Guide](reading-guide.md).
  companion paper is authoritative --- this page should be corrected
  to match it, not the reverse.
 - **Eight mandates, not the whole federal compliance clock --- named,
- not silently dropped.** The Federal Organization Compliance
+ not silently dropped.** The Federal Compliance
  (the compliance series) series this paper draws its FedRAMP timeline from tracks a
  materially larger set: BOD 18-01 (DMARC/HTTPS), BOD 26-04
  (risk-based remediation, revoking BOD 22-01 and BOD 19-02), BOD

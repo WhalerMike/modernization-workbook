@@ -1,5 +1,5 @@
 ---
-title: "Vol VII Book 04 — Federal Organization Compliance — Control Attestation, Evidence & KSI"
+title: "Vol VII Book 04 — Federal Compliance — Control Attestation, Evidence & KSI"
 subtitle: "From tracked task to assessed control: IRM/GRC control tests, POA&M, and the OSCAL/KSI feed into the authorization package"
 author: "Federal Cloud Services"
 date: "2026-07-21T07:38:00-04:00"
@@ -48,7 +48,7 @@ Control state arrives as work; attestation lifts it to evidence in four steps:
 | **4. Emit** | Assessed control state + POA&M | Evidence export | OSCAL component/assessment + KSI evidence into the ConMon package |
 
 ::: {.aan-important}
-**The compliance spine is the SSOT for the control-to-evidence binding.** Which controls this volume attests, and which slot/KSI each maps to, is defined in `orgcomp-compliance-spine.yml` — the same generated spine that renders every book's "Authorities Closed Here" table. ServiceNow's IRM control map is a *projection* of that binding, not an independent authority. If the two disagree, the spine wins and the IRM map is out of date — the identical truth-vs-projection discipline the CMDB follows toward IPAM/DDI.
+**The compliance spine is the SSOT for the control-to-evidence binding.** Which controls this volume attests, and which slot/KSI each maps to, is defined in `federal-compliance-compliance-spine.yml` — the same generated spine that renders every book's "Authorities Closed Here" table. ServiceNow's IRM control map is a *projection* of that binding, not an independent authority. If the two disagree, the spine wins and the IRM map is out of date — the identical truth-vs-projection discipline the CMDB follows toward IPAM/DDI.
 :::
 
 # Assessed Control State (CA-2)
@@ -106,9 +106,9 @@ Books 02 and 03 make M365 and Azure controls *operate*; this book makes them *as
 
 # NIST SP 800-53 Rev 5 Control Closure — Authorities Closed Here
 
-Generated from the series compliance spine (`orgcomp-compliance-spine.yml`) by `render_authorities_table.py`; not hand-edited here.
+Generated from the series compliance spine (`federal-compliance-compliance-spine.yml`) by `render_authorities_table.py`; not hand-edited here.
 
-<!-- authorities:book-sn-attestation — generated from orgcomp-compliance-spine.yml; do not hand-edit -->
+<!-- authorities:book-sn-attestation — generated from federal-compliance-compliance-spine.yml; do not hand-edit -->
 | Control | Title | Closing mechanism (function, not product) | Accreditation gate | Authority drivers | Evidence slot | FedRAMP 20x KSI | Tool-attestable? |
 |---|---|---|---|---|---|---|---|
 | CA-2 | Control Assessments | ServiceNow IRM/GRC control tests and evidence tasks produce assessed control state feeding the authorization package | FedRAMP Moderate | NIST SP 800-53 Rev 5 | Telemetry | KSI-MLA | No |
@@ -125,7 +125,7 @@ Generated from the series compliance spine (`orgcomp-compliance-spine.yml`) by `
 
 # Cross-References
 
-- **`orgcomp-compliance-spine.yml`** — the SSOT control-to-evidence binding the IRM control map projects.
+- **`federal-compliance-compliance-spine.yml`** — the SSOT control-to-evidence binding the IRM control map projects.
 - **Vol IV Book 06 (Authorization Package & ConMon)** — the OSCAL package this book emits into.
 - **Vol VI Book 07 (Evidence & ConMon Pipeline)** and **Vol III Book 07 (Evidence Fabric)** — the KSI/CDM pipeline this book's attestations feed.
 - **Vol VII Book 02 / 03** — the M365 and Azure task streams this book attests over.

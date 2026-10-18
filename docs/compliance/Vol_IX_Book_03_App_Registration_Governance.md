@@ -1,5 +1,5 @@
 ---
-title: "Vol IX Book 03 — Federal Organization Compliance — App Registration Governance"
+title: "Vol IX Book 03 — Federal Compliance — App Registration Governance"
 subtitle: "The app-registration lifecycle as a governed catalog — request, scoped consent, short-lived credentials, rotation, and attestation"
 author: "Federal Cloud Services"
 date: "2026-07-16T09:48:00-04:00"
@@ -63,9 +63,9 @@ Volume I/VI prove that certificate-based, short-lived, least-privilege credentia
 
 # NIST SP 800-53 Rev 5 Control Closure — Authorities Closed Here
 
-Generated from the compliance spine (`orgcomp-compliance-spine.yml`); not hand-edited here.
+Generated from the compliance spine (`federal-compliance-compliance-spine.yml`); not hand-edited here.
 
-<!-- authorities:book-day2-appreg â€” generated from orgcomp-compliance-spine.yml; do not hand-edit -->
+<!-- authorities:book-day2-appreg â€” generated from federal-compliance-compliance-spine.yml; do not hand-edit -->
 | Control | Title | Closing mechanism (function, not product) | Accreditation gate | Authority drivers | Evidence slot | FedRAMP 20x KSI | Tool-attestable? |
 |---|---|---|---|---|---|---|---|
 | AC-2 | Account Management | App registrations managed as machine joiner/mover/leaver: a governed request captures owner, purpose and the specific scopes needed before any credential exists, and orphaned registrations are retired through attestation | FedRAMP Moderate | NIST SP 800-53 Rev 5 | Identity | KSI-IAM | No |

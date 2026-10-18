@@ -33,7 +33,6 @@ unchanged. Do not copy the slot numbers or value shapes; the authoritative map i
 [`codebook.yaml`].
 :::
 
-<!-- orgpath-slot-allow-file: teaching examples deliberately retained in the retired Model A/B form; reader-facing banner above (issue #1432) -->
 
 ::: {.content-visible when-format="docx"}
 # Implementation Book 07 — Groups, Administrative Units & the Conditional Access Perimeter

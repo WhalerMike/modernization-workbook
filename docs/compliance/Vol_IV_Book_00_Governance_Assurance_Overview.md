@@ -1,5 +1,5 @@
 ---
-title: "Vol IV Book 00 — Federal Organization Compliance — Volume IV Overview: Governance & Assurance"
+title: "Vol IV Book 00 — Federal Compliance — Volume IV Overview: Governance & Assurance"
 subtitle: "Volume Purpose — turning technical evidence into a federal authorization"
 author: "Federal Cloud Services"
 date: "2026-07-19T16:20:00-04:00"

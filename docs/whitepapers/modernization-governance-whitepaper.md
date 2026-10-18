@@ -11,7 +11,7 @@ canon-reference:
  - "docs/docs/08_ModernizationTimeline.qmd"
  - "docs/customer-documents/executive-briefs/modernization-overview.qmd"
  - "docs/customer-documents/whitepapers/ad-to-entraid-migration-problem.qmd"
- - "docs/customer-documents/orgcomp-series/Vol_X_Book_00_the compliance series_Governance_Substrate_Integration_Overview.qmd"
+ - "docs/customer-documents/federal-compliance-series/Vol_X_Book_00_the compliance series_Governance_Substrate_Integration_Overview.qmd"
 derived-from: "fmp canon"
 created-at: 2026-06-18
 updated-at: 2026-09-16
@@ -176,8 +176,7 @@ Because canon is the source of truth, the migration's evidence does not
 have to be assembled from the directory's state — it can be regenerated
 from canon plus telemetry, deterministically, before *and* after cutover.
 
-The same four mechanisms are what Vol X of the Federal Organization
-Compliance series
+The same four mechanisms are what Vol X of the Federal Compliance series
 calls, without naming FMP, "a governance substrate that sits underneath
 the whole series... general-purpose... not itself tied to this series."
 Vol X's canon SSOT and drift-gate mechanics bind the the compliance series series' own

@@ -127,7 +127,7 @@ in the federal enterprise:
  landing-zone-level Infoblox DDI build-out on Azure, AWS, GCP, OCI, and
  VMware with a governed ServiceNow front door — see the companion
  Volume VIII — Multi-Cloud DDI Landing-Zone Automation
- of the Federal Organization Compliance series. The architecture-level
+ of the Federal Compliance series. The architecture-level
  foundation — Infoblox as the SDN-aware IPAM control plane inside a
  federal cloud landing zone, with the NIST 800-53 control mappings and
  FedRAMP evidence this paper deliberately does not carry — is
@@ -1465,7 +1465,7 @@ contract fixture that encodes the INR unavailability itself (FINDING-001,
 `tests/fixtures/contract/m365/informed-network-routing-unavailable-gcc-moderate.yaml`)
 — is maintained in
 Vol I Book 05, Appendix A
-of the Federal Organization Compliance series. This paper owns the
+of the Federal Compliance series. This paper owns the
 resolution-chain analysis (Parts 8–9); the appendix owns the federal
 build-out.
 

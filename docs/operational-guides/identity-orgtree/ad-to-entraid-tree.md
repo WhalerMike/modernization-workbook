@@ -27,7 +27,7 @@ lifecycle_review: 2026-11-22
      unmarked, so a genuine Model A slot binding introduced here is still
      caught. -->
 
-> **Model C — 15-facet multi-attribute (per the program decision).** This guide was originally authored against Model B (composite-slash path, `extensionAttribute1: CORP/US/EAST/BALTIMORE/IT`). Model B is superseded; the canonical the organizational-attribute model schema is now 15 facets across `extensionAttribute1`–`15`. Section 2 has been rewritten Model C-native, and the rule/group/AU code examples throughout sections 3+ have been swept to use the per-facet boolean composition form (see the **Model C Translation Key** callout immediately after Section 2). The manager-spine / governance / delegation / lifecycle prose in sections 3+ remains structurally correct — those workflow patterns are attribute-model-independent — and the Appendix sections (A, B, D, G, H, I, J) carry per-appendix Model C reset callouts pointing to the canonical Model C artifacts. For the Model C-native treatment of the codebook, dynamic groups, AUs, and drift detection, see [Reference Architecture → the organizational-attribute model Codebook](../../reference-architecture/codebook.md), [Dynamic Groups](../../reference-architecture/dynamic-groups.md), [Delegation Matrix](../../reference-architecture/delegation.md), and [Drift Walk-through](../../reference-architecture/drift-walkthrough.md).
+> **Model C — 15-facet multi-attribute (per the program decision).** This guide was originally authored against Model B (composite-slash path, `extensionAttribute1: CORP/US/EAST/BALTIMORE/IT`). Model B is superseded; the canonical the organizational-attribute model schema is now 15 facets across `extensionAttribute1`–`15`. Section 2 has been rewritten Model C-native, and the rule/group/AU code examples throughout sections 3+ have been swept to use the per-facet boolean composition form (see the **Model C Translation Key** callout immediately after Section 2). The manager-spine / governance / delegation / lifecycle prose in sections 3+ remains structurally correct — those workflow patterns are attribute-model-independent — and the Appendix sections (A, B, D, G, H, I, J) carry per-appendix Model C reset callouts pointing to the canonical Model C artifacts. For the Model C-native treatment of the codebook, dynamic groups, AUs, and drift detection, see Reference Architecture → the organizational-attribute model Codebook, [Dynamic Groups](../../reference-architecture/dynamic-groups.md), [Delegation Matrix](../../reference-architecture/delegation.md), and [Drift Walk-through](../../reference-architecture/drift-walkthrough.md).
 
 
   -------------------------------------------------------------------------------------------------------------------------------------------
@@ -91,7 +91,7 @@ HR provisioning populates 10 named slots on each principal (with 5 reserved for 
 - `extensionAttribute10` (AccountType) = `Standard`
 - (plus Division, Role, ClearanceLevel, HireDate, TermDate populated as appropriate)
 
-The full canonical slot/facet table is in the [the organizational-attribute model Codebook](../../reference-architecture/codebook.md). The 10 facets are independent — each validates against its own enumeration (or typed pattern for HireDate/TermDate). Slot uniqueness is loader-enforced: each `extensionAttribute*` slot is claimed by exactly one facet.
+The full canonical slot/facet table is in the the organizational-attribute model Codebook. The 10 facets are independent — each validates against its own enumeration (or typed pattern for HireDate/TermDate). Slot uniqueness is loader-enforced: each `extensionAttribute*` slot is claimed by exactly one facet.
 
 **2.2. Query the tree via boolean composition**
 
@@ -484,7 +484,7 @@ Everything below is structured so you can lift it directly into your modernizati
 
 **🧱 1. Canonical the organizational-attribute model Schema (Authoritative) — Model C**
 
-To mimic an X.500 tree, you decompose the org position across **10 named facet attributes** rather than into a single composite string. Each facet is independently validated against the canonical [the organizational-attribute model Codebook](../../reference-architecture/codebook.md).
+To mimic an X.500 tree, you decompose the org position across **10 named facet attributes** rather than into a single composite string. Each facet is independently validated against the canonical the organizational-attribute model Codebook.
 
 **Canonical Model C attribute assignments (per the program decision)**
 
@@ -1446,7 +1446,7 @@ Define the canonical the organizational-attribute model schema used to represent
 
 **A.2 Canonical Format**
 
-**Model C (current — per the program decision):** 10 named `extensionAttribute*` slots — Region, Department, Division, Role, CostCenter, Classification, HireDate, TermDate, ClearanceLevel, AccountType. See [the organizational-attribute model Codebook](../../reference-architecture/codebook.md) for the slot-by-slot table.
+**Model C (current — per the program decision):** 10 named `extensionAttribute*` slots — Region, Department, Division, Role, CostCenter, Classification, HireDate, TermDate, ClearanceLevel, AccountType. See the organizational-attribute model Codebook for the slot-by-slot table.
 
 **Model B (superseded — for migration reference):** `<Enterprise>/<Region>/<Division>/<Location>/<Department>` (e.g., `CORP/US/EAST/BALTIMORE/IT`) — a single composite string in `extensionAttribute1`. Retained here as a translation reference only.
 

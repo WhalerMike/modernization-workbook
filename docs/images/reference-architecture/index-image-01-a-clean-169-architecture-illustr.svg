@@ -2,7 +2,7 @@
   <!-- index-image-01 — AD-to-Entra-ID modernization journey (ADR-093 house style).
        LEFT: legacy Active Directory (muted grey, end-of-life). RIGHT: Microsoft 365 /
        Entra ID cloud boundary (ice + navy). CENTER: three parallel transition arrows,
-       the thick teal one "OrgPath governance preserved". White bg; navy/teal/grey. -->
+       the thick teal one "Governance preserved". White bg; navy/teal/grey. -->
   <defs>
     <marker id="navyArrow" viewBox="0 0 12 12" refX="9" refY="6" markerWidth="9" markerHeight="9" orient="auto-start-reverse">
       <path d="M1,1 L11,6 L1,11 Z" fill="#1E3A66"/>
@@ -77,13 +77,13 @@
   <text x="1125" y="434" text-anchor="middle" dominant-baseline="central" font-size="18" font-weight="bold" fill="#0D1B2E">Policy</text>
 
   <line x1="850" y1="500" x2="1190" y2="500" stroke="#1E8C8C" stroke-width="2"/>
-  <text x="1020" y="524" text-anchor="middle" font-size="16" font-weight="bold" fill="#1E8C8C">All read OrgPath facets</text>
+  <text x="1020" y="524" text-anchor="middle" font-size="16" font-weight="bold" fill="#1E8C8C">All read organizational facets</text>
 
   <!-- ===== CENTER: three parallel transition arrows ===== -->
   <text x="640" y="286" text-anchor="middle" font-size="14" font-weight="bold" fill="#1E3A66">Identity Modernization (FMP_xxx)</text>
   <line x1="492" y1="302" x2="792" y2="302" stroke="#1E3A66" stroke-width="3" marker-end="url(#navyArrow)"/>
 
-  <text x="640" y="392" text-anchor="middle" font-size="18" font-weight="bold" fill="#1E8C8C">OrgPath governance preserved</text>
+  <text x="640" y="392" text-anchor="middle" font-size="18" font-weight="bold" fill="#1E8C8C">Governance preserved</text>
   <line x1="488" y1="414" x2="796" y2="414" stroke="#1E8C8C" stroke-width="10" marker-end="url(#tealArrowBig)"/>
 
   <line x1="492" y1="520" x2="792" y2="520" stroke="#1E3A66" stroke-width="3" marker-end="url(#navyArrow)"/>

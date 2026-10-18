@@ -31,7 +31,6 @@ unchanged. Do not copy the slot numbers or value shapes; the authoritative map i
 [`codebook.yaml`].
 :::
 
-<!-- orgpath-slot-allow-file: teaching examples deliberately retained in the retired Model A/B form; reader-facing banner above (issue #1432) -->
 
 # Chapter 1 — AD Group Types and the Entra Perimeter
 

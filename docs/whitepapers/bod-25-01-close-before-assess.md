@@ -10,9 +10,9 @@ canon-source: "src/fmp/canon/adapter-registry.yaml#scubagear"
 canon-reference:
  - "docs/customer-documents/whitepapers/scubagear-integration-whitepaper.qmd"
  - "docs/customer-documents/whitepapers/zta-scuba-relationship.qmd"
- - "docs/customer-documents/orgcomp-series/Vol_0_Book_00_the compliance series_Executive_Summary.qmd"
- - "docs/customer-documents/orgcomp-series/Vol_VII_Book_02_the compliance series_M365_Control_Compliance_Automation.qmd"
- - "docs/customer-documents/orgcomp-series/boundary/B1-1-gcc-moderate-three-way-conflict.qmd"
+ - "docs/customer-documents/federal-compliance-series/Vol_0_Book_00_the compliance series_Executive_Summary.qmd"
+ - "docs/customer-documents/federal-compliance-series/Vol_VII_Book_02_the compliance series_M365_Control_Compliance_Automation.qmd"
+ - "docs/customer-documents/federal-compliance-series/boundary/B1-1-gcc-moderate-three-way-conflict.qmd"
  - "tools/ztttdrift/README.md"
  - "tools/scubadrift/README.md"
 derived-from: "fmp canon"
@@ -154,7 +154,7 @@ continuous monitoring.
 
 ### 3. The coverage arithmetic — why "just run the assessor" undercounts the work
 
-The Federal Organization Compliance (the compliance series) series quantifies this gap
+The Federal Compliance series quantifies this gap
 against FedRAMP 20x's Key Security Indicators, in the section
 "Why This Series — Not SCuBA, ZTTT, or Any Single-Vendor Assessment
 Tool" of Book

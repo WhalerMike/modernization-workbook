@@ -3,7 +3,7 @@ title: "Compliance ServiceNow Kit Expansion Roadmap"
 subtitle: "The kit portfolio and its sequencing — foundation kits (Vols VII–IX), the Identity & Access Governance Kit (Phase 2), and Phase 3+ candidates"
 doc-type: kit-reference
 audience: "Program owners · ServiceNow architects"
-family: orgcomp-series
+family: federal-compliance-series
 lifecycle: adopted
 tiers_adopted: [1]
 lifecycle_review: 2027-01-21

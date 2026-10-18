@@ -1,5 +1,5 @@
 ---
-title: "Vol X Book 00 — Federal Organization Compliance — Volume X Overview: The Series on the Governance Substrate"
+title: "Vol X Book 00 — Federal Compliance — Volume X Overview: The Series on the Governance Substrate"
 subtitle: "How the series' evidence binds to the vertical-agnostic governance substrate that scores and gates it — the conformance layer, the surface slots, and the single source of truth"
 author: "Federal Cloud Services"
 date: "2026-07-19T16:20:00-04:00"
@@ -40,14 +40,14 @@ This document is a **draft proposal** developed by the **CSI Team (Cloud Service
 :::
 
 ::: {.aan-important}
-**Series Context** — This is the Volume X overview of the Federal Organization Compliance series. Volumes I–IV establish the architecture — the network and transport plane, the data platform, security operations, and governance and assurance — as *what must be true and why*. Volume V addresses training; Volume VI carries the deployable artifacts; Volumes VII–IX carry the coordination, multi-cloud DDI, and day-2 operations layers. **Volume X is the integration layer: it explains how everything the earlier volumes produce becomes machine-checked evidence on the governance substrate — the vertical-agnostic engine that maps this series' artifacts to a fixed set of control-plane surface slots, scores them as Key Security Indicators, and gates them against drift.** Where an architecture book says a control is closed, this volume shows where that closure lands on the substrate and how it stays honest.
+**Series Context** — This is the Volume X overview of the Federal Compliance series. Volumes I–IV establish the architecture — the network and transport plane, the data platform, security operations, and governance and assurance — as *what must be true and why*. Volume V addresses training; Volume VI carries the deployable artifacts; Volumes VII–IX carry the coordination, multi-cloud DDI, and day-2 operations layers. **Volume X is the integration layer: it explains how everything the earlier volumes produce becomes machine-checked evidence on the governance substrate — the vertical-agnostic engine that maps this series' artifacts to a fixed set of control-plane surface slots, scores them as Key Security Indicators, and gates them against drift.** Where an architecture book says a control is closed, this volume shows where that closure lands on the substrate and how it stays honest.
 :::
 
 # What This Volume Addresses
 
 The earlier volumes answer *what*, *why*, and *how*: which controls a mechanism closes, why no alternate mechanism closes them, and the artifacts that stand the mechanism up. They deliberately stop at the edge of a specific governance product, because a series entangled with one engine's wiring ages badly and reads as advocacy rather than architecture.
 
-This volume answers a different question: **once the series has produced its closures and evidence, where does that evidence *go*, and what keeps it trustworthy over time?** The answer is a governance substrate that sits underneath the whole series — a general-purpose engine that is not itself federal, not itself tied to this series, and not itself a compliance regime. The Federal Organization Compliance corpus is one body of content that rides on top of it. This overview documents that binding: the conformance layer that maps series artifacts to the substrate's surface slots, the single source of truth that makes the mapping auditable, the drift gates that keep the prose honest, and the positioning consequence — that the same substrate carries non-federal regimes just as readily as it carries this one.
+This volume answers a different question: **once the series has produced its closures and evidence, where does that evidence *go*, and what keeps it trustworthy over time?** The answer is a governance substrate that sits underneath the whole series — a general-purpose engine that is not itself federal, not itself tied to this series, and not itself a compliance regime. The Federal Compliance corpus is one body of content that rides on top of it. This overview documents that binding: the conformance layer that maps series artifacts to the substrate's surface slots, the single source of truth that makes the mapping auditable, the drift gates that keep the prose honest, and the positioning consequence — that the same substrate carries non-federal regimes just as readily as it carries this one.
 
 ::: {.aan-note}
 **A note on naming.** In keeping with the series' engine-neutrality discipline, this volume names no governance product. It speaks of *the governance substrate*, *the conformance layer*, *the surface slots*, and *the evidence contract* — the functions, not a brand. The mechanism, not the product, is the load-bearing claim, exactly as in the architecture volumes.
@@ -150,7 +150,7 @@ adoption facts govern it:
    has to be reworked to bind later — the conformance layer maps existing
    artifacts to surface slots; it does not reshape them.
 3. **The Org family implements together or entirely independently.** This
-   series — **Compliance**, Federal Organization Compliance — is one of three
+   series — **Compliance**, Federal Compliance — is one of three
    operational expressions of one governance substrate, alongside **the organizational-attribute model**
    (governance) and **OrgMod** (modernization). The three share a substrate by
    design, and each is adoptable on its own, in any order, with no expression

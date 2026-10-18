@@ -1,5 +1,5 @@
 ---
-title: "Vol III Book 03 — Federal Organization Compliance — Patch & Systems Management: The SI-2 / CM Closure Plane"
+title: "Vol III Book 03 — Federal Compliance — Patch & Systems Management: The SI-2 / CM Closure Plane"
 subtitle: "Flaw Remediation and Configuration State Across Microsoft, AWS, Oracle, VMware, and Red Hat — One Contract, Many Stacks"
 author: "Federal Cloud Services"
 date: "2026-07-19T17:40:00-04:00"
@@ -319,12 +319,12 @@ both clouds, not two parallel programs.
 
 # NIST SP 800-53 Rev 5 Control Closure — Authorities Closed Here
 
-Generated from the series compliance spine (`orgcomp-compliance-spine.yml`) via
+Generated from the series compliance spine (`federal-compliance-compliance-spine.yml`) via
 `render_authorities_table.py`; not hand-maintained. Note RA-5 appears as a
 *handoff* row — the assessment is the Vulnerability Management book's; this book
 closes the SI-2 and CM families that act on it.
 
-<!-- authorities:book-patch-sysmgmt — generated from orgcomp-compliance-spine.yml; do not hand-edit -->
+<!-- authorities:book-patch-sysmgmt — generated from federal-compliance-compliance-spine.yml; do not hand-edit -->
 | Control | Title | Closing mechanism (function, not product) | Accreditation gate | Authority drivers | Evidence slot | FedRAMP 20x KSI | Tool-attestable? |
 |---|---|---|---|---|---|---|---|
 | CM-8 † | System Component Inventory | IPAM-keyed asset identity as the join key correlating all native-stack inventories (naming-plane necessity) | FedRAMP Moderate | NIST SP 800-53 Rev 5; CISA BOD 23-01 | Network | KSI-PIY | No |

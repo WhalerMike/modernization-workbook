@@ -26,7 +26,7 @@ execute:
 
 aliases:
   - /customer-documents/federal-aan-series/Vol_I_Book_01_FedAAN_SSA_Landing_Zone_IPAM_FedRAMP.html
-  - /customer-documents/orgcomp-series/Vol_I_Book_01_Compliance_SSA_Landing_Zone_IPAM_FedRAMP.html
+  - /customer-documents/federal-compliance-series/Vol_I_Book_01_Compliance_SSA_Landing_Zone_IPAM_FedRAMP.html
 
 ---
 

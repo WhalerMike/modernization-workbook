@@ -1,5 +1,5 @@
 ---
-title: "Vol IX Book 02 — Federal Organization Compliance — Landing Zone Front Door"
+title: "Vol IX Book 02 — Federal Compliance — Landing Zone Front Door"
 subtitle: "The catalog request that drives change-controlled landing-zone IaC and reconciles every allocation to the IPAM/DDI join key"
 author: "Federal Cloud Services"
 date: "2026-07-12T15:00:00-04:00"
@@ -64,9 +64,9 @@ Landing zones expressed as reviewable source close CM-2 and CM-3 — the change-
 
 # NIST SP 800-53 Rev 5 Control Closure — Authorities Closed Here
 
-Generated from the compliance spine (`orgcomp-compliance-spine.yml`); not hand-edited here.
+Generated from the compliance spine (`federal-compliance-compliance-spine.yml`); not hand-edited here.
 
-<!-- authorities:book-day2-landingzone — generated from orgcomp-compliance-spine.yml; do not hand-edit -->
+<!-- authorities:book-day2-landingzone — generated from federal-compliance-compliance-spine.yml; do not hand-edit -->
 | Control | Title | Closing mechanism (function, not product) | Accreditation gate | Authority drivers | Evidence slot | FedRAMP 20x KSI | Tool-attestable? |
 |---|---|---|---|---|---|---|---|
 | CM-8 | System Component Inventory | Subnet/address allocation reconciled to the authoritative IPAM/DDI record (CM-8) at provisioning time — no landing zone stood up outside the naming plane | FedRAMP Moderate | NIST SP 800-53 Rev 5; CISA BOD 23-01 | Network | KSI-PIY | No |

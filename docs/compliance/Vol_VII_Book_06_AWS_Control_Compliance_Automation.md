@@ -1,5 +1,5 @@
 ---
-title: "Vol VII Book 06 — Federal Organization Compliance — AWS Federal Control Compliance Automation"
+title: "Vol VII Book 06 — Federal Compliance — AWS Federal Control Compliance Automation"
 subtitle: "AWS Config, Security Hub CSPM, and Systems Manager Patch Manager control state, operated as ServiceNow work"
 author: "Federal Cloud Services"
 date: "2026-07-28T08:45:00-04:00"
@@ -107,9 +107,9 @@ AWS Config remediates, Security Hub CSPM surfaces, Patch Manager patches — the
 
 # NIST SP 800-53 Rev 5 Control Closure — Authorities Closed Here
 
-Generated from the series compliance spine (`orgcomp-compliance-spine.yml`) by `render_authorities_table.py`; not hand-edited here. Coordination closures — the AWS control state operated as tracked work — not a re-closure of the posture/patch mechanisms Volumes III and VI own.
+Generated from the series compliance spine (`federal-compliance-compliance-spine.yml`) by `render_authorities_table.py`; not hand-edited here. Coordination closures — the AWS control state operated as tracked work — not a re-closure of the posture/patch mechanisms Volumes III and VI own.
 
-<!-- authorities:book-sn-aws — generated from orgcomp-compliance-spine.yml; do not hand-edit -->
+<!-- authorities:book-sn-aws — generated from federal-compliance-compliance-spine.yml; do not hand-edit -->
 | Control | Title | Closing mechanism (function, not product) | Accreditation gate | Authority drivers | Evidence slot | FedRAMP 20x KSI | Tool-attestable? |
 |---|---|---|---|---|---|---|---|
 | CM-6 | Configuration Settings | AWS Config / Security Hub CSPM findings raised as ServiceNow remediation tasks; Config-native remediation actuates, ServiceNow tracks to closure | FedRAMP Moderate | NIST SP 800-53 Rev 5; CISA SCuBA | Security / supply chain | KSI-CMT | No |
@@ -151,4 +151,4 @@ Draft. AWS Config, Security Hub CSPM, GuardDuty, Inspector, and Systems Manager 
 | AWS Systems Manager Patch Manager (baselines, scan/install, compliance reporting) | AWS documentation — <https://docs.aws.amazon.com/systems-manager/latest/userguide/systems-manager-patch.html> |
 | Risk-based remediation prioritization (KEV catalog) | CISA — <https://www.cisa.gov/known-exploited-vulnerabilities-catalog> |
 | PAIN-rating remediation timeframes (VDR-TFR-PVR) | FedRAMP — <https://www.fedramp.gov/2026/reference/vulnerability-detection-and-response/> |
-| ServiceNow as workflow/CMDB/evidence coordination hub | Expansion Plan §16 — `docs/customer-documents/orgcomp-series/Compliance_Series_Expansion_Plan_Substrate_Accreditation.md` |
+| ServiceNow as workflow/CMDB/evidence coordination hub | Expansion Plan §16 — `docs/customer-documents/federal-compliance-series/Compliance_Series_Expansion_Plan_Substrate_Accreditation.md` |

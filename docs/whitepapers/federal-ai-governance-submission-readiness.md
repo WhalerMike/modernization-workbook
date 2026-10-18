@@ -124,7 +124,7 @@ exist.
 The compliance series holds the same object from the registry side: the
 agency AI use-case inventory is a designated SSOT object class with a full
 joiner/mover/leaver lifecycle in the
-Federal Organization Compliance series' SSOT Registry (Vol 0 Book 00).
+Federal Compliance series' SSOT Registry (Vol 0 Book 00).
 
 ## Where we are strong
 

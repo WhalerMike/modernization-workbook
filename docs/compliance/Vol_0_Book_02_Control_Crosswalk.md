@@ -1,5 +1,5 @@
 ---
-title: "Federal Organization Compliance — Series Control Crosswalk"
+title: "Federal Compliance — Series Control Crosswalk"
 subtitle: "Appendix: Master NIST SP 800-53 Rev 5 Control -> Volume/Book Index Across the Eleven-Volume Series"
 author: "Federal Cloud Services"
 date: "2026-07-19T20:10:00-04:00"
@@ -40,7 +40,7 @@ This document is a **draft proposal** developed by the **CSI Team (Cloud Service
 # Purpose
 
 This appendix is the **series-wide control crosswalk** for the Federal
-Organization Compliance (Compliance) program. It answers one question directly:
+Compliance program. It answers one question directly:
 *for a given NIST SP 800-53 Rev 5 control, where in the eleven-volume series is it
 addressed?* Use it as a reverse index when responding to an assessor, building a
 System Security Plan control-origination table, or checking that a control family
@@ -61,8 +61,8 @@ asset to the CM-8 join key (the genuinely new control numbers they add are
 ## Maintenance status — a machine-derived slice now exists; this master table remains the hand-maintained superset
 
 The **per-book "Authorities Closed Here" tables are generated** from
-`orgcomp-compliance-spine.yml` by `render_authorities_table.py`, and a CI drift gate
-(`--check`, `.github/workflows/orgcomp-authorities-drift.yml`) blocks any partial
+`federal-compliance-compliance-spine.yml` by `render_authorities_table.py`, and a CI drift gate
+(`--check`, `.github/workflows/federal-compliance-authorities-drift.yml`) blocks any partial
 that diverges from the spine. A **spine-derived crosswalk is now generated too**
 — `render_crosswalk.py` renders `Compliance_Spine_Crosswalk.md`
 from the same closures and is behind the same drift gate, so the machine-derived
@@ -101,7 +101,7 @@ treats that control as a first-class subject in the named book.
  of these volumes means "this is where the control is *made operational and
  evidenced*," not a second independent closure claim. Actuation stays
  platform-native throughout.
-- **Relationship to the compliance spine:** `orgcomp-compliance-spine.yml` is the
+- **Relationship to the compliance spine:** `federal-compliance-compliance-spine.yml` is the
  single source of truth for the machine-checked closures, and the per-book
  authorities tables are rendered from it and CI-gated against drift. The spine is
  being progressively back-filled book by book (~21 of 72 books carry closure rows

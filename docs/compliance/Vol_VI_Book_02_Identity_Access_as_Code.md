@@ -1,5 +1,5 @@
 ---
-title: "Vol VI Book 02 — Federal Organization Compliance — Identity & Access as Code"
+title: "Vol VI Book 02 — Federal Compliance — Identity & Access as Code"
 subtitle: "Conditional Access, privileged-access, port-authentication, and certificate lifecycle expressed as versioned policy"
 author: "Federal Cloud Services"
 date: "2026-07-09T15:13:00-04:00"

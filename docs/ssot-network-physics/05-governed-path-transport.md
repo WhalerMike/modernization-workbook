@@ -91,7 +91,7 @@ An `OverlayTunnel` carries
 **Tunnels are *leased*, not opened** — the lease is bounded by token lifetime,
 and the canonical record is provenance-anchored to SSOT. The authorizing token
 is short-lived and audience-scoped, bound to **caller identity + target
-application + device posture + orgPath-derived location** (the program decision §Decision
+application + device posture + organizationally derived location** (the program decision §Decision
 #2). A "session" — any long-lived authorization context that survives a single
 authorized intent — ceases to be a canonical concept.
 :::
@@ -117,7 +117,7 @@ a sixth drift class, **`DRIFT-TRANSPORT`**, joining the substrate's existing
 five (`DRIFT-SCHEMA`, `DRIFT-SEMANTIC`, `DRIFT-PROVENANCE`, `DRIFT-AUTHZ`,
 `DRIFT-IDENTITY`). Under it, an `OverlayTunnel` or flow observed *without* an
 issuing token is a finding (P2), as is path-policy variance between the
-canonical orgPath/location binding and the observed flow (P4). The flat LAN is
+canonical organizational/location binding and the observed flow (P4). The flat LAN is
 therefore not a neutral substrate the edge device merely fails to exploit — from
 the substrate's point of view it is an active source of transport drift.
 

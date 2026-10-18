@@ -3,7 +3,7 @@ title: "Compliance Day-2 Automation Kit — Operator Usage Guide"
 subtitle: "Running the governed catalog tasks day to day"
 doc-type: kit-reference
 audience: "Service-desk / CST operators"
-family: orgcomp-series
+family: federal-compliance-series
 lifecycle: adopted
 tiers_adopted: [1]
 lifecycle_review: 2027-01-21

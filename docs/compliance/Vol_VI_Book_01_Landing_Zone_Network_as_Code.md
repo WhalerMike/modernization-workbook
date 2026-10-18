@@ -1,5 +1,5 @@
 ---
-title: "Vol VI Book 01 — Federal Organization Compliance — Landing Zone & Network as Code"
+title: "Vol VI Book 01 — Federal Compliance — Landing Zone & Network as Code"
 subtitle: "Infrastructure-as-code for the landing zone, IPAM/DDI, and the distributed policy-enforcement edge"
 author: "Federal Cloud Services"
 date: "2026-07-09T15:13:00-04:00"

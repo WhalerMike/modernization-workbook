@@ -363,7 +363,6 @@ assessments/
     ├── ldap-bindings.jsonl
     ├── kerberos-spn-map.json
     └── analysis/
-        ├── orgpath-proposal.md
         ├── risk-scorecard.md
         ├── dependency-graph.json
         └── gap-findings.md

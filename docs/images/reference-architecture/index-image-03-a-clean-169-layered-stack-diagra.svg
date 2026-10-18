@@ -41,5 +41,5 @@
   <rect x="135" y="530" width="1030" height="112" rx="12" fill="#1E3A66"/>
   <rect x="135" y="530" width="9" height="112" rx="4" fill="#1E8C8C"/>
   <text x="650" y="570" text-anchor="middle" dominant-baseline="central" font-family="Georgia, 'Times New Roman', serif" font-size="26" font-weight="bold" fill="#FFFFFF">Identity Layer</text>
-  <text x="650" y="608" text-anchor="middle" dominant-baseline="central" font-size="16" fill="#D7F2EE">OrgPath code  &#183;  Dynamic group  &#183;  Attribute</text>
+  <text x="650" y="608" text-anchor="middle" dominant-baseline="central" font-size="16" fill="#D7F2EE">Organizational code  &#183;  Dynamic group  &#183;  Attribute</text>
 </svg>

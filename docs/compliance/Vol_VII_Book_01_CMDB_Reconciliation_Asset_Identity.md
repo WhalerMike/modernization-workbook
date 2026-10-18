@@ -1,5 +1,5 @@
 ---
-title: "Vol VII Book 01 — Federal Organization Compliance — CMDB Reconciliation & Asset Identity"
+title: "Vol VII Book 01 — Federal Compliance — CMDB Reconciliation & Asset Identity"
 subtitle: "Populating the CMDB from M365 and Azure, and reconciling it to the authoritative IPAM/DDI join key (CM-8)"
 author: "Federal Cloud Services"
 date: "2026-07-12T15:00:00-04:00"
@@ -82,9 +82,9 @@ Every downstream book in this volume routes work *to an asset*. If the CMDB's as
 
 # NIST SP 800-53 Rev 5 Control Closure — Authorities Closed Here
 
-The table below is generated from the series compliance spine (`orgcomp-compliance-spine.yml`) by `render_authorities_table.py`; it is not hand-edited here. It records the *coordination* closures this book operationalizes — CM-8 reconciliation and the CM-3 change gate — neither of which re-closes the naming-plane necessity (that stays in Vol I Book 01).
+The table below is generated from the series compliance spine (`federal-compliance-compliance-spine.yml`) by `render_authorities_table.py`; it is not hand-edited here. It records the *coordination* closures this book operationalizes — CM-8 reconciliation and the CM-3 change gate — neither of which re-closes the naming-plane necessity (that stays in Vol I Book 01).
 
-<!-- authorities:book-sn-cmdb — generated from orgcomp-compliance-spine.yml; do not hand-edit -->
+<!-- authorities:book-sn-cmdb — generated from federal-compliance-compliance-spine.yml; do not hand-edit -->
 | Control | Title | Closing mechanism (function, not product) | Accreditation gate | Authority drivers | Evidence slot | FedRAMP 20x KSI | Tool-attestable? |
 |---|---|---|---|---|---|---|---|
 | CM-8 | System Component Inventory | ServiceNow CMDB populated by Discovery/Service Graph connectors and reconciled to the authoritative IPAM/DDI asset identity (CM-8 join key); DDI stays the SSOT, the CMDB is the workflow projection | FedRAMP Moderate | NIST SP 800-53 Rev 5; CISA BOD 23-01 | Network | KSI-PIY | No |

@@ -1,5 +1,5 @@
 ---
-title: "Vol VI Book 05 — Federal Organization Compliance — Data Protection Deployment"
+title: "Vol VI Book 05 — Federal Compliance — Data Protection Deployment"
 subtitle: "Sensitivity-label taxonomy, DLP policy packs, and agency-controlled key management as code"
 author: "Federal Cloud Services"
 date: "2026-07-09T15:13:00-04:00"

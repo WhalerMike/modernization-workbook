@@ -1,5 +1,5 @@
 ---
-title: "Vol VI Book 03 — Federal Organization Compliance — Detection Engineering: The In-Boundary Analytics Rule Library"
+title: "Vol VI Book 03 — Federal Compliance — Detection Engineering: The In-Boundary Analytics Rule Library"
 subtitle: "Deployable Sentinel/SIEM analytics rules that reconstruct commercial-cloud detections inside the agency authorization boundary"
 author: "Federal Cloud Services"
 date: "2026-07-09T15:13:00-04:00"
@@ -41,7 +41,7 @@ This document is a **draft proposal** developed by the **CSI Team (Cloud Service
 :::
 
 ::: {.aan-important}
-**Series Context** — This is Volume VI Book 03 of the Federal Organization Compliance series. The Volume III SIEM/XDR Detection book establishes the *architecture*: the connector fabric that lands every log source into a single analytics workspace and the requirement that a connected SIEM carry configured detection rules, not a passive archive. This book is the *deployable realization* of that architecture — the versioned analytics-rule library an engineering team applies to the workspace to turn the log warehouse into an operating detection engine.
+**Series Context** — This is Volume VI Book 03 of the Federal Compliance series. The Volume III SIEM/XDR Detection book establishes the *architecture*: the connector fabric that lands every log source into a single analytics workspace and the requirement that a connected SIEM carry configured detection rules, not a passive archive. This book is the *deployable realization* of that architecture — the versioned analytics-rule library an engineering team applies to the workspace to turn the log warehouse into an operating detection engine.
 :::
 
 # What This Document Addresses

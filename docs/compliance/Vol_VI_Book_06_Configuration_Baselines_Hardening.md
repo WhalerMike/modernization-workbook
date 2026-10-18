@@ -1,5 +1,5 @@
 ---
-title: "Vol VI Book 06 — Federal Organization Compliance — Configuration Baselines & Hardening"
+title: "Vol VI Book 06 — Federal Compliance — Configuration Baselines & Hardening"
 subtitle: "SCuBA, CIS, and STIG baselines expressed as policy-as-code with drift detection and reconciliation"
 author: "Federal Cloud Services"
 date: "2026-07-09T15:13:00-04:00"

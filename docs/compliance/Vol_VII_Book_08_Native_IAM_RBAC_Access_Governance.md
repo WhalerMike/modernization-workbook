@@ -1,5 +1,5 @@
 ---
-title: "Vol VII Book 08 — Federal Organization Compliance — Native Cloud IAM/RBAC Access-Governance Automation"
+title: "Vol VII Book 08 — Federal Compliance — Native Cloud IAM/RBAC Access-Governance Automation"
 subtitle: "Azure RBAC and AWS IAM entitlement drift, surfaced by SailPoint ISC Governance and operated as ServiceNow work"
 author: "Federal Cloud Services"
 date: "2026-07-29T16:45:00-04:00"
@@ -74,9 +74,9 @@ SailPoint ISC Governance discovers over-privileged and idle cloud entitlements w
 
 # NIST SP 800-53 Rev 5 Control Closure — Authorities Closed Here
 
-Generated from the series compliance spine (`orgcomp-compliance-spine.yml`) by `render_authorities_table.py`; not hand-edited here. Coordination closures — the Azure RBAC/AWS IAM entitlement state operated as tracked work — not a re-closure of the identity-lifecycle mechanisms Vol IX Book 06 owns.
+Generated from the series compliance spine (`federal-compliance-compliance-spine.yml`) by `render_authorities_table.py`; not hand-edited here. Coordination closures — the Azure RBAC/AWS IAM entitlement state operated as tracked work — not a re-closure of the identity-lifecycle mechanisms Vol IX Book 06 owns.
 
-<!-- authorities:book-sn-iam-rbac — generated from orgcomp-compliance-spine.yml; do not hand-edit -->
+<!-- authorities:book-sn-iam-rbac — generated from federal-compliance-compliance-spine.yml; do not hand-edit -->
 | Control | Title | Closing mechanism (function, not product) | Accreditation gate | Authority drivers | Evidence slot | FedRAMP 20x KSI | Tool-attestable? |
 |---|---|---|---|---|---|---|---|
 | AC-2 | Account Management | SailPoint ISC Governance (CIEM) findings on Azure RBAC and AWS IAM — over-privileged and idle entitlements — raised as ServiceNow remediation tasks; native IAM console actuates the revocation/rescoping, ServiceNow tracks to closure | FedRAMP Moderate | NIST SP 800-53 Rev 5; OMB M-22-09 | Identity | KSI-IAM | No |
@@ -111,4 +111,4 @@ Draft. SailPoint ISC Governance / CIEM, Azure RBAC, and AWS IAM are deployed exa
 | SailPoint CIEM — native AWS/Azure/GCP cloud IAM entitlement governance, over-privileged/idle-entitlement discovery | SailPoint — <https://www.sailpoint.com/products/identity-security-cloud/atlas/add-ons/cloud-infrastructure-entitlement-management> |
 | SailPoint routes findings into ServiceNow's Service Desk for ticketing/audit tracking | SailPoint — <https://www.sailpoint.com/products/connectivity-and-integrations/catalog/servicenow> |
 | No confirmed VMware/vCenter CIEM coverage (Honest Limits basis) | Direct research, 2026-07-28 — no vendor documentation found asserting this coverage |
-| ServiceNow as workflow/CMDB/evidence coordination hub | Expansion Plan §16 — `docs/customer-documents/orgcomp-series/Compliance_Series_Expansion_Plan_Substrate_Accreditation.md` |
+| ServiceNow as workflow/CMDB/evidence coordination hub | Expansion Plan §16 — `docs/customer-documents/federal-compliance-series/Compliance_Series_Expansion_Plan_Substrate_Accreditation.md` |
