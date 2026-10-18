@@ -166,8 +166,6 @@ website:
         - section: "Volume III — Security Operations"
           contents:
             - auto: "docs/compliance/Vol_III_Book_*.md"
-        # Vol IV Book 06 is deliberately not listed while its publication
-        # status is under review.
         - section: "Volume IV — Governance & Assurance"
           contents:
             - docs/compliance/Vol_IV_Book_00_Governance_Assurance_Overview.md
@@ -176,6 +174,7 @@ website:
             - docs/compliance/Vol_IV_Book_03_Program_Management_Governance.md
             - docs/compliance/Vol_IV_Book_04_PII_Processing_Transparency.md
             - docs/compliance/Vol_IV_Book_05_Cybersecurity_Training_Awareness.md
+            - docs/compliance/Vol_IV_Book_06_Authorization_Package_ConMon.md
         - section: "Volume V — Training & Certification"
           contents:
             - auto: "docs/compliance/Vol_V_Book_*.md"
