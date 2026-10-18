@@ -41,6 +41,16 @@ An upstream application that has migrated its user authentication to Entra ID bu
 ::: {#book-chapters}
 :::
 
+## Authoritative references
+
+Checked 19 October 2026.
+
+- [Microsoft Entra authentication with Microsoft.Data.SqlClient](https://learn.microsoft.com/en-us/sql/connect/ado-net/sql/azure-active-directory-authentication?view=sql-server-ver17)
+- [Credential chains in the Azure Identity library for .NET](https://learn.microsoft.com/en-us/dotnet/azure/sdk/authentication/credential-chains)
+- [Linked server for SQL Server with Microsoft Entra authentication](https://learn.microsoft.com/en-us/sql/relational-databases/security/authentication-access/azure-ad-authentication-sql-server-linked-server?view=sql-server-ver17)
+- [Access Azure resources with managed identity on Azure Arc-enabled servers](https://learn.microsoft.com/en-us/azure/azure-arc/servers/managed-identity-authentication)
+- [What is Conditional Access?](https://learn.microsoft.com/en-us/entra/identity/conditional-access/overview)
+
 ::: {.callout-tip}
 ## Continue the series
 [← Previous: Book 07 — Access Control](Book_07.md) · [Index](index.md) · [Next: Book 09 — The Transformed Posture →](Book_09.md)

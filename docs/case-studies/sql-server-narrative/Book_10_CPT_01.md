@@ -17,12 +17,12 @@ lifecycle_review: 2027-01-01
 
 ::: {.callout-note}
 ## In this chapter
-The three distinct SQL Server capabilities that can depend on ADCS-issued certificates — TLS encryption of client connections, certificate-mapped logins used for signing and endpoints, and Certificate-Based Authentication as the authorized NTLM-replacement interim posture — why each one breaks if ADCS is decommissioned before it is migrated, and why this book documents a transformation for which no normative ADR has yet been authored.
+The three distinct SQL Server capabilities that can depend on ADCS-issued certificates — TLS encryption of client connections, certificate-mapped logins used for signing and endpoints, and Certificate-Based Authentication as the authorized NTLM-replacement interim posture — why each one breaks if ADCS is decommissioned before it is migrated, and why this book documents a transformation for which no normative ADR has yet been authored.[^b10c01-tls]
 :::
 
 ![What fails if ADCS goes away before each dependency is moved, and the migration path for each.](../../images/sql-server/diagrams/svg/book-10-ch01-what-breaks.svg){fig-alt="Table of the three ADCS dependencies, what breaks if ADCS is retired first, and the migration path for each."}
 
-The transformation inventory identifies the Active Directory Certificate Services to Microsoft Cloud PKI transformation as "Not Yet Defined." As the series opening established, that label means the destination may be known but the normative canon governing how to reach it has not been authored. For most of this series, the missing record has been the substrate architecture decision; for Book 10, the gap is more fundamental still. No architecture decision record governs the certificate authority transformation at all.
+The transformation inventory identifies the Active Directory Certificate Services to Microsoft Cloud PKI transformation as "Not Yet Defined." As the series opening established, that label means the destination may be known but the normative canon governing how to reach it has not been authored.[^b10c01-cloudpki] For most of this series, the missing record has been the substrate architecture decision; for Book 10, the gap is more fundamental still. No architecture decision record governs the certificate authority transformation at all.
 
 There is no architecture decision equivalent to point to. The transformation is identified as necessary in the transformation inventory, the discovery instrument exists, but the normative decision about the replacement CA, the enrollment mechanism, and the sequencing of ADCS decommission has not been made. This book is therefore analytical and motivational rather than prescriptive. It documents why the certificate gap matters specifically for SQL Server, and it cites no normative ADCS-migration architecture decision because none exists.
 
@@ -40,9 +40,9 @@ The certificate-audit script captures the TLS certificate for every instance in 
 
 ## Certificate-Mapped SQL Server Logins
 
-The second dependency is less commonly known. SQL Server supports a login type — the type-C login — created from a certificate in `master` with `CREATE LOGIN [name] FROM CERTIFICATE [cert_name]`. It is not a way to connect: Microsoft documents that logins created from certificates or asymmetric keys "are used only for code signing" and "can't be used to connect to SQL Server."[^create-login] They carry permissions for signed modules, and certificates of the same kind secure Service Broker and database mirroring endpoints.
+The second dependency is less commonly known. SQL Server supports a login type — the type-C login — created from a certificate in `master` with `CREATE LOGIN [name] FROM CERTIFICATE [cert_name]`. It is not a way to connect: Microsoft documents that logins created from certificates or asymmetric keys "are used only for code signing" and "can't be used to connect to SQL Server."[^b10c01-create-login] They carry permissions for signed modules, and certificates of the same kind secure Service Broker and database mirroring endpoints.
 
-[^create-login]: Microsoft Learn, [CREATE LOGIN (Transact-SQL)](https://learn.microsoft.com/en-us/sql/t-sql/statements/create-login-transact-sql?view=sql-server-ver17), Remarks.
+[^b10c01-create-login]: Microsoft Learn, [CREATE LOGIN (Transact-SQL)](https://learn.microsoft.com/en-us/sql/t-sql/statements/create-login-transact-sql?view=sql-server-ver17), Remarks.
 
 Certificate-mapped logins are uncommon in standard deployments, but they appear in specific scenarios: module signing that grants a stored procedure permissions its caller lacks, and Service Broker or mirroring endpoint security. Each is the kind of arrangement that survives quietly across an estate for years without anyone documenting it.
 
@@ -52,7 +52,7 @@ Most such certificates are created inside SQL Server rather than issued by ADCS,
 
 The third dependency is the most consequential for the NTLM elimination timeline. The Kerberos/NTLM-elimination program designates CBA as the authorized replacement for NTLM connections that cannot be migrated to Kerberos or Entra ID OAuth 2.0 tokens within the required timeline. Here CBA means certificate-based sign-in by the user — a smart card or PIV credential — rather than a password. SQL Server itself has no client-certificate login, so for a pre-2022 instance the certificate secures the user's sign-in to Active Directory, and the SQL Server connection that follows still authenticates with Windows authentication. It avoids NTLM only where that connection can use Kerberos.
 
-For connections that cannot reach Entra ID auth before the 2027-04-01 NTLM backstop — Category 3 instances still pre-2022, or applications still in the deferred class — CBA is the authorized interim posture. Certificate sign-in removes the password from the user's side, and the program accepts it as the interim posture provided the connection itself then negotiates Kerberos rather than NTLM — which still depends on the SPN and KDC fixes of Book 06. It is the bridge that keeps an un-migratable connection compliant.
+For connections that cannot reach Entra ID auth before the 2027-04-01 NTLM backstop — Category 3 instances still pre-2022, or applications still in the deferred class — CBA is the authorized interim posture. Certificate sign-in removes the password from the user's side, and the program accepts it as the interim posture provided the connection itself then negotiates Kerberos rather than NTLM — which still depends on the SPN and KDC fixes of Book 06.[^b10c01-spn] It is the bridge that keeps an un-migratable connection compliant.
 
 The problem is that CBA certificates must be issued by a CA. If the plan is to deploy CBA as the NTLM-replacement posture for connections that cannot yet reach Entra auth, and ADCS is being decommissioned, the replacement CA must already be in place and issuing CBA certificates before ADCS goes offline. The interim posture has its own certificate dependency, and that dependency points at the same authority the program intends to remove.
 
@@ -67,3 +67,7 @@ If the ADCS decommission timeline runs earlier than the replacement-CA and CBA-d
 ::: {.callout-note title="What Book 10 establishes — Chapter 1"}
 SQL Server touches ADCS in three places that a decommission plan rarely sees: the TLS certificate the engine presents for FedRAMP-Moderate connection encryption, type-C certificate-mapped logins, and Certificate-Based Authentication as the Kerberos/NTLM-elimination program's authorized NTLM-replacement interim posture. `Get-CertBasedAuthAudit.ps1` is the discovery instrument for all three. Because the transformation inventory marks the ADCS-to-Microsoft Cloud PKI transformation "Not Yet Defined" and no normative architecture decision governs it, this book is analytical rather than prescriptive — its central finding is that the sequencing of ADCS decommission against the 2027-04-01 NTLM deadline is a critical dependency the as-yet-unwritten ADCS-migration architecture decision must resolve.
 :::
+
+[^b10c01-tls]: Microsoft Learn, [Encrypt connections by importing a certificate](https://learn.microsoft.com/en-us/sql/database-engine/configure-windows/enable-encrypted-connections-to-the-database-engine?view=sql-server-ver17).
+[^b10c01-cloudpki]: Microsoft Learn, [Microsoft Cloud PKI for Microsoft Intune](https://learn.microsoft.com/en-us/intune/intune-service/protect/microsoft-cloud-pki-overview).
+[^b10c01-spn]: Microsoft Learn, [Register a Service Principal Name for Kerberos connections](https://learn.microsoft.com/en-us/sql/database-engine/configure-windows/register-a-service-principal-name-for-kerberos-connections?view=sql-server-ver17).

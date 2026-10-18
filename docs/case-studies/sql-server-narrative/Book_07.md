@@ -41,6 +41,16 @@ The migration moves SQL Server's groups from Active Directory to Microsoft Entra
 ::: {#book-chapters}
 :::
 
+## Authoritative references
+
+Checked 19 October 2026.
+
+- [Manage rules for dynamic membership groups in Microsoft Entra ID](https://learn.microsoft.com/en-us/entra/identity/users/groups-dynamic-membership)
+- [Privileged Identity Management (PIM) for Groups](https://learn.microsoft.com/en-us/entra/id-governance/privileged-identity-management/concept-pim-for-groups)
+- [What are access reviews?](https://learn.microsoft.com/en-us/entra/id-governance/access-reviews-overview)
+- [Administrative units in Microsoft Entra ID](https://learn.microsoft.com/en-us/entra/identity/role-based-access-control/administrative-units)
+- [CREATE LOGIN (Transact-SQL)](https://learn.microsoft.com/en-us/sql/t-sql/statements/create-login-transact-sql?view=sql-server-ver17)
+
 ::: {.callout-tip}
 ## Continue the series
 [← Previous: Book 06 — Eliminating NTLM at the SQL Layer](Book_06.md) · [Index](index.md) · [Next: Book 08 — The Application Chain →](Book_08.md)

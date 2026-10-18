@@ -17,14 +17,14 @@ lifecycle_review: 2027-01-01
 
 ::: {.callout-note}
 ## In this chapter
-How SQL Server delegates authentication to the Windows security subsystem through Kerberos and SSPI, why a missing SPN silently drops a connection to NTLM, what the service account and the `sa` account each contribute to the picture, and why this whole architecture was genuinely good engineering for the world it was designed for.
+How SQL Server delegates authentication to the Windows security subsystem through Kerberos and SSPI, why a missing SPN silently drops a connection to NTLM, what the service account and the `sa` account each contribute to the picture, and why this whole architecture was genuinely good engineering for the world it was designed for.[^b01c01-spn]
 :::
 
 ## The Kerberos Foundation
 
 ![A Windows-integrated connection: SSPI negotiates Kerberos when the SPN resolves, and silently falls back to NTLM when it doesn't.](../../images/sql-server/diagrams/svg/book-01-ch01-kerberos-sspi-ntlm-fallback.svg){fig-alt="Sequence diagram between client, domain controller and SQL Server: the client requests a service ticket for the SQL Server SPN and presents it to the engine; if the SPN is missing, Negotiate falls back to an NTLM challenge-response."}
 
-SQL Server in Windows Authentication mode delegates authentication entirely to the Windows security subsystem. It does not implement its own password verification, its own cryptographic challenge-response, or its own session token model. When a client opens a connection with `Integrated Security=True`, the driver passes control to the Security Support Provider Interface — SSPI.
+SQL Server in Windows Authentication mode delegates authentication entirely to the Windows security subsystem.[^b01c01-auth-mode] It does not implement its own password verification, its own cryptographic challenge-response, or its own session token model. When a client opens a connection with `Integrated Security=True`, the driver passes control to the Security Support Provider Interface — SSPI.
 
 The SSPI layer examines the available authentication protocols and determines whether Kerberos is negotiable for the target server. If it is, SSPI requests a Kerberos service ticket from the Key Distribution Center — the domain controller's Kerberos service — scoped to the SQL Server's Service Principal Name. That ticket is presented to the SQL Server engine.
 
@@ -46,7 +46,7 @@ The problem with NTLM is not that it was wrong for its time. The problem is that
 
 NTLM is a challenge-response protocol that embeds the entire authentication exchange within the connection negotiation itself. The server sends a challenge; the client responds with a hash of its credential and the challenge; the server validates the response. There is no token issued at the conclusion of this exchange, and no session assertion that can be presented to a third party for validation.
 
-There is, therefore, no mechanism by which a Conditional Access policy engine — which lives in the Azure identity plane, outside the SQL Server connection path entirely — can observe the NTLM exchange, evaluate it against policy conditions such as device compliance or sign-in risk, and either permit or deny it. NTLM authentication succeeds or fails at the protocol layer, between client and server, and produces no artifact the Azure identity plane can observe, record, or control.
+There is, therefore, no mechanism by which a Conditional Access policy engine — which lives in the Azure identity plane, outside the SQL Server connection path entirely — can observe the NTLM exchange, evaluate it against policy conditions such as device compliance or sign-in risk, and either permit or deny it.[^b01c01-idp][^b01c01-ca] NTLM authentication succeeds or fails at the protocol layer, between client and server, and produces no artifact the Azure identity plane can observe, record, or control.
 
 ## The Service Account
 
@@ -54,11 +54,11 @@ There is, therefore, no mechanism by which a Conditional Access policy engine �
 
 The SQL Server engine process runs under a service account. That account is the identity the engine presents when it makes network connections — when it accesses file shares, communicates with other instances via linked servers, or forwards log data to a monitoring sink. In federal environments, that account has historically taken one of three forms.
 
-The first is a domain service account: a named Active Directory user with a non-expiring password, typically named something like `svc-sqlengine-prod`, with a password set at installation and changed infrequently or not at all. The second is a Group Managed Service Account (gMSA): a domain account whose password is managed automatically by Active Directory, rotated every 30 days, and never known to any human. The gMSA pattern is strictly better than the named account from a credential-hygiene perspective, but it is still AD-anchored — when the domain is removed from the architecture, the gMSA loses its governance foundation.
+The first is a domain service account: a named Active Directory user with a non-expiring password, typically named something like `svc-sqlengine-prod`, with a password set at installation and changed infrequently or not at all. The second is a Group Managed Service Account (gMSA): a domain account whose password is managed automatically by Active Directory, rotated every 30 days, and never known to any human.[^b01c01-gmsa] The gMSA pattern is strictly better than the named account from a credential-hygiene perspective, but it is still AD-anchored — when the domain is removed from the architecture, the gMSA loses its governance foundation.
 
 The third form is the `NT SERVICE\MSSQLSERVER` virtual account, a Windows-local account that uses the computer's domain account for network authentication. This pattern is also AD-anchored, because it is the domain-joined computer account that provides the Kerberos credential for network connections.
 
-In every one of these patterns, Active Directory is the identity authority for the engine process. The engine's ability to authenticate to any network resource depends on AD. When the directory modernization program removes AD as the authoritative identity source, the service account pattern loses its foundation, and the engine must acquire a new identity in Microsoft Entra ID — on SQL Server 2025, the system-assigned managed identity that Arc provides for the host; on SQL Server 2022, an app registration whose certificate is kept in Azure Key Vault. That identity sits alongside the Windows account the service runs as rather than replacing it; the transition is the subject of Book 04.
+In every one of these patterns, Active Directory is the identity authority for the engine process. The engine's ability to authenticate to any network resource depends on AD. When the directory modernization program removes AD as the authoritative identity source, the service account pattern loses its foundation, and the engine must acquire a new identity in Microsoft Entra ID — on SQL Server 2025, the system-assigned managed identity that Arc provides for the host; on SQL Server 2022, an app registration whose certificate is kept in Azure Key Vault.[^b01c01-mi-2025][^b01c01-appreg-2022] That identity sits alongside the Windows account the service runs as rather than replacing it; the transition is the subject of Book 04.
 
 ## The sa Account
 
@@ -79,3 +79,11 @@ It was not a security compromise. It was the application of the existing, well-u
 ::: {.callout-note title="What Book 01 establishes — Chapter 1"}
 SQL Server Windows Authentication delegates entirely to the Windows security subsystem: Kerberos via SSPI when an SPN is registered, silent NTLM fallback when it is not. The engine process and the `sa` account are both anchored to authorities — Active Directory and `master` respectively — that the Federal Modernization Program removes or renders invisible to the Azure identity plane. None of this was a mistake. It was correct engineering for a fully domain-joined world that no longer exists.
 :::
+
+[^b01c01-spn]: Microsoft Learn, [Register a Service Principal Name for Kerberos connections](https://learn.microsoft.com/en-us/sql/database-engine/configure-windows/register-a-service-principal-name-for-kerberos-connections?view=sql-server-ver17).
+[^b01c01-auth-mode]: Microsoft Learn, [Change server authentication mode](https://learn.microsoft.com/en-us/sql/database-engine/configure-windows/change-server-authentication-mode?view=sql-server-ver17).
+[^b01c01-ca]: Microsoft Learn, [What is Conditional Access?](https://learn.microsoft.com/en-us/entra/identity/conditional-access/overview).
+[^b01c01-idp]: Microsoft Learn, [What is Microsoft Entra ID Protection?](https://learn.microsoft.com/en-us/entra/id-protection/overview-identity-protection).
+[^b01c01-gmsa]: Microsoft Learn, [Group Managed Service Accounts overview](https://learn.microsoft.com/en-us/windows-server/identity/ad-ds/manage/group-managed-service-accounts/group-managed-service-accounts/group-managed-service-accounts-overview).
+[^b01c01-appreg-2022]: Microsoft Learn, [Set up Microsoft Entra authentication with app registration — SQL Server enabled by Azure Arc](https://learn.microsoft.com/en-us/sql/sql-server/azure-arc/entra-authentication-setup-tutorial?view=sql-server-ver17).
+[^b01c01-mi-2025]: Microsoft Learn, [Managed identity overview — SQL Server enabled by Azure Arc](https://learn.microsoft.com/en-us/sql/sql-server/azure-arc/managed-identity?view=sql-server-ver17).

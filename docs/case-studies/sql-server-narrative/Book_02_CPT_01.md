@@ -32,7 +32,7 @@ A SQL Server estate does not grow by design. It grows by accretion. A developmen
 
 The result, in a mature federal environment, is a population of instances spanning every SQL Server version released across two decades — 2008, 2012, 2014, 2016, 2017, 2019, and 2022 — in every edition, from Express on a workstation to Enterprise on a clustered host. Several of those versions are out of support and receive no security updates. The licensing posture is equally heterogeneous: a mix of Standard and Enterprise cores, some covered by Software Assurance and some not, with no single authority that can state how many cores the estate actually consumes.
 
-Instance sprawl is the first thing the assessment must quantify, because the count of instances — and especially the count of *unknown* instances — determines the true scope of the transformation. An estate that the DBA team believes contains forty instances and the discovery sweep reveals to contain a hundred and ten is not forty instances behind schedule; it is operating on a scope estimate that is wrong by a factor of nearly three.
+Instance sprawl is the first thing the assessment must quantify, because the count of instances — and especially the count of *unknown* instances — determines the true scope of the transformation. In an illustrative example, an estate that the DBA team believes contains forty instances and the discovery sweep reveals to contain a hundred and ten is not forty instances behind schedule; it is operating on a scope estimate that is wrong by a factor of nearly three.
 
 ## Database Sprawl
 
@@ -40,7 +40,7 @@ Beneath the instances lies a second layer of accretion: the databases themselves
 
 Database sprawl matters to the authentication transformation for a specific reason. Every database is a potential source of logins, and every login is a unit of migration work. A zombie database may map a long-forgotten SQL Authentication service account that still has a valid password and still appears, to a discovery script, as an active credential requiring migration. The fastest way to reduce the migration surface is not to migrate faster — it is to retire the databases and instances that should not be migrated at all.
 
-Zombie detection is therefore not a housekeeping nicety; it is migration-scope reduction. A database with no connections in four hundred days, no recent backups consumed for a restore, and an owning application that the application portfolio lists as retired is a database whose logins should never enter the migration pipeline.
+Zombie detection is therefore not a housekeeping nicety; it is migration-scope reduction. To take an illustrative example, a database with no connections in four hundred days, no recent backups consumed for a restore, and an owning application that the application portfolio lists as retired is a database whose logins should never enter the migration pipeline.
 
 ## Forest Entanglement
 

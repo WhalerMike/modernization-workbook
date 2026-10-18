@@ -24,7 +24,7 @@ How to interpret each of the three Arc-eligibility categories the audit assigns,
 
 ## Interpreting Category 1: Entra-Auth-Ready
 
-A Category 1 classification is the program's best starting position. It means the infrastructure prerequisites for Entra ID authentication are already in place — the Arc agent is running, the Azure extension for SQL Server is deployed, and the engine is running on SQL Server 2022.
+A Category 1 classification is the program's best starting position. It means the infrastructure prerequisites for Entra ID authentication are already in place — the Arc agent is running, the Azure extension for SQL Server is deployed, and the engine is running on SQL Server 2022.[^b03c02-arc-sql]
 
 The Managed Identity for the server is available, and the SQL Server extension has registered the instance with the Arc data services plane. Nothing in the infrastructure stack remains to be built.
 
@@ -36,15 +36,15 @@ The point here is that the audit has done its job for a Category 1 instance when
 
 A Category 2 instance requires an Arc deployment action before login migration can begin. The audit output for such an instance should be used to prioritize that deployment.
 
-Instances with a large number of Windows logins, active SQL Authentication logins, or missing SPN registrations — and therefore NTLM-generating connections — are higher priority for Arc deployment than instances with simple, well-configured Windows Authentication.
+Instances with a large number of Windows logins, active SQL Authentication logins, or missing SPN registrations — and therefore NTLM-generating connections — are higher priority for Arc deployment than instances with simple, well-configured Windows Authentication.[^b03c02-spn]
 
-The Arc deployment itself is not a SQL Server change. It is a server-level action that installs the Connected Machine agent and the SQL Server extension. Book 03 describes the Arc deployment sequence in detail.
+The Arc deployment itself is not a SQL Server change. It is a server-level action that installs the Connected Machine agent and the SQL Server extension.[^b03c02-arc-servers] Book 03 describes the Arc deployment sequence in detail.
 
 Once Arc deployment is complete and the SQL Server extension confirms the Managed Identity is available, the instance re-classifies from Category 2 to Category 1 on the next audit run, and the login migration can begin.
 
 ## Interpreting Category 3: Version Upgrade Required
 
-A Category 3 instance is the most operationally complex. A pre-2022 instance cannot accept `FROM EXTERNAL PROVIDER` logins regardless of any other configuration change.
+A Category 3 instance is the most operationally complex. A pre-2022 instance cannot accept `FROM EXTERNAL PROVIDER` logins regardless of any other configuration change.[^b03c02-create-login]
 
 The `CREATE LOGIN [user@tenant] FROM EXTERNAL PROVIDER` syntax was introduced in SQL Server 2022 as part of the Azure extension for SQL Server integration. Earlier versions do not support the syntax at all — it produces a parse error.
 
@@ -62,7 +62,7 @@ One of the most important clarifications the audit output must carry — and tha
 
 SQL Server engine Entra authentication — Layer 1, the capability described in this series — requires the Arc Connected Machine agent, the Azure extension for SQL Server, and SQL Server 2022. It does not require the server to be domain-unjoined, and it does not require Windows Server 2025.
 
-A domain-joined Windows Server 2019 host running SQL Server 2022 with Arc installed can have Entra ID-backed SQL Server logins today, while the server itself remains domain-joined and continues to authenticate OS-level users via Kerberos to the domain controller.
+A domain-joined Windows Server 2019 host running SQL Server 2022 with Arc installed can have Entra ID-backed SQL Server logins today, while the server itself remains domain-joined and continues to authenticate OS-level users via Kerberos to the domain controller.[^b03c02-entra-sql]
 
 Server OS Entra ID login capability — Layer 2, the ability for administrators to RDP into the server using Entra ID credentials instead of domain credentials — is a separate transformation governed by the Arc non-domain-join requirement. It requires domain unjoin and Windows Server 2025 with Desktop Experience.
 
@@ -73,3 +73,9 @@ This sequencing point must be explicit in every instance of audit output that cl
 ::: {.callout-note title="What Book 03 establishes — Chapter 2"}
 The three Arc-eligibility categories map directly to triage actions: a Category 1 instance migrates now from its login inventory, a Category 2 instance is prioritized for Arc deployment and then re-classifies to Category 1, and a Category 3 instance must be upgraded to SQL Server 2022 or formally excepted against the 2027-04-01 NTLM deadline. The decisive clarification is the Layer 1 versus Layer 2 distinction: SQL engine Entra authentication depends only on Arc, the Azure extension, and SQL Server 2022 — it can proceed on a still-domain-joined host, independent of the Arc non-domain-join requirement's OS-level Entra login transformation.
 :::
+
+[^b03c02-arc-sql]: Microsoft Learn, [Overview — SQL Server enabled by Azure Arc](https://learn.microsoft.com/en-us/sql/sql-server/azure-arc/overview?view=sql-server-ver17).
+[^b03c02-spn]: Microsoft Learn, [Register a Service Principal Name for Kerberos connections](https://learn.microsoft.com/en-us/sql/database-engine/configure-windows/register-a-service-principal-name-for-kerberos-connections?view=sql-server-ver17).
+[^b03c02-arc-servers]: Microsoft Learn, [Azure Arc-enabled servers overview](https://learn.microsoft.com/en-us/azure/azure-arc/servers/overview).
+[^b03c02-create-login]: Microsoft Learn, [CREATE LOGIN (Transact-SQL)](https://learn.microsoft.com/en-us/sql/t-sql/statements/create-login-transact-sql?view=sql-server-ver17).
+[^b03c02-entra-sql]: Microsoft Learn, [Microsoft Entra authentication for SQL Server overview](https://learn.microsoft.com/en-us/sql/relational-databases/security/authentication-access/azure-ad-authentication-sql-server-overview?view=sql-server-ver17).
