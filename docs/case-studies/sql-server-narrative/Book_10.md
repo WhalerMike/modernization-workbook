@@ -41,6 +41,16 @@ This book documents a **"Not Yet Defined"** gap from the transformation inventor
 ::: {#book-chapters}
 :::
 
+## Authoritative references
+
+Checked 19 October 2026.
+
+- [Microsoft Cloud PKI for Microsoft Intune](https://learn.microsoft.com/en-us/intune/intune-service/protect/microsoft-cloud-pki-overview)
+- [Microsoft Intune Government service overview](https://learn.microsoft.com/en-us/intune/fundamentals/government-service)
+- [Encrypt connections by importing a certificate](https://learn.microsoft.com/en-us/sql/database-engine/configure-windows/enable-encrypted-connections-to-the-database-engine?view=sql-server-ver17)
+- [CREATE LOGIN (Transact-SQL)](https://learn.microsoft.com/en-us/sql/t-sql/statements/create-login-transact-sql?view=sql-server-ver17)
+- [Microsoft Entra certificate-based authentication overview](https://learn.microsoft.com/en-us/entra/identity/authentication/concept-certificate-based-authentication)
+
 ::: {.callout-tip}
 ## Continue the series
 [← Previous: Book 09 — The Transformed Posture](Book_09.md) · [Index](index.md) · [Next: Book 11 — Epilogue: The Platform Question →](Book_11.md)

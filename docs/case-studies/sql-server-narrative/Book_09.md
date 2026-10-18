@@ -41,6 +41,17 @@ A transformation that achieves a completed state and then stops monitoring is a 
 ::: {#book-chapters}
 :::
 
+## Authoritative references
+
+Checked 19 October 2026.
+
+- [Disable SQL Authentication — SQL Server enabled by Azure Arc](https://learn.microsoft.com/en-us/sql/sql-server/azure-arc/disable-sql-authentication?view=sql-server-ver17)
+- [sys.dm_exec_connections (Transact-SQL)](https://learn.microsoft.com/en-us/sql/relational-databases/system-dynamic-management-views/sys-dm-exec-connections-transact-sql?view=sql-server-ver17)
+- [Sign-in logs in Microsoft Entra ID](https://learn.microsoft.com/en-us/entra/identity/monitoring-health/concept-sign-ins)
+- [Microsoft Defender for SQL servers on machines overview](https://learn.microsoft.com/en-us/azure/defender-for-cloud/defender-for-sql-on-machines-overview)
+- [SQL Server Audit (Database Engine)](https://learn.microsoft.com/en-us/sql/relational-databases/security/auditing/sql-server-audit-database-engine?view=sql-server-ver17)
+- [CISA Zero Trust Maturity Model, Version 2.0](https://www.cisa.gov/sites/default/files/2023-04/zero_trust_maturity_model_v2_508.pdf)
+
 ::: {.callout-tip}
 ## Continue the series
 [← Previous: Book 08 — The Application Chain](Book_08.md) · [Index](index.md) · [Next: Book 10 — Certificate Authority →](Book_10.md)

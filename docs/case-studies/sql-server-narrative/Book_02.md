@@ -41,6 +41,15 @@ You do not migrate the estate in the shape you discover it. After twenty years a
 ::: {#book-chapters}
 :::
 
+## Authoritative references
+
+Checked 19 October 2026.
+
+- [End of support options — SQL Server](https://learn.microsoft.com/en-us/sql/sql-server/end-of-support/sql-server-end-of-support-overview?view=sql-server-ver17)
+- [SQL Server enabled by Azure Arc — overview](https://learn.microsoft.com/en-us/sql/sql-server/azure-arc/overview?view=sql-server-ver17)
+- [Migrate SQL Server Windows users and groups to SQL Managed Instance using T-SQL](https://learn.microsoft.com/en-us/azure/azure-sql/managed-instance/migrate-sql-server-users-to-instance-transact-sql-tsql-tutorial?view=azuresql)
+- [Microsoft Entra cloud-first identity guidance](https://learn.microsoft.com/en-us/entra/identity/hybrid/guidance-it-architects-source-of-authority)
+
 ::: {.callout-tip}
 ## Continue the series
 [← Previous: Book 01 — The Authentication Inheritance Problem](Book_01.md) · [Index](index.md) · [Next: Book 03 — Discovery →](Book_03.md)

@@ -17,7 +17,7 @@ lifecycle_review: 2027-01-01
 
 ::: {.callout-note}
 ## In this chapter
-Why NTLMv1 is blocked early — in the Kerberos/NTLM-elimination program's Phase B, by default upon completion of the Phase A assessment (targeted 2026-Q3) — through the LAN Manager Authentication Level policy, while NTLMv2 carries a phased deadline of 2027-04-01, and the four distinct SQL Server connection patterns that generate NTLM traffic — a missing or incorrect SPN, cross-site connections where the KDC is unreachable, linked-server passthrough authentication, and non-domain-joined application hosts created by the server transformation.
+Why NTLMv1 is blocked early — in the Kerberos/NTLM-elimination program's Phase B, by default upon completion of the Phase A assessment (targeted 2026-Q3) — through the LAN Manager Authentication Level policy, while NTLMv2 carries a phased deadline of 2027-04-01, and the four distinct SQL Server connection patterns that generate NTLM traffic — a missing or incorrect SPN, cross-site connections where the KDC is unreachable, linked-server passthrough authentication, and non-domain-joined application hosts created by the server transformation.[^b06c01-linked][^b06c01-ntlm-removed][^b06c01-spn]
 :::
 
 NTLM is a protocol, not a configuration setting, and that distinction governs everything in this book. There is no single switch to flip and no single Group Policy change that removes NTLM from SQL Server connections. Eliminating NTLM at the SQL layer requires identifying every connection pattern that generates NTLM traffic, and there are more such patterns than most database teams expect.
@@ -44,7 +44,7 @@ NTLMv2 is the current NTLM variant, and it addresses the cryptographic weaknesse
 
 Unlike NTLMv1, NTLMv2 is not removed in Phase B. The Kerberos/NTLM-elimination program restricts it via Group Policy to documented exception groups during Phase B, but full disablement waits for the elimination phase — Phase C — which carries a hard cutover at 2027-04-01. The phased timeline exists to give programs the operational space to identify and remediate NTLMv2-generating connection patterns before the hard block is applied.
 
-That space is not infinite, and the timeline is not flexible. The elimination program's enforcement phase sets 2027-04-01 as the date on which domain-wide NTLM restrictions take effect program-wide — the program's own NTLM-elimination backstop. SQL Server NTLMv2 connections must be migrated either to Kerberos as an interim posture — using Cloud Kerberos trust per the elimination program — or to Entra ID OAuth 2.0 authentication as the final destination, before that date.
+That space is not infinite, and the timeline is not flexible. The elimination program's enforcement phase sets 2027-04-01 as the date on which domain-wide NTLM restrictions take effect program-wide — the program's own NTLM-elimination backstop. It is a program decision, not a Microsoft deadline: Microsoft's stated target is to disable NTLM by default — not remove it — in the next major release of Windows Server and client, subject to change, with re-enablement possible at least initially.[^b06c01-ntlm-faq] SQL Server NTLMv2 connections must be migrated either to Kerberos as an interim posture — using Cloud Kerberos trust per the elimination program — or to Entra ID OAuth 2.0 authentication as the final destination, before that date.[^b06c01-ckt]
 
 ## Pattern One: Missing or Incorrect SPN
 
@@ -70,7 +70,7 @@ Linked-server definitions in SQL Server — which allow one instance to query an
 
 NTLM cannot make that second hop: an instance that authenticated the client with NTLM holds no credential it can forward, so the connection to the target fails, typically as `Login failed for user 'NT AUTHORITY\ANONYMOUS LOGON'`. Passthrough needs Kerberos delegation: the client should reach the first instance with Kerberos, and the first instance's service account must be trusted for (preferably constrained) delegation to the target's SPN. In practice the pattern shows up as NTLM on the client's first hop or as a failed second hop; it is not a working NTLM path to keep.
 
-Linked-server NTLM is particularly insidious because it often appears in monitoring as "internal" database traffic and is not always visible in standard SQL Server connection audits. It requires examination of the `sys.linked_logins` and `sys.servers` views as well as network-traffic analysis between instances. Any linked-server definition that uses passthrough authentication must be identified during discovery and migrated to a defined security context during the restriction phase — a specific mapped login, a managed identity (SQL Server 2025 on an Arc-enabled host, linking to a target with Entra authentication), or, where the caller's own identity must reach the target, Kerberos constrained delegation.
+Linked-server NTLM is particularly insidious because it often appears in monitoring as "internal" database traffic and is not always visible in standard SQL Server connection audits. It requires examination of the `sys.linked_logins` and `sys.servers` views as well as network-traffic analysis between instances. Any linked-server definition that uses passthrough authentication must be identified during discovery and migrated to a defined security context during the restriction phase — a specific mapped login, a managed identity (SQL Server 2025 on an Arc-enabled host, linking to a target with Entra authentication), or, where the caller's own identity must reach the target, Kerberos constrained delegation.[^b06c01-kcd][^b06c01-mi-2025]
 
 ## Pattern Four: Non-Domain-Joined Application Hosts
 
@@ -80,6 +80,15 @@ This pattern becomes more prevalent as the Arc non-domain-join server migration 
 
 An application host that has been domain-unjoined and whose connection string uses Managed Identity authentication generates no NTLM traffic and is fully compliant with both the Arc non-domain-join requirement and the Kerberos/NTLM-elimination program. An application host that has been domain-unjoined but whose connection string still uses Windows Integrated Security is now an NTLM source that did not exist before the domain unjoin.
 
+[^b06c01-ntlm-faq]: Microsoft Tech Community, [Retiring NTLM: frequently asked questions](https://techcommunity.microsoft.com/blog/windows-itpro-blog/retiring-ntlm-frequently-asked-questions/4550522).
+
 ::: {.callout-note title="What Book 06 establishes — Chapter 1"}
 NTLM is a protocol, not a setting, so there is no single switch that removes it from SQL Server connections. NTLMv1 is blocked early — in the Kerberos/NTLM-elimination program's Phase B, through the LAN Manager Authentication Level policy — and should never appear in a modern estate; NTLMv2 is restricted to exception groups in Phase B and fully blocked at the enforcement phase cutover of 2027-04-01. Four connection patterns generate NTLM at the SQL layer — a missing or incorrect SPN, cross-site connections where the KDC is unreachable, linked-server passthrough authentication, and non-domain-joined application hosts created by the Arc non-domain-join server migration — and each must be detected before it can be remediated.
 :::
+
+[^b06c01-spn]: Microsoft Learn, [Register a Service Principal Name for Kerberos connections](https://learn.microsoft.com/en-us/sql/database-engine/configure-windows/register-a-service-principal-name-for-kerberos-connections?view=sql-server-ver17).
+[^b06c01-ntlm-removed]: Microsoft Learn, [Features removed or no longer developed in Windows Server](https://learn.microsoft.com/en-us/windows-server/get-started/removed-deprecated-features-windows-server).
+[^b06c01-linked]: Microsoft Learn, [Linked server for SQL Server with Microsoft Entra authentication](https://learn.microsoft.com/en-us/sql/relational-databases/security/authentication-access/azure-ad-authentication-sql-server-linked-server?view=sql-server-ver17).
+[^b06c01-ckt]: Microsoft Learn, [Windows Hello for Business cloud Kerberos trust deployment guide](https://learn.microsoft.com/en-us/windows/security/identity-protection/hello-for-business/deploy/hybrid-cloud-kerberos-trust).
+[^b06c01-mi-2025]: Microsoft Learn, [Managed identity overview — SQL Server enabled by Azure Arc](https://learn.microsoft.com/en-us/sql/sql-server/azure-arc/managed-identity?view=sql-server-ver17).
+[^b06c01-kcd]: Microsoft Learn, [Kerberos constrained delegation overview](https://learn.microsoft.com/en-us/windows-server/security/kerberos/kerberos-constrained-delegation-overview).

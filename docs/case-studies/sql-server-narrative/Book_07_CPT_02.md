@@ -30,7 +30,7 @@ Moving to dynamic membership relocates the access decision. Under assigned membe
 
 This is why the series insists on a single, authoritative **source of truth** for the attributes that drive SQL Server access, and in a federal agency that source is the HR system of record. HR knows when someone joins, moves, or leaves, and HR has the governance (personnel actions, approvals, records retention) to make those changes defensible. The path from HR to the directory should be automated and one-way:
 
-- **For identities still mastered in Active Directory**, HR-driven provisioning populates AD, and Microsoft Entra Connect or Cloud Sync carries the values into Entra ID.
+- **For identities still mastered in Active Directory**, HR-driven provisioning populates AD, and Microsoft Entra Connect or Cloud Sync carries the values into Entra ID.[^b07c02-connect]
 - **For cloud-mastered identities**, Entra ID's inbound provisioning writes them directly. There are built-in connectors for the major cloud HR suites, and an API-driven inbound provisioning endpoint covers any other HR system that can produce a feed.
 
 Either way, the attribute is written by a provisioning service account, not by a person, and self-service and helpdesk write access to those attributes is removed. A rule is only as good as the weakest writer of the data it reads.
@@ -97,7 +97,7 @@ Dynamic groups and access reviews answer different questions. A dynamic group's 
 Two kinds of break-glass access are needed, and they must not depend on the machinery they exist to bypass. At the **tenant** level, Microsoft's guidance for emergency-access accounts applies:
 
 - at least two cloud-only accounts, with phishing-resistant credentials stored securely
-- excluded only from the Conditional Access policies that could lock them out
+- excluded only from the Conditional Access policies that could lock them out[^b07c02-ca]
 - alerting on every sign-in
 - tested on a regular schedule
 
@@ -108,8 +108,8 @@ At the **SQL Server** level, Book 05's position stands. The built-in `sa` is dis
 The access model is now spread across HR, the provisioning service, Entra ID, and the engine, so monitoring has to cover each hand-off:
 
 - **Entra audit logs** record rule edits, membership additions and removals, PIM activations, and AU and role-assignment changes. A change to the rule of any SQL Server access group should raise an alert.
-- **Entra sign-in logs** show every token issued for SQL Server and the Conditional Access result.
-- **SQL Server Audit** records successful and failed logins, and changes to server and database role membership.
+- **Entra sign-in logs** show every token issued for SQL Server and the Conditional Access result.[^b07c02-signins]
+- **SQL Server Audit** records successful and failed logins, and changes to server and database role membership.[^b07c02-sqlaudit]
 
 The continuous audit described in Book 09 should reconcile all three. Every type-E and type-X principal on an instance must map to a known user, application, or group. Every group must follow the naming convention and have an owner. No privileged role may have a standing member that PIM doesn't account for.
 
@@ -148,7 +148,7 @@ Where this book cannot verify a feature's status at the feature level, treat it 
 In a dynamic group, whoever can write the attribute controls access. So access attributes come from the HR system of record through automated provisioning, and only that provisioning account can write them. Rules use supported, coded attributes such as `department`, `companyName`, `jobTitle`, `employeeId`, `extensionAttribute1`–`15`, and directory extension properties. They stay within Microsoft's limits (3,072-character rules, 15,000 dynamic groups, efficient operators) and require Entra ID P1 per unique member. Every rule is validated, shadowed against the group it replaces, and gated on a verified pilot cohort. Groups follow a one-group-one-role naming convention that process enforces, because the naming policy covers only Microsoft 365 groups. Regular administrative units scope DBA delegation. Restricted management is reserved for cases that don't need PIM or access reviews. Privileged groups are assigned, cloud-only, and governed by PIM for Groups. Access reviews cover assigned groups and the rules behind dynamic ones. Break-glass paths depend on none of this machinery. Entra audit, sign-in logs, and SQL Server Audit are reconciled by the continuous audit. In a FedRAMP Moderate tenant in the commercial cloud, the generally available features this design relies on come from services on Microsoft's FedRAMP High list. Preview features stay out of the production access path, and feature-level coverage is confirmed against the agency's authorization boundary.
 :::
 
-## Microsoft references
+## Authoritative references
 
 - [Rules for dynamic membership groups](https://learn.microsoft.com/en-us/entra/identity/users/groups-dynamic-membership): supported properties, extension attributes, attribute write-permission guidance, 3,072-character limit, 15,000-group limit, P1 licensing
 - [Create simpler, more efficient rules](https://learn.microsoft.com/en-us/entra/identity/users/groups-dynamic-rule-more-efficient), [validate rules](https://learn.microsoft.com/en-us/entra/identity/users/groups-dynamic-rule-validation), and [dynamic group processing and pausing](https://learn.microsoft.com/en-us/entra/identity/users/manage-dynamic-group)
@@ -161,3 +161,8 @@ In a dynamic group, whoever can write the attribute controls access. So access a
 - [Configure Microsoft Entra ID to meet FedRAMP High](https://learn.microsoft.com/en-us/entra/standards/configure-for-fedramp-high-impact) (customer configuration responsibility)
 - [Microsoft Entra preview program terms](https://learn.microsoft.com/en-us/entra/fundamentals/licensing-preview-terms) and the [Microsoft Products and Services Data Protection Addendum](https://www.microsoft.com/licensing/docs/view/Microsoft-Products-and-Services-Data-Protection-Addendum-DPA) (May 2026 edition, "Previews" section)
 - [Microsoft Entra authentication for SQL Server](https://learn.microsoft.com/en-us/sql/relational-databases/security/authentication-access/azure-ad-authentication-sql-server-overview?view=sql-server-ver17) and [managed identity for Arc-enabled SQL Server](https://learn.microsoft.com/en-us/sql/sql-server/azure-arc/managed-identity?view=sql-server-ver17) (requires Azure public cloud access)
+
+[^b07c02-connect]: Microsoft Learn, [What is Microsoft Entra Connect?](https://learn.microsoft.com/en-us/entra/identity/hybrid/connect/whatis-azure-ad-connect).
+[^b07c02-ca]: Microsoft Learn, [What is Conditional Access?](https://learn.microsoft.com/en-us/entra/identity/conditional-access/overview).
+[^b07c02-signins]: Microsoft Learn, [Sign-in logs in Microsoft Entra ID](https://learn.microsoft.com/en-us/entra/identity/monitoring-health/concept-sign-ins).
+[^b07c02-sqlaudit]: Microsoft Learn, [SQL Server Audit (Database Engine)](https://learn.microsoft.com/en-us/sql/relational-databases/security/auditing/sql-server-audit-database-engine?view=sql-server-ver17).
