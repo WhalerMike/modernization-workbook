@@ -1,6 +1,6 @@
 ---
-title: "Intune + Azure Arc — Governed Path (the Federal Modernization Program / the organizational-attribute model)"
-subtitle: "The same modernization end state, bound to canon governance: control-plane-governs-data-plane, the organizational-attribute model scoping, the L0–L4 actuation ladder, and the drift-detection loop"
+title: "Intune + Azure Arc — Governed Path (the Federal Modernization Program)"
+subtitle: "The same modernization end state, bound to canon governance: control-plane-governs-data-plane, the L0–L4 actuation ladder, and the drift-detection loop"
 doc-type: operational-guide
 audience: [Customer, Operator, Technical]
 author: Michael Stratton
@@ -18,14 +18,14 @@ tiers_adopted: [1]
 lifecycle_review: 2026-12-08
 ---
 
-# Intune + Azure Arc — Governed Path (the Federal Modernization Program / the organizational-attribute model) {.unnumbered}
+# Intune + Azure Arc — Governed Path (the Federal Modernization Program) {.unnumbered}
 
 The governed path reaches the **same end state** as the
 [manual path](manual-path.md) — Arc-onboarded servers, Intune-enrolled
 endpoints, NTLM eliminated, SPNs clean, SQL hardened, Conditional Access
 enforced — but binds every change to organizational intent. The
-[same scripts](manual-path.md) run; you add an the organizational-attribute model, an actuation rung, and a
-recorded approval.
+[same scripts](manual-path.md) run; you add an actuation rung and a recorded
+approval.
 
 ::: {.callout-important title="What the Federal Modernization Program is (and what these docs do not invent)"}
 **The Federal Modernization Program** is the *Unified Identity-Addressing-Overlay Architecture* — an **active
@@ -69,31 +69,7 @@ provider-incorporation contract, not displaced:
 The Federal Modernization Program does not reimplement any of these functions. It reconciles their state
 against canon and emits evidence.
 
-## 3. the organizational-attribute model — the addressing overlay
-
-Every governed object carries an **the organizational-attribute model**, so a server, an endpoint, a CA
-policy, and an SPN are all addressable in the same terms. the organizational-attribute model is the key by
-which the Federal Modernization Program routes approvals, assigns ownership, and scopes policy.
-
-On the governed path you stamp it on every change:
-
-```powershell
-.\scripts\Invoke-ArcOnboarding.ps1 -SubscriptionId $sub -ResourceGroup rg-arc-servers -Location eastus `
-    -the organizational-attribute model '/Agency/Infrastructure/Servers/Production' -ApprovalRef 'CR0012345'
-```
-
-The script writes `the organizational-attribute model` as an Azure tag where the provider supports it, and
-`Assert-GovernanceApproval` records actor + the organizational-attribute model + rung + approval for the
-evidence trail. the organizational-attribute model maps onto the Azure resource hierarchy (management group
-→ subscription → resource group → resource tags) so organizational scope and
-technical scope line up.
-
-If you do not yet know each object's the organizational-attribute model — e.g. you are adopting an estate
-built the manual way — `Get-the organizational-attribute modelSurvey.ps1` *proposes* one per object from the
-structure that already exists (Arc tags, AD OUs), advisory and read-only. See
-Add the organizational-attribute model later (retrofit).
-
-## 4. The actuation maturity ladder
+## 3. The actuation maturity ladder
 
 Every governed operation declares a rung. The rung is a property of the
 operation, not a global switch. **The federal default write ceiling is L3** —
@@ -104,14 +80,14 @@ autonomous (L4) actuation is refused in-boundary.
 | L0 | Record | desired state in canon only | the modernization spine table |
 | L1 | Observe | collect actual state, detect drift (read-only) | NTLM/SPN/SQL/Intune audits, drift report |
 | L2 | Advise | generate the corrective change-set, surface it | the `-WhatIf` previews |
-| L3 | Gated | a human approves; the Federal Modernization Program executes via the provider API | every state-changing script with `-the organizational-attribute model` + `-ApprovalRef` |
+| L3 | Gated | a human approves; the Federal Modernization Program executes via the provider API | every state-changing script with `-ApprovalRef` |
 | L4 | Auto | the loop closes without a human | **above the ceiling — refused** |
 
 `Assert-GovernanceApproval` enforces this: it refuses any write above the
 ceiling, refuses a gated write with no approval reference, and logs every
 decision.
 
-## 5. The reconciliation loop
+## 4. The reconciliation loop
 
 The governed path runs the modernization domains through the drift-detection
 loop rather than as one-shot scripts. The loop is six phases —
@@ -127,9 +103,9 @@ domain:
   `Invoke-SqlHardeningAudit`, `Get-IntuneEnrollmentStatus`) — per-domain Compare.
 
 **Remediate/Verify** is the gated (L3) write: the same script, re-run with
-`-the organizational-attribute model` + `-ApprovalRef` once a human approves the surfaced change-set.
+`-ApprovalRef` once a human approves the surfaced change-set.
 
-## 6. Mapping the draft's model to canon
+## 5. Mapping the draft's model to canon
 
 The source "WITH-GOVERNANCE" draft described the Federal Modernization Program as five products. Those concepts
 exist in canon — but as machinery already named, not new components:
@@ -137,7 +113,7 @@ exist in canon — but as machinery already named, not new components:
 | Draft term | Canon equivalent |
 |---|---|
 | "Policy Engine" | desired state in canon + `plan / apply / reconcile` adapters (the program decision–039) |
-| "Identity Registry" | the identity control-plane slot + the OrgTree; the organizational-attribute model on every object |
+| "Identity Registry" | the identity control-plane slot + the OrgTree |
 | "Attestation Service" | the OrgTree Drift Detection Engine (the program decision), six-phase, dry-run default |
 | "Audit Ledger" | the provenance-anchored evidence pipeline (every artifact cites the canon id + version it derives from) |
 | "Access Orchestrator" | enforcement adapters bound to a control-plane slot (provider-incorporation contract) |
@@ -145,22 +121,20 @@ exist in canon — but as machinery already named, not new components:
 Use the canon terms. The shape the draft reached for is right; the names and the
 acronym were not.
 
-## 7. Running the governed path
+## 6. Running the governed path
 
 Identical run order to the [manual path](manual-path.md#0-phases-and-run-order),
 with two additions on every state-changing call:
 
 ```powershell
 Import-Module .\lib\IntuneArcModernization.psm1
-$org = '/Agency/Infrastructure/Servers/Production'
-
 # observe (L1) — same as manual
 .\scripts\Get-NtlmAudit.ps1 -DaysBack 30 -OutputPath .\artifacts\ntlm-audit.csv
 
-# gated actuation (L3) — the organizational-attribute model + approval required; a write without approval is refused
+# gated actuation (L3) — approval required; a write without approval is refused
 .\scripts\Invoke-ArcOnboarding.ps1 -SubscriptionId $sub -ResourceGroup rg-arc-servers -Location eastus `
-    -the organizational-attribute model $org -ApprovalRef 'CR0012345' -WhatIf
-.\scripts\Set-NtlmRestriction.ps1 -Level 5 -the organizational-attribute model '/Agency/Identity/Domain' -ApprovalRef 'CR0012346' -WhatIf
+    -ApprovalRef 'CR0012345' -WhatIf
+.\scripts\Set-NtlmRestriction.ps1 -Level 5 -ApprovalRef 'CR0012346' -WhatIf
 
 # verify (L1)
 .\scripts\Get-ModernizationDriftReport.ps1 -ArtifactPath .\artifacts
@@ -169,19 +143,19 @@ $org = '/Agency/Infrastructure/Servers/Production'
 To forbid autonomous actuation explicitly in a tightened boundary, lower the
 ceiling in `Assert-GovernanceApproval` (`-ActuationCeiling`). The default is L3.
 
-## 8. Outcomes the governed path adds
+## 7. Outcomes the governed path adds
 
 Over the manual end state, the governed path delivers:
 
-- every modernized resource traceable to an **the organizational-attribute model owner** and a recorded approval;
+- every modernized resource traceable to a recorded approval;
 - no Conditional Access change outside a gated, logged workflow;
 - continuous, exportable **evidence** (provenance-anchored, not assembled at audit time);
 - drift caught and classified by the loop rather than discovered by incident.
 
 If you have not yet stood up a control plane, build the [manual path](manual-path.md)
-now and retrofit the organizational-attribute model later — the work you do now carries forward.
+now and adopt the governed path later — the work you do now carries forward.
 
-## 9. Rollback
+## 8. Rollback
 
 The governed path layers governance on top of the same operational back-outs as the
 manual path. Roll back in two layers if needed.
@@ -197,8 +171,6 @@ manual path. Roll back in two layers if needed.
 
 **Governance-seam back-out:**
 
-- **the organizational-attribute model tags:** remove or blank the `the organizational-attribute model` Azure resource tag; the
-  objects continue to function — they simply lose their canon addressability.
 - **Approval enforcement:** lower `Assert-GovernanceApproval` to record-only
   (`-ActuationCeiling L1`) to halt gated writes without disrupting the observers.
 - **Loop suspension:** stop the scheduled `Compare-*` and `Get-ModernizationDriftReport`
@@ -208,7 +180,7 @@ Rolling back the governance seam does **not** require re-onboarding, re-enrollme
 or undoing any Intune / Arc / CA work. The operational state is always owned by
 the provider.
 
-## 10. Boundary impact
+## 9. Boundary impact
 
 ::: {.callout-important title="Federal boundary ceiling: L3 (Gated)"}
 The **federal default write ceiling is L3** — `Assert-GovernanceApproval` refuses
@@ -235,7 +207,7 @@ evidence for a bounded slice of that catalog:
 | CR26 indicator | Evidenced by |
 |---|---|
 | **KSI-IAM-APM** | `Deploy-ConditionalAccessBaseline.ps1` — MFA and compliant-device enforcement |
-| **KSI-IAM-ELP** | the organizational-attribute model-scoped assignment; `-the organizational-attribute model` targeting rather than tenant-wide |
+| **KSI-IAM-ELP** | Scoped assignment rather than tenant-wide |
 | **KSI-SVC-ACM** | `Set-ArcPolicyBaseline.ps1` — automated configuration management on Arc-enrolled servers |
 | **KSI-CNA-EIS** | `Compare-ConditionalAccessDrift.ps1` — enforcing intended state, continuously |
 | **KSI-CMT-LMC** | `-ApprovalRef` provenance on every state-changing run — changes logged and attributable |

@@ -177,7 +177,7 @@ all, but realize less of the leverage.
 ::: {.callout-tip}
 ## Where to go next
 
-You've reached the end of the series. Return to the [Executive Governance Series index](../index.html) for the reading paths, or pick up the companion the Federal Modernization Program the organizational-attribute model narrative for the substrate's identity-and-position story end to end.
+You've reached the end of the series. Return to the [Executive Governance Series index](../index.html) for the reading paths.
 :::
 
 ## Related documents

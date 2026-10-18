@@ -100,7 +100,7 @@ The SPN inventory artifact introduced in PR #395 — defined in
 `src/fmp/schemas/orgtree-readiness/orgtree-readiness.schema.json`
 `#/definitions/spnInventory` — captures the agency's `MSSQLSvc/*`
 registrations with a `phase: pre_migration` tag, the discovery
-timestamp, and the resolution attempt against the organizational-attribute model via the service-
+timestamp, and the organizational attribution resolved via the service-
 account principal (preferred) or the hosting computer (fallback).
 Approximately eighty of the agency's ninety SQL instances resolve
 cleanly; ten emit `DRIFT-IDENTITY` findings because their service
@@ -122,20 +122,15 @@ A is a completely different population than Operations in forest B,
 and the merged tenant cannot tolerate that ambiguity. The OrgTree
 registry, populated from the discovery output and refined through the
 agency's organizational chart of record, becomes the source of truth
-for organizational position. Every user, computer, and service account
-receives an the organizational-attribute model extension attribute value following the
-hierarchy depth-eight convention from
-`the program decision`.
-Forest A's Operations branch becomes `/Root/AgencyProper/Operations`;
-forest B's becomes `/Root/ComponentOrg/Operations`. The collision is
-resolved at the path level, not at the group level.
+for organizational position. The collision is resolved in the
+registry, not at the group level.
 
 The normalization phase emits `DRIFT-IDENTITY` findings for principals
 that the OrgTree population cannot attribute. In the archetype, roughly
 two thousand users and several hundred service accounts fall into this
-bucket on the first pass. Each finding includes a suggested the organizational-attribute model
-candidate derived from OU placement, manager chain, or computer-account
-attribution; the substrate does not auto-assign because the the organizational-attribute model is
+bucket on the first pass. Each finding includes a suggested organizational
+attribution candidate derived from OU placement, manager chain, or computer-account
+attribution; the substrate does not auto-assign because organizational attribution is
 load-bearing for every downstream policy decision. The agency's
 governance team resolves these findings through the change-request
 workflow before the next phase begins.
@@ -187,7 +182,7 @@ taxonomy formalized in
 
 - **`DRIFT-SCHEMA`** — a recently-migrated computer object has an
   attribute encoding that does not match the canon schema version
-- **`DRIFT-SEMANTIC`** — an the organizational-attribute model value drifts into a deprecated
+- **`DRIFT-SEMANTIC`** — an organizational attribute value drifts into a deprecated
   geographic OU encoding pattern
 - **`DRIFT-PROVENANCE`** — a state change appears with no recorded
   provenance event in the chain (this is a P1 condition — the migration
@@ -232,18 +227,14 @@ zero P1 findings remain.
 ## The Azure SSOT bridge
 
 With the identity migration complete, the agency's data plane joins
-the substrate. The pattern is the one developed in
-The Federal Modernization Program the organizational-attribute model chapter 07a:
-the organizational-attribute model as the join key across two policy planes, not as a single
-inheritance chain.
+the substrate.
 
-On the user plane, the existing Adaptive Policy Scopes from
-chapter 07 target
+On the user plane, the existing Adaptive Policy Scopes target
 each segment's labels, DLP rules, retention schedules, and eDiscovery
 custodian queries. On the data plane, Fabric Domains are created to
 mirror the OrgTree hierarchy; the agency provisions one domain per
 `FabricDomainBoundary`-flagged node, and each Fabric workspace is
-assigned to the domain whose the organizational-attribute model matches the workspace's owning
+assigned to the domain that matches the workspace's owning
 segment. The ninety SQL instances are registered into the Purview
 data map under collections keyed on custom metadata;
 the eighty-five that completed migration cleanly are mirrored into
@@ -275,7 +266,7 @@ Bundle from the substrate's accumulated artifacts. The bundle includes:
   (`GCC-BOUNDARY-3WAY-001`) with the agency's specific compensating-
   controls catalogue
 - The Purview collection registration state with attribution per asset
-- The Fabric Domain assignment state with per-workspace the organizational-attribute model
+- The Fabric Domain assignment state with per-workspace
   attribution
 
 This is the artifact the 3PAO consumes during the next FedRAMP cycle.
@@ -318,8 +309,6 @@ the Evidence Bundle is produced into.
 ## Cross-references
 
 - [Federal SSOT Alignment whitepaper](../whitepapers/federal-ssot-alignment.md) — federal mandate alignment over the identity layer
-- The Federal Modernization Program the organizational-attribute model 07a — the Federal Modernization Program Beneath the Azure SSOT Stack — Azure SSOT identity-substrate role
-- The Federal Modernization Program the organizational-attribute model 07 — the organizational-attribute model and Microsoft Purview — user-plane Adaptive Policy Scope mechanism
 - B.1 GCC-Moderate Boundary Model — abstract boundary model
 - B.1.1 Three-Way GCC-Moderate Compliance Conflict — TIC 3.0 × Zero Trust × FedRAMP 20x finding
 - Drift Detection Standard — drift taxonomy, severity model, and §7.1 SPN drift detection

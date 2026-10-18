@@ -77,7 +77,7 @@ per-adapter ADR) or *proposed*.
 
 **Modernization (change-making) — shipped:** `entra-id`, `m365`,
 `service-now`, `palo-alto`, `scuba`, `terraform`, `cyberark`, `infoblox`,
-`bluecat-address-manager`, and `active-directory` (read-only the organizational-attribute model discovery
+`bluecat-address-manager`, and `active-directory` (read-only discovery
 today per the program decision Model C).
 
 Two adapters are reachable directly from the CLI today —

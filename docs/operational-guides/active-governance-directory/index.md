@@ -1,6 +1,6 @@
 ---
 title: "Active Governance Directory — Operator & Implementation Guide"
-subtitle: "Standing up the in-path LDAP projection of the the organizational-attribute model governance substrate"
+subtitle: "Standing up the in-path LDAP projection of the governance substrate"
 doc-type: subcategory-landing
 audience: [Customer, Technical]
 author: Michael Stratton
@@ -24,7 +24,7 @@ lifecycle_review: 2026-12-18
 # Active Governance Directory — Operator Guide {.unnumbered}
 
 The **Active Governance Directory (AGD)** is the Federal Modernization Program's *protocol-projection plane*:
-an in-path LDAPv3 server that exposes the the organizational-attribute model governance substrate over the
+an in-path LDAPv3 server that exposes the governance substrate over the
 LDAP wire protocol, so the large installed base of directory-bound tooling can
 query governance state in the protocol it already speaks. This guide is the
 operator how-to: what the AGD is, where it sits, how to run and secure it, how to
@@ -46,7 +46,7 @@ deployment narrative around it.
 
 **It is** an LDAPv3 server (`fmp.directory`) that answers `BIND`, `SEARCH`,
 `UNBIND`, StartTLS, and — opt-in — `MODIFY`. Its Directory Information Tree (DIT)
-is *computed* from the the organizational-attribute model Codebook (FMP_151) plus a principal snapshot, and
+is *computed* from the canon Codebook (FMP_151) plus a principal snapshot, and
 every governed facet is surfaced under its canonical `fmp<Facet>`
 attribute from the `ldap` binding profile (FMP_193). Because the tree is a
 projection, **read-only is a property of construction** — there is no stored
@@ -88,7 +88,7 @@ they are mutually exclusive.
 
 ### 3.1 Hand-authored / runtime snapshot (`--snapshot`)
 
-The the organizational-attribute model-runtime snapshot shape — the same one `fmp orgtree govern` consumes:
+The runtime snapshot shape — the same one `fmp orgtree govern` consumes:
 
 ```json
 {
@@ -103,7 +103,7 @@ The the organizational-attribute model-runtime snapshot shape — the same one `
 fmp directory tree --snapshot snapshot.json     # emit LDIF for inspection
 ```
 
-### 3.2 Straight from an the organizational-attribute model producer (`--from-assessment`)
+### 3.2 Straight from an assessment producer (`--from-assessment`)
 
 The cleaner production feed: take the output of `fmp orgtree assess` — the AD
 survey → facet assessment — and project it directly. The AGD re-keys each
@@ -241,7 +241,7 @@ Boundary behavior, enforced on the wire:
 The AGD is a working plane with known, bounded edges as of this guide:
 
 - **Live snapshot feed.** `--from-assessment` / `--snapshot` are point-in-time;
-  the AGD does not yet subscribe to a streaming the organizational-attribute model change feed. Re-run the
+  the AGD does not yet subscribe to a streaming change feed. Re-run the
   feed and reload to refresh.
 - **Write actuation targets.** `--apply --provider ldap` (a directory) and
   `--apply --provider entra` (Graph `onPremisesExtensionAttributes`) are wired.

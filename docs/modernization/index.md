@@ -7,7 +7,7 @@ audience: [Executive, Technical, Customer]
 
 # Modernization — Modernization {.unnumbered}
 
-**Modernization** is the modernization member of the Org family — the operational
+**Modernization** is the operational
 expression of the Federal Modernization Program substrate that moves a legacy estate forward *without
 rip-and-replace*. Its core is vendor-neutral: adapter interfaces for
 directory, device, PKI, RADIUS, DNS/DHCP/IPAM, and overlay-adjacent control
@@ -16,8 +16,8 @@ program management that keeps the whole journey change-controlled. Active
 Directory → Entra ID remains the leading worked path, but Modernization is designed
 to govern heterogeneous stacks beyond that single journey.
 
-**the organizational-attribute model** governs, **Compliance** proves federal organizational compliance,
-**Modernization** modernizes — three expressions of one substrate, adoptable
+**Compliance** proves federal organizational compliance and
+**Modernization** modernizes — two expressions of one substrate, adoptable
 together or entirely independently.
 
 ::: {.callout-tip}
@@ -38,7 +38,7 @@ Pick the entry point that matches your role:
 |---|---|---|
 | **The infrastructure bridge** | Architects planning what replaces AD's eleven implicit roles | [Directory Migration — the AD infrastructure bridge](../reference-architecture/directory-migration.md), and the eight adapter interfaces behind it |
 | **The transformation series** | Program teams running the end-to-end journey | Microsoft Client-Server to Hybrid-Cloud — AD, GPO, DNS, DHCP, Kerberos, and PKI → Entra ID, Intune, Azure Arc, IPAM, SASE, and Zero Trust |
-| **The device and server planes** | Operators modernizing endpoints and servers | Intune + Azure Arc Modernization — runnable manually or the organizational-attribute model-governed |
+| **The device and server planes** | Operators modernizing endpoints and servers | Intune + Azure Arc Modernization — runnable manually or via the governed path |
 | **The HR-driven identity pipeline** | Identity teams building the joiner/mover/leaver feed against Federal HR 2.0 (Oracle Core HCM) | HRIT to HR-Driven IAM Execution Plan — the provisioning pipe to today's AD-mastered estate and the cloud-native target, on the program's wave clock |
 | **The full guide shelf** | Everything task-oriented in one place | The Modernization guides — transformation engine, target surface, and program management |
 | **The long-form case** | Readers who need the argument before the runbook | The modernization whitepapers — [the structural migration problem](../whitepapers/ad-to-entraid-migration-problem.md), [the modernization journey](../whitepapers/modernization-journey.md), and the [network and infrastructure track](../whitepapers/reading-guide.md) behind the transport, DNS, and field-office decisions |
@@ -65,18 +65,12 @@ Pick the entry point that matches your role:
  and Track 4 carries the network and infrastructure decisions — transport
  under TIC 3.0, DNS in the hybrid multi-cloud, and the field-office WAN
  case. These ship in the Modernization kit's `Whitepapers/` folder.
-- **The seams to its siblings** — Modernization's changes land on the addressing
- plane the organizational-attribute model governs, and the evidence they produce is what Compliance
- proves; adopt any of the three alone, or all together. What Modernization does
- *not* carry is steady-state governance operations: the Active Governance
- Directory, federal AI identity governance, and the Help Desk / Cloud
- Services authority model sit in the same `operational-guides/` tree but
- are the organizational-attribute model's, because their deliverable is an
- estate governed rather than an estate moved.
+- **The seam to its sibling** — the evidence Modernization's changes produce
+ is what Compliance proves; adopt either alone, or both together.
 
-## One lifecycle, three pillars {#macdr}
+## One lifecycle, two pillars {#macdr}
 
-Every operational change the Org family touches — every **Move, Add, Change,
+Every operational change the substrate touches — every **Move, Add, Change,
 Deletion, and Reset (MACD-R)** — travels the same five-clause authorized
 path: **it originates with the SSOT → carries an authoritative authorization
 → executes under least privilege with just-in-time elevation (PIM) → closes

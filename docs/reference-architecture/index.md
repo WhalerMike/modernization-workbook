@@ -21,7 +21,7 @@ aliases:
 **[reference-architecture-bundle.docx]** — every page in this section concatenated into one Word document, figures embedded. Regenerated on every site deploy.
 :::
 
-![A clean 16:9 architecture illustration of the AD-to-Entra-ID modernization journey](../images/reference-architecture/index-image-01-a-clean-169-architecture-illustr.svg){#fig-index-image-01 fig-alt="LEFT: a fading legacy enterprise — an Active Directory forest tree with Organizational Units, surrounded by satellite icons for DNS, DHCP, PKI, RADIUS, LDAP, Group Policy, and file services, all rendered in muted gray to signal end-of-life. RIGHT: a modern M365 / Entra ID cloud boundary containing Administrative Units, Dynamic Groups, Conditional Access, and Intune device policy, rendered in clean navy and teal. A single horizontal arrow runs left-to-right labeled \"the organizational-attribute model governance preserved.\" Above the arrow, a thin parallel arrow labeled \"Identity Modernization (FMP_xxx)\"; below it, a parallel arrow labeled \"Directory Migration (DM_xxx).\" Style: editorial flat vector, white background, McKinsey/Deloitte whitepaper feel. No people, no baked text other than the labels described. Palette: navy #0D1B2E, teal #1E8C8C, steel gray #5A5A5A, white." width="100%"}
+![A clean 16:9 architecture illustration of the AD-to-Entra-ID modernization journey](../images/reference-architecture/index-image-01-a-clean-169-architecture-illustr.svg){#fig-index-image-01 fig-alt="LEFT: a fading legacy enterprise — an Active Directory forest tree with Organizational Units, surrounded by satellite icons for DNS, DHCP, PKI, RADIUS, LDAP, Group Policy, and file services, all rendered in muted gray to signal end-of-life. RIGHT: a modern M365 / Entra ID cloud boundary containing Administrative Units, Dynamic Groups, Conditional Access, and Intune device policy, rendered in clean navy and teal. A single horizontal arrow runs left-to-right labeled \"Governance preserved.\" Above the arrow, a thin parallel arrow labeled \"Identity Modernization (FMP_xxx)\"; below it, a parallel arrow labeled \"Directory Migration (DM_xxx).\" Style: editorial flat vector, white background, McKinsey/Deloitte whitepaper feel. No people, no baked text other than the labels described. Palette: navy #0D1B2E, teal #1E8C8C, steel gray #5A5A5A, white." width="100%"}
 
 ## The Problem
 
@@ -58,7 +58,7 @@ entire migration surface:
 
 | Domain | Namespace | Scope | Documents |
 |--------|-----------|-------|-----------|
-| **Identity Modernization** | FMP_xxx (formerly MOD_xxx; retired by [the program decision]) | User hierarchy, the organizational-attribute model attributes, dynamic groups, AUs, HR-driven lifecycle, delegation, Conditional Access | 27 files (FMP_150 + the A–Z series FMP_151–FMP_176) |
+| **Identity Modernization** | FMP_xxx (formerly MOD_xxx; retired by [the program decision]) | User hierarchy, extension attributes, dynamic groups, AUs, HR-driven lifecycle, delegation, Conditional Access | 27 files (FMP_150 + the A–Z series FMP_151–FMP_176) |
 | **Directory Migration** | DM_xxx | DNS, DHCP, PKI, RADIUS, LDAP, sync engines, device management, NTP, DFS | 12 files (DM_000–DM_090): 8 adapter interfaces + 4 framework docs |
 
 Both canons share a universal design principle:
@@ -79,10 +79,10 @@ responsibility, explicit dependency relationships, and canonical artifacts.
 |-------|---------------|---------------|
 | **Governance Layer** | Drift detection, telemetry, escalation, boundary impact, provenance, error taxonomy | FMP_163 (Drift Engine); FMP_167 (SLA Escalation Playbooks); FMP_174 (Telemetry) |
 | **Policy Layer** | Validation cmdlets, enforcement test suite, decision trees, SLA tracking | FMP_159 (PowerShell Validation); FMP_161 (Decision Trees); FMP_162 (SLA Heatmap) |
-| **Structure Layer** | Administrative-Unit delegation, workflow catalog, migration runbook, schemas | FMP_154 (Delegation Matrix); FMP_156 (Migration Runbook); FMP_158 (the organizational-attribute model JSON Schema) |
-| **Identity Layer** | the organizational-attribute model assignment, dynamic-group library, attribute mapping, extension attributes | FMP_150 (Executive Summary); FMP_151 (the organizational-attribute model Codebook); FMP_152 (Dynamic Groups); FMP_153 (Attribute Mapping) |
+| **Structure Layer** | Administrative-Unit delegation, workflow catalog, migration runbook | FMP_154 (Delegation Matrix); FMP_156 (Migration Runbook) |
+| **Identity Layer** | Dynamic-group library, attribute mapping, extension attributes | FMP_150 (Executive Summary); FMP_152 (Dynamic Groups); FMP_153 (Attribute Mapping) |
 
-![A clean 16:9 layered-stack diagram showing the four-layer OrgTree governance stack](../images/reference-architecture/index-image-03-a-clean-169-layered-stack-diagra.svg){#fig-index-image-03 fig-alt="Four horizontal translucent layers stacked like glass shelves, bottom-to-top: (1) \"Identity Layer\" — widest, navy — small icons for the organizational-attribute model code, dynamic group, attribute. (2) \"Structure Layer\" — teal — small icons for an Administrative Unit boundary, a runbook page, a JSON schema. (3) \"Policy Layer\" — steel gray — small icons for a validation cmdlet, a decision tree, an SLA gauge. (4) \"Governance Layer\" — narrowest, top, dark navy with a soft glow — small icons for a drift signal, an escalation alert, a provenance seal. A vertical arrow runs through all four layers labeled \"Every artifact cites its layer.\" White background. No people. No baked text other than the four layer names and the vertical arrow label. Style: clean isometric/flat hybrid, modern government whitepaper feel. Palette: navy #0D1B2E, teal #1E8C8C, steel gray #5A5A5A, accent amber #D4A017, white." width="100%"}
+![A clean 16:9 layered-stack diagram showing the four-layer OrgTree governance stack](../images/reference-architecture/index-image-03-a-clean-169-layered-stack-diagra.svg){#fig-index-image-03 fig-alt="Four horizontal translucent layers stacked like glass shelves, bottom-to-top: (1) \"Identity Layer\" — widest, navy — small icons for an organizational code, dynamic group, attribute. (2) \"Structure Layer\" — teal — small icons for an Administrative Unit boundary, a runbook page, a JSON schema. (3) \"Policy Layer\" — steel gray — small icons for a validation cmdlet, a decision tree, an SLA gauge. (4) \"Governance Layer\" — narrowest, top, dark navy with a soft glow — small icons for a drift signal, an escalation alert, a provenance seal. A vertical arrow runs through all four layers labeled \"Every artifact cites its layer.\" White background. No people. No baked text other than the four layer names and the vertical arrow label. Style: clean isometric/flat hybrid, modern government whitepaper feel. Palette: navy #0D1B2E, teal #1E8C8C, steel gray #5A5A5A, accent amber #D4A017, white." width="100%"}
 
 ## Governance Principles — 3 Universal + 3 Tier-Specific
 
@@ -119,7 +119,7 @@ Earlier framings of this canon listed seven principles. Per the program decision
 | Provenance Traceability | Canon-Anchored Evidence (same property, different label) |
 | Drift Resistance | Drift Is Explicit (same property; the 5-class taxonomy is the canonical drift surface) |
 
-The other three names (Boundary Enforcement, Two-Brain Execution, Tenant Agnosticism) remain canonical, now scoped to the tiers where they bind. The "seven principles" phrasing should not be cited in new material; refer to the 3 + 3 split above or to the substrate manifest directly. "Assessment Before Action" (sometimes quoted from the Federal Modernization Program the organizational-attribute model) is treated as an operational discipline — a corollary of Drift Is Explicit and Canon-Anchored Evidence — not a first-class substrate principle.
+The other three names (Boundary Enforcement, Two-Brain Execution, Tenant Agnosticism) remain canonical, now scoped to the tiers where they bind. The "seven principles" phrasing should not be cited in new material; refer to the 3 + 3 split above or to the substrate manifest directly. "Assessment Before Action" is treated as an operational discipline — a corollary of Drift Is Explicit and Canon-Anchored Evidence — not a first-class substrate principle.
 
 ## Who This Is For
 
@@ -127,7 +127,7 @@ The other three names (Boundary Enforcement, Two-Brain Execution, Tenant Agnosti
 |----------|--------------|
 | **Federal CISOs and CIOs** | A governed framework for AD retirement that does not create compliance gaps |
 | **IT Modernization Program Managers** | Step-by-step runbooks with deterministic outcomes, not "it depends" guidance |
-| **Identity Architects** | the organizational-attribute model codebook, dynamic group library, AU delegation matrix |
+| **Identity Architects** | Dynamic group library, AU delegation matrix |
 | **Network and Infrastructure Engineers** | Adapter interfaces for every AD-dependent service |
 | **Compliance Officers** | Provenance-tracked, drift-resistant artifacts that satisfy FedRAMP continuous monitoring |
 | **Enterprise Architects (non-federal)** | Universal framework — federal compliance is a vertical adapter, not the core |
@@ -145,16 +145,12 @@ The other three names (Boundary Enforcement, Two-Brain Execution, Tenant Agnosti
 
 | Page | Who it's for |
 |------|--------------|
-| [Where Data Lives — the organizational-attribute model](../architecture/where-data-lives.md) | Operators asking *"is this in Git, Entra, or HR?"* — the three-layer answer |
-| Where Data Lives — Devices & Azure | Extending the storage-topology model to devices and Azure resources |
 | [Dynamic Groups](dynamic-groups.md) | Engineers building the rules library for membership automation |
 | [Delegation Matrix](delegation.md) | Identity admins mapping Administrative Units to operator roles |
 | [Drift Walk-through](drift-walkthrough.md) | Anyone tracing how the Drift Engine classifies and remediates a single event |
 | [Intune-First Asset Onboarding](intune-first.md) | Procurement + endpoint teams governing **net-new** devices from day zero (per the program decision; for existing-fleet GPO replacement see [GPO Sunset Program](../operational-guides/target-surface/intune-policy-templates.md)) |
 | [Directory Migration — Adapters](adapters.md) | Network/infrastructure engineers wiring DNS/DHCP/PKI/RADIUS through canonical adapters |
-| the organizational-attribute model FAQ | First-time readers — short answers to the questions that always come up |
-| the organizational-attribute model Portability — Any Cloud, Any IdP | Buyers/architects asking *"is the organizational-attribute model Microsoft-locked?"* — multi-cloud + multi-IdP binding-profile coverage |
-| [GPO-to-Cloud Governance Gaps](gpo-cloud-governance-gaps.md) | Architects/operators asking *"what control do we lose moving Group Policy to Intune/Entra?"* — the five lost capabilities and where the organizational-attribute model restores each |
+| [GPO-to-Cloud Governance Gaps](gpo-cloud-governance-gaps.md) | Architects/operators asking *"what control do we lose moving Group Policy to Intune/Entra?"* — the five lost capabilities |
 
 ## Source Files
 

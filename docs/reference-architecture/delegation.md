@@ -15,7 +15,7 @@ aliases:
 ---
 
 
-> **Model C — Administrative Units scoped by facet tuples (per the program decision).** AU membership rules compose facet predicates from the 15-slot model rather than `-startsWith` on a composite-hyphen path. See the organizational-attribute model Codebook for the facet/slot definitions.
+> **Model C — Administrative Units scoped by facet tuples (per the program decision).** AU membership rules compose facet predicates from the 15-slot model rather than `-startsWith` on a composite-hyphen path.
 
 ## The Delegation Problem
 
@@ -50,7 +50,7 @@ Each tier maps to an Administrative Unit whose membership rule cites one or more
 |---|---|---|
 | `AU-Enterprise` | `(user.onPremisesExtensionAttributes.extensionAttribute2 -ne "")` | Yes |
 
-The Tier-1 enterprise AU uses the Department facet's non-empty check as the canonical "is this principal governed by OrgTree?" predicate — populated Department implies the principal has been HR-provisioned through the the organizational-attribute model pipeline.
+The Tier-1 enterprise AU uses the Department facet's non-empty check as the canonical "is this principal governed by OrgTree?" predicate — populated Department implies the principal has been HR-provisioned through the provisioning pipeline.
 
 ### Department AUs (Tier 2)
 
@@ -129,5 +129,5 @@ The per-facet drift model (see [Drift Detection Walk-through](drift-walkthrough.
 
 ::: {.callout-tip}
 ## Source
-Canonical narrative: `FMP_154_Delegation_Matrix_AUs_Roles.md`. Facet definitions: the organizational-attribute model Codebook. Per-facet drift classifier: [Drift Detection Walk-through](drift-walkthrough.md).
+Canonical narrative: `FMP_154_Delegation_Matrix_AUs_Roles.md`. Per-facet drift classifier: [Drift Detection Walk-through](drift-walkthrough.md).
 :::

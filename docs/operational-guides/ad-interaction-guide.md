@@ -345,7 +345,7 @@ function Get-FMPGPOInventory { \<# .SYNOPSIS Performs complete GPO inventory and
 
   {GUID}.html                  HTML         Human-readable GPO report per GPO                            Manual review / stakeholder delivery
 
-  GPOLinks.json                JSON         GPO-to-OU link mapping with enforcement flags                OU-to-the organizational-attribute model design, scope tag mapping
+  GPOLinks.json                JSON         GPO-to-OU link mapping with enforcement flags                OU-to-attribute design, scope tag mapping
 
   GPOPermissions.json          JSON         Edit/apply permissions per GPO                               RBAC design for Intune
 
@@ -533,7 +533,7 @@ Assessment artifacts are committed to the fmp.git repository under a timestamped
 
   PKIInventory.json + PKISecurityReport.json       Certificate Modernization Plan       Evaluate templates for Entra Certificate-Based Auth eligibility, remediate ESC findings
 
-  OUHierarchy.json                                 the organizational-attribute model Design for Dynamic Groups    Convert OU-based targeting to Entra ID dynamic group membership rules
+  OUHierarchy.json                                 Attribute Design for Dynamic Groups                             Convert OU-based targeting to Entra ID dynamic group membership rules
 
   TrustMap.json                                    Cross-Tenant Configuration Plan      Map trust relationships to Entra ID cross-tenant access settings
 

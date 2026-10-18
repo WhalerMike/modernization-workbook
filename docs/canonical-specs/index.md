@@ -49,13 +49,11 @@ cited fact (see [the program decision]).
 | [FMP_003](003_Adapter_Segmentation_Overview_v1.0.md) | Adapter Segmentation Overview |
 | [FMP_005](005_SCuBA_Value_Proposition_v1.0.md) | Value Proposition — Two-Way Governance for SCuBA & BOD 25-01 |
 
-## Identity, the organizational-attribute model & addressing planes
+## Identity & addressing planes
 
 | Spec | Title |
 |---|---|
-| [FMP_014](schemas/014_GPO_Modernization_Parse_Crosswalk_OrgPath_Join_v1.0.md) | GPO Modernization — Parse, Crosswalk, the organizational-attribute model Join |
 | [the directory modernization program | Identity & Directory Transformation Inventory — AD to Entra ID |
-| [FMP_194](schemas/194_LocPath_Codebook.md) | LocPath Codebook — Canonical Physical-Location Addressing |
 | [FMP_195](schemas/195_Addressing_Plane_Drift_Taxonomy.md) | Addressing-Plane Drift Taxonomy — DNS & Namespace Governance |
 
 ## PowerShell module specifications

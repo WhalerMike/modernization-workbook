@@ -33,7 +33,7 @@ Microsoft/Entra plus read-only assessment plus drift, and FMP carries no
 platform-level FedRAMP authorization of its own.
 
 **Solution.** Reframe M-25-21 obligations as IAM obligations, with agentic AI
-governed as an L4 actuator under the organizational-attribute model; lead with what is deployed
+governed as an L4 actuator; lead with what is deployed
 (provenance-anchored, schema-enforced, drift-detected canon behind blocking CI
 gates) and label everything else proposed, reserved, or pre-activation in a
 coverage ledger the evaluator can check.
@@ -89,7 +89,7 @@ principles and self-sunsets on 11 December 2027.
 ### The differentiator, re-based on something true
 
 The wedge survives the correction and gets sharper. Read as **IAM obligations**,
-`contact_email` is an owner anchor and `agency_bureau` is an the organizational-attribute model node — both
+`contact_email` is an owner anchor and `agency_bureau` is an organizational node — both
 still hold. `have_ato` is not a credential-issuance gate *mandated by the memo*,
 but it is an **external ATO enumeration source**: an inventoried deployed system
 with `have_ato = No` is a drift finding against the agency's own authorization
@@ -105,7 +105,7 @@ that gap, and saying which practices need evidence from outside the inventory,
 is a more credible differentiator than claiming to satisfy a gate that does not
 exist.
 
-![M-25-21 coverage ledger — deployed versus proposed](../images/whitepapers/federal-ai-governance-submission-readiness-diagram-01-m2521-coverage-ledger.svg){#fig-federal-ai-diagram-01 fig-alt="Nine-row status ledger titled M-25-21 Coverage Ledger — Deployed vs. Proposed, columns Requirement/Capability, FMP Mechanism, State. Four teal Active rows above a red dashed \"deployed core above this line\" divider: owner anchor / the organizational-attribute model placement (Active, Microsoft), drift detection via the six-phase drift engine (Active), provenance-anchored evidence (Active), and SaaS deployment — Azure Container Apps the program decision with AWS CDK the program decision (Active Azure / IaC landed AWS). Below the divider, grey rows: AI system as governed identity record — AISystemRecord FMP_196 with the ai_inventory L1 scanner (Scanner built, the program decision Proposed); ATO enumeration and reciprocity reconciliation (Active / Proposed); multi-cloud / non-MS IdP storage via binding profiles (Proposed / Profile-only); agentic-AI P1 finding (Proposed); and an ice-blue Reserved row for the SailPoint NERM non-employee branch. Bottom evaluator note: demo surface today is Microsoft/Entra plus drift plus evidence; SailPoint and GCP/VMware bindings are roadmap; the AI scanner is built and awaits the program decision activation. White background, navy/teal/ice palette." width="100%"}
+![M-25-21 coverage ledger — deployed versus proposed](../images/whitepapers/federal-ai-governance-submission-readiness-diagram-01-m2521-coverage-ledger.svg){#fig-federal-ai-diagram-01 fig-alt="Nine-row status ledger titled M-25-21 Coverage Ledger — Deployed vs. Proposed, columns Requirement/Capability, FMP Mechanism, State. Four teal Active rows above a red dashed \"deployed core above this line\" divider: owner anchor / organizational placement (Active, Microsoft), drift detection via the six-phase drift engine (Active), provenance-anchored evidence (Active), and SaaS deployment — Azure Container Apps the program decision with AWS CDK the program decision (Active Azure / IaC landed AWS). Below the divider, grey rows: AI system as governed identity record — AISystemRecord FMP_196 with the ai_inventory L1 scanner (Scanner built, the program decision Proposed); ATO enumeration and reciprocity reconciliation (Active / Proposed); multi-cloud / non-MS IdP storage via binding profiles (Proposed / Profile-only); agentic-AI P1 finding (Proposed); and an ice-blue Reserved row for the SailPoint NERM non-employee branch. Bottom evaluator note: demo surface today is Microsoft/Entra plus drift plus evidence; SailPoint and GCP/VMware bindings are roadmap; the AI scanner is built and awaits the program decision activation. White background, navy/teal/ice palette." width="100%"}
 
 ## Coverage ledger — deployed vs. proposed
 
@@ -114,7 +114,7 @@ exist.
 | AI system as governed identity record | AISystemRecord (FMP_196) | Spec drafted (Spec4-AI-D1.1); L1 scanner implemented (`src/fmp/governance/ai_inventory/`); the program decision still Proposed | Scanner is built but has nothing to gate yet — the program decision activation is the remaining step |
 | ATO enumeration + reciprocity reconciliation | ATO registry + reciprocity (the program decision), reading the inventory's `have_ato` / `system_name_ato` | Active (reciprocity) / Proposed (AI reconciliation) | Reciprocity is live in production; the AI-inventory reconciliation on top of it is not yet wired. This is enumeration against **agency** authorization policy — M-25-21 mandates no AI-specific ATO gate |
 | Agentic-AI P1 finding | `DRIFT-COMPLIANCE::ai-agentic-ungoverned` | Proposed | Doctrine only — no detector implementation yet |
-| Owner anchor / the organizational-attribute model placement | the organizational-attribute model codebook (FMP_151), Entra | **Active (Microsoft estate)** | Proven inside the Microsoft/Entra estate only |
+| Owner anchor / organizational placement | Organizational codebook (FMP_151), Entra | **Active (Microsoft estate)** | Proven inside the Microsoft/Entra estate only |
 | Drift detection | Six-phase drift engine (the program decision) | **Active** | — |
 | Non-employee / vendor (partner) branch | SailPoint NERM (the program decision) | Reserved | Pre-activation; no live tenant exercises this branch yet |
 | Multi-cloud / non-MS IdP storage | Binding profiles (the program decision/099/113) | Proposed (IdP) / Profile-only (GCP, VMware) | Design-level profiles only; no non-Microsoft IdP has been run end to end |
@@ -184,6 +184,4 @@ one activated non-Microsoft target — both achievable without new doctrine.
 - the program decision — Federal AI Use Case Governance
 - the program decision — Single-ATO Reciprocity
 - the program decision — Active Governance
-- Choose Your Partners — The the organizational-attribute model Composability Matrix
 - the compliance series Vol I Book 03 — Machine and Workload Identity
-- Book 21 — the organizational-attribute model and Federal AI Governance

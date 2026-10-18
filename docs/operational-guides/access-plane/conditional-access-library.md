@@ -92,7 +92,7 @@ This library provides:
 
 - Phased deployment methodology with report-only validation at each stage
 
-- Integration with the Federal Modernization Program the organizational-attribute model extension attribute schema for dynamic policy targeting
+- Integration with an extension attribute schema for dynamic policy targeting
 
 - Compliance alignment to NIST 800-53 and the FedRAMP 20x / CR26 Key Security Indicators anchored on those controls (Appendix D.2)
 
@@ -122,18 +122,16 @@ This Policy Library is a component of the broader the Federal Modernization Prog
 
 - **AD Assessment Module:** Discovers existing GPOs, maps them to CA equivalents, and identifies gaps requiring new cloud-native policies
 
-- **the organizational-attribute model Module:** Defines the extension attribute schema used for dynamic group construction and device filter expressions within CA policies
-
 - **Drift Detection Module:** Continuously monitors CA policy state against this library baseline and alerts on unauthorized changes
 
 - **Lifecycle Management Module:** Automates user provisioning into the correct dynamic groups that CA policies target
 
-1.4 the organizational-attribute model Extension Attribute Schema
+1.4 Extension Attribute Schema
 
-All Conditional Access policies in this library leverage the Federal Modernization Program the organizational-attribute model extension attribute schema to enable dynamic, attribute-driven policy targeting. These attributes are synchronized to both user and device objects in Microsoft Entra ID.
+All Conditional Access policies in this library leverage an extension attribute schema to enable dynamic, attribute-driven policy targeting. These attributes are synchronized to both user and device objects in Microsoft Entra ID.
 
   ----------------------------------------------------------------------------------------------------------------------------------------
-  **Attribute**             **the organizational-attribute model Field**   **Example Values**                **CA Policy Usage**
+  **Attribute**             **Field**           **Example Values**                **CA Policy Usage**
   ------------------------- ------------------- --------------------------------- --------------------------------------------------------
   **extensionAttribute1**   Region              EAST, WEST, CENTRAL, EMEA         Geographic access restrictions, named location mapping
 
@@ -155,7 +153,7 @@ All Conditional Access policies in this library leverage the Federal Modernizati
 |                                                                                                                                                                                                                                               |
 | before                                                                                                                                                                                                                                        |
 |                                                                                                                                                                                                                                               |
-| deploying CA policies that reference them. Unpopulated attributes will cause devices and users to fall outside dynamic group membership, resulting in policy bypass. Validate attribute completeness using the Federal Modernization Program the organizational-attribute model Readiness report. |
+| deploying CA policies that reference them. Unpopulated attributes will cause devices and users to fall outside dynamic group membership, resulting in policy bypass. Validate attribute completeness before deployment.                       |
 +-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 
 Section 2: Policy Architecture
@@ -1695,7 +1693,7 @@ The Federal Modernization Program Drift Detection module continuously compares t
 
 - **New or deleted policies:** Alerts when policies are created or deleted outside of the approved change management process
 
-- **Extension attribute drift:** Monitors for users or devices with missing or incorrect the organizational-attribute model extension attributes that would cause them to fall outside policy scope
+- **Extension attribute drift:** Monitors for users or devices with missing or incorrect extension attributes that would cause them to fall outside policy scope
 
 Appendix A: JSON Export Templates
 
@@ -1832,7 +1830,7 @@ FedRAMP 20x expresses assessment expectations as **Key Security Indicators** rat
 
   **KSI-IAM-SUS** --- Responding to Suspicious Activity    Detected risk drives an automated access response                                                                    CA-061 through CA-064
 
-  **KSI-IAM-AAM** --- Automating Account Management        Account lifecycle is automated rather than ticket-driven; dynamic group targeting throughout                         the organizational-attribute model-scoped assignment
+  **KSI-IAM-AAM** --- Automating Account Management        Account lifecycle is automated rather than ticket-driven; dynamic group targeting throughout                         Attribute-scoped assignment
 
   **KSI-MLA-RVL** --- Reviewing Logs                       Logs are reviewed, not merely retained                                                                               CA-060, Section 12
 

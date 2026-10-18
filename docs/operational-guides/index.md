@@ -17,43 +17,31 @@ lifecycle_review: 2026-11-22
 ::: {.callout-tip}
 ## Download the full section
 These guides are the operational home of **OrgMod — Organizational
-Modernization**, one of the four operational expressions of the Federal Modernization Program
-substrate (alongside the organizational-attribute model, which governs, Compliance, which proves
+Modernization**, one of the operational expressions of the Federal Modernization Program
+substrate (alongside Compliance, which proves
 compliance, and OrgLink, which governs external interconnection) —
 adoptable together or entirely independently. The
 OrgMod hub is the pillar's front door.
 
-**[operational-guides-bundle.docx]** — every page in this section (all sub-categories, including the the organizational-attribute model implementation guides) concatenated into one Word document. Regenerated on every site deploy.
-
-For just the the organizational-attribute model Intune & Azure Arc deployment path, grab the focused
-the organizational-attribute model implementation guide bundle.
+**[operational-guides-bundle.docx]** — every page in this section (all sub-categories) concatenated into one Word document. Regenerated on every site deploy.
 :::
 
-::: {.callout-note title="Five sub-sections here belong to a sibling pillar"}
+::: {.callout-note title="One sub-section here belongs to a sibling pillar"}
 This directory is OrgMod's operational home, but that is a statement about
 where the pages live rather than a claim on every sub-section inside it. The
 dividing question is whether a page's deliverable exists because an estate is
-*moving* (OrgMod), because an estate is *governed in steady state* (the organizational-attribute model),
-or because a change has to be *proven* (Compliance) — a modernization runbook that
-happens to bind the organizational-attribute model, such as the
-[Intune + Azure Arc governed path](intune-arc-modernization/governed-path.html),
+*moving* (OrgMod) or because a change has to be *proven* (Compliance) — a
+modernization runbook such as the
+[Intune + Azure Arc governed path](intune-arc-modernization/governed-path.html)
 is still OrgMod.
 
-Four sub-sections are the organizational-attribute model's and ship in the
-the organizational-attribute model kit:
-
-- the organizational-attribute model implementation — the seven-step rollout.
-- [Active Governance Directory](active-governance-directory/index.html) — the in-path LDAP projection of the the organizational-attribute model substrate.
-- [Federal AI identity governance](ai-identity-governance/index.html) — the organizational-attribute model governance applied to the M-25-21 AI inventory.
-- [Help Desk / Cloud Services — Entra ID operations](helpdesk-entra-operations/index.html) — the steady-state authority model for an already-hybrid estate.
-
-One is Compliance's and ships in the
+One sub-section is Compliance's and ships in the
 Compliance kit:
 
 - SIEM Telemetry Emission — the *emission* side of the evidence pipeline whose *consumption* side is [Vol III Book 06](../compliance/Vol_III_Book_06_SIEM_XDR_Detection.md).
 
-Every page in this tree reaches exactly one of the three kits; the section
-bundle above still carries all of them.
+Every page in this tree reaches exactly one of the two kits; the section
+bundle above still carries both.
 :::
 
 The **what transforms, what it transforms into, and the machinery that moves
@@ -74,7 +62,7 @@ from AD's hidden governance surface to the Hybrid-Cloud access plane.
 |---|---|---|
 | [A. Platform Substrate](platform-substrate/index.html) | WS2025, IIS, Gitea, Kerberos, PKI, backup, hardening — the host that runs everything | 8 |
 | [B. Transformation Engine](transformation-engine/index.html) | PowerShell + Python + API scripts that analyse, plan, and deliver | 7 |
-| C. Identity (OrgTree / MOD_\*) | the organizational-attribute model, dynamic groups, AUs, delegation, migration runbook | 11 |
+| C. Identity (OrgTree / MOD_\*) | Dynamic groups, AUs, delegation, migration runbook | 11 |
 | [D. Directory Migration (DM_\*)](directory-migration/index.html) | IPAM, DNS, DHCP, PKI, RADIUS, LDAP, sync, devices, NTP, DFS, SPN, Trusts | 12 |
 | [E. Target Surface](target-surface/index.html) | Entra ID, Intune, Azure Arc, M365, AUs, CA, PIM | 7 |
 | [F. Access Plane](access-plane/index.html) | MFA, Zero Trust, SASE, CBA, PAM, break-glass | 6 |

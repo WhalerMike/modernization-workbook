@@ -132,7 +132,7 @@ Program Timeline Summary
 
   **Infrastructure Lead**   Server builds, IIS reverse proxy, Gitea administration, network infrastructure, Azure Arc enrollment, hardware provisioning                              \[Infrastructure Team\]
 
-  **Identity Lead**         Active Directory, Entra ID, Entra Connect, Conditional Access, PIM, the organizational-attribute model attribute design, user and group migration                                   \[Identity Team\]
+  **Identity Lead**         Active Directory, Entra ID, Entra Connect, Conditional Access, PIM, extension attribute design, user and group migration                                                            \[Identity Team\]
 
   **Endpoint Lead**         Intune enrollment, device compliance, GPO-to-Intune policy migration, Settings Catalog configuration, dynamic group design                               \[Endpoint Management Team\]
 
@@ -233,7 +233,7 @@ All project artifacts are committed to Gitea under the Federal Modernization Pro
 
   M-006    Governance hooks deployed        W3         Pre-receive, post-receive, update hooks operational    FOUO rejection verified; branch protection enforced                     Canon Steward
 
-  M-007    Azure Arc enrollment             W3         Server enrolled in Azure Arc with the organizational-attribute model tags         Arc agent heartbeat confirmed; Azure policies assigned                  Infra Lead
+  M-007    Azure Arc enrollment             W3         Server enrolled in Azure Arc with resource tags                                   Arc agent heartbeat confirmed; Azure policies assigned                  Infra Lead
   ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 3.2 Detailed Task Breakdown
@@ -331,7 +331,7 @@ M-007 --- Azure Arc Enrollment (Week 3)
   ---------- --------------------------------------------------------------------------------------- ----------- --------------------------- ----------------------------------------
   T-007.1    Install Azure Connected Machine agent on the Federal Modernization Program Git Server                                1h          M-001, Azure subscription   AD Computer Object Conversion Guide §8
 
-  T-007.2    Apply the organizational-attribute model tags to Arc resource (Region, Site, Department, Role = GitServer)         1h          T-007.1                     AD Computer Object Conversion Guide §2
+  T-007.2    Apply resource tags to Arc resource (Region, Site, Department, Role = GitServer)                                   1h          T-007.1                     AD Computer Object Conversion Guide §2
 
   T-007.3    Assign Azure Policy initiatives for Windows Server 2025 Guest Configuration             2h          T-007.2                     AD Computer Object Conversion Guide §8
 
@@ -351,7 +351,7 @@ M-007 --- Azure Arc Enrollment (Week 3)
 | >                                                                                                        |
 | > • Governance hooks rejecting FOUO markings and enforcing branch protection --- test evidence committed |
 | >                                                                                                        |
-| > • Azure Arc enrolled with the organizational-attribute model tags applied and Guest Configuration policies compliant              |
+| > • Azure Arc enrolled with resource tags applied and Guest Configuration policies compliant                                        |
 | >                                                                                                        |
 | > • Phase 0 completion report committed to Gitea at *reports/phase-gates/phase-0-completion.md*          |
 | >                                                                                                        |
@@ -498,7 +498,7 @@ From the assessment data, the following eight planning documents are generated. 
   --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
   **Task ID**   **Planning Document**                **Description**                                                                                                                                                                                                                      **Input Artifacts**                                            **Reference**
   ------------- ------------------------------------ ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ -------------------------------------------------------------- -------------------------------------------------------------
-  T-7.1         **ComputerModernizationPlan.json**   Classify every computer object into migration path: Entra Join, Hybrid Join, Azure Arc, Retain, or Decommission. Include OS version, last logon, the organizational-attribute model assignment, and target Intune policy group.                                 ComputerInventory.json                                         AD Computer Object Conversion Guide
+  T-7.1         **ComputerModernizationPlan.json**   Classify every computer object into migration path: Entra Join, Hybrid Join, Azure Arc, Retain, or Decommission. Include OS version, last logon, extension attribute assignment, and target Intune policy group.                                                ComputerInventory.json                                         AD Computer Object Conversion Guide
 
   T-7.2         **IdentityModernizationPlan.json**   Classify every user, group, and service account into migration path: Cloud-only, Synced, gMSA conversion, Workload Identity, or Retain. Map privileged accounts to PIM roles.                                                        UserInventory.json, GroupInventory.json, ServiceAccounts.csv   Identity Modernization Guide
 
@@ -508,7 +508,7 @@ From the assessment data, the following eight planning documents are generated. 
 
   T-7.5         **PKIModernizationPlan.json**        Classify every certificate template into MIGRATE (Cloud PKI), BRIDGE (hybrid issuance), RETAIN (on-prem only), or RETIRE. Include ESC remediation status per template.                                                               PKIInventory.json                                              PKI Modernization Guide §4
 
-  T-7.6         **the organizational-attribute modelDesign.json**               Define canonical the organizational-attribute model dimensions (Region, Site, Department, Role, Environment) and value lists. Map OU hierarchy analysis to the organizational-attribute model dimension values. Define extension attribute assignments.                                    OUHierarchy.json                                               AD Computer Object Conversion Guide §2
+  T-7.6         **AttributeDesign.json**                                        Define canonical extension attribute dimensions (Region, Site, Department, Role, Environment) and value lists. Map OU hierarchy analysis to extension attribute dimension values. Define extension attribute assignments.                                                                  OUHierarchy.json                                               AD Computer Object Conversion Guide §2
 
   T-7.7         **TrustDecommissionPlan.json**       Map trust reduction sequence: identify each trust, classify as essential/non-essential, define decommission prerequisites and validation steps.                                                                                      TrustMap.json                                                  Identity Modernization Guide §10
 
@@ -558,7 +558,7 @@ From the assessment data, the following eight planning documents are generated. 
   ------------- -------------------------------------------------- ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- ----------- ------------------------------------------------------
   T-9.1         Identify pilot groups                              Select 50--100 devices, 20--50 users per pillar, 2--3 servers, and 1--2 certificate use cases. Selection criteria: representative of environment, low-risk, willing participants.   4h          ComputerModernizationPlan, IdentityModernizationPlan
 
-  T-9.2         Create the organizational-attribute model dynamic groups for pilot scope      Build Entra ID dynamic groups using the organizational-attribute model extension attributes to target pilot devices and users. Validate group membership accuracy.                                             4h          AD Computer Object Conversion Guide §3
+  T-9.2         Create attribute-based dynamic groups for pilot scope                         Build Entra ID dynamic groups using extension attributes to target pilot devices and users. Validate group membership accuracy.                                                                                4h          AD Computer Object Conversion Guide §3
 
   T-9.3         Begin critical/high security finding remediation   Execute remediation steps for Critical and High severity findings identified in Week 6. Verify remediation with re-scan. All Critical findings must be resolved before Phase 3.     20h         SecurityRemediationPlan.json
 
@@ -585,7 +585,7 @@ From the assessment data, the following eight planning documents are generated. 
   -------------------------------- ------------ ------------------------------- ------------------------------------ ------------------------------------
   ForestTopology.json              JSON         assessments/full/               Invoke-FMPADAssessment              All planning documents
 
-  OUHierarchy.json                 JSON         assessments/full/               Export-FMPOUHierarchy               the organizational-attribute model Design, GPO Migration Plan
+  OUHierarchy.json                 JSON         assessments/full/               Export-FMPOUHierarchy               Attribute Design, GPO Migration Plan
 
   GPOInventory.json                JSON         assessments/full/               Export-FMPGPOInventory              GPO Migration Plan
 
@@ -609,7 +609,7 @@ From the assessment data, the following eight planning documents are generated. 
 
   OUDelegation.json                JSON         assessments/full/               Export-FMPACLReport                 Identity Modernization Plan
 
-  SchemaExtensions.json            JSON         assessments/full/               Export-FMPSchemaExtensions          the organizational-attribute model Design
+  SchemaExtensions.json            JSON         assessments/full/               Export-FMPSchemaExtensions          Attribute Design
 
   AssessmentManifest.json          JSON         assessments/full/               Invoke-FMPADAssessment              Governance tracking
 
@@ -623,7 +623,7 @@ From the assessment data, the following eight planning documents are generated. 
 
   PKIModernizationPlan.json        JSON         plans/                          Phase 1 Week 7                       Phase 3--5
 
-  the organizational-attribute modelDesign.json               JSON         plans/                          Phase 1 Week 7                       Phase 2--6
+  AttributeDesign.json                                        JSON         plans/                          Phase 1 Week 7                       Phase 2--6
 
   SecurityRemediationPlan.json     JSON         plans/                          Phase 1 Week 7                       Phase 2--5
 
@@ -641,7 +641,7 @@ From the assessment data, the following eight planning documents are generated. 
   -----------------------------------------------------------------------------------------------------------------------------------------------------------
   **ID**   **Milestone**                       **Week**   **Deliverable**                                                                     **Owner**
   -------- ----------------------------------- ---------- ----------------------------------------------------------------------------------- ---------------
-  M-014    the organizational-attribute model taxonomy finalized          W10        Extension attribute mapping, canonical value lists, governance rules committed      Identity Lead
+  M-014    extension attribute taxonomy finalized                         W10        Extension attribute mapping, canonical value lists, governance rules committed      Identity Lead
 
   M-015    Dynamic group design complete       W10        All dynamic group rules documented and tested in non-production                     Endpoint Lead
 
@@ -660,20 +660,20 @@ From the assessment data, the following eight planning documents are generated. 
 
 5.2 Detailed Task Breakdown
 
-M-014 --- the organizational-attribute model Taxonomy (Week 10)
+M-014 --- Extension Attribute Taxonomy (Week 10)
 
   ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
   **Task**   **Description**                                                                                     **Hours**   **Dependencies**                **Reference**
   ---------- --------------------------------------------------------------------------------------------------- ----------- ------------------------------- ----------------------------------------
-  T-14.1     Define the organizational-attribute model dimensions from OU hierarchy analysis: Region, Site, Department, Role, Environment   4h          the organizational-attribute modelDesign.json              AD Computer Object Conversion Guide §2
+  T-14.1     Define extension attribute dimensions from OU hierarchy analysis: Region, Site, Department, Role, Environment                  4h          AttributeDesign.json                                       AD Computer Object Conversion Guide §2
 
   T-14.2     Map dimensions to Entra ID extension attributes (extensionAttribute1--15)                           3h          T-14.1, SchemaExtensions.json   AD Computer Object Conversion Guide §2
 
   T-14.3     Create canonical value lists with validation rules (e.g., Region must be from approved list)        4h          T-14.1                          AD Computer Object Conversion Guide §2
 
-  T-14.4     Define the organizational-attribute model governance rules: who can modify, approval workflow, drift detection                 2h          T-14.3                          CLI and Operations Guide §7
+  T-14.4     Define extension attribute governance rules: who can modify, approval workflow, drift detection                                2h          T-14.3                          CLI and Operations Guide §7
 
-  T-14.5     Commit the organizational-attribute modelTaxonomy.json to Gitea with APPROVED status                                           1h          T-14.4                          ---
+  T-14.5     Commit AttributeTaxonomy.json to Gitea with APPROVED status                                                                    1h          T-14.4                          ---
   ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 M-015 --- Dynamic Group Design (Week 10)
@@ -681,7 +681,7 @@ M-015 --- Dynamic Group Design (Week 10)
   ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
   **Task**   **Description**                                                                             **Hours**   **Dependencies**   **Reference**
   ---------- ------------------------------------------------------------------------------------------- ----------- ------------------ ----------------------------------------
-  T-15.1     Design dynamic group rules for each the organizational-attribute model dimension combination used in migration waves   6h          M-014              AD Computer Object Conversion Guide §3
+  T-15.1     Design dynamic group rules for each extension attribute dimension combination used in migration waves                  6h          M-014              AD Computer Object Conversion Guide §3
 
   T-15.2     Create test dynamic groups in non-production Entra ID tenant and validate membership        4h          T-15.1             AD Computer Object Conversion Guide §3
 
@@ -727,7 +727,7 @@ M-018 --- Entra Connect Sync Design (Week 12)
   ---------- ------------------------------------------------------------------------------------------------------- ----------- -------------------------------- ---------------------------------
   T-18.1     Define OU-based and attribute-based sync scope filtering rules from IdentityModernizationPlan.json      4h          IdentityModernizationPlan.json   Identity Modernization Guide §3
 
-  T-18.2     Design attribute flow rules including the organizational-attribute model extension attributes to Entra ID                          4h          T-18.1, M-014                    Identity Modernization Guide §3
+  T-18.2     Design attribute flow rules including extension attributes to Entra ID                                                             4h          T-18.1, M-014                    Identity Modernization Guide §3
 
   T-18.3     Select sync method: Password Hash Sync (PHS) recommended, with Pass-Through Auth (PTA) as alternative   2h          ---                              Identity Modernization Guide §3
 
@@ -773,7 +773,7 @@ M-020 --- Cloud PKI Design (Week 13)
   -------------------------------------------------------------------------------------------------------------------------
   **Pillar**   **Pilot Scope**                        **Selection Criteria**
   ------------ -------------------------------------- ---------------------------------------------------------------------
-  Devices      50--100 devices across 2--3 sites      Mix of Windows 10/11, laptop/desktop, representative the organizational-attribute model values
+  Devices      50--100 devices across 2--3 sites      Mix of Windows 10/11, laptop/desktop, representative extension attribute values
 
   Identity     20--50 users across 3--4 departments   Mix of standard users, power users, and 2--3 pilot admins
 
@@ -791,9 +791,9 @@ M-020 --- Cloud PKI Design (Week 13)
   -------- --------------------------------------------- ---------- ----------------------------------------------------------------------------- ---------------
   M-022    Entra Connect deployed                        W14        Sync operational with PHS; staging mode validated; pilot users synced         Identity Lead
 
-  M-023    Pilot devices Entra-joined or hybrid-joined   W15        50+ devices registered with the organizational-attribute model attributes populated in Entra ID          Endpoint Lead
+  M-023    Pilot devices Entra-joined or hybrid-joined   W15        50+ devices registered with extension attributes populated in Entra ID                                   Endpoint Lead
 
-  M-024    Intune policies assigned to pilot             W16        GPO-equivalent policies deployed via the organizational-attribute model-based dynamic groups             Endpoint Lead
+  M-024    Intune policies assigned to pilot             W16        GPO-equivalent policies deployed via attribute-based dynamic groups                                      Endpoint Lead
 
   M-025    Conditional Access enforced for pilot         W17        MFA, device compliance, and authentication strength policies active           Security Lead
 
@@ -852,11 +852,11 @@ M-020 --- Cloud PKI Design (Week 13)
 
 7\. Phase 4: Scale (Weeks 22--33)
 
-**Objective:** Extend the validated modernization stack from pilot to the full production environment through a wave-based rollout organized by the organizational-attribute model dimensions.
+**Objective:** Extend the validated modernization stack from pilot to the full production environment through a wave-based rollout organized by extension attribute dimensions.
 
 7.1 Scaling Strategy
 
-- **Wave-based rollout** organized by the organizational-attribute model dimensions: Region → Site → Department
+- **Wave-based rollout** organized by extension attribute dimensions: Region → Site → Department
 
 - **4 waves** of approximately 25% scope each, 3 weeks per wave
 
@@ -881,7 +881,7 @@ M-020 --- Cloud PKI Design (Week 13)
 
   M-036    Legacy GPO disabled for migrated OUs         W33        No GPO links remain on migrated OUs             Endpoint Lead
 
-  M-037    All dynamic groups populated and validated   W33        the organizational-attribute model attribute coverage = 100%               Identity Lead
+  M-037    All dynamic groups populated and validated   W33        extension attribute coverage = 100%                                        Identity Lead
   --------------------------------------------------------------------------------------------------------------------------------
 
 7.3 Scaling Risk Management
@@ -893,7 +893,7 @@ M-020 --- Cloud PKI Design (Week 13)
 
   GPO-to-Intune parity gaps discovered at scale                Configuration drift, compliance failures              Maintain GPO links in parallel during wave; only unlink after 7-day compliance validation        Re-enable GPO for affected OUs; file Intune feature request
 
-  Dynamic group processing delays at high user counts          Policy assignment delays, enrollment gaps             Stagger the organizational-attribute model attribute writes; monitor dynamic group processing time                          Convert to assigned groups for critical policies
+  Dynamic group processing delays at high user counts          Policy assignment delays, enrollment gaps             Stagger extension attribute writes; monitor dynamic group processing time                                                   Convert to assigned groups for critical policies
 
   Cloud PKI capacity limits during mass certificate issuance   Certificate issuance failures, VPN/Wi-Fi disruption   Stagger SCEP profile deployment across wave days; monitor issuance rate                          Throttle enrollment; extend wave duration
 
@@ -933,7 +933,7 @@ M-020 --- Cloud PKI Design (Week 13)
   -----------------------------------------------------------------------------------------------------------------------------------------------------------------
   **\#**   **Validation Item**                                                    **Method**                                                        **Owner**
   -------- ---------------------------------------------------------------------- ----------------------------------------------------------------- ---------------
-  1        All user accounts synced to Entra ID with correct the organizational-attribute model attributes   Entra ID export vs. IdentityModernizationPlan.json                Identity Lead
+  1        All user accounts synced to Entra ID with correct extension attributes                            Entra ID export vs. IdentityModernizationPlan.json                Identity Lead
 
   2        Zero permanent Global Admin assignments                                PIM role assignment report                                        Identity Lead
 
@@ -1093,7 +1093,7 @@ M-020 --- Cloud PKI Design (Week 13)
 
   R-018         Gitea mirror sync from GitHub fails silently                             Low         Low          Post-receive hook validates sync timestamp; alert if stale \>24h.                                                                     Infra Lead      OPEN
 
-  R-019         Schema extension conflicts block the organizational-attribute model attribute assignment            Low         Medium       SchemaExtensions.json assessment identifies in-use extension attributes; select unused attributes for the organizational-attribute model.                        Identity Lead   OPEN
+  R-019         Schema extension conflicts block extension attribute assignment                                     Low         Medium       SchemaExtensions.json assessment identifies in-use extension attributes; select unused attributes for extension attributes.                                      Identity Lead   OPEN
 
   R-020         ADFS decommission breaks legacy application authentication               Medium      High         Inventory all ADFS relying party trusts before decommission; migrate each to Entra ID Enterprise App; 72h rollback window.            Identity Lead   OPEN
 
@@ -1143,7 +1143,7 @@ M-020 --- Cloud PKI Design (Week 13)
 
   M-013 (Pre-pilot ready)            M-012                 M-022
 
-  M-014 (the organizational-attribute model taxonomy)           M-012                 M-015, M-018
+  M-014 (extension attribute taxonomy)                          M-012                 M-015, M-018
 
   M-015 (Dynamic groups)             M-014                 M-016, M-023
 
@@ -1346,7 +1346,7 @@ This section defines how Copilot Code should proceed to operationalize this Mast
 
   7        New-FMPPKIModernizationPlan                 Consumes PKIInventory.json; classifies templates into MIGRATE/BRIDGE/RETAIN/RETIRE             PKI Modernization Guide §4
 
-  8        New-FMPthe organizational-attribute modelDesign                        Consumes OUHierarchy.json + SchemaExtensions.json; generates the organizational-attribute model dimension design          AD Computer Object Conversion Guide §2
+  8        New-FMPAttributeDesign                                                 Consumes OUHierarchy.json + SchemaExtensions.json; generates extension attribute dimension design                         AD Computer Object Conversion Guide §2
 
   9        Invoke-FMPDriftDetection                    Scheduled task scripts for daily drift detection against canonical plans                       CLI and Operations Guide
   ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -1465,7 +1465,7 @@ Appendix A --- Complete Milestone Register
 
   M-013    Pre-pilot infrastructure ready      1           W9         All Leads       M-012              Pilot scope defined, infrastructure provisioned, critical security remediated   PLANNED
 
-  M-014    the organizational-attribute model taxonomy finalized          2           W10        Identity Lead   M-012              Extension attribute mapping committed                                           PLANNED
+  M-014    extension attribute taxonomy finalized                         2           W10        Identity Lead   M-012              Extension attribute mapping committed                                           PLANNED
 
   M-015    Dynamic group design complete       2           W10        Endpoint Lead   M-014              All rules tested in non-production                                              PLANNED
 
@@ -1483,7 +1483,7 @@ Appendix A --- Complete Milestone Register
 
   M-022    Entra Connect deployed              3           W14        Identity Lead   M-018, M-021       Sync operational with PHS, staging mode validated                               PLANNED
 
-  M-023    Pilot devices joined                3           W15        Endpoint Lead   M-015, M-022       50+ devices registered with the organizational-attribute model attributes                                  PLANNED
+  M-023    Pilot devices joined                3           W15        Endpoint Lead   M-015, M-022       50+ devices registered with extension attributes                                                           PLANNED
 
   M-024    Intune policies assigned to pilot   3           W16        Endpoint Lead   M-016, M-023       GPO-equivalent policies via dynamic groups                                      PLANNED
 
@@ -1511,7 +1511,7 @@ Appendix A --- Complete Milestone Register
 
   M-036    Legacy GPO disabled                 4           W33        Endpoint Lead   M-035              No GPO links to migrated OUs                                                    PLANNED
 
-  M-037    Dynamic groups 100%                 4           W33        Identity Lead   M-035              the organizational-attribute model coverage = 100%                                                         PLANNED
+  M-037    Dynamic groups 100%                 4           W33        Identity Lead   M-035              extension attribute coverage = 100%                                                                        PLANNED
 
   M-038    ADFS decommissioned                 5           W35        Identity Lead   M-035              Federated domains converted to managed                                          PLANNED
 
@@ -1571,7 +1571,7 @@ This Gantt-style table shows every task across Weeks 4--9 with parallel tracks f
 
   **GPO Migration Plan**                                                                        T-7.3
 
-  **DNS / PKI / the organizational-attribute model Plans**                                                                 T-7.4--T-7.6
+  **DNS / PKI / Attribute Plans**                                                                                          T-7.4--T-7.6
 
   **Trust / Security Plans**                                                                    T-7.7--T-7.8
 
@@ -1613,7 +1613,7 @@ Appendix C --- RACI Matrix
 
   Planning review / approval        **R/A**             C                C                   C                   C              C              C                   C
 
-  the organizational-attribute model taxonomy design           A                   I                **R**               C                   I              I              I                   I
+  extension attribute taxonomy design                          A                   I                **R**               C                   I              I              I                   I
 
   Intune policy design              A                   I                C                   **R**               I              I              C                   I
 
@@ -1790,8 +1790,6 @@ Appendix E --- Glossary
   **OIDC**                  OpenID Connect --- an authentication protocol built on OAuth 2.0, used for Entra ID SSO integration with Gitea.
 
   **OMA-URI**               Open Mobile Alliance Uniform Resource Identifier --- a custom Intune policy format for settings not available in the Settings Catalog.
-
-  **the organizational-attribute model**               The Federal Modernization Program organizational taxonomy system that assigns canonical dimensions (Region, Site, Department, Role, Environment) to every managed object via extension attributes, enabling dynamic group membership and policy targeting.
 
   **PAW**                   Privileged Access Workstation --- a hardened workstation used for security-sensitive administrative tasks.
 

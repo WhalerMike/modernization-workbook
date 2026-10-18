@@ -470,8 +470,7 @@ aware routing and segmentation; this paper illustrates the bill of
 materials with one vendor's product line (Cisco Catalyst SD-WAN) as a
 worked example, not as an exclusive recommendation — the underlying
 sizing and topology argument is vendor-neutral, and FMP's own
-[SD-WAN modernization spec](../modernization-specs/sdwan/sdwan.md) and
-the organizational-attribute model composability matrix treat
+[SD-WAN modernization spec](../modernization-specs/sdwan/sdwan.md) treats
 SD-WAN as an adapter class rather than a single-vendor commitment.
 
 | Tier | Sites | Seats | Primary circuit | Edge platform |

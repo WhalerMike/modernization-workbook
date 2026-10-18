@@ -1,6 +1,6 @@
 ---
 title: "Intune + Azure Arc Modernization"
-subtitle: "Endpoint and server modernization on a Hybrid AD → Entra ID estate — runnable two ways: a manual path, and a Federal Modernization Program/the organizational-attribute model-governed path"
+subtitle: "Endpoint and server modernization on a Hybrid AD → Entra ID estate — runnable two ways: a manual path, and a Federal Modernization Program-governed path"
 doc-type: operational-guide
 audience: [Customer, Operator, Technical]
 author: Michael Stratton
@@ -34,19 +34,18 @@ It is runnable **two ways from the same scripts**:
 
 - a **[manual path](manual-path.md)** — you preview each change with `-WhatIf`
   and own the decision under local change control; and
-- a **[the Federal Modernization Program / the organizational-attribute model-governed path](governed-path.md)** — every change is
-  bound to an organizational path, an actuation rung, and a recorded approval.
+- a **[the Federal Modernization Program-governed path](governed-path.md)** — every change is
+  bound to an actuation rung and a recorded approval.
 
 If you build the manual path now and want governance later, you do **not** redo
-the work — see **Add the organizational-attribute model later (retrofit)**.
+the work.
 
 ::: {.callout-tip title="Download the runnable kit"}
 The companion **Intune + Azure Arc Modernization Kit**
 ships these pages alongside an implementation-path guide, a shared PowerShell
-module, and twelve Microsoft Graph / Az scripts (Arc onboarding + baseline,
+module, and Microsoft Graph / Az scripts (Arc onboarding + baseline,
 Intune auto-enrollment + posture, NTLM audit + restriction, SPN repair, SQL
-hardening audit, CA baseline + drift, a cross-domain status roll-up, and an
-the organizational-attribute model survey helper for the retrofit). Every state-changing script honors
+hardening audit, CA baseline + drift, and a cross-domain status roll-up). Every state-changing script honors
 `-WhatIf`.
 :::
 
@@ -55,8 +54,7 @@ the organizational-attribute model survey helper for the retrofit). Every state-
 | Page | What it covers |
 |---|---|
 | [Manual path](manual-path.md) | The end-to-end technical runbook with no governance control plane — Arc onboarding, Intune enrollment, NTLM/SPN/SQL hardening, Conditional Access, monitoring, and rollback. Each operator owns the decision. |
-| [Governed path (the Federal Modernization Program / the organizational-attribute model)](governed-path.md) | The same end state, bound to canon governance — control-plane-governs-data-plane, the organizational-attribute model scoping, the L0–L4 actuation ladder, the drift-detection loop, and evidence. |
-| Add the organizational-attribute model later (retrofit) | For estates already built the manual way: how to layer the organizational-attribute model governance on top **without** re-doing the Intune/Arc work. |
+| [Governed path (the Federal Modernization Program)](governed-path.md) | The same end state, bound to canon governance — control-plane-governs-data-plane, the L0–L4 actuation ladder, the drift-detection loop, and evidence. |
 
 ## How the two paths relate
 
@@ -72,6 +70,4 @@ provider data planes (Entra, Intune, Azure Policy, AD) per
 the program decision. It holds desired state,
 observes actual state, classifies drift, and reconciles toward intent; it is
 **not** an inline runtime component and does not replace the providers.
-**the organizational-attribute model** is the organizational path carried by every governed object so its
-state is addressable in the same terms across every plane. The governed path
-below is written to that definition.
+The governed path below is written to that definition.

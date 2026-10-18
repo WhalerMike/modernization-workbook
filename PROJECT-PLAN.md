@@ -88,7 +88,6 @@ The plan is organized by phases. Each phase has objectives, key activities, deli
 **Supporting material**
 - [Single Source of Truth](docs/architecture/single-source-of-truth.md)
 - [Attribute-Driven Structure](docs/architecture/attribute-driven-structure.md)
-- [Where Data Lives](docs/architecture/where-data-lives.md)
 - [Dynamic Group Library](docs/architecture/dynamic-group-library.md)
 - [Delegation Matrix](docs/architecture/delegation-matrix.md)
 - [Drift Detection — A Walk-through](docs/architecture/drift-detection.md)
