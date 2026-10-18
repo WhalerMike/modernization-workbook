@@ -10,6 +10,7 @@ lifecycle: active
 tiers_adopted: []
 lifecycle_review: 2027-01-01
 ---
+
 # Chapter 09 — The Migration Sequence
 
 *Six phases from AD-integrated DNS/DHCP to a unified control plane.*
@@ -21,35 +22,18 @@ lifecycle_review: 2027-01-01
 
 ## Phased Migration and Cutover Sequence
 
-![Phased Migration Sequence.](../images/ddi/figure-15.jpg){fig-alt="Six phases: inventory, coexistence with AD DNS and DDI, migrate authority with local DHCP, IPAM federation, decommission preserving SRV and _msdcs, policy hardening."}
+![Six-phase migration sequence.](../images/ddi/diagrams/svg/ddi-09-migration-phases.svg){fig-alt="Six phases top to bottom: inventory and baseline; deploy coexistence; migrate authority; cloud federation; decommission AD DNS and DHCP; policy and compliance hardening."}
 
-A practical sequence for moving from AD-integrated DNS/DHCP plus
-independent CSP DNS to Universal DDI while preserving service
-continuity:
+A practical sequence for moving from AD-integrated DNS and DHCP plus independent cloud DNS to a unified DDI plane, while keeping services running:
 
-- **Phase 1 — Inventory and baseline.** Export all AD DNS zones, SRV
-  records, conditional forwarders, and DHCP scopes. Document current
-  resolution paths and OCSP/CRL endpoints.
+- **Phase 1 — Inventory and baseline.** Export every AD DNS zone, SRV record, conditional forwarder and DHCP scope. Document current resolution paths, including SD-WAN redirect-dns targets, and the OCSP and CRL endpoints in use.
+- **Phase 2 — Deploy coexistence.** Stand up the DDI platform's resolvers and its Microsoft DNS and DHCP synchronization. Establish conditional forwarding so that both systems can answer during the transition.
+- **Phase 3 — Migrate authority.** Move authoritative zones and DHCP scopes to the DDI platform, zone by zone. Retarget SD-WAN redirect-dns to network-addressable agency resolvers (Chapter 08, Decision 1).
+- **Phase 4 — Cloud federation.** Enable cloud discovery and IPAM federation with AWS, Azure and Google Cloud, and VMware where it applies. Validate private endpoint resolution end to end from every origin.
+- **Phase 5 — Decommission AD DNS and DHCP.** Only after full inventory reconciliation and successful failover testing. Preserve the SRV and `_msdcs` records that remaining domain controllers and domain-joined systems still need.
+- **Phase 6 — Policy and compliance hardening.** Enable Protective DNS forwarding, encrypted DNS, DNSSEC signing and validation where required, and continuous monitoring dashboards, and assemble the evidence in Chapter 10.
 
-- **Phase 2 — Deploy coexistence.** Stand up Universal DDI / NIOS-X with
-  bidirectional Microsoft sync. Establish conditional forwarding so both
-  systems can answer during transition.
-
-- **Phase 3 — Migrate authority.** Move authoritative zones and DHCP
-  scopes to Infoblox. Update SD-WAN redirect-dns targets to
-  network-addressable Infoblox resolvers.
-
-- **Phase 4 — Cloud federation.** Enable Universal Asset Insights and
-  IPAM federation with AWS, Azure, and GCP. Validate private endpoint
-  resolution end-to-end.
-
-- **Phase 5 — Decommission AD DNS/DHCP.** Only after full inventory
-  reconciliation and successful failover testing. Preserve SRV records
-  required by remaining domain controllers.
-
-- **Phase 6 — Policy and compliance hardening.** Enable Protective DNS,
-  encrypted DNS, DNSSEC where required, and continuous monitoring
-  dashboards.
+Each phase should end with a rollback point and a resolution-path consistency test (Chapter 11), not with a calendar date.
 
 ---
 

@@ -149,6 +149,7 @@ bundles:
     warn_unlisted: ["*.md"]
     pages:
       - index.md
+      - 00-applicability.md
       - 01-dns-is-the-control-plane.md
       - 02-split-brain-dns.md
       - 03-federal-requirements.md

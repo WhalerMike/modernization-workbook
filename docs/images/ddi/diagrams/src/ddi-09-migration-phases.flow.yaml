@@ -1,0 +1,16 @@
+# Chapter 09 — the six phases and their gates.
+rankdir: TB
+graph: {nodesep: 0.2, ranksep: 0.28}
+nodes:
+  p1: {tone: slate, width: 470, tag: "Phase 1", title: "Inventory and baseline", body: ["=Zones, SRV records, forwarders, DHCP scopes, resolution paths, OCSP/CRL endpoints"], size: 12}
+  p2: {tone: amber, width: 470, tag: "Phase 2", title: "Deploy coexistence", body: ["=Both systems answer; bidirectional sync"], size: 12}
+  p3: {tone: amber, width: 470, tag: "Phase 3", title: "Migrate authority", body: ["=Zones and DHCP scopes move; redirect-dns retargeted"], size: 12}
+  p4: {tone: blue, width: 470, tag: "Phase 4", title: "Cloud federation", body: ["=IPAM federation; private endpoint resolution validated from every origin"], size: 12}
+  p5: {tone: red, width: 470, tag: "Phase 5 — gated", title: "Decommission AD DNS/DHCP", body: ["=Only after reconciliation and failover tests; preserve SRV and _msdcs for remaining DCs"], size: 12}
+  p6: {tone: green, width: 470, tag: "Phase 6", title: "Policy and compliance hardening", body: ["=Protective DNS, encrypted DNS, DNSSEC, continuous monitoring"], size: 12}
+edges:
+  - [p1, p2]
+  - [p2, p3]
+  - [p3, p4]
+  - [p4, p5]
+  - [p5, p6]

@@ -1,0 +1,14 @@
+# Chapter 05 — what the edge can and cannot do with each DNS transport.
+kind: flow
+rankdir: TB
+nodes:
+  t:
+    kind: table
+    tone: slate
+    columns: ["Client transport", "What redirect-dns can do", "Control that works"]
+    widths: [170, 240, 260]
+    rows:
+      - ["Plain DNS (UDP 53)", {text: "Intercept and redirect", tone: green}, "redirect-dns to the agency resolver"]
+      - ["DNS over TLS (TCP 853)", {text: "Cannot redirect without breaking TLS", tone: amber}, "Block port 853 except approved resolvers"]
+      - ["DNS over HTTPS (TCP 443)", {text: "Cannot see or redirect", tone: red}, "Endpoint policy (MDM, GPO, SASE agent) or TLS inspection"]
+      - ["DNS over QUIC (UDP 853)", {text: "Cannot redirect", tone: amber}, "Block UDP 853 except approved resolvers"]

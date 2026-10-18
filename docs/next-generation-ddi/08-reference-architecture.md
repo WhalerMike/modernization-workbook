@@ -10,6 +10,7 @@ lifecycle: active
 tiers_adopted: []
 lifecycle_review: 2027-01-01
 ---
+
 # Chapter 08 — Reference Architecture and the Five Critical Decisions
 
 *One authoritative policy plane, and the decisions that carry the operational risk.*
@@ -21,74 +22,34 @@ lifecycle_review: 2027-01-01
 
 ## The End-to-End Resolution Flow and Five Decisions
 
-![Reference Architecture: Single Authoritative DDI Policy Plane.](../images/ddi/figure-11.jpg){fig-alt="Single Authoritative DDI Policy Plane."}
+![Reference architecture: a single authoritative DDI policy plane and the five decisions.](../images/ddi/diagrams/svg/ddi-08-reference-architecture.svg){fig-alt="A branch client's query passes the SD-WAN redirect-dns edge (Decision 1) to an agency-controlled resolver that is the first hop under agency policy (Decision 2), then to the DDI policy plane holding policy, RPZ, DNSSEC, IPAM and conditional forwarding (Decision 3), and on to per-cloud private zones. AD DNS is inventoried before decommissioning (Decision 4), and OCSP and CRL endpoints resolve from every origin (Decision 5)."}
 
-The end-to-end resolution flow runs from the Cisco Catalyst SD-WAN
-branch edge through a network-addressable Infoblox resolver into
-Universal DDI (policy, RPZ, DNSSEC, IPAM) and onward to per-CSP private
-zones and authoritative services. The five decisions that carry
-essentially all operational risk are:
+The end-to-end resolution flow runs from the SD-WAN branch edge, through a network-addressable agency-controlled resolver, into the DDI policy plane (policy, response policy zones, DNSSEC, IPAM) and on to per-cloud private zones and authoritative services. Internet-bound recursion leaves through CISA Protective DNS. Five decisions carry almost all of the operational risk:
 
-- **Decision 1 — redirect-dns destination.** Must target a
-  network-addressable Infoblox resolver (NIOS-X or DNS Forwarding
-  Proxy), not a client-side loopback stub.
+- **Decision 1 — the redirect-dns destination.** It must be a network-addressable resolver under agency control (a DDI resolver or forwarding proxy at the branch or in a regional hub), never a client-side loopback stub such as an endpoint agent listening on 127.0.0.1, which the edge cannot reach.
+- **Decision 2 — forwarding chain order.** Any additional resolver, such as a SASE provider's DNS service, must be a forwarding target of the agency-controlled resolver, never the redirect-dns target. The agency resolver is always the first hop under agency policy control.
+- **Decision 3 — per-cloud conditional forwarding.** The policy plane holds the authoritative forwarding rules for every private namespace (Chapter 07).
+- **Decision 4 — AD DNS inventory before deprecation.** SRV records, conditional forwarders and namespace delegations are inventoried and reprovisioned before any domain controller is decommissioned (Chapter 04).
+- **Decision 5 — OCSP and CRL reachability from every origin.** PKI validation endpoints must resolve consistently from on-premises, every cloud and every branch (Chapter 06).
 
-- **Decision 2 — forwarding chain order.** Any additional resolver (for
-  example Cisco Umbrella) must be a forwarding target of the
-  agency-controlled resolver, never the redirect-dns target. The agency
-  resolver must be the first hop under agency policy control.
+## Moving from Per-Cloud Local Syncs to a Unified Control Plane
 
-- **Decision 3 — per-CSP conditional forwarding.** Universal DDI must
-  hold authoritative forwarding rules for all private namespaces.
-
-- **Decision 4 — AD DNS record inventory before deprecation.** SRV
-  records, conditional forwarding, and namespace authorizations must be
-  inventoried and reprovisioned before any domain controller is
-  decommissioned.
-
-- **Decision 5 — OCSP and CRL reachability from all origins.** PKI
-  validation endpoints must resolve consistently from on-premises, every
-  CSP, and every branch.
-
-## Moving from Per-CSP Local Syncs to a Unified Control Plane
-
-Agencies that already synchronize DNS records into each Cloud Service
-Provider should change the operating model from “author copies in every
-silo” to “one authoritative policy and state plane that the silos
-consume.”
+Agencies that already copy DNS records into each cloud provider should change the operating model from "author copies in every silo" to "one authoritative policy and state plane that the silos consume."
 
 ### Target Operating Model
 
-- Universal DDI holds the system of record for zones, forwarding rules,
-  IPAM data, and security policy.
-
-- Cloud DNS services (Route 53, Azure Private DNS, Cloud DNS, etc.)
-  become synchronized targets or consumers rather than independently
-  authored sources.
-
-- SD-WAN redirect-dns and other edge interceptors point at
-  network-addressable resolvers inside the governed path.
-
-- AD DNS is inventoried and either coexists during transition or is
-  migrated; Entra ID does not automatically inherit SRV, LDAP, or
-  Kerberos records.
+- The DDI policy plane holds the system of record for zones, forwarding rules, IPAM data and security policy.
+- Cloud DNS services (Route 53, Azure Private DNS, Google Cloud DNS and others) become synchronized targets or forwarding destinations rather than independently authored sources.
+- SD-WAN redirect-dns and other edge interceptors point at network-addressable resolvers inside the governed path.
+- AD DNS is inventoried and either coexists during the transition or is migrated; Entra ID does not inherit SRV, LDAP or Kerberos records.
 
 ### Expected Improvements
 
-- Sharp reduction in unintentional split-brain for private endpoints and
-  SaaS resolution.
-
-- Faster, safer change: a new private endpoint or application namespace
-  is published once.
-
-- Uniform Protective DNS, logging, and (where required) DNSSEC
-  validation across the queries that actually matter.
-
-- Single hybrid inventory view instead of islands of address and name
-  data.
-
-- Cleaner AD retirement path and fewer “works in one cloud but not
-  another” incidents.
+- Far less unintentional split-brain for private endpoints and SaaS resolution.
+- Faster, safer change: a new private endpoint or application namespace is published once.
+- Uniform Protective DNS, logging and, where required, DNSSEC validation for the queries that matter.
+- One hybrid inventory instead of islands of address and name data.
+- A cleaner AD retirement path and fewer "works in one cloud but not another" incidents.
 
 ---
 
