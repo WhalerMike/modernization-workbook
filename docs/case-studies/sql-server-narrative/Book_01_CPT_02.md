@@ -50,7 +50,7 @@ If a policy requires MFA and the principal has not completed it, the token is de
 
 ## Driver Three — The Service Account Credential Problem
 
-The third driver is a consequence of the broader directory modernization this series is embedded within. The the organizational-attribute model substrate and the transformation inventory collectively describe a transformation in which Active Directory is removed as the authoritative identity source for this program's environment.
+The third driver is a consequence of the broader directory modernization this series is embedded within. The transformation inventory describes a transformation in which Active Directory is removed as the authoritative identity source for this program's environment.
 
 When that transformation completes, the AD service accounts and gMSAs that currently authorize the SQL Server engine process for network access lose their governance foundation. They are objects in a directory that no longer exists as an authoritative identity source. The engine must acquire a new identity before that removal occurs.
 
