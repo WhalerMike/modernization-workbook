@@ -39,7 +39,7 @@ Selection should follow the architectural requirements, not a vendor list:
 
 Options to evaluate against these criteria include:
 
-- **Enterprise DDI platforms.** Infoblox, BlueCat and EfficientIP are the most widely deployed. Check each one's FedRAMP Marketplace status for the specific offering and deployment model, its sovereign-cloud support, its SD-WAN and SASE integration depth, and its multi-cloud federation. As of this writing Infoblox Government Cloud is listed at FedRAMP Moderate (Chapter 03); confirm current status for every candidate on the FedRAMP Marketplace rather than relying on vendor claims.
+- **Enterprise DDI platforms.** Infoblox, BlueCat and EfficientIP are the most widely deployed. Check each one's FedRAMP Marketplace status for the specific offering and deployment model, its sovereign-cloud support, its SD-WAN and SASE integration depth, and its multi-cloud federation. As of this writing Infoblox Government Cloud is listed at FedRAMP Moderate (Chapter 03); confirm current status for every candidate on the FedRAMP Marketplace rather than relying on vendor claims.[^c11-fedramp]
 - **Cloud-native resolvers managed as code.** Route 53 Resolver, Azure DNS Private Resolver and their equivalents, managed through infrastructure as code with a CI drift gate. This path is common and reduces independent authoring, but it still needs explicit controls to prevent split-brain between clouds and to enforce consistent security policy. By itself it provides neither a single multi-cloud IPAM source of truth nor a multi-division delegation model.
 
 ## Residual Risk and Limitations
@@ -51,7 +51,7 @@ The residual risks are real:
 - **Sync lag and sync failure** between the control plane and per-cloud DNS or IPAM services become the new source of divergence. Monitor synchronization health.
 - **Control-plane concentration.** If the management plane is unavailable, changes cannot be made, but existing resolution should continue from local resolver state. Define the operational response and any local override procedures.
 - **Authorization scope.** A Moderate authorization does not cover High or DoD environments ([Applicability](00-applicability.md)).
-- **Commercial-only optimizations.** Microsoft 365 INR is unavailable in GCC-Moderate, GCC High and DoD; Microsoft 365 optimization there relies on local breakout and application-aware routing.
+- **Commercial-only optimizations.** Microsoft 365 INR is unavailable in GCC-Moderate, GCC High and DoD;[^c11-inr] Microsoft 365 optimization there relies on local breakout and application-aware routing.
 - **Loopback endpoint agents.** A client-side DNS agent listening on loopback cannot be a redirect-dns target; a network-addressable resolver is required.
 - **Encrypted DNS bypass** remains possible where endpoint and network controls are incomplete.
 - **Open engineering questions** for very large branch estates, such as resolver and forwarding-proxy sizing and source-address behavior under redirect-dns, need vendor engagement and testing.
@@ -66,3 +66,6 @@ DNS is no longer a name-lookup utility. It is the identity substrate, the securi
 
 **Previous:** [Chapter 10 — Operating the Control Plane: Delegation, Automation and Evidence](10-operating-the-control-plane.md)  
 **Next:** [Appendix A — DNS Record Types and Ecosystem Integrations](appendix-a-dns-record-types.md)
+
+[^c11-fedramp]: FedRAMP Marketplace, Infoblox Government Cloud (package FR2017257053), authorized at Moderate since December 15, 2022. <https://www.fedramp.gov/marketplace/products/FR2017257053/>
+[^c11-inr]: Microsoft Learn, "Microsoft 365 informed network routing" (WW Commercial only; Cisco IOS XE SD-WAN 20.4/17.4 or later). <https://learn.microsoft.com/en-us/microsoft-365/enterprise/office-365-network-mac-perf-cpe?view=o365-worldwide>
