@@ -52,6 +52,7 @@ website:
   navbar:
     title: "Modernization Workbook"
     background: dark
+    collapse-below: lg
     left:
       - href: index.qmd
         text: "Home"
@@ -59,8 +60,16 @@ website:
         text: "Principles"
       - text: "Case Studies"
         menu:
+          - href: docs/case-studies/README.md
+            text: "All Case Studies"
           - href: docs/case-studies/sql-server-narrative/README.md
             text: "SQL Server Identity Transformation"
+      - href: docs/compliance/index.md
+        text: "Federal Compliance"
+      - href: docs/operational-guides/index.md
+        text: "Operational Guides"
+      - href: docs/architecture/index.md
+        text: "Architecture"
       - text: "Series"
         menu:
           - href: docs/client-server-to-hybrid-cloud/README.md
@@ -69,14 +78,287 @@ website:
             text: "Next Generation DDI"
           - href: docs/hr-driven-iam/index.md
             text: "HR-Driven Identity"
+          - href: docs/sql-server-implementation/index.md
+            text: "SQL Server Implementation Companion"
+          - href: docs/executive-governance/index.md
+            text: "Executive Governance"
+          - href: docs/executive-briefs/index.md
+            text: "Executive Briefs"
+          - href: docs/ssot-network-physics/index.md
+            text: "SSOT Network Physics"
+          - href: docs/modernization-specs/README.md
+            text: "Modernization Specs"
       - href: docs/whitepapers/README.md
         text: "Whitepapers"
+      - text: "About"
+        menu:
+          - href: docs/HOW-TO-USE.md
+            text: "How to Use This Workbook"
+          - href: PROJECT-CHARTER.md
+            text: "Project Charter"
+          - href: PROJECT-PLAN.md
+            text: "Project Plan"
+          - href: docs/projects/README.md
+            text: "Projects"
+          - href: CONTRIBUTING.md
+            text: "Contributing"
       - href: sitemap.qmd
         text: "Site Map"
     right:
       - href: https://github.com/WhalerMike/modernization-workbook
         text: "GitHub"
         icon: github
+
+  # Section sidebars. A page shows the sidebar that lists it, which gives
+  # every published page a menu path from the navbar. Globs pick up new
+  # pages automatically; README.md files are listed by path because Quarto
+  # skips README.md in globs.
+  sidebar:
+    - id: case-studies
+      title: "Case Studies"
+      style: docked
+      collapse-level: 1
+      contents:
+        - docs/case-studies/README.md
+        - docs/case-studies/index.md
+        - section: "SQL Server Identity Transformation"
+          href: docs/case-studies/sql-server-narrative/README.md
+          contents:
+            - docs/case-studies/sql-server-narrative/index.md
+            - docs/case-studies/sql-server-narrative/series-overview.md
+            - docs/case-studies/sql-server-narrative/Applicability.md
+            - auto: "docs/case-studies/sql-server-narrative/Book_*.md"
+            - auto: "docs/case-studies/sql-server-narrative/Appendix_*.md"
+        - section: "Other case studies"
+          contents:
+            - auto: "docs/case-studies/*.md"
+
+    - id: compliance
+      title: "Federal Compliance"
+      style: docked
+      collapse-level: 1
+      contents:
+        - docs/compliance/index.md
+        - section: "Series overview"
+          contents:
+            - docs/compliance/federal-compliance-series-overview.md
+            - docs/compliance/federal-compliance-series-moderate-overview.md
+            - docs/compliance/federal-compliance-series-moderate/README.md
+            - docs/compliance/federal-compliance-series-moderate/executive-brief.md
+            - docs/compliance/federal-compliance-series-moderate/executive-summary.md
+            - docs/compliance/training-index.md
+        - section: "Volume summaries"
+          contents:
+            - auto: "docs/compliance/federal-compliance-series-moderate/vol-*.md"
+        - section: "Book lists"
+          contents:
+            - docs/compliance/federal-compliance-series-moderate/books/README.md
+            - auto: "docs/compliance/federal-compliance-series-moderate/books/vol-*.md"
+        - section: "Volume 0 — Executive Summary"
+          contents:
+            - auto: "docs/compliance/Vol_0_Book_*.md"
+        - section: "Volume I — Foundation & Transport"
+          contents:
+            - auto: "docs/compliance/Vol_I_Book_*.md"
+        - section: "Volume II — Data Platform"
+          contents:
+            - auto: "docs/compliance/Vol_II_Book_*.md"
+        - section: "Volume III — Security Operations"
+          contents:
+            - auto: "docs/compliance/Vol_III_Book_*.md"
+        # Vol IV Book 06 is deliberately not listed while its publication
+        # status is under review.
+        - section: "Volume IV — Governance & Assurance"
+          contents:
+            - docs/compliance/Vol_IV_Book_00_Governance_Assurance_Overview.md
+            - docs/compliance/Vol_IV_Book_01_Business_Continuity.md
+            - docs/compliance/Vol_IV_Book_02_Supply_Chain_Risk_Management.md
+            - docs/compliance/Vol_IV_Book_03_Program_Management_Governance.md
+            - docs/compliance/Vol_IV_Book_04_PII_Processing_Transparency.md
+            - docs/compliance/Vol_IV_Book_05_Cybersecurity_Training_Awareness.md
+        - section: "Volume V — Training & Certification"
+          contents:
+            - auto: "docs/compliance/Vol_V_Book_*.md"
+        - section: "Volume VI — Implementation"
+          contents:
+            - auto: "docs/compliance/Vol_VI_Book_*.md"
+        - section: "Volume VII — ServiceNow Automation"
+          contents:
+            - auto: "docs/compliance/Vol_VII_Book_*.md"
+        - section: "Volume VIII — Multi-Cloud DDI"
+          contents:
+            - auto: "docs/compliance/Vol_VIII_Book_*.md"
+        - section: "Volume IX — Day-2 Operations"
+          contents:
+            - auto: "docs/compliance/Vol_IX_Book_*.md"
+        - section: "Volume X — Governance-Substrate Integration"
+          contents:
+            - auto: "docs/compliance/Vol_X_Book_*.md"
+        - section: "Supporting documents"
+          contents:
+            - docs/compliance/Compliance_ServiceNow_Kit_Expansion_Roadmap.md
+            - docs/compliance/Evidence_Contract_Spec.md
+            - docs/compliance/Operator_Runbook_Day2_Compliant.md
+
+    - id: operational-guides
+      title: "Operational Guides"
+      style: docked
+      collapse-level: 1
+      contents:
+        - docs/operational-guides/index.md
+        - docs/operational-guides/README.md
+        - section: "Guides"
+          contents:
+            - auto: "docs/operational-guides/*.md"
+        - section: "Access Plane"
+          contents:
+            - auto: "docs/operational-guides/access-plane/*.md"
+        - section: "AI Identity Governance"
+          contents:
+            - auto: "docs/operational-guides/ai-identity-governance/*.md"
+        - section: "Client-Server to Hybrid-Cloud (runbooks)"
+          contents:
+            - auto: "docs/operational-guides/client-server-to-hybrid-cloud/*.md"
+        - section: "Directory Migration"
+          contents:
+            - auto: "docs/operational-guides/directory-migration/*.md"
+        - section: "Help Desk and Entra Operations"
+          contents:
+            - docs/operational-guides/helpdesk-entra-operations/index.md
+            - auto: "docs/operational-guides/helpdesk-entra-operations/*.md"
+        - section: "Identity"
+          contents:
+            - auto: "docs/operational-guides/identity/*.md"
+        - section: "Intune and Arc Modernization"
+          contents:
+            - docs/operational-guides/intune-arc-modernization/README.md
+            - auto: "docs/operational-guides/intune-arc-modernization/*.md"
+        - section: "M365 Optimize Exemption"
+          contents:
+            - docs/operational-guides/m365-optimize-exemption/index.md
+            - auto: "docs/operational-guides/m365-optimize-exemption/*.md"
+        - section: "Network Transformation"
+          contents:
+            - auto: "docs/operational-guides/network-transformation/*.md"
+        - section: "Platform Substrate"
+          contents:
+            - auto: "docs/operational-guides/platform-substrate/*.md"
+        - section: "Program Management"
+          contents:
+            - auto: "docs/operational-guides/program-management/*.md"
+        - section: "SIEM Telemetry Emission"
+          contents:
+            - auto: "docs/operational-guides/siem-telemetry-emission/*.md"
+        - section: "Target Surface"
+          contents:
+            - auto: "docs/operational-guides/target-surface/*.md"
+        - section: "Transformation Engine"
+          contents:
+            - auto: "docs/operational-guides/transformation-engine/*.md"
+        - section: "Zero Trust Assessment"
+          contents:
+            - auto: "docs/operational-guides/zero-trust-assessment/*.md"
+        - section: "Device and Server Modernization"
+          contents:
+            - docs/guides/device-and-server-modernization/README.md
+            - auto: "docs/guides/device-and-server-modernization/*.md"
+        - section: "Learning"
+          contents:
+            - docs/learning/README.md
+            - auto: "docs/learning/*.md"
+        - section: "Libraries"
+          contents:
+            - docs/libraries/README.md
+            - auto: "docs/libraries/*.md"
+
+    - id: architecture
+      title: "Architecture"
+      style: docked
+      collapse-level: 1
+      contents:
+        - docs/architecture/index.md
+        - section: "Architecture topics"
+          contents:
+            - auto: "docs/architecture/*.md"
+        - section: "Architecture Series"
+          contents:
+            - docs/architecture/architecture-series/README.md
+            - auto: "docs/architecture/architecture-series/*.md"
+        - section: "Directory Migration"
+          contents:
+            - auto: "docs/architecture/directory-migration/*.md"
+        - section: "Reference Architecture"
+          contents:
+            - docs/reference-architecture/index.md
+            - auto: "docs/reference-architecture/*.md"
+
+    - id: series
+      title: "Series"
+      style: docked
+      collapse-level: 1
+      contents:
+        - section: "Client-Server to Hybrid-Cloud"
+          href: docs/client-server-to-hybrid-cloud/README.md
+          contents:
+            - auto: "docs/client-server-to-hybrid-cloud/*.md"
+        - section: "Next Generation DDI"
+          href: docs/next-generation-ddi/index.md
+          contents:
+            - auto: "docs/next-generation-ddi/*.md"
+        - section: "HR-Driven Identity"
+          href: docs/hr-driven-iam/index.md
+          contents:
+            - auto: "docs/hr-driven-iam/*.md"
+        - section: "SQL Server Implementation Companion"
+          href: docs/sql-server-implementation/index.md
+          contents:
+            - auto: "docs/sql-server-implementation/Book_*.md"
+        - section: "Executive Governance"
+          href: docs/executive-governance/index.md
+          contents:
+            - auto: "docs/executive-governance/ch*/index.md"
+        - section: "Executive Briefs"
+          href: docs/executive-briefs/index.md
+          contents:
+            - docs/executive-briefs/README.md
+            - auto: "docs/executive-briefs/*.md"
+        - section: "SSOT Network Physics"
+          href: docs/ssot-network-physics/index.md
+          contents:
+            - auto: "docs/ssot-network-physics/*.md"
+        - section: "Modernization Specs"
+          href: docs/modernization-specs/README.md
+          contents:
+            - auto: "docs/modernization-specs/*.md"
+
+    - id: whitepapers
+      title: "Whitepapers"
+      style: docked
+      contents:
+        - docs/whitepapers/README.md
+        - auto: "docs/whitepapers/*.md"
+
+    - id: about
+      title: "About"
+      style: docked
+      contents:
+        - docs/PRINCIPLES.md
+        - docs/HOW-TO-USE.md
+        - PROJECT-CHARTER.md
+        - PROJECT-PLAN.md
+        - CONTRIBUTING.md
+        - docs/modernization/index.md
+        - section: "Program"
+          contents:
+            - auto: "docs/program/*.md"
+        - section: "Projects"
+          contents:
+            - docs/projects/README.md
+            - auto: "docs/projects/*.md"
+        - section: "Project Management"
+          contents:
+            - docs/project-management/README.md
+            - docs/project-management/master-project-plan.md
 
   page-footer:
     left: "Modernization Workbook — a clean, standalone project for federal IT modernization."
