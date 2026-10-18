@@ -9,18 +9,14 @@
 ![Diagram](../images/cshc/migration-roadmap.svg)
 
 
-This chapter sequences the modernization as a **fifty-two-week illustrative program** with five parallel workstreams (identity, policy, services, compute, access) and seven named gates. The week numbers are a sequencing model, not a commitment: large federal estates typically run multi-year. The roadmap is a reviewable document in the authoritative repository, updated on a regular cadence, with gate criteria that are mechanical to evaluate.
+This chapter sequences Chapters 01–08 as an **illustrative fifty-two-week program** with five parallel workstreams (identity, policy, services, compute, access) and seven named gates. The week numbers are a sequencing model, not a commitment: large federal estates typically run multi-year. The roadmap lives in the authoritative repository, and every gate criterion can be evaluated mechanically.
 
-This chapter is how you sequence the work of Chapters 01–08 into a governed program that actually ships.
+Two properties define the program:
 
-## The program shape
+1. **Parallel, not sequential.** The five workstreams run together. Finishing one before starting the next doubles the duration and produces worse outcomes.
+2. **Gated, not open-ended.** A phase starts only when the prior exit gate clears, and exits only when its own criteria are green.
 
-A full Client-Server-to-Hybrid-Cloud modernization has two defining properties:
-
-1. **Parallel, not sequential.** Identity, policy, services, compute, and access work in parallel streams. Waiting for one to finish before starting the next doubles the program duration and produces worse outcomes.
-2. **Gated, not open-ended.** Each phase has explicit entry and exit criteria. A phase cannot start until the prior phase’s exit gate clears. A phase cannot exit until its own criteria are green.
-
-Illustratively, a mid-size organization (five thousand to fifty thousand users, five hundred to five thousand servers) with a clean forest and a small Kerberos-application inventory might complete in about fifty-two weeks. Larger or less-rationalized estates extend; smaller ones compress. The phase structure does not change with scale — only the per-phase duration does.
+Illustratively, a mid-size organization (5,000–50,000 users, 500–5,000 servers) with a clean forest and few Kerberos applications might finish in about fifty-two weeks. Scale changes the duration of each phase, not the structure.
 
 ## The seven phases
 
@@ -28,179 +24,104 @@ Illustratively, a mid-size organization (five thousand to fifty thousand users, 
 
 **Goal.** Produce the planning artifacts and stand up the platform host.
 
-Entry criteria:
-- Executive sponsor named.
-- Steward appointed.
-- Platform-host hardware or virtual machine provisioned.
-- Active Directory read-only service account delegated.
-
-Work in Phase 0:
-- Build the platform host (Chapter 01).
-- Run the assessment (Chapter 02).
-- Stand up the authoritative repository with baseline files.
-- Confirm cloud identity, device management, and hybrid management access with least-privilege service principals.
-
-Exit gate (Gate G0 — Ready to Plan):
-- Platform host operational.
-- Assessment run committed to the repository.
-- No open priority-one findings from the assessment.
+- **Entry:** executive sponsor and steward named; platform host provisioned; read-only AD service account delegated.
+- **Work:** build the platform host (Chapter 01); run the assessment (Chapter 02); seed the repository; confirm least-privilege service principals for Entra ID, Intune and Arc.
+- **Gate G0 — Ready to Plan:** platform host operational; assessment committed; no open priority-one findings.
 
 ### Phase 1 — Foundation (weeks 5–8)
 
-**Goal.** Put identity-substrate primitives in place before anything else moves.
+**Goal.** Put identity primitives in place before anything else moves.
 
-Workstream outputs:
-- **Identity.** Dynamic groups for enterprise-level branches. Administrative units for Tier-1 and selected Tier-2 scopes.
-- **Policy.** Enterprise Conditional Access baseline: multi-factor authentication required for all users, legacy authentication blocked, break-glass carve-outs.[^cs09-breakglass][^cs09-legacy]
-- **Services.** IP address management stood up with partial coverage — enough to tag the platform host and Tier-0 infrastructure.
-- **Compute.** Platform host cloud-registered; select server pilots hybrid-connected.
-- **Access.** Platform single sign-on configured; FIDO2 registration available for Tier-0 administrators.
+- **Identity:** enterprise-level dynamic groups; administrative units for Tier-1 and selected Tier-2 scopes.
+- **Policy:** enterprise Conditional Access baseline: MFA for all users, legacy authentication blocked, break-glass exclusions.[^cs09-breakglass][^cs09-legacy]
+- **Services:** IP address management covering the platform host and Tier-0 infrastructure.
+- **Compute:** platform host and pilot servers connected through Arc.
+- **Access:** single sign-on configured; FIDO2 registration open to Tier-0 administrators.
 
-Exit gate (Gate G1 — Foundation Complete):
-- Enterprise dynamic groups and administrative units created and drift-clean.
-- Enterprise baseline Conditional Access enforced; no multi-factor-authentication-exempt users.
-- IP address management covers at least Tier-0 infrastructure.
-- Drift detection reports zero findings across the foundation scope.
-- Break-glass accounts vaulted.
-- HR-to-cloud provisioning operational for the foundation scope.
+**Gate G1 — Foundation Complete:** enterprise groups and administrative units drift-clean; baseline Conditional Access enforced with no MFA-exempt users; Tier-0 covered by IPAM; break-glass accounts vaulted; HR-to-cloud provisioning operational for the foundation scope; zero drift across the foundation.
 
 ### Phase 2 — Pilot Division (weeks 9–16)
 
-**Goal.** Run one division through the full transformation as a learning exercise, proving the pattern before general rollout.
+**Goal.** Prove the full pattern on one division, typically IT, which tolerates disruption best.
 
-Typical pilot division: IT (highest tolerance for disruption, most engaged with modernization).
+- **Identity:** organizational attributes populated; dynamic groups, administrative units and delegated roles live.
+- **Policy:** division-scoped Conditional Access and Intune policies applied; first Group Policy Objects retired.
+- **Services:** division DNS zones migrated, DHCP scopes re-homed, address space in IPAM.
+- **Compute:** PCs moved by pattern (greenfield, reset-and-re-enroll, or hybrid for the rest); servers connected through Arc.
+- **Access:** certificate-based authentication for smart-card holders; ZTNA for division applications.
 
-Workstream outputs for the pilot:
-- **Identity.** Pilot division organizational attributes fully populated; dynamic groups live; administrative units scoped; role assignments delegated.
-- **Policy.** Division-scoped Conditional Access and device-management policies applied. Several Group Policy Objects retired.
-- **Services.** Pilot division DNS zones migrated. DHCP scopes re-homed. IP address management populated for the division address space.
-- **Compute.** Pilot PCs transition (greenfield for new hardware; reset-and-re-enroll for refreshable legacy; hybrid for the rest). Pilot servers hybrid-connected.
-- **Access.** Division users configured for certificate-based authentication where smart-card holders exist; SASE zero-trust network access in place for division applications.
-
-Exit gate (Gate G2 — Pilot Clean):
-- Pilot division drift zero for a defined hold period (for example, fourteen consecutive days — illustrative).
-- Pilot division has zero Active Directory-only users and zero hybrid-joined PCs that are not scheduled for full cut.
-- Retrospective complete; lessons-learned document committed.
-- Per-phase runbook updates committed based on pilot experience.
+**Gate G2 — Pilot Clean:** zero drift for a hold period (for example, fourteen consecutive days, illustrative); no AD-only users and no hybrid-joined PCs without a cut date; retrospective and runbook updates committed.
 
 ### Phase 3 — General Rollout (weeks 17–36)
 
 **Goal.** Scale the pattern to every remaining division.
 
-This is the longest phase. Duration scales with division count: illustratively, budget two to three weeks per division, running two to three divisions in parallel. Large organizations may overlap divisions heavily; small organizations may run strictly sequentially.
+This is the longest phase. Illustratively, budget two to three weeks per division with two or three in parallel. Each division follows the same sub-pattern (plan, in-division pilot, full availability, drift-clean hold), reports green/yellow/red weekly, and draws on the shared authoritative source.
 
-Workstream cadence:
-- Weekly steering-committee review of active divisions. Each division reports green/yellow/red against its rollout plan.
-- Per division — four-phase sub-pattern: plan, pilot within division, general availability to the full division, drift-clean hold.
-- Parallel — Chapters 04–08 content flows for each division concurrently; the authoritative source is shared.
-
-Exit gate (Gate G3 — Rollout Complete):
-- Every in-scope division has passed its division-level exit gate.
-- Every HR-listed employee has valid organizational attributes.
-- Every user PC is cloud-joined or in a documented exception.
-- Every server is hybrid-connected or in a documented exception.
-- Drift detection reports zero cross-division drift.
+**Gate G3 — Rollout Complete:** every division passed its exit gate; every HR-listed employee has valid attributes; every user PC is cloud-joined and every server Arc-connected, or in a documented exception; zero cross-division drift.
 
 ### Phase 4 — Legacy Retirement (weeks 37–44)
 
-**Goal.** Systematically retire legacy infrastructure: Group Policy Objects, organizational-unit security groups, Active Directory-integrated DNS, Active Directory-joined DHCP, Active Directory Certificate Services smart-card logon configuration, service-principal-name-bound legacy applications.
+**Goal.** Retire legacy infrastructure, each artifact through its own plan with steward approval. Typical order:
 
-Retirement is governed: each artifact has a retirement plan with its own entry and exit criteria, and the retirement action is a plan-stage action with explicit steward approval.
+1. Group Policy Objects already migrated to Intune.
+2. OU-based security groups superseded by dynamic groups.
+3. AD-integrated DNS zones, one at a time.
+4. AD-authorized DHCP.
+5. AD CS smart-card logon Group Policy configuration.
+6. Remaining AD-bound service principal names, application by application.
 
-Retirement sequence (typical):
-1. Retire redundant Group Policy Objects (migrated to device management).
-2. Retire organizational-unit-based security groups (membership superseded by dynamic groups).
-3. Retire Active Directory-integrated DNS zones one at a time.
-4. Retire Active Directory-joined DHCP authority.
-5. Retire Active Directory Certificate Services smart-card logon Group Policy configuration.
-6. Retire remaining Active Directory-bound service principal names (application by application).
+**Gate G4 — Legacy Quiet:**
 
-Exit gate (Gate G4 — Legacy Quiet):
-- No active Group Policy Objects other than the minimum Kerberos-island set.
-- No Active Directory-based dynamic or static-membership security groups in active use.
-- Zero Active Directory-integrated DNS zones.
-- Certificate issuance moved to, or scheduled to move to, a CA that does not depend on AD DS (Chapter 08); AD CS no longer used for smart-card logon.
-- Service principal name map shows all migrated, retired, or islanded — no unresolved names.
-- Active Directory authentication rate below an agreed threshold (for example, five percent of the peak-migration rate — illustrative).
+- No active GPOs beyond the minimum Kerberos-island set, and no AD security groups in active use.
+- Zero AD-integrated DNS zones.
+- Certificate issuance moved, or scheduled to move, to a CA that does not depend on AD DS (Chapter 08); AD CS no longer used for smart-card logon.
+- Every service principal name migrated, retired or islanded.
+- AD authentication rate below an agreed threshold (for example, 5% of the peak-migration rate, illustrative).
 
-### Phase 5 — Active Directory Domain Services Retirement (weeks 45–48)
+### Phase 5 — AD DS Retirement (weeks 45–48)
 
-**Goal.** Shut down Active Directory Domain Services.
+**Goal.** Shut down AD DS. This is the shortest phase because Phases 0–4 did the work.
 
-This is the shortest phase of the program because the work was done in Phases 0–4. Phase 5 is the mechanical teardown.
+1. Freeze AD changes and run a final assessment and evidence packet.
+2. Demote non-FSMO domain controllers.
+3. Transfer FSMO roles to a survivor if a Kerberos island is retained.
+4. Demote or isolate the remaining domain controllers.
+5. Decommission the VMs, keep the forest in backup, and commit the retirement record.
 
-Sequence:
-1. Freeze Active Directory changes.
-2. Final forest assessment and evidence packet.
-3. Demote non-FSMO domain controllers.
-4. Transfer FSMO roles to the designated survivor (if any — some organizations retain a Kerberos island).
-5. Demote remaining domain controllers (or isolate if a Kerberos island is retained).
-6. Decommission virtual machines and retire forest objects in backup.
-7. Final provenance commit: forest retired on a given date per evidence packet.
-
-Exit gate (Gate G5 — Active Directory Retired):
-- Domain controllers decommissioned or explicitly retained as a documented Kerberos island.
-- Evidence packet committed to the repository and security information and event management.
-- No live production dependency on Active Directory authentication.
+**Gate G5 — AD Retired:** domain controllers decommissioned or retained as a documented Kerberos island; evidence packet in the repository and the SIEM; no live production dependency on AD authentication.
 
 ### Phase 6 — Steady State (week 49+)
 
-> **Calibration:** The week numbers are illustrative. Real programs with large estates run multi-year. Treat the timeline as a sequencing model, not a schedule.
-
-**Goal.** Operate the modernized environment under governed control.
-
-Steady state is the permanent post-modernization state. It has properties:
-
-- Assessments run on a regular cadence (Chapter 02).
-- Plans generated and authorized on change-driven and scheduled cadences (Chapter 03).
-- Drift detected and resolved within defined response expectations.
-- Evidence packets emitted per delivery.
-- Continuous monitoring feeds compliance reporting.
-- Changes flow via reviewed pull request.
-
-Exit criteria: none. Phase 6 continues indefinitely. Periodic retrospectives confirm the authoritative source matches organizational intent.
+**Goal.** Operate under governed control, indefinitely. Assessments, plans and drift checks run on cadence (Chapters 02–03), every delivery emits evidence, continuous monitoring feeds compliance reporting, and changes flow through reviewed pull requests. Periodic retrospectives confirm the authoritative source still matches organizational intent.
 
 ## The five parallel workstreams
-
-During Phases 2–4, five workstreams run in parallel with explicit coordination points:
 
 | Workstream | Lead | Chapter | Key artifacts |
 |------------|------|---------|---------------|
 | **Identity** | Identity Architect | 04 | Dynamic groups, administrative units |
-| **Policy** | Security Engineer | 05 | Device-management configs, Conditional Access policies, hybrid guest configuration |
-| **Services** | Network Engineer | 06 | DNS, DHCP, IP address management adapters |
-| **Compute** | Endpoint Admin + Server Engineer | 07 | Device enrollments, hybrid projections |
-| **Access** | Identity + Security jointly | 08 | SASE, certificate-based authentication, privileged access management, multi-factor authentication |
+| **Policy** | Security Engineer | 05 | Intune configurations, Conditional Access, Machine Configuration |
+| **Services** | Network Engineer | 06 | DNS, DHCP, IPAM adapters |
+| **Compute** | Endpoint Admin + Server Engineer | 07 | Device enrollments, Arc projections |
+| **Access** | Identity + Security jointly | 08 | ZTNA, CBA, PAM, MFA |
 
-Workstreams are not independent. Every week, a cross-workstream sync identifies the per-division blockers and resequences work where dependencies exist (for example, compute migration cannot proceed in a division until its Conditional Access policies are in place).
+A weekly cross-workstream sync resequences work around dependencies; for example, a division's devices cannot move until its Conditional Access policies are in place.
 
-## Gate criteria — mechanical, not subjective
+## Gates, rollback and authority
 
-Every gate criterion in this chapter is mechanically evaluable from the authoritative repository and drift-detection reports. Examples:
+Every gate criterion is evaluated from the repository and drift reports: "zero drift for fourteen days" is a filtered drift query, "valid attributes for every employee" is a query on the canonical user table, and "every PC cloud-joined" is a device-inventory query. The engine reports green, the steward concurs, and the pull request merges. A gate the engine cannot evaluate needs a better criterion.
 
-- “Zero drift for fourteen consecutive days” → drift report filtered by scope and date range.
-- “Every HR-listed employee has valid organizational attributes” → query against the canonical user table.
-- “Every user PC is cloud-joined” → device inventory query.
-
-Gates are never passed on executive signature alone. The engine reports green; the steward concurs; the pull request merges. A gate that the engine cannot evaluate is a gate that needs a better criterion.
-
-## Rollback triggers
-
-Every phase has defined rollback triggers — conditions that halt progress and revert to the prior phase’s state. Triggers are not subjective; they are thresholded.
+Rollback triggers are thresholds, not judgment calls:
 
 | Trigger | Scope | Action |
 |---------|-------|--------|
-| Drift above threshold for more than twenty-four hours | Phase-wide | Halt phase; investigate; no new deliveries until clean |
-| Conditional Access policy blocks more than a defined percentage of legitimate sign-ins | Enterprise | Revert policy; investigate; authorize replacement |
-| Drift detection itself fails to report | Platform | Escalate; halt all phase work |
-| Evidence packet fails signature validation | Any delivery | Halt; forensic investigation; restore from last known-good |
-| Service-level-agreement breach on priority-one finding | Any scope | Escalate; steward and sponsor notified |
+| Drift above threshold for more than 24 hours | Phase | Halt; no new deliveries until clean |
+| Conditional Access blocks more than a set share of legitimate sign-ins | Enterprise | Revert the policy; authorize a replacement |
+| Drift detection stops reporting | Platform | Escalate; halt all phase work |
+| Evidence packet fails signature validation | Delivery | Halt; investigate; restore last known-good |
+| SLA breach on a priority-one finding | Any | Notify steward and sponsor |
 
-Rollback is operationally expensive, so the gate design is meant to prevent the need for it. Pilot phases catch what would otherwise become rollback events later.
-
-## Decision authority at each gate
-
-Not every gate is a steward decision. The program defines decision authority per gate:
+Pilots exist to catch problems before they become rollbacks.
 
 | Gate | Authority | Backup |
 |------|-----------|--------|
@@ -209,45 +130,24 @@ Not every gate is a steward decision. The program defines decision authority per
 | G2 — Pilot Clean | Steward + Executive Sponsor | — |
 | G3 — Rollout Complete | Executive Sponsor + Steering Committee | — |
 | G4 — Legacy Quiet | Steward | Executive Sponsor |
-| G5 — Active Directory Retired | Executive Sponsor + CIO | — |
+| G5 — AD Retired | Executive Sponsor + CIO | — |
 | Division-level exit | Division Lead + Steward | — |
 
-Gate authority is recorded in the pull request that merges the gate decision.
+The pull request that merges a gate decision records who made it.
 
 ## Common failure modes
 
-Five failure modes recur. The structure is designed to pre-empt each:
+1. **Half-finished identity.** The HR connector breaks mid-rollout and the program stalls. *Mitigation:* G1 requires HR provisioning before rollout.
+2. **Unscoped Conditional Access.** A broad MFA policy blocks critical edge-case sign-ins. *Mitigation:* attribute scoping and pilot groups first.
+3. **DNS left for "phase 2."** Identity moves, DNS stays AD-integrated, and AD can never retire. *Mitigation:* DNS, DHCP and IPAM move together.
+4. **Permanent hybrid join.** *Mitigation:* treat hybrid join as a transition state and monitor time-in-state.
+5. **Evidence-less migration.** Ad-hoc changes leave no provenance. *Mitigation:* plan-based delivery.
 
-1. **Half-finished identity.** Pattern: rollout begins, a portion of users have organizational attributes, the HR connector breaks, the project stalls. Mitigation: Gate G1 requires the HR connector operational before rollout.
-2. **Unscoped Conditional Access policy.** Pattern: broad “require multi-factor authentication” policy deployed; edge cases block operationally critical sign-ins. Mitigation: attribute-scoped and pilot-group-first pattern.
-3. **DNS left for “phase 2.”** Pattern: identity moves, DNS stays Active Directory-integrated, Active Directory cannot actually retire. Mitigation: DNS, DHCP, and IP address management migrate together.
-4. **Hybrid-joined permanence.** Pattern: devices become hybrid-joined and stay that way indefinitely. Mitigation: hybrid join is a transition state, with drift detection monitoring of time-in-state.
-5. **Evidence-less migration.** Pattern: changes happen via ad-hoc administrative actions; an assessment cannot produce provenance. Mitigation: plan-based delivery — every change has provenance by construction.
+## Cadence and finish line
 
-## The week-by-week cadence
+Weekly: Monday status, Tuesday dependency sync, Wednesday plan reviews merge, Thursday off-peak deliveries, Friday evidence and drift review. Monthly: gate reviews against the schedule. Two consecutive red weeks escalate to the sponsor.
 
-For the steering committee, the cadence is:
-
-- **Monday** — workstream leads update status (green/yellow/red).
-- **Tuesday** — cross-workstream dependency sync.
-- **Wednesday** — changes and plan reviews merge to the repository.
-- **Thursday** — plan deliveries scheduled (typically off-peak).
-- **Friday** — evidence packet and drift-detection review; retrospective on the week.
-
-Monthly: gate-criterion reviews against the phase schedule. Red status across two consecutive weeks escalates to the executive sponsor.
-
-## What finishing looks like
-
-In week forty-nine (Phase 6 steady state), the program meeting looks like this:
-
-- Drift-detection report: zero findings.
-- Nightly plan run: zero actions.
-- Evidence packets: fully signed, shipped to security information and event management and continuous monitoring.
-- Tickets: routine operational only; no priority-one findings.
-- Audit posture: authorization package refreshed; continuous-monitoring feed live.
-- Authoritative source: stable, with changes flowing through reviewed pull requests.
-
-The program is not “done” — steady state is the operational mode — but the modernization is complete. The organization runs governed; Active Directory is gone, or reduced to documented Kerberos islands with end-of-life dates; the authoritative source is the operational truth.
+At steady state, the program meeting sees zero drift findings, zero actions from the nightly plan run, signed evidence flowing to the SIEM and continuous monitoring, a refreshed authorization package, and only routine tickets. The program is never "done," but the modernization is: AD is gone or reduced to documented Kerberos islands with end-of-life dates.
 
 
 ## Key takeaways
