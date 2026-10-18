@@ -86,9 +86,9 @@ The organizing principle of the series — what the platform vendor provides ver
 | [10](book-10-certificate-authority.md) | Certificate-Authority Dependency | The layer the other steps depend on but rarely name |
 | [11](book-11-platform-question.md) | The Platform Question | Database consolidation toward SSOT |
 
-## Relationship to attribute-driven structure
+## Relationship to identity governance
 
-This series consumes the organizational-attribute model. Dynamic security groups whose membership rules reference organizational attributes drive SQL Server access without manual database-administrator provisioning. The attribute infrastructure must precede the dynamic-group access work described here.
+Dynamic Entra security groups grant SQL Server access based on HR-sourced user attributes, so no database administrator has to provision access by hand. The HR-to-directory attribute feed, its write protection, and the rule testing described in Book 07 must be in place before the dynamic-group access work starts.
 
 ## Audience
 

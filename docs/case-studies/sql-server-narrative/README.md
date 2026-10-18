@@ -54,9 +54,9 @@ No domain controller in the authentication path. Conditional Access evaluates id
 | [10](book-10-certificate-authority.md) | Certificate-Authority Dependency | The layer the other steps depend on but rarely name |
 | [11](book-11-platform-question.md) | The Platform Question | Database consolidation toward SSOT |
 
-## Relationship to attribute-driven structure
+## Relationship to identity governance
 
-This transformation consumes the organizational-attribute model. Dynamic security groups whose membership rules reference organizational attributes drive SQL Server access without manual database-administrator provisioning. The attribute infrastructure must precede the dynamic-group access work.
+Dynamic Entra security groups grant SQL Server access based on HR-sourced user attributes, so no database administrator has to provision access by hand. The HR-to-directory attribute feed, its write protection, and the rule testing described in [Book 07](Book_07.md) must be in place before the dynamic-group access work starts.
 
 ---
 

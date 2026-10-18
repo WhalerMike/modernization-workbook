@@ -89,21 +89,16 @@ This narrative is the explanatory foundation for several governance decisions:
  catalog in which the SQL Server authentication transformation is entry #7.
 - **`the authentication audit script`** — the engine-layer discovery baseline.
 
-## Relationship to the organizational-attribute model
+## Relationship to identity governance
 
-This series is a sibling to the the organizational-attribute model
-reading sequence and is best read alongside it. the organizational-attribute model builds the
-organizational-identity substrate — the `extensionAttribute` lineage carried on
-Entra ID user objects. This series consumes that substrate: Book 07 describes
-dynamic Entra security groups whose membership rules reference the organizational-attribute model
-attributes to drive SQL Server access without manual DBA provisioning. The
-the organizational-attribute model attribute infrastructure must precede the dynamic-group access work
-described here.
-
-The seams where the two series meet — dynamic-group access, DBA delegation,
-migration sequencing, the Conditional Access perimeter, and closure-and-drift —
-are documented in full, with a recommended cross-series reading order, in
-the organizational-attribute model × SQL Server — The Integration Bridge.
+Book 07 depends on identity governance outside SQL Server. The dynamic Entra
+security groups that grant SQL Server access read user attributes such as
+department, company, job title, and HR-sourced extension or directory extension
+attributes. Those attributes must come from the HR system of record through
+automated provisioning, and only that provisioning account may write them,
+before any dynamic group grants production access. Book 07 also relies on the
+tenant's administrative-unit, Privileged Identity Management, and access-review
+configuration for delegation, just-in-time privilege, and recertification.
 
 ## Audience
 
