@@ -140,5 +140,5 @@ should expect, not a specific engagement outcome.
 ## Related documents
 
 - [Whitepaper — Modernization Governance](../whitepapers/modernization-governance-whitepaper.md)
-- [Modernization Spec — Identity](../modernization-specs/identity/identity.md)
+- [Modernization Spec — Identity](../modernization-specs/identity.md)
 - the program decision: Zero Trust Identity

@@ -77,17 +77,17 @@ The organizing principle of the series — what the platform vendor provides ver
 | Book | Title | Focus |
 |------|-------|-------|
 | [—](Applicability.md) | Applicability | Read first: where the series applies as written, alternatives, and fallback protections |
-| [01](book-01-the-inheritance.md) | The Authentication Inheritance Problem | What Windows Authentication actually is, and why it must end |
-| [02](book-02-the-estate.md) | The Estate Itself | Assess and consolidate before you touch authentication |
-| [03](book-03-authentication-audit.md) | The Authentication Audit | What is actually using Windows Authentication, SQL Authentication, and NTLM |
-| [04](book-04-identity-bridge.md) | The Identity Bridge | Hybrid-management attachment and an Entra identity for the engine |
-| [05](book-05-login-migration.md) | Login Migration | Parallel-run of Windows and cloud-identity logins |
-| [06](book-06-ntlm-elimination.md) | NTLM Elimination | Silent fallback, service principal name repair, and protocol restriction |
-| [07](book-07-access-control.md) | Access Control | Dynamic groups and administrative-unit delegation |
-| [08](book-08-upstream-chain.md) | The Upstream Application Chain | Applications that depend on Windows Authentication or LDAP |
-| [09](book-09-steady-state.md) | Transformed Steady State | The destination and the milestone |
-| [10](book-10-certificate-authority.md) | Certificate-Authority Dependency | The layer the other steps depend on but rarely name |
-| [11](book-11-platform-question.md) | Epilogue — The Platform Question | Database consolidation toward SSOT, after the transformation |
+| [01](Book_01.md) | The Authentication Inheritance Problem | What Windows Authentication actually is, and why it must end |
+| [02](Book_02.md) | The Estate Itself | Assess and consolidate before you touch authentication |
+| [03](Book_03.md) | The Authentication Audit | What is actually using Windows Authentication, SQL Authentication, and NTLM |
+| [04](Book_04.md) | The Identity Bridge | Hybrid-management attachment and an Entra identity for the engine |
+| [05](Book_05.md) | Login Migration | Parallel-run of Windows and cloud-identity logins |
+| [06](Book_06.md) | NTLM Elimination | Silent fallback, service principal name repair, and protocol restriction |
+| [07](Book_07.md) | Access Control | Dynamic groups and administrative-unit delegation |
+| [08](Book_08.md) | The Upstream Application Chain | Applications that depend on Windows Authentication or LDAP |
+| [09](Book_09.md) | Transformed Steady State | The destination and the milestone |
+| [10](Book_10.md) | Certificate-Authority Dependency | The layer the other steps depend on but rarely name |
+| [11](Book_11.md) | Epilogue — The Platform Question | Database consolidation toward SSOT, after the transformation |
 | [A](Appendix_A_Requirements_Mapping.md) | Appendix A — Requirements Mapping | Each book's controls and evidence mapped to M-22-09, CISA ZTMM v2, SP 800-207 and SP 800-53 Rev. 5 (compliance-enabling, not a compliance claim) |
 | [B](Appendix_B_ATO_Kit.md) | Appendix B — Security-Approval (ATO) Kit | Boundary diagram, outbound endpoints, FedRAMP audit scope, Graph permission justification, token-folder mitigation, break-glass and licensing |
 

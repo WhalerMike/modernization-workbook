@@ -606,7 +606,7 @@ data planes.
 | Figure 9: Act 4: the five principles of application-aware |
 | modernization, arranged around a central hub reading 'Separated: |
 | Truth from Enforcement' --- Single Source of Truth, Application-Aware |
-| Networking, Token-Based Identity, Active Governance, and Reduce |
+| Networking, Token-Based Identity, Control-Plane Governance, and Reduce |
 | Synchronous Round-Trips |
 +-----------------------------------------------------------------------+
 
@@ -785,7 +785,7 @@ direction is correct.
 | |
 | Figure 12: FedRAMP 20x timeline from Consolidated Rules publication |
 | through the Class A/B/C pipeline openings to the January 2027 |
-| mandatory deadline, alongside how active governance already aligns to |
+| mandatory deadline, alongside how control-plane governance already aligns to |
 | continuous, machine-readable evidence |
 +-----------------------------------------------------------------------+
 
@@ -842,7 +842,7 @@ that authenticate, route, resolve, and store at runtime.
 | ![](../images/whitepapers/rId94.png){width="5.833333333333333in" |
 | height="3.111111111111111in"} |
 | |
-| Figure 13: Active Governance: control plane and actuation ladder --- |
+| Figure 13: Control-plane governance and the actuation ladder ---   |
 | a governance control plane over five data planes (Entra ID, |
 | SD-WAN/SASE, InfoBlox DDI, MDM/EDR, SIEM), plus the CISA ZT maturity |
 | progression from Traditional through Optimal with the federal L3 |
@@ -1157,7 +1157,7 @@ earlier framings were corrected to match canon.
  CBA replaces Kerberos the program decision elimination + CBA +
  Cloud Kerberos trust.
 
- Active Governance; the program decision §3--4 Verbatim; the keystone
+ Control-plane governance; the program decision §3--4 Verbatim; the keystone
  L0--L4 ladder; federal of the way forward.
  L3 ceiling 
 

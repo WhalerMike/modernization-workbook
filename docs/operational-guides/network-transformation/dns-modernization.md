@@ -164,7 +164,7 @@ This document covers the complete lifecycle of DNS modernization across the foll
 
 2\. AD-Integrated DNS Landscape Decomposition
 
-Before migration can proceed, the existing AD DNS landscape must be decomposed into discrete governance facets. Each facet has distinct migration characteristics, risk profiles, and target-state equivalents.
+Before migration can proceed, the existing AD DNS landscape must be broken down into its separate components. Each component has distinct migration characteristics, risk profiles, and target-state equivalents.
 
 2.1 AD-Integrated Zones
 
@@ -218,7 +218,7 @@ Reverse lookup zones map IP addresses to hostnames via PTR records. In enterpris
 
 DNS Security Extensions (DNSSEC) provide authentication of DNS responses through digital signatures. AD-integrated DNSSEC uses a Key Master domain controller role for key generation and management. Trust anchors are distributed via AD, and key rollover follows defined schedules for Zone Signing Keys (ZSK) and Key Signing Keys (KSK).
 
-2.10 Governance Facet Migration Matrix
+2.10 Component Migration Matrix
 
   --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
   **AD DNS Component**            **Azure/Hybrid Equivalent**                                         **Migration Approach**                                                  **Risk Level**

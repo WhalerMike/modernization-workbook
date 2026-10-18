@@ -187,7 +187,7 @@ The following matrix maps every FMP assessment domain against the Microsoft tool
 | **Trust Mapping** | Direction/type analysis, SID filtering status, selective authentication, cross-forest enumeration. | None. Defender for Identity detects some trust-related attacks but doesn't inventory/analyze trusts. \* | \*None\*\* C | omplete gap. |
 | **ACL/Delegation Analysis** | OU-level delegation audit, AdminSDHolder capture, dangerous permission patterns. | Defender for Identity --- detects some dangerous delegations. No comprehensive ACL export or analysis tool. | **Partial** | Security alerting exists; comprehensive delegation audit does not. |
 | **Cross-Domain Correlation** | Correlates findings across all 9 domains above into a unified assessment manifest. | None. Microsoft's tools are completely siloed. GPO Analytics doesn't know about Azure Migrate findings. Defender for Identity doesn't correlate with DNS assessment. \*\*N | one\*\* Com | plete gap. This is FMP's primary unique value. |
-| **Governance Pipeline Integration** | Assessment → JSON artifacts → Gitea commit → drift detection → remediation tracking → SLA enforcement. | None. Each tool has its own portal/dashboard. No Microsoft tool produces governance artifacts for a Git pipeline. | **None** | Complete gap. This is the core of FMP Governance OS. |
+| **Governance Pipeline Integration** | Assessment → JSON artifacts → Gitea commit → drift detection → remediation tracking → SLA enforcement. | None. Each tool has its own portal/dashboard. No Microsoft tool produces governance artifacts for a Git pipeline. | **None** | Complete gap. This is the core of the FMP governance pipeline. |
 | **Drift Detection & Continuous Monitoring** | Scheduled re-assessment with diff against baseline, Gitea-tracked changes, issue creation on drift. | Defender for Identity (continuous security monitoring). Entra Connect Health (sync monitoring). Neither provides governance drift detection against a canonical desired state. | **Partial** | Security monitoring exists; governance drift detection does not. |
 
 ## 4. The Gap Analysis Summary
@@ -258,7 +258,7 @@ FMP operates as an orchestration layer that sits above Microsoft's native tools,
 | **Layer** | **Components** | **Role** |
 |:---------|:---------------------|:-----------------------------|
 | **Top Layer: Governance Outcomes** | Compliance Dashboard, Migration Readiness Score, Drift Reports, Remediation Status, Owner Accountability | The actionable intelligence that governance stakeholders consume. Evidence for ATO, compliance reporting, executive visibility. |
-| **Middle Layer: FMP Governance OS** | Assessment Module, Canonical Artifacts, Drift Detection, Remediation Pipeline, SLA Enforcement | The orchestration engine that transforms raw tool output into governance-grade artifacts with provenance, version control, and accountability. |
+| **Middle Layer: FMP Governance Pipeline** | Assessment Module, Canonical Artifacts, Drift Detection, Remediation Pipeline, SLA Enforcement | The orchestration engine that transforms raw tool output into governance-grade artifacts with provenance, version control, and accountability. |
 | **Bottom Layer: Microsoft Native Tools** | Azure Migrate, Group Policy Analytics, Defender for Identity, Entra Connect, SCT, ADMT | Point solutions that produce raw technical data. Excellent at their individual domains but disconnected from each other. |
 
 ::: {.callout-tip title="The Metaphor"}
@@ -316,7 +316,7 @@ Strategic recommendations for each assessment domain --- whether FMP should cons
 
 |  |
 |:-----------------------------------------------------------|
-| "Microsoft provides 12 assessment tools that each solve a piece of the AD modernization puzzle. But no organization can build a governance program from 12 disconnected dashboards. FMP Governance OS is the canonical layer that ties them together --- consuming their outputs, tracking drift against desired state, enforcing SLAs, and giving every governance artifact a machine-trackable provenance chain. We're not competing with Microsoft's tools. We're making them useful for governance." |
+| "Microsoft provides 12 assessment tools that each solve a piece of the AD modernization puzzle. But no organization can build a governance program from 12 disconnected dashboards. The FMP governance pipeline is the canonical layer that ties them together --- consuming their outputs, tracking drift against desired state, enforcing SLAs, and giving every governance artifact a machine-trackable provenance chain. We're not competing with Microsoft's tools. We're making them useful for governance." |
 
 ### 8.2 For Federal Customers
 
@@ -443,7 +443,7 @@ The following reference matrix maps each Microsoft tool against every FMP assess
 | Entra Health Monitoring | Included with Entra ID | \$0 (preview) P | review; pricing may change at GA |
 | Azure Policy / Arc | Free (basic) / Arc license | \$0 (basic) / \~\$6/server/month (Arc-enabled servers) Arc | enrollment required for on-premises servers |
 | PowerShell AD / RSAT | Free | \$0 I | ncluded with Windows Server; engineering time not included |
-| **FMP Governance OS** | **Open Source (Apache-2.0)** | **\$0** | **Free. Requires PowerShell, RSAT, and Gitea (also free/open-source). All governance pipeline capabilities included.** |
+| **FMP governance pipeline** | **Open Source (Apache-2.0)** | **\$0** | **Free. Requires PowerShell, RSAT, and Gitea (also free/open-source). All governance pipeline capabilities included.** |
 
 ::: {.callout-note title="Cost Analysis"}
 To achieve equivalent assessment coverage using Microsoft tools alone (without FMP), an organization would need: Intune licensing + Entra ID P1/P2 + Defender for Identity + Azure Arc --- totaling approximately **\$25--\$57/user/month**, while still leaving governance pipeline, cross-correlation, and drift detection as custom development. FMP provides the governance layer at **\$0 license cost**.
@@ -451,7 +451,7 @@ To achieve equivalent assessment coverage using Microsoft tools alone (without F
 
 ## Appendix C --- Companion Document Cross-Reference
 
-This document is part of the FMP Governance OS documentation corpus. The following table maps this gap analysis to companion documents in the repository:
+This document is part of the FMP documentation corpus. The following table maps this gap analysis to companion documents in the repository:
 
 | **Companion Document** | **Relationship to This Document** | **Key Cross-References** |
 |:----------|:--------------------------|:----------------------|
@@ -467,4 +467,4 @@ This document is part of the FMP Governance OS documentation corpus. The followi
 
 FMP vs. Microsoft Native Tools --- AD Assessment and Modernization Gap Analysis \| Version 1.1 \| July 2026\
 Classification: Public \| Boundary: GCC-Moderate\
-FMP Governance OS --- Architecture Team \| github.com/WhalerMike/modernization-workbook
+FMP Architecture Team \| github.com/WhalerMike/modernization-workbook

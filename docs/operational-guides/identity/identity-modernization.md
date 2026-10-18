@@ -145,7 +145,7 @@ This guide is one document within a larger the Federal Modernization Program Can
 
 2\. AD Identity Landscape Decomposition
 
-Before migrating any identity object to Entra ID, the existing AD identity model must be decomposed into its constituent governance facets. Each facet represents a distinct object class or governance construct with its own migration considerations, attribute mappings, and Entra ID equivalents. This section provides the decomposition framework.
+Before migrating any identity object to Entra ID, the existing AD identity model must be broken down into its component object types. Each component is a distinct object class or administrative construct with its own migration considerations, attribute mappings, and Entra ID equivalents. This section provides the decomposition framework.
 
 2.1 User Objects
 

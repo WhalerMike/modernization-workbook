@@ -177,9 +177,9 @@ loop — and removes everything else.
 - Honest limits remain around runtime coverage and federation.
 
 ::: {.callout-tip}
-## Continue the series
+## End of the series
 
-Next: [Chapter 9 — The Governance Operating System](../ch09-governance-operating-system/index.md) — the synthesis that ties the eight prior chapters into a single operating-system framing.
+This is the final chapter. Return to the [series overview](../index.md) for the reading paths.
 :::
 
 ## Related documents

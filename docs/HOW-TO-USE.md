@@ -39,7 +39,7 @@ Key diagrams use a white-background illustrated style and are stored under `docs
 
 ## Provenance
 
-This workbook is a cleaned derivative of prior internal work. Migration scaffolding files (MIGRATION-*.md, STATUS.md) retain source references for traceability and are excluded from the public site build.
+This workbook is a cleaned derivative of prior internal work. The migration from the source material is complete; the remaining status file (STATUS.md) is excluded from the public site build.
 
 ---
 

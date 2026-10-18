@@ -28,7 +28,7 @@ The Federal Modernization Program PKI Modernization Guide
 
 **ADCS to Cloud PKI and Entra CBA**
 
-**Series:** the Federal Modernization Program Governance OS --- Identity & Certificate Services
+**Series:** the Federal Modernization Program --- Identity & Certificate Services
 
 **Classification:** Controlled \| **Boundary:** GCC-Moderate
 
@@ -98,7 +98,7 @@ Table of Contents
 
 1\. Purpose and Scope
 
-This guide provides a comprehensive, phased methodology for migrating on-premises Active Directory Certificate Services (ADCS) to a cloud-native Public Key Infrastructure (PKI) using Microsoft Cloud PKI, Intune certificate deployment (SCEP/PKCS), and Microsoft Entra ID Certificate-Based Authentication (CBA). It is part of the Federal Modernization Program Governance OS document corpus and is designed to operate within the GCC-Moderate boundary.
+This guide provides a comprehensive, phased methodology for migrating on-premises Active Directory Certificate Services (ADCS) to a cloud-native Public Key Infrastructure (PKI) using Microsoft Cloud PKI, Intune certificate deployment (SCEP/PKCS), and Microsoft Entra ID Certificate-Based Authentication (CBA). It is part of the Federal Modernization Program document corpus and is designed to operate within the GCC-Moderate boundary.
 
 1.1 Scope Definition
 
@@ -134,7 +134,7 @@ This document covers the following domains:
 
 1.3 Companion Document Cross-References
 
-This guide operates in conjunction with the following the Federal Modernization Program Governance OS documents:
+This guide operates in conjunction with the following the Federal Modernization Program documents:
 
 - **AD Interaction Guide:** The ADCS assessment performed in this guide feeds the broader AD assessment framework. Certificate template and CA inventory data flows into the AD Interaction Guide\'s assessment outputs.
 
@@ -1177,7 +1177,7 @@ For ADCS infrastructure retained during the BRIDGE period:
   ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
   **Section**                            **Related the Federal Modernization Program Document**                          **Relationship**
   -------------------------------------- -------------------------------------------------- ----------------------------------------------------------------------------------------------------------------------------------------
-  Section 1 --- Purpose and Scope        the Federal Modernization Program Governance OS Overview                        This guide is part of the Governance OS corpus; scope aligns with overall modernization strategy.
+  Section 1 --- Purpose and Scope        the Federal Modernization Program Overview                        This guide is part of the program corpus; scope aligns with overall modernization strategy.
 
   Section 2 --- ADCS Baseline            AD Interaction Guide                               ADCS assessment outputs feed the AD Interaction Guide\'s infrastructure inventory. CA server data populates the AD topology map.
 
@@ -1381,12 +1381,12 @@ Follow this checklist in order. Each step includes the verification command or p
 +----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 | **Document Version Control**                                                                                                                                                                                                                             |
 |                                                                                                                                                                                                                                                          |
-| This document is maintained in the Federal Modernization Program Governance OS repository at https://github.com/WhalerMike/modernization-workbook. All changes are tracked via Git version control. For questions, corrections, or contributions, submit a pull request or issue to the repository. |
+| This document is maintained in the Federal Modernization Program repository at https://github.com/WhalerMike/modernization-workbook. All changes are tracked via Git version control. For questions, corrections, or contributions, submit a pull request or issue to the repository. |
 +----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 
 The Federal Modernization Program PKI Modernization Guide --- Version 1.0 --- April 2026\
 Classification: Controlled --- Boundary: GCC-Moderate\
-The Federal Modernization Program Governance OS --- https://github.com/WhalerMike/modernization-workbook
+The Federal Modernization Program --- https://github.com/WhalerMike/modernization-workbook
 
 ---
 

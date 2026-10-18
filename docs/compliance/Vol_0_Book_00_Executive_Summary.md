@@ -151,7 +151,7 @@ This series comprises twenty-three companion implementation guides for the Feder
 
 **Vol I Books 05–06 and Vol II — Modernization Tracks** — closing **34 distinct NIST SP 800-53 Rev 5 controls** across the original six tracks:
 
-- **Vol I Book 05** — Network and Identity Modernization (Entra ID, ZTNA, Active Governance)
+- **Vol I Book 05** — Network and Identity Modernization (Entra ID, ZTNA, Drift Reconciliation)
 - **Vol I Book 06** — Federal Telecommunications Modernization (SD-WAN, SASE)
 - **Vol I Book 07** — Network Enforcement Substrate *(extension: customer-edge SC-7/SC-8/IA-3 via the NIAP/STIG/FIPS/APL gate)*
 - **Vol II Books 01–02** — SQL Server Authentication Modernization and Implementation Guide
@@ -201,7 +201,7 @@ The central finding across all six documents is the same: **the compliance debt 
 | Vol I Book 02 | Compliance — Network Access Control: 802.1X and Device Identity | 802.1X EAP-TLS · RADIUS/CoA · DHCP fingerprinting · NAC policy tiers | 802.1X + RADIUS + Intune SCEP |
 | Vol I Book 03 | Compliance — Certificates & Tokens: Cryptographic Identity | PKI lifecycle · ACME automation · OAuth 2.0/OIDC · CBA · workload identity | Entra ID CBA + ACME + managed identity |
 | Vol I Book 04 | Compliance — OPM HRIT and the Identity & Organizational SSOT | HR system of record · joiner/mover/leaver lifecycle · org hierarchy as queryable truth · HR-driven provisioning | Oracle HCM Cloud + Entra inbound provisioning |
-| Vol I Book 05 | Compliance — Network Modernization | Identity · Governance · Active Directory modernization | Entra ID · ZTNA · Active Governance |
+| Vol I Book 05 | Compliance — Network Modernization | Identity · Governance · Active Directory modernization | Entra ID · ZTNA · Drift Reconciliation |
 | Vol I Book 06 | Compliance — Federal Telecommunications Modernization | Amazon Connect · Teams Phone · SD-WAN · SASE | SD-WAN / SASE stack |
 | Vol I Book 07 | Compliance — Network Enforcement Substrate | Customer-owned NGFW/edge · distributed policy enforcement · accreditation gate | Cisco · Palo Alto · Juniper |
 | Vol II Book 01 | Compliance — SQL Server Authentication Modernization | SQL credential elimination · Arc Managed Identity · NTLM elimination | Azure Arc + Entra ID for SQL |
@@ -1033,9 +1033,9 @@ authorization they assert is correct") resolves here.
 
 ---
 
-# Vol I Book 05 — Network and Identity Modernization: Entra ID + ZTNA + Active Governance Closes 13 NIST Controls
+# Vol I Book 05 — Network and Identity Modernization: Entra ID + ZTNA + Drift Reconciliation Closes 13 NIST Controls
 
-> **"Active Governance" is an architectural pattern, not a product.** Wherever it appears in this document's technology columns, it names a control-plane role: continuously observe actual state, compare it to desired state, and emit machine-readable reconciliation records. Any conformance/reconciliation engine that satisfies that contract fills the role; no product selection is implied.
+> **"Drift reconciliation" is an architectural pattern, not a product.** Wherever it appears in this document's technology columns, it names a control-plane role: continuously observe actual state, compare it to desired state, and emit machine-readable reconciliation records. Any conformance/reconciliation engine that satisfies that contract fills the role; no product selection is implied.
 
 ## What This Document Addresses
 
@@ -1046,11 +1046,11 @@ The four principles this document establishes are:
 1. **Restore a single source of truth** — collapse twelve regional AD silos into one HR-derived authoritative identity model
 2. **Deploy application-aware networking** — enforce policy at the application layer, not the IP/port layer
 3. **Move from session-based to token-based identity** — replace Kerberos with Entra ID JWT tokens that carry cryptographic proof of authorization
-4. **Implement active governance** — a control plane that holds desired state, observes actual state, classifies drift, and reconciles toward intent while generating machine-readable evidence continuously
+4. **Implement drift reconciliation** — a control plane that holds desired state, observes actual state, classifies drift, and reconciles toward intent while generating machine-readable evidence continuously
 
 ## NIST Control Closure — Vol I Book 05
 
-| NIST Control | Control Title | Technology | Without Modernization | With Entra ID + ZTNA + Active Governance | Authority |
+| NIST Control | Control Title | Technology | Without Modernization | With Entra ID + ZTNA + Drift Reconciliation | Authority |
 |---|---|---|---|---|---|
 | **IA-2 / IA-2(1)** | Identification and Authentication / Multi-factor Authentication to Privileged Accounts | Entra ID Conditional Access | Kerberos-based authentication; MFA optional and inconsistently applied; NTLM fallback generates opaque, unauditable authentication events | Entra ID Conditional Access enforces phishing-resistant MFA (CBA/FIDO2) for every access request; NTLM eliminated; every authentication event generates a structured log | OMB M-22-09; BOD 25-01 |
 | **IA-3** | Device Identification and Authentication | Intune MDM + Conditional Access | Device identity derived from AD computer object; no compliance posture check; non-compliant devices indistinguishable from compliant | Intune MDM posture fed to Conditional Access as input to every access decision; non-compliant devices denied access regardless of user credential validity | OMB M-22-09 §3; CISA ZTMM Devices pillar |
@@ -1059,14 +1059,14 @@ The four principles this document establishes are:
 | **AC-3** | Access Enforcement | ZTNA — Per-session Policy | Access rights encoded in regional OU structure; no per-session verification; once authenticated, access determined by static group membership | ZTNA enforces per-session, per-application access based on real-time identity, device posture, and data classification; no standing access; least-privilege enforced per request | NIST SP 800-207; OMB M-22-09 |
 | **AC-4** | Information Flow Enforcement | SASE / ZTNA Stack | Network perimeter as primary enforcement boundary; application identity not verified at network layer | SASE/ZTNA stack enforces application-layer policy; user identity, device posture, application, and data type all present at enforcement point | NIST SP 800-207; TIC 3.0 Use Cases E/F |
 | **AC-17** | Remote Access | ZTNA — Micro-tunnels | VPN extends network trust to remote users; compromised endpoint inside VPN has same access as trusted administrator | ZTNA replaces VPN; per-application micro-tunnels established per-session; compromised endpoint gains access only to the specific application authorized for that session | OMB M-22-09 §4; CISA ZTMM Networks pillar |
-| **CM-8** | System Component Inventory | Active Governance Control Plane | Device inventory derived from AD computer objects; SDN environments not covered; four environments with no unified view | Active Governance control plane maintains authoritative device inventory across all four environments; IPAM integration adds IP-to-device-to-user linkage | NIST SP 800-53 Rev 5 CM-8; Federal Data Strategy |
+| **CM-8** | System Component Inventory | Drift-Reconciliation Control Plane | Device inventory derived from AD computer objects; SDN environments not covered; four environments with no unified view | drift-reconciliation control plane maintains authoritative device inventory across all four environments; IPAM integration adds IP-to-device-to-user linkage | NIST SP 800-53 Rev 5 CM-8; Federal Data Strategy |
 | **SI-12** | Information Management and Retention | Entra ID OPM HRIT + SSOT | No authoritative data lineage; regional databases with incompatible schemas; no cross-region reconciliation | Single source of truth with documented data lineage from authoritative source to downstream consumer; Evidence Act compliance achieved | Evidence Act (2018); NIST SP 800-53 Rev 5 SI-12 |
 | **AU-2 / AU-12** | Event Logging / Audit Record Generation | Entra ID + ZTNA Session Logs | Authentication events opaque (NTLM); application-layer actions not captured; no structured audit trail linking user to action to data | Every Entra ID authentication event structured and queryable; every ZTNA session record includes user, device, application, action, data type, timestamp; machine-readable | NIST SP 800-53 Rev 5 AU-2, AU-12; FedRAMP 20x KSIs |
-| **CA-7** | Continuous Monitoring | Active Governance Control Plane | Point-in-time assessments; no automated detection of configuration drift from authorized baseline | Active Governance observes actual state continuously, classifies deviation as drift, and generates machine-readable reconciliation records; desired-vs-actual gap is the ConMon artifact | NIST SP 800-37 Rev 2 CA-7; FedRAMP 20x Consolidated Rules |
+| **CA-7** | Continuous Monitoring | Drift-Reconciliation Control Plane | Point-in-time assessments; no automated detection of configuration drift from authorized baseline | The drift-reconciliation control plane observes actual state continuously, classifies deviation as drift, and generates machine-readable reconciliation records; desired-vs-actual gap is the ConMon artifact | NIST SP 800-37 Rev 2 CA-7; FedRAMP 20x Consolidated Rules |
 | **SC-7** | Boundary Protection | SASE / ZTNA + DNS | Network perimeter as boundary; application-layer exfiltration undetected | Application-aware boundary enforcement; SASE inspects all egress traffic at application layer; DNS-layer boundary enforcement via RPZ | NIST SP 800-207; TIC 3.0 |
-| **SC-20 / SC-21** | Secure Name/Address Resolution Service (Authoritative Source / Recursive or Caching Resolver) | Active Governance + InfoBlox | DNS security dependent on per-environment tools with no unified policy | Unified DNS security enforced via governance control plane; DNSSEC and RPZ applied consistently across all environments | NIST SP 800-53 Rev 5 SC-20, SC-21 |
+| **SC-20 / SC-21** | Secure Name/Address Resolution Service (Authoritative Source / Recursive or Caching Resolver) | Drift Reconciliation + InfoBlox | DNS security dependent on per-environment tools with no unified policy | Unified DNS security enforced via governance control plane; DNSSEC and RPZ applied consistently across all environments | NIST SP 800-53 Rev 5 SC-20, SC-21 |
 
-: Vol I Book 05 — NIST SP 800-53 Rev 5 Control Closure: Entra ID + ZTNA + Active Governance {.striped .hover}
+: Vol I Book 05 — NIST SP 800-53 Rev 5 Control Closure: Entra ID + ZTNA + Drift Reconciliation {.striped .hover}
 
 **Controls closed: 13** (IA-2/IA-2(1), IA-3, IA-5, AC-2, AC-3, AC-4, AC-17, CM-8, SI-12, AU-2/AU-12, CA-7, SC-7, SC-20/SC-21)
 
@@ -1287,11 +1287,11 @@ reconciled to CM-8).
 | Control Family | Technology | Controls Closed | Implementing Track |
 |---|---|---|---|
 | **SC** — System and Communications Protection | InfoBlox DNSSEC, RPZ, PKI; SD-WAN IPsec; SASE SWG; TDE; QoS | SC-5, SC-7, SC-7(7), SC-8, SC-8(1), SC-20, SC-20(1), SC-21, SC-22, SC-28 | Vol I Books 01, 05, 06 and Vol II Book 03 |
-| **CM** — Configuration Management | InfoBlox IPAM; Active Governance; SQL estate inventory | CM-2, CM-6, CM-8, CM-8(1) | Vol I Books 01, 05 and Vol II Books 01–02 |
+| **CM** — Configuration Management | InfoBlox IPAM; Drift Reconciliation; SQL estate inventory | CM-2, CM-6, CM-8, CM-8(1) | Vol I Books 01, 05 and Vol II Books 01–02 |
 | **AU** — Audit and Accountability | InfoBlox Syslog; SASE Session Logs; Entra ID Logs; Geo-replicated audit | AU-2, AU-9, AU-12 | Vol I Books 01, 05, 06 and Vol II |
 | **IA** — Identification and Authentication | InfoBlox PKI / SCEP; Entra ID Conditional Access; Intune MDM; Arc + Entra for SQL | IA-2, IA-2(1), IA-3, IA-5, IA-5(2), IA-8, IA-9 | Vol I Books 01, 05 and Vol II Books 01–02 |
 | **AC** — Access Control | SASE CASB; ZTNA; Entra ID OPM HRIT; SQL Entra groups | AC-2, AC-3, AC-4, AC-17 | Vol I Books 05–06 and Vol II Books 01–02 |
-| **CA** — Assessment, Authorization, and Monitoring | SASE; Active Governance; SQL compliance record; Entra cross-system token | CA-3, CA-7 | Vol I Books 05–06 and Vol II |
+| **CA** — Assessment, Authorization, and Monitoring | SASE; Drift Reconciliation; SQL compliance record; Entra cross-system token | CA-3, CA-7 | Vol I Books 05–06 and Vol II |
 | **CP** — Contingency Planning | DR replica + backup; DR runbook | CP-9, CP-10 | Vol II Book 03 |
 | **IR** — Incident Response | InfoBlox RPZ + SIEM Integration | IR-4, IR-5 | Vol I Book 01 |
 | **SA** — System and Services Acquisition | InfoBlox DNS Forwarders; SSP Documentation; Consistency class design | SA-8, SA-9 | Vol I Books 01, 06 and Vol II Book 03 |
@@ -1306,7 +1306,7 @@ reconciled to CM-8).
 |---|---|---|---|---|
 | Vol I Book 01 — InfoBlox DDI Landing Zone | InfoBlox DDI (DNSSEC, RPZ, IPAM, PKI, Syslog) | 18 open with manual/no evidence | 18 closed with automated evidence | 16 controls automated |
 | Vol I Book 06 — SD-WAN + SASE (Telecom) | SD-WAN IPsec + SASE (SWG, CASB, FWaaS, ZTNA) | 7 open; DIA alone satisfies none | 7 closed by SASE stack | 7 controls automated |
-| Vol I Book 05 — Entra ID + ZTNA + Active Governance | Entra ID, Intune MDM, ZTNA, Active Governance | 13 open or partially satisfied | 13 closed with machine-readable evidence | 12 controls automated |
+| Vol I Book 05 — Entra ID + ZTNA + Drift Reconciliation | Entra ID, Intune MDM, ZTNA, Drift Reconciliation | 13 open or partially satisfied | 13 closed with machine-readable evidence | 12 controls automated |
 | Vol II Books 01–02 — SQL Server Authentication | Azure Arc + Entra ID for SQL; NTLM elimination | Authentication layer open across all SQL instances | Controls deepened to database tier; continuous SQL compliance record | SQL auth surface closed |
 | Vol II Book 03 — Database Architecture + Network Physics | TDE; SD-WAN QoS; DR architecture; consistency alignment | 7 distinct controls open | 7 net new controls closed | 7 controls added to series |
 | **Total** | **InfoBlox + SD-WAN/SASE + Entra/ZTNA + Arc/SQL** | **Substantial open / partially satisfied** | **34 distinct controls closed** | **34 controls with KSI-ready evidence** |
@@ -1328,7 +1328,7 @@ All six implementation tracks produce machine-readable evidence natively:
 
 - **InfoBlox WAPI** exports all DDI evidence as structured JSON
 - **SASE stack** exports per-session telemetry in structured log format
-- **Active Governance control plane** generates desired-vs-actual JSON records as its primary output
+- **drift-reconciliation control plane** generates desired-vs-actual JSON records as its primary output
 - **SQL continuous monitoring record** exports login type, NTLM event count, and Managed Identity coverage as daily structured JSON
 - **DR and backup records** export RTO, RPO, and test result timestamps as structured audit records
 
@@ -1464,7 +1464,7 @@ Maturity column states the highest state actually reached, never more:
 | **1b — Precedes Vol I Book 05 and Vol II Books 01–02** | Vol I Book 03: Certificates & Tokens | Entra ID CBA + ACME + managed identity | Certificate and token doctrine is the prerequisite for the identity modernization (Vol I Book 05) and SQL authentication (Vol II Books 01–02) tracks; the certificate pipeline it establishes is the same one Vol I Book 02's machine certificates ride. |
 | **1c — Precedes Vol I Book 05** | Vol I Book 04: OPM HRIT Identity & Org SSOT | Oracle HCM Cloud + Entra inbound provisioning (Spec2-D3.1) | Vol I Book 05's structural dependency is explicit: tokens work only if the authorization they assert is correct. The HR-derived SSOT must be flowing into Entra before the token rollout signs its assertions — attribute-authority agreement and the inbound provisioning pilot can start immediately alongside Vol I Book 01. |
 | **2 — Concurrent with Vol I Book 01** | Vol I Book 06: SD-WAN + SASE | SD-WAN (Cisco/VMware/Palo Alto) + SASE (Zscaler/Netskope/Prisma) | The G.114 compliance failure (Amazon Connect latency) is an active operational problem generating citizen-facing quality failures today. DIA + SASE deployment is the fastest path to a measurable operational improvement and closes 7 NIST controls simultaneously. |
-| **3 — Structured program** | Vol I Book 05: Entra ID + ZTNA + Active Governance | Entra ID, Intune MDM, ZTNA overlay, Active Governance control plane | The largest structural change — replacing session-based with token-based identity. Plan as a multi-phase program; SSOT restoration (Principle 1) must precede token rollout (Principle 3). |
+| **3 — Structured program** | Vol I Book 05: Entra ID + ZTNA + Drift Reconciliation | Entra ID, Intune MDM, ZTNA overlay, drift-reconciliation control plane | The largest structural change — replacing session-based with token-based identity. Plan as a multi-phase program; SSOT restoration (Principle 1) must precede token rollout (Principle 3). |
 | **4 — In parallel with Vol I Book 05** | Vol II Books 01–02: SQL Server Authentication | Azure Arc + Entra ID for SQL; NTLM elimination program | Arc enrollment enables SQL Entra auth independently of the full AD-to-Entra migration. Can begin on SQL instances before the broader Entra migration completes. NTLM Phase A (discovery) can begin immediately. |
 | **5 — Concurrent with Vol II Books 01–02** | Vol II Book 03: Database Architecture | TDE; SD-WAN QoS for DB traffic; DR architecture; consistency alignment | TDE can be applied immediately; SD-WAN QoS for database traffic is a configuration change if SD-WAN is deployed; DR architecture is an ongoing program. |
 
