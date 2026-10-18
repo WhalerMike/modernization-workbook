@@ -8,7 +8,7 @@ A federal civilian agency receives identity data from a human-resources informat
 
 ## Intervention
 
-Inbound provisioning is treated as a governed flow. The HR system is the authoritative origin for lifecycle events. Facets are written to the directory of record. Dynamic groups recalculate. Access and policy update automatically. The directory-sync interval is accepted as the provisioning floor for synced users.
+Inbound provisioning is treated as a governed flow. The HR system is the authoritative origin for lifecycle events. Attributes are written to the directory of record. Dynamic groups recalculate. Access and policy update automatically. The directory-sync interval is accepted as the provisioning floor for synced users.
 
 ## Observed behavior (intended)
 
@@ -18,7 +18,7 @@ Joiner, mover, and leaver events produce owned, clocked, evidenced work. Access 
 
 - Run the data-governance program and the identity-migration program as one.
 - Accept the directory-sync interval as the floor for synced users; do not claim zero-latency provisioning.
-- The facet-to-access rule set is the audit evidence.
+- The attribute-to-access rule set is the audit evidence.
 
 ---
 

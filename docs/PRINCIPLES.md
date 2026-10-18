@@ -39,34 +39,16 @@ Every operational change — every Move, Add, Change, Deletion, and Reset — tr
 
 ## 3. Attribute-Driven Structure
 
-Hierarchical governance (organizational units, Group Policy inheritance, delegation boundaries) is reconstructed inside a flat directory using coded organizational attributes.
+Hierarchical governance (organizational units, Group Policy inheritance, delegation boundaries) is reconstructed inside a flat directory using organizational attributes.
 
-- Attributes are encoded in extension attributes on users and devices using a structured codebook.
+- Attributes are stored in extension attributes on users and devices.
 - Dynamic group membership, administrative-unit scoping, Conditional Access targeting, and license assignment are all driven by those attributes.
 - Administrative units cannot nest. An organizational-unit tree becomes a flat set of attribute-selected administrative units.
-- For synced users, the facets that drive administrative-unit membership are Active Directory-mastered, not cloud-mastered.
-
-**Five drift categories:** Format, Value, Slot, Orphan, Phantom.
+- For synced users, the attributes that drive administrative-unit membership are Active Directory-mastered, not cloud-mastered.
 
 ---
 
-## 4. Where Data Lives
-
-Organizational attributes live in three places at once:
-
-![Three-Layer Data Model](images/three-layer-data.svg)
-
-| Layer | Where it lives | Role |
-|-------|----------------|------|
-| **Vocabulary** | Version-controlled codebook | Defines the language |
-| **Assignment** | Extension attributes on the directory object | Carries the runtime data |
-| **Authority** | The HR system | Source of truth |
-
-If the three disagree, the resolution order is **HR → directory → codebook validation → drift event**. IT never edits the attribute slots by hand.
-
----
-
-## 5. Directory Migration — The Hidden Surface
+## 4. Directory Migration — The Hidden Surface
 
 Active Directory was the implicit governance model for eleven categories of infrastructure objects: users, computers, service accounts, security groups, Group Policy Objects, DNS/DHCP, PKI, RADIUS, LDAP, service principal names, and trust relationships.
 
@@ -81,7 +63,7 @@ When Active Directory goes away, every one of these services loses its governanc
 
 ---
 
-## 6. Eight Core Concepts
+## 5. Eight Core Concepts
 
 | # | Concept | Definition |
 |---|---------|------------|
@@ -96,7 +78,7 @@ When Active Directory goes away, every one of these services loses its governanc
 
 ---
 
-## 7. Hybrid Join Without Governance
+## 6. Hybrid Join Without Governance
 
 Converting a large domain-joined fleet to hybrid join is a near-effortless tenant switch (service connection point + Group Policy). That effortlessness is the hazard.
 
@@ -113,7 +95,7 @@ Converting a large domain-joined fleet to hybrid join is a near-effortless tenan
 
 ---
 
-## 8. Device and Server Modernization
+## 7. Device and Server Modernization
 
 **Observe before you change anything.**
 
@@ -131,7 +113,7 @@ Four phases:
 
 ---
 
-## 9. HR-Driven Lifecycle
+## 8. HR-Driven Lifecycle
 
 The HR system is the system of truth for organizational placement. The directory is the system of record for identity.
 
@@ -144,7 +126,7 @@ The HR system is the system of truth for organizational placement. The directory
 
 ---
 
-## 10. Conditional Access Principles
+## 9. Conditional Access Principles
 
 - **All matching policies apply.** Additive evaluation; no priority number.
 - **Block overrides grant.**
@@ -158,7 +140,7 @@ The HR system is the system of truth for organizational placement. The directory
 
 ---
 
-## 11. Group Policy Object Sunset Principles
+## 10. Group Policy Object Sunset Principles
 
 Three related but distinct programs:
 - **Net-new device onboarding** — governance at procurement time.
@@ -174,18 +156,17 @@ Three related but distinct programs:
 
 ---
 
-## 12. Drift Detection
+## 11. Drift Detection
 
-The drift engine does not believe the assumption that the HR system, the directory, and the codebook still agree. It re-checks on a schedule and emits a structured finding when they do not.
+The drift engine does not believe the assumption that the HR system and the directory still agree. It re-checks on a schedule and emits a structured finding when they do not.
 
 ![Drift Detection Loop](images/drift-loop.svg)
 
 **Six-phase loop:** Snapshot → Compare → Classify → Alert → Remediate → Verify.
 
-**Five categories:**
+**Four categories:**
 - **Format** — typed value fails its expected pattern (critical, no auto-fix).
 - **Value** — enumerated value not in the enumeration (high, sometimes auto-fixed).
-- **Slot** — two facets fighting over the same slot (critical, no auto-fix).
 - **Orphan** — enumeration value with zero matching principals (medium, flag only).
 - **Phantom** — principal carries a deprecated value (medium, reassign when successor defined).
 
@@ -193,7 +174,7 @@ Critical findings halt the remediation pass.
 
 ---
 
-## 13. SQL Server Identity Transformation
+## 12. SQL Server Identity Transformation
 
 Windows Authentication was good engineering for its world. The destination is cloud identity authentication (OAuth tokens, managed identity for the engine, multi-factor authentication for humans).
 
@@ -206,7 +187,7 @@ Windows Authentication was good engineering for its world. The destination is cl
 
 ---
 
-## 14. Education, Training, and Test Plans
+## 13. Education, Training, and Test Plans
 
 - **Education** builds the mental model (governance is a system, identity is the primitive, maps replace inventories, provenance is non-negotiable, modernization is a lifecycle, drift is the feedback signal).
 - **Training** has two tracks: Contributor (land a reviewed change) and Operator (run discovery and drift tools and interpret the output).
@@ -214,7 +195,7 @@ Windows Authentication was good engineering for its world. The destination is cl
 
 ---
 
-## 15. Zero Trust Governance Principles
+## 14. Zero Trust Governance Principles
 
 Programs that read a Zero Trust maturity model as a five-pillar shopping list and buy a tool per pillar stall at Initial or low Advanced maturity. Maturity is defined as five pillars *operated through* three cross-cutting capabilities: Visibility and Analytics, Automation and Orchestration, and Governance. Governance is the capability most programs shortchange.
 
@@ -228,7 +209,7 @@ Programs that read a Zero Trust maturity model as a five-pillar shopping list an
 
 ---
 
-## 16. Modernization Journey Principles
+## 15. Modernization Journey Principles
 
 The path forward from session-based, perimeter-era architecture to continuous verification rests on five principles:
 

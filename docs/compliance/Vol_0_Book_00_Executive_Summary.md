@@ -522,7 +522,7 @@ alternative truth (the DNS split-brain law, generalized):
 | Applications | Application portfolio registry | App registrations, service-catalog entries |
 | Certificates | The issuance ledger of the PKI plane | Local cert stores, binding configs |
 | Infrastructure declared state | The IaC repository (declared state in version control) | Deployed resources, consoles |
-| Org structure / physical location | The governed organizational and location codebooks | Directory OU trees, site topology |
+| Org structure / physical location | The governed organizational and location attributes | Directory OU trees, site topology |
 
 : The SSOT Registry — one source of truth per class {.striped .hover}
 

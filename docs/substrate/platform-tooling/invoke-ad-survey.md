@@ -314,4 +314,4 @@ $survey.forest.trusts | Where-Object sidFilteringRisk |
 | Canonical source | [`scripts/ad-survey/Invoke-ADSurvey.ps1`] |
 | Target | Windows host with RSAT (ActiveDirectory module; GroupPolicy optional) |
 | Output | Single JSON object on stdout (`-OutputJson`) or a console summary |
-| Related canon | the Federal Modernization Program PowerShell Module Reference for the broader assessment-output schema; `FMP_007 OrgTree Modernization` for the organizational spine this discovery feeds |
+| Related canon | the Federal Modernization Program PowerShell Module Reference for the broader assessment-output schema |

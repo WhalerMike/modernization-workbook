@@ -114,7 +114,7 @@ The six AI drift classes extend the the program decision taxonomy:
 | `DRIFT-COMPLIANCE::ai-agentic-ungoverned` | P1 | Never | AO + ISSO |
 | `DRIFT-IDENTITY::ai-shadow` | P1 | Never | Security team + AO |
 | `DRIFT-COMPLIANCE::ai-ato-gap` | P2 | Never | AO + bureau ISSO |
-| `DRIFT-IDENTITY::ai-no-agency-bureau` | P2 | Per-policy | OrgTree workflow |
+| `DRIFT-IDENTITY::ai-no-agency-bureau` | P2 | Per-policy | Identity workflow |
 | `DRIFT-IDENTITY::ai-unowned` | P2 | Never | Bureau IdM coordinator |
 | `DRIFT-COMPLIANCE::ai-pii-no-pia` | P2 | Never | Privacy officer |
 

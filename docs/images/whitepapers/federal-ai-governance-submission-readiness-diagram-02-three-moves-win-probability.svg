@@ -17,7 +17,7 @@
 
   <rect x="82" y="220" width="296" height="56" rx="8" fill="#1E8C8C"/>
   <text x="230" y="244" text-anchor="middle" font-size="13" font-weight="bold" fill="#FFFFFF">Demo live:</text>
-  <text x="230" y="262" text-anchor="middle" font-size="13" fill="#CCEEE8">Entra facet stamping + drift + M-25-21-as-IAM</text>
+  <text x="230" y="262" text-anchor="middle" font-size="13" fill="#CCEEE8">Entra attribute stamping + drift + M-25-21-as-IAM</text>
 
   <rect x="82" y="286" width="296" height="70" rx="8" fill="#1A3A52"/>
   <text x="230" y="308" text-anchor="middle" font-size="13" font-weight="bold" fill="#9BB8CC">Present as labeled roadmap:</text>

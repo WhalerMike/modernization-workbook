@@ -6,7 +6,7 @@
 
 The HR system is the system of truth for organizational placement. The directory is the system of record for identity. When the two are not continuously reconciled, the directory becomes an accidental system of record, and every downstream system (groups, administrative units, Conditional Access, licensing) drifts from organizational reality.
 
-An HR-driven pipeline restores the correct relationship: every identity originates from HR, carries organizational attributes before it exists in the directory, and is continuously reconciled.
+An HR-driven pipeline restores the correct relationship: every identity originates from HR and is continuously reconciled.
 
 ## The pipe, end to end
 
@@ -22,13 +22,12 @@ An HR-driven pipeline restores the correct relationship: every identity originat
 
 ### Middleware: the transformation layer
 
-The middleware performs five things per event:
+The middleware performs four things per event:
 
 1. **Validate** — required attributes present; unknown worker types refused (fail closed).
 2. **Sequence and retry** — events are applied in order; failures are handled explicitly. An out-of-order mover/leaver pair is a correctness bug. A failed transform retries and is recorded — never skipped.
 3. **Normalize** — construct the provisioning payload, including custom attributes that trigger lifecycle workflows.
-4. **Calculate organizational attributes** — derive the coded organizational attributes from the HR hierarchy so **every identity carries them before it exists in the directory**.
-5. **Write provenance** — one record per event (source event identifier, payload hash, derivation inputs, outcome). HR-driven provisioning is a closure like any other: no record, no closure.
+4. **Write provenance** — one record per event (source event identifier, payload hash, derivation inputs, outcome). HR-driven provisioning is a closure like any other: no record, no closure.
 
 ### Target: two editions
 
@@ -44,8 +43,8 @@ The middleware performs five things per event:
 |----------|------------------------|-----------------------|-----------------|----------|
 | Person number | External / employee number | Employee ID | Employee ID | **Match key**, lifetime identifier |
 | Assignment status | Active | Account disabled | Account enabled | Joiner/leaver state |
-| Department | Department | Department | Department | Organizational-attribute derivation, dynamic groups |
-| Business unit / division | Division | Division | Division | Organizational-attribute derivation |
+| Department | Department | Department | Department | Dynamic groups |
+| Business unit / division | Division | Division | Division | Organizational structure |
 | Manager | Manager | Manager | Manager | Supervisory chain, **approval routing** |
 | Job title | Title | Title | Job title | Role-derived entitlements |
 | Worker type | User type | (mapped) | Employee type | Employee/contractor branch |
@@ -79,7 +78,7 @@ Each phase ends at a gate. A phase that cannot pass its gate stops the plan, not
 
 ### Phase 2 — Middleware build and test
 
-- Build the transform, the organizational-attribute calculator, and the provenance writer.
+- Build the transform and the provenance writer.
 - Configure the API-driven provisioning application; grant least-privilege permissions.
 - Define joiner/mover/leaver lifecycle workflows and their date triggers.
 - Prove the chain end-to-end in a test tenant.

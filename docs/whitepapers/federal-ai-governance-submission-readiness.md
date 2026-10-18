@@ -114,7 +114,7 @@ exist.
 | AI system as governed identity record | AISystemRecord (FMP_196) | Spec drafted (Spec4-AI-D1.1); L1 scanner implemented (`src/fmp/governance/ai_inventory/`); the program decision still Proposed | Scanner is built but has nothing to gate yet — the program decision activation is the remaining step |
 | ATO enumeration + reciprocity reconciliation | ATO registry + reciprocity (the program decision), reading the inventory's `have_ato` / `system_name_ato` | Active (reciprocity) / Proposed (AI reconciliation) | Reciprocity is live in production; the AI-inventory reconciliation on top of it is not yet wired. This is enumeration against **agency** authorization policy — M-25-21 mandates no AI-specific ATO gate |
 | Agentic-AI P1 finding | `DRIFT-COMPLIANCE::ai-agentic-ungoverned` | Proposed | Doctrine only — no detector implementation yet |
-| Owner anchor / organizational placement | Organizational codebook (FMP_151), Entra | **Active (Microsoft estate)** | Proven inside the Microsoft/Entra estate only |
+| Owner anchor / organizational placement | Entra organizational attributes | **Active (Microsoft estate)** | Proven inside the Microsoft/Entra estate only |
 | Drift detection | Six-phase drift engine (the program decision) | **Active** | — |
 | Non-employee / vendor (partner) branch | SailPoint NERM (the program decision) | Reserved | Pre-activation; no live tenant exercises this branch yet |
 | Multi-cloud / non-MS IdP storage | Binding profiles (the program decision/099/113) | Proposed (IdP) / Profile-only (GCP, VMware) | Design-level profiles only; no non-Microsoft IdP has been run end to end |
@@ -135,7 +135,7 @@ Federal Compliance series' SSOT Registry (Vol 0 Book 00).
  drift-detected canon with blocking CI gates is exactly what federal evaluators
  weight — and it is *deployed*, not aspirational.
 - **Open and lock-in-resistant.** Apache-2.0 substrate, an open-source IdP path
- (Keycloak + generic LDAP), and a vendor-neutral facet model blunt the
+ (Keycloak + generic LDAP), and a vendor-neutral attribute model blunt the
  single-vendor-dependency objection.
 
 ## Where an evaluator will find gaps
@@ -154,11 +154,11 @@ Federal Compliance series' SSOT Registry (Vol 0 Book 00).
  guide](../operational-guides/ai-identity-governance/index.md) is the kit
  that will operationalize it; it is proposed, not yet deployed.
 
-![Three moves that most raise win probability](../images/whitepapers/federal-ai-governance-submission-readiness-diagram-02-three-moves-win-probability.svg){#fig-federal-ai-diagram-02 fig-alt="Three dark-navy columns labeled Move 1, Move 2, Move 3 with teal headers and teal action boxes. Move 1: Lead with deployed core, stage the rest honestly - demo live Entra facet stamping plus drift plus M-25-21-as-IAM. Move 2: Resolve the authorization story explicitly - state FMP operates inside customer boundary, SailPoint NERM FedRAMP-Moderate on AWS GovCloud. Move 3: Activate one non-Microsoft target end-to-end - Keycloak recommended path. Bottom ice-blue bar summarizes bottom line. White background, navy/teal/ice palette." width="100%"}
+![Three moves that most raise win probability](../images/whitepapers/federal-ai-governance-submission-readiness-diagram-02-three-moves-win-probability.svg){#fig-federal-ai-diagram-02 fig-alt="Three dark-navy columns labeled Move 1, Move 2, Move 3 with teal headers and teal action boxes. Move 1: Lead with deployed core, stage the rest honestly - demo live Entra attribute stamping plus drift plus M-25-21-as-IAM. Move 2: Resolve the authorization story explicitly - state FMP operates inside customer boundary, SailPoint NERM FedRAMP-Moderate on AWS GovCloud. Move 3: Activate one non-Microsoft target end-to-end - Keycloak recommended path. Bottom ice-blue bar summarizes bottom line. White background, navy/teal/ice palette." width="100%"}
 
 ## The three moves that most raise win probability
 
-1. **Lead with the deployed core, stage the rest honestly.** Demo Entra facet
+1. **Lead with the deployed core, stage the rest honestly.** Demo Entra attribute
  stamping + drift + the M-25-21-as-IAM reframe live; present AI scanner /
  SailPoint / multi-cloud as a labeled roadmap with the composability matrix.
  Credibility beats over-claiming with federal evaluators.

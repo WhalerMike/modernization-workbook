@@ -62,7 +62,7 @@ from AD's hidden governance surface to the Hybrid-Cloud access plane.
 |---|---|---|
 | [A. Platform Substrate](platform-substrate/index.html) | WS2025, IIS, Gitea, Kerberos, PKI, backup, hardening — the host that runs everything | 8 |
 | [B. Transformation Engine](transformation-engine/index.html) | PowerShell + Python + API scripts that analyse, plan, and deliver | 7 |
-| C. Identity (OrgTree / MOD_\*) | Dynamic groups, AUs, delegation, migration runbook | 11 |
+| C. Identity (MOD_\*) | Dynamic groups, AUs, delegation, migration runbook | 11 |
 | [D. Directory Migration (DM_\*)](directory-migration/index.html) | IPAM, DNS, DHCP, PKI, RADIUS, LDAP, sync, devices, NTP, DFS, SPN, Trusts | 12 |
 | [E. Target Surface](target-surface/index.html) | Entra ID, Intune, Azure Arc, M365, AUs, CA, PIM | 7 |
 | [F. Access Plane](access-plane/index.html) | MFA, Zero Trust, SASE, CBA, PAM, break-glass | 6 |

@@ -43,7 +43,7 @@ It follows the approach in the project charter: Designate origins → Normalize 
 - Document the match key between the HR person identifier and the directory employee identifier.
 
 **Deliverables**
-- Attribute inventory and codebook (or reference to the existing codebook).
+- Attribute inventory.
 - Drift findings for the pilot population.
 - Match-key confirmation.
 
@@ -142,7 +142,7 @@ It follows the approach in the project charter: Designate origins → Normalize 
 2. Confirm the authoritative origin for human identity lifecycle events.
 3. Inventory non-human identity classes and name owners.
 4. Define the pilot population.
-5. Document the attribute facets that will drive dynamic membership.
+5. Document the attributes that will drive dynamic membership.
 
 ---
 

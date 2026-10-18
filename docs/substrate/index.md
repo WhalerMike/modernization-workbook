@@ -29,7 +29,7 @@ Splitting these across the three expressions would duplicate canon. They live
 here so the governance, Federal Compliance, and OrgMod pages cross-reference them instead of
 redefining them.
 
-![The substrate as the shared spine the three expressions ride on](../images/substrate/index-image-01-substrate-shared-spine.svg){#fig-index-image-01 fig-alt="Diagram showing the substrate as a shared spine. Three expression boxes at the top — Governance (canon as source of truth, governed addressing), Federal Compliance (compliance: FedRAMP, OSCAL, KSI, continuous monitoring), and OrgMod (modernization: client-server to hybrid-cloud transformation) — all fed by upward arrows from a central teal Substrate band containing three sub-category cards: Platform and tooling (monorepo, Quarto pipeline, CLI, canon sync, CI/CD, Academy), Core architecture (Six-Plane, Three-Layer Rule, Drift Engine, Evidence Chain, Boundary), and Execution patterns (Two-Brain Execution, AODIM, Instruments vs. Orchestra). A navy footer band lists the three canonical invariants. Engineering blueprint style, navy and teal on white, no human figures, 16:9 landscape." width="100%"}
+![The substrate as the shared spine the three expressions ride on](../images/substrate/index-image-01-substrate-shared-spine.svg){#fig-index-image-01 fig-alt="Diagram showing the substrate as a shared spine. Three expression boxes at the top — Governance (canon as source of truth, governed addressing), Federal Compliance (compliance: FedRAMP, OSCAL, KSI, continuous monitoring), and OrgMod (modernization: client-server to hybrid-cloud transformation) — all fed by upward arrows from a central teal Substrate band containing three sub-category cards: Platform and tooling (monorepo, Quarto pipeline, CLI, canon sync, CI/CD, Academy), Core architecture (Six-Plane, Three-Layer Rule, Drift Engine, Evidence Chain, Boundary), and Execution patterns (Two-Brain Execution, Instruments vs. Orchestra). A navy footer band lists the three canonical invariants. Engineering blueprint style, navy and teal on white, no human figures, 16:9 landscape." width="100%"}
 
 ## Sub-categories
 
@@ -37,7 +37,7 @@ redefining them.
 |---|---|---|
 | [Platform & tooling](platform-tooling/index.html) | GitHub/Gitea monorepo · Quarto pipeline · canon sync · CI/CD · Customer Documents portal · CLI · Academy | 8 |
 | [Core architecture](core-architecture/index.html) | Six-Plane Architecture · Three-Layer Rule Model · Drift Engine · Evidence Chain · Boundary Impact Model · Two-Way Governance | 6 |
-| [Execution patterns](execution-patterns/index.html) | Two-Brain Execution (Copilot + Execution Substrate) · AODIM · "Instruments vs. Orchestra" positioning | 3 |
+| [Execution patterns](execution-patterns/index.html) | Two-Brain Execution (Copilot + Execution Substrate) · "Instruments vs. Orchestra" positioning | 2 |
 
 ## Canonical invariants
 

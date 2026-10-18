@@ -39,7 +39,7 @@
 
   <rect x="830" y="352" width="300" height="80" rx="10" fill="#FFFFFF" stroke="#0D1B2E" stroke-width="1.5"/>
   <text x="980" y="380" text-anchor="middle" font-size="16" font-weight="bold" fill="#0D1B2E">Execution patterns</text>
-  <text x="980" y="404" text-anchor="middle" font-size="12" fill="#33414F">Two-Brain Execution · AODIM</text>
+  <text x="980" y="404" text-anchor="middle" font-size="12" fill="#33414F">Two-Brain Execution</text>
   <text x="980" y="421" text-anchor="middle" font-size="12" fill="#33414F">Instruments vs. Orchestra</text>
 
   <!-- arrows: spine feeds all three expressions -->

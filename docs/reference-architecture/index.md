@@ -72,7 +72,7 @@ Never frame the core engine as federal-only.
 
 ## Architecture: The Four-Layer Governance Stack
 
-The OrgTree architecture is a four-layer governance stack. Each layer has a defined
+The architecture is a four-layer governance stack. Each layer has a defined
 responsibility, explicit dependency relationships, and canonical artifacts.
 
 | Layer | Responsibility | Key Artifacts |
@@ -82,7 +82,7 @@ responsibility, explicit dependency relationships, and canonical artifacts.
 | **Structure Layer** | Administrative-Unit delegation, workflow catalog, migration runbook | FMP_154 (Delegation Matrix); FMP_156 (Migration Runbook) |
 | **Identity Layer** | Dynamic-group library, attribute mapping, extension attributes | FMP_150 (Executive Summary); FMP_152 (Dynamic Groups); FMP_153 (Attribute Mapping) |
 
-![A clean 16:9 layered-stack diagram showing the four-layer OrgTree governance stack](../images/reference-architecture/index-image-03-a-clean-169-layered-stack-diagra.svg){#fig-index-image-03 fig-alt="Four horizontal translucent layers stacked like glass shelves, bottom-to-top: (1) \"Identity Layer\" — widest, navy — small icons for an organizational code, dynamic group, attribute. (2) \"Structure Layer\" — teal — small icons for an Administrative Unit boundary, a runbook page, a JSON schema. (3) \"Policy Layer\" — steel gray — small icons for a validation cmdlet, a decision tree, an SLA gauge. (4) \"Governance Layer\" — narrowest, top, dark navy with a soft glow — small icons for a drift signal, an escalation alert, a provenance seal. A vertical arrow runs through all four layers labeled \"Every artifact cites its layer.\" White background. No people. No baked text other than the four layer names and the vertical arrow label. Style: clean isometric/flat hybrid, modern government whitepaper feel. Palette: navy #0D1B2E, teal #1E8C8C, steel gray #5A5A5A, accent amber #D4A017, white." width="100%"}
+![A clean 16:9 layered-stack diagram showing the four-layer governance stack](../images/reference-architecture/index-image-03-a-clean-169-layered-stack-diagra.svg){#fig-index-image-03 fig-alt="Four horizontal translucent layers stacked like glass shelves, bottom-to-top: (1) \"Identity Layer\" — widest, navy — small icons for a dynamic group and an attribute. (2) \"Structure Layer\" — teal — small icons for an Administrative Unit boundary, a runbook page, a JSON schema. (3) \"Policy Layer\" — steel gray — small icons for a validation cmdlet, a decision tree, an SLA gauge. (4) \"Governance Layer\" — narrowest, top, dark navy with a soft glow — small icons for a drift signal, an escalation alert, a provenance seal. A vertical arrow runs through all four layers labeled \"Every artifact cites its layer.\" White background. No people. No baked text other than the four layer names and the vertical arrow label. Style: clean isometric/flat hybrid, modern government whitepaper feel. Palette: navy #0D1B2E, teal #1E8C8C, steel gray #5A5A5A, accent amber #D4A017, white." width="100%"}
 
 ## Governance Principles — 3 Universal + 3 Tier-Specific
 
@@ -138,16 +138,14 @@ The other three names (Boundary Enforcement, Two-Brain Execution, Tenant Agnosti
 
 | Section | What is There |
 |---------|-------------|
-| Identity Modernization (OrgTree) | The A-Z Suite: 27 canonical artifacts (FMP_150 + FMP_151–FMP_176) governing user hierarchy, dynamic groups, delegation, migration, drift detection, and operational governance |
+| Identity Modernization | The A-Z Suite: 27 canonical artifacts (FMP_150 + FMP_151–FMP_176) governing user hierarchy, dynamic groups, delegation, migration, drift detection, and operational governance |
 | [Directory Migration](directory-migration.html) | 8 adapter interfaces for every infrastructure service AD was holding together: IPAM, PKI, RADIUS, LDAP, sync engines, devices, NTP, DFS |
 
 ### Explainers and walk-throughs
 
 | Page | Who it's for |
 |------|--------------|
-| [Dynamic Groups](dynamic-groups.md) | Engineers building the rules library for membership automation |
 | [Delegation Matrix](delegation.md) | Identity admins mapping Administrative Units to operator roles |
-| [Drift Walk-through](drift-walkthrough.md) | Anyone tracing how the Drift Engine classifies and remediates a single event |
 | [Intune-First Asset Onboarding](intune-first.md) | Procurement + endpoint teams governing **net-new** devices from day zero (per the program decision; for existing-fleet GPO replacement see [GPO Sunset Program](../operational-guides/target-surface/intune-policy-templates.md)) |
 | [Directory Migration — Adapters](adapters.md) | Network/infrastructure engineers wiring DNS/DHCP/PKI/RADIUS through canonical adapters |
 | [GPO-to-Cloud Governance Gaps](gpo-cloud-governance-gaps.md) | Architects/operators asking *"what control do we lose moving Group Policy to Intune/Entra?"* — the five lost capabilities |
@@ -156,5 +154,4 @@ The other three names (Boundary Enforcement, Two-Brain Execution, Tenant Agnosti
 
 All canonical source files are maintained in the monorepo:
 
-- **Identity Modernization:** `src/fmp/modernization/orgtree/`
 - **Directory Migration:** `src/fmp/modernization/directory-migration/`

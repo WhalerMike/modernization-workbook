@@ -36,7 +36,7 @@ the old directory's hierarchical assumptions into the new tenant and forfeits
 most of the cloud-native value.
 
 **Solution.** Governance leads the migration rather than following it:
-canonize the attribute model (AODIM), group-computation rules, and provenance
+canonize the authoritative attributes, group-computation rules, and provenance
 envelope first; stand up modernization adapters and compensating enforcement
 for the GCC-Moderate gaps; treat cutover as a substrate event; and let the
 drift engine surface inherited inconsistencies afterward — emitting evidence
@@ -76,13 +76,12 @@ and the modernization pillar's curated surfaces — the transformation
 series and the adapter interfaces this paper's approach rides on — are
 collected at the OrgMod hub.
 The migration's specific failure-mode-and-fix is documented in
-[AD to Entra ID Migration Problem](ad-to-entraid-migration-problem.md)
-and the
-[AODIM Executive Whitepaper](aodim-executive-whitepaper.md). The
+[AD to Entra ID Migration Problem](ad-to-entraid-migration-problem.md).
+The
 substrate this paper names as FMP's is the same one the the compliance series
 series' own
 Vol X — Governance Substrate Integration Overview
-documents from the product-neutral side — see §4 below.
+documents from the product-neutral side — see §3 below.
 
 ### 1. The architectural inversion
 
@@ -149,21 +148,11 @@ declare the attribute model, the group computation rules, and the
 provenance envelope in `src/fmp/canon/` — so the migration is a
 substrate change rather than a tooling change.
 
-### 3. AODIM — the attribute-oriented directory and identity model
-
-The architectural pattern FMP uses to govern the inversion is
-**AODIM** (Attribute-Oriented Directory & Identity Model): identity
-attributes define organizational structure, and access is computed
-from them rather than assigned. AODIM's authoritative-attribute set,
-computed-group model, and policy-as-data mechanics are documented in
-full in the
-[AODIM Executive Whitepaper](aodim-executive-whitepaper.md).
-
-### 4. The substrate's role in migration
+### 3. The substrate's role in migration
 
 The
 Governance OS provides four
-structural mechanisms that make AODIM-anchored migration tractable:
+structural mechanisms that make the migration tractable:
 
 | Mechanism | Migration role |
 |---|---|
@@ -187,7 +176,7 @@ proving the substrate carries a regime it was never written for, which
 is the concrete version of this paper's "canon, not the directory, is
 the source of truth" claim above.
 
-### 5. Phased modernization
+### 4. Phased modernization
 
 The substrate's
 Modernization Timeline is the
@@ -226,7 +215,7 @@ authoritative attribute — **classification clearance** — from canon
 authoring through post-cutover cleanup:
 
 1. **Canon-first.** Classification clearance is authored in
- `src/fmp/canon/` as one of AODIM's authoritative attributes: its
+ `src/fmp/canon/` as an authoritative attribute: its
  allowed values, its authoritative source (the HR/personnel system of
  record), and the policies permitted to consume it are declared
  before any tenant work begins.
@@ -254,9 +243,9 @@ authoring through post-cutover cleanup:
  tenant, surfaces as a tracked finding with a remediation contract —
  not a silent access-control error discovered later.
 
-### 6. What this means for an ATO package
+### 5. What this means for an ATO package
 
-An AODIM-anchored migration produces an ATO package the AO can review
+A governance-led migration produces an ATO package the AO can review
 *continuously* through the migration rather than at the end:
 
 - Canon citations for every attribute and policy intent.
@@ -271,7 +260,7 @@ The AO does not have to wait for cutover to evaluate the program's
 identity posture. Each phase emits evidence the AO can consume, and the
 phase's drift findings are themselves a measure of program quality.
 
-### 7. Honest limits
+### 6. Honest limits
 
 - The migration is a multi-quarter program for a typical federal
  agency. FMP compresses the *governance* timeline by canonizing the
@@ -281,12 +270,12 @@ phase's drift findings are themselves a measure of program quality.
  with schema and provenance drift coverage in CI plus partial runtime
  coverage; full Optimal-grade runtime drift is engineering work
  ahead.
-- AODIM is opinionated. Agencies that elect to keep an OU-driven model
+- The approach is opinionated. Agencies that elect to keep an OU-driven model
  in Entra ID can still use FMP, but they will not realize most of
  the substrate's value — the substrate's leverage is in
  attribute-driven access.
 
-### 8. Conclusion
+### 7. Conclusion
 
 The AD → Entra ID migration is one of the rare programs where doing it
 right and doing it well are the same thing. Doing it well requires a
