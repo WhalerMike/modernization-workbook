@@ -26,7 +26,7 @@ This workbook is a cleaned, standalone modernization project. It presents patter
 | Operational guides | Practical paths for GPO, Intune, DNS, PKI, access | [Operational guides index](operational-guides/README.md) |
 | Case studies | Worked examples (SQL Server identity, HRIT) | [SQL Server overview](case-studies/sql-server-identity.md) |
 | Whitepapers | Deeper treatment of specific topics | [Whitepapers index](whitepapers/README.md) |
-| Compliance | Federal compliance framing (Moderate) | [Compliance overview](compliance/federal-compliance-series-moderate/) |
+| Compliance | Federal compliance framing (Moderate) | [Compliance overview](compliance/federal-compliance-series-moderate-overview.md) |
 
 ## What is intentionally deferred
 

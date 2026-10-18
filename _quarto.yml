@@ -174,7 +174,10 @@ website:
             - docs/compliance/Vol_IV_Book_03_Program_Management_Governance.md
             - docs/compliance/Vol_IV_Book_04_PII_Processing_Transparency.md
             - docs/compliance/Vol_IV_Book_05_Cybersecurity_Training_Awareness.md
-            - docs/compliance/Vol_IV_Book_06_Authorization_Package_ConMon.md
+            # Its front matter sets a docx-only format, so link the HTML page
+            # explicitly; otherwise the sidebar points at the .docx.
+            - text: "Vol IV Book 06 — Federal Compliance — Authorization Package & ConMon"
+              href: docs/compliance/Vol_IV_Book_06_Authorization_Package_ConMon.html
         - section: "Volume V — Training & Certification"
           contents:
             - auto: "docs/compliance/Vol_V_Book_*.md"
