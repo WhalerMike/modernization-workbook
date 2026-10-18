@@ -134,7 +134,7 @@ incrementalism.
 
 ## 5. What FMP Actually Is
 
-![Bridge architecture diagram showing FMP as a governance layer spanning between...](../images/whitepapers/ad-to-entraid-migration-problem-image-02-bridge-architecture-diagram-show.png){#fig-session-vs-telemetry-identity-bridge-diagram fig-alt="Bridge architecture diagram showing FMP as a governance layer spanning between..." width="100%"}
+![The bridge from the session-based estate to the telemetry-based target rests on a single source of truth.](../images/diagrams/whitepapers/svg/session-vs-telemetry-bridge.svg){fig-alt="Three cards left to right. Client/server era, sessions: authenticate once, the session carries trust, Kerberos, on-premises DCs, Windows-authenticated SQL and thick clients. The bridge, single source of truth: identity as the root namespace, telemetry as control, deterministic addressing. Cloud / Zero Trust era, telemetry and continuous verification: every request authenticated, location, device health, identity, behavior and risk evaluated per transaction, short-lived tokens."}
 
 
 FMP isn't just a compliance automation tool. It's the **architectural
