@@ -1,5 +1,5 @@
 ---
-title: "The 2027 Milestone — What Done Looks Like"
+title: "The 2027 Milestone: What Done Looks Like"
 doc-type: sql-server-narrative-chapter
 audience: [Technical, Customer]
 family: sql-server-narrative

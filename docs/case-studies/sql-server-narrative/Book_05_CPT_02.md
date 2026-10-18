@@ -46,7 +46,7 @@ Every active type-S login on a retain or target instance migrates to a service-p
 
 ## Decision 4 — Pre-2022 Instances Are Upgrade-or-Except
 
-External-provider logins require SQL Server 2022 or later with the Azure extension on an Arc-enabled host, so a pre-2022 Category 3 instance cannot accept them regardless of Arc status.[^b05c02-arc-sql] A Category 3 retain instance either upgrades and follows the Category 2-to-1 pathway or files a sunset-dated exception, though most Category 3 instances should be retire or consolidation candidates. An exception records the reason, the compensating control, the maximum duration, and acknowledgement that the 2027-04-01 NTLM block is network-level and ignores engine-layer exceptions.
+External-provider logins require SQL Server 2022 or later with the Azure extension on an Arc-enabled host, so a pre-2022 Category 3 instance cannot accept them regardless of Arc status.[^b05c02-arc-sql] A Category 3 retain instance either upgrades and follows the Category 2-to-1 pathway or files a sunset-dated exception, though most Category 3 instances should be retire or consolidation candidates. An exception records the reason, the compensating control (for example, an identity-protection product that applies MFA or block policies to Kerberos and NTLM at the domain controller),[^b05c02-silverfort] the maximum duration, and acknowledgement that the 2027-04-01 NTLM block is network-level and ignores engine-layer exceptions.
 
 Connections that cannot reach Kerberos or Entra OAuth by that date use Certificate-Based Authentication, the authorized interim posture, which makes the ADCS-to-Cloud-PKI transformation (Not Yet Defined in the transformation inventory) a hard dependency for the exception long tail.
 
@@ -66,6 +66,7 @@ An instance is closed when its compliance record simultaneously shows SQL authen
 [^b05c02-principals]: Microsoft Learn, [sys.server_principals (Transact-SQL)](https://learn.microsoft.com/en-us/sql/relational-databases/system-catalog-views/sys-server-principals-transact-sql?view=sql-server-ver17).
 [^b05c02-ca]: Microsoft Learn, [What is Conditional Access?](https://learn.microsoft.com/en-us/entra/identity/conditional-access/overview).
 
+[^b05c02-silverfort]: Third-party source (vendor case study), Silverfort, [Customer case study: preventing NTLM-based lateral movement with Silverfort](https://www.silverfort.com/blog/customer-case-study-preventing-ntlm-based-lateral-movement-with-silverfort/). Cited as an example of the control category, not an endorsement.
 [^b05c02-arc-sql]: Microsoft Learn, [Overview — SQL Server enabled by Azure Arc](https://learn.microsoft.com/en-us/sql/sql-server/azure-arc/overview?view=sql-server-ver17).
 [^b05c02-disable-sql]: Microsoft Learn, [Disable SQL Authentication — SQL Server enabled by Azure Arc](https://learn.microsoft.com/en-us/sql/sql-server/azure-arc/disable-sql-authentication?view=sql-server-ver17).
 [^b05c02-arc-servers]: Microsoft Learn, [Azure Arc-enabled servers overview](https://learn.microsoft.com/en-us/azure/azure-arc/servers/overview).

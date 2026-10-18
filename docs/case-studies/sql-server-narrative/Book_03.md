@@ -1,7 +1,7 @@
 ---
 title: "Book_03 — Discovery: The Authentication Audit"
-subtitle: "the authentication audit script, the Arc-Eligibility Classification, and the Compliance-Monitoring Telemetry Sink"
-description: "No migration survives contact with an estate it has not measured. Describes the authentication-audit script (`the authentication audit script`) discovery instrument — what it captures (instances, authentication mode, login types, service accounts, SPN registration), the three-category Arc-eligibility classification that drives migration sequencing, and how its output feeds the compliance-monitoring pipeline as a living compliance record rather than a point-in-time spreadsheet."
+subtitle: "The Authentication-Audit Script, the Arc-Eligibility Classification, and the Compliance-Monitoring Telemetry Sink"
+description: "No migration survives contact with an estate it has not measured. Describes the authentication-audit script discovery instrument — what it captures (instances, authentication mode, login types, service accounts, SPN registration), the three-category Arc-eligibility classification that drives migration sequencing, and how its output feeds the compliance-monitoring pipeline as a living compliance record rather than a point-in-time spreadsheet."
 doc-type: sql-server-narrative-book
 audience: [Technical, Customer]
 family: sql-server-narrative
@@ -26,7 +26,7 @@ listing:
 :::
 
 ::: {.callout-note}
-Where Book 02 measured the estate to decide what survives, this book measures the **authentication posture** of what remains. `the authentication audit script` is the instrument, the Arc-eligibility classification is its most consequential output, and the per-instance compliance record — not a spreadsheet — is its deliverable.
+Where Book 02 measured the estate to decide what survives, this book measures the **authentication posture** of what remains. The authentication-audit script is the instrument, the Arc-eligibility classification is its most consequential output, and the per-instance compliance record — not a spreadsheet — is its deliverable.
 :::
 
 ![What the authentication audit reads on each instance, and where its output goes.](../../images/sql-server/diagrams/svg/book-03-audit-inputs-and-record.svg){fig-alt="On every retained instance the audit reads the version, edition and host OS, the authentication mode, every login by type, the engine service account and SPN, and linked servers; it produces a per-instance compliance record and an Arc-eligibility category, both sent to compliance monitoring."}

@@ -58,7 +58,7 @@ No Windows login is dropped until its Entra equivalent is validated. The engine-
 2. **Validate.** Test each new login with the principal's real Entra credential before any legacy login is touched.
 3. **Disable, observe, drop.** Disable (do not drop) the legacy Windows and SQL Authentication logins, monitor for 30 days to confirm nothing depends on them, then drop them.
 
-Non-production instances may shorten the observation window with documented owner sign-off, but create→validate→disable→observe→drop is the canonical sequence. The next chapter records four further decisions around it.
+Non-production instances may shorten the observation window with documented owner sign-off, but create→validate→disable→observe→drop is the canonical sequence. Other platforms document the same side-by-side premise: Google's Cloud SQL for SQL Server lets Entra ID authentication be enabled without disabling existing Active Directory authentication during a phased migration.[^b05c01-gcp] The next chapter records four further decisions around it.
 
 ::: {.callout-note title="What Book 05 establishes — Chapter 1"}
 1. `FROM EXTERNAL PROVIDER` creates passwordless logins for Entra users and applications (type E) and groups (type X), authenticated by Entra-issued tokens.
@@ -74,4 +74,5 @@ Non-production instances may shorten the observation window with documented owne
 [^b05c01-idp]: Microsoft Learn, [What is Microsoft Entra ID Protection?](https://learn.microsoft.com/en-us/entra/id-protection/overview-identity-protection).
 [^b05c01-principals]: Microsoft Learn, [sys.server_principals (Transact-SQL)](https://learn.microsoft.com/en-us/sql/relational-databases/system-catalog-views/sys-server-principals-transact-sql?view=sql-server-ver17).
 [^b05c01-dyn]: Microsoft Learn, [Manage rules for dynamic membership groups in Microsoft Entra ID](https://learn.microsoft.com/en-us/entra/identity/users/groups-dynamic-membership).
+[^b05c01-gcp]: Third-party source (Google Cloud documentation), [Integration with Microsoft Entra ID — Cloud SQL for SQL Server](https://docs.cloud.google.com/sql/docs/sqlserver/integration-with-microsoft-entra-id), "Migration from Microsoft Active Directory."
 [^b05c01-arc-mi-endpoint]: Microsoft Learn, [Access Azure resources with managed identity on Azure Arc-enabled servers](https://learn.microsoft.com/en-us/azure/azure-arc/servers/managed-identity-authentication).

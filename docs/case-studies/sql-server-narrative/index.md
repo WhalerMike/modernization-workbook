@@ -103,7 +103,7 @@ This narrative is the explanatory foundation for several governance decisions:
 - The **LDAP-dependent-application migration plan** — the upstream application chain.
 - The **identity & directory transformation inventory** — the program-wide
  catalog in which the SQL Server authentication transformation is entry #7.
-- **`the authentication audit script`** — the engine-layer discovery baseline.
+- **The authentication-audit script** — the engine-layer discovery baseline.
 
 ## Relationship to identity governance
 

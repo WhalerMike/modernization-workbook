@@ -1,5 +1,5 @@
 ---
-title: "Reading the Audit — Classification and Triage"
+title: "Reading the Audit: Classification and Triage"
 doc-type: sql-server-narrative-chapter
 audience: [Technical, Customer]
 family: sql-server-narrative
