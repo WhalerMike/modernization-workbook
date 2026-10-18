@@ -16,7 +16,6 @@ Cleaned, externally usable versions of high-value modernization whitepapers.
 | [Ticket-to-Machine, Not Ticket-to-Human](ticket-to-machine-not-ticket-to-human.md) | Why changing state isn’t compliance evidence. |
 | [Next Generation DNS](next-generation-dns.md) | How DNS became the application surface, security enforcement plane, and identity substrate of the hybrid multi-cloud enterprise. |
 | [Next Generation DDI](../next-generation-ddi/index.md) | Now a multi-chapter modernization book: governing DNS, DHCP, and IPAM as the hybrid multi-cloud control plane, including split-brain, FedRAMP Moderate, SD-WAN interception, and the five critical configuration decisions. |
-| [FMP Governance OS](fmp-governance-os-whitepaper.md) | How deterministic governance replaces attestation-based compliance. |
 | [FMP vs Microsoft Native Tools](fmp-vs-native-tools.md) | Why Microsoft's 12 tools don't replace a governance orchestration layer. |
 
 ---

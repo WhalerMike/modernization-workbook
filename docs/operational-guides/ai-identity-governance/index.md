@@ -80,7 +80,6 @@ The normative specifications are:
 
 - the program decision — Federal AI Use Case Governance
 - [FMP_196 — AI System Identity Record](/docs/specs/Spec4-AI-D1.1-AISystemIdentityRecord.html)
-- the program decision — Active Governance
 
 ## Deployment options
 

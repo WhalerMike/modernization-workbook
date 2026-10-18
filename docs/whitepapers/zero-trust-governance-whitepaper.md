@@ -57,7 +57,7 @@ unable to reach Advanced or Optimal because the substrate the pillars sit
 on cannot produce continuous, canonical, drift-detected evidence.
 
 FMP closes that structural gap. This whitepaper explains how the
-Governance OS maps onto the five ZTMM
+FMP substrate maps onto the five ZTMM
 pillars, why Advanced/Optimal maturity requires a substrate (not just
 better tools), and what an agency can ship today versus what remains
 target-state.

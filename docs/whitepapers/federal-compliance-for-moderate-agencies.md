@@ -139,7 +139,7 @@ timeline risks losing the ability to sell to federal agencies at all
 once Rev5 stops being issued.
 
 **Read deeper:** [Federal Application Aware Networking
-Architecture](federal-application-aware-networking-architecture.md) §
+Architecture](modernization-journey.md) §
 "FedRAMP 20x Consolidated Rules" covers the KSI evidence-format
 mechanics and a worked Call to Action built around these dates. For the
 full control-by-control mapping and the fuller federal compliance clock
@@ -314,7 +314,7 @@ bind vendors directly --- it shapes what agencies procure, which shapes
 vendor roadmaps indirectly.
 
 **Read deeper:** [Federal Application Aware Networking
-Architecture](federal-application-aware-networking-architecture.md) and
+Architecture](modernization-journey.md) and
 its FMP-branded sibling [From Mainframe to Application-Aware
 Modernization](modernization-journey.md) both build their core argument
 on M-22-09's identity-and-application-aware-networking direction --- see
@@ -396,7 +396,7 @@ deployed versus proposed against M-25-21's specific gates.
  Mandate Binds directly Companion paper(s)
  ----------------------- ----------------------- -----------------------------------------------------------------------
  FedRAMP 20x CSP/vendor [Federal Application Aware Networking
- Consolidated Rules Architecture](federal-application-aware-networking-architecture.md)
+ Consolidated Rules Architecture](modernization-journey.md)
 
  NIST SP 800-53 / 800-37 Agency Cited throughout this section by control number; see each paper's own
  (RMF, ATO) citations
@@ -417,7 +417,7 @@ deployed versus proposed against M-25-21's specific gates.
  Trust Governance](zero-trust-governance-whitepaper.md)
 
  OMB M-22-09 (Zero Trust Agency [Federal Application Aware Networking
- Strategy) Architecture](federal-application-aware-networking-architecture.md),
+ Strategy) Architecture](modernization-journey.md),
  [From Mainframe to Application-Aware
  Modernization](modernization-journey.md)
 

@@ -151,7 +151,7 @@ substrate change rather than a tooling change.
 ### 3. The substrate's role in migration
 
 The
-Governance OS provides four
+FMP substrate provides four
 structural mechanisms that make the migration tractable:
 
 | Mechanism | Migration role |
@@ -281,8 +281,8 @@ The AD → Entra ID migration is one of the rare programs where doing it
 right and doing it well are the same thing. Doing it well requires a
 substrate that canonizes the identity model independently of the
 directory product, governs the migration as a substrate change, and
-emits reproducible evidence at every phase. FMP's Governance OS is
-that substrate.
+emits reproducible evidence at every phase. The FMP substrate is
+built for that.
 
 Agencies that adopt this posture do not just migrate. They modernize
 the identity plane in a way that survives the next directory transition

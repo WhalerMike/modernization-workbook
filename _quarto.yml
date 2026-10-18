@@ -3,6 +3,8 @@ project:
   # Rebuilds _sitemap-tree.md (included by sitemap.qmd) from the pages
   # about to be rendered, so the Site Map always matches the site.
   pre-render: scripts/generate_sitemap.py
+  # Writes forwarding pages for removed or merged URLs (scripts/redirects.yml).
+  post-render: scripts/write_redirects.py
   output-dir: _site
   render:
     - "*.qmd"
@@ -13,14 +15,12 @@ project:
     # Quarto skips README.md when matched by a glob, so section landing pages
     # are listed by path.
     - "docs/architecture/architecture-series/README.md"
-    - "docs/architecture/directory-migration/README.md"
     - "docs/case-studies/README.md"
     - "docs/case-studies/sql-server-narrative/README.md"
     - "docs/client-server-to-hybrid-cloud/README.md"
     - "docs/compliance/federal-compliance-series-moderate/README.md"
     - "docs/compliance/federal-compliance-series-moderate/books/README.md"
     - "docs/executive-briefs/README.md"
-    - "docs/executive-governance-series/README.md"
     - "docs/guides/device-and-server-modernization/README.md"
     - "docs/learning/README.md"
     - "docs/libraries/README.md"
@@ -30,9 +30,7 @@ project:
     - "docs/project-management/README.md"
     - "docs/projects/README.md"
     - "docs/whitepapers/README.md"
-    - "!MIGRATION-*.md"
     - "!STATUS.md"
-    - "!OUTLINE.md"
     # Day-2 kit wrappers include ServiceNow kit files not yet in this repo;
     # kept in the repo, excluded from the build until the kit is imported.
     - "!docs/compliance/day2-kit/"

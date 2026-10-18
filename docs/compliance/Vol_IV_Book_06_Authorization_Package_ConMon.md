@@ -88,7 +88,7 @@ by an independent SCA.
 | Vol I Book 03 | Certificates and Tokens — cryptographic identity (PKI lifecycle, OAuth/OIDC, CBA; identity slot family evidence) | IA-2(1)/(2), IA-5(2), SC-12, SC-17 |
 | Vol I Book 04 | OPM HRIT and the Identity & Organizational SSOT — Oracle HCM Cloud as the HR system of record (identity slot family evidence, slot-01) | AC-2, AC-2(1), PS-4, PS-5, IA-4, SI-12 |
 | Vol I Book 06 | SD-WAN, SASE, UC (Teams Phone, Amazon Connect) | 7 |
-| Vol I Book 05 | Entra ID, ZTNA, Active Governance | 12 |
+| Vol I Book 05 | Entra ID, ZTNA, Drift Reconciliation | 12 |
 | Vol II Book 01 | SQL Server Authentication Modernization | IA family (depth) |
 | Vol II Book 02 | SQL Server Implementation Runbook | Procedural evidence |
 | Vol II Book 03 | Database Architecture / Network Physics | SC/SI families (depth) |

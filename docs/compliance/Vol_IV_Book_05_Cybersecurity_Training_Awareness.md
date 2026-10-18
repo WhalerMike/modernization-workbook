@@ -707,7 +707,7 @@ independent SCA.
 |----------|-------------|
 | Compliance — {{< meta agency.short >}} Landing Zone IPAM / FedRAMP | Vol I Book 01: InfoBlox DDI, four-environment landing zone, NIST control mapping, FedRAMP 20x KSI evidence |
 | Compliance — Federal Telecommunications Modernization | Vol I Book 06: Amazon Connect, Teams Phone, SD-WAN/SASE, G.114 compliance |
-| Compliance — Network Modernization | Vol I Book 05: AD-to-Entra migration, ZTNA, Active Governance, FedRAMP 20x alignment |
+| Compliance — Network Modernization | Vol I Book 05: AD-to-Entra migration, ZTNA, Drift Reconciliation, FedRAMP 20x alignment |
 | Compliance — SQL Server Authentication Modernization | Vol II Book 01: Arc Managed Identity, Kerberos/NTLM elimination, login migration |
 | Compliance — SQL Server Implementation Guide | Vol II Book 02: 10-book runbook — estate discovery, Arc deployment, monitoring |
 | Compliance — Database Consolidation and Network Physics | Vol II Book 03: SSOT architecture, speed-of-light floor, SD-WAN for database traffic |
