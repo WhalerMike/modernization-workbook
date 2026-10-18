@@ -17,7 +17,7 @@ lifecycle_review: 2027-01-01
 
 ::: {.callout-note}
 ## In this chapter
-Why the attribute a rule reads is itself an access control. Which user attributes Entra dynamic rules can use, and where those values should come from. How to write, name, test, and change rules safely within Microsoft's processing limits. How administrative units scope DBA delegation, and where restricted management collides with governance tooling. Why privileged SQL Server access belongs in PIM for Groups rather than in a dynamic rule. How access reviews, break-glass, and monitoring close the loop.
+Why the attribute a rule reads is itself an access control. Which user attributes Entra dynamic rules can use, and where those values should come from. How to write, name, test, and change rules safely within Microsoft's processing limits. How administrative units scope DBA delegation, and where restricted management collides with governance tooling. Why privileged SQL Server access belongs in PIM for Groups rather than in a dynamic rule. How access reviews, break-glass, and monitoring close the loop. What a FedRAMP Moderate system in the commercial cloud can adopt as written, and why preview features stay out of production.
 :::
 
 Chapter 1 established that the organization-derived groups of the old estate become dynamic groups: Entra security groups whose membership is computed from a rule such as `user.department -eq "Finance"` instead of maintained by hand. When a user's attributes change, Entra ID re-evaluates the rules and adds or removes them. No ticket is raised and no DBA acts. That is the dividend. The rest of this chapter is about what has to be true for the dividend to be safe.
@@ -76,7 +76,7 @@ Draw AU boundaries to match ownership: one AU per DBA team, application portfoli
 - Restricted management AUs accept only plain security groups.
 - The setting can't be changed after the AU is created.
 
-Use regular AUs for SQL Server access groups that need governance tooling, and reserve restricted management for cases where tamper-resistance outweighs reviewability. Dynamic membership *of the AU itself* is not available in the US Government clouds today. Agencies in those clouds assign AU members explicitly or by automation.
+Use regular AUs for SQL Server access groups that need governance tooling, and reserve restricted management for cases where tamper-resistance outweighs reviewability. Dynamic membership *of the AU itself* is generally available in the commercial (global) cloud this series assumes, with a P1 license for each member. Its rules can select users or devices, but not groups, so SQL Server access groups are added to an AU explicitly or by automation. Dynamic AU membership is not available in Azure Government.
 
 ## Privileged Access Belongs in PIM, Not in a Rule
 
@@ -109,8 +109,39 @@ The access model is now spread across HR, the provisioning service, Entra ID, an
 
 The continuous audit described in Book 09 should reconcile all three. Every type-E and type-X principal on an instance must map to a known user, application, or group. Every group must follow the naming convention and have an owner. No privileged role may have a standing member that PIM doesn't account for.
 
+## FedRAMP Moderate in the Commercial Cloud
+
+This series assumes the agency tenant is in Microsoft's commercial cloud: Entra ID at `login.microsoftonline.com` and Azure public US regions, not Azure Government. It also assumes the system is operated under an agency authorization at FedRAMP Moderate. That combination is common, and it shapes which of this book's recommendations can go into production as written.
+
+**What the cloud authorization covers.** Azure's public cloud holds a FedRAMP High provisional authorization (P-ATO) for its US regions. The Moderate baseline (325 controls) is a subset of the High baseline (421 controls), so a Moderate system can draw on services authorized at High. Whether it actually inherits them is the agency's call in its own authorization. Microsoft's current audit-scope list for the public cloud includes these services this book relies on:
+
+- Entra ID (Free, P1 and P2), Entra ID Governance, the Entra provisioning service, and Entra multifactor authentication
+- Microsoft Graph
+- Azure Arc-enabled servers and Azure Arc-enabled SQL Server
+- Azure Monitor (Log Analytics), Microsoft Sentinel, and Key Vault
+
+The list names services, not individual features. Dynamic groups, administrative units, PIM for Groups, and access reviews are features of those authorized Entra services, but no Microsoft page lists them feature by feature. Confirm them against the agency's authorization boundary and Microsoft's FedRAMP package, which agencies can request through the FedRAMP Marketplace. Two other things sit outside Microsoft's authorization. The SQL Server instances and the Arc agent run on agency hosts and are part of the agency's own system. A third-party HR system that feeds attributes into Entra has its own authorization, which the agency must check separately. Microsoft's FedRAMP configuration guidance for Entra says the same: the authorization makes compliant configuration possible, and the agency is responsible for configuring it.
+
+**Keep previews out of the production access path.** Microsoft's Data Protection Addendum says previews "may employ lesser or different privacy and security measures". Unless Microsoft notes otherwise, it says not to use them for data that is subject to legal or regulatory compliance requirements. Its Data Security terms do not apply to most previews. Entra's preview terms add that normal service-level agreements don't apply. For a Moderate system, that rules out:
+
+- the `memberOf` dynamic-rule operator (a preview that ends on 3 November 2026; see Chapter 1)
+- preview user properties in membership rules, such as `employeeHireDate`
+- any PIM, access-review, or provisioning capability that the Entra admin center or Microsoft Learn still marks as preview
+
+Check for the preview label before each new capability is adopted, and again when the rollout gate described earlier is applied.
+
+**What is in scope as recommended.** The generally available pieces of this book's design are delivered by services on the High list:
+
+- Entra group logins and Entra authentication for SQL Server through Azure Arc. Microsoft notes that the SQL Server instance needs access to the Azure public cloud for this.
+- Dynamic security groups built on supported properties and directory extension attributes
+- Regular and restricted-management administrative units, including dynamic AU membership for users
+- PIM for Groups and access reviews, licensed through P2 or Entra ID Governance
+- Emergency access accounts and Log Analytics monitoring
+
+Where this book cannot verify a feature's status at the feature level, treat it as unconfirmed until the agency's ATO documentation says otherwise.
+
 ::: {.callout-note title="What Book 07 establishes — Chapter 2"}
-In a dynamic group, whoever can write the attribute controls access. So access attributes come from the HR system of record through automated provisioning, and only that provisioning account can write them. Rules use supported, coded attributes such as `department`, `companyName`, `jobTitle`, `employeeId`, `extensionAttribute1`–`15`, and directory extension properties. They stay within Microsoft's limits (3,072-character rules, 15,000 dynamic groups, efficient operators) and require Entra ID P1 per unique member. Every rule is validated, shadowed against the group it replaces, and gated on a verified pilot cohort. Groups follow a one-group-one-role naming convention that process enforces, because the naming policy covers only Microsoft 365 groups. Regular administrative units scope DBA delegation. Restricted management is reserved for cases that don't need PIM or access reviews. Privileged groups are assigned, cloud-only, and governed by PIM for Groups. Access reviews cover assigned groups and the rules behind dynamic ones. Break-glass paths depend on none of this machinery. Entra audit, sign-in logs, and SQL Server Audit are reconciled by the continuous audit.
+In a dynamic group, whoever can write the attribute controls access. So access attributes come from the HR system of record through automated provisioning, and only that provisioning account can write them. Rules use supported, coded attributes such as `department`, `companyName`, `jobTitle`, `employeeId`, `extensionAttribute1`–`15`, and directory extension properties. They stay within Microsoft's limits (3,072-character rules, 15,000 dynamic groups, efficient operators) and require Entra ID P1 per unique member. Every rule is validated, shadowed against the group it replaces, and gated on a verified pilot cohort. Groups follow a one-group-one-role naming convention that process enforces, because the naming policy covers only Microsoft 365 groups. Regular administrative units scope DBA delegation. Restricted management is reserved for cases that don't need PIM or access reviews. Privileged groups are assigned, cloud-only, and governed by PIM for Groups. Access reviews cover assigned groups and the rules behind dynamic ones. Break-glass paths depend on none of this machinery. Entra audit, sign-in logs, and SQL Server Audit are reconciled by the continuous audit. In a FedRAMP Moderate tenant in the commercial cloud, the generally available features this design relies on come from services on Microsoft's FedRAMP High list. Preview features stay out of the production access path, and feature-level coverage is confirmed against the agency's authorization boundary.
 :::
 
 ## Microsoft references
@@ -122,3 +153,7 @@ In a dynamic group, whoever can write the attribute controls access. So access a
 - [Administrative units](https://learn.microsoft.com/en-us/entra/identity/role-based-access-control/administrative-units), [restricted management administrative units](https://learn.microsoft.com/en-us/entra/identity/role-based-access-control/admin-units-restricted-management), and [dynamic membership for administrative units](https://learn.microsoft.com/en-us/entra/identity/role-based-access-control/admin-units-members-dynamic)
 - [PIM for Groups](https://learn.microsoft.com/en-us/entra/id-governance/privileged-identity-management/concept-pim-for-groups), [role-assignable groups](https://learn.microsoft.com/en-us/entra/identity/role-based-access-control/groups-concept), and [ID Governance licensing](https://learn.microsoft.com/en-us/entra/id-governance/licensing-fundamentals)
 - [Access reviews](https://learn.microsoft.com/en-us/entra/id-governance/access-reviews-overview) and [emergency access accounts](https://learn.microsoft.com/en-us/entra/identity/role-based-access-control/security-emergency-access)
+- [Azure services in FedRAMP audit scope](https://learn.microsoft.com/en-us/azure/azure-government/compliance/azure-services-in-fedramp-auditscope) (Azure public cloud: FedRAMP High P-ATO; Entra ID, Entra ID Governance, provisioning, Graph, Arc-enabled SQL Server) and [Azure FedRAMP offering](https://learn.microsoft.com/en-us/azure/compliance/offerings/offering-fedramp) (Moderate and High baselines; requesting the package)
+- [Configure Microsoft Entra ID to meet FedRAMP High](https://learn.microsoft.com/en-us/entra/standards/configure-for-fedramp-high-impact) (customer configuration responsibility)
+- [Microsoft Entra preview program terms](https://learn.microsoft.com/en-us/entra/fundamentals/licensing-preview-terms) and the [Microsoft Products and Services Data Protection Addendum](https://www.microsoft.com/licensing/docs/view/Microsoft-Products-and-Services-Data-Protection-Addendum-DPA) (May 2026 edition, "Previews" section)
+- [Microsoft Entra authentication for SQL Server](https://learn.microsoft.com/en-us/sql/relational-databases/security/authentication-access/azure-ad-authentication-sql-server-overview?view=sql-server-ver17) and [managed identity for Arc-enabled SQL Server](https://learn.microsoft.com/en-us/sql/sql-server/azure-arc/managed-identity?view=sql-server-ver17) (requires Azure public cloud access)
