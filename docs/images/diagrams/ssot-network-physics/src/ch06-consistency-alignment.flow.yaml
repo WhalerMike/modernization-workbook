@@ -1,0 +1,16 @@
+# Chapter 06 — matching each data need's consistency model to a network class.
+rankdir: TB
+nodes:
+  t:
+    kind: table
+    tone: slate
+    columns: ["Data need", "Consistency model", "Network class", "Crosses regions synchronously?"]
+    widths: [190, 160, 140, 170]
+    rows:
+      - ["Authoritative writes to the source of truth", {text: "Strong / serializable", tone: blue}, {text: "Lean, low-latency", tone: blue}, {text: "No — kept intra-region", tone: green}]
+      - ["Quorum durability across nearby zones", {text: "Synchronous replication", tone: blue}, {text: "Lean, low-latency", tone: blue}, {text: "Within a region only", tone: green}]
+      - [{text: "No synchronous cross-region path: physics makes it expensive", tone: red, span: 4}]
+      - ["Cross-region durability / disaster recovery", "Asynchronous replication", "Fat, bulk", "No — async by design"]
+      - ["Read-mostly access far from the writer", "Bounded staleness / read replica", "Fat, bulk (refresh)", "No"]
+      - ["Multi-writer collaborative data", "Causal / CRDT merge", "Fat, bulk", "No — merges, not round trips"]
+      - ["Analytics / reporting", "Eventual", "Fat, bulk", "No"]

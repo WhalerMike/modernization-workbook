@@ -1,0 +1,26 @@
+# Chapter 03 — observed round-trip time is the propagation floor plus an
+# addressable gap; the floors for four representative paths.
+rankdir: TB
+graph: {nodesep: 0.3, ranksep: 0.35}
+nodes:
+  obs: {kind: pill, tone: slate, text: "Observed round-trip time =", width: 260}
+  floor: {tone: red, width: 260, title: "Propagation delay", body: ["=Distance at the speed of light in fiber (≈ 5 µs per km). Engineering cannot reduce it."], size: 12}
+  gap: {tone: green, width: 260, title: "Everything else", body: ["=Queueing, congestion, jitter, loss and retransmits, non-geodesic routing. Often 2× to 10× the floor; this is where optimization works."], size: 12}
+  t:
+    kind: table
+    tone: red
+    columns: ["Path (great-circle)", "One-way floor", "Round-trip floor"]
+    widths: [250, 130, 140]
+    rows:
+      - ["Within a metro (~50 km)", "~0.25 ms", "~0.5 ms"]
+      - ["Cross-region, same continent (~1,000 km)", "~5 ms", "~10 ms"]
+      - ["New York ↔ London (~5,600 km)", "~28 ms", {text: "~56 ms", tone: red}]
+      - ["New York ↔ Singapore (~15,300 km)", "~77 ms", {text: "~153 ms", tone: red}]
+      - [{text: "Straight-fiber minimums; real routes run 1.5× to 3× the distance.", span: 3, tone: plain}]
+edges:
+  - [obs, floor, {none: true}]
+  - [obs, gap, {none: true, label: "+"}]
+  - [floor, t, {tone: red, label: "floors by path"}]
+  - [gap, t, {style: invis}]
+ranks:
+  - [floor, gap]
