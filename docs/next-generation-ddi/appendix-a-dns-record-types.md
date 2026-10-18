@@ -17,7 +17,7 @@ This appendix is the record-type catalog and integration reference behind the ch
 
 ## DNS Record Type Catalog
 
-DNS is usually described through A and CNAME records, but IANA registers dozens of resource record types. At least fifteen are directly relevant to federal hybrid multi-cloud security, certificate governance, application-aware routing, and threat defense.
+DNS is usually described through A and CNAME records, but IANA registers dozens of resource record types.[^ca-iana] At least fifteen are directly relevant to federal hybrid multi-cloud security, certificate governance, application-aware routing, and threat defense.
 
 ### Address and Alias Records
 
@@ -53,7 +53,7 @@ DNS is usually described through A and CNAME records, but IANA registers dozens 
 
 - **DKIM (RFC 6376):** Public key for email signatures, published at selector.\_domainkey. Requires coordinated key rotation.
 
-- **DMARC (RFC 9989, which obsoletes RFC 7489):** Policy for SPF and DKIM failures, plus reporting. CISA BOD 18-01 requires p=reject for federal second-level domains.
+- **DMARC (RFC 9989, which obsoletes RFC 7489):** Policy for SPF and DKIM failures, plus reporting.[^ca-rfc9989] CISA BOD 18-01 requires p=reject for federal second-level domains.[^ca-bod1801]
 
 - **BIMI:** Brand logo display when DMARC is at enforcement; usually requires a mark certificate. BIMI is an industry specification, not an IETF standard.
 
@@ -65,7 +65,7 @@ DNS is usually described through A and CNAME records, but IANA registers dozens 
 
 ### DNSSEC Record Types
 
-- **DNSKEY, DS, RRSIG, NSEC/NSEC3, CDS/CDNSKEY:** Form the chain of trust, signatures, authenticated denial of existence, and automated parent-child key rollover signaling. RRSIG expiration requires automated signing. DS updates must stay synchronized across parent zones.
+- **DNSKEY, DS, RRSIG, NSEC/NSEC3, CDS/CDNSKEY:** Form the chain of trust, signatures, authenticated denial of existence, and automated parent-child key rollover signaling.[^ca-rfc7344] RRSIG expiration requires automated signing. DS updates must stay synchronized across parent zones.
 
 ## Security Integration Matrix (Summary)
 
@@ -108,4 +108,9 @@ This book was developed from the *Next Generation DDI* whitepaper (Word edition,
 ---
 
 **Previous:** [Chapter 11 — Platform Selection, Cost and Residual Risk](11-selection-cost-and-residual-risk.md)  
-**Next:** [Next Generation DDI — book home](index.md)
+**Next:** [Appendix B — Requirements Mapping and Sources](appendix-b-requirements-mapping.md)
+
+[^ca-iana]: IANA, *Domain Name System (DNS) Parameters*, Resource Record (RR) TYPEs registry. <https://www.iana.org/assignments/dns-parameters/dns-parameters.xhtml>
+[^ca-bod1801]: CISA, Binding Operational Directive 18-01, *Enhance Email and Web Security*, October 16, 2017. <https://www.cisa.gov/news-events/directives/bod-18-01-enhance-email-and-web-security>
+[^ca-rfc9989]: IETF RFC 9989, *Domain-based Message Authentication, Reporting, and Conformance (DMARC)*, May 2026, which obsoletes RFC 7489. <https://www.rfc-editor.org/rfc/rfc9989>
+[^ca-rfc7344]: IETF RFC 7344, *Automating DNSSEC Delegation Trust Maintenance* (CDS and CDNSKEY), September 2014. <https://www.rfc-editor.org/rfc/rfc7344>
