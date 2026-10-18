@@ -35,7 +35,7 @@
   <rect x="480" y="110" width="100" height="40" rx="4" fill="#4299e1"/>
   <text x="530" y="135" text-anchor="middle" font-size="10" fill="#1a365d">Vol X</text>
   
-  <text x="400" y="190" text-anchor="middle" font-size="12" fill="#4a5568">Engine-neutral · Evidence & Authorization Contract</text>
+  <text x="400" y="190" text-anchor="middle" font-size="12" fill="#4a5568">Engine-neutral · Evidence &amp; Authorization Contract</text>
   <text x="400" y="215" text-anchor="middle" font-size="12" fill="#4a5568">Five-clause lifecycle: Originate → Authorize → Execute → Close → Emit</text>
   <text x="400" y="250" text-anchor="middle" font-size="11" fill="#718096">FedRAMP Moderate · Continuous evidence · No rip-and-replace</text>
 </svg>

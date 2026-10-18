@@ -47,7 +47,7 @@ yours to act on.
 
 Three papers — [`ad-to-entraid-migration-problem`](ad-to-entraid-migration-problem.md),
 [`aodim-executive-whitepaper`](aodim-executive-whitepaper.md), and
-[`fmp-vs-native-tools`](docx/fmp-vs-native-tools.docx) — predate both
+[`fmp-vs-native-tools`](fmp-vs-native-tools.md) — predate both
 genres: they're docx imports from before the canon-anchoring convention
 existed. They carry real content (the original business case for the
 whole program) but are the corpus's least structurally current papers;
