@@ -34,11 +34,11 @@ Arc-enablement status — whether the Connected Machine agent is installed and t
 
 ## Authentication Mode Configuration
 
-For each instance the script reads the authentication-mode configuration. SQL Server supports two modes: Windows Authentication Only and Mixed Mode. In Windows Authentication Only mode, SQL Authentication logins are rejected at the connection level — no SQL Authentication credential is accepted regardless of whether a matching login exists in `master`. In Mixed Mode, both Windows Authentication and SQL Authentication are accepted.
+For each instance the script reads the authentication-mode configuration. SQL Server supports two modes: Windows Authentication mode and Mixed Mode. In Windows Authentication mode, SQL Authentication logins are rejected at the connection level — no SQL Authentication credential is accepted regardless of whether a matching login exists in `master`. In Mixed Mode, both Windows Authentication and SQL Authentication are accepted. Microsoft Entra authentication, once configured, works alongside either mode; neither mode turns Windows authentication off.
 
-The mode is stored in the Windows registry at `HKLM:\SOFTWARE\Microsoft\Microsoft SQL Server\[InstanceName]\MSSQLServer\LoginMode`: a value of `1` indicates Windows Authentication Only, and a value of `2` indicates Mixed Mode.
+The mode is stored in the Windows registry at `HKLM:\SOFTWARE\Microsoft\Microsoft SQL Server\[InstanceName]\MSSQLServer\LoginMode`: a value of `1` indicates Windows Authentication mode, and a value of `2` indicates Mixed Mode.
 
-The audit reads this value directly and also cross-references it against the `sys.configurations` view within the instance. Discrepancies between the registry value and the running configuration can occur after a manual reconfiguration without a service restart. Any discrepancy is flagged as an anomaly requiring resolution before the migration can proceed.
+The audit reads this value directly and also cross-references it against the running instance with `SERVERPROPERTY('IsIntegratedSecurityOnly')`, which returns `1` in Windows Authentication mode. Discrepancies between the registry value and the running configuration can occur after a manual reconfiguration without a service restart. Any discrepancy is flagged as an anomaly requiring resolution before the migration can proceed.
 
 ## Login Type Classification
 
@@ -48,7 +48,7 @@ The script connects to each instance and queries the `sys.server_principals` sys
 
 The count and identity of each type is reported per instance. The presence of active SQL Authentication logins — type `S` — is a critical finding, because these logins are invisible to the Azure identity plane.
 
-Such logins must be either migrated to Entra ID equivalents — type `E`, `FROM EXTERNAL PROVIDER` logins created in Book 04 — or formally excepted with documented justification before the SQL Server authentication transformation can be declared closed.
+Such logins must be either migrated to Entra ID equivalents — type `E`, `FROM EXTERNAL PROVIDER` logins created in Book 05 — or formally excepted with documented justification before the SQL Server authentication transformation can be declared closed.
 
 The `sa` account's status is separately flagged: enabled, disabled, or renamed. An enabled `sa` account with a non-rotated password is the highest-priority remediation finding in the audit output.
 
@@ -68,7 +68,7 @@ An instance with a missing or incorrect SPN is generating NTLM traffic for every
 
 The most consequential output of the audit is the Arc-eligibility classification it assigns to every instance. Every instance falls into one of three categories.
 
-Category 1 is Arc-eligible and Entra-auth-ready today: the server is already running the Connected Machine agent, the Azure extension for SQL Server has been deployed, the system-assigned managed identity is available, and the SQL Server version is 2022 or later. A Category 1 instance can have its Entra ID logins created and its login migration begun immediately — it requires no further infrastructure work before Book 04's migration pattern can be applied.
+Category 1 is Arc-eligible and Entra-auth-ready today: the server is already running the Connected Machine agent, the Azure extension for SQL Server has been deployed, the system-assigned managed identity is available, and the SQL Server version is 2022 or later. A Category 1 instance can have its Entra ID logins created and its login migration begun immediately — it requires no further infrastructure work before Book 05's migration pattern can be applied.
 
 Category 2 is Arc-eligible but not yet enabled: the host meets all the prerequisites for Arc enablement — Windows Server 2019 or later, network connectivity to the Azure Arc endpoint, SQL Server 2022 — but the Connected Machine agent has not been installed. A Category 2 instance requires Arc deployment as the prerequisite action before login migration can begin.
 
@@ -82,7 +82,7 @@ The audit script's output is not a standalone deliverable — it is the input to
 
 The continuous-compliance monitoring system is the program-level tracking system for SQL Server authentication state at the instance level. Each time the audit runs — and it is designed to run continuously, on a schedule, against the full estate — it produces a structured per-instance compliance record that the compliance-monitoring pipeline ingests.
 
-That pipeline computes the current authentication posture of the instance, compares it to the previous record, and flags any drift: a new SQL Authentication login that appeared since the last scan, an instance that has reverted from Entra-only authentication back to Mixed Mode, a new linked-server definition that uses NTLM passthrough.
+That pipeline computes the current authentication posture of the instance, compares it to the previous record, and flags any drift: a new SQL Authentication login that appeared since the last scan, an instance that has reverted from Windows Authentication mode back to Mixed Mode, a new linked-server definition that uses NTLM passthrough.
 
 Drift events are not informational — they are compliance violations that trigger the program's remediation workflow. The required output is a per-instance compliance record, not a spreadsheet delivered to a program manager.
 

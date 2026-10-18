@@ -8,9 +8,9 @@ nodes:
     columns: ["", "Closure condition", "How it is verified"]
     widths: [40, 300, 360]
     rows:
-      - [{text: "1", tone: green}, "Windows Authentication eliminated as a login mechanism", "No active type-U or type-G logins; `LoginMode = 1` (Mixed Mode off)"]
-      - [{text: "2", tone: green}, "SQL Authentication eliminated", "No active type-S logins outside the exception registry; sa disabled and renamed"]
-      - [{text: "3", tone: green}, "Entra ID is the only way in", "Every login is type E or X"]
+      - [{text: "1", tone: green}, "No usable Windows logins", "No enabled type-U or type-G logins outside the break-glass exception (no setting blocks Windows authentication)"]
+      - [{text: "2", tone: green}, "SQL authentication refused, no usable SQL logins", "`LoginMode = 1`; on 2025 also Disable SQL Authentication; no type-S outside the exception registry; sa disabled and renamed"]
+      - [{text: "3", tone: green}, "Entra authentication observed, nothing else", "Every usable login is type E or X; Entra sign-ins seen; no NTLM or Kerberos in `auth_scheme`"]
       - [{text: "4", tone: green}, "The engine has a cloud identity", "Arc agent connected; SQL extension deployed; Entra authentication configured (managed identity on 2025, app registration on 2022)"]
       - [{text: "5", tone: green}, "Every human uses MFA", "Entra sign-in logs: Conditional Access MFA satisfied for all human sign-ins to SQL Server"]
-      - [{text: "", tone: plain}, {text: "All five, on every production instance, at the same time — and still true on the next audit run.", tone: blue, span: 2}]
+      - [{text: "", tone: plain}, {text: "All five, on every production instance, at the same time — the Entra-exclusive operational posture, still true on the next audit run.", tone: blue, span: 2}]

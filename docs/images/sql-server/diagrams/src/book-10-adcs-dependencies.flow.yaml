@@ -5,7 +5,7 @@ graph: {nodesep: 0.25, ranksep: 0.45}
 nodes:
   ca: {tone: red, width: 320, title: "ADCS", body: ["=Being decommissioned; replacement CA not yet decided"], size: 12}
   tls: {tone: slate, width: 235, tag: "Dependency 1", title: "TLS server certificate", body: ["=Encrypts every client connection (required at FedRAMP Moderate)"], size: 12}
-  cert: {tone: slate, width: 235, tag: "Dependency 2", title: "Certificate-mapped logins (type C)", body: ["=Rare and undocumented: service accounts, Service Broker, PKI integrations"], size: 12}
+  cert: {tone: slate, width: 235, tag: "Dependency 2", title: "Certificate-mapped logins (type C)", body: ["=Code signing and Service Broker or mirroring endpoints; can't be used to connect"], size: 12}
   cba: {tone: amber, width: 235, tag: "Dependency 3", title: "Certificate-based authentication", body: ["=The interim posture for connections that can't reach Kerberos or Entra tokens before 2027-04-01"], size: 12}
   aud: {kind: text, width: 720, text: "Discovered by `Get-CertBasedAuthAudit.ps1`: subject, SAN, issuing CA and expiry for each.", size: 12}
 edges:

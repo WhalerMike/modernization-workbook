@@ -1,6 +1,6 @@
 ---
 title: "SQL Server Identity Transformation"
-subtitle: "From Windows Authentication to Microsoft Entra ID — a ten-book reading sequence on transforming the SQL Server estate, from twenty years of forest sprawl to Entra-only authentication"
+subtitle: "From Windows Authentication to Microsoft Entra ID — a ten-book reading sequence, with an epilogue, on transforming the SQL Server estate from twenty years of forest sprawl to an Entra-exclusive operational posture"
 doc-type: section-landing
 audience: [Executive, Technical, Customer]
 family: sql-server-narrative
@@ -22,7 +22,7 @@ lifecycle_review: 2027-01-01
 
 ::: {.callout-important appearance="default"}
 ## Status — Draft series
-This ten-book series is **DRAFT v0.1**. It is the explanatory companion to the
+This series — ten books and an epilogue — is **DRAFT v0.1**. It is the explanatory companion to the
 **SQL Server engine-authentication decision**, which is **PROPOSED**, not yet
 accepted. Treat the engineering patterns here as the evidentiary foundation for
 that decision rather than as accepted normative governance until it is accepted
@@ -52,7 +52,7 @@ This series documents that path, fills it in narrative form, and provides the
 analytical foundation that the **SQL Server engine-authentication decision**
 formalizes.
 
-![How a connection authenticates before, during and after the transformation.](../../images/sql-server/diagrams/svg/series-01-before-during-after.svg){fig-alt="Before: a domain-joined client gets a Kerberos ticket or falls back to NTLM, invisible to Entra ID. During: legacy and migrated clients coexist, with two authorities and old logins disabled after validation. After: users, apps and managed identities get an Entra token under Conditional Access, SQL Server accepts only Entra logins, and every sign-in is logged."}
+![How a connection authenticates before, during and after the transformation.](../../images/sql-server/diagrams/svg/series-01-before-during-after.svg){fig-alt="Before: a domain-joined client gets a Kerberos ticket or falls back to NTLM, invisible to Entra ID. During: legacy and migrated clients coexist, with two authorities and old logins disabled after validation. After: users, apps and managed identities get an Entra token under Conditional Access, only Entra logins remain in use on SQL Server, and every sign-in is logged."}
 
 The series is written in continuous narrative voice. It avoids the
 bullet-point shorthand of a runbook, because the transformation it describes
@@ -71,11 +71,13 @@ migration, and NTLM elimination at the SQL layer. Books 07 and 08 follow the
 transformation outward, into access control and the upstream application chain.
 Book 09 describes the transformed steady-state and the 2027 milestone, and Book
 10 addresses the certificate-authority dependency that the other nine books
-depend on but rarely name.
+depend on but rarely name. Book 11 is an epilogue: once the estate is
+rationalized and its authentication migrated, it takes up the platform
+question for each retained data domain.
 
 ## Reading sequence {#chapters}
 
-![The eleven books in the order they depend on each other.](../../images/sql-server/diagrams/svg/series-00-reading-path.svg){fig-alt="The eleven books in stages: why and what survives (Books 01 to 03), migrating the engine (Books 04 to 06), and extending outward then sustaining (Books 07 to 09), with Book 10, the certificate authority dependency, and Book 11, the platform question, alongside the whole series."}
+![The ten books and the epilogue, in the order they depend on each other.](../../images/sql-server/diagrams/svg/series-00-reading-path.svg){fig-alt="The ten books and the epilogue in stages: why and what survives (Books 01 to 03), migrating the engine (Books 04 to 06), and extending outward then sustaining (Books 07 to 09), with Book 10, the certificate authority dependency, alongside the whole series, and Book 11, the platform question, as the epilogue."}
 
 ::: {#chapters}
 :::

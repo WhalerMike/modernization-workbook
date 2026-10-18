@@ -4,7 +4,7 @@ rankdir: LR
 graph: {nodesep: 0.3, ranksep: 0.35}
 nodes:
   s1: {tone: blue, width: 165, tag: "First", title: "Replacement CA issuing", body: ["=Choice not yet made (no architecture decision exists)"], size: 12}
-  s2: {tone: blue, width: 165, tag: "Then, in parallel", title: "Move each dependency", body: ["Re-issue TLS certificates", "Migrate type-C logins", "Issue interim CBA certificates"], size: 12}
+  s2: {tone: blue, width: 165, tag: "Then, in parallel", title: "Move each dependency", body: ["Re-issue TLS certificates", "Re-sign type-C modules", "Issue interim CBA certificates"], size: 12}
   s3: {tone: amber, width: 165, tag: "Before 2027-04-01", title: "Long-tail on CBA", body: ["=Connections that can't reach Entra tokens in time"], size: 12}
   s4: {tone: red, width: 165, tag: "Last", title: "Decommission ADCS", body: ["=Only when nothing above still depends on it"], size: 12}
 edges:

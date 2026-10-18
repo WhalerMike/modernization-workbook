@@ -22,7 +22,7 @@ Arc deployment respects linked-server dependency order. The host that is the tar
 
 ## What Book 04 establishes
 
-Arc and the Azure extension for SQL Server give each instance an Entra identity that replaces the AD-anchored service account — the managed identity on SQL Server 2025, an app registration with a Key Vault certificate on SQL Server 2022. Layer 1 (SQL-engine Entra auth) does not depend on Layer 2 (OS-level domain unjoin). Deployment sequencing respects linked-server dependency order. The local-endpoint token test and a test Entra login are the gate that authorizes login migration.
+Arc and the Azure extension for SQL Server give each instance an Entra identity alongside the Windows account the service runs as — the managed identity on SQL Server 2025, an app registration with a Key Vault certificate on SQL Server 2022. Layer 1 (SQL-engine Entra auth) does not depend on Layer 2 (OS-level domain unjoin). Deployment sequencing respects linked-server dependency order. The local-endpoint token test and a test Entra login are the gate that authorizes login migration.
 
 ---
 

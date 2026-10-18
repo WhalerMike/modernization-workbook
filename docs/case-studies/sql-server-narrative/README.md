@@ -2,7 +2,7 @@
 
 **From Windows Authentication to cloud identity — a reading sequence on transforming the SQL Server estate**
 
-![The eleven books in the order they depend on each other.](../../images/sql-server/diagrams/svg/series-00-reading-path.svg){fig-alt="The eleven books in stages: why and what survives (Books 01 to 03), migrating the engine (Books 04 to 06), and extending outward then sustaining (Books 07 to 09), with Book 10, the certificate authority dependency, and Book 11, the platform question, alongside the whole series."}
+![The ten books and the epilogue, in the order they depend on each other.](../../images/sql-server/diagrams/svg/series-00-reading-path.svg){fig-alt="The ten books and the epilogue in stages: why and what survives (Books 01 to 03), migrating the engine (Books 04 to 06), and extending outward then sustaining (Books 07 to 09), with Book 10, the certificate authority dependency, alongside the whole series, and Book 11, the platform question, as the epilogue."}
 
 **Full narrative bundle:** [sql-server-narrative-bundle.docx](../../../downloads/sql-server-narrative-bundle.docx) — all books combined into one Word document, regenerated on every site deploy.
 
@@ -20,7 +20,7 @@ Windows Authentication and SQL Authentication are eliminated and replaced with c
 
 ## The journey in diagrams
 
-![How a connection authenticates before, during and after the transformation.](../../images/sql-server/diagrams/svg/series-01-before-during-after.svg){fig-alt="Before: a domain-joined client gets a Kerberos ticket or falls back to NTLM, invisible to Entra ID. During: legacy and migrated clients coexist, with two authorities and old logins disabled after validation. After: users, apps and managed identities get an Entra token under Conditional Access, SQL Server accepts only Entra logins, and every sign-in is logged."}
+![How a connection authenticates before, during and after the transformation.](../../images/sql-server/diagrams/svg/series-01-before-during-after.svg){fig-alt="Before: a domain-joined client gets a Kerberos ticket or falls back to NTLM, invisible to Entra ID. During: legacy and migrated clients coexist, with two authorities and old logins disabled after validation. After: users, apps and managed identities get an Entra token under Conditional Access, only Entra logins remain in use on SQL Server, and every sign-in is logged."}
 
 Before, every party is domain-joined and NTLM is the silent fallback when the service principal name is missing. During the parallel run, legacy and migrated clients coexist. After, Conditional Access evaluates every sign-in and the SQL Server validates the Entra token; no domain controller is in the path.
 
@@ -38,7 +38,7 @@ Before, every party is domain-joined and NTLM is the silent fallback when the se
 | [08](book-08-upstream-chain.md) | The Upstream Application Chain | Applications that depend on Windows Authentication or LDAP |
 | [09](book-09-steady-state.md) | Transformed Steady State | The destination and the milestone |
 | [10](book-10-certificate-authority.md) | Certificate-Authority Dependency | The layer the other steps depend on but rarely name |
-| [11](book-11-platform-question.md) | The Platform Question | Database consolidation toward SSOT |
+| [11](book-11-platform-question.md) | Epilogue — The Platform Question | Database consolidation toward SSOT, after the transformation |
 
 ## Relationship to identity governance
 
@@ -50,7 +50,7 @@ Dynamic Entra security groups grant SQL Server access based on HR-sourced user a
 
 ## Building the Word bundles
 
-The combined Word document (`downloads/sql-server-narrative-bundle.docx`, also published as `sql-server-narrative-standalone-bundle.docx`) and the per-book documents (`downloads/Book_01-bundle.docx` to `Book_10-bundle.docx`) are built directly from the Markdown pages in this folder by `scripts/build_bundles.py`. The same script builds the site's other section bundles. The site deploy workflow runs it on every push to `main`. To build locally, run this from the repository root (you need [Quarto](https://quarto.org/), plus `rsvg-convert` if any page uses an SVG):
+The combined Word document (`downloads/sql-server-narrative-bundle.docx`, also published as `sql-server-narrative-standalone-bundle.docx`) and the per-book documents (`downloads/Book_01-bundle.docx` to `Book_11-bundle.docx`) are built directly from the Markdown pages in this folder by `scripts/build_bundles.py`. The same script builds the site's other section bundles. The site deploy workflow runs it on every push to `main`. To build locally, run this from the repository root (you need [Quarto](https://quarto.org/), plus `rsvg-convert` if any page uses an SVG):
 
 ```bash
 python3 scripts/build_bundles.py                                    # every bundle, into _site/downloads/
