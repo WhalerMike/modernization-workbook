@@ -17,6 +17,7 @@ Most modernization guides answer narrow questions. This series answers the large
 The series follows a five-part path through eleven chapters (00–10). Read the [applicability and scope note](00a-applicability.md) first: the target state assumes Microsoft commercial cloud services (Commercial or GCC-Moderate).
 
 ### Before you start
+- **[Prologue — Why Modernization Is Hard](00-prologue-why-modernization-is-hard.md)** — Plain-language version of the argument, written for leadership and budget readers.
 - **[Applicability and scope](00a-applicability.md)** — Which clouds, environments, and Windows versions the target state assumes, and where it does not apply.
 
 ### Part I · Platform
@@ -40,11 +41,14 @@ The series follows a five-part path through eleven chapters (00–10). Read the 
 - **[09 — Migration Roadmap](09-migration-roadmap.md)** — Phased plan, gates, rollback triggers, cutover.
 - **[10 — Leadership Takeaway](10-leadership-takeaway.md)** — Instruments versus orchestra: what the framework is and how to evaluate it.
 
+### Appendix
+- **[Appendix A — Federal Requirements Mapping](appendix-a-requirements-mapping.md)** — M-22-09, CISA ZTMM v2, NIST SP 800-207, and NIST SP 800-53 Rev. 5.
+
 ## How to read this series
 
 | Audience | Recommended path |
 |----------|------------------|
-| CIO / CISO / program sponsor | 00 → 10 → 09 |
+| CIO / CISO / program sponsor | Prologue → 00 → 10 → 09 |
 | Identity architect | 00 → 04 → 05 → 08 |
 | Infrastructure architect | 00 → 01 → 06 → 07 |
 | Modernization program manager | 00 → 03 → 09 |

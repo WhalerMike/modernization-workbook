@@ -18,7 +18,7 @@ The device-join model has several states. Understanding them is the precondition
 | State | Primary auth | Managed by | When to use |
 |-------|--------------|------------|-------------|
 | **Domain-Joined** (legacy) | Active Directory Kerberos | Group Policy | Legacy — migration origin |
-| **Entra registered** | Personal device with a work account added | Device management (optional) | Bring-your-own-device; rarely used in regulated environments |
+| **Entra registered**[^cs07-devid] | Personal device with a work account added | Device management (optional) | Bring-your-own-device; rarely used in regulated environments |
 | **Hybrid-joined** | Both Active Directory + cloud identity (simultaneous) | Group Policy + device management | Transition state — not a target |
 | **Entra joined** (cloud-joined) | Cloud identity only | Device management | Target for user PCs |
 | **Arc-connected server** | Local or domain logon unchanged; system-assigned managed identity for Azure-plane operations | Azure Arc + Azure Policy machine configuration | Target for servers |
@@ -42,7 +42,7 @@ For each of those dependencies, a modernization must land a replacement before t
 
 ### Pattern 1 — Greenfield (enrollment from the start)
 
-The lowest-risk pattern. New hardware is shipped directly from the OEM with pre-registration. The first boot is a cloud-joined enrollment; no domain-join happens. No Active Directory dependency is created.
+The lowest-risk pattern. New hardware is shipped directly from the OEM with pre-registration.[^cs07-autopilot] The first boot is a cloud-joined enrollment; no domain-join happens. No Active Directory dependency is created.
 
 This is the pattern to push toward for any hardware refresh: new PCs are greenfield regardless of whether the fleet modernization is in progress.
 
@@ -50,11 +50,11 @@ This is the pattern to push toward for any hardware refresh: new PCs are greenfi
 
 For existing domain-joined devices, the cleanest path is to back up user state, reset the device, and re-enroll. Post-reset the device is cloud-joined from the start.
 
-This is operationally heavy for the user (loss of local customization unless synchronization is working), but technically clean. Many organizations run this pattern for high-privilege user devices where leaving any legacy Active Directory trust is unacceptable.
+This is operationally heavy for the user (loss of local customization unless synchronization is working), but technically clean. A common choice is to run this pattern for high-privilege user devices where leaving any legacy Active Directory trust is unacceptable.
 
 ### Pattern 3 — Hybrid-then-cloud
 
-For fleets where an immediate reset is not operationally feasible, devices are first hybrid-joined (both Active Directory and cloud identity). Over a planned period, workloads move from Group Policy to device management. There is no supported in-place conversion from hybrid join to Entra join, so the final step is still a reset and Autopilot re-provisioning (or a third-party migration tool), timed to the device's refresh or a scheduled window.
+For fleets where an immediate reset is not operationally feasible, devices are first hybrid-joined (both Active Directory and cloud identity). Over a planned period, workloads move from Group Policy to device management. There is no supported in-place conversion from hybrid join to Entra join, so the final step is still a reset and Autopilot re-provisioning[^cs07-apsc] (or a third-party migration tool), timed to the device's refresh or a scheduled window.
 
 This is the common transition. It is the slowest of the three and defers, rather than avoids, the reset. Drift detection monitors every step so a device does not get stuck hybrid-joined forever.
 
@@ -76,8 +76,8 @@ Every hybrid-projected server is tagged with its organizational attributes. Clou
 
 For each domain-joined server:
 
-1. **Arc-connect.** Install the Connected Machine agent; register; apply organizational tags.
-2. **Onboard security and compliance reporting.** Defender for Servers and Azure Policy machine configuration report the server's posture. (Conditional Access governs user and workload sign-ins to Entra-protected resources; it does not evaluate server compliance for server-to-server traffic.)
+1. **Arc-connect.** Install the Connected Machine agent; register; apply organizational tags.[^cs07-arc]
+2. **Onboard security and compliance reporting.** Defender for Servers and Azure Policy machine configuration report the server's posture.[^cs07-mdfs] (Conditional Access governs user and workload sign-ins to Entra-protected resources; it does not evaluate server compliance for server-to-server traffic.)
 3. **Assign policy / guest configuration.** Settings that previously came from Group Policy now come from hybrid management.
 4. **Validate.** Guest configuration reports compliant; expected settings present; drift engine reports zero.
 5. **Domain-unjoin.** Only once all legacy Active Directory dependencies are resolved (all Kerberos-bound clients migrated, no Active Directory-anchored local administrators).
@@ -89,7 +89,7 @@ Duration depends mainly on the Kerberos-application inventory; budget it per app
 
 Every Active Directory-joined server has an entry in the Kerberos service principal name map (Chapter 02). Each service principal name represents an application or service that expects to be reached via Kerberos authentication. For each one, the modernization needs a decision:
 
-- **Migrate the application to modern authentication.** OAuth2 / OpenID Connect via cloud application registration. This is the preferred path.
+- **Migrate the application to modern authentication.** OAuth2 / OpenID Connect via cloud application registration.[^cs07-appproxy] This is the preferred path.
 - **Retire the application.** If the application is legacy and due for end-of-life, this may be the cheapest option.
 - **Keep the application on a Kerberos island.** Last resort — retain a minimal Active Directory island hosting only the Kerberos-bound application, with a documented end-of-life date.
 
@@ -97,7 +97,7 @@ The service-principal-name-to-application mapping determines the sequence: no se
 
 ## Organizational attributes on devices
 
-User devices carry organizational attributes just like users (for devices, typically through device extension attributes set via Microsoft Graph, or through rules on properties such as the enrollment profile). This drives:
+User devices carry organizational attributes just like users (for devices, typically through device extension attributes set via Microsoft Graph,[^cs07-dyn] or through rules on properties such as the enrollment profile). This drives:
 
 - **Device dynamic groups.** Attribute queries capture devices in a given organizational segment.
 - **Device-management compliance scoping.** Attribute-scoped groups are the target for segment-specific compliance policies.
@@ -109,7 +109,7 @@ Drift detection monitors device attributes the same way it monitors user attribu
 
 When domain-joined PCs go away, smart-card logon anchored in Active Directory Certificate Services goes with them. The replacement is cloud certificate-based authentication.
 
-Microsoft Entra certificate-based authentication accepts certificates issued by a certificate authority in the tenant's trust store and authenticates the user to Entra ID. Windows smart-card sign-in to Entra-joined devices keeps working; the chain just ends in Entra ID instead of Active Directory. The prerequisites are a smart-card reader and a valid user certificate whose binding to the user is configured (Chapter 08). Access from Entra-joined devices to remaining on-premises Kerberos resources continues to depend on AD until those resources are retired.
+Microsoft Entra certificate-based authentication accepts certificates issued by a certificate authority in the tenant's trust store and authenticates the user to Entra ID. Windows smart-card sign-in to Entra-joined devices keeps working;[^cs07-cbasc] the chain just ends in Entra ID instead of Active Directory. The prerequisites are a smart-card reader and a valid user certificate whose binding to the user is configured (Chapter 08). Access from Entra-joined devices to remaining on-premises Kerberos resources continues to depend on AD until those resources are retired.[^cs07-ssoonprem]
 
 ## Lifecycle — enrollment and the device-reset pattern
 
@@ -146,7 +146,30 @@ The actual retirement is mechanical: demote every domain controller, decommissio
 
 Chapter 08 wraps the remaining access-plane details. Chapter 09 presents the phased program plan that sequences everything. Chapter 10 frames the executive takeaway.
 
+
+## Authoritative references
+
+- Microsoft Learn, [What is device identity in Microsoft Entra ID? - Microsoft Entra ID](https://learn.microsoft.com/en-us/entra/identity/devices/overview)
+- Microsoft Learn, [Windows Autopilot scenarios](https://learn.microsoft.com/en-us/autopilot/tutorial/autopilot-scenarios)
+- Microsoft Learn, [Overview of Windows Autopilot](https://learn.microsoft.com/en-us/autopilot/overview)
+- Microsoft Learn, [Azure Arc-enabled servers Overview - Azure Arc](https://learn.microsoft.com/en-us/azure/azure-arc/servers/overview)
+- Microsoft Learn, [Connect on-premises machines - Microsoft Defender for Cloud](https://learn.microsoft.com/en-us/azure/defender-for-cloud/quickstart-onboard-machines)
+- Microsoft Learn, [Windows smart card sign-in using Microsoft Entra certificate-based authentication - Microsoft Entra ID](https://learn.microsoft.com/en-us/entra/identity/authentication/concept-certificate-based-authentication-smartcard)
+- Microsoft Learn, [How SSO to on-premises resources works on Microsoft Entra joined devices - Microsoft Entra ID](https://learn.microsoft.com/en-us/entra/identity/devices/device-sso-to-on-premises-resources)
+- Microsoft Learn, [Manage rules for dynamic membership groups in Microsoft Entra ID - Microsoft Entra ID](https://learn.microsoft.com/en-us/entra/identity/users/groups-dynamic-membership)
+- Microsoft Learn, [Publish on-premises apps with Microsoft Entra application proxy - Microsoft Entra ID](https://learn.microsoft.com/en-us/entra/identity/app-proxy/overview-what-is-app-proxy)
+
 ---
 
 **Previous:** [Chapter 06 — Network Services](06-network-services.md)  
 **Next:** [Chapter 08 — Access Plane](08-access-plane.md)
+
+[^cs07-devid]: Microsoft Learn, *What is device identity in Microsoft Entra ID? - Microsoft Entra ID*. <https://learn.microsoft.com/en-us/entra/identity/devices/overview>
+[^cs07-apsc]: Microsoft Learn, *Windows Autopilot scenarios*. Autopilot for existing devices is the listed method for converting hybrid-joined devices to Entra join; it reinstalls Windows. <https://learn.microsoft.com/en-us/autopilot/tutorial/autopilot-scenarios>
+[^cs07-autopilot]: Microsoft Learn, *Overview of Windows Autopilot*. <https://learn.microsoft.com/en-us/autopilot/overview>
+[^cs07-arc]: Microsoft Learn, *Azure Arc-enabled servers Overview - Azure Arc*. <https://learn.microsoft.com/en-us/azure/azure-arc/servers/overview>
+[^cs07-mdfs]: Microsoft Learn, *Connect on-premises machines - Microsoft Defender for Cloud*. <https://learn.microsoft.com/en-us/azure/defender-for-cloud/quickstart-onboard-machines>
+[^cs07-cbasc]: Microsoft Learn, *Windows smart card sign-in using Microsoft Entra certificate-based authentication - Microsoft Entra ID*. <https://learn.microsoft.com/en-us/entra/identity/authentication/concept-certificate-based-authentication-smartcard>
+[^cs07-ssoonprem]: Microsoft Learn, *How SSO to on-premises resources works on Microsoft Entra joined devices - Microsoft Entra ID*. <https://learn.microsoft.com/en-us/entra/identity/devices/device-sso-to-on-premises-resources>
+[^cs07-dyn]: Microsoft Learn, *Manage rules for dynamic membership groups in Microsoft Entra ID - Microsoft Entra ID*. <https://learn.microsoft.com/en-us/entra/identity/users/groups-dynamic-membership>
+[^cs07-appproxy]: Microsoft Learn, *Publish on-premises apps with Microsoft Entra application proxy - Microsoft Entra ID*. For web applications that cannot be rewritten, Entra application proxy can publish them with Entra pre-authentication and Kerberos constrained delegation to the back end. <https://learn.microsoft.com/en-us/entra/identity/app-proxy/overview-what-is-app-proxy>

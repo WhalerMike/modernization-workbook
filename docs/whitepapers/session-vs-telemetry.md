@@ -2,6 +2,8 @@
 
 **Why identity architecture splits at a continuous-verification boundary**
 
+> The plain-language framing of the session problem is in the [Prologue — Why Modernization Is Hard](../client-server-to-hybrid-cloud/00-prologue-why-modernization-is-hard.md). This paper assumes it and goes deeper on the architecture.
+
 ## Problem
 
 Networks were built on proximity. Users were near data. Domain controllers were near users. Session-based protocols worked because everything was local. When servers and data moved, the architecture did not. Persistent client/server sessions and continuous-verification Zero Trust telemetry are two incompatible trust models. The collision looks like user error and application bugs.

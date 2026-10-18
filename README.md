@@ -16,7 +16,7 @@ This repository extracts practical modernization concepts — single source of t
 | 2 | [Principles](docs/PRINCIPLES.md) | The rules. Read this first. |
 | 3 | [Project Charter](PROJECT-CHARTER.md) | Purpose, scope, and success criteria. |
 | 4 | [Project Plan](PROJECT-PLAN.md) | Phased roadmap and domain workstreams. |
-| 5 | [Why Modernization Is Hard](docs/narratives/why-modernization-is-hard.md) | Leadership framing of the problem. |
+| 5 | [Why Modernization Is Hard](docs/client-server-to-hybrid-cloud/00-prologue-why-modernization-is-hard.md) | Leadership framing of the problem. |
 | 6 | [Client-Server to Hybrid-Cloud series](docs/client-server-to-hybrid-cloud/README.md) | The eleven-chapter technical narrative. |
 
 ## Contents

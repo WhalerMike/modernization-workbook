@@ -13,7 +13,7 @@ This workbook is a cleaned, standalone modernization project. It presents patter
 1. **[Principles](PRINCIPLES.md)** — The rules. Read this first.
 2. **[Project Charter](../PROJECT-CHARTER.md)** — Purpose, scope, and success criteria.
 3. **[Project Plan](../PROJECT-PLAN.md)** — Phased roadmap and workstreams.
-4. **[Why Modernization Is Hard](narratives/why-modernization-is-hard.md)** — Leadership framing.
+4. **[Why Modernization Is Hard](client-server-to-hybrid-cloud/00-prologue-why-modernization-is-hard.md)** — Leadership framing.
 5. **[Client-Server to Hybrid-Cloud series](client-server-to-hybrid-cloud/README.md)** — The technical narrative.
 
 ## How the material is organized

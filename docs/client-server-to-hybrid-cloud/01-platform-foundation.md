@@ -16,7 +16,7 @@ The platform host is a governance substrate, not an application server. Governan
 
 - **Single source of truth.** There is exactly one repository that holds the authoritative governance artifacts. Two hosts cannot both be authoritative; they would diverge. Replication is for resilience and recovery, not active-active load-sharing. Where high availability is required, a hot-standby replica with automatic, witness-gated failover keeps that single authority continuously available without ever creating a second writer.
 - **Deterministic provenance.** Every plan, every delivery, and every drift report must be traceable to a commit on the canonical repository. A distributed-by-default architecture dilutes provenance; a single-host architecture concentrates it.
-- **Bounded attack surface.** A single hardened Tier-0 host presents a cleaner security story (CIS baseline, application control, code integrity) than a fleet of loosely-coupled services.
+- **Bounded attack surface.** A single hardened Tier-0 host can present a simpler security story (CIS baseline, application control, code integrity) than a fleet of loosely coupled services, though it is also a concentrated high-value target and must be protected as one.
 - **Operational simplicity.** One host means one patch cadence, one backup policy, one disaster-recovery playbook, one set of compliance rules, and one enrollment. Complexity scales badly in governance systems because every extra moving part is an extra source of drift.
 
 Horizontal scale, when it becomes necessary, is handled at the target surface layer — cloud identity, device management, and vendor APIs scale natively — not by fanning out the governance substrate.
@@ -42,8 +42,8 @@ This pattern keeps the authoritative repository off the public network while sti
 **Kerberos + enterprise PKI.** The platform host holds simultaneous memberships:
 
 - It is **domain-joined** to the legacy Active Directory forest (for Kerberos-anchored reads of the forest, Group Policy, DNS zones, and certificate services).
-- It is **Azure Arc-connected** (for a system-assigned managed identity that authenticates outbound calls to Azure Resource Manager; Microsoft Graph calls use a workload identity granted only the permissions it needs).
-- It holds an **enterprise-CA-issued server certificate** for TLS. Arc onboarding uses a service principal or interactive sign-in, not a client certificate from the enterprise CA.
+- It is **Azure Arc-connected** (for a system-assigned managed identity that authenticates outbound calls to Azure Resource Manager[^cs01-arcmi]; Microsoft Graph calls use a workload identity granted only the permissions it needs).
+- It holds an **enterprise-CA-issued server certificate** for TLS. Arc onboarding uses a service principal or interactive sign-in, not a client certificate from the enterprise CA.[^cs01-arcsp]
 
 The bridges are not redundant. The Active Directory side is read-only by policy (assessment tooling runs with a least-privilege account that has only the forest-reader rights it needs). The cloud side is read-write (transformation plans land there).
 
@@ -51,8 +51,8 @@ The bridges are not redundant. The Active Directory side is read-only by policy 
 
 **PowerShell + Python + API integrator layer.** This is where assessment, planning, and delivery actually happen.
 
-- **PowerShell** (7.4+) handles Active Directory-side reads (ActiveDirectory, GroupPolicy, DnsServer, DhcpServer modules), version-control API calls, local provenance writes, and test harnesses.
-- **Python** (3.12+) handles graph analysis (organizational unit trees, dependency graphs), schema validation, and anything that benefits from a richer type system or library ecosystem.
+- **PowerShell** (7.4 or later, as an example baseline) handles Active Directory-side reads (ActiveDirectory, GroupPolicy, DnsServer, DhcpServer modules), version-control API calls, local provenance writes, and test harnesses.
+- **Python** (3.12 or later, as an example baseline) handles graph analysis (organizational unit trees, dependency graphs), schema validation, and anything that benefits from a richer type system or library ecosystem.
 - **API integrators** wrap vendor APIs — Microsoft Graph, Azure Resource Manager, Intune management APIs, IPAM, IT service management, privileged access management, and posture-assessment output — behind uniform contracts.
 
 Both engines are governed: every script lives in the repository; every run produces a signed, provenanced log entry; every API call is logged with correlation identifiers that tie back to a plan and a commit.
@@ -98,7 +98,7 @@ A fully configured host has the following operational properties:
 
 - **Tier-0 classification** — hardened baseline, application control, code integrity, endpoint protection, and security-information-and-event-management forwarding.
 - **Provenance-bound** — every configuration file change is a commit; administrative-portal changes are prohibited by procedure and detected by drift monitoring.
-- **Attribute-governed** — the server carries its organizational tags in Azure Resource Manager and is targeted by tag-scoped Azure Policy and machine configuration.
+- **Attribute-governed** — the server carries its organizational tags in Azure Resource Manager and is targeted by tag-scoped Azure Policy and machine configuration.[^cs01-mc]
 - **Drift-monitored** — state (attributes, administrative-unit membership, repository team mapping, hybrid heartbeat) is reported on a schedule. Drift opens a tracked item.
 - **Disaster-recovery ready** — nightly backup plus a standby replica with documented recovery objectives. The baseline is manual failover to a cold standby, upgradable to automatic, witness-gated failover to a hot standby.
 
@@ -116,7 +116,18 @@ Boundaries matter as much as capabilities:
 - Full build procedures can be developed as a separate runbook (PowerShell-first, phased).
 - The decision to place version control behind a reverse proxy and the choice of standby model are architectural decisions that should be recorded in the project’s own decision log, not inherited from external documents.
 
+
+## Authoritative references
+
+- Microsoft Learn, [Access Azure resources with managed identity on Azure Arc-enabled servers - Azure Arc](https://learn.microsoft.com/en-us/azure/azure-arc/servers/managed-identity-authentication)
+- Microsoft Learn, [Connect hybrid machines to Azure at scale - Azure Arc](https://learn.microsoft.com/en-us/azure/azure-arc/servers/onboard-service-principal)
+- Microsoft Learn, [What is Azure Machine Configuration? - Azure Machine Configuration](https://learn.microsoft.com/en-us/azure/governance/machine-configuration/overview/01-overview-concepts)
+
 ---
 
 **Previous:** [Applicability and scope](00a-applicability.md)  
 **Next:** [Chapter 02 — Analyzing the Client/Server Estate](02-analyzing-the-estate.md)
+
+[^cs01-arcmi]: Microsoft Learn, *Access Azure resources with managed identity on Azure Arc-enabled servers - Azure Arc*. <https://learn.microsoft.com/en-us/azure/azure-arc/servers/managed-identity-authentication>
+[^cs01-arcsp]: Microsoft Learn, *Connect hybrid machines to Azure at scale - Azure Arc*. <https://learn.microsoft.com/en-us/azure/azure-arc/servers/onboard-service-principal>
+[^cs01-mc]: Microsoft Learn, *What is Azure Machine Configuration? - Azure Machine Configuration*. <https://learn.microsoft.com/en-us/azure/governance/machine-configuration/overview/01-overview-concepts>

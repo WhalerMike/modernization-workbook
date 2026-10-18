@@ -9,7 +9,7 @@
 
 DNS, DHCP, and IP address management are the three network services that organizations almost always defer when they modernize Active Directory. The assumption is that because these services still work, they do not need to move.
 
-That assumption is wrong. Active Directory-integrated DNS, Active Directory-joined DHCP servers, and informal IP address management are among the most common sources of post-migration governance regression. They look fine from the outside and are silently broken on the inside. This chapter addresses that.
+That assumption is risky. In the author's experience, Active Directory-integrated DNS, AD-authorized DHCP servers, and informal IP address management are frequent sources of post-migration governance regression. They look fine from the outside and are silently broken on the inside. This chapter addresses that.
 
 ## Why these three, why together
 
@@ -27,12 +27,12 @@ The framework treats all three as one governance domain, with matched adapters a
 
 ### The current-state problem
 
-Active Directory-integrated DNS zones live inside the Active Directory replication graph. In most forests every domain controller is also a DNS server; every zone update propagates via Active Directory replication; zone access-control lists use Active Directory security groups. This means:
+Active Directory-integrated DNS zones live inside the Active Directory replication graph. In most forests every domain controller is also a DNS server;[^cs06-adidns] every zone update propagates via Active Directory replication; zone access-control lists use Active Directory security groups. This means:
 
 - Every domain controller is in the name-resolution trust path.
 - Retiring Active Directory requires moving DNS first or accepting a multi-week name-resolution outage window.
 - Zones that have accumulated stale records (from decommissioned computer objects) cannot be cleaned up without Active Directory-side coordination.
-- Domain-joined clients and applications locate domain controllers through AD-registered SRV records, so DNS and AD retirement have to be sequenced together.
+- Domain-joined clients and applications locate domain controllers through AD-registered SRV records,[^cs06-dclocator] so DNS and AD retirement have to be sequenced together.
 
 ### The target architecture
 
@@ -41,10 +41,10 @@ DNS migrates in a three-layer pattern:
 | Layer | Target | Purpose |
 |-------|--------|---------|
 | **Authoritative on-premises** | Non-AD-integrated DNS servers (file-backed Windows DNS or a DDI appliance) | Canonical records for the on-premises namespace once AD-integrated zones retire |
-| **Hybrid resolution** | Azure DNS Private Resolver (inbound and outbound endpoints, forwarding rulesets) | Bidirectional name resolution between virtual networks and on-premises |
-| **Authoritative cloud** | Azure Private DNS zones linked to virtual networks (including Private Link zones) | Records for cloud workloads and private endpoints |
+| **Hybrid resolution** | Azure DNS Private Resolver (inbound and outbound endpoints, forwarding rulesets)[^cs06-dnspr] | Bidirectional name resolution between virtual networks and on-premises |
+| **Authoritative cloud** | Azure Private DNS zones linked to virtual networks (including Private Link zones)[^cs06-pdnslink] | Records for cloud workloads and private endpoints |
 
-Conditional forwarders on on-premises DNS servers point to the private resolver's inbound endpoint, which resolves names in the private DNS zones linked to its virtual network. Workloads in virtual networks keep using Azure-provided DNS; a DNS forwarding ruleset, attached to the resolver's outbound endpoint and linked to those virtual networks, forwards on-premises domains to the on-premises authoritative servers. (Arc-connected servers stay on-premises and resolve through on-premises DNS.)
+Conditional forwarders on on-premises DNS servers point to the private resolver's inbound endpoint, which resolves names in the private DNS zones linked to its virtual network. Workloads in virtual networks keep using Azure-provided DNS;[^cs06-vnetdns] a DNS forwarding ruleset, attached to the resolver's outbound endpoint and linked to those virtual networks, forwards on-premises domains to the on-premises authoritative servers. (Arc-connected servers stay on-premises and resolve through on-premises DNS.)
 
 ### The DNS adapter interface
 
@@ -74,7 +74,7 @@ DNS records are tagged with the organizational attributes of the owning object. 
 
 ### The current-state problem
 
-Microsoft DHCP servers in an AD environment must be authorized in the forest before they will lease addresses; that authorization (rogue-server detection) lives in AD. DHCP scopes have reservations keyed to MAC addresses; option sets inherit from server defaults. Common findings include:
+Microsoft DHCP servers in an AD environment must be authorized in the forest before they will lease addresses; that authorization (rogue-server detection) lives in AD.[^cs06-dhcpauth] DHCP scopes have reservations keyed to MAC addresses; option sets inherit from server defaults. Common findings include:
 
 - Reservations pointing at MAC addresses that have not been seen in years.
 - Option sets that push Active Directory-integrated DNS servers whose addresses will change.
@@ -86,7 +86,7 @@ Microsoft DHCP servers in an AD environment must be authorized in the forest bef
 DHCP modernization is less dramatic than DNS but no less important. Three variants by environment:
 
 - **On-premises-heavy environments.** Keep DHCP on-premises; decouple from Active Directory (forest authorization removed); re-home to dedicated DHCP hosts governed by the framework.
-- **Cloud-forward environments.** Azure virtual networks assign addresses through built-in platform DHCP, which needs no scope management; on-premises subnets still need a DHCP service (Windows DHCP on non-domain-joined hosts or a DDI appliance).
+- **Cloud-forward environments.** Azure virtual networks assign addresses through built-in platform DHCP, which needs no scope management;[^cs06-vnetfaq] on-premises subnets still need a DHCP service (Windows DHCP on non-domain-joined hosts or a DDI appliance).
 - **Hybrid environments.** Split — on-premises scopes stay on-premises; cloud virtual networks use cloud-native; all governed via IP address management as the single source of truth.
 
 ### The DHCP adapter interface
@@ -120,7 +120,7 @@ The migration goal is **one governed IP address management system** with full co
 
 ### The IP address management adapter
 
-Options include Azure Virtual Network Manager IP address management (for Azure address space) and DDI products that cover on-premises networks. The adapter contract standardizes:
+Options include Azure Virtual Network Manager IP address management (for Azure address space)[^cs06-ipam] and DDI products that cover on-premises networks. The adapter contract standardizes:
 
 - Network range discovery.
 - Host record sync with DNS.
@@ -154,7 +154,7 @@ If any of the three would produce drift between itself and the other two, the pl
 
 Services migration passes when:
 
-- IP address management covers one hundred percent of the address surface (no unclaimed subnets).
+- IP address management covers the full address surface (no unclaimed subnets).
 - Every private DNS record has a matching IP address management entry.
 - Every DHCP reservation has a matching IP address management entry.
 - Every on-premises conditional forwarder points to the private resolver inbound endpoint.
@@ -173,7 +173,28 @@ The common pattern: modernize identity and policy, leave DNS, DHCP, and IP addre
 
 A forest that retains Active Directory-integrated DNS is not actually retired. Do not pretend otherwise. The services migration is part of the core modernization, not a follow-on.
 
+
+## Authoritative references
+
+- Microsoft Learn, [Locating Active Directory Domain Controllers in Windows and Windows Server](https://learn.microsoft.com/en-us/windows-server/identity/ad-ds/manage/dc-locator)
+- Microsoft Learn, [Azure DNS Private Resolver Overview](https://learn.microsoft.com/en-us/azure/dns/dns-private-resolver-overview)
+- Microsoft Learn, [What is a virtual network link subresource of Azure DNS private zones](https://learn.microsoft.com/en-us/azure/dns/private-dns-virtual-network-links)
+- Microsoft Learn, [Azure Virtual Network Name Resolution Guide](https://learn.microsoft.com/en-us/azure/virtual-network/virtual-networks-name-resolution-for-vms-and-role-instances)
+- Microsoft Learn, [Install and configure DHCP Server on Windows Server](https://learn.microsoft.com/en-us/windows-server/networking/technologies/dhcp/quickstart-install-configure-dhcp-server)
+- Microsoft Learn, [Azure Virtual Network FAQ](https://learn.microsoft.com/en-us/azure/virtual-network/virtual-networks-faq)
+- Microsoft Learn, [What is IP address management (IPAM) in Azure Virtual Network Manager?](https://learn.microsoft.com/en-us/azure/virtual-network-manager/concept-ip-address-management)
+- Microsoft Learn, [Domain Name System (DNS) in Windows and Windows Server](https://learn.microsoft.com/en-us/windows-server/networking/dns/dns-overview)
+
 ---
 
 **Previous:** [Chapter 05 — Policy Transformation](05-policy-transformation.md)  
 **Next:** [Chapter 07 — Compute Transformation](07-compute-transformation.md)
+
+[^cs06-dclocator]: Microsoft Learn, *Locating Active Directory Domain Controllers in Windows and Windows Server*. <https://learn.microsoft.com/en-us/windows-server/identity/ad-ds/manage/dc-locator>
+[^cs06-dnspr]: Microsoft Learn, *Azure DNS Private Resolver Overview*. <https://learn.microsoft.com/en-us/azure/dns/dns-private-resolver-overview>
+[^cs06-pdnslink]: Microsoft Learn, *What is a virtual network link subresource of Azure DNS private zones*. <https://learn.microsoft.com/en-us/azure/dns/private-dns-virtual-network-links>
+[^cs06-vnetdns]: Microsoft Learn, *Azure Virtual Network Name Resolution Guide*. <https://learn.microsoft.com/en-us/azure/virtual-network/virtual-networks-name-resolution-for-vms-and-role-instances>
+[^cs06-dhcpauth]: Microsoft Learn, *Install and configure DHCP Server on Windows Server*. <https://learn.microsoft.com/en-us/windows-server/networking/technologies/dhcp/quickstart-install-configure-dhcp-server>
+[^cs06-vnetfaq]: Microsoft Learn, *Azure Virtual Network FAQ*. Azure virtual networks provide DHCP to Azure VMs; a DHCP server in an Azure VM can serve on-premises clients through a relay agent. <https://learn.microsoft.com/en-us/azure/virtual-network/virtual-networks-faq>
+[^cs06-ipam]: Microsoft Learn, *What is IP address management (IPAM) in Azure Virtual Network Manager?*. <https://learn.microsoft.com/en-us/azure/virtual-network-manager/concept-ip-address-management>
+[^cs06-adidns]: Microsoft Learn, *Domain Name System (DNS) in Windows and Windows Server*. <https://learn.microsoft.com/en-us/windows-server/networking/dns/dns-overview>

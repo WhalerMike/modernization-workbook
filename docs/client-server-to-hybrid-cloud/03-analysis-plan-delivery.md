@@ -11,7 +11,7 @@ The modernization framework turns an Active Directory assessment into a delivere
 
 ## Why three stages (not one)
 
-The obvious alternative — “scan the forest, apply the changes” — is how most modernization tools work. It fails for three reasons:
+The obvious alternative — “scan the forest, apply the changes” — is how many one-off migration scripts work. It fails for three reasons:
 
 1. **Changes are not reviewable.** A tool that reads and writes in one pass gives an operator no chance to inspect what is about to happen.
 2. **Provenance is thin.** If the scan drifts between read and write, the resulting change is attributed to a phantom input.
@@ -93,7 +93,7 @@ A plan that fails any validation is rejected and the diff returned for correctio
 
 ### Authorization gate
 
-A validated plan is not yet executable. Authorization requires:
+A validated plan is not yet executable. (Role assignments in a plan always target role-assignable groups with assigned membership, because Entra ID does not allow dynamic membership for them.[^cs03-rag]) Authorization requires:
 
 - Review in the repository pull-request interface.
 - A summary of the plan’s blast radius, attached to the pull request.
@@ -161,7 +161,7 @@ The evidence packet is committed to the repository at `plans/<plan-id>/evidence.
 
 ## Concrete example — the end-to-end shape
 
-An assessment discovers a Finance organizational unit with 312 users. The Analyze stage proposes attribute values (Department Finance with divisions GRC and Data), three dynamic groups, one Tier-2 administrative unit, and a role scoping.
+*Illustrative example.* An assessment discovers a Finance organizational unit with 312 users. The Analyze stage proposes attribute values (Department Finance with divisions GRC and Data), three dynamic groups, one Tier-2 administrative unit, and a role scoping.
 
 The Plan stage expands that into roughly 320 actions: 312 user attribute sets, 3 dynamic-group creates, 1 administrative-unit create, 1 role assignment, plus validation actions.
 
@@ -189,7 +189,14 @@ Governed modernization proceeds by:
 
 Every stage produces a file in the repository. Every file has a signature. Every signature points to an operator. The question “who changed what, when, and why?” has a literal answer in the commit history.
 
+
+## Authoritative references
+
+- Microsoft Learn, [Use Microsoft Entra groups to manage role assignments - Microsoft Entra ID](https://learn.microsoft.com/en-us/entra/identity/role-based-access-control/groups-concept)
+
 ---
 
 **Previous:** [Chapter 02 — Analyzing the Estate](02-analyzing-the-estate.md)  
 **Next:** [Chapter 04 — Identity Transformation](04-identity-transformation.md)
+
+[^cs03-rag]: Microsoft Learn, *Use Microsoft Entra groups to manage role assignments - Microsoft Entra ID*. <https://learn.microsoft.com/en-us/entra/identity/role-based-access-control/groups-concept>

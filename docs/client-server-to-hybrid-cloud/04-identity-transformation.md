@@ -87,7 +87,7 @@ Active Directory delegated organizational-unit-level administrative rights via a
 
 ### The three-tier model
 
-Administrative units are enumerated in a three-tier structure mirroring the organizational hierarchy:
+Administrative units are enumerated in a three-tier structure mirroring the organizational hierarchy:[^cs04-au]
 
 | Tier | Scope | Pattern | Typical Roles |
 |------|-------|---------|---------------|
@@ -95,11 +95,11 @@ Administrative units are enumerated in a three-tier structure mirroring the orga
 | **Tier 2 — Department** | All users in one department, in one region | `AU-[REGION]-[DEPT]` | User Administrator, Groups Administrator |
 | **Tier 3 — Division** | Users in one division beneath that department | `AU-[REGION]-[DEPT]-[DIV]` | Helpdesk Administrator, Password Administrator |
 
-Each administrative unit uses dynamic membership with a rule that exactly mirrors the corresponding dynamic-group rule, so it contains the same users as its matching dynamic group. Dynamic membership for groups and administrative units requires Microsoft Entra ID P1 licenses for the users in scope.
+Each administrative unit uses dynamic membership with a rule that exactly mirrors the corresponding dynamic-group rule, so it contains the same users as its matching dynamic group. Dynamic membership for groups and administrative units requires Microsoft Entra ID P1 licenses for the users in scope.[^cs04-dynau]
 
 ### Restricted management
 
-Two separate controls protect administrative-unit scope. **Dynamic membership** means no administrator can hand-add a user; the only way in is a change to the user's attributes through the governed workflow. **Restricted management**, applied to administrative units that hold sensitive objects, goes further: tenant-level administrators can no longer modify the objects inside; only administrators assigned at the unit scope can. Together they preserve the property that organizational-unit access-control lists provided.
+Two separate controls protect administrative-unit scope. **Dynamic membership** means no administrator can hand-add a user; the only way in is a change to the user's attributes through the governed workflow. **Restricted management**, applied to administrative units that hold sensitive objects, goes further: tenant-level administrators can no longer modify the objects inside; only administrators assigned at the unit scope can.[^cs04-rmau] Together they preserve the property that organizational-unit access-control lists provided.
 
 ### Role assignments
 
@@ -111,7 +111,7 @@ principal:   Structure-NCR-Finance-Admins    ← a role-assignable group (assign
 scope:       /administrativeUnits/AU-NCR-Finance
 ```
 
-A member of the administrators group can reset passwords and manage users and groups — but only for objects in that administrative unit. Outside that scope, the role has no effect. Groups used as role-assignment principals must be role-assignable, and role-assignable groups cannot have dynamic membership; their membership is assigned and is best managed as eligible assignments in Privileged Identity Management (Microsoft Entra ID P2 or ID Governance).
+A member of the administrators group can reset passwords and manage users and groups — but only for objects in that administrative unit. Outside that scope, the role has no effect. Groups used as role-assignment principals must be role-assignable, and role-assignable groups cannot have dynamic membership;[^cs04-rag] their membership is assigned and is best managed as eligible assignments in Privileged Identity Management (Microsoft Entra ID P2 or ID Governance).[^cs04-pimg]
 
 The full role matrix is stored in the authoritative repository. Changes require review; validation ensures new assignments respect least-privilege and tier-boundary rules.
 
@@ -119,7 +119,7 @@ The full role matrix is stored in the authoritative repository. Changes require 
 
 Group Policy Objects inherited down the organizational-unit tree. Conditional Access policies target groups. The bridge: attribute-scoped dynamic groups that match the inheritance pattern.
 
-Example: a Group Policy Object linked at a regional organizational unit required smart-card logon for all users in that region. The Conditional Access equivalent is a policy, targeting a region-scoped dynamic group whose rule is the region attribute alone, that requires a phishing-resistant authentication strength. Users in that region get the policy; everyone else does not. (Settings such as account lockout are not Conditional Access controls; they move to Entra smart lockout for cloud accounts and to Intune device policy for local accounts — see Chapter 05.)
+Example: a Group Policy Object linked at a regional organizational unit required smart-card logon for all users in that region. The Conditional Access equivalent is a policy, targeting a region-scoped dynamic group whose rule is the region attribute alone, that requires a phishing-resistant authentication strength. Users in that region get the policy; everyone else does not. (Settings such as account lockout are not Conditional Access controls; they move to Entra smart lockout for cloud accounts[^cs04-smartlock] and to Intune device policy for local accounts — see Chapter 05.)
 
 Inheritance is simulated by group targeting at the branch level. Conditional Access does not inherit through administrative units the way Group Policy inherited through organizational units; the governance model makes up the difference by having the branch group include everyone the ancestor policy would have targeted.
 
@@ -130,9 +130,9 @@ Organizational attributes are not a thing administrators maintain. They are driv
 ### Joiner
 
 1. The HR system creates the employee record with organizational unit, department, location, and manager.
-2. HR-to-cloud provisioning populates the standard attributes.
+2. HR-to-cloud provisioning populates the standard attributes.[^cs04-hr]
 3. A governed workflow computes the organizational attributes from HR attributes according to the mapping rules and writes them.
-4. Dynamic groups recompute membership within the platform cadence.
+4. Dynamic groups recompute membership within the platform cadence.[^cs04-dyn]
 5. The user is now an administrative-unit member, Conditional-Access-scoped, group-licensed, and visible to the drift engine — all automatically.
 
 ### Mover
@@ -141,7 +141,7 @@ The employee’s HR record moves them from one division to another. The same wor
 
 ### Leaver
 
-Termination in the HR system triggers the leaver workflow (for example, Microsoft Entra Lifecycle Workflows, which require an ID Governance license); the organizational attributes are cleared; dynamic groups evict; administrative-unit membership drops; Conditional Access scope drops; license drops. Provenance points to the HR event that triggered it.
+Termination in the HR system triggers the leaver workflow (for example, Microsoft Entra Lifecycle Workflows, which require an ID Governance license);[^cs04-lcw] the organizational attributes are cleared; dynamic groups evict; administrative-unit membership drops; Conditional Access scope drops; license drops. Provenance points to the HR event that triggered it.
 
 Every lifecycle workflow (joiner, mover, leaver, re-hire, contractor onboard, executive provision, emergency deprovision, name change, reorganization) is enumerated with its triggers, inputs, outputs, and exception paths. There are no undocumented identity workflows.
 
@@ -201,7 +201,30 @@ The tangible outcomes, once the attribute-driven structure is in place:
 - **Compliance queries are cacheable.** “Who has access to sensitive resources?” is a dynamic-group query, not a spreadsheet reconciliation.
 - **Drift is visible before audit.** Findings are tracked long before they reach an external assessor.
 
+
+## Authoritative references
+
+- Microsoft Learn, [Manage users or devices for an administrative unit with rules for dynamic membership groups - Microsoft Entra ID](https://learn.microsoft.com/en-us/entra/identity/role-based-access-control/admin-units-members-dynamic)
+- Microsoft Learn, [Restricted management administrative units in Microsoft Entra ID - Microsoft Entra ID](https://learn.microsoft.com/en-us/entra/identity/role-based-access-control/admin-units-restricted-management)
+- Microsoft Learn, [Use Microsoft Entra groups to manage role assignments - Microsoft Entra ID](https://learn.microsoft.com/en-us/entra/identity/role-based-access-control/groups-concept)
+- Microsoft Learn, [Privileged Identity Management (PIM) for Groups - Microsoft Entra ID Governance](https://learn.microsoft.com/en-us/entra/id-governance/privileged-identity-management/concept-pim-for-groups)
+- Microsoft Learn, [Prevent Attacks Using Smart Lockout - Microsoft Entra ID](https://learn.microsoft.com/en-us/entra/identity/authentication/howto-password-smart-lockout)
+- Microsoft Learn, [What are lifecycle workflows? - Microsoft Entra ID Governance](https://learn.microsoft.com/en-us/entra/id-governance/what-are-lifecycle-workflows)
+- Microsoft Learn, [Plan cloud HR application to Microsoft Entra user provisioning - Microsoft Entra ID](https://learn.microsoft.com/en-us/entra/identity/app-provisioning/plan-cloud-hr-provision)
+- Microsoft Learn, [Administrative units in Microsoft Entra ID - Microsoft Entra ID](https://learn.microsoft.com/en-us/entra/identity/role-based-access-control/administrative-units)
+- Microsoft Learn, [Manage rules for dynamic membership groups in Microsoft Entra ID - Microsoft Entra ID](https://learn.microsoft.com/en-us/entra/identity/users/groups-dynamic-membership)
+
 ---
 
 **Previous:** [Chapter 03 — Analysis → Plan → Delivery](03-analysis-plan-delivery.md)  
 **Next:** [Chapter 05 — Policy Transformation](05-policy-transformation.md)
+
+[^cs04-dynau]: Microsoft Learn, *Manage users or devices for an administrative unit with rules for dynamic membership groups - Microsoft Entra ID*. <https://learn.microsoft.com/en-us/entra/identity/role-based-access-control/admin-units-members-dynamic>
+[^cs04-rmau]: Microsoft Learn, *Restricted management administrative units in Microsoft Entra ID - Microsoft Entra ID*. <https://learn.microsoft.com/en-us/entra/identity/role-based-access-control/admin-units-restricted-management>
+[^cs04-rag]: Microsoft Learn, *Use Microsoft Entra groups to manage role assignments - Microsoft Entra ID*. <https://learn.microsoft.com/en-us/entra/identity/role-based-access-control/groups-concept>
+[^cs04-pimg]: Microsoft Learn, *Privileged Identity Management (PIM) for Groups - Microsoft Entra ID Governance*. <https://learn.microsoft.com/en-us/entra/id-governance/privileged-identity-management/concept-pim-for-groups>
+[^cs04-smartlock]: Microsoft Learn, *Prevent Attacks Using Smart Lockout - Microsoft Entra ID*. <https://learn.microsoft.com/en-us/entra/identity/authentication/howto-password-smart-lockout>
+[^cs04-lcw]: Microsoft Learn, *What are lifecycle workflows? - Microsoft Entra ID Governance*. <https://learn.microsoft.com/en-us/entra/id-governance/what-are-lifecycle-workflows>
+[^cs04-hr]: Microsoft Learn, *Plan cloud HR application to Microsoft Entra user provisioning - Microsoft Entra ID*. <https://learn.microsoft.com/en-us/entra/identity/app-provisioning/plan-cloud-hr-provision>
+[^cs04-au]: Microsoft Learn, *Administrative units in Microsoft Entra ID - Microsoft Entra ID*. <https://learn.microsoft.com/en-us/entra/identity/role-based-access-control/administrative-units>
+[^cs04-dyn]: Microsoft Learn, *Manage rules for dynamic membership groups in Microsoft Entra ID - Microsoft Entra ID*. <https://learn.microsoft.com/en-us/entra/identity/users/groups-dynamic-membership>
