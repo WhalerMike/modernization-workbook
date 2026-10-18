@@ -183,5 +183,4 @@ one activated non-Microsoft target — both achievable without new doctrine.
 
 - the program decision — Federal AI Use Case Governance
 - the program decision — Single-ATO Reciprocity
-- the program decision — Active Governance
 - the compliance series Vol I Book 03 — Machine and Workload Identity

@@ -216,7 +216,7 @@ The path forward from session-based, perimeter-era architecture to continuous ve
 1. **Single source of truth.** Every important claim has exactly one authoritative origin. Other systems hold derived or subordinate copies.
 2. **Application-aware networking.** Policy is written against named services and identities, not just packets and addresses.
 3. **Token-based identity.** Short-lived, continuously evaluated tokens replace long-lived sessions.
-4. **Active governance.** Continuous drift detection and evidence replace periodic assessment.
+4. **Continuous verification.** Continuous drift detection and evidence replace periodic assessment.
 5. **Fewer synchronous round-trips.** Architecture reduces the number of times an application must reach a distant authority.
 
 These principles separate the system of record from the in-path enforcer. Every era conflates the two; the destination is to keep them distinct.

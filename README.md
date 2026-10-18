@@ -1,6 +1,6 @@
 # Modernization Workbook
 
-> **Provenance:** This workbook is a cleaned derivative of prior internal work. Migration scaffolding files (MIGRATION-*.md, STATUS.md, OUTLINE.md) retain source references for traceability and are excluded from the public site build.
+> **Provenance:** This workbook is a cleaned derivative of prior internal work. The migration from the source material is complete; the remaining status file (STATUS.md) is excluded from the public site build.
 
 **A clean, standalone modernization project focused on identity, addressing, policy, and governance patterns.**
 
@@ -25,7 +25,7 @@ This repository extracts practical modernization concepts — single source of t
 - [Architecture Series](docs/architecture/architecture-series/README.md) — six-plane, three-layer rules, drift engine, evidence chain
 - [Single Source of Truth](docs/architecture/single-source-of-truth.md)
 - [Change Control and Provenance](docs/architecture/change-control-and-provenance.md)
-- [Directory Migration Bridge](docs/architecture/directory-migration/README.md)
+- [Directory Migration Bridge](docs/reference-architecture/directory-migration.md)
 - [GPO-to-Cloud Governance Gaps](docs/architecture/gpo-to-cloud-governance-gaps.md)
 - [Dynamic Group Library](docs/architecture/dynamic-group-library.md)
 - [Delegation Matrix](docs/architecture/delegation-matrix.md)
@@ -53,7 +53,7 @@ This repository extracts practical modernization concepts — single source of t
 ### Program
 - [Education, Training, and Test Plans](docs/program/)
 - [Executive Briefs](docs/executive-briefs/)
-- [Executive Governance Series](docs/executive-governance-series/)
+- [Executive Governance Series](docs/executive-governance/)
 
 ### Libraries
 - [Principles extracts](docs/libraries/README.md)

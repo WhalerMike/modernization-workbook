@@ -133,7 +133,7 @@ For the **program**, it is the positioning that keeps the offering credible to a
 
 # Volume Roadmap
 
-This overview is the whole of Volume X at present: a single integration document that ties the series to the substrate that scores it. It is deliberately engine-neutral and deliberately narrow — it routes and explains; it closes no new controls of its own and therefore carries no "Authorities Closed Here" table. Future books in this volume, if the program adds them, would deepen a single facet — the evidence-bindings file format, the drift-gate mechanics, or a second worked vertical — without changing the premise this book establishes: **the compliance regime is content; the governance substrate is the engine; and this series is one vertical among the many that engine can carry.**
+This overview is the whole of Volume X at present: a single integration document that ties the series to the substrate that scores it. It is deliberately engine-neutral and deliberately narrow — it routes and explains; it closes no new controls of its own and therefore carries no "Authorities Closed Here" table. Future books in this volume, if the program adds them, would deepen a single topic — the evidence-bindings file format, the drift-gate mechanics, or a second worked vertical — without changing the premise this book establishes: **the compliance regime is content; the governance substrate is the engine; and this series is one vertical among the many that engine can carry.**
 
 # Separable Adoption — Together or Entirely Independently
 

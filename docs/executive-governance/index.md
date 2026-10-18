@@ -1,6 +1,6 @@
 ---
 title: "Executive Governance Series"
-subtitle: "Long-form governance narrative in nine chapters"
+subtitle: "Long-form governance narrative in eight chapters"
 doc-type: section-landing
 audience: "Authorizing officials · CIO · CISO · program leadership"
 canon-source: "src/fmp/canon/"
@@ -35,11 +35,10 @@ individually as reference material.
 | 6 | `ch06-evidence-over-attestation/` | Inverting which artifact is primary |
 | 7 | `ch07-operational-tempo/` | Cadence of detection, remediation, escalation |
 | 8 | `ch08-governance-at-scale/` | Scaling across adapters, programs, boundaries |
-| 9 | `ch09-governance-operating-system/` | Synthesis — the OS framing |
 
 ## Reading paths
 
-- **Program primer (full read):** chapters 1 → 9 in sequence.
-- **Authorizing official:** chapter 9, then 4, 6, 7 for depth.
+- **Program primer (full read):** chapters 1 → 8 in sequence.
+- **Authorizing official:** chapters 4, 6 and 7, then 8.
 - **Operations leadership:** chapter 7, then 3, 4, 5.
 - **Architect:** the architecture-series first, then chapter 5 and 8.

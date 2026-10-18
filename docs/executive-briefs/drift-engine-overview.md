@@ -57,7 +57,5 @@ The Federal Modernization Program uses five classes (verbatim from the Drift Det
 
 - **Architecture Series — Drift Engine** —
   the design-level treatment of the six-phase loop and taxonomy.
-- **[Governance OS Overview](governance-os-overview.md)** — how drift fits the
-  broader substrate operating model.
 
 **Leadership takeaway:** the Federal Modernization Program already ships structural/provenance drift enforcement in CI, with the same taxonomy and severity contract extending to runtime semantic, authorization, and identity drift as those controls are completed.

@@ -110,7 +110,6 @@ The remaining chapters address the failure modes in turn:
 - **Chapter 6** — evidence over attestation.
 - **Chapter 7** — operational tempo at substrate-level governance.
 - **Chapter 8** — scaling the model across programs.
-- **Chapter 9** — the synthesis: governance as an operating system.
 
 ## Key takeaways
 

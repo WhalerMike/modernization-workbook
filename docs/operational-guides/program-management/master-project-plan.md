@@ -27,7 +27,7 @@ The Federal Modernization Program Master Project Plan
 
 **Assessment Phase Through Full Modernization**
 
-The Federal Modernization Program Governance OS --- Capstone Planning Document
+The Federal Modernization Program --- Capstone Planning Document
 
   ----------------------------------------------------------
   **Document ID:**      FMP_013_Master_Project_Plan_v1.0
@@ -77,7 +77,7 @@ The Federal Modernization Program Governance OS --- Capstone Planning Document
 
 1\. Executive Summary
 
-The Federal Modernization Program Modernization Program transforms legacy Active Directory infrastructure into a cloud-native, governance-driven, drift-resistant operating model. The program spans five transformation pillars --- **Identity**, **Devices**, **DNS**, **PKI**, and **Server Management** --- and replaces fragile, GUI-configured infrastructure with machine-readable canonical artifacts managed through the Federal Modernization Program Governance OS pipeline backed by Gitea on Windows Server 2025.
+The Federal Modernization Program Modernization Program transforms legacy Active Directory infrastructure into a cloud-native, governance-driven, drift-resistant operating model. The program spans five transformation pillars --- **Identity**, **Devices**, **DNS**, **PKI**, and **Server Management** --- and replaces fragile, GUI-configured infrastructure with machine-readable canonical artifacts managed through the Federal Modernization Program pipeline backed by Gitea on Windows Server 2025.
 
 This Master Project Plan is the capstone planning document for the Federal Modernization Program corpus. It defines the full lifecycle from initial assessment through steady-state governance, organized into **seven phases** with **48 milestones** across a **52-week execution timeline**. Every phase is milestone-gated: no phase transition occurs without formal review, documented approval, and artifact commitment to the Federal Modernization Program Gitea repository.
 
@@ -212,7 +212,7 @@ All project artifacts are committed to Gitea under the Federal Modernization Pro
 
 3\. Phase 0: Platform Build (Weeks 1--3)
 
-**Objective:** Deploy the Federal Modernization Program Governance OS platform server --- Gitea on Windows Server 2025 behind IIS reverse proxy, integrated with Active Directory LDAP and Entra ID OAuth2 --- establishing the canonical repository that will govern all subsequent phases.
+**Objective:** Deploy the Federal Modernization Program platform server --- Gitea on Windows Server 2025 behind IIS reverse proxy, integrated with Active Directory LDAP and Entra ID OAuth2 --- establishing the canonical repository that will govern all subsequent phases.
 
 **Reference Documents:** the Federal Modernization Program Platform Server Build Guide --- Windows Server 2025 with Gitea and IIS (primary), the Federal Modernization Program Git Infrastructure --- Architecture Decision Record, the Federal Modernization Program CLI and Operations Guide, Git on Windows Server 2025 with IIS --- Step-by-Step Implementation Guide.
 

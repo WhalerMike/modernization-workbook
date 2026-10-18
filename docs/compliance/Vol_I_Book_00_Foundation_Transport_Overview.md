@@ -64,7 +64,7 @@ Volumes II–IV do not degrade — they become unevaluable.
 | **Vol I Book 02** | Network Access Control (802.1X) | Device identity at the physical port (IA-3) — what is connected, proven at the wire |
 | **Vol I Book 03** | Certificates & Tokens | Cryptographic identity for users, devices, and workloads — path-independent, session-less |
 | **Vol I Book 04** | HRIT Identity & Org SSOT | The human/organizational source of truth every account and access decision asserts |
-| **Vol I Book 05** | Network Modernization | Entra ID, ZTNA, and Active Governance — session-to-token identity modernization |
+| **Vol I Book 05** | Network Modernization | Entra ID, ZTNA, and Drift Reconciliation — session-to-token identity modernization |
 | **Vol I Book 06** | Federal Telecommunications Modernization | SD-WAN + SASE under TIC 3.0 — encrypted, application-aware transport (the "DIA is a pipe" doctrine) |
 | **Vol I Book 07** | Network Enforcement Substrate | Cisco / Palo Alto / Juniper at the customer edge, accredited via NIAP / DISA STIG / FIPS 140-3 / DoDIN APL |
 

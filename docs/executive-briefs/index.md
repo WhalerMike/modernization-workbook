@@ -33,7 +33,6 @@ Status badges follow the Whitepapers status conventions.
 |---|---|---|---|
 | fmp-executive-brief | The flagship the Federal Modernization Program brief — full federal scenario | Active | `docs/publications/01-executive-brief/` |
 | universal-enterprise-positioning-overview | Vertical-agnostic engine; federal as one adapter pack | Active | `src/fmp/canon/adr/adr-085-universal-enterprise-positioning.md` |
-| [governance-os-overview](governance-os-overview.md) | The Federal Modernization Program Governance OS in one page | Active | `src/fmp/canon/substrate-manifest.yaml` |
 | [adapter-ecosystem-overview](adapter-ecosystem-overview.md) | The dual-axis adapter taxonomy and registries | Active | `src/fmp/canon/FMP_003_Adapter_Segmentation_Overview_v1.0.md` |
 | [drift-engine-overview](drift-engine-overview.md) | Drift-detection capability brief | Active | `docs/docs/16_DriftDetectionStandard.qmd` |
 | [evidence-fabric-overview](evidence-fabric-overview.md) | Provenance and evidence pipeline brief | Active | `docs/docs/15_ProvenanceProfile.qmd` |

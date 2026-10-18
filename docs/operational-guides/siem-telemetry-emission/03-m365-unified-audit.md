@@ -220,7 +220,7 @@ uses "last blob retrieved" as a high-water mark, will silently drop events.
 Track ingestion by `contentId`, deduplicate on it, and re-scan a trailing
 window. This is a direct instance of the the program decision determinism requirement — no
 silent drops — that the
-[Telemetry Modernization Spec](../../modernization-specs/telemetry/telemetry.md)
+[Telemetry Modernization Spec](../../modernization-specs/telemetry.md)
 imposes on every telemetry adapter.
 :::
 

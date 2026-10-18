@@ -65,7 +65,6 @@ SECTIONS = {
     "whitepapers": "Whitepapers",
     "ssot-network-physics": "The Physics of a Single Source of Truth",
     "executive-briefs": "Executive Briefs",
-    "executive-governance-series": "Executive Governance Series (summaries)",
     "executive-governance": "Executive Governance Series (full chapters)",
     "modernization-specs": "Modernization Specifications",
     "modernization": "Modernization",
@@ -73,7 +72,6 @@ SECTIONS = {
     "compliance": "Compliance",
     "canonical-specs": "Canonical Specifications",
     "substrate": "Substrate",
-    "platform": "Platform",
 }
 SECTION_ORDER = list(SECTIONS)
 

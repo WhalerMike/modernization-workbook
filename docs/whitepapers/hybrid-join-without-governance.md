@@ -6,7 +6,7 @@
 
 **Problem.** “All sign-in activity comes from managed devices” is scored as a multi-quarter program, yet converting 50,000 domain-joined devices to hybrid join is a two-setting tenant switch. Taken ungoverned, the fleet converts itself and silently spends a loss ledger: duplicate objects, unattributable device-state changes, devices Conditional Access cannot see — with nobody having decided anything.
 
-**Solution.** The governed path reaches the same end state under an active-governance control plane: enter in report-only mode, sequence attribute-scoped waves, and gate every high-blast-radius enforcement class on coverage data and approval, so enforcement never runs ahead of the inventory it depends on.
+**Solution.** The governed path reaches the same end state under a governance control plane: enter in report-only mode, sequence attribute-scoped waves, and gate every high-blast-radius enforcement class on coverage data and approval, so enforcement never runs ahead of the inventory it depends on.
 
 **Ask.** Find out whether the ungoverned path is already live (service connection point + Group Policy auto-registration, and since when); run the fleet against the loss ledger before any Conditional Access policy enforces; and name the wave owner who holds the plan, the sign-offs, and the rollback.
 

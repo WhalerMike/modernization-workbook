@@ -322,7 +322,7 @@ For agencies on the mainframe-to-AAN modernization path, this is not a complianc
 - **June 11, 2027:** No new Rev5 certification applications accepted
 
 ::: {.aan-important}
-**The precise alignment:** FedRAMP 20x's demand for "continuous, automated, machine-readable evidence" maps exactly to what the Active Governance control plane produces. A governance substrate that holds desired state, observes actual state, classifies drift, and reconciles toward intent — while generating structured JSON records of every observation and action — IS a FedRAMP 20x-compliant ConMon implementation. The architectural transition IS the compliance posture.
+**The precise alignment:** FedRAMP 20x's demand for "continuous, automated, machine-readable evidence" maps exactly to what the drift-reconciliation control plane produces. A governance substrate that holds desired state, observes actual state, classifies drift, and reconciles toward intent — while generating structured JSON records of every observation and action — IS a FedRAMP 20x-compliant ConMon implementation. The architectural transition IS the compliance posture.
 :::
 
 ## Principle 4 — Govern Actively: The Control Plane Over the Data Plane

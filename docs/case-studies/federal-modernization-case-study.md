@@ -7,7 +7,6 @@ status: framing-pattern
 canon-source: "docs/docs/06_ProgramVision.qmd"
 canon-reference:
   - "docs/docs/08_ModernizationTimeline.qmd"
-  - "docs/customer-documents/whitepapers/fmp-governance-os-whitepaper.qmd"
   - "docs/customer-documents/executive-governance-series/index.qmd"
 derived-from: "fmp canon"
 lifecycle: adopted
@@ -36,7 +35,7 @@ controls. The program touches every concern in the
 Executive Governance Series:
 fragmented identity, uncorrelated telemetry, point-in-time evidence,
 boundary opacity. The Federal Modernization Program's intervention is structural — adopting the
-substrate as the governance OS underneath the existing tool stack
+substrate as the governance layer underneath the existing tool stack
 rather than replacing tools individually.
 
 This is the engagement archetype the substrate is designed for: an
@@ -161,7 +160,6 @@ is documented when reviewed material is available.
 
 ## Related documents
 
-- Whitepaper — the Federal Modernization Program Governance OS
 - Executive Governance Series
 - [Identity Case Study](identity-modernization-case-study.md)
 - [Cloud Boundary Case Study](cloud-boundary-case-study.md)
