@@ -369,7 +369,7 @@ pre-receive.
 | Gitea service itself | gMSA `corp\svc-fmp-gitea$` | Forest service account | `D:\GitRepos`, `D:\Gitea`, TLS private key |
 | IIS reverse-proxy app pool | `IIS AppPool\FMPReverseProxy` | Built-in app-pool identity | TLS private key (Read), nothing else |
 | Backup / Arc plane | Service principal in customer subscription | Tenant SPN, secrets in `SecretStore` | Storage account + Arc resource scope |
-| GitHub upstream mirror | Read-only (anonymous over HTTPS) | n/a — `WhalerMike/fmp` is public | n/a |
+| GitHub upstream mirror | Read-only (anonymous over HTTPS) | n/a — `example-org/fmp` is public | n/a |
 
 ## 4. Interface family C — Cloud management plane
 
@@ -588,7 +588,7 @@ gMSA-owned ACL as the rest of `D:\Gitea\` (see §7.2).
 
 ### 7.1 GitHub upstream pull-mirror — `api.github.com`
 
-Phase 8 configures the canonical `WhalerMike/fmp` repo as a
+Phase 8 configures the canonical `example-org/fmp` repo as a
 **pull-mirror** in Gitea via `POST /api/v1/repos/migrate` with
 `mirror_interval = 15m0s`. Every 15 minutes Gitea pulls from
 `https://github.com/example-org/fmp.git` and updates local refs.
