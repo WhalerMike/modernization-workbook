@@ -41,6 +41,16 @@ Where Book 02 measured the estate to decide what survives, this book measures th
 ::: {#book-chapters}
 :::
 
+## Authoritative references
+
+Checked 19 October 2026.
+
+- [sys.server_principals (Transact-SQL)](https://learn.microsoft.com/en-us/sql/relational-databases/system-catalog-views/sys-server-principals-transact-sql?view=sql-server-ver17)
+- [sys.dm_exec_connections (Transact-SQL)](https://learn.microsoft.com/en-us/sql/relational-databases/system-dynamic-management-views/sys-dm-exec-connections-transact-sql?view=sql-server-ver17)
+- [Change server authentication mode](https://learn.microsoft.com/en-us/sql/database-engine/configure-windows/change-server-authentication-mode?view=sql-server-ver17)
+- [Register a Service Principal Name for Kerberos connections](https://learn.microsoft.com/en-us/sql/database-engine/configure-windows/register-a-service-principal-name-for-kerberos-connections?view=sql-server-ver17)
+- [Overview of NTLM auditing enhancements in Windows 11, version 24H2, Windows Server 2019, and later versions (Microsoft Support)](https://support.microsoft.com/en-us/servicing/os/windows/2025/07/overview-of-ntlm-auditing-enhancements-in-windows-11-version-24h2-and-windows-server-2025)
+
 ::: {.callout-tip}
 ## Continue the series
 [← Previous: Book 02 — The Estate Itself](Book_02.md) · [Index](index.md) · [Next: Book 04 — Arc as the Identity Bridge →](Book_04.md)

@@ -56,7 +56,15 @@ Every retained instance ends at one of three destinations. All three satisfy the
 The authentication transformation produces the inventory that scopes the platform decision. Three destinations satisfy the forced authentication requirement; they differ in effort, licensing, and single-source-of-truth advance. The decision is per data domain, not per agency, and two estates with two answers is normal. The goal is fewer authoritative platforms, not a single vendor.
 :::
 
+## Authoritative references
+
+Checked 19 October 2026.
+
+- [Migrate SQL Server Windows users and groups to SQL Managed Instance using T-SQL](https://learn.microsoft.com/en-us/azure/azure-sql/managed-instance/migrate-sql-server-users-to-instance-transact-sql-tsql-tutorial?view=azuresql)
+- [Microsoft Entra authentication for SQL Server overview](https://learn.microsoft.com/en-us/sql/relational-databases/security/authentication-access/azure-ad-authentication-sql-server-overview?view=sql-server-ver17)
+- [SQL Server enabled by Azure Arc — overview](https://learn.microsoft.com/en-us/sql/sql-server/azure-arc/overview?view=sql-server-ver17)
+
 ::: {.callout-tip}
 ## Continue the series
-[← Previous: Book 10 — Certificate Authority](Book_10.md) · [Index](index.md)
+[← Previous: Book 10 — Certificate Authority](Book_10.md) · [Index](index.md) · [Next: Appendix A — Requirements Mapping →](Appendix_A_Requirements_Mapping.md)
 :::

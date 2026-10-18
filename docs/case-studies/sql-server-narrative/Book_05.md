@@ -41,6 +41,16 @@ Everything in Books 01 through 04 is prerequisite; everything in Books 06 throug
 ::: {#book-chapters}
 :::
 
+## Authoritative references
+
+Checked 19 October 2026.
+
+- [CREATE LOGIN (Transact-SQL)](https://learn.microsoft.com/en-us/sql/t-sql/statements/create-login-transact-sql?view=sql-server-ver17)
+- [sys.server_principals (Transact-SQL)](https://learn.microsoft.com/en-us/sql/relational-databases/system-catalog-views/sys-server-principals-transact-sql?view=sql-server-ver17)
+- [Disable SQL Authentication — SQL Server enabled by Azure Arc](https://learn.microsoft.com/en-us/sql/sql-server/azure-arc/disable-sql-authentication?view=sql-server-ver17)
+- [Change server authentication mode](https://learn.microsoft.com/en-us/sql/database-engine/configure-windows/change-server-authentication-mode?view=sql-server-ver17)
+- [What is Conditional Access?](https://learn.microsoft.com/en-us/entra/identity/conditional-access/overview)
+
 ::: {.callout-tip}
 ## Continue the series
 [← Previous: Book 04 — Arc as the Identity Bridge](Book_04.md) · [Index](index.md) · [Next: Book 06 — Eliminating NTLM at the SQL Layer →](Book_06.md)

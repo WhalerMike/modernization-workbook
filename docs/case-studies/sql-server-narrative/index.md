@@ -9,6 +9,7 @@ listing:
     contents:
       - "Applicability.md"
       - "Book_[0-9][0-9].md"
+      - "Appendix_A_Requirements_Mapping.md"
     type: table
     fields: [title, subtitle, description]
     sort: "series-order asc"

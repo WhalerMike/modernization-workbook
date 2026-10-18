@@ -41,6 +41,16 @@ SQL Server's Windows Authentication was an act of good engineering, not negligen
 ::: {#book-chapters}
 :::
 
+## Authoritative references
+
+Checked 19 October 2026.
+
+- [Microsoft Entra authentication for SQL Server overview](https://learn.microsoft.com/en-us/sql/relational-databases/security/authentication-access/azure-ad-authentication-sql-server-overview?view=sql-server-ver17)
+- [Microsoft Entra cloud-first identity guidance](https://learn.microsoft.com/en-us/entra/identity/hybrid/guidance-it-architects-source-of-authority)
+- [Retiring NTLM: frequently asked questions (Microsoft Tech Community)](https://techcommunity.microsoft.com/blog/windows-itpro-blog/retiring-ntlm-frequently-asked-questions/4550522)
+- [OMB M-22-09, Federal Zero Trust Strategy](https://www.whitehouse.gov/wp-content/uploads/2022/01/M-22-09.pdf)
+- [Memo 22-09 identity requirements overview](https://learn.microsoft.com/en-us/entra/standards/memo-22-09-meet-identity-requirements)
+
 ::: {.callout-tip}
 ## Continue the series
 [← Previous: Applicability](Applicability.md) · [Index](index.md) · [Next: Book 02 — The Estate Itself →](Book_02.md)

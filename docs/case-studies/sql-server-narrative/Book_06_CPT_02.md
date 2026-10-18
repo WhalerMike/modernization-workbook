@@ -36,9 +36,9 @@ The combination of the audit-script output and the event-log analysis produces a
 
 ## Phase B — Restriction
 
-The restriction phase applies controls that reduce NTLM traffic without eliminating it entirely. The restrictions create pressure on connection patterns to migrate while preserving operational continuity. The primary Phase B control for SQL Server is NTLMv1 blocking, combined with Kerberos remediation for the missing-SPN cases.
+The restriction phase applies controls that reduce NTLM traffic without eliminating it entirely. The restrictions create pressure on connection patterns to migrate while preserving operational continuity. The primary Phase B control for SQL Server is NTLMv1 blocking, combined with Kerberos remediation for the missing-SPN cases.[^b06c02-ntlm-removed][^b06c02-spn]
 
-SPN registration is corrected for all instances with missing or incorrect SPNs, converting those connections from NTLM to Kerberos. Cross-site connection patterns are fixed by restoring DC reachability (port 88 and DNS) and, across forests, a trust, or by moving the connection to Entra ID tokens; Cloud Kerberos trust, which the Kerberos/NTLM-elimination program also deploys, does not remove the need for DC reachability, because its tickets are still exchanged with on-premises domain controllers. Linked-server definitions using passthrough authentication are migrated to defined security contexts. Application connection strings on recently domain-unjoined hosts are migrated to Managed Identity or service-principal authentication.
+SPN registration is corrected for all instances with missing or incorrect SPNs, converting those connections from NTLM to Kerberos. Cross-site connection patterns are fixed by restoring DC reachability (port 88 and DNS) and, across forests, a trust, or by moving the connection to Entra ID tokens; Cloud Kerberos trust, which the Kerberos/NTLM-elimination program also deploys, does not remove the need for DC reachability, because its tickets are still exchanged with on-premises domain controllers.[^b06c02-ckt] Linked-server definitions using passthrough authentication are migrated to defined security contexts. Application connection strings on recently domain-unjoined hosts are migrated to Managed Identity or service-principal authentication.
 
 After Phase B, the only remaining NTLM-generating SQL Server connections should be those that require the elimination program's enforcement phase's hard block to remove. These are typically applications that cannot be modified before the 2027-04-01 block date set in the elimination program, which become exception cases requiring formal exception documentation per the elimination program.
 
@@ -52,6 +52,21 @@ An instance whose connections have been migrated to Entra ID OAuth 2.0 tokens ge
 
 The sequencing imperative is clear: complete the SQL Server login migration before Phase C is applied. The 2027-04-01 backstop is the Phase C application date, and the SQL Server login migration must be complete before that date for every production instance in the estate.
 
-::: {.callout-note title="What Book 06 establishes — Chapter 2"}
-The Kerberos/NTLM-elimination program runs in three phases for SQL Server. Discovery uses `the authentication audit script` plus Windows event-log analysis of NTLM events 4624 and 4625 at logon type 3 to baseline every NTLM-generating pattern. Restriction blocks NTLMv1, remediates SPNs, restores Kerberos reachability for cross-site connections, migrates linked-server security contexts, and updates connection strings on domain-unjoined hosts. Elimination applies the domain-wide NTLM block at 2027-04-01 per the elimination program — and any instance migrated to type-E Entra ID logins is immune, because it never generated NTLM to begin with.
+::: {.callout-warning title="Unresolved: what happens to the long tail on 2027-04-01"}
+**Known fact.** Microsoft's own plan is to disable NTLM by default in the next major Windows release, subject to change; 2027-04-01 is this program's date, not Microsoft's (Chapter 1).
+
+**Dependency.** Pre-2022 instances and deferred applications that can't reach Kerberos or Entra tokens by then rely on the certificate-based interim posture, which needs a replacement CA issuing before ADCS is retired (Book 10).
+
+**Unresolved decision.** Whether the Phase C date holds for instances whose interim posture isn't in place, or whether they get dated exceptions with network-level isolation.
+
+**Owner and artifact.** The Kerberos/NTLM-elimination program, recorded as an amendment to its enforcement-phase decision and reflected in the exception registry.
 :::
+
+::: {.callout-note title="What Book 06 establishes — Chapter 2"}
+The Kerberos/NTLM-elimination program runs in three phases for SQL Server. Discovery uses `the authentication audit script` plus Windows event-log analysis of NTLM events 4624 and 4625 at logon type 3 to baseline every NTLM-generating pattern. Restriction blocks NTLMv1, remediates SPNs, restores Kerberos reachability for cross-site connections, migrates linked-server security contexts, and updates connection strings on domain-unjoined hosts.[^b06c02-linked] Elimination applies the domain-wide NTLM block at 2027-04-01 per the elimination program — and any instance migrated to type-E Entra ID logins is immune, because it never generated NTLM to begin with.
+:::
+
+[^b06c02-spn]: Microsoft Learn, [Register a Service Principal Name for Kerberos connections](https://learn.microsoft.com/en-us/sql/database-engine/configure-windows/register-a-service-principal-name-for-kerberos-connections?view=sql-server-ver17).
+[^b06c02-ntlm-removed]: Microsoft Learn, [Features removed or no longer developed in Windows Server](https://learn.microsoft.com/en-us/windows-server/get-started/removed-deprecated-features-windows-server).
+[^b06c02-ckt]: Microsoft Learn, [Windows Hello for Business cloud Kerberos trust deployment guide](https://learn.microsoft.com/en-us/windows/security/identity-protection/hello-for-business/deploy/hybrid-cloud-kerberos-trust).
+[^b06c02-linked]: Microsoft Learn, [Linked server for SQL Server with Microsoft Entra authentication](https://learn.microsoft.com/en-us/sql/relational-databases/security/authentication-access/azure-ad-authentication-sql-server-linked-server?view=sql-server-ver17).
