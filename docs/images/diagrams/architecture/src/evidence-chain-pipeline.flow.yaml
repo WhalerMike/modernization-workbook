@@ -1,0 +1,12 @@
+# Evidence Chain — the four stages from telemetry to OSCAL artifacts.
+rankdir: LR
+graph: {nodesep: 0.2, ranksep: 0.3}
+nodes:
+  s1: {tone: slate, width: 140, tag: "1", title: "Capture", body: ["=Adapters emit events tagged with mission class and boundary"], size: 12}
+  s2: {tone: blue, width: 140, tag: "2", title: "Normalize", body: ["=Each event wrapped in the provenance envelope"], size: 12}
+  s3: {tone: blue, width: 140, tag: "3", title: "Assemble and seal", body: ["=Bundles validated against the bundle schema; hashed"], size: 12}
+  s4: {tone: green, width: 140, tag: "4", title: "Emit OSCAL", body: ["=SSP, POA&M, KSI dashboards, component definitions"], size: 12}
+edges:
+  - [s1, s2]
+  - [s2, s3]
+  - [s3, s4]

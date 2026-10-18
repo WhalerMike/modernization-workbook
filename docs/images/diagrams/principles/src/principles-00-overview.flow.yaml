@@ -1,0 +1,14 @@
+# PRINCIPLES — the fifteen principles on the page, grouped.
+rankdir: TB
+nodes:
+  t:
+    kind: table
+    tone: slate
+    columns: ["Group", "Principles on this page"]
+    widths: [170, 470]
+    rows:
+      - [{text: "Foundation", tone: blue}, "1 Single source of truth · 2 Change control and provenance (MACD-R) · 11 Drift detection"]
+      - [{text: "Directory and structure", tone: slate}, "3 Attribute-driven structure · 4 Directory migration, the hidden surface · 5 Eight core concepts"]
+      - [{text: "Devices and policy", tone: amber}, "6 Hybrid join without governance · 7 Device and server modernization · 9 Conditional Access · 10 Group Policy Object sunset"]
+      - [{text: "Identity and data", tone: green}, "8 HR-driven lifecycle · 12 SQL Server identity transformation"]
+      - [{text: "Program", tone: violet}, "13 Education, training and test plans · 14 Zero Trust governance · 15 Modernization journey"]

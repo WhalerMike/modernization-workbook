@@ -1,0 +1,14 @@
+# Three-Layer Rule Model — canon, policy and runtime, each with its own change
+# boundary; the lower layers are read-only to the runtime.
+rankdir: TB
+graph: {nodesep: 0.35, ranksep: 0.3}
+nodes:
+  run: {tone: blue, width: 330, tag: "Layer 3 · code PR + tests", title: "Runtime (enforcement)", body: ["=How rules are evaluated against live state. The only layer that may change observable state."], size: 12}
+  pol: {tone: amber, width: 330, tag: "Layer 2 · adapter PR + schema validation", title: "Policy (mapping)", body: ["=Which rules apply to which controls and scopes: adapter registries, KSI mappings"], size: 12}
+  can: {tone: green, width: 330, tag: "Layer 1 · canon-change ADR + governance review", title: "Canon (rules)", body: ["=What rules exist and what they mean; read at runtime as package data, never written"], size: 12}
+edges:
+  - [can, pol, {dir: back, label: "read-only", attrs: "constraint=false"}]
+  - [pol, run, {dir: back, label: "read-only", attrs: "constraint=false"}]
+  - [run, can, {style: dashed, tone: violet, label: "evidence and drift findings flow back", lw: 120, attrs: "constraint=false"}]
+  - [run, pol, {style: invis}]
+  - [pol, can, {style: invis}]

@@ -16,6 +16,8 @@ lifecycle_review: 2026-11-22
 
 # Boundary Impact Model
 
+![Illustration: four impact dimensions crossing an authorization boundary.](../images/architecture/boundary-impact-model-image-01-boundary-impact-four-dimension-d.png){fig-alt="A vertical boundary line down the center labeled “Authorization Boundary“ splits the page into left (“Outside“ — commercial / non-boundary side) and right (“Inside“ — GCC-Moderate side). Four horizontal lanes cross the boundary, each labeled with one impact dimension: Telemetry Fidelity, Identity Authority, Enforcement Responsibility, Provenance Classification. On each lane the boundary line shows a transformation badge (e.g. “authoritative → derived“). Below each lane, a small drift-class badge indicates the drift class that fires on violation (DRIFT-SCHEMA, DRIFT-IDENTITY, DRIFT-AUTHZ, DRIFT-SEMANTIC)."}
+
 The **boundary impact model** is FMP's architectural treatment of what
 happens when authorization boundaries cut across the substrate — most
 notably the GCC-Moderate boundary that constrains telemetry, identity, and
@@ -33,7 +35,7 @@ A canon-change ADR may later promote a generalized authorization-boundary
 canon document; until then, this model is GCC-Moderate-anchored.
 :::
 
-![Boundary impact four-dimension diagram](../images/architecture/boundary-impact-model-image-01-boundary-impact-four-dimension-d.png){#fig-boundary-impact-model-image-01 fig-alt="A vertical boundary line down the center labeled \"Authorization Boundary\" splits the page into left (\"Outside\" — commercial / non-boundary side) and right (\"Inside\" — GCC-Moderate side). Four horizontal lanes cross the boundary, each labeled with one impact dimension: Telemetry Fidelity, Identity Authority, Enforcement Responsibility, Provenance Classification. On each lane the boundary line shows a transformation badge (e.g. \"authoritative → derived\"). Below each lane, a small drift-class badge indicates the drift class that fires on violation (DRIFT-SCHEMA, DRIFT-IDENTITY, DRIFT-AUTHZ, DRIFT-SEMANTIC). Clean engineering blueprint style, dark navy (#0D1B2E) and teal (#1E8C8C) on white background. No photographs, purely diagrammatic." width="100%"}
+![The four impact dimensions of a boundary and the drift class each raises when violated.](../images/diagrams/architecture/svg/boundary-impact-four-dimensions.svg){fig-alt="A table: telemetry fidelity (which signals are available on this side) raises DRIFT-SCHEMA or DRIFT-PROVENANCE; identity authority (who a claim issuer resolves to) raises DRIFT-IDENTITY; enforcement responsibility (platform or agency) raises DRIFT-AUTHZ; provenance classification (authoritative or only derived) raises DRIFT-SEMANTIC."}
 
 ## What the model captures
 
@@ -103,7 +105,7 @@ B.1 GCC-Moderate Boundary Model
 leaf to produce a single coherent SSP narrative instead of four disjoint
 ones.
 
-![GCC-Moderate invisible-boundary visualization](../images/architecture/boundary-impact-model-image-02-gcc-moderate-invisible-boundary.png){#fig-boundary-impact-model-image-02 fig-alt="Top half shows the M365 GCC-Moderate admin portal with five tiles labeled Endpoint Analytics / Device Health Attestation / Locations & Network Fence / ARC Server Monitoring / Expedited Updates — all displayed as available (green check). Bottom half shows what actually functions inside the boundary — the same five tiles redrawn empty or grayed out (red X), with explanatory captions like \"telemetry blocked\", \"planning phase\", \"explicitly unavailable\". Between the two halves, a horizontal \"Invisible Boundary\" line indicates where appearance and reality diverge. Right margin shows four FMP compensating mechanisms (Boundary Probe, In-Boundary Telemetry, Compensating Enforcement, ATO Documentation Surface) as small numbered boxes. Clean engineering diagram, dark navy (#0D1B2E) and teal (#1E8C8C) primary, with red (#C74040) reserved for the unavailable-state tiles. No photographs, purely diagrammatic." width="100%"}
+![The GCC-Moderate invisible boundary: features that look available, what actually arrives, and the four compensations.](../images/diagrams/architecture/svg/boundary-impact-invisible-boundary.svg){fig-alt="A green card lists five features the admin portal shows as available: Endpoint Analytics, Device Health Attestation, Locations / Network Fence, Arc server monitoring and Expedited Updates. A dashed red arrow labelled the invisible boundary leads to a red card: silently unavailable in GCC-Moderate, with no data, errors or documented resolution. That leads to a blue card of in-boundary equivalents: boundary probe, in-boundary telemetry marked derived, compensating enforcement, and an ATO documentation surface."}
 
 ## How FMP compensates: in-boundary equivalents
 

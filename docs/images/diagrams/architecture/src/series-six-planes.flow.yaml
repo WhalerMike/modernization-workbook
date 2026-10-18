@@ -1,0 +1,17 @@
+# Architecture series — the six control planes and the one-directional
+# authoritative flow between them.
+rankdir: LR
+graph: {nodesep: 0.2, ranksep: 0.25}
+nodes:
+  id: {tone: blue, width: 112, title: "Identity", body: ["=Root namespace; assurance"], size: 12}
+  ad: {tone: slate, width: 112, title: "Addressing", body: ["=IPAM, DNS, DHCP authority"], size: 12}
+  nw: {tone: slate, width: 112, title: "Network", body: ["=Routing, segmentation, overlay"], size: 12}
+  tl: {tone: violet, width: 112, title: "Telemetry & Location", body: ["=Real-time signals as control input"], size: 12}
+  sc: {tone: amber, width: 112, title: "Security & Compliance", body: ["=Zero Trust decision and enforcement points"], size: 12}
+  mg: {tone: green, width: 112, title: "Management", body: ["=Drift, stewardship, evidence, device compliance"], size: 12}
+edges:
+  - [id, ad]
+  - [ad, nw]
+  - [nw, tl]
+  - [tl, sc]
+  - [sc, mg]

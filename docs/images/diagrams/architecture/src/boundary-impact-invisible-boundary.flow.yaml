@@ -1,0 +1,11 @@
+# Boundary Impact Model — the GCC-Moderate invisible boundary and the four
+# in-boundary compensations.
+rankdir: TB
+graph: {nodesep: 0.3, ranksep: 0.4}
+nodes:
+  portal: {tone: green, width: 300, tag: "What the admin portal shows", title: "Features appear available", body: ["Endpoint Analytics", "Device Health Attestation", "Locations / Network Fence", "Arc server monitoring", "Expedited Updates"], size: 12}
+  real: {tone: red, width: 300, tag: "What GCC-Moderate delivers", title: "Silently unavailable", body: ["=No data, no errors, no documented resolution path. Commercial-only telemetry is derived or absent; some controls become agency responsibility."], size: 12}
+  comp: {tone: blue, width: 300, tag: "In-boundary equivalents", title: "How the gap is compensated", body: ["Boundary probe: test which features actually work", "In-boundary telemetry, marked derived", "Compensating enforcement by the agency", "ATO documentation surface: one artifact the SSP, POA&M and component definition cite"], size: 12}
+edges:
+  - [portal, real, {tone: red, style: dashed, label: "the invisible boundary", lw: 160}]
+  - [real, comp, {tone: blue}]

@@ -1,0 +1,13 @@
+# Architecture series — authoritative rules, policy mappings and runtime
+# enforcement, each with its own change boundary.
+rankdir: TB
+graph: {nodesep: 0.3, ranksep: 0.3}
+nodes:
+  run: {tone: blue, width: 360, tag: "Code change + tests", title: "Runtime enforcement", body: ["=How rules are evaluated against live state; the only layer allowed to act"], size: 12}
+  pol: {tone: amber, width: 360, tag: "Schema-validated change", title: "Policy mappings", body: ["=Which rules apply to which controls or scopes; a dangling mapping is a finding"], size: 12}
+  can: {tone: green, width: 360, tag: "Governance review", title: "Authoritative rules", body: ["=What rules exist and what they mean: identifier, statement, schema constraints, provenance"], size: 12}
+edges:
+  - [can, pol, {dir: back, label: "read-only at runtime", lw: 140, attrs: "constraint=false"}]
+  - [pol, run, {dir: back, label: "read-only at runtime", lw: 140, attrs: "constraint=false"}]
+  - [run, pol, {style: invis}]
+  - [pol, can, {style: invis}]
