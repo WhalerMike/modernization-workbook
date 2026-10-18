@@ -15,7 +15,7 @@ That is the gap the framework fills.
 
 ## The thesis, one more time
 
-Chapter 00 opened with a claim: Active Directory was never just an identity store; it was the implicit governance model for every network service an organization ran. Twenty-five years of accretion made it so. Microsoft now steers new investment toward a cloud-first identity model — and supplies replacements that are individually excellent — while AD DS remains supported.
+Chapter 00 opened with a claim: Active Directory was never just an identity store; it was the implicit governance model for every network service an organization ran. Twenty-five years of accretion made it so. Microsoft now steers new investment toward a cloud-first identity model[^cs10-soa] — and supplies replacements that are individually excellent — while AD DS remains supported.[^cs10-adds2025]
 
 The problem is that collective replacement requires something the platform vendor does not provide: a framework that decides what the target looks like, how to get there, how to prove it was done right, and how to keep it right afterward. Without that framework, organizations migrate in pieces, lose governance continuity, and finish with a modernized surface that cannot answer the questions their auditors were asking six months earlier.
 
@@ -50,9 +50,9 @@ Organizations have the full set of platform-native modernization instruments tod
 | **Device management** | Mobile device management + device policy | Decide which Group Policy Objects map to which profiles |
 | **Hybrid management** | Hybrid server management | Decide which servers retire versus hybrid-project |
 | **Conditional Access** | Access-policy enforcement | Decide which users need which policies |
-| **Just-in-time privilege** | Just-in-time privilege | Decide which roles are standing-privileged |
+| **Just-in-time privilege** | Just-in-time privilege[^cs10-pim] | Decide which roles are standing-privileged |
 | **Baseline assessment tools** | Baseline assessment | Decide what to do with the findings |
-| **Private resolver** | Hybrid DNS resolution | Decide which zones are authoritative where |
+| **Private resolver** | Hybrid DNS resolution[^cs10-dnspr] | Decide which zones are authoritative where |
 | **Certificate-based authentication** | Certificate-based authentication | Decide which users get certificate-based authentication versus FIDO2 |
 
 Every row’s “what it does” column is operationally mature. Every row’s “what it does not do” column is what the framework governs.
@@ -87,11 +87,11 @@ These five questions are a pass/fail test. Every answer should be “yes.”
 
 Once the program is underway, five standing questions reveal whether it is actually governed:
 
-1. **What is the drift count?** Trend, not point-in-time. Rising drift is the single strongest leading indicator of a failing modernization.
+1. **What is the drift count?** Trend, not point-in-time. Rising drift is a strong leading indicator of a failing modernization.
 2. **What percentage of production changes had a signed plan?** One hundred percent is the only acceptable answer in steady state. Anything less means ad-hoc changes have re-entered the flow.
 3. **What percentage of employees have valid organizational attributes?** Set a threshold (for example, ninety-five percent) and treat falling below it as a regression.
 4. **How many Group Policy Objects are active?** Should be declining every month of Phase 4. Plateauing before zero is a blocker.
-5. **How many hybrid-joined devices have been in that state for more than one hundred eighty days?** Zero. Any other answer is a modernization stuck at Chapter 07.
+5. **How many hybrid-joined devices have been in that state longer than the agreed limit (for example, 180 days)?** The target is zero; a growing number means the modernization is stuck at Chapter 07.
 
 A steering committee that asks these five questions monthly will know whether the program is governed or theatre.
 
@@ -113,9 +113,23 @@ The framework is the orchestra. This series is the score.
 
 Active Directory retirement is not a migration project. It is a governance transformation, and it should be run as one.
 
+
+## Authoritative references
+
+- Microsoft Learn, [What is Privileged Identity Management? - Microsoft Entra ID Governance](https://learn.microsoft.com/en-us/entra/id-governance/privileged-identity-management/pim-configure)
+- Microsoft Learn, [Azure DNS Private Resolver Overview](https://learn.microsoft.com/en-us/azure/dns/dns-private-resolver-overview)
+- Microsoft Learn, [Microsoft Entra cloud-first identity guidance - Microsoft Entra ID](https://learn.microsoft.com/en-us/entra/identity/hybrid/guidance-it-architects-source-of-authority)
+- Microsoft Learn, [What's new in Windows Server 2025](https://learn.microsoft.com/en-us/windows-server/get-started/whats-new-windows-server-2025)
+
 ---
 
 **Previous:** [Chapter 09 — Migration Roadmap](09-migration-roadmap.md)  
+**Next:** [Appendix A — Federal Requirements Mapping](appendix-a-requirements-mapping.md)  
 **End of series**
 
 This concludes the Client-Server to Hybrid-Cloud Transformation series. For the full modernization arc, read Chapters 00 → 10 in order. For a specific topic, use the series overview.
+
+[^cs10-pim]: Microsoft Learn, *What is Privileged Identity Management? - Microsoft Entra ID Governance*. <https://learn.microsoft.com/en-us/entra/id-governance/privileged-identity-management/pim-configure>
+[^cs10-dnspr]: Microsoft Learn, *Azure DNS Private Resolver Overview*. <https://learn.microsoft.com/en-us/azure/dns/dns-private-resolver-overview>
+[^cs10-soa]: Microsoft Learn, *Microsoft Entra cloud-first identity guidance - Microsoft Entra ID*. <https://learn.microsoft.com/en-us/entra/identity/hybrid/guidance-it-architects-source-of-authority>
+[^cs10-adds2025]: Microsoft Learn, *What's new in Windows Server 2025*. <https://learn.microsoft.com/en-us/windows-server/get-started/whats-new-windows-server-2025>

@@ -20,7 +20,7 @@ Every Group Policy Object falls into one of several categories. Each category ha
 | **Device configuration** (lockscreen, power, printers, drive maps) | Configuration profiles | Yes |
 | **Security baselines** (local password and lockout, audit, UAC) | Intune security baselines and settings catalog (device and local accounts); Entra authentication methods and smart lockout (cloud accounts) | Yes |
 | **Software deployment** (.msi, scripts) | Application deployment + enrollment | Yes |
-| **Scripts and mappings** (startup and logon scripts, drive-letter mapping) | Intune platform scripts and remediations; OneDrive / SharePoint for file shares | Yes |
+| **Scripts and mappings** (startup and logon scripts, drive-letter mapping) | Intune platform scripts and remediations;[^cs05-scripts] OneDrive / SharePoint for file shares | Yes |
 | **Access control** (user rights, logon restrictions) | Conditional Access + session controls; Intune user-rights policy | Yes |
 | **Server configuration** (roles, features, registry hardening) | Hybrid guest configuration + policy | Yes |
 | **Browser / mailbox config** | Settings catalog + productivity-suite policies | Yes |
@@ -39,7 +39,7 @@ The correct pattern is **regenerate, not copy**. For each Group Policy category 
 
 ## Configuration profiles — the workhorse
 
-In most estates the majority of Group Policy settings map to device-management configuration profiles; Intune Group Policy analytics reports the actual supported percentage for each imported GPO. Configuration profiles are opinionated policy bundles targeting user or device dynamic groups.
+In most estates the majority of Group Policy settings map to device-management configuration profiles; Intune Group Policy analytics reports the actual supported percentage for each imported GPO.[^cs05-gpa] Configuration profiles are opinionated policy bundles targeting user or device dynamic groups.
 
 ### Policy authoring
 
@@ -57,7 +57,7 @@ scope:
     - Structure-Enterprise-BreakGlass-Devices
 settings:
   - path: DeviceLock/MaxInactivityTimeDeviceLock
-    value: 15
+    value: 15            # illustrative values
   - path: LocalPoliciesSecurityOptions/InteractiveLogon_MachineInactivityLimit
     value: 900
   - path: Device/Experience/LockScreenMessage
@@ -97,7 +97,7 @@ A typical compliance catalog includes:
 - Specific required applications installed
 - Specific prohibited applications absent
 
-Each policy is attribute-scoped and evaluates on a schedule. Conditional Access reads the device's compliance state directly through the "require device to be marked as compliant" grant control; no separate compliant-devices group is needed.
+Each policy is attribute-scoped and evaluates on a schedule. Conditional Access reads the device's compliance state directly through the "require device to be marked as compliant" grant control; no separate compliant-devices group is needed.[^cs05-cacomp]
 
 ## Conditional Access — the access gate
 
@@ -123,7 +123,7 @@ grant:
   controls: [require_mfa]
   operator: AND
 session:
-  sign_in_frequency: 12h
+  sign_in_frequency: 12h   # illustrative
 ```
 
 ### Canonical policy numbering
@@ -144,11 +144,11 @@ Adding a new policy picks the next open number in the right range; every policy 
 
 ### Block versus require — the policy discipline
 
-Policies lean heavily on “require” controls rather than “block” controls. The rationale: a block policy with a bad rule locks users out; a require policy with a bad rule requires a step that can be fixed. Block policies exist only for clear-cut deny cases (legacy authentication, high-risk sign-ins as detected by Entra ID Protection). Everything else is a require (multi-factor authentication, compliant device, session lifetime).
+Policies lean heavily on “require” controls rather than “block” controls. The rationale: a block policy with a bad rule locks users out; a require policy with a bad rule requires a step that can be fixed. Block policies exist only for clear-cut deny cases (legacy authentication,[^cs05-legacy] high-risk sign-ins as detected by Entra ID Protection).[^cs05-idp] Everything else is a require (multi-factor authentication, compliant device, session lifetime).
 
 ## Hybrid server configuration — the server equivalent
 
-Windows Server policy — registry settings, service states, installed features — migrates to hybrid guest configuration. Hybrid management projects on-premises servers into the cloud; guest configuration applies policy; cloud policy governs assignment.
+Windows Server policy — registry settings, service states, installed features — migrates to hybrid guest configuration.[^cs05-mc] Hybrid management projects on-premises servers into the cloud; guest configuration applies policy; cloud policy governs assignment.
 
 Policies live in the authoritative repository and target via resource tags that stay in sync with the organizational attributes of the corresponding device object. If a hybrid-projected server’s tag drifts from the device’s attributes, drift opens a tracked item.
 
@@ -164,7 +164,7 @@ A typical policy-run plan has tens to hundreds of actions. The evidence packet c
 
 ## Conflict resolution
 
-When two Intune profiles set the same setting to different values on the same device, Intune does not merge them by scope; it reports a conflict, and the outcome is not something to rely on. The framework therefore treats this order as an **authoring rule**, so that any given setting is owned by exactly one layer:
+When two Intune profiles set the same setting to different values on the same device, Intune does not merge them by scope; it reports a conflict, and the outcome is not something to rely on.[^cs05-conflict] The framework therefore treats this order as an **authoring rule**, so that any given setting is owned by exactly one layer:
 
 1. Enterprise baseline profiles
 2. Division profiles
@@ -178,7 +178,7 @@ For Conditional Access, a similar order is enforced, and policies that require a
 
 ## Break-glass carve-outs
 
-Every Conditional Access policy library includes a standard carve-out pattern for a small number of emergency administrative accounts that are explicitly excluded from block-class policies. The accounts are stored in a privileged-access vault, used only in documented emergencies, and audited on a schedule.
+Every Conditional Access policy library includes a standard carve-out pattern for a small number of emergency administrative accounts[^cs05-breakglass] that are explicitly excluded from block-class policies. The accounts are stored in a privileged-access vault, used only in documented emergencies, and audited on a schedule.
 
 Break-glass carve-outs are not backdoors. They are documented, monitored, reviewed, and revoked on a schedule. Every use opens an incident ticket.
 
@@ -200,7 +200,7 @@ The end state: every user device is device-management-managed, every server is h
 Retirement proceeds in phases:
 
 - **Phase 1.** Every Group Policy Object flagged as migrated has its link removed from the legacy organizational unit (the settings are now delivered by modern policy).
-- **Phase 2.** Unlinked Group Policy Objects are marked deprecated and kept for a defined window (for example, ninety days) as a rollback window.
+- **Phase 2.** Unlinked Group Policy Objects are marked deprecated and kept for a defined window (for example, ninety days — illustrative) as a rollback window.
 - **Phase 3.** After the window with zero drift findings in the modern surface, Group Policy Objects are deleted via a governed deprecation change.
 
 The last Group Policy Object to go is typically the domain password and account policy, which governs the remaining AD accounts (including service accounts on Kerberos-bound applications). That object retires only when the compute migration is complete and no AD accounts remain in use.
@@ -215,7 +215,28 @@ Policy migration passes when:
 - Drift detection reports zero findings for every policy.
 - The nightly assessment-to-plan run produces a zero-action plan for the policy tree.
 
+
+## Authoritative references
+
+- Microsoft Learn, [Use Microsoft Intune to import and analyze group policies - Microsoft Intune](https://learn.microsoft.com/en-us/intune/device-configuration/import-group-policy-analytics)
+- Microsoft Learn, [See device configuration policies with Microsoft Intune - Microsoft Intune](https://learn.microsoft.com/en-us/intune/device-configuration/monitor-device-profile)
+- Microsoft Learn, [How to Require Device Compliance with Conditional Access - Microsoft Entra ID](https://learn.microsoft.com/en-us/entra/identity/conditional-access/policy-all-users-device-compliance)
+- Microsoft Learn, [What are risk detections? - Microsoft Entra ID Protection](https://learn.microsoft.com/en-us/entra/id-protection/concept-identity-protection-risks)
+- Microsoft Learn, [Understand Microsoft Intune Management Extension - Microsoft Intune](https://learn.microsoft.com/en-us/intune/device-management/tools/management-extension-windows)
+- Microsoft Learn, [Manage emergency access admin accounts - Microsoft Entra ID](https://learn.microsoft.com/en-us/entra/identity/role-based-access-control/security-emergency-access)
+- Microsoft Learn, [What is Azure Machine Configuration? - Azure Machine Configuration](https://learn.microsoft.com/en-us/azure/governance/machine-configuration/overview/01-overview-concepts)
+- Microsoft Learn, [Block legacy authentication with Conditional Access - Microsoft Entra ID](https://learn.microsoft.com/en-us/entra/identity/conditional-access/policy-block-legacy-authentication)
+
 ---
 
 **Previous:** [Chapter 04 — Identity Transformation](04-identity-transformation.md)  
 **Next:** [Chapter 06 — Services: DNS, DHCP, IPAM](06-network-services.md)
+
+[^cs05-gpa]: Microsoft Learn, *Use Microsoft Intune to import and analyze group policies - Microsoft Intune*. <https://learn.microsoft.com/en-us/intune/device-configuration/import-group-policy-analytics>
+[^cs05-conflict]: Microsoft Learn, *See device configuration policies with Microsoft Intune - Microsoft Intune*. <https://learn.microsoft.com/en-us/intune/device-configuration/monitor-device-profile>
+[^cs05-cacomp]: Microsoft Learn, *How to Require Device Compliance with Conditional Access - Microsoft Entra ID*. <https://learn.microsoft.com/en-us/entra/identity/conditional-access/policy-all-users-device-compliance>
+[^cs05-idp]: Microsoft Learn, *What are risk detections? - Microsoft Entra ID Protection*. <https://learn.microsoft.com/en-us/entra/id-protection/concept-identity-protection-risks>
+[^cs05-scripts]: Microsoft Learn, *Understand Microsoft Intune Management Extension - Microsoft Intune*. <https://learn.microsoft.com/en-us/intune/device-management/tools/management-extension-windows>
+[^cs05-breakglass]: Microsoft Learn, *Manage emergency access admin accounts - Microsoft Entra ID*. <https://learn.microsoft.com/en-us/entra/identity/role-based-access-control/security-emergency-access>
+[^cs05-mc]: Microsoft Learn, *What is Azure Machine Configuration? - Azure Machine Configuration*. <https://learn.microsoft.com/en-us/azure/governance/machine-configuration/overview/01-overview-concepts>
+[^cs05-legacy]: Microsoft Learn, *Block legacy authentication with Conditional Access - Microsoft Entra ID*. <https://learn.microsoft.com/en-us/entra/identity/conditional-access/policy-block-legacy-authentication>

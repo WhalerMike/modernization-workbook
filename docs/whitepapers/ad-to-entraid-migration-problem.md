@@ -2,6 +2,8 @@
 
 **Why the governance gap between Active Directory and Entra ID is structural, not technical**
 
+> For the plain-language version of why this migration is hard (for leadership and budget readers), see the [Prologue — Why Modernization Is Hard](../client-server-to-hybrid-cloud/00-prologue-why-modernization-is-hard.md). This paper assumes that argument and focuses on the structural mapping.
+
 ## Problem, solution, ask
 
 **Problem.** Active Directory’s organizational-unit hierarchy *is* the organization’s governance model — delegation boundaries, Group Policy inheritance, administrative scope. Entra ID flattens all of it, Microsoft’s roadmap is forcing the move, and most organizations never had a clean Active Directory to begin with, so the authority model they must reconstruct exists only as tribal knowledge.
