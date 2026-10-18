@@ -49,7 +49,9 @@ The discovery instruments named above are real and well-understood, but they are
 Until that specification exists, the consolidation assessment is conducted with the general-purpose instruments above and recorded as a deliberate program artifact rather than a canonical telemetry record. Naming the gap is itself part of the assessment's value: an estate transformation that proceeds on an incomplete inventory will discover its missing instances at the worst possible moment, which is exactly the failure mode the discipline of this book exists to prevent.
 
 ::: {.callout-note title="What Book 02 establishes — Chapter 2"}
-A consolidation assessment begins with a complete inventory the estate does not already possess. Discovery combines a network and directory sweep (`dbatools Find-DbaInstance`), the forest-wide `MSSQLSvc` SPN trail, and Microsoft's migration-assessment tooling (Azure Migrate, MAP, DMA) — each blind to what the others surface. This is broader than the Book 03 authentication audit and must precede it. No canonical estate-discovery script exists yet; the SQL Server engine-authentication decision names authoring it as Phase 0.
+1. Inventory comes first: the estate doesn't already know what it has.
+2. Discovery combines a network and directory sweep, the `MSSQLSvc` SPN trail, and Microsoft's assessment tooling, because each misses what the others find.
+3. No canonical discovery script exists yet; the engine-authentication decision names authoring it as Phase 0.
 :::
 
 [^b02c02-spn]: Microsoft Learn, [Register a Service Principal Name for Kerberos connections](https://learn.microsoft.com/en-us/sql/database-engine/configure-windows/register-a-service-principal-name-for-kerberos-connections?view=sql-server-ver17).

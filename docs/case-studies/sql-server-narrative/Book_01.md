@@ -41,6 +41,8 @@ SQL Server's Windows Authentication was an act of good engineering, not negligen
 ::: {#book-chapters}
 :::
 
+**Place in the [dependency chain](series-overview.md#the-dependency-chain):** Why the chain exists (before step 1).
+
 ## Authoritative references
 
 Checked 19 October 2026.

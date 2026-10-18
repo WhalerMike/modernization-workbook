@@ -24,6 +24,10 @@ Chapter 1 established that the organization-derived groups of the old estate bec
 
 ## The Attribute Is the Access Control
 
+::: {.callout-important title="Principle: the attribute writer controls access"}
+The person or process that can write the attribute a dynamic rule reads controls access to everything that rule grants. Write access to an access-driving attribute is therefore a privileged permission, governed and reviewed like any other.
+:::
+
 ![HR-sourced attributes drive dynamic membership, and no group grants access until its rule is proven.](../../images/sql-server/diagrams/svg/book-07-ch02-attribute-pipeline.svg){fig-alt="The HR system of record writes coded user attributes into Entra ID through provisioning; a dynamic group rule uses them, and the group gets a SQL Server login only after the rule passes a rollout gate."}
 
 Moving to dynamic membership relocates the access decision. Under assigned membership, the person who can add a member to the group controls access. Under dynamic membership, **the person or process that can write the attribute the rule reads controls access.** Microsoft makes the point explicitly in its dynamic-group guidance. Before using an attribute in a rule that governs access, review who can write it in Entra ID *and* in any source directory that syncs it. Watch especially for on-premises attributes that users are allowed to modify on their own objects.
@@ -145,7 +149,9 @@ Check for the preview label before each new capability is adopted, and again whe
 Where this book cannot verify a feature's status at the feature level, treat it as unconfirmed until the agency's ATO documentation says otherwise.
 
 ::: {.callout-note title="What Book 07 establishes — Chapter 2"}
-In a dynamic group, whoever can write the attribute controls access. So access attributes come from the HR system of record through automated provisioning, and only that provisioning account can write them. Rules use supported, coded attributes such as `department`, `companyName`, `jobTitle`, `employeeId`, `extensionAttribute1`–`15`, and directory extension properties. They stay within Microsoft's limits (3,072-character rules, 15,000 dynamic groups, efficient operators) and require Entra ID P1 per unique member. Every rule is validated, shadowed against the group it replaces, and gated on a verified pilot cohort. Groups follow a one-group-one-role naming convention that process enforces, because the naming policy covers only Microsoft 365 groups. Regular administrative units scope DBA delegation. Restricted management is reserved for cases that don't need PIM or access reviews. Privileged groups are assigned, cloud-only, and governed by PIM for Groups. Access reviews cover assigned groups and the rules behind dynamic ones. Break-glass paths depend on none of this machinery. Entra audit, sign-in logs, and SQL Server Audit are reconciled by the continuous audit. In a FedRAMP Moderate tenant in the commercial cloud, the generally available features this design relies on come from services on Microsoft's FedRAMP High list. Preview features stay out of the production access path, and feature-level coverage is confirmed against the agency's authorization boundary.
+1. Whoever can write the attribute a rule reads controls access, so only HR-driven provisioning writes access attributes.
+2. Rules are validated, shadowed against the groups they replace and piloted; privileged groups are assigned, cloud-only and governed by PIM for Groups and access reviews.
+3. Only generally available features sit in the production access path, and break-glass paths depend on none of this machinery.
 :::
 
 ## Authoritative references

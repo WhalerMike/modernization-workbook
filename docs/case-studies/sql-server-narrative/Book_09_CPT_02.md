@@ -43,7 +43,9 @@ Read as a consequence, the date reorganizes the schedule. If 2027-04-01 is when 
 This reading also gives the exception long-tail its proper weight. An instance that cannot reach Kerberos or Entra OAuth before the block must carry a documented exception with Certificate-Based Authentication as the authorized interim posture, and that exception's sunset date must be reconciled against the block rather than against any softer internal milestone. The block is network-level and fixed; the program's schedule must bend to it, not the other way around. When the migration is complete, the audit has validated the posture continuously, and the six artifact sets are live and satisfying, the 2027-04-01 block arrives as a non-event — which is exactly what done is supposed to feel like.
 
 ::: {.callout-note title="What Book 09 establishes — Chapter 2"}
-The six evidence artifact sets that close the SQL Server authentication transformation — per-instance compliance records, Entra sign-in logs showing zero NTLM/Kerberos fallback, host-log zero-NTLM telemetry, the `sa`-disabled report, the Conditional Access MFA report, and the exception registry — are live outputs of the continuous monitoring infrastructure, satisfying across a defined validation period rather than assembled once. 2027-04-01 is the network-block date and its consequence, not a migration completion date: the migration must complete earlier, with the final months reserved for continuous-audit validation, so the block arrives as a non-event.
+1. Six evidence sets close the transformation, and each is a live output of continuous monitoring.
+2. They must hold across a defined validation period, not be assembled once.
+3. 2027-04-01 is the network-block date, not the migration finish line: migration finishes earlier, so the block arrives as a non-event.
 :::
 
 [^b09c02-signins]: Microsoft Learn, [Sign-in logs in Microsoft Entra ID](https://learn.microsoft.com/en-us/entra/identity/monitoring-health/concept-sign-ins).

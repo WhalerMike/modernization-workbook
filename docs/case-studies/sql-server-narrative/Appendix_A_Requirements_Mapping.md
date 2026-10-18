@@ -54,7 +54,7 @@ Book 01 states the case and produces no control evidence of its own. The [Applic
 
 - **Mixed results are normal.** An instance can meet one row and miss another; the per-instance compliance record of Book 09 is what shows which.
 - **MFA is a Conditional Access outcome, not an engine setting.** SQL Server accepts the Entra token; whether the human behind it used phishing-resistant MFA is decided by Conditional Access policy and evidenced in Entra sign-in logs.[^a-ca]
-- **IA-9 applies to the engine's own identity.** The Arc managed identity or app registration authenticates SQL Server to Microsoft Entra ID and Microsoft Graph; the security-approval kit (Appendix B) gives the permission justification.
+- **IA-9 applies to the engine's own identity.** The Arc managed identity or app registration authenticates SQL Server to Microsoft Entra ID and Microsoft Graph; [Appendix B — Security-Approval (ATO) Kit](Appendix_B_ATO_Kit.md) gives the permission justification.
 - **The 800-207 mapping is architectural.** SQL Server acts as the enforcement point that accepts only tokens Entra ID issued under policy; the series does not implement a full policy engine.
 
 [^a-m2209]: Office of Management and Budget, [M-22-09, Moving the U.S. Government Toward Zero Trust Cybersecurity Principles](https://www.whitehouse.gov/wp-content/uploads/2022/01/M-22-09.pdf) (January 2022).
@@ -67,5 +67,5 @@ Book 01 states the case and produces no control evidence of its own. The [Applic
 
 ::: {.callout-tip}
 ## Continue the series
-[← Previous: Book 11 — Epilogue](Book_11.md) · [Index](index.md)
+[← Previous: Book 11 — Epilogue](Book_11.md) · [Index](index.md) · [Next: Appendix B — ATO Kit →](Appendix_B_ATO_Kit.md)
 :::

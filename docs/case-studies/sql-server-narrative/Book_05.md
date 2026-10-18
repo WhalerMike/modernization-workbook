@@ -41,6 +41,8 @@ Everything in Books 01 through 04 is prerequisite; everything in Books 06 throug
 ::: {#book-chapters}
 :::
 
+**Place in the [dependency chain](series-overview.md#the-dependency-chain):** Steps 5 and 7 — Introduce Entra principals, then remove legacy principals.
+
 ## Authoritative references
 
 Checked 19 October 2026.

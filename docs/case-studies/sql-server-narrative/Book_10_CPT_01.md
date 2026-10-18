@@ -65,7 +65,9 @@ The three dependencies converge on a single sequencing question. TLS certificate
 If the ADCS decommission timeline runs earlier than the replacement-CA and CBA-deployment timeline, the program loses the interim posture the Kerberos/NTLM-elimination program depends on at precisely the moment it is most needed — connections that could not migrate to Entra auth in time would have no compliant fallback. The sequencing of ADCS decommission against the 2027-04-01 NTLM deadline is therefore a critical dependency, and it is one the as-yet-unwritten ADCS-migration architecture decision must explicitly address before any decommission date is set.
 
 ::: {.callout-note title="What Book 10 establishes — Chapter 1"}
-SQL Server touches ADCS in three places that a decommission plan rarely sees: the TLS certificate the engine presents for FedRAMP-Moderate connection encryption, type-C certificate-mapped logins, and Certificate-Based Authentication as the Kerberos/NTLM-elimination program's authorized NTLM-replacement interim posture. `Get-CertBasedAuthAudit.ps1` is the discovery instrument for all three. Because the transformation inventory marks the ADCS-to-Microsoft Cloud PKI transformation "Not Yet Defined" and no normative architecture decision governs it, this book is analytical rather than prescriptive — its central finding is that the sequencing of ADCS decommission against the 2027-04-01 NTLM deadline is a critical dependency the as-yet-unwritten ADCS-migration architecture decision must resolve.
+1. SQL Server can depend on ADCS in three places: the TLS server certificate, certificates behind type-C logins and endpoints, and the certificate-based interim posture.
+2. `Get-CertBasedAuthAudit.ps1` discovers all three.
+3. The sequencing of the ADCS decommission against the 2027-04-01 deadline is a dependency that the as-yet-unwritten ADCS-migration decision must resolve.
 :::
 
 [^b10c01-tls]: Microsoft Learn, [Encrypt connections by importing a certificate](https://learn.microsoft.com/en-us/sql/database-engine/configure-windows/enable-encrypted-connections-to-the-database-engine?view=sql-server-ver17).
