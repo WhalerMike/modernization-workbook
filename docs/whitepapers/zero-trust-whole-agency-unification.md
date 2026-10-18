@@ -28,7 +28,7 @@ lifecycle_review: 2027-02-03
 
 ::: {.content-visible when-format="html"}
 ::: {.callout-tip appearance="simple"}
-**[Download this whitepaper as DOCX](docx/zero-trust-whole-agency-unification.docx)** — a Word copy of
+**[Download this whitepaper as DOCX](zero-trust-whole-agency-unification.docx)** — a Word copy of
 this page, regenerated on every site deploy. (Also available from the
 **Other Formats** link in the page sidebar.)
 :::
