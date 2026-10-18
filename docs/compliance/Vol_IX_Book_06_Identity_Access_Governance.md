@@ -43,7 +43,8 @@ run on events and calendars rather than tickets have no automation:
 1. **JML from the HRIT Org SSOT.** Joiner provisioning, mover access
    re-derivation and residual review, and leaver de-provisioning within SLA —
    driven by effective-dated HR events, with approval gates on high-risk
-   events and bidirectional attribute sync against the truth plane.
+   events and one-way attribute flow from HR to the directory, with drift
+   detected against the HR record.
 2. **Access-certification campaigns.** Scheduled user, manager,
    application-owner, and privileged reviews with SSOT context; bulk decisions
    with an audit trail; every revocation triggering a tracked remediation
