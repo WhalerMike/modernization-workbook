@@ -1,0 +1,12 @@
+# Chapter 06 — DNS identity is the first link in the trust chain.
+rankdir: LR
+graph: {nodesep: 0.25, ranksep: 0.45}
+nodes:
+  dns: {tone: blue, width: 150, tag: "1", title: "Name resolves to the authentic endpoint", size: 12}
+  cert: {tone: blue, width: 150, tag: "2", title: "Certificate validates", body: ["=SAN, OCSP/CRL, CAA, DNS-01"], size: 12}
+  pol: {tone: blue, width: 150, tag: "3", title: "FQDN-based policy applies", body: ["=ZTNA, application-aware networking"], size: 12}
+  tok: {tone: blue, width: 150, tag: "4", title: "Token reaches the right audience", body: ["=OAuth 2.0, Entra ID"], size: 12}
+edges:
+  - [dns, cert]
+  - [cert, pol]
+  - [pol, tok]

@@ -145,10 +145,11 @@ bundles:
     title: "Next Generation DDI"
     subtitle: "Governing DNS, DHCP and IPAM as the hybrid multi-cloud control plane"
     root: docs/next-generation-ddi
-    image_dir: docs/images/ddi
+    image_dir: docs/images/diagrams/next-generation-ddi
     warn_unlisted: ["*.md"]
     pages:
       - index.md
+      - 00-applicability.md
       - 01-dns-is-the-control-plane.md
       - 02-split-brain-dns.md
       - 03-federal-requirements.md

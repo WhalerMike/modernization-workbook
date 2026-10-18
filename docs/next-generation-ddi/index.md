@@ -45,6 +45,10 @@ The result is split-brain DNS that breaks private connectivity, certificate trus
 
 ## The arc
 
+![The reading path: five parts and eleven chapters.](../images/diagrams/next-generation-ddi/svg/series-00-reading-path.svg){fig-alt="Five parts left to right: Part I the problem (chapters 01 and 02), Part II the requirements (03), Part III the hard surfaces (04 to 07), Part IV the answer (08 and 09), and Part V running it (10 and 11)."}
+
+Start with **[Applicability](00-applicability.md)** if you work in GCC High, DoD or an air-gapped environment. It sets out which statements in later chapters change at higher impact levels.
+
 ### Part I · The problem
 - **[01 — DNS Is Now the Control Plane](01-dns-is-the-control-plane.md)**: problem, solution and ask; the three DNS perspectives; IPAM and DHCP as the address layer of the inventory.
 - **[02 — Split-Brain DNS: The Structural Problem](02-split-brain-dns.md)**: private-IP, security-policy and SaaS-endpoint split-brain, and what fragmented DDI costs.
@@ -78,6 +82,7 @@ The result is split-brain DNS that breaks private connectivity, certificate trus
 | Identity architect | 04 → 06 → 10 |
 | Network or security engineer | 05 → 06 → 07 → 09 |
 | Program manager | 01 → 09 → 10 → 11 |
+| GCC High, DoD or air-gapped reader | Applicability → 03 → 05 → 07 → 11 |
 
 ## Chapters
 

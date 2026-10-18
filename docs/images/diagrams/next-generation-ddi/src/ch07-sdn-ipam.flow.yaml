@@ -1,0 +1,14 @@
+# Chapter 07 — how each SDN platform connects to enterprise IPAM today.
+rankdir: LR
+graph: {nodesep: 0.25, ranksep: 0.6}
+nodes:
+  ipam: {tone: blue, width: 190, tag: "Authority", title: "Enterprise IPAM", body: ["=Address blocks reserved here first"], size: 12}
+  aws: {tone: green, width: 210, title: "AWS VPC IPAM", body: ["=Can allocate from an external IPAM (commercial Regions, not GovCloud)"], size: 12}
+  vcf: {tone: green, width: 210, title: "VMware Cloud Foundation 9.1 / NSX", body: ["=Native integration: allocation and FQDN registration"], size: 12}
+  az: {tone: amber, width: 210, title: "Azure Virtual Network Manager IPAM", body: ["=Discovery and reconciliation; process or API for allocation"], size: 12}
+  gcp: {tone: amber, width: 210, title: "Google Cloud internal ranges", body: ["=Discovery and reconciliation; process or API for allocation"], size: 12}
+edges:
+  - [ipam, aws, {tone: green, both: true}]
+  - [ipam, vcf, {tone: green, both: true}]
+  - [ipam, az, {tone: amber, style: dashed}]
+  - [ipam, gcp, {tone: amber, style: dashed}]
