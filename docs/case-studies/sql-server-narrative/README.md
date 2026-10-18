@@ -28,6 +28,7 @@ Before, every party is domain-joined and NTLM is the silent fallback when the se
 
 | Book | Title | Focus |
 |------|-------|-------|
+| [—](Applicability.md) | Applicability | Read first: where the series applies as written, alternatives, and fallback protections |
 | [01](book-01-the-inheritance.md) | The Authentication Inheritance Problem | What Windows Authentication actually is, and why it must end |
 | [02](book-02-the-estate.md) | The Estate Itself | Assess and consolidate before you touch authentication |
 | [03](book-03-authentication-audit.md) | The Authentication Audit | What is actually using Windows Authentication, SQL Authentication, and NTLM |
