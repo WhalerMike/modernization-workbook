@@ -63,7 +63,7 @@ website:
             text: "SQL Server Identity Transformation"
       - text: "Series"
         menu:
-          - href: docs/client-server-to-hybrid-cloud/00-the-problem.md
+          - href: docs/client-server-to-hybrid-cloud/README.md
             text: "Client-Server to Hybrid-Cloud"
           - href: docs/next-generation-ddi/index.md
             text: "Next Generation DDI"

@@ -33,7 +33,7 @@ The plan is organized by phases. Each phase has objectives, key activities, deli
 - Initial risk register.
 
 **Supporting material**
-- [Why Modernization Is Hard](docs/narratives/why-modernization-is-hard.md) — leadership framing of the problem
+- [Why Modernization Is Hard](docs/client-server-to-hybrid-cloud/00-prologue-why-modernization-is-hard.md) — leadership framing of the problem
 - [Principles](docs/PRINCIPLES.md) — the rules the charter commits to
 - [Chapter 00 — The Problem Nobody Talks About](docs/client-server-to-hybrid-cloud/00-the-problem.md)
 - [Chapter 10 — Leadership Takeaway](docs/client-server-to-hybrid-cloud/10-leadership-takeaway.md)

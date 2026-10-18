@@ -49,7 +49,7 @@ Exit gate (Gate G0 — Ready to Plan):
 
 Workstream outputs:
 - **Identity.** Dynamic groups for enterprise-level branches. Administrative units for Tier-1 and selected Tier-2 scopes.
-- **Policy.** Enterprise Conditional Access baseline: multi-factor authentication required for all users, legacy authentication blocked, break-glass carve-outs.
+- **Policy.** Enterprise Conditional Access baseline: multi-factor authentication required for all users, legacy authentication blocked, break-glass carve-outs.[^cs09-breakglass][^cs09-legacy]
 - **Services.** IP address management stood up with partial coverage — enough to tag the platform host and Tier-0 infrastructure.
 - **Compute.** Platform host cloud-registered; select server pilots hybrid-connected.
 - **Access.** Platform single sign-on configured; FIDO2 registration available for Tier-0 administrators.
@@ -76,7 +76,7 @@ Workstream outputs for the pilot:
 - **Access.** Division users configured for certificate-based authentication where smart-card holders exist; SASE zero-trust network access in place for division applications.
 
 Exit gate (Gate G2 — Pilot Clean):
-- Pilot division drift zero for fourteen consecutive days.
+- Pilot division drift zero for a defined hold period (for example, fourteen consecutive days — illustrative).
 - Pilot division has zero Active Directory-only users and zero hybrid-joined PCs that are not scheduled for full cut.
 - Retrospective complete; lessons-learned document committed.
 - Per-phase runbook updates committed based on pilot experience.
@@ -85,7 +85,7 @@ Exit gate (Gate G2 — Pilot Clean):
 
 **Goal.** Scale the pattern to every remaining division.
 
-This is the longest phase. Duration scales with division count: budget approximately two to three weeks per division, running two to three divisions in parallel. Large organizations may overlap divisions heavily; small organizations may run strictly sequentially.
+This is the longest phase. Duration scales with division count: illustratively, budget two to three weeks per division, running two to three divisions in parallel. Large organizations may overlap divisions heavily; small organizations may run strictly sequentially.
 
 Workstream cadence:
 - Weekly steering-committee review of active divisions. Each division reports green/yellow/red against its rollout plan.
@@ -119,7 +119,7 @@ Exit gate (Gate G4 — Legacy Quiet):
 - Zero Active Directory-integrated DNS zones.
 - Certificate issuance moved to, or scheduled to move to, a CA that does not depend on AD DS (Chapter 08); AD CS no longer used for smart-card logon.
 - Service principal name map shows all migrated, retired, or islanded — no unresolved names.
-- Active Directory authentication rate less than five percent of the peak-migration rate.
+- Active Directory authentication rate below an agreed threshold (for example, five percent of the peak-migration rate — illustrative).
 
 ### Phase 5 — Active Directory Domain Services Retirement (weeks 45–48)
 
@@ -247,7 +247,16 @@ In week forty-nine (Phase 6 steady state), the program meeting looks like this:
 
 The program is not “done” — steady state is the operational mode — but the modernization is complete. The organization runs governed; Active Directory is gone, or reduced to documented Kerberos islands with end-of-life dates; the authoritative source is the operational truth.
 
+
+## Authoritative references
+
+- Microsoft Learn, [Block legacy authentication with Conditional Access - Microsoft Entra ID](https://learn.microsoft.com/en-us/entra/identity/conditional-access/policy-block-legacy-authentication)
+- Microsoft Learn, [Manage emergency access admin accounts - Microsoft Entra ID](https://learn.microsoft.com/en-us/entra/identity/role-based-access-control/security-emergency-access)
+
 ---
 
 **Previous:** [Chapter 08 — Access Plane](08-access-plane.md)  
 **Next:** [Chapter 10 — Leadership Takeaway](10-leadership-takeaway.md)
+
+[^cs09-legacy]: Microsoft Learn, *Block legacy authentication with Conditional Access - Microsoft Entra ID*. <https://learn.microsoft.com/en-us/entra/identity/conditional-access/policy-block-legacy-authentication>
+[^cs09-breakglass]: Microsoft Learn, *Manage emergency access admin accounts - Microsoft Entra ID*. <https://learn.microsoft.com/en-us/entra/identity/role-based-access-control/security-emergency-access>
