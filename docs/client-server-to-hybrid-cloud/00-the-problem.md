@@ -98,11 +98,34 @@ The target surface includes Entra ID, administrative units, Intune, Azure Arc, I
 | 08 | Access plane. MFA, Zero Trust, SASE, certificate-based authentication. |
 | 09 | Roadmap. Phased plan, gates, rollback, cutover. |
 | 10 | Leadership takeaway. Instruments versus orchestra. |
+| App. A | Federal requirements mapping (M-22-09, CISA ZTMM v2, NIST SP 800-207, 800-53). |
+
+## The dependency chain
+
+Every chapter places itself on one chain. The arrows are dependencies, not a calendar: workstreams overlap (Chapter 09), but nothing on the right can finish before what is on its left.
+
+| Step | What must be true before moving on | Chapter |
+|---|---|---|
+| **Inventory** | All eleven categories enumerated, read-only, with provenance | 02 |
+| **Plan** | Changes expressed as reviewed, authorized, rollback-paired plans | 01, 03 |
+| **Identity** | Entra ID authoritative for people and delegation; HR drives lifecycle | 04 |
+| **Policy** | Group Policy regenerated into Intune, Conditional Access, machine configuration | 05 |
+| **Network services** | DNS, DHCP, and IPAM governed outside AD | 06 |
+| **Devices and servers** | PCs Entra joined; servers Arc-connected; SPNs resolved | 07 |
+| **Access plane** | Phishing-resistant MFA, Conditional Access, ZTNA; certificate issuance off AD | 08 |
+| **Retire AD DS** | No live dependency on AD authentication, or documented Kerberos islands | 09 |
+| **Prove steady state** | Zero drift and zero-action plans, evidenced continuously | 09, 10 |
 
 ## The bottom line
 
 AD retirement is not a migration project. It is a **governance transformation**. The hard part is not the API calls; it is the framework that decides what the target state looks like, how to prove it is right, and how to keep it right. This series describes that framework.
 
+
+## Key takeaways
+
+1. AD governs eleven categories of infrastructure, not just users and groups; each must be mapped before AD retires.
+2. Retiring AD is an agency decision supported by Microsoft cloud-first guidance, not a vendor deadline.
+3. The work follows one dependency chain, from inventory to proven steady state.
 
 ## Authoritative references
 

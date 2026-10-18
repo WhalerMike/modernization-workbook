@@ -2,6 +2,8 @@
 
 **Device object transformation · PCs to cloud identity + device management · servers to hybrid management · service principal and Kerberos retirement**
 
+> **Dependency chain:** Inventory → Plan → Identity → Policy → Network services → **Devices and servers** → Access plane → Retire AD DS → Prove steady state
+
 ## The compute claim
 
 ![Diagram](../images/cshc/compute-transformation.svg)
@@ -146,6 +148,12 @@ The actual retirement is mechanical: demote every domain controller, decommissio
 
 Chapter 08 wraps the remaining access-plane details. Chapter 09 presents the phased program plan that sequences everything. Chapter 10 frames the executive takeaway.
 
+
+## Key takeaways
+
+1. User PCs end Entra joined; reaching that from hybrid join requires a reset or re-provisioning.
+2. Servers are Arc-connected for governance; their operating-system logon is a separate dependency.
+3. No server leaves the domain until every SPN on it is migrated, retired, or islanded.
 
 ## Authoritative references
 
