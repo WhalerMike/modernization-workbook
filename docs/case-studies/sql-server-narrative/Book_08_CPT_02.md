@@ -1,5 +1,5 @@
 ---
-title: "Connection String Migration — The Last Mile"
+title: "Connection String Migration: The Last Mile"
 doc-type: sql-server-narrative-chapter
 audience: [Technical, Customer]
 family: sql-server-narrative

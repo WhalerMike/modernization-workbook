@@ -74,7 +74,7 @@ The application-audit script (`Get-LDAPBindAccountInventory.ps1`) is the instrum
 
 It also captures the authentication mechanism for that SQL connection (Windows Integrated Security, SQL Authentication, or already-migrated Managed Identity or service principal) and the signals that map to each class: SAML metadata URLs, OIDC discovery-endpoint registration, or vendor documentation indicating modernization capability. The output is a per-application record with a recommended class assignment and the detection signals that support it.
 
-That record is the input to the LDAP-dependent-application migration plan triage and to the instance-level migration planning in Book 05. The two audit scripts must be correlated to produce a complete picture: `the authentication audit script` enumerates SQL Server instances, and the application-audit script enumerates the upstream applications. Only when both are joined does each SQL Server instance reveal its full authentication chain — every application that depends on it, and the class each one falls into.
+That record is the input to the LDAP-dependent-application migration plan triage and to the instance-level migration planning in Book 05. The two audit scripts must be correlated to produce a complete picture: the authentication-audit script enumerates SQL Server instances, and the application-audit script enumerates the upstream applications. Only when both are joined does each SQL Server instance reveal its full authentication chain — every application that depends on it, and the class each one falls into.
 
 ::: {.callout-note title="What Book 08 establishes — Chapter 1"}
 1. The transformation is incomplete until each application chain — user to application to database — is addressed.

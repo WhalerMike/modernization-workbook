@@ -17,7 +17,7 @@ lifecycle_review: 2027-01-01
 
 ::: {.callout-note}
 ## In this chapter
-How the Kerberos/NTLM-elimination program's three-phase structure applies to SQL Server: Phase A discovery using the authentication-audit script (`the authentication audit script`) alongside Windows event-log NTLM analysis, Phase B restriction that converts NTLM connections to Kerberos and migrates the remaining patterns, and Phase C elimination at the 2027-04-01 domain-wide block — and why an instance migrated to Entra ID logins is immune to that block because it was never generating NTLM in the first place.
+How the Kerberos/NTLM-elimination program's three-phase structure applies to SQL Server: Phase A discovery using the authentication-audit script alongside Windows event-log NTLM analysis, Phase B restriction that converts NTLM connections to Kerberos and migrates the remaining patterns, and Phase C elimination at the 2027-04-01 domain-wide block — and why an instance migrated to Entra ID logins is immune to that block because it was never generating NTLM in the first place.
 :::
 
 The Kerberos/NTLM-elimination program structures NTLM elimination into three phases — discover, restrict, eliminate — and this chapter applies that structure specifically to SQL Server workloads. The phases are sequential and the final one is a hard backstop: the domain-wide NTLM block takes effect no later than 2027-04-01, the date the elimination program sets for the program.
@@ -28,7 +28,7 @@ After that date, any SQL Server connection that requires NTLM will fail at the L
 
 ![The evidence Phase A combines into the NTLM baseline.](../../images/sql-server/diagrams/svg/book-06-ch02-phase-a-evidence.svg){fig-alt="The authentication audit, the Security log on SQL Server hosts (events 4624 and 4625 with the NTLM package), the NTLM operational log and linked-server definitions combine into a per-instance NTLM baseline in compliance monitoring."}
 
-The discovery phase is the elimination program's first phase, and for SQL Server its primary instrument is `the authentication audit script`. The Phase A output for SQL Server includes the full instance inventory with Arc-eligibility classifications, the login-type inventory, the SPN registration status for every instance, and the service-account identity for each engine process.
+The discovery phase is the elimination program's first phase, and for SQL Server its primary instrument is the authentication-audit script. The Phase A output for SQL Server includes the full instance inventory with Arc-eligibility classifications, the login-type inventory, the SPN registration status for every instance, and the service-account identity for each engine process.
 
 Network-traffic analysis supplements the script output by capturing actual NTLM authentication events in the Windows event log. The relevant events are Event IDs 4624 and 4625 — logon success and failure — with logon type 3, the network logon type, and authentication package NTLM, filtered to events where the target server is a SQL Server host.
 
