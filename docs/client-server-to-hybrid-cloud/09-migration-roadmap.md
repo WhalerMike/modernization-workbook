@@ -7,7 +7,7 @@
 ![Diagram](../images/cshc/migration-roadmap.svg)
 
 
-Every modernization this series describes is achievable in a **fifty-two-week program** with five parallel workstreams (identity, policy, services, compute, access) and seven named gates. The roadmap is a reviewable document in the authoritative repository, updated on a regular cadence, with gate criteria that are mechanical to evaluate.
+This chapter sequences the modernization as a **fifty-two-week illustrative program** with five parallel workstreams (identity, policy, services, compute, access) and seven named gates. The week numbers are a sequencing model, not a commitment: large federal estates typically run multi-year. The roadmap is a reviewable document in the authoritative repository, updated on a regular cadence, with gate criteria that are mechanical to evaluate.
 
 This chapter is how you sequence the work of Chapters 01–08 into a governed program that actually ships.
 
@@ -18,7 +18,7 @@ A full Client-Server-to-Hybrid-Cloud modernization has two defining properties:
 1. **Parallel, not sequential.** Identity, policy, services, compute, and access work in parallel streams. Waiting for one to finish before starting the next doubles the program duration and produces worse outcomes.
 2. **Gated, not open-ended.** Each phase has explicit entry and exit criteria. A phase cannot start until the prior phase’s exit gate clears. A phase cannot exit until its own criteria are green.
 
-Total realistic duration for a mid-size organization (five thousand to fifty thousand users, five hundred to five thousand servers): approximately fifty-two weeks. Larger organizations extend; smaller organizations compress. The phase structure does not change with scale — only the per-phase duration does.
+Illustratively, a mid-size organization (five thousand to fifty thousand users, five hundred to five thousand servers) with a clean forest and a small Kerberos-application inventory might complete in about fifty-two weeks. Larger or less-rationalized estates extend; smaller ones compress. The phase structure does not change with scale — only the per-phase duration does.
 
 ## The seven phases
 
@@ -60,6 +60,7 @@ Exit gate (Gate G1 — Foundation Complete):
 - IP address management covers at least Tier-0 infrastructure.
 - Drift detection reports zero findings across the foundation scope.
 - Break-glass accounts vaulted.
+- HR-to-cloud provisioning operational for the foundation scope.
 
 ### Phase 2 — Pilot Division (weeks 9–16)
 
@@ -116,7 +117,7 @@ Exit gate (Gate G4 — Legacy Quiet):
 - No active Group Policy Objects other than the minimum Kerberos-island set.
 - No Active Directory-based dynamic or static-membership security groups in active use.
 - Zero Active Directory-integrated DNS zones.
-- Certificate services retained only for issuance, not for smart-card logon.
+- Certificate issuance moved to, or scheduled to move to, a CA that does not depend on AD DS (Chapter 08); AD CS no longer used for smart-card logon.
 - Service principal name map shows all migrated, retired, or islanded — no unresolved names.
 - Active Directory authentication rate less than five percent of the peak-migration rate.
 
@@ -142,8 +143,7 @@ Exit gate (Gate G5 — Active Directory Retired):
 
 ### Phase 6 — Steady State (week 49+)
 
-> **Calibration:** The week-49 retirement is illustrative. Real programs with large estates run multi-year. Treat the timeline as a sequencing model, not a schedule.
-
+> **Calibration:** The week numbers are illustrative. Real programs with large estates run multi-year. Treat the timeline as a sequencing model, not a schedule.
 
 **Goal.** Operate the modernized environment under governed control.
 
@@ -245,7 +245,7 @@ In week forty-nine (Phase 6 steady state), the program meeting looks like this:
 - Audit posture: authorization package refreshed; continuous-monitoring feed live.
 - Authoritative source: stable, with changes flowing through reviewed pull requests.
 
-The program is not “done” — steady state is the operational mode — but the modernization is complete. The organization runs governed; Active Directory is gone; the authoritative source is the operational truth.
+The program is not “done” — steady state is the operational mode — but the modernization is complete. The organization runs governed; Active Directory is gone, or reduced to documented Kerberos islands with end-of-life dates; the authoritative source is the operational truth.
 
 ---
 

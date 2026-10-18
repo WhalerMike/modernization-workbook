@@ -20,7 +20,7 @@ By the time a forest was ten years old, it had become the single most load-beari
 
 ## What breaks when AD goes away
 
-Microsoft is deprecating the Client/Server stack. Entra ID replaces AD DS. Intune replaces Group Policy. Conditional Access replaces the network perimeter. Azure Arc extends cloud management to on-premises hosts. Certificate-based authentication replaces ADCS-anchored smart-card logon. Private DNS and private resolvers replace AD-integrated DNS zones.
+Microsoft has not deprecated Active Directory Domain Services; it remains a supported role in Windows Server 2025. What has changed is where Microsoft invests and what it recommends: a cloud-first identity model in which Entra ID becomes the source of authority and on-premises AD is minimized. In that model Entra ID takes over from AD DS as the primary directory, Intune takes over from Group Policy, Conditional Access takes over from the network perimeter, Azure Arc extends cloud management to on-premises hosts, Entra certificate-based authentication takes over from AD CS-anchored smart-card logon, and Azure private DNS and private resolvers take over from AD-integrated DNS zones. Retiring AD is therefore an organizational decision, not a vendor deadline.
 
 Every one of those substitutions is a valid target. But the tools arrived without a framework. The result is that when user objects are migrated into a flat directory and victory is declared, eleven categories of infrastructure object that AD was silently governing are left behind:
 
@@ -57,7 +57,7 @@ A flat cloud directory has none of this by default. Dynamic groups, administrati
 
 ## Why naïve migrations fail
 
-Almost every “AD to Entra ID” project has been scoped around users, groups, and mailboxes. That is the visible ten percent. The invisible ninety percent is the eleven categories above.
+Almost every “AD to Entra ID” project has been scoped around users, groups, and mailboxes. That is the visible part of the work. The larger, invisible part is the eleven categories above.
 
 A successful modernization must:
 
@@ -85,6 +85,7 @@ The target surface includes Entra ID, administrative units, Intune, Azure Arc, I
 
 | Chapter | Covers |
 |---------|--------|
+| 00a | Applicability and scope. Which clouds and environments the target state assumes. |
 | 01 | The platform host. What runs on it and why. |
 | 02 | Analyzing the legacy estate. Forest discovery, GPO inventory, DNS/DHCP, Kerberos, certificate services. |
 | 03 | The engine. Turning analysis into a plan and a plan into delivered state. |
@@ -102,4 +103,4 @@ AD retirement is not a migration project. It is a **governance transformation**.
 
 ---
 
-**Next:** Chapter 01 — Platform Foundation
+**Next:** [Applicability and scope](00a-applicability.md) · [Chapter 01 — Platform Foundation](01-platform-foundation.md)

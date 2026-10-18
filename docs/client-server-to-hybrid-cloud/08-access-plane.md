@@ -28,7 +28,7 @@ The Zero Trust model is enforced by the combined effect of Conditional Access (p
 When Zero Trust is in place, three Active Directory-era patterns retire:
 
 - **Network-segment-as-authority.** IP-range-based allowlists stop being authoritative. Policy is per-identity, per-device, per-session.
-- **Pass-through Active Directory Kerberos.** Services no longer accept Kerberos tickets issued by a domain controller. Tokens are cloud-issued, short-lived, and continuously evaluated.
+- **Pass-through Active Directory Kerberos.** Services that have been modernized stop accepting Kerberos tickets issued by a domain controller and accept cloud-issued, short-lived tokens instead. Services on a documented Kerberos island keep Kerberos until they retire.
 - **Persistent administrative rights.** Domain Admins, local administrator groups, and service accounts with never-expiring passwords migrate to just-in-time elevation, group managed service accounts (where Kerberos islands persist), or workload identity federation (where cloud services authenticate to the cloud identity platform).
 
 ## SASE — the edge delivery surface
@@ -66,10 +66,10 @@ Not all multi-factor authentication is equal. The access-plane guidance requires
 | Method | Phishing-resistant | Typical use |
 |--------|--------------------|-------------|
 | **FIDO2 security keys** | Yes | Tier-0 administrators, high-privilege users |
-| **Platform single sign-on passkeys** (Windows Hello for Business) | Yes | User PCs, default daily authentication |
+| **Windows Hello for Business** (and Platform SSO on macOS) | Yes | User PCs, default daily authentication |
 | **Certificate-based authentication** (with PIV/CAC) | Yes | Users with smart cards |
-| **Authenticator application** with number-matching | Partial (resists push bombing) | Standard users, secondary method |
-| **Authenticator application** without number-matching | No | Retired — not permitted |
+| **Authenticator application** push notifications (number matching is always on) | No — resists push fatigue, not phishing | Standard users during transition, secondary method |
+| **Passkey in Authenticator** (device-bound) | Yes | Mobile and cross-device sign-in |
 | **SMS / Voice** | No | Retired — not permitted |
 
 ### Method policy
@@ -77,10 +77,10 @@ Not all multi-factor authentication is equal. The access-plane guidance requires
 The Conditional Access library (Chapter 05) enforces:
 
 - Role-scoped policies require FIDO2 or certificate-based authentication for Tier-0 administrators, privileged identity roles, and break-glass test accounts.
-- Enterprise baseline policies require platform single sign-on, FIDO2, or authenticator with number-matching for all users. SMS and voice are explicitly blocked.
+- Enterprise baseline policies require multifactor authentication for all users, using an authentication strength that excludes SMS and voice, and move users toward phishing-resistant methods.
 - Workload-specific policies require elevated methods for sensitive applications.
 
-Organizations with smart-card holders use certificate-based authentication as the user default. Smart-card plus PIN reaches the same cloud session that a non-smart-card user reaches via platform single sign-on — both are phishing-resistant; both are preferred methods.
+Organizations with smart-card holders use certificate-based authentication as the user default. Smart-card plus PIN reaches the same cloud session that a non-smart-card user reaches via Windows Hello for Business — both are phishing-resistant; both are preferred methods.
 
 ## Cloud certificate-based authentication — the Active Directory Certificate Services retirement path
 
@@ -90,22 +90,24 @@ Organizations using smart cards have historically anchored smart-card logon in A
 
 ### How it works
 
-Cloud certificate-based authentication accepts X.509 certificates from a trusted certificate authority (uploaded into the tenant). When a user presents a certificate:
+Cloud certificate-based authentication accepts X.509 certificates from certificate authorities in the tenant's trust store (the PKI-based trust store, which holds root and issuing CA certificates and their revocation-list locations). When a user presents a certificate:
 
 1. The platform validates the certificate chain against the uploaded certificate-authority list.
-2. The platform maps the certificate’s subject name (or user principal name, or principal name subject alternative name) to a cloud user via configured mapping rules.
+2. The platform binds the certificate to a cloud user through configured username-binding rules (for example, the SAN principal name, RFC 822 name, or issuer and serial number). High-affinity bindings are preferred.
 3. The user is authenticated; a token is issued; Conditional Access policies evaluate the sign-in.
 
 The user experience is: insert smart card → enter PIN → get a token. No difference from Active Directory-anchored smart-card logon. The governance difference: the validation chain ends in the cloud identity platform, not in Active Directory.
 
 ### The retirement sequence
 
-1. Upload enterprise certificate-authority certificates to the cloud identity platform.
-2. Configure certificate-to-user mapping.
+1. Add the issuing and root certificate-authority certificates (with revocation-list locations) to the tenant's PKI-based trust store.
+2. Configure username bindings.
 3. Enable certificate-based authentication as an authentication method.
 4. Enforce via Conditional Access. Policies require certificate-based authentication for designated user groups (attribute-scoped).
 5. Validate. Users sign in with smart cards without issue; sign-in logs show the method; Conditional Access evaluation passes.
-6. Retire Active Directory Certificate Services smart-card logon configuration. The Active Directory-side chain is no longer needed; the Group Policy Object that configured it retires per Chapter 05.
+6. Retire the Active Directory smart-card logon configuration. The Active Directory-side chain is no longer needed for sign-in; the Group Policy Object that configured it retires per Chapter 05.
+
+Issuance is a separate decision. An AD CS *enterprise* CA depends on AD DS, so before AD retires, certificate issuance has to move to a successor: a standalone CA, a managed cloud PKI service, or a third-party or federal shared-service CA (for PIV/CAC, the agency's existing PIV issuer usually already fills this role).
 
 The framework also governs the certificate issuance pipeline so new user certificates are issued against the same certificate authority that the cloud identity platform trusts.
 
@@ -118,7 +120,7 @@ Every privileged account — domain-admin equivalent, cloud administrator, emerg
 - **No standing privileged access.** A privileged account exists in just-in-time elevation but requires explicit elevation for each use (multi-factor-authentication-gated, time-bound, purpose-documented).
 - **Break-glass accounts** live in a vault. Checkout requires dual approval; the session is recorded; automatic rotation on release.
 - **Service accounts** with elevated rights use managed identities and workload identity federation where possible; group managed service accounts on the remaining Kerberos islands; vaulted accounts only as last resort.
-- **Session recording** for every privileged session — desktop session video, keystroke log, command-line capture — shipped to security information and event management.
+- **Session recording** for every privileged session — desktop session video, keystroke log, command-line capture — shipped to security information and event management. (Session recording is a capability of third-party privileged access management products, not of Entra PIM.)
 
 Drift monitoring: vaulted accounts that do not appear in the cloud identity platform are orphan drift; cloud privileged accounts that are not vaulted are phantom drift.
 
@@ -128,10 +130,10 @@ A Zero Trust session is not “good for twelve hours, then re-authenticate.” I
 
 - User password changes → session revoked.
 - User is deleted or disabled → session revoked.
-- Network location changes to a blocked region → session revoked.
-- Risk score rises (impossible travel, leaked credentials) → session revoked.
+- Network location changes to a blocked location → access revoked (for location policies, with strict location enforcement enabled).
+- User risk rises to high (for example, leaked credentials detected by Entra ID Protection) → session revoked.
 
-Conditional Access policies are authored with continuous-access-evaluation-aware semantics. Every policy that requires compliance or location constraints is re-evaluated continuously, not just at sign-in.
+Continuous access evaluation works only with CAE-capable applications and services, and it reacts to these critical events and to IP-location changes, not to every Conditional Access condition. Device-compliance changes, for example, take effect at the next token refresh. Policies are authored with that in mind.
 
 ## Putting it together — the access plane in one flow
 
@@ -143,7 +145,7 @@ A user opens their laptop in the morning:
 4. **Application access.** User opens productivity applications. Platform single sign-on satisfies subsequent authentications; continuous access evaluation is live; if risk rises, the session can be revoked.
 5. **VPN replacement.** User needs to reach an internal application. SASE zero-trust network access reverse-proxy accepts the cloud token; validates compliance, multi-factor authentication, and attribute scope; proxies the connection; logs the access.
 6. **Privileged elevation.** User needs to make a change to a Tier-0 resource. They request elevation through just-in-time; multi-factor authentication is re-challenged; approval is granted for a defined window; the session is recorded; the event is emitted.
-7. **End of day.** Laptop sleeps. Token expires; continuous access evaluation revokes on next reconnect; re-authentication starts the cycle.
+7. **End of day.** Laptop sleeps. Tokens expire or are refreshed on the next sign-in; re-authentication and Conditional Access evaluation start the cycle again.
 
 Every step above is attribute-scoped, provenance-bound, and drift-monitored. A failure anywhere generates a tracked item within the defined response time.
 
@@ -151,12 +153,12 @@ Every step above is attribute-scoped, provenance-bound, and drift-monitored. A f
 
 Access-plane migration passes when:
 
-- Every user has FIDO2, platform single sign-on passkey, or certificate-based authentication as their primary multi-factor authentication method. No SMS or voice as primary.
+- Every user has FIDO2, a passkey, Windows Hello for Business, or certificate-based authentication as their primary multi-factor authentication method. No SMS or voice as primary.
 - Every smart-card user signs in via cloud certificate-based authentication (not Active Directory-anchored smart-card logon).
 - Every user-facing policy targets attribute-scoped dynamic groups.
 - SASE (zero-trust network access + secure web gateway + cloud access security broker, minimum) is in place and cloud-identity-federated.
 - Every privileged account passes through privileged access management with session recording.
-- Every Conditional Access policy is continuous-access-evaluation-aware.
+- Continuous access evaluation is enabled for supported applications, with strict location enforcement where location policies apply.
 - Break-glass account use is monitored and audited on a schedule.
 - The traditional VPN is retired except for explicit legacy-application-access cases with a documented end-of-life.
 - Drift detection reports zero access-plane drift for a defined period.

@@ -30,6 +30,10 @@ Each mechanism is individually documented by the platform vendor; the innovation
 
 Organizational position is carried in attributes on every governed user (and, where applicable, device and group) object.
 
+### Where the attributes live
+
+The examples in this series use the on-premises-synchronized `extensionAttribute1`–`15` and standard attributes such as `department`, which dynamic-membership rules can reference. Once AD is no longer the source, the same values must be written by HR-driven inbound provisioning directly to Entra ID (or held in directory extension attributes), so the attribute source has to be planned before AD retires.
+
 ### What the attributes drive
 
 One stamped set of attributes drives five downstream outcomes:
@@ -91,11 +95,11 @@ Administrative units are enumerated in a three-tier structure mirroring the orga
 | **Tier 2 — Department** | All users in one department, in one region | `AU-[REGION]-[DEPT]` | User Administrator, Groups Administrator |
 | **Tier 3 — Division** | Users in one division beneath that department | `AU-[REGION]-[DEPT]-[DIV]` | Helpdesk Administrator, Password Administrator |
 
-The membership rule of each administrative unit is an exact mirror of the corresponding dynamic-group rule. An administrative unit contains exactly the same users as its matching dynamic group.
+Each administrative unit uses dynamic membership with a rule that exactly mirrors the corresponding dynamic-group rule, so it contains the same users as its matching dynamic group. Dynamic membership for groups and administrative units requires Microsoft Entra ID P1 licenses for the users in scope.
 
 ### Restricted management
 
-Every governed administrative unit is created with member management restricted. That means the only way to manage members is via the governed workflow — by changing a user’s organizational attributes. A global administrator cannot hand-add a user to an administrative unit to bypass delegation. This preserves the property that organizational-unit access-control lists provided.
+Two separate controls protect administrative-unit scope. **Dynamic membership** means no administrator can hand-add a user; the only way in is a change to the user's attributes through the governed workflow. **Restricted management**, applied to administrative units that hold sensitive objects, goes further: tenant-level administrators can no longer modify the objects inside; only administrators assigned at the unit scope can. Together they preserve the property that organizational-unit access-control lists provided.
 
 ### Role assignments
 
@@ -103,11 +107,11 @@ Roles are scoped to administrative units, never granted tenant-wide except for b
 
 ```
 role:        User Administrator
-principal:   Structure-NCR-Finance-Admins    ← a dynamic group
+principal:   Structure-NCR-Finance-Admins    ← a role-assignable group (assigned membership, PIM-eligible)
 scope:       /administrativeUnits/AU-NCR-Finance
 ```
 
-A member of the administrators group can reset passwords, create groups, and manage users — but only for users in that administrative unit. Outside that scope, the role has no effect.
+A member of the administrators group can reset passwords and manage users and groups — but only for objects in that administrative unit. Outside that scope, the role has no effect. Groups used as role-assignment principals must be role-assignable, and role-assignable groups cannot have dynamic membership; their membership is assigned and is best managed as eligible assignments in Privileged Identity Management (Microsoft Entra ID P2 or ID Governance).
 
 The full role matrix is stored in the authoritative repository. Changes require review; validation ensures new assignments respect least-privilege and tier-boundary rules.
 
@@ -115,7 +119,7 @@ The full role matrix is stored in the authoritative repository. Changes require 
 
 Group Policy Objects inherited down the organizational-unit tree. Conditional Access policies target groups. The bridge: attribute-scoped dynamic groups that match the inheritance pattern.
 
-Example: a Group Policy Object that applied at a regional organizational unit configured lockout policies for all users in that region. The Conditional Access equivalent is a policy targeting a region-scoped dynamic group whose rule is the region attribute alone. Users in that region get the policy; everyone else does not.
+Example: a Group Policy Object linked at a regional organizational unit required smart-card logon for all users in that region. The Conditional Access equivalent is a policy, targeting a region-scoped dynamic group whose rule is the region attribute alone, that requires a phishing-resistant authentication strength. Users in that region get the policy; everyone else does not. (Settings such as account lockout are not Conditional Access controls; they move to Entra smart lockout for cloud accounts and to Intune device policy for local accounts — see Chapter 05.)
 
 Inheritance is simulated by group targeting at the branch level. Conditional Access does not inherit through administrative units the way Group Policy inherited through organizational units; the governance model makes up the difference by having the branch group include everyone the ancestor policy would have targeted.
 
@@ -137,7 +141,7 @@ The employee’s HR record moves them from one division to another. The same wor
 
 ### Leaver
 
-Termination writes a leaver attribute that the workflow catches; the organizational attributes are cleared; dynamic groups evict; administrative-unit membership drops; Conditional Access scope drops; license drops. Provenance points to the HR event that triggered it.
+Termination in the HR system triggers the leaver workflow (for example, Microsoft Entra Lifecycle Workflows, which require an ID Governance license); the organizational attributes are cleared; dynamic groups evict; administrative-unit membership drops; Conditional Access scope drops; license drops. Provenance points to the HR event that triggered it.
 
 Every lifecycle workflow (joiner, mover, leaver, re-hire, contractor onboard, executive provision, emergency deprovision, name change, reorganization) is enumerated with its triggers, inputs, outputs, and exception paths. There are no undocumented identity workflows.
 
@@ -172,7 +176,7 @@ Each division gets its own plan, its own review, its own delivery. No division i
 Once every user has organizational attributes and every organizational unit has a dynamic-group equivalent, the organizational-unit-based security groups and legacy Group Policy Objects are retired in a governed deprecation pass. This is the only destructive phase; it requires explicit approval per item.
 
 ### Phase 5 — Steady state
-The daily assessment produces zero-action plans. The drift engine reports green. The forest itself may remain (for DNS, DHCP, Kerberos-bound legacy applications) but is no longer the governance model.
+The daily assessment produces zero-action plans. The drift engine reports green. The forest itself may remain for now (for DNS, DHCP, Kerberos-bound legacy applications, and as the source of synchronized attributes until HR-to-Entra provisioning writes them directly) but is no longer the governance model. Chapters 06 and 07 remove those remaining dependencies.
 
 ## Verification
 
@@ -200,4 +204,4 @@ The tangible outcomes, once the attribute-driven structure is in place:
 ---
 
 **Previous:** [Chapter 03 — Analysis → Plan → Delivery](03-analysis-plan-delivery.md)  
-**Next:** Chapter 05 — Policy Transformation
+**Next:** [Chapter 05 — Policy Transformation](05-policy-transformation.md)

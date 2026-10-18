@@ -60,7 +60,7 @@ actions:
     type: create-administrative-unit
     target:
       display_name: AU-NCR-Finance
-      membership_rule: "(user.extensionAttribute15 -startsWith \"Region=NCR|Department=Finance|\")"
+      membership_rule: "(user.extensionAttribute1 -eq \"NCR\") and (user.department -eq \"Finance\")"
       restricted: true
     provenance:
       source: assessments/2026-04-24-1030/ou-hierarchy.json#ou/FIN
@@ -73,7 +73,7 @@ actions:
     type: assign-role-scoped
     target:
       role: User Administrator
-      principal: Structure-NCR-Finance-Admins
+      principal: Structure-NCR-Finance-Admins   # role-assignable, assigned membership
       scope: /administrativeUnits/AU-NCR-Finance
     provenance: …
     depends_on: [A0001]
@@ -89,7 +89,7 @@ Before a plan is eligible for authorization, it passes through validation:
 - **Safety checks** — no action deletes more than a defined number of items at once without explicit confirmation; no rotation of credentials for roles marked high permanence; no change to the governance substrate itself outside a controlled change process.
 - **Idempotency check** — the plan is equivalent to re-planning from the current state (so a re-run of a partially completed plan is safe).
 
-A plan that fails any validation is rejected and the diff returned for correction. Plans never partially ship.
+A plan that fails any validation is rejected and the diff returned for correction. No action in a failed plan is dispatched. (A plan that passes validation can still halt mid-delivery; see Failure modes below.)
 
 ### Authorization gate
 
