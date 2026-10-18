@@ -2,6 +2,8 @@
 
 **Active Directory was never just an identity store. It was the implicit governance model.**
 
+> New to the topic, or reading for leadership or budget? Start with the [Prologue — Why Modernization Is Hard](00-prologue-why-modernization-is-hard.md). This chapter takes its argument as given.
+
 ## The thesis
 
 Active Directory was never just an identity store. It was the **implicit governance model** for every network service an organization ran. When teams migrate “AD to Entra ID” and treat the project as users and groups, they retire the directory and silently break the governance. Most of the failures do not show up for months.
@@ -14,13 +16,13 @@ This series is about not doing that.
 
 When Microsoft shipped Active Directory with Windows 2000, it was presented as an identity directory — a modern, replicated, Kerberos-anchored replacement for NT domains. That framing was true but incomplete.
 
-Over the next twenty-five years, every Windows-era infrastructure service quietly wired itself into AD. Not because of a single grand design, but because AD was the only enterprise-wide, governed, authenticated, replicated namespace the Windows ecosystem had. If you needed to know what a server was called, where it lived in the organization, who was allowed to manage it, which certificates it should trust, which DHCP scope applied to it, which policies configured it, and which accounts had which service principal names bound to it — AD held every one of those answers.
+Over the following decades, every Windows-era infrastructure service quietly wired itself into AD. Not because of a single grand design, but because AD was the only enterprise-wide, governed, authenticated, replicated namespace the Windows ecosystem had. If you needed to know what a server was called, where it lived in the organization, who was allowed to manage it, which certificates it should trust, which DHCP scope applied to it, which policies configured it, and which accounts had which service principal names bound to it — AD held every one of those answers.
 
 By the time a forest was ten years old, it had become the single most load-bearing piece of governance infrastructure the organization owned. It was just never written down anywhere as “our governance model.”
 
 ## What breaks when AD goes away
 
-Microsoft has not deprecated Active Directory Domain Services; it remains a supported role in Windows Server 2025. What has changed is where Microsoft invests and what it recommends: a cloud-first identity model in which Entra ID becomes the source of authority and on-premises AD is minimized. In that model Entra ID takes over from AD DS as the primary directory, Intune takes over from Group Policy, Conditional Access takes over from the network perimeter, Azure Arc extends cloud management to on-premises hosts, Entra certificate-based authentication takes over from AD CS-anchored smart-card logon, and Azure private DNS and private resolvers take over from AD-integrated DNS zones. Retiring AD is therefore an organizational decision, not a vendor deadline.
+Microsoft has not deprecated Active Directory Domain Services; it remains a supported role in Windows Server 2025[^cs00-adds2025]. What has changed is where Microsoft invests and what it recommends: a cloud-first identity model in which Entra ID becomes the source of authority and on-premises AD is minimized[^cs00-soa]. In that model Entra ID takes over from AD DS as the primary directory, Intune takes over from Group Policy, Conditional Access takes over from the network perimeter, Azure Arc extends cloud management to on-premises hosts, Entra certificate-based authentication takes over from AD CS-anchored smart-card logon, and Azure private DNS and private resolvers take over from AD-integrated DNS zones. Retiring AD is therefore an organizational decision, not a vendor deadline.
 
 Every one of those substitutions is a valid target. But the tools arrived without a framework. The result is that when user objects are migrated into a flat directory and victory is declared, eleven categories of infrastructure object that AD was silently governing are left behind:
 
@@ -101,6 +103,16 @@ The target surface includes Entra ID, administrative units, Intune, Azure Arc, I
 
 AD retirement is not a migration project. It is a **governance transformation**. The hard part is not the API calls; it is the framework that decides what the target state looks like, how to prove it is right, and how to keep it right. This series describes that framework.
 
+
+## Authoritative references
+
+- Microsoft Learn, [What's new in Windows Server 2025](https://learn.microsoft.com/en-us/windows-server/get-started/whats-new-windows-server-2025)
+- Microsoft Learn, [Microsoft Entra cloud-first identity guidance - Microsoft Entra ID](https://learn.microsoft.com/en-us/entra/identity/hybrid/guidance-it-architects-source-of-authority)
+
 ---
 
+**Previous:** [Prologue — Why Modernization Is Hard](00-prologue-why-modernization-is-hard.md)  
 **Next:** [Applicability and scope](00a-applicability.md) · [Chapter 01 — Platform Foundation](01-platform-foundation.md)
+
+[^cs00-adds2025]: Microsoft Learn, *What's new in Windows Server 2025*. The Active Directory Domain Services section introduces new forest and domain functional levels. <https://learn.microsoft.com/en-us/windows-server/get-started/whats-new-windows-server-2025>
+[^cs00-soa]: Microsoft Learn, *Microsoft Entra cloud-first identity guidance - Microsoft Entra ID*. It describes the path from hybrid to a cloud-first, AD-minimized state. <https://learn.microsoft.com/en-us/entra/identity/hybrid/guidance-it-architects-source-of-authority>

@@ -19,7 +19,7 @@ When an organization asks “what is in our Active Directory forest?” the hone
 - Organizational-unit trees with orphan branches created for long-dismissed projects.
 - Group Policy Objects whose authors left a decade ago and whose effects are unknown.
 - Service accounts with service principal names pointed at applications no one operates.
-- Certificate templates with permissions that silently enable privilege-escalation paths.
+- Certificate templates with permissions that silently enable privilege-escalation paths.[^cs02-entca]
 - DNS zones with stale records that still resolve and still route.
 - DHCP scopes whose reservations reference MAC addresses of machines that have been retired for years.
 
@@ -42,9 +42,9 @@ The assessment account needs forest-wide read rights to discover the full surfac
 Two practical tiers:
 
 - **Tier A (read-only)** — default. Limited Group Policy, certificate-template, and DNS/DHCP visibility without explicit added rights.
-- **Tier B (read + enumerate)** — adds Group Policy read, certificate-template read, DNS/DHCP read, and Kerberos service-principal-name enumeration.
+- **Tier B (read + enumerate)** — adds Group Policy read, certificate-template read, DNS/DHCP read, and Kerberos service-principal-name enumeration.[^cs02-gmsaad]
 
-The tier is a governance decision. Most organizations run Tier B for the initial full assessment and Tier A for the continuous re-assessment cadence.
+The tier is a governance decision. A common pattern is Tier B for the initial full assessment and Tier A for the continuous re-assessment cadence.
 
 ### 3. Provenance-bound output
 
@@ -94,7 +94,7 @@ Captures all DHCP servers, scopes, reservations, option sets, and failover relat
 Captures all certificate authorities in the forest (root and issuing), published certificate templates, template permissions (including privilege-escalation patterns), issued certificates matching high-value enhanced key usages, and CRL distribution health. Feeds certificate-based authentication migration and compliance findings.
 
 ### Stream 11 — LDAP bindings + Kerberos service-principal-name map
-Captures every application that binds via LDAP/LDAPS or uses Kerberos service-principal-name-based authentication. Discovered via analysis of computer accounts, servicePrincipalName patterns, and (where available) application-server configuration. Often the single biggest source of modernization blockers.
+Captures every application that binds via LDAP/LDAPS or uses Kerberos service-principal-name-based authentication. Discovered via analysis of computer accounts, servicePrincipalName patterns, and (where available) application-server configuration. In practice, often a major source of modernization blockers.
 
 ## Python augmentation
 
@@ -102,7 +102,7 @@ PowerShell is excellent at Active Directory reads; it is less excellent at graph
 
 - **Dependency graphs** — which organizational units inherit which Group Policy Objects; which applications depend on which service principal names.
 - **Risk scores** — stale accounts, over-privileged delegation, privilege-escalation exposures.
-- **Gap analysis reports** — organizational units with no linked Group Policy Objects, Group Policy Objects with no enabled settings, groups with zero members, computers that have not logged on in 90+ days.
+- **Gap analysis reports** — organizational units with no linked Group Policy Objects, Group Policy Objects with no enabled settings, groups with zero members, computers that have not logged on within a stale threshold (for example, 90 days).
 
 Python output lands in an analysis subfolder as JSON and Markdown reports consumable by both the engine and a human reviewer.
 
@@ -144,7 +144,16 @@ The output of this chapter is the input to the next. The transformation engine t
 
 Assessment and planning are deliberately separate steps. An assessment without a plan is a report; a plan without an assessment is a guess. Only together do they produce governed modernization.
 
+
+## Authoritative references
+
+- Microsoft Learn, [What is the Certification Authority Role Service in Windows Server?](https://learn.microsoft.com/en-us/windows-server/identity/ad-cs/certification-authority-role)
+- Microsoft Learn, [Introduction to Active Directory service accounts - Microsoft Entra](https://learn.microsoft.com/en-us/entra/architecture/service-accounts-on-premises)
+
 ---
 
 **Previous:** [Chapter 01 — Platform Foundation](01-platform-foundation.md)  
 **Next:** [Chapter 03 — Analysis → Plan → Delivery](03-analysis-plan-delivery.md)
+
+[^cs02-entca]: Microsoft Learn, *What is the Certification Authority Role Service in Windows Server?*. Enterprise CAs use AD DS data and certificate templates to decide whether to issue; template permissions therefore determine who can obtain which certificates. <https://learn.microsoft.com/en-us/windows-server/identity/ad-cs/certification-authority-role>
+[^cs02-gmsaad]: Microsoft Learn, *Introduction to Active Directory service accounts - Microsoft Entra*. <https://learn.microsoft.com/en-us/entra/architecture/service-accounts-on-premises>
