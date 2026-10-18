@@ -82,7 +82,7 @@ The layer the other steps depend on but rarely name. Certificate services, auto-
 
 ## Relationship to attribute-driven structure
 
-This transformation consumes the organizational-attribute model. Dynamic security groups whose membership rules reference organizational attributes drive SQL Server access without manual database-administrator provisioning. The attribute infrastructure must precede the dynamic-group access work.
+Dynamic security groups whose membership rules reference organizational attributes drive SQL Server access without manual database-administrator provisioning. The attribute infrastructure must precede the dynamic-group access work.
 
 ## Audience
 

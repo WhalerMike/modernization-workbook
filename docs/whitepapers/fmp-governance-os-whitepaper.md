@@ -72,7 +72,7 @@ The principles are not aspirational. The Governance OS already enforces them thr
 | Substrate walker | `fmp substrate walk` / `fmp substrate drift` --- emits `DRIFT-SCHEMA` and `DRIFT-PROVENANCE` per `substrate-drift.yml` | **SHIPPED** |
 | Adapter taxonomy | `class` × `mission-class` per FMP_003, registered in two registries, validated by `adapter-conformance.yml` | **SHIPPED** |
 | OSCAL evidence | SSP, POA&M, KSI, Component Definition generators with deterministic regeneration per ADR-006 | **SHIPPED** |
-| Runtime drift (semantic / authz / identity) | Defined in `16_DriftDetectionStandard.qmd`; evaluators ship in `src/fmp/freshness/` and the identity JML/LocPath modules | **PARTIALLY IMPLEMENTED** |
+| Runtime drift (semantic / authz / identity) | Defined in `16_DriftDetectionStandard.qmd`; evaluators ship in `src/fmp/freshness/` and the identity JML modules | **PARTIALLY IMPLEMENTED** |
 | Continuous event-time evidence capture | Defined in `15_ProvenanceProfile.qmd` | **TARGET** |
 
 The four shipped rows are the substrate's structural floor. They run on every PR, gate every merge, and produce reproducible evidence today. The remaining rows are the runtime extension of the same principles --- partially implemented or target-state --- and they reuse the canonical taxonomy and provenance envelope rather than introducing parallel concepts.

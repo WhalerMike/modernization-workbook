@@ -141,11 +141,11 @@ In Active Directory, helpdesk delegation was scoped by placing the target users 
 | AD model | Entra equivalent in this guide |
 |---|---|
 | Helpdesk delegated on `OU=Agency-Users` | Authentication Administrator scoped to agency AU |
-| Password reset rights on `OU=Field-Offices` | Authentication Administrator scoped to field-office AU (the organizational-attribute model rule) |
+| Password reset rights on `OU=Field-Offices` | Authentication Administrator scoped to field-office AU (attribute rule) |
 | OU ACL giving group membership write | Groups Administrator scoped to department AU |
 | Standing delegated admin (persistent) | PIM-eligible assignment — never standing active |
 
-AU membership is driven by the organizational-attribute model facet predicates (e.g., `extensionAttribute2 -eq "IT"`), so scope tracks org structure automatically without manual OU management. The PAG and PIM configuration below operationalize the role-binding side of this model.
+AU membership is driven by attribute predicates (e.g., `extensionAttribute2 -eq "IT"`), so scope tracks org structure automatically without manual OU management. The PAG and PIM configuration below operationalize the role-binding side of this model.
 
 ### Why group-based role assignment instead of individual role assignments
 

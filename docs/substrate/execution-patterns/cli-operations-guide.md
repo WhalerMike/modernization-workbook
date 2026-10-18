@@ -916,8 +916,6 @@ Chapter 19 --- Entra ID Device and Group Operations
 
 19.4 --- Set Device Extension Attributes
 
-Only the organizational-attribute model facets are stamped here. The site a device sits at is not among them: physical place is the LocPath axis, and per the program decision D5 LocPath claims no extensionAttribute slot, so there is no site value to write. Site scoping comes from the LocPath site groups and Administrative Units instead.
-
 \$deviceId = (Get-MgDevice -Filter \"displayName eq \'FMP-GIT01\'\").Id Update-MgDevice -DeviceId \$deviceId -BodyParameter \@{ extensionAttributes = \@{ extensionAttribute1 = \"EASTUS\" extensionAttribute2 = \"IT\" extensionAttribute3 = \"Governance\" extensionAttribute11 = \"Tier0\" extensionAttribute13 = \"Production\" extensionAttribute12 = \"GitServer\" } } Write-Host \"Extension attributes updated for FMP-GIT01\"
 
 19.5 --- App Registration Management
@@ -1022,7 +1020,7 @@ az group create \` \--name rg-fmp-governance \` \--location eastus \` \--tags \"
 
 az connectedmachine show \` \--name FMP-GIT01 \` \--resource-group rg-fmp-governance \` \--output table
 
-23.6 --- Apply Tags for the organizational-attribute model
+23.6 --- Apply Resource Tags
 
 az connectedmachine update \` \--name FMP-GIT01 \` \--resource-group rg-fmp-governance \` \--tags \"Tier=Tier0\" \"Role=GitServer\" \"Boundary=GCC-Moderate\" \` \"Region=East\" \"Site=HeraldHarbor\" \"Function=Governance\" \` \"OS=WindowsServer2025\" \"ManagedBy=FMP\"
 

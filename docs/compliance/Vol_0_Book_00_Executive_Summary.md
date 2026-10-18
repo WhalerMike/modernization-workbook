@@ -254,10 +254,10 @@ The central finding across all six documents is the same: **the compliance debt 
 The series closes with **Volume X — Governance-Substrate Integration**: where
 everything the volumes above produce lands as machine-checked evidence on a
 governance substrate, and why that binding is **optional**. The series stands
-complete at FedRAMP Moderate on its own; the wider Org family — **the organizational-attribute model**
-(governance), **Compliance** (this series), and **Modernization** (modernization) — is
+complete at FedRAMP Moderate on its own; **Compliance** (this series) and
+**Modernization** (modernization) are
 designed to be implemented **together or entirely independently**, in any
-order, with no expression a prerequisite for another.
+order, with neither a prerequisite for the other.
 
 ## FedRAMP 20x Hard Deadlines {.unnumbered}
 
@@ -496,10 +496,10 @@ and an operation that skips one is unauthorized by construction:
 The five clauses are one chain — **SSOT-originated → authoritatively
 authorized → least-privilege executed → provenance-closed →
 evidence-emitted back to the SSOT's reporting plane** — and the chain is
-the Org family's common law, not this series' alone: the organizational-attribute model applies it to
-identity and attribute governance, Compliance (this series) to control
-remediation and attestation, Modernization to migration and modernization moves.
-Three pillars, one lifecycle, one evidence contract.
+the substrate's common law, not this series' alone: Compliance (this series)
+applies it to control remediation and attestation, Modernization to
+migration and modernization moves. Two pillars, one lifecycle, one evidence
+contract.
 
 ## The SSOT Registry — Where Every MACD-R Originates {#ssot-registry}
 

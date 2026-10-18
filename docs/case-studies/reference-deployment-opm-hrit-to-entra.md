@@ -15,7 +15,6 @@ canon-reference:
   - "src/fmp/canon/specs/Spec2-D1.1-CanonicalHRAttributeSchema.md"
   - "src/fmp/canon/specs/Spec2-D1.3-HRToEntraAttributeMappingMatrix.md"
   - "src/fmp/canon/specs/Spec2-D2.1-JoinerWorkflowSpecification.md"
-  - "src/fmp/canon/specs/Spec2-D3.5-the organizational-attribute modelPopulationPipeline.md"
   - "src/fmp/canon/specs/Spec2-D5.5-ProvisioningDriftDetectionRules.md"
 derived-from: "fmp canon"
 lifecycle: adopted
@@ -47,8 +46,6 @@ covers the **inbound provisioning** dimension. Both are required for a
 federal-civilian identity plane that is continuously trustworthy from
 the HR event through to the Azure SSOT stack.
 :::
-
-![HRIT inbound provisioning pipeline diagram](../images/case-studies/reference-deployment-opm-hrit-to-image-01-hrit-inbound-provisioning-pipeli.png){#fig-reference-deployment-opm-hrit-to-entra-image-01 fig-alt="Top of frame: HR System of Record (e.g. NFC EmpowHR / Treasury HR Connect / DCPDS / DOI IBC) with a per-source adapter labeled \"Pattern A\" feeding into a \"Canonical HR Schema (Spec2-D1.1)\" box. Below that, a middleware pipeline labeled \"Spec2-D3.2\" with three lanes labeled \"the organizational-attribute model population (D3.5)\", \"UPN derivation\", and \"SCIM 2.0 payload construction (D1.3 mapping)\" converging on a \"Microsoft Graph bulkUpload\" output box that feeds \"OPM Entra (Government Cloud)\". To the left of the SoR, a \"Pattern B\" lane shows USA Staffing -> HR SoR via SOAP RPI (Req #66) as the Joiner trigger source. To the right of the SoR, a \"Pattern B downstream\" lane shows GRB / EHRI / eOPF consuming provisioning events. Across the bottom, a \"Trust Chain (Pattern C)\" rail shows USAccess (PIV) -> OPM Entra (SAML) -> Consuming-Agency Tenant. A dashed \"GCC Moderate boundary\" enclosure groups the middleware + OPM Entra; B.1.1 three-way conflict appears as a small called-out P1 finding. Clean engineering blueprint style, dark navy (#0D1B2E) and teal (#1E8C8C) on white background. No photographs, purely diagrammatic." width="100%"}
 
 ## Engagement archetype
 
@@ -82,7 +79,7 @@ The agency's HR data exchange profile today is recognizable:
 
 The agency's pre-substrate state: a bespoke NFC adapter built for a
 prior modernization, no canonical schema enforcement, manual
-exception handling for the organizational-attribute model assignment, no continuous drift
+exception handling for organizational assignment, no continuous drift
 detection between NFC EmpowHR and Entra ID, no Evidence Bundle
 artifact emitted from the provisioning pipeline. This is the engagement
 pattern FMP_136 (Spec 2) is built for, and the substrate's behavior
@@ -129,20 +126,6 @@ record-inventory pass introduced in PR #449
   adapter
 - Tags the inventory with `phase: pre_migration` (or `pre_provisioning`
   for ongoing deployments)
-- Resolves each record's the organizational-attribute model via the OrgTree codebook (priority:
-  `organization_code` → `division` → `department` → `cost_center` per
-  Spec2-D1.3 / D3.5)
-- Emits a `DRIFT-IDENTITY` P2 finding (`GOV-HRIT-NNN`) for every record
-  that cannot be attributed to a verified organizational position
-
-For this archetype, the agency's first pass surfaces approximately
-1,500 records (~3% of the ~50K employees) with unresolved the organizational-attribute model —
-a mix of recently-reorganized departments whose codebook entries are
-stale, contractor records carrying organizational codes that predate
-the agency's most recent OrgTree change, and a residual long tail of
-single-record edge cases. Each finding becomes a code-book change-
-request through the agency's standard OrgTree governance workflow
-before the record flows to the middleware.
 
 ## Phase 3 — Middleware integration (Spec2-D3.2)
 
@@ -151,16 +134,12 @@ the substrate wires the canonical-schema feed through the Spec2-D3.2
 middleware. The middleware:
 
 1. Receives canonical-schema records from the adapter
-2. Runs the the organizational-attribute model population pipeline
-   (`Spec2-D3.5`)
-   to resolve each record's `organization_code` / `division` /
-   `department` / `cost_center` to an the organizational-attribute model value
-3. Derives the UPN per the agency's UPN-generation rules
-4. Constructs the SCIM 2.0 payload using the
+2. Derives the UPN per the agency's UPN-generation rules
+3. Constructs the SCIM 2.0 payload using the
    Spec2-D1.3 HR → Entra Attribute Mapping Matrix
    (ISO-3166 alpha-2 `country` → Entra `usageLocation`,
    canonical-schema `displayName` → Entra `displayName`, etc.)
-5. Calls Microsoft Graph `bulkUpload` against OPM Entra Government
+4. Calls Microsoft Graph `bulkUpload` against OPM Entra Government
    Cloud (Spec2-D3.4 §IAM binding)
 
 Every middleware operation is recorded in the substrate's provenance
@@ -176,10 +155,10 @@ Once records are landing in OPM Entra, the substrate's JML workflows
 
 | Workflow | Trigger | Substrate action |
 |---|---|---|
-| **Joiner** | New record with `employmentStatus: Active` (often originating in USA Staffing → NFC EmpowHR per Pattern B) | Provision Entra account, set the organizational-attribute model, schedule USAccess appointment, route to manager for welcome |
-| **Mover** | Change in `department` / `division` / `organizationCode` / `costCenter` / `managerEmployeeId` | Update the organizational-attribute model, re-evaluate Conditional Access scope, re-evaluate Purview Adaptive Scope membership, log change in provenance chain |
+| **Joiner** | New record with `employmentStatus: Active` (often originating in USA Staffing → NFC EmpowHR per Pattern B) | Provision Entra account, schedule USAccess appointment, route to manager for welcome |
+| **Mover** | Change in `department` / `division` / `organizationCode` / `costCenter` / `managerEmployeeId` | Update organizational attributes, re-evaluate Conditional Access scope, re-evaluate Purview Adaptive Scope membership, log change in provenance chain |
 | **Leaver** | `employmentStatus` transitions to `Terminated` or `Rescinded` | Disable Entra account, revoke PIV via USAccess, emit eOPF archival event, route to Recovery Manager for AAL teardown |
-| **Conversion** | `workerType` transitions (e.g. Contractor → FullTimeEmployee) | Adjust group memberships, re-evaluate license assignment, recompute the organizational-attribute model if the conversion involves an organizational move |
+| **Conversion** | `workerType` transitions (e.g. Contractor → FullTimeEmployee) | Adjust group memberships, re-evaluate license assignment, update organizational attributes if the conversion involves an organizational move |
 
 Each workflow's execution is provenance-chained. The substrate's
 `certificate-anchored: true` invariant means every JML transition is
@@ -198,7 +177,6 @@ Doc 16:
 |---|---|---|---|
 | HR record present in NFC EmpowHR, absent in Entra ID (provisioning gap) | `DRIFT-IDENTITY` | P1 | Set-difference: records in HR feed not in Entra after a provisioning cycle |
 | Entra account exists for a Terminated HR record (provisioning lag) | `DRIFT-AUTHZ` | P1 | Same `employeeId`, `employmentStatus: Terminated` in HR vs Active in Entra |
-| the organizational-attribute model in Entra diverges from canonical the organizational-attribute model derived from current HR record | `DRIFT-PROVENANCE` | P2 | Same `employeeId`, the organizational-attribute model mismatch with no recorded Mover transition |
 | Conditional Access policy state contradicts the AAL recorded for the principal | `DRIFT-AUTHZ` | P2 | Cross-check between Entra CA policy state and COR-recorded AAL |
 | Record fails Spec2-D1.1 schema validation mid-pipeline | `DRIFT-SCHEMA` | P2 | Per-record JSON-Schema validator output |
 
@@ -242,7 +220,6 @@ from the substrate's HRIT pipeline artifacts. The bundle includes:
 - The per-source adapter manifest (NFC EmpowHR adapter), HMAC-signed
 - The phase-tagged HRIT record inventory (`pre_provisioning`
   baseline + ongoing pass-tagged inventories per cadence)
-- The the organizational-attribute model codebook state at each inventory pass
 - All Joiner / Mover / Leaver workflow events with full provenance
 - All drift findings — severity, class, remediation evidence per the
   drift standard §4 remediation contract
@@ -269,7 +246,7 @@ identity-plane story:
 | Phase | AD reference deployment (PR #402) | HRIT reference deployment (this PR) |
 |---|---|---|
 | 1 | Discover AD forest + SPN inventory | Onboard HR adapter (D5.4) |
-| 2 | Normalize the organizational-attribute model assignment + COR | Pre-flight HRIT record inventory (PR #449) |
+| 2 | Normalize identity records + COR | Pre-flight HRIT record inventory (PR #449) |
 | 3 | Map 8 adapter contracts + DM_090 SQL Server | Middleware integration (D3.2) |
 | 4 | Migrate with provenance chain | JML workflows (D2.1 / D2.2 / D2.3) |
 | 5 | Validate post-migration drift | Continuous drift detection (D5.5) |

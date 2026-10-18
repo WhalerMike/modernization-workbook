@@ -16,9 +16,8 @@ aliases:
 
 
 Directory migration is the flagship journey of **OrgMod (Organizational
-Modernization)** — the modernization member of the Org family, alongside
-the organizational-attribute model (governance) and Federal Compliance (compliance). Like its siblings, OrgMod is
-designed to be adopted together with them or entirely on its own.
+Modernization)**. Like its sibling, Federal Compliance, OrgMod is
+designed to be adopted together with it or entirely on its own.
 
 ## The Hidden Migration Surface
 
@@ -108,7 +107,7 @@ Every adapter follows the same six-phase governance-driven migration:
 | Phase | What Happens | Governance Gate |
 |-------|-------------|-----------------|
 | **1. Discover** | Complete inventory of what AD encodes for this service | Inventory signed off by service owner |
-| **2. Normalize** | Rationalize decades of organic growth into a clean model | Normalized model reviewed against the organizational-attribute model codebook |
+| **2. Normalize** | Rationalize decades of organic growth into a clean model | Normalized model reviewed against the canonical model |
 | **3. Map** | Translate AD governance constructs to modern equivalents | Mapping validated — no governance gaps, no orphaned objects |
 | **4. Migrate** | Execute with continuous validation | Every step validated before proceeding — no big-bang cutover |
 | **5. Validate** | Confirm governance integrity is preserved post-migration | Full drift scan, telemetry confirmation, user experience validation |

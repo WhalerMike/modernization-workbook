@@ -277,7 +277,7 @@ governance pipeline does not depend on it.
 Configured as a Gitea `source-config` named `corp-ad-ldaps` via the
 REST API in Phase 6. Bind account is least-privilege
 (`CN=svc-fmp-ldap,OU=ServiceAccounts,...`), search base is **scoped to
-the the organizational-attribute model-governed Users OU** (`OU=Users,OU=ORG-IT-INF-PLATFORM,...`),
+the governed Users OU** (`OU=Users,OU=ORG-IT-INF-PLATFORM,...`),
 and the admin filter is the OrgTree dynamic group
 `OrgTree-IT-INF-PLATFORM-CanonStewards`.
 
@@ -326,28 +326,12 @@ forwards the impersonated token into the Python process. This auth
 surface does **not** apply to the Gitea reverse proxy — Gitea handles
 its own auth via LDAPS or OIDC.
 
-### 3.4 Hybrid Entra device join — the the organizational-attribute model facets and derived path
+### 3.4 Hybrid Entra device join
 
 The host is registered as a **device** object in the customer's Entra tenant.
 That matters for the write path: device `extensionAttributes` are
 cloud-mastered and writable through Graph, unlike a synced user's
-`onPremisesExtensionAttributes`, which Graph treats as read-only. The stamps
-below are therefore direct Graph writes, with no on-premises hop. Two
-attributes are critical to the governance plane:
-
-- The governance-layer facets in their codebook slots — `extensionAttribute1
- = NCR` (Region), `extensionAttribute2 = IT` (Department), `extensionAttribute3
- = InfraOps` (Division) — each validated against its own enumeration in the
- FMP_151 codebook and the FMP_158 schema
-- `extensionAttribute15` — the derived the organizational-attribute model
- (`Region=NCR|Department=IT|Division=InfraOps|`), recomputed from those
- facets on every stamp rather than hand-authored (the program decision)
-- Azure Arc resource tags mirror the same the organizational-attribute model plus `DeviceRole` and
- `DeviceTier` (Phase 14.1)
-
-These attributes are how the drift engine (FMP_163) recognizes the
-host as a first-class OrgTree object rather than an unmanaged
-appliance.
+`onPremisesExtensionAttributes`, which Graph treats as read-only.
 
 ### 3.5 GPG — signed-commit verification (`gpg.exe` on the host)
 
@@ -364,7 +348,7 @@ pre-receive.
 | Caller | Auth path | Where the identity comes from | Bound to |
 |---|---|---|---|
 | Federated FMP contributor | Entra OIDC SSO (Web UI), then PAT for `git` | Entra tenant + group claims | `OrgTree-IT-INF-*` dynamic groups |
-| Legacy / AD-only contributor | LDAPS bind through Gitea source-config | Forest user object in the organizational-attribute model OU | `OrgTree-IT-INF-PLATFORM-CanonStewards` admin filter |
+| Legacy / AD-only contributor | LDAPS bind through Gitea source-config | Forest user object in the governed Users OU | `OrgTree-IT-INF-PLATFORM-CanonStewards` admin filter |
 | FastAPI plane caller (optional) | IIS Negotiate (Kerberos / NTLM) | Forest user; impersonated to Python | NTFS ACL on whatever resource the API touches |
 | Gitea service itself | gMSA `corp\svc-fmp-gitea$` | Forest service account | `D:\GitRepos`, `D:\Gitea`, TLS private key |
 | IIS reverse-proxy app pool | `IIS AppPool\FMPReverseProxy` | Built-in app-pool identity | TLS private key (Read), nothing else |
@@ -387,15 +371,14 @@ outbound to:
  extension installs)
 
 Arc projection is what makes Azure Policy and Defender for Servers
-Plan 2 reach the on-prem host. The `the organizational-attribute model`, `the organizational-attribute modelBranch`,
-`the organizational-attribute modelDivision`, `DeviceRole`, and `DeviceTier` tags are set on the
+Plan 2 reach the on-prem host. The `DeviceRole` and `DeviceTier` tags are set on the
 Arc resource so Azure Policy assignments can be scoped via tag
 expressions instead of resource IDs.
 
 ### 4.2 Azure Policy + Guest Configuration
 
 Inherits the Arc plane. Once the host is Arc-enrolled, Azure Policy
-assignments scoped to `rg-fmp-governance` (or to `the organizational-attribute model` tags)
+assignments scoped to `rg-fmp-governance`
 project Guest Configuration audits onto the host. The audit results
 flow back through the Arc agent into the Azure portal and into the
 FMP_163 drift engine via the Azure-side payload.
@@ -497,7 +480,6 @@ capability that is canonically declared but still under operational
 validation per the build guide's own status warning. The task collects:
 
 - Entra device `extensionAttribute1` value
-- Azure Arc resource `the organizational-attribute model` tag value
 - Gitea team list via `GET /api/v1/orgs/fmp/teams`
 - Administrative Unit membership via Graph
 - Arc agent `lastHeartbeat`
@@ -692,7 +674,7 @@ customer's documented VPN / Privileged Access Workstation path.
 | HTTPS Git Smart-HTTP | SC-8, SC-13, AU-2, AU-12 | TLS 1.2+ at IIS, IIS W3C log, `fmp-git-server` |
 | Gitea REST API | AC-3, AC-6, AU-2 | OIDC + LDAPS auth, IIS W3C log, Gitea audit log |
 | SSH transport | SC-8, AU-2 | Gitea host key + per-user pubkey, Gitea event log |
-| AD LDAPS | IA-2, IA-5 | Least-privilege bind, the organizational-attribute model-scoped search base |
+| AD LDAPS | IA-2, IA-5 | Least-privilege bind, scoped search base |
 | Entra OIDC | IA-2, IA-8, AC-2 | Group-claim mapping to dynamic groups |
 | Server-side hooks | CM-3, CM-5, SI-7 | Pre-receive validators, signed-commit enforcement |
 | FMP_163 drift reporter | CM-8, SI-4, IR-4 | Scheduled task, drift taxonomy |

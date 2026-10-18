@@ -1,6 +1,6 @@
 ---
 title: "Federal AI Identity Governance — Governed Path"
-subtitle: "AI system identity records bound to the organizational-attribute model, the drift engine, and the ATO reciprocity model — the FMP-managed path"
+subtitle: "AI system identity records bound to the drift engine and the ATO reciprocity model — the FMP-managed path"
 doc-type: operational-guide
 audience: [Customer, Operator, Technical]
 author: Michael Stratton
@@ -20,9 +20,9 @@ lifecycle_review: 2026-12-18
 
 # Federal AI Identity Governance — Governed Path {.unnumbered}
 
-This path extends the manual path with the Federal Modernization Program's the organizational-attribute model
+This path extends the manual path with the Federal Modernization Program's
 governance substrate. The same scripts run; the same findings are produced.
-What changes is that each finding is bound to a canonical the organizational-attribute model record, routed
+What changes is that each finding is routed
 through the drift engine (the program decision), and reconciled against the ATO reciprocity
 model (the program decision). The result is a continuous governance loop, not an annual
 manual exercise.
@@ -42,7 +42,6 @@ In addition to the manual path prerequisites:
 - The Federal Modernization Program substrate deployed with the `ai-inventory-governance` SaaS adapter
   activated (see §Activation below), **or** the Federal Modernization Program installed locally with
   `src/fmp/governance/ai_inventory/` package
-- the organizational-attribute model codebook populated with your agency's bureau hierarchy (the program decision)
 - `sailpoint-machine-identity` adapter slot promoted from `reserved` to
   `active` if SailPoint ISC is in scope (the program decision Option B)
 
@@ -53,7 +52,6 @@ In addition to the manual path prerequisites:
 | Manual path | Governed path addition |
 |---|---|
 | CSV scan → findings report | Findings ingested as `Finding` objects into the Federal Modernization Program drift engine |
-| the organizational-attribute model derived as a label | the organizational-attribute model bound to the program decision codebook; validated against the OrgTree registry |
 | ATO gap flagged in report | ATO gap cross-walked against the program decision reciprocity records; finding routed to AO |
 | Unowned system listed | Owner assignment workflow triggered via the program decision governance review queue |
 | Annual manual re-scan | Annual inventory vintage triggers automatic re-scan; delta findings surfaced |
@@ -96,23 +94,6 @@ print(result.summary)
 from fmp.governance.drift_core import gate
 decision = gate(result.findings)
 ```
-
----
-
-## How the organizational-attribute model binding works
-
-For each live AI system record, the governed path:
-
-1. Derives the the organizational-attribute model prefix from `agency + agency_bureau` (FMP_196 §2)
-2. Validates the prefix against the OrgTree codebook (the program decision)
-3. If the bureau exists in the codebook, stamps the AI system's machine-identity
-   record with the full the organizational-attribute model value
-4. If the bureau does not exist in the codebook, generates a
-   `DRIFT-IDENTITY::ai-no-agency-bureau` finding **and** a codebook update request
-   routed to the OrgTree governance workflow
-
-This is identical to how the program decision stamps the organizational-attribute model onto device objects — the AI
-system is a different object type but the stamping mechanism is the same.
 
 ---
 
@@ -183,7 +164,7 @@ payload. Map to NIST 800-53 Rev 5 controls:
 | PII/PIA findings | PT-2 (PIA), AR-2 (privacy impact and risk assessment) |
 | Agentic ungoverned | AC-2, IA-2, SI-7 (software integrity) |
 | Shadow AI | CM-8 (system component inventory), CA-7 |
-| the organizational-attribute model gap | IA-4, AC-2 |
+| Agency/bureau gap | IA-4, AC-2 |
 
 ---
 

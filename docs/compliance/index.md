@@ -24,15 +24,15 @@ training, ServiceNow-automation, multi-cloud DDI, and day-2 architecture require
 for **FedRAMP Moderate** authorization under FedRAMP 20x rules (mandatory
 January 1, 2027).
 
-## How the Org family relates {#org-family}
+## How Compliance and OrgMod relate {#pillars}
 
-**the organizational-attribute model**, **Compliance**, and **OrgMod** are the three operational
-expressions of one governance substrate — **the organizational-attribute model** governs, **Compliance**
-proves federal organizational compliance, **OrgMod** modernizes — and all
-three are designed to be adopted **together or entirely independently**.
+**Compliance** and **OrgMod** are two operational
+expressions of one governance substrate — **Compliance**
+proves federal organizational compliance, **OrgMod** modernizes — and both
+are designed to be adopted **together or entirely independently**.
 Compliance's independence is structural, not aspirational: the series speaks
 only to the open Evidence & Authorization Contract, so it stands alone
-without the organizational-attribute model, OrgMod, or any particular engine behind it.
+without OrgMod or any particular engine behind it.
 
 ::: {.callout-note collapse="true"}
 ## Formerly the "Federal Compliance AAN Series"
@@ -66,9 +66,9 @@ still be there:
 | **Practitioner Quickstart** | ISSOs and engineers who need the working core first | The training program's Core Compliance Pathway (nine-book spine + four labs), the `<engine>` tooling note, and the deployable kits — the [ServiceNow compliance app](Vol_VII_Book_05_ServiceNow_Compliance_App.md) and the Day-2 catalog (Vol IX) — via the Downloads page |
 | **Full Academy** | Anyone pursuing the credentials | [Vol V — Training & Certification](Vol_V_Book_00_Training_Certification_Overview.md) and the two-track Compliance Training Program with its capstones and rubrics |
 
-## One lifecycle, three pillars {#macdr}
+## One lifecycle, two pillars {#macdr}
 
-Every operational change the Org family touches — every **Move, Add, Change,
+Every operational change the substrate touches — every **Move, Add, Change,
 Deletion, and Reset (MACD-R)** — travels the same five-clause authorized
 path: **it originates with the SSOT → carries an authoritative authorization
 → executes under least privilege with just-in-time elevation (PIM) → closes

@@ -33,7 +33,7 @@ how per-agency remediation flows from the central findings.
 ::: {.callout-note title="Relationship to other paths"}
 This page describes the OFCIO-central operational model. If your agency is
 running the scanner independently, see the manual path. If
-your agency has deployed the Federal Modernization Program the organizational-attribute model, see the [governed path](governed-path.md).
+your agency has deployed the Federal Modernization Program, see the [governed path](governed-path.md).
 :::
 
 ## The CDM analogy

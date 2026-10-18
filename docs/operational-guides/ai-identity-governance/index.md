@@ -1,6 +1,6 @@
 ---
 title: "Federal AI Identity Governance"
-subtitle: "Applying the organizational-attribute model identity governance to the M-25-21 AI Use Case Inventory — a standalone kit and an FMP-governed path"
+subtitle: "Applying identity governance to the M-25-21 AI Use Case Inventory — a standalone kit and an FMP-governed path"
 doc-type: operational-guide
 audience: [Customer, Operator, Technical, Executive]
 author: Michael Stratton
@@ -29,8 +29,8 @@ It is runnable **two ways**:
 
 - a **manual path** — a standalone agency runbook that
   applies M-25-21 identity governance without any external control plane; and
-- a **[the Federal Modernization Program / the organizational-attribute model-governed path](governed-path.md)** — the same outcome,
-  with every AI system's identity record bound to the organizational-attribute model, the drift engine,
+- a **[the Federal Modernization Program-governed path](governed-path.md)** — the same outcome,
+  with every AI system's identity record bound to the drift engine
   and the ATO reciprocity model.
 
 ::: {.callout-tip title="Download the runnable kit"}
@@ -51,10 +51,10 @@ visible before it becomes a breach surface.
 
 | Phase | What runs | Output |
 |---|---|---|
-| 1 — Inventory | Download or load OMB CSV; parse all deployed and pilot entries | Structured record set with the organizational-attribute model derived from agency/bureau |
+| 1 — Inventory | Download or load OMB CSV; parse all deployed and pilot entries | Structured record set |
 | 2 — Scan | Detect six identity governance gaps per M-25-21 obligations | Findings list with severity (P1 / P2) and drift class |
 | 3 — Report | Produce a prioritized HTML or CSV findings report | Actionable gap list, ATO cross-walk, shadow AI candidates |
-| 4 — Remediate (governed) | the organizational-attribute model stamp, owner assignment, ATO reciprocity lookup | Updated identity records in the Federal Modernization Program registry |
+| 4 — Remediate (governed) | Owner assignment, ATO reciprocity lookup | Updated identity records in the Federal Modernization Program registry |
 
 ## Who this is for
 
@@ -70,10 +70,7 @@ enable.
 
 ## Background reading
 
-This kit is the operational realization of
-Book_21 — the organizational-attribute model and Federal AI Governance.
-Chapter 1 of that book explains why the AI identity surface is invisible and
-what goes wrong when it is. This guide is the tool that makes it visible. The
+The
 [Federal AI Governance — Submission Readiness
 Brief](../../whitepapers/federal-ai-governance-submission-readiness.md) names
 this kit as the path to operationalizing the
@@ -94,7 +91,7 @@ external control plane is required to run it.
 `Invoke-AIInventoryScan.ps1` against your OMB inventory extract. All six
 finding types are produced without connecting to any external system.
 
-**the organizational-attribute model-governed (the Federal Modernization Program adopters):** The `ai-inventory-governance` adapter
-slot (`adapter-registry.yaml`) binds scanner output to the organizational-attribute model, the drift
-engine, and the the program decision ATO reciprocity model. See
+**Governed (the Federal Modernization Program adopters):** The `ai-inventory-governance` adapter
+slot (`adapter-registry.yaml`) binds scanner output to the drift
+engine and the the program decision ATO reciprocity model. See
 [governed path](governed-path.md) for activation steps.

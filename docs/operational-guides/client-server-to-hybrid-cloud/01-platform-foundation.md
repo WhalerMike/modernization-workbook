@@ -49,7 +49,7 @@ Governance substrates have properties that application servers don't:
   host.
 - **Operational simplicity.** One host means one patch cadence, one
   backup policy, one DR playbook, one set of Intune compliance rules,
-  one Arc enrollment, one the organizational-attribute model tag. Complexity scales badly in
+  one Arc enrollment, one set of resource tags. Complexity scales badly in
   governance systems because every extra moving part is an extra source
   of drift.
 
@@ -65,7 +65,7 @@ capability the transformation engine needs.
 
 ### 1. Canonical source of truth
 
-**Gitea.** Every governance artifact — the organizational-attribute model codebook entries, dynamic
+**Gitea.** Every governance artifact — dynamic
 group rules, delegation matrices, transformation plans, policy
 libraries, adapter manifests, drift reports — lives as a versioned file
 in the Gitea repo. Nothing is an admin-portal click. Nothing is a
@@ -204,12 +204,12 @@ has the following operational properties:
   SIEM forwarding.
 - **Provenance-bound** — every config file change is a Git commit; no
   admin-portal clicks permitted; Intune baseline policy enforces this.
-- **OrgTree-governed** — server carries its own the organizational-attribute model
+- **OrgTree-governed** — server carries its organizational attributes
   (NCR / IT / InfraOps), lives in an Administrative Unit
-  (`AU-NCR-IT-InF-PLATFORM`), and is targeted by an the organizational-attribute model-scoped
+  (`AU-NCR-IT-InF-PLATFORM`), and is targeted by an attribute-scoped
   Intune compliance policy.
 - **Drift-monitored** — FMP_163 reports the server's state on a schedule
-  (the organizational-attribute model, AU membership, Gitea team mapping, Arc heartbeat). Any
+  (organizational attributes, AU membership, Gitea team mapping, Arc heartbeat). Any
   drift opens an SLA ticket per FMP_167.
 - **DR-ready / HA-capable** — nightly backup to Azure Blob plus a standby
   replica with documented RPO/RTO targets; the baseline is manual

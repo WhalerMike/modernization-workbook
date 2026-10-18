@@ -1,6 +1,6 @@
 ---
 title: "GPO-to-Cloud Governance Gaps"
-subtitle: "What Enterprises Lose in Control and Governance When Group Policy Moves to Intune/Entra — and Where the organizational-attribute model Restores It"
+subtitle: "What Enterprises Lose in Control and Governance When Group Policy Moves to Intune/Entra"
 date: 2026-06-10
 format:
   html:
@@ -25,9 +25,8 @@ the **governance and control trade-offs** until they are deep in the
 migration or already living with the post-migration operating model.
 
 This page names the capabilities that are commonly **lost or
-significantly weakened** in the GPO-to-cloud shift, describes how the
-migration is actually progressing in large and regulated environments,
-and maps each governance gap to the the organizational-attribute model artifact that closes it.
+significantly weakened** in the GPO-to-cloud shift, and describes how the
+migration is actually progressing in large and regulated environments.
 It is a framing document, not a how-to: the per-capability mechanics
 live in the linked canon and reference pages.
 
@@ -38,7 +37,7 @@ rather than technical, see
 for the tool-by-tool comparison (including Group Policy Analytics), see
 The Federal Modernization Program vs Microsoft Native Tools.
 This page does not restate their claims — it focuses on *what is lost in
-the policy plane and where the organizational-attribute model restores it*.
+the policy plane*.
 :::
 
 ## The short answer: do customers know what they're going to lose?
@@ -55,12 +54,10 @@ Catalog). That shift is more flexible on paper and much harder to
 govern consistently at scale without a strong canonical model
 underneath it. The organizations that feel the loss earliest and most
 acutely are exactly the ones trying to *maintain or improve* strong,
-deterministic, auditable governance through the transition — which is
-the class of problem the organizational-attribute model is built to address.
+deterministic, auditable governance through the transition.
 
 The rest of this page breaks that down: first what is lost, then how
-the migration is actually going, then how the organizational-attribute model restores each
-capability.
+the migration is actually going.
 
 ## What is lost or significantly weakened
 
@@ -122,7 +119,7 @@ cloud-dependent, and **cross-plane** visibility (how an identity change
 ripples into device policy, server workloads, applications, and data
 access) is weak natively. Drift becomes harder to *detect*, let alone
 remediate. This is precisely the gap a drift engine fills: the
-[Drift Detection Walk-through](drift-walkthrough.md) shows per-facet
+[Drift Detection Walk-through](drift-walkthrough.md) shows
 drift surfacing as explicit `DRIFT-*` findings rather than silent
 divergence.
 
@@ -132,8 +129,8 @@ On-prem delegation was well understood: who can create, edit, or link a
 GPO, at which OU level. The cloud equivalent — Intune roles, RBAC,
 policy ownership, scope tags — is a different shape, and to traditional
 GPO teams it can feel less granular or less auditable. The
-[Delegation](delegation.md) reference covers how the organizational-attribute model facets carry a
-delegation boundary forward so scope is canonical rather than
+[Delegation](delegation.md) reference covers how a
+delegation boundary is carried forward so scope is canonical rather than
 reconstructed per-admin.
 
 ### Predictable, low-latency policy enforcement
@@ -181,30 +178,6 @@ analytics export. The provenance discipline here follows the substrate
 SSOT rule: external facts are authoritative only at their source.
 :::
 
-## How the organizational-attribute model restores each capability
-
-the organizational-attribute model does not replace Intune/Entra — it makes the cloud targeting
-model **canonical, deterministic, and drift-aware** by carrying named
-governance facets on every principal and composing policy from them. Each
-gap above maps to a concrete artifact:
-
-| Governance gap | the organizational-attribute model restoration | Reference |
-|---|---|---|
-| Deterministic targeting / inheritance | Named facets on every principal; policy composed by boolean facet predicates | [Dynamic Groups](dynamic-groups.md) · Codebook |
-| "Single source of truth" for *why* a policy applies | Canonical codebook vocabulary + HR-driven assignment | the organizational-attribute model FAQ · [Where Data Lives](../architecture/where-data-lives.md) |
-| Drift detection across planes | Continuous per-facet drift as `DRIFT-*` findings | [Drift Walk-through](drift-walkthrough.md) |
-| Delegation / auditable change | Delegation boundary carried as a canonical facet | [Delegation](delegation.md) |
-| Legacy-setting triage | Per-GPO, per-setting classification before cutover | GPO Migration Triage |
-| Portability beyond one cloud | Vendor-neutral facet carriage / binding profiles | the organizational-attribute model Portability |
-
-The through-line: the OU tree *was* the governance model, and a flat
-Entra directory does not carry it forward by itself. the organizational-attribute model re-encodes
-that hierarchy as a small set of governed attributes, validates them
-against a canonical codebook, watches them for drift, and composes them
-into the cloud's native targeting primitives — so the move to
-Intune/Entra keeps the determinism and auditability the OU tree used to
-provide for free.
-
 ## Bottom line
 
 Large customers are **not uniformly aware** of the full governance and
@@ -214,18 +187,13 @@ clean lift-and-shift — it is a multi-year transformation that changes the
 fundamental nature of policy governance from hierarchical/on-prem to
 dynamic/cloud-native. Many organizations discover that they need
 **additional governance architecture** — not just more licenses or a
-basic IGA tool — to avoid losing critical control and visibility. That
-is the gap a canonical, cross-plane, drift-aware model is designed to
-close.
+basic IGA tool — to avoid losing critical control and visibility.
 
 ## Where to go next
 
-- **Plain-language operator answers:** the organizational-attribute model FAQ
-- **Why a policy applies — the data model:** [Where OrgTree & the organizational-attribute model Data Lives](../architecture/where-data-lives.md)
 - **Restore determinism on attributes:** [Dynamic Groups](dynamic-groups.md)
 - **See drift surface explicitly:** [Drift Detection Walk-through](drift-walkthrough.md)
 - **Triage the legacy GPO surface:** Invoke-GpoMigrationTriage
-- **Carry governance beyond one cloud:** the organizational-attribute model Portability
 - **Whole-of-transition framing:** [Modernization Canon (section index)](index.md)
 - **Structural-gap argument:** [AD to Entra ID — The Structural Migration Problem](../whitepapers/ad-to-entraid-migration-problem.md)
 - **Tool-by-tool comparison:** the Federal Modernization Program vs Microsoft Native Tools

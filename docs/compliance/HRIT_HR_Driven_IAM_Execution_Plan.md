@@ -91,7 +91,7 @@ strengthens it:
 - The government's own procurement requires **SCIM 2.0 near-real-time
   provisioning** (PWS Req #5) — the same protocol the the program decision pipe speaks.
 - The middleware obligations the ADR imposed for governance reasons — schema
-  normalization, **the organizational-attribute model calculation before any identity reaches Entra**, and
+  normalization and
   provenance records for the governance engine — are unchanged and non-negotiable.
 
 Native-connector envy is therefore not a live tradeoff: there is nothing to defect
@@ -115,7 +115,7 @@ what prevents duplicate identities at go-live.
 
 ### 3.2 Middleware: the the program decision layer (substrate-owned)
 
-Azure Functions or Logic Apps, in-boundary, doing five things per event:
+Azure Functions or Logic Apps, in-boundary, doing four things per event:
 
 1. **Validate** — required attributes present; unknown worker types refused
    (fail closed, consistent with the MACD-R discipline of Vol IX).
@@ -127,10 +127,7 @@ Azure Functions or Logic Apps, in-boundary, doing five things per event:
    (`urn:ietf:params:scim:api:messages:2.0:BulkRequest`), enterprise user schema,
    plus the custom extension attributes `HireDate` / `TermDate` that trigger
    Lifecycle Workflows.
-4. **Calculate the organizational-attribute model** — derive the the organizational-attribute model value from the HR organizational
-   hierarchy (supervisory org, department, division) so **every identity carries
-   the organizational-attribute model before it exists in Entra**. The crosswalk is §4.
-5. **Write provenance** — one record per event (source event id, payload hash,
+4. **Write provenance** — one record per event (source event id, payload hash,
    derivation inputs, outcome) to the governance engine's evidence stream (per
    the series Evidence & Authorization Contract). HR-driven
    provisioning is a closure like any other: no record, no closure.
@@ -167,7 +164,7 @@ Two rules keep it safe:
 - **Writeback is not required for the plan to close.** Phases 0–4 stand without
   it; adopt it as a post-Phase-3 enhancement once the inbound feed is proven.
 
-## 4. The attribute crosswalk (Oracle → SCIM → AD/Entra → the organizational-attribute model)
+## 4. The attribute crosswalk (Oracle → SCIM → AD/Entra)
 
 The load-bearing subset; the full canonical schema is Spec 2 deliverable D1.1.
 
@@ -175,20 +172,17 @@ The load-bearing subset; the full canonical schema is Spec 2 deliverable D1.1.
 |---|---|---|---|---|
 | `PersonNumber` | `externalId` / `employeeNumber` | `employeeID` | `employeeId` | **Match key**, lifetime identifier |
 | Assignment status | `active` | `accountDisabled` | `accountEnabled` | Joiner/leaver state |
-| `DepartmentId` | `…enterprise:2.0:User:department` | `department` | `department` | **the organizational-attribute model derivation**, dynamic groups |
-| `BusinessUnitId` | `…enterprise:2.0:User:division` | `division` | `EmployeeOrgData.division` | **the organizational-attribute model derivation** |
-| Legal employer | `…enterprise:2.0:User:organization` | `company` | `companyName` | **the organizational-attribute model derivation** |
+| `DepartmentId` | `…enterprise:2.0:User:department` | `department` | `department` | Dynamic groups |
+| `BusinessUnitId` | `…enterprise:2.0:User:division` | `division` | `EmployeeOrgData.division` | Organizational structure |
+| Legal employer | `…enterprise:2.0:User:organization` | `company` | `companyName` | Organizational structure |
 | `ManagerPersonNumber` | `…enterprise:2.0:User:manager` | `manager` | `manager` | Supervisory chain, **approval routing** |
 | `JobName` | `title` | `title` | `jobTitle` | Role-derived entitlements |
 | Worker type | `userType` | (mapped) | `employeeType` | Employee/contractor branch |
 | `EffectiveStartDate` | custom ext. `HireDate` | `extensionAttribute2` | `employeeHireDate` | **Joiner Lifecycle Workflow trigger** |
 | `EffectiveDate` (termination) | custom ext. `TermDate` | `extensionAttribute3` | `employeeLeaveDateTime` | **Leaver Lifecycle Workflow trigger** |
 
-Two doctrine notes:
+One doctrine note:
 
-- **the organizational-attribute model is derived, never hand-set.** The middleware computes it from the HR
-  hierarchy fields above; nothing downstream may edit it in place (Vol I Book 04's
-  authoritative-vs-derived discipline).
 - **Approval routing is rebuilt from `manager`.** The supervisory chain the AD
   org-structure loss removed comes back through this feed — the HR manager
   attribute is what ServiceNow and SAM route approvals on.
@@ -232,8 +226,7 @@ match-key population ≥ 99% on the pilot cohort.
 
 ### Phase 2 — Middleware build and test (Spec 2 D2.x/D3.x)
 
-- Build the transform (CSV/ATOM → SCIM `bulkRequest`), the the organizational-attribute model calculator,
-  and the provenance writer; host in-boundary (Functions/Logic Apps).
+- Build the transform (CSV/ATOM → SCIM `bulkRequest`) and the provenance writer; host in-boundary (Functions/Logic Apps).
 - Configure the API-driven provisioning app(s); grant least-privilege Graph
   permissions to the client (D3.8 security review).
 - Define JML Lifecycle Workflows (D2.x) and their `HireDate`/`TermDate` triggers.

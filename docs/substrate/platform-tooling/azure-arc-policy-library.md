@@ -52,7 +52,7 @@ Table of Contents
 
 3.  Arc Agent Deployment Policies
 
-4.  Tagging and the organizational-attribute model Policies
+4.  Tagging Policies
 
 5.  Security Baseline Policies
 
@@ -74,9 +74,7 @@ Table of Contents
 
 14. Appendix A: Policy Definition JSON Templates
 
-15. Appendix B: the organizational-attribute model Tag Mapping Reference
-
-16. Appendix C: Guest Configuration Package Development
+15. Appendix B: Guest Configuration Package Development
 
 1\. Executive Summary
 
@@ -94,7 +92,7 @@ The policy library is organized across five governance domains:
 
 - **Monitoring** --- Deploy Azure Monitor Agent, associate Log Analytics workspaces, and collect governance-critical logs
 
-- **Tagging & the organizational-attribute model** --- Enforce the Federal Modernization Program organizational taxonomy via Arc resource tags mapped to the organizational-attribute model extension attributes
+- **Tagging** --- Enforce the Federal Modernization Program organizational taxonomy via Arc resource tags
 
 +--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 | **ENVIRONMENT CONTEXT**                                                                                                                                                                                                                                                                                                                                                                                                        |
@@ -144,10 +142,6 @@ The Federal Modernization Program program targets Windows Server environments ru
 
 Azure Arc serves the specific the Federal Modernization Program need of extending governance to servers that cannot be fully Entra-joined. This includes Domain Controllers, Certificate Authority servers, legacy line-of-business application servers, and other infrastructure that must remain domain-joined to Active Directory. Arc provides a parallel governance plane that does not disrupt AD authentication or Group Policy processing while enabling centralized compliance visibility and automated remediation.
 
-2.5 Relationship to the Federal Modernization Program the organizational-attribute model
-
-The Federal Modernization Program the organizational-attribute model taxonomy --- implemented via Entra ID extension attributes --- is projected onto Arc-enabled server resources as Azure resource tags. This mapping ensures that organizational context (Region, Site, Department, Device Tier, Environment, and Device Role) follows each server from Active Directory through Arc into the Azure governance plane, enabling scoped policy assignments and compliance reporting by organizational segment.
-
 3\. Arc Agent Deployment Policies
 
 These policies ensure that the Azure Connected Machine Agent is properly deployed, current, and actively communicating with the Azure control plane across all servers in the Federal Modernization Program management scope.
@@ -162,7 +156,7 @@ Effect: AuditIfNotExists \| Category: Agent Deployment \| Severity: High
 
 **Scope:** All server OUs identified in the AD assessment inventory.
 
-**Remediation:** Deploy the Connected Machine Agent using the Federal Modernization Program deployment script (Install-FMPArcAgent.ps1) from the Federal Modernization Program repository. The script handles service principal authentication, proxy configuration, and tag assignment from the organizational-attribute model attributes.
+**Remediation:** Deploy the Connected Machine Agent using the Federal Modernization Program deployment script (Install-FMPArcAgent.ps1) from the Federal Modernization Program repository. The script handles service principal authentication, proxy configuration, and tag assignment.
 
 Policy 3.2: Arc Agent Version Compliance
 
@@ -198,9 +192,9 @@ Effect: Audit \| Category: Agent Deployment \| Severity: High
 
 **Remediation:** Investigate connectivity on the server; verify proxy settings, firewall rules for \*.his.arc.azure.com, and agent service status (himds).
 
-4\. Tagging and the organizational-attribute model Policies
+4\. Tagging Policies
 
-The Federal Modernization Program the organizational-attribute model tags are the foundational taxonomy for scoped governance. These policies enforce that every Arc-enabled server carries the required organizational metadata, that tag values conform to the allowed taxonomy, and that inheritance rules maintain consistency across the resource hierarchy.
+The Federal Modernization Program tags are the foundational taxonomy for scoped governance. These policies enforce that every Arc-enabled server carries the required organizational metadata, that tag values conform to the allowed taxonomy, and that inheritance rules maintain consistency across the resource hierarchy.
 
 Policy 4.1: Required the Federal Modernization Program Tags
 
@@ -208,12 +202,12 @@ Policy 4.1: Required the Federal Modernization Program Tags
 
 Effect: Deny \| Category: Tagging \| Severity: Critical
 
-**Description:** Enforces that all Arc-enabled server resources carry the six required the Federal Modernization Program the organizational-attribute model tags. Resources missing any required tag will be denied creation or modification until tags are supplied.
+**Description:** Enforces that all Arc-enabled server resources carry the six required the Federal Modernization Program tags. Resources missing any required tag will be denied creation or modification until tags are supplied.
 
 **Required Tags:**
 
   --------------------------------------------------------------------
-  **Tag Name**       **the organizational-attribute model Attribute**   **Extension Attribute**
+  **Tag Name**       **Attribute**                                      **Extension Attribute**
   ------------------ ----------------------- -------------------------
   fmp-region        Region                  extensionAttribute1
 
@@ -601,7 +595,7 @@ Effect: Audit \| Category: The Federal Modernization Program Governance \| Sever
 
 **Scope:** Servers tagged fmp-device-role=GitServer.
 
-**Rationale:** Governance hooks enforce the Federal Modernization Program schema validation, the organizational-attribute model integrity checks, and audit trail generation. Tampered or missing hooks bypass the governance pipeline entirely.
+**Rationale:** Governance hooks enforce the Federal Modernization Program schema validation and audit trail generation. Tampered or missing hooks bypass the governance pipeline entirely.
 
 Policy 9.4: The Federal Modernization Program Module Version
 
@@ -850,7 +844,7 @@ The Federal Modernization Program governance dashboard (cross-referenced in the 
 
 - Unified compliance view across AD, Entra ID, Intune, and Arc governance planes
 
-- the organizational-attribute model-segmented compliance reporting (compliance by Region, Site, Department, Tier)
+- Tag-segmented compliance reporting (compliance by Region, Site, Department, Tier)
 
 - Executive summary cards showing overall the Federal Modernization Program governance posture
 
@@ -979,7 +973,7 @@ A.1 Audit Policy --- FMP-Arc-AgentVersion
 A.2 Deny Policy --- FMP-Arc-RequiredTags
 
   ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-  { \"name\": \"FMP-Arc-RequiredTags\", \"properties\": { \"displayName\": \"the Federal Modernization Program - Required the organizational-attribute model Tags\", \"description\": \"Deny Arc-enabled server resources missing required the Federal Modernization Program the organizational-attribute model tags.\", \"mode\": \"Indexed\", \"metadata\": { \"category\": \"the Federal Modernization Program Governance\", \"version\": \"1.0.0\" }, \"parameters\": {}, \"policyRule\": { \"if\": { \"allOf\": \[ { \"field\": \"type\", \"equals\": \"Microsoft.HybridCompute/machines\" }, { \"anyOf\": \[ { \"field\": \"tags\[\'fmp-region\'\]\", \"exists\": \"false\" }, { \"field\": \"tags\[\'fmp-site\'\]\", \"exists\": \"false\" }, { \"field\": \"tags\[\'fmp-department\'\]\", \"exists\": \"false\" }, { \"field\": \"tags\[\'fmp-device-tier\'\]\", \"exists\": \"false\" }, { \"field\": \"tags\[\'fmp-environment\'\]\", \"exists\": \"false\" }, { \"field\": \"tags\[\'fmp-device-role\'\]\", \"exists\": \"false\" } \] } \] }, \"then\": { \"effect\": \"deny\" } } } }
+  { \"name\": \"FMP-Arc-RequiredTags\", \"properties\": { \"displayName\": \"the Federal Modernization Program - Required Tags\", \"description\": \"Deny Arc-enabled server resources missing required the Federal Modernization Program tags.\", \"mode\": \"Indexed\", \"metadata\": { \"category\": \"the Federal Modernization Program Governance\", \"version\": \"1.0.0\" }, \"parameters\": {}, \"policyRule\": { \"if\": { \"allOf\": \[ { \"field\": \"type\", \"equals\": \"Microsoft.HybridCompute/machines\" }, { \"anyOf\": \[ { \"field\": \"tags\[\'fmp-region\'\]\", \"exists\": \"false\" }, { \"field\": \"tags\[\'fmp-site\'\]\", \"exists\": \"false\" }, { \"field\": \"tags\[\'fmp-department\'\]\", \"exists\": \"false\" }, { \"field\": \"tags\[\'fmp-device-tier\'\]\", \"exists\": \"false\" }, { \"field\": \"tags\[\'fmp-environment\'\]\", \"exists\": \"false\" }, { \"field\": \"tags\[\'fmp-device-role\'\]\", \"exists\": \"false\" } \] } \] }, \"then\": { \"effect\": \"deny\" } } } }
 
   ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -997,47 +991,7 @@ A.4 Modify Policy --- FMP-Arc-TagInheritance
 
   -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-Appendix B: the organizational-attribute model Tag Mapping Reference
-
-The following table provides the complete mapping between the Federal Modernization Program the organizational-attribute model extension attributes in Entra ID, their corresponding Azure Arc resource tags, and the allowed values for each field.
-
-  -----------------------------------------------------------------------------------------------------------------------------------------------------------------------
-  **Extension Attribute**   **the organizational-attribute model Field**   **Arc Tag Name**   **Allowed Values**
-  ------------------------- ------------------- ------------------ ------------------------------------------------------------------------------------------------------
-  extensionAttribute1       Region              fmp-region        East, West, Central, Global
-
-  extensionAttribute2       Site                fmp-site          *Organization-specific (populated from AD assessment)*
-
-  extensionAttribute3       Department          fmp-department    *Organization-specific (populated from AD assessment)*
-
-  extensionAttribute4       DeviceTier          fmp-device-tier   Tier0, Tier1, Tier2
-
-  extensionAttribute5       Environment         fmp-environment   Production, Staging, Dev, DR
-
-  extensionAttribute6       DeviceRole          fmp-device-role   DomainController, MemberServer, GitServer, AppServer, FileServer, DatabaseServer, Workstation, Kiosk
-  -----------------------------------------------------------------------------------------------------------------------------------------------------------------------
-
-+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| **IMPLEMENTATION NOTE**                                                                                                                                                                                                                                                                                                                                   |
-|                                                                                                                                                                                                                                                                                                                                                           |
-| When deploying the Arc agent via the Federal Modernization Program deployment script, the organizational-attribute model extension attribute values from the source AD object are automatically read and applied as Arc resource tags. The script calls Get-FMPthe organizational-attribute model to retrieve the current the organizational-attribute model for the server and maps each attribute to its corresponding tag during the azcmagent connect command. |
-+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-
-B.1 Tag Flow Diagram
-
-The the organizational-attribute model tag flow follows this sequence:
-
-1. **Active Directory** --- the organizational-attribute model attributes set on computer objects during the Federal Modernization Program assessment
-
-2. **Entra ID Sync** --- Extension attributes synchronized via Entra Connect (for hybrid-joined devices)
-
-3. **Arc Agent Deployment** --- Tags applied during azcmagent connect from the organizational-attribute model values
-
-4. **Azure Policy** --- Tag values validated by FMP-Arc-RequiredTags and FMP-Arc-TagValues
-
-5. **Governance Pipeline** --- Tags used for scoped policy assignment, compliance reporting, and dashboard segmentation
-
-Appendix C: Guest Configuration Package Development
+Appendix B: Guest Configuration Package Development
 
 Several the Federal Modernization Program policies rely on Azure Policy Guest Configuration (Machine Configuration) to evaluate in-guest operating system settings. This appendix describes how to create, test, and publish custom Guest Configuration packages for FMP-specific checks.
 

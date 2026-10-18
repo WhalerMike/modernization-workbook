@@ -79,23 +79,22 @@ Table of Contents
 
 9.  Migration Execution Playbook
 
-10. the organizational-attribute model Integration for Certificate Targeting
 
-11. Monitoring, Compliance, and Drift Detection
+10. Monitoring, Compliance, and Drift Detection
 
-12. Security Hardening
+11. Security Hardening
 
-13. Troubleshooting Reference
+12. Troubleshooting Reference
 
-14. Companion Document Cross-Reference
+13. Companion Document Cross-Reference
 
-15. Appendix A --- Cloud PKI Deployment Checklist
+14. Appendix A --- Cloud PKI Deployment Checklist
 
-16. Appendix B --- Certificate Template Migration Matrix
+15. Appendix B --- Certificate Template Migration Matrix
 
-17. Appendix C --- PowerShell PKI Assessment Module
+16. Appendix C --- PowerShell PKI Assessment Module
 
-18. Appendix D --- Entra CBA Configuration Checklist
+17. Appendix D --- Entra CBA Configuration Checklist
 
 1\. Purpose and Scope
 
@@ -115,7 +114,7 @@ This document covers the following domains:
 
 - **Hybrid Coexistence:** Parallel operation of ADCS and Cloud PKI during transition, including DC certificates, LDAPS, and cross-trust scenarios.
 
-- **Migration Execution:** Six-phase playbook with gates, rollback procedures, and the organizational-attribute model-driven targeting.
+- **Migration Execution:** Six-phase playbook with gates, rollback procedures, and dynamic-group targeting.
 
 - **Monitoring:** Certificate health, compliance, and drift detection with Gitea integration for assessment persistence.
 
@@ -646,7 +645,7 @@ URL=tag:microsoft.com,2022-09-14:sid:\<SID\>
 6.5 Certificate Use Case Mapping
 
   -----------------------------------------------------------------------------------------------------------------------------------------------------------------
-  **Use Case**                     **Profile Type**      **CA Source**               **Platform**                   **Dynamic Group Target (the organizational-attribute model)**
+  **Use Case**                     **Profile Type**      **CA Source**               **Platform**                   **Dynamic Group Target**
   -------------------------------- --------------------- --------------------------- ------------------------------ -----------------------------------------------
   Wi-Fi 802.1X (EAP-TLS)           SCEP                  Cloud PKI                   Windows, iOS, Android, macOS   extensionAttribute2 (Site-based)
 
@@ -926,7 +925,7 @@ The PKI modernization migration follows six phases, each with defined prerequisi
 
 8. Monitor Entra sign-in logs: filter by authentication method \"X.509 Certificate.\"
 
-9. Address failures: review Troubleshooting Reference (Section 13) for common issues.
+9. Address failures: review Troubleshooting Reference (Section 12) for common issues.
 
 **Validation Criteria:** \>95% certificate issuance success rate. Zero authentication failures attributable to certificate configuration. Pilot user CBA authentication functioning with correct MFA claim. All pilot relying parties accepting Cloud PKI certificates.
 
@@ -944,12 +943,12 @@ The PKI modernization migration follows six phases, each with defined prerequisi
   --------------- --------------------------------------------------------------------------------------------------------------------------------------------
   Objective       Expand SCEP/PKCS profiles to all managed devices. Expand Entra CBA staged rollout to all users.
 
-  Prerequisites   Phase 3 gate satisfied. the organizational-attribute model dynamic groups configured for certificate targeting. All relying parties updated to trust Cloud PKI chain.
+  Prerequisites   Phase 3 gate satisfied. Dynamic groups configured for certificate targeting. All relying parties updated to trust Cloud PKI chain.
   ------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 **Steps:**
 
-1. Expand SCEP certificate profiles to the organizational-attribute model-based dynamic groups (by region, site, department, device tier).
+1. Expand SCEP certificate profiles to dynamic groups (by region, site, department, device tier).
 
 2. Deploy PKCS profiles for S/MIME and application-specific certificates.
 
@@ -1043,86 +1042,9 @@ The PKI modernization migration follows six phases, each with defined prerequisi
 
 **Duration:** 8 weeks.
 
-10\. the organizational-attribute model Integration for Certificate Targeting
+10\. Monitoring, Compliance, and Drift Detection
 
-The Federal Modernization Program the organizational-attribute model model uses Entra ID extension attributes on user and device objects to encode organizational metadata. Certificate profiles are targeted to dynamic groups built from these attributes, enabling precise, policy-driven certificate deployment without manual group management.
-
-10.1 Extension Attribute Mapping
-
-  -----------------------------------------------------------------------------------------------------------------------------------------
-  **Extension Attribute**   **the organizational-attribute model Dimension**   **Certificate Targeting Use**
-  ------------------------- ----------------------- ---------------------------------------------------------------------------------------
-  extensionAttribute1       Region                  Regional Wi-Fi SCEP profiles (different RADIUS servers per region)
-
-  extensionAttribute2       Site                    Site-specific trust requirements, site-specific SSID profiles
-
-  extensionAttribute3       Department              Department-specific S/MIME certificates, department-scoped mTLS
-
-  extensionAttribute4       DeviceTier              Tier-based key length (Tier 0: 4096-bit, Tier 1: 2048-bit) and validity period
-
-  extensionAttribute5       Environment             Production vs. Lab/Dev CA selection (separate Issuing CAs per environment)
-
-  extensionAttribute6       DeviceRole              Role-specific certificate templates: server certificates vs. workstation certificates
-  -----------------------------------------------------------------------------------------------------------------------------------------
-
-10.2 Dynamic Group Rule Examples
-
-**Example 1 --- Wi-Fi SCEP for East Region Devices:**
-
-(device.extensionAttribute1 -eq \"EASTUS\") and (device.deviceManagementAppId -ne null)
-
-**Example 2 --- S/MIME for Finance Department Users:**
-
-(user.extensionAttribute2 -eq \"Finance\") and (user.accountEnabled -eq true)
-
-**Example 3 --- Tier 0 High-Assurance Certificates (4096-bit RSA):**
-
-(device.extensionAttribute11 -eq \"Tier0\") and (device.deviceOSType -eq \"Windows\")
-
-**Example 4 --- Production Environment Certificates Only:**
-
-(device.extensionAttribute13 -eq \"Production\") and (device.isCompliant -eq true)
-
-**Example 5 --- Server Role Certificates (Server Authentication EKU):**
-
-(device.extensionAttribute12 -eq \"Server\") and (device.extensionAttribute13 -eq \"Production\")
-
-**Example 6 --- All Managed Mobile Devices for MDM Bootstrap Cert:**
-
-(device.deviceOSType -eq \"Android\" -or device.deviceOSType -eq \"iOS\") and (device.deviceManagementAppId -ne null)
-
-**Example 7 --- Site-Specific Wired 802.1X (Headquarters):**
-
-Site is **not** an the organizational-attribute model facet. Physical place is LocPath's axis
-(`/Country/Region/Site/Building/Floor/Space`, with Site as the minimum
-governance unit), and per the program decision
-§D5 LocPath claims no `extensionAttribute` slot at all — so there is no
-`device.extensionAttributeN -eq \"HQ\"` rule to write, and reaching for one
-puts a place name in a facet that means something else.
-
-Scope the assignment to the site group the LocPath exposure plans for that
-site, and use an the organizational-attribute model facet only for the device dimension:
-
-    Assignment target:  LocPath-Site-ANNAPOLIS-HQ-Users   (or AU-Site-ANNAPOLIS-HQ)
-    Device filter:      (device.extensionAttribute12 -eq \"Workstation\")
-
-Membership of `LocPath-Site-*` groups is **assigned** from the governed
-Primary-LocPath assignments, not derived from a stamped attribute. A
-deployment that later adopts a storage locator for LocPath can switch the
-group to a dynamic rule of the form `(<locator> -startsWith
-\"/USA/MD/ANNAPOLIS-HQ\")`, where the locator is a per-target binding-profile
-parameter rather than a claimed slot. This is the the organizational-attribute model x LocPath matrix
-the program decision describes: prefix-match on each axis, one axis per question.
-
-+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| **Dynamic Group Processing**                                                                                                                                                                                                                             |
-|                                                                                                                                                                                                                                                          |
-| Entra ID dynamic group membership evaluation can take up to 24 hours for large groups. For time-sensitive certificate deployments, consider using assigned groups for the initial rollout, then converting to dynamic groups once membership stabilizes. |
-+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-
-11\. Monitoring, Compliance, and Drift Detection
-
-11.1 Intune Certificate Dashboard
+10.1 Intune Certificate Dashboard
 
 The Intune admin center provides certificate lifecycle visibility under Devices → Monitor → Certificate:
 
@@ -1134,7 +1056,7 @@ The Intune admin center provides certificate lifecycle visibility under Devices 
 
 - **Expired:** Certificates past validity --- indicates renewal failure or profile removal.
 
-11.2 Certificate Compliance Policies
+10.2 Certificate Compliance Policies
 
 Create Intune compliance policies that check for certificate presence:
 
@@ -1144,7 +1066,7 @@ Create Intune compliance policies that check for certificate presence:
 
 - **Non-compliant action:** Mark device non-compliant after grace period → block Conditional Access.
 
-11.3 Drift Detection Patterns
+10.3 Drift Detection Patterns
 
   ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
   **Drift Pattern**                **Description**                                                 **Detection Method**                                         **Remediation**
@@ -1160,13 +1082,13 @@ Create Intune compliance policies that check for certificate presence:
   Orphaned profiles                Certificate profile assigned but target group is empty          Intune profile assignment audit                              Remove or reassign profile
   ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-11.4 PowerShell Health Functions
+10.4 PowerShell Health Functions
 
 function Get-FMPCertificateHealth { \<# .SYNOPSIS Checks certificate health on the local machine or remote endpoints. .DESCRIPTION Validates certificate expiry, chain trust, strong mapping presence, and issuer classification (Cloud PKI vs. ADCS). #\> \[CmdletBinding\] param( \[Parameter(Mandatory = \$false)\] \[string\]\$StoreName = \"My\", \[Parameter(Mandatory = \$false)\] \[int\]\$ExpiryWarningDays = 30, \[Parameter(Mandatory = \$false)\] \[string\]\$ExpectedIssuerCN = \"\" ) \$certs = Get-ChildItem -Path \"Cert:\\LocalMachine\\\$StoreName\" -Recurse \| Where-Object { \$\_.HasPrivateKey } \$results = @ foreach (\$cert in \$certs) { \$daysToExpiry = (\$cert.NotAfter - (Get-Date)).Days \$sanExtension = \$cert.Extensions \| Where-Object { \$\_.Oid.Value -eq \'2.5.29.17\' } \$hasStrongMapping = \$false if (\$sanExtension) { \$sanText = \$sanExtension.Format(\$true) \$hasStrongMapping = \$sanText -match \'tag:microsoft\\.com\' } \$issuerType = if (\$cert.Issuer -match \'Cloud PKI\|Intune\') { \'CloudPKI\' } else { \'ADCS\' } \$status = \'Healthy\' if (\$daysToExpiry -lt 0) { \$status = \'Expired\' } elseif (\$daysToExpiry -lt \$ExpiryWarningDays) { \$status = \'ExpiringSoon\' } \$results += \[PSCustomObject\]@{ Thumbprint = \$cert.Thumbprint Subject = \$cert.Subject Issuer = \$cert.Issuer IssuerType = \$issuerType NotAfter = \$cert.NotAfter DaysToExpiry = \$daysToExpiry HasStrongMapping = \$hasStrongMapping Status = \$status } } return \$results }
 
 function Test-FMPCertificateCompliance { \<# .SYNOPSIS Tests certificate compliance against the Federal Modernization Program PKI policy. .DESCRIPTION Verifies that managed devices have the expected certificates from the correct CA source with proper configuration. #\> \[CmdletBinding\] param( \[Parameter(Mandatory = \$true)\] \[string\]\$ExpectedIssuerCN, \[Parameter(Mandatory = \$false)\] \[string\]\$ExpectedEKU = \"1.3.6.1.5.5.7.3.2\", \[Parameter(Mandatory = \$false)\] \[int\]\$MinKeySize = 2048 ) \$health = Get-FMPCertificateHealth \$compliance = \@{ DeviceName = \$env:COMPUTERNAME CheckDate = Get-Date -Format \'yyyy-MM-ddTHH:mm:ssZ\' Compliant = \$true Findings = @ } \# Check for expected certificate \$matchingCerts = \$health \| Where-Object { \$\_.Issuer -match \$ExpectedIssuerCN } if (-not \$matchingCerts) { \$compliance.Compliant = \$false \$compliance.Findings += \"MISSING: No certificate from expected issuer \'\$ExpectedIssuerCN\'\" } \# Check for expired certificates \$expired = \$health \| Where-Object { \$\_.Status -eq \'Expired\' } if (\$expired) { \$compliance.Findings += \"WARNING: \$(\$expired.Count) expired certificate(s) found\" } \# Check for ADCS certs that should be Cloud PKI \$adcsMigrate = \$health \| Where-Object { \$\_.IssuerType -eq \'ADCS\' -and \$\_.Status -ne \'Expired\' } if (\$adcsMigrate) { \$compliance.Findings += \"DRIFT: \$(\$adcsMigrate.Count) active ADCS certificate(s) --- verify migration status\" } \# Check strong mapping \$noStrongMap = \$health \| Where-Object { -not \$\_.HasStrongMapping -and \$\_.Status -ne \'Expired\' } if (\$noStrongMap) { \$compliance.Findings += \"RISK: \$(\$noStrongMap.Count) certificate(s) without strong mapping SID URI\" } return \[PSCustomObject\]\$compliance }
 
-11.5 Gitea Integration
+10.5 Gitea Integration
 
 Certificate health reports are committed to the Federal Modernization Program Gitea repository for historical tracking and audit:
 
@@ -1176,9 +1098,9 @@ Certificate health reports are committed to the Federal Modernization Program Gi
 
 - **Automation:** Schedule Export-FMPPKIAssessment via scheduled task or Intune proactive remediation to run weekly and commit results.
 
-12\. Security Hardening
+11\. Security Hardening
 
-12.1 Cloud PKI Hardening
+11.1 Cloud PKI Hardening
 
 - **RBAC:** Restrict Cloud PKI administration to dedicated Intune PKI Administrator roles. Use Privileged Identity Management (PIM) for just-in-time access to CA management.
 
@@ -1192,7 +1114,7 @@ Certificate health reports are committed to the Federal Modernization Program Gi
 
 - **Validity Period:** Set certificate validity to the shortest period practical for the use case: 1 year for user/device auth; 2 years for infrastructure certificates.
 
-12.2 Entra CBA Hardening
+11.2 Entra CBA Hardening
 
 - **High-Affinity Binding:** Use certificateUserIds binding (SKI, SHA1, or Issuer+SerialNumber) for production. Avoid low-affinity UPN-only binding in production environments.
 
@@ -1204,7 +1126,7 @@ Certificate health reports are committed to the Federal Modernization Program Gi
 
 - **Certificate Authority Trust Scope:** Only upload CA certificates to Entra that are actively needed. Remove decommissioned CA certificates promptly to prevent trust chain abuse.
 
-12.3 Residual ADCS Hardening
+11.3 Residual ADCS Hardening
 
 For ADCS infrastructure retained during the BRIDGE period:
 
@@ -1218,7 +1140,7 @@ For ADCS infrastructure retained during the BRIDGE period:
 
 - **Network Isolation:** Restrict network access to CA servers. Only authorized enrollment endpoints (NDES, Certificate Connector, domain controllers) should have RPC access to the CA.
 
-13\. Troubleshooting Reference
+12\. Troubleshooting Reference
 
   ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
   **Issue**                     **Symptoms**                                                                                  **Root Cause**                                                                                                   **Resolution**
@@ -1250,7 +1172,7 @@ For ADCS infrastructure retained during the BRIDGE period:
   CBA MFA not satisfied         Conditional Access blocks access requiring MFA despite CBA login                              CBA authentication method not configured as \"multi-factor\" protection level                                    Update CBA method policy: set protection level to \"Multi-factor authentication\" for the issuer/policy OID combination
   ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-14\. Companion Document Cross-Reference
+13\. Companion Document Cross-Reference
 
   ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
   **Section**                            **Related the Federal Modernization Program Document**                          **Relationship**
@@ -1273,11 +1195,9 @@ For ADCS infrastructure retained during the BRIDGE period:
 
   Section 9 --- Migration Playbook       All the Federal Modernization Program Guides                                    Migration phases cross-reference assessment, identity, device, and network modernization timelines.
 
-  Section 10 --- the organizational-attribute model Integration     the organizational-attribute model Design Guide                               Extension attribute schema and dynamic group patterns are defined in the the organizational-attribute model Design Guide.
+  Section 10 --- Monitoring              The Federal Modernization Program Monitoring and Compliance Guide               Certificate health telemetry integrates with the broader monitoring framework. Gitea commit patterns follow the Federal Modernization Program assessment standards.
 
-  Section 11 --- Monitoring              The Federal Modernization Program Monitoring and Compliance Guide               Certificate health telemetry integrates with the broader monitoring framework. Gitea commit patterns follow the Federal Modernization Program assessment standards.
-
-  Section 12 --- Security Hardening      AD Security Assessment Guide                       ADCS hardening aligns with the AD security baseline. Cloud PKI RBAC aligns with Entra role governance.
+  Section 11 --- Security Hardening      AD Security Assessment Guide                       ADCS hardening aligns with the AD security baseline. Cloud PKI RBAC aligns with Entra role governance.
   ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 Appendix A --- Cloud PKI Deployment Checklist
@@ -1329,7 +1249,7 @@ Appendix A --- Cloud PKI Deployment Checklist
 
   22       Deploy Cloud PKI Root CA to on-prem via GPO (cross-trust)                  Scale          AD Admin        ☐
 
-  23       Expand SCEP profiles to the organizational-attribute model dynamic groups                             Scale          Intune Admin    ☐
+  23       Expand SCEP profiles to dynamic groups                                     Scale          Intune Admin    ☐
 
   24       Disable ADCS auto-enrollment GPOs for MIGRATE templates on migrated OUs    Cutover        AD Admin        ☐
 

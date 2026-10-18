@@ -1,6 +1,6 @@
 ---
 title: "Substrate"
-subtitle: "The shared spine — tooling, core architecture, and execution patterns that serve all three Org expressions"
+subtitle: "The shared spine — tooling, core architecture, and execution patterns that serve all three expressions"
 doc-type: pillar-landing
 audience: "Architects · platform engineers · canon stewards"
 canon-source: "docs/planning/customer-documents-taxonomy.md §2.3"
@@ -19,17 +19,17 @@ lifecycle_review: 2026-11-22
 **[substrate-bundle.docx]** — every page in this section concatenated into one Word document. Regenerated on every site deploy.
 :::
 
-The **shared spine the Org family — the organizational-attribute model, Federal Compliance, OrgMod — rides on.** These components aren't
+The **shared spine that governance, Federal Compliance, and OrgMod ride on.** These components aren't
 governance, compliance, *or* modernization — they're the machinery that lets
 all three exist: the monorepo, the render pipeline, the architecture
 abstractions, and the execution patterns that distinguish governance from
 execution.
 
 Splitting these across the three expressions would duplicate canon. They live
-here so the organizational-attribute model, Federal Compliance, and OrgMod pages cross-reference them instead of
+here so the governance, Federal Compliance, and OrgMod pages cross-reference them instead of
 redefining them.
 
-![The substrate as the shared spine the three Org expressions ride on](../images/substrate/index-image-01-substrate-shared-spine.svg){#fig-index-image-01 fig-alt="Diagram showing the substrate as a shared spine. Three expression boxes at the top — the organizational-attribute model (governance: canon as source of truth, governed addressing), Federal Compliance (compliance: FedRAMP, OSCAL, KSI, continuous monitoring), and OrgMod (modernization: client-server to hybrid-cloud transformation) — all fed by upward arrows from a central teal Substrate band containing three sub-category cards: Platform and tooling (monorepo, Quarto pipeline, CLI, canon sync, CI/CD, Academy), Core architecture (Six-Plane, Three-Layer Rule, Drift Engine, Evidence Chain, Boundary), and Execution patterns (Two-Brain Execution, AODIM, Instruments vs. Orchestra). A navy footer band lists the three canonical invariants. Engineering blueprint style, navy and teal on white, no human figures, 16:9 landscape." width="100%"}
+![The substrate as the shared spine the three expressions ride on](../images/substrate/index-image-01-substrate-shared-spine.svg){#fig-index-image-01 fig-alt="Diagram showing the substrate as a shared spine. Three expression boxes at the top — Governance (canon as source of truth, governed addressing), Federal Compliance (compliance: FedRAMP, OSCAL, KSI, continuous monitoring), and OrgMod (modernization: client-server to hybrid-cloud transformation) — all fed by upward arrows from a central teal Substrate band containing three sub-category cards: Platform and tooling (monorepo, Quarto pipeline, CLI, canon sync, CI/CD, Academy), Core architecture (Six-Plane, Three-Layer Rule, Drift Engine, Evidence Chain, Boundary), and Execution patterns (Two-Brain Execution, AODIM, Instruments vs. Orchestra). A navy footer band lists the three canonical invariants. Engineering blueprint style, navy and teal on white, no human figures, 16:9 landscape." width="100%"}
 
 ## Sub-categories
 
