@@ -45,8 +45,8 @@ a Call to Action, the box points at it rather than restating it. Read
 the box first if you have two minutes; read the paper if the ask is
 yours to act on.
 
-Three papers — [`ad-to-entraid-migration-problem`](ad-to-entraid-migration-problem.qmd),
-[`aodim-executive-whitepaper`](aodim-executive-whitepaper.qmd), and
+Three papers — [`ad-to-entraid-migration-problem`](ad-to-entraid-migration-problem.md),
+[`aodim-executive-whitepaper`](aodim-executive-whitepaper.md), and
 [`fmp-vs-native-tools`](docx/fmp-vs-native-tools.docx) — predate both
 genres: they're docx imports from before the canon-anchoring convention
 existed. They carry real content (the original business case for the

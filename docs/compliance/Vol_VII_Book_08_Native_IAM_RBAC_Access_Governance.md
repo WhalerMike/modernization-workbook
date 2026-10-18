@@ -98,7 +98,7 @@ Generated from the series compliance spine (`orgcomp-compliance-spine.yml`) by `
 - **Vol VII Book 03 (Azure) / Book 06 (AWS) / Book 07 (VMware)** — the sibling coordination books this one extends into the identity/entitlement plane; all now reconcile into the same ServiceNow queues.
 - **Vol VII Book 01** — the reconciled CIs every IAM/RBAC task is raised against; **Vol VII Book 04** — where the identity posture roll-up becomes attestation.
 - **Vol IX Book 06 (Identity & Access Governance)** — the JML-automation and certification-campaign lane this book does not duplicate; see Honest Limits.
-- [`ticket-to-machine-not-ticket-to-human` whitepaper](../whitepapers/ticket-to-machine-not-ticket-to-human.qmd) — the customer-facing synthesis this book's closure supports.
+- [`ticket-to-machine-not-ticket-to-human` whitepaper](../whitepapers/ticket-to-machine-not-ticket-to-human.md) — the customer-facing synthesis this book's closure supports.
 
 # Provenance
 

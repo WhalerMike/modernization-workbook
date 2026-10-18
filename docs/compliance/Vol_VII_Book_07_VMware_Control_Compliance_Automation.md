@@ -197,7 +197,7 @@ Generated from the series compliance spine (`orgcomp-compliance-spine.yml`) by `
 - **Vol VII Book 01** — the reconciled CIs every VMware task is raised against; **Vol VII Book 04** — where the VMware posture roll-up becomes attestation.
 - **Vol VII Book 03 (Azure) / Vol VII Book 06 (AWS)** — the sibling coordination books this one mirrors structurally; all three now reconcile into the same ServiceNow queues.
 - **Compliance Operator Runbook (Day-2, Compliant)**, Task 5 — the "parameters travel; commands do not" discipline this book's manual-actuation section restates for the vCenter surface.
-- [`ticket-to-machine-not-ticket-to-human` whitepaper](../whitepapers/ticket-to-machine-not-ticket-to-human.qmd) §4 — the customer-facing statement of this section's core recommendation, promoted into the paper's main body; §11 — the one-front-door doctrine the manual-actuation anti-pattern caution enforces.
+- [`ticket-to-machine-not-ticket-to-human` whitepaper](../whitepapers/ticket-to-machine-not-ticket-to-human.md) §4 — the customer-facing statement of this section's core recommendation, promoted into the paper's main body; §11 — the one-front-door doctrine the manual-actuation anti-pattern caution enforces.
 
 # Provenance
 

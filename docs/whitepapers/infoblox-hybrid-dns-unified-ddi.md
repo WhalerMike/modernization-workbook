@@ -1589,7 +1589,7 @@ from cloud-originating queries.
 This whitepaper is **DRAFT v0.5** (2026-08-03 — the Part 3 DNS record
 catalog and the Part 7.5 ecosystem-integration table were split out into a
 standalone reference companion, [DNS Record Types and Universal DDI
-Ecosystem Integrations](infoblox-dns-reference.qmd), and a "For decision
+Ecosystem Integrations](infoblox-dns-reference.md), and a "For decision
 makers" executive digest was added near the top of this page so Part 10.2's
 five configuration decisions are reachable without reading the taxonomy
 first; no external claims were re-verified in that revision). External claims

@@ -75,7 +75,7 @@ Book_21 — the organizational-attribute model and Federal AI Governance.
 Chapter 1 of that book explains why the AI identity surface is invisible and
 what goes wrong when it is. This guide is the tool that makes it visible. The
 [Federal AI Governance — Submission Readiness
-Brief](../../whitepapers/federal-ai-governance-submission-readiness.qmd) names
+Brief](../../whitepapers/federal-ai-governance-submission-readiness.md) names
 this kit as the path to operationalizing the
 `DRIFT-COMPLIANCE::ai-agentic-ungoverned` P1 finding.
 

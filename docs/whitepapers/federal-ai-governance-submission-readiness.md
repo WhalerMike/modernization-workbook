@@ -151,7 +151,7 @@ Federal Organization Compliance series' SSOT Registry (Vol 0 Book 00).
 - **The agentic-AI P1 finding (`DRIFT-COMPLIANCE::ai-agentic-ungoverned`,
  above) is doctrine-only.** The
  [Federal AI Identity Governance operational
- guide](../operational-guides/ai-identity-governance/index.qmd) is the kit
+ guide](../operational-guides/ai-identity-governance/index.md) is the kit
  that will operationalize it; it is proposed, not yet deployed.
 
 ![Three moves that most raise win probability](../images/whitepapers/federal-ai-governance-submission-readiness-diagram-02-three-moves-win-probability.svg){#fig-federal-ai-diagram-02 fig-alt="Three dark-navy columns labeled Move 1, Move 2, Move 3 with teal headers and teal action boxes. Move 1: Lead with deployed core, stage the rest honestly - demo live Entra facet stamping plus drift plus M-25-21-as-IAM. Move 2: Resolve the authorization story explicitly - state FMP operates inside customer boundary, SailPoint NERM FedRAMP-Moderate on AWS GovCloud. Move 3: Activate one non-Microsoft target end-to-end - Keycloak recommended path. Bottom ice-blue bar summarizes bottom line. White background, navy/teal/ice palette." width="100%"}

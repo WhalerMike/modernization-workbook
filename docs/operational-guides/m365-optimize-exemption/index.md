@@ -96,5 +96,5 @@ mechanism for documenting a bounded departure rather than denying there is one.
   Appendix A — owns the Catalyst SD-WAN and M365 build, including the GCC
   Moderate constraint.
 - [FedRAMP 20x and the Commercial Feature
-  Gap](../../whitepapers/fedramp-20x-and-the-commercial-feature-gap.qmd) —
+  Gap](../../whitepapers/fedramp-20x-and-the-commercial-feature-gap.md) —
   owns the framework and vendor-documentation argument.

@@ -24,7 +24,7 @@ directory; they can be read in sequence as a program primer or drawn on
 individually as reference material.
 
 The canonical source for this series is
-[`governance-os-canonical-suite.qmd`](governance-os-canonical-suite.qmd)
+[`governance-os-canonical-suite.qmd`](governance-os-canonical-suite.md)
 (~2,865 lines). The chapters below are the customer-facing presentation,
 each anchored on a slice of the canonical suite plus the relevant
 architecture-series and executive-briefs surfaces.

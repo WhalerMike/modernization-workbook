@@ -36,7 +36,7 @@ this page, regenerated on every site deploy. (Also available from the
 
 ::: {.callout-note appearance="simple"}
 **Companion paper.** This paper is a focused extension of *[Zero Trust
-Governance Principles](zero-trust-governance-principles.qmd)*, which sets out
+Governance Principles](zero-trust-governance-principles.md)*, which sets out
 five governance principles for closing the gap between CISA's Zero Trust
 Maturity Model (ZTMM) v2.0 cross-cutting capabilities — Visibility and
 Analytics, Automation and Orchestration, and Governance — and where most
@@ -311,7 +311,7 @@ a vendor one. Horse before the cart: unify Network, CSPs, and VMware into one
 governed architecture first, and let assessment confirm it — not the other
 way around. The governance principles for doing that unification work, and
 for hardening what it creates, are the subject of the companion paper, *[Zero
-Trust Governance Principles](zero-trust-governance-principles.qmd)*.
+Trust Governance Principles](zero-trust-governance-principles.md)*.
 
 ### Sources
 
