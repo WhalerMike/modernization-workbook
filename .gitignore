@@ -5,3 +5,20 @@
 /_sitemap-tree.md
 
 **/*.quarto_ipynb
+
+# Word files are rendered by CI from the Markdown sources; don't commit copies.
+# The reference template and the four DOCX-only papers (no Markdown source yet) stay tracked.
+*.docx
+!/assets/reference-mslearn.docx
+!/docs/whitepapers/docx/fmp-governance-os-whitepaper.docx
+!/docs/whitepapers/docx/fmp-vs-native-tools.docx
+!/docs/whitepapers/docx/orgpath-composability-matrix.docx
+!/docs/whitepapers/docx/snowflake-keypair-vs-fmp-orgpath.docx
+# Word lock files
+~$*.docx
+# reference-mslearn.docx copies the deploy workflow makes under docs/ are covered by *.docx above
+
+# Python and OS cruft
+__pycache__/
+*.pyc
+.DS_Store

@@ -4,7 +4,7 @@
 
 ![Series cover](../../images/sql-server/series-cover-original.png)
 
-**Full narrative bundle:** [sql-server-narrative-bundle.docx](sql-server-narrative-bundle.docx) — the complete original series.
+**Full narrative bundle:** [sql-server-narrative-bundle.docx](../../../downloads/sql-server-narrative-bundle.docx) — all books combined into one Word document, regenerated on every site deploy.
 
 **Neutralized Markdown:** [sql-server-narrative-neutralized.md](sql-server-narrative-neutralized.md) — source identifiers replaced with plain language.
 

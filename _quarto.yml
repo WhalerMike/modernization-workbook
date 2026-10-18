@@ -30,7 +30,6 @@ project:
     - "docs/project-management/README.md"
     - "docs/projects/README.md"
     - "docs/whitepapers/README.md"
-    - "!/index.md"   # root only; index.qmd is the home page
     - "!MIGRATION-*.md"
     - "!STATUS.md"
     - "!OUTLINE.md"
