@@ -12,6 +12,8 @@ lifecycle_review: 2026-11-22
 
 # Evidence Chain
 
+![Illustration: telemetry becoming OSCAL artifacts in four stages.](../images/architecture/evidence-chain-image-01-four-stage-evidence-pipeline-dia.png){fig-alt="Horizontal flow with four labeled stages connected by arrows: (1) Telemetry Event Capture — adapter boundary icon, (2) Canonical Claim Normalization — provenance envelope wrapper icon, (3) Bundle Assembly + Seal — sealed envelope with hash badge, (4) OSCAL Artifact Emission — three small document icons labeled SSP, POA&M, KSI, Component Definition. Below the pipeline, a parallel canonical-source bar labeled “src/fmp/canon/“ with three reference points feeding into stages 2, 3, 4 with light teal arrows. Each stage shows its canonical anchor underneath (FMP_PP_001, the program decision, the program decision)."}
+
 FMP's evidence chain is the architectural mechanism that turns runtime
 telemetry into **assessor-ready compliance artifacts with traceable
 provenance at every step**. The chain is deterministic: same inputs, same

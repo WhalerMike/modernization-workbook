@@ -12,6 +12,8 @@ lifecycle_review: 2026-11-22
 
 # Drift Engine
 
+![Illustration: the five drift classes rising from canonical truth.](../images/architecture/drift-engine-image-01-drift-taxonomy-state-diagram.png){fig-alt="Central horizontal bar labeled “Canonical Truth“ in dark navy. Five vertical channels rise above the bar, each one a labeled drift class (DRIFT-SCHEMA, DRIFT-SEMANTIC, DRIFT-PROVENANCE, DRIFT-AUTHZ, DRIFT-IDENTITY). Each channel terminates in a small severity badge (P1 red, P2 amber, P3 yellow, P4 gray) showing typical severity for that class. Below the canonical truth bar, two detection-surface lanes — left lane “CI Substrate Walker“ highlighting SCHEMA + PROVENANCE columns, right lane “Runtime Conformance Runner“ highlighting SEMANTIC + AUTHZ + IDENTITY columns."}
+
 FMP treats **drift as a first-class operational signal**, not as an
 exception. The Drift Engine is the substrate-wide subsystem that classifies,
 prioritizes, and remediates the gap between *declared* canonical state and

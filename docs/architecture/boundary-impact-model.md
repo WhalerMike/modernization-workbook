@@ -16,6 +16,8 @@ lifecycle_review: 2026-11-22
 
 # Boundary Impact Model
 
+![Illustration: four impact dimensions crossing an authorization boundary.](../images/architecture/boundary-impact-model-image-01-boundary-impact-four-dimension-d.png){fig-alt="A vertical boundary line down the center labeled “Authorization Boundary“ splits the page into left (“Outside“ — commercial / non-boundary side) and right (“Inside“ — GCC-Moderate side). Four horizontal lanes cross the boundary, each labeled with one impact dimension: Telemetry Fidelity, Identity Authority, Enforcement Responsibility, Provenance Classification. On each lane the boundary line shows a transformation badge (e.g. “authoritative → derived“). Below each lane, a small drift-class badge indicates the drift class that fires on violation (DRIFT-SCHEMA, DRIFT-IDENTITY, DRIFT-AUTHZ, DRIFT-SEMANTIC)."}
+
 The **boundary impact model** is FMP's architectural treatment of what
 happens when authorization boundaries cut across the substrate — most
 notably the GCC-Moderate boundary that constrains telemetry, identity, and

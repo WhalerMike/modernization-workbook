@@ -12,6 +12,8 @@ lifecycle_review: 2026-11-22
 
 # Three-Layer Rule Model
 
+![Illustration: the canon, policy and runtime layers as a stack.](../images/architecture/three-layer-rule-model-image-01-three-layer-rule-model-stack-dia.png){fig-alt="Three horizontal layers stacked top to bottom: top layer “Runtime (Enforcement)“ — adapter and enforcement runtime icons, middle layer “Policy (Mapping)“ — registry and KSI mapping icons, bottom layer “Canon (Rule Definition)“ — schema-locked SSOT icon. Each layer has a small badge on the right showing its change cadence (Runtime: PR + tests, Policy: PR + schema validation, Canon: ADR + governance review). Vertical arrows on the left side of the stack show “read-only consumption upward“ flowing from canon up to runtime; arrows on the right side show “evidence and drift findings flow downward“ back into the layers."}
+
 FMP separates rule authoring into **three distinct layers** so that policy
 intent, evaluation logic, and runtime enforcement can be reasoned about,
 versioned, and drift-detected independently. Mixing them — the typical
