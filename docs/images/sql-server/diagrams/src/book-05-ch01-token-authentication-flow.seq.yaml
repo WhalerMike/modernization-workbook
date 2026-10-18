@@ -1,0 +1,23 @@
+# Book 05, Chapter 1 — a connection with an Entra login (type E or X).
+column: 205
+gap: 36
+participants:
+  - {id: c, label: "User or application", sub: "SSMS, a driver or an application", tone: plain}
+  - {id: e, label: "Microsoft Entra ID", sub: "Conditional Access", tone: blue}
+  - {id: s, label: "SQL Server 2022+", sub: "Arc-enabled, Entra authentication on", tone: green}
+steps:
+  - {from: c, to: e, n: 1, tone: blue, label: "Sign in: password + MFA, Windows Hello, or a managed identity / app credential"}
+  - {from: e, to: e, label: "Evaluate Conditional Access: MFA, device compliance, named location, sign-in risk"}
+  - frame: "Policy satisfied"
+    tone: green
+    steps:
+      - {from: e, to: c, n: 2, dashed: true, tone: blue, label: "Access token for audience https://database.windows.net/ (about 60–90 minutes)"}
+      - {from: c, to: s, n: 3, tone: green, label: "TDS login carrying the access token"}
+      - {from: s, to: s, label: "Check signature, issuer and audience; map the user, app or one of its groups to an E or X login"}
+      - {from: s, to: c, dashed: true, tone: green, label: "Session opens with that login's permissions"}
+  - frame: "Policy not satisfied"
+    tone: red
+    steps:
+      - {from: e, to: c, dashed: true, tone: red, label: "No token is issued, so the connection never opens"}
+  - note: "No password reaches SQL Server, and MFA lives entirely in Entra ID. The engine has no MFA prompt to bypass."
+    tone: blue

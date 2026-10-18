@@ -1,0 +1,13 @@
+# Book 09, Chapter 1 — structural drift detection and behavioral telemetry feed
+# one remediation workflow.
+rankdir: LR
+graph: {nodesep: 0.25, ranksep: 0.55}
+nodes:
+  st: {tone: violet, width: 260, tag: "Structural · compliance monitoring", title: "Configuration drift", body: ["`LoginMode` changes from 1 to 2", "A new type-S, U or G login appears", "Arc agent offline or SQL extension unhealthy"], size: 12}
+  be: {tone: violet, width: 260, tag: "Behavioral · Defender for SQL + Entra ID", title: "Connection anomalies", body: ["Unusual source, time or sign-in risk", "Any NTLM or Kerberos authentication at all"], size: 12}
+  rem: {tone: red, width: 190, title: "Remediation workflow", body: ["=Regression is a compliance violation, not a note"], size: 12}
+  why: {tone: amber, width: 260, title: "An NTLM event means one of three things", body: ["The instance regressed", "It was never in the audit scope", "A new connection pattern appeared"], size: 12}
+edges:
+  - [st, rem]
+  - [be, rem]
+  - [be, why, {style: dashed, tone: amber, none: true}]

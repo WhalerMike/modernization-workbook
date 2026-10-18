@@ -1,0 +1,15 @@
+# Book 11 — the three destinations for a retained data domain.
+rankdir: TB
+nodes:
+  t:
+    kind: table
+    tone: slate
+    columns: ["", {text: "A · Stay on SQL Server", tone: blue}, {text: "B · Consolidate to PostgreSQL", tone: green}, {text: "C · Consolidate to Oracle", tone: amber}]
+    widths: [110, 195, 195, 195]
+    rows:
+      - ["What it is", "SQL Server 2022 or later, Arc-enabled, Entra token authentication", "PostgreSQL on a managed or self-run platform (for example Azure Database for PostgreSQL)", "Oracle where an existing Oracle authority and license already exist"]
+      - ["Authentication", "Entra OAuth 2.0 token", "Entra-native on Azure Database for PostgreSQL; elsewhere roles plus row-level security", "Integrated with the chosen identity plane"]
+      - ["Engine effort", {text: "Low: upgrade, Arc-enable, migrate logins", tone: green}, {text: "High: schema and T-SQL to PL/pgSQL", tone: red}, {text: "High: T-SQL to PL/SQL", tone: red}]
+      - ["Licensing", "SQL Server per-core continues", {text: "SQL Server licensing ends", tone: green}, "Low extra cost only under an existing site license"]
+      - ["Single source of truth", {text: "None: re-authenticates the silos", tone: amber}, {text: "High: logical replication, RLS, JSONB, foreign data wrappers", tone: green}, {text: "High: consolidates onto an existing authority", tone: green}]
+      - ["All three", {text: "Satisfy the forced requirement: authentication that is observable and conditionable in the identity plane. The choice is per data domain, not per agency.", tone: blue, span: 3}]

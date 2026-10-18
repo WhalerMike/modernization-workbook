@@ -29,6 +29,8 @@ listing:
 An upstream application that has migrated its user authentication to Entra ID but still uses a SQL Authentication service account to reach the database has not completed its transformation. The application chain must be addressed as a complete authentication path, not as independent layers.
 :::
 
+![The application chain has two authentication tracks, and both must leave Active Directory.](../../images/sql-server/diagrams/svg/book-08-application-chain.svg){fig-alt="User to middleware application to SQL Server: track 1, user sign-in, moves from LDAP bind to OIDC or SAML with Entra ID; track 2, the database connection, moves from a SQL login or Integrated Security to a managed identity or service principal."}
+
 ::: {.callout-tip}
 ## Download this book
 **[Book_08-bundle.docx](../../../downloads/Book_08-bundle.docx)** — every chapter of this book concatenated into one Word document. Regenerated on every site deploy.

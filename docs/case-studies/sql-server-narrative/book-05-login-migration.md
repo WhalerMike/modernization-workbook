@@ -6,13 +6,9 @@
 
 Login migration does not flip a switch. It runs both authentication paths simultaneously until the new path is proven, then retires the old path. The SQL Server accepts both type-U (Windows) and type-E (Entra) logins during the window. Legacy clients continue to present Kerberos or fall back to NTLM. Migrated clients authenticate to the cloud identity platform and present an OAuth 2.0 token.
 
-![Parallel-run pattern](../../images/sql-server/during-parallel.png)
+![The required three-phase parallel run for production.](../../images/sql-server/diagrams/svg/book-05-ch01-parallel-run.svg){fig-alt="Phase 1 creates an E or X login for every migrating login, phase 2 validates a real Entra sign-in for each, phase 3 disables but doesn't drop the old login, and after 30 days with no residual use the old login is dropped."}
 
-*Three phases: add the cloud-identity login alongside the Windows login, run both in parallel and validate against real traffic, then disable, observe, and drop the Windows login.*
-
-![Migration state](../../images/sql-server/migration-state.png)
-
-*Both authentication paths live simultaneously. The SQL Server accepts both type-U and type-E logins.*
+![Every legacy login type maps to an Entra principal.](../../images/sql-server/diagrams/svg/book-05-principal-mapping.svg){fig-alt="Type U Windows users map to type E Entra users, type G Windows groups to type X Entra groups, type S SQL logins to Entra applications (a managed identity or service principal), and sa is disabled and renamed rather than migrated."}
 
 ## Principal type mappings
 

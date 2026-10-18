@@ -1,0 +1,13 @@
+# Book 06, Chapter 1 — the two NTLM variants and their different timelines.
+rankdir: TB
+nodes:
+  t:
+    kind: table
+    tone: slate
+    columns: ["", {text: "NTLMv1 (and LM)", tone: red}, {text: "NTLMv2", tone: amber}]
+    widths: [140, 280, 280]
+    rows:
+      - ["Weakness", "Weak response key; responses can be cracked offline or replayed; no session signing", "Stronger HMAC-MD5 response with a client challenge; still no token Entra ID can see"]
+      - ["Where it shows up", "Very old clients or apps explicitly set to LM or NTLM; a critical finding if seen", "Most NTLM traffic in a modern estate: the four patterns on this page"]
+      - ["Program control", "Phase B: LAN Manager authentication level set to “Send NTLMv2 response only. Refuse LM & NTLM”", "Phase B: limited to documented exceptions. Phase C: blocked"]
+      - ["Program date", {text: "Target 2026-Q3, right after the Phase A assessment", tone: red}, {text: "Backstop 2027-04-01", tone: amber}]

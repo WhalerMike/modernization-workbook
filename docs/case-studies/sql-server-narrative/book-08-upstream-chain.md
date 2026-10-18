@@ -2,11 +2,7 @@
 
 **Applications that depend on Windows Authentication or LDAP**
 
-
-
-![Upstream chain](../../images/sql-server/during-parallel.png)
-
-*Upstream chain diagram.*
+![The application chain has two authentication tracks, and both must leave Active Directory.](../../images/sql-server/diagrams/svg/book-08-application-chain.svg){fig-alt="User to middleware application to SQL Server: track 1, user sign-in, moves from LDAP bind to OIDC or SAML with Entra ID; track 2, the database connection, moves from a SQL login or Integrated Security to a managed identity or service principal."}
 
 ## Why this book exists
 

@@ -1,0 +1,18 @@
+# Book 05 landing — every legacy login type maps to an Entra principal.
+rankdir: LR
+graph: {nodesep: 0.25, ranksep: 0.9}
+nodes:
+  u: {tone: slate, width: 210, tag: "Type U · Windows user", title: "`CONTOSO\\jsmith`", body: ["=Map the SAM account name to the Entra UPN first"], size: 12}
+  g: {tone: slate, width: 210, tag: "Type G · Windows group", title: "`CONTOSO\\SQL-Readers`", body: ["=Replaced by an Entra group (Book 07)"], size: 12}
+  s: {tone: red, width: 210, tag: "Type S · SQL login", title: "`app_svc` with a password", body: ["=The stored password disappears"], size: 12}
+  sa: {tone: red, width: 210, tag: "Built-in", title: "`sa`", body: ["=Not migrated"], size: 12}
+  e1: {tone: blue, width: 230, tag: "Type E · Entra user", title: "`jsmith@contoso.com`", body: ["=MFA and device checks by Conditional Access"], size: 12}
+  x: {tone: blue, width: 230, tag: "Type X · Entra group", title: "`SQL-PRD-APP01-Reader`", body: ["=Membership managed in Entra ID"], size: 12}
+  e2: {tone: blue, width: 230, tag: "Type E · Entra application", title: "Managed identity or service principal", body: ["=Certificate, not a secret, if it can't use a managed identity"], size: 12}
+  dis: {tone: green, width: 230, title: "Disabled and renamed", body: ["=Emergency access is a documented break-glass path"], size: 12}
+edges:
+  - [u, e1, {tone: blue}]
+  - [g, x, {tone: blue}]
+  - [s, e2, {tone: blue}]
+  - [sa, dis, {tone: green}]
+order: [[u, g, s, sa], [e1, x, e2, dis]]

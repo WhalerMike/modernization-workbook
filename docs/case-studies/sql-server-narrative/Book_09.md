@@ -29,6 +29,8 @@ listing:
 A transformation that achieves a completed state and then stops monitoring is a transformation that will regress. The transformed posture is not a permanent state achieved by a one-time action — it is an ongoing condition maintained by continuous monitoring, automated drift detection, and a governance process that treats regression as a compliance violation.
 :::
 
+![The transformed posture is a loop that never stops.](../../images/sql-server/diagrams/svg/book-09-continuous-compliance-loop.svg){fig-alt="Every scheduled run audits the full estate, writes per-instance compliance records and compares them with the last run; any drift is a compliance violation that opens remediation and returns to the satisfied state."}
+
 ::: {.callout-tip}
 ## Download this book
 **[Book_09-bundle.docx](../../../downloads/Book_09-bundle.docx)** — every chapter of this book concatenated into one Word document. Regenerated on every site deploy.

@@ -1,0 +1,18 @@
+# Book 08 landing — the application chain has two authentication tracks, and
+# both must leave Active Directory.
+rankdir: TB
+graph: {nodesep: 0.4, ranksep: 0.4}
+nodes:
+  user: {tone: plain, width: 200, title: "User", size: 12}
+  app: {tone: violet, width: 200, title: "Middleware application", body: ["=Web app, API, report server, ETL"], size: 12}
+  sql: {tone: green, width: 200, title: "SQL Server", body: ["=Entra logins only"], size: 12}
+  t1: {tone: blue, width: 300, tag: "Track 1 · user sign-in", title: "LDAP bind → OIDC or SAML with Entra ID", body: ["=Or App Proxy / Entra Domain Services when the app can't change (Chapter 1)"], size: 12}
+  t2: {tone: blue, width: 300, tag: "Track 2 · database connection", title: "SQL login or Integrated Security → managed identity", body: ["=Or a service principal with a certificate (Chapter 2)"], size: 12}
+  warn: {tone: red, width: 540, title: "Not done until both tracks are done", body: ["=An app whose users sign in with Entra ID but which still reaches SQL Server with a SQL login keeps the instance off the Entra-only posture."], size: 12}
+edges:
+  - [user, app, {label: "track 1"}]
+  - [app, sql, {label: "track 2"}]
+  - [user, t1, {style: dashed, tone: blue, none: true}]
+  - [app, t2, {style: dashed, tone: blue, none: true}]
+  - [sql, warn, {style: invis}]
+ranks: [[user, t1], [app, t2]]

@@ -13,10 +13,6 @@ lifecycle_review: 2027-01-01
 
 # Chapter 1 — The Closure Condition for the SQL Server Authentication Transformation
 
-![After: application-aware token](../../images/sql-server/after-token.png)
-
-![Token session lifecycle](../../images/sql-server/token-lifecycle.png)
-
 *Transformations do not complete — they achieve a posture, and a posture is something you keep proving.*
 
 ::: {.callout-note}
@@ -27,6 +23,8 @@ The five conditions that must be simultaneously satisfied for the SQL Server aut
 A transformation that achieves a completed state and then stops monitoring is a transformation that will regress. A SQL Server instance migrated to Entra ID-only authentication can be reconfigured to Mixed Mode by any administrator with sufficient permission. New SQL Authentication logins can be created. New Windows logins can be created if the instance remains domain-joined. The transformed posture is not a permanent state achieved through a one-time action — it is an ongoing condition maintained by continuous monitoring, automated drift detection, and a governance process that treats regression as a compliance violation rather than an operational preference.
 
 ## The Five Closure Conditions
+
+![The five closure conditions, and the check that proves each one.](../../images/sql-server/diagrams/svg/book-09-ch01-closure-conditions.svg){fig-alt="Table of five conditions: Windows authentication eliminated, SQL authentication eliminated, Entra ID the only way in, a cloud identity for the engine, and MFA for every human, each with how it is verified."}
 
 The transformation inventory defines the SQL Server authentication transformation as complete when five conditions are simultaneously satisfied across all production SQL Server instances in the estate. The first is that Windows Authentication is eliminated as an accepted login mechanism. No production instance is configured for Mixed Mode — all instances run in Windows Authentication Only mode, but with no active Windows-backed logins in `master`. The operational verification is the authentication mode registry value (`LoginMode = 1`) together with a query of `sys.server_principals` confirming zero type-U and type-G logins that are not in a disabled state.
 
@@ -41,6 +39,8 @@ The authentication-audit script (`the authentication audit script`) in continuou
 A per-instance compliance record that shows `LoginMode = 1`, zero active type-S logins, zero active type-U logins, zero active type-G logins, the `sa` account disabled and renamed, the Arc agent enrolled, the SQL extension deployed, and the Managed Identity active is a record that satisfies all five closure conditions for that instance. When all production instances carry satisfying compliance records, the SQL Server authentication transformation is verifiably closed for the estate. The continuous audit ensures closure is not a point-in-time claim — it is an ongoing verification.
 
 ## Drift Detection
+
+![Structural drift detection and behavioral telemetry feed one remediation workflow.](../../images/sql-server/diagrams/svg/book-09-ch01-drift-and-telemetry.svg){fig-alt="Configuration drift from compliance monitoring and connection anomalies from Defender for SQL and Entra ID both open the remediation workflow; an NTLM event means a regression, a scope gap or a new connection pattern."}
 
 Drift detection in the compliance-monitoring pipeline identifies conditions that would constitute regression before they become compliance violations. A drift event for SQL Server authentication takes one of several forms. An instance whose `LoginMode` value changes from 1 to 2 — Windows Authentication Only to Mixed Mode — indicates that someone has enabled Mixed Mode without authorization. A new type-S login appearing in `sys.server_principals` that was not present on the previous audit run indicates that a SQL Authentication login has been created.
 

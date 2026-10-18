@@ -8,9 +8,7 @@ You do not migrate the estate in the shape you discover it. After twenty years a
 
 The order matters because effort is finite and each release narrows the window. Migrating the logins of an instance to Entra ID, only to retire that instance three months later, is wasted work that also delays the instances that most need attention. The consolidation assessment classifies every instance **retain**, **consolidate**, or **retire** before any login is touched.
 
-![Estate assessment](../../images/sql-server/before-kerberos.png)
-
-*Assessment triages twenty years of forest sprawl into retain, consolidate, and retire before any login is touched.*
+![The estate is measured and reduced before any login moves.](../../images/sql-server/diagrams/svg/book-02-assess-before-migrating.svg){fig-alt="Discover the real estate, rationalize it and classify each instance; retained instances and consolidation targets go on to migration, while retired instances and consolidated sources do not."}
 
 ## Instance sprawl
 

@@ -1,0 +1,17 @@
+# Book 01, Chapter 1 — the identities the engine has historically run under,
+# and where each is anchored.
+rankdir: LR
+graph: {nodesep: 0.25, ranksep: 0.6}
+nodes:
+  dsa: {tone: slate, width: 220, tag: "Engine service account", title: "Domain user account", body: ["Named account, e.g. svc-sqlengine-prod", "Password set at install, rarely rotated"]}
+  gmsa: {tone: slate, width: 220, tag: "Engine service account", title: "Group managed service account", body: ["Password managed and rotated by AD", "Still an Active Directory object"]}
+  virt: {tone: slate, width: 220, tag: "Engine service account", title: "`NT SERVICE\\MSSQLSERVER`", body: ["Local virtual account", "Uses the computer's domain account on the network"]}
+  sa: {tone: red, width: 220, tag: "SQL Authentication", title: "The sa login", body: ["Stored in master, present on every instance", "Often kept as the emergency way in"]}
+  ad: {tone: slate, width: 210, title: "Active Directory", body: ["=Anchor for every Windows-based identity. When AD stops being the identity source, these lose their foundation."]}
+  master: {tone: red, width: 210, title: "master database", body: ["=No Entra sign-in event, no Conditional Access, no sign-in risk"]}
+edges:
+  - [dsa, ad]
+  - [gmsa, ad]
+  - [virt, ad]
+  - [sa, master, {tone: red}]
+order: [[dsa, gmsa, virt, sa]]

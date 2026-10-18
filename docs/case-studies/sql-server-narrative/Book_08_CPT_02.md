@@ -24,6 +24,8 @@ The final step in the application-chain migration is the SQL Server connection-s
 
 ## The Connection String Change
 
+![The connection-string change and the three gates in front of it.](../../images/sql-server/diagrams/svg/book-08-ch02-connection-string-migration.svg){fig-alt="Integrated Security and SQL-login connection strings become Authentication=Active Directory Managed Identity, or Active Directory Service Principal where no managed identity is available; the login, the role grant and a production-like test must all be in place first."}
+
 For an application using Windows Integrated Security — `Data Source=sqlserver;Initial Catalog=database;Integrated Security=True` — the connection string changes to use Entra ID authentication. For an application running on an Arc-enabled server with a system-assigned Managed Identity, it becomes `Data Source=sqlserver;Initial Catalog=database;Authentication=Active Directory Managed Identity`. The keyword tells the driver to acquire a token from the local Managed Identity rather than negotiate a Windows credential.
 
 For an application using a service principal with a client credential, the string uses `Authentication=Active Directory Service Principal`, with the client ID and credential supplied through an Azure Key Vault reference rather than inline. For SQL Authentication connections — `User ID=serviceaccount;Password=storedpassword` — migrating to Managed Identity or service principal eliminates the credential from the connection string entirely. In every case the stored secret is removed, which is the point: the connection no longer carries a credential the identity plane cannot see.
@@ -35,6 +37,8 @@ The change is the simplest step technically, but it cannot be executed on demand
 The application's service principal or Managed Identity must have been granted the appropriate SQL Server database role, so that authentication succeeds and authorization follows. And the change must have been tested in a non-production environment whose Arc and SQL Server extension configuration matches production, because token acquisition and validation depend on that infrastructure being present and correctly configured. A connection-string change that works against a developer's laptop but has never been exercised against a production-equivalent Arc and extension stack is not a tested change. Only when all three gates are satisfied is the production cutover safe to perform.
 
 ## The Azure.Identity SDK and DefaultAzureCredential
+
+![The order in which DefaultAzureCredential tries credentials, and what to use in production.](../../images/sql-server/diagrams/svg/book-08-ch02-credential-chain.svg){fig-alt="DefaultAzureCredential tries environment variables, workload identity, managed identity, then developer tools such as Visual Studio and the Azure CLI; production code should name the managed identity explicitly."}
 
 For .NET applications — a large fraction of the federal application estate — the `Azure.Identity` SDK provides the `DefaultAzureCredential` class, which implements an ordered credential chain. It attempts Managed Identity first, using the local IMDS endpoint when running on an Arc-enabled server, an Azure VM, or another Azure-hosted platform, then falls back to Azure CLI credentials, then Visual Studio credentials, then environment-variable-based service-principal credentials.
 

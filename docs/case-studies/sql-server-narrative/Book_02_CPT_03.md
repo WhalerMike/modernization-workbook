@@ -50,6 +50,8 @@ The dependency map is also the bridge to Book 08. The upstream applications that
 
 ## The Combined Picture
 
+![Utilization, version posture and dependencies, applied together, produce a defensible judgment per instance and per database.](../../images/sql-server/diagrams/svg/book-02-ch03-rationalization-lenses.svg){fig-alt="Three rationalization lenses, utilization, version and end-of-life posture, and dependency mapping, combining into one judgment for each instance and database."}
+
 No single lens produces the rationalization decision. An instance that is lightly utilized but load-bearing for a quarterly process is not a retirement candidate. An out-of-support instance with heavy utilization is an urgent consolidation target, not a leave-alone. A zombie database on an otherwise healthy instance is a local retirement that shrinks the migration surface without touching the host. The three lenses together produce, for each instance and each database, a defensible judgment — and that judgment is the input to the decision Chapter 4 records.
 
 ::: {.callout-note title="What Book 02 establishes — Chapter 3"}

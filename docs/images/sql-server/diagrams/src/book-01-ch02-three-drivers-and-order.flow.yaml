@@ -1,0 +1,30 @@
+# Book 01, Chapter 2 — three drivers end the inheritance; their dependencies
+# set the order of the series.
+rankdir: TB
+graph: {nodesep: 0.4, ranksep: 0.5}
+clusters:
+  - id: drivers
+    label: "Three drivers"
+    tone: plain
+    nodes: [d1, d2, d3]
+    order: [d1, d2, d3]
+
+  - id: order
+    label: "The order they impose"
+    tone: plain
+    nodes: [s1, s2, s3, s4]
+    order: [s1, s2, s3, s4]
+
+nodes:
+  d1: {tone: amber, width: 185, tag: "Driver one", title: "NTLM elimination", body: ["Microsoft deprecated NTLM in 2024 and is disabling it by default in stages", "Program backstop: 2027-04-01"], size: 12}
+  d2: {tone: blue, width: 185, tag: "Driver two", title: "Zero trust", body: ["OMB M-22-09; AC-17 and IA-2", "Conditional Access must sit in the sign-in path"], size: 12}
+  d3: {tone: slate, width: 185, tag: "Driver three", title: "Service-account identity", body: ["AD stops being the identity source", "The engine needs an identity that doesn't depend on AD"], size: 12}
+  s1: {tone: amber, width: 140, tag: "Book 02", title: "Assess and consolidate", body: ["=Only the surviving estate is migrated"], size: 12}
+  s2: {tone: blue, width: 140, tag: "Book 04", title: "Enable Arc", body: ["=Answers driver three"], size: 12}
+  s3: {tone: blue, width: 140, tag: "Book 05", title: "Migrate logins", body: ["=Answers driver two"], size: 12}
+  s4: {tone: green, width: 140, tag: "Book 06", title: "Eliminate NTLM", body: ["=Answers driver one"], size: 12}
+edges:
+  - [s1, s2]
+  - [s2, s3]
+  - [s3, s4]
+  - [d2, s2, {style: invis}]

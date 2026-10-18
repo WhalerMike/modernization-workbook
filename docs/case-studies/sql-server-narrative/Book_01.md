@@ -29,6 +29,8 @@ listing:
 SQL Server's Windows Authentication was an act of good engineering, not negligence. This book makes the case for replacement without making the case that what came before was foolish — a precise account of what Windows Authentication is, why it worked, and why it must now end.
 :::
 
+![The four ways a connection authenticates to SQL Server today, and which authority each depends on.](../../images/sql-server/diagrams/svg/book-01-authentication-paths-and-anchors.svg){fig-alt="A client connection authenticates by Kerberos via SSPI, by NTLM fallback when there is no SPN, or by a SQL login and password, all anchored in Active Directory or the instance's master database; only a Microsoft Entra token is anchored in Entra ID."}
+
 ::: {.callout-tip}
 ## Download this book
 **[Book_01-bundle.docx](../../../downloads/Book_01-bundle.docx)** — every chapter of this book concatenated into one Word document. Regenerated on every site deploy.

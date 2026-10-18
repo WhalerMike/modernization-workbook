@@ -1,0 +1,26 @@
+# Book 03 landing — what the authentication audit reads on each instance, and
+# where its output goes.
+rankdir: LR
+graph: {nodesep: 0.22, ranksep: 0.55}
+clusters:
+  - id: reads
+    label: "Read on every retained instance"
+    tone: slate
+    nodes: [r1, r2, r3, r4, r5]
+nodes:
+  r1: {tone: plain, width: 230, title: "Version, edition, host OS", body: ["=Plus domain-join state and Arc status"], size: 12}
+  r2: {tone: plain, width: 230, title: "Authentication mode", body: ["=`LoginMode` in the registry, checked against the running instance"], size: 12}
+  r3: {tone: plain, width: 230, title: "Every login by type", body: ["=`sys.server_principals`; sa enabled, disabled or renamed"], size: 12}
+  r4: {tone: plain, width: 230, title: "Engine service account and SPN", body: ["=Missing or wrong SPN = NTLM for every connection"], size: 12}
+  r5: {tone: plain, width: 230, title: "Linked servers", body: ["=`sys.servers`, `sys.linked_logins`"], size: 12}
+  rec: {tone: blue, width: 190, title: "Per-instance compliance record", body: ["=One structured record per instance, per run"], size: 12}
+  cat: {tone: amber, width: 190, title: "Arc-eligibility category", body: ["=1 ready · 2 enable Arc · 3 upgrade or except"], size: 12}
+  pipe: {tone: violet, width: 190, title: "Compliance monitoring", body: ["=Compares each run with the last; drift opens remediation"], size: 12}
+edges:
+  - [r1, rec]
+  - [r2, rec]
+  - [r3, rec]
+  - [r4, rec]
+  - [r5, rec]
+  - [rec, cat]
+  - [rec, pipe, {tone: violet}]

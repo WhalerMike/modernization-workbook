@@ -29,6 +29,8 @@ listing:
 SQL Server is one of the most common sources of NTLM traffic in a federal environment, and the reasons are more varied than most DBA teams expect. This book traces the Kerberos/NTLM-elimination program's three phases — assess, block-where-safe, eliminate — as they apply to the SQL Server workload, against the program's hard 2027-04-01 network-level block.
 :::
 
+![The three phases of the program's NTLM elimination, applied to SQL Server.](../../images/sql-server/diagrams/svg/book-06-ntlm-elimination-phases.svg){fig-alt="Phase A discovers and measures every NTLM source, phase B blocks LM and NTLMv1 where safe and fixes SPNs and linked servers, and phase C blocks NTLM estate-wide by the program backstop of 2027-04-01."}
+
 ::: {.callout-tip}
 ## Download this book
 **[Book_06-bundle.docx](../../../downloads/Book_06-bundle.docx)** — every chapter of this book concatenated into one Word document. Regenerated on every site deploy.

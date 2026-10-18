@@ -13,15 +13,14 @@ lifecycle_review: 2027-01-01
 
 # Chapter 1 — The Shape of Twenty Years
 
-![Estate assessment](../../images/sql-server/before-kerberos.png)
-
-
 *Why the estate you must transform is not the estate anyone remembers building.*
 
 ::: {.callout-note}
 ## In this chapter
 The three forms of sprawl that accumulate in a SQL Server estate over two decades across an Active Directory forest — instance sprawl, database sprawl, and forest entanglement — and why an authentication transformation that begins before this sprawl is assessed will migrate the authentication of servers that should not survive the transformation at all.
 :::
+
+![Instance sprawl, database sprawl and forest entanglement overlap, and together they set the scope of the transformation.](../../images/sql-server/diagrams/svg/book-02-ch01-three-forms-of-sprawl.svg){fig-alt="More instances than anyone thinks, databases nobody can account for, and dependencies across domains: together they mean the real migration scope is unknown until it is measured."}
 
 The previous book named the inheritance and the three drivers that require ending it. This book confronts a precondition that most authentication narratives skip entirely: you cannot migrate the authentication of an estate you have not first measured and rationalized. After twenty years across an Active Directory forest, the SQL Server estate is larger, older, and more entangled than any single team's mental model of it — and a meaningful fraction of it should not survive the transformation in its current shape.
 

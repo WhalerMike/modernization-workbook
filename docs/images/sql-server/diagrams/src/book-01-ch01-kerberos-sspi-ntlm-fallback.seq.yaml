@@ -1,0 +1,25 @@
+# Book 01, Chapter 1 — how a Windows-integrated SQL Server connection authenticates
+column: 200
+gap: 34
+participants:
+  - {id: client, label: "Client + driver", sub: "Integrated Security=True, SSPI (Negotiate)", tone: slate}
+  - {id: kdc, label: "Domain controller (KDC)", sub: "Active Directory", tone: slate}
+  - {id: sql, label: "SQL Server engine", sub: "service account holds the SPN", tone: slate}
+steps:
+  - {from: client, to: kdc, n: 1, label: "Request a service ticket for MSSQLSvc/host.domain:1433"}
+  - frame: "SPN registered on the engine's service account → Kerberos"
+    tone: green
+    steps:
+      - {from: kdc, to: client, n: 2, dashed: true, tone: green, label: "Service ticket, encrypted with the service account's key"}
+      - {from: client, to: sql, n: 3, tone: green, label: "Ticket presented in the TDS login (SSPI)"}
+      - {from: sql, to: sql, label: "Decrypt ticket, read the PAC (user SID + group SIDs), map to a Windows login"}
+      - {from: sql, to: client, dashed: true, tone: green, label: "Mutual authentication; session opens"}
+  - frame: "SPN missing or on the wrong account → silent NTLM fallback"
+    tone: amber
+    steps:
+      - {from: kdc, to: client, n: 2, dashed: true, tone: red, label: "Error: server principal unknown"}
+      - {from: client, to: sql, n: 3, tone: amber, label: "NTLM challenge-response (no ticket, no token)"}
+      - {from: sql, to: kdc, tone: amber, label: "Pass-through validation of the response by a DC"}
+      - {from: sql, to: client, dashed: true, tone: amber, label: "Session opens; no error is logged by default"}
+  - note: "Neither path issues anything Microsoft Entra ID can see, so Conditional Access, MFA and sign-in risk cannot apply."
+    tone: red

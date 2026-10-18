@@ -13,9 +13,6 @@ lifecycle_review: 2027-01-01
 
 # Chapter 1 — NTLMv1, NTLMv2, and the Patterns That Generate NTLM
 
-![NTLM elimination](../../images/sql-server/kerberos-lifecycle.png)
-
-
 *NTLM is a protocol, not a setting — so eliminating it means naming every connection pattern that produces it.*
 
 ::: {.callout-note}
@@ -28,6 +25,8 @@ NTLM is a protocol, not a configuration setting, and that distinction governs ev
 The most obvious is the missing-SPN case described in Book 01, where Kerberos negotiation fails because no SPN is registered and SSPI falls back to NTLM. But other patterns exist: cross-site connections, linked-server definitions using passthrough authentication, and application connections from hosts that have already been migrated to a non-domain-joined state. Each pattern has a different root cause and a different remediation path, and none of them can be addressed until it has been detected.
 
 ## NTLMv1: Blocked First, in Phase B
+
+![The two NTLM variants and their different timelines.](../../images/sql-server/diagrams/svg/book-06-ch01-ntlmv1-vs-ntlmv2.svg){fig-alt="NTLMv1 and LM have a program target of 2026-Q3, right after the Phase A assessment; NTLMv2 has a backstop of 2027-04-01."}
 
 NTLMv1 is the older of the two NTLM variants, and it carries well-documented cryptographic weaknesses that make it unsuitable for any authenticated environment. The NTLMv1 challenge-response uses an MD4 hash of the user's password as the response key, which is vulnerable to pass-the-hash attacks.
 
@@ -48,6 +47,8 @@ Unlike NTLMv1, NTLMv2 is not removed in Phase B. The Kerberos/NTLM-elimination p
 That space is not infinite, and the timeline is not flexible. The elimination program's enforcement phase sets 2027-04-01 as the date on which domain-wide NTLM restrictions take effect program-wide — the program's own NTLM-elimination backstop. SQL Server NTLMv2 connections must be migrated either to Kerberos as an interim posture — using Cloud Kerberos trust per the elimination program — or to Entra ID OAuth 2.0 authentication as the final destination, before that date.
 
 ## Pattern One: Missing or Incorrect SPN
+
+![The checks Negotiate makes before it settles for NTLM, and the connection pattern behind each failure.](../../images/sql-server/diagrams/svg/book-06-ch01-when-sspi-falls-back.svg){fig-alt="Decision flow for an Integrated Security connection: a client that isn't domain-joined, can't reach a KDC, or finds no correctly registered SPN falls back to NTLM; a linked server passing the caller on without delegation leads to NTLM or a failed hop; each failure is labelled with its pattern and fix."}
 
 The most common cause of NTLM fallback in SQL Server connections is a missing or incorrect SPN registration. When a client opens a connection using Windows Integrated Security, SSPI checks whether a valid SPN exists for the SQL Server endpoint. If the SPN is missing from the service account's AD object, SSPI cannot negotiate Kerberos and falls back to NTLM.
 

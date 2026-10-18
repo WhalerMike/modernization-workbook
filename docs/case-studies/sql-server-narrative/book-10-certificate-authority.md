@@ -2,11 +2,7 @@
 
 **The layer the other steps depend on but rarely name**
 
-
-
-![Certificate authority](../../images/sql-server/after-token.png)
-
-*Certificate authority diagram.*
+![The three places SQL Server depends on ADCS-issued certificates.](../../images/sql-server/diagrams/svg/book-10-adcs-dependencies.svg){fig-alt="ADCS, being decommissioned, issues TLS server certificates, the certificates behind certificate-mapped type C logins, and the certificates for certificate-based authentication used as an interim posture."}
 
 ## Why this book exists
 

@@ -1,0 +1,16 @@
+# Book 09, Chapter 1 — the five closure conditions and the check that proves
+# each one.
+rankdir: TB
+nodes:
+  t:
+    kind: table
+    tone: green
+    columns: ["", "Closure condition", "How it is verified"]
+    widths: [40, 300, 360]
+    rows:
+      - [{text: "1", tone: green}, "Windows Authentication eliminated as a login mechanism", "No active type-U or type-G logins; `LoginMode = 1` (Mixed Mode off)"]
+      - [{text: "2", tone: green}, "SQL Authentication eliminated", "No active type-S logins outside the exception registry; sa disabled and renamed"]
+      - [{text: "3", tone: green}, "Entra ID is the only way in", "Every login is type E or X"]
+      - [{text: "4", tone: green}, "The engine has a cloud identity", "Arc agent connected; SQL extension deployed; Entra authentication configured (managed identity on 2025, app registration on 2022)"]
+      - [{text: "5", tone: green}, "Every human uses MFA", "Entra sign-in logs: Conditional Access MFA satisfied for all human sign-ins to SQL Server"]
+      - [{text: "", tone: plain}, {text: "All five, on every production instance, at the same time — and still true on the next audit run.", tone: blue, span: 2}]

@@ -29,6 +29,8 @@ listing:
 The migration moves SQL Server's groups from Active Directory to Microsoft Entra ID, but it keeps group-based authorization. What changes is who maintains the groups and how. A group that maps to a single database role can keep itself current from HR-sourced attributes, which removes the helpdesk ticket. That only works if the attributes are trustworthy, the rules are tested, delegation is scoped, and privileged access is just-in-time. This book covers that design and the governance it needs.
 :::
 
+![The directory half of SQL Server access moves to Entra ID; the engine half barely changes.](../../images/sql-server/diagrams/svg/book-07-two-halves-of-access.svg){fig-alt="Outside the engine, the HR system of record feeds user attributes in Entra ID and Entra security groups; inside the engine, a type X group login maps to a user-defined database role and its permissions, unchanged from before."}
+
 ::: {.callout-tip}
 ## Download this book
 **[Book_07-bundle.docx](../../../downloads/Book_07-bundle.docx)** — every chapter of this book concatenated into one Word document. Regenerated on every site deploy.

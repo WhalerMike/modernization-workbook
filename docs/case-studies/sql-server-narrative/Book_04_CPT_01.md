@@ -13,15 +13,14 @@ lifecycle_review: 2027-01-01
 
 # Chapter 1 — What Arc Provides to SQL Server
 
-![Identity bridge](../../images/sql-server/during-overview.png)
-
-
 *Arc is not an end state — it is the bridge that gives the SQL Server engine a cloud-native identity.*
 
 ::: {.callout-note}
 ## In this chapter
 What the Connected Machine agent and its ARM resource identity actually establish, how the system-assigned Managed Identity provides a credential-free token through the local IMDS endpoint, the architecturally independent two-layer distinction between SQL-engine Entra authentication and OS-level Entra login, how the Managed Identity replaces the AD-anchored service account, why Arc's Managed Identity is preferred over a gMSA, a vault-stored service-principal secret, or certificate-based authentication, and — just as important — what Arc deliberately does not change.
 :::
+
+![What installing Arc changes, and what it deliberately doesn't.](../../images/sql-server/diagrams/svg/book-04-ch01-what-arc-changes.svg){fig-alt="Arc provides an Azure Resource Manager resource for the server and a system-assigned managed identity served by the local agent; it doesn't change how Windows-integrated connections authenticate or convert any existing login."}
 
 When most people encounter Microsoft Azure Arc in a cloud modernization program, they encounter it as a management capability. Arc lets you see on-premises servers in the Azure portal, apply Azure Policy to them, and manage them through Azure Resource Manager. That is accurate, but it understates the architectural significance of Arc for this specific transformation.
 
@@ -64,6 +63,8 @@ Do not block SQL Server engine Entra authentication migration (Layer 1) on domai
 :::
 
 ## The Managed Identity as Service Account Replacement
+
+![Where an Arc-enabled instance's Entra identity comes from in SQL Server 2022 and in SQL Server 2025.](../../images/sql-server/diagrams/svg/book-04-ch01-instance-identity-2022-vs-2025.svg){fig-alt="SQL Server 2022 uses an Entra app registration with a certificate stored in Azure Key Vault, for inbound authentication only; SQL Server 2025 uses the Arc server's system-assigned managed identity for inbound and outbound, which needs Microsoft Graph read permissions granted by a Privileged Role Administrator."}
 
 The SQL Server engine process typically runs as `NT SERVICE\MSSQLSERVER` on most standard installations, or as a domain service account or gMSA on installations where the default virtual account was changed. When the Arc agent is installed and the Azure extension for SQL Server is configured, the engine can use the server's system-assigned Managed Identity to authenticate to Azure services.
 
