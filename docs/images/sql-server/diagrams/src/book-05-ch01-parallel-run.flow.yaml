@@ -1,0 +1,12 @@
+# Book 05, Chapter 1 — the required three-phase parallel run for production.
+rankdir: LR
+graph: {nodesep: 0.3, ranksep: 0.35}
+nodes:
+  p1: {tone: blue, width: 160, tag: "Phase 1", title: "Create", body: ["An E or X login for every migrating login", "Verify the AD-to-Entra mapping first", "Unconfirmable principal = blocking finding"], size: 12}
+  p2: {tone: blue, width: 160, tag: "Phase 2", title: "Validate", body: ["A real Entra sign-in succeeds for each new login", "Old logins untouched until it does"], size: 12}
+  p3: {tone: amber, width: 160, tag: "Phase 3", title: "Disable, don't drop", body: ["Disable the Windows or SQL login", "Observe for 30 days", "Re-enable instantly if something breaks"], size: 12}
+  p4: {tone: green, width: 130, tag: "Then", title: "Drop", body: ["=No residual use seen in the window"], size: 12}
+edges:
+  - [p1, p2]
+  - [p2, p3]
+  - [p3, p4, {label: "30 days"}]

@@ -1,0 +1,26 @@
+# Book 06, Chapter 1 — the checks Negotiate makes before it settles for NTLM,
+# and the connection pattern behind each failure.
+rankdir: TB
+graph: {nodesep: 0.35, ranksep: 0.3}
+nodes:
+  start: {kind: pill, tone: plain, text: "Connection with Integrated Security=True", width: 320}
+  q1: {kind: pill, tone: slate, text: "Is the client host domain-joined, with a domain identity?", width: 300}
+  q2: {kind: pill, tone: slate, text: "Can the client reach a KDC for the server's domain (port 88)?", width: 300}
+  q3: {kind: pill, tone: slate, text: "Is MSSQLSvc/host:port registered, once, on the engine's service account?", width: 300}
+  q4: {kind: pill, tone: slate, text: "Does a linked server pass the caller's identity on without Kerberos delegation?", width: 300}
+  p4: {tone: amber, width: 200, tag: "Pattern 4", title: "Non-domain-joined app host", body: ["=Fix: managed identity or service principal connection string"], size: 12}
+  p2: {tone: amber, width: 200, tag: "Pattern 2", title: "Cross-site connection", body: ["=Fix: KDC reachability, or move to Entra tokens"], size: 12}
+  p1: {tone: amber, width: 200, tag: "Pattern 1", title: "Missing or wrong SPN", body: ["=Fix: `setspn -S` on the right account"], size: 12}
+  p3: {tone: amber, width: 200, tag: "Pattern 3", title: "Linked-server passthrough", body: ["=Fix: a defined security context (specific login or managed identity)"], size: 12}
+  ok: {tone: green, width: 240, title: "Kerberos", body: ["=Still Windows Authentication: migrate the login in Book 05"], size: 12}
+edges:
+  - [start, q1]
+  - [q1, q2, {label: "yes"}]
+  - [q2, q3, {label: "yes"}]
+  - [q3, q4, {label: "yes"}]
+  - [q4, ok, {tone: green, label: "no"}]
+  - [q1, p4, {tone: amber, label: "no → NTLM"}]
+  - [q2, p2, {tone: amber, label: "no → NTLM"}]
+  - [q3, p1, {tone: amber, label: "no → NTLM"}]
+  - [q4, p3, {tone: amber, label: "yes → NTLM or a failed hop"}]
+ranks: [[q1, p4], [q2, p2], [q3, p1], [q4, p3]]

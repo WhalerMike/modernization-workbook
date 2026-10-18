@@ -6,13 +6,9 @@
 
 In the transformed state, no domain controller participates in SQL Server authentication. The client authenticates to the cloud identity platform with multi-factor authentication. Conditional Access evaluates identity and device. An OAuth 2.0 token is issued. The SQL Server validates the token. The token carries context — how you authenticated, which groups you belong to, whether your device is compliant.
 
-![After: application-aware token](../../images/sql-server/after-token.png)
+![How a connection authenticates before, during and after the transformation.](../../images/sql-server/diagrams/svg/series-01-before-during-after.svg){fig-alt="Before: a domain-joined client gets a Kerberos ticket or falls back to NTLM, invisible to Entra ID. During: legacy and migrated clients coexist, with two authorities and old logins disabled after validation. After: users, apps and managed identities get an Entra token under Conditional Access, SQL Server accepts only Entra logins, and every sign-in is logged."}
 
-*No domain controller in the authentication path. Conditional Access evaluates identity and device. The SQL Server validates the token.*
-
-![Token session lifecycle](../../images/sql-server/token-lifecycle.png)
-
-*Auth + MFA to the cloud identity platform, Conditional Access evaluation, signed token issued, token presented to SQL, validation, connection open, and silent token refresh.*
+![A connection with an Entra login: the client gets a token for the SQL audience and the engine validates it.](../../images/sql-server/diagrams/svg/book-05-ch01-token-authentication-flow.svg){fig-alt="Sequence diagram between client, Microsoft Entra ID and SQL Server: the client signs in, Conditional Access is evaluated, a token for https://database.windows.net/ is issued, and SQL Server validates it and maps it to a type E or X login."}
 
 ## Closure conditions
 

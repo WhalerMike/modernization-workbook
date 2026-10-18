@@ -8,9 +8,7 @@ Azure Arc Connected Machine agent provides the system-assigned Managed Identity 
 
 The engine process acquires a token from IMDS without a stored credential. The token is presented to Entra ID. Conditional Access evaluates the request. The token is issued and validated by SQL Server. No password traverses the network. No credential is stored in a configuration file.
 
-![Identity bridge](../../images/sql-server/during-overview.png)
-
-*The identity bridge: Arc provides the managed identity; the engine acquires a token from IMDS; Conditional Access evaluates; SQL Server validates.*
+![What Azure Arc connects: the on-premises host, Azure Resource Manager and Microsoft Entra ID.](../../images/sql-server/diagrams/svg/book-04-arc-identity-bridge.svg){fig-alt="The Connected Machine agent on the on-premises host projects it into Azure Resource Manager; the Azure extension for SQL Server and the instance's Entra identity let the engine validate Entra tokens."}
 
 ## Layer 1 and Layer 2
 

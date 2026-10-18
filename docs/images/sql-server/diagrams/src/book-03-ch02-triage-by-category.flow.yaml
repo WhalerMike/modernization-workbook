@@ -1,0 +1,13 @@
+# Book 03, Chapter 2 — the triage action for each category, and the path from
+# Category 3 and 2 to Category 1.
+rankdir: TB
+graph: {nodesep: 0.35, ranksep: 0.5}
+nodes:
+  c3: {tone: red, width: 330, tag: "Category 3", title: "Version upgrade required", body: ["Upgrade to SQL Server 2022 or later, or", "File an exception with a sunset date", "The 2027-04-01 NTLM block ignores exceptions"], size: 12}
+  c2: {tone: amber, width: 330, tag: "Category 2", title: "Arc-eligible, not enabled", body: ["Deploy the Arc agent and SQL extension", "Prioritize by login count, SQL logins, and missing SPNs"], size: 12}
+  c1: {tone: green, width: 330, tag: "Category 1", title: "Entra-auth ready", body: ["Infrastructure done", "Migrate logins from the audit's login inventory"], size: 12}
+  mig: {tone: blue, width: 150, title: "Login migration", body: ["=Book 05"], size: 12}
+edges:
+  - [c3, c2, {label: "after upgrade"}]
+  - [c2, c1, {label: "next audit run"}]
+  - [c1, mig, {tone: blue}]

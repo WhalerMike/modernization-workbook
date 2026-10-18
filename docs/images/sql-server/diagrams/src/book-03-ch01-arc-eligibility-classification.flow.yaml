@@ -1,0 +1,19 @@
+# Book 03, Chapter 1 — how the audit assigns an Arc-eligibility category.
+rankdir: TB
+graph: {nodesep: 0.3, ranksep: 0.38}
+nodes:
+  q0: {kind: pill, tone: slate, text: "Failover cluster instance?", width: 260}
+  fci: {tone: red, width: 210, title: "Not supported for Entra authentication", body: ["=Re-platform (standalone or availability group) or file an exception"], size: 12}
+  q1: {kind: pill, tone: slate, text: "SQL Server 2022 or later?", width: 260}
+  c3: {tone: red, width: 210, tag: "Category 3", title: "Upgrade or except", body: ["=Can't create Entra logins on any older version. Usually a consolidate or retire candidate."], size: 12}
+  q2: {kind: pill, tone: slate, text: "Arc agent and Azure extension for SQL Server installed, Entra authentication configured?", width: 300}
+  c2: {tone: amber, width: 210, tag: "Category 2", title: "Arc-eligible, not enabled", body: ["=Deploy Arc (Book 04). The next audit run re-classifies it."], size: 12}
+  c1: {tone: green, width: 210, tag: "Category 1", title: "Entra-auth ready", body: ["=Start the login migration from the audit's login inventory (Book 05)."], size: 12}
+edges:
+  - [q0, fci, {tone: red, label: "yes"}]
+  - [q0, q1, {label: "no"}]
+  - [q1, c3, {tone: red, label: "no"}]
+  - [q1, q2, {label: "yes"}]
+  - [q2, c2, {tone: amber, label: "no"}]
+  - [q2, c1, {tone: green, label: "yes"}]
+  - [c2, c1, {style: dashed, tone: green, label: "after Arc", attrs: "constraint=false"}]

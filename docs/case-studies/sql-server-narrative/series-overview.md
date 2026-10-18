@@ -2,7 +2,7 @@
 
 **From Windows Authentication to cloud identity — a ten-book reading sequence on transforming the SQL Server estate, from twenty years of forest sprawl to cloud-only authentication**
 
-![Series cover](../../images/sql-server/series-cover-original.png)
+![The eleven books in the order they depend on each other.](../../images/sql-server/diagrams/svg/series-00-reading-path.svg){fig-alt="The eleven books in stages: why and what survives (Books 01 to 03), migrating the engine (Books 04 to 06), and extending outward then sustaining (Books 07 to 09), with Book 10, the certificate authority dependency, and Book 11, the platform question, alongside the whole series."}
 
 ## Status
 
@@ -20,47 +20,29 @@ Book 01 names the inheritance: SQL Server’s Windows Authentication was good en
 
 ## The transformation in diagrams
 
-### Before — Kerberos overview
+### Before, during and after
 
-![Before: Kerberos overview](../../images/sql-server/before-kerberos.png)
+![How a connection authenticates before, during and after the transformation.](../../images/sql-server/diagrams/svg/series-01-before-during-after.svg){fig-alt="Before: a domain-joined client gets a Kerberos ticket or falls back to NTLM, invisible to Entra ID. During: legacy and migrated clients coexist, with two authorities and old logins disabled after validation. After: users, apps and managed identities get an Entra token under Conditional Access, SQL Server accepts only Entra logins, and every sign-in is logged."}
 
-Every party is domain-joined. The domain controller is the authentication authority. Kerberos is the protocol. NTLM is the silent fallback when the service principal name is missing. The cloud identity plane is not in the path.
+Before, every party is domain-joined, the domain controller is the authentication authority, and NTLM is the silent fallback when the service principal name is missing; the cloud identity plane never sees the sign-in. During the parallel run, legacy and migrated clients coexist and the SQL Server accepts both kinds of login. After, the client authenticates to Microsoft Entra ID, Conditional Access evaluates the request, and the SQL Server validates the token.
 
-### Kerberos session lifecycle
+### Kerberos and the NTLM fallback
 
-![Kerberos session lifecycle](../../images/sql-server/kerberos-lifecycle.png)
+![A Windows-integrated connection: SSPI negotiates Kerberos when the SPN resolves, and silently falls back to NTLM when it doesn't.](../../images/sql-server/diagrams/svg/book-01-ch01-kerberos-sspi-ntlm-fallback.svg){fig-alt="Sequence diagram between client, domain controller and SQL Server: the client requests a service ticket for the SQL Server SPN and presents it to the engine; if the SPN is missing, Negotiate falls back to an NTLM challenge-response."}
 
-The three-party exchange: AS-REQ, TGT, TGS-REQ with SPN, service ticket, AP-REQ to SQL, validation, AP-REP. NTLM is the silent fallback when the SPN is missing.
+The client asks the domain controller for a service ticket for the SQL Server SPN and presents it in the TDS login. When the SPN is missing, Negotiate drops to NTLM challenge-response without logging an error by default.
 
-### During — two paths overview
+### The parallel-run pattern
 
-![During: two paths overview](../../images/sql-server/during-overview.png)
+![The required three-phase parallel run for production.](../../images/sql-server/diagrams/svg/book-05-ch01-parallel-run.svg){fig-alt="Phase 1 creates an E or X login for every migrating login, phase 2 validates a real Entra sign-in for each, phase 3 disables but doesn't drop the old login, and after 30 days with no residual use the old login is dropped."}
 
-Legacy clients still use Kerberos or fall back to NTLM. Migrated clients authenticate to the cloud identity platform and present a token. The SQL Server accepts both during the parallel-run window.
+Create the Entra login alongside the Windows login, validate a real Entra sign-in, disable the old login and observe for 30 days, and only then drop it.
 
-### During — parallel-run pattern
+### Token authentication
 
-![During: parallel-run pattern](../../images/sql-server/during-parallel.png)
+![A connection with an Entra login: the client gets a token for the SQL audience and the engine validates it.](../../images/sql-server/diagrams/svg/book-05-ch01-token-authentication-flow.svg){fig-alt="Sequence diagram between client, Microsoft Entra ID and SQL Server: the client signs in, Conditional Access is evaluated, a token for https://database.windows.net/ is issued, and SQL Server validates it and maps it to a type E or X login."}
 
-Three phases: add the cloud-identity login alongside the Windows login, run both in parallel and validate against real traffic, then disable, observe, and drop the Windows login.
-
-### Migration state
-
-![Migration state](../../images/sql-server/migration-state.png)
-
-Both authentication paths live simultaneously. Legacy clients use Kerberos or NTLM. Migrated clients present an OAuth token. The SQL Server accepts both type-U and type-E logins.
-
-### After — application-aware token authentication
-
-![After: application-aware token](../../images/sql-server/after-token.png)
-
-No domain controller in the authentication path. The client authenticates to the cloud identity platform with multi-factor authentication. Conditional Access evaluates identity and device. An OAuth 2.0 token is issued. The SQL Server validates the token. The token carries context — how you authenticated, which groups you belong to, whether your device is compliant.
-
-### Token session lifecycle
-
-![Token session lifecycle](../../images/sql-server/token-lifecycle.png)
-
-Auth + MFA to the cloud identity platform, Conditional Access evaluation, signed token issued, token presented to SQL, validation, connection open, and silent token refresh.
+The client signs in to Microsoft Entra ID, Conditional Access evaluates MFA, device, location and risk, and a token for the SQL Server audience is issued. The SQL Server checks the token and maps it to an Entra login.
 
 ## The decision, in one page
 

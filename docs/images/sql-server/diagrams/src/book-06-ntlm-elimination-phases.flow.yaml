@@ -1,0 +1,11 @@
+# Book 06 landing — the three phases of the program's Kerberos/NTLM elimination,
+# applied to SQL Server.
+rankdir: LR
+graph: {nodesep: 0.3, ranksep: 0.35}
+nodes:
+  a: {tone: slate, width: 200, tag: "Phase A · discover", title: "Measure every NTLM source", body: ["Authentication audit: SPNs, login types, service accounts", "NTLM events on SQL Server hosts", "Baseline in compliance monitoring"], size: 12}
+  b: {tone: amber, width: 200, tag: "Phase B · restrict", title: "Block where safe", body: ["Refuse LM and NTLMv1 (program target 2026-Q3)", "Fix SPNs; give linked servers a defined security context", "NTLMv2 only for documented exceptions"], size: 12}
+  c: {tone: red, width: 200, tag: "Phase C · eliminate", title: "NTLM blocked estate-wide", body: ["Program backstop: 2027-04-01", "Anything still needing NTLM fails at the LSA, before SQL Server sees it"], size: 12}
+edges:
+  - [a, b]
+  - [b, c]

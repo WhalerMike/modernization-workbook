@@ -1,0 +1,14 @@
+# Book 06, Chapter 2 — the evidence Phase A combines into the NTLM baseline.
+rankdir: LR
+graph: {nodesep: 0.25, ranksep: 0.6}
+nodes:
+  aud: {tone: slate, width: 240, tag: "Configuration", title: "Authentication audit", body: ["=Instance inventory, Arc category, login types, SPN status, engine service account"], size: 12}
+  sec: {tone: slate, width: 240, tag: "What actually happened", title: "Security log on SQL Server hosts", body: ["=Events 4624 / 4625, logon type 3, authentication package NTLM"], size: 12}
+  ntlm: {tone: slate, width: 240, tag: "Who and from where", title: "NTLM operational log", body: ["=With the “Restrict NTLM” audit policies on servers and domain controllers"], size: 12}
+  link: {tone: slate, width: 240, tag: "Hidden hops", title: "Linked-server definitions", body: ["=`sys.servers`, `sys.linked_logins`, plus traffic between instances"], size: 12}
+  base: {tone: violet, width: 200, title: "Per-instance NTLM baseline", body: ["=Ingested by compliance monitoring; Phases B and C measure against it"], size: 12}
+edges:
+  - [aud, base]
+  - [sec, base]
+  - [ntlm, base]
+  - [link, base]

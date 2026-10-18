@@ -1,0 +1,60 @@
+# Book 01 landing — the four ways a connection can authenticate to SQL Server,
+# which authority each depends on, and whether the cloud identity plane sees it.
+rankdir: LR
+graph: {nodesep: 0.28, ranksep: 0.7}
+nodes:
+  client:
+    kind: card
+    tone: plain
+    width: 150
+    title: "Client connection"
+    body: ["=User, app, job or linked server"]
+  kerb:
+    tone: slate
+    width: 230
+    tag: "Windows Authentication"
+    title: "Kerberos via SSPI"
+    body: ["Needs an SPN on the engine's service account", "Ticket from the domain controller (KDC)"]
+  ntlm:
+    tone: amber
+    width: 230
+    tag: "Windows Authentication"
+    title: "NTLM fallback"
+    body: ["Used silently when Kerberos can't be negotiated", "Challenge-response, no ticket"]
+  sqlauth:
+    tone: red
+    width: 230
+    tag: "SQL Authentication"
+    title: "Login and password in master"
+    body: ["Includes the built-in sa login", "Password checked by the engine itself"]
+  entra:
+    tone: blue
+    width: 230
+    tag: "Destination"
+    title: "Microsoft Entra token"
+    body: ["OAuth 2.0 access token issued by Entra ID", "Conditional Access evaluated before issue"]
+  ad:
+    tone: slate
+    width: 200
+    title: "Active Directory"
+    body: ["=Authority being retired as the identity source"]
+  master:
+    tone: red
+    width: 200
+    title: "The instance's master database"
+    body: ["=Invisible to the cloud identity plane"]
+  entraid:
+    tone: blue
+    width: 200
+    title: "Microsoft Entra ID"
+    body: ["=MFA, device compliance, sign-in risk, sign-in logs"]
+edges:
+  - [client, kerb]
+  - [client, ntlm]
+  - [client, sqlauth]
+  - [client, entra, {tone: blue}]
+  - [kerb, ntlm, {style: dashed, tone: amber, label: "no SPN", xlabel: true, attrs: "constraint=false"}]
+  - [kerb, ad]
+  - [ntlm, ad]
+  - [sqlauth, master, {tone: red}]
+  - [entra, entraid, {tone: blue}]

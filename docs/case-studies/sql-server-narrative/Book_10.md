@@ -29,6 +29,8 @@ listing:
 This book documents a **"Not Yet Defined"** gap from the transformation inventory. The content is analytical and motivational — it identifies the dependencies, names the gap, and describes what the as-yet-unwritten ADCS-migration architecture decision must address. `Get-CertBasedAuthAudit.ps1` is the discovery instrument. Do not cite this book as normative governance for ADCS-migration decisions.
 :::
 
+![The three places SQL Server depends on ADCS-issued certificates.](../../images/sql-server/diagrams/svg/book-10-adcs-dependencies.svg){fig-alt="ADCS, being decommissioned, issues TLS server certificates, the certificates behind certificate-mapped type C logins, and the certificates for certificate-based authentication used as an interim posture."}
+
 ::: {.callout-tip}
 ## Download this book
 **[Book_10-bundle.docx](../../../downloads/Book_10-bundle.docx)** — every chapter of this book concatenated into one Word document. Regenerated on every site deploy.

@@ -1,0 +1,18 @@
+# Book 08, Chapter 2 — the connection-string change and the three gates in
+# front of it (Microsoft.Data.SqlClient keywords).
+rankdir: TB
+graph: {nodesep: 0.3, ranksep: 0.35}
+nodes:
+  t:
+    kind: table
+    tone: slate
+    columns: ["Today", "Becomes", "Where the credential lives"]
+    widths: [225, 265, 185]
+    first_bold: false
+    rows:
+      - ["`Integrated Security=True`", {text: "`Authentication=Active Directory Managed Identity`", tone: green}, "Nowhere: the platform or Arc agent issues the token"]
+      - ["`User ID=app_svc; Password=…`", {text: "`Authentication=Active Directory Managed Identity`", tone: green}, "Nowhere; the password is deleted"]
+      - ["Either, where no managed identity is available", {text: "`Authentication=Active Directory Service Principal`", tone: blue}, "A certificate (preferred) or secret, from Azure Key Vault, never inline"]
+  gates: {tone: amber, width: 660, tag: "Gates", title: "All three hold before the change ships", body: ["The Entra login for the identity already exists on the instance", "The identity has been granted its database role", "The change was tested in non-production whose Arc and SQL extension setup matches production"], size: 12}
+edges:
+  - [t, gates, {style: invis}]

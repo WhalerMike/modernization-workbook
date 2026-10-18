@@ -1,0 +1,18 @@
+# Book 09 landing — the transformed posture is a loop that never stops.
+rankdir: LR
+graph: {nodesep: 0.45, ranksep: 0.5}
+nodes:
+  audit: {tone: blue, width: 175, tag: "Every scheduled run", title: "Authentication audit", body: ["=Full estate, not a sample"], size: 12}
+  rec: {tone: blue, width: 175, title: "Per-instance compliance record", body: ["=LoginMode, login types, sa, Arc, extension, identity"], size: 12}
+  cmp: {tone: violet, width: 175, title: "Compare with last run", body: ["=Plus Defender for SQL and Entra sign-in logs"], size: 12}
+  drift: {tone: red, width: 175, title: "Drift = compliance violation", body: ["=Opens the remediation workflow"], size: 12}
+  fix: {tone: amber, width: 175, title: "Remediate", body: ["=Back to the satisfied state"], size: 12}
+edges:
+  - [audit, rec]
+  - [rec, cmp]
+  - [cmp, drift, {tone: red, label: "changed"}]
+  - [drift, fix, {attrs: "constraint=false"}]
+  - [fix, audit, {attrs: "constraint=false", label: "next run"}]
+  - [cmp, audit, {tone: green, style: dashed, label: "no drift", xlabel: true, attrs: "constraint=false"}]
+order: [[audit, rec, cmp]]
+ranks: [[drift, fix]]

@@ -1,0 +1,26 @@
+# Book 07 landing — the directory half of SQL Server access moves to Entra ID;
+# the engine half barely changes.
+rankdir: TB
+graph: {nodesep: 0.6, ranksep: 0.3}
+clusters:
+  - id: out
+    label: "Outside the engine (changes)"
+    tone: blue
+    nodes: [hr, entra, grp]
+  - id: in
+    label: "Inside the engine (unchanged)"
+    tone: slate
+    nodes: [login, role, perm]
+nodes:
+  hr: {tone: plain, width: 380, title: "HR system of record", body: ["=Joins, moves and leaves happen here first"], size: 12}
+  entra: {tone: blue, width: 380, title: "User attributes in Entra ID", body: ["=Written only by automated provisioning"], size: 12}
+  grp: {tone: blue, width: 380, title: "Entra security group", body: ["=Dynamic rule, assigned members, or PIM-eligible members"], size: 12}
+  login: {tone: slate, width: 380, title: "Group login (type X)", body: ["=Replaces the old `DOMAIN\\group` login"], size: 12}
+  role: {tone: slate, width: 380, title: "User-defined database role", body: ["=One group, one role, one database"], size: 12}
+  perm: {tone: slate, width: 380, title: "Permissions", body: ["=`GRANT`, `DENY`, ownership chains and module signing work as before"], size: 12}
+edges:
+  - [hr, entra]
+  - [entra, grp]
+  - [grp, login, {tone: blue, label: "granted through"}]
+  - [login, role]
+  - [role, perm]

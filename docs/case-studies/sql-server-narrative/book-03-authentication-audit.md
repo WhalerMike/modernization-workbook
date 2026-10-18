@@ -2,11 +2,7 @@
 
 **What is actually using Windows Authentication, SQL Authentication, and NTLM**
 
-
-
-![Authentication audit](../../images/sql-server/before-kerberos.png)
-
-*Authentication audit diagram.*
+![What the authentication audit reads on each instance, and where its output goes.](../../images/sql-server/diagrams/svg/book-03-audit-inputs-and-record.svg){fig-alt="On every retained instance the audit reads the version, edition and host OS, the authentication mode, every login by type, the engine service account and SPN, and linked servers; it produces a per-instance compliance record and an Arc-eligibility category, both sent to compliance monitoring."}
 
 ## Why this book exists
 

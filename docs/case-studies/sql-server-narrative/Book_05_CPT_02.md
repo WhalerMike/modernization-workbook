@@ -20,6 +20,8 @@ lifecycle_review: 2027-01-01
 The five decisions the engine-authentication decision records — that consolidation gates auth migration, that the parallel-run sequence is required, that SQL Authentication is eliminated and `sa` disabled and renamed, that pre-2022 instances are upgrade-or-except with a Certificate-Based Authentication interim posture, and that the per-instance compliance record is the closure artifact.
 :::
 
+![The five positions of the engine-authentication decision, in operational order, ending in the closure record.](../../images/sql-server/diagrams/svg/book-05-ch02-five-decisions.svg){fig-alt="Five decisions in order: consolidation gates migration, parallel run required, SQL authentication eliminated with sa disabled and renamed, pre-2022 instances upgraded or excepted, and the per-instance compliance record as the closure artifact."}
+
 The migration pattern in Chapter 1 covers the core engineering case — Windows logins migrated to type-E logins through `FROM EXTERNAL PROVIDER` — but a pattern alone leaves a set of governance positions that a narrative is not the instrument to settle. Those positions require a governance decision rather than a narrative argument. That decision — the SQL Server engine-authentication decision — is currently proposed, and it stands as the engine-layer companion to the Kerberos/NTLM-elimination program (the protocol layer) and the Arc non-domain-join requirement (the server and OS layer). It does not defer these questions: it answers all five, in operational sequence, and this chapter presents each as the decision records it.
 
 ## Decision 1 — Consolidation Precedes and Gates Auth Migration

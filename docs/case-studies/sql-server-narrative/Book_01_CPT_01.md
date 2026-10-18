@@ -13,10 +13,6 @@ lifecycle_review: 2027-01-01
 
 # Chapter 1 — What Windows Authentication Actually Is
 
-![Kerberos overview](../../images/sql-server/before-kerberos.png)
-
-![Kerberos session lifecycle](../../images/sql-server/kerberos-lifecycle.png)
-
 *The inheritance, named precisely, before the case for replacing it.*
 
 ::: {.callout-note}
@@ -25,6 +21,8 @@ How SQL Server delegates authentication to the Windows security subsystem throug
 :::
 
 ## The Kerberos Foundation
+
+![A Windows-integrated connection: SSPI negotiates Kerberos when the SPN resolves, and silently falls back to NTLM when it doesn't.](../../images/sql-server/diagrams/svg/book-01-ch01-kerberos-sspi-ntlm-fallback.svg){fig-alt="Sequence diagram between client, domain controller and SQL Server: the client requests a service ticket for the SQL Server SPN and presents it to the engine; if the SPN is missing, Negotiate falls back to an NTLM challenge-response."}
 
 SQL Server in Windows Authentication mode delegates authentication entirely to the Windows security subsystem. It does not implement its own password verification, its own cryptographic challenge-response, or its own session token model. When a client opens a connection with `Integrated Security=True`, the driver passes control to the Security Support Provider Interface — SSPI.
 
@@ -51,6 +49,8 @@ NTLM is a challenge-response protocol that embeds the entire authentication exch
 There is, therefore, no mechanism by which a Conditional Access policy engine — which lives in the Azure identity plane, outside the SQL Server connection path entirely — can observe the NTLM exchange, evaluate it against policy conditions such as device compliance or sign-in risk, and either permit or deny it. NTLM authentication succeeds or fails at the protocol layer, between client and server, and produces no artifact the Azure identity plane can observe, record, or control.
 
 ## The Service Account
+
+![The identities the engine has historically run under, and where each one is anchored.](../../images/sql-server/diagrams/svg/book-01-ch01-engine-identity-anchors.svg){fig-alt="The engine runs as a domain user account, a group managed service account or the per-service virtual account (which uses the computer account on the network), all anchored in Active Directory; the sa login is anchored in the master database."}
 
 The SQL Server engine process runs under a service account. That account is the identity the engine presents when it makes network connections — when it accesses file shares, communicates with other instances via linked servers, or forwards log data to a monitoring sink. In federal environments, that account has historically taken one of three forms.
 

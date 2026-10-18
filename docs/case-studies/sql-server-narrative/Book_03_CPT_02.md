@@ -20,6 +20,8 @@ lifecycle_review: 2027-01-01
 How to interpret each of the three Arc-eligibility categories the audit assigns, how the audit output should drive triage and prioritization within each category, and the architectural distinction between SQL Server engine Entra authentication and server OS Entra login capability — the Layer 1 versus Layer 2 separation that lets engine migration proceed on a host that is still domain-joined.
 :::
 
+![The triage action for each category, and the path from Category 3 and 2 to Category 1.](../../images/sql-server/diagrams/svg/book-03-ch02-triage-by-category.svg){fig-alt="Category 3 instances are upgraded, Category 2 instances are Arc-enabled and configured for Entra authentication, and both arrive at Category 1, Entra-auth-ready."}
+
 ## Interpreting Category 1: Entra-Auth-Ready
 
 A Category 1 classification is the program's best starting position. It means the infrastructure prerequisites for Entra ID authentication are already in place — the Arc agent is running, the Azure extension for SQL Server is deployed, and the engine is running on SQL Server 2022.
@@ -53,6 +55,8 @@ Given the 2027-04-01 NTLM elimination deadline, a Category 3 instance that canno
 The version-upgrade timeline for Category 3 instances must be integrated into the SQL Server engine-authentication migration plan as an explicit dependency.
 
 ## The SQL Engine vs. OS Entra Auth Distinction
+
+![SQL engine Entra authentication and OS-level Entra sign-in are independent tracks.](../../images/sql-server/diagrams/svg/book-03-ch02-engine-vs-os-sign-in.svg){fig-alt="Layer 1, the SQL Server engine accepting Entra tokens, can start now and doesn't depend on Layer 2, administrators signing in to Windows with Entra ID, which is a separate program sequenced on its own."}
 
 One of the most important clarifications the audit output must carry — and that the teams reading it must internalize — is the architectural distinction between SQL Server engine Entra authentication and server OS Entra ID login capability. These are two separate capabilities with separate prerequisites, and confusing them is the most common misunderstanding this program will encounter.
 

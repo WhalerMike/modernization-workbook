@@ -1,0 +1,14 @@
+# Book 08, Chapter 1 — the four application classes in preference order, with
+# what each means for user sign-in and for the SQL connection.
+rankdir: TB
+nodes:
+  t:
+    kind: table
+    tone: slate
+    columns: ["Preference", "Class", "User sign-in becomes", "SQL connection becomes", "Instance can go Entra-only?"]
+    widths: [80, 145, 175, 165, 130]
+    rows:
+      - [{text: "1st", tone: green}, {text: "Class 3 · OIDC", tone: green}, "Entra ID as the OpenID Connect provider; LDAP dependency gone", "Managed identity or service principal", {text: "Yes", tone: green}]
+      - [{text: "2nd", tone: blue}, {text: "Class 2 · SAML", tone: blue}, "Entra ID as the SAML identity provider", "Managed identity or service principal", {text: "Yes", tone: green}]
+      - [{text: "3rd", tone: amber}, {text: "Class 1 · App Proxy", tone: amber}, "Microsoft Entra application proxy in front; app code unchanged", "Managed identity or service principal where the connection can be configured", {text: "Yes, if the connection string can change", tone: amber}]
+      - [{text: "Last resort", tone: red}, {text: "Class 4 · Entra Domain Services", tone: red}, "Managed domain: LDAP and Kerberos for apps that need a real domain", "Still Windows-integrated", {text: "No, until the app moves class or retires", tone: red}]

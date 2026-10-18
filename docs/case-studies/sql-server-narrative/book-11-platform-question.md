@@ -6,11 +6,9 @@
 
 The authentication transformation produces a rationalized estate. The platform question asks what to do with that estate. Twenty years of accretion have produced overlapping instances, duplicated data domains, and no single authoritative source for any given subject. The SSOT goal is to dissolve the silos toward one authoritative database per data domain.
 
-![PostgreSQL in the federal stack](../../images/sql-server/postgresql-federal.png)
-
-*PostgreSQL as a consolidation target: logical replication, row-level security, JSONB, and foreign data wrappers toward one authoritative database.*
-
 ## Three destinations
+
+![The three destinations for a retained data domain.](../../images/sql-server/diagrams/svg/book-11-three-destinations.svg){fig-alt="Comparison of staying on SQL Server, consolidating to PostgreSQL and consolidating to Oracle by authentication, engine effort, licensing and single-source-of-truth advance."}
 
 Every retained instance ends at one of three destinations. All three satisfy the forced requirement — authentication that is observable and conditionable in the identity plane. They differ in effort, licensing, and how far they advance the SSOT goal.
 
@@ -23,6 +21,8 @@ Every retained instance ends at one of three destinations. All three satisfy the
 | SSOT advance | None — re-authenticates the silos | High — logical replication, RLS, JSONB, FDW | High — consolidation onto an existing Oracle authority |
 
 ## Decision sequence
+
+![The platform decision comes after the forced authentication move.](../../images/sql-server/diagrams/svg/book-11-decision-sequence.svg){fig-alt="Step 1 audit and rationalize, step 2 the forced authentication move on the retained set, step 3 choose a platform per data domain with the same parallel-run discipline."}
 
 1. Audit and rationalize first. Inventory every instance, surface silent NTLM fallback, and classify each instance retire / consolidate / retain.
 2. Do the forced authentication move on the retain set: Arc-enable, stand up Entra logins alongside Windows logins, cut over, retire the old logins.

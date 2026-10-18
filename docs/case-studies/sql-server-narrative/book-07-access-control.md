@@ -2,11 +2,7 @@
 
 **Dynamic groups and administrative-unit delegation**
 
-
-
-![Access control](../../images/sql-server/during-overview.png)
-
-*Access control diagram.*
+![The directory half of SQL Server access moves to Entra ID; the engine half barely changes.](../../images/sql-server/diagrams/svg/book-07-two-halves-of-access.svg){fig-alt="Outside the engine, the HR system of record feeds user attributes in Entra ID and Entra security groups; inside the engine, a type X group login maps to a user-defined database role and its permissions, unchanged from before."}
 
 ## Why this book exists
 

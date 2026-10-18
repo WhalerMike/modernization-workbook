@@ -1,0 +1,20 @@
+# Book 07, Chapter 2 — HR-sourced attributes drive dynamic membership, and no
+# group grants access until its rule is proven.
+rankdir: TB
+graph: {nodesep: 0.3, ranksep: 0.36}
+nodes:
+  hr: {tone: slate, width: 220, title: "HR system of record", body: ["=Owns the facts: org code, position category, employment status"], size: 12}
+  adp: {tone: slate, width: 220, tag: "AD-mastered identities", title: "HR provisioning to AD, then Entra Connect or Cloud Sync", size: 12}
+  cld: {tone: slate, width: 220, tag: "Cloud-mastered identities", title: "Entra inbound provisioning (connector or API)", size: 12}
+  attr: {tone: blue, width: 470, title: "User attributes in Entra ID", body: ["Coded values: `department`, `companyName`, `employeeId`, `extensionAttribute1–15`, directory extension properties", "Written only by the provisioning account; self-service and helpdesk write access removed"], size: 12}
+  rule: {tone: blue, width: 470, title: "Dynamic group rule (example)", body: ["=`(user.accountEnabled -eq true) -and (user.userType -eq \"Member\")`", "=`  -and (user.extension_<appId>_orgCode -in [\"FIN-LED\",\"FIN-AP\"])`"], size: 12}
+  gate: {tone: amber, width: 470, tag: "Rollout gate", title: "Prove the rule before the group gets a login", body: ["Validate Rules against sample users", "Shadow: create the group with no login; reconcile with the AD group it replaces", "Watch processing status and audit log on every rule change; pause groups during bulk HR loads"], size: 12}
+  sql: {tone: green, width: 470, title: "Attach the group login (Chapter 1)", body: ["=Requires Entra ID P1 for each member of a dynamic group"], size: 12}
+edges:
+  - [hr, adp]
+  - [hr, cld]
+  - [adp, attr]
+  - [cld, attr]
+  - [attr, rule, {tone: blue}]
+  - [rule, gate]
+  - [gate, sql, {tone: green, label: "only after it passes"}]

@@ -1,0 +1,25 @@
+# Book 03, Chapter 2 — SQL engine Entra authentication (Layer 1) and OS-level
+# Entra sign-in (Layer 2) are independent tracks.
+rankdir: LR
+graph: {nodesep: 0.3, ranksep: 0.4}
+clusters:
+  - id: l2
+    label: "Layer 2 — administrators sign in to Windows with Entra ID (separate program)"
+    tone: slate
+    nodes: [b1, b2, b3]
+  - id: l1
+    label: "Layer 1 — SQL Server engine accepts Entra tokens (this series)"
+    tone: blue
+    nodes: [a1, a2, a3]
+nodes:
+  a1: {tone: plain, width: 170, title: "Needs", body: ["SQL Server 2022 or later", "Arc agent + Azure extension for SQL Server"], size: 12}
+  a2: {tone: plain, width: 170, title: "Doesn't need", body: ["Domain unjoin", "A new Windows Server version"], size: 12}
+  a3: {tone: green, width: 170, title: "Can start now", body: ["=On a host that is still domain-joined"], size: 12}
+  b1: {tone: plain, width: 170, title: "Needs", body: ["Its own OS and join-state prerequisites", "Coordination with every team on the host"], size: 12}
+  b2: {tone: plain, width: 170, title: "Affects", body: ["Group Policy, DNS, certificate enrollment"], size: 12}
+  b3: {tone: amber, width: 170, title: "Sequenced separately", body: ["=Never a prerequisite for Layer 1"], size: 12}
+edges:
+  - [a1, a2, {style: invis}]
+  - [a2, a3, {style: invis}]
+  - [b1, b2, {style: invis}]
+  - [b2, b3, {style: invis}]

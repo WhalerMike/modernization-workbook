@@ -42,6 +42,8 @@ The audit reads this value directly and also cross-references it against the `sy
 
 ## Login Type Classification
 
+![The login types the audit classifies, by sys.server_principals type, and what happens to each.](../../images/sql-server/diagrams/svg/book-03-ch01-login-types.svg){fig-alt="Table of sys.server_principals types: U Windows user, G Windows group, S SQL login, C certificate-mapped, K asymmetric-key-mapped, E Entra user or application, X Entra group, with the migration outcome for each."}
+
 The script connects to each instance and queries the `sys.server_principals` system view to enumerate all logins. Each login is classified by type: Windows logins derived from individual AD user accounts (type `W`, mapped by SID to an AD user object); Windows logins derived from AD security groups (type `G`, mapped by SID to an AD group object); SQL Authentication logins with credentials stored in `master` (type `S`); certificate-mapped logins (type `C`); and asymmetric key-mapped logins (type `K`).
 
 The count and identity of each type is reported per instance. The presence of active SQL Authentication logins — type `S` — is a critical finding, because these logins are invisible to the Azure identity plane.
@@ -61,6 +63,8 @@ The SPN check is one of the most operationally valuable outputs of the audit. SP
 An instance with a missing or incorrect SPN is generating NTLM traffic for every connection that expects Kerberos — and in most cases, the application teams generating those connections do not know it.
 
 ## The Arc-Eligibility Output
+
+![How the audit assigns each instance an Arc-eligibility category.](../../images/sql-server/diagrams/svg/book-03-ch01-arc-eligibility-classification.svg){fig-alt="Decision flow: a failover cluster instance is not supported for Entra authentication; an instance older than SQL Server 2022 must be upgraded or excepted; an instance without the Arc agent, the SQL extension and Entra authentication configured is Arc-eligible but not enabled; otherwise it is Entra-auth ready."}
 
 The most consequential output of the audit is the Arc-eligibility classification it assigns to every instance. Every instance falls into one of three categories.
 
