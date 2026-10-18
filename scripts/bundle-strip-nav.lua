@@ -1,7 +1,7 @@
 -- Pandoc Lua filter for the SQL Server narrative Word bundle.
 --
 -- The bundle is built by passing the series' source Markdown straight to
--- pandoc (see .github/workflows/quarto-pages.yml). These pages are written
+-- pandoc (see scripts/build_sql_bundle.py). These pages are written
 -- for the website, so a few web-only pieces have to be dropped or flattened
 -- for a single Word document:
 --   * Quarto listing placeholders (#chapters, #book-chapters) render empty
@@ -55,6 +55,42 @@ local function filter_blocks(blocks)
     end
   end
   return out
+end
+
+-- Images: scripts/build_sql_bundle.py writes a JSON map (path given in
+-- BUNDLE_IMAGE_MAP) from source image paths to Word-ready copies, e.g. an SVG
+-- converted to PNG or a JPEG that was saved with a .png extension.
+local image_map = {}
+local map_path = os.getenv("BUNDLE_IMAGE_MAP")
+if map_path then
+  local fh = io.open(map_path, "r")
+  if fh then
+    image_map = pandoc.json.decode(fh:read("a")) or {}
+    fh:close()
+  end
+end
+
+-- Absolute path with "." and ".." segments collapsed (matches Python's
+-- Path.resolve() for paths without symlinks).
+local function absolute(path)
+  if path:sub(1, 1) ~= "/" then
+    path = pandoc.system.get_working_directory() .. "/" .. path
+  end
+  local parts = {}
+  for seg in path:gmatch("[^/]+") do
+    if seg == ".." then
+      table.remove(parts)
+    elseif seg ~= "." then
+      table.insert(parts, seg)
+    end
+  end
+  return "/" .. table.concat(parts, "/")
+end
+
+function Image(el)
+  local mapped = image_map[absolute(el.src)]
+  if mapped then el.src = mapped end
+  return el
 end
 
 function Link(el)

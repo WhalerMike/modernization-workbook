@@ -82,39 +82,9 @@ jobs:
             cp /tmp/sql-server-narrative-series.zip _site/downloads/ 2>/dev/null || true
           fi
 
-          # Combined SQL Server narrative bundle DOCX.
-          # Built straight from the source Markdown in reading order. (The old
-          # approach converted each rendered .docx back to Markdown and joined
-          # the files with `cat`; every file ended in a table with no blank
-          # line after it, so pandoc swallowed the next file's opening lines
-          # into that table, chopping text and breaking every figure.)
-          # Passing the files to pandoc as separate inputs keeps them apart.
-          # Reading order: series index, then each Book_NN page followed by its
-          # Book_NN_CPT_* chapters (globbed, so added chapters are picked up),
-          # then Book 11, which exists only as book-11-platform-question.md.
-          narrative=docs/case-studies/sql-server-narrative
-          bundle_files="$narrative/index.md"
-          for book in $(cd "$narrative" && ls Book_[0-9][0-9].md | sort); do
-            n="${book%.md}"
-            bundle_files="$bundle_files $narrative/$book"
-            for ch in $(cd "$narrative" && ls ${n}_CPT_[0-9][0-9].md 2>/dev/null | sort); do
-              bundle_files="$bundle_files $narrative/$ch"
-            done
-          done
-          if [ -f "$narrative/book-11-platform-question.md" ]; then
-            bundle_files="$bundle_files $narrative/book-11-platform-question.md"
-          fi
-          echo "SQL narrative bundle inputs:"; printf '  %s\n' $bundle_files
-          quarto pandoc $bundle_files \
-            --from markdown \
-            --output _site/downloads/sql-server-narrative-bundle.docx \
-            --metadata title="SQL Server Identity Transformation" \
-            --metadata subtitle="Narrative Series — combined edition" \
-            --toc --toc-depth=2 \
-            --resource-path="$narrative" \
-            --lua-filter=scripts/bundle-strip-nav.lua \
-            --reference-doc=assets/reference-mslearn.docx
-          echo "Created sql-server-narrative-bundle.docx"
+          # Combined SQL Server narrative bundle DOCX, built directly from the
+          # source Markdown (manifest and options live in the script).
+          python3 scripts/build_sql_bundle.py _site/downloads/sql-server-narrative-bundle.docx
 
           # Client-server series
           if [ -d docs/client-server-to-hybrid-cloud ]; then
