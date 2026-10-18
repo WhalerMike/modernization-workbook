@@ -1,0 +1,16 @@
+# Chapter 11 — the risks a unified control plane does not remove.
+rankdir: TB
+graph: {nodesep: 0.25, ranksep: 0.4}
+nodes:
+  c: {kind: pill, tone: blue, text: "Single authoritative DDI policy plane"}
+  r1: {tone: amber, width: 170, title: "Sync lag or failure", body: ["=The new source of divergence; monitor it"], size: 12}
+  r2: {tone: red, width: 170, title: "Control-plane outage", body: ["=Changes blocked; resolution continues from local state"], size: 12}
+  r3: {tone: amber, width: 170, title: "Encrypted DNS bypass", body: ["=Remains if endpoint controls are incomplete"], size: 12}
+  r4: {tone: violet, width: 170, title: "Authorization scope", body: ["=Moderate authorization does not cover High or DoD"], size: 12}
+edges:
+  - [c, r1]
+  - [c, r2]
+  - [c, r3]
+  - [c, r4]
+order:
+  - [r1, r2, r3, r4]

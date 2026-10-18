@@ -10,6 +10,7 @@ lifecycle: active
 tiers_adopted: []
 lifecycle_review: 2027-01-01
 ---
+
 # Chapter 05 — Edge Interception, Encrypted DNS and Rogue DHCP
 
 *Where queries escape the governed resolver path.*
@@ -21,82 +22,42 @@ lifecycle_review: 2027-01-01
 
 ## SD-WAN DNS Interception
 
-![Cisco SD-WAN with Agency-Controlled Resolver.](../images/ddi/figure-08.jpg){fig-alt="DNS proxy/redirect to Infoblox DDI."}
+![The redirect-dns destination decides whether agency policy applies at all.](../images/diagrams/next-generation-ddi/svg/ch05-redirect-dns.svg){fig-alt="A branch client sends plain DNS on UDP 53 to the SD-WAN edge, whose redirect-dns data policy sends it either to an agency-controlled resolver, where RPZ, DNSSEC validation and logging apply before forwarding upstream to Protective DNS, or to an external resolver that the agency policy plane never sees."}
 
-Cisco Catalyst SD-WAN (IOS XE SD-WAN ≥ 20.4/17.4) intercepts DNS via its
-redirect-dns data policy. The edge router redirects the query to a
-policy-designated server regardless of the client’s configured resolver.
-The destination determines whether agency policy is applied:
+SD-WAN edges can intercept DNS regardless of the resolver a client was configured with. In Cisco Catalyst SD-WAN this is the redirect-dns action of a centralized data policy: the edge router matches DNS traffic and sends it to a policy-designated resolver. Cisco documents the feature for IPv4 DNS over UDP only; DNS over TCP and DNS carried inside overlay tunnels are not redirected. The destination decides whether agency policy applies:
 
-Correct path: Branch User → SD-WAN edge → network-addressable
-agency-controlled resolver → DDI policy plane (RPZ, DNSSEC, IPAM) →
-per-CSP private resolvers.
+- **Correct path:** branch client → SD-WAN edge → network-addressable agency-controlled resolver → DDI policy plane (response policy zones, DNSSEC validation, logging) → per-cloud private resolvers, with internet-bound recursion forwarded through Protective DNS.
+- **Bypassed path:** branch client → SD-WAN edge → an external resolver outside agency control → public recursion. The agency policy plane never sees those queries.
 
-Bypassed path: Branch User → SD-WAN edge → external resolver (for
-example Cisco Umbrella or any non-governed target) → public recursion.
-The agency policy plane is invisible to those queries.
+DNSSEC validation must happen on a resolver the agency controls. A forwarding resolver can validate if it requests and checks DNSSEC records, but if redirect-dns or conditional forwarding hands queries to an upstream resolver outside agency control, the agency loses control of its validation policy and trust anchors (Chapter 06).
 
-DNSSEC validation must occur on a resolver the agency controls. A
-forwarding resolver can validate if it requests and checks DNSSEC
-records, but if redirect-dns or conditional forwarding sends queries to
-an upstream resolver outside agency control, the agency loses the
-ability to enforce its own validation policy and trust anchors.
-Microsoft INR is available only for WW Commercial tenants and is
-explicitly excluded for GCC Moderate, GCC High, and DoD. Direct internet
-breakout with DSCP marking and application-aware routing remain the
-primary M365 optimization mechanisms in sovereign cloud.[^c05-5]
+### Microsoft 365 Informed Network Routing
+
+Microsoft 365 Informed Network Routing (INR) lets a supported SD-WAN share network-quality data with Microsoft so that Microsoft 365 traffic takes the best path; the Cisco integration requires Cisco IOS XE SD-WAN 20.4 / 17.4 or later. Microsoft documents INR as available only for the Worldwide commercial cloud; it is not supported in the GCC-Moderate, GCC High, DoD, Germany or China clouds.[^c05-5] For agencies in those clouds, local internet breakout and application-aware routing remain the main Microsoft 365 optimizations. None of this changes the DDI design: INR is a routing optimization, not a DNS dependency.
 
 ## Encrypted DNS and Bypass Controls
 
-![Encrypted DNS Bypass Paths.](../images/ddi/figure-12.jpg){fig-alt="DoH DoT and plain DNS paths."}
+![What an edge can and cannot do with each DNS transport.](../images/diagrams/next-generation-ddi/svg/ch05-encrypted-dns-paths.svg){fig-alt="Table of four transports. Plain DNS on UDP 53 can be intercepted and redirected to the agency resolver. DNS over TLS on TCP 853 and DNS over QUIC on UDP 853 cannot be redirected without breaking the session, so block port 853 except to approved resolvers. DNS over HTTPS on TCP 443 cannot be seen or redirected, so it needs endpoint policy or TLS inspection."}
 
-Client-side DoH or DoT to public resolvers is a common bypass vector.
-Under OMB M-22-09 and CISA guidance, FCEB agencies must prevent
-unauthorized DNS paths. Practical controls include:
+Client-side encrypted DNS to a public resolver is the most common bypass. M-22-09 requires encrypted DNS wherever it is technically supported, and CISA's implementation guidance requires that agency egress resolution still pass through Protective DNS. The goal is therefore not to prohibit encrypted DNS but to make sure it terminates at an agency-controlled or CISA Protective DNS resolver rather than an ungoverned public service. Practical controls:
 
-- Network-level blocking or redirection of known public DoH/DoT
-  endpoints (with exceptions only for approved resolvers).
+- **Know what the edge can reach.** redirect-dns works on plain DNS only. It cannot redirect DNS over TLS (TCP 853) or DNS over QUIC (UDP 853) without breaking the session, because the client validates the resolver's certificate; those ports can be blocked except to approved resolvers. DNS over HTTPS runs on TCP 443 alongside ordinary web traffic, so neither redirect-dns nor port blocking can isolate it.
+- **Control the endpoint.** MDM, Group Policy or a SASE or DDI endpoint agent should point clients' encrypted DNS at the governed resolver, and disable or restrict browser-level DoH. Windows supports configuring DoH to a named resolver.
+- **Block known public encrypted DNS endpoints** at the network edge, with exceptions only for approved resolvers.
+- **Alert on resolution-path anomalies**, such as connections from hosts whose queries never appear in the governed resolver logs.
 
-- Endpoint controls (MDM, GPO, or SASE agents) that force DNS through
-  the governed resolver or Infoblox Endpoint.
+## DHCP Option 6 and Rogue DHCP
 
-- SD-WAN redirect-dns operates on plain DNS (port 53). It cannot
-  redirect DNS over TLS (DoT) without breaking the TLS session, because
-  the client validates the resolver’s certificate. DoT can be blocked at
-  port 853. DNS over HTTPS (DoH) runs over port 443 and cannot be
-  intercepted by redirect-dns; DoH bypass requires endpoint policy or
-  TLS inspection.
+A rogue DHCP server that hands out a malicious resolver in option 6 can move an entire subnet onto an attacker-controlled resolver in one step, past every response policy zone and Protective DNS control. In IPv6 networks, rogue router advertisements carrying the RDNSS option (RFC 8106) can do the same and are often the larger attack surface. Unified DHCP and IPv6 governance addresses this through:
 
-- Logging and alerting on resolution-path anomalies (queries that never
-  appear in the governed resolver logs).
-
-The goal is not to prohibit encrypted DNS, but to ensure encryption
-terminates at an agency-controlled or CISA Protective DNS resolver
-rather than an ungoverned public service.
-
-## DHCP Option-6 and Rogue DHCP
-
-A rogue DHCP server that distributes a malicious DNS resolver via
-Option-6 can redirect an entire subnet through an attacker-controlled
-resolver in one step, bypassing all RPZ and Protective DNS controls. In
-IPv6 networks, rogue Router Advertisements (RFC 8106) can also
-distribute DNS server addresses and are often the larger attack surface.
-Unified DHCP and IPv6 governance addresses this by:
-
-- Centralized scope and option management with change control and audit
-  trails.
-
-- Rogue DHCP detection (via DHCP snooping integration, lease analysis,
-  or Network Insight).
-
-- Consistent Option-6 values enforced across all authorized DHCP
-  servers.
-
-- Integration with IPAM so unauthorized leases are immediately visible.
+- Centralized scope and option management with change control and an audit trail.
+- Rogue DHCP and router advertisement detection, through DHCP snooping and RA Guard on the access switches, lease analysis and network discovery.
+- Consistent option 6 and RDNSS values across every authorized DHCP server and router.
+- IPAM integration, so unauthorized leases are visible immediately.
 
 ---
 
 **Previous:** [Chapter 04 — The Active Directory DNS Departure](04-active-directory-dns-departure.md)  
 **Next:** [Chapter 06 — DNS Identity, Certificates and DNSSEC](06-dns-identity-and-dnssec.md)
 
-[^c05-5]: Microsoft Learn. Office 365 Network Connectivity Principles and INR documentation (updated 2026-03-10).
+[^c05-5]: Microsoft Learn, "Microsoft 365 informed network routing," <https://learn.microsoft.com/en-us/microsoft-365/enterprise/office-365-network-mac-perf-cpe?view=o365-worldwide>.

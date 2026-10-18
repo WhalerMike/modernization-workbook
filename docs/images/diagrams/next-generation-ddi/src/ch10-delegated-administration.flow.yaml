@@ -1,0 +1,13 @@
+# Chapter 10 — central oversight with scoped divisional autonomy.
+rankdir: TB
+graph: {nodesep: 0.3, ranksep: 0.45}
+nodes:
+  corp: {tone: violet, width: 470, tag: "Corporate administrators", title: "Full visibility and policy over the whole estate", size: 12}
+  a: {tone: blue, width: 220, tag: "Division A scope", title: "Its zones, IP spaces, DHCP scopes", body: ["Human roles: manager, operator, auditor", "Scoped automation accounts"], size: 12}
+  b: {tone: blue, width: 220, tag: "Division B scope", title: "Its zones, IP spaces, DHCP scopes", body: ["Human roles: manager, operator, auditor", "Scoped automation accounts"], size: 12}
+  ev: {tone: green, width: 470, title: "One audit trail", body: ["=Who changed what, when, and through which interface (UI, API, workflow)"], size: 12}
+edges:
+  - [corp, a]
+  - [corp, b]
+  - [a, ev, {style: dashed}]
+  - [b, ev, {style: dashed}]
