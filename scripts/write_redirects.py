@@ -5,7 +5,8 @@ Reads scripts/redirects.yml ({old.html: new.html}, both relative to the site
 root) and writes a small HTML page at each old path in the output folder that
 forwards to the new page (meta refresh + canonical link + JavaScript, keeping
 any #fragment). A redirect whose old path is now a real page is skipped, and
-a redirect whose target page was not rendered fails the build.
+a redirect whose target page was not rendered is skipped with a warning.
+Non-HTML renders (for example `quarto render --to docx`) are skipped.
 
 Also run by hand: python3 scripts/write_redirects.py [--out _site] [--check]
 """
@@ -45,6 +46,18 @@ def load() -> dict[str, str]:
     return {str(k).lstrip("/"): str(v).lstrip("/") for k, v in (cfg.get("redirects") or {}).items()}
 
 
+def html_render() -> bool:
+    """True when the current Quarto render produced HTML output.
+
+    QUARTO_PROJECT_OUTPUT_FILES lists the files this render wrote (one per
+    line). Run by hand (no Quarto environment), assume an HTML site.
+    """
+    files = os.environ.get("QUARTO_PROJECT_OUTPUT_FILES")
+    if files is None:
+        return True
+    return any(f.strip().lower().endswith(".html") for f in files.splitlines())
+
+
 def main() -> int:
     ap = argparse.ArgumentParser(description=__doc__.splitlines()[0])
     ap.add_argument("--out", help="site output folder (default: Quarto's, else _site)")
@@ -56,9 +69,11 @@ def main() -> int:
         out = REPO / out
     redirects = load()
 
-    # Only the HTML render produces pages to redirect to.
-    if not args.check and not (out / "index.html").is_file():
-        print(f"redirects: {out} has no index.html (not an HTML render); skipped")
+    # Only an HTML render produces pages to redirect to. Quarto runs this
+    # hook after every render, including `quarto render --to docx`, so skip
+    # unless this render actually wrote HTML output.
+    if not args.check and not html_render():
+        print("redirects: not an HTML render; skipped")
         return 0
 
     errors = 0
@@ -73,8 +88,8 @@ def main() -> int:
         if args.check:
             continue
         if not (out / new).is_file():
-            print(f"redirects: target not rendered: {new} (from {old})", file=sys.stderr)
-            errors += 1
+            # Warn, don't fail: a partial render may not include the target.
+            print(f"redirects: WARNING target not rendered: {new} (from {old}); skipped", file=sys.stderr)
             continue
         dest = out / old
         if dest.is_file() and "http-equiv=\"refresh\"" not in dest.read_text(errors="replace"):
