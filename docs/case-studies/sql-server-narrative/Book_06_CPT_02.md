@@ -46,7 +46,7 @@ After Phase B, the only remaining NTLM-generating SQL Server connections should 
 
 ![What the Phase C block does to each kind of connection.](../../images/sql-server/diagrams/svg/book-06-ch02-phase-c-impact.svg){fig-alt="Under the Phase C block, Windows logins that fall back to NTLM fail at the LSA, Windows logins on Kerberos still work but stay invisible to Conditional Access, excepted instances still on NTLM fail, and Entra logins are unaffected."}
 
-The elimination phase disables NTLM across the estate. Group Policy pushed domain-wide restricts NTLM authentication at the LSA layer on every host, and any connection that cannot negotiate an alternative protocol fails. For SQL Server, Phase C is only safe to implement after the login migration of Book 04 has been completed for every instance in the estate.
+The elimination phase disables NTLM across the estate. Group Policy pushed domain-wide restricts NTLM authentication at the LSA layer on every host, and any connection that cannot negotiate an alternative protocol fails. For SQL Server, Phase C is only safe to implement after the login migration of Book 05 has been completed for every instance in the estate.
 
 An instance whose connections have been migrated to Entra ID OAuth 2.0 tokens generates no NTLM traffic at all. The SQL Server engine does not use NTLM or Kerberos for type-E login connections. An instance that has completed the login migration is therefore immune to Phase C — it was not generating NTLM before the block, and it is not affected by the block after.
 

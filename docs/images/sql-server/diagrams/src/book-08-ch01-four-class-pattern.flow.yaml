@@ -5,7 +5,7 @@ nodes:
   t:
     kind: table
     tone: slate
-    columns: ["Preference", "Class", "User sign-in becomes", "SQL connection becomes", "Instance can go Entra-only?"]
+    columns: ["Preference", "Class", "User sign-in becomes", "SQL connection becomes", "Instance can reach Entra-exclusive?"]
     widths: [80, 145, 175, 165, 130]
     rows:
       - [{text: "1st", tone: green}, {text: "Class 3 · OIDC", tone: green}, "Entra ID as the OpenID Connect provider; LDAP dependency gone", "Managed identity or service principal", {text: "Yes", tone: green}]
