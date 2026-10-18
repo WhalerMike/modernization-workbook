@@ -44,7 +44,8 @@ transformation as **Partially Defined**. The destination is not in
 doubt — the inventory names it precisely: Windows Authentication and SQL
 Authentication are eliminated and replaced with Microsoft Entra ID
 authentication for SQL Server 2022 and later, enforced through OAuth 2.0
-tokens, a Managed Identity for the engine process, and multi-factor
+tokens, a Microsoft Entra identity for each instance (the Arc managed
+identity on SQL Server 2025, an app registration on SQL Server 2022), and multi-factor
 authentication for every human principal. What was *partially defined* is the
 normative canon governing how that destination is reached at the engine layer.
 This series documents that path, fills it in narrative form, and provides the

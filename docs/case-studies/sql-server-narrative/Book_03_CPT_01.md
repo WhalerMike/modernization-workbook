@@ -26,7 +26,7 @@ This audit runs only on the instances Book 02 classified as **retain** or **cons
 
 `the authentication audit script` performs a structured enumeration of the SQL Server estate across all hosts in the program's management scope. For each host it identifies every SQL Server instance — named instances and the default instance — along with the version, edition, and build number.
 
-The host operating system version is captured because it determines the Arc capability envelope. Windows Server 2019 and 2022 support the Connected Machine agent, and therefore support Arc-based Managed Identity for the SQL Server engine process. They do not, however, support the `AADLoginForWindows` OS-level Entra login extension, which requires Windows Server 2025. Windows Server 2025 supports both capabilities.
+The host operating system version is captured because it determines the Arc capability envelope. Windows Server 2019 and 2022 support the Connected Machine agent, and therefore support Arc-based Entra authentication for the SQL Server engine (through an app registration on SQL Server 2022, the managed identity on SQL Server 2025). They do not, however, support the `AADLoginForWindows` OS-level Entra login extension, which requires Windows Server 2025. Windows Server 2025 supports both capabilities.
 
 That distinction matters for migration sequencing, and the audit captures it explicitly. The domain-join status of the host is recorded alongside it: a host already migrated to a non-domain-joined state under the Arc non-domain-join requirement occupies a different starting position than a domain-joined host, and the per-instance output must reflect that.
 
@@ -44,7 +44,7 @@ The audit reads this value directly and also cross-references it against the `sy
 
 ![The login types the audit classifies, by sys.server_principals type, and what happens to each.](../../images/sql-server/diagrams/svg/book-03-ch01-login-types.svg){fig-alt="Table of sys.server_principals types: U Windows user, G Windows group, S SQL login, C certificate-mapped, K asymmetric-key-mapped, E Entra user or application, X Entra group, with the migration outcome for each."}
 
-The script connects to each instance and queries the `sys.server_principals` system view to enumerate all logins. Each login is classified by type: Windows logins derived from individual AD user accounts (type `W`, mapped by SID to an AD user object); Windows logins derived from AD security groups (type `G`, mapped by SID to an AD group object); SQL Authentication logins with credentials stored in `master` (type `S`); certificate-mapped logins (type `C`); and asymmetric key-mapped logins (type `K`).
+The script connects to each instance and queries the `sys.server_principals` system view to enumerate all logins. Each login is classified by type: Windows logins derived from individual AD user accounts (type `U`, mapped by SID to an AD user object); Windows logins derived from AD security groups (type `G`, mapped by SID to an AD group object); SQL Authentication logins with credentials stored in `master` (type `S`); certificate-mapped logins (type `C`); and asymmetric key-mapped logins (type `K`).
 
 The count and identity of each type is reported per instance. The presence of active SQL Authentication logins — type `S` — is a critical finding, because these logins are invisible to the Azure identity plane.
 
@@ -68,7 +68,7 @@ An instance with a missing or incorrect SPN is generating NTLM traffic for every
 
 The most consequential output of the audit is the Arc-eligibility classification it assigns to every instance. Every instance falls into one of three categories.
 
-Category 1 is Arc-eligible and Entra-auth-ready today: the server is already running the Connected Machine agent, the Azure extension for SQL Server has been deployed, the system-assigned Managed Identity is available for the engine process, and the SQL Server version is 2022 or later. A Category 1 instance can have its Entra ID logins created and its login migration begun immediately — it requires no further infrastructure work before Book 04's migration pattern can be applied.
+Category 1 is Arc-eligible and Entra-auth-ready today: the server is already running the Connected Machine agent, the Azure extension for SQL Server has been deployed, the system-assigned managed identity is available, and the SQL Server version is 2022 or later. A Category 1 instance can have its Entra ID logins created and its login migration begun immediately — it requires no further infrastructure work before Book 04's migration pattern can be applied.
 
 Category 2 is Arc-eligible but not yet enabled: the host meets all the prerequisites for Arc enablement — Windows Server 2019 or later, network connectivity to the Azure Arc endpoint, SQL Server 2022 — but the Connected Machine agent has not been installed. A Category 2 instance requires Arc deployment as the prerequisite action before login migration can begin.
 

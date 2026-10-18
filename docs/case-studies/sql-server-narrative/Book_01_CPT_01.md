@@ -58,7 +58,7 @@ The first is a domain service account: a named Active Directory user with a non-
 
 The third form is the `NT SERVICE\MSSQLSERVER` virtual account, a Windows-local account that uses the computer's domain account for network authentication. This pattern is also AD-anchored, because it is the domain-joined computer account that provides the Kerberos credential for network connections.
 
-In every one of these patterns, Active Directory is the identity authority for the engine process. The engine's ability to authenticate to any network resource depends on AD. When the directory modernization program removes AD as the authoritative identity source, the service account pattern loses its foundation, and the engine must acquire a new identity — the system-assigned Managed Identity that Arc provides for the host. That transition is the subject of Book 04.
+In every one of these patterns, Active Directory is the identity authority for the engine process. The engine's ability to authenticate to any network resource depends on AD. When the directory modernization program removes AD as the authoritative identity source, the service account pattern loses its foundation, and the engine must acquire a new identity in Microsoft Entra ID — on SQL Server 2025, the system-assigned managed identity that Arc provides for the host; on SQL Server 2022, an app registration whose certificate is kept in Azure Key Vault. That transition is the subject of Book 04.
 
 ## The sa Account
 

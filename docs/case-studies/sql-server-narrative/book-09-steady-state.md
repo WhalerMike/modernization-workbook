@@ -15,7 +15,7 @@ In the transformed state, no domain controller participates in SQL Server authen
 The transformation is complete when five conditions are simultaneously true across every production instance:
 
 1. Every human principal authenticates via Entra ID. No Windows logins remain for human access.
-2. The engine process authenticates via managed identity. No domain service account or gMSA remains.
+2. Each instance has its Microsoft Entra identity configured through Arc — the managed identity on SQL Server 2025, an app registration with a Key Vault certificate on SQL Server 2022. No domain service account or gMSA remains.
 3. NTLM is blocked at the Local Security Authority layer. No silent fallback remains.
 4. Conditional Access policies enforce device compliance and MFA for every SQL Server connection.
 5. Continuous monitoring instruments are in production. Drift is detected and treated as a compliance violation.
