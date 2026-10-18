@@ -31,5 +31,5 @@ AD-centric network-perimeter model with identity + device posture.
 - **F.3** SASE — [modernization-specs/sase](../../modernization-specs/sase/sase.html)
 - **F.4** Certificate-Based Authentication (Entra CBA)
 - **F.5** Privileged Access Management — [PIM self-request with approval](pim-self-request-approval.md)
-  · [CyberArk adapter](../../adapter-specs/cyberark/cyberark.html)
+  · CyberArk adapter
 - **F.6** Break-glass accounts

@@ -53,16 +53,14 @@ the published site at
 and are bound to FedRAMP 20x evidence slots by the
 [`fedramp_aan_catalog` adapter].
 
-![Figure 1 — The program at a glance: 20 books produce artifacts, eight slot mappings bind them as evidence, and two tracks teach the corpus.](figs/tp-fig-01-program-map.png){fig-alt="Compliance Training Program map: twenty books feed eight evidence slots, taught by two tracks"}
-
 The Compliance Training Program teaches that corpus in **two tracks**:
 
 | Track | Page | Audience | Outcome |
 |---|---|---|---|
-| **Track A — Compliance** | [Compliance track](compliance-track.html) | ISSOs / ISSMs, assessors, ConMon operators, compliance leads | Can state, for each of the 20 books, which NIST SP 800-53 Rev 5 controls it closes, which FedRAMP 20x KSI category evaluates that closure, and how the evidence flows through the engine's conformance pipeline |
-| **Track B — Implementation** | [Implementation track](implementation-track.html) | Network, platform, database, identity, and security engineers | Can implement the architecture each book describes and produce the machine-readable evidence Track A consumes |
+| **Track A — Compliance** | Compliance track | ISSOs / ISSMs, assessors, ConMon operators, compliance leads | Can state, for each of the 20 books, which NIST SP 800-53 Rev 5 controls it closes, which FedRAMP 20x KSI category evaluates that closure, and how the evidence flows through the engine's conformance pipeline |
+| **Track B — Implementation** | Implementation track | Network, platform, database, identity, and security engineers | Can implement the architecture each book describes and produce the machine-readable evidence Track A consumes |
 
-A third page, the [Vendor training catalog](vendor-training-catalog.html),
+A third page, the Vendor training catalog,
 maps each book to existing external training from the vendors whose products
 the books deploy (Microsoft, Infoblox, Cisco, AWS, and others), plus
 federal/compliance training sources (CISA, FedRAMP, NIST).
@@ -100,26 +98,26 @@ page links to the canonical manuscript source.
 
 | Book | Module page | Domain | Evidence slot(s) | KSI category |
 |---|---|---|---|---|
-| 00 | [Executive Summary](books/book-00.html) | Orientation | — | — |
-| 01 | [Cloud Landing Zone, IPAM & FedRAMP](books/book-01.html) | DDI / IPAM landing zone | 2 — addressing | KSI-PIY |
-| 02 | [Network Access Control (802.1X)](books/book-02.html) | Device identity at the port | (binding pending mapping refresh) | KSI-CMT / KSI-IAM themes |
-| 03 | [Certificates, Tokens & Cryptographic Identity](books/book-03.html) | PKI, tokens, phishing-resistant MFA | 1 — identity | KSI-IAM |
-| 04 | [HRIT Identity & Org SSOT](books/book-04.html) | HR-driven identity lifecycle | 1 — identity | KSI-IAM |
-| 05 | [Network Modernization](books/book-05.html) | SD-WAN, SASE, UC | 3 — network | KSI-CNA |
-| 06 | [Federal Telecommunications Modernization](books/book-06.html) | Entra ID, ZTNA, cloud voice | 1 — identity | KSI-IAM |
-| 07 | [SQL Server Authentication Modernization](books/book-07.html) | Data-platform identity | 1 — identity | KSI-IAM |
-| 08 | [SQL Server Implementation Guide](books/book-08.html) | Data-platform runbook | (procedural evidence for Book 07) | — |
-| 09 | [Database Consolidation & Network Physics](books/book-09.html) | Database architecture | 3 — network | KSI-CNA |
-| 10 | [Privileged Access Management](books/book-10.html) | Entra PIM + PAW | 1 — identity; 5 — endpoint | KSI-IAM, KSI-PIY |
-| 11 | [Vulnerability Management](books/book-11.html) | Defender VM + KEV | 4 — telemetry; 5 — endpoint; 6 — security | KSI-MLA, KSI-PIY, KSI-CMT |
-| 12 | [Data Protection (Purview)](books/book-12.html) | Purview + Key Vault CMK | 4 — telemetry | KSI-MLA |
-| 13 | [SIEM / XDR Detection](books/book-13.html) | Sentinel detection engineering | 4 — telemetry; 6 — security | KSI-MLA, KSI-CMT |
-| 14 | [Business Continuity](books/book-14.html) | Contingency planning | 7 — continuity | KSI-RPL |
-| 15 | [Supply Chain Risk Management](books/book-15.html) | SBOM, VDR/VER, BOD 26-04 | 6 — security | KSI-CMT |
-| 16 | [Program Management & Governance](books/book-16.html) | PM charter | 6 — security | KSI-CMT |
-| 17 | [PII Processing & Transparency](books/book-17.html) | PT control family | 5 — endpoint | KSI-PIY |
-| 18 | [Cybersecurity Training & Awareness](books/book-18.html) | AT control family, LMS evidence | 8 — training | KSI-CED |
-| 19 | [Authorization Package & ConMon](books/book-19.html) | OSCAL AP/AR/POA&M, CA family | (assembles all eight slots) | — |
+| 00 | Executive Summary | Orientation | — | — |
+| 01 | Cloud Landing Zone, IPAM & FedRAMP | DDI / IPAM landing zone | 2 — addressing | KSI-PIY |
+| 02 | Network Access Control (802.1X) | Device identity at the port | (binding pending mapping refresh) | KSI-CMT / KSI-IAM themes |
+| 03 | Certificates, Tokens & Cryptographic Identity | PKI, tokens, phishing-resistant MFA | 1 — identity | KSI-IAM |
+| 04 | HRIT Identity & Org SSOT | HR-driven identity lifecycle | 1 — identity | KSI-IAM |
+| 05 | Network Modernization | SD-WAN, SASE, UC | 3 — network | KSI-CNA |
+| 06 | Federal Telecommunications Modernization | Entra ID, ZTNA, cloud voice | 1 — identity | KSI-IAM |
+| 07 | SQL Server Authentication Modernization | Data-platform identity | 1 — identity | KSI-IAM |
+| 08 | SQL Server Implementation Guide | Data-platform runbook | (procedural evidence for Book 07) | — |
+| 09 | Database Consolidation & Network Physics | Database architecture | 3 — network | KSI-CNA |
+| 10 | Privileged Access Management | Entra PIM + PAW | 1 — identity; 5 — endpoint | KSI-IAM, KSI-PIY |
+| 11 | Vulnerability Management | Defender VM + KEV | 4 — telemetry; 5 — endpoint; 6 — security | KSI-MLA, KSI-PIY, KSI-CMT |
+| 12 | Data Protection (Purview) | Purview + Key Vault CMK | 4 — telemetry | KSI-MLA |
+| 13 | SIEM / XDR Detection | Sentinel detection engineering | 4 — telemetry; 6 — security | KSI-MLA, KSI-CMT |
+| 14 | Business Continuity | Contingency planning | 7 — continuity | KSI-RPL |
+| 15 | Supply Chain Risk Management | SBOM, VDR/VER, BOD 26-04 | 6 — security | KSI-CMT |
+| 16 | Program Management & Governance | PM charter | 6 — security | KSI-CMT |
+| 17 | PII Processing & Transparency | PT control family | 5 — endpoint | KSI-PIY |
+| 18 | Cybersecurity Training & Awareness | AT control family, LMS evidence | 8 — training | KSI-CED |
+| 19 | Authorization Package & ConMon | OSCAL AP/AR/POA&M, CA family | (assembles all eight slots) | — |
 
 Slot definitions, KSI categories, and NIST anchors come from the adapter's
 [mapping files]
@@ -139,18 +137,16 @@ plus the prior bindings translated to the new numbering.
    [gap roadmap];
    understand the FedRAMP 20x timeline (Class A opens August 3, 2026; 20x
    mandatory January 2027; BOD 26-04 VDR/VER due December 7, 2026).
-2. **Pick a track** — [Track A Compliance](compliance-track.html) or
-   [Track B Implementation](implementation-track.html). The tracks share the
+2. **Pick a track** — Track A Compliance or
+   Track B Implementation. The tracks share the
    corpus but read it differently: Track A reads books as *control-closure
    evidence*; Track B reads them as *build instructions*.
 3. **Supplement with vendor training** — each module points into the
-   [vendor training catalog](vendor-training-catalog.html) for the underlying
+   vendor training catalog for the underlying
    product skills (Entra, Sentinel, Purview, Infoblox DDI, SD-WAN, …).
 4. **Capstone (both tracks)** — produce or evaluate a KSI evidence bundle
    with the engine CLI (`<engine> ksi evaluate`, `<engine> oscal ksi-ar`,
    `<engine> oscal generate`) against the eight Compliance evidence slots.
-
-![Figure 2 — The evidence flow both capstones exercise: a book artifact is bound by a slot mapping, evaluated against KSI rules, and lands as per-KSI verdicts in the OSCAL Assessment Results.](figs/tp-fig-06-evidence-flow.png){fig-alt="Evidence flow: book artifact to slot mapping to KSI evaluation to OSCAL assessment results"}
 
 ## The Core Compliance Pathway {#core-aan-pathway}
 
@@ -160,19 +156,19 @@ evidence slots directly and exercises both capstone surfaces:
 
 | Book | Module page | Why it is in the spine | Slot(s) fed |
 |---|---|---|---|
-| 00 | [Executive Summary](books/book-00.html) | The argument and the deadline map | — (orientation) |
-| 01 | [Cloud Landing Zone, IPAM & FedRAMP](books/book-01.html) | Addressing is the dependency everything else assumes | 2 |
-| 03 | [Certificates, Tokens & Cryptographic Identity](books/book-03.html) | The credential plane | 1 |
-| 04 | [HRIT Identity & Org SSOT](books/book-04.html) | The lifecycle source of truth | 1 |
-| 05 | [Network Modernization](books/book-05.html) | The application-aware transport argument | 3 |
-| 10 | [Privileged Access Management](books/book-10.html) | The highest-blast-radius identity surface | 1, 5 |
-| 11 | [Vulnerability Management](books/book-11.html) | The KEV-driven telemetry spine | 4, 5, 6 |
-| 13 | [SIEM / XDR Detection](books/book-13.html) | Detection engineering closes the telemetry loop | 4, 6 |
-| 19 | [Authorization Package & ConMon](books/book-19.html) | Assembles everything into the package | (assembles all) |
+| 00 | Executive Summary | The argument and the deadline map | — (orientation) |
+| 01 | Cloud Landing Zone, IPAM & FedRAMP | Addressing is the dependency everything else assumes | 2 |
+| 03 | Certificates, Tokens & Cryptographic Identity | The credential plane | 1 |
+| 04 | HRIT Identity & Org SSOT | The lifecycle source of truth | 1 |
+| 05 | Network Modernization | The application-aware transport argument | 3 |
+| 10 | Privileged Access Management | The highest-blast-radius identity surface | 1, 5 |
+| 11 | Vulnerability Management | The KEV-driven telemetry spine | 4, 5, 6 |
+| 13 | SIEM / XDR Detection | Detection engineering closes the telemetry loop | 4, 6 |
+| 19 | Authorization Package & ConMon | Assembles everything into the package | (assembles all) |
 
 Pair the spine with the four scripted labs
-([DDI](labs/lab-b1-ddi.html), [PIM](labs/lab-b5-pim.html),
-[Sentinel](labs/lab-b6-sentinel.html), [Purview](labs/lab-b6-purview.html)).
+(DDI, PIM,
+Sentinel, Purview).
 
 The pathway is a **starting sequence, not a credential path**: slots 7
 (continuity — Book 14) and 8 (training — Book 18), the supply-chain depth
@@ -235,14 +231,14 @@ directory):
   Foundation/OpenSSF, ISACA, IAPP, Tenable, Qualys) are now catalog rows
   with verified training-portal URLs.
 - ✅ **Lab environments** — shipped: the lab hub with
-  scripted setups for DDI ([B1](labs/lab-b1-ddi.html)), PIM
-  ([B5](labs/lab-b5-pim.html)), Sentinel
-  ([B6](labs/lab-b6-sentinel.html)), and Purview
-  ([B6](labs/lab-b6-purview.html)), tiered fixture / trial-tenant /
+  scripted setups for DDI (B1), PIM
+  (B5), Sentinel
+  (B6), and Purview
+  (B6), tiered fixture / trial-tenant /
   product-eval. Next iteration: B2 access/identity and B3 SD-WAN
   eval-gear labs.
 - ✅ **Assessment rubrics** — shipped:
-  [per-slot scoring sheets](assessment-rubrics.html) for the Track A
+  per-slot scoring sheets for the Track A
   capstone with a four-level scale and explicit pass bar.
 - ✅ **Corpus sync (July 2026)** — Books 18 (Training & Awareness) and 19
   (Authorization Package & ConMon) joined the corpus; slot 8 — training
@@ -259,7 +255,7 @@ directory):
   [`<engine>` tooling note](#tooling-stack), the PIM lab's
   bind-the-evidence close, boundary-context cross-links from Books
   05/06/11/12/13, the
-  [post-implementation KPIs](assessment-rubrics.html#post-implementation-kpis),
+  post-implementation KPIs,
   and stable Date Codes replacing render-time dates on every page.
 - **A permanent home** — this material is not the governance engine's and will not be
   canonized as a `FMP_NNN` spec; if the Compliance corpus moves to its own
@@ -267,8 +263,8 @@ directory):
 
 ## Next
 
-- **Compliance staff** → [Track A — Compliance track](compliance-track.html),
-  scored by the [assessment rubrics](assessment-rubrics.html)
-- **Engineers** → [Track B — Implementation track](implementation-track.html),
+- **Compliance staff** → Track A — Compliance track,
+  scored by the assessment rubrics
+- **Engineers** → Track B — Implementation track,
   with lab environments
-- **Everyone** → [Vendor training catalog](vendor-training-catalog.html)
+- **Everyone** → Vendor training catalog

@@ -7,7 +7,7 @@ audience: [Technical, Customer]
 family: sql-server-implementation
 series-order: 10
 status: active
-canon-source: "src/uiao/canon/the directory modernization program"
+canon-source: "src/fmp/canon/the directory modernization program"
 lifecycle: active
 tiers_adopted: []
 lifecycle_review: 2027-01-01
@@ -16,8 +16,6 @@ lifecycle_review: 2027-01-01
 ::: {.content-visible when-format="docx"}
 # Implementation Book 10 — Certificate Discovery for SQL Server's ADCS Dependencies
 :::
-
-![Map the SQL ↔ ADCS dependency chain before retiring the certificate authority: audit which SQL surfaces depend on it, plan their migration, and sequence PKI so no dependent loses its issuer.](images/book10-image-01-certificate-dependencies.png){#fig-impl-book10 fig-alt="A schematic on a white background. A top row flows left to right under teal arrows: Spec3-D1.10-Get-CertBasedAuthAudit (read-only / analytical), New-FMPSqlCertificatePlan (derive), and New-FMPPKIMigrationPlan (sequence retirement). Below, a navy 'ADCS / PKI certificate authority' node fans out by red arrows to three red-bordered dependent boxes: 'TLS / Force Encryption — SQL endpoint certificate', 'certificate-based logins — service / app authentication', and 'Always Encrypted / TDE — data-protection keys'. Federal navy, teal and red palette; no photographs." width="100%"}
 
 ::: {.callout-tip}
 ## Download this book

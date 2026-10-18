@@ -34,8 +34,6 @@ Compliance's independence is structural, not aspirational: the series speaks
 only to the open Evidence & Authorization Contract, so it stands alone
 without the organizational-attribute model, OrgMod, or any particular engine behind it.
 
-![The Org family: four operational expressions — the organizational-attribute model (governance), Compliance (Federal Organizational Compliance), OrgMod (Organizational Modernization), and OrgLink (external interconnection) — standing on one governance substrate of identity, addressing, evidence, and policy-bearing control planes. Compliance connects to the substrate through a dashed Evidence & Authorization Contract seam labeled "any conformant engine can satisfy it," and a footer band states the four are adoptable together or each on its own.](figs/org-family-substrate.png){width="100%"}
-
 ::: {.callout-note collapse="true"}
 ## Formerly the "Federal Compliance AAN Series"
 **AAN — Application-Aware Networking — was the program's original naming
@@ -53,7 +51,7 @@ Every book is browsable here and carries a Word download button.
 
 The series is engine-neutral by design: wherever a book needs evidence or
 authorization tooling, it speaks to the
-**[Compliance Evidence & Authorization Contract](Compliance_Evidence_Contract_Spec.qmd)** —
+**Compliance Evidence & Authorization Contract** —
 the open specification (compliance spine + eight evidence slots + OSCAL
 AP/AR/POA&M boundary) that any conformant evidence engine can satisfy.
 
@@ -65,7 +63,7 @@ still be there:
 | Entry point | For | Start here |
 |---|---|---|
 | **Executive Brief** | Leadership, sponsors, procurement | The [two-page Executive Brief](Vol_0_Book_00a_Executive_Brief.md), then the [Executive Summary](Vol_0_Book_00_Executive_Summary.md) and the [Product Inventory Questionnaire](Vol_0_Book_01_Product_Inventory_Questionnaire.md) |
-| **Practitioner Quickstart** | ISSOs and engineers who need the working core first | The training program's Core Compliance Pathway (nine-book spine + four labs), the [`<engine>` tooling note](Compliance-Training-Program/index.qmd#tooling-stack), and the deployable kits — the [ServiceNow compliance app](Vol_VII_Book_05_ServiceNow_Compliance_App.md) and the Day-2 catalog (Vol IX) — via the Downloads page |
+| **Practitioner Quickstart** | ISSOs and engineers who need the working core first | The training program's Core Compliance Pathway (nine-book spine + four labs), the `<engine>` tooling note, and the deployable kits — the [ServiceNow compliance app](Vol_VII_Book_05_ServiceNow_Compliance_App.md) and the Day-2 catalog (Vol IX) — via the Downloads page |
 | **Full Academy** | Anyone pursuing the credentials | [Vol V — Training & Certification](Vol_V_Book_00_Training_Certification_Overview.md) and the two-track Compliance Training Program with its capstones and rubrics |
 
 ## One lifecycle, three pillars {#macdr}

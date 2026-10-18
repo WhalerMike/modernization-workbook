@@ -20,8 +20,6 @@ Modernization)** — the modernization member of the Org family, alongside
 the organizational-attribute model (governance) and OrgComp (compliance). Like its siblings, OrgMod is
 designed to be adopted together with them or entirely on its own.
 
-![The Org family: four operational expressions — the organizational-attribute model (governance), OrgComp (Federal Organizational Compliance), OrgMod (Organizational Modernization), and OrgLink (external interconnection) — standing on one governance substrate of identity, addressing, evidence, and policy-bearing control planes. OrgComp connects to the substrate through a dashed Evidence & Authorization Contract seam, and a footer band states the four are adoptable together or each on its own.](../orgcomp-series/figs/org-family-substrate.png){width="100%"}
-
 ## The Hidden Migration Surface
 
 When organizations plan their "AD to Entra ID migration," they think about users and groups.
@@ -120,7 +118,7 @@ Adapter migrations that add a net-new capability without retiring any legacy inf
 
 ## Adapter Registration Schema
 
-Every adapter registers in the `migration-adapter-registry.yaml` with standardized metadata. The contract is declared in [`src/uiao/schemas/migration-adapter-registry/migration-adapter-registry.schema.json`] (the program decision Phase 2):
+Every adapter registers in the `migration-adapter-registry.yaml` with standardized metadata. The contract is declared in [`src/fmp/schemas/migration-adapter-registry/migration-adapter-registry.schema.json`] (the program decision Phase 2):
 
 - **Adapter ID and name**
 - **Priority tier** (CRITICAL / HIGH / MEDIUM)
@@ -132,10 +130,10 @@ Every adapter registers in the `migration-adapter-registry.yaml` with standardiz
 ## Source Files
 
 All Directory Migration source files are in the monorepo at
-`src/uiao/modernization/directory-migration/`. The adapter registry is at
-`src/uiao/modernization/directory-migration/migration-adapter-registry.yaml`.
+`src/fmp/modernization/directory-migration/`. The adapter registry is at
+`src/fmp/modernization/directory-migration/migration-adapter-registry.yaml`.
 
 Companion documents in the module:
 
-- [`src/uiao/modernization/directory-migration/eight-core-concepts.md`] — the eight universal architectural concepts grounding every adapter
-- [`src/uiao/modernization/directory-migration/ad-dependency-inventory.md`] — comprehensive inventory of the eleven AD-dependent object types and their migration risks
+- [`src/fmp/modernization/directory-migration/eight-core-concepts.md`] — the eight universal architectural concepts grounding every adapter
+- [`src/fmp/modernization/directory-migration/ad-dependency-inventory.md`] — comprehensive inventory of the eleven AD-dependent object types and their migration risks

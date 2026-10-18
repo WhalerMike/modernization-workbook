@@ -3,8 +3,8 @@ title: "Executive Briefs"
 subtitle: "Single-page leadership summaries of the Federal Modernization Program capability areas"
 doc-type: section-landing
 audience: "Agency CIO · CISO · modernization sponsors"
-canon-source: "src/uiao/canon/"
-derived-from: "uiao canon"
+canon-source: "src/fmp/canon/"
+derived-from: "fmp canon"
 lifecycle: adopted
 tiers_adopted: [1]
 lifecycle_review: 2026-11-22
@@ -31,13 +31,13 @@ Status badges follow the Whitepapers status conventions.
 
 | Slug | Topic | Status | Canon anchor |
 |---|---|---|---|
-| uiao-executive-brief | The flagship the Federal Modernization Program brief — full federal scenario | Active | `docs/publications/01-executive-brief/` |
-| universal-enterprise-positioning-overview | Vertical-agnostic engine; federal as one adapter pack | Active | `src/uiao/canon/adr/adr-085-universal-enterprise-positioning.md` |
-| [governance-os-overview](governance-os-overview.md) | The Federal Modernization Program Governance OS in one page | Active | `src/uiao/canon/substrate-manifest.yaml` |
-| [adapter-ecosystem-overview](adapter-ecosystem-overview.md) | The dual-axis adapter taxonomy and registries | Active | `src/uiao/canon/FMP_003_Adapter_Segmentation_Overview_v1.0.md` |
+| fmp-executive-brief | The flagship the Federal Modernization Program brief — full federal scenario | Active | `docs/publications/01-executive-brief/` |
+| universal-enterprise-positioning-overview | Vertical-agnostic engine; federal as one adapter pack | Active | `src/fmp/canon/adr/adr-085-universal-enterprise-positioning.md` |
+| [governance-os-overview](governance-os-overview.md) | The Federal Modernization Program Governance OS in one page | Active | `src/fmp/canon/substrate-manifest.yaml` |
+| [adapter-ecosystem-overview](adapter-ecosystem-overview.md) | The dual-axis adapter taxonomy and registries | Active | `src/fmp/canon/FMP_003_Adapter_Segmentation_Overview_v1.0.md` |
 | [drift-engine-overview](drift-engine-overview.md) | Drift-detection capability brief | Active | `docs/docs/16_DriftDetectionStandard.qmd` |
 | [evidence-fabric-overview](evidence-fabric-overview.md) | Provenance and evidence pipeline brief | Active | `docs/docs/15_ProvenanceProfile.qmd` |
-| [ksi-conformance-overview](ksi-conformance-overview.md) | Machine-checkable Key Security Indicators | Active | `src/uiao/rules/ksi/` |
-| [reciprocity-single-ato-overview](reciprocity-single-ato-overview.md) | One ATO, many agencies, signed per-agency evidence | Active | `src/uiao/canon/adr/adr-054-single-ato-reciprocity.md` |
-| [zero-trust-overview](zero-trust-overview.md) | Zero-trust identity model brief | Active | `src/uiao/canon/adr/adr-008-zero-trust-identity.md` |
+| [ksi-conformance-overview](ksi-conformance-overview.md) | Machine-checkable Key Security Indicators | Active | `src/fmp/rules/ksi/` |
+| [reciprocity-single-ato-overview](reciprocity-single-ato-overview.md) | One ATO, many agencies, signed per-agency evidence | Active | `src/fmp/canon/adr/adr-054-single-ato-reciprocity.md` |
+| [zero-trust-overview](zero-trust-overview.md) | Zero-trust identity model brief | Active | `src/fmp/canon/adr/adr-008-zero-trust-identity.md` |
 | [modernization-overview](modernization-overview.md) | End-to-end modernization program brief | Active | `docs/docs/06_ProgramVision.qmd` |

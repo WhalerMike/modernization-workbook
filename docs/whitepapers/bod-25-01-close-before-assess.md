@@ -6,7 +6,7 @@ author: Michael Stratton
 date: "July 2026"
 audience: [Executive, Customer, Assessor, Architect]
 status: Active
-canon-source: "src/uiao/canon/adapter-registry.yaml#scubagear"
+canon-source: "src/fmp/canon/adapter-registry.yaml#scubagear"
 canon-reference:
  - "docs/customer-documents/whitepapers/scubagear-integration-whitepaper.qmd"
  - "docs/customer-documents/whitepapers/zta-scuba-relationship.qmd"
@@ -15,7 +15,7 @@ canon-reference:
  - "docs/customer-documents/orgcomp-series/boundary/B1-1-gcc-moderate-three-way-conflict.qmd"
  - "tools/ztttdrift/README.md"
  - "tools/scubadrift/README.md"
-derived-from: "uiao canon"
+derived-from: "fmp canon"
 created-at: 2026-07-31
 updated-at: 2026-09-16
 version: "1.2"
@@ -114,7 +114,7 @@ five is not optional under the directive's own text.
 
 ### 2. What the assessors measure, and what they don't
 
-ScubaGear and Microsoft's Zero Trust Assessment are both, in UIAO's adapter
+ScubaGear and Microsoft's Zero Trust Assessment are both, in FMP's adapter
 taxonomy, `class: conformance` instruments — see the
 [ScubaGear Integration whitepaper](scubagear-integration-whitepaper.md) for
 the full canonical treatment. Neither writes to a tenant. Both read
@@ -245,7 +245,7 @@ ScubaGear manually before an audit. It requires exactly what a point-in-time
 scan cannot provide on its own: a durable run-to-run record, aging of open
 deviations against a remediation SLA, and a clean signal for "this deviation
 is newly introduced" versus "this deviation is a known, governed exception."
-UIAO's toolkit builds that layer directly on top of the assessors' output,
+FMP's toolkit builds that layer directly on top of the assessors' output,
 without reimplementing either assessor:
 
 - **ScubaDrift** layers drift,

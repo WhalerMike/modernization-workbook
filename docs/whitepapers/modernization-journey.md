@@ -1106,12 +1106,12 @@ an inventory, an owner, and a date. The architecture described in this
 whitepaper is not aspirational --- it is what the commercial sector
 already runs, and what federal compliance now requires.
 
-## Appendix --- Narrative provenance: this arc mapped to UIAO canon
+## Appendix --- Narrative provenance: this arc mapped to FMP canon
 
 **Everything above this appendix is vendor- and product-neutral** --- it
 cites only NIST, OMB, CISA and FedRAMP, and the argument stands without
 anything below. This appendix is separable: it exists for readers who
-want to know where Act 4's claims come from in the UIAO substrate, and
+want to know where Act 4's claims come from in the FMP substrate, and
 it can be dropped when the paper is handed to an audience that is not
 evaluating a platform.
 
@@ -1136,8 +1136,8 @@ earlier framings were corrected to match canon.
  conflated directory + 
  DC 
 
- the organizational-attribute model restores UIAO_151, [the program decision **Corrected:** the organizational-attribute model
- addressable truth §2](../../../src/uiao/canon/adr/adr-092-active-governance.md) is an *addressing
+ the organizational-attribute model restores FMP_151, the program decision **Corrected:** the organizational-attribute model
+ addressable truth §2 is an *addressing
  attribute every object
  carries*, not a
  "governance primitive,"
@@ -1153,7 +1153,7 @@ earlier framings were corrected to match canon.
  canonical concept."
 
  Vendor products (SD-WAN the program decision §2, **Softened:** canon
- platform, cloud [Book_17](../orgpath-narrative/Book_17.md) names a neutral
+ platform, cloud Book_17 names a neutral
  on-ramp) `sdwan-fabric` slot,
  Azure Policy,
  ISE/ClearPass/Entra
@@ -1178,6 +1178,6 @@ earlier framings were corrected to match canon.
  Program-integrity
  stakes are the agency's
  real-world motivation,
- not a UIAO canon claim.
+ not an FMP canon claim.
  ----------------------------------------------------------------------------------------------------------------------------------------------------------
 

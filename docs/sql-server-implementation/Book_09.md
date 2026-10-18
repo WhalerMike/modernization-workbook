@@ -7,7 +7,7 @@ audience: [Technical, Customer]
 family: sql-server-implementation
 series-order: 09
 status: active
-canon-source: "src/uiao/canon/the directory modernization program"
+canon-source: "src/fmp/canon/the directory modernization program"
 lifecycle: active
 tiers_adopted: []
 lifecycle_review: 2027-01-01
@@ -16,8 +16,6 @@ lifecycle_review: 2027-01-01
 ::: {.content-visible when-format="docx"}
 # Implementation Book 09 — Continuous Monitoring & the CCM-BIR Closure Record
 :::
-
-![Closure is proven, then kept: a scheduled audit seals a closure record each cycle, and Compare-FMPClosureRun diffs consecutive records so any regression becomes an explicit drift finding.](images/book09-image-01-closure-drift.png){#fig-impl-book09 fig-alt="A schematic on a white background. A top row flows left to right under teal arrows: 'Spec3-D1.8 (scheduled)' (read-only), New-FMPClosureRecord (sealed snapshot, reproducible content_hash), and Compare-FMPClosureRun (diff record N-1 → record N). Below, two outcome panels: a teal 'no change — posture held, closure stays proven' and a red 'regression detected — a Windows / NTLM / SQL login returned, surfaced as an explicit drift finding'. Federal navy, teal and red palette; no photographs." width="100%"}
 
 ::: {.callout-tip}
 ## Download this book

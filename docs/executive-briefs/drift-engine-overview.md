@@ -3,15 +3,13 @@ title: Drift Engine Overview — Executive Brief
 doc-type: executive-brief
 status: Active
 canon-source: docs/docs/16_DriftDetectionStandard.qmd
-derived-from: uiao canon
+derived-from: fmp canon
 lifecycle: adopted
 tiers_adopted: [1]
 lifecycle_review: 2026-11-22
 ---
 
 # Drift Engine Overview — Executive Brief
-
-![Continuous monitoring pipeline](../../images/canonical/FMP-FIG-003-continuous-monitoring-pipeline.png){fig-alt="the Federal Modernization Program continuous monitoring pipeline checking tenant configuration against 323 FedRAMP Moderate Rev 5 controls plus SCuBA and [BOD 25-01](https://cyber.dhs.gov/bod/25-01/) baselines." width="100%"}
 
 For federal CIO/CISO leadership, the Federal Modernization Program’s drift engine is the control that continuously answers: *“Are we still operating exactly as canonized policy, identity, and evidence rules require?”* It classifies drift using one taxonomy, assigns operational urgency, and drives a bounded remediation path.
 
@@ -36,7 +34,7 @@ The Federal Modernization Program uses five classes (verbatim from the Drift Det
 
 ## Where drift is detected
 
-1. **CI substrate walker** (`uiao substrate walk`, `substrate-drift.yml`) detects shipped classes now: `DRIFT-SCHEMA` and `DRIFT-PROVENANCE`.
+1. **CI substrate walker** (`fmp substrate walk`, `substrate-drift.yml`) detects shipped classes now: `DRIFT-SCHEMA` and `DRIFT-PROVENANCE`.
 2. **Runtime conformance runner** detects runtime drift during adapter execution and emits remediation-contract records (`drift_class`, `severity`, timestamps, remediation action, evidence, escalation path).
 
 ## How leaders should consume drift output

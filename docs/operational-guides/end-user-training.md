@@ -35,7 +35,7 @@ Version: **1.0.0** \| April 21, 2026
 
 Author: **Michael Stratton**
 
-Repository: https://github.com/WhalerMike/uiao
+Repository: https://github.com/WhalerMike/modernization-workbook
 
 ## 1 --- What's Changing and Why
 
@@ -623,7 +623,7 @@ The following companion documents are available in the Federal Modernization Pro
   **The Federal Modernization Program Operations Runbook**                  Day-to-day operational procedures for IT administrators handling identity, device, and access management       IT Administrators
   -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-All documents are maintained in the Federal Modernization Program repository: https://github.com/WhalerMike/uiao
+All documents are maintained in the Federal Modernization Program repository: https://github.com/WhalerMike/modernization-workbook
 
 **The Federal Modernization Program End User Training Guide** --- Version 1.0.0 --- April 21, 2026
 
@@ -631,7 +631,7 @@ Author: Michael Stratton
 
 Classification: Controlled \| Boundary: GCC-Moderate
 
-Repository: https://github.com/WhalerMike/uiao
+Repository: https://github.com/WhalerMike/modernization-workbook
 
 **CONTROLLED \| GCC-MODERATE**
 

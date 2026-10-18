@@ -91,10 +91,10 @@ mechanism for documenting a bounded departure rather than denying there is one.
 
 - [SD-WAN vs. DIA Under TIC 3.0](../../whitepapers/tic3-sdwan-vs-dia.md) —
   §5.5 owns the transport-versus-control argument these instruments implement.
-- [Vol I Book 05 — Network
-  Modernization](../../orgcomp-series/Vol_I_Book_05_Compliance_Network_Modernization.qmd),
+- Vol I Book 05 — Network
+  Modernization,
   Appendix A — owns the Catalyst SD-WAN and M365 build, including the GCC
   Moderate constraint.
 - [FedRAMP 20x and the Commercial Feature
-  Gap](../../whitepapers/fedramp-20x-and-the-commercial-feature-gap.qmd) —
+  Gap](../../whitepapers/fedramp-20x-and-the-commercial-feature-gap.md) —
   owns the framework and vendor-documentation argument.

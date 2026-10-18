@@ -8,7 +8,7 @@ canon-reference:
   - "docs/docs/gcc-boundary-problem-statement.qmd"
   - "docs/docs/drift-detection-boundary-amendment.qmd"
   - "docs/customer-documents/orgcomp-series/boundary/B1-gcc-moderate-boundary-model.qmd"
-derived-from: "uiao canon"
+derived-from: "fmp canon"
 lifecycle: adopted
 tiers_adopted: [1]
 lifecycle_review: 2026-11-22
@@ -16,7 +16,7 @@ lifecycle_review: 2026-11-22
 
 # Boundary Impact Model
 
-The **boundary impact model** is UIAO's architectural treatment of what
+The **boundary impact model** is FMP's architectural treatment of what
 happens when authorization boundaries cut across the substrate — most
 notably the GCC-Moderate boundary that constrains telemetry, identity, and
 enforcement surfaces inside Microsoft 365 GCC-Moderate tenants.
@@ -28,7 +28,7 @@ does not exist. This page anchors instead on the existing GCC-Moderate
 boundary canon (`gcc-boundary-problem-statement.qmd`,
 `gcc-boundary-solution-architecture.qmd`,
 `drift-detection-boundary-amendment.qmd`) and the customer-facing leaf
-[`B.1 GCC-Moderate Boundary Model`](../orgcomp-series/boundary/B1-gcc-moderate-boundary-model.qmd).
+`B.1 GCC-Moderate Boundary Model`.
 A canon-change ADR may later promote a generalized authorization-boundary
 canon document; until then, this model is GCC-Moderate-anchored.
 :::
@@ -37,7 +37,7 @@ canon document; until then, this model is GCC-Moderate-anchored.
 
 ## What the model captures
 
-A boundary in UIAO is **not just a network or tenant edge** — it is any
+A boundary in FMP is **not just a network or tenant edge** — it is any
 surface across which:
 
 - **Telemetry fidelity changes** (e.g. commercial → GCC-Moderate causes
@@ -72,7 +72,7 @@ keeps both surfaces in one operational language.
 
 The structural example for this model is the **GCC-Moderate invisible
 boundary**, documented in
-[`gcc-boundary-problem-statement.qmd`](../../docs/gcc-boundary-problem-statement.qmd):
+`gcc-boundary-problem-statement.qmd`:
 
 > Microsoft 365 GCC-Moderate provides the same nominal product set as M365
 > commercial, but the FedRAMP Moderate authorization boundary materially
@@ -103,13 +103,13 @@ B.1 GCC-Moderate Boundary Model
 leaf to produce a single coherent SSP narrative instead of four disjoint
 ones.
 
-![GCC-Moderate invisible-boundary visualization](../images/architecture/boundary-impact-model-image-02-gcc-moderate-invisible-boundary.png){#fig-boundary-impact-model-image-02 fig-alt="Top half shows the M365 GCC-Moderate admin portal with five tiles labeled Endpoint Analytics / Device Health Attestation / Locations & Network Fence / ARC Server Monitoring / Expedited Updates — all displayed as available (green check). Bottom half shows what actually functions inside the boundary — the same five tiles redrawn empty or grayed out (red X), with explanatory captions like \"telemetry blocked\", \"planning phase\", \"explicitly unavailable\". Between the two halves, a horizontal \"Invisible Boundary\" line indicates where appearance and reality diverge. Right margin shows four UIAO compensating mechanisms (Boundary Probe, In-Boundary Telemetry, Compensating Enforcement, ATO Documentation Surface) as small numbered boxes. Clean engineering diagram, dark navy (#0D1B2E) and teal (#1E8C8C) primary, with red (#C74040) reserved for the unavailable-state tiles. No photographs, purely diagrammatic." width="100%"}
+![GCC-Moderate invisible-boundary visualization](../images/architecture/boundary-impact-model-image-02-gcc-moderate-invisible-boundary.png){#fig-boundary-impact-model-image-02 fig-alt="Top half shows the M365 GCC-Moderate admin portal with five tiles labeled Endpoint Analytics / Device Health Attestation / Locations & Network Fence / ARC Server Monitoring / Expedited Updates — all displayed as available (green check). Bottom half shows what actually functions inside the boundary — the same five tiles redrawn empty or grayed out (red X), with explanatory captions like \"telemetry blocked\", \"planning phase\", \"explicitly unavailable\". Between the two halves, a horizontal \"Invisible Boundary\" line indicates where appearance and reality diverge. Right margin shows four FMP compensating mechanisms (Boundary Probe, In-Boundary Telemetry, Compensating Enforcement, ATO Documentation Surface) as small numbered boxes. Clean engineering diagram, dark navy (#0D1B2E) and teal (#1E8C8C) primary, with red (#C74040) reserved for the unavailable-state tiles. No photographs, purely diagrammatic." width="100%"}
 
-## How UIAO compensates: in-boundary equivalents
+## How FMP compensates: in-boundary equivalents
 
 Per
-[`gcc-boundary-solution-architecture.qmd`](../../docs/gcc-boundary-solution-architecture.qmd),
-UIAO addresses each impact dimension through in-boundary mechanisms rather
+`gcc-boundary-solution-architecture.qmd`,
+FMP addresses each impact dimension through in-boundary mechanisms rather
 than waiting for Microsoft to fix the platform:
 
 1. **Boundary probe** — programmatically tests which features actually
@@ -142,7 +142,7 @@ not in the Compliance section:
 
 ## What this means for an ATO package
 
-A UIAO-anchored ATO package treats every authorization boundary as a
+An FMP-anchored ATO package treats every authorization boundary as a
 **named, modeled, drift-monitored surface**:
 
 - The boundary itself appears in the SSP, with disposition data per the

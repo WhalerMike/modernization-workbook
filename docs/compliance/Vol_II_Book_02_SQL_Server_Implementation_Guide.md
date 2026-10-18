@@ -39,8 +39,6 @@ This document is a **draft proposal** developed by the **CSI Team (Cloud Service
 
 This guide is organized as ten sequential books. Each book has a defined scope, prerequisites, and measurable completion criteria. Books must be run in order — later books depend on state established by earlier ones.
 
-![The ten books run in sequence. The consolidation gate at Book 02 determines which instances proceed. Only retained instances are processed through Books 03–10.](figs/imp-fig-01-book-run-order.png){#fig-imp01 fig-alt="Flowchart showing 10-book run order with consolidation gate at Book 02"}
-
 **The consolidation gate** at Book 02 is a real gate, not a formality. Instances that do not meet the retain criteria are decommissioned before migration resources are spent on them. An instance that is retired is not migrated — it is turned off, its databases are archived or transferred, and it is removed from the estate inventory.
 
 **Safety model.** Every destructive action in this guide is preceded by a documented undo path. `ALTER LOGIN DISABLE` can be reversed with `ALTER LOGIN ENABLE`. SPNs can be removed with `setspn -D`. Arc enrollment can be unenrolled. Every action up to that point is reversible; the first irreversible action is `DROP LOGIN` in Book 05 — and that action is explicitly gated behind a 30-day observation period.
@@ -98,8 +96,6 @@ For any instance running under `NETWORK SERVICE` or `LOCAL SYSTEM`, create a ded
 ---
 
 # Book 02 — Estate Discovery and Consolidation Gate
-
-![Estate discovery drives a consolidation gate assigning each instance to retain, consolidate, or retire. Only retained instances proceed to Books 03–10.](figs/imp-fig-02-estate-discovery.png){#fig-imp02 fig-alt="Diagram showing estate discovery feeding three-way consolidation gate with output targets"}
 
 ## SQL Instance Scan
 
@@ -245,8 +241,6 @@ Export-Csv "$env:USERPROFILE\Desktop\ntlm-events-$(Get-Date -Format yyyyMMdd).cs
 ## Five Closure Conditions
 
 The authentication audit is complete when all five closure conditions are documented:
-
-![NTLM elimination runs in three sequential phases: discovery, remediation, and domain-wide block. Each phase has measurable exit criteria before the next begins.](figs/san-fig-03-ntlm-elimination.png){#fig-imp03 fig-alt="Diagram showing three NTLM elimination phases from discovery through domain block"}
 
 1. **Login inventory complete.** All instance-level logins enumerated, typed, and exported.
 2. **Database user mapping complete.** All database users mapped to logins and roles.

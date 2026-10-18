@@ -29,6 +29,6 @@ enablement.
 - **H.1** Master Project Plan (capstone)
 - **H.2** Migration Roadmap
 - **H.3** Architecture Decision Records (ADRs)
-- **H.4** ServiceNow change / incident integration — [adapter](../../adapter-specs/service-now/service-now.html)
+- **H.4** ServiceNow change / incident integration — adapter
 - **H.5** SAM (software asset management)
 - **H.6** End-user training

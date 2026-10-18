@@ -54,8 +54,6 @@ This document is a **draft proposal** developed by the **CSI Team (Cloud Service
 
 # The N8NN: The Front Door to the Agency
 
-![The N8NN Call Journey: From Citizen to Agent](figs/tc-fig-07-citizen-journey.png){fig-alt="Left-to-right journey showing citizen with phone dialing the N8NN number, call traveling through PSTN to Amazon Connect cloud, entering IVR routing, waiting in queue with three person icons, then connecting to agent at desk with headset. Steps numbered 1 through 5. Note: steps 1 through 3 happen inside AWS and are unaffected by agency network. Step 5 agent-to-cloud path is determined by agency network architecture and is where G.114 compliance is won or lost." width="100%"}
-
 The N8NN is not a telephone feature. It is the primary channel through which citizens reach the agency. Every call that fails to connect, every conversation degraded by choppy audio, every dropped session during a complex transaction represents a citizen who did not receive the service the agency exists to provide.
 
 Behind the N8NN sits Amazon Connect processing calls on AWS commercial infrastructure, a network carrying voice from the platform to agents at field offices across fifty states, and agents whose ability to hear and be heard clearly is determined entirely by the network segment between their desk and the cloud. That segment — the agency's own network — is where the problem lives and where the solution must be built.
@@ -65,8 +63,6 @@ Behind the N8NN sits Amazon Connect processing calls on AWS commercial infrastru
 # The Physics of Voice: Standards With a Pass/Fail Threshold
 
 Unlike most enterprise applications, voice quality has internationally standardized, measurable pass/fail thresholds that are not preferences or benchmarks but engineering specifications with a direct relationship to intelligibility.
-
-![Voice Quality: MOS Scale and G.114 One-Way Delay Budget](figs/tc-fig-01-voice-quality.png){fig-alt="Illustrative diagram showing the MOS scale from 1 (Bad) to 5 (Excellent) with the N8NN target at 4.0 Good, and the G.114 150ms one-way delay budget broken into Opus codec 20ms, adaptive jitter buffer 55ms, and network budget remaining 75ms. Real-world path comparison shows Portland MPLS at 100-130ms over budget, and Portland local DIA at 5-15ms well within budget." width="100%"}
 
 ## ITU-T G.114: The One-Way Delay Limit
 
@@ -90,8 +86,6 @@ The N8NN contact center must sustain MOS above 4.0 consistently across all agent
 
 ## Jitter and Packet Loss
 
-![Voice Packet Arrival: What Network Conditions Sound Like](figs/tc-fig-08-packet-jitter.png){fig-alt="Three horizontal rows of packet squares. Row 1 GOOD: ten evenly spaced green squares, less than 30ms jitter, MOS 4.3 Excellent. Row 2 JITTER: ten amber squares with uneven spacing bunched and gapped, 80ms variance, MOS 3.2 Annoying. Row 3 PACKET LOSS: ten squares with two shown as red dashed outlines indicating lost packets, 2 percent loss, audible gaps every few seconds. Time axis arrow below. Note: Opus codec conceals single lost packet; consecutive losses are unintelligible." width="100%"}
-
 **Jitter** — the variance in packet arrival time — must stay below 30 ms. Jitter buffers compensate by holding packets briefly, but a buffer large enough to absorb 80 ms of variance adds 80 ms of delay, breaching the G.114 ceiling. You can absorb jitter or meet the delay budget; a jittery network forces the choice.
 
 **Packet loss** above 1% produces audible dropouts. Voice RTP does not retransmit lost packets — they are concealed or skipped. The Opus codec handles occasional single-packet loss gracefully; consecutive losses or rates above 3% produce gaps no concealment algorithm can hide.
@@ -101,8 +95,6 @@ The N8NN contact center must sustain MOS above 4.0 consistently across all agent
 ## Platform Overview
 
 Amazon Connect is AWS's cloud-native contact center platform, providing inbound and outbound call handling, IVR via contact flows, skills-based routing, real-time and historical analytics, call recording, and the agent desktop (Contact Control Panel) as a managed SaaS service. Agents access all contact center functionality through a browser-based WebRTC softphone. There is no proprietary hardware at the agent's desk, no on-premises call processing equipment, and no PBX to maintain.
-
-![Amazon Connect: AWS GovCloud vs. AWS Commercial — The Authorized Exception](figs/tc-fig-09-aws-exception.png){fig-alt="Two cloud panels side by side. Left AWS GovCloud: navy background with lock icon, FedRAMP High and ITAR badge, physical separation, screened personnel, GovCloud controls, but capability gaps at evaluation time. Right AWS Commercial (.com): light panel with FedRAMP Moderate badge, Contact Lens real-time transcription, Amazon Q agent assist, full integration ecosystem. AUTHORIZED EXCEPTION amber banner noting the FedRAMP Moderate baseline is maintained. Center decision diamond showing which platform to choose. Note: current evaluation required before any new deployment as capability gaps may have closed." width="100%"}
 
 ## The GovCloud vs. Commercial Decision and the Authorized Exception
 
@@ -142,8 +134,6 @@ Steps 1–3 happen inside AWS commercial and are unaffected by the agency's netw
 
 ## The MPLS Hairpin Applied to the N8NN
 
-![MPLS Hairpin vs. Local Breakout: Before and After](figs/tc-fig-02-mpls-vs-breakout.png){fig-alt="Side-by-side comparison showing BEFORE: Portland agent routes via MPLS through Washington DC security inspection then to AWS, resulting in 100-130ms one-way latency and MOS score of 2.9 Very Annoying. AFTER: Portland agent routes via local DIA directly to AWS us-west-2, resulting in 5-15ms one-way latency and MOS score of 4.4 Excellent. MPLS is retained for on-premises VMware workloads." width="100%"}
-
 An agent in Portland whose network routes all internet traffic through Washington before egress reaches AWS us-west-2 as follows:
 
 **Portland → MPLS → Washington → internet → AWS us-west-2 (.com) → Amazon Connect**
@@ -155,8 +145,6 @@ The same agent with local internet breakout:
 **Portland → local DIA → AWS us-west-2 (.com) → Amazon Connect**
 
 One-way network latency: 5–15 ms. Portland and us-west-2 are geographically adjacent. This is the physics minimum for this path, and it is far within budget.
-
-![WebRTC Voice Path: DSCP EF from Agent Desktop to Amazon Connect](figs/tc-fig-10-webrtc-path.png){fig-alt="Left to right data flow showing agent desktop browser with headset generating UDP RTP SRTP stream marked DSCP EF 46 with shield icon. Stream passes through SD-WAN edge device with Priority Lowest Latency Path label. Continues via DIA to AWS cloud with Connect logo. Below main flow: horizontal 150ms G.114 delay budget gauge showing 20ms codec in teal, 55ms jitter buffer in amber, 75ms network budget in green. Note: TCP fallback degrades quality, maintain direct UDP 3478 and 443 outbound." width="100%"}
 
 ## WebRTC Network Requirements
 
@@ -172,8 +160,6 @@ One-way network latency: 5–15 ms. Portland and us-west-2 are geographically ad
 | Firewall | UDP 3478, 443 outbound | Must reach AWS .com endpoints without hairpin inspection delay |
 
 ## Asymmetric Routing: The Session Killer Latency Does Not Explain
-
-![Asymmetric Routing: The Session Killer That Looks Like Configuration Error](figs/tc-fig-11-asymmetric-routing.png){fig-alt="Two panels. PROBLEM left with red border: agent laptop SYN arrow goes through Firewall A which creates session table entry. SYN-ACK returns from AWS via different Firewall B which has no session entry and drops the packet. Red X showing TCP fails call never connects. SOLUTION right with green border: both SYN and SYN-ACK pass through single SD-WAN tunnel endpoint which sees both directions. Green checkmark showing session completes call connects. Note: SD-WAN overlay eliminates asymmetric routing structurally." width="100%"}
 
 Asymmetric routing occurs when the outbound path of a session (client to server) and the return path (server to client) traverse different physical or logical routes through stateful network devices. A stateful firewall maintains a session table. When the SYN for a TCP connection passes through Firewall A, Firewall A creates an entry expecting the SYN-ACK to return through it. If the SYN-ACK returns via a different path through Firewall B, Firewall B drops it as unsolicited.
 
@@ -191,11 +177,7 @@ Microsoft Teams Phone is the cloud PBX capability within Microsoft 365 that enab
 
 Teams Phone is not a separate application or interface. An agent answering a Teams Phone call and an agent joining a Teams meeting use the same client, the same audio path, the same DSCP EF marking for audio streams, and the same network dependency on low-latency, low-jitter connectivity to Microsoft's GCC infrastructure. **Fixing the network for Teams meetings fixes it for Teams Phone simultaneously.**
 
-![Teams Phone: the cloud PBX inside GCC Moderate](figs/tc-fig-15-teams-phone-gcc.png){fig-alt="Three stacked summary rows. Row 1, cloud PBX in the Teams client: extension dialing, voicemail, transfer, call queues, auto attendants, PSTN connectivity — replacing the on-premises telephone system through the client agents already run. Row 2, inside the existing boundary: operates within GCC Moderate with the same FedRAMP Moderate authorization, data residency, and feature availability constraints as the rest of the agency M365 environment — no new boundary complications. Row 3, same audio path as Teams meetings: a Teams Phone call and a Teams meeting use the same client, audio path, DSCP EF marking, and dependency on low-latency connectivity to GCC infrastructure. Teal consequence bar: fixing the network for Teams meetings fixes it for Teams Phone simultaneously — the Book 05 SD-WAN work and this book's telephony work are the same investment. White background. Source: Vol I Book 06 Telecom Modernization briefing deck, Date Code 2026-07-07 15:57 ET." width="100%"}
-
 ## PSTN Connectivity: Direct Routing and the SBC
-
-![PSTN connectivity: Calling Plans, Direct Routing, and the SBC decision](figs/tc-fig-16-pstn-sbc-options.png){fig-alt="Two side-by-side option cards. Left, Microsoft Calling Plans: PSTN connectivity as a licensed add-on, simplest operational model with no SBC to run, confirm availability in GCC Moderate for the agency's geographic footprint and number types before committing. Right, Direct Routing with SBC: the agency connects its PSTN carrier via a Microsoft-certified Session Border Controller that terminates carrier SIP trunks and presents them to Teams — natural candidates given the existing Cisco voice estate are Cisco CUBE or an AudioCodes or Ribbon-class cloud SBC. Grey panel below: two viable SBC deployment models — on-premises at the Washington data center is a familiar model but hairpins all PSTN traffic and is a single point of failure; a vendor-hosted cloud SBC is geographically distributed with multiple PoPs and removes the single point of failure. Amber procurement gate: a cloud SBC used with a FedRAMP Moderate system must itself hold FedRAMP authorization at the Moderate baseline or above — confirm on the Marketplace before procurement. White background. Source: Vol I Book 06 Telecom Modernization briefing deck, Date Code 2026-07-07 15:57 ET." width="100%"}
 
 Connecting Teams Phone to the PSTN requires one of two approaches:
 
@@ -207,8 +189,6 @@ Connecting Teams Phone to the PSTN requires one of two approaches:
 
 ## E911: Federal Legal Requirements
 
-![E911 Compliance and Teams Phone GCC Boundary](figs/tc-fig-06-e911-boundary.png){fig-alt="Diagram showing Teams Phone GCC Moderate connecting through SBC to PSTN and PSAP. E911 requirements panel shows Kari's Law 2018 requiring direct 911 dial and notification, and Ray Baum's Act 2018 requiring dispatchable location via LIS and ELIN. Number porting and recording compliance callouts also shown." width="100%"}
-
 Two federal laws impose specific requirements on any multi-line telephone system, including cloud PBX:
 
 **Kari's Law (2018):** Users must be able to dial 911 directly without dialing an access code or prefix. A notification must be sent to a central point when 911 is dialed. Teams Phone satisfies both requirements when emergency calling policies are correctly configured.
@@ -216,8 +196,6 @@ Two federal laws impose specific requirements on any multi-line telephone system
 **Ray Baum's Act (2018):** The "dispatchable location" — not just a building address but the specific floor, room, or workstation — must be transmitted with the 911 call to the PSAP. Teams Phone supports dispatchable location via the Location Information Service (LIS) and Emergency Location Identification Number (ELIN) configuration.
 
 > **E911 is not optional and must be validated before go-live.** E911 compliance is a federal legal requirement under 47 CFR Part 9. For each location where Teams Phone will be activated, the agency must: (1) configure a Location Information Service entry with dispatchable location, (2) configure an emergency calling policy that routes to the correct PSAP, (3) test 911 dialing and callback from a representative device at that location, and (4) document the test in the deployment record. Remote workers present an additional challenge — location awareness policy must capture the remote worker's current location at sign-in.
-
-![Legacy PBX to Teams Phone GCC: Platform Modernization](figs/tc-fig-12-pbx-migration.png){fig-alt="Left panel shows old grey PBX Call Manager server hardware with wires going to multiple desk phones below. On-premises hardware licensed per seat with manual provisioning. Large right arrow labeled Teams Phone Migration. Right panel shows cloud with Teams logo and GCC badge, modern icon. Features gained: voicemail transcription, auto attendants, call queues, mobile calling, FedRAMP Moderate GCC, no proprietary hardware. Feature comparison row below: extension dialing check both, voicemail check plus, call recording GCC compliant, direct dial 911 Karis Law both check. Note: number porting in geographic tranches not nationwide cutover." width="100%"}
 
 ## Legacy PBX Migration: Number Porting and Transition
 
@@ -233,13 +211,9 @@ Two federal laws impose specific requirements on any multi-line telephone system
 
 ## The Architecture Both Platforms Require
 
-![One SD-WAN Investment: Two Voice Platforms](figs/tc-fig-03-dual-platform-hub.png){fig-alt="Hub-and-spoke diagram showing SD-WAN at center providing local breakout, DSCP EF steering, active-active multipath, and FEC. Amazon Connect (AWS .com) connects on top-left, Teams Phone (GCC Moderate) on top-right. Citizen N8NN on far left, PSTN SBC on far right. Hybrid Agent workstation at bottom. Both platforms share identical network requirements: under 75ms, under 30ms jitter, under 1% loss, DSCP EF." width="100%"}
-
 Both Amazon Connect and Teams Phone are cloud SaaS voice platforms. Both generate real-time RTP/SRTP streams. Both are broken by the same MPLS hairpin and repaired by the same network solution. That solution is not simply "add a DIA circuit." It is Application-Aware Networking — a network architecture in which policy decisions, path selection, security enforcement, and traffic treatment are determined by the full context of a transaction: application identity, user identity, device posture, and behavioral characteristics. Not by source IP and port alone.
 
 ## The Hybrid Agent: Two Simultaneous DSCP EF Streams
-
-![Hybrid Agent: Dual Concurrent Voice Streams](figs/tc-fig-04-hybrid-agent.png){fig-alt="Workstation diagram showing agent simultaneously running Amazon Connect Contact Control Panel (browser) and Teams Desktop client. Two DSCP EF streams flow simultaneously: Stream 1 to Citizen via AWS .com at 100 Kbps, Stream 2 to Supervisor via GCC Moderate at 100 Kbps. Both pass through SD-WAN edge with 200 Kbps reserved DSCP EF capacity. Capacity formula shown: max concurrent hybrid agents times 200 Kbps." width="100%"}
 
 When an agent has an active Amazon Connect call and simultaneously receives a Teams Phone call, the workstation is generating two concurrent voice streams, both marked at the highest QoS priority (DSCP EF). The SD-WAN per-DSCP policy must provide sufficient bandwidth on the lowest-latency path to carry both streams simultaneously.
 
@@ -282,8 +256,6 @@ The shortlists above reflect FedRAMP authorization status and federal use-case a
 
 # Why Direct Internet Access Alone Does Not Satisfy NIST Controls
 
-![DIA Enables — SASE Achieves: NIST Control Stack](figs/tc-fig-05-sase-stack.png){fig-alt="Layered architecture showing DIA pipe in center providing connectivity and eliminating hairpin, but lacking application identity, user context, malware inspection, network encryption, and audit records. Left side shows SASE components: SD-WAN IPsec Tunnel satisfying SC-8, SWG satisfying SI-3 and SC-7, CASB satisfying AC-4, ZTNA replacing VPN. Right side shows Application-Layer Logging for AU-12, Behavioral Analytics for SI-4, Continuous Monitoring for CA-7. Summary: DIA solves G.114 latency, SASE satisfies the six NIST controls." width="100%"}
-
 When telecommunications modernization proposals include "we will add DIA at field offices," the technical response must be precise: DIA is a pipe. It solves the geographic hairpin problem. It does not solve any NIST control requirement.
 
 | NIST Control | Requirement | What Provides It |
@@ -303,8 +275,6 @@ When telecommunications modernization proposals include "we will add DIA at fiel
 # TIC 3.0: The Policy That Makes Local Breakout Lawful
 
 The G.114 argument is the physics half of the case for local breakout: the 150 ms one-way ceiling is an engineering specification, the MPLS hairpin spends the budget before the call begins, and no procurement decision changes the propagation delay of a Portland-to-Washington detour. Physics explains why the agency *needs* DIA at field offices. It does not answer whether the agency *may have* it. That is a policy question, and the policy is TIC 3.0.
-
-![TIC 3.0: the two use cases governing agency voice and the permissibility rule](figs/tc-fig-17-tic3-pep.png){fig-alt="A two-row table mapping the TIC 3.0 use cases that govern agency voice. Branch Office, Use Case E: field office agents on Amazon Connect and Teams Phone, traffic path field office to local DIA to AWS .com or M365 GCC, policy enforcement point at or near the branch egress as SD-WAN edge plus SASE services. Remote User: teleworking agents and staff, home network to internet to cloud voice platforms, PEP as the cloud-delivered SASE PoP with ZTNA replacing VPN. Teal permissibility panel: TIC 3.0 under OMB M-19-26 replaced mandatory consolidation with a use-case model — both use cases permit traffic to leave without hairpinning through a TIC access point, and neither permits it to leave ungoverned; the security-capabilities catalog must be satisfied at the distributed PEP, and the SASE stack is that PEP. Red panel: an ungoverned DIA circuit is not modernization, it is a finding — the bare circuit that fixes G.114 deletes the SC-7 boundary the MPLS-to-TIC path did provide, while with the SASE PEP in place the same circuit is the TIC 3.0 target architecture. White background. Source: Compliance Vol I Book 06 Telecom Modernization." width="100%"}
 
 Under the TIC 2.x model, every byte of agency internet traffic was required to egress through a small number of consolidated TIC access points — the architecture that created the hairpin in the first place. TIC 3.0 (OMB M-19-26) replaced mandatory consolidation with a use-case model: agencies may distribute their internet egress, provided the protections that the consolidated boundary used to provide are re-established at each distributed egress point. Those protections are enumerated in the **TIC 3.0 Security Capabilities Catalog**, and the place they must be applied is the **policy enforcement point (PEP)** governing each traffic path.
 
@@ -328,8 +298,6 @@ Both use cases *permit* traffic to leave for the internet without hairpinning th
 The operational conclusion joins the two halves. The physics half — G.114's budget — remains the driver: it is why the network must be modernized before either voice platform goes live, and it is measured in milliseconds at every agent location. The policy half — TIC 3.0's catalog-at-the-PEP condition — is what makes the resulting architecture authorizable. The same SD-WAN + SASE investment satisfies both at once, which is why this document treats them as one program: local breakout to meet the delay budget, and the distributed PEP to make that breakout lawful.
 
 # FedRAMP Boundary Considerations for Telecommunications
-
-![FedRAMP 20x Consolidated Rules: Telecommunications Implications](figs/tc-fig-13-fedramp-20x-telecom.png){fig-alt="Timeline showing FedRAMP 20x Consolidated Rules key dates with telecom implications: June 25 2026 rules published machine-readable JSON KSIs, July 28 FedRAMP Ready ceases, August 3 Class A opens, August 31 Class B plus C open — candidate Amazon Connect pathway, class pending evaluation, January 1 2027 mandatory ConMon KSIs enforced. Two callout boxes: Amazon Connect .com exception review under 20x framework with call audit logs and authentication events as KSI evidence. Teams Phone GCC continuous monitoring with MOS floor 4.0 per location and SD-WAN path decisions as AU-12 machine-readable evidence. Note: DIA plus SASE stack generates the machine-readable KSI evidence 20x requires." width="100%"}
 
 ## FedRAMP 20x Consolidated Rules — June 2026 Update {#sec-fedramp-20x-telecom}
 
@@ -390,8 +358,6 @@ Teams Phone in GCC Moderate operates within the GCC boundary for all call signal
 | **SD-WAN solution** | **Identical: local breakout, DSCP EF steering, multipath, FEC** | **Identical: local breakout, DSCP EF steering, multipath, FEC** |
 
 The shared network requirement row is the most operationally significant in this table. The SD-WAN investment that enables Amazon Connect to meet G.114 from all field office locations is the same investment that enables Teams Phone to deliver acceptable call quality. These are not separate network projects. They are **one network modernization that enables both platforms.**
-
-![Implementation Roadmap: Network First, Platforms Second](figs/tc-fig-14-implementation-gantt.png){fig-alt="Four-phase Gantt chart across 8 plus months. Phase 1 Months 1-3 Network Foundation in teal: SD-WAN, DIA, DSCP EF steering, G.114 validation. Milestone G.114 Compliance Verified at Month 3. Phase 2 Months 2-5 Amazon Connect in navy: contact flows, agent auth federation, call recording pipeline. Milestone N8NN Live at Month 5. Phase 3 Months 4-8 Teams Phone in teal: SBC config, E911 testing, number porting tranches, parallel PBX operation. Milestone PBX Decommission at Month 8. Phase 4 Month 6 plus Continuous Monitoring in amber: MOS alerting, ConMon dashboards, ATO renewal review, 20x KSI alignment. Prerequisites bar at Month 1: No migration before G.114 validation. Note: voice quality failures post-migration cost dramatically more than pre-migration network investment." width="100%"}
 
 # Implementation Roadmap
 

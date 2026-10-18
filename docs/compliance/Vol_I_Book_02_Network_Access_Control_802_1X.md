@@ -86,11 +86,11 @@ Federal facilities operate under physical access controls — PIV badge readers,
 
 Each of these is a live network connection with no authentication gate. NAC with 802.1X makes the authentication gate the switch port itself — independent of the physical access regime.
 
-![The federal physical access reality — five exposure classes where a facility badge is the only gate](figs/nac-fig-10-physical-access-reality.png){#fig-nac10 fig-alt="Five cards showing federal facility exposure classes with live, unauthenticated network ports. Conference rooms: routinely accessible to vendors, contractors, and visitors with valid facility badges but no {{< meta agency.short >}} IT authorization. Wiring closets: older federal buildings often lack electronic access control distinct from the floor-level badge reader. Decommissioned areas: live switch ports persist weeks to months after occupancy ends. Hoteling workstations: hot-desk ports are live by design with a different physical occupant daily. IoT/OT devices: printers, badge readers, HVAC, and video endpoints share the same switch fabric as workstations and servers. Banner: each is a live network connection with no authentication gate — NAC makes the gate the switch port itself, independent of the physical access regime. White background. Source: Vol I Book 02 NAC briefing deck, Date Code 2026-07-07 10:15 ET." width="100%"}
+} IT authorization. Wiring closets: older federal buildings often lack electronic access control distinct from the floor-level badge reader. Decommissioned areas: live switch ports persist weeks to months after occupancy ends. Hoteling workstations: hot-desk ports are live by design with a different physical occupant daily. IoT/OT devices: printers, badge readers, HVAC, and video endpoints share the same switch fabric as workstations and servers. Banner: each is a live network connection with no authentication gate — NAC makes the gate the switch port itself, independent of the physical access regime. White background. Source: Vol I Book 02 NAC briefing deck, Date Code 2026-07-07 10:15 ET." width="100%"}
 
 ## Before and After: The Structural Comparison
 
-![Before and after NAC deployment showing unauthenticated port access versus 802.1X authenticated admission flow](figs/nac-fig-01-before-after.png){#fig-nac01 fig-alt="Two-panel diagram. Left panel labeled BEFORE shows a laptop connecting to a switch port and immediately receiving a DHCP lease and routing to {{< meta agency.short >}} resources with no authentication gate. Right panel labeled AFTER shows the same laptop initiating 802.1X EAP exchange with the switch acting as authenticator, forwarding the EAP-TLS exchange to a RADIUS server, which validates the machine certificate against Entra ID device inventory, and the switch placing the port into the appropriate VLAN — compliant, non-compliant, or quarantine — before any IP address is issued to a routable segment." width="100%"}
+} resources with no authentication gate. Right panel labeled AFTER shows the same laptop initiating 802.1X EAP exchange with the switch acting as authenticator, forwarding the EAP-TLS exchange to a RADIUS server, which validates the machine certificate against Entra ID device inventory, and the switch placing the port into the appropriate VLAN — compliant, non-compliant, or quarantine — before any IP address is issued to a routable segment." width="100%"}
 
 **Before this document** — a device connecting to any {{< meta agency.short >}} switch port in a managed facility receives network access determined solely by VLAN configuration on the port. No device identity assertion is required. Physical access to the facility is the only gate.
 
@@ -106,8 +106,6 @@ This is the structural precedent for everything in this document. Voice VLAN ste
 
 The precedent also carried a structural weakness, and naming it precisely is what motivates the rest of this document: **DHCP option-based steering is identity by assertion, not by proof.** Any device can transmit a phone's vendor class identifier; nothing in the exchange is cryptographically verified. That is acceptable for QoS steering, where the worst case of a false claim is mis-prioritized traffic. It is not acceptable for access control, where the worst case is an unauthorized device in a production segment. 802.1X with EAP-TLS replaces the assertion with a proof — a machine certificate whose private key never leaves the device — while the assertion-based lineage survives, deliberately and in a constrained role, in two places later in this document: MAC Authentication Bypass for devices that cannot run a supplicant, and DHCP fingerprinting as the classification and anomaly-detection signal that the IPAM layer feeds back into the NAC decision. The naming and addressing plane asserted device identity first; the identity plane this book builds makes the assertion provable.
 
-![The voice VLAN precedent — identity by assertion (DHCP option 60) versus identity by proof (802.1X EAP-TLS)](figs/nac-fig-08-voice-vlan-precedent.png){#fig-nac08 fig-alt="Two-column comparison. Left, late 1990s IP telephony before 802.1X: phone boots on the data VLAN and sends DHCP option 60 (vendor class identifier); the DHCP server recognizes the class and answers with the voice VLAN ID and config server; the phone re-tags onto the voice VLAN; the switch never authenticated anything — the naming plane classified the device. Verdict: identity by assertion — any device can transmit a phone's vendor class; nothing is verified. Right, today with 802.1X EAP-TLS: the device asserts identity with a machine certificate whose private key never leaves the TPM; RADIUS plus the Entra inventory verify the assertion cryptographically; the network assigns a segment scoped to trust — production, remediation, or quarantine. Verdict: identity by proof — the assertion lineage survives only in MAB and DHCP fingerprinting, deliberately constrained. Banner: the DHCP server was acting as a policy decision point a decade before the term existed; NAC generalizes the pattern and replaces the assertion with a proof. White background. Source: Vol I Book 02 NAC briefing deck, Date Code 2026-07-07 10:15 ET." width="100%"}
-
 # NAC Architecture — RADIUS, 802.1X, and EAP-TLS
 
 ## The Authentication Stack
@@ -119,8 +117,6 @@ The precedent also carried a structural weakness, and naming it precisely is wha
 - **Authentication Server** — the RADIUS server that validates the supplicant's credentials and returns the access decision (VLAN ID, session timeout, filter rules).
 
 The exchange protocol between supplicant and authentication server is the Extensible Authentication Protocol (EAP), carried over RADIUS between the authenticator and the authentication server.
-
-![The 802.1X authentication stack — supplicant, authenticator, authentication server](figs/nac-fig-09-authentication-stack.png){#fig-nac09 fig-alt="Three-node flow diagram of the IEEE 802.1X roles. Node 1, supplicant — the device asking: software on the device requesting access; Windows built-in supplicant via Intune, wpa_supplicant on Linux, native supplicant via MDM on macOS. Node 2, authenticator — the switch or WAP enforcing: validates nothing itself; relays the EAP exchange and enforces the VLAN the server returns. Node 3 (highlighted), authentication server — RADIUS deciding: validates the machine certificate against the Entra ID device inventory and returns the access decision — VLAN ID, session timeout, filter rules. Caption: EAP carried end-to-end — supplicant to authenticator over EAPOL, authenticator to authentication server as EAP over RADIUS. White background. Source: Vol I Book 02 NAC briefing deck, Date Code 2026-07-07 10:15 ET." width="100%"}
 
 ## EAP Method Selection — Why EAP-TLS for Federal
 
@@ -149,8 +145,6 @@ The RADIUS server is the authentication server in the 802.1X architecture. For {
 The sequencing requirement, stated plainly: **D3 must select a platform that authorizes Entra-native devices before Vol I Book 05's cloud-native cutover retires the AD objects NPS depends on.** An agency may deploy NPS now for the hybrid phase — the NPS configuration in this document is written for that phase — but the D3 decision record must carry the migration trigger rather than treat NPS as the end state.
 
 Cloud-issued device certificates are provisioned via **Microsoft Cloud PKI** (an Intune add-on, licensed via Intune Suite or standalone) **or Intune SCEP against the agency's AD CS** — the certificate infrastructure section below covers both paths.
-
-![RADIUS server architecture showing NPS in high-availability configuration with primary and secondary servers, RADIUS proxy groups for wired and wireless authenticators, and integration with Microsoft Cloud PKI and the Intune Compliance API](figs/nac-fig-02-radius-architecture.png){#fig-nac02 fig-alt="Architecture diagram showing two NPS servers in an active-passive pair. Each switch and WAP in the building is configured with the primary NPS server as the first RADIUS target and the secondary as the failover. NPS servers connect to Active Directory for machine certificate validation and to the Intune Compliance API (via Graph) for real-time device compliance posture. Microsoft Cloud PKI issues device certificates during Intune enrollment via SCEP. A third connection shows RADIUS accounting records flowing to a Log Analytics workspace for Sentinel." width="100%"}
 
 **NPS High Availability** — NPS does not natively replicate configuration between nodes. The standard approach for federal environments is:
 
@@ -217,8 +211,6 @@ Certificates are provisioned via Simple Certificate Enrollment Protocol (SCEP), 
 6. The CA issues the certificate and returns it to the device via SCEP.
 7. The device installs the certificate in the Computer certificate store (not the user store — this is critical for machine authentication to work before any user logs in).
 
-![Certificate enrollment flow from device Intune enrollment through SCEP to machine certificate installation in the computer store](figs/nac-fig-03-cert-enrollment.png){#fig-nac03 fig-alt="Sequence diagram with five participants: Device, Intune, SCEP Connector (NDES), Certificate Authority, and Key Vault. Step 1: Device enrolls with Intune via Autopilot. Step 2: Intune pushes SCEP profile. Step 3: Device generates RSA-2048 or ECDSA-P256 key pair in TPM. Step 4: Device sends SCEP request with Intune enrollment token to NDES. Step 5: NDES validates token with Intune API and forwards CSR to CA. Step 6: CA issues certificate with device UPN as SAN and returns to NDES. Step 7: NDES delivers certificate to device. Step 8: Device installs certificate in Computer store. Step 9: On next 802.1X authentication event, device presents this certificate to RADIUS." width="100%"}
-
 **Intune SCEP Profile — Key Parameters:**
 
 ```json
@@ -253,7 +245,7 @@ When a device is decommissioned, stolen, or wiped, the device certificate is rev
 
 The RADIUS server returns a VLAN assignment (and optionally a filter policy and session timeout) for each authenticated device. The VLAN assignment is the enforcement mechanism — it determines which network segment the device enters and therefore which resources it can reach.
 
-![NAC policy tier diagram showing three VLANs and the policy path from 802.1X authentication through RADIUS compliance check to VLAN assignment](figs/nac-fig-04-policy-tiers.png){#fig-nac04 fig-alt="Flowchart starting at switch port. First decision: does the device present a valid EAP-TLS certificate? No leads to Quarantine VLAN (VLAN 999): Internet access only, no {{< meta agency.short >}} resources, DNS resolves to captive portal. Yes leads to second decision: is the device compliant per Intune (patch level current, AV active, encryption enabled)? No leads to Remediation VLAN (VLAN 200): access to Intune, Windows Update, and AV update endpoints only. Yes leads to Production VLAN (VLAN 100, department-specific): full {{< meta agency.short >}} resource access per network ACLs." width="100%"}
+} resources, DNS resolves to captive portal. Yes leads to second decision: is the device compliant per Intune (patch level current, AV active, encryption enabled)? No leads to Remediation VLAN (VLAN 200): access to Intune, Windows Update, and AV update endpoints only. Yes leads to Production VLAN (VLAN 100, department-specific): full {{< meta agency.short >}} resource access per network ACLs." width="100%"}
 
 | Tier | VLAN | Condition | Network Access |
 |------|------|-----------|----------------|
@@ -338,8 +330,6 @@ The standard 802.1X re-authentication interval (8 hours) means a device that fai
 The flow: the Azure Function polls the Intune compliance API every 15 minutes and sends a CoA Disconnect or Re-Auth to the owning switch when a device's state changes from `compliant` to `nonCompliant`, using session attributes resolved from the accounting feed. The switch re-authenticates the device, the RADIUS server returns the Remediation VLAN, and the port moves without manual intervention.
 
 **Qualify the timing claim:** "within 20 minutes" is 20 minutes *after Intune registers the state change* — the polling interval plus CoA propagation. Intune's own compliance evaluation depends on device check-in cadence and can lag the actual on-device state change by hours. The bound that holds unconditionally is the 8-hour re-authentication backstop (see "Session Timeout and Re-Authentication"): even with the CoA agent down or Intune lagging, no non-compliant device survives past the next re-auth.
-
-![RADIUS Change of Authorization flow showing real-time VLAN reassignment when Intune marks a device non-compliant](figs/nac-fig-05-coa-flow.png){#fig-nac05 fig-alt="Sequence diagram with four participants: Intune, Azure Function (CoA Agent), NPS RADIUS Server, and Switch. Step 1: Intune marks device as non-compliant (patch overdue). Step 2: Azure Function polling Intune compliance detects state change. Step 3: Azure Function sends RADIUS CoA Disconnect message to NPS (RFC 5176). Step 4: NPS forwards CoA to the switch port associated with the device MAC. Step 5: Switch forces re-authentication on the port. Step 6: Device re-authenticates via 802.1X. Step 7: NPS returns VLAN 200 (Remediation) in the Access-Accept. Step 8: Switch moves port to VLAN 200. Total elapsed time from Intune state change to VLAN reassignment: under 20 minutes." width="100%"}
 
 # Wired and Wireless NAC
 
@@ -479,8 +469,6 @@ The certificate fingerprint mismatch rule is the operational detection for certi
 
 Deploying 802.1X across an existing federal environment requires a phased approach. Enabling enforcement before all devices are enrolled results in a network outage — printers, badge readers, and other non-802.1X devices lose connectivity. The standard federal NAC deployment sequence is four phases over 90–180 days.
 
-![NAC phased deployment timeline showing monitor mode, wired enforcement, wireless enforcement, and IoT segmentation phases with key milestones](figs/nac-fig-06-deployment-phases.png){#fig-nac06 fig-alt="Gantt-style timeline diagram with four swim lanes. Phase 1 Monitor Mode (weeks 1–4): 802.1X enabled in open mode on all ports, all authentications succeed regardless of result, RADIUS logs collected and analyzed. Phase 2 Wired Enforcement (weeks 5–10): enforcement enabled for workstations and servers, non-compliant devices moved to remediation VLAN, exception list for legacy devices, IoT on MAB. Phase 3 Wireless Enforcement (weeks 11–14): WPA3-Enterprise deployed on managed SSID, guest SSID separated. Phase 4 IoT Segmentation (weeks 15–20): MAB policy refined, IoT VLAN ACLs hardened, OT device exception process documented." width="100%"}
-
 ## Phase 1 — Monitor Mode (Weeks 1–4)
 
 Configure 802.1X on all ports in **open mode** (`authentication open` on Cisco IOS-XE). In open mode:
@@ -536,8 +524,6 @@ Refine the MAB policy based on operational experience from Phases 2–3:
 # NIST SP 800-53 Rev 5 Control Closure
 
 The following table maps each NIST control addressed by this document to its state before and after implementation.
-
-![NIST control closure for Vol I Book 02 NAC showing before and after state for IA, AC, SC, and CM controls](figs/nac-fig-07-nist-closure.png){#fig-nac07 fig-alt="Table-style diagram with five columns: Control ID, Control Title, State Without NAC, State With NAC, and Primary Authority. Rows cover IA-3, IA-3(1), AC-3, AC-17, AC-19, AC-20, SC-7(3), SC-7(5), CM-6, CM-7, CM-8. Color coding: red rows indicate non-compliant or uncontrolled state without NAC, green rows indicate controlled state with NAC." width="100%"}
 
 | Control | Title | Without This Document | With This Document | Authority |
 |---------|-------|----------------------|-------------------|-----------|

@@ -101,5 +101,5 @@
   <!-- ============ Footer rules ============ -->
   <text x="56" y="632" font-family="Arial, Helvetica, sans-serif" font-size="13" fill="#33414F">Composition truncates at the first unpopulated hierarchy facet &#8212; a Division without a Department is governance-layer drift, not a path.</text>
   <text x="56" y="654" font-family="Arial, Helvetica, sans-serif" font-size="13" fill="#33414F">A stored value that does not equal the recomputation is flagged DRIFT-SEMANTIC::derived-path.</text>
-  <text x="56" y="694" font-family="Arial, Helvetica, sans-serif" font-size="12" fill="#6B7A8D">ADR-078 fifteen-facet Model C &#183; ADR-127 Hybrid-C+Path derived slot &#183; ADR-137 tenant-extension facets on slots 11&#8211;13 &#183; canon UIAO_151</text>
+  <text x="56" y="694" font-family="Arial, Helvetica, sans-serif" font-size="12" fill="#6B7A8D">ADR-078 fifteen-facet Model C &#183; ADR-127 Hybrid-C+Path derived slot &#183; ADR-137 tenant-extension facets on slots 11&#8211;13 &#183; canon FMP_151</text>
 </svg>

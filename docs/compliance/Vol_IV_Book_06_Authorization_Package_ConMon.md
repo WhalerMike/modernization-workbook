@@ -133,7 +133,7 @@ restate that matrix. What it carries is the evidence procedure layer: how each
 slot's artifacts are generated, refreshed on the ConMon cadence, and assembled
 into the authorization package.
 
-![Authorization Package Structure](figs/ato-fig-01-package-structure.png){fig-alt="Hierarchical diagram of the authorization package for {{< meta agency.short >}} GCC Moderate. Top tier: Authorization Package presented to the {{< meta agency.short >}} Authorizing Official (agency RMF ATO) with System Security Plan (SSP), Security Assessment Report (SAR), Plan of Action and Milestones (POA&M), and Authorization Decision (Agency ATO). Second tier: OSCAL Machine-Readable Bundle — AP (Assessment Plan, 10 themes, 29 internal KSI rules), AR (Assessment Results, 29 findings, 0 open in the internal rule set — self-assessed pending CR26 reconciliation and independent SCA, 8 evidence slots), POA&M (0 items in the internal rule set, expected non-empty after CR26 mapping and SCA). Third tier: Compliance Evidence Layer — the twenty-two content books (Volumes I–IV) providing infrastructure, security, governance, and training artifacts. Bottom tier: Continuous Monitoring Program — monthly OSCAL AR refresh, quarterly KSI review, annual full assessment, and ConMon dashboard via Sentinel." width="100%"}
+} GCC Moderate. Top tier: Authorization Package presented to the {{< meta agency.short >}} Authorizing Official (agency RMF ATO) with System Security Plan (SSP), Security Assessment Report (SAR), Plan of Action and Milestones (POA&M), and Authorization Decision (Agency ATO). Second tier: OSCAL Machine-Readable Bundle — AP (Assessment Plan, 10 themes, 29 internal KSI rules), AR (Assessment Results, 29 findings, 0 open in the internal rule set — self-assessed pending CR26 reconciliation and independent SCA, 8 evidence slots), POA&M (0 items in the internal rule set, expected non-empty after CR26 mapping and SCA). Third tier: Compliance Evidence Layer — the twenty-two content books (Volumes I–IV) providing infrastructure, security, governance, and training artifacts. Bottom tier: Continuous Monitoring Program — monthly OSCAL AR refresh, quarterly KSI review, annual full assessment, and ConMon dashboard via Sentinel." width="100%"}
 
 ---
 
@@ -195,8 +195,6 @@ The AP is organized around the ten KSI themes from FedRAMP 20x:
 
 : KSI Themes and Evidence Slots {.striped .hover}
 
-![Ten KSI themes mapped to eight evidence slots, each backed by a series book](figs/ato-fig-03-themes-slots.png){#fig-ato03 fig-alt="Table titled 'Ten KSI themes, eight evidence slots' under a Themes to Slots heading, with columns Theme, KSI Rules, and Evidence Slot(s). KSI-IAM covers rules 001, 002, 003, 009, bound to slot-01 identity plus ScuBA. KSI-SVC / KSI-CNA covers 004, 007, 008, bound to slot-03/04 plus ScuBA. KSI-MLA covers 005, 006, 010, bound to slot-02/04 plus ScuBA. KSI-CMT covers 011 through 014, bound to slot-06 security. KSI-SCR covers 015, 016, bound to slot-06 security. KSI-PIY covers 017 through 021, bound to slot-05 endpoint. KSI-INR / KSI-RPL covers 023 through 029, bound to slot-04/07 continuity. KSI-CED covers 022, bound to slot-08 training. A summary banner states each KSI rule binds to at least one evidence slot a series book built, and the ScuBA path (KSI-001 through 010) is validated continuously against M365. White background. Source: Vol IV Book 06 Authorization Package & ConMon briefing deck, Date Code 2026-07-09 17:00 ET." width="100%"}
-
 ## 2.4 Assessment Results — Finding Structure
 
 Each of the 29 findings in the AR carries:
@@ -245,7 +243,7 @@ strategy that includes:
 The Compliance series provides the evidence generation layer. The ConMon
 program operationalizes it on a recurring cadence.
 
-![Continuous Monitoring Calendar — Annual Cadence](figs/ato-fig-02-conmon-calendar.png){fig-alt="Timeline diagram showing the annual continuous monitoring cadence for {{< meta agency.short >}} GCC Moderate FedRAMP 20x. Monthly activities (every month): OSCAL AR refresh via <engine> oscal bundle; CISA ScuBA assessment run against M365; Sentinel ConMon dashboard review; POA&M status check — zero-item target. Quarterly activities (Q1/Q2/Q3/Q4): KSI evidence quality review; slot binding confidence review; training completion review for AT-4 (KSI-022); vulnerability management review for RA-5 (KSI-015/016). Semi-annual activities: IR drill (IR-2, Vol IV Book 05); Contingency plan tabletop exercise (CP-3, Vol IV Book 01); SBOM freshness review for BOD 26-04 VDR/VEX pipeline (Vol IV Book 02). Annual activities: Full KSI re-assessment; AT-2 annual security awareness training refresh; CP-2 contingency plan update; PM-14 T-and-T-and-M plan update; ATO renewal package preparation." width="100%"}
+} GCC Moderate FedRAMP 20x. Monthly activities (every month): OSCAL AR refresh via <engine> oscal bundle; CISA ScuBA assessment run against M365; Sentinel ConMon dashboard review; POA&M status check — zero-item target. Quarterly activities (Q1/Q2/Q3/Q4): KSI evidence quality review; slot binding confidence review; training completion review for AT-4 (KSI-022); vulnerability management review for RA-5 (KSI-015/016). Semi-annual activities: IR drill (IR-2, Vol IV Book 05); Contingency plan tabletop exercise (CP-3, Vol IV Book 01); SBOM freshness review for BOD 26-04 VDR/VEX pipeline (Vol IV Book 02). Annual activities: Full KSI re-assessment; AT-2 annual security awareness training refresh; CP-2 contingency plan update; PM-14 T-and-T-and-M plan update; ATO renewal package preparation." width="100%"}
 
 ## 3.2 Monthly ConMon Activities
 
@@ -323,8 +321,6 @@ offerings produce evidence an assessor can consume:
 | Microsoft365DSC | Tenant configuration export, drift detection against your own snapshot, enforcement | Drift means "configuration changed versus my snapshot," not "SCuBA verdict changed"; no risk-acceptance model; the baseline is the operator, not the regulator |
 
 : Vendor Posture Tooling vs. Disposition Evidence {.striped .hover}
-
-![Vendor posture tooling versus disposition evidence — why Secure Score, Compliance Manager, and Microsoft365DSC are not this evidence](figs/ato-fig-04-vendor-tooling.png){#fig-ato04 fig-alt="Table titled 'Vendor posture tooling vs disposition evidence' under a heading, Why Not Secure Score, with columns Offering, What it provides, and Why it is not this evidence. Row 1, Microsoft Secure Score: provides a proprietary posture score, trend, and accepted-risk markers, but scores against Microsoft's rubric not the SCuBA baseline, its markers never expire and link to no POA&M, and it cannot gate a pipeline. Row 2, Purview Compliance Manager: provides NIST/FedRAMP templates and improvement actions, but is a portal workflow with manual evidence producing a score not per-control verdicts, with no OSCAL and no expiry math. Row 3, Microsoft365DSC: provides configuration export and drift versus your own snapshot, but drift means changed versus my snapshot not SCuBA verdict changed, and the baseline is the operator not the regulator. A summary banner states the structural difference is authority and lifecycle — the vendor grades its own product against its own rubric, while ScubaDrift proves posture against the regulator's baseline, over time, with governed, expiring exceptions. White background. Source: Vol IV Book 06 Authorization Package & ConMon briefing deck, Date Code 2026-07-09 17:00 ET." width="100%"}
 
 The structural difference is authority and lifecycle. Secure Score and
 Compliance Manager are the vendor grading its own product against its own
@@ -712,7 +708,7 @@ zip -r ssa-gcc-moderate-authpkg-$(date +%Y%m%d).zip \
 The following table summarizes the 29 KSI findings from the July 4, 2026 bundle
 run (self-assessment). All 29 are evaluated as satisfied pending independent SCA.
 
-> **Indicator-level mapping is NOT asserted here.** The `CR26 Theme` column gives the CR26 Moderate *theme* each internal rule contributes to; the authoritative rule→indicator reconciliation (19 of the 46 CR26 indicators mapped) lives in [`Compliance_CR26_Reconciliation.md`](Compliance_CR26_Reconciliation.md). The `KSI-0NN` ids are the series' internal rules, not CR26 indicator ids.
+> **Indicator-level mapping is NOT asserted here.** The `CR26 Theme` column gives the CR26 Moderate *theme* each internal rule contributes to; the authoritative rule→indicator reconciliation (19 of the 46 CR26 indicators mapped) lives in `Compliance_CR26_Reconciliation.md`. The `KSI-0NN` ids are the series' internal rules, not CR26 indicator ids.
 
 | KSI ID | CR26 Theme | Evaluation Path | Verdict |
 |--------|-------------|----------------|---------|

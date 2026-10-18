@@ -6,7 +6,7 @@ audience: [Architect, Engineer, Assessor, Technical-Lead]
 author: Michael Stratton
 date: "August 2026"
 status: Draft
-canon-source: "src/uiao/canon/"
+canon-source: "src/fmp/canon/"
 derived-from: "Extracted from ticket-to-machine-not-ticket-to-human.qmd §5.1/§8/§9/§11 (2026-08-03); carries the same canon anchors and vendor-currency caveats as its parent paper."
 repo-path: docs/customer-documents/whitepapers/ticket-to-machine-appendices.qmd
 created-at: 2026-08-03
@@ -75,7 +75,7 @@ Everything above concerns **SailPoint ISC Governance**. The agency separately ru
 | What it is | The agency's internal brand for a SailPoint **IdentityIQ** deployment | SailPoint **Identity Security Cloud** plus the CIEM add-on |
 | Hosting | Customer-hosted, on agency infrastructure | SailPoint-hosted SaaS |
 | Integration surface | SCIM 2.0 plus a core REST API tied to the installed release | Continuously-versioned cloud REST API |
-| Canon slot | `sailpoint-iiq-governance` (the program decision, contract pinned by UIAO_210) | `sailpoint-isc-governance` (the program decision) |
+| Canon slot | `sailpoint-iiq-governance` (the program decision, contract pinned by FMP_210) | `sailpoint-isc-governance` (the program decision) |
 | Boundary cost | None — `gcc-moderate` already covers it | A Commercial exception |
 | Role in this argument | **Front end** — pushes an approved access request into ServiceNow, correlated to a RITM, with closure written back | **Detection engine** — pushes cloud-entitlement findings into ServiceNow tasks |
 

@@ -42,4 +42,4 @@ Canon surface: [modernization/directory-migration.qmd](../../reference-architect
 
 Every leaf in this subcategory — DNS, PKI, RADIUS, LDAP, DHCP, Sync Engine, Device Management, NTP, DFS, and the SPN / Trust gap-fillers — MUST publish a **Canon Phase Mapping** table at the top of its operational guide, mapping the guide's phases to the canonical six-phase Directory Migration model (Discover → Normalize → Map → Migrate → Validate → Decommission). Per [the program decision], this requirement applies to every existing and future adapter guide in this taxonomy.
 
-Reference implementations: [DNS Modernization](../network-transformation/dns-modernization.md) (11→6 mapping) and [PKI Modernization](../pki-modernization.md) (6→6 mapping). Contributor guidance is in [`src/uiao/modernization/directory-migration/README.md`] under "Adding a New Adapter Migration Guide".
+Reference implementations: [DNS Modernization](../network-transformation/dns-modernization.md) (11→6 mapping) and [PKI Modernization](../pki-modernization.md) (6→6 mapping). Contributor guidance is in [`src/fmp/modernization/directory-migration/README.md`] under "Adding a New Adapter Migration Guide".

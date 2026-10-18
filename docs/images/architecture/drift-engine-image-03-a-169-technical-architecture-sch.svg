@@ -7,7 +7,7 @@
 </defs>
 
 <!-- Title -->
-<text x="60" y="64" font-family="Georgia, 'Times New Roman', serif" font-size="33" font-weight="bold" fill="#0D1B2E" text-anchor="start">UIAO Drift Fabric &#8212; Detection Pipeline</text>
+<text x="60" y="64" font-family="Georgia, 'Times New Roman', serif" font-size="33" font-weight="bold" fill="#0D1B2E" text-anchor="start">FMP Drift Fabric &#8212; Detection Pipeline</text>
 
 <!-- Governance Plane (upper-right escalation target) -->
 <rect x="980" y="120" width="240" height="96" rx="10" fill="#FBEED2" stroke="#D4A017" stroke-width="2.5"/>

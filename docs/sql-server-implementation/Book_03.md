@@ -7,7 +7,7 @@ audience: [Technical, Customer]
 family: sql-server-implementation
 series-order: 03
 status: active
-canon-source: "src/uiao/canon/the directory modernization program"
+canon-source: "src/fmp/canon/the directory modernization program"
 lifecycle: active
 tiers_adopted: []
 lifecycle_review: 2027-01-01
@@ -16,8 +16,6 @@ lifecycle_review: 2027-01-01
 ::: {.content-visible when-format="docx"}
 # Implementation Book 03 — The Authentication Audit
 :::
-
-![Spec3-D1.8-Get-SQLServerAuthAudit reads the retained set and emits one classified row per authentication path — NTLM fallback, Kerberos / Windows, and SQL Authentication — as the sealed evidence later books plan against.](images/book03-image-01-auth-audit.png){#fig-impl-book03 fig-alt="A schematic on a white background. A navy 'retained instances' box (the Book 02 gate output) flows by teal arrow into a box labelled Spec3-D1.8-Get-SQLServerAuthAudit, which flows by teal arrow to three stacked output rows on the right: a red 'NTLM fallback' row, an amber 'Kerberos / Windows Authentication' row, and a blue 'SQL Authentication' row. A caption notes the output is a sealed envelope (schema · data.records · provenance.content_hash). Federal navy, teal, red, amber and blue palette; no photographs." width="100%"}
 
 ::: {.callout-tip}
 ## Download this book

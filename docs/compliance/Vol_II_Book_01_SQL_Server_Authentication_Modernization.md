@@ -41,8 +41,6 @@ Every federal SQL Server deployment inherits a credential architecture designed 
 
 That world ended.
 
-![Kerberos authentication fails when clients and servers span hybrid cloud, VPN, or multi-path SD-WAN boundaries and the KDC is unreachable for ticket issuance or renewal, forcing NTLM fallback. The ticket itself is not invalidated by the path: Windows KILE writes no client addresses into tickets by default.](figs/san-fig-01-kerberos-breaking.png){#fig-san01 fig-alt="Diagram showing Kerberos ticket issuance failing where the KDC is unreachable across hybrid cloud boundaries, with NTLM fallback as the result"}
-
 Federal environments now span multiple cloud regions, SD-WAN fabrics, and government-community cloud tenants. The domain controller that issues Kerberos tickets is not co-located with the SQL Server, the client, or the cloud workload. The result is predictable: Kerberos fails, the stack falls back to NTLM, and the agency unknowingly operates with an authentication protocol that cannot be audited or monitored at the token level.
 
 ## What Kerberos Requires
@@ -92,13 +90,9 @@ The inventory drives a consolidation gate before any technical migration begins.
 
 Instances that survive the consolidation gate proceed to authentication modernization. Instances that do not survive are documented and decommissioned per change management policy.
 
-![The consolidation gate: three lenses, three outcomes](figs/san-fig-07-consolidation-gate.png){#fig-san07 fig-alt="Three lens cards across the top. Utilization and zombie detection in red: no connections in 90 days, low sustained CPU, or no identifiable owning application means zombie candidate — zombies are decommissioned, not migrated. Version and supportability in amber: below SQL Server 2019 and cannot upgrade in place means candidate for Azure SQL Managed Instance or PostgreSQL by workload characteristics. Dependency analysis in navy: cross-instance linked servers dictate migration order — an instance that is a linked-server target for three others migrates after all three. Below, three outcome chips: RETAIN proceeds to authentication modernization; CONSOLIDATE means the workload moves and instance count shrinks; RETIRE means documented and decommissioned per change management. Teal bar: the gate comes first so migration effort is spent only on instances that survive all three lenses — the estate shrinks before it modernizes. White background. Source: Vol II Book 01 SQL Auth Modernization briefing deck, Date Code 2026-07-07 16:23 ET." width="100%"}
-
 # Arc as the Identity Bridge
 
 Azure Arc resolves the SQL Server authentication problem in the most direct way possible: it replaces the domain credential entirely.
-
-![Azure Arc provides a system-assigned Managed Identity — no stored password, no rotation, no human-visible credential. Layer 1 targets SQL Engine authentication; Layer 2 targets OS-level Entra login.](figs/san-fig-02-arc-managed-identity.png){#fig-san02 fig-alt="Diagram showing Azure Arc Managed Identity providing credential-free SQL authentication"}
 
 ## What Arc Provides
 
@@ -142,8 +136,6 @@ Four alternatives to Arc Managed Identity are commonly proposed. Each has a disq
 
 NTLM elimination is a three-phase program. Each phase has measurable exit criteria. Phases do not overlap — Phase B does not begin until Phase A is complete across the in-scope estate.
 
-![NTLM elimination runs in three sequential phases: discovery, remediation, and domain-wide block. Each phase has measurable exit criteria before the next begins.](figs/san-fig-03-ntlm-elimination.png){#fig-san03 fig-alt="Diagram showing three NTLM elimination phases from discovery through domain block"}
-
 ## Phase A — Discovery
 
 Phase A maps every NTLM source in the SQL Server estate. The output is a structured list of NTLM-generating patterns, each classified by root cause.
@@ -185,8 +177,6 @@ Phase C completion is the evidence baseline for the AU-2/AU-12 controls in the F
 # The Login Migration
 
 SQL Server logins are the database-level identity records. Migrating logins is the core technical action of the SQL Server modernization program. Every instance that survives the consolidation gate undergoes a login migration.
-
-![Login migration runs in four phases. The legacy login is never dropped until a 30-day clean observation period completes with zero authentication events using the old identity.](figs/san-fig-04-login-migration.png){#fig-san04 fig-alt="Diagram showing four-phase login migration with parallel run and observation period"}
 
 ## Login Types and Migration Targets
 
@@ -239,8 +229,6 @@ Dynamic groups in Entra ID assign membership based on HR-derived attributes: dep
 
 This is the identity lifecycle enforcement mechanism: access is derived from employment status and role, not from a ticket submitted to a DBA.
 
-![Entra dynamic groups: SQL authorization from HR attributes](figs/san-fig-08-entra-perimeter.png){#fig-san08 fig-alt="Three numbered step cards left to right with arrows. Step 1, HR attribute changes: department, job code, location, management chain maintained in the HR system of record, the Vol I Book 04 (HRIT Identity & Org SSOT). Step 2, dynamic group reconciles: Entra ID continuously re-evaluates membership rules against the attributes — no ticket, no manual step. Step 3, SQL access follows: CREATE USER group FROM EXTERNAL PROVIDER maps the group to a database role — membership is the authorization. Teal consequence bar: when an employee's department changes in the HR system, group membership changes automatically and SQL Server access changes with it — access derived from employment status and role, not a ticket to a DBA. Blue series bar: this is Vol I Book 04 (HRIT Identity & Org SSOT) arriving at the database layer — the leaver whose HR record closes loses SQL access in the same reconciliation pass. White background. Source: Vol II Book 01 SQL Auth Modernization briefing deck, Date Code 2026-07-07 16:23 ET." width="100%"}
-
 ## Conditional Access Policies for SQL
 
 Entra ID Conditional Access policies are applied to the Entra authentication flow that SQL clients use. Policies can enforce:
@@ -255,8 +243,6 @@ Conditional Access policies are configured at the Entra tenant level and apply t
 # The Application Chain
 
 Every application that connects to SQL Server carries an authentication assumption. Connection strings, ODBC data sources, service accounts, and application configuration files all encode the authentication method. These must all be updated as part of the login migration program.
-
-![Applications are classified into four categories based on their authentication modernization path. Class 3 (OIDC/Token) is the goal for all new work.](figs/san-fig-05-app-chain.png){#fig-san05 fig-alt="Diagram showing four application authentication classes from OIDC preferred to Domain Services last resort"}
 
 ## Application Authentication Classes
 
@@ -317,8 +303,6 @@ After a complete migration, the SQL Server authentication posture looks fundamen
 
 SQL Server uses TLS for transport encryption. The TLS certificate chain anchors to a certificate authority. In federal environments this is typically an internal PKI (usually ADCS) or a FedRAMP-authorized certificate service.
 
-![PKI: what breaks when the domain goes away](figs/san-fig-09-pki-dependencies.png){#fig-san09 fig-alt="Three stacked rows. Certificate renewal in red: ADCS auto-enrollment stops working when a host is domain-unjoined — a replacement enrollment mechanism, a FedRAMP-authorized CA of the DigiCert or GlobalSign class or Azure Private CA, must be in place before the unjoin. SQL Server TLS configuration in navy: SQL Server reads its TLS certificate from the local store — migrating from ADCS-issued certificates means updating SQL Server Configuration Manager to the new certificate and restarting the service, a scheduled change per instance. Certificate pinning in amber: some connection strings and ODBC configurations pin a specific certificate thumbprint — these must be found in the dependency inventory and updated before the certificate is replaced or they fail at rotation. Blue series bar: the certificate authority decisions were made in Vol I Book 01 (Landing Zone, IPAM/DDI, PKI) — this book (Vol II Book 01) consumes that PKI foundation and does not open a new CA decision. White background. Source: Vol II Book 01 SQL Auth Modernization briefing deck, Date Code 2026-07-07 16:23 ET." width="100%"}
-
 When Active Directory is retired or domain-unjoined servers are migrated to Entra, the ADCS infrastructure that issued server certificates must be addressed:
 
 **Certificate renewal.** Domain-joined ADCS certificate auto-enrollment stops working when the host is domain-unjoined. A replacement enrollment mechanism — DigiCert, GlobalSign, or equivalent FedRAMP-authorized CA, or Azure Private CA — must be in place before the domain is unjoined.
@@ -346,8 +330,6 @@ Azure SQL Managed Instance is a fully managed SQL Server deployment in Azure tha
 The authentication migration described in this document applies to Azure SQL Managed Instance identically — Entra logins, Managed Identity connections, and Conditional Access policies work the same way.
 
 # Federal Compliance Alignment
-
-![Each SQL Server modernization milestone directly closes a federal compliance requirement. The cumulative effect is a posture aligned with FedRAMP 20x, Zero Trust, and NTLM elimination mandates.](figs/san-fig-06-fedramp-alignment.png){#fig-san06 fig-alt="Matrix mapping SQL Server migration milestones to NIST controls and federal authority documents"}
 
 ## NIST SP 800-53 Rev 5 Control Closure
 

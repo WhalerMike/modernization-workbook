@@ -76,8 +76,6 @@ identity controls enforceable; governance makes them true over time.
 
 # The Governance Loop
 
-![The identity and access governance loop — HR event to lifecycle action to certification to evidence, reconciled to the join key](figs/vol9b06-fig-01-iam-governance-loop.png){#fig-vol9b06-loop fig-alt="A house-style four-step pipeline titled Identity & Access Governance (Vol IX Book 06), subtitle 'The governance layer over the request lane — event-driven JML, certification campaigns, IAM evidence', on a white background. Four navy-headed cards joined left to right by teal arrows: Step 1 HR event — an effective-dated joiner, mover, or leaver event from the HRIT Org SSOT, the truth plane (AC-2, IA-4); Step 2 Lifecycle action — provisioning, access re-derivation, or de-provisioning within SLA, high-risk events gated by a second-party approval (AC-2, AC-5, IA-5); Step 3 Certify, drawn with a teal header — scheduled user, manager, application-owner, and privileged campaigns with SSOT context, revocations triggering tracked remediation (AC-6); Step 4 Evidence — every action and decision an immutable audited record reconciled to the CM-8 join key and exported OSCAL-compatibly to attestation (AU-2). A footer states the discipline: actuation via the in-boundary MID, never standing admin; HRIT and IPAM/DDI remain the truth planes; FedRAMP Moderate and GCC Moderate only. White background. Authored house-style diagram." width="100%"}
-
 | Lane | What runs | Trigger | Control |
 |---|---|---|---|
 | **JML automation** | Joiner provisioning · mover re-derivation + residual review · leaver de-provisioning within SLA | Effective-dated HR event | AC-2, IA-4, IA-5 |

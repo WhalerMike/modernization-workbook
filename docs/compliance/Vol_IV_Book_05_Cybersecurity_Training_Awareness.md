@@ -160,8 +160,6 @@ The training program is organized around the four dimensions KSI-CED-RAT
 requires the organization to persistently review. Each dimension has a
 distinct audience, delivery mechanism, frequency, and evidence type.
 
-![Compliance Cybersecurity Training Program — KSI-CED-RAT Four-Dimension Model](figs/ced-fig-01-training-dimensions.png){fig-alt="Four-column diagram showing the four dimensions of the FedRAMP 20x cybersecurity training program required by KSI-CED-RAT. Dimension 1 (General Awareness, AT-2/AT-2(1)/AT-2(2)): audience is all employees and contractors; content is annual security awareness plus phishing simulation plus insider threat module; evidence is LMS completion record with overall_completion_pct at least 95 percent. Dimension 2 (Role-Based Specialized, AT-3/AT-3(3)/AT-3(5)): audience is six high-risk role tiers — sysadmins, privileged access users, developers, IR responders, data stewards, executives; content is role curriculum per tier with OWASP and SAST labs for developers and CISA ransomware guidance for executives; evidence is LMS completion by role tier. Dimension 3 (Secure Delivery, AT-3/AT-3(3)): audience is developers and engineers in DevSecOps pipelines; content is OWASP Top 10, SAST and DAST labs, and secure-coding standards; evidence is certification transcript or course log. Dimension 4 (IR/DR Training, IR-2/CP-3): audience is IR team and recovery personnel; content is semi-annual IR tabletop drill and annual contingency exercise connecting to the Part 14 tabletop calendar; evidence is tabletop attendance record and after-action report. Footer shows governance.training-effectiveness-record JSON schema exported via Microsoft Viva Learning Graph API to the governance substrate; KSI-CED-RAT is satisfied when overall_completion_pct is at least 95 and all six role tiers are present with evidence dated within the past 12 months." width="100%"}
-
 ## Program Governance
 
 The training program is governed by the following roles, which connect
@@ -276,8 +274,6 @@ following six role tiers cover the GCC Moderate environment:
 
 : AT-3 Role-Based Training Matrix {.striped .hover}
 
-![AT-3 role-based training — six role tiers, six curricula, each tracked separately](figs/ced-fig-03-role-tiers.png){#fig-ced03 fig-alt="Table titled 'Six role tiers, six curricula' under a Dimension 2 AT-3 heading, with columns Tier, Examples, Frequency, and Hours per Year. Tier 1 System Administrators — cloud and network admins, Entra Global Admins — annual plus on new tool, 24 to 40 hours. Tier 2 Privileged Access Users — PAW users, JIT-eligible, vault users — annual, 8 to 16 hours. Tier 3 Developers / Engineers — app developers, DevSecOps, pipeline owners — annual plus quarterly lab, 24 to 40 hours. Tier 4 Incident Responders — SOC analysts, Sentinel operators — semi-annual, 16 to 24 hours. Tier 5 Data Stewards — records managers, PII processors — annual, 8 to 12 hours. Tier 6 Executives / PMs — AO, PM, ISSM, COR, CO — annual, 4 to 8 hours. A summary banner states AT-3 requires specialized training for any role with elevated access or security-relevant functions, with completion tracked separately per tier. White background. Source: Vol IV Book 05 Cybersecurity Training & Awareness briefing deck, Date Code 2026-07-09 17:00 ET." width="100%"}
-
 ## Tier 1 — System Administrator Training Curriculum
 
 System administrators represent the highest-risk role category in a FedRAMP
@@ -374,8 +370,6 @@ receive training on their specific roles in the IR plan. This training
 connects directly to Vol III Book 06 (SIEM/XDR Detection Engineering) — the
 Sentinel playbooks defined there are the operational tools; this training
 is what ensures personnel can operate them under pressure.
-
-![Dimension 4 — IR and DR training exercised, not just documented, across drills, scenarios, tabletops, and after-action reports](figs/ced-fig-04-ir-dr-training.png){#fig-ced04 fig-alt="Four-quadrant card grid titled 'IR and DR — exercised, not just documented' under a Dimension 4 IR-2, CP-3 heading. Card 1, IR drill cadence (IR-2): semi-annual IR procedure walkthroughs, quarterly Sentinel playbook drills, and annual ransomware and supply-chain tabletops with leadership. Card 2, Scenario library: SOC-maintained scenarios updated after each incident — phishing-to-lateral-movement, dependency compromise, Conditional Access misconfiguration, RPZ bypass, and ransomware. Card 3, CP-3 tabletop calendar: four quarterly exercises testing the CP-2 plan — SQL AG failover, InfoBlox Grid failover, full multi-system tabletop, and Entra/AD DS recovery. Card 4, After-action report: every tabletop documents attendance (the CP-3 evidence), scenario and timeline, gaps versus CP-2, and corrective actions with owners and due dates. A summary banner states the after-action report feeds two things, the PM-14 T&T&M tracker and the CP-3/IR-2 evidence record the governance substrate ingests. White background. Source: Vol IV Book 05 Cybersecurity Training & Awareness briefing deck, Date Code 2026-07-09 17:00 ET." width="100%"}
 
 ### IR Training Cadence
 
@@ -502,8 +496,6 @@ this schema:
   }
 }
 ```
-
-![AT-4 Evidence Collection Pipeline — governance.training-effectiveness-record](figs/ced-fig-02-evidence-pipeline.png){fig-alt="Flow diagram showing four stages of the AT-4 evidence collection pipeline. Stage 1 (dark navy): LMS (Viva Learning or equivalent) stores enrollment and completion records. Stage 2 (federal blue): JSON Schema Export produces the training-effectiveness-record document with six role_tier entries carrying completion percentages and dates. Stage 3 (dark green): Governance Substrate ingests the record via the Conformance Adapter. Stage 4 (dark red): KSI-CED-RAT Verdict is produced by calling slot_binding(KSI-CED-RAT, confidence=high) — result is PASS when all thresholds are met. Below the flow, a detail panel shows required schema fields: top-level fields include overall_completion_pct (must be at least 95), snapshot_date, cp3_tabletop_date (within 12 months), ir2_drill_date (within 12 months), and role_tiers array; per-tier fields include tier_name, tier_completion_pct (must be at least 95 per tier), last_completion_date (within 12 months), nist_controls array, and ir2_drill_date for IR responder tier. Six tiers required: sysadmins, privileged_access, developers, ir_responders, data_stewards, executives." width="100%"}
 
 ## Microsoft Viva Learning Integration
 
@@ -638,7 +630,7 @@ Once the monthly LMS export is operational and the first
   to an internal rule (themes CMT · PIY · SCR · CED · INR · RPL fully mapped);
   the remaining **27** indicators (IAM · CNA · SVC · MLA) are attested at the
   CISA ScuBA baseline level only, not yet bound to a CR26 indicator ID. See
-  [`Compliance_CR26_Reconciliation.md`](Compliance_CR26_Reconciliation.md).
+  `Compliance_CR26_Reconciliation.md`.
 
 **This makes all 29 internal KSI rules active/evaluable; it does not complete
 CR26 indicator coverage** — that stands at 19/46, with 27 indicators pending

@@ -6,7 +6,7 @@ audience: [Customer, Technical, Assessor]
 author: Michael Stratton
 date: "August 2026"
 status: Active
-canon-source: "src/uiao/canon/adapter-registry.yaml#siem"
+canon-source: "src/fmp/canon/adapter-registry.yaml#siem"
 derived-from: "Microsoft Learn product documentation, linked inline per claim."
 repo-path: docs/customer-documents/operational-guides/siem-telemetry-emission/01-entra-id.qmd
 created-at: 2026-08-27
@@ -121,7 +121,7 @@ The click-path, for tenants where configuration is a one-time manual act:
    the same place.)
 3. Select **+ Add diagnostic setting**.
 4. Enter a **Diagnostic setting name**. This cannot be changed later — pick
-   something an assessor will recognize, e.g. `uiao-siem-emission-core`.
+   something an assessor will recognize, e.g. `fmp-siem-emission-core`.
 5. Under **Logs**, check every category from the **Core** tier above, plus the
    **High value** tier if ID Protection is licensed.
 6. Under **Destination details**, select **Send to Log Analytics workspace**
@@ -160,7 +160,7 @@ targetScope = 'tenant'
 param workspaceId string
 
 @description('Diagnostic setting name. Immutable once created.')
-param settingName string = 'uiao-siem-emission-core'
+param settingName string = 'fmp-siem-emission-core'
 
 var coreCategories = [
   'AuditLogs'
@@ -218,7 +218,7 @@ it hit an opaque failure. Use `az rest` against the ARM endpoint directly:
 # Requires: Security Administrator on the tenant.
 set -euo pipefail
 
-SETTING_NAME="uiao-siem-emission-core"
+SETTING_NAME="fmp-siem-emission-core"
 WORKSPACE_ID="/subscriptions/${SUBSCRIPTION_ID}/resourceGroups/${RG}/providers/Microsoft.OperationalInsights/workspaces/${WORKSPACE}"
 
 CATEGORIES=(

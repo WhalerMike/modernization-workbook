@@ -6,10 +6,10 @@ audience: [Executive, Customer]
 family: executive-governance-series
 series-order: 5
 status: Active
-canon-source: "src/uiao/canon/adapter-registry.yaml"
+canon-source: "src/fmp/canon/adapter-registry.yaml"
 canon-reference:
-  - "src/uiao/canon/modernization-registry.yaml"
-  - "src/uiao/canon/adr/adr-027-adapter-retirement.md"
+  - "src/fmp/canon/modernization-registry.yaml"
+  - "src/fmp/canon/adr/adr-027-adapter-retirement.md"
 repo-path: docs/customer-documents/executive-governance-series/ch05-adapter-model
 created-at: 2026-04-26
 updated-at: 2026-05-10
@@ -19,10 +19,6 @@ lifecycle_review: 2026-11-22
 ---
 
 # The Adapter Model
-
-![2x5 dual-axis adapter matrix with canon invariants footer](images/index-image-02-2x5-dual-axis-adapter-matrix-wit.png){#fig-index-image-02 fig-alt="2x5 dual-axis adapter matrix with canon invariants footer. Engineering blueprint style, neutral slate background, federal navy (#1F3A5F) for primary structural elements, teal (#1A9E8F) for secondary/integration elements, amber (#D4A017) for governance/audit/registry overlays, monospace labels for identifiers, no human figures, 16:9 landscape." width="100%"}
-
-![Two-registry separation: conformance-registry (read-only) vs modernization-regis...](images/index-image-03-two-registry-separation-conforma.png){#fig-index-image-03 fig-alt="Two-registry separation: conformance-registry (read-only) vs modernization-registry (mutating) with file-level boundary. Engineering blueprint style, neutral slate background, federal navy (#1F3A5F) for primary structural elements, teal (#1A9E8F) for secondary/integration elements, amber (#D4A017) for governance/audit/registry overlays, monospace labels for identifiers, no human figures, 16:9 landscape." width="100%"}
 
 
 ::: {.callout-note}
@@ -35,8 +31,6 @@ taxonomy that makes adapters governable, the two-registry model that
 keeps modernization separate from conformance, and the canon
 invariants that constrain every adapter regardless of vendor.
 :::
-
-![Dual-axis adapter taxonomy diagram](images/index-image-01-dual-axis-adapter-taxonomy-diagr.png){#fig-index-image-01 fig-alt="A 2-by-5 matrix. Rows are the two adapter classes — Modernization (change-making) and Conformance (read-only observation). Columns are the five mission classes — Identity, Telemetry, Policy, Enforcement, Integration. Filled cells show example adapters in each combination (e.g. Modernization × Identity: bluecat-address-manager; Conformance × Policy: scubagear). Below the matrix, four canon invariants are labeled as a footer band: gcc-boundary: gcc-moderate, ssot-mutation: never-without-modernization-class, certificate-anchored: true, object-identity-only: true. Clean engineering blueprint style, dark navy (#0D1B2E) and teal (#1E8C8C) on white background. No photographs, purely diagrammatic." width="100%"}
 
 ## The dual-axis taxonomy
 
@@ -54,9 +48,9 @@ Per FMP_003, every adapter declares two attributes:
 
 The cross-product yields a 2×5 matrix. Every adapter lands in exactly
 one cell. The taxonomy is canonical (declared in
-[`adapter-registry.yaml`](../../../../src/uiao/canon/adapter-registry.yaml)
+`adapter-registry.yaml`
 and
-[`modernization-registry.yaml`](../../../../src/uiao/canon/modernization-registry.yaml))
+`modernization-registry.yaml`)
 and validated in CI by `adapter-conformance.yml`.
 
 ## Why two registries
@@ -108,7 +102,7 @@ These are not suggestions. They are schema-validated on every PR.
 ## Microsoft Graph adapter convention
 
 Adapters that read from Microsoft Graph resolve their endpoint via
-`uiao.adapters._graph_clouds.resolve_graph_base` rather than
+`fmp.adapters._graph_clouds.resolve_graph_base` rather than
 hardcoding hostnames. Accepted config keys:
 
 - `cloud`: `commercial` / `gcc-high` / `dod` (default `commercial`,

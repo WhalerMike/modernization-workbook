@@ -2,8 +2,8 @@
 title: "Zero-Trust Overview"
 doc-type: executive-brief
 status: Active
-canon-source: src/uiao/canon/adr/adr-008-zero-trust-identity.md
-derived-from: uiao canon
+canon-source: src/fmp/canon/adr/adr-008-zero-trust-identity.md
+derived-from: fmp canon
 lifecycle: adopted
 tiers_adopted: [1]
 lifecycle_review: 2026-11-22

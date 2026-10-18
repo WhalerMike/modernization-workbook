@@ -195,8 +195,6 @@ The central finding across all six documents is the same: **the compliance debt 
 
 ## Series Overview {.unnumbered}
 
-![Federal Organization Compliance Series, architecture layer — Volumes I–IV, 23 implementation books: Substrate, Modernization, Operations, One Compliance Architecture](figs/es-fig-01-series-overview.png){fig-alt="Three-band blueprint diagram on a white background. The subtitle reads five volumes, 23 implementation books. The top band, labeled Substrate — naming, identity, and trust foundations (Vol I Books 01–04), contains four navy columns: Vol I Book 01 Landing Zone IPAM / DDI / PKI (InfoBlox DDI, DNSSEC, RPZ, certificates — 18 NIST controls closed), Vol I Book 02 Network Access Control (802.1X, RADIUS, device identity at the port), Vol I Book 03 Certificates and Tokens (cryptographic identity, PKI lifecycle, token issuance), and Vol I Book 04 HRIT Identity and Org SSOT (HR system of record, joiner-mover-leaver lifecycle). Teal arrows point down to the middle band, Modernization Tracks (Vol I Books 05–07 and Vol II), with four ice-blue boxes: Vol I Book 05 Network and Identity Modernization (Entra ID, ZTNA, Active Governance — 13 NIST controls closed), Vol I Book 06 Telecommunications Modernization (SD-WAN plus SASE — 7 NIST controls closed), Vol I Book 07 Network Enforcement Substrate (NIAP, DISA STIG, FIPS 140-3, DoDIN APL — an extension book, the accreditation substrate, drawn with a dashed border), and Vol II Books 01–03 SQL Server and Database Architecture (Azure Arc, Entra authentication, network physics — 7 additional controls closed). Teal arrows continue down to the bottom band, Operations and Governance (Vol III and Vol IV), with four white boxes: Vol III plus Vol IV Book 01 Security Operations (PAM, VulnMgmt, Purview, SIEM/XDR, Business Continuity, plus the extension books Patch and Systems Management, Cloud-Native Posture, and the Multi-Cloud Evidence Fabric — about 55 controls closed or deepened), Vol IV Books 02–04 Risk and Program Governance (SCRM, PM governance, PII processing transparency), Vol IV Book 05 Training and Awareness (role-based curriculum, KSI-CED evidence), and Vol IV Book 06 Authorization Package (OSCAL bundle, continuous monitoring CA-7). A footer badge states that the six original tracks — Vol I Books 01, 05–06 and Vol II, each marked with a teal dot — close 34 distinct NIST SP 800-53 Rev 5 controls, that four extension books (Vol I Book 07 and Vol III Books 03, 04, 07) close additional controls, and that all 23 implementation books generate machine-readable KSI evidence for FedRAMP 20x." width="100%"}
-
 | Designation | Document | Domain | Core Technology |
 |------|----------|--------|-----------------|
 | Vol I Book 01 | Compliance — {{< meta agency.short >}} Landing Zone IPAM / FedRAMP | DNS · DHCP · IPAM · PKI · Zero Trust | InfoBlox DDI |
@@ -308,8 +306,6 @@ and naming planes (ServiceNow on plane 6/7, multi-cloud DDI on plane 2). The pla
 architectural facts — they exist in every enterprise regardless of how the org
 chart divides them — so any agency can map its own structure onto the model
 without the model taking a position on whose structure is correct.
-
-![The Seven Functional Planes — functions, not organizations](figs/es-fig-05-functional-planes.png){fig-alt="Stacked diagram of the seven functional planes, each with role, function description, and owning books. 1 Transport (enforcement, navy): move packets between sites and clouds — MPLS to DIA, SD-WAN overlay, path selection, QoS; Vol I Book 06 and Vol II Book 03. 2 Naming and addressing (truth, teal): assert what things are called and where they live — DNS, DHCP, IPAM, DNSSEC, RPZ, certificate issuance; Vol I Books 01 and 03. 3 Identity (truth, teal): assert who and what is requesting — NAC 802.1X, Entra ID, workload identity, OAuth OIDC, CBA; Vol I Books 02–04 and 06. 4 Policy enforcement (enforcement, navy): decide and enforce per session — SASE (SWG CASB FWaaS), ZTNA, TIC 3.0 PEPs, Conditional Access; Vol I Books 05–06. 5 Application and experience (consumes both, ice blue): deliver the mission service — contact center, unified communications, business apps, databases; Vol I Book 06 and Vol II. 6 Evidence and telemetry (truth, teal): prove continuously what happened — SIEM XDR, per-session records, OSCAL bundle, KSI evidence pipeline; Vol III Book 06 and Vol IV Book 06. 7 Configuration and remediation (enforcement, navy): actuate and hold patch and baseline state across platforms — Intune/Arc, AWS SSM, OCI OS Management Hub/Ksplice, VMware vLCM, Red Hat Satellite/Ansible; Vol III Books 02–03. A legend marks teal as truth planes and navy as enforcement planes. Footer axiom: enforcement planes can be re-platformed; truth planes can only be depended on. White background. Date Code 2026-07-09 08:50 ET." width="100%"}
 
 | Plane | Function | Representative capabilities | Series home |
 |---|---|---|---|
@@ -567,8 +563,6 @@ recreate the fragmented-truth problem this series exists to end.
 ::: {.aan-important}
 ## DIA Is a Pipe — The Three-Step Argument
 
-![DIA Is a Pipe — the governance stack satisfies the controls, the pipe solves latency](figs/es-fig-06-dia-three-step.png){fig-alt="Diagram of the three-step DIA argument. A field office (western site) connects through a pipe labeled DIA — Direct Internet Access, a pipe: solves latency, nothing else — to the internet. Above the pipe, a governance stack box labeled the stack that satisfies the controls contains three layers: SD-WAN IPsec overlay (SC-8), SASE with SWG CASB FWaaS (SC-7, AC-4, SI-3), and TIC 3.0 distributed enforcement point; an arrow labeled governs the pipe points down to the pipe. Right rail lists the three steps: 1 what DIA solves — exactly one thing, the geographic hairpin, ITU-T G.114's 150 ms budget is physics and local breakout is the only fix; 2 what DIA satisfies — none of the protection controls: flow enforcement, boundary, confidentiality, inspection, audit are all satisfied by the stack; 3 (highlighted) what bare DIA breaks — the boundary: a field office on ungoverned DIA has lost SC-7 protection relative to the MPLS hairpin. Red banner: ungoverned DIA is a step backward — from the assessor's chair, bare DIA is not modernization, it is a compliance regression with better latency. White background. Source: Vol 0 Book 00 Executive Summary briefing deck, Date Code 2026-07-13 ET." width="100%"}
-
 1. **What DIA solves:** exactly one thing — the geographic hairpin. ITU-T
  G.114's 150ms one-way budget is a physics constraint, and local breakout is
  the only fix. No security product shortens a fiber path.
@@ -755,8 +749,6 @@ accurate, but there is no framework to act on them coherently. The result is
 a list of open controls addressed piecemeal — individual configuration fixes
 that do not accumulate into a defensible, integrated compliance posture.
 
-![Architecture Before Assessment — six phases; assessment tools arrive at Phase 5](figs/es-fig-07-architecture-before-assessment.png){fig-alt="Chevron flow of six phases: 1 Understand — gaps and root causes (this series, Vol 0 Book 00 through Vol IV Book 04); 2 Design — closure patterns (domain books across Vols I–IV); 3 Implement — runbooks and deploys (Vol II Book 02 SQL, domain books); 4 Govern — SCRM, POA&M, ISPP (Vol IV Books 02–04); 5 Validate — confirmation only (SCuBA, ZTTT, Secure Score, teal); 6 Authorize (highlighted, blue) — KSI-ready evidence via the OSCAL AP AR POA&M bundle. Caption: authorize on evidence the architecture generates — assessment tools arrive at Phase 5 as the final proof, not the starting point. White background. Source: Vol 0 Book 00 Executive Summary briefing deck, Date Code 2026-07-13 ET." width="100%"}
-
 The correct sequence is:
 
 | Phase | Activity | Tooling |
@@ -832,8 +824,6 @@ assessment tools: **the final proof, not the starting point.**
 The claim that conformance tooling cannot substitute for architecture is not
 rhetorical. It is arithmetic, and the numbers come from this program's own
 evaluation engine:
-
-![The Coverage Arithmetic — 10 of 29 KSI rules attestable by conformance tooling alone](figs/es-fig-08-coverage-arithmetic.png){fig-alt="Diagram of the 29 rules in the series' internal KSI decomposition by what closes them, all verdicts self-assessed pending independent SCA. Left stat: 10 of 29 KSI rules attestable by conformance tooling alone — M365 GCC tenant configuration, ScubaGear plus ScubaDrift dispositions — shown as a teal row of rule chips 001-010. Right stat: 19 of 29 evaluable only because the architecture exists, bound to evidence slots built by Vols I–IV — shown as a grey row of rule chips 011-029 with grouping brackets: SCR supply chain (SBOM VDR VEX, slot-06, Vol IV Books 02–03), PIY privacy (data-flow maps, slot-05, Vol IV Book 04), CED-RAT training (slot-08, Vol IV Book 05), and CED INR RPL incident and continuity (playbooks plus DR, slots 04 and 07, Vol III Book 06 and Vol IV Book 01). Highlighted bottom line: a conformance tool measures drift from an intended state — it cannot author one; run against an environment with no architecture, it measures drift from nothing. White background. Source: Vol 0 Book 00 Executive Summary briefing deck, Date Code 2026-07-13 ET." width="100%"}
 
 - **ScuBA-based rules attest 10 of the 29 rules in the series' internal KSI decomposition**
  (KSI-001 through KSI-010) — the rules that reduce to Microsoft 365 GCC tenant
@@ -1292,8 +1282,6 @@ reconciled to CM-8).
 
 # Combined Control Closure Summary
 
-![NIST SP 800-53 Control Closure by Family and Track — Six Tracks (Vol I Books 01, 05, 06 and Vol II)](figs/es-fig-02-control-closure-chart.png){fig-alt="Horizontal stacked bar chart showing NIST control families on the Y axis and count of controls closed on the X axis, with segments colored by track: Vol I Book 01 InfoBlox DDI in dark navy, Vol I Book 05 Entra ID plus ZTNA in orange, Vol I Book 06 SD-WAN plus SASE in medium blue, and Vol II SQL plus database in dark green. Families include SC, IA, CM, AU, AC, CA, SI, CP, IR, SA, and PL. White background." width="100%"}
-
 ## Total Controls Closed Across the Original Six Tracks (Vol I Books 01, 05, 06 and Vol II)
 
 | Control Family | Technology | Controls Closed | Implementing Track |
@@ -1469,8 +1457,6 @@ Maturity column states the highest state actually reached, never more:
 
 # Implementation Priority and Sequencing
 
-![Implementation Sequencing — Path to FedRAMP 20x Mandatory Compliance by January 1 2027](figs/es-fig-04-sequencing-roadmap.png){fig-alt="Horizontal timeline from July 2026 to June 2027 with milestone circles showing Class A opens August 3 2026, Class B and C open August 31 2026, FedRAMP Ready ceases July 28 2026 in red, FedRAMP 20x mandatory January 1 2027 in red, new Rev5 certs cease June 11 2027 in red. Five track bars: Vol I Book 01 InfoBlox DDI spans the full timeline, Vol I Book 06 SD-WAN plus SASE concurrent, Vol I Book 05 Entra ID plus ZTNA plus Active Governance multi-phase, Vol II Books 01–02 SQL Server Authentication parallel with Vol I Book 05, and Vol II Book 03 DB Architecture ongoing and concurrent. White background." width="100%"}
-
 | Priority | Track | Technology | Rationale |
 |---|---|---|---|
 | **1 — Immediate** | Vol I Book 01: InfoBlox DDI Landing Zone | InfoBlox DDI (DNSSEC, RPZ, IPAM, PKI, Syslog) | Blocks every other implementation: DNS is the foundational naming layer. Zero Trust policy, ZTNA micro-tunnels, RPZ boundary enforcement, and certificate lifecycle all depend on a functioning DDI layer. Largest evidence gap — 16 controls with no automated evidence today. |
@@ -1518,7 +1504,7 @@ executed.
 | SBOM generation | Syft (Anchore) or Trivy — integrated into CI/CD pipeline |
 | VDR format | CycloneDX 1.6 (XML or JSON) — CISA-preferred |
 | VER submission | CISA VEX Portal or email per BOD 26-04 guidance |
-| OSCAL AP/AR | The governance engine's OSCAL bundle emitter (per the [series evidence contract](Compliance_Evidence_Contract_Spec.qmd)) — OSCAL document version pinned in Vol IV Book 06 §2.1 (currently 1.0.4); verify FedRAMP's current machine-readable schema target before each authorization-cycle freeze |
+| OSCAL AP/AR | The governance engine's OSCAL bundle emitter (per the series evidence contract) — OSCAL document version pinned in Vol IV Book 06 §2.1 (currently 1.0.4); verify FedRAMP's current machine-readable schema target before each authorization-cycle freeze |
 | PII mapping | Purview Data Map + sensitivity label lineage (extends Vol III Book 05) |
 | PM metrics | Sentinel workbook for AU/CA/PM KPI dashboard (extends Vol III Book 06) |
 

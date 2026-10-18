@@ -21,10 +21,6 @@ tiers_adopted: [1]
 lifecycle_review: 2026-11-22
 ---
 
-![Azure Arc integration topology (AD to Arc to Azure Policy)](images/azure-arc-policy-library-image-01-azure-arc-integration-topology-a.png){#fig-azure-arc-policy-library-image-01 fig-alt="Azure Arc integration topology (AD to Arc to Azure Policy). Engineering blueprint style, neutral slate background, federal navy (#1F3A5F) for primary structural elements, teal (#1A9E8F) for secondary/integration elements, amber (#D4A017) for governance/audit/registry overlays, monospace labels for identifiers, no human figures, 16:9 landscape." width="100%"}
-
-![the organizational-attribute model-tag mapping flow](images/azure-arc-policy-library-image-02-orgpath-tag-mapping-flow.png){#fig-azure-arc-policy-library-image-02 fig-alt="the organizational-attribute model-tag mapping flow. Engineering blueprint style, neutral slate background, federal navy (#1F3A5F) for primary structural elements, teal (#1A9E8F) for secondary/integration elements, amber (#D4A017) for governance/audit/registry overlays, monospace labels for identifiers, no human figures, 16:9 landscape." width="100%"}
-
 
 The Federal Modernization Program Azure Arc Policy Library
 
@@ -40,7 +36,7 @@ Governance OS Modernization Program --- Azure Policy Definitions for Arc-Enabled
 
 **Author:** the Federal Modernization Program Governance Engineering
 
-**Repository:** https://github.com/WhalerMike/uiao
+**Repository:** https://github.com/WhalerMike/modernization-workbook
 
 +-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 | **BOUNDARY NOTICE**                                                                                                                                                                                                                                                                                                                                         |
@@ -103,7 +99,7 @@ The policy library is organized across five governance domains:
 +--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 | **ENVIRONMENT CONTEXT**                                                                                                                                                                                                                                                                                                                                                                                                        |
 |                                                                                                                                                                                                                                                                                                                                                                                                                                |
-| The Federal Modernization Program operates within a GCC-Moderate boundary for all Microsoft 365 SaaS services. Azure Arc is deployed in Commercial Cloud under an explicit exception documented in the Federal Modernization Program architecture decision record. This library targets the Commercial Cloud Azure Policy engine. All 24 policy definitions and 3 policy initiatives defined herein are maintained in the Federal Modernization Program repository at **https://github.com/WhalerMike/uiao**. |
+| The Federal Modernization Program operates within a GCC-Moderate boundary for all Microsoft 365 SaaS services. Azure Arc is deployed in Commercial Cloud under an explicit exception documented in the Federal Modernization Program architecture decision record. This library targets the Commercial Cloud Azure Policy engine. All 24 policy definitions and 3 policy initiatives defined herein are maintained in the Federal Modernization Program repository at **https://github.com/WhalerMike/modernization-workbook**. |
 +--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 
 2\. Azure Arc Overview for the Federal Modernization Program
@@ -219,17 +215,17 @@ Effect: Deny \| Category: Tagging \| Severity: Critical
   --------------------------------------------------------------------
   **Tag Name**       **the organizational-attribute model Attribute**   **Extension Attribute**
   ------------------ ----------------------- -------------------------
-  uiao-region        Region                  extensionAttribute1
+  fmp-region        Region                  extensionAttribute1
 
-  uiao-site          Site                    extensionAttribute2
+  fmp-site          Site                    extensionAttribute2
 
-  uiao-department    Department              extensionAttribute3
+  fmp-department    Department              extensionAttribute3
 
-  uiao-device-tier   DeviceTier              extensionAttribute4
+  fmp-device-tier   DeviceTier              extensionAttribute4
 
-  uiao-environment   Environment             extensionAttribute5
+  fmp-environment   Environment             extensionAttribute5
 
-  uiao-device-role   DeviceRole              extensionAttribute6
+  fmp-device-role   DeviceRole              extensionAttribute6
   --------------------------------------------------------------------
 
 Policy 4.2: Tag Value Validation
@@ -245,16 +241,16 @@ Effect: Deny \| Category: Tagging \| Severity: Critical
   -------------------------------------------------------------------------------------------------------------------------
   **Tag**            **Allowed Values**
   ------------------ ------------------------------------------------------------------------------------------------------
-  uiao-region        East, West, Central, Global
+  fmp-region        East, West, Central, Global
 
-  uiao-device-tier   Tier0, Tier1, Tier2
+  fmp-device-tier   Tier0, Tier1, Tier2
 
-  uiao-environment   Production, Staging, Dev, DR
+  fmp-environment   Production, Staging, Dev, DR
 
-  uiao-device-role   DomainController, MemberServer, GitServer, AppServer, FileServer, DatabaseServer, Workstation, Kiosk
+  fmp-device-role   DomainController, MemberServer, GitServer, AppServer, FileServer, DatabaseServer, Workstation, Kiosk
   -------------------------------------------------------------------------------------------------------------------------
 
-**Note:** uiao-site and uiao-department values are organization-specific and validated against a parameter array that must be populated during policy assignment based on the Federal Modernization Program AD assessment output.
+**Note:** fmp-site and fmp-department values are organization-specific and validated against a parameter array that must be populated during policy assignment based on the Federal Modernization Program AD assessment output.
 
 Policy 4.3: Tag Inheritance from Resource Group
 
@@ -262,7 +258,7 @@ Policy 4.3: Tag Inheritance from Resource Group
 
 Effect: Modify \| Category: Tagging \| Severity: Low
 
-**Description:** Automatically inherits uiao-region and uiao-environment tags from the parent resource group if these tags are not already set on the Arc-enabled server resource. This ensures baseline organizational context even when agent deployment scripts do not supply all tags.
+**Description:** Automatically inherits fmp-region and fmp-environment tags from the parent resource group if these tags are not already set on the Arc-enabled server resource. This ensures baseline organizational context even when agent deployment scripts do not supply all tags.
 
 **Behavior:** Uses the Modify effect with a managed identity to add missing tags. Existing tag values on the resource are never overwritten.
 
@@ -389,7 +385,7 @@ Effect: AuditIfNotExists \| Category: Compliance \| Severity: Critical
 
 - **All other patches:** Must be applied within 30 days of release
 
-**Remediation:** Enroll the server in Azure Update Manager via the Federal Modernization Program onboarding script. Schedule maintenance windows aligned with the server\'s uiao-environment tag.
+**Remediation:** Enroll the server in Azure Update Manager via the Federal Modernization Program onboarding script. Schedule maintenance windows aligned with the server\'s fmp-environment tag.
 
 Policy 6.3: Disk Encryption
 
@@ -566,7 +562,7 @@ Policy 9.1: Git Server Compliance
 
 Effect: Audit \| Category: The Federal Modernization Program Governance \| Severity: High
 
-**Description:** For servers tagged uiao-device-role=GitServer, verifies that the Gitea service is installed and operational, that the IIS reverse proxy is configured and responding, and that Git governance hooks are present in the expected locations.
+**Description:** For servers tagged fmp-device-role=GitServer, verifies that the Gitea service is installed and operational, that the IIS reverse proxy is configured and responding, and that Git governance hooks are present in the expected locations.
 
 **Compliance Checks:**
 
@@ -576,7 +572,7 @@ Effect: Audit \| Category: The Federal Modernization Program Governance \| Sever
 
 - Git hooks directory contains required hook files (pre-receive, post-receive, update)
 
-**Scope Condition:** This policy only evaluates servers where the uiao-device-role tag equals GitServer.
+**Scope Condition:** This policy only evaluates servers where the fmp-device-role tag equals GitServer.
 
 Policy 9.2: Assessment Data Currency
 
@@ -603,7 +599,7 @@ Effect: Audit \| Category: The Federal Modernization Program Governance \| Sever
 
 **Description:** Verifies that Git governance hooks (pre-receive, post-receive, update) on the Federal Modernization Program Git servers are present and have not been tampered with. The policy computes content hashes of each hook file and compares them against expected hash values maintained in the policy parameters.
 
-**Scope:** Servers tagged uiao-device-role=GitServer.
+**Scope:** Servers tagged fmp-device-role=GitServer.
 
 **Rationale:** Governance hooks enforce the Federal Modernization Program schema validation, the organizational-attribute model integrity checks, and audit trail generation. Tampered or missing hooks bypass the governance pipeline entirely.
 
@@ -673,7 +669,7 @@ Initiative 10.2: The Federal Modernization Program Tier0 Hardening
 
 **FMP-Tier0Hardening**
 
-Type: Policy Initiative \| Assignment Scope: Servers tagged uiao-device-tier=Tier0
+Type: Policy Initiative \| Assignment Scope: Servers tagged fmp-device-tier=Tier0
 
 **Description:** Enhanced security policy set for Tier0 servers --- Domain Controllers, Certificate Authority servers, and Git servers. Includes all Governance Baseline policies plus additional restrictions for privileged infrastructure.
 
@@ -733,14 +729,14 @@ Type: Policy Initiative \| Assignment Scope: All Arc-enabled servers in the Fede
 
 - Azure CLI (2.50+) or Az PowerShell module (10.0+) installed
 
-- Access to the Federal Modernization Program policy repository: https://github.com/WhalerMike/uiao
+- Access to the Federal Modernization Program policy repository: https://github.com/example-org/fmp
 
 11.2 Resource Group Structure
 
 The Federal Modernization Program policy library assumes the following resource group naming convention for Arc-enabled server resources:
 
   --------------------------------------------------------------------------------------------------------------------------
-  rg-uiao-arc-{region}-{environment} Example: rg-uiao-arc-east-production rg-uiao-arc-west-staging rg-uiao-arc-central-dev
+  rg-fmp-arc-{region}-{environment} Example: rg-fmp-arc-east-production rg-fmp-arc-west-staging rg-fmp-arc-central-dev
 
   --------------------------------------------------------------------------------------------------------------------------
 
@@ -749,7 +745,7 @@ The Federal Modernization Program policy library assumes the following resource 
 **Step 1: Clone the Federal Modernization Program repository**
 
   -----------------------------------------------------------------------
-  git clone https://github.com/WhalerMike/uiao.git cd uiao/policies/arc
+  git clone https://github.com/example-org/fmp.git cd fmp/policies/arc
 
   -----------------------------------------------------------------------
 
@@ -777,7 +773,7 @@ The Federal Modernization Program policy library assumes the following resource 
 **Step 4: Assign policies to target scope**
 
 +---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| \# Assign the Governance Baseline initiative to a resource group New-AzPolicyAssignment \` -Name \"uiao-baseline-east-prod\" \` -DisplayName \"the Federal Modernization Program Governance Baseline - East Production\" \` -PolicySetDefinition (Get-AzPolicySetDefinition -Name \"FMP-GovernanceBaseline\") \` -Scope \"/subscriptions/ |
+| \# Assign the Governance Baseline initiative to a resource group New-AzPolicyAssignment \` -Name \"fmp-baseline-east-prod\" \` -DisplayName \"the Federal Modernization Program Governance Baseline - East Production\" \` -PolicySetDefinition (Get-AzPolicySetDefinition -Name \"FMP-GovernanceBaseline\") \` -Scope \"/subscriptions/ |
 |                                                                                                                                                                                                                                                                                                               |
 | \<                                                                                                                                                                                                                                                                                                            |
 |                                                                                                                                                                                                                                                                                                               |
@@ -785,7 +781,7 @@ The Federal Modernization Program policy library assumes the following resource 
 |                                                                                                                                                                                                                                                                                                               |
 | \>                                                                                                                                                                                                                                                                                                            |
 |                                                                                                                                                                                                                                                                                                               |
-| /resourceGroups/rg-uiao-arc-east-production\" \` -IdentityType \"SystemAssigned\" \` -Location \"eastus\"                                                                                                                                                                                                     |
+| /resourceGroups/rg-fmp-arc-east-production\" \` -IdentityType \"SystemAssigned\" \` -Location \"eastus\"                                                                                                                                                                                                     |
 +---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 
 **Step 5: Create remediation tasks for DeployIfNotExists policies**
@@ -799,7 +795,7 @@ The Federal Modernization Program policy library assumes the following resource 
 |                                                                                                                                                                    |
 | \>                                                                                                                                                                 |
 |                                                                                                                                                                    |
-| /providers/Microsoft.Authorization/policyAssignments/uiao-baseline-east-prod\" \` -PolicyDefinitionReferenceId \"FMP-Arc-AMADeployment\"                          |
+| /providers/Microsoft.Authorization/policyAssignments/fmp-baseline-east-prod\" \` -PolicyDefinitionReferenceId \"FMP-Arc-AMADeployment\"                          |
 +--------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 
 11.4 Assignment Scoping
@@ -983,7 +979,7 @@ A.1 Audit Policy --- FMP-Arc-AgentVersion
 A.2 Deny Policy --- FMP-Arc-RequiredTags
 
   ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-  { \"name\": \"FMP-Arc-RequiredTags\", \"properties\": { \"displayName\": \"the Federal Modernization Program - Required the organizational-attribute model Tags\", \"description\": \"Deny Arc-enabled server resources missing required the Federal Modernization Program the organizational-attribute model tags.\", \"mode\": \"Indexed\", \"metadata\": { \"category\": \"the Federal Modernization Program Governance\", \"version\": \"1.0.0\" }, \"parameters\": {}, \"policyRule\": { \"if\": { \"allOf\": \[ { \"field\": \"type\", \"equals\": \"Microsoft.HybridCompute/machines\" }, { \"anyOf\": \[ { \"field\": \"tags\[\'uiao-region\'\]\", \"exists\": \"false\" }, { \"field\": \"tags\[\'uiao-site\'\]\", \"exists\": \"false\" }, { \"field\": \"tags\[\'uiao-department\'\]\", \"exists\": \"false\" }, { \"field\": \"tags\[\'uiao-device-tier\'\]\", \"exists\": \"false\" }, { \"field\": \"tags\[\'uiao-environment\'\]\", \"exists\": \"false\" }, { \"field\": \"tags\[\'uiao-device-role\'\]\", \"exists\": \"false\" } \] } \] }, \"then\": { \"effect\": \"deny\" } } } }
+  { \"name\": \"FMP-Arc-RequiredTags\", \"properties\": { \"displayName\": \"the Federal Modernization Program - Required the organizational-attribute model Tags\", \"description\": \"Deny Arc-enabled server resources missing required the Federal Modernization Program the organizational-attribute model tags.\", \"mode\": \"Indexed\", \"metadata\": { \"category\": \"the Federal Modernization Program Governance\", \"version\": \"1.0.0\" }, \"parameters\": {}, \"policyRule\": { \"if\": { \"allOf\": \[ { \"field\": \"type\", \"equals\": \"Microsoft.HybridCompute/machines\" }, { \"anyOf\": \[ { \"field\": \"tags\[\'fmp-region\'\]\", \"exists\": \"false\" }, { \"field\": \"tags\[\'fmp-site\'\]\", \"exists\": \"false\" }, { \"field\": \"tags\[\'fmp-department\'\]\", \"exists\": \"false\" }, { \"field\": \"tags\[\'fmp-device-tier\'\]\", \"exists\": \"false\" }, { \"field\": \"tags\[\'fmp-environment\'\]\", \"exists\": \"false\" }, { \"field\": \"tags\[\'fmp-device-role\'\]\", \"exists\": \"false\" } \] } \] }, \"then\": { \"effect\": \"deny\" } } } }
 
   ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -997,7 +993,7 @@ A.3 DeployIfNotExists Policy --- FMP-Arc-AMADeployment
 A.4 Modify Policy --- FMP-Arc-TagInheritance
 
   -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-  { \"name\": \"FMP-Arc-TagInheritance\", \"properties\": { \"displayName\": \"the Federal Modernization Program - Inherit Region and Environment Tags from Resource Group\", \"description\": \"Inherit uiao-region and uiao-environment tags from the parent resource group.\", \"mode\": \"Indexed\", \"metadata\": { \"category\": \"the Federal Modernization Program Governance\", \"version\": \"1.0.0\" }, \"parameters\": {}, \"policyRule\": { \"if\": { \"allOf\": \[ { \"field\": \"type\", \"equals\": \"Microsoft.HybridCompute/machines\" }, { \"field\": \"tags\[\'uiao-region\'\]\", \"exists\": \"false\" } \] }, \"then\": { \"effect\": \"modify\", \"details\": { \"roleDefinitionIds\": \[ \"/providers/Microsoft.Authorization/roleDefinitions/\...\" \], \"operations\": \[ { \"operation\": \"addOrReplace\", \"field\": \"tags\[\'uiao-region\'\]\", \"value\": \"\[resourceGroup.tags\[\'uiao-region\'\]\]\" } \] } } } } }
+  { \"name\": \"FMP-Arc-TagInheritance\", \"properties\": { \"displayName\": \"the Federal Modernization Program - Inherit Region and Environment Tags from Resource Group\", \"description\": \"Inherit fmp-region and fmp-environment tags from the parent resource group.\", \"mode\": \"Indexed\", \"metadata\": { \"category\": \"the Federal Modernization Program Governance\", \"version\": \"1.0.0\" }, \"parameters\": {}, \"policyRule\": { \"if\": { \"allOf\": \[ { \"field\": \"type\", \"equals\": \"Microsoft.HybridCompute/machines\" }, { \"field\": \"tags\[\'fmp-region\'\]\", \"exists\": \"false\" } \] }, \"then\": { \"effect\": \"modify\", \"details\": { \"roleDefinitionIds\": \[ \"/providers/Microsoft.Authorization/roleDefinitions/\...\" \], \"operations\": \[ { \"operation\": \"addOrReplace\", \"field\": \"tags\[\'fmp-region\'\]\", \"value\": \"\[resourceGroup.tags\[\'fmp-region\'\]\]\" } \] } } } } }
 
   -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -1008,17 +1004,17 @@ The following table provides the complete mapping between the Federal Modernizat
   -----------------------------------------------------------------------------------------------------------------------------------------------------------------------
   **Extension Attribute**   **the organizational-attribute model Field**   **Arc Tag Name**   **Allowed Values**
   ------------------------- ------------------- ------------------ ------------------------------------------------------------------------------------------------------
-  extensionAttribute1       Region              uiao-region        East, West, Central, Global
+  extensionAttribute1       Region              fmp-region        East, West, Central, Global
 
-  extensionAttribute2       Site                uiao-site          *Organization-specific (populated from AD assessment)*
+  extensionAttribute2       Site                fmp-site          *Organization-specific (populated from AD assessment)*
 
-  extensionAttribute3       Department          uiao-department    *Organization-specific (populated from AD assessment)*
+  extensionAttribute3       Department          fmp-department    *Organization-specific (populated from AD assessment)*
 
-  extensionAttribute4       DeviceTier          uiao-device-tier   Tier0, Tier1, Tier2
+  extensionAttribute4       DeviceTier          fmp-device-tier   Tier0, Tier1, Tier2
 
-  extensionAttribute5       Environment         uiao-environment   Production, Staging, Dev, DR
+  extensionAttribute5       Environment         fmp-environment   Production, Staging, Dev, DR
 
-  extensionAttribute6       DeviceRole          uiao-device-role   DomainController, MemberServer, GitServer, AppServer, FileServer, DatabaseServer, Workstation, Kiosk
+  extensionAttribute6       DeviceRole          fmp-device-role   DomainController, MemberServer, GitServer, AppServer, FileServer, DatabaseServer, Workstation, Kiosk
   -----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 +-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
@@ -1073,7 +1069,7 @@ C.3 Example: The Federal Modernization Program Assessment Currency Check
 C.4 Testing and Publishing
 
   ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-  \# Test the package locally \$result = Test-GuestConfigurationPackage \` -Path \".\\FMPAssessmentCurrency.zip\" \$result.complianceStatus \# Should return \"Compliant\" or \"NonCompliant\" \# Publish to Azure Storage \$publishResult = Publish-GuestConfigurationPackage \` -Path \".\\FMPAssessmentCurrency.zip\" \` -ResourceGroupName \"rg-uiao-governance\" \` -StorageAccountName \"stuiaogovernance\" \# Create the policy definition from the published package New-GuestConfigurationPolicy \` -ContentUri \$publishResult.ContentUri \` -DisplayName \"the Federal Modernization Program - Assessment Data Currency\" \` -Description \"Audit servers where the Federal Modernization Program assessment data is older than 30 days.\" \` -Path \".\\policies\" \` -Platform \"Windows\" \` -Version \"1.0.0\"
+  \# Test the package locally \$result = Test-GuestConfigurationPackage \` -Path \".\\FMPAssessmentCurrency.zip\" \$result.complianceStatus \# Should return \"Compliant\" or \"NonCompliant\" \# Publish to Azure Storage \$publishResult = Publish-GuestConfigurationPackage \` -Path \".\\FMPAssessmentCurrency.zip\" \` -ResourceGroupName \"rg-fmp-governance\" \` -StorageAccountName \"stfmpgovernance\" \# Create the policy definition from the published package New-GuestConfigurationPolicy \` -ContentUri \$publishResult.ContentUri \` -DisplayName \"the Federal Modernization Program - Assessment Data Currency\" \` -Description \"Audit servers where the Federal Modernization Program assessment data is older than 30 days.\" \` -Path \".\\policies\" \` -Platform \"Windows\" \` -Version \"1.0.0\"
 
   ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -1097,7 +1093,7 @@ The Federal Modernization Program program maintains custom DSC resources in the 
 
 **Boundary:** GCC-Moderate (Azure Arc in Commercial Cloud --- Explicit Exception)
 
-**Repository:** https://github.com/WhalerMike/uiao
+**Repository:** https://github.com/WhalerMike/modernization-workbook
 
 **Document Version:** 1.0 \| **Date:** April 21, 2026 \| **the Federal Modernization Program Governance OS Modernization Program**
 

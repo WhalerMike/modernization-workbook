@@ -64,8 +64,6 @@ The manual path and the governed path produce the **same configuration** on the
 Microsoft surface. The governed path adds the binding from organizational intent
 to technical change: who owns it, what authorizes it, and how drift is caught.
 
-![Two ways to run the same kit: the manual path executes directly under local change control; the governed path binds every change to an the organizational-attribute model, an actuation rung, and an approval before the same script runs. Both converge on the same end state.](images/intune-arc-diagram-01-two-paths.png){#fig-two-paths fig-alt="Side-by-side flow comparing the manual path and the governed path converging on the same Intune/Arc end state"}
-
 ## A note on terminology {#terminology}
 
 In this repository, **the Federal Modernization Program** is the *Unified Identity-Addressing-Overlay

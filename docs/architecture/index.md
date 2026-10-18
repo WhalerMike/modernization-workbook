@@ -1,10 +1,10 @@
 ---
 title: "Architecture Series"
-subtitle: "Conceptual explainers for the UIAO governance model"
+subtitle: "Conceptual explainers for the FMP governance model"
 doc-type: section-landing
 audience: "Enterprise architects · technical leads · assessors"
 canon-source: "docs/docs/01_UnifiedArchitecture.qmd"
-derived-from: "uiao canon"
+derived-from: "fmp canon"
 aspirational: true
 lifecycle: adopted
 tiers_adopted: [1]
@@ -29,8 +29,8 @@ Status badges follow the Whitepapers status conventions.
 
 | Slug | Topic | Status | Canon anchor |
 |---|---|---|---|
-| `six-plane-architecture` | The six-plane UIAO reference model | Draft | `docs/docs/01_UnifiedArchitecture.qmd` |
-| `three-layer-rule-model` | Rule layering: canon, policy, runtime | Draft | `src/uiao/rules/` |
+| `six-plane-architecture` | The six-plane FMP reference model | Draft | `docs/docs/01_UnifiedArchitecture.qmd` |
+| `three-layer-rule-model` | Rule layering: canon, policy, runtime | Draft | `src/fmp/rules/` |
 | `boundary-impact-model` | Authorization boundary and impact scoring | Draft | `docs/docs/gcc-boundary-solution-architecture.qmd` |
 | `drift-engine` | How drift is detected and remediated | Draft | `docs/docs/16_DriftDetectionStandard.qmd` |
 | `evidence-chain` | Certificate-anchored evidence propagation | Draft | `docs/docs/15_ProvenanceProfile.qmd` |

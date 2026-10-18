@@ -1,5 +1,5 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 720" font-family="Arial, Helvetica, sans-serif">
-  <!-- UIAO blueprint (ADR-093) · navy #0D1B2E · teal #1E8C8C · red #C0392B · ice #EAF1FB -->
+  <!-- FMP blueprint (ADR-093) · navy #0D1B2E · teal #1E8C8C · red #C0392B · ice #EAF1FB -->
   <rect x="0" y="0" width="1280" height="720" fill="#FFFFFF"/>
   <defs>
     <marker id="arr-teal" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">

@@ -7,17 +7,15 @@ status: framing-pattern
 canon-source: "docs/docs/06_ProgramVision.qmd"
 canon-reference:
   - "docs/docs/08_ModernizationTimeline.qmd"
-  - "docs/customer-documents/whitepapers/uiao-governance-os-whitepaper.qmd"
+  - "docs/customer-documents/whitepapers/fmp-governance-os-whitepaper.qmd"
   - "docs/customer-documents/executive-governance-series/index.qmd"
-derived-from: "uiao canon"
+derived-from: "fmp canon"
 lifecycle: adopted
 tiers_adopted: [1]
 lifecycle_review: 2026-11-22
 ---
 
 # Federal Modernization — Case Study
-
-![Five-phase program timeline](images/reference-deployment-opm-hrit-to-image-02-hrit-inbound-provisioning-pipeli.png){#fig-federal-modernization-case-study-image-02 fig-alt="Five-phase program timeline. Engineering blueprint style, neutral slate background, federal navy (#1F3A5F) for primary structural elements, teal (#1A9E8F) for secondary/integration elements, amber (#D4A017) for governance/audit/registry overlays, monospace labels for identifiers, no human figures, 16:9 landscape." width="100%"}
 
 
 ::: {.callout-important}
@@ -61,7 +59,7 @@ infeasible.
 
 ### Phase 1 — substrate adoption
 
-Install the `uiao` package; run `uiao substrate walk` against the
+Install the `fmp` package; run `fmp substrate walk` against the
 agency's tree; author a substrate manifest naming the agency's
 modules. Schema-validation gates land in CI for canon edits. Net
 effect: structural drift becomes visible.

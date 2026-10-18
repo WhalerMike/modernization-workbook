@@ -15,5 +15,3 @@ Per the program decision, this
 canonical page is generated as an `include`-style wrapper.
 :::
 
-![FMP_194 LocPath codebook — the six-level governed location hierarchy (Country → Region → Site → Building → Floor → Space), the three classification surfaces (E911, TIC 3.0, telemetry), the governed-vs-observational two-layer model, and the the organizational-attribute model matrix.](../images/canonical/FMP-FIG-018-uiao194-locpath-codebook.png){#fig-uiao194-locpath fig-alt="Six navy hierarchy boxes joined by teal arrows (Country, Region, Site, Building, Floor, Space) with a monospace example path; three classification-surface boxes (E911 dispatchable location, Network/TIC 3.0, telemetry/service boundaries); a two-layer model with navy governed Primary LocPath and ice observational Dynamic Location Context; and a footer on matrix governance with the organizational-attribute model, noting LocPath is a second addressing dimension, not a sixteenth facet." width="100%"}
-

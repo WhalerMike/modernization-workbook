@@ -1,6 +1,6 @@
 # SQL Server Identity Transformation — Highlighted References
 
-Search for `[[UIAO`, `[[ADR-`, `[[OrgPath]]`, `[[Spec3`, or `[[CCM-BIR]]` to find all source references.
+Search for `[[FMP`, `[[ADR-`, `[[OrgPath]]`, `[[Spec3`, or `[[CCM-BIR]]` to find all source references.
 
 ---
 
@@ -80,7 +80,7 @@ The full picture — Kerberos negotiation via SSPI, SPN registration against the
 
 In a fully domain-joined world with a working KDC, correctly registered SPNs, and a client population consisting entirely of domain members, Windows Authentication was centrally managed through Active Directory, non-repudiable at the Kerberos ticket level, and resistant to credential theft in the network path. It required no infrastructure beyond the domain controller that already existed for every other authentication purpose in the environment.
 
-It was not a security compromise. It was the application of the existing, well-understood Windows security substrate to the SQL Server authentication problem, and for the world that substrate was designed for, it was the right answer. The problem is not the design. The problem is that the world it was designed for — every client domain-joined, every server domain-joined, the perimeter as the security boundary, no cloud identity plane — no longer exists and cannot be made to exist again. ([[UIAO_135 §1.2]])
+It was not a security compromise. It was the application of the existing, well-understood Windows security substrate to the SQL Server authentication problem, and for the world that substrate was designed for, it was the right answer. The problem is not the design. The problem is that the world it was designed for — every client domain-joined, every server domain-joined, the perimeter as the security boundary, no cloud identity plane — no longer exists and cannot be made to exist again. ([[FMP_135 §1.2]])
 
  
 
@@ -92,7 +92,7 @@ Chapter 2 — Why the Inheritance Must End
 
 Three drivers, each as well-reasoned as the original design, and their dependency structure.
 
-That replacement is now necessary, and the reasons are as well-reasoned as the original design choices were. The NTLM elimination the program has committed to, the zero-trust requirement that Conditional Access policies sit in the authentication path for all human access, and the collapse of the domain-joined world as the universal substrate for federal computing are not organizational preferences. They are architectural inevitabilities driven by Microsoft’s progressive NTLM defaults, [[UIAO_135 §1.2]], and the federal zero-trust mandate that governs this program’s boundary — OMB M-22-09 (the Federal Zero Trust Strategy), operationalized in this boundary as phishing-resistant MFA and Conditional Access (AC-17, IA-2).
+That replacement is now necessary, and the reasons are as well-reasoned as the original design choices were. The NTLM elimination the program has committed to, the zero-trust requirement that Conditional Access policies sit in the authentication path for all human access, and the collapse of the domain-joined world as the universal substrate for federal computing are not organizational preferences. They are architectural inevitabilities driven by Microsoft’s progressive NTLM defaults, [[FMP_135 §1.2]], and the federal zero-trust mandate that governs this program’s boundary — OMB M-22-09 (the Federal Zero Trust Strategy), operationalized in this boundary as phishing-resistant MFA and Conditional Access (AC-17, IA-2).
 
 Driver One — The NTLM Elimination Commitment
 
@@ -118,13 +118,13 @@ If a policy requires MFA and the principal has not completed it, the token is de
 
 Driver Three — The Service Account Credential Problem
 
-The third driver is a consequence of the broader directory modernization this series is embedded within. The [[OrgPath]] substrate and [[UIAO_135]] collectively describe a transformation in which Active Directory is removed as the authoritative identity source for this program’s environment.
+The third driver is a consequence of the broader directory modernization this series is embedded within. The [[OrgPath]] substrate and [[FMP_135]] collectively describe a transformation in which Active Directory is removed as the authoritative identity source for this program’s environment.
 
 When that transformation completes, the AD service accounts and gMSAs that currently authorize the SQL Server engine process for network access lose their governance foundation. They are objects in a directory that no longer exists as an authoritative identity source. The engine must acquire a new identity before that removal occurs.
 
 The only credential-free, cloud-native identity available for an on-premises server in this architecture is the system-assigned Managed Identity that the Azure Arc Connected Machine agent provides. Arc deployment is therefore not an optional enhancement for SQL Server hosts; it is a prerequisite for the service-account migration the engine requires before the directory modernization can complete.
 
-The sequencing implication follows directly from the dependency structure of these three drivers — and, before any of them, from the consolidation decision of Book 02. You assess and consolidate the estate first, so effort is spent only on instances that survive; then Arc enablement; then the login migration; then NTLM elimination. That order is the architecture of this series. ([[ADR-002]], [[UIAO_135]] Transformation #7)
+The sequencing implication follows directly from the dependency structure of these three drivers — and, before any of them, from the consolidation decision of Book 02. You assess and consolidate the estate first, so effort is spent only on instances that survive; then Arc enablement; then the login migration; then NTLM elimination. That order is the architecture of this series. ([[ADR-002]], [[FMP_135]] Transformation #7)
 
  
 
@@ -208,7 +208,7 @@ Microsoft’s migration-assessment tooling is the third instrument, and it captu
 
 Why a Canonical Estate-Discovery Spec Does Not Yet Exist
 
-The discovery instruments named above are real and well-understood, but they are not yet bound into a canonical [[UIAO]] discovery specification the way [[Spec3-D1.8]], [[Spec3-D1.9]], and [[Spec3-D1.10]] bind the authentication, application, and certificate audits. [[ADR-091]] §1 names this as an explicit gap: the estate-consolidation inventory that produces the retain / consolidate / retire classification has no Spec3-D1.x instrument of its own. Authoring that instrument — a discovery script whose output feeds the same [[CCM-BIR]] ingestion pipeline as the authentication audit — is identified in the [[ADR-091]] implementation plan as Phase 0, the prerequisite to everything the later books describe.
+The discovery instruments named above are real and well-understood, but they are not yet bound into a canonical [[FMP]] discovery specification the way [[Spec3-D1.8]], [[Spec3-D1.9]], and [[Spec3-D1.10]] bind the authentication, application, and certificate audits. [[ADR-091]] §1 names this as an explicit gap: the estate-consolidation inventory that produces the retain / consolidate / retire classification has no Spec3-D1.x instrument of its own. Authoring that instrument — a discovery script whose output feeds the same [[CCM-BIR]] ingestion pipeline as the authentication audit — is identified in the [[ADR-091]] implementation plan as Phase 0, the prerequisite to everything the later books describe.
 
 Until that specification exists, the consolidation assessment is conducted with the general-purpose instruments above and recorded as a deliberate program artifact rather than a canonical telemetry record. Naming the gap is itself part of the assessment’s value: an estate transformation that proceeds on an incomplete inventory will discover its missing instances at the worst possible moment, which is exactly the failure mode the discipline of this book exists to prevent.
 
@@ -428,7 +428,7 @@ A domain-joined Windows Server 2019 host running SQL Server 2022 with Arc instal
 
 Server OS Entra ID login capability — Layer 2, the ability for administrators to RDP into the server using Entra ID credentials instead of domain credentials — is a separate transformation governed by [[ADR-002]]. It requires domain unjoin and Windows Server 2025 with Desktop Experience.
 
-The two capabilities are related — both are part of [[UIAO_135]] Transformation #7 — but they are sequenced independently, and the SQL Server engine migration can and should proceed first.
+The two capabilities are related — both are part of [[FMP_135]] Transformation #7 — but they are sequenced independently, and the SQL Server engine migration can and should proceed first.
 
 This sequencing point must be explicit in every instance of audit output that classifies a server as “not yet domain-unjoined.” The correct interpretation is not “SQL Server migration blocked” but “OS-level Entra login not yet available; SQL engine migration can proceed.” ([[ADR-002]])
 
@@ -458,7 +458,7 @@ When most people encounter Microsoft Azure Arc in a cloud modernization program,
 
 Arc does something more fundamental for SQL Server on-premises: it gives the server — and by extension, the SQL Server engine process — a cloud-native identity. Without that identity, the SQL Server engine has no credential that the Azure identity plane can issue, validate, or condition.
 
-Without that identity, there is no Managed Identity to replace the AD service account, and no mechanism for the engine to authenticate to Azure Key Vault, forward logs to Azure Monitor, or accept Entra ID-issued OAuth 2.0 tokens from clients. Arc is the enablement layer for everything that follows in this series. ([[ADR-002]], [[UIAO_135]] Transformation #7)
+Without that identity, there is no Managed Identity to replace the AD service account, and no mechanism for the engine to authenticate to Azure Key Vault, forward logs to Azure Monitor, or accept Entra ID-issued OAuth 2.0 tokens from clients. Arc is the enablement layer for everything that follows in this series. ([[ADR-002]], [[FMP_135]] Transformation #7)
 
 The Arc Agent and the ARM Resource Identity
 
@@ -506,7 +506,7 @@ A skeptical reviewer will ask the fair question directly: why Arc, and not one o
 
 A group Managed Service Account or domain service account is the incumbent, and it works — for as long as Active Directory remains the authoritative identity source. It does not. Driver Three of Book 01 is precisely that AD is removed as the authority for this boundary; binding the engine’s new identity to a gMSA would anchor it to the thing being decommissioned, which is circular. A service principal with a client secret — whether the secret sits on disk or in Azure Key Vault — solves the AD-anchoring problem but reintroduces a stored, rotatable credential, and a bootstrapping one: the engine must authenticate to the vault before it can read the secret, so a root credential lands on the server regardless. That is the credential-management and rotation risk the program is trying to retire, not relocate.
 
-Certificate-based authentication is viable, and is in fact the program’s chosen posture — but as the interim one. [[ADR-068]] and [[ADR-091]] §4 authorize Certificate-Based Authentication specifically for the pre-2022 exception long-tail that cannot reach Kerberos or Entra OAuth as dependencies are remediated; it still requires certificate lifecycle management, which is why it carries the ADCS-to-Cloud-PKI dependency ([[UIAO_135 §3.3]], “Not Yet Defined”). It is a bridge, not a destination.
+Certificate-based authentication is viable, and is in fact the program’s chosen posture — but as the interim one. [[ADR-068]] and [[ADR-091]] §4 authorize Certificate-Based Authentication specifically for the pre-2022 exception long-tail that cannot reach Kerberos or Entra OAuth as dependencies are remediated; it still requires certificate lifecycle management, which is why it carries the ADCS-to-Cloud-PKI dependency ([[FMP_135 §3.3]], “Not Yet Defined”). It is a bridge, not a destination.
 
 The Arc system-assigned Managed Identity is the only option that is simultaneously cloud-native and credential-free from the operator’s perspective: the certificate lives in the Arc agent’s local store, rotates automatically every 90 days, is never visible to any human, and its lifecycle is bound to the ARM resource rather than to a directory the program is removing. No secret to vault, no rotation to schedule, no AD object to preserve. That is why Arc wins — not by assertion, but because it is the one mechanism that survives the removal of AD without recreating a managed secret. ([[ADR-002]], [[ADR-068]], [[ADR-091]])
 
@@ -690,7 +690,7 @@ Decision 4 — Pre-2022 Instances Are Upgrade-or-Except
 
 A Category 3 instance classified retain has two paths: upgrade the engine to SQL Server 2022 and then proceed through the Category 2-to-Category 1 pathway, or file a documented exception with a sunset date. [[ADR-091]] §4 notes that most Category 3 instances should be consolidation retire or consolidate-into-target candidates under §1 rather than upgrade candidates. The exception process requires the inability-to-migrate reason, the compensating control, the maximum exception duration, and explicit acknowledgement that the NTLM block, when applied, is network-level and does not honor engine-layer exception status.
 
-Where a connection cannot reach Kerberos or Entra OAuth before that deadline, Certificate-Based Authentication is the authorized interim posture per [[ADR-068]]. That makes the certificate-authority dependency — the ADCS-to-Cloud-PKI transformation, classified Not Yet Defined in [[UIAO_135 §3.3]] — a hard dependency for the exception long-tail. The earlier draft asked what evidence an exception requires, what its maximum duration is, and what happens if an instance is still excepted at the deadline; §4 records all three, with the CBA interim posture as the answer for connections that physically cannot reach the modern planes in time.
+Where a connection cannot reach Kerberos or Entra OAuth before that deadline, Certificate-Based Authentication is the authorized interim posture per [[ADR-068]]. That makes the certificate-authority dependency — the ADCS-to-Cloud-PKI transformation, classified Not Yet Defined in [[FMP_135 §3.3]] — a hard dependency for the exception long-tail. The earlier draft asked what evidence an exception requires, what its maximum duration is, and what happens if an instance is still excepted at the deadline; §4 records all three, with the CBA interim posture as the answer for connections that physically cannot reach the modern planes in time.
 
 Decision 5 — The [[CCM-BIR]] Record Is the Closure Artifact
 
@@ -978,7 +978,7 @@ Class 4 — Entra Domain Services: Last Resort
 
 Class 4 applications cannot be modernized to any modern authentication protocol. They require actual LDAP and Kerberos from a domain controller — not a proxy, not a federation, but a real AD-compatible domain with DNS SRV records, LDAP on port 389, and Kerberos on port 88. For these applications, Entra Domain Services provides a Microsoft-managed PaaS domain that presents an AD-compatible interface — LDAP, Kerberos, NTLM — while being backed by Entra ID rather than a customer-managed domain controller. [[ADR-069]] places Class 4 last because it preserves the AD dependency rather than eliminating it.
 
-For SQL Server, Class 4 carries a specific implication. An instance hosting databases for a Class 4 application cannot complete the full authentication transformation until that application is upgraded to a higher class or sunset. An instance that still accepts Windows Authentication logins because a Class 4 application cannot use Entra ID authentication is blocked from the Entra-only posture that [[UIAO_135]] Transformation #7 requires. Class 4 applications must be inventoried against their SQL Server dependencies, and each instance with a Class 4 upstream application must carry a documented exception with a sunset date. ([[ADR-069]])
+For SQL Server, Class 4 carries a specific implication. An instance hosting databases for a Class 4 application cannot complete the full authentication transformation until that application is upgraded to a higher class or sunset. An instance that still accepts Windows Authentication logins because a Class 4 application cannot use Entra ID authentication is blocked from the Entra-only posture that [[FMP_135]] Transformation #7 requires. Class 4 applications must be inventoried against their SQL Server dependencies, and each instance with a Class 4 upstream application must carry a documented exception with a sunset date. ([[ADR-069]])
 
 [[Spec3-D1.9]] as the Classification Triage Tool
 
@@ -1046,21 +1046,21 @@ Chapters
 
 
 
-The Closure Condition for [[UIAO_135]] Transformation #7
+The Closure Condition for [[FMP_135]] Transformation #7
 
-Chapter 1 — The Closure Condition for [[UIAO_135]] Transformation #7
+Chapter 1 — The Closure Condition for [[FMP_135]] Transformation #7
 
 Transformations do not complete — they achieve a posture, and a posture is something you keep proving.
 
-A transformation that achieves a completed state and then stops monitoring is a transformation that will regress. A SQL Server instance migrated to Entra ID-only authentication can be reconfigured to Mixed Mode by any administrator with sufficient permission. New SQL Authentication logins can be created. New Windows logins can be created if the instance remains domain-joined. The transformed posture is not a permanent state achieved through a one-time action — it is an ongoing condition maintained by continuous monitoring, automated drift detection, and a governance process that treats regression as a compliance violation rather than an operational preference. ([[ADR-068]] Phase C, [[UIAO_135]] Transformation #7)
+A transformation that achieves a completed state and then stops monitoring is a transformation that will regress. A SQL Server instance migrated to Entra ID-only authentication can be reconfigured to Mixed Mode by any administrator with sufficient permission. New SQL Authentication logins can be created. New Windows logins can be created if the instance remains domain-joined. The transformed posture is not a permanent state achieved through a one-time action — it is an ongoing condition maintained by continuous monitoring, automated drift detection, and a governance process that treats regression as a compliance violation rather than an operational preference. ([[ADR-068]] Phase C, [[FMP_135]] Transformation #7)
 
 The Five Closure Conditions
 
-[[UIAO_135 §1.2]] defines Transformation #7 as complete when five conditions are simultaneously satisfied across all production SQL Server instances in the estate. The first is that Windows Authentication is eliminated as an accepted login mechanism. No production instance is configured for Mixed Mode — all instances run in Windows Authentication Only mode, but with no active Windows-backed logins in master. The operational verification is the authentication mode registry value (LoginMode = 1) together with a query of sys.server_principals confirming zero type-U and type-G logins that are not in a disabled state.
+[[FMP_135 §1.2]] defines Transformation #7 as complete when five conditions are simultaneously satisfied across all production SQL Server instances in the estate. The first is that Windows Authentication is eliminated as an accepted login mechanism. No production instance is configured for Mixed Mode — all instances run in Windows Authentication Only mode, but with no active Windows-backed logins in master. The operational verification is the authentication mode registry value (LoginMode = 1) together with a query of sys.server_principals confirming zero type-U and type-G logins that are not in a disabled state.
 
 The second condition is that SQL Authentication is eliminated. No SQL Authentication logins — type-S logins — exist on any production instance other than those carrying documented exception status, and the sa account is disabled on every instance. The operational verification is a sys.server_principals query for type-S logins, cross-referenced against the exception registry the program maintains. The third condition is that Entra ID authentication is the sole accepted mechanism. This is the positive statement of the first two: all active logins on all instances are type-E logins, and every connection produces an Entra ID sign-in event.
 
-The fourth condition is that the engine process runs with a Managed Identity. The Arc Connected Machine agent is installed, the system-assigned Managed Identity is active, and the Azure extension for SQL Server is deployed on every production host. The fifth condition is that every human principal authenticates with MFA enforced by Conditional Access. This is verified through Entra ID sign-in logs and Conditional Access policy reports — every sign-in event for a SQL Server resource should show MFA satisfied and Conditional Access grant controls met. ([[UIAO_135 §1.2]], [[ADR-091]] §5)
+The fourth condition is that the engine process runs with a Managed Identity. The Arc Connected Machine agent is installed, the system-assigned Managed Identity is active, and the Azure extension for SQL Server is deployed on every production host. The fifth condition is that every human principal authenticates with MFA enforced by Conditional Access. This is verified through Entra ID sign-in logs and Conditional Access policy reports — every sign-in event for a SQL Server resource should show MFA satisfied and Conditional Access grant controls met. ([[FMP_135 §1.2]], [[ADR-091]] §5)
 
 The Continuous Audit as the Verification Instrument
 
@@ -1094,7 +1094,7 @@ Chapter 2 — The 2027 Milestone: What Done Looks Like
 
 The evidence is not a binder you assemble — it is the live output of the monitoring you never turn off.
 
-The evidence artifacts required to close Transformation #7 in [[UIAO_135]] are not a collection of documents produced at a single point in time — they are the live outputs of the continuous monitoring infrastructure described in Chapter 1. A closure claim is only as strong as the monitoring that keeps producing the evidence after the claim is made. This chapter names the artifacts, then places the program’s NTLM elimination strategy in its proper operational context: continuous verification ahead of Microsoft’s progressive NTLM defaults, not a fixed cutover date. ([[UIAO_135 §1.2]], [[ADR-068]] Phase C)
+The evidence artifacts required to close Transformation #7 in [[FMP_135]] are not a collection of documents produced at a single point in time — they are the live outputs of the continuous monitoring infrastructure described in Chapter 1. A closure claim is only as strong as the monitoring that keeps producing the evidence after the claim is made. This chapter names the artifacts, then places the program’s NTLM elimination strategy in its proper operational context: continuous verification ahead of Microsoft’s progressive NTLM defaults, not a fixed cutover date. ([[FMP_135 §1.2]], [[ADR-068]] Phase C)
 
 The Evidence Artifacts as Live Outputs
 
@@ -1102,7 +1102,7 @@ The closure claim for Transformation #7 must be supported by six artifact sets, 
 
 The second is the Entra ID sign-in log set, showing zero failed token requests attributable to NTLM or Kerberos fallback for SQL Server resource audience tokens over a defined validation period preceding the closure claim. The third is the Defender for SQL telemetry, showing zero NTLM authentication events over that same validation period — the behavioral confirmation that complements the structural [[CCM-BIR]] view. These two artifacts together demonstrate that the transformed posture holds not only in configuration but in observed connection behavior.
 
-The fourth is the sa account status report, showing the sa account disabled on all instances. The fifth is the Conditional Access policy compliance report, showing MFA enforcement satisfied for one hundred percent of SQL Server resource sign-ins by human principals over the validation period. The sixth is the exception registry, showing every currently excepted instance with documented justification, a sunset date, and its own [[CCM-BIR]] tracking record. When all six artifact sets are simultaneously satisfying, and the monitoring infrastructure confirms they have been satisfying for the validation period, Transformation #7 is closed. That is what done looks like — not a checkbox, but a demonstrated, continuously verified, evidence-backed posture. ([[UIAO_135 §1.2]], [[ADR-091]] §5)
+The fourth is the sa account status report, showing the sa account disabled on all instances. The fifth is the Conditional Access policy compliance report, showing MFA enforcement satisfied for one hundred percent of SQL Server resource sign-ins by human principals over the validation period. The sixth is the exception registry, showing every currently excepted instance with documented justification, a sunset date, and its own [[CCM-BIR]] tracking record. When all six artifact sets are simultaneously satisfying, and the monitoring infrastructure confirms they have been satisfying for the validation period, Transformation #7 is closed. That is what done looks like — not a checkbox, but a demonstrated, continuously verified, evidence-backed posture. ([[FMP_135 §1.2]], [[ADR-091]] §5)
 
 Vendor Defaults: Progressive Warnings, Not a Hard Cutover
 
@@ -1134,9 +1134,9 @@ Chapter 1 — Where SQL Server Touches ADCS
 
 The certificate dependencies a decommission plan cannot see, named before any decommission plan exists.
 
-[[UIAO_135 §3.3]] identifies the Active Directory Certificate Services to Cloud PKI transformation as “Not Yet Defined.” As the series opening established, that label means the destination may be known but the normative canon governing how to reach it has not been authored. For most of this series, the missing record has been the substrate ADR; for Book 10, the gap is more fundamental still. No architecture decision record governs the certificate authority transformation at all.
+[[FMP_135 §3.3]] identifies the Active Directory Certificate Services to Cloud PKI transformation as “Not Yet Defined.” As the series opening established, that label means the destination may be known but the normative canon governing how to reach it has not been authored. For most of this series, the missing record has been the substrate ADR; for Book 10, the gap is more fundamental still. No architecture decision record governs the certificate authority transformation at all.
 
-There is no ADR equivalent to point to. The transformation is identified as necessary in [[UIAO_135]], the discovery instrument exists, but the normative decision about the replacement CA, the enrollment mechanism, and the sequencing of ADCS decommission has not been made. This book is therefore analytical and motivational rather than prescriptive. It documents why the certificate gap matters specifically for SQL Server, and it cites no normative ADCS-migration ADR because none exists. ([[UIAO_135 §3.3]])
+There is no ADR equivalent to point to. The transformation is identified as necessary in [[FMP_135]], the discovery instrument exists, but the normative decision about the replacement CA, the enrollment mechanism, and the sequencing of ADCS decommission has not been made. This book is therefore analytical and motivational rather than prescriptive. It documents why the certificate gap matters specifically for SQL Server, and it cites no normative ADCS-migration ADR because none exists. ([[FMP_135 §3.3]])
 
 It matters specifically because SQL Server has certificate dependencies that are not visible to most of the teams that will plan the ADCS decommission. Three distinct capabilities depend on ADCS-issued certificates: TLS encryption of client connections, certificate-mapped SQL Server logins, and Certificate-Based Authentication as the authorized NTLM replacement for connections that cannot reach Kerberos or Entra OAuth before the deadline. [[Spec3-D1.10]] (Get-CertBasedAuthAudit.ps1) is the instrument for discovering them. ([[Spec3-D1.10]])
 
@@ -1170,7 +1170,7 @@ The Sequencing Dependency
 
 The three dependencies converge on a single sequencing question. TLS certificates must be re-issued before they expire; certificate-mapped logins must be migrated to type-E before their backing certificates lapse; and CBA, the very mechanism [[ADR-068]] relies on to cover connections that cannot meet the deadline, must have a CA issuing its certificates before ADCS is retired.
 
-If the ADCS decommission timeline runs earlier than the replacement-CA and CBA-deployment timeline, the program loses the interim posture [[ADR-068]] depends on at precisely the moment it is most needed — connections that could not migrate to Entra auth in time would have no compliant fallback. The sequencing of ADCS decommission against the program’s NTLM elimination strategy is therefore a critical dependency, and it is one the as-yet-unwritten ADCS-migration ADR must explicitly address before any decommission date is set. ([[UIAO_135 §3.3]], [[ADR-068]])
+If the ADCS decommission timeline runs earlier than the replacement-CA and CBA-deployment timeline, the program loses the interim posture [[ADR-068]] depends on at precisely the moment it is most needed — connections that could not migrate to Entra auth in time would have no compliant fallback. The sequencing of ADCS decommission against the program’s NTLM elimination strategy is therefore a critical dependency, and it is one the as-yet-unwritten ADCS-migration ADR must explicitly address before any decommission date is set. ([[FMP_135 §3.3]], [[ADR-068]])
 
  
 
@@ -1200,7 +1200,7 @@ The Authentication Transformation Reveals What It Does Not Fix
 
 Books 01 through 10 described one transformation: moving the SQL Server estate from Windows Authentication to Microsoft Entra ID. At the end of that transformation, every retained instance is re-authenticated. The Kerberos ticket is gone, the NTLM fallback is gone, the service account tied to the domain is gone, and in its place is an OAuth 2.0 token validated by the Conditional Access Engine before it reaches the engine. That transformation is real and significant.
 
-What it does not change is the topology. The estate that emerged from Windows Authentication mode with forty instances enters Entra ID authentication mode with forty instances. Each instance is an independently provisioned server, an independently administered schema, an independently held copy of data that overlaps — in ways nobody has fully mapped — with data held by the other thirty-nine. The authentication transformation made each of those forty instances more secure. It did not reduce the number. ([[UIAO_135 §1.2]])
+What it does not change is the topology. The estate that emerged from Windows Authentication mode with forty instances enters Entra ID authentication mode with forty instances. Each instance is an independently provisioned server, an independently administered schema, an independently held copy of data that overlaps — in ways nobody has fully mapped — with data held by the other thirty-nine. The authentication transformation made each of those forty instances more secure. It did not reduce the number. ([[FMP_135 §1.2]])
 
 SSOT — Single Source of Truth — is not a security posture. It is an architectural property. A system has SSOT for a given data domain when there is exactly one authoritative origin for that data, and every consumer reads from it. An estate with forty SQL Server instances almost certainly does not have SSOT for any significant data domain, because each instance is a candidate source for the data it holds, and the question of which instance is authoritative when they disagree is either unresolved or resolved informally. Informal resolution of data authority is the administrative expression of the absence of SSOT.
 
@@ -1210,7 +1210,7 @@ SQL Server sprawl accumulated through a mechanism that was sensible at each step
 
 The result is that data consumers who need the authoritative version of any frequently-represented concept cannot find it by reading the database topology. They must either know which instance is authoritative by institutional knowledge, or make a judgment about which version to use, or query multiple instances and reconcile. All three of these are fragile. Institutional knowledge does not survive staff turnover. Judgment introduces inconsistency. Multi-instance reconciliation is expensive and still does not resolve authority — it only surfaces the disagreement.
 
-[[UIAO]]’s architecture pursues SSOT as an organizing principle because fragmented authority is the administrative precondition for the governance failures the architecture is designed to prevent. [[OrgPath]] establishes SSOT for identity and organizational relationships. HRIT establishes SSOT for workforce position records. KYC establishes SSOT for citizen verification. These SSOT constructs are meaningful only if the data they govern is actually held in one authoritative place. An [[OrgPath]]-driven access model that derives group membership from an authoritative directory loses its authority the moment a shadow copy of that directory data is held in a separate SQL Server instance that is administered independently and may diverge. ([[ADR-035]], [[ADR-051]])
+[[FMP]]’s architecture pursues SSOT as an organizing principle because fragmented authority is the administrative precondition for the governance failures the architecture is designed to prevent. [[OrgPath]] establishes SSOT for identity and organizational relationships. HRIT establishes SSOT for workforce position records. KYC establishes SSOT for citizen verification. These SSOT constructs are meaningful only if the data they govern is actually held in one authoritative place. An [[OrgPath]]-driven access model that derives group membership from an authoritative directory loses its authority the moment a shadow copy of that directory data is held in a separate SQL Server instance that is administered independently and may diverge. ([[ADR-035]], [[ADR-051]])
 
 The SSOT Case Against SQL Server Sprawl
 
@@ -1288,7 +1288,7 @@ PostgreSQL’s value for the SSOT argument rests on specific capabilities that S
 
 Logical Replication allows a PostgreSQL instance to publish changes to specific tables as a logical stream that other PostgreSQL instances — or Kafka, or application consumers — can subscribe to. For agencies consolidating data from multiple source databases into one authoritative PostgreSQL instance, logical replication provides the mechanism: each source database replicates its authoritative data domain to the consolidated instance without requiring the source to be taken offline. The consolidated instance accumulates the authoritative views from all contributing sources into a single schema. Logical replication is built into PostgreSQL and requires no additional licensing.
 
-Row-Level Security (RLS) allows PostgreSQL to enforce access policies at the row level based on session variables — the same mechanism [[UIAO]]’s [[OrgPath]] model uses to drive access at the group level, but applied to individual rows within a table. An [[OrgPath]]-derived security group assigned to a database role, combined with RLS policies that filter rows based on that role’s organizational scope, produces a single database table that returns different row sets to different principals based on their organizational position — without requiring separate tables or separate instances for each organizational unit. RLS eliminates one of the most common justifications for running separate database instances per organizational unit.
+Row-Level Security (RLS) allows PostgreSQL to enforce access policies at the row level based on session variables — the same mechanism [[FMP]]’s [[OrgPath]] model uses to drive access at the group level, but applied to individual rows within a table. An [[OrgPath]]-derived security group assigned to a database role, combined with RLS policies that filter rows based on that role’s organizational scope, produces a single database table that returns different row sets to different principals based on their organizational position — without requiring separate tables or separate instances for each organizational unit. RLS eliminates one of the most common justifications for running separate database instances per organizational unit.
 
 JSONB is PostgreSQL’s binary JSON column type with full indexing support. Agencies that have accumulated semi-structured data — configuration records, audit events, notification payloads — in separate NoSQL stores alongside their SQL Server instances can consolidate that data into PostgreSQL JSONB columns without losing query capability. A JSONB column with a GIN index supports full-text search, existence checks, and path-expression queries that compete with dedicated document stores for the semi-structured workloads most federal agencies run. JSONB reduces the argument for maintaining separate MongoDB or Elasticsearch instances alongside the primary database.
 
@@ -1454,7 +1454,7 @@ How the [[OrgPath]] governance substrate powers the SQL Server identity transfor
 
 [[OrgPath]] × SQL Server — The Integration Bridge
 
-The two reading sequences on this portal that most often get read in isolation are siblings. The [[UIAO]] [[OrgPath]] series builds a governance substrate; the SQL Server Identity Transformation series consumes it. Read apart, each is complete. Read together, they describe a single movement: an Active Directory forest’s organizational structure becomes a set of Entra ID attributes, and those attributes become the access-control authority for a SQL Server estate that no longer trusts the domain. This page names the seams where the two meet, corrects the one place the relationship is most often described wrongly, and proposes the order to read them in.
+The two reading sequences on this portal that most often get read in isolation are siblings. The [[FMP]] [[OrgPath]] series builds a governance substrate; the SQL Server Identity Transformation series consumes it. Read apart, each is complete. Read together, they describe a single movement: an Active Directory forest’s organizational structure becomes a set of Entra ID attributes, and those attributes become the access-control authority for a SQL Server estate that no longer trusts the domain. This page names the seams where the two meet, corrects the one place the relationship is most often described wrongly, and proposes the order to read them in.
 
 The substrate and the consumer
 
@@ -1466,7 +1466,7 @@ The five seams
 
 Seam 1 — Dynamic-group access (the one most often described wrongly)
 
-This is the load-bearing seam, and it is worth stating its mechanism precisely, because it is easy to get wrong. [[OrgPath]] is not a single packed string stored in one attribute. It is a multi-facet schema ([[ADR-078]]) materialized across several Entra extensionAttribute slots — region, department, division, clearance, account-type, and the rest — and a dynamic-group rule is composed from per-facet predicates, not from a string comparison against a whole path. The canonical rules are not hand-authored New-MgGroup calls; they are rendered by the dynamic-group library from src/uiao/canon/data/orgpath/dynamic-groups.yaml against the active per-facet Codebook ([[UIAO_151]]), under [[ADR-036]] and [[ADR-084]]. SQL Book 07’s worked example — a single-facet rule that admits a principal whose [[OrgPath]] attribute matches and whose title contains “DBA” — is an illustrative slice of that general model, not the whole of it. Any integration artifact that hardcodes a single extensionAttribute holding a path=... string is describing a shortcut the substrate does not take.
+This is the load-bearing seam, and it is worth stating its mechanism precisely, because it is easy to get wrong. [[OrgPath]] is not a single packed string stored in one attribute. It is a multi-facet schema ([[ADR-078]]) materialized across several Entra extensionAttribute slots — region, department, division, clearance, account-type, and the rest — and a dynamic-group rule is composed from per-facet predicates, not from a string comparison against a whole path. The canonical rules are not hand-authored New-MgGroup calls; they are rendered by the dynamic-group library from src/fmp/canon/data/orgpath/dynamic-groups.yaml against the active per-facet Codebook ([[FMP_151]]), under [[ADR-036]] and [[ADR-084]]. SQL Book 07’s worked example — a single-facet rule that admits a principal whose [[OrgPath]] attribute matches and whose title contains “DBA” — is an illustrative slice of that general model, not the whole of it. Any integration artifact that hardcodes a single extensionAttribute holding a path=... string is describing a shortcut the substrate does not take.
 
 Seam 2 — DBA delegation
 
@@ -1482,7 +1482,7 @@ Book 07 closes on the architectural dividend: once every SQL login is a type-E l
 
 Seam 5 — Closure and drift
 
-[[ADR-091]] §5 defines the [[CCM-BIR]] per-instance record as the closure artifact for Transformation #7 — LoginMode = 1, zero type-S/W/G logins, sa disabled, Arc + Managed Identity healthy, CA-MFA satisfied — and makes closure continuously verified, not a point-in-time claim. That continuous posture is where the substrate’s own drift discipline ([[ADR-040]], [[UIAO_163]]) closes the loop: an [[OrgPath]] drift on a SQL-governing dynamic group is not a cosmetic event, it is a change in who can reach the database, and it surfaces as a Transformation #7 compliance signal rather than disappearing into manual group management.
+[[ADR-091]] §5 defines the [[CCM-BIR]] per-instance record as the closure artifact for Transformation #7 — LoginMode = 1, zero type-S/W/G logins, sa disabled, Arc + Managed Identity healthy, CA-MFA satisfied — and makes closure continuously verified, not a point-in-time claim. That continuous posture is where the substrate’s own drift discipline ([[ADR-040]], [[FMP_163]]) closes the loop: an [[OrgPath]] drift on a SQL-governing dynamic group is not a cosmetic event, it is a change in who can reach the database, and it surfaces as a Transformation #7 compliance signal rather than disappearing into manual group management.
 
 Recommended reading order
 
@@ -1508,9 +1508,9 @@ Companion canon
 
 [[ADR-078]] — [[OrgPath]] Attribute Schema (the multi-facet attribute model).
 
-[[ADR-040]] / [[UIAO_163]] — the drift engine that makes [[OrgPath]]-on-SQL changes a compliance signal.
+[[ADR-040]] / [[FMP_163]] — the drift engine that makes [[OrgPath]]-on-SQL changes a compliance signal.
 
-[[UIAO_135 §3.2]] — Transformation #7 (the gap [[ADR-091]] closes).
+[[FMP_135 §3.2]] — Transformation #7 (the gap [[ADR-091]] closes).
 
 
 

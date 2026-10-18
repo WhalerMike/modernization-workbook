@@ -4,18 +4,16 @@ subtitle: "How the Federal Modernization Program reaches incumbent systems witho
 doc-type: executive-brief
 status: Active
 canon-source:
-  - "src/uiao/canon/FMP_003_Adapter_Segmentation_Overview_v1.0.md"
-  - "src/uiao/canon/adapter-registry.yaml"
-  - "src/uiao/canon/modernization-registry.yaml"
-derived-from: "uiao canon"
+  - "src/fmp/canon/FMP_003_Adapter_Segmentation_Overview_v1.0.md"
+  - "src/fmp/canon/adapter-registry.yaml"
+  - "src/fmp/canon/modernization-registry.yaml"
+derived-from: "fmp canon"
 lifecycle: adopted
 tiers_adopted: [1]
 lifecycle_review: 2026-11-22
 ---
 
 # Adapter Ecosystem Overview — Executive Brief
-
-![the Federal Modernization Program Governance OS](../../images/canonical/FMP-FIG-001-governance-os-overview.png){fig-alt="High-level overview of the Federal Modernization Program Governance OS — the substrate layer that adapters extend to reach incumbent identity, telemetry, policy, and enforcement systems." width="100%"}
 
 The Federal Modernization Program is an **overlay**: it does not replace the platforms an agency already
 runs. Adapters are how the governance substrate reaches those platforms —
@@ -28,7 +26,7 @@ passing the conformance gate.
 ## The dual-axis taxonomy (FMP_003)
 
 Every adapter declares two coordinates, defined in
-[`FMP_003`](../../../src/uiao/canon/FMP_003_Adapter_Segmentation_Overview_v1.0.md):
+`FMP_003`:
 
 - **`class`** — the *operational* axis: `modernization` (change-making) or
   `conformance` (read-only).
@@ -47,11 +45,11 @@ enforced by schema and CI.
 
 | Registry | Class | Role | Entries |
 |---|---|---|---|
-| [`adapter-registry.yaml`](../../../src/uiao/canon/adapter-registry.yaml) | conformance | Read-only assessors and telemetry observers | **29** |
-| [`modernization-registry.yaml`](../../../src/uiao/canon/modernization-registry.yaml) | modernization | Change-making integrations | **19** |
+| `adapter-registry.yaml` | conformance | Read-only assessors and telemetry observers | **29** |
+| `modernization-registry.yaml` | modernization | Change-making integrations | **19** |
 
 Both registries are constrained by a single JSON Schema
-([`adapter-registry.schema.json`](../../../src/uiao/schemas/adapter-registry/adapter-registry.schema.json)),
+(`adapter-registry.schema.json`),
 which requires every entry to declare `class`, `mission-class`, `status`, and
 the four canon invariants every adapter must honor:
 
@@ -74,7 +72,7 @@ per-adapter ADR) or *proposed*.
 - `scubagear` — CISA ScubaGear M365 SCuBA assessor across seven workloads
   (Entra ID, Defender, Exchange Online, Power BI, Power Platform, SharePoint,
   Teams). See the [ScubaGear integration whitepaper](../whitepapers/scubagear-integration-whitepaper.md).
-- `uiao-git-server` — health and evidence telemetry for the self-hosted
+- `fmp-git-server` — health and evidence telemetry for the self-hosted
   Windows Server 2025 / IIS Git service.
 
 **Modernization (change-making) — shipped:** `entra-id`, `m365`,
@@ -83,8 +81,8 @@ per-adapter ADR) or *proposed*.
 today per the program decision Model C).
 
 Two adapters are reachable directly from the CLI today —
-`uiao adapter run servicenow` and `uiao adapter run entra` — and ScubaGear
-output is ingested with `uiao adapter run-scuba <report>`. The remaining
+`fmp adapter run servicenow` and `fmp adapter run entra` — and ScubaGear
+output is ingested with `fmp adapter run-scuba <report>`. The remaining
 shipped adapters are exercised through the IR and evidence pipelines.
 
 ## How an adapter earns "active"
@@ -111,7 +109,7 @@ Adapter capability is declared per the five-tier conformance model in
 | Capability | Maturity |
 |---|---|
 | Dual-axis taxonomy + schema enforcement | **SHIPPED** |
-| Conformance adapters (`scubagear`, `uiao-git-server`) | **SHIPPED** |
+| Conformance adapters (`scubagear`, `fmp-git-server`) | **SHIPPED** |
 | Modernization adapters (10 active integrations) | **SHIPPED** |
 | Adapter conformance CI gate (Tier 1/2 tests) | **SHIPPED** |
 | Tier 3 reference-deployment validation | **TARGET** (per-adapter, agency-dependent) |

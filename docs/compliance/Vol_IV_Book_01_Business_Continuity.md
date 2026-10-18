@@ -113,8 +113,6 @@ Interview questions for mission owners:
 
 : BIA Summary — Mission-Critical Systems {.striped .hover}
 
-![BIA output: system MTD/RTO/RPO table for critical federal systems](figs/bc-fig-01-bia-rto-rpo.png){fig-alt="Bar chart comparing MTD, RTO, and RTO plus WRT values for eight mission-critical systems. The emergency contact center shows the tightest constraint with a 4-hour MTD and 2.5-hour combined RTO plus WRT. The SQL case management database shows 8-hour MTD and 5-hour combined RTO plus WRT. All systems show RTO plus WRT below their MTD ceiling, confirming the recovery architecture is achievable. Systems are color-coded: MTD in navy, RTO in teal, WRT extension in amber." width="100%"}
-
 ::: {.aan-important}
 ## BIA Values Require Mission-Owner Signature
 
@@ -124,8 +122,6 @@ The MTD value in each BIA row is a mission decision, not a technical estimate. B
 ## CP-2 Contingency Plan Document Structure
 
 NIST SP 800-34 Rev 1 structures an Information System Contingency Plan around an Introduction, a Concept of Operations, and three sequential phases — Activation/Notification, Recovery, and Reconstitution — with supporting appendices. This document organizes that structure into the seven working sections below, with sufficient detail for agency authors to populate each. The runbooks from Vol II Book 02 and Vol II Book 03 are explicitly referenced as appendix content that satisfies the Recovery-phase procedure requirements.
-
-![CP-2 document structure: 7 sections with NIST SP 800-34 mapping](figs/bc-fig-02-cp2-structure.png){fig-alt="Flowchart showing the seven sections of a NIST SP 800-34 Rev 1 Contingency Plan arranged vertically with left-side annotations mapping each section to its corresponding NIST control. Section 1 Introduction maps to CP-2 system identification. Section 2 Concept of Operations maps to CP-2 recovery priorities. Section 3 Roles and Responsibilities maps to CP-2 personnel and CP-3 training. Section 4 Activation and Notification maps to CP-2 activation criteria. Section 5 Recovery Procedures maps to CP-2 recovery steps, CP-6 alternate storage, and CP-7 alternate processing. Section 6 Reconstitution maps to CP-2 reconstitution. Section 7 Plan Maintenance maps to CP-2 review cycle. Arrows indicate sequential dependency from declaration through reconstitution." width="100%"}
 
 ### Section 1: Introduction
 
@@ -417,8 +413,6 @@ CP-7(1) requires separation from the primary site: the secondary region must be 
 
 CP-7(3) requires priority-of-service provisions: the agency must have a mechanism to ensure access to alternate processing capacity during a widespread disaster, even under high demand. For commercial CSPs, this is typically addressed through the FedRAMP authorization and the CSP's service continuity commitments. Document the specific commitment (support tier, SLA reference) in the CP-2.
 
-![Alternate site topology: primary region to secondary region with DNS, SQL AG, SD-WAN failover paths](figs/bc-fig-03-alternate-site-topology.png){fig-alt="Network topology diagram on a white background showing two cloud regions side by side. The left box labeled Primary Region contains: SD-WAN hub, DDI Grid primary, SQL AG primary replica, application tier, and Sentinel workspace. The right box labeled Secondary Region contains: DIA circuit termination, DDI Grid alternate member, SQL AG DR replica, application tier standby, and Sentinel secondary workspace. Connecting the two regions are four labeled arrows: one for SQL transaction log shipping (teal, labeled RPO less than 60 seconds), one for DDI Grid replication (navy), one for SD-WAN overlay tunnel over DIA (amber, labeled automatic failover), and one for DNS cutover via health check (red, labeled RTO 5 minutes). Below the diagram a legend distinguishes automatic failover paths from manual failover paths." width="100%"}
-
 ### SQL Server Alternate Processing
 
 The SQL Server Always On Availability Group architecture provides both CP-6 (alternate storage via the replica) and CP-7 (alternate processing via failover) in a single architecture. For CP-7 documentation purposes, the key requirement is that the AG failover is tested, not just configured.
@@ -698,8 +692,6 @@ When populating the CP-2 appendices, reference the series documentation directly
 :::
 
 ## NIST SP 800-53 Rev 5 Control Closure
-
-![NIST control closure for Vol IV Book 01 Business Continuity](figs/bc-fig-04-nist-closure.png){fig-alt="Heat map grid on a white background showing CP control family coverage. Rows represent controls CP-2 through CP-10. Columns represent coverage dimensions: Document Artifact, Tested Evidence, Technical Architecture, and Training Record. Cells are colored: green for fully satisfied, amber for partially satisfied or satisfied with conditions, and grey for not applicable or addressed in prior parts. CP-2 shows all four cells green. CP-4 shows Document Artifact and Tested Evidence green, Technical Architecture grey. CP-6 and CP-7 show Document Artifact amber and Technical Architecture green, indicating the architecture exists but documentation must reference it. CP-8 shows all four cells green via the SD-WAN dual underlay." width="100%"}
 
 | Control | Title | Without This Framework | With This Framework | Authority |
 |---|---|---|---|---|

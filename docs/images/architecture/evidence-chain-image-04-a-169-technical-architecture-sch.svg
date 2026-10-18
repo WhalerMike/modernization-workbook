@@ -7,7 +7,7 @@
 </defs>
 
 <!-- Title (wrapped, >46 chars) -->
-<text x="60" y="70" font-family="Georgia, 'Times New Roman', serif" font-size="33" font-weight="bold" fill="#0D1B2E" text-anchor="start">UIAO Evidence Fabric — Write Pipeline</text>
+<text x="60" y="70" font-family="Georgia, 'Times New Roman', serif" font-size="33" font-weight="bold" fill="#0D1B2E" text-anchor="start">FMP Evidence Fabric — Write Pipeline</text>
 <text x="60" y="110" font-family="Georgia, 'Times New Roman', serif" font-size="33" font-weight="bold" fill="#0D1B2E" text-anchor="start">and Storage Tiers</text>
 
 <!-- ============ INBOUND ARROW ============ -->

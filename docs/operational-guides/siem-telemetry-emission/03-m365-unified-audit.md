@@ -6,7 +6,7 @@ audience: [Customer, Technical, Assessor]
 author: Michael Stratton
 date: "August 2026"
 status: Active
-canon-source: "src/uiao/canon/adapter-registry.yaml#siem"
+canon-source: "src/fmp/canon/adapter-registry.yaml#siem"
 derived-from: "Microsoft Learn product documentation, linked inline per claim."
 repo-path: docs/customer-documents/operational-guides/siem-telemetry-emission/03-m365-unified-audit.qmd
 created-at: 2026-08-27
