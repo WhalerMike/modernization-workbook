@@ -31,7 +31,7 @@ A transformation that achieves a completed state and then stops monitoring is a 
 
 ::: {.callout-tip}
 ## Download this book
-**[Book_09-bundle.docx]** — every chapter of this book concatenated into one Word document. Regenerated on every site deploy.
+**[Book_09-bundle.docx](../../../downloads/Book_09-bundle.docx)** — every chapter of this book concatenated into one Word document. Regenerated on every site deploy.
 :::
 
 ## Chapters

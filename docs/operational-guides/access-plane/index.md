@@ -16,7 +16,7 @@ lifecycle_review: 2026-11-22
 
 ::: {.callout-tip}
 ## Download the full section
-**[access-plane-bundle.docx]** — every page in this section concatenated into one Word document. Regenerated on every site deploy.
+**[access-plane-bundle.docx](../../../downloads/access-plane-bundle.docx)** — every page in this section concatenated into one Word document. Regenerated on every site deploy.
 :::
 
 Identity-bound network + application access controls. The access plane is

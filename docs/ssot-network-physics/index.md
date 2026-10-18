@@ -14,7 +14,7 @@ lifecycle_review: 2026-12-22
 
 ::: {.callout-tip}
 ## Download the full white paper
-**[ssot-network-physics-bundle.docx]** — every chapter in this white paper concatenated into one Word document. Regenerated on every site deploy.
+**[ssot-network-physics-bundle.docx](../../downloads/ssot-network-physics-bundle.docx)** — every chapter in this white paper concatenated into one Word document. Regenerated on every site deploy.
 :::
 
 ## Thesis in one paragraph

@@ -31,7 +31,7 @@ and this series is reviewed against it.
 
 ::: {.callout-tip}
 ## Download the full section
-**[sql-server-narrative-standalone-bundle.docx]** — every page in this section concatenated into one Word document. Regenerated on every site deploy.
+**[sql-server-narrative-standalone-bundle.docx](../../../downloads/sql-server-narrative-standalone-bundle.docx)** — every page in this section concatenated into one Word document. Regenerated on every site deploy.
 :::
 
 ::: {.callout-note appearance="default"}

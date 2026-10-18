@@ -31,7 +31,7 @@ An upstream application that has migrated its user authentication to Entra ID bu
 
 ::: {.callout-tip}
 ## Download this book
-**[Book_08-bundle.docx]** — every chapter of this book concatenated into one Word document. Regenerated on every site deploy.
+**[Book_08-bundle.docx](../../../downloads/Book_08-bundle.docx)** — every chapter of this book concatenated into one Word document. Regenerated on every site deploy.
 :::
 
 ## Chapters

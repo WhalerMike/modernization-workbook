@@ -14,7 +14,7 @@ lifecycle_review: 2026-11-22
 
 ::: {.callout-tip}
 ## Download the full section
-**[executive-briefs-bundle.docx]** — every page in this section concatenated into one Word document. Regenerated on every site deploy.
+**[executive-briefs-bundle.docx](../../downloads/executive-briefs-bundle.docx)** — every page in this section concatenated into one Word document. Regenerated on every site deploy.
 :::
 
 Single-page summaries for agency leadership. Each brief answers four

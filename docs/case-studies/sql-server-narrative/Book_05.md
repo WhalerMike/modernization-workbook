@@ -31,7 +31,7 @@ Everything in Books 01 through 04 is prerequisite; everything in Books 06 throug
 
 ::: {.callout-tip}
 ## Download this book
-**[Book_05-bundle.docx]** — every chapter of this book concatenated into one Word document. Regenerated on every site deploy.
+**[Book_05-bundle.docx](../../../downloads/Book_05-bundle.docx)** — every chapter of this book concatenated into one Word document. Regenerated on every site deploy.
 :::
 
 ## Chapters
