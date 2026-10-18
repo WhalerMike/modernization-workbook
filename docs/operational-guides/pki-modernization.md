@@ -21,13 +21,7 @@ tiers_adopted: [1]
 lifecycle_review: 2026-11-22
 ---
 
-![ADCS baseline architecture with ESC1-ESC8 surface](images/read-only-ad-assessment-image-01-authenticated-users-permission-b.png){#fig-pki-modernization-image-01 fig-alt="ADCS baseline architecture with ESC1-ESC8 surface. Engineering blueprint style, neutral slate background, federal navy (#1F3A5F) for primary structural elements, teal (#1A9E8F) for secondary/integration elements, amber (#D4A017) for governance/audit/registry overlays, monospace labels for identifiers, no human figures, 16:9 landscape." width="100%"}
-
-![target Cloud PKI + Intune SCEP/PKCS topology](images/read-only-ad-assessment-image-02-read-only-assessment-capability.png){#fig-pki-modernization-image-02 fig-alt="target Cloud PKI + Intune SCEP/PKCS topology. Engineering blueprint style, neutral slate background, federal navy (#1F3A5F) for primary structural elements, teal (#1A9E8F) for secondary/integration elements, amber (#D4A017) for governance/audit/registry overlays, monospace labels for identifiers, no human figures, 16:9 landscape." width="100%"}
-
 ![hybrid coexistence and cross-trust pattern](../images/operational-guides/read-only-ad-assessment-image-03-output-directory-gitea-manifest.png){#fig-pki-modernization-image-03 fig-alt="hybrid coexistence and cross-trust pattern. Engineering blueprint style, neutral slate background, federal navy (#1F3A5F) for primary structural elements, teal (#1A9E8F) for secondary/integration elements, amber (#D4A017) for governance/audit/registry overlays, monospace labels for identifiers, no human figures, 16:9 landscape." width="100%"}
-
-![six-phase migration playbook with gates](images/pki-modernization-image-04-six-phase-migration-playbook-wit.png){#fig-pki-modernization-image-04 fig-alt="six-phase migration playbook with gates. Engineering blueprint style, neutral slate background, federal navy (#1F3A5F) for primary structural elements, teal (#1A9E8F) for secondary/integration elements, amber (#D4A017) for governance/audit/registry overlays, monospace labels for identifiers, no human figures, 16:9 landscape." width="100%"}
 
 
 The Federal Modernization Program PKI Modernization Guide
@@ -52,7 +46,7 @@ The Federal Modernization Program PKI Modernization Guide
 
 ## Canon Phase Mapping (the program decision)
 
-This guide's 6 operational phases refine the canonical six-phase Directory Migration model published in [`docs/customer-documents/reference-architecture/directory-migration.qmd`](../../customer-documents/reference-architecture/directory-migration.qmd). The mapping below shows which canon phase each PKI phase executes. Per [the program decision], the customer-side detail (weeks, gates, rollback windows, runbook material) is preserved unchanged; the mapping is purely a navigational anchor so readers can trace customer phases back to canon scaffold.
+This guide's 6 operational phases refine the canonical six-phase Directory Migration model published in [`docs/customer-documents/reference-architecture/directory-migration.qmd`](../reference-architecture/directory-migration.md). The mapping below shows which canon phase each PKI phase executes. Per [the program decision], the customer-side detail (weeks, gates, rollback windows, runbook material) is preserved unchanged; the mapping is purely a navigational anchor so readers can trace customer phases back to canon scaffold.
 
 | Customer phase (this guide) | Canon phase (the program decision) |
 |---|---|

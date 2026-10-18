@@ -46,7 +46,7 @@ into Entra ID + Intune (covered by the [Directory Migration](directory-migration
 adapter family). What did not exist: the operational doctrine and
 procurement-to-validation process for net-new assets.
 
-The [`intune-native/` sub-adapter slot](../../src/fmp/modernization/directory-migration/adapters/device-management/device-adapter-interface.md)
+The `intune-native/` sub-adapter slot
 under `device-management/` had been registered but never authored.
 Operationally, this meant net-new asset acquisition followed an
 implicit pattern with three failure modes:
@@ -65,7 +65,7 @@ The Intune-First canon closes all three.
 ## The Five Doctrine Pillars
 
 Per the program decision
-and the full doctrine at [`src/fmp/modernization/intune-first-onboarding/doctrine.md`](../../src/fmp/modernization/intune-first-onboarding/doctrine.md):
+and the full doctrine at `src/fmp/modernization/intune-first-onboarding/doctrine.md`:
 
 | # | Pillar | What it asserts |
 |---|---|---|
@@ -86,7 +86,7 @@ justification, compensating control, and an audit entry:
 | **B — Linux endpoint with Arc fallback** | Linux endpoints that cannot use Microsoft Intune's Linux MDM surface (developer workstations requiring root, embedded Linux, air-gapped) | Microsoft's Intune Linux MDM is GA but limited; Arc + Azure Policy Guest Configuration is the substitute governance plane. |
 | **C — Pre-Server-2025 Windows servers** | Windows Server 2019 and 2022 hosts whose OS upgrade is not yet feasible | the program decision explicitly notes Server 2019/2022 cannot use AADLoginForWindows. Arc-managed-only is acceptable as an interim state. |
 
-Full text in [`src/fmp/modernization/intune-first-onboarding/doctrine.md`](../../src/fmp/modernization/intune-first-onboarding/doctrine.md) §4.
+Full text in `src/fmp/modernization/intune-first-onboarding/doctrine.md` §4.
 
 ## the organizational-attribute model Assignment for Non-AD-Migrated Devices
 
@@ -101,7 +101,7 @@ under this doctrine, plus BYOD and exception-path devices that never
 had an AD record — the organizational-attribute model comes from one of four sources, evaluated
 in strict priority order. This is the **the organizational-attribute model assignment authority
 chain**, canonicalized in
-[`doctrine.md`](../../src/fmp/modernization/intune-first-onboarding/doctrine.md) §5.
+`doctrine.md` §5.
 
 | # | Source | When it applies |
 |---|---|---|
@@ -158,7 +158,7 @@ through to source 3 (user derivation), and on failure to source 4
 (`/UNPOSITIONED`).
 
 Such devices surface as `DRIFT-PROCUREMENT-RECORD-ABSENT` findings
-(see [`validation-and-evidence.md`](../../src/fmp/modernization/intune-first-onboarding/validation-and-evidence.md) §2.5)
+(see `validation-and-evidence.md` §2.5)
 and are reconciled through governance review — either by retroactively
 filing a procurement record, by re-classifying as migration assets,
 or by quarantine-then-disposition.
@@ -183,7 +183,7 @@ Phase 2 and the enrollment vector used in Phase 4.
 | **4. Provision** | End user (zero-touch) or IT (assisted zero-touch) | Asset arrives at recipient location | Enrolled, the organizational-attribute model-stamped, compliant device | Compliance policy returns Compliant; CA grants access |
 | **5. Validate** | Governance pipeline | Device first compliance evaluation completes | Validation record in the governance audit log | All Phase 5 checks pass; device removed from quarantine if applicable |
 
-Full process spec in [`src/fmp/modernization/intune-first-onboarding/process.md`](../../src/fmp/modernization/intune-first-onboarding/process.md).
+Full process spec in `src/fmp/modernization/intune-first-onboarding/process.md`.
 Reference latency target: **PO issuance to production-governed within
 14 calendar days** for standard hardware, **5 calendar days** for
 expedited orders.
@@ -195,7 +195,7 @@ historical practice. Asset the organizational-attribute model is captured **at P
 structured field, not inferred downstream from whoever provisions the
 device.
 
-Required intake fields, per [`procurement-handoff.md`](../../src/fmp/modernization/intune-first-onboarding/procurement-handoff.md) §2:
+Required intake fields, per `procurement-handoff.md` §2:
 
 - `recipient_upn`, `recipient_orgpath` (resolved from Entra ID)
 - `asset_class` (windows-endpoint / macos-endpoint / ios-tablet / etc.)
@@ -214,17 +214,17 @@ live in dedicated annexes:
 
 | Platform | Vendor program | the organizational-attribute model carrier | Trust elevation state | Annex |
 |---|---|---|---|---|
-| **Windows endpoint** | Windows Autopilot Device Preparation (v2) | Group Tag (`the organizational-attribute model:/path/value`) | Microsoft Entra Join (per the program decision) | [`platforms/windows-autopilot.md`](../../src/fmp/modernization/intune-first-onboarding/platforms/windows-autopilot.md) |
-| **Microsoft Surface** *(sub-pattern of Windows endpoint)* | Surface direct via Microsoft CSP, or authorized reseller (CDW, Insight, Connection) | Group Tag (`the organizational-attribute model:/path/value`) + DFCI profile applied at ESP Device Setup | Entra Join + DFCI firmware lockdown + Pluton attestation (Pro 11 / Laptop 6+) | [`platforms/windows-surface.md`](../../src/fmp/modernization/intune-first-onboarding/platforms/windows-surface.md) |
-| **macOS endpoint** | Apple Business Manager (ABM) or Apple School Manager (ASM) ADE | ABM device note | Supervised + ADE-enrolled | [`platforms/macos-abm-ade.md`](../../src/fmp/modernization/intune-first-onboarding/platforms/macos-abm-ade.md) |
-| **iOS / iPadOS** | Apple ABM/ASM ADE | ABM device note | Supervised | [`platforms/mobile-ios-android.md`](../../src/fmp/modernization/intune-first-onboarding/platforms/mobile-ios-android.md) Part A |
-| **Android Enterprise** | Android Zero-Touch (Google) or Knox Mobile Enrollment (Samsung) | Custom JSON managed config | Device Owner mode | [`platforms/mobile-ios-android.md`](../../src/fmp/modernization/intune-first-onboarding/platforms/mobile-ios-android.md) Part B |
-| **Server (Windows 2025+ / Linux)** | Azure Arc onboarding | Azure resource tag on Arc machine | WORKGROUP + Arc-onboarded; Entra-joined via AADLoginForWindows for Server 2025+ | [`platforms/arc-managed-servers.md`](../../src/fmp/modernization/intune-first-onboarding/platforms/arc-managed-servers.md) |
+| **Windows endpoint** | Windows Autopilot Device Preparation (v2) | Group Tag (`the organizational-attribute model:/path/value`) | Microsoft Entra Join (per the program decision) | `platforms/windows-autopilot.md` |
+| **Microsoft Surface** *(sub-pattern of Windows endpoint)* | Surface direct via Microsoft CSP, or authorized reseller (CDW, Insight, Connection) | Group Tag (`the organizational-attribute model:/path/value`) + DFCI profile applied at ESP Device Setup | Entra Join + DFCI firmware lockdown + Pluton attestation (Pro 11 / Laptop 6+) | `platforms/windows-surface.md` |
+| **macOS endpoint** | Apple Business Manager (ABM) or Apple School Manager (ASM) ADE | ABM device note | Supervised + ADE-enrolled | `platforms/macos-abm-ade.md` |
+| **iOS / iPadOS** | Apple ABM/ASM ADE | ABM device note | Supervised | `platforms/mobile-ios-android.md` Part A |
+| **Android Enterprise** | Android Zero-Touch (Google) or Knox Mobile Enrollment (Samsung) | Custom JSON managed config | Device Owner mode | `platforms/mobile-ios-android.md` Part B |
+| **Server (Windows 2025+ / Linux)** | Azure Arc onboarding | Azure resource tag on Arc machine | WORKGROUP + Arc-onboarded; Entra-joined via AADLoginForWindows for Server 2025+ | `platforms/arc-managed-servers.md` |
 
 ## Validation, Drift Classes, and Evidence
 
 Phase 5 validation runs a checklist of platform-neutral and platform-
-specific checks ([`validation-and-evidence.md`](../../src/fmp/modernization/intune-first-onboarding/validation-and-evidence.md) §1).
+specific checks (`validation-and-evidence.md` §1).
 Failures quarantine the device per Pillar 5.
 
 The doctrine introduces **five new drift classes**:
@@ -244,8 +244,8 @@ control families AC-2, AC-19, CM-2, CM-7, CM-8, IA-3, MA-2, SC-15.
 ## Source Files
 
 All Intune-First Asset Onboarding canon lives in the monorepo at
-[`src/fmp/modernization/intune-first-onboarding/`](../../src/fmp/modernization/intune-first-onboarding/README.md).
-The doctrinal anchor is [`src/fmp/canon/adr/adr-071-intune-first-asset-onboarding.md`](../../src/fmp/canon/adr/adr-071-intune-first-asset-onboarding.md).
+`src/fmp/modernization/intune-first-onboarding/`.
+The doctrinal anchor is `src/fmp/canon/adr/adr-071-intune-first-asset-onboarding.md`.
 
 ## Related
 

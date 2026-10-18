@@ -1136,8 +1136,8 @@ earlier framings were corrected to match canon.
  conflated directory + 
  DC 
 
- the organizational-attribute model restores FMP_151, [the program decision **Corrected:** the organizational-attribute model
- addressable truth §2](../../../src/fmp/canon/adr/adr-092-active-governance.md) is an *addressing
+ the organizational-attribute model restores FMP_151, the program decision **Corrected:** the organizational-attribute model
+ addressable truth §2 is an *addressing
  attribute every object
  carries*, not a
  "governance primitive,"
@@ -1153,7 +1153,7 @@ earlier framings were corrected to match canon.
  canonical concept."
 
  Vendor products (SD-WAN the program decision §2, **Softened:** canon
- platform, cloud [Book_17](../orgpath-narrative/Book_17.md) names a neutral
+ platform, cloud Book_17 names a neutral
  on-ramp) `sdwan-fabric` slot,
  Azure Policy,
  ISE/ClearPass/Entra

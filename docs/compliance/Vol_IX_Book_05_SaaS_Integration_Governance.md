@@ -40,8 +40,6 @@ The instinct is to read that as a gap: one missing gate, SA-9, to be added. That
 
 This book is the implementation that closes them. It is not an argument that a gate is missing; it is the catalog, the control map, the actuation surface, and the tests.
 
-![The provisioning spine — a simplified six-stage lifecycle view of the seven-phase catalog, twenty-four governed catalog items, authorization verified before configuration](figs/vol7b06-fig-01-saas-integration-gate.png){#fig-vol7b06-gate fig-alt="A house-style six-stage pipeline (a simplified lifecycle view of the seven-phase catalog below) titled SaaS Integration Governance (Vol IX Book 05), subtitle 'The Entra gallery as a governed SA-9 event — verify, then configure', on a white background. Six cards joined left to right by teal arrows, navy-headed except where noted. Phase 1 Request — the SaaS, its business owner, and the identity attributes it will receive (AC-20). Phase 2 Verify, drawn with a teal header and a prominent amber ring labeled 'the gate — verdict recorded before anything is configured' — a FedRAMP Marketplace authorization verdict at or above the Moderate baseline, recorded against the request (SA-9). Phase 3 Classify — SSO-only or SCIM, drawn as a fork with a teal dot for 'SSO, an assertion at sign-in, transient' and a red dot for 'SCIM, a standing directory replica' (AC-4). Phase 4 Agree — an ISA attached and approved before the synchronization job is enabled, shown with a red left edge marking it as the SCIM path only (CA-3). Phase 5 Configure — SSO or provisioning actuated via Microsoft Graph through the in-boundary MID Server, never a portal click (IA-2). Phase 6 Attest — authorization re-verified on cadence; a lapsed authorization raises a task (CA-7). A dashed teal bypass runs beneath from Phase 3 to Phase 5 labelled 'SSO-only — no ISA required'. A footer reads: Six lifecycle stages distilling the seven-phase catalog, 24 governed catalog items, 24 controls — operationalized during provisioning, or silently skipped there. White background, navy and teal ink with amber and red accents only. Authored house-style diagram." width="100%"}
-
 ::: {.aan-note}
 ## Why the gate has to be ours — the motivating measurement, briefly
 
@@ -76,7 +74,7 @@ Lane F adds one data file and a set of methods. Everything else it inherits.
 
 | Path (in the kit) | Record / artifact | Status |
 |---|---|---|
-| [`servicenow-day2/saas-control-map.json`](servicenow-day2/saas-control-map.json) | app data (CI-checked) | **New** — Lane F bindings: 24 catalog items → (control, task type, approval, actuation, KSI, slot) |
+| `servicenow-day2/saas-control-map.json` | app data (CI-checked) | **New** — Lane F bindings: 24 catalog items → (control, task type, approval, actuation, KSI, slot) |
 | `script-includes/EntraHelpdeskClient.js` | `sys_script_include` | **Extend** — add the Graph surface below |
 | `script-includes/EntraHelpdeskGate.js` | `sys_script_include` | **Reuse** — SoD + least-privilege pre-flight, unchanged |
 | `flow/flow-blueprint.md` | Flow Designer blueprint | **Extend** — the Governed Day-2 Request flow gains the verify→classify→agree branch |

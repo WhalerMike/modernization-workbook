@@ -84,8 +84,6 @@ The confusion between authentication quality and authorization scope is common i
 
 ## Before and After: The Structural Comparison
 
-![Before and after: standing Domain Admin with NTLM vs. JIT PIM activation flow showing the reduction in persistent exposure window](figs/pam-fig-01-standing-vs-jit.png){#fig-pam01 fig-alt="Two-panel diagram. Left panel labeled BEFORE shows a Domain Admin account connected continuously to all resources, with NTLM credential visible 24x7, no approval gate, and no time limit. Right panel labeled AFTER shows a standard user account requesting PIM activation, going through MFA plus justification plus optional approver, receiving a time-limited role token (1 to 8 hours), and then connecting to resources. After the window expires the role deactivates automatically. The after state highlights the bounded exposure window vs. the before state's continuous exposure." width="100%"}
-
 **Before this document** — a federal administrator holds standing Domain Admin and standing Global Admin simultaneously. The Domain Admin is backed by Kerberos/NTLM. The Global Admin is an always-active Entra ID role. Any compromise of the user's Entra ID session grants Global Admin immediately with no additional step.
 
 **After this document** — the same administrator holds no standing admin role. The Entra ID Global Admin assignment is *eligible*, not *active*. When the administrator needs to perform an administrative task, they request activation through PIM, present MFA, provide a justification, wait for approver consent (if configured), and receive a time-limited role token valid for 1–8 hours. When the window expires, the role deactivates automatically. A compromised session gives an attacker nothing beyond the standard user scope.
@@ -106,11 +104,7 @@ Privileged Identity Management (PIM) introduces two assignment states for direct
 
 The operational difference is decisive: an eligible assignment is worthless to an attacker who has compromised the user's session but not completed the activation ceremony. An active assignment is immediately exploitable.
 
-![Eligible vs. active: the one PIM distinction that does the work](figs/pam-fig-05-eligible-vs-active.png){#fig-pam05 fig-alt="Two side-by-side panels. Left, ACTIVE assignment in red: the traditional state — role assigned and immediately effective, exercisable at any time with no additional step; appropriate only for automated service principals and break-glass accounts; immediately exploitable if the session is compromised. Right, ELIGIBLE assignment in teal: the PIM state — role assigned but not effective; the user must explicitly activate, satisfying MFA plus justification plus optional approver; grants a time-limited active session that returns to eligible-only at expiry; worthless to an attacker who has the session but has not completed the activation ceremony. Blue bar: the decisive operational difference — an eligible assignment is worthless without the activation ceremony while an active assignment is immediately exploitable; between activations no persistent active scope exists; human accounts hold eligible only, active assignments are reserved for service principals and break-glass. White background. Source: Vol III Book 01 Privileged Access Management briefing deck, Date Code 2026-07-08 13:08 ET." width="100%"}
-
 ## PIM Activation Flow
-
-![PIM activation flow: request — MFA — approval — time-limited role — audit showing all steps and the resulting audit trail](figs/pam-fig-02-pim-activation-flow.png){#fig-pam02 fig-alt="Flowchart showing the PIM activation sequence. Step 1: Administrator submits activation request with justification text and requested duration in the Entra ID portal or My Access. Step 2: Entra ID Conditional Access enforces MFA at activation time, requiring a fresh authentication proof. Step 3: If approver is configured, the approver receives an email notification and approves or denies the request. Step 4: Upon approval, Entra ID issues a time-limited active role assignment with an expiration timestamp. Step 5: At expiration the role automatically deactivates with no user action required. Audit logging spans all five stages: every stage generates audit log entries in the Entra ID audit log that feed to Microsoft Sentinel or equivalent SIEM." width="100%"}
 
 The activation flow has five stages:
 
@@ -334,8 +328,6 @@ Both mechanisms require:
 - `Virtual Machine Administrator Login` or `Virtual Machine User Login` role assigned as PIM-eligible to the administrator's Entra ID account
 - The target host's Azure resource group and subscription scoped to the role assignment
 - Network connectivity from the host to Arc endpoints (TCP 443 to management.azure.com and guestconfiguration endpoint)
-
-![PAW trust model showing standard user device vs. PAW device vs. admin target with network paths and trust assertions at each boundary](figs/pam-fig-03-paw-trust-model.png){#fig-pam03 fig-alt="Three-column diagram. Left column labeled Standard User Device shows a device running standard apps and accessing standard resources through Entra ID Conditional Access with a standard policy. Middle column labeled PAW Device shows a dedicated hardened device with WDAC application allowlist, Credential Guard enabled, no email or browser for general use, and Intune compliance policy enforced. PAW device accesses Arc portal and PIM activation through a privileged Conditional Access policy requiring PAW compliance. Right column labeled Admin Target shows Arc-enabled servers, Azure subscription resources, and Entra ID administration. Lines from the PAW device to admin targets are shown as solid approved paths. Lines from the standard user device to admin targets are shown as blocked. No path runs from the standard user device to admin targets." width="100%"}
 
 ## Configuring JIT Access via Arc
 
@@ -659,8 +651,6 @@ Break-glass accounts are the exception to all controls. They are not used in nor
 
 Two break-glass accounts are required. Two accounts protect against the failure of a single account (lost credential, locked out, Entra soft-delete). They are configured as follows:
 
-![Break-glass: the deliberate exception to every control](figs/pam-fig-06-break-glass-design.png){#fig-pam06 fig-alt="Red panel on why break-glass must exist: every control that blocks an admin path can itself fail — if Intune is down, the PAW is lost, or PIM has an outage, a PAW-requiring Conditional Access policy would block all access, a permanent tenant lockout; break-glass is the path that survives failure of the control plane that enforces access. Four design cards: two cloud-only accounts (not synced from AD, not federated, reachable when AD/ADFS/Entra Connect is down; two so a single failure is survivable); standing Global Admin (the one exception to eligible-only, because PIM may be the unavailable system); excluded from every Conditional Access policy by group membership; FIDO2 plus an offline credential — a 20-plus character random password in a physical safe, never digital, with a FIDO2 hardware key as unphishable MFA, two sealed envelopes in two safes held by two officials. Naming: follow the normal convention with no indicator of elevated privilege. White background. Source: Vol III Book 01 Privileged Access Management briefing deck, Date Code 2026-07-08 13:08 ET." width="100%"}
-
 **Account type.** Cloud-only accounts. Not synced from on-premises Active Directory, not federated through any identity provider. Cloud-only accounts are accessible even when the on-premises AD, ADFS, or Entra Connect infrastructure is down.
 
 **Role assignment.** Active (standing) Global Administrator. This is the one exception to the eligible-only rule — break-glass must have immediate standing access because PIM may be the system that is unavailable.
@@ -821,8 +811,6 @@ The quarterly test is:
 The test should trigger the Sentinel alert. Confirm the alert fires within 5 minutes. This validates both the account and the detection capability simultaneously.
 
 # Session Management and Re-authentication
-
-![Three controls that bound a live privileged session](figs/pam-fig-07-session-controls.png){#fig-pam07 fig-alt="Three stacked rows. AC-11 Device lock in navy, tagged 15 min idle: 15-minute idle screen lock enforced by an Intune configuration profile on the PAW group, not user-overridable, requires re-authentication to unlock. AC-12 Session termination in teal, tagged 1 hr / 8 hr: Conditional Access sign-in frequency bounds session lifetime — 8 hours for the base privileged portal session, 1 hour for PIM-activated role sessions with re-auth forced independent of the activation window. IA-11 Re-authentication in amber, tagged every activation: every PIM activation requires fresh MFA via Authentication Context c1 regardless of session age. Blue bar: together they bound the third dimension — PIM bounds privilege in time between episodes, PAW bounds it by device, session controls bound it within a live episode, so a walked-away workstation, an over-long session, and a stale MFA proof each fail closed. White background. Source: Vol III Book 01 Privileged Access Management briefing deck, Date Code 2026-07-08 13:08 ET." width="100%"}
 
 ## AC-11: Device Lock
 
@@ -1021,8 +1009,6 @@ Evidence Fabric, keyed to authoritative identity, feeding CISA CDM and KSI-IAM.
 The following table maps each NIST control addressed by this document to its state before and after implementation.
 
 > **Closure Necessity — AC-6(1) and AC-6(10) on privileged sessions.** Every closure in this table rests on two identity substrates, not on policy text. PIM's activation ceremony is enforceable only because the role grant is a cryptographically validated token claim with a bounded lifetime — the certificate-and-token doctrine of [Vol I Book 03 (Certificates & Tokens)](Vol_I_Book_03_Certificates_Tokens_Cryptographic_Identity.md); a password-conveyed admin role carries no expiry the directory can enforce. And the PAW gate on AC-6(1)/AC-6(10) holds only because Conditional Access can verify *device* identity and compliance — the device-identity doctrine of [Vol I Book 02 (Network Access Control: 802.1X)](Vol_I_Book_02_Network_Access_Control_802_1X.md); without a device-bound assertion, "activate only from a compliant workstation" is a request, not a control. There is no audit procedure, admin-training artifact, or account-naming convention that bounds a standing credential's scope in time or binds its use to hardware.
-
-![NIST control closure for Vol III Book 01 PAM showing the before and after state for each AC and IA control addressed](figs/pam-fig-04-nist-closure.png){#fig-pam04 fig-alt="Table-style diagram with five columns: Control ID, Control Title, State Without PAM Controls, State With PAM Controls, and Primary Authority. Rows cover AC-5 through AC-6-10 and AC-11, AC-12, IA-11. Color coding: red rows indicate non-compliant state without controls, green rows indicate compliant state with controls." width="100%"}
 
 | Control | Title | Without This Document | With This Document | Authority |
 |---------|-------|----------------------|-------------------|-----------|

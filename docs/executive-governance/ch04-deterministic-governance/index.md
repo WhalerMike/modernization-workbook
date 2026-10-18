@@ -20,8 +20,6 @@ lifecycle_review: 2026-11-22
 
 # Deterministic Governance
 
-![Reproducibility pipeline with byte-identical bundle hash across re-runs](images/index-image-02-reproducibility-pipeline-with-by.png){#fig-index-image-02 fig-alt="Reproducibility pipeline with byte-identical bundle hash across re-runs. Engineering blueprint style, neutral slate background, federal navy (#1F3A5F) for primary structural elements, teal (#1A9E8F) for secondary/integration elements, amber (#D4A017) for governance/audit/registry overlays, monospace labels for identifiers, no human figures, 16:9 landscape." width="100%"}
-
 
 ::: {.callout-note}
 ## In this chapter
@@ -36,8 +34,6 @@ operationally, why it is the response to the
 substrate enforces it.
 :::
 
-![Deterministic governance reproducibility diagram](images/index-image-01-deterministic-governance-reprodu.png){#fig-index-image-01 fig-alt="Two parallel pipeline rows. Top row labeled \"Original assembly\" shows: Canon vN + Inputs(t1) → Substrate Pipeline → Evidence Bundle (hash: 0x4f2c…). Bottom row labeled \"Independent re-assembly (months later)\" shows: Canon vN + Inputs(t1) → Substrate Pipeline → Evidence Bundle (hash: 0x4f2c…). Both bundle-hash values shown identical, with a verification check icon between them. A separate side panel highlights the four the program decision properties: no silent drops, append-only writes, ordered records, idempotent ingestion. Clean engineering blueprint style, dark navy (#0D1B2E) and teal (#1E8C8C) on white background. No photographs, purely diagrammatic." width="100%"}
-
 ## What "deterministic" means here
 
 Three properties characterize deterministic governance, distinct from
@@ -47,7 +43,7 @@ Three properties characterize deterministic governance, distinct from
    Independent re-execution by an assessor is the test.
 2. **Provenance.** Every claim carries the full envelope (issuer,
    classification, timestamps, lineage_hash) per
-   [`15_ProvenanceProfile.qmd`](../../../docs/15_ProvenanceProfile.qmd).
+   `15_ProvenanceProfile.qmd`.
 3. **Hash-verifiable lineage.** Bundle hash is computed over
    per-claim hashes; modification anywhere breaks the bundle hash.
 

@@ -15,8 +15,6 @@ lifecycle_review: 2026-11-22
 
 # Adapter Ecosystem Overview — Executive Brief
 
-![the Federal Modernization Program Governance OS](../../images/canonical/FMP-FIG-001-governance-os-overview.png){fig-alt="High-level overview of the Federal Modernization Program Governance OS — the substrate layer that adapters extend to reach incumbent identity, telemetry, policy, and enforcement systems." width="100%"}
-
 The Federal Modernization Program is an **overlay**: it does not replace the platforms an agency already
 runs. Adapters are how the governance substrate reaches those platforms —
 reading their state, normalizing it into canon-keyed claims, and (where
@@ -28,7 +26,7 @@ passing the conformance gate.
 ## The dual-axis taxonomy (FMP_003)
 
 Every adapter declares two coordinates, defined in
-[`FMP_003`](../../../src/fmp/canon/FMP_003_Adapter_Segmentation_Overview_v1.0.md):
+[`FMP_003`](../canonical-specs/003_Adapter_Segmentation_Overview_v1.0.md):
 
 - **`class`** — the *operational* axis: `modernization` (change-making) or
   `conformance` (read-only).
@@ -47,11 +45,11 @@ enforced by schema and CI.
 
 | Registry | Class | Role | Entries |
 |---|---|---|---|
-| [`adapter-registry.yaml`](../../../src/fmp/canon/adapter-registry.yaml) | conformance | Read-only assessors and telemetry observers | **29** |
-| [`modernization-registry.yaml`](../../../src/fmp/canon/modernization-registry.yaml) | modernization | Change-making integrations | **19** |
+| `adapter-registry.yaml` | conformance | Read-only assessors and telemetry observers | **29** |
+| `modernization-registry.yaml` | modernization | Change-making integrations | **19** |
 
 Both registries are constrained by a single JSON Schema
-([`adapter-registry.schema.json`](../../../src/fmp/schemas/adapter-registry/adapter-registry.schema.json)),
+(`adapter-registry.schema.json`),
 which requires every entry to declare `class`, `mission-class`, `status`, and
 the four canon invariants every adapter must honor:
 

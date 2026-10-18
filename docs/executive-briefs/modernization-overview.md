@@ -17,8 +17,6 @@ lifecycle_review: 2026-11-22
 ![Three-phase program model (A/B/C)](../images/executive-briefs/modernization-overview-image-02-three-phase-program-model-abc.png){#fig-modernization-overview-image-02 fig-alt="Three-phase program model (A/B/C). Engineering blueprint style, neutral slate background, federal navy (#1F3A5F) for primary structural elements, teal (#1A9E8F) for secondary/integration elements, amber (#D4A017) for governance/audit/registry overlays, monospace labels for identifiers, no human figures, 16:9 landscape." width="100%"}
 
 
-![The manual compliance grind](../../images/canonical/FMP-FIG-002-manual-compliance-grind.png){fig-alt="Current-state pain of manual, fragmented compliance workflows across federal agencies — spreadsheets, memos, and disconnected reporting that the Federal Modernization Program replaces with continuous, canon-anchored governance." width="100%"}
-
 This executive brief summarizes what a **FMP-anchored modernization program**
 looks like end to end for a federal CIO/CISO audience, and the expected
 delivery arc from foundation to governance.

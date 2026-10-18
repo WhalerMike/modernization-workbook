@@ -53,8 +53,6 @@ specifics in this plan come from Microsoft's own Oracle HCM integration guidance
 and from the program decision — they are the agency's implementation decision, not an OPM
 requirement. Do not cite this plan as OPM guidance for the Entra leg.
 
-![The execution pipeline on the Federal HR 2.0 clock: the program milestones, the the program decision pipe from Oracle Fusion Cloud HCM through the middleware to the two provisioning targets, and the five plan phases with their gates.](figs/hrit-plan-fig-01-execution-pipeline.png){fig-alt="Three-band house-style diagram on white. Top band: the program clock — Dec 10 2025 Federal HR 2.0 memo, Jun 11 2026 Oracle Fusion Cloud HCM award, FY 2026 Wave 1, FY 2027 Wave 2 including SSA with interconnections live at about month five, FY 2028 government-wide adoption with eOPF and EHRI decommissioned. Middle band: the pipe — Oracle Fusion Cloud HCM with HCM Extracts and ATOM feeds, into the the program decision middleware layer doing schema normalization to SCIM, the organizational-attribute model calculation, and provenance, into the Entra provisioning service with Lifecycle Workflows, splitting to two targets: hybrid AD-mastered today (the Day-2 kit Active Directory edition, hybrid_mode true) and cloud-native at target (the HRIT edition, hybrid_mode false). Bottom band: phases 0 through 4 — memo Appendix C prep, schema and mapping, middleware build, hybrid go-live, wave cutover — each with an exit gate." width="100%"}
-
 ## 1. The program facts this plan stands on
 
 | Fact | Value | Source |

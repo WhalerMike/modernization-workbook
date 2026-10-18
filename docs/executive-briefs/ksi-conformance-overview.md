@@ -15,8 +15,6 @@ lifecycle_review: 2026-11-22
 
 # KSI Conformance Overview — Executive Brief
 
-![Continuous monitoring pipeline](../../images/canonical/FMP-FIG-003-continuous-monitoring-pipeline.png){fig-alt="the Federal Modernization Program continuous monitoring pipeline evaluating tenant state against machine-checkable Key Security Indicators that sit above the NIST 800-53 control catalog." width="100%"}
-
 Key Security Indicators (KSIs) are how the Federal Modernization Program turns a control catalog into
 something a machine can check continuously. Where a traditional SSP narrates
 *"control AC-2 is satisfied,"* a KSI is a **machine-readable, continuously
@@ -27,7 +25,7 @@ is the model FedRAMP 20x is moving the program toward.
 ## What the Federal Modernization Program ships: a governed KSI corpus
 
 The substrate carries **more than 190 KSI rules across eleven families**, each a
-versioned file under [`src/fmp/rules/ksi/`](../../../src/fmp/rules/ksi/) and
+versioned file under `src/fmp/rules/ksi/` and
 schema-validated like any other canon artifact:
 
 | Family | Covers |
@@ -60,7 +58,7 @@ The result carries a summary (`total_ksis`, `passed`, `failed`, `error`,
 `stale`, `coverage_percentage`) and a per-KSI breakdown with evidence and drift
 indicators. The engine is deliberately **pure and deterministic** — same inputs,
 same result — and is covered by 40+ hermetic tests. KSI results feed the
-evidence bundle ([`evidence-bundle.schema.json`](../../../src/fmp/schemas/ksi/evidence-bundle.schema.json)),
+evidence bundle (`evidence-bundle.schema.json`),
 which emits OSCAL observation objects for assessor consumption.
 
 > **Honest scope note.** Reporting is *not* a standalone `ksi report` command

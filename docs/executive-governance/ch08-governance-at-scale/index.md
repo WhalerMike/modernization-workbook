@@ -20,10 +20,6 @@ lifecycle_review: 2026-11-22
 
 # Governance at Scale
 
-![Three-ring scaling diagram (small canon > many mappings > many adapters)](images/index-image-02-three-ring-scaling-diagram-small.png){#fig-index-image-02 fig-alt="Three-ring scaling diagram (small canon > many mappings > many adapters). Engineering blueprint style, neutral slate background, federal navy (#1F3A5F) for primary structural elements, teal (#1A9E8F) for secondary/integration elements, amber (#D4A017) for governance/audit/registry overlays, monospace labels for identifiers, no human figures, 16:9 landscape." width="100%"}
-
-![Monorepo consolidation: 4 predecessor repos collapsing into single package elimi...](images/index-image-03-monorepo-consolidation-4-predece.png){#fig-index-image-03 fig-alt="Monorepo consolidation: 4 predecessor repos collapsing into single package eliminating cross-repo skew. Engineering blueprint style, neutral slate background, federal navy (#1F3A5F) for primary structural elements, teal (#1A9E8F) for secondary/integration elements, amber (#D4A017) for governance/audit/registry overlays, monospace labels for identifiers, no human figures, 16:9 landscape." width="100%"}
-
 
 ::: {.callout-note}
 ## In this chapter
@@ -35,8 +31,6 @@ exceptions. This chapter explains how the Federal Modernization Program's substr
 it deliberately keeps small, what it lets grow, and why the scaling
 properties are structural rather than operational.
 :::
-
-![Substrate scaling diagram](images/index-image-01-substrate-scaling-diagram.png){#fig-index-image-01 fig-alt="Three concentric layers. Innermost (small) layer labeled \"Canon (small, stable, ADR-governed)\" with a single tight ring. Middle layer labeled \"Policy mappings (large, registry-managed)\" with a broader ring filled with many small registry-entry icons. Outermost layer labeled \"Runtime adapters (per-tool, per-program)\" with the broadest ring filled with adapter icons fanning outward. Arrows indicate \"small canon → many mappings → many adapters\" as the scaling vector. Clean engineering blueprint style, dark navy (#0D1B2E) and teal (#1E8C8C) on white background. No photographs, purely diagrammatic." width="100%"}
 
 ## What stays small
 

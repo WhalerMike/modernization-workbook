@@ -11,8 +11,6 @@ lifecycle_review: 2026-11-22
 
 # Governance OS Overview — Executive Brief
 
-![the Federal Modernization Program Governance OS](../../images/canonical/FMP-FIG-001-governance-os-overview.png){fig-alt="High-level overview of the Federal Modernization Program Governance OS — identity, mission, and value proposition for federal agencies running Microsoft 365 in GCC-Moderate." width="100%"}
-
 The Federal Modernization Program is a **canon-anchored governance substrate** (not a standalone product)
 that keeps identity, policy, and compliance operations tied to a single source
 of truth and continuously drift-detected against that canon.
@@ -29,7 +27,7 @@ than continuous, provenance-linked assurance.
 
 The Federal Modernization Program operates underneath implementation tooling rather than alongside it.
 Three substrate-wide principles, declared in
-[`substrate-manifest.yaml`](../../../src/fmp/canon/substrate-manifest.yaml)
+`substrate-manifest.yaml`
 (FMP_200), define the operating model:
 
 1. **Single Source of Truth (SSOT).** Canonical governance artifacts under

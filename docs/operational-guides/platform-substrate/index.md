@@ -33,7 +33,7 @@ monorepo.
 
 ## Current pages
 
-- [Platform Server Build Guide](../../platform/platform-server-build.html) — 14-phase
+- Platform Server Build Guide — 14-phase
   canonical runbook (WS2025 + IIS + Gitea + Intune + Arc + OrgTree).
   *Will re-home to this sub-category in Phase 3 of migration.*
 

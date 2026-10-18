@@ -17,8 +17,6 @@ lifecycle_review: 2027-01-01
 # Implementation Book 06 — NTLM Detection & Remediation
 :::
 
-![NTLM is eliminated audit-first: detect where Kerberos falls back, plan the SPN fixes, then move the NTLM Group Policy through audit mode before enforcement so nothing is locked out by surprise.](images/book06-image-01-ntlm-remediation.png){#fig-impl-book06 fig-alt="A schematic on a white background. Three stages flow left to right under teal arrows: '1 · Audit (read-only)' listing Spec1-D1.4-Get-AuthenticationProtocolAudit and Spec3-D1.7-Get-SPNCollisionReport; '2 · Plan (derive)' showing New-FMPSpnRemediationPlan; and a red-bordered '3 · GPO (review-required)' showing Get-FMPNtlmGpoReport. Below, an amber band runs from 'Audit mode — log what would break' to a red 'Enforce — only after the audit report is clean and change-approved'. Federal navy, teal, amber and red palette; no photographs." width="100%"}
-
 ::: {.callout-tip}
 ## Download this book
 **[Book_06.docx](Book_06.docx)** — this entire book as a single Word document, images included. Regenerated on every site deploy.

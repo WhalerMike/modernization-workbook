@@ -157,8 +157,6 @@ Throughout Deployment), and the SR control family assessment.
 └─────────────────────────────────────────────────────────────────────┘
 ```
 
-![SBOM / VDR / VEX Pipeline — EO 14028 §4 Evidence Stages](figs/scrm-fig-01-sbom-pipeline.png){fig-alt="Seven-stage pipeline diagram for SBOM/VDR/VEX evidence. Stage 1: Source Code Repository (GitHub with branch protection). Stage 2: GitHub Actions CI Trigger (push, PR, or weekly scheduled). Stage 3: Syft SBOM Generation (CycloneDX 1.6 XML). Stage 4: Grype vulnerability scan producing the VDR (NVD/GHSA/KEV lookup, CVSS scores). Stage 5: VEX Authoring (OpenVEX CLI, exploitability assertions). Stage 6: Signed Artifact Store (GitHub Releases + Azure Blob immutable tier, SHA-256 integrity, immutable). Stage 7: Agency evidence repository + Sentinel (KSI evidence ingestion). Bottom shows three evidence tiers mandated by EO 14028 section 4 / NIST SP 800-161: Tier 1 SBOM (stages 1-3), Tier 2 VDR (stages 1-4), Tier 3 VEX (stages 1-7). Remediation SLAs for surfaced vulnerabilities follow CISA BOD 26-04. White background." width="100%"}
-
 ## SBOM Generation with Syft
 
 Syft (Anchore) is a widely used SBOM generator for federal systems. It
@@ -325,8 +323,6 @@ def triage_against_kev(vdr_path: str) -> list[dict]:
 VEX is the assertion layer — for every CVE in the VDR, the agency asserts
 whether it is exploitable in the specific deployment context.
 
-![VEX Exploitability Assessment — Decision Flow for Each CVE in VDR](figs/scrm-fig-02-vex-flow.png){fig-alt="Decision flow diagram for VEX exploitability assessment. Starting from CVE Identified in VDR Scan, first decision: Is the vulnerable component present in this build? If NO: not_affected (component absent). If YES: Is the vulnerable code path reachable at runtime? If NO: not_affected (code path not reachable, justify with call graph). If YES: affected (exploitable, create POA&M, CVSS 9+ requires 15-day remediation). Parallel check: Was a fix applied (patch/version bump)? If YES: fixed (include remediation commit SHA). If NO: under_investigation (30-day triage SLA). VEX format: CycloneDX 1.6 VEX or OpenVEX. Satisfies SR-6, SR-8, SA-11, and the Tier 3 VEX evidence requirement (EO 14028 section 4 / NIST SP 800-161)." width="100%"}
-
 ## VEX Status Values
 
 | Status | Meaning | Example |
@@ -448,8 +444,6 @@ the KSI-CMT sub-control requirements:
 
 : KSI-CMT Evidence Contract — Vol IV Book 02 Provides VER Evidence for KSI-011–014 {.striped .hover}
 
-![The SBOM/VDR/VEX pipeline upgrades four KSI-CMT rules from scaffold to evaluable](figs/scrm-fig-04-ksi-cmt-rules.png){#fig-scrm04 fig-alt="Four-quadrant card grid titled 'The pipeline upgrades four KSI rules to evaluable' under the KSI-CMT Evidence Contract heading. Card 1, KSI-011: Change logging and monitoring (CM-3, AU-6) — the SBOM diff between releases logs every dependency change with author, timestamp, and before/after hash into Sentinel. Card 2, KSI-012: Immutable redeployment over direct modification (CM-2, SA-10) — SLSA provenance proves the deployed artifact was built from versioned source, not modified in place. Card 3, KSI-013: Change-procedure effectiveness review (CM-3, CA-7) — the 90-day VEX review cycle is a dated, signed record, the effectiveness evidence the rule requires. Card 4, KSI-014: Automated validation throughout deployment (CM-3(2), SA-11) — Grype runs on every PR and blocks merge on a new critical CVE, validation per deployment. A summary banner states each KSI moves from scaffold to evaluable because the pipeline emits a machine-readable artifact an automated assessment can actually score. White background. Source: Vol IV Book 02 Supply Chain Risk Management briefing deck, Date Code 2026-07-09 17:00 ET." width="100%"}
-
 ---
 
 # SLSA Supply Chain Levels for Software Artifacts
@@ -466,7 +460,7 @@ compliance, progressing to Level 3 before the authorization deadline.
 
 : SLSA Levels and {{< meta agency.short >}} Implementation Path {.striped .hover}
 
-![SLSA provenance ladder — Level 1 provenance exists, Level 2 current {{< meta agency.short >}} target, Level 3 authorization-deadline goal](figs/scrm-fig-03-slsa-ladder.png){#fig-scrm03 fig-alt="Three-column comparison grid titled 'SLSA levels — the provenance ladder' under a Build Integrity heading. Column 1, Level 1: a provenance document exists — the GitHub Actions SBOM workflow produces a build attestation automatically, the entry rung present from day one, tagged 'Provenance exists.' Column 2, Level 2: hosted build with signed provenance — GitHub-hosted runners produce provenance signed by an OIDC token, tagged 'Current target' as the {{< meta agency.short >}} production posture. Column 3, Level 3: hardened build with two-party review — branch protection plus required reviewers on the release workflow, tagged 'Deadline goal' before the authorization deadline. A summary banner notes SLSA is the NIST-endorsed framework for measuring build integrity — the provenance thread that proves the component scanned is the component deployed. White background. Source: Vol IV Book 02 Supply Chain Risk Management briefing deck, Date Code 2026-07-09 17:00 ET." width="100%"}
+} production posture. Column 3, Level 3: hardened build with two-party review — branch protection plus required reviewers on the release workflow, tagged 'Deadline goal' before the authorization deadline. A summary banner notes SLSA is the NIST-endorsed framework for measuring build integrity — the provenance thread that proves the component scanned is the component deployed. White background. Source: Vol IV Book 02 Supply Chain Risk Management briefing deck, Date Code 2026-07-09 17:00 ET." width="100%"}
 
 ---
 

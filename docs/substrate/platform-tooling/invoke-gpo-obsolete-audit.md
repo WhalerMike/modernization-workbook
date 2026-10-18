@@ -29,7 +29,7 @@ have to reconcile "missing" GPOs against an external inventory.
 
 | Artifact | Version | SHA256 |
 |---|---|---|
-| [`Invoke-GpoObsoleteAudit.ps1`](scripts/Invoke-GpoObsoleteAudit.ps1) | 1.0 | `958010c1f2f13da203074df76b0cca5c04f6b308abceffc4e2ca95ef6245342f` |
+| `Invoke-GpoObsoleteAudit.ps1` | 1.0 | `958010c1f2f13da203074df76b0cca5c04f6b308abceffc4e2ca95ef6245342f` |
 
 Verify integrity after download:
 

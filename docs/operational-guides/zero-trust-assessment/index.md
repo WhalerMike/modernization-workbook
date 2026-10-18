@@ -207,7 +207,7 @@ Copy-Item .\fmp-cli\scripts\FMP.ConfigTools $dest -Recurse -Force
 
 | Script | Version | SHA-256 |
 |---|---|---|
-| [`Invoke-ZtDashboard.ps1`](scripts/Invoke-ZtDashboard.ps1) | 1.1 | `f30811fd01616e2960e12dd0e870a4d19cd52a7c5c79f0e3bcc592ca5d13d509` (v1.0 base) |
+| `Invoke-ZtDashboard.ps1` | 1.1 | `f30811fd01616e2960e12dd0e870a4d19cd52a7c5c79f0e3bcc592ca5d13d509` (v1.0 base) |
 
 Verify the download before running it:
 

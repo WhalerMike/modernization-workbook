@@ -17,8 +17,6 @@ lifecycle_review: 2026-11-22
 
 # Cloud Boundary — Case Study
 
-![Boundary feature-disposition matrix](images/reference-deployment-opm-hrit-to-image-02-hrit-inbound-provisioning-pipeli.png){#fig-cloud-boundary-case-study-image-02 fig-alt="Boundary feature-disposition matrix. Engineering blueprint style, neutral slate background, federal navy (#1F3A5F) for primary structural elements, teal (#1A9E8F) for secondary/integration elements, amber (#D4A017) for governance/audit/registry overlays, monospace labels for identifiers, no human figures, 16:9 landscape." width="100%"}
-
 
 ::: {.callout-important}
 ## Framing pattern, not a fabricated engagement
@@ -59,7 +57,7 @@ does not clearly document which features behave this way.
 
 The substrate addresses each impact dimension via in-boundary
 mechanisms (per
-[`gcc-boundary-solution-architecture.qmd`](../../docs/gcc-boundary-solution-architecture.qmd)):
+`gcc-boundary-solution-architecture.qmd`):
 
 ### 1. Boundary probe
 

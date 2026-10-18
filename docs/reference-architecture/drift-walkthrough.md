@@ -23,8 +23,6 @@ aliases:
 If you have not yet read [Where OrgTree & the organizational-attribute model Data Lives](../architecture/where-data-lives.md), start there. This page picks up from that mental model and answers the next question: *once the storage layers exist, how does the governance engine catch when they disagree?* The authoritative spec is FMP_163 (Drift Detection Engine); this page is the prose tour.
 :::
 
-![Drift Detection Engine — six-phase control loop with five drift categories fanning out from Classify and a severity-to-SLA ladder hanging off Alert.](../../images/canonical/FMP-FIG-013-drift-engine-six-phase-loop.png){#fig-drift-engine-loop fig-alt="the Federal Modernization Program Drift Detection Engine six-phase control loop: Snapshot → Compare → Classify → Alert → Remediate → Verify, with a feedback re-scan arrow closing the loop back to Snapshot. Five drift categories fan out from the Classify stage. A severity-to-SLA ladder (P1 through P4) hangs off the Alert stage. Handoff arrow from Alert to the Evidence Fabric for immutable, hash-chained recording. 16:9 pipeline-flow diagram, navy and teal palette." width="100%"}
-
 ## The job of the drift engine
 
 Every governance pipeline rests on the assumption that three things agree: the HR system's view of who works where, the Entra ID directory's 10 named `extensionAttribute*` slot values for every principal, and the codebook's per-facet enumerations of valid values. The drift engine's job is to *not believe that assumption*. It re-checks, on a schedule, that the three layers still line up — per facet, per principal — and when they don't, it emits a structured finding that names the disagreement precisely enough for a human to fix it (or, in some cases, fixes it automatically).

@@ -39,8 +39,6 @@ unchanged. Do not copy the slot numbers or value shapes; the authoritative map i
 # Implementation Book 07 — Groups, Administrative Units & the Conditional Access Perimeter
 :::
 
-![Groups are classified before they become logins: export the group estate, classify each group by what it should govern, emit the group-login script, and bound it with the Conditional Access perimeter.](images/book07-image-01-groups-and-aus.png){#fig-impl-book07 fig-alt="A schematic on a white background. Three stages flow left to right under teal arrows: Export-FMPEntraGroups (with Export-FMPConditionalAccess; export, read-only), New-FMPEntraGroupClassification (role-bearing → SQL login; structural / stale → not a login), and New-FMPGroupLoginScript (emits a CREATE LOGIN FROM EXTERNAL PROVIDER script). Below, a dashed blue 'Conditional Access perimeter' encloses three boxes: 'group → SQL login', 'administrative units — scoped delegation', and 'CA policy — device · MFA · network bound'. Federal navy, teal and blue palette; no photographs." width="100%"}
-
 ::: {.callout-tip}
 ## Download this book
 **[Book_07.docx](Book_07.docx)** — this entire book as a single Word document, images included. Regenerated on every site deploy.

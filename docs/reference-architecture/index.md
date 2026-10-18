@@ -138,7 +138,7 @@ The other three names (Boundary Enforcement, Two-Brain Execution, Tenant Agnosti
 
 | Section | What is There |
 |---------|-------------|
-| [Identity Modernization (OrgTree)](orgtree.html) | The A-Z Suite: 27 canonical artifacts (FMP_150 + FMP_151–FMP_176) governing user hierarchy, dynamic groups, delegation, migration, drift detection, and operational governance |
+| Identity Modernization (OrgTree) | The A-Z Suite: 27 canonical artifacts (FMP_150 + FMP_151–FMP_176) governing user hierarchy, dynamic groups, delegation, migration, drift detection, and operational governance |
 | [Directory Migration](directory-migration.html) | 8 adapter interfaces for every infrastructure service AD was holding together: IPAM, PKI, RADIUS, LDAP, sync engines, devices, NTP, DFS |
 
 ### Explainers and walk-throughs

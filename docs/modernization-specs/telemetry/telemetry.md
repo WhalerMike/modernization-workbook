@@ -16,10 +16,6 @@ lifecycle_review: 2026-11-22
 
 # Telemetry Modernization Spec
 
-![Current state (vendor-specific log dumps, gaps)](images/telemetry-image-02-current-state-vendor-specific-lo.png){#fig-telemetry-image-02 fig-alt="Current state (vendor-specific log dumps, gaps). Engineering blueprint style, neutral slate background, federal navy (#1F3A5F) for primary structural elements, teal (#1A9E8F) for secondary/integration elements, amber (#D4A017) for governance/audit/registry overlays, monospace labels for identifiers, no human figures, 16:9 landscape." width="100%"}
-
-![Target state (canonical envelope + the program decision lifecycle)](images/telemetry-image-03-target-state-canonical-envelope.png){#fig-telemetry-image-03 fig-alt="Target state (canonical envelope + the program decision lifecycle). Engineering blueprint style, neutral slate background, federal navy (#1F3A5F) for primary structural elements, teal (#1A9E8F) for secondary/integration elements, amber (#D4A017) for governance/audit/registry overlays, monospace labels for identifiers, no human figures, 16:9 landscape." width="100%"}
-
 
 ## Scope
 
@@ -29,8 +25,6 @@ requirements, evidence pipeline integration, and the determinism
 guarantees telemetry adapters must honor. This spec is the substrate
 contract every telemetry-emitting adapter inherits, regardless of
 mission-class.
-
-![Telemetry domain pipeline diagram](images/telemetry-image-01-telemetry-domain-pipeline-diagra.png){#fig-telemetry-image-01 fig-alt="Horizontal flow from left to right: Adapter Boundary (telemetry capture) → Provenance Envelope Wrapper (canonical claim normalization) → Bundle Assembler (per the program decision lifecycle) → OSCAL Emission (SSP / POA&M / KSI / Component Definition). Below the pipeline, a \"Determinism Guards\" footer band lists the four the program decision properties (no silent drops, append-only, ordered, idempotent). To the right of the pipeline, a small panel showing per-adapter retention contract per modernization-registry entry. Clean engineering blueprint style, dark navy (#0D1B2E) and teal (#1E8C8C) on white background. No photographs, purely diagrammatic." width="100%"}
 
 ## Substrate contract
 

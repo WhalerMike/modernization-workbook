@@ -194,7 +194,7 @@ only the manual path produces the same findings as the governed path — the
 difference is what happens next. The governed path automates disposition;
 the manual path leaves it to the operator. Both are valid starting points.
 
-See [`inbox/drafts/omb-ai-governance-comment.md`](../../../../inbox/drafts/omb-ai-governance-comment.md)
+See `inbox/drafts/omb-ai-governance-comment.md`
 for the proposed OMB schema-extension letter that accompanies this kit.
 :::
 
@@ -202,7 +202,7 @@ for the proposed OMB schema-extension letter that accompanies this kit.
 
 ## Normative references
 
-- [`src/fmp/canon/specs/Spec4-AI-D1.1-AISystemIdentityRecord.md`](../../../../src/fmp/canon/specs/Spec4-AI-D1.1-AISystemIdentityRecord.md) — FMP_196 AI System Identity Record schema
-- [`src/fmp/canon/specs/Spec4-AI-D1.2-AISystemJMLLifecycle.md`](../../../../src/fmp/canon/specs/Spec4-AI-D1.2-AISystemJMLLifecycle.md) — FMP_197 AI System JML Lifecycle
+- `src/fmp/canon/specs/Spec4-AI-D1.1-AISystemIdentityRecord.md` — FMP_196 AI System Identity Record schema
+- `src/fmp/canon/specs/Spec4-AI-D1.2-AISystemJMLLifecycle.md` — FMP_197 AI System JML Lifecycle
 - the program decision — Federal AI Use Case Governance
 - the program decision — AI System JML Lifecycle

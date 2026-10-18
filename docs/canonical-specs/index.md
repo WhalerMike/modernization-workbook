@@ -45,9 +45,9 @@ cited fact (see [the program decision]).
 
 | Spec | Title |
 |---|---|
-| [FMP_002](FMP_002_SCuBA_Technical_Specification_v1.0.qmd) | SCuBA Technical Specification |
-| [FMP_003](FMP_003_Adapter_Segmentation_Overview_v1.0.qmd) | Adapter Segmentation Overview |
-| [FMP_005](FMP_005_SCuBA_Value_Proposition_v1.0.qmd) | Value Proposition — Two-Way Governance for SCuBA & BOD 25-01 |
+| [FMP_002](002_SCuBA_Technical_Specification_v1.0.md) | SCuBA Technical Specification |
+| [FMP_003](003_Adapter_Segmentation_Overview_v1.0.md) | Adapter Segmentation Overview |
+| [FMP_005](005_SCuBA_Value_Proposition_v1.0.md) | Value Proposition — Two-Way Governance for SCuBA & BOD 25-01 |
 
 ## Identity, the organizational-attribute model & addressing planes
 
@@ -57,32 +57,32 @@ cited fact (see [the program decision]).
 | [FMP_014](schemas/014_GPO_Modernization_Parse_Crosswalk_OrgPath_Join_v1.0.md) | GPO Modernization — Parse, Crosswalk, the organizational-attribute model Join |
 | [the directory modernization program | Identity & Directory Transformation Inventory — AD to Entra ID |
 | [FMP_193](schemas/193_OrgPath_MultiCloud_Binding.md) | the organizational-attribute model Multi-Cloud Binding Profiles — Vendor-Neutral Storage Contract |
-| [FMP_194](FMP_194_LocPath_Codebook.qmd) | LocPath Codebook — Canonical Physical-Location Addressing |
-| [FMP_195](FMP_195_Addressing_Plane_Drift_Taxonomy.qmd) | Addressing-Plane Drift Taxonomy — DNS & Namespace Governance |
+| [FMP_194](schemas/194_LocPath_Codebook.md) | LocPath Codebook — Canonical Physical-Location Addressing |
+| [FMP_195](schemas/195_Addressing_Plane_Drift_Taxonomy.md) | Addressing-Plane Drift Taxonomy — DNS & Namespace Governance |
 
 ## PowerShell module specifications
 
 | Spec | Title |
 |---|---|
-| [FMP_181](FMP_181_FMPIdentityAssessment_Module_Specification.qmd) | FMPIdentityAssessment Module Specification |
-| [FMP_182](FMP_182_FMPImportAdapters_Module_Specification.qmd) | FMPImportAdapters Module Specification |
-| [FMP_183](FMP_183_FMPPlanGenerators_Module_Specification.qmd) | FMPPlanGenerators Module Specification |
+| [FMP_181](schemas/181_FMPIdentityAssessment_Module_Specification.md) | FMPIdentityAssessment Module Specification |
+| [FMP_182](schemas/182_FMPImportAdapters_Module_Specification.md) | FMPImportAdapters Module Specification |
+| [FMP_183](schemas/183_FMPPlanGenerators_Module_Specification.md) | FMPPlanGenerators Module Specification |
 
 ## Governance, compliance & FedRAMP program documents
 
 | Spec | Title |
 |---|---|
-| [FMP_184](FMP_184_Gap_Closure_Register.qmd) | Gap Closure Register — The Gap That Remains |
-| [FMP_185](FMP_185_System_Security_Plan_Template.qmd) | System Security Plan (SSP) Template |
-| [FMP_186](FMP_186_Incident_Response_Plan.qmd) | Incident Response Plan |
-| [FMP_187](FMP_187_Security_Awareness_and_Training_Program.qmd) | Security Awareness and Training Program |
-| [FMP_188](FMP_188_Personnel_Security_Program.qmd) | Personnel Security Program |
-| [FMP_189](FMP_189_POAM_Template.qmd) | Plan of Action and Milestones (POA&M) Template |
-| [FMP_190](FMP_190_Continuous_Monitoring_Strategy.qmd) | Continuous Monitoring Strategy |
-| [FMP_191](FMP_191_Supply_Chain_Risk_Management_Plan.qmd) | Supply Chain Risk Management Plan |
-| [FMP_192](FMP_192_Privacy_Impact_Assessment.qmd) | Privacy Impact Assessment |
-| [FMP_198](FMP_198_Risk_Assessment_Methodology.qmd) | Risk Assessment Methodology (NIST SP 800-30 Rev 1) |
-| [FMP_206](FMP_206_FedRAMP_KSI_Continuous_Reporting_Runbook.qmd) | FedRAMP KSI Evidence Platform — Continuous Reporting Runbook |
+| [FMP_184](184_Gap_Closure_Register.md) | Gap Closure Register — The Gap That Remains |
+| [FMP_185](185_System_Security_Plan_Template.md) | System Security Plan (SSP) Template |
+| [FMP_186](186_Incident_Response_Plan.md) | Incident Response Plan |
+| [FMP_187](187_Security_Awareness_and_Training_Program.md) | Security Awareness and Training Program |
+| [FMP_188](188_Personnel_Security_Program.md) | Personnel Security Program |
+| [FMP_189](189_POAM_Template.md) | Plan of Action and Milestones (POA&M) Template |
+| [FMP_190](190_Continuous_Monitoring_Strategy.md) | Continuous Monitoring Strategy |
+| [FMP_191](191_Supply_Chain_Risk_Management_Plan.md) | Supply Chain Risk Management Plan |
+| [FMP_192](192_Privacy_Impact_Assessment.md) | Privacy Impact Assessment |
+| [FMP_198](198_Risk_Assessment_Methodology.md) | Risk Assessment Methodology (NIST SP 800-30 Rev 1) |
+| [FMP_206](206_FedRAMP_KSI_Continuous_Reporting_Runbook.md) | FedRAMP KSI Evidence Platform — Continuous Reporting Runbook |
 
 ## Provenance
 

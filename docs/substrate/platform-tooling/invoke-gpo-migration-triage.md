@@ -35,7 +35,7 @@ than being hidden behind a single opaque guess.
 
 | Artifact | Version | SHA256 |
 |---|---|---|
-| [`Invoke-GpoMigrationTriage.ps1`](scripts/Invoke-GpoMigrationTriage.ps1) | 1.0 | `afe88fb798e41acd61c714341420551fb7e06d0c8f80d58d31f84e98080ba603` |
+| `Invoke-GpoMigrationTriage.ps1` | 1.0 | `afe88fb798e41acd61c714341420551fb7e06d0c8f80d58d31f84e98080ba603` |
 
 ::: {.callout-note title="Need offline the Federal Modernization Program install media?"}
 Download the full CLI kit from Downloads → the Federal Modernization Program CLI Kit:
@@ -492,4 +492,4 @@ keyed by `GpoId`, so a downstream Evidence-Ledger join is trivial.
 | Target | Windows Server with RSAT (GroupPolicy + ActiveDirectory modules) |
 | Outputs | `gpo-migration-triage-summary.json`, `gpo-migration-triage-detail.json` |
 | Optional module | `FMP.ConfigTools` v1.2.0 (prereq validation + transcript logging) |
-| Related | [`Invoke-GpoObsoleteAudit.ps1`](invoke-gpo-obsolete-audit.qmd), [`FMP.ConfigTools` module reference](powershell-module-reference.qmd), `tools/discovery/Spec1-D1.3-Get-GPODeviceDependencyMap.ps1` |
+| Related | [`Invoke-GpoObsoleteAudit.ps1`](invoke-gpo-obsolete-audit.qmd), `FMP.ConfigTools` module reference, `tools/discovery/Spec1-D1.3-Get-GPODeviceDependencyMap.ps1` |

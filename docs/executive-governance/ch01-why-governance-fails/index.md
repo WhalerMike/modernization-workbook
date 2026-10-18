@@ -19,8 +19,6 @@ lifecycle_review: 2026-11-22
 
 # Why Governance Fails
 
-![Four structural failure-mode silos with missing-substrate bar](images/index-image-02-four-structural-failure-mode-sil.png){#fig-index-image-02 fig-alt="Four structural failure-mode silos with missing-substrate bar. Engineering blueprint style, neutral slate background, federal navy (#1F3A5F) for primary structural elements, teal (#1A9E8F) for secondary/integration elements, amber (#D4A017) for governance/audit/registry overlays, monospace labels for identifiers, no human figures, 16:9 landscape." width="100%"}
-
 
 ::: {.callout-note}
 ## In this chapter
@@ -31,8 +29,6 @@ uncorrelated telemetry, point-in-time evidence, and tool-shaped policy —
 and explains why each is a *substrate* problem rather than a tool problem.
 The chapters that follow build the substrate-level response.
 :::
-
-![Diagram showing four common governance failure modes as silos](images/index-image-01-diagram-showing-four-common-gove.png){#fig-index-image-01 fig-alt="Four vertical columns labeled Fragmented Identity, Uncorrelated Telemetry, Point-in-Time Evidence, Tool-Shaped Policy — each shows a tool-stack icon with broken connections (red dashes). Below the silos, a horizontal bar labeled \"Missing Substrate\" emphasizes the absent connecting layer. Clean engineering blueprint style, dark navy (#0D1B2E) and teal (#1E8C8C) on white background, with red (#C74040) reserved for the broken connections. No photographs, purely diagrammatic." width="100%"}
 
 ## The four structural failure modes
 
@@ -137,4 +133,4 @@ Next: [Chapter 2 — The Compliance Paradox](../ch02-compliance-paradox/index.md
 
 - [Executive Governance Series Index](../index.html)
 - [Governance OS Canonical Suite](../governance-os-canonical-suite.md)
-- [Document Index](../../document-index.html)
+- Document Index

@@ -17,8 +17,6 @@ lifecycle_review: 2027-01-01
 # Implementation Book 08 — The Application Chain & Connection-String Migration
 :::
 
-![The last mile: inventory who still binds with a stored secret, plan the per-app cutover, then change the connection string in application configuration so the password leaves the chain entirely.](images/book08-image-01-connection-string.png){#fig-impl-book08 fig-alt="A schematic on a white background. A top row flows left to right under teal arrows: Spec3-D1.9-Get-LDAPBindAccountInventory (read-only), New-FMPAppConnectionPlan (derive), and a red-bordered 'change in app configuration' box (not a SQL script; review-required). Below, a red 'before — stored credential' connection string (Server, User Id, Password) flows by teal arrow to a teal 'after — no secret, token-based' string (Server, Authentication=Active Directory Managed Identity). Federal navy, teal and red palette; no photographs." width="100%"}
-
 ::: {.callout-tip}
 ## Download this book
 **[Book_08.docx](Book_08.docx)** — this entire book as a single Word document, images included. Regenerated on every site deploy.

@@ -12,8 +12,6 @@ lifecycle_review: 2026-11-22
 
 # Drift Engine
 
-![Continuous monitoring pipeline](../../images/canonical/FMP-FIG-003-continuous-monitoring-pipeline.png){fig-alt="FMP continuous monitoring pipeline showing how declared canonical state is checked against observed runtime reality at scale." width="100%"}
-
 FMP treats **drift as a first-class operational signal**, not as an
 exception. The Drift Engine is the substrate-wide subsystem that classifies,
 prioritizes, and remediates the gap between *declared* canonical state and
@@ -29,7 +27,7 @@ catches today, and what is reserved for runtime maturity.
 ## Five-class taxonomy
 
 FMP defines exactly five drift classes, declared in
-[`16_DriftDetectionStandard.qmd` §2](../../docs/16_DriftDetectionStandard.qmd):
+`16_DriftDetectionStandard.qmd` §2:
 
 | Class | Meaning | Detection surface |
 |---|---|---|
@@ -96,7 +94,7 @@ remediation_contract:
   escalation_path: "Canon Steward | Architecture Lead | CISO"
 ```
 
-Source: [`16_DriftDetectionStandard.qmd` §4](../../docs/16_DriftDetectionStandard.qmd).
+Source: `16_DriftDetectionStandard.qmd` §4.
 
 The **Drift Fabric** view ties the detection surfaces above into a single
 pipeline — canonical state read, delta comparison, classification, and the

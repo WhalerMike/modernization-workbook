@@ -14,8 +14,6 @@ lifecycle_review: 2026-11-22
 
 # Reciprocity & Single-ATO Overview — Executive Brief
 
-![Before and after the Federal Modernization Program](../../images/canonical/FMP-FIG-004-before-after-fmp.png){fig-alt="Before: each consuming agency repeats its own authorization. After: one controlling ATO with signed per-agency reciprocity records under a single source of evidence." width="100%"}
-
 The Single-ATO Reciprocity Model answers a specific federal problem: when one
 platform (for example, an OPM-operated HRIT service) is consumed by many
 agencies, do you re-authorize it N times, or once? The Federal Modernization Program's canon

@@ -20,8 +20,6 @@ lifecycle_review: 2026-11-22
 
 # Evidence over Attestation
 
-![Attestation-primary vs evidence-primary stack inversion](images/index-image-02-attestation-primary-vs-evidence.png){#fig-index-image-02 fig-alt="Attestation-primary vs evidence-primary stack inversion. Engineering blueprint style, neutral slate background, federal navy (#1F3A5F) for primary structural elements, teal (#1A9E8F) for secondary/integration elements, amber (#D4A017) for governance/audit/registry overlays, monospace labels for identifiers, no human figures, 16:9 landscape." width="100%"}
-
 
 ::: {.callout-note}
 ## In this chapter
@@ -32,8 +30,6 @@ treats evidence as the primary artifact and attestation as a
 supplemental layer rather than the other way around. This chapter
 explains why the inversion matters and what changes operationally.
 :::
-
-![Attestation-versus-evidence-stack diagram](images/index-image-01-attestation-versus-evidence-stac.png){#fig-index-image-01 fig-alt="Two parallel vertical stacks. Left stack labeled \"Attestation primary\" shows a thin \"machine evidence\" base topped by a thick \"human attestation\" cap; an arrow shows the human cap as the primary artifact. Right stack labeled \"Evidence primary (the Federal Modernization Program)\" shows a thick \"canonical machine evidence\" base with a thin \"human review\" cap; an arrow shows the evidence base as the primary artifact. A footer line emphasizes \"human review remains, but is not load-bearing for verification\". Clean engineering blueprint style, dark navy (#0D1B2E) and teal (#1E8C8C) on white background. No photographs, purely diagrammatic." width="100%"}
 
 ## What attestation is and is not
 
@@ -64,7 +60,7 @@ on top.
 
 ## What "evidence" means in canon
 
-Per [`15_ProvenanceProfile.qmd`](../../../docs/15_ProvenanceProfile.qmd),
+Per `15_ProvenanceProfile.qmd`,
 every claim emitted into the substrate carries the full provenance
 envelope: claim_id, issuer_identity, source_classification, extraction
 timestamp and method, transformation_chain, lineage_hash, schema_version,

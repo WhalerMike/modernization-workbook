@@ -12,8 +12,6 @@ lifecycle_review: 2026-11-22
 
 # Three-Layer Rule Model
 
-![Three compliance layers](../../images/canonical/FMP-FIG-005-three-compliance-layers.png){fig-alt="Layered diagram showing the three policy baselines FMP evaluates — FedRAMP Moderate Rev 5, CISA SCuBA / [BOD 25-01](https://cyber.dhs.gov/bod/25-01/), and organizational policy — and how they map to the canon / policy / runtime rule layers." width="100%"}
-
 FMP separates rule authoring into **three distinct layers** so that policy
 intent, evaluation logic, and runtime enforcement can be reasoned about,
 versioned, and drift-detected independently. Mixing them — the typical
@@ -89,12 +87,10 @@ rules and policy mappings against live state. It lives in two places:
 - **Enforcement runtime** under `src/fmp/enforcement/` — library-only
   today (FMP_111). Policies are Python callables; there is no CLI surface
   for the enforcement runtime, by design — see
-  [`cli-reference.qmd §4.1`](../../docs/cli-reference.qmd).
+  `cli-reference.qmd §4.1`.
 
 The runtime layer is the **only** layer allowed to mutate observable state.
 Canon and policy are read-only at runtime; only the runtime layer can act.
-
-![Drift-class to rule-layer alignment matrix](images/three-layer-rule-model-image-02-drift-class-to-rule-layer-alignm.png){#fig-three-layer-rule-model-image-02 fig-alt="Three columns labeled Canon / Policy / Runtime. Five rows for each drift class. Filled cells indicate which layer that drift class maps to: SCHEMA in Canon column, SEMANTIC spanning Canon-to-Runtime as a long teal bar, PROVENANCE in Policy column, AUTHZ in Runtime column, IDENTITY in Runtime column. Cells contain short remediation hints (e.g. \"schema regen\", \"registry edit\", \"code change\"). Clean engineering blueprint style, dark navy (#0D1B2E) and teal (#1E8C8C) on white background. No photographs, purely diagrammatic." width="100%"}
 
 ## How drift maps onto the layers
 

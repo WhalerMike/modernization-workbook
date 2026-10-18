@@ -35,7 +35,7 @@ page describes the planes that the canon governs and the drift engine watches.
 | **Security & Compliance** | Zero Trust enforcement and FedRAMP alignment |
 | **Management** | Governance, drift detection, CMDB, device compliance |
 
-Source: [`docs/docs/01_UnifiedArchitecture.qmd` §4](../../docs/01_UnifiedArchitecture.qmd).
+Source: `docs/docs/01_UnifiedArchitecture.qmd` §4.
 
 ## Why six planes (and not, say, three or twelve)
 

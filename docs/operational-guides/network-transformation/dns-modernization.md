@@ -21,16 +21,6 @@ tiers_adopted: [1]
 lifecycle_review: 2026-11-22
 ---
 
-![AD-integrated DNS landscape decomposition](images/dns-modernization-image-01-ad-integrated-dns-landscape-deco.png){#fig-dns-modernization-image-01 fig-alt="AD-integrated DNS landscape decomposition. Engineering blueprint style, neutral slate background, federal navy (#1F3A5F) for primary structural elements, teal (#1A9E8F) for secondary/integration elements, amber (#D4A017) for governance/audit/registry overlays, monospace labels for identifiers, no human figures, 16:9 landscape." width="100%"}
-
-![target hybrid architecture with Azure DNS Private Resolver](images/dns-modernization-image-02-target-hybrid-architecture-with.png){#fig-dns-modernization-image-02 fig-alt="target hybrid architecture with Azure DNS Private Resolver. Engineering blueprint style, neutral slate background, federal navy (#1F3A5F) for primary structural elements, teal (#1A9E8F) for secondary/integration elements, amber (#D4A017) for governance/audit/registry overlays, monospace labels for identifiers, no human figures, 16:9 landscape." width="100%"}
-
-![split-brain resolution pattern](images/dns-modernization-image-03-split-brain-resolution-pattern.png){#fig-dns-modernization-image-03 fig-alt="split-brain resolution pattern. Engineering blueprint style, neutral slate background, federal navy (#1F3A5F) for primary structural elements, teal (#1A9E8F) for secondary/integration elements, amber (#D4A017) for governance/audit/registry overlays, monospace labels for identifiers, no human figures, 16:9 landscape." width="100%"}
-
-![private endpoint privatelink zone wiring](images/dns-modernization-image-04-private-endpoint-privatelink-zon.png){#fig-dns-modernization-image-04 fig-alt="private endpoint privatelink zone wiring. Engineering blueprint style, neutral slate background, federal navy (#1F3A5F) for primary structural elements, teal (#1A9E8F) for secondary/integration elements, amber (#D4A017) for governance/audit/registry overlays, monospace labels for identifiers, no human figures, 16:9 landscape." width="100%"}
-
-![zone-migration sequence](images/dns-modernization-image-05-zone-migration-sequence.png){#fig-dns-modernization-image-05 fig-alt="zone-migration sequence. Engineering blueprint style, neutral slate background, federal navy (#1F3A5F) for primary structural elements, teal (#1A9E8F) for secondary/integration elements, amber (#D4A017) for governance/audit/registry overlays, monospace labels for identifiers, no human figures, 16:9 landscape." width="100%"}
-
 
 **CONTROLLED --- GCC-MODERATE BOUNDARY --- the Federal Modernization Program CANON COMPANION DOCUMENT**
 
@@ -66,7 +56,7 @@ Version 1.0 \| April 20, 2026
 
 ## Canon Phase Mapping (the program decision)
 
-This guide's 11 operational phases refine the canonical six-phase Directory Migration model published in [`docs/customer-documents/reference-architecture/directory-migration.qmd`](../../../../customer-documents/reference-architecture/directory-migration.qmd). The mapping below shows which canon phase each DNS phase executes. Per [the program decision], the customer-side detail (operational sequencing, gates, runbook material) is preserved unchanged; the mapping is purely a navigational anchor so readers can trace customer phases back to canon scaffold.
+This guide's 11 operational phases refine the canonical six-phase Directory Migration model published in [`docs/customer-documents/reference-architecture/directory-migration.qmd`](../../reference-architecture/directory-migration.md). The mapping below shows which canon phase each DNS phase executes. Per [the program decision], the customer-side detail (operational sequencing, gates, runbook material) is preserved unchanged; the mapping is purely a navigational anchor so readers can trace customer phases back to canon scaffold.
 
 | Customer phase (this guide) | Canon phase (the program decision) |
 |---|---|

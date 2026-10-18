@@ -25,10 +25,6 @@ lifecycle_review: 2026-11-22
 
 # Federal Civilian OPM HRIT → Entra ID — Reference Deployment Pattern
 
-![HRIT inbound provisioning pipeline](images/reference-deployment-opm-hrit-to-image-02-hrit-inbound-provisioning-pipeli.png){#fig-reference-deployment-opm-hrit-to-entra-image-02 fig-alt="HRIT inbound provisioning pipeline. Engineering blueprint style, neutral slate background, federal navy (#1F3A5F) for primary structural elements, teal (#1A9E8F) for secondary/integration elements, amber (#D4A017) for governance/audit/registry overlays, monospace labels for identifiers, no human figures, 16:9 landscape." width="100%"}
-
-![Six-phase deployment with drift findings](images/reference-deployment-opm-hrit-to-image-03-six-phase-deployment-with-drift.png){#fig-reference-deployment-opm-hrit-to-entra-image-03 fig-alt="Six-phase deployment with drift findings. Engineering blueprint style, neutral slate background, federal navy (#1F3A5F) for primary structural elements, teal (#1A9E8F) for secondary/integration elements, amber (#D4A017) for governance/audit/registry overlays, monospace labels for identifiers, no human figures, 16:9 landscape." width="100%"}
-
 
 ::: {.callout-important}
 ## Framing pattern, not a fabricated engagement
@@ -111,12 +107,12 @@ Spec2-D1.1 Canonical HR Attribute Schema:
   `locationCode`, `country`, `employmentStatus`, `extracted_at`,
   `adapter_metadata`).
 - The adapter is registered in canon under
-  [`adapter-registry.yaml`](../../../src/fmp/canon/adapter-registry.yaml)
+  `adapter-registry.yaml`
   with its `class: modernization`, `mission-class: identity`,
   `gcc-boundary: gcc-moderate` declarations.
 
 The adapter onboarding follows
-[`Spec2-D5.4`](../../../src/fmp/canon/specs/Spec2-D5.4-HRSystemOnboardingPlaybook.md)
+`Spec2-D5.4`
 — the canonical playbook every per-source adapter follows. For the
 NFC instance, the substrate also runs the PowerShell discovery
 generator at `tools/discovery/Spec2-D1.1-Get-HRAttributeSchema.ps1`
@@ -175,7 +171,7 @@ sole Privacy Act system of records.
 ## Phase 4 — Joiner / Mover / Leaver workflows
 
 Once records are landing in OPM Entra, the substrate's JML workflows
-([`Spec2-D2.1`](../../../src/fmp/canon/specs/Spec2-D2.1-JoinerWorkflowSpecification.md)
+(`Spec2-D2.1`
 + D2.2 Mover + D2.3 Leaver) take over the operational lifecycle:
 
 | Workflow | Trigger | Substrate action |
@@ -194,7 +190,7 @@ per the program decision.
 
 Once the pipeline is operating, the substrate continuously monitors
 for drift between the HR system and Entra ID per
-[`Spec2-D5.5`](../../../src/fmp/canon/specs/Spec2-D5.5-ProvisioningDriftDetectionRules.md).
+`Spec2-D5.5`.
 The drift surface maps to the canonical five-class taxonomy in
 Doc 16:
 

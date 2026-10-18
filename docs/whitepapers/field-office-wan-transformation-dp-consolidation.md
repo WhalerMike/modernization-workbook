@@ -146,8 +146,6 @@ Assumption 1 (current MPLS cost per site — not yet validated; see
 Section 9); it is a base-case figure, not a floor. Section 6 gives the
 model and sensitivity analysis.*
 
-![Capacity, not office count, sizes the content tier. Left panel, red border: the proposed state — 1,500 distribution points, one per field office, illustrated as a grid of small boxes with a callout stating this count is driven by branch transport constraints rather than Configuration Manager capacity, costing $50.0M ($33,333 per site) for a tier already being retired. A teal arrow labeled "size to capacity" points right. Right panel, teal border: the target state — 24 distribution points across 12 hubs, broken into a primary data center (2 DPs) and secondary data center (2 DPs) each with HA pairs, plus 10 regional hubs with 20 pull DPs sourcing from the two data centers, confining fan-out to a 2-to-20 relationship. A callout shows the math: 70,000 endpoints divided by the 4,000-per-DP ceiling equals 18 minimum, with 24 deployed for 73% target utilization, yielding 96,000 client capacity and 37% headroom. A navy banner across the bottom states that distribution point count is a network-topology decision, not a Configuration Manager capacity decision, and that fixing branch transport collapses the content tier from 1,500 sites to 12 — a 98.4% reduction — sourced to Microsoft Learn's Configuration Manager size-and-scale documentation.](images/field-office-wan-transformation-dp-consolidation-diagram-01-capacity-driven-consolidation.png){#fig-capacity-driven-consolidation width="100%"}
-
 ::: {.callout-tip}
 ## Recommendation
 
@@ -770,8 +768,6 @@ content-delivery problem solved narrowly, with no interest in the other
 workloads, should weigh the \$10.0M capital figure against the
 transport-related recurring savings in Section 6.1 alone rather than
 against the full capability list in the headline comparison.
-
-![Two paths, five years: cumulative cash position. A line chart with years 1 through 5 on the horizontal axis and cumulative dollar position from +$10M to −$50M on the vertical axis. A flat red line at −$50.0M represents the distribution point refresh, holding at that level across all five years with a label noting it recurs at the next refresh cycle. A rising teal line represents the SD-WAN, DIA, and 5G network modernization program: −$10.0M in year 1, −$8.23M in year 2, −$4.11M in year 3, crossing zero to +$1.78M in year 4 (marked "turns cash-positive" with an open circle), and +$7.67M in year 5. A navy banner at the bottom states the five-year delta between the two paths is approximately $57.7M and that the breakeven threshold is $873 per site per month of current MPLS spend.](images/field-office-wan-transformation-dp-consolidation-diagram-02-five-year-cash-position.png){#fig-five-year-cash-position width="100%"}
 
 ### 6.3 Sensitivity to current MPLS cost
 

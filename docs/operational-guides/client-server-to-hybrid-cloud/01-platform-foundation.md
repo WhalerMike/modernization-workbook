@@ -15,12 +15,8 @@ lifecycle_review: 2026-11-22
 
 # Chapter 01 — The Federal Modernization Program Platform Server {.unnumbered}
 
-![Five-role stack on one WS2025 host](images/01-platform-foundation-image-03-five-role-stack-on-one-ws2025-ho.png){#fig-01-platform-foundation-image-03 fig-alt="Five-role stack on one WS2025 host. Engineering blueprint style, neutral slate background, federal navy (#1F3A5F) for primary structural elements, teal (#1A9E8F) for secondary/integration elements, amber (#D4A017) for governance/audit/registry overlays, monospace labels for identifiers, no human figures, 16:9 landscape." width="100%"}
-
 
 *Windows Server 2025 + IIS + Gitea + Kerberos + enterprise PKI*
-
-![the Federal Modernization Program Platform Server: five roles on one Windows Server 2025 host](images/01-platform-foundation-image-02-figure-1.png){#fig-01-platform-foundation-image-02 fig-alt="Single large labeled server rectangle titled \"the Federal Modernization Program Platform Server — Windows Server 2025\" with five horizontal role-strip layers stacked inside from top to bottom: Gitea (canonical source-of-truth), MkDocs/Quarto rendering, Python automation runtime, PowerShell orchestration, Azure CLI + Arc agent. To the right an arrow points to a downstream cloud cluster labeled \"Azure / Entra / Intune target tenant\". Clean engineering blueprint style, dark navy (#0D1B2E) and teal (#1E8C8C) color scheme on white background. No photographs, purely diagrammatic." width="100%"}
 
 ::: {.callout-important title="The architectural claim"}
 Everything the Federal Modernization Program does — every analysis, every plan, every delivery, every
@@ -63,8 +59,6 @@ by fanning out the governance substrate.
 
 ## The five roles
 
-![Layered platform architecture diagram showing the Federal Modernization Program substrate stack from...](images/01-platform-foundation-image-01-layered-platform-architecture-di.png){#fig-01-platform-foundation-image-01 fig-alt="Layered platform architecture diagram showing the Federal Modernization Program substrate stack from..." width="100%"}
-
 
 A single host plays five distinct roles. Each maps to a specific
 capability the transformation engine needs.
@@ -99,7 +93,7 @@ in `src/fmp/canon/adr/adr-041-fmp-git-infrastructure.md` — Gitea behind
 IIS reverse proxy. Option A (IIS + `git-http-backend` alone) was evaluated
 and rejected on auth integration + operational complexity grounds; the
 rejected variant is retained for lab use in
-[`git-server-implementation.qmd`](../../platform/git-server-implementation.html).
+`git-server-implementation.qmd`.
 (Earlier revisions mis-cited the decision as the program decision; the program decision is the HAADJ
 deprecation ADR, unrelated to Git infrastructure.)
 
@@ -255,12 +249,12 @@ Pointers to the latest additions on both sides of the project:
 
 - Site index — top-level landing page; the "what's new" callouts surface here first.
 - Modernization canon — FMP_151–FMP_176 governance specs; new IDs land here.
-- [Customer document series](../../../series.html) — chapter additions to this series and its siblings.
-- [Operational dashboard](../../../operational-dashboard.html) — current readiness, drift, and coverage signals.
+- Customer document series — chapter additions to this series and its siblings.
+- Operational dashboard — current readiness, drift, and coverage signals.
 
 ## Cross-references
 
-- **Full build runbook:** [Platform Server Build Guide](../../platform/platform-server-build.html) —
+- **Full build runbook:** Platform Server Build Guide —
   14 phases, 1,864 lines of PowerShell-first procedure.
 - **the program decision Git Infrastructure** — documents the Gitea-behind-IIS
   decision (Option B) and why Option A (IIS + `git-http-backend` alone)

@@ -20,8 +20,6 @@ Modernization)** — the modernization member of the Org family, alongside
 the organizational-attribute model (governance) and OrgComp (compliance). Like its siblings, OrgMod is
 designed to be adopted together with them or entirely on its own.
 
-![The Org family: four operational expressions — the organizational-attribute model (governance), OrgComp (Federal Organizational Compliance), OrgMod (Organizational Modernization), and OrgLink (external interconnection) — standing on one governance substrate of identity, addressing, evidence, and policy-bearing control planes. OrgComp connects to the substrate through a dashed Evidence & Authorization Contract seam, and a footer band states the four are adoptable together or each on its own.](../orgcomp-series/figs/org-family-substrate.png){width="100%"}
-
 ## The Hidden Migration Surface
 
 When organizations plan their "AD to Entra ID migration," they think about users and groups.

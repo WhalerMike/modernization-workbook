@@ -33,10 +33,6 @@ lifecycle_review: 2026-11-22
 
 ![26 appendices A-Z map showing categories and dependencies](../images/executive-governance/governance-os-canonical-suite-image-04-26-appendices-a-z-map-showing-ca.png){#fig-governance-os-canonical-suite-image-04 fig-alt="26 appendices A-Z map showing categories and dependencies. Engineering blueprint style, neutral slate background, federal navy (#1F3A5F) for primary structural elements, teal (#1A9E8F) for secondary/integration elements, amber (#D4A017) for governance/audit/registry overlays, monospace labels for identifiers, no human figures, 16:9 landscape." width="100%"}
 
-![the organizational-attribute model codebook hierarchy decomposition](images/governance-os-canonical-suite-image-05-orgpath-codebook-hierarchy-decom.png){#fig-governance-os-canonical-suite-image-05 fig-alt="the organizational-attribute model codebook hierarchy decomposition. Engineering blueprint style, neutral slate background, federal navy (#1F3A5F) for primary structural elements, teal (#1A9E8F) for secondary/integration elements, amber (#D4A017) for governance/audit/registry overlays, monospace labels for identifiers, no human figures, 16:9 landscape." width="100%"}
-
-![Two-Brain split (Copilot governance / Chrome-Claude execution) with deterministi...](images/governance-os-canonical-suite-image-06-two-brain-split-copilot-governan.png){#fig-governance-os-canonical-suite-image-06 fig-alt="Two-Brain split (Copilot governance / Chrome-Claude execution) with deterministic instruction-set flow. Engineering blueprint style, neutral slate background, federal navy (#1F3A5F) for primary structural elements, teal (#1A9E8F) for secondary/integration elements, amber (#D4A017) for governance/audit/registry overlays, monospace labels for identifiers, no human figures, 16:9 landscape." width="100%"}
-
 
 Canonical Front Door for Identity Modernization
 

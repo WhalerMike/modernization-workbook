@@ -77,7 +77,7 @@ reference example throughout.
   - The synthesis: aligning the data layer's consistency model with the network layer's transport tiers
   - *Audience:* Architects · platform engineers · network engineers
 
-- **07** — [Reference Architecture — the Federal Modernization Program SaaS Data Plane](./07-reference-architecture-fmp.html)
+- **07** — Reference Architecture — the Federal Modernization Program SaaS Data Plane
   - How the program decision and the program decision implement centralize-the-truth / distribute-the-copies in practice
   - *Audience:* Architects · platform engineers · governance teams
 

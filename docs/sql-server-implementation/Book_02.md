@@ -17,8 +17,6 @@ lifecycle_review: 2027-01-01
 # Implementation Book 02 — Estate Discovery & the Consolidation Gate
 :::
 
-![New-FMPEstateInventory fuses instance discovery, the SPN inventory, and the authentication audit into one sealed read, producing the retain / consolidate / retire gate every later book operates on.](images/book02-image-01-estate-inventory.png){#fig-impl-book02 fig-alt="A schematic on a white background. On the left, three monospace source-read boxes — Find-DbaInstance, Spec1-D1.5-Get-KerberosSPNInventory, and Spec3-D1.8-Get-SQLServerAuthAudit — feed a teal arrow into a central ice-blue box labelled New-FMPEstateInventory (read-only, sealed envelope). A second teal arrow points to three stacked decision panels on the right: a teal 'Retain' band, a blue 'Consolidate' band, and a red 'Retire' band. Federal navy, teal, blue and red palette; no photographs." width="100%"}
-
 ::: {.callout-tip}
 ## Download this book
 **[Book_02.docx](Book_02.docx)** — this entire book as a single Word document, images included. Regenerated on every site deploy.

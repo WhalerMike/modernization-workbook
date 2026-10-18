@@ -15,5 +15,3 @@ Per the program decision, this
 canonical page is generated as an `include`-style wrapper.
 :::
 
-![FMP_193 multi-cloud binding-profile model — the universal 15-facet codebook feeds a per-target binding-profile contract that fans out to nine native storage profiles (Entra reference + AWS, GCP, Okta, LDAP, VMware, and the the program decision IdP targets), with the organizational-attribute model facets as the cross-vendor Zero Trust policy subject.](../images/canonical/FMP-FIG-017-fmp193-multicloud-binding.png){#fig-fmp193-binding fig-alt="A navy universal 15-facet codebook feeds a teal-bordered binding-profile contract (facet to native locator) that fans out to a grid of per-target storage profiles — microsoft-entra (reference, onPremisesExtensionAttribute1..15), aws, gcp, okta, ldap, vmware, and pingone/keycloak/auth0 (the program decision) — above a Zero Trust band stating the organizational-attribute model facets are the cross-vendor policy subject mapped to the CISA Zero Trust Maturity Model." width="100%"}
-

@@ -59,7 +59,7 @@ operated as a **point assessor**: someone runs it, archives the report,
 and revisits it at audit time.
 
 FMP's substrate treats ScubaGear differently. Per
-[`adapter-registry.yaml`](../../../src/fmp/canon/adapter-registry.yaml),
+`adapter-registry.yaml`,
 ScubaGear is registered as the canonical **Phase-1 conformance / policy
 adapter** for M365 — meaning its outputs flow through the canonical
 evidence chain, its findings carry the canonical drift taxonomy, and its
@@ -75,8 +75,6 @@ The companion technical surface is the
 ScubaGear Adapter Spec, which
 documents the runtime contract, configuration, and outputs in adapter-
 implementer terms.
-
-![ScubaGear-as-registered-adapter diagram](images/scubagear-integration-whitepaper-image-01-scubagear-as-registered-adapter.png){#fig-scubagear-integration-whitepaper-image-01 fig-alt="Center shows the ScubaGear adapter as a labeled rounded rectangle with its canonical metadata (class: conformance, mission-class: policy, runtime: powershell-7.4). Above the adapter, a teal arrow flowing in from \"M365 GCC-Moderate Tenant State\" represents read-only observation. Below the adapter, a teal arrow flowing out to \"Canonical Claims (provenance envelope)\" shows emitted findings. Surrounding the adapter, four canon invariants are labeled as small badges: gcc-boundary: gcc-moderate, ssot-mutation: never, certificate-anchored: true, object-identity-only: true. Clean engineering blueprint style, dark navy (#0D1B2E) and teal (#1E8C8C) on white background. No photographs, purely diagrammatic." width="100%"}
 
 ### 1. ScubaGear as a registered adapter
 
@@ -100,7 +98,7 @@ adds policy-engine/pin, scope, outputs, controls, and invariants):
  retention-years: 3
 ```
 
-Source: [`adapter-registry.yaml`](../../../src/fmp/canon/adapter-registry.yaml).
+Source: `adapter-registry.yaml`.
 
 **Scope note — SCuBA is no longer M365-only.** CISA's Google Workspace
 baselines have carried BOD 25-01 Requirement indicators since 10 July 2026,
@@ -141,9 +139,9 @@ that breaks the schema is a `DRIFT-SCHEMA` finding caught in CI.
 ScubaGear's evaluation engine produces per-policy results: pass / fail /
 manual / not-applicable, plus narrative detail. The FMP adapter wraps
 each result in the canonical provenance envelope (per
-[`15_ProvenanceProfile.qmd`](../../docs/15_ProvenanceProfile.qmd)) and
+`15_ProvenanceProfile.qmd`) and
 maps it onto canonical KSI rules via the KSI mapping table at
-[`fmp-control-to-ksi-mapping.yaml`](../../../src/fmp/rules/ksi/fmp-control-to-ksi-mapping.yaml).
+`fmp-control-to-ksi-mapping.yaml`.
 
 The mapping yields three structural properties:
 
@@ -162,8 +160,6 @@ interval (workflow_dispatch, scheduled, or repository_dispatch). Each
 run's claims carry the interval explicitly, and the bundle assembly
 respects that — `evidence-class: interval` is not a hint, it is a
 canonical attribute that the OSCAL emission consumes.
-
-![SCuBA-policy-to-canonical-claim mapping diagram](images/scubagear-integration-whitepaper-image-02-scuba-policy-to-canonical-claim.png){#fig-scubagear-integration-whitepaper-image-02 fig-alt="Left side shows a stack of SCuBA OPA/Rego policy files (small Rego icon). Center shows a \"KSI Mapping (canon)\" registry box with arrows linking each SCuBA policy to one or more canonical KSI rules. Right side shows the canonical claim emerging with the full provenance envelope (claim_id, issuer_identity, source_classification: authoritative, extraction_timestamp, lineage_hash). Below the flow, an interval bar labeled \"evidence-class: interval\" shows time-windowed evidence emissions across multiple runs. Clean engineering blueprint style, dark navy (#0D1B2E) and teal (#1E8C8C) on white background. No photographs, purely diagrammatic." width="100%"}
 
 ### 3. Where ScubaGear lands in the evidence chain
 
@@ -187,8 +183,6 @@ Crucially, the bundle is **deterministic per the program decision**: the same
 tenant state plus the same SCuBA policy version plus the same canon
 version yields a byte-identical bundle. A 3PAO can re-run the assembly
 months after the original audit and verify the bundle hash.
-
-![ScubaGear-in-GCC-Moderate boundary diagram](images/scubagear-integration-whitepaper-image-03-scubagear-in-gcc-moderate-bounda.png){#fig-scubagear-integration-whitepaper-image-03 fig-alt="Vertical \"Authorization Boundary\" line splits the page; ScubaGear adapter is positioned inside the boundary on the right side. Inside the boundary: ScubaGear reads tenant configuration via in-boundary APIs (small API icon). Outside the boundary: greyed-out commercial-only telemetry features that SCuBA does not evaluate (small disabled-feature icons). The adapter's emitted claims flow downward across all four impact dimensions (telemetry fidelity, identity authority, enforcement responsibility, provenance classification) labeled as four colored lanes, with ScubaGear's coverage shown in teal and uncovered gaps shown as dashed amber. Clean engineering blueprint style, dark navy (#0D1B2E) and teal (#1E8C8C) primary, with amber for uncovered gaps. No photographs, purely diagrammatic." width="100%"}
 
 ### 4. The GCC-Moderate boundary case
 
@@ -234,10 +228,10 @@ is legible rather than asserted.
 configuration state in the M365 tenant — the cloud half of the
 identity-and-data picture. The substrate's *on-premises half* is the
 AD survey adapter at
-[`src/fmp/adapters/modernization/active_directory/survey.py`](../../../src/fmp/adapters/modernization/active_directory/survey.py),
+`src/fmp/adapters/modernization/active_directory/survey.py`,
 which produces the OrgTree readiness bundle including the phase-tagged
 `spn_inventory` artifact (defined in
-[`src/fmp/schemas/orgtree-readiness/orgtree-readiness.schema.json`](../../../src/fmp/schemas/orgtree-readiness/orgtree-readiness.schema.json)
+`src/fmp/schemas/orgtree-readiness/orgtree-readiness.schema.json`
 `#/definitions/spnInventory`). The two halves see different surfaces
 and emit into the same Evidence Bundle — together they describe the
 identity posture an agency carries through the AD → Entra ID transition,
@@ -280,7 +274,7 @@ of the Federal Organization Compliance series.
 
 **Drift taxonomy cross-walk.** ScubaGear findings map onto the
 substrate's drift classes per the standard formalized in
-[`docs/docs/16_DriftDetectionStandard.qmd`](../../docs/16_DriftDetectionStandard.qmd)
+`docs/docs/16_DriftDetectionStandard.qmd`
 §2:
 
 | SCuBA finding pattern | Drift class | Severity model reference |
@@ -309,7 +303,7 @@ through the four-stage pipeline named in §3
 1. **Rego policy result.** A ScubaGear run evaluates baseline policy
  `MS.AAD.1.1v1` — "Legacy authentication SHALL be blocked" (mapped to
  NIST control `IA-2(1)` per the canonical 143-policy table in
- [`FMP_002`](../../../src/fmp/canon/FMP_002_SCuBA_Technical_Specification_v1.0.md)).
+ [`FMP_002`](../canonical-specs/002_SCuBA_Technical_Specification_v1.0.md)).
  Say the OPA/Rego evaluator returns `Result: fail` because a mail
  protocol in the tenant still permits basic authentication.
 2. **Canonical claim.** The adapter wraps that raw result in the

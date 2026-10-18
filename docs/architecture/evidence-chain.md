@@ -12,8 +12,6 @@ lifecycle_review: 2026-11-22
 
 # Evidence Chain
 
-![Immutable provenance chain](../../images/canonical/FMP-FIG-006-immutable-provenance-chain.png){fig-alt="Cryptographically signed immutable evidence chain — every check, result, and timestamp stored with signatures for audit replay and assessor verification." width="100%"}
-
 FMP's evidence chain is the architectural mechanism that turns runtime
 telemetry into **assessor-ready compliance artifacts with traceable
 provenance at every step**. The chain is deterministic: same inputs, same
@@ -28,8 +26,6 @@ provenance envelope, and the determinism guarantees.
 
 ## Four-stage pipeline
 
-![The evidence chain — four sealed, provenance-anchored stages from telemetry to auditor-ready OSCAL output.](../../images/canonical/FMP-FIG-021-evidence-chain.png){#fig-evidence-chain fig-alt="Four-stage evidence pipeline. Navy boxes joined by teal arrows — Telemetry event capture (adapter boundary), Canonical claim normalization (ProvenanceProfile FMP_PP_001 v1.0), Evidence bundle assembly and seal (the program decision lifecycle plus bundle schema), and OSCAL artifact emission (SSP, POA&M, KSI, Component Definition). A footnote notes every stage cites the canon ID and version it derives from." width="100%"}
-
 Stage-by-stage responsibility:
 
 1. **Telemetry event capture** — adapters at the system boundary emit
@@ -38,12 +34,12 @@ Stage-by-stage responsibility:
    from the moment of emission.
 2. **Canonical claim normalization** — every event is wrapped in the
    provenance envelope defined in
-   [`15_ProvenanceProfile.qmd` §3](../../docs/15_ProvenanceProfile.qmd).
+   `15_ProvenanceProfile.qmd` §3.
    This is the chain's structural backbone (see below).
 3. **Evidence bundle assembly + sealing** — claims are grouped into bundles
    per the program decision
    (assemble → seal → submit → close). Bundles are validated against
-   [`evidence-bundle.schema.json`](../../../src/fmp/schemas/ksi/evidence-bundle.schema.json)
+   `evidence-bundle.schema.json`
    which enforces hash-bearing provenance at item and bundle scope.
 4. **OSCAL artifact emission** — sealed bundles feed the OSCAL pipeline that
    emits SSP, POA&M, KSI dashboards, and Component Definitions, with every

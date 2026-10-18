@@ -28,7 +28,7 @@ does not exist. This page anchors instead on the existing GCC-Moderate
 boundary canon (`gcc-boundary-problem-statement.qmd`,
 `gcc-boundary-solution-architecture.qmd`,
 `drift-detection-boundary-amendment.qmd`) and the customer-facing leaf
-[`B.1 GCC-Moderate Boundary Model`](../orgcomp-series/boundary/B1-gcc-moderate-boundary-model.qmd).
+`B.1 GCC-Moderate Boundary Model`.
 A canon-change ADR may later promote a generalized authorization-boundary
 canon document; until then, this model is GCC-Moderate-anchored.
 :::
@@ -72,7 +72,7 @@ keeps both surfaces in one operational language.
 
 The structural example for this model is the **GCC-Moderate invisible
 boundary**, documented in
-[`gcc-boundary-problem-statement.qmd`](../../docs/gcc-boundary-problem-statement.qmd):
+`gcc-boundary-problem-statement.qmd`:
 
 > Microsoft 365 GCC-Moderate provides the same nominal product set as M365
 > commercial, but the FedRAMP Moderate authorization boundary materially
@@ -108,7 +108,7 @@ ones.
 ## How FMP compensates: in-boundary equivalents
 
 Per
-[`gcc-boundary-solution-architecture.qmd`](../../docs/gcc-boundary-solution-architecture.qmd),
+`gcc-boundary-solution-architecture.qmd`,
 FMP addresses each impact dimension through in-boundary mechanisms rather
 than waiting for Microsoft to fix the platform:
 

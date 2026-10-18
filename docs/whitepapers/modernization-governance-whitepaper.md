@@ -84,8 +84,6 @@ series' own
 Vol X — Governance Substrate Integration Overview
 documents from the product-neutral side — see §4 below.
 
-![AD-to-Entra inversion diagram](images/modernization-governance-whitepa-image-01-ad-to-entra-inversion-diagram.png){#fig-modernization-governance-whitepaper-image-01 fig-alt="Two side-by-side panels with an arrow between them. Left panel labeled \"Active Directory — hierarchical placement model\" shows a tree of OUs with users positioned at leaves; thick lines indicate access flowing from placement. Right panel labeled \"Entra ID — attribute-driven model\" shows a flat layer of users carrying attribute tags, feeding into a Policy Engine box that emits per-action access decisions. The central arrow is labeled \"Architectural inversion — same identities, different governance\". A small footer note reads \"Migration is the moment to make the inversion explicit.\" Clean engineering blueprint style, dark navy (#0D1B2E) and teal (#1E8C8C) on white background. No photographs, purely diagrammatic." width="100%"}
-
 ### 1. The architectural inversion
 
 On-premises Active Directory operates a *hierarchical placement* model:
@@ -151,8 +149,6 @@ declare the attribute model, the group computation rules, and the
 provenance envelope in `src/fmp/canon/` — so the migration is a
 substrate change rather than a tooling change.
 
-![AODIM attribute flow diagram](images/modernization-governance-whitepa-image-02-aodim-attribute-flow-diagram.png){#fig-modernization-governance-whitepaper-image-02 fig-alt="Horizontal sequence: HR System (authoritative source) → Identity Attributes (canonical attribute set: scope, role, classification) → Computed Groups (dynamic group rules) → Access Policies (conditional access, PIM, entitlement management) → Resource Authorization. Each stage is labeled with a small governance checkpoint (e.g. \"schema validation\", \"drift detection\", \"evidence emission\"). A side panel highlights three authoritative attributes: assignment scope, organizational role, classification clearance. Clean engineering blueprint style, dark navy (#0D1B2E) and teal (#1E8C8C) on white background. No photographs, purely diagrammatic." width="100%"}
-
 ### 3. AODIM — the attribute-oriented directory and identity model
 
 The architectural pattern FMP uses to govern the inversion is
@@ -191,8 +187,6 @@ provenance envelope depends on — a second, independently-authored corpus
 proving the substrate carries a regime it was never written for, which
 is the concrete version of this paper's "canon, not the directory, is
 the source of truth" claim above.
-
-![Five-phase canonical modernization timeline](images/modernization-governance-whitepa-image-03-five-phase-canonical-modernizati.png){#fig-modernization-governance-whitepaper-image-03 fig-alt="Horizontal Gantt-style bars for: Phase 1 Canon-First (longest teal bar, leftmost), Phase 2 Modernization-Adapter (overlapping with Phase 1 tail, teal), Phase 3 Compensating-Enforcement (smaller teal bar mid-timeline), Phase 4 Cutover (single thin amber decision-point bar), Phase 5 Drift-Driven Cleanup (long teal bar extending right past cutover). Below each phase, a brief deliverable label (canon authored, adapters registered, in-boundary telemetry, identity-plane source switched, drift findings remediated). A vertical line at Phase 4 labeled \"AO checkpoint\" indicates the technical cutover. Clean engineering blueprint style, dark navy (#0D1B2E) and teal (#1E8C8C) primary, with amber for the single Phase 4 cutover bar. No photographs, purely diagrammatic." width="100%"}
 
 ### 5. Phased modernization
 

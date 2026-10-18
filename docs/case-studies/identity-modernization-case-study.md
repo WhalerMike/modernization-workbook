@@ -17,8 +17,6 @@ lifecycle_review: 2026-11-22
 
 # Identity Modernization — Case Study
 
-![Five-phase engagement pattern](images/reference-deployment-opm-hrit-to-image-02-hrit-inbound-provisioning-pipeli.png){#fig-identity-modernization-case-study-image-02 fig-alt="Five-phase engagement pattern. Engineering blueprint style, neutral slate background, federal navy (#1F3A5F) for primary structural elements, teal (#1A9E8F) for secondary/integration elements, amber (#D4A017) for governance/audit/registry overlays, monospace labels for identifiers, no human figures, 16:9 landscape." width="100%"}
-
 
 ::: {.callout-important}
 ## Framing pattern, not a fabricated engagement

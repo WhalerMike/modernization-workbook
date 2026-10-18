@@ -53,7 +53,7 @@ inventory stays anchored to current canon.
 This paper enumerates **every interface plane** the FMP Git infrastructure
 exposes once a Windows Server 2025 host has been brought up through the
 14-phase runbook in
-[`platform-server-build.qmd`](../platform/platform-server-build.qmd) under
+`platform-server-build.qmd` under
 the architecture set by
 the program decision — FMP Git Infrastructure.
 
@@ -101,27 +101,23 @@ AGENTS.md's operating-rules note on Version isolation).
 
 **Canonical claim.** Every plane in the table above is enforced by the
 operational PowerShell in
-[`platform-server-build.qmd`](../platform/platform-server-build.qmd)
+`platform-server-build.qmd`
 (Phases 0-14), pinned by the binaries in
-[`platform-server-v1.2.yaml`](../../../src/fmp/canon/release-manifests/platform-server-v1.2.yaml),
+`platform-server-v1.2.yaml`,
 and observed by the conformance adapter
-[`fmp-git-server`](../adapter-specs/fmp-git-server/fmp-git-server.qmd).
+`fmp-git-server`.
 Anything not in this table is not authorized on the host.
-
-![Six interface families radiating from the FMP-GIT01 host as a hub-and-spoke map](images/git-server-interfaces-whitepaper-image-01-six-interface-families-radiating.png){#fig-git-server-interfaces-whitepaper-image-01 fig-alt="Hub-and-spoke radial diagram. At the center, a labeled rectangular host card \"FMP-GIT01 — Windows Server 2025 (Tier-0, GCC-Moderate, the organizational-attribute model: NCR / IT / InfraOps, AU: AU-NCR-IT-InfraOps)\" with a small Gitea-on-IIS stack icon underneath. Six labeled spoke clusters radiate outward at evenly-spaced angles; each cluster lists four to six plane names: Spoke A \"Client / operator transport\" — HTTPS Git Smart-HTTP, Gitea SSH :2222, Web UI, REST API v1, Git LFS, optional FastAPI; Spoke B \"Identity & authentication\" — AD LDAPS, Entra OIDC, Kerberos / NTLM, Hybrid Entra device join, GPG signed-commit verify; Spoke C \"Cloud management plane\" — Azure Arc, Azure Policy + Guest Config, Intune compliance, Azure Monitor Agent, Azure Blob backup; Spoke D \"Governance & telemetry\" — pre-receive / update / post-receive hooks, Gitea webhooks, FMP_163 drift reporter, fmp-git-server conformance adapter, IIS W3C logs; Spoke E \"Local management\" — PowerShell 7.4 (signed-only), Gitea CLI, IIS Manager / appcmd, NTFS storage; Spoke F \"Outbound integrations\" — GitHub upstream pull-mirror, PostgreSQL backend, build-time supply chain (pinned SHAs). Around the outer edge of the diagram, a thin teal ring labeled \"Finite. Named. Observable. Anything outside this taxonomy is a finding.\" Clean engineering blueprint style, dark navy (#0D1B2E) and teal (#1E8C8C) on white background. No photographs, purely diagrammatic." width="100%"}
 
 ## 1. Architectural context — what is being deployed
 
 ### 1.1 One host, six interface families
-
-![FMP-GIT01 network interfaces — every inbound and outbound flow with its caller, plus storage and the organizational-attribute model/AU governance tags.](../../images/canonical/FMP-FIG-027-git-server-interfaces.png){#fig-git-server-interfaces fig-alt="A central ice server box (FMP-GIT01, WS2025) lists every interface in monospace — 443 HTTPS via IIS to Gitea, 2222 SSH, 5986 WinRM, 636 LDAPS outbound, HTTPS to login.microsoftonline.com and graph, Arc endpoints, blob backup, Log Analytics, and api.github.com pull-mirror. Left-side caller labels (Operators, Forest, Tenant, Arc plane, Backup, ConMon, GitHub) point in with teal arrows. A navy storage footer (D drive GitRepos and Gitea) and a teal-tint governance footer (the organizational-attribute model and Administrative Unit)." width="100%"}
 
 The host is **Tier-0** by classification — it carries the canon, every
 plan, every authorization decision, and every drift signal traces back to
 a commit on it. CIS Level-2, AppLocker (publisher `CN=FMP Canon
 Signing`), WDAC UMCI, Defender for Servers Plan 2, and Intune compliance
 all apply (see
-[`platform-server-build.qmd` Phase 13](../platform/platform-server-build.qmd)).
+`platform-server-build.qmd` Phase 13).
 The interfaces below inherit that posture; nothing on the host is
 "informally available".
 
@@ -252,7 +248,7 @@ shows up as a `CM-8` finding.
 Distinct from Gitea. When the `[api]` optional extra is installed
 (`pip install -e ".[api]"`), the FastAPI app at `fmp.api.app:app` runs
 under IIS HttpPlatformHandler per
-[`deploy/windows-server/web.config`](../../../deploy/windows-server/web.config).
+`deploy/windows-server/web.config`.
 This is the **FMP API**, not the Git API; it exposes the
 substrate-walker, KSI, evidence-graph, and ATO surfaces.
 
@@ -313,7 +309,7 @@ The critical property is the **groups claim**: when an operator signs
 in, the ID token carries their Entra security-group memberships, and
 Gitea maps those memberships to its team model on the `fmp` org via
 the rules in
-[`platform-server-build.qmd` §14.3](../platform/platform-server-build.qmd).
+`platform-server-build.qmd` §14.3.
 A joiner/mover/leaver event in the HR feed propagates through the
 Entra dynamic-group recalculation and arrives as a Gitea permission
 change within roughly fifteen minutes — no hand-maintained team
@@ -457,7 +453,7 @@ looking like an FMP substrate node.
 
 Native to every bare repo under `D:\GitRepos\`. The bodies are
 authored in
-[`git-server-implementation.qmd` §15](../platform/git-server-implementation.qmd)
+`git-server-implementation.qmd` §15
 (canonical for both Option A and Option B) and apply unchanged to
 Gitea. They run **inside** the Gitea process under the gMSA, with
 their own audit log written to `D:\Gitea\log\hooks\`.
@@ -514,9 +510,9 @@ open SLA tickets per FMP_167.
 ### 5.4 `fmp-git-server` conformance adapter
 
 Documented in
-[`adapter-specs/fmp-git-server/fmp-git-server.qmd`](../adapter-specs/fmp-git-server/fmp-git-server.qmd)
+`adapter-specs/fmp-git-server/fmp-git-server.qmd`
 and registered as `active` in
-[`adapter-registry.yaml`](../../../src/fmp/canon/adapter-registry.yaml).
+`adapter-registry.yaml`.
 Read-only. Emits four evidence files per polling interval:
 
 - `git-server-health.json` — IIS app-pool state, Gitea service status,
@@ -633,7 +629,7 @@ local state under `D:\Gitea\` governed by the §6.4 storage posture.
 
 Every binary the Phase 1-13 PowerShell downloads is pinned to a
 `canonical_url` + `sha256` in
-[`platform-server-v1.2.yaml`](../../../src/fmp/canon/release-manifests/platform-server-v1.2.yaml).
+`platform-server-v1.2.yaml`.
 Hosts: `github.com`, `objects.githubusercontent.com`,
 `download.microsoft.com`, `aka.ms`, `dotnetcli.azureedge.net`,
 `packages.microsoft.com`, `www.gpg4win.org`, `*.powershellgallery.com`,
@@ -646,8 +642,6 @@ This plane is **build-only**. After cutover, the only outbound
 URLs are not on the runtime egress allowlist.
 
 ## 8. Boundary and egress posture
-
-![Boundary-and-egress posture: GCC-Moderate inner ring vs commercial-FedRAMP exception outer ring, with inbound-port allowlist](images/git-server-interfaces-whitepaper-image-02-boundary-and-egress-posture-gcc.png){#fig-git-server-interfaces-whitepaper-image-02 fig-alt="Boundary-zone diagram with two concentric rings around the central host card \"FMP-GIT01\". Inner ring labeled \"GCC-Moderate primary boundary\" filled in teal contains plane chips: \"Gitea HTTPS / SSH / Web UI / REST\", \"AD LDAPS\", \"Entra OIDC + Graph\", \"Intune compliance\". Outer ring labeled \"Commercial-FedRAMP exception (documented, ADR-trail)\" filled in a lighter navy contains plane chips: \"Azure Arc / Policy / Guest Config\", \"Azure Monitor / Log Analytics\", \"Azure Blob backup target\". Outside both rings, a small public-internet cloud icon labeled \"GitHub pull-mirror — read-only ingest, public internet (api.github.com)\" with a single inbound arrow into the inner ring. Across the bottom, an inbound-allowlist legend strip labeled \"Inbound posture\": three pill items \"tcp/443 HTTPS — LAN+VPN\", \"tcp/2222 SSH — LAN+VPN\", \"tcp/5986 WinRM — Tier-0 admin subnet 10.1.20.0/24 only\", and a fourth red-bordered pill \"anything else — DENY (Domain firewall DefaultInboundAction Block)\". Title above: \"Boundary-and-Egress Posture\". Red (#C74040) reserved for the deny-by-default pill; clean engineering blueprint style, dark navy (#0D1B2E) and teal (#1E8C8C) on white background. No photographs, purely diagrammatic." width="100%"}
 
 ### 8.1 GCC-Moderate primary; commercial-FedRAMP exception for IaaS
 
@@ -691,8 +685,6 @@ customer's documented VPN / Privileged Access Workstation path.
 
 ## 9. Governance and control mapping
 
-![Interface-to-NIST-control crosswalk matrix: each interface plane mapped to its supporting NIST SP 800-53 Rev 5 controls](images/git-server-interfaces-whitepaper-image-03-interface-to-nist-control-crossw.png){#fig-git-server-interfaces-whitepaper-image-03 fig-alt="Interface-to-control crosswalk matrix. Rows on the left are thirteen interface planes from the inventory: \"HTTPS Git Smart-HTTP\", \"Gitea REST API\", \"SSH transport\", \"AD LDAPS\", \"Entra OIDC\", \"Server-side hooks (pre-receive / update / post-receive)\", \"FMP_163 drift reporter\", \"fmp-git-server adapter\", \"Azure Arc + Guest Config\", \"Intune compliance\", \"Azure Monitor Agent\", \"Azure Blob backup\", \"Code-signing (AppLocker / WDAC)\". Columns across the top are NIST SP 800-53 Rev 5 controls: \"SC-8\", \"SC-13\", \"AC-2\", \"AC-3\", \"AC-6\", \"AU-2\", \"AU-6\", \"AU-9\", \"AU-12\", \"IA-2\", \"IA-5\", \"IA-8\", \"CA-7\", \"CM-2\", \"CM-3\", \"CM-5\", \"CM-6\", \"CM-7\", \"CM-8\", \"CP-9\", \"CP-10\", \"SI-2\", \"SI-4\", \"SI-7\", \"IR-4\". Cells where the row interface contributes to the column control are filled teal; empty cells are white. Across the bottom edge of the matrix, a thin labeled summary band \"Every interface anchors to ≥ 1 NIST 800-53 Rev 5 control; coverage closure is a canon property, not an audit-cycle artifact\". Title above the matrix: \"Interface ↔ NIST SP 800-53 Rev 5 Crosswalk\". Clean engineering blueprint style, dark navy (#0D1B2E) and teal (#1E8C8C) on white background. No photographs, purely diagrammatic." width="100%"}
-
 ### 9.1 NIST SP 800-53 Rev 5 — interface-to-control crosswalk
 
 | Interface | Control(s) | Adapter / mechanism |
@@ -715,7 +707,7 @@ customer's documented VPN / Privileged Access Workstation path.
 
 Every interface above is gated by membership in one of three OrgTree
 dynamic groups, defined in
-[`platform-server-build.qmd` §14.3](../platform/platform-server-build.qmd)
+`platform-server-build.qmd` §14.3
 — a Phase 14 OrgTree integration that is canonically declared but still
 under operational validation per the build guide's own status warning:
 
@@ -778,7 +770,7 @@ and will emit `DRIFT-SCHEMA` against any non-canonical surface.
 
 The interface inventory above is **finite, named, and observable**.
 That is the architectural claim of the program decision and the operational claim
-of [`platform-server-build.qmd`](../platform/platform-server-build.qmd).
+of `platform-server-build.qmd`.
 Every plane in the six families is either:
 
 1. **Inbound and gated** by IIS, Gitea OIDC/LDAPS, or the firewall
@@ -801,21 +793,21 @@ incidents.
 
 | Artifact | Path | Role |
 |---|---|---|
-| the program decision | [`src/fmp/canon/adr/adr-041-fmp-git-infrastructure.md`](../../../src/fmp/canon/adr/adr-041-fmp-git-infrastructure.md) | Architectural decision (Option B is canon) |
-| Build runbook | [`docs/customer-documents/platform/platform-server-build.qmd`](../platform/platform-server-build.qmd) | Phases 0-14, operational source of truth |
-| Release manifest | [`src/fmp/canon/release-manifests/platform-server-v1.2.yaml`](../../../src/fmp/canon/release-manifests/platform-server-v1.2.yaml) | Binary pins + SHA-256 |
-| Conformance adapter spec | [`docs/customer-documents/adapter-specs/fmp-git-server/fmp-git-server.qmd`](../adapter-specs/fmp-git-server/fmp-git-server.qmd) | Telemetry interface contract |
-| Adapter registry | [`src/fmp/canon/adapter-registry.yaml`](../../../src/fmp/canon/adapter-registry.yaml) | `fmp-git-server` entry |
-| Option-A reference | [`docs/customer-documents/platform/git-server-implementation.qmd`](../platform/git-server-implementation.qmd) | Lab build (CGI), source of canonical hook bodies |
-| FastAPI deployment | [`deploy/windows-server/web.config`](../../../deploy/windows-server/web.config), [`run.py`](../../../deploy/windows-server/run.py) | Optional `[api]` plane |
-| Substrate manifest | [`src/fmp/canon/substrate-manifest.yaml`](../../../src/fmp/canon/substrate-manifest.yaml) | Boundary (GCC-Moderate + commercial exceptions) |
+| the program decision | `src/fmp/canon/adr/adr-041-fmp-git-infrastructure.md` | Architectural decision (Option B is canon) |
+| Build runbook | `docs/customer-documents/platform/platform-server-build.qmd` | Phases 0-14, operational source of truth |
+| Release manifest | `src/fmp/canon/release-manifests/platform-server-v1.2.yaml` | Binary pins + SHA-256 |
+| Conformance adapter spec | `docs/customer-documents/adapter-specs/fmp-git-server/fmp-git-server.qmd` | Telemetry interface contract |
+| Adapter registry | `src/fmp/canon/adapter-registry.yaml` | `fmp-git-server` entry |
+| Option-A reference | `docs/customer-documents/platform/git-server-implementation.qmd` | Lab build (CGI), source of canonical hook bodies |
+| FastAPI deployment | `deploy/windows-server/web.config`, `run.py` | Optional `[api]` plane |
+| Substrate manifest | `src/fmp/canon/substrate-manifest.yaml` | Boundary (GCC-Moderate + commercial exceptions) |
 | OrgTree canon | FMP_151, FMP_152, FMP_153, FMP_154, FMP_158, FMP_163, FMP_167, FMP_171, FMP_174 | Group mapping, schema, drift, SLA |
 | Foundational architecture | [`docs/customer-documents/operational-guides/client-server-to-hybrid-cloud/01-platform-foundation.qmd`](../operational-guides/client-server-to-hybrid-cloud/01-platform-foundation.qmd) | "Single substrate authority" claim |
 
 ## Appendix B — Option A interface delta (CGI only)
 
 The non-canonical Option A architecture in
-[`git-server-implementation.qmd`](../platform/git-server-implementation.qmd)
+`git-server-implementation.qmd`
 exposes a strictly smaller interface set. Use this table when
 inventorying a lab / proof-of-concept host that has not been promoted
 to Option B.
