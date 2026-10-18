@@ -70,10 +70,9 @@ The provisioning-pipeline treatment of the same program — how
 authoritative HR events route into the identity platform under an
 HR-agnostic adapter architecture, with the evidence contract that
 routing produces — is the
-[Federal HRIT Productization whitepaper](../whitepapers/federal-hrit-productization.md),
-written against the pre-award solicitation landscape; this book carries
-the Federal HR 2.0 current state (consolidation memo, Oracle Core HCM
-award, wave schedule).
+[HR-Driven Identity series](../hr-driven-iam/index.md), which also
+carries the Federal HR 2.0 current state (consolidation memo, Oracle Core
+HCM award, wave schedule) in its Chapter 02.
 
 The argument proceeds in five movements:
 
