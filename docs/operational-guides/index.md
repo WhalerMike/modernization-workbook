@@ -23,7 +23,7 @@ compliance, and OrgLink, which governs external interconnection) —
 adoptable together or entirely independently. The
 OrgMod hub is the pillar's front door.
 
-**[operational-guides-bundle.docx]** — every page in this section (all sub-categories) concatenated into one Word document. Regenerated on every site deploy.
+**[operational-guides-bundle.docx](../../downloads/operational-guides-bundle.docx)** — every page in this section (all sub-categories) concatenated into one Word document. Regenerated on every site deploy.
 :::
 
 ::: {.callout-note title="One sub-section here belongs to a sibling pillar"}

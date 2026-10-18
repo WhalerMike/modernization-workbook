@@ -31,7 +31,7 @@ Without Arc, the SQL Server engine has no cloud-native identity; without that id
 
 ::: {.callout-tip}
 ## Download this book
-**[Book_04-bundle.docx]** — every chapter of this book concatenated into one Word document. Regenerated on every site deploy.
+**[Book_04-bundle.docx](../../../downloads/Book_04-bundle.docx)** — every chapter of this book concatenated into one Word document. Regenerated on every site deploy.
 :::
 
 ## Chapters

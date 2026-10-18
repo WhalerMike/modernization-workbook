@@ -16,7 +16,7 @@ lifecycle_review: 2026-11-22
 
 ::: {.callout-tip}
 ## Download the full section
-**[network-transformation-bundle.docx]** — every page in this section concatenated into one Word document. Regenerated on every site deploy.
+**[network-transformation-bundle.docx](../../../downloads/network-transformation-bundle.docx)** — every page in this section concatenated into one Word document. Regenerated on every site deploy.
 :::
 
 Network services that AD silently governed — DNS, DHCP, RADIUS/802.1X,

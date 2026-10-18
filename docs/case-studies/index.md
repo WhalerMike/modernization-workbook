@@ -15,7 +15,7 @@ lifecycle_review: 2026-11-22
 
 ::: {.callout-tip}
 ## Download the full section
-**[case-studies-bundle.docx]** — every page in this section concatenated into one Word document. Regenerated on every site deploy.
+**[case-studies-bundle.docx](../../downloads/case-studies-bundle.docx)** — every page in this section concatenated into one Word document. Regenerated on every site deploy.
 :::
 
 Grounded deployment narratives. Each case study documents one engagement:

@@ -31,7 +31,7 @@ The migration moves SQL Server's groups from Active Directory to Microsoft Entra
 
 ::: {.callout-tip}
 ## Download this book
-**[Book_07-bundle.docx]** — every chapter of this book concatenated into one Word document. Regenerated on every site deploy.
+**[Book_07-bundle.docx](../../../downloads/Book_07-bundle.docx)** — every chapter of this book concatenated into one Word document. Regenerated on every site deploy.
 :::
 
 ## Chapters

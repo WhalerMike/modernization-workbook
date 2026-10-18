@@ -31,7 +31,7 @@ SQL Server's Windows Authentication was an act of good engineering, not negligen
 
 ::: {.callout-tip}
 ## Download this book
-**[Book_01-bundle.docx]** — every chapter of this book concatenated into one Word document. Regenerated on every site deploy.
+**[Book_01-bundle.docx](../../../downloads/Book_01-bundle.docx)** — every chapter of this book concatenated into one Word document. Regenerated on every site deploy.
 :::
 
 ## Chapters

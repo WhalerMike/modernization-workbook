@@ -62,15 +62,17 @@ Dynamic Entra security groups grant SQL Server access based on HR-sourced user a
 
 *Original diagrams from the source bundle. Paths are relative and resolve for both HTML and DOCX.*
 
-## Building the Word bundle
+## Building the Word bundles
 
-The combined Word document (`downloads/sql-server-narrative-bundle.docx`) is built directly from the Markdown pages in this folder by `scripts/build_sql_bundle.py`. The site deploy workflow runs it on every push to `main`. To build it locally, run this from the repository root (you need [Quarto](https://quarto.org/), plus `rsvg-convert` if any page uses an SVG):
+The combined Word document (`downloads/sql-server-narrative-bundle.docx`, also published as `sql-server-narrative-standalone-bundle.docx`) and the per-book documents (`downloads/Book_01-bundle.docx` to `Book_10-bundle.docx`) are built directly from the Markdown pages in this folder by `scripts/build_bundles.py`. The same script builds the site's other section bundles. The site deploy workflow runs it on every push to `main`. To build locally, run this from the repository root (you need [Quarto](https://quarto.org/), plus `rsvg-convert` if any page uses an SVG):
 
 ```bash
-python3 scripts/build_sql_bundle.py                 # writes _site/downloads/sql-server-narrative-bundle.docx
-python3 scripts/build_sql_bundle.py /tmp/test.docx  # or choose your own output path
+python3 scripts/build_bundles.py                                    # every bundle, into _site/downloads/
+python3 scripts/build_bundles.py --only sql-server-narrative-bundle.docx Book_07-bundle.docx
+python3 scripts/build_bundles.py --list                             # print each manifest, build nothing
 ```
 
-- **Reading order** comes from the explicit `MANIFEST` list at the top of the script: `index.md`, then each `Book_NN.md` followed by its `Book_NN_CPT_*.md` chapters, then Book 11. **When you add, remove, or rename a page, update `MANIFEST`.** The build fails if a listed file is missing, and it warns about any `Book_*` page that isn't listed.
-- **Images** are found in every listed page and resolved relative to that page (normally `../../images/sql-server/`). Each one is embedded where it appears, with its alt text as the caption, scaled to the page width. SVGs are converted to PNG, and files whose extension doesn't match their content are fixed for Word. **The build fails if a referenced image is missing**, and it prints a report of references, embedded images, and any images in `docs/images/sql-server/` that no page uses.
-- **Web-only pieces** are dropped by `scripts/bundle-strip-nav.lua`: chapter listings, the "Continue the series" and "Download" callouts, and links between pages, which become plain text. The bundle gets a title page and a Word table of contents. If Word asks to update fields when you open it, choose **Yes** so it fills in the page numbers.
+- **Reading order** comes from the manifests in `scripts/bundles.yml`. The combined bundle lists every page explicitly: `index.md`, then each `Book_NN.md` followed by its chapters, then Book 11. **When you add, remove, or rename a page, update that list.** The build fails if a listed file is missing, and it warns about any `Book_*` page that isn't listed. Each per-book bundle is `Book_NN.md` followed by its `Book_NN_CPT_*.md` chapters, so new chapters are picked up automatically.
+- **Images** are resolved relative to the page that references them (normally `../../images/sql-server/`). Each one is embedded where it appears, with its alt text as the caption, scaled to the page width. SVGs are converted to PNG, and files whose extension doesn't match their content are fixed for Word. **The build fails if a referenced image is missing.** It prints a report of references and embedded images per bundle, plus any images in `docs/images/sql-server/` that no page uses.
+- **Web-only pieces** are dropped by `scripts/bundle-filter.lua`: chapter listings, the "Continue the series" and "Download" callouts, and links between pages, which become plain text. Each bundle gets a title page and a Word table of contents. If Word asks to update fields when you open it, choose **Yes** so it fills in the page numbers.
+- **Download links** on the site must point at a bundle the script builds: the build fails if any `downloads/*.docx` link on a published page has no matching bundle.
