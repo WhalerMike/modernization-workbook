@@ -9,171 +9,65 @@
 ![Diagram](../images/cshc/services-transformation.svg)
 
 
-DNS, DHCP, and IP address management are the three network services that organizations almost always defer when they modernize Active Directory. The assumption is that because these services still work, they do not need to move.
-
-That assumption is risky. In the author's experience, Active Directory-integrated DNS, AD-authorized DHCP servers, and informal IP address management are frequent sources of post-migration governance regression. They look fine from the outside and are silently broken on the inside. This chapter addresses that.
+DNS, DHCP and IP address management are the services organizations almost always defer when they modernize Active Directory, on the theory that because they still work they don't need to move. In the author's experience, AD-integrated DNS, AD-authorized DHCP and informal IPAM are frequent sources of post-migration governance regression: fine from the outside, silently broken inside.
 
 ## Why these three, why together
 
-DNS, DHCP, and IP address management form a single addressing and resolution governance surface. Treating them separately is one of the most common migration mistakes:
+The three form one addressing and resolution surface:
 
-- **DNS** translates names to addresses. Organizations rely on Active Directory-integrated zones that replicate as part of Active Directory and inherit its access model.
-- **DHCP** assigns addresses. Active Directory-joined DHCP servers authenticate against Active Directory and are authorized in the forest.
-- **IP address management** tracks what address ranges exist, who owns them, and which records point where. Without it, DNS and DHCP silently drift.
+- **DNS** resolves names, usually from AD-integrated zones that replicate with AD and inherit its access model.
+- **DHCP** assigns addresses from servers authorized in the forest.
+- **IPAM** records which ranges exist, who owns them and which records point where. Without it, DNS and DHCP drift.
 
-A migration that moves DNS but leaves Active Directory-joined DHCP in place produces a hybrid in which addresses are assigned by one authority and resolved by another. A migration that moves DNS and DHCP but leaves IP address management informal (spreadsheet, wiki, nobody-owns-it) produces silent conflicts and ghost records.
+Moving DNS but leaving AD-authorized DHCP gives two authorities for assignment and resolution. Moving both but leaving IPAM in a spreadsheet produces conflicts and ghost records. The framework treats the three as one domain: IPAM owns addressing, and DNS and DHCP derive from it.
 
-The framework treats all three as one governance domain, with matched adapters and one canonical policy: addressing governance is owned by IP address management; DNS and DHCP derive from it.
+## DNS — AD-integrated to private resolution
 
-## DNS — Active Directory-integrated → private resolution
+AD-integrated zones live inside the AD replication graph. In most forests every domain controller is also a DNS server,[^cs06-adidns] updates replicate through AD, and zone ACLs use AD groups. As a result, every DC sits in the name-resolution trust path; AD can't retire until DNS moves; stale records from deleted computer objects need AD-side cleanup; and domain-joined clients find DCs through AD-registered SRV records,[^cs06-dclocator] so DNS and AD retirement must be sequenced together.
 
-### The current-state problem
-
-Active Directory-integrated DNS zones live inside the Active Directory replication graph. In most forests every domain controller is also a DNS server;[^cs06-adidns] every zone update propagates via Active Directory replication; zone access-control lists use Active Directory security groups. This means:
-
-- Every domain controller is in the name-resolution trust path.
-- Retiring Active Directory requires moving DNS first or accepting a multi-week name-resolution outage window.
-- Zones that have accumulated stale records (from decommissioned computer objects) cannot be cleaned up without Active Directory-side coordination.
-- Domain-joined clients and applications locate domain controllers through AD-registered SRV records,[^cs06-dclocator] so DNS and AD retirement have to be sequenced together.
-
-### The target architecture
-
-DNS migrates in a three-layer pattern:
+The target has three layers:
 
 | Layer | Target | Purpose |
 |-------|--------|---------|
-| **Authoritative on-premises** | Non-AD-integrated DNS servers (file-backed Windows DNS or a DDI appliance) | Canonical records for the on-premises namespace once AD-integrated zones retire |
-| **Hybrid resolution** | Azure DNS Private Resolver (inbound and outbound endpoints, forwarding rulesets)[^cs06-dnspr] | Bidirectional name resolution between virtual networks and on-premises |
+| **Authoritative on-premises** | Non-AD-integrated DNS (file-backed Windows DNS or a DDI appliance) | Records for the on-premises namespace once AD-integrated zones retire |
+| **Hybrid resolution** | Azure DNS Private Resolver (inbound and outbound endpoints, forwarding rulesets)[^cs06-dnspr] | Resolution in both directions between virtual networks and on-premises |
 | **Authoritative cloud** | Azure Private DNS zones linked to virtual networks (including Private Link zones)[^cs06-pdnslink] | Records for cloud workloads and private endpoints |
 
-Conditional forwarders on on-premises DNS servers point to the private resolver's inbound endpoint, which resolves names in the private DNS zones linked to its virtual network. Workloads in virtual networks keep using Azure-provided DNS;[^cs06-vnetdns] a DNS forwarding ruleset, attached to the resolver's outbound endpoint and linked to those virtual networks, forwards on-premises domains to the on-premises authoritative servers. (Arc-connected servers stay on-premises and resolve through on-premises DNS.)
+On-premises conditional forwarders point to the resolver's inbound endpoint, which answers from the private zones linked to its virtual network. Virtual networks keep using Azure-provided DNS;[^cs06-vnetdns] a forwarding ruleset attached to the outbound endpoint and linked to those networks sends on-premises domains to the on-premises servers. Arc-connected servers stay on-premises and use on-premises DNS.
 
-### The DNS adapter interface
+The DNS adapter **discovers** zones, records (with age and staleness), forwarders and recursion settings; **flags risk** (stale records, ownerless zones, aliases to decommissioned resources); **proposes** a target per zone (private DNS, keep on-premises, or retire); **migrates** one zone at a time with per-zone rollback; and **validates** record by record, including names other services depend on, such as CRL distribution points. Records carry the owning object's attributes, so a record whose device has been deleted shows up as orphan drift.
 
-The DNS adapter interface includes:
+Migration runs in six steps: inventory (Chapter 02); a steward-reviewed target for each zone; one low-risk pilot zone; zone-by-zone cutover with a validation gate per zone; deletion of AD-integrated zones, with the forest's own `_msdcs` and domain zones retiring last alongside the DCs; and steady state with zero DNS drift.
 
-- **Discovery.** Enumerate zones (Active Directory-integrated and file-backed), records (with age and staleness flag), conditional forwarders, recursion settings.
-- **Risk assessment.** Stale records, zones with no identifiable owner, aliases pointing to decommissioned resources.
-- **Target architecture proposal.** For each zone, propose authoritative target (private DNS versus keep-on-premises versus retire) and produce a migration plan.
-- **Migration path.** Phased cutover of zones, one zone at a time, with rollback per zone.
-- **Validation.** Record-by-record comparison after cutover; TTL normalization; resolution tests for names that other services depend on (for example, certificate-revocation-list distribution points).
-- **Rollback.** Re-enable Active Directory-integrated zone; restore conditional forwarders to prior state.
+## DHCP — AD-authorized to governed DHCP
 
-### Attribute tagging of DNS records
+Windows DHCP servers in an AD environment must be authorized in the forest before they lease addresses; that authorization (rogue-server detection) lives in AD.[^cs06-dhcpauth] Assessments commonly find reservations for MAC addresses not seen in years, options that push DNS servers whose addresses will change, oversized scopes, and failover relationships never tested.
 
-DNS records are tagged with the organizational attributes of the owning object. A record that points to the platform host carries the corresponding attribute metadata. The drift engine uses this to flag records whose owner has been decommissioned — if the device object is removed but the DNS record still exists, that is orphan drift.
+The target depends on the environment:
 
-### Migration phases
+- **On-premises-heavy:** keep DHCP on dedicated, governed hosts, decoupled from forest authorization.
+- **Cloud-forward:** Azure virtual networks assign addresses through built-in platform DHCP with no scopes to manage;[^cs06-vnetfaq] on-premises subnets still need a DHCP service (Windows DHCP on non-domain-joined hosts or a DDI appliance).
+- **Hybrid:** both, with IPAM as the single source of truth.
 
-1. **Assessment.** Chapter 02’s DNS stream produces the full zone and record inventory.
-2. **Target proposal.** Analysis classifies every zone into one of three targets. A steward reviews and adjusts.
-3. **Pilot zone.** Pick one low-risk zone; migrate; validate for a defined period.
-4. **Zone-by-zone cutover.** Phased migration with conditional-forwarder updates per zone. Validation gate per zone.
-5. **Active Directory-integrated zone retirement.** Once all zones are migrated and validated, the Active Directory-integrated zones are deleted. The forest's own `_msdcs` and domain zones retire last, with the domain controllers.
-6. **Steady state.** Private resolution handles all name resolution; drift detection reports zero DNS drift.
+The DHCP adapter discovers every server (joined or not), scope, reservation, failover relationship and option set, especially scope-level DNS overrides, and writes changes only through the plan pipeline. Scopes are tagged with the site they serve, which enables ownership drift checks and blast-radius analysis.
 
-## DHCP — Active Directory-joined → governed hybrid DHCP
+## IPAM — informal to governed
 
-### The current-state problem
+Many organizations discover during modernization that they have no real IPAM: a spreadsheet one person maintains, a stale wiki page, or partial tools covering some subnets, with reservations that conflict with actual use. The goal is **one governed IPAM system** covering the full address surface. Options include Azure Virtual Network Manager IPAM for Azure address space[^cs06-ipam] and DDI products for on-premises networks. Whatever the product, the adapter discovers ranges, syncs host records with DNS and reservations with DHCP, tags every change with a correlation ID, and commits it to the repository.
 
-Microsoft DHCP servers in an AD environment must be authorized in the forest before they will lease addresses; that authorization (rogue-server detection) lives in AD.[^cs06-dhcpauth] DHCP scopes have reservations keyed to MAC addresses; option sets inherit from server defaults. Common findings include:
-
-- Reservations pointing at MAC addresses that have not been seen in years.
-- Option sets that push Active Directory-integrated DNS servers whose addresses will change.
-- Scopes sized for growth that never happened.
-- Failover relationships that were configured once and never tested.
-
-### The target architecture
-
-DHCP modernization is less dramatic than DNS but no less important. Three variants by environment:
-
-- **On-premises-heavy environments.** Keep DHCP on-premises; decouple from Active Directory (forest authorization removed); re-home to dedicated DHCP hosts governed by the framework.
-- **Cloud-forward environments.** Azure virtual networks assign addresses through built-in platform DHCP, which needs no scope management;[^cs06-vnetfaq] on-premises subnets still need a DHCP service (Windows DHCP on non-domain-joined hosts or a DDI appliance).
-- **Hybrid environments.** Split — on-premises scopes stay on-premises; cloud virtual networks use cloud-native; all governed via IP address management as the single source of truth.
-
-### The DHCP adapter interface
-
-Key discovery points:
-
-- Every DHCP server (regardless of Active Directory-join state).
-- Every scope — range, subnet mask, exclusion list, lease duration.
-- Every reservation — MAC, IP, client name, option set.
-- Every failover relationship — peer, mode, load-balancer split, maximum client lead time.
-- Option sets — especially scope-level DNS server overrides.
-
-Write methods: add, update, or retire scopes and reservations, governed via the plan pipeline.
-
-### Site tagging of DHCP
-
-DHCP scopes are tagged with the site they serve. A scope for a given office carries that site's identifier. This enables drift detection on scope ownership and blast-radius analysis for address-pool changes.
-
-## IP address management — informal → governed
-
-### The current-state problem
-
-Organizations routinely discover, as part of modernization, that they do not have IP address management at all. The state is often:
-
-- A shared spreadsheet maintained by one person.
-- A wiki page whose last edit was years ago.
-- Several partial installations that cover some subnets but not others.
-- Reserved and not-reserved ranges that conflict with actual usage.
-
-The migration goal is **one governed IP address management system** with full coverage of the address surface.
-
-### The IP address management adapter
-
-Options include Azure Virtual Network Manager IP address management (for Azure address space)[^cs06-ipam] and DDI products that cover on-premises networks. The adapter contract standardizes:
-
-- Network range discovery.
-- Host record sync with DNS.
-- Reservation sync with DHCP.
-- Change-window tracking (every addition or modification carries a correlation identifier).
-- Provenance emission (every change produces a repository commit).
-
-### One IP address management system, three services
-
-The operating model: IP address management is the single source of truth for addressing. DNS and DHCP adapters read from it and produce matched records. Drift between IP address management and DNS or DHCP is hierarchy drift — the tree exists but the leaves do not agree.
-
-This pattern is why all three services migrate together, not separately.
-
-## Hybrid resolution architecture
-
-On-premises and cloud namespaces resolve through a private resolver into the authoritative private DNS zone, with IP address management as the single source of truth.
-
-Reads go in either direction: an on-premises host resolves a local name through the resolver inbound endpoint; a hybrid-projected virtual machine in a virtual network resolves a private name through the outbound endpoint to private DNS.
-
-## The three-adapter plan
-
-Every network-services modernization run produces a plan with all three adapters coordinating:
-
-1. **IP address management plan actions.** Populate authoritative records.
-2. **DNS plan actions.** Create private DNS zone entries keyed to IP address management records.
-3. **DHCP plan actions.** Create DHCP scope reservations keyed to IP address management records (where DHCP is used).
-
-If any of the three would produce drift between itself and the other two, the plan fails validation. There is no DNS-only migration run; it is always DNS, DHCP, and IP address management together.
+IPAM is the source of truth, and DNS and DHCP produce matching records from it. Disagreement between IPAM and either service is *hierarchy drift*: the tree exists, but the leaves don't agree. Every services run therefore produces one coordinated plan of IPAM, DNS and DHCP actions, and the plan fails validation if any of the three would drift from the others. There is no DNS-only run.
 
 ## Validation
 
 Services migration passes when:
 
-- IP address management covers the full address surface (no unclaimed subnets).
-- Every private DNS record has a matching IP address management entry.
-- Every DHCP reservation has a matching IP address management entry.
-- Every on-premises conditional forwarder points to the private resolver inbound endpoint.
-- Every virtual network points to the private resolver outbound endpoint.
-- The legacy Active Directory-integrated DNS zone is retired (or explicitly excluded with documented rationale).
-- Drift detection reports zero drift across IP address management, DNS, and DHCP for a defined period.
-- The nightly assessment-to-plan run produces zero actions for the services tree.
+- IPAM covers the full address surface, and every private DNS record and DHCP reservation matches an IPAM entry;
+- every on-premises conditional forwarder targets the resolver's inbound endpoint, and every virtual network that needs on-premises names is linked to a forwarding ruleset on the outbound endpoint;
+- AD-integrated zones are retired or excluded with a documented rationale.
 
-## Why organizations postpone — and why they should not
+## Why "Phase 2" never comes
 
-The common pattern: modernize identity and policy, leave DNS, DHCP, and IP address management for “Phase 2.” Phase 2 rarely happens. The organization is left with:
-
-- Active Directory retired for user authentication.
-- Active Directory retained because DNS still lives there.
-- Silent coupling between the two.
-
-A forest that retains Active Directory-integrated DNS is not actually retired. Do not pretend otherwise. The services migration is part of the core modernization, not a follow-on.
+The common pattern is to modernize identity and policy and leave DNS, DHCP and IPAM for "Phase 2," which rarely happens. AD is retired for sign-in but kept because DNS still lives there. A forest that still hosts AD-integrated DNS has not been retired. Services migration is core modernization, not a follow-on.
 
 
 ## Key takeaways

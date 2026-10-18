@@ -9,144 +9,80 @@
 ![Diagram](../images/cshc/compute-transformation.svg)
 
 
-Compute objects — domain-joined PCs and servers — are the single largest remaining Active Directory dependency once identity (Chapter 04), policy (Chapter 05), and services (Chapter 06) have moved. PCs retire into cloud-joined + device management. Servers retire into hybrid management + guest configuration. Kerberos-bound applications lose their domain-join anchor and migrate to modern authentication or are retired.
-
-This chapter ends at “no device authenticates to Active Directory.” That is the final precondition for Active Directory Domain Services retirement.
+Once identity (Chapter 04), policy (Chapter 05) and services (Chapter 06) have moved, domain-joined PCs and servers are the largest remaining Active Directory dependency. PCs move to Entra join and Intune. Servers move to Azure Arc and Machine Configuration. Kerberos-bound applications lose their domain-join anchor and either move to modern authentication or retire. This chapter ends when no device authenticates to Active Directory, the last precondition for retiring AD DS.
 
 ## The device states
 
-The device-join model has several states. Understanding them is the precondition for planning any compute migration.
-
 | State | Primary auth | Managed by | When to use |
 |-------|--------------|------------|-------------|
-| **Domain-Joined** (legacy) | Active Directory Kerberos | Group Policy | Legacy — migration origin |
-| **Entra registered**[^cs07-devid] | Personal device with a work account added | Device management (optional) | Bring-your-own-device; rarely used in regulated environments |
-| **Hybrid-joined** | Both Active Directory + cloud identity (simultaneous) | Group Policy + device management | Transition state — not a target |
-| **Entra joined** (cloud-joined) | Cloud identity only | Device management | Target for user PCs |
+| **Domain-joined** (legacy) | AD Kerberos | Group Policy | Migration origin |
+| **Entra registered**[^cs07-devid] | Personal device with a work account | Intune (optional) | BYOD; rare in regulated environments |
+| **Hybrid-joined** | AD and Entra ID together | Group Policy + Intune | Transition state, not a target |
+| **Entra joined** | Entra ID only | Intune | Target for user PCs |
 | **Arc-connected server** | Local or domain logon unchanged; system-assigned managed identity for Azure-plane operations | Azure Arc + Azure Policy machine configuration | Target for servers |
 
-Two architectural rules apply:
+Two rules follow. **Hybrid join is a transition, not a destination**: a program that leaves devices hybrid-joined has not finished. And **the target depends on device class**: user PCs go to Entra join and Intune; Windows and Linux servers go to Arc and Machine Configuration. The two share compliance telemetry but not a management model.
 
-1. **Hybrid-joined is a transition, not a destination.** Every hybrid-joined device is a device whose modernization has begun but not finished. A modernization that leaves devices hybrid-joined permanently has not completed.
-2. **The target depends on the device class.** User PCs go to cloud-joined + device management. Servers (Windows and Linux) go to hybrid management + guest configuration. These are distinct target states; they share compliance telemetry but not the management model.
+Before a device leaves the domain, three AD dependencies need replacements, or it ships with a gap:
 
-## The device migration problem
-
-Every domain-joined device has three Active Directory dependencies that must be resolved before domain-unjoin:
-
-- **Identity.** The device object authenticates to Active Directory via Kerberos. Its computer account is in an organizational unit; Group Policy applies through that unit.
-- **Policy.** Device configuration — local administrators, registry settings, software deployment, startup scripts — arrives via Group Policy.
-- **Trust.** The device’s certificate store trusts Active Directory-issued certificate authorities; its smart-card logon chain relies on Active Directory Certificate Services; its network access control may use Active Directory credentials.
-
-For each of those dependencies, a modernization must land a replacement before the domain-unjoin. Otherwise the device ships with a policy gap, a trust gap, or both.
+- **Identity.** The computer account authenticates with Kerberos and receives Group Policy through its OU.
+- **Policy.** Local administrators, registry settings, software and startup scripts arrive through Group Policy.
+- **Trust.** The certificate store trusts AD-issued CAs, smart-card logon relies on AD CS, and network access control may use AD credentials.
 
 ## Three migration patterns for user PCs
 
-### Pattern 1 — Greenfield (enrollment from the start)
+1. **Greenfield.** New hardware ships from the OEM pre-registered,[^cs07-autopilot] and first boot is an Entra join. No AD dependency is ever created. Every hardware refresh should use this pattern, whatever the state of the wider program.
+2. **Reset and re-enroll.** Back up user state, reset the device, and re-enroll it as Entra joined. It is heavy for the user but technically clean, and a common choice for high-privilege users' devices.
+3. **Hybrid, then cloud.** Where an immediate reset isn't feasible, devices are hybrid-joined first while workloads move from Group Policy to Intune. There is no supported in-place conversion from hybrid join to Entra join, so the final step is still a reset and Autopilot re-provisioning[^cs07-apsc] (or a third-party migration tool), timed to a refresh or scheduled window. This is the most common and slowest path; it defers the reset rather than avoiding it, and drift detection keeps devices from stalling in hybrid state.
 
-The lowest-risk pattern. New hardware is shipped directly from the OEM with pre-registration.[^cs07-autopilot] The first boot is a cloud-joined enrollment; no domain-join happens. No Active Directory dependency is created.
+## Servers — the Arc path
 
-This is the pattern to push toward for any hardware refresh: new PCs are greenfield regardless of whether the fleet modernization is in progress.
-
-### Pattern 2 — Reset-and-re-enroll
-
-For existing domain-joined devices, the cleanest path is to back up user state, reset the device, and re-enroll. Post-reset the device is cloud-joined from the start.
-
-This is operationally heavy for the user (loss of local customization unless synchronization is working), but technically clean. A common choice is to run this pattern for high-privilege user devices where leaving any legacy Active Directory trust is unacceptable.
-
-### Pattern 3 — Hybrid-then-cloud
-
-For fleets where an immediate reset is not operationally feasible, devices are first hybrid-joined (both Active Directory and cloud identity). Over a planned period, workloads move from Group Policy to device management. There is no supported in-place conversion from hybrid join to Entra join, so the final step is still a reset and Autopilot re-provisioning[^cs07-apsc] (or a third-party migration tool), timed to the device's refresh or a scheduled window.
-
-This is the common transition. It is the slowest of the three and defers, rather than avoids, the reset. Drift detection monitors every step so a device does not get stuck hybrid-joined forever.
-
-## Servers — the hybrid management path
-
-Windows and Linux servers do not go through the same device-management path as user PCs. They go through hybrid management.
-
-### What hybrid management does
-
-Hybrid management projects an on-premises (or other-cloud) server into the cloud as a resource. The server appears in a cloud subscription; it gets a system-assigned managed identity for Azure-plane operations (its operating-system logon is unchanged); it can receive policy and guest-configuration assignments; it appears in security and monitoring services; it is governed the same way a native cloud virtual machine is governed.
-
-Critically, hybrid management does not require the server to be in the cloud. The server stays where it lives physically. Hybrid management is the governance projection; the physical host is unchanged.
-
-### Attribute-scoped hybrid governance
-
-Every hybrid-projected server is tagged with its organizational attributes. Cloud policy and guest configuration assignments target those tags. This is the same pattern as device management for user devices — policy follows attributes.
-
-### Server migration sequence
+Azure Arc projects an on-premises or other-cloud server into Azure as a resource. The server stays where it is physically. It gains a system-assigned managed identity for Azure-plane operations (its OS logon is unchanged), receives Azure Policy and Machine Configuration assignments, appears in security and monitoring services, and is governed like a native Azure VM. Each projected server is tagged with its organizational attributes, and policy assignments target those tags, the same pattern Intune uses for user devices.
 
 For each domain-joined server:
 
-1. **Arc-connect.** Install the Connected Machine agent; register; apply organizational tags.[^cs07-arc]
-2. **Onboard security and compliance reporting.** Defender for Servers and Azure Policy machine configuration report the server's posture.[^cs07-mdfs] (Conditional Access governs user and workload sign-ins to Entra-protected resources; it does not evaluate server compliance for server-to-server traffic.)
-3. **Assign policy / guest configuration.** Settings that previously came from Group Policy now come from hybrid management.
-4. **Validate.** Guest configuration reports compliant; expected settings present; drift engine reports zero.
-5. **Domain-unjoin.** Only once all legacy Active Directory dependencies are resolved (all Kerberos-bound clients migrated, no Active Directory-anchored local administrators).
-6. **Post-unjoin validation.** Server reboots clean; hybrid heartbeat continues; guest configuration re-applies without Active Directory.
+1. **Connect to Arc.** Install the Connected Machine agent, register, and apply tags.[^cs07-arc]
+2. **Onboard reporting.** Defender for Servers and Machine Configuration report posture.[^cs07-mdfs] (Conditional Access governs user and workload sign-ins to Entra-protected resources; it does not evaluate server compliance for server-to-server traffic.)
+3. **Assign policy.** Settings that came from Group Policy now come through Arc.
+4. **Validate.** Machine Configuration reports compliant and drift is zero.
+5. **Leave the domain**, only once Kerberos-bound clients have moved and no local administrators are AD-anchored.
+6. **Re-validate.** The server reboots clean, the Arc heartbeat continues, and configuration re-applies without AD.
 
-Duration depends mainly on the Kerberos-application inventory; budget it per application, not per server.
+Duration depends mostly on the Kerberos-application inventory, so budget per application, not per server.
 
-## Kerberos and service principal name retirement
+## Kerberos and SPN retirement
 
-Every Active Directory-joined server has an entry in the Kerberos service principal name map (Chapter 02). Each service principal name represents an application or service that expects to be reached via Kerberos authentication. For each one, the modernization needs a decision:
+Every service principal name in the Chapter 02 map is an application that expects Kerberos. Each needs one of three decisions:
 
-- **Migrate the application to modern authentication.** OAuth2 / OpenID Connect via cloud application registration.[^cs07-appproxy] This is the preferred path.
-- **Retire the application.** If the application is legacy and due for end-of-life, this may be the cheapest option.
-- **Keep the application on a Kerberos island.** Last resort — retain a minimal Active Directory island hosting only the Kerberos-bound application, with a documented end-of-life date.
+- **Migrate** to OAuth 2.0 / OpenID Connect through an Entra app registration.[^cs07-appproxy] This is the preferred path.
+- **Retire** it, often the cheapest option for end-of-life applications.
+- **Island** it, as a last resort: a minimal AD island hosting only that application, with a documented end-of-life date.
 
-The service-principal-name-to-application mapping determines the sequence: no server can domain-unjoin until every service principal name on that server has been resolved (migrated, retired, or islanded).
+No server leaves the domain until every SPN on it is resolved.
 
-## Organizational attributes on devices
+## Devices, attributes and certificates
 
-User devices carry organizational attributes just like users (for devices, typically through device extension attributes set via Microsoft Graph,[^cs07-dyn] or through rules on properties such as the enrollment profile). This drives:
+Devices carry organizational attributes, typically device extension attributes set through Microsoft Graph[^cs07-dyn] or rules on properties such as the enrollment profile. Those attributes drive device dynamic groups, Intune compliance scoping and Conditional Access device-state targeting. A device whose attributes disagree with its owner's is value drift.
 
-- **Device dynamic groups.** Attribute queries capture devices in a given organizational segment.
-- **Device-management compliance scoping.** Attribute-scoped groups are the target for segment-specific compliance policies.
-- **Conditional Access device-state targeting.** Policies that require a compliant device can be scoped per attribute value.
+When domain-joined PCs go, AD CS-anchored smart-card logon goes with them. Entra certificate-based authentication replaces it: Windows smart-card sign-in to Entra-joined devices keeps working,[^cs07-cbasc] with the chain ending in Entra ID. It needs a reader and a valid user certificate with a configured binding (Chapter 08). Access from Entra-joined devices to remaining on-premises Kerberos resources still depends on AD until those resources retire.[^cs07-ssoonprem]
 
-Drift detection monitors device attributes the same way it monitors user attributes — if the device’s attributes disagree with its owning user’s attributes, that is value drift.
+## Lifecycle after the move
 
-## Certificate-based authentication
+- **Joiner.** The device ships from the OEM, the user signs in with Entra ID, compliance enrollment and Conditional Access apply, apps install from Intune, and encryption keys are escrowed.
+- **Mover.** Attribute changes recompute device groups and Intune re-applies policy.
+- **Leaver.** The device is retired (and its Entra object deleted) or reset for its next user.
 
-When domain-joined PCs go away, smart-card logon anchored in Active Directory Certificate Services goes with them. The replacement is cloud certificate-based authentication.
-
-Microsoft Entra certificate-based authentication accepts certificates issued by a certificate authority in the tenant's trust store and authenticates the user to Entra ID. Windows smart-card sign-in to Entra-joined devices keeps working;[^cs07-cbasc] the chain just ends in Entra ID instead of Active Directory. The prerequisites are a smart-card reader and a valid user certificate whose binding to the user is configured (Chapter 08). Access from Entra-joined devices to remaining on-premises Kerberos resources continues to depend on AD until those resources are retired.[^cs07-ssoonprem]
-
-## Lifecycle — enrollment and the device-reset pattern
-
-Once the compute fleet is cloud-joined, device lifecycle becomes simpler:
-
-- **Joiner.** Enrollment deploys directly from OEM shipping; the user signs in with their cloud identity; the device is compliance-enrolled; Conditional Access policies apply; applications install from device management; encryption keys are escrowed.
-- **Mover.** The user’s organizational attributes change; device dynamic groups recompute; device-management policy re-applies.
-- **Leaver.** The device is retired or repurposed via device management. If retired, the cloud object is deleted; if repurposed, the device is reset and picks up a new user’s policies on next sign-in.
-
-No organizational-unit move, no domain-unjoin, no manual Group Policy re-link, no Active Directory cleanup. Device lifecycle is policy, not infrastructure.
+There are no OU moves, domain unjoins, GPO re-links or AD cleanup. Device lifecycle becomes policy, not infrastructure.
 
 ## Validation
 
 Compute migration passes when:
 
-- Every user PC is cloud-joined (not hybrid-joined, not domain-joined).
-- Every server is hybrid-connected (or documented as exempt with a retirement schedule).
-- Every device has valid organizational attributes.
-- Every device-management compliance policy targets attribute-scoped groups.
-- Every cloud policy / guest configuration targets attribute tags.
-- Every service principal name in the legacy map has been resolved (migrated, retired, or islanded with a documented end-of-life).
-- Drift detection reports zero device drift for a defined period.
-- The nightly assessment-to-plan run produces a zero-action plan for the compute tree.
+- every user PC is Entra joined, and every server is Arc-connected or exempt with a retirement date;
+- every device has valid attributes, and Intune and Azure Policy assignments target attribute-scoped groups or tags;
+- every SPN in the legacy map is migrated, retired or islanded with an end-of-life date.
 
-The last box is the precondition for Active Directory Domain Services retirement. Until every compute object passes, Active Directory cannot go away.
-
-## The last thing Active Directory did
-
-When every device has moved, every application has migrated, every DNS zone is out, every DHCP scope is re-homed, every Kerberos service principal name is resolved, and every Group Policy Object is retired — Active Directory Domain Services has no active consumers.
-
-This is the moment to shut it down.
-
-The actual retirement is mechanical: demote every domain controller, decommission the supporting virtual machines, delete the forest objects. The hard part is the governance transformation that precedes it — every chapter from 04 through 07 of this series.
-
-Chapter 08 wraps the remaining access-plane details. Chapter 09 presents the phased program plan that sequences everything. Chapter 10 frames the executive takeaway.
+When every device, application, DNS zone, DHCP scope, SPN and GPO has moved, AD DS has no active consumers. The retirement itself is mechanical (Chapter 09); the hard part is Chapters 04–07.
 
 
 ## Key takeaways
