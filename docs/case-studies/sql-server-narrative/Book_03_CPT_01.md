@@ -1,5 +1,5 @@
 ---
-title: "the authentication audit script — What It Measures and Why"
+title: "The Authentication-Audit Script: What It Measures and Why"
 doc-type: sql-server-narrative-chapter
 audience: [Technical, Customer]
 family: sql-server-narrative
@@ -11,20 +11,20 @@ tiers_adopted: []
 lifecycle_review: 2027-01-01
 ---
 
-# Chapter 1 — the authentication audit script: What It Measures and Why
+# Chapter 1 — The Authentication-Audit Script: What It Measures and Why
 
 *The instrument that turns the surviving estate into a structured, drift-aware authentication record.*
 
 ::: {.callout-note}
 ## In this chapter
-What `the authentication audit script` enumerates across the surviving estate, how it reads the authentication-mode configuration and classifies every login by type, how it captures the engine service-account identity and SPN registration, the three-category Arc-eligibility classification that drives migration sequencing, and why the script's output feeds the compliance-monitoring pipeline rather than a spreadsheet.
+What the authentication-audit script enumerates across the surviving estate, how it reads the authentication-mode configuration and classifies every login by type, how it captures the engine service-account identity and SPN registration, the three-category Arc-eligibility classification that drives migration sequencing, and why the script's output feeds the compliance-monitoring pipeline rather than a spreadsheet.
 :::
 
 This audit runs only on the instances Book 02 classified as **retain** or **consolidation-target** — the rationalization decision has already removed the zombies and retirees from scope before a single line of enumeration runs.
 
 ## Scope of the Enumeration
 
-`the authentication audit script` performs a structured enumeration of the SQL Server estate across all hosts in the program's management scope. For each host it identifies every SQL Server instance — named instances and the default instance — along with the version, edition, and build number.
+The authentication-audit script performs a structured enumeration of the SQL Server estate across all hosts in the program's management scope. For each host it identifies every SQL Server instance — named instances and the default instance — along with the version, edition, and build number.
 
 The host operating system version is captured because it determines the Arc capability envelope. Windows Server 2019 and 2022 support the Connected Machine agent, and therefore support Arc-based Entra authentication for the SQL Server engine (through an app registration on SQL Server 2022, the managed identity on SQL Server 2025).[^b03c01-arc-servers][^b03c01-arc-prereq][^b03c01-entra-sql][^b03c01-mi-2025] They do not, however, support the `AADLoginForWindows` OS-level Entra login extension, which requires Windows Server 2025. Windows Server 2025 supports both capabilities.
 
@@ -78,7 +78,7 @@ A Category 3 instance requires a SQL Server version upgrade as the gate before a
 
 ## The Compliance-Monitoring Telemetry Sink
 
-The audit script's output is not a standalone deliverable — it is the input to the compliance-monitoring pipeline. This is the architectural characteristic that distinguishes `the authentication audit script` from a conventional discovery script.
+The audit script's output is not a standalone deliverable — it is the input to the compliance-monitoring pipeline. This is the architectural characteristic that distinguishes the authentication-audit script from a conventional discovery script.
 
 The continuous-compliance monitoring system is the program-level tracking system for SQL Server authentication state at the instance level. Each time the audit runs — and it is designed to run continuously, on a schedule, against the full estate — it produces a structured per-instance compliance record that the compliance-monitoring pipeline ingests.
 

@@ -38,7 +38,7 @@ The Azure extension for SQL Server is a distinct installation from the Connected
 
 The extension performs additional validation at installation time. It verifies the SQL Server version, where 2022 or later is required for Entra auth capability; it registers the SQL Server instance with the Arc SQL resource plane; and it is the component that later applies the instance's Entra authentication configuration.
 
-The authentication-audit script (`the authentication audit script`) Arc-eligibility classification — Category 1 versus Category 2 versus Category 3 — is the primary input for prioritizing Arc deployment across the estate. Category 2 instances are the immediate deployment targets, and the audit's login inventory and NTLM risk signals within Category 2 are used to order those deployments by remediation urgency.
+The authentication-audit script Arc-eligibility classification — Category 1 versus Category 2 versus Category 3 — is the primary input for prioritizing Arc deployment across the estate. Category 2 instances are the immediate deployment targets, and the audit's login inventory and NTLM risk signals within Category 2 are used to order those deployments by remediation urgency.
 
 ## Enabling Microsoft Entra Authentication on the Instance
 

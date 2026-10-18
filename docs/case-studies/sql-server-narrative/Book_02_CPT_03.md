@@ -1,5 +1,5 @@
 ---
-title: "Rationalization — Utilization, Versions, and Dependencies"
+title: "Rationalization: Utilization, Versions, and Dependencies"
 doc-type: sql-server-narrative-chapter
 audience: [Technical, Customer]
 family: sql-server-narrative

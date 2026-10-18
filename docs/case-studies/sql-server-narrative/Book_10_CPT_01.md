@@ -30,11 +30,11 @@ It matters specifically because SQL Server has certificate dependencies that are
 
 ## SQL Server TLS/SSL Certificates
 
-The first and most commonly recognized SQL Server certificate dependency is the TLS certificate the engine presents for encryption of client connections. When SQL Server is configured to use TLS encryption — which is required under this program's FedRAMP-Moderate posture — it presents a server certificate to connecting clients as part of the TLS handshake.
+The first and most commonly recognized SQL Server certificate dependency is the TLS certificate the engine presents for encryption of client connections. When SQL Server is configured to use TLS encryption — which is required under this program's FedRAMP Moderate posture — it presents a server certificate to connecting clients as part of the TLS handshake.
 
 In most federal environments, that certificate is issued by the organization's ADCS infrastructure. The administrator submitted a request to the ADCS Certificate Authority, the CA issued a certificate carrying the SQL Server's hostname as the Subject Alternative Name, and the certificate was installed in the instance's certificate store and bound through SQL Server Configuration Manager. The certificate has an expiration date.
 
-When ADCS is decommissioned, that certificate will not be renewed automatically — there is no CA left to issue the renewal. If the TLS certificate expires after ADCS decommission, clients configured to validate the server certificate, which is the correct security posture, will reject the connection with a certificate validation error. The encryption that FedRAMP-Moderate requires becomes the thing that breaks the connection.
+When ADCS is decommissioned, that certificate will not be renewed automatically — there is no CA left to issue the renewal. If the TLS certificate expires after ADCS decommission, clients configured to validate the server certificate, which is the correct security posture, will reject the connection with a certificate validation error. The encryption that FedRAMP Moderate requires becomes the thing that breaks the connection.
 
 The certificate-audit script captures the TLS certificate for every instance in scope: the subject, the SAN, the issuing CA, and the expiration date. Any instance whose TLS certificate is ADCS-issued is a dependency the migration plan must address. The replacement certificate must come from the new CA — whether Microsoft Cloud PKI (the Intune Suite certificate service, which issues through Intune SCEP profiles to Intune-enrolled devices, so check that each SQL Server host qualifies) or an alternative — and must be installed and bound before the ADCS-issued certificate expires or before ADCS goes offline, whichever comes first.
 
