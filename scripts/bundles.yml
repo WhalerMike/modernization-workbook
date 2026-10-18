@@ -162,6 +162,7 @@ bundles:
       - 10-operating-the-control-plane.md
       - 11-selection-cost-and-residual-risk.md
       - appendix-a-dns-record-types.md
+      - appendix-b-requirements-mapping.md
 
   - output: next-generation-ddi-ch01-bundle.docx
     subtitle: "Next Generation DDI — Chapter 01"
@@ -207,6 +208,10 @@ bundles:
     subtitle: "Next Generation DDI — Chapter 11"
     root: docs/next-generation-ddi
     pages: [11-selection-cost-and-residual-risk.md]
+  - output: next-generation-ddi-appb-bundle.docx
+    subtitle: "Next Generation DDI — Appendix B, Requirements Mapping and Sources"
+    root: docs/next-generation-ddi
+    pages: [appendix-b-requirements-mapping.md]
   # HR-Driven Identity series: combined edition plus one bundle per chapter.
   # ---------------------------------------------------------------------
   - output: hr-driven-iam-bundle.docx

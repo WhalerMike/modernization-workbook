@@ -72,6 +72,7 @@ Start with **[Applicability](00-applicability.md)** if you work in GCC High, DoD
 
 ### Reference
 - **[Appendix A — DNS Record Types and Ecosystem Integrations](appendix-a-dns-record-types.md)**: the record-type catalog, ecosystem integrations and glossary.
+- **[Appendix B — Requirements Mapping and Sources](appendix-b-requirements-mapping.md)**: each federal requirement mapped to the chapters and evidence, and every source cited, primary and third-party listed separately.
 
 ## How to read this book
 
@@ -98,4 +99,4 @@ Start with **[Applicability](00-applicability.md)** if you work in GCC High, DoD
 
 ## Source note
 
-This book restructures the October 2026 *Next Generation DDI* whitepaper (Word edition) into chapters. Platform-specific examples are illustrative; evaluate every option against the architectural requirement of a single authoritative policy plane.
+This book restructures the October 2026 *Next Generation DDI* whitepaper (Word edition) into chapters. Platform-specific examples are illustrative; evaluate every option against the architectural requirement of a single authoritative policy plane. Footnotes cite primary sources (federal documents, IETF standards and the cloud providers' own documentation) wherever one exists; the few third-party sources are labeled as such, and [Appendix B](appendix-b-requirements-mapping.md) lists both groups separately.

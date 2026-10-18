@@ -77,7 +77,7 @@ Identity governance platforms such as SailPoint typically reach DDI through APIs
 
 The policy plane should produce the continuous telemetry and audit trail that FedRAMP, NIST and Zero Trust reporting require:
 
-- DNS query logs (source, query name, response, policy action, timestamp) for Protective DNS, M-21-31 logging and incident response, exported to the SIEM and SOAR platforms.
+- DNS query logs (source, query name, response, policy action, timestamp) for Protective DNS, M-21-31 logging and incident response,[^c10-m2131] exported to the SIEM and SOAR platforms.
 - Response policy and Protective DNS hit data.
 - IPAM discovery and inventory reports for CM-8 asset accounting, and continuous discovery data for CMDB reconciliation.
 - Configuration change and role audit trails (who changed what, when and through which interface) for AU-2 and AU-6.
@@ -103,3 +103,5 @@ For a program office or an authorization package:
 
 **Previous:** [Chapter 09 — The Migration Sequence](09-migration-sequence.md)  
 **Next:** [Chapter 11 — Platform Selection, Cost and Residual Risk](11-selection-cost-and-residual-risk.md)
+
+[^c10-m2131]: OMB M-21-31, *Improving the Federal Government's Investigative and Remediation Capabilities Related to Cybersecurity Incidents*, August 27, 2021 (DNS logs at event-logging tier EL-1). <https://www.whitehouse.gov/wp-content/uploads/2021/08/M-21-31-Improving-the-Federal-Governments-Investigative-and-Remediation-Capabilities-Related-to-Cybersecurity-Incidents.pdf>
