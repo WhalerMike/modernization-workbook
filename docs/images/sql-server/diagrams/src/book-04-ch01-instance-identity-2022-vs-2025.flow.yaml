@@ -1,0 +1,16 @@
+# Book 04, Chapter 1 — where an Arc-enabled instance's Entra identity comes from
+# in SQL Server 2022 and in SQL Server 2025.
+rankdir: TB
+graph: {nodesep: 0.4, ranksep: 0.35}
+nodes:
+  t:
+    kind: table
+    tone: slate
+    columns: ["", {text: "SQL Server 2022", tone: amber}, {text: "SQL Server 2025 (recommended)", tone: green}]
+    widths: [150, 270, 270]
+    rows:
+      - ["Identity used for Entra authentication", "An app registration in Entra ID, created for the instance", "The Arc server's system-assigned managed identity, set as the instance's primary managed identity"]
+      - ["Credential", "A certificate, kept in Azure Key Vault and installed on the host", "None to manage; the Arc agent holds it"]
+      - ["Microsoft Graph permissions", "`User.Read.All`, `GroupMember.Read.All`, `Application.Read.All` with admin consent", "Same three, granted to the managed identity by a Privileged Role Administrator"]
+      - ["What it can do", "Inbound only: users, groups and apps sign in with Entra logins", "Inbound and outbound: Entra logins, plus backup to URL and Azure Key Vault"]
+      - ["Both versions", {text: "Not supported on failover cluster instances. The instance needs a network path to the Azure public cloud.", tone: red, span: 2}]

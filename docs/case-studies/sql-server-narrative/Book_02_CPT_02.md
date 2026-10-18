@@ -32,6 +32,8 @@ The inventory is not a point-in-time spreadsheet. Like the authentication audit 
 
 ## Discovery Instruments
 
+![Three independent discovery instruments feed one re-runnable estate inventory.](../../images/sql-server/diagrams/svg/book-02-ch02-discovery-instruments.svg){fig-alt="Find-DbaInstance from dbatools, the setspn MSSQLSvc query and Microsoft assessment tools (Azure Migrate, MAP, DMA) feed one estate inventory that is re-run rather than kept as a snapshot, which then feeds rationalization."}
+
 No single instrument finds every instance, because instances hide in different ways. A complete sweep combines several, each blind to what the others surface.
 
 A network and directory sweep finds instances by listening for them. The SQL Server Browser service responds on UDP 1434, instances listen on TCP 1433 and dynamic ports, and Active Directory itself records instances indirectly. The open-source PowerShell module `dbatools` provides `Find-DbaInstance`, which combines these signals — service-principal-name lookups, SQL Browser responses, port scans, and Windows service enumeration — into a single discovery pass across a network range or an Active Directory domain. It is the most direct way to surface instances that no inventory records.

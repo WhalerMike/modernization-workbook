@@ -13,14 +13,14 @@ lifecycle_review: 2027-01-01
 
 # Chapter 2 — Why the Inheritance Must End
 
-![During: two paths](../../images/sql-server/during-overview.png)
-
 *Three drivers, each as well-reasoned as the original design, and their dependency structure.*
 
 ::: {.callout-note}
 ## In this chapter
 The three forces that now require replacing Windows Authentication for SQL Server — the NTLM elimination the program has committed to, with its 2027-04-01 backstop, the zero-trust requirement that puts the Azure identity plane in the authentication path, and the service-account credential problem created by the broader directory modernization — and why their dependency structure dictates the order of the entire series.
 :::
+
+![Three drivers end the inheritance, and their dependencies set the order of the series.](../../images/sql-server/diagrams/svg/book-01-ch02-three-drivers-and-order.svg){fig-alt="Three drivers, NTLM elimination, zero trust and service-account identity, impose an order: assess and consolidate, enable Arc, migrate logins, then eliminate NTLM."}
 
 That replacement is now necessary, and the reasons are as well-reasoned as the original design choices were. The NTLM elimination the program has committed to, the zero-trust requirement that Conditional Access policies sit in the authentication path for all human access, and the collapse of the domain-joined world as the universal substrate for federal computing are not organizational preferences. They are architectural inevitabilities driven by Microsoft's deprecation of NTLM, the transformation inventory, and the federal zero-trust mandate that governs this program's boundary — OMB M-22-09 (the Federal Zero Trust Strategy), operationalized in this boundary as phishing-resistant MFA and Conditional Access (AC-17, IA-2).
 
@@ -37,6 +37,8 @@ Not "may fail" or "should be migrated before failing" — will fail at the LSA l
 The migration itself must occur earlier. The timeline needed to execute the consolidation, the Arc deployment, the login migration, and the application connection-string migration all have a hard backstop at 2027-04-01.
 
 ## Driver Two — The Zero-Trust Requirement
+
+![Conditional Access can evaluate an Entra token request; it never sees a Kerberos or NTLM exchange.](../../images/sql-server/diagrams/svg/book-01-ch02-conditional-access-leverage.svg){fig-alt="Two paths from a DBA workstation: Kerberos or NTLM through a domain controller to SQL Server involves no token request and so no policy decision; an Entra token request passes Conditional Access, and the token is issued only if every check passes."}
 
 The second driver is architectural: the zero-trust posture mandated for this program's FedRAMP-Moderate boundary by OMB M-22-09 (the Federal Zero Trust Strategy), and operationalized through AC-17 and IA-2, cannot be implemented without the Azure identity plane in the authentication path for SQL Server connections.
 

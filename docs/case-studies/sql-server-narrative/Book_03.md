@@ -29,6 +29,8 @@ listing:
 Where Book 02 measured the estate to decide what survives, this book measures the **authentication posture** of what remains. `the authentication audit script` is the instrument, the Arc-eligibility classification is its most consequential output, and the per-instance compliance record — not a spreadsheet — is its deliverable.
 :::
 
+![What the authentication audit reads on each instance, and where its output goes.](../../images/sql-server/diagrams/svg/book-03-audit-inputs-and-record.svg){fig-alt="On every retained instance the audit reads the version, edition and host OS, the authentication mode, every login by type, the engine service account and SPN, and linked servers; it produces a per-instance compliance record and an Arc-eligibility category, both sent to compliance monitoring."}
+
 ::: {.callout-tip}
 ## Download this book
 **[Book_03-bundle.docx](../../../downloads/Book_03-bundle.docx)** — every chapter of this book concatenated into one Word document. Regenerated on every site deploy.

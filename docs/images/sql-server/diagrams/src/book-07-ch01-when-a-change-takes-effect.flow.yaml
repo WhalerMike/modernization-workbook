@@ -1,0 +1,27 @@
+# Book 07, Chapter 1 — the chain between an HR change and the engine, and the
+# urgent path that doesn't wait for it.
+rankdir: LR
+graph: {nodesep: 0.35, ranksep: 0.38}
+clusters:
+  - id: urgent
+    label: "Urgent removal — don't wait for the rule"
+    tone: red
+    nodes: [u1, u2, u3]
+  - id: routine
+    label: "Routine joiner, mover or leaver"
+    tone: blue
+    nodes: [c0, c1, c2, c3]
+nodes:
+  c0: {tone: plain, width: 140, title: "HR attribute changes", size: 12}
+  c1: {tone: blue, width: 160, tag: "Link 1", title: "Rule processing", body: ["=Usually a few hours; can exceed 24 h in large tenants or after bulk changes"], size: 12}
+  c2: {tone: blue, width: 160, tag: "Link 2", title: "Token lifetime", body: ["=An issued token stays valid until it expires: 60–90 minutes by default"], size: 12}
+  c3: {tone: blue, width: 160, tag: "Link 3", title: "Session and pool", body: ["=An open session keeps its security context; pools can hold it for hours"], size: 12}
+  u1: {tone: red, width: 140, title: "Disable the Entra account", size: 12}
+  u2: {tone: red, width: 160, title: "Revoke sign-in sessions", size: 12}
+  u3: {tone: red, width: 160, title: "End SQL sessions", body: ["=`KILL`, or disable the login if the threat is wider"], size: 12}
+edges:
+  - [c0, c1]
+  - [c1, c2]
+  - [c2, c3]
+  - [u1, u2, {tone: red}]
+  - [u2, u3, {tone: red}]

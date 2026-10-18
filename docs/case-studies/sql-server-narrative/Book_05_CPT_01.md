@@ -13,10 +13,6 @@ lifecycle_review: 2027-01-01
 
 # Chapter 1 — Three Principal Types — User, Group, Service Principal
 
-![Parallel-run pattern](../../images/sql-server/during-parallel.png)
-
-![Migration state](../../images/sql-server/migration-state.png)
-
 *The moment the engine stops accepting Kerberos and NTLM and starts accepting Entra-issued tokens.*
 
 ::: {.callout-note}
@@ -29,6 +25,8 @@ This is the technical heart of the series. The login migration is the moment whe
 Those tokens carry claims about the principal's identity, group memberships, device compliance state, and MFA completion. Everything in Books 01 through 04 is prerequisite; everything in Books 06 through 10 is consequence. This chapter is the migration itself, and the SQL Server engine-authentication decision records the canonical sequence it follows.
 
 ## The FROM EXTERNAL PROVIDER Syntax
+
+![A connection with an Entra login: the client gets a token for the SQL audience and the engine validates it.](../../images/sql-server/diagrams/svg/book-05-ch01-token-authentication-flow.svg){fig-alt="Sequence diagram between client, Microsoft Entra ID and SQL Server: the client signs in, Conditional Access is evaluated, a token for https://database.windows.net/ is issued, and SQL Server validates it and maps it to a type E or X login."}
 
 SQL Server 2022 introduces a new login creation syntax that is the foundation for the entire migration: `CREATE LOGIN [principal] FROM EXTERNAL PROVIDER`. This statement maps an Entra ID principal — identified by its user principal name for users, its display name for groups, or its application ID for service principals — to a SQL Server login without any Active Directory involvement at login creation time.
 
@@ -71,6 +69,8 @@ The service principal pattern eliminates the SQL Authentication service account 
 For applications running in Azure virtual machines, Azure Container Instances, or Azure App Service, the platform-provided Managed Identity is used. For applications that cannot use a Managed Identity and must use a service principal with a credential, a client certificate is preferred over a client secret, and the certificate must be stored in Azure Key Vault rather than in any file system location.
 
 ## The Parallel-Run Migration Pattern
+
+![The required three-phase parallel run for production.](../../images/sql-server/diagrams/svg/book-05-ch01-parallel-run.svg){fig-alt="Phase 1 creates an E or X login for every migrating login, phase 2 validates a real Entra sign-in for each, phase 3 disables but doesn't drop the old login, and after 30 days with no residual use the old login is dropped."}
 
 Existing Windows logins must not be dropped until their Entra equivalents have been validated. The migration follows the three-phase parallel-run pattern that the SQL Server engine-authentication decision makes required for production instances, ensuring no access is disrupted during the transition. In Phase 1, type-E equivalents are created for every migrating login. For each Windows login — whether derived from an individual AD user account or an AD security group — a corresponding `FROM EXTERNAL PROVIDER` login is created using the Entra principal that corresponds to the AD principal.
 

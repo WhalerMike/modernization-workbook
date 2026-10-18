@@ -1,0 +1,27 @@
+# Book 04 landing — what Arc connects: the on-premises host, Azure Resource
+# Manager and Microsoft Entra ID.
+rankdir: TB
+graph: {nodesep: 0.25, ranksep: 0.5}
+clusters:
+  - id: azure
+    label: "Azure (commercial cloud)"
+    tone: blue
+    nodes: [arm, entra]
+    order: [arm, entra]
+  - id: onprem
+    label: "On-premises host (can stay domain-joined)"
+    tone: slate
+    nodes: [agent, ext, eng]
+    order: [agent, ext, eng]
+nodes:
+  arm: {tone: blue, width: 205, title: "Azure Resource Manager", body: ["=Arc-enabled server and SQL Server resources; Azure Policy"], size: 12}
+  entra: {tone: blue, width: 205, title: "Microsoft Entra ID", body: ["=The instance's identity; issues tokens to users and apps"], size: 12}
+  agent: {tone: slate, width: 170, title: "Connected Machine agent", body: ["=Registers the server; holds its managed identity"], size: 12}
+  ext: {tone: slate, width: 170, title: "Azure extension for SQL Server", body: ["=Registers each instance; configures Entra authentication"], size: 12}
+  eng: {tone: green, width: 170, title: "SQL Server engine", body: ["=2022 or later; validates Entra tokens"], size: 12}
+  client: {tone: plain, width: 170, title: "Client", body: ["=Signs in to Entra ID, then presents the token to SQL Server"], size: 12}
+edges:
+  - [arm, agent, {dir: back, label: "HTTPS through the approved proxy", lw: 120, both: true}]
+  - [entra, ext, {both: true}]
+  - [eng, client, {tone: blue, label: "token", both: true}]
+  - [entra, client, {tone: blue, label: "sign in", attrs: "constraint=false", both: true}]

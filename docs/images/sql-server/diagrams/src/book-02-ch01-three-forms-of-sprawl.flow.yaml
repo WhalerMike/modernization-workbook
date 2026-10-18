@@ -1,0 +1,14 @@
+# Book 02, Chapter 1 — the three overlapping forms of sprawl and why they
+# change the scope of the transformation.
+rankdir: TB
+graph: {nodesep: 0.3, ranksep: 0.5}
+nodes:
+  inst: {tone: amber, width: 215, tag: "Instance sprawl", title: "More instances than anyone thinks", body: ["Dev and test instances that became production", "Express instances installed silently by applications", "Versions from 2008 to 2022, several out of support", "Mixed editions and licensing"], size: 12}
+  db: {tone: amber, width: 215, tag: "Database sprawl", title: "Databases nobody can account for", body: ["Orphaned: the owning application is gone", "Zombie: no connections in over a year", "Near-duplicates left behind by old migrations", "Each may still hold valid SQL logins"], size: 12}
+  forest: {tone: amber, width: 215, tag: "Forest entanglement", title: "Dependencies across domains", body: ["Logins that resolve to principals in other domains", "Linked servers that cross trusts", "Service accounts drawn from several domains", "SPNs in domains being collapsed"], size: 12}
+  result: {tone: red, width: 680, title: "The real migration scope is unknown until it's measured", body: ["=Example: a team that believes it runs 40 instances finds 110 in a discovery sweep. Its plan is wrong by nearly a factor of three — and part of what it found should be retired, not migrated."], size: 12}
+edges:
+  - [inst, result]
+  - [db, result]
+  - [forest, result]
+order: [[inst, db, forest]]

@@ -1,0 +1,14 @@
+# Book 02, Chapter 4 — consolidation targets and what each means for the
+# authentication story.
+rankdir: TB
+graph: {nodesep: 0.3, ranksep: 0.35}
+nodes:
+  t:
+    kind: table
+    tone: slate
+    columns: ["Target", "Best for", "Entra authentication", "Watch for"]
+    widths: [150, 170, 200, 175]
+    rows:
+      - [{text: "SQL Server 2022 or 2025 on an Arc-enabled host", tone: blue}, "Instance stacking and database consolidation on infrastructure you already run", "2022: Arc + app registration and certificate. 2025: Arc server's managed identity (recommended)", "Failover cluster instances don't support Entra authentication; plan standalone or availability groups"]
+      - [{text: "Azure SQL Managed Instance", tone: blue}, "Workloads that need near-full engine compatibility without a host to patch", "Native; no Arc", "Moves data into a PaaS boundary; confirm it's inside your authorization"]
+      - [{text: "Azure SQL Database / elastic pools", tone: blue}, "Workloads already modernized to database-scoped features", "Native; no Arc", "No instance-level features (Agent, cross-database queries)"]

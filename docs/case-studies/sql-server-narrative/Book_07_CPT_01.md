@@ -26,6 +26,8 @@ The transformation replaces the outside half and leaves the inside half nearly u
 
 ## How an Entra Group Becomes SQL Server Access
 
+![How one Entra group becomes exactly one database role.](../../images/sql-server/diagrams/svg/book-07-ch01-group-to-login-mapping.svg){fig-alt="An Entra security group named by environment, instance, database and role becomes a type X group login in master, a database user, and a member of exactly one user-defined database role."}
+
 An Entra security group enters SQL Server the same way an AD group did: as a server-level login. `CREATE LOGIN [SQL-PRD-FIN01-Ledger-Reader] FROM EXTERNAL PROVIDER` creates a login for the group by display name. SQL Server records it in `sys.server_principals` with type `X`, `EXTERNAL_GROUP`. That differs from type `E`, `EXTERNAL_LOGIN`, which SQL Server uses for individual Entra users and applications. The distinction matters for the continuous audit in Book 09. A posture query that counts only type-E principals will miss every group login, and group logins are where most access should live. Inside each database the group gets a user (`CREATE USER … FROM LOGIN`), and the user is added to a database role with `ALTER ROLE … ADD MEMBER`, exactly as before.
 
 The instance's Microsoft Entra administrator works the same way. It's configured when Entra authentication is enabled, it receives `sysadmin`, and it can be an individual or a group. In an estate of any size it should be a group, and that group is the subject of the privileged-access design in Chapter 2. To resolve users, groups, and applications, the instance's Entra identity is granted read permissions on Microsoft Graph: `User.Read.All`, `GroupMember.Read.All`, and `Application.Read.All`. Granting them takes a Privileged Role Administrator, so it is a step for the identity team, not the DBA team.
@@ -63,6 +65,8 @@ Active Directory estates are full of nested groups: a departmental group inside 
 A design that depends on nesting is therefore building on behavior that is either unsupported, ending, or undocumented. The flat alternative costs a few more groups and gives up nothing. Each role-mapped group lists its members directly, either by rule or by assignment. If several populations need the same role, use one group whose rule covers all of them. Where a login *must* be reached through a nested chain, test that path explicitly on the target instance version before relying on it.
 
 ## When a Change Takes Effect
+
+![The chain between an HR change and the engine, and the urgent path that doesn't wait for it.](../../images/sql-server/diagrams/svg/book-07-ch01-when-a-change-takes-effect.svg){fig-alt="Routine changes pass through rule processing, token lifetime and open sessions, so they can take hours; urgent removal disables the Entra account, revokes sign-in sessions and ends SQL sessions directly."}
 
 Under Windows Authentication, a membership change reached SQL Server when the user next obtained a Kerberos ticket, which usually meant the next logon. The Entra model has a longer and more varied chain, and the DBA team should be able to explain each link in it:
 

@@ -51,6 +51,8 @@ This series documents that path, fills it in narrative form, and provides the
 analytical foundation that the **SQL Server engine-authentication decision**
 formalizes.
 
+![How a connection authenticates before, during and after the transformation.](../../images/sql-server/diagrams/svg/series-01-before-during-after.svg){fig-alt="Before: a domain-joined client gets a Kerberos ticket or falls back to NTLM, invisible to Entra ID. During: legacy and migrated clients coexist, with two authorities and old logins disabled after validation. After: users, apps and managed identities get an Entra token under Conditional Access, SQL Server accepts only Entra logins, and every sign-in is logged."}
+
 The series is written in continuous narrative voice. It avoids the
 bullet-point shorthand of a runbook, because the transformation it describes
 is not a checklist — it is an engineering argument, and engineering arguments
@@ -71,6 +73,8 @@ Book 09 describes the transformed steady-state and the 2027 milestone, and Book
 depend on but rarely name.
 
 ## Reading sequence {#chapters}
+
+![The eleven books in the order they depend on each other.](../../images/sql-server/diagrams/svg/series-00-reading-path.svg){fig-alt="The eleven books in stages: why and what survives (Books 01 to 03), migrating the engine (Books 04 to 06), and extending outward then sustaining (Books 07 to 09), with Book 10, the certificate authority dependency, and Book 11, the platform question, alongside the whole series."}
 
 ::: {#chapters}
 :::

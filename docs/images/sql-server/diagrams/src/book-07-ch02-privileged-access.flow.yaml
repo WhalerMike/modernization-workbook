@@ -1,0 +1,19 @@
+# Book 07, Chapter 2 — which groups may be dynamic, which belong in PIM, how
+# delegation is scoped, and the break-glass paths that bypass all of it.
+rankdir: TB
+graph: {nodesep: 0.3, ranksep: 0.38}
+nodes:
+  std: {tone: blue, width: 225, tag: "Standard access", title: "Reader, writer and app roles", body: ["Dynamic (HR rule) or assigned membership", "Review the rule and its inputs, not each member"], size: 12}
+  priv: {tone: red, width: 225, tag: "Privileged access", title: "sysadmin, Entra admin, sensitive db_owner", body: ["Never dynamic", "Cloud-only, assigned, role-assignable groups", "PIM for Groups: eligible, activate just in time"], size: 12}
+  au: {tone: violet, width: 225, tag: "Delegation", title: "Administrative units", body: ["One AU per DBA team or data owner", "Groups Administrator scoped to the AU", "Restricted management AUs block PIM and access reviews"], size: 12}
+  act: {tone: red, width: 225, title: "Activation", body: ["=MFA, justification, approval, time limit; logged in Entra audit logs"], size: 12}
+  rev: {tone: violet, width: 225, title: "Access reviews", body: ["=Assigned and PIM-eligible members recertified on a cadence"], size: 12}
+  bg: {tone: amber, width: 720, tag: "Break-glass — must not depend on the machinery above", title: "Two cloud-only emergency accounts, plus the documented SQL Server exception path", body: ["=Phishing-resistant credentials stored securely; excluded only from the Conditional Access policies that could lock them out; alert on every sign-in; tested on a schedule. sa stays disabled and renamed. Nothing here sits in a dynamic group or relies on HR data, sync or rule processing."], size: 12}
+  lic: {kind: text, width: 700, text: "PIM for Groups and access reviews need Microsoft Entra ID P2 or Microsoft Entra ID Governance for the users in scope.", size: 12}
+edges:
+  - [priv, act, {tone: red}]
+  - [std, rev, {style: dashed, tone: violet, label: "rule owners"}]
+  - [priv, rev, {style: dashed, tone: violet, label: "eligible members"}]
+  - [act, bg, {style: invis}]
+  - [bg, lic, {style: invis}]
+order: [[std, priv, au], [rev, act]]

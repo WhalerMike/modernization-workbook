@@ -24,6 +24,8 @@ Chapter 1 established that the organization-derived groups of the old estate bec
 
 ## The Attribute Is the Access Control
 
+![HR-sourced attributes drive dynamic membership, and no group grants access until its rule is proven.](../../images/sql-server/diagrams/svg/book-07-ch02-attribute-pipeline.svg){fig-alt="The HR system of record writes coded user attributes into Entra ID through provisioning; a dynamic group rule uses them, and the group gets a SQL Server login only after the rule passes a rollout gate."}
+
 Moving to dynamic membership relocates the access decision. Under assigned membership, the person who can add a member to the group controls access. Under dynamic membership, **the person or process that can write the attribute the rule reads controls access.** Microsoft makes the point explicitly in its dynamic-group guidance. Before using an attribute in a rule that governs access, review who can write it in Entra ID *and* in any source directory that syncs it. Watch especially for on-premises attributes that users are allowed to modify on their own objects.
 
 This is why the series insists on a single, authoritative **source of truth** for the attributes that drive SQL Server access, and in a federal agency that source is the HR system of record. HR knows when someone joins, moves, or leaves, and HR has the governance (personnel actions, approvals, records retention) to make those changes defensible. The path from HR to the directory should be automated and one-way:
@@ -79,6 +81,8 @@ Draw AU boundaries to match ownership: one AU per DBA team, application portfoli
 Use regular AUs for SQL Server access groups that need governance tooling, and reserve restricted management for cases where tamper-resistance outweighs reviewability. Dynamic membership *of the AU itself* is generally available in the commercial (global) cloud this series assumes, with a P1 license for each member. Its rules can select users or devices, but not groups, so SQL Server access groups are added to an AU explicitly or by automation. Dynamic AU membership is not available in Azure Government.
 
 ## Privileged Access Belongs in PIM, Not in a Rule
+
+![Which groups may be dynamic, which belong in PIM, how delegation is scoped, and the break-glass path that bypasses all of it.](../../images/sql-server/diagrams/svg/book-07-ch02-privileged-access.svg){fig-alt="Standard reader, writer and app roles may use dynamic or assigned groups with access reviews; privileged roles use cloud-only, role-assignable groups activated just in time through PIM for Groups; administrative units scope delegation; two cloud-only break-glass accounts stand outside all of it."}
 
 The groups mapped to `sysadmin`, to the instance's Entra administrator, and to `db_owner` on sensitive databases should never be dynamic. Microsoft makes the same judgment for directory roles: role-assignable groups must have assigned membership, because an automated rule could add an unintended account to a privileged role. The SQL Server equivalent of that protection is **PIM for Groups**. DBAs are made *eligible* members of the privileged group rather than standing members. Each activation is time-bound, requires MFA and, where policy demands it, approval and a justification. Every activation is logged.
 

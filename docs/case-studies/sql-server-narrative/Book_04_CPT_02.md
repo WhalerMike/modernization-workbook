@@ -20,6 +20,8 @@ lifecycle_review: 2027-01-01
 The connectivity prerequisites that Arc enrollment demands inside a GCC-Moderate boundary, why the Azure extension for SQL Server is a distinct installation with its own version validation, and the IMDS token check that confirms the system-assigned Managed Identity is genuinely available before any login migration begins.
 :::
 
+![The ordered steps that make a host identity-ready.](../../images/sql-server/diagrams/svg/book-04-ch02-arc-deployment-sequence.svg){fig-alt="Five steps in order: confirm egress, install the Connected Machine agent, deploy the Azure extension for SQL Server, enable Microsoft Entra authentication on the instance, and verify before any login moves."}
+
 Arc deployment is a sequence, not a single act. Each step has a prerequisite that the prior step satisfies, and skipping ahead produces failures that are easy to misdiagnose as migration problems when they are in fact enrollment problems. The order is connectivity first, then the SQL Server extension, then a verification that the Managed Identity is actually present and answering.
 
 ## Prerequisites for Arc Enrollment

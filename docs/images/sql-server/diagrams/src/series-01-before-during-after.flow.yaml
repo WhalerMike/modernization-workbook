@@ -1,0 +1,31 @@
+# Series overview — how a connection authenticates before, during and after.
+rankdir: TB
+graph: {nodesep: 0.25, ranksep: 0.36}
+clusters:
+  - {id: before, label: "Before — Windows Authentication", tone: slate, nodes: [b1, b2, b3, b4]}
+  - {id: during, label: "During — parallel run", tone: amber, nodes: [d1, d2, d3, d4]}
+  - {id: after, label: "After — Entra-only", tone: green, nodes: [a1, a2, a3, a4]}
+nodes:
+  b1: {tone: plain, width: 190, title: "Domain-joined client", body: ["=Integrated Security=True"], size: 12}
+  b2: {tone: slate, width: 190, title: "Domain controller", body: ["=Kerberos ticket, or NTLM when no SPN"], size: 12}
+  b3: {tone: slate, width: 190, title: "SQL Server", body: ["=Windows logins (U, G) and SQL logins (S)"], size: 12}
+  b4: {tone: red, width: 190, kind: card, title: "Not visible to Entra ID", body: ["=No Conditional Access, no MFA, no sign-in log"], size: 12}
+  d1: {tone: plain, width: 190, title: "Legacy and migrated clients", body: ["=Old connection strings still work"], size: 12}
+  d2: {tone: amber, width: 190, title: "Two authorities", body: ["=Domain controller for legacy logins; Entra ID for tokens"], size: 12}
+  d3: {tone: amber, width: 190, title: "SQL Server on an Arc-enabled host", body: ["=Old and new logins side by side; old ones disabled after validation"], size: 12}
+  d4: {tone: amber, width: 190, title: "A controlled risk", body: ["=Every surviving legacy login is a path around Conditional Access"], size: 12}
+  a1: {tone: plain, width: 190, title: "User, app or managed identity", body: ["=Authentication=Active Directory …"], size: 12}
+  a2: {tone: blue, width: 190, title: "Microsoft Entra ID", body: ["=Conditional Access: MFA, device, location, risk"], size: 12}
+  a3: {tone: green, width: 190, title: "SQL Server validates the token", body: ["=Entra logins only (E, X); sa disabled"], size: 12}
+  a4: {tone: green, width: 190, title: "Every sign-in is logged", body: ["=NTLM can be blocked without breaking SQL access"], size: 12}
+edges:
+  - [b1, b2]
+  - [b2, b3, {label: "ticket / NTLM"}]
+  - [b3, b4, {style: invis}]
+  - [d1, d2]
+  - [d2, d3, {label: "ticket or token"}]
+  - [d3, d4, {style: invis}]
+  - [a1, a2, {tone: blue}]
+  - [a2, a3, {tone: blue, label: "access token"}]
+  - [a3, a4, {style: invis}]
+ranks: [[b1, d1, a1], [b2, d2, a2], [b3, d3, a3], [b4, d4, a4]]

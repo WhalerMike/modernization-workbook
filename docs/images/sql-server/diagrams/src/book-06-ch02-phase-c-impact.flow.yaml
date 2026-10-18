@@ -1,0 +1,13 @@
+# Book 06, Chapter 2 — what the Phase C block does to each kind of connection.
+rankdir: TB
+nodes:
+  t:
+    kind: table
+    tone: slate
+    columns: ["Connection", "Before Phase C", "After the 2027-04-01 block"]
+    widths: [210, 220, 260]
+    rows:
+      - [{text: "Windows login, NTLM fallback", tone: red}, "Works, silently", {text: "Fails at the LSA; SQL Server never sees the login", tone: red}]
+      - [{text: "Windows login, Kerberos", tone: slate}, "Works", {text: "Still works, but still invisible to Conditional Access and tied to AD", tone: amber}]
+      - [{text: "Excepted instance still on NTLM", tone: red}, "Works under the exception", {text: "Fails: the block doesn't read the exception registry. Use the certificate-based interim posture.", tone: red}]
+      - [{text: "Entra login (type E or X)", tone: blue}, "Works", {text: "Unaffected: no NTLM or Kerberos in the path", tone: green}]

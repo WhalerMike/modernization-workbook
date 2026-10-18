@@ -2,17 +2,17 @@
 
 **From Windows Authentication to cloud identity — a reading sequence on transforming the SQL Server estate**
 
-![Series cover](../../images/sql-server/series-cover-original.png)
+![The eleven books in the order they depend on each other.](../../images/sql-server/diagrams/svg/series-00-reading-path.svg){fig-alt="The eleven books in stages: why and what survives (Books 01 to 03), migrating the engine (Books 04 to 06), and extending outward then sustaining (Books 07 to 09), with Book 10, the certificate authority dependency, and Book 11, the platform question, alongside the whole series."}
 
 **Full narrative bundle:** [sql-server-narrative-bundle.docx](../../../downloads/sql-server-narrative-bundle.docx) — all books combined into one Word document, regenerated on every site deploy.
 
 **Neutralized Markdown:** [sql-server-narrative-neutralized.md](sql-server-narrative-neutralized.md) — source identifiers replaced with plain language.
 
-**Series overview:** [Series Overview](series-overview.md) — cleaned summary with original diagrams.
+**Series overview:** [Series Overview](series-overview.md) — cleaned summary with the series diagrams.
 
 ## Status
 
-The full original narrative is available as a single DOCX bundle. Individual cleaned Markdown chapters are also present. Original diagrams from the source bundle are referenced in the overview and index.
+The full original narrative is available as a single DOCX bundle. Individual cleaned Markdown chapters are also present. Every book and chapter carries its own diagram; the sources and render script are in `docs/images/sql-server/diagrams/`.
 
 ## The destination
 
@@ -20,23 +20,9 @@ Windows Authentication and SQL Authentication are eliminated and replaced with c
 
 ## The journey in diagrams
 
-### Before — Kerberos overview
+![How a connection authenticates before, during and after the transformation.](../../images/sql-server/diagrams/svg/series-01-before-during-after.svg){fig-alt="Before: a domain-joined client gets a Kerberos ticket or falls back to NTLM, invisible to Entra ID. During: legacy and migrated clients coexist, with two authorities and old logins disabled after validation. After: users, apps and managed identities get an Entra token under Conditional Access, SQL Server accepts only Entra logins, and every sign-in is logged."}
 
-![Before: Kerberos overview](../../images/sql-server/before-kerberos.png)
-
-Every party is domain-joined. The domain controller is the authentication authority. Kerberos is the protocol. NTLM is the silent fallback when the service principal name is missing.
-
-### During — two paths
-
-![During: two paths](../../images/sql-server/during-overview.png)
-
-Legacy clients still use Kerberos or fall back to NTLM. Migrated clients authenticate to the cloud identity platform and present a token.
-
-### After — token authentication
-
-![After: token authentication](../../images/sql-server/after-token.png)
-
-No domain controller in the authentication path. Conditional Access evaluates identity and device. The SQL Server validates the OAuth token.
+Before, every party is domain-joined and NTLM is the silent fallback when the service principal name is missing. During the parallel run, legacy and migrated clients coexist. After, Conditional Access evaluates every sign-in and the SQL Server validates the Entra token; no domain controller is in the path.
 
 ## Reading sequence
 

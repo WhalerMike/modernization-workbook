@@ -26,6 +26,8 @@ After that date, any SQL Server connection that requires NTLM will fail at the L
 
 ## Phase A — Discovery
 
+![The evidence Phase A combines into the NTLM baseline.](../../images/sql-server/diagrams/svg/book-06-ch02-phase-a-evidence.svg){fig-alt="The authentication audit, the Security log on SQL Server hosts (events 4624 and 4625 with the NTLM package), the NTLM operational log and linked-server definitions combine into a per-instance NTLM baseline in compliance monitoring."}
+
 The discovery phase is the elimination program's first phase, and for SQL Server its primary instrument is `the authentication audit script`. The Phase A output for SQL Server includes the full instance inventory with Arc-eligibility classifications, the login-type inventory, the SPN registration status for every instance, and the service-account identity for each engine process.
 
 Network-traffic analysis supplements the script output by capturing actual NTLM authentication events in the Windows event log. The relevant events are Event IDs 4624 and 4625 — logon success and failure — with logon type 3, the network logon type, and authentication package NTLM, filtered to events where the target server is a SQL Server host.
@@ -41,6 +43,8 @@ SPN registration is corrected for all instances with missing or incorrect SPNs, 
 After Phase B, the only remaining NTLM-generating SQL Server connections should be those that require the elimination program's enforcement phase's hard block to remove. These are typically applications that cannot be modified before the 2027-04-01 block date set in the elimination program, which become exception cases requiring formal exception documentation per the elimination program.
 
 ## Phase C — Elimination
+
+![What the Phase C block does to each kind of connection.](../../images/sql-server/diagrams/svg/book-06-ch02-phase-c-impact.svg){fig-alt="Under the Phase C block, Windows logins that fall back to NTLM fail at the LSA, Windows logins on Kerberos still work but stay invisible to Conditional Access, excepted instances still on NTLM fail, and Entra logins are unaffected."}
 
 The elimination phase disables NTLM across the estate. Group Policy pushed domain-wide restricts NTLM authentication at the LSA layer on every host, and any connection that cannot negotiate an alternative protocol fails. For SQL Server, Phase C is only safe to implement after the login migration of Book 04 has been completed for every instance in the estate.
 

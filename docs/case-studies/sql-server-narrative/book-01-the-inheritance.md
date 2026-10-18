@@ -10,13 +10,7 @@ The SSPI layer examines the available authentication protocols and determines wh
 
 The engine validates the ticket’s cryptographic signature using the session key derived from the service account’s credentials, extracts the Kerberos principal, and maps it to a SQL Server login. No password has traversed the network. No credential has been stored in any application configuration file. The authentication is mutual: the client proves its identity to the server, and the server to the client, both through the shared authority of the domain’s KDC. This is genuinely good security architecture, and it is important to say so plainly before explaining why it must be replaced.
 
-![Kerberos overview](../../images/sql-server/before-kerberos.png)
-
-*Before: three-party Kerberos flow from SQL Client through Domain Controller to SQL Server.*
-
-![Kerberos session lifecycle](../../images/sql-server/kerberos-lifecycle.png)
-
-*The Kerberos session lifecycle: AS-REQ / TGT / TGS-REQ / service ticket / AP-REQ / AP-REP, plus the NTLM silent fallback.*
+![A Windows-integrated connection: SSPI negotiates Kerberos when the SPN resolves, and silently falls back to NTLM when it doesn't.](../../images/sql-server/diagrams/svg/book-01-ch01-kerberos-sspi-ntlm-fallback.svg){fig-alt="Sequence diagram between client, domain controller and SQL Server: the client requests a service ticket for the SQL Server SPN and presents it to the engine; if the SPN is missing, Negotiate falls back to an NTLM challenge-response."}
 
 The SPN must be registered against the service account running the SQL Server engine process. The format for a SQL Server instance is MSSQLSvc/hostname.domain.com:port, and the registration binds the service account’s long-term key — its password hash in the AD domain — to the service name, so the KDC can generate a valid ticket when a client requests one.
 
@@ -66,9 +60,7 @@ It was not a security compromise. It was the application of the existing, well-u
 
 Three drivers require replacing Windows Authentication for SQL Server.
 
-![During: two paths](../../images/sql-server/during-overview.png)
-
-*During: legacy clients still use Kerberos or fall back to NTLM; migrated clients present a token. Both paths coexist during the parallel-run window.*
+![Three drivers end the inheritance, and their dependencies set the order of the series.](../../images/sql-server/diagrams/svg/book-01-ch02-three-drivers-and-order.svg){fig-alt="Three drivers, NTLM elimination, zero trust and service-account identity, impose an order: assess and consolidate, enable Arc, migrate logins, then eliminate NTLM."}
 
 ### Driver One — NTLM elimination
 

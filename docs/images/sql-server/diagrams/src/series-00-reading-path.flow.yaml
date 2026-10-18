@@ -1,0 +1,36 @@
+# Series index — the eleven books, row by row, in the order they depend on
+# each other.
+rankdir: TB
+graph: {nodesep: 0.6, ranksep: 0.75}
+clusters:
+  - {id: r1, label: "1 · Why, and what survives", tone: amber, nodes: [b01, b02, b03], order: [b01, b02, b03]}
+  - {id: r2, label: "2 · Migrate the engine", tone: blue, nodes: [b04, b05, b06], order: [b04, b05, b06]}
+  - {id: r3, label: "3 · Extend outward, then sustain", tone: violet, nodes: [b07, b08, b09], order: [b07, b08, b09]}
+  - {id: r4, label: "Alongside the whole series", tone: plain, nodes: [b10, b11], order: [b10, b11]}
+nodes:
+  b01: {tone: slate, width: 185, tag: "Book 01", title: "The inheritance", body: ["=Kerberos, NTLM fallback, service accounts, sa — and three drivers to replace them"], size: 12}
+  b02: {tone: amber, width: 185, tag: "Book 02", title: "The estate itself", body: ["=Inventory, then retain, consolidate or retire every instance"], size: 12}
+  b03: {tone: amber, width: 185, tag: "Book 03", title: "The authentication audit", body: ["=Login types, SPNs, Arc eligibility, compliance record"], size: 12}
+  b04: {tone: blue, width: 185, tag: "Book 04", title: "Arc identity bridge", body: ["=Arc agent and SQL extension give the instance an Entra identity"], size: 12}
+  b05: {tone: blue, width: 185, tag: "Book 05", title: "Login migration", body: ["=Windows and SQL logins to Entra logins, parallel run"], size: 12}
+  b06: {tone: blue, width: 185, tag: "Book 06", title: "NTLM elimination", body: ["=Find every NTLM pattern; finish before 2027-04-01"], size: 12}
+  b07: {tone: violet, width: 185, tag: "Book 07", title: "Access control", body: ["=Entra groups to roles, dynamic membership, PIM"], size: 12}
+  b08: {tone: violet, width: 185, tag: "Book 08", title: "The application chain", body: ["=User sign-in and connection strings for upstream apps"], size: 12}
+  b09: {tone: green, width: 185, tag: "Book 09", title: "Steady state", body: ["=Closure conditions, drift detection, live evidence"], size: 12}
+  b10: {tone: red, width: 300, tag: "Book 10", title: "Certificate authority dependency", body: ["=TLS certificates, certificate-mapped logins and the certificate-based interim posture all need a CA that outlives ADCS"], size: 12}
+  b11: {tone: green, width: 300, tag: "Book 11", title: "The platform question", body: ["=With the estate rationalized: stay on SQL Server or re-platform, per data domain"], size: 12}
+edges:
+  - [b01, b02]
+  - [b02, b03]
+  - [b04, b05]
+  - [b05, b06]
+  - [b07, b08, {style: invis}]
+  - [b08, b09]
+  - [b03, b04, {attrs: "constraint=false tailport=s headport=n"}]
+  - [b05, b07, {attrs: "tailport=s headport=n"}]
+  - [b05, b08, {attrs: "tailport=s headport=n"}]
+  - [b06, b09, {attrs: "tailport=s headport=n"}]
+  - [b01, b04, {style: invis}]
+  - [b04, b07, {style: invis}]
+  - [b07, b10, {style: invis}]
+  - [b09, b11, {style: invis}]

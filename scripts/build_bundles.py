@@ -377,6 +377,19 @@ def sniff(path: Path) -> str:
     return path.suffix.lower()
 
 
+def word_png(src: Path) -> Path | None:
+    """A committed Word rendering of a generated diagram, if there is one.
+
+    Diagrams under docs/images/**/diagrams/ ship as svg/NAME.svg (for the
+    site) and png/NAME.png (2x, tagged 192 dpi, for Word). Embedding the
+    committed PNG keeps the Word figures sharp and identical to the QA'd ones.
+    """
+    if src.suffix.lower() != ".svg" or src.parent.name != "svg":
+        return None
+    png = src.parent.parent / "png" / (src.stem + ".png")
+    return png.resolve() if png.is_file() else None
+
+
 @dataclass
 class Prepared:
     staged: Path                         # prepared copy in the work folder
@@ -446,7 +459,10 @@ class Builder:
         # Word-ready copies of the images
         for i, src in enumerate(sorted({r for pr in self.prepared.values() for _, r, _ in pr.images})):
             kind = sniff(src)
-            if kind == ".svg":
+            committed = word_png(src)
+            if committed:
+                dest = committed
+            elif kind == ".svg":
                 if not shutil.which("rsvg-convert"):
                     fail(f"{rel(src)} is SVG and rsvg-convert is not installed (apt-get install librsvg2-bin)")
                 dest = self.media / f"{i:04d}-{src.stem}.png"
@@ -503,8 +519,9 @@ class Builder:
             shutil.copyfile(output, self.out_dir / alias)
         unused = []
         if b.image_dir and b.image_dir.is_dir():
+            used = unique | {word_png(r) for r in unique}
             unused = sorted(rel(p) for p in b.image_dir.rglob("*")
-                            if p.is_file() and p.suffix.lower() in IMAGE_EXTS and p.resolve() not in unique)
+                            if p.is_file() and p.suffix.lower() in IMAGE_EXTS and p.resolve() not in used)
         return dict(output=b.output, aliases=b.aliases, pages=len(b.pages), refs=len(refs),
                     unique=len(unique), media=len(media), placements=placements,
                     captions=captions, uncaptioned=sum(1 for r in refs if not r[3]),

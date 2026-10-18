@@ -1,0 +1,13 @@
+# Book 10, Chapter 1 — what fails if ADCS goes away before each dependency is
+# moved, and the migration path for each.
+rankdir: TB
+nodes:
+  t:
+    kind: table
+    tone: slate
+    columns: ["Dependency", "If ADCS goes first", "Migration path"]
+    widths: [175, 255, 265]
+    rows:
+      - [{text: "TLS server certificate", tone: slate}, {text: "It expires with no CA to renew it; clients that validate the certificate refuse to connect", tone: red}, "Issue from the replacement CA and bind it before the old one expires or ADCS goes offline, whichever comes first"]
+      - [{text: "Certificate-mapped login (type C)", tone: slate}, {text: "Fails when its backing certificate lapses", tone: red}, "Replace with a type-E service principal or managed identity login (Book 05)"]
+      - [{text: "Certificate-based authentication (interim)", tone: amber}, {text: "No CA to issue the certificates the NTLM exception long-tail depends on", tone: red}, "Replacement CA live and issuing before ADCS is retired"]

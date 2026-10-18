@@ -13,15 +13,14 @@ lifecycle_review: 2027-01-01
 
 # Chapter 1 — Where SQL Server Touches ADCS
 
-![Certificate dependencies](../../images/sql-server/after-token.png)
-
-
 *The certificate dependencies a decommission plan cannot see, named before any decommission plan exists.*
 
 ::: {.callout-note}
 ## In this chapter
 The three distinct SQL Server capabilities that depend on ADCS-issued certificates — TLS encryption of client connections, certificate-mapped logins, and Certificate-Based Authentication as the authorized NTLM-replacement interim posture — why each one breaks if ADCS is decommissioned before it is migrated, and why this book documents a transformation for which no normative ADR has yet been authored.
 :::
+
+![What fails if ADCS goes away before each dependency is moved, and the migration path for each.](../../images/sql-server/diagrams/svg/book-10-ch01-what-breaks.svg){fig-alt="Table of the three ADCS dependencies, what breaks if ADCS is retired first, and the migration path for each."}
 
 The transformation inventory identifies the Active Directory Certificate Services to Cloud PKI transformation as "Not Yet Defined." As the series opening established, that label means the destination may be known but the normative canon governing how to reach it has not been authored. For most of this series, the missing record has been the substrate architecture decision; for Book 10, the gap is more fundamental still. No architecture decision record governs the certificate authority transformation at all.
 
@@ -56,6 +55,8 @@ For connections that cannot reach Entra ID auth before the 2027-04-01 NTLM backs
 The problem is that CBA certificates must be issued by a CA. If the plan is to deploy CBA as the NTLM-replacement posture for connections that cannot yet reach Entra auth, and ADCS is being decommissioned, the replacement CA must already be in place and issuing CBA certificates before ADCS goes offline. The interim posture has its own certificate dependency, and that dependency points at the same authority the program intends to remove.
 
 ## The Sequencing Dependency
+
+![The order the ADCS migration must respect.](../../images/sql-server/diagrams/svg/book-10-ch01-sequencing.svg){fig-alt="First a replacement CA is issuing, then each dependency moves, the long tail stays on certificate-based authentication until 2027-04-01, and ADCS is decommissioned last."}
 
 The three dependencies converge on a single sequencing question. TLS certificates must be re-issued before they expire; certificate-mapped logins must be migrated to type-E before their backing certificates lapse; and CBA, the very mechanism the Kerberos/NTLM-elimination program relies on to cover connections that cannot meet the deadline, must have a CA issuing its certificates before ADCS is retired.
 
