@@ -53,6 +53,7 @@ Every milestone in the program's history moves the same direction: fewer systems
 | Platform | **Oracle Fusion Cloud HCM** (SaaS) | Award announced Jun 11, 2026 |
 | Wave 1 (begins FY26, concludes FY27) | DHS, USDA, HHS, DOI, OPM, DOT, VA, EPA (~900K FTE) | Memo, Appendix A |
 | Wave 2 (fully in FY27) | SSA, DOC, ED, HUD, DOL, SBA, State, DOE, DoW, NASA, GSA, DOJ, Treasury, other (~1.1M FTE) | Memo, Appendix A |
+| First go-lives | Initial deployments slated to go live **January–March 2027**, with the first agencies starting onboarding as FY27 begins | OPM Director, reported Sep 1, 2026[^c02-mt] |
 | Agency onboarding shape | ~8 months; **interconnection(s) go-live ≈ month 5**; legacy systems discontinued at cutover | Memo, Appendix B |
 | Government-wide adoption goal | FY 2028 | Memo |
 | Standing systems | eOPF and EHRI continue near-term, then are made **redundant and decommissioned** by Core HCM | Memo |
@@ -61,7 +62,8 @@ Every milestone in the program's history moves the same direction: fewer systems
 
 Two planning consequences follow directly:
 
-1. **The deadline is not the agency's to set.** For a Wave 2 agency the provisioning feed
+1. **The deadline is not the agency's to set.** The first Wave 1 agencies go live
+   between January and March 2027. For a Wave 2 agency the provisioning feed
    must be integration-ready when the agency's onboarding reaches its
    interconnection slot (~month 5 of the wave window). Build backward from that.
 2. **EHRI-shaped thinking has an expiry date.** Anything that treats the EHRI/eOPF
@@ -78,3 +80,7 @@ No OPM document mandates or specifies Entra ID integration. The program fixes th
 ## Continue the series
 [← Previous: Chapter 01 — Why HR Is the Source of Authority](01-why-hr-is-the-source-of-authority.md) · [Index](index.md) · [Next: Chapter 03 — Attribute Authority →](03-attribute-authority.md)
 :::
+
+<!-- Third-party sources (kept separate from Microsoft and federal primary sources) -->
+
+[^c02-mt]: **Third-party source (trade press).** MeriTalk, "OPM Eyes $40M Annual Cost for Governmentwide HR Platform," Sep 1, 2026, <https://www.meritalk.com/articles/opm-eyes-40m-annual-cost-for-governmentwide-hr-platform/> (accessed Oct 19, 2026). Reports OPM Director Scott Kupor's statement that initial deployments are slated to go live between January and March.
