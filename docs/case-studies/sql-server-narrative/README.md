@@ -61,3 +61,16 @@ This transformation consumes the organizational-attribute model. Dynamic securit
 ---
 
 *Original diagrams from the source bundle. Paths are relative and resolve for both HTML and DOCX.*
+
+## Building the Word bundle
+
+The combined Word document (`downloads/sql-server-narrative-bundle.docx`) is built directly from the Markdown pages in this folder by `scripts/build_sql_bundle.py`. The site deploy workflow runs it on every push to `main`. To build it locally, run this from the repository root (you need [Quarto](https://quarto.org/), plus `rsvg-convert` if any page uses an SVG):
+
+```bash
+python3 scripts/build_sql_bundle.py                 # writes _site/downloads/sql-server-narrative-bundle.docx
+python3 scripts/build_sql_bundle.py /tmp/test.docx  # or choose your own output path
+```
+
+- **Reading order** comes from the explicit `MANIFEST` list at the top of the script: `index.md`, then each `Book_NN.md` followed by its `Book_NN_CPT_*.md` chapters, then Book 11. **When you add, remove, or rename a page, update `MANIFEST`.** The build fails if a listed file is missing, and it warns about any `Book_*` page that isn't listed.
+- **Images** are found in every listed page and resolved relative to that page (normally `../../images/sql-server/`). Each one is embedded where it appears, with its alt text as the caption, scaled to the page width. SVGs are converted to PNG, and files whose extension doesn't match their content are fixed for Word. **The build fails if a referenced image is missing**, and it prints a report of references, embedded images, and any images in `docs/images/sql-server/` that no page uses.
+- **Web-only pieces** are dropped by `scripts/bundle-strip-nav.lua`: chapter listings, the "Continue the series" and "Download" callouts, and links between pages, which become plain text. The bundle gets a title page and a Word table of contents. If Word asks to update fields when you open it, choose **Yes** so it fills in the page numbers.
