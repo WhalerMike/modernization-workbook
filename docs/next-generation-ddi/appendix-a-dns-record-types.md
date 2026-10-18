@@ -89,17 +89,21 @@ The governance implication is that record types which appear unrelated (for exam
 
 - **Split-brain DNS:** Same query returns different answers depending on origin.
 
+- **Split-horizon DNS:** Intentional, governed split-brain, such as different internal and external answers for the same name.
+
+- **GCC-Moderate:** This book's name for Microsoft 365 Government Community Cloud ("GCC"), which runs on the Worldwide service instance at FedRAMP Moderate.
+
 - **Protective DNS:** DNS-layer filtering that blocks known-malicious domains and supports logging and threat detection.
 
 - **RPZ:** Response Policy Zone — DNS mechanism for policy-based responses (block, redirect, etc.).
 
 - **redirect-dns:** Cisco Catalyst SD-WAN data policy that intercepts and redirects DNS queries.
 
-- **INR:** Microsoft 365 Informed Network Routing, telemetry-based path optimization for SD-WAN (Worldwide commercial cloud only; not GCC-Moderate, GCC High or DoD).
+- **INR:** Microsoft 365 informed network routing, telemetry-based path optimization for SD-WAN (Worldwide commercial cloud only; not GCC-Moderate, GCC High or DoD).
 
 - **DNS-01:** ACME challenge type that proves domain control via DNS TXT records.
 
-- **DDI policy plane:** The single authoritative control plane for DNS, DHCP and IPAM state and policy that this book argues for. Infoblox Universal DDI is one commercial example.
+- **DDI policy plane:** The single authoritative policy plane for DNS, DHCP and IPAM state and policy that this book argues for. Infoblox Universal DDI is one commercial example.
 
 ## Source Note
 

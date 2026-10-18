@@ -26,7 +26,7 @@ The table maps each federal requirement that touches the name layer to the chapt
 
 | Requirement (source) | What it asks of DNS, DHCP and IPAM | Addressed in | Evidence |
 |----|----|----|----|
-| Encrypted DNS (OMB M-22-09) | Resolve DNS queries using encrypted DNS wherever technically supported | Ch 03, Ch 05 | Resolver DoH/DoT/DoQ configuration; endpoint DNS policy; port 853 and public-DoH blocking rules |
+| Encrypted DNS (OMB M-22-09) | Resolve DNS queries using encrypted DNS wherever technically supported | Ch 03, Ch 05 | Resolver DoT, DoH and DoQ configuration; endpoint DNS policy; port 853 and public-DoH blocking rules |
 | Protective DNS for egress (OMB M-22-09; CISA Encrypted DNS Implementation Guidance; CISA Protective DNS) | Route agency DNS egress through CISA-operated Protective DNS, including encrypted DNS | Ch 03, Ch 05, Ch 08 | Forwarding chain configuration; redirect-dns targets; resolver logs showing the governed path |
 | DNS logging (OMB M-21-31, EL-1) | Collect and retain DNS request logs | Ch 03, Ch 10 | Query log configuration, SIEM ingestion, retention settings |
 | DNSSEC (OMB M-08-23; SP 800-53 SC-20, SC-21) | Sign authoritative zones; validate on recursive resolvers | Ch 03, Ch 06 | Signed-zone inventory, DS publication, KSK/ZSK rollover records, resolver validation settings |

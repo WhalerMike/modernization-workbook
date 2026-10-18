@@ -13,7 +13,7 @@ lifecycle_review: 2027-01-01
 
 # Chapter 09 — The Migration Sequence
 
-*Six phases from AD-integrated DNS/DHCP to a unified control plane.*
+*Six phases from AD-integrated DNS/DHCP to a unified policy plane.*
 
 ::: {.callout-tip}
 ## Download this chapter
@@ -24,7 +24,7 @@ lifecycle_review: 2027-01-01
 
 ![Six-phase migration sequence.](../images/diagrams/next-generation-ddi/svg/ch09-migration-phases.svg){fig-alt="Six phases top to bottom: inventory and baseline; deploy coexistence; migrate authority; cloud federation; decommission AD DNS and DHCP; policy and compliance hardening."}
 
-A practical sequence for moving from AD-integrated DNS and DHCP plus independent cloud DNS to a unified DDI plane, while keeping services running:
+This is the book's canonical sequence (Inventory → Coexist → Migrate authority → Federate clouds → Decommission AD DNS and DHCP → Harden and evidence), applied to the move from AD-integrated DNS and DHCP plus independent cloud DNS to a unified DDI plane while keeping services running:
 
 - **Phase 1 — Inventory and baseline.** Export every AD DNS zone, SRV record, conditional forwarder and DHCP scope. Document current resolution paths, including SD-WAN redirect-dns targets, and the OCSP and CRL endpoints in use.
 - **Phase 2 — Deploy coexistence.** Stand up the DDI platform's resolvers and its Microsoft DNS and DHCP synchronization. Establish conditional forwarding so that both systems can answer during the transition.
@@ -34,6 +34,13 @@ A practical sequence for moving from AD-integrated DNS and DHCP plus independent
 - **Phase 6 — Policy and compliance hardening.** Enable Protective DNS forwarding, encrypted DNS, DNSSEC signing and validation where required, and continuous monitoring dashboards, and assemble the evidence in Chapter 10.
 
 Each phase should end with a rollback point and a resolution-path consistency test (Chapter 11), not with a calendar date.
+
+::: {.callout-note}
+## What this chapter establishes
+1. The migration runs in six phases: inventory, coexistence, authority, cloud federation, AD DNS decommissioning, hardening.
+2. AD DNS and DHCP are decommissioned only after reconciliation and failover testing.
+3. Each phase ends with a rollback point and a consistency test, not a date.
+:::
 
 ---
 

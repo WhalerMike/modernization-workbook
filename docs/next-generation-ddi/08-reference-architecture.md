@@ -51,6 +51,13 @@ Agencies that already copy DNS records into each cloud provider should change th
 - One hybrid inventory instead of islands of address and name data.
 - A cleaner AD retirement path and fewer "works in one cloud but not another" incidents.
 
+::: {.callout-note}
+## What this chapter establishes
+1. The governed path is SD-WAN edge, agency resolver, DDI policy plane, per-cloud private zones, with egress through Protective DNS.
+2. Five decisions carry almost all of the operational risk.
+3. Cloud DNS services become consumers of one authoritative state, not independently authored sources.
+:::
+
 ---
 
 **Previous:** [Chapter 07 — Cloud Private Endpoints, SDN and IPAM Consistency](07-cloud-private-endpoints-and-ipam.md)  
