@@ -32,17 +32,28 @@ The authentication transformation produces a rationalized estate. The platform q
 
 ## Three Destinations
 
-![The three destinations for a retained data domain.](../../images/sql-server/diagrams/svg/book-11-three-destinations.svg){fig-alt="Comparison of staying on SQL Server, consolidating to PostgreSQL and consolidating to Oracle by authentication, engine effort, licensing and single-source-of-truth advance."}
+![The three candidate destinations for a retained data domain.](../../images/sql-server/diagrams/svg/book-11-three-destinations.svg){fig-alt="Three candidate destinations — stay on SQL Server, re-platform to PostgreSQL, re-platform to Oracle — each evaluated on the same ten dimensions with evidence per data domain."}
 
-Every retained instance ends at one of three destinations. All three satisfy the forced requirement — authentication that is observable and conditionable in the identity plane. They differ in effort, licensing, and how far they advance the single-source-of-truth goal.
+Every retained data domain ends at one of three candidate destinations: stay on SQL Server, re-platform to PostgreSQL, or re-platform to Oracle. Each can satisfy the forced requirement — authentication that is observable and conditionable in the identity plane. This epilogue doesn't rank them. Which one fits depends on the data domain, so the decision is made with a framework rather than a verdict.
 
-| Dimension | A · Stay on SQL Server | B · Consolidate to PostgreSQL | C · Consolidate to Oracle |
-| --- | --- | --- | --- |
-| What it is | SQL Server 2022 or 2025, Arc-enabled, Entra token auth | Re-platform onto PostgreSQL (Crunchy on ROSA, RDS/Aurora, or Azure DB for PostgreSQL) | Re-platform onto Oracle (19c on OpenShift Virtualization, or Autonomous DB in OCI US Gov Cloud) |
-| Auth model | Entra OAuth 2.0 token | Entra-native on Azure DB for PostgreSQL; attribute-driven roles + RLS elsewhere | Oracle auth integrated to the chosen identity plane |
-| Engine effort | Low — upgrade, Arc-enable, migrate logins | High — schema + T-SQL→PL/pgSQL conversion | High — T-SQL→PL/SQL conversion |
-| Licensing | Continues SQL Server per-core | Eliminates SQL Server licensing | Oracle licensing — low incremental cost only if a site license already exists |
-| SSOT advance | None — re-authenticates the silos | High — logical replication, RLS, JSONB, FDW | High — consolidation onto an existing Oracle authority |
+## Decision Framework
+
+Score each candidate destination for each data domain on the same dimensions, and record the evidence behind each score:
+
+| Dimension | Evidence required per data domain |
+| --- | --- |
+| Migration effort | Schema and code inventory (procedures, functions, triggers, jobs), conversion estimate, test scope |
+| Application compatibility | Driver and connection-string support for every consuming application; vendor support statements |
+| Operational maturity | Monitoring, patching, backup and runbook coverage the operating team already has for the platform |
+| HA/DR fit | Required RPO and RTO against the platform's supported HA and DR topologies |
+| Identity integration | How the platform authenticates to the chosen identity plane, verified in its own documentation |
+| Licensing exposure | Current and projected license cost from the agency's own agreements |
+| Portability | Dependence on platform-specific features; exit path |
+| Data-domain consolidation opportunity | Which duplicate copies of the domain the move would retire |
+| Required skills | Staff skills today, and the training or hiring the move needs |
+| Switching cost | Parallel-run duration, dual-running cost, contract terms |
+
+Two data domains can reach different answers, and that is normal. The goal is fewer authoritative platforms, not a single vendor.
 
 ## Decision Sequence
 
@@ -53,8 +64,12 @@ Every retained instance ends at one of three destinations. All three satisfy the
 3. Then make the platform choice per data domain. Re-platforming follows the same parallel-run discipline — establish the target, validate in parallel, cut over only after the validation window. Never drop before you observe.
 
 ::: {.callout-note title="What Book 11 establishes"}
-The authentication transformation produces the inventory that scopes the platform decision. Three destinations satisfy the forced authentication requirement; they differ in effort, licensing, and single-source-of-truth advance. The decision is per data domain, not per agency, and two estates with two answers is normal. The goal is fewer authoritative platforms, not a single vendor.
+1. The authentication transformation produces the inventory that scopes the platform decision.
+2. The decision is made per data domain against a common set of dimensions and evidence, and two estates with two answers is normal.
+3. The goal is fewer authoritative platforms, not a single vendor.
 :::
+
+**Place in the [dependency chain](series-overview.md#the-dependency-chain):** Epilogue, after step 9.
 
 ## Authoritative references
 

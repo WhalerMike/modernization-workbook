@@ -41,6 +41,8 @@ An upstream application that has migrated its user authentication to Entra ID bu
 ::: {#book-chapters}
 :::
 
+**Place in the [dependency chain](series-overview.md#the-dependency-chain):** Step 6 — Move applications.
+
 ## Authoritative references
 
 Checked 19 October 2026.

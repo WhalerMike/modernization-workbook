@@ -61,7 +61,9 @@ For an on-premises instance, both of those Entra identities arrive through Azure
 The sequencing implication follows directly from the dependency structure of these three drivers — and, before any of them, from the consolidation decision of Book 02. You assess and consolidate the estate first, so effort is spent only on instances that survive; then Arc enablement; then the login migration; then NTLM elimination. That order is the architecture of this series.
 
 ::: {.callout-note title="What Book 01 establishes — Chapter 2"}
-Three independent drivers require ending the Windows Authentication inheritance: the Kerberos/NTLM-elimination program with its 2027-04-01 backstop, a zero-trust posture mandated by OMB M-22-09 and operationalized through AC-17 / IA-2 that only works when the Azure identity plane is in the authentication path, and a service-account credential problem created by AD's removal that only an Arc Managed Identity can solve. Their dependency structure — consolidate, then Arc, then migrate logins, then eliminate NTLM — sets the order of the books that follow.
+1. Three independent drivers end the Windows Authentication inheritance: the Kerberos/NTLM-elimination program and its 2027-04-01 backstop, the M-22-09 zero-trust posture, and the engine's need for an identity that outlives AD.
+2. The zero-trust posture works only when the Entra identity plane is in the authentication path.
+3. The drivers' dependencies set the order of the books: inventory and rationalize, audit, enable the identity substrate, move principals and applications, retire protocols, then demonstrate the posture.
 :::
 
 [^b01c02-m2209]: Office of Management and Budget, [M-22-09, Moving the U.S. Government Toward Zero Trust Cybersecurity Principles](https://www.whitehouse.gov/wp-content/uploads/2022/01/M-22-09.pdf).

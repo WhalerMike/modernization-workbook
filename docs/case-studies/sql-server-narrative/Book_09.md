@@ -41,6 +41,8 @@ A transformation that achieves a completed state and then stops monitoring is a 
 ::: {#book-chapters}
 :::
 
+**Place in the [dependency chain](series-overview.md#the-dependency-chain):** Step 9 — Demonstrate sustained posture.
+
 ## Authoritative references
 
 Checked 19 October 2026.

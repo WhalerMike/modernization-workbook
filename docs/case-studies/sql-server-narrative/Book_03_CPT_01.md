@@ -87,7 +87,9 @@ That pipeline computes the current authentication posture of the instance, compa
 Drift events are not informational — they are compliance violations that trigger the program's remediation workflow. The required output is a per-instance compliance record, not a spreadsheet delivered to a program manager.
 
 ::: {.callout-note title="What Book 03 establishes — Chapter 1"}
-`the authentication audit script` enumerates the surviving estate — instances, version and OS, domain-join status, authentication mode, login types, and engine service-account and SPN posture — and assigns every instance a three-category Arc-eligibility classification: Entra-ready today (Category 1), Arc-eligible but not enabled (Category 2), or version-upgrade-required (Category 3). Its output is not a spreadsheet but a per-instance compliance record that establishes a continuous, drift-aware authentication baseline.
+1. The audit enumerates the surviving estate: version and OS, domain join, authentication mode, login types, and service-account and SPN posture.
+2. Every instance gets an Arc-eligibility category: Entra-ready (1), Arc-eligible but not enabled (2), or upgrade required (3).
+3. The output is a per-instance compliance record that re-runs as a drift-aware baseline, not a one-off spreadsheet.
 :::
 
 [^b03c01-mi-2025]: Microsoft Learn, [Managed identity overview — SQL Server enabled by Azure Arc](https://learn.microsoft.com/en-us/sql/sql-server/azure-arc/managed-identity?view=sql-server-ver17).

@@ -41,6 +41,8 @@ This book documents a **"Not Yet Defined"** gap from the transformation inventor
 ::: {#book-chapters}
 :::
 
+**Place in the [dependency chain](series-overview.md#the-dependency-chain):** The certificate dependency behind steps 4 and 8.
+
 ## Authoritative references
 
 Checked 19 October 2026.

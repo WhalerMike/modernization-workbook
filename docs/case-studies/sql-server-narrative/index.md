@@ -10,6 +10,7 @@ listing:
       - "Applicability.md"
       - "Book_[0-9][0-9].md"
       - "Appendix_A_Requirements_Mapping.md"
+      - "Appendix_B_ATO_Kit.md"
     type: table
     fields: [title, subtitle, description]
     sort: "series-order asc"
@@ -78,6 +79,10 @@ says where the series applies as written and what to do where it does not.
 Book 11 is an epilogue: once the estate is
 rationalized and its authentication migrated, it takes up the platform
 question for each retained data domain.
+
+## The dependency chain
+
+**Inventory → Rationalize → Audit survivors → Enable identity substrate → Introduce Entra principals → Move applications → Remove legacy principals → Enforce protocol retirement → Demonstrate sustained posture.** The [Series Overview](series-overview.md) maps each step to its book.
 
 ## Reading sequence {#chapters}
 

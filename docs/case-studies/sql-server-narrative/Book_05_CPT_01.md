@@ -81,7 +81,9 @@ In Phase 2, each type-E login is validated by executing a test authentication us
 After the 30-day window, the disabled logins are dropped, and the type-E logins become the sole authentication mechanism for those principals. The SQL Server engine-authentication decision permits non-production instances to compress the observation window with documented owner sign-off, but the create-validate-disable-observe-drop sequence itself is the canonical pattern, and the next chapter records the four further decisions that decision makes around it.
 
 ::: {.callout-note title="What Book 05 establishes — Chapter 1"}
-The `FROM EXTERNAL PROVIDER` syntax creates type-E logins that carry no password and authenticate by Entra-issued OAuth 2.0 token validated at connect time. The three principal types are the Entra user (UPN-mapped, MFA enforced by Conditional Access in the Entra plane per the Conditional Access policy design), the Entra security group (a type-X group login; dynamic groups driven by HR-sourced attributes provision access without DBA action, per Book 07), and the Entra service principal or Managed Identity (no credential in connection strings, per the Managed Identity credential model). The canonical migration is the three-phase parallel run the SQL Server engine-authentication decision requires: create, validate, then disable — not drop — the legacy login, observe for 30 days, and only then drop it.
+1. `FROM EXTERNAL PROVIDER` creates passwordless logins for Entra users and applications (type E) and groups (type X), authenticated by Entra-issued tokens.
+2. MFA and other sign-in conditions are enforced by Conditional Access in the Entra plane, not by the engine.
+3. Migration is the parallel run: create, validate, disable (not drop) the legacy login, observe for 30 days, then drop.
 :::
 
 [^b05c01-create-login]: Microsoft Learn, [CREATE LOGIN (Transact-SQL)](https://learn.microsoft.com/en-us/sql/t-sql/statements/create-login-transact-sql?view=sql-server-ver17).

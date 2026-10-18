@@ -41,6 +41,8 @@ The migration moves SQL Server's groups from Active Directory to Microsoft Entra
 ::: {#book-chapters}
 :::
 
+**Place in the [dependency chain](series-overview.md#the-dependency-chain):** Step 5 — Introduce Entra principals (groups and authorization).
+
 ## Authoritative references
 
 Checked 19 October 2026.

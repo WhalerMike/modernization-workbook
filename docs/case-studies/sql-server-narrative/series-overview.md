@@ -14,6 +14,26 @@ Windows Authentication and SQL Authentication are eliminated and replaced with c
 
 The series is written in continuous narrative voice. It avoids the bullet-point shorthand of a runbook, because the transformation it describes is not a checklist — it is an engineering argument, and engineering arguments require sentences.
 
+## The dependency chain
+
+Every book serves one chain. Each step depends on the ones before it:
+
+**Inventory → Rationalize → Audit survivors → Enable identity substrate → Introduce Entra principals → Move applications → Remove legacy principals → Enforce protocol retirement → Demonstrate sustained posture**
+
+| Step | Stage | Where |
+|---|---|---|
+| 1 | Inventory | Book 02, Chapters 1–2 |
+| 2 | Rationalize | Book 02, Chapters 3–4 |
+| 3 | Audit survivors | Book 03 |
+| 4 | Enable identity substrate | Book 04 |
+| 5 | Introduce Entra principals | Books 05 and 07 |
+| 6 | Move applications | Book 08 |
+| 7 | Remove legacy principals | Book 05 |
+| 8 | Enforce protocol retirement | Book 06 |
+| 9 | Demonstrate sustained posture | Book 09 |
+
+Book 01 makes the case for the chain. Book 10 is the certificate dependency that steps 4 and 8 rely on. Book 11, the epilogue, comes after step 9.
+
 ## Reading sequence shape
 
 Book 01 names the inheritance: SQL Server’s Windows Authentication was good engineering for its world, not negligence. Book 02 confronts the precondition that most authentication narratives skip: you cannot migrate the authentication of an estate you have not first assessed and consolidated, and after twenty years across an Active Directory forest, the estate is larger and more tangled than any team’s mental model of it. Books 03 through 06 trace the migration itself — the authentication audit, the identity bridge, the login migration, and NTLM elimination at the SQL layer. Books 07 and 08 follow the transformation outward, into access control and the upstream application chain. Book 09 describes the transformed steady-state and the milestone, and Book 10 addresses the certificate-authority dependency that the other nine books depend on but rarely name.
@@ -69,6 +89,7 @@ The organizing principle of the series — what the platform vendor provides ver
 | [10](book-10-certificate-authority.md) | Certificate-Authority Dependency | The layer the other steps depend on but rarely name |
 | [11](book-11-platform-question.md) | Epilogue — The Platform Question | Database consolidation toward SSOT, after the transformation |
 | [A](Appendix_A_Requirements_Mapping.md) | Appendix A — Requirements Mapping | Each book's controls and evidence mapped to M-22-09, CISA ZTMM v2, SP 800-207 and SP 800-53 Rev. 5 (compliance-enabling, not a compliance claim) |
+| [B](Appendix_B_ATO_Kit.md) | Appendix B — Security-Approval (ATO) Kit | Boundary diagram, outbound endpoints, FedRAMP audit scope, Graph permission justification, token-folder mitigation, break-glass and licensing |
 
 ## Relationship to identity governance
 

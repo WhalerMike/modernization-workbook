@@ -41,6 +41,7 @@ Before, every party is domain-joined and NTLM is the silent fallback when the se
 | [10](book-10-certificate-authority.md) | Certificate-Authority Dependency | The layer the other steps depend on but rarely name |
 | [11](book-11-platform-question.md) | Epilogue — The Platform Question | Database consolidation toward SSOT, after the transformation |
 | [A](Appendix_A_Requirements_Mapping.md) | Appendix A — Requirements Mapping | Each book's controls and evidence mapped to M-22-09, CISA ZTMM v2, SP 800-207 and SP 800-53 Rev. 5 (compliance-enabling, not a compliance claim) |
+| [B](Appendix_B_ATO_Kit.md) | Appendix B — Security-Approval (ATO) Kit | Boundary diagram, outbound endpoints, FedRAMP audit scope, Graph permission justification, token-folder mitigation, break-glass and licensing |
 
 ## Relationship to identity governance
 

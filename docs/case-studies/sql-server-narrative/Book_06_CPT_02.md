@@ -63,7 +63,9 @@ The sequencing imperative is clear: complete the SQL Server login migration befo
 :::
 
 ::: {.callout-note title="What Book 06 establishes — Chapter 2"}
-The Kerberos/NTLM-elimination program runs in three phases for SQL Server. Discovery uses `the authentication audit script` plus Windows event-log analysis of NTLM events 4624 and 4625 at logon type 3 to baseline every NTLM-generating pattern. Restriction blocks NTLMv1, remediates SPNs, restores Kerberos reachability for cross-site connections, migrates linked-server security contexts, and updates connection strings on domain-unjoined hosts.[^b06c02-linked] Elimination applies the domain-wide NTLM block at 2027-04-01 per the elimination program — and any instance migrated to type-E Entra ID logins is immune, because it never generated NTLM to begin with.
+1. Discovery baselines every NTLM-generating pattern from the audit and Windows NTLM logon events.
+2. Restriction blocks NTLMv1, repairs SPNs and Kerberos reachability, and migrates linked-server security contexts and connection strings.[^b06c02-linked]
+3. Elimination applies the domain-wide block; instances already on Entra logins are unaffected because they don't use NTLM.
 :::
 
 [^b06c02-spn]: Microsoft Learn, [Register a Service Principal Name for Kerberos connections](https://learn.microsoft.com/en-us/sql/database-engine/configure-windows/register-a-service-principal-name-for-kerberos-connections?view=sql-server-ver17).

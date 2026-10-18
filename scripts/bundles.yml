@@ -77,6 +77,7 @@ bundles:
       - Book_10_CPT_01.md
       - Book_11.md                       # Book 11, the epilogue, is a single page
       - Appendix_A_Requirements_Mapping.md
+      - Appendix_B_ATO_Kit.md
 
   # One bundle per book: the book page, then its chapters in order.
   - output: Applicability-bundle.docx
@@ -131,6 +132,10 @@ bundles:
     subtitle: "SQL Server Identity Transformation — Narrative Series"
     root: docs/case-studies/sql-server-narrative
     pages: [Appendix_A_Requirements_Mapping.md]
+  - output: Appendix_B-bundle.docx
+    subtitle: "SQL Server Identity Transformation — Narrative Series"
+    root: docs/case-studies/sql-server-narrative
+    pages: [Appendix_B_ATO_Kit.md]
 
   # ---------------------------------------------------------------------
   # Section bundles: every published page in the section folder, index first.

@@ -41,6 +41,8 @@ Where Book 02 measured the estate to decide what survives, this book measures th
 ::: {#book-chapters}
 :::
 
+**Place in the [dependency chain](series-overview.md#the-dependency-chain):** Step 3 — Audit survivors.
+
 ## Authoritative references
 
 Checked 19 October 2026.

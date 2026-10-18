@@ -1,0 +1,30 @@
+# Appendix B — the authorization-boundary view an assessor needs: what runs
+# inside the agency boundary, what it talks to outside, and on which port.
+rankdir: TB
+graph: {nodesep: 0.25, ranksep: 0.55}
+clusters:
+  - id: cloud
+    label: "Microsoft commercial cloud — leveraged services (FedRAMP High audit scope)"
+    tone: blue
+    nodes: [entra, graph, arm, arc, kv]
+    order: [entra, graph, arm, arc, kv]
+  - id: agency
+    label: "Agency authorization boundary"
+    tone: slate
+    nodes: [client, host]
+    order: [client, host]
+nodes:
+  entra: {tone: blue, width: 140, title: "Microsoft Entra ID", body: ["=Tokens; Conditional Access; sign-in logs"], size: 11}
+  graph: {tone: blue, width: 140, title: "Microsoft Graph", body: ["=User, group and app lookups by the instance identity"], size: 11}
+  arm: {tone: blue, width: 140, title: "Azure Resource Manager", body: ["=Connect or disconnect the Arc resource"], size: 11}
+  arc: {tone: blue, width: 140, title: "Arc services", body: ["=Hybrid identity, extensions, notifications, Arc data processing"], size: 11}
+  kv: {tone: blue, width: 140, title: "Key Vault", body: ["=SQL Server 2022 app-registration certificate only"], size: 11}
+  client: {tone: plain, width: 230, title: "Users and applications", body: ["=Sign in to Entra ID, then present the token to SQL Server"], size: 11}
+  host: {tone: green, width: 330, title: "SQL Server host", body: ["SQL Server engine (2022 or 2025): validates Entra tokens", "Connected Machine agent: managed identity, local endpoint localhost:40342", "Azure extension for SQL Server", "=All traffic to the cloud is outbound HTTPS (TCP 443)"], size: 11}
+edges:
+  - [client, host, {tone: green, label: "TDS + token"}]
+  - [entra, client, {tone: blue, label: "sign-in (443)", both: true}]
+  - [entra, host, {tone: blue, attrs: "dir=back"}]
+  - [graph, host, {tone: blue, attrs: "dir=back"}]
+  - [arc, host, {tone: blue, label: "outbound 443", attrs: "dir=back"}]
+  - [kv, host, {tone: blue, style: dashed, label: "2022 only", attrs: "dir=back"}]

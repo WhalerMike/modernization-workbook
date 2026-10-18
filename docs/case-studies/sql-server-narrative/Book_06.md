@@ -41,6 +41,8 @@ SQL Server is one of the most common sources of NTLM traffic in a federal enviro
 ::: {#book-chapters}
 :::
 
+**Place in the [dependency chain](series-overview.md#the-dependency-chain):** Step 8 — Enforce protocol retirement.
+
 ## Authoritative references
 
 Checked 19 October 2026.

@@ -41,6 +41,8 @@ You do not migrate the estate in the shape you discover it. After twenty years a
 ::: {#book-chapters}
 :::
 
+**Place in the [dependency chain](series-overview.md#the-dependency-chain):** Steps 1–2 — Inventory and Rationalize.
+
 ## Authoritative references
 
 Checked 19 October 2026.

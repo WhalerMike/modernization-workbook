@@ -65,7 +65,9 @@ The earlier draft observed that without a defined evidence artifact there was no
 Closure is continuously verified, not a point-in-time claim. The authentication-audit script runs on a recurring schedule, and compliance drift events — `LoginMode` reverting to Mixed Mode, a new type-S, type-U, or type-G login appearing, the Arc agent going offline — are compliance violations that trigger the remediation workflow. With all five positions recorded, the migration pattern of Chapter 1 becomes enforceable canon rather than operational best practice, and the books that follow operate against a defined closure artifact rather than a moving target.
 
 ::: {.callout-note title="What Book 05 establishes — Chapter 2"}
-The engine-authentication decision records five positions in operational sequence. First: the consolidation assessment of Book 02 gates auth migration — only retain instances and consolidation targets are migrated. Second: the three-phase parallel run (create, validate, disable-not-drop, 30-day observe, drop) is required for production. Third: SQL Authentication is eliminated and `sa` disabled and renamed on every production instance. Fourth: pre-2022 instances upgrade or file a sunset-dated exception, with Certificate-Based Authentication as the interim posture against the network-level 2027-04-01 NTLM block. Fifth: the per-instance compliance record is the continuously-verified closure artifact for the SQL Server authentication transformation.
+1. Consolidation gates migration, and the parallel run is required in production.
+2. SQL Authentication is eliminated and `sa` disabled and renamed; pre-2022 instances upgrade or carry a sunset-dated exception.
+3. The per-instance compliance record is the continuously re-verified closure artifact.
 :::
 
 [^b05c02-create-login]: Microsoft Learn, [CREATE LOGIN (Transact-SQL)](https://learn.microsoft.com/en-us/sql/t-sql/statements/create-login-transact-sql?view=sql-server-ver17).
