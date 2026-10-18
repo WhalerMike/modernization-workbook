@@ -30,7 +30,7 @@ lifecycle_review: 2027-01-31
 
 ::: {.content-visible when-format="html"}
 ::: {.callout-tip appearance="simple"}
-**[Download this whitepaper as DOCX](docx/bod-25-01-close-before-assess.docx)** — a Word copy of
+**[Download this whitepaper as DOCX](bod-25-01-close-before-assess.docx)** — a Word copy of
 this page, regenerated on every site deploy. (Also available from the
 **Other Formats** link in the page sidebar.)
 :::
