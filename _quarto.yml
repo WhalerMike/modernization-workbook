@@ -67,6 +67,8 @@ website:
             text: "Client-Server to Hybrid-Cloud"
           - href: docs/next-generation-ddi/index.md
             text: "Next Generation DDI"
+          - href: docs/hr-driven-iam/index.md
+            text: "HR-Driven Identity"
       - href: docs/whitepapers/README.md
         text: "Whitepapers"
       - href: sitemap.qmd

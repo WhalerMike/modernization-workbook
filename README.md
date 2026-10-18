@@ -27,7 +27,7 @@ This repository extracts practical modernization concepts — single source of t
 - [Change Control and Provenance](docs/architecture/change-control-and-provenance.md)
 - [Directory Migration Bridge](docs/reference-architecture/directory-migration.md)
 - [GPO-to-Cloud Governance Gaps](docs/architecture/gpo-to-cloud-governance-gaps.md)
-- [Dynamic Group Library](docs/architecture/dynamic-group-library.md)
+- [From Attributes to Access (dynamic groups)](docs/hr-driven-iam/08-from-attributes-to-access.md)
 - [Delegation Matrix](docs/architecture/delegation-matrix.md)
 
 ### Operational Guides
@@ -42,7 +42,7 @@ This repository extracts practical modernization concepts — single source of t
 ### Case Studies
 - [SQL Server Identity Transformation (overview)](docs/case-studies/sql-server-identity.md)
 - [SQL Server Narrative Series (Books 01–10)](docs/case-studies/sql-server-narrative/README.md)
-- [HRIT to Entra reference deployment](docs/case-studies/hrit-to-entra-reference-deployment.md)
+- [HR-Driven Identity: From the HR System of Record to Entra ID](docs/hr-driven-iam/index.md)
 
 ### Whitepapers
 - [Whitepapers index](docs/whitepapers/README.md)

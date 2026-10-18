@@ -87,7 +87,7 @@ be continuously proven.
 
 ## Where to go deeper
 
-- **[Federal HRIT Productization whitepaper](../whitepapers/federal-hrit-productization.md)** —
+- **[HR-Driven Identity series](../hr-driven-iam/index.md)** —
   the primary narrative: how authoritative HR events flow into Entra ID under a
   single ATO, with reciprocity as a byproduct of normal operations.
 - **[KSI Conformance Overview](ksi-conformance-overview.md)** — the KSI-RECIP
