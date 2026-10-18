@@ -106,7 +106,7 @@ profiles), or carry hybrid/co-management longer than planned.
 ## Triage the surface before you assume the gap
 
 The exact percentage is environment-specific. Measure it rather than
-guessing: [`Invoke-GpoMigrationTriage`](../substrate/platform-tooling/invoke-gpo-migration-triage.qmd)
+guessing: `Invoke-GpoMigrationTriage`
 classifies every live GPO onto a target plane (Intune for workstation
 scope, Azure Arc for server scope) and sizes each setting against its
 most-likely Settings Catalog / Guest Configuration destination, so the
@@ -194,7 +194,7 @@ gap above maps to a concrete artifact:
 | "Single source of truth" for *why* a policy applies | Canonical codebook vocabulary + HR-driven assignment | the organizational-attribute model FAQ · [Where Data Lives](../architecture/where-data-lives.md) |
 | Drift detection across planes | Continuous per-facet drift as `DRIFT-*` findings | [Drift Walk-through](drift-walkthrough.md) |
 | Delegation / auditable change | Delegation boundary carried as a canonical facet | [Delegation](delegation.md) |
-| Legacy-setting triage | Per-GPO, per-setting classification before cutover | [GPO Migration Triage](../substrate/platform-tooling/invoke-gpo-migration-triage.md) |
+| Legacy-setting triage | Per-GPO, per-setting classification before cutover | GPO Migration Triage |
 | Portability beyond one cloud | Vendor-neutral facet carriage / binding profiles | the organizational-attribute model Portability |
 
 The through-line: the OU tree *was* the governance model, and a flat
@@ -224,7 +224,7 @@ close.
 - **Why a policy applies — the data model:** [Where OrgTree & the organizational-attribute model Data Lives](../architecture/where-data-lives.md)
 - **Restore determinism on attributes:** [Dynamic Groups](dynamic-groups.md)
 - **See drift surface explicitly:** [Drift Detection Walk-through](drift-walkthrough.md)
-- **Triage the legacy GPO surface:** [Invoke-GpoMigrationTriage](../substrate/platform-tooling/invoke-gpo-migration-triage.md)
+- **Triage the legacy GPO surface:** Invoke-GpoMigrationTriage
 - **Carry governance beyond one cloud:** the organizational-attribute model Portability
 - **Whole-of-transition framing:** [Modernization Canon (section index)](index.md)
 - **Structural-gap argument:** [AD to Entra ID — The Structural Migration Problem](../whitepapers/ad-to-entraid-migration-problem.md)
