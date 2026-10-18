@@ -28,7 +28,7 @@ The framework is that missing piece. This series has described how.
 The framework is an **orchestration + governance + evidence layer** that runs above the platform vendor’s (and third-party) modernization tools. It is embodied in:
 
 - A **single Windows Server 2025 host** running version control, a reverse proxy, a Kerberos bridge, and enterprise PKI (Chapter 01).
-- A **canonical repository** of governance artifacts — codebooks, policies, plans, evidence — stored as versioned, signed files.
+- A **canonical repository** of governance artifacts — policies, plans, evidence — stored as versioned, signed files.
 - A **transformation engine** — PowerShell + Python + API integrators — that reads the Client/Server estate, produces deterministic plans, and delivers them into the Hybrid-Cloud target surface (Chapters 02–03).
 - A **target surface** — identity, policy, services, compute, access — each governed through a matching chapter of this series (Chapters 04–08).
 - A **fifty-two-week program roadmap** with seven gates, five parallel workstreams, and mechanically evaluable exit criteria (Chapter 09).
@@ -99,7 +99,7 @@ A steering committee that asks these five questions monthly will know whether th
 
 Three concrete next steps:
 
-1. **Use the series as project guidance.** Everything this series describes can be turned into versioned artifacts in a repository — codebooks, adapter interfaces, policy libraries, validation approaches. The series is the narrative; the artifacts are the authority.
+1. **Use the series as project guidance.** Everything this series describes can be turned into versioned artifacts in a repository — adapter interfaces, policy libraries, validation approaches. The series is the narrative; the artifacts are the authority.
 
 2. **Run an assessment** (Chapter 02). Not a theoretical exercise — a real, read-only, least-privilege enumeration of your forest. The output is the input to every downstream decision. An assessment takes about a week and produces a complete picture you probably do not have today.
 

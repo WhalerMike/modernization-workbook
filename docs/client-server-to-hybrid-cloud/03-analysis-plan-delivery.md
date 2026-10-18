@@ -36,7 +36,7 @@ Analysis is deterministic: given the same assessment input, it produces the same
 
 ## Stage 2 — Plan
 
-**Input:** the Analyze output + the authoritative codebook, group library, delegation matrix, and decision guidance.  
+**Input:** the Analyze output + the authoritative group library, delegation matrix, and decision guidance.  
 **Output:** a signed, executable Plan.  
 **Responsibility:** Governance layer.
 
@@ -84,7 +84,7 @@ actions:
 Before a plan is eligible for authorization, it passes through validation:
 
 - **Schema validation** — conforms to the plan schema.
-- **Rule validation** — every attribute value used exists in the codebook; every dynamic-group name fits the naming pattern; every administrative unit matches the tier structure; every role assignment is valid.
+- **Rule validation** — every dynamic-group name fits the naming pattern; every administrative unit matches the tier structure; every role assignment is valid.
 - **Boundary validation** — no action targets an out-of-scope service; classification tags are correctly set.
 - **Safety checks** — no action deletes more than a defined number of items at once without explicit confirmation; no rotation of credentials for roles marked high permanence; no change to the governance substrate itself outside a controlled change process.
 - **Idempotency check** — the plan is equivalent to re-planning from the current state (so a re-run of a partially completed plan is safe).
@@ -161,7 +161,7 @@ The evidence packet is committed to the repository at `plans/<plan-id>/evidence.
 
 ## Concrete example — the end-to-end shape
 
-An assessment discovers a Finance organizational unit with 312 users. The Analyze stage proposes a facet scheme (Department Finance with divisions GRC and Data), three dynamic groups, one Tier-2 administrative unit, and a role scoping.
+An assessment discovers a Finance organizational unit with 312 users. The Analyze stage proposes attribute values (Department Finance with divisions GRC and Data), three dynamic groups, one Tier-2 administrative unit, and a role scoping.
 
 The Plan stage expands that into roughly 320 actions: 312 user attribute sets, 3 dynamic-group creates, 1 administrative-unit create, 1 role assignment, plus validation actions.
 

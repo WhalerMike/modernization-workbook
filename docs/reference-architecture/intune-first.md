@@ -96,7 +96,7 @@ Phase 2 and the enrollment vector used in Phase 4.
 
 | Phase | Owner | Trigger | Output | Gate to next phase |
 |---|---|---|---|---|
-| **1. Procure** | Procurement | Business request for an asset | Approved PO with organizational assignment | Assignment validated against the OrgTree registry |
+| **1. Procure** | Procurement | Business request for an asset | Approved PO with organizational assignment | Assignment validated against the organizational registry |
 | **2. Pre-stage** | Procurement + Vendor | PO submitted to vendor | Vendor program record (Autopilot device profile, ABM device assignment, etc.) | Vendor program record carries the organizational assignment |
 | **3. Position** | Governance pipeline | Vendor confirms hardware-hash registration | Pre-staged Entra ID device object placeholder OR procurement-side mapping table entry | Mapping committed to governance repo and reviewed |
 | **4. Provision** | End user (zero-touch) or IT (assisted zero-touch) | Asset arrives at recipient location | Enrolled, assigned, compliant device | Compliance policy returns Compliant; CA grants access |
@@ -119,7 +119,7 @@ Required intake fields, per `procurement-handoff.md` §2:
 - `recipient_upn`, `recipient_org_attributes` (resolved from Entra ID)
 - `asset_class` (windows-endpoint / macos-endpoint / ios-tablet / etc.)
 - `asset_assignment_type` (personal / shared / kiosk / lab / service)
-- `asset_org_attributes` and `asset_orgnodeid` (validated against OrgTree registry)
+- `asset_org_attributes` and `asset_orgnodeid` (validated against the organizational registry)
 - `vendor`, `vendor_program` (autopilot-direct, apple-abm, android-zerotouch, samsung-knox-me, arc-direct)
 
 The procurement system commits a JSON procurement record to

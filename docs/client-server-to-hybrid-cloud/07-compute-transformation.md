@@ -97,11 +97,11 @@ The service-principal-name-to-application mapping determines the sequence: no se
 
 ## Organizational attributes on devices
 
-User devices carry the organizational attributes and the derived path just like users. This drives:
+User devices carry organizational attributes just like users. This drives:
 
-- **Device dynamic groups.** Attribute queries capture devices in a given branch or node.
-- **Device-management compliance scoping.** Attribute-scoped groups are the target for branch-specific compliance policies.
-- **Conditional Access device-state targeting.** Policies that require a compliant device can be scoped per attribute branch.
+- **Device dynamic groups.** Attribute queries capture devices in a given organizational segment.
+- **Device-management compliance scoping.** Attribute-scoped groups are the target for segment-specific compliance policies.
+- **Conditional Access device-state targeting.** Policies that require a compliant device can be scoped per attribute value.
 
 Drift detection monitors device attributes the same way it monitors user attributes — if the device’s attributes disagree with its owning user’s attributes, that is value drift.
 

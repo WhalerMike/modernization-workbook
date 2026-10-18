@@ -228,10 +228,8 @@ configuration state in the M365 tenant — the cloud half of the
 identity-and-data picture. The substrate's *on-premises half* is the
 AD survey adapter at
 `src/fmp/adapters/modernization/active_directory/survey.py`,
-which produces the OrgTree readiness bundle including the phase-tagged
-`spn_inventory` artifact (defined in
-`src/fmp/schemas/orgtree-readiness/orgtree-readiness.schema.json`
-`#/definitions/spnInventory`). The two halves see different surfaces
+which produces the readiness bundle including the phase-tagged
+`spn_inventory` artifact. The two halves see different surfaces
 and emit into the same Evidence Bundle — together they describe the
 identity posture an agency carries through the AD → Entra ID transition,
 not just the cloud baseline at a moment in time.
@@ -333,7 +331,7 @@ four hops; `MS.AAD.1.1v1` is simply a concrete stand-in for the class.
 
 **Reference deployment.** For a synthetic end-to-end engagement that
 exercises the AD survey adapter, the spn_inventory artifact, the
-OrgTree readiness bundle, the B.1.1 three-way conflict finding, the SQL
+readiness bundle, the B.1.1 three-way conflict finding, the SQL
 Server adapter, and the Azure SSOT bridge — the deployment pattern
 whose Evidence Bundle ScubaGear's conformance output slots into as the
 M365 layer — see

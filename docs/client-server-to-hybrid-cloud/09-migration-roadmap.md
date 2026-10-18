@@ -35,14 +35,12 @@ Entry criteria:
 Work in Phase 0:
 - Build the platform host (Chapter 01).
 - Run the assessment (Chapter 02).
-- Author the initial organizational-attribute codebook.
 - Stand up the authoritative repository with baseline files.
 - Confirm cloud identity, device management, and hybrid management access with least-privilege service principals.
 
 Exit gate (Gate G0 — Ready to Plan):
 - Platform host operational.
 - Assessment run committed to the repository.
-- Draft organizational-attribute codebook in the repository, steward-approved.
 - No open priority-one findings from the assessment.
 
 ### Phase 1 — Foundation (weeks 5–8)
@@ -166,7 +164,7 @@ During Phases 2–4, five workstreams run in parallel with explicit coordination
 
 | Workstream | Lead | Chapter | Key artifacts |
 |------------|------|---------|---------------|
-| **Identity** | Identity Architect | 04 | Organizational-attribute codebook, dynamic groups, administrative units |
+| **Identity** | Identity Architect | 04 | Dynamic groups, administrative units |
 | **Policy** | Security Engineer | 05 | Device-management configs, Conditional Access policies, hybrid guest configuration |
 | **Services** | Network Engineer | 06 | DNS, DHCP, IP address management adapters |
 | **Compute** | Endpoint Admin + Server Engineer | 07 | Device enrollments, hybrid projections |

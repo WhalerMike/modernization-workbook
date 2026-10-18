@@ -6,7 +6,6 @@ audience: [Customer, Architect, Assessor]
 canon-source: "src/fmp/canon/modernization-registry.yaml"
 canon-reference:
   - "src/fmp/canon/adr/adr-008-zero-trust-identity.md"
-  - "docs/customer-documents/architecture-series/aodim-architecture.qmd"
   - "docs/customer-documents/whitepapers/modernization-governance-whitepaper.qmd"
 derived-from: "fmp canon"
 lifecycle: adopted
@@ -56,10 +55,9 @@ violates any of them does not merge.
 
 The list grows as additional identity adapters register.
 
-## Integration shape: AODIM
+## Integration shape
 
-Per the [AODIM Architecture](../../architecture/aodim-architecture.md),
-identities carry **attributes**, and access is **computed** from those
+Identities carry **attributes**, and access is **computed** from those
 attributes. Identity adapters emit canonical claims in this shape:
 
 ```yaml
@@ -109,7 +107,7 @@ applies regardless.
 - Migration-time evidence (claims emitted during the AD → Entra
   cutover window) requires both source and target adapters running;
   partial deployment loses the bridge evidence.
-- The AODIM attribute set is opinionated. Programs that elect to keep
+- The canonical attribute set is opinionated. Programs that elect to keep
   an OU-driven Entra deployment will not realize most of the
   spec's leverage.
 
@@ -122,6 +120,5 @@ under Phase 6. Together they form the identity-domain MTS/MVS pair.
 ## Related documents
 
 - Modernization Specs Index
-- [Architecture Series — AODIM](../../architecture/aodim-architecture.md)
 - [Whitepaper: Modernization Governance](../../whitepapers/modernization-governance-whitepaper.md)
 - Modernization Registry (canon)

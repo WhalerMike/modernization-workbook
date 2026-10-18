@@ -251,7 +251,7 @@ identity-plane story:
 | 4 | Migrate with provenance chain | JML workflows (D2.1 / D2.2 / D2.3) |
 | 5 | Validate post-migration drift | Continuous drift detection (D5.5) |
 | 6 | Azure SSOT bridge (Purview, Fabric Domains, OneLake) | Trust-chain federation (USAccess / OPM Entra / APIM) |
-| Evidence | OrgTree-readiness bundle + SPN inventories + B.1.1 compensating controls | HRIT inventory + JML provenance + AAL + B.1.1 compensating controls |
+| Evidence | Readiness bundle + SPN inventories + B.1.1 compensating controls | HRIT inventory + JML provenance + AAL + B.1.1 compensating controls |
 
 An agency running both substrate dimensions in parallel produces a
 single Evidence Bundle that traces from the HR-event in the SoR

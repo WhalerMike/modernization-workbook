@@ -8,7 +8,6 @@ series-order: 1
 status: Active
 canon-source: "src/fmp/canon/substrate-manifest.yaml"
 canon-reference:
-  - "docs/customer-documents/executive-governance-series/governance-os-canonical-suite.qmd"
 repo-path: docs/customer-documents/executive-governance-series/ch01-why-governance-fails
 created-at: 2026-04-26
 updated-at: 2026-05-10
@@ -132,5 +131,4 @@ Next: [Chapter 2 — The Compliance Paradox](../ch02-compliance-paradox/index.md
 ## Related documents
 
 - [Executive Governance Series Index](../index.html)
-- [Governance OS Canonical Suite](../governance-os-canonical-suite.md)
 - Document Index

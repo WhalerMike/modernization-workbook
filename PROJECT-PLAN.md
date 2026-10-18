@@ -71,7 +71,7 @@ The plan is organized by phases. Each phase has objectives, key activities, deli
 **Objective:** Define the attribute-oriented structure and control-plane model that will replace implicit hierarchy.
 
 **Key activities**
-- Specify the attribute facets (or equivalent coded attributes) that will represent organizational position, lifecycle, and security context.
+- Specify the attributes that will represent organizational position, lifecycle, and security context.
 - Define how dynamic membership and scoped policy will be driven from those attributes.
 - Describe the layered model (Identity → Structure → Policy → Governance) and the role of each layer.
 - Identify control planes (identity, addressing, policy, telemetry, etc.) and their boundaries.
@@ -87,10 +87,8 @@ The plan is organized by phases. Each phase has objectives, key activities, deli
 
 **Supporting material**
 - [Single Source of Truth](docs/architecture/single-source-of-truth.md)
-- [Attribute-Driven Structure](docs/architecture/attribute-driven-structure.md)
 - [Dynamic Group Library](docs/architecture/dynamic-group-library.md)
 - [Delegation Matrix](docs/architecture/delegation-matrix.md)
-- [Drift Detection — A Walk-through](docs/architecture/drift-detection.md)
 - [Change Control and Provenance](docs/architecture/change-control-and-provenance.md)
 - [Architecture Series](docs/architecture/architecture-series/README.md)
 

@@ -53,7 +53,7 @@ Placing a user in an OU simultaneously:
 - Bound the user’s identity to the delegation authority of that branch.
 - Stated an operational responsibility boundary for audit purposes.
 
-A flat cloud directory has none of this by default. Dynamic groups, administrative units, and Conditional Access are powerful tools, but they do not automatically reconstruct the governance model the OU tree was providing. That reconstruction must be made explicit: organizational position expressed through coded attributes, dynamic groups that materialize structure, administrative units that scope delegation, and Conditional Access that enforces policy. The result can be equivalent to — and in several ways cleaner than — what AD provided.
+A flat cloud directory has none of this by default. Dynamic groups, administrative units, and Conditional Access are powerful tools, but they do not automatically reconstruct the governance model the OU tree was providing. That reconstruction must be made explicit: organizational position expressed through attributes, dynamic groups that materialize structure, administrative units that scope delegation, and Conditional Access that enforces policy. The result can be equivalent to — and in several ways cleaner than — what AD provided.
 
 ## Why naïve migrations fail
 
@@ -74,7 +74,7 @@ Organizations do not fail at enumeration because they cannot list objects. They 
 The modernization framework treats all eleven categories as a single governed surface, with one transformation approach, one authoritative source of intended state, one evidentiary pipeline, and one drift detector. It sits above the Microsoft (and third-party) tools and orchestrates them into a coherent governance model.
 
 A practical platform host can run:
-- Version control as the canonical source of governance artifacts (plans, policies, attribute codebooks).
+- Version control as the canonical source of governance artifacts (plans, policies, group rules).
 - An HTTPS reverse proxy and certificate terminator.
 - Kerberos and enterprise PKI bridges that allow the host to talk to the legacy forest it is migrating away from.
 - Automation (PowerShell, Python, APIs) that reads the Client/Server estate, computes transformation plans, validates them against the intended state, and delivers them into the Hybrid-Cloud target surface.

@@ -97,7 +97,7 @@ default, with high-blast-radius operations gated for governance review.
 The kit's read-only scripts are the **Snapshot/Compare/Classify** steps for each
 domain:
 
-- `Compare-ConditionalAccessDrift.ps1` — CA facet (Snapshot + Compare).
+- `Compare-ConditionalAccessDrift.ps1` — CA domain (Snapshot + Compare).
 - `Get-ModernizationDriftReport.ps1` — whole-estate observe across domains.
 - the per-domain audits (`Get-NtlmAudit`, `Repair-Spn` audit mode,
   `Invoke-SqlHardeningAudit`, `Get-IntuneEnrollmentStatus`) — per-domain Compare.
@@ -113,8 +113,8 @@ exist in canon — but as machinery already named, not new components:
 | Draft term | Canon equivalent |
 |---|---|
 | "Policy Engine" | desired state in canon + `plan / apply / reconcile` adapters (the program decision–039) |
-| "Identity Registry" | the identity control-plane slot + the OrgTree |
-| "Attestation Service" | the OrgTree Drift Detection Engine (the program decision), six-phase, dry-run default |
+| "Identity Registry" | the identity control-plane slot |
+| "Attestation Service" | the Drift Detection Engine (the program decision), six-phase, dry-run default |
 | "Audit Ledger" | the provenance-anchored evidence pipeline (every artifact cites the canon id + version it derives from) |
 | "Access Orchestrator" | enforcement adapters bound to a control-plane slot (provider-incorporation contract) |
 

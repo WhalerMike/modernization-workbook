@@ -82,7 +82,7 @@ Every adapter follows the same six-phase governance-driven migration:
 | Phase | What Happens | Governance Gate |
 |-------|-------------|-----------------|
 | **1. Discover** | Complete inventory of what Active Directory encodes for this service | Inventory signed off by service owner |
-| **2. Normalize** | Rationalize decades of organic growth into a clean model | Normalized model reviewed against the organizational-attribute codebook |
+| **2. Normalize** | Rationalize decades of organic growth into a clean model | Normalized model reviewed against the organizational attributes |
 | **3. Map** | Translate Active Directory governance constructs to modern equivalents | Mapping validated — no governance gaps, no orphaned objects |
 | **4. Migrate** | Execute with continuous validation | Every step validated before proceeding — no big-bang cutover |
 | **5. Validate** | Confirm governance integrity is preserved post-migration | Full drift scan, telemetry confirmation, user experience validation |

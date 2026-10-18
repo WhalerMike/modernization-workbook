@@ -278,8 +278,8 @@ Configured as a Gitea `source-config` named `corp-ad-ldaps` via the
 REST API in Phase 6. Bind account is least-privilege
 (`CN=svc-fmp-ldap,OU=ServiceAccounts,...`), search base is **scoped to
 the governed Users OU** (`OU=Users,OU=ORG-IT-INF-PLATFORM,...`),
-and the admin filter is the OrgTree dynamic group
-`OrgTree-IT-INF-PLATFORM-CanonStewards`.
+and the admin filter is the dynamic group
+`IT-INF-PLATFORM-CanonStewards`.
 
 This is the operator path for "AD-only" users — anyone whose identity
 lives in the legacy forest but has not yet been federated to Entra. A
@@ -313,7 +313,7 @@ the rules in
 A joiner/mover/leaver event in the HR feed propagates through the
 Entra dynamic-group recalculation and arrives as a Gitea permission
 change within roughly fifteen minutes — no hand-maintained team
-membership. This is the same Phase 14 OrgTree propagation mechanism
+membership. This is the same Phase 14 propagation mechanism
 §5.3 and §9.2 flag as canonically declared but still under
 operational validation; the fifteen-minute figure carries that same
 caveat here.
@@ -347,8 +347,8 @@ pre-receive.
 
 | Caller | Auth path | Where the identity comes from | Bound to |
 |---|---|---|---|
-| Federated FMP contributor | Entra OIDC SSO (Web UI), then PAT for `git` | Entra tenant + group claims | `OrgTree-IT-INF-*` dynamic groups |
-| Legacy / AD-only contributor | LDAPS bind through Gitea source-config | Forest user object in the governed Users OU | `OrgTree-IT-INF-PLATFORM-CanonStewards` admin filter |
+| Federated FMP contributor | Entra OIDC SSO (Web UI), then PAT for `git` | Entra tenant + group claims | `IT-INF-*` dynamic groups |
+| Legacy / AD-only contributor | LDAPS bind through Gitea source-config | Forest user object in the governed Users OU | `IT-INF-PLATFORM-CanonStewards` admin filter |
 | FastAPI plane caller (optional) | IIS Negotiate (Kerberos / NTLM) | Forest user; impersonated to Python | NTFS ACL on whatever resource the API touches |
 | Gitea service itself | gMSA `corp\svc-fmp-gitea$` | Forest service account | `D:\GitRepos`, `D:\Gitea`, TLS private key |
 | IIS reverse-proxy app pool | `IIS AppPool\FMPReverseProxy` | Built-in app-pool identity | TLS private key (Read), nothing else |
@@ -387,7 +387,7 @@ FMP_163 drift engine via the Azure-side payload.
 
 Phase 10 publishes a `windows10CompliancePolicy` named
 `FMP-GIT-ServerCompliance-v2` and assigns it to the dynamic group
-`OrgTree-IT-INF-PLATFORM-Devices` (Phase 14.5). The host's Intune
+`IT-INF-PLATFORM-Devices` (Phase 14.5). The host's Intune
 agent attests the eight required signals (Secure Boot, BitLocker, code
 integrity, storage encryption, firewall, antivirus, real-time
 protection, TPM) to `*.events.data.microsoft.com`; non-compliance
@@ -443,7 +443,7 @@ their own audit log written to `D:\Gitea\log\hooks\`.
 
 | Hook | Mandatory rule | Source |
 |---|---|---|
-| `pre-receive` | Reject `main` pushes unless author ∈ `OrgTree-IT-INF-PLATFORM-CanonStewards` | §15 Rule 1 |
+| `pre-receive` | Reject `main` pushes unless author ∈ `IT-INF-PLATFORM-CanonStewards` | §15 Rule 1 |
 | `pre-receive` | Reject any commit containing `FOUO` / `For Official Use Only` markings | §15 Rule 2 |
 | `pre-receive` | Validate canon-file YAML frontmatter (document_id, version, status, classification, owner, boundary) | §15 Rule 3 |
 | `pre-receive` | Reject canon files not matching `^FMP_\d{3}_[\w]+_v\d+\.\d+\.md$` | §15 Rule 4 |
@@ -475,7 +475,7 @@ Gitea with exponential backoff and surface in the Web UI under
 ### 5.3 FMP_163 drift reporter — scheduled task
 
 Phase 14.4 registers a scheduled task that runs under the Arc service
-principal (no interactive credentials on the host) — a Phase 14 OrgTree
+principal (no interactive credentials on the host) — a Phase 14
 capability that is canonically declared but still under operational
 validation per the build guide's own status warning. The task collects:
 
@@ -685,26 +685,26 @@ customer's documented VPN / Privileged Access Workstation path.
 | Azure Blob backup | CP-9, CP-10 | Nightly snapshot + retention |
 | Code-signing (AppLocker / WDAC) | CM-7, SI-7 | Publisher allowlist |
 
-### 9.2 OrgTree governance — who can use which interface
+### 9.2 Group governance — who can use which interface
 
-Every interface above is gated by membership in one of three OrgTree
+Every interface above is gated by membership in one of three
 dynamic groups, defined in
 `platform-server-build.qmd` §14.3
-— a Phase 14 OrgTree integration that is canonically declared but still
+— a Phase 14 integration that is canonically declared but still
 under operational validation per the build guide's own status warning:
 
-| Gitea role | Dynamic group | Membership rule |
-|---|---|---|
-| Owner | `OrgTree-NCR-IT-InfraOps-CanonStewards` | `(user.extensionAttribute2 -eq "IT") and (user.extensionAttribute3 -eq "InfraOps") and (user.extensionAttribute10 -eq "Privileged")` |
-| Write | `OrgTree-NCR-IT-InfraOps-Contributors` | `(user.extensionAttribute15 -startsWith "Region=NCR\|Department=IT\|Division=InfraOps\|")` |
-| Read | `OrgTree-NCR-IT-Users` | `(user.extensionAttribute15 -startsWith "Region=NCR\|Department=IT\|")` |
+| Gitea role | Dynamic group |
+|---|---|
+| Owner | `NCR-IT-InfraOps-CanonStewards` |
+| Write | `NCR-IT-InfraOps-Contributors` |
+| Read | `NCR-IT-Users` |
 
-These rules read **user** facets, and the user plane is written differently
-from the device plane above: for a synced user the facets are stamped in
+These groups are driven by **user** attributes, and the user plane is written differently
+from the device plane above: for a synced user the attributes are stamped in
 on-premises AD and reach Entra by directory sync, so a move carries a sync
 hop before any group recalculates. Microsoft additionally warns against
 keying dynamic-group rules on attributes that are writable elsewhere — here
-the mitigation is that the facets have exactly one writer, the governance
+the mitigation is that the attributes have exactly one writer, the governance
 plane, and drift against it is a finding rather than an accepted edit.
 See the hybrid-sync trap.
 
@@ -767,7 +767,7 @@ Every plane in the six families is either:
 Anything outside that taxonomy is a finding — `DRIFT-SCHEMA` if the
 plane appeared without an ADR, `DRIFT-PROVENANCE` if its provenance
 into canon cannot be resolved, `DRIFT-AUTHZ` if its authorization
-posture diverged from the OrgTree group mapping. The substrate is
+posture diverged from the group mapping. The substrate is
 governed by the *closure* of this list, not by the absence of
 incidents.
 
@@ -783,7 +783,7 @@ incidents.
 | Option-A reference | `docs/customer-documents/platform/git-server-implementation.qmd` | Lab build (CGI), source of canonical hook bodies |
 | FastAPI deployment | `deploy/windows-server/web.config`, `run.py` | Optional `[api]` plane |
 | Substrate manifest | `src/fmp/canon/substrate-manifest.yaml` | Boundary (GCC-Moderate + commercial exceptions) |
-| OrgTree canon | FMP_151, FMP_152, FMP_153, FMP_154, FMP_158, FMP_163, FMP_167, FMP_171, FMP_174 | Group mapping, schema, drift, SLA |
+| Identity canon | FMP_152, FMP_153, FMP_154, FMP_163, FMP_167, FMP_171, FMP_174 | Group mapping, drift, SLA |
 | Foundational architecture | [`docs/customer-documents/operational-guides/client-server-to-hybrid-cloud/01-platform-foundation.qmd`](../operational-guides/client-server-to-hybrid-cloud/01-platform-foundation.md) | "Single substrate authority" claim |
 
 ## Appendix B — Option A interface delta (CGI only)

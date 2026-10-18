@@ -8,7 +8,6 @@ series-order: 2
 status: Active
 canon-source: "src/fmp/canon/adr/adr-006-evidence-determinism.md"
 canon-reference:
-  - "docs/customer-documents/executive-governance-series/governance-os-canonical-suite.qmd"
 repo-path: docs/customer-documents/executive-governance-series/ch02-compliance-paradox
 created-at: 2026-04-26
 updated-at: 2026-05-10

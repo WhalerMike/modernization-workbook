@@ -6,15 +6,14 @@ The identity domain specification defines the substrate contract for modernizing
 
 ## Contract requirements
 
-- Organizational position is expressed as named facets, not a single hierarchical string.
-- Dynamic groups are defined by boolean composition over facet predicates.
+- Dynamic groups are defined by rules over directory attributes.
 - Administrative units and scoped roles replace traditional organizational-unit-based delegation.
 - Access is computed from attributes, not assigned by hand.
-- The facet-to-access rule set is itself the audit evidence.
+- The attribute-to-access rule set is itself the audit evidence.
 
 ## Integration shape
 
-- Facet writes for synced users are directory-mastered; the directory-sync interval is the provisioning floor.
+- Attribute writes for synced users are directory-mastered; the directory-sync interval is the provisioning floor.
 - Device attributes are cloud-mastered and writable through the cloud API.
 - Downstream systems reference or synchronize to the authoritative origin; they do not maintain independent copies.
 

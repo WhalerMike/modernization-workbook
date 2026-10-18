@@ -102,7 +102,6 @@ PowerShell is excellent at Active Directory reads; it is less excellent at graph
 
 - **Dependency graphs** — which organizational units inherit which Group Policy Objects; which applications depend on which service principal names.
 - **Risk scores** — stale accounts, over-privileged delegation, privilege-escalation exposures.
-- **Attribute proposals** — a first-pass mapping from organizational-unit distinguished name to proposed coded attributes. A steward reviews and edits; the engine does not auto-publish.
 - **Gap analysis reports** — organizational units with no linked Group Policy Objects, Group Policy Objects with no enabled settings, groups with zero members, computers that have not logged on in 90+ days.
 
 Python output lands in an analysis subfolder as JSON and Markdown reports consumable by both the engine and a human reviewer.

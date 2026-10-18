@@ -37,7 +37,7 @@ schema-validated like any other canon artifact:
 | `configuration-management` | Configuration management (CM) — 11 rules |
 | `incident-response` | Incident response (IR) — 8 rules |
 | `hrit-reciprocity` | Single-ATO reciprocity (KSI-RECIP-001..008) |
-| `orgtree-readiness`, `cyberark`, `servicenow`, `other` | Readiness, adapter-specific, and cross-cutting indicators |
+| `readiness`, `cyberark`, `servicenow`, `other` | Readiness, adapter-specific, and cross-cutting indicators |
 
 Each rule declares a security objective, explicit pass criteria, and the NIST
 controls it relates to — so a finding traces from indicator to control to

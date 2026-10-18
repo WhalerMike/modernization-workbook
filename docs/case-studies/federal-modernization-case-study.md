@@ -69,7 +69,7 @@ effect: structural drift becomes visible.
 Apply the identity-modernization pattern (see
 [Identity Case Study](identity-modernization-case-study.md) and
 [Modernization Governance Whitepaper](../whitepapers/modernization-governance-whitepaper.md)):
-canon-first AODIM model, modernization adapters, drift-driven
+canon-first attributes, modernization adapters, drift-driven
 cleanup, cutover, post-cutover.
 
 ### Phase 3 — boundary treatment
@@ -136,7 +136,7 @@ a tool-stack modernization:
 A real engagement typically yields the most diverse lesson set of
 any case-study pattern:
 
-- AODIM attribute-model refinements (identity).
+- Canonical attribute refinements (identity).
 - Boundary capability disposition updates (cloud).
 - New compensating-enforcement adapters (ZT, M365 features).
 - Operational-tempo tuning (canonical SLA tiers vs. agency

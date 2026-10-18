@@ -110,7 +110,7 @@ Administrative Units, and Conditional Access are powerful tools — but
 Microsoft did not provide a framework for how to use them together to
 replace what the OU tree was doing.
 
-That framework is the **OrgTree canon** ([Chapter 04](../../client-server-to-hybrid-cloud/04-identity-transformation.md)).
+That framework is described in [Chapter 04](../../client-server-to-hybrid-cloud/04-identity-transformation.md).
 It encodes the OU hierarchy into user extension attributes, uses
 dynamic groups to materialise every subtree, uses Administrative Units to
 scope delegation, and uses Conditional Access to enforce policy. The result
@@ -152,8 +152,8 @@ orchestrates them into a coherent governance model.
 A single Windows Server 2025 host (documented in
 [Chapter 01](01-platform-foundation.html)) runs:
 
-- **Gitea** as the canonical source of governance truth (every plan, every
-  policy, every codebook entry lives there as a versioned artifact).
+- **Gitea** as the canonical source of governance truth (every plan and every
+  policy lives there as a versioned artifact).
 - **IIS** as the HTTPS reverse proxy and client-certificate terminator.
 - **Kerberos + enterprise PKI** bridges that let the server talk to
   the legacy AD forest it's migrating away from.
@@ -175,7 +175,7 @@ The chapters that follow walk the full arc:
 | 01 | **The Platform.** One WS2025 host. What runs on it and why. |
 | 02 | **Analyzing the legacy.** Forest discovery. GPO inventory. DNS/DHCP scraping. Kerberos SPN audit. ADCS analysis. |
 | 03 | **The engine.** How the Federal Modernization Program turns analysis into a plan and a plan into delivered state. |
-| 04 | **Identity.** OrgTree, dynamic groups, AUs. The OU-tree replacement. |
+| 04 | **Identity.** Dynamic groups, AUs. The OU-tree replacement. |
 | 05 | **Policy.** GPO retirement. Intune compliance. Conditional Access. |
 | 06 | **Services.** DNS + DHCP + IPAM in the Hybrid-Cloud model. |
 | 07 | **Compute.** Device transformation. Domain-joined → Entra + Intune + Arc. |
