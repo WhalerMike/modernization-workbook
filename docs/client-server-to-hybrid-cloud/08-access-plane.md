@@ -2,6 +2,8 @@
 
 **The identity-bound access plane that replaces the Active Directory network perimeter**
 
+> **Dependency chain:** Inventory → Plan → Identity → Policy → Network services → Devices and servers → **Access plane** → Retire AD DS → Prove steady state
+
 ## The access claim
 
 ![Diagram](../images/cshc/access-plane.svg)
@@ -163,6 +165,12 @@ Access-plane migration passes when:
 - The traditional VPN is retired except for explicit legacy-application-access cases with a documented end-of-life.
 - Drift detection reports zero access-plane drift for a defined period.
 
+
+## Key takeaways
+
+1. Access decisions move from network location to identity, device, and risk, enforced by Conditional Access.
+2. Phishing-resistant MFA (FIDO2, Windows Hello, passkeys, PIV/CAC via CBA) is the target for all users.
+3. Certificate issuance needs a successor before AD retires, because an enterprise CA depends on AD DS.
 
 ## Authoritative references
 

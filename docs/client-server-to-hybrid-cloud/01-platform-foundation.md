@@ -2,6 +2,8 @@
 
 **Windows Server 2025 + IIS + version control + Kerberos + enterprise PKI — the host that runs the transformation**
 
+> **Dependency chain:** Inventory → **Plan** → Identity → Policy → Network services → Devices and servers → Access plane → Retire AD DS → Prove steady state — this chapter builds the platform that runs every step.
+
 ## The architectural claim
 
 Everything the modernization framework does — every analysis, every plan, every delivery, every evidence artifact — can run on one Windows Server 2025 host. Not a cluster, not a microservice mesh, not a cloud-native control plane. One authoritative host, with a standby for recovery.
@@ -116,6 +118,12 @@ Boundaries matter as much as capabilities:
 - Full build procedures can be developed as a separate runbook (PowerShell-first, phased).
 - The decision to place version control behind a reverse proxy and the choice of standby model are architectural decisions that should be recorded in the project’s own decision log, not inherited from external documents.
 
+
+## Key takeaways
+
+1. One authoritative repository and writer; the host is the simplest way to get that, with a standby for recovery.
+2. Governance (decide) and execution (act) run under separate identities, credentials, and logs.
+3. The host reads AD read-only and writes to the cloud only through authorized plans.
 
 ## Authoritative references
 

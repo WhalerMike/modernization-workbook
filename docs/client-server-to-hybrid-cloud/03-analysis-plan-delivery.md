@@ -2,6 +2,8 @@
 
 **The transformation engine — how an assessment becomes governed change on the target surface**
 
+> **Dependency chain:** Inventory → **Plan** → Identity → Policy → Network services → Devices and servers → Access plane → Retire AD DS → Prove steady state
+
 ## The pipeline contract
 
 ![Diagram](../images/cshc/analysis-plan-delivery.svg)
@@ -189,6 +191,12 @@ Governed modernization proceeds by:
 
 Every stage produces a file in the repository. Every file has a signature. Every signature points to an operator. The question “who changed what, when, and why?” has a literal answer in the commit history.
 
+
+## Key takeaways
+
+1. Analyze, plan, and deliver are separate stages with separate review gates.
+2. Every action is scoped, dependency-ordered, rollback-paired, and traceable to its source.
+3. When nothing has drifted, the next run produces a zero-action plan.
 
 ## Authoritative references
 

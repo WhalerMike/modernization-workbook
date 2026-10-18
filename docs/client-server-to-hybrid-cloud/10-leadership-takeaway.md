@@ -2,6 +2,8 @@
 
 **What this series means for an executive sponsor deciding whether to run it**
 
+> **Dependency chain:** Inventory → Plan → Identity → Policy → Network services → Devices and servers → Access plane → Retire AD DS → Prove steady state — this chapter is the sponsor's view of the whole chain.
+
 ## The framing that matters
 
 ![Diagram](../images/cshc/leadership-takeaway.svg)
@@ -113,6 +115,12 @@ The framework is the orchestra. This series is the score.
 
 Active Directory retirement is not a migration project. It is a governance transformation, and it should be run as one.
 
+
+## Key takeaways
+
+1. The platform tools exist; what is missing is a governed way to sequence and evidence them.
+2. Ask monthly: drift trend, share of changes with a signed plan, active GPOs, hybrid-joined age.
+3. Start with a read-only assessment (Chapter 02).
 
 ## Authoritative references
 

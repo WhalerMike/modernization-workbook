@@ -2,6 +2,8 @@
 
 **How twenty-five years of Group Policy becomes configuration profiles, compliance policies, and Conditional Access**
 
+> **Dependency chain:** Inventory → Plan → Identity → **Policy** → Network services → Devices and servers → Access plane → Retire AD DS → Prove steady state
+
 ## The policy claim
 
 ![Diagram](../images/cshc/policy-transformation.svg)
@@ -215,6 +217,12 @@ Policy migration passes when:
 - Drift detection reports zero findings for every policy.
 - The nightly assessment-to-plan run produces a zero-action plan for the policy tree.
 
+
+## Key takeaways
+
+1. Group Policy is regenerated into Intune, Conditional Access, and machine configuration, not copied setting by setting.
+2. Each setting has exactly one owning layer, enforced at plan validation.
+3. The last GPO retires only when no AD accounts remain in use.
 
 ## Authoritative references
 
