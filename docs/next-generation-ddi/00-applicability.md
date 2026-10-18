@@ -30,7 +30,7 @@ The book is written for agencies whose workloads run in commercial Azure, commer
 
 - Everything in Chapters 01–11 applies as written.
 - A DDI management service delivered as SaaS must hold a FedRAMP Moderate authorization (or better) and an agency ATO. On-premises and in-tenant resolvers stay inside the agency's own boundary (Chapter 03).
-- Microsoft 365 Informed Network Routing is **not** available. Microsoft supports it only in the Worldwide commercial cloud, not GCC-Moderate (Chapter 05).[^c00-inr]
+- Microsoft 365 informed network routing is **not** available. Microsoft supports it only in the Worldwide commercial cloud, not GCC-Moderate (Chapter 05).[^c00-inr]
 - The AWS VPC IPAM integration with an external IPAM is available in commercial AWS Regions (Chapter 07).[^c00-awsipam]
 - Microsoft 365 GCC-Moderate uses the Worldwide endpoint list,[^c00-m365ww] so the DNS risk is path consistency rather than resolving to the wrong cloud (Chapter 02).
 

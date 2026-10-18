@@ -24,7 +24,7 @@ lifecycle_review: 2027-01-01
 
 **Problem.** DNS has quietly become the application surface, the security enforcement plane, and the PKI and identity substrate of the hybrid multi-cloud enterprise. Most agencies still run it as a commodity utility across as many as five independent platforms: Active Directory DNS or an on-premises DDI grid, AWS Route 53, Azure DNS and Azure Private DNS, Google Cloud DNS, and VMware NSX. The result is split-brain DNS that breaks private connectivity, SaaS endpoint selection, certificate trust and Layer 7 Zero Trust policy at once. It surfaces as certificate errors and access denials, rarely as DNS errors.
 
-**Solution.** One authoritative DDI policy plane that propagates DNS, DHCP and IPAM state consistently to every resolution surface, with edge interception (for example the redirect-dns data policy in Cisco Catalyst SD-WAN) pointed at resolvers under agency control rather than around them. This is an architectural requirement, not a product. Enterprise DDI platforms, and cloud-native resolvers managed as code, can all be evaluated against it (Chapter 11). As one concrete data point, Infoblox Government Cloud, which runs in AWS GovCloud (US) and holds a FedRAMP Moderate authorization, added its Universal DDI management service to that authorized offering in July 2026.[^c01-fedramp][^c01-ibxpr]
+**Solution.** One authoritative DDI (DNS, DHCP and IP address management) policy plane that propagates DNS, DHCP and IPAM state consistently to every resolution surface, with edge interception (for example the redirect-dns data policy in Cisco Catalyst SD-WAN) pointed at resolvers under agency control rather than around them. This is an architectural requirement, not a product. Enterprise DDI platforms, and cloud-native resolvers managed as code, can all be evaluated against it (Chapter 11). As one concrete data point, Infoblox Government Cloud, which runs in AWS GovCloud (US) and holds a FedRAMP Moderate authorization, added its Universal DDI management service to that authorized offering in July 2026.[^c01-fedramp][^c01-ibxpr]
 
 **Ask.** Authorize the architecture decision to operate a single authoritative DDI policy plane. Assign an owner (typically the enterprise architecture or network operations lead) to complete the five configuration decisions in Chapter 08 within 90 days and report residual risk to the authorizing official.
 
@@ -34,8 +34,8 @@ DNS fragmentation across independent platforms produces split-brain DNS: the sam
 
 - **Split-brain DNS is structural, not a bug to patch.** Independent per-cloud DNS systems diverge because they share no state (Chapter 02).
 - **DNS is now a security and PKI dependency.** Certificate validation, OCSP and CRL lookups, token audiences and FQDN-based policy all fail quietly under split-brain (Chapter 06).
-- **Edge interception can silently bypass the policy plane.** The SD-WAN redirect-dns destination determines whether RPZ, DNSSEC validation and logging apply at all (Chapter 05).
-- **Some cloud optimizations stop at the commercial boundary.** Microsoft 365 Informed Network Routing (INR) is not available in GCC-Moderate, GCC High or DoD. The DDI architecture is unaffected; that one optimization is simply unavailable (Chapter 05 and the [Applicability](00-applicability.md) page).
+- **Edge interception can silently bypass the policy plane.** The SD-WAN redirect-dns destination determines whether response policy zones (RPZ), DNSSEC validation and logging apply at all (Chapter 05).
+- **Some cloud optimizations stop at the commercial boundary.** Microsoft 365 informed network routing (INR) is not available in GCC-Moderate, GCC High or DoD. The DDI architecture is unaffected; that one optimization is simply unavailable (Chapter 05 and the [Applicability](00-applicability.md) page).
 - **Five configuration decisions carry the operational risk:** the redirect-dns target, forwarding chain order, per-cloud conditional forwarding, Active Directory DNS inventory before decommissioning, and OCSP/CRL reachability (Chapter 08).
 
 ## DNS in the Modern Hybrid Multi-Cloud Enterprise
@@ -46,7 +46,7 @@ DNS was specified in 1983 (RFC 882 and 883) and redefined in 1987 (RFC 1034 and 
 
 ![One authoritative policy plane governs the enterprise, cloud and internet DNS perspectives.](../images/diagrams/next-generation-ddi/svg/ch01-three-perspectives.svg){fig-alt="A policy plane at the top connects to three perspectives: enterprise internal DNS, cloud DNS services, and external authoritative DNS."}
 
-A unified DDI control plane manages DNS from three interconnected perspectives:
+A unified DDI policy plane manages DNS from three interconnected perspectives:
 
 - **Enterprise (internal):** AD-integrated DNS or an on-premises DDI grid, DNS views, high availability and anycast, and role-based administration for data centers, branches and private clouds.
 - **Cloud:** Amazon Route 53, Azure DNS and Azure Private DNS, and Google Cloud DNS, with discovery of cloud networks and federation with cloud IPAM.
@@ -59,6 +59,13 @@ The typical agency landscape spans on-premises AD DNS or a DDI grid; Route 53 pu
 ![Enterprise IPAM is the address-layer source of truth for DHCP, cloud address managers, DNS records and the asset inventory.](../images/diagrams/next-generation-ddi/svg/ch01-ipam-source-of-truth.svg){fig-alt="DHCP servers and cloud address managers feed an enterprise IPAM, which keeps DNS records in step and supplies the address layer of the asset inventory."}
 
 A central IPAM is the authoritative record of the address plan, reservations and ownership across on-premises and cloud address space, and it is what prevents overlaps. DHCP lease data and dynamic DNS updates keep address and name records in step through each record's lifecycle. Existing Microsoft DHCP servers can be discovered and brought under the same inventory during transition. This is also the address layer of the continuous asset inventory that Zero Trust architectures depend on.[^c01-ztmm]
+
+::: {.callout-note}
+## What this chapter establishes
+1. DNS now carries private endpoint publication, SaaS front-door selection, security policy and service identity, so it has to be governed as a control plane, not run as a utility.
+2. Several independent DNS platforms (as many as five) with no shared state make split-brain structural.
+3. The answer is one authoritative DDI policy plane, with five configuration decisions carrying most of the risk.
+:::
 
 ---
 

@@ -29,7 +29,7 @@ DNS identity, meaning the authoritative mapping of names to addresses, owners an
 - **Certificate issuance.** ACME DNS-01 challenges, used by public and private certificate authorities, require the ability to create and remove TXT records under controlled, auditable authority.[^c06-rfc8555] An enterprise DDI API makes automated issuance and renewal possible without exposing web servers. CAA records limit which authorities may issue for a name.[^c06-rfc8659]
 - **Certificate pinning.** DNSSEC provides integrity and authenticity for DNS data, which is what makes DANE and TLSA records usable for binding certificates to names independently of the public PKI.[^c06-rfc6698]
 - **Encrypted DNS.** DoT, DoH and DoQ resolvers present certificates of their own, which must be issued, rotated and monitored like any other server certificate.
-- **Application-aware networking and ZTNA.** These depend on reliable FQDN-based policy ("allow this group to this application FQDN") rather than brittle IP rules. Wildcard namespaces (`*.api.agency.gov`) define the application surface.
+- **Application-aware networking and zero trust network access (ZTNA).** These depend on reliable FQDN-based policy ("allow this group to this application FQDN") rather than brittle IP rules. Wildcard namespaces (`*.api.agency.gov`) define the application surface.
 - **Tokens.** OAuth 2.0, JWTs and Microsoft Entra ID operate after the connection is made. DNS decides whether the client reaches the authentic endpoint that issues or validates the token, and Protective DNS helps keep tokens from being sent to malicious destinations.
 
 DNS identity is the first link in the chain that makes certificate, application and token controls meaningful. Under split-brain, certificate validation failures, access denials and policy gaps become symptoms that are harder to diagnose than classic Kerberos failures.
@@ -60,7 +60,7 @@ DNSSEC uses a chain of trust from the DNS root through the top-level domains to 
 - DNSSEC support differs across cloud DNS services (see below); a unified DDI plane makes consistent signing and validation policy achievable.
 - DNSSEC protects integrity, not confidentiality. Encrypted DNS and Protective DNS remain complementary controls.
 
-Inconsistent DNSSEC deployment across views (signed in one, unsigned or differently signed in another) produces validation failures that surface as application or certificate errors rather than clear DNSSEC errors. A single control plane removes most of that class of inconsistency.
+Inconsistent DNSSEC deployment across views (signed in one, unsigned or differently signed in another) produces validation failures that surface as application or certificate errors rather than clear DNSSEC errors. A single policy plane removes most of that class of inconsistency.
 
 ## DNSSEC Across Azure, AWS and Other Cloud Providers
 
@@ -69,6 +69,13 @@ Signing and validation policy should be orchestrated from the central DDI plane,
 - **Azure.** Azure DNS supports DNSSEC signing for public zones only, with zone-signing key rollover handled automatically. Azure Private DNS zones cannot be signed, and the Azure-provided recursive resolver does not perform DNSSEC validation. Workloads that need validation must use a validating resolver the agency controls.[^c06-azdnssec] Entra ID consumes FQDNs but does nothing for DNSSEC or private endpoint DNS.
 - **AWS.** Route 53 supports DNSSEC signing for public hosted zones, not private hosted zones. Route 53 Resolver can validate DNSSEC responses when validation is enabled for a VPC.[^c06-r53dnssec]
 - **Everywhere.** Zones that must be signed are signed by the DDI platform, or by the cloud DNS service under DDI control, with rollover automated in one place. Validation happens on resolvers the agency controls, and redirect-dns and cloud forwarding point at those resolvers.
+
+::: {.callout-note}
+## What this chapter establishes
+1. DNS identity is the first link in the trust chain for certificates, FQDN-based policy and tokens.
+2. DNSSEC validation belongs on a resolver the agency controls.
+3. Cloud DNSSEC support is uneven (Azure Private DNS cannot be signed; Route 53 signs public zones only), so signing and validation policy must be set centrally.
+:::
 
 ---
 

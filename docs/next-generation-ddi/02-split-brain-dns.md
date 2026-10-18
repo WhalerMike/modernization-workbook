@@ -42,7 +42,14 @@ Public SaaS endpoint split-brain follows the same pattern. Microsoft 365 GCC Hig
 
 Organizations that rely on fragmented or do-it-yourself DDI accumulate configuration drift, stale and dangling records, overlapping address space and siloed administration. Each is an operational risk and an audit finding waiting to happen. A vendor-commissioned survey reports that respondents without enterprise-grade DDI saw more frequent outages of cloud-hosted applications and slower outage response; treat such figures as directional rather than as a benchmark.[^c02-esg]
 
-Without a unified DDI plane, agencies struggle to show the consistent policy, audit trail and asset inventory that FedRAMP continuous monitoring, NIST SP 800-81r3, CISA Protective DNS and Zero Trust reporting all ask for. For SASE and Zero Trust, DNS is the first trust decision: it chooses the destination before TLS, single sign-on or any application policy can act. Fragmented DNS undermines consistent filtering, encrypted DNS policy and threat blocking.
+Without a unified DDI plane, agencies struggle to show the consistent policy, audit trail and asset inventory that FedRAMP continuous monitoring, NIST SP 800-81r3, CISA Protective DNS and Zero Trust reporting all ask for. For secure access service edge (SASE) and Zero Trust, DNS is the first trust decision: it chooses the destination before TLS, single sign-on or any application policy can act. Fragmented DNS undermines consistent filtering, encrypted DNS policy and threat blocking.
+
+::: {.callout-note}
+## What this chapter establishes
+1. Intentional split-horizon is legitimate; unintentional split-brain is drift between systems with no shared state.
+2. Split-brain breaks private connectivity and security policy silently, because the name still resolves.
+3. The effective security posture is that of the weakest resolver a client can reach.
+:::
 
 ---
 

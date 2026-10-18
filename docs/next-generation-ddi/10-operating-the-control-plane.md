@@ -32,7 +32,7 @@ The policy plane should let corporate administrators keep full visibility while 
 - Each divisional team is assigned a scope that limits it to the zones, IP spaces, address blocks, DHCP scopes and other objects that belong to the division, including zones synchronized from cloud DNS services. Child objects inherit their parent's scope.
 - Predefined roles cover DNS, DHCP and IPAM functions (for example manager, operator and auditor), and custom roles can combine granular create, read, update and delete permissions.
 - Divisional users and automation accounts cannot see or change objects outside their scope.
-- The result is fewer tickets and faster divisional change, with one authoritative control plane and a full audit trail for corporate oversight.
+- The result is fewer tickets and faster divisional change, with one authoritative policy plane and a full audit trail for corporate oversight.
 
 ::: {.callout-note}
 ## Illustrative implementation
@@ -45,7 +45,7 @@ Every object in the policy plane should be reachable through a documented API, s
 
 - API coverage for IPAM, DHCP, DNS configuration and DNS data.
 - Non-interactive service accounts for automation, bound by the same role and scope restrictions as human users and unable to log in to the console.
-- A migration path for existing automation, so scripts written against the legacy grid keep working while authority moves (some platforms proxy legacy API calls through the new control plane).
+- A migration path for existing automation, so scripts written against the legacy grid keep working while authority moves (some platforms proxy legacy API calls through the new policy plane).
 - Supported Terraform and Ansible integrations, so network and cloud teams can manage DDI objects in the same pipelines as the rest of their infrastructure.
 
 Divisions can then automate their own DDI operations through scoped service accounts, while corporate teams keep policy, audit and cross-estate visibility.
@@ -67,7 +67,7 @@ DDI platforms generally do not provide full certificate lifecycle management. Wh
 - ACME clients and plug-ins (cert-manager webhooks, Posh-ACME, lego and similar) call the DDI API to create and remove the TXT records that DNS-01 validation needs.
 - Issuance and renewal can then be automated without exposing web servers, provided the automation account's permissions are scoped to the names it serves.
 - DNSSEC, CAA records and consistent private endpoint resolution (Chapters 06 and 07) remain prerequisites for trustworthy certificate validation after issuance.
-- Certificate inventory, multi-CA orchestration and post-issuance deployment still need a dedicated certificate lifecycle platform or process that uses the DNS control plane.
+- Certificate inventory, multi-CA orchestration and post-issuance deployment still need a dedicated certificate lifecycle platform or process that uses the DDI policy plane.
 
 ## Identity Governance Integration
 
@@ -98,6 +98,13 @@ For a program office or an authorization package:
 - IPAM inventory and discovery reports covering the hybrid address space.
 - Query logs and policy audit trails retained for continuous monitoring.
 - Rogue DHCP and router advertisement detection, and option 6 and RDNSS consistency controls, documented.
+
+::: {.callout-note}
+## What this chapter establishes
+1. A single policy plane must still give each division scoped autonomy, with one audit trail.
+2. Every change, human or automated, goes through the same API, roles and scopes.
+3. The plane must produce the logs, inventory and change evidence that FedRAMP, M-21-31 and Zero Trust reporting require.
+:::
 
 ---
 

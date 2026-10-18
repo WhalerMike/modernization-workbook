@@ -59,6 +59,13 @@ The following table maps the core capabilities of a unified DDI plane to represe
 | Audit trails and role-based administration | AU-2, AU-6, AC-2, AC-3, AC-6 | Change logs, role assignments, policy modification history |
 | DNSSEC and zone integrity | SC-20, SC-21, SI-7 | Key management, validation status, zone signing evidence |
 
+::: {.callout-note}
+## What this chapter establishes
+1. M-22-09, M-21-31, M-08-23, M-21-07 and CISA guidance together require agency-controlled, logging, encrypting, validating resolvers that forward egress through Protective DNS.
+2. SP 800-81r3 is the practical guide to meeting them; it is guidance, not a mandate.
+3. FedRAMP authorizes the cloud service, not the architecture, and a Moderate authorization does not cover High or DoD.
+:::
+
 ---
 
 **Previous:** [Chapter 02 — Split-Brain DNS: The Structural Problem](02-split-brain-dns.md)  
