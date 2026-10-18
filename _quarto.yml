@@ -65,6 +65,8 @@ website:
         menu:
           - href: docs/client-server-to-hybrid-cloud/README.md
             text: "Client-Server to Hybrid-Cloud"
+          - href: docs/next-generation-ddi/index.md
+            text: "Next Generation DDI"
       - href: docs/whitepapers/README.md
         text: "Whitepapers"
       - href: sitemap.qmd
