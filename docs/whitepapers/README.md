@@ -19,8 +19,6 @@ Cleaned, externally usable versions of high-value modernization whitepapers.
 | [Next Generation DDI](next-generation-ddi.md) | Full-depth treatment of governing DNS, DHCP, and IPAM as the hybrid multi-cloud control plane, including split-brain, FedRAMP Moderate, SD-WAN interception, and the five critical configuration decisions. |
 | [FMP Governance OS](fmp-governance-os-whitepaper.md) | How deterministic governance replaces attestation-based compliance. |
 | [FMP vs Microsoft Native Tools](fmp-vs-native-tools.md) | Why Microsoft's 12 tools don't replace a governance orchestration layer. |
-| [Choose Your Partners — The OrgPath Composability Matrix](orgpath-composability-matrix.md) | What governs what, with which IdP, and what each piece needs the others for. |
-| [Snowflake Key-Pair Conversion](snowflake-keypair-vs-fmp-orgpath.md) | How a governance substrate would run the password-to-key-pair migration Snowflake is forcing. |
 
 ---
 

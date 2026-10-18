@@ -1,5 +1,5 @@
 ---
-title: "Vol VII Book 02 — Federal Organization Compliance — M365 Federal Control Compliance Automation"
+title: "Vol VII Book 02 — Federal Compliance — M365 Federal Control Compliance Automation"
 subtitle: "SCuBA baseline drift, Conditional Access exceptions, and Purview data-protection state, operated as ServiceNow work"
 author: "Federal Cloud Services"
 date: "2026-07-12T15:00:00-04:00"
@@ -96,9 +96,9 @@ The conformance tooling (ScubaGear and equivalents) proves *where* M365 deviates
 
 # NIST SP 800-53 Rev 5 Control Closure — Authorities Closed Here
 
-Generated from the series compliance spine (`orgcomp-compliance-spine.yml`) by `render_authorities_table.py`; not hand-edited here. These are *coordination* closures — the M365 control state operated as tracked work — not a re-closure of the identity/data mechanisms Volumes I, III, and VI already own.
+Generated from the series compliance spine (`federal-compliance-compliance-spine.yml`) by `render_authorities_table.py`; not hand-edited here. These are *coordination* closures — the M365 control state operated as tracked work — not a re-closure of the identity/data mechanisms Volumes I, III, and VI already own.
 
-<!-- authorities:book-sn-m365 — generated from orgcomp-compliance-spine.yml; do not hand-edit -->
+<!-- authorities:book-sn-m365 — generated from federal-compliance-compliance-spine.yml; do not hand-edit -->
 | Control | Title | Closing mechanism (function, not product) | Accreditation gate | Authority drivers | Evidence slot | FedRAMP 20x KSI | Tool-attestable? |
 |---|---|---|---|---|---|---|---|
 | AC-2 | Account Management | Joiner/mover/leaver and Conditional-Access exception requests raised, approved, and access-reviewed as ServiceNow tasks over the Entra estate | FedRAMP Moderate | NIST SP 800-53 Rev 5; OMB M-22-09 | Identity | KSI-IAM | No |
@@ -133,4 +133,4 @@ Draft. Microsoft 365, Graph, SCuBA/ScubaGear, and Purview are deployed examples;
 | Microsoft 365 secure-configuration assessment (ScubaGear) | <https://github.com/cisagov/ScubaGear> |
 | Conditional Access & Entra account management via Graph | Microsoft Learn — <https://learn.microsoft.com/graph/api/resources/conditionalaccesspolicy> |
 | Purview data-protection (labels, DLP, audit) | Microsoft Learn — <https://learn.microsoft.com/purview/> |
-| ServiceNow as workflow/CMDB/evidence coordination hub | Expansion Plan §16 — `docs/customer-documents/orgcomp-series/Compliance_Series_Expansion_Plan_Substrate_Accreditation.md` |
+| ServiceNow as workflow/CMDB/evidence coordination hub | Expansion Plan §16 — `docs/customer-documents/federal-compliance-series/Compliance_Series_Expansion_Plan_Substrate_Accreditation.md` |

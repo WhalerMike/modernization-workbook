@@ -106,7 +106,7 @@ chain**, canonicalized in
 | # | Source | When it applies |
 |---|---|---|
 | 1 | **Procurement record** — the the organizational-attribute model written to the vendor-program carrier at Phase 2 (Autopilot Group Tag, ABM device note, Android Zero-Touch / Knox managed config, or Arc onboarding resource tag) | Asset acquired through the procurement integration; this is the authoritative source for every net-new device |
-| 2 | **Hardware-hash mapping CSV** — `governance/{platform}/orgpath-mapping.csv`, pre-staged to the device via a configuration profile | The vendor-program carrier failed to write or was stripped; the mapping CSV preserves procurement intent out-of-band |
+| 2 | **Hardware-hash mapping CSV** — `governance/{platform}/hardware-hash-mapping.csv`, pre-staged to the device via a configuration profile | The vendor-program carrier failed to write or was stripped; the mapping CSV preserves procurement intent out-of-band |
 | 3 | **User derivation** — the provisioning user's the organizational-attribute model, read from their Entra ID user object via Graph | Asset has no procurement record (pre-doctrine asset, BYOD under Exception Path A, or user-driven enrollment carve-out) |
 | 4 | **Quarantine `/UNPOSITIONED`** — the terminal fallback | No prior source produced a value matching an Active OrgTree node |
 
@@ -197,10 +197,10 @@ device.
 
 Required intake fields, per `procurement-handoff.md` §2:
 
-- `recipient_upn`, `recipient_orgpath` (resolved from Entra ID)
+- `recipient_upn`, `recipient_org_attributes` (resolved from Entra ID)
 - `asset_class` (windows-endpoint / macos-endpoint / ios-tablet / etc.)
 - `asset_assignment_type` (personal / shared / kiosk / lab / service)
-- `asset_orgpath` and `asset_orgnodeid` (validated against OrgTree registry)
+- `asset_org_attributes` and `asset_orgnodeid` (validated against OrgTree registry)
 - `vendor`, `vendor_program` (autopilot-direct, apple-abm, android-zerotouch, samsung-knox-me, arc-direct)
 
 The procurement system commits a JSON procurement record to

@@ -1,5 +1,5 @@
 ---
-title: "Vol IX Book 06 — Federal Organization Compliance — Identity & Access Governance"
+title: "Vol IX Book 06 — Federal Compliance — Identity & Access Governance"
 subtitle: "JML automation from the HRIT Org SSOT, access-certification campaigns, and the IAM evidence feed — the governance layer over the day-2 request lane (Kit Expansion Phase 2)"
 author: "Federal Cloud Services"
 date: "2026-07-21T14:46:00-04:00"
@@ -117,9 +117,9 @@ remove the evidence feed and the controls may hold but cannot be proven.
 
 # NIST SP 800-53 Rev 5 Control Closure — Authorities Closed Here
 
-Generated from the compliance spine (`orgcomp-compliance-spine.yml`); not hand-edited here.
+Generated from the compliance spine (`federal-compliance-compliance-spine.yml`); not hand-edited here.
 
-<!-- authorities:book-day2-iam — generated from orgcomp-compliance-spine.yml; do not hand-edit -->
+<!-- authorities:book-day2-iam — generated from federal-compliance-compliance-spine.yml; do not hand-edit -->
 | Control | Title | Closing mechanism (function, not product) | Accreditation gate | Authority drivers | Evidence slot | FedRAMP 20x KSI | Tool-attestable? |
 |---|---|---|---|---|---|---|---|
 | AC-2 | Account Management | Joiner/mover/leaver executed as lifecycle automation from effective-dated HR events — joiner provisioning, mover access re-derivation, leaver de-provisioning within SLA — with approval gates on high-risk events; extends the Book 01 request lane from operator-requested to event-driven | FedRAMP Moderate | NIST SP 800-53 Rev 5; OMB M-22-09 | Identity | KSI-IAM | No |
@@ -164,7 +164,7 @@ Generated from the compliance spine (`orgcomp-compliance-spine.yml`); not hand-e
 
 Draft. The series home decided here (Vol IX Book 06, per the kit-expansion
 roadmap's Phase 2) and the control contract registered in
-`orgcomp-compliance-spine.yml` are the authoritative artifacts; the underlying
+`federal-compliance-compliance-spine.yml` are the authoritative artifacts; the underlying
 requirements document remains **Draft v0.9** pending CSI/OIS sign-off. The
 figure above is authored as committed house-style SVG, rendered to PNG at 3×
 for crisp `.docx` zoom. This book's own DOCX/PPTX derivatives follow on the

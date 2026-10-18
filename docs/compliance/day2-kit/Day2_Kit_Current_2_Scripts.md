@@ -3,13 +3,13 @@ title: "Compliance Day-2 Automation Kit — Current State — Scripts"
 subtitle: "The AD leg (AdHybridClient), the router, and the hybrid_mode edition switch — one script set, config-switched"
 doc-type: kit-reference
 audience: "ServiceNow platform admins"
-family: orgcomp-series
+family: federal-compliance-series
 lifecycle: adopted
 tiers_adopted: [1]
 lifecycle_review: 2027-01-21
 format:
   html: {css: lz-style.css, toc: true, toc-depth: 3, toc-title: "Contents"}
-  docx: {reference-doc: orgcomp-reference.docx, toc: true, toc-depth: 3}
+  docx: {reference-doc: federal-compliance-reference.docx, toc: true, toc-depth: 3}
 ---
 
 {{< include servicenow-day2/CURRENT-STATE-SCRIPTS.md >}}

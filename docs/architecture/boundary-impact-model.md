@@ -7,7 +7,7 @@ canon-source: "docs/docs/gcc-boundary-solution-architecture.qmd"
 canon-reference:
   - "docs/docs/gcc-boundary-problem-statement.qmd"
   - "docs/docs/drift-detection-boundary-amendment.qmd"
-  - "docs/customer-documents/orgcomp-series/boundary/B1-gcc-moderate-boundary-model.qmd"
+  - "docs/customer-documents/federal-compliance-series/boundary/B1-gcc-moderate-boundary-model.qmd"
 derived-from: "fmp canon"
 lifecycle: adopted
 tiers_adopted: [1]

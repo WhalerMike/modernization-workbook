@@ -3,7 +3,7 @@ title: "Compliance Day-2 Automation Kit — Implementation Guide"
 subtitle: "Step-by-step stand-up in fail-closed order: sub-prod to ATF to promote"
 doc-type: kit-reference
 audience: "ServiceNow / Entra / Azure / SAM admins"
-family: orgcomp-series
+family: federal-compliance-series
 lifecycle: adopted
 tiers_adopted: [1]
 lifecycle_review: 2027-01-21

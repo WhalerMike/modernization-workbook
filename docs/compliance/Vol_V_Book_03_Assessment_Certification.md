@@ -1,5 +1,5 @@
 ---
-title: "Vol V Book 03 — Federal Organization Compliance — Assessment, Rubrics & Certification"
+title: "Vol V Book 03 — Federal Compliance — Assessment, Rubrics & Certification"
 subtitle: "The four-level rubric ladder, the two capstones' scoring, the KSI Closure Necessity Matrix as the exam, and the Compliance Practitioner / Assessor credentials"
 author: "Federal Cloud Services"
 date: "2026-07-18T06:20:00-04:00"
@@ -259,7 +259,7 @@ on.
 
 ---
 
-*Federal Organization Compliance — Vol V Book 03 of the series. Volume V is
+*Federal Compliance — Vol V Book 03 of the series. Volume V is
 the enablement layer; this book is its assessment and certification instrument,
 grading the capstones of Vol V Books 01–02 and conferring the Compliance Practitioner
 and Compliance Assessor credentials. The KSI Closure Necessity Matrix reconciles with

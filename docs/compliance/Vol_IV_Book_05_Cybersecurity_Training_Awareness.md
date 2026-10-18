@@ -1,5 +1,5 @@
 ---
-title: "Vol IV Book 05 — Federal Organization Compliance — Cybersecurity Training & Awareness"
+title: "Vol IV Book 05 — Federal Compliance — Cybersecurity Training & Awareness"
 subtitle: "Cybersecurity Awareness and Training Program: AT Family, LMS Evidence Integration, and KSI-CED-RAT Activation for FedRAMP 20x"
 author: "Federal Cloud Services"
 date: "2026-07-19T20:10:00-04:00"
@@ -635,7 +635,7 @@ Once the monthly LMS export is operational and the first
 **This makes all 29 internal KSI rules active/evaluable; it does not complete
 CR26 indicator coverage** — that stands at 19/46, with 27 indicators pending
 reconciliation to the finalized CR26 Moderate list and independent SCA. The
-eleven-volume Federal Organization Compliance series is **self-assessed against
+eleven-volume Federal Compliance series is **self-assessed against
 the series' internal KSI decomposition** — pending CR26 reconciliation and
 independent SCA.
 

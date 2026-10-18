@@ -1,9 +1,9 @@
 ---
-title: "Federal Organization Compliance (Compliance) Series"
+title: "Federal Compliance Series"
 subtitle: "An eleven-volume, 60-book FedRAMP Moderate compliance program — the federal edition, generic to any agency"
 doc-type: section-landing
 audience: [Executive, Technical, Customer]
-family: orgcomp-series
+family: federal-compliance-series
 lifecycle: adopted
 tiers_adopted: [1]
 lifecycle_review: 2026-12-17
@@ -16,9 +16,9 @@ aliases:
 
 ---
 
-# Federal Organization Compliance (Compliance) Series {.unnumbered}
+# Federal Compliance Series {.unnumbered}
 
-The **Federal Organization Compliance (Compliance)** is an eleven-volume, 60-book program
+The **Federal Compliance** is an eleven-volume, 60-book program
 covering the network, identity, data-platform, security-operations, governance,
 training, ServiceNow-automation, multi-cloud DDI, and day-2 architecture required
 for **FedRAMP Moderate** authorization under FedRAMP 20x rules (mandatory
@@ -88,7 +88,7 @@ proof") — is stated in
 
 ::: {.callout-tip}
 ## Download the full series
-**[orgcomp-series-bundle.docx]** — every book
+**[federal-compliance-series-bundle.docx]** — every book
 and training-academy page concatenated into one Word document.
 
 For the complete kit — one `.docx` volume bundle per volume plus every book as
@@ -128,7 +128,7 @@ and two tracks (compliance and implementation) — is published alongside the se
 ## How the series closes controls
 
 Each book generates its "Authorities Closed Here" table from a single compliance
-spine (`orgcomp-compliance-spine.yml`): the SSOT that maps every NIST SP 800-53 Rev 5
+spine (`federal-compliance-compliance-spine.yml`): the SSOT that maps every NIST SP 800-53 Rev 5
 control the series closes to the book that closes it, the mechanism, the
 accreditation gate, the FedRAMP 20x KSI theme, and the evidence slot. The tables
 are generated, never hand-edited, so the series cannot claim a closure the spine

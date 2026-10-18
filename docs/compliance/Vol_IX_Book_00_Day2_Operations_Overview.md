@@ -1,5 +1,5 @@
 ---
-title: "Vol IX Book 00 — Federal Organization Compliance — Volume IX Overview: ServiceNow Day-2 Operations"
+title: "Vol IX Book 00 — Federal Compliance — Volume IX Overview: ServiceNow Day-2 Operations"
 subtitle: "Extending the coordination layer from compliance drift to the governed day-2 catalog — helpdesk, landing zone, app registrations, and telephony"
 author: "Federal Cloud Services"
 date: "2026-07-19T17:05:00-04:00"
@@ -40,7 +40,7 @@ This document is a **draft proposal** developed by the **CSI Team (Cloud Service
 :::
 
 ::: {.aan-important}
-**Series Context** — This is the Volume IX overview of the Federal Organization Compliance series. Volume VII established the ServiceNow **coordination layer** for control-compliance drift on M365 and Azure. **Volume IX extends that same layer to day-2 operations** — the governed catalog for the common Entra / M365 / Azure helpdesk tasks, the landing-zone front door, app-registration governance, and Teams telephony. Where Vol VII asks *"is this control drifting?"*, Volume IX asks *"is this operator request governed, least-privilege, and evidenced?"* — the same coordination discipline, applied to the work a service desk does every day.
+**Series Context** — This is the Volume IX overview of the Federal Compliance series. Volume VII established the ServiceNow **coordination layer** for control-compliance drift on M365 and Azure. **Volume IX extends that same layer to day-2 operations** — the governed catalog for the common Entra / M365 / Azure helpdesk tasks, the landing-zone front door, app-registration governance, and Teams telephony. Where Vol VII asks *"is this control drifting?"*, Volume IX asks *"is this operator request governed, least-privilege, and evidenced?"* — the same coordination discipline, applied to the work a service desk does every day.
 :::
 
 ::: {.aan-note}
@@ -99,7 +99,7 @@ Volume IX **depends on** Volume I's naming plane (the CM-8 join key), Volume VII
 - **Vol VI Book 01/02 (Landing Zone / Identity as Code)** — the IaC the landing-zone front door drives.
 - **Vol I Book 06 (Federal Telecommunications Modernization)** — the telephony architecture Book 04 puts a catalog on.
 - **`servicenow-day2/helpdesk-control-map.json`** — the machine-readable catalog → control binding.
-- **`orgcomp-compliance-spine.yml`** — the SSOT registering this volume (`vol-9`) and its closures.
+- **`federal-compliance-compliance-spine.yml`** — the SSOT registering this volume (`vol-9`) and its closures.
 
 # Provenance
 

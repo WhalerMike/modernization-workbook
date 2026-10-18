@@ -87,7 +87,7 @@ omb_inventory.csv --output findings/` or `Invoke-AIInventoryScan.ps1
 | `DRIFT-COMPLIANCE::ai-agentic-ungoverned` | P1 | Agentic AI, no ATO |
 | `DRIFT-IDENTITY::ai-shadow` | P1 | the Federal Modernization Program registry entry absent from OMB inventory |
 | `DRIFT-COMPLIANCE::ai-ato-gap` | P2 | Deployed/pilot system, `have_ato ≠ Yes` |
-| `DRIFT-IDENTITY::ai-no-orgpath` | P2 | Blank or unresolvable `agency_bureau` |
+| `DRIFT-IDENTITY::ai-no-agency-bureau` | P2 | Blank or unresolvable `agency_bureau` |
 | `DRIFT-IDENTITY::ai-unowned` | P2 | Blank `contact_email` |
 | `DRIFT-COMPLIANCE::ai-pii-no-pia` | P2 | `has_pii = Yes`, no `pia_url` |
 

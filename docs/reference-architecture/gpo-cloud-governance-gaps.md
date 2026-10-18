@@ -190,7 +190,7 @@ gap above maps to a concrete artifact:
 
 | Governance gap | the organizational-attribute model restoration | Reference |
 |---|---|---|
-| Deterministic targeting / inheritance | Named facets on every principal; policy composed by boolean facet predicates | [Dynamic Groups](dynamic-groups.md) · [Codebook](codebook.md) |
+| Deterministic targeting / inheritance | Named facets on every principal; policy composed by boolean facet predicates | [Dynamic Groups](dynamic-groups.md) · Codebook |
 | "Single source of truth" for *why* a policy applies | Canonical codebook vocabulary + HR-driven assignment | the organizational-attribute model FAQ · [Where Data Lives](../architecture/where-data-lives.md) |
 | Drift detection across planes | Continuous per-facet drift as `DRIFT-*` findings | [Drift Walk-through](drift-walkthrough.md) |
 | Delegation / auditable change | Delegation boundary carried as a canonical facet | [Delegation](delegation.md) |

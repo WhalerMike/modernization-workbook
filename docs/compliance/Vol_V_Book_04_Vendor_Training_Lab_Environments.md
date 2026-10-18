@@ -1,5 +1,5 @@
 ---
-title: "Vol V Book 04 — Federal Organization Compliance — Vendor Training & Lab Environments"
+title: "Vol V Book 04 — Federal Compliance — Vendor Training & Lab Environments"
 subtitle: "The realization layer — external courses mapped per volume, and scripted fixture / trial-tenant / product-eval lab environments"
 author: "Federal Cloud Services"
 date: "2026-07-18T06:20:00-04:00"
@@ -251,7 +251,7 @@ concrete, buyable path to the skills.
 
 ---
 
-*Federal Organization Compliance — Vol V Book 04 of the series. Volume V is
+*Federal Compliance — Vol V Book 04 of the series. Volume V is
 the enablement layer; this book is its realization layer — external vendor
 training mapped per volume and the scripted lab environments for the
 implementation track. Vendor names appear here by necessity (Theme F, Mechanism

@@ -46,7 +46,7 @@ Applied to a representative `[N]`-object AD forest assessment run on `[date]`, M
 
 ## 2. The Microsoft Native Tool Landscape
 
-The following inventory catalogs every Microsoft tool that touches Active Directory assessment, migration, or modernization. (The OrgPath narrative's Book 01 walks the same stack chapter by chapter from the governance side; this paper's lens is assessment coverage.) For each tool, we document its current status, capabilities, limitations, licensing requirements, and output format --- with specific attention to governance pipeline compatibility. Product statuses and version details in this inventory reflect the June--July 2026 snapshot and move quickly; verify current status before relying on any individual entry.
+The following inventory catalogs every Microsoft tool that touches Active Directory assessment, migration, or modernization. For each tool, we document its current status, capabilities, limitations, licensing requirements, and output format --- with specific attention to governance pipeline compatibility. Product statuses and version details in this inventory reflect the June--July 2026 snapshot and move quickly; verify current status before relying on any individual entry.
 
 ### 2.1 Microsoft Assessment and Planning (MAP) Toolkit
 
@@ -79,7 +79,7 @@ The following inventory catalogs every Microsoft tool that touches Active Direct
 | **License** | Intune license required |
 | **Output Format** | Intune portal only --- no bulk export, no machine-readable pipeline output. |
 
-For the governance lens on what this tool's \~30--60% support percentage actually *costs* --- the policy-plane capabilities lost in the GPO-to-Intune shift and where OrgPath restores each --- see [GPO-to-Cloud Governance Gaps](../reference-architecture/gpo-cloud-governance-gaps.md).
+For the governance lens on what this tool's \~30--60% support percentage actually *costs* --- the policy-plane capabilities lost in the GPO-to-Intune shift --- see [GPO-to-Cloud Governance Gaps](../reference-architecture/gpo-cloud-governance-gaps.md).
 
 ### 2.4 Microsoft Entra Connect / Cloud Sync
 
@@ -219,7 +219,7 @@ Beyond Microsoft's native tools, several third-party solutions overlap with port
 |:------|:-----------------------------------------------------|
 | **What It Does** | PowerShell-based AD reconnaissance. Extracts forest, domain, trusts, sites, OUs, GPOs, DNS, users, groups, computers, SPNs, ACLs, LAPS, BitLocker. Generates Excel reports. |
 | **Overlap with FMP** | **HIGH** --- ADRecon's data collection scope is very similar to FMP's assessment module. |
-| **What FMP Adds** | Governance pipeline (Gitea integration), machine-readable JSON output (not just Excel), drift detection, remediation tracking, SLA enforcement, canonical artifact management, OrgPath mapping, modernization planning correlation. |
+| **What FMP Adds** | Governance pipeline (Gitea integration), machine-readable JSON output (not just Excel), drift detection, remediation tracking, SLA enforcement, canonical artifact management, modernization planning correlation. |
 | **Positioning** | ADRecon is the closest open-source equivalent for data collection. FMP provides the governance layer above it. |
 
 ### 5.2 PingCastle
@@ -334,7 +334,7 @@ Strategic recommendations for each assessment domain --- whether FMP should cons
 
 ### 9.1 Import Adapters (Implemented)
 
-The import adapters described conceptually in earlier revisions of this paper are now implemented as the **FMPImportAdapters** PowerShell module (`tools/powershell/FMPImportAdapters/`, shipped as `.psd1` + `.psm1` with Pester tests wired into CI), governed by the canon specification **FMP_182** and positioned by ADR-094 as a producer in the assessment-to-plan toolchain. This closes the gap the OrgPath narrative named in Book 15, "The Gap That Remains". The module normalizes heterogeneous third-party assessment output into the FMP schema so that downstream correlation, drift detection, and plan generation operate over one canonical assessment shape rather than vendor-specific exports.
+The import adapters described conceptually in earlier revisions of this paper are now implemented as the **FMPImportAdapters** PowerShell module (`tools/powershell/FMPImportAdapters/`, shipped as `.psd1` + `.psm1` with Pester tests wired into CI), governed by the canon specification **FMP_182** and positioned by ADR-094 as a producer in the assessment-to-plan toolchain. The module normalizes heterogeneous third-party assessment output into the FMP schema so that downstream correlation, drift detection, and plan generation operate over one canonical assessment shape rather than vendor-specific exports.
 
 The architectural contract is deliberately file-path-based: every importer consumes an already-produced report via `-ReportPath` and writes normalized JSON via `-OutputPath`. **The module never reaches a live API.** An operator (or another tool) exports the report from Azure Migrate, Intune, Defender for Identity, ScubaGear, or ADRecon; the adapter ingests the exported file. This keeps the ingestion surface read-only, credential-free, and auditable within the M365 GCC-Moderate boundary.
 

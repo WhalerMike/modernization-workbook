@@ -1,5 +1,5 @@
 ---
-title: "Vol IV Book 04 — Federal Organization Compliance — PII Processing and Transparency"
+title: "Vol IV Book 04 — Federal Compliance — PII Processing and Transparency"
 subtitle: "PII Processing and Transparency: Privacy Program Templates for FedRAMP 20x GCC Moderate Authorization"
 author: "Federal Cloud Services"
 date: "2026-07-08T16:07:00-04:00"
@@ -709,4 +709,4 @@ in the {{< meta agency.short >}} GCC Moderate boundary:
 
 *Previous: [Vol IV Book 03 — Program Management Governance](Vol_IV_Book_03_Program_Management_Governance.md)*
 
-*Series: Federal Organization Compliance for {{< meta agency.short >}} GCC Moderate FedRAMP 20x*
+*Series: Federal Compliance for {{< meta agency.short >}} GCC Moderate FedRAMP 20x*

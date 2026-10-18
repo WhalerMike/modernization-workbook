@@ -108,7 +108,7 @@ For each live AI system record, the governed path:
 3. If the bureau exists in the codebook, stamps the AI system's machine-identity
    record with the full the organizational-attribute model value
 4. If the bureau does not exist in the codebook, generates a
-   `DRIFT-IDENTITY::ai-no-orgpath` finding **and** a codebook update request
+   `DRIFT-IDENTITY::ai-no-agency-bureau` finding **and** a codebook update request
    routed to the OrgTree governance workflow
 
 This is identical to how the program decision stamps the organizational-attribute model onto device objects — the AI
@@ -133,7 +133,7 @@ The six AI drift classes extend the the program decision taxonomy:
 | `DRIFT-COMPLIANCE::ai-agentic-ungoverned` | P1 | Never | AO + ISSO |
 | `DRIFT-IDENTITY::ai-shadow` | P1 | Never | Security team + AO |
 | `DRIFT-COMPLIANCE::ai-ato-gap` | P2 | Never | AO + bureau ISSO |
-| `DRIFT-IDENTITY::ai-no-orgpath` | P2 | Per-policy | OrgTree workflow |
+| `DRIFT-IDENTITY::ai-no-agency-bureau` | P2 | Per-policy | OrgTree workflow |
 | `DRIFT-IDENTITY::ai-unowned` | P2 | Never | Bureau IdM coordinator |
 | `DRIFT-COMPLIANCE::ai-pii-no-pia` | P2 | Never | Privacy officer |
 

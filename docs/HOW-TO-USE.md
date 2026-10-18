@@ -32,7 +32,6 @@ This workbook is a cleaned, standalone modernization project. It presents patter
 
 - Full 60-book compliance series (volume overviews are present; individual books remain in source materials)
 - Full policy and access catalogs (short principle extracts are in `docs/libraries/`)
-- OrgPath-specific narrative (skipped by design)
 
 ## Diagrams
 

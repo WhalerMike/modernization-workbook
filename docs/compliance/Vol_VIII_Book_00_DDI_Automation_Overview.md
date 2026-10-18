@@ -1,5 +1,5 @@
 ---
-title: "Vol VIII Book 00 — Federal Organization Compliance — Volume VIII Overview: Multi-Cloud DDI Landing-Zone Automation"
+title: "Vol VIII Book 00 — Federal Compliance — Volume VIII Overview: Multi-Cloud DDI Landing-Zone Automation"
 subtitle: "The InfoBlox DDI landing-zone kit, merged into the series as a named volume — one authoritative naming plane across Azure, AWS, GCP, OCI, and VMware"
 author: "Federal Cloud Services"
 date: "2026-07-19T16:20:00-04:00"
@@ -40,7 +40,7 @@ This document is a **draft proposal** developed by the **CSI Team (Cloud Service
 :::
 
 ::: {.aan-important}
-**Series Context** — This is the Volume VIII overview of the Federal Organization Compliance series. Volume VIII is the **multi-cloud DDI (DNS, DHCP, IPAM) landing-zone automation kit** — the deep, per-platform implementation of the naming plane that Vol I Book 01 (Cloud Landing Zone, IPAM/DDI) establishes at the architecture level. Its chapter content is the repo-root **`infoblox-ddi-book/`** kit, an independently distributable book; this volume binds it into the series through the compliance spine, this overview, and cross-references — the series' "one program, one spine, named volumes" model.
+**Series Context** — This is the Volume VIII overview of the Federal Compliance series. Volume VIII is the **multi-cloud DDI (DNS, DHCP, IPAM) landing-zone automation kit** — the deep, per-platform implementation of the naming plane that Vol I Book 01 (Cloud Landing Zone, IPAM/DDI) establishes at the architecture level. Its chapter content is the repo-root **`infoblox-ddi-book/`** kit, an independently distributable book; this volume binds it into the series through the compliance spine, this overview, and cross-references — the series' "one program, one spine, named volumes" model.
 :::
 
 ::: {.aan-note}
@@ -96,11 +96,11 @@ The per-CSP chapters are the mechanism build-out and are CSP-agnostic by design.
 
 # Authorities Closed Here — Volume VIII (cross-cutting books)
 
-The per-CSP chapters *realize* the naming plane; the two cross-cutting books carry the volume's spine-generated control closures. Both tables below are generated from the series compliance spine (`orgcomp-compliance-spine.yml`) by `render_authorities_table.py`; they are not hand-edited here. Necessity for the naming plane itself is anchored in Vol I Book 01 — these rows are the multi-cloud realization and the governed-front-door closures, not a re-anchoring.
+The per-CSP chapters *realize* the naming plane; the two cross-cutting books carry the volume's spine-generated control closures. Both tables below are generated from the series compliance spine (`federal-compliance-compliance-spine.yml`) by `render_authorities_table.py`; they are not hand-edited here. Necessity for the naming plane itself is anchored in Vol I Book 01 — these rows are the multi-cloud realization and the governed-front-door closures, not a re-anchoring.
 
 ## Cross-Platform Operations & Multi-Cloud Governance (Book VIII-06)
 
-<!-- authorities:book-ddi-xplat — generated from orgcomp-compliance-spine.yml; do not hand-edit -->
+<!-- authorities:book-ddi-xplat — generated from federal-compliance-compliance-spine.yml; do not hand-edit -->
 | Control | Title | Closing mechanism (function, not product) | Accreditation gate | Authority drivers | Evidence slot | FedRAMP 20x KSI | Tool-attestable? |
 |---|---|---|---|---|---|---|---|
 | CM-8 | System Component Inventory | IPAM as the authoritative multi-cloud address/subnet inventory (CM-8 join key) reconciled across per-CSP discovery adapters | FedRAMP Moderate | NIST SP 800-53 Rev 5; CISA BOD 23-01 | Network | KSI-PIY | No |
@@ -111,7 +111,7 @@ The per-CSP chapters *realize* the naming plane; the two cross-cutting books car
 
 ## ServiceNow Orchestration — Governed Front Door (Book VIII-07)
 
-<!-- authorities:book-ddi-servicenow — generated from orgcomp-compliance-spine.yml; do not hand-edit -->
+<!-- authorities:book-ddi-servicenow — generated from federal-compliance-compliance-spine.yml; do not hand-edit -->
 | Control | Title | Closing mechanism (function, not product) | Accreditation gate | Authority drivers | Evidence slot | FedRAMP 20x KSI | Tool-attestable? |
 |---|---|---|---|---|---|---|---|
 | CM-5 | Access Restrictions for Change | Separation-of-duties gate in the catalog approval flow (requester ≠ approver) over DDI changes | FedRAMP Moderate | NIST SP 800-53 Rev 5 | Identity | KSI-IAM | No |
@@ -125,11 +125,11 @@ The per-CSP chapters *realize* the naming plane; the two cross-cutting books car
 - **`infoblox-ddi-book/`** — the chapter content of this volume (independently distributable kit).
 - **Vol I Book 01 (Cloud Landing Zone, IPAM/DDI, FedRAMP)** — the architecture-level naming-plane necessity this volume realizes.
 - **Vol VII Book 01 / Book 05** — the CMDB reconcile and the ServiceNow compliance app that build on this volume's IPAM/DDI identity and orchestration pattern.
-- **`orgcomp-compliance-spine.yml`** — the SSOT registering this volume (`vol-8`) and its control closures.
+- **`federal-compliance-compliance-spine.yml`** — the SSOT registering this volume (`vol-8`) and its control closures.
 
 # Provenance
 
-This overview merges the InfoBlox DDI landing-zone kit into the Federal Organization Compliance series as Volume VIII, by author direction. The chapter content is not relocated — it remains the repo-root `infoblox-ddi-book/` kit and keeps its own conventions and figures; this volume binds it to the series via the spine, this overview, and cross-references. The multi-CSP breadth is a deliberate, author-directed exception to the task's GCC-Moderate scope. Vendor claims in the chapters cite vendor documentation per the kit's own references. The volume map above is authored as committed house-style SVG (rasterized to PNG).
+This overview merges the InfoBlox DDI landing-zone kit into the Federal Compliance series as Volume VIII, by author direction. The chapter content is not relocated — it remains the repo-root `infoblox-ddi-book/` kit and keeps its own conventions and figures; this volume binds it to the series via the spine, this overview, and cross-references. The multi-CSP breadth is a deliberate, author-directed exception to the task's GCC-Moderate scope. Vendor claims in the chapters cite vendor documentation per the kit's own references. The volume map above is authored as committed house-style SVG (rasterized to PNG).
 
 # Where This Volume's Evidence Lands — Volume X (Optional)
 

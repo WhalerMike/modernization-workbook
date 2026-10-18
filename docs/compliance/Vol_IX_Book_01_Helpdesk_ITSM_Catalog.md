@@ -1,5 +1,5 @@
 ---
-title: "Vol IX Book 01 — Federal Organization Compliance — Helpdesk & ITSM Catalog"
+title: "Vol IX Book 01 — Federal Compliance — Helpdesk & ITSM Catalog"
 subtitle: "The common Entra · M365 · Azure operator tasks as governed, control-mapped ServiceNow catalog items"
 author: "Federal Cloud Services"
 date: "2026-07-21T14:46:00-04:00"
@@ -115,9 +115,9 @@ Volumes I and VII establish that verified identity, phishing-resistant auth, and
 
 # NIST SP 800-53 Rev 5 Control Closure — Authorities Closed Here
 
-Generated from the compliance spine (`orgcomp-compliance-spine.yml`) by `render_authorities_table.py`; not hand-edited here.
+Generated from the compliance spine (`federal-compliance-compliance-spine.yml`) by `render_authorities_table.py`; not hand-edited here.
 
-<!-- authorities:book-day2-helpdesk â€” generated from orgcomp-compliance-spine.yml; do not hand-edit -->
+<!-- authorities:book-day2-helpdesk â€” generated from federal-compliance-compliance-spine.yml; do not hand-edit -->
 | Control | Title | Closing mechanism (function, not product) | Accreditation gate | Authority drivers | Evidence slot | FedRAMP 20x KSI | Tool-attestable? |
 |---|---|---|---|---|---|---|---|
 | AC-2 | Account Management | Joiner/mover/leaver, guest invite, and license/group requests as governed ServiceNow catalog items over Entra (Graph via in-boundary MID); leaver de-provisioning evidenced | FedRAMP Moderate | NIST SP 800-53 Rev 5; OMB M-22-09 | Identity | KSI-IAM | No |

@@ -1,5 +1,5 @@
 ---
-title: "Vol III Book 07 — Federal Organization Compliance — Multi-Cloud Evidence Fabric: One Compliance Picture from Many Stacks"
+title: "Vol III Book 07 — Federal Compliance — Multi-Cloud Evidence Fabric: One Compliance Picture from Many Stacks"
 subtitle: "The Unified Evidence Contract — Telemetry → CDM → FedRAMP 20x KSIs Across Every CSP, NEM, and OS"
 author: "Federal Cloud Services"
 date: "2026-07-09T08:41:00-04:00"
@@ -169,13 +169,13 @@ the automated aggregation and cross-surface correlation the fabric performs.
 
 # NIST SP 800-53 Rev 5 Control Closure — Authorities Closed Here
 
-Generated from the series compliance spine (`orgcomp-compliance-spine.yml`) via
+Generated from the series compliance spine (`federal-compliance-compliance-spine.yml`) via
 `render_authorities_table.py`; not hand-maintained. All rows are telemetry-slot,
 KSI-MLA, and **not** attestable by a single-tenant conformance scan — the
 evidence is the *aggregated, correlated* record set, which is exactly what a
 per-tenant tool cannot produce.
 
-<!-- authorities:book-evidence-fabric — generated from orgcomp-compliance-spine.yml; do not hand-edit -->
+<!-- authorities:book-evidence-fabric — generated from federal-compliance-compliance-spine.yml; do not hand-edit -->
 | Control | Title | Closing mechanism (function, not product) | Accreditation gate | Authority drivers | Evidence slot | FedRAMP 20x KSI | Tool-attestable? |
 |---|---|---|---|---|---|---|---|
 | AU-12 | Audit Record Generation | Enterprise-wide audit generation spanning every CSP, NEM appliance, and OS agent | FedRAMP Moderate | NIST SP 800-53 Rev 5; OMB M-26-14 | Telemetry | KSI-MLA | No |

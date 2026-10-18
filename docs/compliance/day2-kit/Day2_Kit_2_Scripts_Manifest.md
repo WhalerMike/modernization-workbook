@@ -3,7 +3,7 @@ title: "Compliance Day-2 Automation Kit — Scripts Manifest"
 subtitle: "What each script is, which MACD-R clause it serves, and how they compose"
 doc-type: kit-reference
 audience: "ServiceNow platform admins"
-family: orgcomp-series
+family: federal-compliance-series
 lifecycle: adopted
 tiers_adopted: [1]
 lifecycle_review: 2027-01-21

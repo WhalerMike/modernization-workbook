@@ -149,8 +149,6 @@ provenance lives.
 | Paper | Status | Role |
 |---|---|---|
 | FMP vs. Native Tools | Active *(pre-canon import)* | Cross-listed from Track 2 — the build-vs-buy / gap-analysis anchor for this track. |
-| the organizational-attribute model Composability Matrix | Active | "Choose your partners" — which the organizational-attribute model capability packs and identity/storage targets combine, à la carte. Read before either comparison paper below if the reader needs the composability model first. |
-| Snowflake Key-Pair Conversion — the FMP and the organizational-attribute model Reading | Draft | Illustrative-only architecture comparison (explicitly not an authorization to build) — a worked example of how the organizational-attribute model *would* apply to a platform FMP doesn't govern today. |
 
 ## Recommended reading paths
 
@@ -186,14 +184,11 @@ alphabetical file list.
 **Someone evaluating FMP against Microsoft-native tools or a build-vs-buy decision**
 
 1. FMP vs. Native Tools — the gap analysis.
-2. the organizational-attribute model Composability Matrix — what's actually à la carte, so "build vs. buy" isn't a false binary.
-3. Snowflake Key-Pair Conversion — the FMP and the organizational-attribute model Reading — a worked example on a platform outside today's boundary, useful for gauging how far the model generalizes.
 
 **Reading the whole corpus, start to finish**
 
 Track 1 (all four) → Track 2 (all six) → Track 3 (all four) → Track 4
-(all four) → Track 5 (the two papers not already read in Track 2) →
-Track 6 (the two papers not already read in Track 2). This order
+(all four) → Track 5 (the two papers not already read in Track 2). This order
 front-loads the doctrine (Track 1) before any domain paper assumes it,
 and reads the two mainframe-to-Zero-Trust narratives back-to-back
 (Track 2 then Track 4) so the vendor-neutral vs. canon-anchored

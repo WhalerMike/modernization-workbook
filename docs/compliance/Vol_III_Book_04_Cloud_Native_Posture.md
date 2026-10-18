@@ -1,5 +1,5 @@
 ---
-title: "Vol III Book 04 — Federal Organization Compliance — Cloud-Native Security Posture & Containers"
+title: "Vol III Book 04 — Federal Compliance — Cloud-Native Security Posture & Containers"
 subtitle: "CSPM, CNAPP, and Kubernetes — Closing the Misconfiguration, Exposure, and Runtime Gaps Host Scanning Misses"
 author: "Federal Cloud Services"
 date: "2026-07-09T08:41:00-04:00"
@@ -171,14 +171,14 @@ the one compliance picture.
 
 # NIST SP 800-53 Rev 5 Control Closure — Authorities Closed Here
 
-Generated from the series compliance spine (`orgcomp-compliance-spine.yml`) via
+Generated from the series compliance spine (`federal-compliance-compliance-spine.yml`) via
 `render_authorities_table.py`; not hand-maintained. Note the *layer* distinctions:
 CM-6 here is cloud-resource misconfiguration (the Patch book closes OS-baseline
 CM-6); SC-7 here is cloud attack-path exposure (the Network Enforcement book
 closes edge SC-7); RA-5 here is cloud/container scanning (the Vulnerability
 Management book owns host RA-5).
 
-<!-- authorities:book-cloudnative-posture — generated from orgcomp-compliance-spine.yml; do not hand-edit -->
+<!-- authorities:book-cloudnative-posture — generated from federal-compliance-compliance-spine.yml; do not hand-edit -->
 | Control | Title | Closing mechanism (function, not product) | Accreditation gate | Authority drivers | Evidence slot | FedRAMP 20x KSI | Tool-attestable? |
 |---|---|---|---|---|---|---|---|
 | CM-7 | Least Functionality | Container hardening + Kubernetes admission control (deny non-compliant workloads) | FedRAMP Moderate | NIST SP 800-53 Rev 5 | Security / supply chain | KSI-SVC | No |
