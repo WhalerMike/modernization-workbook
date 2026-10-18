@@ -207,6 +207,63 @@ bundles:
     subtitle: "Next Generation DDI — Chapter 11"
     root: docs/next-generation-ddi
     pages: [11-selection-cost-and-residual-risk.md]
+  # HR-Driven Identity series: combined edition plus one bundle per chapter.
+  # ---------------------------------------------------------------------
+  - output: hr-driven-iam-bundle.docx
+    title: "HR-Driven Identity: From the HR System of Record to Entra ID"
+    subtitle: "HR-Driven Identity — combined edition"
+    root: docs/hr-driven-iam
+    image_dir: docs/images/diagrams/hr-driven-iam
+    warn_unlisted: ["*.md"]
+    pages: [index.md, "[0-9][0-9]-*.md", "appendix-*.md"]
+  - output: hr-driven-iam-00.docx
+    subtitle: "HR-Driven Identity — From the HR System of Record to Entra ID"
+    root: docs/hr-driven-iam
+    pages: [00-overview-and-applicability.md]
+  - output: hr-driven-iam-01.docx
+    subtitle: "HR-Driven Identity — From the HR System of Record to Entra ID"
+    root: docs/hr-driven-iam
+    pages: [01-why-hr-is-the-source-of-authority.md]
+  - output: hr-driven-iam-02.docx
+    subtitle: "HR-Driven Identity — From the HR System of Record to Entra ID"
+    root: docs/hr-driven-iam
+    pages: [02-federal-hr-2-0.md]
+  - output: hr-driven-iam-03.docx
+    subtitle: "HR-Driven Identity — From the HR System of Record to Entra ID"
+    root: docs/hr-driven-iam
+    pages: [03-attribute-authority.md]
+  - output: hr-driven-iam-04.docx
+    subtitle: "HR-Driven Identity — From the HR System of Record to Entra ID"
+    root: docs/hr-driven-iam
+    pages: [04-the-provisioning-pipeline.md]
+  - output: hr-driven-iam-05.docx
+    subtitle: "HR-Driven Identity — From the HR System of Record to Entra ID"
+    root: docs/hr-driven-iam
+    pages: [05-canonical-attribute-schema.md]
+  - output: hr-driven-iam-06.docx
+    subtitle: "HR-Driven Identity — From the HR System of Record to Entra ID"
+    root: docs/hr-driven-iam
+    pages: [06-joiner-mover-leaver.md]
+  - output: hr-driven-iam-07.docx
+    subtitle: "HR-Driven Identity — From the HR System of Record to Entra ID"
+    root: docs/hr-driven-iam
+    pages: [07-credentials-and-certificates.md]
+  - output: hr-driven-iam-08.docx
+    subtitle: "HR-Driven Identity — From the HR System of Record to Entra ID"
+    root: docs/hr-driven-iam
+    pages: [08-from-attributes-to-access.md]
+  - output: hr-driven-iam-09.docx
+    subtitle: "HR-Driven Identity — From the HR System of Record to Entra ID"
+    root: docs/hr-driven-iam
+    pages: [09-drift-metrics-and-evidence.md]
+  - output: hr-driven-iam-10.docx
+    subtitle: "HR-Driven Identity — From the HR System of Record to Entra ID"
+    root: docs/hr-driven-iam
+    pages: [10-execution-plan.md]
+  - output: hr-driven-iam-11.docx
+    subtitle: "HR-Driven Identity — From the HR System of Record to Entra ID"
+    root: docs/hr-driven-iam
+    pages: [11-reference-deployment.md]
 
   # ---------------------------------------------------------------------
   # Section bundles: every published page in the section folder, index first.
