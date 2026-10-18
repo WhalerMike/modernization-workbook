@@ -43,6 +43,7 @@ bundles:
     warn_unlisted: ["Book_*.md"]
     pages:
       - index.md
+      - Applicability.md
       - Book_01.md
       - Book_01_CPT_01.md
       - Book_01_CPT_02.md
@@ -77,6 +78,10 @@ bundles:
       - Book_11.md                       # Book 11, the epilogue, is a single page
 
   # One bundle per book: the book page, then its chapters in order.
+  - output: Applicability-bundle.docx
+    subtitle: "SQL Server Identity Transformation — Narrative Series"
+    root: docs/case-studies/sql-server-narrative
+    pages: [Applicability.md]
   - output: Book_01-bundle.docx
     subtitle: "SQL Server Identity Transformation — Narrative Series"
     root: docs/case-studies/sql-server-narrative

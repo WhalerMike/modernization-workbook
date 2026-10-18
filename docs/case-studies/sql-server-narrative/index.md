@@ -7,6 +7,7 @@ family: sql-server-narrative
 listing:
   - id: chapters
     contents:
+      - "Applicability.md"
       - "Book_[0-9][0-9].md"
     type: table
     fields: [title, subtitle, description]
@@ -71,7 +72,9 @@ migration, and NTLM elimination at the SQL layer. Books 07 and 08 follow the
 transformation outward, into access control and the upstream application chain.
 Book 09 describes the transformed steady-state and the 2027 milestone, and Book
 10 addresses the certificate-authority dependency that the other nine books
-depend on but rarely name. Book 11 is an epilogue: once the estate is
+depend on but rarely name. Read [Applicability](Applicability.md) first: it
+says where the series applies as written and what to do where it does not.
+Book 11 is an epilogue: once the estate is
 rationalized and its authentication migrated, it takes up the platform
 question for each retained data domain.
 

@@ -43,5 +43,5 @@ SQL Server's Windows Authentication was an act of good engineering, not negligen
 
 ::: {.callout-tip}
 ## Continue the series
-[Index](index.md) · [Next: Book 02 — The Estate Itself →](Book_02.md)
+[← Previous: Applicability](Applicability.md) · [Index](index.md) · [Next: Book 02 — The Estate Itself →](Book_02.md)
 :::
