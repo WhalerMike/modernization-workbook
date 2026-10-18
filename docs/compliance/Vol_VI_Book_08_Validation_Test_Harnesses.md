@@ -1,5 +1,5 @@
 ---
-title: "Vol VI Book 08 — Federal Organization Compliance — Validation & Test Harnesses"
+title: "Vol VI Book 08 — Federal Compliance — Validation & Test Harnesses"
 subtitle: "Proving the deployment works: detection-efficacy tests, telemetry-completeness workbooks, and deploy smoke tests"
 author: "Federal Cloud Services"
 date: "2026-07-09T15:13:00-04:00"

@@ -1,5 +1,5 @@
 ---
-title: "Vol VI Book 07 — Federal Organization Compliance — Evidence & ConMon Pipeline Deployment"
+title: "Vol VI Book 07 — Federal Compliance — Evidence & ConMon Pipeline Deployment"
 subtitle: "Wiring every deployed mechanism into the evidence contract, the KSI bindings, and the machine-readable authorization package"
 author: "Federal Cloud Services"
 date: "2026-07-09T15:13:00-04:00"

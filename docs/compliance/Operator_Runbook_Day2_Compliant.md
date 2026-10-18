@@ -3,7 +3,7 @@ title: "Compliance — Day-2 Operator Runbook (Compliant Rewrite)"
 subtitle: "Eight everyday identity-operations tasks, each rewritten as its governed, control-mapped, evidence-emitting Compliance process"
 doc-type: runbook
 audience: "Service-desk operators · CST/CSO teams · ISSOs · assessors"
-family: orgcomp-series
+family: federal-compliance-series
 lifecycle: adopted
 tiers_adopted: [1]
 lifecycle_review: 2027-01-21

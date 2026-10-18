@@ -1,5 +1,5 @@
 ---
-title: "Vol IV Book 06 — Federal Organization Compliance — Authorization Package & ConMon"
+title: "Vol IV Book 06 — Federal Compliance — Authorization Package & ConMon"
 subtitle: "Agency Authorization Package (20x KSI Evidence Schema), Continuous Monitoring, and BOD 26-04 Submission"
 author: "Federal Cloud Services"
 date: "2026-07-18T00:56:00-04:00"
@@ -24,7 +24,7 @@ This document is a **draft proposal** developed by the **CSI Team (Cloud Service
 
 # Preface
 
-This is the capstone book of the Federal Organization Compliance
+This is the capstone book of the Federal Compliance
 (Compliance) series. The preceding twenty-two content books, spanning Volumes I–IV, generated the evidence layer: infrastructure
 architecture, security controls, governance artifacts, and training records
 mapped to NIST SP 800-53 Rev 5 controls, with ConMon evidence modeled on the
@@ -398,7 +398,7 @@ agency's own ConMon evidence. The authorization package consists of:
 | KSI Assessment Plan (AP) | OSCAL JSON | `output/artifacts/ksi-bundle/ksi-ap.json` |
 | KSI Assessment Results (AR) | OSCAL JSON | `output/artifacts/ksi-bundle/ksi-ar.json` |
 | Plan of Action & Milestones | OSCAL JSON | `output/artifacts/ksi-bundle/ksi-poam.json` |
-| Compliance Evidence Book Series | DOCX | the preceding twenty-two content books, Volumes I–IV (docs/customer-documents/orgcomp-series/) |
+| Compliance Evidence Book Series | DOCX | the preceding twenty-two content books, Volumes I–IV (docs/customer-documents/federal-compliance-series/) |
 | BOD 26-04 VDR Submission | CycloneDX 1.6 JSON | Vol IV Book 02 SBOM pipeline |
 | Training Effectiveness Record | JSON | `governance.training-effectiveness-record` (Vol IV Book 05) |
 
@@ -632,7 +632,7 @@ Complete in order before the November 2026 AO review window.
 
 **Evidence Books (CA-2):**
 
-- [ ] Confirm all twenty-two content books compiled and available in `docs/customer-documents/orgcomp-series/`
+- [ ] Confirm all twenty-two content books compiled and available in `docs/customer-documents/federal-compliance-series/`
 - [ ] Upload updated books to agency document management system
 - [ ] Create cross-reference index: book → NIST controls → KSI IDs
 

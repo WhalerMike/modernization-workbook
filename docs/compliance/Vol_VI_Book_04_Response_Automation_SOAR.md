@@ -1,5 +1,5 @@
 ---
-title: "Vol VI Book 04 — Federal Organization Compliance — Response Automation: The SOAR Playbook Library"
+title: "Vol VI Book 04 — Federal Compliance — Response Automation: The SOAR Playbook Library"
 subtitle: "Automated containment and enrichment playbooks that convert a detection into a bounded response"
 author: "Federal Cloud Services"
 date: "2026-07-09T15:13:00-04:00"

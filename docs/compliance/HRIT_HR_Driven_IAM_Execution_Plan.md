@@ -3,7 +3,7 @@ title: "Compliance — HRIT to HR-Driven IAM — Execution Plan"
 subtitle: "How to build the HR-driven identity pipeline against the awarded program: Federal HR 2.0 / Oracle Core HCM, on the wave clock the OMB/OPM memo already set"
 doc-type: implementation-plan
 audience: "The implementation lead · identity engineering · the ISSO · the HR 2.0 agency POCs"
-family: orgcomp-series
+family: federal-compliance-series
 lifecycle: adopted
 tiers_adopted: [1]
 lifecycle_review: 2027-01-23

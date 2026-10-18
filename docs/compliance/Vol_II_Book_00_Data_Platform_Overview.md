@@ -1,5 +1,5 @@
 ---
-title: "Vol II Book 00 — Federal Organization Compliance — Volume II Overview: Data Platform"
+title: "Vol II Book 00 — Federal Compliance — Volume II Overview: Data Platform"
 subtitle: "Volume Purpose — applying the identity and transport substrate to the database tier"
 author: "Federal Cloud Services"
 date: "2026-07-19T16:20:00-04:00"

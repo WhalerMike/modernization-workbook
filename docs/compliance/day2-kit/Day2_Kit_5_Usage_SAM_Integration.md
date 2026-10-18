@@ -3,7 +3,7 @@ title: "Compliance Day-2 Automation Kit — SAM Integration Usage Guide"
 subtitle: "Operating the SailPoint IdentityIQ-push (SAM) to ServiceNow integration"
 doc-type: kit-reference
 audience: "IGA / integration admins"
-family: orgcomp-series
+family: federal-compliance-series
 lifecycle: adopted
 tiers_adopted: [1]
 lifecycle_review: 2027-01-21

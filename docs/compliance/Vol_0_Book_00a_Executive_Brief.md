@@ -1,5 +1,5 @@
 ---
-title: "Vol 0 Book 00a — Federal Organization Compliance — Executive Brief"
+title: "Vol 0 Book 00a — Federal Compliance — Executive Brief"
 subtitle: "Two-page decision brief for authorizing officials, program executives, and budget decision-makers"
 author: "Federal Cloud Services"
 date: "2026-07-19T20:10:00-04:00"
@@ -49,7 +49,7 @@ Two nearer non-FedRAMP clocks also run against controls this series closes:
 **Aug 7, 2026** (BOD 26-04 agency policies due) and **Sep 21, 2026** (FIPS 140-2
 certificates move to the NIST Historical List). The fully-sourced narrative
 timeline is the *ConMon Gap Roadmap*; the binding dates come from
-`orgcomp-authority-deadlines.yml`, the gated registry that is the single source of
+`federal-compliance-authority-deadlines.yml`, the gated registry that is the single source of
 truth for every federal date the series cites.
 
 ## Decisions required from OIS / CIO

@@ -9,8 +9,8 @@ status: Active
 canon-source: "src/fmp/canon/adr/adr-008-zero-trust-identity.md"
 canon-reference:
  - "docs/customer-documents/executive-briefs/zero-trust-overview.qmd"
- - "docs/customer-documents/orgcomp-series/index.qmd"
- - "docs/customer-documents/orgcomp-series/Vol_I_Book_03_the compliance series_Certificates_Tokens_Cryptographic_Identity.qmd"
+ - "docs/customer-documents/federal-compliance-series/index.qmd"
+ - "docs/customer-documents/federal-compliance-series/Vol_I_Book_03_the compliance series_Certificates_Tokens_Cryptographic_Identity.qmd"
  - "docs/findings/fedramp-gcc-moderate-cae-realtime-degraded.qmd"
 derived-from: "fmp canon"
 created-at: 2026-06-18
@@ -243,7 +243,7 @@ lockstep with its authorizing ADR. The substrate's posture is that
 boundary exceptions are governed, not glossed over. The compliance
 pillar's full treatment of this territory — boundary volumes, evidence
 and ConMon packaging, and the network enforcement substrate — is the
-the compliance series — Federal Organization Compliance series. The boundary
+the compliance series — Federal Compliance series. The boundary
 landscape has since widened beyond GCC-Moderate: the program decision added the
 `commercial-general` boundary (non-federal commercial regimes, with the
 SOC 2 pack registered active under it) and the program decision added `state-local`

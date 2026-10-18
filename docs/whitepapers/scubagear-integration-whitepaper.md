@@ -9,10 +9,9 @@ status: Active
 canon-source: "src/fmp/canon/adapter-registry.yaml#scubagear"
 canon-reference:
  - "docs/customer-documents/adapter-specs/scubagear/scubagear.qmd"
- - "docs/customer-documents/fmp-orgcomp-integration/10-scuba-technical-spec.qmd"
+ - "docs/customer-documents/fmp-federal-compliance-integration/10-scuba-technical-spec.qmd"
  - "docs/customer-documents/whitepapers/federal-ssot-alignment.qmd"
- - "docs/customer-documents/orgpath-narrative/Book_07a.qmd"
- - "docs/customer-documents/orgcomp-series/boundary/B1-1-gcc-moderate-three-way-conflict.qmd"
+ - "docs/customer-documents/federal-compliance-series/boundary/B1-1-gcc-moderate-three-way-conflict.qmd"
  - "docs/customer-documents/case-studies/reference-deployment-fedciv-ad-to-entra.qmd"
  - "docs/docs/16_DriftDetectionStandard.qmd"
  - "src/fmp/canon/FMP_002_SCuBA_Technical_Specification_v1.0.md"
@@ -270,7 +269,7 @@ to demonstrate the boundary's risk is being continuously verified. The
 operating model that turns SCuBA baseline drift into typed remediation
 tasks with closure evidence is developed in
 Vol VII Book 02 — M365 Control & Compliance Automation
-of the Federal Organization Compliance series.
+of the Federal Compliance series.
 
 **Drift taxonomy cross-walk.** ScubaGear findings map onto the
 substrate's drift classes per the standard formalized in

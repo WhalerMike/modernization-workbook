@@ -1,5 +1,5 @@
 ---
-title: "Book 00 — Federal Organization Compliance Series"
+title: "Book 00 — Federal Compliance Series"
 subtitle: "Executive Summary — Complete Control Closure Across the Compliance Series (NIST · FedRAMP 20x · CISA · EO/OMB)"
 author: "Federal Cloud Services"
 date: "2026-07-29T14:17:00-04:00"
@@ -140,7 +140,7 @@ Volume V teaches it, four further volumes make it **buildable and operable**:
 ::: {.exec-summary}
 **For authorizing officials, program executives, and budget decision makers.**
 
-This series comprises twenty-three companion implementation guides for the Federal Organization Compliance program, organized across Volumes I–IV:
+This series comprises twenty-three companion implementation guides for the Federal Compliance program, organized across Volumes I–IV:
 
 **Vol I Books 01–04 — Substrate** (naming, identity, and trust foundations):
 
@@ -249,7 +249,7 @@ The central finding across all six documents is the same: **the compliance debt 
 | Vol IX Book 06 | Compliance — Identity & Access Governance | AC-2, AC-5, AC-6, IA-4, IA-5, AU-2 · event-driven JML · certification campaigns | HRIT SSOT · ServiceNow (Kit Phase 2, gated) |
 | Vol X Book 00 | Compliance — Governance-Substrate Integration (overview) | — (no new closures: routes and explains) | Conformance layer · surface slots · evidence contract — **optional binding** |
 
-: Federal Organization Compliance Series — Vols 0–X {.striped .hover}
+: Federal Compliance Series — Vols 0–X {.striped .hover}
 
 The series closes with **Volume X — Governance-Substrate Integration**: where
 everything the volumes above produce lands as machine-checked evidence on a
@@ -522,7 +522,7 @@ alternative truth (the DNS split-brain law, generalized):
 | Applications | Application portfolio registry | App registrations, service-catalog entries |
 | Certificates | The issuance ledger of the PKI plane | Local cert stores, binding configs |
 | Infrastructure declared state | The IaC repository (declared state in version control) | Deployed resources, consoles |
-| Org structure / physical location | The governed org-path and location codebooks | Directory OU trees, site topology |
+| Org structure / physical location | The governed organizational and location codebooks | Directory OU trees, site topology |
 
 : The SSOT Registry — one source of truth per class {.striped .hover}
 

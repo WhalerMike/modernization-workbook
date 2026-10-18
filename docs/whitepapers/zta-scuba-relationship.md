@@ -151,7 +151,7 @@ ZT-only (Microsoft Purview).
  The operational form of exactly this reconciliation (SCuBA policy ID →
  NIST control → typed task, held as data) is
  Vol VII Book 02
- of the Federal Organization Compliance series. One federal caveat on the
+ of the Federal Compliance series. One federal caveat on the
  maturity side: in a GCC-Moderate tenant, ZTMM maturity in the Identity,
  Devices, and Networks pillars is structurally capped near Initial without
  agency-built analytics — see the

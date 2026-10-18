@@ -1,5 +1,5 @@
 ---
-title: "Vol V Book 01 — Federal Organization Compliance — The Compliance Track"
+title: "Vol V Book 01 — Federal Compliance — The Compliance Track"
 subtitle: "The eight evidence slots taught as a FedRAMP 20x / NIST SP 800-53 Rev 5 curriculum — book → control → KSI → evidence"
 author: "Federal Cloud Services"
 date: "2026-07-18T06:20:00-04:00"
@@ -364,7 +364,7 @@ KSI-CED) the program's own authorization package depends on.
 
 ---
 
-*Federal Organization Compliance — Vol V Book 01 of the series. Volume V is
+*Federal Compliance — Vol V Book 01 of the series. Volume V is
 the enablement layer: it teaches Volumes 0–IV and produces the training evidence
 that Vol IV Book 06 freezes into the OSCAL authorization bundle. This book is the
 compliance track; Vol V Book 02 is its implementation counterpart. Control-closure

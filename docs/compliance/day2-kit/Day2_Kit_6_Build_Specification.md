@@ -3,7 +3,7 @@ title: "Compliance Day-2 Automation Kit — Build Specification"
 subtitle: "The platform records an implementation team builds on an instance: tables, ACLs, roles, the 50-item catalog roster, the Flow, and the update-set export"
 doc-type: kit-reference
 audience: "The implementation team — ServiceNow + Entra/Azure + SAM"
-family: orgcomp-series
+family: federal-compliance-series
 lifecycle: adopted
 tiers_adopted: [1]
 lifecycle_review: 2027-01-21

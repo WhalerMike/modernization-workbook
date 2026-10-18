@@ -1,5 +1,5 @@
 ---
-title: "Vol VI Book 00 — Federal Organization Compliance — Implementation Overview"
+title: "Vol VI Book 00 — Federal Compliance — Implementation Overview"
 subtitle: "The deployable-artifact layer: how the architecture volumes are actually stood up, in-boundary and as code"
 author: "Federal Cloud Services"
 date: "2026-07-19T16:20:00-04:00"
@@ -41,7 +41,7 @@ This document is a **draft proposal** developed by the **CSI Team (Cloud Service
 :::
 
 ::: {.aan-important}
-**Series Context** — This is the Volume VI overview of the Federal Organization Compliance series. Volumes I–IV establish the architecture — the network and transport plane, the data platform, security operations, and governance and assurance — as *what must be true and why*, argued from control text, physics, and protocol behavior. Volume V addresses training and certification. **Volume VI is the deployable counterpart to the architecture volumes: the infrastructure-as-code, detection rules, response playbooks, configuration baselines, and evidence wiring that actually stand the architecture up.** Where an architecture book says a control is closed by a mechanism, the corresponding Volume VI book carries the artifact that deploys that mechanism.
+**Series Context** — This is the Volume VI overview of the Federal Compliance series. Volumes I–IV establish the architecture — the network and transport plane, the data platform, security operations, and governance and assurance — as *what must be true and why*, argued from control text, physics, and protocol behavior. Volume V addresses training and certification. **Volume VI is the deployable counterpart to the architecture volumes: the infrastructure-as-code, detection rules, response playbooks, configuration baselines, and evidence wiring that actually stand the architecture up.** Where an architecture book says a control is closed by a mechanism, the corresponding Volume VI book carries the artifact that deploys that mechanism.
 :::
 
 # What This Document Addresses
@@ -104,11 +104,11 @@ It **is** the agency-side build layer — the code and evidence that turn the ar
 
 - **Architecture spine:** the four doctrine volumes (I–IV) each carry the control-closure claims this volume operationalizes.
 - **Evidence contract:** the normalized deployment-evidence record every artifact emits (Book VI-07).
-- **Series compliance spine:** `orgcomp-compliance-spine.yml` — the single source of truth for the control × book closure map.
+- **Series compliance spine:** `federal-compliance-compliance-spine.yml` — the single source of truth for the control × book closure map.
 
 # Provenance
 
-This overview establishes the deployable-artifact layer of the Federal Organization Compliance series. It follows the series authoring conventions: functions and planes are named, not organizations; products are deployed examples of a mechanism, never the mechanism itself; and every artifact carries a Date Code and cites vendor sources for vendor-specific claims.
+This overview establishes the deployable-artifact layer of the Federal Compliance series. It follows the series authoring conventions: functions and planes are named, not organizations; products are deployed examples of a mechanism, never the mechanism itself; and every artifact carries a Date Code and cites vendor sources for vendor-specific claims.
 
 # Where This Volume's Evidence Lands — Volume X (Optional)
 

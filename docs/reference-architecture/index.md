@@ -145,7 +145,6 @@ The other three names (Boundary Enforcement, Two-Brain Execution, Tenant Agnosti
 
 | Page | Who it's for |
 |------|--------------|
-| [the organizational-attribute model Codebook](codebook.md) | Architects defining the the organizational-attribute model vocabulary (codes, hierarchy, regex, lifecycle) |
 | [Where Data Lives — the organizational-attribute model](../architecture/where-data-lives.md) | Operators asking *"is this in Git, Entra, or HR?"* — the three-layer answer |
 | Where Data Lives — Devices & Azure | Extending the storage-topology model to devices and Azure resources |
 | [Dynamic Groups](dynamic-groups.md) | Engineers building the rules library for membership automation |

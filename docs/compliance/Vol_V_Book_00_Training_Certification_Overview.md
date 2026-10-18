@@ -1,5 +1,5 @@
 ---
-title: "Vol V Book 00 — Federal Organization Compliance — Volume V Overview: Training & Certification"
+title: "Vol V Book 00 — Federal Compliance — Volume V Overview: Training & Certification"
 subtitle: "Volume Purpose — the enablement layer that teaches Volumes 0–IV and evidences the training slot"
 author: "Federal Cloud Services"
 date: "2026-07-19T16:20:00-04:00"

@@ -536,7 +536,7 @@ documented exclusion that applies directly to this program's scope, and
 is analyzed in full, with a machine-enforced contract fixture encoding
 the exclusion, in
 [Next Generation DNS](infoblox-hybrid-dns-unified-ddi.md), Part 9, and
-in Vol I Book 05, Appendix A of the Federal Organization Compliance
+in Vol I Book 05, Appendix A of the Federal Compliance
 series.
 
 The absence of INR does not eliminate SD-WAN's value for this program.
@@ -989,7 +989,7 @@ if Section 6.3's sensitivity analysis had come out unfavorably.
 inspection leaves unclaimed or weakly claimed.** The full mapping —
 control by control, with the evidence source for each — is maintained
 in [SD-WAN vs. DIA Under TIC 3.0](tic3-sdwan-vs-dia.md), §5, and in
-Vol I Book 07 of the Federal Organization Compliance series; this
+Vol I Book 07 of the Federal Compliance series; this
 section states only which of those closures land at field offices
 specifically, not the derivation:
 

@@ -1,5 +1,5 @@
 ---
-title: "Vol V Book 02 — Federal Organization Compliance — The Implementation Track"
+title: "Vol V Book 02 — Federal Compliance — The Implementation Track"
 subtitle: "Building the Volumes I–IV architectures and landing the evidence the compliance track scores — eight engineering modules, each ending in a bindable artifact"
 author: "Federal Cloud Services"
 date: "2026-07-18T06:20:00-04:00"
@@ -275,7 +275,7 @@ work itself.
 
 ---
 
-*Federal Organization Compliance — Vol V Book 02 of the series. Volume V is
+*Federal Compliance — Vol V Book 02 of the series. Volume V is
 the enablement layer; this book is its implementation track, the counterpart to
 Vol V Book 01 (the compliance track). Every module ends by landing an evidence
 artifact a `fedramp_aan_catalog` slot mapping can bind. Control-closure and KSI

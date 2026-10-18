@@ -1,5 +1,5 @@
 ---
-title: "Vol IV Book 01 — Federal Organization Compliance"
+title: "Vol IV Book 01 — Federal Compliance"
 subtitle: "Federal Business Continuity: Contingency Planning, DR Architecture, and Recovery Validation"
 author: "Federal Cloud Services"
 date: "2026-07-08T16:07:00-04:00"

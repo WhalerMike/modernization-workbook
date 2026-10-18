@@ -15,7 +15,7 @@ aliases:
 ---
 
 
-> **Model C — Administrative Units scoped by facet tuples (per the program decision).** AU membership rules compose facet predicates from the 15-slot model rather than `-startsWith` on a composite-hyphen path. See [the organizational-attribute model Codebook](codebook.md) for the facet/slot definitions.
+> **Model C — Administrative Units scoped by facet tuples (per the program decision).** AU membership rules compose facet predicates from the 15-slot model rather than `-startsWith` on a composite-hyphen path. See the organizational-attribute model Codebook for the facet/slot definitions.
 
 ## The Delegation Problem
 
@@ -129,5 +129,5 @@ The per-facet drift model (see [Drift Detection Walk-through](drift-walkthrough.
 
 ::: {.callout-tip}
 ## Source
-Canonical narrative: `FMP_154_Delegation_Matrix_AUs_Roles.md`. Facet definitions: [the organizational-attribute model Codebook](codebook.md). Per-facet drift classifier: [Drift Detection Walk-through](drift-walkthrough.md).
+Canonical narrative: `FMP_154_Delegation_Matrix_AUs_Roles.md`. Facet definitions: the organizational-attribute model Codebook. Per-facet drift classifier: [Drift Detection Walk-through](drift-walkthrough.md).
 :::

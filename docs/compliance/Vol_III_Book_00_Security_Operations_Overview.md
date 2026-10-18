@@ -1,5 +1,5 @@
 ---
-title: "Vol III Book 00 — Federal Organization Compliance — Volume III Overview: Security Operations"
+title: "Vol III Book 00 — Federal Compliance — Volume III Overview: Security Operations"
 subtitle: "Volume Purpose — where the Management-Plane Coordination Doctrine is realized"
 author: "Federal Cloud Services"
 date: "2026-07-19T16:20:00-04:00"

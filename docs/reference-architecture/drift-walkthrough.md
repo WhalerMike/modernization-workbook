@@ -15,7 +15,7 @@ aliases:
 ---
 
 
-> **Model C — per-facet drift over 15 attribute slots (per the program decision).** Examples below use the per-facet model: each slot (`extensionAttribute1`–`15`) validates independently against its facet's enumeration or typed pattern. See [the organizational-attribute model Codebook](codebook.md) for the facet/slot definitions.
+> **Model C — per-facet drift over 15 attribute slots (per the program decision).** Examples below use the per-facet model: each slot (`extensionAttribute1`–`15`) validates independently against its facet's enumeration or typed pattern. See the organizational-attribute model Codebook for the facet/slot definitions.
 
 ::: {.callout-note}
 ## Companion to the storage explainer
@@ -212,7 +212,7 @@ Format and Slot are P1 because they break governance *structure* — typed-facet
 ## Related
 
 - [Where OrgTree & the organizational-attribute model Data Lives](../architecture/where-data-lives.md) — the three-layer storage model this walk-through assumes
-- [the organizational-attribute model Codebook (FMP_151)](codebook.md) — the canonical per-facet enumeration the engine validates against
+- the organizational-attribute model Codebook (FMP_151) — the canonical per-facet enumeration the engine validates against
 - OrgTree A-Z Suite — the full 27-artifact governance stack
 - FMP_163 Drift Detection Engine Specification — the canon (per-facet rewrite scheduled for the program decision Phase 6)
 - FMP_167 SLA Escalation Playbooks — the severity-to-escalation ladder

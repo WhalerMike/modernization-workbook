@@ -3,13 +3,13 @@ title: "Compliance Day-2 Automation Kit — Current State — Pilot Rollout & Up
 subtitle: "A sequenced go-live for the Active Directory (hybrid) edition on a pilot population, plus update-set export and promotion"
 doc-type: kit-reference
 audience: "The implementation lead + the ISSO/approver for the pilot"
-family: orgcomp-series
+family: federal-compliance-series
 lifecycle: adopted
 tiers_adopted: [1]
 lifecycle_review: 2027-01-21
 format:
   html: {css: lz-style.css, toc: true, toc-depth: 3, toc-title: "Contents"}
-  docx: {reference-doc: orgcomp-reference.docx, toc: true, toc-depth: 3}
+  docx: {reference-doc: federal-compliance-reference.docx, toc: true, toc-depth: 3}
 ---
 
 {{< include servicenow-day2/CURRENT-STATE-PILOT-ROLLOUT.md >}}

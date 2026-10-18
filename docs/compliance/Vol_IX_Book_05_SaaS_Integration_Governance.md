@@ -1,5 +1,5 @@
 ---
-title: "Vol IX Book 05 — Federal Organization Compliance — SaaS Integration Governance"
+title: "Vol IX Book 05 — Federal Compliance — SaaS Integration Governance"
 subtitle: "The ServiceNow implementation: onboarding a third-party SaaS as the moment 24 controls are operationalized and SA-9 is closed — verify authorization, then configure, never the reverse"
 author: "Federal Cloud Services"
 date: "2026-07-21T14:46:00-04:00"
@@ -269,7 +269,7 @@ Authorization is not a one-time fact, and the step most often skipped is the las
 
 - `boundary == "gcc-moderate"` — the series scope parameter, mechanically;
 - required fields present;
-- every `slot` is a real evidence slot in `orgcomp-compliance-spine.yml`;
+- every `slot` is a real evidence slot in `federal-compliance-compliance-spine.yml`;
 - every `ksi` is a real theme in the **in-repo FedRAMP CR26 OSCAL catalog** — not a plausible-looking invention;
 - every `control` parses as a NIST SP 800-53 control id.
 
@@ -314,9 +314,9 @@ That is a *scope* gap, not a configuration gap, and no amount of configuration h
 
 # NIST SP 800-53 Rev 5 Control Closure — Authorities Closed Here
 
-Generated from the compliance spine (`orgcomp-compliance-spine.yml`); not hand-edited here.
+Generated from the compliance spine (`federal-compliance-compliance-spine.yml`); not hand-edited here.
 
-<!-- authorities:book-sn-saas — generated from orgcomp-compliance-spine.yml; do not hand-edit -->
+<!-- authorities:book-sn-saas — generated from federal-compliance-compliance-spine.yml; do not hand-edit -->
 | Control | Title | Closing mechanism (function, not product) | Accreditation gate | Authority drivers | Evidence slot | FedRAMP 20x KSI | Tool-attestable? |
 |---|---|---|---|---|---|---|---|
 | CM-8 | System Component Inventory | The service principal, its gallery template id, SSO mode and sync-job state are registered as a CMDB CI reconciled to the authoritative IPAM/DDI asset identity (CM-8 join key); an integration absent from the register is drift | FedRAMP Moderate | NIST SP 800-53 Rev 5; CISA BOD 23-01 | Network | KSI-PIY | No |

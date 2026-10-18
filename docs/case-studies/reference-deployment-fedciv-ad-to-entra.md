@@ -7,9 +7,8 @@ status: framing-pattern
 canon-source: "src/fmp/canon/FMP_007_OrgTree_Modernization_AD_to_EntraID_v1.0.md"
 canon-reference:
   - "docs/customer-documents/whitepapers/federal-ssot-alignment.qmd"
-  - "docs/customer-documents/orgpath-narrative/Book_07a.qmd"
-  - "docs/customer-documents/orgcomp-series/boundary/B1-gcc-moderate-boundary-model.qmd"
-  - "docs/customer-documents/orgcomp-series/boundary/B1-1-gcc-moderate-three-way-conflict.qmd"
+  - "docs/customer-documents/federal-compliance-series/boundary/B1-gcc-moderate-boundary-model.qmd"
+  - "docs/customer-documents/federal-compliance-series/boundary/B1-1-gcc-moderate-three-way-conflict.qmd"
   - "docs/docs/16_DriftDetectionStandard.qmd"
   - "src/fmp/modernization/directory-migration/README.md"
   - "src/fmp/modernization/directory-migration/adapters/sql-server/sql-server-adapter-interface.md"
@@ -246,7 +245,7 @@ mirror the OrgTree hierarchy; the agency provisions one domain per
 `FabricDomainBoundary`-flagged node, and each Fabric workspace is
 assigned to the domain whose the organizational-attribute model matches the workspace's owning
 segment. The ninety SQL instances are registered into the Purview
-data map under collections keyed on `fmp_orgpath` custom metadata;
+data map under collections keyed on custom metadata;
 the eighty-five that completed migration cleanly are mirrored into
 OneLake under the matching Fabric Domain workspaces. The remaining
 five — instances whose post-migration drift is still being remediated
@@ -275,8 +274,7 @@ Bundle from the substrate's accumulated artifacts. The bundle includes:
 - The B.1.1 three-way GCC-Moderate compliance-conflict finding
   (`GCC-BOUNDARY-3WAY-001`) with the agency's specific compensating-
   controls catalogue
-- The Purview collection registration state with `fmp_orgpath`
-  attribution per asset
+- The Purview collection registration state with attribution per asset
 - The Fabric Domain assignment state with per-workspace the organizational-attribute model
   attribution
 

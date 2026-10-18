@@ -3,13 +3,13 @@ title: "Compliance Day-2 Automation Kit — Current State — START HERE"
 subtitle: "Running the kit against today's hybrid, AD-mastered estate (Entra Connect syncs AD→Entra); the 2027 target is the base edition"
 doc-type: kit-reference
 audience: "The implementer and operators on today's hybrid estate"
-family: orgcomp-series
+family: federal-compliance-series
 lifecycle: adopted
 tiers_adopted: [1]
 lifecycle_review: 2027-01-21
 format:
   html: {css: lz-style.css, toc: true, toc-depth: 3, toc-title: "Contents"}
-  docx: {reference-doc: orgcomp-reference.docx, toc: true, toc-depth: 3}
+  docx: {reference-doc: federal-compliance-reference.docx, toc: true, toc-depth: 3}
 ---
 
 {{< include servicenow-day2/CURRENT-STATE-START-HERE.md >}}

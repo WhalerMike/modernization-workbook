@@ -71,7 +71,7 @@
   <text x="780" y="276" font-size="13" fill="#9BB8CC">identity</text>
   <text x="780" y="296" font-size="13" fill="#9BB8CC">application</text>
   <text x="780" y="316" font-size="13" fill="#9BB8CC">posture</text>
-  <text x="780" y="336" font-size="13" fill="#9BB8CC">location (orgPath)</text>
+  <text x="780" y="336" font-size="13" fill="#9BB8CC">location (organizational)</text>
   <text x="970" y="276" text-anchor="middle" font-size="13" fill="#1E8C8C">token (short-lived, audience-scoped)</text>
   <text x="970" y="296" text-anchor="middle" font-size="13" fill="#1E8C8C">lease (bounded by token lifetime)</text>
   <text x="970" y="316" text-anchor="middle" font-size="13" fill="#1E8C8C">certificate-chain</text>

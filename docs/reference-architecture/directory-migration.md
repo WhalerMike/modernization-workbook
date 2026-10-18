@@ -17,7 +17,7 @@ aliases:
 
 Directory migration is the flagship journey of **OrgMod (Organizational
 Modernization)** — the modernization member of the Org family, alongside
-the organizational-attribute model (governance) and OrgComp (compliance). Like its siblings, OrgMod is
+the organizational-attribute model (governance) and Federal Compliance (compliance). Like its siblings, OrgMod is
 designed to be adopted together with them or entirely on its own.
 
 ## The Hidden Migration Surface

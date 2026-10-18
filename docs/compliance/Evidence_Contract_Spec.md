@@ -1,9 +1,9 @@
 ---
 title: "Compliance — Evidence & Authorization Contract"
-subtitle: "The open specification any conformant evidence engine can satisfy — the seam that keeps the Federal Organization Compliance Series engine-neutral"
+subtitle: "The open specification any conformant evidence engine can satisfy — the seam that keeps the Federal Compliance Series engine-neutral"
 doc-type: specification
 audience: "Program owners · ISSOs · evidence-engine implementers · assessors"
-family: orgcomp-series
+family: federal-compliance-series
 lifecycle: adopted
 tiers_adopted: [1]
 lifecycle_review: 2027-01-18
@@ -22,7 +22,7 @@ aliases:
 
 ## 0. Why this document exists
 
-The Federal Organization Compliance (Compliance) series is two separable things:
+The Federal Compliance series is two separable things:
 
 1. **The architecture corpus** — the books, the control-closure narrative, the
    "mechanism, not product" doctrine, the seven functional planes, and the
@@ -55,7 +55,7 @@ and produces the two outputs in §5–§6, honoring the invariants in §7.
 
 ## 2. Input 1 — The compliance spine
 
-A single generated data artifact (`orgcomp-compliance-spine.yml`) is the series'
+A single generated data artifact (`federal-compliance-compliance-spine.yml`) is the series'
 single source of truth. Every book's control table renders from it; it is
 CI drift-gated so no book can assert a closure the spine does not carry.
 

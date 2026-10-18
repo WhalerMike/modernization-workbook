@@ -1,5 +1,5 @@
 ---
-title: "Federal Organization Compliance — Existing Product Inventory Questionnaire"
+title: "Federal Compliance — Existing Product Inventory Questionnaire"
 subtitle: "Discovery Instrument: Map the Agency's Deployed Tools onto the Compliance Compliance Architecture"
 author: "Federal Cloud Services"
 date: "2026-07-18T00:33:00-04:00"
@@ -42,7 +42,7 @@ This document is a **draft proposal** developed by the **CSI Team (Cloud Service
 # Purpose and How to Use
 
 This questionnaire inventories the products an agency **already operates** and
-maps each onto the Federal Organization Compliance (Compliance) compliance
+maps each onto the Federal Compliance
 architecture — the functional planes, the control-closure books, and the
 Management-Plane Coordination Doctrine. It exists because the Compliance plan is being
 executed without full visibility into the agency's deployed tooling: you cannot

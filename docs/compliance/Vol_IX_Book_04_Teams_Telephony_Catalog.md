@@ -1,5 +1,5 @@
 ---
-title: "Vol IX Book 04 — Federal Organization Compliance — Teams Telephony Catalog & Teams SCuBA Drift"
+title: "Vol IX Book 04 — Federal Compliance — Teams Telephony Catalog & Teams SCuBA Drift"
 subtitle: "Number, calling-policy, and voice-routing changes as governed catalog items — and Teams secure-baseline drift as tracked work"
 author: "Federal Cloud Services"
 date: "2026-07-14T11:56:00-04:00"
@@ -63,9 +63,9 @@ Vol I Book 06 proves the telephony architecture; the SCuBA baseline and the Vol 
 
 # NIST SP 800-53 Rev 5 Control Closure — Authorities Closed Here
 
-Generated from the compliance spine (`orgcomp-compliance-spine.yml`); not hand-edited here.
+Generated from the compliance spine (`federal-compliance-compliance-spine.yml`); not hand-edited here.
 
-<!-- authorities:book-day2-telephony — generated from orgcomp-compliance-spine.yml; do not hand-edit -->
+<!-- authorities:book-day2-telephony — generated from federal-compliance-compliance-spine.yml; do not hand-edit -->
 | Control | Title | Closing mechanism (function, not product) | Accreditation gate | Authority drivers | Evidence slot | FedRAMP 20x KSI | Tool-attestable? |
 |---|---|---|---|---|---|---|---|
 | CM-3 | Configuration Change Control | Number assignment, calling-policy, and voice-routing/SBC changes as change-controlled catalog items with E911 emergency-address validation | FedRAMP Moderate | NIST SP 800-53 Rev 5; OMB Circular A-130 | Security / supply chain | KSI-CMT | No |

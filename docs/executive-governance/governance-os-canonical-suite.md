@@ -316,7 +316,7 @@ and is loaded by the drift engine and every adapter at runtime. The
 narrative counterpart is
 FMP_151;
 the reader-facing walkthrough is the
-[the organizational-attribute model Codebook page](../reference-architecture/codebook.md).
+the organizational-attribute model Codebook page.
 
 ## Scope
 
