@@ -37,6 +37,13 @@ SQL Server deployments continue to shift from Kerberos and SPN-based authenticat
 
 The net effect is that the name layer must be at least as reliable and consistent as the identity layer it now supports.
 
+::: {.callout-note}
+## What this chapter establishes
+1. AD-integrated DNS carries SRV locators, the _msdcs zone, secure dynamic updates and forwarders that Entra ID does not replace.
+2. Leaving AD DNS is an inventory problem first: nothing is retired until its dependents are reprovisioned.
+3. For SQL Server and every token-based service, the name layer must be as reliable as the identity layer.
+:::
+
 ---
 
 **Previous:** [Chapter 03 — Federal Requirements: NIST SP 800-81 Rev. 3, FedRAMP and Zero Trust](03-federal-requirements.md)  

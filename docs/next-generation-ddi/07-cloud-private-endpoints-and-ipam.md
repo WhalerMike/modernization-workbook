@@ -48,7 +48,7 @@ Each cloud provider, and VMware, has its own software-defined networking constru
 
 ### The Consistency Problem
 
-AWS VPCs, Azure VNets, Google Cloud VPCs and VMware NSX segments each have their own address pools and allocation logic. When cloud teams create networks directly in a provider console or in VCF Automation, the resulting CIDRs can overlap with on-premises space, with other clouds or with other divisions, and the enterprise DDI system does not know until discovery runs or a conflict appears. DNS shows the same pattern: private zones and records are created inside the provider or NSX with no synchronized policy or inventory in the central control plane.
+AWS VPCs, Azure VNets, Google Cloud VPCs and VMware NSX segments each have their own address pools and allocation logic. When cloud teams create networks directly in a provider console or in VCF Automation, the resulting CIDRs can overlap with on-premises space, with other clouds or with other divisions, and the enterprise DDI system does not know until discovery runs or a conflict appears. DNS shows the same pattern: private zones and records are created inside the provider or NSX with no synchronized policy or inventory in the central policy plane.
 
 ### AWS VPC IPAM Integration
 
@@ -81,7 +81,14 @@ OMB M-21-07 sets IPv6-only targets for IP-enabled assets on federal networks: 20
 - DNS views and conditional forwarding that handle dual-stack resolution paths correctly, including AAAA records for private endpoints where the cloud service supports them.
 - Hygiene and discovery that surface dual-stack assets for inventory and Zero Trust policy.
 
-Split-brain risk rises in dual-stack environments when IPv4 and IPv6 resolution paths are managed separately; a single control plane reduces it.
+Split-brain risk rises in dual-stack environments when IPv4 and IPv6 resolution paths are managed separately; a single policy plane reduces it.
+
+::: {.callout-note}
+## What this chapter establishes
+1. Every origin must forward privatelink zones to one resolution point, or private endpoints fall back silently to public addresses.
+2. The enterprise IPAM is the authority for address blocks; integration depth differs by platform and is absent in GovCloud.
+3. Address consistency and name consistency are the same problem and need the same policy plane.
+:::
 
 ---
 

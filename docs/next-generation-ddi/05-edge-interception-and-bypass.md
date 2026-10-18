@@ -31,9 +31,9 @@ SD-WAN edges can intercept DNS regardless of the resolver a client was configure
 
 DNSSEC validation must happen on a resolver the agency controls. A forwarding resolver can validate if it requests and checks DNSSEC records, but if redirect-dns or conditional forwarding hands queries to an upstream resolver outside agency control, the agency loses control of its validation policy and trust anchors (Chapter 06).
 
-### Microsoft 365 Informed Network Routing
+### Microsoft 365 informed network routing
 
-Microsoft 365 Informed Network Routing (INR) lets a supported SD-WAN share network-quality data with Microsoft so that Microsoft 365 traffic takes the best path; the Cisco integration requires Cisco IOS XE SD-WAN 20.4 / 17.4 or later.[^c05-inr] Microsoft documents INR as available only for the Worldwide commercial cloud; it is not supported in the GCC-Moderate, GCC High, DoD, Germany or China clouds. For agencies in those clouds, local internet breakout and application-aware routing remain the main Microsoft 365 optimizations. None of this changes the DDI design: INR is a routing optimization, not a DNS dependency.
+Microsoft 365 informed network routing (INR) lets a supported SD-WAN share network-quality data with Microsoft so that Microsoft 365 traffic takes the best path; the Cisco integration requires Cisco IOS XE SD-WAN 20.4 / 17.4 or later.[^c05-inr] Microsoft documents INR as available only for the Worldwide commercial cloud; it is not supported in the GCC-Moderate, GCC High, DoD, Germany or China clouds. For agencies in those clouds, local internet breakout and application-aware routing remain the main Microsoft 365 optimizations. None of this changes the DDI design: INR is a routing optimization, not a DNS dependency.
 
 ## Encrypted DNS and Bypass Controls
 
@@ -54,6 +54,13 @@ A rogue DHCP server that hands out a malicious resolver in option 6 can move an 
 - Rogue DHCP and router advertisement detection, through DHCP snooping and RA Guard on the access switches, lease analysis and network discovery.
 - Consistent option 6 and RDNSS values across every authorized DHCP server and router.
 - IPAM integration, so unauthorized leases are visible immediately.
+
+::: {.callout-note}
+## What this chapter establishes
+1. The redirect-dns destination decides whether agency policy applies at all, and redirect-dns only handles IPv4 DNS over UDP.
+2. Encrypted DNS must terminate at an agency-controlled or Protective DNS resolver; DoH can be governed only at the endpoint.
+3. Rogue DHCP and rogue router advertisements can move a whole subnet to an attacker resolver in one step.
+:::
 
 ---
 

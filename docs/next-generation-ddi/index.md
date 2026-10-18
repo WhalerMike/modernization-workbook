@@ -64,7 +64,7 @@ Start with **[Applicability](00-applicability.md)** if you work in GCC High, DoD
 
 ### Part IV · The answer
 - **[08 — Reference Architecture and the Five Critical Decisions](08-reference-architecture.md)**: one authoritative policy plane and the decisions that carry the operational risk.
-- **[09 — The Migration Sequence](09-migration-sequence.md)**: six phases from AD-integrated DNS/DHCP to a unified control plane.
+- **[09 — The Migration Sequence](09-migration-sequence.md)**: six phases from AD-integrated DNS/DHCP to a unified policy plane.
 
 ### Part V · Running it
 - **[10 — Operating the Control Plane](10-operating-the-control-plane.md)**: delegated administration, ITSM and certificate automation, and compliance evidence.
@@ -73,6 +73,22 @@ Start with **[Applicability](00-applicability.md)** if you work in GCC High, DoD
 ### Reference
 - **[Appendix A — DNS Record Types and Ecosystem Integrations](appendix-a-dns-record-types.md)**: the record-type catalog, ecosystem integrations and glossary.
 - **[Appendix B — Requirements Mapping and Sources](appendix-b-requirements-mapping.md)**: each federal requirement mapped to the chapters and evidence, and every source cited, primary and third-party listed separately.
+
+## The canonical sequence
+
+Every chapter aligns to one sequence. It is the order in which the work is done, and the order in which evidence accumulates:
+
+**Inventory → Coexist → Migrate authority → Federate clouds → Decommission AD DNS and DHCP → Harden and evidence**
+
+Five configuration decisions carry most of the risk along the way. Each is owned by one chapter and checked in Chapter 10:
+
+| Decision | Settled in | Phase |
+|----|----|----|
+| 1. redirect-dns targets a network-addressable agency resolver | Ch 05, Ch 08 | Migrate authority |
+| 2. The agency resolver is the first hop; other resolvers are its forwarders | Ch 05, Ch 08 | Migrate authority |
+| 3. The policy plane holds every per-cloud conditional forwarding rule | Ch 07, Ch 08 | Federate clouds |
+| 4. AD DNS is inventoried and reprovisioned before any domain controller goes | Ch 04, Ch 09 | Inventory, Decommission |
+| 5. OCSP and CRL endpoints resolve from every origin | Ch 06, Ch 08 | Federate clouds, Harden |
 
 ## How to read this book
 
