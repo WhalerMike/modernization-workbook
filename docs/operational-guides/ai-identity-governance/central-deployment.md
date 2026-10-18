@@ -71,7 +71,7 @@ fully operational with the existing open-source scanner.
 **Input:** OMB Annual AI Use Case Inventory CSV (public,
 data.gov / ai.gov). No agency data sharing agreement required.
 
-**Scanner:** `python -m uiao.governance.ai_inventory.scanner --input
+**Scanner:** `python -m fmp.governance.ai_inventory.scanner --input
 omb_inventory.csv --output findings/` or `Invoke-AIInventoryScan.ps1
 -InventoryPath omb_inventory.csv -OutputPath findings/`
 
@@ -211,7 +211,7 @@ Invoke-WebRequest -Uri "<OMB-inventory-download-url>" `
 For the Python scanner:
 
 ```bash
-python -m uiao.governance.ai_inventory.scanner \
+python -m fmp.governance.ai_inventory.scanner \
   --input omb_inventory_2025.csv \
   --output findings/ \
   --split-by-agency \

@@ -2006,7 +2006,7 @@ Auto-Removal on Denial
 ***Per-Facet Codebook Schema (JSON Schema 2020-12)***
 
 ::: {.callout-important title="Model C reset — Appendix H is superseded by the per-facet codebook schema"}
-The canonical the organizational-attribute model JSON Schema is no longer a single-string pattern matching 5 slash-separated segments. Per the program decision the canonical schema validates a per-facet **Codebook** document declaring each of the 10 named facets with its slot binding, kind (enumerated / typed / reserved), and per-facet enumeration or typed pattern. The executable schema is [`schemas/orgpath/codebook.schema.json`] (`$schema` draft 2020-12; `schema_version: 2.0.0`); the Python loader at [`uiao.modernization.orgtree.codebook`] additionally enforces the slot-uniqueness invariant (cross-property uniqueness is not expressible in JSON Schema). The Model B single-string schema below is preserved as historical reference.
+The canonical the organizational-attribute model JSON Schema is no longer a single-string pattern matching 5 slash-separated segments. Per the program decision the canonical schema validates a per-facet **Codebook** document declaring each of the 10 named facets with its slot binding, kind (enumerated / typed / reserved), and per-facet enumeration or typed pattern. The executable schema is [`schemas/orgpath/codebook.schema.json`] (`$schema` draft 2020-12; `schema_version: 2.0.0`); the Python loader at [`fmp.modernization.orgtree.codebook`] additionally enforces the slot-uniqueness invariant (cross-property uniqueness is not expressible in JSON Schema). The Model B single-string schema below is preserved as historical reference.
 :::
 
 ------------------------------------------------------------------------
@@ -2063,7 +2063,7 @@ The canonical Model C schema (excerpt — see [`codebook.schema.json`] for the f
 ***Per-Facet the organizational-attribute model Enforcement + Dynamic Group Safety Checks***
 
 ::: {.callout-important title="Model C reset — Appendix I is superseded by per-facet validation"}
-The canonical validation surface is no longer a single composite-path regex. Per the program decision, validation happens **per-facet**: each of the 10 named `extensionAttribute*` slots is checked against its facet's enumeration (or typed pattern for HireDate/TermDate) independently. The Model C PowerShell helper signature is `Test-the organizational-attribute modelFacets -UserPrincipalName <UPN>` (returns a per-facet result array). The Python loader at [`uiao.modernization.orgtree.codebook`] is the canonical validator; the PowerShell helper is scheduled for rebuild in the program decision Phase 5 (a stub is included in the canon Implementation Sequence in FMP_151 v4.0). The Model B single-string module below is preserved as historical reference; do not deploy it against Model C tenants.
+The canonical validation surface is no longer a single composite-path regex. Per the program decision, validation happens **per-facet**: each of the 10 named `extensionAttribute*` slots is checked against its facet's enumeration (or typed pattern for HireDate/TermDate) independently. The Model C PowerShell helper signature is `Test-the organizational-attribute modelFacets -UserPrincipalName <UPN>` (returns a per-facet result array). The Python loader at [`fmp.modernization.orgtree.codebook`] is the canonical validator; the PowerShell helper is scheduled for rebuild in the program decision Phase 5 (a stub is included in the canon Implementation Sequence in FMP_151 v4.0). The Model B single-string module below is preserved as historical reference; do not deploy it against Model C tenants.
 :::
 
 ------------------------------------------------------------------------
@@ -3231,7 +3231,7 @@ Define the **canonical repository structure** for storing:
 
 **R.2 Canonical Repository Layout**
 
-uiao-governance-os/
+fmp-governance-os/
 
 ├── 00-Master/
 
@@ -5988,7 +5988,7 @@ Here's a concise "ALL" package you can spin into tasks (Copilot or Claude):
 
 3.  **GitHub Repository Structure**
 
-    - uiao-governance-os/ + uiao-ldap-adapter/ + uiao-telemetry/ + uiao-intune-integration/ + uiao-contact-center/.
+    - fmp-governance-os/ + fmp-ldap-adapter/ + fmp-telemetry/ + fmp-intune-integration/ + fmp-contact-center/.
 
 4.  **Chrome‑Claude Execution Plan**
 
@@ -6848,7 +6848,7 @@ GET /telemetry/device/{id}
 
 **📘 3. GITHUB REPOSITORY STRUCTURE --- the Federal Modernization Program Governance OS**
 
-uiao-governance-os/
+fmp-governance-os/
 
 ├── 00-Master/
 

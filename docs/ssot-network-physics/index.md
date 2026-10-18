@@ -77,7 +77,7 @@ reference example throughout.
   - The synthesis: aligning the data layer's consistency model with the network layer's transport tiers
   - *Audience:* Architects · platform engineers · network engineers
 
-- **07** — [Reference Architecture — the Federal Modernization Program SaaS Data Plane](./07-reference-architecture-uiao.html)
+- **07** — [Reference Architecture — the Federal Modernization Program SaaS Data Plane](./07-reference-architecture-fmp.html)
   - How the program decision and the program decision implement centralize-the-truth / distribute-the-copies in practice
   - *Audience:* Architects · platform engineers · governance teams
 
@@ -87,7 +87,7 @@ This white paper is an analysis document. Its FMP-specific claims trace to
 the canonical decision records they cite — principally
 **the program decision** (Azure SaaS architecture), **the program decision** (passwordless Entra
 Postgres auth), **the program decision** (GCC-Moderate boundary), and **the program decision** (diagram
-source-of-truth doctrine) under `src/uiao/canon/adr/` — and, for the
+source-of-truth doctrine) under `src/fmp/canon/adr/` — and, for the
 forward-looking Chapter 5, the *Proposed* **the program decision** (Application-Aware
 Networking and Token-Bound Transport) — and to the substrate
 operating principle of SSOT recorded in `AGENTS.md` and `the program decision`. Per the Federal Modernization Program
@@ -100,4 +100,4 @@ claim rests on a Federal Modernization Program decision, the ADR is named inline
 Per **the program decision**, this white paper uses no generative-AI raster figures and no
 inline Mermaid. Structure is carried by tables and Quarto callouts; any future
 diagram will be authored as a committed SVG against the house style in
-`src/uiao/canon/svg-style/` and rasterized deterministically at build time.
+`src/fmp/canon/svg-style/` and rasterized deterministically at build time.

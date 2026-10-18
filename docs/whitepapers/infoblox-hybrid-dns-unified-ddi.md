@@ -6,7 +6,7 @@ audience: [Executive, Architect, Engineer, Technical-Lead]
 author: Michael Stratton
 date: "June 2026"
 status: Draft
-canon-source: "src/uiao/canon/"
+canon-source: "src/fmp/canon/"
 derived-from: "Synthesized from Infoblox Universal DDI documentation, AWS/Azure/GCP/VMware NSX-T DNS product documentation, Microsoft Learn INR and AD deprecation guidance, Cisco Catalyst SD-WAN INR integration documentation, RFC 1034/1035/5625/6762, and NIST Zero Trust Architecture SP 800-207. Fills the documented gap: no single publication explains how DNS governs the intersection of hybrid multi-cloud private addressing, public SaaS endpoint selection, PKI certificate validation, and Layer 7 application surface definition."
 repo-path: docs/customer-documents/whitepapers/infoblox-hybrid-dns-unified-ddi.qmd
 created-at: 2026-06-22
@@ -576,7 +576,7 @@ modern identity architecture. The trajectory is clear:
  Entra-only join, cloud-only identities, and Entra ID as the primary identity
  provider — with AD described as a legacy dependency to be eliminated over time.
 
-The UIAO SQL Server Identity Transformation series documents this trajectory
+The FMP SQL Server Identity Transformation series documents this trajectory
 in the context of database authentication. The pattern is universal: every
 place that AD authentication is used is a deprecation candidate, and every
 deprecation exposes a DNS dependency that was previously invisible.

@@ -55,7 +55,7 @@ tempo as a canonical commitment, not as a target to negotiate.
 
 Three operating commitments:
 
-1. **Continuous detection.** `uiao substrate walk` runs in CI; runtime
+1. **Continuous detection.** `fmp substrate walk` runs in CI; runtime
    adapters emit findings as they execute. Detection is not
    audit-cycle.
 2. **Bounded remediation.** Every finding has an SLA; auto-remediation

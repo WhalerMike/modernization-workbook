@@ -7,7 +7,7 @@ audience: [Technical, Customer]
 family: sql-server-implementation
 series-order: 01
 status: active
-canon-source: "src/uiao/canon/the directory modernization program"
+canon-source: "src/fmp/canon/the directory modernization program"
 lifecycle: active
 tiers_adopted: []
 lifecycle_review: 2027-01-01
@@ -49,7 +49,7 @@ There is no Book 01 *script*: the conceptual opening has no executable layer of 
 ## Step 1 — Install the toolchain
 
 - **PowerShell 7+** is the runtime the modules target (the `tools/powershell` Pester CI pins PowerShell 7).
-- **A stdlib Python interpreter** (`python3` on PATH) is the one external dependency: it computes the canonical integrity seal (`json` + `hashlib`), byte-identical to `uiao.ir.models.core.canonical_hash`. The `uiao` package is **not** imported, so no editable install is needed to produce sealed evidence.
+- **A stdlib Python interpreter** (`python3` on PATH) is the one external dependency: it computes the canonical integrity seal (`json` + `hashlib`), byte-identical to `fmp.ir.models.core.canonical_hash`. The `fmp` package is **not** imported, so no editable install is needed to produce sealed evidence.
 - **The discovery Specs** are pure PowerShell under `tools/discovery/`; run them directly.
 - **The modules** are imported from the repo:
 

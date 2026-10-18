@@ -6,10 +6,10 @@ audience: [Executive, Customer]
 family: executive-governance-series
 series-order: 4
 status: Active
-canon-source: "src/uiao/canon/substrate-manifest.yaml"
+canon-source: "src/fmp/canon/substrate-manifest.yaml"
 canon-reference:
-  - "src/uiao/canon/adr/adr-006-evidence-determinism.md"
-  - "src/uiao/canon/adr/adr-016-evidence-bundle-lifecycle.md"
+  - "src/fmp/canon/adr/adr-006-evidence-determinism.md"
+  - "src/fmp/canon/adr/adr-016-evidence-bundle-lifecycle.md"
 repo-path: docs/customer-documents/executive-governance-series/ch04-deterministic-governance
 created-at: 2026-04-26
 updated-at: 2026-05-10

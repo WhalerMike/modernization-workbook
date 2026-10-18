@@ -4,10 +4,10 @@ subtitle: "Continuous, machine-checkable security indicators above the control c
 doc-type: executive-brief
 status: Active
 canon-source:
-  - "src/uiao/rules/ksi/"
-  - "src/uiao/canon/adr/adr-106-fedramp-20x-integration.md"
-  - "src/uiao/canon/specs/fedramp-20x-integration.md"
-derived-from: "uiao canon"
+  - "src/fmp/rules/ksi/"
+  - "src/fmp/canon/adr/adr-106-fedramp-20x-integration.md"
+  - "src/fmp/canon/specs/fedramp-20x-integration.md"
+derived-from: "fmp canon"
 lifecycle: adopted
 tiers_adopted: [1]
 lifecycle_review: 2026-11-22
@@ -27,7 +27,7 @@ is the model FedRAMP 20x is moving the program toward.
 ## What the Federal Modernization Program ships: a governed KSI corpus
 
 The substrate carries **more than 190 KSI rules across eleven families**, each a
-versioned file under [`src/uiao/rules/ksi/`](../../../src/uiao/rules/ksi/) and
+versioned file under [`src/fmp/rules/ksi/`](../../../src/fmp/rules/ksi/) and
 schema-validated like any other canon artifact:
 
 | Family | Covers |
@@ -47,12 +47,12 @@ evidence deterministically.
 
 ## What ships today: the evaluation engine
 
-`uiao ksi evaluate` is the shipped CLI surface. It is the Plane 2 step of the
+`fmp ksi evaluate` is the shipped CLI surface. It is the Plane 2 step of the
 The Federal Modernization Program pipeline: it takes an IR envelope (produced by Plane 1 adapter transforms),
 evaluates it against the KSI corpus, and emits a canonical KSI result JSON:
 
 ```bash
-uiao ksi evaluate --ir ./output/ir/tenant-a.ir.json \
+fmp ksi evaluate --ir ./output/ir/tenant-a.ir.json \
                   --out ./output/ksi/tenant-a.ksi.json
 ```
 
@@ -60,7 +60,7 @@ The result carries a summary (`total_ksis`, `passed`, `failed`, `error`,
 `stale`, `coverage_percentage`) and a per-KSI breakdown with evidence and drift
 indicators. The engine is deliberately **pure and deterministic** — same inputs,
 same result — and is covered by 40+ hermetic tests. KSI results feed the
-evidence bundle ([`evidence-bundle.schema.json`](../../../src/uiao/schemas/ksi/evidence-bundle.schema.json)),
+evidence bundle ([`evidence-bundle.schema.json`](../../../src/fmp/schemas/ksi/evidence-bundle.schema.json)),
 which emits OSCAL observation objects for assessor consumption.
 
 > **Honest scope note.** Reporting is *not* a standalone `ksi report` command
@@ -82,7 +82,7 @@ expects.
 | Capability | Maturity |
 |---|---|
 | KSI rule corpus (190+ rules, 11 families) | **SHIPPED** |
-| `uiao ksi evaluate` engine + result schema | **SHIPPED** |
+| `fmp ksi evaluate` engine + result schema | **SHIPPED** |
 | Evidence bundle → OSCAL observation emission | **SHIPPED** |
 | KSI-RECIP reciprocity family (8 rules) | **SHIPPED** |
 | FedRAMP 20x KSI-theme tagging (the program decision) | **TARGET / DESIGN** (the program decision proposed) |

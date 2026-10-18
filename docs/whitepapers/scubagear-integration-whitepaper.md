@@ -1,22 +1,22 @@
 ---
 title: "ScubaGear Integration — Whitepaper"
-subtitle: "Connecting CISA ScubaGear outputs to UIAO's evidence pipeline"
+subtitle: "Connecting CISA ScubaGear outputs to FMP's evidence pipeline"
 doc-type: whitepaper
 author: Michael Stratton
 date: "June 2026"
 audience: [Customer, Assessor, Architect]
 status: Active
-canon-source: "src/uiao/canon/adapter-registry.yaml#scubagear"
+canon-source: "src/fmp/canon/adapter-registry.yaml#scubagear"
 canon-reference:
  - "docs/customer-documents/adapter-specs/scubagear/scubagear.qmd"
- - "docs/customer-documents/uiao-orgcomp-integration/10-scuba-technical-spec.qmd"
+ - "docs/customer-documents/fmp-orgcomp-integration/10-scuba-technical-spec.qmd"
  - "docs/customer-documents/whitepapers/federal-ssot-alignment.qmd"
  - "docs/customer-documents/orgpath-narrative/Book_07a.qmd"
  - "docs/customer-documents/orgcomp-series/boundary/B1-1-gcc-moderate-three-way-conflict.qmd"
  - "docs/customer-documents/case-studies/reference-deployment-fedciv-ad-to-entra.qmd"
  - "docs/docs/16_DriftDetectionStandard.qmd"
- - "src/uiao/canon/UIAO_002_SCuBA_Technical_Specification_v1.0.md"
-derived-from: "uiao canon"
+ - "src/fmp/canon/FMP_002_SCuBA_Technical_Specification_v1.0.md"
+derived-from: "fmp canon"
 created-at: 2026-06-18
 updated-at: 2026-09-16
 version: "1.3"
@@ -27,7 +27,7 @@ lifecycle_review: 2026-11-22
 
 # ScubaGear Integration
 
-## Connecting CISA ScubaGear outputs to UIAO's evidence pipeline
+## Connecting CISA ScubaGear outputs to FMP's evidence pipeline
 
 ::: {.callout-important}
 ## Problem, solution, ask
@@ -58,8 +58,8 @@ Applications (SCuBA)** baseline. It is widely deployed but is typically
 operated as a **point assessor**: someone runs it, archives the report,
 and revisits it at audit time.
 
-UIAO's substrate treats ScubaGear differently. Per
-[`adapter-registry.yaml`](../../../src/uiao/canon/adapter-registry.yaml),
+FMP's substrate treats ScubaGear differently. Per
+[`adapter-registry.yaml`](../../../src/fmp/canon/adapter-registry.yaml),
 ScubaGear is registered as the canonical **Phase-1 conformance / policy
 adapter** for M365 — meaning its outputs flow through the canonical
 evidence chain, its findings carry the canonical drift taxonomy, and its
@@ -67,7 +67,7 @@ report is one input to a continuous evidence pipeline rather than a
 freestanding document.
 
 This whitepaper explains the structural integration: what the ScubaGear
-adapter provides, how its OPA/Rego policy evaluations map onto UIAO's
+adapter provides, how its OPA/Rego policy evaluations map onto FMP's
 canonical claims, and what an agency can do today versus what extends
 the integration into target maturity.
 
@@ -100,12 +100,12 @@ adds policy-engine/pin, scope, outputs, controls, and invariants):
  retention-years: 3
 ```
 
-Source: [`adapter-registry.yaml`](../../../src/uiao/canon/adapter-registry.yaml).
+Source: [`adapter-registry.yaml`](../../../src/fmp/canon/adapter-registry.yaml).
 
 **Scope note — SCuBA is no longer M365-only.** CISA's Google Workspace
 baselines have carried BOD 25-01 Requirement indicators since 10 July 2026,
 ScubaGoggles reached v1.0.0 general availability on 24 July 2026, and
-ScubaConnect now runs both assessors. **UIAO's adapter registry carries no
+ScubaConnect now runs both assessors. **FMP's adapter registry carries no
 ScubaGoggles entry.** That is a real coverage gap, stated here rather than
 papered over: an agency with a Workspace tenant is in BOD 25-01 scope and
 this integration does not yet reach it. Registering an adapter that has not
@@ -139,11 +139,11 @@ that breaks the schema is a `DRIFT-SCHEMA` finding caught in CI.
 ### 2. From OPA/Rego policies to canonical claims
 
 ScubaGear's evaluation engine produces per-policy results: pass / fail /
-manual / not-applicable, plus narrative detail. The UIAO adapter wraps
+manual / not-applicable, plus narrative detail. The FMP adapter wraps
 each result in the canonical provenance envelope (per
 [`15_ProvenanceProfile.qmd`](../../docs/15_ProvenanceProfile.qmd)) and
 maps it onto canonical KSI rules via the KSI mapping table at
-[`uiao-control-to-ksi-mapping.yaml`](../../../src/uiao/rules/ksi/uiao-control-to-ksi-mapping.yaml).
+[`fmp-control-to-ksi-mapping.yaml`](../../../src/fmp/rules/ksi/fmp-control-to-ksi-mapping.yaml).
 
 The mapping yields three structural properties:
 
@@ -174,7 +174,7 @@ Evidence Chain):
 ScubaGear run → claim normalization → bundle assembly+seal → OSCAL artifact
 ```
 
-For a UIAO-anchored M365 deployment, ScubaGear is one of the canonical
+For an FMP-anchored M365 deployment, ScubaGear is one of the canonical
 inputs at stage 1. Its findings:
 
 - Feed the **KSI dashboard** for the M365 controls SCuBA covers.
@@ -219,7 +219,7 @@ named and treated as a separate boundary finding.
 
 ### 5. SCuBA in the Federal SSOT story
 
-ScubaGear is one input to a larger compliance posture. UIAO's canon
+ScubaGear is one input to a larger compliance posture. FMP's canon
 frames the identity layer as the SSOT root that federal
 data-governance mandates sit on top of, and positions every adapter —
 including ScubaGear — as a node in a continuously-verified evidence
@@ -234,10 +234,10 @@ is legible rather than asserted.
 configuration state in the M365 tenant — the cloud half of the
 identity-and-data picture. The substrate's *on-premises half* is the
 AD survey adapter at
-[`src/uiao/adapters/modernization/active_directory/survey.py`](../../../src/uiao/adapters/modernization/active_directory/survey.py),
+[`src/fmp/adapters/modernization/active_directory/survey.py`](../../../src/fmp/adapters/modernization/active_directory/survey.py),
 which produces the OrgTree readiness bundle including the phase-tagged
 `spn_inventory` artifact (defined in
-[`src/uiao/schemas/orgtree-readiness/orgtree-readiness.schema.json`](../../../src/uiao/schemas/orgtree-readiness/orgtree-readiness.schema.json)
+[`src/fmp/schemas/orgtree-readiness/orgtree-readiness.schema.json`](../../../src/fmp/schemas/orgtree-readiness/orgtree-readiness.schema.json)
 `#/definitions/spnInventory`). The two halves see different surfaces
 and emit into the same Evidence Bundle — together they describe the
 identity posture an agency carries through the AD → Entra ID transition,
@@ -309,12 +309,12 @@ through the four-stage pipeline named in §3
 1. **Rego policy result.** A ScubaGear run evaluates baseline policy
  `MS.AAD.1.1v1` — "Legacy authentication SHALL be blocked" (mapped to
  NIST control `IA-2(1)` per the canonical 143-policy table in
- [`UIAO_002`](../../../src/uiao/canon/UIAO_002_SCuBA_Technical_Specification_v1.0.md)).
+ [`FMP_002`](../../../src/fmp/canon/FMP_002_SCuBA_Technical_Specification_v1.0.md)).
  Say the OPA/Rego evaluator returns `Result: fail` because a mail
  protocol in the tenant still permits basic authentication.
 2. **Canonical claim.** The adapter wraps that raw result in the
  provenance envelope described in §2: a `claim_id` of the form
- `urn:uiao:claim:m365:scuba-policy:{uuid}`, `issuer_identity`
+ `urn:fmp:claim:m365:scuba-policy:{uuid}`, `issuer_identity`
  resolved to the tenant's Entra ID identity plane, `source_classification: authoritative`
  (per §4, SCuBA findings are authoritative for configuration state),
  an `extraction_timestamp` for the run, and a `lineage_hash` — a
@@ -339,7 +339,7 @@ in a real run — pass, fail, manual, or not-applicable — takes the same
 four hops; `MS.AAD.1.1v1` is simply a concrete stand-in for the class.
 
 **Identity foundation beneath the Azure SSOT stack.** The
-UIAO the organizational-attribute model chapter 07a — UIAO Beneath the Azure SSOT Stack
+FMP the organizational-attribute model chapter 07a — FMP Beneath the Azure SSOT Stack
 positions the identity-governance substrate beneath the Microsoft
 Fabric + OneLake + Purview Azure SSOT stack. ScubaGear is the
 configuration-baseline assessor for the Entra ID identity plane that
@@ -401,7 +401,7 @@ For an agency operating M365 today, the integration is incremental:
 ### 8. Honest limits
 
 - ScubaGear's coverage is per-policy. It evaluates the SCuBA baselines;
- it does not evaluate every M365 control. UIAO's adapter taxonomy
+ it does not evaluate every M365 control. FMP's adapter taxonomy
  includes additional Phase-1+ slots (`vuln-scan`, `stig-compliance`,
  `patch-state`) that round out coverage; ScubaGear is the policy
  adapter, not the universal adapter.
@@ -415,11 +415,11 @@ For an agency operating M365 today, the integration is incremental:
 
 ### 9. Conclusion
 
-CISA ScubaGear is, in UIAO's substrate, **a canonical adapter, not a
+CISA ScubaGear is, in FMP's substrate, **a canonical adapter, not a
 freestanding tool.** Its findings carry full provenance, map onto KSI
 rules through canon, flow through deterministic OSCAL emission, and
 participate in the substrate-wide drift engine. For an agency operating
-M365 in GCC-Moderate, ScubaGear under UIAO is the most direct path
+M365 in GCC-Moderate, ScubaGear under FMP is the most direct path
 from "we run ScubaGear periodically" to "we emit continuous, reproducibly
 verifiable conformance evidence into our ATO package."
 

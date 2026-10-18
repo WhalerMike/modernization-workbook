@@ -8,7 +8,7 @@ series-order: 6
 status: Active
 canon-source: "docs/docs/15_ProvenanceProfile.qmd"
 canon-reference:
-  - "src/uiao/canon/adr/adr-016-evidence-bundle-lifecycle.md"
+  - "src/fmp/canon/adr/adr-016-evidence-bundle-lifecycle.md"
   - "docs/customer-documents/architecture-series/evidence-chain.qmd"
 repo-path: docs/customer-documents/executive-governance-series/ch06-evidence-over-attestation
 created-at: 2026-04-26

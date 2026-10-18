@@ -6,10 +6,10 @@ audience: [Executive, Customer]
 family: executive-governance-series
 series-order: 5
 status: Active
-canon-source: "src/uiao/canon/adapter-registry.yaml"
+canon-source: "src/fmp/canon/adapter-registry.yaml"
 canon-reference:
-  - "src/uiao/canon/modernization-registry.yaml"
-  - "src/uiao/canon/adr/adr-027-adapter-retirement.md"
+  - "src/fmp/canon/modernization-registry.yaml"
+  - "src/fmp/canon/adr/adr-027-adapter-retirement.md"
 repo-path: docs/customer-documents/executive-governance-series/ch05-adapter-model
 created-at: 2026-04-26
 updated-at: 2026-05-10
@@ -54,9 +54,9 @@ Per FMP_003, every adapter declares two attributes:
 
 The cross-product yields a 2×5 matrix. Every adapter lands in exactly
 one cell. The taxonomy is canonical (declared in
-[`adapter-registry.yaml`](../../../../src/uiao/canon/adapter-registry.yaml)
+[`adapter-registry.yaml`](../../../../src/fmp/canon/adapter-registry.yaml)
 and
-[`modernization-registry.yaml`](../../../../src/uiao/canon/modernization-registry.yaml))
+[`modernization-registry.yaml`](../../../../src/fmp/canon/modernization-registry.yaml))
 and validated in CI by `adapter-conformance.yml`.
 
 ## Why two registries
@@ -108,7 +108,7 @@ These are not suggestions. They are schema-validated on every PR.
 ## Microsoft Graph adapter convention
 
 Adapters that read from Microsoft Graph resolve their endpoint via
-`uiao.adapters._graph_clouds.resolve_graph_base` rather than
+`fmp.adapters._graph_clouds.resolve_graph_base` rather than
 hardcoding hostnames. Accepted config keys:
 
 - `cloud`: `commercial` / `gcc-high` / `dod` (default `commercial`,

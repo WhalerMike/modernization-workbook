@@ -74,8 +74,8 @@ The rule that keeps this honest: dynamic context **never overrides** the governe
 
 | Layer | Where | What it holds |
 |---|---|---|
-| **Hierarchy** | `src/uiao/canon/data/locpath/location-registry.yaml` (Git) | The governed location nodes, validated against location.schema.json + location-registry.schema.json |
-| **Translation** | `src/uiao/canon/data/locpath/duty-station-map.yaml` (Git) | The HR `locationCode` → LocPath map, validated against duty-station-map.schema.json; every target must resolve at Site or deeper |
+| **Hierarchy** | `src/fmp/canon/data/locpath/location-registry.yaml` (Git) | The governed location nodes, validated against location.schema.json + location-registry.schema.json |
+| **Translation** | `src/fmp/canon/data/locpath/duty-station-map.yaml` (Git) | The HR `locationCode` → LocPath map, validated against duty-station-map.schema.json; every target must resolve at Site or deeper |
 | **Assignment** | The Primary-LocPath assignment plan, derived per identity | Employee → LocPath + governing Site + provenance |
 | **Authority** | The HR system of record (duty station) | The upstream truth, extending the same doctrine the program decision fixed for organizational placement |
 
@@ -83,7 +83,7 @@ Notice what is **not** in that table: an Entra attribute. Per the program decisi
 
 ## What ships today
 
-All five the program decision §D6 deliverables are in the substrate (`uiao.modernization.locpath`):
+All five the program decision §D6 deliverables are in the substrate (`fmp.modernization.locpath`):
 
 | Capability | Module | What it does |
 |---|---|---|

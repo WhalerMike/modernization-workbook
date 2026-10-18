@@ -1,10 +1,10 @@
 ---
 title: "Drift Engine"
-subtitle: "How UIAO detects and remediates canonical drift"
+subtitle: "How FMP detects and remediates canonical drift"
 doc-type: architecture-explainer
 audience: [Customer, Technical]
 canon-source: "docs/docs/16_DriftDetectionStandard.qmd"
-derived-from: "uiao canon"
+derived-from: "fmp canon"
 lifecycle: adopted
 tiers_adopted: [1]
 lifecycle_review: 2026-11-22
@@ -12,9 +12,9 @@ lifecycle_review: 2026-11-22
 
 # Drift Engine
 
-![Continuous monitoring pipeline](../../images/canonical/UIAO-FIG-003-continuous-monitoring-pipeline.png){fig-alt="UIAO continuous monitoring pipeline showing how declared canonical state is checked against observed runtime reality at scale." width="100%"}
+![Continuous monitoring pipeline](../../images/canonical/FMP-FIG-003-continuous-monitoring-pipeline.png){fig-alt="FMP continuous monitoring pipeline showing how declared canonical state is checked against observed runtime reality at scale." width="100%"}
 
-UIAO treats **drift as a first-class operational signal**, not as an
+FMP treats **drift as a first-class operational signal**, not as an
 exception. The Drift Engine is the substrate-wide subsystem that classifies,
 prioritizes, and remediates the gap between *declared* canonical state and
 *observed* runtime reality.
@@ -28,7 +28,7 @@ catches today, and what is reserved for runtime maturity.
 
 ## Five-class taxonomy
 
-UIAO defines exactly five drift classes, declared in
+FMP defines exactly five drift classes, declared in
 [`16_DriftDetectionStandard.qmd` §2](../../docs/16_DriftDetectionStandard.qmd):
 
 | Class | Meaning | Detection surface |
@@ -64,18 +64,18 @@ of the affected claim — it is not a judgment call.
 
 ### CI substrate walker (shipped today)
 
-`uiao substrate walk` and `uiao substrate drift`
+`fmp substrate walk` and `fmp substrate drift`
 (source) emit two drift classes
 on every PR via `substrate-drift.yml`:
 
 - **`DRIFT-SCHEMA`** — verifies module paths declared in
-  `substrate-manifest.yaml` (UIAO_200) actually exist in the tree.
+  `substrate-manifest.yaml` (FMP_200) actually exist in the tree.
 - **`DRIFT-PROVENANCE`** — verifies that every registry document referenced
   from a manifest, ADR, or registry resolves to a real canon artifact.
 
-`uiao substrate drift` is the CI-friendly entry point: exit code 0 = clean,
+`fmp substrate drift` is the CI-friendly entry point: exit code 0 = clean,
 non-zero = drift detected. The full structured report is available via
-`uiao substrate walk --json`.
+`fmp substrate walk --json`.
 
 ### Runtime conformance runner (target / partial)
 
@@ -102,7 +102,7 @@ The **Drift Fabric** view ties the detection surfaces above into a single
 pipeline — canonical state read, delta comparison, classification, and the
 HIGH/CRITICAL escalation arrow into the Governance Plane:
 
-![A 16:9 technical architecture schematic in the UIAO federal-whitepaper style — dark navy (#0D1B2E) and teal (#1E8C8C), with a severity accent in amber (#D4A017) reserved for HIGH/CRITICAL escalation, on a white...](../images/architecture/drift-engine-image-03-a-169-technical-architecture-sch.svg){#fig-drift-engine-image-03 fig-alt="Layout: a left-to-right pipeline of five labeled rectangular nodes connected by directional arrows. From left to right: 1. Truth Fabric State Reader — entry node with an inbound arrow from an off-canvas Truth Fabric labeled \"canonical state records\". 2. Drift Comparator — pictogram of two overlapping documents with a delta (Δ) symbol between them; computes deltas between observed and canonical state. 3. Drift Classifier — central node, slightly larger than its neighbours; assigns drift type (DT-01 through DT-05) and severity (LOW / MODERATE / HIGH / CRITICAL). A small severity color legend sits beneath the node showing four chips: teal for LOW/MODERATE, amber for HIGH/CRITICAL. 4. Evidence Fabric Writer — emits immutable Drift Records via an outbound arrow on the right edge labeled \"Drift Records →\" pointing off-canvas toward an unseen Evidence Fabric (sibling diagram). 5. Reconciliation Trigger — branches off the Drift Classifier upward with an amber-highlighted arrow that escalates HIGH/CRITICAL drift to a \"Governance Plane\" component drawn in the upper-right corner of the canvas. The HIGH/CRITICAL escalation path is visually distinct — amber arrow and amber border on the Reconciliation Trigger node — versus the teal horizontal pipeline arrows. Clean engineering blueprint style, no photographs, no people, no vendor logos. Publication-grade, suitable for inclusion in OSCAL-adjacent deliverables." width="100%"}
+![A 16:9 technical architecture schematic in the FMP federal-whitepaper style — dark navy (#0D1B2E) and teal (#1E8C8C), with a severity accent in amber (#D4A017) reserved for HIGH/CRITICAL escalation, on a white...](../images/architecture/drift-engine-image-03-a-169-technical-architecture-sch.svg){#fig-drift-engine-image-03 fig-alt="Layout: a left-to-right pipeline of five labeled rectangular nodes connected by directional arrows. From left to right: 1. Truth Fabric State Reader — entry node with an inbound arrow from an off-canvas Truth Fabric labeled \"canonical state records\". 2. Drift Comparator — pictogram of two overlapping documents with a delta (Δ) symbol between them; computes deltas between observed and canonical state. 3. Drift Classifier — central node, slightly larger than its neighbours; assigns drift type (DT-01 through DT-05) and severity (LOW / MODERATE / HIGH / CRITICAL). A small severity color legend sits beneath the node showing four chips: teal for LOW/MODERATE, amber for HIGH/CRITICAL. 4. Evidence Fabric Writer — emits immutable Drift Records via an outbound arrow on the right edge labeled \"Drift Records →\" pointing off-canvas toward an unseen Evidence Fabric (sibling diagram). 5. Reconciliation Trigger — branches off the Drift Classifier upward with an amber-highlighted arrow that escalates HIGH/CRITICAL drift to a \"Governance Plane\" component drawn in the upper-right corner of the canvas. The HIGH/CRITICAL escalation path is visually distinct — amber arrow and amber border on the Reconciliation Trigger node — versus the teal horizontal pipeline arrows. Clean engineering blueprint style, no photographs, no people, no vendor logos. Publication-grade, suitable for inclusion in OSCAL-adjacent deliverables." width="100%"}
 
 ## Maturity matrix
 
@@ -119,7 +119,7 @@ Substrate Status.
 
 ## Why this is different from a config-drift tool
 
-Three properties distinguish the UIAO Drift Engine from generic
+Three properties distinguish the FMP Drift Engine from generic
 configuration-drift tooling:
 
 1. **Canon-anchored, not snapshot-anchored.** Drift is measured against a
@@ -137,9 +137,9 @@ configuration-drift tooling:
 
 ## What this means for an ATO package
 
-A drift finding in a UIAO-anchored system carries:
+A drift finding in an FMP-anchored system carries:
 
-- A canonical class (`DRIFT-*`) traceable to UIAO_200 / canon-numbered
+- A canonical class (`DRIFT-*`) traceable to FMP_200 / canon-numbered
   drift standard.
 - A severity computed deterministically.
 - A remediation contract with timestamps, action, and signed evidence.
@@ -147,5 +147,5 @@ A drift finding in a UIAO-anchored system carries:
   list.
 
 3PAOs assessing such a system can verify the drift posture by running
-`uiao substrate walk` themselves rather than trusting a snapshot — the engine
+`fmp substrate walk` themselves rather than trusting a snapshot — the engine
 is designed for independent re-execution.

@@ -1,6 +1,6 @@
 ---
 title: "Canonical the Federal Modernization Program Specifications"
-subtitle: "The SSOT Specification Layer — Published Verbatim from `src/uiao/canon/`"
+subtitle: "The SSOT Specification Layer — Published Verbatim from `src/fmp/canon/`"
 date: 2026-06-26
 format:
   html:
@@ -28,9 +28,9 @@ individually as its own `.docx` from its page.
 
 These pages are the **canonical the Federal Modernization Program specifications** — the single-source-of-truth
 (SSOT) layer of the substrate. Each page renders its authoritative source
-**verbatim** from `src/uiao/canon/` through an
+**verbatim** from `src/fmp/canon/` through an
 the program decision include-style wrapper:
-the published page is generated, the `.md` under `src/uiao/canon/` is the
+the published page is generated, the `.md` under `src/fmp/canon/` is the
 authority, and every downstream document traces its provenance back here.
 
 A spec carries a `FMP_NNN` identifier allocated in
@@ -88,7 +88,7 @@ cited fact (see [the program decision]).
 
 Every page in this section is generated; do not edit the published `.qmd`
 wrappers directly. To change a spec, edit its source under
-[`src/uiao/canon/`]
+[`src/fmp/canon/`]
 and follow the canon-change process (a `FMP_NNN` allocation for a new doc, an
 ADR for a doctrinal change, governance review). The wrapper and this index then
 re-render on the next site deploy.

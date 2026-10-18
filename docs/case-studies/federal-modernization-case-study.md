@@ -7,9 +7,9 @@ status: framing-pattern
 canon-source: "docs/docs/06_ProgramVision.qmd"
 canon-reference:
   - "docs/docs/08_ModernizationTimeline.qmd"
-  - "docs/customer-documents/whitepapers/uiao-governance-os-whitepaper.qmd"
+  - "docs/customer-documents/whitepapers/fmp-governance-os-whitepaper.qmd"
   - "docs/customer-documents/executive-governance-series/index.qmd"
-derived-from: "uiao canon"
+derived-from: "fmp canon"
 lifecycle: adopted
 tiers_adopted: [1]
 lifecycle_review: 2026-11-22
@@ -61,7 +61,7 @@ infeasible.
 
 ### Phase 1 — substrate adoption
 
-Install the `uiao` package; run `uiao substrate walk` against the
+Install the `fmp` package; run `fmp substrate walk` against the
 agency's tree; author a substrate manifest naming the agency's
 modules. Schema-validation gates land in CI for canon edits. Net
 effect: structural drift becomes visible.

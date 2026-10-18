@@ -5,10 +5,10 @@ doc-type: modernization-spec
 audience: [Customer, Architect, Assessor]
 canon-source: "docs/docs/15_ProvenanceProfile.qmd"
 canon-reference:
-  - "src/uiao/canon/adr/adr-006-evidence-determinism.md"
-  - "src/uiao/canon/adr/adr-016-evidence-bundle-lifecycle.md"
+  - "src/fmp/canon/adr/adr-006-evidence-determinism.md"
+  - "src/fmp/canon/adr/adr-016-evidence-bundle-lifecycle.md"
   - "docs/customer-documents/architecture-series/evidence-chain.qmd"
-derived-from: "uiao canon"
+derived-from: "fmp canon"
 lifecycle: adopted
 tiers_adopted: [1]
 lifecycle_review: 2026-11-22
@@ -67,7 +67,7 @@ Canonical claim emission shape:
 
 ```yaml
 provenance:
-  claim_id: "urn:uiao:claim:{domain}:{event_type}:{uuid}"
+  claim_id: "urn:fmp:claim:{domain}:{event_type}:{uuid}"
   issuer_identity: "{adapter_runtime_identity}"
   source_system: "{system_name}:{version}"
   source_classification: "authoritative | derived | synthesized"
@@ -96,7 +96,7 @@ Maps onto:
 - **FedRAMP CR26** continuous monitoring controls.
 - **OMB M-26-14** federal log retention (six months actively searchable, one year retrievable; rescinded M-21-31 on 22 May 2026).
 
-KSI bindings under `src/uiao/rules/ksi/monitoring-logging/`.
+KSI bindings under `src/fmp/rules/ksi/monitoring-logging/`.
 
 ## Drift considerations
 

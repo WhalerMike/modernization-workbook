@@ -3,12 +3,12 @@ title: "Cloud Modernization Spec"
 subtitle: "Cloud boundary governance and migration specification"
 doc-type: modernization-spec
 audience: [Customer, Architect, Assessor]
-canon-source: "src/uiao/canon/modernization-registry.yaml"
+canon-source: "src/fmp/canon/modernization-registry.yaml"
 canon-reference:
   - "docs/docs/gcc-boundary-solution-architecture.qmd"
   - "docs/customer-documents/architecture-series/boundary-impact-model.qmd"
-  - "src/uiao/canon/adr/adr-059-sailpoint-adapter-family.md"
-derived-from: "uiao canon"
+  - "src/fmp/canon/adr/adr-059-sailpoint-adapter-family.md"
+derived-from: "fmp canon"
 lifecycle: adopted
 tiers_adopted: [1]
 lifecycle_review: 2026-11-22

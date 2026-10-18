@@ -6,9 +6,9 @@ audience: [Executive, Customer]
 family: executive-governance-series
 series-order: 9
 status: Active
-canon-source: "src/uiao/canon/substrate-manifest.yaml"
+canon-source: "src/fmp/canon/substrate-manifest.yaml"
 canon-reference:
-  - "docs/customer-documents/whitepapers/uiao-governance-os-whitepaper.qmd"
+  - "docs/customer-documents/whitepapers/fmp-governance-os-whitepaper.qmd"
   - "docs/customer-documents/executive-briefs/governance-os-overview.qmd"
 repo-path: docs/customer-documents/executive-governance-series/ch09-governance-operating-system
 created-at: 2026-04-26
@@ -55,7 +55,7 @@ three OS-level properties:
    substrate's scheduler — only one canonical truth exists at a time
    for any concern.
 3. **Stable system call interface.** Code reads canon via
-   `importlib.resources.files("uiao.canon")` regardless of
+   `importlib.resources.files("fmp.canon")` regardless of
    installation mode. The canon API is the substrate's syscall
    interface.
 
@@ -137,7 +137,7 @@ The target-state work extends the same model.
 
 The book's call to action is structural, not vendor-driven:
 
-1. **Run `uiao substrate walk` on the agency's tree.** Schema and
+1. **Run `fmp substrate walk` on the agency's tree.** Schema and
    provenance findings are immediate signal.
 2. **Author a substrate manifest** that names the agency's modules.
 3. **Bring one adapter under the canonical taxonomy.** Pick the

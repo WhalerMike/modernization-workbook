@@ -6,8 +6,8 @@ audience: [Executive, Architect, Budget-Acquisition]
 author: Michael Stratton
 date: "August 2026"
 status: Draft
-canon-source: "src/uiao/canon/"
-derived-from: "Independent cost-and-capacity analysis of a Configuration Manager distribution-point refresh proposal, cross-checked against Microsoft's published Configuration Manager size-and-scale limits and reconciled to UIAO's Intune-First Asset Onboarding doctrine (the program decision). Shares its TIC 3.0 / SD-WAN argument with `tic3-sdwan-vs-dia` and its INR/GCC-Moderate finding with `infoblox-hybrid-dns-unified-ddi` — this paper cites both rather than re-deriving them, and contributes the distribution-point unit-economics argument that neither covers."
+canon-source: "src/fmp/canon/"
+derived-from: "Independent cost-and-capacity analysis of a Configuration Manager distribution-point refresh proposal, cross-checked against Microsoft's published Configuration Manager size-and-scale limits and reconciled to FMP's Intune-First Asset Onboarding doctrine (the program decision). Shares its TIC 3.0 / SD-WAN argument with `tic3-sdwan-vs-dia` and its INR/GCC-Moderate finding with `infoblox-hybrid-dns-unified-ddi` — this paper cites both rather than re-deriving them, and contributes the distribution-point unit-economics argument that neither covers."
 repo-path: docs/customer-documents/whitepapers/field-office-wan-transformation-dp-consolidation.qmd
 created-at: 2026-08-05
 updated-at: 2026-09-16
@@ -264,7 +264,7 @@ four years, the agency will have funded 1,500 devices for one to two
 years beyond their usefulness and will own the disposal cost.
 
 This is also a doctrine question, not only a depreciation question.
-UIAO's Intune-First Asset Onboarding doctrine (the program decision) prohibits
+FMP's Intune-First Asset Onboarding doctrine (the program decision) prohibits
 net-new SCCM co-management deployments for new endpoints — existing
 co-management workloads continue under their migration path, but new
 workloads must enter Intune-first. The 24-distribution-point content
@@ -471,7 +471,7 @@ secondary path for continuity. An SD-WAN overlay provides application-
 aware routing and segmentation; this paper illustrates the bill of
 materials with one vendor's product line (Cisco Catalyst SD-WAN) as a
 worked example, not as an exclusive recommendation — the underlying
-sizing and topology argument is vendor-neutral, and UIAO's own
+sizing and topology argument is vendor-neutral, and FMP's own
 [SD-WAN modernization spec](../modernization-specs/sdwan/sdwan.md) and
 the organizational-attribute model composability matrix treat
 SD-WAN as an adapter class rather than a single-vendor commitment.

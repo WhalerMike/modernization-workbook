@@ -3,11 +3,11 @@ title: "SASE Modernization Spec"
 subtitle: "Secure Access Service Edge governance specification"
 doc-type: modernization-spec
 audience: [Customer, Architect, Assessor]
-canon-source: "src/uiao/canon/modernization-registry.yaml"
+canon-source: "src/fmp/canon/modernization-registry.yaml"
 canon-reference:
   - "docs/customer-documents/architecture-series/six-plane-architecture.qmd"
   - "docs/customer-documents/architecture-series/boundary-impact-model.qmd"
-derived-from: "uiao canon"
+derived-from: "fmp canon"
 lifecycle: adopted
 tiers_adopted: [1]
 lifecycle_review: 2026-11-22

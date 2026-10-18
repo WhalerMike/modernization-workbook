@@ -6,7 +6,7 @@ audience: [Executive, Customer, Technical]
 author: Michael Stratton
 date: "June 2026"
 status: Active
-canon-source: "src/uiao/canon/adapter-registry.yaml#scubagear"
+canon-source: "src/fmp/canon/adapter-registry.yaml#scubagear"
 repo-path: docs/customer-documents/whitepapers/zta-scuba-relationship.qmd
 created-at: 2026-06-03
 updated-at: 2026-09-16
@@ -39,7 +39,7 @@ control level (NIST 800-53 / FedRAMP Moderate), not tool to tool.
 
 **Ask.** Keep ScubaGear for BOD 25-01, add the Zero Trust Assessment for
 breadth, line both up against a common control spine, treat all output as
-Controlled and keep it in-boundary — and run `uiao zta overlap` against your
+Controlled and keep it in-boundary — and run `fmp zta overlap` against your
 own report to replace this paper's illustrative split with your tenant's.
 :::
 
@@ -164,15 +164,15 @@ ZT-only (Microsoft Purview).
 
 ## Producing your own figures
 
-The UIAO toolkit can ingest a Zero Trust Assessment report and emit this overlap
+The FMP toolkit can ingest a Zero Trust Assessment report and emit this overlap
 split for your tenant, alongside a prioritized remediation playbook:
 
 ```powershell
-uiao zta overlap --input .\ZeroTrustAssessmentReport.html # shared vs ZT-only for your tenant
-uiao zta remediate --input .\ZeroTrustAssessmentReport.html -o . # per-finding fix guidance
+fmp zta overlap --input .\ZeroTrustAssessmentReport.html # shared vs ZT-only for your tenant
+fmp zta remediate --input .\ZeroTrustAssessmentReport.html -o . # per-finding fix guidance
 ```
 
 See the [Zero Trust Assessment Dashboard guide](../operational-guides/zero-trust-assessment/index.md)
-for the full workflow. UIAO treats both ScubaGear and the Zero Trust Assessment
+for the full workflow. FMP treats both ScubaGear and the Zero Trust Assessment
 as evidence sources it incorporates — not competitors — and reconciles their
 findings in a common, control-mapped evidence layer.

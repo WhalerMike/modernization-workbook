@@ -120,7 +120,7 @@ Adapter migrations that add a net-new capability without retiring any legacy inf
 
 ## Adapter Registration Schema
 
-Every adapter registers in the `migration-adapter-registry.yaml` with standardized metadata. The contract is declared in [`src/uiao/schemas/migration-adapter-registry/migration-adapter-registry.schema.json`] (the program decision Phase 2):
+Every adapter registers in the `migration-adapter-registry.yaml` with standardized metadata. The contract is declared in [`src/fmp/schemas/migration-adapter-registry/migration-adapter-registry.schema.json`] (the program decision Phase 2):
 
 - **Adapter ID and name**
 - **Priority tier** (CRITICAL / HIGH / MEDIUM)
@@ -132,10 +132,10 @@ Every adapter registers in the `migration-adapter-registry.yaml` with standardiz
 ## Source Files
 
 All Directory Migration source files are in the monorepo at
-`src/uiao/modernization/directory-migration/`. The adapter registry is at
-`src/uiao/modernization/directory-migration/migration-adapter-registry.yaml`.
+`src/fmp/modernization/directory-migration/`. The adapter registry is at
+`src/fmp/modernization/directory-migration/migration-adapter-registry.yaml`.
 
 Companion documents in the module:
 
-- [`src/uiao/modernization/directory-migration/eight-core-concepts.md`] — the eight universal architectural concepts grounding every adapter
-- [`src/uiao/modernization/directory-migration/ad-dependency-inventory.md`] — comprehensive inventory of the eleven AD-dependent object types and their migration risks
+- [`src/fmp/modernization/directory-migration/eight-core-concepts.md`] — the eight universal architectural concepts grounding every adapter
+- [`src/fmp/modernization/directory-migration/ad-dependency-inventory.md`] — comprehensive inventory of the eleven AD-dependent object types and their migration risks

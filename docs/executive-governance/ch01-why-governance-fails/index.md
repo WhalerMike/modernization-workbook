@@ -6,7 +6,7 @@ audience: [Executive, Customer]
 family: executive-governance-series
 series-order: 1
 status: Active
-canon-source: "src/uiao/canon/substrate-manifest.yaml"
+canon-source: "src/fmp/canon/substrate-manifest.yaml"
 canon-reference:
   - "docs/customer-documents/executive-governance-series/governance-os-canonical-suite.qmd"
 repo-path: docs/customer-documents/executive-governance-series/ch01-why-governance-fails

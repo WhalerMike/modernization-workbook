@@ -6,7 +6,7 @@ status: Active
 canon-source:
   - "docs/docs/06_ProgramVision.qmd"
   - "docs/docs/08_ModernizationTimeline.qmd"
-derived-from: "uiao canon"
+derived-from: "fmp canon"
 lifecycle: adopted
 tiers_adopted: [1]
 lifecycle_review: 2026-11-22
@@ -32,7 +32,7 @@ program is structured to deliver mission value early while reducing long-tail
 authorization and drift risk.
 
 The canonical modernization adapter inventory is governed in
-`src/uiao/canon/modernization-registry.yaml`. Treat that registry as the
+`src/fmp/canon/modernization-registry.yaml`. Treat that registry as the
 authoritative source for the active modernization adapter set (with one
 reserved planning entry) rather than maintaining per-brief adapter lists.
 

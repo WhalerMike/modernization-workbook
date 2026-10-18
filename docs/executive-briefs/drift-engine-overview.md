@@ -3,7 +3,7 @@ title: Drift Engine Overview — Executive Brief
 doc-type: executive-brief
 status: Active
 canon-source: docs/docs/16_DriftDetectionStandard.qmd
-derived-from: uiao canon
+derived-from: fmp canon
 lifecycle: adopted
 tiers_adopted: [1]
 lifecycle_review: 2026-11-22
@@ -36,7 +36,7 @@ The Federal Modernization Program uses five classes (verbatim from the Drift Det
 
 ## Where drift is detected
 
-1. **CI substrate walker** (`uiao substrate walk`, `substrate-drift.yml`) detects shipped classes now: `DRIFT-SCHEMA` and `DRIFT-PROVENANCE`.
+1. **CI substrate walker** (`fmp substrate walk`, `substrate-drift.yml`) detects shipped classes now: `DRIFT-SCHEMA` and `DRIFT-PROVENANCE`.
 2. **Runtime conformance runner** detects runtime drift during adapter execution and emits remediation-contract records (`drift_class`, `severity`, timestamps, remediation action, evidence, escalation path).
 
 ## How leaders should consume drift output

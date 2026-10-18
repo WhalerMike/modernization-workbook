@@ -6,11 +6,11 @@ audience: [Executive, Customer, Architect, Assessor]
 author: Michael Stratton
 date: "September 2026"
 status: Active
-canon-source: "src/uiao/canon/compliance/reference/fedramp-cr26/official/fedramp-consolidated-rules.json"
+canon-source: "src/fmp/canon/compliance/reference/fedramp-cr26/official/fedramp-consolidated-rules.json"
 canon-reference:
- - "src/uiao/canon/adr/adr-141-fedramp-20x-boundary-model-refinement.md"
- - "src/uiao/canon/adr/adr-106-fedramp-20x-integration.md"
- - "src/uiao/canon/data/gcc-moderate-telemetry-gaps.yaml"
+ - "src/fmp/canon/adr/adr-141-fedramp-20x-boundary-model-refinement.md"
+ - "src/fmp/canon/adr/adr-106-fedramp-20x-integration.md"
+ - "src/fmp/canon/data/gcc-moderate-telemetry-gaps.yaml"
 repo-path: docs/customer-documents/whitepapers/fedramp-20x-and-the-commercial-feature-gap.qmd
 created-at: 2026-09-09
 updated-at: 2026-09-16
@@ -429,12 +429,12 @@ three of them are strengthened rather than weakened by 20x.
 ## References
 
 - FedRAMP Consolidated Rules for 2026, official ruleset `2026.06.24.01`, vendored
- at `src/uiao/canon/compliance/reference/fedramp-cr26/official/` — the primary
+ at `src/fmp/canon/compliance/reference/fedramp-cr26/official/` — the primary
  rules authority per the program decision D1
 - the program decision — FedRAMP 20x Boundary Model Refinement
 - the program decision — FedRAMP 20x Integration
 - FINDING-PGM-005 — FedRAMP 20x has no CSP authorization boundary
-- `src/uiao/canon/data/gcc-moderate-telemetry-gaps.yaml` — authoritative over the
+- `src/fmp/canon/data/gcc-moderate-telemetry-gaps.yaml` — authoritative over the
  telemetry gap matrix
 - Microsoft Docset Cross-Check, 4 September 2026 — Microsoft 365 for enterprise
  (o365-worldwide) docset, 1,529 pages, generated 22 August 2026. All Microsoft

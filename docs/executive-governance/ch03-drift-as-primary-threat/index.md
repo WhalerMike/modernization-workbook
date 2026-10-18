@@ -82,7 +82,7 @@ for the architectural depth.
 Naming the classes is not enough. The substrate's operational
 discipline is:
 
-1. **Detect deterministically.** `uiao substrate walk` runs in CI on
+1. **Detect deterministically.** `fmp substrate walk` runs in CI on
    every PR and emits SCHEMA + PROVENANCE findings. Runtime adapters
    emit SEMANTIC + AUTHZ + IDENTITY findings as they execute.
 2. **Classify deterministically.** Severity is a pure function of

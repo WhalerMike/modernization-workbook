@@ -142,4 +142,4 @@ sanctioned copy of the substrate.
 ---
 
 The Federal Modernization Program Active-Passive Replication Guide v1.0 | Classification: Controlled | Boundary: GCC-Moderate\
-Author: Michael Stratton | June 5, 2026 | Repository: https://github.com/WhalerMike/uiao
+Author: Michael Stratton | June 5, 2026 | Repository: https://github.com/WhalerMike/modernization-workbook

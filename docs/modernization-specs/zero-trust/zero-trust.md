@@ -3,11 +3,11 @@ title: "Zero Trust Modernization Spec"
 subtitle: "Zero trust implementation governance specification"
 doc-type: modernization-spec
 audience: [Customer, Architect, Assessor]
-canon-source: "src/uiao/canon/adr/adr-008-zero-trust-identity.md"
+canon-source: "src/fmp/canon/adr/adr-008-zero-trust-identity.md"
 canon-reference:
   - "docs/customer-documents/whitepapers/zero-trust-governance-whitepaper.qmd"
   - "docs/customer-documents/executive-briefs/zero-trust-overview.qmd"
-derived-from: "uiao canon"
+derived-from: "fmp canon"
 lifecycle: adopted
 tiers_adopted: [1]
 lifecycle_review: 2026-11-22
@@ -85,7 +85,7 @@ Maps onto:
 - **NIST 800-53** AC, IA, AU, SI families.
 - **OMB M-22-09** federal Zero Trust strategy.
 
-KSI bindings live under `src/uiao/rules/ksi/iam/` plus pillar-specific
+KSI bindings live under `src/fmp/rules/ksi/iam/` plus pillar-specific
 locations.
 
 ## Drift considerations

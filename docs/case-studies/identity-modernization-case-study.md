@@ -4,12 +4,12 @@ subtitle: "Identity plane governance during a large-scale directory migration"
 doc-type: case-study-pattern
 audience: [Customer, Sponsor, Program Lead]
 status: framing-pattern
-canon-source: "src/uiao/canon/adr/adr-008-zero-trust-identity.md"
+canon-source: "src/fmp/canon/adr/adr-008-zero-trust-identity.md"
 canon-reference:
   - "docs/customer-documents/whitepapers/modernization-governance-whitepaper.qmd"
   - "docs/customer-documents/architecture-series/aodim-architecture.qmd"
   - "docs/customer-documents/modernization-specs/identity/identity.qmd"
-derived-from: "uiao canon"
+derived-from: "fmp canon"
 lifecycle: adopted
 tiers_adopted: [1]
 lifecycle_review: 2026-11-22

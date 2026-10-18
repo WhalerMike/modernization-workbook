@@ -84,7 +84,7 @@ processed.
 
 ### FMP.ConfigTools integration
 
-When the `FMP.ConfigTools` shared module (included in `uiao-cli.zip` under
+When the `FMP.ConfigTools` shared module (included in `fmp-cli.zip` under
 `scripts\FMP.ConfigTools\`) is installed, the script uses it for structured
 coloured output and optional transcript logging. If the module is absent, the
 script falls back to plain `Write-Host` — no hard dependency.
@@ -93,7 +93,7 @@ Install the module:
 
 ```powershell
 $dest = "$env:USERPROFILE\Documents\PowerShell\Modules\FMP.ConfigTools"
-Copy-Item .\uiao-cli\scripts\FMP.ConfigTools $dest -Recurse -Force
+Copy-Item .\fmp-cli\scripts\FMP.ConfigTools $dest -Recurse -Force
 Import-Module FMP.ConfigTools
 ```
 
@@ -221,7 +221,7 @@ $action  = New-ScheduledTaskAction -Execute 'pwsh.exe' `
     -Argument '-NoProfile -File C:\FMP\Invoke-GpoObsoleteAudit.ps1 -OutputPath C:\FMP\Evidence\gpo-audit.json'
 $trigger = New-ScheduledTaskTrigger -Weekly -DaysOfWeek Sunday -At 2am
 Register-ScheduledTask -TaskName 'FMP-GpoObsoleteAudit' `
-    -Action $action -Trigger $trigger -User 'CONTOSO\svc-uiao-audit' -RunLevel Highest
+    -Action $action -Trigger $trigger -User 'CONTOSO\svc-fmp-audit' -RunLevel Highest
 ```
 
 ### Triage workflow

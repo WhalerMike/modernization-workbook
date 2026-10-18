@@ -315,7 +315,7 @@ vendor roadmaps indirectly.
 
 **Read deeper:** [Federal Application Aware Networking
 Architecture](federal-application-aware-networking-architecture.md) and
-its UIAO-branded sibling [From Mainframe to Application-Aware
+its FMP-branded sibling [From Mainframe to Application-Aware
 Modernization](modernization-journey.md) both build their core argument
 on M-22-09's identity-and-application-aware-networking direction --- see
 the [Reading Guide](reading-guide.md) for which of the two fits your

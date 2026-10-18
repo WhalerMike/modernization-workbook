@@ -7,7 +7,7 @@ audience: [Technical, Customer]
 family: sql-server-implementation
 series-order: 07
 status: active
-canon-source: "src/uiao/canon/the directory modernization program"
+canon-source: "src/fmp/canon/the directory modernization program"
 lifecycle: active
 tiers_adopted: []
 lifecycle_review: 2027-01-01
@@ -121,7 +121,7 @@ Provisioning the AU before the groups it will hold avoids the transitional windo
 
 ### Provision the DBA Administrative Unit (entra-admin-units / FMP_154)
 
-The Administrative Unit is provisioned through the **`entra-admin-units`** modernization adapter (FMP_154 in `src/uiao/canon/modernization-registry.yaml`), aligned to the the organizational-attribute model boundary the DBA team owns so the delegation boundary and the access boundary describe the same scope. the program decision's restricted-management invariant and cross-canon integrity checks (which reject an AU whose referenced groups or the organizational-attribute model values do not resolve to live canon) are enforced by the adapter. Run it dry-run first, review the planned AU and the scoped assignment, then apply.
+The Administrative Unit is provisioned through the **`entra-admin-units`** modernization adapter (FMP_154 in `src/fmp/canon/modernization-registry.yaml`), aligned to the the organizational-attribute model boundary the DBA team owns so the delegation boundary and the access boundary describe the same scope. the program decision's restricted-management invariant and cross-canon integrity checks (which reject an AU whose referenced groups or the organizational-attribute model values do not resolve to live canon) are enforced by the adapter. Run it dry-run first, review the planned AU and the scoped assignment, then apply.
 
 ### Provision the organizational-attribute model dynamic groups (entra-dynamic-groups / FMP_152)
 

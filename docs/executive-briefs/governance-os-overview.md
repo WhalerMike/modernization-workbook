@@ -2,8 +2,8 @@
 title: Governance OS Overview — Executive Brief
 doc-type: executive-brief
 status: Active
-canon-source: src/uiao/canon/substrate-manifest.yaml
-derived-from: uiao/canon
+canon-source: src/fmp/canon/substrate-manifest.yaml
+derived-from: fmp/canon
 lifecycle: adopted
 tiers_adopted: [1]
 lifecycle_review: 2026-11-22
@@ -23,17 +23,17 @@ context is fragmented across services, telemetry cannot be correlated into one
 control narrative, and evidence is assembled as point-in-time reporting rather
 than continuous, provenance-linked assurance.
 
-![Layered substrate diagram showing the Federal Modernization Program Governance OS as the operating layer beneath three consumer surfaces](../images/executive-briefs/governance-os-overview-image-01-layered-substrate-diagram-showin.png){#fig-governance-os-overview-image-01 fig-alt="Bottom layer Canon (SSOT) labeled with \"src/uiao/canon/\" and a small registry icon. Middle layer Substrate Services with three lanes — Schema-First Governance, Drift Engine (5-class taxonomy: SCHEMA / SEMANTIC / PROVENANCE / AUTHZ / IDENTITY), Evidence Chain (deterministic OSCAL emission). Top layer Consumer Surfaces — three pillars: Identity Operations, Compliance Reporting, Modernization Programs. Each top-layer pillar reaches down with arrows to the substrate services. Clean engineering blueprint style, dark navy (#0D1B2E) and teal (#1E8C8C) color scheme on white background. No photographs, purely diagrammatic." width="100%"}
+![Layered substrate diagram showing the Federal Modernization Program Governance OS as the operating layer beneath three consumer surfaces](../images/executive-briefs/governance-os-overview-image-01-layered-substrate-diagram-showin.png){#fig-governance-os-overview-image-01 fig-alt="Bottom layer Canon (SSOT) labeled with \"src/fmp/canon/\" and a small registry icon. Middle layer Substrate Services with three lanes — Schema-First Governance, Drift Engine (5-class taxonomy: SCHEMA / SEMANTIC / PROVENANCE / AUTHZ / IDENTITY), Evidence Chain (deterministic OSCAL emission). Top layer Consumer Surfaces — three pillars: Identity Operations, Compliance Reporting, Modernization Programs. Each top-layer pillar reaches down with arrows to the substrate services. Clean engineering blueprint style, dark navy (#0D1B2E) and teal (#1E8C8C) color scheme on white background. No photographs, purely diagrammatic." width="100%"}
 
 ## What "governance OS" means in the Federal Modernization Program
 
 The Federal Modernization Program operates underneath implementation tooling rather than alongside it.
 Three substrate-wide principles, declared in
-[`substrate-manifest.yaml`](../../../src/uiao/canon/substrate-manifest.yaml)
+[`substrate-manifest.yaml`](../../../src/fmp/canon/substrate-manifest.yaml)
 (FMP_200), define the operating model:
 
 1. **Single Source of Truth (SSOT).** Canonical governance artifacts under
-   `src/uiao/canon/` define structure, policy intent, and registry authority
+   `src/fmp/canon/` define structure, policy intent, and registry authority
    exactly once. Downstream systems consume those artifacts via
    `importlib.resources` rather than duplicating policy logic.
 2. **Canon-anchored evidence.** Every artifact the substrate produces — SSP,
@@ -58,10 +58,10 @@ principles above without taking on the tier-specific commitments.
 
 The substrate already enforces the operating model in CI:
 
-- **Schema-first governance.** Five JSON schemas under `src/uiao/schemas/`
+- **Schema-first governance.** Five JSON schemas under `src/fmp/schemas/`
   validate every registry, manifest, and frontmatter edit on every PR
   (`schema-validation.yml`, `metadata-validator.yml`).
-- **Substrate walker.** `uiao substrate walk` and `uiao substrate drift`
+- **Substrate walker.** `fmp substrate walk` and `fmp substrate drift`
   emit structured findings for `DRIFT-SCHEMA` (module paths exist) and
   `DRIFT-PROVENANCE` (registry documents resolve). Both gate merges via
   `substrate-drift.yml`.

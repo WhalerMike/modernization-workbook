@@ -3,8 +3,8 @@ title: "Executive Governance Series"
 subtitle: "Long-form governance narrative in nine chapters"
 doc-type: section-landing
 audience: "Authorizing officials · CIO · CISO · program leadership"
-canon-source: "src/uiao/canon/"
-derived-from: "uiao canon"
+canon-source: "src/fmp/canon/"
+derived-from: "fmp canon"
 aspirational: true
 lifecycle: adopted
 tiers_adopted: [1]

@@ -9,7 +9,7 @@ canon-reference:
   - "docs/docs/gcc-boundary-problem-statement.qmd"
   - "docs/customer-documents/architecture-series/boundary-impact-model.qmd"
   - "docs/customer-documents/orgcomp-series/boundary/B1-gcc-moderate-boundary-model.qmd"
-derived-from: "uiao canon"
+derived-from: "fmp canon"
 lifecycle: adopted
 tiers_adopted: [1]
 lifecycle_review: 2026-11-22
@@ -125,7 +125,7 @@ Two distinctions matter:
 A real engagement typically yields:
 
 - New entries in the boundary capability disposition data
-  (`src/uiao/canon/data/gcc-moderate-telemetry-gaps.yaml`).
+  (`src/fmp/canon/data/gcc-moderate-telemetry-gaps.yaml`).
 - Refinements to the boundary impact model where new dimensions
   emerge (rare, but possible — would require an ADR).
 - Compensating-enforcement adapter additions to

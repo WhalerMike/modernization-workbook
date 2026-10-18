@@ -3,7 +3,7 @@ title: Evidence Fabric Overview — Executive Brief
 doc-type: executive-brief
 status: Active
 canon-source: docs/docs/15_ProvenanceProfile.qmd
-derived-from: uiao/canon
+derived-from: fmp/canon
 lifecycle: adopted
 tiers_adopted: [1]
 lifecycle_review: 2026-11-22
@@ -44,7 +44,7 @@ resolution.
 
 Evidence integrity is anchored with cryptographic hashes in the provenance
 envelope and bundle-level provenance fields defined by
-[`evidence-bundle.schema.json`](../../../src/uiao/schemas/ksi/evidence-bundle.schema.json).
+[`evidence-bundle.schema.json`](../../../src/fmp/schemas/ksi/evidence-bundle.schema.json).
 The schema enforces hash-bearing provenance structures at item and bundle scope,
 providing the verification substrate for signed, tamper-evident evidence
 packages.

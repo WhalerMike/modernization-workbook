@@ -124,10 +124,10 @@ intervals, FSMO holders, DNS integration mode, Exchange schema level.
 
 **Cmdlet skeleton.**
 ```powershell
-Get-ADForest | ConvertTo-UiaoForestRecord
-Get-ADDomain  -Identity each | ConvertTo-UiaoDomainRecord
-Get-ADReplicationSiteLink -Filter * | ConvertTo-UiaoSiteLinkRecord
-Get-ADTrust -Filter * | ConvertTo-UiaoTrustRecord
+Get-ADForest | ConvertTo-FmpForestRecord
+Get-ADDomain  -Identity each | ConvertTo-FmpDomainRecord
+Get-ADReplicationSiteLink -Filter * | ConvertTo-FmpSiteLinkRecord
+Get-ADTrust -Filter * | ConvertTo-FmpTrustRecord
 ```
 
 **Output.** `assessments/<run-id>/forest-topology.json` — normalised
@@ -145,7 +145,7 @@ computer counts.
 
 **Cmdlet skeleton.**
 ```powershell
-Get-ADOrganizationalUnit -Filter * -Properties * | ConvertTo-UiaoOuRecord
+Get-ADOrganizationalUnit -Filter * -Properties * | ConvertTo-FmpOuRecord
 ```
 
 **Output.** `assessments/<run-id>/ou-hierarchy.json` — a graph
@@ -163,7 +163,7 @@ location, and (if populated) HR-system-sourced attributes.
 
 **Cmdlet skeleton.**
 ```powershell
-Get-ADUser -Filter * -Properties * | ConvertTo-UiaoUserRecord
+Get-ADUser -Filter * -Properties * | ConvertTo-FmpUserRecord
 ```
 
 **Output.** `assessments/<run-id>/users.jsonl` — one record per line,
@@ -182,7 +182,7 @@ msDS-SupportedEncryptionTypes.
 
 **Cmdlet skeleton.**
 ```powershell
-Get-ADComputer -Filter * -Properties * | ConvertTo-UiaoComputerRecord
+Get-ADComputer -Filter * -Properties * | ConvertTo-FmpComputerRecord
 ```
 
 **Output.** `assessments/<run-id>/computers.jsonl`.
@@ -238,7 +238,7 @@ per section.
 **Cmdlet skeleton.**
 ```powershell
 Get-GPO -All
-Get-GPOReport -All -ReportType Xml | ConvertTo-UiaoGpoRecord
+Get-GPOReport -All -ReportType Xml | ConvertTo-FmpGpoRecord
 ```
 
 **Output.** `assessments/<run-id>/gpos/*.xml` + normalised
@@ -327,7 +327,7 @@ biggest source of modernization blockers in most forests.
 PowerShell is excellent at AD reads; it is less excellent at graph
 analysis. Every stream that produces relational data (OU hierarchy,
 GPO link graph, SPN-to-app map, trust-relationship graph) is
-post-processed by a Python analyzer (`uiao.assess.graph`) that
+post-processed by a Python analyzer (`fmp.assess.graph`) that
 produces:
 
 - **Dependency graphs** — which OUs inherit which GPOs; which apps

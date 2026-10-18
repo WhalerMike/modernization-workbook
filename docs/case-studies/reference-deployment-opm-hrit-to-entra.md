@@ -4,20 +4,20 @@ subtitle: "End-to-end substrate walkthrough for a mid-size federal civilian agen
 doc-type: case-study-pattern
 audience: [Customer, Sponsor, Program Lead, Architect, Assessor]
 status: framing-pattern
-canon-source: "src/uiao/canon/specs/Spec2-D6.1-FederalHRITIntegrationRunbook.md"
+canon-source: "src/fmp/canon/specs/Spec2-D6.1-FederalHRITIntegrationRunbook.md"
 canon-reference:
   - "docs/customer-documents/whitepapers/federal-hrit-productization.qmd"
   - "docs/customer-documents/whitepapers/federal-ssot-alignment.qmd"
   - "docs/customer-documents/case-studies/reference-deployment-fedciv-ad-to-entra.qmd"
-  - "docs/customer-documents/uiao-orgcomp-integration/12-nist-icam-crosswalk.qmd"
+  - "docs/customer-documents/fmp-orgcomp-integration/12-nist-icam-crosswalk.qmd"
   - "docs/customer-documents/orgcomp-series/boundary/B1-1-gcc-moderate-three-way-conflict.qmd"
   - "docs/docs/16_DriftDetectionStandard.qmd"
-  - "src/uiao/canon/specs/Spec2-D1.1-CanonicalHRAttributeSchema.md"
-  - "src/uiao/canon/specs/Spec2-D1.3-HRToEntraAttributeMappingMatrix.md"
-  - "src/uiao/canon/specs/Spec2-D2.1-JoinerWorkflowSpecification.md"
-  - "src/uiao/canon/specs/Spec2-D3.5-the organizational-attribute modelPopulationPipeline.md"
-  - "src/uiao/canon/specs/Spec2-D5.5-ProvisioningDriftDetectionRules.md"
-derived-from: "uiao canon"
+  - "src/fmp/canon/specs/Spec2-D1.1-CanonicalHRAttributeSchema.md"
+  - "src/fmp/canon/specs/Spec2-D1.3-HRToEntraAttributeMappingMatrix.md"
+  - "src/fmp/canon/specs/Spec2-D2.1-JoinerWorkflowSpecification.md"
+  - "src/fmp/canon/specs/Spec2-D3.5-the organizational-attribute modelPopulationPipeline.md"
+  - "src/fmp/canon/specs/Spec2-D5.5-ProvisioningDriftDetectionRules.md"
+derived-from: "fmp canon"
 lifecycle: adopted
 tiers_adopted: [1]
 lifecycle_review: 2026-11-22
@@ -111,12 +111,12 @@ Spec2-D1.1 Canonical HR Attribute Schema:
   `locationCode`, `country`, `employmentStatus`, `extracted_at`,
   `adapter_metadata`).
 - The adapter is registered in canon under
-  [`adapter-registry.yaml`](../../../src/uiao/canon/adapter-registry.yaml)
+  [`adapter-registry.yaml`](../../../src/fmp/canon/adapter-registry.yaml)
   with its `class: modernization`, `mission-class: identity`,
   `gcc-boundary: gcc-moderate` declarations.
 
 The adapter onboarding follows
-[`Spec2-D5.4`](../../../src/uiao/canon/specs/Spec2-D5.4-HRSystemOnboardingPlaybook.md)
+[`Spec2-D5.4`](../../../src/fmp/canon/specs/Spec2-D5.4-HRSystemOnboardingPlaybook.md)
 — the canonical playbook every per-source adapter follows. For the
 NFC instance, the substrate also runs the PowerShell discovery
 generator at `tools/discovery/Spec2-D1.1-Get-HRAttributeSchema.ps1`
@@ -127,7 +127,7 @@ any vendor-specific quirks before the adapter goes live.
 
 Before any record flows to OPM Entra, the substrate runs the HRIT
 record-inventory pass introduced in PR #449
-(`src/uiao/adapters/modernization/hrit/inventory.py`). The pass:
+(`src/fmp/adapters/modernization/hrit/inventory.py`). The pass:
 
 - Reads the canonical-schema-conformant records from the per-source
   adapter
@@ -175,7 +175,7 @@ sole Privacy Act system of records.
 ## Phase 4 — Joiner / Mover / Leaver workflows
 
 Once records are landing in OPM Entra, the substrate's JML workflows
-([`Spec2-D2.1`](../../../src/uiao/canon/specs/Spec2-D2.1-JoinerWorkflowSpecification.md)
+([`Spec2-D2.1`](../../../src/fmp/canon/specs/Spec2-D2.1-JoinerWorkflowSpecification.md)
 + D2.2 Mover + D2.3 Leaver) take over the operational lifecycle:
 
 | Workflow | Trigger | Substrate action |
@@ -194,7 +194,7 @@ per the program decision.
 
 Once the pipeline is operating, the substrate continuously monitors
 for drift between the HR system and Entra ID per
-[`Spec2-D5.5`](../../../src/uiao/canon/specs/Spec2-D5.5-ProvisioningDriftDetectionRules.md).
+[`Spec2-D5.5`](../../../src/fmp/canon/specs/Spec2-D5.5-ProvisioningDriftDetectionRules.md).
 The drift surface maps to the canonical five-class taxonomy in
 Doc 16:
 

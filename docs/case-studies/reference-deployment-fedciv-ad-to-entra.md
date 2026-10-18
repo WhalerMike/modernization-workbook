@@ -4,17 +4,17 @@ subtitle: "End-to-end substrate walkthrough for a mid-size federal agency with t
 doc-type: case-study-pattern
 audience: [Customer, Sponsor, Program Lead, Architect, Assessor]
 status: framing-pattern
-canon-source: "src/uiao/canon/FMP_007_OrgTree_Modernization_AD_to_EntraID_v1.0.md"
+canon-source: "src/fmp/canon/FMP_007_OrgTree_Modernization_AD_to_EntraID_v1.0.md"
 canon-reference:
   - "docs/customer-documents/whitepapers/federal-ssot-alignment.qmd"
   - "docs/customer-documents/orgpath-narrative/Book_07a.qmd"
   - "docs/customer-documents/orgcomp-series/boundary/B1-gcc-moderate-boundary-model.qmd"
   - "docs/customer-documents/orgcomp-series/boundary/B1-1-gcc-moderate-three-way-conflict.qmd"
   - "docs/docs/16_DriftDetectionStandard.qmd"
-  - "src/uiao/modernization/directory-migration/README.md"
-  - "src/uiao/modernization/directory-migration/adapters/sql-server/sql-server-adapter-interface.md"
-  - "src/uiao/canon/specs/Spec3-D1.1-Get-ServiceAccountScan.md"
-derived-from: "uiao canon"
+  - "src/fmp/modernization/directory-migration/README.md"
+  - "src/fmp/modernization/directory-migration/adapters/sql-server/sql-server-adapter-interface.md"
+  - "src/fmp/canon/specs/Spec3-D1.1-Get-ServiceAccountScan.md"
+derived-from: "fmp canon"
 lifecycle: adopted
 tiers_adopted: [1]
 lifecycle_review: 2026-11-22
@@ -83,10 +83,10 @@ necessary, see the
 
 The first substrate action is to make the current state of the agency's
 identity infrastructure honest. The AD survey adapter at
-[`src/uiao/adapters/modernization/active_directory/survey.py`](../../../src/uiao/adapters/modernization/active_directory/survey.py)
+[`src/fmp/adapters/modernization/active_directory/survey.py`](../../../src/fmp/adapters/modernization/active_directory/survey.py)
 reads both forests in read-only mode and emits an `ADSurveyReport` that
 enumerates the eleven AD object types catalogued in
-[`src/uiao/modernization/directory-migration/ad-dependency-inventory.md`](../../../src/uiao/modernization/directory-migration/ad-dependency-inventory.md):
+[`src/fmp/modernization/directory-migration/ad-dependency-inventory.md`](../../../src/fmp/modernization/directory-migration/ad-dependency-inventory.md):
 users, computers, service accounts, security groups, GPOs, DNS and DHCP
 records, PKI artifacts, RADIUS configurations, LDAP-dependent
 applications, Kerberos SPNs, and the trust relationships between the
@@ -94,7 +94,7 @@ two forests. The survey is the same one that produced the substrate's
 test fixtures; it is not a per-engagement script.
 
 The service-account scan codified in
-[`Spec3-D1.1` (FMP_139)](../../../src/uiao/canon/specs/Spec3-D1.1-Get-ServiceAccountScan.md)
+[`Spec3-D1.1` (FMP_139)](../../../src/fmp/canon/specs/Spec3-D1.1-Get-ServiceAccountScan.md)
 runs as part of the discovery pass. It produces a service-accounts
 inventory with delegation classification, AdminCount status, and a per-
 account risk score that flags ADCS-dependent SPNs and unconstrained
@@ -104,7 +104,7 @@ one SPN registration; the survey flags approximately sixty of them as
 critical and another hundred as high-risk.
 
 The SPN inventory artifact introduced in PR #395 — defined in
-[`src/uiao/schemas/orgtree-readiness/orgtree-readiness.schema.json`](../../../src/uiao/schemas/orgtree-readiness/orgtree-readiness.schema.json)
+[`src/fmp/schemas/orgtree-readiness/orgtree-readiness.schema.json`](../../../src/fmp/schemas/orgtree-readiness/orgtree-readiness.schema.json)
 `#/definitions/spnInventory` — captures the agency's `MSSQLSvc/*`
 registrations with a `phase: pre_migration` tag, the discovery
 timestamp, and the resolution attempt against the organizational-attribute model via the service-
@@ -132,7 +132,7 @@ agency's organizational chart of record, becomes the source of truth
 for organizational position. Every user, computer, and service account
 receives an the organizational-attribute model extension attribute value following the
 hierarchy depth-eight convention from
-[`the program decision`](../../../src/uiao/canon/adr/adr-062-orgpath-depth-extension.md).
+[`the program decision`](../../../src/fmp/canon/adr/adr-062-orgpath-depth-extension.md).
 Forest A's Operations branch becomes `/Root/AgencyProper/Operations`;
 forest B's becomes `/Root/ComponentOrg/Operations`. The collision is
 resolved at the path level, not at the group level.
@@ -152,15 +152,15 @@ workflow before the next phase begins.
 Mapping translates the X.500 / LDAP governance model encoded in AD
 into the attribute-driven model Entra ID requires. The eight adapter
 interfaces under
-[`src/uiao/modernization/directory-migration/adapters/`](../../../src/uiao/modernization/directory-migration/adapters/)
+[`src/fmp/modernization/directory-migration/adapters/`](../../../src/fmp/modernization/directory-migration/adapters/)
 each carry an explicit contract for one of the AD-adjacent surfaces
 that must be re-governed: IPAM, PKI, RADIUS, LDAP-proxy, sync-engine,
 device-management, NTP, DFS, and the SQL Server workload adapter
 introduced in PR #397
-([`adapters/sql-server/sql-server-adapter-interface.md`](../../../src/uiao/modernization/directory-migration/adapters/sql-server/sql-server-adapter-interface.md)).
+([`adapters/sql-server/sql-server-adapter-interface.md`](../../../src/fmp/modernization/directory-migration/adapters/sql-server/sql-server-adapter-interface.md)).
 Each adapter declares its `class`, `mission-class`, and `gcc-boundary`
 in
-[`migration-adapter-registry.yaml`](../../../src/uiao/modernization/directory-migration/migration-adapter-registry.yaml)
+[`migration-adapter-registry.yaml`](../../../src/fmp/modernization/directory-migration/migration-adapter-registry.yaml)
 and is schema-validated in CI.
 
 For this archetype, the most operationally significant adapters are
@@ -252,7 +252,7 @@ mirror the OrgTree hierarchy; the agency provisions one domain per
 `FabricDomainBoundary`-flagged node, and each Fabric workspace is
 assigned to the domain whose the organizational-attribute model matches the workspace's owning
 segment. The ninety SQL instances are registered into the Purview
-data map under collections keyed on `uiao_orgpath` custom metadata;
+data map under collections keyed on `fmp_orgpath` custom metadata;
 the eighty-five that completed migration cleanly are mirrored into
 OneLake under the matching Fabric Domain workspaces. The remaining
 five — instances whose post-migration drift is still being remediated
@@ -281,7 +281,7 @@ Bundle from the substrate's accumulated artifacts. The bundle includes:
 - The B.1.1 three-way GCC-Moderate compliance-conflict finding
   (`GCC-BOUNDARY-3WAY-001`) with the agency's specific compensating-
   controls catalogue
-- The Purview collection registration state with `uiao_orgpath`
+- The Purview collection registration state with `fmp_orgpath`
   attribution per asset
 - The Fabric Domain assignment state with per-workspace the organizational-attribute model
   attribution

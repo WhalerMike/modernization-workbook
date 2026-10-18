@@ -39,7 +39,7 @@ than being hidden behind a single opaque guess.
 
 ::: {.callout-note title="Need offline the Federal Modernization Program install media?"}
 Download the full CLI kit from Downloads → the Federal Modernization Program CLI Kit:
-[`uiao-cli.zip`]
+[`fmp-cli.zip`]
 includes this script, `FMP.ConfigTools`, and an offline Python installer — no internet needed at install time.
 :::
 
@@ -141,7 +141,7 @@ Set `FMP_OUTPUT` in a profile or CI job to avoid repeating the path across multi
 
 ### FMP.ConfigTools integration
 
-When the `FMP.ConfigTools` shared module (included in `uiao-cli.zip` under
+When the `FMP.ConfigTools` shared module (included in `fmp-cli.zip` under
 `scripts\FMP.ConfigTools\`) is installed, the script uses it for structured
 output and optional transcript logging. If the module is absent, the script
 falls back to plain coloured `Write-Host` output — no hard dependency.
@@ -150,7 +150,7 @@ Install the module:
 
 ```powershell
 $dest = "$env:USERPROFILE\Documents\PowerShell\Modules\FMP.ConfigTools"
-Copy-Item .\uiao-cli\scripts\FMP.ConfigTools $dest -Recurse -Force
+Copy-Item .\fmp-cli\scripts\FMP.ConfigTools $dest -Recurse -Force
 Import-Module FMP.ConfigTools
 ```
 
@@ -434,7 +434,7 @@ sources:
 1. The `$intuneMap` lookup in
    [`tools/discovery/Spec1-D1.3-Get-GPODeviceDependencyMap.ps1`]
    — workstation-side Intune Settings Catalog equivalents.
-2. The Federal Modernization Program modernization registry (`src/uiao/canon/modernization-registry.yaml`)
+2. The Federal Modernization Program modernization registry (`src/fmp/canon/modernization-registry.yaml`)
    — sanctioned change-making adapters.
 3. The published Azure Arc topology for server-side policy delivery:
    Guest Configuration, Azure Policy, Azure Update Manager, Defender

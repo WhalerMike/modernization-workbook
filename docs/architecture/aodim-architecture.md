@@ -28,7 +28,7 @@ Executive Summary
 Modern enterprises using cloud identity platforms face a mismatch between dynamic organizational structures and static access control models. AODIM addresses this by making identity attributes the authoritative driver of access, enabling automated, deterministic, and scalable identity governance.
 
 This document tracks the canonical AODIM specification,
-UIAO_006 — AODIM Architecture (v1.1).
+FMP_006 — AODIM Architecture (v1.1).
 
 Core Principle
 
@@ -72,7 +72,7 @@ Slots `extensionAttribute11`–`14` are reserved for tenant-declared facets
 introduced via governed PR. The native `manager` relationship is consumed
 alongside these facets but is a standard directory attribute, not an
 the organizational-attribute model facet. See the
-the organizational-attribute model Codebook (UIAO_151)
+the organizational-attribute model Codebook (FMP_151)
 for the canonical facet-to-slot map.
 
 Example (per-facet values on one principal):
@@ -103,7 +103,7 @@ Example Rules:
 (attr1 -in ["NCR","EASTUS","WESTUS"])         # All US-region users
 ```
 
-See the Dynamic Group Library (UIAO_152)
+See the Dynamic Group Library (FMP_152)
 for the canonical rule inventory.
 
 Delegation Model
@@ -112,7 +112,7 @@ Delegation Model
 
 
 Administrative Units and scoped roles replace OU-based delegation. AU membership is driven by the same canonical facets, per the
-Delegation Matrix (UIAO_154).
+Delegation Matrix (FMP_154).
 
 Operational Flow
 
@@ -155,14 +155,14 @@ Commands:
 
 ```shell
 # Assign per-facet the organizational-attribute model values from an AD export and report findings
-uiao orgtree assess --from-export ad-users.json --out assignments.json
+fmp orgtree assess --from-export ad-users.json --out assignments.json
 
 # Run one governance pass over a tenant snapshot (dry-run by default):
 # detects per-facet drift and reports the remediation it would apply
-uiao orgtree govern snapshot.json --out report.json
+fmp orgtree govern snapshot.json --out report.json
 ```
 
-`uiao orgtree govern` in its default dry-run mode is the simulation and
+`fmp orgtree govern` in its default dry-run mode is the simulation and
 explanation surface: it recomputes per-facet assignments against the
 codebook and reports the access recalculation a transfer or role change
 would produce, without writing.

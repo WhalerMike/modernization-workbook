@@ -4,9 +4,9 @@ subtitle: "One authorization, many agencies — with signed, self-verifying evid
 doc-type: executive-brief
 status: Active
 canon-source:
-  - "src/uiao/canon/adr/adr-054-single-ato-reciprocity.md"
-  - "src/uiao/canon/specs/single-ato-reciprocity-model.md"
-derived-from: "uiao canon"
+  - "src/fmp/canon/adr/adr-054-single-ato-reciprocity.md"
+  - "src/fmp/canon/specs/single-ato-reciprocity-model.md"
+derived-from: "fmp canon"
 lifecycle: adopted
 tiers_adopted: [1]
 lifecycle_review: 2026-11-22
@@ -14,7 +14,7 @@ lifecycle_review: 2026-11-22
 
 # Reciprocity & Single-ATO Overview — Executive Brief
 
-![Before and after the Federal Modernization Program](../../images/canonical/FMP-FIG-004-before-after-uiao.png){fig-alt="Before: each consuming agency repeats its own authorization. After: one controlling ATO with signed per-agency reciprocity records under a single source of evidence." width="100%"}
+![Before and after the Federal Modernization Program](../../images/canonical/FMP-FIG-004-before-after-fmp.png){fig-alt="Before: each consuming agency repeats its own authorization. After: one controlling ATO with signed per-agency reciprocity records under a single source of evidence." width="100%"}
 
 The Single-ATO Reciprocity Model answers a specific federal problem: when one
 platform (for example, an OPM-operated HRIT service) is consumed by many
@@ -36,10 +36,10 @@ controlling ATO. The Federal Modernization Program ships the full operational su
 
 | Command | What it does |
 |---|---|
-| `uiao reciprocity onboard-agency` | Emits a signed (HMAC-SHA256) reciprocity record for a consuming agency, citing the controlling ATO and its legal basis |
-| `uiao reciprocity list-records` | Enumerates records and computes Active/Expired status against current time |
-| `uiao reciprocity verify` | Verifies a record's HMAC signature |
-| `uiao conmon ato-cadence-check` | Enforces the SSP/reauthorization SLAs (draft ≤30d, final ≤45d, reauth ≥30d before expiry) |
+| `fmp reciprocity onboard-agency` | Emits a signed (HMAC-SHA256) reciprocity record for a consuming agency, citing the controlling ATO and its legal basis |
+| `fmp reciprocity list-records` | Enumerates records and computes Active/Expired status against current time |
+| `fmp reciprocity verify` | Verifies a record's HMAC signature |
+| `fmp conmon ato-cadence-check` | Enforces the SSP/reauthorization SLAs (draft ≤30d, final ≤45d, reauth ≥30d before expiry) |
 
 Each record names the controlling ATO, the consuming agency, the legal basis
 (e.g. FedRAMP Rev 5, OMB M-24-15, FISMA §3554), and the agency's configuration

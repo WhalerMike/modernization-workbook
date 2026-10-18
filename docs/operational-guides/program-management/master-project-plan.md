@@ -44,7 +44,7 @@ The Federal Modernization Program Governance OS --- Capstone Planning Document
 
   **Boundary:**         GCC-Moderate
 
-  **Repository:**       https://github.com/WhalerMike/uiao
+  **Repository:**       https://github.com/WhalerMike/modernization-workbook
 
   **Author:**           Michael --- Canon Steward
 
@@ -237,7 +237,7 @@ All project artifacts are committed to Gitea under the Federal Modernization Pro
 
   M-004    Entra ID OAuth2 configured       W3         Gitea SSO via Entra ID OIDC                            Entra SSO login verified; MFA enforced for all Gitea sessions           Identity Lead
 
-  M-005    the Federal Modernization Program repo mirrored from GitHub   W3         https://github.com/WhalerMike/uiao mirrored to Gitea   All branches, tags, and full commit history verified                    Canon Steward
+  M-005    the Federal Modernization Program repo mirrored from GitHub   W3         https://github.com/example-org/fmp mirrored to Gitea   All branches, tags, and full commit history verified                    Canon Steward
 
   M-006    Governance hooks deployed        W3         Pre-receive, post-receive, update hooks operational    FOUO rejection verified; branch protection enforced                     Canon Steward
 
@@ -269,9 +269,9 @@ M-002 --- IIS + Gitea Operational (Week 2)
   ---------- ------------------------------------------------------------------------------------------------------- ----------- ------------------------------ -----------------------------------------------------------
   T-002.1    Install IIS with URL Rewrite and Application Request Routing (ARR) modules                              2h          M-001                          Git on Windows Server 2025 with IIS Guide §3
 
-  T-002.2    Obtain and bind TLS certificate for git.uiao.local; configure HTTPS binding on port 443                 3h          T-002.1, internal CA or ADCS   Platform Server Build Guide §7
+  T-002.2    Obtain and bind TLS certificate for git.example.internal; configure HTTPS binding on port 443                 3h          T-002.1, internal CA or ADCS   Platform Server Build Guide §7
 
-  T-002.3    Download Gitea binary, install as Windows service, generate app.ini with PostgreSQL backend (DB_TYPE = postgres, pg01.corp.contoso.com, database uiao_gitea)   4h          T-002.1                        Platform Server Build Guide §6
+  T-002.3    Download Gitea binary, install as Windows service, generate app.ini with PostgreSQL backend (DB_TYPE = postgres, pg01.corp.contoso.com, database fmp_gitea)   4h          T-002.1                        Platform Server Build Guide §6
 
   T-002.4    Configure IIS reverse proxy (web.config) routing port 443 → Gitea localhost:3000                        3h          T-002.2, T-002.3               Platform Server Build Guide §8, Git Infrastructure ADR §4
 
@@ -313,7 +313,7 @@ M-005 --- the Federal Modernization Program Repo Mirrored (Week 3)
   ---------- ---------------------------------------------------------------------------------------------- ----------- ------------------------- -----------------------------
   T-005.1    Create the Federal Modernization Program organization in Gitea with team structure (CanonStewards, Contributors, Readers)   1h          M-002                     CLI and Operations Guide §4
 
-  T-005.2    Configure Gitea mirror from https://github.com/WhalerMike/uiao with scheduled sync             2h          T-005.1, outbound HTTPS   CLI and Operations Guide §5
+  T-005.2    Configure Gitea mirror from https://github.com/example-org/fmp with scheduled sync             2h          T-005.1, outbound HTTPS   CLI and Operations Guide §5
 
   T-005.3    Verify all branches, tags, and full commit history are present; validate commit count          1h          T-005.2                   CLI and Operations Guide §5
   -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -351,7 +351,7 @@ M-007 --- Azure Arc Enrollment (Week 3)
 +----------------------------------------------------------------------------------------------------------+
 | **Phase 0 Gate Review --- Go/No-Go Checklist**                                                           |
 |                                                                                                          |
-| > • Gitea web UI accessible at **https://git.uiao.local**                                                |
+| > • Gitea web UI accessible at **https://git.example.internal**                                                |
 | >                                                                                                        |
 | > • AD LDAP and Entra ID OAuth2 authentication both operational and tested                               |
 | >                                                                                                        |
@@ -1833,7 +1833,7 @@ Appendix E --- Glossary
   -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 FMP_013_Master_Project_Plan_v1.0 \| Classification: Controlled \| Boundary: GCC-Moderate\
-Generated 21 April 2026 \| Canon Steward: Michael \| Repository: https://github.com/WhalerMike/uiao\
+Generated 21 April 2026 \| Canon Steward: Michael \| Repository: https://github.com/WhalerMike/modernization-workbook\
 Status: DRAFT --- Pending Canon Steward review and steering committee approval
 
 ---

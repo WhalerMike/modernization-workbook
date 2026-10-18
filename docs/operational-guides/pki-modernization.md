@@ -40,7 +40,7 @@ The Federal Modernization Program PKI Modernization Guide
 
 **Version:** 1.0 \| **Date:** April 21, 2026
 
-**Repository:** https://github.com/WhalerMike/uiao
+**Repository:** https://github.com/WhalerMike/modernization-workbook
 
 **Author:** the Federal Modernization Program Governance Team
 
@@ -1467,12 +1467,12 @@ Follow this checklist in order. Each step includes the verification command or p
 +----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 | **Document Version Control**                                                                                                                                                                                                                             |
 |                                                                                                                                                                                                                                                          |
-| This document is maintained in the Federal Modernization Program Governance OS repository at https://github.com/WhalerMike/uiao. All changes are tracked via Git version control. For questions, corrections, or contributions, submit a pull request or issue to the repository. |
+| This document is maintained in the Federal Modernization Program Governance OS repository at https://github.com/WhalerMike/modernization-workbook. All changes are tracked via Git version control. For questions, corrections, or contributions, submit a pull request or issue to the repository. |
 +----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 
 The Federal Modernization Program PKI Modernization Guide --- Version 1.0 --- April 2026\
 Classification: Controlled --- Boundary: GCC-Moderate\
-The Federal Modernization Program Governance OS --- https://github.com/WhalerMike/uiao
+The Federal Modernization Program Governance OS --- https://github.com/WhalerMike/modernization-workbook
 
 ---
 

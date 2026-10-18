@@ -6,10 +6,10 @@ audience: [Executive, Customer]
 family: executive-governance-series
 series-order: 8
 status: Active
-canon-source: "src/uiao/canon/substrate-manifest.yaml"
+canon-source: "src/fmp/canon/substrate-manifest.yaml"
 canon-reference:
-  - "src/uiao/canon/adr/adr-028-monorepo-consolidation-gos-integration.md"
-  - "src/uiao/canon/adr/adr-032-single-package-consolidation.md"
+  - "src/fmp/canon/adr/adr-028-monorepo-consolidation-gos-integration.md"
+  - "src/fmp/canon/adr/adr-032-single-package-consolidation.md"
 repo-path: docs/customer-documents/executive-governance-series/ch08-governance-at-scale
 created-at: 2026-04-26
 updated-at: 2026-05-10
@@ -43,7 +43,7 @@ properties are structural rather than operational.
 Three substrate properties are deliberately kept small at scale:
 
 1. **Canon.** The canonical document set is small — schemas, ADRs,
-   numbered governance documents under `src/uiao/canon/`. Adding a
+   numbered governance documents under `src/fmp/canon/`. Adding a
    document requires a FMP_NNN allocation and (for doctrinal
    changes) an ADR. The substrate is designed so canon does not
    linearly inflate with the program.
@@ -96,7 +96,7 @@ drift that no individual program could solve:
   ship together. There is no scenario where canon advances and
   runtime lags.
 - **Single import root.** Code reads canon via
-  `importlib.resources.files("uiao.canon")`; no sibling-checkout
+  `importlib.resources.files("fmp.canon")`; no sibling-checkout
   fallbacks, no per-program path manipulation.
 - **One CI surface.** Schema validation, drift detection, adapter
   conformance, and tests all run on the same merge gate. Adding an

@@ -6,7 +6,7 @@ audience: [Customer, Technical, Assessor]
 author: Michael Stratton
 date: "August 2026"
 status: Active
-canon-source: "src/uiao/canon/adapter-registry.yaml#siem"
+canon-source: "src/fmp/canon/adapter-registry.yaml#siem"
 derived-from: "Microsoft Learn product documentation, linked inline per claim."
 repo-path: docs/customer-documents/operational-guides/siem-telemetry-emission/02-azure-platform.qmd
 created-at: 2026-08-27
@@ -94,7 +94,7 @@ The activity log needs the **subscription** subcommand — the plain
 
 ```bash
 az monitor diagnostic-settings subscription create \
-  --name "uiao-activity-log-export" \
+  --name "fmp-activity-log-export" \
   --location "usgovvirginia" \
   --workspace "/subscriptions/${SUBSCRIPTION_ID}/resourceGroups/${RG}/providers/Microsoft.OperationalInsights/workspaces/${WORKSPACE}" \
   --logs '[
@@ -131,7 +131,7 @@ create`, or a subscription-scope ARM/Bicep deployment.
 targetScope = 'subscription'
 
 param workspaceId string
-param settingName string = 'uiao-activity-log-export'
+param settingName string = 'fmp-activity-log-export'
 
 var categories = [
   'Administrative'
@@ -200,7 +200,7 @@ compliance baseline — it survives Microsoft adding a category later:
 
 ```bash
 az monitor diagnostic-settings create \
-  --name "uiao-resource-logs" \
+  --name "fmp-resource-logs" \
   --resource "${RESOURCE_ID}" \
   --workspace "${WORKSPACE_RESOURCE_ID}" \
   --logs '[{"categoryGroup": "allLogs", "enabled": true}]' \

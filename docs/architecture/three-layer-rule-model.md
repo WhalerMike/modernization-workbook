@@ -1,10 +1,10 @@
 ---
 title: "Three-Layer Rule Model"
-subtitle: "How UIAO separates canon, policy, and runtime rule layers"
+subtitle: "How FMP separates canon, policy, and runtime rule layers"
 doc-type: architecture-explainer
 audience: [Customer, Technical]
-canon-source: "src/uiao/rules/"
-derived-from: "uiao canon"
+canon-source: "src/fmp/rules/"
+derived-from: "fmp canon"
 lifecycle: adopted
 tiers_adopted: [1]
 lifecycle_review: 2026-11-22
@@ -12,9 +12,9 @@ lifecycle_review: 2026-11-22
 
 # Three-Layer Rule Model
 
-![Three compliance layers](../../images/canonical/UIAO-FIG-005-three-compliance-layers.png){fig-alt="Layered diagram showing the three policy baselines UIAO evaluates — FedRAMP Moderate Rev 5, CISA SCuBA / [BOD 25-01](https://cyber.dhs.gov/bod/25-01/), and organizational policy — and how they map to the canon / policy / runtime rule layers." width="100%"}
+![Three compliance layers](../../images/canonical/FMP-FIG-005-three-compliance-layers.png){fig-alt="Layered diagram showing the three policy baselines FMP evaluates — FedRAMP Moderate Rev 5, CISA SCuBA / [BOD 25-01](https://cyber.dhs.gov/bod/25-01/), and organizational policy — and how they map to the canon / policy / runtime rule layers." width="100%"}
 
-UIAO separates rule authoring into **three distinct layers** so that policy
+FMP separates rule authoring into **three distinct layers** so that policy
 intent, evaluation logic, and runtime enforcement can be reasoned about,
 versioned, and drift-detected independently. Mixing them — the typical
 "policy-as-config" failure mode — collapses three different change
@@ -27,12 +27,12 @@ risk profile.
 
 | Layer | Lives in | Authoritative for | Change boundary |
 |---|---|---|---|
-| **Canon (rule layer)** | `src/uiao/rules/` | What rules exist and what they mean | Canon-change ADR + governance review |
-| **Policy (mapping layer)** | `src/uiao/canon/<adapter>-registry.yaml`, KSI mappings | Which rules apply to which controls / scopes | Adapter PR + schema validation |
-| **Runtime (enforcement layer)** | Adapter code under `src/uiao/adapters/` and enforcement runtime under `src/uiao/enforcement/` | How rules are evaluated against live state | Code PR + tests |
+| **Canon (rule layer)** | `src/fmp/rules/` | What rules exist and what they mean | Canon-change ADR + governance review |
+| **Policy (mapping layer)** | `src/fmp/canon/<adapter>-registry.yaml`, KSI mappings | Which rules apply to which controls / scopes | Adapter PR + schema validation |
+| **Runtime (enforcement layer)** | Adapter code under `src/fmp/adapters/` and enforcement runtime under `src/fmp/enforcement/` | How rules are evaluated against live state | Code PR + tests |
 
 Each layer has its own change cadence, its own review surface, and its own
-drift class. This is the architectural reason UIAO's drift engine can
+drift class. This is the architectural reason FMP's drift engine can
 distinguish a *meaning* drift (canon layer changed unexpectedly) from a
 *mapping* drift (policy points at a retired rule) from an *enforcement*
 drift (runtime code disagrees with canon).
@@ -40,8 +40,8 @@ drift (runtime code disagrees with canon).
 ## Layer 1 — Canon
 
 The canon layer is the **single source of truth** for rule existence and
-semantics. It lives under `src/uiao/rules/` and is shipped as package data
-inside the installable `uiao` distribution. Canon is read at runtime via
+semantics. It lives under `src/fmp/rules/` and is shipped as package data
+inside the installable `fmp` distribution. Canon is read at runtime via
 `importlib.resources` per the
 Canon Consumer rule — never
 from filesystem paths, never written to.
@@ -63,7 +63,7 @@ scope. It lives in canon-adjacent registries:
 
 - `adapter-registry.yaml` — conformance adapter mappings.
 - `modernization-registry.yaml` — modernization adapter mappings.
-- KSI mapping files under `src/uiao/rules/ksi/` — Key Security Indicator
+- KSI mapping files under `src/fmp/rules/ksi/` — Key Security Indicator
   to canon-rule bindings.
 
 A policy entry says: *"Adapter X (or KSI Y) applies canon rule R within
@@ -82,12 +82,12 @@ process. The schema gates ensure mappings stay consistent.
 The runtime layer is the **evaluation logic** that actually consumes canon
 rules and policy mappings against live state. It lives in two places:
 
-- **Adapter code** under `src/uiao/adapters/<adapter>/` — each adapter
+- **Adapter code** under `src/fmp/adapters/<adapter>/` — each adapter
   implements the conformance contract for its `mission-class` and emits
   drift findings + evidence per the
   [Evidence Chain](evidence-chain.md).
-- **Enforcement runtime** under `src/uiao/enforcement/` — library-only
-  today (UIAO_111). Policies are Python callables; there is no CLI surface
+- **Enforcement runtime** under `src/fmp/enforcement/` — library-only
+  today (FMP_111). Policies are Python callables; there is no CLI surface
   for the enforcement runtime, by design — see
   [`cli-reference.qmd §4.1`](../../docs/cli-reference.qmd).
 
@@ -109,7 +109,7 @@ matters operationally:
 | `DRIFT-AUTHZ` | Runtime — an adapter emitted outside its consent envelope |
 | `DRIFT-IDENTITY` | Runtime — issuer cannot be resolved |
 
-This alignment is why UIAO can attribute a drift finding to a specific
+This alignment is why FMP can attribute a drift finding to a specific
 review surface: `DRIFT-PROVENANCE` findings are policy-layer concerns,
 auto-resolvable in many cases; `DRIFT-SEMANTIC` findings cross from canon
 into runtime and require both governance review and code change.
@@ -117,7 +117,7 @@ into runtime and require both governance review and code change.
 ## Why three layers and not two
 
 A common simplification is to fold "policy" into "canon" — declare
-mappings inside the canon document itself. UIAO rejects this because:
+mappings inside the canon document itself. FMP rejects this because:
 
 1. **Cadence mismatch.** Canon changes require ADRs and governance review.
    Mapping changes do not. Folding mappings into canon either slows mapping

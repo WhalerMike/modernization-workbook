@@ -1,18 +1,18 @@
 ---
 title: "Zero Trust Governance — Whitepaper"
-subtitle: "Implementing CISA Zero Trust maturity through UIAO's governance model"
+subtitle: "Implementing CISA Zero Trust maturity through FMP's governance model"
 doc-type: whitepaper
 author: Michael Stratton
 date: "June 2026"
 audience: [Executive, Customer, Assessor]
 status: Active
-canon-source: "src/uiao/canon/adr/adr-008-zero-trust-identity.md"
+canon-source: "src/fmp/canon/adr/adr-008-zero-trust-identity.md"
 canon-reference:
  - "docs/customer-documents/executive-briefs/zero-trust-overview.qmd"
  - "docs/customer-documents/orgcomp-series/index.qmd"
  - "docs/customer-documents/orgcomp-series/Vol_I_Book_03_the compliance series_Certificates_Tokens_Cryptographic_Identity.qmd"
  - "docs/findings/fedramp-gcc-moderate-cae-realtime-degraded.qmd"
-derived-from: "uiao canon"
+derived-from: "fmp canon"
 created-at: 2026-06-18
 updated-at: 2026-09-16
 version: "1.3"
@@ -23,7 +23,7 @@ lifecycle_review: 2026-11-22
 
 # Zero Trust Governance
 
-## Implementing CISA Zero Trust maturity through UIAO's governance model
+## Implementing CISA Zero Trust maturity through FMP's governance model
 
 ::: {.callout-important}
 ## Problem, solution, ask
@@ -33,7 +33,7 @@ pillar and discover late that they are structurally unable to reach Advanced
 or Optimal, because the substrate the pillars sit on cannot produce
 continuous, canonical, drift-detected, cross-pillar evidence.
 
-**Solution.** UIAO does not replace pillar tooling; it supplies the shared
+**Solution.** FMP does not replace pillar tooling; it supplies the shared
 canonical fabric beneath all five pillars — identity as the root namespace
 (the program decision), a provenance envelope on every claim, the drift taxonomy as
 continuous verification, OSCAL-native evidence, and an explicit
@@ -41,7 +41,7 @@ boundary-impact model for GCC-Moderate.
 
 **Ask.** Four steps this quarter (§8): inventory which pillar evidence is
 reproducible without operator coordination, bring one adapter under the
-canonical taxonomy, run `uiao substrate walk` in CI, and — if the agency
+canonical taxonomy, run `fmp substrate walk` in CI, and — if the agency
 operates in GCC-Moderate — instantiate the boundary impact model so platform
 feature gaps become governed findings.
 :::
@@ -56,7 +56,7 @@ solutions per pillar** and discover, late, that the program is structurally
 unable to reach Advanced or Optimal because the substrate the pillars sit
 on cannot produce continuous, canonical, drift-detected evidence.
 
-UIAO closes that structural gap. This whitepaper explains how the
+FMP closes that structural gap. This whitepaper explains how the
 Governance OS maps onto the five ZTMM
 pillars, why Advanced/Optimal maturity requires a substrate (not just
 better tools), and what an agency can ship today versus what remains
@@ -74,17 +74,17 @@ failure patterns, each grounded in a specific documented incident
 (Storm-0558, the ESXiArgs and ESXi AD-integration CVEs) rather than
 asserted in the abstract — is made in
 [Zero Trust Governance Principles §1](zero-trust-governance-principles.md);
-this paper does not repeat it and instead moves directly to UIAO's
+this paper does not repeat it and instead moves directly to FMP's
 contribution.
 
-![ZTMM five-pillar bridge diagram](images/zero-trust-governance-whitepaper-image-01-ztmm-five-pillar-bridge-diagram.png){#fig-zero-trust-governance-whitepaper-image-01 fig-alt="Left side shows the five CISA Zero Trust pillars as vertical columns: Identity, Devices, Networks, Applications & Workloads, Data — each carrying its tool-stack icon. Right side shows the same five pillars but each one is labeled with one canonical UIAO contribution (Identity-as-root namespace, Provenance envelope per device, Identity-derived addressing, Adapter taxonomy, Deterministic evidence chain). A horizontal teal bar labeled \"UIAO Substrate (canon, drift engine, evidence chain)\" runs across all five columns at the base, connecting them as a shared canonical fabric. Clean engineering blueprint style, dark navy (#0D1B2E) and teal (#1E8C8C) on white background. No photographs, purely diagrammatic." width="100%"}
+![ZTMM five-pillar bridge diagram](images/zero-trust-governance-whitepaper-image-01-ztmm-five-pillar-bridge-diagram.png){#fig-zero-trust-governance-whitepaper-image-01 fig-alt="Left side shows the five CISA Zero Trust pillars as vertical columns: Identity, Devices, Networks, Applications & Workloads, Data — each carrying its tool-stack icon. Right side shows the same five pillars but each one is labeled with one canonical FMP contribution (Identity-as-root namespace, Provenance envelope per device, Identity-derived addressing, Adapter taxonomy, Deterministic evidence chain). A horizontal teal bar labeled \"FMP Substrate (canon, drift engine, evidence chain)\" runs across all five columns at the base, connecting them as a shared canonical fabric. Clean engineering blueprint style, dark navy (#0D1B2E) and teal (#1E8C8C) on white background. No photographs, purely diagrammatic." width="100%"}
 
 ### 2. The substrate's contribution to each pillar
 
-UIAO does not replace per-pillar tooling. It provides the **shared
+FMP does not replace per-pillar tooling. It provides the **shared
 canonical fabric** that ties pillars together. Per-pillar contribution:
 
-| ZTMM pillar | UIAO contribution | Canon anchor |
+| ZTMM pillar | FMP contribution | Canon anchor |
 |---|---|---|
 | **Identity** | Identity-plane SSOT; identity-as-root-namespace per the program decision | `adr-008-zero-trust-identity.md` |
 | **Devices** | Device claims normalized into the provenance envelope; drift findings per device | `15_ProvenanceProfile.qmd` |
@@ -104,7 +104,7 @@ authenticates through Entra ID. Per the program decision, the integration's devi
 workload objects do not get a separate identity system stood up for the
 integration — device claims and workload access decisions key off the
 same Entra object ID the identity plane already governs. A control like
-`KSI-IA-02` (phishing-resistant MFA, `src/uiao/rules/ksi/iam/` — a UIAO-internal
+`KSI-IA-02` (phishing-resistant MFA, `src/fmp/rules/ksi/iam/` — an FMP-internal
 rule id named after NIST IA-2, not the FedRAMP 20x indicator, which is
 `KSI-IAM-APM`) and the
 integration's own access decision resolve against that one identity
@@ -137,7 +137,7 @@ different artifact type that needs its own tooling.
 
 ### 3. Identity as the root namespace (the program decision)
 
-CISA's identity pillar treats identity as one of five concerns. UIAO's
+CISA's identity pillar treats identity as one of five concerns. FMP's
 canon takes a stronger position, declared in
 the program decision:
 **identity is the root namespace.** (Operationally this is the
@@ -155,7 +155,7 @@ Operationally:
 - A workload's access decision consumes identity claims as authoritative
  input rather than as one signal among many.
 
-This is the architectural reason UIAO can scale Zero Trust beyond Initial
+This is the architectural reason FMP can scale Zero Trust beyond Initial
 maturity: the cross-pillar correlation problem reduces to *resolving
 identity*, which the canon and the identity plane already do
 authoritatively.
@@ -171,17 +171,17 @@ which is exactly why the identity plane itself still needs the
 operational hardening (continuous re-evaluation, short token lifetimes,
 hardware-bound credentials) that principle describes.
 
-![Identity-as-root-namespace tree diagram](images/zero-trust-governance-whitepaper-image-02-identity-as-root-namespace-tree.png){#fig-zero-trust-governance-whitepaper-image-02 fig-alt="A central labeled \"Identity Plane\" root node sits at the top of a hierarchy. Four downward branches connect to dependent planes — Devices, Addressing, Networks, Workloads — each labeled with the property it derives from identity (e.g. \"device claims carry issuer_identity\", \"addresses are computed from identity context\", \"access decisions consume identity claims authoritatively\"). A small panel on the right shows the alternative \"parallel naming\" model with five disconnected silos and a red strikethrough indicating UIAO rejects this model. Clean engineering blueprint style, dark navy (#0D1B2E) and teal (#1E8C8C) on white background, with red (#C74040) reserved for the rejected pattern. No photographs, purely diagrammatic." width="100%"}
+![Identity-as-root-namespace tree diagram](images/zero-trust-governance-whitepaper-image-02-identity-as-root-namespace-tree.png){#fig-zero-trust-governance-whitepaper-image-02 fig-alt="A central labeled \"Identity Plane\" root node sits at the top of a hierarchy. Four downward branches connect to dependent planes — Devices, Addressing, Networks, Workloads — each labeled with the property it derives from identity (e.g. \"device claims carry issuer_identity\", \"addresses are computed from identity context\", \"access decisions consume identity claims authoritatively\"). A small panel on the right shows the alternative \"parallel naming\" model with five disconnected silos and a red strikethrough indicating FMP rejects this model. Clean engineering blueprint style, dark navy (#0D1B2E) and teal (#1E8C8C) on white background, with red (#C74040) reserved for the rejected pattern. No photographs, purely diagrammatic." width="100%"}
 
 ### 4. Continuous verification through drift
 
-CISA's Optimal column requires continuous verification. UIAO's drift
+CISA's Optimal column requires continuous verification. FMP's drift
 engine is what makes that operationally tractable. The six drift classes
 map onto Zero Trust concerns directly:
 
 | Drift class | Zero Trust concern |
 |---|---|
-| `DRIFT-IDENTITY` | Identity assertion no longer resolves — a P1 finding routed for governed remediation; the provider's own enforcement plane denies access, with UIAO as the governing record (the program decision) |
+| `DRIFT-IDENTITY` | Identity assertion no longer resolves — a P1 finding routed for governed remediation; the provider's own enforcement plane denies access, with FMP as the governing record (the program decision) |
 | `DRIFT-AUTHZ` | Action emitted outside the consent envelope — alerts, and suspends autonomous remediation under `halt_on_critical`; enforcement stays with the provider data plane (the program decision) |
 | `DRIFT-PROVENANCE` | Claim chain broken — pillar evidence is no longer trustworthy |
 | `DRIFT-SCHEMA` | Structural mismatch between declared and observed pillar state |
@@ -204,7 +204,7 @@ Advanced and Optimal maturity require evidence that is:
 3. **Reproducible** — re-executable by an assessor without operator
  coordination.
 
-UIAO's evidence chain delivers (2) and (3) today. Cross-pillar evidence
+FMP's evidence chain delivers (2) and (3) today. Cross-pillar evidence
 is structural: every claim carries the full provenance envelope, so the
 evidence bundle inherently spans pillars. Reproducibility is structural
 per the program decision: same canon, same inputs → byte-identical bundle.
@@ -226,7 +226,7 @@ ARC Server Monitoring). See the
 and the
 GCC-Moderate Boundary Problem Statement.
 
-UIAO addresses the boundary structurally rather than waiting for platform
+FMP addresses the boundary structurally rather than waiting for platform
 fixes:
 
 1. **Boundary probe** confirms which features actually function on each
@@ -258,12 +258,12 @@ new regimes.
 
 ### 7. Pillar-by-pillar maturity outlook
 
-| Pillar | UIAO-anchored substrate posture |
+| Pillar | FMP-anchored substrate posture |
 |---|---|
 | **Identity** | Identity-as-root-namespace per the program decision ships today; identity-plane SSOT enforced via schema gates |
 | **Devices** | Device claims via provenance envelope ships; cross-pillar correlation ships; per-device runtime drift is TARGET |
 | **Networks** | Addressing plane SSOT ships; identity-derived addressing is canonical and partially shipped |
-| **Applications & Workloads** | Adapter taxonomy + KSI mapping ships; workload-side enforcement runtime is library-only (UIAO_111) |
+| **Applications & Workloads** | Adapter taxonomy + KSI mapping ships; workload-side enforcement runtime is library-only (FMP_111) |
 | **Data** | Provenance envelope ships; deterministic evidence chain ships; continuous event-time capture is TARGET |
 
 For each pillar the substrate's *structural floor* is in place; the gap
@@ -282,7 +282,7 @@ Concrete adoption posture, ordered:
  highest-leverage tool in any pillar; declare it in the modernization
  or conformance registry; emit its findings into OSCAL alongside the
  existing attestation evidence.
-3. **Run `uiao substrate walk` in CI.** Schema and provenance drift
+3. **Run `fmp substrate walk` in CI.** Schema and provenance drift
  findings are immediate; remediating them is the cheapest possible
  lift toward Advanced maturity.
 4. **Model the boundary explicitly.** If the agency operates in
@@ -296,7 +296,7 @@ that compounds.
 ### 9. Honest limits
 
 - ZTMM Optimal requires continuous, automated, cross-pillar policy
- evaluation. UIAO ships the substrate that makes this tractable; it
+ evaluation. FMP ships the substrate that makes this tractable; it
  does not ship every per-pillar runtime today.
 - Identity, authorization, and semantic drift are detected at runtime
  only by adapters that have implemented the runtime conformance
@@ -314,14 +314,14 @@ that compounds.
 
 ### 10. Conclusion
 
-CISA's ZTMM is a destination model. UIAO's contribution is the substrate
+CISA's ZTMM is a destination model. FMP's contribution is the substrate
 that makes the destination structurally reachable: SSOT for cross-pillar
 truth, drift taxonomy for continuous verification, provenance envelope
 for reproducible evidence, and boundary impact modeling for the federal
 constraints (GCC-Moderate especially) that no per-pillar tool can
 address alone.
 
-Agencies adopting UIAO are not buying a Zero Trust product. They are
+Agencies adopting FMP are not buying a Zero Trust product. They are
 adopting the operating system that makes their existing pillar tooling
 produce ZT-grade evidence — and the architectural foundation for every
 runtime extension that follows.

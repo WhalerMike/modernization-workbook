@@ -95,7 +95,7 @@ also the AD LDAPS-aware auth landing point for Gitea's
 `source-config` lookups.
 
 This is the architecture endorsed by **the program decision (the Federal Modernization Program Git Infrastructure)**
-in `src/uiao/canon/adr/adr-041-uiao-git-infrastructure.md` — Gitea behind
+in `src/fmp/canon/adr/adr-041-fmp-git-infrastructure.md` — Gitea behind
 IIS reverse proxy. Option A (IIS + `git-http-backend` alone) was evaluated
 and rejected on auth integration + operational complexity grounds; the
 rejected variant is retained for lab use in
@@ -243,7 +243,7 @@ Boundaries matter as much as capabilities:
 
 Pointers to the latest additions on both sides of the project:
 
-**New on GitHub** (whalermike/uiao)
+**New on GitHub** (whalermike/fmp)
 
 - CHANGELOG.md — every release, every breaking change, every notable canon update.
 - RELEASE_NOTES.md — narrative release notes (the "why" behind each version).
@@ -251,7 +251,7 @@ Pointers to the latest additions on both sides of the project:
 - Recent commits — day-to-day activity on `main`.
 - Pull requests — in-flight work and recently merged changes.
 
-**New on this site** (whalermike.github.io/uiao)
+**New on this site** (whalermike.github.io/fmp)
 
 - Site index — top-level landing page; the "what's new" callouts surface here first.
 - Modernization canon — FMP_151–FMP_176 governance specs; new IDs land here.

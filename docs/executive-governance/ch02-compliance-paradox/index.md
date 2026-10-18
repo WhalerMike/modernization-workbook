@@ -6,7 +6,7 @@ audience: [Executive, Customer]
 family: executive-governance-series
 series-order: 2
 status: Active
-canon-source: "src/uiao/canon/adr/adr-006-evidence-determinism.md"
+canon-source: "src/fmp/canon/adr/adr-006-evidence-determinism.md"
 canon-reference:
   - "docs/customer-documents/executive-governance-series/governance-os-canonical-suite.qmd"
 repo-path: docs/customer-documents/executive-governance-series/ch02-compliance-paradox

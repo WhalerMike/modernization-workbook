@@ -7,7 +7,7 @@ audience: [Technical, Customer]
 family: sql-server-implementation
 series-order: 09
 status: active
-canon-source: "src/uiao/canon/the directory modernization program"
+canon-source: "src/fmp/canon/the directory modernization program"
 lifecycle: active
 tiers_adopted: []
 lifecycle_review: 2027-01-01

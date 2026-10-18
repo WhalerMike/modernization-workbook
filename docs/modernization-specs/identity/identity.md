@@ -3,12 +3,12 @@ title: "Identity Modernization Spec"
 subtitle: "Identity plane governance and migration specification"
 doc-type: modernization-spec
 audience: [Customer, Architect, Assessor]
-canon-source: "src/uiao/canon/modernization-registry.yaml"
+canon-source: "src/fmp/canon/modernization-registry.yaml"
 canon-reference:
-  - "src/uiao/canon/adr/adr-008-zero-trust-identity.md"
+  - "src/fmp/canon/adr/adr-008-zero-trust-identity.md"
   - "docs/customer-documents/architecture-series/aodim-architecture.qmd"
   - "docs/customer-documents/whitepapers/modernization-governance-whitepaper.qmd"
-derived-from: "uiao canon"
+derived-from: "fmp canon"
 lifecycle: adopted
 tiers_adopted: [1]
 lifecycle_review: 2026-11-22
@@ -70,7 +70,7 @@ attributes. Identity adapters emit canonical claims in this shape:
 
 ```yaml
 provenance:
-  claim_id: "urn:uiao:claim:identity:{attribute_kind}:{uuid}"
+  claim_id: "urn:fmp:claim:identity:{attribute_kind}:{uuid}"
   issuer_identity: "{entra_object_id | agency_issuer_id}"
   source_classification: "authoritative | derived | synthesized"
   ...
@@ -89,7 +89,7 @@ declared in canon.
 
 The identity domain maps onto NIST 800-53 IA / AC families and onto
 CISA ZTMM Identity pillar. KSI rules under
-`src/uiao/rules/ksi/iam/` declare the bindings. Each adapter
+`src/fmp/rules/ksi/iam/` declare the bindings. Each adapter
 declaration in `modernization-registry.yaml` references the KSI rules
 it satisfies.
 

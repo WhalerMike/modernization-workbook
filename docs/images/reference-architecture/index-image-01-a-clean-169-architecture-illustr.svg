@@ -80,7 +80,7 @@
   <text x="1020" y="524" text-anchor="middle" font-size="16" font-weight="bold" fill="#1E8C8C">All read OrgPath facets</text>
 
   <!-- ===== CENTER: three parallel transition arrows ===== -->
-  <text x="640" y="286" text-anchor="middle" font-size="14" font-weight="bold" fill="#1E3A66">Identity Modernization (UIAO_xxx)</text>
+  <text x="640" y="286" text-anchor="middle" font-size="14" font-weight="bold" fill="#1E3A66">Identity Modernization (FMP_xxx)</text>
   <line x1="492" y1="302" x2="792" y2="302" stroke="#1E3A66" stroke-width="3" marker-end="url(#navyArrow)"/>
 
   <text x="640" y="392" text-anchor="middle" font-size="18" font-weight="bold" fill="#1E8C8C">OrgPath governance preserved</text>

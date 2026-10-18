@@ -29,7 +29,7 @@ about the papers' own content and status, not a canon claim.
 The section splits into two genres:
 
 - **Policy/architecture papers** — Executive Summary → numbered
- sections → Honest Limits → Conclusion. These state UIAO's governance
+ sections → Honest Limits → Conclusion. These state FMP's governance
  doctrine and map it onto a compliance framework (ZTMM, BOD-25-01,
  FedRAMP).
 - **Narrative papers** — an "In this whitepaper" overview → Act/Part
@@ -47,7 +47,7 @@ yours to act on.
 
 Three papers — [`ad-to-entraid-migration-problem`](ad-to-entraid-migration-problem.qmd),
 [`aodim-executive-whitepaper`](aodim-executive-whitepaper.qmd), and
-[`uiao-vs-native-tools`](uiao-vs-native-tools.qmd) — predate both
+[`fmp-vs-native-tools`](fmp-vs-native-tools.qmd) — predate both
 genres: they're docx imports from before the canon-anchoring convention
 existed. They carry real content (the original business case for the
 whole program) but are the corpus's least structurally current papers;
@@ -72,11 +72,11 @@ cross-listed, not a mistake.
 
 ### Track 1 — Governance Foundations
 
-Start here for "what is UIAO."
+Start here for "what is FMP."
 
 | Paper | Status | Role |
 |---|---|---|
-| UIAO Governance OS | Active | **Flagship.** Defines the substrate, the three operating principles, the evidence chain. Everything downstream assumes this. |
+| FMP Governance OS | Active | **Flagship.** Defines the substrate, the three operating principles, the evidence chain. Everything downstream assumes this. |
 | [Zero Trust Governance](zero-trust-governance-whitepaper.md) | Active | Maps the substrate onto CISA's five ZTMM pillars, pillar by pillar. |
 | [Zero Trust Governance Principles](zero-trust-governance-principles.md) | Active | Broader and newer than the paper above — whole-agency (Network+CSP+VMware) scope, cross-cutting capabilities, the "why programs stall below Advanced" argument. Read *after* the pillar-mapping paper, not instead of it. |
 | [Zero Trust Requires Whole-Agency Scope](zero-trust-whole-agency-unification.md) | Active | Companion to the paper above — the whole-agency unification argument and SCuBA/ZTA worked example, split out 2026-08-03 so the parent paper's core argument stays finishable in one sitting. Read immediately after it, not standalone. |
@@ -91,10 +91,10 @@ The AD → Entra ID arc.
 | [AD-to-Entra ID Structural Migration Problem](ad-to-entraid-migration-problem.md) | Active *(pre-canon import)* | Original statement of the structural migration problem — read for the business case. |
 | [The Session vs. Telemetry Divide](session-vs-telemetry-identity.md) | Active | The architectural-tension argument split out of the paper above 2026-08-03 — strong enough to stand alone, was diluting the parent's focus. Read right after it. |
 | [AODIM Executive Whitepaper](aodim-executive-whitepaper.md) | Active *(pre-canon import)* | The attribute-oriented directory/identity model — oldest architectural core of the program. |
-| [Modernization Journey](modernization-journey.md) | Draft | The mainframe→cloud arc end to end. **The argument is vendor-neutral and product-neutral** — written to hand to an audience that isn't evaluating a platform — and a separable [closing appendix](modernization-journey.md#appendix-narrative-provenance-this-arc-mapped-to-uiao-canon) maps Act 4 to the ADRs behind it. Cross-listed as the flagship of Track 4. |
+| [Modernization Journey](modernization-journey.md) | Draft | The mainframe→cloud arc end to end. **The argument is vendor-neutral and product-neutral** — written to hand to an audience that isn't evaluating a platform — and a separable [closing appendix](modernization-journey.md#appendix-narrative-provenance-this-arc-mapped-to-fmp-canon) maps Act 4 to the ADRs behind it. Cross-listed as the flagship of Track 4. |
 | [Flipping 50,000 Devices to Hybrid Join](hybrid-join-without-governance.md) | Draft | One concrete operation *inside* the arc above — governed vs. ungoverned hybrid join. Read after *Modernization Journey*; it assumes that paper's control-plane/data-plane framing. |
 | [Federal SSOT Alignment](federal-ssot-alignment.md) | Active | Same identity-modernization event, read through the data-governance/SSOT-mandate lens instead of the architecture lens. |
-| UIAO vs. Native Tools | Active *(pre-canon import)* | AD assessment methodology and gap analysis against Microsoft-native tooling — also anchors Track 6. |
+| FMP vs. Native Tools | Active *(pre-canon import)* | AD assessment methodology and gap analysis against Microsoft-native tooling — also anchors Track 6. |
 
 ### Track 3 — Zero Trust Assessment & Compliance Closure
 
@@ -103,7 +103,7 @@ BOD-25-01 and CISA SCuBA.
 | Paper | Status | Role |
 |---|---|---|
 | [Assessment Tools vs. Closing BOD-25-01 Findings](bod-25-01-close-before-assess.md) | Active | The sequencing argument — remediate before you assess — that the rest of this track assumes. Read first in this track. |
-| [ScubaGear Integration](scubagear-integration-whitepaper.md) | Active | How CISA's ScubaGear assessor output feeds UIAO's evidence pipeline. |
+| [ScubaGear Integration](scubagear-integration-whitepaper.md) | Active | How CISA's ScubaGear assessor output feeds FMP's evidence pipeline. |
 | [ZTA and SCuBA — How They Relate](zta-scuba-relationship.md) | Active | Disambiguates Microsoft's Zero Trust Assessment from CISA SCuBA — read when a stakeholder asks "aren't these the same tool?" |
 | [Ticket-to-Machine, Not Ticket-to-Human](ticket-to-machine-not-ticket-to-human.md) | Draft | Closure-evidence argument across Azure/AWS/VMware + ServiceNow/SailPoint — the "how do we know a finding is actually closed" question this track builds toward. |
 | [Ticket-to-Machine Appendices](ticket-to-machine-appendices.md) | Active | Code review, access-governance extension, PKI exception, and vendor landscape — split out of the paper above 2026-08-03 so its core argument stays the single-paper read its frontmatter promises. Reference only; skip unless you need that level of detail. |
@@ -117,7 +117,7 @@ BOD-25-01 and CISA SCuBA.
 | [Next Generation DNS](infoblox-hybrid-dns-unified-ddi.md) | Draft | The DNS layer underneath the same Act 4 architecture — split-brain DNS, Universal DDI, Cisco SD-WAN interception. Sibling to the SD-WAN paper, not sequential to it. |
 | [DNS Record Types and Universal DDI Ecosystem Integrations](infoblox-dns-reference.md) | Draft | The record-type catalog and ecosystem-integration table split out of the paper above 2026-08-03 — bookmarkable reference, not meant to be read start to finish. |
 | [Field Office WAN Transformation and Distribution Point Consolidation](field-office-wan-transformation-dp-consolidation.md) | Draft | A worked capital-planning case built on the SD-WAN and TIC 3.0 arguments above, plus new content neither covers: Configuration Manager distribution-point unit economics against a proposed hardware refresh. Read after the SD-WAN paper; assumes its transport argument and the DNS paper's INR/GCC finding rather than re-deriving either. |
-| [UIAO Git Server Interfaces](git-server-interfaces-whitepaper.md) | Draft | Platform deployment surface (Windows Server 2025) — narrower scope, useful once an agency has committed to a UIAO deployment rather than during the architecture-decision phase the rest of this track addresses. |
+| [FMP Git Server Interfaces](git-server-interfaces-whitepaper.md) | Draft | Platform deployment surface (Windows Server 2025) — narrower scope, useful once an agency has committed to an FMP deployment rather than during the architecture-decision phase the rest of this track addresses. |
 
 ::: {.callout-note}
 ## One arc, one paper — consolidated 2026-09-09
@@ -128,7 +128,7 @@ canon-anchored one. Handing the wrong one to an audience was the single most
 common mis-sequencing risk in this corpus, so they were merged into
 *Modernization Journey*, which keeps the vendor-neutral voice. The canon trail
 the other edition carried survives as that paper's
-[closing appendix](modernization-journey.md#appendix-narrative-provenance-this-arc-mapped-to-uiao-canon),
+[closing appendix](modernization-journey.md#appendix-narrative-provenance-this-arc-mapped-to-fmp-canon),
 placed after the Call to Action so the argument still reads end to end without
 it — and so it can be dropped when the paper is handed outward. the compliance series Vol I
 Book 05 tells the same arc in federal control-closure terms and names no
@@ -148,9 +148,9 @@ provenance lives.
 
 | Paper | Status | Role |
 |---|---|---|
-| UIAO vs. Native Tools | Active *(pre-canon import)* | Cross-listed from Track 2 — the build-vs-buy / gap-analysis anchor for this track. |
+| FMP vs. Native Tools | Active *(pre-canon import)* | Cross-listed from Track 2 — the build-vs-buy / gap-analysis anchor for this track. |
 | the organizational-attribute model Composability Matrix | Active | "Choose your partners" — which the organizational-attribute model capability packs and identity/storage targets combine, à la carte. Read before either comparison paper below if the reader needs the composability model first. |
-| Snowflake Key-Pair Conversion — the UIAO and the organizational-attribute model Reading | Draft | Illustrative-only architecture comparison (explicitly not an authorization to build) — a worked example of how the organizational-attribute model *would* apply to a platform UIAO doesn't govern today. |
+| Snowflake Key-Pair Conversion — the FMP and the organizational-attribute model Reading | Draft | Illustrative-only architecture comparison (explicitly not an authorization to build) — a worked example of how the organizational-attribute model *would* apply to a platform FMP doesn't govern today. |
 
 ## Recommended reading paths
 
@@ -159,7 +159,7 @@ alphabetical file list.
 
 **A federal CIO/CISO with 30 minutes (first exposure)**
 
-1. UIAO Governance OS — what the substrate is and why "operating system," not "framework."
+1. FMP Governance OS — what the substrate is and why "operating system," not "framework."
 2. [Modernization Journey](modernization-journey.md) — the compliance-deadline argument (FedRAMP 20x) and its Call to Action, written to be handed off without modification.
 
 **An assessor validating BOD-25-01 / ZTMM claims**
@@ -174,7 +174,7 @@ alphabetical file list.
 
 1. [Modernization Journey](modernization-journey.md) — the full arc and the physics argument.
 2. [SD-WAN vs. DIA Under TIC 3.0](tic3-sdwan-vs-dia.md) and [Next Generation DNS](infoblox-hybrid-dns-unified-ddi.md) — read in either order; both sit under Act 4 independently.
-3. [UIAO Git Server Interfaces](git-server-interfaces-whitepaper.md) — once a UIAO deployment is actually being planned.
+3. [FMP Git Server Interfaces](git-server-interfaces-whitepaper.md) — once an FMP deployment is actually being planned.
 
 **An identity/directory team running an AD → Entra ID modernization**
 
@@ -183,11 +183,11 @@ alphabetical file list.
 3. [Flipping 50,000 Devices to Hybrid Join](hybrid-join-without-governance.md) — the first concrete operation to execute inside that arc.
 4. [Federal SSOT Alignment](federal-ssot-alignment.md) — the data-governance-mandate framing of the same event.
 
-**Someone evaluating UIAO against Microsoft-native tools or a build-vs-buy decision**
+**Someone evaluating FMP against Microsoft-native tools or a build-vs-buy decision**
 
-1. UIAO vs. Native Tools — the gap analysis.
+1. FMP vs. Native Tools — the gap analysis.
 2. the organizational-attribute model Composability Matrix — what's actually à la carte, so "build vs. buy" isn't a false binary.
-3. Snowflake Key-Pair Conversion — the UIAO and the organizational-attribute model Reading — a worked example on a platform outside today's boundary, useful for gauging how far the model generalizes.
+3. Snowflake Key-Pair Conversion — the FMP and the organizational-attribute model Reading — a worked example on a platform outside today's boundary, useful for gauging how far the model generalizes.
 
 **Reading the whole corpus, start to finish**
 

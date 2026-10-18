@@ -8,7 +8,7 @@ leaf: G.6
 status: scaffold
 date: 2026-05-07
 aspirational: true
-canon-source: "src/uiao/modernization/directory-migration/adapters/radius/radius-adapter-interface.md"
+canon-source: "src/fmp/modernization/directory-migration/adapters/radius/radius-adapter-interface.md"
 repo-path: docs/customer-documents/operational-guides/network-transformation/radius-802-1x-modernization.qmd
 lifecycle: adopted
 tiers_adopted: [1]

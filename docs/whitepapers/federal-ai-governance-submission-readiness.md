@@ -6,7 +6,7 @@ audience: [Executive, Customer]
 author: Michael Stratton
 date: "June 2026"
 status: Active
-canon-source: "src/uiao/canon/adr/adr-112-federal-ai-usecase-governance.md"
+canon-source: "src/fmp/canon/adr/adr-112-federal-ai-usecase-governance.md"
 repo-path: docs/customer-documents/whitepapers/federal-ai-governance-submission-readiness.qmd
 created-at: 2026-06-19
 updated-at: 2026-09-16
@@ -27,9 +27,9 @@ lifecycle_review: 2026-12-19
 
 **Problem.** Every M-25-21 deadline has passed — the seven §4(b) practices,
 the annual use-case inventory, the compliance plans, the Chief AI Officer —
-and an earlier revision of this brief built UIAO's differentiator on an
+and an earlier revision of this brief built FMP's differentiator on an
 AI-specific ATO the memo never created. Today's demonstrable surface is
-Microsoft/Entra plus read-only assessment plus drift, and UIAO carries no
+Microsoft/Entra plus read-only assessment plus drift, and FMP carries no
 platform-level FedRAMP authorization of its own.
 
 **Solution.** Reframe M-25-21 obligations as IAM obligations, with agentic AI
@@ -40,14 +40,14 @@ coverage ledger the evaluator can check.
 
 **Ask.** The three moves in this brief, none of which needs new doctrine: demo
 the deployed core and stage the rest honestly; state the ATO-inheritance
-posture up front (UIAO runs inside the customer's boundary; SailPoint NERM
+posture up front (FMP runs inside the customer's boundary; SailPoint NERM
 carries its own FedRAMP Moderate ATO); and activate one non-Microsoft target —
 Keycloak — end to end before submission.
 :::
 
 ## Purpose
 
-A candid read on how UIAO competes if submitted against a federal AI-governance
+A candid read on how FMP competes if submitted against a federal AI-governance
 solicitation, grounded in what is actually in the repository today — not the
 roadmap. It pairs the M-25-21 requirement coverage with an honesty ledger of
 deployed vs. proposed, names the gaps a federal evaluator will find, and lists
@@ -95,7 +95,7 @@ but it is an **external ATO enumeration source**: an inventoried deployed system
 with `have_ato = No` is a drift finding against the agency's own authorization
 policy, and one with a `system_name_ato` absent from the known ATO registry is a
 reciprocity-lookup candidate (the program decision). That claim is defensible because it
-describes what UIAO does, not what the memo requires.
+describes what FMP does, not what the memo requires.
 
 The stronger claim is one the invented gate was obscuring. **The inventory's six
 `hi_*` fields cannot evidence all seven §4(b) practices** — human training and
@@ -105,21 +105,21 @@ that gap, and saying which practices need evidence from outside the inventory,
 is a more credible differentiator than claiming to satisfy a gate that does not
 exist.
 
-![M-25-21 coverage ledger — deployed versus proposed](../images/whitepapers/federal-ai-governance-submission-readiness-diagram-01-m2521-coverage-ledger.svg){#fig-federal-ai-diagram-01 fig-alt="Nine-row status ledger titled M-25-21 Coverage Ledger — Deployed vs. Proposed, columns Requirement/Capability, UIAO Mechanism, State. Four teal Active rows above a red dashed \"deployed core above this line\" divider: owner anchor / the organizational-attribute model placement (Active, Microsoft), drift detection via the six-phase drift engine (Active), provenance-anchored evidence (Active), and SaaS deployment — Azure Container Apps the program decision with AWS CDK the program decision (Active Azure / IaC landed AWS). Below the divider, grey rows: AI system as governed identity record — AISystemRecord UIAO_196 with the ai_inventory L1 scanner (Scanner built, the program decision Proposed); ATO enumeration and reciprocity reconciliation (Active / Proposed); multi-cloud / non-MS IdP storage via binding profiles (Proposed / Profile-only); agentic-AI P1 finding (Proposed); and an ice-blue Reserved row for the SailPoint NERM non-employee branch. Bottom evaluator note: demo surface today is Microsoft/Entra plus drift plus evidence; SailPoint and GCP/VMware bindings are roadmap; the AI scanner is built and awaits the program decision activation. White background, navy/teal/ice palette." width="100%"}
+![M-25-21 coverage ledger — deployed versus proposed](../images/whitepapers/federal-ai-governance-submission-readiness-diagram-01-m2521-coverage-ledger.svg){#fig-federal-ai-diagram-01 fig-alt="Nine-row status ledger titled M-25-21 Coverage Ledger — Deployed vs. Proposed, columns Requirement/Capability, FMP Mechanism, State. Four teal Active rows above a red dashed \"deployed core above this line\" divider: owner anchor / the organizational-attribute model placement (Active, Microsoft), drift detection via the six-phase drift engine (Active), provenance-anchored evidence (Active), and SaaS deployment — Azure Container Apps the program decision with AWS CDK the program decision (Active Azure / IaC landed AWS). Below the divider, grey rows: AI system as governed identity record — AISystemRecord FMP_196 with the ai_inventory L1 scanner (Scanner built, the program decision Proposed); ATO enumeration and reciprocity reconciliation (Active / Proposed); multi-cloud / non-MS IdP storage via binding profiles (Proposed / Profile-only); agentic-AI P1 finding (Proposed); and an ice-blue Reserved row for the SailPoint NERM non-employee branch. Bottom evaluator note: demo surface today is Microsoft/Entra plus drift plus evidence; SailPoint and GCP/VMware bindings are roadmap; the AI scanner is built and awaits the program decision activation. White background, navy/teal/ice palette." width="100%"}
 
 ## Coverage ledger — deployed vs. proposed
 
-| Requirement / capability | UIAO mechanism | State | Caveat |
+| Requirement / capability | FMP mechanism | State | Caveat |
 |---|---|---|---|
-| AI system as governed identity record | AISystemRecord (UIAO_196) | Spec drafted (Spec4-AI-D1.1); L1 scanner implemented (`src/uiao/governance/ai_inventory/`); the program decision still Proposed | Scanner is built but has nothing to gate yet — the program decision activation is the remaining step |
+| AI system as governed identity record | AISystemRecord (FMP_196) | Spec drafted (Spec4-AI-D1.1); L1 scanner implemented (`src/fmp/governance/ai_inventory/`); the program decision still Proposed | Scanner is built but has nothing to gate yet — the program decision activation is the remaining step |
 | ATO enumeration + reciprocity reconciliation | ATO registry + reciprocity (the program decision), reading the inventory's `have_ato` / `system_name_ato` | Active (reciprocity) / Proposed (AI reconciliation) | Reciprocity is live in production; the AI-inventory reconciliation on top of it is not yet wired. This is enumeration against **agency** authorization policy — M-25-21 mandates no AI-specific ATO gate |
 | Agentic-AI P1 finding | `DRIFT-COMPLIANCE::ai-agentic-ungoverned` | Proposed | Doctrine only — no detector implementation yet |
-| Owner anchor / the organizational-attribute model placement | the organizational-attribute model codebook (UIAO_151), Entra | **Active (Microsoft estate)** | Proven inside the Microsoft/Entra estate only |
+| Owner anchor / the organizational-attribute model placement | the organizational-attribute model codebook (FMP_151), Entra | **Active (Microsoft estate)** | Proven inside the Microsoft/Entra estate only |
 | Drift detection | Six-phase drift engine (the program decision) | **Active** | — |
 | Non-employee / vendor (partner) branch | SailPoint NERM (the program decision) | Reserved | Pre-activation; no live tenant exercises this branch yet |
 | Multi-cloud / non-MS IdP storage | Binding profiles (the program decision/099/113) | Proposed (IdP) / Profile-only (GCP, VMware) | Design-level profiles only; no non-Microsoft IdP has been run end to end |
 | Provenance-anchored evidence | Evidence Fabric, schema-enforced canon | **Active** | — |
-| SaaS deployment | Azure Container Apps (the program decision); AWS CDK (the program decision — ECS Fargate + ALB + RDS + S3) | **Active (Azure)** / IaC landed (AWS) | Azure has operational tenant history; the AWS surface has none yet, and there is no GCP IaC — UIAO reaches non-Azure clouds as an API client, not yet as a proven host |
+| SaaS deployment | Azure Container Apps (the program decision); AWS CDK (the program decision — ECS Fargate + ALB + RDS + S3) | **Active (Azure)** / IaC landed (AWS) | Azure has operational tenant history; the AWS surface has none yet, and there is no GCP IaC — FMP reaches non-Azure clouds as an API client, not yet as a proven host |
 
 The compliance series holds the same object from the registry side: the
 agency AI use-case inventory is a designated SSOT object class with a full
@@ -144,7 +144,7 @@ Federal Organization Compliance series' SSOT Registry (Vol 0 Book 00).
  assessment + drift.** The coverage ledger's Caveat column marks exactly
  which rows are proposed, reserved, or pre-activation — that column is the
  gap map, not a separate list.
-- **No platform-level FedRAMP authorization of UIAO itself.** UIAO rides inside
+- **No platform-level FedRAMP authorization of FMP itself.** FMP rides inside
  customer boundaries / GCC-Moderate; SailPoint NERM carries its own ATO on AWS
  GovCloud as a named carve-out. A solicitation requiring the *platform* to be
  FedRAMP-authorized exposes a gap.
@@ -154,7 +154,7 @@ Federal Organization Compliance series' SSOT Registry (Vol 0 Book 00).
  guide](../operational-guides/ai-identity-governance/index.qmd) is the kit
  that will operationalize it; it is proposed, not yet deployed.
 
-![Three moves that most raise win probability](../images/whitepapers/federal-ai-governance-submission-readiness-diagram-02-three-moves-win-probability.svg){#fig-federal-ai-diagram-02 fig-alt="Three dark-navy columns labeled Move 1, Move 2, Move 3 with teal headers and teal action boxes. Move 1: Lead with deployed core, stage the rest honestly - demo live Entra facet stamping plus drift plus M-25-21-as-IAM. Move 2: Resolve the authorization story explicitly - state UIAO operates inside customer boundary, SailPoint NERM FedRAMP-Moderate on AWS GovCloud. Move 3: Activate one non-Microsoft target end-to-end - Keycloak recommended path. Bottom ice-blue bar summarizes bottom line. White background, navy/teal/ice palette." width="100%"}
+![Three moves that most raise win probability](../images/whitepapers/federal-ai-governance-submission-readiness-diagram-02-three-moves-win-probability.svg){#fig-federal-ai-diagram-02 fig-alt="Three dark-navy columns labeled Move 1, Move 2, Move 3 with teal headers and teal action boxes. Move 1: Lead with deployed core, stage the rest honestly - demo live Entra facet stamping plus drift plus M-25-21-as-IAM. Move 2: Resolve the authorization story explicitly - state FMP operates inside customer boundary, SailPoint NERM FedRAMP-Moderate on AWS GovCloud. Move 3: Activate one non-Microsoft target end-to-end - Keycloak recommended path. Bottom ice-blue bar summarizes bottom line. White background, navy/teal/ice palette." width="100%"}
 
 ## The three moves that most raise win probability
 
@@ -163,7 +163,7 @@ Federal Organization Compliance series' SSOT Registry (Vol 0 Book 00).
  SailPoint / multi-cloud as a labeled roadmap with the composability matrix.
  Credibility beats over-claiming with federal evaluators.
 2. **Resolve the authorization story explicitly.** State the ATO-inheritance
- posture up front: UIAO operates inside the customer's existing boundary, and
+ posture up front: FMP operates inside the customer's existing boundary, and
  the one commercial dependency (SailPoint NERM) is itself FedRAMP-Moderate.
  Pre-empt the "is the platform authorized" question rather than letting it
  surface in evaluation.

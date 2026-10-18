@@ -83,7 +83,7 @@ deployment — steal it once and the central store is exposed. Token-based auth
 does not guard that secret better; it **eliminates it.** The connection is
 authorized by a token that is minted on demand, scoped to the database
 audience, cached only briefly, and refreshed before expiry. There is nothing
-durable to steal. (The Federal Modernization Program: `uiao.saas.pg_auth`, the program decision.)
+durable to steal. (The Federal Modernization Program: `fmp.saas.pg_auth`, the program decision.)
 :::
 
 Mechanically, a token provider acquires an access token scoped to the
