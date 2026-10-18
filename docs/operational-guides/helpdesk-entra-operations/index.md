@@ -84,7 +84,7 @@ tenant, and keep input and output inside your authorization boundary.
 
 ::: {.callout-note title="Kit conformance (the program decision): governed-only by design"}
 the program decision asks a
-transformation kit to ship a without-the modernization program **manual path** alongside its governed
+transformation kit to ship a without-FMP **manual path** alongside its governed
 path. This kit takes the **governance-only exemption** the program decision §D3 allows, with
 rationale: its subject *is* the governance and approval-routing model — *who may
 approve what, and where the work is executed* — not a Microsoft-surface

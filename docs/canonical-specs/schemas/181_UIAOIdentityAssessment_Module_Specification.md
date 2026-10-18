@@ -1,15 +1,15 @@
 ---
-title: "the modernization programIdentityAssessment Module Specification"
-subtitle: "Canonical Spec · the modernization program_181"
+title: "FMPIdentityAssessment Module Specification"
+subtitle: "Canonical Spec · FMP_181"
 date: 2026-06-05
 ---
 
 ::: {.callout-note}
-## Canonical the modernization program Specification
+## Canonical the Federal Modernization Program Specification
 
-**the modernization program_181** — status: **Draft** — version: **0.1**
+**FMP_181** — status: **Draft** — version: **0.1**
 
-This page renders the canonical the modernization program_181 source verbatim. The
+This page renders the canonical FMP_181 source verbatim. The
 authoritative source is at
 Per the program decision, this
 canonical page is generated as an `include`-style wrapper.

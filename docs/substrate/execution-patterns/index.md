@@ -14,7 +14,7 @@ lifecycle_review: 2026-11-22
 
 # Execution Patterns {.unnumbered}
 
-How the modernization program actually *runs* — the distinction between governance and
+How the Federal Modernization Program actually *runs* — the distinction between governance and
 execution, the identity model under OrgTree, and the strategic framing
 that keeps product positioning crisp.
 

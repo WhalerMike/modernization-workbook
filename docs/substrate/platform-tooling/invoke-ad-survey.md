@@ -1,6 +1,6 @@
 ---
 title: "Invoke-ADSurvey"
-subtitle: "Read-only forest archaeological survey — captures forest/tree/trust topology, OUs, users, service accounts, sites, and GPOs as structured JSON for the the modernization program AD adapter"
+subtitle: "Read-only forest archaeological survey — captures forest/tree/trust topology, OUs, users, service accounts, sites, and GPOs as structured JSON for the Federal Modernization Program AD adapter"
 doc-type: operational-guide
 audience: [Customer, Operator, Technical]
 classification: Controlled
@@ -21,9 +21,9 @@ lifecycle_review: 2026-12-03
 ---
 
 `Invoke-ADSurvey.ps1` is the canonical **Phase 1 (Discovery)** adapter for the
-the modernization program Active Directory → Entra ID modernization track. It performs a read-only
+The Federal Modernization Program Active Directory → Entra ID modernization track. It performs a read-only
 enumeration of an on-premises forest and emits one structured JSON object that
-the the modernization program AD adapter (`survey.py`) consumes directly.
+the Federal Modernization Program AD adapter (`survey.py`) consumes directly.
 
 It runs the **forest / tree / trust topology pass first**, before walking the OU
 tree — deliberately. the organizational-attribute model is the DN-encoded organizational spine, and a
@@ -47,7 +47,7 @@ publish raw findings.
 | [`Invoke-ADSurvey.ps1`] | 1.0 | `9b590c08158a40f8b7e0145329101580ec29e7575735985301f1d291d665701f` |
 
 The script is served from its canonical home (`scripts/ad-survey/` in the repo)
-because it is also the runtime artifact the the modernization program AD adapter invokes — one file,
+because it is also the runtime artifact the Federal Modernization Program AD adapter invokes — one file,
 no drift. Use the **Download raw file** button on the GitHub page, then verify
 integrity after download:
 
@@ -84,7 +84,7 @@ counts.
 
 ## Usage
 
-### Emit JSON for the the modernization program adapter
+### Emit JSON for the Federal Modernization Program adapter
 
 ```powershell
 .\Invoke-ADSurvey.ps1 -Server dc01.corp.contoso.com -BaseDN "DC=corp,DC=contoso,DC=com" -OutputJson
@@ -104,7 +104,7 @@ Prints a console summary — the fastest way to eyeball forest scale before a
 full run:
 
 ```text
-=== the modernization program AD Forest Survey Summary ===
+=== the Federal Modernization Program AD Forest Survey Summary ===
 Forest:          DC=corp,DC=contoso,DC=com
 Forest name:     corp.contoso.com (mode Windows2016Forest)
 Domains/Trees:   3
@@ -255,7 +255,7 @@ governance finding.
 
 ## Integration patterns
 
-### the modernization program AD adapter (primary path)
+### The Federal Modernization Program AD adapter (primary path)
 
 `survey.py` prefers an in-process `ldap3` survey. When `ldap3` is unavailable —
 or when you are running on a domain-joined Windows host — it falls back to this
@@ -279,10 +279,10 @@ above, directing JSON at a path the Evidence Ledger pickup job watches:
 
 ```powershell
 $action  = New-ScheduledTaskAction -Execute 'pwsh.exe' `
-    -Argument '-NoProfile -File C:\the modernization program\Invoke-ADSurvey.ps1 -Server dc01.corp.contoso.com -BaseDN "DC=corp,DC=contoso,DC=com" -OutputJson' `
-    -WorkingDirectory 'C:\the modernization program'
+    -Argument '-NoProfile -File C:\FMP\Invoke-ADSurvey.ps1 -Server dc01.corp.contoso.com -BaseDN "DC=corp,DC=contoso,DC=com" -OutputJson' `
+    -WorkingDirectory 'C:\FMP'
 $trigger = New-ScheduledTaskTrigger -Weekly -DaysOfWeek Sunday -At 2am
-Register-ScheduledTask -TaskName 'the modernization program-ADSurvey' `
+Register-ScheduledTask -TaskName 'FMP-ADSurvey' `
     -Action $action -Trigger $trigger -User 'CORP\svc-uiao-survey' -RunLevel Highest
 ```
 
@@ -316,4 +316,4 @@ $survey.forest.trusts | Where-Object sidFilteringRisk |
 | Canonical source | [`scripts/ad-survey/Invoke-ADSurvey.ps1`] |
 | Target | Windows host with RSAT (ActiveDirectory module; GroupPolicy optional) |
 | Output | Single JSON object on stdout (`-OutputJson`) or a console summary |
-| Related canon | the modernization program PowerShell Module Reference for the broader assessment-output schema; `the modernization program_007 OrgTree Modernization` for the the organizational-attribute model spine this discovery feeds |
+| Related canon | the Federal Modernization Program PowerShell Module Reference for the broader assessment-output schema; `FMP_007 OrgTree Modernization` for the the organizational-attribute model spine this discovery feeds |

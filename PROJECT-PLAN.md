@@ -32,6 +32,12 @@ The plan is organized by phases. Each phase has objectives, key activities, deli
 - Stakeholder and role list.
 - Initial risk register.
 
+**Supporting material**
+- [Why Modernization Is Hard](docs/narratives/why-modernization-is-hard.md) — leadership framing of the problem
+- [Principles](docs/PRINCIPLES.md) — the rules the charter commits to
+- [Chapter 00 — The Problem Nobody Talks About](docs/client-server-to-hybrid-cloud/00-the-problem.md)
+- [Chapter 10 — Leadership Takeaway](docs/client-server-to-hybrid-cloud/10-leadership-takeaway.md)
+
 **Exit criteria**
 - Leadership can state the problem, the target outcome, and how success will be measured.
 
@@ -50,6 +56,13 @@ The plan is organized by phases. Each phase has objectives, key activities, deli
 - Dependency and hidden-surface inventory.
 - List of candidate authoritative origins for key object classes.
 - Initial normalization recommendations (what must be cleaned or rationalized before migration).
+
+**Supporting material**
+- [Read-Only AD Assessment Guide](docs/operational-guides/read-only-ad-assessment.md) — discovery without changing the directory
+- [Chapter 02 — Analyzing the Client/Server Estate](docs/client-server-to-hybrid-cloud/02-analyzing-the-estate.md)
+- [Identity and Directory Transformation Inventory](docs/architecture/identity-directory-transformation-inventory.md)
+- [GPO-to-Cloud Governance Gaps](docs/architecture/gpo-to-cloud-governance-gaps.md)
+- [Old AD vs New Entra ID](docs/learning/old-ad-vs-new-entra-reference.md) — reference for the assessment team
 
 **Exit criteria**
 - The team can describe, in concrete terms, what the directory currently “knows” about the organization and what would break if that knowledge disappeared.
@@ -72,6 +85,16 @@ The plan is organized by phases. Each phase has objectives, key activities, deli
 - Drift taxonomy and detection approach outline.
 - Provenance and evidence expectations for changes.
 
+**Supporting material**
+- [Single Source of Truth](docs/architecture/single-source-of-truth.md)
+- [Attribute-Driven Structure](docs/architecture/attribute-driven-structure.md)
+- [Where Data Lives](docs/architecture/where-data-lives.md)
+- [Dynamic Group Library](docs/architecture/dynamic-group-library.md)
+- [Delegation Matrix](docs/architecture/delegation-matrix.md)
+- [Drift Detection — A Walk-through](docs/architecture/drift-detection.md)
+- [Change Control and Provenance](docs/architecture/change-control-and-provenance.md)
+- [Architecture Series](docs/architecture/architecture-series/README.md)
+
 **Exit criteria**
 - Domain leads can explain how a given organizational fact will be expressed, how policy will attach to it, and how drift will be detected, without relying on internal decision-record numbers.
 
@@ -93,6 +116,15 @@ The plan is organized by phases. Each phase has objectives, key activities, deli
 - Wave plan with sequencing, gates, and rollback triggers.
 - Evidence checklist applicable to every wave.
 
+**Supporting material**
+- [Chapter 03 — Analysis → Plan → Delivery](docs/client-server-to-hybrid-cloud/03-analysis-plan-delivery.md)
+- [Chapters 04–08 — identity, policy, services, compute and access playbooks](docs/client-server-to-hybrid-cloud/04-identity-transformation.md)
+- [GPO Sunset Program](docs/operational-guides/gpo-sunset-program.md) and [GPO Parse and Crosswalk](docs/operational-guides/gpo-modernization-parse-crosswalk.md)
+- [Conditional Access Policy Library](docs/operational-guides/conditional-access-policy-library.md)
+- [Intune + Azure Arc Modernization](docs/operational-guides/intune-arc-modernization/README.md)
+- [DNS Modernization Guide](docs/operational-guides/dns-modernization.md) and [PKI Modernization Guide](docs/operational-guides/pki-modernization.md)
+- [Test Plans](docs/program/test-plans.md) — evidence checklist inputs
+
 **Exit criteria**
 - At least the first wave has a complete playbook that a team could execute with existing tools and processes.
 
@@ -113,6 +145,12 @@ The plan is organized by phases. Each phase has objectives, key activities, deli
 - Drift findings (if any) and remediation notes.
 - Updated playbooks and wave plan based on lessons learned.
 
+**Supporting material**
+- [Chapter 09 — Migration Roadmap: Phased Plan, Gates, Rollback](docs/client-server-to-hybrid-cloud/09-migration-roadmap.md)
+- [PIM Self-Request with Approval](docs/operational-guides/pim-self-request-approval.md) — just-in-time elevation for wave execution
+- [HR-Driven Identity Lifecycle](docs/guides/hr-driven-lifecycle.md) — originating changes from the authoritative source
+- [End User Training Guide](docs/operational-guides/end-user-training.md)
+
 **Exit criteria**
 - The organization has demonstrated that a change can originate from the authoritative source, execute under controlled privilege, close with provenance, and be validated against the intended state.
 
@@ -132,19 +170,26 @@ The plan is organized by phases. Each phase has objectives, key activities, deli
 - Final project report with outcomes against success criteria.
 - Recommendations for ongoing ownership.
 
+**Supporting material**
+- [Continuous Monitoring Strategy](docs/architecture/continuous-monitoring-strategy.md)
+- [Gap Closure Register](docs/architecture/gap-closure-register.md)
+- [Training Program](docs/program/training.md) and [Education Program](docs/program/education.md)
+
 **Exit criteria**
 - Success criteria from the charter are met or explicitly deferred with rationale.
 - Ownership for the authoritative origin and drift detection has transferred to steady-state operations.
 
 ## 4. Domain Workstreams (Summary)
 
-| Domain | Primary Focus | Typical Dependencies | Suggested Position |
-|--------|---------------|----------------------|--------------------|
-| Identity structure | Attribute model, dynamic membership, lifecycle origin | Assessment complete | Early (Wave 1) |
-| Policy | Mapping of existing policy to attribute-driven scope | Identity structure | After identity |
-| Services / Addressing | Naming, IP management, related dependencies | Assessment; may bridge | Parallel or mid |
-| Compute / Device | Device identity and management alignment | Identity structure | Mid to late |
-| Access plane | Token-based / application-aware access patterns | Identity and policy | Later |
+| Domain | Primary Focus | Typical Dependencies | Suggested Position | Detailed project |
+|--------|---------------|----------------------|--------------------|---|
+| Identity structure | Attribute model, dynamic membership, lifecycle origin | Assessment complete | Early (Wave 1) | [Identity Lifecycle & Provisioning](docs/projects/identity-lifecycle-charter.md) |
+| Policy | Mapping of existing policy to attribute-driven scope | Identity structure | After identity | Playbooks: [GPO Sunset Program](docs/operational-guides/gpo-sunset-program.md), [Conditional Access Policy Library](docs/operational-guides/conditional-access-policy-library.md) |
+| Services / Addressing | Naming, IP management, related dependencies | Assessment; may bridge | Parallel or mid | [Network & Access Modernization](docs/projects/network-access-charter.md) |
+| Compute / Device | Device identity and management alignment | Identity structure | Mid to late | [Endpoint & Device Modernization](docs/projects/endpoint-device-charter.md) |
+| Access plane | Token-based / application-aware access patterns | Identity and policy | Later | [Network & Access Modernization](docs/projects/network-access-charter.md) |
+
+Further detailed projects that run alongside these workstreams: [Privileged Access & Administrative Identity](docs/projects/privileged-access-charter.md), [Data Platform Identity Transformation](docs/projects/data-platform-charter.md), [Continuous Monitoring & Evidence Fabric](docs/projects/continuous-monitoring-charter.md), and [Supply Chain & Software Bill of Materials](docs/projects/supply-chain-charter.md). Each has a charter and a plan; see [Complementary Modernization Projects](docs/projects/README.md).
 
 ## 5. Governance and Decision Rights
 

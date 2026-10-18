@@ -5,7 +5,7 @@ doc-type: series-chapter
 series-id: ssot-network-physics
 chapter: 2
 audience: "CISO · zero-trust practitioners · platform engineers"
-canon-source: "Synthesized analysis; the modernization program claims trace to the program decision (passwordless Entra Postgres auth) and the program decision"
+canon-source: "Synthesized analysis; the Federal Modernization Program claims trace to the program decision (passwordless Entra Postgres auth) and the program decision"
 date: 2026-06-22
 aspirational: true
 lifecycle: draft
@@ -50,16 +50,16 @@ enforces scoping on that statement.
 
 ![Perimeter model forces fragmentation; token-based zero-trust model permits one shared store across many trust domains](../images/ssot-network-physics/ssot-network-physics-cpt02-diagram-01-token-security-consolidation.svg){#fig-ssot-cpt02-diagram-01 fig-alt="Blueprint split diagram. Left panel shows a red-dashed perimeter enclosing two separate domain stores with a shared-secret credential risk callout. Right panel shows a central navy shared store served by two ice tenant boxes via teal tid-claim token arrows, with an outbound short-lived token arrow to a PostgreSQL Flexible Server and a green callout stating the highest-value secret is eliminated. White background." width="100%"}
 
-## How the modernization program makes this concrete
+## How the Federal Modernization Program makes this concrete
 
-the modernization program's SaaS plane is a working instance of this principle on both sides of the
+The Federal Modernization Program's SaaS plane is a working instance of this principle on both sides of the
 connection — inbound (who is calling the service) and outbound (how the service
 authenticates to its own database).
 
 ### Inbound: identity travels with the request
 
 Many different customer Microsoft Entra tenants are governed by one operated
-the modernization program service. Requests arrive bearing Entra access tokens minted by *different*
+The Federal Modernization Program service. Requests arrive bearing Entra access tokens minted by *different*
 tenants. The data plane verifies each token's signature against the issuing
 tenant's published keys (JWKS, RS256), reads the tenant identity from the
 token's `tid` claim, and binds a tenant context for the life of the request
@@ -70,7 +70,7 @@ every single call, not assumed from a network location.
 ### Outbound: the database password disappears
 
 The sharper demonstration is how the service authenticates *to its own
-PostgreSQL store*. Under **the program decision**, the modernization program uses passwordless authentication:
+PostgreSQL store*. Under **the program decision**, the Federal Modernization Program uses passwordless authentication:
 Azure Database for PostgreSQL Flexible Server accepts a short-lived Entra access
 token *as the connection password*. The service's managed identity is bound as
 the database's Entra administrator, so the application connects with **no
@@ -83,7 +83,7 @@ deployment — steal it once and the central store is exposed. Token-based auth
 does not guard that secret better; it **eliminates it.** The connection is
 authorized by a token that is minted on demand, scoped to the database
 audience, cached only briefly, and refreshed before expiry. There is nothing
-durable to steal. (the modernization program: `uiao.saas.pg_auth`, the program decision.)
+durable to steal. (The Federal Modernization Program: `uiao.saas.pg_auth`, the program decision.)
 :::
 
 Mechanically, a token provider acquires an access token scoped to the
@@ -136,7 +136,7 @@ fragmentation *driver*.
 Token security removes the *security* reason to fragment. It does not remove the
 *legal* one. Data-residency and sovereignty rules can still require that certain
 data physically reside in a certain place or boundary, and no identity model
-overrides a regulator. the modernization program handles this not by fragmenting the default plane
+overrides a regulator. The Federal Modernization Program handles this not by fragmenting the default plane
 but by provisioning a dedicated, physically-isolated **stamp** for the
 customers who require it (Chapter 7, the program decision), and by carrying sovereign-cloud
 token audiences explicitly in the auth layer (the OSSRDBMS scope differs for US
@@ -150,7 +150,7 @@ the exception is provisioned deliberately, with its own boundary.
 - Token-based, zero-trust security moves the trust boundary from the network
   into a verifiable, per-request identity, so one store can serve many trust
   domains.
-- the modernization program realizes this on both sides: inbound `tid`-claim verification per
+- The Federal Modernization Program realizes this on both sides: inbound `tid`-claim verification per
   request (the program decision) and outbound passwordless Postgres auth that removes the
   highest-value secret entirely (the program decision).
 - This makes centralization *safe*, not merely possible — and it removes the

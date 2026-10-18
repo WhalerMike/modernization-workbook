@@ -72,7 +72,7 @@ Slots `extensionAttribute11`–`14` are reserved for tenant-declared facets
 introduced via governed PR. The native `manager` relationship is consumed
 alongside these facets but is a standard directory attribute, not an
 the organizational-attribute model facet. See the
-[the organizational-attribute model Codebook (UIAO_151)](../../../src/uiao/canon/UIAO_151_the organizational-attribute model_Codebook.md)
+the organizational-attribute model Codebook (UIAO_151)
 for the canonical facet-to-slot map.
 
 Example (per-facet values on one principal):

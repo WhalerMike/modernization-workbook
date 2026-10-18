@@ -23,7 +23,7 @@ lifecycle_review: 2026-11-22
 ## Scope
 
 Cross-adapter specification for Software-Defined WAN (SD-WAN)
-modernization under the the modernization program substrate. SD-WAN replaces static MPLS
+modernization under the Federal Modernization Program substrate. SD-WAN replaces static MPLS
 WAN with policy-driven, telemetry-informed routing across diverse
 transports. This spec defines the substrate contract for SD-WAN
 adapters: identity-aware routing, telemetry-as-control, and canonical

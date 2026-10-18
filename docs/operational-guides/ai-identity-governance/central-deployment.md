@@ -33,7 +33,7 @@ how per-agency remediation flows from the central findings.
 ::: {.callout-note title="Relationship to other paths"}
 This page describes the OFCIO-central operational model. If your agency is
 running the scanner independently, see the manual path. If
-your agency has deployed the modernization program the organizational-attribute model, see the [governed path](governed-path.md).
+your agency has deployed the Federal Modernization Program the organizational-attribute model, see the [governed path](governed-path.md).
 :::
 
 ## The CDM analogy
@@ -61,7 +61,7 @@ operationalizing the central scan and the finding-delivery workflow.
 
 ## The four-tier model
 
-![Central deployment four-tier cascade — Tier 0 OFCIO scan → Tier 1 CISO notification → Tier 2 remediation tooling → Tier 3 the modernization program deployment (target architecture).](../../../images/canonical/the modernization program-FIG-025-central-deployment-tiers.png){#fig-central-deployment fig-alt="A four-tier vertical cascade joined by teal arrows. Tier 0 OFCIO central scan (public OMB CSV, 1346 findings across 56 agencies). Tier 1 Agency CISO notification (scoped findings, P1 72-hour, P2 30-day). Tier 2 Agency remediation tooling (credential owners, existing IGA, optional the organizational-attribute model binding). Tier 3 Agency the modernization program deployment, the teal-bordered target architecture (the organizational-attribute model stamps, drift engine, JML, SailPoint machine-identity adapter)." width="100%"}
+![Central deployment four-tier cascade — Tier 0 OFCIO scan → Tier 1 CISO notification → Tier 2 remediation tooling → Tier 3 the Federal Modernization Program deployment (target architecture).](../../../images/canonical/FMP-FIG-025-central-deployment-tiers.png){#fig-central-deployment fig-alt="A four-tier vertical cascade joined by teal arrows. Tier 0 OFCIO central scan (public OMB CSV, 1346 findings across 56 agencies). Tier 1 Agency CISO notification (scoped findings, P1 72-hour, P2 30-day). Tier 2 Agency remediation tooling (credential owners, existing IGA, optional the organizational-attribute model binding). Tier 3 Agency the Federal Modernization Program deployment, the teal-bordered target architecture (the organizational-attribute model stamps, drift engine, JML, SailPoint machine-identity adapter)." width="100%"}
 
 Tier 3 is not required for the central scan to deliver value. Tiers 0–2 are
 fully operational with the existing open-source scanner.
@@ -87,7 +87,7 @@ omb_inventory.csv --output findings/` or `Invoke-AIInventoryScan.ps1
 | Code | Severity | Trigger |
 |---|---|---|
 | `DRIFT-COMPLIANCE::ai-agentic-ungoverned` | P1 | Agentic AI, no ATO |
-| `DRIFT-IDENTITY::ai-shadow` | P1 | the modernization program registry entry absent from OMB inventory |
+| `DRIFT-IDENTITY::ai-shadow` | P1 | the Federal Modernization Program registry entry absent from OMB inventory |
 | `DRIFT-COMPLIANCE::ai-ato-gap` | P2 | Deployed/pilot system, `have_ato ≠ Yes` |
 | `DRIFT-IDENTITY::ai-no-orgpath` | P2 | Blank or unresolvable `agency_bureau` |
 | `DRIFT-IDENTITY::ai-unowned` | P2 | Blank `contact_email` |
@@ -150,7 +150,7 @@ visibility into agency internal systems.
 
 ## What is not required at Tiers 0–2
 
-- No agency-side the modernization program deployment
+- No agency-side the Federal Modernization Program deployment
 - No SailPoint or IGA platform integration
 - No data sharing agreement (the OMB inventory is public)
 - No new compliance reporting — remediation is recorded by updating the
@@ -241,4 +241,4 @@ findings/
 *For background on the identity governance gap this scan addresses, see
 Book 21 — The Invisible Identity Surface.
 For the manual agency path, see Manual Path. For the
-full the modernization program governed path, see [Governed Path](governed-path.md).*
+full the Federal Modernization Program governed path, see [Governed Path](governed-path.md).*

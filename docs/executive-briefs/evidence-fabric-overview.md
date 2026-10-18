@@ -11,9 +11,9 @@ lifecycle_review: 2026-11-22
 
 # Evidence Fabric Overview
 
-![Immutable provenance chain](../../images/canonical/the modernization program-FIG-006-immutable-provenance-chain.png){fig-alt="Cryptographically signed immutable evidence chain — every check, result, and timestamp stored with signatures for audit replay." width="100%"}
+![Immutable provenance chain](../../images/canonical/FMP-FIG-006-immutable-provenance-chain.png){fig-alt="Cryptographically signed immutable evidence chain — every check, result, and timestamp stored with signatures for audit replay." width="100%"}
 
-the modernization program’s Evidence Fabric is designed to turn runtime telemetry into assessor-ready
+The Federal Modernization Program’s Evidence Fabric is designed to turn runtime telemetry into assessor-ready
 compliance artifacts with traceable provenance at every step. Instead of a
 single point-in-time screenshot, it produces a deterministic evidence bundle
 that can be re-run and independently verified.
@@ -51,7 +51,7 @@ packages.
 
 ## Evidence outputs available today
 
-the modernization program currently emits or assembles the following evidence surfaces:
+The Federal Modernization Program currently emits or assembles the following evidence surfaces:
 
 - **System Security Plan (SSP)**
 - **POA&M**
@@ -65,7 +65,7 @@ to support governed handoff to federal assessors.
 ## Maturity and current-state honesty
 
 The **event-time capture chain is design-defined but not fully wired in current
-production flow**. the modernization program already defines deterministic structure, provenance
+production flow**. The Federal Modernization Program already defines deterministic structure, provenance
 fields, and bundle lifecycle controls; end-to-end continuous event-time capture
 remains a target-state capability and is represented here as aspirational.
 

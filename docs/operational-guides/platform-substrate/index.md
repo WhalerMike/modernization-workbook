@@ -1,6 +1,6 @@
 ---
 title: "A. Platform Substrate"
-subtitle: "The host that runs the modernization program — WS2025 + IIS + Gitea + Kerberos + PKI"
+subtitle: "The host that runs the Federal Modernization Program — WS2025 + IIS + Gitea + Kerberos + PKI"
 doc-type: subcategory-landing
 pillar: modernization
 sub-category: A
@@ -14,7 +14,7 @@ lifecycle_review: 2026-11-22
 
 # A. Platform Substrate {.unnumbered}
 
-The concrete infrastructure that hosts the modernization program's governance substrate. Every
+The concrete infrastructure that hosts the Federal Modernization Program's governance substrate. Every
 modernization action — every analysis, plan, and delivery — runs on this
 host. One Windows Server 2025 machine runs Gitea behind IIS, authenticates
 against AD and Entra, enrolls in Intune + Azure Arc, and serves the canonical

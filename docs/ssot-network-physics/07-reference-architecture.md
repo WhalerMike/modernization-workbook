@@ -1,5 +1,5 @@
 ---
-title: "Reference Architecture — the modernization program SaaS Data Plane"
+title: "Reference Architecture — the Federal Modernization Program SaaS Data Plane"
 subtitle: "How the program decision and the program decision implement centralize-the-truth / distribute-the-copies in practice"
 doc-type: series-chapter
 series-id: ssot-network-physics
@@ -13,13 +13,13 @@ tiers_adopted: [1]
 lifecycle_review: 2026-12-22
 ---
 
-# Reference Architecture — the modernization program SaaS Data Plane
+# Reference Architecture — the Federal Modernization Program SaaS Data Plane
 
-## Why the modernization program is the worked example
+## Why the Federal Modernization Program is the worked example
 
 The preceding chapters argued a doctrine: centralize the truth, distribute the
 copies, let token security make centralization safe, and refuse to span the
-speed of light synchronously. the modernization program's multi-tenant SaaS data plane was designed
+speed of light synchronously. The Federal Modernization Program's multi-tenant SaaS data plane was designed
 to that doctrine before this paper named it. Reading the decision record back
 through the framework shows the abstractions landing as concrete components —
 and, importantly, shows where the one residual risk lives.
@@ -30,7 +30,7 @@ SaaS architecture), **the program decision** (passwordless Entra Postgres auth),
 
 ## The decision, in the paper's terms
 
-the modernization program offers governance-as-a-service: many customer Microsoft Entra tenants are
+The Federal Modernization Program offers governance-as-a-service: many customer Microsoft Entra tenants are
 governed by one operated service. the program decision had to answer the central question of
 this paper — one shared store or many — and chose, deliberately:
 
@@ -49,7 +49,7 @@ escape hatch (Chapters 1 and 2), expressed as an accepted decision.
 
 ## Mapping the architecture to the doctrine
 
-| Paper concept | the modernization program realization | Source |
+| Paper concept | the Federal Modernization Program realization | Source |
 |---|---|---|
 | One logical source of truth | Single PostgreSQL Flexible Server holds the `saas_tenants` registry and per-tenant state | the program decision, Decision 3 |
 | Token security, inbound | Per-request `tid`-claim verification against the issuing tenant's JWKS (RS256); non-onboarded / non-active tenants rejected with 403 | the program decision, Security |
@@ -59,7 +59,7 @@ escape hatch (Chapters 1 and 2), expressed as an accepted decision.
 | Refuse to span light synchronously | Single-region writer; no global synchronous multi-master commit path exists | the program decision (single Flexible Server) |
 | Sovereign-cloud readiness | OSSRDBMS token audience and issuer/Graph/ARM resolution already branch per cloud (US Gov vs. commercial) | the program decision, the program decision |
 
-![the modernization program SaaS data plane: one shared PostgreSQL source of truth, token-based auth on both sides, derived subordinate stores, and the compliance stamp escape hatch](../images/ssot-network-physics/ssot-network-physics-cpt07-diagram-01-uiao-saas-data-plane.svg){#fig-ssot-cpt07-diagram-01 fig-alt="Blueprint architecture diagram. Left: three ice Entra tenant boxes send teal token arrows to a central navy the modernization program Data Plane service block that verifies tid claims and scopes namespaces. A teal outbound short-lived token arrow flows to a large navy PostgreSQL Flexible Server box labeled single-region writer with no long-lived DB password. Grey dashed arrows from the store point right to two ice derived stores: Blob Storage and Key Vault, both keyed by tenant namespace. Below the service a dashed Compliance Stamp box shows the ProvisioningService exception path. A red callout names the blast-radius risk in the tenant-resolution path. White background." width="100%"}
+![the Federal Modernization Program SaaS data plane: one shared PostgreSQL source of truth, token-based auth on both sides, derived subordinate stores, and the compliance stamp escape hatch](../images/ssot-network-physics/ssot-network-physics-cpt07-diagram-01-uiao-saas-data-plane.svg){#fig-ssot-cpt07-diagram-01 fig-alt="Blueprint architecture diagram. Left: three ice Entra tenant boxes send teal token arrows to a central navy the Federal Modernization Program Data Plane service block that verifies tid claims and scopes namespaces. A teal outbound short-lived token arrow flows to a large navy PostgreSQL Flexible Server box labeled single-region writer with no long-lived DB password. Grey dashed arrows from the store point right to two ice derived stores: Blob Storage and Key Vault, both keyed by tenant namespace. Below the service a dashed Compliance Stamp box shows the ProvisioningService exception path. A red callout names the blast-radius risk in the tenant-resolution path. White background." width="100%"}
 
 ## The source of truth: one registry, one writer
 
@@ -77,7 +77,7 @@ sources of it. This is Chapter 1's SSOT discipline as running code.
 Because the writer is single-region, the strong-consistency path never crosses
 a continent. Per Chapter 3, that is not a limitation to be engineered away — it
 is the deliberate exploitation of the physics: at single-region distances,
-strong consistency is nearly free, so the modernization program takes it.
+strong consistency is nearly free, so the Federal Modernization Program takes it.
 
 ## Token security: the secret that does not exist
 
@@ -102,7 +102,7 @@ model lives in identity, not in a perimeter or a stored credential.
 
 ## The escape hatch: distribute only where compliance demands it
 
-the modernization program does not pretend physical centralization is universally acceptable. the program decision
+The Federal Modernization Program does not pretend physical centralization is universally acceptable. the program decision
 keeps the option to fragment as a *deliberate, provisioned exception* rather
 than the default:
 
@@ -132,9 +132,9 @@ hypothetical. That is the correct posture this paper has argued for throughout.
 
 ## Where SD-WAN would enter — and where it would not
 
-Applying Chapters 3–4 to the modernization program sharpens what networking does and does not buy
+Applying Chapters 3–4 to the Federal Modernization Program sharpens what networking does and does not buy
 here. Because the data plane is single-region with one writer, **there is no
-global synchronous commit path for SD-WAN to optimize** — the modernization program has already
+global synchronous commit path for SD-WAN to optimize** — the Federal Modernization Program has already
 removed the workload that would need it. Differentiated transport would matter
 in exactly two latency-tolerant, bulk-class places:
 
@@ -147,13 +147,13 @@ in exactly two latency-tolerant, bulk-class places:
 The day a sovereign-cloud stamp (a listed review trigger) requires a second
 region that must stay in sync, the full Chapter 4 toolkit — path classes, FEC
 for the commit tail, clock distribution for TrueTime-style coordination —
-becomes load-bearing. Until then, the modernization program's answer to the speed-of-light tax is the
+becomes load-bearing. Until then, the Federal Modernization Program's answer to the speed-of-light tax is the
 cheapest one available: **do not span it synchronously in the first place.**
 
 The proposed next frontier is orthogonal to the data topology: governing the
 *path* itself. the program decision (Proposed) would promote the transport plane to a
 first-class governed concern — token-bound `OverlayTunnel`s and a
-`DRIFT-TRANSPORT` class — holding the network that carries the modernization program's claims to the
+`DRIFT-TRANSPORT` class — holding the network that carries the Federal Modernization Program's claims to the
 same per-call, identity-anchored standard as the data plane (Chapter 5).
 
 ## The one risk, named plainly

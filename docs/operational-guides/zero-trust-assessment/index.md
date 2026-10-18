@@ -50,7 +50,7 @@ personnel, and **do not publish raw findings**. Remediation guidance is
 
 - **PowerShell 7+** — [install guide](https://learn.microsoft.com/powershell/scripting/install/installing-powershell).
 - **Python 3.11+** on `PATH`.
-- **The the modernization program toolkit** (provides the `uiao` command): `pip install uiao` from the
+- **The Federal Modernization Program toolkit** (provides the `uiao` command): `pip install uiao` from the
   repository, which brings in the `openpyxl` and `matplotlib` dependencies the
   dashboard needs.
 - A **`ZeroTrustAssessmentReport.html`** (or `.json`) from a completed assessment
@@ -174,29 +174,29 @@ scoring it as a pass overstates the posture.
 
 | Parameter | Type | Default | Purpose |
 |---|---|---|---|
-| `-ReportPath` | `string` | *(required)* | Path to the `ZeroTrustAssessmentReport.html` or `.json` export. Falls back to the `the modernization program_REPORTPATH` environment variable when the parameter is omitted. |
-| `-OutputDirectory` | `string` | `./zt-dashboard` | Where to write the dashboard, charts, and Power BI CSV. Falls back to the `the modernization program_OUTPUT` environment variable when omitted. |
-| `-CheckPrereqs` | `switch` | off | Run `the modernization program.ConfigTools` prereq validation before executing: checks PowerShell 7+, Python 3.11+, the `uiao` package, and Microsoft Graph context. Silently ignored when `the modernization program.ConfigTools` is not installed. |
-| `-EnableLogging` | `switch` | off | Start a timestamped transcript under `<OutputDirectory>\logs\`. Requires `the modernization program.ConfigTools`; silently ignored when the module is absent. |
+| `-ReportPath` | `string` | *(required)* | Path to the `ZeroTrustAssessmentReport.html` or `.json` export. Falls back to the `FMP_REPORTPATH` environment variable when the parameter is omitted. |
+| `-OutputDirectory` | `string` | `./zt-dashboard` | Where to write the dashboard, charts, and Power BI CSV. Falls back to the `FMP_OUTPUT` environment variable when omitted. |
+| `-CheckPrereqs` | `switch` | off | Run `FMP.ConfigTools` prereq validation before executing: checks PowerShell 7+, Python 3.11+, the `uiao` package, and Microsoft Graph context. Silently ignored when `FMP.ConfigTools` is not installed. |
+| `-EnableLogging` | `switch` | off | Start a timestamped transcript under `<OutputDirectory>\logs\`. Requires `FMP.ConfigTools`; silently ignored when the module is absent. |
 
 ### Environment variables
 
 | Variable | Overrides |
 |---|---|
-| `the modernization program_REPORTPATH` | Default value of `-ReportPath` |
-| `the modernization program_OUTPUT` | Default value of `-OutputDirectory` |
+| `FMP_REPORTPATH` | Default value of `-ReportPath` |
+| `FMP_OUTPUT` | Default value of `-OutputDirectory` |
 
-### the modernization program.ConfigTools integration
+### FMP.ConfigTools integration
 
-When the `the modernization program.ConfigTools` shared module (included in `uiao-cli.zip` under
-`scripts\the modernization program.ConfigTools\`) is installed, the script uses it for structured
+When the `FMP.ConfigTools` shared module (included in `uiao-cli.zip` under
+`scripts\FMP.ConfigTools\`) is installed, the script uses it for structured
 coloured output and optional transcript logging. Absent the module, it falls
 back to plain `Write-Host`.
 
 ```powershell
 # Install the module from the kit
-$dest = "$env:USERPROFILE\Documents\PowerShell\Modules\the modernization program.ConfigTools"
-Copy-Item .\uiao-cli\scripts\the modernization program.ConfigTools $dest -Recurse -Force
+$dest = "$env:USERPROFILE\Documents\PowerShell\Modules\FMP.ConfigTools"
+Copy-Item .\uiao-cli\scripts\FMP.ConfigTools $dest -Recurse -Force
 
 # Run with prereq check and logging
 .\Invoke-ZtDashboard.ps1 -ReportPath .\ZeroTrustReport\ZeroTrustAssessmentReport.html `

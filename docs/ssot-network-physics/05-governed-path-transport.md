@@ -20,9 +20,9 @@ lifecycle_review: 2026-12-22
 This chapter rests on **the program decision (Application-Aware Networking and Token-Bound
 Transport Plane)**, whose status is **Proposed**. Unlike the Accepted decisions
 that anchor the rest of this paper (the program decision, the program decision), the transport-plane model
-here is canon *direction* with implementing specifications — **the modernization program_122**
-(Token-Based Transport Authorization), **the modernization program_123** (Application-Aware Overlay
-Fabric Model), **the modernization program_124** (Transport Plane Telemetry Contract) — still open.
+here is canon *direction* with implementing specifications — **FMP_122**
+(Token-Based Transport Authorization), **FMP_123** (Application-Aware Overlay
+Fabric Model), **FMP_124** (Transport Plane Telemetry Contract) — still open.
 Read it as where the architecture is going, not where it has arrived.
 :::
 
@@ -35,7 +35,7 @@ the data. This chapter applies the identical principle to the **transport
 plane** — the network path the request rides on — and shows that the two are
 the same idea wearing different clothes.
 
-the modernization program's own doctrine names the gap precisely. Identity has become the root of
+The Federal Modernization Program's own doctrine names the gap precisely. Identity has become the root of
 trust and the addressing model, but, in the program decision's words, *"identity is the new
 boundary, but only halfway"*: the transport that carries identity-derived claims
 is still session-based — *"a TLS connection establishes once, then rides for
@@ -81,7 +81,7 @@ substrate cannot explain, because the transport context is invisible (the progra
 
 The requirement is not "a faster LAN." It is an **application-aware overlay
 fabric** in which the path is a typed, identity-anchored, governed object.
-the program decision promotes the modernization program_001's tunnel abstraction from concept to schema as the
+the program decision promotes FMP_001's tunnel abstraction from concept to schema as the
 `OverlayTunnel`:
 
 ::: {.callout-note}
@@ -127,16 +127,16 @@ exists. A flat, session-trusted LAN *is* that ungoverned shortcut, one layer
 down from the shadow-copy problem — the network equivalent of an unofficial
 local database nobody blessed.
 
-## Lane discipline: the modernization program governs the fabric, it does not become it
+## Lane discipline: The Federal Modernization Program governs the fabric, it does not become it
 
 One boundary must be stated as plainly here as the speed-of-light floor was in
-Chapter 3. the modernization program's stake in "land the device on an application-aware overlay" is
+Chapter 3. The Federal Modernization Program's stake in "land the device on an application-aware overlay" is
 **governance**, not packet-forwarding. Per the program decision's lane discipline
-(§"what the modernization program does NOT become"), transport adapters **observe, reconcile, and
+(§"what the Federal Modernization Program does NOT become"), transport adapters **observe, reconcile, and
 emit evidence — they do not route packets or terminate tunnels.** The decision
 is explicitly doctrinal, not implementation-prescriptive: it picks no token
-format (SPIFFE vs PASETO), no SD-WAN vendor, and does not put the modernization program in the data
-plane. The agency operates whatever SASE/SD-WAN fabric it likes; the modernization program requires
+format (SPIFFE vs PASETO), no SD-WAN vendor, and does not put the Federal Modernization Program in the data
+plane. The agency operates whatever SASE/SD-WAN fabric it likes; the Federal Modernization Program requires
 only that the fabric be application-aware and token-bound, so the edge device's
 identity / application / posture / location can drive routing and per-call
 authorization — and so the path becomes auditable evidence.
@@ -159,6 +159,6 @@ long-lived session the substrate cannot see.
   audience-scoped token (the program decision §Decision #2–3). SD-WAN/SASE is the mechanism;
   application-awareness + token-bound transport is the requirement.
 - A flat LAN is a `DRIFT-TRANSPORT` generator (P2/P4), not neutral ground.
-- the modernization program governs the fabric and emits evidence; it does not route packets. The
-  whole model is **Proposed** (the program decision), with the modernization program_122/123/124 as the open
+- The Federal Modernization Program governs the fabric and emits evidence; it does not route packets. The
+  whole model is **Proposed** (the program decision), with FMP_122/123/124 as the open
   verification items.

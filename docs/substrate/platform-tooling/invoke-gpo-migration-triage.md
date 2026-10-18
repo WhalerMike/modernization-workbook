@@ -37,10 +37,10 @@ than being hidden behind a single opaque guess.
 |---|---|---|
 | [`Invoke-GpoMigrationTriage.ps1`](scripts/Invoke-GpoMigrationTriage.ps1) | 1.0 | `afe88fb798e41acd61c714341420551fb7e06d0c8f80d58d31f84e98080ba603` |
 
-::: {.callout-note title="Need offline the modernization program install media?"}
-Download the full CLI kit from Downloads → the modernization program CLI Kit:
+::: {.callout-note title="Need offline the Federal Modernization Program install media?"}
+Download the full CLI kit from Downloads → the Federal Modernization Program CLI Kit:
 [`uiao-cli.zip`]
-includes this script, `the modernization program.ConfigTools`, and an offline Python installer — no internet needed at install time.
+includes this script, `FMP.ConfigTools`, and an offline Python installer — no internet needed at install time.
 :::
 
 Verify integrity after download:
@@ -119,14 +119,14 @@ setting for manual review rather than guessing.
 
 | Parameter | Type | Default | Purpose |
 |---|---|---|---|
-| `-OutputDirectory` | `string` | `'.'` | Directory for the two output files. Created if missing. Falls back to the `the modernization program_OUTPUT` environment variable when the parameter is omitted. |
+| `-OutputDirectory` | `string` | `'.'` | Directory for the two output files. Created if missing. Falls back to the `FMP_OUTPUT` environment variable when the parameter is omitted. |
 | `-WorkstationOSPattern` | `string[]` | `Windows 10*`, `Windows 11*`, `Windows 7*`, `Windows 8*` | Wildcard patterns matched against Computer `OperatingSystem`. |
 | `-ServerOSPattern` | `string[]` | `Windows Server*` | Wildcard patterns matched against Computer `OperatingSystem`. |
 | `-WorkstationOUNamePattern` | `string[]` | `*Workstation*`, `*Desktop*`, `*Laptop*`, `*Client*`, `*Endpoint*`, `*PC*` | Wildcard patterns matched against the OU canonical path. |
 | `-ServerOUNamePattern` | `string[]` | `*Server*`, `*DC*`, `*SQL*`, `*Domain Controllers` | Wildcard patterns matched against the OU canonical path. |
 | `-SkipComputerEnumeration` | `switch` | off | Skip OU OS predominance. The summary still emits the name-heuristic classification. Use on very large directories. |
-| `-CheckPrereqs` | `switch` | off | Run `the modernization program.ConfigTools` prereq validation before the triage: checks `GroupPolicy` + `ActiveDirectory` modules, `Get-GPO` / `Get-GPOReport` availability, and AD connectivity. Silently ignored when `the modernization program.ConfigTools` is not installed. |
-| `-EnableLogging` | `switch` | off | Start a timestamped PowerShell transcript under `<OutputDirectory>\logs\`. Requires `the modernization program.ConfigTools`; silently ignored when the module is absent. |
+| `-CheckPrereqs` | `switch` | off | Run `FMP.ConfigTools` prereq validation before the triage: checks `GroupPolicy` + `ActiveDirectory` modules, `Get-GPO` / `Get-GPOReport` availability, and AD connectivity. Silently ignored when `FMP.ConfigTools` is not installed. |
+| `-EnableLogging` | `switch` | off | Start a timestamped PowerShell transcript under `<OutputDirectory>\logs\`. Requires `FMP.ConfigTools`; silently ignored when the module is absent. |
 
 Standard `-Verbose` is honoured and logs OU count + GPO count during
 pre-load.
@@ -135,23 +135,23 @@ pre-load.
 
 | Variable | Overrides |
 |---|---|
-| `the modernization program_OUTPUT` | Default value of `-OutputDirectory` |
+| `FMP_OUTPUT` | Default value of `-OutputDirectory` |
 
-Set `the modernization program_OUTPUT` in a profile or CI job to avoid repeating the path across multiple scripts.
+Set `FMP_OUTPUT` in a profile or CI job to avoid repeating the path across multiple scripts.
 
-### the modernization program.ConfigTools integration
+### FMP.ConfigTools integration
 
-When the `the modernization program.ConfigTools` shared module (included in `uiao-cli.zip` under
-`scripts\the modernization program.ConfigTools\`) is installed, the script uses it for structured
+When the `FMP.ConfigTools` shared module (included in `uiao-cli.zip` under
+`scripts\FMP.ConfigTools\`) is installed, the script uses it for structured
 output and optional transcript logging. If the module is absent, the script
 falls back to plain coloured `Write-Host` output — no hard dependency.
 
 Install the module:
 
 ```powershell
-$dest = "$env:USERPROFILE\Documents\PowerShell\Modules\the modernization program.ConfigTools"
-Copy-Item .\uiao-cli\scripts\the modernization program.ConfigTools $dest -Recurse -Force
-Import-Module the modernization program.ConfigTools
+$dest = "$env:USERPROFILE\Documents\PowerShell\Modules\FMP.ConfigTools"
+Copy-Item .\uiao-cli\scripts\FMP.ConfigTools $dest -Recurse -Force
+Import-Module FMP.ConfigTools
 ```
 
 Run with prereq check and logging:
@@ -434,7 +434,7 @@ sources:
 1. The `$intuneMap` lookup in
    [`tools/discovery/Spec1-D1.3-Get-GPODeviceDependencyMap.ps1`]
    — workstation-side Intune Settings Catalog equivalents.
-2. The the modernization program modernization registry (`src/uiao/canon/modernization-registry.yaml`)
+2. The Federal Modernization Program modernization registry (`src/uiao/canon/modernization-registry.yaml`)
    — sanctioned change-making adapters.
 3. The published Azure Arc topology for server-side policy delivery:
    Guest Configuration, Azure Policy, Azure Update Manager, Defender
@@ -491,5 +491,5 @@ keyed by `GpoId`, so a downstream Evidence-Ledger join is trivial.
 | Script SHA256 | `afe88fb798e41acd61c714341420551fb7e06d0c8f80d58d31f84e98080ba603` (v1.0 base) |
 | Target | Windows Server with RSAT (GroupPolicy + ActiveDirectory modules) |
 | Outputs | `gpo-migration-triage-summary.json`, `gpo-migration-triage-detail.json` |
-| Optional module | `the modernization program.ConfigTools` v1.2.0 (prereq validation + transcript logging) |
-| Related | [`Invoke-GpoObsoleteAudit.ps1`](invoke-gpo-obsolete-audit.qmd), [`the modernization program.ConfigTools` module reference](powershell-module-reference.qmd), `tools/discovery/Spec1-D1.3-Get-GPODeviceDependencyMap.ps1` |
+| Optional module | `FMP.ConfigTools` v1.2.0 (prereq validation + transcript logging) |
+| Related | [`Invoke-GpoObsoleteAudit.ps1`](invoke-gpo-obsolete-audit.qmd), [`FMP.ConfigTools` module reference](powershell-module-reference.qmd), `tools/discovery/Spec1-D1.3-Get-GPODeviceDependencyMap.ps1` |

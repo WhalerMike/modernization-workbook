@@ -23,7 +23,7 @@ lifecycle_review: 2026-11-22
 
 ## Scope
 
-Cross-adapter specification for cloud modernization under the the modernization program
+Cross-adapter specification for cloud modernization under the Federal Modernization Program
 substrate. Covers tenant model, authorization boundary treatment, named
 exceptions, in-boundary telemetry, and the canonical claim emissions
 cloud adapters must produce. The spec is GCC-Moderate-anchored;

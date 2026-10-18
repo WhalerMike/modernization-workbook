@@ -23,7 +23,7 @@ lifecycle_review: 2026-11-22
 
 ## Scope
 
-Cross-adapter specification for identity modernization under the the modernization program
+Cross-adapter specification for identity modernization under the Federal Modernization Program
 substrate. Covers the directory transition (typically AD → Entra ID),
 attribute model, group computation, delegation, and the canonical claim
 emissions identity adapters must produce. Vendor-specific detail lives

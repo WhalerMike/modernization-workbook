@@ -14,7 +14,6 @@ aliases:
   - /customer-documents/reference-architecture/delegation.html
 ---
 
-{{< lifecycle-banner >}}
 
 > **Model C — Administrative Units scoped by facet tuples (per the program decision).** AU membership rules compose facet predicates from the 15-slot model rather than `-startsWith` on a composite-hyphen path. See [the organizational-attribute model Codebook](codebook.md) for the facet/slot definitions.
 
@@ -27,7 +26,7 @@ Entra ID has no OUs. It has a flat directory where every user is at the same lev
 1. **Over-delegate**: Give administrators tenant-wide permissions (Global Admin, User Admin) because there is no scope boundary. This violates least-privilege and creates audit findings.
 2. **Under-delegate**: Lock down all administration to a tiny team, creating bottlenecks where every password reset, group change, and user update requires a central IT ticket.
 
-Administrative Units (AUs) solve this — they create virtual scope boundaries within the flat directory. Under Model C, the boundary is defined by **facet tuples** (one or more `(attr, value)` predicates AND'd together), not by position in a composite path. The Delegation Matrix (the modernization program_154) names the canonical AUs, their facet scopes, and the role assignments they carry.
+Administrative Units (AUs) solve this — they create virtual scope boundaries within the flat directory. Under Model C, the boundary is defined by **facet tuples** (one or more `(attr, value)` predicates AND'd together), not by position in a composite path. The Delegation Matrix (FMP_154) names the canonical AUs, their facet scopes, and the role assignments they carry.
 
 ## Three-Tier Model
 
@@ -100,7 +99,7 @@ The Tier-1 enterprise AU uses the Department facet's non-empty check as the cano
 | Conditional Access Administrator | `OrgTree-IT-CyberOps-Admins` | `AU-Cleared-TopSecret-Plus` | (cross-cutting) |
 
 Notes:
-- The `*-Admins` dynamic groups derive from the corresponding `*-Users` groups via a separate membership rule (typically an enriched HR attribute or a manually curated list per the modernization program_154).
+- The `*-Admins` dynamic groups derive from the corresponding `*-Users` groups via a separate membership rule (typically an enriched HR attribute or a manually curated list per FMP_154).
 - Cross-cutting AUs (like `AU-Cleared-TopSecret-Plus`) get role assignments only when the operational need crosses Department/Division boundaries (e.g., a CISO-led security-clearance review).
 
 ## Restricted Management
@@ -130,5 +129,5 @@ The per-facet drift model (see [Drift Detection Walk-through](drift-walkthrough.
 
 ::: {.callout-tip}
 ## Source
-Canonical narrative: [`the modernization program_154_Delegation_Matrix_AUs_Roles.md`]( modernization program_154_Delegation_Matrix_AUs_Roles.md). Facet definitions: [the organizational-attribute model Codebook](codebook.md). Per-facet drift classifier: [Drift Detection Walk-through](drift-walkthrough.md).
+Canonical narrative: `FMP_154_Delegation_Matrix_AUs_Roles.md`. Facet definitions: [the organizational-attribute model Codebook](codebook.md). Per-facet drift classifier: [Drift Detection Walk-through](drift-walkthrough.md).
 :::

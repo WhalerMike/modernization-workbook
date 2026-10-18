@@ -14,7 +14,6 @@ aliases:
   - /customer-documents/reference-architecture/directory-migration.html
 ---
 
-{{< lifecycle-banner >}}
 
 Directory migration is the flagship journey of **OrgMod (Organizational
 Modernization)** — the modernization member of the Org family, alongside
@@ -91,7 +90,7 @@ No error messages, no alerts — just things that stop working.
 
 ## The Eight Core Concepts
 
-Every adapter is grounded in the modernization program's eight universal core concepts:
+Every adapter is grounded in the Federal Modernization Program's eight universal core concepts:
 
 | Core Concept | Definition | Adapter Relevance |
 |-------------|-----------|-------------------|
@@ -128,7 +127,7 @@ Every adapter registers in the `migration-adapter-registry.yaml` with standardiz
 - **Migration phase** (current state in the six-phase model per [the program decision]; valid values: `Discover`, `Normalize`, `Map`, `Migrate`, `Validate`, `Decommission`, or `N/A — net-new capability`)
 - **Dependencies** (which other adapters must complete first)
 - **Validation criteria** (machine-checkable success conditions)
-- **Canon crosswalk** (links to relevant the modernization program_xxx canon documents; the legacy MOD_xxx namespace was retired into the modernization program_xxx per [the program decision])
+- **Canon crosswalk** (links to relevant FMP_xxx canon documents; the legacy MOD_xxx namespace was retired into FMP_xxx per [the program decision])
 
 ## Source Files
 

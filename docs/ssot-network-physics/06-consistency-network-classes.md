@@ -64,7 +64,7 @@ moves a workload off the lean cross-region path it cannot afford:
   milliseconds, so synchronous consistency is effectively free. Confine the
   single-writer source of truth and its quorum to one region; replicate to other
   regions asynchronously. This is the default for the overwhelming majority of
-  systems, and it is the modernization program's choice (Chapter 7).
+  systems, and it is the Federal Modernization Program's choice (Chapter 7).
 - **Bounded staleness instead of strict global serializability.** Where the
   business tolerates reads that are a known, small interval behind, you replace
   a cross-region read round trip with a local read from a slightly-stale
@@ -118,7 +118,7 @@ exposure. This is the unavoidable trade of the whole consolidation bet: you
 exchange the failure-domain isolation of many physical stores for the
 simplicity and drift-resistance of one logical store, and in return you owe that
 shared correctness path disproportionate engineering rigor — small, heavily
-tested, and fail-closed. Chapter 7 shows where exactly that path lives in the modernization program.
+tested, and fail-closed. Chapter 7 shows where exactly that path lives in the Federal Modernization Program.
 
 A parallel obligation applies to the network classes themselves: the lean and
 bulk paths are not merely *selected* but must be *governed* — token-bound and
@@ -137,4 +137,4 @@ auditable — or the transport layer becomes its own drift surface. Chapter 5
 - A three-question decision procedure (one source of truth → weakest tolerable
   consistency → matching transport) produces the layout.
 - The bet concentrates correctness into the shared isolation path; that path
-  must be small, tested, and fail-closed — examined next in the modernization program.
+  must be small, tested, and fail-closed — examined next in the Federal Modernization Program.

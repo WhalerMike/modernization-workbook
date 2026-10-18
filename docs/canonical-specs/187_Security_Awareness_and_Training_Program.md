@@ -1,15 +1,15 @@
 ---
-title: "the modernization program Security Awareness and Training Program"
-subtitle: "Canonical Spec · the modernization program_187"
+title: "The Federal Modernization Program Security Awareness and Training Program"
+subtitle: "Canonical Spec · FMP_187"
 date: 2026-06-05
 ---
 
 ::: {.callout-note}
-## Canonical the modernization program Specification
+## Canonical the Federal Modernization Program Specification
 
-**the modernization program_187** — status: **Current** — version: **1.0**
+**FMP_187** — status: **Current** — version: **1.0**
 
-This page renders the canonical the modernization program_187 source verbatim. The
+This page renders the canonical FMP_187 source verbatim. The
 authoritative source is at
 Per the program decision, this
 canonical page is generated as an `include`-style wrapper.

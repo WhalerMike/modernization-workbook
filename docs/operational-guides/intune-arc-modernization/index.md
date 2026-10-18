@@ -1,6 +1,6 @@
 ---
 title: "Intune + Azure Arc Modernization"
-subtitle: "Endpoint and server modernization on a Hybrid AD → Entra ID estate — runnable two ways: a manual path, and a the modernization program/the organizational-attribute model-governed path"
+subtitle: "Endpoint and server modernization on a Hybrid AD → Entra ID estate — runnable two ways: a manual path, and a Federal Modernization Program/the organizational-attribute model-governed path"
 doc-type: operational-guide
 audience: [Customer, Operator, Technical]
 author: Michael Stratton
@@ -21,7 +21,7 @@ lifecycle_review: 2026-12-08
 # Intune + Azure Arc Modernization {.unnumbered}
 
 This kit is the device- and server-plane workstream of **OrgMod**, the
-modernization expression of the the modernization program substrate (see the
+modernization expression of the Federal Modernization Program substrate (see the
 OrgMod hub).
 
 This kit modernizes a Hybrid Active Directory estate onto **Microsoft Intune**
@@ -34,7 +34,7 @@ It is runnable **two ways from the same scripts**:
 
 - a **[manual path](manual-path.md)** — you preview each change with `-WhatIf`
   and own the decision under local change control; and
-- a **[the modernization program / the organizational-attribute model-governed path](governed-path.md)** — every change is
+- a **[the Federal Modernization Program / the organizational-attribute model-governed path](governed-path.md)** — every change is
   bound to an organizational path, an actuation rung, and a recorded approval.
 
 If you build the manual path now and want governance later, you do **not** redo
@@ -55,7 +55,7 @@ the organizational-attribute model survey helper for the retrofit). Every state-
 | Page | What it covers |
 |---|---|
 | [Manual path](manual-path.md) | The end-to-end technical runbook with no governance control plane — Arc onboarding, Intune enrollment, NTLM/SPN/SQL hardening, Conditional Access, monitoring, and rollback. Each operator owns the decision. |
-| [Governed path (the modernization program / the organizational-attribute model)](governed-path.md) | The same end state, bound to canon governance — control-plane-governs-data-plane, the organizational-attribute model scoping, the L0–L4 actuation ladder, the drift-detection loop, and evidence. |
+| [Governed path (the Federal Modernization Program / the organizational-attribute model)](governed-path.md) | The same end state, bound to canon governance — control-plane-governs-data-plane, the organizational-attribute model scoping, the L0–L4 actuation ladder, the drift-detection loop, and evidence. |
 | Add the organizational-attribute model later (retrofit) | For estates already built the manual way: how to layer the organizational-attribute model governance on top **without** re-doing the Intune/Arc work. |
 
 ## How the two paths relate
@@ -68,7 +68,7 @@ to technical change: who owns it, what authorizes it, and how drift is caught.
 
 ## A note on terminology {#terminology}
 
-In this repository, **the modernization program** is the *Unified Identity-Addressing-Overlay
+In this repository, **the Federal Modernization Program** is the *Unified Identity-Addressing-Overlay
 Architecture* — an **active reconciliation control plane** that *governs*
 provider data planes (Entra, Intune, Azure Policy, AD) per
 the program decision. It holds desired state,

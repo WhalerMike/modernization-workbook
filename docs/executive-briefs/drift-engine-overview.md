@@ -11,13 +11,13 @@ lifecycle_review: 2026-11-22
 
 # Drift Engine Overview — Executive Brief
 
-![Continuous monitoring pipeline](../../images/canonical/the modernization program-FIG-003-continuous-monitoring-pipeline.png){fig-alt="the modernization program continuous monitoring pipeline checking tenant configuration against 323 FedRAMP Moderate Rev 5 controls plus SCuBA and [BOD 25-01](https://cyber.dhs.gov/bod/25-01/) baselines." width="100%"}
+![Continuous monitoring pipeline](../../images/canonical/FMP-FIG-003-continuous-monitoring-pipeline.png){fig-alt="the Federal Modernization Program continuous monitoring pipeline checking tenant configuration against 323 FedRAMP Moderate Rev 5 controls plus SCuBA and [BOD 25-01](https://cyber.dhs.gov/bod/25-01/) baselines." width="100%"}
 
-For federal CIO/CISO leadership, the modernization program’s drift engine is the control that continuously answers: *“Are we still operating exactly as canonized policy, identity, and evidence rules require?”* It classifies drift using one taxonomy, assigns operational urgency, and drives a bounded remediation path.
+For federal CIO/CISO leadership, the Federal Modernization Program’s drift engine is the control that continuously answers: *“Are we still operating exactly as canonized policy, identity, and evidence rules require?”* It classifies drift using one taxonomy, assigns operational urgency, and drives a bounded remediation path.
 
 ## Canonical drift classes
 
-the modernization program uses five classes (verbatim from the Drift Detection Standard):
+The Federal Modernization Program uses five classes (verbatim from the Drift Detection Standard):
 
 - `DRIFT-SCHEMA` — structure no longer matches canonical schema.
 - `DRIFT-SEMANTIC` — structure is valid, but meaning is stale or inconsistent.
@@ -64,4 +64,4 @@ the modernization program uses five classes (verbatim from the Drift Detection S
 - **[Governance OS Overview](governance-os-overview.md)** — how drift fits the
   broader substrate operating model.
 
-**Leadership takeaway:** the modernization program already ships structural/provenance drift enforcement in CI, with the same taxonomy and severity contract extending to runtime semantic, authorization, and identity drift as those controls are completed.
+**Leadership takeaway:** the Federal Modernization Program already ships structural/provenance drift enforcement in CI, with the same taxonomy and severity contract extending to runtime semantic, authorization, and identity drift as those controls are completed.

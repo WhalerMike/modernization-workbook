@@ -1,7 +1,7 @@
 ---
 title: "Implementation Book 04 — Arc Deployment & the Managed Identity"
 subtitle: "The verified runbook for giving an on-prem SQL host a system-assigned managed identity via the Arc Connected Machine agent — the credential-free cloud identity the transformation requires"
-description: "A pattern runbook for Azure Arc enablement of SQL Server hosts: prerequisites and egress for the GCC-Moderate boundary, azcmagent enrollment, IMDS managed-identity token validation, the Azure extension for SQL Server, and a verification checklist. The onboarding and validation helpers are shipped in the the modernization programSqlServerMigration module — validation read-only, onboarding review-required and audit-first — and the book gives the exact commands, validation, and rollback alongside the function that automates each step."
+description: "A pattern runbook for Azure Arc enablement of SQL Server hosts: prerequisites and egress for the GCC-Moderate boundary, azcmagent enrollment, IMDS managed-identity token validation, the Azure extension for SQL Server, and a verification checklist. The onboarding and validation helpers are shipped in the FMPSqlServerMigration module — validation read-only, onboarding review-required and audit-first — and the book gives the exact commands, validation, and rollback alongside the function that automates each step."
 doc-type: sql-server-implementation-book
 audience: [Technical, Customer]
 family: sql-server-implementation
@@ -17,7 +17,7 @@ lifecycle_review: 2027-01-01
 # Implementation Book 04 — Arc Deployment & the Managed Identity
 :::
 
-![Arc gives each retained host a system-assigned managed identity: validate the agent (read-only), onboard behind a -WhatIf gate, then prove the token and SQL extension — the identity Book 05's Entra logins are issued against.](images/book04-image-01-arc-managed-identity.png){#fig-impl-book04 fig-alt="A schematic on a white background. A navy 'SQL Server host' box on the left connects by teal arrow to three stacked stages: Test-the modernization programArcAgentStatus (validate, read-only), a red-bordered Invoke-the modernization programArcOnboarding (review-required, SupportsShouldProcess, -WhatIf preview), and Test-the modernization programArcManagedIdentityToken / Test-the modernization programArcSqlExtension (prove, read-only). A teal arrow leads to an ice-blue 'Azure Arc · Microsoft Entra' panel containing 'system-assigned managed identity → IMDS token' and 'cloud-aware audience (GCC-Moderate / Gov) — fails closed'. Federal navy, teal, ice-blue and red palette; no photographs." width="100%"}
+![Arc gives each retained host a system-assigned managed identity: validate the agent (read-only), onboard behind a -WhatIf gate, then prove the token and SQL extension — the identity Book 05's Entra logins are issued against.](images/book04-image-01-arc-managed-identity.png){#fig-impl-book04 fig-alt="A schematic on a white background. A navy 'SQL Server host' box on the left connects by teal arrow to three stacked stages: Test-FMPArcAgentStatus (validate, read-only), a red-bordered Invoke-FMPArcOnboarding (review-required, SupportsShouldProcess, -WhatIf preview), and Test-FMPArcManagedIdentityToken / Test-FMPArcSqlExtension (prove, read-only). A teal arrow leads to an ice-blue 'Azure Arc · Microsoft Entra' panel containing 'system-assigned managed identity → IMDS token' and 'cloud-aware audience (GCC-Moderate / Gov) — fails closed'. Federal navy, teal, ice-blue and red palette; no photographs." width="100%"}
 
 ::: {.callout-tip}
 ## Download this book
@@ -30,7 +30,7 @@ Companion to **narrative Book 04**. The narrative explains why the Arc Connected
 
 ::: {.callout-important}
 ## Automation status — shipped, review-required for the mutating step
-The Arc onboarding and validation helpers are now **shipped** in the `the modernization programSqlServerMigration` module (`tools/powershell/the modernization programSqlServerMigration/`). The validation helpers are read-only and run directly; the onboarding wrapper is idempotent and **review-required** — it defaults to planning the `azcmagent connect` command (`-WhatIf`) and executes only on explicit confirmation in a change window. The exact commands, validation steps, and rollback below remain the verified pattern; each step now also points to the function that automates it.
+The Arc onboarding and validation helpers are now **shipped** in the `FMPSqlServerMigration` module (`tools/powershell/FMPSqlServerMigration/`). The validation helpers are read-only and run directly; the onboarding wrapper is idempotent and **review-required** — it defaults to planning the `azcmagent connect` command (`-WhatIf`) and executes only on explicit confirmation in a change window. The exact commands, validation steps, and rollback below remain the verified pattern; each step now also points to the function that automates it.
 :::
 
 ## Why Arc comes before login migration
@@ -59,7 +59,7 @@ azcmagent connect `
 azcmagent show   # expect: Agent Status = Connected
 ```
 
-**Available** — `Invoke-the modernization programArcOnboarding` (`tools/powershell/the modernization programSqlServerMigration/`) wraps this idempotently: it skips when the agent already reports `Connected`, composes the exact `azcmagent connect` command from its parameters (no embedded secrets), and emits a sealed onboarding-plan evidence record. It defaults to planning only; mutating action requires `-Execute` plus the `SupportsShouldProcess` confirmation, so `-WhatIf` produces the reviewable command without touching the host. The idempotency check is `Test-the modernization programArcAgentStatus`, which validates `azcmagent show` against the expected Government-cloud and returns a sealed pass/fail record. (Canon: the directory modernization program Transformation #7; the program decision, the program decision.)
+**Available** — `Invoke-FMPArcOnboarding` (`tools/powershell/FMPSqlServerMigration/`) wraps this idempotently: it skips when the agent already reports `Connected`, composes the exact `azcmagent connect` command from its parameters (no embedded secrets), and emits a sealed onboarding-plan evidence record. It defaults to planning only; mutating action requires `-Execute` plus the `SupportsShouldProcess` confirmation, so `-WhatIf` produces the reviewable command without touching the host. The idempotency check is `Test-FMPArcAgentStatus`, which validates `azcmagent show` against the expected Government-cloud and returns a sealed pass/fail record. (Canon: the directory modernization program Transformation #7; the program decision, the program decision.)
 
 ## Step 2 — Validate the managed-identity token (IMDS)
 
@@ -79,7 +79,7 @@ $payload += '=' * ((4 - $payload.Length % 4) % 4)
 
 A token minted for the wrong audience is rejected at use time — the management-plane and data-plane audiences are distinct, and a token for one is refused by the other. (This mirrors the Graph-vs-ARM audience split documented in `AGENTS.md`.)
 
-**Available** — `Test-the modernization programArcManagedIdentityToken` (`tools/powershell/the modernization programSqlServerMigration/`) automates exactly this check: it decodes the token (claims-inspection only, no signature trust), asserts `aud` matches the cloud-correct SQL data-plane audience and `exp` is in the future, and returns a sealed pass/fail record. Read-only — it accepts a captured IMDS response or queries the local Arc IMDS live.
+**Available** — `Test-FMPArcManagedIdentityToken` (`tools/powershell/FMPSqlServerMigration/`) automates exactly this check: it decodes the token (claims-inspection only, no signature trust), asserts `aud` matches the cloud-correct SQL data-plane audience and `exp` is in the future, and returns a sealed pass/fail record. Read-only — it accepts a captured IMDS response or queries the local Arc IMDS live.
 
 ## Step 3 — Install the Azure extension for SQL Server
 
@@ -95,7 +95,7 @@ az connectedmachine extension create `
     --publisher "Microsoft.AzureData"
 ```
 
-**Available** — `Test-the modernization programArcSqlExtension` (`tools/powershell/the modernization programSqlServerMigration/`) confirms the `WindowsAgent.SqlServer` extension provisioning state is `Succeeded` and surfaces the Entra-auth-capable signal, returning a sealed pass/fail record. Read-only — it validates either a captured extension document or a live `az connectedmachine extension show`. The companion `Test-the modernization programArcManagedIdentityToken` validates the IMDS token's `aud`/`exp` against the data-plane audience (Step 2). (Canon: the directory modernization program Transformation #7; the program decision, the program decision.)
+**Available** — `Test-FMPArcSqlExtension` (`tools/powershell/FMPSqlServerMigration/`) confirms the `WindowsAgent.SqlServer` extension provisioning state is `Succeeded` and surfaces the Entra-auth-capable signal, returning a sealed pass/fail record. Read-only — it validates either a captured extension document or a live `az connectedmachine extension show`. The companion `Test-FMPArcManagedIdentityToken` validates the IMDS token's `aud`/`exp` against the data-plane audience (Step 2). (Canon: the directory modernization program Transformation #7; the program decision, the program decision.)
 
 ## Verification checklist
 
@@ -117,4 +117,4 @@ Arc enrollment is reversible: `azcmagent disconnect` removes the machine resourc
 
 ---
 
-*Companion to narrative Book 04. Shipped automation: `tools/powershell/the modernization programSqlServerMigration/` (`Test-the modernization programArcAgentStatus`, `Test-the modernization programArcManagedIdentityToken`, `Test-the modernization programArcSqlExtension`, `Invoke-the modernization programArcOnboarding`) — validation read-only; onboarding review-required (`-WhatIf` by default). Canon: the program decision, the program decision, the directory modernization program Transformation #7.*
+*Companion to narrative Book 04. Shipped automation: `tools/powershell/FMPSqlServerMigration/` (`Test-FMPArcAgentStatus`, `Test-FMPArcManagedIdentityToken`, `Test-FMPArcSqlExtension`, `Invoke-FMPArcOnboarding`) — validation read-only; onboarding review-required (`-WhatIf` by default). Canon: the program decision, the program decision, the directory modernization program Transformation #7.*

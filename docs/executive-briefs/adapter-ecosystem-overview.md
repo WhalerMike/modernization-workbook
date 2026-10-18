@@ -1,10 +1,10 @@
 ---
 title: "Adapter Ecosystem Overview — Executive Brief"
-subtitle: "How the modernization program reaches incumbent systems without rip-and-replace"
+subtitle: "How the Federal Modernization Program reaches incumbent systems without rip-and-replace"
 doc-type: executive-brief
 status: Active
 canon-source:
-  - "src/uiao/canon/the modernization program_003_Adapter_Segmentation_Overview_v1.0.md"
+  - "src/uiao/canon/FMP_003_Adapter_Segmentation_Overview_v1.0.md"
   - "src/uiao/canon/adapter-registry.yaml"
   - "src/uiao/canon/modernization-registry.yaml"
 derived-from: "uiao canon"
@@ -15,9 +15,9 @@ lifecycle_review: 2026-11-22
 
 # Adapter Ecosystem Overview — Executive Brief
 
-![the modernization program Governance OS](../../images/canonical/the modernization program-FIG-001-governance-os-overview.png){fig-alt="High-level overview of the the modernization program Governance OS — the substrate layer that adapters extend to reach incumbent identity, telemetry, policy, and enforcement systems." width="100%"}
+![the Federal Modernization Program Governance OS](../../images/canonical/FMP-FIG-001-governance-os-overview.png){fig-alt="High-level overview of the Federal Modernization Program Governance OS — the substrate layer that adapters extend to reach incumbent identity, telemetry, policy, and enforcement systems." width="100%"}
 
-the modernization program is an **overlay**: it does not replace the platforms an agency already
+The Federal Modernization Program is an **overlay**: it does not replace the platforms an agency already
 runs. Adapters are how the governance substrate reaches those platforms —
 reading their state, normalizing it into canon-keyed claims, and (where
 authorized) pushing approved change back into them. The adapter set is governed
@@ -25,10 +25,10 @@ as canon, not as code that drifts on its own: every adapter is a registered
 entry in one of two schema-validated registries, and no adapter merges without
 passing the conformance gate.
 
-## The dual-axis taxonomy (the modernization program_003)
+## The dual-axis taxonomy (FMP_003)
 
 Every adapter declares two coordinates, defined in
-[`the modernization program_003`](../../../src/uiao/canon/the modernization program_003_Adapter_Segmentation_Overview_v1.0.md):
+[`FMP_003`](../../../src/uiao/canon/FMP_003_Adapter_Segmentation_Overview_v1.0.md):
 
 - **`class`** — the *operational* axis: `modernization` (change-making) or
   `conformance` (read-only).
@@ -36,7 +36,7 @@ Every adapter declares two coordinates, defined in
   `policy`, `enforcement`, or `integration`.
 
 > *Adapters are plural in class but singular in mission: each class exists to
-> serve SSOT + Identity + Security.* — the modernization program_003
+> serve SSOT + Identity + Security.* — FMP_003
 
 This is what keeps the ecosystem coherent as it grows. A new vendor integration
 is never "just another connector" — it must declare what it changes (or that it
@@ -90,7 +90,7 @@ shipped adapters are exercised through the IR and evidence pipelines.
 ## How an adapter earns "active"
 
 Status is not self-asserted. Per the adapter test strategy
-(the modernization program_131), an adapter
+(FMP_131), an adapter
 advances through three test tiers before its registry `status` may move toward
 `active`:
 
@@ -128,7 +128,7 @@ Adapter capability is declared per the five-tier conformance model in
 
 ## Leadership takeaway
 
-the modernization program's adapter ecosystem is governed, not improvised: a fixed taxonomy, two
+The Federal Modernization Program's adapter ecosystem is governed, not improvised: a fixed taxonomy, two
 schema-validated registries, and a CI gate that blocks any adapter from
 claiming a status it has not earned through tiered testing. Twelve adapters ship
 today across read-only assessment and change-making integration; the larger

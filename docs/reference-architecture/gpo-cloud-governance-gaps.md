@@ -14,7 +14,6 @@ aliases:
   - /customer-documents/reference-architecture/gpo-cloud-governance-gaps.html
 ---
 
-{{< lifecycle-banner >}}
 
 ::: {.callout-note}
 ## Why this page exists
@@ -37,7 +36,7 @@ the broader structural argument that the AD→Entra gap is structural
 rather than technical, see
 [AD to Entra ID — The Structural Migration Problem](../whitepapers/ad-to-entraid-migration-problem.md);
 for the tool-by-tool comparison (including Group Policy Analytics), see
-the modernization program vs Microsoft Native Tools.
+The Federal Modernization Program vs Microsoft Native Tools.
 This page does not restate their claims — it focuses on *what is lost in
 the policy plane and where the organizational-attribute model restores it*.
 :::
@@ -176,7 +175,7 @@ or regulated enterprises.
 ## Sourcing note
 
 The "30–60%" figure and the "Migrate" feature behavior are properties of
-Microsoft's **Group Policy Analytics**, not the modernization program canon — treat the exact
+Microsoft's **Group Policy Analytics**, not the Federal Modernization Program canon — treat the exact
 percentage as environment-specific and confirm it against your own
 analytics export. The provenance discipline here follows the substrate
 SSOT rule: external facts are authoritative only at their source.
@@ -229,4 +228,4 @@ close.
 - **Carry governance beyond one cloud:** the organizational-attribute model Portability
 - **Whole-of-transition framing:** [Modernization Canon (section index)](index.md)
 - **Structural-gap argument:** [AD to Entra ID — The Structural Migration Problem](../whitepapers/ad-to-entraid-migration-problem.md)
-- **Tool-by-tool comparison:** the modernization program vs Microsoft Native Tools
+- **Tool-by-tool comparison:** the Federal Modernization Program vs Microsoft Native Tools

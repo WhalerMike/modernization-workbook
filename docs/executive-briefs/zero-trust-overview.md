@@ -14,14 +14,14 @@ lifecycle_review: 2026-11-22
 ![Mission-class placement for zero-trust policy (5-class lane diagram)](../images/executive-briefs/zero-trust-overview-image-01-mission-class-placement-for-zero.png){#fig-zero-trust-overview-image-01 fig-alt="Mission-class placement for zero-trust policy (5-class lane diagram). Engineering blueprint style, neutral slate background, federal navy (#1F3A5F) for primary structural elements, teal (#1A9E8F) for secondary/integration elements, amber (#D4A017) for governance/audit/registry overlays, monospace labels for identifiers, no human figures, 16:9 landscape." width="100%"}
 
 
-the modernization program applies zero trust by anchoring every claim, certificate event, and
+The Federal Modernization Program applies zero trust by anchoring every claim, certificate event, and
 governance decision to an identity that is verified, not assumed. Per the program decision,
 anchor bindings are untrusted by default and must be backed by cryptographic
 proof, independent corroboration, or explicit governance authorization.
 
 ## What this means for your existing stack
 
-the modernization program is an overlay, not a replacement identity platform. It is designed to sit
+The Federal Modernization Program is an overlay, not a replacement identity platform. It is designed to sit
 above systems you already run (for example Entra ID, Cisco ISE, and Palo Alto),
 normalize their identity-linked signals, and enforce traceable policy outcomes
 across them.
@@ -38,14 +38,14 @@ across them.
 
 ## Leaver killswitch maturity (honest status)
 
-the modernization program canon sets a **target** of under **120 seconds** for leaver revocation
+The Federal Modernization Program canon sets a **target** of under **120 seconds** for leaver revocation
 latency across identity and dependent access surfaces. This is a TARGET-state
 objective and should not be read as shipped production performance.
 
 ## Executive takeaway
 
 If your agency already has identity, network, and endpoint controls in place,
-the modernization program provides the missing correlation and governance layer: identity-anchored,
+The Federal Modernization Program provides the missing correlation and governance layer: identity-anchored,
 cross-system, and evidence-ready zero-trust execution without forcing a rip-and-
 replace of your existing stack.
 

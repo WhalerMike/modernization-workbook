@@ -17,7 +17,7 @@ lifecycle_review: 2026-11-22
 ::: {.callout-tip}
 ## Download the full section
 These guides are the operational home of **OrgMod — Organizational
-Modernization**, one of the four operational expressions of the the modernization program
+Modernization**, one of the four operational expressions of the Federal Modernization Program
 substrate (alongside the organizational-attribute model, which governs, Compliance, which proves
 compliance, and OrgLink, which governs external interconnection) —
 adoptable together or entirely independently. The
@@ -57,7 +57,7 @@ bundle above still carries all of them.
 :::
 
 The **what transforms, what it transforms into, and the machinery that moves
-data between the two.** the modernization program modernization retires the AD-centric
+data between the two.** the Federal Modernization Program modernization retires the AD-centric
 Client/Server-era estate — Active Directory, GPO, DNS, DHCP, Kerberos, ADCS,
 domain-joined devices — and governs its replacement in the Hybrid-Cloud
 target surface of Entra ID, Intune, Azure Arc, IPAM, SASE, and Zero Trust.
@@ -123,7 +123,7 @@ Every page respects:
   **2027-01-01**; no new Rev5 certifications are issued after 2027-06-11.
   See the program decision.
 - **Source of truth:** every target surface state derives from a canonical
-  plan stored in Gitea. the modernization program does not mutate SSOT; it governs it.
+  plan stored in Gitea. The Federal Modernization Program does not mutate SSOT; it governs it.
 - **Determinism:** the same inputs produce the same outputs. No hidden state,
   no human-in-the-loop interpretation.
 - **Provenance:** every delivered change is attributable to a Git commit + a

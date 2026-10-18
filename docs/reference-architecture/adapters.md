@@ -14,7 +14,6 @@ aliases:
   - /customer-documents/reference-architecture/adapters.html
 ---
 
-{{< lifecycle-banner >}}
 ## The Hidden Surface
 
 When people say "migrate off Active Directory," they mean move users to Entra ID.
