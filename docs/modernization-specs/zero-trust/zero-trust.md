@@ -23,7 +23,7 @@ lifecycle_review: 2026-11-22
 ## Scope
 
 Cross-adapter specification for Zero Trust modernization under the
-the modernization program substrate. Covers ZTMM pillar mapping, identity-as-root-namespace
+The Federal Modernization Program substrate. Covers ZTMM pillar mapping, identity-as-root-namespace
 posture, runtime policy decision/enforcement, and the canonical claim
 emissions ZT adapters must produce. The companion narrative is the
 [Zero Trust Governance Whitepaper](../../whitepapers/zero-trust-governance-whitepaper.md).
@@ -47,7 +47,7 @@ the program decision:
 
 ## Pillar coverage
 
-| Pillar | the modernization program contribution | Adapters |
+| Pillar | the Federal Modernization Program contribution | Adapters |
 |---|---|---|
 | Identity | Identity-plane SSOT | `entra-id`, `active-directory`, `piv-usaccess` |
 | Devices | Device claims via provenance envelope | `intune`, `azure-arc` |

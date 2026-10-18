@@ -1,7 +1,7 @@
 ---
 title: "Implementation Book 08 — The Application Chain & Connection-String Migration"
-subtitle: "Inventory the LDAP-bind dependency with the real Spec3-D1.9 audit, correlate and classify each SQL-consuming application by the the program decision four-class taxonomy with New-the modernization programAppConnectionPlan, then run the review-required connection-string change that removes the stored credential — the last mile"
-description: "How to complete the authentication chain upstream of SQL Server. Documents the shipped Spec3-D1.9 Get-LDAPBindAccountInventory audit with its real parameters, discovery methods, output fields, and risk/migration-target columns, then New-the modernization programAppConnectionPlan — which correlates D1.9 to the Book 03 D1.8 audit, classifies each app by the the program decision four-class taxonomy (OIDC / SAML / App Proxy / Entra Domain Services), and emits the connection-string migration plan — followed by the review-required connection-string patterns (Active Directory Managed Identity / Service Principal / Default, the DefaultAzureCredential chain, and the three gate conditions) that remove the stored credential."
+subtitle: "Inventory the LDAP-bind dependency with the real Spec3-D1.9 audit, correlate and classify each SQL-consuming application by the the program decision four-class taxonomy with New-FMPAppConnectionPlan, then run the review-required connection-string change that removes the stored credential — the last mile"
+description: "How to complete the authentication chain upstream of SQL Server. Documents the shipped Spec3-D1.9 Get-LDAPBindAccountInventory audit with its real parameters, discovery methods, output fields, and risk/migration-target columns, then New-FMPAppConnectionPlan — which correlates D1.9 to the Book 03 D1.8 audit, classifies each app by the the program decision four-class taxonomy (OIDC / SAML / App Proxy / Entra Domain Services), and emits the connection-string migration plan — followed by the review-required connection-string patterns (Active Directory Managed Identity / Service Principal / Default, the DefaultAzureCredential chain, and the three gate conditions) that remove the stored credential."
 doc-type: sql-server-implementation-book
 audience: [Technical, Customer]
 family: sql-server-implementation
@@ -17,7 +17,7 @@ lifecycle_review: 2027-01-01
 # Implementation Book 08 — The Application Chain & Connection-String Migration
 :::
 
-![The last mile: inventory who still binds with a stored secret, plan the per-app cutover, then change the connection string in application configuration so the password leaves the chain entirely.](images/book08-image-01-connection-string.png){#fig-impl-book08 fig-alt="A schematic on a white background. A top row flows left to right under teal arrows: Spec3-D1.9-Get-LDAPBindAccountInventory (read-only), New-the modernization programAppConnectionPlan (derive), and a red-bordered 'change in app configuration' box (not a SQL script; review-required). Below, a red 'before — stored credential' connection string (Server, User Id, Password) flows by teal arrow to a teal 'after — no secret, token-based' string (Server, Authentication=Active Directory Managed Identity). Federal navy, teal and red palette; no photographs." width="100%"}
+![The last mile: inventory who still binds with a stored secret, plan the per-app cutover, then change the connection string in application configuration so the password leaves the chain entirely.](images/book08-image-01-connection-string.png){#fig-impl-book08 fig-alt="A schematic on a white background. A top row flows left to right under teal arrows: Spec3-D1.9-Get-LDAPBindAccountInventory (read-only), New-FMPAppConnectionPlan (derive), and a red-bordered 'change in app configuration' box (not a SQL script; review-required). Below, a red 'before — stored credential' connection string (Server, User Id, Password) flows by teal arrow to a teal 'after — no secret, token-based' string (Server, Authentication=Active Directory Managed Identity). Federal navy, teal and red palette; no photographs." width="100%"}
 
 ::: {.callout-tip}
 ## Download this book
@@ -65,11 +65,11 @@ Under `-OutputPath`: a `*_LDAPBindAccountInventory*.json` (`Summary` + the accou
 
 D1.9 inventories the **LDAP-bind accounts** and their risk and Graph-migration target. It does **not** record which SQL Server instance/database each application connects to, nor does it assign an the program decision class — those require correlation with the Book 03 `Spec3-D1.8` instance audit and with per-application modernization signals (SAML metadata URLs, OIDC discovery endpoints, vendor docs).
 
-**`New-the modernization programAppConnectionPlan`** (`tools/powershell/the modernization programSqlServerMigration/`) is the correlation-and-classification pass. It joins the D1.9 bind-account inventory to the Book 03 `Spec3-D1.8` instance audit (matching each bind account to the SQL login it maps to, so the plan names the exact `correlated_sql_instances`), assigns each application an the program decision class — preferring the cleanest end-state, OIDC > SAML > App Proxy > Domain Services — from a supplied `-CapabilityMap` of observable signals (oidc / saml / reverse_proxy / vendor_locked), falling back to the D1.9 `MigrationTarget`, and for any app correlated to a SQL login emits the connection-string transformation that removes the stored credential. Apps with no capability signal and no `MigrationTarget` land in `review` rather than being mis-classified.
+**`New-FMPAppConnectionPlan`** (`tools/powershell/FMPSqlServerMigration/`) is the correlation-and-classification pass. It joins the D1.9 bind-account inventory to the Book 03 `Spec3-D1.8` instance audit (matching each bind account to the SQL login it maps to, so the plan names the exact `correlated_sql_instances`), assigns each application an the program decision class — preferring the cleanest end-state, OIDC > SAML > App Proxy > Domain Services — from a supplied `-CapabilityMap` of observable signals (oidc / saml / reverse_proxy / vendor_locked), falling back to the D1.9 `MigrationTarget`, and for any app correlated to a SQL login emits the connection-string transformation that removes the stored credential. Apps with no capability signal and no `MigrationTarget` land in `review` rather than being mis-classified.
 
 ```powershell
-Import-Module ./tools/powershell/the modernization programSqlServerMigration
-New-the modernization programAppConnectionPlan `
+Import-Module ./tools/powershell/FMPSqlServerMigration
+New-FMPAppConnectionPlan `
     -LdapBindInventoryPath .\output\*LDAPBindAccountInventory*.json `
     -AuthAuditPath         .\output\sqlserver-auth-audit.json `
     -CapabilityMap         .\config\app-capabilities.json `
@@ -95,7 +95,7 @@ The two tracks are independent and can sequence separately — but **both** must
 
 ::: {.callout-warning}
 ## The simplest change, the most gated
-Technically the connection-string change is one keyword; operationally it is the most gate-controlled step in the program. `New-the modernization programAppConnectionPlan` emits the per-application *plan* (which app, which instances, which target keyword), but the change itself is made in **application configuration** by deliberate choice — there is no script that rewrites a production connection string. Three gate conditions must hold first, and the cutover runs in a change window.
+Technically the connection-string change is one keyword; operationally it is the most gate-controlled step in the program. `New-FMPAppConnectionPlan` emits the per-application *plan* (which app, which instances, which target keyword), but the change itself is made in **application configuration** by deliberate choice — there is no script that rewrites a production connection string. Three gate conditions must hold first, and the cutover runs in a change window.
 :::
 
 ### The change
@@ -145,4 +145,4 @@ Note the **data-plane audience** (`https://database.usgovcloudapi.net/` in Azure
 
 ---
 
-*Companion to narrative Book 08. Inventory script-backed: `tools/discovery/Spec3-D1.9`. Correlation + the program decision classification + connection-string plan: `tools/powershell/the modernization programSqlServerMigration` (`New-the modernization programAppConnectionPlan`). The connection-string change itself is a review-required, in-config step. Canon: the program decision, the program decision, the program decision, the directory modernization program §3.2.*
+*Companion to narrative Book 08. Inventory script-backed: `tools/discovery/Spec3-D1.9`. Correlation + the program decision classification + connection-string plan: `tools/powershell/FMPSqlServerMigration` (`New-FMPAppConnectionPlan`). The connection-string change itself is a review-required, in-config step. Canon: the program decision, the program decision, the program decision, the directory modernization program §3.2.*

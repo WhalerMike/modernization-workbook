@@ -5,7 +5,7 @@ doc-type: series-chapter
 series-id: client-server-to-hybrid-cloud
 chapter: 0
 audience: "Federal CIOs · CISOs · modernization program managers"
-canon-source: "docs/customer-documents/reference-architecture/directory-migration.qmd + the modernization program_150 Executive Summary"
+canon-source: "docs/customer-documents/reference-architecture/directory-migration.qmd + FMP_150 Executive Summary"
 date: 2026-04-24
 aspirational: true
 lifecycle: adopted
@@ -146,13 +146,13 @@ because no one tells them steps 1–5 exist as a discipline. They fail at
 the conceptual level: the idea that the project is just users and
 groups.
 
-## What the modernization program is
+## What the Federal Modernization Program is
 
-the modernization program — the Unified Identity and Access Orchestrator — is the framework
+The Federal Modernization Program — the Unified Identity and Access Orchestrator — is the framework
 that handles all eleven categories as a single governed surface, with
 one transformation engine, one canon, one evidentiary pipeline, and one
-drift detector. Nothing in the modernization program is a Microsoft tool substitute. Every
-the modernization program component sits *above* Microsoft's (and third-party) tools and
+drift detector. Nothing in the Federal Modernization Program is a Microsoft tool substitute. Every
+The Federal Modernization Program component sits *above* Microsoft's (and third-party) tools and
 orchestrates them into a coherent governance model.
 
 A single Windows Server 2025 host (documented in
@@ -180,7 +180,7 @@ The chapters that follow walk the full arc:
 |---|---|
 | 01 | **The Platform.** One WS2025 host. What runs on it and why. |
 | 02 | **Analyzing the legacy.** Forest discovery. GPO inventory. DNS/DHCP scraping. Kerberos SPN audit. ADCS analysis. |
-| 03 | **The engine.** How the modernization program turns analysis into a plan and a plan into delivered state. |
+| 03 | **The engine.** How the Federal Modernization Program turns analysis into a plan and a plan into delivered state. |
 | 04 | **Identity.** OrgTree, the organizational-attribute model, dynamic groups, AUs. The OU-tree replacement. |
 | 05 | **Policy.** GPO retirement. Intune compliance. Conditional Access. |
 | 06 | **Services.** DNS + DHCP + IPAM in the Hybrid-Cloud model. |
@@ -194,9 +194,9 @@ The chapters that follow walk the full arc:
 AD retirement is not a migration project. It is a **governance
 transformation**. The hard part isn't the Graph API calls; it's the
 framework that decides what the target state looks like, how to prove
-it's right, and how to keep it right. the modernization program is that framework, and this
+it's right, and how to keep it right. The Federal Modernization Program is that framework, and this
 series is how it works.
 
 ---
 
-**Next:** [Chapter 01 — The the modernization program Platform Server](01-platform-foundation.html)
+**Next:** [Chapter 01 — The Federal Modernization Program Platform Server](01-platform-foundation.html)

@@ -152,7 +152,7 @@ ZT-only (Microsoft Purview).
  Moderate** baseline) — rather than trying to match tool outputs directly.
  The operational form of exactly this reconciliation (SCuBA policy ID →
  NIST control → typed task, held as data) is
- [Vol VII Book 02](../orgcomp-series/Vol_VII_Book_02_the compliance series_M365_Control_Compliance_Automation.qmd)
+ Vol VII Book 02
  of the Federal Organization Compliance series. One federal caveat on the
  maturity side: in a GCC-Moderate tenant, ZTMM maturity in the Identity,
  Devices, and Networks pillars is structurally capped near Initial without

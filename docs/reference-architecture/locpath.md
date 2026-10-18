@@ -14,9 +14,8 @@ aliases:
   - /customer-documents/reference-architecture/locpath.html
 ---
 
-{{< lifecycle-banner >}}
 
-> **LocPath is a second addressing dimension, not a sixteenth the organizational-attribute model facet.** the organizational-attribute model answers *where does this identity sit organizationally*; LocPath answers *where is it physically assigned*. The two are governed symmetrically, queried together as a matrix, and deliberately kept apart — per the program decision, LocPath claims no `extensionAttribute` slot and never will without its own binding profile. The canonical definition is the [LocPath Codebook (the modernization program_194)](../../canon/the modernization program_194_LocPath_Codebook.qmd).
+> **LocPath is a second addressing dimension, not a sixteenth the organizational-attribute model facet.** the organizational-attribute model answers *where does this identity sit organizationally*; LocPath answers *where is it physically assigned*. The two are governed symmetrically, queried together as a matrix, and deliberately kept apart — per the program decision, LocPath claims no `extensionAttribute` slot and never will without its own binding profile. The canonical definition is the [LocPath Codebook (FMP_194)](../../canon/FMP_194_LocPath_Codebook.qmd).
 
 ## The problem nobody owns
 
@@ -110,13 +109,13 @@ Neither dimension can express these alone. The matrix is always evaluated agains
 
 Scope guardrails are doctrine (the program decision §D7), not aspiration:
 
-- **Not facilities management.** Work orders, space booking, leases, and moves belong in an IWMS/CMMS; the modernization program governs the identity-relevant slice of location and nothing else.
-- **Not network orchestration.** SD-WAN controllers *consume* LocPath classification; the modernization program never programs them.
-- **Not an E911 call-routing service.** UCaaS platforms consume the dispatchable location of record; the modernization program never sits in the 911 call path.
+- **Not facilities management.** Work orders, space booking, leases, and moves belong in an IWMS/CMMS; the Federal Modernization Program governs the identity-relevant slice of location and nothing else.
+- **Not network orchestration.** SD-WAN controllers *consume* LocPath classification; the Federal Modernization Program never programs them.
+- **Not an E911 call-routing service.** UCaaS platforms consume the dispatchable location of record; the Federal Modernization Program never sits in the 911 call path.
 
 ## Where to go next
 
 - the program decision — the decision record: drivers, scope, consequences
-- [the modernization program_194 — the LocPath Codebook](../../canon/the modernization program_194_LocPath_Codebook.qmd): path syntax, attribute catalog, governance rules, normative schema
+- [FMP_194 — the LocPath Codebook](../../canon/FMP_194_LocPath_Codebook.qmd): path syntax, attribute catalog, governance rules, normative schema
 - OrgTree — Identity Modernization: the organizational axis this page mirrors
 - the organizational-attribute model FAQ: operator questions, including how location relates to facets

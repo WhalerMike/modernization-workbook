@@ -40,7 +40,7 @@ anchor, and deterministic addressing so SASE can actually be run.
 
 **Ask.** Stop diagnosing these failures as application bugs or WAN problems,
 and stop closing them with a POA&M and a proxy. Name the divide explicitly in
-the modernization program and fund the substrate that bridges it; then read
+The Federal Modernization Program and fund the substrate that bridges it; then read
 the [parent paper](ad-to-entraid-migration-problem.md) for the AD-to-Entra
 governance mapping this mechanism sits beneath.
 :::

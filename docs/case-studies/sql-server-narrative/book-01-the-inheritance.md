@@ -96,7 +96,7 @@ The sequencing implication follows directly from the dependency structure of the
 
 ## What Book 01 establishes
 
-SQL Server Windows Authentication delegates entirely to the Windows security subsystem: Kerberos via SSPI when an SPN is registered, silent NTLM fallback when it is not. The engine process and the sa account are both anchored to authorities — Active Directory and master respectively — that the modernization program removes or renders invisible to the Azure identity plane. None of this was a mistake. It was correct engineering for a fully domain-joined world that no longer exists.
+SQL Server Windows Authentication delegates entirely to the Windows security subsystem: Kerberos via SSPI when an SPN is registered, silent NTLM fallback when it is not. The engine process and the sa account are both anchored to authorities — Active Directory and master respectively — that the Federal Modernization Program removes or renders invisible to the Azure identity plane. None of this was a mistake. It was correct engineering for a fully domain-joined world that no longer exists.
 
 ---
 

@@ -1,7 +1,7 @@
 ---
 title: "Implementation Book 09 — Continuous Monitoring & the CCM-BIR Closure Record"
 subtitle: "Run Spec3-D1.8 on a schedule, assemble the the program decision §5 per-instance closure record, detect drift as a compliance violation, and treat 2027-04-01 as a validation deadline rather than a migration one"
-description: "How to prove and keep the transformed posture. Documents running the shipped Spec3-D1.8 audit in continuous-monitoring mode against the surviving estate, New-the modernization programClosureRecord (which projects each run onto the the program decision §5 CCM-BIR per-instance closure field set) and Compare-the modernization programClosureRun (which diffs two scheduled runs and flags each regression as a compliance violation), the five the directory modernization program Transformation #7 closure conditions, the six live evidence artifact sets, and the correct reading of the 2027-04-01 network block. The behavioral/MFA fields are reported as external-join fields (Entra sign-in logs, Defender for SQL) by design."
+description: "How to prove and keep the transformed posture. Documents running the shipped Spec3-D1.8 audit in continuous-monitoring mode against the surviving estate, New-FMPClosureRecord (which projects each run onto the the program decision §5 CCM-BIR per-instance closure field set) and Compare-FMPClosureRun (which diffs two scheduled runs and flags each regression as a compliance violation), the five the directory modernization program Transformation #7 closure conditions, the six live evidence artifact sets, and the correct reading of the 2027-04-01 network block. The behavioral/MFA fields are reported as external-join fields (Entra sign-in logs, Defender for SQL) by design."
 doc-type: sql-server-implementation-book
 audience: [Technical, Customer]
 family: sql-server-implementation
@@ -17,7 +17,7 @@ lifecycle_review: 2027-01-01
 # Implementation Book 09 — Continuous Monitoring & the CCM-BIR Closure Record
 :::
 
-![Closure is proven, then kept: a scheduled audit seals a closure record each cycle, and Compare-the modernization programClosureRun diffs consecutive records so any regression becomes an explicit drift finding.](images/book09-image-01-closure-drift.png){#fig-impl-book09 fig-alt="A schematic on a white background. A top row flows left to right under teal arrows: 'Spec3-D1.8 (scheduled)' (read-only), New-the modernization programClosureRecord (sealed snapshot, reproducible content_hash), and Compare-the modernization programClosureRun (diff record N-1 → record N). Below, two outcome panels: a teal 'no change — posture held, closure stays proven' and a red 'regression detected — a Windows / NTLM / SQL login returned, surfaced as an explicit drift finding'. Federal navy, teal and red palette; no photographs." width="100%"}
+![Closure is proven, then kept: a scheduled audit seals a closure record each cycle, and Compare-FMPClosureRun diffs consecutive records so any regression becomes an explicit drift finding.](images/book09-image-01-closure-drift.png){#fig-impl-book09 fig-alt="A schematic on a white background. A top row flows left to right under teal arrows: 'Spec3-D1.8 (scheduled)' (read-only), New-FMPClosureRecord (sealed snapshot, reproducible content_hash), and Compare-FMPClosureRun (diff record N-1 → record N). Below, two outcome panels: a teal 'no change — posture held, closure stays proven' and a red 'regression detected — a Windows / NTLM / SQL login returned, surfaced as an explicit drift finding'. Federal navy, teal and red palette; no photographs." width="100%"}
 
 ::: {.callout-tip}
 ## Download this book
@@ -25,7 +25,7 @@ lifecycle_review: 2027-01-01
 :::
 
 ::: {.callout-note}
-Companion to **narrative Book 09**. The narrative explains that a transformation achieves a *posture*, not a completion; this book is how you keep proving it. **The audit that produces the evidence is read-only and shipped**, and so are the two derivations over it: `New-the modernization programClosureRecord` projects each run onto the the program decision §5 closure field set, and `Compare-the modernization programClosureRun` diffs two runs into drift events. The behavioral/MFA fields are reported as **external joins** (Entra sign-in logs, Defender for SQL) by design — the structural record points at that telemetry rather than duplicating it. (the program decision §5, the program decision Phase C, the directory modernization program Transformation #7)
+Companion to **narrative Book 09**. The narrative explains that a transformation achieves a *posture*, not a completion; this book is how you keep proving it. **The audit that produces the evidence is read-only and shipped**, and so are the two derivations over it: `New-FMPClosureRecord` projects each run onto the the program decision §5 closure field set, and `Compare-FMPClosureRun` diffs two runs into drift events. The behavioral/MFA fields are reported as **external joins** (Entra sign-in logs, Defender for SQL) by design — the structural record points at that telemetry rather than duplicating it. (the program decision §5, the program decision Phase C, the directory modernization program Transformation #7)
 :::
 
 ## Closure is a continuously-verified posture
@@ -60,11 +60,11 @@ the program decision §5 defines the closure artifact. Transformation #7 is clos
 | Azure extension for SQL Server **deployed, Managed Identity active** | `EntraIDReady` + extension state |
 | **MFA via Conditional Access** for human SQL sign-ins over a validation period | Entra sign-in logs + Conditional Access reports (external join) |
 
-**`New-the modernization programClosureRecord`** (`tools/powershell/the modernization programSqlServerMigration/`) is the ingestion-and-projection step. It reads one scheduled D1.8 JSON and, per instance, projects it onto the §5 field set — Windows-only, zero active type-S outside the exception registry, zero active type-U/G, `sa` disabled, Arc enrolled/healthy, Managed Identity active — emitting a sealed closure record with a `verdict` (`closed` / `closed_excepted` / `open`) and the `failing_fields` for any open instance. An optional `-ExceptionRegistryPath` tolerates an excepted instance's type-S login (verdict `closed_excepted`). The MFA-via-Conditional-Access field is reported as `external` — the record points at the Entra sign-in logs and `Export-the modernization programConditionalAccess` output (Book 07) rather than asserting it from the structural audit.
+**`New-FMPClosureRecord`** (`tools/powershell/FMPSqlServerMigration/`) is the ingestion-and-projection step. It reads one scheduled D1.8 JSON and, per instance, projects it onto the §5 field set — Windows-only, zero active type-S outside the exception registry, zero active type-U/G, `sa` disabled, Arc enrolled/healthy, Managed Identity active — emitting a sealed closure record with a `verdict` (`closed` / `closed_excepted` / `open`) and the `failing_fields` for any open instance. An optional `-ExceptionRegistryPath` tolerates an excepted instance's type-S login (verdict `closed_excepted`). The MFA-via-Conditional-Access field is reported as `external` — the record points at the Entra sign-in logs and `Export-FMPConditionalAccess` output (Book 07) rather than asserting it from the structural audit.
 
 ```powershell
-Import-Module ./tools/powershell/the modernization programSqlServerMigration
-New-the modernization programClosureRecord `
+Import-Module ./tools/powershell/FMPSqlServerMigration
+New-FMPClosureRecord `
     -AuditPath             .\output\2027-03-01\sqlserver-auth-audit.json `
     -ExceptionRegistryPath .\config\sql-exception-registry.json `
     -OutputPath            .\output\2027-03-01\ccm-bir-closure.json
@@ -79,10 +79,10 @@ the program decision §5 records specific transitions as **compliance violations
 - A **new type-U / type-G** login on a previously Entra-only instance — Windows-backed identity reintroduced.
 - The **Arc agent offline** or the SQL extension unavailable — Managed-Identity engine auth interrupted.
 
-**`Compare-the modernization programClosureRun`** (`tools/powershell/the modernization programSqlServerMigration/`) is the mechanical diff. It indexes a baseline and a current D1.8 run by instance and emits one event per regression — `mixed_mode_enabled`, `new_sql_auth_login`, `new_windows_login`, `arc_agent_offline` (each flagged `violation = true`) — plus informational `instance_appeared` / `instance_disappeared` events (an appeared instance is a possible discovery gap; re-run Book 02). The envelope's `compliance_violation` is true whenever any violation event is present.
+**`Compare-FMPClosureRun`** (`tools/powershell/FMPSqlServerMigration/`) is the mechanical diff. It indexes a baseline and a current D1.8 run by instance and emits one event per regression — `mixed_mode_enabled`, `new_sql_auth_login`, `new_windows_login`, `arc_agent_offline` (each flagged `violation = true`) — plus informational `instance_appeared` / `instance_disappeared` events (an appeared instance is a possible discovery gap; re-run Book 02). The envelope's `compliance_violation` is true whenever any violation event is present.
 
 ```powershell
-Compare-the modernization programClosureRun `
+Compare-FMPClosureRun `
     -BaselinePath .\output\2027-02-01\sqlserver-auth-audit.json `
     -CurrentPath  .\output\2027-03-01\sqlserver-auth-audit.json `
     -OutputPath   .\output\2027-03-01\closure-drift.json
@@ -94,7 +94,7 @@ Each drift event triggers the program's remediation workflow. Because the audit 
 
 CCM-BIR monitors the **configuration** state (is `LoginMode` correct, are the login types correct). Microsoft Defender for SQL monitors the **behavioral** state — who connects, from where, when, with what mechanism — against the Entra-only baseline. In the transformed posture every connection produces an Entra sign-in event, so **any NTLM or Kerberos event in Defender for SQL telemetry should be zero** and is an immediate alert. An NTLM event means one of three things, all requiring investigation: an instance regressed to Mixed Mode (CCM-BIR should already have caught it), an instance was outside the original audit scope (a discovery gap — re-run Book 02 estate discovery), or a novel connection pattern the plan did not anticipate.
 
-By design, the closure record keeps the **behavioral** layer as an external join rather than copying Defender for SQL alerts and Entra sign-in logs into the structural record: `New-the modernization programClosureRecord` marks the MFA/Conditional-Access field `external` and points at that telemetry. The two layers stay authoritative in their own consoles — the structural record (configuration) here, the behavioral record (who connected, how) in Defender/Entra — and the closure decision reads both. Collapsing them into one artifact would duplicate a source of truth, which the SSOT principle forbids.
+By design, the closure record keeps the **behavioral** layer as an external join rather than copying Defender for SQL alerts and Entra sign-in logs into the structural record: `New-FMPClosureRecord` marks the MFA/Conditional-Access field `external` and points at that telemetry. The two layers stay authoritative in their own consoles — the structural record (configuration) here, the behavioral record (who connected, how) in Defender/Entra — and the closure decision reads both. Collapsing them into one artifact would duplicate a source of truth, which the SSOT principle forbids.
 
 ## The six live evidence artifact sets
 
@@ -104,7 +104,7 @@ Narrative Book 09 Chapter 2 names six artifact sets that close Transformation #7
 2. **Entra sign-in logs** — zero failed token requests attributable to NTLM/Kerberos fallback for SQL resource-audience tokens over the validation period.
 3. **Defender for SQL telemetry** — zero NTLM events over the same period (Step 4).
 4. **`sa`-disabled report** — `sa` disabled on all instances (from the D1.8 `*_logins.csv`).
-5. **Conditional Access MFA report** — MFA satisfied for 100% of human SQL-resource sign-ins (Book 07 `Export-the modernization programConditionalAccess` + sign-in logs).
+5. **Conditional Access MFA report** — MFA satisfied for 100% of human SQL-resource sign-ins (Book 07 `Export-FMPConditionalAccess` + sign-in logs).
 6. **Exception registry** — every excepted instance with justification, sunset date, and its own CCM-BIR tracking record.
 
 When all six are simultaneously satisfying and the monitoring confirms they have been for the validation period, Transformation #7 is closed.
@@ -119,4 +119,4 @@ Everything in this book is **read-only**: scheduled `Spec3-D1.8` runs in invento
 
 ---
 
-*Companion to narrative Book 09 and the program decision §5. Audit script-backed: `tools/discovery/Spec3-D1.8` (continuous mode). CCM-BIR ingestion + diff: `tools/powershell/the modernization programSqlServerMigration` (`New-the modernization programClosureRecord`, `Compare-the modernization programClosureRun`). The behavioral/MFA layer (Defender for SQL, Entra sign-in logs) is referenced as an external join by design. Canon: the program decision §5, the program decision Phase C, the directory modernization program Transformation #7.*
+*Companion to narrative Book 09 and the program decision §5. Audit script-backed: `tools/discovery/Spec3-D1.8` (continuous mode). CCM-BIR ingestion + diff: `tools/powershell/FMPSqlServerMigration` (`New-FMPClosureRecord`, `Compare-FMPClosureRun`). The behavioral/MFA layer (Defender for SQL, Entra sign-in logs) is referenced as an external join by design. Canon: the program decision §5, the program decision Phase C, the directory modernization program Transformation #7.*

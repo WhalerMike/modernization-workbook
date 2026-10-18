@@ -97,7 +97,7 @@ federal modernization programs are typically capable and well-resourced.
 The failure modes here are not personnel failures — they are structural
 properties of an environment that has tooling but lacks a substrate.
 
-It also does not claim the modernization program is the only possible substrate. It claims
+It also does not claim the Federal Modernization Program is the only possible substrate. It claims
 that *some* substrate is required, and that the four failure modes
 above are the diagnostic list a program can use to assess whether its
 current substrate is sufficient.
@@ -124,7 +124,7 @@ The remaining chapters address the failure modes in turn:
   point-in-time evidence, tool-shaped policy.
 - Each failure mode lives below the tooling layer; tooling cannot fix
   any of them.
-- A substrate is required; the modernization program is one realization of such a substrate,
+- A substrate is required; the Federal Modernization Program is one realization of such a substrate,
   and the rest of this series describes its shape.
 
 ::: {.callout-tip}

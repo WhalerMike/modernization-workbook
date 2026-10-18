@@ -1,6 +1,6 @@
 ---
 title: "The Physics of a Single Source of Truth"
-subtitle: "Eight-chapter white paper on logical centralization, token-based security, the speed-of-light tax, SD-WAN differentiated transport, and token-bound transport governance — and how the modernization program resolves them."
+subtitle: "Eight-chapter white paper on logical centralization, token-based security, the speed-of-light tax, SD-WAN differentiated transport, and token-bound transport governance — and how the Federal Modernization Program resolves them."
 doc-type: series-index
 series-id: ssot-network-physics
 date: 2026-06-22
@@ -33,7 +33,7 @@ wall none of this moves: the speed of light. Network optimization (SD-WAN
 differentiated transport, forward error correction, clock distribution) can
 take you *to* the physical latency floor with a tight tail, but never *below*
 it — so the correct architectural move is not "make global sync fast" but
-"need less global sync." the modernization program's own SaaS data plane (the program decision) is the worked
+"need less global sync." the Federal Modernization Program's own SaaS data plane (the program decision) is the worked
 reference example throughout.
 
 ## Who this is for
@@ -77,23 +77,23 @@ reference example throughout.
   - The synthesis: aligning the data layer's consistency model with the network layer's transport tiers
   - *Audience:* Architects · platform engineers · network engineers
 
-- **07** — [Reference Architecture — the modernization program SaaS Data Plane](./07-reference-architecture-uiao.html)
+- **07** — [Reference Architecture — the Federal Modernization Program SaaS Data Plane](./07-reference-architecture-uiao.html)
   - How the program decision and the program decision implement centralize-the-truth / distribute-the-copies in practice
   - *Audience:* Architects · platform engineers · governance teams
 
 ## Provenance
 
-This white paper is an analysis document. Its the modernization program-specific claims trace to
+This white paper is an analysis document. Its FMP-specific claims trace to
 the canonical decision records they cite — principally
 **the program decision** (Azure SaaS architecture), **the program decision** (passwordless Entra
 Postgres auth), **the program decision** (GCC-Moderate boundary), and **the program decision** (diagram
 source-of-truth doctrine) under `src/uiao/canon/adr/` — and, for the
 forward-looking Chapter 5, the *Proposed* **the program decision** (Application-Aware
 Networking and Token-Bound Transport) — and to the substrate
-operating principle of SSOT recorded in `AGENTS.md` and `the program decision`. Per the modernization program
+operating principle of SSOT recorded in `AGENTS.md` and `the program decision`. Per the Federal Modernization Program
 provenance doctrine, external facts (networking physics, vendor behavior) are
 authoritative only where this document cites their source directly; where a
-claim rests on a the modernization program decision, the ADR is named inline.
+claim rests on a Federal Modernization Program decision, the ADR is named inline.
 
 ## A note on figures
 

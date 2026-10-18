@@ -1,15 +1,15 @@
 ---
-title: "the modernization program Risk Assessment Methodology (NIST SP 800-30 Rev 1)"
-subtitle: "Canonical Spec · the modernization program_198"
+title: "The Federal Modernization Program Risk Assessment Methodology (NIST SP 800-30 Rev 1)"
+subtitle: "Canonical Spec · FMP_198"
 date: 2026-06-19
 ---
 
 ::: {.callout-note}
-## Canonical the modernization program Specification
+## Canonical the Federal Modernization Program Specification
 
-**the modernization program_198** — status: **Current** — version: **1.0**
+**FMP_198** — status: **Current** — version: **1.0**
 
-This page renders the canonical the modernization program_198 source verbatim. The
+This page renders the canonical FMP_198 source verbatim. The
 authoritative source is at
 Per the program decision, this
 canonical page is generated as an `include`-style wrapper.

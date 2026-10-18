@@ -53,7 +53,7 @@ in Entra ID and losing most cloud-native value.
 - ATO package describes intended controls; substrate truth at any
   given moment is not reproducibly verifiable.
 
-## the modernization program intervention pattern
+## The Federal Modernization Program intervention pattern
 
 ### Phase 1 — canon-first
 

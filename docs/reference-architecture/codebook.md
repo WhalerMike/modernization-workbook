@@ -14,17 +14,16 @@ aliases:
   - /customer-documents/reference-architecture/codebook.html
 ---
 
-{{< lifecycle-banner >}}
 
-> **Model C — 15-facet multi-attribute (per the program decision).** The Model A composite-hyphen path (`extensionAttribute1: ORG-FIN-AP-EAST`) is retired. The executable canon is [`codebook.yaml`] (`schema_version: 2.1.0` — Hybrid-C+Path per the program decision); the canon narrative is [the modernization program_151]( modernization program_151_the organizational-attribute model_Codebook.md) v4.1. <!-- orgpath-slot-allow: names the retired Model A binding in order to declare it retired -->
+> **Model C — 15-facet multi-attribute (per the program decision).** The Model A composite-hyphen path (`extensionAttribute1: ORG-FIN-AP-EAST`) is retired. The executable canon is [`codebook.yaml`] (`schema_version: 2.1.0` — Hybrid-C+Path per the program decision); the canon narrative is FMP_151 v4.1. <!-- orgpath-slot-allow: names the retired Model A binding in order to declare it retired -->
 
 ## Why This Is the Most Important Document in the Suite
 
 Every other artifact in the OrgTree suite depends on the the organizational-attribute model Codebook:
 
-- **Dynamic groups** ([the modernization program_152]( modernization program_152_Dynamic_Group_Library.md)) compose membership rules from facet predicates (`attr2 -eq "IT" and attr3 -eq "CyberOps"`)
-- **Administrative Units** ([the modernization program_154]( modernization program_154_Delegation_Matrix_AUs_Roles.md)) scope delegation boundaries via facet tuples
-- **Drift detection** ([the modernization program_163]( modernization program_163_Drift_Detection_Engine_Specification.md)) validates every slot's value against its facet's enumeration independently
+- **Dynamic groups** (FMP_152) compose membership rules from facet predicates (`attr2 -eq "IT" and attr3 -eq "CyberOps"`)
+- **Administrative Units** (FMP_154) scope delegation boundaries via facet tuples
+- **Drift detection** (FMP_163) validates every slot's value against its facet's enumeration independently
 - **Conditional Access** policies target groups built from facet compositions
 - **License assignment** maps `CostCenter` facet values to M365 SKUs
 - **Lifecycle automation** triggers off `HireDate` / `TermDate` typed facets
@@ -163,7 +162,7 @@ Each clause cites a single attribute and validates independently — refactoring
 | `AU-NCR-Privileged` | `(attr1 -eq "NCR") and (attr10 -eq "Privileged")` | Authentication Administrator | NCR PAM Steward |
 | `AU-Cleared-TopSecret-Plus` | `attr9 -in ["TopSecret","TS_SCI"]` | Conditional Access Administrator | Personnel Security Office |
 
-Per [the modernization program_154]( modernization program_154_Delegation_Matrix_AUs_Roles.md), every AU in scope is Restricted Management — Global Administrators cannot manage AU members without explicit AU-scoped role assignment.
+Per FMP_154, every AU in scope is Restricted Management — Global Administrators cannot manage AU members without explicit AU-scoped role assignment.
 
 ## Five Drift Categories (per-facet)
 
@@ -184,9 +183,9 @@ Per-facet classification: a principal with valid Region but unknown Department g
 3. **Populate** all 10 slots via HR-driven inbound provisioning (HR system → Entra Connect → 10-slot population); IT never manually edits these
 4. **Author** dynamic groups starting with single-facet groups, growing to multi-facet compositions as CA targeting matures
 5. **Create** Administrative Units mirroring the dynamic group pattern; mark each Restricted Management
-6. **Validate** with `uiao orgtree validate codebook` (Python loader) and the per-facet PowerShell flow (see the modernization program_151 for the validation script)
-7. **Enable** drift detection (the modernization program_163; rebuilt per-facet in the program decision Phase 5+) for continuous per-slot monitoring
+6. **Validate** with `uiao orgtree validate codebook` (Python loader) and the per-facet PowerShell flow (see FMP_151 for the validation script)
+7. **Enable** drift detection (FMP_163; rebuilt per-facet in the program decision Phase 5+) for continuous per-slot monitoring
 
 ## Source
 
-Canonical narrative: [`the modernization program_151_the organizational-attribute model_Codebook.md`]( modernization program_151_the organizational-attribute model_Codebook.md) v4.0. Executable YAML: [`data/orgpath/codebook.yaml`] `schema_version: 2.0.0`. JSON Schema: [`schemas/orgpath/codebook.schema.json`]. Python loader: [`uiao.modernization.orgtree.codebook`].
+Canonical narrative: `FMP_151_the organizational-attribute model_Codebook.md` v4.0. Executable YAML: [`data/orgpath/codebook.yaml`] `schema_version: 2.0.0`. JSON Schema: [`schemas/orgpath/codebook.schema.json`]. Python loader: [`uiao.modernization.orgtree.codebook`].

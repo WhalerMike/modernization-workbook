@@ -4,7 +4,7 @@ subtitle: "End-to-end substrate walkthrough for a mid-size federal agency with t
 doc-type: case-study-pattern
 audience: [Customer, Sponsor, Program Lead, Architect, Assessor]
 status: framing-pattern
-canon-source: "src/uiao/canon/the modernization program_007_OrgTree_Modernization_AD_to_EntraID_v1.0.md"
+canon-source: "src/uiao/canon/FMP_007_OrgTree_Modernization_AD_to_EntraID_v1.0.md"
 canon-reference:
   - "docs/customer-documents/whitepapers/federal-ssot-alignment.qmd"
   - "docs/customer-documents/orgpath-narrative/Book_07a.qmd"
@@ -31,7 +31,7 @@ lifecycle_review: 2026-11-22
 ## Framing pattern, not a fabricated engagement
 This page is the **canonical engagement pattern** for a federal civilian
 agency migrating Active Directory and its dependent SQL estate to
-Microsoft Entra ID + M365 GCC-Moderate, end-to-end through the the modernization program
+Microsoft Entra ID + M365 GCC-Moderate, end-to-end through the Federal Modernization Program
 substrate. Specific metrics, agency identifiers, contractor names, and
 calendar dates are intentionally absent until real engagement material
 is reviewed and externally releasable. The narrative below is the
@@ -73,7 +73,7 @@ attribution questions. The agency has the right tools — Entra Connect,
 Intune, Defender, Purview Premium — but no shared canon for what those
 tools should be told about the agency's organizational structure.
 
-This is the engagement pattern the modernization program is built for, and the substrate's
+This is the engagement pattern the Federal Modernization Program is built for, and the substrate's
 behavior across the five phases below is what this case study
 illustrates. For the federal mandate alignment that makes this work
 necessary, see the
@@ -94,7 +94,7 @@ two forests. The survey is the same one that produced the substrate's
 test fixtures; it is not a per-engagement script.
 
 The service-account scan codified in
-[`Spec3-D1.1` (the modernization program_139)](../../../src/uiao/canon/specs/Spec3-D1.1-Get-ServiceAccountScan.md)
+[`Spec3-D1.1` (FMP_139)](../../../src/uiao/canon/specs/Spec3-D1.1-Get-ServiceAccountScan.md)
 runs as part of the discovery pass. It produces a service-accounts
 inventory with delegation classification, AdminCount status, and a per-
 account risk score that flags ADCS-dependent SPNs and unconstrained
@@ -240,7 +240,7 @@ zero P1 findings remain.
 
 With the identity migration complete, the agency's data plane joins
 the substrate. The pattern is the one developed in
-the modernization program the organizational-attribute model chapter 07a:
+The Federal Modernization Program the organizational-attribute model chapter 07a:
 the organizational-attribute model as the join key across two policy planes, not as a single
 inheritance chain.
 
@@ -326,8 +326,8 @@ the Evidence Bundle is produced into.
 ## Cross-references
 
 - [Federal SSOT Alignment whitepaper](../whitepapers/federal-ssot-alignment.md) — federal mandate alignment over the identity layer
-- the modernization program the organizational-attribute model 07a — the modernization program Beneath the Azure SSOT Stack — Azure SSOT identity-substrate role
-- the modernization program the organizational-attribute model 07 — the organizational-attribute model and Microsoft Purview — user-plane Adaptive Policy Scope mechanism
+- The Federal Modernization Program the organizational-attribute model 07a — the Federal Modernization Program Beneath the Azure SSOT Stack — Azure SSOT identity-substrate role
+- The Federal Modernization Program the organizational-attribute model 07 — the organizational-attribute model and Microsoft Purview — user-plane Adaptive Policy Scope mechanism
 - B.1 GCC-Moderate Boundary Model — abstract boundary model
 - B.1.1 Three-Way GCC-Moderate Compliance Conflict — TIC 3.0 × Zero Trust × FedRAMP 20x finding
 - Drift Detection Standard — drift taxonomy, severity model, and §7.1 SPN drift detection

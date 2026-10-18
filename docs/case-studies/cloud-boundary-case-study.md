@@ -1,6 +1,6 @@
 ---
 title: "Cloud Boundary — Case Study"
-subtitle: "Governing GCC Moderate compliance gaps with the modernization program"
+subtitle: "Governing GCC Moderate compliance gaps with the Federal Modernization Program"
 doc-type: case-study-pattern
 audience: [Customer, Sponsor, Program Lead, Authorizing Official]
 status: framing-pattern
@@ -27,7 +27,7 @@ boundary case study. Specific agency identifiers and metrics are
 intentionally absent until real engagement material is reviewed.
 :::
 
-![GCC-Moderate boundary engagement pattern diagram](../images/case-studies/cloud-boundary-case-study-image-01-gcc-moderate-boundary-engagement.png){#fig-cloud-boundary-case-study-image-01 fig-alt="Center shows the GCC-Moderate authorization boundary as a vertical line. Left of the line: M365 Commercial reference (with full feature availability). Right of the line: M365 GCC-Moderate (with five named features in dimmed/red boxes — Endpoint Analytics, Device Health Attestation, Locations & Network Fence, ARC Server Monitoring, Expedited Updates). Below the boundary line, a horizontal \"the modernization program compensation pattern\" band shows four mechanisms: Boundary Probe, In-Boundary Telemetry, Compensating Enforcement, ATO Documentation Surface. To the right, an outcome panel labeled \"Boundary impacts as first-class governed objects\". Clean engineering blueprint style, dark navy (#0D1B2E) and teal (#1E8C8C) on white background, with red (#C74040) reserved for unavailable-feature highlights. No photographs, purely diagrammatic." width="100%"}
+![GCC-Moderate boundary engagement pattern diagram](../images/case-studies/cloud-boundary-case-study-image-01-gcc-moderate-boundary-engagement.png){#fig-cloud-boundary-case-study-image-01 fig-alt="Center shows the GCC-Moderate authorization boundary as a vertical line. Left of the line: M365 Commercial reference (with full feature availability). Right of the line: M365 GCC-Moderate (with five named features in dimmed/red boxes — Endpoint Analytics, Device Health Attestation, Locations & Network Fence, ARC Server Monitoring, Expedited Updates). Below the boundary line, a horizontal \"the Federal Modernization Program compensation pattern\" band shows four mechanisms: Boundary Probe, In-Boundary Telemetry, Compensating Enforcement, ATO Documentation Surface. To the right, an outcome panel labeled \"Boundary impacts as first-class governed objects\". Clean engineering blueprint style, dark navy (#0D1B2E) and teal (#1E8C8C) on white background, with red (#C74040) reserved for unavailable-feature highlights. No photographs, purely diagrammatic." width="100%"}
 
 ## Engagement archetype
 
@@ -55,7 +55,7 @@ does not clearly document which features behave this way.
 - Compliance posture nominally compliant; substrate observability
   structurally below commercial peers.
 
-## the modernization program intervention pattern
+## The Federal Modernization Program intervention pattern
 
 The substrate addresses each impact dimension via in-boundary
 mechanisms (per
@@ -99,7 +99,7 @@ A real engagement would document:
   signals are now substituted via in-boundary adapters with derived
   classification.
 - **Compensating-enforcement coverage** — which ZT controls are
-  agency-enforced via the modernization program-anchored adapters where platform features
+  agency-enforced via FMP-anchored adapters where platform features
   are unavailable.
 - **ATO package change** — net SSP/POA&M edit volume to bring the
   package into alignment with substrate truth.

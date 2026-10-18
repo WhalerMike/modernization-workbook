@@ -31,7 +31,7 @@ lifecycle_review: 2026-11-22
 Substrate-level governance has to scale across hundreds of adapters,
 thousands of controls, multiple authorization boundaries, and many
 concurrent modernization programs without devolving into per-program
-exceptions. This chapter explains how the modernization program's substrate scales — what
+exceptions. This chapter explains how the Federal Modernization Program's substrate scales — what
 it deliberately keeps small, what it lets grow, and why the scaling
 properties are structural rather than operational.
 :::
@@ -44,7 +44,7 @@ Three substrate properties are deliberately kept small at scale:
 
 1. **Canon.** The canonical document set is small — schemas, ADRs,
    numbered governance documents under `src/uiao/canon/`. Adding a
-   document requires a the modernization program_NNN allocation and (for doctrinal
+   document requires a FMP_NNN allocation and (for doctrinal
    changes) an ADR. The substrate is designed so canon does not
    linearly inflate with the program.
 2. **The drift taxonomy.** Five classes, not fifty. Severity is four

@@ -1,12 +1,12 @@
 ---
-title: "the modernization program CLI and Operations Guide"
+title: "The Federal Modernization Program CLI and Operations Guide"
 subtitle: "Git, Gitea API, PowerShell, and platform integration"
 doc-type: technical-guide
 audience: [Customer, Technical]
 author: Michael Stratton
 date: "April 2026"
 status: Active
-canon-source: "inbox/Posted/the modernization program CLI and Operations Guide — Git, Gitea API, PowerShell, and Platform Integration.docx"
+canon-source: "inbox/Posted/FMP CLI and Operations Guide — Git, Gitea API, PowerShell, and Platform Integration.docx"
 repo-path: docs/customer-documents/substrate/execution-patterns/cli-operations-guide.qmd
 created-at: 2026-04-26
 updated-at: 2026-04-26
@@ -26,15 +26,15 @@ lifecycle_review: 2026-11-22
 ![cross-platform integration topology (AD/Entra/Intune/Arc)](images/cli-operations-guide-image-02-cross-platform-integration-topol.png){#fig-cli-operations-guide-image-02 fig-alt="cross-platform integration topology (AD/Entra/Intune/Arc). Engineering blueprint style, neutral slate background, federal navy (#1F3A5F) for primary structural elements, teal (#1A9E8F) for secondary/integration elements, amber (#D4A017) for governance/audit/registry overlays, monospace labels for identifiers, no human figures, 16:9 landscape." width="100%"}
 
 
-the modernization program CLI and Operations Guide
+The Federal Modernization Program CLI and Operations Guide
 
 Git, Gitea API, PowerShell, and Platform Integration
 
-The Definitive Reference for the the modernization program Governance OS Platform
+The Definitive Reference for the Federal Modernization Program Governance OS Platform
 
 **Classification:** Controlled \| **Boundary:** GCC-Moderate
 
-**Primary Repository:** https://git.uiao.local/the modernization program/uiao \| **Secondary:** https://github.com/WhalerMike/uiao
+**Primary Repository:** https://git.uiao.local/FMP/uiao \| **Secondary:** https://github.com/WhalerMike/uiao
 
 **Local Workspace:** C:\\Users\\whale\\git\\uiao
 
@@ -44,7 +44,7 @@ The Definitive Reference for the the modernization program Governance OS Platfor
 
 Table of Contents
 
-**Part I --- Git CLI Operations for the modernization program**
+**Part I --- Git CLI Operations for the Federal Modernization Program**
 
 Chapter 1 --- Environment Setup
 
@@ -74,7 +74,7 @@ Chapter 11 --- API Automation Patterns
 
 Chapter 12 --- Connecting to Active Directory
 
-Chapter 13 --- AD Forest Discovery for the modernization program Assessment
+Chapter 13 --- AD Forest Discovery for the Federal Modernization Program Assessment
 
 Chapter 14 --- DNS Assessment
 
@@ -108,7 +108,7 @@ Chapter 25 --- Azure Monitor via Arc
 
 **Part VII --- Appendices**
 
-Appendix A --- Complete PowerShell Module: the modernization program.Tools
+Appendix A --- Complete PowerShell Module: FMP.Tools
 
 Appendix B --- API Endpoint Quick Reference
 
@@ -118,11 +118,11 @@ Appendix D --- Environment Variables Reference
 
 Appendix E --- Security Considerations
 
-**Part I --- Git CLI Operations for the modernization program**
+**Part I --- Git CLI Operations for the Federal Modernization Program**
 
 Chapter 1 --- Environment Setup
 
-This chapter provides a step-by-step guide to configuring a workstation for the modernization program development and governance operations. Every operator, Canon Steward, and contributor must complete these steps before interacting with the modernization program repositories.
+This chapter provides a step-by-step guide to configuring a workstation for the Federal Modernization Program development and governance operations. Every operator, Canon Steward, and contributor must complete these steps before interacting with the Federal Modernization Program repositories.
 
 1.1 --- Install Git for Windows
 
@@ -144,9 +144,9 @@ git version 2.47.0.windows.1
 | During the Git for Windows installer, accept default settings. Ensure \"Git Credential Manager\" is selected as the credential helper, and \"Checkout Windows-style, commit Unix-style line endings\" is selected. |
 +--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 
-1.2 --- Configure Global Git Settings for the modernization program
+1.2 --- Configure Global Git Settings for the Federal Modernization Program
 
-Run each of the following commands in a terminal to set the standard the modernization program identity and behavior:
+Run each of the following commands in a terminal to set the standard the Federal Modernization Program identity and behavior:
 
 git config \--global user.name \"Michael Stratton\" git config \--global user.email \"whalermike@hotmail.com\" git config \--global init.defaultBranch main git config \--global core.autocrlf true git config \--global credential.helper manager git config \--global http.sslVerify true
 
@@ -170,11 +170,11 @@ git config \--global \--list
   http.sslVerify       true                     Enforce TLS certificate verification (GCC-Moderate requirement)
   ---------------------------------------------------------------------------------------------------------------
 
-1.3 --- Clone the the modernization program Repository
+1.3 --- Clone the Federal Modernization Program Repository
 
 Navigate to the standard workspace directory and clone from Gitea (the primary canonical source):
 
-cd C:\\Users\\whale\\git git clone https://git.uiao.local/the modernization program/uiao.git cd uiao
+cd C:\\Users\\whale\\git git clone https://git.uiao.local/FMP/uiao.git cd uiao
 
 After cloning, verify the remote:
 
@@ -182,24 +182,24 @@ git remote -v
 
 Expected output:
 
-origin https://git.uiao.local/the modernization program/uiao.git (fetch) origin https://git.uiao.local/the modernization program/uiao.git (push)
+origin https://git.uiao.local/FMP/uiao.git (fetch) origin https://git.uiao.local/FMP/uiao.git (push)
 
 1.4 --- Configure Dual Remotes
 
-the modernization program uses a dual-remote strategy. Gitea (origin) is the canonical primary. GitHub (github) is the secondary mirror. Add the GitHub remote:
+The Federal Modernization Program uses a dual-remote strategy. Gitea (origin) is the canonical primary. GitHub (github) is the secondary mirror. Add the GitHub remote:
 
 git remote add github https://github.com/WhalerMike/uiao.git git remote -v
 
 Expected output showing both remotes:
 
-github https://github.com/WhalerMike/uiao.git (fetch) github https://github.com/WhalerMike/uiao.git (push) origin https://git.uiao.local/the modernization program/uiao.git (fetch) origin https://git.uiao.local/the modernization program/uiao.git (push)
+github https://github.com/WhalerMike/uiao.git (fetch) github https://github.com/WhalerMike/uiao.git (push) origin https://git.uiao.local/FMP/uiao.git (fetch) origin https://git.uiao.local/FMP/uiao.git (push)
 
 +-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 | **Diagram 1 --- DIAG-001**                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      |
 |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 |
-| **the modernization program Dual-Remote Repository Architecture**                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    |
+| **The Federal Modernization Program Dual-Remote Repository Architecture**                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    |
 |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 |
-| A flow diagram showing the relationship between the three repository locations: (1) Local Workspace at C:\\Users\\whale\\git\\uiao shown as a workstation icon on the left; (2) Gitea Primary at git.uiao.local/the modernization program/uiao shown as a server icon in the center, labeled \"origin\" with a bidirectional arrow to the local workspace; (3) GitHub Secondary at github.com/WhalerMike/uiao shown as a cloud icon on the right, labeled \"github\" with a unidirectional push arrow from the local workspace. Below the diagram, a note states: \"All feature work pushes to origin (Gitea). Only main branch syncs to github (GitHub).\" Color scheme: Gitea server in blue (#4472C4), GitHub cloud in dark gray (#333333), local workstation in green (#548235). |
+| A flow diagram showing the relationship between the three repository locations: (1) Local Workspace at C:\\Users\\whale\\git\\uiao shown as a workstation icon on the left; (2) Gitea Primary at git.uiao.local/FMP/uiao shown as a server icon in the center, labeled \"origin\" with a bidirectional arrow to the local workspace; (3) GitHub Secondary at github.com/WhalerMike/uiao shown as a cloud icon on the right, labeled \"github\" with a unidirectional push arrow from the local workspace. Below the diagram, a note states: \"All feature work pushes to origin (Gitea). Only main branch syncs to github (GitHub).\" Color scheme: Gitea server in blue (#4472C4), GitHub cloud in dark gray (#333333), local workstation in green (#548235). |
 |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 |
 | Dimensions: 700 × 280 pixels                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    |
 +-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
@@ -232,16 +232,16 @@ Run the following to confirm everything is working:
 
 git log \--oneline -5
 
-You should see the five most recent commits from the the modernization program repository. If you see output, your environment is fully configured and ready for the modernization program operations.
+You should see the five most recent commits from the Federal Modernization Program repository. If you see output, your environment is fully configured and ready for the Federal Modernization Program operations.
 
 Chapter 2 --- Daily Git Workflow
 
-This chapter describes the standard the modernization program contribution workflow. Every change --- whether a governance artifact update, code fix, or documentation improvement --- follows this process.
+This chapter describes the standard the Federal Modernization Program contribution workflow. Every change --- whether a governance artifact update, code fix, or documentation improvement --- follows this process.
 
 +--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 | **Diagram 2 --- DIAG-002**                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 |
 |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            |
-| **the modernization program Standard Contribution Workflow**                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    |
+| **The Federal Modernization Program Standard Contribution Workflow**                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    |
 |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            |
 | A linear flowchart with eight numbered steps arranged left-to-right in two rows (four steps per row, wrapping): Step 1: \"Sync\" --- pull icon with arrow from origin/main; Step 2: \"Branch\" --- branch icon showing checkout from main; Step 3: \"Develop\" --- pencil icon, edit/stage files; Step 4: \"Commit\" --- checkmark icon with conventional commit message; Step 5: \"Push\" --- upload arrow to Gitea feature branch; Step 6: \"PR\" --- merge request icon showing pull request creation; Step 7: \"Cleanup\" --- broom icon, delete local branch after merge; Step 8: \"Mirror\" --- sync arrow pushing main to GitHub. Each step box is 140 × 80 pixels, colored with light blue (#D6E4F0) fill and blue (#4472C4) border. Arrows between steps are dark gray (#333333). |
 |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            |
@@ -256,13 +256,13 @@ git fetch origin git pull origin main
 
 2.2 --- Step 2: Create a Feature Branch
 
-Create a descriptive branch following the the modernization program naming convention:
+Create a descriptive branch following the Federal Modernization Program naming convention:
 
-git checkout -b feature/the modernization program-NNN-short-description
+git checkout -b feature/FMP-NNN-short-description
 
 Replace NNN with the artifact or issue number and short-description with a brief lowercase-hyphenated summary. Example:
 
-git checkout -b feature/the modernization program-042-drift-detection-policy
+git checkout -b feature/FMP-042-drift-detection-policy
 
 2.3 --- Step 3: Make Changes and Stage
 
@@ -272,7 +272,7 @@ git add -A
 
 To stage specific files only:
 
-git add canon/the modernization program_042.md git add docs/drift-detection-guide.md
+git add canon/FMP_042.md git add docs/drift-detection-guide.md
 
 Review staged changes:
 
@@ -280,16 +280,16 @@ git status git diff \--cached
 
 2.4 --- Step 4: Commit with Conventional Commit Format
 
-the modernization program uses conventional commit messages for automated changelog generation and traceability:
+The Federal Modernization Program uses conventional commit messages for automated changelog generation and traceability:
 
-git commit -m \"feat(canon): the modernization program_042 add drift detection governance artifact\"
+git commit -m \"feat(canon): FMP_042 add drift detection governance artifact\"
 
 The commit message format is: \<type\>(\<scope\>): \<description\>
 
   --------------------------------------------------------------------------------------------------------------------------------
   **Prefix**   **Scope**            **Usage**                                    **Example**
   ------------ -------------------- -------------------------------------------- -------------------------------------------------
-  feat         Feature              New capability or artifact                   feat(canon): the modernization program_042 add governance artifact
+  feat         Feature              New capability or artifact                   feat(canon): FMP_042 add governance artifact
 
   fix          Fix                  Bug fix or correction                        fix(api): correct webhook payload parsing
 
@@ -301,28 +301,28 @@ The commit message format is: \<type\>(\<scope\>): \<description\>
 
   chore        Maintenance          Build, CI, tooling changes                   chore(ci): update pipeline to v3
 
-  canon        Canonical Artifact   the modernization program-specific: canonical artifact changes    canon(the modernization program_001): update to v2.1 with new policy
+  canon        Canonical Artifact   FMP-specific: canonical artifact changes    canon(FMP_001): update to v2.1 with new policy
   --------------------------------------------------------------------------------------------------------------------------------
 
 +-----------------------------------------------------------------------------------------------------------------+
-| **Important --- the modernization program Convention**                                                                               |
+| **Important --- the Federal Modernization Program Convention**                                                                               |
 |                                                                                                                 |
 | The                                                                                                             |
 |                                                                                                                 |
 | canon                                                                                                           |
 |                                                                                                                 |
-| prefix is the modernization program-specific and reserved exclusively for changes to files in the                                    |
+| prefix is FMP-specific and reserved exclusively for changes to files in the                                    |
 |                                                                                                                 |
 | canon/                                                                                                          |
 |                                                                                                                 |
-| directory. All canon commits must reference the the modernization program artifact ID (e.g., the modernization program_001, the modernization program_042) in the description. |
+| directory. All canon commits must reference the Federal Modernization Program artifact ID (e.g., FMP_001, FMP_042) in the description. |
 +-----------------------------------------------------------------------------------------------------------------+
 
 2.5 --- Step 5: Push to Gitea
 
 Push your feature branch to Gitea:
 
-git push origin feature/the modernization program-042-drift-detection-policy
+git push origin feature/FMP-042-drift-detection-policy
 
 2.6 --- Step 6: Create a Pull Request
 
@@ -330,7 +330,7 @@ Pull requests can be created via the Gitea web UI or the Gitea API.
 
 Method A: Gitea Web UI
 
-1.  Navigate to https://git.uiao.local/the modernization program/uiao in a browser.
+1.  Navigate to https://git.uiao.local/FMP/uiao in a browser.
 
 2.  Click the \"New Pull Request\" button or the prompt banner that appears after a push.
 
@@ -338,7 +338,7 @@ Method A: Gitea Web UI
 
 4.  Add a title following the conventional commit format.
 
-5.  Add a description with context, link to the the modernization program artifact ID, and any review notes.
+5.  Add a description with context, link to the Federal Modernization Program artifact ID, and any review notes.
 
 6.  Assign reviewers, labels, and milestone as appropriate.
 
@@ -346,13 +346,13 @@ Method A: Gitea Web UI
 
 Method B: Gitea API
 
-\# PowerShell --- Create Pull Request via API \$token = \"your-gitea-personal-access-token\" \$headers = \@{ Authorization = \"token \$token\" } \$prBody = \@{ title = \"feat(canon): the modernization program_042 --- Drift Detection Governance Artifact\" body = \"Adds the new canonical artifact for drift detection policy.\`n\`nArtifact ID: the modernization program_042\`nStatus: DRAFT\" head = \"feature/the modernization program-042-drift-detection-policy\" base = \"main\" } \| ConvertTo-Json Invoke-RestMethod -Uri \"https://git.uiao.local/api/v1/repos/the modernization program/uiao/pulls\" \` -Method POST -Headers \$headers \` -ContentType \"application/json\" -Body \$prBody
+\# PowerShell --- Create Pull Request via API \$token = \"your-gitea-personal-access-token\" \$headers = \@{ Authorization = \"token \$token\" } \$prBody = \@{ title = \"feat(canon): FMP_042 --- Drift Detection Governance Artifact\" body = \"Adds the new canonical artifact for drift detection policy.\`n\`nArtifact ID: FMP_042\`nStatus: DRAFT\" head = \"feature/FMP-042-drift-detection-policy\" base = \"main\" } \| ConvertTo-Json Invoke-RestMethod -Uri \"https://git.uiao.local/api/v1/repos/FMP/uiao/pulls\" \` -Method POST -Headers \$headers \` -ContentType \"application/json\" -Body \$prBody
 
 2.7 --- Step 7: After Merge --- Clean Up
 
 Once the pull request is merged, switch back to main, pull the merged changes, and delete the feature branch:
 
-git checkout main git pull origin main git branch -d feature/the modernization program-042-drift-detection-policy
+git checkout main git pull origin main git branch -d feature/FMP-042-drift-detection-policy
 
 2.8 --- Step 8: Sync to GitHub
 
@@ -376,7 +376,7 @@ git push github main
 
 Chapter 3 --- Branch Management
 
-the modernization program follows a structured branching strategy. This chapter provides the full branch naming conventions, lifecycle operations, and CLI commands for each scenario.
+The Federal Modernization Program follows a structured branching strategy. This chapter provides the full branch naming conventions, lifecycle operations, and CLI commands for each scenario.
 
 3.1 --- Branch Naming Convention
 
@@ -406,7 +406,7 @@ git checkout main git pull origin main git checkout -b release/v2.0 main git pus
 
 3.4 --- Tag a Release
 
-\# Create annotated tag git tag -a v2.0 -m \"the modernization program Governance OS v2.0\" \# Push tag to Gitea git push origin v2.0 \# Push tag to GitHub git push github v2.0 \# List all tags git tag -l \# Show tag details git show v2.0
+\# Create annotated tag git tag -a v2.0 -m \"the Federal Modernization Program Governance OS v2.0\" \# Push tag to Gitea git push origin v2.0 \# Push tag to GitHub git push github v2.0 \# List all tags git tag -l \# Show tag details git show v2.0
 
 3.5 --- Cherry-Pick a Hotfix
 
@@ -416,7 +416,7 @@ Apply a specific commit from one branch to another:
 
 3.6 --- Rebase a Feature Branch
 
-\# From your feature branch git checkout feature/the modernization program-042-drift-policy git rebase main
+\# From your feature branch git checkout feature/FMP-042-drift-policy git rebase main
 
 +--------------------------------------------------------------------------------------------------------------------------------------------+
 | **Warning**                                                                                                                                |
@@ -446,35 +446,35 @@ Canon Stewards are responsible for the integrity of all canonical artifacts in t
 
 4.1 --- Canonical Artifact Validation Script
 
-Use this PowerShell function to validate that a canonical artifact meets all the modernization program governance requirements before committing:
+Use this PowerShell function to validate that a canonical artifact meets all the Federal Modernization Program governance requirements before committing:
 
-function Test-the modernization programCanonArtifact { param(\[string\]\$FilePath) \$content = Get-Content \$FilePath -Raw \$errors = @ \# Check YAML frontmatter exists if (\$content -notmatch \'(?s)\^\-\--\\s\*\\n(.+?)\\n\-\--\') { \$errors += \"Missing YAML frontmatter\" } else { \$frontmatter = \$Matches\[1\] \# Required fields \$requiredFields = @( \'document_id\', \'title\', \'version\', \'status\', \'classification\', \'owner\', \'boundary\' ) foreach (\$field in \$requiredFields) { if (\$frontmatter -notmatch \"\$field\\s\*:\") { \$errors += \"Missing required field: \$field\" } } \# Boundary must be GCC-Moderate if (\$frontmatter -notmatch \'boundary\\s\*:\\s\*GCC-Moderate\') { \$errors += \"Boundary must be \'GCC-Moderate\'\" } } \# FOUO check --- must use \"Controlled\" instead if (\$content -match \'FOUO\|For Official Use Only\') { \$errors += \"FOUO marking detected --- use \'Controlled\' instead\" } \# Report results if (\$errors.Count -gt 0) { Write-Host \"FAIL: \$FilePath\" -ForegroundColor Red foreach (\$err in \$errors) { Write-Host \" - \$err\" -ForegroundColor Yellow } return \$false } Write-Host \"PASS: \$FilePath\" -ForegroundColor Green return \$true }
+function Test-FMPCanonArtifact { param(\[string\]\$FilePath) \$content = Get-Content \$FilePath -Raw \$errors = @ \# Check YAML frontmatter exists if (\$content -notmatch \'(?s)\^\-\--\\s\*\\n(.+?)\\n\-\--\') { \$errors += \"Missing YAML frontmatter\" } else { \$frontmatter = \$Matches\[1\] \# Required fields \$requiredFields = @( \'document_id\', \'title\', \'version\', \'status\', \'classification\', \'owner\', \'boundary\' ) foreach (\$field in \$requiredFields) { if (\$frontmatter -notmatch \"\$field\\s\*:\") { \$errors += \"Missing required field: \$field\" } } \# Boundary must be GCC-Moderate if (\$frontmatter -notmatch \'boundary\\s\*:\\s\*GCC-Moderate\') { \$errors += \"Boundary must be \'GCC-Moderate\'\" } } \# FOUO check --- must use \"Controlled\" instead if (\$content -match \'FOUO\|For Official Use Only\') { \$errors += \"FOUO marking detected --- use \'Controlled\' instead\" } \# Report results if (\$errors.Count -gt 0) { Write-Host \"FAIL: \$FilePath\" -ForegroundColor Red foreach (\$err in \$errors) { Write-Host \" - \$err\" -ForegroundColor Yellow } return \$false } Write-Host \"PASS: \$FilePath\" -ForegroundColor Green return \$true }
 
 4.2 --- Batch Validate All Canon Files
 
-\# Validate every .md file in canon/ recursively \$results = Get-ChildItem -Path canon/ -Recurse -Filter \*.md \| ForEach-Object { \[PSCustomObject\]@{ File = \$\_.FullName Valid = Test-the modernization programCanonArtifact \$\_.FullName } } \# Summary \$passed = (\$results \| Where-Object Valid -eq \$true).Count \$failed = (\$results \| Where-Object Valid -eq \$false).Count Write-Host \"\`nResults: \$passed passed, \$failed failed out of \$(\$results.Count) total\" -ForegroundColor Cyan
+\# Validate every .md file in canon/ recursively \$results = Get-ChildItem -Path canon/ -Recurse -Filter \*.md \| ForEach-Object { \[PSCustomObject\]@{ File = \$\_.FullName Valid = Test-FMPCanonArtifact \$\_.FullName } } \# Summary \$passed = (\$results \| Where-Object Valid -eq \$true).Count \$failed = (\$results \| Where-Object Valid -eq \$false).Count Write-Host \"\`nResults: \$passed passed, \$failed failed out of \$(\$results.Count) total\" -ForegroundColor Cyan
 
 4.3 --- Deprecate an Artifact
 
 Canonical artifacts are **never deleted**. To deprecate, update the YAML frontmatter:
 
-\-\-- document_id: the modernization program_003 title: Legacy Access Control Framework version: 1.4 status: DEPRECATED classification: Controlled owner: Michael Stratton boundary: GCC-Moderate superseded_by: the modernization program_042 deprecated_date: 2026-04-20 \-\--
+\-\-- document_id: FMP_003 title: Legacy Access Control Framework version: 1.4 status: DEPRECATED classification: Controlled owner: Michael Stratton boundary: GCC-Moderate superseded_by: FMP_042 deprecated_date: 2026-04-20 \-\--
 
 Then commit and push:
 
-git add canon/the modernization program_003.md git commit -m \"canon(the modernization program_003): deprecate in favor of the modernization program_042\" git push origin main
+git add canon/FMP_003.md git commit -m \"canon(FMP_003): deprecate in favor of FMP_042\" git push origin main
 
 4.4 --- Generate Canon Status Report
 
-function Export-the modernization programCanonStatusReport { param(\[string\]\$CanonPath = \"canon/\") \$artifacts = Get-ChildItem -Path \$CanonPath -Filter \*.md -Recurse \| ForEach-Object { \$content = Get-Content \$\_.FullName -Raw if (\$content -match \'(?s)\^\-\--\\s\*\\n(.+?)\\n\-\--\') { \$fm = \$Matches\[1\] \[PSCustomObject\]@{ File = \$\_.Name DocumentID = if (\$fm -match \'document_id\\s\*:\\s\*(.+)\') { \$Matches\[1\].Trim } else { \"MISSING\" } Title = if (\$fm -match \'title\\s\*:\\s\*(.+)\') { \$Matches\[1\].Trim } else { \"MISSING\" } Version = if (\$fm -match \'version\\s\*:\\s\*(.+)\') { \$Matches\[1\].Trim } else { \"MISSING\" } Status = if (\$fm -match \'status\\s\*:\\s\*(.+)\') { \$Matches\[1\].Trim } else { \"MISSING\" } Classification = if (\$fm -match \'classification\\s\*:\\s\*(.+)\') { \$Matches\[1\].Trim } else { \"MISSING\" } Boundary = if (\$fm -match \'boundary\\s\*:\\s\*(.+)\') { \$Matches\[1\].Trim } else { \"MISSING\" } } } } \$artifacts \| Format-Table -AutoSize \$artifacts \| Export-Csv \"canon-status-report.csv\" -NoTypeInformation Write-Host \"Report exported to canon-status-report.csv\" -ForegroundColor Green }
+function Export-FMPCanonStatusReport { param(\[string\]\$CanonPath = \"canon/\") \$artifacts = Get-ChildItem -Path \$CanonPath -Filter \*.md -Recurse \| ForEach-Object { \$content = Get-Content \$\_.FullName -Raw if (\$content -match \'(?s)\^\-\--\\s\*\\n(.+?)\\n\-\--\') { \$fm = \$Matches\[1\] \[PSCustomObject\]@{ File = \$\_.Name DocumentID = if (\$fm -match \'document_id\\s\*:\\s\*(.+)\') { \$Matches\[1\].Trim } else { \"MISSING\" } Title = if (\$fm -match \'title\\s\*:\\s\*(.+)\') { \$Matches\[1\].Trim } else { \"MISSING\" } Version = if (\$fm -match \'version\\s\*:\\s\*(.+)\') { \$Matches\[1\].Trim } else { \"MISSING\" } Status = if (\$fm -match \'status\\s\*:\\s\*(.+)\') { \$Matches\[1\].Trim } else { \"MISSING\" } Classification = if (\$fm -match \'classification\\s\*:\\s\*(.+)\') { \$Matches\[1\].Trim } else { \"MISSING\" } Boundary = if (\$fm -match \'boundary\\s\*:\\s\*(.+)\') { \$Matches\[1\].Trim } else { \"MISSING\" } } } } \$artifacts \| Format-Table -AutoSize \$artifacts \| Export-Csv \"canon-status-report.csv\" -NoTypeInformation Write-Host \"Report exported to canon-status-report.csv\" -ForegroundColor Green }
 
 4.5 --- Orphan Detection: Compare canon/ Against INDEX.md
 
-function Find-the modernization programOrphanArtifacts { \# Get all files in canon/ \$canonFiles = Get-ChildItem -Path canon/ -Filter \*.md -Recurse \| Select-Object -ExpandProperty Name \# Get all references in INDEX.md \$indexContent = Get-Content \"INDEX.md\" -Raw \$referencedFiles = \[regex\]::Matches(\$indexContent, \'the modernization program\_\\d{3}\\.md\') \| ForEach-Object { \$\_.Value } \| Sort-Object -Unique \# Find orphans (in canon/ but not in INDEX.md) \$orphans = \$canonFiles \| Where-Object { \$\_ -notin \$referencedFiles } \# Find dangling references (in INDEX.md but not in canon/) \$dangling = \$referencedFiles \| Where-Object { \$\_ -notin \$canonFiles } if (\$orphans) { Write-Host \"Orphaned files (in canon/ but not in INDEX.md):\" -ForegroundColor Yellow \$orphans \| ForEach-Object { Write-Host \" - \$\_\" -ForegroundColor Yellow } } if (\$dangling) { Write-Host \"Dangling references (in INDEX.md but not in canon/):\" -ForegroundColor Red \$dangling \| ForEach-Object { Write-Host \" - \$\_\" -ForegroundColor Red } } if (-not \$orphans -and -not \$dangling) { Write-Host \"No orphans or dangling references found.\" -ForegroundColor Green } }
+function Find-FMPOrphanArtifacts { \# Get all files in canon/ \$canonFiles = Get-ChildItem -Path canon/ -Filter \*.md -Recurse \| Select-Object -ExpandProperty Name \# Get all references in INDEX.md \$indexContent = Get-Content \"INDEX.md\" -Raw \$referencedFiles = \[regex\]::Matches(\$indexContent, \'FMP\_\\d{3}\\.md\') \| ForEach-Object { \$\_.Value } \| Sort-Object -Unique \# Find orphans (in canon/ but not in INDEX.md) \$orphans = \$canonFiles \| Where-Object { \$\_ -notin \$referencedFiles } \# Find dangling references (in INDEX.md but not in canon/) \$dangling = \$referencedFiles \| Where-Object { \$\_ -notin \$canonFiles } if (\$orphans) { Write-Host \"Orphaned files (in canon/ but not in INDEX.md):\" -ForegroundColor Yellow \$orphans \| ForEach-Object { Write-Host \" - \$\_\" -ForegroundColor Yellow } } if (\$dangling) { Write-Host \"Dangling references (in INDEX.md but not in canon/):\" -ForegroundColor Red \$dangling \| ForEach-Object { Write-Host \" - \$\_\" -ForegroundColor Red } } if (-not \$orphans -and -not \$dangling) { Write-Host \"No orphans or dangling references found.\" -ForegroundColor Green } }
 
 Chapter 5 --- Advanced Git Operations
 
-This chapter covers advanced Git commands for debugging, history manipulation, and recovery scenarios relevant to the modernization program operations.
+This chapter covers advanced Git commands for debugging, history manipulation, and recovery scenarios relevant to the Federal Modernization Program operations.
 
 5.1 --- Bisect to Find a Regression
 
@@ -490,21 +490,21 @@ This chapter covers advanced Git commands for debugging, history manipulation, a
 
 In the editor that opens, change pick to squash (or s) for the commits you want to combine:
 
-pick a1b2c3d feat(canon): the modernization program_042 initial draft squash e4f5g6h feat(canon): the modernization program_042 add review notes squash i7j8k9l feat(canon): the modernization program_042 fix typo
+pick a1b2c3d feat(canon): FMP_042 initial draft squash e4f5g6h feat(canon): FMP_042 add review notes squash i7j8k9l feat(canon): FMP_042 fix typo
 
 Save and close. Edit the combined commit message when prompted.
 
 5.4 --- View File History
 
-\# Full history of a specific file, including renames git log \--follow -p \-- canon/the modernization program_001.md \# Summary only (no diffs) git log \--follow \--oneline \-- canon/the modernization program_001.md
+\# Full history of a specific file, including renames git log \--follow -p \-- canon/FMP_001.md \# Summary only (no diffs) git log \--follow \--oneline \-- canon/FMP_001.md
 
 5.5 --- Blame a Specific Line
 
-\# Show who last modified each line git blame canon/the modernization program_001.md \# Blame a specific line range (lines 10-20) git blame -L 10,20 canon/the modernization program_001.md
+\# Show who last modified each line git blame canon/FMP_001.md \# Blame a specific line range (lines 10-20) git blame -L 10,20 canon/FMP_001.md
 
 5.6 --- Show Diff Between Branches
 
-\# Diff between main and a feature branch git diff main..feature/the modernization program-042-new-artifact \# Show only file names that changed git diff \--name-only main..feature/the modernization program-042-new-artifact \# Show stats (insertions/deletions per file) git diff \--stat main..feature/the modernization program-042-new-artifact
+\# Diff between main and a feature branch git diff main..feature/FMP-042-new-artifact \# Show only file names that changed git diff \--name-only main..feature/FMP-042-new-artifact \# Show stats (insertions/deletions per file) git diff \--stat main..feature/FMP-042-new-artifact
 
 5.7 --- Recover a Deleted Branch
 
@@ -560,53 +560,53 @@ Gitea enforces API rate limits. Check your remaining quota in the response heade
 
 Chapter 7 --- Repository API Operations
 
-Full CRUD operations against the the modernization program repository via the Gitea REST API. All examples use PowerShell with the \$headers variable configured as shown in Chapter 6.
+Full CRUD operations against the Federal Modernization Program repository via the Gitea REST API. All examples use PowerShell with the \$headers variable configured as shown in Chapter 6.
 
 7.1 --- Repository Endpoints
 
   -----------------------------------------------------------------------------------------
   **Operation**            **Method**   **Endpoint**
   ------------------------ ------------ ---------------------------------------------------
-  List repos in the modernization program org   GET          /api/v1/orgs/the modernization program/repos
+  List repos in the Federal Modernization Program org   GET          /api/v1/orgs/FMP/repos
 
-  Get repo details         GET          /api/v1/repos/the modernization program/uiao
+  Get repo details         GET          /api/v1/repos/FMP/uiao
 
-  List branches            GET          /api/v1/repos/the modernization program/uiao/branches
+  List branches            GET          /api/v1/repos/FMP/uiao/branches
 
-  Get specific branch      GET          /api/v1/repos/the modernization program/uiao/branches/{branch}
+  Get specific branch      GET          /api/v1/repos/FMP/uiao/branches/{branch}
 
-  List commits             GET          /api/v1/repos/the modernization program/uiao/commits?sha=main&limit=20
+  List commits             GET          /api/v1/repos/FMP/uiao/commits?sha=main&limit=20
 
-  Get file contents        GET          /api/v1/repos/the modernization program/uiao/contents/{path}?ref=main
+  Get file contents        GET          /api/v1/repos/FMP/uiao/contents/{path}?ref=main
 
-  Create/update file       PUT          /api/v1/repos/the modernization program/uiao/contents/{path}
+  Create/update file       PUT          /api/v1/repos/FMP/uiao/contents/{path}
 
-  Delete file              DELETE       /api/v1/repos/the modernization program/uiao/contents/{path}
+  Delete file              DELETE       /api/v1/repos/FMP/uiao/contents/{path}
 
-  List tags                GET          /api/v1/repos/the modernization program/uiao/tags
+  List tags                GET          /api/v1/repos/FMP/uiao/tags
 
-  Create release           POST         /api/v1/repos/the modernization program/uiao/releases
+  Create release           POST         /api/v1/repos/FMP/uiao/releases
 
   Search code              GET          /api/v1/repos/search?q={keyword}&topic=true
 
-  Get raw file             GET          /api/v1/repos/the modernization program/uiao/raw/{path}?ref=main
+  Get raw file             GET          /api/v1/repos/FMP/uiao/raw/{path}?ref=main
   -----------------------------------------------------------------------------------------
 
-7.2 --- List All Repositories in the modernization program Organization
+7.2 --- List All Repositories in the Federal Modernization Program Organization
 
-\$repos = Invoke-RestMethod -Uri \"https://git.uiao.local/api/v1/orgs/the modernization program/repos\" \` -Headers \$headers \$repos \| Select-Object name, full_name, default_branch, stars_count, updated_at \| Format-Table -AutoSize
+\$repos = Invoke-RestMethod -Uri \"https://git.uiao.local/api/v1/orgs/FMP/repos\" \` -Headers \$headers \$repos \| Select-Object name, full_name, default_branch, stars_count, updated_at \| Format-Table -AutoSize
 
 7.3 --- Get File Contents
 
-\# Get a canon artifact via API \$file = Invoke-RestMethod \` -Uri \"https://git.uiao.local/api/v1/repos/the modernization program/uiao/contents/canon/the modernization program_001.md?ref=main\" \` -Headers \$headers \# Decode Base64 content \$decoded = \[System.Text.Encoding\]::UTF8.GetString( \[System.Convert\]::FromBase64String(\$file.content) ) Write-Host \$decoded
+\# Get a canon artifact via API \$file = Invoke-RestMethod \` -Uri \"https://git.uiao.local/api/v1/repos/FMP/uiao/contents/canon/FMP_001.md?ref=main\" \` -Headers \$headers \# Decode Base64 content \$decoded = \[System.Text.Encoding\]::UTF8.GetString( \[System.Convert\]::FromBase64String(\$file.content) ) Write-Host \$decoded
 
 7.4 --- Create or Update a File
 
-\# Prepare content \$markdownContent = @\" \-\-- document_id: the modernization program_042 title: Drift Detection Governance Policy version: 1.0 status: DRAFT classification: Controlled owner: Michael Stratton boundary: GCC-Moderate \-\-- \# Drift Detection Governance Policy This artifact defines the policy for detecting configuration drift\... \"@ \$fileContent = \[System.Convert\]::ToBase64String( \[System.Text.Encoding\]::UTF8.GetBytes(\$markdownContent) ) \$body = \@{ content = \$fileContent message = \"canon: add the modernization program_042 drift detection policy\" branch = \"feature/the modernization program-042-drift-policy\" new_branch = \"feature/the modernization program-042-drift-policy\" } \| ConvertTo-Json Invoke-RestMethod \` -Uri \"https://git.uiao.local/api/v1/repos/the modernization program/uiao/contents/canon/the modernization program_042.md\" \` -Method PUT -Headers \$headers \` -ContentType \"application/json\" -Body \$body
+\# Prepare content \$markdownContent = @\" \-\-- document_id: FMP_042 title: Drift Detection Governance Policy version: 1.0 status: DRAFT classification: Controlled owner: Michael Stratton boundary: GCC-Moderate \-\-- \# Drift Detection Governance Policy This artifact defines the policy for detecting configuration drift\... \"@ \$fileContent = \[System.Convert\]::ToBase64String( \[System.Text.Encoding\]::UTF8.GetBytes(\$markdownContent) ) \$body = \@{ content = \$fileContent message = \"canon: add FMP_042 drift detection policy\" branch = \"feature/FMP-042-drift-policy\" new_branch = \"feature/FMP-042-drift-policy\" } \| ConvertTo-Json Invoke-RestMethod \` -Uri \"https://git.uiao.local/api/v1/repos/FMP/uiao/contents/canon/FMP_042.md\" \` -Method PUT -Headers \$headers \` -ContentType \"application/json\" -Body \$body
 
 7.5 --- Create a Release
 
-\$releaseBody = \@{ tag_name = \"v2.0\" target_commitish = \"main\" name = \"the modernization program Governance OS v2.0\" body = \"Release notes for v2.0\...\" draft = \$false prerelease = \$false } \| ConvertTo-Json Invoke-RestMethod \` -Uri \"https://git.uiao.local/api/v1/repos/the modernization program/uiao/releases\" \` -Method POST -Headers \$headers \` -ContentType \"application/json\" -Body \$releaseBody
+\$releaseBody = \@{ tag_name = \"v2.0\" target_commitish = \"main\" name = \"the Federal Modernization Program Governance OS v2.0\" body = \"Release notes for v2.0\...\" draft = \$false prerelease = \$false } \| ConvertTo-Json Invoke-RestMethod \` -Uri \"https://git.uiao.local/api/v1/repos/FMP/uiao/releases\" \` -Method POST -Headers \$headers \` -ContentType \"application/json\" -Body \$releaseBody
 
 Chapter 8 --- Pull Request API
 
@@ -617,40 +617,40 @@ Manage the full pull request lifecycle via the Gitea API.
   ----------------------------------------------------------------------------
   **Operation**   **Method**   **Endpoint**
   --------------- ------------ -----------------------------------------------
-  List PRs        GET          /api/v1/repos/the modernization program/uiao/pulls?state=open
+  List PRs        GET          /api/v1/repos/FMP/uiao/pulls?state=open
 
-  Get single PR   GET          /api/v1/repos/the modernization program/uiao/pulls/{index}
+  Get single PR   GET          /api/v1/repos/FMP/uiao/pulls/{index}
 
-  Create PR       POST         /api/v1/repos/the modernization program/uiao/pulls
+  Create PR       POST         /api/v1/repos/FMP/uiao/pulls
 
-  Update PR       PATCH        /api/v1/repos/the modernization program/uiao/pulls/{index}
+  Update PR       PATCH        /api/v1/repos/FMP/uiao/pulls/{index}
 
-  List PR files   GET          /api/v1/repos/the modernization program/uiao/pulls/{index}/files
+  List PR files   GET          /api/v1/repos/FMP/uiao/pulls/{index}/files
 
-  Review PR       POST         /api/v1/repos/the modernization program/uiao/pulls/{index}/reviews
+  Review PR       POST         /api/v1/repos/FMP/uiao/pulls/{index}/reviews
 
-  Merge PR        POST         /api/v1/repos/the modernization program/uiao/pulls/{index}/merge
+  Merge PR        POST         /api/v1/repos/FMP/uiao/pulls/{index}/merge
   ----------------------------------------------------------------------------
 
 8.2 --- Create a Pull Request
 
-\$prBody = \@{ title = \"feat(canon): the modernization program_042 --- New Governance Artifact\" body = \"Adds the new canonical artifact for drift detection policy.\" head = \"feature/the modernization program-042-drift-policy\" base = \"main\" assignees = @(\"uiao-admin\") labels = @(1) \# Canon label ID } \| ConvertTo-Json \$pr = Invoke-RestMethod \` -Uri \"https://git.uiao.local/api/v1/repos/the modernization program/uiao/pulls\" \` -Method POST -Headers \$headers \` -ContentType \"application/json\" -Body \$prBody Write-Host \"Created PR #\$(\$pr.number): \$(\$pr.title)\"
+\$prBody = \@{ title = \"feat(canon): FMP_042 --- New Governance Artifact\" body = \"Adds the new canonical artifact for drift detection policy.\" head = \"feature/FMP-042-drift-policy\" base = \"main\" assignees = @(\"uiao-admin\") labels = @(1) \# Canon label ID } \| ConvertTo-Json \$pr = Invoke-RestMethod \` -Uri \"https://git.uiao.local/api/v1/repos/FMP/uiao/pulls\" \` -Method POST -Headers \$headers \` -ContentType \"application/json\" -Body \$prBody Write-Host \"Created PR #\$(\$pr.number): \$(\$pr.title)\"
 
 8.3 --- Review a Pull Request
 
-\$reviewBody = \@{ body = \"Reviewed. Canon artifact frontmatter is valid. Approved.\" event = \"APPROVED\" \# APPROVED, REQUEST_CHANGES, or COMMENT } \| ConvertTo-Json Invoke-RestMethod \` -Uri \"https://git.uiao.local/api/v1/repos/the modernization program/uiao/pulls/\$(\$pr.number)/reviews\" \` -Method POST -Headers \$headers \` -ContentType \"application/json\" -Body \$reviewBody
+\$reviewBody = \@{ body = \"Reviewed. Canon artifact frontmatter is valid. Approved.\" event = \"APPROVED\" \# APPROVED, REQUEST_CHANGES, or COMMENT } \| ConvertTo-Json Invoke-RestMethod \` -Uri \"https://git.uiao.local/api/v1/repos/FMP/uiao/pulls/\$(\$pr.number)/reviews\" \` -Method POST -Headers \$headers \` -ContentType \"application/json\" -Body \$reviewBody
 
 8.4 --- Merge a Pull Request
 
-\# Merge types: merge, rebase, squash \$mergeBody = \@{ Do = \"squash\" merge_message_field = \"feat(canon): the modernization program_042 drift detection policy (#\$(\$pr.number))\" delete_branch_after_merge = \$true } \| ConvertTo-Json Invoke-RestMethod \` -Uri \"https://git.uiao.local/api/v1/repos/the modernization program/uiao/pulls/\$(\$pr.number)/merge\" \` -Method POST -Headers \$headers \` -ContentType \"application/json\" -Body \$mergeBody
+\# Merge types: merge, rebase, squash \$mergeBody = \@{ Do = \"squash\" merge_message_field = \"feat(canon): FMP_042 drift detection policy (#\$(\$pr.number))\" delete_branch_after_merge = \$true } \| ConvertTo-Json Invoke-RestMethod \` -Uri \"https://git.uiao.local/api/v1/repos/FMP/uiao/pulls/\$(\$pr.number)/merge\" \` -Method POST -Headers \$headers \` -ContentType \"application/json\" -Body \$mergeBody
 
 8.5 --- List PR Files Changed
 
-\$files = Invoke-RestMethod \` -Uri \"https://git.uiao.local/api/v1/repos/the modernization program/uiao/pulls/\$(\$pr.number)/files\" \` -Headers \$headers \$files \| Select-Object filename, status, additions, deletions \| Format-Table -AutoSize
+\$files = Invoke-RestMethod \` -Uri \"https://git.uiao.local/api/v1/repos/FMP/uiao/pulls/\$(\$pr.number)/files\" \` -Headers \$headers \$files \| Select-Object filename, status, additions, deletions \| Format-Table -AutoSize
 
 Chapter 9 --- Organization and Team API
 
-Manage the the modernization program organization, teams, and membership through the API.
+Manage the Federal Modernization Program organization, teams, and membership through the API.
 
 9.1 --- Organization Endpoints
 
@@ -659,11 +659,11 @@ Manage the the modernization program organization, teams, and membership through
   -------------------- ------------ ---------------------------------------
   List organizations   GET          /api/v1/orgs
 
-  Get the modernization program org         GET          /api/v1/orgs/the modernization program
+  Get the Federal Modernization Program org         GET          /api/v1/orgs/FMP
 
-  List teams           GET          /api/v1/orgs/the modernization program/teams
+  List teams           GET          /api/v1/orgs/FMP/teams
 
-  Create team          POST         /api/v1/orgs/the modernization program/teams
+  Create team          POST         /api/v1/orgs/FMP/teams
 
   Add team member      PUT          /api/v1/teams/{id}/members/{username}
 
@@ -674,7 +674,7 @@ Manage the the modernization program organization, teams, and membership through
 
 9.2 --- Create a Team
 
-\$teamBody = \@{ name = \"CanonStewards\" description = \"the modernization program Canon Steward team --- write access to canon/\" permission = \"write\" units = @(\"repo.code\", \"repo.issues\", \"repo.pulls\") can_create_org_repo = \$false } \| ConvertTo-Json \$team = Invoke-RestMethod \` -Uri \"https://git.uiao.local/api/v1/orgs/the modernization program/teams\" \` -Method POST -Headers \$headers \` -ContentType \"application/json\" -Body \$teamBody Write-Host \"Created team: \$(\$team.name) (ID: \$(\$team.id))\"
+\$teamBody = \@{ name = \"CanonStewards\" description = \"the Federal Modernization Program Canon Steward team --- write access to canon/\" permission = \"write\" units = @(\"repo.code\", \"repo.issues\", \"repo.pulls\") can_create_org_repo = \$false } \| ConvertTo-Json \$team = Invoke-RestMethod \` -Uri \"https://git.uiao.local/api/v1/orgs/FMP/teams\" \` -Method POST -Headers \$headers \` -ContentType \"application/json\" -Body \$teamBody Write-Host \"Created team: \$(\$team.name) (ID: \$(\$team.id))\"
 
 9.3 --- Add and Remove Team Members
 
@@ -682,31 +682,31 @@ Manage the the modernization program organization, teams, and membership through
 
 Chapter 10 --- Webhook API
 
-Webhooks enable event-driven integration between Gitea and external systems such as the the modernization program governance dashboard, CI/CD pipelines, and notification services.
+Webhooks enable event-driven integration between Gitea and external systems such as the Federal Modernization Program governance dashboard, CI/CD pipelines, and notification services.
 
 10.1 --- Webhook Endpoints
 
   ------------------------------------------------------------------------
   **Operation**    **Method**   **Endpoint**
   ---------------- ------------ ------------------------------------------
-  List webhooks    GET          /api/v1/repos/the modernization program/uiao/hooks
+  List webhooks    GET          /api/v1/repos/FMP/uiao/hooks
 
-  Create webhook   POST         /api/v1/repos/the modernization program/uiao/hooks
+  Create webhook   POST         /api/v1/repos/FMP/uiao/hooks
 
-  Update webhook   PATCH        /api/v1/repos/the modernization program/uiao/hooks/{id}
+  Update webhook   PATCH        /api/v1/repos/FMP/uiao/hooks/{id}
 
-  Delete webhook   DELETE       /api/v1/repos/the modernization program/uiao/hooks/{id}
+  Delete webhook   DELETE       /api/v1/repos/FMP/uiao/hooks/{id}
 
-  Test webhook     POST         /api/v1/repos/the modernization program/uiao/hooks/{id}/tests
+  Test webhook     POST         /api/v1/repos/FMP/uiao/hooks/{id}/tests
   ------------------------------------------------------------------------
 
 10.2 --- Create a Webhook for Governance Dashboard
 
-\$hookBody = \@{ type = \"gitea\" config = \@{ url = \"https://governance-dashboard.uiao.local/api/webhook\" content_type = \"json\" secret = \"webhook-shared-secret\" \# Replace with actual secret } events = @(\"push\", \"pull_request\", \"release\") active = \$true } \| ConvertTo-Json -Depth 3 \$hook = Invoke-RestMethod \` -Uri \"https://git.uiao.local/api/v1/repos/the modernization program/uiao/hooks\" \` -Method POST -Headers \$headers \` -ContentType \"application/json\" -Body \$hookBody Write-Host \"Created webhook ID: \$(\$hook.id)\"
+\$hookBody = \@{ type = \"gitea\" config = \@{ url = \"https://governance-dashboard.uiao.local/api/webhook\" content_type = \"json\" secret = \"webhook-shared-secret\" \# Replace with actual secret } events = @(\"push\", \"pull_request\", \"release\") active = \$true } \| ConvertTo-Json -Depth 3 \$hook = Invoke-RestMethod \` -Uri \"https://git.uiao.local/api/v1/repos/FMP/uiao/hooks\" \` -Method POST -Headers \$headers \` -ContentType \"application/json\" -Body \$hookBody Write-Host \"Created webhook ID: \$(\$hook.id)\"
 
 10.3 --- Test a Webhook
 
-Invoke-RestMethod \` -Uri \"https://git.uiao.local/api/v1/repos/the modernization program/uiao/hooks/\$(\$hook.id)/tests\" \` -Method POST -Headers \$headers
+Invoke-RestMethod \` -Uri \"https://git.uiao.local/api/v1/repos/FMP/uiao/hooks/\$(\$hook.id)/tests\" \` -Method POST -Headers \$headers
 
 10.4 --- Webhook Payload Structure
 
@@ -732,49 +732,49 @@ Invoke-RestMethod \` -Uri \"https://git.uiao.local/api/v1/repos/the modernizatio
 
 Chapter 11 --- API Automation Patterns
 
-This chapter presents the the modernization programGiteaApi PowerShell module --- a reusable library encapsulating all Gitea API operations with governance validation built in.
+This chapter presents the FMPGiteaApi PowerShell module --- a reusable library encapsulating all Gitea API operations with governance validation built in.
 
-11.1 --- Connect-the modernization programGitea
+11.1 --- Connect-FMPGitea
 
-function Connect-the modernization programGitea { \<# .SYNOPSIS Authenticates to the Gitea API and stores the session token. .PARAMETER ServerUrl The Gitea server URL. Default: https://git.uiao.local .PARAMETER Token Personal access token. If omitted, prompts securely. .EXAMPLE Connect-the modernization programGitea Connect-the modernization programGitea -Token \$env:GITEA_TOKEN #\> param( \[string\]\$ServerUrl = \"https://git.uiao.local\", \[string\]\$Token ) if (-not \$Token) { \$secToken = Read-Host -Prompt \"Gitea Personal Access Token\" -AsSecureString \$Token = \[Runtime.InteropServices.Marshal\]::PtrToStringAuto( \[Runtime.InteropServices.Marshal\]::SecureStringToBSTR(\$secToken) ) } \$script:GiteaUrl = \$ServerUrl.TrimEnd(\'/\') \$script:GiteaHeaders = \@{ Authorization = \"token \$Token\" } try { \$user = Invoke-RestMethod -Uri \"\$script:GiteaUrl/api/v1/user\" -Headers \$script:GiteaHeaders Write-Host \"Connected to \$script:GiteaUrl as \$(\$user.login)\" -ForegroundColor Green return \$user } catch { Write-Error \"Authentication failed: \$(\$\_.Exception.Message)\" \$script:GiteaHeaders = \$null } }
+function Connect-FMPGitea { \<# .SYNOPSIS Authenticates to the Gitea API and stores the session token. .PARAMETER ServerUrl The Gitea server URL. Default: https://git.uiao.local .PARAMETER Token Personal access token. If omitted, prompts securely. .EXAMPLE Connect-FMPGitea Connect-FMPGitea -Token \$env:GITEA_TOKEN #\> param( \[string\]\$ServerUrl = \"https://git.uiao.local\", \[string\]\$Token ) if (-not \$Token) { \$secToken = Read-Host -Prompt \"Gitea Personal Access Token\" -AsSecureString \$Token = \[Runtime.InteropServices.Marshal\]::PtrToStringAuto( \[Runtime.InteropServices.Marshal\]::SecureStringToBSTR(\$secToken) ) } \$script:GiteaUrl = \$ServerUrl.TrimEnd(\'/\') \$script:GiteaHeaders = \@{ Authorization = \"token \$Token\" } try { \$user = Invoke-RestMethod -Uri \"\$script:GiteaUrl/api/v1/user\" -Headers \$script:GiteaHeaders Write-Host \"Connected to \$script:GiteaUrl as \$(\$user.login)\" -ForegroundColor Green return \$user } catch { Write-Error \"Authentication failed: \$(\$\_.Exception.Message)\" \$script:GiteaHeaders = \$null } }
 
-11.2 --- Get-the modernization programRepository
+11.2 --- Get-FMPRepository
 
-function Get-the modernization programRepository { \<# .SYNOPSIS Retrieves the modernization program repository details. .PARAMETER Owner Organization or user. Default: the modernization program .PARAMETER Repo Repository name. Default: uiao .EXAMPLE Get-the modernization programRepository #\> param( \[string\]\$Owner = \"the modernization program\", \[string\]\$Repo = \"uiao\" ) Invoke-RestMethod -Uri \"\$script:GiteaUrl/api/v1/repos/\$Owner/\$Repo\" \` -Headers \$script:GiteaHeaders }
+function Get-FMPRepository { \<# .SYNOPSIS Retrieves the Federal Modernization Program repository details. .PARAMETER Owner Organization or user. Default: The Federal Modernization Program .PARAMETER Repo Repository name. Default: uiao .EXAMPLE Get-FMPRepository #\> param( \[string\]\$Owner = \"FMP\", \[string\]\$Repo = \"uiao\" ) Invoke-RestMethod -Uri \"\$script:GiteaUrl/api/v1/repos/\$Owner/\$Repo\" \` -Headers \$script:GiteaHeaders }
 
-11.3 --- Get-the modernization programCanonFile
+11.3 --- Get-FMPCanonFile
 
-function Get-the modernization programCanonFile { \<# .SYNOPSIS Retrieves a canonical artifact by its the modernization program ID. .PARAMETER ArtifactId the modernization program artifact ID (e.g., \"the modernization program_001\", \"the modernization program_042\"). .PARAMETER Ref Branch or tag reference. Default: main .EXAMPLE Get-the modernization programCanonFile -ArtifactId \"the modernization program_001\" #\> param( \[Parameter(Mandatory)\]\[string\]\$ArtifactId, \[string\]\$Ref = \"main\" ) \$path = \"canon/\$ArtifactId.md\" \$file = Invoke-RestMethod \` -Uri \"\$script:GiteaUrl/api/v1/repos/the modernization program/uiao/contents/\$path\`?ref=\$Ref\" \` -Headers \$script:GiteaHeaders \$decoded = \[System.Text.Encoding\]::UTF8.GetString( \[System.Convert\]::FromBase64String(\$file.content) ) \[PSCustomObject\]@{ ArtifactId = \$ArtifactId Path = \$path SHA = \$file.sha Content = \$decoded Size = \$file.size } }
+function Get-FMPCanonFile { \<# .SYNOPSIS Retrieves a canonical artifact by its the Federal Modernization Program ID. .PARAMETER ArtifactId the Federal Modernization Program artifact ID (e.g., \"FMP_001\", \"FMP_042\"). .PARAMETER Ref Branch or tag reference. Default: main .EXAMPLE Get-FMPCanonFile -ArtifactId \"FMP_001\" #\> param( \[Parameter(Mandatory)\]\[string\]\$ArtifactId, \[string\]\$Ref = \"main\" ) \$path = \"canon/\$ArtifactId.md\" \$file = Invoke-RestMethod \` -Uri \"\$script:GiteaUrl/api/v1/repos/FMP/uiao/contents/\$path\`?ref=\$Ref\" \` -Headers \$script:GiteaHeaders \$decoded = \[System.Text.Encoding\]::UTF8.GetString( \[System.Convert\]::FromBase64String(\$file.content) ) \[PSCustomObject\]@{ ArtifactId = \$ArtifactId Path = \$path SHA = \$file.sha Content = \$decoded Size = \$file.size } }
 
-11.4 --- Set-the modernization programCanonFile
+11.4 --- Set-FMPCanonFile
 
-function Set-the modernization programCanonFile { \<# .SYNOPSIS Updates a canonical artifact with governance validation. .PARAMETER ArtifactId the modernization program artifact ID. .PARAMETER Content Full markdown content including YAML frontmatter. .PARAMETER CommitMessage Commit message. Auto-prefixed with \"canon:\" if not already. .PARAMETER Branch Target branch. Default: main .EXAMPLE Set-the modernization programCanonFile -ArtifactId \"the modernization program_001\" -Content \$md -CommitMessage \"update to v2.1\" #\> param( \[Parameter(Mandatory)\]\[string\]\$ArtifactId, \[Parameter(Mandatory)\]\[string\]\$Content, \[string\]\$CommitMessage = \"update \$ArtifactId\", \[string\]\$Branch = \"main\" ) \# Governance validation if (\$Content -match \'FOUO\|For Official Use Only\') { Write-Error \"Content contains prohibited FOUO marking. Use \'Controlled\' instead.\" return } if (\$Content -notmatch \'(?s)\^\-\--\\s\*\\n(.+?)\\n\-\--\') { Write-Error \"Content missing required YAML frontmatter.\" return } if (\$Content -notmatch \'boundary\\s\*:\\s\*GCC-Moderate\') { Write-Error \"Boundary field must be \'GCC-Moderate\'.\" return } \# Prefix commit message if (\$CommitMessage -notmatch \'\^canon\') { \$CommitMessage = \"canon(\$ArtifactId): \$CommitMessage\" } \# Get current SHA for update \$path = \"canon/\$ArtifactId.md\" try { \$existing = Invoke-RestMethod \` -Uri \"\$script:GiteaUrl/api/v1/repos/the modernization program/uiao/contents/\$path\`?ref=\$Branch\" \` -Headers \$script:GiteaHeaders \$sha = \$existing.sha } catch { \$sha = \$null } \$encoded = \[System.Convert\]::ToBase64String( \[System.Text.Encoding\]::UTF8.GetBytes(\$Content) ) \$body = \@{ content = \$encoded message = \$CommitMessage branch = \$Branch } if (\$sha) { \$body.sha = \$sha } \$jsonBody = \$body \| ConvertTo-Json \$result = Invoke-RestMethod \` -Uri \"\$script:GiteaUrl/api/v1/repos/the modernization program/uiao/contents/\$path\" \` -Method PUT -Headers \$script:GiteaHeaders \` -ContentType \"application/json\" -Body \$jsonBody Write-Host \"Updated \$ArtifactId on branch \$Branch\" -ForegroundColor Green return \$result }
+function Set-FMPCanonFile { \<# .SYNOPSIS Updates a canonical artifact with governance validation. .PARAMETER ArtifactId the Federal Modernization Program artifact ID. .PARAMETER Content Full markdown content including YAML frontmatter. .PARAMETER CommitMessage Commit message. Auto-prefixed with \"canon:\" if not already. .PARAMETER Branch Target branch. Default: main .EXAMPLE Set-FMPCanonFile -ArtifactId \"FMP_001\" -Content \$md -CommitMessage \"update to v2.1\" #\> param( \[Parameter(Mandatory)\]\[string\]\$ArtifactId, \[Parameter(Mandatory)\]\[string\]\$Content, \[string\]\$CommitMessage = \"update \$ArtifactId\", \[string\]\$Branch = \"main\" ) \# Governance validation if (\$Content -match \'FOUO\|For Official Use Only\') { Write-Error \"Content contains prohibited FOUO marking. Use \'Controlled\' instead.\" return } if (\$Content -notmatch \'(?s)\^\-\--\\s\*\\n(.+?)\\n\-\--\') { Write-Error \"Content missing required YAML frontmatter.\" return } if (\$Content -notmatch \'boundary\\s\*:\\s\*GCC-Moderate\') { Write-Error \"Boundary field must be \'GCC-Moderate\'.\" return } \# Prefix commit message if (\$CommitMessage -notmatch \'\^canon\') { \$CommitMessage = \"canon(\$ArtifactId): \$CommitMessage\" } \# Get current SHA for update \$path = \"canon/\$ArtifactId.md\" try { \$existing = Invoke-RestMethod \` -Uri \"\$script:GiteaUrl/api/v1/repos/FMP/uiao/contents/\$path\`?ref=\$Branch\" \` -Headers \$script:GiteaHeaders \$sha = \$existing.sha } catch { \$sha = \$null } \$encoded = \[System.Convert\]::ToBase64String( \[System.Text.Encoding\]::UTF8.GetBytes(\$Content) ) \$body = \@{ content = \$encoded message = \$CommitMessage branch = \$Branch } if (\$sha) { \$body.sha = \$sha } \$jsonBody = \$body \| ConvertTo-Json \$result = Invoke-RestMethod \` -Uri \"\$script:GiteaUrl/api/v1/repos/FMP/uiao/contents/\$path\" \` -Method PUT -Headers \$script:GiteaHeaders \` -ContentType \"application/json\" -Body \$jsonBody Write-Host \"Updated \$ArtifactId on branch \$Branch\" -ForegroundColor Green return \$result }
 
-11.5 --- New-the modernization programPullRequest
+11.5 --- New-FMPPullRequest
 
-function New-the modernization programPullRequest { \<# .SYNOPSIS Creates a pull request with automatic canon labeling. .PARAMETER Title PR title in conventional commit format. .PARAMETER Body PR description. .PARAMETER Head Source branch. .PARAMETER Base Target branch. Default: main .EXAMPLE New-the modernization programPullRequest -Title \"feat(canon): the modernization program_042\" -Head \"feature/the modernization program-042\" -Body \"New artifact\" #\> param( \[Parameter(Mandatory)\]\[string\]\$Title, \[string\]\$Body = \"\", \[Parameter(Mandatory)\]\[string\]\$Head, \[string\]\$Base = \"main\" ) \$prData = \@{ title = \$Title body = \$Body head = \$Head base = \$Base } \# Auto-add canon label if title contains \"canon\" if (\$Title -match \'canon\') { \$prData.labels = @(1) \# Canon label ID --- adjust as needed } \$jsonBody = \$prData \| ConvertTo-Json Invoke-RestMethod \` -Uri \"\$script:GiteaUrl/api/v1/repos/the modernization program/uiao/pulls\" \` -Method POST -Headers \$script:GiteaHeaders \` -ContentType \"application/json\" -Body \$jsonBody }
+function New-FMPPullRequest { \<# .SYNOPSIS Creates a pull request with automatic canon labeling. .PARAMETER Title PR title in conventional commit format. .PARAMETER Body PR description. .PARAMETER Head Source branch. .PARAMETER Base Target branch. Default: main .EXAMPLE New-FMPPullRequest -Title \"feat(canon): FMP_042\" -Head \"feature/FMP-042\" -Body \"New artifact\" #\> param( \[Parameter(Mandatory)\]\[string\]\$Title, \[string\]\$Body = \"\", \[Parameter(Mandatory)\]\[string\]\$Head, \[string\]\$Base = \"main\" ) \$prData = \@{ title = \$Title body = \$Body head = \$Head base = \$Base } \# Auto-add canon label if title contains \"canon\" if (\$Title -match \'canon\') { \$prData.labels = @(1) \# Canon label ID --- adjust as needed } \$jsonBody = \$prData \| ConvertTo-Json Invoke-RestMethod \` -Uri \"\$script:GiteaUrl/api/v1/repos/FMP/uiao/pulls\" \` -Method POST -Headers \$script:GiteaHeaders \` -ContentType \"application/json\" -Body \$jsonBody }
 
-11.6 --- Merge-the modernization programPullRequest
+11.6 --- Merge-FMPPullRequest
 
-function Merge-the modernization programPullRequest { \<# .SYNOPSIS Merges a pull request with governance checks. .PARAMETER PRNumber Pull request number. .PARAMETER MergeType Merge strategy: merge, rebase, or squash. Default: squash .PARAMETER DeleteBranch Delete source branch after merge. Default: \$true .EXAMPLE Merge-the modernization programPullRequest -PRNumber 15 -MergeType \"squash\" #\> param( \[Parameter(Mandatory)\]\[int\]\$PRNumber, \[ValidateSet(\"merge\",\"rebase\",\"squash\")\]\[string\]\$MergeType = \"squash\", \[bool\]\$DeleteBranch = \$true ) \$mergeData = \@{ Do = \$MergeType delete_branch_after_merge = \$DeleteBranch } \| ConvertTo-Json Invoke-RestMethod \` -Uri \"\$script:GiteaUrl/api/v1/repos/the modernization program/uiao/pulls/\$PRNumber/merge\" \` -Method POST -Headers \$script:GiteaHeaders \` -ContentType \"application/json\" -Body \$mergeData Write-Host \"Merged PR #\$PRNumber via \$MergeType\" -ForegroundColor Green }
+function Merge-FMPPullRequest { \<# .SYNOPSIS Merges a pull request with governance checks. .PARAMETER PRNumber Pull request number. .PARAMETER MergeType Merge strategy: merge, rebase, or squash. Default: squash .PARAMETER DeleteBranch Delete source branch after merge. Default: \$true .EXAMPLE Merge-FMPPullRequest -PRNumber 15 -MergeType \"squash\" #\> param( \[Parameter(Mandatory)\]\[int\]\$PRNumber, \[ValidateSet(\"merge\",\"rebase\",\"squash\")\]\[string\]\$MergeType = \"squash\", \[bool\]\$DeleteBranch = \$true ) \$mergeData = \@{ Do = \$MergeType delete_branch_after_merge = \$DeleteBranch } \| ConvertTo-Json Invoke-RestMethod \` -Uri \"\$script:GiteaUrl/api/v1/repos/FMP/uiao/pulls/\$PRNumber/merge\" \` -Method POST -Headers \$script:GiteaHeaders \` -ContentType \"application/json\" -Body \$mergeData Write-Host \"Merged PR #\$PRNumber via \$MergeType\" -ForegroundColor Green }
 
-11.7 --- Sync-the modernization programFromGitHub
+11.7 --- Sync-FMPFromGitHub
 
-function Sync-the modernization programFromGitHub { \<# .SYNOPSIS Pulls latest from GitHub secondary and pushes to Gitea primary. .PARAMETER LocalPath Local workspace path. Default: C:\\Users\\whale\\git\\uiao .EXAMPLE Sync-the modernization programFromGitHub #\> param(\[string\]\$LocalPath = \"C:\\Users\\whale\\git\\uiao\") Push-Location \$LocalPath try { git fetch github main git checkout main git merge github/main \--no-edit git push origin main Write-Host \"Synced GitHub -\> Gitea (main)\" -ForegroundColor Green } catch { Write-Error \"Sync failed: \$(\$\_.Exception.Message)\" } finally { Pop-Location } }
+function Sync-FMPFromGitHub { \<# .SYNOPSIS Pulls latest from GitHub secondary and pushes to Gitea primary. .PARAMETER LocalPath Local workspace path. Default: C:\\Users\\whale\\git\\uiao .EXAMPLE Sync-FMPFromGitHub #\> param(\[string\]\$LocalPath = \"C:\\Users\\whale\\git\\uiao\") Push-Location \$LocalPath try { git fetch github main git checkout main git merge github/main \--no-edit git push origin main Write-Host \"Synced GitHub -\> Gitea (main)\" -ForegroundColor Green } catch { Write-Error \"Sync failed: \$(\$\_.Exception.Message)\" } finally { Pop-Location } }
 
-11.8 --- Export-the modernization programCanonInventory
+11.8 --- Export-FMPCanonInventory
 
-function Export-the modernization programCanonInventory { \<# .SYNOPSIS Generates a CSV inventory of all canonical artifacts with metadata. .PARAMETER OutputPath CSV output file path. .EXAMPLE Export-the modernization programCanonInventory -OutputPath \"C:\\reports\\canon-inventory.csv\" #\> param(\[string\]\$OutputPath = \"canon-inventory.csv\") \$tree = Invoke-RestMethod \` -Uri \"\$script:GiteaUrl/api/v1/repos/the modernization program/uiao/git/trees/main?recursive=true\" \` -Headers \$script:GiteaHeaders \$canonFiles = \$tree.tree \| Where-Object { \$\_.path -match \'\^canon/.\*\\.md\$\' } \$inventory = foreach (\$file in \$canonFiles) { \$content = Get-the modernization programCanonFile -ArtifactId (\$file.path -replace \'canon/\|\\.md\',\'\') \$fm = \"\" if (\$content.Content -match \'(?s)\^\-\--\\s\*\\n(.+?)\\n\-\--\') { \$fm = \$Matches\[1\] } \[PSCustomObject\]@{ Path = \$file.path DocumentID = if (\$fm -match \'document_id\\s\*:\\s\*(.+)\') { \$Matches\[1\].Trim } else { \"\" } Title = if (\$fm -match \'title\\s\*:\\s\*(.+)\') { \$Matches\[1\].Trim } else { \"\" } Version = if (\$fm -match \'version\\s\*:\\s\*(.+)\') { \$Matches\[1\].Trim } else { \"\" } Status = if (\$fm -match \'status\\s\*:\\s\*(.+)\') { \$Matches\[1\].Trim } else { \"\" } Classification = if (\$fm -match \'classification\\s\*:\\s\*(.+)\') { \$Matches\[1\].Trim } else { \"\" } Boundary = if (\$fm -match \'boundary\\s\*:\\s\*(.+)\') { \$Matches\[1\].Trim } else { \"\" } SHA = \$content.SHA SizeBytes = \$content.Size } } \$inventory \| Export-Csv \$OutputPath -NoTypeInformation Write-Host \"Exported \$(\$inventory.Count) artifacts to \$OutputPath\" -ForegroundColor Green return \$inventory }
+function Export-FMPCanonInventory { \<# .SYNOPSIS Generates a CSV inventory of all canonical artifacts with metadata. .PARAMETER OutputPath CSV output file path. .EXAMPLE Export-FMPCanonInventory -OutputPath \"C:\\reports\\canon-inventory.csv\" #\> param(\[string\]\$OutputPath = \"canon-inventory.csv\") \$tree = Invoke-RestMethod \` -Uri \"\$script:GiteaUrl/api/v1/repos/FMP/uiao/git/trees/main?recursive=true\" \` -Headers \$script:GiteaHeaders \$canonFiles = \$tree.tree \| Where-Object { \$\_.path -match \'\^canon/.\*\\.md\$\' } \$inventory = foreach (\$file in \$canonFiles) { \$content = Get-FMPCanonFile -ArtifactId (\$file.path -replace \'canon/\|\\.md\',\'\') \$fm = \"\" if (\$content.Content -match \'(?s)\^\-\--\\s\*\\n(.+?)\\n\-\--\') { \$fm = \$Matches\[1\] } \[PSCustomObject\]@{ Path = \$file.path DocumentID = if (\$fm -match \'document_id\\s\*:\\s\*(.+)\') { \$Matches\[1\].Trim } else { \"\" } Title = if (\$fm -match \'title\\s\*:\\s\*(.+)\') { \$Matches\[1\].Trim } else { \"\" } Version = if (\$fm -match \'version\\s\*:\\s\*(.+)\') { \$Matches\[1\].Trim } else { \"\" } Status = if (\$fm -match \'status\\s\*:\\s\*(.+)\') { \$Matches\[1\].Trim } else { \"\" } Classification = if (\$fm -match \'classification\\s\*:\\s\*(.+)\') { \$Matches\[1\].Trim } else { \"\" } Boundary = if (\$fm -match \'boundary\\s\*:\\s\*(.+)\') { \$Matches\[1\].Trim } else { \"\" } SHA = \$content.SHA SizeBytes = \$content.Size } } \$inventory \| Export-Csv \$OutputPath -NoTypeInformation Write-Host \"Exported \$(\$inventory.Count) artifacts to \$OutputPath\" -ForegroundColor Green return \$inventory }
 
-11.9 --- Test-the modernization programCanonIntegrity
+11.9 --- Test-FMPCanonIntegrity
 
-function Test-the modernization programCanonIntegrity { \<# .SYNOPSIS Validates all canon/ files against the modernization program governance rules via the API. .EXAMPLE Test-the modernization programCanonIntegrity #\> \$inventory = Export-the modernization programCanonInventory -OutputPath \"NUL\" \$issues = @ foreach (\$item in \$inventory) { \$file = Get-the modernization programCanonFile -ArtifactId (\$item.Path -replace \'canon/\|\\.md\',\'\') if (-not \$item.DocumentID) { \$issues += \"\$(\$item.Path): Missing document_id\" } if (-not \$item.Title) { \$issues += \"\$(\$item.Path): Missing title\" } if (\$item.Boundary -ne \"GCC-Moderate\") { \$issues += \"\$(\$item.Path): Boundary is not GCC-Moderate\" } if (\$file.Content -match \'FOUO\|For Official Use Only\') { \$issues += \"\$(\$item.Path): Contains prohibited FOUO marking\" } } if (\$issues.Count -eq 0) { Write-Host \"All canon artifacts passed integrity checks.\" -ForegroundColor Green } else { Write-Host \"Found \$(\$issues.Count) issue(s):\" -ForegroundColor Red \$issues \| ForEach-Object { Write-Host \" - \$\_\" -ForegroundColor Yellow } } return \$issues }
+function Test-FMPCanonIntegrity { \<# .SYNOPSIS Validates all canon/ files against the Federal Modernization Program governance rules via the API. .EXAMPLE Test-FMPCanonIntegrity #\> \$inventory = Export-FMPCanonInventory -OutputPath \"NUL\" \$issues = @ foreach (\$item in \$inventory) { \$file = Get-FMPCanonFile -ArtifactId (\$item.Path -replace \'canon/\|\\.md\',\'\') if (-not \$item.DocumentID) { \$issues += \"\$(\$item.Path): Missing document_id\" } if (-not \$item.Title) { \$issues += \"\$(\$item.Path): Missing title\" } if (\$item.Boundary -ne \"GCC-Moderate\") { \$issues += \"\$(\$item.Path): Boundary is not GCC-Moderate\" } if (\$file.Content -match \'FOUO\|For Official Use Only\') { \$issues += \"\$(\$item.Path): Contains prohibited FOUO marking\" } } if (\$issues.Count -eq 0) { Write-Host \"All canon artifacts passed integrity checks.\" -ForegroundColor Green } else { Write-Host \"Found \$(\$issues.Count) issue(s):\" -ForegroundColor Red \$issues \| ForEach-Object { Write-Host \" - \$\_\" -ForegroundColor Yellow } } return \$issues }
 
 **Part III --- Active Directory Integration CLI**
 
 Chapter 12 --- Step-by-Step: Connecting to Active Directory
 
-This chapter provides the prerequisite setup for interacting with Active Directory from a the modernization program workstation.
+This chapter provides the prerequisite setup for interacting with Active Directory from a Federal Modernization Program workstation.
 
 12.1 --- Install RSAT Tools
 
@@ -809,69 +809,69 @@ If the workstation is not domain-joined (e.g., an Azure-only machine or a workgr
 +-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 | **Diagram 3 --- DIAG-003**                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
 |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
-| **the modernization program AD Integration Architecture**                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        |
+| **The Federal Modernization Program AD Integration Architecture**                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        |
 |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
-| A network architecture diagram showing: (1) the modernization program Workstation (C:\\Users\\whale\\git\\uiao) on the left, connecting via LDAP/Kerberos to (2) Domain Controller (dc01.domain.local) in the center, which holds the AD forest. (3) Gitea Server (git.uiao.local) on the upper-right, integrated with AD via LDAP authentication. (4) Entra ID (cloud) on the lower-right, connected to the DC via Azure AD Connect (hybrid sync). Arrows: Workstation → DC labeled \"RSAT / PowerShell AD Module\", Gitea → DC labeled \"LDAP Bind\", DC → Entra ID labeled \"Azure AD Connect Sync\". Color scheme: On-premises components in blue (#4472C4), cloud components in teal (#00B0F0), connections as dashed gray (#888888) lines. |
+| A network architecture diagram showing: (1) the Federal Modernization Program Workstation (C:\\Users\\whale\\git\\uiao) on the left, connecting via LDAP/Kerberos to (2) Domain Controller (dc01.domain.local) in the center, which holds the AD forest. (3) Gitea Server (git.uiao.local) on the upper-right, integrated with AD via LDAP authentication. (4) Entra ID (cloud) on the lower-right, connected to the DC via Azure AD Connect (hybrid sync). Arrows: Workstation → DC labeled \"RSAT / PowerShell AD Module\", Gitea → DC labeled \"LDAP Bind\", DC → Entra ID labeled \"Azure AD Connect Sync\". Color scheme: On-premises components in blue (#4472C4), cloud components in teal (#00B0F0), connections as dashed gray (#888888) lines. |
 |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
 | Dimensions: 700 × 400 pixels                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
 +-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 
-Chapter 13 --- AD Forest Discovery for the modernization program Assessment
+Chapter 13 --- AD Forest Discovery for the Federal Modernization Program Assessment
 
-This chapter contains complete PowerShell scripts to read and export the full Active Directory environment for the modernization program governance assessment. All output is saved as CSV/JSON files for analysis and canonical documentation.
+This chapter contains complete PowerShell scripts to read and export the full Active Directory environment for the Federal Modernization Program governance assessment. All output is saved as CSV/JSON files for analysis and canonical documentation.
 
 13.1 --- Forest and Domain Discovery
 
-function Export-the modernization programForestAssessment { param(\[string\]\$OutputPath = \"C:\\the modernization programAssessment\") New-Item -Path \$OutputPath -ItemType Directory -Force \| Out-Null \# Forest information \$forest = Get-ADForest \$forest \| Select-Object Name, ForestMode, RootDomain, Domains, Sites, GlobalCatalogs \| Export-Csv \"\$OutputPath\\Forest-Info.csv\" -NoTypeInformation \# All domains in the forest foreach (\$domain in \$forest.Domains) { \$domInfo = Get-ADDomain -Server \$domain \$domInfo \| Export-Csv \"\$OutputPath\\Domain-\$(\$domain.Replace(\'.\',\'\_\')).csv\" -NoTypeInformation } \# Trust relationships Get-ADTrust -Filter \* \| Export-Csv \"\$OutputPath\\Trusts.csv\" -NoTypeInformation \# AD sites and subnets Get-ADReplicationSite -Filter \* \| Export-Csv \"\$OutputPath\\Sites.csv\" -NoTypeInformation Get-ADReplicationSubnet -Filter \* \| Export-Csv \"\$OutputPath\\Subnets.csv\" -NoTypeInformation \# Domain controllers Get-ADDomainController -Filter \* \| Select-Object Name, Domain, Site, IPv4Address, OperatingSystem, IsGlobalCatalog, OperationMasterRoles \| Export-Csv \"\$OutputPath\\DomainControllers.csv\" -NoTypeInformation \# FSMO roles \$fsmo = \@{ SchemaMaster = \$forest.SchemaMaster DomainNamingMaster = \$forest.DomainNamingMaster PDCEmulator = (Get-ADDomain).PDCEmulator RIDMaster = (Get-ADDomain).RIDMaster InfrastructureMaster = (Get-ADDomain).InfrastructureMaster } \$fsmo \| ConvertTo-Json \| Out-File \"\$OutputPath\\FSMO-Roles.json\" Write-Host \"Forest assessment complete: \$OutputPath\" -ForegroundColor Green }
+function Export-FMPForestAssessment { param(\[string\]\$OutputPath = \"C:\\FMPAssessment\") New-Item -Path \$OutputPath -ItemType Directory -Force \| Out-Null \# Forest information \$forest = Get-ADForest \$forest \| Select-Object Name, ForestMode, RootDomain, Domains, Sites, GlobalCatalogs \| Export-Csv \"\$OutputPath\\Forest-Info.csv\" -NoTypeInformation \# All domains in the forest foreach (\$domain in \$forest.Domains) { \$domInfo = Get-ADDomain -Server \$domain \$domInfo \| Export-Csv \"\$OutputPath\\Domain-\$(\$domain.Replace(\'.\',\'\_\')).csv\" -NoTypeInformation } \# Trust relationships Get-ADTrust -Filter \* \| Export-Csv \"\$OutputPath\\Trusts.csv\" -NoTypeInformation \# AD sites and subnets Get-ADReplicationSite -Filter \* \| Export-Csv \"\$OutputPath\\Sites.csv\" -NoTypeInformation Get-ADReplicationSubnet -Filter \* \| Export-Csv \"\$OutputPath\\Subnets.csv\" -NoTypeInformation \# Domain controllers Get-ADDomainController -Filter \* \| Select-Object Name, Domain, Site, IPv4Address, OperatingSystem, IsGlobalCatalog, OperationMasterRoles \| Export-Csv \"\$OutputPath\\DomainControllers.csv\" -NoTypeInformation \# FSMO roles \$fsmo = \@{ SchemaMaster = \$forest.SchemaMaster DomainNamingMaster = \$forest.DomainNamingMaster PDCEmulator = (Get-ADDomain).PDCEmulator RIDMaster = (Get-ADDomain).RIDMaster InfrastructureMaster = (Get-ADDomain).InfrastructureMaster } \$fsmo \| ConvertTo-Json \| Out-File \"\$OutputPath\\FSMO-Roles.json\" Write-Host \"Forest assessment complete: \$OutputPath\" -ForegroundColor Green }
 
 13.2 --- OU Structure Discovery
 
-function Export-the modernization programOUStructure { param(\[string\]\$OutputPath = \"C:\\the modernization programAssessment\") Get-ADOrganizationalUnit -Filter \* -Properties Description, ManagedBy \| Select-Object Name, DistinguishedName, Description, ManagedBy \| Export-Csv \"\$OutputPath\\OU-Structure.csv\" -NoTypeInformation \# OU tree visualization \$ous = Get-ADOrganizationalUnit -Filter \* \| Sort-Object DistinguishedName \$tree = foreach (\$ou in \$ous) { \$depth = (\$ou.DistinguishedName -split \'OU=\').Count - 1 \$indent = \' \' \* \$depth \"\$indent\$(\$ou.Name) \[\$(\$ou.DistinguishedName)\]\" } \$tree \| Out-File \"\$OutputPath\\OU-Tree.txt\" Write-Host \"OU structure exported: \$OutputPath\\OU-Structure.csv\" -ForegroundColor Green }
+function Export-FMPOUStructure { param(\[string\]\$OutputPath = \"C:\\FMPAssessment\") Get-ADOrganizationalUnit -Filter \* -Properties Description, ManagedBy \| Select-Object Name, DistinguishedName, Description, ManagedBy \| Export-Csv \"\$OutputPath\\OU-Structure.csv\" -NoTypeInformation \# OU tree visualization \$ous = Get-ADOrganizationalUnit -Filter \* \| Sort-Object DistinguishedName \$tree = foreach (\$ou in \$ous) { \$depth = (\$ou.DistinguishedName -split \'OU=\').Count - 1 \$indent = \' \' \* \$depth \"\$indent\$(\$ou.Name) \[\$(\$ou.DistinguishedName)\]\" } \$tree \| Out-File \"\$OutputPath\\OU-Tree.txt\" Write-Host \"OU structure exported: \$OutputPath\\OU-Structure.csv\" -ForegroundColor Green }
 
 13.3 --- Computer Object Discovery
 
-function Export-the modernization programComputerObjects { param(\[string\]\$OutputPath = \"C:\\the modernization programAssessment\") Get-ADComputer -Filter \* -Properties OperatingSystem, OperatingSystemVersion, LastLogonDate, Created, Enabled, MemberOf, DistinguishedName, Description, IPv4Address \| Select-Object Name, DNSHostName, OperatingSystem, OperatingSystemVersion, LastLogonDate, Created, Enabled, \@{N=\'OU\'; E={(\$\_.DistinguishedName -split \',\',2)\[1\]}}, \@{N=\'GroupCount\'; E={\$\_.MemberOf.Count}}, IPv4Address, Description \| Export-Csv \"\$OutputPath\\Computer-Objects.csv\" -NoTypeInformation \# Stale computers (90+ days since last logon) \$staleDate = (Get-Date).AddDays(-90) Get-ADComputer -Filter {LastLogonDate -lt \$staleDate} \` -Properties LastLogonDate, OperatingSystem \| Export-Csv \"\$OutputPath\\Stale-Computers.csv\" -NoTypeInformation Write-Host \"Computer objects exported: \$OutputPath\" -ForegroundColor Green }
+function Export-FMPComputerObjects { param(\[string\]\$OutputPath = \"C:\\FMPAssessment\") Get-ADComputer -Filter \* -Properties OperatingSystem, OperatingSystemVersion, LastLogonDate, Created, Enabled, MemberOf, DistinguishedName, Description, IPv4Address \| Select-Object Name, DNSHostName, OperatingSystem, OperatingSystemVersion, LastLogonDate, Created, Enabled, \@{N=\'OU\'; E={(\$\_.DistinguishedName -split \',\',2)\[1\]}}, \@{N=\'GroupCount\'; E={\$\_.MemberOf.Count}}, IPv4Address, Description \| Export-Csv \"\$OutputPath\\Computer-Objects.csv\" -NoTypeInformation \# Stale computers (90+ days since last logon) \$staleDate = (Get-Date).AddDays(-90) Get-ADComputer -Filter {LastLogonDate -lt \$staleDate} \` -Properties LastLogonDate, OperatingSystem \| Export-Csv \"\$OutputPath\\Stale-Computers.csv\" -NoTypeInformation Write-Host \"Computer objects exported: \$OutputPath\" -ForegroundColor Green }
 
 13.4 --- User Object Discovery
 
-function Export-the modernization programUserObjects { param(\[string\]\$OutputPath = \"C:\\the modernization programAssessment\") Get-ADUser -Filter \* -Properties DisplayName, EmailAddress, Department, Title, Manager, LastLogonDate, Created, Enabled, PasswordLastSet, PasswordNeverExpires, MemberOf \| Select-Object SamAccountName, DisplayName, EmailAddress, Department, Title, Enabled, LastLogonDate, Created, PasswordLastSet, PasswordNeverExpires, \@{N=\'GroupCount\'; E={\$\_.MemberOf.Count}} \| Export-Csv \"\$OutputPath\\User-Objects.csv\" -NoTypeInformation Write-Host \"User objects exported: \$OutputPath\" -ForegroundColor Green }
+function Export-FMPUserObjects { param(\[string\]\$OutputPath = \"C:\\FMPAssessment\") Get-ADUser -Filter \* -Properties DisplayName, EmailAddress, Department, Title, Manager, LastLogonDate, Created, Enabled, PasswordLastSet, PasswordNeverExpires, MemberOf \| Select-Object SamAccountName, DisplayName, EmailAddress, Department, Title, Enabled, LastLogonDate, Created, PasswordLastSet, PasswordNeverExpires, \@{N=\'GroupCount\'; E={\$\_.MemberOf.Count}} \| Export-Csv \"\$OutputPath\\User-Objects.csv\" -NoTypeInformation Write-Host \"User objects exported: \$OutputPath\" -ForegroundColor Green }
 
 13.5 --- Group Discovery
 
-function Export-the modernization programGroupObjects { param(\[string\]\$OutputPath = \"C:\\the modernization programAssessment\") Get-ADGroup -Filter \* -Properties Description, ManagedBy, GroupScope, GroupCategory, Members \| Select-Object Name, SamAccountName, GroupScope, GroupCategory, Description, ManagedBy, \@{N=\'MemberCount\'; E={\$\_.Members.Count}} \| Export-Csv \"\$OutputPath\\Groups.csv\" -NoTypeInformation Write-Host \"Group objects exported: \$OutputPath\" -ForegroundColor Green }
+function Export-FMPGroupObjects { param(\[string\]\$OutputPath = \"C:\\FMPAssessment\") Get-ADGroup -Filter \* -Properties Description, ManagedBy, GroupScope, GroupCategory, Members \| Select-Object Name, SamAccountName, GroupScope, GroupCategory, Description, ManagedBy, \@{N=\'MemberCount\'; E={\$\_.Members.Count}} \| Export-Csv \"\$OutputPath\\Groups.csv\" -NoTypeInformation Write-Host \"Group objects exported: \$OutputPath\" -ForegroundColor Green }
 
 Chapter 14 --- DNS Assessment
 
-Complete DNS zone and record discovery for the the modernization program environment.
+Complete DNS zone and record discovery for the Federal Modernization Program environment.
 
-function Export-the modernization programDNSAssessment { param( \[string\]\$DnsServer = \"dc01.domain.local\", \[string\]\$OutputPath = \"C:\\the modernization programAssessment\" ) \# All DNS zones Get-DnsServerZone -ComputerName \$DnsServer \| Export-Csv \"\$OutputPath\\DNS-Zones.csv\" -NoTypeInformation \# Forward lookup zones and records \$zones = Get-DnsServerZone -ComputerName \$DnsServer \| Where-Object { \$\_.IsReverseLookupZone -eq \$false -and \$\_.ZoneType -ne \'Forwarder\' } foreach (\$zone in \$zones) { Get-DnsServerResourceRecord -ZoneName \$zone.ZoneName -ComputerName \$DnsServer \| Select-Object HostName, RecordType, \@{N=\'RecordData\'; E={\$\_.RecordData.IPv4Address.IPAddressToString}} \| Export-Csv \"\$OutputPath\\DNS-Records-\$(\$zone.ZoneName.Replace(\'.\',\'\_\')).csv\" \` -NoTypeInformation } \# Reverse lookup zones \$reverseZones = Get-DnsServerZone -ComputerName \$DnsServer \| Where-Object { \$\_.IsReverseLookupZone -eq \$true } foreach (\$zone in \$reverseZones) { Get-DnsServerResourceRecord -ZoneName \$zone.ZoneName -ComputerName \$DnsServer \| Export-Csv \"\$OutputPath\\DNS-Reverse-\$(\$zone.ZoneName.Replace(\'.\',\'\_\')).csv\" \` -NoTypeInformation } \# DNS forwarders Get-DnsServerForwarder -ComputerName \$DnsServer \| Export-Csv \"\$OutputPath\\DNS-Forwarders.csv\" -NoTypeInformation \# Conditional forwarders Get-DnsServerZone -ComputerName \$DnsServer \| Where-Object { \$\_.ZoneType -eq \'Forwarder\' } \| Export-Csv \"\$OutputPath\\DNS-ConditionalForwarders.csv\" -NoTypeInformation Write-Host \"DNS assessment complete: \$OutputPath\" -ForegroundColor Green }
+function Export-FMPDNSAssessment { param( \[string\]\$DnsServer = \"dc01.domain.local\", \[string\]\$OutputPath = \"C:\\FMPAssessment\" ) \# All DNS zones Get-DnsServerZone -ComputerName \$DnsServer \| Export-Csv \"\$OutputPath\\DNS-Zones.csv\" -NoTypeInformation \# Forward lookup zones and records \$zones = Get-DnsServerZone -ComputerName \$DnsServer \| Where-Object { \$\_.IsReverseLookupZone -eq \$false -and \$\_.ZoneType -ne \'Forwarder\' } foreach (\$zone in \$zones) { Get-DnsServerResourceRecord -ZoneName \$zone.ZoneName -ComputerName \$DnsServer \| Select-Object HostName, RecordType, \@{N=\'RecordData\'; E={\$\_.RecordData.IPv4Address.IPAddressToString}} \| Export-Csv \"\$OutputPath\\DNS-Records-\$(\$zone.ZoneName.Replace(\'.\',\'\_\')).csv\" \` -NoTypeInformation } \# Reverse lookup zones \$reverseZones = Get-DnsServerZone -ComputerName \$DnsServer \| Where-Object { \$\_.IsReverseLookupZone -eq \$true } foreach (\$zone in \$reverseZones) { Get-DnsServerResourceRecord -ZoneName \$zone.ZoneName -ComputerName \$DnsServer \| Export-Csv \"\$OutputPath\\DNS-Reverse-\$(\$zone.ZoneName.Replace(\'.\',\'\_\')).csv\" \` -NoTypeInformation } \# DNS forwarders Get-DnsServerForwarder -ComputerName \$DnsServer \| Export-Csv \"\$OutputPath\\DNS-Forwarders.csv\" -NoTypeInformation \# Conditional forwarders Get-DnsServerZone -ComputerName \$DnsServer \| Where-Object { \$\_.ZoneType -eq \'Forwarder\' } \| Export-Csv \"\$OutputPath\\DNS-ConditionalForwarders.csv\" -NoTypeInformation Write-Host \"DNS assessment complete: \$OutputPath\" -ForegroundColor Green }
 
 Chapter 15 --- Certificate Assessment
 
-PKI and certificate discovery for the the modernization program governance environment. This script discovers Enterprise CAs, certificate templates, and local machine certificates.
+PKI and certificate discovery for the Federal Modernization Program governance environment. This script discovers Enterprise CAs, certificate templates, and local machine certificates.
 
-function Export-the modernization programCertAssessment { param(\[string\]\$OutputPath = \"C:\\the modernization programAssessment\") \# Enterprise CA discovery via AD \$configContext = (\[ADSI\]\"LDAP://RootDSE\").configurationNamingContext \$caContainer = \[ADSI\]\"LDAP://CN=Enrollment Services,CN=Public Key Services,CN=Services,\$configContext\" \$cas = \$caContainer.Children \| ForEach-Object { \[PSCustomObject\]@{ Name = \$\_.cn DNSName = \$\_.dNSHostName CACertDN = \$\_.cACertificateDN } } \$cas \| Export-Csv \"\$OutputPath\\Enterprise-CAs.csv\" -NoTypeInformation \# Certificate templates \$templateContainer = \[ADSI\]\"LDAP://CN=Certificate Templates,CN=Public Key Services,CN=Services,\$configContext\" \$templates = \$templateContainer.Children \| ForEach-Object { \[PSCustomObject\]@{ Name = \$\_.cn DisplayName = \$\_.displayName OID = \$\_.\'msPKI-Cert-Template-OID\' } } \$templates \| Export-Csv \"\$OutputPath\\Cert-Templates.csv\" -NoTypeInformation \# Certificates on local machine Get-ChildItem Cert:\\LocalMachine\\My \| Select-Object Subject, Issuer, NotBefore, NotAfter, Thumbprint, \@{N=\'DaysUntilExpiry\'; E={(\$\_.NotAfter - (Get-Date)).Days}} \| Export-Csv \"\$OutputPath\\Local-Certificates.csv\" -NoTypeInformation \# Expiring certificates (within 90 days) \$expiryDate = (Get-Date).AddDays(90) Get-ChildItem Cert:\\LocalMachine\\My \| Where-Object { \$\_.NotAfter -lt \$expiryDate } \| Select-Object Subject, NotAfter, Thumbprint \| Export-Csv \"\$OutputPath\\Expiring-Certificates.csv\" -NoTypeInformation Write-Host \"Certificate assessment complete: \$OutputPath\" -ForegroundColor Green }
+function Export-FMPCertAssessment { param(\[string\]\$OutputPath = \"C:\\FMPAssessment\") \# Enterprise CA discovery via AD \$configContext = (\[ADSI\]\"LDAP://RootDSE\").configurationNamingContext \$caContainer = \[ADSI\]\"LDAP://CN=Enrollment Services,CN=Public Key Services,CN=Services,\$configContext\" \$cas = \$caContainer.Children \| ForEach-Object { \[PSCustomObject\]@{ Name = \$\_.cn DNSName = \$\_.dNSHostName CACertDN = \$\_.cACertificateDN } } \$cas \| Export-Csv \"\$OutputPath\\Enterprise-CAs.csv\" -NoTypeInformation \# Certificate templates \$templateContainer = \[ADSI\]\"LDAP://CN=Certificate Templates,CN=Public Key Services,CN=Services,\$configContext\" \$templates = \$templateContainer.Children \| ForEach-Object { \[PSCustomObject\]@{ Name = \$\_.cn DisplayName = \$\_.displayName OID = \$\_.\'msPKI-Cert-Template-OID\' } } \$templates \| Export-Csv \"\$OutputPath\\Cert-Templates.csv\" -NoTypeInformation \# Certificates on local machine Get-ChildItem Cert:\\LocalMachine\\My \| Select-Object Subject, Issuer, NotBefore, NotAfter, Thumbprint, \@{N=\'DaysUntilExpiry\'; E={(\$\_.NotAfter - (Get-Date)).Days}} \| Export-Csv \"\$OutputPath\\Local-Certificates.csv\" -NoTypeInformation \# Expiring certificates (within 90 days) \$expiryDate = (Get-Date).AddDays(90) Get-ChildItem Cert:\\LocalMachine\\My \| Where-Object { \$\_.NotAfter -lt \$expiryDate } \| Select-Object Subject, NotAfter, Thumbprint \| Export-Csv \"\$OutputPath\\Expiring-Certificates.csv\" -NoTypeInformation Write-Host \"Certificate assessment complete: \$OutputPath\" -ForegroundColor Green }
 
 Chapter 16 --- GPO Assessment
 
 Complete Group Policy Object discovery, including GPO links, unlinked GPOs, WMI filters, and per-GPO HTML/XML reports.
 
-function Export-the modernization programGPOAssessment { param(\[string\]\$OutputPath = \"C:\\the modernization programAssessment\") Import-Module GroupPolicy \# All GPOs with status Get-GPO -All \| Select-Object DisplayName, Id, GpoStatus, CreationTime, ModificationTime, \@{N=\'ComputerEnabled\'; E={\$\_.GpoStatus -notmatch \'ComputerSettingsDisabled\'}}, \@{N=\'UserEnabled\'; E={\$\_.GpoStatus -notmatch \'UserSettingsDisabled\'}} \| Export-Csv \"\$OutputPath\\GPO-List.csv\" -NoTypeInformation \# GPO links --- which OUs link which GPOs \$ous = Get-ADOrganizationalUnit -Filter \* \$gpoLinks = foreach (\$ou in \$ous) { try { \$inheritance = Get-GPInheritance -Target \$ou.DistinguishedName foreach (\$link in \$inheritance.GpoLinks) { \[PSCustomObject\]@{ OUName = \$ou.Name OUDN = \$ou.DistinguishedName GPOName = \$link.DisplayName Enabled = \$link.Enabled Enforced = \$link.Enforced Order = \$link.Order } } } catch { } } \$gpoLinks \| Export-Csv \"\$OutputPath\\GPO-Links.csv\" -NoTypeInformation \# Export each GPO as HTML and XML reports \$gpoReportPath = \"\$OutputPath\\GPO-Reports\" New-Item -Path \$gpoReportPath -ItemType Directory -Force \| Out-Null Get-GPO -All \| ForEach-Object { \$safeName = \$\_.DisplayName -replace \'\[\\\\/:\*?\"\<\>\|\]\', \'\_\' Get-GPOReport -Guid \$\_.Id -ReportType Html \` -Path \"\$gpoReportPath\\\$safeName.html\" Get-GPOReport -Guid \$\_.Id -ReportType Xml \` -Path \"\$gpoReportPath\\\$safeName.xml\" } \# Unlinked GPOs \$allGPOs = Get-GPO -All \$linkedGPOIds = (\$gpoLinks \| Select-Object -ExpandProperty GPOName -Unique) \$unlinked = \$allGPOs \| Where-Object { \$\_.DisplayName -notin \$linkedGPOIds } \$unlinked \| Select-Object DisplayName, Id, ModificationTime \| Export-Csv \"\$OutputPath\\GPO-Unlinked.csv\" -NoTypeInformation \# WMI Filters \$wmiFilters = Get-ADObject -Filter \'objectClass -eq \"msWMI-Som\"\' \` -Properties \'msWMI-Name\', \'msWMI-Parm1\', \'msWMI-Parm2\' \$wmiFilters \| Select-Object \` \@{N=\'Name\'; E={\$\_.\'msWMI-Name\'}}, \@{N=\'Description\'; E={\$\_.\'msWMI-Parm1\'}}, \@{N=\'Query\'; E={\$\_.\'msWMI-Parm2\'}} \| Export-Csv \"\$OutputPath\\GPO-WMIFilters.csv\" -NoTypeInformation Write-Host \"GPO assessment complete: \$OutputPath\" -ForegroundColor Green }
+function Export-FMPGPOAssessment { param(\[string\]\$OutputPath = \"C:\\FMPAssessment\") Import-Module GroupPolicy \# All GPOs with status Get-GPO -All \| Select-Object DisplayName, Id, GpoStatus, CreationTime, ModificationTime, \@{N=\'ComputerEnabled\'; E={\$\_.GpoStatus -notmatch \'ComputerSettingsDisabled\'}}, \@{N=\'UserEnabled\'; E={\$\_.GpoStatus -notmatch \'UserSettingsDisabled\'}} \| Export-Csv \"\$OutputPath\\GPO-List.csv\" -NoTypeInformation \# GPO links --- which OUs link which GPOs \$ous = Get-ADOrganizationalUnit -Filter \* \$gpoLinks = foreach (\$ou in \$ous) { try { \$inheritance = Get-GPInheritance -Target \$ou.DistinguishedName foreach (\$link in \$inheritance.GpoLinks) { \[PSCustomObject\]@{ OUName = \$ou.Name OUDN = \$ou.DistinguishedName GPOName = \$link.DisplayName Enabled = \$link.Enabled Enforced = \$link.Enforced Order = \$link.Order } } } catch { } } \$gpoLinks \| Export-Csv \"\$OutputPath\\GPO-Links.csv\" -NoTypeInformation \# Export each GPO as HTML and XML reports \$gpoReportPath = \"\$OutputPath\\GPO-Reports\" New-Item -Path \$gpoReportPath -ItemType Directory -Force \| Out-Null Get-GPO -All \| ForEach-Object { \$safeName = \$\_.DisplayName -replace \'\[\\\\/:\*?\"\<\>\|\]\', \'\_\' Get-GPOReport -Guid \$\_.Id -ReportType Html \` -Path \"\$gpoReportPath\\\$safeName.html\" Get-GPOReport -Guid \$\_.Id -ReportType Xml \` -Path \"\$gpoReportPath\\\$safeName.xml\" } \# Unlinked GPOs \$allGPOs = Get-GPO -All \$linkedGPOIds = (\$gpoLinks \| Select-Object -ExpandProperty GPOName -Unique) \$unlinked = \$allGPOs \| Where-Object { \$\_.DisplayName -notin \$linkedGPOIds } \$unlinked \| Select-Object DisplayName, Id, ModificationTime \| Export-Csv \"\$OutputPath\\GPO-Unlinked.csv\" -NoTypeInformation \# WMI Filters \$wmiFilters = Get-ADObject -Filter \'objectClass -eq \"msWMI-Som\"\' \` -Properties \'msWMI-Name\', \'msWMI-Parm1\', \'msWMI-Parm2\' \$wmiFilters \| Select-Object \` \@{N=\'Name\'; E={\$\_.\'msWMI-Name\'}}, \@{N=\'Description\'; E={\$\_.\'msWMI-Parm1\'}}, \@{N=\'Query\'; E={\$\_.\'msWMI-Parm2\'}} \| Export-Csv \"\$OutputPath\\GPO-WMIFilters.csv\" -NoTypeInformation Write-Host \"GPO assessment complete: \$OutputPath\" -ForegroundColor Green }
 
 Chapter 17 --- Master Assessment Orchestrator
 
-This function calls all assessment functions in sequence and produces a consolidated summary report. Run this to perform a complete the modernization program environment assessment in a single command.
+This function calls all assessment functions in sequence and produces a consolidated summary report. Run this to perform a complete the Federal Modernization Program environment assessment in a single command.
 
-function Invoke-the modernization programFullAssessment { param( \[string\]\$OutputPath = \"C:\\the modernization programAssessment\\\$(Get-Date -Format \'yyyyMMdd-HHmm\')\", \[string\]\$DnsServer = \"dc01.domain.local\" ) \$stopwatch = \[System.Diagnostics.Stopwatch\]::StartNew Write-Host \"=== the modernization program Full Environment Assessment ===\" -ForegroundColor Cyan Write-Host \"Output: \$OutputPath\" -ForegroundColor Cyan New-Item -Path \$OutputPath -ItemType Directory -Force \| Out-Null Start-Transcript -Path \"\$OutputPath\\Assessment-Transcript.txt\" Write-Host \"\[1/7\] Forest and Domain Discovery\...\" -ForegroundColor Yellow Export-the modernization programForestAssessment -OutputPath \$OutputPath Write-Host \"\[2/7\] OU Structure\...\" -ForegroundColor Yellow Export-the modernization programOUStructure -OutputPath \$OutputPath Write-Host \"\[3/7\] Computer Objects\...\" -ForegroundColor Yellow Export-the modernization programComputerObjects -OutputPath \$OutputPath Write-Host \"\[4/7\] User Objects\...\" -ForegroundColor Yellow Export-the modernization programUserObjects -OutputPath \$OutputPath Write-Host \"\[5/7\] Group Objects\...\" -ForegroundColor Yellow Export-the modernization programGroupObjects -OutputPath \$OutputPath Write-Host \"\[6/7\] DNS Assessment\...\" -ForegroundColor Yellow Export-the modernization programDNSAssessment -DnsServer \$DnsServer -OutputPath \$OutputPath Write-Host \"\[7/7\] GPO Assessment\...\" -ForegroundColor Yellow Export-the modernization programGPOAssessment -OutputPath \$OutputPath \# Generate consolidated summary \$summary = \[PSCustomObject\]@{ AssessmentDate = Get-Date -Format \"yyyy-MM-dd HH:mm:ss\" ForestName = (Get-ADForest).Name DomainCount = (Get-ADForest).Domains.Count SiteCount = (Get-ADReplicationSite -Filter \*).Count DCCount = (Get-ADDomainController -Filter \*).Count OUCount = (Get-ADOrganizationalUnit -Filter \*).Count ComputerCount = (Get-ADComputer -Filter \*).Count UserCount = (Get-ADUser -Filter \*).Count GroupCount = (Get-ADGroup -Filter \*).Count GPOCount = (Get-GPO -All).Count ElapsedMinutes = \[math\]::Round(\$stopwatch.Elapsed.TotalMinutes, 1) } \$summary \| ConvertTo-Json \| Out-File \"\$OutputPath\\Assessment-Summary.json\" \$summary \| Format-List Stop-Transcript \$stopwatch.Stop Write-Host \"Assessment complete in \$(\[math\]::Round(\$stopwatch.Elapsed.TotalMinutes,1)) minutes\" \` -ForegroundColor Green Write-Host \"Results saved to: \$OutputPath\" -ForegroundColor Green }
+function Invoke-FMPFullAssessment { param( \[string\]\$OutputPath = \"C:\\FMPAssessment\\\$(Get-Date -Format \'yyyyMMdd-HHmm\')\", \[string\]\$DnsServer = \"dc01.domain.local\" ) \$stopwatch = \[System.Diagnostics.Stopwatch\]::StartNew Write-Host \"=== the Federal Modernization Program Full Environment Assessment ===\" -ForegroundColor Cyan Write-Host \"Output: \$OutputPath\" -ForegroundColor Cyan New-Item -Path \$OutputPath -ItemType Directory -Force \| Out-Null Start-Transcript -Path \"\$OutputPath\\Assessment-Transcript.txt\" Write-Host \"\[1/7\] Forest and Domain Discovery\...\" -ForegroundColor Yellow Export-FMPForestAssessment -OutputPath \$OutputPath Write-Host \"\[2/7\] OU Structure\...\" -ForegroundColor Yellow Export-FMPOUStructure -OutputPath \$OutputPath Write-Host \"\[3/7\] Computer Objects\...\" -ForegroundColor Yellow Export-FMPComputerObjects -OutputPath \$OutputPath Write-Host \"\[4/7\] User Objects\...\" -ForegroundColor Yellow Export-FMPUserObjects -OutputPath \$OutputPath Write-Host \"\[5/7\] Group Objects\...\" -ForegroundColor Yellow Export-FMPGroupObjects -OutputPath \$OutputPath Write-Host \"\[6/7\] DNS Assessment\...\" -ForegroundColor Yellow Export-FMPDNSAssessment -DnsServer \$DnsServer -OutputPath \$OutputPath Write-Host \"\[7/7\] GPO Assessment\...\" -ForegroundColor Yellow Export-FMPGPOAssessment -OutputPath \$OutputPath \# Generate consolidated summary \$summary = \[PSCustomObject\]@{ AssessmentDate = Get-Date -Format \"yyyy-MM-dd HH:mm:ss\" ForestName = (Get-ADForest).Name DomainCount = (Get-ADForest).Domains.Count SiteCount = (Get-ADReplicationSite -Filter \*).Count DCCount = (Get-ADDomainController -Filter \*).Count OUCount = (Get-ADOrganizationalUnit -Filter \*).Count ComputerCount = (Get-ADComputer -Filter \*).Count UserCount = (Get-ADUser -Filter \*).Count GroupCount = (Get-ADGroup -Filter \*).Count GPOCount = (Get-GPO -All).Count ElapsedMinutes = \[math\]::Round(\$stopwatch.Elapsed.TotalMinutes, 1) } \$summary \| ConvertTo-Json \| Out-File \"\$OutputPath\\Assessment-Summary.json\" \$summary \| Format-List Stop-Transcript \$stopwatch.Stop Write-Host \"Assessment complete in \$(\[math\]::Round(\$stopwatch.Elapsed.TotalMinutes,1)) minutes\" \` -ForegroundColor Green Write-Host \"Results saved to: \$OutputPath\" -ForegroundColor Green }
 
 +----------------------------------------------------------------------------+
 | **Usage**                                                                  |
 |                                                                            |
 | Run the full assessment with a single command:                             |
 |                                                                            |
-| Invoke-the modernization programFullAssessment -DnsServer \"dc01.domain.local\"                 |
+| Invoke-FMPFullAssessment -DnsServer \"dc01.domain.local\"                 |
 |                                                                            |
-| All output is saved to a timestamped directory under C:\\the modernization programAssessment\\. |
+| All output is saved to a timestamped directory under C:\\FMPAssessment\\. |
 +----------------------------------------------------------------------------+
 
 **Part IV --- Entra ID Integration CLI**
@@ -897,9 +897,9 @@ A browser window opens for interactive authentication. Sign in with your Entra I
 +--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 | **Diagram 4 --- DIAG-004**                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         |
 |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    |
-| **the modernization program Entra ID Integration Architecture**                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         |
+| **The Federal Modernization Program Entra ID Integration Architecture**                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         |
 |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    |
-| A three-tier diagram showing: Top tier (Cloud): Entra ID tenant containing App Registrations (the modernization program-Gitea-SSO), Dynamic Security Groups, Conditional Access Policies, and Device Objects. Middle tier (Hybrid): Azure AD Connect server syncing on-premises AD objects to Entra ID with bidirectional arrows. Bottom tier (On-Premises): Active Directory forest with users, groups, and computer objects; Gitea server authenticating via OAuth2 to the the modernization program-Gitea-SSO app registration in Entra ID. Key arrows: Gitea → Entra ID labeled \"OAuth2/OIDC SSO\", PowerShell Workstation → Entra ID labeled \"Microsoft Graph API\", On-Prem AD → Entra ID labeled \"Azure AD Connect Sync\". Color scheme: Cloud tier in light blue (#D6E4F0), hybrid tier in orange (#FFC000), on-premises tier in green (#C6EFCE). |
+| A three-tier diagram showing: Top tier (Cloud): Entra ID tenant containing App Registrations (FMP-Gitea-SSO), Dynamic Security Groups, Conditional Access Policies, and Device Objects. Middle tier (Hybrid): Azure AD Connect server syncing on-premises AD objects to Entra ID with bidirectional arrows. Bottom tier (On-Premises): Active Directory forest with users, groups, and computer objects; Gitea server authenticating via OAuth2 to the FMP-Gitea-SSO app registration in Entra ID. Key arrows: Gitea → Entra ID labeled \"OAuth2/OIDC SSO\", PowerShell Workstation → Entra ID labeled \"Microsoft Graph API\", On-Prem AD → Entra ID labeled \"Azure AD Connect Sync\". Color scheme: Cloud tier in light blue (#D6E4F0), hybrid tier in orange (#FFC000), on-premises tier in green (#C6EFCE). |
 |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    |
 | Dimensions: 700 × 450 pixels                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       |
 +--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
@@ -908,11 +908,11 @@ Chapter 19 --- Entra ID Device and Group Operations
 
 19.1 --- List All Devices
 
-\# List all Entra ID devices Get-MgDevice -All \| Select-Object DisplayName, DeviceId, OperatingSystem, OperatingSystemVersion, TrustType, IsCompliant, IsManaged \| Format-Table -AutoSize \# Get a specific device by name Get-MgDevice -Filter \"displayName eq \'the modernization program-GIT01\'\" \| Select-Object DisplayName, DeviceId, OperatingSystem, TrustType
+\# List all Entra ID devices Get-MgDevice -All \| Select-Object DisplayName, DeviceId, OperatingSystem, OperatingSystemVersion, TrustType, IsCompliant, IsManaged \| Format-Table -AutoSize \# Get a specific device by name Get-MgDevice -Filter \"displayName eq \'FMP-GIT01\'\" \| Select-Object DisplayName, DeviceId, OperatingSystem, TrustType
 
 19.2 --- Create a Dynamic Security Group
 
-\$groupParams = \@{ DisplayName = \"the modernization program-Tier0-GCC-Servers\" Description = \"Dynamic group for Tier 0 GCC-Moderate governance servers\" MailEnabled = \$false MailNickname = \"uiao-tier0-gcc\" SecurityEnabled = \$true GroupTypes = @(\"DynamicMembership\") MembershipRule = \'(device.extensionAttribute11 -eq \"Tier0\") and (device.extensionAttribute13 -eq \"Production\")\' MembershipRuleProcessingState = \"On\" } \$group = New-MgGroup -BodyParameter \$groupParams Write-Host \"Created group: \$(\$group.DisplayName) (ID: \$(\$group.Id))\"
+\$groupParams = \@{ DisplayName = \"FMP-Tier0-GCC-Servers\" Description = \"Dynamic group for Tier 0 GCC-Moderate governance servers\" MailEnabled = \$false MailNickname = \"uiao-tier0-gcc\" SecurityEnabled = \$true GroupTypes = @(\"DynamicMembership\") MembershipRule = \'(device.extensionAttribute11 -eq \"Tier0\") and (device.extensionAttribute13 -eq \"Production\")\' MembershipRuleProcessingState = \"On\" } \$group = New-MgGroup -BodyParameter \$groupParams Write-Host \"Created group: \$(\$group.DisplayName) (ID: \$(\$group.Id))\"
 
 19.3 --- List Dynamic Group Members
 
@@ -922,11 +922,11 @@ Chapter 19 --- Entra ID Device and Group Operations
 
 Only the organizational-attribute model facets are stamped here. The site a device sits at is not among them: physical place is the LocPath axis, and per the program decision D5 LocPath claims no extensionAttribute slot, so there is no site value to write. Site scoping comes from the LocPath site groups and Administrative Units instead.
 
-\$deviceId = (Get-MgDevice -Filter \"displayName eq \'the modernization program-GIT01\'\").Id Update-MgDevice -DeviceId \$deviceId -BodyParameter \@{ extensionAttributes = \@{ extensionAttribute1 = \"EASTUS\" extensionAttribute2 = \"IT\" extensionAttribute3 = \"Governance\" extensionAttribute11 = \"Tier0\" extensionAttribute13 = \"Production\" extensionAttribute12 = \"GitServer\" } } Write-Host \"Extension attributes updated for the modernization program-GIT01\"
+\$deviceId = (Get-MgDevice -Filter \"displayName eq \'FMP-GIT01\'\").Id Update-MgDevice -DeviceId \$deviceId -BodyParameter \@{ extensionAttributes = \@{ extensionAttribute1 = \"EASTUS\" extensionAttribute2 = \"IT\" extensionAttribute3 = \"Governance\" extensionAttribute11 = \"Tier0\" extensionAttribute13 = \"Production\" extensionAttribute12 = \"GitServer\" } } Write-Host \"Extension attributes updated for FMP-GIT01\"
 
 19.5 --- App Registration Management
 
-\# List app registrations matching the modernization program Get-MgApplication -Filter \"startswith(displayName, \'the modernization program\')\" \| Select-Object DisplayName, AppId, CreatedDateTime \# Get the Gitea SSO app registration \$giteaApp = Get-MgApplication -Filter \"displayName eq \'the modernization program-Gitea-SSO\'\" \# List service principals Get-MgServicePrincipal -Filter \"displayName eq \'the modernization program-Gitea-SSO\'\" \| Select-Object DisplayName, AppId, ServicePrincipalType
+\# List app registrations matching the Federal Modernization Program Get-MgApplication -Filter \"startswith(displayName, \'FMP\')\" \| Select-Object DisplayName, AppId, CreatedDateTime \# Get the Gitea SSO app registration \$giteaApp = Get-MgApplication -Filter \"displayName eq \'FMP-Gitea-SSO\'\" \# List service principals Get-MgServicePrincipal -Filter \"displayName eq \'FMP-Gitea-SSO\'\" \| Select-Object DisplayName, AppId, ServicePrincipalType
 
 Chapter 20 --- Entra ID Conditional Access
 
@@ -936,7 +936,7 @@ Get-MgIdentityConditionalAccessPolicy \| Select-Object DisplayName, State, Creat
 
 20.2 --- Create MFA Policy for Gitea Access
 
-\# Get required IDs \$giteaAppId = (Get-MgApplication -Filter \"displayName eq \'the modernization program-Gitea-SSO\'\").AppId \$uiaoUsersGroupId = (Get-MgGroup -Filter \"displayName eq \'the modernization program-AllUsers\'\").Id \$caPolicy = \@{ DisplayName = \"the modernization program-Gitea-MFA-Required\" State = \"enabledForReportingButNotEnforced\" Conditions = \@{ Applications = \@{ IncludeApplications = @(\$giteaAppId) } Users = \@{ IncludeGroups = @(\$uiaoUsersGroupId) } Platforms = \@{ IncludePlatforms = @(\"all\") } } GrantControls = \@{ Operator = \"OR\" BuiltInControls = @(\"mfa\") } } \$policy = New-MgIdentityConditionalAccessPolicy -BodyParameter \$caPolicy Write-Host \"Created CA policy: \$(\$policy.DisplayName) (State: \$(\$policy.State))\"
+\# Get required IDs \$giteaAppId = (Get-MgApplication -Filter \"displayName eq \'FMP-Gitea-SSO\'\").AppId \$uiaoUsersGroupId = (Get-MgGroup -Filter \"displayName eq \'FMP-AllUsers\'\").Id \$caPolicy = \@{ DisplayName = \"FMP-Gitea-MFA-Required\" State = \"enabledForReportingButNotEnforced\" Conditions = \@{ Applications = \@{ IncludeApplications = @(\$giteaAppId) } Users = \@{ IncludeGroups = @(\$uiaoUsersGroupId) } Platforms = \@{ IncludePlatforms = @(\"all\") } } GrantControls = \@{ Operator = \"OR\" BuiltInControls = @(\"mfa\") } } \$policy = New-MgIdentityConditionalAccessPolicy -BodyParameter \$caPolicy Write-Host \"Created CA policy: \$(\$policy.DisplayName) (State: \$(\$policy.State))\"
 
 +------------------------------------------------------------+
 | **Important**                                              |
@@ -972,7 +972,7 @@ Get-MgDeviceManagementManagedDevice -All \| Select-Object DeviceName, OperatingS
 
 21.3 --- Check Device Compliance
 
-\# Check compliance for a specific device Get-MgDeviceManagementManagedDevice -Filter \"deviceName eq \'the modernization program-GIT01\'\" \| Select-Object DeviceName, ComplianceState, LastSyncDateTime, ComplianceGracePeriodExpirationDateTime
+\# Check compliance for a specific device Get-MgDeviceManagementManagedDevice -Filter \"deviceName eq \'FMP-GIT01\'\" \| Select-Object DeviceName, ComplianceState, LastSyncDateTime, ComplianceGracePeriodExpirationDateTime
 
 21.4 --- Get Device Compliance Policies
 
@@ -980,21 +980,21 @@ Get-MgDeviceManagementDeviceCompliancePolicy \| Select-Object DisplayName, Id, C
 
 21.5 --- Create a Compliance Policy
 
-\$compliancePolicy = \@{ \"@odata.type\" = \"#microsoft.graph.windows10CompliancePolicy\" displayName = \"the modernization program-Server-Compliance\" description = \"Compliance policy for the modernization program governance servers\" bitLockerEnabled = \$true secureBootEnabled = \$true activeFirewallRequired = \$true defenderEnabled = \$true osMinimumVersion = \"10.0.26100\" } \$policy = New-MgDeviceManagementDeviceCompliancePolicy -BodyParameter \$compliancePolicy Write-Host \"Created compliance policy: \$(\$policy.DisplayName)\"
+\$compliancePolicy = \@{ \"@odata.type\" = \"#microsoft.graph.windows10CompliancePolicy\" displayName = \"FMP-Server-Compliance\" description = \"Compliance policy for the Federal Modernization Program governance servers\" bitLockerEnabled = \$true secureBootEnabled = \$true activeFirewallRequired = \$true defenderEnabled = \$true osMinimumVersion = \"10.0.26100\" } \$policy = New-MgDeviceManagementDeviceCompliancePolicy -BodyParameter \$compliancePolicy Write-Host \"Created compliance policy: \$(\$policy.DisplayName)\"
 
 21.6 --- Assign Policy to Dynamic Group
 
-\$assignment = \@{ target = \@{ \"@odata.type\" = \"#microsoft.graph.groupAssignmentTarget\" groupId = \$group.Id \# the modernization program-Tier0-GCC-Servers group ID } } New-MgDeviceManagementDeviceCompliancePolicyAssignment \` -DeviceCompliancePolicyId \$policy.Id \` -BodyParameter \$assignment Write-Host \"Policy assigned to group: the modernization program-Tier0-GCC-Servers\"
+\$assignment = \@{ target = \@{ \"@odata.type\" = \"#microsoft.graph.groupAssignmentTarget\" groupId = \$group.Id \# FMP-Tier0-GCC-Servers group ID } } New-MgDeviceManagementDeviceCompliancePolicyAssignment \` -DeviceCompliancePolicyId \$policy.Id \` -BodyParameter \$assignment Write-Host \"Policy assigned to group: FMP-Tier0-GCC-Servers\"
 
 Chapter 22 --- Intune Configuration Profiles
 
 22.1 --- Deploy PowerShell Health Check Script via Intune
 
-\# Create the script content \$scriptContent = @\' \# the modernization program Gitea Health Check Script \# Deployed via Intune to governance servers \$giteaUrl = \"https://git.uiao.local\" \$logPath = \"C:\\the modernization programLogs\\HealthCheck.log\" New-Item -Path (Split-Path \$logPath) -ItemType Directory -Force \| Out-Null \$timestamp = Get-Date -Format \"yyyy-MM-dd HH:mm:ss\" try { \$response = Invoke-WebRequest -Uri \"\$giteaUrl/api/v1/settings/api\" -TimeoutSec 10 \"\$timestamp \| Gitea API: OK (\$(\$response.StatusCode))\" \| Out-File \$logPath -Append } catch { \"\$timestamp \| Gitea API: FAIL (\$(\$\_.Exception.Message))\" \| Out-File \$logPath -Append } \'@ \# Upload script to Intune \$scriptBody = \@{ displayName = \"the modernization program-Gitea-HealthCheck\" description = \"Periodic health check for Gitea server availability\" scriptContent = \[System.Convert\]::ToBase64String( \[System.Text.Encoding\]::UTF8.GetBytes(\$scriptContent) ) runAsAccount = \"system\" enforceSignatureCheck = \$false runAs32Bit = \$false } Invoke-MgGraphRequest -Method POST \` -Uri \"https://graph.microsoft.com/beta/deviceManagement/deviceManagementScripts\" \` -Body (\$scriptBody \| ConvertTo-Json) \` -ContentType \"application/json\"
+\# Create the script content \$scriptContent = @\' \# the Federal Modernization Program Gitea Health Check Script \# Deployed via Intune to governance servers \$giteaUrl = \"https://git.uiao.local\" \$logPath = \"C:\\FMPLogs\\HealthCheck.log\" New-Item -Path (Split-Path \$logPath) -ItemType Directory -Force \| Out-Null \$timestamp = Get-Date -Format \"yyyy-MM-dd HH:mm:ss\" try { \$response = Invoke-WebRequest -Uri \"\$giteaUrl/api/v1/settings/api\" -TimeoutSec 10 \"\$timestamp \| Gitea API: OK (\$(\$response.StatusCode))\" \| Out-File \$logPath -Append } catch { \"\$timestamp \| Gitea API: FAIL (\$(\$\_.Exception.Message))\" \| Out-File \$logPath -Append } \'@ \# Upload script to Intune \$scriptBody = \@{ displayName = \"FMP-Gitea-HealthCheck\" description = \"Periodic health check for Gitea server availability\" scriptContent = \[System.Convert\]::ToBase64String( \[System.Text.Encoding\]::UTF8.GetBytes(\$scriptContent) ) runAsAccount = \"system\" enforceSignatureCheck = \$false runAs32Bit = \$false } Invoke-MgGraphRequest -Method POST \` -Uri \"https://graph.microsoft.com/beta/deviceManagement/deviceManagementScripts\" \` -Body (\$scriptBody \| ConvertTo-Json) \` -ContentType \"application/json\"
 
 22.2 --- Configure Windows Update Ring
 
-\$updateRing = \@{ \"@odata.type\" = \"#microsoft.graph.windowsUpdateForBusinessConfiguration\" displayName = \"the modernization program-Server-UpdateRing\" description = \"Update ring for the modernization program governance servers\" qualityUpdatesDeferralPeriodInDays = 7 featureUpdatesDeferralPeriodInDays = 30 automaticUpdateMode = \"autoInstallAtMaintenanceTime\" qualityUpdatesPauseStartDate = \$null featureUpdatesPauseStartDate = \$null businessReadyUpdatesOnly = \"businessReadyOnly\" scheduledInstallDay = \"saturday\" scheduledInstallTime = \"03:00:00\" } Invoke-MgGraphRequest -Method POST \` -Uri \"https://graph.microsoft.com/beta/deviceManagement/deviceConfigurations\" \` -Body (\$updateRing \| ConvertTo-Json) \` -ContentType \"application/json\"
+\$updateRing = \@{ \"@odata.type\" = \"#microsoft.graph.windowsUpdateForBusinessConfiguration\" displayName = \"FMP-Server-UpdateRing\" description = \"Update ring for the Federal Modernization Program governance servers\" qualityUpdatesDeferralPeriodInDays = 7 featureUpdatesDeferralPeriodInDays = 30 automaticUpdateMode = \"autoInstallAtMaintenanceTime\" qualityUpdatesPauseStartDate = \$null featureUpdatesPauseStartDate = \$null businessReadyUpdatesOnly = \"businessReadyOnly\" scheduledInstallDay = \"saturday\" scheduledInstallTime = \"03:00:00\" } Invoke-MgGraphRequest -Method POST \` -Uri \"https://graph.microsoft.com/beta/deviceManagement/deviceConfigurations\" \` -Body (\$updateRing \| ConvertTo-Json) \` -ContentType \"application/json\"
 
 22.3 --- Deploy Security Baseline
 
@@ -1004,7 +1004,7 @@ Chapter 22 --- Intune Configuration Profiles
 
 Chapter 23 --- Step-by-Step: Connecting to Azure Arc
 
-Azure Arc extends Azure management to on-premises servers. This chapter covers onboarding the the modernization program Gitea server to Azure Arc.
+Azure Arc extends Azure management to on-premises servers. This chapter covers onboarding the Federal Modernization Program Gitea server to Azure Arc.
 
 23.1 --- Install Azure CLI
 
@@ -1020,26 +1020,26 @@ az group create \` \--name rg-uiao-governance \` \--location eastus \` \--tags \
 
 23.4 --- Install the Azure Arc Agent
 
-\# Download and run the Azure Connected Machine Agent installer \# Run this on the target server (the modernization program-GIT01) az connectedmachine connect \` \--resource-group rg-uiao-governance \` \--name the modernization program-GIT01 \` \--location eastus \` \--tenant-id {tenant-id} \` \--subscription-id {subscription-id} \` \--tags \"Tier=Tier0\" \"Role=GitServer\" \"Boundary=GCC-Moderate\" \"Site=HeraldHarbor\"
+\# Download and run the Azure Connected Machine Agent installer \# Run this on the target server (FMP-GIT01) az connectedmachine connect \` \--resource-group rg-uiao-governance \` \--name FMP-GIT01 \` \--location eastus \` \--tenant-id {tenant-id} \` \--subscription-id {subscription-id} \` \--tags \"Tier=Tier0\" \"Role=GitServer\" \"Boundary=GCC-Moderate\" \"Site=HeraldHarbor\"
 
 23.5 --- Verify Enrollment
 
-az connectedmachine show \` \--name the modernization program-GIT01 \` \--resource-group rg-uiao-governance \` \--output table
+az connectedmachine show \` \--name FMP-GIT01 \` \--resource-group rg-uiao-governance \` \--output table
 
 23.6 --- Apply Tags for the organizational-attribute model
 
-az connectedmachine update \` \--name the modernization program-GIT01 \` \--resource-group rg-uiao-governance \` \--tags \"Tier=Tier0\" \"Role=GitServer\" \"Boundary=GCC-Moderate\" \` \"Region=East\" \"Site=HeraldHarbor\" \"Function=Governance\" \` \"OS=WindowsServer2025\" \"ManagedBy=the modernization program\"
+az connectedmachine update \` \--name FMP-GIT01 \` \--resource-group rg-uiao-governance \` \--tags \"Tier=Tier0\" \"Role=GitServer\" \"Boundary=GCC-Moderate\" \` \"Region=East\" \"Site=HeraldHarbor\" \"Function=Governance\" \` \"OS=WindowsServer2025\" \"ManagedBy=FMP\"
 
 23.7 --- List Installed Extensions
 
-az connectedmachine extension list \` \--machine-name the modernization program-GIT01 \` \--resource-group rg-uiao-governance \` \--output table
+az connectedmachine extension list \` \--machine-name FMP-GIT01 \` \--resource-group rg-uiao-governance \` \--output table
 
 +--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 | **Diagram 5 --- DIAG-005**                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
 |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        |
-| **the modernization program Azure Arc Integration Topology**                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
+| **The Federal Modernization Program Azure Arc Integration Topology**                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
 |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        |
-| A hybrid-cloud architecture diagram showing: Left side (On-Premises): the modernization program-GIT01 server running Gitea behind IIS on Windows Server 2025, with the Azure Connected Machine Agent installed. A firewall separates on-premises from cloud. Right side (Azure Cloud): Azure Arc control plane in resource group rg-uiao-governance. Connected components include: Azure Policy (compliance), Azure Monitor (Log Analytics workspace), and Microsoft Defender for Cloud. Arrows: the modernization program-GIT01 → Azure Arc labeled \"HTTPS (port 443) outbound only\", Azure Arc → Azure Policy labeled \"Policy evaluation\", Azure Arc → Azure Monitor labeled \"Telemetry and logs\". Below: Az CLI workstation icon with arrows to Azure Arc for management commands. Color scheme: On-premises in blue (#4472C4), Azure cloud in light blue (#00B0F0), management arrows in green (#548235), data flow in gray (#888888). |
+| A hybrid-cloud architecture diagram showing: Left side (On-Premises): FMP-GIT01 server running Gitea behind IIS on Windows Server 2025, with the Azure Connected Machine Agent installed. A firewall separates on-premises from cloud. Right side (Azure Cloud): Azure Arc control plane in resource group rg-uiao-governance. Connected components include: Azure Policy (compliance), Azure Monitor (Log Analytics workspace), and Microsoft Defender for Cloud. Arrows: FMP-GIT01 → Azure Arc labeled \"HTTPS (port 443) outbound only\", Azure Arc → Azure Policy labeled \"Policy evaluation\", Azure Arc → Azure Monitor labeled \"Telemetry and logs\". Below: Az CLI workstation icon with arrows to Azure Arc for management commands. Color scheme: On-premises in blue (#4472C4), Azure cloud in light blue (#00B0F0), management arrows in green (#548235), data flow in gray (#888888). |
 |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        |
 | Dimensions: 700 × 420 pixels                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           |
 +--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
@@ -1048,11 +1048,11 @@ Chapter 24 --- Azure Policy via Arc
 
 24.1 --- Assign a Built-in Policy
 
-\# Assign \"Audit Windows machines that have pending reboot\" policy az policy assignment create \` \--name \"uiao-pending-reboot-audit\" \` \--display-name \"the modernization program: Audit Pending Reboots\" \` \--policy \"/providers/Microsoft.Authorization/policyDefinitions/4221adbc-5c0f-474f-88b7-037f9f35042c\" \` \--scope \"/subscriptions/{subscription-id}/resourceGroups/rg-uiao-governance\" \` \--params \'{}\'
+\# Assign \"Audit Windows machines that have pending reboot\" policy az policy assignment create \` \--name \"uiao-pending-reboot-audit\" \` \--display-name \"the Federal Modernization Program: Audit Pending Reboots\" \` \--policy \"/providers/Microsoft.Authorization/policyDefinitions/4221adbc-5c0f-474f-88b7-037f9f35042c\" \` \--scope \"/subscriptions/{subscription-id}/resourceGroups/rg-uiao-governance\" \` \--params \'{}\'
 
 24.2 --- Create Custom Policy for Gitea Compliance
 
-\# Create a custom policy definition az policy definition create \` \--name \"uiao-gitea-iis-validation\" \` \--display-name \"the modernization program: Validate IIS Configuration for Gitea\" \` \--description \"Ensures IIS is configured correctly as reverse proxy for Gitea\" \` \--rules \'{ \"if\": { \"allOf\": \[ { \"field\": \"type\", \"equals\": \"Microsoft.HybridCompute/machines\" }, { \"field\": \"tags\[Role\]\", \"equals\": \"GitServer\" } \] }, \"then\": { \"effect\": \"auditIfNotExists\", \"details\": { \"type\": \"Microsoft.GuestConfiguration/guestConfigurationAssignments\", \"name\": \"the modernization programGiteaIISConfig\" } } }\' \` \--mode Indexed
+\# Create a custom policy definition az policy definition create \` \--name \"uiao-gitea-iis-validation\" \` \--display-name \"the Federal Modernization Program: Validate IIS Configuration for Gitea\" \` \--description \"Ensures IIS is configured correctly as reverse proxy for Gitea\" \` \--rules \'{ \"if\": { \"allOf\": \[ { \"field\": \"type\", \"equals\": \"Microsoft.HybridCompute/machines\" }, { \"field\": \"tags\[Role\]\", \"equals\": \"GitServer\" } \] }, \"then\": { \"effect\": \"auditIfNotExists\", \"details\": { \"type\": \"Microsoft.GuestConfiguration/guestConfigurationAssignments\", \"name\": \"FMPGiteaIISConfig\" } } }\' \` \--mode Indexed
 
 24.3 --- View Compliance State
 
@@ -1066,7 +1066,7 @@ Chapter 25 --- Azure Monitor via Arc
 
 25.1 --- Install Azure Monitor Agent Extension
 
-az connectedmachine extension create \` \--machine-name the modernization program-GIT01 \` \--resource-group rg-uiao-governance \` \--name AzureMonitorWindowsAgent \` \--publisher Microsoft.Azure.Monitor \` \--type AzureMonitorWindowsAgent \` \--location eastus
+az connectedmachine extension create \` \--machine-name FMP-GIT01 \` \--resource-group rg-uiao-governance \` \--name AzureMonitorWindowsAgent \` \--publisher Microsoft.Azure.Monitor \` \--type AzureMonitorWindowsAgent \` \--location eastus
 
 25.2 --- Create Log Analytics Workspace
 
@@ -1074,35 +1074,35 @@ az monitor log-analytics workspace create \` \--resource-group rg-uiao-governanc
 
 25.3 --- Configure Data Collection Rule
 
-az monitor data-collection rule create \` \--resource-group rg-uiao-governance \` \--name \"dcr-uiao-gitserver\" \` \--location eastus \` \--description \"Data collection rule for the modernization program Gitea server\" \` \--data-flows \'\[{ \"streams\": \[\"Microsoft-Event\", \"Microsoft-Perf\"\], \"destinations\": \[\"law-uiao-governance\"\] }\]\' \` \--log-analytics \'\[{ \"name\": \"law-uiao-governance\", \"workspace-resource-id\": \"/subscriptions/{subscription-id}/resourceGroups/rg-uiao-governance/providers/Microsoft.OperationalInsights/workspaces/law-uiao-governance\" }\]\'
+az monitor data-collection rule create \` \--resource-group rg-uiao-governance \` \--name \"dcr-uiao-gitserver\" \` \--location eastus \` \--description \"Data collection rule for the Federal Modernization Program Gitea server\" \` \--data-flows \'\[{ \"streams\": \[\"Microsoft-Event\", \"Microsoft-Perf\"\], \"destinations\": \[\"law-uiao-governance\"\] }\]\' \` \--log-analytics \'\[{ \"name\": \"law-uiao-governance\", \"workspace-resource-id\": \"/subscriptions/{subscription-id}/resourceGroups/rg-uiao-governance/providers/Microsoft.OperationalInsights/workspaces/law-uiao-governance\" }\]\'
 
 25.4 --- Query Gitea Logs from Azure Monitor
 
 Use Kusto Query Language (KQL) in the Log Analytics workspace to analyze Gitea server logs:
 
-// Gitea errors in the last 24 hours the modernization programGitServer_CL \| where TimeGenerated \> ago(24h) \| where Level_s == \"Error\" \| project TimeGenerated, Message_s, User_s \| order by TimeGenerated desc
+// Gitea errors in the last 24 hours FMPGitServer_CL \| where TimeGenerated \> ago(24h) \| where Level_s == \"Error\" \| project TimeGenerated, Message_s, User_s \| order by TimeGenerated desc
 
-// Authentication failures the modernization programGitServer_CL \| where TimeGenerated \> ago(7d) \| where Message_s contains \"authentication failed\" \| summarize FailureCount = count by User_s, bin(TimeGenerated, 1h) \| order by FailureCount desc
+// Authentication failures FMPGitServer_CL \| where TimeGenerated \> ago(7d) \| where Message_s contains \"authentication failed\" \| summarize FailureCount = count by User_s, bin(TimeGenerated, 1h) \| order by FailureCount desc
 
-// Repository activity summary the modernization programGitServer_CL \| where TimeGenerated \> ago(24h) \| where Action_s in (\"push\", \"pull\", \"clone\") \| summarize ActionCount = count by Action_s, Repository_s \| order by ActionCount desc
+// Repository activity summary FMPGitServer_CL \| where TimeGenerated \> ago(24h) \| where Action_s in (\"push\", \"pull\", \"clone\") \| summarize ActionCount = count by Action_s, Repository_s \| order by ActionCount desc
 
-// Server performance overview Perf \| where Computer == \"the modernization program-GIT01\" \| where TimeGenerated \> ago(1h) \| where ObjectName == \"Processor\" and CounterName == \"% Processor Time\" \| summarize AvgCPU = avg(CounterValue) by bin(TimeGenerated, 5m) \| render timechart
+// Server performance overview Perf \| where Computer == \"FMP-GIT01\" \| where TimeGenerated \> ago(1h) \| where ObjectName == \"Processor\" and CounterName == \"% Processor Time\" \| summarize AvgCPU = avg(CounterValue) by bin(TimeGenerated, 5m) \| render timechart
 
 **Part VII --- Appendices**
 
-Appendix A --- Complete PowerShell Module: the modernization program.Tools
+Appendix A --- Complete PowerShell Module: FMP.Tools
 
 All functions from this guide are consolidated into a single installable PowerShell module located at:
 
-C:\\Users\\whale\\git\\uiao\\tools\\the modernization program.Tools\\
+C:\\Users\\whale\\git\\uiao\\tools\\FMP.Tools\\
 
-Module Manifest (the modernization program.Tools.psd1)
+Module Manifest (FMP.Tools.psd1)
 
-\@{ RootModule = \'the modernization program.Tools.psm1\' ModuleVersion = \'2.0.0\' GUID = \'a1b2c3d4-e5f6-7890-abcd-ef1234567890\' Author = \'Michael Stratton\' CompanyName = \'the modernization program\' Copyright = \'(c) 2026 the modernization program. All rights reserved.\' Description = \'the modernization program Governance OS CLI tools --- Git, Gitea API, AD, Entra ID, Intune, Arc\' PowerShellVersion = \'7.0\' RequiredModules = @(\'ActiveDirectory\', \'Microsoft.Graph\', \'GroupPolicy\') FunctionsToExport = @( \# Gitea API \'Connect-the modernization programGitea\', \'Get-the modernization programRepository\', \'Get-the modernization programCanonFile\', \'Set-the modernization programCanonFile\', \'New-the modernization programPullRequest\', \'Get-the modernization programPullRequest\', \'Merge-the modernization programPullRequest\', \'Sync-the modernization programFromGitHub\', \'Export-the modernization programCanonInventory\', \'Test-the modernization programCanonIntegrity\', \# Canon Steward \'Test-the modernization programCanonArtifact\', \'Export-the modernization programCanonStatusReport\', \'Find-the modernization programOrphanArtifacts\', \# AD Assessment \'Export-the modernization programForestAssessment\', \'Export-the modernization programOUStructure\', \'Export-the modernization programComputerObjects\', \'Export-the modernization programUserObjects\', \'Export-the modernization programGroupObjects\', \'Export-the modernization programDNSAssessment\', \'Export-the modernization programCertAssessment\', \'Export-the modernization programGPOAssessment\', \'Invoke-the modernization programFullAssessment\' ) PrivateData = \@{ PSData = \@{ Tags = @(\'the modernization program\', \'Governance\', \'Gitea\', \'Git\', \'GCC\') ProjectUri = \'https://git.uiao.local/the modernization program/uiao\' } } }
+\@{ RootModule = \'FMP.Tools.psm1\' ModuleVersion = \'2.0.0\' GUID = \'a1b2c3d4-e5f6-7890-abcd-ef1234567890\' Author = \'Michael Stratton\' CompanyName = \'FMP\' Copyright = \'(c) 2026 the Federal Modernization Program. All rights reserved.\' Description = \'the Federal Modernization Program Governance OS CLI tools --- Git, Gitea API, AD, Entra ID, Intune, Arc\' PowerShellVersion = \'7.0\' RequiredModules = @(\'ActiveDirectory\', \'Microsoft.Graph\', \'GroupPolicy\') FunctionsToExport = @( \# Gitea API \'Connect-FMPGitea\', \'Get-FMPRepository\', \'Get-FMPCanonFile\', \'Set-FMPCanonFile\', \'New-FMPPullRequest\', \'Get-FMPPullRequest\', \'Merge-FMPPullRequest\', \'Sync-FMPFromGitHub\', \'Export-FMPCanonInventory\', \'Test-FMPCanonIntegrity\', \# Canon Steward \'Test-FMPCanonArtifact\', \'Export-FMPCanonStatusReport\', \'Find-FMPOrphanArtifacts\', \# AD Assessment \'Export-FMPForestAssessment\', \'Export-FMPOUStructure\', \'Export-FMPComputerObjects\', \'Export-FMPUserObjects\', \'Export-FMPGroupObjects\', \'Export-FMPDNSAssessment\', \'Export-FMPCertAssessment\', \'Export-FMPGPOAssessment\', \'Invoke-FMPFullAssessment\' ) PrivateData = \@{ PSData = \@{ Tags = @(\'FMP\', \'Governance\', \'Gitea\', \'Git\', \'GCC\') ProjectUri = \'https://git.uiao.local/FMP/uiao\' } } }
 
 Import the Module
 
-Import-Module C:\\Users\\whale\\git\\uiao\\tools\\the modernization program.Tools\\the modernization program.Tools.psd1 \# Verify loaded functions Get-Command -Module the modernization program.Tools \| Format-Table Name, CommandType
+Import-Module C:\\Users\\whale\\git\\uiao\\tools\\FMP.Tools\\FMP.Tools.psd1 \# Verify loaded functions Get-Command -Module FMP.Tools \| Format-Table Name, CommandType
 
 Appendix B --- API Endpoint Quick Reference
 
@@ -1115,59 +1115,59 @@ Gitea REST API Endpoints
   -------------------- ------------ ----------------------------------------------- ----------
   Get current user     GET          /api/v1/user                                    Yes
 
-  List org repos       GET          /api/v1/orgs/the modernization program/repos                         Yes
+  List org repos       GET          /api/v1/orgs/FMP/repos                         Yes
 
-  Get repo details     GET          /api/v1/repos/the modernization program/uiao                         Yes
+  Get repo details     GET          /api/v1/repos/FMP/uiao                         Yes
 
-  List branches        GET          /api/v1/repos/the modernization program/uiao/branches                Yes
+  List branches        GET          /api/v1/repos/FMP/uiao/branches                Yes
 
-  Get branch           GET          /api/v1/repos/the modernization program/uiao/branches/{branch}       Yes
+  Get branch           GET          /api/v1/repos/FMP/uiao/branches/{branch}       Yes
 
-  List commits         GET          /api/v1/repos/the modernization program/uiao/commits                 Yes
+  List commits         GET          /api/v1/repos/FMP/uiao/commits                 Yes
 
-  Get file contents    GET          /api/v1/repos/the modernization program/uiao/contents/{path}         Yes
+  Get file contents    GET          /api/v1/repos/FMP/uiao/contents/{path}         Yes
 
-  Create/update file   PUT          /api/v1/repos/the modernization program/uiao/contents/{path}         Yes
+  Create/update file   PUT          /api/v1/repos/FMP/uiao/contents/{path}         Yes
 
-  Delete file          DELETE       /api/v1/repos/the modernization program/uiao/contents/{path}         Yes
+  Delete file          DELETE       /api/v1/repos/FMP/uiao/contents/{path}         Yes
 
-  Get raw file         GET          /api/v1/repos/the modernization program/uiao/raw/{path}              Yes
+  Get raw file         GET          /api/v1/repos/FMP/uiao/raw/{path}              Yes
 
-  List tags            GET          /api/v1/repos/the modernization program/uiao/tags                    Yes
+  List tags            GET          /api/v1/repos/FMP/uiao/tags                    Yes
 
-  Create release       POST         /api/v1/repos/the modernization program/uiao/releases                Yes
+  Create release       POST         /api/v1/repos/FMP/uiao/releases                Yes
 
   Search repos         GET          /api/v1/repos/search                            Yes
 
-  List PRs             GET          /api/v1/repos/the modernization program/uiao/pulls                   Yes
+  List PRs             GET          /api/v1/repos/FMP/uiao/pulls                   Yes
 
-  Create PR            POST         /api/v1/repos/the modernization program/uiao/pulls                   Yes
+  Create PR            POST         /api/v1/repos/FMP/uiao/pulls                   Yes
 
-  Get PR               GET          /api/v1/repos/the modernization program/uiao/pulls/{index}           Yes
+  Get PR               GET          /api/v1/repos/FMP/uiao/pulls/{index}           Yes
 
-  Review PR            POST         /api/v1/repos/the modernization program/uiao/pulls/{index}/reviews   Yes
+  Review PR            POST         /api/v1/repos/FMP/uiao/pulls/{index}/reviews   Yes
 
-  Merge PR             POST         /api/v1/repos/the modernization program/uiao/pulls/{index}/merge     Yes
+  Merge PR             POST         /api/v1/repos/FMP/uiao/pulls/{index}/merge     Yes
 
-  List PR files        GET          /api/v1/repos/the modernization program/uiao/pulls/{index}/files     Yes
+  List PR files        GET          /api/v1/repos/FMP/uiao/pulls/{index}/files     Yes
 
   List orgs            GET          /api/v1/orgs                                    Yes
 
-  Get org              GET          /api/v1/orgs/the modernization program                               Yes
+  Get org              GET          /api/v1/orgs/FMP                               Yes
 
-  List teams           GET          /api/v1/orgs/the modernization program/teams                         Yes
+  List teams           GET          /api/v1/orgs/FMP/teams                         Yes
 
-  Create team          POST         /api/v1/orgs/the modernization program/teams                         Yes
+  Create team          POST         /api/v1/orgs/FMP/teams                         Yes
 
   Add team member      PUT          /api/v1/teams/{id}/members/{username}           Yes
 
   Remove team member   DELETE       /api/v1/teams/{id}/members/{username}           Yes
 
-  List webhooks        GET          /api/v1/repos/the modernization program/uiao/hooks                   Yes
+  List webhooks        GET          /api/v1/repos/FMP/uiao/hooks                   Yes
 
-  Create webhook       POST         /api/v1/repos/the modernization program/uiao/hooks                   Yes
+  Create webhook       POST         /api/v1/repos/FMP/uiao/hooks                   Yes
 
-  Test webhook         POST         /api/v1/repos/the modernization program/uiao/hooks/{id}/tests        Yes
+  Test webhook         POST         /api/v1/repos/FMP/uiao/hooks/{id}/tests        Yes
   --------------------------------------------------------------------------------------------
 
 Microsoft Graph API Endpoints
@@ -1222,7 +1222,7 @@ Azure CLI (Az) Commands
 
 Appendix C --- Error Code Reference
 
-The 30 most common errors encountered across the the modernization program platform, with source, meaning, and resolution.
+The 30 most common errors encountered across the Federal Modernization Program platform, with source, meaning, and resolution.
 
   ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
   **\#**   **Error**                                      **Source**        **Meaning**                                       **Resolution**
@@ -1299,30 +1299,30 @@ All environment variables used across this guide, with descriptions and recommen
 
   GITEA_URL               Base URL for Gitea instance               https://git.uiao.local        Ch. 6--11
 
-  the modernization program_WORKSPACE          Local Git workspace path                  C:\\Users\\whale\\git\\uiao   Ch. 1, 2, 11
+  FMP_WORKSPACE          Local Git workspace path                  C:\\Users\\whale\\git\\uiao   Ch. 1, 2, 11
 
-  the modernization program_ASSESSMENT_PATH    Output directory for AD assessments       C:\\the modernization programAssessment            Ch. 13--17
+  FMP_ASSESSMENT_PATH    Output directory for AD assessments       C:\\FMPAssessment            Ch. 13--17
 
-  the modernization program_DNS_SERVER         DNS server hostname for DNS assessment    dc01.domain.local             Ch. 14, 17
+  FMP_DNS_SERVER         DNS server hostname for DNS assessment    dc01.domain.local             Ch. 14, 17
 
   AZURE_TENANT_ID         Entra ID (Azure AD) tenant ID             (set per tenant)              Ch. 18, 23
 
   AZURE_SUBSCRIPTION_ID   Azure subscription ID for Arc resources   (set per subscription)        Ch. 23, 24, 25
 
-  the modernization program_RESOURCE_GROUP     Azure resource group for the modernization program resources   rg-uiao-governance            Ch. 23--25
+  FMP_RESOURCE_GROUP     Azure resource group for the Federal Modernization Program resources   rg-uiao-governance            Ch. 23--25
 
-  the modernization program_LOCATION           Azure region for resources                eastus                        Ch. 23--25
+  FMP_LOCATION           Azure region for resources                eastus                        Ch. 23--25
 
-  the modernization program_SERVER_NAME        Gitea server machine name                 the modernization program-GIT01                    Ch. 19, 21, 23, 25
+  FMP_SERVER_NAME        Gitea server machine name                 FMP-GIT01                    Ch. 19, 21, 23, 25
 
-  the modernization program_LOG_PATH           Local log directory on Gitea server       C:\\the modernization programLogs                  Ch. 22
+  FMP_LOG_PATH           Local log directory on Gitea server       C:\\FMPLogs                  Ch. 22
 
   WEBHOOK_SECRET          Shared secret for webhook validation      (set per webhook)             Ch. 10
   ------------------------------------------------------------------------------------------------------------------------
 
 To set these variables persistently on a workstation:
 
-\# Set environment variable for current user (persistent) \[System.Environment\]::SetEnvironmentVariable(\"GITEA_URL\", \"https://git.uiao.local\", \"User\") \[System.Environment\]::SetEnvironmentVariable(\"the modernization program_WORKSPACE\", \"C:\\Users\\whale\\git\\uiao\", \"User\") \[System.Environment\]::SetEnvironmentVariable(\"the modernization program_ASSESSMENT_PATH\", \"C:\\the modernization programAssessment\", \"User\") \# Verify \[System.Environment\]::GetEnvironmentVariable(\"GITEA_URL\", \"User\")
+\# Set environment variable for current user (persistent) \[System.Environment\]::SetEnvironmentVariable(\"GITEA_URL\", \"https://git.uiao.local\", \"User\") \[System.Environment\]::SetEnvironmentVariable(\"FMP_WORKSPACE\", \"C:\\Users\\whale\\git\\uiao\", \"User\") \[System.Environment\]::SetEnvironmentVariable(\"FMP_ASSESSMENT_PATH\", \"C:\\FMPAssessment\", \"User\") \# Verify \[System.Environment\]::GetEnvironmentVariable(\"GITEA_URL\", \"User\")
 
 Appendix E --- Security Considerations
 
@@ -1362,7 +1362,7 @@ E.3 --- Least Privilege Principles
 
 - **Gitea API:** Tokens scoped to the minimum permissions. Read-only tokens for monitoring and reporting scripts. Write tokens only for automation that creates/updates files.
 
-- **AD Assessment:** Use a read-only service account for all Export-the modernization program\* functions. Domain Admin credentials only for remediation tasks.
+- **AD Assessment:** Use a read-only service account for all Export-FMP\* functions. Domain Admin credentials only for remediation tasks.
 
 - **Entra ID:** Use delegated permissions where possible. Application permissions only for unattended automation, with admin consent.
 
@@ -1378,7 +1378,7 @@ E.4 --- TLS and Certificate Requirements
 
 - Certificates must be issued by the organization\'s Enterprise CA or a trusted public CA.
 
-- Monitor certificate expiry with the Export-the modernization programCertAssessment function (Chapter 15) and renew at least 30 days before expiry.
+- Monitor certificate expiry with the Export-FMPCertAssessment function (Chapter 15) and renew at least 30 days before expiry.
 
 E.5 --- Audit and Logging
 
@@ -1406,6 +1406,6 @@ E.6 --- Prohibited Actions
 
 - Never share personal access tokens between users or services --- each must have its own.
 
-**the modernization program CLI and Operations Guide** --- Classification: Controlled \| Boundary: GCC-Moderate\
+**The Federal Modernization Program CLI and Operations Guide** --- Classification: Controlled \| Boundary: GCC-Moderate\
 Author: Michael Stratton \| Published: April 20, 2026\
-Primary Repository: https://git.uiao.local/the modernization program/uiao \| Secondary: https://github.com/WhalerMike/uiao
+Primary Repository: https://git.uiao.local/FMP/uiao \| Secondary: https://github.com/WhalerMike/uiao

@@ -81,7 +81,7 @@ and the
 [AODIM Executive Whitepaper](aodim-executive-whitepaper.md). The
 substrate this paper names as UIAO's is the same one the the compliance series
 series' own
-[Vol X — Governance Substrate Integration Overview](../orgcomp-series/Vol_X_Book_00_the compliance series_Governance_Substrate_Integration_Overview.qmd)
+Vol X — Governance Substrate Integration Overview
 documents from the product-neutral side — see §4 below.
 
 ![AD-to-Entra inversion diagram](images/modernization-governance-whitepa-image-01-ad-to-entra-inversion-diagram.png){#fig-modernization-governance-whitepaper-image-01 fig-alt="Two side-by-side panels with an arrow between them. Left panel labeled \"Active Directory — hierarchical placement model\" shows a tree of OUs with users positioned at leaves; thick lines indicate access flowing from placement. Right panel labeled \"Entra ID — attribute-driven model\" shows a flat layer of users carrying attribute tags, feeding into a Policy Engine box that emits per-action access decisions. The central arrow is labeled \"Architectural inversion — same identities, different governance\". A small footer note reads \"Migration is the moment to make the inversion explicit.\" Clean engineering blueprint style, dark navy (#0D1B2E) and teal (#1E8C8C) on white background. No photographs, purely diagrammatic." width="100%"}
@@ -180,8 +180,8 @@ Because canon is the source of truth, the migration's evidence does not
 have to be assembled from the directory's state — it can be regenerated
 from canon plus telemetry, deterministically, before *and* after cutover.
 
-The same four mechanisms are what [Vol X of the Federal Organization
-Compliance series](../orgcomp-series/Vol_X_Book_00_the compliance series_Governance_Substrate_Integration_Overview.qmd)
+The same four mechanisms are what Vol X of the Federal Organization
+Compliance series
 calls, without naming UIAO, "a governance substrate that sits underneath
 the whole series... general-purpose... not itself tied to this series."
 Vol X's canon SSOT and drift-gate mechanics bind the the compliance series series' own

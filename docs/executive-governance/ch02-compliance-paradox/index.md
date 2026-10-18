@@ -149,7 +149,7 @@ process.
 ::: {.callout-tip}
 ## Continue the series
 
-Next: [Chapter 3 — Drift as the Primary Threat](../ch03-drift-as-primary-threat/index.md) — why the silent divergence the paradox describes is itself the substrate's first-class threat, and how the modernization program classifies it.
+Next: [Chapter 3 — Drift as the Primary Threat](../ch03-drift-as-primary-threat/index.md) — why the silent divergence the paradox describes is itself the substrate's first-class threat, and how the Federal Modernization Program classifies it.
 :::
 
 ## Related documents

@@ -32,11 +32,11 @@ threat vector**. Not phishing, not supply chain, not insider risk —
 those are concerns the substrate helps surface, but the *governance*
 threat is the one most agencies track least: silent divergence between
 declared canon and observed runtime. This chapter explains why drift
-deserves first-class status, how the modernization program classifies it, and what it
+deserves first-class status, how the Federal Modernization Program classifies it, and what it
 changes operationally.
 :::
 
-![Drift threat hierarchy diagram](images/index-image-01-drift-threat-hierarchy-diagram.png){#fig-index-image-01 fig-alt="A central dark navy bar labeled \"Substrate Drift — the primary governance threat\" anchors the page. Above it, four smaller threat categories (phishing, supply chain, insider risk, configuration error) shown as boxes with arrows pointing down at the central bar — indicating \"drift is the substrate-level threat the others manifest through\". Below the central bar, the five the modernization program drift classes (SCHEMA, SEMANTIC, PROVENANCE, AUTHZ, IDENTITY) shown as a horizontal taxonomy strip in teal. Clean engineering blueprint style, dark navy (#0D1B2E) and teal (#1E8C8C) on white background. No photographs, purely diagrammatic." width="100%"}
+![Drift threat hierarchy diagram](images/index-image-01-drift-threat-hierarchy-diagram.png){#fig-index-image-01 fig-alt="A central dark navy bar labeled \"Substrate Drift — the primary governance threat\" anchors the page. Above it, four smaller threat categories (phishing, supply chain, insider risk, configuration error) shown as boxes with arrows pointing down at the central bar — indicating \"drift is the substrate-level threat the others manifest through\". Below the central bar, the five the Federal Modernization Program drift classes (SCHEMA, SEMANTIC, PROVENANCE, AUTHZ, IDENTITY) shown as a horizontal taxonomy strip in teal. Clean engineering blueprint style, dark navy (#0D1B2E) and teal (#1E8C8C) on white background. No photographs, purely diagrammatic." width="100%"}
 
 ## Why drift is the primary threat
 
@@ -59,7 +59,7 @@ Three properties make drift the substrate-level threat:
 
 ## The five-class taxonomy
 
-the modernization program names the failure modes exactly. From
+The Federal Modernization Program names the failure modes exactly. From
 [`16_DriftDetectionStandard.qmd`](../../../docs/16_DriftDetectionStandard.qmd):
 
 | Class | What it means |

@@ -14,7 +14,6 @@ aliases:
   - /customer-documents/reference-architecture/intune-first.html
 ---
 
-{{< lifecycle-banner >}}
 
 ::: {.callout-important}
 ## Scope: net-new devices only (per the program decision)
@@ -42,7 +41,7 @@ in the first place.
 
 ## Why This Canon Exists
 
-the modernization program already had a mature canon for **migrating** AD-joined endpoints
+The Federal Modernization Program already had a mature canon for **migrating** AD-joined endpoints
 into Entra ID + Intune (covered by the [Directory Migration](directory-migration.md)
 adapter family). What did not exist: the operational doctrine and
 procurement-to-validation process for net-new assets.

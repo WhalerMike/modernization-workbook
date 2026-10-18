@@ -19,7 +19,7 @@ lifecycle_review: 2026-11-22
 **[target-surface-bundle.docx]** — every page in this section concatenated into one Word document. Regenerated on every site deploy.
 :::
 
-The Hybrid-Cloud estate where the modernization program delivers governed identity, device,
+The Hybrid-Cloud estate where the Federal Modernization Program delivers governed identity, device,
 and policy data. Every target has a canonical adapter in
 adapter-specs and a validation suite in
 validation-suites.
@@ -27,7 +27,7 @@ validation-suites.
 ## Leaves
 
 - **E.1** Entra ID tenant — [adapter](../../adapter-specs/entra-id/entra-id.html)
-- **E.2** Administrative Units — [the modernization program_154](../../reference-architecture/delegation.md)
+- **E.2** Administrative Units — [FMP_154](../../reference-architecture/delegation.md)
 - **E.3** Intune — [adapter](../../adapter-specs/intune/intune.html)
 - **E.4** Azure Arc — (adapter pending)
 - **E.5** Microsoft 365 SaaS — [adapter](../../adapter-specs/m365/m365.html)

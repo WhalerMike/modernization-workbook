@@ -1,6 +1,6 @@
 ---
 title: "Modernization — Modernization"
-subtitle: "The modernization expression of the the modernization program substrate: migration without rip-and-replace, governed by the same spine"
+subtitle: "The modernization expression of the Federal Modernization Program substrate: migration without rip-and-replace, governed by the same spine"
 doc-type: section-landing
 audience: [Executive, Technical, Customer]
 ---
@@ -8,7 +8,7 @@ audience: [Executive, Technical, Customer]
 # Modernization — Modernization {.unnumbered}
 
 **Modernization** is the modernization member of the Org family — the operational
-expression of the the modernization program substrate that moves a legacy estate forward *without
+expression of the Federal Modernization Program substrate that moves a legacy estate forward *without
 rip-and-replace*. Its core is vendor-neutral: adapter interfaces for
 directory, device, PKI, RADIUS, DNS/DHCP/IPAM, and overlay-adjacent control
 surfaces, driven by an assessment engine, a defined target surface, and
@@ -49,7 +49,7 @@ Pick the entry point that matches your role:
 
 - **The assessment engine** — enumerate what the legacy estate actually does
  before deciding what replaces it; the
- modernization program
+ Federal Modernization Program
  carries the engine, target surface, and program-management discipline.
 - **The target surface** — [Intune policy templates](../operational-guides/target-surface/intune-policy-templates.md),
  the [Conditional Access library](../operational-guides/access-plane/conditional-access-library.md),

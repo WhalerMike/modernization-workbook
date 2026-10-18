@@ -39,7 +39,7 @@ operating system**, and the OS framing is what makes the previous
 eight properties hold together.
 :::
 
-![Synthesis diagram showing eight chapters as inputs feeding into a single Governance OS box](images/index-image-01-synthesis-diagram-showing-eight.png){#fig-index-image-01 fig-alt="Eight labeled arrows enter from the left side: ch01 Why Governance Fails / ch02 Compliance Paradox / ch03 Drift / ch04 Deterministic Governance / ch05 Adapter Model / ch06 Evidence over Attestation / ch07 Operational Tempo / ch08 Governance at Scale. The central box is labeled \"the modernization program Governance OS\" and shows three core layers (Canon SSOT, Substrate Services, Consumer Surfaces). Three outputs flow out the right: ATO-package-ready evidence, drift findings as continuous signal, modernization-anchored adapters. Clean engineering blueprint style, dark navy (#0D1B2E) and teal (#1E8C8C) on white background. No photographs, purely diagrammatic." width="100%"}
+![Synthesis diagram showing eight chapters as inputs feeding into a single Governance OS box](images/index-image-01-synthesis-diagram-showing-eight.png){#fig-index-image-01 fig-alt="Eight labeled arrows enter from the left side: ch01 Why Governance Fails / ch02 Compliance Paradox / ch03 Drift / ch04 Deterministic Governance / ch05 Adapter Model / ch06 Evidence over Attestation / ch07 Operational Tempo / ch08 Governance at Scale. The central box is labeled \"the Federal Modernization Program Governance OS\" and shows three core layers (Canon SSOT, Substrate Services, Consumer Surfaces). Three outputs flow out the right: ATO-package-ready evidence, drift findings as continuous signal, modernization-anchored adapters. Clean engineering blueprint style, dark navy (#0D1B2E) and teal (#1E8C8C) on white background. No photographs, purely diagrammatic." width="100%"}
 
 ## Why an "OS," not a framework
 
@@ -164,7 +164,7 @@ not are still better served by the substrate than by no substrate at
 all, but realize less of the leverage.
 
 > **The book's position: *some* substrate is required.** Reading the eight
-> prior chapters argues for it; this chapter argues that the modernization program is a
+> prior chapters argues for it; this chapter argues that the Federal Modernization Program is a
 > defensible realization. The next move is operational adoption.
 
 ## Key takeaways
@@ -183,12 +183,12 @@ all, but realize less of the leverage.
 ::: {.callout-tip}
 ## Where to go next
 
-You've reached the end of the series. Return to the [Executive Governance Series index](../index.html) for the reading paths, or pick up the companion the modernization program the organizational-attribute model narrative for the substrate's identity-and-position story end to end.
+You've reached the end of the series. Return to the [Executive Governance Series index](../index.html) for the reading paths, or pick up the companion the Federal Modernization Program the organizational-attribute model narrative for the substrate's identity-and-position story end to end.
 :::
 
 ## Related documents
 
 - [Executive Governance Series Index](../index.html)
-- Whitepaper: the modernization program Governance OS
+- Whitepaper: The Federal Modernization Program Governance OS
 - [Executive Brief: Governance OS Overview](../../executive-briefs/governance-os-overview.md)
 - Substrate Manifest (canon)

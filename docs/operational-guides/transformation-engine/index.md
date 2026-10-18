@@ -21,7 +21,7 @@ reach the target surface.
 
 ## Leaves
 
-- **B.1** PowerShell assessment modules (the modernization programADAssessment, Read-Only AD)
+- **B.1** PowerShell assessment modules (FMPADAssessment, Read-Only AD)
 - **B.2** Python analysis scripts
 - **B.3** API integrator layer (Graph, ARM, Infoblox, vendor APIs)
 - **B.4** Plan generator (analysis → migration plan)
@@ -31,5 +31,5 @@ reach the target surface.
 
 ::: {.callout-note title="Scaffold"}
 Posted references ready to port: AD Interaction Guide · Read-Only AD
-Assessment Guide · PowerShell Module Reference · the modernization program CLI Reference.
+Assessment Guide · PowerShell Module Reference · the Federal Modernization Program CLI Reference.
 :::

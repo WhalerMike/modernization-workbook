@@ -1,7 +1,7 @@
 ---
 title: "Implementation Book 05 — Login Migration & Parallel-Run Validation"
 subtitle: "Turning the audited logins into Entra ID logins on SQL 2022+ via CREATE LOGIN FROM EXTERNAL PROVIDER, with a parallel-run harness and a 30-day observation window before cutover"
-description: "A review-required runbook for migrating SQL Server authentication to Microsoft Entra ID. Takes the login inventory from Book 03, codifies the Windows-to-Entra mapping from the the modernization program_181 reconciliation, generates idempotent CREATE LOGIN ... FROM EXTERNAL PROVIDER statements as a dry-run script, stands up a parallel-run validation harness with 30-day observation queries, and defines the cutover and rollback. The mapping, script generation, and parallel-run evaluation are shipped in the the modernization programSqlServerMigration module and execute nothing against production; the steps stay review-required because the generated T-SQL changes production logins."
+description: "A review-required runbook for migrating SQL Server authentication to Microsoft Entra ID. Takes the login inventory from Book 03, codifies the Windows-to-Entra mapping from the FMP_181 reconciliation, generates idempotent CREATE LOGIN ... FROM EXTERNAL PROVIDER statements as a dry-run script, stands up a parallel-run validation harness with 30-day observation queries, and defines the cutover and rollback. The mapping, script generation, and parallel-run evaluation are shipped in the FMPSqlServerMigration module and execute nothing against production; the steps stay review-required because the generated T-SQL changes production logins."
 doc-type: sql-server-implementation-book
 audience: [Technical, Customer]
 family: sql-server-implementation
@@ -17,7 +17,7 @@ lifecycle_review: 2027-01-01
 # Implementation Book 05 — Login Migration & Parallel-Run Validation
 :::
 
-![Logins migrate behind a parallel-run window: map the principal, emit a reviewable CREATE LOGIN FROM EXTERNAL PROVIDER script (no open connection), then validate both paths resolve before the old login is removed.](images/book05-image-01-login-parallel-run.png){#fig-impl-book05 fig-alt="A schematic on a white background. Three stages flow left to right under teal arrows: New-the modernization programEntraLoginMapping (derive, read-only), New-the modernization programEntraLoginScript (emits a CREATE LOGIN FROM EXTERNAL PROVIDER script, no -Server/-Execute surface), and Test-the modernization programLoginParallelRun (validate, dry-run). Below, a horizontal timeline labelled 'The parallel-run window' shows three segments: 'old Windows login active', an amber 'both valid — applications repoint' overlap, and a teal 'Entra login only — old login removed'. Federal navy, teal and amber palette; no photographs." width="100%"}
+![Logins migrate behind a parallel-run window: map the principal, emit a reviewable CREATE LOGIN FROM EXTERNAL PROVIDER script (no open connection), then validate both paths resolve before the old login is removed.](images/book05-image-01-login-parallel-run.png){#fig-impl-book05 fig-alt="A schematic on a white background. Three stages flow left to right under teal arrows: New-FMPEntraLoginMapping (derive, read-only), New-FMPEntraLoginScript (emits a CREATE LOGIN FROM EXTERNAL PROVIDER script, no -Server/-Execute surface), and Test-FMPLoginParallelRun (validate, dry-run). Below, a horizontal timeline labelled 'The parallel-run window' shows three segments: 'old Windows login active', an amber 'both valid — applications repoint' overlap, and a teal 'Entra login only — old login removed'. Federal navy, teal and amber palette; no photographs." width="100%"}
 
 ::: {.callout-tip}
 ## Download this book
@@ -30,7 +30,7 @@ Companion to **narrative Book 05** and **the program decision §1** (parallel-ru
 
 ::: {.callout-important}
 ## Automation status + production safety
-The login-mapping and script-generation steps are now **shipped** in the `the modernization programSqlServerMigration` module (`tools/powershell/the modernization programSqlServerMigration/`), and they are deliberately **non-executing**: `New-the modernization programEntraLoginMapping` derives the mapping and `New-the modernization programEntraLoginScript` writes a reviewable `.sql` file — neither opens a SQL connection. Because the generated T-SQL runs `CREATE LOGIN` / `ALTER` against production instances, every step remains **review-required**: generate statements in dry-run, review them, execute in a change window, and **never drop a Windows login until the Entra login is validated in parallel** (which `Test-the modernization programLoginParallelRun` evaluates against the the program decision §1 exit criteria).
+The login-mapping and script-generation steps are now **shipped** in the `FMPSqlServerMigration` module (`tools/powershell/FMPSqlServerMigration/`), and they are deliberately **non-executing**: `New-FMPEntraLoginMapping` derives the mapping and `New-FMPEntraLoginScript` writes a reviewable `.sql` file — neither opens a SQL connection. Because the generated T-SQL runs `CREATE LOGIN` / `ALTER` against production instances, every step remains **review-required**: generate statements in dry-run, review them, execute in a change window, and **never drop a Windows login until the Entra login is validated in parallel** (which `Test-FMPLoginParallelRun` evaluates against the the program decision §1 exit criteria).
 :::
 
 ## Preconditions
@@ -68,7 +68,7 @@ Import-Csv .\output\*_logins.csv |
     } | Set-Content .\output\create-entra-logins.sql
 ```
 
-**Available** — the Windows-login → Entra-principal mapping (the `EntraPrincipal` column) is the one piece of real judgment here, and `New-the modernization programEntraLoginMapping` (`tools/powershell/the modernization programSqlServerMigration/`) codifies it from the `the modernization programIdentityAssessment` reconciliation (the modernization program_181) rather than from a hand-built spreadsheet: it joins the Book 03 login audit to the `IdentityReconciliation` envelope, maps only cleanly **matched** principals automatically, prefers a supplied Entra **group** map (group-based logins are the target), and flags every unresolved login for review instead of silently dropping it. `New-the modernization programEntraLoginScript` then turns that mapping into the idempotent `CREATE LOGIN ... FROM EXTERNAL PROVIDER` `.sql` file shown above — dry-run only, no SQL connection, with unresolved entries emitted as commented-out TODOs. (Canon: the program decision, the modernization program_181, the directory modernization program §3.2.)
+**Available** — the Windows-login → Entra-principal mapping (the `EntraPrincipal` column) is the one piece of real judgment here, and `New-FMPEntraLoginMapping` (`tools/powershell/FMPSqlServerMigration/`) codifies it from the `FMPIdentityAssessment` reconciliation (FMP_181) rather than from a hand-built spreadsheet: it joins the Book 03 login audit to the `IdentityReconciliation` envelope, maps only cleanly **matched** principals automatically, prefers a supplied Entra **group** map (group-based logins are the target), and flags every unresolved login for review instead of silently dropping it. `New-FMPEntraLoginScript` then turns that mapping into the idempotent `CREATE LOGIN ... FROM EXTERNAL PROVIDER` `.sql` file shown above — dry-run only, no SQL connection, with unresolved entries emitted as commented-out TODOs. (Canon: the program decision, FMP_181, the directory modernization program §3.2.)
 
 ## Step 2 — Map database users to the new logins
 
@@ -104,7 +104,7 @@ Stand up an Extended Events session (or SQL Audit) to capture `login` events for
 - **No** `NTLM` rows remain for the instance (cross-check Book 06).
 - No connection is *still* arriving only on the legacy Windows login.
 
-**Available** — `Test-the modernization programLoginParallelRun` (`tools/powershell/the modernization programSqlServerMigration/`) evaluates a captured set of these observations against the three exit criteria and returns a sealed `cutover_ready` verdict (per login: which auth schemes were seen, whether AAD is among them, whether the login still arrives only on a legacy scheme). It is read-only — it reports readiness; it never disables or drops a login.
+**Available** — `Test-FMPLoginParallelRun` (`tools/powershell/FMPSqlServerMigration/`) evaluates a captured set of these observations against the three exit criteria and returns a sealed `cutover_ready` verdict (per login: which auth schemes were seen, whether AAD is among them, whether the login still arrives only on a legacy scheme). It is read-only — it reports readiness; it never disables or drops a login.
 
 ## Step 4 — Cutover
 
@@ -137,4 +137,4 @@ ALTER LOGIN [sa] DISABLE;
 
 ---
 
-*Companion to narrative Book 05 and the program decision §1. Shipped automation: `tools/powershell/the modernization programSqlServerMigration/` (`New-the modernization programEntraLoginMapping` codifies the mapping from the modernization program_181, `New-the modernization programEntraLoginScript` generates dry-run T-SQL, `Test-the modernization programLoginParallelRun` evaluates the cutover exit criteria) — review-required; the generated T-SQL executes nothing on generation. Canon: the program decision, the modernization program_181, the directory modernization program §3.2.*
+*Companion to narrative Book 05 and the program decision §1. Shipped automation: `tools/powershell/FMPSqlServerMigration/` (`New-FMPEntraLoginMapping` codifies the mapping from FMP_181, `New-FMPEntraLoginScript` generates dry-run T-SQL, `Test-FMPLoginParallelRun` evaluates the cutover exit criteria) — review-required; the generated T-SQL executes nothing on generation. Canon: the program decision, FMP_181, the directory modernization program §3.2.*

@@ -367,7 +367,7 @@ says the feature "supports tenants in WW Commercial cloud but not the **GCC
 Moderate**, GCC High, DoD, Germany, or China clouds"
 ([Microsoft Learn](https://learn.microsoft.com/en-us/microsoft-365/enterprise/office-365-network-mac-perf-cpe?view=o365-worldwide),
 read 11 September 2026), and
-[Book 05's M365 appendix](../orgcomp-series/Vol_I_Book_05_the compliance series_Network_Modernization.qmd)
+Book 05's M365 appendix
 quotes the same sentence. So an agency writing "GCC Moderate" for the
 environment is following Microsoft's own usage; what it cannot do is treat
 the phrase as naming a distinct product or a distinct FedRAMP authorization,

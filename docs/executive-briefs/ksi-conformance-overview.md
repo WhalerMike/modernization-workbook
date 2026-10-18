@@ -15,16 +15,16 @@ lifecycle_review: 2026-11-22
 
 # KSI Conformance Overview — Executive Brief
 
-![Continuous monitoring pipeline](../../images/canonical/the modernization program-FIG-003-continuous-monitoring-pipeline.png){fig-alt="the modernization program continuous monitoring pipeline evaluating tenant state against machine-checkable Key Security Indicators that sit above the NIST 800-53 control catalog." width="100%"}
+![Continuous monitoring pipeline](../../images/canonical/FMP-FIG-003-continuous-monitoring-pipeline.png){fig-alt="the Federal Modernization Program continuous monitoring pipeline evaluating tenant state against machine-checkable Key Security Indicators that sit above the NIST 800-53 control catalog." width="100%"}
 
-Key Security Indicators (KSIs) are how the modernization program turns a control catalog into
+Key Security Indicators (KSIs) are how the Federal Modernization Program turns a control catalog into
 something a machine can check continuously. Where a traditional SSP narrates
 *"control AC-2 is satisfied,"* a KSI is a **machine-readable, continuously
 evaluated assertion** — pass, fail, error, or stale — backed by hashed evidence.
 KSIs sit *above* the NIST SP 800-53 Rev 5 controls and map down to them, which
 is the model FedRAMP 20x is moving the program toward.
 
-## What the modernization program ships: a governed KSI corpus
+## What the Federal Modernization Program ships: a governed KSI corpus
 
 The substrate carries **more than 190 KSI rules across eleven families**, each a
 versioned file under [`src/uiao/rules/ksi/`](../../../src/uiao/rules/ksi/) and
@@ -48,7 +48,7 @@ evidence deterministically.
 ## What ships today: the evaluation engine
 
 `uiao ksi evaluate` is the shipped CLI surface. It is the Plane 2 step of the
-the modernization program pipeline: it takes an IR envelope (produced by Plane 1 adapter transforms),
+The Federal Modernization Program pipeline: it takes an IR envelope (produced by Plane 1 adapter transforms),
 evaluates it against the KSI corpus, and emits a canonical KSI result JSON:
 
 ```bash
@@ -70,7 +70,7 @@ which emits OSCAL observation objects for assessor consumption.
 ## FedRAMP 20x alignment: a tagging discipline, not a rewrite
 
 Per [the program decision]
-and the modernization program_133, KSI
+and FMP_133, KSI
 emission is designed as a **tag on the existing OSCAL pipeline**, not a second
 evidence path: generated artifacts carry `fedramp:ksi-themes`,
 `ksi-mapping-source`, and `ksi-freshness-cadence` metadata. This keeps a single
@@ -99,7 +99,7 @@ expects.
 
 ## Leadership takeaway
 
-the modernization program already ships the part of FedRAMP 20x that is hardest to fake: a governed
+The Federal Modernization Program already ships the part of FedRAMP 20x that is hardest to fake: a governed
 corpus of machine-checkable indicators and a deterministic engine that evaluates
 a tenant against them and emits OSCAL-mapped evidence. The remaining work is
 breadth (full CR26 coverage) and the FedRAMP-20x KSI-theme tagging layer — both

@@ -255,7 +255,7 @@ az rest --method GET \
 
 Replace `management.azure.com` with `management.usgovcloudapi.net` for Azure
 Government. Entra portal and Graph endpoints shift too — see the
-endpoint table. GCC (the current the modernization program
+endpoint table. GCC (the current the Federal Modernization Program
 boundary) stays on the worldwide ARM and Graph endpoints.
 :::
 

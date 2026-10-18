@@ -1,12 +1,12 @@
 ---
-title: "the modernization program Conditional Access Policy Library"
+title: "The Federal Modernization Program Conditional Access Policy Library"
 subtitle: "Microsoft Entra ID governance reference for identity modernization"
 doc-type: policy-library
 audience: [Customer, Technical]
 author: Michael Stratton
 date: "April 2026"
 status: Active
-canon-source: "inbox/Posted/the modernization program Conditional Access Policy Library.docx"
+canon-source: "inbox/Posted/FMP Conditional Access Policy Library.docx"
 repo-path: docs/customer-documents/operational-guides/access-plane/conditional-access-library.qmd
 created-at: 2026-04-26
 updated-at: 2026-04-26
@@ -37,16 +37,16 @@ lifecycle_review: 2026-11-22
 |                          |
 | \|                       |
 |                          |
-| the modernization program IDENTITY GOVERNANCE |
+| The Federal Modernization Program IDENTITY GOVERNANCE |
 +--------------------------+
 
-the modernization program Conditional Access Policy Library
+The Federal Modernization Program Conditional Access Policy Library
 
 **Microsoft Entra ID --- Governance Reference for Identity Modernization**
 
 **Classification:** Controlled \| **Boundary:** GCC-Moderate\
 **Version:** 2.0 \| **Effective Date:** April 21, 2026\
-**Owner:** the modernization program Identity Modernization Program Office\
+**Owner:** the Federal Modernization Program Identity Modernization Program Office\
 **Audience:** Identity Architects, Security Engineers, IT Governance, Cloud Operations\
 **Review Cycle:** Quarterly \| **Next Review:** July 2026
 
@@ -88,7 +88,7 @@ Section 1: Executive Summary
 
 1.1 Purpose
 
-The the modernization program Conditional Access Policy Library serves as the authoritative governance reference for organizations transitioning from legacy Active Directory Group Policy Object (GPO)-based access control to Microsoft Entra ID Conditional Access (CA). This document defines a comprehensive, tiered policy framework that enforces Zero Trust principles across identity, device, application, and network signals.
+The Federal Modernization Program Conditional Access Policy Library serves as the authoritative governance reference for organizations transitioning from legacy Active Directory Group Policy Object (GPO)-based access control to Microsoft Entra ID Conditional Access (CA). This document defines a comprehensive, tiered policy framework that enforces Zero Trust principles across identity, device, application, and network signals.
 
 This library provides:
 
@@ -98,7 +98,7 @@ This library provides:
 
 - Phased deployment methodology with report-only validation at each stage
 
-- Integration with the the modernization program the organizational-attribute model extension attribute schema for dynamic policy targeting
+- Integration with the Federal Modernization Program the organizational-attribute model extension attribute schema for dynamic policy targeting
 
 - Compliance alignment to NIST 800-53 and the FedRAMP 20x / CR26 Key Security Indicators anchored on those controls (Appendix D.2)
 
@@ -122,9 +122,9 @@ Traditional Active Directory environments enforce access control through GPOs li
   Password policy (fine-grained)                  Authentication methods policy + CA MFA            Passwordless capable, phishing-resistant
   --------------------------------------------------------------------------------------------------------------------------------------------------
 
-1.3 Relationship to the modernization program Modules
+1.3 Relationship to the Federal Modernization Program Modules
 
-This Policy Library is a component of the broader the modernization program Identity Modernization framework and interfaces with:
+This Policy Library is a component of the broader the Federal Modernization Program Identity Modernization framework and interfaces with:
 
 - **AD Assessment Module:** Discovers existing GPOs, maps them to CA equivalents, and identifies gaps requiring new cloud-native policies
 
@@ -136,7 +136,7 @@ This Policy Library is a component of the broader the modernization program Iden
 
 1.4 the organizational-attribute model Extension Attribute Schema
 
-All Conditional Access policies in this library leverage the the modernization program the organizational-attribute model extension attribute schema to enable dynamic, attribute-driven policy targeting. These attributes are synchronized to both user and device objects in Microsoft Entra ID.
+All Conditional Access policies in this library leverage the Federal Modernization Program the organizational-attribute model extension attribute schema to enable dynamic, attribute-driven policy targeting. These attributes are synchronized to both user and device objects in Microsoft Entra ID.
 
   ----------------------------------------------------------------------------------------------------------------------------------------
   **Attribute**             **the organizational-attribute model Field**   **Example Values**                **CA Policy Usage**
@@ -161,7 +161,7 @@ All Conditional Access policies in this library leverage the the modernization p
 |                                                                                                                                                                                                                                               |
 | before                                                                                                                                                                                                                                        |
 |                                                                                                                                                                                                                                               |
-| deploying CA policies that reference them. Unpopulated attributes will cause devices and users to fall outside dynamic group membership, resulting in policy bypass. Validate attribute completeness using the the modernization program the organizational-attribute model Readiness report. |
+| deploying CA policies that reference them. Unpopulated attributes will cause devices and users to fall outside dynamic group membership, resulting in policy bypass. Validate attribute completeness using the Federal Modernization Program the organizational-attribute model Readiness report. |
 +-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 
 Section 2: Policy Architecture
@@ -185,12 +185,12 @@ Microsoft Entra ID evaluates Conditional Access policies using an **additive mod
 +-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 | **Design Principle**                                                                                                                                                                                                                |
 |                                                                                                                                                                                                                                     |
-| The the modernization program policy numbering convention (CA-0XX) is organizational only and does not imply evaluation order. Policies are designed so that their combined effect produces the intended security posture without relying on precedence. |
+| The Federal Modernization Program policy numbering convention (CA-0XX) is organizational only and does not imply evaluation order. Policies are designed so that their combined effect produces the intended security posture without relying on precedence. |
 +-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 
 2.2 Named Locations Strategy
 
-Named locations define trusted and untrusted network boundaries that CA policies reference as conditions. The the modernization program framework defines three categories of named locations:
+Named locations define trusted and untrusted network boundaries that CA policies reference as conditions. The Federal Modernization Program framework defines three categories of named locations:
 
   --------------------------------------------------------------------------------------------------------------------------------------------
   **Location Category**       **Type**        **Description**                                                       **Policies Referencing**
@@ -204,7 +204,7 @@ Named locations define trusted and untrusted network boundaries that CA policies
 
 2.3 Authentication Strength Definitions
 
-Authentication strengths define which MFA methods satisfy a policy\'s grant control. The the modernization program framework uses both built-in and custom authentication strengths:
+Authentication strengths define which MFA methods satisfy a policy\'s grant control. The Federal Modernization Program framework uses both built-in and custom authentication strengths:
 
   ------------------------------------------------------------------------------------------------------------------------------------------------------------------------
   **Strength Name**            **Type**   **Allowed Methods**                                                                                    **Used In**
@@ -215,7 +215,7 @@ Authentication strengths define which MFA methods satisfy a policy\'s grant cont
 
   **Phishing-resistant MFA**   Built-in   FIDO2, Windows Hello for Business, certificate-based auth (no phone/SMS)                               CA-010
 
-  **the modernization program Privileged Access**   Custom     FIDO2 security key only                                                                                CA-010, CA-043 (Tier 0)
+  **The Federal Modernization Program Privileged Access**   Custom     FIDO2 security key only                                                                                CA-010, CA-043 (Tier 0)
   ------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 2.4 Grant Controls vs. Session Controls
@@ -1450,7 +1450,7 @@ CA-064: Insider Risk --- Elevated Session Controls
 
 Section 9: Policy Deployment Methodology
 
-The the modernization program CA Policy Library is deployed in six sequential phases. Each phase follows a consistent validation cycle: deploy in report-only mode, analyze impact, remediate gaps, obtain stakeholder approval, enforce, and monitor. No phase should begin until the previous phase has been in enforcement for at least one week without incidents.
+The Federal Modernization Program CA Policy Library is deployed in six sequential phases. Each phase follows a consistent validation cycle: deploy in report-only mode, analyze impact, remediate gaps, obtain stakeholder approval, enforce, and monitor. No phase should begin until the previous phase has been in enforcement for at least one week without incidents.
 
   -------------------------------------------------------------------------------------------------------------------------------------------------------------------------
   **Phase**     **Name**               **Policies**            **Duration**                               **Prerequisites**
@@ -1689,9 +1689,9 @@ Deploy the following Azure Monitor Workbooks for ongoing CA policy monitoring:
   **Break-Glass Monitoring**     Alert on and audit any break-glass account activity             Sign-in count (should be near zero), sign-in details, source IP/location
   ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-12.4 Integration with the modernization program Drift Detection
+12.4 Integration with the Federal Modernization Program Drift Detection
 
-The the modernization program Drift Detection module continuously compares the live CA policy configuration in the tenant against the baseline definitions in this library. Drift detection monitors:
+The Federal Modernization Program Drift Detection module continuously compares the live CA policy configuration in the tenant against the baseline definitions in this library. Drift detection monitors:
 
 - **Policy state changes:** Alerts when a policy is switched from On to Off or Report-only without change management approval
 
@@ -1788,12 +1788,12 @@ C.1 Built-in Authentication Strengths
   **Phishing-resistant MFA**   00000000-0000-0000-0000-000000000004   FIDO2 security key Windows Hello for Business Certificate-based auth (multi-factor)
   -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-C.2 Custom Strength: the modernization program Privileged Access
+C.2 Custom Strength: The Federal Modernization Program Privileged Access
 
 This custom authentication strength restricts authentication to FIDO2 security keys only, used for Tier 0 privileged access workstations and critical admin portal access.
 
   ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-  { \"displayName\": \"the modernization program Privileged Access\", \"description\": \"FIDO2 security key only - for Tier 0 PAW access\", \"allowedCombinations\": \[ \"fido2\" \], \"requirementsSatisfied\": \"mfa\" } \# PowerShell to create custom authentication strength \$params = \@{ DisplayName = \"the modernization program Privileged Access\" Description = \"FIDO2 security key only - for Tier 0 PAW access\" AllowedCombinations = @(\"fido2\") RequirementsSatisfied = \"mfa\" } New-MgPolicyAuthenticationStrengthPolicy -BodyParameter \$params
+  { \"displayName\": \"the Federal Modernization Program Privileged Access\", \"description\": \"FIDO2 security key only - for Tier 0 PAW access\", \"allowedCombinations\": \[ \"fido2\" \], \"requirementsSatisfied\": \"mfa\" } \# PowerShell to create custom authentication strength \$params = \@{ DisplayName = \"the Federal Modernization Program Privileged Access\" Description = \"FIDO2 security key only - for Tier 0 PAW access\" AllowedCombinations = @(\"fido2\") RequirementsSatisfied = \"mfa\" } New-MgPolicyAuthenticationStrengthPolicy -BodyParameter \$params
 
   ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -1883,8 +1883,8 @@ D.3 GCC-Moderate Boundary Considerations
 | > • Third-party FIDO2 security keys must be FIPS 140-2 Level 2 validated or higher for use within the GCC-Moderate boundary                                                                                                                                  |
 +--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 
-**the modernization program Conditional Access Policy Library** \| Version 2.0 \| April 21, 2026\
-Classification: Controlled \| Boundary: GCC-Moderate \| the modernization program Identity Modernization Program Office\
+**The Federal Modernization Program Conditional Access Policy Library** \| Version 2.0 \| April 21, 2026\
+Classification: Controlled \| Boundary: GCC-Moderate \| the Federal Modernization Program Identity Modernization Program Office\
 This document is subject to quarterly review. Unauthorized modification or distribution outside the defined audience is prohibited.
 
 ## Compliance Amendment — Device Compliance Enforcement and Policy Change Tracking (`AC-3`, `CM-3`)
@@ -1906,5 +1906,5 @@ Changes to any Conditional Access policy follow change control (`CM-3`): each mo
 |                          |
 | \|                       |
 |                          |
-| the modernization program IDENTITY GOVERNANCE |
+| The Federal Modernization Program IDENTITY GOVERNANCE |
 +--------------------------+

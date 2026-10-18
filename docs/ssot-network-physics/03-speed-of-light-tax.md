@@ -116,7 +116,7 @@ builds on them:
 
 1. **Keep strong consistency inside a region.** At metro and intra-continental
    distances the propagation floor is sub-millisecond to a few milliseconds —
-   synchronous consistency is effectively free there. This is why the modernization program's
+   synchronous consistency is effectively free there. This is why the Federal Modernization Program's
    single-region writer (Chapter 7) is not a limitation but a deliberate
    exploitation of the physics.
 2. **Across regions, stop spending round trips.** The win is not a faster
