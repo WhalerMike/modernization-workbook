@@ -1,0 +1,24 @@
+# Evidence Chain — per-claim lineage hashes roll up into the bundle hash, so a
+# change anywhere breaks it.
+rankdir: TB
+graph: {nodesep: 0.25, ranksep: 0.4}
+nodes:
+  b: {tone: green, width: 230, title: "Bundle hash", body: ["=Computed over the per-claim hashes"], size: 12}
+  c1: {tone: blue, width: 165, title: "Claim A", body: ["=lineage_hash"], size: 12}
+  c2: {tone: blue, width: 165, title: "Claim B", body: ["=lineage_hash"], size: 12}
+  c3: {tone: blue, width: 165, title: "Claim C", body: ["=lineage_hash"], size: 12}
+  s1: {tone: slate, width: 165, title: "Source record", body: ["=Hashed (SHA-256) at extraction"], size: 12}
+  s2: {tone: slate, width: 165, title: "Source record", body: ["=Hashed (SHA-256) at extraction"], size: 12}
+  s3: {tone: slate, width: 165, title: "Source record", body: ["=Hashed (SHA-256) at extraction"], size: 12}
+  note: {kind: text, text: "Each claim's transformation_chain is append-only. Changing any record or step changes the bundle hash.", width: 520, tone: red}
+edges:
+  - [b, c1, {dir: back}]
+  - [b, c2, {dir: back}]
+  - [b, c3, {dir: back}]
+  - [c1, s1, {dir: back}]
+  - [c2, s2, {dir: back}]
+  - [c3, s3, {dir: back}]
+  - [s2, note, {style: invis}]
+order:
+  - [c1, c2, c3]
+  - [s1, s2, s3]

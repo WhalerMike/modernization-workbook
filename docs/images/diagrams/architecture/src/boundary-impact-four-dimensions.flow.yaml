@@ -1,0 +1,14 @@
+# Boundary Impact Model — the four impact dimensions and the drift class each
+# one raises when it is violated.
+rankdir: TB
+nodes:
+  t:
+    kind: table
+    tone: slate
+    columns: ["Impact dimension", "What changes across the boundary", "Drift class on violation"]
+    widths: [170, 290, 200]
+    rows:
+      - [{text: "Telemetry fidelity", tone: blue}, "Which signals are actually available on this side", "`DRIFT-SCHEMA` (missing fields), `DRIFT-PROVENANCE` (broken chain)"]
+      - [{text: "Identity authority", tone: blue}, "Who the issuer of a claim can be resolved to here", "`DRIFT-IDENTITY`"]
+      - [{text: "Enforcement responsibility", tone: blue}, "Who must enforce the control on this side: platform or agency", "`DRIFT-AUTHZ`"]
+      - [{text: "Provenance classification", tone: blue}, "Whether the claim is still authoritative here, or only derived", "`DRIFT-SEMANTIC`"]

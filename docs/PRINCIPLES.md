@@ -4,7 +4,7 @@
 
 This document collects the core principles extracted from the cleaned architecture, guides, and libraries. It is written for program leadership, architects, and operators who need the rules without the full narrative.
 
-![Modernization Principles Overview](images/principles-overview.svg)
+![The fifteen principles on this page, in five groups.](images/diagrams/principles/svg/principles-00-overview.svg){fig-alt="A table grouping the principles: Foundation (1 single source of truth, 2 change control and provenance, 11 drift detection); Directory and structure (3, 4, 5); Devices and policy (6, 7, 9, 10); Identity and data (8 HR-driven lifecycle, 12 SQL Server identity transformation); Program (13, 14, 15)."}
 
 ---
 
@@ -12,7 +12,7 @@ This document collects the core principles extracted from the cleaned architectu
 
 Every important claim has exactly one authoritative origin. All other representations are provenance-anchored pointers, not copies.
 
-![Single Source of Truth Topology](images/ssot-topology.svg)
+![Every claim has one authoritative origin; runtime systems, derived artifacts and drift checks all point back to it.](images/diagrams/principles/svg/principles-01-ssot-topology.svg){fig-alt="A green Authoritative origin card, changed only through a governed process, with arrows to three cards: a runtime system that reads from it, a derived artifact that cites the document and version it came from, and drift evaluation measured against it."}
 
 - Runtime systems read from the authoritative source; they do not write to it except through a governed change process.
 - Every derived artifact cites the document and version it was derived from.
@@ -25,7 +25,7 @@ Every important claim has exactly one authoritative origin. All other representa
 
 Every operational change — every Move, Add, Change, Deletion, and Reset — travels five clauses. An operation that skips one is unauthorized by construction:
 
-![MACD-R Lifecycle](images/macdr-lifecycle.svg)
+![Every Move, Add, Change, Deletion and Reset travels five clauses, in order.](images/diagrams/principles/svg/principles-02-macdr-clauses.svg){fig-alt="Five cards left to right: 1 originates from divergence between the source of truth and the estate; 2 authorized from the authority model; 3 least privilege, a time-boxed role activated just in time; 4 closes with provenance (verification payload, timestamp, checker identity); 5 emits evidence into the continuous-monitoring stream automatically."}
 
 1. **It originates with the single source of truth.** Work is created by divergence between the source of truth and the estate.
 2. **It carries an authoritative authorization.** The approval resolves from the authority model, not from whoever is nearby.
@@ -160,7 +160,7 @@ Three related but distinct programs:
 
 The drift engine does not believe the assumption that the HR system and the directory still agree. It re-checks on a schedule and emits a structured finding when they do not.
 
-![Drift Detection Loop](images/drift-loop.svg)
+![The six-phase drift loop and the four categories of finding.](images/diagrams/principles/svg/principles-11-drift-loop.svg){fig-alt="A row of six phases, Snapshot, Compare, Classify, Alert, Remediate, Verify, with a dashed arrow from Verify back to Snapshot. Below, a table: Format (typed value fails its pattern; critical, no auto-fix, halts the pass); Value (value not in the enumeration; high, sometimes auto-fixed); Orphan (value with no matching principals; medium, flag only); Phantom (principal carries a deprecated value; medium, reassign when a successor exists)."}
 
 **Six-phase loop:** Snapshot → Compare → Classify → Alert → Remediate → Verify.
 
