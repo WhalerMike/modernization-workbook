@@ -1,5 +1,8 @@
 project:
   type: website
+  # Rebuilds _sitemap-tree.md (included by sitemap.qmd) from the pages
+  # about to be rendered, so the Site Map always matches the site.
+  pre-render: scripts/generate_sitemap.py
   output-dir: _site
   render:
     - "*.qmd"
@@ -62,6 +65,8 @@ website:
             text: "Client-Server to Hybrid-Cloud"
       - href: docs/whitepapers/README.md
         text: "Whitepapers"
+      - href: sitemap.qmd
+        text: "Site Map"
     right:
       - href: https://github.com/WhalerMike/modernization-workbook
         text: "GitHub"

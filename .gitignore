@@ -1,0 +1,7 @@
+/.quarto/
+/_site/
+/_docx/
+# generated at build time by scripts/generate_sitemap.py
+/_sitemap-tree.md
+
+**/*.quarto_ipynb
