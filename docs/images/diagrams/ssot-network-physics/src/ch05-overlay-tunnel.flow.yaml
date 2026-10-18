@@ -1,0 +1,17 @@
+# Chapter 05 (proposed direction) — a flat LAN discards the edge device's
+# context; an application-aware overlay with leased, token-bound tunnels uses it.
+rankdir: TB
+graph: {nodesep: 0.4, ranksep: 0.4}
+nodes:
+  dev: {tone: slate, width: 300, title: "Edge device", body: ["=Emits identity, posture and application context"], size: 12}
+  flat: {tone: red, width: 250, tag: "Today", title: "Flat Layer-3/4 LAN", body: ["No local breakout: traffic hairpins through the retiring central perimeter", "No identity-aware routing: every flow treated alike", "Session trust: authorize once, ride for hours; a hijack inherits it", "Result: transport drift the program can't explain"], size: 12}
+  tun: {tone: blue, width: 250, tag: "Proposed", title: "Application-aware overlay", body: ["OverlayTunnel is leased, not opened", "Carries identity, application, posture, location, token, lease, certificate chain", "Lease bounded by a short-lived, audience-scoped token"], size: 12}
+  ev: {tone: green, width: 250, title: "The path becomes evidence", body: ["Local breakout", "Identity-aware routing", "Per-intent authorization"], size: 12}
+  lane: {tone: violet, width: 540, title: "Lane discipline", body: ["=The program observes, reconciles and emits evidence; it does not route packets or terminate tunnels. The agency runs its own SASE / SD-WAN fabric."], size: 12}
+edges:
+  - [dev, flat, {tone: red, label: "context discarded"}]
+  - [dev, tun, {tone: blue, label: "context used"}]
+  - [tun, ev, {tone: blue}]
+  - [ev, lane, {style: invis}]
+order:
+  - [flat, tun]

@@ -71,7 +71,7 @@ so observed propagation alone is typically well above these figures before any
 congestion is added. Optimization can claw back the routing excess (Chapter 4);
 it cannot go below the straight-line floor.
 
-![Propagation floor versus addressable gap for four representative paths — the floor is immovable; optimization operates only in the gap](../images/ssot-network-physics/ssot-network-physics-cpt03-diagram-01-propagation-latency-floor.svg){#fig-ssot-cpt03-diagram-01 fig-alt="Blueprint stacked bar chart with four path columns: Metro 50km, Cross-Region 1000km, NY to London 5600km, NY to Singapore 15300km. Each bar has a red base segment for the immovable propagation floor and a teal upper segment for the addressable gap. A red dashed horizontal line marks the propagation floor. White background, teal and red palette." width="100%"}
+![Observed latency is an immovable propagation floor plus an addressable gap; the floors for four paths.](../images/diagrams/ssot-network-physics/svg/ch03-propagation-floor.svg){fig-alt="Observed round-trip time splits into a red Propagation delay card (about 5 microseconds per km, cannot be reduced) and a green Everything else card (queueing, congestion, jitter, loss, non-geodesic routing, often 2 to 10 times the floor). A table lists one-way and round-trip floors: metro 50 km 0.25 and 0.5 ms; cross-region 1,000 km 5 and 10 ms; New York to London 28 and 56 ms; New York to Singapore 77 and 153 ms; real routes run 1.5 to 3 times the distance."}
 
 ## Why strong consistency is a latency problem, not a bandwidth one
 
