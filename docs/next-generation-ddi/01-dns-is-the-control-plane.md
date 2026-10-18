@@ -24,7 +24,7 @@ lifecycle_review: 2027-01-01
 
 **Problem.** DNS has quietly become the application surface, the security enforcement plane, and the PKI and identity substrate of the hybrid multi-cloud enterprise. Most agencies still run it as a commodity utility across as many as five independent platforms: Active Directory DNS or an on-premises DDI grid, AWS Route 53, Azure DNS and Azure Private DNS, Google Cloud DNS, and VMware NSX. The result is split-brain DNS that breaks private connectivity, SaaS endpoint selection, certificate trust and Layer 7 Zero Trust policy at once. It surfaces as certificate errors and access denials, rarely as DNS errors.
 
-**Solution.** One authoritative DDI policy plane that propagates DNS, DHCP and IPAM state consistently to every resolution surface, with edge interception (for example the redirect-dns data policy in Cisco Catalyst SD-WAN) pointed at resolvers under agency control rather than around them. This is an architectural requirement, not a product. Enterprise DDI platforms, and cloud-native resolvers managed as code, can all be evaluated against it (Chapter 11). As one concrete data point, Infoblox Government Cloud, which runs in AWS GovCloud (US) and holds a FedRAMP Moderate authorization, added its Universal DDI management service to that authorized offering in July 2026.[^c01-1]
+**Solution.** One authoritative DDI policy plane that propagates DNS, DHCP and IPAM state consistently to every resolution surface, with edge interception (for example the redirect-dns data policy in Cisco Catalyst SD-WAN) pointed at resolvers under agency control rather than around them. This is an architectural requirement, not a product. Enterprise DDI platforms, and cloud-native resolvers managed as code, can all be evaluated against it (Chapter 11). As one concrete data point, Infoblox Government Cloud, which runs in AWS GovCloud (US) and holds a FedRAMP Moderate authorization, added its Universal DDI management service to that authorized offering in July 2026.[^c01-fedramp][^c01-ibxpr]
 
 **Ask.** Authorize the architecture decision to operate a single authoritative DDI policy plane. Assign an owner (typically the enterprise architecture or network operations lead) to complete the five configuration decisions in Chapter 08 within 90 days and report residual risk to the authorizing official.
 
@@ -40,7 +40,7 @@ DNS fragmentation across independent platforms produces split-brain DNS: the sam
 
 ## DNS in the Modern Hybrid Multi-Cloud Enterprise
 
-DNS was specified in 1983 (RFC 882 and 883) and redefined in 1987 (RFC 1034 and 1035) to map hostnames to addresses in a distributed, hierarchical database. In a hybrid multi-cloud agency it now also publishes private endpoint addresses, selects public SaaS front doors, enforces security policy, supports certificate validation, identifies services for Zero Trust policy and, through wildcard namespaces, defines the application surface.
+DNS was specified in 1983 (RFC 882 and 883) and redefined in 1987 (RFC 1034 and 1035)[^c01-rfc882] to map hostnames to addresses in a distributed, hierarchical database. In a hybrid multi-cloud agency it now also publishes private endpoint addresses, selects public SaaS front doors, enforces security policy, supports certificate validation, identifies services for Zero Trust policy and, through wildcard namespaces, defines the application surface.
 
 ### Three DNS Perspectives Under a Single Control Plane
 
@@ -58,11 +58,14 @@ The typical agency landscape spans on-premises AD DNS or a DDI grid; Route 53 pu
 
 ![Enterprise IPAM is the address-layer source of truth for DHCP, cloud address managers, DNS records and the asset inventory.](../images/diagrams/next-generation-ddi/svg/ch01-ipam-source-of-truth.svg){fig-alt="DHCP servers and cloud address managers feed an enterprise IPAM, which keeps DNS records in step and supplies the address layer of the asset inventory."}
 
-A central IPAM is the authoritative record of the address plan, reservations and ownership across on-premises and cloud address space, and it is what prevents overlaps. DHCP lease data and dynamic DNS updates keep address and name records in step through each record's lifecycle. Existing Microsoft DHCP servers can be discovered and brought under the same inventory during transition. This is also the address layer of the continuous asset inventory that Zero Trust architectures depend on.
+A central IPAM is the authoritative record of the address plan, reservations and ownership across on-premises and cloud address space, and it is what prevents overlaps. DHCP lease data and dynamic DNS updates keep address and name records in step through each record's lifecycle. Existing Microsoft DHCP servers can be discovered and brought under the same inventory during transition. This is also the address layer of the continuous asset inventory that Zero Trust architectures depend on.[^c01-ztmm]
 
 ---
 
 **Previous:** [Applicability](00-applicability.md)  
 **Next:** [Chapter 02 — Split-Brain DNS: The Structural Problem](02-split-brain-dns.md)
 
-[^c01-1]: Infoblox, "Infoblox Government Cloud Achieves FedRAMP Moderate Certification, Bringing Modern DDI and Asset Visibility to Federal Agencies," press release, July 22, 2026. <https://www.infoblox.com/news/news-events/press-releases/infoblox-government-cloud-achieves-fedramp-moderate-certification-bringing-modern-ddi-and-asset-visibility-to-federal-agencies/>. The FedRAMP Marketplace lists Infoblox Government Cloud (package FR2017257053) as authorized at Moderate since December 15, 2022: <https://www.fedramp.gov/marketplace/products/FR2017257053/>.
+[^c01-fedramp]: FedRAMP Marketplace, Infoblox Government Cloud (package FR2017257053), authorized at Moderate since December 15, 2022. <https://www.fedramp.gov/marketplace/products/FR2017257053/>
+[^c01-ibxpr]: **Third-party source (vendor).** Infoblox, "Infoblox Government Cloud Achieves FedRAMP Moderate Certification, Bringing Modern DDI and Asset Visibility to Federal Agencies," press release, July 22, 2026. <https://www.infoblox.com/news/news-events/press-releases/infoblox-government-cloud-achieves-fedramp-moderate-certification-bringing-modern-ddi-and-asset-visibility-to-federal-agencies/>
+[^c01-rfc882]: IETF RFC 882, *Domain Names — Concepts and Facilities*, November 1983; superseded by RFC 1034 and RFC 1035 (November 1987). <https://www.rfc-editor.org/rfc/rfc882>; <https://www.rfc-editor.org/rfc/rfc1034>; <https://www.rfc-editor.org/rfc/rfc1035>
+[^c01-ztmm]: CISA, *Zero Trust Maturity Model*, Version 2.0. <https://www.cisa.gov/zero-trust-maturity-model>

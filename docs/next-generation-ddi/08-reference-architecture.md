@@ -24,7 +24,7 @@ lifecycle_review: 2027-01-01
 
 ![Reference architecture: a single authoritative DDI policy plane and the five decisions.](../images/diagrams/next-generation-ddi/svg/ch08-reference-architecture.svg){fig-alt="A branch client's query passes the SD-WAN redirect-dns edge (Decision 1) to an agency-controlled resolver that is the first hop under agency policy (Decision 2), then to the DDI policy plane holding policy, RPZ, DNSSEC, IPAM and conditional forwarding (Decision 3), and on to per-cloud private zones. AD DNS is inventoried before decommissioning (Decision 4), and OCSP and CRL endpoints resolve from every origin (Decision 5)."}
 
-The end-to-end resolution flow runs from the SD-WAN branch edge, through a network-addressable agency-controlled resolver, into the DDI policy plane (policy, response policy zones, DNSSEC, IPAM) and on to per-cloud private zones and authoritative services. Internet-bound recursion leaves through CISA Protective DNS. Five decisions carry almost all of the operational risk:
+The end-to-end resolution flow runs from the SD-WAN branch edge, through a network-addressable agency-controlled resolver, into the DDI policy plane (policy, response policy zones, DNSSEC, IPAM) and on to per-cloud private zones and authoritative services. Internet-bound recursion leaves through CISA Protective DNS.[^c08-cisapdns] Five decisions carry almost all of the operational risk:
 
 - **Decision 1 — the redirect-dns destination.** It must be a network-addressable resolver under agency control (a DDI resolver or forwarding proxy at the branch or in a regional hub), never a client-side loopback stub such as an endpoint agent listening on 127.0.0.1, which the edge cannot reach.
 - **Decision 2 — forwarding chain order.** Any additional resolver, such as a SASE provider's DNS service, must be a forwarding target of the agency-controlled resolver, never the redirect-dns target. The agency resolver is always the first hop under agency policy control.
@@ -55,3 +55,5 @@ Agencies that already copy DNS records into each cloud provider should change th
 
 **Previous:** [Chapter 07 — Cloud Private Endpoints, SDN and IPAM Consistency](07-cloud-private-endpoints-and-ipam.md)  
 **Next:** [Chapter 09 — The Migration Sequence](09-migration-sequence.md)
+
+[^c08-cisapdns]: CISA, Protective Domain Name System (DNS) Resolver service. <https://www.cisa.gov/resources-tools/services/protective-domain-name-system-dns-resolver>

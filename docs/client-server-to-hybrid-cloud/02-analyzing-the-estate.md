@@ -2,6 +2,8 @@
 
 **Forest discovery, GPO inventory, DNS/DHCP scraping, Kerberos SPN audit, certificate-services analysis — read-only, least-privilege, provenance-bound**
 
+> **Dependency chain:** **Inventory** → Plan → Identity → Policy → Network services → Devices and servers → Access plane → Retire AD DS → Prove steady state
+
 ## The assessment discipline
 
 ![Diagram](../images/cshc/analysis-pipeline.svg)
@@ -144,6 +146,12 @@ The output of this chapter is the input to the next. The transformation engine t
 
 Assessment and planning are deliberately separate steps. An assessment without a plan is a report; a plan without an assessment is a guess. Only together do they produce governed modernization.
 
+
+## Key takeaways
+
+1. Nothing is retired until it has been inventoried, read-only, across all eleven categories.
+2. Every assessment run carries provenance: who, when, against what, with which rights.
+3. The assessment output is the only input the planning step accepts.
 
 ## Authoritative references
 
