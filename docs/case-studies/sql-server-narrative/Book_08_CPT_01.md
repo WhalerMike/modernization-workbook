@@ -28,6 +28,22 @@ The same AD dependency that must be removed from SQL Server's authentication lay
 
 The LDAP-dependent-application migration plan, accepted 2026-05-13, provides the four-class taxonomy for categorizing upstream applications by modernization capability, in a strict preference order: Class 3 (OIDC) preferred, then Class 2 (SAML), then Class 1 (App Proxy), then Class 4 (Entra Domain Services) as the last resort. The application-audit script (`Get-LDAPBindAccountInventory.ps1`) is the discovery instrument that produces the per-application classification data this chapter depends on.
 
+## Two Axes: User Sign-In and the Database Connection
+
+The four classes describe only one axis: how users authenticate to the application. The SQL connection is a second, independent axis, and an application's place on it is set by evidence, not by its class:
+
+- **Driver version and Entra modes.** Does the application's database driver, at the version deployed, support the Entra authentication mode it needs?
+- **Token acquisition and refresh.** Can it be configured to use a managed identity or service principal, or must its code acquire a token and refresh it before expiry?
+- **Connection pooling.** Does pooling keep working when connections use per-identity tokens?
+- **Vendor support.** For commercial software, does the vendor support Entra authentication to SQL Server, and in which release?
+- **Client platform.** Does the operating system or runtime the application runs on offer an Entra-capable driver?
+
+These answers place each application in one of four database-axis columns: **A** — configuration only (connection-string change); **B** — code change; **C** — vendor-dependent; **D** — no Entra path today. Reading the two axes together gives the outcome for the host instance:
+
+![Where an application lands on both axes, and what that means for its host instance.](../../images/sql-server/diagrams/svg/book-08-ch01-two-axis-matrix.svg){fig-alt="Matrix with user sign-in class as rows (OIDC, SAML, App Proxy, Entra Domain Services) and database-connection capability as columns (configuration only, code change, vendor-dependent, no Entra path). OIDC and SAML with configuration-only move now; code change is scheduled; vendor-dependent gets a dated exception; no Entra path means exception or retire. Entra Domain Services blocks the instance in every column."}
+
+The application audit collects the user-axis data; the database-axis data comes from the driver inventory, the code owner and the vendor. Every cell outside A carries an owner, an effort band and a dated exception in the exception registry.
+
 ## Class 1 — App Proxy: Cannot Be Modernized Directly
 
 Class 1 applications cannot modify their authentication mechanism. They bind to LDAP for user authentication, and the dependency is architectural — embedded in unmaintainable code, supplied by a vendor with no modern auth option, or frozen by a regulatory certification that prevents code modification. For SQL Server, Class 1 applications typically connect using an AD service-account credential stored in a connection string or configuration file.
@@ -61,5 +77,7 @@ It also captures the authentication mechanism for that SQL connection (Windows I
 That record is the input to the LDAP-dependent-application migration plan triage and to the instance-level migration planning in Book 05. The two audit scripts must be correlated to produce a complete picture: `the authentication audit script` enumerates SQL Server instances, and the application-audit script enumerates the upstream applications. Only when both are joined does each SQL Server instance reveal its full authentication chain — every application that depends on it, and the class each one falls into.
 
 ::: {.callout-note title="What Book 08 establishes — Chapter 1"}
-SQL Server's authentication transformation is incomplete until the upstream applications that consume it are addressed as a full chain — user to application to database. The LDAP-dependent-application migration plan's four-class taxonomy ranks those applications by modernization capability: Class 3 (OIDC, full LDAP elimination) preferred, then Class 2 (SAML, Entra as IdP per the SAML identity-provider standard), then Class 1 (App Proxy, cannot modernize directly), then Class 4 (Entra Domain Services, last resort, which preserves the AD dependency and blocks the host instance from the Entra-exclusive posture). Every class carries two independent tracks — user authentication and the SQL connection — and the application-audit script produces the per-application classification data that drives the triage.
+1. The transformation is incomplete until each application chain — user to application to database — is addressed.
+2. Each application is placed on two axes: how users authenticate to it, and how it authenticates to the database.
+3. The application audit supplies the data for both axes, and an application stuck on Entra Domain Services keeps its host instance off the Entra-exclusive posture.
 :::

@@ -45,6 +45,8 @@ Without Arc, the SQL Server engine has no cloud-native identity; without that id
 [^b04-mi-2025]: Microsoft Learn, [Managed identity overview — SQL Server enabled by Azure Arc](https://learn.microsoft.com/en-us/sql/sql-server/azure-arc/managed-identity?view=sql-server-ver17).
 [^b04-entra-sql]: Microsoft Learn, [Microsoft Entra authentication for SQL Server overview](https://learn.microsoft.com/en-us/sql/relational-databases/security/authentication-access/azure-ad-authentication-sql-server-overview?view=sql-server-ver17).
 
+**Place in the [dependency chain](series-overview.md#the-dependency-chain):** Step 4 — Enable identity substrate.
+
 ## Authoritative references
 
 Checked 19 October 2026.

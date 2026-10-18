@@ -1,0 +1,16 @@
+# Book 08, Chapter 1 — the two-axis placement: how users authenticate to the
+# application (rows) against how the application can authenticate to SQL
+# Server (columns). Each cell is the outcome for the host instance.
+rankdir: TB
+nodes:
+  t:
+    kind: table
+    tone: slate
+    columns: ["User sign-in ↓ · Database connection →", "A · Config-only", "B · Code change", "C · Vendor-dependent", "D · No Entra path"]
+    widths: [170, 135, 135, 135, 135]
+    rows:
+      - [{text: "Class 3 · OIDC", tone: green}, {text: "Move now", tone: green}, {text: "Schedule the code change", tone: blue}, {text: "Vendor roadmap, dated exception", tone: amber}, {text: "Exception or retire", tone: red}]
+      - [{text: "Class 2 · SAML", tone: blue}, {text: "Move now", tone: green}, {text: "Schedule the code change", tone: blue}, {text: "Vendor roadmap, dated exception", tone: amber}, {text: "Exception or retire", tone: red}]
+      - [{text: "Class 1 · App Proxy", tone: amber}, {text: "Move the connection; user track via proxy", tone: blue}, {text: "Code change, if the code can change", tone: amber}, {text: "Dated exception", tone: amber}, {text: "Exception or retire", tone: red}]
+      - [{text: "Class 4 · Entra Domain Services", tone: red}, {text: "Connection moves; instance still blocked by the user track", tone: amber}, {text: "Instance blocked", tone: red}, {text: "Instance blocked", tone: red}, {text: "Instance blocked", tone: red}]
+      - [{text: "Database axis is set by", tone: plain}, {span: 4, text: "Driver version and Entra modes · token acquisition and refresh code · connection pooling per identity · vendor support statement · client platform", tone: plain}]

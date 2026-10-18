@@ -95,7 +95,9 @@ Completing the access-control migration delivers the architectural dividend. Onc
 None of these controls reach a Windows-backed or SQL-authenticated login, which is why the perimeter is binary. A single surviving Windows login is a path around every policy. Compensating controls such as privileged-access workstations, bastion hosts, segmentation, and credential vaulting are legitimate while the migration is in progress, but none of them evaluate identity, device, and risk on every connection. Book 05 and the SQL Server engine-authentication decision therefore treat each surviving legacy login as a documented, sunset-dated exception rather than a co-equal end state.
 
 ::: {.callout-note title="What Book 07 establishes — Chapter 1"}
-An Entra security group reaches SQL Server as a type-X (`EXTERNAL_GROUP`) login, becomes a database user, and joins a database role. Authorization inside the engine is unchanged. Each group grants exactly one role, on one database, in one environment. That makes access reviewable, revocation precise, and dynamic rules writable. The group model stays flat, because dynamic groups can't contain groups, the `memberOf` preview ends on 3 November 2026, role-assignable groups can't nest, and nested evaluation for SQL Server group logins is undocumented. Membership changes reach the engine only after rule processing, token expiry, and session or pool turnover, so urgent removal needs its own runbook. Organization-derived AD groups become dynamic groups, explicit role groups become assigned groups, distribution lists become mail-only groups, and mail-enabled security groups split in two. With every login Entra-backed, Conditional Access becomes the binary outer perimeter.
+1. An Entra group reaches SQL Server as a type-X login and grants exactly one role, on one database, in one environment.
+2. The group model stays flat, and membership changes reach the engine only after rule processing, token expiry and session turnover, so urgent removal needs its own runbook.
+3. Each kind of AD group maps to a specific Entra replacement, and Conditional Access then sits in front of every login.
 :::
 
 ## Authoritative references

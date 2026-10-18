@@ -55,7 +55,9 @@ The dependency map is also the bridge to Book 08. The upstream applications that
 No single lens produces the rationalization decision. An instance that is lightly utilized but load-bearing for a quarterly process is not a retirement candidate. An out-of-support instance with heavy utilization is an urgent consolidation target, not a leave-alone. A zombie database on an otherwise healthy instance is a local retirement that shrinks the migration surface without touching the host. The three lenses together produce, for each instance and each database, a defensible judgment — and that judgment is the input to the decision Chapter 4 records.
 
 ::: {.callout-note title="What Book 02 establishes — Chapter 3"}
-Rationalization applies three lenses to the inventory: utilization and zombie detection (which retires idle instances and zombie databases, shrinking the migration surface), version and end-of-life posture (which interacts directly with the SQL Server 2022 requirement for Entra ID logins and usually argues for consolidation over in-place upgrade), and dependency mapping (which reveals the linked-server, replication, and application relationships that determine what can actually be consolidated).[^b02c03-entra-sql] The three together produce the per-instance judgment that drives the retain / consolidate / retire decision.
+1. Rationalization applies three lenses — utilization, version and end-of-life posture, and dependencies — to every inventoried instance.[^b02c03-entra-sql]
+2. Idle instances and zombie databases are retired, which shrinks the migration surface.
+3. The three lenses together produce the per-instance retain, consolidate or retire judgment.
 :::
 
 [^b02c03-create-login]: Microsoft Learn, [CREATE LOGIN (Transact-SQL)](https://learn.microsoft.com/en-us/sql/t-sql/statements/create-login-transact-sql?view=sql-server-ver17).

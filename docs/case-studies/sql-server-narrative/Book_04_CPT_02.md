@@ -55,7 +55,9 @@ A successful token response confirms three things at once: that the Managed Iden
 The authentication-audit script's Arc-eligibility classification is updated on each run to reflect the current Managed Identity availability state, so the per-instance compliance record for the instance reflects this verification outcome in near-real-time.
 
 ::: {.callout-note title="What Book 04 establishes — Chapter 2"}
-Arc deployment for a SQL Server host proceeds in a strict order: first verify outbound HTTPS connectivity to the Arc endpoints through the program's approved GCC-Moderate egress proxy, then install the Connected Machine agent, then the Azure extension for SQL Server — a distinct installation that validates the SQL Server 2022+ version and registers the instance with the Arc SQL resource plane — then enable Entra authentication on the instance (an app registration and Key Vault certificate on SQL Server 2022, the primary managed identity on SQL Server 2025), and finally verify: the agent returns a token from its local endpoint (`localhost:40342`), a test Entra login connects, and the next audit run shows Category 1.[^b04c02-appreg-2022][^b04c02-arc-mi-endpoint] That verification is the gate that authorizes login migration; a failure is an enrollment problem to resolve before migration begins. The authentication-audit script drives prioritization and records the verification outcome in near-real-time.
+1. Enrollment runs in a strict order: egress connectivity, the Connected Machine agent, the SQL extension, then Entra authentication on the instance.
+2. Verification — a token from the local endpoint,[^b04c02-arc-mi-endpoint] a test Entra login, and Category 1 on the next audit — is the gate for login migration.[^b04c02-appreg-2022]
+3. A failed verification is an enrollment problem, resolved before migration starts.
 :::
 
 [^b04c02-arc-sql]: Microsoft Learn, [Overview — SQL Server enabled by Azure Arc](https://learn.microsoft.com/en-us/sql/sql-server/azure-arc/overview?view=sql-server-ver17).

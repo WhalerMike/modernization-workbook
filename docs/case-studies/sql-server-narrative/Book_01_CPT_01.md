@@ -77,7 +77,9 @@ In a fully domain-joined world with a working KDC, correctly registered SPNs, an
 It was not a security compromise. It was the application of the existing, well-understood Windows security substrate to the SQL Server authentication problem, and for the world that substrate was designed for, it was the right answer. The problem is not the design. The problem is that the world it was designed for — every client domain-joined, every server domain-joined, the perimeter as the security boundary, no cloud identity plane — no longer exists and cannot be made to exist again.
 
 ::: {.callout-note title="What Book 01 establishes — Chapter 1"}
-SQL Server Windows Authentication delegates entirely to the Windows security subsystem: Kerberos via SSPI when an SPN is registered, silent NTLM fallback when it is not. The engine process and the `sa` account are both anchored to authorities — Active Directory and `master` respectively — that the Federal Modernization Program removes or renders invisible to the Azure identity plane. None of this was a mistake. It was correct engineering for a fully domain-joined world that no longer exists.
+1. SQL Server Windows Authentication delegates to the Windows security subsystem: Kerberos through SSPI when an SPN is registered, silent NTLM fallback when it is not.
+2. The engine's process identity and the `sa` account are anchored to authorities — Active Directory and `master` — that the program removes or that the Azure identity plane can't see.
+3. None of this was a mistake; it was correct engineering for a fully domain-joined world that no longer exists.
 :::
 
 [^b01c01-spn]: Microsoft Learn, [Register a Service Principal Name for Kerberos connections](https://learn.microsoft.com/en-us/sql/database-engine/configure-windows/register-a-service-principal-name-for-kerberos-connections?view=sql-server-ver17).

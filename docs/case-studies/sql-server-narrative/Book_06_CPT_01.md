@@ -83,7 +83,9 @@ An application host that has been domain-unjoined and whose connection string us
 [^b06c01-ntlm-faq]: Microsoft Tech Community, [Retiring NTLM: frequently asked questions](https://techcommunity.microsoft.com/blog/windows-itpro-blog/retiring-ntlm-frequently-asked-questions/4550522).
 
 ::: {.callout-note title="What Book 06 establishes — Chapter 1"}
-NTLM is a protocol, not a setting, so there is no single switch that removes it from SQL Server connections. NTLMv1 is blocked early — in the Kerberos/NTLM-elimination program's Phase B, through the LAN Manager Authentication Level policy — and should never appear in a modern estate; NTLMv2 is restricted to exception groups in Phase B and fully blocked at the enforcement phase cutover of 2027-04-01. Four connection patterns generate NTLM at the SQL layer — a missing or incorrect SPN, cross-site connections where the KDC is unreachable, linked-server passthrough authentication, and non-domain-joined application hosts created by the Arc non-domain-join server migration — and each must be detected before it can be remediated.
+1. NTLM is a protocol, not a setting; no single switch removes it from SQL Server connections.
+2. NTLMv1 is blocked early; NTLMv2 is restricted to exception groups, then blocked at the program's 2027-04-01 cutover.
+3. Four patterns generate NTLM at the SQL layer — missing SPNs, unreachable KDCs, linked-server passthrough, and non-domain-joined hosts — and each must be found before it can be fixed.
 :::
 
 [^b06c01-spn]: Microsoft Learn, [Register a Service Principal Name for Kerberos connections](https://learn.microsoft.com/en-us/sql/database-engine/configure-windows/register-a-service-principal-name-for-kerberos-connections?view=sql-server-ver17).

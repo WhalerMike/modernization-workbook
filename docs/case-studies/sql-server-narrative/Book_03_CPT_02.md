@@ -71,7 +71,9 @@ The two capabilities are related — both are part of the SQL Server authenticat
 This sequencing point must be explicit in every instance of audit output that classifies a server as "not yet domain-unjoined." The correct interpretation is not "SQL Server migration blocked" but "OS-level Entra login not yet available; SQL engine migration can proceed."
 
 ::: {.callout-note title="What Book 03 establishes — Chapter 2"}
-The three Arc-eligibility categories map directly to triage actions: a Category 1 instance migrates now from its login inventory, a Category 2 instance is prioritized for Arc deployment and then re-classifies to Category 1, and a Category 3 instance must be upgraded to SQL Server 2022 or formally excepted against the 2027-04-01 NTLM deadline. The decisive clarification is the Layer 1 versus Layer 2 distinction: SQL engine Entra authentication depends only on Arc, the Azure extension, and SQL Server 2022 — it can proceed on a still-domain-joined host, independent of the Arc non-domain-join requirement's OS-level Entra login transformation.
+1. Category 1 migrates now; Category 2 gets Arc and becomes Category 1; Category 3 upgrades or carries a dated exception.
+2. SQL-engine Entra authentication (Layer 1) needs only Arc, the SQL extension and SQL Server 2022 or later.
+3. Layer 1 proceeds on domain-joined hosts and never waits for OS-level Entra login (Layer 2).
 :::
 
 [^b03c02-arc-sql]: Microsoft Learn, [Overview — SQL Server enabled by Azure Arc](https://learn.microsoft.com/en-us/sql/sql-server/azure-arc/overview?view=sql-server-ver17).
