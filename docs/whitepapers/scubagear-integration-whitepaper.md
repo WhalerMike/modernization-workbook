@@ -303,7 +303,7 @@ through the four-stage pipeline named in §3
 1. **Rego policy result.** A ScubaGear run evaluates baseline policy
  `MS.AAD.1.1v1` — "Legacy authentication SHALL be blocked" (mapped to
  NIST control `IA-2(1)` per the canonical 143-policy table in
- [`FMP_002`](../canonical-specs/002_SCuBA_Technical_Specification_v1.0.md)).
+ `FMP_002`).
  Say the OPA/Rego evaluator returns `Result: fail` because a mail
  protocol in the tenant still permits basic authentication.
 2. **Canonical claim.** The adapter wraps that raw result in the

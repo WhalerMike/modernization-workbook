@@ -26,7 +26,7 @@ passing the conformance gate.
 ## The dual-axis taxonomy (FMP_003)
 
 Every adapter declares two coordinates, defined in
-[`FMP_003`](../canonical-specs/003_Adapter_Segmentation_Overview_v1.0.md):
+`FMP_003`:
 
 - **`class`** — the *operational* axis: `modernization` (change-making) or
   `conformance` (read-only).
