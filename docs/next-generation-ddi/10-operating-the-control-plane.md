@@ -10,6 +10,7 @@ lifecycle: active
 tiers_adopted: []
 lifecycle_review: 2027-01-01
 ---
+
 # Chapter 10 — Operating the Control Plane: Delegation, Automation and Evidence
 
 *Divisional autonomy, ITSM integration, certificate automation and compliance evidence.*
@@ -19,216 +20,84 @@ lifecycle_review: 2027-01-01
 **[next-generation-ddi-ch10-bundle.docx](../../downloads/next-generation-ddi-ch10-bundle.docx)**: this chapter as a Word document, with its figures. The [whole book](../../downloads/next-generation-ddi-bundle.docx) is also available.
 :::
 
-## Multi-Division Governance, ITSM Integration and Certificate Automation
+A single policy plane only works if the divisions that own their own networks can still operate them. This chapter sets out what the plane must support for delegated administration, automation, ITSM and identity integration, certificate automation and compliance evidence. Where it names products, they illustrate the requirement; equivalent capabilities should be confirmed in current vendor documentation for any platform under evaluation.
 
-![Multi-Division Access Views and RBAC.](../images/ddi/figure-14.jpg){fig-alt="Multi-division governance."}
+## Delegated Administration Across Divisions
 
-Universal DDI is the control plane for DNS, DHCP, and IPAM. It supports
-delegated administration across organizational divisions, integrates
-with ITSM platforms such as ServiceNow, enables DNS-dependent
-certificate automation via API, and supplies the continuous telemetry
-and audit trails required for compliance.
+![Delegated administration: divisional autonomy, corporate visibility, one audit trail.](../images/diagrams/next-generation-ddi/svg/ch10-delegated-administration.svg){fig-alt="Corporate administrators have full visibility and policy over the whole estate. Division A and Division B each have a scope covering their own zones, IP spaces and DHCP scopes, with human roles (manager, operator, auditor) and scoped automation accounts. Everything feeds one audit trail."}
 
-### Delegated Administration Across Divisions (Access Views and RBAC)
+The policy plane should let corporate administrators keep full visibility while giving divisional teams scoped autonomy:
 
-Infoblox Universal DDI and the Infoblox Portal provide Access Views and
-role-based access control that allow corporate administrators to retain
-full visibility while granting divisional teams scoped autonomy.
+- Corporate administrators see and manage the entire estate.
+- Each divisional team is assigned a scope that limits it to the zones, IP spaces, address blocks, DHCP scopes and other objects that belong to the division, including zones synchronized from cloud DNS services. Child objects inherit their parent's scope.
+- Predefined roles cover DNS, DHCP and IPAM functions (for example manager, operator and auditor), and custom roles can combine granular create, read, update and delete permissions.
+- Divisional users and automation accounts cannot see or change objects outside their scope.
+- The result is fewer tickets and faster divisional change, with one authoritative control plane and a full audit trail for corporate oversight.
 
-- Corporate (root) administrators see and manage the entire estate.
+::: {.callout-note}
+## Illustrative implementation
+Infoblox Universal DDI implements this model as Access Views combined with role-based access control in the Infoblox Portal. Other enterprise DDI platforms provide comparable delegation models under different names.
+:::
 
-- Divisional teams are assigned Access Views that limit them to the
-  zones, IP spaces, address blocks, DHCP scopes, and objects that belong
-  to their division.
+## API and Automation
 
-- Supported objects that can be explicitly assigned to Access Views
-  include IP spaces, address blocks, DNS views, and DNS zones (including
-  those synchronized from Route 53, Azure DNS, Google Cloud DNS,
-  Cloudflare, Akamai, and Microsoft DNS). Child objects inherit the
-  Access View of their parent.
+Every object in the policy plane should be reachable through a documented API, so that infrastructure as code, ITSM workflows, certificate automation and CI pipelines all go through the same authority and the same audit trail:
 
-- Predefined roles cover DNS, DHCP, and IPAM functions (Manager,
-  Operator, Auditor, User variants). Custom roles can combine granular
-  create/read/update/delete permissions across services.
+- API coverage for IPAM, DHCP, DNS configuration and DNS data.
+- Non-interactive service accounts for automation, bound by the same role and scope restrictions as human users and unable to log in to the console.
+- A migration path for existing automation, so scripts written against the legacy grid keep working while authority moves (some platforms proxy legacy API calls through the new control plane).
+- Supported Terraform and Ansible integrations, so network and cloud teams can manage DDI objects in the same pipelines as the rest of their infrastructure.
 
-- Divisional users and service accounts cannot view or modify objects
-  outside their assigned Access Views. Corporate admins retain full
-  cross-division visibility.
+Divisions can then automate their own DDI operations through scoped service accounts, while corporate teams keep policy, audit and cross-estate visibility.
 
-- This model reduces ticket volume, improves operational speed for the
-  divisions, and maintains a single authoritative control plane with
-  full auditability for corporate oversight.
+## ITSM Integration
 
-### API Capabilities for Automation and Integration
+Integration with the agency's ITSM platform, commonly ServiceNow, should let change requests, catalog items and incidents drive or draw on authoritative DDI data rather than manual updates:
 
-Universal DDI exposes a RESTful API (base path /ddi/v1) documented via
-Swagger in the Infoblox Cloud Services Portal. It supports
-infrastructure-as-code, ITSM workflows, certificate automation, and
-continuous integration pipelines.
+- Synchronizing networks, IP addresses and devices into the CMDB, and continuously reconciling live network and cloud asset data against CMDB records to find missing, stale or misclassified configuration items.
+- Workflow actions to reserve and release IP addresses, register DNS records and manage DDI objects from change and catalog workflows.
+- Pushing correlated security events, such as Protective DNS blocks, into incident management.
 
-- The API covers IPAM, DHCP, DNS configuration, DNS data, DNS Traffic
-  Control, Anycast, and related objects.
+Enterprise DDI vendors publish their own ServiceNow integrations; confirm which of these functions each one covers.
 
-- Authentication uses API keys. Service API keys are intended for
-  non-interactive automation accounts and are bound by the same RBAC and
-  Access View restrictions as human users. Interactive user API keys are
-  also supported. Requests use the header Authorization: Token \<key\>.
+## Certificate Automation (ACME DNS-01)
 
-- WAPI Passthrough allows the cloud portal to securely proxy NIOS WAPI
-  calls to on-premises Grids, enabling existing automation to continue
-  during migration without rearchitecting scripts.
+DDI platforms generally do not provide full certificate lifecycle management. What they provide is the authoritative DNS control that automated issuance and renewal through ACME DNS-01 challenges depends on:
 
-- Official Terraform provider and Ansible modules consume these APIs.
-  ServiceNow Activity Packs and Ecosystem integrations also call the API
-  for IP reservation, DNS registration, and CMDB synchronization.
+- ACME clients and plug-ins (cert-manager webhooks, Posh-ACME, lego and similar) call the DDI API to create and remove the TXT records that DNS-01 validation needs.
+- Issuance and renewal can then be automated without exposing web servers, provided the automation account's permissions are scoped to the names it serves.
+- DNSSEC, CAA records and consistent private endpoint resolution (Chapters 06 and 07) remain prerequisites for trustworthy certificate validation after issuance.
+- Certificate inventory, multi-CA orchestration and post-issuance deployment still need a dedicated certificate lifecycle platform or process that uses the DNS control plane.
 
-- Service accounts cannot log into the portal UI; they exist solely for
-  API-driven automation under controlled permissions.
+## Identity Governance Integration
 
-These capabilities allow divisions to automate their own DDI operations
-(via scoped service accounts) while corporate teams retain policy,
-audit, and cross-estate visibility.
+Identity governance platforms such as SailPoint typically reach DDI through APIs rather than packaged connectors: a custom connector or workflow calls the DDI API directly, or the identity platform opens ITSM requests that in turn call DDI workflow actions. This supports joiner, mover and leaver automation for network resources (IP allocation, DNS registration), but expect custom development. Confirm whether a supported connector exists for the platforms in use.
 
-### ServiceNow Integration
+## Monitoring, Telemetry and Compliance Evidence
 
-Infoblox provides official Ecosystem integrations with ServiceNow that
-support CMDB accuracy, incident and change management, and workflow
-automation:
+The policy plane should produce the continuous telemetry and audit trail that FedRAMP, NIST and Zero Trust reporting require:
 
-- **Universal DDI Integration for ServiceNow Discovery** — synchronizes
-  networks, IP addresses, and devices into the ServiceNow CMDB and
-  supports discovery bootstrap.
-
-- **Universal Asset Insights for ServiceNow** — continuously reconciles
-  live network and cloud asset data against CMDB records, highlighting
-  missing, stale, or misclassified configuration items.
-
-- **NIOS DDI ServiceNow Spoke / Activity Packs** — enable ServiceNow
-  workflows to reserve/release IP addresses, register DNS records, and
-  manage DDI objects through pre-built activities.
-
-- **SOC Insights for ServiceNow** — pushes correlated security events
-  (for example from Protective DNS) into ServiceNow for incident
-  creation and enrichment.
-
-These integrations allow change requests, service catalog items, and
-incident workflows to drive or be informed by authoritative DDI data
-rather than manual updates.
-
-### Certificate Management Integration (DNS-01 / ACME)
-
-Infoblox does not ship a full Certificate Lifecycle Management product.
-It supplies the authoritative DNS control plane required for automated
-certificate issuance and renewal via DNS-01 challenges.
-
-- Third-party tools (cert-manager webhooks, Posh-ACME, lego, and
-  similar) use the Infoblox WAPI/REST API to create and remove the TXT
-  records needed for ACME DNS-01 validation.
-
-- This enables automated certificate issuance and renewal without
-  exposing web servers, provided the automation account has
-  appropriately scoped permissions (ideally limited via Access Views or
-  RBAC).
-
-- DNSSEC, CAA records, and consistent private-endpoint resolution
-  (covered earlier) remain prerequisites for trustworthy certificate
-  validation once the certificates are issued.
-
-- Full certificate inventory, multi-CA orchestration, and post-issuance
-  deployment still require a dedicated CLM platform or process that
-  consumes the DNS control plane Infoblox provides.
-
-### SailPoint (Identity Governance)
-
-No native Infoblox–SailPoint connector was identified in official
-documentation as of this writing. Integration is achievable through
-APIs:
-
-- Infoblox WAPI/REST can be called from a SailPoint custom connector,
-  IdentityIQ rule, or Identity Security Cloud transform or workflow.
-  There is no native SailPoint connector.
-
-- Alternatively, ServiceNow can act as an intermediary: SailPoint drives
-  identity workflows that open ServiceNow requests, which in turn call
-  Infoblox activities to allocate addresses or create DNS records.
-
-- This pattern supports joiner/mover/leaver automation for network
-  resources (IP allocation, DNS registration) but requires custom
-  development or professional services rather than an out-of-the-box
-  connector.
-
-### Continuous Reporting and Compliance Evidence
-
-Universal DDI and NIOS supply the continuous telemetry and audit trails
-required for FedRAMP, NIST, and Zero Trust reporting:
-
-- NIOS Reporting & Analytics (Splunk-based) provides 100+ preconfigured
-  and customizable reports covering DNS activity, DHCP leases, IPAM
-  inventory, discovery, and security events, with long-term retention.
-
-- Audit logs record who changed what, when, and from which interface
-  (UI, API, or workflow).
-
-- Universal Asset Insights supplies continuous discovery and CMDB
-  reconciliation data.
-
-- Query logs, RPZ/Protective DNS hits, and CDC exports feed SIEM/SOAR
-  platforms for continuous monitoring.
-
-- These artifacts directly support the evidence needs identified in the
-  control mapping (Chapter 03) and the sample evidence checklist at the end of this chapter.
-
-Together, Access Views, ServiceNow integration, API-driven certificate
-automation, and continuous reporting allow an agency to operate a single
-DDI control plane that is both centrally governed and divisionally
-operational, while producing the audit and inventory evidence required
-for authorization and continuous monitoring.
-
-## Monitoring, Telemetry, and Compliance Evidence
-
-Key evidence sources include:
-
-- DNS query logs (source, query name, response, policy action,
-  timestamp) for Protective DNS and incident response.
-
-- IPAM discovery and inventory reports for CM-8 asset accounting.
-
-- Configuration change and RBAC audit trails for AU-2/AU-6.
-
-- Resolution-path consistency metrics (percentage of queries answered by
-  the governed resolver).
-
+- DNS query logs (source, query name, response, policy action, timestamp) for Protective DNS, M-21-31 logging and incident response, exported to the SIEM and SOAR platforms.
+- Response policy and Protective DNS hit data.
+- IPAM discovery and inventory reports for CM-8 asset accounting, and continuous discovery data for CMDB reconciliation.
+- Configuration change and role audit trails (who changed what, when and through which interface) for AU-2 and AU-6.
+- Resolution-path consistency metrics: the percentage of queries answered by the governed resolver.
 - Stale record and dangling CNAME rates for hygiene reporting.
 
-These artifacts support continuous monitoring, FedRAMP evidence
-packages, and Zero Trust maturity assessments.
+These artifacts support the control mapping in Chapter 03, continuous monitoring, FedRAMP evidence packages and Zero Trust maturity assessments.
 
 ## Sample Evidence Checklist
 
-Use this checklist for program office or authorization package
-preparation:
+For a program office or an authorization package:
 
-- Documented redirect-dns targets for all branches (network-addressable
-  Infoblox resolvers only).
-
-- Forwarding chain order verified in running configuration
-  (agency-controlled resolver is the redirect-dns target; any additional
-  resolvers are forwarding targets of it).
-
-- AD DNS inventory completed and reconciled before any DC
-  decommissioning.
-
-- OCSP/CRL endpoints resolvable from on-premises, all CSPs, and
-  branches.
-
-- Protective DNS and encrypted DNS configuration evidence aligned with
-  M-22-09 and SP 800-81r3.
-
-- IPAM inventory and discovery reports covering hybrid address space.
-
+- Documented redirect-dns targets for every branch, all of them network-addressable agency-controlled resolvers.
+- Forwarding chain order verified in the running configuration: the agency-controlled resolver is the redirect-dns target, and any additional resolvers are its forwarding targets.
+- AD DNS inventory completed and reconciled before any domain controller is decommissioned.
+- OCSP and CRL endpoints resolvable from on-premises, every cloud and every branch.
+- Protective DNS and encrypted DNS configuration evidence aligned with M-22-09, CISA guidance and SP 800-81r3.
+- IPAM inventory and discovery reports covering the hybrid address space.
 - Query logs and policy audit trails retained for continuous monitoring.
-
-- Rogue DHCP detection and Option-6 consistency controls documented.
+- Rogue DHCP and router advertisement detection, and option 6 and RDNSS consistency controls, documented.
 
 ---
 

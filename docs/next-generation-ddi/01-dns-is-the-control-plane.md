@@ -10,6 +10,7 @@ lifecycle: active
 tiers_adopted: []
 lifecycle_review: 2027-01-01
 ---
+
 # Chapter 01 — DNS Is Now the Control Plane
 
 *Why DNS, DHCP and IPAM can no longer be run as a commodity utility.*
@@ -21,111 +22,47 @@ lifecycle_review: 2027-01-01
 
 ## Problem, Solution, Ask
 
-**Problem.** DNS has quietly become the application surface, the
-security enforcement plane, and the PKI and identity substrate of the
-hybrid multi-cloud enterprise — and agencies still run it as a commodity
-utility across five independent platforms (AD DNS/NIOS, Route 53, Azure
-Private DNS, Cloud DNS, NSX). The result is split-brain DNS that breaks
-private connectivity, SaaS endpoint selection, certificate trust, and
-Layer 7 zero-trust policy at once — surfacing as certificate errors and
-access denials, never as DNS errors.
+**Problem.** DNS has quietly become the application surface, the security enforcement plane, and the PKI and identity substrate of the hybrid multi-cloud enterprise. Most agencies still run it as a commodity utility across as many as five independent platforms: Active Directory DNS or an on-premises DDI grid, AWS Route 53, Azure DNS and Azure Private DNS, Google Cloud DNS, and VMware NSX. The result is split-brain DNS that breaks private connectivity, SaaS endpoint selection, certificate trust and Layer 7 Zero Trust policy at once. It surfaces as certificate errors and access denials, rarely as DNS errors.
 
-**Solution.** One authoritative DDI policy plane that propagates DNS,
-DHCP, and IPAM state consistently across all resolution surfaces, with
-edge interception (for example Cisco Catalyst SD-WAN redirect-dns)
-pointed at resolvers under agency control rather than around them. One
-implementation that has achieved FedRAMP Moderate authorization in AWS
-GovCloud is Infoblox Universal DDI Management (July 2026); other
-platforms should be evaluated against the same architectural
-requirements.[^c01-1]
+**Solution.** One authoritative DDI policy plane that propagates DNS, DHCP and IPAM state consistently to every resolution surface, with edge interception (for example the redirect-dns data policy in Cisco Catalyst SD-WAN) pointed at resolvers under agency control rather than around them. This is an architectural requirement, not a product. Enterprise DDI platforms, and cloud-native resolvers managed as code, can all be evaluated against it (Chapter 11). As one concrete data point, Infoblox Government Cloud, which runs in AWS GovCloud (US) and holds a FedRAMP Moderate authorization, added its Universal DDI management service to that authorized offering in July 2026.[^c01-1]
 
-**Ask.** Authorize the architecture decision to operate a single
-authoritative DDI policy plane. Assign an owner (typically the
-enterprise architecture or network operations lead) to complete the five
-configuration decisions within 90 days and report residual risk to the
-authorizing official.
+**Ask.** Authorize the architecture decision to operate a single authoritative DDI policy plane. Assign an owner (typically the enterprise architecture or network operations lead) to complete the five configuration decisions in Chapter 08 within 90 days and report residual risk to the authorizing official.
 
 ## For Decision Makers
 
-DNS fragmentation across five independent platforms produces split-brain
-DNS: the same query resolves to different answers depending on where it
-originates. That is no longer a lookup inconvenience; it breaks private
-connectivity, SaaS endpoint selection, certificate/PKI trust, and Layer
-7 zero trust policy simultaneously. A single authoritative DDI policy
-plane is the structural fix: one control plane that keeps DNS, DHCP, and
-IPAM consistent across all surfaces.
+DNS fragmentation across independent platforms produces split-brain DNS: the same query resolves to different answers depending on where it originates. That is no longer a lookup inconvenience. It breaks private connectivity, SaaS endpoint selection, certificate trust and FQDN-based Zero Trust policy at the same time. A single authoritative DDI policy plane is the structural fix.
 
-- **Split-brain DNS is structural, not a bug to patch.** Independent
-  per-CSP DNS systems diverge because they have no shared state.
-
-- **DNS is now a security and PKI dependency.** Certificate validation,
-  OCSP/CRL, token audience claims, and FQDN-based Zero Trust policy fail
-  silently under split-brain.
-
-- **Cisco Catalyst SD-WAN can silently bypass the Infoblox policy
-  plane.** The redirect-dns destination determines whether RPZ, DNSSEC,
-  and IPAM policy apply at all.
-
-- **Sovereign cloud (GCC Moderate/High/DoD) cannot use Microsoft INR.**
-  The DDI architecture is unaffected; INR is simply unavailable.
-
-- **Five configuration decisions carry the operational risk:**
-  redirect-dns target, forwarding chain order, per-CSP conditional
-  forwarding, AD DNS inventory before decommissioning, and OCSP/CRL
-  reachability.
+- **Split-brain DNS is structural, not a bug to patch.** Independent per-cloud DNS systems diverge because they share no state (Chapter 02).
+- **DNS is now a security and PKI dependency.** Certificate validation, OCSP and CRL lookups, token audiences and FQDN-based policy all fail quietly under split-brain (Chapter 06).
+- **Edge interception can silently bypass the policy plane.** The SD-WAN redirect-dns destination determines whether RPZ, DNSSEC validation and logging apply at all (Chapter 05).
+- **Some cloud optimizations stop at the commercial boundary.** Microsoft 365 Informed Network Routing (INR) is not available in GCC-Moderate, GCC High or DoD. The DDI architecture is unaffected; that one optimization is simply unavailable (Chapter 05 and the [Applicability](00-applicability.md) page).
+- **Five configuration decisions carry the operational risk:** the redirect-dns target, forwarding chain order, per-cloud conditional forwarding, Active Directory DNS inventory before decommissioning, and OCSP/CRL reachability (Chapter 08).
 
 ## DNS in the Modern Hybrid Multi-Cloud Enterprise
 
-DNS was designed in 1983–1987 (RFC 882/883, then RFC 1034/1035) to map
-hostnames to IP addresses in a distributed hierarchical database. That
-era is over. In a modern federal hybrid multi-cloud environment, DNS now
-performs private address publication, public SaaS endpoint selection,
-security policy enforcement, certificate validation support, service
-identity for Zero Trust, and application surface definition via
-wildcards.
+DNS was specified in 1983 (RFC 882 and 883) and redefined in 1987 (RFC 1034 and 1035) to map hostnames to addresses in a distributed, hierarchical database. In a hybrid multi-cloud agency it now also publishes private endpoint addresses, selects public SaaS front doors, enforces security policy, supports certificate validation, identifies services for Zero Trust policy and, through wildcard namespaces, defines the application surface.
 
 ### Three DNS Perspectives Under a Single Control Plane
 
-![Infoblox DDI Unified Control Plane.](../images/ddi/figure-01.jpg){fig-alt="Enterprise, Cloud, and Internet DNS perspectives."}
+![One authoritative policy plane governs the enterprise, cloud and internet DNS perspectives.](../images/diagrams/next-generation-ddi/svg/ch01-three-perspectives.svg){fig-alt="A policy plane at the top connects to three perspectives: enterprise internal DNS, cloud DNS services, and external authoritative DNS."}
 
-Infoblox Universal DDI manages DNS from three interconnected
-perspectives through one portal and API:
+A unified DDI control plane manages DNS from three interconnected perspectives:
 
-- **Enterprise (Internal):** NIOS/NIOS-X, Microsoft DNS, DNS views,
-  HA/Anycast, RBAC for data centers, branches, and private clouds.
+- **Enterprise (internal):** AD-integrated DNS or an on-premises DDI grid, DNS views, high availability and anycast, and role-based administration for data centers, branches and private clouds.
+- **Cloud:** Amazon Route 53, Azure DNS and Azure Private DNS, and Google Cloud DNS, with discovery of cloud networks and federation with cloud IPAM.
+- **Internet (external authoritative):** the public zones the agency publishes, whether self-hosted or on a managed authoritative service, together with monitoring of the external attack surface.
 
-- **Cloud:** Amazon Route 53, Azure DNS, Google Cloud DNS, plus
-  federation with cloud IPAM and automated discovery via Universal Asset
-  Insights.
-
-- **Internet (External Authoritative):** Cloudflare, Akamai, or
-  self-hosted NIOS with DNS Infrastructure Protection and External
-  Attack Surface Management.
-
-The hybrid multi-cloud landscape for most agencies spans on-premises AD
-DNS and/or NIOS, AWS Route 53 (public and private zones + Resolver),
-Azure Private DNS zones + Private Resolver, GCP Cloud DNS (private
-zones + DNS peering), and VMware NSX DNS Service. Each operates
-independently with its own console, API, and failure modes. Managing
-them separately creates a combinatorial synchronization burden: a new
-Azure private endpoint requires updates in Azure Private DNS, Azure
-Private Resolver rulesets, Route 53 outbound rules, and on-premises
-conditional forwarding.
+The typical agency landscape spans on-premises AD DNS or a DDI grid; Route 53 public and private hosted zones with Route 53 Resolver; Azure Private DNS zones with Azure DNS Private Resolver; Google Cloud DNS private zones and DNS peering; and the VMware NSX DNS service. Each has its own console, API and failure modes. Managed separately, they create a combinatorial synchronization burden. A single new Azure private endpoint can require changes to an Azure Private DNS zone, Private Resolver forwarding rulesets, Route 53 outbound rules and on-premises conditional forwarders.
 
 ### Hybrid Cloud IPAM and DHCP
 
-![Hybrid Cloud IPAM and DHCP.](../images/ddi/figure-02.jpg){fig-alt="Central IPAM source of truth with cloud federation."}
+![Enterprise IPAM is the address-layer source of truth for DHCP, cloud address managers, DNS records and the asset inventory.](../images/diagrams/next-generation-ddi/svg/ch01-ipam-source-of-truth.svg){fig-alt="DHCP servers and cloud address managers feed an enterprise IPAM, which keeps DNS records in step and supplies the address layer of the asset inventory."}
 
-Universal IPAM provides a single authoritative source of truth with
-policy enforcement and cloud federation, preventing overlaps across
-on-premises and multi-cloud address space. DHCP delivers real-time
-updates to IPAM and DDNS for automatic record lifecycle. Microsoft DHCP
-is discovered and synchronized. This also supplies the address layer of
-the continuous inventory required by Zero Trust architectures.
+A central IPAM is the authoritative record of the address plan, reservations and ownership across on-premises and cloud address space, and it is what prevents overlaps. DHCP lease data and dynamic DNS updates keep address and name records in step through each record's lifecycle. Existing Microsoft DHCP servers can be discovered and brought under the same inventory during transition. This is also the address layer of the continuous asset inventory that Zero Trust architectures depend on.
 
 ---
 
-**Previous:** [Next Generation DDI — book home](index.md)  
+**Previous:** [Applicability](00-applicability.md)  
 **Next:** [Chapter 02 — Split-Brain DNS: The Structural Problem](02-split-brain-dns.md)
 
-[^c01-1]: Infoblox Press Release. Infoblox Government Cloud Achieves FedRAMP Moderate Authorization. July 22, 2026. https://www.globenewswire.com/news-release/2026/07/22/3331403/0/en/Infoblox-Government-Cloud-Achieves-FedRAMP-Moderate-Certification-Bringing-Modern-DDI-and-Asset-Visibility-to-Federal-Agencies.html
+[^c01-1]: Infoblox, "Infoblox Government Cloud Achieves FedRAMP Moderate Certification, Bringing Modern DDI and Asset Visibility to Federal Agencies," press release, July 22, 2026. <https://www.infoblox.com/news/news-events/press-releases/infoblox-government-cloud-achieves-fedramp-moderate-certification-bringing-modern-ddi-and-asset-visibility-to-federal-agencies/>. The FedRAMP Marketplace lists Infoblox Government Cloud (package FR2017257053) as authorized at Moderate since December 15, 2022: <https://www.fedramp.gov/marketplace/products/FR2017257053/>.

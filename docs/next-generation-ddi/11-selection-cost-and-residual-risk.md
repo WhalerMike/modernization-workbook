@@ -10,6 +10,7 @@ lifecycle: active
 tiers_adopted: []
 lifecycle_review: 2027-01-01
 ---
+
 # Chapter 11 — Platform Selection, Cost and Residual Risk
 
 *How to choose, what it costs to run, and what risk remains.*
@@ -19,116 +20,47 @@ lifecycle_review: 2027-01-01
 **[next-generation-ddi-ch11-bundle.docx](../../downloads/next-generation-ddi-ch11-bundle.docx)**: this chapter as a Word document, with its figures. The [whole book](../../downloads/next-generation-ddi-bundle.docx) is also available.
 :::
 
-## Cost, Staffing, and Success Measures
+## Cost, Staffing and Success Measures
 
-A decision to adopt a single authoritative DDI policy plane requires
-some sense of cost, staffing, and how success will be measured.
-Licensing and operational cost will vary by deployment model (SaaS vs.
-on-premises appliances) and by the number of resolvers and IP address
-objects under management. Staffing impact is primarily the ongoing
-operation of the control plane, synchronization monitoring, and the
-initial migration effort. The headline success measure is
-resolution-path consistency: the percentage of tested names that return
-the same answer (or the intentionally different internal vs. external
-answer) from every governed origin. Baseline the current consistency
-rate, set a target, and report progress to the authorizing official.
-Address-block overlap incidents and certificate/access errors
-attributable to wrong DNS answers are secondary measures.
+Adopting a single authoritative DDI policy plane needs a view of cost, staffing and how success will be measured. Licensing and operating cost vary with the deployment model (SaaS management with local resolvers, or on-premises appliances) and with the number of resolvers and IP address objects under management. Staffing goes mainly to operating the control plane, monitoring synchronization and the initial migration.
 
-Any selection should be driven by the architectural requirements (single
-authoritative policy plane, FedRAMP authorization status, ability to
-enforce consistent resolution and security policy across hybrid
-surfaces, and support for the five configuration decisions).
-Representative options include:
+The headline success measure is **resolution-path consistency**: the percentage of tested names that return the same answer, or the intentionally different internal and external answers, from every governed origin. Baseline the current rate, set a target and report progress to the authorizing official. Secondary measures are address-block overlap incidents and the certificate and access errors traced to wrong DNS answers.
 
-- **Infoblox Universal DDI:** Unified control plane with FedRAMP
-  Moderate authorization in AWS GovCloud, Access Views for
-  multi-division governance, native cloud federation, and documented
-  ServiceNow integrations. Evaluate current sovereign-cloud status for
-  GCC High/DoD.
+## Selection Criteria
 
-- **BlueCat:** Strong Microsoft and multi-cloud automation focus.
-  Confirm current FedRAMP and sovereign-cloud authorization status for
-  the specific deployment model under consideration.
+Selection should follow the architectural requirements, not a vendor list:
 
-- **EfficientIP:** DNS security and multi-cloud capabilities. Confirm
-  current FedRAMP Marketplace status and sovereign-cloud support.
+- **A single authoritative policy plane** for DNS, DHCP and IPAM across on-premises, every cloud and VMware.
+- **Authorization status** at the impact level and in the cloud environment where it will be used ([Applicability](00-applicability.md)).
+- **Consistent resolution and security policy** (response policy zones and Protective DNS forwarding, encrypted DNS, DNSSEC validation, logging) across every hybrid surface.
+- **Support for the five configuration decisions** in Chapter 08, including network-addressable resolvers that SD-WAN redirect-dns can target at every branch.
+- **Delegated administration, APIs and ITSM integration** as described in Chapter 10.
+- **Scale**: resolver sizing and policy distribution for the agency's full branch estate.
 
-- **Cloud-native resolvers + IaC:** Route 53 Resolver, Azure Private
-  Resolver, and equivalent services managed through
-  infrastructure-as-code with a CI drift gate. This path is common and
-  reduces some independent authoring, but still requires explicit
-  controls to prevent split-brain between clouds and to enforce
-  consistent security policy (RPZ, DNSSEC validation, logging). It does
-  not by itself provide a single multi-cloud IPAM source of truth or
-  multi-division Access View model.
+Options to evaluate against these criteria include:
 
-Infoblox, BlueCat, and EfficientIP are the primary enterprise DDI
-platforms. For federal and large distributed environments the
-differentiators include:
-
-- **Infoblox:** FedRAMP Moderate Government Cloud, deep Cisco SD-WAN
-  integration guidance, co-authorship of NIST SP 800-81r3, strong
-  Protective DNS / Threat Defense, and broad multi-cloud federation.
-
-- **BlueCat:** Strong Microsoft and multi-cloud automation focus; check
-  current FedRAMP and sovereign-cloud status for the specific deployment
-  model.
-
-- **EfficientIP:** Solid DNS security and IPAM features; evaluate SD-WAN
-  integration depth and federal authorization status against agency
-  requirements.
-
-Selection should be driven by FedRAMP/authorization status, SD-WAN and
-SASE integration requirements, and the ability to enforce consistent
-policy across 1,500+ branches.
+- **Enterprise DDI platforms.** Infoblox, BlueCat and EfficientIP are the most widely deployed. Check each one's FedRAMP Marketplace status for the specific offering and deployment model, its sovereign-cloud support, its SD-WAN and SASE integration depth, and its multi-cloud federation. As of this writing Infoblox Government Cloud is listed at FedRAMP Moderate (Chapter 03); confirm current status for every candidate on the FedRAMP Marketplace rather than relying on vendor claims.
+- **Cloud-native resolvers managed as code.** Route 53 Resolver, Azure DNS Private Resolver and their equivalents, managed through infrastructure as code with a CI drift gate. This path is common and reduces independent authoring, but it still needs explicit controls to prevent split-brain between clouds and to enforce consistent security policy. By itself it provides neither a single multi-cloud IPAM source of truth nor a multi-division delegation model.
 
 ## Residual Risk and Limitations
 
-![Residual Risks of a Unified Control Plane.](../images/ddi/figure-16.jpg){fig-alt="Sync lag, control-plane unavailability that blocks changes while resolution continues, DoH bypass, and authorization scope."}
+![Residual risks of a unified control plane.](../images/diagrams/next-generation-ddi/svg/ch11-residual-risks.svg){fig-alt="Four risks around a single authoritative DDI policy plane: sync lag or failure, the new source of divergence; control-plane outage, where changes are blocked but resolution continues from local state; encrypted DNS bypass if endpoint controls are incomplete; and authorization scope, since a Moderate authorization does not cover High or DoD."}
 
-Honest residual risks include:
+The residual risks are real:
 
-- Sync lag and sync failure between the central control plane and
-  per-CSP DNS or IPAM services become the new source of divergence.
-  Monitor synchronization health.
+- **Sync lag and sync failure** between the control plane and per-cloud DNS or IPAM services become the new source of divergence. Monitor synchronization health.
+- **Control-plane concentration.** If the management plane is unavailable, changes cannot be made, but existing resolution should continue from local resolver state. Define the operational response and any local override procedures.
+- **Authorization scope.** A Moderate authorization does not cover High or DoD environments ([Applicability](00-applicability.md)).
+- **Commercial-only optimizations.** Microsoft 365 INR is unavailable in GCC-Moderate, GCC High and DoD; Microsoft 365 optimization there relies on local breakout and application-aware routing.
+- **Loopback endpoint agents.** A client-side DNS agent listening on loopback cannot be a redirect-dns target; a network-addressable resolver is required.
+- **Encrypted DNS bypass** remains possible where endpoint and network controls are incomplete.
+- **Open engineering questions** for very large branch estates, such as resolver and forwarding-proxy sizing and source-address behavior under redirect-dns, need vendor engagement and testing.
 
-- Control-plane concentration risk: if the Universal DDI portal is
-  unavailable, new changes cannot be made, but existing resolution
-  should continue from local or cached state. Define the operational
-  response and any local override procedures.
-
-- Microsoft INR is unavailable in GCC Moderate, GCC High, and DoD; M365
-  optimization relies on direct breakout and application-aware routing.
-
-- Client-side Infoblox Endpoint is a loopback stub and cannot be the
-  target of network-level redirect-dns; a network-addressable resolver
-  is required.
-
-- Encrypted DNS bypass remains possible if endpoint and network controls
-  are incomplete.
-
-- Open vendor questions remain around exact DFP sizing for very large
-  branch estates and certain source-IP behaviors under redirect-dns.
-
-These do not negate the architecture; they define the operational
-controls and vendor engagements still required.
+None of these negates the architecture. They define the operational controls and vendor engagements still required.
 
 ## Conclusion
 
-DNS is no longer a name-lookup utility. It is the identity substrate,
-the security enforcement plane, and the application surface definition
-layer of the modern hybrid multi-cloud enterprise. Fragmented
-independent DNS systems produce structural split-brain that breaks
-private connectivity, certificate trust, and Zero Trust policy. Infoblox
-Universal DDI, now authorizable under FedRAMP Moderate, supplies the
-single control plane that keeps DNS, DHCP, and IPAM consistent across
-enterprise, cloud, and internet perspectives, supports the NIST SP
-800-81 Rev. 3 Secure DNS recommendations, integrates with VMware and the
-AD-to-Entra transition, and works with correctly configured Cisco
-Catalyst SD-WAN. The five configuration decisions above remain the
-highest-leverage actions. Governing DNS is a strategic security and
-architecture task, not an IT operations afterthought.
+DNS is no longer a name-lookup utility. It is the identity substrate, the security enforcement plane and the definition of the application surface for the hybrid multi-cloud agency. Independent DNS systems produce structural split-brain that breaks private connectivity, certificate trust and Zero Trust policy. A single authoritative DDI policy plane, authorized at the right impact level, keeps DNS, DHCP and IPAM consistent across the enterprise, cloud and internet perspectives. It puts the NIST SP 800-81r3 recommendations and the M-22-09 requirements into practice, carries the AD-to-Entra and VMware transitions, and works with SD-WAN edges that are configured correctly. The five configuration decisions in Chapter 08 remain the highest-leverage actions. Governing DNS is a strategic security and architecture task, not an operations afterthought.
 
 ---
 

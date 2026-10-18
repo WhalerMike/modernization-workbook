@@ -1,0 +1,13 @@
+# Chapter 06 — where DNSSEC validation happens decides who controls it.
+rankdir: LR
+graph: {nodesep: 0.35, ranksep: 0.5}
+nodes:
+  c1: {tone: slate, width: 120, title: "Client", body: ["=Non-validating stub"], size: 12}
+  r1: {tone: green, width: 200, tag: "Recommended", title: "Agency-controlled resolver", body: ["Validates with agency trust anchors", "Returns SERVFAIL on a bad signature"], size: 12}
+  r2: {tone: red, width: 200, tag: "Avoid as first hop", title: "Upstream resolver outside agency control", body: ["Validation policy and trust anchors not agency-managed"], size: 12}
+  auth: {tone: slate, width: 150, title: "Authoritative servers", body: ["=Signed zones (DNSKEY, RRSIG, DS)"], size: 12}
+edges:
+  - [c1, r1, {tone: green}]
+  - [c1, r2, {tone: red, style: dashed}]
+  - [r1, auth]
+  - [r2, auth, {style: dashed}]

@@ -1,0 +1,18 @@
+# Chapter 02 — DNS security policy is enforced only at the resolver that answers.
+rankdir: TB
+graph: {nodesep: 0.3, ranksep: 0.45}
+nodes:
+  q: {kind: pill, tone: plain, text: "Query for a known-malicious domain"}
+  a: {tone: green, width: 150, title: "Agency resolver", body: ["=Protective DNS rule: blocked"], size: 12}
+  b: {tone: red, width: 150, title: "Cloud resolver A", body: ["=Rule not synchronized: allowed"], size: 12}
+  c: {tone: red, width: 150, title: "Cloud resolver B", body: ["=Rule not synchronized: allowed"], size: 12}
+  out: {tone: amber, width: 470, title: "Effective posture = the weakest resolver", body: ["=Branches or cloud workloads that bypass the authorized path evade the control silently"], size: 12}
+edges:
+  - [q, a]
+  - [q, b]
+  - [q, c]
+  - [a, out, {style: dashed}]
+  - [b, out, {style: dashed}]
+  - [c, out, {style: dashed}]
+order:
+  - [a, b, c]

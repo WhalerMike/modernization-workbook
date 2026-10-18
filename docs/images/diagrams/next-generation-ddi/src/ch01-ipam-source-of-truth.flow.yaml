@@ -1,0 +1,14 @@
+# Chapter 01 — IPAM as the address layer of the inventory.
+rankdir: LR
+graph: {nodesep: 0.3, ranksep: 0.6}
+nodes:
+  dhcp: {tone: slate, width: 150, title: "DHCP servers", body: ["Leases and options", "On-premises and branch"], size: 12}
+  cloud: {tone: slate, width: 150, title: "Cloud address managers", body: ["AWS VPC IPAM", "Azure Virtual Network Manager IPAM", "Google Cloud internal ranges"], size: 12}
+  ipam: {tone: blue, width: 180, tag: "Source of truth", title: "Enterprise IPAM", body: ["Address plan and reservations", "Ownership and lifecycle", "Overlap prevention"], size: 12}
+  dns: {tone: green, width: 150, title: "DNS records", body: ["A/AAAA and PTR kept in step through dynamic updates"], size: 12}
+  inv: {tone: violet, width: 150, title: "Asset inventory", body: ["Address layer of the Zero Trust inventory (M-22-09, CDM)"], size: 12}
+edges:
+  - [dhcp, ipam, {label: "lease data"}]
+  - [cloud, ipam, {label: "discovery or allocation", both: true}]
+  - [ipam, dns, {tone: green}]
+  - [ipam, inv, {tone: violet}]

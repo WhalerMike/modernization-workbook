@@ -1,0 +1,14 @@
+# Book landing: the five parts and the chapters in each.
+rankdir: LR
+graph: {nodesep: 0.25, ranksep: 0.3}
+nodes:
+  p1: {tone: red, width: 122, tag: "Part I", title: "The problem", body: ["=01 DNS is the control plane", "=02 Split-brain DNS"], size: 12}
+  p2: {tone: violet, width: 122, tag: "Part II", title: "The requirements", body: ["=03 Federal requirements"], size: 12}
+  p3: {tone: amber, width: 140, tag: "Part III", title: "The hard surfaces", body: ["=04 AD DNS departure", "=05 Edge interception", "=06 DNS identity, DNSSEC", "=07 Private endpoints, IPAM"], size: 12}
+  p4: {tone: blue, width: 122, tag: "Part IV", title: "The answer", body: ["=08 Reference architecture", "=09 Migration sequence"], size: 12}
+  p5: {tone: green, width: 122, tag: "Part V", title: "Running it", body: ["=10 Operating the plane", "=11 Selection, cost, risk"], size: 12}
+edges:
+  - [p1, p2]
+  - [p2, p3]
+  - [p3, p4]
+  - [p4, p5]
