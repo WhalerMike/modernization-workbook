@@ -1,0 +1,27 @@
+# Chapter 07 — the program's SaaS data plane: one shared registry, token
+# security inbound and outbound, derived stores, and the provisioned exception.
+rankdir: TB
+graph: {nodesep: 0.3, ranksep: 0.4}
+clusters:
+  - id: derived
+    label: "Derived, subordinate stores (keyed t-<guid>)"
+    tone: plain
+    nodes: [blob, kv]
+    order: [blob, kv]
+nodes:
+  tenants: {tone: blue, width: 250, title: "Customer Entra tenants", body: ["=Each request carries an Entra access token (tid claim)"], size: 12}
+  plane: {tone: blue, width: 250, title: "Data plane service", body: ["Verifies the token signature against the tenant's keys (RS256)", "Binds the tenant from tid; non-active tenants get 403"], size: 12}
+  pg: {tone: green, width: 250, title: "PostgreSQL Flexible Server", body: ["Single-region writer", "saas_tenants registry and per-tenant state", "Managed identity is the Entra admin; no long-lived DB password"], size: 12}
+  blob: {tone: slate, width: 150, title: "Blob Storage", body: ["=Evidence bundles"], size: 12}
+  kv: {tone: slate, width: 150, title: "Key Vault", body: ["=Per-tenant secrets"], size: 12}
+  stamp: {tone: amber, width: 230, title: "Compliance stamp (exception)", body: ["=ProvisioningService stamps a dedicated schema, Blob prefix and Key Vault scope; dry-run by default"], size: 12}
+  risk: {tone: red, width: 230, title: "Where rigor concentrates", body: ["=A defect in tid → namespace mapping is a cross-tenant exposure"], size: 12}
+edges:
+  - [tenants, plane, {tone: blue, label: "token per request", lw: 120}]
+  - [plane, pg, {tone: blue, label: "short-lived token as the password", lw: 130}]
+  - [pg, blob, {style: dashed}]
+  - [pg, kv, {style: dashed}]
+  - [plane, stamp, {style: dashed, tone: amber, label: "hard-isolation customers", lw: 100}]
+  - [risk, plane, {style: dashed, tone: red, none: true}]
+ranks:
+  - [risk, plane]

@@ -58,7 +58,7 @@ source; all other representations are provenance-anchored pointers* (see
 mopped up; it is a named, first-class failure mode the architecture is built to
 prevent. Fewer authoritative copies is the most direct lever on that goal.
 
-![Single Source of Truth versus fragmented stores — drift surface, reasoning cost, and the role of derived subordinate copies](../images/ssot-network-physics/ssot-network-physics-cpt01-diagram-01-ssot-vs-fragmented.svg){#fig-ssot-cpt01-diagram-01 fig-alt="Blueprint split diagram. Left side shows four small ice-border service databases with red dashed drift arrows between them and a DRIFT label and a red callout asking which system has the right number. Right side shows one large navy Source of Truth box with teal arrows to three subordinate derived stores labeled Read Replica, Cache, and Compliance Stamp, all marked subordinate and not authoritative. White background." width="100%"}
+![Many small authoritative stores drift; one logical source of truth keeps every other copy derived and subordinate.](../images/diagrams/ssot-network-physics/svg/ch01-ssot-vs-fragmented.svg){fig-alt="Left, a red panel: two service stores holding copies of the same customer data linked by a dashed drift arrow, and a note listing reconciliation jobs, N schemas and a drift surface that grows with every copy. Right, a green panel: one Source of truth card with arrows to a read replica (derived, rebuildable), a cache (derived, disposable) and a compliance stamp (deliberate exception)."}
 
 ## Logical vs. physical: the distinction that does the work
 

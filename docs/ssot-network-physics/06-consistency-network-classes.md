@@ -51,7 +51,7 @@ of them crosses a region synchronously.** Everything that spans distance is
 asynchronous and rides the bulk path. That is the physics of Chapter 3 made
 into a layout.
 
-![Consistency classes mapped to network transport classes — only intra-region flows ride the lean path; everything cross-region is async on the bulk path](../images/ssot-network-physics/ssot-network-physics-cpt06-diagram-01-consistency-network-alignment.svg){#fig-ssot-cpt06-diagram-01 fig-alt="Blueprint alignment table with six rows. Top two rows on navy background show strong serializable and synchronous replication on the lean low-latency path intra-region only. A red dashed divider labeled no synchronous cross-region path separates them from four grey rows showing async replication, bounded staleness, CRDT merge, and eventual consistency, all on the fat bulk path. White background." width="100%"}
+![Only intra-region flows need the lean path; everything that crosses regions is asynchronous on the bulk path.](../images/diagrams/ssot-network-physics/svg/ch06-consistency-alignment.svg){fig-alt="A table of six data needs. Authoritative writes (strong, serializable) and quorum durability (synchronous replication) ride the lean low-latency path within a region. A red divider states there is no synchronous cross-region path. Cross-region disaster recovery, read-mostly access, multi-writer collaborative data and analytics use asynchronous replication, bounded staleness, CRDT merge and eventual consistency on the fat bulk path, none crossing regions synchronously."}
 
 ## Techniques for needing less global synchronization
 
