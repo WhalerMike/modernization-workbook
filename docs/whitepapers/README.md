@@ -22,4 +22,4 @@ Cleaned, externally usable versions of high-value modernization whitepapers.
 
 *Cleaned extractions for project use. No internal branding or document identifiers.*
 
-| [Federal HRIT Productization](federal-hrit-productization.md) | HR systems of record as the authoritative source for identity provisioning. |
+| [HR-Driven Identity](../hr-driven-iam/index.md) (series) | HR systems of record as the authoritative source for identity provisioning. |
