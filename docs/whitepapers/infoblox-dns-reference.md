@@ -77,7 +77,7 @@ These records perform the core function DNS was designed for: mapping names to a
 _service._proto.name. TTL IN SRV priority weight port target.
 ```
 
-SRV records are the most security-consequential record type in Active Directory environments, and the most underestimated in the context of AD deprecation. Active Directory publishes SRV records for:
+SRV records are the most security-consequential record type in Active Directory environments, and the most underestimated in the context of AD retirement. Active Directory publishes SRV records for:
 
 - `_kerberos._tcp.<domain>` — points clients to Kerberos KDC servers
 - `_kerberos._udp.<domain>` — same, for UDP
@@ -88,7 +88,7 @@ SRV records are the most security-consequential record type in Active Directory 
 - `_ldap._tcp.pdc._msdcs.<domain>` — Primary Domain Controller
 - `_msdcs.<domain>` — entire subtree of AD-specific service records
 
-When Active Directory is deprecated, none of these records migrate automatically. Applications that perform SRV lookups for LDAP or Kerberos — including many legacy Java applications, Linux hosts joined to AD, and network devices — begin failing silently or with cryptic errors when the SRV records disappear. [Part 4 — The Active Directory DNS Departure](infoblox-hybrid-dns-unified-ddi.md) of the parent whitepaper covers this in detail; the key point here is that SRV records are the DNS-layer representation of service topology, and their lifecycle must be governed independently of the servers they point to.
+When an agency retires Active Directory (an agency decision; AD DS remains supported in Windows Server 2025[^ibr-adds2025]), none of these records migrate automatically. Applications that perform SRV lookups for LDAP or Kerberos — including many legacy Java applications, Linux hosts joined to AD, and network devices — begin failing silently or with cryptic errors when the SRV records disappear. [Part 4 — The Active Directory DNS Departure](infoblox-hybrid-dns-unified-ddi.md) of the parent whitepaper covers this in detail; the key point here is that SRV records are the DNS-layer representation of service topology, and their lifecycle must be governed independently of the servers they point to.
 
 Beyond Active Directory, SRV records are used by:
 
@@ -177,7 +177,7 @@ The following table summarizes how each record type integrates with the security
 | A / AAAA | No | Indirect (cert SAN match) | **High** — core private/public divergence | RPZ blocking target | FQDN-based path selection |
 | CNAME | No | Indirect | **High** — dangling records, takeover | RPZ resolves chain | FQDN forwarding |
 | PTR | No | No | Medium | Logging, attribution | No |
-| SRV | No | No | **High** — AD deprecation orphaning | No | Service mesh discovery |
+| SRV | No | No | **High** — orphaning at AD retirement | No | Service mesh discovery |
 | NAPTR | No | No | Low | No | UCaaS routing |
 | CAA | No | **Direct** — controls issuance | Medium | Issuance audit | No |
 | TLSA/DANE | **Required** | **Direct** — cert pinning via DNS | **High** — pin must match on all surfaces | Cert validation layer | No |
@@ -200,7 +200,7 @@ The following table summarizes how each record type integrates with the security
 Infoblox Universal DDI manages the full record type surface described above. Key capabilities per category:
 
 - **Address records (A/AAAA/PTR):** IPAM-driven automatic A and PTR record creation on address allocation; synchronization across NIOS, Route 53, Azure DNS, GCP Cloud DNS, and Windows Server DNS
-- **SRV:** Managed SRV record lifecycle, including templated creation of AD service records during domain migration and explicit orphan detection when AD is deprecated
+- **SRV:** Managed SRV record lifecycle, including templated creation of AD service records during domain migration and explicit orphan detection when AD is retired
 - **CAA:** CAA record management integrated with certificate lifecycle tracking; CAA record drift alerts when issuance policy changes
 - **TLSA/DANE:** TLSA record creation from certificate metadata; integration with Infoblox Certificate Authority integration; automated TLSA update on certificate renewal
 - **Email authentication (SPF/DKIM/DMARC):** SPF lookup count validation (flags records that exceed the 10-lookup limit at publication time); DKIM selector management; DMARC aggregate report integration
@@ -294,3 +294,5 @@ changing an option-6 value that affects a large scope) can be required to go
 through a change request queue rather than taking effect immediately. This
 maps directly to federal change management requirements (ITIL-aligned change
 management, NIST SP 800-53 CM controls).
+
+[^ibr-adds2025]: Microsoft Learn, *What's new in Windows Server 2025*. AD DS ships in Windows Server 2025 with new forest and domain functional levels. <https://learn.microsoft.com/en-us/windows-server/get-started/whats-new-windows-server-2025>

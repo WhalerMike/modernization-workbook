@@ -29,7 +29,7 @@ The end-to-end resolution flow runs from the SD-WAN branch edge, through a netwo
 - **Decision 1 — the redirect-dns destination.** It must be a network-addressable resolver under agency control (a DDI resolver or forwarding proxy at the branch or in a regional hub), never a client-side loopback stub such as an endpoint agent listening on 127.0.0.1, which the edge cannot reach.
 - **Decision 2 — forwarding chain order.** Any additional resolver, such as a SASE provider's DNS service, must be a forwarding target of the agency-controlled resolver, never the redirect-dns target. The agency resolver is always the first hop under agency policy control.
 - **Decision 3 — per-cloud conditional forwarding.** The policy plane holds the authoritative forwarding rules for every private namespace (Chapter 07).
-- **Decision 4 — AD DNS inventory before deprecation.** SRV records, conditional forwarders and namespace delegations are inventoried and reprovisioned before any domain controller is decommissioned (Chapter 04).
+- **Decision 4 — AD DNS inventory before retirement.** SRV records, conditional forwarders and namespace delegations are inventoried and reprovisioned before any domain controller is decommissioned (Chapter 04).
 - **Decision 5 — OCSP and CRL reachability from every origin.** PKI validation endpoints must resolve consistently from on-premises, every cloud and every branch (Chapter 06).
 
 ## Moving from Per-Cloud Local Syncs to a Unified Control Plane
