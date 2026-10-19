@@ -1,0 +1,11 @@
+# Session vs. Telemetry — the bridge between the session-based estate and the
+# telemetry-based target, and the three things that must be true for it.
+rankdir: LR
+graph: {nodesep: 0.25, ranksep: 0.45}
+nodes:
+  sess: {tone: slate, width: 190, tag: "Client/server era", title: "Sessions", body: ["Authenticate once at session start", "The session carries trust forward", "Kerberos, on-premises DCs, Windows-authenticated SQL, thick clients"], size: 12}
+  bridge: {tone: violet, width: 210, tag: "The bridge", title: "Single source of truth", body: ["Identity as the root namespace", "Telemetry as control", "Deterministic addressing"], size: 12}
+  tel: {tone: blue, width: 190, tag: "Cloud / Zero Trust era", title: "Telemetry and continuous verification", body: ["Every request authenticated", "Location, device health, identity, behavior and risk evaluated per transaction", "Short-lived tokens"], size: 12}
+edges:
+  - [sess, bridge]
+  - [bridge, tel]

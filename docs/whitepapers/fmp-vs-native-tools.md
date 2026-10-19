@@ -16,7 +16,7 @@ this page, regenerated on every site deploy. (Also available from the
 :::
 :::
 
-![Consume-vs-build decision tree](../images/whitepapers/fmp-vs-native-tools-image-04-consume-vs-build-decision-tree.png){#fig-fmp-vs-native-tools-image-04-consume-vs-build-decision-tree width="100%" fig-alt="Consume-vs-build decision tree"}
+![Consume native and third-party output into one governance pipeline; build only the discovery the tools don't do.](../images/diagrams/whitepapers/svg/fmp-vs-native-orchestration.svg){fig-alt="A slate Consume card lists Azure Migrate, Group Policy Analytics, Defender for Identity, ScubaGear and ADRecon, feeding import adapters. An amber Build card, the PowerShell-first assessment module, covers OU hierarchy, DNS, PKI health, trusts and delegation. Both feed a green One governance pipeline card: cross-domain correlation, drift detection, governance provenance and canonical artifacts."}
 
 ::: {.callout-important title="Problem, solution, ask"}
 **Problem.** "Doesn't Microsoft already do this?" Partially --- across twelve disconnected tools that, without significant custom glue, cover an estimated 30% of the AD assessment discovery surface and roughly 22% once the governance pipeline, cross-domain correlation, and drift detection are counted. OU hierarchy and delegation, DNS, PKI health, and trusts are essentially uncovered.

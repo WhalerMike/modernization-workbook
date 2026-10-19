@@ -44,6 +44,8 @@ What this problem calls for is not just a migration tool. It is a **governance d
 - **Continuity** — ensure Kerberos-dependent services, SQL, legacy applications, and on-premises systems have a governed transition path, not a cliff.
 - **Validation** — prove the governance model survived the migration with evidence.
 
+![The migration as a governance capability: discover, normalize, map, keep continuity, validate.](../images/diagrams/whitepapers/svg/ad-to-entraid-framework.svg){fig-alt="Five cards left to right: 1 discovery of what governance the current AD encodes; 2 normalization into a clean authority model before the migration; 3 mapping to administrative units, PIM roles, access packages and Conditional Access; 4 continuity, a governed path for Kerberos, SQL and legacy apps; 5 validation, evidence that the governance model survived."}
+
 That is a capability that hospitals, banks, universities, manufacturers, and federal agencies all need. The federal compliance angle is just one vertical of a much broader need.
 
 ### Active Directory Governance Concepts → Entra ID Equivalents

@@ -1,0 +1,15 @@
+# FMP vs native tools — consume native and third-party output into one
+# governance pipeline; build only the discovery the tools don't do.
+rankdir: LR
+graph: {nodesep: 0.25, ranksep: 0.45}
+nodes:
+  nat: {tone: slate, width: 200, tag: "Consume", title: "Native and third-party output", body: ["Azure Migrate", "Group Policy Analytics", "Defender for Identity (the security layer)", "ScubaGear", "ADRecon"], size: 12}
+  imp: {tone: blue, width: 150, title: "Import adapters", body: ["=Route each tool's output into one pipeline"], size: 12}
+  own: {tone: amber, width: 200, tag: "Build", title: "PowerShell-first assessment module", body: ["=Discovery the tools don't do: OU hierarchy, DNS, PKI health, trusts, delegation"], size: 12}
+  pipe: {tone: green, width: 210, title: "One governance pipeline", body: ["Cross-domain correlation", "Drift detection", "Governance provenance and canonical artifacts"], size: 12}
+edges:
+  - [nat, imp]
+  - [imp, pipe]
+  - [own, pipe]
+ranks:
+  - [imp, own]
