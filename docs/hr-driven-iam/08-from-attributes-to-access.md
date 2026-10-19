@@ -34,7 +34,7 @@ Rules for dynamic membership evaluate HR-derived attributes, so nobody joins the
 - **Every entitlement has a *because*.** Access exists because an attribute satisfied a rule; the attribute exists because an HR record asserted it; the record has an author, a date and a business act behind it. That chain can contribute to the authorization and account-management evidence associated with AC-2, and it can be queried end to end.
 - **Roles and attributes stop competing.** Roles define what a position may touch; attributes prove which position the person holds. Both resolve against the same upstream record.
 
-The chain is only as good as its weakest writer. Microsoft's guidance is to review write permissions for every attribute a rule uses, in Entra ID and in any source directory, before using it in a security-sensitive group.[^c08-dyn-rules] Chapter 05 sets the only writer of the access attributes: the provisioning service.
+Under Zero Trust, delivered through SASE, this chain is the access decision itself: the token a user presents is evaluated against these groups on every session, so an attribute error is an access error (Chapter 01). The chain is only as good as its weakest writer. Microsoft's guidance is to review write permissions for every attribute a rule uses, in Entra ID and in any source directory, before using it in a security-sensitive group.[^c08-dyn-rules] Chapter 05 sets the only writer of the access attributes: the provisioning service.
 
 ## Rule patterns
 
