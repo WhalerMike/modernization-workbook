@@ -71,7 +71,7 @@ Whichever source the agency chooses, the rules are the same:
 
 | Canonical field | Oracle HCM source | SCIM attribute | On-premises AD | Entra ID | Rule can read it | Used for |
 |---|---|---|---|---|---|---|
-| Person number | `workers.PersonNumber` | `externalId` | `employeeID` | `employeeId` | Yes | **Source correlation key**, subject to the enterprise identifier decision in Chapter 03 |
+| Person number | `workers.PersonNumber` | `externalId` | `employeeID` | `employeeId` | Yes | **Source correlation key**, subject to the enterprise identifier decision in Chapter 03 (where the agency already has an enterprise ID, such as a Mainframe PIN, `employeeId` carries that instead and `PersonNumber` maps to it) |
 | Employment active | Assignment status | `active` | `accountDisabled` | `accountEnabled` | Yes | Joiner and leaver state |
 | Given name / surname | `workers.names` | `name.givenName` / `name.familyName` | `givenName` / `sn` | `givenName` / `surname` | Yes | Display, UPN rules |
 | Display name | `workers.DisplayName` | `displayName` | `cn` | `displayName` | Yes | Display only, never access |
