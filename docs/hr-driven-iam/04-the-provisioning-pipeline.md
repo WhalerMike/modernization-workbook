@@ -19,19 +19,22 @@ aliases:
 
 ::: {.callout-note}
 ## In this chapter
-Where provisioning sits between the governed identity model and the directories, and why API-driven inbound provisioning is the Microsoft implementation. The Oracle HCM source surfaces. What the middleware must do for every event, including reconciliation. The `bulkUpload` contract and its limits. The two landing zones and what each one does with structure. Native connectors and writeback.
+The logical architecture and its Microsoft realization: where provisioning sits between the governed identity model and the directories, and why API-driven inbound provisioning is the Microsoft implementation. The Oracle HCM source surfaces. What the middleware must do for every event, including reconciliation. The `bulkUpload` contract and its limits. The two landing zones and what each one does with structure. Native connectors and writeback.
 :::
 
-## The shape
+## Logical architecture and Microsoft realization
+
+**The logical architecture is stable:**
 
 > **Authoritative workforce source → boundary transformation → governed workforce identity model → provisioning service → target services**
 
-The governed workforce identity model (Chapter 05) is the contract; everything to its left is source-specific, everything to its right is delivery.
+The governed workforce identity model (Chapter 05) is the stable center: everything to its left is source-specific, everything to its right is delivery.
+
+**The Microsoft realization is replaceable:**
+
+> **Oracle Core HCM → integration middleware (Azure Functions or Logic Apps) → Microsoft Graph `/bulkUpload` → Entra provisioning service → Entra ID or on-premises Active Directory**
 
 ![Provisioning services: Core HCM through a replaceable boundary transformation and a middleware with five duties per event, into Graph /bulkUpload, landing in Active Directory or Entra ID, with provenance in an evidence store.](../images/diagrams/hr-driven-iam/svg/ch04-provisioning-services.svg){fig-alt="Left to right: Core HCM (extracts, ATOM feeds, REST, SCIM); boundary transformation (source-specific, replaceable); an amber middleware box with five duties: validate (fail closed), sequence, normalize to SCIM, write provenance, reconcile results; Graph /bulkUpload (Entra provisioning service), which writes to Active Directory (hybrid users, via the provisioning agent) and Entra ID (cloud-managed users). A dashed green line from the middleware goes to an evidence store (provenance and provisioning logs)."}
- In the Microsoft implementation this series describes, that becomes:
-
-> **HR system of record → integration middleware → Microsoft Graph `/bulkUpload` → Entra provisioning service → Entra ID or on-premises Active Directory**
 
 The API client reads identity data from the authoritative source and posts it to the provisioning app's `/bulkUpload` endpoint as a SCIM bulk request. It doesn't compare source and target values to decide whether to create, update, enable or disable; the provisioning service does that, applies the attribute mappings the administrator configured, and writes the user to on-premises AD (hybrid users) or to Entra ID (cloud-only users). The endpoint answers `202 Accepted` and processes asynchronously; the client reads the provisioning logs API for the per-record result and applies bounded, idempotent retry for transient failures. Permanent failures become reconciled exceptions with an owner and alternate completion path.[^c04-api-concepts]
 
