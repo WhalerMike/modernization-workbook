@@ -52,7 +52,7 @@ Every milestone in the program's history moves the same direction: fewer systems
 | Directing instrument | OMB/OPM memo, *Creating "Federal HR 2.0" by Consolidating Core Human Capital Management Across the Federal Government* | Dec 10, 2025 (Vought/Kupor) |
 | Platform | **Oracle Fusion Cloud HCM** (SaaS) | Award announced Jun 11, 2026 |
 | Wave 1 (begins FY26, concludes FY27) | DHS, USDA, HHS, DOI, OPM, DOT, VA, EPA (~900K FTE) | Memo, Appendix A |
-| Wave 2 (fully in FY27) | SSA, DOC, ED, HUD, DOL, SBA, State, DOE, DoW, NASA, GSA, DOJ, Treasury, other (~1.1M FTE) | Memo, Appendix A |
+| Wave 2 (fully in FY27) | The remaining agencies listed in the memo (~1.1M FTE) | Memo, Appendix A |
 | First go-lives | Initial deployments slated to go live **January–March 2027**, with the first agencies starting onboarding as FY27 begins | OPM Director, reported Sep 1, 2026[^c02-mt] |
 | Agency onboarding shape | ~8 months; **interconnection(s) go-live ≈ month 5**; legacy systems discontinued at cutover | Memo, Appendix B |
 | Government-wide adoption goal | FY 2028 | Memo |
