@@ -28,6 +28,8 @@ Federal guidance treats the person, not the authenticator, as the thing being ma
 
 ## Joiner: proofing, issuance, binding
 
+![Credentials follow the HR record: the joiner event starts sponsorship and proofing, card management issues the credential, it is bound to the account, and phishing-resistant sign-in records the assurance achieved.](../images/diagrams/hr-driven-iam/svg/ch07-credential-assurance.svg){fig-alt="Left to right: HR joiner event (sponsorship and position sensitivity); identity proofing (PIV process; proofing level recorded); card management (PIV and derived credentials issued); binding (certificateUserIds on the account); phishing-resistant sign-in (certificate-based authentication; assurance recorded)."}
+
 ### Proofing and issuance
 
 The ILM Playbook's creation stage starts with identity proofing at IAL3 as described in NIST SP 800-63A-4, which meets the requirements for PIV eligibility. After proofing, the user's information is added to the Master User Record, the identity is bound to one or more phishing-resistant authenticators such as a PIV card or a FIDO2 token, and accounts are created for the systems the user's roles require.[^c07-ilm] The PIV card itself is governed by FIPS 201-3, which establishes the PIV system for federal employees and contractors under HSPD-12.[^c07-fips201] NIST SP 800-63-4 (July 2025, superseding SP 800-63-3) is the current revision of the Digital Identity Guidelines covering proofing, authentication and federation.[^c07-sp80063]
@@ -76,6 +78,10 @@ So the PIV revocation in the leaver sequence closes CBA *eventually*, on the CA'
 ### Derived PIV credentials
 
 Derived PIV credentials let a person who holds a valid PIV card carry an equivalent credential on a device that can't use the card. FIPS 201-3 requires PIV card termination procedures to invalidate every derived PIV credential bound to the PIV identity account.[^c07-fips201] NIST SP 800-157 (December 2014) is the current final guideline; SP 800-157 Revision 1 is a final public draft (November 2024) that widens derived PIV credentials to include non-PKI authenticators verified by the home agency.[^c07-sp800157][^c07-sp800157r1] Plan for both forms in the Master User Record: a derived credential is an authenticator to revoke, and the leaver sequence has to find it.
+
+### Assurance as data
+
+Record each person's identity proofing level and authenticator assurance as governed attributes, not as tribal knowledge. OMB M-22-09 requires phishing-resistant MFA for agency staff, and a PIV-bound account is how most federal workforce users meet it.[^c07-m2209] Two rules make assurance usable as data: the joiner workflow records the proofing outcome from the credentialing process, and an account whose proofing evidence is missing is itself a finding (Chapter 09), not a default. HR sponsors and triggers proofing; under FIPS 201 the PIV process performs it.
 
 ## Mover: usually nothing, sometimes a reissue
 
@@ -145,6 +151,7 @@ For each leaver: the HR effective date; the disable and token-revocation timesta
 [← Previous: Chapter 06 — Joiner, Mover, Leaver](06-joiner-mover-leaver.md) · [Index](index.md) · [Next: Chapter 08 — From Attributes to Access →](08-from-attributes-to-access.md)
 :::
 
+[^c07-m2209]: Office of Management and Budget, M-22-09, *Moving the U.S. Government Toward Zero Trust Cybersecurity Principles*, January 26, 2022, <https://www.whitehouse.gov/wp-content/uploads/2022/01/M-22-09.pdf> (accessed Oct 19, 2026).
 [^c07-ilm]: GSA / Federal CISO Council ICAM Subcommittee, *Identity Lifecycle Management Playbook* (Executive Summary; Stage 1, Creation; Stage 3, Deletion; Disclaimer), <https://www.idmanagement.gov/playbooks/ilm/> (accessed Oct 19, 2026).
 [^c07-fips201]: NIST, FIPS 201-3, *Personal Identity Verification (PIV) of Federal Employees and Contractors*, January 2022, §2.9.4 "PIV Card Termination Requirements," <https://csrc.nist.gov/pubs/fips/201-3/final> (accessed Oct 19, 2026).
 [^c07-sp80063]: NIST, SP 800-63-4, *Digital Identity Guidelines*, July 2025, <https://csrc.nist.gov/pubs/sp/800/63/4/final> (accessed Oct 19, 2026).

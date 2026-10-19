@@ -26,7 +26,10 @@ Where provisioning sits between the governed identity model and the directories,
 
 > **Authoritative workforce source → boundary transformation → governed workforce identity model → provisioning service → target services**
 
-The governed workforce identity model (Chapter 05) is the contract; everything to its left is source-specific, everything to its right is delivery. In the Microsoft implementation this series describes, that becomes:
+The governed workforce identity model (Chapter 05) is the contract; everything to its left is source-specific, everything to its right is delivery.
+
+![Provisioning services: Core HCM through a replaceable boundary transformation and a middleware with five duties per event, into Graph /bulkUpload, landing in Active Directory or Entra ID, with provenance in an evidence store.](../images/diagrams/hr-driven-iam/svg/ch04-provisioning-services.svg){fig-alt="Left to right: Core HCM (extracts, ATOM feeds, REST, SCIM); boundary transformation (source-specific, replaceable); an amber middleware box with five duties: validate (fail closed), sequence, normalize to SCIM, write provenance, reconcile results; Graph /bulkUpload (Entra provisioning service), which writes to Active Directory (hybrid users, via the provisioning agent) and Entra ID (cloud-managed users). A dashed green line from the middleware goes to an evidence store (provenance and provisioning logs)."}
+ In the Microsoft implementation this series describes, that becomes:
 
 > **HR system of record → integration middleware → Microsoft Graph `/bulkUpload` → Entra provisioning service → Entra ID or on-premises Active Directory**
 
@@ -83,7 +86,9 @@ Each endpoint belongs to one provisioning app, and an agency with several source
 
 ## Two landing zones
 
-The same HR feed can land in two places, separately or at the same time:
+The same HR feed can land in two places, separately or at the same time — and which one a population uses changes as the agency moves from Active Directory to Entra ID:
+
+![Two landing patterns across the Entra ID migration: while AD is the source of authority, HR lands users in AD and they sync to Entra ID; once a population's source of authority moves to the cloud, HR lands users in Entra ID and any AD account an application still needs is provisioned from Entra ID.](../images/diagrams/hr-driven-iam/svg/ch04-two-patterns.svg){fig-alt="Two framed rows. Top, while AD is the source of authority: HR (Core HCM) to Active Directory (provisioning agent writes the user) to Entra ID (synced from AD). Bottom, after the source of authority moves to the cloud: HR (Core HCM) to Entra ID (cloud-managed users), with a dashed arrow to Active Directory (only where apps still need it, provisioned from Entra ID)."}
 
 - **API-driven inbound provisioning to Microsoft Entra ID** creates cloud-only users directly.
 - **API-driven inbound provisioning to on-premises Active Directory** delivers the same payloads through the Microsoft Entra provisioning agent, which writes to AD DS from inside the agency network; Entra Connect then projects the user to the cloud.[^c04-api-concepts][^c04-oracle-tutorial]
@@ -114,6 +119,10 @@ Entra ID has no OUs. The worker record lands as attributes, and structure become
 
 During coexistence, provision both zones, read structure from attributes, and retire OU-bound policy deliberately (Chapter 10, Phase 5).
 
+### Over the Entra ID migration
+
+Microsoft's path to the cloud moves users' **source of authority** from Active Directory to Entra ID, after which the user lifecycle is governed in the cloud with Entra ID Governance; for users who still need on-premises access, provisioning from Entra ID to Active Directory maintains the AD account while Entra ID remains the source of authority.[^c04-soa] Microsoft's migration guidance makes the same split for HR: new employees who use only Entra-integrated applications can be provisioned as cloud-only accounts, and hybrid accounts are provisioned only where applications still depend on AD.[^c04-road] HR-driven provisioning and the directory migration therefore converge on one design, population by population: HR is the start of authority, Entra ID is the identity platform it drives, and Active Directory becomes a downstream target that shrinks as applications move.
+
 ## Native connectors
 
 Where an HR source has a native connector (Workday, SAP SuccessFactors), it's an acceptable accelerator. The API-driven pattern stays the reference implementation because it works for any source and because its middleware is where validation, provenance and reconciliation happen before the identity platform sees the record. A native connector bypasses that middleware, so those duties have to be supplied another way.
@@ -128,6 +137,8 @@ Once inbound provisioning is proven, an optional outbound job can write identity
 [← Previous: Chapter 03 — Attribute Authority](03-attribute-authority.md) · [Index](index.md) · [Next: Chapter 05 — The Canonical Workforce Identity Model →](05-canonical-attribute-schema.md)
 :::
 
+[^c04-soa]: Microsoft Learn, "Transfer user Source of Authority (SOA) to Microsoft Entra ID," <https://learn.microsoft.com/en-us/entra/identity/hybrid/user-source-of-authority-overview> (accessed Oct 19, 2026).
+[^c04-road]: Microsoft Learn, "Transition to the cloud" (Move to cloud HR provisioning), <https://learn.microsoft.com/en-us/entra/architecture/road-to-the-cloud-migrate> (accessed Oct 19, 2026).
 [^c04-api-concepts]: Microsoft Learn, "API-driven inbound provisioning concepts," <https://learn.microsoft.com/en-us/entra/identity/app-provisioning/inbound-provisioning-api-concepts> (accessed Oct 19, 2026).
 [^c04-bulkupload-api]: Microsoft Learn, "Perform bulkUpload" (Microsoft Graph v1.0 API reference: rate limit and permissions), <https://learn.microsoft.com/en-us/graph/api/synchronization-synchronizationjob-post-bulkupload> (accessed Oct 19, 2026).
 [^c04-grant-access]: Microsoft Learn, "Grant access to the inbound provisioning API," <https://learn.microsoft.com/en-us/entra/identity/app-provisioning/inbound-provisioning-api-grant-access> (accessed Oct 19, 2026).

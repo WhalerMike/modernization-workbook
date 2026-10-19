@@ -1,0 +1,13 @@
+# Chapter 06 — who does what: inbound provisioning creates and updates accounts;
+# Lifecycle Workflows act on users who already exist.
+rankdir: LR
+graph: {nodesep: 0.3, ranksep: 0.45}
+nodes:
+  ev: {tone: amber, width: 117, title: "HR event", body: ["=Effective-dated personnel action"], size: 12}
+  prov: {tone: blue, width: 154, tag: "Creates and updates", title: "Inbound provisioning", body: ["Create the account", "Keep attributes current", "Enable or disable from HR status"], size: 12}
+  lcw: {tone: green, width: 154, tag: "Acts on existing users", title: "Lifecycle Workflows", body: ["Pre-hire and day-one tasks", "Mover re-evaluation", "Leaver tasks and extensions"], size: 12}
+  ext: {tone: violet, width: 126, title: "Custom task extensions", body: ["=Card management, Intune, applications"], size: 12}
+edges:
+  - [ev, prov]
+  - [prov, lcw, {label: "dates and status"}]
+  - [lcw, ext, {tone: violet}]

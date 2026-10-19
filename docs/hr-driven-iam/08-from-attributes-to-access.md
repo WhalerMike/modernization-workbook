@@ -26,6 +26,8 @@ The derivation chain. Valid rule patterns against the canonical schema, with Mic
 
 **Worker record → stamped attributes → dynamic groups → entitlements.**
 
+![The derivation chain: a personnel record sets standard attributes, rules turn them into dynamic group membership and entitlements, and privileged access takes only eligibility from HR.](../images/diagrams/hr-driven-iam/svg/ch08-derivation-chain.svg){fig-alt="Left to right: an amber personnel record box (standard attributes and the action that set them), stamped attributes (codes in native and extension attributes), dynamic groups (rules; nobody joins by hand), and a green entitlements box (apps, access packages, Conditional Access). A dashed red arrow labelled eligibility only goes from stamped attributes to a privileged access box (assigned groups and PIM; HR decides eligibility, never standing)."}
+
 Rules for dynamic membership evaluate HR-derived attributes, so nobody joins these groups and nobody forgets to leave one. Access packages bundle entitlements behind eligibility rules and approvals that route to the supervisor of record. Conditional Access and application roles consume the same groups. Three properties follow:
 
 - **Membership is computed.** There's no group owner to lobby, no ticket to lose, no offboarding step to forget. A mover's access converges on the new assignment within the provisioning and rule-processing cycle.
@@ -81,6 +83,8 @@ Restricted management administrative units protect sensitive objects from tenant
 
 - **Privileged roles use assigned groups.** Role-assignable groups require assigned membership, which Microsoft notes already removes the attribute-write risk.[^c08-dyn-rules]
 - **PIM for Groups doesn't take dynamic groups.** Any security group or Microsoft 365 group can be enabled for PIM for Groups except dynamic membership groups and groups synchronized from on-premises.[^c08-pim-groups] Privileged access is assigned, cloud-only and time-bound; HR attributes decide *eligibility* (through an access package), not standing membership.
+- **Position decides eligibility, not standing access.** HR attributes — position category and supervisory status — decide who may *request* a privileged role through an access package; the role itself is activated just in time through PIM.
+- **The same key joins the evidence.** The enterprise person key (Chapter 03) is the join key for the SIEM, database logins and badge events, and any authentication by a person whose HR record shows a separation is an alert, not a log line.
 - **Break-glass accounts depend on none of this.** Emergency access accounts are cloud-only, excluded from HR-driven rules and lifecycle workflows, and monitored.
 
 The [SQL Server Identity Transformation workbook, Book 07](../case-studies/sql-server-narrative/Book_07_CPT_02.md) applies this chapter to SQL Server logins and database roles, including naming, shadow testing and rollout gates.

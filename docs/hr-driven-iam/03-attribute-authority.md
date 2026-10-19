@@ -17,7 +17,7 @@ lifecycle_review: 2027-01-01
 
 ::: {.callout-note}
 ## In this chapter
-The four record families only the HR system can originate. The split between system of record and identity provider. Why effective dating makes proactive automation possible. The attribute authority map. The identifier layers and the identifier decision. Worker type as the attribute policy hangs from. The operating rules.
+The four record families only the HR system can originate. The split between system of record and identity provider. Why effective dating makes proactive automation possible. The attribute authority map. The identifier layers and the identifier decision. Worker type as the attribute policy hangs from. Privacy: identity as a routine-use consumer. The operating rules.
 :::
 
 ## What a human capital system actually owns
@@ -58,6 +58,8 @@ This is not a bookkeeping nicety — it is what makes proactive automation possi
 
 The discipline that makes the source of authority operable is a written, governed answer to one question per attribute: *which system owns this?* An attribute is **authoritative** where it is created by a business act, and **derived** everywhere else. Derived attributes are computed, stamped, and read — never edited in place.
 
+![The authority map: the HR system of record, the identity platform, and card management and PKI each own one class of fact; consumers only derive.](../images/diagrams/hr-driven-iam/svg/ch03-authority-map.svg){fig-alt="Three authoritative boxes on the left: HR system of record (person and affiliation keys, worker type and status, position, series and grade, organization and duty station, supervisor); identity platform (accounts and UPN, sessions and authentication, group membership by rule); card management and PKI (PIV and derived credentials, device certificates). HR feeds the identity platform as a governed projection and card management through sponsorship and status. The identity platform and card management feed a green consumers box: applications and token claims, access packages and reviews, Conditional Access, SIEM and audit joins."}
+
 | Attribute | Authoritative system | Derived consumers |
 |---|---|---|
 | Person and affiliation identifiers (enterprise person key; source person number, projected to `employeeId`) | HR system of record for the source keys; the agency's identifier decision for the enterprise person key | Directory correlation key, audit joins, per-system account linkage |
@@ -81,6 +83,8 @@ IA-4 requires managing identifiers by receiving authorization to assign them, se
 
 That takes more than one identifier, because each layer has its own lifecycle:
 
+![Layered identifiers: one enterprise person key the agency controls, with source, affiliation, directory and credential keys mapped to it.](../images/diagrams/hr-driven-iam/svg/ch03-identifier-layers.svg){fig-alt="An amber box at the top, enterprise person key, never changes once assigned, assigned by the agency's identifier decision. Four boxes below it: source person key (changes with the source; Oracle PersonNumber today), affiliation key (per affiliation), directory object ID (per account), credential identifiers (per authenticator; PIV FASC-N or UUID, certificate SKI)."}
+
 | Key | Identifies | Assigned by | Changes when |
 |---|---|---|---|
 | Enterprise person key | The person, across every affiliation | The agency's identifier decision (below) | Never, once assigned |
@@ -98,6 +102,10 @@ The enterprise person key is what makes audit joins possible at all: the token e
 ## The worker-type boundary
 
 One authoritative attribute deserves special notice because entire policy families hang from it: **worker type.** Employee, contractor, intern, volunteer — the classification determines member-versus-guest treatment in the tenant, license assignment, access ceilings, and which conditional-access baseline applies. When worker type is a directory field someone sets at account creation, it is wrong exactly as often as staffing paperwork is ambiguous, and the errors are invisible because nothing reconciles them. When it is derived from the worker record, the contractor whose engagement ends loses access on the engagement's end date (a leaver event for a non-employee), and the conversion seam — contractor on Friday, employee on Monday — is a re-derivation on the same identifier rather than a second identity with a second, forgotten first account. IA-4(4)'s status characterization (identifying each individual as, for example, a contractor) falls out of the same attribute for free: the characteristic is asserted by the system that classifies workers as a business act, not annotated by an administrator who heard about it.
+
+## Privacy: identity is a routine-use consumer
+
+The HR system is a Privacy Act system of records. Moving its data into a directory is a disclosure, and it needs the same discipline as any other: a routine-use basis under the governing system-of-records notices (for general personnel records, OPM/GOVT-1, plus the agency's own), an updated privacy impact assessment, and minimization — only the attributes an identity decision actually reads, as codes rather than narrative. The SSN is not a join key; the layered identifiers above exist so that it never has to be. Appendix B sets out the full data-flow assessment.
 
 ## Operating rules
 

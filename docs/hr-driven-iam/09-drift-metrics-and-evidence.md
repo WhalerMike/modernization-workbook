@@ -41,6 +41,8 @@ None of these numbers exists in a ticket-driven estate, because the events they 
 
 Drift is any difference between what the HR record says and what the directory holds. Each class has a detection signal and a default severity:
 
+![Drift and evidence: a scheduled comparison of the HR record with the directories finds each drift class; findings are closed at the right end, and every step leaves evidence.](../images/diagrams/hr-driven-iam/svg/ch09-drift-evidence-loop.svg){fig-alt="An amber HR record box (what should be true) and a blue directories and apps box (what is true) both feed a violet scheduled comparison box (missing, stale, orphan, attribute, write and credential drift). It feeds a green close-at-the-right-end box (fix the record or the rule, never the copy). Dashed lines from both go to a grey evidence box (provenance, workflow runs, findings, metrics)."}
+
 | Drift class | Example | Detection signal | Severity |
 |---|---|---|---|
 | Missing identity | A worker record with no account after a provisioning cycle | Set difference: active HR records without a matching `employeeId` | High |
@@ -55,7 +57,7 @@ Drift is any difference between what the HR record says and what the directory h
 
 The provisioning logs are the first source for most of these: the API client already reads them for each record's result (Chapter 04). The rest are joins between the HR extract, the directory and the CMS, on the one identifier they share.
 
-In the first month of a new pipeline, expect a burst of high-severity findings: leavers the old manual process hadn't caught up with, and orphan accounts from earlier connectors that the canonical pipeline can now see. That burst is the measurement working, not the pipeline failing.
+In the first month of a new pipeline, expect a burst of high-severity findings: leavers the manual process hadn't caught up with, and orphan accounts that years of ticket-driven account creation left behind and the HR-driven pipeline can now see. That burst is the measurement working, not the pipeline failing.
 
 ## The evidence each event leaves
 

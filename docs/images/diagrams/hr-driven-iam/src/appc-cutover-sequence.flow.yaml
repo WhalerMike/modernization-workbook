@@ -1,0 +1,16 @@
+# Appendix C — acceptance, cutover, and closing the ticket path for a population.
+rankdir: LR
+graph: {nodesep: 0.25, ranksep: 0.2}
+nodes:
+  uat: {tone: slate, width: 112, title: "Acceptance tests", body: ["=Business-language cases, by worker type"], size: 12}
+  val: {tone: amber, width: 112, title: "Validation report", body: ["=Signed before cutover"], size: 12}
+  dry: {tone: slate, width: 104, title: "Dry run", body: ["=Production data, no writes"], size: 12}
+  cut: {tone: blue, width: 112, title: "Cutover", body: ["=Spot checks; rollback ready"], size: 12}
+  sole: {tone: green, width: 120, title: "Sole-source proof", body: ["=Every change for 7 days came from HR"], size: 12}
+  ret: {tone: red, width: 120, title: "Close the ticket path", body: ["=Manual account creation ends for the population"], size: 12}
+edges:
+  - [uat, val]
+  - [val, dry]
+  - [dry, cut]
+  - [cut, sole]
+  - [sole, ret, {tone: red}]
