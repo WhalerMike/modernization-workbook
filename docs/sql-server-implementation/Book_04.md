@@ -1,6 +1,6 @@
 ---
 title: "Implementation Book 04 — Arc Deployment & the Managed Identity"
-subtitle: "The verified runbook for giving an on-prem SQL host a system-assigned managed identity via the Arc Connected Machine agent — the credential-free cloud identity the transformation requires"
+subtitle: "The verified runbook for giving an on-prem SQL Server instance its Microsoft Entra identity through Azure Arc: a system-assigned managed identity on SQL Server 2025, or an app registration plus a certificate on SQL Server 2022"
 description: "A pattern runbook for Azure Arc enablement of SQL Server hosts: prerequisites and egress for the GCC-Moderate boundary, azcmagent enrollment, IMDS managed-identity token validation, the Azure extension for SQL Server, and a verification checklist. The onboarding and validation helpers are shipped in the FMPSqlServerMigration module — validation read-only, onboarding review-required and audit-first — and the book gives the exact commands, validation, and rollback alongside the function that automates each step."
 doc-type: sql-server-implementation-book
 audience: [Technical, Customer]
@@ -34,6 +34,11 @@ The Arc onboarding and validation helpers are now **shipped** in the `FMPSqlServ
 ## Why Arc comes before login migration
 
 An on-prem SQL host has no cloud identity of its own. The Arc Connected Machine agent gives it a **system-assigned managed identity** — an identity in the tenant with no stored secret — which is the credential the engine uses to validate Entra ID tokens. No Arc, no managed identity; no managed identity, no Entra login (Book 05). Arc is therefore a prerequisite, not an enhancement.
+
+::: {.callout-note}
+## SQL Server version matters
+The engine uses the Arc managed identity for Microsoft Entra authentication only on **SQL Server 2025**. On **SQL Server 2022**, Entra authentication through Arc uses an **app registration plus a certificate**; the Arc agent's managed identity still exists on the host but is not what the engine authenticates with. See Microsoft's setup guides for [SQL Server 2025 (managed identity)](https://learn.microsoft.com/en-us/sql/sql-server/azure-arc/microsoft-entra-authentication-with-managed-identity?view=sql-server-ver17) and [SQL Server 2022 (app registration)](https://learn.microsoft.com/en-us/sql/sql-server/azure-arc/entra-authentication-setup-tutorial?view=sql-server-ver17).
+:::
 
 ## Prerequisites (GCC-Moderate)
 
