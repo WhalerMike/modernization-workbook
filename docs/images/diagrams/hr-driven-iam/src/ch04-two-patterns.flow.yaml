@@ -1,0 +1,21 @@
+# Chapter 04 — two landing patterns over the Entra ID migration: HR lands hybrid
+# users in AD while AD is the source of authority; once a population's source of
+# authority moves to the cloud, HR lands users in Entra ID and AD accounts that
+# applications still need are provisioned from Entra ID.
+rankdir: LR
+graph: {nodesep: 0.35, ranksep: 0.45}
+clusters:
+  - {id: target, label: "After the source of authority moves to the cloud", tone: green, filled: false, nodes: [h2, e2, a2]}
+  - {id: now, label: "While AD is the source of authority", tone: slate, filled: false, nodes: [h1, a1, c1]}
+nodes:
+  h1: {tone: amber, width: 120, title: "HR", body: ["=Core HCM"], size: 12}
+  a1: {tone: blue, width: 140, title: "Active Directory", body: ["=Provisioning agent writes the user"], size: 12}
+  c1: {tone: blue, width: 140, title: "Entra ID", body: ["=Synced from AD"], size: 12}
+  h2: {tone: amber, width: 120, title: "HR", body: ["=Core HCM"], size: 12}
+  e2: {tone: blue, width: 140, title: "Entra ID", body: ["=Cloud-managed users"], size: 12}
+  a2: {tone: slate, width: 140, title: "Active Directory", body: ["=Only where apps still need it, provisioned from Entra ID"], size: 12}
+edges:
+  - [h1, a1]
+  - [a1, c1, {label: "sync"}]
+  - [h2, e2]
+  - [e2, a2, {style: dashed}]

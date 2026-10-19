@@ -1,0 +1,19 @@
+# Chapter 10 — the phase model: each gate is the next phase's precondition, timed
+# to the agency's Core HCM interconnection and its Entra ID migration.
+rankdir: LR
+graph: {nodesep: 0.2, ranksep: 0.18}
+nodes:
+  p0: {tone: slate, width: 95, tag: "Phase 0", title: "Align", body: ["=Identity named in both migrations"], size: 12}
+  p1: {tone: amber, width: 100, tag: "Phase 1", title: "Standards and authority", body: ["=Crosswalk, authority map, identifier, privacy basis"], size: 12}
+  p2: {tone: slate, width: 95, tag: "Phase 2", title: "Build and test", body: ["=J/M/L end to end with evidence"], size: 12}
+  p3: {tone: slate, width: 95, tag: "Phase 3", title: "Pilot", body: ["=Shadow mode first"], size: 12}
+  p4: {tone: slate, width: 95, tag: "Phase 4", title: "Automate", body: ["=Leavers first; access by rule"], size: 12}
+  p5: {tone: green, width: 100, tag: "Phase 5", title: "Cut over", body: ["=Per population, with its move to Entra ID"], size: 12}
+  p6: {tone: slate, width: 95, tag: "Phase 6", title: "Sustain", body: ["=Metrics on the ConMon cadence"], size: 12}
+edges:
+  - [p0, p1]
+  - [p1, p2]
+  - [p2, p3]
+  - [p3, p4]
+  - [p4, p5]
+  - [p5, p6]

@@ -38,8 +38,12 @@ Its HR data exchange today is typical:
 - The HR system of record is run by a legacy HR shared service provider, under that provider's interconnection agreements. The agency is the data steward but doesn't own the exchange contract. That system is scheduled to be replaced by the Core HCM platform during the agency's wave (Chapter 02).
 - USA Staffing is the upstream hire trigger; new-hire data flows from USA Staffing to the HR system of record.
 - PIV cards are issued through a shared-service PIV issuer and its card management system.
-- A bespoke HR-to-AD connector built for an earlier modernization creates accounts; organizational assignments are handled by hand; there's no drift detection between HR and Entra ID and no provisioning evidence.
+- Several thousand contractors are tracked in COR spreadsheets: a sponsor, a contract number and an end date per person, kept current by hand.
+- There is no HR-driven provisioning. Accounts are created, changed and disabled from tickets and email; organizational assignments are handled by hand; there's no drift detection between HR and the directories and no provisioning evidence.
+- The agency is planning its move from Active Directory to Entra ID at the same time as its Core HCM onboarding.
 - About two-thirds of users are still mastered in on-premises AD.
+
+![The illustrative agency before and after: tickets as the only channel from HR to IT become one governed path from Core HCM standard attributes to Entra ID, with Active Directory only where still needed.](../images/diagrams/hr-driven-iam/svg/ch11-reference-estate.svg){fig-alt="Two framed rows. Top, in red, before: no HR-driven identity. An HR system that knows every hire, move and separation connects by a dashed line to tickets and email, the only channel to IT, which feed Active Directory (accounts created by hand), which syncs to Entra ID. Bottom, in green, after: HR-driven identity. Core HCM (OPM standard attributes) feeds a governed identity model (provenance per event), which feeds Entra ID (cloud-managed populations) and Active Directory (only where still needed)."}
 
 ## Phase by phase
 
@@ -49,9 +53,9 @@ Its HR data exchange today is typical:
 
 **Phase 2 — Pipeline build and test.** The middleware is built against extracts from the current HR system *and* sandbox extracts from Core HCM, because the source will change mid-program. Only the source contract and boundary transformation differ; the governed identity model and downstream lifecycle policy remain stable. The leaver workflow's custom task extensions retire a test device and revoke a test certificate in the test tenant.
 
-**Phase 3 — Hybrid go-live (pilot).** Two provisioning agents go in; the old connector is switched off for the pilot population. Thirty days of shadow mode surface the differences between what HR says and what AD holds: stale departments, managers who left years ago, and accounts the old connector created for records HR had already cancelled.
+**Phase 3 — Hybrid go-live (pilot).** Two provisioning agents go in. Thirty days of shadow mode surface the differences between what HR says and what AD holds: stale departments, managers who left years ago, and accounts created by ticket for hires HR had already cancelled. Once every difference is explained, the ticket path for account creation closes for the pilot population (Appendix C).
 
-**Phase 4 — Lifecycle automation and derived access.** Leaver automation goes first. In the first month the drift report shows a burst of high-severity findings: separated workers whose accounts the manual process hadn't reached, and orphan accounts from the old connector that the canonical pipeline can now see (Chapter 09). Each high-severity finding blocks the dependent provisioning action until it's resolved. Dynamic groups replace hand-maintained ones application by application; a test reorganization in HR moves a division's access with no directory edits.
+**Phase 4 — Lifecycle automation and derived access.** Leaver automation goes first. In the first month the drift report shows a burst of high-severity findings: separated workers whose accounts the manual process hadn't reached, and orphan accounts left by years of ticket-driven account creation that the HR-driven pipeline can now see (Chapter 09). Each high-severity finding blocks the dependent provisioning action until it's resolved. Dynamic groups replace hand-maintained ones application by application; a test reorganization in HR moves a division's access with no directory edits.
 
 **Phase 5 — Cutover to cloud-mastered.** As the agency's Core HCM interconnection goes live, the source contract and boundary transformation switch source. New hires land cloud-mastered in Entra ID directly; existing AD-mastered populations follow per population as their dependencies on AD retire.
 
@@ -80,5 +84,5 @@ The [AD → Entra ID Identity Modernization Guide](../operational-guides/identit
 
 ::: {.callout-tip}
 ## Continue the series
-[← Previous: Chapter 10 — Execution Plan](10-execution-plan.md) · [Index](index.md)
+[← Previous: Chapter 10 — Execution Plan](10-execution-plan.md) · [Index](index.md) · [Next: Appendix A — Lifecycle Rules →](appendix-a-lifecycle-rules.md)
 :::

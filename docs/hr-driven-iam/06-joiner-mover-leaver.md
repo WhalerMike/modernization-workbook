@@ -17,7 +17,7 @@ lifecycle_review: 2027-01-01
 
 ::: {.callout-note}
 ## In this chapter
-The five events a worker record goes through and what each one causes in the directory. The division of labor between inbound provisioning and Lifecycle Workflows. Triggers, schedules and built-in tasks. Emergency termination, rehire, conversion and deletion. The leaver sequence itself, including credentials, is in Chapter 07.
+The five events a worker record goes through and what each one causes in the directory. The personnel-action codes that trigger them. The division of labor between inbound provisioning and Lifecycle Workflows. Triggers, schedules and built-in tasks. Emergency termination, rehire, conversion and deletion. The leaver sequence itself, including credentials, is in Chapter 07.
 :::
 
 ## The lifecycle is an event stream
@@ -36,6 +36,34 @@ Joiner, mover and leaver, plus the two transitions estates forget until they hur
 
 The property that matters is the direction of causation. Nobody *remembers* to disable a leaver; the separation record causes the disablement, on the effective date. Tickets survive only for exceptions, and every exception is visible as a deviation from a computed baseline.
 
+## Personnel actions are the triggers
+
+For federal employees, every HR event above is recorded as a personnel action, and every personnel action carries a **nature-of-action (NOA) code**. The first digit of the code sets the family; OPM's *Guide to Processing Personnel Actions* organizes its chapters around those codes.[^c06-gppa] That gives HR-driven identity a standard, government-wide trigger vocabulary instead of a locally invented one:
+
+![Personnel actions drive the lifecycle: the nature-of-action family on each SF-50 classifies the HR event into one identity event.](../images/diagrams/hr-driven-iam/svg/ch06-personnel-action-lifecycle.svg){fig-alt="An amber box on the left, SF-50 nature of action: first digit sets the family; effective date sets the time. Seven arrows fan out to: 1xx accessions, joiner; 5xx conversions, conversion; 7xx position, duty station and name changes, mover; 4xx nonpay or nonduty status, not a leaver; 2xx return to duty, reinstate; 3xx separations, leaver, block first; 001 and 002 corrections and cancellations, reverse or re-derive with evidence."}
+
+| NOA family (GPPA chapters) | Examples | Identity event |
+|---|---|---|
+| Accessions — 1xx (Ch 9–11, 13) | 100, 101, 130, 140, 141, 170, 171 | **Joiner** |
+| Conversions — 5xx (Ch 9–11, 13) | 500, 501, 540, 570, 571 | **Conversion**: same person and key; access re-derived |
+| Position changes — 7xx (Ch 14) | 702 promotion, 713 change to lower grade, 721 reassignment | **Mover** |
+| Other 7xx changes (Ch 20, 21, 23, 24) | 780 name change, 790 realignment, 792 duty station change, 781/782 work schedule | **Mover** (attribute re-stamp; UPN kept on a name change) |
+| Nonpay or nonduty status — 4xx (Ch 15) | 430, 450–452, 460, 471, 473, 480 | **Not a leaver**: the person is kept; policy restricts the account |
+| Return to duty — 2xx (Ch 16) | 280, 292 | **Reinstate**: restrictions lifted |
+| Separations — 3xx (Ch 30–31) | 300–308 retirements; 312, 317, 330, 350–357, 385, 390 | **Leaver**: block first (Chapter 07) |
+| Corrections and cancellations (Ch 32) | 001, 002 | **Reverse or re-derive** from the corrected record, with evidence |
+| Pay and data-element changes — 8xx (Ch 17, 26, 28) | 880 tenure change; 800, 803 data element change | Usually none; re-derive the worker profile when tenure or a mapped element changes |
+
+: Nature-of-action families and the identity event each one causes {.striped .hover}
+
+Contractors and vendors have no SF-50 and no nature-of-action codes. Their joiner and leaver events are the contract or sponsorship start and end dates in their own source, and a sponsor's withdrawal is a leaver event (Chapter 05).
+
+Three rules follow, and Appendix A sets out the rest:
+
+- **Leave is not a leaver.** Furlough, leave without pay and suspension (the 4xx family) keep the person; deprovisioning them as leavers locks out people who are still employed.
+- **Precedence is a rule.** When two actions for one person land in one cycle, a separation wins, and a conversion is applied before a mover is evaluated.
+- **Cancellations are first-class events.** A cancelled separation (001/002) re-enables what the separation disabled, from the corrected record, with evidence.
+
 ## Who does what: provisioning and Lifecycle Workflows
 
 Two Microsoft services share the work, and the boundary between them is easy to blur:
@@ -44,6 +72,8 @@ Two Microsoft services share the work, and the boundary between them is easy to 
 - **Lifecycle Workflows act on users who already exist.** Microsoft describes them as automating the routine processes *around* HR-driven provisioning: while HR provisioning manages creation and attribute updates, workflows run additional tasks.[^c06-lcw-tasks] A workflow is a set of tasks plus execution conditions: a scope (who) and a trigger (when).[^c06-lcw-overview]
 
 A workflow never creates the account. A page that says "Lifecycle Workflows provision the new hire" has the boundary wrong.
+
+![Who does what: inbound provisioning creates and updates accounts from the HR event; Lifecycle Workflows act on users who already exist and call custom task extensions.](../images/diagrams/hr-driven-iam/svg/ch06-provisioning-and-workflows.svg){fig-alt="Left to right: an amber HR event box (effective-dated personnel action); a blue inbound provisioning box (create the account, keep attributes current, enable or disable from HR status); an arrow labelled dates and status to a green Lifecycle Workflows box (pre-hire and day-one tasks, mover re-evaluation, leaver tasks and extensions); and a violet custom task extensions box (card management, Intune, applications)."}
 
 ### Triggers and schedule
 
@@ -95,6 +125,7 @@ Disable on the separation date; delete or anonymize only under the approved acco
 [← Previous: Chapter 05 — The Canonical Workforce Identity Model](05-canonical-attribute-schema.md) · [Index](index.md) · [Next: Chapter 07 — Credentials and Certificates Across Joiner, Mover, Leaver →](07-credentials-and-certificates.md)
 :::
 
+[^c06-gppa]: U.S. Office of Personnel Management, *Guide to Processing Personnel Actions*, October 2026 edition (chapter list and nature-of-action codes per chapter), <https://www.opm.gov/policy-data-oversight/data-analysis-documentation/personnel-documentation/processing-personnel-actions/guide_to_processing_personnel_actions.pdf> (accessed Oct 19, 2026).
 [^c06-lcw-tasks]: Microsoft Learn, "Lifecycle Workflows tasks and definitions," <https://learn.microsoft.com/en-us/entra/id-governance/lifecycle-workflow-tasks> (accessed Oct 19, 2026).
 [^c06-lcw-overview]: Microsoft Learn, "What are lifecycle workflows?," <https://learn.microsoft.com/en-us/entra/id-governance/what-are-lifecycle-workflows> (accessed Oct 19, 2026).
 [^c06-lcw-conditions]: Microsoft Learn, "Lifecycle workflow execution conditions and scheduling," <https://learn.microsoft.com/en-us/entra/id-governance/lifecycle-workflow-execution-conditions> (accessed Oct 19, 2026).

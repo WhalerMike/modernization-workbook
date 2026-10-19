@@ -1,6 +1,6 @@
 ---
 title: "HR-Driven Identity"
-subtitle: "From the HR System of Record to Entra ID — authoritative workforce identity, automated lifecycle, governed access, and measurable evidence"
+subtitle: "Using Federal HR 2.0 and the Entra ID migration to start HR-driven Entra ID, Active Directory and ICAM on OPM standard attributes"
 description: "One series for HR-driven identity modernization in a federal civilian agency: the modernization outcomes, why the HR system of record is the source of authority, the Federal HR 2.0 program, attribute authority, provisioning services, the canonical workforce identity model, joiner-mover-leaver with Lifecycle Workflows, credentials and certificates, attribute-derived access, drift and evidence, the phased execution plan, and an illustrative reference deployment."
 doc-type: section-landing
 audience: [Executive, Technical, Customer]
@@ -36,7 +36,9 @@ One chapter at a time: [00](../../downloads/hr-driven-iam-00.docx) · [01](../..
 
 An agency's identity platform can prove, cryptographically and at every hop, that a claim was signed by the party allowed to sign it. It can't tell you whether the claim is *true*: whether the person behind the credential still works for the agency, still holds the position the access was granted for, still reports to the supervisor who approved it. Those are workforce facts. They originate in workforce business processes and are recorded in the human capital system of record; identity services consume governed projections of them and remain authoritative for credentials, authentication, sessions, directory objects, and policy enforcement.
 
-This series is about making accounts, credentials, access, and their removal timely and explainable *consequences* of those records rather than tickets. It's written for a federal civilian agency in the commercial Microsoft cloud at GCC-Moderate / FedRAMP Moderate, receiving its HR data from the government-wide Federal HR 2.0 platform (Oracle Fusion Cloud HCM). Its center of gravity is a governed workforce identity model, not a connector: source-specific mapping is replaceable boundary logic.
+This series is a proposal: use Federal HR 2.0 and the move from Active Directory to Entra ID together to **start HR-driven identity**, so that accounts, credentials, access and their removal become timely, explainable *consequences* of personnel records rather than tickets. It is not a plan to implement HRIT; HRIT is happening regardless. It is a plan to use it. It's written for a federal civilian agency in the commercial Microsoft cloud at GCC-Moderate / FedRAMP Moderate, receiving its HR data from the government-wide Federal HR 2.0 platform (Oracle Fusion Cloud HCM). For federal employees its contract is OPM's standard personnel data — the government-wide data standards and nature-of-action codes — mapped once into a governed workforce identity model; vendor field names are replaceable boundary logic. HRIT does not cover contractors and vendors, so they need their own authoritative source mapped into the same model (Chapter 05).
+
+![Two migrations, one opportunity: HR moves to Core HCM and identity moves to Entra ID; together they start HR-driven identity on OPM standard attributes.](../images/diagrams/hr-driven-iam/svg/ch00-thesis.svg){fig-alt="Two grey boxes, HR moves to Core HCM and Identity moves to Entra ID, feed an amber box for OPM standard attributes and a blue box for HR-driven identity, which drives Entra ID and AD and then ICAM."}
 
 ## Modernization outcomes
 

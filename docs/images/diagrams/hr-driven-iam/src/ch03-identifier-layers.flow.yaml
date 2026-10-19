@@ -1,0 +1,15 @@
+# Chapter 03 — layered identifiers: one enterprise person key the agency controls,
+# with source, affiliation, directory and credential keys mapped to it.
+rankdir: TB
+graph: {nodesep: 0.3, ranksep: 0.4}
+nodes:
+  ent: {tone: amber, width: 300, tag: "Never changes once assigned", title: "Enterprise person key", body: ["=Assigned by the agency's identifier decision"], size: 12}
+  src: {tone: slate, width: 170, tag: "Changes with the source", title: "Source person key", body: ["=Oracle PersonNumber today"], size: 12}
+  aff: {tone: slate, width: 170, tag: "Per affiliation", title: "Affiliation key", body: ["=One employment, contract or appointment"], size: 12}
+  dir: {tone: blue, width: 170, tag: "Per account", title: "Directory object ID", body: ["=AD objectGUID, Entra object ID"], size: 12}
+  cred: {tone: violet, width: 170, tag: "Per authenticator", title: "Credential identifiers", body: ["=PIV FASC-N or UUID, certificate SKI"], size: 12}
+edges:
+  - [ent, src]
+  - [ent, aff]
+  - [ent, dir]
+  - [ent, cred]

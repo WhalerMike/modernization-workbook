@@ -29,12 +29,15 @@ Each phase's gate is the next phase's precondition. The order isn't optional: de
 
 **About the numbers in the gates.** Thresholds such as 99% correlation or "zero missed leavers across a pay-period cycle" are *proposed starting criteria*, not federal requirements. The agency approves or replaces each one through its risk governance, and a risk-tiered threshold — tighter for privileged and high-impact populations — is usually more useful than one enterprise-wide number. Where a gate says "risk-approved", the agency sets the value.
 
+![The phase model: seven phases, each gate the next phase's precondition, timed to the agency's Core HCM interconnection and its Entra ID migration.](../images/diagrams/hr-driven-iam/svg/ch10-phase-gates.svg){fig-alt="Seven boxes left to right. Phase 0, align: identity named in both migrations. Phase 1 in amber, standards and authority: crosswalk, authority map, identifier, privacy basis. Phase 2, build and test: joiner, mover, leaver end to end with evidence. Phase 3, pilot: shadow mode first. Phase 4, automate: leavers first; access by rule. Phase 5 in green, cut over: per population, with its move to Entra ID. Phase 6, sustain: metrics on the ConMon cadence."}
+
 ## Phase 0 — Program alignment
 
 *Directed by the Federal HR 2.0 memo's preparation actions: executing it is compliance, not overhead (Chapter 02).*
 
 - Name the agency's integrated project team point of contact and the working-group points of contact.
-- Inventory integration points, interfacing systems and data flows. The identity provisioning feed is one of them.
+- Inventory integration points, interfacing systems and data flows, and **name the HR-driven identity feed as one of them** — a new interconnection consumer, not an afterthought.
+- In the agency's Entra ID migration plan, name HR as the source for each population that moves, so the two migrations share one cutover schedule.
 - Identify legacy identity-relevant data to retain, and define how to preserve what doesn't migrate.
 - Confirm the pause on any competing Core HCM modernization.
 
@@ -43,6 +46,9 @@ Each phase's gate is the next phase's precondition. The order isn't optional: de
 ## Phase 1 — Attribute authority and schema
 
 - Record the enterprise identifier decision (Chapter 03): which key is the enterprise person key, and how source keys map to it.
+- Build the standard-attribute crosswalk (Chapter 05): each OPM standard element an identity decision reads, mapped to the canonical model; and the nature-of-action trigger table (Chapter 06).
+- Establish the privacy basis: routine use under the governing SORNs, the updated PIA, and the minimized attribute set (Appendix B).
+- Decide the contractor and vendor source (Chapter 05) — Core HCM contingent workers, the PIV sponsorship system, or both — and retire the COR spreadsheets as a source of truth.
 - Sign the attribute authority map (Chapter 03): every attribute any access decision reads, its authoritative system, its derivation rule if derived, and its data-quality owner.
 - Finalize the canonical schema (Chapter 05) against Oracle HCM field names, and validate the crosswalk against a sandbox extract. Confirm the extension-attribute carriers are free and in the provisioning apps' target lists.
 - Define the worker-type taxonomy (employee, contractor, intern, volunteer, vendor, external), each mapped to license, access ceiling and retention, and the code lists for the three access attributes.
@@ -80,7 +86,9 @@ Each phase's gate is the next phase's precondition. The order isn't optional: de
 
 **Gate (proposed starting criteria):** zero missed leavers across a full pay-period cycle; separation-to-block within the approved threshold and separation-to-revocation measured in hours; day-one readiness demonstrated; the account-creation ticket queue retired for covered populations; for covered applications, every entitlement resolves to a rule, an attribute and a worker record; a test reorganization in HR propagates to groups and approvals with zero manual directory changes.
 
-## Phase 5 — Cutover to cloud-mastered populations
+## Phase 5 — Cutover, population by population
+
+Each population cuts over to HR-driven identity as it moves to Entra ID, and the ticket path for account creation closes for it (Appendix C).
 
 - Align the cutover with the agency's Core HCM onboarding: the provisioning feed must be ready when the agency's interconnections go live (Chapter 02).
 - As populations become cloud-mastered, retarget their provisioning from the AD app to the Entra app — a configuration change per population, evidence-gated — with the AD leg dormant but intact until nothing remains synced.
@@ -134,6 +142,11 @@ Phases 1 and 2 produce no visible change for end users, which is exactly why est
 | eOPF and EHRI decommission schedule | Times the retirement of EHRI-shaped integrations | Open; the memo says "eventually" |
 | Native Oracle HCM connector for Entra | Would become an optimization inside the architecture | Watch |
 | Agency onboarding schedule movement | The interconnection go-live is the deadline | Watch program communications |
+| OPM standard data elements and codes used by the crosswalk | The crosswalk's contract (Chapter 05) | Confirm against OPM's current data standards and how Core HCM exposes them |
+| Whether the agency's Core HCM configuration records contingent workers | The contractor and vendor source decision (Chapter 05) | Confirm with the HR 2.0 program |
+| Nature-of-action families and codes | The lifecycle trigger table (Chapter 06) | Checked against the GPPA, October 2026 edition; re-check at engagement time |
+| Routine use under the governing SORNs; PIA update | The privacy basis for the feed (Appendix B) | Confirm with the agency privacy office |
+| User source-of-authority transfer and Entra-to-AD provisioning in the tenant | The target landing pattern (Chapter 04) | Confirm availability and prerequisites in GCC |
 | Extension-attribute carriers free and mappable | Phase 1 gate | Check per tenant |
 | PIV issuing CA CRL sizes and delta CRLs | Revocation latency and CBA availability (Chapter 07) | Check per issuing CA |
 | ~~GCC availability of API-driven provisioning and Lifecycle Workflows~~ | Licensing and the Phase 2 gate | **Closed.** Microsoft Entra ID Governance for Government is available in GCC, GCC High and DoD;[^c10-lf] GCC tenants run in Azure Global, the worldwide Entra service.[^c10-crl-gcc] Confirm licenses in-tenant as usual |

@@ -1,0 +1,15 @@
+# Appendix A — event precedence when two personnel actions for one person land in
+# the same cycle.
+rankdir: TB
+graph: {nodesep: 0.3, ranksep: 0.3}
+nodes:
+  in: {tone: slate, width: 280, title: "Events for one person in one cycle", body: ["=Ordered by effective date, then by the rules below"], size: 12}
+  q1: {tone: red, width: 280, tag: "Rule 1", title: "Separation present?", body: ["=The leaver wins; pending mover and conversion changes are dropped and logged"], size: 12}
+  q2: {tone: blue, width: 280, tag: "Rule 2", title: "Worker type changed?", body: ["=Apply the conversion first, then evaluate the mover"], size: 12}
+  q3: {tone: amber, width: 280, tag: "Rule 3", title: "Nonpay or nonduty status?", body: ["=Restrict; never disable as a leaver"], size: 12}
+  q4: {tone: violet, width: 280, tag: "Rule 4", title: "Correction or cancellation?", body: ["=Re-derive from the corrected record; reverse with evidence"], size: 12}
+edges:
+  - [in, q1]
+  - [q1, q2]
+  - [q2, q3]
+  - [q3, q4]

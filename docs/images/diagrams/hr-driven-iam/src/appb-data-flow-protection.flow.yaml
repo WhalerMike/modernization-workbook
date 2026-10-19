@@ -1,0 +1,15 @@
+# Appendix B — protecting the data flow: minimized attributes, encrypted legs,
+# identities without secrets, and logs that carry keys and hashes, not records.
+rankdir: LR
+graph: {nodesep: 0.3, ranksep: 0.45}
+nodes:
+  hcm: {tone: amber, width: 138, title: "Core HCM", body: ["=System of records (Privacy Act)"], size: 12}
+  mw: {tone: blue, width: 156, title: "Middleware in boundary", body: ["=Managed identity or certificate; no client secrets"], size: 12}
+  ent: {tone: blue, width: 138, title: "Entra ID and AD", body: ["=Only the attributes a decision reads"], size: 12}
+  logs: {tone: slate, width: 156, title: "Operational logs", body: ["=Person key and payload hash only"], size: 12}
+  audit: {tone: violet, width: 156, title: "Audit store", body: ["=Full payloads, access-controlled, retained by schedule"], size: 12}
+edges:
+  - [hcm, mw, {label: "TLS; routine use", tone: amber}]
+  - [mw, ent, {label: "TLS; least privilege"}]
+  - [mw, logs, {style: dashed}]
+  - [mw, audit, {style: dashed, tone: violet}]

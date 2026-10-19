@@ -13,11 +13,11 @@ lifecycle_review: 2027-01-01
 
 # Chapter 02 — Federal HR 2.0 and the Core HCM Platform
 
-*The deadline isn't the agency's to set. The provisioning feed has to be ready when the agency's onboarding reaches its interconnection slot.*
+*Federal HR 2.0 is not the project. It is the opening: the HR side is rebuilt anyway, and the identity side is left to the agency.*
 
 ::: {.callout-note}
 ## In this chapter
-What OPM HRIT is and who OPM is in this story. Five decades of federal HR consolidation. The Federal HR 2.0 program facts and the wave clock. Why integrations built against EHRI and eOPF have an expiry date. What OPM requires of the identity leg, and what it leaves to the agency.
+What OPM HRIT is and who OPM is in this story. Five decades of federal HR consolidation. The Federal HR 2.0 program facts and the wave clock. Why Federal HR 2.0 is the opportunity to start HR-driven identity, and when the window closes. What OPM requires of the identity leg, and what it leaves to the agency.
 :::
 
 ## OPM HRIT and Federal HR 2.0
@@ -60,21 +60,41 @@ Every milestone in the program's history moves the same direction: fewer systems
 | Agency obligation now | **Pause own Core HCM modernization**; execute the Appendix C preparation actions | Memo, §II |
 | Interface requirement (procurement) | PWS Appendix A Requirements Checklist Req #5: **SCIM 2.0 near-real-time provisioning** | Solicitation 24322626R0007 (verified 2026-04-30) |
 
-Two planning consequences follow directly:
+## Why this is the opportunity, not the project
 
-1. **The deadline is not the agency's to set.** The first Wave 1 agencies go live
-   between January and March 2027. For a Wave 2 agency the provisioning feed
-   must be integration-ready when the agency's onboarding reaches its
-   interconnection slot (~month 5 of the wave window). Build backward from that.
+An agency doesn't choose whether to implement Federal HR 2.0; the memo and the waves decide that. What the agency does choose is whether identity rides along. Four facts make HR 2.0 the cheapest moment it will get to start HR-driven identity:
+
+| HR 2.0 rebuilds anyway | What it gives identity |
+|---|---|
+| New interconnections with the agency, designed during onboarding | An HR-driven identity feed can be designed in, not bolted on later |
+| HR data cleaned and converted for the migration | Worker type, organization, duty station and supervisor fixed once, at the source |
+| One platform with one interface for every agency | One standards-based crosswalk instead of one per HR provider |
+| A solicitation that requires SCIM 2.0 near-real-time provisioning | The protocol Entra ID's inbound provisioning consumes |
+
+: What Federal HR 2.0 rebuilds anyway, and what that gives identity {.striped .hover}
+
+One limit applies to all four: Federal HR 2.0 is a program for **federal employees**. Contractors and vendors are not in it. Their source is a separate decision (Chapter 05), and the HR 2.0 onboarding is the right time to make it, because the contingent-worker capability of the same platform is one of the options.
+
+The agency's own move from Active Directory to Entra ID is the second half of the opening (Chapter 04): the directory that HR will drive is being redesigned at the same time.
+
+![The window: Federal HR 2.0 decides the HR side on its own schedule; an HR-driven identity feed has to be designed in during onboarding, before the agency's interconnection goes live.](../images/diagrams/hr-driven-iam/svg/ch02-hr20-window.svg){fig-alt="Five boxes left to right. Dec 10 2025, OMB/OPM memo. Jun 11 2026, Core HCM award, Oracle Fusion Cloud HCM. Amber: onboarding months 1 to 5, the window; data standards, cleanup, interconnection design and the identity feed are decided. Red: interconnection go-live, the window closes; retrofitting identity means reopening it. FY 2028: one system, EHRI and eOPF decommissioned."}
+
+Two consequences follow:
+
+1. **The window closes at the interconnection.** The first Wave 1 agencies go live
+   between January and March 2027. For a Wave 2 agency the interconnections go
+   live around month 5 of onboarding. An HR-driven identity feed designed into
+   that onboarding costs a fraction of one retrofitted after it.
 2. **EHRI-shaped thinking has an expiry date.** Anything that treats the EHRI/eOPF
    feeds as the durable HR data interface is building against a system the memo
    has already scheduled for decommissioning. The durable interface is the Core
-   HCM platform's own surface: HCM Extracts, ATOM feeds, REST/SCIM.
+   HCM platform's own surface — HCM Extracts, ATOM feeds, REST/SCIM — carrying
+   OPM's standard data elements.
 
 
 ## What OPM requires, and what it leaves to the agency
 
-No OPM document mandates or specifies Entra ID integration. The program fixes the HR side — the platform, the waves, the interface requirements in the solicitation — and leaves the identity side to each agency. The Entra-specific design in Chapters 04–08 is an agency implementation decision built on Microsoft's own Oracle HCM integration guidance. Until mid-2026 the HR side of this architecture had to be planned agnostically, because the government-wide vendor was undecided. The award removed that uncertainty without changing the architecture: the identity model is source-independent while each source contract remains explicit, so if the program changes again the source contract and boundary transformation change while the governed identity model and downstream lifecycle services remain stable.
+No OPM document mandates or specifies Entra ID integration — which is exactly why the agency has to propose it. The program fixes the HR side — the platform, the waves, the interface requirements in the solicitation — and leaves the identity side to each agency. The Entra-specific design in Chapters 04–08 is an agency implementation decision built on Microsoft's own Oracle HCM integration guidance. Until mid-2026 the HR side of this architecture had to be planned agnostically, because the government-wide vendor was undecided. The award removed that uncertainty without changing the architecture: the identity model is source-independent while each source contract remains explicit, so if the program changes again the source contract and boundary transformation change while the governed identity model and downstream lifecycle services remain stable.
 
 ::: {.callout-tip}
 ## Continue the series

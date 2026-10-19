@@ -1,0 +1,19 @@
+# Chapter 04 — provisioning services: one governed path from the authoritative
+# source to the directories, with five duties per event.
+rankdir: LR
+graph: {nodesep: 0.3, ranksep: 0.35}
+nodes:
+  src: {tone: amber, width: 118, title: "Core HCM", body: ["=Extracts, ATOM feeds, REST, SCIM"], size: 12}
+  bt: {tone: slate, width: 125, title: "Boundary transformation", body: ["=Source-specific, replaceable"], size: 12}
+  duties: {tone: amber, width: 165, tag: "Five duties per event", title: "Middleware", body: ["Validate (fail closed)", "Sequence", "Normalize to SCIM", "Write provenance", "Reconcile results"], size: 12}
+  api: {tone: blue, width: 125, title: "Graph /bulkUpload", body: ["=Entra provisioning service"], size: 12}
+  ad: {tone: blue, width: 118, title: "Active Directory", body: ["=Hybrid users, via the provisioning agent"], size: 12}
+  entra: {tone: blue, width: 118, title: "Entra ID", body: ["=Cloud-managed users"], size: 12}
+  ev: {tone: green, width: 125, title: "Evidence store", body: ["=Provenance and provisioning logs"], size: 12}
+edges:
+  - [src, bt]
+  - [bt, duties]
+  - [duties, api]
+  - [api, ad]
+  - [api, entra]
+  - [duties, ev, {tone: green, style: dashed}]
