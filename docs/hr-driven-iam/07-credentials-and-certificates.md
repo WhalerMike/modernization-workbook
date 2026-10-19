@@ -1,6 +1,6 @@
 ---
 title: "Chapter 07 — Credentials and Certificates Across Joiner, Mover, Leaver"
-description: "How identity-based certificates follow the HR record: PIV issuance and the Master User Record, binding PIV certificates to Entra users with certificateUserIds, CRL checking, derived PIV credentials, Intune and Cloud PKI device certificates, and the canonical leaver sequence that revokes them in the right order."
+description: "How identity-based credentials follow the workforce lifecycle: PIV issuance, certificate binding, revocation checking, derived PIV credentials, device certificates, immediate logical-access blocking, and reconciliation of offboarding actions to completion."
 doc-type: hr-driven-iam-chapter
 audience: [Executive, Technical, Customer]
 family: hr-driven-iam
@@ -110,15 +110,20 @@ Manual revocation has a trap of its own. If you revoke a Cloud PKI certificate b
 
 ## The canonical leaver sequence
 
-![The leaver sequence: retire or wipe devices, revoke the PIV credential through the card management system, disable the account and revoke sessions, then delete after the retention period.](../images/diagrams/hr-driven-iam/svg/ch07-leaver-sequence.svg){fig-alt="A vertical flow. The HR separation record, which sets employeeLeaveDateTime through provisioning, starts five steps. Step 1, Intune: retire or wipe every managed device, which revokes and removes SCEP and PKCS certificates. Step 2, card management system: revoke the PIV authentication and card authentication certificates and any derived PIV credentials. Step 3, Entra ID and AD: disable the account. Step 4, Entra ID: revoke sessions and refresh tokens, which ends issued tokens without waiting for the next CRL. Step 5, after the retention period: delete the user. A red note pointing at step 1 says that deleting the user or removing the license leaves SCEP certificates valid on the device."}
+**Block logical access first.** At the effective separation time, disable sign-in and revoke sessions. Every other revocation — credentials, devices, entitlements, application access — runs after the block, in parallel where practical, and is reconciled to completion. None of them may delay the block.
 
-1. **Retire or wipe every managed device** assigned to the leaver. This revokes and removes Intune SCEP and PKCS certificates.[^c07-intune-remove] Wipe needs the device online.[^c07-revoke-access]
-2. **Revoke the PIV credential through the CMS.** Collect and destroy the card where possible; otherwise revoke the PIV authentication and card authentication certificates, and the signature and key management certificates if present. Update the CMS, and invalidate all derived PIV credentials. For a card that can't be collected, FIPS 201-3 requires the normal termination procedures to be completed within 18 hours of notification.[^c07-fips201]
-3. **Disable the account** in Entra ID, and in AD for synced users.[^c07-revoke-access]
-4. **Revoke sessions and refresh tokens.** Microsoft's emergency-revocation procedure disables the user and then revokes refresh tokens, so no new token can be issued after the revocation.[^c07-revoke-access] This is also the step that closes CBA immediately rather than at the next CRL refresh.[^c07-crl]
-5. **Delete the user after the retention period** (Chapter 06).
+![The leaver sequence: block first by disabling the account and revoking sessions, then revoke credentials, devices and access in parallel, reconcile every result, and dispose of the directory object last.](../images/diagrams/hr-driven-iam/svg/ch07-leaver-sequence.svg){fig-alt="A vertical flow. The HR separation record, which sets employeeLeaveDateTime through provisioning, starts the sequence. Step 1, Entra ID and AD: disable the account, so no new sign-ins or tokens. Step 2, Entra ID: revoke sessions and refresh tokens, which ends issued tokens without waiting for the next CRL. These two steps form the block. Step 3 fans out into three parallel actions: the card management system revokes the PIV credential and any derived PIV credentials; Intune retires or wipes every managed device, which revokes and removes SCEP and PKCS certificates; and entitlements, access packages, groups, licenses, privileged-role eligibility and application access are removed. All three feed step 4: reconcile every result and escalate anything incomplete through an alternate path. Step 5: dispose of the directory object under the approved account-disposition rule. A red note, 'Why disposal comes last', points at step 5: deleting the user or removing the license leaves SCEP certificates valid on the device."}
 
-Steps 3 and 4 run back to back. Disabling first, then revoking, follows Microsoft's documented order;[^c07-revoke-access] revoking first would leave a window in which a still-enabled account could get a new token.
+1. **Disable the account** in Entra ID, and in AD for synced users.[^c07-revoke-access]
+2. **Revoke sessions and refresh tokens.** Microsoft's emergency-revocation procedure disables the user and then revokes refresh tokens, so no new token can be issued after the revocation.[^c07-revoke-access] This is also the step that closes CBA immediately rather than at the next CRL refresh.[^c07-crl]
+3. **Revoke credentials, devices and access, in parallel where practical:**
+    - **PIV, through the CMS.** Collect and destroy the card where possible; otherwise revoke the PIV authentication and card authentication certificates, and the signature and key management certificates if present. Update the CMS, and invalidate all derived PIV credentials. For a card that can't be collected, FIPS 201-3 requires the normal termination procedures to be completed within 18 hours of notification.[^c07-fips201]
+    - **Devices, through Intune.** Retire or wipe every managed device assigned to the leaver. This revokes and removes Intune SCEP and PKCS certificates.[^c07-intune-remove] Wipe needs the device online.[^c07-revoke-access] Remove the leaver from SCEP profile assignments so a manually revoked certificate isn't reissued.[^c07-cpki-monitor]
+    - **Access.** Remove privileged-role eligibility and standing privileged access, access packages, groups, Teams, licenses, and application-specific accounts and credentials.
+4. **Reconcile every result.** Each action in step 3 reports completion or failure; anything incomplete escalates through an alternate path until revocation is confirmed.
+5. **Dispose of the directory object under the approved account-disposition rule** (Chapter 06) — last, because deleting the user leaves device certificates valid on hardware that hasn't been retired.
+
+Steps 1 and 2 run back to back. Disabling first, then revoking, follows Microsoft's documented order;[^c07-revoke-access] revoking first would leave a window in which a still-enabled account could get a new token. Disabling the account doesn't stop the step 3 actions: Intune retire and wipe act on the device, and CMS revocation acts on the credential, not on the user's sign-in.
 
 ### Running it from Lifecycle Workflows
 
@@ -126,13 +131,13 @@ The built-in leaver tasks cover groups, Teams, access packages, licenses, disabl
 
 - Use **Launch and wait**: the next task waits for the Logic App's response, and if no response arrives within the configured duration the task is considered failed.[^c07-lcw-ext] A third-party system such as the CMS integration can send the response if the Logic App only acts as an intermediary.[^c07-lcw-ext]
 - Authorize the response with the Logic App's system-assigned managed identity, the default.[^c07-lcw-ext]
-- Order the workflow as the sequence above: custom task (retire or wipe devices through Intune), custom task (CMS revocation), *Disable user account*, *Revoke all refresh tokens for user*, then the group, Teams, access package and license removals. Put *Delete user* in a separate post-offboarding workflow keyed to the retention period.
+- Order the workflow as the sequence above: *Disable user account* and *Revoke all refresh tokens for user* first; then the custom task (one Logic App that starts the Intune retire or wipe and the CMS revocation in parallel and reports both results); then the group, Teams, access package and license removals. Put *Delete user* in a separate post-offboarding workflow keyed to the account-disposition rule.
 
-A failed custom task is a finding, not a retry loop: route it to the service desk and the ISSO, and carry it in the separation-to-revocation metric (Chapter 09).
+Custom tasks must be idempotent and use bounded retry with backoff for transient failures. Exhausted retries, validation failures, or permanent errors create a high-priority exception, notify the responsible security and operations teams, and remain open until revocation is confirmed through an alternate path. The exception counts against the separation metrics in Chapter 09.
 
 ## What the evidence must show
 
-For each leaver: the HR effective date; the device actions and their completion; the CMS revocation record and the CRL that published it; the disable and token-revocation timestamps; and the deletion date. The interval from the HR effective date to the last of those steps is the number an assessor asks for under PS-4 (Chapter 09).
+For each leaver: the HR effective date; the disable and token-revocation timestamps; the device actions and their completion; the CMS revocation record and the CRL that published it; the access removals; any exceptions and how they closed; and the disposition date. Two intervals come out of it: HR effective date to the block (steps 1–2), and HR effective date to the last confirmed revocation. They are what an assessor asks for under PS-4 (Chapter 09).
 
 
 ::: {.callout-tip}

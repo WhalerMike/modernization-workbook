@@ -1,5 +1,5 @@
 ---
-title: "Chapter 05 — The Canonical Attribute Schema"
+title: "Chapter 05 — The Canonical Workforce Identity Model"
 description: "The one attribute schema the whole site uses: each canonical field with its Oracle HCM source, SCIM attribute, Active Directory and Entra ID carrier, whether a dynamic membership rule can read it, and what it's for — native Entra attributes first, three coded extension attributes for access, and the writer rules that protect them."
 doc-type: hr-driven-iam-chapter
 audience: [Executive, Technical, Customer]
@@ -11,13 +11,13 @@ tiers_adopted: []
 lifecycle_review: 2027-01-01
 ---
 
-# Chapter 05 — The Canonical Attribute Schema
+# Chapter 05 — The Canonical Workforce Identity Model
 
 *Native attributes first. A small, coded set of extension attributes for access. Nothing hand-edited.*
 
 ::: {.callout-note}
 ## In this chapter
-The design rules behind the schema. The schema table itself, which every other page on this site links to instead of repeating. Why three extension attributes, and why they hold codes. How the hire and leave dates reach Entra ID from each landing zone. Who is allowed to write any of it.
+The design rules behind the schema. The implementation crosswalk, which every other page on this site links to instead of repeating. Why three extension attributes, and why they hold codes. How the hire and leave dates reach Entra ID from each landing zone. Who is allowed to write any of it.
 :::
 
 ## Design rules
@@ -32,7 +32,7 @@ The design rules behind the schema. The schema table itself, which every other p
 
 | Canonical field | Oracle HCM source | SCIM attribute | On-premises AD | Entra ID | Rule can read it | Used for |
 |---|---|---|---|---|---|---|
-| Person number | `workers.PersonNumber` | `externalId` | `employeeID` | `employeeId` | Yes | **Match key**, identifier for life (Chapter 03) |
+| Person number | `workers.PersonNumber` | `externalId` | `employeeID` | `employeeId` | Yes | **Source correlation key**, subject to the enterprise identifier decision in Chapter 03 |
 | Employment active | Assignment status | `active` | `accountDisabled` | `accountEnabled` | Yes | Joiner and leaver state |
 | Given name / surname | `workers.names` | `name.givenName` / `name.familyName` | `givenName` / `sn` | `givenName` / `surname` | Yes | Display, UPN rules |
 | Display name | `workers.DisplayName` | `displayName` | `cn` | `displayName` | Yes | Display only, never access |
@@ -50,13 +50,13 @@ The design rules behind the schema. The schema table itself, which every other p
 | **Worker type code** | Worker type (code) | custom extension `workerTypeCode` | `extensionAttribute11` | `extensionAttribute11` | Yes | **Access targeting**; mirrors `employeeType` |
 | **Position category** | Job family or position category (code) | custom extension `positionCategory` | `extensionAttribute12` | `extensionAttribute12` | Yes | **Access targeting** |
 
-: The canonical attribute schema — the only attribute crosswalk on this site {.striped .hover}
+: The target crosswalk for the governed workforce identity model {.striped .hover}
 
 Notes on the table:
 
 - The SCIM mappings for both landing zones follow the example worksheets in Microsoft's Oracle HCM integration guide, which also maps a custom `JobCode` to `extensionAttribute1` in both AD and Entra ID. Custom attributes are added to the provisioning app's schema as SCIM schema extensions and then mapped.[^c05-oracle-tutorial][^c05-custom-attrs] For attributes with no AD equivalent, the same guide says to use `extensionAttribute1`–`15` or extend the AD schema.[^c05-oracle-tutorial]
 - **Neither date has a native AD attribute.** For AD-landed users, Microsoft's Oracle HCM worksheet writes `HireDate` and `TermDate` to `extensionAttribute2` and `extensionAttribute3`;[^c05-oracle-tutorial] a sync rule then maps each one to `employeeHireDate` or `employeeLeaveDateTime` in Entra ID. The AD attribute must be a string, and the value must be converted to the format Entra expects, usually with a date-format expression. Inbound provisioning, Entra Connect cloud sync and Entra Connect Sync all support both target attributes.[^c05-lcw-sync]
-- **The choice of `extensionAttribute10`–`12` for access codes is this series' decision**, not a Microsoft default. Before Phase 1 closes, confirm that each one is in the provisioning app's target attribute list and isn't already used. Exchange calls `extensionAttribute1`–`15` custom attributes 1–15.[^c05-onprem-ext]
+- **The choice of `extensionAttribute10`–`12` for access codes is this workbook's proposed implementation choice**, not a Microsoft default. Before Phase 1 closes, confirm that each one is in the provisioning app's target attribute list and isn't already used. Exchange calls `extensionAttribute1`–`15` custom attributes 1–15.[^c05-onprem-ext]
 - Rules can't use multi-value extension properties.[^c05-dyn-rules] All three access attributes hold one code.
 
 ## Writers
@@ -74,7 +74,7 @@ The [SQL Server Identity Transformation series, Book 07](../case-studies/sql-ser
 
 ::: {.callout-tip}
 ## Continue the series
-[← Previous: Chapter 04 — The Provisioning Pipeline](04-the-provisioning-pipeline.md) · [Index](index.md) · [Next: Chapter 06 — Joiner, Mover, Leaver →](06-joiner-mover-leaver.md)
+[← Previous: Chapter 04 — Provisioning Services](04-the-provisioning-pipeline.md) · [Index](index.md) · [Next: Chapter 06 — Joiner, Mover, Leaver →](06-joiner-mover-leaver.md)
 :::
 
 [^c05-dyn-rules]: Microsoft Learn, "Manage rules for dynamic membership groups in Microsoft Entra ID" (supported properties; extension attributes and custom extension properties; security consideration on attribute write permissions), <https://learn.microsoft.com/en-us/entra/identity/users/groups-dynamic-membership> (accessed Oct 19, 2026).

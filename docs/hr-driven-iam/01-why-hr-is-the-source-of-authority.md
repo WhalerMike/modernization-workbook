@@ -1,6 +1,6 @@
 ---
 title: "Chapter 01 — Why HR Is the Source of Authority"
-description: "Fragmented identity truth, the orphaned account as its structural output, the federal frames that require a designated source, why the usual patches fail, and the division of labor between what HR provides and what identity architecture must add."
+description: "Fragmented identity truth, the orphaned account as its structural output, the federal policy and guidance that support a designated source, why the usual patches fail, and the division of labor between what HR provides and what identity architecture must add."
 doc-type: hr-driven-iam-chapter
 audience: [Executive, Technical, Customer]
 family: hr-driven-iam
@@ -19,7 +19,7 @@ aliases:
 
 ::: {.callout-note}
 ## In this chapter
-Where identity truth lives today and why it contradicts itself. Why orphaned accounts are the guaranteed output of that design rather than an operational lapse. The federal frames that require a designated source. Why cleanup, directory mastery, and reviews can't substitute for one. What HR provides and what identity architecture has to add.
+Where identity truth lives today and why it contradicts itself. Why orphaned accounts are the guaranteed output of that design rather than an operational lapse. The federal policy and guidance that support authoritative sources and governed lineage. Why cleanup, directory mastery, and reviews can't substitute for one. What HR provides and what identity architecture has to add.
 :::
 
 ## What the claims in a token assert
@@ -57,9 +57,9 @@ The anatomy is worth one concrete timeline, because it shows *where the informat
 
 Nothing in that timeline is a failure of diligence. It is the *wiring diagram working as built*: a system that records the truth, five systems that need it, and no channel between them. The same anatomy produces the quieter failures: the transferred employee who keeps the old division's access for years (the access-accretion problem PS-5 exists to stop), the contractor converted to staff who now has two identities, the rehired annuitant with three.
 
-## The statutory frame
+## The federal policy frame
 
-Two federal frames make the fix a mandate rather than a preference. The **Evidence Act (2018)** and the Federal Data Strategy require that agency data trace to a single authoritative system of record for each data type, with documented lineage from source to decision. The **FICAM Architecture** requires that every governed identity carry a complete, authoritative set of identity attributes *derived from authoritative sources such as HR systems*. Neither frame is satisfied by cleaning the fragments. Both are satisfied only by designating the source — and for facts about people and organizational placement, the only candidate system that records hire, position, reporting line, and separation *as a matter of business authority* is the human capital system.
+Federal policy and guidance point the same way, though none of it names a product or mandates this architecture. OMB M-19-17 sets the enterprise ICAM policy framework. The FICAM Identity Lifecycle Management Playbook — best practice, not policy — recommends that workforce identities be created and terminated from authoritative sources such as HR systems, and the FICAM Architecture describes identity attributes drawn from authoritative sources. The Evidence Act (2018) and the Federal Data Strategy push agencies toward reliable, governed data with known provenance; they don't require one system of record for every data type, and this series doesn't cite them that way. None of this is achieved by cleaning the fragments. It takes designating the source — and for facts about people and organizational placement, the only candidate system that records hire, position, reporting line, and separation *as a matter of business authority* is the human capital system.
 
 ## Why this can't be patched
 
@@ -81,13 +81,13 @@ The HR system of record supplies the authoritative origin:
 
 Identity architecture supplies everything that turns that origin into access:
 
-- A canonical schema that normalizes HR attributes for directory consumption (Chapter 05)
+- A governed workforce identity model that normalizes authoritative facts for downstream lifecycle and policy use (Chapter 05)
 - Joiner/mover/leaver workflows that act only on HR events (Chapter 06)
 - Credential and certificate lifecycle tied to the same events (Chapter 07)
 - Population of the attributes policy reads, so that targeting stays deterministic (Chapter 08)
 - Drift detection between HR state and directory state, and evidence that account-management controls can be continuously verified (Chapter 09)
 
-The identity architecture doesn't depend on the platform being Oracle Fusion Cloud HCM. It depends on the HR system remaining the authoritative source and on the feed being normalizable to a canonical schema. Neither half is sufficient alone.
+The identity architecture doesn't depend on the platform being Oracle Fusion Cloud HCM. It depends on the HR system remaining the authoritative source and on the records being normalizable to the governed workforce identity model. Neither half is sufficient alone.
 
 ::: {.callout-tip}
 ## Continue the series

@@ -1,20 +1,40 @@
-# Chapter 07 — the canonical leaver sequence. Devices first, because deleting
-# the user doesn't revoke Intune SCEP certificates; disable before revoking
-# sessions, per Microsoft's emergency-revocation order.
+# Chapter 07 — the canonical leaver sequence. Block first: disable, then revoke
+# sessions (Microsoft's emergency-revocation order). Credential, device and
+# access revocation then run in parallel and are reconciled; disposal of the
+# directory object comes last, because deleting the user doesn't revoke Intune
+# SCEP certificates.
 rankdir: TB
 graph: {nodesep: 0.3, ranksep: 0.32}
+clusters:
+  - id: block
+    label: "Block — at the effective separation time"
+    tone: blue
+    filled: false
+    nodes: [s1, s2]
+  - id: parallel
+    label: "Step 3 — in parallel where practical"
+    tone: slate
+    filled: false
+    nodes: [p1, p2, p3]
+    order: [p1, p2, p3]
 nodes:
   hr: {kind: card, tone: plain, width: 440, title: "HR separation record", body: ["=Effective-dated; sets `employeeLeaveDateTime` through provisioning"], size: 12}
-  s1: {tone: slate, width: 440, tag: "Step 1 · Intune", title: "Retire or wipe every managed device", body: ["=Revokes and removes Intune SCEP and PKCS certificates"], size: 12}
-  s2: {tone: slate, width: 440, tag: "Step 2 · Card management system", title: "Revoke the PIV credential", body: ["=PIV authentication and card authentication certificates, plus any derived PIV credentials"], size: 12}
-  s3: {tone: blue, width: 440, tag: "Step 3 · Entra ID and AD", title: "Disable the account", body: ["=No new sign-ins or tokens"], size: 12}
-  s4: {tone: blue, width: 440, tag: "Step 4 · Entra ID", title: "Revoke sessions and refresh tokens", body: ["=Ends issued tokens now, without waiting for the next CRL"], size: 12}
-  s5: {tone: green, width: 440, tag: "Step 5 · After the retention period", title: "Delete the user", body: ["=Post-offboarding workflow"], size: 12}
-  warn: {tone: red, width: 220, title: "Why devices come first", body: ["=Deleting the user or removing the license leaves SCEP certificates valid on the device"], size: 12}
+  s1: {tone: blue, width: 440, tag: "Step 1 · Entra ID and AD", title: "Disable the account", body: ["=No new sign-ins or tokens"], size: 12}
+  s2: {tone: blue, width: 440, tag: "Step 2 · Entra ID", title: "Revoke sessions and refresh tokens", body: ["=Ends issued tokens now, without waiting for the next CRL"], size: 12}
+  p1: {tone: slate, width: 180, tag: "Card management system", title: "Revoke the PIV credential", body: ["=PIV authentication and card authentication certificates, plus any derived PIV credentials"], size: 12}
+  p2: {tone: slate, width: 180, tag: "Intune", title: "Retire or wipe every managed device", body: ["=Revokes and removes Intune SCEP and PKCS certificates"], size: 12}
+  p3: {tone: slate, width: 180, tag: "Entra ID and applications", title: "Remove access", body: ["=Access packages, groups, licenses, privileged-role eligibility, application accounts"], size: 12}
+  s4: {tone: violet, width: 440, tag: "Step 4", title: "Reconcile every result", body: ["=Anything incomplete escalates through an alternate path until revocation is confirmed"], size: 12}
+  s5: {tone: green, width: 440, tag: "Step 5 · Approved account-disposition rule", title: "Dispose of the directory object", body: ["=Post-offboarding workflow"], size: 12}
+  warn: {tone: red, width: 180, title: "Why disposal comes last", body: ["=Deleting the user or removing the license leaves SCEP certificates valid on the device"], size: 12}
 edges:
   - [hr, s1]
   - [s1, s2]
-  - [s2, s3]
-  - [s3, s4]
+  - [s2, p1]
+  - [s2, p2]
+  - [s2, p3]
+  - [p1, s4]
+  - [p2, s4]
+  - [p3, s4]
   - [s4, s5]
-  - [warn, s1, {style: dashed, tone: red, attrs: "constraint=false"}]
+  - [warn, s5, {style: dashed, tone: red, attrs: "constraint=false"}]

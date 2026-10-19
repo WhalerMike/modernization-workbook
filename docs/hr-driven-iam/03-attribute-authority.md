@@ -1,6 +1,6 @@
 ---
 title: "Chapter 03 — Attribute Authority"
-description: "What the HR system of record owns and what the identity platform owns, effective dating, the authoritative-versus-derived rule for every attribute, one person one identifier for life, the worker-type boundary, and the operating rules that keep one master per attribute."
+description: "What the HR system of record owns and what the identity platform owns, effective dating, the authoritative-versus-derived rule for every attribute, the identifier layers and the enterprise identifier decision, the worker-type boundary, and the operating rules that keep one master per attribute."
 doc-type: hr-driven-iam-chapter
 audience: [Executive, Technical, Customer]
 family: hr-driven-iam
@@ -17,7 +17,7 @@ lifecycle_review: 2027-01-01
 
 ::: {.callout-note}
 ## In this chapter
-The four record families only the HR system can originate. The split between system of record and identity provider. Why effective dating makes proactive automation possible. The attribute authority map. One person, one identifier. Worker type as the attribute policy hangs from. The operating rules.
+The four record families only the HR system can originate. The split between system of record and identity provider. Why effective dating makes proactive automation possible. The attribute authority map. The identifier layers and the identifier decision. Worker type as the attribute policy hangs from. The operating rules.
 :::
 
 ## What a human capital system actually owns
@@ -60,12 +60,12 @@ The discipline that makes the source of authority operable is a written, governe
 
 | Attribute | Authoritative system | Derived consumers |
 |---|---|---|
-| Worker identifier (`employeeId`) | HR system of record — the immutable correlation anchor, assigned at first affiliation | Directory correlation key, audit joins, per-system account linkage |
+| Person and affiliation identifiers (enterprise person key; source person number, projected to `employeeId`) | HR system of record for the source keys; the agency's identifier decision for the enterprise person key | Directory correlation key, audit joins, per-system account linkage |
 | Legal name, worker type, employment status | HR system of record | Display name, account enable/disable state, guest-versus-member classification |
 | Position, title, grade | HR system of record | Role-eligible access packages, approval routing |
 | Organizational placement (department, org code, cost center) | HR system of record | Dynamic group membership, ABAC attributes, chargeback |
 | Supervisor / reporting line | HR system of record | `manager` attribute, access-package approval routing, attestation campaigns |
-| Duty location | HR system of record | Conditional access named-location context, E911 records |
+| Duty location | HR system of record | Population scoping, expected-location analysis, physical-access integration, E911 records, and exception routing; current sign-in signals remain the enforcement input for network-location policy |
 | User principal name, mail, group memberships | Identity platform — *derived* from HR attributes by rule | Applications, token claims |
 | Device identity and certificates | Device management and PKI (Chapter 07) | Network admission, workload identity, TLS |
 | Credential strength, token claims format | Identity platform | Conditional Access, applications |
@@ -75,13 +75,25 @@ The discipline that makes the source of authority operable is a written, governe
 The map has one rule with no exceptions: **corrections flow upstream.** When a token carries a wrong department, the fix is a correction to the HR record (or to the derivation rule) — never a hand-edit of the directory attribute, because a hand-edited projection is a new fragment (Chapter 01).
 
 
-## One person, one identifier
+## One person, layered identifiers
 
-IA-4 requires managing identifiers by receiving authorization to assign them, selecting and assigning them to the intended entity, and **preventing their reuse** for a defined period. The enterprise discipline this architecture implements is stricter and simpler: **one person, one identifier, for the life of the affiliation — across every account, system, rehire, and conversion.**
+IA-4 requires managing identifiers by receiving authorization to assign them, selecting and assigning them to the intended entity, and **preventing their reuse** for a defined period. The enterprise discipline this architecture implements is stricter and simpler: **one governed person record, explicit affiliation records, and stable correlation keys appropriate to each lifecycle.**
 
-The `employeeId` assigned at first affiliation is the immutable correlation anchor. It never changes with name, position, region, or worker type; every account in every system that belongs to the person carries it; and when the person returns after a break in service, the rehire event re-links the *same* identifier rather than minting a fresh identity. This is only possible where the *person* — not the account — is the tracked entity. A directory cannot do it: directories track accounts, and an account deleted at separation takes its history with it. The worker record persists across affiliations, which is why identifier non-reuse and rehire correlation are properties of the HR system, projected downward.
+That takes more than one identifier, because each layer has its own lifecycle:
 
-The same anchor is what makes audit joins possible at all: the token event in the SIEM, the database login, the badge swipe, and the personnel action resolve to one person only because one identifier threads them.
+| Key | Identifies | Assigned by | Changes when |
+|---|---|---|---|
+| Enterprise person key | The person, across every affiliation | The agency's identifier decision (below) | Never, once assigned |
+| Source person key (Oracle `PersonNumber` today) | The person in one HR source | The HR system | The source system changes |
+| Affiliation or assignment key | One employment, contract or appointment | The HR system | A new affiliation begins |
+| Directory object ID | One account in one directory | The directory | The account is recreated |
+| Credential identifiers (PIV FASC-N/UUID, certificate SKI) | One authenticator | The credentialing system or CA | The credential is reissued |
+
+: The identifier layers {.striped .hover}
+
+**The identifier decision.** Before Phase 1 closes (Chapter 10), the agency decides which key is the enterprise person key and how it is projected into the directory. The implementation in this series projects the source person number into `employeeId` as the source correlation key (Chapter 05). That works while there is one source and the source never reassigns numbers. If the source changes — Core HCM cutover is the obvious case — or contractors come from a separate source, the enterprise person key has to be one the agency controls, with the source keys mapped to it. Either way, the enterprise key doesn't change with name, position, region, or worker type; every account that belongs to the person can be linked to it; and when the person returns after a break in service, the rehire event re-links the *same* person rather than minting a fresh identity. This is only possible where the *person* — not the account — is the tracked entity. A directory cannot do it: directories track accounts, and an account deleted at separation takes its history with it. The worker record persists across affiliations, which is why identifier non-reuse and rehire correlation are properties of the HR system, projected downward.
+
+The enterprise person key is what makes audit joins possible at all: the token event in the SIEM, the database login, the badge swipe, and the personnel action resolve to one person only because one key threads them.
 
 ## The worker-type boundary
 
@@ -92,9 +104,9 @@ One authoritative attribute deserves special notice because entire policy famili
 - **One master per attribute.** An attribute is authoritative in exactly one system. Writeback, if used, carries only identity-platform-mastered values (username, work email, work phone) to HR for display; it never touches an HR-mastered fact, and no attribute is writable in both directions.
 - **No manual edits to HR-derived attributes.** Any IT-originated write to an attribute the HR feed owns is a drift event (Chapter 09).
 - **Corrections flow upstream.** A wrong value is fixed in the HR record or in the mapping rule, never in the directory.
-- **Every event produces a provenance record.** No record, no closure.
+- **Every event produces a provenance record.** No record, no verifiable outcome.
 
 ::: {.callout-tip}
 ## Continue the series
-[← Previous: Chapter 02 — Federal HR 2.0](02-federal-hr-2-0.md) · [Index](index.md) · [Next: Chapter 04 — The Provisioning Pipeline →](04-the-provisioning-pipeline.md)
+[← Previous: Chapter 02 — Federal HR 2.0](02-federal-hr-2-0.md) · [Index](index.md) · [Next: Chapter 04 — Provisioning Services →](04-the-provisioning-pipeline.md)
 :::

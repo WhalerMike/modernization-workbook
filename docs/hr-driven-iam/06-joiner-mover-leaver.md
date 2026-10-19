@@ -28,7 +28,7 @@ Joiner, mover and leaver, plus the two transitions estates forget until they hur
 |---|---|---|
 | **Joiner** | Future-dated hire: worker record and assignment created | Account created ahead of the start date by provisioning; licenses and baseline access derived from attributes; credential enrollment queued for day one (Chapter 07) |
 | **Mover** | Assignment change: new position, organization, location or supervisor | Attributes re-stamped; dynamic memberships re-evaluated, so the old organization's access leaves as the new one's arrives; access review on what remains (PS-5); approvals follow the new supervisor of record |
-| **Leaver** | Effective-dated separation | The leaver sequence of Chapter 07: devices, PIV, sessions, disable, delete after retention — one workflow, one evidence trail (PS-4) |
+| **Leaver** | Effective-dated separation | The leaver sequence of Chapter 07: immediately block logical access, then reconcile credentials, devices, entitlements, application access, and later disposition — one workflow, one evidence trail (PS-4) |
 | **Rehire** | Returning worker matched to the prior worker record | Prior identifier re-linked; the person resumes an identity rather than getting a second one (IA-4) |
 | **Conversion** | Worker type changes; affiliation continuous | Same identifier, access re-derived from the new worker type; no duplicate identity |
 
@@ -87,12 +87,12 @@ Some separations can't wait for the schedule. Microsoft's **Real-time employee t
 
 ## Deletion
 
-Disable on the separation date; delete only after the retention period the agency's records schedule sets, from a post-separation workflow. A deleted Entra user can be restored for 30 days, after which it is permanently deleted;[^c06-deleted-users] retention for audit and records purposes has to be met by the logs and the HR record, not by keeping the account.
+Disable on the separation date; delete or anonymize only under the approved account-disposition rule; retain each category of HR record, authorization record, audit evidence, and security log under its applicable schedule and legal-hold requirements, from a post-separation workflow. A deleted Entra user can be restored for 30 days, after which it is permanently deleted;[^c06-deleted-users] retention for audit and records purposes has to be met by the logs and the HR record, not by keeping the account.
 
 
 ::: {.callout-tip}
 ## Continue the series
-[← Previous: Chapter 05 — The Canonical Attribute Schema](05-canonical-attribute-schema.md) · [Index](index.md) · [Next: Chapter 07 — Credentials and Certificates Across Joiner, Mover, Leaver →](07-credentials-and-certificates.md)
+[← Previous: Chapter 05 — The Canonical Workforce Identity Model](05-canonical-attribute-schema.md) · [Index](index.md) · [Next: Chapter 07 — Credentials and Certificates Across Joiner, Mover, Leaver →](07-credentials-and-certificates.md)
 :::
 
 [^c06-lcw-tasks]: Microsoft Learn, "Lifecycle Workflows tasks and definitions," <https://learn.microsoft.com/en-us/entra/id-governance/lifecycle-workflow-tasks> (accessed Oct 19, 2026).

@@ -27,6 +27,8 @@ The one phase model this site uses, 0 to 6, with each phase's work and exit gate
 
 Each phase's gate is the next phase's precondition. The order isn't optional: deriving access from attributes nobody has agreed to trust is how fragmented truth gets rebuilt with better tooling. One caveat governs the whole program: the source must be *correct*, not just *designated*. A drifted HR feed produces drifted access faster than any ticket queue could, so data quality at the source is Phase 1 work, not a later clean-up. A phase that can't pass its gate stops the plan, not the standard.
 
+**About the numbers in the gates.** Thresholds such as 99% correlation or "zero missed leavers across a pay-period cycle" are *proposed starting criteria*, not federal requirements. The agency approves or replaces each one through its risk governance, and a risk-tiered threshold — tighter for privileged and high-impact populations — is usually more useful than one enterprise-wide number. Where a gate says "risk-approved", the agency sets the value.
+
 ## Phase 0 — Program alignment
 
 *Directed by the Federal HR 2.0 memo's preparation actions: executing it is compliance, not overhead (Chapter 02).*
@@ -40,6 +42,7 @@ Each phase's gate is the next phase's precondition. The order isn't optional: de
 
 ## Phase 1 — Attribute authority and schema
 
+- Record the enterprise identifier decision (Chapter 03): which key is the enterprise person key, and how source keys map to it.
 - Sign the attribute authority map (Chapter 03): every attribute any access decision reads, its authoritative system, its derivation rule if derived, and its data-quality owner.
 - Finalize the canonical schema (Chapter 05) against Oracle HCM field names, and validate the crosswalk against a sandbox extract. Confirm the extension-attribute carriers are free and in the provisioning apps' target lists.
 - Define the worker-type taxonomy (employee, contractor, intern, volunteer, vendor, external), each mapped to license, access ceiling and retention, and the code lists for the three access attributes.
@@ -47,15 +50,15 @@ Each phase's gate is the next phase's precondition. The order isn't optional: de
 - Baseline HR data against reality for worker type, organization, supervisor and status, and fix errors at the source. Populate `employeeId` on existing accounts; flag every unmatched enabled account as an orphan candidate with an owner.
 - Inventory the PIV issuing CAs' CRL distribution points and sizes against Entra's limits (Chapter 07).
 
-**Gate:** the authority map and schema are signed; match-key population is at least 99% on the pilot cohort; every enabled account is correlated to a worker record or on a dated exception list.
+**Gate:** the identifier decision, authority map and schema are signed; correlation-key population meets the approved threshold on the pilot cohort (proposed starting point: at least 99%); every enabled account is correlated to a worker record or on a dated exception list.
 
 ## Phase 2 — Pipeline build and test
 
-- Build the middleware: transform, validation, sequencing and the provenance writer, hosted in-boundary (Chapter 04).
-- Configure the API-driven provisioning apps and grant the client only `SynchronizationData-User.Upload` and `ProvisioningLog.Read.All`.
+- Build the workforce identity service: source-boundary transformation, validation, sequencing, bounded retry, reconciliation, and provenance, hosted in-boundary (Chapter 04).
+- Configure the API-driven provisioning apps and grant the client only the upload and provisioning-log permissions it needs, using the least-privileged option that fits the deployment (Chapter 04).
 - Define the joiner, mover and leaver workflows and their triggers (Chapter 06), including the custom task extensions for device retirement and CMS revocation (Chapter 07).
 - Prove the chain end to end in a test tenant with canned feed payloads and a sandbox extract.
-- Size the throttling envelope: batches toward 50 operations per call, the daily call budget against the tenant cap.
+- Size the throttling envelope: batches toward 50 operations per call, pacing to the stricter published rate limit, the daily call budget against the tenant cap (Chapter 04).
 
 **Gate:** joiner, mover and leaver each run end to end in the test tenant with a provenance record and a workflow run; the leaver run includes a device retire and a test-CA certificate revocation.
 
@@ -65,17 +68,17 @@ Each phase's gate is the next phase's precondition. The order isn't optional: de
 - Run the initial full sync with scoping filters; reconcile mismatches **before** enabling deltas. Enable delta feeds immediately after the initial sync, with monitoring and alerting.
 - Run the pilot cohort in **shadow mode** first: the pipeline computes what it would do, and the output is compared with the directory's actual state. Then let it act.
 
-**Gate:** thirty days in which every pipeline-versus-directory difference is explained and fixed at the right end; a full joiner/mover/leaver cycle on the pilot cohort closes with evidence; zero unmatched-record creations.
+**Gate:** the risk-approved observation period in which every pipeline-versus-directory difference is explained and fixed at the right end; a full joiner/mover/leaver cycle on the pilot cohort closes with evidence; zero unmatched-record creations.
 
 ## Phase 4 — Lifecycle automation and attribute-derived access
 
-- Turn causation on for covered populations, **leaver first**, because revocation is where the risk and the evidence value are. Measure the separation-to-revocation interval from day one (Chapter 09).
+- Turn causation on for covered populations, **leaver first**, because revocation is where the risk and the evidence value are. Measure the separation-to-block and separation-to-revocation intervals from day one (Chapter 09).
 - Route exceptions (emergency terminations, litigation holds) through defined manual entries into the same workflows and the same evidence.
 - Validate rehire and conversion matching against history before it acts.
 - Convert hand-maintained groups to rules for dynamic membership, group by group, with a shadow comparison before each cutover (Chapter 08). Re-base access packages so approvals route to the supervisor of record.
 - Inventory OU-bound policy for retirement in Phase 5.
 
-**Gate:** zero missed leavers across a full pay-period cycle, with separation-to-revocation measured in hours; day-one readiness demonstrated; the account-creation ticket queue retired for covered populations; for covered applications, every entitlement resolves to a rule, an attribute and a worker record; a test reorganization in HR propagates to groups and approvals with zero manual directory changes.
+**Gate (proposed starting criteria):** zero missed leavers across a full pay-period cycle; separation-to-block within the approved threshold and separation-to-revocation measured in hours; day-one readiness demonstrated; the account-creation ticket queue retired for covered populations; for covered applications, every entitlement resolves to a rule, an attribute and a worker record; a test reorganization in HR propagates to groups and approvals with zero manual directory changes.
 
 ## Phase 5 — Cutover to cloud-mastered populations
 
@@ -87,7 +90,7 @@ Each phase's gate is the next phase's precondition. The order isn't optional: de
 
 ## Phase 6 — Sustained posture
 
-- Drift detection runs continuously (Chapter 09); the five lifecycle metrics are reported on the ConMon cadence.
+- Drift detection runs continuously (Chapter 09); the six lifecycle metrics are reported on the ConMon cadence.
 - Code lists, rules and workflows change only through change control, with the same shadow-then-act discipline.
 - Annual re-validation of the authority map, the schema and the verification register.
 
@@ -98,10 +101,10 @@ Each phase's gate is the next phase's precondition. The order isn't optional: de
 | Phase | Output | Gate |
 |---|---|---|
 | 0 — Program alignment | Integration-point inventory; named points of contact | Inventory signed and submitted |
-| 1 — Attribute authority and schema | Signed authority map and schema; source data fixed; correlation baseline | ≥ 99% match key on pilot; every enabled account correlated or excepted |
+| 1 — Attribute authority and schema | Signed authority map and schema; source data fixed; correlation baseline | Identifier decision recorded; risk-approved correlation threshold met on pilot; every enabled account correlated or excepted |
 | 2 — Pipeline build and test | Middleware, apps, workflows, extensions in a test tenant | End-to-end J/M/L with evidence, including device and certificate steps |
-| 3 — Hybrid go-live (pilot) | Agents, initial sync, deltas, shadow mode | 30 days of explained differences; zero unmatched creations |
-| 4 — Lifecycle automation and derived access | Leaver-first automation; dynamic groups; re-based access packages | Zero missed leavers; test reorganization with zero manual changes |
+| 3 — Hybrid go-live (pilot) | Agents, initial sync, deltas, shadow mode | Risk-approved observation period with explained differences; zero unmatched creations |
+| 4 — Lifecycle automation and derived access | Leaver-first automation; dynamic groups; re-based access packages | Proposed: zero missed leavers; block within threshold; test reorganization with zero manual changes |
 | 5 — Cutover to cloud-mastered | Per-population retarget; OU policy retired | Cloud-native lifecycle with evidence; rollback tested |
 | 6 — Sustained posture | Continuous drift detection and metrics | Recurring thresholds met |
 

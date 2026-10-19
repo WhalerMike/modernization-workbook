@@ -1,6 +1,6 @@
 ---
 title: "Chapter 09 — Drift, Metrics and Evidence"
-description: "The lifecycle metrics an event-driven pipeline makes measurable, the classes of drift between HR and the directory and how to detect each one, the evidence each lifecycle event leaves, and how the architecture closes NIST SP 800-53 Rev 5 AC-2, AC-2(1), PS-4, PS-5, IA-4 and SI-12."
+description: "The lifecycle metrics an event-driven pipeline makes measurable, the classes of drift between HR and the directory and how to detect each one, the evidence each lifecycle event leaves, and what the architecture contributes to NIST SP 800-53 Rev. 5 AC-2, AC-2(1), PS-4, PS-5, IA-4 and SI-12 — and what the agency still has to supply."
 doc-type: hr-driven-iam-chapter
 audience: [Executive, Technical, Customer]
 family: hr-driven-iam
@@ -17,7 +17,7 @@ lifecycle_review: 2027-01-01
 
 ::: {.callout-note}
 ## In this chapter
-Five lifecycle metrics. The drift classes between the HR record and the directory, and the signal for each. What evidence each event leaves. The control-closure argument for AC-2, PS-4, PS-5, IA-4 and SI-12.
+Six lifecycle metrics. The drift classes between the HR record and the directory, and the signal for each. What evidence each event leaves. The control-support mapping for AC-2, PS-4, PS-5, IA-4 and SI-12.
 :::
 
 ## The measured lifecycle
@@ -26,10 +26,11 @@ An event-driven lifecycle is also a measured one: every interval from event to a
 
 | Metric | Definition | What it evidences |
 |---|---|---|
-| Separation-to-revocation interval | HR effective date and time → last step of the leaver sequence (Chapter 07) | PS-4: access disabled within the defined period, continuously |
+| Separation-to-block interval | HR effective date and time → account disabled and sessions revoked (Chapter 07, steps 1–2) | PS-4: logical access disabled within the defined period, continuously |
+| Separation-to-revocation interval | HR effective date and time → last confirmed revocation in the leaver sequence (Chapter 07, step 4) | PS-4: credentials and access revoked, with exceptions and how they closed |
 | Transfer-to-review interval | Transfer effective date → completion of the review on residual access | PS-5: review initiated within the defined period |
 | Joiner readiness rate | Share of new hires whose account, licenses and baseline access exist at start of day one | AC-2 automation working in the creation direction |
-| Correlation coverage | Share of enabled accounts that resolve to a current worker record by `employeeId` | The orphan population, as a query instead of a hunt |
+| Correlation coverage | Share of enabled accounts that resolve to a current worker record by the correlation key (Chapter 03) | The orphan population, as a query instead of a hunt |
 | Derivation purity | Share of access-granting memberships computed by rule rather than assigned by hand | How much of the estate still runs on fragments |
 
 : Lifecycle metrics {.striped .hover}
@@ -68,22 +69,24 @@ In the first month of a new pipeline, expect a burst of high-severity findings: 
 
 : Evidence by event {.striped .hover}
 
-Keep the evidence outside the directory, in the agency's log store, for the retention period the records schedule sets: the account itself is deleted after retention (Chapter 06), and the evidence has to outlive it.
+Keep the evidence outside the directory, in the agency's log store, for the retention period the records schedule sets: the account itself is disposed of under the account-disposition rule (Chapter 06), and the evidence has to outlive it.
 
-## Control closure: NIST SP 800-53 Rev 5
+## Control support: NIST SP 800-53 Rev. 5
 
-| Control | Without this architecture | With it | Why nothing else closes it |
+The architecture implements mechanisms and produces evidence for these controls. It doesn't satisfy any of them on its own: each also needs agency policy, organization-defined parameters, procedures, and assessment. The last column is what the agency still has to supply.
+
+| Control | Architecture contribution | Evidence produced | Residual requirements |
 |---|---|---|---|
-| **AC-2** Account Management | Accounts created, changed and disabled by ticket; authorizations undocumented or encoded in group names; alignment with personnel processes exists as a memo | Every account traces to a worker record; creation, change and disablement follow hire, transfer and separation events; authorizations resolve to attribute, rule and record | Alignment with personnel processes presumes a machine-readable personnel record to align to. Employment facts originate in HR; nothing downstream can generate them, only copy them late |
-| **AC-2(1)** Automated System Account Management | No automation, or automation wired to the directory, which automates stale data | Provisioning and Lifecycle Workflows run the account lifecycle from effective-dated HR events, with provenance per action | Automation is as correct as its input. The only authoritative input for existence, status and placement is the system of record |
-| **PS-4** Personnel Termination | Termination by email and checklist; access removed days or weeks late, system by system | The separation record starts the leaver sequence on the effective date, with a timestamp per step; the separation-to-revocation interval is a reported metric | The clock starts at an event only HR records. Termination isn't visible on the network, and an absence of sign-ins looks like leave |
-| **PS-5** Personnel Transfer | Transfers invisible to the directory; access accumulates across reassignments | The mover event re-derives access and starts a review of the residual within the defined period | The formal transfer action is an HR record. To the directory, the transferred person is the same account on the same laptop |
-| **IA-4** Identifier Management | Identifiers minted per system; conversions and rehires create duplicates; reuse prevention unenforceable | One identifier per person from the worker record, carried by every account and preserved across rehire and conversion; worker type available as the IA-4(4) status characteristic | Non-reuse and rehire correlation need durable memory of persons. Directories track accounts and forget them at deletion |
-| **SI-12** Information Management and Retention | The same fact in five stores with five values and no lineage | One authoritative source per data type, with lineage from the HR record through middleware provenance to each consumer | Lineage can't be reconstructed from copies; it has to be emitted where the data originates and flows |
+| **AC-2** Account Management | Every account traces to a worker record; creation, change and disablement follow hire, transfer and separation events; authorizations resolve to attribute, rule and record | Provenance records, provisioning logs, rule definitions, access-review decisions | Account types and conditions of membership; account managers; the organization-defined periods; accounts outside the HR population (non-person, emergency, shared) |
+| **AC-2(1)** Automated System Account Management | Provisioning and Lifecycle Workflows run the account lifecycle from effective-dated HR events | Workflow run history, per task; provisioning logs | Automation for applications not integrated with enterprise identity services |
+| **PS-4** Personnel Termination | The separation record starts the leaver sequence on the effective date; the block and the revocations are timestamped and reconciled | Separation-to-block and separation-to-revocation intervals; CMS and Intune records; exceptions | The organization-defined time period; exit interviews, property return, and notification of personnel; separations HR records late |
+| **PS-5** Personnel Transfer | The mover event re-derives access and starts a review of residual access | Transfer-to-review interval; review decisions | Review of logical and physical access needs; the organization-defined actions and time period |
+| **IA-4** Identifier Management | One enterprise person key with mapped source, affiliation and directory keys, preserved across rehire and conversion (Chapter 03); worker type available as the IA-4(4) status characteristic | Correlation coverage; identifier mapping records | The identifier decision; authorization to assign identifiers; the reuse-prevention period; identifiers for non-person entities |
+| **SI-12** Information Management and Retention | Lineage for governed identity facts, from the HR record through middleware provenance to each consumer | Provenance records retained in the agency's log store | Records schedules, legal holds, and disposition for each category of record; privacy requirements for workforce data |
 
-: How the architecture closes the account-management controls {.striped .hover}
+: What the architecture contributes to account-management and personnel-security controls {.striped .hover}
 
-The full requirements mapping, including OMB M-19-17, the FICAM ILM Playbook and CISA's Zero Trust Maturity Model, is Appendix A. The compliance treatment of the same controls is in [Federal Compliance Vol I Book 04](../compliance/Vol_I_Book_04_HRIT_Identity_Org_SSOT.md).
+The agency's full requirements mapping should separate binding authorities (OMB M-19-17, FIPS 201-3, the agency's own policy) from implementation guidance (the FICAM Identity Lifecycle Management Playbook, CISA's Zero Trust Maturity Model), and record for each control the organization-defined parameters, inherited controls, residual procedures, evidence, and validation status. The compliance treatment of the same controls is in [Federal Compliance Vol I Book 04](../compliance/Vol_I_Book_04_HRIT_Identity_Org_SSOT.md).
 
 ::: {.callout-tip}
 ## Continue the series
