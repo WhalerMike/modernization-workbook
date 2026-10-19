@@ -76,7 +76,7 @@ In Entra ID that direction has a concrete shape. The user signs in with a PIV ca
 | What decides access | Network location, then static groups | A token evaluated at the cloud edge against attributes and dynamic groups, per session |
 | Where the user's facts live | Typed into the directory by IT | Projected from the HR record |
 | Cost of a wrong department | A wrong phone-book entry | The wrong dynamic groups, and therefore the wrong access |
-| Cost of a stale status | An account someone may find later | A valid token for a separated person |
+| Cost of a stale status | An orphaned account: a standing security violation that can enable a breach | A valid token for a separated person, usable from anywhere |
 
 : Why employee data accuracy matters more now than before {.striped .hover}
 
