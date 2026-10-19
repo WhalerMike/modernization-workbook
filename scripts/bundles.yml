@@ -215,8 +215,8 @@ bundles:
   # HR-Driven Identity series: combined edition plus one bundle per chapter.
   # ---------------------------------------------------------------------
   - output: hr-driven-iam-bundle.docx
-    title: "HR-Driven Identity: From the HR System of Record to Entra ID"
-    subtitle: "HR-Driven Identity — combined edition"
+    title: "HR-Driven Identity Modernization"
+    subtitle: "An Enterprise Data Architecture Case Study — combined edition"
     root: docs/hr-driven-iam
     image_dir: docs/images/diagrams/hr-driven-iam
     warn_unlisted: ["*.md"]

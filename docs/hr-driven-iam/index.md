@@ -1,6 +1,6 @@
 ---
 title: "HR-Driven Identity"
-subtitle: "Using Federal HR 2.0 and the Entra ID migration to start HR-driven Entra ID, Active Directory and ICAM on OPM standard attributes"
+subtitle: "HR-Driven Identity Modernization — an enterprise data architecture case study: using Federal HR 2.0 and the Entra ID migration to start HR-driven Entra ID, Active Directory and ICAM on OPM standard attributes"
 description: "One series for HR-driven identity modernization in a federal civilian agency: the modernization outcomes, why the HR system of record is the source of authority, the Federal HR 2.0 program, attribute authority, provisioning services, the canonical workforce identity model, joiner-mover-leaver with Lifecycle Workflows, credentials and certificates, attribute-derived access, drift and evidence, the phased execution plan, and an illustrative reference deployment."
 doc-type: section-landing
 audience: [Executive, Technical, Customer]
@@ -20,7 +20,7 @@ tiers_adopted: []
 lifecycle_review: 2027-01-01
 ---
 
-# HR-Driven Identity: From the HR System of Record to Entra ID {.unnumbered}
+# HR-Driven Identity Modernization: An Enterprise Data Architecture Case Study {.unnumbered}
 
 ::: {.callout-important appearance="default"}
 ## Status — Draft series
