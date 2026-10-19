@@ -7,7 +7,7 @@ author: Michael Stratton
 date: "June 2026"
 status: Draft
 canon-source: "src/fmp/canon/"
-derived-from: "Synthesized from Infoblox Universal DDI documentation, AWS/Azure/GCP/VMware NSX-T DNS product documentation, Microsoft Learn INR and AD deprecation guidance, Cisco Catalyst SD-WAN INR integration documentation, RFC 1034/1035/5625/6762, and NIST Zero Trust Architecture SP 800-207. Fills the documented gap: no single publication explains how DNS governs the intersection of hybrid multi-cloud private addressing, public SaaS endpoint selection, PKI certificate validation, and Layer 7 application surface definition."
+derived-from: "Synthesized from Infoblox Universal DDI documentation, AWS/Azure/GCP/VMware NSX-T DNS product documentation, Microsoft Learn INR and cloud-first identity guidance, Cisco Catalyst SD-WAN INR integration documentation, RFC 1034/1035/5625/6762, and NIST Zero Trust Architecture SP 800-207. Fills the documented gap: no single publication explains how DNS governs the intersection of hybrid multi-cloud private addressing, public SaaS endpoint selection, PKI certificate validation, and Layer 7 application surface definition."
 repo-path: docs/customer-documents/whitepapers/infoblox-hybrid-dns-unified-ddi.qmd
 created-at: 2026-06-22
 updated-at: 2026-09-16
@@ -90,8 +90,9 @@ in the federal enterprise:
  each carry their own split-brain failure modes.
 
 4. Active Directory has served as the hidden DNS substrate for on-premises
- federal networks for twenty years. As Microsoft deprecates AD and agencies
- migrate to Entra ID, the DNS records AD maintained — service locators,
+ federal networks for twenty years. As agencies retire AD and migrate to
+ Entra ID (Microsoft recommends a cloud-first model, though AD DS remains
+ supported in Windows Server 2025[^ibh-adds2025]), the DNS records AD maintained — service locators,
  Kerberos targets, LDAP endpoints — do not migrate automatically. This
  creates a category of DNS orphaning that is not yet widely understood.
 
@@ -553,8 +554,10 @@ and every Windows-integrated application fails simultaneously.
 
 ### 4.2 Microsoft's deprecation trajectory
 
-Microsoft has been systematically reducing the role of Active Directory in its
-modern identity architecture. The trajectory is clear:
+Microsoft has been steadily shifting new identity investment from Active
+Directory to Entra ID. AD DS is not deprecated — it remains supported in
+Windows Server 2025[^ibh-adds2025] — but the trajectory of Microsoft's guidance
+is clear:
 
 - **Entra ID (Azure AD)** replaces AD as the identity plane for cloud and
  modern applications. Entra ID is not AD — it has no LDAP endpoint, no
@@ -566,12 +569,12 @@ modern identity architecture. The trajectory is clear:
  SRV records. It does not require a domain controller to be reachable.
 - **Microsoft's published guidance** for new deployments consistently recommends
  Entra-only join, cloud-only identities, and Entra ID as the primary identity
- provider — with AD described as a legacy dependency to be eliminated over time.
+ provider — with on-premises AD minimized over time.[^ibh-soa]
 
 The FMP SQL Server Identity Transformation series documents this trajectory
 in the context of database authentication. The pattern is universal: every
-place that AD authentication is used is a deprecation candidate, and every
-deprecation exposes a DNS dependency that was previously invisible.
+place that AD authentication is used is a retirement candidate, and every
+retirement exposes a DNS dependency that was previously invisible.
 
 ### 4.3 What happens to DNS when AD goes away
 
@@ -597,7 +600,7 @@ collapses.
 
 ### 4.4 What must be reprovisioned before AD leaves
 
-A DNS governance program that runs alongside AD deprecation must explicitly
+A DNS governance program that runs alongside AD retirement must explicitly
 account for every DNS record category that AD currently maintains:
 
 - Kerberos and LDAP SRV records must be reprovisioned in the replacement
@@ -1312,9 +1315,10 @@ implement a zero trust architecture on a fragmented DNS foundation — because
 the service identities that zero trust policy references are DNS names, and if
 those names are inconsistent across the estate, the policy is inconsistent too.
 
-**The AD deprecation timeline.** Microsoft's direction is unambiguous:
-Entra-only join is the future, AD is the legacy. Agencies that are in the
-middle of AD deprecation — or that will begin it in the next two to three
+**The AD retirement timeline.** Microsoft's recommendation is unambiguous:
+Entra join and cloud-first identity for new deployments, with on-premises AD
+minimized,[^ibh-soa] even though AD DS itself is not deprecated. Agencies that
+are in the middle of AD retirement — or that will begin it in the next two to three
 years — must have a DNS governance program in place before the last DC is
 decommissioned. Starting after the DC is gone means recovering from DNS
 orphaning under operational pressure.
@@ -1496,7 +1500,7 @@ authoritative forwarding rules for all private namespaces across all CSPs
 and VMware segments. Rules maintained only in NIOS and not in Universal DDI
 leave BloxOne Endpoint branches without private resolution capability.
 
-**Decision 4 — AD DNS record inventory before deprecation.** Before any DC
+**Decision 4 — AD DNS record inventory before retirement.** Before any DC
 is decommissioned, all SRV records, conditional forwarding rules, and
 namespace authorizations maintained by AD DNS must be inventoried and
 reprovisioned in NIOS or Universal DDI. This step is irreversible to skip —
@@ -1578,7 +1582,7 @@ from cloud-originating queries.
  Is there an alternative telemetry mechanism for sovereign cloud customers?
 
 6. **Microsoft:** What is the recommended DNS governance approach for agencies
- mid-way through AD deprecation with an Infoblox DDI deployment? Is there
+ mid-way through AD retirement with an Infoblox DDI deployment? Is there
  a published migration guide for AD DNS → NIOS → Universal DDI?
 
 ---
@@ -1655,3 +1659,6 @@ doesn't matter.
 This paper is still Draft — that describes what's verified, not a
 reason to wait. The five decisions above are actionable today
 regardless of which Appendix B questions remain open.
+
+[^ibh-adds2025]: Microsoft Learn, *What's new in Windows Server 2025*. AD DS ships in Windows Server 2025 with new forest and domain functional levels. <https://learn.microsoft.com/en-us/windows-server/get-started/whats-new-windows-server-2025>
+[^ibh-soa]: Microsoft Learn, *Microsoft Entra cloud-first identity guidance*. Describes a phased path from hybrid to cloud-first and "AD-minimized" states. <https://learn.microsoft.com/en-us/entra/identity/hybrid/guidance-it-architects-source-of-authority>

@@ -33,7 +33,7 @@ DNS is usually described through A and CNAME records, but IANA registers dozens 
 
 ### Service Discovery Records
 
-- **SRV (RFC 2782):** Maps service+protocol to host and port with priority/weight. Essential for Active Directory (\_kerberos, \_ldap, \_gc and others). They do not migrate automatically when AD is deprecated (Chapter 04). Also used by SIP/VoIP, XMPP, and service meshes.
+- **SRV (RFC 2782):** Maps service+protocol to host and port with priority/weight. Essential for Active Directory (\_kerberos, \_ldap, \_gc and others). They do not migrate automatically when AD is retired (Chapter 04). Also used by SIP/VoIP, XMPP, and service meshes.
 
 - **NAPTR (RFC 3403):** URI rewriting, primarily for ENUM/VoIP and E911 routing. Often chains to SRV records.
 
