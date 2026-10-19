@@ -116,6 +116,22 @@ No system becomes authoritative because it receives a copy. No source field shou
 
 The Evidence Act supports reliable, governed evidence for agency decisions; this series doesn't cite it as a requirement for one system of record per data type.
 
+## The enterprise data architecture contribution
+
+This is an enterprise data architecture problem before it is an identity-product problem. The contribution, in one sentence: **establish authority, identifiers, standards, lineage and evidence, so workforce events produce measurable identity outcomes.**
+
+| Contribution | What it means here | Where |
+|---|---|---|
+| Authority | One owner for every attribute; corrections flow upstream | Chapter 03 |
+| Identifiers | An enterprise person key with layered source, affiliation, directory and credential keys | Chapter 03 |
+| Standards | OPM data standards and nature-of-action codes as the shared vocabulary; one governed crosswalk | Chapters 05–06 |
+| Lineage | A provenance record for every event, from the personnel action to every consumer | Chapters 04, 09 |
+| Evidence | Lifecycle metrics, drift findings and control support produced by normal operation | Chapter 09 |
+
+: The enterprise data architecture contribution {.striped .hover}
+
+The architecture is stable; the products that realize it are replaceable (Chapter 04).
+
 ## What success looks like
 
 A covered identity can be traced from a personnel action in Core HCM to its directory objects, credentials, devices, access decisions, exceptions, and evidence. A joiner is ready within an approved threshold. A mover's access converges on the new assignment and residual access is reviewed. A leaver's logical access is blocked immediately and every linked revocation action is reconciled to completion. No account is created by ticket for a covered population. Drift is measurable, ownership is explicit, and a change of source system doesn't require the lifecycle policy to be redesigned.
