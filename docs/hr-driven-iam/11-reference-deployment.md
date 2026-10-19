@@ -47,32 +47,32 @@ Its HR data exchange today is typical:
 
 **Phase 1 — Attribute authority and schema.** The authority map and the canonical schema (Chapter 05) are signed. Code lists for organization, worker type and position category are agreed with HR. The correlation baseline finds the usual problems: a few percent of enabled accounts with no `employeeId`, duplicate identities from contractor-to-employee conversions, and service accounts sitting in user OUs. Each gets an owner and a date.
 
-**Phase 2 — Pipeline build and test.** The middleware is built against extracts from the current HR system *and* sandbox extracts from Core HCM, because the source will change mid-program. The adapter is the only part that differs. The leaver workflow's custom task extensions retire a test device and revoke a test certificate in the test tenant.
+**Phase 2 — Pipeline build and test.** The middleware is built against extracts from the current HR system *and* sandbox extracts from Core HCM, because the source will change mid-program. Only the source contract and boundary transformation differ; the governed identity model and downstream lifecycle policy remain stable. The leaver workflow's custom task extensions retire a test device and revoke a test certificate in the test tenant.
 
 **Phase 3 — Hybrid go-live (pilot).** Two provisioning agents go in; the old connector is switched off for the pilot population. Thirty days of shadow mode surface the differences between what HR says and what AD holds: stale departments, managers who left years ago, and accounts the old connector created for records HR had already cancelled.
 
 **Phase 4 — Lifecycle automation and derived access.** Leaver automation goes first. In the first month the drift report shows a burst of high-severity findings: separated workers whose accounts the manual process hadn't reached, and orphan accounts from the old connector that the canonical pipeline can now see (Chapter 09). Each high-severity finding blocks the dependent provisioning action until it's resolved. Dynamic groups replace hand-maintained ones application by application; a test reorganization in HR moves a division's access with no directory edits.
 
-**Phase 5 — Cutover to cloud-mastered.** As the agency's Core HCM interconnection goes live, the adapter switches source. New hires land cloud-mastered in Entra ID directly; existing AD-mastered populations follow per population as their dependencies on AD retire.
+**Phase 5 — Cutover to cloud-mastered.** As the agency's Core HCM interconnection goes live, the source contract and boundary transformation switch source. New hires land cloud-mastered in Entra ID directly; existing AD-mastered populations follow per population as their dependencies on AD retire.
 
-**Phase 6 — Sustained posture.** The five lifecycle metrics go into the monthly ConMon report. The separation-to-revocation interval, measured for the first time, becomes a number the agency can defend.
+**Phase 6 — Sustained posture.** The six lifecycle metrics go into the monthly ConMon report. The separation-to-revocation interval, measured for the first time, becomes a number the agency can defend.
 
 ## The evidence package
 
 At any point after Phase 2, the agency can hand an assessor:
 
 - the signed attribute authority map, canonical schema and code lists;
-- the adapter and middleware configuration, under change control;
+- the source-contract, transformation, and workforce identity service configuration, under change control;
 - the provenance records and provisioning logs for every HR event in the period;
 - Lifecycle Workflows run history, including the device and CMS steps for every leaver;
 - drift findings with severity, class and remediation;
-- the five lifecycle metrics for the period.
+- the six lifecycle metrics for the period.
 
 It's produced by operating the pipeline, not assembled before the assessment.
 
 ## What survives the engagement
 
-The schema, the code lists, the workflows, the rules and the evidence belong to the agency, not to whichever integrator delivered the work. The next assessment reads the same records; the Core HCM cutover plugs a new adapter into the same schema; the next reorganization is a set of mover events against the same pipeline.
+The schema, the code lists, the workflows, the rules and the evidence belong to the agency, not to whichever integrator delivered the work. The next assessment reads the same records; the Core HCM cutover connects a new source contract to the same governed identity model; the next reorganization is a set of mover events against the same pipeline.
 
 ## Companion
 

@@ -29,7 +29,7 @@ The derivation chain. Valid rule patterns against the canonical schema, with Mic
 Rules for dynamic membership evaluate HR-derived attributes, so nobody joins these groups and nobody forgets to leave one. Access packages bundle entitlements behind eligibility rules and approvals that route to the supervisor of record. Conditional Access and application roles consume the same groups. Three properties follow:
 
 - **Membership is computed.** There's no group owner to lobby, no ticket to lose, no offboarding step to forget. A mover's access converges on the new assignment within the provisioning and rule-processing cycle.
-- **Every entitlement has a *because*.** Access exists because an attribute satisfied a rule; the attribute exists because an HR record asserted it; the record has an author, a date and a business act behind it. That chain is the access authorization record AC-2 asks for, and it can be queried end to end.
+- **Every entitlement has a *because*.** Access exists because an attribute satisfied a rule; the attribute exists because an HR record asserted it; the record has an author, a date and a business act behind it. That chain can contribute to the authorization and account-management evidence associated with AC-2, and it can be queried end to end.
 - **Roles and attributes stop competing.** Roles define what a position may touch; attributes prove which position the person holds. Both resolve against the same upstream record.
 
 The chain is only as good as its weakest writer. Microsoft's guidance is to review write permissions for every attribute a rule uses, in Entra ID and in any source directory, before using it in a security-sensitive group.[^c08-dyn-rules] Chapter 05 sets the only writer of the access attributes: the provisioning service.
@@ -83,7 +83,7 @@ Restricted management administrative units protect sensitive objects from tenant
 - **PIM for Groups doesn't take dynamic groups.** Any security group or Microsoft 365 group can be enabled for PIM for Groups except dynamic membership groups and groups synchronized from on-premises.[^c08-pim-groups] Privileged access is assigned, cloud-only and time-bound; HR attributes decide *eligibility* (through an access package), not standing membership.
 - **Break-glass accounts depend on none of this.** Emergency access accounts are cloud-only, excluded from HR-driven rules and lifecycle workflows, and monitored.
 
-The [SQL Server Identity Transformation series, Book 07](../case-studies/sql-server-narrative/Book_07_CPT_02.md) applies this chapter to SQL Server logins and database roles, including naming, shadow testing and rollout gates.
+The [SQL Server Identity Transformation workbook, Book 07](../case-studies/sql-server-narrative/Book_07_CPT_02.md) applies this chapter to SQL Server logins and database roles, including naming, shadow testing and rollout gates.
 
 
 ::: {.callout-tip}

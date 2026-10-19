@@ -1,7 +1,7 @@
 ---
 title: "HR-Driven Identity"
-subtitle: "From the HR System of Record to Entra ID — how hire, transfer, and separation records become accounts, access, and evidence"
-description: "One series for HR-driven identity in a federal civilian agency: why the HR system of record is the source of authority, the Federal HR 2.0 program, attribute authority, the API-driven provisioning pipeline, one canonical attribute schema, joiner-mover-leaver with Lifecycle Workflows, credentials and certificates, attribute-derived access, drift and evidence, the phased execution plan, and an illustrative reference deployment."
+subtitle: "From the HR System of Record to Entra ID — authoritative workforce identity, automated lifecycle, governed access, and measurable evidence"
+description: "One series for HR-driven identity modernization in a federal civilian agency: the modernization outcomes, why the HR system of record is the source of authority, the Federal HR 2.0 program, attribute authority, provisioning services, the canonical workforce identity model, joiner-mover-leaver with Lifecycle Workflows, credentials and certificates, attribute-derived access, drift and evidence, the phased execution plan, and an illustrative reference deployment."
 doc-type: section-landing
 audience: [Executive, Technical, Customer]
 family: hr-driven-iam
@@ -34,9 +34,22 @@ This series consolidates what used to be nine separate pages on HR-driven identi
 One chapter at a time: [00](../../downloads/hr-driven-iam-00.docx) · [01](../../downloads/hr-driven-iam-01.docx) · [02](../../downloads/hr-driven-iam-02.docx) · [03](../../downloads/hr-driven-iam-03.docx) · [04](../../downloads/hr-driven-iam-04.docx) · [05](../../downloads/hr-driven-iam-05.docx) · [06](../../downloads/hr-driven-iam-06.docx) · [07](../../downloads/hr-driven-iam-07.docx) · [08](../../downloads/hr-driven-iam-08.docx) · [09](../../downloads/hr-driven-iam-09.docx) · [10](../../downloads/hr-driven-iam-10.docx) · [11](../../downloads/hr-driven-iam-11.docx)
 :::
 
-An agency's identity platform can prove, cryptographically and at every hop, that a claim was signed by the party allowed to sign it. It can't tell you whether the claim is *true*: whether the person behind the credential still works for the agency, still holds the position the access was granted for, still reports to the supervisor who approved it. That is an employment fact, and it lives in exactly one system: the human capital system of record.
+An agency's identity platform can prove, cryptographically and at every hop, that a claim was signed by the party allowed to sign it. It can't tell you whether the claim is *true*: whether the person behind the credential still works for the agency, still holds the position the access was granted for, still reports to the supervisor who approved it. Those are workforce facts. They originate in workforce business processes and are recorded in the human capital system of record; identity services consume governed projections of them and remain authoritative for credentials, authentication, sessions, directory objects, and policy enforcement.
 
-This series is about wiring that system to Microsoft Entra ID so that accounts, access, and their removal become *consequences* of HR records rather than tickets. It's written for a federal civilian agency in the commercial Microsoft cloud at GCC-Moderate / FedRAMP Moderate, receiving its HR data from the government-wide Federal HR 2.0 platform (Oracle Fusion Cloud HCM), and it stays source-agnostic wherever it can.
+This series is about making accounts, credentials, access, and their removal timely and explainable *consequences* of those records rather than tickets. It's written for a federal civilian agency in the commercial Microsoft cloud at GCC-Moderate / FedRAMP Moderate, receiving its HR data from the government-wide Federal HR 2.0 platform (Oracle Fusion Cloud HCM). Its center of gravity is a governed workforce identity model, not a connector: source-specific mapping is replaceable boundary logic.
+
+## Modernization outcomes
+
+- **Day-one readiness:** required accounts and approved baseline access are available when an affiliation begins.
+- **Separation-to-block latency:** logical access is blocked at the effective separation time, or within the agency-approved threshold.
+- **Revocation completion:** PIV and derived credentials, device certificates, sessions, and application-specific credentials are reconciled to completion.
+- **Mover convergence:** access derived from the prior assignment is removed, the new baseline applied, and residual exceptions reviewed.
+- **Correlation coverage:** governed workforce identities reconcile with enabled enterprise accounts.
+- **Orphan reduction:** enabled accounts without a current, approved authority record are found and resolved.
+- **Explainable access:** covered entitlements trace to a rule, an approved exception, an authoritative attribute, or a privileged-access decision.
+- **Continuous evidence:** provenance, provisioning results, workflow outcomes, exceptions, and drift findings come out of normal operation.
+
+The canonical model and provisioning services exist to produce these outcomes; Chapter 00 sets out the scope, authority boundaries, and principles behind them.
 
 ## Reading sequence
 
@@ -49,6 +62,6 @@ Chapters 00–02 make the case and set the context. Chapters 03–05 define the 
 
 - **[SQL Server Identity Transformation, Book 07](../case-studies/sql-server-narrative/Book_07.md)** applies the attribute-to-access chain of Chapter 08 to SQL Server logins and database roles.
 - **[SQL Server Identity Transformation, Book 10](../case-studies/sql-server-narrative/Book_10.md)** covers the move from AD CS to Microsoft Cloud PKI; Chapter 07 covers only the certificate steps of the leaver sequence.
-- **[Federal Compliance Vol I Book 04](../compliance/Vol_I_Book_04_HRIT_Identity_Org_SSOT.md)** carries the control-closure argument (AC-2, IA-4, PS-4, PS-5, SI-12) for the same architecture.
+- **[Federal Compliance Vol I Book 04](../compliance/Vol_I_Book_04_HRIT_Identity_Org_SSOT.md)** carries the compliance treatment of the same controls (AC-2, IA-4, PS-4, PS-5, SI-12). The architecture contributes mechanisms and evidence to them; it doesn't satisfy them on its own.
 - **[Client-Server to Hybrid-Cloud, Chapter 04](../client-server-to-hybrid-cloud/04-identity-transformation.md)** covers the move from the OU tree to attribute-driven structure.
 - **[The AD → Entra ID Identity Modernization Guide](../operational-guides/identity/identity-modernization.md)** covers directory migration, the companion dimension to inbound provisioning.

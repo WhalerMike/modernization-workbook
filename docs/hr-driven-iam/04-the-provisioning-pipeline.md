@@ -1,6 +1,6 @@
 ---
-title: "Chapter 04 — The Provisioning Pipeline"
-description: "API-driven inbound provisioning end to end: the Oracle HCM source surfaces, the four middleware duties, the bulkUpload contract and its limits, the two landing zones (Active Directory through the provisioning agent, Entra ID directly), native connectors, and one-way writeback."
+title: "Chapter 04 — Provisioning Services"
+description: "Provisioning services end to end, with API-driven inbound provisioning as the Microsoft implementation: the Oracle HCM source surfaces, the five middleware duties, the bulkUpload contract and its limits, the two landing zones (Active Directory through the provisioning agent, Entra ID directly), native connectors, and one-way writeback."
 doc-type: hr-driven-iam-chapter
 audience: [Executive, Technical, Customer]
 family: hr-driven-iam
@@ -13,27 +13,31 @@ aliases:
   - /docs/guides/hr-driven-lifecycle.html
 ---
 
-# Chapter 04 — The Provisioning Pipeline
+# Chapter 04 — Provisioning Services
 
 *One door into the directory, so there is exactly one door to instrument.*
 
 ::: {.callout-note}
 ## In this chapter
-Why the canonical path is API-driven inbound provisioning. The Oracle HCM source surfaces. What the middleware must do for every event. The `bulkUpload` contract and its limits. The two landing zones and what each one does with structure. Native connectors and writeback.
+Where provisioning sits between the governed identity model and the directories, and why API-driven inbound provisioning is the Microsoft implementation. The Oracle HCM source surfaces. What the middleware must do for every event, including reconciliation. The `bulkUpload` contract and its limits. The two landing zones and what each one does with structure. Native connectors and writeback.
 :::
 
 ## The shape
 
+> **Authoritative workforce source → boundary transformation → governed workforce identity model → provisioning service → target services**
+
+The governed workforce identity model (Chapter 05) is the contract; everything to its left is source-specific, everything to its right is delivery. In the Microsoft implementation this series describes, that becomes:
+
 > **HR system of record → integration middleware → Microsoft Graph `/bulkUpload` → Entra provisioning service → Entra ID or on-premises Active Directory**
 
-The API client reads identity data from the authoritative source and posts it to the provisioning app's `/bulkUpload` endpoint as a SCIM bulk request. It doesn't compare source and target values to decide whether to create, update, enable or disable; the provisioning service does that, applies the attribute mappings the administrator configured, and writes the user to on-premises AD (hybrid users) or to Entra ID (cloud-only users). The endpoint answers `202 Accepted` and processes asynchronously; the client reads the provisioning logs API for the per-record result and resubmits failures.[^c04-api-concepts]
+The API client reads identity data from the authoritative source and posts it to the provisioning app's `/bulkUpload` endpoint as a SCIM bulk request. It doesn't compare source and target values to decide whether to create, update, enable or disable; the provisioning service does that, applies the attribute mappings the administrator configured, and writes the user to on-premises AD (hybrid users) or to Entra ID (cloud-only users). The endpoint answers `202 Accepted` and processes asynchronously; the client reads the provisioning logs API for the per-record result and applies bounded, idempotent retry for transient failures. Permanent failures become reconciled exceptions with an owner and alternate completion path.[^c04-api-concepts]
 
-## Why this path and no other
+## Why API-driven inbound provisioning
 
 - **Oracle Fusion Cloud HCM has no native Entra connector.** Entra's prebuilt HR connectors are for Workday and SAP SuccessFactors. Microsoft's own Oracle HCM integration guidance *is* the API-driven pattern: CSV extracts for the initial load, ATOM feeds or HCM Extracts for deltas, and optional writeback through Oracle's SCIM APIs.[^c04-oracle-tutorial]
-- **The architecture is source-agnostic; the deployed source is configuration.** The middleware normalizes any HR export into the same SCIM payload, so the `/bulkUpload` call is identical whatever the source. If the source changes, the adapter changes; the pipeline and everything downstream don't.
+- **The governed identity model is source-independent; each deployed source has an explicit contract and transformation.** The middleware normalizes any HR export into the same SCIM payload, so the `/bulkUpload` call is identical whatever the source. If the source changes, the source contract and boundary transformation change; the governed identity model and downstream lifecycle policy remain stable.
 - **One entry point gives one provenance stream.** All inbound identity writes pass through a single provisioning surface, which is what makes lineage and drift detection tractable (Chapter 09).
-- **The procurement points the same way.** The Core HCM solicitation's requirements checklist asks for SCIM 2.0 near-real-time provisioning, the protocol this pipe speaks (Chapter 02).
+- **The procurement points the same way.** The Core HCM solicitation's requirements checklist asks for SCIM 2.0 near-real-time provisioning, the protocol this pattern uses (Chapter 02).
 
 If Microsoft later ships a native Oracle HCM connector, it becomes an optimization inside this architecture, not a replacement for it.
 
@@ -48,16 +52,17 @@ If Microsoft later ships a native Oracle HCM connector, it becomes an optimizati
 
 : Oracle HCM source surfaces {.striped .hover}
 
-**Match key:** Oracle `PersonNumber` to `employeeId` in Entra ID and AD. The employee ID must be populated on existing accounts **before** the first full sync; matching is what prevents duplicate identities at go-live.
+**Source correlation key:** Oracle `PersonNumber` to `employeeId` in Entra ID and AD, subject to the enterprise identifier decision in Chapter 03. The employee ID must be populated on existing accounts **before** the first full sync; matching is what prevents duplicate identities at go-live.
 
-## The middleware: four duties per event
+## The middleware: five duties per event
 
-Azure Functions or Logic Apps, inside the agency's authorization boundary, doing four things for every event:
+Azure Functions or Logic Apps, inside the agency's authorization boundary, doing five things for every event:
 
 1. **Validate.** Required attributes present; unknown worker types refused. Fail closed.
 2. **Sequence and retry.** Apply feed events in order and handle failures explicitly. An out-of-order mover/leaver pair is a correctness bug and a dropped event is a silent drift source. A failed transform retries and is recorded, never skipped.
 3. **Normalize to SCIM.** Build the bulk request (`urn:ietf:params:scim:api:messages:2.0:BulkRequest`) with the core and enterprise user schemas, plus a schema extension for any attribute the core schemas don't carry.[^c04-api-concepts] The canonical payload is defined in Chapter 05.
-4. **Write provenance.** One record per event (source event ID, payload hash, derivation inputs, outcome) to the agency's evidence store, before the Graph call returns. No record, no closure.
+4. **Write provenance.** One record per event (source event ID, payload hash, derivation inputs, outcome) to the agency's evidence store, before the Graph call returns. No record, no verifiable outcome.
+5. **Reconcile.** Read the provisioning logs for each submitted record and match the result to the source event. Transient failures retry with bounded, idempotent backoff; permanent failures become exceptions with an owner and an alternate completion path, and stay open until the directory reflects the source. A scheduled comparison of the HR population with the directories catches anything the per-event check missed (Chapter 09).
 
 The middleware never writes back to the HR system's HR-mastered facts. Send the complete user record in every request, for full and delta syncs alike: if clearing attribute values is enabled, an omitted or null mapped attribute can clear the target value.[^c04-api-concepts]
 
@@ -67,9 +72,9 @@ The middleware never writes back to the HR system's HR-mastered facts. Send the 
 |---|---|
 | Endpoint | Microsoft Graph, worldwide endpoint `graph.microsoft.com` (Microsoft 365 GCC tenants use the worldwide endpoints)[^c04-graph-deployments] |
 | Payload | SCIM bulk request; up to 50 operations per call |
-| Throttling | 40 calls in any 5-second window; HTTP 429 beyond it |
+| Throttling | 40 calls in any 5-second window, HTTP 429 beyond it, per the Entra concepts page; the Graph API reference states 40 requests per second.[^c04-bulkupload-api] The two Microsoft pages disagree, so pace the client to the stricter figure and handle 429 responses |
 | Tenant daily cap | 2,000 calls per 24 hours with Entra ID P1/P2; 6,000 with Entra ID Governance |
-| Graph permissions for the client | `SynchronizationData-User.Upload` and `ProvisioningLog.Read.All` |
+| Graph permissions for the client | `SynchronizationData-User.Upload` (Microsoft's standard setup) or the least-privileged `SynchronizationData-User.Upload.OwnedBy`, which limits uploads to provisioning apps the client's identity owns;[^c04-bulkupload-api][^c04-grant-access] `ProvisioningLog.Read.All` for the component that reads per-record results |
 | Licensing floor | Entra ID P1; Entra ID Governance for Lifecycle Workflows |
 
 : The `/bulkUpload` envelope[^c04-api-concepts] {.striped .hover}
@@ -111,7 +116,7 @@ During coexistence, provision both zones, read structure from attributes, and re
 
 ## Native connectors
 
-Where an HR source has a native connector (Workday, SAP SuccessFactors), it's an acceptable accelerator. The API-driven path stays canonical because it works for any source and because its middleware is where validation and provenance happen before the identity platform sees the record.
+Where an HR source has a native connector (Workday, SAP SuccessFactors), it's an acceptable accelerator. The API-driven pattern stays the reference implementation because it works for any source and because its middleware is where validation, provenance and reconciliation happen before the identity platform sees the record. A native connector bypasses that middleware, so those duties have to be supplied another way.
 
 ## Writeback: optional and one-way per attribute
 
@@ -120,10 +125,12 @@ Once inbound provisioning is proven, an optional outbound job can write identity
 
 ::: {.callout-tip}
 ## Continue the series
-[← Previous: Chapter 03 — Attribute Authority](03-attribute-authority.md) · [Index](index.md) · [Next: Chapter 05 — The Canonical Attribute Schema →](05-canonical-attribute-schema.md)
+[← Previous: Chapter 03 — Attribute Authority](03-attribute-authority.md) · [Index](index.md) · [Next: Chapter 05 — The Canonical Workforce Identity Model →](05-canonical-attribute-schema.md)
 :::
 
 [^c04-api-concepts]: Microsoft Learn, "API-driven inbound provisioning concepts," <https://learn.microsoft.com/en-us/entra/identity/app-provisioning/inbound-provisioning-api-concepts> (accessed Oct 19, 2026).
+[^c04-bulkupload-api]: Microsoft Learn, "Perform bulkUpload" (Microsoft Graph v1.0 API reference: rate limit and permissions), <https://learn.microsoft.com/en-us/graph/api/synchronization-synchronizationjob-post-bulkupload> (accessed Oct 19, 2026).
+[^c04-grant-access]: Microsoft Learn, "Grant access to the inbound provisioning API," <https://learn.microsoft.com/en-us/entra/identity/app-provisioning/inbound-provisioning-api-grant-access> (accessed Oct 19, 2026).
 [^c04-oracle-tutorial]: Microsoft Learn, "Configure Oracle Human Capital Management (HCM) for automatic user provisioning," <https://learn.microsoft.com/en-us/entra/identity/saas-apps/oracle-hcm-provisioning-tutorial> (accessed Oct 19, 2026).
 [^c04-graph-deployments]: Microsoft Learn, "National cloud deployments" (Microsoft Graph): "If you're working in a Microsoft 365 GCC environment, continue using the worldwide endpoints," <https://learn.microsoft.com/en-us/graph/deployments> (accessed Oct 19, 2026).
 [^c04-api-faqs]: Microsoft Learn, "Frequently asked questions about API-driven inbound provisioning," <https://learn.microsoft.com/en-us/entra/identity/app-provisioning/inbound-provisioning-api-faqs> (accessed Oct 19, 2026).
