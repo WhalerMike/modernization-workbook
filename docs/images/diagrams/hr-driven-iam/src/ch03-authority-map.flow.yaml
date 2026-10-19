@@ -1,0 +1,14 @@
+# Chapter 03 — the authority map: each class of fact has one master; everything
+# downstream is derived and never hand-edited.
+rankdir: LR
+graph: {nodesep: 0.3, ranksep: 0.4}
+nodes:
+  hr: {tone: amber, width: 165, tag: "Authoritative", title: "HR system of record", body: ["Person and affiliation keys", "Worker type and status", "Position, series, grade", "Organization and duty station", "Supervisor"], size: 12}
+  idp: {tone: blue, width: 165, tag: "Authoritative", title: "Identity platform", body: ["Accounts and UPN", "Sessions and authentication", "Group membership by rule"], size: 12}
+  cms: {tone: violet, width: 165, tag: "Authoritative", title: "Card management and PKI", body: ["PIV and derived credentials", "Device certificates"], size: 12}
+  cons: {tone: green, width: 170, tag: "Derived", title: "Consumers", body: ["Applications and token claims", "Access packages and reviews", "Conditional Access", "SIEM and audit joins"], size: 12}
+edges:
+  - [hr, idp, {label: "governed projection", tone: amber}]
+  - [idp, cons, {tone: green}]
+  - [cms, cons, {tone: green}]
+  - [hr, cms, {label: "sponsorship and status", tone: amber, style: dashed}]

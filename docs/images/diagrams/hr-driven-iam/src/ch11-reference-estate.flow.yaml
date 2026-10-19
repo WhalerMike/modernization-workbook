@@ -1,0 +1,23 @@
+# Chapter 11 — the illustrative agency before and after: ticket-driven accounts
+# become one governed path sourced from the Core HCM standard attributes.
+rankdir: LR
+graph: {nodesep: 0.35, ranksep: 0.6}
+clusters:
+  - {id: after, label: "After: HR-driven identity", tone: green, filled: false, nodes: [hcm, model, en1, ad1]}
+  - {id: before, label: "Before: no HR-driven identity", tone: red, filled: false, nodes: [lhr, tix, ad0, en0]}
+nodes:
+  lhr: {tone: slate, width: 150, title: "HR system", body: ["=Knows every hire, move and separation"], size: 12}
+  tix: {tone: red, width: 150, title: "Tickets and email", body: ["=The only channel to IT"], size: 12}
+  ad0: {tone: slate, width: 140, title: "Active Directory", body: ["=Accounts created by hand"], size: 12}
+  en0: {tone: slate, width: 140, title: "Entra ID", body: ["=Synced from AD"], size: 12}
+  hcm: {tone: amber, width: 150, title: "Core HCM", body: ["=OPM standard attributes"], size: 12}
+  model: {tone: blue, width: 150, title: "Governed identity model", body: ["=Provenance per event"], size: 12}
+  en1: {tone: blue, width: 140, title: "Entra ID", body: ["=Cloud-managed populations"], size: 12}
+  ad1: {tone: blue, width: 140, title: "Active Directory", body: ["=Only where still needed"], size: 12}
+edges:
+  - [lhr, tix, {style: dashed}]
+  - [tix, ad0]
+  - [ad0, en0]
+  - [hcm, model]
+  - [model, en1]
+  - [model, ad1]

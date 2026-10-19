@@ -1,0 +1,15 @@
+# Chapter 02 — the window: the HR side is rebuilt on the program's schedule; an
+# HR-driven identity feed has to be designed in before the interconnection is built.
+rankdir: LR
+graph: {nodesep: 0.25, ranksep: 0.3}
+nodes:
+  m1: {tone: slate, width: 111, tag: "Dec 10, 2025", title: "OMB/OPM memo", body: ["=One Core HCM platform; agencies pause their own"], size: 12}
+  m2: {tone: slate, width: 111, tag: "Jun 11, 2026", title: "Core HCM award", body: ["=Oracle Fusion Cloud HCM"], size: 12}
+  m3: {tone: amber, width: 135, tag: "Onboarding, months 1–5", title: "The window", body: ["=Data standards, cleanup, interconnection design and the identity feed are decided"], size: 12}
+  m4: {tone: red, width: 121, tag: "Interconnection go-live", title: "The window closes", body: ["=Retrofitting identity means reopening it"], size: 12}
+  m5: {tone: slate, width: 111, tag: "FY 2028", title: "One system", body: ["=EHRI and eOPF decommissioned"], size: 12}
+edges:
+  - [m1, m2]
+  - [m2, m3]
+  - [m3, m4, {tone: amber}]
+  - [m4, m5]

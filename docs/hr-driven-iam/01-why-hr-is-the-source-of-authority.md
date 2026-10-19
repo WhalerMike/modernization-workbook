@@ -45,6 +45,8 @@ The measurable consequence is the orphaned account: an enabled credential whose 
 
 The anatomy is worth one concrete timeline, because it shows *where the information is* at every point during the gap:
 
+![The orphan timeline: HR records the separation on day −14; the other systems learn it by accident, and the last account is found by a penetration test on day +180.](../images/diagrams/hr-driven-iam/svg/ch01-orphan-timeline.svg){fig-alt="Five boxes left to right. Day minus 14, green: HR records the separation; no other system is listening. Day 0, amber: separation takes effect; account, app logins and badge all still live. Day plus 3, amber: a ticket disables the account; nine application accounts stay enabled. Day plus 45, red: a review flags two; nobody owns the other seven. Day plus 180, red: a pen test signs in with one; the gap is now an incident."}
+
 | Day | What the HR System Knows | What the Fragments Know | Exposure |
 |---|---|---|---|
 | −14 | Separation recorded, effective day 0 | Nothing — no fragment subscribes to HR events | None yet; the fact exists and is actionable |
@@ -71,13 +73,17 @@ Three remediation strategies are regularly proposed to fix fragmented identity t
 
 Every patch preserves the premise — that identity truth can be maintained where it is consumed rather than where it originates — and the premise is the defect. The remediation is not a cleaner copy; it is a designated origin with an event feed.
 
+## What HR-driven provisioning means
+
+Microsoft's name for the fix is **HR-driven provisioning**: "the process of creating digital identities based on a human resources system", in which the HR systems "become the source of authority" and are the starting point for the provisioning processes that follow.[^c01-hrdriven] A hire in HR creates the account; a change in HR updates it; a termination in HR disables it; a rehire reactivates it. In an agency where none of that happens today — where every one of those steps is a ticket — starting HR-driven provisioning is the single largest change to identity risk available, and the two migrations of Chapter 00 are when it costs least.
+
 ## What HR provides, and what identity architecture must add
 
 The HR system of record supplies the authoritative origin:
 
 - Authoritative employment status (joiner, mover, leaver)
 - Organizational attributes (department, division, location, employee type)
-- A consistent feed shape across agencies once Federal HR 2.0 consolidation completes
+- For federal employees, a consistent feed shape across agencies once Federal HR 2.0 consolidation completes, expressed in OPM's standard data elements and personnel actions (Chapter 05). Contractors and vendors are outside HRIT and need a designated source of their own.
 
 Identity architecture supplies everything that turns that origin into access:
 
@@ -93,3 +99,5 @@ The identity architecture doesn't depend on the platform being Oracle Fusion Clo
 ## Continue the series
 [← Previous: Chapter 00 — Overview and Applicability](00-overview-and-applicability.md) · [Index](index.md) · [Next: Chapter 02 — Federal HR 2.0 →](02-federal-hr-2-0.md)
 :::
+
+[^c01-hrdriven]: Microsoft Learn, "What is HR-driven provisioning?," <https://learn.microsoft.com/en-us/entra/identity/app-provisioning/what-is-hr-driven-provisioning> (accessed Oct 19, 2026).
