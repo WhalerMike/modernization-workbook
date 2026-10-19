@@ -28,7 +28,7 @@ OPM HRIT is the Office of Personnel Management's Human Resources Information Tec
 
 ## Fifty years of consolidation
 
-Every milestone in the program's history moves the same direction: fewer systems, more authoritative data, shared delivery. The architecture in this series is not a novel invention — it is the landing point that five decades of federal HR consolidation policy have been driving toward.
+Every milestone in the program's history moves the same direction: fewer systems, more authoritative data, shared delivery. The modernization approach in this workbook is not a novel invention — it is the landing point that five decades of federal HR consolidation policy have been driving toward.
 
 | Year | Milestone | What Changed |
 |---|---|---|
@@ -39,7 +39,7 @@ Every milestone in the program's history moves the same direction: fewer systems
 | 2019 | **HR QSMO** | OMB M-19-16 designates OPM the HR Quality Services Management Office — standards owner and storefront |
 | 2021 | **QSMO marketplace** | The vetted HR IT catalog opens; agencies steered to standards-aligned shared solutions |
 | 2025 | **Federal HR 2.0** | The joint OMB/OPM memorandum (December 10, 2025) directs one government-wide Core HCM platform; agencies pause their own Core HCM modernization |
-| 2026 | **Core HCM award** | The Federal HRIT Modernization Core HCM contract is awarded to Oracle (June 11, 2026) — **Oracle Fusion Cloud HCM**, SaaS, the system-of-record feed this series builds on; Wave 1 agency transitions begin |
+| 2026 | **Core HCM award** | The Federal HRIT Modernization Core HCM contract is awarded to Oracle (June 11, 2026) — **Oracle Fusion Cloud HCM**, SaaS, the workforce platform this workbook uses for its principal implementation example; Wave 1 agency transitions begin |
 | 2027 | **Wave transitions** | Wave 2 completes in FY 2027; each agency's onboarding runs ~8 months with interconnections live around month 5 |
 | 2028 | **One system** | Government-wide adoption goal (FY 2028); eOPF and EHRI become redundant and are decommissioned |
 
@@ -74,7 +74,7 @@ Two planning consequences follow directly:
 
 ## What OPM requires, and what it leaves to the agency
 
-No OPM document mandates or specifies Entra ID integration. The program fixes the HR side — the platform, the waves, the interface requirements in the solicitation — and leaves the identity side to each agency. The Entra-specific design in Chapters 04–08 is an agency implementation decision built on Microsoft's own Oracle HCM integration guidance. Until mid-2026 the HR side of this architecture had to be planned agnostically, because the government-wide vendor was undecided. The award removed that uncertainty without changing the architecture: the pipe is source-shaped, not source-bound, so if the program changes again the adapter changes and nothing else does.
+No OPM document mandates or specifies Entra ID integration. The program fixes the HR side — the platform, the waves, the interface requirements in the solicitation — and leaves the identity side to each agency. The Entra-specific design in Chapters 04–08 is an agency implementation decision built on Microsoft's own Oracle HCM integration guidance. Until mid-2026 the HR side of this architecture had to be planned agnostically, because the government-wide vendor was undecided. The award removed that uncertainty without changing the architecture: the identity model is source-independent while each source contract remains explicit, so if the program changes again the source contract and boundary transformation change while the governed identity model and downstream lifecycle services remain stable.
 
 ::: {.callout-tip}
 ## Continue the series
