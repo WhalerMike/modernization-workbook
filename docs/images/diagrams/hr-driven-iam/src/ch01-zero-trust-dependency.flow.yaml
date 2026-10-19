@@ -1,0 +1,14 @@
+# Chapter 01 — why employee data accuracy matters more now: Zero Trust is the
+# strategy, SASE delivers it at the cloud edge, ICAM drives SASE's decisions, and
+# ICAM is only as accurate as the employee data behind it.
+rankdir: LR
+graph: {nodesep: 0.3, ranksep: 0.3}
+nodes:
+  zt: {tone: slate, width: 132, tag: "The strategy", title: "Zero Trust", body: ["OMB M-22-09", "NIST SP 800-207", "CISA ZTMM v2.0"], size: 12}
+  sase: {tone: blue, width: 132, tag: "The delivery", title: "SASE", body: ["=Each request enforced at the cloud edge (TIC 3.0)"], size: 12}
+  icam: {tone: violet, width: 140, tag: "The decision", title: "ICAM in Entra ID", body: ["=Token from a PIV or phishing-resistant credential; Conditional Access and dynamic groups read attributes"], size: 12}
+  data: {tone: amber, width: 140, tag: "Accuracy decides access", title: "Employee data", body: ["=Organization, position, status, supervisor"], size: 12}
+edges:
+  - [zt, sase, {label: "delivered by"}]
+  - [sase, icam, {label: "driven by"}]
+  - [data, icam, {tone: amber, label: "feeds"}]

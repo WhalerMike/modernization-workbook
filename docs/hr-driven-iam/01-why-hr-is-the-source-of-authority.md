@@ -19,7 +19,7 @@ aliases:
 
 ::: {.callout-note}
 ## In this chapter
-Where identity truth lives today and why it contradicts itself. Why orphaned accounts are the guaranteed output of that design rather than an operational lapse. The federal policy and guidance that support authoritative sources and governed lineage. Why cleanup, directory mastery, and reviews can't substitute for one. What HR provides and what identity architecture has to add.
+Where identity truth lives today and why it contradicts itself. Why accurate employee data matters more under Zero Trust and SASE than it ever did. Why orphaned accounts are the guaranteed output of that design rather than an operational lapse. The federal policy and guidance that support authoritative sources and governed lineage. Why cleanup, directory mastery, and reviews can't substitute for one. What HR provides and what identity architecture has to add.
 :::
 
 ## What the claims in a token assert
@@ -58,6 +58,29 @@ The anatomy is worth one concrete timeline, because it shows *where the informat
 : The orphan timeline — the fact exists on day −14; the fragments learn it by accident {.striped .hover}
 
 Nothing in that timeline is a failure of diligence. It is the *wiring diagram working as built*: a system that records the truth, five systems that need it, and no channel between them. The same anatomy produces the quieter failures: the transferred employee who keeps the old division's access for years (the access-accretion problem PS-5 exists to stop), the contractor converted to staff who now has two identities, the rehired annuitant with three.
+
+## Why the agency needs HR-driven ICAM now
+
+For most of the directory era, the network decided access: a user inside the perimeter reached what the perimeter allowed, and a wrong department or a stale manager produced a wrong phone-book entry. Federal direction has moved the decision off the network and onto identity, in three layers:
+
+- **Zero Trust is the strategy.** OMB M-22-09 sets the federal Zero Trust strategy: centralized identity management for agency staff, phishing-resistant multifactor authentication, and authorization that evaluates each request rather than trusting the network it came from.[^c01-m2209] NIST SP 800-207 describes the architecture — access granted per session by a policy engine, using dynamic policy that includes the client's identity and the attributes the enterprise assigns to it[^c01-sp800207] — and CISA's Zero Trust Maturity Model makes identity its first pillar, defining an identity as an attribute or set of attributes that uniquely describes a user.[^c01-ztmm]
+- **SASE delivers it.** Secure Access Service Edge (SASE) is the delivery model that implements Zero Trust at the network edge: security services, including Zero Trust network access, delivered from a cloud edge close to the user instead of the agency perimeter. TIC 3.0, under OMB M-19-26, is what opens that path for agencies, with remote-user, branch and cloud use cases that include cloud-delivered security services.[^c01-tic]
+- **ICAM drives SASE.** Every SASE and Zero Trust access decision consumes the identity, the token and the attributes that ICAM supplies. Neither can be more accurate than the identity data behind it.
+
+![Why employee data accuracy matters more now: Zero Trust is the strategy (OMB M-22-09, NIST SP 800-207, CISA's Zero Trust Maturity Model); SASE delivers it at the cloud edge under TIC 3.0; ICAM in Entra ID drives SASE's decisions from a token and attributes; and those attributes come from employee data.](../images/diagrams/hr-driven-iam/svg/ch01-zero-trust-dependency.svg){fig-alt="Left to right: a grey box, the strategy, Zero Trust: OMB M-22-09, NIST SP 800-207, CISA ZTMM v2.0. An arrow labelled delivered by goes to a blue box, the delivery, SASE: each request enforced at the cloud edge under TIC 3.0. An arrow labelled driven by goes to a violet box, the decision, ICAM in Entra ID: a token from a PIV or phishing-resistant credential, with Conditional Access and dynamic groups reading attributes. An amber box, employee data (organization, position, status, supervisor), tagged accuracy decides access, feeds the ICAM box."}
+
+In Entra ID that direction has a concrete shape. The user signs in with a PIV card or another phishing-resistant method and receives a token. Conditional Access and application roles decide what the token can reach, and the groups they read are dynamic groups computed from attributes (Chapter 08).[^c01-dynamic] The attributes are employee data: organization, position, status and supervisor.
+
+| | Perimeter era | Zero Trust, delivered through SASE |
+|---|---|---|
+| What decides access | Network location, then static groups | A token evaluated at the cloud edge against attributes and dynamic groups, per session |
+| Where the user's facts live | Typed into the directory by IT | Projected from the HR record |
+| Cost of a wrong department | A wrong phone-book entry | The wrong dynamic groups, and therefore the wrong access |
+| Cost of a stale status | An account someone may find later | A valid token for a separated person |
+
+: Why employee data accuracy matters more now than before {.striped .hover}
+
+That is the case for HR-driven identity in one line: when access is decided by attributes, the accuracy of employee data *is* the accuracy of access — and only the HR system of record originates those facts.
 
 ## The federal policy frame
 
@@ -100,4 +123,9 @@ The identity architecture doesn't depend on the platform being Oracle Fusion Clo
 [← Previous: Chapter 00 — Overview and Applicability](00-overview-and-applicability.md) · [Index](index.md) · [Next: Chapter 02 — Federal HR 2.0 →](02-federal-hr-2-0.md)
 :::
 
+[^c01-m2209]: Office of Management and Budget, M-22-09, *Moving the U.S. Government Toward Zero Trust Cybersecurity Principles*, January 26, 2022, <https://www.whitehouse.gov/wp-content/uploads/2022/01/M-22-09.pdf> (accessed Oct 19, 2026).
+[^c01-ztmm]: Cybersecurity and Infrastructure Security Agency, *Zero Trust Maturity Model*, Version 2.0, April 2023 (Identity pillar), <https://www.cisa.gov/sites/default/files/2023-04/CISA_Zero_Trust_Maturity_Model_Version_2_508c.pdf> (accessed Oct 19, 2026).
+[^c01-sp800207]: NIST, SP 800-207, *Zero Trust Architecture*, August 2020, <https://csrc.nist.gov/pubs/sp/800/207/final> (accessed Oct 19, 2026).
+[^c01-tic]: Cybersecurity and Infrastructure Security Agency, "Trusted Internet Connections (TIC)" (TIC 3.0 core guidance and use cases), <https://www.cisa.gov/resources-tools/programs/trusted-internet-connections-tic> (accessed Oct 19, 2026).
+[^c01-dynamic]: Microsoft Learn, "Manage rules for dynamic membership groups in Microsoft Entra ID," <https://learn.microsoft.com/en-us/entra/identity/users/groups-dynamic-membership> (accessed Oct 19, 2026).
 [^c01-hrdriven]: Microsoft Learn, "What is HR-driven provisioning?," <https://learn.microsoft.com/en-us/entra/identity/app-provisioning/what-is-hr-driven-provisioning> (accessed Oct 19, 2026).
