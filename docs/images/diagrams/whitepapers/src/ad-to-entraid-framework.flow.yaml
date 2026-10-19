@@ -1,0 +1,14 @@
+# AD to Entra ID — the migration as a governance capability in five steps.
+rankdir: LR
+graph: {nodesep: 0.2, ranksep: 0.28}
+nodes:
+  d: {tone: slate, width: 128, tag: "1", title: "Discovery", body: ["=What governance the current AD actually encodes"], size: 12}
+  n: {tone: amber, width: 128, tag: "2", title: "Normalization", body: ["=A clean authority model before the migration"], size: 12}
+  m: {tone: blue, width: 128, tag: "3", title: "Mapping", body: ["=Administrative units, PIM roles, access packages, Conditional Access"], size: 12}
+  c: {tone: blue, width: 128, tag: "4", title: "Continuity", body: ["=A governed path for Kerberos, SQL and legacy apps"], size: 12}
+  v: {tone: green, width: 128, tag: "5", title: "Validation", body: ["=Evidence the governance model survived"], size: 12}
+edges:
+  - [d, n]
+  - [n, m]
+  - [m, c]
+  - [c, v]
