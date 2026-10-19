@@ -90,7 +90,7 @@ def fail(msg: str) -> None:
 
 def rel(p: Path) -> str:
     try:
-        return str(p.relative_to(REPO))
+        return p.relative_to(REPO).as_posix()      # posix, so the render globs also match on Windows
     except ValueError:
         return str(p)
 
@@ -124,6 +124,81 @@ def glob_regex(pattern: str) -> re.Pattern:
             out += re.escape(c)
         i += 1
     return re.compile(out + r"\Z")
+
+
+# ------------------------------------------------------ table of contents
+
+TOC_FIELD = re.compile(
+    r'<w:p><w:r><w:fldChar w:fldCharType="begin"[^>]*/>(<w:instrText[^>]*>TOC [^<]*</w:instrText>)'
+    r'<w:fldChar w:fldCharType="separate"\s*/><w:fldChar w:fldCharType="end"\s*/></w:r></w:p>')
+PARAGRAPH = re.compile(r"<w:p>(?:(?!</w:p>).)*?</w:p>", re.S)
+HEADING = re.compile(r'<w:p><w:pPr><w:pStyle w:val="Heading(\d)"\s*/>.*?</w:pPr>', re.S)
+TOC_STYLES = "".join(
+    f'<w:style w:type="paragraph" w:styleId="TOC{n}"><w:name w:val="toc {n}"/><w:basedOn w:val="Normal"/>'
+    f'<w:next w:val="Normal"/><w:uiPriority w:val="39"/><w:unhideWhenUsed/>'
+    f'<w:pPr><w:spacing w:before="{120 if n == 1 else 0}" w:after="0"/><w:ind w:left="{(n - 1) * 240}"/></w:pPr>'
+    f'{"<w:rPr><w:b/></w:rPr>" if n == 1 else ""}</w:style>'
+    for n in range(1, 4))
+
+
+def fill_toc(docx: Path, depth: int) -> int:
+    """Give pandoc's empty TOC field a cached result, so the contents show on open.
+
+    pandoc writes the TOC as a field with no result: Word shows an empty table
+    until someone updates fields, and Protected View (every downloaded file)
+    never does. This bookmarks each heading down to `depth`, writes one
+    hyperlinked entry per heading as the field's result, and adds the TOC
+    paragraph styles. The field stays dirty, so Word still offers to update it
+    and add page numbers. Returns the number of entries written.
+    """
+    with zipfile.ZipFile(docx) as z:
+        infos = z.infolist()
+        parts = {i.filename: z.read(i) for i in infos}
+    doc = parts["word/document.xml"].decode("utf-8")
+    field = TOC_FIELD.search(doc)
+    if not field:
+        return 0
+    ids = [int(x) for x in re.findall(r'<w:bookmarkStart w:id="(\d+)"', doc)]
+    next_id = max(ids, default=0) + 1
+    entries = []
+
+    def mark(m: re.Match) -> str:
+        nonlocal next_id
+        para = m.group(0)
+        h = HEADING.match(para)
+        if not h or int(h.group(1)) > depth:
+            return para
+        text = "".join(re.findall(r"<w:t(?:\s[^>]*)?>([^<]*)</w:t>", para))
+        if not text.strip():
+            return para
+        name = f"_Toc{next_id:08d}"
+        entries.append((int(h.group(1)), name, text))
+        marked = (para[:h.end()] + f'<w:bookmarkStart w:id="{next_id}" w:name="{name}"/>'
+                  + para[h.end():-len("</w:p>")] + f'<w:bookmarkEnd w:id="{next_id}"/></w:p>')
+        next_id += 1
+        return marked
+
+    body = PARAGRAPH.sub(mark, doc[field.end():])
+    if not entries:
+        return 0
+    begin = ('<w:r><w:fldChar w:fldCharType="begin" w:dirty="true"/></w:r>'
+             f'<w:r>{field.group(1)}</w:r><w:r><w:fldChar w:fldCharType="separate"/></w:r>')
+    end = '<w:r><w:fldChar w:fldCharType="end"/></w:r>'
+    toc = "".join(
+        f'<w:p><w:pPr><w:pStyle w:val="TOC{level}"/></w:pPr>{begin if i == 0 else ""}'
+        f'<w:hyperlink w:anchor="{name}" w:history="1"><w:r><w:t xml:space="preserve">{text}</w:t></w:r></w:hyperlink>'
+        f'{end if i == len(entries) - 1 else ""}</w:p>'
+        for i, (level, name, text) in enumerate(entries))
+    parts["word/document.xml"] = (doc[:field.start()] + toc + body).encode("utf-8")
+    styles = parts["word/styles.xml"].decode("utf-8")
+    if 'w:styleId="TOC1"' not in styles:
+        parts["word/styles.xml"] = styles.replace("</w:styles>", TOC_STYLES + "</w:styles>").encode("utf-8")
+    tmp = docx.with_name(docx.name + ".tmp")
+    with zipfile.ZipFile(tmp, "w", zipfile.ZIP_DEFLATED) as z:
+        for info in infos:
+            z.writestr(info, parts[info.filename], compress_type=zipfile.ZIP_DEFLATED)
+    tmp.replace(docx)
+    return len(entries)
 
 
 def find_pandoc() -> list[str]:
@@ -507,6 +582,8 @@ class Builder:
         res = subprocess.run(cmd, cwd=self.work, env=env, capture_output=True, text=True)
         if res.returncode != 0:
             raise BuildError(f"{b.output}: pandoc failed (exit {res.returncode})\n{res.stderr}")
+        if not fill_toc(output, b.toc_depth):
+            raise BuildError(f"{b.output}: table of contents has no entries")
         with zipfile.ZipFile(output) as z:
             media = [n for n in z.namelist() if n.startswith("word/media/")]
             doc = z.read("word/document.xml").decode("utf-8")

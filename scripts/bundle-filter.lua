@@ -148,22 +148,32 @@ local function unescape(s)
   return (s:gsub("%%(%x%x)", function(h) return string.char(tonumber(h, 16)) end))
 end
 
-function Image(el)
+local function Image(el)
   if el.src:match("^data:") then return el end
   local mapped = image_map[absolute(unescape(el.src))]
   if mapped then el.src = mapped end
   return el
 end
 
-function Link(el)
+local function Link(el)
   local target = el.target or ""
   if target:sub(1, 1) == "#" or is_external(target) then return nil end
   return el.content
 end
 
-function Pandoc(doc)
+local function Pandoc(doc)
   -- Inner divs first, so nested listings and callouts are handled too.
   doc = doc:walk({ Div = function(d) d.content = filter_blocks(d.content); return d end })
   doc.blocks = filter_blocks(doc.blocks)
   return doc
 end
+
+-- Two passes, in order. Block removal runs first so that download callouts are
+-- still recognised by their links; links are flattened to text afterwards.
+-- (In a single filter pandoc visits inlines before Pandoc, so the links were
+-- already gone and link-only paragraphs such as "One chapter at a time: 00 ·
+-- 01 · ..." survived as bare numbers.)
+return {
+  { Pandoc = Pandoc },
+  { Image = Image, Link = Link },
+}
