@@ -1,0 +1,25 @@
+# Chapter 04 — the target PKI is four issuers, each for the subjects only it
+# can serve. Cloud PKI issues only to Intune-enrolled devices; AD CS is kept
+# for domain controllers, servers and non-Intune devices; the Federal PKI
+# issues PIV; public CAs serve internet-facing names. A BYOCA issuing CA ties
+# Cloud PKI to the AD CS root. CyberArk Certificate Manager covers the issuers
+# that don't renew their own certificates. Entra ID is a relying party.
+rankdir: TB
+graph: {nodesep: 0.2, ranksep: 0.5}
+nodes:
+  cpki: {tone: blue, width: 155, tag: "Intune-enrolled devices", title: "Microsoft Cloud PKI", body: ["SCEP only", "Windows, macOS, iOS, Android"], size: 12}
+  adcs: {tone: slate, width: 155, tag: "Retained, hardened", title: "AD CS", body: ["DCs, LDAPS, NPS and RADIUS", "Internal server TLS", "NDES devices, HSM code signing"], size: 12}
+  fpki: {tone: blue, width: 155, tag: "PIV cards", title: "Federal PKI shared service provider", body: ["=Through the card management system"], size: 12}
+  pub: {tone: slate, width: 155, tag: "Internet-facing names", title: "Public CA", body: ["=CA/Browser Forum lifetimes"], size: 12}
+  clm: {tone: violet, width: 300, tag: "Lifecycle", title: "CyberArk Certificate Manager", body: ["=Discovery, inventory, ownership and renewal for AD CS and public CA certificates"], size: 12}
+  entra: {tone: blue, width: 300, tag: "Relying party, not an issuer", title: "Microsoft Entra ID", body: ["=Trust store and CRL checks for certificate-based authentication"], size: 12}
+order:
+  - [cpki, adcs, fpki, pub]
+  - [entra, clm]
+edges:
+  - [cpki, adcs, {style: dashed, tone: amber, attrs: "constraint=false"}]
+  - [adcs, clm, {tone: violet}]
+  - [pub, clm, {tone: violet}]
+  - [cpki, entra, {tone: blue, label: "trust store"}]
+  - [adcs, entra, {tone: blue, label: "trust store"}]
+  - [fpki, entra, {tone: blue, label: "trust store"}]

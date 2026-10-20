@@ -1,0 +1,29 @@
+# Chapter 04 — the two Cloud PKI deployment models. A Cloud PKI root creates a
+# new chain every relying party must be given. BYOCA adds a cloud issuing CA
+# under the existing private root, whose CRL then stays a production
+# dependency (Entra CBA needs one reachable HTTP CRL per CA).
+rankdir: TB
+graph: {nodesep: 0.2, ranksep: 0.4}
+clusters:
+  - {id: cloud, label: "Cloud PKI root CA", tone: blue, filled: false, nodes: [croot, cissue, cdev, cwarn]}
+  - {id: byoca, label: "Bring your own CA", tone: slate, filled: false, nodes: [proot, pissue, bissue, bdev, bok, bcrl]}
+nodes:
+  croot: {tone: blue, width: 160, title: "Cloud PKI root", body: ["=Azure Managed HSM key; 5 to 25 years"], size: 12}
+  cissue: {tone: blue, width: 160, title: "Cloud PKI issuing CA", body: ["=2 to 10 years"], size: 12}
+  cdev: {tone: blue, width: 160, title: "Intune-enrolled devices", body: ["=SCEP"], size: 12}
+  cwarn: {tone: red, width: 160, title: "Every relying party needs the new root", body: ["=RADIUS, VPN, web servers; by GPO or by hand"], size: 12}
+  proot: {tone: slate, width: 170, title: "Existing offline AD CS root", body: ["=Key stays on-premises"], size: 12}
+  bcrl: {tone: amber, width: 160, title: "Root CRL stays production", body: ["=Reachable over HTTP, including by Entra ID"], size: 12}
+  pissue: {tone: slate, width: 150, title: "AD CS issuing CA", body: ["=DCs and servers"], size: 12}
+  bissue: {tone: blue, width: 150, title: "BYOCA issuing CA", body: ["=Validity and hash set by the signer"], size: 12}
+  bdev: {tone: blue, width: 150, title: "Intune-enrolled devices", body: ["=SCEP"], size: 12}
+  bok: {tone: green, width: 160, title: "Relying parties already trust the root", body: ["=Also deploy the BYOCA issuing CA certificate"], size: 12}
+edges:
+  - [croot, cissue]
+  - [cissue, cdev]
+  - [croot, cwarn, {style: dashed, tone: red}]
+  - [proot, pissue]
+  - [proot, bissue, {label: "signs the request"}]
+  - [bissue, bdev]
+  - [bdev, bok, {style: dashed, tone: green}]
+  - [proot, bcrl, {style: dashed, tone: amber, attrs: "minlen=2"}]

@@ -1,0 +1,19 @@
+# Chapter 07 — the six migration waves: each wave's exit gate is the next wave's
+# entry gate, and each has a rollback rehearsed before it starts.
+rankdir: TB
+graph: {nodesep: 0.3, ranksep: 0.26}
+nodes:
+  w1: {tone: slate, width: 330, tag: "Wave 1 · weeks 1–4", title: "Assess", body: ["Gate: every template classified", "Gate: Critical and High hardening findings closed"], size: 12}
+  w2: {tone: amber, width: 330, tag: "Wave 2 · weeks 5–8", title: "Foundation", body: ["Gate: issuing CA live; trust profiles on 99% of devices", "Gate: test certificate validates; every CRL reachable"], size: 12}
+  w3: {tone: blue, width: 330, tag: "Wave 3 · weeks 9–16", title: "Pilot", body: ["Gate: 95% issuance success", "Gate: every pilot relying party accepts the new chain"], size: 12}
+  w4: {tone: blue, width: 330, tag: "Wave 4 · weeks 17–28", title: "Scale", body: ["Gate: cloud certificates for every MIGRATE use case", "Gate: AD CS auto-enrollment off on migrated rings"], size: 12}
+  w5: {tone: green, width: 330, tag: "Wave 5 · weeks 29–36", title: "Cutover", body: ["Gate: domains managed; AD FS certificate authentication off", "Gate: AD FS restorable through the rollback window"], size: 12}
+  w6: {tone: violet, width: 330, tag: "Wave 6 · weeks 37–44", title: "Decommission", body: ["Gate: MIGRATE-only AD CS components retired", "Gate: BRIDGE and RETAIN documented; root retained"], size: 12}
+  rb: {kind: text, tone: red, width: 220, text: "Rollback defined per wave and rehearsed before the wave starts"}
+edges:
+  - [w1, w2]
+  - [w2, w3]
+  - [w3, w4]
+  - [w4, w5]
+  - [w5, w6]
+  - [rb, w3, {style: dashed, tone: red}]

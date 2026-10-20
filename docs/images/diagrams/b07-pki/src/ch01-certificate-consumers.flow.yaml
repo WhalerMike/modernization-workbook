@@ -1,0 +1,18 @@
+# Chapter 01 — the certificate estate underneath every other migration: one
+# internal hierarchy issues the certificates that directory trust, network
+# access and servers depend on, and each consumer fails at expiry, not at cutover.
+rankdir: TB
+graph: {nodesep: 0.3, ranksep: 0.45}
+nodes:
+  pki: {tone: slate, width: 300, tag: "Internal PKI today", title: "AD CS hierarchy", body: ["=Offline root, enterprise issuing CAs, CRL and AIA publication, Group Policy autoenrollment"], size: 12}
+  dir: {tone: slate, width: 235, tag: "Stays while AD stays", title: "Directory trust", body: ["KDC certificates on domain controllers", "LDAPS on ports 636 and 3269", "NTAuth trust for smart card logon"], size: 12}
+  net: {tone: blue, width: 235, tag: "Moves with the devices", title: "Device and network access", body: ["802.1X Wi-Fi and wired client certificates", "VPN client certificates", "NPS and RADIUS server certificates"], size: 12}
+  srv: {tone: amber, width: 235, tag: "Needs its own issuer", title: "Servers, code and data", body: ["TLS on web, API and SQL Server listeners", "Code signing keys", "S/MIME and EFS decryption keys"], size: 12}
+  fail: {kind: pill, tone: red, text: "Each consumer fails when its certificate expires, not when the directory is cut over"}
+edges:
+  - [pki, dir]
+  - [pki, net]
+  - [pki, srv]
+  - [dir, fail, {style: dashed, tone: red}]
+  - [net, fail, {style: dashed, tone: red}]
+  - [srv, fail, {style: dashed, tone: red}]

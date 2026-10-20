@@ -79,6 +79,8 @@ website:
             text: "Book 05 — Devices & Endpoints"
           - href: docs/books/b06-data-platform/index.md
             text: "Book 06 — Data Platform: SQL Server Identity"
+          - href: docs/books/b07-pki/index.md
+            text: "Book 07 — PKI & Certificates"
           - href: docs/client-server-to-hybrid-cloud/README.md
             text: "Client-Server to Hybrid-Cloud"
           - href: docs/next-generation-ddi/index.md
@@ -291,6 +293,11 @@ website:
                 - auto: "docs/books/b06-data-platform/[0-9]*.md"
                 - auto: "docs/books/b06-data-platform/r[0-9]*.md"
                 - auto: "docs/books/b06-data-platform/appendix-*.md"
+            - section: "Book 07 — PKI & Certificates"
+              href: docs/books/b07-pki/index.md
+              contents:
+                - auto: "docs/books/b07-pki/[0-9]*.md"
+                - auto: "docs/books/b07-pki/appendix-*.md"
         - section: "Client-Server to Hybrid-Cloud"
           href: docs/client-server-to-hybrid-cloud/README.md
           contents:

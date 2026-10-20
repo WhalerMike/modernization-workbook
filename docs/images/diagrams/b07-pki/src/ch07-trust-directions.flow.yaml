@@ -1,0 +1,24 @@
+# Chapter 07 — trust during coexistence runs both ways: AD CS CAs go into the
+# Entra ID CBA trust store (with internet-reachable CRLs); the Cloud PKI chain
+# goes to domain-joined relying parties; NTAuth only for CAs that issue logon
+# certificates; Intune devices trust both chains while both issue.
+rankdir: LR
+graph: {nodesep: 0.3, ranksep: 0.4}
+clusters:
+  - {id: forest, label: "On-premises Active Directory forest", tone: slate, filled: false, nodes: [adcs, rps, ntauth]}
+  - {id: cloud, label: "Microsoft cloud", tone: blue, filled: false, nodes: [cpki, store, devices]}
+nodes:
+  adcs: {tone: slate, width: 175, title: "AD CS", body: ["=Offline root and enterprise issuing CAs"], size: 12}
+  rps: {tone: slate, width: 175, title: "Domain-joined relying parties", body: ["=RADIUS, VPN, mTLS web servers"], size: 12}
+  ntauth: {tone: amber, width: 175, title: "NTAuth store", body: ["=CAs allowed to issue logon certificates"], size: 12}
+  cpki: {tone: blue, width: 175, title: "Cloud PKI", body: ["=Root and issuing CA, or BYOCA issuing CA"], size: 12}
+  store: {tone: blue, width: 175, title: "Entra ID CBA trust store", body: ["=Every CA in the user-certificate chain"], size: 12}
+  devices: {tone: blue, width: 175, title: "Intune-managed devices", body: ["=Trusted certificate profiles for both chains"], size: 12}
+  crl: {kind: text, tone: red, width: 175, text: "LDAP-only CRL locations fail for Entra ID and Entra-joined devices"}
+edges:
+  - [adcs, store, {label: "upload, internet CRLs"}]
+  - [cpki, rps, {label: "GPO or dspublish"}]
+  - [cpki, ntauth, {style: dashed, tone: amber, label: "only if it issues logon certificates"}]
+  - [adcs, devices, {style: dashed, label: "trusted certificate profile"}]
+  - [cpki, devices, {label: "trusted certificate profile"}]
+  - [crl, adcs, {style: dashed, tone: red}]

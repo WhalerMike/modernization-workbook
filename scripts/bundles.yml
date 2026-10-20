@@ -35,6 +35,13 @@ bundles:
   # series and its implementation companion). The old download names stay as
   # aliases so published links keep working.
   # ---------------------------------------------------------------------
+  - output: b07-pki-bundle.docx
+    title: "Book 07 — PKI & Certificates"
+    subtitle: "AD CS to Cloud PKI, Entra CBA and Federal PKI — Modernization Workbook, combined edition"
+    root: docs/books/b07-pki
+    image_dir: docs/images/diagrams/b07-pki
+    warn_unlisted: ["*.md"]
+    pages: [index.md, "[0-9][0-9]-*.md", "appendix-*.md"]
   - output: b06-data-platform-bundle.docx
     aliases: [sql-server-narrative-bundle.docx, sql-server-narrative-standalone-bundle.docx]
     title: "Book 06 — Data Platform: SQL Server Identity"

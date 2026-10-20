@@ -1,0 +1,14 @@
+# Chapter 01 — two clocks: retiring AD CS on the directory's schedule leaves
+# certificates working until the first expiry wave finds no issuer; running PKI
+# as its own program puts the replacement issuer in place before that wave.
+rankdir: LR
+graph: {nodesep: 0.4, ranksep: 0.6}
+nodes:
+  now: {tone: slate, width: 185, tag: "Starting point", title: "AD CS issuing today", body: ["Autoenrollment through Group Policy", "Templates nobody owns", "Lifetimes of one to five years"], size: 12}
+  dir: {tone: red, width: 240, tag: "On the directory's clock", title: "Retire AD CS with the forest", body: ["Cutover declared complete", "Issued certificates keep working", "First expiry wave finds no issuer", "Outage weeks or months later, far from its cause"], size: 12}
+  prog: {tone: green, width: 240, tag: "On the certificate's clock", title: "Run PKI as its own program", body: ["Inventory and classify every template", "Replacement issuer live before the first expiry", "Renewals move, use case by use case", "AD CS retired last, with evidence"], size: 12}
+edges:
+  - [now, dir, {label: "follow the directory", tone: red}]
+  - [now, prog, {label: "follow the expiry dates", tone: green}]
+ranks:
+  - [dir, prog]

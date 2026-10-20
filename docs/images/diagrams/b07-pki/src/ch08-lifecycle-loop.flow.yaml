@@ -1,0 +1,27 @@
+# Chapter 08 — the certificate lifecycle the program operates. Discovery feeds an
+# inventory in which every certificate has a class and one renewal owner;
+# issuance runs under policy through three engines; renewal loops back to
+# issuance with a new key pair; retirement is non-renewal, with revocation kept
+# for compromise. Monitoring feeds every stage back into the inventory.
+rankdir: TB
+graph: {nodesep: 0.4, ranksep: 0.32}
+nodes:
+  disc: {tone: slate, width: 330, tag: "1", title: "Discover", body: ["CLM discovery scans", "Intune certificates report", "AD CS and Cloud PKI issuance records"], size: 12}
+  inv: {tone: blue, width: 330, tag: "2", title: "Inventory with an owner", body: ["=Every certificate has a class, an issuer and one renewal owner"], size: 12}
+  iss: {tone: blue, width: 330, tag: "3", title: "Issue under policy", body: ["Intune SCEP and PKCS", "AD CS autoenrollment", "CyberArk Certificate Manager, ACME where it fits"], size: 12}
+  ren: {tone: green, width: 330, tag: "4", title: "Renew before expiry", body: ["Renewal threshold, autoenrollment or CLM", "New key pair at renewal"], size: 12}
+  end: {tone: amber, width: 330, tag: "5", title: "Revoke or let expire", body: ["Routine retirement: stop renewing", "Compromise: revoke and publish the CRL"], size: 12}
+  mon: {tone: violet, width: 230, tag: "Continuous", title: "Monitor and detect drift", body: ["CA audit events", "CRL health", "CBA sign-in failures", "Defender for Identity findings"], size: 12}
+edges:
+  - [disc, inv]
+  - [inv, iss]
+  - [iss, ren]
+  - [ren, iss, {label: "next cycle", tone: green, style: dashed}]
+  - [ren, end]
+  - [mon, inv, {style: dashed, tone: violet, label: "findings"}]
+order:
+  - [disc]
+  - [inv, mon]
+  - [iss]
+  - [ren]
+  - [end]

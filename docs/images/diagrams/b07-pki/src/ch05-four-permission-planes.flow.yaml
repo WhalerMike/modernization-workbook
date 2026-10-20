@@ -1,0 +1,22 @@
+# Chapter 05 — certificate permissions live in four separate systems: the AD CS
+# access control list, Intune RBAC for Cloud PKI, Microsoft Entra roles for CBA,
+# and the CLM platform's own roles. The program maps every team in all four to
+# one access model, shown in the middle. Role names are the vendors' documented
+# names.
+rankdir: TB
+graph: {nodesep: 0.35, ranksep: 0.4}
+nodes:
+  adcs: {tone: slate, width: 290, tag: "Retained CAs", title: "AD CS access control list", body: ["CA administrator", "Certificate manager", "Auditor, backup custodian, key recovery agent", "=Template permissions are a separate control point"], size: 12}
+  cpki: {tone: blue, width: 290, tag: "Cloud PKI", title: "Intune RBAC", body: ["Read CAs", "Create CAs", "Disable and reenable CAs", "Revoke issued leaf certificates", "=Scope tags on each CA"], size: 12}
+  model: {tone: violet, width: 340, tag: "Program design", title: "One access model", body: ["Each team mapped in all four systems", "Privileged roles eligible through PIM", "No one both changes and approves what a CA issues"], size: 12}
+  entra: {tone: blue, width: 290, tag: "CBA", title: "Microsoft Entra roles", body: ["Privileged Authentication Administrator: PKI trust store", "Authentication Policy Administrator: bindings, affinity", "Hybrid Identity Administrator: synced certificate user IDs"], size: 12}
+  clm: {tone: violet, width: 290, tag: "CLM platform", title: "CyberArk Certificate Manager roles", body: ["Master Admin", "Server Owner, Team Owner", "Certificate Approver", "=Its Microsoft CA account holds certificate-manager rights"], size: 12}
+edges:
+  - [adcs, model, {both: true}]
+  - [cpki, model, {both: true}]
+  - [model, entra, {both: true}]
+  - [model, clm, {both: true}]
+order:
+  - [adcs, cpki]
+  - [model]
+  - [entra, clm]

@@ -191,3 +191,6 @@ redirects:
   docs/sql-server-implementation/Book_10.html: docs/books/b06-data-platform/r10-certificate-discovery-for-adcs.html
   docs/sql-server-implementation/index.html: docs/books/b06-data-platform/index.html
   docs/case-studies/sql-server-identity.html: docs/books/b06-data-platform/index.html
+
+  # Book 07 (PKI & Certificates) replaced these pages; sources are in archive/b07-pki/.
+  docs/operational-guides/pki-modernization.html: docs/books/b07-pki/index.html
