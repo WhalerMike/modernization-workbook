@@ -21,11 +21,8 @@ project:
     - "docs/compliance/federal-compliance-series-moderate/README.md"
     - "docs/compliance/federal-compliance-series-moderate/books/README.md"
     - "docs/executive-briefs/README.md"
-    - "docs/guides/device-and-server-modernization/README.md"
-    - "docs/libraries/README.md"
     - "docs/modernization-specs/README.md"
     - "docs/operational-guides/README.md"
-    - "docs/operational-guides/intune-arc-modernization/README.md"
     - "docs/project-management/README.md"
     - "docs/projects/README.md"
     - "docs/whitepapers/README.md"
@@ -79,6 +76,8 @@ website:
             text: "Book 03 — HR-Driven Identity"
           - href: docs/books/b04-access/index.md
             text: "Book 04 — Access & Privilege"
+          - href: docs/books/b05-devices/index.md
+            text: "Book 05 — Devices & Endpoints"
           - href: docs/client-server-to-hybrid-cloud/README.md
             text: "Client-Server to Hybrid-Cloud"
           - href: docs/next-generation-ddi/index.md
@@ -227,10 +226,6 @@ website:
           contents:
             - docs/operational-guides/helpdesk-entra-operations/index.md
             - auto: "docs/operational-guides/helpdesk-entra-operations/*.md"
-        - section: "Intune and Arc Modernization"
-          contents:
-            - docs/operational-guides/intune-arc-modernization/README.md
-            - auto: "docs/operational-guides/intune-arc-modernization/*.md"
         - section: "M365 Optimize Exemption"
           contents:
             - docs/operational-guides/m365-optimize-exemption/index.md
@@ -247,23 +242,12 @@ website:
         - section: "SIEM Telemetry Emission"
           contents:
             - auto: "docs/operational-guides/siem-telemetry-emission/*.md"
-        - section: "Target Surface"
-          contents:
-            - auto: "docs/operational-guides/target-surface/*.md"
         - section: "Transformation Engine"
           contents:
             - auto: "docs/operational-guides/transformation-engine/*.md"
         - section: "Zero Trust Assessment"
           contents:
             - auto: "docs/operational-guides/zero-trust-assessment/*.md"
-        - section: "Device and Server Modernization"
-          contents:
-            - docs/guides/device-and-server-modernization/README.md
-            - auto: "docs/guides/device-and-server-modernization/*.md"
-        - section: "Libraries"
-          contents:
-            - docs/libraries/README.md
-            - auto: "docs/libraries/*.md"
 
     - id: architecture
       title: "Architecture"
@@ -305,6 +289,11 @@ website:
               contents:
                 - auto: "docs/books/b04-access/[0-9]*.md"
                 - auto: "docs/books/b04-access/appendix-*.md"
+            - section: "Book 05 — Devices & Endpoints"
+              href: docs/books/b05-devices/index.md
+              contents:
+                - auto: "docs/books/b05-devices/[0-9]*.md"
+                - auto: "docs/books/b05-devices/appendix-*.md"
         - section: "Client-Server to Hybrid-Cloud"
           href: docs/client-server-to-hybrid-cloud/README.md
           contents:

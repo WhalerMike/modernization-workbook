@@ -1,0 +1,23 @@
+# Chapter 08 — the seven migration phases at working level: each phase has a
+# typical duration and an exit gate that is the next phase's precondition; while
+# a phase is open its rollback is defined (remove assignments, return the
+# co-management slider, re-enable the GPO link).
+rankdir: TB
+graph: {nodesep: 0.3, ranksep: 0.28}
+nodes:
+  p1: {tone: slate, width: 320, tag: "Phase 1 · 3–5 weeks", title: "Inventory and classify", body: ["Gate: a decision record for every setting", "Gate: effective-policy baseline per tier"], size: 12}
+  p2: {tone: amber, width: 320, tag: "Phase 2 · 2–3 weeks", title: "Coexistence planning", body: ["Gate: pilot devices enrolled and co-managed", "Gate: one authority per workload"], size: 12}
+  p3: {tone: blue, width: 320, tag: "Phase 3 · 3–4 weeks", title: "Baseline authoring", body: ["Gate: policies built, unassigned, peer reviewed"], size: 12}
+  p4: {tone: blue, width: 320, tag: "Phase 4 · 4–6 weeks", title: "Pilot", body: ["Gate: no unexplained conflicts on a representative 5%"], size: 12}
+  p5: {tone: blue, width: 320, tag: "Phase 5 · 8–12 weeks", title: "Workload cutover in four waves", body: ["Gate: each wave watched 72 hours before the next"], size: 12}
+  p6: {tone: violet, width: 320, tag: "Phase 6 · about 2 weeks", title: "Verification and residual cleanup", body: ["Gate: residual settings cleared, evidence filed"], size: 12}
+  p7: {tone: green, width: 320, tag: "Phase 7 · about 2 weeks + 90 days", title: "Formal retirement", body: ["Gate: GPOs archived and deleted", "Only dated exceptions remain"], size: 12}
+  rb: {kind: text, tone: red, width: 230, text: "Rollback while a phase is open: remove assignments, return the slider, re-enable the GPO link"}
+edges:
+  - [p1, p2]
+  - [p2, p3]
+  - [p3, p4]
+  - [p4, p5]
+  - [p5, p6]
+  - [p6, p7]
+  - [rb, p5, {style: dashed, tone: red}]

@@ -1,0 +1,25 @@
+# Chapter 01 — Group Policy resolves overlapping settings by position in the
+# local / site / domain / OU order; Intune assigns policy flatly to groups,
+# refines with assignment filters, and reports overlapping configuration
+# settings as conflicts.
+rankdir: TB
+graph: {nodesep: 0.5, ranksep: 0.3}
+clusters:
+  - {id: gp, label: "Group Policy: precedence by position", tone: slate, filled: false, nodes: [local, site, domain, ou]}
+  - {id: intune, label: "Intune: flat assignment", tone: blue, filled: false, nodes: [pol, filt, dev, conf]}
+nodes:
+  local: {tone: slate, width: 230, title: "Local policy", body: ["=Applied first"], size: 12}
+  site: {tone: slate, width: 230, title: "Site-linked GPOs", size: 12}
+  domain: {tone: slate, width: 230, title: "Domain-linked GPOs", size: 12}
+  ou: {tone: slate, width: 230, title: "OU-linked GPOs, parent to child", body: ["=Closest container wins; enforced links override"], size: 12}
+  pol: {tone: blue, width: 230, title: "Policies", body: ["=Assigned to include and exclude groups"], size: 12}
+  filt: {tone: violet, width: 230, title: "Assignment filters", body: ["=Device properties, evaluated at check-in"], size: 12}
+  dev: {tone: blue, width: 230, title: "Device", body: ["=No hierarchy, no inheritance"], size: 12}
+  conf: {tone: red, width: 230, title: "Overlap", body: ["=Two configuration policies set one setting differently: conflict reported, setting may not apply"], size: 12}
+edges:
+  - [local, site, {label: "then"}]
+  - [site, domain, {label: "then"}]
+  - [domain, ou, {label: "then"}]
+  - [pol, filt, {label: "refined by", tone: violet}]
+  - [filt, dev, {tone: blue}]
+  - [dev, conf, {style: dashed, tone: red}]

@@ -32,7 +32,7 @@ where the pages live rather than a claim on every sub-section inside it. The
 dividing question is whether a page's deliverable exists because an estate is
 *moving* (OrgMod) or because a change has to be *proven* (Compliance) — a
 modernization runbook such as the
-[Intune + Azure Arc governed path](intune-arc-modernization/governed-path.html)
+[Intune + Azure Arc governed path](../books/b05-devices/05-the-governed-manual-and-retrofit-paths.html)
 is still OrgMod.
 
 One sub-section is Compliance's and ships in the
@@ -64,7 +64,7 @@ from AD's hidden governance surface to the Hybrid-Cloud access plane.
 | [B. Transformation Engine](transformation-engine/index.html) | PowerShell + Python + API scripts that analyse, plan, and deliver | 7 |
 | C. Identity (MOD_\*) | Dynamic groups, AUs, delegation, migration runbook | 11 |
 | [D. Directory Migration (DM_\*)](../books/b02-identity/04-the-hidden-migration-surface.html) | IPAM, DNS, DHCP, PKI, RADIUS, LDAP, sync, devices, NTP, DFS, SPN, Trusts | 12 |
-| [E. Target Surface](target-surface/index.html) | Entra ID, Intune, Azure Arc, M365, AUs, CA, PIM | 7 |
+| [E. Target Surface](../books/b05-devices/08-gpo-to-intune-policy-migration.html) | Entra ID, Intune, Azure Arc, M365, AUs, CA, PIM | 7 |
 | [F. Access Plane](../books/b04-access/index.html) | MFA, Zero Trust, SASE, CBA, PAM, break-glass | 6 |
 | [G. Network Transformation](network-transformation/index.html) | SD-WAN, IPAM, DNS, DHCP, firewall, 802.1X | 6 |
 | [H. Program Management](program-management/index.html) | Master Project Plan, roadmap, ADRs, ServiceNow, SAM, training | 6 |

@@ -1,0 +1,26 @@
+# Chapter 07 — the disposition of one GPO setting: four questions, asked in
+# order, send it to retirement, a native Intune surface, a cloud-native
+# replacement pattern, a remediation script, or a dated exception.
+rankdir: TB
+graph: {nodesep: 0.3, ranksep: 0.35}
+nodes:
+  s: {kind: pill, tone: slate, text: "One GPO setting from the inventory"}
+  q1: {tone: amber, width: 240, tag: "Question 1", title: "Still required?", body: ["=In the target operating model"], size: 12}
+  q2: {tone: amber, width: 240, tag: "Question 2", title: "Native equivalent?", body: ["=Settings catalog or Endpoint security"], size: 12}
+  q3: {tone: amber, width: 240, tag: "Question 3", title: "Cloud-native pattern?", body: ["=Replaces the need, not the setting"], size: 12}
+  q4: {tone: amber, width: 240, tag: "Question 4", title: "Script can enforce and prove it?", size: 12}
+  retire: {tone: green, width: 240, tag: "Retire", title: "Do not translate", body: ["=Obsolete, redundant or high-risk"], size: 12}
+  native: {tone: blue, width: 240, tag: "Migrate", title: "Intune policy", body: ["Settings catalog, incl. ADMX", "Endpoint security policy"], size: 12}
+  replace: {tone: blue, width: 240, tag: "Replace", title: "Cloud-native pattern", body: ["Known Folder Move, Universal Print", "Windows LAPS, update rings"], size: 12}
+  remed: {tone: amber, width: 240, tag: "Interim", title: "Remediation script", body: ["=Detect and fix; licensed per user"], size: 12}
+  exc: {tone: red, width: 240, tag: "Exception", title: "Dated exception", body: ["=Owner, reason, review date; the GPO stays linked for that population only"], size: 12}
+edges:
+  - [s, q1]
+  - [q1, retire, {label: "no", tone: green}]
+  - [q1, q2, {label: "yes"}]
+  - [q2, native, {label: "yes", tone: blue}]
+  - [q2, q3, {label: "no"}]
+  - [q3, replace, {label: "yes", tone: blue}]
+  - [q3, q4, {label: "no"}]
+  - [q4, remed, {label: "yes", tone: amber}]
+  - [q4, exc, {label: "no", tone: red}]

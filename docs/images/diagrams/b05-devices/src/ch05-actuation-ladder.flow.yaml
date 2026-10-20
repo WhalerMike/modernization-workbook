@@ -1,0 +1,18 @@
+# Chapter 05 — the actuation ladder the governed path uses. Every operation
+# declares a rung. L0 to L2 never change a device. L3 changes one only through
+# the provider's management API after a recorded human approval. L4 closes the
+# loop with no human and is above the program's federal write ceiling, so it is
+# refused. This is the program's design, not a Microsoft or federal standard.
+rankdir: TB
+graph: {nodesep: 0.2, ranksep: 0.22}
+nodes:
+  l0: {tone: slate, width: 120, tag: "L0", title: "Record", body: ["=Desired state written down"], size: 12}
+  l1: {tone: violet, width: 120, tag: "L1", title: "Observe", body: ["=Read-only audits and drift"], size: 12}
+  l2: {tone: violet, width: 120, tag: "L2", title: "Advise", body: ["=Change-set previewed, not applied"], size: 12}
+  l3: {tone: green, width: 130, tag: "L3 ceiling", title: "Gated", body: ["=Human approves; applied through the provider API"], size: 12}
+  l4: {tone: red, width: 120, tag: "L4", title: "Autonomous", body: ["=No human in the loop: refused"], size: 12}
+edges:
+  - [l0, l1]
+  - [l1, l2]
+  - [l2, l3, {tone: green, label: "approval reference"}]
+  - [l3, l4, {tone: red, style: dashed, label: "blocked"}]

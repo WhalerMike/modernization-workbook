@@ -1,0 +1,19 @@
+# Chapter 09 — what Arc attaches: the server gets an Azure resource and a
+# managed identity; governance, patching, protection and sign-in attach to the
+# resource. Domain membership is unchanged until a separate decision.
+rankdir: TB
+graph: {nodesep: 0.3, ranksep: 0.45}
+nodes:
+  srv: {tone: slate, width: 170, tag: "On-premises or other cloud", title: "Server", body: ["Connected Machine agent", "Still domain joined until a separate decision"], size: 12}
+  res: {tone: blue, width: 190, tag: "Azure Resource Manager", title: "Arc machine resource", body: ["`Microsoft.HybridCompute/machines`", "Resource ID, tags, Azure RBAC, extensions"], size: 12}
+  mi: {tone: blue, width: 190, tag: "Microsoft Entra ID", title: "System-assigned managed identity", body: ["=Machine identity for Azure access"], size: 12}
+  gov: {tone: violet, width: 200, tag: "Govern", title: "Azure Policy and machine configuration", body: ["=Audit the compute security baseline"], size: 12}
+  patch: {tone: green, width: 200, tag: "Patch", title: "Update Manager and ESUs", body: ["=Assess daily, patch in windows; ESU license"], size: 12}
+  prot: {tone: violet, width: 200, tag: "Protect and sign in", title: "Defender for Servers; Entra ID sign-in", body: ["=Defender for Endpoint onboarded; sign-in extension on Server 2025"], size: 12}
+order: [[res, mi]]
+edges:
+  - [srv, res, {label: "outbound TCP 443"}]
+  - [res, mi, {none: true, style: dashed}]
+  - [res, gov]
+  - [res, patch, {tone: green}]
+  - [res, prot]

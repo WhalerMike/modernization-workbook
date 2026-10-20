@@ -1,0 +1,31 @@
+# Chapter 06 — who decides and who does for the endpoint. The top row holds
+# decision rights: scope and sequence, risk acceptance, control requirements.
+# Endpoint engineering and server infrastructure build and run the target in
+# the middle row, consulted by application owners. Security operations, the
+# help desk and end users operate and support it. This is the program's
+# recommended model, not an external standard.
+rankdir: TB
+graph: {nodesep: 0.25, ranksep: 0.45}
+nodes:
+  spon: {tone: amber, width: 180, tag: "Decides", title: "Sponsor and CIO", body: ["=Scope, sequence, domain-unjoin timing"], size: 12}
+  ao: {tone: amber, width: 180, tag: "Decides", title: "Authorizing official", body: ["=Accepts residual risk and standing exceptions"], size: 12}
+  ciso: {tone: violet, width: 180, tag: "Decides", title: "CISO and ISSO", body: ["=Baselines, compliance rules, evidence"], size: 12}
+  ep: {tone: blue, width: 180, tag: "Designs and does", title: "Endpoint engineering", body: ["=Intune policy, enrollment, update rings"], size: 12}
+  srv: {tone: blue, width: 180, tag: "Designs and does", title: "Server infrastructure", body: ["=Arc onboarding, machine configuration, patching"], size: 12}
+  app: {tone: slate, width: 180, tag: "Decides for its app", title: "App owners and packaging", body: ["=Packages, NTLM and SPN dependencies, test sign-off"], size: 12}
+  soc: {tone: violet, width: 180, tag: "Operates", title: "Security operations", body: ["=Defender alerts, drift and compliance signals"], size: 12}
+  hd: {tone: green, width: 180, tag: "Supports", title: "Help desk", body: ["=Scoped device actions, recovery keys, LAPS"], size: 12}
+  usr: {tone: green, width: 180, tag: "Participates", title: "End users", body: ["=Enroll, pilot, report problems"], size: 12}
+edges:
+  - [spon, ep, {label: "scope", tone: amber}]
+  - [ao, srv, {label: "risk decision", tone: amber}]
+  - [ciso, ep, {label: "requirements", tone: violet}]
+  - [ciso, srv, {label: "requirements", tone: violet}]
+  - [app, ep, {label: "consulted", both: true, style: dashed}]
+  - [ep, soc, {label: "signals"}]
+  - [ep, hd, {label: "runbooks"}]
+  - [hd, usr, {tone: green}]
+order:
+  - [spon, ao, ciso]
+  - [ep, srv, app]
+  - [soc, hd, usr]

@@ -1,0 +1,14 @@
+# Chapter 04 — how classic Windows Autopilot carries the procurement decision
+# to the device's configuration without anyone touching the device: group tag
+# on the registration, OrderID on the Entra ID device, dynamic group, policy.
+rankdir: TB
+graph: {nodesep: 0.3, ranksep: 0.35}
+nodes:
+  po: {tone: violet, width: 150, tag: "Procurement", title: "Purchase order", body: ["=Organizational node code, serial number"], size: 12}
+  reg: {tone: blue, width: 150, tag: "OEM or reseller", title: "Autopilot registration", body: ["=Group tag holds the node code"], size: 12}
+  dev: {tone: blue, width: 150, tag: "Entra ID", title: "Device object", body: ["`[OrderID]:` node code in physical IDs"], size: 12}
+  grp: {tone: green, width: 150, tag: "Entra ID", title: "Dynamic device group", body: ["=Profile, compliance and configuration assigned here"], size: 12}
+edges:
+  - [po, reg, {label: "phase 2"}]
+  - [reg, dev, {label: "registration creates object"}]
+  - [dev, grp, {label: "membership rule", tone: green}]

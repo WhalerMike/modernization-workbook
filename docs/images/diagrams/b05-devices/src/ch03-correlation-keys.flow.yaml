@@ -1,0 +1,17 @@
+# Chapter 03 — the correlation keys: the Entra ID device ID ties the Microsoft
+# records together; the serial number ties them to procurement; Arc servers
+# join on their Azure resource ID.
+rankdir: TB
+nodes:
+  t:
+    kind: table
+    tone: slate
+    columns: ["Record", "Its own key", "Link to Entra ID", "Hardware link"]
+    widths: [190, 170, 200, 170]
+    rows:
+      - [{text: "Procurement and CMDB", tone: violet}, "Asset tag or PO line", "None", "Serial number"]
+      - [{text: "Windows Autopilot registration", tone: blue}, "Registration ID", {text: "None reliable: property being deprecated", tone: amber}, "Serial number, group tag, PO ID"]
+      - [{text: "Microsoft Entra ID device object", tone: blue}, "Object ID and `deviceId`", {text: "Is the anchor", tone: green}, "None on the object"]
+      - [{text: "Intune managed device", tone: blue}, "Intune device ID", "`azureADDeviceId`", "`serialNumber`"]
+      - [{text: "Defender for Endpoint machine", tone: violet}, "Machine ID", {text: "`aadDeviceId`, only when Entra joined", tone: amber}, "None in the machine API"]
+      - [{text: "Azure Arc machine", tone: blue}, "Azure resource ID", "Managed identity principal ID", "Serial in detected properties"]

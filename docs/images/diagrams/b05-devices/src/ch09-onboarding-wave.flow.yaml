@@ -1,0 +1,16 @@
+# Chapter 09 — one onboarding wave, end to end: the credential exists only for
+# the wave, the baseline is attached on the same change, and the wave closes
+# by removing what onboarding needed.
+rankdir: TB
+graph: {nodesep: 0.4, ranksep: 0.28}
+nodes:
+  w1: {tone: amber, width: 320, tag: "Step 1 · Gated", title: "Prepare", body: ["=Resource group, tags, network check, certificate-based onboarding service principal"], size: 12}
+  w2: {tone: blue, width: 320, tag: "Step 2 · Gated", title: "Connect", body: ["`azcmagent connect` with tags, through the existing automation tool"], size: 12}
+  w3: {tone: blue, width: 320, tag: "Step 3 · Gated", title: "Attest and baseline", body: ["=License attestation, machine configuration, Update Manager, Defender for Servers"], size: 12}
+  w4: {tone: violet, width: 320, tag: "Step 4 · Observe", title: "Verify", body: ["=Connected, baseline evaluated, Defender onboarded, ESU coverage where needed"], size: 12}
+  w5: {tone: green, width: 320, tag: "Step 5 · Gated", title: "Close the wave", body: ["=Delete certificate files, rotate or remove the credential, disable the onboarding GPO"], size: 12}
+edges:
+  - [w1, w2]
+  - [w2, w3]
+  - [w3, w4]
+  - [w4, w5, {tone: green}]

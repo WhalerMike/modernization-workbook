@@ -46,7 +46,7 @@ The downstream planning documents in this book and its companions read those art
 | Users and groups | Privileged membership, AdminSDHolder-protected accounts, service accounts, empty and circular groups | `UserInventory.json`, `GroupInventory.json` |
 | Trusts | Direction, type, transitivity, SID filtering, selective authentication, verification status | `TrustMap.json` |
 
-Out of scope here: Microsoft Entra Connect configuration ([Chapter 09](09-building-the-entra-target.md)), the mapping of GPO settings to Intune policy (the workbook's [GPO sunset program](../../operational-guides/gpo-sunset-program.md)), and Azure services. The assessment runs against on-premises Active Directory and writes to an on-premises repository.
+Out of scope here: Microsoft Entra Connect configuration ([Chapter 09](09-building-the-entra-target.md)), the mapping of GPO settings to Intune policy (the workbook's [GPO sunset program](../b05-devices/07-the-gpo-sunset-program.md)), and Azure services. The assessment runs against on-premises Active Directory and writes to an on-premises repository.
 
 ![The topology discovery model: what the forest, each domain and the sites configuration contribute to the topology record.](../../images/diagrams/b02-identity/svg/ch08-topology-discovery.svg){#fig-ch08-topology-discovery fig-alt="Left to right. A slate card labeled Get-ADForest, Forest, lists forest functional level, schema master, domain naming master, UPN and SPN suffixes, and global catalogs. An arrow labeled one or more leads to a slate card, Get-ADDomain, Each domain, listing domain functional level, PDC emulator, RID master and infrastructure master. A second arrow from the forest leads to a slate card, Get-ADReplication cmdlets, Sites and services, listing sites, site links with cost and interval, and the subnet-to-site map. From each domain, arrows lead to a slate card, Get-ADDomainController, Domain controllers, listing site and IP address, OS version, global catalog and read-only flags, and OperationMasterRoles, and to an amber card, Get-ADTrust, Trusts, listing direction and type, transitivity, SID filtering and selective authentication. Dashed arrows from domain controllers, trusts and sites converge on a violet card, Output, ForestTopology.json, one time-stamped record of the whole forest."}
 
@@ -209,7 +209,7 @@ Decompose each XML report by configuration area: security settings, administrati
 
 Intune's Group Policy analytics imports GPOs as XML reports, shows which settings have an MDM equivalent, and can build a Settings Catalog policy from the supported settings. Each imported file must be under 4 MB with proper Unicode encoding.[^c08-gpa] The `<GUID>.xml` reports from this collector are the input; check their sizes in the manifest before importing.
 
-The full functions (`Get-FMPGPOInventory`, `Export-FMPGPOSettings`, `Find-GPOConflicts`) are in Appendix B. The handoff to Intune policy design belongs to the workbook's [GPO sunset program](../../operational-guides/gpo-sunset-program.md).
+The full functions (`Get-FMPGPOInventory`, `Export-FMPGPOSettings`, `Find-GPOConflicts`) are in Appendix B. The handoff to Intune policy design belongs to the workbook's [GPO sunset program](../b05-devices/07-the-gpo-sunset-program.md).
 
 ## DNS infrastructure
 
