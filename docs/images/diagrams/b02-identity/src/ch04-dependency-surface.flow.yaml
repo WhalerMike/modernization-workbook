@@ -1,0 +1,16 @@
+# Chapter 04 — the hidden migration surface: Active Directory anchors eleven
+# object types, not just users and groups. The network services fail silently
+# when AD is removed; the trust fabric breaks authentication between systems.
+rankdir: TB
+graph: {nodesep: 0.3, ranksep: 0.45}
+nodes:
+  ad: {tone: slate, width: 260, tag: "Implicit governance anchor", title: "Active Directory domain", body: ["=Forest, domains, domain controllers"], size: 12}
+  idp: {tone: slate, width: 215, tag: "Types 1 to 5", title: "Identity and policy", body: ["Users", "Computers", "Service accounts", "Security groups", "Group Policy Objects"], size: 12}
+  net: {tone: red, width: 215, tag: "Types 6 to 9", title: "Network services", body: ["DNS and DHCP", "PKI and certificate services", "RADIUS and NPS", "LDAP-bound applications"], foot: "Fail silently when AD goes away", size: 12}
+  trust: {tone: amber, width: 215, tag: "Types 10 and 11", title: "Trust fabric", body: ["SPNs and service identities", "Trust relationships"], foot: "Break authentication between systems", size: 12}
+  users: {kind: pill, tone: blue, text: "What most migration plans count: users and groups"}
+edges:
+  - [ad, idp]
+  - [ad, net, {tone: red}]
+  - [ad, trust, {tone: amber}]
+  - [idp, users, {style: dashed, tone: blue}]

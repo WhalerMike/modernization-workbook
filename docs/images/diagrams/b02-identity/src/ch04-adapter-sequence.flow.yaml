@@ -1,0 +1,22 @@
+# Chapter 04 — adapter sequencing: the three CRITICAL adapters gate any AD
+# decommission, the HIGH and MEDIUM adapters follow, and the sync engine is
+# retired last because it is the tether that keeps AD in production.
+rankdir: LR
+graph: {nodesep: 0.25, ranksep: 0.4}
+nodes:
+  pki: {tone: red, width: 190, tag: "CRITICAL · DM_020", title: "PKI / certificate services", body: ["=Replacement CA live before the first expiry wave"], size: 12}
+  rad: {tone: red, width: 190, tag: "CRITICAL · DM_030", title: "RADIUS / 802.1X / VPN", body: ["=Parallel run, then cut over clients"], size: 12}
+  ldap: {tone: red, width: 190, tag: "CRITICAL · DM_040", title: "LDAP proxy", body: ["=30-day discovery, cut over in waves"], size: 12}
+  ops: {tone: amber, width: 190, tag: "HIGH · DM_010 · DM_060", title: "IPAM, DNS, DHCP and devices", body: ["=Zones off AD; workloads to Intune"], size: 12}
+  cont: {tone: amber, width: 190, tag: "MEDIUM · DM_070 · DM_080", title: "Time and file services", body: ["=NTP source and namespaces off the domain"], size: 12}
+  sync: {tone: green, width: 190, tag: "HIGH · DM_050 · last", title: "Retire the sync engine", body: ["=Every other adapter validated first"], foot: "Then AD can be decommissioned", size: 12}
+edges:
+  - [pki, rad, {label: "machine certificates", tone: red}]
+  - [pki, ops]
+  - [rad, ops]
+  - [ldap, cont]
+  - [ops, sync, {tone: green}]
+  - [cont, sync, {tone: green}]
+ranks:
+  - [pki, rad, ldap]
+  - [ops, cont]

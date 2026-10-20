@@ -144,7 +144,7 @@ A dynamic membership rule moves the access decision to whoever can write the att
 
 ## How other pages use this schema
 
-The [SQL Server Identity Transformation series, Book 07](../case-studies/sql-server-narrative/Book_07_CPT_02.md) applies the same attribute-to-access discipline to SQL Server logins and database roles. The [AD → Entra ID Identity Modernization Guide](../operational-guides/identity/identity-modernization.md) and the Conditional Access library link here rather than carrying their own attribute map.
+The [SQL Server Identity Transformation series, Book 07](../case-studies/sql-server-narrative/Book_07_CPT_02.md) applies the same attribute-to-access discipline to SQL Server logins and database roles. The [AD → Entra ID Identity Modernization Guide](../books/b02-identity/09-building-the-entra-target.md) and the Conditional Access library link here rather than carrying their own attribute map.
 
 
 ::: {.callout-tip}

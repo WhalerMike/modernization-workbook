@@ -1,0 +1,21 @@
+# Chapter 06 — Microsoft provides the instruments; the program provides the
+# orchestra. Native tools at the bottom produce exported reports; the program
+# builds only the discovery they don't do; one governance pipeline correlates
+# both into the outcomes governance stakeholders consume.
+rankdir: BT
+graph: {nodesep: 0.25, ranksep: 0.45}
+nodes:
+  idt: {tone: blue, width: 160, tag: "Consume", title: "Identity and sync", body: ["Entra Connect and Cloud Sync", "Entra ID Governance", "Entra ID Protection", "Microsoft Graph"], size: 12}
+  sec: {tone: blue, width: 160, tag: "Consume", title: "Security posture", body: ["Defender for Identity", "Secure Score", "Zero Trust Assessment", "CISA ScubaGear"], size: 12}
+  ops: {tone: blue, width: 160, tag: "Consume", title: "Endpoints, servers, logs", body: ["Intune and Group Policy analytics", "Azure Arc", "Purview Audit, Sentinel"], size: 12}
+  build: {tone: amber, width: 180, tag: "Build", title: "Program discovery", body: ["OU tree and delegation", "Full GPO inventory, DNS", "PKI health, trusts"], size: 12}
+  pipe: {tone: violet, width: 260, tag: "Orchestrate", title: "Governance pipeline", body: ["File-based import adapters", "Cross-domain correlation", "Drift against desired state", "Remediation tracking"], size: 12}
+  out: {tone: green, width: 300, tag: "Outcomes", title: "What governance stakeholders consume", body: ["=Authorization evidence, drift reports, remediation status, owner accountability"], size: 12}
+edges:
+  - [idt, pipe, {label: "exported reports"}]
+  - [sec, pipe]
+  - [ops, pipe]
+  - [build, pipe, {tone: amber}]
+  - [pipe, out, {tone: green}]
+order:
+  - [idt, sec, ops, build]

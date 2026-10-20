@@ -66,7 +66,7 @@ effect: structural drift becomes visible.
 ### Phase 2 — identity modernization
 
 Apply the identity-modernization pattern (see
-[Identity Case Study](identity-modernization-case-study.md) and
+[Identity Case Study](../books/b02-identity/01-why-identity-matters.md) and
 [Modernization Governance Whitepaper](../whitepapers/modernization-governance-whitepaper.md)):
 canon-first attributes, modernization adapters, drift-driven
 cleanup, cutover, post-cutover.
@@ -161,7 +161,7 @@ is documented when reviewed material is available.
 ## Related documents
 
 - Executive Governance Series
-- [Identity Case Study](identity-modernization-case-study.md)
+- [Identity Case Study](../books/b02-identity/01-why-identity-matters.md)
 - [Cloud Boundary Case Study](cloud-boundary-case-study.md)
 - Program Vision (canon)
 - Modernization Timeline (canon)

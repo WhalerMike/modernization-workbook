@@ -25,10 +25,10 @@ This repository extracts practical modernization concepts — single source of t
 - [Architecture Series](docs/architecture/architecture-series/README.md) — six-plane, three-layer rules, drift engine, evidence chain
 - [Single Source of Truth](docs/architecture/single-source-of-truth.md)
 - [Change Control and Provenance](docs/architecture/change-control-and-provenance.md)
-- [Directory Migration Bridge](docs/reference-architecture/directory-migration.md)
+- [Directory Migration Bridge](docs/books/b02-identity/04-the-hidden-migration-surface.md)
 - [GPO-to-Cloud Governance Gaps](docs/architecture/gpo-to-cloud-governance-gaps.md)
 - [From Attributes to Access (dynamic groups)](docs/hr-driven-iam/08-from-attributes-to-access.md)
-- [Delegation Matrix](docs/architecture/delegation-matrix.md)
+- [Delegation Matrix](docs/books/b02-identity/05-delegation-without-ous.md)
 
 ### Operational Guides
 - [Operational Guides index](docs/operational-guides/README.md)
@@ -37,7 +37,7 @@ This repository extracts practical modernization concepts — single source of t
 - [Intune + Azure Arc paths](docs/operational-guides/intune-arc-modernization/)
 - [DNS Modernization](docs/operational-guides/dns-modernization.md)
 - [PKI Modernization](docs/operational-guides/pki-modernization.md)
-- [Read-Only AD Assessment](docs/operational-guides/read-only-ad-assessment.md)
+- [Read-Only AD Assessment](docs/books/b02-identity/07-read-only-discovery.md)
 
 ### Case Studies
 - [SQL Server Identity Transformation (overview)](docs/case-studies/sql-server-identity.md)

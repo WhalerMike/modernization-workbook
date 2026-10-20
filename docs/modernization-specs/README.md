@@ -8,7 +8,7 @@ Each specification captures the substrate contract, control mapping, and integra
 
 | Domain | Focus |
 |--------|-------|
-| [Identity](identity.md) | Identity modernization, dynamic groups, delegation |
+| [Identity](../books/b02-identity/appendix-a-federal-requirements-crosswalk.md) | Identity modernization, dynamic groups, delegation |
 | [Cloud](cloud.md) | Cloud substrate and boundary |
 | [Zero Trust](zero-trust.md) | Zero-trust implementation pattern |
 | [SASE](sase.md) | Secure access service edge |

@@ -56,7 +56,7 @@ Version 1.0 \| April 20, 2026
 
 ## Canon Phase Mapping (the program decision)
 
-This guide's 11 operational phases refine the canonical six-phase Directory Migration model published in [`docs/customer-documents/reference-architecture/directory-migration.qmd`](../../reference-architecture/directory-migration.md). The mapping below shows which canon phase each DNS phase executes. Per [the program decision], the customer-side detail (operational sequencing, gates, runbook material) is preserved unchanged; the mapping is purely a navigational anchor so readers can trace customer phases back to canon scaffold.
+This guide's 11 operational phases refine the canonical six-phase Directory Migration model published in [`docs/customer-documents/reference-architecture/directory-migration.qmd`](../../books/b02-identity/04-the-hidden-migration-surface.md). The mapping below shows which canon phase each DNS phase executes. Per [the program decision], the customer-side detail (operational sequencing, gates, runbook material) is preserved unchanged; the mapping is purely a navigational anchor so readers can trace customer phases back to canon scaffold.
 
 | Customer phase (this guide) | Canon phase (the program decision) |
 |---|---|

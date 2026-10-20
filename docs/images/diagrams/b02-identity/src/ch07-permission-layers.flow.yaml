@@ -1,0 +1,25 @@
+# Chapter 07 — what a standard authenticated account can read in Active Directory.
+# Green: readable through default ACLs. Amber: readable unless an administrator
+# hardened the ACL, or needs a right that isn't granted by default; test it.
+# Red: not readable without delegation, by design.
+rankdir: TB
+graph: {nodesep: 0.25, ranksep: 0.35}
+nodes:
+  au: {tone: slate, width: 300, tag: "Assessment account", title: "Authenticated Users token", body: ["=A standard domain account with no added rights"], size: 12}
+  g_dom: {tone: green, width: 235, tag: "Readable by default", title: "Domain partition", body: ["Users, computers, groups", "OUs and gPLink", "GPO containers", "AdminSDHolder ACL"], size: 12}
+  g_cfg: {tone: green, width: 235, tag: "Readable by default", title: "Configuration and schema", body: ["Sites, subnets, site links", "Certificate templates and CAs", "Schema and searchFlags"], size: 12}
+  g_dns: {tone: green, width: 235, tag: "Readable by default", title: "AD-integrated DNS", body: ["Zone objects", "Record objects (dnsNode)"], size: 12}
+  a_acl: {tone: amber, width: 235, tag: "Test, don't assume", title: "Hardened or filtered objects", body: ["Objects with a modified ACL", "GPOs with restricted security filtering", "Individual SYSVOL folders"], size: 12}
+  a_rep: {tone: amber, width: 235, tag: "Needs a right", title: "Replication status", body: ["=Monitor Active Directory Replication"], size: 12}
+  r_conf: {tone: red, width: 235, tag: "Confidential (searchFlags 0x80)", title: "Needs CONTROL_ACCESS", body: ["LAPS passwords", "BitLocker recovery passwords", "TPM owner information"], size: 12}
+  r_sec: {tone: red, width: 235, tag: "Secret attributes", title: "Never returned by LDAP", body: ["unicodePwd, supplementalCredentials", "=Only through replication with Replicating Directory Changes All"], size: 12}
+  r_cont: {tone: red, width: 235, tag: "Restricted containers", title: "Administrators by default", body: ["Deleted Objects", "Fine-grained password policies"], size: 12}
+edges:
+  - [au, g_dom, {tone: green, label: "reads"}]
+  - [au, g_cfg, {tone: green, label: "reads"}]
+  - [au, g_dns, {tone: green, label: "reads"}]
+  - [g_dom, a_acl, {tone: amber, style: dashed, label: "unless hardened"}]
+  - [g_cfg, a_rep, {tone: amber, style: dashed, label: "status needs a right"}]
+  - [a_acl, r_conf, {tone: red, style: dashed, label: "denied"}]
+  - [a_acl, r_sec, {tone: red, style: dashed, label: "denied"}]
+  - [a_rep, r_cont, {tone: red, style: dashed, label: "denied"}]

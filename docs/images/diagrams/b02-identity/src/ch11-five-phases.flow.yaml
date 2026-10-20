@@ -1,0 +1,17 @@
+# Chapter 11 — the five phases of the reference deployment; each phase ends in a
+# signed readiness bundle that is the next phase's entry condition.
+rankdir: TB
+graph: {nodesep: 0.3, ranksep: 0.3}
+nodes:
+  p1: {tone: slate, width: 300, tag: "Phase 1 · read-only", title: "Discover", body: ["AD survey of both forests", "Service-account risk scan", "SPN inventory tagged `pre_migration`"], size: 12}
+  p2: {tone: amber, width: 300, tag: "Phase 2", title: "Normalize", body: ["Organizational registry", "Every principal attributed or an open finding"], size: 12}
+  p3: {tone: blue, width: 300, tag: "Phase 3", title: "Map", body: ["Adapter contracts: sync, PKI, RADIUS, LDAP, SQL Server", "Entra ID target design"], size: 12}
+  p4: {tone: blue, width: 300, tag: "Phase 4", title: "Migrate", body: ["Provenance-chained change records", "Drift findings; P1 halts the run"], size: 12}
+  p5: {tone: green, width: 300, tag: "Phase 5", title: "Validate", body: ["SPN inventory tagged `post_migration`", "Drift comparison with zero P1"], size: 12}
+  ev: {tone: violet, width: 220, tag: "Accumulates", title: "Evidence bundle", body: ["=Every phase's readiness bundle"], size: 12}
+edges:
+  - [p1, p2, {label: "readiness bundle"}]
+  - [p2, p3, {label: "readiness bundle"}]
+  - [p3, p4, {label: "readiness bundle"}]
+  - [p4, p5, {label: "readiness bundle"}]
+  - [p5, ev, {tone: violet}]

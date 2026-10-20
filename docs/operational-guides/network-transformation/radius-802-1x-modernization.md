@@ -38,7 +38,7 @@ experience, it is a total access failure.
 
 DM_030 is rated **CRITICAL** in the directory-migration adapter priority
 matrix for that reason; see
-[Directory Migration Adapters — RADIUS / Network Policy Server](../../reference-architecture/adapters.md#radius)
+[Directory Migration Adapters — RADIUS / Network Policy Server](../../books/b02-identity/04-the-hidden-migration-surface.md)
 for the full risk profile and migration sequence.
 
 ## Registered implementations
@@ -82,6 +82,6 @@ A complete G.6 guide will mirror the structure of
 
 - [DM_030 RADIUS / NPS Adapter Interface]
   — canonical adapter spec
-- [Directory Migration Adapters — RADIUS](../../reference-architecture/adapters.md#radius)
+- [Directory Migration Adapters — RADIUS](../../books/b02-identity/04-the-hidden-migration-surface.md)
   — narrative view with priority matrix
 - [G. Network Transformation — index](index.md) — sibling leaves

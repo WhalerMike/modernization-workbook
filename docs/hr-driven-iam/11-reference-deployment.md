@@ -80,7 +80,7 @@ The schema, the code lists, the workflows, the rules and the evidence belong to 
 
 ## Companion
 
-The [AD → Entra ID Identity Modernization Guide](../operational-guides/identity/identity-modernization.md) covers directory migration, the companion dimension to inbound provisioning. An agency usually runs both programs at once.
+The [AD → Entra ID Identity Modernization Guide](../books/b02-identity/09-building-the-entra-target.md) covers directory migration, the companion dimension to inbound provisioning. An agency usually runs both programs at once.
 
 ::: {.callout-tip}
 ## Continue the series

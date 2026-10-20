@@ -36,12 +36,12 @@ Pick the entry point that matches your role:
 
 | Entry point | For | Start here |
 |---|---|---|
-| **The infrastructure bridge** | Architects planning what replaces AD's eleven implicit roles | [Directory Migration — the AD infrastructure bridge](../reference-architecture/directory-migration.md), and the eight adapter interfaces behind it |
+| **The infrastructure bridge** | Architects planning what replaces AD's eleven implicit roles | [Directory Migration — the AD infrastructure bridge](../books/b02-identity/04-the-hidden-migration-surface.md), and the eight adapter interfaces behind it |
 | **The transformation series** | Program teams running the end-to-end journey | Microsoft Client-Server to Hybrid-Cloud — AD, GPO, DNS, DHCP, Kerberos, and PKI → Entra ID, Intune, Azure Arc, IPAM, SASE, and Zero Trust |
 | **The device and server planes** | Operators modernizing endpoints and servers | Intune + Azure Arc Modernization — runnable manually or via the governed path |
 | **The HR-driven identity pipeline** | Identity teams building the joiner/mover/leaver feed against Federal HR 2.0 (Oracle Core HCM) | HRIT to HR-Driven IAM Execution Plan — the provisioning pipe to today's AD-mastered estate and the cloud-native target, on the program's wave clock |
 | **The full guide shelf** | Everything task-oriented in one place | The Modernization guides — transformation engine, target surface, and program management |
-| **The long-form case** | Readers who need the argument before the runbook | The modernization whitepapers — [the structural migration problem](../whitepapers/ad-to-entraid-migration-problem.md), [the modernization journey](../whitepapers/modernization-journey.md), and the [network and infrastructure track](../whitepapers/reading-guide.md) behind the transport, DNS, and field-office decisions |
+| **The long-form case** | Readers who need the argument before the runbook | The modernization whitepapers — [the structural migration problem](../books/b02-identity/01-why-identity-matters.md), [the modernization journey](../whitepapers/modernization-journey.md), and the [network and infrastructure track](../whitepapers/reading-guide.md) behind the transport, DNS, and field-office decisions |
 
 ## What Modernization modernizes
 
@@ -59,7 +59,7 @@ Pick the entry point that matches your role:
 - **The long-form argument** — the modernization tracks of the
  [whitepaper reading guide](../whitepapers/reading-guide.md):
  Track 2 carries the AD → Entra ID arc from
- [the structural migration problem](../whitepapers/ad-to-entraid-migration-problem.md)
+ [the structural migration problem](../books/b02-identity/01-why-identity-matters.md)
  through
  [flipping 50,000 devices to hybrid join](../whitepapers/hybrid-join-without-governance.md),
  and Track 4 carries the network and infrastructure decisions — transport

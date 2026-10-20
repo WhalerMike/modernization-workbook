@@ -214,6 +214,16 @@ bundles:
     pages: [appendix-b-requirements-mapping.md]
   # HR-Driven Identity series: combined edition plus one bundle per chapter.
   # ---------------------------------------------------------------------
+  # ---------------------------------------------------------------------
+  # Workbook Book 02 — Identity & Directory
+  # ---------------------------------------------------------------------
+  - output: b02-identity-bundle.docx
+    title: "Book 02 — Identity & Directory"
+    subtitle: "Active Directory to Entra ID — Modernization Workbook, combined edition"
+    root: docs/books/b02-identity
+    image_dir: docs/images/diagrams/b02-identity
+    warn_unlisted: ["*.md"]
+    pages: [index.md, "[0-9][0-9]-*.md", "appendix-*.md"]
   - output: hr-driven-iam-bundle.docx
     title: "HR-Driven Identity Modernization"
     subtitle: "An Enterprise Data Architecture Case Study — combined edition"

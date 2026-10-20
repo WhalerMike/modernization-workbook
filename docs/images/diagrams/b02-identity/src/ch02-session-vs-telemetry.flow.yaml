@@ -1,0 +1,17 @@
+# Chapter 02 — the session vs telemetry divide: the session-based estate and the
+# continuously verified target are bridged by a governance substrate (single
+# source of truth, identity as root namespace, deterministic addressing), not by
+# forcing one model to imitate the other. Sessions break at the inspection point.
+rankdir: LR
+graph: {nodesep: 0.35, ranksep: 0.45}
+nodes:
+  sess: {tone: slate, width: 170, tag: "Client/server era", title: "Sessions", body: ["Authenticate once", "A ticket carries trust for hours", "Policy refreshed from a reachable DC", "Windows-auth SQL Server, thick clients"], size: 12}
+  bridge: {tone: violet, width: 170, tag: "The bridge", title: "Governance substrate", body: ["Single source of truth for identity state", "Identity as the root namespace", "Deterministic addressing"], size: 12}
+  tele: {tone: blue, width: 170, tag: "Zero Trust era", title: "Continuous verification", body: ["Every request evaluated", "Short-lived tokens, revoked on events", "Device, location and risk as inputs"], size: 12}
+  pep: {tone: red, width: 170, tag: "Boundary inspection point", title: "Sessions break here", body: ["=Latency, interruption and re-evaluation the session never expected"], size: 12}
+edges:
+  - [sess, bridge, {label: "bridged by", tone: violet}]
+  - [bridge, tele, {label: "enables", tone: blue}]
+  - [sess, pep, {label: "forced through", tone: red, style: dashed}]
+ranks:
+  - [bridge, pep]

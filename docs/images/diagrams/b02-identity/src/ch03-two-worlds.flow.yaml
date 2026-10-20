@@ -1,0 +1,25 @@
+# Chapter 03 — the two worlds at a glance: in Active Directory the domain
+# controller is the trust root, sessions are Kerberos tickets or NTLM exchanges,
+# and Group Policy is the policy plane. In Entra ID the tenant is the trust root,
+# sessions are signed OAuth 2.0 / OpenID Connect tokens, and Conditional Access
+# evaluates every sign-in that reaches the tenant. Directory sync bridges the two
+# while AD remains the source of authority for synced users.
+rankdir: LR
+graph: {nodesep: 0.35, ranksep: 0.4}
+clusters:
+  - {id: entra, label: "Microsoft Entra ID: token-and-API", tone: blue, filled: false, nodes: [e_root, e_session, e_policy]}
+  - {id: ad, label: "Active Directory: directory-and-tickets", tone: slate, filled: false, nodes: [a_root, a_session, a_policy]}
+nodes:
+  a_root: {tone: slate, width: 200, tag: "Trust root", title: "Domain controllers", body: ["KDC issues tickets", "LDAP answers queries", "Stores the NT hash"], size: 12}
+  a_session: {tone: slate, width: 200, tag: "Session unit", title: "Tickets and challenges", body: ["Kerberos TGT and service tickets", "NTLM challenge-response"], size: 12}
+  a_policy: {tone: slate, width: 200, tag: "Policy plane", title: "Group Policy", body: ["Applied to domain-joined computers and users by OU and site"], size: 12}
+  e_root: {tone: blue, width: 200, tag: "Trust root", title: "Entra ID tenant", body: ["Token service", "Microsoft Graph REST API"], size: 12}
+  e_session: {tone: blue, width: 200, tag: "Session unit", title: "Signed tokens", body: ["Access, ID and refresh tokens", "JWT signed with RS256"], size: 12}
+  e_policy: {tone: violet, width: 200, tag: "Policy plane", title: "Conditional Access", body: ["Evaluated after first-factor sign-in to Entra ID"], size: 12}
+edges:
+  - [a_root, a_session, {label: "issues"}]
+  - [a_session, a_policy, {label: "configured by"}]
+  - [a_session, e_policy, {style: dashed, label: "never evaluated by", tone: red}]
+  - [e_root, e_session, {label: "issues"}]
+  - [e_session, e_policy, {label: "evaluated by"}]
+  - [a_root, e_root, {label: "Entra Connect sync", tone: amber, style: dashed}]

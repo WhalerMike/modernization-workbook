@@ -1,0 +1,21 @@
+# Chapter 08 — GPO analysis flow: inventory, reports and links feed three
+# classifications; only live, non-empty settings go on to Intune analysis.
+rankdir: LR
+graph: {nodesep: 0.3, ranksep: 0.45}
+nodes:
+  inv: {tone: slate, width: 160, tag: "Get-GPO -All", title: "Inventory", body: ["=Name, GUID, status, owner, WMI filter"], size: 12}
+  rep: {tone: slate, width: 160, tag: "Get-GPOReport", title: "XML and HTML reports", body: ["=One pair per GPO"], size: 12}
+  lnk: {tone: slate, width: 160, tag: "Get-GPInheritance", title: "Links and inheritance", body: ["=Order, enforced, enabled, blocked"], size: 12}
+  dead: {tone: red, width: 155, title: "Unlinked or empty", body: ["=Retire, do not migrate"], size: 12}
+  conf: {tone: amber, width: 155, title: "Overlapping settings", body: ["=Resolve before migration"], size: 12}
+  live: {tone: green, width: 155, title: "Live settings", body: ["=Decomposed by policy area"], size: 12}
+  gpa: {tone: blue, width: 160, tag: "Intune", title: "Group Policy analytics", body: ["=MDM support per setting"], size: 12}
+edges:
+  - [inv, rep]
+  - [inv, lnk]
+  - [rep, dead]
+  - [lnk, dead]
+  - [rep, conf]
+  - [rep, live]
+  - [live, gpa, {tone: blue}]
+  - [conf, gpa, {style: dashed}]

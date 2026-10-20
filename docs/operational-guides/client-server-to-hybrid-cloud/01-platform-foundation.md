@@ -263,7 +263,7 @@ Pointers to the latest additions on both sides of the project:
   automatic, split-brain-safe failover that extends the program decision for
   customers requiring sub-4-hour RTO.
 - **Modernization canon** — FMP_151–FMP_176
-  for governance, [DM_010..080](../../reference-architecture/directory-migration.md)
+  for governance, [DM_010..080](../../books/b02-identity/04-the-hidden-migration-surface.md)
   for adapters.
 
 ---

@@ -1,0 +1,25 @@
+# Chapter 09 — the sync engine and sign-in method decision. Cloud Sync unless a
+# Connect-only requirement applies; password hash sync on in every case; pass-
+# through authentication only as a transition; AD FS is a decommission target.
+rankdir: TB
+graph: {nodesep: 0.3, ranksep: 0.4}
+nodes:
+  inv: {tone: slate, width: 280, title: "Forest assessment", body: ["=Object counts per domain, group sizes, sync rules, trusts"], size: 12}
+  q1: {tone: amber, width: 280, tag: "Decision", title: "Any Connect-only requirement?", body: ["Over 150,000 objects in a domain", "Groups over 50,000 members", "Advanced sync rules or cross-forest references", "Pass-through or AD FS configured by the sync tool"], size: 12}
+  cloud: {tone: green, width: 230, tag: "Default", title: "Microsoft Entra Cloud Sync", body: ["=Multiple active agents; group provisioning to AD"], size: 12}
+  connect: {tone: blue, width: 230, title: "Microsoft Entra Connect Sync", body: ["=Staging server for standby and upgrade tests"], size: 12}
+  phs: {tone: green, width: 280, title: "Password hash sync on", body: ["=Required for leaked-credential detection and outage survival"], size: 12}
+  q2: {tone: amber, width: 280, tag: "Decision", title: "Must on-premises account state be enforced at sign-in?", size: 12}
+  phsp: {tone: green, width: 230, tag: "Recommended", title: "PHS as the sign-in method", size: 12}
+  pta: {tone: amber, width: 230, tag: "Transitional", title: "Pass-through auth, 3+ agents", size: 12}
+  adfs: {tone: red, width: 280, tag: "Legacy", title: "AD FS federation", body: ["=Move users with staged rollout, then convert domains"], size: 12}
+edges:
+  - [inv, q1]
+  - [q1, cloud, {label: "no", tone: green}]
+  - [q1, connect, {label: "yes"}]
+  - [cloud, phs]
+  - [connect, phs]
+  - [phs, q2]
+  - [q2, phsp, {label: "no", tone: green}]
+  - [q2, pta, {label: "yes", tone: amber}]
+  - [adfs, phsp, {label: "migrate", style: dashed, tone: red}]

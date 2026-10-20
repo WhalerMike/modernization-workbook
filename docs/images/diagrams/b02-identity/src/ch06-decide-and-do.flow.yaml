@@ -1,0 +1,29 @@
+# Chapter 06 — who decides and who does. The top row holds decision rights
+# (scope and funding, risk acceptance, control requirements). The middle row
+# supplies authority and design. The bottom row does and supports the work.
+# This is the program's recommended model, not an external standard.
+rankdir: TB
+graph: {nodesep: 0.25, ranksep: 0.45}
+nodes:
+  spon: {tone: amber, width: 180, tag: "Decides", title: "Executive sponsor and CIO", body: ["=Scope, funding, sequence, system ownership"], size: 12}
+  ao: {tone: amber, width: 180, tag: "Decides", title: "Authorizing official", body: ["=Accepts residual risk; authorizes the tenant"], size: 12}
+  ciso: {tone: violet, width: 180, tag: "Decides", title: "CISO and ISSO", body: ["=Control requirements, privileged access, evidence"], size: 12}
+  hr: {tone: amber, width: 180, tag: "Authority", title: "HR", body: ["=Who is a worker, where they sit, who they report to"], size: 12}
+  ide: {tone: blue, width: 180, tag: "Designs and does", title: "Identity engineering", body: ["=Sync, authentication, Conditional Access, governance"], size: 12}
+  app: {tone: slate, width: 180, tag: "Decides for its app", title: "Application owners", body: ["=Dependencies, service accounts, test and cutover"], size: 12}
+  adm: {tone: slate, width: 180, tag: "Does", title: "AD administrators", body: ["=Hygiene, tier 0 servers, decommission"], size: 12}
+  hd: {tone: green, width: 180, tag: "Supports", title: "Help desk", body: ["=Scoped roles, identity checks, Temporary Access Pass"], size: 12}
+  usr: {tone: green, width: 180, tag: "Participates", title: "End users", body: ["=Register methods, pilot, report problems"], size: 12}
+edges:
+  - [spon, ide, {label: "scope and schedule", tone: amber}]
+  - [ao, ide, {label: "risk decision", tone: amber}]
+  - [ciso, ide, {label: "requirements", tone: violet}]
+  - [hr, ide, {label: "authoritative attributes", tone: amber, style: dashed}]
+  - [app, ide, {label: "consulted", both: true, style: dashed}]
+  - [ide, adm, {label: "sync scope, cleanup"}]
+  - [ide, hd, {label: "runbooks"}]
+  - [hd, usr, {tone: green}]
+order:
+  - [spon, ao, ciso]
+  - [hr, ide, app]
+  - [adm, hd, usr]

@@ -58,11 +58,11 @@ The plan is organized by phases. Each phase has objectives, key activities, deli
 - Initial normalization recommendations (what must be cleaned or rationalized before migration).
 
 **Supporting material**
-- [Read-Only AD Assessment Guide](docs/operational-guides/read-only-ad-assessment.md) — discovery without changing the directory
+- [Read-Only AD Assessment Guide](docs/books/b02-identity/07-read-only-discovery.md) — discovery without changing the directory
 - [Chapter 02 — Analyzing the Client/Server Estate](docs/client-server-to-hybrid-cloud/02-analyzing-the-estate.md)
-- [Identity and Directory Transformation Inventory](docs/architecture/identity-directory-transformation-inventory.md)
+- [Identity and Directory Transformation Inventory](docs/books/b02-identity/04-the-hidden-migration-surface.md)
 - [GPO-to-Cloud Governance Gaps](docs/architecture/gpo-to-cloud-governance-gaps.md)
-- [Old AD vs New Entra ID](docs/learning/old-ad-vs-new-entra-reference.md) — reference for the assessment team
+- [Old AD vs New Entra ID](docs/books/b02-identity/03-ad-and-entra-side-by-side.md) — reference for the assessment team
 
 **Exit criteria**
 - The team can describe, in concrete terms, what the directory currently “knows” about the organization and what would break if that knowledge disappeared.
@@ -88,7 +88,7 @@ The plan is organized by phases. Each phase has objectives, key activities, deli
 **Supporting material**
 - [Single Source of Truth](docs/architecture/single-source-of-truth.md)
 - [From Attributes to Access (dynamic groups)](docs/hr-driven-iam/08-from-attributes-to-access.md)
-- [Delegation Matrix](docs/architecture/delegation-matrix.md)
+- [Delegation Matrix](docs/books/b02-identity/05-delegation-without-ous.md)
 - [Change Control and Provenance](docs/architecture/change-control-and-provenance.md)
 - [Architecture Series](docs/architecture/architecture-series/README.md)
 

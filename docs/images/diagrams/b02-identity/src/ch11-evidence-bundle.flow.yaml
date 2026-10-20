@@ -1,0 +1,19 @@
+# Chapter 11 — the evidence bundle: identity, drift and data-platform artifacts,
+# all keyed to the organizational registry, assembled for the AO and assessor.
+rankdir: LR
+graph: {nodesep: 0.3, ranksep: 0.5}
+nodes:
+  id: {tone: slate, width: 220, tag: "Identity", title: "Phase artifacts", body: ["Signed readiness bundles", "Pre- and post-migration SPN inventories", "Provenance chain"], size: 12}
+  dr: {tone: amber, width: 220, tag: "Drift and boundary", title: "Findings and controls", body: ["Drift findings with remediation evidence", "GCC compensating-controls catalog"], size: 12}
+  br: {tone: blue, width: 220, tag: "Azure SSOT bridge", title: "Data-platform state", body: ["Purview Data Map collections", "Fabric domain assignments", "Purview adaptive scopes"], size: 12}
+  ev: {tone: violet, width: 200, title: "Evidence bundle", body: ["=Produced from operations, keyed to the organizational registry"], size: 12}
+  ao: {tone: green, width: 210, title: "Authorizing official", body: ["=Ongoing authorization under the RMF"], size: 12}
+  sca: {tone: green, width: 210, title: "Security control assessor", body: ["=Assessment against current state"], size: 12}
+  nx: {tone: green, width: 210, title: "Next engagement", body: ["=Starts from the record, not from zero"], size: 12}
+edges:
+  - [id, ev]
+  - [dr, ev]
+  - [br, ev]
+  - [ev, ao, {tone: green}]
+  - [ev, sca, {tone: green}]
+  - [ev, nx, {tone: green, style: dashed}]

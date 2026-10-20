@@ -41,7 +41,7 @@ redirects:
 
   # Modernization Specs: nested copies merged into the flat specs.
   docs/modernization-specs/cloud/cloud.html: docs/modernization-specs/cloud.html
-  docs/modernization-specs/identity/identity.html: docs/modernization-specs/identity.html
+  docs/modernization-specs/identity/identity.html: docs/books/b02-identity/appendix-a-federal-requirements-crosswalk.html
   docs/modernization-specs/sase/sase.html: docs/modernization-specs/sase.html
   docs/modernization-specs/sdwan/sdwan.html: docs/modernization-specs/sdwan.html
   docs/modernization-specs/telemetry/telemetry.html: docs/modernization-specs/telemetry.html
@@ -50,8 +50,32 @@ redirects:
   # Architecture duplicates.
   docs/architecture/architecture-series/evidence-chain.html: docs/architecture/evidence-chain.html
   docs/architecture/six-plane-architecture.html: docs/architecture/architecture-series/six-plane-architecture.html
-  docs/architecture/directory-migration/README.html: docs/reference-architecture/directory-migration.html
-  docs/architecture/directory-migration/index.html: docs/reference-architecture/directory-migration.html
+  docs/architecture/directory-migration/README.html: docs/books/b02-identity/04-the-hidden-migration-surface.html
+  docs/architecture/directory-migration/index.html: docs/books/b02-identity/04-the-hidden-migration-surface.html
 
   # Whitepapers: 99% duplicate.
   docs/whitepapers/federal-application-aware-networking-architecture.html: docs/whitepapers/modernization-journey.html
+
+  # Book 02 (Identity & Directory) replaced these pages; sources are in archive/b02-identity/.
+  docs/case-studies/identity-modernization-case-study.html: docs/books/b02-identity/01-why-identity-matters.html
+  docs/case-studies/ad-to-cloud-identity-reference.html: docs/books/b02-identity/01-why-identity-matters.html
+  docs/whitepapers/ad-to-entraid-migration-problem.html: docs/books/b02-identity/01-why-identity-matters.html
+  docs/whitepapers/session-vs-telemetry-identity.html: docs/books/b02-identity/02-the-structural-problem.html
+  docs/whitepapers/session-vs-telemetry.html: docs/books/b02-identity/02-the-structural-problem.html
+  docs/whitepapers/federal-ssot-alignment.html: docs/books/b02-identity/02-the-structural-problem.html
+  docs/learning/old-ad-vs-new-entra-reference.html: docs/books/b02-identity/03-ad-and-entra-side-by-side.html
+  docs/learning/README.html: docs/books/b02-identity/index.html
+  docs/learning/entra-security-baseline-federal-crosswalk.html: docs/books/b02-identity/appendix-a-federal-requirements-crosswalk.html
+  docs/architecture/directory-migration/eight-core-concepts.html: docs/books/b02-identity/03-ad-and-entra-side-by-side.html
+  docs/modernization-specs/identity.html: docs/books/b02-identity/appendix-a-federal-requirements-crosswalk.html
+  docs/reference-architecture/directory-migration.html: docs/books/b02-identity/04-the-hidden-migration-surface.html
+  docs/reference-architecture/adapters.html: docs/books/b02-identity/04-the-hidden-migration-surface.html
+  docs/architecture/identity-directory-transformation-inventory.html: docs/books/b02-identity/04-the-hidden-migration-surface.html
+  docs/operational-guides/directory-migration/index.html: docs/books/b02-identity/04-the-hidden-migration-surface.html
+  docs/reference-architecture/delegation.html: docs/books/b02-identity/05-delegation-without-ous.html
+  docs/architecture/delegation-matrix.html: docs/books/b02-identity/05-delegation-without-ous.html
+  docs/whitepapers/fmp-vs-native-tools.html: docs/books/b02-identity/06-who-owns-the-migration.html
+  docs/operational-guides/read-only-ad-assessment.html: docs/books/b02-identity/07-read-only-discovery.html
+  docs/operational-guides/ad-interaction-guide.html: docs/books/b02-identity/08-assessing-the-forest.html
+  docs/operational-guides/identity/identity-modernization.html: docs/books/b02-identity/09-building-the-entra-target.html
+  docs/case-studies/reference-deployment-fedciv-ad-to-entra.html: docs/books/b02-identity/11-reference-deployment.html

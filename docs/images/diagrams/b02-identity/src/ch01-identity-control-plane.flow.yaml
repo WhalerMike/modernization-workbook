@@ -1,0 +1,20 @@
+# Chapter 01 — identity is the control plane: federal Zero Trust policy moves the
+# access decision from the network to the identity provider, which decides each
+# request from directory data (accurate or not). Network location grants no
+# implicit trust.
+rankdir: LR
+graph: {nodesep: 0.35, ranksep: 0.4}
+nodes:
+  pol: {tone: slate, width: 150, tag: "Federal direction", title: "Zero Trust policy", body: ["OMB M-22-09", "NIST SP 800-207", "CISA ZTMM v2.0"], size: 12}
+  idp: {tone: blue, width: 175, tag: "The decision point", title: "Identity provider", body: ["=Decides each request from who the user is, which device, and which attributes and groups"], size: 12}
+  res: {tone: green, width: 150, tag: "The resources", title: "Applications and data", body: ["=Reachable over any network"], size: 12}
+  dir: {tone: amber, width: 175, tag: "Accurate or not", title: "Directory data", body: ["Accounts", "Groups and attributes", "Administrative roles"], size: 12}
+  net: {tone: red, width: 150, tag: "No longer trusted", title: "Network location", body: ["=Being inside the perimeter proves nothing"], size: 12}
+edges:
+  - [pol, idp, {label: "requires"}]
+  - [idp, res, {label: "per request", tone: blue}]
+  - [dir, idp, {label: "feeds", tone: amber}]
+  - [net, res, {label: "grants no implicit trust", tone: red, style: dashed}]
+ranks:
+  - [idp, dir]
+  - [res, net]

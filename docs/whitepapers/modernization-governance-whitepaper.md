@@ -76,7 +76,7 @@ and the modernization pillar's curated surfaces — the transformation
 series and the adapter interfaces this paper's approach rides on — are
 collected at the OrgMod hub.
 The migration's specific failure-mode-and-fix is documented in
-[AD to Entra ID Migration Problem](ad-to-entraid-migration-problem.md).
+[AD to Entra ID Migration Problem](../books/b02-identity/01-why-identity-matters.md).
 The
 substrate this paper names as FMP's is the same one the the compliance series
 series' own

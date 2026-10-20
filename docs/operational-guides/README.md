@@ -10,7 +10,7 @@ Practical how-to documents for modernization activities.
 | [Intune + Azure Arc Modernization](intune-arc-modernization/) | Manual, governed, and retrofit paths for device and server modernization. |
 | [DNS Modernization Guide](dns-modernization.md) | Phased migration from AD-integrated DNS to hybrid resolution. |
 | [PKI Modernization Guide](pki-modernization.md) | Phased migration from AD CS to cloud PKI and certificate-based authentication. |
-| [Read-Only AD Assessment Guide](read-only-ad-assessment.md) | Safe discovery of Active Directory state before any modernization action. |
+| [Read-Only AD Assessment Guide](../books/b02-identity/07-read-only-discovery.md) | Safe discovery of Active Directory state before any modernization action. |
 | [PIM Self-Request with Approval](pim-self-request-approval.md) | Just-in-time privileged access pattern with recorded approval. |
 | [Zero Trust Assessment](zero-trust-assessment.md) | Dimensions and evidence sources for Zero Trust maturity. |
 

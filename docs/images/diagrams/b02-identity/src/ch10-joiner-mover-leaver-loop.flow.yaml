@@ -1,0 +1,17 @@
+# Chapter 10 — the governance loop: HR-driven provisioning creates and updates
+# the account; Lifecycle Workflows run the joiner, mover, and leaver tasks;
+# access packages grant access; access reviews remove what is no longer needed.
+rankdir: LR
+graph: {nodesep: 0.3, ranksep: 0.35}
+nodes:
+  hr: {tone: amber, width: 150, title: "HR record", body: ["=Hire date, leave date, job, organization"], size: 12}
+  prov: {tone: blue, width: 150, title: "Inbound provisioning", body: ["=Creates and updates the account"], size: 12}
+  lcw: {tone: violet, width: 160, title: "Lifecycle Workflows", body: ["Joiner: TAP, enable", "Mover: re-scope access", "Leaver: disable, revoke, delete"], size: 12}
+  ap: {tone: blue, width: 150, title: "Access packages", body: ["=Request, approve, expire"], size: 12}
+  ar: {tone: violet, width: 150, title: "Access reviews", body: ["=Attest or remove"], size: 12}
+edges:
+  - [hr, prov, {tone: amber}]
+  - [prov, lcw]
+  - [lcw, ap]
+  - [ap, ar]
+  - [ar, ap, {label: "deny removes", style: dashed, tone: violet}]

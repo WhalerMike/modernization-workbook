@@ -1,0 +1,24 @@
+# Chapter 07 — read-only discovery feeds the assessment pipeline: pre-flight,
+# exports, a hashed manifest, a versioned commit, validation and drift, then a
+# gap analysis that becomes the narrow delegation request for Chapter 08.
+rankdir: TB
+graph: {nodesep: 0.3, ranksep: 0.3}
+nodes:
+  pre: {tone: slate, width: 280, tag: "Step 1", title: "Pre-flight", body: ["=Records what this account can actually read in this forest"], size: 12}
+  exp: {tone: slate, width: 280, tag: "Step 2", title: "Read-only exports", body: ["=Topology, OUs, GPOs, identities, DNS and PKI inventory"], size: 12}
+  man: {tone: violet, width: 280, tag: "Step 3", title: "Assessment manifest", body: ["=Coverage score, gap list, SHA-256 hash of every file"], size: 12}
+  repo: {tone: violet, width: 280, tag: "Step 4", title: "Versioned commit", body: ["=assessments/readonly/domain/timestamp in the program repository"], size: 12}
+  val: {tone: violet, width: 280, tag: "Step 5", title: "Validation", body: ["=Schema check and hash check against the manifest"], size: 12}
+  drift: {tone: violet, width: 220, tag: "Step 5a", title: "Drift report", body: ["=Compared with the prior snapshot"], size: 12}
+  gap: {tone: amber, width: 280, tag: "Step 6", title: "Gap analysis", body: ["=Ranked list of what read-only access couldn't see"], size: 12}
+  req: {tone: amber, width: 280, tag: "Step 7", title: "Delegation request", body: ["=Read-only, time-bound, one named account"], size: 12}
+  full: {tone: green, width: 280, tag: "Step 8", title: "Targeted elevated assessment", body: ["=Fills only the gaps (Chapter 08)"], size: 12}
+edges:
+  - [pre, exp]
+  - [exp, man]
+  - [man, repo]
+  - [repo, val]
+  - [val, drift, {style: dashed}]
+  - [val, gap]
+  - [gap, req]
+  - [req, full, {tone: green, label: "approved"}]

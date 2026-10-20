@@ -121,7 +121,7 @@ Adapter capability is declared per the five-tier conformance model in
   adapter, frontmatter regenerated from canon on every sync.
 - **Validation suites** — adapter tests,
   evidence expectations, and drift procedures, paired 1:1 with each adapter.
-- **[Reference architecture — Adapters](../reference-architecture/adapters.md)** —
+- **[Reference architecture — Adapters](../books/b02-identity/04-the-hidden-migration-surface.md)** —
   how adapters sit in the six-plane architecture.
 
 ## Leadership takeaway
