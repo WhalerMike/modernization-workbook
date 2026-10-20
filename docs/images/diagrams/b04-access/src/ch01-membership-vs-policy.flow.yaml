@@ -1,0 +1,15 @@
+# Chapter 01 — two ways to answer "may this person reach this resource?":
+# the inherited model grants by membership and network location, decided once
+# and trusted for the life of the session; the Zero Trust model decides each
+# request against policy from current signals.
+rankdir: LR
+graph: {nodesep: 0.4, ranksep: 0.6}
+nodes:
+  req: {tone: slate, width: 170, tag: "The question", title: "Access request", body: ["=May this person, on this device, reach this resource now?"], size: 12}
+  old: {tone: red, width: 240, tag: "Granted by membership and location", title: "Decided once, trusted after", body: ["Inside the network, so trusted", "In the group, so allowed", "Membership outlives the need", "Nothing re-checks the session"], size: 12}
+  new: {tone: green, width: 240, tag: "Decided by policy", title: "Evaluated on every request", body: ["Identity, device, risk and resource together", "Network location is one signal", "Conditions change, so the answer changes", "Every decision is logged"], size: 12}
+edges:
+  - [req, old, {label: "inherited model", tone: red}]
+  - [req, new, {label: "Zero Trust model", tone: green}]
+ranks:
+  - [old, new]

@@ -1,0 +1,19 @@
+# Chapter 07 — which policies in the library reach which persona. Policies
+# scoped to all users reach every persona except where a policy excludes guest
+# and external user types; every enforced policy excludes the emergency access
+# group. Workload identities are reached only by policies that target service
+# principals directly.
+rankdir: TB
+nodes:
+  t:
+    kind: table
+    tone: slate
+    columns: ["Persona", {text: "Tenant-wide policies that reach it", tone: blue}, {text: "Persona-specific policies", tone: violet}]
+    widths: [140, 290, 310]
+    rows:
+      - [{text: "Admins", tone: red}, "CA001, CA013, CA014, CA016, CA018 to CA022, CA030, CA032, CA033, CA035, CA036", "CA003, CA004, CA005, CA025; CA026 for server administrators. Excluded from CA027"]
+      - [{text: "Internals", tone: blue}, "CA001, CA013, CA014, CA016, CA018 to CA022, CA027, CA030, CA032, CA033, CA035, CA036", "CA006, CA007, CA008, CA017, CA029; CA023 and CA024 for web-only users; CA028 on shared devices; CA031 for production operators; CA034 for department apps"]
+      - [{text: "Externals", tone: amber}, "CA001, CA013 in its block form, CA014, CA018, CA019, CA021, CA027, CA030, CA032, CA033, CA035", "CA009, CA010"]
+      - [{text: "Guests", tone: amber}, "The same as Externals", "CA011, CA012, CA038"]
+      - [{text: "Workload identities", tone: slate}, "None: user-scoped policies don't apply to service principals", "CA015, CA037"]
+      - [{text: "Emergency access", tone: green}, "Excluded from every enforced policy", "CA090, report-only, still records their sign-ins"]

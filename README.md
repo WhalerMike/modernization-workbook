@@ -33,7 +33,7 @@ This repository extracts practical modernization concepts — single source of t
 ### Operational Guides
 - [Operational Guides index](docs/operational-guides/README.md)
 - [GPO Sunset Program](docs/operational-guides/gpo-sunset-program.md)
-- [Conditional Access Policy Library](docs/operational-guides/conditional-access-policy-library.md)
+- [Conditional Access Policy Library](docs/books/b04-access/07-the-conditional-access-policy-library.md)
 - [Intune + Azure Arc paths](docs/operational-guides/intune-arc-modernization/)
 - [DNS Modernization](docs/operational-guides/dns-modernization.md)
 - [PKI Modernization](docs/operational-guides/pki-modernization.md)

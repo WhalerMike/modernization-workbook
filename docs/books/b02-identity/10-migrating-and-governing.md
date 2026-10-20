@@ -32,7 +32,7 @@ The licensing for all three is covered in [Chapter 09](09-building-the-entra-tar
 
 ### Access reviews
 
-Access reviews are periodic attestation that people still need the access they hold. The program's schedule (the full access-governance design is in Book 04, Chapter 09):
+Access reviews are periodic attestation that people still need the access they hold. The program's schedule (the full access-governance design is in [Book 04, Chapter 09](../b04-access/09-access-governance.md)):
 
 | Review target | Frequency | Reviewers | Apply results automatically | If reviewers don't respond |
 |---|---|---|---|---|
@@ -310,7 +310,7 @@ Privileged access workstations (PAWs) are still part of the design; they just an
 
 - Administration of privileged roles happens only from a PAW.
 - PAWs are Intune-managed from first boot, provisioned through Autopilot, and identified by a dynamic device group.
-- Conditional Access policy CA004 requires a compliant device for the Admins persona, and block policy CA025 in Book 04, Chapter 07 restricts administrator sign-in to the PAW group; protected actions require the same authentication context.
+- Conditional Access policy CA004 requires a compliant device for the Admins persona, and block policy CA025 in [Book 04, Chapter 07](../b04-access/07-the-conditional-access-policy-library.md) restricts administrator sign-in to the PAW group; protected actions require the same authentication context.
 - Administrative sign-ins from any other device are blocked.
 
 ## Monitoring, audit, and compliance

@@ -50,7 +50,7 @@ Pick the entry point that matches your role:
  Federal Modernization Program
  carries the engine, target surface, and program-management discipline.
 - **The target surface** — [Intune policy templates](../operational-guides/target-surface/intune-policy-templates.md),
- the [Conditional Access library](../operational-guides/access-plane/conditional-access-library.md),
+ the [Conditional Access library](../books/b04-access/07-the-conditional-access-policy-library.md),
  and the cross-adapter modernization specs.
 - **A worked consumer** — the
  SQL Server Identity Transformation

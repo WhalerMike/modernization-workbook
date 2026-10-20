@@ -1,0 +1,23 @@
+# Chapter 03 — why policies come in pairs. A token is issued by default when no
+# policy's conditions trigger a control, so a policy that only grants access to
+# one group (with controls) says nothing about everyone else. A second policy
+# that blocks all users except that group closes the gap. Both exclude the
+# emergency access group.
+rankdir: LR
+graph: {nodesep: 0.3, ranksep: 0.45}
+nodes:
+  a: {tone: slate, width: 180, tag: "Sign-in to the payroll app", title: "Finance user", size: 12}
+  b: {tone: slate, width: 180, tag: "Sign-in to the payroll app", title: "Anyone else", size: 12}
+  pg: {tone: blue, width: 240, tag: "Policy 1 · grant", title: "Finance group → payroll app", body: ["=Require phishing-resistant MFA and a compliant device"], size: 12}
+  pb: {tone: red, width: 240, tag: "Policy 2 · block", title: "All users except Finance → payroll app", body: ["=Block access"], size: 12}
+  ok: {tone: green, width: 170, title: "Token, with controls met", size: 12}
+  no: {tone: red, width: 170, title: "Blocked", body: ["=Without policy 2, a token with no controls"], size: 12}
+edges:
+  - [a, pg, {tone: blue}]
+  - [b, pb, {tone: red}]
+  - [pg, ok, {tone: green}]
+  - [pb, no, {tone: red}]
+order:
+  - [a, b]
+  - [pg, pb]
+  - [ok, no]

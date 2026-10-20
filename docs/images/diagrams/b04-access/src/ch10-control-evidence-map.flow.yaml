@@ -1,0 +1,19 @@
+# Chapter 10 — what the assessor reads: each mechanism produces records, and the
+# records support the SP 800-53 controls. Mapping is the program's.
+rankdir: LR
+graph: {nodesep: 0.25, ranksep: 0.5}
+nodes:
+  code: {tone: slate, width: 170, tag: "Configuration", title: "Policy and settings files", body: ["Conditional Access", "PIM role settings", "Packages and review definitions"], size: 12}
+  ops: {tone: violet, width: 170, tag: "Operation", title: "Records of use", body: ["Request and approval audit", "Review history and applied results", "Lifecycle Workflows runs"], size: 12}
+  mon: {tone: violet, width: 170, tag: "Monitoring", title: "Drift and change records", body: ["Monitor results and drifts", "Pull requests and pipeline runs"], size: 12}
+  c1: {tone: green, width: 150, title: "AC-2, AC-5, AC-6(7)", body: ["=Accounts approved, reviewed, removed"], size: 12}
+  c2: {tone: green, width: 150, title: "AC-3, AC-6, IA-2", body: ["=Policies enforced as approved"], size: 12}
+  c3: {tone: green, width: 150, title: "CA-7", body: ["=Ongoing monitoring and response"], size: 12}
+edges:
+  - [code, c2, {tone: green}]
+  - [ops, c1, {tone: green}]
+  - [mon, c3, {tone: green}]
+  - [mon, c2, {style: dashed}]
+  - [code, c1, {style: dashed}]
+order:
+  - [c1, c2, c3]

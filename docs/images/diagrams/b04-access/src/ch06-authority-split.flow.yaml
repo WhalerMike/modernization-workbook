@@ -1,0 +1,24 @@
+# Chapter 06 — the authority split. Every request enters one front door and is
+# triaged by the authority the task needs, not by who received it. Approvers
+# decide; automation and the help desk execute; every step lands in the record.
+# This is the program's recommended model, not an external standard.
+rankdir: TB
+graph: {nodesep: 0.3, ranksep: 0.45}
+nodes:
+  req: {tone: slate, width: 220, tag: "Intake", title: "One front door", body: ["=Catalog item or redirected email becomes a ticket"], size: 12}
+  tri: {tone: amber, width: 240, tag: "Triage", title: "Classify by required authority", body: ["A0 to A3, or out of scope", "Mail from Microsoft forced to A3"], size: 12}
+  itsm: {tone: blue, width: 220, tag: "A0 and A1", title: "ITSM pipeline", body: ["=Requester's manager approves"], size: 12}
+  iga: {tone: violet, width: 220, tag: "A2 and A3", title: "IGA pipeline", body: ["=Application owner approves; governance officer for A3"], size: 12}
+  oos: {tone: red, width: 220, tag: "Out of scope", title: "Escalate", body: ["=Conditional Access, directory roles, service principals"], size: 12}
+  exe: {tone: green, width: 240, tag: "Execute", title: "Automation first, help desk for gaps", body: ["PIM activation before any change", "No approval authority"], size: 12}
+  rec: {tone: violet, width: 240, tag: "Evidence", title: "Closed ticket plus audit log", body: ["=Approver, executor, object IDs, audit reference"], size: 12}
+edges:
+  - [req, tri]
+  - [tri, itsm, {tone: blue}]
+  - [tri, iga, {tone: violet}]
+  - [tri, oos, {tone: red}]
+  - [itsm, exe, {label: "approved", tone: green}]
+  - [iga, exe, {label: "approved", tone: green}]
+  - [exe, rec, {tone: violet}]
+order:
+  - [itsm, iga, oos]

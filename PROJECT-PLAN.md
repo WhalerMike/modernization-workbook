@@ -117,7 +117,7 @@ The plan is organized by phases. Each phase has objectives, key activities, deli
 - [Chapter 03 — Analysis → Plan → Delivery](docs/client-server-to-hybrid-cloud/03-analysis-plan-delivery.md)
 - [Chapters 04–08 — identity, policy, services, compute and access playbooks](docs/client-server-to-hybrid-cloud/04-identity-transformation.md)
 - [GPO Sunset Program](docs/operational-guides/gpo-sunset-program.md) and [GPO Parse and Crosswalk](docs/operational-guides/gpo-modernization-parse-crosswalk.md)
-- [Conditional Access Policy Library](docs/operational-guides/conditional-access-policy-library.md)
+- [Conditional Access Policy Library](docs/books/b04-access/07-the-conditional-access-policy-library.md)
 - [Intune + Azure Arc Modernization](docs/operational-guides/intune-arc-modernization/README.md)
 - [DNS Modernization Guide](docs/operational-guides/dns-modernization.md) and [PKI Modernization Guide](docs/operational-guides/pki-modernization.md)
 - [Test Plans](docs/program/test-plans.md) — evidence checklist inputs
@@ -144,7 +144,7 @@ The plan is organized by phases. Each phase has objectives, key activities, deli
 
 **Supporting material**
 - [Chapter 09 — Migration Roadmap: Phased Plan, Gates, Rollback](docs/client-server-to-hybrid-cloud/09-migration-roadmap.md)
-- [PIM Self-Request with Approval](docs/operational-guides/pim-self-request-approval.md) — just-in-time elevation for wave execution
+- [PIM Self-Request with Approval](docs/books/b04-access/08-pim-self-request-with-approval.md) — just-in-time elevation for wave execution
 - [HR-Driven Identity](docs/books/b03-hr-identity/index.md) — originating changes from the authoritative source
 - [End User Training Guide](docs/operational-guides/end-user-training.md)
 
@@ -181,7 +181,7 @@ The plan is organized by phases. Each phase has objectives, key activities, deli
 | Domain | Primary Focus | Typical Dependencies | Suggested Position | Detailed project |
 |--------|---------------|----------------------|--------------------|---|
 | Identity structure | Attribute model, dynamic membership, lifecycle origin | Assessment complete | Early (Wave 1) | [Identity Lifecycle & Provisioning](docs/projects/identity-lifecycle-charter.md) |
-| Policy | Mapping of existing policy to attribute-driven scope | Identity structure | After identity | Playbooks: [GPO Sunset Program](docs/operational-guides/gpo-sunset-program.md), [Conditional Access Policy Library](docs/operational-guides/conditional-access-policy-library.md) |
+| Policy | Mapping of existing policy to attribute-driven scope | Identity structure | After identity | Playbooks: [GPO Sunset Program](docs/operational-guides/gpo-sunset-program.md), [Conditional Access Policy Library](docs/books/b04-access/07-the-conditional-access-policy-library.md) |
 | Services / Addressing | Naming, IP management, related dependencies | Assessment; may bridge | Parallel or mid | [Network & Access Modernization](docs/projects/network-access-charter.md) |
 | Compute / Device | Device identity and management alignment | Identity structure | Mid to late | [Endpoint & Device Modernization](docs/projects/endpoint-device-charter.md) |
 | Access plane | Token-based / application-aware access patterns | Identity and policy | Later | [Network & Access Modernization](docs/projects/network-access-charter.md) |

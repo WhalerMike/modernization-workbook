@@ -1,0 +1,26 @@
+# Chapter 03 — how Conditional Access evaluates a sign-in. Policies run after
+# first-factor authentication. Phase 1 collects session details for enabled and
+# report-only policies; a policy applies only when all of its assignments match,
+# and an exclusion removes it. Phase 2 enforces enabled policies only: any block
+# stops the sign-in; otherwise unmet grant controls are prompted in a fixed
+# order, then session controls are applied and the token is issued. Report-only
+# results are logged and never enforced.
+rankdir: TB
+graph: {nodesep: 0.3, ranksep: 0.35}
+nodes:
+  first: {tone: slate, width: 300, tag: "Before policy", title: "First-factor authentication", body: ["=Conditional Access isn't a front-line defense; it runs after this step"], size: 12}
+  p1: {tone: blue, width: 300, tag: "Phase 1", title: "Collect session details", body: ["Network location and device identity", "=Runs for enabled and report-only policies"], size: 12}
+  match: {tone: blue, width: 300, tag: "Applicability", title: "Which policies apply?", body: ["All assignments in a policy must match (AND)", "An exclusion removes the policy, whatever the inclusion"], size: 12}
+  ro: {tone: violet, width: 230, tag: "Report-only", title: "Result logged, nothing enforced", body: ["=Success, failure, user action required, or not applied"], size: 12}
+  block: {tone: red, width: 230, tag: "Phase 2", title: "Any applicable policy blocks?", body: ["=Yes: enforcement stops and the sign-in is blocked"], size: 12}
+  grant: {tone: amber, width: 300, tag: "Phase 2", title: "Prompt for unmet grant controls", body: ["MFA or authentication strength, then compliant device, hybrid join, app protection, password change, terms of use", "=Every applicable policy must be satisfied"], size: 12}
+  session: {tone: blue, width: 300, tag: "Phase 2", title: "Apply session controls", body: ["=App-enforced restrictions, Defender for Cloud Apps, sign-in frequency"], size: 12}
+  token: {tone: green, width: 300, title: "Token issued", body: ["=Continuous Access Evaluation can still revoke it on critical events"], size: 12}
+edges:
+  - [first, p1]
+  - [p1, match]
+  - [match, ro, {label: "report-only policies", tone: violet, style: dashed}]
+  - [match, block, {label: "enabled policies", tone: red}]
+  - [block, grant, {label: "no", tone: amber}]
+  - [grant, session, {label: "all satisfied"}]
+  - [session, token, {tone: green}]

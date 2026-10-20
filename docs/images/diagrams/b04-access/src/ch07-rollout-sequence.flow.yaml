@@ -1,0 +1,31 @@
+# Chapter 07 — how each policy moves from authoring to enforcement, and the
+# order in which the library's waves are enforced. Every policy passes the same
+# gates: report-only, a pilot ring, then expanding rings. A wave starts only
+# after the previous wave has been enforced for a week without incident.
+rankdir: TB
+graph: {nodesep: 0.25, ranksep: 0.35}
+clusters:
+  - {id: life, label: "Every policy", tone: blue, filled: false, nodes: [ro, pilot, rings, mon]}
+  - {id: waves, label: "Enforcement waves", tone: violet, filled: false, nodes: [w1, w2, w3, w4, w5]}
+nodes:
+  ro: {tone: amber, width: 170, tag: "Gate 1 · 2 to 4 weeks", title: "Report-only", body: ["=Impact, gaps, exclusions reviewed"], size: 12}
+  pilot: {tone: amber, width: 170, tag: "Gate 2 · 2 weeks", title: "Pilot ring on", body: ["=IT and security staff"], size: 12}
+  rings: {tone: blue, width: 170, tag: "Gate 3 · 1 to 2 weeks each", title: "Expanding rings", body: ["=Then everyone in scope"], size: 12}
+  mon: {tone: green, width: 170, tag: "Steady state", title: "Enforced and monitored", body: ["=Drift alerts; rollback by off or report-only, never delete"], size: 12}
+  w1: {tone: slate, width: 128, tag: "Wave 1", title: "Foundation", body: ["=CA001, CA020, CA021, CA090"], size: 11}
+  w2: {tone: blue, width: 128, tag: "Wave 2", title: "Admins", body: ["=CA003 to CA005, CA025 to CA027"], size: 11}
+  w3: {tone: blue, width: 128, tag: "Wave 3", title: "Everyone", body: ["=CA006 to CA011, CA016 to CA018, CA038"], size: 11}
+  w4: {tone: amber, width: 128, tag: "Wave 4", title: "Risk", body: ["=CA012 to CA015, CA019, CA036, CA037"], size: 11}
+  w5: {tone: violet, width: 128, tag: "Wave 5", title: "Segments and end state", body: ["=CA022 to CA024, CA028 to CA035"], size: 11}
+edges:
+  - [ro, pilot]
+  - [pilot, rings]
+  - [rings, mon, {tone: green}]
+  - [w1, w2]
+  - [w2, w3]
+  - [w3, w4]
+  - [w4, w5]
+  - [mon, w1, {attrs: "style=invis"}]
+order:
+  - [ro, pilot, rings, mon]
+  - [w1, w2, w3, w4, w5]

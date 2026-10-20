@@ -1,0 +1,15 @@
+# Chapter 02 — the CISA Zero Trust Maturity Model's Access Management function,
+# traditional to optimal: from permanent access with periodic review to
+# automated just-in-time, just-enough access. The privileged-access project
+# targets the middle stages first.
+rankdir: LR
+graph: {nodesep: 0.25, ranksep: 0.3}
+nodes:
+  trad: {tone: red, width: 160, tag: "Traditional", title: "Permanent access", body: ["=Privileged and unprivileged access granted permanently, reviewed periodically"], size: 12}
+  init: {tone: amber, width: 160, tag: "Initial", title: "Access that expires", body: ["=Including privileged requests; reviews automated"], size: 12}
+  adv: {tone: blue, width: 160, tag: "Advanced", title: "Need-based, per session", body: ["=Tailored to actions and resources, privileged requests included"], size: 12}
+  opt: {tone: green, width: 160, tag: "Optimal", title: "Just in time, just enough", body: ["=Automated, tailored to individual actions and resources"], size: 12}
+edges:
+  - [trad, init]
+  - [init, adv]
+  - [adv, opt]

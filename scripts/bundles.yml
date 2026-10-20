@@ -224,6 +224,17 @@ bundles:
     image_dir: docs/images/diagrams/b02-identity
     warn_unlisted: ["*.md"]
     pages: [index.md, "[0-9][0-9]-*.md", "appendix-*.md"]
+  # Book 04 — Access & Privilege (absorbed the access-plane section; its old
+  # download name stays as an alias).
+  - output: b04-access-bundle.docx
+    aliases: [access-plane-bundle.docx]
+    title: "Book 04 — Access & Privilege"
+    subtitle: "Every access decision is a policy decision — Modernization Workbook, combined edition"
+    root: docs/books/b04-access
+    image_dir: docs/images/diagrams/b04-access
+    warn_unlisted: ["*.md"]
+    pages: [index.md, "[0-9][0-9]-*.md", "appendix-*.md"]
+
   # Book 03 — HR-Driven Identity (was the hr-driven-iam series; old download
   # names stay available as aliases so published links keep working).
   - output: b03-hr-identity-bundle.docx
@@ -323,10 +334,6 @@ bundles:
 
   - output: operational-guides-bundle.docx
     root: docs/operational-guides
-    pages: ["index.md", "**/*.md"]
-
-  - output: access-plane-bundle.docx
-    root: docs/operational-guides/access-plane
     pages: ["index.md", "**/*.md"]
 
   - output: network-transformation-bundle.docx

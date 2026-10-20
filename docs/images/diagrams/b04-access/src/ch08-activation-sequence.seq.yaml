@@ -1,0 +1,29 @@
+# Chapter 08 — one approval-gated self-activation of a Microsoft Entra role,
+# from request to automatic expiry, including the deny and timeout path.
+column: 165
+gap: 22
+participants:
+  - {id: req, label: "Eligible administrator", sub: "standard account, PAW", tone: slate}
+  - {id: pim, label: "Privileged Identity Management", sub: "role settings for the role", tone: blue}
+  - {id: ca, label: "Conditional Access", sub: "authentication context policy", tone: blue}
+  - {id: appr, label: "Approver group", sub: "outside the requester's tier", tone: violet}
+steps:
+  - {from: req, to: pim, n: 1, label: "Activate: duration within the maximum, justification, ticket number"}
+  - {from: pim, to: ca, n: 2, label: "Authentication context required"}
+  - {from: ca, to: req, n: 3, dashed: true, label: "Fresh phishing-resistant sign-in (sign-in frequency: every time)"}
+  - {from: req, to: pim, n: 4, label: "Request resubmitted with the new claim"}
+  - {from: pim, to: pim, label: "Status: pending approval"}
+  - {from: pim, to: appr, n: 5, label: "Approval request by email and in Approve requests"}
+  - frame: "Approved within 24 hours"
+    tone: green
+    steps:
+      - {from: appr, to: pim, n: 6, tone: green, label: "Approve, with the approver's justification"}
+      - {from: pim, to: req, n: 7, dashed: true, tone: green, label: "Role active until the requested end time"}
+      - {from: pim, to: pim, tone: green, label: "At expiry: back to eligible, no action needed"}
+  - frame: "Denied, or no decision in 24 hours"
+    tone: amber
+    steps:
+      - {from: appr, to: pim, n: 6, tone: amber, label: "Deny with justification, or the request expires"}
+      - {from: pim, to: req, n: 7, dashed: true, tone: amber, label: "Role stays eligible; a new request is needed"}
+  - note: "Every step lands in the Microsoft Entra audit log, which keeps 30 days; diagnostic settings export it to the log workspace for the retention AU-11 requires."
+    tone: violet

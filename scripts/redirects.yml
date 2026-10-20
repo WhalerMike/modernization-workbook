@@ -107,3 +107,11 @@ redirects:
   docs/case-studies/reference-deployment-opm-hrit-to-entra.html: docs/books/b03-hr-identity/13-reference-deployment.html
   docs/case-studies/hrit-to-entra-reference-deployment.html: docs/books/b03-hr-identity/13-reference-deployment.html
   docs/case-studies/hrit-to-cloud-identity-reference.html: docs/books/b03-hr-identity/13-reference-deployment.html
+
+  # Book 04 (Access & Privilege) replaced these pages; sources are in archive/b04-access/.
+  docs/operational-guides/access-plane/index.html: docs/books/b04-access/index.html
+  docs/operational-guides/access-plane/conditional-access-library.html: docs/books/b04-access/07-the-conditional-access-policy-library.html
+  docs/operational-guides/access-plane/pim-self-request-approval.html: docs/books/b04-access/08-pim-self-request-with-approval.html
+  docs/operational-guides/conditional-access-policy-library.html: docs/books/b04-access/07-the-conditional-access-policy-library.html
+  docs/operational-guides/pim-self-request-approval.html: docs/books/b04-access/08-pim-self-request-with-approval.html
+  docs/libraries/conditional-access-principles.html: docs/books/b04-access/03-the-conditional-access-model.html
