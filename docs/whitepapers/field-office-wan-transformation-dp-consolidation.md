@@ -82,7 +82,7 @@ migration already underway.
 
 This paper shares its transport argument with
 [SD-WAN vs. DIA Under TIC 3.0](tic3-sdwan-vs-dia.md) and its INR/GCC
-finding with [Next Generation DNS](infoblox-hybrid-dns-unified-ddi.md);
+finding with [Book 08 — DNS, DHCP & IPAM](../books/b08-ddi/index.md);
 both are cited rather than re-derived. Its own contribution is the
 distribution-point unit-economics argument in Sections 2–3, the
 distribution-point-vs.-Intune compliance comparison in Section 3.4
@@ -534,7 +534,7 @@ China clouds."* This is not an item pending confirmation — it is a
 documented exclusion that applies directly to this program's scope, and
 is analyzed in full, with a machine-enforced contract fixture encoding
 the exclusion, in
-[Next Generation DNS](infoblox-hybrid-dns-unified-ddi.md), Part 9, and
+[Book 08, Chapter 05](../books/b08-ddi/05-edge-interception-and-bypass.md) and
 in Vol I Book 05, Appendix A of the Federal Compliance
 series.
 
@@ -1053,7 +1053,7 @@ network layer exactly as it applies to the tenant layer.
 - [Prerequisites for Windows Autopatch (Microsoft Learn)](https://learn.microsoft.com/en-us/windows/deployment/windows-autopatch/prepare/windows-autopatch-prerequisites) — the update-workload pairing cited as Gate 2 (Section 4.7).
 - [Microsoft Connected Cache with Configuration Manager (Microsoft Learn)](https://learn.microsoft.com/en-us/intune/configmgr/core/plan-design/hierarchy/microsoft-connected-cache#support-for-intune-win32-apps) — the DP-hosted-MCC nuance behind Gate 4 (Section 4.7).
 - [SD-WAN vs. DIA Under TIC 3.0](tic3-sdwan-vs-dia.md), §5 — the full NIST SP 800-53 control-closure mapping this paper draws its field-office-specific closures from (Sections 4.2, 4.5, 4.8).
-- [Next Generation DNS](infoblox-hybrid-dns-unified-ddi.md), Part 9 — the INR/GCC-Moderate exclusion finding this paper cites (Section 4.6).
+- [Book 08, Chapter 05](../books/b08-ddi/05-edge-interception-and-bypass.md) — the INR/GCC-Moderate exclusion finding this paper cites (Section 4.6).
 - [Zero Trust Governance Principles](zero-trust-governance-principles.md) — the CISA ZTMM v2.0 cross-cutting capabilities argument (Appendix A.2).
 - [Assessment Tools vs. Closing BOD-25-01 Findings](bod-25-01-close-before-assess.md) — the remediate-before-assess sequencing this paper extends from the M365 tenant layer to the network layer (Appendix A.2).
 - [Binding Operational Directive 25-01 (CISA)](https://www.cisa.gov/news-events/directives/bod-25-01-implementing-secure-practices-cloud-services) — cited directly for scope, to state plainly what it does and does not govern (Appendix A.2).

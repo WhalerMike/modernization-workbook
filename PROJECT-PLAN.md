@@ -119,7 +119,7 @@ The plan is organized by phases. Each phase has objectives, key activities, deli
 - [GPO Sunset Program](docs/books/b05-devices/07-the-gpo-sunset-program.md) and [GPO Parse and Crosswalk](docs/books/b05-devices/appendix-a-gpo-to-intune-crosswalk.md)
 - [Conditional Access Policy Library](docs/books/b04-access/07-the-conditional-access-policy-library.md)
 - [Intune + Azure Arc Modernization](docs/books/b05-devices/05-the-governed-manual-and-retrofit-paths.md)
-- [DNS Modernization Guide](docs/operational-guides/dns-modernization.md) and [Book 07 — PKI & Certificates](docs/books/b07-pki/index.md)
+- [Book 08 — DNS, DHCP & IPAM](docs/books/b08-ddi/index.md) and [Book 07 — PKI & Certificates](docs/books/b07-pki/index.md)
 - [Test Plans](docs/program/test-plans.md) — evidence checklist inputs
 
 **Exit criteria**

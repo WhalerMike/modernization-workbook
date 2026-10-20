@@ -1,0 +1,12 @@
+# Book landing: the four questions (Why, What, Who, How) and the chapters in each.
+rankdir: LR
+graph: {nodesep: 0.25, ranksep: 0.3}
+nodes:
+  why: {tone: red, width: 150, tag: "Why", title: "The problem", body: ["=01 DNS is the control plane", "=02 Split-brain DNS", "=03 Federal requirements"], size: 12}
+  what: {tone: blue, width: 160, tag: "What", title: "The hard surfaces and the answer", body: ["=04 AD DNS departure", "=05 Edge interception", "=06 DNS identity, DNSSEC", "=07 Private endpoints, IPAM", "=08 Reference architecture"], size: 12}
+  who: {tone: violet, width: 140, tag: "Who", title: "The owners", body: ["=09 Who owns DNS, DHCP and IPAM"], size: 12}
+  how: {tone: green, width: 150, tag: "How", title: "Running it", body: ["=10 Migration sequence", "=11 Operating the plane", "=12 Selection, cost, risk"], size: 12}
+edges:
+  - [why, what]
+  - [what, who]
+  - [who, how]

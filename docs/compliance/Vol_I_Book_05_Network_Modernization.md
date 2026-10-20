@@ -363,7 +363,7 @@ The following table maps each concept in this narrative to the federal mandate, 
 # Appendix A — Cisco Catalyst SD-WAN and Microsoft 365 Informed Network Routing: Federal Implementation Reference {#appendix-cisco-inr}
 
 ::: {.aan-note}
-**Canonical split.** The DNS-resolution interaction of this combination — how Cisco Catalyst SD-WAN DNS interception meets the Infoblox DDI resolution chain, and the DNSSEC forwarder-position analysis — is developed canonically in the [Next Generation DNS whitepaper, Parts 8–9](../whitepapers/infoblox-hybrid-dns-unified-ddi.md); this appendix owns the federal implementation reference (boundary partitioning, KSI evidence contracts, deployment sequence).
+**Canonical split.** The DNS-resolution interaction of this combination — how Cisco Catalyst SD-WAN DNS interception meets the Infoblox DDI resolution chain, and the DNSSEC forwarder-position analysis — is developed canonically in the [Book 08, Chapter 05 — Edge Interception, Encrypted DNS and Rogue DHCP](../books/b08-ddi/05-edge-interception-and-bypass.md); this appendix owns the federal implementation reference (boundary partitioning, KSI evidence contracts, deployment sequence).
 
 **Scope: FedRAMP Moderate civilian agencies using Microsoft 365 GCC.** This appendix is scoped to **FedRAMP Moderate** — civilian federal agencies operating M365 GCC tenants. GCC High, DoD IL4/IL5, and FedRAMP High authorizations are out of scope. Vol I Book 05's main narrative describes SD-WAN in platform-neutral terms. This appendix addresses the specific combination that most FedRAMP Moderate agencies encounter: **Cisco Catalyst SD-WAN** as the branch transport platform and **Microsoft 365 Informed Network Routing (INR)** as the M365 traffic optimization layer.
 :::

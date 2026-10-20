@@ -1,0 +1,12 @@
+# Chapter 05 — the redirect-dns target decides whether agency policy applies.
+rankdir: LR
+graph: {nodesep: 0.35, ranksep: 0.5}
+nodes:
+  br: {tone: slate, width: 140, title: "Branch client", body: ["=Plain DNS on UDP 53"], size: 12}
+  edge: {tone: slate, width: 160, title: "SD-WAN edge", body: ["=redirect-dns data policy"], size: 12}
+  gov: {tone: green, width: 210, tag: "Correct", title: "Agency-controlled resolver", body: ["Policy plane applies: RPZ, DNSSEC validation, logging", "Then forwards upstream (Protective DNS)"], size: 12}
+  ext: {tone: red, width: 210, tag: "Bypassed", title: "External resolver", body: ["Agency policy plane never sees the query"], size: 12}
+edges:
+  - [br, edge]
+  - [edge, gov, {tone: green}]
+  - [edge, ext, {tone: red, style: dashed}]

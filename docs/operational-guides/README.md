@@ -8,7 +8,7 @@ Practical how-to documents for modernization activities.
 | [GPO Modernization — Parse and Crosswalk](../books/b05-devices/appendix-a-gpo-to-intune-crosswalk.md) | Method for analyzing Group Policy before translation or retirement. |
 | [Conditional Access Policy Library](../books/b04-access/07-the-conditional-access-policy-library.md) | Tiered reference for Entra ID Conditional Access policies. |
 | [Intune + Azure Arc Modernization](intune-arc-modernization/) | Manual, governed, and retrofit paths for device and server modernization. |
-| [DNS Modernization Guide](dns-modernization.md) | Phased migration from AD-integrated DNS to hybrid resolution. |
+| [Book 08 — DNS, DHCP & IPAM](../books/b08-ddi/index.md) | Phased migration from AD-integrated DNS to hybrid resolution. |
 | [Book 07 — PKI & Certificates](../books/b07-pki/index.md) | Phased migration from AD CS to Cloud PKI, Entra certificate-based authentication and Federal PKI, now a workbook book. |
 | [Read-Only AD Assessment Guide](../books/b02-identity/07-read-only-discovery.md) | Safe discovery of Active Directory state before any modernization action. |
 | [PIM Self-Request with Approval](../books/b04-access/08-pim-self-request-with-approval.md) | Just-in-time privileged access pattern with recorded approval. |

@@ -1,0 +1,14 @@
+# Chapter 02 — the same name returns different answers depending on origin.
+rankdir: LR
+graph: {nodesep: 0.35, ranksep: 0.6}
+nodes:
+  q: {kind: pill, tone: plain, text: "Query: app.agency.example"}
+  r1: {tone: slate, width: 190, tag: "From the branch", title: "On-premises resolver", body: ["=Answers 10.0.0.25 (private)"], size: 12}
+  r2: {tone: slate, width: 190, tag: "From a cloud VM", title: "Cloud resolver", body: ["=Answers 203.0.113.25 (public)"], size: 12}
+  ok: {tone: green, width: 210, title: "Intentional split-horizon", body: ["=Designed, documented, governed"], size: 12}
+  bad: {tone: red, width: 210, title: "Unintentional split-brain", body: ["=Independent systems, no shared state: drift is all but certain"], size: 12}
+edges:
+  - [q, r1]
+  - [q, r2]
+  - [r1, ok, {tone: green, style: dashed}]
+  - [r2, bad, {tone: red, style: dashed}]

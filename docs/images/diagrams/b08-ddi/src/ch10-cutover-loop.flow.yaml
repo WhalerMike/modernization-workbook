@@ -1,0 +1,22 @@
+# Chapter 10 — the per-zone cutover loop that every phase repeats: lower the
+# TTL, copy and import, validate from every origin, switch authority, hold and
+# observe, then restore the TTL. A failed check at any step returns to the
+# rollback point, where the old authority still answers.
+rankdir: TB
+graph: {nodesep: 0.3, ranksep: 0.3}
+nodes:
+  ttl: {tone: slate, width: 420, tag: "Step 1", title: "Lower the TTL ahead of the change", body: ["=Wait out the old TTL; record the original value"], size: 12}
+  copy: {tone: amber, width: 420, tag: "Step 2", title: "Export, transform, import", body: ["=Dry run first; SOA, apex NS and AD locator records excluded"], size: 12}
+  test: {tone: amber, width: 420, tag: "Step 3", title: "Validate from every origin", body: ["=On-premises, each cloud, each branch; forward and reverse"], size: 12}
+  switch: {tone: blue, width: 420, tag: "Step 4", title: "Switch authority", body: ["=Delegation, forwarders, client resolver settings"], size: 12}
+  hold: {tone: violet, width: 420, tag: "Step 5", title: "Hold and observe", body: ["=Query logs, drift checks, SRV checks, no direct queries to the old server"], size: 12}
+  done: {tone: green, width: 420, tag: "Step 6", title: "Restore the TTL and close the change", body: ["=Evidence filed; old copy retired only at decommission"], size: 12}
+  back: {tone: red, width: 230, title: "Rollback point", body: ["=Revert the switch; the old authority still answers"], size: 12}
+edges:
+  - [ttl, copy]
+  - [copy, test]
+  - [test, switch]
+  - [switch, hold]
+  - [hold, done]
+  - [test, back, {label: "check fails", style: dashed, tone: red}]
+  - [hold, back, {label: "check fails", style: dashed, tone: red}]

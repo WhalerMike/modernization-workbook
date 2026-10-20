@@ -62,7 +62,7 @@ for the full risk profile and migration sequence.
 ## What goes here when this scaffold is filled in
 
 A complete G.6 guide will mirror the structure of
-[G.3 DNS Modernization](dns-modernization.md):
+[G.3 Book 08 — DNS, DHCP & IPAM](../../books/b08-ddi/index.md):
 
 1. **Landscape decomposition** — current NPS policies, RADIUS clients
    (APs, VPN concentrators, switches), AD-group dependencies, EAP-method

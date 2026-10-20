@@ -1,0 +1,14 @@
+# Chapter 01 — one policy plane over the enterprise, cloud and internet DNS perspectives.
+rankdir: TB
+graph: {nodesep: 0.3, ranksep: 0.5}
+nodes:
+  plane: {tone: blue, width: 520, tag: "One authoritative DDI policy plane", title: "DNS, DHCP and IPAM state, security policy, audit", body: ["=Defined once, propagated to every resolution surface"]}
+  ent: {tone: slate, width: 165, tag: "Enterprise (internal)", title: "On-premises DNS and DHCP", body: ["AD-integrated DNS or a DDI grid", "Data centers, branches, private cloud"], size: 12}
+  cloud: {tone: slate, width: 165, tag: "Cloud", title: "Cloud DNS services", body: ["Route 53, Azure DNS and Private DNS", "Google Cloud DNS, VMware NSX"], size: 12}
+  inet: {tone: slate, width: 165, tag: "Internet", title: "External authoritative DNS", body: ["Public zones agencies publish", "Attack surface monitoring"], size: 12}
+edges:
+  - [plane, ent, {tone: blue}]
+  - [plane, cloud, {tone: blue}]
+  - [plane, inet, {tone: blue}]
+order:
+  - [ent, cloud, inet]

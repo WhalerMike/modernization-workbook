@@ -350,8 +350,8 @@ agency regardless of which vendor stack it procures.
 **Read deeper:** [SD-WAN vs. DIA Under TIC 3.0](tic3-sdwan-vs-dia.md)
 is the dedicated treatment --- the "pipe vs. governor" argument, the
 physics budget behind TIC 3.0's use cases, and the five-step decision
-sequence for an actual transport/SD-WAN procurement. [Next Generation
-DNS](infoblox-hybrid-dns-unified-ddi.md) covers the DNS-layer piece of
+sequence for an actual transport/SD-WAN procurement. [Book 08 — DNS, DHCP
+& IPAM](../books/b08-ddi/index.md) covers the DNS-layer piece of
 the same distributed-egress architecture.
 
 ## 8. OMB M-25-21 (Federal AI governance) --- agency-facing, and the newest mandate in this set
@@ -421,8 +421,8 @@ deployed versus proposed against M-25-21's specific gates.
  [From Mainframe to Application-Aware
  Modernization](modernization-journey.md)
 
- OMB M-19-26 (TIC 3.0) Agency [SD-WAN vs. DIA Under TIC 3.0](tic3-sdwan-vs-dia.md), [Next Generation
- DNS](infoblox-hybrid-dns-unified-ddi.md)
+ OMB M-19-26 (TIC 3.0) Agency [SD-WAN vs. DIA Under TIC 3.0](tic3-sdwan-vs-dia.md), [Book 08 — DNS,
+ DHCP & IPAM](../books/b08-ddi/index.md)
 
  OMB M-25-21 (Federal AI Agency [Federal AI Governance --- Submission
  governance) Readiness](federal-ai-governance-submission-readiness.md)

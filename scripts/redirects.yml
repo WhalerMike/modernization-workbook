@@ -194,3 +194,25 @@ redirects:
 
   # Book 07 (PKI & Certificates) replaced these pages; sources are in archive/b07-pki/.
   docs/operational-guides/pki-modernization.html: docs/books/b07-pki/index.html
+
+  # Book 08 (DNS, DHCP & IPAM) replaced these pages; sources are in archive/b08-ddi/.
+  docs/next-generation-ddi/00-applicability.html: docs/books/b08-ddi/appendix-c-applicability.html
+  docs/next-generation-ddi/index.html: docs/books/b08-ddi/index.html
+  docs/next-generation-ddi/appendix-a-dns-record-types.html: docs/books/b08-ddi/appendix-a-dns-record-types.html
+  docs/next-generation-ddi/appendix-b-requirements-mapping.html: docs/books/b08-ddi/appendix-b-requirements-mapping.html
+  docs/next-generation-ddi/01-dns-is-the-control-plane.html: docs/books/b08-ddi/01-dns-is-the-control-plane.html
+  docs/next-generation-ddi/02-split-brain-dns.html: docs/books/b08-ddi/02-split-brain-dns.html
+  docs/next-generation-ddi/03-federal-requirements.html: docs/books/b08-ddi/03-federal-requirements.html
+  docs/next-generation-ddi/04-active-directory-dns-departure.html: docs/books/b08-ddi/04-active-directory-dns-departure.html
+  docs/next-generation-ddi/05-edge-interception-and-bypass.html: docs/books/b08-ddi/05-edge-interception-and-bypass.html
+  docs/next-generation-ddi/06-dns-identity-and-dnssec.html: docs/books/b08-ddi/06-dns-identity-and-dnssec.html
+  docs/next-generation-ddi/07-cloud-private-endpoints-and-ipam.html: docs/books/b08-ddi/07-cloud-private-endpoints-and-ipam.html
+  docs/next-generation-ddi/08-reference-architecture.html: docs/books/b08-ddi/08-reference-architecture.html
+  docs/next-generation-ddi/09-migration-sequence.html: docs/books/b08-ddi/10-migration-sequence.html
+  docs/next-generation-ddi/10-operating-the-control-plane.html: docs/books/b08-ddi/11-operating-the-control-plane.html
+  docs/next-generation-ddi/11-selection-cost-and-residual-risk.html: docs/books/b08-ddi/12-selection-cost-and-residual-risk.html
+  docs/whitepapers/infoblox-hybrid-dns-unified-ddi.html: docs/books/b08-ddi/01-dns-is-the-control-plane.html
+  docs/whitepapers/next-generation-dns.html: docs/books/b08-ddi/01-dns-is-the-control-plane.html
+  docs/operational-guides/network-transformation/dns-modernization.html: docs/books/b08-ddi/10-migration-sequence.html
+  docs/operational-guides/dns-modernization.html: docs/books/b08-ddi/10-migration-sequence.html
+  docs/whitepapers/infoblox-dns-reference.html: docs/books/b08-ddi/appendix-a-dns-record-types.html

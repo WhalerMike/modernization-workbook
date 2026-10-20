@@ -35,7 +35,7 @@ This repository extracts practical modernization concepts — single source of t
 - [GPO Sunset Program](docs/books/b05-devices/07-the-gpo-sunset-program.md)
 - [Conditional Access Policy Library](docs/books/b04-access/07-the-conditional-access-policy-library.md)
 - [Intune + Azure Arc paths](docs/operational-guides/intune-arc-modernization/)
-- [DNS Modernization](docs/operational-guides/dns-modernization.md)
+- [Book 08 — DNS, DHCP & IPAM](docs/books/b08-ddi/index.md)
 - [Book 07 — PKI & Certificates](docs/books/b07-pki/index.md)
 - [Read-Only AD Assessment](docs/books/b02-identity/07-read-only-discovery.md)
 
