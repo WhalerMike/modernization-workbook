@@ -275,7 +275,10 @@ bundles:
   # ---------------------------------------------------------------------
   - output: architecture-series-bundle.docx
     root: docs/architecture
-    pages: ["index.md", "**/*.md"]
+    # index.md is the deprecated landing page; the bundle opens with its successor.
+    title: "Architecture Series"
+    pages: ["architecture-series/README.md", "**/*.md"]
+    exclude: ["index.md"]
 
   - output: case-studies-bundle.docx
     root: docs/case-studies

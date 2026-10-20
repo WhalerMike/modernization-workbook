@@ -6,12 +6,19 @@ audience: "Enterprise architects · technical leads · assessors"
 canon-source: "docs/docs/01_UnifiedArchitecture.qmd"
 derived-from: "fmp canon"
 aspirational: true
-lifecycle: adopted
+lifecycle: deprecated
+superseded-by: docs/architecture/architecture-series/README.md
+search: false
 tiers_adopted: [1]
 lifecycle_review: 2026-11-22
 ---
 
 # Architecture Series {.unnumbered}
+
+::: {.callout-warning}
+## Deprecated
+This landing page is no longer maintained and is kept for reference only. Use the **[Architecture Series](architecture-series/README.md)** page instead. The architecture pages themselves are unchanged and stay in the Architecture sidebar.
+:::
 
 ::: {.callout-tip}
 ## Download the full section
