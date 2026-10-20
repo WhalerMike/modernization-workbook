@@ -10,7 +10,7 @@ Based on current visibility, many agencies do not operate a comprehensive enterp
 
 Two changes are coming regardless: Federal HR 2.0 moves each agency's HR onto Oracle Core HCM in waves, and current planning assumes onboarding through 2027; agency identity is moving from Active Directory toward Entra ID. My proposal is to use the two together to start HR-driven identity — HR, through OPM's standard personnel data, as the source of authority for Entra ID, Active Directory and the rest of ICAM. That's Microsoft's own term: HR-driven provisioning.
 
-## Slide 2 — HRIT is coming — build identity into it
+## Slide 2 — Use the onboarding window to design HR-driven identity
 
 The thesis in one slide.
 
@@ -26,7 +26,7 @@ So the real choice is: carry ticket-driven identity through both migrations, or 
 
 Why we need HR-driven ICAM at all — and why now.
 
-Zero Trust is federal strategy — OMB M-22-09, with NIST SP 800-207 as the architecture and CISA's maturity model as the yardstick. SASE is how it's delivered: security enforced at a cloud edge close to the user, which TIC 3.0 opens up for agencies, instead of at our network perimeter. And SASE's decisions are driven by ICAM: the user presents a token from a PIV card or phishing-resistant MFA, and Entra ID decides access through Conditional Access and dynamic groups that read the user's attributes.
+Zero Trust is federal strategy — OMB M-22-09, with NIST SP 800-207 as the architecture and CISA's maturity model as the yardstick. SASE is one way these controls can be delivered near users and cloud resources, which TIC 3.0 opens up for agencies, instead of only at our network perimeter. Reliable ICAM supplies critical identity signals to those decisions: the user presents a token from a PIV card or phishing-resistant MFA, and Entra ID decides access through Conditional Access and dynamic groups that read the user's attributes.
 
 In the perimeter era, a wrong department meant a wrong phone-book entry. Now it means the wrong groups, and so the wrong access — and a stale status is worse than ever. In the perimeter era an orphaned account was already a standing security violation that could enable a breach. Now it's a valid token for someone who has left, usable from anywhere, because there is no perimeter left to stop it. When access decisions depend on attributes, the accuracy of employee data drives the accuracy of access.
 
@@ -54,13 +54,13 @@ This is the heart of the proposal, and it's the programmatic data knowledge.
 
 OPM already defines the personnel data every agency records. Agency and subelement give the legal employer and component. Duty station is the location of record. Series, pay plan and grade give a position category for role-based access. Supervisory status tells us who can approve and review. Tenure and appointment type drive the worker type. And the nature-of-action code, with its effective date, tells us what just happened — next slide.
 
-Why build on OPM's standard rather than on Oracle's field names? Because OPM defines these elements and their codes the same way for every agency. We map them to Entra ID and AD once, for every employee population — and if the HR vendor ever changes, the mapping still holds.
+Why build on OPM's standard rather than on Oracle's field names? Because OPM standards provide a common federal vocabulary that agencies can map into a shared canonical model. We map them to Entra ID and AD once, for every employee population — and if the HR vendor ever changes, the mapping still holds.
 
 One honest limit: HRIT covers federal employees only. In the processes I have observed, contractors and vendors are tracked in COR spreadsheets. A contractor authority decision is required, and I propose evaluating three candidate sources: Core HCM's Contingent Worker type — a person record, an assignment and a lifecycle much like an employee's, though with no vendor-management layer; PIV sponsorship; and a contractor suitability register, which ties each contractor to an agency contract with a suitability decision. That's a decision to put in front of the program early.
 
 ## Slide 7 — Proposed identity interpretation of OPM nature-of-action families
 
-Personnel actions drive the lifecycle.
+Personnel actions can initiate the lifecycle, after their identity interpretations and exceptions are approved.
 
 For federal employees, every personnel action carries a nature-of-action code, and I propose mapping the families to identity events: the 100 series are joiners, the 700 series movers, the 500 series conversions, the 300 series separations. Contractors have no SF-50; their events come from contract start and end dates.
 
@@ -76,7 +76,7 @@ A common design says the employee ID is the person, for life. It breaks the mome
 
 The person is the tracked entity, not the account. That's what survives rehire, conversion and reorganization. And many agencies already have a strong candidate — for example, a Mainframe PIN that already serves as the person ID and employee ID. I propose it for confirmation as the enterprise person key; adoption requires validating its uniqueness, persistence, non-reassignment, population coverage, privacy constraints and historical behavior. Once it's confirmed, map Core HCM's PersonNumber to it — so when the agency moves to Core HCM, only the source key changes, and nothing downstream has to.
 
-## Slide 9 — HR → canonical model → Entra ID and AD → ICAM
+## Slide 9 — Proposed physical mapping: HR to Entra ID and AD
 
 Logical and physical modeling, following the data from HR to ICAM.
 
@@ -100,7 +100,7 @@ Credentials: the joiner event schedules PIV enrollment. The leaver event blocks 
 
 Assurance: record each person's proofing level and authenticator assurance as governed attributes, treat missing proofing evidence as a finding, and enforce phishing-resistant MFA under M-22-09.
 
-Access: baseline access derived by rule from the standard attributes; privileged eligibility by position, through PIM, never standing; and any activity from a separated person is an alert.
+Access: baseline access derived by rule from the standard attributes; position attributes scoping candidates for privileged eligibility, with explicit approval and PIM still required; and any activity from a separated person is an alert.
 
 The result: every entitlement has a "because" — a rule, an attribute, and the personnel action that set it.
 
@@ -122,13 +122,13 @@ Then the operating rules on the bottom row, from lifecycle rules through change 
 
 Together that produces evidence for AC-2, PS-4, PS-5, IA-4 and SI-12 as a byproduct of operating — supporting those controls, not claiming to close them on its own.
 
-## Slide 14 — One standard for HR-driven ICAM, shared across agencies
+## Slide 14 — A reusable HR-driven ICAM model for interagency evaluation
 
 One standard, shared across agencies.
 
-Every agency is moving to the same Core HCM on the same OPM data standards. If one agency defines HR-driven ICAM as a standard — crosswalk, canonical model, identifiers and evidence — other agencies can reuse it instead of building their own. And attributes that mean the same thing everywhere make details, transfers, shared services and cross-agency access easier.
+Participating civilian agencies are moving toward shared Core HCM capabilities and common federal personnel standards. If one agency defines HR-driven ICAM as a standard — crosswalk, canonical model, identifiers and evidence — other agencies can reuse it instead of building their own. And attributes that mean the same thing everywhere make details, transfers, shared services and cross-agency access easier.
 
-That's the work an enterprise data architect does: working the issues with other agencies and industry, developing options and predicting their impact, and serving as the data expert on interagency committees and working groups. The goal: present this model to our fellow agencies, and adopt it together.
+That's the work an enterprise data architect does: working the issues with other agencies and industry, developing options and predicting their impact, and serving as the data expert on interagency committees and working groups. The goal: offer the model for interagency evaluation and reuse.
 
 ## Slide 15 — Roadmap and the ask
 

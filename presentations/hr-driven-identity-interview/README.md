@@ -12,8 +12,8 @@ This folder sits outside `docs/`, so the Quarto site doesn't render it.
 | Self-running narrated version of the 9 slides (11:43) | `HR_Driven_Identity_Exec_AnyAgency_Narrated.pptx` |
 | Practice script (the narration text) | `HR_Driven_Identity_Exec_AnyAgency_Narration_Script.md` |
 | Earlier 16-slide detailed deck | `HR_Driven_Identity_AnyAgency.pptx` |
-| Narrated 16-slide deck (15:24) and its script | `HR_Driven_Identity_AnyAgency_Narrated.pptx`, `HR_Driven_Identity_AnyAgency_Narration_Script.md` |
-| **Contractor Identity Source**: companion deck on who is authoritative for a contractor (Q&A backup, not part of the talk), with its narrated version (8:04) and script | `HR_Driven_Identity_Contractor_Source_AnyAgency.pptx`, `HR_Driven_Identity_Contractor_Source_AnyAgency_Narrated.pptx`, `HR_Driven_Identity_Contractor_Source_AnyAgency_Narration_Script.md` |
+| Narrated 16-slide deck (15:36) and its script | `HR_Driven_Identity_AnyAgency_Narrated.pptx`, `HR_Driven_Identity_AnyAgency_Narration_Script.md` |
+| **Contractor Identity Source**: companion deck on who is authoritative for a contractor (Q&A backup, not part of the talk), with its narrated version (8:37) and script | `HR_Driven_Identity_Contractor_Source_AnyAgency.pptx`, `HR_Driven_Identity_Contractor_Source_AnyAgency_Narrated.pptx`, `HR_Driven_Identity_Contractor_Source_AnyAgency_Narration_Script.md` |
 | Closed captions (WebVTT) for the three narrated videos | `HR_Driven_Identity_Exec_AnyAgency_Narrated.vtt`, `HR_Driven_Identity_AnyAgency_Narrated.vtt`, `HR_Driven_Identity_Contractor_Source_AnyAgency_Narrated.vtt` |
 
 The narrated videos (MP4, over 100 MB each) exceed GitHub's file limit, so they're attached to the release
