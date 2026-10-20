@@ -117,8 +117,8 @@ BOD-25-01 and CISA SCuBA.
 |---|---|---|
 | [Modernization Journey](modernization-journey.md) | Draft | **Flagship of this track**, cross-listed from Track 2. The forty-year mainframe-to-Zero-Trust arc, argued **vendor-neutral and product-neutral**, with the canon trail confined to a separable closing appendix. Has this corpus's most fully worked Call to Action, and the FedRAMP 20x Consolidated Rules timeline. |
 | [SD-WAN vs. DIA Under TIC 3.0](tic3-sdwan-vs-dia.md) | Draft | The transport-and-policy layer underneath this track's Act 4 architecture. Read after the flagship's Act 4, or standalone for a network-engineering audience. |
-| [Next Generation DNS](infoblox-hybrid-dns-unified-ddi.md) | Draft | The DNS layer underneath the same Act 4 architecture — split-brain DNS, Universal DDI, Cisco SD-WAN interception. Sibling to the SD-WAN paper, not sequential to it. |
-| [DNS Record Types and Universal DDI Ecosystem Integrations](infoblox-dns-reference.md) | Draft | The record-type catalog and ecosystem-integration table split out of the paper above 2026-08-03 — bookmarkable reference, not meant to be read start to finish. |
+| [Book 08 — DNS, DHCP & IPAM](../books/b08-ddi/index.md) | Draft | The DNS layer underneath the same Act 4 architecture — split-brain DNS, Universal DDI, Cisco SD-WAN interception. Sibling to the SD-WAN paper, not sequential to it. |
+| [Book 08, Appendix A — DNS Record Types and Ecosystem Integrations](../books/b08-ddi/appendix-a-dns-record-types.md) | Draft | The record-type catalog and ecosystem-integration table — bookmarkable reference, not meant to be read start to finish. |
 | [Field Office WAN Transformation and Distribution Point Consolidation](field-office-wan-transformation-dp-consolidation.md) | Draft | A worked capital-planning case built on the SD-WAN and TIC 3.0 arguments above, plus new content neither covers: Configuration Manager distribution-point unit economics against a proposed hardware refresh. Read after the SD-WAN paper; assumes its transport argument and the DNS paper's INR/GCC finding rather than re-deriving either. |
 | [FMP Git Server Interfaces](git-server-interfaces-whitepaper.md) | Draft | Platform deployment surface (Windows Server 2025) — narrower scope, useful once an agency has committed to an FMP deployment rather than during the architecture-decision phase the rest of this track addresses. |
 
@@ -173,7 +173,7 @@ alphabetical file list.
 **A network/infrastructure architect**
 
 1. [Modernization Journey](modernization-journey.md) — the full arc and the physics argument.
-2. [SD-WAN vs. DIA Under TIC 3.0](tic3-sdwan-vs-dia.md) and [Next Generation DNS](infoblox-hybrid-dns-unified-ddi.md) — read in either order; both sit under Act 4 independently.
+2. [SD-WAN vs. DIA Under TIC 3.0](tic3-sdwan-vs-dia.md) and [Book 08 — DNS, DHCP & IPAM](../books/b08-ddi/index.md) — read in either order; both sit under Act 4 independently.
 3. [FMP Git Server Interfaces](git-server-interfaces-whitepaper.md) — once an FMP deployment is actually being planned.
 
 **An identity/directory team running an AD → Entra ID modernization**

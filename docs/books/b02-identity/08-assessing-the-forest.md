@@ -228,7 +228,7 @@ Active Directory runs on DNS, and many of the hidden dependencies in [Chapter 04
 
 Read stale-record results carefully. A record with a zero or empty timestamp is static and is never scavenged; only dynamically registered records age.[^c08-scavenging] The source's 90-day threshold is a review trigger, not a deletion rule.
 
-One more correction: the source used PowerShell 7's `??` operator to pick a record's data field, but its module declares PowerShell 5.1. Appendix B replaces it with an explicit `switch` on record type. The DNS design that consumes this inventory is in the workbook's [DNS modernization guide](../../operational-guides/dns-modernization.md).
+One more correction: the source used PowerShell 7's `??` operator to pick a record's data field, but its module declares PowerShell 5.1. Appendix B replaces it with an explicit `switch` on record type. The DNS design that consumes this inventory is in the workbook's [Book 08 — DNS, DHCP & IPAM](../b08-ddi/index.md).
 
 ## Certificate Services (AD CS)
 

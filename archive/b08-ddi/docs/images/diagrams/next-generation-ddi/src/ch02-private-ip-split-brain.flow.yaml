@@ -1,0 +1,12 @@
+# Chapter 02 — the cross-cloud private endpoint case.
+rankdir: LR
+graph: {nodesep: 0.3, ranksep: 0.55}
+nodes:
+  vnet: {tone: blue, width: 180, tag: "Inside the linked VNet", title: "Azure VM", body: ["=Resolves the privatelink record: 10.1.0.4"], size: 12}
+  ec2: {tone: amber, width: 180, tag: "From AWS", title: "EC2 instance", body: ["=Needs an outbound rule to the Azure inbound endpoint"], size: 12}
+  pe: {tone: green, width: 180, title: "Private endpoint", body: ["=Traffic stays on the private path"], size: 12}
+  pub: {tone: red, width: 180, title: "Public IP", body: ["=Rule missing or stale: name still resolves, path is wrong"], size: 12}
+edges:
+  - [vnet, pe, {tone: green}]
+  - [ec2, pe, {tone: green, label: "rule present"}]
+  - [ec2, pub, {tone: red, label: "rule missing"}]

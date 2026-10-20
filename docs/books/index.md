@@ -24,7 +24,7 @@ The workbook grew as separate whitepapers, guides, series and case studies. The 
 | **B05** | **[Devices & Endpoints: GPO to Intune and Arc](b05-devices/index.md)** | **Why can't Group Policy come to the cloud?** | **Draft** |
 | **B06** | **[Data Platform: SQL Server Identity](b06-data-platform/index.md)** | **Why is the database where legacy authentication hides?** | **Draft** |
 | **B07** | **[PKI & Certificates](b07-pki/index.md)** | **Why do certificates outlive every migration?** | **Draft** |
-| B08 | DNS, DHCP & IPAM | Why is DNS now the control plane? | Planned |
+| **B08** | **[DNS, DHCP & IPAM](b08-ddi/index.md)** | **Why is DNS now the control plane?** | **Draft** |
 | B09 | Network & Transport | Why does physics decide the architecture? | Planned |
 | B10 | Cloud Boundary & Landing Zone | Why does the authorization boundary decide what you can use? | Planned |
 | B11 | Zero Trust & Assessment | Why is Zero Trust a whole-agency property, not a product? | Planned |

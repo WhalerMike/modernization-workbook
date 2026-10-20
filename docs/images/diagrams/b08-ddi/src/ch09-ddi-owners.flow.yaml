@@ -1,0 +1,36 @@
+# Chapter 09 — who decides, who builds and runs, and who supports DNS, DHCP
+# and IPAM. The top row holds decision rights: scope and platform, risk
+# acceptance, control requirements. The DNS/DDI team owns the policy plane
+# in the middle row, with network engineering on the edge and transport and
+# cloud platform teams consuming policy-plane state in each cloud. AD
+# administrators, security operations and the help desk sit in the bottom
+# row. Application owners request names and are consulted. This is the
+# program's recommended model, not an external standard.
+rankdir: TB
+graph: {nodesep: 0.2, ranksep: 0.45}
+nodes:
+  spon: {tone: amber, width: 185, tag: "Decides", title: "Sponsor and CIO", body: ["=Scope, platform selection, decommission timing"], size: 12}
+  ao: {tone: amber, width: 185, tag: "Decides", title: "Authorizing official", body: ["=Platform authorization, standing exceptions"], size: 12}
+  ciso: {tone: violet, width: 185, tag: "Decides", title: "CISO and ISSO", body: ["=Encrypted DNS, DNSSEC, logging, evidence"], size: 12}
+  net: {tone: slate, width: 185, tag: "Designs and does", title: "Network engineering", body: ["=Edge redirect targets, transport, DHCP relay"], size: 12}
+  ddi: {tone: blue, width: 185, tag: "Designs and does", title: "DNS/DDI team", body: ["=Zones, forwarding, IPAM, DHCP scopes, signing"], size: 12}
+  cloud: {tone: blue, width: 185, tag: "Does, per cloud", title: "Cloud platform teams", body: ["=Private zones, resolvers, cloud IPAM as consumers"], size: 12}
+  ad: {tone: slate, width: 185, tag: "Does, until retired", title: "AD administrators", body: ["=AD DNS inventory, SRV records, decommission"], size: 12}
+  soc: {tone: violet, width: 185, tag: "Operates", title: "Security operations", body: ["=Protective DNS alerts, query logs, RPZ hits"], size: 12}
+  hd: {tone: green, width: 185, tag: "Supports", title: "Help desk", body: ["=Resolution triage, read-only access, escalation"], size: 12}
+  app: {kind: pill, tone: slate, text: "Application owners request names and are consulted on cutover"}
+edges:
+  - [spon, ddi, {label: "scope", tone: amber}]
+  - [ao, ddi, {label: "risk decision", tone: amber}]
+  - [ciso, ddi, {label: "requirements", tone: violet}]
+  - [net, ddi, {label: "consulted", both: true, style: dashed}]
+  - [ddi, cloud, {label: "authoritative state"}]
+  - [ddi, ad, {label: "inventory, cutover"}]
+  - [ddi, soc, {label: "logs, policy hits"}]
+  - [ddi, hd, {label: "runbooks"}]
+  - [app, ddi, {label: "requests", style: dashed, attrs: "constraint=false"}]
+  - [hd, app, {style: invis}]
+order:
+  - [spon, ao, ciso]
+  - [net, ddi, cloud]
+  - [ad, soc, hd]

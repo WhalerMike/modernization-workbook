@@ -1,0 +1,24 @@
+# Chapter 09 — three classes of DNS record change and who approves each.
+# Standard changes inside a delegated namespace are pre-approved and run
+# through a scoped service account. Policy-driven changes (private endpoint
+# records, DHCP-driven registrations) need no per-change approval because the
+# policy itself is change-controlled. High-impact changes go to the change
+# board with the DNS/DDI team as approver and the CISO consulted. Every class
+# lands in the same audit trail. Program design, not an external standard.
+rankdir: LR
+graph: {nodesep: 0.3, ranksep: 0.5}
+nodes:
+  req: {kind: pill, tone: slate, text: "Record change request"}
+  std: {tone: green, width: 250, tag: "Standard, pre-approved", title: "A, AAAA, CNAME, TXT inside a delegated namespace", body: ["ITSM catalog item", "Scoped service account writes it", "Application owner is the requester of record"], size: 12}
+  pol: {tone: blue, width: 250, tag: "Policy-driven, no per-change approval", title: "Private endpoint records, DHCP registrations", body: ["Policy or DHCP writes and removes the record", "The policy itself is change-controlled"], size: 12}
+  hi: {tone: amber, width: 250, tag: "High-impact, change board", title: "Zones, NS and DS, forwarding rules, SRV, apex, MX and mail policy, wildcards, RPZ", body: ["DNS/DDI team approves", "CISO consulted; AO if it carries risk"], size: 12}
+  audit: {tone: violet, width: 220, title: "One audit trail", body: ["=Who changed what, when, through which interface"], size: 12}
+edges:
+  - [req, std]
+  - [req, pol]
+  - [req, hi]
+  - [std, audit, {style: dashed}]
+  - [pol, audit, {style: dashed}]
+  - [hi, audit, {style: dashed}]
+order:
+  - [std, pol, hi]

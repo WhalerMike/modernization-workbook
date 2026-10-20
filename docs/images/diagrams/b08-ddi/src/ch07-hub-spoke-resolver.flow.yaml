@@ -1,0 +1,17 @@
+# Chapter 07 — Azure DNS Private Resolver in a hub-and-spoke topology: both directions of hybrid resolution.
+rankdir: TB
+graph: {nodesep: 0.3, ranksep: 0.5}
+nodes:
+  onp: {tone: slate, width: 200, tag: "On-premises", title: "Agency DNS servers", body: ["=Conditional forwarders for the public service zones (for example `blob.core.windows.net`) point to both regions' inbound endpoints"], size: 12}
+  inb: {tone: blue, width: 210, tag: "Hub VNet", title: "Inbound endpoint", body: ["=Dedicated /28 subnet; static IP", "=Answers from Private DNS zones linked to the hub"], size: 12}
+  zone: {tone: green, width: 200, title: "Private DNS zones", body: ["=Global resources, linked to the hub VNet", "=privatelink zones and agency private zones"], size: 12}
+  spoke: {tone: blue, width: 200, tag: "Spoke VNets", title: "Workloads", body: ["=Linked to the forwarding ruleset, or use the inbound endpoint as custom DNS"], size: 12}
+  outb: {tone: blue, width: 210, tag: "Hub VNet", title: "Outbound endpoint and ruleset", body: ["=Rules forward agency namespaces to on-premises DNS", "=Not linked to the hub if a rule targets the inbound endpoint"], size: 12}
+edges:
+  - [onp, inb, {tone: blue}]
+  - [inb, zone, {tone: green}]
+  - [spoke, outb, {tone: blue}]
+  - [outb, onp, {tone: slate, style: dashed, attrs: "constraint=false"}]
+order:
+  - [onp, spoke]
+  - [inb, outb]

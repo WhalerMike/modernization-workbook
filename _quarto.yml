@@ -81,10 +81,10 @@ website:
             text: "Book 06 — Data Platform: SQL Server Identity"
           - href: docs/books/b07-pki/index.md
             text: "Book 07 — PKI & Certificates"
+          - href: docs/books/b08-ddi/index.md
+            text: "Book 08 — DNS, DHCP & IPAM"
           - href: docs/client-server-to-hybrid-cloud/README.md
             text: "Client-Server to Hybrid-Cloud"
-          - href: docs/next-generation-ddi/index.md
-            text: "Next Generation DDI"
           - href: docs/executive-governance/index.md
             text: "Executive Governance"
           - href: docs/executive-briefs/index.md
@@ -298,14 +298,15 @@ website:
               contents:
                 - auto: "docs/books/b07-pki/[0-9]*.md"
                 - auto: "docs/books/b07-pki/appendix-*.md"
+            - section: "Book 08 — DNS, DHCP & IPAM"
+              href: docs/books/b08-ddi/index.md
+              contents:
+                - auto: "docs/books/b08-ddi/[0-9]*.md"
+                - auto: "docs/books/b08-ddi/appendix-*.md"
         - section: "Client-Server to Hybrid-Cloud"
           href: docs/client-server-to-hybrid-cloud/README.md
           contents:
             - auto: "docs/client-server-to-hybrid-cloud/*.md"
-        - section: "Next Generation DDI"
-          href: docs/next-generation-ddi/index.md
-          contents:
-            - auto: "docs/next-generation-ddi/*.md"
         - section: "Executive Governance"
           href: docs/executive-governance/index.md
           contents:

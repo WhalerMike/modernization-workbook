@@ -55,8 +55,8 @@ The architecture volumes name the naming plane as a truth plane: authoritative D
 
 The strategic argument for unified DDI — why per-CSP DNS sync fails, the AD
 DNS departure, the certificate-DNS surface, and the Cisco Catalyst SD-WAN
-interception problem — is developed in the companion whitepaper
-[Next Generation DNS](../whitepapers/infoblox-hybrid-dns-unified-ddi.md);
+interception problem — is developed in the workbook's
+[Book 08 — DNS, DHCP & IPAM](../books/b08-ddi/index.md);
 this volume is the per-platform build-out beneath that argument.
 
 Because DDI is the join key the rest of the series reconciles to — the CMDB (Vol VII Book 01), the multi-CSP patch queue (Vol III Book 03), and the evidence fabric (Vol III Book 07) all key on the authoritative asset identity IPAM owns — this volume is upstream of much of the program. It is placed last in reading order only because it is the deepest implementation detail; in dependency order it is near the root.

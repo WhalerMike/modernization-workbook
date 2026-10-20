@@ -1,0 +1,18 @@
+# Chapter 08 — the end-to-end resolution flow and where the five decisions sit.
+rankdir: TB
+graph: {nodesep: 0.3, ranksep: 0.35}
+nodes:
+  br: {tone: slate, width: 120, title: "Branch client", size: 12}
+  edge: {tone: amber, width: 140, tag: "Decision 1", title: "SD-WAN redirect-dns", size: 12}
+  res: {tone: blue, width: 160, tag: "Decision 2", title: "Agency-controlled resolver", body: ["=First hop under agency policy"], size: 12}
+  plane: {tone: blue, width: 170, tag: "Decision 3", title: "DDI policy plane", body: ["=Policy, RPZ, DNSSEC, IPAM, conditional forwarding"], size: 12}
+  csp: {tone: slate, width: 150, title: "Per-CSP private zones", size: 12}
+  ad: {tone: amber, width: 170, tag: "Decision 4", title: "AD DNS inventoried before DC retirement", size: 12}
+  pki: {tone: amber, width: 170, tag: "Decision 5", title: "OCSP/CRL resolvable from every origin", size: 12}
+edges:
+  - [br, edge]
+  - [edge, res]
+  - [res, plane]
+  - [plane, csp]
+  - [ad, plane, {style: dashed}]
+  - [pki, plane, {style: dashed}]

@@ -1,0 +1,10 @@
+# Chapter 04 — the records AD maintains and what must be reprovisioned.
+rankdir: LR
+graph: {nodesep: 0.3, ranksep: 0.55}
+nodes:
+  ad: {tone: slate, width: 200, tag: "AD-integrated DNS today", title: "Records the domain maintains", body: ["SRV locators: _ldap, _kerberos, _gc", "_msdcs zone", "Dynamic updates (secure, GSS-TSIG)", "Conditional forwarders"], size: 12}
+  inv: {tone: amber, width: 190, tag: "Before any DC is decommissioned", title: "Inventory and reprovision", body: ["Export zones and forwarders", "Map dependent apps and hosts", "Move authority to the policy plane"], size: 12}
+  entra: {tone: blue, width: 190, tag: "Microsoft Entra ID", title: "Does not carry these records", body: ["Cloud identity uses FQDNs, tokens, certificates", "SRV, LDAP and Kerberos records are not migrated"], size: 12}
+edges:
+  - [ad, inv, {tone: amber}]
+  - [inv, entra, {tone: blue}]
