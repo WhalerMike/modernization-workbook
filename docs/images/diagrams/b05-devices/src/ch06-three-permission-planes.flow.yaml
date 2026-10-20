@@ -1,0 +1,15 @@
+# Chapter 06 — endpoint permissions live in three separate role systems. An
+# Entra role, an Intune role and an Azure role are assigned in different
+# places and audited in different logs, so each team's access has to be
+# designed in all three. Role names are Microsoft's built-in roles.
+rankdir: LR
+graph: {nodesep: 0.3, ranksep: 0.4}
+nodes:
+  entra: {tone: blue, width: 220, tag: "Microsoft Entra roles", title: "Tenant and directory", body: ["Conditional Access Administrator", "Cloud Device Administrator", "Hybrid Identity Administrator", "Intune Administrator: avoid for daily work"], size: 12}
+  intune: {tone: blue, width: 220, tag: "Intune RBAC", title: "Workstation management", body: ["Policy and Profile Manager", "Endpoint Security Manager", "Application Manager", "Help Desk Operator, Read Only Operator", "Scope tags limit what each role sees"], size: 12}
+  azure: {tone: blue, width: 220, tag: "Azure RBAC", title: "Arc-enabled servers", body: ["Azure Connected Machine Onboarding", "Azure Connected Machine Resource Administrator", "Contributor on a server is an indirect admin"], size: 12}
+  gate: {tone: violet, width: 220, tag: "Program design", title: "One access model", body: ["=Each team mapped in all three planes, privileged roles eligible through PIM, high-impact changes behind a second approver"], size: 12}
+edges:
+  - [entra, gate, {tone: violet}]
+  - [intune, gate, {tone: violet}]
+  - [azure, gate, {tone: violet}]

@@ -115,3 +115,27 @@ redirects:
   docs/operational-guides/conditional-access-policy-library.html: docs/books/b04-access/07-the-conditional-access-policy-library.html
   docs/operational-guides/pim-self-request-approval.html: docs/books/b04-access/08-pim-self-request-with-approval.html
   docs/libraries/conditional-access-principles.html: docs/books/b04-access/03-the-conditional-access-model.html
+
+  # Book 05 (Devices & Endpoints) replaced these pages; sources are in archive/b05-devices/.
+  docs/operational-guides/intune-arc-modernization/README.html: docs/books/b05-devices/05-the-governed-manual-and-retrofit-paths.html
+  docs/operational-guides/intune-arc-modernization/index.html: docs/books/b05-devices/05-the-governed-manual-and-retrofit-paths.html
+  docs/operational-guides/intune-arc-modernization/governed-path.html: docs/books/b05-devices/05-the-governed-manual-and-retrofit-paths.html
+  docs/operational-guides/intune-arc-modernization/manual-path.html: docs/books/b05-devices/05-the-governed-manual-and-retrofit-paths.html
+  docs/operational-guides/intune-arc-modernization/intune-arc-governed-path.html: docs/books/b05-devices/05-the-governed-manual-and-retrofit-paths.html
+  docs/operational-guides/intune-arc-modernization/intune-arc-manual-path.html: docs/books/b05-devices/05-the-governed-manual-and-retrofit-paths.html
+  docs/operational-guides/intune-arc-modernization/intune-arc-retrofit-path.html: docs/books/b05-devices/05-the-governed-manual-and-retrofit-paths.html
+  docs/guides/device-and-server-modernization/README.html: docs/books/b05-devices/05-the-governed-manual-and-retrofit-paths.html
+  docs/guides/device-and-server-modernization/governed-and-retrofit-paths.html: docs/books/b05-devices/05-the-governed-manual-and-retrofit-paths.html
+  docs/guides/device-and-server-modernization/manual-path.html: docs/books/b05-devices/05-the-governed-manual-and-retrofit-paths.html
+  docs/reference-architecture/intune-first.html: docs/books/b05-devices/04-intune-first-onboarding.html
+  docs/architecture/intune-first-onboarding.html: docs/books/b05-devices/04-intune-first-onboarding.html
+  docs/reference-architecture/gpo-cloud-governance-gaps.html: docs/books/b05-devices/01-why-group-policy-cant-come-to-the-cloud.html
+  docs/architecture/gpo-to-cloud-governance-gaps.html: docs/books/b05-devices/01-why-group-policy-cant-come-to-the-cloud.html
+  docs/operational-guides/target-surface/index.html: docs/books/b05-devices/08-gpo-to-intune-policy-migration.html
+  docs/operational-guides/target-surface/intune-policy-templates.html: docs/books/b05-devices/08-gpo-to-intune-policy-migration.html
+  docs/operational-guides/gpo-sunset-program.html: docs/books/b05-devices/07-the-gpo-sunset-program.html
+  docs/operational-guides/gpo-modernization-parse-crosswalk.html: docs/books/b05-devices/appendix-a-gpo-to-intune-crosswalk.html
+  docs/libraries/gpo-sunset-principles.html: docs/books/b05-devices/07-the-gpo-sunset-program.html
+  docs/libraries/README.html: docs/books/index.html
+  docs/whitepapers/hybrid-join-without-governance.html: docs/books/b05-devices/02-the-hybrid-join-trap.html
+  docs/architecture/where-data-lives-devices-azure.html: docs/books/b05-devices/03-where-device-and-server-data-lives.html

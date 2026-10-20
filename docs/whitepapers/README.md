@@ -8,7 +8,7 @@ Cleaned, externally usable versions of high-value modernization whitepapers.
 |----------|-------------|
 | [AD to Entra ID — The Structural Migration Problem](../books/b02-identity/01-why-identity-matters.md) | Why the governance gap is structural, not technical. Now a chapter of Book 02. |
 | [Modernization Journey](modernization-journey.md) | Forty-year arc from mainframe single source of truth to five principles for the way forward. |
-| [Hybrid Join Without Governance](hybrid-join-without-governance.md) | Why converting a large fleet to hybrid join is a near-effortless tenant switch, and the loss ledger if taken without governance. |
+| [Hybrid Join Without Governance](../books/b05-devices/02-the-hybrid-join-trap.md) | Why converting a large fleet to hybrid join is a near-effortless tenant switch, and the loss ledger if taken without governance. |
 | [Session vs. Telemetry](../books/b02-identity/02-the-structural-problem.md) | Why persistent session-based identity and continuous-verification telemetry are incompatible. Now a chapter of Book 02. |
 | [Network Transport and Governance](network-transport-and-governance.md) | Transport is a physics decision; control is a compliance decision. |
 | [Federal Compliance for Moderate Agencies](federal-compliance-for-moderate-agencies.md) | Which mandates bind the agency, which bind the vendor. |

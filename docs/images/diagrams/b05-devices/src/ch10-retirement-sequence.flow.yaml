@@ -1,0 +1,19 @@
+# Chapter 10 — retiring a corporate Windows device: back up what only the device
+# object holds, act on the device, deregister from Autopilot, delete the Intune
+# record, and delete the Entra object last, because that deletes the BitLocker
+# recovery keys stored on it.
+rankdir: TB
+graph: {nodesep: 0.3, ranksep: 0.28}
+nodes:
+  rec: {tone: violet, width: 320, tag: "Step 1", title: "Record", body: ["Export BitLocker recovery keys and the LAPS password", "Record the reason and the approval"], size: 12}
+  act: {tone: blue, width: 320, tag: "Step 2", title: "Act on the device", body: ["Wipe for reuse or disposal; retire a personal device", "Runs at next check-in"], size: 12}
+  ap: {tone: amber, width: 320, tag: "Step 3", title: "Deregister from Windows Autopilot", body: ["If the device is leaving for good"], size: 12}
+  del: {tone: slate, width: 320, tag: "Step 4", title: "Delete the Intune record", body: ["On Windows, delete triggers a retire if none ran"], size: 12}
+  ent: {tone: red, width: 320, tag: "Step 5", title: "Delete the Entra device object last", body: ["After a disable period", "Permanently deletes the recovery keys on it"], size: 12}
+  hyb: {kind: text, tone: slate, width: 200, text: "Hybrid joined: remove in Active Directory and let the change sync"}
+edges:
+  - [rec, act]
+  - [act, ap]
+  - [ap, del]
+  - [del, ent]
+  - [hyb, ent, {style: dashed}]

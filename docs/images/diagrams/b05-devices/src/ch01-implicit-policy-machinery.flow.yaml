@@ -1,0 +1,12 @@
+# Chapter 01 — what Group Policy did implicitly for a domain-joined device, the
+# fact that none of it exists on an Entra-joined, Intune-managed device, and the
+# governance functions that therefore have to be built explicitly.
+rankdir: TB
+graph: {nodesep: 0.4, ranksep: 0.5}
+nodes:
+  gp: {tone: slate, width: 240, tag: "Domain-joined device", title: "What Group Policy did implicitly", body: ["Targeting by OU position", "Inheritance, enforced links, blocked inheritance", "Loopback for shared machines", "Security and WMI filtering", "Startup and logon scripts", "Drive maps and preferences", "90-minute background refresh", "`gpresult` and Resultant Set of Policy"], size: 12}
+  cloud: {tone: red, width: 220, tag: "Entra-joined, Intune-managed", title: "None of it carries over", body: ["No OU, no inheritance", "Flat assignment to groups", "Conflicting settings not applied", "Check-in about every 8 hours"], size: 12}
+  build: {tone: violet, width: 230, tag: "Governance to rebuild", title: "What has to be built explicitly", body: ["Attribute model for targeting", "Group and filter design", "Drift detection and evidence", "Role-based access and scope tags", "Reset timing assumptions"], size: 12}
+edges:
+  - [gp, cloud, {label: "move to Entra join", tone: red}]
+  - [cloud, build, {label: "must be rebuilt", tone: violet}]

@@ -224,6 +224,17 @@ bundles:
     image_dir: docs/images/diagrams/b02-identity
     warn_unlisted: ["*.md"]
     pages: [index.md, "[0-9][0-9]-*.md", "appendix-*.md"]
+  # Book 05 — Devices & Endpoints (absorbed the target-surface section; its old
+  # download name stays as an alias).
+  - output: b05-devices-bundle.docx
+    aliases: [target-surface-bundle.docx]
+    title: "Book 05 — Devices & Endpoints"
+    subtitle: "Group Policy to Intune and Azure Arc — Modernization Workbook, combined edition"
+    root: docs/books/b05-devices
+    image_dir: docs/images/diagrams/b05-devices
+    warn_unlisted: ["*.md"]
+    pages: [index.md, "[0-9][0-9]-*.md", "appendix-*.md"]
+
   # Book 04 — Access & Privilege (absorbed the access-plane section; its old
   # download name stays as an alias).
   - output: b04-access-bundle.docx
@@ -342,10 +353,6 @@ bundles:
 
   - output: program-management-bundle.docx
     root: docs/operational-guides/program-management
-    pages: ["index.md", "**/*.md"]
-
-  - output: target-surface-bundle.docx
-    root: docs/operational-guides/target-surface
     pages: ["index.md", "**/*.md"]
 
   - output: reference-architecture-bundle.docx

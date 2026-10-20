@@ -49,7 +49,7 @@ Pick the entry point that matches your role:
  before deciding what replaces it; the
  Federal Modernization Program
  carries the engine, target surface, and program-management discipline.
-- **The target surface** — [Intune policy templates](../operational-guides/target-surface/intune-policy-templates.md),
+- **The target surface** — [Intune policy templates](../books/b05-devices/08-gpo-to-intune-policy-migration.md),
  the [Conditional Access library](../books/b04-access/07-the-conditional-access-policy-library.md),
  and the cross-adapter modernization specs.
 - **A worked consumer** — the
@@ -61,7 +61,7 @@ Pick the entry point that matches your role:
  Track 2 carries the AD → Entra ID arc from
  [the structural migration problem](../books/b02-identity/01-why-identity-matters.md)
  through
- [flipping 50,000 devices to hybrid join](../whitepapers/hybrid-join-without-governance.md),
+ [flipping 50,000 devices to hybrid join](../books/b05-devices/02-the-hybrid-join-trap.md),
  and Track 4 carries the network and infrastructure decisions — transport
  under TIC 3.0, DNS in the hybrid multi-cloud, and the field-office WAN
  case. These ship in the Modernization kit's `Whitepapers/` folder.

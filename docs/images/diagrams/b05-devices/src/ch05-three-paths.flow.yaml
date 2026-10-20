@@ -1,0 +1,23 @@
+# Chapter 05 — three paths, one end state. The manual path and the governed
+# path start from the hybrid estate and produce the same configuration on the
+# Microsoft surface. The retrofit path starts from an estate the manual path
+# already modernized and adds the governance seam without redoing the work.
+# The difference between the paths is who holds the decision record and
+# whether drift is observed continuously, not what the devices end up running.
+rankdir: TB
+graph: {nodesep: 0.3, ranksep: 0.45}
+nodes:
+  start: {tone: slate, width: 190, tag: "Starting point", title: "Hybrid AD estate", body: ["Domain-joined PCs under Group Policy", "Servers managed in place", "NTLM fallback unmeasured"], size: 12}
+  manual: {tone: amber, width: 220, tag: "Manual path", title: "Operator-run", body: ["Local change record", "Dry run, then apply", "Operator owns approval and rollback"], size: 12}
+  governed: {tone: violet, width: 220, tag: "Governed path", title: "Program-orchestrated", body: ["Scoped by organizational attributes", "Recorded approval on every write", "Continuous drift observation"], size: 12}
+  retrofit: {tone: violet, width: 220, tag: "Retrofit path", title: "Governance added later", body: ["Inventory what manual produced", "Register current state as desired", "Route future changes through approval"], size: 12}
+  end: {tone: green, width: 210, tag: "Same end state", title: "Target configuration", body: ["Servers in Azure Arc", "PCs enrolled in Intune", "NTLM restricted, SPNs clean", "Conditional Access enforced"], size: 12}
+edges:
+  - [start, manual, {tone: amber}]
+  - [start, governed, {tone: violet}]
+  - [manual, end, {tone: green}]
+  - [governed, end, {tone: green, label: "plus evidence"}]
+  - [manual, retrofit, {tone: violet, style: dashed, label: "no re-enrollment"}]
+  - [retrofit, end, {tone: violet, style: dashed, label: "plus evidence"}]
+ranks:
+  - [manual, governed]

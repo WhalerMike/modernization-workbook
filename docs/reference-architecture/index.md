@@ -146,9 +146,9 @@ The other three names (Boundary Enforcement, Two-Brain Execution, Tenant Agnosti
 | Page | Who it's for |
 |------|--------------|
 | [Delegation Matrix](../books/b02-identity/05-delegation-without-ous.md) | Identity admins mapping Administrative Units to operator roles |
-| [Intune-First Asset Onboarding](intune-first.md) | Procurement + endpoint teams governing **net-new** devices from day zero (per the program decision; for existing-fleet GPO replacement see [GPO Sunset Program](../operational-guides/target-surface/intune-policy-templates.md)) |
+| [Intune-First Asset Onboarding](../books/b05-devices/04-intune-first-onboarding.md) | Procurement + endpoint teams governing **net-new** devices from day zero (per the program decision; for existing-fleet GPO replacement see [GPO Sunset Program](../books/b05-devices/08-gpo-to-intune-policy-migration.md)) |
 | [Directory Migration — Adapters](../books/b02-identity/04-the-hidden-migration-surface.md) | Network/infrastructure engineers wiring DNS/DHCP/PKI/RADIUS through canonical adapters |
-| [GPO-to-Cloud Governance Gaps](gpo-cloud-governance-gaps.md) | Architects/operators asking *"what control do we lose moving Group Policy to Intune/Entra?"* — the five lost capabilities |
+| [GPO-to-Cloud Governance Gaps](../books/b05-devices/01-why-group-policy-cant-come-to-the-cloud.md) | Architects/operators asking *"what control do we lose moving Group Policy to Intune/Entra?"* — the five lost capabilities |
 
 ## Source Files
 

@@ -1,0 +1,20 @@
+# Chapter 02 — Microsoft's join guidance: new and reset devices go straight to
+# Entra join; existing domain-joined devices can take hybrid join as a low-impact
+# waypoint and move to Entra join at a reset event. Ungoverned, the waypoint
+# becomes the destination.
+rankdir: TB
+graph: {nodesep: 0.4, ranksep: 0.5}
+nodes:
+  existing: {tone: slate, width: 190, title: "Existing domain-joined device", size: 12}
+  new: {tone: slate, width: 190, title: "New, refurbished or reset device", size: 12}
+  hybrid: {tone: amber, width: 220, tag: "Waypoint", title: "Microsoft Entra hybrid joined", body: ["Not an end state", "Still needs line of sight to a domain controller"], size: 12}
+  stuck: {tone: red, width: 220, tag: "Ungoverned", title: "The waypoint becomes the destination", body: ["No exit plan, no refresh trigger"], size: 12}
+  entra: {tone: green, width: 220, tag: "Recommended end state", title: "Microsoft Entra joined", body: ["Default for new devices"], size: 12}
+edges:
+  - [existing, hybrid, {label: "minimal user impact", tone: amber}]
+  - [hybrid, entra, {label: "at refresh or rebuild (reset required)", tone: green}]
+  - [new, entra, {label: "default", tone: green}]
+  - [hybrid, stuck, {style: dashed, tone: red}]
+ranks:
+  - [existing, new]
+  - [entra, stuck]

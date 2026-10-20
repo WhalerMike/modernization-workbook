@@ -1,0 +1,21 @@
+# Chapter 04 — the five-phase Intune-first process: the organizational
+# assignment travels from the purchase order to a validated device; a failed
+# gate quarantines the device rather than letting it run degraded.
+rankdir: TB
+graph: {nodesep: 0.5, ranksep: 0.32}
+nodes:
+  p1: {tone: blue, width: 300, tag: "Phase 1 · Procurement", title: "Procure", body: ["=Purchase order with the organizational assignment"], foot: "Gate: validated against the organizational registry", size: 12}
+  p2: {tone: blue, width: 300, tag: "Phase 2 · Procurement and vendor", title: "Pre-stage", body: ["=Vendor record, such as Autopilot registration with group tag"], foot: "Gate: vendor record carries the assignment", size: 12}
+  p3: {tone: blue, width: 300, tag: "Phase 3 · Governance pipeline", title: "Position", body: ["=Mapping table entry keyed on serial number"], foot: "Gate: mapping committed and reviewed", size: 12}
+  p4: {tone: blue, width: 300, tag: "Phase 4 · User or IT, zero-touch", title: "Provision", body: ["=Enrolled, assigned, compliant device"], foot: "Gate: compliant, Conditional Access grants access", size: 12}
+  p5: {tone: green, width: 300, tag: "Phase 5 · Governance pipeline", title: "Validate", body: ["=Validation record in the audit log"], foot: "Device enters production", size: 12}
+  q: {tone: red, width: 190, tag: "Pillar 5", title: "Quarantine", body: ["`/UNPOSITIONED`", "Governance ticket"], size: 12}
+order: [[p3, q]]
+edges:
+  - [p1, p2]
+  - [p2, p3]
+  - [p3, p4]
+  - [p4, p5, {tone: green}]
+  - [p3, q, {tone: red, style: dashed, label: "gate fails"}]
+  - [p4, q, {tone: red, style: dashed}]
+  - [p5, q, {tone: red, style: dashed}]

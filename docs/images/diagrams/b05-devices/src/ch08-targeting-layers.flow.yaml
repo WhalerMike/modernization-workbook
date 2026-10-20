@@ -1,0 +1,17 @@
+# Chapter 08 — how a policy reaches a device: attributes on the Entra device
+# object drive dynamic groups; the assignment adds exclusions and an assignment
+# filter on Intune device properties; each setting has one owning policy; the
+# compliance result is consumed by Conditional Access (Book 04).
+rankdir: TB
+graph: {nodesep: 0.3, ranksep: 0.3}
+nodes:
+  attr: {tone: slate, width: 300, tag: "Entra device object", title: "Device attributes", body: ["Region, department", "Security tier, device role", "Environment", "Written through Microsoft Graph"], size: 12}
+  grp: {tone: blue, width: 300, title: "Dynamic device groups", body: ["`extensionAttribute11` = Tier0", "`extensionAttribute12` = Kiosk"], size: 12}
+  asg: {tone: blue, width: 300, title: "Assignment", body: ["Include group", "Exclude: break-glass, staging", "Filter: join type, ownership, model, OS SKU"], size: 12}
+  pol: {tone: green, width: 300, title: "One owning policy per setting", body: ["Compliance", "Configuration", "Endpoint security", "App protection"], size: 12}
+  ca: {tone: violet, width: 300, tag: "Book 04", title: "Conditional Access", body: ["Require device to be marked as compliant"], size: 12}
+edges:
+  - [attr, grp]
+  - [grp, asg]
+  - [asg, pol]
+  - [pol, ca, {style: dashed, tone: violet, label: "compliance result"}]

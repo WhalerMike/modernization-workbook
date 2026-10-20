@@ -1,0 +1,24 @@
+# Chapter 10 — the run-state loop: the policy library is assigned, Intune and
+# Defender deliver it and collect per-device status, a scheduled comparison
+# classifies differences, findings close at the policy or the device, and every
+# step leaves evidence. The compliance result also feeds Conditional Access.
+rankdir: TB
+graph: {nodesep: 0.35, ranksep: 0.3}
+nodes:
+  des: {tone: green, width: 300, tag: "Desired state", title: "Policy library", body: ["Compliance, configuration", "Endpoint security, update rings"], size: 12}
+  svc: {tone: blue, width: 300, title: "Intune and Defender for Endpoint", body: ["Deliver policy", "Collect status, compliance, alerts"], size: 12}
+  dev: {tone: slate, width: 300, title: "Devices", body: ["Windows 11, Entra joined"], size: 12}
+  cmp: {tone: violet, width: 300, title: "Scheduled comparison", body: ["Compliance drift, conflicts", "Update lag, inventory mismatches", "Defender alerts"], size: 12}
+  fix: {tone: amber, width: 240, title: "Close the finding", body: ["Change the policy through change control", "or remediate the device"], size: 12}
+  ev: {tone: violet, width: 240, title: "Evidence store", body: ["Audit logs, compliance exports", "Reports, decision records"], size: 12}
+  ca: {tone: violet, width: 240, tag: "Book 04", title: "Conditional Access", body: ["Require a compliant device"], size: 12}
+edges:
+  - [des, svc]
+  - [svc, dev]
+  - [dev, cmp, {label: "reports"}]
+  - [cmp, fix, {tone: green, label: "fix at the source"}]
+  - [cmp, ev, {style: dashed, tone: violet}]
+  - [fix, ev, {style: dashed, tone: violet}]
+  - [svc, ca, {style: dashed, tone: blue, label: "compliance state"}]
+ranks:
+  - [fix, ev]

@@ -1,0 +1,21 @@
+# Chapter 03 — the authority map for devices and servers: procurement owns the
+# business facts; each Microsoft record owns a slice of technical state; the
+# arrows are the derived pointers and the keys that carry them.
+rankdir: TB
+graph: {nodesep: 0.45, ranksep: 0.45}
+nodes:
+  proc: {tone: violet, width: 180, tag: "Business facts", title: "Procurement record and CMDB", body: ["Ownership and purpose", "Assigned location", "Organizational assignment", "Lifecycle and retirement"], size: 12}
+  ap: {tone: blue, width: 180, tag: "Authoritative", title: "Windows Autopilot registration", body: ["Hardware hash to tenant", "Group tag, purchase order ID"], size: 12}
+  arc: {tone: blue, width: 180, tag: "Authoritative", title: "Azure Arc machine resource", body: ["Azure resource ID", "Tags, policy, extensions", "ESU license state"], size: 12}
+  entra: {tone: blue, width: 180, tag: "Anchor", title: "Microsoft Entra ID device object", body: ["Device identity, join type", "Group membership", "BitLocker recovery keys"], size: 12}
+  intune: {tone: blue, width: 180, tag: "Authoritative", title: "Intune managed device", body: ["Enrollment and ownership", "Compliance evaluation", "Configuration"], size: 12}
+  mde: {tone: violet, width: 180, tag: "Authoritative", title: "Defender for Endpoint", body: ["Risk and exposure", "Health and onboarding"], size: 12}
+order: [[ap, arc], [intune, mde]]
+edges:
+  - [proc, ap, {label: "serial, group tag, PO"}]
+  - [proc, arc, {label: "tags"}]
+  - [ap, entra, {label: "registration creates object"}]
+  - [arc, entra, {label: "managed identity", style: dashed}]
+  - [entra, intune, {label: "deviceId = azureADDeviceId; isCompliant written back", both: true}]
+  - [entra, mde, {label: "aadDeviceId", style: dashed}]
+  - [mde, intune, {label: "machine risk score", tone: violet}]

@@ -95,7 +95,7 @@ The AD → Entra ID arc.
 | [AD-to-Entra ID Structural Migration Problem](../books/b02-identity/01-why-identity-matters.md) | Moved to Book 02 | Original statement of the structural migration problem — read for the business case. |
 | [The Session vs. Telemetry Divide](../books/b02-identity/02-the-structural-problem.md) | Moved to Book 02 | The architectural-tension argument split out of the paper above 2026-08-03 — strong enough to stand alone, was diluting the parent's focus. Read right after it. |
 | [Modernization Journey](modernization-journey.md) | Draft | The mainframe→cloud arc end to end. **The argument is vendor-neutral and product-neutral** — written to hand to an audience that isn't evaluating a platform — and a separable [closing appendix](modernization-journey.md#appendix-narrative-provenance-this-arc-mapped-to-fmp-canon) maps Act 4 to the ADRs behind it. Cross-listed as the flagship of Track 4. |
-| [Flipping 50,000 Devices to Hybrid Join](hybrid-join-without-governance.md) | Draft | One concrete operation *inside* the arc above — governed vs. ungoverned hybrid join. Read after *Modernization Journey*; it assumes that paper's control-plane/data-plane framing. |
+| [Flipping 50,000 Devices to Hybrid Join](../books/b05-devices/02-the-hybrid-join-trap.md) | Draft | One concrete operation *inside* the arc above — governed vs. ungoverned hybrid join. Read after *Modernization Journey*; it assumes that paper's control-plane/data-plane framing. |
 | [Federal SSOT Alignment](../books/b02-identity/02-the-structural-problem.md) | Moved to Book 02 | Same identity-modernization event, read through the data-governance/SSOT-mandate lens instead of the architecture lens. |
 | [FMP vs. Native Tools](../books/b02-identity/06-who-owns-the-migration.md) | Moved to Book 02 | AD assessment methodology and gap analysis against Microsoft-native tooling — also anchors Track 6. |
 
@@ -180,7 +180,7 @@ alphabetical file list.
 
 1. [AD-to-Entra ID Structural Migration Problem](../books/b02-identity/01-why-identity-matters.md) — the original problem statement.
 2. [Modernization Governance](modernization-governance-whitepaper.md) → [Modernization Journey](modernization-journey.md) — governance framing, then the full arc.
-3. [Flipping 50,000 Devices to Hybrid Join](hybrid-join-without-governance.md) — the first concrete operation to execute inside that arc.
+3. [Flipping 50,000 Devices to Hybrid Join](../books/b05-devices/02-the-hybrid-join-trap.md) — the first concrete operation to execute inside that arc.
 4. [Federal SSOT Alignment](../books/b02-identity/02-the-structural-problem.md) — the data-governance-mandate framing of the same event.
 
 **Someone evaluating FMP against Microsoft-native tools or a build-vs-buy decision**

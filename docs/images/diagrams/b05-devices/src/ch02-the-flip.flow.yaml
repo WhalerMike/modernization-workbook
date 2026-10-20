@@ -1,0 +1,14 @@
+# Chapter 02 — the ungoverned hybrid-join flip: two tenant-wide changes, after
+# which every domain-joined Windows device registers itself; nothing in the
+# path checks ownership, organizational position or approval.
+rankdir: TB
+graph: {nodesep: 0.4, ranksep: 0.45}
+nodes:
+  admin: {tone: slate, width: 220, tag: "Administrator, once", title: "Two tenant-wide changes", body: ["Add computer OUs to sync scope", "Publish the SCP (tenant ID, verified domain) in each forest, or push it by GPO"], size: 12}
+  dev: {tone: slate, width: 230, tag: "Every domain-joined Windows device", title: "Automatic Device Join task", body: ["Runs at domain join and sign-in, retries hourly", "Reads the SCP over LDAP", "Writes a certificate to the computer object"], size: 12}
+  entra: {tone: blue, width: 220, tag: "Microsoft Entra ID", title: "Device registered", body: ["Device object created on next sync", "Registration completes", "Users get a Primary Refresh Token"], size: 12}
+  gap: {tone: red, width: 230, title: "Missing from every step", body: ["No per-device gate", "No ownership check", "No position check", "No reconciliation"], size: 12}
+edges:
+  - [admin, dev, {label: "once per forest"}]
+  - [dev, entra, {label: "next sync cycle", tone: blue}]
+  - [dev, gap, {style: dashed, tone: red}]

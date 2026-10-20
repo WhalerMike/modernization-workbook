@@ -26,13 +26,13 @@ This repository extracts practical modernization concepts — single source of t
 - [Single Source of Truth](docs/architecture/single-source-of-truth.md)
 - [Change Control and Provenance](docs/architecture/change-control-and-provenance.md)
 - [Directory Migration Bridge](docs/books/b02-identity/04-the-hidden-migration-surface.md)
-- [GPO-to-Cloud Governance Gaps](docs/architecture/gpo-to-cloud-governance-gaps.md)
+- [GPO-to-Cloud Governance Gaps](docs/books/b05-devices/01-why-group-policy-cant-come-to-the-cloud.md)
 - [From Attributes to Access (dynamic groups)](docs/books/b03-hr-identity/10-from-attributes-to-access.md)
 - [Delegation Matrix](docs/books/b02-identity/05-delegation-without-ous.md)
 
 ### Operational Guides
 - [Operational Guides index](docs/operational-guides/README.md)
-- [GPO Sunset Program](docs/operational-guides/gpo-sunset-program.md)
+- [GPO Sunset Program](docs/books/b05-devices/07-the-gpo-sunset-program.md)
 - [Conditional Access Policy Library](docs/books/b04-access/07-the-conditional-access-policy-library.md)
 - [Intune + Azure Arc paths](docs/operational-guides/intune-arc-modernization/)
 - [DNS Modernization](docs/operational-guides/dns-modernization.md)
@@ -56,7 +56,7 @@ This repository extracts practical modernization concepts — single source of t
 - [Executive Governance Series](docs/executive-governance/)
 
 ### Libraries
-- [Principles extracts](docs/libraries/README.md)
+- [Principles extracts](docs/books/index.md)
 
 ## Governance
 

@@ -1,0 +1,23 @@
+# Chapter 07 — the GPO sunset as a pipeline: every GPO setting is inventoried,
+# classified, crosswalked and decided before any population is moved; GPO links
+# are disabled only after the replacement owns the setting and evidence exists;
+# the GPO object is retired last.
+rankdir: TB
+graph: {nodesep: 0.3, ranksep: 0.3}
+nodes:
+  inv: {tone: slate, width: 300, tag: "Step 1", title: "Inventory and parse", body: ["Every linked GPO, every setting", "`Get-GPOReport` XML, Group Policy analytics"], size: 12}
+  cls: {tone: amber, width: 300, tag: "Step 2", title: "Classify each setting", body: ["Required, obsolete, high-risk, redundant"], size: 12}
+  xw: {tone: blue, width: 300, tag: "Step 3", title: "Crosswalk", body: ["Closest Intune surface, or none", "Appendix A"], size: 12}
+  dec: {tone: amber, width: 300, tag: "Step 4", title: "Decide and record", body: ["Migrate, replace, retire, or keep as a dated exception"], size: 12}
+  seq: {tone: blue, width: 300, tag: "Step 5", title: "Sequence by population", body: ["Pilot cohort, then waves", "One authority per workload"], size: 12}
+  unl: {tone: violet, width: 300, tag: "Step 6", title: "Freeze, then disable links", body: ["Back up, disable the link per population, watch"], size: 12}
+  ret: {tone: green, width: 300, tag: "Step 7", title: "Retire the GPO", body: ["Archive after the retention window", "Only dated exceptions remain"], size: 12}
+  ev: {kind: text, tone: violet, width: 220, text: "Evidence gate: the Intune setting reports Succeeded on the population before its GPO link is disabled"}
+edges:
+  - [inv, cls]
+  - [cls, xw]
+  - [xw, dec]
+  - [dec, seq]
+  - [seq, unl]
+  - [unl, ret]
+  - [ev, unl, {style: dashed, tone: violet}]
