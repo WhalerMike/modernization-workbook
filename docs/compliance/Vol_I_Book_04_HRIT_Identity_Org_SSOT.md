@@ -70,7 +70,7 @@ The provisioning-pipeline treatment of the same program — how
 authoritative HR events route into the identity platform under an
 HR-agnostic adapter architecture, with the evidence contract that
 routing produces — is the
-[HR-Driven Identity series](../hr-driven-iam/index.md), which also
+[HR-Driven Identity series](../books/b03-hr-identity/index.md), which also
 carries the Federal HR 2.0 current state (consolidation memo, Oracle Core
 HCM award, wave schedule) in its Chapter 02.
 

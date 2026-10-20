@@ -1,0 +1,48 @@
+# Verification — Chapter 04, Attribute Authority
+
+File: `docs/books/b03-hr-identity/04-attribute-authority.md`
+Diagram sources: `docs/images/diagrams/b03-hr-identity/src/ch04-authority-map.flow.yaml`, `ch04-identifier-layers.flow.yaml`
+Verified: 2026-10-20
+
+The chapter had no footnotes before this pass. Twelve were added.
+
+## Claims log
+
+| # | Claim (short) | Where | Verdict | Source |
+|---|---|---|---|---|
+| 1 | Core HCM for Federal HR 2.0 is Oracle Fusion Cloud HCM | Opening | verified | opm.gov news release (award to Oracle); FedRAMP Marketplace data (Oracle Fusion Cloud includes HCM) |
+| 2 | Delivered as SaaS under the provider's own authorization | Opening | verified, made specific: FedRAMP authorization (OPM: "FedRAMP-certified, cloud-based SaaS"; Marketplace: Fusion Cloud FedRAMP Authorized, Moderate) | opm.gov release; GSA marketplace-fedramp-gov-data data.json, product F1603257882 |
+| 3 | A position exists independently of any incumbent | Record table | verified | Oracle "Considerations for Using Jobs and Positions" |
+| 4 | Assignment carries organization, location, supervisor, effective date | Record table | verified (Oracle `empassignment` feed covers assignment and manager changes) | Oracle "Employee Feeds" |
+| 5 | HCM records are effective-dated; future-dated changes exist before they take effect | Effective dating | verified; one sentence added quoting Oracle's model | Oracle "Date Effectivity" |
+| 6 | IA-4: authorization to assign, select, assign, prevent reuse for a defined period | Identifiers | verified | NIST SP 800-53 Rev. 5 (OSCAL catalog text, IA-4 a–d) |
+| 7 | IA-4(4) status characterization, e.g. contractor | Worker type | verified; wording tightened (the control says "characteristics"; the discussion names contractors) | SP 800-53 Rev. 5, IA-4(4) and discussion |
+| 8 | PIV credential identifiers change when the credential is reissued | Identifier table | verified; "FASC-N/UUID" made precise as "FASC-N and card UUID" | FIPS 201-3 (reissuance generates new FASC-N and card UUID) |
+| 9 | (Added) FIPS 201-3 optional cardholder UUID is a persistent cardholder identifier | After identifier table | verified (added, with a design note that it can't replace the enterprise key) | FIPS 201-3, CHUID section |
+| 10 | (Added) Entra `employeeId` max 16 characters, so the enterprise key must fit | Identifier decision | verified (added) | Graph user resource type |
+| 11 | Enterprise person key choice, Mainframe PIN example, rehire re-links the same person | Identifier decision | restated-as-design (program position; generic example, no agency named) | — |
+| 12 | (Added) Core HCM Change Worker Type converts contingent worker to employee in one transaction | Worker type | verified (added; Oracle 26B Redwood feature) | Oracle 26B What's New |
+| 13 | Worker type drives member/guest, licensing, CA baseline | Worker type | restated-as-design (unchanged; program design) | — |
+| 14 | HR is a Privacy Act system of records; OPM/GOVT-1 governs general personnel records | Privacy | verified | Federal Register 88 FR (Aug 17, 2023), OPM/GOVT-1 modified SORN |
+| 15 | Moving HR data to the directory needs "a routine-use basis" | Privacy | corrected (per coordinator note from the Chapter 07 editor, verified): within the maintaining agency the basis is normally need-to-know, 5 U.S.C. 552a(b)(1); a routine use is a disclosure outside the agency (A-108). Section heading and "In this chapter" line renamed from "identity is a routine-use consumer" to the disclosure-basis framing; determination left to the privacy office | 5 U.S.C. 552a(b)(1), (b)(3); OMB Circular A-108 (Dec 2016), "Routine Uses" |
+| 16 | PIA update, minimization, SSN not a join key | Privacy | restated-as-design | — |
+| 17 | Operating rules (one master, no manual edits, corrections upstream, provenance) | Operating rules | restated-as-design | — |
+| 18 | Writeback carries only username, work email, work phone | Operating rules | verified as consistent with Microsoft's Oracle HCM guide (detailed and footnoted in Chapter 05) | Microsoft Learn Oracle HCM tutorial |
+
+## Carry-forward ledger
+
+| Source page § | Went to | Or why not carried |
+|---|---|---|
+| Front matter | kept | edited: added `part: What`; `lifecycle_review` 2027-01-01 → 2027-04-01 |
+| Thesis line, "In this chapter" | kept | edited: privacy item reworded to match the corrected section |
+| What a human capital system actually owns | kept | edited: FedRAMP authorization made explicit, footnotes on position and assignment rows |
+| System of record versus identity provider | kept | unchanged |
+| Effective dating: truth with a timeline | kept | edited: one sentence with Oracle's date-effectivity definition |
+| Authoritative versus derived attributes (incl. authority map diagram and table) | kept | unchanged |
+| One person, layered identifiers (incl. diagram and table) | kept | edited: card UUID precision, cardholder UUID note, 16-character `employeeId` limit; diagram fig-alt and source body changed "PIV FASC-N or UUID" → "PIV FASC-N or card UUID" |
+| The worker-type boundary | kept | edited: Oracle Change Worker Type sentence; IA-4(4) wording |
+| Privacy: identity is a routine-use consumer | kept as "Privacy: the disclosure basis for identity" | edited: need-to-know vs routine use corrected (claim 15) |
+| Operating rules | kept | unchanged |
+| Continue the series | kept as "Continue the book" | edited to Book 02 callout style; full Chapter 03 title; "Book index" |
+
+Diagram source note: the comment headers in `ch04-*.flow.yaml` still say "Chapter 03" (pre-renumbering); comments aren't rendered, so left alone.

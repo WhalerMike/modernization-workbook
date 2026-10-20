@@ -1,0 +1,16 @@
+# Chapter 11 — drift and evidence: every event leaves a record; scheduled comparison
+# finds the differences; findings close upstream.
+rankdir: LR
+graph: {nodesep: 0.3, ranksep: 0.4}
+nodes:
+  hr: {tone: amber, width: 150, title: "HR record", body: ["=What should be true"], size: 12}
+  dir: {tone: blue, width: 150, title: "Directories and apps", body: ["=What is true"], size: 12}
+  cmp: {tone: violet, width: 170, title: "Scheduled comparison", body: ["=Missing, stale, orphan, attribute, write and credential drift"], size: 12}
+  fix: {tone: green, width: 170, title: "Close at the right end", body: ["=Fix the record or the rule, never the copy"], size: 12}
+  ev: {tone: slate, width: 170, title: "Evidence", body: ["=Provenance, workflow runs, findings, metrics"], size: 12}
+edges:
+  - [hr, cmp]
+  - [dir, cmp]
+  - [cmp, fix, {tone: green}]
+  - [cmp, ev, {style: dashed}]
+  - [fix, ev, {style: dashed}]

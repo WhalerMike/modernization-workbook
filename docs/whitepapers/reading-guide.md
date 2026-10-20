@@ -143,7 +143,7 @@ provenance lives.
 
 | Paper | Status | Role |
 |---|---|---|
-| [HR-Driven Identity](../hr-driven-iam/index.md) (series; replaces the Federal HRIT Productization paper) | Active | Inbound HR provisioning into Entra ID — a specific integration domain, not a general-purpose entry point. |
+| [HR-Driven Identity](../books/b03-hr-identity/index.md) (series; replaces the Federal HRIT Productization paper) | Active | Inbound HR provisioning into Entra ID — a specific integration domain, not a general-purpose entry point. |
 | [Federal AI Governance — Submission Readiness](federal-ai-governance-submission-readiness.md) | Active | AI-system governance under M-25-21 — narrowest scope in the corpus; read only if AI-system inventory/ATO submission is the live question. |
 | [Federal SSOT Alignment](../books/b02-identity/02-the-structural-problem.md) | Moved to Book 02 | Cross-listed from Track 2 — also a data-governance-mandate alignment paper. |
 

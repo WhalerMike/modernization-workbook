@@ -1,0 +1,15 @@
+# Chapter 10 — the derivation chain: every entitlement traces back to a personnel
+# record through an attribute and a rule.
+rankdir: LR
+graph: {nodesep: 0.3, ranksep: 0.4}
+nodes:
+  rec: {tone: amber, width: 128, title: "Personnel record", body: ["=Standard attributes and the action that set them"], size: 12}
+  attr: {tone: blue, width: 128, title: "Stamped attributes", body: ["=Codes in native and extension attributes"], size: 12}
+  grp: {tone: blue, width: 128, title: "Dynamic groups", body: ["=Rules; nobody joins by hand"], size: 12}
+  ent: {tone: green, width: 135, title: "Entitlements", body: ["=Apps, access packages, Conditional Access"], size: 12}
+  priv: {tone: red, width: 150, title: "Privileged access", body: ["=Assigned groups and PIM; HR decides eligibility, never standing"], size: 12}
+edges:
+  - [rec, attr]
+  - [attr, grp]
+  - [grp, ent, {tone: green}]
+  - [attr, priv, {tone: red, style: dashed, label: "eligibility only"}]

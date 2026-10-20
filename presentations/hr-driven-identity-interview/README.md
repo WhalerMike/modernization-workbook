@@ -1,6 +1,6 @@
 # HR-Driven Identity Modernization: interview presentation set
 
-The presentation built from the [HR-Driven Identity](../../docs/hr-driven-iam/) workbook series, delivered as a 15-minute Enterprise Data Architect interview talk. This is the agency-agnostic edition: the examples are generic, and any agency can adapt it.
+The presentation built from the [Book 03 — HR-Driven Identity](../../docs/books/b03-hr-identity/index.md) workbook series, delivered as a 15-minute Enterprise Data Architect interview talk. This is the agency-agnostic edition: the examples are generic, and any agency can adapt it.
 
 This folder sits outside `docs/`, so the Quarto site doesn't render it.
 

@@ -249,7 +249,7 @@ Retirement criteria (all must be true):
 - Every service account has moved to an Entra ID workload identity.
 - AD CS is replaced; DNS, RADIUS, and LDAP applications are migrated and validated.
 
-These six conditions are the core of the 12-point retirement readiness checklist in the program's adapter specification. HR-sourced provisioning is the subject of [the provisioning pipeline in the HR-driven IAM series](../../hr-driven-iam/04-the-provisioning-pipeline.md).
+These six conditions are the core of the 12-point retirement readiness checklist in the program's adapter specification. HR-sourced provisioning is the subject of [the provisioning pipeline in the HR-driven IAM series](../b03-hr-identity/05-the-provisioning-pipeline.md).
 
 Current Microsoft facts that shape this adapter:
 
