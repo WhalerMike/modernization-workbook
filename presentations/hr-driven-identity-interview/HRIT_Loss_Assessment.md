@@ -109,7 +109,7 @@ To make this "HR-driven Entra ID **on HRIT standard attributes**", add an OPM da
 | Tenure, type of appointment, work schedule | Worker-type and lifecycle profile (pre-hire window, retention, license) |
 | Nature of action (NOA) code families | **Lifecycle trigger classification.** Accessions → joiner; position changes → mover; conversions → conversion; non-pay or non-duty status (leave, suspension) → *not* a leaver; return to duty → reinstate; separations → leaver |
 
-Why this is the thesis rather than a detail: OPM standard data elements are **the same at every agency on the platform**. One crosswalk from those standards to Entra ID and AD can serve all of SSA's populations and is portable across agencies. A crosswalk from Oracle field names is one vendor's implementation. Personnel-action codes also settle the questions the corpus left open: what counts as a leaver, what counts as leave, and which event wins.
+Why this is the thesis rather than a detail: OPM standard data elements are **the same at every agency on the platform**. One crosswalk from those standards to Entra ID and AD can serve all of an agency's populations and is portable across agencies. A crosswalk from Oracle field names is one vendor's implementation. Personnel-action codes also settle the questions the corpus left open: what counts as a leaver, what counts as leave, and which event wins.
 
 **Caveats.**
 - I listed these elements and NOA families from general knowledge of OPM's Guide to Data Standards and the Guide to Processing Personnel Actions (GPPA). Check them against OPM's current publications before you cite them.
