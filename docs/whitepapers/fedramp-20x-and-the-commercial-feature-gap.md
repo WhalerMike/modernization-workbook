@@ -305,7 +305,7 @@ are routinely conflated. Read from the Marketplace product dataset on
 | **`MSO365MTA`** | M365 Government Community Cloud & Supporting Services — *the identical name* | FedRAMP **In Process**, Initial Implementation, **0 authorizations** | **D (High)** |
 | **`FR1824057433`** | M365 Government Community Cloud-**High** | FedRAMP Certified since 2024-12-26, 5 authorizations | D (High) |
 
-`MSO365MT` is the offering roughly ninety agencies actually run — IRS, SSA, DOJ,
+`MSO365MT` is the offering roughly ninety agencies actually run — IRS, DOJ,
 State, DHS, NASA, CDC, EPA among them — and it is certified at **Moderate**.
 `FR1824057433` is GCC High, a **different product** with a different namespace
 and network regime. Neither is new.
