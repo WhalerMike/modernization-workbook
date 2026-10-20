@@ -1,0 +1,25 @@
+# Chapter 03 — CA audit evidence. The CA audit filter selects CA operations;
+# the Audit Certification Services subcategory lets Windows generate the
+# events. Neither works alone. Events stay in the local Security log until WEF
+# collects them, so the log is sized for collection outages. Domain
+# controllers add event 5136 for Public Key Services changes.
+rankdir: TB
+graph: {nodesep: 0.3, ranksep: 0.45}
+nodes:
+  filt: {tone: slate, width: 210, tag: "On the CA", title: "CA audit filter", body: ["`AuditFilter 127` or the Auditing tab", "=Selects which CA operations are audited"], size: 12}
+  pol: {tone: slate, width: 210, tag: "GPO", title: "Audit Certification Services", body: ["=Success and Failure; lets Windows generate the events"], size: 12}
+  dc: {tone: slate, width: 210, tag: "Domain controllers", title: "Audit Directory Service Changes", body: ["=SACL on Public Key Services; event 5136"], size: 12}
+  log: {tone: slate, width: 210, tag: "CA server", title: "Local Security log", body: ["=Sized so a collection outage can't overwrite evidence"], size: 12}
+  wef: {tone: violet, width: 210, tag: "Collect", title: "Windows Event Forwarding", body: ["=Collector confirms arrival"], size: 12}
+  siem: {tone: violet, width: 240, tag: "Alert", title: "SIEM", body: ["4886, 4887, 4888 requests and issuance", "4882, 4885, 4890, 4892 configuration drift", "4896, 4897 database and role changes"], size: 12}
+  mdi: {tone: violet, width: 210, tag: "Posture", title: "Defender for Identity sensor on the CA", body: ["=Assessments and alerts"], size: 12}
+order:
+  - [filt, pol, dc]
+  - [wef, mdi]
+edges:
+  - [filt, log]
+  - [pol, log]
+  - [log, wef, {tone: violet}]
+  - [wef, siem, {tone: violet}]
+  - [dc, siem, {tone: violet}]
+  - [mdi, siem, {style: dashed, tone: violet, label: "assessments and alerts"}]

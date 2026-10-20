@@ -1,0 +1,28 @@
+# Chapter 06 — one Microsoft Entra certificate-based authentication sign-in:
+# home realm discovery, the mutual-TLS handshake at the certificate
+# authentication endpoint, CRL check, username binding, authentication binding,
+# and the single-factor and multifactor outcomes.
+column: 175
+gap: 22
+participants:
+  - {id: dev, label: "User's device", sub: "browser or Windows", tone: slate}
+  - {id: login, label: "Microsoft Entra ID sign-in", sub: "login.microsoftonline.com", tone: blue}
+  - {id: cert, label: "Certificate authentication endpoint", sub: "certauth.login.microsoftonline.com", tone: blue}
+steps:
+  - {from: dev, to: login, n: 1, label: "Username; home realm discovery finds the user"}
+  - {from: login, to: dev, n: 2, dashed: true, label: "Offer: Use a certificate or smart card"}
+  - {from: dev, to: cert, n: 3, label: "Redirect; mutual-TLS handshake requests the client certificate"}
+  - {from: dev, to: cert, n: 4, label: "User selects a certificate"}
+  - {from: cert, to: cert, n: 5, label: "Build chain in the trust store; check each CA's CRL"}
+  - {from: cert, to: cert, n: 6, label: "Username bindings, in priority order, find one user"}
+  - {from: cert, to: cert, n: 7, label: "Authentication binding rules: single-factor or multifactor"}
+  - frame: "Multifactor certificate, Conditional Access requires MFA"
+    tone: green
+    steps:
+      - {from: cert, to: dev, n: 8, dashed: true, tone: green, label: "Signed in; primary refresh token returned"}
+  - frame: "Single-factor certificate, MFA required"
+    tone: amber
+    steps:
+      - {from: login, to: dev, n: 8, dashed: true, tone: amber, label: "Second factor: passkey, passwordless phone sign-in or FIDO2 key"}
+  - note: "TLS inspection of the certificate authentication endpoint breaks step 3; exempt *.certauth.login.microsoftonline.com."
+    tone: red

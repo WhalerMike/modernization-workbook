@@ -1,0 +1,21 @@
+# Chapter 02 — classifying one template or use case: three questions, asked in
+# order, send it to RETIRE, MIGRATE, BRIDGE or RETAIN.
+rankdir: TB
+graph: {nodesep: 0.3, ranksep: 0.35}
+nodes:
+  s: {kind: pill, tone: slate, text: "One template and the use case it serves"}
+  q1: {tone: amber, width: 240, tag: "Question 1", title: "Is the consumer being retired?", size: 12}
+  q2: {tone: amber, width: 240, tag: "Question 2", title: "Does an Intune or Entra path replace it?", body: ["=Cloud PKI SCEP to a managed device, or Entra CBA"], size: 12}
+  q3: {tone: amber, width: 240, tag: "Question 3", title: "Does it depend on AD itself?", body: ["=Domain controllers, NTAuth, NPS"], size: 12}
+  retire: {tone: slate, width: 240, tag: "RETIRE", title: "Let it expire", body: ["=Remove from autoenrollment; archive the template; keep decryption keys"], size: 12}
+  migrate: {tone: green, width: 240, tag: "MIGRATE", title: "Move to the cloud path", body: ["=Deploy the new profile; don't renew from AD CS"], size: 12}
+  bridge: {tone: amber, width: 240, tag: "BRIDGE", title: "Run both in parallel", body: ["=AD CS keeps issuing until AD or the service retires"], size: 12}
+  retain: {tone: red, width: 240, tag: "RETAIN", title: "Keep on-premises", body: ["=No cloud equivalent; record as debt with an owner and review date"], size: 12}
+edges:
+  - [s, q1]
+  - [q1, retire, {label: "yes"}]
+  - [q1, q2, {label: "no"}]
+  - [q2, migrate, {label: "yes", tone: green}]
+  - [q2, q3, {label: "no"}]
+  - [q3, bridge, {label: "yes", tone: amber}]
+  - [q3, retain, {label: "no", tone: red}]

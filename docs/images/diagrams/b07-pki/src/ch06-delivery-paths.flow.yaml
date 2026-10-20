@@ -1,0 +1,31 @@
+# Chapter 06 — three ways Intune delivers a certificate. The trusted certificate
+# profile is deployed first on every path. SCEP from Cloud PKI and SCEP from AD CS
+# both keep the private key on the device; PKCS generates the key on the
+# Certificate Connector server and ships it to the device as a PFX.
+rankdir: TB
+graph: {nodesep: 0.3, ranksep: 0.35}
+nodes:
+  trust: {tone: green, width: 300, tag: "Deploy first", title: "Trusted certificate profile", body: ["=Root and issuing CA certificates, one profile per platform"], size: 12}
+  s1: {tone: blue, width: 230, tag: "SCEP · Cloud PKI", title: "Device makes the key and request", body: ["=Private key never leaves the device"], size: 12}
+  s2: {tone: slate, width: 230, tag: "SCEP · AD CS", title: "Device makes the key and request", body: ["=Private key never leaves the device"], size: 12}
+  s3: {tone: amber, width: 230, tag: "PKCS · AD CS", title: "Connector makes the key and request", body: ["=Private key leaves the server it was made on"], size: 12}
+  r1: {tone: blue, width: 230, title: "Cloud PKI registration authority", body: ["=Validates the Intune SCEP challenge"], size: 12}
+  r2: {tone: slate, width: 230, title: "NDES with the Intune policy module", body: ["=Validates the challenge; connector reports to Intune"], size: 12}
+  r3: {tone: slate, width: 230, title: "Certificate Connector", body: ["=Requests from the CA; returns a PFX to Intune"], size: 12}
+  c1: {tone: blue, width: 230, title: "Cloud PKI issuing CA", body: ["=No on-premises servers"], size: 12}
+  c2: {tone: slate, width: 230, title: "AD CS enterprise issuing CA", body: ["=Template: subject supplied, Enroll for NDES only"], size: 12}
+  c3: {tone: slate, width: 230, title: "AD CS enterprise issuing CA", body: ["=Template allows key export; Domain Users removed"], size: 12}
+order:
+  - [s1, s2, s3]
+  - [r1, r2, r3]
+  - [c1, c2, c3]
+edges:
+  - [trust, s1]
+  - [trust, s2]
+  - [trust, s3]
+  - [s1, r1]
+  - [s2, r2]
+  - [s3, r3]
+  - [r1, c1]
+  - [r2, c2]
+  - [r3, c3]

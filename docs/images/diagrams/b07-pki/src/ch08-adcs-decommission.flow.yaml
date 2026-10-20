@@ -1,0 +1,26 @@
+# Chapter 08 — retiring an AD CS issuing CA that no longer serves a retained
+# certificate class. The gate is the program's; the steps follow Microsoft's
+# decommissioning procedure (KB 889250) and AD CS revocation guidance. The CDP
+# and AIA endpoints, and the remaining AD objects, wait for the last outstanding
+# certificate to expire.
+rankdir: TB
+graph: {nodesep: 0.3, ranksep: 0.26}
+nodes:
+  gate: {kind: pill, tone: amber, text: "Gate: cutover complete, 30-day rollback passed, retained classes documented"}
+  s1: {tone: slate, width: 340, tag: "Step 1", title: "Confirm no dependents", body: ["=CLM inventory, CA database, Entra and Intune chains"], size: 12}
+  s2: {tone: slate, width: 340, tag: "Step 2", title: "Stop new issuance", body: ["=Remove templates, unlink autoenrollment, deny pending requests"], size: 12}
+  s3: {tone: violet, width: 340, tag: "Step 3", title: "Back up and archive", body: ["=CA database and key, separate custody of the password"], size: 12}
+  s4: {tone: amber, width: 340, tag: "Step 4", title: "Revoke and publish the last CRL", body: ["Reason: cessation of operation", "CRL lifetime past the last revoked certificate"], size: 12}
+  s5: {tone: slate, width: 340, tag: "Step 5", title: "Uninstall role services", body: ["=NDES, enrollment web services and web enrollment before the CA"], size: 12}
+  s6: {tone: red, width: 340, tag: "Step 6", title: "Clean up trust", body: ["=Entra trust store, Intune trusted profiles, NTAuthCertificates, CLM"], size: 12}
+  s7: {tone: green, width: 340, tag: "Step 7", title: "Wait, then remove and record", body: ["CDP and AIA serve until the last certificate expires", "Then AD objects, database, decommission record"], size: 12}
+  byo: {kind: text, tone: amber, width: 210, text: "Under BYOCA, the root and any CA that signed the Cloud PKI issuing CA stay"}
+edges:
+  - [gate, s1]
+  - [s1, s2]
+  - [s2, s3]
+  - [s3, s4]
+  - [s4, s5]
+  - [s5, s6]
+  - [s6, s7]
+  - [byo, s4, {style: dashed}]

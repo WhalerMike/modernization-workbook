@@ -1,0 +1,26 @@
+# Chapter 03 — where the eight AD CS misconfiguration classes live, and which
+# source detects each one. Defender for Identity template assessments need no
+# sensor on the CA; CA assessments do. ESC5 has no Defender for Identity
+# assessment, so it relies on directory change auditing (event 5136).
+rankdir: TB
+graph: {nodesep: 0.2, ranksep: 0.45}
+nodes:
+  tmpl: {tone: slate, width: 165, tag: "Active Directory", title: "Certificate template objects", body: ["ESC1 requester supplies subject", "ESC2 Any Purpose or no EKU", "ESC3 enrollment agent", "ESC4 template ACL and owner"], size: 12}
+  pks: {tone: slate, width: 165, tag: "Configuration partition", title: "Public Key Services objects", body: ["ESC5 PKI object ACLs", "=NTAuthCertificates, Enrollment Services, template container"], size: 12}
+  ca: {tone: slate, width: 165, tag: "CA server", title: "CA configuration", body: ["ESC6 `EDITF_ATTRIBUTESUBJECTALTNAME2`", "ESC7 Manage CA, Issue and Manage Certificates"], size: 12}
+  web: {tone: slate, width: 165, tag: "IIS", title: "HTTP enrollment endpoints", body: ["ESC8 Web Enrollment and enrollment web service without HTTPS and EPA"], size: 12}
+  mdit: {tone: violet, width: 165, tag: "Detect", title: "Defender for Identity template assessments", body: ["=No sensor needed on the CA"], size: 12}
+  ds: {tone: violet, width: 165, tag: "Detect", title: "Directory change auditing", body: ["=Event 5136 on DCs; needs a SACL", "=No Defender for Identity assessment"], size: 12}
+  mdic: {tone: violet, width: 165, tag: "Detect", title: "Defender for Identity CA assessments", body: ["=Sensor on the AD CS server", "=Plus CA events 4882, 4890, 4892"], size: 12}
+  gate: {tone: green, width: 420, tag: "Migration gate", title: "Remediate and verify Critical and High findings", body: ["=Before any certificate workload migrates"], size: 12}
+order:
+  - [tmpl, pks, ca, web]
+  - [mdit, ds, mdic]
+edges:
+  - [tmpl, mdit, {tone: violet}]
+  - [pks, ds, {tone: violet}]
+  - [ca, mdic, {tone: violet}]
+  - [web, mdic, {tone: violet}]
+  - [mdit, gate, {tone: green}]
+  - [ds, gate, {tone: green}]
+  - [mdic, gate, {tone: green}]

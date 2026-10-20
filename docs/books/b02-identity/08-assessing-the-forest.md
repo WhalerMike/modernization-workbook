@@ -279,7 +279,7 @@ Get-ADObject -SearchBase "CN=Certificate Templates,CN=Public Key Services,CN=Ser
     Select-Object displayName
 ```
 
-A template that passes this filter is an ESC1 candidate only if it's also published by a CA and enrollable by a broad group; Appendix B checks both before raising a finding. Report only; don't remediate from the assessment. Remediation belongs to the PKI owner, through the workbook's [PKI modernization guide](../../operational-guides/pki-modernization.md).
+A template that passes this filter is an ESC1 candidate only if it's also published by a CA and enrollable by a broad group; Appendix B checks both before raising a finding. Report only; don't remediate from the assessment. Remediation belongs to the PKI owner, through [Book 07 — PKI & Certificates](../b07-pki/index.md).
 
 For the migration itself, the PKI inventory tells you whether user certificates can move to Microsoft Entra certificate-based authentication, which authenticates X.509 certificates against your PKI directly in Entra ID without federated AD FS.[^c08-cba]
 

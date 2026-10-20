@@ -1,0 +1,24 @@
+# Chapter 02 — the typical two-tier AD CS topology: an offline root signs the
+# enterprise issuing CAs; the issuing CAs publish into the forest's Public Key
+# Services container and issue through autoenrollment, NDES and CES/CEP; CRL,
+# AIA and OCSP endpoints let relying parties check status.
+rankdir: TB
+graph: {nodesep: 0.2, ranksep: 0.45}
+nodes:
+  root: {tone: slate, width: 260, tag: "Tier 1", title: "Offline root CA", body: ["Standalone, not domain-joined", "Key in an HSM where possible", "Online only to sign issuing CAs and its CRL"], size: 12}
+  iss: {tone: slate, width: 190, tag: "Tier 2", title: "Enterprise issuing CAs", body: ["Domain-joined", "Issue from templates stored in AD"], size: 12}
+  pks: {tone: violet, width: 190, tag: "Forest configuration partition", title: "Public Key Services", body: ["Certificate Templates", "Enrollment Services", "NTAuthCertificates", "AIA, CDP, KRA, OID"], size: 12}
+  gpo: {tone: slate, width: 165, tag: "Domain members", title: "Autoenrollment", body: ["=Group Policy, every eight hours"], size: 12}
+  ndes: {tone: amber, width: 165, tag: "No domain credentials", title: "NDES (SCEP)", body: ["=Network devices; Intune with the Certificate Connector"], size: 12}
+  ces: {tone: amber, width: 165, tag: "Off-network or other forests", title: "CES and CEP", body: ["=Policy-based enrollment over HTTPS"], size: 12}
+  status: {tone: slate, width: 260, tag: "Relying parties check here", title: "CRL, AIA and OCSP", body: ["=CRL distribution points and AIA over HTTP and LDAP; Online Responder for OCSP"], size: 12}
+edges:
+  - [root, iss, {label: "signs"}]
+  - [iss, pks, {label: "publishes", both: true, tone: violet, attrs: "constraint=false"}]
+  - [iss, gpo]
+  - [iss, ndes]
+  - [iss, ces]
+  - [iss, status, {label: "publishes CRLs", attrs: "minlen=2"}]
+  - [root, status, {label: "root CRL", style: dashed, attrs: "minlen=3 constraint=false"}]
+ranks:
+  - [root, pks]

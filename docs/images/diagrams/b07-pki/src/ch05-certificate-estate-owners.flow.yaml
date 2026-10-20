@@ -1,0 +1,34 @@
+# Chapter 05 — who decides and who does for the certificate estate. The top row
+# holds decision rights: hierarchy and retirement, risk acceptance, issuance
+# policy and trust anchors. The second row runs the issuers and the lifecycle
+# platform. The third row consumes certificates and designs their use; the
+# bottom row decides for applications and monitors the estate. This is the
+# program's recommended model, not an external standard.
+rankdir: TB
+graph: {nodesep: 0.15, ranksep: 0.45}
+nodes:
+  spon: {tone: amber, width: 180, tag: "Decides", title: "Sponsor and CIO", body: ["=Hierarchy, AD CS retirement, renewal owners"], size: 12}
+  ao: {tone: amber, width: 180, tag: "Decides", title: "Authorizing official", body: ["=Standing exceptions, low-assurance bindings"], size: 12}
+  ciso: {tone: violet, width: 180, tag: "Decides", title: "CISO and ISSO", body: ["=Issuance policy, trust anchors, evidence"], size: 12}
+  pki: {tone: slate, width: 180, tag: "Runs the issuers", title: "PKI and CA administrators", body: ["=AD CS, Cloud PKI, templates, CRLs"], size: 12}
+  clm: {tone: violet, width: 180, tag: "Runs the platform", title: "CLM platform owner", body: ["=CyberArk Certificate Manager: inventory, discovery, TLS renewal"], size: 12}
+  piv: {tone: blue, width: 180, tag: "Issues PIV", title: "PIV and credentialing office", body: ["=Federal PKI credentials, reissue, termination"], size: 12}
+  idt: {tone: blue, width: 180, tag: "Designs and does", title: "Identity team", body: ["=Entra trust store, CBA bindings and affinity"], size: 12}
+  ep: {tone: blue, width: 180, tag: "Designs and does", title: "Endpoint engineering", body: ["=Intune trusted root, SCEP and PKCS profiles"], size: 12}
+  sn: {tone: slate, width: 180, tag: "Designs and does", title: "Server and network teams", body: ["=Server TLS, LDAPS, 802.1X and RADIUS"], size: 12}
+  app: {tone: slate, width: 180, tag: "Decides for its app", title: "Application owners", body: ["=TLS listeners, code signing, renewal windows"], size: 12}
+  soc: {tone: violet, width: 180, tag: "Operates", title: "Security operations", body: ["=CA audit events, posture findings, drift"], size: 12}
+edges:
+  - [ciso, pki, {label: "policy", tone: violet}]
+  - [spon, clm, {label: "renewal owners", tone: amber}]
+  - [pki, idt, {label: "chains"}]
+  - [pki, ep, {label: "templates"}]
+  - [clm, sn, {label: "renewal"}]
+  - [clm, app, {label: "renewal", attrs: "minlen=2"}]
+  - [piv, idt, {style: dashed, label: "consulted"}]
+  - [pki, soc, {label: "audit events", tone: violet, attrs: "minlen=2"}]
+order:
+  - [ao, ciso, spon]
+  - [piv, pki, clm]
+  - [idt, ep, sn]
+  - [soc, app]

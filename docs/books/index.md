@@ -23,7 +23,7 @@ The workbook grew as separate whitepapers, guides, series and case studies. The 
 | **B04** | **[Access & Privilege](b04-access/index.md)** | **Why is every access decision a policy decision?** | **Draft** |
 | **B05** | **[Devices & Endpoints: GPO to Intune and Arc](b05-devices/index.md)** | **Why can't Group Policy come to the cloud?** | **Draft** |
 | **B06** | **[Data Platform: SQL Server Identity](b06-data-platform/index.md)** | **Why is the database where legacy authentication hides?** | **Draft** |
-| B07 | PKI & Certificates | Why do certificates outlive every migration? | Planned |
+| **B07** | **[PKI & Certificates](b07-pki/index.md)** | **Why do certificates outlive every migration?** | **Draft** |
 | B08 | DNS, DHCP & IPAM | Why is DNS now the control plane? | Planned |
 | B09 | Network & Transport | Why does physics decide the architecture? | Planned |
 | B10 | Cloud Boundary & Landing Zone | Why does the authorization boundary decide what you can use? | Planned |

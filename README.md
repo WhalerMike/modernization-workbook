@@ -36,7 +36,7 @@ This repository extracts practical modernization concepts — single source of t
 - [Conditional Access Policy Library](docs/books/b04-access/07-the-conditional-access-policy-library.md)
 - [Intune + Azure Arc paths](docs/operational-guides/intune-arc-modernization/)
 - [DNS Modernization](docs/operational-guides/dns-modernization.md)
-- [PKI Modernization](docs/operational-guides/pki-modernization.md)
+- [Book 07 — PKI & Certificates](docs/books/b07-pki/index.md)
 - [Read-Only AD Assessment](docs/books/b02-identity/07-read-only-discovery.md)
 
 ### Case Studies
