@@ -1,0 +1,19 @@
+# Chapter 07 — the ownership chain for one attribute (the organization code as the
+# example): the standard defines the element, HR owns the value and its quality, the
+# data architect stewards the name and definition in the model, the provisioning service
+# is the only writer, and consumers only read. Corrections flow back to the owner.
+# This is the program's recommended model, not an external standard.
+rankdir: TB
+graph: {nodesep: 0.3, ranksep: 0.3}
+nodes:
+  std: {tone: amber, width: 135, tag: "Defines", title: "OPM standard", body: ["=The element and its codes"], size: 12}
+  own: {tone: amber, width: 135, tag: "Owns", title: "HR", body: ["=Each person's value and its quality"], size: 12}
+  stw: {tone: blue, width: 135, tag: "Stewards", title: "Data architect", body: ["=One name, one definition, one owner"], size: 12}
+  wrt: {tone: blue, width: 135, tag: "Writes", title: "Provisioning service", body: ["=The only writer to Entra ID and AD"], size: 12}
+  con: {tone: green, width: 135, tag: "Reads", title: "Consumers", body: ["=Rules, access packages, Conditional Access"], size: 12}
+edges:
+  - [std, own, {tone: amber}]
+  - [own, stw, {tone: amber}]
+  - [stw, wrt, {tone: blue}]
+  - [wrt, con, {tone: green}]
+  - [con, own, {label: "corrections flow upstream", tone: red, style: dashed, attrs: "constraint=false"}]

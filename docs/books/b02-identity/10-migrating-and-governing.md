@@ -59,7 +59,7 @@ Expiration of assignments and separation-of-duties checks work with P2; automati
 
 Lifecycle Workflows automate joiner, mover, and leaver tasks. They act on accounts that already exist; HR-driven inbound provisioning creates and updates the account. A workflow runs when a user meets its execution conditions, a trigger plus a scope. The triggers available as of October 2026 are a time-based attribute, an attribute change, a group membership change, sign-in inactivity, and on-demand.[^c10-lcw-execution] Time-based joiner and leaver workflows key on the native `employeeHireDate` and `employeeLeaveDateTime` attributes (or `createdDateTime` for joiners); the offset can be 0 to 180 days before or after the date, and a preview "V2" trigger extends that to 365 days with relative comparisons.[^c10-lcw-execution] Custom attribute triggers are in preview.
 
-For users synced from Active Directory, those date attributes must be synced to Entra ID before the workflow can use them, and attribute-change and group triggers fire only after the sync cycle delivers the change.[^c10-lcw-onprem] The canonical HR-driven design, including where the dates come from, is in [HR-Driven Identity, Chapter 6](../../hr-driven-iam/06-joiner-mover-leaver.md). Scope rules can filter on standard attributes such as `department` and `jobTitle` and on `extensionAttribute1` through `15`.[^c10-lcw-scope] A tenant can have up to 50 workflows and 100 custom task extensions.[^c10-governance-licensing]
+For users synced from Active Directory, those date attributes must be synced to Entra ID before the workflow can use them, and attribute-change and group triggers fire only after the sync cycle delivers the change.[^c10-lcw-onprem] The canonical HR-driven design, including where the dates come from, is in [HR-Driven Identity, Chapter 6](../b03-hr-identity/08-joiner-mover-leaver.md). Scope rules can filter on standard attributes such as `department` and `jobTitle` and on `extensionAttribute1` through `15`.[^c10-lcw-scope] A tenant can have up to 50 workflows and 100 custom task extensions.[^c10-governance-licensing]
 
 The workflows below use Microsoft's built-in tasks where they exist.[^c10-lcw-tasks] Steps that have no built-in task, marked "custom," run through a custom task extension, which calls an Azure Logic App, or through a separate service.
 
@@ -514,7 +514,7 @@ The identity assessment produces structured JSON inventories that go into Git, w
 3. **Compare.** Each later run is compared with the committed baseline. New objects, removed objects, and attribute changes are drift.
 4. **Raise issues.** Drift above a threshold opens an issue with the diff, a severity, and a recommended action.
 
-The design rule is the same as in [HR-Driven Identity, Chapter 9](../../hr-driven-iam/09-drift-metrics-and-evidence.md): close each finding at the source (fix the record or the rule), never by editing the copy.
+The design rule is the same as in [HR-Driven Identity, Chapter 9](../b03-hr-identity/11-drift-metrics-and-evidence.md): close each finding at the source (fix the record or the rule), never by editing the copy.
 
 ### Scheduled tasks
 

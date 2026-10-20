@@ -724,7 +724,7 @@ evaluate` run:
 - **KSI-SI-4 family** — system-monitoring evidence freshness
 - **KSI-RECIP family** (v0.6.0) — reciprocity-record health for the
  ATO surface (see
- [HR-Driven Identity, Chapter 09](../hr-driven-iam/09-drift-metrics-and-evidence.md))
+ [HR-Driven Identity, Chapter 09](../books/b03-hr-identity/11-drift-metrics-and-evidence.md))
 
 Failure of any KSI in these families opens an SLA ticket through
 FMP_167 and gates the next ATO recertification.

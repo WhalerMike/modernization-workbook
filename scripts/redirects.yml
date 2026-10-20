@@ -79,3 +79,31 @@ redirects:
   docs/operational-guides/ad-interaction-guide.html: docs/books/b02-identity/08-assessing-the-forest.html
   docs/operational-guides/identity/identity-modernization.html: docs/books/b02-identity/09-building-the-entra-target.html
   docs/case-studies/reference-deployment-fedciv-ad-to-entra.html: docs/books/b02-identity/11-reference-deployment.html
+
+  # Book 03 (HR-Driven Identity) replaced the HR-Driven Identity series; sources are in archive/b03-hr-identity/.
+  docs/hr-driven-iam/00-overview-and-applicability.html: docs/books/b03-hr-identity/01-overview-and-applicability.html
+  docs/hr-driven-iam/01-why-hr-is-the-source-of-authority.html: docs/books/b03-hr-identity/02-why-hr-is-the-source-of-authority.html
+  docs/hr-driven-iam/02-federal-hr-2-0.html: docs/books/b03-hr-identity/03-federal-hr-2-0.html
+  docs/hr-driven-iam/03-attribute-authority.html: docs/books/b03-hr-identity/04-attribute-authority.html
+  docs/hr-driven-iam/04-the-provisioning-pipeline.html: docs/books/b03-hr-identity/05-the-provisioning-pipeline.html
+  docs/hr-driven-iam/05-canonical-attribute-schema.html: docs/books/b03-hr-identity/06-canonical-attribute-schema.html
+  docs/hr-driven-iam/06-joiner-mover-leaver.html: docs/books/b03-hr-identity/08-joiner-mover-leaver.html
+  docs/hr-driven-iam/07-credentials-and-certificates.html: docs/books/b03-hr-identity/09-credentials-and-certificates.html
+  docs/hr-driven-iam/08-from-attributes-to-access.html: docs/books/b03-hr-identity/10-from-attributes-to-access.html
+  docs/hr-driven-iam/09-drift-metrics-and-evidence.html: docs/books/b03-hr-identity/11-drift-metrics-and-evidence.html
+  docs/hr-driven-iam/10-execution-plan.html: docs/books/b03-hr-identity/12-execution-plan.html
+  docs/hr-driven-iam/11-reference-deployment.html: docs/books/b03-hr-identity/13-reference-deployment.html
+  docs/hr-driven-iam/appendix-a-lifecycle-rules.html: docs/books/b03-hr-identity/appendix-a-lifecycle-rules.html
+  docs/hr-driven-iam/appendix-b-security-and-privacy.html: docs/books/b03-hr-identity/appendix-b-security-and-privacy.html
+  docs/hr-driven-iam/appendix-c-acceptance-and-cutover.html: docs/books/b03-hr-identity/appendix-c-acceptance-and-cutover.html
+  docs/hr-driven-iam/index.html: docs/books/b03-hr-identity/index.html
+  # Former aliases of the HR-Driven Identity pages, now pointing at Book 03.
+  docs/whitepapers/federal-hrit-productization.html: docs/books/b03-hr-identity/01-overview-and-applicability.html
+  docs/architecture/hrit-identity-organizational-ssot.html: docs/books/b03-hr-identity/02-why-hr-is-the-source-of-authority.html
+  docs/guides/hr-driven-lifecycle.html: docs/books/b03-hr-identity/05-the-provisioning-pipeline.html
+  docs/architecture/dynamic-group-library.html: docs/books/b03-hr-identity/10-from-attributes-to-access.html
+  docs/compliance/HRIT_HR_Driven_IAM_Execution_Plan.html: docs/books/b03-hr-identity/12-execution-plan.html
+  docs/operational-guides/hrit-to-hr-driven-iam-execution-plan.html: docs/books/b03-hr-identity/12-execution-plan.html
+  docs/case-studies/reference-deployment-opm-hrit-to-entra.html: docs/books/b03-hr-identity/13-reference-deployment.html
+  docs/case-studies/hrit-to-entra-reference-deployment.html: docs/books/b03-hr-identity/13-reference-deployment.html
+  docs/case-studies/hrit-to-cloud-identity-reference.html: docs/books/b03-hr-identity/13-reference-deployment.html

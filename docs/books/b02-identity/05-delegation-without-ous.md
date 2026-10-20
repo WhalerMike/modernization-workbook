@@ -109,7 +109,7 @@ The program's matrix mapped each tier to an AU: `AU-Enterprise` for Tier 1, depa
 | `AU-IT-AppDev` | IT / AppDev |
 | `AU-Legal-GRC` | Legal / GRC |
 
-Division AUs use a rule that combines the department with the division attribute the HR feed supplies. Which attribute carries the division is a schema decision; the program's canonical attribute schema is described in [the HR-driven IAM series](../../hr-driven-iam/05-canonical-attribute-schema.md).
+Division AUs use a rule that combines the department with the division attribute the HR feed supplies. Which attribute carries the division is a schema decision; the program's canonical attribute schema is described in [the HR-driven IAM series](../b03-hr-identity/06-canonical-attribute-schema.md).
 
 ## Role assignment matrix
 

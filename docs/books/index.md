@@ -19,7 +19,7 @@ The workbook grew as separate whitepapers, guides, series and case studies. The 
 | B00 | Orientation & Program | Why modernize, and why now? | Planned |
 | B01 | The Transformation Arc: Client-Server to Hybrid Cloud | Why is modernization so hard? | Planned |
 | **B02** | **[Identity & Directory: AD to Entra ID](b02-identity/index.md)** | **Why does identity matter?** | **Draft** |
-| B03 | HR-Driven Identity & Lifecycle | Why should HR, not IT, decide who exists? | Planned (today: [HR-Driven Identity](../hr-driven-iam/index.md)) |
+| **B03** | **[HR-Driven Identity & Lifecycle](b03-hr-identity/index.md)** | **Why should HR, not IT, decide who exists?** | **Draft** |
 | B04 | Access & Privilege | Why is every access decision a policy decision? | Planned |
 | B05 | Devices & Endpoints: GPO to Intune and Arc | Why can't Group Policy come to the cloud? | Planned |
 | B06 | Data Platform: SQL Server Identity | Why is the database where legacy authentication hides? | Planned |

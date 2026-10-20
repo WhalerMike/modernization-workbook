@@ -1,0 +1,33 @@
+# Chapter 07 — who owns workforce identity. The top row owns the data (HR, the OPM
+# Federal HR 2.0 program, the contractor sources). The middle row stewards and guards it:
+# the data architect keeps one model and one key, with privacy, the PIV office and the
+# ISSO/AO alongside. The bottom row uses it. This is the program's recommended model.
+rankdir: TB
+graph: {nodesep: 0.25, ranksep: 0.45}
+nodes:
+  hr: {tone: amber, width: 175, tag: "Owns", title: "HR", body: ["=Personnel data and its quality, at the source"], size: 12}
+  opm: {tone: amber, width: 175, tag: "Owns", title: "OPM Federal HR 2.0", body: ["=Platform, data standards, interconnection"], size: 12}
+  cwk: {tone: amber, width: 175, tag: "Owns", title: "Contractor sources", body: ["=Sponsor or COR, PIV sponsorship, contingent worker record"], size: 12}
+  priv: {tone: violet, width: 170, tag: "Guards", title: "Privacy office", body: ["=Routine use, PIA, minimization"], size: 12}
+  dea: {tone: blue, width: 170, tag: "Stewards", title: "Data architect", body: ["=One model, one key, one owner per attribute"], size: 12}
+  piv: {tone: violet, width: 170, tag: "Guards", title: "PIV office", body: ["=Sponsorship, proofing, issuance, termination"], size: 12}
+  isso: {tone: violet, width: 170, tag: "Guards", title: "ISSO and AO", body: ["=Authorization, risk acceptance, evidence"], size: 12}
+  ide: {tone: green, width: 170, tag: "Uses", title: "CIO identity team", body: ["=Entra ID, AD, provisioning, access"], size: 12}
+  sec: {tone: green, width: 170, tag: "Uses", title: "Security", body: ["=Zero Trust policy; owns the leaver path"], size: 12}
+  hd: {tone: green, width: 170, tag: "Uses", title: "Help desk", body: ["=Exceptions, not routine tickets"], size: 12}
+  app: {tone: green, width: 170, tag: "Uses", title: "Application owners", body: ["=Access rules for their applications"], size: 12}
+edges:
+  - [hr, dea, {label: "personnel facts", tone: amber}]
+  - [opm, dea, {label: "standards", tone: amber}]
+  - [cwk, dea, {label: "contractor facts", tone: amber, style: dashed}]
+  - [priv, dea, {tone: violet, style: dashed, none: true}]
+  - [piv, dea, {tone: violet, style: dashed, none: true}]
+  - [dea, ide, {label: "governed model", tone: blue}]
+  - [dea, sec, {tone: blue}]
+  - [dea, hd, {tone: blue}]
+  - [dea, app, {tone: blue}]
+  - [isso, sec, {tone: violet, style: dashed, none: true}]
+order:
+  - [hr, opm, cwk]
+  - [priv, dea, piv, isso]
+  - [ide, sec, hd, app]

@@ -17,4 +17,4 @@ Practical how-to documents for modernization activities.
 ---
 
 *Cleaned extractions for project use.*
-| [HR-Driven Identity — Execution Plan](../hr-driven-iam/10-execution-plan.md) | Execution plan for HR-agnostic provisioning against Federal HR 2.0. |
+| [HR-Driven Identity — Execution Plan](../books/b03-hr-identity/12-execution-plan.md) | Execution plan for HR-agnostic provisioning against Federal HR 2.0. |

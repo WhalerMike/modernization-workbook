@@ -224,61 +224,80 @@ bundles:
     image_dir: docs/images/diagrams/b02-identity
     warn_unlisted: ["*.md"]
     pages: [index.md, "[0-9][0-9]-*.md", "appendix-*.md"]
-  - output: hr-driven-iam-bundle.docx
-    title: "HR-Driven Identity Modernization"
-    subtitle: "An Enterprise Data Architecture Case Study — combined edition"
-    root: docs/hr-driven-iam
-    image_dir: docs/images/diagrams/hr-driven-iam
+  # Book 03 — HR-Driven Identity (was the hr-driven-iam series; old download
+  # names stay available as aliases so published links keep working).
+  - output: b03-hr-identity-bundle.docx
+    aliases: [hr-driven-iam-bundle.docx]
+    title: "Book 03 — HR-Driven Identity"
+    subtitle: "HR-Driven Identity Modernization — Modernization Workbook, combined edition"
+    root: docs/books/b03-hr-identity
+    image_dir: docs/images/diagrams/b03-hr-identity
     warn_unlisted: ["*.md"]
     pages: [index.md, "[0-9][0-9]-*.md", "appendix-*.md"]
-  - output: hr-driven-iam-00.docx
-    subtitle: "HR-Driven Identity — From the HR System of Record to Entra ID"
-    root: docs/hr-driven-iam
-    pages: [00-overview-and-applicability.md]
-  - output: hr-driven-iam-01.docx
-    subtitle: "HR-Driven Identity — From the HR System of Record to Entra ID"
-    root: docs/hr-driven-iam
-    pages: [01-why-hr-is-the-source-of-authority.md]
-  - output: hr-driven-iam-02.docx
-    subtitle: "HR-Driven Identity — From the HR System of Record to Entra ID"
-    root: docs/hr-driven-iam
-    pages: [02-federal-hr-2-0.md]
-  - output: hr-driven-iam-03.docx
-    subtitle: "HR-Driven Identity — From the HR System of Record to Entra ID"
-    root: docs/hr-driven-iam
-    pages: [03-attribute-authority.md]
-  - output: hr-driven-iam-04.docx
-    subtitle: "HR-Driven Identity — From the HR System of Record to Entra ID"
-    root: docs/hr-driven-iam
-    pages: [04-the-provisioning-pipeline.md]
-  - output: hr-driven-iam-05.docx
-    subtitle: "HR-Driven Identity — From the HR System of Record to Entra ID"
-    root: docs/hr-driven-iam
-    pages: [05-canonical-attribute-schema.md]
-  - output: hr-driven-iam-06.docx
-    subtitle: "HR-Driven Identity — From the HR System of Record to Entra ID"
-    root: docs/hr-driven-iam
-    pages: [06-joiner-mover-leaver.md]
-  - output: hr-driven-iam-07.docx
-    subtitle: "HR-Driven Identity — From the HR System of Record to Entra ID"
-    root: docs/hr-driven-iam
-    pages: [07-credentials-and-certificates.md]
-  - output: hr-driven-iam-08.docx
-    subtitle: "HR-Driven Identity — From the HR System of Record to Entra ID"
-    root: docs/hr-driven-iam
-    pages: [08-from-attributes-to-access.md]
-  - output: hr-driven-iam-09.docx
-    subtitle: "HR-Driven Identity — From the HR System of Record to Entra ID"
-    root: docs/hr-driven-iam
-    pages: [09-drift-metrics-and-evidence.md]
-  - output: hr-driven-iam-10.docx
-    subtitle: "HR-Driven Identity — From the HR System of Record to Entra ID"
-    root: docs/hr-driven-iam
-    pages: [10-execution-plan.md]
-  - output: hr-driven-iam-11.docx
-    subtitle: "HR-Driven Identity — From the HR System of Record to Entra ID"
-    root: docs/hr-driven-iam
-    pages: [11-reference-deployment.md]
+  - output: b03-hr-identity-01.docx
+    aliases: [hr-driven-iam-00.docx]
+    subtitle: "Book 03 — HR-Driven Identity: from the HR system of record to Entra ID"
+    root: docs/books/b03-hr-identity
+    pages: [01-overview-and-applicability.md]
+  - output: b03-hr-identity-02.docx
+    aliases: [hr-driven-iam-01.docx]
+    subtitle: "Book 03 — HR-Driven Identity: from the HR system of record to Entra ID"
+    root: docs/books/b03-hr-identity
+    pages: [02-why-hr-is-the-source-of-authority.md]
+  - output: b03-hr-identity-03.docx
+    aliases: [hr-driven-iam-02.docx]
+    subtitle: "Book 03 — HR-Driven Identity: from the HR system of record to Entra ID"
+    root: docs/books/b03-hr-identity
+    pages: [03-federal-hr-2-0.md]
+  - output: b03-hr-identity-04.docx
+    aliases: [hr-driven-iam-03.docx]
+    subtitle: "Book 03 — HR-Driven Identity: from the HR system of record to Entra ID"
+    root: docs/books/b03-hr-identity
+    pages: [04-attribute-authority.md]
+  - output: b03-hr-identity-05.docx
+    aliases: [hr-driven-iam-04.docx]
+    subtitle: "Book 03 — HR-Driven Identity: from the HR system of record to Entra ID"
+    root: docs/books/b03-hr-identity
+    pages: [05-the-provisioning-pipeline.md]
+  - output: b03-hr-identity-06.docx
+    aliases: [hr-driven-iam-05.docx]
+    subtitle: "Book 03 — HR-Driven Identity: from the HR system of record to Entra ID"
+    root: docs/books/b03-hr-identity
+    pages: [06-canonical-attribute-schema.md]
+  - output: b03-hr-identity-07.docx
+    subtitle: "Book 03 — HR-Driven Identity: from the HR system of record to Entra ID"
+    root: docs/books/b03-hr-identity
+    pages: [07-who-owns-workforce-identity.md]
+  - output: b03-hr-identity-08.docx
+    aliases: [hr-driven-iam-06.docx]
+    subtitle: "Book 03 — HR-Driven Identity: from the HR system of record to Entra ID"
+    root: docs/books/b03-hr-identity
+    pages: [08-joiner-mover-leaver.md]
+  - output: b03-hr-identity-09.docx
+    aliases: [hr-driven-iam-07.docx]
+    subtitle: "Book 03 — HR-Driven Identity: from the HR system of record to Entra ID"
+    root: docs/books/b03-hr-identity
+    pages: [09-credentials-and-certificates.md]
+  - output: b03-hr-identity-10.docx
+    aliases: [hr-driven-iam-08.docx]
+    subtitle: "Book 03 — HR-Driven Identity: from the HR system of record to Entra ID"
+    root: docs/books/b03-hr-identity
+    pages: [10-from-attributes-to-access.md]
+  - output: b03-hr-identity-11.docx
+    aliases: [hr-driven-iam-09.docx]
+    subtitle: "Book 03 — HR-Driven Identity: from the HR system of record to Entra ID"
+    root: docs/books/b03-hr-identity
+    pages: [11-drift-metrics-and-evidence.md]
+  - output: b03-hr-identity-12.docx
+    aliases: [hr-driven-iam-10.docx]
+    subtitle: "Book 03 — HR-Driven Identity: from the HR system of record to Entra ID"
+    root: docs/books/b03-hr-identity
+    pages: [12-execution-plan.md]
+  - output: b03-hr-identity-13.docx
+    aliases: [hr-driven-iam-11.docx]
+    subtitle: "Book 03 — HR-Driven Identity: from the HR system of record to Entra ID"
+    root: docs/books/b03-hr-identity
+    pages: [13-reference-deployment.md]
 
   # ---------------------------------------------------------------------
   # Section bundles: every published page in the section folder, index first.

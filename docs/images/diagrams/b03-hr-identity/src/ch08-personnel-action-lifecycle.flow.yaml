@@ -1,0 +1,21 @@
+# Chapter 08 — personnel actions drive the lifecycle: nature-of-action code families
+# (GPPA) classify each HR event into one identity event.
+rankdir: LR
+graph: {nodesep: 0.2, ranksep: 0.6}
+nodes:
+  noa: {tone: amber, width: 170, tag: "SF-50", title: "Nature of action", body: ["=First digit sets the family; effective date sets the time"], size: 12}
+  j: {tone: green, width: 260, tag: "1xx accessions", title: "Joiner", body: ["=Account before day one; baseline access derived"], size: 12}
+  c: {tone: blue, width: 260, tag: "5xx conversions", title: "Conversion", body: ["=Same person and key; access re-derived"], size: 12}
+  m: {tone: blue, width: 260, tag: "7xx position, duty station, name changes", title: "Mover", body: ["=Re-stamp attributes; review residual access"], size: 12}
+  n: {tone: amber, width: 260, tag: "4xx nonpay or nonduty status", title: "Not a leaver", body: ["=Person kept; account restricted by policy"], size: 12}
+  r: {tone: green, width: 260, tag: "2xx return to duty", title: "Reinstate", body: ["=Restrictions lifted"], size: 12}
+  l: {tone: red, width: 260, tag: "3xx separations", title: "Leaver", body: ["=Block first, then revoke and reconcile"], size: 12}
+  x: {tone: violet, width: 260, tag: "001 / 002 corrections and cancellations", title: "Reverse or re-derive", body: ["=Undo the earlier event, with evidence"], size: 12}
+edges:
+  - [noa, j]
+  - [noa, c]
+  - [noa, m]
+  - [noa, n]
+  - [noa, r]
+  - [noa, l]
+  - [noa, x]

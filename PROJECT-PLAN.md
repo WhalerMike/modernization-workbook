@@ -87,7 +87,7 @@ The plan is organized by phases. Each phase has objectives, key activities, deli
 
 **Supporting material**
 - [Single Source of Truth](docs/architecture/single-source-of-truth.md)
-- [From Attributes to Access (dynamic groups)](docs/hr-driven-iam/08-from-attributes-to-access.md)
+- [From Attributes to Access (dynamic groups)](docs/books/b03-hr-identity/10-from-attributes-to-access.md)
 - [Delegation Matrix](docs/books/b02-identity/05-delegation-without-ous.md)
 - [Change Control and Provenance](docs/architecture/change-control-and-provenance.md)
 - [Architecture Series](docs/architecture/architecture-series/README.md)
@@ -145,7 +145,7 @@ The plan is organized by phases. Each phase has objectives, key activities, deli
 **Supporting material**
 - [Chapter 09 — Migration Roadmap: Phased Plan, Gates, Rollback](docs/client-server-to-hybrid-cloud/09-migration-roadmap.md)
 - [PIM Self-Request with Approval](docs/operational-guides/pim-self-request-approval.md) — just-in-time elevation for wave execution
-- [HR-Driven Identity](docs/hr-driven-iam/index.md) — originating changes from the authoritative source
+- [HR-Driven Identity](docs/books/b03-hr-identity/index.md) — originating changes from the authoritative source
 - [End User Training Guide](docs/operational-guides/end-user-training.md)
 
 **Exit criteria**

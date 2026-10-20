@@ -56,7 +56,7 @@ Appendices: [A — Federal requirements crosswalk](appendix-a-federal-requiremen
 
 ## Where this book sits in the workbook
 
-This is Book 02 of the [Modernization Workbook](../index.md). The workforce side of identity, with HR as the source of authority, is in [HR-Driven Identity](../../hr-driven-iam/index.md). The SQL Server estate's move off Windows authentication is in the [SQL Server Identity Transformation](../../case-studies/sql-server-narrative/README.md) series.
+This is Book 02 of the [Modernization Workbook](../index.md). The workforce side of identity, with HR as the source of authority, is in [HR-Driven Identity](../b03-hr-identity/index.md). The SQL Server estate's move off Windows authentication is in the [SQL Server Identity Transformation](../../case-studies/sql-server-narrative/README.md) series.
 
 ## Chapters
 
