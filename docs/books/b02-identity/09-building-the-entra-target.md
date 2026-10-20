@@ -650,7 +650,7 @@ Every AD privileged group maps to an Entra ID role governed by PIM. The core rul
 
 ### PIM configuration standards
 
-PIM role settings are defined per role.[^c09-pim-settings] The program's standards:
+PIM role settings are defined per role.[^c09-pim-settings] The program's standards are below; Book 04, Appendix B is the authoritative per-role reference and tightens several values (shorter activations and approval for Tier 1 roles):
 
 - **Eligibility duration.** Eligible assignments expire after at most 12 months and renew through an access review.
 - **Activation duration.** Role-specific, from the table below. PIM allows 1 to 24 hours; the program's default is 8.[^c09-pim-settings]
@@ -689,7 +689,7 @@ PIM for Groups (formerly called privileged access groups) extends just-in-time a
 
 ### Emergency access accounts
 
-Emergency access ("break-glass") accounts restore access when normal administrator sign-in, MFA, or PIM fails. Microsoft's current guidance changed an important detail of older designs: both accounts use phishing-resistant authentication, because Microsoft's mandatory MFA for admin portals applies to them too. A password in a safe is no longer enough on its own.[^c09-emergency-access] The program's standard follows that guidance:
+Emergency access ("break-glass") accounts restore access when normal administrator sign-in, MFA, or PIM fails. Microsoft's current guidance changed an important detail of older designs: both accounts use phishing-resistant authentication, because Microsoft's mandatory MFA for admin portals applies to them too (Microsoft enforces it in the public Azure cloud, not in Azure Government; see Book 04, Chapter 04). A password in a safe is no longer enough on its own.[^c09-emergency-access] The program's standard follows that guidance:
 
 - **Quantity.** Two accounts, cloud-only, in the tenant's `onmicrosoft.com` domain, not synced or federated.[^c09-emergency-access]
 - **Naming.** Don't use names that mark them as emergency accounts (avoid `emergency`, `breakglass`, `bg-`).
@@ -750,7 +750,12 @@ Microsoft Authenticator push and phone sign-in aren't phishing-resistant on thei
 
 ### The policy set
 
-The program's baseline policies. Every policy excludes the break-glass group; "All users" means all users minus that group.
+The program's baseline policies. Every policy excludes the break-glass group from policies that block or restrict sign-in; "All users" means all users minus that group.
+
+::: {.callout-note}
+## The full library is in Book 04
+Book 04, Chapter 07 is the program's authoritative Conditional Access library. It keeps these identifiers, adds CA018–CA038 for the CISA BOD 25-01 Entra ID baseline, and revises three policies here: privileged-access-workstation enforcement moves from CA004's device filter to its own block policy, CA025, because a grant policy scoped by a device filter simply doesn't apply on other devices; CA013 takes a block form in BOD 25-01 tenants; and CA017 requires an app protection policy only, because Microsoft made the "approved client app" grant read-only on June 30, 2026.
+:::
 
 | Policy | Persona | Conditions | Grant controls | Session controls |
 |---|---|---|---|---|
@@ -769,7 +774,7 @@ The program's baseline policies. Every policy excludes the break-glass group; "A
 | CA014-AllUsers-MediumSigninRisk-RequireMFA | All users | Sign-in risk: medium or high | Authentication strength: MFA | Sign-in frequency: every time |
 | CA015-ServiceAccounts-LocationRestriction | Service accounts | Workload identities, outside trusted networks | Block | — |
 | CA016-AllUsers-RequireCompliantDevice-OfficeApps | All users | Office 365 apps on Windows and macOS | Require compliant device | — |
-| CA017-Internals-AppProtection-Mobile | Internals | Office 365 apps on iOS and Android | Approved client app or app protection policy | — |
+| CA017-Internals-AppProtection-Mobile | Internals | Office 365 apps on iOS and Android | Require app protection policy | — |
 
 Three changes from the earlier version of this set reflect current Microsoft guidance:
 
