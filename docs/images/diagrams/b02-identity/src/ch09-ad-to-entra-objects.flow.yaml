@@ -1,0 +1,18 @@
+# Chapter 09 — each Active Directory object class and administrative construct,
+# and the Microsoft Entra ID construct that replaces it. Placement-driven
+# policy in AD becomes attribute-driven policy in Entra ID.
+rankdir: TB
+nodes:
+  t:
+    kind: table
+    tone: slate
+    columns: ["Active Directory", "Microsoft Entra ID target", "How it moves"]
+    widths: [210, 290, 200]
+    rows:
+      - [{text: "User object", tone: slate}, {text: "User (synced, later cloud-managed)", tone: blue}, "Sync; hard match on sourceAnchor"]
+      - [{text: "Security group (AGDLP tiers)", tone: slate}, {text: "Security group, assigned or dynamic", tone: blue}, "Sync, convert, or retire"]
+      - [{text: "Distribution group", tone: slate}, {text: "Exchange Online group or Microsoft 365 group", tone: blue}, "Sync or recreate"]
+      - [{text: "Organizational unit", tone: slate}, {text: "Administrative unit, dynamic group, CA and Intune targeting", tone: blue}, "Re-express as attributes"]
+      - [{text: "Service account, MSA, gMSA", tone: red}, {text: "Workload identity: managed identity, app with certificate or federated credential", tone: blue}, "Re-platform per workload"]
+      - [{text: "AdminSDHolder-protected group", tone: red}, {text: "Entra role through PIM; protected actions", tone: blue}, "Map, make eligible, no standing access"]
+      - [{text: "Computer object", tone: slate}, {text: "Device: hybrid joined, then Entra joined", tone: blue}, "Device join transition"]

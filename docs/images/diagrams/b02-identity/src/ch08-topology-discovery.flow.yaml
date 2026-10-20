@@ -1,0 +1,20 @@
+# Chapter 08 — the topology discovery model: the forest owns two operations
+# master roles and the configuration partition; each domain owns three roles,
+# its domain controllers and its trusts; sites and subnets are forest-wide.
+rankdir: LR
+graph: {nodesep: 0.3, ranksep: 0.45}
+nodes:
+  forest: {tone: slate, width: 165, tag: "Get-ADForest", title: "Forest", body: ["Forest functional level", "Schema master", "Domain naming master", "UPN and SPN suffixes", "Global catalogs"], size: 12}
+  domain: {tone: slate, width: 165, tag: "Get-ADDomain", title: "Each domain", body: ["Domain functional level", "PDC emulator", "RID master", "Infrastructure master"], size: 12}
+  sites: {tone: slate, width: 165, tag: "Get-ADReplication*", title: "Sites and services", body: ["Sites", "Site links, cost, interval", "Subnet-to-site map"], size: 12}
+  dcs: {tone: slate, width: 170, tag: "Get-ADDomainController", title: "Domain controllers", body: ["Site and IP address", "OS version", "Global catalog, read-only", "OperationMasterRoles"], size: 12}
+  trusts: {tone: amber, width: 170, tag: "Get-ADTrust", title: "Trusts", body: ["Direction and type", "Transitivity", "SID filtering", "Selective authentication"], size: 12}
+  topo: {tone: violet, width: 170, tag: "Output", title: "ForestTopology.json", body: ["=One time-stamped record of the whole forest"], size: 12}
+edges:
+  - [forest, domain, {label: "one or more"}]
+  - [forest, sites]
+  - [domain, dcs]
+  - [domain, trusts]
+  - [dcs, topo, {style: dashed}]
+  - [trusts, topo, {style: dashed}]
+  - [sites, topo, {style: dashed}]

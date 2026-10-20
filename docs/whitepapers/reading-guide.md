@@ -24,6 +24,12 @@ reading paths for common audiences. It is a companion to the index, not
 a replacement, and states no doctrine of its own — every claim below is
 about the papers' own content and status, not a canon claim.
 
+
+::: {.callout-note}
+## Identity papers moved to Book 02
+The AD-to-Entra ID, Session vs. Telemetry, Federal SSOT Alignment and FMP vs. Native Tools papers are now chapters of [Book 02 — Identity & Directory](../books/b02-identity/index.md). Their links below go to the chapters that replaced them.
+:::
+
 ## The corpus at a glance
 
 The section splits into two genres:
@@ -45,8 +51,8 @@ a Call to Action, the box points at it rather than restating it. Read
 the box first if you have two minutes; read the paper if the ask is
 yours to act on.
 
-Two papers — [`ad-to-entraid-migration-problem`](ad-to-entraid-migration-problem.md)
-and [`fmp-vs-native-tools`](fmp-vs-native-tools.md) — predate both
+Two papers — [`ad-to-entraid-migration-problem`](../books/b02-identity/01-why-identity-matters.md)
+and [`fmp-vs-native-tools`](../books/b02-identity/06-who-owns-the-migration.md) — predate both
 genres: they're docx imports from before the canon-anchoring convention
 existed. They carry real content (the original business case for the
 whole program) but are the corpus's least structurally current papers;
@@ -86,12 +92,12 @@ The AD → Entra ID arc.
 
 | Paper | Status | Role |
 |---|---|---|
-| [AD-to-Entra ID Structural Migration Problem](ad-to-entraid-migration-problem.md) | Active *(pre-canon import)* | Original statement of the structural migration problem — read for the business case. |
-| [The Session vs. Telemetry Divide](session-vs-telemetry-identity.md) | Active | The architectural-tension argument split out of the paper above 2026-08-03 — strong enough to stand alone, was diluting the parent's focus. Read right after it. |
+| [AD-to-Entra ID Structural Migration Problem](../books/b02-identity/01-why-identity-matters.md) | Moved to Book 02 | Original statement of the structural migration problem — read for the business case. |
+| [The Session vs. Telemetry Divide](../books/b02-identity/02-the-structural-problem.md) | Moved to Book 02 | The architectural-tension argument split out of the paper above 2026-08-03 — strong enough to stand alone, was diluting the parent's focus. Read right after it. |
 | [Modernization Journey](modernization-journey.md) | Draft | The mainframe→cloud arc end to end. **The argument is vendor-neutral and product-neutral** — written to hand to an audience that isn't evaluating a platform — and a separable [closing appendix](modernization-journey.md#appendix-narrative-provenance-this-arc-mapped-to-fmp-canon) maps Act 4 to the ADRs behind it. Cross-listed as the flagship of Track 4. |
 | [Flipping 50,000 Devices to Hybrid Join](hybrid-join-without-governance.md) | Draft | One concrete operation *inside* the arc above — governed vs. ungoverned hybrid join. Read after *Modernization Journey*; it assumes that paper's control-plane/data-plane framing. |
-| [Federal SSOT Alignment](federal-ssot-alignment.md) | Active | Same identity-modernization event, read through the data-governance/SSOT-mandate lens instead of the architecture lens. |
-| FMP vs. Native Tools | Active *(pre-canon import)* | AD assessment methodology and gap analysis against Microsoft-native tooling — also anchors Track 6. |
+| [Federal SSOT Alignment](../books/b02-identity/02-the-structural-problem.md) | Moved to Book 02 | Same identity-modernization event, read through the data-governance/SSOT-mandate lens instead of the architecture lens. |
+| [FMP vs. Native Tools](../books/b02-identity/06-who-owns-the-migration.md) | Moved to Book 02 | AD assessment methodology and gap analysis against Microsoft-native tooling — also anchors Track 6. |
 
 ### Track 3 — Zero Trust Assessment & Compliance Closure
 
@@ -139,13 +145,13 @@ provenance lives.
 |---|---|---|
 | [HR-Driven Identity](../hr-driven-iam/index.md) (series; replaces the Federal HRIT Productization paper) | Active | Inbound HR provisioning into Entra ID — a specific integration domain, not a general-purpose entry point. |
 | [Federal AI Governance — Submission Readiness](federal-ai-governance-submission-readiness.md) | Active | AI-system governance under M-25-21 — narrowest scope in the corpus; read only if AI-system inventory/ATO submission is the live question. |
-| [Federal SSOT Alignment](federal-ssot-alignment.md) | Active | Cross-listed from Track 2 — also a data-governance-mandate alignment paper. |
+| [Federal SSOT Alignment](../books/b02-identity/02-the-structural-problem.md) | Moved to Book 02 | Cross-listed from Track 2 — also a data-governance-mandate alignment paper. |
 
 ### Track 6 — Positioning, Comparison & Vendor Reads
 
 | Paper | Status | Role |
 |---|---|---|
-| FMP vs. Native Tools | Active *(pre-canon import)* | Cross-listed from Track 2 — the build-vs-buy / gap-analysis anchor for this track. |
+| [FMP vs. Native Tools](../books/b02-identity/06-who-owns-the-migration.md) | Moved to Book 02 | Cross-listed from Track 2 — the build-vs-buy / gap-analysis anchor for this track. |
 
 ## Recommended reading paths
 
@@ -172,14 +178,14 @@ alphabetical file list.
 
 **An identity/directory team running an AD → Entra ID modernization**
 
-1. [AD-to-Entra ID Structural Migration Problem](ad-to-entraid-migration-problem.md) — the original problem statement.
+1. [AD-to-Entra ID Structural Migration Problem](../books/b02-identity/01-why-identity-matters.md) — the original problem statement.
 2. [Modernization Governance](modernization-governance-whitepaper.md) → [Modernization Journey](modernization-journey.md) — governance framing, then the full arc.
 3. [Flipping 50,000 Devices to Hybrid Join](hybrid-join-without-governance.md) — the first concrete operation to execute inside that arc.
-4. [Federal SSOT Alignment](federal-ssot-alignment.md) — the data-governance-mandate framing of the same event.
+4. [Federal SSOT Alignment](../books/b02-identity/02-the-structural-problem.md) — the data-governance-mandate framing of the same event.
 
 **Someone evaluating FMP against Microsoft-native tools or a build-vs-buy decision**
 
-1. FMP vs. Native Tools — the gap analysis.
+1. [FMP vs. Native Tools](../books/b02-identity/06-who-owns-the-migration.md) — the gap analysis.
 
 **Reading the whole corpus, start to finish**
 

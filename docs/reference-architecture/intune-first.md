@@ -34,7 +34,7 @@ same governance plane — from the moment it first powers on. There is
 - enters production without a compliance evaluation,
 - or skips the procurement-side organizational positioning step.
 
-This is the inverse of the [Directory Migration](directory-migration.md)
+This is the inverse of the [Directory Migration](../books/b02-identity/04-the-hidden-migration-surface.md)
 path. Migration takes a device that already exists and brings it under
 governance. Intune-First refuses the existence of any ungoverned device
 in the first place.
@@ -42,7 +42,7 @@ in the first place.
 ## Why This Canon Exists
 
 The Federal Modernization Program already had a mature canon for **migrating** AD-joined endpoints
-into Entra ID + Intune (covered by the [Directory Migration](directory-migration.md)
+into Entra ID + Intune (covered by the [Directory Migration](../books/b02-identity/04-the-hidden-migration-surface.md)
 adapter family). What did not exist: the operational doctrine and
 procurement-to-validation process for net-new assets.
 
@@ -168,7 +168,7 @@ The doctrinal anchor is `src/fmp/canon/adr/adr-071-intune-first-asset-onboarding
 
 ## Related
 
-- [Directory Migration](directory-migration.md) — the sibling track
+- [Directory Migration](../books/b02-identity/04-the-hidden-migration-surface.md) — the sibling track
   that handles existing AD-joined fleet (where Intune-First applies
   to net-new acquisition, Directory Migration handles the legacy
   estate)

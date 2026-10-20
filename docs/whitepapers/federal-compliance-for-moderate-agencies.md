@@ -427,7 +427,7 @@ deployed versus proposed against M-25-21's specific gates.
  OMB M-25-21 (Federal AI Agency [Federal AI Governance --- Submission
  governance) Readiness](federal-ai-governance-submission-readiness.md)
 
- Federal data-governance Agency [Federal SSOT Alignment](federal-ssot-alignment.md)
+ Federal data-governance Agency [Federal SSOT Alignment](../books/b02-identity/02-the-structural-problem.md)
  mandates (Evidence Act, 
  Federal Data Strategy) 
 

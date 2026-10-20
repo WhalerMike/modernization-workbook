@@ -235,7 +235,7 @@ identity posture an agency carries through the AD → Entra ID transition,
 not just the cloud baseline at a moment in time.
 
 **Federal mandate alignment.** The
-[Federal SSOT Alignment whitepaper](federal-ssot-alignment.md)
+[Federal SSOT Alignment whitepaper](../books/b02-identity/02-the-structural-problem.md)
 catalogues the federal mandates that the substrate as a whole supports
 (Evidence Act, Federal Data Strategy, OMB M-22-09, FedRAMP 20x, NIST
 800-63 AAL, DAMA-DMBOK, CDO Data Governance Board). ScubaGear's role in
@@ -335,7 +335,7 @@ readiness bundle, the B.1.1 three-way conflict finding, the SQL
 Server adapter, and the Azure SSOT bridge — the deployment pattern
 whose Evidence Bundle ScubaGear's conformance output slots into as the
 M365 layer — see
-[Federal Civilian AD → Entra ID + SQL Estate — Reference Deployment Pattern](../case-studies/reference-deployment-fedciv-ad-to-entra.md).
+[Federal Civilian AD → Entra ID + SQL Estate — Reference Deployment Pattern](../books/b02-identity/11-reference-deployment.md).
 (The case study itself does not run ScubaGear; it walks the bundle
 ScubaGear's output joins.)
 

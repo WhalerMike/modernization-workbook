@@ -1,0 +1,21 @@
+# Chapter 05 — the three-tier delegation model. Tier 1 readers hold tenant-scoped
+# roles because reader roles can't be scoped to an administrative unit. Tiers 2
+# and 3 are administrative units; AUs can't be nested, so the department-to-
+# division relationship is a naming convention, not containment.
+rankdir: TB
+graph: {nodesep: 0.25, ranksep: 0.4}
+nodes:
+  t1: {tone: violet, width: 300, tag: "Tier 1 · tenant scope", title: "Enterprise read-only visibility", body: ["Global Reader, Security Reader, Reports Reader", "=Assigned at directory scope; no AU scope exists for these roles"], size: 12}
+  it: {tone: blue, width: 175, tag: "Tier 2 · AU", title: "AU-Department-IT", body: ["=User Administrator"], size: 12}
+  hr: {tone: blue, width: 175, tag: "Tier 2 · AU", title: "AU-Department-HR", body: ["=User Administrator"], size: 12}
+  fin: {tone: blue, width: 175, tag: "Tier 2 · AU", title: "AU-Department-Finance", body: ["=User and Groups Administrator"], size: 12}
+  cy: {tone: blue, width: 175, tag: "Tier 3 · AU", title: "AU-IT-CyberOps", body: ["=Helpdesk and Password Administrator"], size: 12}
+  inf: {tone: blue, width: 175, tag: "Tier 3 · AU", title: "AU-IT-InfraOps", body: ["=Authentication Administrator"], size: 12}
+  grc: {tone: blue, width: 175, tag: "Tier 3 · AU", title: "AU-Legal-GRC", body: ["=Created on demand"], size: 12}
+edges:
+  - [t1, hr, {style: dashed, tone: violet, label: "reads everything"}]
+  - [it, cy, {style: dashed, label: "naming only"}]
+  - [it, inf, {style: dashed}]
+order:
+  - [it, hr, fin]
+  - [cy, inf, grc]

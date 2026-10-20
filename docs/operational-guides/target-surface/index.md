@@ -27,7 +27,7 @@ validation-suites.
 ## Leaves
 
 - **E.1** Entra ID tenant — adapter
-- **E.2** Administrative Units — [FMP_154](../../reference-architecture/delegation.md)
+- **E.2** Administrative Units — [FMP_154](../../books/b02-identity/05-delegation-without-ous.md)
 - **E.3** Intune — adapter
 - **E.4** Azure Arc — (adapter pending)
 - **E.5** Microsoft 365 SaaS — adapter

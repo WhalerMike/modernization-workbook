@@ -139,15 +139,15 @@ The other three names (Boundary Enforcement, Two-Brain Execution, Tenant Agnosti
 | Section | What is There |
 |---------|-------------|
 | Identity Modernization | The A-Z Suite: 27 canonical artifacts (FMP_150 + FMP_151–FMP_176) governing user hierarchy, dynamic groups, delegation, migration, drift detection, and operational governance |
-| [Directory Migration](directory-migration.html) | 8 adapter interfaces for every infrastructure service AD was holding together: IPAM, PKI, RADIUS, LDAP, sync engines, devices, NTP, DFS |
+| [Directory Migration](../books/b02-identity/04-the-hidden-migration-surface.html) | 8 adapter interfaces for every infrastructure service AD was holding together: IPAM, PKI, RADIUS, LDAP, sync engines, devices, NTP, DFS |
 
 ### Explainers and walk-throughs
 
 | Page | Who it's for |
 |------|--------------|
-| [Delegation Matrix](delegation.md) | Identity admins mapping Administrative Units to operator roles |
+| [Delegation Matrix](../books/b02-identity/05-delegation-without-ous.md) | Identity admins mapping Administrative Units to operator roles |
 | [Intune-First Asset Onboarding](intune-first.md) | Procurement + endpoint teams governing **net-new** devices from day zero (per the program decision; for existing-fleet GPO replacement see [GPO Sunset Program](../operational-guides/target-surface/intune-policy-templates.md)) |
-| [Directory Migration — Adapters](adapters.md) | Network/infrastructure engineers wiring DNS/DHCP/PKI/RADIUS through canonical adapters |
+| [Directory Migration — Adapters](../books/b02-identity/04-the-hidden-migration-surface.md) | Network/infrastructure engineers wiring DNS/DHCP/PKI/RADIUS through canonical adapters |
 | [GPO-to-Cloud Governance Gaps](gpo-cloud-governance-gaps.md) | Architects/operators asking *"what control do we lose moving Group Policy to Intune/Entra?"* — the five lost capabilities |
 
 ## Source Files

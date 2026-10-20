@@ -1,0 +1,14 @@
+# Chapter 01 — two ways out of the forest: a lift-and-shift synchronizes the
+# accumulated estate and its risks into the tenant; a governed migration
+# discovers what Active Directory encodes and rebuilds it explicitly.
+rankdir: LR
+graph: {nodesep: 0.4, ranksep: 0.6}
+nodes:
+  ad: {tone: slate, width: 185, tag: "Starting point", title: "Active Directory today", body: ["OUs that mirror old org charts", "Layered Group Policy", "Forgotten service accounts", "Old trusts"], size: 12}
+  lift: {tone: red, width: 230, tag: "Lift and shift", title: "Sync the forest as it stands", body: ["Delegation and policy intent have no landing place", "Synced privileged accounts carry on-premises compromise into the tenant", "Stale accounts stay enabled"], size: 12}
+  gov: {tone: green, width: 230, tag: "Governed migration", title: "Discover, rebuild, prove", body: ["Discover what the directory encodes", "Rebuild it explicitly in Entra ID", "Prove with evidence that it survived"], size: 12}
+edges:
+  - [ad, lift, {label: "sync as it stands", tone: red}]
+  - [ad, gov, {label: "discover first", tone: green}]
+ranks:
+  - [lift, gov]

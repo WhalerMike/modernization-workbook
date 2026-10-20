@@ -22,7 +22,6 @@ project:
     - "docs/compliance/federal-compliance-series-moderate/books/README.md"
     - "docs/executive-briefs/README.md"
     - "docs/guides/device-and-server-modernization/README.md"
-    - "docs/learning/README.md"
     - "docs/libraries/README.md"
     - "docs/modernization-specs/README.md"
     - "docs/operational-guides/README.md"
@@ -39,6 +38,8 @@ project:
     # substrate runbooks, and canonical-specs (module specs, plus security
     # templates that are stubs pointing at the source system's own package).
     - "!docs/substrate/"
+    # Pages a workbook book replaced; kept for history, never published.
+    - "!archive/"
     - "!docs/canonical-specs/"
 
 website:
@@ -72,6 +73,10 @@ website:
         text: "Architecture"
       - text: "Series"
         menu:
+          - href: docs/books/index.md
+            text: "The Workbook Books"
+          - href: docs/books/b02-identity/index.md
+            text: "Book 02 — Identity & Directory"
           - href: docs/client-server-to-hybrid-cloud/README.md
             text: "Client-Server to Hybrid-Cloud"
           - href: docs/next-generation-ddi/index.md
@@ -221,16 +226,10 @@ website:
         - section: "Client-Server to Hybrid-Cloud (runbooks)"
           contents:
             - auto: "docs/operational-guides/client-server-to-hybrid-cloud/*.md"
-        - section: "Directory Migration"
-          contents:
-            - auto: "docs/operational-guides/directory-migration/*.md"
         - section: "Help Desk and Entra Operations"
           contents:
             - docs/operational-guides/helpdesk-entra-operations/index.md
             - auto: "docs/operational-guides/helpdesk-entra-operations/*.md"
-        - section: "Identity"
-          contents:
-            - auto: "docs/operational-guides/identity/*.md"
         - section: "Intune and Arc Modernization"
           contents:
             - docs/operational-guides/intune-arc-modernization/README.md
@@ -264,10 +263,6 @@ website:
           contents:
             - docs/guides/device-and-server-modernization/README.md
             - auto: "docs/guides/device-and-server-modernization/*.md"
-        - section: "Learning"
-          contents:
-            - docs/learning/README.md
-            - auto: "docs/learning/*.md"
         - section: "Libraries"
           contents:
             - docs/libraries/README.md
@@ -286,9 +281,6 @@ website:
           contents:
             - docs/architecture/architecture-series/README.md
             - auto: "docs/architecture/architecture-series/*.md"
-        - section: "Directory Migration"
-          contents:
-            - auto: "docs/architecture/directory-migration/*.md"
         - section: "Reference Architecture"
           contents:
             - docs/reference-architecture/index.md
@@ -299,6 +291,14 @@ website:
       style: docked
       collapse-level: 1
       contents:
+        - section: "The Workbook Books"
+          href: docs/books/index.md
+          contents:
+            - section: "Book 02 — Identity & Directory"
+              href: docs/books/b02-identity/index.md
+              contents:
+                - auto: "docs/books/b02-identity/[0-9]*.md"
+                - auto: "docs/books/b02-identity/appendix-*.md"
         - section: "Client-Server to Hybrid-Cloud"
           href: docs/client-server-to-hybrid-cloud/README.md
           contents:

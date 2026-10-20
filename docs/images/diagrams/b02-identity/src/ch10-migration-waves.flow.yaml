@@ -1,0 +1,15 @@
+# Chapter 10 — the eleven playbook phases grouped into five waves. Each wave's
+# validation criteria gate the next.
+rankdir: LR
+graph: {nodesep: 0.2, ranksep: 0.2}
+nodes:
+  w1: {tone: slate, width: 135, tag: "Phases 0 to 2", title: "Foundation", body: ["=Assess, sync, PHS, CA in report-only"], size: 12}
+  w2: {tone: blue, width: 135, tag: "Phases 3 and 4", title: "Objects", body: ["=Groups, then service accounts"], size: 12}
+  w3: {tone: amber, width: 135, tag: "Phases 5 and 6", title: "Privilege and policy", body: ["=PIM, then CA enforced in waves"], size: 12}
+  w4: {tone: blue, width: 135, tag: "Phases 7 to 9", title: "Authentication", body: ["=Phishing-resistant, legacy cutoff, AD FS out"], size: 12}
+  w5: {tone: violet, width: 135, tag: "Phase 10", title: "Sustain", body: ["=Lifecycle, reviews, drift detection"], size: 12}
+edges:
+  - [w1, w2]
+  - [w2, w3]
+  - [w3, w4]
+  - [w4, w5]

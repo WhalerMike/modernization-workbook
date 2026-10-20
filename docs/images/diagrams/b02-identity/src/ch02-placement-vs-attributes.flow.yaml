@@ -1,0 +1,23 @@
+# Chapter 02 — placement versus attributes: in Active Directory an object inherits
+# delegation and policy from its position in the forest / domain / OU tree; in
+# Entra ID rules evaluate the object's attributes and place it in administrative
+# units, dynamic groups and Conditional Access policies.
+rankdir: TB
+graph: {nodesep: 0.5, ranksep: 0.3}
+clusters:
+  - {id: ad, label: "Active Directory: governed by placement", tone: slate, filled: false, nodes: [forest, domain, ou, aduser]}
+  - {id: entra, label: "Entra ID: governed by attributes", tone: blue, filled: false, nodes: [euser, rules, targets]}
+nodes:
+  forest: {tone: slate, width: 230, title: "Forest", body: ["=The outermost container"], size: 12}
+  domain: {tone: slate, width: 230, title: "Domain", body: ["=Authentication and Kerberos ticket policy"], size: 12}
+  ou: {tone: slate, width: 230, title: "Organizational unit", body: ["=Delegated administrators and linked Group Policy"], size: 12}
+  aduser: {tone: slate, width: 230, title: "User", body: ["=Scope and policy inherited from position"], size: 12}
+  euser: {tone: blue, width: 230, title: "User", body: ["Department and location", "Employee type", "Extension attributes"], size: 12}
+  rules: {tone: violet, width: 230, title: "Rules", body: ["=Membership rules and policy conditions"], size: 12}
+  targets: {tone: blue, width: 230, title: "Where the user lands", body: ["Administrative units (no nesting)", "Dynamic groups", "Conditional Access policies"], size: 12}
+edges:
+  - [forest, domain, {label: "contains"}]
+  - [domain, ou, {label: "contains"}]
+  - [ou, aduser, {label: "contains"}]
+  - [euser, rules, {label: "evaluated by", tone: violet}]
+  - [rules, targets, {label: "places it in", tone: blue}]

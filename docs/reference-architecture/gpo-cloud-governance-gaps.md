@@ -33,7 +33,7 @@ live in the linked canon and reference pages.
 This page takes the **GPO device-policy plane** lens specifically. For
 the broader structural argument that the AD→Entra gap is structural
 rather than technical, see
-[AD to Entra ID — The Structural Migration Problem](../whitepapers/ad-to-entraid-migration-problem.md);
+[AD to Entra ID — The Structural Migration Problem](../books/b02-identity/01-why-identity-matters.md);
 for the tool-by-tool comparison (including Group Policy Analytics), see
 The Federal Modernization Program vs Microsoft Native Tools.
 This page does not restate their claims — it focuses on *what is lost in
@@ -126,7 +126,7 @@ On-prem delegation was well understood: who can create, edit, or link a
 GPO, at which OU level. The cloud equivalent — Intune roles, RBAC,
 policy ownership, scope tags — is a different shape, and to traditional
 GPO teams it can feel less granular or less auditable. The
-[Delegation](delegation.md) reference covers how a
+[Delegation](../books/b02-identity/05-delegation-without-ous.md) reference covers how a
 delegation boundary is carried forward so scope is canonical rather than
 reconstructed per-admin.
 
@@ -190,5 +190,5 @@ basic IGA tool — to avoid losing critical control and visibility.
 
 - **Triage the legacy GPO surface:** Invoke-GpoMigrationTriage
 - **Whole-of-transition framing:** [Modernization Canon (section index)](index.md)
-- **Structural-gap argument:** [AD to Entra ID — The Structural Migration Problem](../whitepapers/ad-to-entraid-migration-problem.md)
+- **Structural-gap argument:** [AD to Entra ID — The Structural Migration Problem](../books/b02-identity/01-why-identity-matters.md)
 - **Tool-by-tool comparison:** the Federal Modernization Program vs Microsoft Native Tools

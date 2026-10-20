@@ -1,0 +1,17 @@
+# Chapter 03 — protocol mapping: for each job the directory does, the protocol
+# Active Directory uses and the protocol Microsoft Entra ID uses instead.
+rankdir: TB
+nodes:
+  t:
+    kind: table
+    tone: slate
+    columns: ["Job", {text: "Active Directory", tone: slate}, {text: "Microsoft Entra ID", tone: blue}]
+    widths: [170, 250, 270]
+    rows:
+      - ["Authenticate a user", "Kerberos v5; NTLM fallback through Negotiate", {text: "OpenID Connect sign-in; FIDO2 passkeys, certificate-based authentication", tone: blue}]
+      - ["Authorize an app call", "Kerberos service ticket for an SPN", {text: "OAuth 2.0 access token (JWT)", tone: blue}]
+      - ["Read or change the directory", "LDAP / LDAPS; ADWS for the PowerShell module", {text: "Microsoft Graph REST API over HTTPS", tone: blue}]
+      - ["Provision accounts to apps", "LDAP binds and custom connectors", {text: "SCIM 2.0 from the provisioning service", tone: blue}]
+      - ["Federate with SaaS", "SAML or WS-Federation through AD FS", {text: "SAML 2.0 or OIDC directly to the tenant", tone: blue}]
+      - ["Enforce access policy", "Group Policy on domain-joined devices", {text: "Conditional Access on each sign-in", tone: blue}]
+      - ["Bind a session to a device", "Kerberos session keys; no device binding of the ticket", {text: "Token Protection binds the sign-in session token to the device; proof-of-possession tokens for apps", tone: blue}]

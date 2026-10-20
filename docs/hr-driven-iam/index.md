@@ -66,4 +66,4 @@ Chapters 00–02 make the case and set the context. Chapters 03–05 define the 
 - **[SQL Server Identity Transformation, Book 10](../case-studies/sql-server-narrative/Book_10.md)** covers the move from AD CS to Microsoft Cloud PKI; Chapter 07 covers only the certificate steps of the leaver sequence.
 - **[Federal Compliance Vol I Book 04](../compliance/Vol_I_Book_04_HRIT_Identity_Org_SSOT.md)** carries the compliance treatment of the same controls (AC-2, IA-4, PS-4, PS-5, SI-12). The architecture contributes mechanisms and evidence to them; it doesn't satisfy them on its own.
 - **[Client-Server to Hybrid-Cloud, Chapter 04](../client-server-to-hybrid-cloud/04-identity-transformation.md)** covers the move from the OU tree to attribute-driven structure.
-- **[The AD → Entra ID Identity Modernization Guide](../operational-guides/identity/identity-modernization.md)** covers directory migration, the companion dimension to inbound provisioning.
+- **[The AD → Entra ID Identity Modernization Guide](../books/b02-identity/09-building-the-entra-target.md)** covers directory migration, the companion dimension to inbound provisioning.

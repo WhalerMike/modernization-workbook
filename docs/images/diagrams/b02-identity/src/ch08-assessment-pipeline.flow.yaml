@@ -1,0 +1,19 @@
+# Chapter 08 — the assessment pipeline from forest to evidence repository:
+# one orchestrator runs eight collectors under a managed service account,
+# writes a hashed manifest, and commits the run to a versioned repository
+# where findings become issues and a webhook starts downstream planning.
+rankdir: TB
+graph: {nodesep: 0.3, ranksep: 0.45}
+nodes:
+  host: {tone: slate, width: 280, tag: "Assessment host", title: "Invoke-FMPADAssessment", body: ["=Runs as a gMSA with delegated read rights"], size: 12}
+  coll: {tone: slate, width: 280, tag: "Eight collectors", title: "Forest to trusts", body: ["Topology and OUs", "GPOs and DNS", "AD CS", "Computers, users, groups", "Trusts"], size: 12}
+  out: {tone: violet, width: 280, tag: "Output tree", title: "JSON, CSV, XML", body: ["=AssessmentManifest.json with a SHA-256 hash per file"], size: 12}
+  repo: {tone: violet, width: 280, tag: "Gitea repository", title: "Evidence repository", body: ["=One branch and one commit per run"], size: 12}
+  iss: {tone: red, width: 280, tag: "Issues", title: "Critical findings", body: ["=Unconstrained delegation, ESC template patterns"], size: 12}
+  plan: {tone: blue, width: 280, tag: "Webhook", title: "Planning documents", body: ["=Device, GPO, PKI, DNS, identity plans"], size: 12}
+edges:
+  - [host, coll]
+  - [coll, out]
+  - [out, repo, {label: "commit"}]
+  - [repo, iss, {tone: red}]
+  - [repo, plan, {tone: blue}]
