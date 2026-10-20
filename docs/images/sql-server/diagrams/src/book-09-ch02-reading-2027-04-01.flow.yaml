@@ -5,7 +5,7 @@ graph: {nodesep: 0.3, ranksep: 0.3}
 nodes:
   m: {tone: blue, width: 200, tag: "Before the validation period", title: "Migration work ends", body: ["Parallel runs, cutovers", "sa disabled, type-S eliminated", "Exceptions documented with certificate-based interim posture"], size: 12}
   v: {tone: green, width: 200, tag: "Validation period", title: "Prove it stays done", body: ["Continuous audit satisfied", "Zero NTLM in telemetry", "Evidence sets accumulate"], size: 12}
-  b: {tone: red, width: 200, tag: "2027-04-01", title: "NTLM block applied", body: ["Network-level; ignores exceptions", "A consequence, not a completion date"], size: 12}
+  b: {tone: red, width: 200, tag: "2027-04-01 (program date)", title: "NTLM block applied", body: ["Domain-wide; ignores the engine exception registry", "A consequence, not a completion date"], size: 12}
 edges:
   - [m, v, {penwidth: 2.2}]
   - [v, b, {penwidth: 2.2}]

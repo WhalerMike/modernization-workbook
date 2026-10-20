@@ -74,8 +74,8 @@ Appendices: [A — Lifecycle rules](appendix-a-lifecycle-rules.md) · [B — Sec
 
 ## Where this book sits in the workbook
 
-- **[SQL Server Identity Transformation, Book 07](../../case-studies/sql-server-narrative/Book_07.md)** applies the attribute-to-access chain of Chapter 10 to SQL Server logins and database roles.
-- **[SQL Server Identity Transformation, Book 10](../../case-studies/sql-server-narrative/Book_10.md)** covers the move from AD CS to Microsoft Cloud PKI; Chapter 09 covers only the certificate steps of the leaver sequence.
+- **[SQL Server Identity Transformation, Book 07](../b06-data-platform/16-groups-roles-and-membership.md)** applies the attribute-to-access chain of Chapter 10 to SQL Server logins and database roles.
+- **[SQL Server Identity Transformation, Book 10](../b06-data-platform/22-where-sql-server-touches-adcs.md)** covers the move from AD CS to Microsoft Cloud PKI; Chapter 09 covers only the certificate steps of the leaver sequence.
 - **[Federal Compliance Vol I Book 04](../../compliance/Vol_I_Book_04_HRIT_Identity_Org_SSOT.md)** carries the compliance treatment of the same controls (AC-2, IA-4, PS-4, PS-5, SI-12). The architecture contributes mechanisms and evidence to them; it doesn't satisfy them on its own.
 - **[Client-Server to Hybrid-Cloud, Chapter 04](../../client-server-to-hybrid-cloud/04-identity-transformation.md)** covers the move from the OU tree to attribute-driven structure.
 - **[Book 02 — Identity & Directory](../b02-identity/index.md)** covers the directory migration this book builds on; [Chapter 09 there](../b02-identity/09-building-the-entra-target.md) designs the Entra ID target that inbound provisioning feeds.

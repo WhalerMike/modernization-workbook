@@ -7,7 +7,7 @@ nodes:
   u: {tone: slate, width: 370, tag: "Database: Ledger", title: "Database user for the login", body: ["=`CREATE USER [SQL-PRD-FIN01-Ledger-Reader]`", "=`    FROM LOGIN [SQL-PRD-FIN01-Ledger-Reader];`"], size: 12}
   r: {tone: green, width: 370, tag: "Database: Ledger", title: "Member of exactly one user-defined role", body: ["=`ALTER ROLE ledger_reader`", "=`    ADD MEMBER [SQL-PRD-FIN01-Ledger-Reader];`", "=Permissions go to the role, never to the group's user."], size: 12}
   rule1: {tone: amber, width: 230, title: "Why one group, one role", body: ["The name states the full grant", "Revoking one capability can't revoke another", "Each dynamic rule answers one question"], size: 12}
-  admin: {tone: red, width: 230, title: "The instance's Entra admin", body: ["=Gets sysadmin. Make it a cloud-only group managed with PIM (Chapter 2)."], size: 12}
+  admin: {tone: red, width: 230, title: "The instance's Entra admin", body: ["=Gets sysadmin. Make it a cloud-only group managed with PIM (Chapter 17)."], size: 12}
 edges:
   - [g, l, {tone: blue}]
   - [l, u]

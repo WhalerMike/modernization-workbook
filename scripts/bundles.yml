@@ -31,111 +31,92 @@ defaults:
 
 bundles:
   # ---------------------------------------------------------------------
-  # SQL Server Identity Transformation narrative
+  # Book 06 — Data Platform: SQL Server Identity (was the SQL Server narrative
+  # series and its implementation companion). The old download names stay as
+  # aliases so published links keep working.
   # ---------------------------------------------------------------------
-  - output: sql-server-narrative-bundle.docx
-    # index.md advertises the "standalone" name for the same document.
-    aliases: [sql-server-narrative-standalone-bundle.docx]
-    title: "SQL Server Identity Transformation"
-    subtitle: "Narrative Series — combined edition"
-    root: docs/case-studies/sql-server-narrative
+  - output: b06-data-platform-bundle.docx
+    aliases: [sql-server-narrative-bundle.docx, sql-server-narrative-standalone-bundle.docx]
+    title: "Book 06 — Data Platform: SQL Server Identity"
+    subtitle: "From Windows Authentication to cloud identity — Modernization Workbook, combined edition"
+    root: docs/books/b06-data-platform
     image_dir: docs/images/sql-server
-    warn_unlisted: ["Book_*.md"]
-    pages:
-      - index.md
-      - Applicability.md
-      - Book_01.md
-      - Book_01_CPT_01.md
-      - Book_01_CPT_02.md
-      - Book_02.md
-      - Book_02_CPT_01.md
-      - Book_02_CPT_02.md
-      - Book_02_CPT_03.md
-      - Book_02_CPT_04.md
-      - Book_03.md
-      - Book_03_CPT_01.md
-      - Book_03_CPT_02.md
-      - Book_04.md
-      - Book_04_CPT_01.md
-      - Book_04_CPT_02.md
-      - Book_05.md
-      - Book_05_CPT_01.md
-      - Book_05_CPT_02.md
-      - Book_06.md
-      - Book_06_CPT_01.md
-      - Book_06_CPT_02.md
-      - Book_07.md
-      - Book_07_CPT_01.md
-      - Book_07_CPT_02.md
-      - Book_08.md
-      - Book_08_CPT_01.md
-      - Book_08_CPT_02.md
-      - Book_09.md
-      - Book_09_CPT_01.md
-      - Book_09_CPT_02.md
-      - Book_10.md
-      - Book_10_CPT_01.md
-      - Book_11.md                       # Book 11, the epilogue, is a single page
-      - Appendix_A_Requirements_Mapping.md
-      - Appendix_B_ATO_Kit.md
-
-  # One bundle per book: the book page, then its chapters in order.
-  - output: Applicability-bundle.docx
-    subtitle: "SQL Server Identity Transformation — Narrative Series"
-    root: docs/case-studies/sql-server-narrative
-    pages: [Applicability.md]
-  - output: Book_01-bundle.docx
-    subtitle: "SQL Server Identity Transformation — Narrative Series"
-    root: docs/case-studies/sql-server-narrative
-    pages: [Book_01.md, "Book_01_CPT_*.md"]
-  - output: Book_02-bundle.docx
-    subtitle: "SQL Server Identity Transformation — Narrative Series"
-    root: docs/case-studies/sql-server-narrative
-    pages: [Book_02.md, "Book_02_CPT_*.md"]
-  - output: Book_03-bundle.docx
-    subtitle: "SQL Server Identity Transformation — Narrative Series"
-    root: docs/case-studies/sql-server-narrative
-    pages: [Book_03.md, "Book_03_CPT_*.md"]
-  - output: Book_04-bundle.docx
-    subtitle: "SQL Server Identity Transformation — Narrative Series"
-    root: docs/case-studies/sql-server-narrative
-    pages: [Book_04.md, "Book_04_CPT_*.md"]
-  - output: Book_05-bundle.docx
-    subtitle: "SQL Server Identity Transformation — Narrative Series"
-    root: docs/case-studies/sql-server-narrative
-    pages: [Book_05.md, "Book_05_CPT_*.md"]
-  - output: Book_06-bundle.docx
-    subtitle: "SQL Server Identity Transformation — Narrative Series"
-    root: docs/case-studies/sql-server-narrative
-    pages: [Book_06.md, "Book_06_CPT_*.md"]
-  - output: Book_07-bundle.docx
-    subtitle: "SQL Server Identity Transformation — Narrative Series"
-    root: docs/case-studies/sql-server-narrative
-    pages: [Book_07.md, "Book_07_CPT_*.md"]
-  - output: Book_08-bundle.docx
-    subtitle: "SQL Server Identity Transformation — Narrative Series"
-    root: docs/case-studies/sql-server-narrative
-    pages: [Book_08.md, "Book_08_CPT_*.md"]
-  - output: Book_09-bundle.docx
-    subtitle: "SQL Server Identity Transformation — Narrative Series"
-    root: docs/case-studies/sql-server-narrative
-    pages: [Book_09.md, "Book_09_CPT_*.md"]
-  - output: Book_10-bundle.docx
-    subtitle: "SQL Server Identity Transformation — Narrative Series"
-    root: docs/case-studies/sql-server-narrative
-    pages: [Book_10.md, "Book_10_CPT_*.md"]
-  - output: Book_11-bundle.docx
-    subtitle: "SQL Server Identity Transformation — Narrative Series"
-    root: docs/case-studies/sql-server-narrative
-    pages: [Book_11.md]
-  - output: Appendix_A-bundle.docx
-    subtitle: "SQL Server Identity Transformation — Narrative Series"
-    root: docs/case-studies/sql-server-narrative
-    pages: [Appendix_A_Requirements_Mapping.md]
-  - output: Appendix_B-bundle.docx
-    subtitle: "SQL Server Identity Transformation — Narrative Series"
-    root: docs/case-studies/sql-server-narrative
-    pages: [Appendix_B_ATO_Kit.md]
+    warn_unlisted: ["*.md"]
+    pages: [index.md, "[0-9][0-9]-*.md", "r[0-9][0-9]-*.md", "appendix-*.md"]
+  - output: b06-data-platform-book-01.docx
+    aliases: [Book_01-bundle.docx]
+    subtitle: "Book 06 — Data Platform: SQL Server Identity"
+    root: docs/books/b06-data-platform
+    pages: ["01-*.md", "02-*.md"]
+  - output: b06-data-platform-book-02.docx
+    aliases: [Book_02-bundle.docx]
+    subtitle: "Book 06 — Data Platform: SQL Server Identity"
+    root: docs/books/b06-data-platform
+    pages: ["03-*.md", "04-*.md", "05-*.md", "06-*.md"]
+  - output: b06-data-platform-book-03.docx
+    aliases: [Book_03-bundle.docx]
+    subtitle: "Book 06 — Data Platform: SQL Server Identity"
+    root: docs/books/b06-data-platform
+    pages: ["07-*.md", "08-*.md"]
+  - output: b06-data-platform-book-04.docx
+    aliases: [Book_04-bundle.docx]
+    subtitle: "Book 06 — Data Platform: SQL Server Identity"
+    root: docs/books/b06-data-platform
+    pages: ["09-*.md", "10-*.md"]
+  - output: b06-data-platform-book-05.docx
+    aliases: [Book_05-bundle.docx]
+    subtitle: "Book 06 — Data Platform: SQL Server Identity"
+    root: docs/books/b06-data-platform
+    pages: ["11-*.md", "12-*.md"]
+  - output: b06-data-platform-book-06.docx
+    aliases: [Book_06-bundle.docx]
+    subtitle: "Book 06 — Data Platform: SQL Server Identity"
+    root: docs/books/b06-data-platform
+    pages: ["14-*.md", "15-*.md"]
+  - output: b06-data-platform-book-07.docx
+    aliases: [Book_07-bundle.docx]
+    subtitle: "Book 06 — Data Platform: SQL Server Identity"
+    root: docs/books/b06-data-platform
+    pages: ["16-*.md", "17-*.md"]
+  - output: b06-data-platform-book-08.docx
+    aliases: [Book_08-bundle.docx]
+    subtitle: "Book 06 — Data Platform: SQL Server Identity"
+    root: docs/books/b06-data-platform
+    pages: ["18-*.md", "19-*.md"]
+  - output: b06-data-platform-book-09.docx
+    aliases: [Book_09-bundle.docx]
+    subtitle: "Book 06 — Data Platform: SQL Server Identity"
+    root: docs/books/b06-data-platform
+    pages: ["20-*.md", "21-*.md"]
+  - output: b06-data-platform-book-10.docx
+    aliases: [Book_10-bundle.docx]
+    subtitle: "Book 06 — Data Platform: SQL Server Identity"
+    root: docs/books/b06-data-platform
+    pages: ["22-*.md"]
+  - output: b06-data-platform-book-11.docx
+    aliases: [Book_11-bundle.docx]
+    subtitle: "Book 06 — Data Platform: SQL Server Identity"
+    root: docs/books/b06-data-platform
+    pages: ["23-*.md"]
+  - output: b06-data-platform-applicability.docx
+    aliases: [Applicability-bundle.docx]
+    subtitle: "Book 06 — Data Platform: SQL Server Identity"
+    root: docs/books/b06-data-platform
+    pages: ["appendix-c-*.md"]
+  - output: b06-data-platform-appendix-a.docx
+    aliases: [Appendix_A-bundle.docx]
+    subtitle: "Book 06 — Data Platform: SQL Server Identity"
+    root: docs/books/b06-data-platform
+    pages: ["appendix-a-*.md"]
+  - output: b06-data-platform-appendix-b.docx
+    aliases: [Appendix_B-bundle.docx]
+    subtitle: "Book 06 — Data Platform: SQL Server Identity"
+    root: docs/books/b06-data-platform
+    pages: ["appendix-b-*.md"]
+  - output: b06-data-platform-runbooks.docx
+    subtitle: "Book 06 — Data Platform: SQL Server Identity"
+    root: docs/books/b06-data-platform
+    pages: ["r[0-9][0-9]-*.md"]
 
   # ---------------------------------------------------------------------
   # Next Generation DDI (modernization book): the whole book, then one

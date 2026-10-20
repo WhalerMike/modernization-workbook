@@ -6,18 +6,18 @@
 redirects:
   # SQL Server narrative: the short book-* series and the neutralized twin
   # were folded into the canonical Book_* series.
-  docs/case-studies/sql-server-narrative/book-01-the-inheritance.html: docs/case-studies/sql-server-narrative/Book_01.html
-  docs/case-studies/sql-server-narrative/book-02-the-estate.html: docs/case-studies/sql-server-narrative/Book_02.html
-  docs/case-studies/sql-server-narrative/book-03-authentication-audit.html: docs/case-studies/sql-server-narrative/Book_03.html
-  docs/case-studies/sql-server-narrative/book-04-identity-bridge.html: docs/case-studies/sql-server-narrative/Book_04.html
-  docs/case-studies/sql-server-narrative/book-05-login-migration.html: docs/case-studies/sql-server-narrative/Book_05.html
-  docs/case-studies/sql-server-narrative/book-06-ntlm-elimination.html: docs/case-studies/sql-server-narrative/Book_06.html
-  docs/case-studies/sql-server-narrative/book-07-access-control.html: docs/case-studies/sql-server-narrative/Book_07.html
-  docs/case-studies/sql-server-narrative/book-08-upstream-chain.html: docs/case-studies/sql-server-narrative/Book_08.html
-  docs/case-studies/sql-server-narrative/book-09-steady-state.html: docs/case-studies/sql-server-narrative/Book_09.html
-  docs/case-studies/sql-server-narrative/book-10-certificate-authority.html: docs/case-studies/sql-server-narrative/Book_10.html
-  docs/case-studies/sql-server-narrative/book-11-platform-question.html: docs/case-studies/sql-server-narrative/Book_11.html
-  docs/case-studies/sql-server-narrative/sql-server-narrative-neutralized.html: docs/case-studies/sql-server-narrative/README.html
+  docs/case-studies/sql-server-narrative/book-01-the-inheritance.html: docs/books/b06-data-platform/01-what-windows-authentication-actually-is.html
+  docs/case-studies/sql-server-narrative/book-02-the-estate.html: docs/books/b06-data-platform/03-the-shape-of-twenty-years.html
+  docs/case-studies/sql-server-narrative/book-03-authentication-audit.html: docs/books/b06-data-platform/07-the-authentication-audit.html
+  docs/case-studies/sql-server-narrative/book-04-identity-bridge.html: docs/books/b06-data-platform/09-what-arc-provides-to-sql-server.html
+  docs/case-studies/sql-server-narrative/book-05-login-migration.html: docs/books/b06-data-platform/11-three-principal-types.html
+  docs/case-studies/sql-server-narrative/book-06-ntlm-elimination.html: docs/books/b06-data-platform/14-ntlm-and-the-patterns-that-generate-it.html
+  docs/case-studies/sql-server-narrative/book-07-access-control.html: docs/books/b06-data-platform/16-groups-roles-and-membership.html
+  docs/case-studies/sql-server-narrative/book-08-upstream-chain.html: docs/books/b06-data-platform/18-the-four-class-pattern-for-applications.html
+  docs/case-studies/sql-server-narrative/book-09-steady-state.html: docs/books/b06-data-platform/20-the-closure-condition.html
+  docs/case-studies/sql-server-narrative/book-10-certificate-authority.html: docs/books/b06-data-platform/22-where-sql-server-touches-adcs.html
+  docs/case-studies/sql-server-narrative/book-11-platform-question.html: docs/books/b06-data-platform/23-epilogue-the-platform-question.html
+  docs/case-studies/sql-server-narrative/sql-server-narrative-neutralized.html: docs/books/b06-data-platform/index.html
 
   # Executive Governance: the flat summary copy was removed; the chapter
   # folders are canonical.
@@ -139,3 +139,55 @@ redirects:
   docs/libraries/README.html: docs/books/index.html
   docs/whitepapers/hybrid-join-without-governance.html: docs/books/b05-devices/02-the-hybrid-join-trap.html
   docs/architecture/where-data-lives-devices-azure.html: docs/books/b05-devices/03-where-device-and-server-data-lives.html
+
+  # Book 06 (Data Platform) replaced the SQL Server narrative and implementation companion; sources are in archive/b06-data-platform/.
+  docs/case-studies/sql-server-narrative/Book_01_CPT_01.html: docs/books/b06-data-platform/01-what-windows-authentication-actually-is.html
+  docs/case-studies/sql-server-narrative/Book_01_CPT_02.html: docs/books/b06-data-platform/02-why-the-inheritance-must-end.html
+  docs/case-studies/sql-server-narrative/Book_02_CPT_01.html: docs/books/b06-data-platform/03-the-shape-of-twenty-years.html
+  docs/case-studies/sql-server-narrative/Book_02_CPT_02.html: docs/books/b06-data-platform/04-the-estate-inventory.html
+  docs/case-studies/sql-server-narrative/Book_02_CPT_03.html: docs/books/b06-data-platform/05-rationalization.html
+  docs/case-studies/sql-server-narrative/Book_02_CPT_04.html: docs/books/b06-data-platform/06-retain-consolidate-retire.html
+  docs/case-studies/sql-server-narrative/Book_03_CPT_01.html: docs/books/b06-data-platform/07-the-authentication-audit.html
+  docs/case-studies/sql-server-narrative/Book_03_CPT_02.html: docs/books/b06-data-platform/08-reading-the-audit.html
+  docs/case-studies/sql-server-narrative/Book_04_CPT_01.html: docs/books/b06-data-platform/09-what-arc-provides-to-sql-server.html
+  docs/case-studies/sql-server-narrative/Book_04_CPT_02.html: docs/books/b06-data-platform/10-arc-deployment-sequencing.html
+  docs/case-studies/sql-server-narrative/Book_05_CPT_01.html: docs/books/b06-data-platform/11-three-principal-types.html
+  docs/case-studies/sql-server-narrative/Book_05_CPT_02.html: docs/books/b06-data-platform/12-the-engine-authentication-decision.html
+  docs/case-studies/sql-server-narrative/Book_06_CPT_01.html: docs/books/b06-data-platform/14-ntlm-and-the-patterns-that-generate-it.html
+  docs/case-studies/sql-server-narrative/Book_06_CPT_02.html: docs/books/b06-data-platform/15-the-three-phases-of-ntlm-elimination.html
+  docs/case-studies/sql-server-narrative/Book_07_CPT_01.html: docs/books/b06-data-platform/16-groups-roles-and-membership.html
+  docs/case-studies/sql-server-narrative/Book_07_CPT_02.html: docs/books/b06-data-platform/17-dynamic-membership-delegation-and-privilege.html
+  docs/case-studies/sql-server-narrative/Book_08_CPT_01.html: docs/books/b06-data-platform/18-the-four-class-pattern-for-applications.html
+  docs/case-studies/sql-server-narrative/Book_08_CPT_02.html: docs/books/b06-data-platform/19-connection-string-migration.html
+  docs/case-studies/sql-server-narrative/Book_09_CPT_01.html: docs/books/b06-data-platform/20-the-closure-condition.html
+  docs/case-studies/sql-server-narrative/Book_09_CPT_02.html: docs/books/b06-data-platform/21-what-done-looks-like.html
+  docs/case-studies/sql-server-narrative/Book_10_CPT_01.html: docs/books/b06-data-platform/22-where-sql-server-touches-adcs.html
+  docs/case-studies/sql-server-narrative/Book_11.html: docs/books/b06-data-platform/23-epilogue-the-platform-question.html
+  docs/case-studies/sql-server-narrative/Appendix_A_Requirements_Mapping.html: docs/books/b06-data-platform/appendix-a-requirements-mapping.html
+  docs/case-studies/sql-server-narrative/Appendix_B_ATO_Kit.html: docs/books/b06-data-platform/appendix-b-ato-kit.html
+  docs/case-studies/sql-server-narrative/Applicability.html: docs/books/b06-data-platform/appendix-c-applicability.html
+  docs/case-studies/sql-server-narrative/Book_01.html: docs/books/b06-data-platform/01-what-windows-authentication-actually-is.html
+  docs/case-studies/sql-server-narrative/Book_02.html: docs/books/b06-data-platform/03-the-shape-of-twenty-years.html
+  docs/case-studies/sql-server-narrative/Book_03.html: docs/books/b06-data-platform/07-the-authentication-audit.html
+  docs/case-studies/sql-server-narrative/Book_04.html: docs/books/b06-data-platform/09-what-arc-provides-to-sql-server.html
+  docs/case-studies/sql-server-narrative/Book_05.html: docs/books/b06-data-platform/11-three-principal-types.html
+  docs/case-studies/sql-server-narrative/Book_06.html: docs/books/b06-data-platform/14-ntlm-and-the-patterns-that-generate-it.html
+  docs/case-studies/sql-server-narrative/Book_07.html: docs/books/b06-data-platform/16-groups-roles-and-membership.html
+  docs/case-studies/sql-server-narrative/Book_08.html: docs/books/b06-data-platform/18-the-four-class-pattern-for-applications.html
+  docs/case-studies/sql-server-narrative/Book_09.html: docs/books/b06-data-platform/20-the-closure-condition.html
+  docs/case-studies/sql-server-narrative/Book_10.html: docs/books/b06-data-platform/22-where-sql-server-touches-adcs.html
+  docs/case-studies/sql-server-narrative/README.html: docs/books/b06-data-platform/index.html
+  docs/case-studies/sql-server-narrative/index.html: docs/books/b06-data-platform/index.html
+  docs/case-studies/sql-server-narrative/series-overview.html: docs/books/b06-data-platform/index.html
+  docs/sql-server-implementation/Book_01.html: docs/books/b06-data-platform/r01-prerequisites.html
+  docs/sql-server-implementation/Book_02.html: docs/books/b06-data-platform/r02-estate-discovery-and-consolidation-gate.html
+  docs/sql-server-implementation/Book_03.html: docs/books/b06-data-platform/r03-the-authentication-audit.html
+  docs/sql-server-implementation/Book_04.html: docs/books/b06-data-platform/r04-arc-deployment-and-managed-identity.html
+  docs/sql-server-implementation/Book_05.html: docs/books/b06-data-platform/r05-login-migration-and-parallel-run.html
+  docs/sql-server-implementation/Book_06.html: docs/books/b06-data-platform/r06-ntlm-detection-and-remediation.html
+  docs/sql-server-implementation/Book_07.html: docs/books/b06-data-platform/r07-groups-aus-and-the-conditional-access-perimeter.html
+  docs/sql-server-implementation/Book_08.html: docs/books/b06-data-platform/r08-application-chain-and-connection-strings.html
+  docs/sql-server-implementation/Book_09.html: docs/books/b06-data-platform/r09-continuous-monitoring-and-closure.html
+  docs/sql-server-implementation/Book_10.html: docs/books/b06-data-platform/r10-certificate-discovery-for-adcs.html
+  docs/sql-server-implementation/index.html: docs/books/b06-data-platform/index.html
+  docs/case-studies/sql-server-identity.html: docs/books/b06-data-platform/index.html

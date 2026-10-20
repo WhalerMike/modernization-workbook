@@ -1,4 +1,4 @@
-# Book 02, Chapter 4 — the classification that gates the authentication work.
+# B06 Chapter 06 — the classification that gates the authentication work.
 rankdir: TB
 graph: {nodesep: 0.3, ranksep: 0.4}
 nodes:
@@ -6,7 +6,7 @@ nodes:
   q2: {kind: pill, tone: slate, text: "Can it stay roughly as it is? (supported or upgradeable to 2022+, dependencies don't argue for merging)"}
   q3: {kind: pill, tone: slate, text: "Any constraint that blocks shared hosting?"}
   retire: {tone: red, width: 200, title: "Retire", body: ["=Instance and workload go. No login is migrated."], size: 12}
-  retain: {tone: green, width: 200, title: "Retain", body: ["=Migrated in place: Book 03 audit, then Books 04–06"], size: 12}
+  retain: {tone: green, width: 200, title: "Retain", body: ["=Migrated in place: Chapters 07–08 audit, then Chapters 09–15"], size: 12}
   cons: {tone: blue, width: 200, title: "Consolidate into a shared target", body: ["=Workload moves; source retired; authentication migrated once, on the target"], size: 12}
   ded: {tone: amber, width: 200, title: "Constrained: dedicated target or retain", body: ["Collation conflicts", "Version-locked vendor apps", "Compliance isolation", "Indivisible dependency clusters"], size: 12}
 edges:

@@ -16,7 +16,6 @@ project:
     # are listed by path.
     - "docs/architecture/architecture-series/README.md"
     - "docs/case-studies/README.md"
-    - "docs/case-studies/sql-server-narrative/README.md"
     - "docs/client-server-to-hybrid-cloud/README.md"
     - "docs/compliance/federal-compliance-series-moderate/README.md"
     - "docs/compliance/federal-compliance-series-moderate/books/README.md"
@@ -60,8 +59,8 @@ website:
         menu:
           - href: docs/case-studies/README.md
             text: "All Case Studies"
-          - href: docs/case-studies/sql-server-narrative/README.md
-            text: "SQL Server Identity Transformation"
+          - href: docs/books/b06-data-platform/index.md
+            text: "SQL Server Identity (Book 06)"
       - href: docs/compliance/index.md
         text: "Federal Compliance"
       - href: docs/operational-guides/index.md
@@ -78,12 +77,12 @@ website:
             text: "Book 04 — Access & Privilege"
           - href: docs/books/b05-devices/index.md
             text: "Book 05 — Devices & Endpoints"
+          - href: docs/books/b06-data-platform/index.md
+            text: "Book 06 — Data Platform: SQL Server Identity"
           - href: docs/client-server-to-hybrid-cloud/README.md
             text: "Client-Server to Hybrid-Cloud"
           - href: docs/next-generation-ddi/index.md
             text: "Next Generation DDI"
-          - href: docs/sql-server-implementation/index.md
-            text: "SQL Server Implementation Companion"
           - href: docs/executive-governance/index.md
             text: "Executive Governance"
           - href: docs/executive-briefs/index.md
@@ -125,14 +124,6 @@ website:
       contents:
         - docs/case-studies/README.md
         - docs/case-studies/index.md
-        - section: "SQL Server Identity Transformation"
-          href: docs/case-studies/sql-server-narrative/README.md
-          contents:
-            - docs/case-studies/sql-server-narrative/index.md
-            - docs/case-studies/sql-server-narrative/series-overview.md
-            - docs/case-studies/sql-server-narrative/Applicability.md
-            - auto: "docs/case-studies/sql-server-narrative/Book_*.md"
-            - auto: "docs/case-studies/sql-server-narrative/Appendix_*.md"
         - section: "Other case studies"
           contents:
             - auto: "docs/case-studies/*.md"
@@ -294,6 +285,12 @@ website:
               contents:
                 - auto: "docs/books/b05-devices/[0-9]*.md"
                 - auto: "docs/books/b05-devices/appendix-*.md"
+            - section: "Book 06 — Data Platform: SQL Server Identity"
+              href: docs/books/b06-data-platform/index.md
+              contents:
+                - auto: "docs/books/b06-data-platform/[0-9]*.md"
+                - auto: "docs/books/b06-data-platform/r[0-9]*.md"
+                - auto: "docs/books/b06-data-platform/appendix-*.md"
         - section: "Client-Server to Hybrid-Cloud"
           href: docs/client-server-to-hybrid-cloud/README.md
           contents:
@@ -302,10 +299,6 @@ website:
           href: docs/next-generation-ddi/index.md
           contents:
             - auto: "docs/next-generation-ddi/*.md"
-        - section: "SQL Server Implementation Companion"
-          href: docs/sql-server-implementation/index.md
-          contents:
-            - auto: "docs/sql-server-implementation/Book_*.md"
         - section: "Executive Governance"
           href: docs/executive-governance/index.md
           contents:

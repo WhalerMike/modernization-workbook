@@ -1,18 +1,18 @@
-# Book 02, Chapter 2 — three independent discovery instruments feed one
+# B06 Chapter 04 — three independent discovery instruments feed one
 # re-runnable inventory.
 rankdir: LR
 graph: {nodesep: 0.28, ranksep: 0.6}
 nodes:
   sweep: {tone: slate, width: 215, tag: "Network and directory sweep", title: "`Find-DbaInstance` (dbatools)", body: ["SQL Browser on UDP 1434, TCP 1433 and dynamic ports", "Windows service enumeration, SPN lookups"], size: 12}
-  spn: {tone: slate, width: 215, tag: "SPN trail", title: "`setspn -Q MSSQLSvc/*`", body: ["Every instance ever set up for Kerberos", "Stale SPNs point to retired hosts"], size: 12}
-  tools: {tone: slate, width: 215, tag: "Microsoft assessment tools", title: "Azure Migrate, MAP, DMA", body: ["Resource use and dependencies at fleet scale", "Compatibility blockers per database"], size: 12}
+  spn: {tone: slate, width: 215, tag: "SPN trail", title: "`setspn -F -Q MSSQLSvc/*`", body: ["Every instance with a registered SPN, forest-wide", "Stale SPNs point to retired hosts"], size: 12}
+  tools: {tone: slate, width: 215, tag: "Microsoft assessment tools", title: "Azure Migrate, MAP, SSMS migration", body: ["Resource use and dependencies at fleet scale", "Compatibility blockers per database"], size: 12}
   inv:
     tone: blue
     width: 240
     title: "Estate inventory (re-run, not a snapshot)"
     body: ["Version, edition, build; host OS", "Domain and domain-join state", "Engine service account and its domain", "Per database: size, last access, recovery model, owning application"]
     size: 12
-  next: {tone: amber, width: 150, title: "Rationalization", body: ["=Chapter 3"], size: 12}
+  next: {tone: amber, width: 150, title: "Rationalization", body: ["=Chapter 05"], size: 12}
 edges:
   - [sweep, inv]
   - [spn, inv]

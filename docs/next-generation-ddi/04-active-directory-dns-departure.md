@@ -28,7 +28,7 @@ Departing AD DNS is therefore an inventory problem before it is a migration prob
 
 ## Implications for Modern Microsoft SQL Server
 
-SQL Server deployments continue to shift from Kerberos and SPN-based authentication toward Entra ID authentication, token-based access, managed identities and certificate-based patterns. The [SQL Server modernization narrative](../case-studies/sql-server-narrative/README.md) covers that shift; its DNS consequences are these:
+SQL Server deployments continue to shift from Kerberos and SPN-based authentication toward Entra ID authentication, token-based access, managed identities and certificate-based patterns. The [SQL Server modernization narrative](../books/b06-data-platform/index.md) covers that shift; its DNS consequences are these:
 
 - Kerberos SPNs and the SRV records behind them remain necessary for remaining domain-joined and hybrid instances, and must be inventoried before any AD DNS decommissioning.
 - Token audiences, certificate SANs and connection strings all use FQDNs. Split-brain that sends a client to the wrong endpoint produces TLS or authentication failures that look like identity or certificate problems.

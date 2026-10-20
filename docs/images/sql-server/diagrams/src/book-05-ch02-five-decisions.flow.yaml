@@ -3,10 +3,10 @@
 rankdir: TB
 graph: {nodesep: 0.25, ranksep: 0.28}
 nodes:
-  d1: {tone: amber, width: 520, tag: "Decision 1", title: "Consolidation gates migration", body: ["=Only retain instances and consolidation targets are migrated (Book 02)."], size: 12}
+  d1: {tone: amber, width: 520, tag: "Decision 1", title: "Consolidation gates migration", body: ["=Only retain instances and consolidation targets are migrated (Chapter 06)."], size: 12}
   d2: {tone: blue, width: 520, tag: "Decision 2", title: "The parallel run is required in production", body: ["=Create, validate, disable, observe 30 days, drop. Non-production may shorten the window with owner sign-off."], size: 12}
   d3: {tone: red, width: 520, tag: "Decision 3", title: "SQL Authentication eliminated; sa disabled and renamed", body: ["=Every type-S login migrates or carries an exception with a compensating control and sunset date."], size: 12}
-  d4: {tone: amber, width: 520, tag: "Decision 4", title: "Pre-2022 instances: upgrade or except", body: ["=Certificate-based authentication is the interim posture; the 2027-04-01 NTLM block ignores exceptions."], size: 12}
+  d4: {tone: amber, width: 520, tag: "Decision 4", title: "Pre-2022 instances: upgrade or except", body: ["=Certificate-based authentication is the interim posture; the program's 2027-04-01 NTLM block ignores exceptions."], size: 12}
   d5: {tone: green, width: 520, tag: "Decision 5 — closure artifact", title: "The per-instance compliance record", body: ["SQL auth refused (`LoginMode = 1`; 2025: Disable SQL Authentication); no active U, G or S logins outside the exception registry", "sa disabled and renamed; Arc agent healthy; SQL extension deployed", "Conditional Access MFA satisfied for human sign-ins; re-checked on every audit run"], size: 12}
 edges:
   - [d1, d2]

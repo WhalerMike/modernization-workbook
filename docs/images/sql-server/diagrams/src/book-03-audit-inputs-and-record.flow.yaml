@@ -11,7 +11,7 @@ nodes:
   r1: {tone: plain, width: 230, title: "Version, edition, host OS", body: ["=Plus domain-join state and Arc status"], size: 12}
   r2: {tone: plain, width: 230, title: "Authentication mode", body: ["=`LoginMode` in the registry, checked against the running instance"], size: 12}
   r3: {tone: plain, width: 230, title: "Every login by type", body: ["=`sys.server_principals`; sa enabled, disabled or renamed"], size: 12}
-  r4: {tone: plain, width: 230, title: "Engine service account and SPN", body: ["=Missing or wrong SPN = NTLM for every connection"], size: 12}
+  r4: {tone: plain, width: 230, title: "Engine service account and SPN", body: ["=Missing SPN = NTLM; SPN on the wrong account = failed logins"], size: 12}
   r5: {tone: plain, width: 230, title: "Linked servers", body: ["=`sys.servers`, `sys.linked_logins`"], size: 12}
   rec: {tone: blue, width: 190, title: "Per-instance compliance record", body: ["=One structured record per instance, per run"], size: 12}
   cat: {tone: amber, width: 190, title: "Arc-eligibility category", body: ["=1 ready · 2 enable Arc · 3 upgrade or except"], size: 12}

@@ -9,6 +9,6 @@ nodes:
     widths: [110, 195, 195, 195]
     rows:
       - ["What it is", "SQL Server 2022 or later, Arc-enabled, Entra token authentication", "PostgreSQL on a managed or self-run platform (for example Azure Database for PostgreSQL)", "Oracle, typically where an Oracle authority already exists"]
-      - ["Identity question", "Entra logins on the engine (Books 04–05)", "Depends on the platform chosen; evaluate per platform", "Depends on the platform chosen; evaluate per platform"]
+      - ["Identity question", "Entra logins on the engine (Chapters 09–12)", "Depends on the platform chosen; evaluate per platform", "Depends on the platform chosen; evaluate per platform"]
       - ["Evaluated on", {text: "The same ten dimensions, with evidence per data domain (see the decision framework)", tone: plain, span: 3}]
       - ["All three", {text: "Can satisfy the forced requirement: authentication that is observable and conditionable in the identity plane. The choice is per data domain, not per agency.", tone: blue, span: 3}]
