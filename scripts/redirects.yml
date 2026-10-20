@@ -41,7 +41,7 @@ redirects:
 
   # Modernization Specs: nested copies merged into the flat specs.
   docs/modernization-specs/cloud/cloud.html: docs/modernization-specs/cloud.html
-  docs/modernization-specs/identity/identity.html: docs/modernization-specs/identity.html
+  docs/modernization-specs/identity/identity.html: docs/books/b02-identity/appendix-a-federal-requirements-crosswalk.html
   docs/modernization-specs/sase/sase.html: docs/modernization-specs/sase.html
   docs/modernization-specs/sdwan/sdwan.html: docs/modernization-specs/sdwan.html
   docs/modernization-specs/telemetry/telemetry.html: docs/modernization-specs/telemetry.html
@@ -50,8 +50,8 @@ redirects:
   # Architecture duplicates.
   docs/architecture/architecture-series/evidence-chain.html: docs/architecture/evidence-chain.html
   docs/architecture/six-plane-architecture.html: docs/architecture/architecture-series/six-plane-architecture.html
-  docs/architecture/directory-migration/README.html: docs/reference-architecture/directory-migration.html
-  docs/architecture/directory-migration/index.html: docs/reference-architecture/directory-migration.html
+  docs/architecture/directory-migration/README.html: docs/books/b02-identity/04-the-hidden-migration-surface.html
+  docs/architecture/directory-migration/index.html: docs/books/b02-identity/04-the-hidden-migration-surface.html
 
   # Whitepapers: 99% duplicate.
   docs/whitepapers/federal-application-aware-networking-architecture.html: docs/whitepapers/modernization-journey.html
