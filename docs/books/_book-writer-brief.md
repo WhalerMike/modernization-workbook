@@ -74,7 +74,7 @@ Appendices use `title: "Appendix A — …"` and `[^aA-key]`-style keys.
   American spelling. Sentence-case `##`/`###` headings. **Never** use a bold paragraph as a fake
   heading. Pipe tables only. Lists for parallel items, prose for argument.
 - Program name: "the Federal Modernization Program" in prose; the `FMP` prefix in code, file names,
-  IDs (`Invoke-FMPADAssessment`). Never write "UIAO".
+  IDs (`Invoke-FMPADAssessment`). Use no other program name.
 - **Never name a specific agency** as the subject; the workbook is agency-agnostic.
   Agency-specific facts appear only as generic examples ("many agencies…"). `SSN` is fine.
 - Case studies in the sources are *framing patterns, not real engagements*; keep that honesty.
