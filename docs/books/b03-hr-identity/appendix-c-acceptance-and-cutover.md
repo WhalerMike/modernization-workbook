@@ -64,7 +64,7 @@ When the proof holds, the manual path for creating and changing accounts in that
 
 ## Where an HR connector already exists
 
-Some agencies already run a script or connector that creates accounts from an HR extract. The same sequence applies, with one more step: once HR-driven provisioning is the proven sole source, revoke the old connector's credentials, keep its state and logs for the records schedule (for system access records, usually NARA General Records Schedule 3.2, items 030 and 031, as the agency records officer confirms),[^aC-grs32] and decommission it — an irreversible step that is signed off like the cutover itself.
+Some agencies already run a script or connector that creates accounts from an HR extract. The same sequence applies, with one more step: once HR-driven provisioning is the proven sole source, revoke the old connector's credentials, keep its state and logs under the applicable approved records schedules and any legal holds (for system access records, often NARA General Records Schedule 3.2, items 030 and 031, as the agency records officer confirms),[^aC-grs32] and decommission it — an irreversible step that is signed off like the cutover itself.
 
 ::: {.callout-tip}
 ## Continue the book

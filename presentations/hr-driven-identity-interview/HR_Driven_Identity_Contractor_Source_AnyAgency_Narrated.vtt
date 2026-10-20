@@ -1,0 +1,632 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.660
+The interview deck makes
+one honest limit explicit:
+
+2
+00:00:03.660 --> 00:00:09.538
+HRIT covers federal employees only, so a
+contractor authority decision is required.
+
+3
+00:00:09.538 --> 00:00:14.099
+In the processes I have observed,
+contractors are tracked in COR spreadsheets.
+
+4
+00:00:14.099 --> 00:00:16.538
+This companion goes one step further.
+
+5
+00:00:16.538 --> 00:00:21.055
+It asks which record should be authoritative
+for a contractor, and it adds an
+
+6
+00:00:21.055 --> 00:00:25.788
+option the main deck doesn't name: the
+agency's contractor suitability register.
+
+7
+00:00:25.788 --> 00:00:29.563
+The one-sentence version: don't
+wait for one contractor feed.
+
+8
+00:00:29.563 --> 00:00:33.237
+Most agencies already hold
+three contractor records.
+
+9
+00:00:33.237 --> 00:00:35.061
+Give each fact one authority,
+
+10
+00:00:35.061 --> 00:00:39.162
+and hang the whole record on an
+accountable federal sponsor.
+
+11
+00:00:39.980 --> 00:00:42.042
+Three facts that don't fit together.
+
+12
+00:00:42.042 --> 00:00:43.254
+First, scope.
+
+13
+00:00:43.254 --> 00:00:49.333
+The Federal HR 2.0 memo of December 10,
+2025 scopes Core HCM to personnel action
+
+14
+00:00:49.333 --> 00:00:55.505
+processing, the employee system of record
+and the federal employee lifecycle.
+
+15
+00:00:55.505 --> 00:00:59.805
+The June 2026 Oracle award
+covers civilian employees.
+
+16
+00:00:59.805 --> 00:01:01.593
+Neither mentions contractors.
+
+17
+00:01:01.593 --> 00:01:05.582
+Oracle Fusion HCM can hold
+contingent workers as a product,
+
+18
+00:01:05.582 --> 00:01:07.943
+but the program doesn't commit to it.
+
+19
+00:01:07.943 --> 00:01:09.955
+Second, what I have observed.
+
+20
+00:01:09.955 --> 00:01:14.392
+In the processes I have observed,
+contractors are tracked in COR spreadsheets,
+
+21
+00:01:14.392 --> 00:01:16.880
+and many of their accounts
+come from tickets.
+
+22
+00:01:16.880 --> 00:01:19.932
+Based on current visibility,
+nothing authoritative
+
+23
+00:01:19.932 --> 00:01:23.192
+tells identity that a contractor's
+engagement has ended.
+
+24
+00:01:23.192 --> 00:01:24.681
+Third, guidance.
+
+25
+00:01:24.681 --> 00:01:30.498
+GSA's ILM Playbook says the HR or personnel
+system is the sole driver of identity
+
+26
+00:01:30.498 --> 00:01:36.405
+creation and termination, and CDM's master
+user record must include contractors.
+
+27
+00:01:36.405 --> 00:01:38.467
+But the HR system won't carry them.
+
+28
+00:01:38.467 --> 00:01:40.916
+Something else has to be the authority,
+
+29
+00:01:40.916 --> 00:01:43.893
+and it needs the same
+rigor as the HR record.
+
+30
+00:01:44.700 --> 00:01:48.450
+The useful finding: most agencies
+aren't starting from zero.
+
+31
+00:01:48.450 --> 00:01:51.225
+There are usually three
+contractor records already.
+
+32
+00:01:51.225 --> 00:01:56.725
+COR spreadsheets: real, but kept per
+COR, with no common format or timing.
+
+33
+00:01:56.725 --> 00:01:58.663
+They're evidence, not a source.
+
+34
+00:01:58.663 --> 00:02:02.695
+The contractor suitability
+register: many agencies keep one,
+
+35
+00:02:02.695 --> 00:02:05.462
+under personnel security or contracting.
+
+36
+00:02:05.462 --> 00:02:08.765
+It holds the contractors
+working on agency contracts,
+
+37
+00:02:08.765 --> 00:02:11.774
+with the suitability
+determination and its date.
+
+38
+00:02:11.774 --> 00:02:14.550
+That is often the one
+record that already ties
+
+39
+00:02:14.550 --> 00:02:17.325
+a person to a contract
+under agency authority.
+
+40
+00:02:17.325 --> 00:02:21.497
+PIV enrollment: the credentialing
+system enrolls employees,
+
+41
+00:02:21.497 --> 00:02:23.788
+contractors and other personnel.
+
+42
+00:02:23.788 --> 00:02:27.745
+It covers identity proofing and
+background-investigation workflows,
+
+43
+00:02:27.745 --> 00:02:30.763
+and the card management
+system issues the credential.
+
+44
+00:02:30.763 --> 00:02:35.569
+What's usually missing is any link from
+these to Entra ID or Active Directory:
+
+45
+00:02:35.569 --> 00:02:38.087
+contractor accounts come from tickets.
+
+46
+00:02:38.087 --> 00:02:42.610
+Core HCM's Contingent Worker type
+is a possible fourth source later,
+
+47
+00:02:42.610 --> 00:02:45.113
+if the agency chooses to configure it.
+
+48
+00:02:45.113 --> 00:02:50.162
+It won't exist before the agency's
+Core HCM onboarding wave.
+
+49
+00:02:50.980 --> 00:02:54.518
+Same four sources, against
+the facts identity needs.
+
+50
+00:02:54.518 --> 00:02:58.217
+COR spreadsheets exist now, but
+they're not a governed record.
+
+51
+00:02:58.217 --> 00:03:01.042
+Use them to reconcile, not as a source.
+
+52
+00:03:01.042 --> 00:03:04.522
+Core HCM's Contingent Worker
+type would give a person
+
+53
+00:03:04.522 --> 00:03:08.080
+record and an assignment with
+dates, like an employee's.
+
+54
+00:03:08.080 --> 00:03:13.094
+But it has no contract or vetting
+data, it sits outside the Federal HR
+
+55
+00:03:13.094 --> 00:03:18.018
+2.0 program scope, and current
+planning puts it no earlier than 2027.
+
+56
+00:03:18.018 --> 00:03:22.522
+Where an agency keeps a contractor
+suitability register, it is the only
+
+57
+00:03:22.522 --> 00:03:27.179
+one that links a person to an agency
+contract with a suitability decision.
+
+58
+00:03:27.179 --> 00:03:30.514
+What varies by agency: who
+owns it, how it's accessed,
+
+59
+00:03:30.514 --> 00:03:35.068
+how fast it's updated, and whether
+it records the end of an engagement.
+
+60
+00:03:35.068 --> 00:03:38.016
+PIV enrollment covers
+everyone with a badge and
+
+61
+00:03:38.016 --> 00:03:41.480
+carries proofing and
+background-investigation status.
+
+62
+00:03:41.480 --> 00:03:46.327
+But it manages a card, not an identity
+with an organization and entitlements,
+
+63
+00:03:46.327 --> 00:03:49.405
+and it misses anyone who
+works without a PIV card.
+
+64
+00:03:49.405 --> 00:03:51.180
+So the answer isn't to pick one.
+
+65
+00:03:51.180 --> 00:03:53.480
+It's to give each fact one authority.
+
+66
+00:03:53.480 --> 00:03:54.830
+Next slide.
+
+67
+00:03:55.630 --> 00:03:59.018
+I propose this working position;
+it is not yet a decision.
+
+68
+00:03:59.018 --> 00:04:04.281
+It's the same discipline as the employee
+design: a named authority for every fact.
+
+69
+00:04:04.281 --> 00:04:08.969
+I propose the contractor suitability
+register as the candidate authority for
+
+70
+00:04:08.969 --> 00:04:11.668
+existence, the contract
+link and suitability,
+
+71
+00:04:11.668 --> 00:04:14.155
+subject to the questions
+on the next slide.
+
+72
+00:04:14.155 --> 00:04:16.807
+If it also records the
+end of the engagement,
+
+73
+00:04:16.807 --> 00:04:21.743
+it becomes the contractor's leaver signal,
+the equivalent of a separation action.
+
+74
+00:04:21.743 --> 00:04:23.543
+That's the first thing to confirm.
+
+75
+00:04:23.543 --> 00:04:28.142
+PIV enrollment is the authority
+for proofing and credential status.
+
+76
+00:04:28.142 --> 00:04:30.580
+Identity reads it and cross-checks it.
+
+77
+00:04:30.580 --> 00:04:32.865
+A badge with no contractor record,
+
+78
+00:04:32.865 --> 00:04:36.130
+or a contractor record with
+no badge, is a finding.
+
+79
+00:04:36.130 --> 00:04:39.701
+The accountable party is a
+federal employee sponsor,
+
+80
+00:04:39.701 --> 00:04:41.893
+normally the COR, mastered in HR.
+
+81
+00:04:41.893 --> 00:04:45.808
+The contractor's organization
+placement is derived from the sponsor,
+
+82
+00:04:45.808 --> 00:04:49.454
+so it follows accountability and
+changes when the sponsor moves.
+
+83
+00:04:49.454 --> 00:04:51.811
+I propose the enterprise person key,
+
+84
+00:04:51.811 --> 00:04:55.267
+the same as for employees,
+proposed for confirmation.
+
+85
+00:04:55.267 --> 00:05:00.121
+Many agencies already issue it to
+contractors along with their PIV card,
+
+86
+00:05:00.121 --> 00:05:02.143
+for example as a Mainframe PIN.
+
+87
+00:05:02.143 --> 00:05:05.963
+Where they do, a contractor is
+keyed exactly like an employee,
+
+88
+00:05:05.963 --> 00:05:10.472
+and keeps the same key on a new contract;
+in the proposed canonical model,
+
+89
+00:05:10.472 --> 00:05:15.592
+conversion to federal employment creates
+a new affiliation for the same person.
+
+90
+00:05:15.592 --> 00:05:19.606
+On the right: access ends at
+the earliest of five events.
+
+91
+00:05:19.606 --> 00:05:23.394
+The last two close the gap the
+Digital Worker playbook leaves open:
+
+92
+00:05:23.394 --> 00:05:25.530
+what happens when the sponsor leaves.
+
+93
+00:05:25.530 --> 00:05:29.955
+The sponsor is a live reference
+into HR, not a name on a form.
+
+94
+00:05:30.760 --> 00:05:35.122
+Six things to establish before calling
+a suitability register an authority.
+
+95
+00:05:35.122 --> 00:05:38.459
+The first two decide whether it
+can be the leaver signal at all.
+
+96
+00:05:38.459 --> 00:05:41.748
+Owner: is it contracting
+or personnel security?
+
+97
+00:05:41.748 --> 00:05:46.997
+The owner has to accept identity as a
+named consumer, just as I'm asking HR to.
+
+98
+00:05:46.997 --> 00:05:52.049
+Content: if the register records only
+the suitability decision and its date,
+
+99
+00:05:52.049 --> 00:05:54.936
+it's a vetting source,
+not a lifecycle source.
+
+100
+00:05:54.936 --> 00:05:58.897
+Then the end date has to come from the
+contract record or from the sponsor.
+
+101
+00:05:58.897 --> 00:06:03.086
+Freshness: if the register is keyed
+by hand from COR spreadsheets,
+
+102
+00:06:03.086 --> 00:06:08.035
+it inherits their lag, and every separation
+delay carries over to contractors.
+
+103
+00:06:08.035 --> 00:06:10.605
+Privacy: which SORN covers the register,
+
+104
+00:06:10.605 --> 00:06:14.498
+and does a routine use cover
+disclosure to identity systems?
+
+105
+00:06:14.498 --> 00:06:17.873
+It's the same question the
+main deck asks for HR data.
+
+106
+00:06:17.873 --> 00:06:21.150
+Join on the key: if
+contractors already get the
+
+107
+00:06:21.150 --> 00:06:24.685
+enterprise key with their
+PIV card, the key exists.
+
+108
+00:06:24.685 --> 00:06:27.422
+The question is whether
+the register records it.
+
+109
+00:06:27.422 --> 00:06:32.922
+If it does, the register, PIV enrollment
+and the directories join on one key.
+
+110
+00:06:32.922 --> 00:06:36.822
+If not, the first job is a crosswalk
+from the register to the key.
+
+111
+00:06:36.822 --> 00:06:41.260
+Coverage: who works without a PIV
+card and isn't in the register?
+
+112
+00:06:41.260 --> 00:06:44.010
+Those people still need
+a sponsor-only path.
+
+113
+00:06:44.820 --> 00:06:47.945
+Start with what already
+exists, and start read-only.
+
+114
+00:06:47.945 --> 00:06:51.454
+Now: reconcile the register
+and PIV enrollment
+
+115
+00:06:51.454 --> 00:06:55.232
+against the contractor
+accounts in AD and Entra ID.
+
+116
+00:06:55.232 --> 00:06:59.697
+The output is a list of orphans, meaning
+accounts with no contractor record,
+
+117
+00:06:59.697 --> 00:07:02.145
+and accounts whose engagement has ended.
+
+118
+00:07:02.145 --> 00:07:04.308
+Nothing is written to any directory.
+
+119
+00:07:04.308 --> 00:07:08.295
+That measures the problem before
+anyone is asked to change a process.
+
+120
+00:07:08.295 --> 00:07:12.957
+Before Core HCM: I propose that the
+register plus sponsor attestation
+
+121
+00:07:12.957 --> 00:07:18.182
+become the contractor source, once the
+contractor authority decision is made.
+
+122
+00:07:18.182 --> 00:07:23.121
+Ship the leaver trigger first, because
+that's where the risk is, then the joiner.
+
+123
+00:07:23.121 --> 00:07:26.745
+Mismatches between badges
+and records become findings.
+
+124
+00:07:26.745 --> 00:07:32.133
+At Core HCM go-live: decide whether to
+configure the Contingent Worker type.
+
+125
+00:07:32.133 --> 00:07:35.737
+If the agency adopts it, it holds
+the person and the assignment,
+
+126
+00:07:35.737 --> 00:07:39.907
+and the register stays the authority
+for the contract and suitability.
+
+127
+00:07:39.907 --> 00:07:43.083
+Either way, the identity
+pipeline doesn't change.
+
+128
+00:07:43.083 --> 00:07:46.132
+It reads one canonical
+record whatever the source.
+
+129
+00:07:46.132 --> 00:07:49.560
+The ask is small: make the
+contractor authority decision,
+
+130
+00:07:49.560 --> 00:07:54.591
+evaluating the suitability register,
+sponsorship, and contingent-worker records;
+
+131
+00:07:54.591 --> 00:07:58.894
+name its owner; validate the planning
+assumptions with the data owners;
+
+132
+00:07:58.894 --> 00:08:02.832
+and give read access to the register
+for a shadow reconciliation.

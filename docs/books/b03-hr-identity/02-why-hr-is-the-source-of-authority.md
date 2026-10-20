@@ -80,7 +80,7 @@ In Entra ID that direction has a concrete shape. The user signs in with a PIV ca
 
 : Why employee data accuracy matters more now than before {.striped .hover}
 
-That is the case for HR-driven identity in one line: when access is decided by attributes, the accuracy of employee data *is* the accuracy of access — and only the HR system of record originates those facts.
+That is the case for HR-driven identity in one line: when access decisions depend on authoritative identity attributes, the accuracy of employee data drives the accuracy of access — and only the HR system of record originates those facts.
 
 ## The federal policy frame
 

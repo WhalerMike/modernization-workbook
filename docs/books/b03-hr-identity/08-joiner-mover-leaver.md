@@ -58,7 +58,9 @@ For federal employees, every HR event above is recorded as a personnel action, a
 | Corrections and cancellations (Ch 32) | 002 correction, 001 cancellation | **Reverse or re-derive** from the corrected record, with evidence |
 | Pay and data-element changes — 8xx (Ch 17, 26, 28) | 880 tenure change; 800, 803 data element change | Usually none; re-derive the worker profile when tenure or a mapped element changes |
 
-: Nature-of-action families and the identity event each one causes[^c08-gppa] {.striped .hover}
+: Proposed identity interpretation of OPM nature-of-action families[^c08-gppa] {.striped .hover}
+
+The table is a proposed interpretation, not an OPM rule. HR, security, labor-relations, privacy, and personnel-policy owners validate the mappings, exceptions, precedence rules, and actions before automation.
 
 Contractors and vendors have no SF-50 and no nature-of-action codes. Their joiner and leaver events are the contract or sponsorship start and end dates in their own source, and a sponsor's withdrawal is a leaver event (Chapter 06).
 

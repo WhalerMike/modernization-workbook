@@ -6,15 +6,15 @@ Good morning, and thank you.
 
 I want to make one proposal.
 
-In many agencies today there is no HR-driven identity. Accounts in Active Directory and Entra ID, and the access and credentials that hang off them, come from tickets and manual process.
+Based on current visibility, many agencies do not operate a comprehensive enterprise HR-driven identity lifecycle. In the processes I have observed, many workforce identity changes in Active Directory and Entra ID, and the access and credentials that hang off them, remain dependent on tickets or manual coordination.
 
-Two changes are coming regardless: Federal HR 2.0 moves each agency's HR onto Oracle Core HCM in waves through 2027, and agency identity is moving from Active Directory toward Entra ID. My proposal is to use the two together to start HR-driven identity — HR, through OPM's standard personnel data, as the source of authority for Entra ID, Active Directory and the rest of ICAM. That's Microsoft's own term: HR-driven provisioning.
+Two changes are coming regardless: Federal HR 2.0 moves each agency's HR onto Oracle Core HCM in waves, and current planning assumes onboarding through 2027; agency identity is moving from Active Directory toward Entra ID. My proposal is to use the two together to start HR-driven identity — HR, through OPM's standard personnel data, as the source of authority for Entra ID, Active Directory and the rest of ICAM. That's Microsoft's own term: HR-driven provisioning.
 
 ## Slide 2 — HRIT is coming — build identity into it
 
 The thesis in one slide.
 
-On the left, two migrations that happen regardless: HR moves to Core HCM, and identity moves from Active Directory toward Entra ID. Meanwhile nothing connects HR to identity today — accounts come from tickets.
+On the left, two migrations that happen regardless: HR moves to Core HCM, and identity moves from Active Directory toward Entra ID. Meanwhile, the enterprise lifecycle remains substantially manual and fragmented.
 
 In the middle, what OPM leaves to us. OPM fixes the HR side; how the agency's directories and ICAM consume that data is the agency's decision. And the solicitation requires SCIM 2.0 provisioning — exactly what Entra ID consumes.
 
@@ -28,7 +28,7 @@ Why we need HR-driven ICAM at all — and why now.
 
 Zero Trust is federal strategy — OMB M-22-09, with NIST SP 800-207 as the architecture and CISA's maturity model as the yardstick. SASE is how it's delivered: security enforced at a cloud edge close to the user, which TIC 3.0 opens up for agencies, instead of at our network perimeter. And SASE's decisions are driven by ICAM: the user presents a token from a PIV card or phishing-resistant MFA, and Entra ID decides access through Conditional Access and dynamic groups that read the user's attributes.
 
-In the perimeter era, a wrong department meant a wrong phone-book entry. Now it means the wrong groups, and so the wrong access — and a stale status is worse than ever. In the perimeter era an orphaned account was already a standing security violation that could enable a breach. Now it's a valid token for someone who has left, usable from anywhere, because there is no perimeter left to stop it. When access is decided by attributes, the accuracy of employee data is the accuracy of access.
+In the perimeter era, a wrong department meant a wrong phone-book entry. Now it means the wrong groups, and so the wrong access — and a stale status is worse than ever. In the perimeter era an orphaned account was already a standing security violation that could enable a breach. Now it's a valid token for someone who has left, usable from anywhere, because there is no perimeter left to stop it. When access decisions depend on attributes, the accuracy of employee data drives the accuracy of access.
 
 ## Slide 4 — The everyday impact of manually provisioned ICAM
 
@@ -44,7 +44,7 @@ HR already knows all of it. With HR-driven IT, the personnel action that records
 
 The window.
 
-The December 10, 2025 OMB/OPM memo directs one government-wide Core HCM platform. Oracle Fusion Cloud HCM was awarded June 11, 2026. First go-lives are January to March 2027. Wave 2 agencies follow in fiscal 2027. For an agency not yet on the platform, that's the point: about eight months of onboarding, with interconnections live around month five, still lie ahead. By fiscal 2028 EHRI and eOPF are decommissioned.
+The December 10, 2025 OMB/OPM memo directs one government-wide Core HCM platform. Oracle Fusion Cloud HCM was awarded June 11, 2026. First go-lives are January to March 2027. Current planning, based on published Federal HR 2.0 material, has Wave 2 agencies following in fiscal 2027; agency-specific milestones are confirmed with the program office. Program material describes interconnections occurring during the onboarding period, and for an agency not yet on the platform, that onboarding still lies ahead. By fiscal 2028 EHRI and eOPF are decommissioned.
 
 I'd describe that not as a deadline but as a window. Inside it, the data standards, the cleanup, the interconnection design — and, on our side, the Entra ID migration plan — are all being decided, and an HR-driven identity feed can be written into them. After it closes, both migrations finish with ticket-driven identity carried forward, and adding HR-driven identity later means reopening both.
 
@@ -56,17 +56,17 @@ OPM already defines the personnel data every agency records. Agency and subeleme
 
 Why build on OPM's standard rather than on Oracle's field names? Because OPM defines these elements and their codes the same way for every agency. We map them to Entra ID and AD once, for every employee population — and if the HR vendor ever changes, the mapping still holds.
 
-One honest limit: HRIT covers federal employees only. Contractors and vendors live in COR spreadsheets today. My best bet is Core HCM's Contingent Worker type — a person record, an assignment and a lifecycle much like an employee's, though it has no vendor-management layer. The alternative is to source them from PIV sponsorship. That's a decision to put in front of the program early.
+One honest limit: HRIT covers federal employees only. In the processes I have observed, contractors and vendors are tracked in COR spreadsheets. A contractor authority decision is required, and I propose evaluating three candidate sources: Core HCM's Contingent Worker type — a person record, an assignment and a lifecycle much like an employee's, though with no vendor-management layer; PIV sponsorship; and a contractor suitability register, which ties each contractor to an agency contract with a suitability decision. That's a decision to put in front of the program early.
 
-## Slide 7 — Personnel actions drive the lifecycle — by code, not by ticket
+## Slide 7 — Proposed identity interpretation of OPM nature-of-action families
 
 Personnel actions drive the lifecycle.
 
-For federal employees, every personnel action carries a nature-of-action code, and the families map cleanly to identity events: the 100 series are joiners, the 700 series movers, the 500 series conversions, the 300 series separations. Contractors have no SF-50; their events come from contract start and end dates.
+For federal employees, every personnel action carries a nature-of-action code, and I propose mapping the families to identity events: the 100 series are joiners, the 700 series movers, the 500 series conversions, the 300 series separations. Contractors have no SF-50; their events come from contract start and end dates.
 
 Two families matter more than people expect. The 400 series — furlough, leave without pay, suspension — is not a leaver; the person is still employed and policy restricts the account. The 200 series, return to duty, lifts those restrictions. Getting this wrong either locks out people on leave or leaves access open for people who've left.
 
-The codes also settle precedence — a separation wins — and rescinded offers.
+The codes also settle precedence — a separation wins — and rescinded offers. HR, security, labor-relations, privacy, and personnel-policy owners would validate the mappings, exceptions, precedence rules, and actions before automation.
 
 ## Slide 8 — Model the person, not the account: layered identifiers
 
@@ -74,7 +74,7 @@ Identifiers are where data architecture earns its keep.
 
 A common design says the employee ID is the person, for life. It breaks the moment the source changes, a contractor converts, or someone is rehired. So I model identifiers in layers: an enterprise person key the agency controls; a source key per HR system; an affiliation key per employment or contract; a directory ID per account; and credential identifiers per PIV or certificate.
 
-The person is the tracked entity, not the account. That's what survives rehire, conversion and reorganization. And many agencies already have one — for example, a Mainframe PIN that already serves as the person ID and employee ID. Then the decision is to confirm it as the enterprise key and map Core HCM's PersonNumber to it — so when the agency moves to Core HCM, only the source key changes, and nothing downstream has to.
+The person is the tracked entity, not the account. That's what survives rehire, conversion and reorganization. And many agencies already have a strong candidate — for example, a Mainframe PIN that already serves as the person ID and employee ID. I propose it for confirmation as the enterprise person key; adoption requires validating its uniqueness, persistence, non-reassignment, population coverage, privacy constraints and historical behavior. Once it's confirmed, map Core HCM's PersonNumber to it — so when the agency moves to Core HCM, only the source key changes, and nothing downstream has to.
 
 ## Slide 9 — HR → canonical model → Entra ID and AD → ICAM
 
@@ -144,6 +144,8 @@ Thank you — I look forward to your questions.
 
 ## Slide 16 — More modernizations I’ve designed
 
-HR-driven identity is one piece of a larger set of modernizations I've designed over the last several years: the AD to Entra ID migration, next-generation DNS and IP address management, field office WAN and data-center consolidation, the TIC 3.0 branch edge, the client-server to hybrid cloud path, SQL Server identity, the move from Group Policy to Intune and Azure Arc, and continuous compliance against SCuBA, BOD 25-01 and FedRAMP 20x.
+HR-driven identity is one piece of a larger set of modernizations I've designed over the last several years: Entra ID migration, next-generation DNS and IP address management, field office WAN and data-center consolidation, the TIC 3.0 Cloud and Branch Office cases, the client-server to hybrid cloud path, SQL Server identity, the move from Group Policy to Intune and Azure Arc, and continuous compliance against SCuBA, BOD 25-01 and FedRAMP 20x.
 
 They share the same data discipline you just saw: a named authority for every fact, a governed model, and evidence produced by operation. I'm happy to go into any of them.
+
+Two companion decks go deeper on this one: the Contractor Identity Source deck, on who is authoritative for a contractor, and the original HR-Driven Identity deck, with the full model, lifecycle and plan.
