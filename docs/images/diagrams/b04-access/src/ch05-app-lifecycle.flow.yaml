@@ -1,0 +1,22 @@
+# Chapter 05 — the governed lifecycle of an app registration, the machine
+# analogue of joiner/mover/leaver. Each stage leaves a record; the leaver stage
+# (deactivate, then delete) is the one most often skipped.
+rankdir: TB
+graph: {nodesep: 0.3, ranksep: 0.45}
+nodes:
+  req: {tone: amber, width: 220, tag: "1 · Request", title: "Owner and purpose", body: ["Two human owners", "Specific scopes named", "Risk tier assigned"], size: 12}
+  con: {tone: amber, width: 220, tag: "2 · Consent", title: "Scoped consent", body: ["Delegated before application", "Tiered approver", "No blanket grants"], size: 12}
+  cred: {tone: blue, width: 220, tag: "3 · Credential", title: "No stored secret", body: ["Managed identity or federation", "Else certificate, short life", "Secrets blocked by policy"], size: 12}
+  rot: {tone: blue, width: 220, tag: "4 · Rotate", title: "Before expiry", body: ["Raised automatically", "Owner approves"], size: 12}
+  att: {tone: violet, width: 220, tag: "5 · Attest", title: "Review on a cadence", body: ["Owners still valid", "Permissions still needed", "Unused credentials removed"], size: 12}
+  ret: {tone: red, width: 220, tag: "6 · Retire", title: "Deactivate, then delete", body: ["Revoke grants", "Remove credentials", "Record the decision"], size: 12}
+edges:
+  - [req, con, {tone: amber}]
+  - [con, cred]
+  - [cred, rot]
+  - [rot, att]
+  - [att, ret, {label: "orphaned or unused", tone: red}]
+  - [att, con, {label: "scope change", style: dashed, tone: violet}]
+order:
+  - [req, con, cred]
+  - [rot, att, ret]

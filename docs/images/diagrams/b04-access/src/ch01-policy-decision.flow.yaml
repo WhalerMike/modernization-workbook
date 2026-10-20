@@ -1,0 +1,19 @@
+# Chapter 01 — access is a policy decision: every request is evaluated against
+# policy. Signals about the user, device, location, application and risk feed
+# Conditional Access, Microsoft's Zero Trust policy engine (the decision point);
+# the decision is block, grant with controls, or grant with session limits; the
+# application enforces the resulting token. Network location is one signal, not
+# a grant.
+rankdir: LR
+graph: {nodesep: 0.35, ranksep: 0.45}
+nodes:
+  sig: {tone: slate, width: 170, tag: "Signals, per request", title: "What is known now", body: ["User, group and attributes", "Device and its compliance", "Location (one signal, not a grant)", "Application requested", "Sign-in and user risk"], size: 12}
+  pdp: {tone: blue, width: 175, tag: "Policy decision point", title: "Conditional Access", body: ["=Every policy that applies is evaluated; all must be satisfied"], size: 12}
+  dec: {tone: violet, width: 175, tag: "The decision", title: "Block, or grant with conditions", body: ["Block wins over any grant", "Require MFA strength, compliant device, terms", "Limit the session"], size: 12}
+  pep: {tone: green, width: 170, tag: "Policy enforcement point", title: "Application and data", body: ["=Accepts only the token the decision produced"], size: 12}
+edges:
+  - [sig, pdp, {label: "evaluated", tone: blue}]
+  - [pdp, dec, {tone: violet}]
+  - [dec, pep, {label: "token or denial", tone: green}]
+ranks:
+  - [pdp, dec]

@@ -1,0 +1,17 @@
+# Chapter 09 — one access review instance: snapshot, reviewers (with fallback),
+# the no-response default, auto-apply, and the evidence the instance leaves.
+rankdir: LR
+graph: {nodesep: 0.3, ranksep: 0.35}
+nodes:
+  start: {tone: slate, width: 120, title: "Instance starts", body: ["=Snapshot of who holds the access"], size: 12}
+  rev: {tone: violet, width: 150, title: "Reviewers decide", body: ["Owner, manager, sponsor, or self", "Justification required", "Recommendations shown"], size: 12}
+  fb: {tone: amber, width: 130, title: "Fallback reviewer", body: ["=No manager or no owner"], size: 12}
+  nr: {tone: amber, width: 140, title: "No-response default", body: ["=No change, remove, approve, or take recommendations"], size: 12}
+  ap: {tone: green, width: 120, title: "Auto-apply", body: ["=Denied access removed at close"], size: 12}
+  ev: {tone: slate, width: 140, title: "Evidence", body: ["Results CSV", "Review history", "Audit records"], size: 12}
+edges:
+  - [start, rev]
+  - [fb, rev, {tone: amber}]
+  - [rev, nr]
+  - [nr, ap, {tone: green}]
+  - [ap, ev, {style: dashed}]

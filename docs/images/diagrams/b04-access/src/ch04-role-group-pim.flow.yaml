@@ -1,0 +1,16 @@
+# Chapter 04 — how a role reaches a person in the program's design. Layer 1
+# (entitlement management) decides who may ever hold the role by granting
+# membership of a role-assignable group; layer 2 (PIM) decides who may use it now.
+rankdir: LR
+graph: {nodesep: 0.4, ranksep: 0.45}
+nodes:
+  pkg: {tone: violet, width: 220, tag: "Layer 1 · entitlement management", title: "Access package", body: ["Request with approval", "Assignment expiry", "Recurring access review"], size: 12}
+  grp: {tone: blue, width: 240, tag: "Role-assignable group", title: "Group that holds the role", body: ["`isAssignableToRole` set at creation", "Assigned membership only, no nesting", "Owners and members governed"], size: 12}
+  role: {tone: blue, width: 240, tag: "Microsoft Entra role", title: "Eligible role assignment", body: ["Assigned to the group, never to a person", "Scope: tenant or administrative unit", "Role settings define the gate"], size: 12}
+  act: {tone: green, width: 240, tag: "Layer 2 · PIM activation", title: "Member activates the role", body: ["Authentication context or MFA", "Justification and ticket", "Approval, then a bounded window"], size: 12}
+edges:
+  - [pkg, grp, {label: "grants membership", tone: violet}]
+  - [grp, role, {label: "eligible assignee", tone: blue}]
+  - [act, role, {label: "time-bound active", tone: green}]
+order:
+  - [pkg, grp, role]

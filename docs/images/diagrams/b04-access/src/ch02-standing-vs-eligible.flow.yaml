@@ -1,0 +1,15 @@
+# Chapter 02 — standing versus eligible privilege: a standing assignment is
+# usable by whoever holds the credential at any hour; an eligible assignment
+# grants the same rights only after an activation that checks authentication,
+# justification and (for the highest roles) approval, and it expires on its own.
+rankdir: LR
+graph: {nodesep: 0.4, ranksep: 0.55}
+nodes:
+  cred: {tone: slate, width: 165, tag: "Starting point", title: "An administrator's credential", body: ["=Phished, sprayed, replayed or stolen"], size: 12}
+  stand: {tone: red, width: 250, tag: "Standing assignment", title: "Always active", body: ["Role usable at once, at any hour", "No justification, no approval", "Exposure: every hour of the year", "Attacker becomes the administrator"], size: 12}
+  elig: {tone: green, width: 250, tag: "Eligible assignment", title: "Activated just in time", body: ["Same rights, but only after activation", "Strong authentication, justification, approval", "Time-limited; expires without action", "Every activation is logged"], size: 12}
+edges:
+  - [cred, stand, {label: "compromised", tone: red}]
+  - [cred, elig, {label: "compromised", tone: amber}]
+ranks:
+  - [stand, elig]

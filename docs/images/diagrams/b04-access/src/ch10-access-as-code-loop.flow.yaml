@@ -1,0 +1,21 @@
+# Chapter 10 — access as code: a pull request with a second reviewer and automated
+# checks, a pipeline that applies through Microsoft Graph (report-only first), a
+# monitor that compares the tenant with the baseline, and drift that returns to
+# the repository as an issue. Every step leaves a record in the evidence store.
+rankdir: TB
+graph: {nodesep: 0.3, ranksep: 0.35}
+nodes:
+  repo: {tone: slate, width: 130, title: "Repository", body: ["=Policies, PIM settings, groups, packages, reviews as files"], size: 12}
+  pr: {tone: amber, width: 140, title: "Pull request", body: ["Author and a different reviewer", "Emergency-access exclusion check", "Plan attached"], size: 12}
+  pipe: {tone: blue, width: 140, title: "Pipeline", body: ["Microsoft Graph", "Federated workload identity", "Report-only first"], size: 12}
+  ten: {tone: blue, width: 110, title: "Entra ID tenant", body: [], size: 12}
+  mon: {tone: violet, width: 140, title: "Drift monitor", body: ["=Tenant compared with the baseline every six hours"], size: 12}
+  ev: {tone: slate, width: 140, title: "Evidence store", body: ["Commits and approvals", "Pipeline runs", "Drift results"], size: 12}
+edges:
+  - [repo, pr]
+  - [pr, pipe, {tone: green}]
+  - [pipe, ten]
+  - [ten, mon, {tone: violet}]
+  - [mon, repo, {label: "drift opens an issue", style: dashed, tone: red}]
+  - [pipe, ev, {style: dashed}]
+  - [mon, ev, {style: dashed}]

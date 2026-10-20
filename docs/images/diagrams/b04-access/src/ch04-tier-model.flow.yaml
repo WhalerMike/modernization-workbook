@@ -1,0 +1,21 @@
+# Chapter 04 — the program's privilege tiers. Each tier can take over everything
+# below it, so the activation gate tightens as you go up. Standing active
+# assignments sit outside the tiers and are limited to two exception classes.
+rankdir: TB
+graph: {nodesep: 0.35, ranksep: 0.4}
+nodes:
+  t0: {tone: blue, width: 300, tag: "Tier 0 · control plane", title: "Tenant-wide control", body: ["Global, Privileged Role, Privileged Authentication, Security and Conditional Access Administrator", "=Gate: Tier 0 approver group, phishing-resistant authentication context, 4 hours"], size: 12}
+  t1: {tone: blue, width: 300, tag: "Tier 1 · management plane", title: "Service-wide administration", body: ["Exchange, SharePoint, Intune, Teams, Application, Cloud Application and Hybrid Identity Administrator", "=Gate: Tier 1 approver group, authentication context, 8 hours"], size: 12}
+  t2: {tone: blue, width: 300, tag: "Tier 2 · scoped operations", title: "Administration inside an administrative unit", body: ["User, Groups, Helpdesk, Password and Authentication Administrator, scoped to an AU", "=Gate: authentication context and justification; approval optional with a risk acceptance; 8 hours"], size: 12}
+  ro: {tone: slate, width: 300, tag: "Read-only", title: "Tenant-wide visibility", body: ["Global Reader, Security Reader, Reports Reader", "=Gate: authentication context and justification, no approval, 8 hours"], size: 12}
+  ex: {tone: amber, width: 240, tag: "Outside the tiers", title: "Standing active by exception", body: ["Two emergency access accounts with permanent Global Administrator", "Service principals that can't perform an activation"], size: 12}
+  ap: {tone: violet, width: 240, tag: "Separation of duties", title: "Approver groups", body: ["One group per tier", "Members sit outside the tier they approve", "Membership reviewed like a privileged object"], size: 12}
+edges:
+  - [t0, t1, {label: "can take over", tone: red}]
+  - [t1, t2, {label: "can take over", tone: red}]
+  - [t2, ro, {style: dashed}]
+  - [ex, t0, {style: dashed, tone: amber, label: "bypasses the gate"}]
+  - [ap, t1, {style: dashed, tone: violet, label: "approve activation"}]
+order:
+  - [ex, t0]
+  - [ap, t1]

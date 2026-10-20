@@ -1,0 +1,21 @@
+# Chapter 05 — the application object model. One application object (the app
+# registration) lives in its home tenant and is the template for a service
+# principal (the enterprise application) in every tenant that uses it. Managed
+# identities are service principals with no application object. Permissions,
+# consent grants, assignments and Conditional Access attach to the service principal.
+rankdir: LR
+graph: {nodesep: 0.3, ranksep: 0.45}
+nodes:
+  app: {tone: blue, width: 210, tag: "App registrations", title: "Application object", body: ["One per application, in its home tenant", "Credentials, redirect URIs, app roles", "Requested API permissions"], size: 12}
+  sp: {tone: blue, width: 220, tag: "Enterprise applications", title: "Service principal", body: ["One per tenant that uses the app", "Consent grants and app role assignments", "User and group assignment", "Conditional Access target"], size: 12}
+  mi: {tone: green, width: 210, tag: "Azure resource", title: "Managed identity", body: ["Service principal with no app object", "Azure manages the credential"], size: 12}
+  ext: {tone: slate, width: 220, tag: "Other tenants", title: "Service principal per consenting tenant", body: ["=Created when an admin or user consents to a multitenant app"], size: 12}
+  gov: {tone: violet, width: 200, tag: "Governance", title: "Owners, policy and evidence", body: ["Owners: at least two humans", "App management policy on credentials", "Audit log: consent and credential events"], size: 12}
+edges:
+  - [app, sp, {label: "template for", tone: blue}]
+  - [app, ext, {label: "multitenant only", style: dashed}]
+  - [mi, sp, {label: "is a kind of", style: dashed, tone: green}]
+  - [gov, app, {tone: violet}]
+  - [gov, sp, {tone: violet}]
+ranks:
+  - [app, mi]

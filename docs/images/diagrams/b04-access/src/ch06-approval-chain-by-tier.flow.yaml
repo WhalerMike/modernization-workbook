@@ -1,0 +1,25 @@
+# Chapter 06 — who approves admin consent, by application risk tier. Every
+# request gets a security review first; the tier then sets the final approver.
+# Any application permission, or any tenant-wide *.All scope, escalates
+# regardless of tier. This is the program's recommended model.
+rankdir: TB
+graph: {nodesep: 0.3, ranksep: 0.45}
+nodes:
+  sub: {tone: slate, width: 240, tag: "Request", title: "Application owner submits", body: ["Scopes by exact name", "Justification per scope", "Least-privilege analysis"], size: 12}
+  sec: {tone: amber, width: 240, tag: "Security review", title: "Governance analyst checks", body: ["Delegated where possible", "Narrower scope available?"], size: 12}
+  t3: {tone: green, width: 200, tag: "Tier 3", title: "Application owner approves", body: ["=Governance officer informed"], size: 12}
+  t2: {tone: amber, width: 200, tag: "Tier 2", title: "Owner confirms, governance officer approves", body: [], size: 12}
+  t1: {tone: red, width: 200, tag: "Tier 1", title: "Governance officer approves", body: ["=CISO notified"], size: 12}
+  esc: {tone: red, width: 260, tag: "Escalation", title: "Application permission or *.All scope", body: ["Treated as Tier 1", "Critical scopes: governance officer and CISO"], size: 12}
+  grant: {tone: blue, width: 260, tag: "Grant", title: "Role holder grants in Entra ID", body: ["Graph app roles: Privileged Role Administrator", "Logged; registry updated"], size: 12}
+edges:
+  - [sub, sec]
+  - [sec, t3, {tone: green}]
+  - [sec, t2, {tone: amber}]
+  - [sec, t1, {tone: red}]
+  - [esc, t1, {label: "forces", style: dashed, tone: red}]
+  - [t3, grant]
+  - [t2, grant]
+  - [t1, grant]
+order:
+  - [t3, t2, t1]

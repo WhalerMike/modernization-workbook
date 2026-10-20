@@ -77,6 +77,8 @@ website:
             text: "Book 02 — Identity & Directory"
           - href: docs/books/b03-hr-identity/index.md
             text: "Book 03 — HR-Driven Identity"
+          - href: docs/books/b04-access/index.md
+            text: "Book 04 — Access & Privilege"
           - href: docs/client-server-to-hybrid-cloud/README.md
             text: "Client-Server to Hybrid-Cloud"
           - href: docs/next-generation-ddi/index.md
@@ -215,9 +217,6 @@ website:
         - section: "Guides"
           contents:
             - auto: "docs/operational-guides/*.md"
-        - section: "Access Plane"
-          contents:
-            - auto: "docs/operational-guides/access-plane/*.md"
         - section: "AI Identity Governance"
           contents:
             - auto: "docs/operational-guides/ai-identity-governance/*.md"
@@ -301,6 +300,11 @@ website:
               contents:
                 - auto: "docs/books/b03-hr-identity/[0-9]*.md"
                 - auto: "docs/books/b03-hr-identity/appendix-*.md"
+            - section: "Book 04 — Access & Privilege"
+              href: docs/books/b04-access/index.md
+              contents:
+                - auto: "docs/books/b04-access/[0-9]*.md"
+                - auto: "docs/books/b04-access/appendix-*.md"
         - section: "Client-Server to Hybrid-Cloud"
           href: docs/client-server-to-hybrid-cloud/README.md
           contents:
