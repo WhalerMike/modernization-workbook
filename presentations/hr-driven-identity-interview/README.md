@@ -9,7 +9,7 @@ This folder sits outside `docs/`, so the Quarto site doesn't render it.
 | Purpose | File |
 |---|---|
 | **Executive cut (current).** Why / What / Who / How in 9 slides, including a logical-to-physical data model slide and a closing slide of related modernizations, then the full deck and a Sources slide as backup | `HR_Driven_Identity_Exec_AnyAgency.pptx` |
-| Self-running narrated version of the 9 slides (11:50) | `HR_Driven_Identity_Exec_AnyAgency_Narrated.pptx` |
+| Self-running narrated version of the 9 slides (11:43) | `HR_Driven_Identity_Exec_AnyAgency_Narrated.pptx` |
 | Practice script (the narration text) | `HR_Driven_Identity_Exec_AnyAgency_Narration_Script.md` |
 | Earlier 16-slide detailed deck | `HR_Driven_Identity_AnyAgency.pptx` |
 | Narrated 16-slide deck (15:24) and its script | `HR_Driven_Identity_AnyAgency_Narrated.pptx`, `HR_Driven_Identity_AnyAgency_Narration_Script.md` |
