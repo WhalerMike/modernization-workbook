@@ -9,7 +9,7 @@ nodes:
   attr: {tone: blue, width: 470, title: "User attributes in Entra ID", body: ["Coded values: `department`, `companyName`, `employeeId`, `extensionAttribute1–15`, directory extension properties", "Written only by the provisioning account; self-service and helpdesk write access removed"], size: 12}
   rule: {tone: blue, width: 470, title: "Dynamic group rule (example)", body: ["=`(user.accountEnabled -eq true) -and (user.userType -eq \"Member\")`", "=`  -and (user.extension_<appId>_orgCode -in [\"FIN-LED\",\"FIN-AP\"])`"], size: 12}
   gate: {tone: amber, width: 470, tag: "Rollout gate", title: "Prove the rule before the group gets a login", body: ["Validate Rules against sample users", "Shadow: create the group with no login; reconcile with the AD group it replaces", "Watch processing status and audit log on every rule change; pause groups during bulk HR loads"], size: 12}
-  sql: {tone: green, width: 470, title: "Attach the group login (Chapter 1)", body: ["=Requires Entra ID P1 for each member of a dynamic group"], size: 12}
+  sql: {tone: green, width: 470, title: "Attach the group login (Chapter 16)", body: ["=Requires Entra ID P1 for each member of a dynamic group"], size: 12}
 edges:
   - [hr, adp]
   - [hr, cld]

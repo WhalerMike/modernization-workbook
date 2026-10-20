@@ -22,7 +22,7 @@ The workbook grew as separate whitepapers, guides, series and case studies. The 
 | **B03** | **[HR-Driven Identity & Lifecycle](b03-hr-identity/index.md)** | **Why should HR, not IT, decide who exists?** | **Draft** |
 | **B04** | **[Access & Privilege](b04-access/index.md)** | **Why is every access decision a policy decision?** | **Draft** |
 | **B05** | **[Devices & Endpoints: GPO to Intune and Arc](b05-devices/index.md)** | **Why can't Group Policy come to the cloud?** | **Draft** |
-| B06 | Data Platform: SQL Server Identity | Why is the database where legacy authentication hides? | Planned |
+| **B06** | **[Data Platform: SQL Server Identity](b06-data-platform/index.md)** | **Why is the database where legacy authentication hides?** | **Draft** |
 | B07 | PKI & Certificates | Why do certificates outlive every migration? | Planned |
 | B08 | DNS, DHCP & IPAM | Why is DNS now the control plane? | Planned |
 | B09 | Network & Transport | Why does physics decide the architecture? | Planned |

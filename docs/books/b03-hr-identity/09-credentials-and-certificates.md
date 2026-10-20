@@ -94,7 +94,7 @@ Most moves don't touch credentials: the person, the identifier and the PIV ident
 
 ## Device certificates: Intune and Microsoft Cloud PKI
 
-Devices get their own certificates, for Wi-Fi, VPN and other authentication, through Intune SCEP or PKCS certificate profiles; Microsoft Cloud PKI can be the issuing CA for SCEP. Cloud PKI is licensed as a subscription on top of Intune Plan 1 or Plan 2; it is available in GCC High but not in DoD environments. Intune hosts each Cloud PKI CA's CRL, which is valid for seven days, republished every 3.5 days, and updated with every revocation.[^c09-cpki] The [SQL Server series, Book 10](../../case-studies/sql-server-narrative/Book_10.md) covers the move from AD CS to Cloud PKI; this section covers only what the leaver sequence needs.
+Devices get their own certificates, for Wi-Fi, VPN and other authentication, through Intune SCEP or PKCS certificate profiles; Microsoft Cloud PKI can be the issuing CA for SCEP. Cloud PKI is licensed as a subscription on top of Intune Plan 1 or Plan 2; it is available in GCC High but not in DoD environments. Intune hosts each Cloud PKI CA's CRL, which is valid for seven days, republished every 3.5 days, and updated with every revocation.[^c09-cpki] The [SQL Server series, Book 10](../b06-data-platform/22-where-sql-server-touches-adcs.md) covers the move from AD CS to Cloud PKI; this section covers only what the leaver sequence needs.
 
 For Windows devices, Intune documents when a SCEP certificate is revoked and removed:[^c09-intune-remove]
 

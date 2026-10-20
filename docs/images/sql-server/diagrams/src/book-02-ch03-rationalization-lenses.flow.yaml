@@ -1,12 +1,12 @@
-# Book 02, Chapter 3 — three lenses applied together produce a defensible
+# B06 Chapter 05 — three lenses applied together produce a defensible
 # judgment per instance and per database.
 rankdir: LR
 graph: {nodesep: 0.28, ranksep: 0.6}
 nodes:
-  inv: {tone: blue, width: 140, title: "Inventory", body: ["=From Chapter 2"], size: 12}
+  inv: {tone: blue, width: 140, title: "Inventory", body: ["=From Chapter 04"], size: 12}
   u: {tone: amber, width: 230, tag: "Lens 1", title: "Utilization and zombies", body: ["CPU, memory, connections, workload profile", "Zombie: no connections in a year, no restores, retired owner"], size: 12}
   v: {tone: amber, width: 230, tag: "Lens 2", title: "Version and end of life", body: ["Entra logins need SQL Server 2022 or later", "Old engines usually argue for consolidation, not in-place upgrade"], size: 12}
-  d: {tone: amber, width: 230, tag: "Lens 3", title: "Dependencies", body: ["Linked servers, replication, Agent jobs, SSIS/SSRS/SSAS", "Applications that depend on the instance (Book 08)"], size: 12}
+  d: {tone: amber, width: 230, tag: "Lens 3", title: "Dependencies", body: ["Linked servers, replication, Agent jobs, SSIS/SSRS/SSAS", "Applications that depend on the instance (Chapters 18–19)"], size: 12}
   j:
     tone: green
     width: 220

@@ -4,9 +4,9 @@ graph: {nodesep: 0.3, ranksep: 0.3}
 nodes:
   s1: {tone: slate, width: 470, tag: "Step 1", title: "Confirm egress", body: ["=Outbound HTTPS to the Arc endpoints (`management.azure.com`, `login.microsoftonline.com`, regional Arc endpoints) through the program's approved proxy. No direct internet egress."], size: 12}
   s2: {tone: slate, width: 470, tag: "Step 2", title: "Install the Connected Machine agent", body: ["=The server becomes an Azure Resource Manager resource and gets a system-assigned managed identity."], size: 12}
-  s3: {tone: blue, width: 470, tag: "Step 3", title: "Deploy the Azure extension for SQL Server", body: ["=Separate install, ideally by Azure Policy for the fleet. Registers each instance and checks its version."], size: 12}
-  s4: {tone: blue, width: 470, tag: "Step 4", title: "Enable Microsoft Entra authentication on the instance", body: ["SQL Server 2022: app registration and Key Vault certificate", "SQL Server 2025: primary managed identity, plus Graph permissions", "Set the instance's Entra admin to a group (Book 07)"], size: 12}
-  s5: {tone: green, width: 470, tag: "Step 5 — the gate", title: "Verify before any login moves", body: ["Extension healthy; agent returns a token from its local endpoint", "A test Entra login connects", "Next audit run shows Category 1 (Book 03)"], size: 12}
+  s3: {tone: blue, width: 470, tag: "Step 3", title: "Let the Azure extension for SQL Server deploy", body: ["=Installed automatically when a server with SQL Server connects (opt out by tag). Registers each instance and its version."], size: 12}
+  s4: {tone: blue, width: 470, tag: "Step 4", title: "Enable Microsoft Entra authentication on the instance", body: ["SQL Server 2022: app registration and Key Vault certificate", "SQL Server 2025: primary managed identity, plus Graph permissions", "Set the instance's Entra admin to a group (Chapter 16)"], size: 12}
+  s5: {tone: green, width: 470, tag: "Step 5 — the gate", title: "Verify before any login moves", body: ["Extension healthy; agent returns a token from its local endpoint", "A test Entra login connects", "Next audit run shows Category 1 (Chapter 07)"], size: 12}
 edges:
   - [s1, s2]
   - [s2, s3]

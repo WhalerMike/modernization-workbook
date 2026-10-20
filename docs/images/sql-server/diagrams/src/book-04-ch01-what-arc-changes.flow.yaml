@@ -4,6 +4,6 @@ rankdir: LR
 graph: {nodesep: 0.4, ranksep: 0.6}
 nodes:
   does: {tone: green, width: 300, title: "Arc provides", body: ["An Azure Resource Manager resource for the server", "A system-assigned managed identity, served by the agent on `localhost:40342`", "Azure Policy, monitoring and the SQL Server extension", "The capability for the engine to accept Entra tokens"], size: 12}
-  doesnt: {tone: slate, width: 300, title: "Arc doesn't change", body: ["How Windows-integrated connections authenticate (still Kerberos or NTLM)", "Any existing login: none becomes an Entra login", "Windows Authentication or Mixed Mode settings", "SPN registration", "Sign-in visibility: no Entra events until logins migrate (Book 05)"], size: 12}
+  doesnt: {tone: slate, width: 300, title: "Arc doesn't change", body: ["How Windows-integrated connections authenticate (still Kerberos or NTLM)", "Any existing login: none becomes an Entra login", "Windows Authentication or Mixed Mode settings", "SPN registration", "Sign-in visibility: no Entra events until logins migrate (Chapter 11)"], size: 12}
 edges:
   - [does, doesnt, {style: invis}]

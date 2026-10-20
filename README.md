@@ -40,8 +40,8 @@ This repository extracts practical modernization concepts — single source of t
 - [Read-Only AD Assessment](docs/books/b02-identity/07-read-only-discovery.md)
 
 ### Case Studies
-- [SQL Server Identity Transformation (overview)](docs/case-studies/sql-server-identity.md)
-- [SQL Server Narrative Series (Books 01–10)](docs/case-studies/sql-server-narrative/README.md)
+- [SQL Server Identity Transformation (overview)](docs/books/b06-data-platform/index.md)
+- [SQL Server Narrative Series (Books 01–10)](docs/books/b06-data-platform/index.md)
 - [HR-Driven Identity: From the HR System of Record to Entra ID](docs/books/b03-hr-identity/index.md)
 
 ### Whitepapers

@@ -24,7 +24,7 @@ This workbook is a cleaned, standalone modernization project. It presents patter
 | Architecture | Models for SSOT, drift, attribute structure, control planes | [Architecture series](architecture/architecture-series/README.md) |
 | Client-Server series | End-to-end transformation narrative | [Chapter 00](client-server-to-hybrid-cloud/00-the-problem.md) |
 | Operational guides | Practical paths for GPO, Intune, DNS, PKI, access | [Operational guides index](operational-guides/README.md) |
-| Case studies | Worked examples (SQL Server identity, HRIT) | [SQL Server overview](case-studies/sql-server-identity.md) |
+| Case studies | Worked examples (SQL Server identity, HRIT) | [SQL Server overview](books/b06-data-platform/index.md) |
 | Whitepapers | Deeper treatment of specific topics | [Whitepapers index](whitepapers/README.md) |
 | Compliance | Federal compliance framing (Moderate) | [Compliance overview](compliance/federal-compliance-series-moderate-overview.md) |
 

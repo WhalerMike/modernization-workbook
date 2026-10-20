@@ -2,7 +2,7 @@
 rankdir: LR
 graph: {nodesep: 0.3, ranksep: 0.35}
 nodes:
-  d1: {tone: amber, width: 190, tag: "Step 1", title: "Audit and rationalize", body: ["=Inventory, surface silent NTLM, classify retire / consolidate / retain (Books 02–03)"], size: 12}
+  d1: {tone: amber, width: 190, tag: "Step 1", title: "Audit and rationalize", body: ["=Inventory, surface silent NTLM, classify retire / consolidate / retain (Chapters 03–08)"], size: 12}
   d2: {tone: blue, width: 190, tag: "Step 2", title: "Forced authentication move", body: ["=On the retain set: Arc-enable, Entra logins alongside Windows logins, cut over, retire old logins"], size: 12}
   d3: {tone: green, width: 190, tag: "Step 3", title: "Choose a platform per data domain", body: ["=Re-platform with the same parallel-run discipline: validate, then cut over. Never drop before you observe."], size: 12}
 edges:

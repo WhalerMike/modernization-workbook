@@ -1,0 +1,22 @@
+# Chapter 13 — the hand-offs one SQL Server instance passes through, and the
+# team that owns each step. No single team can take an instance from verdict
+# to closure alone. Program design; the Privileged Role Administrator
+# requirement for the Graph grants is Microsoft-documented.
+rankdir: TB
+graph: {nodesep: 0.3, ranksep: 0.4}
+nodes:
+  s1: {tone: amber, width: 230, tag: "1 · CIO and data leadership", title: "Verdict", body: ["=Retain or consolidation target (Chapter 06)"], size: 12}
+  s2: {tone: slate, width: 230, tag: "2 · Server infrastructure", title: "Arc agent and SQL extension", body: ["=Egress, onboarding service principal, Key Vault access (Chapter 10)"], size: 12}
+  s3: {tone: blue, width: 230, tag: "3 · Identity team", title: "Instance identity permissions", body: ["=Graph app roles or admin consent, granted by a Privileged Role Administrator"], size: 12}
+  s4: {tone: blue, width: 230, tag: "4 · Data platform team", title: "Entra admin group and logins", body: ["=Create, validate, disable, observe, drop (Chapters 11–12)"], size: 12}
+  s5: {tone: slate, width: 230, tag: "5 · Application owners", title: "Connection strings", body: ["=Managed identity or service principal, tested first (Chapter 19)"], size: 12}
+  s6: {tone: violet, width: 230, tag: "6 · ISSO, then system owner", title: "Closure record", body: ["=Evidence verified; exceptions go to the authorizing official (Chapter 20)"], size: 12}
+edges:
+  - [s1, s2]
+  - [s2, s3]
+  - [s3, s4]
+  - [s4, s5]
+  - [s5, s6]
+order:
+  - [s1, s2, s3]
+  - [s4, s5, s6]

@@ -95,7 +95,7 @@ Entitlement management and access reviews are Microsoft Entra ID Governance feat
 - **The same key joins the evidence.** The enterprise person key (Chapter 04) is the join key for the SIEM, database logins and badge events, and any authentication by a person whose HR record shows a separation is an alert, not a log line.
 - **Break-glass accounts depend on none of this.** Emergency access accounts are cloud-only accounts on the `*.onmicrosoft.com` domain, not federated or synchronized from on-premises, not associated with any individual, excluded from Conditional Access policies that block or restrict sign-in, and monitored with an alert on every sign-in.[^c10-emergency] In this program they're also excluded from HR-driven rules and lifecycle workflows.
 
-The [SQL Server Identity Transformation workbook, Book 07](../../case-studies/sql-server-narrative/Book_07_CPT_02.md) applies this chapter to SQL Server logins and database roles, including naming, shadow testing and rollout gates.
+The [SQL Server Identity Transformation workbook, Book 07](../b06-data-platform/17-dynamic-membership-delegation-and-privilege.md) applies this chapter to SQL Server logins and database roles, including naming, shadow testing and rollout gates.
 
 ::: {.callout-tip}
 ## Continue the book

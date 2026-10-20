@@ -1,0 +1,31 @@
+# Chapter 13 — who decides and who does the SQL Server identity transformation.
+# Top row: decision rights (retain/consolidate/retire and closure, risk
+# acceptance and exceptions, control requirements and evidence). Middle row:
+# the three teams that build the target. Bottom row: the application owners
+# who decide for their own application, the help desk, and security
+# operations. This is the program's recommended model, not an external
+# standard; NIST SP 800-37 defines the AO, system owner and ISSO roles.
+rankdir: TB
+graph: {nodesep: 0.25, ranksep: 0.45}
+nodes:
+  lead: {tone: amber, width: 220, tag: "Decides", title: "CIO and data leadership", body: ["=Retain, consolidate or retire; targets; closure as system owner"], size: 12}
+  ao: {tone: amber, width: 220, tag: "Decides", title: "Authorizing official", body: ["=Accepts residual risk: NTLM, SQL login and pre-2022 exceptions"], size: 12}
+  sec: {tone: violet, width: 220, tag: "Decides", title: "CISO and ISSO", body: ["=Authentication standard, privileged access model, evidence"], size: 12}
+  dba: {tone: blue, width: 220, tag: "Designs and does", title: "Data platform team", body: ["=Logins, parallel run, Entra admin group, audit, certificates on the instance"], size: 12}
+  idt: {tone: blue, width: 220, tag: "Designs and does", title: "Identity team", body: ["=Graph permissions, groups and rules, PIM, Conditional Access"], size: 12}
+  inf: {tone: blue, width: 220, tag: "Designs and does", title: "Server infrastructure", body: ["=Arc agent, SQL extension, egress, Azure RBAC, Key Vault, PKI"], size: 12}
+  app: {tone: slate, width: 220, tag: "Decides for its app", title: "Application owners", body: ["=Connection strings, service accounts, test sign-off, cutover window"], size: 12}
+  hd: {tone: green, width: 220, tag: "Supports", title: "Help desk", body: ["=Sign-in triage from Entra logs, urgent removal runbook"], size: 12}
+  soc: {tone: violet, width: 220, tag: "Operates", title: "Security operations", body: ["=Drift, NTLM telemetry, Defender for SQL alerts"], size: 12}
+edges:
+  - [lead, dba, {label: "verdicts", tone: amber}]
+  - [ao, inf, {label: "risk decisions", tone: amber}]
+  - [sec, dba, {label: "standard", tone: violet}]
+  - [sec, idt, {label: "requirements", tone: violet}]
+  - [app, dba, {label: "consulted", both: true, style: dashed}]
+  - [dba, hd, {label: "runbooks"}]
+  - [dba, soc, {label: "signals"}]
+order:
+  - [lead, ao, sec]
+  - [dba, idt, inf]
+  - [app, hd, soc]

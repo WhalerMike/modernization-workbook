@@ -7,8 +7,8 @@ nodes:
   q1: {kind: pill, tone: slate, text: "SQL Server 2022 or later?", width: 260}
   c3: {tone: red, width: 210, tag: "Category 3", title: "Upgrade or except", body: ["=Can't create Entra logins on any older version. Usually a consolidate or retire candidate."], size: 12}
   q2: {kind: pill, tone: slate, text: "Arc agent and Azure extension for SQL Server installed, Entra authentication configured?", width: 300}
-  c2: {tone: amber, width: 210, tag: "Category 2", title: "Arc-eligible, not enabled", body: ["=Deploy Arc (Book 04). The next audit run re-classifies it."], size: 12}
-  c1: {tone: green, width: 210, tag: "Category 1", title: "Entra-auth ready", body: ["=Start the login migration from the audit's login inventory (Book 05)."], size: 12}
+  c2: {tone: amber, width: 210, tag: "Category 2", title: "Arc-eligible, not enabled", body: ["=Deploy Arc (Chapter 10). The next audit run re-classifies it."], size: 12}
+  c1: {tone: green, width: 210, tag: "Category 1", title: "Entra-auth ready", body: ["=Start the login migration from the audit's login inventory (Chapter 11)."], size: 12}
 edges:
   - [q0, fci, {tone: red, label: "yes"}]
   - [q0, q1, {label: "no"}]

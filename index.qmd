@@ -12,7 +12,7 @@ A clean, standalone project for federal IT modernization. Content is written for
 | Topic | HTML | DOCX |
 |-------|------|------|
 | Principles | [Principles](docs/PRINCIPLES.html) | [DOCX](docs/PRINCIPLES.docx) |
-| SQL Server Identity Transformation | [Series Overview](docs/case-studies/sql-server-narrative/series-overview.html) | [DOCX](docs/case-studies/sql-server-narrative/series-overview.docx) |
+| SQL Server Identity Transformation | [Series Overview](docs/books/b06-data-platform/index.html) | [DOCX](docs/case-studies/sql-server-narrative/series-overview.docx) |
 | Client-Server to Hybrid-Cloud | [Chapter 00](docs/client-server-to-hybrid-cloud/00-the-problem.html) | [DOCX](docs/client-server-to-hybrid-cloud/00-the-problem.docx) |
 | Whitepapers | [Whitepapers](docs/whitepapers/README.html) | [DOCX](docs/whitepapers/README.docx) |
 | Case Studies | [Case Studies](docs/case-studies/README.html) | [DOCX](docs/case-studies/README.docx) |

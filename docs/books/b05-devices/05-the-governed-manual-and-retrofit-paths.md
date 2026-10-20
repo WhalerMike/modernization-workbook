@@ -205,7 +205,7 @@ WHERE session_id = @@SPID;
 
 ### Phase 3: harden SQL Server
 
-The hardening audit reports the authentication mode (Windows authentication only is the goal), the server configuration options that should be off (`xp_cmdshell`, OLE Automation procedures, CLR, cross-database ownership chaining, Database Mail XPs and similar), and the status of the `sa` account. Then onboard the SQL Server hosts to Arc and enable Defender for SQL Servers on Machines.[^c05-defender-sql] Replacing Windows and SQL authentication with Entra ID for SQL Server 2022 and later is a separate engine-level transformation. The [SQL Server Identity Transformation narrative](../../case-studies/sql-server-narrative/README.md) covers it.
+The hardening audit reports the authentication mode (Windows authentication only is the goal), the server configuration options that should be off (`xp_cmdshell`, OLE Automation procedures, CLR, cross-database ownership chaining, Database Mail XPs and similar), and the status of the `sa` account. Then onboard the SQL Server hosts to Arc and enable Defender for SQL Servers on Machines.[^c05-defender-sql] Replacing Windows and SQL authentication with Entra ID for SQL Server 2022 and later is a separate engine-level transformation. The [SQL Server Identity Transformation narrative](../b06-data-platform/index.md) covers it.
 
 ### Phase 3: Conditional Access baseline
 
