@@ -57,7 +57,7 @@ OPM's data standards and nature-of-action codes describe **federal employees**. 
 
 Whichever source the agency chooses, the rules are the same:
 
-- **One model.** Contractors map into the same canonical model, with worker type set to contractor and their own enterprise person key (Chapter 04). Conversion between contractor and employee joins the two sources on that key, so a converting person never gets a second identity.
+- **One model.** Contractors map into the same canonical model, with worker type set to contractor and their own enterprise person key (Chapter 04). In the proposed canonical model, conversion between contractor and employee creates a new affiliation for the same person, joining the two sources on that key, so a converting person never gets a second identity.
 - **Different triggers.** Contractors have no SF-50. Their joiner and leaver events are the contract or sponsorship start and end dates, and a sponsor's withdrawal is a leaver event (Chapter 08).
 - **Map what applies.** Organization code, duty station and sponsor (as `manager`) carry over; employee-only elements such as pay plan and grade don't. Add a contract or task-order reference so access can be scoped to the contract and reviewed with it.
 - **Expiry is enforced, not trusted.** An end date that passes without renewal ends access on that date, whatever the spreadsheet says.

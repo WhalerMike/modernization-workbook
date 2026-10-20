@@ -45,7 +45,7 @@ Every milestone in the program's history moves the same direction: fewer systems
 | 2024 | **HR Marketplace** | OPM's HR QSMO opens its HR Marketplace; agencies steered to standards-aligned shared solutions[^c03-marketplace] |
 | 2025 | **Federal HR 2.0** | The joint OMB/OPM memorandum (December 10, 2025) directs one government-wide Core HCM platform; agencies pause their own Core HCM procurement and modernization[^c03-memo] |
 | 2026 | **Core HCM award** | OPM awards the Federal HRIT Modernization Core HCM contract to Oracle (June 10, 2026; announced by Oracle June 11) — **Oracle Fusion Cloud HCM**, SaaS, the workforce platform this workbook uses for its principal implementation example[^c03-award][^c03-oracle][^c03-fnn] |
-| 2027 | **Wave transitions** | First agencies onboard as FY 2027 begins; Wave 2 transitions during FY 2027; each agency's onboarding runs about 8 months with interconnections live around month 5[^c03-memo][^c03-mt] |
+| 2027 | **Wave transitions** | First agencies onboard as FY 2027 begins; Wave 2 transitions during FY 2027; the sample onboarding timeline runs about 8 months with interconnections around month 5 (a planning assumption: confirm each agency's milestones with the HR 2.0 program office)[^c03-memo][^c03-mt] |
 | 2028 | **One system** | Government-wide adoption goal (FY 2028); eOPF and EHRI are eventually made redundant and decommissioned[^c03-memo] |
 
 : The OPM HRIT timeline — five decades of consolidation {.striped .hover}
@@ -92,7 +92,7 @@ The agency's own move from Active Directory to Entra ID is the second half of th
 
 Two consequences follow:
 
-1. **The window closes at the interconnection.** The first agencies were expected to begin onboarding as FY 2027 began, with initial deployments reported for January to March 2027. For every agency, the memo's sample timeline puts interconnection go-live around month 5 of onboarding. An HR-driven identity feed designed into that onboarding costs a fraction of one retrofitted after it.
+1. **The window closes at the interconnection.** The first agencies were expected to begin onboarding as FY 2027 began, with initial deployments reported for January to March 2027. The memo's sample timeline puts interconnection go-live around month 5 of onboarding; treat that as a planning assumption, and confirm each agency's milestones with the HR 2.0 program office. An HR-driven identity feed designed into that onboarding costs a fraction of one retrofitted after it.
 2. **EHRI-shaped thinking has an expiry date.** Anything that treats the EHRI/eOPF feeds as the durable HR data interface is building against systems the memo expects the Core HCM platform to make redundant. The durable interface is the Core HCM platform's own surface — HCM Extracts, Atom feeds, REST and SCIM APIs — carrying OPM's standard data elements.[^c03-ms-oracle]
 
 ## What OPM requires, and what it leaves to the agency
