@@ -48,7 +48,7 @@ Each phase's gate is the next phase's precondition. The order isn't optional: de
 - Record the enterprise identifier decision (Chapter 03): which key is the enterprise person key, and how source keys map to it.
 - Build the standard-attribute crosswalk (Chapter 05): each OPM standard element an identity decision reads, mapped to the canonical model; and the nature-of-action trigger table (Chapter 06).
 - Establish the privacy basis: routine use under the governing SORNs, the updated PIA, and the minimized attribute set (Appendix B).
-- Decide the contractor and vendor source (Chapter 05) — Core HCM contingent workers, the PIV sponsorship system, or both — and retire the COR spreadsheets as a source of truth.
+- Decide the contractor and vendor source (Chapter 05): Core HCM contingent workers, the PIV sponsorship system, the agency's contractor suitability register, or a combination with one authority per fact. Retire the COR spreadsheets as a source of truth.
 - Sign the attribute authority map (Chapter 03): every attribute any access decision reads, its authoritative system, its derivation rule if derived, and its data-quality owner.
 - Finalize the canonical schema (Chapter 05) against Oracle HCM field names, and validate the crosswalk against a sandbox extract. Confirm the extension-attribute carriers are free and in the provisioning apps' target lists.
 - Define the worker-type taxonomy (employee, contractor, intern, volunteer, vendor, external), each mapped to license, access ceiling and retention, and the code lists for the three access attributes.
@@ -144,6 +144,7 @@ Phases 1 and 2 produce no visible change for end users, which is exactly why est
 | Agency onboarding schedule movement | The interconnection go-live is the deadline | Watch program communications |
 | OPM standard data elements and codes used by the crosswalk | The crosswalk's contract (Chapter 05) | Confirm against OPM's current data standards and how Core HCM exposes them |
 | Whether the agency's Core HCM configuration records contingent workers | The contractor and vendor source decision (Chapter 05) | Confirm with the HR 2.0 program |
+| Whether the contractor suitability register records engagement end dates and the enterprise person key | Whether it can be the contractor leaver signal and join on one key (Chapter 05) | Confirm with the register's owner |
 | Nature-of-action families and codes | The lifecycle trigger table (Chapter 06) | Checked against the GPPA, October 2026 edition; re-check at engagement time |
 | Routine use under the governing SORNs; PIA update | The privacy basis for the feed (Appendix B) | Confirm with the agency privacy office |
 | User source-of-authority transfer and Entra-to-AD provisioning in the tenant | The target landing pattern (Chapter 04) | Confirm availability and prerequisites in GCC |

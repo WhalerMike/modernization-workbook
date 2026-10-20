@@ -1,14 +1,15 @@
 # Chapter 05 — the standard-attribute layer: OPM data standards are the contract;
 # the canonical model maps them once; the directories receive coded projections.
-# Contractors and vendors are outside HRIT and come from their own source.
+# Contractors and vendors are outside HRIT and come from their own sources: the Core HCM
+# contingent worker, PIV enrollment and sponsorship, and the contractor suitability register.
 rankdir: LR
 graph: {nodesep: 0.3, ranksep: 0.5}
 nodes:
   opm: {tone: amber, width: 194, tag: "OPM data standards", title: "Standard elements", body: ["Agency / subelement", "Personnel office identifier", "Duty station", "Occupational series, pay plan, grade", "Supervisory status", "Tenure, appointment, work schedule", "Nature of action + effective date"], foot: "Core HCM fields implement the standard; they are not the contract", size: 12}
-  cwk: {tone: violet, width: 194, tag: "Not in HRIT", title: "Contractors and vendors", body: ["=Core HCM contingent worker, or PIV sponsorship"], size: 12}
+  cwk: {tone: violet, width: 194, tag: "Not in HRIT", title: "Contractors and vendors", body: ["Core HCM contingent worker", "PIV enrollment and sponsorship", "Contractor suitability register"], foot: "One authority per fact; a federal sponsor accountable", size: 12}
   model: {tone: blue, width: 164, tag: "Agency-owned", title: "Canonical model", body: ["Enterprise person key", "Organization and location codes", "Position category", "Worker type and status", "Lifecycle event"], size: 12}
   dirs: {tone: green, width: 164, tag: "Physical", title: "Entra ID and AD", body: ["Native attributes first", "Coded extension attributes", "Hire and leave dates", "Manager relationship"], size: 12}
 edges:
   - [opm, model, {tone: amber, label: "one governed crosswalk"}]
   - [model, dirs, {tone: green}]
-  - [cwk, model, {tone: violet, style: dashed, label: "own source"}]
+  - [cwk, model, {tone: violet, style: dashed, label: "own sources"}]

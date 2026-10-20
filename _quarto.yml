@@ -69,8 +69,6 @@ website:
         text: "Federal Compliance"
       - href: docs/operational-guides/index.md
         text: "Operational Guides"
-      - href: docs/architecture/index.md
-        text: "Architecture"
       - text: "Series"
         menu:
           - href: docs/books/index.md
@@ -273,7 +271,6 @@ website:
       style: docked
       collapse-level: 1
       contents:
-        - docs/architecture/index.md
         - section: "Architecture topics"
           contents:
             - auto: "docs/architecture/*.md"

@@ -17,14 +17,14 @@ lifecycle_review: 2027-01-01
 
 ::: {.callout-note}
 ## In this chapter
-The standard-attribute layer: why OPM's data standards, not vendor fields, are the contract for federal employees. Contractors and vendors, whom HRIT doesn't cover, and where to source them. The design rules behind the schema. The implementation crosswalk, which every other page on this site links to instead of repeating. Why three extension attributes, and why they hold codes. How the hire and leave dates reach Entra ID from each landing zone. Who is allowed to write any of it.
+The standard-attribute layer: why OPM's data standards, not vendor fields, are the contract for federal employees. Contractors and vendors, whom HRIT doesn't cover: where to source them, and how to split authority among those sources. The design rules behind the schema. The implementation crosswalk, which every other page on this site links to instead of repeating. Why three extension attributes, and why they hold codes. How the hire and leave dates reach Entra ID from each landing zone. Who is allowed to write any of it.
 :::
 
 ## The standard-attribute layer
 
 The schema below names Oracle fields because Oracle Fusion Cloud HCM is the Core HCM platform. But the durable contract is one level up: **OPM's standard personnel data.** Every agency on the platform records the same data elements with the same codes and meanings, defined by OPM's data standards (formerly published as the *Guide to Data Standards*, now maintained in OPM's online metadata repository),[^c05-opm-gds] and every personnel action carries a nature-of-action code from the same standards (Chapter 06).[^c05-gppa] For federal employees, mapping identity to the standard rather than to vendor fields means one crosswalk serves every employee population, survives the next vendor change, and can be reused by any agency on the platform. The standard stops at federal employees, though; contractors and vendors are covered in the next section.
 
-![The standard-attribute layer: OPM standard data elements are the contract; one governed crosswalk maps them into the canonical model; Entra ID and Active Directory receive coded projections.](../images/diagrams/hr-driven-iam/svg/ch05-standard-attribute-layer.svg){fig-alt="Three boxes left to right. Amber, OPM data standards, standard elements: agency or subelement; personnel office identifier; duty station; occupational series, pay plan, grade; supervisory status; tenure, appointment, work schedule; nature of action plus effective date; a footnote says Core HCM fields implement the standard and are not the contract. Arrow labelled one governed crosswalk to a blue canonical model box: enterprise person key; organization and location codes; position category; worker type and status; lifecycle event. Arrow to a green Entra ID and AD box: native attributes first; coded extension attributes; hire and leave dates; manager relationship. Below the standard elements, a violet box, not in HRIT: contractors and vendors, from the Core HCM contingent worker or PIV sponsorship, joins the canonical model by a dashed arrow labelled own source."}
+![The standard-attribute layer: OPM standard data elements are the contract; one governed crosswalk maps them into the canonical model; Entra ID and Active Directory receive coded projections.](../images/diagrams/hr-driven-iam/svg/ch05-standard-attribute-layer.svg){fig-alt="Three boxes left to right. Amber, OPM data standards, standard elements: agency or subelement; personnel office identifier; duty station; occupational series, pay plan, grade; supervisory status; tenure, appointment, work schedule; nature of action plus effective date; a footnote says Core HCM fields implement the standard and are not the contract. Arrow labelled one governed crosswalk to a blue canonical model box: enterprise person key; organization and location codes; position category; worker type and status; lifecycle event. Arrow to a green Entra ID and AD box: native attributes first; coded extension attributes; hire and leave dates; manager relationship. Below the standard elements, a violet box, not in HRIT: contractors and vendors, from three sources: the Core HCM contingent worker, PIV enrollment and sponsorship, and the contractor suitability register; a footnote says one authority per fact, with a federal sponsor accountable. It joins the canonical model by a dashed arrow labelled own sources."}
 
 | OPM standard data element | Identity use | Lands as (Chapter 05 crosswalk) |
 |---|---|---|
@@ -48,6 +48,7 @@ OPM's data standards and nature-of-action codes describe **federal employees**. 
 |---|---|---|
 | **Core HCM Contingent Worker** (best fit) | Oracle Fusion Cloud HCM treats contractors as a full worker type, the contingent worker: a person record, an assignment, a place in the organization and a lifecycle much like an employee's, with add, renew and convert actions and the same interfaces[^c05-cwk][^c05-cwk-renew] | No vendor-management system and no non-employee governance layer: sponsorship, contract linkage and end-date attestation still need an owner and a process. Confirm that the agency's Core HCM configuration will record contingent workers |
 | **PIV credential and sponsorship system** | Sponsorship, adjudication, the sponsoring office and an expiry already exist for every badged contractor | Covers only people who get a PIV credential; vendors and short-term workers without one need another path |
+| **Contractor suitability register** | Many agencies already keep one, under personnel security or contracting: each contractor tied to the agency contract they work on, with the suitability determination and its date. It is often the only existing record that links a person to a contract under agency authority | Often records the vetting decision, not the end of the engagement. Owner, interface and update timing vary, and a register keyed by hand from COR spreadsheets inherits their lag |
 | **A non-employee lifecycle service** (complement) | Sponsor workflows, contract and vendor records, periodic attestation | A third source to integrate and govern; usually layered on one of the two options above rather than replacing them |
 
 : Where contractors and vendors can be sourced from {.striped .hover}
@@ -58,6 +59,41 @@ Whichever source the agency chooses, the rules are the same:
 - **Different triggers.** Contractors have no SF-50. Their joiner and leaver events are the contract or sponsorship start and end dates, and a sponsor's withdrawal is a leaver event (Chapter 06).
 - **Map what applies.** Organization code, duty station and sponsor (as `manager`) carry over; employee-only elements such as pay plan and grade don't. Add a contract or task-order reference so access can be scoped to the contract and reviewed with it.
 - **Expiry is enforced, not trusted.** An end date that passes without renewal ends access on that date, whatever the spreadsheet says.
+
+### One fact, one authority
+
+No single option is complete. The contingent worker record has no contract or vetting data, the PIV system manages a card rather than an identity, and a suitability register may not know when an engagement ends. So don't pick one: give each fact identity needs one authoritative source, and hang the whole record on an accountable federal sponsor.
+
+| Fact identity needs | Authority |
+|---|---|
+| Existence and contract link | The contractor suitability register, or the Core HCM contingent worker record once it is configured |
+| End of engagement | The contract record. Confirm the register carries end dates; if it doesn't, the sponsor attests them |
+| Suitability | The contractor suitability register |
+| Identity proofing and credential status | The PIV enrollment and card management system |
+| Accountable sponsor | The COR or another federal employee, mastered in HR |
+| Organization placement | Derived from the sponsor, so it follows accountability; an explicit override needs a justification |
+| Person key | The enterprise person key (Chapter 03). Where the agency already issues it to contractors with their PIV credential, as an agency-wide "Mainframe PIN" often is, contractors are keyed exactly like employees |
+
+: One authority per contractor fact {.striped .hover}
+
+A contractor's access ends at the **earliest** of: the contract end date passing; suitability withdrawn; the PIV credential revoked; the sponsor leaving with no one taking over within a short grace period (for example 14 days); or the sponsor missing a periodic recertification (for example every 180 days). The last two close the gap that free-text sponsor fields leave open, because the sponsor is a live reference into HR, not a name on a form. Reconcile in both directions: a badge with no contractor record, and a contractor record with no badge, are both drift findings (Chapter 09).
+
+### Before a register becomes an authority
+
+Settle six things with the register's owner first. The first two decide whether it can be the leaver signal at all.
+
+- **Owner.** Contracting or personnel security? The owner has to accept identity as a named consumer, just as HR does.
+- **Content.** Does it hold contract end dates and departures, or only the suitability decision? A register with only the decision is a vetting source, not a lifecycle source.
+- **Freshness.** How fast is a departure recorded?
+- **Privacy basis.** Which system-of-records notice covers the register, and does a routine use allow disclosure to identity systems (Appendix B)?
+- **Join key.** Does it record the enterprise person key? If it does, the register, PIV enrollment and the directories join on one key. If not, the first job is a crosswalk to it.
+- **Coverage.** Who isn't in it: short-term, remote or vendor-support staff without a PIV credential? They still need a sponsor-only path.
+
+### Sequence: start with what already exists
+
+1. **Read only.** Reconcile the register and PIV enrollment against the contractor accounts in AD and Entra ID, joined on the enterprise person key. Report orphans and expired engagements, and write nothing to any directory. This measures the problem before anyone is asked to change a process.
+2. **Before Core HCM.** The register plus sponsor attestation become the contractor source. Ship the leaver trigger first, then the joiner.
+3. **At Core HCM go-live.** Decide whether to configure the contingent worker type. If the agency adopts it, it holds the person and the assignment, and the register stays the authority for the contract and suitability. Either way the identity pipeline doesn't change: it reads one canonical record, whatever the source.
 
 ## Design rules
 
