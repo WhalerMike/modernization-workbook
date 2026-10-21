@@ -1,0 +1,21 @@
+# Book 12 Chapter 04 — the Management Activity API collector loop. Start one
+# subscription per content type (15-minute wait between starts; first content
+# up to 12 hours later), list content in windows of 24 hours or less by when
+# it became available, follow NextPageUri, fetch each blob within 7 days,
+# deduplicate on contentId and record Id, and re-list a trailing window
+# because events are not ordered. API rules cited in the chapter; the
+# trailing-window design is the program's.
+rankdir: TB
+graph: {nodesep: 0.25, ranksep: 0.3}
+nodes:
+  start: {tone: blue, width: 340, tag: "Once per content type", title: "Start subscription", body: ["=Wait 15 minutes between start requests; first content can take up to 12 hours"], size: 12}
+  list: {tone: blue, width: 340, tag: "Every run", title: "List available content", body: ["=Window of 24 hours or less, by availability time; follow NextPageUri to the end"], size: 12}
+  fetch: {tone: blue, width: 340, title: "Fetch each blob", body: ["=Within 7 days of availability, with PublisherIdentifier on every call"], size: 12}
+  dedupe: {tone: green, width: 340, title: "Deduplicate and store", body: ["=Track contentId; drop repeated record Id; write to the workspace"], size: 12}
+  gap: {kind: pill, tone: red, text: "Outage over 7 days:\npermanent gap"}
+edges:
+  - [start, list]
+  - [list, fetch]
+  - [fetch, dedupe]
+  - [dedupe, list, {label: "re-list a trailing window: events arrive out of order", lw: 120, style: dashed, tone: violet, attrs: "constraint=false"}]
+  - [fetch, gap, {tone: red, style: dashed}]

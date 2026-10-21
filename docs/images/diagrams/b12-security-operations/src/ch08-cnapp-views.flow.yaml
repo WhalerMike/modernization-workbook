@@ -1,0 +1,23 @@
+# Book 12 Chapter 08 — a CNAPP's overlapping views, the control each
+# supports, and the attack-path view that composes them (Defender for Cloud
+# "cloud security graph", Microsoft Learn). Findings go to the evidence
+# contract (Chapter 02) and the one remediation queue.
+rankdir: TB
+graph: {nodesep: 0.12, ranksep: 0.45}
+nodes:
+  cspm: {tone: slate, width: 135, tag: "CM-6", title: "CSPM", body: ["=Misconfigured resource"], size: 11}
+  cwpp: {tone: slate, width: 135, tag: "RA-5", title: "Workload protection", body: ["=Vulnerable image or workload"], size: 11}
+  net: {tone: slate, width: 135, tag: "SC-7", title: "Network exposure", body: ["=Reachable from the internet"], size: 11}
+  ciem: {tone: slate, width: 135, tag: "AC-6", title: "Entitlements", body: ["=Permissions far beyond use"], size: 11}
+  code: {tone: slate, width: 135, tag: "SA-11", title: "Code and IaC", body: ["=Flaw before deployment"], size: 11}
+  path: {tone: blue, width: 480, tag: "Attack path", title: "One prioritized finding", body: ["=Internet-reachable workload + critical vulnerability + role that reaches the data store. No host scanner produces this."], size: 12}
+  ev: {tone: violet, width: 480, tag: "Chapter 02", title: "Evidence record, one queue", body: ["=Asset identity and time; closes only when the resource re-evaluates as compliant"], size: 12}
+edges:
+  - [cspm, path]
+  - [cwpp, path]
+  - [net, path]
+  - [ciem, path]
+  - [code, path]
+  - [path, ev]
+order:
+  - [cspm, cwpp, net, ciem, code]

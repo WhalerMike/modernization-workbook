@@ -1,0 +1,31 @@
+# Chapter 10 — who decides, who runs and who supplies security operations.
+# Top row: decision rights (scope and funding, residual risk, requirements).
+# Middle row: the top-level SOC and security engineering, with records,
+# privacy and counsel consulted. Bottom row: the platform owners who keep
+# each telemetry plane emitting. Control assessors assess with the
+# independence the authorizing official sets. This is the program's
+# recommended model, not an external standard.
+rankdir: TB
+graph: {nodesep: 0.15, ranksep: 0.45}
+nodes:
+  cio: {tone: amber, width: 160, tag: "Decides", title: "CIO and sponsor", body: ["=Scope, funding, which SOC is top-level"], size: 12}
+  ao: {tone: amber, width: 160, tag: "Decides", title: "Authorizing official", body: ["=Residual risk: telemetry gaps, missed deadlines, standing suppressions"], size: 12}
+  ciso: {tone: violet, width: 160, tag: "Decides", title: "CISO and ISSOs", body: ["=Logging, detection and evidence requirements; major incidents"], size: 12}
+  soc: {tone: violet, width: 160, tag: "Runs the queue", title: "Top-level SOC", body: ["=Triage, investigate, respond, report to CISA"], size: 12}
+  eng: {tone: violet, width: 160, tag: "Builds the instruments", title: "Security engineering", body: ["=SIEM, rule library, playbooks, evidence pipeline"], size: 12}
+  rec: {tone: slate, width: 160, tag: "Consulted; decides three", title: "Records, privacy, counsel", body: ["=Disposition, log content, legal review of monitoring"], size: 12}
+  plat: {tone: blue, width: 340, tag: "Owns emission, per plane", title: "Platform owners", body: ["=Identity; cloud platform and Microsoft 365; endpoints and servers; network and DNS; data"], size: 12}
+  asr: {kind: pill, tone: slate, text: "Control assessors assess\nwith the independence the\nauthorizing official sets"}
+edges:
+  - [cio, soc, {label: "funding", tone: amber}]
+  - [ao, eng, {label: "risk decisions", lw: 80, tone: amber}]
+  - [ciso, eng, {label: "requirements", tone: violet}]
+  - [ciso, soc, {label: "requirements", tone: violet}]
+  - [eng, soc, {label: "incidents"}]
+  - [rec, eng, {label: "consulted", style: dashed}]
+  - [plat, eng, {label: "emits telemetry", lw: 90}]
+  - [soc, plat, {label: "findings to remediate", lw: 90, style: dashed}]
+  - [asr, ao, {label: "assessments", style: dashed}]
+order:
+  - [cio, ao, ciso]
+  - [soc, eng, rec]

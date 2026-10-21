@@ -44,7 +44,7 @@ redirects:
   docs/modernization-specs/identity/identity.html: docs/books/b02-identity/appendix-a-federal-requirements-crosswalk.html
   docs/modernization-specs/sase/sase.html: docs/books/b09-network/05-sd-wan-sase-and-governed-transport.html
   docs/modernization-specs/sdwan/sdwan.html: docs/books/b09-network/05-sd-wan-sase-and-governed-transport.html
-  docs/modernization-specs/telemetry/telemetry.html: docs/modernization-specs/telemetry.html
+  docs/modernization-specs/telemetry/telemetry.html: docs/books/b12-security-operations/02-the-evidence-contract.html
   docs/modernization-specs/zero-trust/zero-trust.html: docs/books/b11-zero-trust/03-what-the-mandates-require.html
 
   # Architecture duplicates.
@@ -290,3 +290,9 @@ redirects:
   docs/PRINCIPLES.html: docs/books/b00-orientation/04-the-principles.html
   docs/operational-guides/program-management/master-project-plan.html: docs/books/b00-orientation/05-the-program-plan.html
   docs/project-management/master-project-plan.html: docs/books/b00-orientation/05-the-program-plan.html
+
+  # Book 12 (Security Operations & Telemetry) replaced these pages; sources are in archive/b12-security-operations/.
+  docs/operational-guides/siem-telemetry-emission/01-entra-id.html: docs/books/b12-security-operations/03-identity-telemetry.html
+  docs/operational-guides/siem-telemetry-emission/02-azure-platform.html: docs/books/b12-security-operations/04-platform-and-m365-telemetry.html
+  docs/operational-guides/siem-telemetry-emission/03-m365-unified-audit.html: docs/books/b12-security-operations/04-platform-and-m365-telemetry.html
+  docs/modernization-specs/telemetry.html: docs/books/b12-security-operations/02-the-evidence-contract.html

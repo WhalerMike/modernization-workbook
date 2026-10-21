@@ -1,0 +1,25 @@
+# Book 12 Chapter 08 — the owned-tool-first decision for cloud posture.
+# Program design: an owned platform-native tool is primary for its own
+# platform; Defender for Cloud coordinates only where its connectors reach
+# (Azure, AWS, Google Cloud; no OCI; AWS connector unavailable in Azure
+# Government, per Microsoft Learn). FedRAMP listings per products.json,
+# Oct 21, 2026. Every finding goes to the evidence contract (Chapter 02).
+rankdir: TB
+graph: {nodesep: 0.2, ranksep: 0.4}
+nodes:
+  ask: {tone: slate, width: 320, tag: "For each platform", title: "Does the agency own a native posture tool?", body: ["=Ownership is agency-specific; the rule is the same everywhere"], size: 12}
+  owned: {tone: green, width: 215, tag: "Owned", title: "Native tool is primary", body: ["AWS: Config conformance packs, Security Hub CSPM", "VMware: STIG audit with InSpec, remediation with Ansible and PowerCLI"], size: 11}
+  notyet: {tone: amber, width: 215, tag: "Not yet owned", title: "Name the adoption default", body: ["Google Cloud: Security Command Center, Assured Workloads", "OCI: Cloud Guard", "=Recorded as a plan, not a capability"], size: 11}
+  mdc: {tone: blue, width: 235, tag: "Coordinating default", title: "Microsoft Defender for Cloud", body: ["Primary for Azure", "Correlates Azure, AWS and Google Cloud", "No OCI coverage", "AWS connector not available in Azure Government"], size: 11}
+  check: {tone: amber, width: 240, tag: "At procurement", title: "Check the FedRAMP listing", body: ["=Higher class than the system: usable, with the boundary treatment documented"], size: 11}
+  ev: {tone: violet, width: 400, tag: "Chapter 02", title: "One evidence contract", body: ["=Every finding from every tool, keyed to asset identity and time, into one remediation queue"], size: 12}
+edges:
+  - [ask, owned, {tone: green, label: "yes"}]
+  - [ask, notyet, {tone: amber, label: "not yet"}]
+  - [ask, mdc, {style: dashed, label: "where it reaches"}]
+  - [owned, ev]
+  - [notyet, ev, {style: dashed}]
+  - [mdc, ev]
+  - [check, mdc, {style: invis}]
+order:
+  - [owned, mdc, notyet]

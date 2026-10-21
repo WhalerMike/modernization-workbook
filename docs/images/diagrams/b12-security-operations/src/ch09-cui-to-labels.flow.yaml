@@ -1,0 +1,38 @@
+# Book 12 Chapter 09 — the CUI framework (32 CFR Part 2002) mapped to the
+# program's label taxonomy (design). The CUI Registry decides category and
+# basic or specified: Privacy (5 USC 552a(b)) is Basic; Federal Taxpayer
+# Information (26 USC 6103) is Specified, CUI//SP-TAX.
+rankdir: TB
+graph: {nodesep: 0.3, ranksep: 0.45}
+clusters:
+  - id: cfr
+    label: "32 CFR Part 2002"
+    tone: slate
+    nodes: [uui, basic, spec]
+  - id: tax
+    label: "The program's label taxonomy"
+    tone: blue
+    nodes: [pubint, lbasic, lspec, lprv]
+nodes:
+  uui: {tone: slate, width: 200, title: "Uncontrolled\nunclassified", body: ["=Handled under FISMA; no CUI controls of its own"], size: 11}
+  basic: {tone: slate, width: 200, title: "CUI Basic", body: ["=Authority sets no specific controls; banner CUI"], size: 11}
+  spec: {tone: slate, width: 200, title: "CUI Specified", body: ["=Authority sets specific controls; category marking mandatory"], size: 11}
+  reg: {tone: amber, width: 240, tag: "Decides", title: "CUI Registry", body: ["=Category, and basic or specified, per authority"], size: 11}
+  pubint: {tone: slate, width: 200, title: "Public · Internal", body: ["=No CUI marking, no dissemination legend, no encryption"], size: 11}
+  lbasic: {tone: blue, width: 200, title: "CUI / CUI Basic", body: ["Header CUI", "Encrypted to everyone in the tenant"], size: 11}
+  lprv: {tone: blue, width: 200, title: "CUI / CUI//PRVCY", body: ["=Only where agency policy requires category markings on CUI Basic"], size: 11}
+  lspec: {tone: violet, width: 200, title: "CUI / CUI//SP-TAX", body: ["One sublabel per specified authority", "Encrypted to an authorized-holder group"], size: 11}
+  note: {kind: text, tone: red, width: 220, text: "Privacy Act records are CUI Basic under 5 U.S.C. 552a(b), not CUI Specified"}
+edges:
+  - [uui, pubint]
+  - [basic, lbasic]
+  - [basic, lprv, {style: dashed, attrs: "constraint=false tailport=e headport=e"}]
+  - [spec, lspec]
+  - [reg, basic, {tone: amber, style: dashed}]
+  - [reg, spec, {tone: amber, style: dashed}]
+  - [lprv, note, {style: invis}]
+raw:
+  - '"lbasic" -> "lprv" [style=invis]'
+order:
+  - [uui, spec, basic]
+  - [pubint, lspec, lbasic]

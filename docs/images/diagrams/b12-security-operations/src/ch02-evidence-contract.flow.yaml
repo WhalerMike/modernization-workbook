@@ -1,0 +1,40 @@
+# Book 12 Chapter 02 — every platform-native stack emits the same record,
+# joined on authoritative asset identity and time, into one queue that serves
+# detection, remediation, CDM and the authorization package. The contract and
+# its fields are the program's design.
+rankdir: TB
+graph: {nodesep: 0.2, ranksep: 0.35}
+clusters:
+  - id: sources
+    label: "Platform-native stacks act on their own surface"
+    tone: slate
+    margin: 8
+    nodes: [s1, s2, s3]
+    order: [s1, s2, s3]
+nodes:
+  s1: {tone: slate, width: 190, title: "Identity and\nM365 audit", body: ["=Sign-ins, roles, mailbox and file access"], size: 11}
+  s2: {tone: slate, width: 190, title: "Cloud\nplatform", body: ["=Patch, posture and resource logs"], size: 11}
+  s3: {tone: slate, width: 190, title: "Endpoints,\nnetwork, data", body: ["=EDR, firewall syslog, DLP matches"], size: 11}
+  contract: {tone: blue, width: 420, title: "The evidence contract", body: ["=`asset_id` · `source` · `surface` · `control` · `state` · `verdict` · `observed_at` · `disposition` + provenance"], size: 11}
+  naming: {kind: pill, tone: slate, text: "Naming plane\n(IPAM/DDI, CM-8)"}
+  join: {tone: violet, width: 420, title: "The join", body: ["=Authoritative asset identity plus synchronized time"], size: 11}
+  queue: {tone: blue, width: 420, title: "One queue", body: ["=Threat detections and vulnerability, patch, configuration, posture and data findings"], size: 11}
+  q1: {kind: pill, tone: green, text: "Detection\nand response"}
+  q2: {kind: pill, tone: green, text: "Remediation\nand POA&M"}
+  q3: {kind: pill, tone: green, text: "CDM\ndashboard"}
+  q4: {kind: pill, tone: green, text: "Authorization\npackage"}
+edges:
+  - [s1, contract]
+  - [s2, contract]
+  - [s3, contract]
+  - [contract, join]
+  - [naming, join, {style: dashed, attrs: "constraint=false"}]
+  - [join, queue]
+  - [queue, q1, {tone: green}]
+  - [queue, q2, {tone: green}]
+  - [queue, q3, {tone: green}]
+  - [queue, q4, {tone: green}]
+ranks:
+  - [join, naming]
+order:
+  - [q1, q2, q3, q4]

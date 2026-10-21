@@ -13,7 +13,7 @@ Each specification captures the substrate contract, control mapping, and integra
 | [Zero Trust](../books/b11-zero-trust/03-what-the-mandates-require.md) | Zero-trust implementation pattern |
 | [SASE](../books/b09-network/05-sd-wan-sase-and-governed-transport.md) | Secure access service edge |
 | [SD-WAN](../books/b09-network/05-sd-wan-sase-and-governed-transport.md) | Software-defined WAN |
-| [Telemetry](telemetry.md) | Telemetry, evidence, and audit |
+| [Telemetry](../books/b12-security-operations/02-the-evidence-contract.md) | Telemetry, evidence, and audit |
 
 ---
 

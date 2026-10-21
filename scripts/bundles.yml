@@ -50,6 +50,13 @@ bundles:
   # Book 06 — Data Platform: SQL Server Identity (was the SQL Server narrative
   # series and its implementation companion). The old download names stay as
   # aliases so published links keep working.
+  - output: b12-security-operations-bundle.docx
+    title: "Book 12 — Security Operations & Telemetry"
+    subtitle: "You can't defend what you can't see — Federal Modernization Workbook, combined edition"
+    root: docs/books/b12-security-operations
+    image_dir: docs/images/diagrams/b12-security-operations
+    warn_unlisted: ["*.md"]
+    pages: [index.md, "[0-9][0-9]-*.md", "appendix-*.md"]
   - output: b11-zero-trust-bundle.docx
     title: "Book 11 — Zero Trust & Assessment"
     subtitle: "Zero Trust as a whole-agency property — Federal Modernization Workbook, combined edition"
