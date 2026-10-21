@@ -1,7 +1,7 @@
 ---
 title: "The Workbook Books"
 subtitle: "The workbook's documents organized into eighteen topic books, each framed Why / What / Who / How"
-description: "The Modernization Workbook organized as eighteen topic books. Each book consolidates the workbook's pages on one topic into an ordered, footnoted reading sequence with a Word edition and a 15-minute presentation."
+description: "The Federal Modernization Workbook organized as eighteen topic books. Each book consolidates the workbook's pages on one topic into an ordered, footnoted reading sequence with a Word edition and a 15-minute presentation."
 doc-type: section-landing
 audience: [Executive, Technical, Customer]
 family: books

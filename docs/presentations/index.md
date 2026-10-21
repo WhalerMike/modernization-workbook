@@ -1,7 +1,7 @@
 ---
 title: "Presentations"
 subtitle: "The 15-minute Why / What / Who / How decks for every workbook book, with their narrated editions"
-description: "Download the PowerPoint decks for the Modernization Workbook books: each book's 15-minute Why / What / Who / How briefing, its narrated self-running edition and its narration script."
+description: "Download the PowerPoint decks for the Federal Modernization Workbook books: each book's 15-minute Why / What / Who / How briefing, its narrated self-running edition and its narration script."
 doc-type: section-landing
 audience: [Executive, Technical, Customer]
 family: presentations

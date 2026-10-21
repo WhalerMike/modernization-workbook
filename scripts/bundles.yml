@@ -27,7 +27,7 @@
 defaults:
   reference_doc: assets/reference-mslearn.docx
   toc_depth: 2
-  subtitle: "Modernization Workbook — Word edition"
+  subtitle: "Federal Modernization Workbook — Word edition"
 
 bundles:
   # ---------------------------------------------------------------------
@@ -37,7 +37,7 @@ bundles:
   # ---------------------------------------------------------------------
   - output: b07-pki-bundle.docx
     title: "Book 07 — PKI & Certificates"
-    subtitle: "AD CS to Cloud PKI, Entra CBA and Federal PKI — Modernization Workbook, combined edition"
+    subtitle: "AD CS to Cloud PKI, Entra CBA and Federal PKI — Federal Modernization Workbook, combined edition"
     root: docs/books/b07-pki
     image_dir: docs/images/diagrams/b07-pki
     warn_unlisted: ["*.md"]
@@ -45,7 +45,7 @@ bundles:
   - output: b06-data-platform-bundle.docx
     aliases: [sql-server-narrative-bundle.docx, sql-server-narrative-standalone-bundle.docx]
     title: "Book 06 — Data Platform: SQL Server Identity"
-    subtitle: "From Windows Authentication to cloud identity — Modernization Workbook, combined edition"
+    subtitle: "From Windows Authentication to cloud identity — Federal Modernization Workbook, combined edition"
     root: docs/books/b06-data-platform
     image_dir: docs/images/sql-server
     warn_unlisted: ["*.md"]
@@ -128,14 +128,14 @@ bundles:
   - output: b08-ddi-bundle.docx
     aliases: [next-generation-ddi-bundle.docx, next-generation-ddi-ch01-bundle.docx, next-generation-ddi-ch02-bundle.docx, next-generation-ddi-ch03-bundle.docx, next-generation-ddi-ch04-bundle.docx, next-generation-ddi-ch05-bundle.docx, next-generation-ddi-ch06-bundle.docx, next-generation-ddi-ch07-bundle.docx, next-generation-ddi-ch08-bundle.docx, next-generation-ddi-ch09-bundle.docx, next-generation-ddi-ch10-bundle.docx, next-generation-ddi-ch11-bundle.docx, next-generation-ddi-appb-bundle.docx]
     title: "Book 08 — DNS, DHCP & IPAM"
-    subtitle: "Governing DNS, DHCP and IPAM as the hybrid multi-cloud control plane — Modernization Workbook, combined edition"
+    subtitle: "Governing DNS, DHCP and IPAM as the hybrid multi-cloud control plane — Federal Modernization Workbook, combined edition"
     root: docs/books/b08-ddi
     image_dir: docs/images/diagrams/b08-ddi
     warn_unlisted: ["*.md"]
     pages: [index.md, "[0-9][0-9]-*.md", "appendix-*.md"]
   - output: b02-identity-bundle.docx
     title: "Book 02 — Identity & Directory"
-    subtitle: "Active Directory to Entra ID — Modernization Workbook, combined edition"
+    subtitle: "Active Directory to Entra ID — Federal Modernization Workbook, combined edition"
     root: docs/books/b02-identity
     image_dir: docs/images/diagrams/b02-identity
     warn_unlisted: ["*.md"]
@@ -143,7 +143,7 @@ bundles:
   - output: b05-devices-bundle.docx
     aliases: [target-surface-bundle.docx]
     title: "Book 05 — Devices & Endpoints"
-    subtitle: "Group Policy to Intune and Azure Arc — Modernization Workbook, combined edition"
+    subtitle: "Group Policy to Intune and Azure Arc — Federal Modernization Workbook, combined edition"
     root: docs/books/b05-devices
     image_dir: docs/images/diagrams/b05-devices
     warn_unlisted: ["*.md"]
@@ -152,7 +152,7 @@ bundles:
   - output: b04-access-bundle.docx
     aliases: [access-plane-bundle.docx]
     title: "Book 04 — Access & Privilege"
-    subtitle: "Every access decision is a policy decision — Modernization Workbook, combined edition"
+    subtitle: "Every access decision is a policy decision — Federal Modernization Workbook, combined edition"
     root: docs/books/b04-access
     image_dir: docs/images/diagrams/b04-access
     warn_unlisted: ["*.md"]
@@ -161,7 +161,7 @@ bundles:
   - output: b03-hr-identity-bundle.docx
     aliases: [hr-driven-iam-bundle.docx]
     title: "Book 03 — HR-Driven Identity"
-    subtitle: "HR-Driven Identity Modernization — Modernization Workbook, combined edition"
+    subtitle: "HR-Driven Identity Modernization — Federal Modernization Workbook, combined edition"
     root: docs/books/b03-hr-identity
     image_dir: docs/images/diagrams/b03-hr-identity
     warn_unlisted: ["*.md"]

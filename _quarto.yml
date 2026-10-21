@@ -21,7 +21,7 @@ project:
     - "presentations/**/*.pptx"
 
 website:
-  title: "Modernization Workbook"
+  title: "Federal Modernization Workbook"
   site-url: https://whalermike.github.io/modernization-workbook/
 
   page-navigation: true
@@ -29,7 +29,7 @@ website:
   bread-crumbs: true
 
   navbar:
-    title: "Modernization Workbook"
+    title: "Federal Modernization Workbook"
     background: dark
     collapse-below: lg
     left:
@@ -107,7 +107,8 @@ website:
             - auto: "docs/books/b08-ddi/appendix-*.md"
 
   page-footer:
-    left: "Modernization Workbook — topic books for federal IT modernization, each framed Why / What / Who / How."
+    left: "Federal Modernization Workbook — topic books for federal IT modernization, each framed Why / What / Who / How."
+    center: "**Not an official U.S. government website.** Independent technical analysis; not reviewed or endorsed by any federal agency."
     right:
       - href: https://github.com/WhalerMike/modernization-workbook
         text: "Source"
@@ -115,6 +116,14 @@ website:
 format:
   html:
     theme: cosmo
+    # Disclaimer banner at the top of every page, above the navbar.
+    include-before-body:
+      - text: |
+          <div class="fmw-disclaimer" role="note" aria-label="Site disclaimer" style="background:#fff7e6;color:#5c3b00;border-bottom:1px solid #f0d9a8;font-size:.85rem;line-height:1.45;padding:.45rem 1rem;text-align:center;">
+            <strong style="color:#3d2700;">This is not an official U.S. federal government website.</strong>
+            The Federal Modernization Workbook is independent technical analysis. It does not represent the position of,
+            and has not been reviewed or endorsed by, any federal agency.
+          </div>
     toc: true
     fig-responsive: true
     fig-align: center
