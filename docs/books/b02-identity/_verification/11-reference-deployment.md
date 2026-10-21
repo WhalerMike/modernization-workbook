@@ -37,6 +37,7 @@ Source page: `docs/case-studies/reference-deployment-fedciv-ad-to-entra.md`. All
 | 29 | The 3PAO consumes the bundle "during the next FedRAMP cycle" | Evidence bundle | corrected (agency systems authorized by agency AO under RMF SP 800-37 Rev. 2 with ongoing authorization; 3PAOs assess CSPs) | csrc.nist.gov SP 800-37 Rev. 2; fedramp.gov/20x |
 | 30 | Cost-shape inversion: re-engagement consumes canon | What survives | restated-as-design (linked to workbook whitepaper) | `docs/whitepapers/federal-ssot-alignment.md` |
 | 31 | Any "2027" deadline | n/a | none in source; none added | n/a |
+| 32 | 2026-10-21 correction: "M-21-31 sets event-logging maturity tiers (EL0 through EL3)" and "logging belongs to M-21-31" | The archetype | corrected: M-21-31 was rescinded by M-26-14 (May 22, 2026); restated as M-26-14's identity and privilege-change logging (Appendix B item 5a, 5d), 6 months searchable / 1 year retrievable (item 1), availability to the top-level SOC (item 2) and five-level maturity model (Appendix C); footnote c11-m2131 replaced by c11-m2614; supersedes claim 3 | OMB M-26-14 PDF (whitehouse.gov, text extracted with pdftotext): rescission paragraph, "Prioritization," "Agency Logging Plan," "Agency Actions," Appendix B items 1–5, Appendix C; CISA Logging Reference Architecture page (cisa.gov/logging, publish date August 20, 2026) |
 
 ## Carry-forward ledger
 

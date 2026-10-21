@@ -7,7 +7,7 @@ nodes:
   q: {tone: violet, width: 240, title: "Query and lease logs", body: ["=Source, name, response, policy action; DHCP lease history"], size: 12}
   c: {tone: violet, width: 240, title: "Change and role audit", body: ["=Who changed what, when, through which interface"], size: 12}
   i: {tone: violet, width: 240, title: "Inventory and drift", body: ["=IPAM discovery, record drift, SRV and consistency checks"], size: 12}
-  siem: {tone: green, width: 220, title: "SIEM and SOC", body: ["=Detection, M-21-31 retention"], size: 12}
+  siem: {tone: green, width: 220, title: "SIEM and SOC", body: ["=Detection, M-26-14 retention"], size: 12}
   cmdb: {tone: green, width: 220, title: "CMDB and ITSM", body: ["=CM-8 inventory, change records"], size: 12}
   ato: {tone: green, width: 220, title: "Authorization package", body: ["=Continuous monitoring evidence"], size: 12}
 edges:
