@@ -1,0 +1,79 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.538
+What must each plane emit?
+
+2
+00:00:01.538 --> 00:00:06.034
+The program treats the estate
+as six planes: identity,
+
+3
+00:00:06.034 --> 00:00:10.938
+cloud platform, Microsoft 365,
+endpoints, network and data.
+
+4
+00:00:10.938 --> 00:00:13.985
+No one plane covers M-26-14's baseline,
+
+5
+00:00:13.985 --> 00:00:19.063
+and systems a third party runs
+for the agency are in scope too.
+
+6
+00:00:19.063 --> 00:00:22.725
+Each plane has a default that
+looks instrumented and isn't.
+
+7
+00:00:22.725 --> 00:00:27.420
+Entra ID shows sign-ins but keeps
+them only 30 days with P1 or P2,
+
+8
+00:00:27.420 --> 00:00:31.010
+so the program streams
+all four sign-in streams,
+
+9
+00:00:31.010 --> 00:00:35.612
+not just the interactive one,
+plus Microsoft Graph activity.
+
+10
+00:00:35.612 --> 00:00:39.673
+Azure deletes its activity log
+after 90 days, and resource logs
+
+11
+00:00:39.673 --> 00:00:44.124
+aren't collected at all until each
+resource has a diagnostic setting.
+
+12
+00:00:44.124 --> 00:00:49.248
+Microsoft 365 audit records last
+180 days on the Standard tier;
+
+13
+00:00:49.248 --> 00:00:54.666
+the one-year default applies only
+to users with an E5-level license,
+
+14
+00:00:54.666 --> 00:00:58.213
+everyone else, guests
+included, stays at 180.
+
+15
+00:00:58.213 --> 00:01:03.088
+So emission is enforced by policy, and
+verified by a query that names every
+
+16
+00:01:03.088 --> 00:01:08.590
+expected table, so a missing one shows up
+as a row instead of silently disappearing.

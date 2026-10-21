@@ -1,0 +1,1096 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.689
+This briefing comes from Book 12 of
+the Federal Modernization Workbook,
+
+2
+00:00:04.689 --> 00:00:09.792
+Security Operations and Telemetry: how
+an agency makes every part of its estate
+
+3
+00:00:09.792 --> 00:00:14.663
+emit evidence, turns it into detection
+and response, and proves that it works.
+
+4
+00:00:14.663 --> 00:00:18.408
+I'll take four questions: why you
+can't defend what you can't see,
+
+5
+00:00:18.408 --> 00:00:22.004
+what each plane must emit and
+how findings reach one queue,
+
+6
+00:00:22.004 --> 00:00:26.949
+who runs security operations, and how to
+run detection, response and monitoring.
+
+7
+00:00:26.949 --> 00:00:30.847
+The short version: design
+visibility instead of assuming it,
+
+8
+00:00:30.847 --> 00:00:34.960
+and close a finding only when
+the thing is fixed, with proof.
+
+9
+00:00:35.710 --> 00:00:37.822
+Why can't you defend what you can't see?
+
+10
+00:00:37.822 --> 00:00:40.667
+Most agencies run a SIEM,
+pay for log storage,
+
+11
+00:00:40.667 --> 00:00:43.836
+and can show an auditor
+millions of events a day.
+
+12
+00:00:43.836 --> 00:00:45.860
+But each of those measures what arrived.
+
+13
+00:00:45.860 --> 00:00:47.460
+None of them measures what didn't.
+
+14
+00:00:47.460 --> 00:00:50.797
+NIST keeps apart two things
+that are easy to buy as one.
+
+15
+00:00:50.797 --> 00:00:54.060
+AU-12 says generate the audit records.
+
+16
+00:00:54.060 --> 00:00:58.486
+AU-6 says review and analyze
+them for unusual activity
+
+17
+00:00:58.486 --> 00:01:03.010
+and report what you find, and
+SI-4 adds detecting attacks.
+
+18
+00:01:03.010 --> 00:01:07.485
+An agency can satisfy the first
+completely and still fail the other two.
+
+19
+00:01:07.485 --> 00:01:12.085
+OMB M-26-14 measures the same way.
+
+20
+00:01:12.085 --> 00:01:16.256
+Logs must be searchable for six
+months and retrievable for a year,
+
+21
+00:01:16.256 --> 00:01:20.814
+but its maturity model scores collection
+by alerting: under half of the
+
+22
+00:01:20.814 --> 00:01:25.835
+baseline covered by actionable alerts at
+Level 1, at least 70 percent at Level 3.
+
+23
+00:01:25.835 --> 00:01:28.963
+And Microsoft says logs
+ingested only into the
+
+24
+00:01:28.963 --> 00:01:32.010
+Sentinel data lake tier
+don't generate alerts.
+
+25
+00:01:32.010 --> 00:01:35.170
+That source meets retention
+and detects nothing.
+
+26
+00:01:35.920 --> 00:01:40.545
+Coverage gaps don't announce themselves,
+and there are four ways they stay quiet.
+
+27
+00:01:40.545 --> 00:01:44.231
+Some sources are never connected:
+Azure resource logs aren't
+
+28
+00:01:44.231 --> 00:01:47.695
+collected until each resource
+has a diagnostic setting.
+
+29
+00:01:47.695 --> 00:01:52.493
+Some connected sources aren't flowing:
+Microsoft says the AWS connector's
+
+30
+00:01:52.493 --> 00:01:56.820
+green status means a collection
+rule exists, not that data arrived.
+
+31
+00:01:56.820 --> 00:01:59.608
+Some collected data is never analyzed.
+
+32
+00:01:59.608 --> 00:02:02.115
+And some sources are
+switched off on purpose;
+
+33
+00:02:02.115 --> 00:02:06.383
+CISA calls tampering with logging
+well-documented threat actor behavior.
+
+34
+00:02:06.383 --> 00:02:12.068
+In the 2023 Exchange Online intrusion, a
+federal victim caught it with its own alert
+
+35
+00:02:12.068 --> 00:02:17.507
+on mailbox-access events that, at the time,
+came only with a premium audit license.
+
+36
+00:02:17.507 --> 00:02:20.633
+Agencies without those events
+had nothing to look at.
+
+37
+00:02:20.633 --> 00:02:23.203
+None of these gaps shows
+up in what arrived,
+
+38
+00:02:23.203 --> 00:02:26.508
+only in comparing what arrived
+with what was expected.
+
+39
+00:02:26.508 --> 00:02:33.848
+That's why M-26-14 tells agencies to use
+CDM and asset data to confirm log coverage,
+
+40
+00:02:33.848 --> 00:02:39.520
+and why BOD 23-01 calls asset
+visibility a basic pre-condition.
+
+41
+00:02:39.520 --> 00:02:42.190
+The inventory is the denominator.
+
+42
+00:02:42.940 --> 00:02:49.152
+A multi-cloud agency runs several stacks:
+Azure Update Manager, AWS Systems Manager,
+
+43
+00:02:49.152 --> 00:02:54.553
+a virtualization lifecycle manager,
+firewall syslog, a Linux host agent.
+
+44
+00:02:54.553 --> 00:02:58.940
+Five partial views can't prove one
+vulnerability is fixed everywhere.
+
+45
+00:02:58.940 --> 00:03:01.904
+The program's answer is
+an evidence contract:
+
+46
+00:03:01.904 --> 00:03:07.352
+one record shape every source emits, with
+eight fields fixed before any data flows.
+
+47
+00:03:07.352 --> 00:03:11.776
+They carry the six things NIST's
+AU-3 asks a record to establish,
+
+48
+00:03:11.776 --> 00:03:15.940
+plus the control it evidences,
+a verdict and a disposition.
+
+49
+00:03:15.940 --> 00:03:19.715
+The join key is authoritative
+asset identity plus time.
+
+50
+00:03:19.715 --> 00:03:22.003
+Every stack has its own identifier.
+
+51
+00:03:22.003 --> 00:03:25.414
+Even Microsoft's normalization
+model lists separate
+
+52
+00:03:25.414 --> 00:03:28.977
+device IDs per product and
+calls a hostname a last resort.
+
+53
+00:03:28.977 --> 00:03:33.402
+So the key comes from the naming plane,
+which has to exist before the pipeline.
+
+54
+00:03:33.402 --> 00:03:35.952
+And time means when
+the state was observed,
+
+55
+00:03:35.952 --> 00:03:39.303
+because arrival time joins
+the wrong records silently.
+
+56
+00:03:39.303 --> 00:03:44.028
+One caution: the system-wide,
+time-correlated trail,
+
+57
+00:03:44.028 --> 00:03:47.066
+AU-12(1), is a High-baseline control.
+
+58
+00:03:47.066 --> 00:03:50.370
+At Moderate, the program
+selects it by design.
+
+59
+00:03:51.120 --> 00:03:52.608
+What must each plane emit?
+
+60
+00:03:52.608 --> 00:03:57.104
+The program treats the estate
+as six planes: identity,
+
+61
+00:03:57.104 --> 00:04:02.008
+cloud platform, Microsoft 365,
+endpoints, network and data.
+
+62
+00:04:02.008 --> 00:04:05.055
+No one plane covers M-26-14's baseline,
+
+63
+00:04:05.055 --> 00:04:10.133
+and systems a third party runs
+for the agency are in scope too.
+
+64
+00:04:10.133 --> 00:04:13.795
+Each plane has a default that
+looks instrumented and isn't.
+
+65
+00:04:13.795 --> 00:04:18.490
+Entra ID shows sign-ins but keeps
+them only 30 days with P1 or P2,
+
+66
+00:04:18.490 --> 00:04:22.079
+so the program streams
+all four sign-in streams,
+
+67
+00:04:22.079 --> 00:04:26.682
+not just the interactive one,
+plus Microsoft Graph activity.
+
+68
+00:04:26.682 --> 00:04:30.743
+Azure deletes its activity log
+after 90 days, and resource logs
+
+69
+00:04:30.743 --> 00:04:35.194
+aren't collected at all until each
+resource has a diagnostic setting.
+
+70
+00:04:35.194 --> 00:04:40.318
+Microsoft 365 audit records last
+180 days on the Standard tier;
+
+71
+00:04:40.318 --> 00:04:45.736
+the one-year default applies only
+to users with an E5-level license,
+
+72
+00:04:45.736 --> 00:04:49.283
+everyone else, guests
+included, stays at 180.
+
+73
+00:04:49.283 --> 00:04:54.158
+So emission is enforced by policy, and
+verified by a query that names every
+
+74
+00:04:54.158 --> 00:04:59.960
+expected table, so a missing one shows up
+as a row instead of silently disappearing.
+
+75
+00:05:00.710 --> 00:05:03.772
+A workspace full of tables
+is still a warehouse.
+
+76
+00:05:03.772 --> 00:05:07.344
+Rules, incidents and automation
+make it a detection engine,
+
+77
+00:05:07.344 --> 00:05:12.082
+and the program's rule is strict: no source
+counts as monitored until an enabled
+
+78
+00:05:12.082 --> 00:05:16.747
+rule reads it, and no rule counts until
+its output reaches a queue someone owns.
+
+79
+00:05:16.747 --> 00:05:19.872
+The engine also sets a
+floor on time to detect.
+
+80
+00:05:19.872 --> 00:05:22.969
+A scheduled rule runs
+every five minutes at best,
+
+81
+00:05:22.969 --> 00:05:25.447
+with a five-minute delay for ingestion.
+
+82
+00:05:25.447 --> 00:05:29.462
+A near-real-time rule runs every
+minute on a two-minute delay,
+
+83
+00:05:29.462 --> 00:05:32.248
+and a workspace can
+enable only 50 of them.
+
+84
+00:05:32.248 --> 00:05:34.984
+Behavioral baselines are slower by design.
+
+85
+00:05:34.984 --> 00:05:40.923
+Defender XDR detects what its own sensors
+see on endpoints, identities and email.
+
+86
+00:05:40.923 --> 00:05:47.735
+Sentinel rules cover what Defender can't
+see: DNS, SASE, SQL audit and other clouds.
+
+87
+00:05:47.735 --> 00:05:52.133
+Then prepare for the assessor's test:
+show an alert from the last 30 days,
+
+88
+00:05:52.133 --> 00:05:54.635
+the incident it opened and what was done.
+
+89
+00:05:54.635 --> 00:06:00.500
+That takes four records: the alert, the
+ticket, the response notes and the closure.
+
+90
+00:06:01.250 --> 00:06:03.700
+Two federal clocks run against this work.
+
+91
+00:06:03.700 --> 00:06:08.955
+CISA's BOD 26-04, issued June 10,
+2026, revoked BOD 22-01 and BOD 19-02,
+
+92
+00:06:08.955 --> 00:06:15.598
+and replaced severity buckets with four
+questions about each vulnerable asset:
+
+93
+00:06:15.598 --> 00:06:22.439
+is it publicly exposed, is the flaw in the
+Known Exploited Vulnerabilities catalog,
+
+94
+00:06:22.439 --> 00:06:28.388
+can exploitation be automated, and
+does it give partial or total control?
+
+95
+00:06:28.388 --> 00:06:30.826
+The answers set a maximum timeline.
+
+96
+00:06:30.826 --> 00:06:34.769
+Three days, with forensic triage
+on the worst rows, because,
+
+97
+00:06:34.769 --> 00:06:39.700
+in CISA's words, applying a patch
+generally does not evict a threat actor.
+
+98
+00:06:39.700 --> 00:06:43.762
+Then 14 days, 60 days, or
+the next system upgrade.
+
+99
+00:06:43.762 --> 00:06:48.051
+The clock starts when CISA lists
+the flaw or when the agency finds
+
+100
+00:06:48.051 --> 00:06:52.262
+it and updates CDM, whichever comes
+first, and there are no waivers.
+
+101
+00:06:52.262 --> 00:06:57.174
+Phase III, remediation within the
+table, applies from December 7.
+
+102
+00:06:57.174 --> 00:07:03.625
+M-26-14's clock runs from CISA's
+Logging Reference Architecture,
+
+103
+00:07:03.625 --> 00:07:10.074
+published August 20, 2026: the
+Agency Logging Plan within 90 days,
+
+104
+00:07:10.074 --> 00:07:15.900
+and maturity Levels 1, 2 and 3
+within 120, 180 and 320 days.
+
+105
+00:07:16.650 --> 00:07:22.383
+Vulnerability management fails at three
+points assessors probe: a stale inventory,
+
+106
+00:07:22.383 --> 00:07:26.888
+prioritization by score alone, and
+no record of found, due and fixed.
+
+107
+00:07:26.888 --> 00:07:29.237
+The program's answer is a daily queue.
+
+108
+00:07:29.237 --> 00:07:31.824
+Pull the KEV feed before
+the morning review.
+
+109
+00:07:31.824 --> 00:07:34.800
+Pull findings from Defender
+Vulnerability Management.
+
+110
+00:07:34.800 --> 00:07:39.575
+Join each device to the authoritative
+asset record and its exposure tag.
+
+111
+00:07:39.575 --> 00:07:44.190
+Look up CISA's automation and impact
+data, apply the directive's table,
+
+112
+00:07:44.190 --> 00:07:47.612
+and keep the first-detected
+date, never resetting it.
+
+113
+00:07:47.612 --> 00:07:49.371
+Use the catalog's due date,
+
+114
+00:07:49.371 --> 00:07:53.474
+because Defender's vulnerability
+data carries no KEV flag.
+
+115
+00:07:53.474 --> 00:07:57.450
+Treat an asset with no exposure
+tag as publicly exposed.
+
+116
+00:07:57.450 --> 00:08:01.987
+And Defender's exports carry no
+history, so the program keeps its own.
+
+117
+00:08:01.987 --> 00:08:05.225
+A scanner authors no
+state; it measures a gap.
+
+118
+00:08:05.225 --> 00:08:08.346
+Each platform patches with
+its own native stack,
+
+119
+00:08:08.346 --> 00:08:13.262
+and every stack returns the same
+remediation record, keyed to the same asset.
+
+120
+00:08:13.262 --> 00:08:18.270
+A finding closes when the fix is recorded
+and the next scan no longer sees it.
+
+121
+00:08:19.020 --> 00:08:21.045
+Three more streams share the queue.
+
+122
+00:08:21.045 --> 00:08:26.383
+Configuration first: a patched host that
+drifts from its baseline isn't remediated.
+
+123
+00:08:26.383 --> 00:08:30.244
+Baselines come from
+SCuBA, CIS or DISA STIGs.
+
+124
+00:08:30.244 --> 00:08:35.380
+Azure machine configuration's auto-correct
+mode fixes drift without recording it,
+
+125
+00:08:35.380 --> 00:08:38.133
+so the program keeps it
+for low-risk settings.
+
+126
+00:08:38.133 --> 00:08:39.571
+Cloud posture next.
+
+127
+00:08:39.571 --> 00:08:43.085
+A storage account open to the
+internet has no missing patch,
+
+128
+00:08:43.085 --> 00:08:44.807
+so a scanner never reports it.
+
+129
+00:08:44.807 --> 00:08:48.807
+Each provider's native posture tool
+is primary for its own platform.
+
+130
+00:08:48.807 --> 00:08:51.939
+Defender for Cloud doesn't
+cover Oracle Cloud,
+
+131
+00:08:51.939 --> 00:08:55.895
+and its AWS connector isn't
+available in Azure Government.
+
+132
+00:08:55.895 --> 00:08:56.807
+Then data.
+
+133
+00:08:56.807 --> 00:09:00.446
+The CUI framework has two
+levels, Basic and Specified,
+
+134
+00:09:00.446 --> 00:09:03.506
+decided by the authority
+in the CUI Registry:
+
+135
+00:09:03.506 --> 00:09:08.882
+Privacy Act records are Basic, and
+federal taxpayer information is Specified.
+
+136
+00:09:08.882 --> 00:09:13.945
+Labels drive data loss prevention on
+the service, the endpoint and the CASB.
+
+137
+00:09:13.945 --> 00:09:15.395
+And check queue membership.
+
+138
+00:09:15.395 --> 00:09:20.009
+Since early October 2026, a built-in
+Microsoft tuning rule keeps DLP
+
+139
+00:09:20.009 --> 00:09:25.220
+signals out of the incident queue
+unless an administrator turns it off.
+
+140
+00:09:25.970 --> 00:09:27.983
+Who runs security operations?
+
+141
+00:09:27.983 --> 00:09:30.057
+Most agencies can name their SOC.
+
+142
+00:09:30.057 --> 00:09:34.668
+Fewer can say who decided that a log
+source is collected, how long it's kept,
+
+143
+00:09:34.668 --> 00:09:38.357
+or who accepted the risk when
+it went quiet for three weeks.
+
+144
+00:09:38.357 --> 00:09:39.846
+The program assigns them.
+
+145
+00:09:39.846 --> 00:09:44.582
+The CIO sets scope and funding
+and designates the top-level SOC.
+
+146
+00:09:44.582 --> 00:09:49.392
+The CISO decides what each plane must
+emit, owns the Agency Logging Plan,
+
+147
+00:09:49.392 --> 00:09:52.758
+and approves any playbook
+that acts on production.
+
+148
+00:09:52.758 --> 00:09:55.432
+Platform owners keep
+their own planes emitting.
+
+149
+00:09:55.432 --> 00:09:58.611
+Security engineering builds
+the SIEM, the rules,
+
+150
+00:09:58.611 --> 00:10:01.382
+the playbooks and the evidence pipeline.
+
+151
+00:10:01.382 --> 00:10:05.707
+The SOC runs the queue, and CISA's
+one-hour clock starts there.
+
+152
+00:10:05.707 --> 00:10:07.621
+Two roles are easy to forget.
+
+153
+00:10:07.621 --> 00:10:11.961
+The records officer decides disposition,
+and must concur before anyone
+
+154
+00:10:11.961 --> 00:10:15.795
+shortens retention, because evidence
+that's gone can't come back.
+
+155
+00:10:15.795 --> 00:10:20.307
+And the authorizing official, the
+only official who can accept risk,
+
+156
+00:10:20.307 --> 00:10:24.497
+accepts the risk of not seeing:
+a gap carried rather than closed,
+
+157
+00:10:24.497 --> 00:10:28.070
+a suppression with no end
+date, a missed deadline.
+
+158
+00:10:28.820 --> 00:10:30.433
+How do detections get built?
+
+159
+00:10:30.433 --> 00:10:31.358
+As code.
+
+160
+00:10:31.358 --> 00:10:34.084
+The rule library lives in version control,
+
+161
+00:10:34.084 --> 00:10:39.070
+and nobody edits a production rule in the
+portal; a change is a reviewed commit.
+
+162
+00:10:39.070 --> 00:10:43.432
+Every rule has one named owner,
+a test and a review date.
+
+163
+00:10:43.432 --> 00:10:45.870
+Each rule moves through five steps.
+
+164
+00:10:45.870 --> 00:10:49.620
+Author it, starting from Microsoft's
+template where one exists.
+
+165
+00:10:49.620 --> 00:10:53.068
+Test it against history and
+replay a known-bad sample,
+
+166
+00:10:53.068 --> 00:10:56.595
+because a rule that can't be
+shown to fire isn't finished.
+
+167
+00:10:56.595 --> 00:10:58.955
+Run it alert-only for at least two weeks,
+
+168
+00:10:58.955 --> 00:11:01.757
+and until its false
+positives are documented.
+
+169
+00:11:01.757 --> 00:11:02.620
+Promote it.
+
+170
+00:11:02.620 --> 00:11:04.520
+Then review it at least quarterly.
+
+171
+00:11:04.520 --> 00:11:08.970
+Where a vendor analytic isn't available
+in the agency's cloud, the program
+
+172
+00:11:08.970 --> 00:11:13.345
+rebuilds an equivalent inside its own
+boundary, and says it isn't parity.
+
+173
+00:11:13.345 --> 00:11:14.407
+Plan for rot.
+
+174
+00:11:14.407 --> 00:11:17.548
+Thresholds drift, sources
+stop without an error,
+
+175
+00:11:17.548 --> 00:11:22.808
+and Sentinel disables a rule after repeated
+failures and marks it auto disabled.
+
+176
+00:11:22.808 --> 00:11:26.960
+The standing tuning effort is the
+real cost of having a library.
+
+177
+00:11:27.710 --> 00:11:32.348
+Detection without response shortens
+the investigation, not the exposure.
+
+178
+00:11:32.348 --> 00:11:37.345
+So every playbook is confidence-gated:
+high confidence prepares containment,
+
+179
+00:11:37.345 --> 00:11:42.573
+medium confidence enriches and tickets for
+a human, and low confidence never acts.
+
+180
+00:11:42.573 --> 00:11:45.647
+Responses sit on the
+workbook's actuation ladder.
+
+181
+00:11:45.647 --> 00:11:46.960
+L1 observes.
+
+182
+00:11:46.960 --> 00:11:48.260
+L2 advises.
+
+183
+00:11:48.260 --> 00:11:53.103
+L3, gated actuation, is the default
+for anything with a large blast radius:
+
+184
+00:11:53.103 --> 00:11:57.381
+the playbook checks its preconditions
+and prepares the action,
+
+185
+00:11:57.381 --> 00:11:59.560
+and a named approver releases it.
+
+186
+00:11:59.560 --> 00:12:02.194
+L4 runs alone, logged and reversible,
+
+187
+00:12:02.194 --> 00:12:06.847
+for enumerated classes such as
+closing known-benign incidents.
+
+188
+00:12:06.847 --> 00:12:10.906
+Three classes stay at L3
+permanently: isolating a server,
+
+189
+00:12:10.906 --> 00:12:16.086
+disabling a privileged or emergency
+account, and any tenant-wide change.
+
+190
+00:12:16.086 --> 00:12:19.531
+Defender XDR's attack
+disruption acts on its own,
+
+191
+00:12:19.531 --> 00:12:24.010
+so the authorizing official
+decides whether to accept it as L4.
+
+192
+00:12:24.010 --> 00:12:25.472
+Latency is real.
+
+193
+00:12:25.472 --> 00:12:30.640
+Session revocation can take up to 15
+minutes in services that support continuous
+
+194
+00:12:30.640 --> 00:12:35.503
+access evaluation, and a hybrid user must
+be disabled in Active Directory too,
+
+195
+00:12:35.503 --> 00:12:38.300
+or the next synchronization undoes it.
+
+196
+00:12:39.050 --> 00:12:40.562
+Last, prove it works.
+
+197
+00:12:40.562 --> 00:12:44.823
+Continuous monitoring is a
+pipeline: emit, normalize,
+
+198
+00:12:44.823 --> 00:12:49.762
+correlate, bind each record to
+its control, report, and respond.
+
+199
+00:12:49.762 --> 00:12:52.187
+The metrics are built
+so they can't flatter.
+
+200
+00:12:52.187 --> 00:12:57.959
+Detection coverage counts how many of
+M-26-14's eleven baseline activities
+
+201
+00:12:57.959 --> 00:13:03.450
+have an enabled, tested rule over a
+fresh source, not how many rules exist.
+
+202
+00:13:03.450 --> 00:13:09.288
+Telemetry completeness treats a stale
+required source as an AU-5 failure.
+
+203
+00:13:09.288 --> 00:13:15.388
+KEV remediation counts closures within
+the BOD 26-04 timeline, plus open items
+
+204
+00:13:15.388 --> 00:13:21.675
+past it, because a share of the open queue
+improves every time new findings arrive.
+
+205
+00:13:21.675 --> 00:13:26.337
+And configuration reports passing,
+failing and excepted settings separately.
+
+206
+00:13:26.337 --> 00:13:28.224
+Read outside scores carefully.
+
+207
+00:13:28.224 --> 00:13:31.652
+M-26-14 scores each system
+at its lowest element,
+
+208
+00:13:31.652 --> 00:13:37.275
+and a system can reach Advanced while
+missing the six-month searchable floor.
+
+209
+00:13:37.275 --> 00:13:41.616
+FedRAMP's 46 Key Security
+Indicators bind cloud providers,
+
+210
+00:13:41.616 --> 00:13:46.488
+not agencies; the agency reviews
+each provider's quarterly report.
+
+211
+00:13:46.488 --> 00:13:48.846
+A finding closes on re-test evidence,
+
+212
+00:13:48.846 --> 00:13:52.810
+or the authorizing official
+carries it with an end date.
+
+213
+00:13:53.560 --> 00:13:54.935
+So, four decisions.
+
+214
+00:13:54.935 --> 00:13:57.994
+Name the planes and assets
+that are expected to emit,
+
+215
+00:13:57.994 --> 00:14:00.910
+and check each one against
+what actually arrives.
+
+216
+00:14:00.910 --> 00:14:04.318
+Stand up the naming plane
+before the evidence pipeline,
+
+217
+00:14:04.318 --> 00:14:06.985
+so every record joins
+on one asset identity.
+
+218
+00:14:06.985 --> 00:14:11.226
+Fund the Agency Logging Plan as
+the program's visibility plan,
+
+219
+00:14:11.226 --> 00:14:12.972
+not as a storage purchase.
+
+220
+00:14:12.972 --> 00:14:18.516
+And send every blind spot to the
+authorizing official: a telemetry gap,
+
+221
+00:14:18.516 --> 00:14:24.634
+a suppression with no end date, a missed
+BOD 26-04 deadline, each with an end date.
+
+222
+00:14:24.634 --> 00:14:26.835
+The next step needs no procurement.
+
+223
+00:14:26.835 --> 00:14:29.743
+Run the coverage check
+against the inventory,
+
+224
+00:14:29.743 --> 00:14:34.334
+tag the exposure of every externally
+reachable asset before December 7,
+
+225
+00:14:34.334 --> 00:14:38.160
+and count a source as covered
+only when a tested rule reads it.
+
+226
+00:14:38.160 --> 00:14:40.323
+You can't defend what you can't see,
+
+227
+00:14:40.323 --> 00:14:44.248
+and a finding closes only when
+the thing is fixed, with proof.
+
+228
+00:14:44.248 --> 00:14:47.935
+Book 12 has the detail,
+every claim footnoted.
+
+229
+00:14:47.935 --> 00:14:48.760
+Thank you.

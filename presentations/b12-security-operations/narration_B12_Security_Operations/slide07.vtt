@@ -1,0 +1,74 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.500
+Two federal clocks run against this work.
+
+2
+00:00:02.500 --> 00:00:07.755
+CISA's BOD 26-04, issued June 10,
+2026, revoked BOD 22-01 and BOD 19-02,
+
+3
+00:00:07.755 --> 00:00:14.398
+and replaced severity buckets with four
+questions about each vulnerable asset:
+
+4
+00:00:14.398 --> 00:00:21.239
+is it publicly exposed, is the flaw in the
+Known Exploited Vulnerabilities catalog,
+
+5
+00:00:21.239 --> 00:00:27.188
+can exploitation be automated, and
+does it give partial or total control?
+
+6
+00:00:27.188 --> 00:00:29.626
+The answers set a maximum timeline.
+
+7
+00:00:29.626 --> 00:00:33.569
+Three days, with forensic triage
+on the worst rows, because,
+
+8
+00:00:33.569 --> 00:00:38.500
+in CISA's words, applying a patch
+generally does not evict a threat actor.
+
+9
+00:00:38.500 --> 00:00:42.562
+Then 14 days, 60 days, or
+the next system upgrade.
+
+10
+00:00:42.562 --> 00:00:46.851
+The clock starts when CISA lists
+the flaw or when the agency finds
+
+11
+00:00:46.851 --> 00:00:51.062
+it and updates CDM, whichever comes
+first, and there are no waivers.
+
+12
+00:00:51.062 --> 00:00:55.974
+Phase III, remediation within the
+table, applies from December 7.
+
+13
+00:00:55.974 --> 00:01:02.425
+M-26-14's clock runs from CISA's
+Logging Reference Architecture,
+
+14
+00:01:02.425 --> 00:01:08.874
+published August 20, 2026: the
+Agency Logging Plan within 90 days,
+
+15
+00:01:08.874 --> 00:01:14.400
+and maturity Levels 1, 2 and 3
+within 120, 180 and 320 days.

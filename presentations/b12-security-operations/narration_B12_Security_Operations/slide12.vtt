@@ -1,0 +1,90 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.688
+Detection without response shortens
+the investigation, not the exposure.
+
+2
+00:00:04.688 --> 00:00:09.685
+So every playbook is confidence-gated:
+high confidence prepares containment,
+
+3
+00:00:09.685 --> 00:00:14.913
+medium confidence enriches and tickets for
+a human, and low confidence never acts.
+
+4
+00:00:14.913 --> 00:00:17.987
+Responses sit on the
+workbook's actuation ladder.
+
+5
+00:00:17.987 --> 00:00:19.300
+L1 observes.
+
+6
+00:00:19.300 --> 00:00:20.600
+L2 advises.
+
+7
+00:00:20.600 --> 00:00:25.443
+L3, gated actuation, is the default
+for anything with a large blast radius:
+
+8
+00:00:25.443 --> 00:00:29.721
+the playbook checks its preconditions
+and prepares the action,
+
+9
+00:00:29.721 --> 00:00:31.900
+and a named approver releases it.
+
+10
+00:00:31.900 --> 00:00:34.534
+L4 runs alone, logged and reversible,
+
+11
+00:00:34.534 --> 00:00:39.187
+for enumerated classes such as
+closing known-benign incidents.
+
+12
+00:00:39.187 --> 00:00:43.246
+Three classes stay at L3
+permanently: isolating a server,
+
+13
+00:00:43.246 --> 00:00:48.426
+disabling a privileged or emergency
+account, and any tenant-wide change.
+
+14
+00:00:48.426 --> 00:00:51.871
+Defender XDR's attack
+disruption acts on its own,
+
+15
+00:00:51.871 --> 00:00:56.350
+so the authorizing official
+decides whether to accept it as L4.
+
+16
+00:00:56.350 --> 00:00:57.812
+Latency is real.
+
+17
+00:00:57.812 --> 00:01:02.980
+Session revocation can take up to 15
+minutes in services that support continuous
+
+18
+00:01:02.980 --> 00:01:07.843
+access evaluation, and a hybrid user must
+be disabled in Active Directory too,
+
+19
+00:01:07.843 --> 00:01:10.340
+or the next synchronization undoes it.

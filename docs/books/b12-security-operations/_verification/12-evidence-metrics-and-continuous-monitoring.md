@@ -98,3 +98,14 @@ Writer W6. Sources: `docs/compliance/Vol_III_Book_07_Multi_Cloud_Evidence_Fabric
 | Vol III Book 06, "Mean Time to Detect" | MTTD metric (link to Chapter 05) | — |
 | Vol III Book 06, "AU-11 Retention Architecture" (three-tier, WORM 1,095 days, GRS 3.2 minimum) | Retention tiers and tamper-protected copies | Specific day counts not carried; GRS framing corrected |
 | Vol III Book 06, "FedRAMP 20x KSI Alignment" | KSI section | Automation claims corrected |
+
+## Consistency fixes from the deck review (2026-10-21)
+
+| # | Change | Verdict | Source |
+|---|---|---|---|
+| D1 | Ch06's `WithinDeadlinePct` reframed as an internal working signal; reported remediation = closures within timeline + overdue (Ch12) | design consistency | — |
+| D2 | Ch12 KEV timeline sentence no longer implies triage for every total-impact KEV; defers to Ch06's full BOD 26-04 table | corrected (consistency) | BOD 26-04 table as reproduced in Ch06 |
+| D3 | Retention-tier decision assigned to security engineering (decider) with CISO and SOC consulted, matching Ch10's matrix | design consistency | — |
+| D4 | Ch02 cross-reference: DLP alert-tuning decision → SOC under Ch10; Ch09 for DLP policies | wording | — |
+| D5 | CISA one-hour clock: identified by top-level CSIRT, SOC or IT department (Ch10, App A) | corrected | https://www.cisa.gov/federal-incident-notification-guidelines (opened Oct 21, 2026) |
+| D6 | Ch05: the two Microsoft pages disagree on Defender XDR connector availability in DoD; stated explicitly | clarified | existing [^c05-feature], [^c05-govfeat] |

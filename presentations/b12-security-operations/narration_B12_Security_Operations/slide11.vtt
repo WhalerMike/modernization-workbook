@@ -1,0 +1,88 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.663
+How do detections get built?
+
+2
+00:00:01.663 --> 00:00:02.588
+As code.
+
+3
+00:00:02.588 --> 00:00:05.314
+The rule library lives in version control,
+
+4
+00:00:05.314 --> 00:00:10.300
+and nobody edits a production rule in the
+portal; a change is a reviewed commit.
+
+5
+00:00:10.300 --> 00:00:14.662
+Every rule has one named owner,
+a test and a review date.
+
+6
+00:00:14.662 --> 00:00:17.100
+Each rule moves through five steps.
+
+7
+00:00:17.100 --> 00:00:20.850
+Author it, starting from Microsoft's
+template where one exists.
+
+8
+00:00:20.850 --> 00:00:24.298
+Test it against history and
+replay a known-bad sample,
+
+9
+00:00:24.298 --> 00:00:27.825
+because a rule that can't be
+shown to fire isn't finished.
+
+10
+00:00:27.825 --> 00:00:30.185
+Run it alert-only for at least two weeks,
+
+11
+00:00:30.185 --> 00:00:32.987
+and until its false
+positives are documented.
+
+12
+00:00:32.987 --> 00:00:33.850
+Promote it.
+
+13
+00:00:33.850 --> 00:00:35.750
+Then review it at least quarterly.
+
+14
+00:00:35.750 --> 00:00:40.200
+Where a vendor analytic isn't available
+in the agency's cloud, the program
+
+15
+00:00:40.200 --> 00:00:44.575
+rebuilds an equivalent inside its own
+boundary, and says it isn't parity.
+
+16
+00:00:44.575 --> 00:00:45.637
+Plan for rot.
+
+17
+00:00:45.637 --> 00:00:48.778
+Thresholds drift, sources
+stop without an error,
+
+18
+00:00:48.778 --> 00:00:54.038
+and Sentinel disables a rule after repeated
+failures and marks it auto disabled.
+
+19
+00:00:54.038 --> 00:00:57.890
+The standing tuning effort is the
+real cost of having a library.
