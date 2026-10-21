@@ -1,0 +1,15 @@
+# Chapter 01 — the cascade: each modernization step depends on the one beneath
+# it, and many agencies are stuck at the bottom, where nobody owns the directory.
+rankdir: TB
+graph: {nodesep: 0.3, ranksep: 0.3}
+nodes:
+  zt: {tone: blue, width: 280, title: "Zero Trust", body: ["=Requires: cloud identity is authoritative"], size: 12}
+  eid: {tone: blue, width: 280, title: "Cloud identity migration", body: ["=Requires: the directory is clean or replaced"], size: 12}
+  clean: {tone: amber, width: 280, title: "A clean directory", body: ["=Requires: groups are governed"], size: 12}
+  groups: {tone: amber, width: 280, title: "Governed groups", body: ["=Requires: someone owns them"], size: 12}
+  own: {tone: red, width: 280, title: "Ownership and accountability", foot: "Where many agencies are stuck", size: 12}
+edges:
+  - [zt, eid, {label: "depends on"}]
+  - [eid, clean, {label: "depends on"}]
+  - [clean, groups, {label: "depends on"}]
+  - [groups, own, {label: "depends on", tone: red}]

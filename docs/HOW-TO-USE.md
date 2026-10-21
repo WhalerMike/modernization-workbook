@@ -13,8 +13,8 @@ This workbook is a cleaned, standalone modernization project. It presents patter
 1. **[Principles](PRINCIPLES.md)** — The rules. Read this first.
 2. **[Project Charter](../PROJECT-CHARTER.md)** — Purpose, scope, and success criteria.
 3. **[Project Plan](../PROJECT-PLAN.md)** — Phased roadmap and workstreams.
-4. **[Why Modernization Is Hard](client-server-to-hybrid-cloud/00-prologue-why-modernization-is-hard.md)** — Leadership framing.
-5. **[Client-Server to Hybrid-Cloud series](client-server-to-hybrid-cloud/README.md)** — The technical narrative.
+4. **[Why Modernization Is Hard](books/b01-transformation-arc/01-why-modernization-is-hard.md)** — Leadership framing.
+5. **[Client-Server to Hybrid-Cloud series](books/b01-transformation-arc/index.md)** — The technical narrative.
 
 ## How the material is organized
 
@@ -22,7 +22,7 @@ This workbook is a cleaned, standalone modernization project. It presents patter
 |---------|---------|------------|
 | Principles | Core rules that apply across domains | [PRINCIPLES.md](PRINCIPLES.md) |
 | Architecture | Models for SSOT, drift, attribute structure, control planes | [Architecture series](architecture/architecture-series/README.md) |
-| Client-Server series | End-to-end transformation narrative | [Chapter 00](client-server-to-hybrid-cloud/00-the-problem.md) |
+| Client-Server series | End-to-end transformation narrative | [Chapter 00](books/b01-transformation-arc/02-the-problem.md) |
 | Operational guides | Practical paths for GPO, Intune, DNS, PKI, access | [Operational guides index](operational-guides/README.md) |
 | Case studies | Worked examples (SQL Server identity, HRIT) | [SQL Server overview](books/b06-data-platform/index.md) |
 | Whitepapers | Deeper treatment of specific topics | [Whitepapers index](whitepapers/README.md) |

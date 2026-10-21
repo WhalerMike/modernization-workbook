@@ -1,0 +1,19 @@
+# Chapter 12 — the seven phases and their gates. Each gate is evaluated from
+# repository and drift data; the week ranges are an illustrative sequencing model.
+rankdir: TB
+graph: {nodesep: 0.25, ranksep: 0.28}
+nodes:
+  p0: {tone: slate, width: 320, tag: "Phase 0 · weeks 1–4", title: "Pre-flight", body: ["=Platform host, assessment, repository"], size: 12}
+  p1: {tone: blue, width: 320, tag: "Phase 1 · weeks 5–8", title: "Foundation", body: ["=Groups, AUs, Conditional Access baseline, HR feed"], size: 12}
+  p2: {tone: blue, width: 320, tag: "Phase 2 · weeks 9–16", title: "Pilot division", body: ["=The whole pattern on one division"], size: 12}
+  p3: {tone: blue, width: 320, tag: "Phase 3 · weeks 17–36", title: "General rollout", body: ["=Division by division, two or three at a time"], size: 12}
+  p4: {tone: amber, width: 320, tag: "Phase 4 · weeks 37–44", title: "Legacy retirement", body: ["=GPOs, OU groups, DNS, DHCP, AD CS logon, SPNs"], size: 12}
+  p5: {tone: red, width: 320, tag: "Phase 5 · weeks 45–48", title: "AD DS retirement", body: ["=Or a documented Kerberos island with an end date"], size: 12}
+  p6: {tone: green, width: 320, tag: "Phase 6 · week 49 on", title: "Steady state", body: ["=Assess, plan and check drift on a cadence"], size: 12}
+edges:
+  - [p0, p1, {label: "G0 Ready to Plan"}]
+  - [p1, p2, {label: "G1 Foundation Complete"}]
+  - [p2, p3, {label: "G2 Pilot Clean"}]
+  - [p3, p4, {label: "G3 Rollout Complete"}]
+  - [p4, p5, {label: "G4 Legacy Quiet"}]
+  - [p5, p6, {label: "G5 AD Retired"}]

@@ -54,7 +54,7 @@ redirects:
   docs/architecture/directory-migration/index.html: docs/books/b02-identity/04-the-hidden-migration-surface.html
 
   # Whitepapers: 99% duplicate.
-  docs/whitepapers/federal-application-aware-networking-architecture.html: docs/whitepapers/modernization-journey.html
+  docs/whitepapers/federal-application-aware-networking-architecture.html: docs/books/b01-transformation-arc/01-why-modernization-is-hard.html
 
   # Book 02 (Identity & Directory) replaced these pages; sources are in archive/b02-identity/.
   docs/case-studies/identity-modernization-case-study.html: docs/books/b02-identity/01-why-identity-matters.html
@@ -239,3 +239,25 @@ redirects:
   docs/operational-guides/network-transformation/radius-802-1x-modernization.html: docs/books/b09-network/07-network-access-control.html
   docs/modernization-specs/sdwan.html: docs/books/b09-network/05-sd-wan-sase-and-governed-transport.html
   docs/modernization-specs/sase.html: docs/books/b09-network/05-sd-wan-sase-and-governed-transport.html
+
+  # Book 01 (The Transformation Arc) replaced these pages; sources are in archive/b01-transformation-arc/.
+  docs/client-server-to-hybrid-cloud/00-prologue-why-modernization-is-hard.html: docs/books/b01-transformation-arc/01-why-modernization-is-hard.html
+  docs/client-server-to-hybrid-cloud/00-the-problem.html: docs/books/b01-transformation-arc/02-the-problem.html
+  docs/client-server-to-hybrid-cloud/01-platform-foundation.html: docs/books/b01-transformation-arc/03-platform-foundation.html
+  docs/client-server-to-hybrid-cloud/04-identity-transformation.html: docs/books/b01-transformation-arc/04-identity-transformation.html
+  docs/client-server-to-hybrid-cloud/05-policy-transformation.html: docs/books/b01-transformation-arc/05-policy-transformation.html
+  docs/client-server-to-hybrid-cloud/06-network-services.html: docs/books/b01-transformation-arc/06-network-services.html
+  docs/client-server-to-hybrid-cloud/07-compute-transformation.html: docs/books/b01-transformation-arc/07-compute-transformation.html
+  docs/client-server-to-hybrid-cloud/08-access-plane.html: docs/books/b01-transformation-arc/08-access-plane.html
+  docs/client-server-to-hybrid-cloud/10-leadership-takeaway.html: docs/books/b01-transformation-arc/09-who-leads-the-transformation.html
+  docs/client-server-to-hybrid-cloud/02-analyzing-the-estate.html: docs/books/b01-transformation-arc/10-analyzing-the-estate.html
+  docs/client-server-to-hybrid-cloud/03-analysis-plan-delivery.html: docs/books/b01-transformation-arc/11-analysis-plan-delivery.html
+  docs/client-server-to-hybrid-cloud/09-migration-roadmap.html: docs/books/b01-transformation-arc/12-migration-roadmap.html
+  docs/client-server-to-hybrid-cloud/appendix-a-requirements-mapping.html: docs/books/b01-transformation-arc/appendix-a-requirements-mapping.html
+  docs/client-server-to-hybrid-cloud/00a-applicability.html: docs/books/b01-transformation-arc/appendix-b-applicability.html
+  docs/client-server-to-hybrid-cloud/README.html: docs/books/b01-transformation-arc/index.html
+  docs/whitepapers/modernization-journey.html: docs/books/b01-transformation-arc/01-why-modernization-is-hard.html
+  docs/modernization/index.html: docs/books/b01-transformation-arc/index.html
+  docs/operational-guides/client-server-to-hybrid-cloud/00-introduction.html: docs/books/b01-transformation-arc/02-the-problem.html
+  docs/operational-guides/client-server-to-hybrid-cloud/01-platform-foundation.html: docs/books/b01-transformation-arc/03-platform-foundation.html
+  docs/operational-guides/client-server-to-hybrid-cloud/02-legacy-ingestion.html: docs/books/b01-transformation-arc/10-analyzing-the-estate.html

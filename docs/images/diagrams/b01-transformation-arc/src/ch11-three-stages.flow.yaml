@@ -1,0 +1,24 @@
+# Chapter 11 — Analyze, Plan, Deliver: two governance stages and one execution
+# stage, separated by a validation gate and an authorization gate, with evidence
+# at the end and a zero-action plan when nothing has drifted.
+rankdir: TB
+graph: {nodesep: 0.3, ranksep: 0.35}
+nodes:
+  in: {tone: slate, width: 260, tag: "Input", title: "Committed assessment", body: ["=Chapter 10 artifact set"], size: 12}
+  an: {tone: violet, width: 280, tag: "Stage 1 · governance", title: "Analyze", body: ["Current-state and target-state graphs", "Diff and risk score", "=Deterministic: same input, same output"], size: 12}
+  pl: {tone: violet, width: 280, tag: "Stage 2 · governance", title: "Plan", body: ["Typed, scoped, ordered actions", "Each paired with its rollback"], size: 12}
+  val: {tone: amber, width: 240, tag: "Gate", title: "Validation", body: ["=Schema, rules, boundary, safety, idempotency"], size: 12}
+  rej: {tone: red, width: 200, tag: "Fails", title: "Rejected", body: ["=Diff returned for correction"], size: 12}
+  auth: {tone: amber, width: 240, tag: "Gate", title: "Authorization", body: ["Pull request review", "Approver of record"], size: 12}
+  dl: {tone: blue, width: 280, tag: "Stage 3 · execution", title: "Deliver", body: ["Separate principal and credential store", "Fetch, resolve, compare, invoke, verify, record"], size: 12}
+  ev: {tone: green, width: 260, tag: "Output", title: "Evidence packet", body: ["=Plan, results, after-state, run log"], size: 12}
+order: [[val, rej]]
+edges:
+  - [in, an]
+  - [an, pl]
+  - [pl, val]
+  - [val, rej, {tone: red, style: dashed, label: "any check fails"}]
+  - [val, auth, {label: "passes"}]
+  - [auth, dl, {tone: blue, label: "authorized plan"}]
+  - [dl, ev, {tone: green}]
+  - [ev, in, {style: dashed, attrs: "constraint=false", label: "next run: zero actions if nothing drifted"}]

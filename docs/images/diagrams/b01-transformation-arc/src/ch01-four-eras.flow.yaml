@@ -1,0 +1,17 @@
+# Chapter 01 — four eras of federal IT: one machine held one truth and enforced
+# access to it; decentralization distributed the truth; consolidation and stacked
+# security moved systems away from users; the cloud fragmented identity across
+# environments. The way forward separates authoritative truth from enforcement.
+rankdir: TB
+graph: {nodesep: 0.3, ranksep: 0.35}
+nodes:
+  mainframe: {tone: slate, width: 300, tag: "Mainframe era", title: "One machine, one truth", body: ["=All data, logic and state in one room; the same machine held the truth and enforced access to it"], size: 12}
+  distributed: {tone: amber, width: 300, tag: "Late 1980s onward", title: "Distributed truth", body: ["Regional databases with their own schemas", "Regional domains and OU trees", "=Nobody replaced the single source of truth"], size: 12}
+  security: {tone: amber, width: 300, tag: "From 2010", title: "Consolidation and the security era", body: ["Data centers consolidated, far from users", "Inspection devices stacked in the path"], size: 12}
+  breaking: {tone: red, width: 300, tag: "The breaking point", title: "Identity fragmented across environments", body: ["Email and collaboration in the cloud", "Workloads on premises and in several clouds", "=Identity still in regional domains; no record anyone can call authoritative"], size: 12}
+  forward: {tone: green, width: 300, tag: "The way forward", title: "Separate truth from enforcement", body: ["=One authoritative source of truth, kept apart from the identity providers and enforcement points that act on it"], size: 12}
+edges:
+  - [mainframe, distributed, {label: "decentralize"}]
+  - [distributed, security, {label: "consolidate and secure"}]
+  - [security, breaking, {label: "move to the cloud", tone: red}]
+  - [breaking, forward, {label: "rebuild", tone: green}]

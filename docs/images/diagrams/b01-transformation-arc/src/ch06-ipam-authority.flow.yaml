@@ -1,0 +1,20 @@
+# Chapter 06 — one governed IPAM authority owns the address space; DNS and DHCP
+# derive their records from it across on-premises and Azure. Any disagreement
+# between IPAM and either service is hierarchy drift. The legacy state it
+# replaces is AD-integrated DNS, AD-authorized DHCP and a spreadsheet IPAM.
+rankdir: TB
+graph: {nodesep: 0.35, ranksep: 0.5}
+nodes:
+  legacy: {tone: red, width: 220, tag: "Legacy", title: "Directory-bound services", body: ["AD-integrated DNS", "AD-authorized DHCP", "Spreadsheet IPAM"], size: 12}
+  ipam: {tone: violet, width: 260, tag: "Authority", title: "Governed IPAM", body: ["Ranges, owners, reservations", "One source of truth, on-premises and cloud"], size: 12}
+  dns: {tone: blue, width: 240, tag: "Derives from IPAM", title: "DNS", body: ["Governed on-premises authority", "Azure DNS Private Resolver as the bridge", "Azure private DNS zones"], size: 12}
+  dhcp: {tone: blue, width: 240, tag: "Derives from IPAM", title: "DHCP", body: ["Governed on-premises DHCP", "Azure platform DHCP inside virtual networks"], size: 12}
+  drift: {kind: text, tone: violet, width: 240, text: "Any disagreement between IPAM and DNS or DHCP is hierarchy drift"}
+edges:
+  - [legacy, ipam, {label: "replaced by", style: dashed, tone: red}]
+  - [ipam, dns, {tone: blue}]
+  - [ipam, dhcp, {tone: blue}]
+  - [dns, drift, {none: true, style: dashed, tone: violet}]
+ranks:
+  - [legacy, ipam]
+  - [dns, dhcp]

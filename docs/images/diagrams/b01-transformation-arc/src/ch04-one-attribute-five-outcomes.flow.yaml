@@ -1,0 +1,27 @@
+# Chapter 04 — one governed set of attributes on the user object, sourced from HR,
+# drives five outcomes with no portal clicks: dynamic groups (which in turn carry
+# Conditional Access targeting and group-based licensing), administrative-unit
+# scope, and drift detection against the HR source. OU placement becomes data.
+rankdir: LR
+graph: {nodesep: 0.3, ranksep: 0.3}
+nodes:
+  hr: {tone: amber, width: 150, tag: "Source of authority", title: "HR system of record", body: ["=Hire, move, separation"], size: 12}
+  ou: {tone: slate, width: 150, tag: "Legacy", title: "OU placement", body: ["=Position encoded as location in a tree"], size: 12}
+  attr: {tone: amber, width: 150, tag: "One stamp", title: "Governed attributes", body: ["`department`", "Organization code", "Worker type, position category"], size: 12}
+  dg: {tone: blue, width: 150, tag: "Outcome 1", title: "Dynamic groups", body: ["=Membership by rule"], size: 12}
+  au: {tone: blue, width: 150, tag: "Outcome 2", title: "Administrative units", body: ["=Delegated scope by rule"], size: 12}
+  drift: {tone: violet, width: 150, tag: "Outcome 5", title: "Drift detection", body: ["=Attributes checked against HR"], size: 12}
+  ca: {tone: blue, width: 150, tag: "Outcome 3", title: "Conditional Access", body: ["=Policies target the groups"], size: 12}
+  lic: {tone: green, width: 150, tag: "Outcome 4", title: "Group-based licensing", body: ["=Licenses follow the groups"], size: 12}
+edges:
+  - [hr, attr, {label: "provisioning", tone: amber}]
+  - [ou, attr, {label: "becomes data", style: dashed}]
+  - [attr, dg]
+  - [attr, au]
+  - [attr, drift, {tone: violet, style: dashed}]
+  - [dg, ca, {tone: blue}]
+  - [dg, lic, {tone: green}]
+ranks:
+  - [hr, ou]
+  - [dg, au, drift]
+  - [ca, lic]

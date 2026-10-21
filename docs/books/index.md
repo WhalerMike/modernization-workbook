@@ -17,7 +17,7 @@ The workbook grew as separate whitepapers, guides, series and case studies. The 
 | Book | Topic | Opening question | Status |
 |---|---|---|---|
 | B00 | Orientation & Program | Why modernize, and why now? | Planned |
-| B01 | The Transformation Arc: Client-Server to Hybrid Cloud | Why is modernization so hard? | Planned |
+| **B01** | **[The Transformation Arc: Client-Server to Hybrid Cloud](b01-transformation-arc/index.md)** | **Why is modernization so hard?** | **Draft** |
 | **B02** | **[Identity & Directory: AD to Entra ID](b02-identity/index.md)** | **Why does identity matter?** | **Draft** |
 | **B03** | **[HR-Driven Identity & Lifecycle](b03-hr-identity/index.md)** | **Why should HR, not IT, decide who exists?** | **Draft** |
 | **B04** | **[Access & Privilege](b04-access/index.md)** | **Why is every access decision a policy decision?** | **Draft** |

@@ -94,7 +94,7 @@ The AD → Entra ID arc.
 |---|---|---|
 | [AD-to-Entra ID Structural Migration Problem](../books/b02-identity/01-why-identity-matters.md) | Moved to Book 02 | Original statement of the structural migration problem — read for the business case. |
 | [The Session vs. Telemetry Divide](../books/b02-identity/02-the-structural-problem.md) | Moved to Book 02 | The architectural-tension argument split out of the paper above 2026-08-03 — strong enough to stand alone, was diluting the parent's focus. Read right after it. |
-| [Modernization Journey](modernization-journey.md) | Draft | The mainframe→cloud arc end to end. **The argument is vendor-neutral and product-neutral** — written to hand to an audience that isn't evaluating a platform — and a separable [closing appendix](modernization-journey.md#appendix-narrative-provenance-this-arc-mapped-to-fmp-canon) maps Act 4 to the ADRs behind it. Cross-listed as the flagship of Track 4. |
+| [Modernization Journey](../books/b01-transformation-arc/01-why-modernization-is-hard.md) | Draft | The mainframe→cloud arc end to end. **The argument is vendor-neutral and product-neutral** — written to hand to an audience that isn't evaluating a platform — and a separable [closing appendix](../books/b01-transformation-arc/01-why-modernization-is-hard.md) maps Act 4 to the ADRs behind it. Cross-listed as the flagship of Track 4. |
 | [Flipping 50,000 Devices to Hybrid Join](../books/b05-devices/02-the-hybrid-join-trap.md) | Draft | One concrete operation *inside* the arc above — governed vs. ungoverned hybrid join. Read after *Modernization Journey*; it assumes that paper's control-plane/data-plane framing. |
 | [Federal SSOT Alignment](../books/b02-identity/02-the-structural-problem.md) | Moved to Book 02 | Same identity-modernization event, read through the data-governance/SSOT-mandate lens instead of the architecture lens. |
 | [FMP vs. Native Tools](../books/b02-identity/06-who-owns-the-migration.md) | Moved to Book 02 | AD assessment methodology and gap analysis against Microsoft-native tooling — also anchors Track 6. |
@@ -115,7 +115,7 @@ BOD-25-01 and CISA SCuBA.
 
 | Paper | Status | Role |
 |---|---|---|
-| [Modernization Journey](modernization-journey.md) | Draft | **Flagship of this track**, cross-listed from Track 2. The forty-year mainframe-to-Zero-Trust arc, argued **vendor-neutral and product-neutral**, with the canon trail confined to a separable closing appendix. Has this corpus's most fully worked Call to Action, and the FedRAMP 20x Consolidated Rules timeline. |
+| [Modernization Journey](../books/b01-transformation-arc/01-why-modernization-is-hard.md) | Draft | **Flagship of this track**, cross-listed from Track 2. The forty-year mainframe-to-Zero-Trust arc, argued **vendor-neutral and product-neutral**, with the canon trail confined to a separable closing appendix. Has this corpus's most fully worked Call to Action, and the FedRAMP 20x Consolidated Rules timeline. |
 | [SD-WAN vs. DIA Under TIC 3.0](../books/b09-network/02-transport-is-physics-control-is-compliance.md) | Draft | The transport-and-policy layer underneath this track's Act 4 architecture. Read after the flagship's Act 4, or standalone for a network-engineering audience. |
 | [Book 08 — DNS, DHCP & IPAM](../books/b08-ddi/index.md) | Draft | The DNS layer underneath the same Act 4 architecture — split-brain DNS, Universal DDI, Cisco SD-WAN interception. Sibling to the SD-WAN paper, not sequential to it. |
 | [Book 08, Appendix A — DNS Record Types and Ecosystem Integrations](../books/b08-ddi/appendix-a-dns-record-types.md) | Draft | The record-type catalog and ecosystem-integration table — bookmarkable reference, not meant to be read start to finish. |
@@ -131,7 +131,7 @@ canon-anchored one. Handing the wrong one to an audience was the single most
 common mis-sequencing risk in this corpus, so they were merged into
 *Modernization Journey*, which keeps the vendor-neutral voice. The canon trail
 the other edition carried survives as that paper's
-[closing appendix](modernization-journey.md#appendix-narrative-provenance-this-arc-mapped-to-fmp-canon),
+[closing appendix](../books/b01-transformation-arc/01-why-modernization-is-hard.md),
 placed after the Call to Action so the argument still reads end to end without
 it — and so it can be dropped when the paper is handed outward. the compliance series Vol I
 Book 05 tells the same arc in federal control-closure terms and names no
@@ -160,7 +160,7 @@ alphabetical file list.
 
 **A federal CIO/CISO with 30 minutes (first exposure)**
 
-1. [Modernization Journey](modernization-journey.md) — the compliance-deadline argument (FedRAMP 20x) and its Call to Action, written to be handed off without modification.
+1. [Modernization Journey](../books/b01-transformation-arc/01-why-modernization-is-hard.md) — the compliance-deadline argument (FedRAMP 20x) and its Call to Action, written to be handed off without modification.
 
 **An assessor validating BOD-25-01 / ZTMM claims**
 
@@ -172,14 +172,14 @@ alphabetical file list.
 
 **A network/infrastructure architect**
 
-1. [Modernization Journey](modernization-journey.md) — the full arc and the physics argument.
+1. [Modernization Journey](../books/b01-transformation-arc/01-why-modernization-is-hard.md) — the full arc and the physics argument.
 2. [SD-WAN vs. DIA Under TIC 3.0](../books/b09-network/02-transport-is-physics-control-is-compliance.md) and [Book 08 — DNS, DHCP & IPAM](../books/b08-ddi/index.md) — read in either order; both sit under Act 4 independently.
 3. [FMP Git Server Interfaces](git-server-interfaces-whitepaper.md) — once an FMP deployment is actually being planned.
 
 **An identity/directory team running an AD → Entra ID modernization**
 
 1. [AD-to-Entra ID Structural Migration Problem](../books/b02-identity/01-why-identity-matters.md) — the original problem statement.
-2. [Modernization Governance](modernization-governance-whitepaper.md) → [Modernization Journey](modernization-journey.md) — governance framing, then the full arc.
+2. [Modernization Governance](modernization-governance-whitepaper.md) → [Modernization Journey](../books/b01-transformation-arc/01-why-modernization-is-hard.md) — governance framing, then the full arc.
 3. [Flipping 50,000 Devices to Hybrid Join](../books/b05-devices/02-the-hybrid-join-trap.md) — the first concrete operation to execute inside that arc.
 4. [Federal SSOT Alignment](../books/b02-identity/02-the-structural-problem.md) — the data-governance-mandate framing of the same event.
 

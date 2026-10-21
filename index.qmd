@@ -335,9 +335,16 @@ format:
 <section class="mw-section" id="books">
   <div class="mw-inner">
     <p class="section-label">The Books</p>
-    <h2 class="section-title">Eight books published. Ten more on the way.</h2>
-    <p class="section-body">Start with Book 02 for the directory migration as a whole, or go straight to the topic in front of you. Every book reads in its Why / What / Who / How order and downloads as one Word document.</p>
+    <h2 class="section-title">Nine books published. Nine more on the way.</h2>
+    <p class="section-body">Start with Book 01 for the whole arc, or go straight to the topic in front of you. Every book reads in its Why / What / Who / How order and downloads as one Word document.</p>
     <div class="book-cards">
+      <div class="book-card">
+        <div class="book-num">Book 01 · 12 chapters</div>
+        <div class="book-title"><a href="docs/books/b01-transformation-arc/index.html">The Transformation Arc</a></div>
+        <div class="book-q">Why is modernization so hard?</div>
+        <div class="book-desc">Client-server to hybrid cloud end to end: the governance hidden in the directory, what changes, who leads, and gated delivery.</div>
+        <div class="book-links"><a href="docs/books/b01-transformation-arc/index.html">Read</a><a href="downloads/b01-transformation-arc-bundle.docx">Word</a><a href="docs/presentations/index.html#book-01">Deck</a></div>
+      </div>
       <div class="book-card">
         <div class="book-num">Book 02 · 11 chapters</div>
         <div class="book-title"><a href="docs/books/b02-identity/index.html">Identity &amp; Directory</a></div>
@@ -404,8 +411,8 @@ format:
     <h2 class="section-title">Built to be checked, not taken on trust.</h2>
     <p class="section-body">Each book keeps a verification log beside its chapters: every claim, the source it was checked against, and what changed when the source disagreed with the earlier draft.</p>
     <div class="arc-grid">
-      <div class="arc-phase"><div class="phase-num">8</div><div class="phase-name">Books</div><div class="phase-desc">Published as drafts, from identity to the network</div></div>
-      <div class="arc-phase"><div class="phase-num">110</div><div class="phase-name">Chapters</div><div class="phase-desc">Plus twenty appendices of checklists, matrices, mappings and templates</div></div>
+      <div class="arc-phase"><div class="phase-num">9</div><div class="phase-name">Books</div><div class="phase-desc">Published as drafts, from the transformation arc to the network</div></div>
+      <div class="arc-phase"><div class="phase-num">122</div><div class="phase-name">Chapters</div><div class="phase-desc">Plus twenty-two appendices of checklists, matrices, mappings and templates</div></div>
       <div class="arc-phase"><div class="phase-num">4</div><div class="phase-name">Questions</div><div class="phase-desc">Why, What, Who and How, in that order, in every book</div></div>
       <div class="arc-phase"><div class="phase-num">15</div><div class="phase-name">Minutes</div><div class="phase-desc">A presentation per book, each with a narrated, captioned edition</div></div>
     </div>
@@ -419,7 +426,6 @@ format:
     <p class="section-body">The remaining books are being built from the workbook's earlier documents, which stay in the repository until their book is published. <a href="docs/books/index.html">The Workbook Books</a> lists every book and its opening question.</p>
     <div class="badge-grid">
       <div class="badge"><b>B00</b>Orientation &amp; Program</div>
-      <div class="badge"><b>B01</b>The Transformation Arc</div>
       <div class="badge"><b>B10</b>Cloud Boundary &amp; Landing Zone</div>
       <div class="badge"><b>B11</b>Zero Trust &amp; Assessment</div>
       <div class="badge"><b>B12</b>Security Operations &amp; Telemetry</div>

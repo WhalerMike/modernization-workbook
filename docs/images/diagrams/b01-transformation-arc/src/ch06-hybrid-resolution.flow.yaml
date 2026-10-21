@@ -1,0 +1,24 @@
+# Chapter 06 — hybrid resolution in both directions through Azure DNS Private
+# Resolver. On-premises conditional forwarders send Azure private names to the
+# inbound endpoint, which answers from private zones linked to its virtual
+# network. Virtual networks use Azure-provided DNS; a forwarding ruleset on the
+# outbound endpoint sends on-premises names back to the on-premises authority.
+rankdir: TB
+graph: {nodesep: 0.4, ranksep: 0.45}
+clusters:
+  - {id: onprem, label: "On-premises", tone: slate, filled: false, nodes: [onpdns]}
+  - {id: azure, label: "Azure", tone: blue, filled: false, nodes: [inbound, outbound, zones, vnets]}
+nodes:
+  onpdns: {tone: slate, width: 260, title: "Governed DNS authority", body: ["=Conditional forwarders for Azure private zones"], size: 12}
+  inbound: {tone: blue, width: 230, tag: "Private Resolver", title: "Inbound endpoint", body: ["=Answers from linked private DNS zones"], size: 12}
+  outbound: {tone: blue, width: 230, tag: "Private Resolver", title: "Outbound endpoint", body: ["=Forwarding ruleset linked to virtual networks"], size: 12}
+  zones: {tone: green, width: 230, title: "Azure private DNS zones", body: ["Including Private Link zones", "Resolve only from linked networks"], size: 12}
+  vnets: {tone: blue, width: 230, title: "Spoke virtual networks", body: ["=Azure-provided DNS, 168.63.129.16"], size: 12}
+edges:
+  - [onpdns, inbound, {label: "Azure names", tone: blue}]
+  - [inbound, zones, {tone: green}]
+  - [vnets, outbound, {label: "on-premises names", tone: blue}]
+  - [outbound, onpdns, {tone: slate}]
+ranks:
+  - [inbound, outbound]
+  - [zones, vnets]

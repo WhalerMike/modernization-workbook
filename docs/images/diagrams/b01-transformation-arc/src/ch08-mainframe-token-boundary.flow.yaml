@@ -1,0 +1,21 @@
+# Chapter 08 — token-based access at the mainframe boundary. A client gets an
+# OAuth 2.0 / OpenID Connect token from Entra ID. An API gateway or z/OS
+# Connect layer exposes CICS, IMS or batch assets as REST services, validates
+# the token, and maps the token's subject to a RACF user ID through a RACF
+# distributed identity filter (RACMAP). Where a back end needs a RACF
+# credential, a PassTicket (one-time, valid for about ten minutes, generated
+# from a shared secret) replaces a stored password. RACF then authorizes and
+# audits the transaction against the real end user, with the distributed
+# identity recorded in SMF. Inside, the transaction engine is unchanged and
+# still runs under a RACF user ID.
+rankdir: TB
+graph: {nodesep: 0.3, ranksep: 0.4}
+nodes:
+  client: {tone: blue, width: 300, tag: "Caller", title: "User or application", body: ["=Token from Entra ID after Conditional Access"], size: 12}
+  gw: {tone: blue, width: 300, tag: "Boundary", title: "API gateway or z/OS Connect", body: ["Validates token signature and claims", "Exposes CICS, IMS, batch as REST", "=Same layer that consolidates chatty calls"], size: 12}
+  racf: {tone: slate, width: 300, tag: "Unchanged inside", title: "RACF through SAF", body: ["Distributed identity filter maps the subject", "PassTicket where a credential is needed", "Audit records carry the distributed identity"], size: 12}
+  tx: {tone: slate, width: 300, tag: "Unchanged inside", title: "CICS, IMS, batch", body: ["=Runs under a RACF user ID; pseudo-conversational flows need refactoring first"], size: 12}
+edges:
+  - [client, gw, {label: "bearer token"}]
+  - [gw, racf, {label: "mapped identity"}]
+  - [racf, tx, {label: "authorized unit of work"}]

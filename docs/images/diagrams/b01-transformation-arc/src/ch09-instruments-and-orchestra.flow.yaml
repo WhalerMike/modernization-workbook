@@ -1,0 +1,21 @@
+# Chapter 09 — Microsoft provides the instruments; the program provides the
+# orchestra. Bottom row: the native tools, each operationally mature at what
+# it does. Middle: the program's orchestration layer, which decides what each
+# tool should be configured to do and keeps every change on a plan. Top: the
+# questions a sponsor and authorizing official need answered, which no single
+# tool answers. Replaces the hand-drawn docs/images/cshc/leadership-takeaway.svg.
+rankdir: BT
+graph: {nodesep: 0.25, ranksep: 0.45}
+nodes:
+  idn: {tone: blue, width: 180, tag: "Instrument", title: "Identity and access", body: ["Entra ID, Conditional Access", "PIM, certificate-based authentication"], size: 12}
+  dev: {tone: blue, width: 180, tag: "Instrument", title: "Devices and servers", body: ["Intune for workstations", "Azure Arc for servers"], size: 12}
+  svc: {tone: blue, width: 180, tag: "Instrument", title: "Services and posture", body: ["DNS Private Resolver", "Assessment tools, ScubaGear"], size: 12}
+  orch: {tone: violet, width: 300, tag: "Orchestra", title: "The program's governance layer", body: ["Authoritative repository decides the target", "Every change is a signed plan", "Drift detected, evidence built in"], size: 12}
+  q: {tone: green, width: 300, tag: "Answers", title: "What leadership needs to know", body: ["=What the target should be, how we got there, proof it was done right, and that it stays right"], size: 12}
+edges:
+  - [idn, orch, {label: "configured by plans"}]
+  - [dev, orch]
+  - [svc, orch]
+  - [orch, q, {tone: green}]
+order:
+  - [idn, dev, svc]

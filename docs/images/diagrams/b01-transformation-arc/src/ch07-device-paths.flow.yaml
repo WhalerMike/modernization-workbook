@@ -1,0 +1,23 @@
+# Chapter 07 — user PCs and servers leave the domain by different roads. PCs:
+# domain joined, hybrid joined as a waypoint, then Entra joined after a reset;
+# new hardware goes straight to Entra join. Servers: domain joined, Arc
+# connected, and the domain unjoin is a separate decision after SPNs resolve.
+rankdir: TB
+graph: {nodesep: 0.3, ranksep: 0.45}
+clusters:
+  - {id: pcs, label: "User PCs", tone: slate, filled: false, nodes: [pc, newhw, hyb, ej]}
+  - {id: srv, label: "Servers", tone: slate, filled: false, nodes: [ds, arc, arcnj]}
+nodes:
+  pc: {tone: slate, width: 180, title: "Domain-joined PC", size: 12}
+  newhw: {kind: pill, tone: slate, width: 170, text: "New hardware, OEM-registered"}
+  hyb: {tone: amber, width: 180, tag: "Waypoint", title: "Microsoft Entra hybrid joined", body: ["=Still needs line of sight to a domain controller"], size: 12}
+  ej: {tone: green, width: 180, tag: "Target", title: "Microsoft Entra joined", body: ["=Intune managed"], size: 12}
+  ds: {tone: slate, width: 180, title: "Domain-joined server", size: 12}
+  arc: {tone: blue, width: 180, tag: "Governed", title: "Azure Arc-connected", body: ["Azure resource and managed identity", "Azure Policy, machine configuration"], size: 12}
+  arcnj: {tone: green, width: 180, tag: "Target", title: "Arc-connected, not domain joined", size: 12}
+edges:
+  - [pc, hyb, {tone: amber}]
+  - [hyb, ej, {label: "reset at refresh or a scheduled window", tone: green, lw: 100}]
+  - [newhw, ej, {label: "first boot", tone: green}]
+  - [ds, arc, {tone: blue}]
+  - [arc, arcnj, {label: "separate decision, after SPNs resolve", style: dashed, tone: amber, lw: 100}]

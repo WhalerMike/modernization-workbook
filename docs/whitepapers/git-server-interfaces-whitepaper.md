@@ -138,7 +138,7 @@ single-logical-authority invariant — exactly one node binds commits at
 any instant. Horizontal scale, where required, is delegated to the
 target-surface adapters (Entra, Intune, Arc), not to the substrate
 authority. This is the same architectural claim asserted by
-[`01-platform-foundation.qmd:25-33`](../operational-guides/client-server-to-hybrid-cloud/01-platform-foundation.md).
+[`01-platform-foundation.qmd:25-33`](../books/b01-transformation-arc/03-platform-foundation.md).
 
 ## 2. Interface family A — Client and operator transport
 
@@ -784,7 +784,7 @@ incidents.
 | FastAPI deployment | `deploy/windows-server/web.config`, `run.py` | Optional `[api]` plane |
 | Substrate manifest | `src/fmp/canon/substrate-manifest.yaml` | Boundary (GCC-Moderate + commercial exceptions) |
 | Identity canon | FMP_152, FMP_153, FMP_154, FMP_163, FMP_167, FMP_171, FMP_174 | Group mapping, drift, SLA |
-| Foundational architecture | [`docs/customer-documents/operational-guides/client-server-to-hybrid-cloud/01-platform-foundation.qmd`](../operational-guides/client-server-to-hybrid-cloud/01-platform-foundation.md) | "Single substrate authority" claim |
+| Foundational architecture | [`docs/customer-documents/operational-guides/client-server-to-hybrid-cloud/01-platform-foundation.qmd`](../books/b01-transformation-arc/03-platform-foundation.md) | "Single substrate authority" claim |
 
 ## Appendix B — Option A interface delta (CGI only)
 

@@ -1,0 +1,23 @@
+# Chapter 12 — the structural move (separate the authoritative source from the
+# runtime enforcers) and the five principles that follow from it, each with the
+# chapter and book that carry it.
+rankdir: TB
+graph: {nodesep: 0.2, ranksep: 0.4}
+nodes:
+  hub: {tone: violet, width: 320, tag: "The structural move", title: "Separate truth from enforcement", body: ["=Governance holds and reconciles state; identity, network, device and DNS platforms enforce at runtime"], size: 12}
+  p1: {tone: blue, width: 200, tag: "Principle 1", title: "One authoritative source", body: ["=Chapter 04; Book 03"], size: 12}
+  p2: {tone: blue, width: 200, tag: "Principle 2", title: "Application-aware networking", body: ["=Chapter 08; Book 09"], size: 12}
+  p3: {tone: blue, width: 200, tag: "Principle 3", title: "Token-based identity", body: ["=Chapter 08; Book 04"], size: 12}
+  p4: {tone: green, width: 200, tag: "Principle 4", title: "Govern actively", body: ["=Chapter 11; Book 05"], size: 12}
+  p5: {tone: amber, width: 200, tag: "Principle 5", title: "Fewer synchronous round trips", body: ["=Chapter 10; Book 09"], size: 12}
+order: [[p1, p2, p3], [p4, p5]]
+edges:
+  - [hub, p1]
+  - [hub, p2]
+  - [hub, p3]
+  - [p1, p4, {style: invis}]
+  - [p2, p4, {style: invis}]
+  - [p2, p5, {style: invis}]
+  - [p3, p5, {style: invis}]
+  - [hub, p4, {attrs: "minlen=2"}]
+  - [hub, p5, {attrs: "minlen=2"}]

@@ -1,0 +1,20 @@
+# Chapter 10 — the assessment pipeline: a read-only account reads the forest at
+# Tier A, a narrow, time-bound delegation or administrator export fills the Tier B
+# gaps, eleven streams are post-processed, and one provenance-bound artifact set is
+# committed as the only input the planning step accepts.
+rankdir: TB
+graph: {nodesep: 0.3, ranksep: 0.4}
+nodes:
+  acct: {tone: slate, width: 280, tag: "Tier A · default read", title: "Dedicated assessment account", body: ["=Authenticated Users rights only; no writes"], size: 12}
+  gap: {tone: amber, width: 240, tag: "Tier B · on request", title: "Narrow read-only additions", body: ["DHCP Users on each DHCP server", "DNS server settings export", "CA database export"], size: 12}
+  streams: {tone: slate, width: 280, tag: "Eleven streams", title: "One per dependency category", body: ["Topology, OUs, users, computers", "Service accounts, groups, GPOs", "DNS, DHCP, PKI, LDAP and SPNs"], size: 12}
+  ana: {tone: violet, width: 280, tag: "Post-processing", title: "Graph analysis", body: ["Dependency graphs", "Risk scores", "Gap findings"], size: 12}
+  art: {tone: violet, width: 280, tag: "assessments/run-id/", title: "Provenance-bound artifact set", body: ["=Who, when, against what, which tier, a hash per file"], size: 12}
+  plan: {tone: blue, width: 240, tag: "Chapter 11", title: "Plan generator", body: ["=Accepts only a committed artifact set"], size: 12}
+order: [[acct, gap]]
+edges:
+  - [acct, streams, {label: "reads"}]
+  - [gap, streams, {tone: amber, style: dashed, label: "fills recorded gaps"}]
+  - [streams, ana]
+  - [ana, art, {label: "commit"}]
+  - [art, plan, {tone: blue}]
