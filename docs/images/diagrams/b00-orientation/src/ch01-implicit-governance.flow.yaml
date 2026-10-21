@@ -1,0 +1,33 @@
+# Book 00 Chapter 01 — Active Directory supplied governance through where an
+# object sat (OU ACLs, GPO links, group membership, AD-integrated DNS, AD CS
+# autoenrollment); the cloud estate has no placement, so each function becomes
+# an explicit decision. Sources: Learn, AD logical model; Group Policy
+# processing; AD-integrated DNS zones; AD CS overview; Entra administrative units.
+rankdir: TB
+graph: {nodesep: 0.2, ranksep: 0.4}
+clusters:
+  - id: implicit
+    label: "Governance the directory supplied without anyone writing it down"
+    tone: slate
+    filled: false
+    nodes: [deleg, policy, access, names, trust]
+    order: [deleg, policy, access, names, trust]
+nodes:
+  place: {tone: slate, width: 300, tag: "Active Directory", title: "An object's place in the directory", body: ["=Its domain, its OU, its groups and its site"], size: 12}
+  deleg: {tone: slate, width: 128, title: "Delegation", body: ["=Permissions on the OU"], size: 11}
+  policy: {tone: slate, width: 128, title: "Policy", body: ["=GPOs linked to site, domain and OU"], size: 11}
+  access: {tone: slate, width: 128, title: "Access", body: ["=Group membership"], size: 11}
+  names: {tone: slate, width: 128, title: "Names", body: ["=DNS zones stored in the directory"], size: 11}
+  trust: {tone: slate, width: 128, title: "Trust", body: ["=Certificates enrolled through Group Policy"], size: 11}
+  cloud: {tone: blue, width: 420, tag: "Cloud estate", title: "No placement to inherit from", body: ["=Each function becomes an explicit decision with an owner, a record and evidence"], size: 12}
+edges:
+  - [place, deleg]
+  - [place, policy]
+  - [place, access]
+  - [place, names]
+  - [place, trust]
+  - [deleg, cloud, {tone: blue}]
+  - [policy, cloud, {tone: blue}]
+  - [access, cloud, {tone: blue}]
+  - [names, cloud, {tone: blue}]
+  - [trust, cloud, {tone: blue}]

@@ -1,0 +1,27 @@
+# Chapter 09 — rollout waves are defined by attribute value, not by OU: each wave
+# is a set of divisions chosen by region, lowest risk first, and every division
+# follows the same sub-pattern before the wave closes. Percentages are the master
+# plan's illustrative split.
+rankdir: LR
+graph: {nodesep: 0.2, ranksep: 0.35}
+clusters:
+  - {id: waves, label: "Waves", tone: blue, filled: false, nodes: [w1, w2, w3, w4]}
+nodes:
+  map: {tone: slate, width: 180, tag: "Book 03, Chapter 06", title: "Program attribute map", body: ["Users: region, division, org code", "Devices: region, department, role"], size: 12}
+  w1: {tone: blue, width: 170, tag: "Wave 1 · about 25%", title: "Lowest-risk region", size: 12}
+  w2: {tone: blue, width: 170, tag: "Wave 2 · about 50%", title: "Second region", size: 12}
+  w3: {tone: blue, width: 170, tag: "Wave 3 · about 75%", title: "Third region", size: 12}
+  w4: {tone: blue, width: 170, tag: "Wave 4 · 100%", title: "All remaining", size: 12}
+  sub: {tone: amber, width: 190, tag: "Every division", title: "Same sub-pattern", body: ["Plan", "In-division pilot", "Full availability", "Drift-clean hold", "Weekly status"], size: 12}
+  g3: {tone: green, width: 140, tag: "Gate", title: "G3 · Rollout Complete", size: 12}
+order: [[w1, w2, w3, w4]]
+edges:
+  - [map, w1]
+  - [map, w2]
+  - [map, w3]
+  - [map, w4]
+  - [w1, sub]
+  - [w2, sub]
+  - [w3, sub]
+  - [w4, sub]
+  - [sub, g3, {tone: green}]

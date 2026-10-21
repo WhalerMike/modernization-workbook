@@ -34,7 +34,7 @@ The plan is organized by phases. Each phase has objectives, key activities, deli
 
 **Supporting material**
 - [Why Modernization Is Hard](docs/books/b01-transformation-arc/01-why-modernization-is-hard.md) — leadership framing of the problem
-- [Principles](docs/PRINCIPLES.md) — the rules the charter commits to
+- [Principles](docs/books/b00-orientation/04-the-principles.md) — the rules the charter commits to
 - [Chapter 00 — The Problem Nobody Talks About](docs/books/b01-transformation-arc/02-the-problem.md)
 - [Chapter 10 — Leadership Takeaway](docs/books/b01-transformation-arc/09-who-leads-the-transformation.md)
 

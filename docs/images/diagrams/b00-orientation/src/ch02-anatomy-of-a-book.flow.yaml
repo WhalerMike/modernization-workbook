@@ -1,0 +1,29 @@
+# Book 00 Chapter 02 — how one book is built and published: earlier pages
+# consolidated into Why/What/Who/How chapters, backed by a verification file
+# and diagram sources, published as site chapters, a Word edition and a deck
+# with narrated, script and captions editions; replaced pages archived and
+# redirected. Describes the workbook's own build (scripts/build_bundles.py,
+# scripts/redirects.yml, presentations/).
+rankdir: TB
+graph: {nodesep: 0.25, ranksep: 0.4}
+nodes:
+  old: {tone: slate, width: 220, tag: "Before", title: "Earlier pages", body: ["=Whitepapers, guides, briefs and case studies"], size: 11}
+  arch: {tone: slate, width: 220, tag: "Repository", title: "Archived and redirected", body: ["=Old addresses forward to the new chapters"], size: 11}
+  book: {tone: blue, width: 260, tag: "The book", title: "One opening question", body: ["Why, What, Who and How chapters", "Appendices"], size: 11}
+  ver: {tone: violet, width: 200, title: "Verification file", body: ["=Per chapter: claims log and carry-forward ledger"], size: 11}
+  dia: {tone: violet, width: 200, title: "Diagram sources", body: ["=Rendered in one house style"], size: 11}
+  site: {tone: green, width: 200, title: "Site chapters", body: ["=Footnoted, dated sources"], size: 11}
+  word: {tone: green, width: 200, title: "Word edition", body: ["=Regenerated on every deploy"], size: 11}
+  deck: {tone: green, width: 200, title: "15-minute deck", body: ["=Narrated, script and captions editions"], size: 11}
+edges:
+  - [old, book, {label: "consolidated into"}]
+  - [old, arch, {style: dashed}]
+  - [ver, book, {tone: violet}]
+  - [dia, book, {tone: violet}]
+  - [book, site, {tone: green}]
+  - [book, word, {tone: green}]
+  - [book, deck, {tone: green}]
+order:
+  - [old, arch]
+  - [ver, book, dia]
+  - [site, word, deck]

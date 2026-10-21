@@ -41,6 +41,6 @@ deployed-and-validated reference.
 |---|---|---|---|
 | [`identity-modernization-case-study`](../books/b02-identity/01-why-identity-matters.html) | Identity plane governance during a large-scale directory migration | Framing-Pattern | `src/fmp/canon/adr/adr-008-zero-trust-identity.md` |
 | [`cloud-boundary-case-study`](../books/b10-cloud-boundary/01-why-the-boundary-decides.html) | GCC-Moderate boundary establishment | Framing-Pattern | `docs/docs/gcc-boundary-solution-architecture.qmd` |
-| [`federal-modernization-case-study`](federal-modernization-case-study.html) | End-to-end federal agency modernization | Framing-Pattern | `docs/docs/06_ProgramVision.qmd` |
+| [`federal-modernization-case-study`](../books/b00-orientation/appendix-b-engagement-archetype.html) | End-to-end federal agency modernization | Framing-Pattern | `docs/docs/06_ProgramVision.qmd` |
 | [`reference-deployment-fedciv-ad-to-entra`](../books/b02-identity/11-reference-deployment.html) | Federal civilian AD → Entra ID + SQL estate, end-to-end through the five-phase substrate | Framing-Pattern | `FMP_007` + directory-migration README + drift §7.1 + B.1.1 + spn_inventory artifact |
 | [HR-Driven Identity, Chapter 11](../books/b03-hr-identity/13-reference-deployment.md) | Federal civilian HR system of record → Entra ID inbound provisioning, illustrative end to end (companion to the AD reference deployment) | Framing-Pattern | HR-Driven Identity series |

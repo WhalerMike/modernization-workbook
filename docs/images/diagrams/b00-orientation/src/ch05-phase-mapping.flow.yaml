@@ -1,0 +1,21 @@
+# Chapter 05 — Book 01's seven phases and six gates (canonical), with the
+# master project plan's phases mapped onto them. The master plan's cutover
+# keeps AD DS running, so Book 01's Phase 5 has no master-plan counterpart.
+# Week numbers are illustrative and left off deliberately.
+rankdir: TB
+graph: {nodesep: 0.25, ranksep: 0.28}
+nodes:
+  p0: {tone: slate, width: 340, tag: "Phase 0 · master plan 0 and 1", title: "Pre-flight", body: ["=Platform host, assessment, repository"], size: 12}
+  p1: {tone: blue, width: 340, tag: "Phase 1 · master plan 2", title: "Foundation", body: ["=Designs approved; identity primitives and baseline built"], size: 12}
+  p2: {tone: blue, width: 340, tag: "Phase 2 · master plan 3", title: "Pilot division", body: ["=The whole pattern on one representative scope"], size: 12}
+  p3: {tone: blue, width: 340, tag: "Phase 3 · master plan 4", title: "General rollout", body: ["=Wave by wave to every division"], size: 12}
+  p4: {tone: amber, width: 340, tag: "Phase 4 · master plan 5", title: "Legacy retirement", body: ["=GPOs, AD FS, AD CS issuance, forwarders, trusts"], size: 12}
+  p5: {tone: red, width: 340, tag: "Phase 5 · no master-plan counterpart", title: "AD DS retirement", body: ["=Or a documented Kerberos island with an end date"], size: 12}
+  p6: {tone: green, width: 340, tag: "Phase 6 · master plan 6", title: "Steady state", body: ["=Assess, plan and check drift on a cadence"], size: 12}
+edges:
+  - [p0, p1, {label: "G0 Ready to Plan"}]
+  - [p1, p2, {label: "G1 Foundation Complete"}]
+  - [p2, p3, {label: "G2 Pilot Clean"}]
+  - [p3, p4, {label: "G3 Rollout Complete"}]
+  - [p4, p5, {label: "G4 Legacy Quiet"}]
+  - [p5, p6, {label: "G5 AD Retired"}]

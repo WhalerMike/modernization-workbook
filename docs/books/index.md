@@ -17,7 +17,7 @@ The workbook grew as separate whitepapers, guides, series and case studies. The 
 ::: {.fmw-books-table}
 | Book | Topic | Opening question | Status | Chapters | Pages | Last updated |
 |---|---|---|---|---:|---:|---|
-| B00 | Orientation & Program | Why modernize, and why now? | Planned | — | — | — |
+| **B00** | **[Orientation & Program](b00-orientation/index.md)** | **Why modernize, and why now?** | **Draft** | 10 + 2 app. | 195 | — |
 | **B01** | **[The Transformation Arc: Client-Server to Hybrid Cloud](b01-transformation-arc/index.md)** | **Why is modernization so hard?** | **Draft** | 12 + 2 app. | 160 | 2026-10-21 |
 | **B02** | **[Identity & Directory: AD to Entra ID](b02-identity/index.md)** | **Why does identity matter?** | **Draft** | 11 + 3 app. | 320 | 2026-10-21 |
 | **B03** | **[HR-Driven Identity & Lifecycle](b03-hr-identity/index.md)** | **Why should HR, not IT, decide who exists?** | **Draft** | 13 + 3 app. | 160 | 2026-10-21 |

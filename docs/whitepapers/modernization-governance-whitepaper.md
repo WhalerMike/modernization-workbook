@@ -71,7 +71,7 @@ provides the canonical fabric that makes the migration a one-way
 modernization rather than a reversible re-platforming.
 
 The companion executive brief is
-[Modernization Overview](../executive-briefs/modernization-overview.md),
+[Modernization Overview](../books/b00-orientation/01-why-modernize-now.md),
 and the modernization pillar's curated surfaces — the transformation
 series and the adapter interfaces this paper's approach rides on — are
 collected at the OrgMod hub.

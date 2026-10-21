@@ -1,0 +1,15 @@
+# Chapter 04 — the fifteen principles in five groups, with the book that
+# carries each in depth.
+rankdir: TB
+nodes:
+  t:
+    kind: table
+    tone: slate
+    columns: ["Group", "Principles", "Carried in"]
+    widths: [150, 380, 200]
+    rows:
+      - [{text: "Foundation", tone: blue}, "1 Single source of truth · 2 Change control and provenance · 11 Drift detection", "B03, B09 · B01 · B03, B02, B01"]
+      - [{text: "Directory and structure", tone: slate}, "3 Attribute-driven structure · 4 The hidden surface · 5 Eight core concepts", "B02, B01 · B02 · B02"]
+      - [{text: "Devices and policy", tone: amber}, "6 Hybrid join without governance · 7 Device and server modernization · 9 Conditional Access · 10 GPO sunset", "B05 · B05, B06 · B04 · B05"]
+      - [{text: "Identity and data", tone: green}, "8 HR-driven lifecycle · 12 SQL Server identity", "B03 · B06"]
+      - [{text: "Program", tone: violet}, "13 Education, training and test plans · 14 Zero Trust governance · 15 The modernization journey", "B16 (planned) · B11 · B01, B09"]

@@ -1,0 +1,21 @@
+# Chapter 08 — pre-flight in five steps: build and govern the platform host,
+# read the estate at default rights, fill recorded gaps with narrow Tier B
+# additions, and assess security, which together
+# clear gate G0; then, as Phase 1's first work, generate and approve the eight
+# plans. Every artifact is committed to the platform host's repository.
+rankdir: TB
+graph: {nodesep: 0.3, ranksep: 0.32}
+nodes:
+  host: {tone: violet, width: 300, tag: "M-001 to M-007", title: "Platform host", body: ["Windows Server 2025, Gitea behind IIS", "Directory and Entra ID sign-in", "Hooks, branch protection, Azure Arc"], size: 12}
+  ro: {tone: slate, width: 300, tag: "Step 1 · M-008", title: "Read-only assessment (Tier A)", body: ["=Default read rights; delegation request for the gaps"], size: 12}
+  dg: {tone: amber, width: 300, tag: "Step 2 · M-009", title: "Delegated assessment (Tier B)", body: ["DNS server settings, CA database", "Deleted objects, hidden GPOs", "=All twelve domains covered"], size: 12}
+  sec: {tone: red, width: 300, tag: "Step 3 · M-010", title: "Security assessment", body: ["Certificate escalation patterns", "Privileged access, imported posture", "=Critical, High, Medium, Low"], size: 12}
+  plans: {tone: blue, width: 300, tag: "Phase 1 · steps 4 and 5 · M-011, M-012", title: "Eight plans generated and approved", body: ["=Schema-valid; status APPROVED"], size: 12}
+  g0: {tone: green, width: 300, tag: "Gate", title: "G0 · Ready to Plan", body: ["=The steward decides"], size: 12}
+edges:
+  - [host, ro]
+  - [ro, dg]
+  - [dg, sec]
+  - [sec, g0, {tone: green}]
+  - [g0, plans, {tone: blue}]
+  - [host, plans, {style: dashed, tone: violet, attrs: "constraint=false", label: "every artifact committed here"}]

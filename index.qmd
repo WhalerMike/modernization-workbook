@@ -335,9 +335,16 @@ format:
 <section class="mw-section" id="books">
   <div class="mw-inner">
     <p class="section-label">The Books</p>
-    <h2 class="section-title">Eleven books published. Seven more on the way.</h2>
+    <h2 class="section-title">Twelve books published. Six more on the way.</h2>
     <p class="section-body">Start with Book 01 for the whole arc, or go straight to the topic in front of you. Every book reads in its Why / What / Who / How order and downloads as one Word document.</p>
     <div class="book-cards">
+      <div class="book-card">
+        <div class="book-num">Book 00 · 10 chapters</div>
+        <div class="book-title"><a href="docs/books/b00-orientation/index.html">Orientation &amp; Program</a></div>
+        <div class="book-q">Why modernize, and why now?</div>
+        <div class="book-desc">The case for one governed program, how the workbook works, and the program's charter, principles, phases and gates, projects and decision rights.</div>
+        <div class="book-links"><a href="docs/books/b00-orientation/index.html">Read</a><a href="downloads/b00-orientation-bundle.docx">Word</a><a href="docs/presentations/index.html#book-00">Deck</a></div>
+      </div>
       <div class="book-card">
         <div class="book-num">Book 01 · 12 chapters</div>
         <div class="book-title"><a href="docs/books/b01-transformation-arc/index.html">The Transformation Arc</a></div>
@@ -425,8 +432,8 @@ format:
     <h2 class="section-title">Built to be checked, not taken on trust.</h2>
     <p class="section-body">Each book keeps a verification log beside its chapters: every claim, the source it was checked against, and what changed when the source disagreed with the earlier draft.</p>
     <div class="arc-grid">
-      <div class="arc-phase"><div class="phase-num">11</div><div class="phase-name">Books</div><div class="phase-desc">Published as drafts, from the transformation arc to Zero Trust</div></div>
-      <div class="arc-phase"><div class="phase-num">143</div><div class="phase-name">Chapters</div><div class="phase-desc">Plus twenty-five appendices of checklists, matrices, mappings and templates</div></div>
+      <div class="arc-phase"><div class="phase-num">12</div><div class="phase-name">Books</div><div class="phase-desc">Published as drafts, from orientation to Zero Trust</div></div>
+      <div class="arc-phase"><div class="phase-num">153</div><div class="phase-name">Chapters</div><div class="phase-desc">Plus twenty-seven appendices of checklists, matrices, mappings and templates</div></div>
       <div class="arc-phase"><div class="phase-num">4</div><div class="phase-name">Questions</div><div class="phase-desc">Why, What, Who and How, in that order, in every book</div></div>
       <div class="arc-phase"><div class="phase-num">15</div><div class="phase-name">Minutes</div><div class="phase-desc">A presentation per book, each with a narrated, captioned edition</div></div>
     </div>
@@ -439,7 +446,6 @@ format:
     <h2 class="section-title">Eighteen books in all.</h2>
     <p class="section-body">The remaining books are being built from the workbook's earlier documents, which stay in the repository until their book is published. <a href="docs/books/index.html">The Workbook Books</a> lists every book and its opening question.</p>
     <div class="badge-grid">
-      <div class="badge"><b>B00</b>Orientation &amp; Program</div>
       <div class="badge"><b>B12</b>Security Operations &amp; Telemetry</div>
       <div class="badge"><b>B13</b>Governance, Drift &amp; Evidence</div>
       <div class="badge"><b>B14</b>Federal Compliance &amp; Authorization</div>

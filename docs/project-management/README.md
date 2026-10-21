@@ -4,7 +4,7 @@ Program structure and planning artifacts.
 
 | Document | Description |
 |----------|-------------|
-| [Master Project Plan](master-project-plan.md) | Structure, gates, and deliverables for a modernization program. |
+| [Master Project Plan](../books/b00-orientation/05-the-program-plan.md) | Structure, gates, and deliverables for a modernization program. |
 
 ---
 
