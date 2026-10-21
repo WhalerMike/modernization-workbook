@@ -1,0 +1,72 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.005
+Once identity, policy
+and services have moved,
+
+2
+00:00:03.005 --> 00:00:07.438
+domain-joined PCs and servers are
+the largest remaining dependency.
+
+3
+00:00:07.438 --> 00:00:10.826
+User PCs end Entra joined and in Intune.
+
+4
+00:00:10.826 --> 00:00:14.250
+Servers come under Azure Arc
+and machine configuration.
+
+5
+00:00:14.250 --> 00:00:16.225
+Hybrid join is a waypoint.
+
+6
+00:00:16.225 --> 00:00:19.241
+Microsoft says it shouldn't
+be anyone's end state,
+
+7
+00:00:19.241 --> 00:00:23.614
+and there's no supported way to
+convert a hybrid-joined device to Entra
+
+8
+00:00:23.614 --> 00:00:27.987
+join without resetting Windows, so
+time the move to a hardware refresh.
+
+9
+00:00:27.987 --> 00:00:32.857
+Every service principal name is an
+application that expects Kerberos,
+
+10
+00:00:32.857 --> 00:00:37.149
+and each needs a decision: migrate
+it to modern authentication,
+
+11
+00:00:37.149 --> 00:00:41.275
+retire it, or, as a last resort,
+island it with an end-of-life date.
+
+12
+00:00:41.275 --> 00:00:45.861
+No server leaves the domain until
+every SPN on it is resolved,
+
+13
+00:00:45.861 --> 00:00:48.062
+and NTLM goes in the same pass.
+
+14
+00:00:48.062 --> 00:00:52.974
+And compute stays with its data until
+profiling shows the round trips are reduced.
+
+15
+00:00:52.974 --> 00:00:57.070
+Books 05 and 06 carry the detail in depth.

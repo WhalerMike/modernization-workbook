@@ -1,0 +1,79 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.338
+Now, what changes.
+
+2
+00:00:01.338 --> 00:00:05.200
+Before anything moves, the
+program needs one place where
+
+3
+00:00:05.200 --> 00:00:08.899
+every decision is written
+down, signed and replayable.
+
+4
+00:00:08.899 --> 00:00:12.826
+Chapter 03 describes a
+reference platform host:
+
+5
+00:00:12.826 --> 00:00:18.812
+one Windows Server 2025 server, supported
+to November 2034, with a standby.
+
+6
+00:00:18.812 --> 00:00:23.837
+The host has five roles: a version-controlled
+source of truth with signed commits;
+
+7
+00:00:23.837 --> 00:00:28.862
+a reverse proxy for TLS and client
+certificates; an authentication bridge to the
+
+8
+00:00:28.862 --> 00:00:33.962
+legacy forest; the transformation engine;
+and an adapter per dependency category.
+
+9
+00:00:33.962 --> 00:00:36.850
+What matters is a single
+authoritative writer.
+
+10
+00:00:36.850 --> 00:00:39.488
+Governance and execution never mix.
+
+11
+00:00:39.488 --> 00:00:43.549
+One layer validates and signs
+plans but never touches a target.
+
+12
+00:00:43.549 --> 00:00:47.128
+The other runs authorized
+plans but decides nothing,
+
+13
+00:00:47.128 --> 00:00:50.300
+under separate accounts,
+credentials and logs.
+
+14
+00:00:50.300 --> 00:00:55.138
+The host reads Active Directory
+read-only and is protected as Tier 0.
+
+15
+00:00:55.138 --> 00:00:58.825
+Book 05 covers servers
+under Azure Arc in depth,
+
+16
+00:00:58.825 --> 00:01:02.570
+and Book 04 covers change
+as code with evidence.

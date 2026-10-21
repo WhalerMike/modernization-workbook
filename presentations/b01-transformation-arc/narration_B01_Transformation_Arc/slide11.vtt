@@ -1,0 +1,74 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:05.125
+When Active Directory retires, being
+inside the network stops meaning anything.
+
+2
+00:00:05.125 --> 00:00:10.937
+OMB M-22-09 says users should log into
+applications rather than networks.
+
+3
+00:00:10.937 --> 00:00:16.651
+The replacement has four surfaces: Zero
+Trust as the model, Conditional Access as
+
+4
+00:00:16.651 --> 00:00:22.450
+the per-request decision, SASE as the edge,
+and phishing-resistant MFA as the proof.
+
+5
+00:00:22.450 --> 00:00:27.831
+M-22-09 requires that MFA for
+staff, contractors and partners,
+
+6
+00:00:27.831 --> 00:00:33.388
+and BOD 25-01 makes blocking
+legacy authentication mandatory.
+
+7
+00:00:33.388 --> 00:00:34.576
+Smart cards stay.
+
+8
+00:00:34.576 --> 00:00:40.067
+Entra certificate-based authentication
+moves validation from the domain controller
+
+9
+00:00:40.067 --> 00:00:43.227
+to Entra ID, but a card
+counts as phishing-resistant
+
+10
+00:00:43.227 --> 00:00:46.237
+only if the binding policy
+makes it multifactor.
+
+11
+00:00:46.237 --> 00:00:51.849
+And issuance needs a successor first,
+because an enterprise CA depends on AD DS.
+
+12
+00:00:51.849 --> 00:00:56.459
+Administrators hold no standing privilege:
+roles are eligible in Privileged
+
+13
+00:00:56.459 --> 00:01:00.500
+Identity Management, and a vault covers
+what can't be made just in time.
+
+14
+00:01:00.500 --> 00:01:04.707
+Book 04 covers the policy
+and privilege model in depth,
+
+15
+00:01:04.707 --> 00:01:07.010
+and Book 07 the certificates.

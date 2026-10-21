@@ -1,0 +1,73 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.075
+How do you get there?
+
+2
+00:00:01.075 --> 00:00:02.613
+Start with an inventory.
+
+3
+00:00:02.613 --> 00:00:06.781
+You can't modernize what you haven't
+enumerated, and nothing is retired
+
+4
+00:00:06.781 --> 00:00:10.375
+until it's written down, read-only,
+with proof of how it was read.
+
+5
+00:00:10.375 --> 00:00:13.372
+The assessment account
+holds no write rights,
+
+6
+00:00:13.372 --> 00:00:17.237
+the code imports no write
+commands, and every call is logged.
+
+7
+00:00:17.237 --> 00:00:22.569
+A default authenticated account already
+reads more than most teams expect: the
+
+8
+00:00:22.569 --> 00:00:27.900
+topology, the OU tree, most Group Policy,
+users, groups and certificate templates.
+
+9
+00:00:27.900 --> 00:00:32.625
+A narrow second tier adds only
+server-side exports, never secrets.
+
+10
+00:00:32.625 --> 00:00:38.050
+Every run records who, when, against
+what, and a hash of every file.
+
+11
+00:00:38.050 --> 00:00:40.438
+Eleven streams feed the risk scoring.
+
+12
+00:00:40.438 --> 00:00:47.371
+One example: Windows Server 2012 extended
+updates through Arc ended on October 13,
+
+13
+00:00:47.371 --> 00:00:52.876
+2026, and Windows Server 2016
+reaches end of support on January 12,
+
+14
+00:00:52.876 --> 00:00:56.750
+2027, so every such server
+needs a disposition.
+
+15
+00:00:56.750 --> 00:01:01.060
+And no application leaves its data
+until its transactions are profiled.

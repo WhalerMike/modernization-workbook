@@ -1,0 +1,68 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.925
+Identity comes first, because every
+later control reads the attributes.
+
+2
+00:00:04.925 --> 00:00:09.784
+For the workforce, the authoritative
+source is the HR system of record,
+
+3
+00:00:09.784 --> 00:00:15.900
+and OMB M-22-09 requires centralized
+identity management for agency users.
+
+4
+00:00:15.900 --> 00:00:20.837
+Four mechanisms rebuild what the OU tree
+did: attributes replace OU placement,
+
+5
+00:00:20.837 --> 00:00:25.622
+dynamic groups replace OU-derived
+groups, administrative units replace OU
+
+6
+00:00:25.622 --> 00:00:30.863
+delegation, and Conditional Access
+targeting replaces Group Policy inheritance.
+
+7
+00:00:30.863 --> 00:00:36.048
+The program's contribution is the contract
+that binds them: one HR-sourced stamp
+
+8
+00:00:36.048 --> 00:00:41.625
+drives membership, delegated scope, policy
+targeting, licensing and drift detection.
+
+9
+00:00:41.625 --> 00:00:42.788
+Two cautions.
+
+10
+00:00:42.788 --> 00:00:46.450
+Dynamic membership usually
+updates within a few hours but
+
+11
+00:00:46.450 --> 00:00:49.963
+can take more than 24, so design
+movers around that window.
+
+12
+00:00:49.963 --> 00:00:54.112
+And HR provisioning must be the
+only writer of those attributes.
+
+13
+00:00:54.112 --> 00:00:56.324
+Tokens only work if this is right.
+
+14
+00:00:56.324 --> 00:01:00.670
+Books 02 and 03 carry identity in depth.
