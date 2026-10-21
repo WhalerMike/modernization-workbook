@@ -1,0 +1,308 @@
+/*-- scss:defaults --*/
+
+// Federal Modernization Workbook theme, layered on Bootstrap's Cosmo. The
+// look follows the Inspiration page: DM Serif Display headings, DM Sans
+// body, IBM Plex Mono labels; navy, teal, amber and red ink on white.
+// Text colors are the darker shades, which meet WCAG AA (4.5:1) on white;
+// the brighter teal and amber are for rules and accents only.
+
+$fmw-navy: #0D1B2E;
+$fmw-ink: #243248;
+$fmw-muted: #5a6878;
+$fmw-teal: #1E8C8C;      // accents
+$fmw-teal-text: #16706F; // links and small teal text (5.9:1)
+$fmw-amber: #E8A020;     // accents
+$fmw-amber-text: #8F5B0C; // small amber text (5.8:1)
+$fmw-red: #B42318;
+$fmw-line: #dfe5ec;
+$fmw-paper2: #f5f7fa;
+
+$font-family-sans-serif: "DM Sans", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+$font-family-monospace: "IBM Plex Mono", SFMono-Regular, Menlo, Consolas, monospace;
+$headings-font-family: "DM Serif Display", Georgia, serif;
+$headings-font-weight: 400;
+$headings-color: $fmw-navy;
+$body-color: $fmw-ink;
+$line-height-base: 1.65;
+
+$primary: $fmw-teal-text;
+$link-color: $fmw-teal-text;
+$link-hover-color: $fmw-teal;
+$code-color: $fmw-navy;
+
+$navbar-bg: #ffffff;
+$navbar-fg: $fmw-navy;
+$navbar-hl: $fmw-teal-text;
+$sidebar-fg: $fmw-ink;
+$sidebar-hl: $fmw-teal-text;
+$toc-color: $fmw-teal-text;
+$footer-bg: $fmw-paper2;
+$footer-fg: $fmw-muted;
+
+$table-border-color: $fmw-line;
+
+$callout-color-note: $fmw-teal;
+$callout-color-tip: $fmw-teal-text;
+$callout-color-important: $fmw-navy;
+$callout-color-warning: $fmw-amber;
+$callout-color-caution: $fmw-red;
+
+/*-- scss:rules --*/
+
+body {
+  -webkit-font-smoothing: antialiased;
+}
+
+a:focus-visible {
+  outline: 2px solid $fmw-teal-text;
+  outline-offset: 3px;
+  border-radius: 3px;
+}
+
+// Navbar: white, with the brand set in the serif.
+.navbar {
+  border-bottom: 1px solid $fmw-line;
+  box-shadow: none;
+}
+.navbar-brand .navbar-title {
+  font-family: $headings-font-family;
+  font-size: 1.3rem;
+  color: $fmw-navy;
+}
+.navbar .nav-link {
+  font-weight: 500;
+}
+.navbar .nav-link.active {
+  box-shadow: inset 0 -2px 0 $fmw-teal;
+}
+
+// Page header: the Inspiration page's hero, scaled to a content column.
+#title-block-header.fmw-hero {
+  margin: 0 0 2.25rem;
+  padding: 2.25rem 2rem 1.75rem;
+  background:
+    radial-gradient(600px 260px at 90% 0%, rgba(30, 140, 140, 0.13), transparent 70%),
+    radial-gradient(500px 220px at 0% 60%, rgba(232, 160, 32, 0.11), transparent 70%),
+    #ffffff;
+  border: 1px solid $fmw-line;
+  border-top: 3px solid $fmw-teal;
+  border-radius: 8px;
+}
+.fmw-hero .fmw-eyebrow {
+  font-family: $font-family-monospace;
+  font-size: 0.76rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: $fmw-amber-text;
+  font-weight: 500;
+  margin: 0 0 0.9rem;
+}
+.fmw-hero .fmw-eyebrow a {
+  color: inherit;
+  text-decoration: none;
+}
+.fmw-hero .fmw-eyebrow a:hover {
+  color: $fmw-teal-text;
+}
+.fmw-hero h1.title {
+  font-size: clamp(1.9rem, 3.6vw, 2.75rem);
+  line-height: 1.12;
+  letter-spacing: -0.01em;
+  margin: 0 0 0.75rem;
+  border: 0;
+}
+.fmw-hero .fmw-tagline {
+  font-family: $headings-font-family;
+  font-style: italic;
+  font-size: 1.35rem;
+  color: $fmw-teal-text;
+  margin: -0.25rem 0 0.75rem;
+}
+.fmw-hero .subtitle {
+  font-size: 1.1rem;
+  color: $fmw-muted;
+  max-width: 68ch;
+  margin-bottom: 0.5rem;
+}
+.fmw-hero .description {
+  color: $fmw-muted;
+  max-width: 72ch;
+  font-size: 1rem;
+  margin-top: 0.5rem;
+}
+.fmw-hero .description p:last-child {
+  margin-bottom: 0;
+}
+.fmw-hero .quarto-title-meta {
+  margin-top: 1rem;
+}
+
+// Chapter lede: the italic sentence that opens each chapter.
+.fmw-lede {
+  font-family: $headings-font-family;
+  font-size: 1.3rem;
+  line-height: 1.45;
+  color: $fmw-navy;
+  border-left: 3px solid $fmw-amber;
+  padding: 0.1rem 0 0.1rem 1.1rem;
+  margin: 0 0 1.75rem;
+}
+.fmw-lede p {
+  margin: 0;
+}
+
+// Headings.
+#quarto-document-content {
+  h2 {
+    font-size: 1.85rem;
+    line-height: 1.2;
+    margin-top: 2.75rem;
+    padding-bottom: 0.35rem;
+    border-bottom: 1px solid $fmw-line;
+  }
+  h3 {
+    font-size: 1.4rem;
+    line-height: 1.25;
+    margin-top: 2rem;
+  }
+  h4, h5, h6 {
+    font-family: $font-family-sans-serif;
+    font-weight: 600;
+    color: $fmw-navy;
+  }
+}
+
+// Tables: mono uppercase header row on a pale band, ruled rows.
+#quarto-document-content table,
+.quarto-listing-table {
+  font-size: 0.95rem;
+  border-color: $fmw-line;
+}
+#quarto-document-content table thead th,
+.quarto-listing-table thead th {
+  font-family: $font-family-monospace;
+  font-size: 0.74rem;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: $fmw-navy;
+  background: $fmw-paper2;
+  border-bottom: 2px solid $fmw-teal;
+  vertical-align: bottom;
+}
+#quarto-document-content table td {
+  vertical-align: top;
+}
+#quarto-document-content table tbody tr:hover,
+.quarto-listing-table tbody tr:hover {
+  background: rgba(30, 140, 140, 0.04);
+}
+
+// Deck downloads read as buttons.
+#quarto-document-content table a[href$=".pptx"] {
+  display: inline-block;
+  font-family: $font-family-monospace;
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  text-decoration: none;
+  padding: 0.3rem 0.7rem;
+  border: 1px solid $fmw-teal-text;
+  border-radius: 4px;
+  white-space: nowrap;
+}
+#quarto-document-content table a[href$=".pptx"]:hover {
+  background: $fmw-teal-text;
+  color: #ffffff;
+}
+
+// Callouts: rounded, with the house accents.
+.callout {
+  border-radius: 6px;
+}
+.callout .callout-title-container {
+  font-family: $font-family-sans-serif;
+  font-weight: 600;
+}
+
+// Quotes.
+blockquote,
+.blockquote {
+  font-family: $headings-font-family;
+  font-size: 1.15rem;
+  color: $fmw-navy;
+  border-left: 3px solid $fmw-teal;
+  padding-left: 1.1rem;
+}
+
+// Inline code.
+p code:not(.sourceCode),
+li code:not(.sourceCode),
+td code:not(.sourceCode) {
+  background: $fmw-paper2;
+  border-radius: 3px;
+  padding: 0.1em 0.35em;
+}
+
+// Figures.
+.quarto-figure img,
+figure img {
+  border-radius: 6px;
+}
+.figure-caption,
+figcaption {
+  color: $fmw-muted;
+  font-size: 0.9rem;
+}
+
+// Footnotes.
+section.footnotes {
+  font-size: 0.88rem;
+  color: $fmw-muted;
+  border-top: 1px solid $fmw-line;
+  margin-top: 3rem;
+}
+
+// Sidebar: book sections in the serif, the current page marked in teal.
+#quarto-sidebar .sidebar-item-section > .sidebar-item-container .sidebar-item-text {
+  color: $fmw-navy;
+  font-weight: 600;
+}
+#quarto-sidebar .sidebar-link.active {
+  border-left: 3px solid $fmw-teal;
+  padding-left: 0.5rem;
+  margin-left: -0.5rem;
+}
+.sidebar-title {
+  font-family: $headings-font-family;
+  font-weight: 400;
+  color: $fmw-navy;
+}
+
+// Right-hand table of contents.
+#TOC .nav-link.active,
+#TOC a.active {
+  border-left-color: $fmw-teal !important;
+}
+
+// Footer.
+.nav-footer {
+  border-top: 1px solid $fmw-line;
+}
+
+@media (max-width: 767.98px) {
+  #title-block-header.fmw-hero {
+    padding: 1.5rem 1.1rem 1.25rem;
+  }
+}
+
+// Books table (docs/books/index.md): keep counts and dates on one line.
+.fmw-books-table td:nth-child(n+4),
+.fmw-books-table th:nth-child(n+4) {
+  white-space: nowrap;
+}
+
+.navbar .nav-link,
+.navbar .menu-text {
+  white-space: nowrap;
+}

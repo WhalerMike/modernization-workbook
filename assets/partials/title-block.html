@@ -1,0 +1,37 @@
+<header id="title-block-header" class="quarto-title-block default fmw-hero">
+$if(fmw-eyebrow)$
+<p class="fmw-eyebrow">$fmw-eyebrow$</p>
+$endif$
+<div class="quarto-title">
+$if(title)$
+<h1 class="title">$title$</h1>
+$endif$
+$if(fmw-tagline)$
+<p class="fmw-tagline">$fmw-tagline$</p>
+$endif$
+$if(subtitle)$
+<p class="subtitle lead">$subtitle$</p>
+$endif$
+$if(categories)$
+  $if(quarto-template-params.title-block-categories)$
+<div class="quarto-categories">
+  $for(categories)$
+  <div class="quarto-category">$categories$</div>
+  $endfor$
+</div>
+  $endif$
+$endif$
+</div>
+
+$if(hide-description)$
+$elseif(description)$
+<div>
+  <div class="description">
+    $description$
+  </div>
+</div>
+$endif$
+
+$title-metadata.html()$
+
+</header>
