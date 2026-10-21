@@ -1,0 +1,20 @@
+# Book 14 Chapter 03 — the baseline and the class are two separate facts; the
+# crosswalk is an index that points into both and decides neither.
+# NIST SP 800-53B OSCAL Moderate profile (release 5.2.0): 287 controls and
+# enhancements. FedRAMP 2026 Full Rev5 Control Reference: 322 listed for
+# Class C. Crosswalk: 149 controls indexed, 121 in NIST Moderate, 122 in
+# FedRAMP Class C. Counts checked October 21, 2026.
+rankdir: TB
+graph: {nodesep: 0.3, ranksep: 0.35}
+nodes:
+  nist: {tone: slate, width: 260, tag: "Fact 1 · NIST SP 800-53B", title: "Moderate baseline", body: ["=For an agency system categorized Moderate", "=287 controls and enhancements"], size: 12}
+  fr: {tone: blue, width: 260, tag: "Fact 2 · FedRAMP 2026", title: "Class C membership", body: ["=For a certified cloud service offering", "=322 controls and enhancements"], size: 12}
+  xw: {tone: violet, width: 420, tag: "Index, not a decision", title: "The control crosswalk", body: ["=149 controls, each pointing to the volumes and books that treat it as a subject", "=121 sit in NIST Moderate, 122 in FedRAMP Class C"], size: 12}
+  ssp: {tone: green, width: 420, tag: "Agency", title: "System security plan", body: ["=Every control the system's baseline selects, with its origination and evidence"], size: 12}
+edges:
+  - [nist, xw, {style: dashed}]
+  - [fr, xw, {style: dashed}]
+  - [xw, ssp, {label: "points into", tone: green}]
+  - [nist, ssp, {label: "selects", tone: slate}]
+order:
+  - [nist, fr]

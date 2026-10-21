@@ -45,8 +45,8 @@ working; application-aware networking itself remains a technical subject of
 Vol I, unchanged.
 :::
 
-Start with the **[two-page Executive Brief](Vol_0_Book_00a_Executive_Brief.md)**,
-then the **[Executive Summary and control compendium](Vol_0_Book_00_Executive_Summary.md)**.
+Start with the **[two-page Executive Brief](../books/b14-compliance/01-proof-not-a-promise.md)**,
+then the **[Executive Summary and control compendium](../books/b14-compliance/02-the-federal-clock.md)**.
 Every book is browsable here and carries a Word download button.
 
 The series is engine-neutral by design: wherever a book needs evidence or
@@ -62,7 +62,7 @@ still be there:
 
 | Entry point | For | Start here |
 |---|---|---|
-| **Executive Brief** | Leadership, sponsors, procurement | The [two-page Executive Brief](Vol_0_Book_00a_Executive_Brief.md), then the [Executive Summary](Vol_0_Book_00_Executive_Summary.md) and the [Product Inventory Questionnaire](Vol_0_Book_01_Product_Inventory_Questionnaire.md) |
+| **Executive Brief** | Leadership, sponsors, procurement | The [two-page Executive Brief](../books/b14-compliance/01-proof-not-a-promise.md), then the [Executive Summary](../books/b14-compliance/02-the-federal-clock.md) and the [Product Inventory Questionnaire](../books/b14-compliance/appendix-b-product-inventory-questionnaire.md) |
 | **Practitioner Quickstart** | ISSOs and engineers who need the working core first | The training program's Core Compliance Pathway (nine-book spine + four labs), the `<engine>` tooling note, and the deployable kits — the [ServiceNow compliance app](Vol_VII_Book_05_ServiceNow_Compliance_App.md) and the Day-2 catalog (Vol IX) — via the Downloads page |
 | **Full Academy** | Anyone pursuing the credentials | [Vol V — Training & Certification](Vol_V_Book_00_Training_Certification_Overview.md) and the two-track Compliance Training Program with its capstones and rubrics |
 
@@ -78,13 +78,13 @@ attestation: drift against the compliance spine originates the work, the
 day-2 lanes carry the authorization and elevation discipline, and the
 closure stream is what the attestation pipeline (Vol VII Book 04) lifts
 into OSCAL and KSI evidence. Clause 1 is answered per object class by the
-**[SSOT Registry](Vol_0_Book_00_Executive_Summary.md#ssot-registry)**
+**[SSOT Registry](../books/b14-compliance/02-the-federal-clock.md)**
 — one designated source of truth for every class including the non-human
 ones (service accounts, devices, AI systems, declared infrastructure),
 each anchored to a human owner resolvable in the HR SSOT. The doctrine —
 including Closure Provenance ("no closure counts unless it carries its
 proof") — is stated in
-[Vol 0 Book 00](Vol_0_Book_00_Executive_Summary.md#macdr-lifecycle).
+[Vol 0 Book 00](../books/b14-compliance/02-the-federal-clock.md).
 
 ::: {.callout-tip}
 ## Download the full series

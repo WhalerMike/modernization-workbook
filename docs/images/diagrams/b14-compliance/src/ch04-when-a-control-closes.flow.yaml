@@ -1,0 +1,24 @@
+# Book 14 Chapter 04 — when a control counts as closed. Two tests in order:
+# the mechanism that closes it exists in the estate (not on a roadmap), and
+# its proof is recorded with the closure. Failing the first leaves the control
+# open (a plan of action and milestones item); failing the second leaves an
+# attested-only closure, a flagged exception that is never counted.
+# Program design.
+rankdir: TB
+graph: {nodesep: 0.3, ranksep: 0.3}
+nodes:
+  c: {tone: slate, width: 300, tag: "Control", title: "Claimed closed", body: ["=A control the system's baseline selects"], size: 12}
+  m: {tone: amber, width: 300, tag: "Test 1", title: "Does the mechanism exist?", body: ["=Deployed and operating in the estate, not announced or planned"], size: 12}
+  p: {tone: amber, width: 300, tag: "Test 2", title: "Is its proof recorded?", body: ["=Verification payload, time, identity of the checking mechanism"], size: 12}
+  ok: {tone: green, width: 300, tag: "Closed", title: "Counts", body: ["=Feeds control tests, monitoring and reports"], size: 12}
+  open: {tone: red, width: 220, tag: "Not closed", title: "Open", body: ["=A plan-of-action item with a milestone"], size: 12}
+  ex: {tone: amber, width: 220, tag: "Not counted", title: "Attested only", body: ["=Flagged exception, counted separately"], size: 12}
+edges:
+  - [c, m]
+  - [m, p, {label: "yes", tone: green}]
+  - [p, ok, {label: "yes", tone: green}]
+  - [m, open, {label: "no, or roadmap only", style: dashed, tone: red}]
+  - [p, ex, {label: "no", style: dashed, tone: amber}]
+ranks:
+  - [m, open]
+  - [p, ex]

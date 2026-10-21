@@ -1,0 +1,24 @@
+# Book 14 Chapter 09 — how training becomes evidence. Three sources (the role
+# roster that says who must take what, the learning management system that
+# holds each person's completion records, and the exercise records with their
+# after-action reports) are joined into one derived training evidence record,
+# which the ISSO reviews and assessors and the authorizing official read.
+# Program design; AT-4, IR-2 and CP-3 per NIST SP 800-53 Rev. 5.
+rankdir: TB
+graph: {nodesep: 0.25, ranksep: 0.4}
+nodes:
+  roster: {tone: slate, width: 200, tag: "The denominator", title: "Role roster", body: ["=Who holds which role, from HR and identity governance"], size: 11}
+  lms: {tone: blue, width: 200, tag: "System of record", title: "Learning management system", body: ["=One completion record per person and course (AT-4)"], size: 11}
+  ex: {tone: blue, width: 200, tag: "Exercise records", title: "Drills and tabletops", body: ["=Attendance and after-action reports (IR-2, CP-3)"], size: 11}
+  rec: {tone: violet, width: 420, title: "Training evidence record", body: ["=Derived on a schedule: population, required, complete, overdue, exercise dates", "=Source files hashed; no names in the summary"], size: 11}
+  isso: {tone: amber, width: 200, tag: "Reviews", title: "ISSO", body: ["=Confirms the record and routes the gaps"], size: 11}
+  read: {tone: slate, width: 200, tag: "Read, never edit", title: "Assessors and the AO", body: ["=Re-derive the record from its sources"], size: 11}
+edges:
+  - [roster, rec, {tone: violet}]
+  - [lms, rec, {tone: violet}]
+  - [ex, rec, {tone: violet}]
+  - [rec, isso, {tone: amber}]
+  - [rec, read, {style: dashed}]
+order:
+  - [roster, lms, ex]
+  - [isso, read]

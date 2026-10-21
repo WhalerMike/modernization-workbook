@@ -60,3 +60,9 @@ Sources: `docs/operational-guides/pki-modernization.md` §1 (and front matter), 
 | Vol I Book 03 "The Failure Mode Being Retired" | Ch01 §Manual lifecycle management breaks | Summarized and linked |
 | Vol I Book 03 "The Arithmetic Just Got Worse" | Ch01 §Public TLS lifetimes | Re-verified against CA/B Forum primary sources and restated with program arithmetic |
 | Vol I Book 03 automation stack, revocation, telemetry sections | Ch01 four-part list (forward references) | Linked, not copied; detail belongs to Ch04/Ch08 |
+
+## Revision 2026-10-21 — OMB M-26-15 (post-quantum)
+
+| # | Claim (short) | Where | Verdict | Source |
+|---|---|---|---|---|
+| Q1 | M-26-15 (June 24, 2026): PQC migration plan to OMB and ONCD no later than 120 days (Oct 22, 2026 by count); TLS 1.3 not later than Jan 2, 2030; mitigate as much quantum risk as feasible by Dec 31, 2030; full migration phase 2035 | §post-quantum | verified (added) | https://www.whitehouse.gov/wp-content/uploads/2026/06/M-26-15-Execution-of-the-Migration-to-Post-Quantum-Cryptography.pdf (PDF text extracted and read Oct 21, 2026) |

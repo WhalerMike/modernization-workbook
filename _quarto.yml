@@ -72,6 +72,8 @@ website:
             text: "Book 12 — Security Operations & Telemetry"
           - href: docs/books/b13-governance/index.md
             text: "Book 13 — Governance, Drift & Evidence"
+          - href: docs/books/b14-compliance/index.md
+            text: "Book 14 — Federal Compliance & Authorization"
           - href: docs/books/guides/effective-meetings.md
             text: "Guide: Effective Meetings"
       - href: docs/presentations/index.md
@@ -150,6 +152,10 @@ website:
           href: docs/books/b13-governance/index.md
           contents:
             - auto: "docs/books/b13-governance/*-*.md"
+        - section: "Book 14 — Federal Compliance & Authorization"
+          href: docs/books/b14-compliance/index.md
+          contents:
+            - auto: "docs/books/b14-compliance/*-*.md"
         - section: "Companion guides"
           contents:
             - docs/books/guides/effective-meetings.md

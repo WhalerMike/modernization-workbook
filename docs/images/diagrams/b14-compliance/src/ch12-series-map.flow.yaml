@@ -1,0 +1,44 @@
+# Book 14 Chapter 12 — the Federal Compliance series volumes (left) and the
+# workbook books that carry them now (right). Mapping is from the books'
+# own links to the volumes and the book list: Vol 0 and Vol IV are this
+# book; Vol V goes to planned Book 16; Vols VII and IX to planned Book 15,
+# with parts already in Books 04, 10 and 11. Blue = published book,
+# slate = planned book, green = this book, violet = volume.
+rankdir: LR
+graph: {nodesep: 0.18, ranksep: 0.9}
+nodes:
+  v1: {tone: violet, width: 240, tag: "Vol I", title: "Foundation and transport", size: 11}
+  v8: {tone: violet, width: 240, tag: "Vol VIII", title: "Multi-cloud DNS, DHCP, IPAM", size: 11}
+  v2: {tone: violet, width: 240, tag: "Vol II", title: "Data platform", size: 11}
+  v3: {tone: violet, width: 240, tag: "Vol III", title: "Security operations", size: 11}
+  v0: {tone: violet, width: 240, tag: "Vol 0 and Vol IV", title: "Summary, crosswalk; governance and assurance", size: 11}
+  v10: {tone: violet, width: 240, tag: "Vol X", title: "Governance platform integration", size: 11}
+  v6: {tone: violet, width: 240, tag: "Vol VI", title: "Implementation", size: 11}
+  v79: {tone: violet, width: 240, tag: "Vols VII and IX", title: "Automation; day-2 operations", size: 11}
+  v5: {tone: violet, width: 240, tag: "Vol V", title: "Training and certification", size: 11}
+  bid: {tone: blue, width: 280, title: "Books 02, 03, 04, 07", body: ["=Identity, HR identity, access, PKI"], size: 11}
+  bnet: {tone: blue, width: 280, title: "Books 08, 09, 10", body: ["=DDI, network, cloud boundary"], size: 11}
+  b06: {tone: blue, width: 280, title: "Book 06", body: ["=Data platform"], size: 11}
+  b12: {tone: blue, width: 280, title: "Book 12", body: ["=Security operations"], size: 11}
+  b14: {tone: green, width: 280, title: "Book 14", body: ["=This book"], size: 11}
+  b13: {tone: blue, width: 280, title: "Book 13", body: ["=Governance, drift and evidence"], size: 11}
+  b11: {tone: blue, width: 280, title: "Book 11", body: ["=Zero Trust (Microsoft 365 automation)"], size: 11}
+  b15: {tone: slate, width: 280, title: "Book 15, planned", body: ["=Compliance automation and day-2"], size: 11}
+  b16: {tone: slate, width: 280, title: "Book 16, planned", body: ["=People: training and education"], size: 11}
+edges:
+  - [v1, bid]
+  - [v1, bnet]
+  - [v8, bnet]
+  - [v2, b06]
+  - [v3, b12]
+  - [v3, bid, {style: dashed}]
+  - [v0, b14, {tone: green}]
+  - [v10, b13]
+  - [v6, bnet, {style: dashed}]
+  - [v6, bid, {style: dashed}]
+  - [v6, b12, {style: dashed}]
+  - [v79, b15]
+  - [v79, b11, {style: dashed}]
+  - [v79, bid, {style: dashed}]
+  - [v79, bnet, {style: dashed}]
+  - [v5, b16]

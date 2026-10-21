@@ -1,0 +1,37 @@
+# Book 14 Chapter 01 — the same control stated two ways. A promise is a
+# document assembled for the assessment and true on the day it is signed;
+# proof is evidence the system itself emits, current and re-checkable. Both
+# reach the authorizing official, who alone accepts the residual risk
+# (SP 800-37 Rev. 2, Task R-4). The two columns are the program's argument;
+# the annual testing floor is 44 U.S.C. 3554(b)(5).
+rankdir: TB
+graph: {nodesep: 0.35, ranksep: 0.35}
+clusters:
+  - id: promise
+    label: "A promise"
+    tone: red
+    margin: 8
+    nodes: [p1, p2, p3]
+  - id: proof
+    label: "Proof"
+    tone: green
+    margin: 8
+    nodes: [e1, e2, e3]
+nodes:
+  control: {tone: slate, width: 470, title: "One control in the system security plan", body: ["=For example: every component is in the inventory (CM-8)"], size: 12}
+  p1: {tone: red, width: 215, title: "A statement that it is done", body: ["=Written by the control owner"], size: 11}
+  p2: {tone: red, width: 215, title: "Evidence gathered by hand", body: ["=Screenshots and exports for the assessor"], size: 11}
+  p3: {tone: red, width: 215, title: "True on the day it is signed", body: ["=Ages until the next cycle"], size: 11}
+  e1: {tone: green, width: 215, title: "The system emits the record", body: ["=Asset identity plus time"], size: 11}
+  e2: {tone: green, width: 215, title: "Machine-readable and current", body: ["=Regenerated on a schedule"], size: 11}
+  e3: {tone: green, width: 215, title: "Anyone can re-check it", body: ["=Assessor, ISSO or the next reviewer"], size: 11}
+  ao: {tone: violet, width: 470, title: "Authorizing official", body: ["=Accepts the residual risk on what can be shown, at least annually tested, ideally on an ongoing basis"], size: 12}
+edges:
+  - [control, p1, {tone: red}]
+  - [control, e1, {tone: green}]
+  - [p1, p2, {tone: red}]
+  - [p2, p3, {tone: red}]
+  - [e1, e2, {tone: green}]
+  - [e2, e3, {tone: green}]
+  - [p3, ao, {tone: red, style: dashed, label: "a snapshot"}]
+  - [e3, ao, {tone: green, label: "a record"}]

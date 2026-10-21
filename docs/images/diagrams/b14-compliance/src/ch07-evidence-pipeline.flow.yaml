@@ -1,0 +1,26 @@
+# Book 14 Chapter 07 — the supply chain evidence pipeline. Each release
+# produces an SBOM (SPDX or CycloneDX, CISA 2026 minimum elements), a
+# vulnerability disclosure report joined to the CISA KEV catalog, and
+# exploitability statements (VEX) written by people. The signed set feeds the
+# BOD 26-04 remediation queue (Book 12 Ch06) and the authorization package.
+# Formats and fields verified in the chapter footnotes; the flow is program
+# design.
+rankdir: TB
+graph: {nodesep: 0.3, ranksep: 0.35}
+nodes:
+  src: {tone: slate, width: 470, tag: "Inputs", title: "What goes into a release", body: ["Application code and its dependencies", "Container images and infrastructure as code", "SBOMs and advisories supplied by producers"], size: 11}
+  sbom: {tone: blue, width: 470, tag: "Every release", title: "Generate the SBOM", body: ["=SPDX or CycloneDX, carrying the CISA 2026 minimum elements, transitive dependencies included"], size: 11}
+  vdr: {tone: blue, width: 470, title: "Match to known vulnerabilities", body: ["=Vulnerability disclosure report, joined to the CISA KEV catalog"], size: 11}
+  vex: {tone: amber, width: 470, tag: "People decide", title: "Exploitability statements (VEX)", body: ["=Not affected, affected, fixed or under investigation, each with a justification or an action"], size: 11}
+  store: {tone: green, width: 470, title: "Sign and store", body: ["=Build provenance and signatures; immutable storage kept for the records schedule"], size: 11}
+  queue: {tone: violet, width: 225, title: "Remediation queue", body: ["=BOD 26-04 deadlines, Book 12 Ch06"], size: 11}
+  pkg: {tone: violet, width: 225, title: "Authorization evidence", body: ["=Package and continuous monitoring"], size: 11}
+edges:
+  - [src, sbom]
+  - [sbom, vdr, {tone: blue}]
+  - [vdr, vex, {tone: amber}]
+  - [vex, store, {tone: green}]
+  - [store, queue, {tone: violet}]
+  - [store, pkg, {tone: violet}]
+order:
+  - [queue, pkg]

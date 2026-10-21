@@ -1,0 +1,18 @@
+# Book 14 Chapter 04 — a vendor roadmap is not a commitment. Every vendor
+# capability claim carries the date it was last verified; before it becomes the
+# basis of a plan or an acquisition it is confirmed again with the vendor and,
+# for authorization status, on the FedRAMP Marketplace. A claim that fails the
+# check goes back to the plan as an open item. Program design.
+rankdir: LR
+graph: {nodesep: 0.3, ranksep: 0.3}
+nodes:
+  w: {tone: slate, width: 170, tag: "Written", title: "Dated claim", body: ["=Ships, doesn't ship, certified at a class: as of a date"], size: 12}
+  g: {tone: amber, width: 170, tag: "Before a decision", title: "Confirm again", body: ["=With the vendor; status on the Marketplace"], size: 12}
+  y: {tone: green, width: 170, tag: "Still true", title: "Basis for the plan", body: ["=Re-dated in the record"], size: 12}
+  n: {tone: red, width: 170, tag: "Changed", title: "Open item", body: ["=Plan revised; gap reopened or closed"], size: 12}
+edges:
+  - [w, g]
+  - [g, y, {tone: green}]
+  - [g, n, {style: dashed, tone: red}]
+order:
+  - [y, n]

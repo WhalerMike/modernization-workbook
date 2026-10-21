@@ -26,7 +26,7 @@ A learner who internalizes those six ideas is ready to enter training and pick a
 ## Companion pages
 
 - [Training](training.md) — the how, once the why is in place
-- [Test plans](test-plans.md) — the catalog of what tests govern what
+- [Test plans](../books/b14-compliance/11-the-authorization-package.md) — the catalog of what tests govern what
 
 ---
 

@@ -335,7 +335,7 @@ format:
 <section class="mw-section" id="books">
   <div class="mw-inner">
     <p class="section-label">The Books</p>
-    <h2 class="section-title">Fourteen books published. Four more on the way.</h2>
+    <h2 class="section-title">Fifteen books published. Three more on the way.</h2>
     <p class="section-body">Start with Book 01 for the whole arc, or go straight to the topic in front of you. Every book reads in its Why / What / Who / How order and downloads as one Word document.</p>
     <div class="book-cards">
       <div class="book-card">
@@ -436,6 +436,13 @@ format:
         <div class="book-desc">One authoritative record, controlled change, deterministic rules, continuous drift detection, evidence over attestation and machine-tempo remediation.</div>
         <div class="book-links"><a href="docs/books/b13-governance/index.html">Read</a><a href="downloads/b13-governance-bundle.docx">Word</a><a href="docs/presentations/index.html#book-13">Deck</a></div>
       </div>
+      <div class="book-card">
+        <div class="book-num">Book 14 · 12 chapters</div>
+        <div class="book-title"><a href="docs/books/b14-compliance/index.html">Federal Compliance &amp; Authorization</a></div>
+        <div class="book-q">Why does every control need proof, not a promise?</div>
+        <div class="book-desc">The federal clock, the Moderate baseline and FedRAMP classes, closure with proof, the PM, CP, SR, PT and AT families, and the authorization package.</div>
+        <div class="book-links"><a href="docs/books/b14-compliance/index.html">Read</a><a href="downloads/b14-compliance-bundle.docx">Word</a><a href="docs/presentations/index.html#book-14">Deck</a></div>
+      </div>
     </div>
   </div>
 </section>
@@ -446,8 +453,8 @@ format:
     <h2 class="section-title">Built to be checked, not taken on trust.</h2>
     <p class="section-body">Each book keeps a verification log beside its chapters: every claim, the source it was checked against, and what changed when the source disagreed with the earlier draft.</p>
     <div class="arc-grid">
-      <div class="arc-phase"><div class="phase-num">14</div><div class="phase-name">Books</div><div class="phase-desc">Published as drafts, from orientation to governance and evidence</div></div>
-      <div class="arc-phase"><div class="phase-num">177</div><div class="phase-name">Chapters</div><div class="phase-desc">Plus thirty appendices of checklists, matrices, mappings and templates</div></div>
+      <div class="arc-phase"><div class="phase-num">15</div><div class="phase-name">Books</div><div class="phase-desc">Published as drafts, from orientation to compliance and authorization</div></div>
+      <div class="arc-phase"><div class="phase-num">189</div><div class="phase-name">Chapters</div><div class="phase-desc">Plus thirty-two appendices of checklists, matrices, mappings and templates</div></div>
       <div class="arc-phase"><div class="phase-num">4</div><div class="phase-name">Questions</div><div class="phase-desc">Why, What, Who and How, in that order, in every book</div></div>
       <div class="arc-phase"><div class="phase-num">15</div><div class="phase-name">Minutes</div><div class="phase-desc">A presentation per book, each with a narrated, captioned edition</div></div>
     </div>
@@ -460,7 +467,6 @@ format:
     <h2 class="section-title">Eighteen books in all.</h2>
     <p class="section-body">The remaining books are being built from the workbook's earlier documents, which stay in the repository until their book is published. <a href="docs/books/index.html">The Workbook Books</a> lists every book and its opening question.</p>
     <div class="badge-grid">
-      <div class="badge"><b>B14</b>Federal Compliance &amp; Authorization</div>
       <div class="badge"><b>B15</b>Compliance Automation &amp; Day-2</div>
       <div class="badge"><b>B16</b>Training &amp; Education</div>
       <div class="badge"><b>B17</b>AI Identity Governance</div>

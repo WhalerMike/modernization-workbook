@@ -14,7 +14,7 @@ The workbook supplies the principles, architecture, and governance framing. Thes
 | Continuous Monitoring & Evidence Fabric | [Charter](../books/b13-governance/12-governance-at-scale.md) | [Plan](../books/b13-governance/12-governance-at-scale.md) |
 | Privileged Access & Administrative Identity | [Charter](privileged-access-charter.md) | [Plan](privileged-access-plan.md) |
 | Data Platform Identity Transformation | [Charter](data-platform-charter.md) | [Plan](data-platform-plan.md) |
-| Supply Chain & Software Bill of Materials | [Charter](supply-chain-charter.md) | [Plan](supply-chain-plan.md) |
+| Supply Chain & Software Bill of Materials | [Charter](../books/b14-compliance/07-supply-chain-risk-management.md) | [Plan](../books/b14-compliance/07-supply-chain-risk-management.md) |
 
 ## Suggested sequence
 

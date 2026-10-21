@@ -1,0 +1,22 @@
+# Chapter 06 — the NIST SP 800-34 Rev. 1 seven-step contingency planning
+# process, with the CP controls each step feeds. Policy and the business
+# impact analysis come first; strategies and the plan follow; testing,
+# training and exercises and plan maintenance feed lessons back into the plan.
+rankdir: TB
+graph: {nodesep: 0.25, ranksep: 0.3}
+nodes:
+  s1: {tone: slate, width: 440, tag: "Step 1 · CP-1", title: "Develop the contingency planning policy", size: 12}
+  s2: {tone: amber, width: 440, tag: "Step 2 · CP-2, CP-2(8)", title: "Conduct the business impact analysis", body: ["=Sets MTD, RTO and RPO; signed by mission owners"], size: 12}
+  s3: {tone: slate, width: 440, tag: "Step 3", title: "Identify preventive controls", size: 12}
+  s4: {tone: blue, width: 440, tag: "Step 4 · CP-6 to CP-9", title: "Create contingency strategies", body: ["=Backup, alternate storage, alternate processing, alternate telecommunications"], size: 12}
+  s5: {tone: blue, width: 440, tag: "Step 5 · CP-2, CP-10", title: "Develop the system contingency plan", size: 12}
+  s6: {tone: violet, width: 440, tag: "Step 6 · CP-3, CP-4", title: "Plan testing, training and exercises", size: 12}
+  s7: {tone: violet, width: 440, tag: "Step 7 · CP-2 review and update", title: "Plan maintenance", size: 12}
+edges:
+  - [s1, s2]
+  - [s2, s3]
+  - [s3, s4]
+  - [s4, s5]
+  - [s5, s6]
+  - [s6, s7]
+  - [s7, s5, {style: dashed, label: "lessons learned", attrs: "constraint=false"}]

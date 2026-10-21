@@ -1,0 +1,22 @@
+# Book 14 Chapter 01 — how a system becomes "Moderate". FIPS 199 assigns an
+# impact value per security objective for each information type; FIPS 200
+# takes the high-water mark across them; a moderate-impact system selects the
+# SP 800-53B moderate baseline (287 controls and enhancements in release
+# 5.2.0), tailored, and the authorizing official decides. FedRAMP Class C,
+# which includes the current Moderate baseline (NTC-0004), certifies a
+# provider's service: a separate fact the agency inherits from.
+rankdir: TB
+graph: {nodesep: 0.35, ranksep: 0.4}
+nodes:
+  types: {tone: slate, width: 470, tag: "FIPS 199", title: "Categorize each information type", body: ["=Confidentiality, integrity and availability each rated low, moderate or high", "=Moderate: loss could have a serious adverse effect"], size: 11}
+  hwm: {tone: slate, width: 470, tag: "FIPS 200", title: "Take the high-water mark", body: ["=At least one objective moderate and none high: a moderate-impact system"], size: 11}
+  base: {tone: blue, width: 470, tag: "SP 800-53B", title: "Select the moderate baseline, then tailor it", body: ["=287 controls and enhancements in release 5.2.0, plus the privacy baseline where it applies"], size: 11}
+  ato: {tone: violet, width: 230, title: "The agency's own authorization", body: ["=System security plan, assessment, POA&M, AO decision"], size: 11}
+  fr: {tone: amber, width: 230, tag: "FedRAMP Class C", title: "A provider's certification", body: ["=Includes the current Moderate baseline; inherited, not a substitute"], size: 11}
+edges:
+  - [types, hwm]
+  - [hwm, base]
+  - [base, ato, {tone: violet}]
+  - [fr, ato, {tone: amber, style: dashed, label: "reused as evidence"}]
+order:
+  - [ato, fr]

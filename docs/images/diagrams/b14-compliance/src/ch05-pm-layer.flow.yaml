@@ -1,0 +1,26 @@
+# Chapter 05 — the program management controls as the organization-level
+# layer. The information security program plan (PM-1) documents the PM and
+# common controls; three organization-wide strategies (risk PM-9, continuous
+# monitoring PM-31, supply chain PM-30) sit under it; the supporting PM
+# controls are listed beside them; each system's controls inherit the
+# strategies and report status, POA&Ms and metrics back up.
+rankdir: TB
+graph: {nodesep: 0.25, ranksep: 0.4}
+nodes:
+  ispp: {tone: violet, width: 440, tag: "PM-1", title: "Information security program plan", body: ["=Approved by a senior official; documents the PM and common controls"], size: 12}
+  risk: {tone: violet, width: 175, tag: "PM-9", title: "Risk management strategy", body: ["=Risk tolerance"], size: 12}
+  conmon: {tone: violet, width: 175, tag: "PM-31", title: "Continuous monitoring strategy", body: ["=Metrics and frequencies"], size: 12}
+  scrm: {tone: violet, width: 175, tag: "PM-30", title: "Supply chain risk strategy", body: ["=Supplier assessment"], size: 12}
+  support: {tone: slate, width: 440, tag: "Supporting program controls", title: "Roles, records and routines", body: ["Senior official PM-2; authorization process PM-10", "System inventory PM-5; mission processes PM-11; architecture PM-7", "POA&M process PM-4; measures PM-6", "Testing, training and monitoring PM-14; contacts PM-15"], size: 12}
+  sys: {tone: blue, width: 440, tag: "Each system", title: "System controls inherit the strategies", body: ["=Contingency planning, assessment, continuous monitoring and the rest"], size: 12}
+edges:
+  - [ispp, risk]
+  - [ispp, conmon]
+  - [ispp, scrm]
+  - [risk, support]
+  - [conmon, support]
+  - [scrm, support]
+  - [support, sys]
+  - [sys, ispp, {style: dashed, label: "status, POA&Ms, metrics", lw: 70, attrs: "constraint=false"}]
+order:
+  - [risk, conmon, scrm]

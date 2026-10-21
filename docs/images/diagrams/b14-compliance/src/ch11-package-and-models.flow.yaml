@@ -1,0 +1,26 @@
+# Book 14 Chapter 11 — the four parts of an authorization package, the
+# SP 800-37 Rev. 2 task that produces each (S-6, A-2, A-4, A-6), and the
+# OSCAL 1.2.3 model that carries it. Import links follow the 1.2.3 schemas:
+# the assessment plan imports the SSP, the assessment results import the
+# assessment plan, and the POA&M imports the SSP (not the assessment plan).
+# R-1 assembles the package; R-4 is the authorizing official's decision.
+rankdir: TB
+graph: {nodesep: 0.25, ranksep: 0.45}
+nodes:
+  ssp: {tone: blue, width: 140, tag: "Task S-6", title: "System security plan", body: ["=OSCAL System Security Plan"], size: 11}
+  sap: {tone: blue, width: 140, tag: "Task A-2", title: "Assessment plan", body: ["=OSCAL Assessment Plan"], size: 11}
+  sar: {tone: blue, width: 140, tag: "Task A-4", title: "Assessment report", body: ["=OSCAL Assessment Results"], size: 11}
+  poam: {tone: blue, width: 140, tag: "Task A-6", title: "POA&M", body: ["=OSCAL Plan of Action and Milestones"], size: 11}
+  pkg: {tone: violet, width: 440, tag: "Task R-1", title: "Authorization package", body: ["=Plans, assessment reports, POA&M and an executive summary; may be generated from a tool"], size: 12}
+  dec: {tone: green, width: 440, tag: "Task R-4", title: "Authorizing official's decision", body: ["=ATO or ATU, with a termination date or a review frequency; risk acceptance can't be delegated"], size: 12}
+edges:
+  - [sap, ssp, {style: dashed, label: "imports", attrs: "constraint=false"}]
+  - [sar, sap, {style: dashed, label: "imports", attrs: "constraint=false"}]
+  - [poam, ssp, {style: dashed, label: "imports", attrs: "constraint=false"}]
+  - [ssp, pkg]
+  - [sap, pkg]
+  - [sar, pkg]
+  - [poam, pkg]
+  - [pkg, dec, {tone: green}]
+order:
+  - [ssp, sap, sar, poam]

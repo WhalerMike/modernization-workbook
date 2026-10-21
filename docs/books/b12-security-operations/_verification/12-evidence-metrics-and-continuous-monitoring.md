@@ -109,3 +109,5 @@ Writer W6. Sources: `docs/compliance/Vol_III_Book_07_Multi_Cloud_Evidence_Fabric
 | D4 | Ch02 cross-reference: DLP alert-tuning decision → SOC under Ch10; Ch09 for DLP policies | wording | — |
 | D5 | CISA one-hour clock: identified by top-level CSIRT, SOC or IT department (Ch10, App A) | corrected | https://www.cisa.gov/federal-incident-notification-guidelines (opened Oct 21, 2026) |
 | D6 | Ch05: the two Microsoft pages disagree on Defender XDR connector availability in DoD; stated explicitly | clarified | existing [^c05-feature], [^c05-govfeat] |
+
+| X1 | FedRAMP 2026 rules launch date: was June 24, now June 25 to match Books 00, 01, 02, 14 | Ch08, Ch12 | corrected (consistency) | FedRAMP announcement "Propelling Change: FedRAMP Launches Consolidated Rules for 2026," June 25, 2026; changelog https://www.fedramp.gov/2026/changelog/ (opened Oct 21, 2026): first entry 2026.06.25.01, "changes made in each release after June 23, 2026" |

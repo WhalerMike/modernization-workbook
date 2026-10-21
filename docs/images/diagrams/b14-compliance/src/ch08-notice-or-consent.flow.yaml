@@ -1,0 +1,23 @@
+# Book 14 Chapter 08 — notice or consent. A collection required by statute or
+# executive order needs notice and, for a system of records, a Privacy Act
+# statement (Privacy Act (e)(3), OMB A-108 section 6.l). Voluntary collection
+# or a use beyond the original authority needs recorded consent (PT-4, program
+# design). Web measurement follows OMB M-10-22: easy opt-out for Tiers 1 and 2,
+# opt-in for Tier 3. Verified in the chapter footnotes.
+rankdir: TB
+graph: {nodesep: 0.25, ranksep: 0.4}
+nodes:
+  ask: {tone: slate, width: 470, title: "A proposed collection or use of PII", size: 12}
+  stat: {tone: blue, width: 200, tag: "Required by statute", title: "Notice", body: ["Website privacy policy", "Privacy Act statement at collection, spoken on the phone"], size: 11}
+  vol: {tone: amber, width: 200, tag: "Voluntary or new use", title: "Notice plus consent", body: ["Unchecked opt-in", "Recorded, withdrawable"], size: 11}
+  web: {tone: amber, width: 200, tag: "Web measurement", title: "M-10-22 tiers", body: ["Tiers 1 and 2: easy opt-out", "Tier 3, with PII: opt-in"], size: 11}
+  ev: {tone: green, width: 470, title: "Evidence for PT-4 and PT-5", body: ["=Notice text, consent records and the SORN citation, kept with the system"], size: 11}
+edges:
+  - [ask, stat, {tone: blue}]
+  - [ask, vol, {tone: amber}]
+  - [ask, web, {tone: amber}]
+  - [stat, ev, {tone: green}]
+  - [vol, ev, {tone: green}]
+  - [web, ev, {tone: green}]
+order:
+  - [stat, vol, web]

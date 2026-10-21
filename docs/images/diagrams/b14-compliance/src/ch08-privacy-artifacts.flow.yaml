@@ -1,0 +1,28 @@
+# Book 14 Chapter 08 — the privacy artifacts in order and the loop that keeps
+# them true. Threshold decision and PIA (E-Government Act section 208, RA-8),
+# authority and purpose (PT-2, PT-3), notice and consent (PT-4, PT-5), SORN
+# and matching (PT-6, PT-8; Privacy Act and OMB A-108), operation under the
+# SAOP-approved privacy plan (A-130), and the data-flow map compared with the
+# system on change (privacy continuous monitoring, A-108). Program design built
+# on the requirements cited in the chapter.
+rankdir: TB
+graph: {nodesep: 0.3, ranksep: 0.35}
+nodes:
+  concept: {tone: slate, width: 470, title: "System concept", body: ["=Will it collect, use or share PII?"], size: 11}
+  pia: {tone: amber, width: 470, title: "Threshold decision and PIA", body: ["=Is a section 208 PIA required? Is this a Privacy Act system of records?"], size: 11}
+  auth: {tone: blue, width: 470, tag: "PT-2, PT-3", title: "Authority and purpose", body: ["=A legal citation and a documented purpose for every PII element"], size: 11}
+  notice: {tone: blue, width: 225, tag: "PT-4, PT-5", title: "Notice and consent", body: ["Privacy policy", "Privacy Act statements", "Consent where voluntary"], size: 11}
+  sorn: {tone: blue, width: 225, tag: "PT-6, PT-8", title: "SORN and matching", body: ["OMB and Congress review", "Federal Register", "Matching agreement if needed"], size: 11}
+  run: {tone: green, width: 470, title: "Collect and operate", body: ["=Under the privacy plan the SAOP approved before authorization"], size: 11}
+  map: {tone: violet, width: 470, title: "Data-flow map and privacy continuous monitoring", body: ["=Actual flows compared with the PIA, SORN and purpose matrix"], size: 11}
+edges:
+  - [concept, pia]
+  - [pia, auth, {tone: blue}]
+  - [auth, notice, {tone: blue}]
+  - [auth, sorn, {tone: blue}]
+  - [notice, run, {tone: green}]
+  - [sorn, run, {tone: green}]
+  - [run, map, {tone: violet}]
+  - [map, pia, {style: dashed, tone: amber, label: "change detected", attrs: "constraint=false"}]
+order:
+  - [notice, sorn]

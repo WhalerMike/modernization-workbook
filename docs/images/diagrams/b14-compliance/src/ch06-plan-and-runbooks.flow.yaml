@@ -1,0 +1,18 @@
+# Chapter 06 — the plan owns the beginning and the end of a contingency;
+# the runbooks from the technical books are its recovery-phase appendices.
+# Activation and notification, recovery in priority order, reconstitution;
+# testing and updates loop back to the start.
+rankdir: TB
+graph: {nodesep: 0.3, ranksep: 0.4}
+nodes:
+  act: {tone: violet, width: 205, tag: "The plan", title: "Activation and notification", body: ["Thresholds", "Coordinator's declaration", "Notification tree", "Team assembly"], size: 12}
+  rec: {tone: blue, width: 205, tag: "Runbooks as appendices", title: "Recovery, in priority order", body: ["Name resolution, SD-WAN", "Emergency identity access", "Database failover", "Application failover", "Logging"], size: 12}
+  rcn: {tone: green, width: 205, tag: "The plan", title: "Reconstitution", body: ["Validation", "Failback", "Written deactivation", "After-action review"], size: 12}
+  upd: {kind: pill, tone: amber, text: "Tested, trained, and updated after every test and activation"}
+edges:
+  - [act, rec]
+  - [rec, rcn]
+  - [rcn, upd]
+  - [upd, act, {style: dashed, attrs: "constraint=false"}]
+order:
+  - [act, rec, rcn]
