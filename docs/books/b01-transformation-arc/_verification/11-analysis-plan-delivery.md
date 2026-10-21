@@ -51,3 +51,9 @@ Editor: W5. Sources: the series chapter in place (old Chapter 03, "Analysis → 
 | Whitepaper Principle 4 table (CISA ZT stage / governance posture) | Rung table with a Chapter 03 stage column | Corrected per claim 10 |
 | Whitepaper "What this means for authorizing officials" callout | Last paragraph of the actuation section | Federal-expectation claim corrected |
 | Whitepaper Figure 13 (`rId94.png`) | `ch11-actuation-ladder.flow.yaml` | The five-data-plane half is carried in prose; the Word extract isn't reused |
+
+## Change log
+
+| Date | Change |
+|---|---|
+| 2026-10-21 | Extension attribute reconciliation: AU rule moved from `extensionAttribute1` (Book 03's job code) to `extensionAttribute4` (region code); added a sentence linking the program attribute map. |

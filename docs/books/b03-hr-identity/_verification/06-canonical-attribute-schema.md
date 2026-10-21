@@ -50,3 +50,9 @@ Footnote keys renamed `c05-*` → `c06-*`. Every kept footnote was re-opened on 
 | Writers | kept | unchanged |
 | How other pages use this schema | kept | edited: B02 link now `../b02-identity/09-building-the-entra-target.md` with the Book 02 chapter title |
 | Continue the series | kept as "Continue the book" | edited: Next now Chapter 07 — Who Owns Workforce Identity |
+
+## Change log
+
+| Date | Change |
+|---|---|
+| 2026-10-21 | Extension attribute reconciliation: added "Program attribute map" section (user slots 1-15 and device slots), the single home of the map; slots 1-3 and 10-12 unchanged; design rules 2 and 5, Writers bullets, the in-this-chapter callout and "How other pages use this schema" updated to point to it. No new footnotes (device claim cites existing `c06-onprem-ext`). |

@@ -328,7 +328,7 @@ CA025, block administration from anything that isn't a PAW. `797f4846-ba00-4fd7-
   "conditions": {
     "users": { "includeGroups": ["{group:CA-Persona-Admins}"], "excludeGroups": ["{group:CA-Exclude-EmergencyAccess}"] },
     "applications": { "includeApplications": ["MicrosoftAdminPortals", "797f4846-ba00-4fd7-ba43-dac1f8f63013"] },
-    "devices": { "deviceFilter": { "mode": "exclude", "rule": "device.extensionAttribute1 -eq \"PAW\"" } },
+    "devices": { "deviceFilter": { "mode": "exclude", "rule": "device.extensionAttribute12 -eq \"PAW\"" } },
     "clientAppTypes": ["all"]
   },
   "grantControls": { "operator": "OR", "builtInControls": ["block"] }
@@ -705,7 +705,7 @@ CA030, block production applications for everyone but production operators. The 
 | CA019-AllUsers-HighSigninRisk-Block | CA014 | `"signInRiskLevels": ["high"]`; `block`; no session controls |
 | CA023-WebOnly-BlockDesktopAndMobileClients | CA024 | `"clientAppTypes": ["mobileAppsAndDesktopClients"]`; `block`; no session controls |
 | CA026-ServerAdmins-AzureManagement-RequirePhishResistantCompliant | CA003 | Include `{group:CA-Access-ServerAdmins}`; applications `797f4846-ba00-4fd7-ba43-dac1f8f63013` and `{app:Azure Virtual Desktop}`; `operator` `AND` with `compliantDevice` and the custom strength |
-| CA028-SharedDevice-KioskApps-RequireCompliant | CA004 | Include `{group:CA-Persona-SharedDevice}`; the kiosk app IDs; `deviceFilter` mode `include`, rule `device.extensionAttribute1 -eq "Shared"`; sign-in frequency 8 hours instead of persistent browser |
+| CA028-SharedDevice-KioskApps-RequireCompliant | CA004 | Include `{group:CA-Persona-SharedDevice}`; the kiosk app IDs; `deviceFilter` mode `include`, rule `device.extensionAttribute12 -in ["Kiosk","SharedDevice"]`; sign-in frequency 8 hours instead of persistent browser |
 | CA029-Internals-OffNetwork-SessionLimits | CA006 | Locations: include `All`, exclude `{location:NL-TrustedNetworks}`; sign-in frequency 4 hours; persistent browser `never` |
 | CA031-ProdOperators-ProductionApps-RequirePhishResistantCompliant | CA030 | Include `{group:CA-Access-ProdOperators}` only; `operator` `AND` with `compliantDevice` and strength `…0004`; sign-in frequency 4 hours |
 | CA032-AllUsers-StagingApps-BlockOffNetwork | CA030 | Rule for `Staging`; no operator exclusion; locations include `All`, exclude `{location:NL-TrustedNetworks}` |

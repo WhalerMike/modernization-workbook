@@ -56,28 +56,30 @@ The table maps commonly used Active Directory user attributes to Microsoft Graph
 | `userCertificate` | No user property in Graph v1.0 | Synced for Exchange; certificate-based authentication uses its own username bindings instead |
 | `msDS-UserPasswordExpiryTimeComputed` | No equivalent | Cloud password policy is separate |
 | `adminCount` | No equivalent | PIM replaces AdminSDHolder protection |
-| `accountExpires` | No equivalent | The program copies the HR end date to `extensionAttribute8` |
+| `accountExpires` | No equivalent | The program copies the HR end date to `extensionAttribute3` |
 | `extensionAttribute1`–`15` | `onPremisesExtensionAttributes/extensionAttribute1`–`15` | Program assignments below |
 
 ### Extension attribute assignments
 
-The program assigns the fifteen extension attributes as follows. These are design choices; any agency can reassign them, but the dynamic groups, Conditional Access personas, and workflows in Chapters 09 and 10 assume this layout.
+The program's assignment of the fifteen extension attributes is the program attribute map in [Book 03, Chapter 06](../b03-hr-identity/06-canonical-attribute-schema.md#program-attribute-map), which every book uses. Any agency can reassign the slots, but the dynamic groups, Conditional Access personas, workflows and module in this book assume that map. The slots this book reads are:
 
 | Attribute | Program meaning | Used by |
 |---|---|---|
-| `extensionAttribute1` | Region | Dynamic groups |
-| `extensionAttribute2` | Department code | Dynamic groups (alongside `department`) |
-| `extensionAttribute3` | Division | Mover trigger; dynamic administrative units |
-| `extensionAttribute4` | Role | Mover trigger; access package auto-assignment |
-| `extensionAttribute5` | Cost center | License assignment groups |
-| `extensionAttribute6` | Classification (worker type: Employee, Contractor) | Conditional Access Internals persona |
-| `extensionAttribute7` | Hire date from HR | Mapped to `employeeHireDate` by a sync rule |
-| `extensionAttribute8` | End date from HR | Mapped to `employeeLeaveDateTime` by a sync rule |
+| `extensionAttribute2` | Hire date, AD-side carrier | Mapped to `employeeHireDate` by a sync rule |
+| `extensionAttribute3` | Leave date, AD-side carrier | Mapped to `employeeLeaveDateTime` by a sync rule |
+| `extensionAttribute4` | Region code | Dynamic groups |
+| `extensionAttribute5` | Cost center code | License assignment groups |
+| `extensionAttribute6` | Division code | Mover trigger; dynamic administrative units |
+| `extensionAttribute7` | Account type: `Standard`, `Service`, `Privileged` | Conditional Access Admins persona; service account scoping |
 | `extensionAttribute9` | Clearance level | Restricted access packages |
-| `extensionAttribute10` | Account type (Standard, Service, Privileged) | Conditional Access Admins persona; service account scoping |
-| `extensionAttribute11`–`15` | Reserved | `extensionAttribute15` = `DoNotSync` excludes an object from sync |
+| `extensionAttribute10` | Organization code | Dynamic groups (alongside `department`) |
+| `extensionAttribute11` | Worker type code, such as `EMP` or `CTR` | Conditional Access Internals persona |
+| `extensionAttribute12` | Position category | Mover trigger; access package auto-assignment |
+| `extensionAttribute15` | `DoNotSync` | Excludes an object from sync |
 
-Lifecycle Workflows read the native `employeeHireDate` and `employeeLeaveDateTime` properties, not the extension attributes. For synced users, map the HR dates from AD into those properties during sync, as Microsoft documents for Lifecycle Workflows.[^aC-lcw-sync-attributes] Extension attributes 7 and 8 are the AD-side carriers for that mapping.
+Earlier versions of this appendix gave department code, classification and role their own slots. They are the organization code, worker type code and position category of the program map, and the hire and end dates moved to slots 2 and 3, where Microsoft's Oracle HCM worksheet puts them. Where a native property exists, it holds the value and the slot is the copy a rule can read: `department` beside the organization code, `employeeType` beside the worker type code, and `employeeOrgData` beside the division and cost center codes.
+
+Lifecycle Workflows read the native `employeeHireDate` and `employeeLeaveDateTime` properties, not the extension attributes. For synced users, map the HR dates from AD into those properties during sync, as Microsoft documents for Lifecycle Workflows.[^aC-lcw-sync-attributes] Extension attributes 2 and 3 are the AD-side carriers for that mapping.
 
 ## Conditional Access policy templates
 
@@ -344,9 +346,9 @@ function Get-FMPUserInventory {
         'Title', 'Company', 'Manager', 'DistinguishedName', 'Enabled', 'PasswordNeverExpires',
         'PasswordLastSet', 'LastLogonDate', 'WhenCreated', 'WhenChanged', 'MemberOf',
         'ServicePrincipalName', 'AdminCount', 'AccountExpirationDate',
-        'extensionAttribute1', 'extensionAttribute2', 'extensionAttribute3', 'extensionAttribute4',
-        'extensionAttribute5', 'extensionAttribute6', 'extensionAttribute7', 'extensionAttribute8',
-        'extensionAttribute9', 'extensionAttribute10'
+        'extensionAttribute2', 'extensionAttribute3', 'extensionAttribute4', 'extensionAttribute5',
+        'extensionAttribute6', 'extensionAttribute7', 'extensionAttribute9', 'extensionAttribute10',
+        'extensionAttribute11', 'extensionAttribute12'
     )
     $nonRoutablePattern = '\.(local|internal|corp|lan|ad)$'
     $staleCutoff = (Get-Date).AddDays(-90)
@@ -387,16 +389,16 @@ function Get-FMPUserInventory {
             AdminCount           = $u.AdminCount
             OU                   = ($u.DistinguishedName -split ',', 2)[1]
             ExtensionAttributes  = [PSCustomObject]@{
-                Region         = $u.extensionAttribute1
-                Department     = $u.extensionAttribute2
-                Division       = $u.extensionAttribute3
-                Role           = $u.extensionAttribute4
-                CostCenter     = $u.extensionAttribute5
-                Classification = $u.extensionAttribute6
-                HireDate       = $u.extensionAttribute7
-                EndDate        = $u.extensionAttribute8
-                ClearanceLevel = $u.extensionAttribute9
-                AccountType    = $u.extensionAttribute10
+                Region           = $u.extensionAttribute4
+                OrgCode          = $u.extensionAttribute10
+                Division         = $u.extensionAttribute6
+                PositionCategory = $u.extensionAttribute12
+                CostCenter       = $u.extensionAttribute5
+                WorkerType       = $u.extensionAttribute11
+                HireDate         = $u.extensionAttribute2
+                EndDate          = $u.extensionAttribute3
+                ClearanceLevel   = $u.extensionAttribute9
+                AccountType      = $u.extensionAttribute7
             }
             MigrationFlags       = ($flags -join ',')
         }

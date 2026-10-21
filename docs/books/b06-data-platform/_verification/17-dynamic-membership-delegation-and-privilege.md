@@ -72,3 +72,9 @@ Checked October 20, 2026. Source: the existing page (former Book 07, Chapter 2) 
 | — | Continue the book | added |
 
 Diagram source edited: `book-07-ch02-attribute-pipeline.flow.yaml` ("Chapter 1" → "Chapter 16"). Needs re-render. `book-07-ch02-privileged-access.flow.yaml` checked, no change.
+
+## Change log
+
+| Date | Change |
+|---|---|
+| 2026-10-21 | Extension attribute reconciliation: example rule moved from directory extension properties (`extension_<appId>_orgCode`/`positionCategory`) to the program carriers `extensionAttribute10`/`12`, value `ANALYST` as in Book 03 Ch 10; added the program attribute map link; callout no longer mentions `<appId>`. |

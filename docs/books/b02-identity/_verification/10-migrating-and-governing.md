@@ -131,3 +131,9 @@ Source: `docs/operational-guides/identity/identity-modernization.md` (§9–§15
 | Closing document footer (version, classification, Gitea commit rule) | — | Not carried: governance boilerplate |
 | Compliance Amendment: FIDO2 / PIV / CAC mapping (IA-2(6)) | Ch10 "Multifactor authentication and separate devices (IA-2)" | Control text corrected |
 | Compliance Amendment: PAW guidance (AC-6(7)) | Ch10 "Reviewing privileged access (AC-6(7))" and "Privileged access workstations" | Control mapping corrected |
+
+## Change log
+
+| Date | Change |
+|---|---|
+| 2026-10-21 | Extension attribute reconciliation: mover trigger carriers `extensionAttribute3`/`4` -> `extensionAttribute6` (division code)/`extensionAttribute12` (position category), linked to the program attribute map. FedRAMP date fixed: Consolidated Rules for 2026 launched June 25, 2026 (was June 24), per FedRAMP's announcement post dated June 25, 2026 (new footnote `c10-fedramp-launch`, verified Oct 21, 2026). |

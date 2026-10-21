@@ -45,16 +45,16 @@ Either way, a provisioning service account writes the attribute, and self-servic
 
 Entra dynamic rules can read a fixed set of user properties. Microsoft's current list includes `department`, `companyName`, `jobTitle`, `employeeId`, `employeeHireDate` (preview), `userType`, `accountEnabled`, and location fields such as `city`, `country` and `usageLocation`. Rules can also use the fifteen `extensionAttribute1`–`extensionAttribute15` values, which are commonly synced from on-premises AD, and **custom extension properties** (directory extension properties, `user.extension_<appId>_<name>`), which can be synced from AD or created through Microsoft Graph.[^c17-dyn] Two cautions apply. First, not every attribute on the user object is usable: `employeeType`, for example, isn't in the supported-properties list at the time of writing, so check that list before designing around any attribute. Second, multi-value extension properties aren't supported in rules.[^c17-dyn]
 
-Good rule inputs are HR-owned **codes** that change only when the business fact changes: an organization code in a directory extension property, not a display string someone will eventually retype. Publish a small, documented set of HR-sourced access attributes (organization code, position category, employment status) and write rules only against those:
+Good rule inputs are HR-owned **codes** that change only when the business fact changes: an organization code, not a display string someone will eventually retype. Publish a small, documented set of HR-sourced access attributes (organization code, position category, employment status) and write rules only against those. The program's carriers are fixed in the [program attribute map](../b03-hr-identity/06-canonical-attribute-schema.md#program-attribute-map): organization code in `extensionAttribute10` and position category in `extensionAttribute12`, with account state in the native `accountEnabled`. A directory extension property works the same way where an agency has no free extension attribute.
 
 ::: {.callout-warning}
-The rule below is illustrative: `<appId>` and the codes are placeholders for the agency's own extension properties and code lists. Validate any rule before it governs access, as described below.
+The rule below is illustrative: the codes are placeholders for the agency's own code lists. Validate any rule before it governs access, as described below.
 :::
 
 ```text
 (user.accountEnabled -eq true) -and (user.userType -eq "Member")
-  -and (user.extension_<appId>_orgCode -in ["FIN-LED","FIN-AP"])
-  -and (user.extension_<appId>_positionCategory -eq "Analyst")
+  -and (user.extensionAttribute10 -in ["FIN-LED","FIN-AP"])
+  -and (user.extensionAttribute12 -eq "ANALYST")
 ```
 
 A rule body can't exceed 3,072 characters, and a tenant can have at most 15,000 dynamic membership groups.[^c17-dyn] Prefer `-eq`, `-startsWith` and `-in` over `-match`, `-contains` and chains of `-or`; Microsoft says such rules process faster, and they review more easily.[^c17-processing] Every access rule excludes disabled accounts and guests explicitly, as above.
