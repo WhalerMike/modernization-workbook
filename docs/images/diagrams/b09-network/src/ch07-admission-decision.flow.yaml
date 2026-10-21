@@ -1,0 +1,36 @@
+# Chapter 07 — one port admission decision. The switch first asks whether a
+# supplicant answers 802.1X; if not, MAC Authentication Bypass classifies the
+# device into the IoT or guest segment. If it does, the RADIUS/NAC server
+# checks the EAP-TLS machine certificate, then Intune compliance, and the
+# device lands in quarantine, remediation or production before it receives a
+# routable address. VLAN tiers are the program's design, not a standard.
+rankdir: TB
+graph: {nodesep: 0.2, ranksep: 0.35}
+nodes:
+  start: {kind: pill, tone: slate, width: 250, text: "Device connects to a switch port or the managed SSID"}
+  q1: {tone: amber, width: 210, tag: "Switch", title: "Does a supplicant answer 802.1X?", size: 12}
+  mab: {tone: amber, width: 180, tag: "MAC Authentication Bypass", title: "Approved IoT or OT device class?", body: ["=Classification, not authentication"], size: 12}
+  iot: {tone: slate, width: 180, tag: "IoT segment", title: "Management systems only", size: 12}
+  guest: {tone: slate, width: 180, tag: "Guest segment", title: "Internet only", size: 12}
+  q2: {tone: amber, width: 210, tag: "RADIUS / NAC server", title: "Valid EAP-TLS machine certificate?", body: ["=Chains to the device identity CA, not revoked"], size: 12}
+  quar: {tone: red, width: 170, tag: "Quarantine", title: "Captive portal only", body: ["=No internal routing or names"], size: 12}
+  q3: {tone: amber, width: 210, tag: "Intune compliance retrieval", title: "Is the device compliant?", size: 12}
+  rem: {tone: amber, width: 170, tag: "Remediation", title: "Update and management endpoints only", size: 12}
+  prod: {tone: green, width: 210, tag: "Production", title: "Agency resources per ACL", size: 12}
+  note: {kind: pill, tone: violet, width: 380, text: "Change of Authorization moves the port when compliance changes; re-authentication each shift is the backstop"}
+edges:
+  - [start, q1]
+  - [q1, mab, {label: "no"}]
+  - [q1, q2, {label: "yes"}]
+  - [mab, iot, {label: "yes"}]
+  - [mab, guest, {label: "no", attrs: "minlen=2"}]
+  - [q2, quar, {label: "no", tone: red}]
+  - [q2, q3, {label: "yes"}]
+  - [q3, rem, {label: "no", tone: amber}]
+  - [q3, prod, {label: "yes", tone: green}]
+  - [prod, note, {style: dashed, tone: violet}]
+  - [iot, guest, {style: invis}]
+order:
+  - [q1, mab]
+  - [quar, q2, iot]
+  - [rem, q3, guest]

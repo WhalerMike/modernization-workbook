@@ -1,0 +1,16 @@
+# Chapter 06 — decomposing a chatty transaction's network latency: a branch
+# device acts on the first leg only; cutting round trips dominates.
+# Illustrative inputs: 30 sequential round trips; one-way leg latencies shown.
+rankdir: TB
+nodes:
+  t:
+    kind: table
+    tone: slate
+    columns: ["Component (one way)", "Baseline", "Branch policy + nearer breakout", "What changes it"]
+    widths: [190, 110, 170, 190]
+    rows:
+      - ["Branch → enforcement point", "20–30 ms", {text: "5–15 ms", tone: blue}, "Nearer breakout; link selection"]
+      - ["Enforcement point → cloud region", "40–60 ms", "40–60 ms", {text: "Region choice; provider backbone, not the branch device", tone: amber}]
+      - ["Round trip per query", "120–180 ms", "90–150 ms", "—"]
+      - ["30 sequential queries", "3.6–5.4 s", {text: "2.7–4.5 s", tone: blue}, {text: "About 17–25% less", tone: blue}]
+      - ["3 queries (batched or server-side)", {text: "0.36–0.54 s", tone: green}, {text: "0.27–0.45 s", tone: green}, {text: "About 10× less, on either path", tone: green}]

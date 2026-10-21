@@ -1,0 +1,32 @@
+# Chapter 03 — CISA telemetry continuity when branches leave MTIPS:
+# EINSTEIN sensors at the access point give way to CLAW and Protective DNS,
+# and MTIPS stays until CISA confirms parity.
+rankdir: TB
+graph: {nodesep: 0.3, ranksep: 0.4}
+clusters:
+  - id: legacy
+    label: "Legacy: hairpin through the access point"
+    tone: slate
+    dashed: true
+    nodes: [lbranch, mtips, e1e]
+  - id: target
+    label: "Target: governed local breakout"
+    tone: blue
+    nodes: [tbranch, pep, claw, pdns]
+nodes:
+  lbranch: {tone: slate, width: 240, title: "Branch office", body: ["=All traffic backhauled"], size: 12}
+  mtips: {tone: slate, width: 240, tag: "MTIPS or agency TIC", title: "Access point sensors", body: ["=Inspection at the hub"], size: 12}
+  e1e: {tone: slate, width: 240, tag: "CISA", title: "EINSTEIN 1 Enhanced telemetry", body: ["=Lost when traffic stops passing the sensors"], size: 12}
+  gate: {tone: amber, width: 300, tag: "Gate", title: "Decommission MTIPS only after CLAW parity", body: ["Agency, CISA and provider coordinate onboarding", "CISA confirms equivalent visibility"], size: 12}
+  tbranch: {tone: blue, width: 240, title: "Branch office", body: ["=Local internet breakout"], size: 12}
+  pep: {tone: blue, width: 240, tag: "SASE or SD-WAN", title: "Policy enforcement point", body: ["=Parity on every path"], size: 12}
+  claw: {tone: green, width: 240, tag: "CISA", title: "Comprehensive Log Aggregation Warehouse", body: ["=Telemetry from the provider"], size: 12}
+  pdns: {tone: green, width: 240, tag: "CISA", title: "Protective DNS", body: ["=Egress DNS over DoH"], size: 12}
+edges:
+  - [lbranch, mtips, {tone: slate}]
+  - [mtips, e1e, {tone: slate}]
+  - [e1e, gate, {tone: amber}]
+  - [gate, tbranch, {tone: amber}]
+  - [tbranch, pep, {tone: blue}]
+  - [pep, claw, {tone: blue}]
+  - [pep, pdns, {tone: blue}]

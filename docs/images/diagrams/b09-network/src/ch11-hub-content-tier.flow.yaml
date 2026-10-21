@@ -1,0 +1,30 @@
+# Chapter 11 — the target: two data centers source content to ten regional
+# hubs; branches reach the hubs over SD-WAN on DIA with a 5G continuity path;
+# content stays local through peers and caches rather than a branch DP.
+rankdir: TB
+graph: {nodesep: 0.3, ranksep: 0.45}
+clusters:
+  - id: dcs
+    label: "Two data centers (existing facilities)"
+    tone: plain
+    nodes: [dc1, dc2]
+    order: [dc1, dc2]
+nodes:
+  dc1: {tone: slate, width: 240, tag: "Primary", title: "Headquarters data center", body: ["2 standard (source) DPs, full library", "SD-WAN control plane primary", "Internet breakout"], size: 12}
+  dc2: {tone: slate, width: 240, tag: "Secondary", title: "Disaster recovery facility", body: ["2 standard (source) DPs, full replica", "SD-WAN control plane secondary", "Internet breakout"], size: 12}
+  hubs: {tone: blue, width: 300, tag: "10 sites", title: "Regional hubs", body: ["2 pull DPs each: 20 in all, targeted content by DP group", "SD-WAN aggregation and regional breakout", "Security service edge enforcement", "Later: Connected Cache on its own host"], size: 12}
+  branch: {tone: blue, width: 300, tag: "~1,500 sites", title: "Field office", body: ["DIA primary circuit sized to seats", "5G secondary path for continuity only", "No local distribution point"], size: 12}
+  local: {tone: green, width: 240, title: "Content stays local", body: ["Peer cache, BranchCache, Delivery Optimization peers", "One WAN copy per site, not per client"], size: 12}
+  cloud: {tone: green, width: 240, title: "Cloud-sourced content", body: ["Windows and Microsoft 365 Apps updates, Defender definitions, Intune Win32 apps", "Delivered over the branch circuit"], size: 12}
+  cap: {tone: violet, width: 240, title: "Capacity check", body: ["=24 DPs x 4,000 clients = 96,000; about 70,000 endpoints (assumption) = 73% utilization"], size: 12}
+edges:
+  - [dc1, hubs, {label: "pull source", lw: 90}]
+  - [dc2, hubs, {style: dashed, label: "secondary source", lw: 110}]
+  - [hubs, branch, {tone: blue, label: "SD-WAN overlay", lw: 110}]
+  - [branch, local, {tone: green}]
+  - [branch, cloud, {tone: green}]
+  - [hubs, cap, {style: invis}]
+ranks:
+  - [hubs, cap]
+order:
+  - [local, cloud]

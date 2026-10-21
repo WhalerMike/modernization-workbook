@@ -1,0 +1,36 @@
+# Chapter 09 — who decides, who builds and runs, and who supports the
+# network, its transport and network access control. The top row holds
+# decision rights: funding and platforms, risk acceptance, control
+# requirements. Security architecture, network engineering and
+# telecommunications acquisition sit in the middle row; security operations,
+# facilities and endpoint and identity engineering in the bottom row.
+# Application owners are consulted. This is the program's recommended model,
+# not an external standard.
+rankdir: TB
+graph: {nodesep: 0.2, ranksep: 0.45}
+nodes:
+  spon: {tone: amber, width: 170, tag: "Decides", title: "Sponsor and CIO", body: ["=Funding, sequence, platform selection"], size: 12}
+  ao: {tone: amber, width: 170, tag: "Decides", title: "Authorizing official", body: ["=Boundary change, SC-7(4) exception, interim risk"], size: 12}
+  ciso: {tone: violet, width: 170, tag: "Decides", title: "CISO and ISSO", body: ["=Control requirements, telemetry, evidence"], size: 12}
+  arch: {tone: violet, width: 170, tag: "Determines", title: "Security architecture", body: ["=TIC 3.0 mapping, PEP placement, refresh attributes"], size: 12}
+  net: {tone: blue, width: 170, tag: "Designs and does", title: "Network engineering", body: ["=Transport, SD-WAN and SASE edges, switches, NAC"], size: 12}
+  acq: {tone: slate, width: 170, tag: "Buys and ends", title: "Acquisition and CO", body: ["=EIS task orders, modifications, terminations"], size: 12}
+  soc: {tone: violet, width: 170, tag: "Operates", title: "Security operations", body: ["=CLAW telemetry, NAC alerts, governor logs"], size: 12}
+  fac: {tone: slate, width: 170, tag: "Does, on site", title: "Field-office facilities", body: ["=Closets, power, path diversity, on-site hands"], size: 12}
+  ep: {tone: blue, width: 170, tag: "Does, per device", title: "Endpoint and identity", body: ["=Supplicant and certificate profiles, compliance"], size: 12}
+  app: {kind: pill, tone: slate, text: "Application owners own chattiness and cutover windows and are consulted"}
+edges:
+  - [spon, net, {label: "funding", tone: amber}]
+  - [ao, net, {label: "risk decision", tone: amber}]
+  - [ciso, net, {label: "requirements", tone: violet}]
+  - [arch, net, {label: "determinations", lw: 90, tone: violet}]
+  - [net, acq, {label: "requirements, orders", lw: 80, both: true}]
+  - [net, soc, {label: "logs, telemetry"}]
+  - [net, fac, {label: "site waves"}]
+  - [net, ep, {label: "profiles, posture"}]
+  - [app, net, {label: "consulted", style: dashed, attrs: "constraint=false"}]
+  - [ep, app, {style: invis}]
+order:
+  - [spon, ao, ciso]
+  - [arch, net, acq]
+  - [soc, fac, ep]

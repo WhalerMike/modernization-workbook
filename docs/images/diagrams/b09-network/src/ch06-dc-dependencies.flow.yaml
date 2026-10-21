@@ -1,0 +1,27 @@
+# Chapter 06 — a branch on local internet breakout: cloud applications ride
+# the internet egress, but the operations that need a domain controller ride
+# whatever private path the agency provides. Without that path, everything
+# works except signing in.
+rankdir: TB
+graph: {nodesep: 0.2, ranksep: 0.45}
+clusters:
+  - id: egress
+    label: "Internet egress through the enforcement point"
+    tone: blue
+    nodes: [cloud]
+  - id: private
+    label: "Private path or connector to a domain controller"
+    tone: amber
+    nodes: [dcops, srv]
+    order: [dcops, srv]
+nodes:
+  branch: {tone: slate, width: 300, title: "Branch device on local breakout", body: ["=Domain-joined or hybrid joined Windows client"], size: 12}
+  cloud: {tone: blue, width: 240, title: "Token-based cloud access", body: ["Entra sign-in and token refresh", "Microsoft 365 and other SaaS", "=Keeps working with no DC in reach"], size: 12}
+  dcops: {tone: amber, width: 220, title: "Client operations that need a DC", body: ["Initial logon (TGT)", "Service tickets for on-premises services", "Group Policy from SYSVOL", "Password change, including forced", "Hybrid join registration and periodic line of sight"], size: 12}
+  srv: {tone: amber, width: 150, title: "Server-side dependency", body: ["NTLM pass-through: the resource server asks a DC for every new logon"], size: 12}
+  fail: {tone: red, width: 400, title: "No defined path: everything works except signing in", body: ["=Logon, policy and password change fail while cloud applications keep working"], size: 12}
+edges:
+  - [branch, cloud, {tone: blue}]
+  - [branch, dcops, {tone: amber}]
+  - [dcops, fail, {tone: red, style: dashed, label: "if the path is missing"}]
+  - [srv, fail, {style: invis}]

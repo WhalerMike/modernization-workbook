@@ -1,0 +1,22 @@
+# Book 09 Chapter 01 — what a cross-country hairpin spends of the one-way
+# delay budget for conversational voice (ITU-T G.114; Y.1541 Class 0 via
+# G.114 Appendix II). Worked example; every input is stated in the chapter.
+rankdir: TB
+graph: {nodesep: 0.3, ranksep: 0.35}
+nodes:
+  budget:
+    kind: table
+    tone: slate
+    columns: ["One-way budget component", "Value", "Type"]
+    widths: [280, 110, 140]
+    rows:
+      - ["Mouth-to-ear target for transparent interactivity", "150 ms", "Standard (G.114)"]
+      - ["Terminals: codec, packetization, jitter buffer", "50 to 80 ms", "Standard (G.114 App. II)"]
+      - [{text: "Left for the network", tone: amber}, {text: "70 to 100 ms", tone: amber}, "Arithmetic"]
+  hair: {tone: red, width: 250, tag: "Hairpin", title: "Seattle → northern Virginia → Seattle", body: ["=7,390 km great-circle detour: 37 ms floor", "=× 1.5 route length, + 5 ms inspection stack", "=About 60 ms one way: most of what the network is allowed"], size: 12}
+  local: {tone: green, width: 250, tag: "Local breakout", title: "Seattle → nearby region", body: ["=Tens of kilometers: well under 1 ms floor", "=Planning assumption 5 to 15 ms one way including the stack", "=Most of the network allowance survives"], size: 12}
+edges:
+  - [budget, hair, {tone: red}]
+  - [budget, local, {tone: green}]
+ranks:
+  - [hair, local]

@@ -1,0 +1,14 @@
+# Chapter 12 — the three instruments, who signs each, and what each binds to.
+rankdir: TB
+graph: {nodesep: 0.3, ranksep: 0.35}
+nodes:
+  regA: {tone: slate, width: 470, tag: "Attachment A — system owner", title: "Site register: the SC-7(4) exception record", body: ["Per site: mission need, in force from, expiry or ending condition, last review", "Per circuit: post-NAT egress ranges (IPv4 and IPv6)", "Readiness dates and the admission checklist"], size: 12}
+  detB: {tone: violet, width: 470, tag: "Attachment B — architecture review board", title: "Architecture review determination", body: ["Security pattern, trust zone and PEP location", "All twelve PEP capability groups plus the affected universal capabilities", "Conformant, conformant with conditions, or not conformant; accepts no risk"], size: 12}
+  memo: {tone: amber, width: 300, tag: "Memo — authorizing official", title: "SC-7(4) traffic-flow exception", body: ["Names the controls affected and the compensating controls", "Grants or refuses the one item referred to it, for a stated duration and review cadence"], size: 12}
+  gap: {tone: red, width: 240, title: "A gap in Attachment B blocks sign-off", body: ["=Resolve it, or convert it to an explicit referral, before the determination goes to the authorizing official"], size: 12}
+edges:
+  - [regA, detB, {label: "binds to register version n", lw: 150}]
+  - [detB, memo, {label: "refers only the Web row", lw: 150}]
+  - [detB, gap, {style: dashed, tone: red, none: true}]
+ranks:
+  - [memo, gap]
