@@ -1,0 +1,24 @@
+# Chapter 11 — reciprocity as reuse of one authorization package. One body of
+# continuously produced evidence keeps a single package current; each
+# consuming agency's authorizing official reuses it in its own decision (an
+# ATO for its own system, or an ATU under SP 800-37), and only a documented
+# demonstrable need justifies asking for more (M-24-15; AGU-AGC-NAR).
+rankdir: TB
+graph: {nodesep: 0.25, ranksep: 0.4}
+nodes:
+  ev: {tone: violet, width: 420, tag: "Evidence", title: "One body of continuously produced evidence", body: ["=Emitted by the systems, bound to controls, current on a cadence"], size: 12}
+  pkg: {tone: blue, width: 420, tag: "Provider", title: "One authorization package", body: ["=Certified cloud offering, or a shared service authorized by its provider agency"], size: 12}
+  a: {tone: green, width: 200, tag: "Agency", title: "ATO for its own system", body: ["=Uses the offering as an external service; reuses the package"], size: 12}
+  b: {tone: green, width: 200, tag: "Agency", title: "Authorization to use", body: ["=Accepts the provider's package for its own information"], size: 12}
+  c: {tone: amber, width: 200, tag: "Agency", title: "Demonstrable need", body: ["=Added requirements documented and notified to FedRAMP"], size: 12}
+  ao: {kind: pill, tone: slate, text: "Each authorizing official accepts\nits own agency's risk"}
+edges:
+  - [ev, pkg]
+  - [pkg, a]
+  - [pkg, b]
+  - [pkg, c, {style: dashed, tone: amber}]
+  - [a, ao, {style: dashed}]
+  - [b, ao, {style: dashed}]
+  - [c, ao, {style: dashed}]
+order:
+  - [a, b, c]

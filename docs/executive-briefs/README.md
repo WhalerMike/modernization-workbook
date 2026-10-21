@@ -14,7 +14,7 @@ Each brief answers four questions about one capability area:
 |-------|-------|
 | [Modernization Overview](../books/b00-orientation/01-why-modernize-now.md) | End-to-end modernization program arc |
 | [Zero Trust Overview](../books/b11-zero-trust/01-a-whole-agency-property.md) | Identity-anchored zero-trust execution |
-| [Drift Engine Overview](drift-engine-overview.md) | Continuous drift detection and remediation |
+| [Drift Engine Overview](../books/b13-governance/02-drift-is-the-primary-threat.md) | Continuous drift detection and remediation |
 
 ---
 

@@ -33,10 +33,10 @@ Status badges follow the Whitepapers status conventions.
 |---|---|---|---|
 | fmp-executive-brief | The flagship the Federal Modernization Program brief — full federal scenario | Active | `docs/publications/01-executive-brief/` |
 | universal-enterprise-positioning-overview | Vertical-agnostic engine; federal as one adapter pack | Active | `src/fmp/canon/adr/adr-085-universal-enterprise-positioning.md` |
-| [adapter-ecosystem-overview](adapter-ecosystem-overview.md) | The dual-axis adapter taxonomy and registries | Active | `src/fmp/canon/FMP_003_Adapter_Segmentation_Overview_v1.0.md` |
-| [drift-engine-overview](drift-engine-overview.md) | Drift-detection capability brief | Active | `docs/docs/16_DriftDetectionStandard.qmd` |
-| [evidence-fabric-overview](evidence-fabric-overview.md) | Provenance and evidence pipeline brief | Active | `docs/docs/15_ProvenanceProfile.qmd` |
-| [ksi-conformance-overview](ksi-conformance-overview.md) | Machine-checkable Key Security Indicators | Active | `src/fmp/rules/ksi/` |
-| [reciprocity-single-ato-overview](reciprocity-single-ato-overview.md) | One ATO, many agencies, signed per-agency evidence | Active | `src/fmp/canon/adr/adr-054-single-ato-reciprocity.md` |
+| [adapter-ecosystem-overview](../books/b13-governance/08-the-adapter-model.md) | The dual-axis adapter taxonomy and registries | Active | `src/fmp/canon/FMP_003_Adapter_Segmentation_Overview_v1.0.md` |
+| [drift-engine-overview](../books/b13-governance/02-drift-is-the-primary-threat.md) | Drift-detection capability brief | Active | `docs/docs/16_DriftDetectionStandard.qmd` |
+| [evidence-fabric-overview](../books/b13-governance/07-evidence-over-attestation.md) | Provenance and evidence pipeline brief | Active | `docs/docs/15_ProvenanceProfile.qmd` |
+| [ksi-conformance-overview](../books/b13-governance/11-reciprocity-and-one-authorization.md) | Machine-checkable Key Security Indicators | Active | `src/fmp/rules/ksi/` |
+| [reciprocity-single-ato-overview](../books/b13-governance/11-reciprocity-and-one-authorization.md) | One ATO, many agencies, signed per-agency evidence | Active | `src/fmp/canon/adr/adr-054-single-ato-reciprocity.md` |
 | [zero-trust-overview](../books/b11-zero-trust/01-a-whole-agency-property.md) | Zero-trust identity model brief | Active | `src/fmp/canon/adr/adr-008-zero-trust-identity.md` |
 | [modernization-overview](../books/b00-orientation/01-why-modernize-now.md) | End-to-end modernization program brief | Active | `docs/docs/06_ProgramVision.qmd` |

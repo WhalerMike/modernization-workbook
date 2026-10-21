@@ -22,9 +22,9 @@ This repository extracts practical modernization concepts — single source of t
 ## Contents
 
 ### Architecture
-- [Architecture Series](docs/architecture/architecture-series/README.md) — six-plane, three-layer rules, drift engine, evidence chain
-- [Single Source of Truth](docs/architecture/single-source-of-truth.md)
-- [Change Control and Provenance](docs/architecture/change-control-and-provenance.md)
+- [Architecture Series](docs/books/b13-governance/03-one-authoritative-record.md) — six-plane, three-layer rules, drift engine, evidence chain
+- [Single Source of Truth](docs/books/b13-governance/03-one-authoritative-record.md)
+- [Change Control and Provenance](docs/books/b13-governance/04-change-control-and-provenance.md)
 - [Directory Migration Bridge](docs/books/b02-identity/04-the-hidden-migration-surface.md)
 - [GPO-to-Cloud Governance Gaps](docs/books/b05-devices/01-why-group-policy-cant-come-to-the-cloud.md)
 - [From Attributes to Access (dynamic groups)](docs/books/b03-hr-identity/10-from-attributes-to-access.md)

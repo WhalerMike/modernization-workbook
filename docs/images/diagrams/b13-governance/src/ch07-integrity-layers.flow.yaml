@@ -1,0 +1,30 @@
+# Book 13 Chapter 07 — what each integrity mechanism proves. Source records are
+# hashed at extraction; each claim carries its lineage hash and a hash-chained
+# transformation chain; the bundle hash is computed over the claim hashes; a
+# signature over the bundle hash binds it to an identity. Program design.
+rankdir: BT
+graph: {nodesep: 0.25, ranksep: 0.35}
+nodes:
+  r1: {tone: slate, width: 170, title: "Source record 1", body: ["=SHA-256 at extraction"], size: 11}
+  r2: {tone: slate, width: 170, title: "Source record 2", body: ["=SHA-256 at extraction"], size: 11}
+  r3: {tone: slate, width: 170, title: "Source record 3", body: ["=SHA-256 at extraction"], size: 11}
+  c1: {tone: blue, width: 170, title: "Claim 1", body: ["=Lineage hash; each step carries the previous step's hash"], size: 11}
+  c2: {tone: blue, width: 170, title: "Claim 2", body: ["=Lineage hash; each step carries the previous step's hash"], size: 11}
+  c3: {tone: blue, width: 170, title: "Claim 3", body: ["=Lineage hash; each step carries the previous step's hash"], size: 11}
+  bundle: {tone: violet, width: 400, title: "Bundle hash", body: ["=Computed over the claim hashes in a fixed order"], size: 11}
+  sig: {tone: green, width: 400, title: "Signature", body: ["=The bundle hash signed with the producer's key: binds the bundle to an identity"], size: 11}
+  note: {kind: pill, tone: red, text: "Change any record, claim or step\nand the bundle hash changes.\nA hash shows that something changed;\na signature shows who produced it."}
+edges:
+  - [r1, c1]
+  - [r2, c2]
+  - [r3, c3]
+  - [c1, bundle]
+  - [c2, bundle]
+  - [c3, bundle]
+  - [bundle, sig]
+  - [note, bundle, {style: dashed, tone: red, attrs: "constraint=false"}]
+order:
+  - [r1, r2, r3]
+  - [c1, c2, c3]
+ranks:
+  - [sig, note]

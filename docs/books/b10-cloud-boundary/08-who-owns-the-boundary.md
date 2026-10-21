@@ -131,7 +131,7 @@ The Boundary Impact Model's four dimensions give the program a completeness test
 | Enforcement responsibility | Who must enforce this control on this side? | Authorizing official | Platform team or the owning engineering team | `DRIFT-AUTHZ` |
 | Provenance classification | Is the claim still authoritative here, or only derived? | ISSO | System owner | `DRIFT-SEMANTIC` |
 
-The drift classes are the program's taxonomy, described in the workbook's [Drift Engine](https://github.com/WhalerMike/modernization-workbook/blob/main/docs/architecture/drift-engine.md) page. The owners are the program's model. The enforcement row is the one to watch: it is the dimension where a gap becomes a risk decision, so it is the only one the authorizing official decides.
+The drift classes are the program's taxonomy, described in the workbook's [Drift Engine](../b13-governance/06-the-drift-engine.md) page. The owners are the program's model. The enforcement row is the one to watch: it is the dimension where a gap becomes a risk decision, so it is the only one the authorizing official decides.
 
 ## Roles in each system
 

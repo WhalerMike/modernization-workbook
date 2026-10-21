@@ -1,0 +1,21 @@
+# Book 13 Chapter 07 — the evidence chain. Platform state is captured read-only,
+# normalized into provenance-wrapped claims, sealed into a bundle per window and
+# emitted as package artifacts; attestation wraps the package, and an assessor
+# re-runs the chain and compares hashes. The chain is the program's design;
+# the OSCAL model names are NIST's (chapter notes).
+rankdir: TB
+graph: {nodesep: 0.3, ranksep: 0.3}
+nodes:
+  cap: {tone: slate, width: 400, tag: "Stage 1", title: "Capture", body: ["=An adapter reads the platform's native state, read-only, and records when and how"], size: 11}
+  norm: {tone: blue, width: 400, tag: "Stage 2", title: "Normalize", body: ["=Each observation becomes a claim in the common record, wrapped in the provenance envelope: issuer, source classification, method, transformation chain, lineage hash"], size: 11}
+  seal: {tone: violet, width: 400, tag: "Stage 3", title: "Assemble and seal", body: ["=Claims for one window are bundled, schema-validated and sealed with a bundle hash over the claim hashes"], size: 11}
+  emit: {tone: green, width: 400, tag: "Stage 4", title: "Emit", body: ["=System security plan entries, assessment results, POA&M items, component definitions"], size: 11}
+  att: {tone: amber, width: 220, title: "Attestation", body: ["=People sign for rules, decisions and risk acceptance"], size: 11}
+edges:
+  - [cap, norm]
+  - [norm, seal]
+  - [seal, emit]
+  - [att, emit, {style: dashed, tone: amber, label: "wraps the package", lw: 110}]
+  - [emit, cap, {style: dashed, tone: violet, label: "assessor re-runs and compares hashes", lw: 130, attrs: "constraint=false"}]
+ranks:
+  - [seal, att]

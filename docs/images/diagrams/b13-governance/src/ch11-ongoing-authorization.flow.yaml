@@ -1,0 +1,28 @@
+# Chapter 11 — ongoing authorization under NIST SP 800-37 Rev. 2 Appendix F.
+# Two conditions (a zero-based initial authorization and a robust continuous
+# monitoring program) let the AO issue a new decision without a termination
+# date; time-driven reviews and event-driven triggers then lead either to
+# continued operation or to an event-driven reauthorization.
+rankdir: TB
+graph: {nodesep: 0.25, ranksep: 0.4}
+nodes:
+  init: {tone: slate, width: 200, tag: "Condition 1", title: "Initial authorization", body: ["=Complete, zero-based review"], size: 12}
+  ccm: {tone: violet, width: 200, tag: "Condition 2", title: "Continuous monitoring program", body: ["=Controls monitored at the strategy's frequencies"], size: 12}
+  dec: {tone: blue, width: 420, tag: "Authorizing official", title: "New decision: ongoing authorization", body: ["=No longer bound to a termination date"], size: 12}
+  time: {tone: violet, width: 200, tag: "Time-driven", title: "Scheduled review", body: ["=Frequency set by the strategy and impact level"], size: 12}
+  event: {tone: amber, width: 200, tag: "Event-driven", title: "Trigger fires", body: ["=Immediate review of posture"], size: 12}
+  ok: {tone: green, width: 200, tag: "Risk acceptable", title: "Continue operating", body: ["=Ongoing acceptance acknowledged"], size: 12}
+  re: {tone: red, width: 200, tag: "Risk above accepted", title: "Reauthorization", body: ["=Targeted or zero-based review"], size: 12}
+edges:
+  - [init, dec]
+  - [ccm, dec]
+  - [dec, time]
+  - [dec, event]
+  - [time, ok]
+  - [event, ok]
+  - [event, re, {tone: red}]
+  - [ccm, time, {style: dashed, label: "evidence"}]
+order:
+  - [init, ccm]
+  - [time, event]
+  - [ok, re]

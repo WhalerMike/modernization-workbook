@@ -1,0 +1,31 @@
+# Book 13 Chapter 02 — the program's five drift classes, each the question it
+# asks of a record or change. The classes are the program's design; severity
+# and the detection loop are Chapter 06.
+rankdir: TB
+graph: {nodesep: 0.12, ranksep: 0.4}
+clusters:
+  - id: classes
+    label: "Five drift classes"
+    tone: violet
+    margin: 8
+    nodes: [k1, k2, k3, k4, k5]
+    order: [k1, k2, k3, k4, k5]
+nodes:
+  rec: {tone: violet, width: 470, title: "Authoritative record", body: ["=Desired state, its schema, and the history of authorized change"], size: 12}
+  k1: {tone: amber, width: 135, title: "Schema", body: ["=Is the shape still valid?"], size: 10}
+  k2: {tone: amber, width: 135, title: "Semantic", body: ["=Is the value still true?"], size: 10}
+  k3: {tone: red, width: 135, title: "Provenance", body: ["=Does every change trace to an authorized source?"], size: 10}
+  k4: {tone: red, width: 135, title: "Authorization", body: ["=Did anything act outside what was authorized?"], size: 10}
+  k5: {tone: red, width: 135, title: "Identity", body: ["=Does every object and actor resolve to the record?"], size: 10}
+  sev: {tone: green, width: 470, title: "Severity follows class and whether the claim is in use", body: ["=Detection, severity and response clocks: Chapter 06"], size: 11}
+edges:
+  - [rec, k1]
+  - [rec, k2]
+  - [rec, k3]
+  - [rec, k4]
+  - [rec, k5]
+  - [k1, sev, {tone: green}]
+  - [k2, sev, {tone: green}]
+  - [k3, sev, {tone: green}]
+  - [k4, sev, {tone: green}]
+  - [k5, sev, {tone: green}]

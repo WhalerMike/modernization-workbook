@@ -1,0 +1,33 @@
+# Book 13 Chapter 02 — where drift comes from, why it is silent, and what
+# makes it a finding. Change sources follow SP 800-37 Rev. 2 Task M-1
+# (adversaries, inadvertent errors, external providers, staff turnover,
+# upgrades); the comparison against the record is CM-2, CM-3, CM-6 and CA-7
+# as the program applies them.
+rankdir: TB
+graph: {nodesep: 0.08, ranksep: 0.4}
+clusters:
+  - id: src
+    label: "Where drift comes from"
+    tone: red
+    margin: 8
+    nodes: [s1, s2, s3, s4, s5]
+    order: [s1, s2, s3, s4, s5]
+nodes:
+  s1: {tone: red, width: 122, tag: "1", title: "Unauthorized change", body: ["=An attacker, or an honest mistake"], size: 10}
+  s2: {tone: red, width: 122, tag: "2", title: "Change not written back", body: ["=Approved or urgent, never recorded"], size: 10}
+  s3: {tone: red, width: 122, tag: "3", title: "Provider change", body: ["=Updates made outside your view"], size: 10}
+  s4: {tone: red, width: 122, tag: "4", title: "Facts decay", body: ["=People move, roles end"], size: 10}
+  s5: {tone: red, width: 122, tag: "5", title: "Tool and agent updates", body: ["=New versions, new defaults"], size: 10}
+  gap: {tone: red, width: 470, title: "The estate diverges from the authoritative record", body: ["=Systems keep reporting what they were told, not what is true"], size: 12}
+  silent: {kind: pill, tone: red, text: "No comparison: no alarm, no error"}
+  compare: {tone: violet, width: 470, title: "Scheduled comparison against the record", body: ["=Baseline (CM-2), change records (CM-3), settings (CM-6), monitoring strategy (CA-7)"], size: 11}
+  finding: {tone: green, width: 470, title: "Classified finding", body: ["=Class, severity, owner and evidence"], size: 11}
+edges:
+  - [s1, gap, {tone: red}]
+  - [s2, gap, {tone: red}]
+  - [s3, gap, {tone: red}]
+  - [s4, gap, {tone: red}]
+  - [s5, gap, {tone: red}]
+  - [gap, silent, {style: dashed, tone: red}]
+  - [gap, compare, {tone: violet}]
+  - [compare, finding, {tone: green}]

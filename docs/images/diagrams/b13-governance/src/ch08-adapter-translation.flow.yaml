@@ -1,0 +1,33 @@
+# Book 13 Chapter 08 — adapters as translators. Each platform keeps its own
+# state and interface; its adapter reads it, translates it into the common
+# record and wraps it in provenance. Rules, the drift engine and the evidence
+# chain read only the record. Change-making adapters act on authorized plans
+# only. Program design; platforms are generic examples.
+rankdir: TB
+graph: {nodesep: 0.3, ranksep: 0.35}
+nodes:
+  p1: {tone: slate, width: 200, title: "Directory", body: ["=Native state, native interface"], size: 11}
+  p2: {tone: slate, width: 200, title: "Device manager", body: ["=Native state, native interface"], size: 11}
+  p3: {tone: slate, width: 200, title: "IP address manager", body: ["=Native state, native interface"], size: 11}
+  a1: {tone: blue, width: 200, title: "Adapter", body: ["=Read, translate, wrap in provenance"], size: 11}
+  a2: {tone: blue, width: 200, title: "Adapter", body: ["=Read, translate, wrap in provenance"], size: 11}
+  a3: {tone: blue, width: 200, title: "Adapter", body: ["=Read, translate, wrap in provenance"], size: 11}
+  rec: {tone: violet, width: 480, title: "Common record and evidence", body: ["=Claims with authoritative asset identity, time and provenance"], size: 11}
+  u1: {kind: pill, tone: green, text: "Rules"}
+  u2: {kind: pill, tone: green, text: "Drift engine"}
+  u3: {kind: pill, tone: green, text: "Evidence chain"}
+edges:
+  - [p1, a1]
+  - [p2, a2]
+  - [p3, a3]
+  - [a1, rec]
+  - [a2, rec]
+  - [a3, rec]
+  - [rec, u1, {tone: green}]
+  - [rec, u2, {tone: green}]
+  - [rec, u3, {tone: green}]
+  - [rec, a3, {style: dashed, tone: amber, label: "authorized plans only,\nchange-making adapters", lw: 140, attrs: "constraint=false"}]
+order:
+  - [p1, p2, p3]
+  - [a1, a2, a3]
+  - [u1, u2, u3]

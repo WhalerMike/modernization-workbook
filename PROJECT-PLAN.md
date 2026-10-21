@@ -86,11 +86,11 @@ The plan is organized by phases. Each phase has objectives, key activities, deli
 - Provenance and evidence expectations for changes.
 
 **Supporting material**
-- [Single Source of Truth](docs/architecture/single-source-of-truth.md)
+- [Single Source of Truth](docs/books/b13-governance/03-one-authoritative-record.md)
 - [From Attributes to Access (dynamic groups)](docs/books/b03-hr-identity/10-from-attributes-to-access.md)
 - [Delegation Matrix](docs/books/b02-identity/05-delegation-without-ous.md)
-- [Change Control and Provenance](docs/architecture/change-control-and-provenance.md)
-- [Architecture Series](docs/architecture/architecture-series/README.md)
+- [Change Control and Provenance](docs/books/b13-governance/04-change-control-and-provenance.md)
+- [Architecture Series](docs/books/b13-governance/03-one-authoritative-record.md)
 
 **Exit criteria**
 - Domain leads can explain how a given organizational fact will be expressed, how policy will attach to it, and how drift will be detected, without relying on internal decision-record numbers.
@@ -168,8 +168,8 @@ The plan is organized by phases. Each phase has objectives, key activities, deli
 - Recommendations for ongoing ownership.
 
 **Supporting material**
-- [Continuous Monitoring Strategy](docs/architecture/continuous-monitoring-strategy.md)
-- [Gap Closure Register](docs/architecture/gap-closure-register.md)
+- [Continuous Monitoring Strategy](docs/books/b13-governance/12-governance-at-scale.md)
+- [Gap Closure Register](docs/books/b13-governance/12-governance-at-scale.md)
 - [Training Program](docs/program/training.md) and [Education Program](docs/program/education.md)
 
 **Exit criteria**
@@ -186,7 +186,7 @@ The plan is organized by phases. Each phase has objectives, key activities, deli
 | Compute / Device | Device identity and management alignment | Identity structure | Mid to late | [Endpoint & Device Modernization](docs/projects/endpoint-device-charter.md) |
 | Access plane | Token-based / application-aware access patterns | Identity and policy | Later | [Network & Access Modernization](docs/projects/network-access-charter.md) |
 
-Further detailed projects that run alongside these workstreams: [Privileged Access & Administrative Identity](docs/projects/privileged-access-charter.md), [Data Platform Identity Transformation](docs/projects/data-platform-charter.md), [Continuous Monitoring & Evidence Fabric](docs/projects/continuous-monitoring-charter.md), and [Supply Chain & Software Bill of Materials](docs/projects/supply-chain-charter.md). Each has a charter and a plan; see [Complementary Modernization Projects](docs/projects/README.md).
+Further detailed projects that run alongside these workstreams: [Privileged Access & Administrative Identity](docs/projects/privileged-access-charter.md), [Data Platform Identity Transformation](docs/projects/data-platform-charter.md), [Continuous Monitoring & Evidence Fabric](docs/books/b13-governance/12-governance-at-scale.md), and [Supply Chain & Software Bill of Materials](docs/projects/supply-chain-charter.md). Each has a charter and a plan; see [Complementary Modernization Projects](docs/projects/README.md).
 
 ## 5. Governance and Decision Rights
 

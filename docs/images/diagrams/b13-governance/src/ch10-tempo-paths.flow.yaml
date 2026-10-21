@@ -1,0 +1,26 @@
+# Book 13 Chapter 10 — the tempo. Severity sets the response window; the
+# operation class's ceiling on the Book 01 Ch11 actuation ladder sets who must
+# approve. P1 halts and alerts a named role. Classes that fail the qualifying
+# test, or that sit on the permanent-L3 list, keep a human approval on every
+# instance. Where no machine can reach the surface, the fallback is a declared
+# exception through a recorded privileged session. Program design.
+rankdir: TB
+graph: {nodesep: 0.2, ranksep: 0.35}
+nodes:
+  f: {tone: violet, width: 460, title: "Classified finding", body: ["=Severity P1–P4 and an operation class"], size: 11}
+  p1: {tone: red, width: 140, tag: "P1 · immediate", title: "Halt and alert", body: ["=Named role decides"], size: 11}
+  l3: {tone: green, width: 140, tag: "L3 · default", title: "Ticket to a machine", body: ["=Human approves each instance"], size: 11}
+  l4: {tone: amber, width: 140, tag: "L4 · enumerated", title: "Machine closes the loop", body: ["=Class approved in advance"], size: 11}
+  dx: {tone: amber, width: 460, title: "No machine can reach the surface", body: ["=Declared exception: approved, time-boxed, proxied, recorded privileged session"], size: 11}
+  ev: {tone: blue, width: 460, title: "One closure record", body: ["=Owner, clock, approval, execution, re-test; to the evidence chain"], size: 11}
+edges:
+  - [f, p1, {tone: red}]
+  - [f, l3, {tone: green}]
+  - [f, l4, {tone: amber, style: dashed}]
+  - [l3, dx, {style: dashed, label: "no actuator", lw: 70}]
+  - [p1, ev]
+  - [l3, ev]
+  - [l4, ev]
+  - [dx, ev]
+order:
+  - [p1, l3, l4]

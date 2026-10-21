@@ -1,0 +1,33 @@
+# Book 13 Chapter 06 — the drift engine's loop. Compare observed state with the
+# versioned record, classify into one of five classes, compute severity, and
+# write a remediation contract. Severity sets the clock and whether the run
+# halts; the operation class's ceiling on the actuation ladder (Book 01 Ch11)
+# sets who may act. Program design.
+rankdir: TB
+graph: {nodesep: 0.25, ranksep: 0.35}
+nodes:
+  rec: {tone: green, width: 230, title: "Authoritative record", body: ["=Desired state at a known version"], size: 11}
+  obs: {tone: slate, width: 230, title: "Observed state", body: ["=Collected by adapters, read-only"], size: 11}
+  cmp: {tone: violet, width: 480, title: "Compare and classify", body: ["=Schema · semantic · provenance · authorization · identity", "=Severity P1–P4 from class and whether the claim is in active use"], size: 11}
+  p1: {tone: red, width: 230, title: "P1: halt and alert", body: ["=Never auto-remediated; a named role decides"], size: 11}
+  rest: {tone: amber, width: 230, title: "P2–P4: on the clock", body: ["=Action up to the operation class's ladder ceiling"], size: 11}
+  l2: {kind: pill, tone: violet, text: "L2 Advise\nplan only"}
+  l3: {kind: pill, tone: green, text: "L3 Gated actuation\ndefault ceiling"}
+  l4: {kind: pill, tone: amber, text: "L4 Autonomous\nenumerated classes"}
+  con: {tone: blue, width: 480, title: "Remediation contract", body: ["=Class, severity, timestamps, action, evidence, escalation path; written to the evidence chain"], size: 11}
+edges:
+  - [rec, cmp]
+  - [obs, cmp]
+  - [cmp, p1, {tone: red}]
+  - [cmp, rest]
+  - [rest, l2]
+  - [rest, l3]
+  - [rest, l4, {style: dashed}]
+  - [p1, con]
+  - [l2, con]
+  - [l3, con]
+  - [l4, con]
+order:
+  - [rec, obs]
+  - [p1, rest]
+  - [l2, l3, l4]

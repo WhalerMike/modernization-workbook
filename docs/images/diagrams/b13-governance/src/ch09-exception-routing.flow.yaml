@@ -1,0 +1,25 @@
+# Book 13 Chapter 09 — where a drift finding goes when it can't simply be fixed.
+# Inside its window it is remediated and closed on re-test. A bounded exception
+# with an end date and a compensating control is the CISO's to approve; one
+# with no end date, or with no compensating control, is a risk acceptance for
+# the authorizing official. Program design, matching the time split in Books
+# 05, 08, 09, 11 and 12 and Book 04's compensating-control rule.
+rankdir: TB
+graph: {nodesep: 0.25, ranksep: 0.35}
+nodes:
+  f: {tone: violet, width: 420, title: "Drift finding with a severity and a window", body: ["=Written to the record as a remediation contract"], size: 11}
+  fix: {tone: green, width: 200, title: "Fixed in the window", body: ["=Closed on re-test evidence"], size: 11}
+  ex: {tone: amber, width: 200, title: "Can't be fixed in time", body: ["=Owner writes up the gap"], size: 11}
+  ciso: {tone: amber, width: 200, tag: "CISO decides", title: "Bounded exception", body: ["=End date and compensating control; in the register"], size: 11}
+  ao: {tone: red, width: 200, tag: "AO decides", title: "Risk acceptance", body: ["=No end date or no compensating control; POA&M entry"], size: 11}
+  rev: {kind: pill, tone: slate, text: "Register reviewed quarterly;\nrenewals are never automatic"}
+edges:
+  - [f, fix, {tone: green}]
+  - [f, ex, {tone: amber}]
+  - [ex, ciso, {tone: amber}]
+  - [ex, ao, {tone: red}]
+  - [ciso, rev, {style: dashed}]
+  - [ao, rev, {style: dashed}]
+order:
+  - [fix, ex]
+  - [ciso, ao]

@@ -84,7 +84,7 @@ Start here for "what is FMP."
 | [Zero Trust Governance](../books/b11-zero-trust/10-evidence-not-verdicts.md) | Active | Maps the substrate onto CISA's five ZTMM pillars, pillar by pillar. |
 | [Zero Trust Governance Principles](../books/b11-zero-trust/02-governance-principles.md) | Active | Broader and newer than the paper above — whole-agency (Network+CSP+VMware) scope, cross-cutting capabilities, the "why programs stall below Advanced" argument. Read *after* the pillar-mapping paper, not instead of it. |
 | [Zero Trust Requires Whole-Agency Scope](../books/b11-zero-trust/01-a-whole-agency-property.md) | Active | Companion to the paper above — the whole-agency unification argument and SCuBA/ZTA worked example, split out 2026-08-03 so the parent paper's core argument stays finishable in one sitting. Read immediately after it, not standalone. |
-| [Modernization Governance](modernization-governance-whitepaper.md) | Active | Governance framing specifically for the AD → Entra ID migration — the bridge into Track 2. |
+| [Modernization Governance](../books/b13-governance/01-why-governance-decays.md) | Active | Governance framing specifically for the AD → Entra ID migration — the bridge into Track 2. |
 
 ### Track 2 — Identity & Directory Modernization
 
@@ -108,8 +108,8 @@ BOD-25-01 and CISA SCuBA.
 | [Assessment Tools vs. Closing BOD-25-01 Findings](../books/b11-zero-trust/08-close-before-you-assess.md) | Active | The sequencing argument — remediate before you assess — that the rest of this track assumes. Read first in this track. |
 | [ScubaGear Integration](../books/b11-zero-trust/09-running-the-assessment.md) | Active | How CISA's ScubaGear assessor output feeds FMP's evidence pipeline. |
 | [ZTA and SCuBA — How They Relate](../books/b11-zero-trust/05-two-assessment-tools.md) | Active | Disambiguates Microsoft's Zero Trust Assessment from CISA SCuBA — read when a stakeholder asks "aren't these the same tool?" |
-| [Ticket-to-Machine, Not Ticket-to-Human](ticket-to-machine-not-ticket-to-human.md) | Draft | Closure-evidence argument across Azure/AWS/VMware + ServiceNow/SailPoint — the "how do we know a finding is actually closed" question this track builds toward. |
-| [Ticket-to-Machine Appendices](ticket-to-machine-appendices.md) | Active | Code review, access-governance extension, PKI exception, and vendor landscape — split out of the paper above 2026-08-03 so its core argument stays the single-paper read its frontmatter promises. Reference only; skip unless you need that level of detail. |
+| [Ticket-to-Machine, Not Ticket-to-Human](../books/b13-governance/10-ticket-to-machine.md) | Draft | Closure-evidence argument across Azure/AWS/VMware + ServiceNow/SailPoint — the "how do we know a finding is actually closed" question this track builds toward. |
+| [Ticket-to-Machine Appendices](../books/b13-governance/appendix-b-ticket-to-machine-reference.md) | Active | Code review, access-governance extension, PKI exception, and vendor landscape — split out of the paper above 2026-08-03 so its core argument stays the single-paper read its frontmatter promises. Reference only; skip unless you need that level of detail. |
 
 ### Track 4 — Network & Infrastructure Modernization
 
@@ -168,7 +168,7 @@ alphabetical file list.
 1. [Assessment Tools vs. Closing BOD-25-01 Findings](../books/b11-zero-trust/08-close-before-you-assess.md) — the sequencing argument.
 2. [ScubaGear Integration](../books/b11-zero-trust/09-running-the-assessment.md) → [ZTA and SCuBA — How They Relate](../books/b11-zero-trust/05-two-assessment-tools.md) — how the evidence is produced and how it differs from Microsoft's own assessment.
 3. [Zero Trust Governance Principles](../books/b11-zero-trust/02-governance-principles.md) — the maturity-model context for what "closed" is being measured against.
-4. [Ticket-to-Machine, Not Ticket-to-Human](ticket-to-machine-not-ticket-to-human.md) — how closure evidence is distinguished from a changed setting.
+4. [Ticket-to-Machine, Not Ticket-to-Human](../books/b13-governance/10-ticket-to-machine.md) — how closure evidence is distinguished from a changed setting.
 
 **A network/infrastructure architect**
 
@@ -179,7 +179,7 @@ alphabetical file list.
 **An identity/directory team running an AD → Entra ID modernization**
 
 1. [AD-to-Entra ID Structural Migration Problem](../books/b02-identity/01-why-identity-matters.md) — the original problem statement.
-2. [Modernization Governance](modernization-governance-whitepaper.md) → [Modernization Journey](../books/b01-transformation-arc/01-why-modernization-is-hard.md) — governance framing, then the full arc.
+2. [Modernization Governance](../books/b13-governance/01-why-governance-decays.md) → [Modernization Journey](../books/b01-transformation-arc/01-why-modernization-is-hard.md) — governance framing, then the full arc.
 3. [Flipping 50,000 Devices to Hybrid Join](../books/b05-devices/02-the-hybrid-join-trap.md) — the first concrete operation to execute inside that arc.
 4. [Federal SSOT Alignment](../books/b02-identity/02-the-structural-problem.md) — the data-governance-mandate framing of the same event.
 

@@ -74,7 +74,7 @@ This chapter doesn't repeat the SQL Server procedure. The [SQL Server Identity T
 
 The migration runs as a sequence of provenance-chained events. Each adapter operation leaves a record that can't be altered afterward. The record names the principal that requested the change, the authority for it, the version of the program documents it was made against and a hash of the resulting state. Two contract rules apply throughout. First, adapters read from and write against the authoritative record, but never replace it. Second, every operation is signed with an identity certificate. These are program design rules. The execution mechanics (staged cutover, coexistence, rollback) are in [Chapter 10](10-migrating-and-governing.md).
 
-Drift findings appear during the migration as it runs. The program classifies them with the five-class drift taxonomy described in the workbook's [Drift Engine](https://github.com/WhalerMike/modernization-workbook/blob/main/docs/architecture/drift-engine.md) page:
+Drift findings appear during the migration as it runs. The program classifies them with the five-class drift taxonomy described in the workbook's [Drift Engine](../b13-governance/06-the-drift-engine.md) page:
 
 | Drift class | Example in this archetype |
 |---|---|

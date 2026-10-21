@@ -1,0 +1,22 @@
+# Book 13 Chapter 04 — the five-clause path every move, add, change, deletion
+# and reset travels. Skipping a clause makes the operation unauthorized by
+# construction. Program design; consistent with Book 00 Ch04 principle 2 and
+# Book 01 Ch11.
+rankdir: TB
+graph: {nodesep: 0.35, ranksep: 0.25}
+nodes:
+  c1: {tone: violet, width: 330, tag: "1 · Originate", title: "From the source of truth", body: ["=A divergence between the record and the estate creates the work"], size: 12}
+  c2: {tone: amber, width: 330, tag: "2 · Authorize", title: "From the authority model", body: ["=Owner and approver resolve from the record; standing grants carry scope and expiry"], size: 12}
+  c3: {tone: blue, width: 330, tag: "3 · Execute", title: "Least privilege, just in time", body: ["=A separate execution identity activates a scoped, time-boxed role"], size: 12}
+  c4: {tone: green, width: 330, tag: "4 · Close", title: "With provenance", body: ["=Verification payload, timestamp, identity of the checking mechanism"], size: 12}
+  c5: {tone: green, width: 330, tag: "5 · Emit", title: "Verified evidence, automatically", body: ["=Integrity-protected closure record into continuous monitoring"], size: 12}
+  skip: {tone: red, width: 200, tag: "Any clause skipped", title: "Unauthorized", body: ["=A drift finding, not a change"], size: 12}
+edges:
+  - [c1, c2]
+  - [c2, c3]
+  - [c3, c4]
+  - [c4, c5]
+  - [c5, c1, {label: "next comparison", style: dashed, tone: violet}]
+  - [c3, skip, {style: dashed, tone: red}]
+ranks:
+  - [c3, skip]

@@ -1,0 +1,26 @@
+# Chapter 12 — how a gap closes. Coverage is classified; every gap enters the
+# register with an owner, a residual-risk rating and the evidence that will
+# prove the decision; the decision is close by configuration, close by a
+# compensating control, or accept; nothing closes without evidence, and an
+# acceptance is the authorizing official's, with a review date.
+rankdir: TB
+graph: {nodesep: 0.25, ranksep: 0.4}
+nodes:
+  cls: {tone: slate, width: 420, tag: "Classify", title: "Covered, partial, gap or out of scope", body: ["=Per control, per boundary or workload"], size: 12}
+  reg: {tone: violet, width: 420, tag: "Register", title: "Gap closure register entry", body: ["=Owner, residual risk, planned action, evidence required, target date"], size: 12}
+  cfg: {tone: blue, width: 200, tag: "Close", title: "By configuration", body: ["=POA&M milestone until done"], size: 12}
+  comp: {tone: blue, width: 200, tag: "Close", title: "By compensating control", body: ["=Evidence of the substitute, labeled as such"], size: 12}
+  acc: {tone: amber, width: 200, tag: "Accept", title: "Authorizing official", body: ["=Explicit, with a review date"], size: 12}
+  evd: {tone: green, width: 420, tag: "Evidence", title: "Proof the decision was executed", body: ["=Entry closed or accepted; it stays in the register for audit"], size: 12}
+  rev: {kind: pill, tone: violet, text: "Reviewed on the continuous-monitoring cadence"}
+edges:
+  - [cls, reg, {label: "partial or gap", tone: amber}]
+  - [reg, cfg]
+  - [reg, comp]
+  - [reg, acc]
+  - [cfg, evd]
+  - [comp, evd]
+  - [acc, evd]
+  - [evd, rev, {style: dashed}]
+order:
+  - [cfg, comp, acc]
