@@ -258,7 +258,7 @@ For this chapter that means the network plane's evidence has two consumers: the 
 
 ## FedRAMP's Key Security Indicators
 
-FedRAMP's Consolidated Rules for 2026 launched on June 24, 2026, opened for early adoption on July 4 and take mandatory effect on January 1, 2027.[^c12-fedramp-timeline] They include 46 Key Security Indicators across ten themes: Cybersecurity Education, Change Management, Cloud Native Architecture, Identity and Access Management, Incident Response, Monitoring, Logging, and Auditing, Policy and Inventory, Recovery Planning, Supply Chain Risk and Service Configuration.[^c12-fedramp-ksi][^c12-fedramp-trigrams] Many indicators ask for an activity to be done "persistently," which FedRAMP defines as occurring in a firm, steady way repeated over a long period, with the status of persistent activities "always known."[^c12-fedramp-defs]
+FedRAMP's Consolidated Rules for 2026 launched on June 25, 2026 (the date of FedRAMP's launch announcement; its changelog counts changes from June 23), opened for early adoption on July 4 and take mandatory effect on January 1, 2027.[^c12-fedramp-timeline] They include 46 Key Security Indicators across ten themes: Cybersecurity Education, Change Management, Cloud Native Architecture, Identity and Access Management, Incident Response, Monitoring, Logging, and Auditing, Policy and Inventory, Recovery Planning, Supply Chain Risk and Service Configuration.[^c12-fedramp-ksi][^c12-fedramp-trigrams] Many indicators ask for an activity to be done "persistently," which FedRAMP defines as occurring in a firm, steady way repeated over a long period, with the status of persistent activities "always known."[^c12-fedramp-defs]
 
 The indicators most relevant to this book are short enough to list.
 

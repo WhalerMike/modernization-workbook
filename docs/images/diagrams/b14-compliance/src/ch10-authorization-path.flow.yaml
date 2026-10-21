@@ -1,0 +1,19 @@
+# Book 14 Chapter 10 — the authorization path through the RMF tasks, one
+# owner per step: the AO (or designated representative) approves the
+# categorization and the plans, picks the assessor and approves the assessment
+# plan; the assessor assesses and reports; the system owner remediates, keeps
+# the POA&M and assembles the package (with the SAOP for systems that process
+# PII); the AO alone decides. Tasks per NIST SP 800-37 Rev. 2.
+rankdir: TB
+graph: {nodesep: 0.25, ranksep: 0.3}
+nodes:
+  plan: {tone: blue, width: 360, tag: "System owner, ISSO", title: "Categorize and plan", body: ["=C-2, S-1 to S-4; AO approves (C-3, S-6); SAOP for PII"], size: 11}
+  pick: {tone: amber, width: 360, tag: "AO or designated rep", title: "Select assessor, approve plan", body: ["=A-1, A-2; independence set by the AO"], size: 11}
+  assess: {tone: slate, width: 360, tag: "Control assessor", title: "Assess and report", body: ["=A-3, A-4; SAOP assesses privacy controls"], size: 11}
+  fix: {tone: blue, width: 360, tag: "System owner, ISSO", title: "Remediate, POA&M, package", body: ["=A-5, A-6, R-1"], size: 11}
+  decide: {tone: amber, width: 360, tag: "AO alone", title: "Authorization decision", body: ["=R-4, then ongoing decision M-6; never delegated"], size: 11}
+edges:
+  - [plan, pick, {tone: amber}]
+  - [pick, assess, {tone: amber}]
+  - [assess, fix, {tone: blue}]
+  - [fix, decide, {tone: amber}]

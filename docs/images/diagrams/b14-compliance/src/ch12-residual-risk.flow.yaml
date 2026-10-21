@@ -1,0 +1,30 @@
+# Book 14 Chapter 12 — residual risk after the whole program. Closed
+# controls carry recorded proof; six kinds of risk remain (independence,
+# CA-2(1)/CA-7(1); manual coverage, SP 800-37 App. F; provider inheritance,
+# FedRAMP CCM-AGM-ROR and AGU-USE-NFC; silent sources; risks outside control
+# evaluation; unbuilt design and undelivered vendor features). Acceptance is
+# the authorizing official's and can't be delegated (SP 800-37 Task R-4).
+rankdir: TB
+graph: {nodesep: 0.25, ranksep: 0.4}
+nodes:
+  closed: {tone: green, width: 700, title: "Controls closed with recorded proof", body: ["=Mechanism in place, evidence current, independently assessed"], size: 12}
+  self: {tone: amber, width: 225, title: "Self-assessed", body: ["=Advisory until an independent assessor confirms it"], size: 11}
+  manual: {tone: amber, width: 225, title: "What automation can't see", body: ["=Assessed manually at a set frequency"], size: 11}
+  inh: {tone: slate, width: 225, title: "Inherited from providers", body: ["=Certification plus the quarterly report review"], size: 11}
+  silent: {tone: red, width: 225, title: "Evidence that stops arriving", body: ["=A silent source can look like a pass"], size: 11}
+  outside: {tone: slate, width: 225, title: "Outside control evaluation", body: ["=Mission, insider, geopolitical supply chain"], size: 11}
+  unbuilt: {tone: amber, width: 225, title: "Not yet built or delivered", body: ["=Program design pending; vendor roadmap items"], size: 11}
+  ao: {tone: violet, width: 700, tag: "Authorizing official", title: "Sees the remainder and accepts it, or doesn't", body: ["=Risk acceptance can't be delegated"], size: 12}
+edges:
+  - [closed, self, {style: dashed}]
+  - [closed, manual, {style: dashed}]
+  - [closed, inh, {style: dashed}]
+  - [self, silent]
+  - [manual, outside]
+  - [inh, unbuilt]
+  - [silent, ao]
+  - [outside, ao]
+  - [unbuilt, ao]
+order:
+  - [self, manual, inh]
+  - [silent, outside, unbuilt]

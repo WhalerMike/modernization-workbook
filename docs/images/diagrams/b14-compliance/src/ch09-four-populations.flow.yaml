@@ -1,0 +1,19 @@
+# Book 14 Chapter 09 — four training populations and the controls each
+# produces evidence for. The populations follow the four dimensions FedRAMP's
+# KSI-CED-RAT names for cloud providers, used here as the program's own design.
+# Baseline membership is stated in the chapter, not in the figure.
+rankdir: LR
+graph: {nodesep: 0.2, ranksep: 0.5}
+nodes:
+  all: {tone: blue, width: 250, title: "Every system user", body: ["AT-2 literacy training", "AT-2(2) insider threat", "AT-2(3) social engineering", "AT-2(1) phishing exercises"], size: 11}
+  role: {tone: blue, width: 250, title: "Significant security or privacy roles", body: ["AT-3 role-based training", "AT-3(3) practical exercises", "AT-3(5) PII processing"], size: 11}
+  dev: {tone: blue, width: 250, title: "Developers and engineers", body: ["AT-3 secure delivery track", "=Ties to the supply chain controls"], size: 11}
+  irdr: {tone: blue, width: 250, title: "Incident response and recovery staff", body: ["IR-2 incident response training", "CP-3 contingency training"], size: 11}
+  at4: {tone: violet, width: 230, title: "AT-4 training records", body: ["=One record set for all four populations, reviewed on a schedule"], size: 11}
+edges:
+  - [all, at4, {tone: violet}]
+  - [role, at4, {tone: violet}]
+  - [dev, at4, {tone: violet}]
+  - [irdr, at4, {tone: violet}]
+order:
+  - [all, role, dev, irdr]

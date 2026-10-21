@@ -1,0 +1,19 @@
+# Book 14 Chapter 02 — the federal clocks sorted by whom they bind. FedRAMP's
+# Consolidated Rules bind cloud service providers; CISA directives (44 U.S.C.
+# 3553(b)(2) and (h)) and OMB memoranda bind the agency; standards and vendor
+# lifecycles bind neither directly but change what the agency can show. All
+# of it lands in one authorization package the authorizing official reviews.
+# Dates verified October 21, 2026 in the chapter footnotes.
+rankdir: TB
+graph: {nodesep: 0.3, ranksep: 0.45}
+nodes:
+  prov: {tone: blue, width: 210, tag: "Binds providers", title: "FedRAMP 2026 rules", body: ["Consolidated Rules mandatory January 1, 2027", "VDR and VER rules mandatory December 7, 2026", "No new Rev5 applications after June 11, 2027"], size: 11}
+  agency: {tone: amber, width: 210, tag: "Binds the agency", title: "CISA and OMB", body: ["BOD 25-01, 26-02, 26-04 and standing BODs", "Emergency directives with ongoing actions", "M-26-05, M-26-14, M-26-15"], size: 11}
+  std: {tone: slate, width: 210, tag: "Binds neither directly", title: "Standards and vendors", body: ["FIPS 140-2 modules: existing systems only", "SP 800-53 releases", "Vendor end-of-support dates"], size: 11}
+  pkg: {tone: violet, width: 520, title: "One authorization package", body: ["=Each date becomes evidence the agency produces or reviews, and a risk the authorizing official accepts or closes"], size: 12}
+edges:
+  - [prov, pkg, {tone: blue, label: "agency reviews provider reports", lw: 90}]
+  - [agency, pkg, {tone: amber, label: "agency produces"}]
+  - [std, pkg, {tone: slate, label: "changes what can be shown", lw: 90}]
+order:
+  - [prov, agency, std]

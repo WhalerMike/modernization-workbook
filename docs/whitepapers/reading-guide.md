@@ -60,7 +60,7 @@ read them for the argument, not as a canon-anchored reference.
 
 ## Start here if your question is "who does this mandate bind"
 
-[Federal Compliance for Moderate Agencies](federal-compliance-for-moderate-agencies.md)
+[Federal Compliance for Moderate Agencies](../books/b14-compliance/01-proof-not-a-promise.md)
 sits outside the six tracks below by design — it's a short primer, not a
 deep-dive, and its job is disambiguation and routing rather than argument.
 If the question in front of you is "does FedRAMP 20x apply to my agency or
@@ -164,7 +164,7 @@ alphabetical file list.
 
 **An assessor validating BOD-25-01 / ZTMM claims**
 
-0. [Federal Compliance for Moderate Agencies](federal-compliance-for-moderate-agencies.md) — confirm which mandates in play actually bind the agency you're assessing versus its vendors, before diving into any one of them.
+0. [Federal Compliance for Moderate Agencies](../books/b14-compliance/01-proof-not-a-promise.md) — confirm which mandates in play actually bind the agency you're assessing versus its vendors, before diving into any one of them.
 1. [Assessment Tools vs. Closing BOD-25-01 Findings](../books/b11-zero-trust/08-close-before-you-assess.md) — the sequencing argument.
 2. [ScubaGear Integration](../books/b11-zero-trust/09-running-the-assessment.md) → [ZTA and SCuBA — How They Relate](../books/b11-zero-trust/05-two-assessment-tools.md) — how the evidence is produced and how it differs from Microsoft's own assessment.
 3. [Zero Trust Governance Principles](../books/b11-zero-trust/02-governance-principles.md) — the maturity-model context for what "closed" is being measured against.

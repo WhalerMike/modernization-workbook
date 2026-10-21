@@ -123,7 +123,7 @@ Generated from the series compliance spine (`federal-compliance-compliance-spine
 
 # Provenance
 
-Draft. Microsoft 365, Graph, SCuBA/ScubaGear, and Purview are deployed examples; the detect→raise→actuate-native→close→evidence loop is the invariant. Vendor claims cite vendor documentation (see References) and are dated, not permanent — see the [Vendor Currency Doctrine](Vol_0_Book_00_Executive_Summary.md#vendor-currency). The compliance-loop figure is authored as committed house-style SVG; further per-book figures follow in the PPTX→DOCX sync pass.
+Draft. Microsoft 365, Graph, SCuBA/ScubaGear, and Purview are deployed examples; the detect→raise→actuate-native→close→evidence loop is the invariant. Vendor claims cite vendor documentation (see References) and are dated, not permanent — see the [Vendor Currency Doctrine](../books/b14-compliance/02-the-federal-clock.md). The compliance-loop figure is authored as committed house-style SVG; further per-book figures follow in the PPTX→DOCX sync pass.
 
 # References
 

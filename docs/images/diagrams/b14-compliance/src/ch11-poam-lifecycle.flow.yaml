@@ -1,0 +1,27 @@
+# Book 14 Chapter 11 — the plan of action and milestones as a lifecycle.
+# Every failing item resolves to one of three dispositions (program design,
+# from the series' evidence contract): actionable drift, governed exception,
+# lapsed acceptance. The OSCAL risk status values (open, deviation-approved)
+# are from the OSCAL 1.2.3 schema; the mapping is the program's. An item
+# closes only on re-test evidence (CA-5 update from continuous monitoring).
+rankdir: TB
+graph: {nodesep: 0.3, ranksep: 0.4}
+nodes:
+  fail: {tone: slate, width: 470, tag: "Input", title: "A failing result", body: ["=From an assessment, an audit or continuous monitoring"], size: 12}
+  q: {tone: amber, width: 300, title: "In-date acceptance on file?", body: ["=Signed by the authorizing official"], size: 11}
+  act: {tone: red, width: 225, tag: "No", title: "Actionable drift", body: ["=Open POA&M item: owner, milestones, deadline", "`open`"], size: 11}
+  gov: {tone: violet, width: 225, tag: "Yes", title: "Governed exception", body: ["=Acceptance reference and expiry", "`deviation-approved`"], size: 11}
+  lap: {tone: red, width: 225, title: "Lapsed acceptance", body: ["=Reverts to an open item", "`open`"], size: 11}
+  fix: {tone: blue, width: 225, title: "Remediate", body: ["=Through change control"], size: 11}
+  done: {tone: green, width: 470, title: "Closed only on re-test evidence", body: ["=The next scan, run or review shows the condition gone"], size: 12}
+edges:
+  - [fail, q]
+  - [q, act, {tone: red}]
+  - [q, gov, {tone: violet}]
+  - [gov, lap, {style: dashed, tone: red, label: "expiry passes"}]
+  - [lap, fix, {tone: red}]
+  - [act, fix]
+  - [fix, done, {tone: green}]
+  - [done, fail, {style: dashed, label: "next cycle", attrs: "constraint=false"}]
+order:
+  - [act, gov]

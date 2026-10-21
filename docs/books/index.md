@@ -31,7 +31,7 @@ The workbook grew as separate whitepapers, guides, series and case studies. The 
 | **B11** | **[Zero Trust & Assessment](b11-zero-trust/index.md)** | **Why is Zero Trust a whole-agency property, not a product?** | **Draft** | 10 + 1 app. | 140 | 2026-10-21 |
 | **B12** | **[Security Operations & Telemetry](b12-security-operations/index.md)** | **Why can't you defend what you can't see?** | **Draft** | 12 + 1 app. | 270 | 2026-10-21 |
 | **B13** | **[Governance, Drift & Evidence](b13-governance/index.md)** | **Why does compliance decay the day after the audit?** | **Draft** | 12 + 2 app. | 220 | 2026-10-21 |
-| B14 | Federal Compliance & Authorization | Why does every control need proof, not a promise? | Planned | — | — | — |
+| **B14** | **[Federal Compliance & Authorization](b14-compliance/index.md)** | **Why does every control need proof, not a promise?** | **Draft** | 12 + 2 app. | 325 | — |
 | B15 | Compliance Automation & Day-2 Operations | Why does modernization succeed or fail at the help desk? | Planned | — | — | — |
 | B16 | People: Training & Education | Why do people, not tools, close the gap? | Planned | — | — | — |
 | B17 | AI Identity Governance | Why do AI agents need identities and owners? | Planned | — | — | — |

@@ -11,7 +11,7 @@ Cleaned, externally usable versions of high-value modernization whitepapers.
 | [Hybrid Join Without Governance](../books/b05-devices/02-the-hybrid-join-trap.md) | Why converting a large fleet to hybrid join is a near-effortless tenant switch, and the loss ledger if taken without governance. |
 | [Session vs. Telemetry](../books/b02-identity/02-the-structural-problem.md) | Why persistent session-based identity and continuous-verification telemetry are incompatible. Now a chapter of Book 02. |
 | [Network Transport and Governance](../books/b09-network/02-transport-is-physics-control-is-compliance.md) | Transport is a physics decision; control is a compliance decision. |
-| [Federal Compliance for Moderate Agencies](federal-compliance-for-moderate-agencies.md) | Which mandates bind the agency, which bind the vendor. |
+| [Federal Compliance for Moderate Agencies](../books/b14-compliance/01-proof-not-a-promise.md) | Which mandates bind the agency, which bind the vendor. |
 | [Zero Trust Governance Principles](../books/b11-zero-trust/02-governance-principles.md) | Why cross-cutting capabilities move a program past Initial maturity. |
 | [Federal SSOT Alignment](../books/b02-identity/02-the-structural-problem.md) | Single Source of Truth as the architectural response to federal data-governance obligations. Now a chapter of Book 02. |
 | [SD-WAN vs. DIA Under TIC 3.0](../books/b09-network/02-transport-is-physics-control-is-compliance.md) | Transport is a physics decision; control is a compliance decision. |

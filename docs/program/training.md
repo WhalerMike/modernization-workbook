@@ -17,7 +17,7 @@ Training is done when you have landed a reviewed change (Contributor) or produce
 ## Companion pages
 
 - [Education](education.md) — narrative-led onboarding for anyone new to the approach
-- [Test plans](test-plans.md) — what tests govern what
+- [Test plans](../books/b14-compliance/11-the-authorization-package.md) — what tests govern what
 
 ---
 

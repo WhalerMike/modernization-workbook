@@ -1,0 +1,34 @@
+# Book 14 Chapter 10 — who owns compliance. Top row: the officials who set the
+# agency's risk posture (head of agency and the risk executive function, the
+# CIO, the CISO as senior agency information security officer, the senior
+# agency official for privacy). Middle row: the authorizing official, who alone
+# accepts risk, with the designated representative; the system owner and ISSO,
+# who own the system's compliance; the common control providers. Bottom row:
+# the control assessor, independent of what is assessed, and the plan
+# coordinators for contingency and supply chain. Roles from NIST SP 800-37
+# Rev. 2 Appendix D and OMB Circular A-130; the arrangement is program design.
+rankdir: TB
+graph: {nodesep: 0.15, ranksep: 0.45}
+nodes:
+  head: {tone: amber, width: 155, tag: "Sets tolerance", title: "Head of agency and risk executive", body: ["=Risk strategy, monitoring strategy, names the AOs"], size: 12}
+  cio: {tone: amber, width: 155, tag: "Designates", title: "CIO and CISO", body: ["=Security program, policy, common controls, training"], size: 12}
+  saop: {tone: violet, width: 155, tag: "Privacy", title: "Senior agency official for privacy", body: ["=Privacy plans, privacy controls, PII categorization"], size: 12}
+  ao: {tone: amber, width: 155, tag: "Alone accepts risk", title: "Authorizing official", body: ["=With a designated representative for everything but the decision"], size: 12}
+  so: {tone: blue, width: 155, tag: "Owns the system", title: "System owner and ISSO", body: ["=Plans, remediation, POA&M, package, posture reports"], size: 12}
+  ccp: {tone: blue, width: 155, tag: "Inherited controls", title: "Common control providers", body: ["=SOC, platform teams, enterprise programs"], size: 12}
+  sca: {tone: slate, width: 155, tag: "Independent", title: "Control assessor", body: ["=Assesses; never assesses own work"], size: 12}
+  cp: {tone: slate, width: 155, tag: "Plan coordinator", title: "Contingency planning coordinator", body: ["=Contingency plan, training, tests"], size: 12}
+  scrm: {tone: slate, width: 155, tag: "Plan coordinator", title: "Supply chain risk lead", body: ["=Strategy, supplier assessments, risk register entries"], size: 12}
+edges:
+  - [head, ao, {label: "names", tone: amber}]
+  - [cio, so, {label: "requirements", tone: amber}]
+  - [saop, ao, {label: "privacy review", lw: 60, style: dashed}]
+  - [so, ao, {label: "package", tone: blue}]
+  - [ccp, so, {label: "inherited", style: dashed}]
+  - [ao, sca, {label: "assessment", style: dashed, attrs: "dir=back"}]
+  - [so, cp, {label: "plan", style: dashed, attrs: "dir=back"}]
+  - [so, scrm, {label: "supplier risk", lw: 60, style: dashed, attrs: "dir=back"}]
+order:
+  - [head, cio, saop]
+  - [ao, so, ccp]
+  - [sca, cp, scrm]

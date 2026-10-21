@@ -331,3 +331,48 @@ redirects:
   docs/whitepapers/ticket-to-machine-appendices.html: docs/books/b13-governance/appendix-b-ticket-to-machine-reference.html
   docs/projects/continuous-monitoring-charter.html: docs/books/b13-governance/12-governance-at-scale.html
   docs/projects/continuous-monitoring-plan.html: docs/books/b13-governance/12-governance-at-scale.html
+
+  # Book 14 (Federal Compliance & Authorization) replaced these pages; sources are in archive/b14-compliance/.
+  docs/compliance/Vol_0_Book_00_Executive_Summary.html: docs/books/b14-compliance/02-the-federal-clock.html
+  docs/compliance/Vol_0_Book_00a_Executive_Brief.html: docs/books/b14-compliance/01-proof-not-a-promise.html
+  docs/compliance/Vol_0_Book_01_Product_Inventory_Questionnaire.html: docs/books/b14-compliance/appendix-b-product-inventory-questionnaire.html
+  docs/compliance/Vol_0_Book_02_Control_Crosswalk.html: docs/books/b14-compliance/appendix-a-control-crosswalk.html
+  docs/compliance/Evidence_Contract_Spec.html: docs/books/b14-compliance/11-the-authorization-package.html
+  docs/compliance/Vol_IV_Book_00_Governance_Assurance_Overview.html: docs/books/b14-compliance/05-program-management-controls.html
+  docs/compliance/Vol_IV_Book_01_Business_Continuity.html: docs/books/b14-compliance/06-contingency-and-continuity.html
+  docs/compliance/Vol_IV_Book_02_Supply_Chain_Risk_Management.html: docs/books/b14-compliance/07-supply-chain-risk-management.html
+  docs/compliance/Vol_IV_Book_03_Program_Management_Governance.html: docs/books/b14-compliance/05-program-management-controls.html
+  docs/compliance/Vol_IV_Book_04_PII_Processing_Transparency.html: docs/books/b14-compliance/08-privacy-pii-processing.html
+  docs/compliance/Vol_IV_Book_05_Cybersecurity_Training_Awareness.html: docs/books/b14-compliance/09-training-and-awareness-controls.html
+  docs/compliance/Vol_IV_Book_06_Authorization_Package_ConMon.html: docs/books/b14-compliance/11-the-authorization-package.html
+  docs/whitepapers/federal-compliance-for-moderate-agencies.html: docs/books/b14-compliance/01-proof-not-a-promise.html
+  docs/projects/supply-chain-charter.html: docs/books/b14-compliance/07-supply-chain-risk-management.html
+  docs/projects/supply-chain-plan.html: docs/books/b14-compliance/07-supply-chain-risk-management.html
+  docs/program/test-plans.html: docs/books/b14-compliance/11-the-authorization-package.html
+  docs/compliance/federal-compliance-series-moderate-overview.html: docs/books/b14-compliance/12-the-series-as-a-map.html
+  docs/compliance/federal-compliance-series-overview.html: docs/books/b14-compliance/12-the-series-as-a-map.html
+  docs/compliance/federal-compliance-series-moderate/executive-brief.html: docs/books/b14-compliance/12-the-series-as-a-map.html
+  docs/compliance/federal-compliance-series-moderate/executive-summary.html: docs/books/b14-compliance/12-the-series-as-a-map.html
+  docs/compliance/federal-compliance-series-moderate/README.html: docs/books/b14-compliance/12-the-series-as-a-map.html
+  docs/compliance/federal-compliance-series-moderate/vol-i-foundation-transport.html: docs/books/b14-compliance/12-the-series-as-a-map.html
+  docs/compliance/federal-compliance-series-moderate/vol-ii-data-platform.html: docs/books/b14-compliance/12-the-series-as-a-map.html
+  docs/compliance/federal-compliance-series-moderate/vol-iii-security-operations.html: docs/books/b14-compliance/12-the-series-as-a-map.html
+  docs/compliance/federal-compliance-series-moderate/vol-iv-governance-assurance.html: docs/books/b14-compliance/12-the-series-as-a-map.html
+  docs/compliance/federal-compliance-series-moderate/vol-ix-day2-operations.html: docs/books/b14-compliance/12-the-series-as-a-map.html
+  docs/compliance/federal-compliance-series-moderate/vol-v-training-certification.html: docs/books/b14-compliance/12-the-series-as-a-map.html
+  docs/compliance/federal-compliance-series-moderate/vol-vi-implementation.html: docs/books/b14-compliance/12-the-series-as-a-map.html
+  docs/compliance/federal-compliance-series-moderate/vol-vii-automation.html: docs/books/b14-compliance/12-the-series-as-a-map.html
+  docs/compliance/federal-compliance-series-moderate/vol-viii-multi-cloud-ddi.html: docs/books/b14-compliance/12-the-series-as-a-map.html
+  docs/compliance/federal-compliance-series-moderate/vol-x-governance-substrate-integration.html: docs/books/b14-compliance/12-the-series-as-a-map.html
+  docs/compliance/federal-compliance-series-moderate/books/README.html: docs/books/b14-compliance/12-the-series-as-a-map.html
+  docs/compliance/federal-compliance-series-moderate/books/vol-0-books.html: docs/books/b14-compliance/12-the-series-as-a-map.html
+  docs/compliance/federal-compliance-series-moderate/books/vol-i-books.html: docs/books/b14-compliance/12-the-series-as-a-map.html
+  docs/compliance/federal-compliance-series-moderate/books/vol-ii-books.html: docs/books/b14-compliance/12-the-series-as-a-map.html
+  docs/compliance/federal-compliance-series-moderate/books/vol-iii-books.html: docs/books/b14-compliance/12-the-series-as-a-map.html
+  docs/compliance/federal-compliance-series-moderate/books/vol-iv-books.html: docs/books/b14-compliance/12-the-series-as-a-map.html
+  docs/compliance/federal-compliance-series-moderate/books/vol-ix-books.html: docs/books/b14-compliance/12-the-series-as-a-map.html
+  docs/compliance/federal-compliance-series-moderate/books/vol-v-books.html: docs/books/b14-compliance/12-the-series-as-a-map.html
+  docs/compliance/federal-compliance-series-moderate/books/vol-vi-books.html: docs/books/b14-compliance/12-the-series-as-a-map.html
+  docs/compliance/federal-compliance-series-moderate/books/vol-vii-books.html: docs/books/b14-compliance/12-the-series-as-a-map.html
+  docs/compliance/federal-compliance-series-moderate/books/vol-viii-books.html: docs/books/b14-compliance/12-the-series-as-a-map.html
+  docs/compliance/federal-compliance-series-moderate/books/vol-x-books.html: docs/books/b14-compliance/12-the-series-as-a-map.html

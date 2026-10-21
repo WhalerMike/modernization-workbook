@@ -120,7 +120,7 @@ The plan is organized by phases. Each phase has objectives, key activities, deli
 - [Conditional Access Policy Library](docs/books/b04-access/07-the-conditional-access-policy-library.md)
 - [Intune + Azure Arc Modernization](docs/books/b05-devices/05-the-governed-manual-and-retrofit-paths.md)
 - [Book 08 — DNS, DHCP & IPAM](docs/books/b08-ddi/index.md) and [Book 07 — PKI & Certificates](docs/books/b07-pki/index.md)
-- [Test Plans](docs/program/test-plans.md) — evidence checklist inputs
+- [Test Plans](docs/books/b14-compliance/11-the-authorization-package.md) — evidence checklist inputs
 
 **Exit criteria**
 - At least the first wave has a complete playbook that a team could execute with existing tools and processes.
@@ -186,7 +186,7 @@ The plan is organized by phases. Each phase has objectives, key activities, deli
 | Compute / Device | Device identity and management alignment | Identity structure | Mid to late | [Endpoint & Device Modernization](docs/projects/endpoint-device-charter.md) |
 | Access plane | Token-based / application-aware access patterns | Identity and policy | Later | [Network & Access Modernization](docs/projects/network-access-charter.md) |
 
-Further detailed projects that run alongside these workstreams: [Privileged Access & Administrative Identity](docs/projects/privileged-access-charter.md), [Data Platform Identity Transformation](docs/projects/data-platform-charter.md), [Continuous Monitoring & Evidence Fabric](docs/books/b13-governance/12-governance-at-scale.md), and [Supply Chain & Software Bill of Materials](docs/projects/supply-chain-charter.md). Each has a charter and a plan; see [Complementary Modernization Projects](docs/projects/README.md).
+Further detailed projects that run alongside these workstreams: [Privileged Access & Administrative Identity](docs/projects/privileged-access-charter.md), [Data Platform Identity Transformation](docs/projects/data-platform-charter.md), [Continuous Monitoring & Evidence Fabric](docs/books/b13-governance/12-governance-at-scale.md), and [Supply Chain & Software Bill of Materials](docs/books/b14-compliance/07-supply-chain-risk-management.md). Each has a charter and a plan; see [Complementary Modernization Projects](docs/projects/README.md).
 
 ## 5. Governance and Decision Rights
 
