@@ -1,0 +1,95 @@
+name: Source watch
+
+# Weekly: checks every source the books cite (scripts/source_watch) and the
+# new-publication feeds (data/source-watch/feeds.json), then opens one issue
+# if anything changed. The run's state lives on the `source-watch-state`
+# branch, never on main: every push to main redeploys the site.
+
+on:
+  schedule:
+    - cron: "0 11 * * 1" # Mondays 11:00 UTC
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: "Dry run: print the report in the log; open no issue and leave the saved state unchanged"
+        type: boolean
+        default: false
+
+permissions:
+  contents: write # pushes only to the source-watch-state branch
+  issues: write
+
+concurrency:
+  group: source-watch
+  cancel-in-progress: false
+
+jobs:
+  watch:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    env:
+      STATE_BRANCH: source-watch-state
+      STATE_FILE: data/source-watch/state.json
+      DRY_RUN: ${{ github.event_name == 'workflow_dispatch' && inputs.dry_run }}
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+
+      - name: Fetch saved state
+        # The state branch holds only the state file. If it doesn't exist
+        # yet, this run is the baseline and the branch is created, as an
+        # orphan with no history from main, when the state is saved.
+        run: |
+          if git ls-remote --exit-code --heads origin "$STATE_BRANCH" > /dev/null; then
+            git fetch --depth 1 origin "$STATE_BRANCH"
+            git worktree add --detach .state FETCH_HEAD
+          else
+            echo "No $STATE_BRANCH branch yet: this run records the baseline."
+            git worktree add --detach .state HEAD
+            git -C .state switch --orphan "$STATE_BRANCH"
+          fi
+          mkdir -p "$(dirname "$STATE_FILE")"
+          if [ -f ".state/$STATE_FILE" ]; then
+            cp ".state/$STATE_FILE" "$STATE_FILE"
+          fi
+
+      - name: Check sources and feeds
+        run: python3 scripts/source_watch/watch.py --results-out _watch/results.json --report-out _watch/report.md
+
+      - name: Report
+        run: |
+          if [ "$DRY_RUN" = "true" ]; then
+            python3 scripts/source_watch/report.py --results _watch/results.json --full-out _watch/report-full.md --dry-run
+          else
+            python3 scripts/source_watch/report.py --results _watch/results.json --full-out _watch/report-full.md --open-issue
+          fi
+
+      - name: Upload full report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: source-watch-report
+          path: _watch/
+          if-no-files-found: ignore
+          retention-days: 90
+
+      - name: Save state
+        # Only after the issue was opened, so a failed report is retried
+        # against the same baseline next week instead of being lost.
+        if: env.DRY_RUN != 'true'
+        run: |
+          mkdir -p ".state/$(dirname "$STATE_FILE")"
+          cp "$STATE_FILE" ".state/$STATE_FILE"
+          cd .state
+          git add "$STATE_FILE"
+          if git diff --cached --quiet; then
+            echo "State unchanged."
+            exit 0
+          fi
+          git -c user.name="github-actions[bot]" \
+              -c user.email="41898282+github-actions[bot]@users.noreply.github.com" \
+              commit -q -m "source watch: state after run ${GITHUB_RUN_ID}"
+          git push origin "HEAD:refs/heads/$STATE_BRANCH"
