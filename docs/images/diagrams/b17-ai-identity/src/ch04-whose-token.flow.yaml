@@ -1,0 +1,21 @@
+# Book 17 Chapter 04 — the identity an AI system uses is decided by whose
+# token it presents when it calls something. Patterns from Microsoft Learn
+# (Conditional Access for agents; Agent 365 identity execution modes;
+# workload identity federation); the grouping is program design.
+rankdir: TB
+graph: {nodesep: 0.25, ranksep: 0.4}
+nodes:
+  q: {tone: slate, width: 520, title: "When the AI system calls a resource, whose token does it present?", size: 12}
+  user: {tone: blue, width: 225, tag: "Delegated", title: "A signed-in user's", body: ["On-behalf-of flow", "User is the subject; agent is the actor", "User's policies and consent apply"], size: 11}
+  own: {tone: blue, width: 225, tag: "Autonomous", title: "Its own identity", body: ["Workload identity or agent identity", "Client credentials, app-only", "Its own grants; Block-only policy for agents"], size: 11}
+  acct: {tone: amber, width: 225, tag: "Agent user", title: "Its own user account", body: ["Paired 1:1 with an agent identity", "Mailbox, licenses, groups", "Preview; separate policies"], size: 11}
+  key: {tone: red, width: 520, title: "A stored API key or secret outside Entra ID", body: ["=No token issuance, so no Conditional Access and no sign-in log in Entra ID"], size: 11}
+edges:
+  - [q, user]
+  - [q, own]
+  - [q, acct]
+  - [own, key, {label: "if it skips Entra ID", style: dashed, tone: red}]
+ranks:
+  - [user, own, acct]
+order:
+  - [user, own, acct]

@@ -78,6 +78,8 @@ website:
             text: "Book 15 — Compliance Automation & Day-2 Operations"
           - href: docs/books/b16-people/index.md
             text: "Book 16 — People: Training & Education"
+          - href: docs/books/b17-ai-identity/index.md
+            text: "Book 17 — AI Identity Governance"
           - href: docs/books/guides/effective-meetings.md
             text: "Guide: Effective Meetings"
       - href: docs/presentations/index.md
@@ -168,6 +170,10 @@ website:
           href: docs/books/b16-people/index.md
           contents:
             - auto: "docs/books/b16-people/*-*.md"
+        - section: "Book 17 — AI Identity Governance"
+          href: docs/books/b17-ai-identity/index.md
+          contents:
+            - auto: "docs/books/b17-ai-identity/*-*.md"
         - section: "Companion guides"
           contents:
             - docs/books/guides/effective-meetings.md

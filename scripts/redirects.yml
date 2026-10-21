@@ -409,3 +409,9 @@ redirects:
   docs/operational-guides/end-user-training.html: docs/books/b16-people/07-end-user-training.html
   docs/program/education.html: docs/books/b16-people/01-people-close-the-gap.html
   docs/program/training.html: docs/books/b16-people/09-building-and-running-the-curriculum.html
+
+  # Book 17 (AI Identity Governance) replaced these pages; sources are in archive/b17-ai-identity/.
+  docs/operational-guides/ai-identity-governance/index.html: docs/books/b17-ai-identity/index.html
+  docs/operational-guides/ai-identity-governance/central-deployment.html: docs/books/b17-ai-identity/09-running-the-inventory-scan.html
+  docs/operational-guides/ai-identity-governance/governed-path.html: docs/books/b17-ai-identity/10-evidence-and-authorization.html
+  docs/whitepapers/federal-ai-governance-submission-readiness.html: docs/books/b17-ai-identity/02-what-federal-ai-rules-require.html

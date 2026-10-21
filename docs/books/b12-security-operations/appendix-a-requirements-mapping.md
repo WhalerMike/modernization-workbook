@@ -31,7 +31,7 @@ This appendix helps an agency reuse the workbook's design and evidence in its ow
 
 - **Baselines** gives two values. The first is the NIST SP 800-53B baseline that includes the control (L, M, H, or none), checked against NIST's OSCAL baseline profiles.[^aA-53b] The second is the FedRAMP 2026 Rev5 classes whose baselines include it (B, C, D, or none), from FedRAMP's control reference; [Book 10](../b10-cloud-boundary/index.md) records Microsoft 365 GCC's certification as Class C, Moderate.[^aA-fedramp-controls] The agency's own systems use the baseline its categorization selects.
 - **Carried in** names the Book 12 chapters that design or evidence the control.
-- **Other books** names the workbook books that build part of it. Planned books without pages yet are named and linked to the [workbook index](../index.md).
+- **Other books** names the workbook books that build part of it.
 - Control identifiers and titles are from SP 800-53 Rev. 5, release 5.2.0, checked against the OSCAL catalog and the CSRC publication page.[^aA-53]
 
 ## NIST SP 800-53 Rev. 5 controls

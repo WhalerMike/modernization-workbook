@@ -50,6 +50,13 @@ bundles:
   # Book 06 — Data Platform: SQL Server Identity (was the SQL Server narrative
   # series and its implementation companion). The old download names stay as
   # aliases so published links keep working.
+  - output: b17-ai-identity-bundle.docx
+    title: "Book 17 — AI Identity Governance"
+    subtitle: "Every AI system needs an identity and an owner — Federal Modernization Workbook, combined edition"
+    root: docs/books/b17-ai-identity
+    image_dir: docs/images/diagrams/b17-ai-identity
+    warn_unlisted: ["*.md"]
+    pages: [index.md, "[0-9][0-9]-*.md", "appendix-*.md"]
   - output: b16-people-bundle.docx
     title: "Book 16 — People: Training & Education"
     subtitle: "People, not tools, close the gap — Federal Modernization Workbook, combined edition"

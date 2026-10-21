@@ -335,7 +335,7 @@ format:
 <section class="mw-section" id="books">
   <div class="mw-inner">
     <p class="section-label">The Books</p>
-    <h2 class="section-title">Seventeen books published. One more on the way.</h2>
+    <h2 class="section-title">All eighteen books published.</h2>
     <p class="section-body">Start with Book 01 for the whole arc, or go straight to the topic in front of you. Every book reads in its Why / What / Who / How order and downloads as one Word document.</p>
     <div class="book-cards">
       <div class="book-card">
@@ -457,6 +457,13 @@ format:
         <div class="book-desc">The workforce rules, the compliance and implementation tracks, assessment and certification, labs, end-user training, who owns readiness and how to measure it.</div>
         <div class="book-links"><a href="docs/books/b16-people/index.html">Read</a><a href="downloads/b16-people-bundle.docx">Word</a><a href="docs/presentations/index.html#book-16">Deck</a></div>
       </div>
+      <div class="book-card">
+        <div class="book-num">Book 17 · 10 chapters</div>
+        <div class="book-title"><a href="docs/books/b17-ai-identity/index.html">AI Identity Governance</a></div>
+        <div class="book-q">Why do AI agents need identities and owners?</div>
+        <div class="book-desc">What federal AI rules require and don't, the inventory as an identity source, agent identities, sponsors, credentials, shadow AI and evidence for authorization.</div>
+        <div class="book-links"><a href="docs/books/b17-ai-identity/index.html">Read</a><a href="downloads/b17-ai-identity-bundle.docx">Word</a><a href="docs/presentations/index.html#book-17">Deck</a></div>
+      </div>
     </div>
   </div>
 </section>
@@ -467,8 +474,8 @@ format:
     <h2 class="section-title">Built to be checked, not taken on trust.</h2>
     <p class="section-body">Each book keeps a verification log beside its chapters: every claim, the source it was checked against, and what changed when the source disagreed with the earlier draft.</p>
     <div class="arc-grid">
-      <div class="arc-phase"><div class="phase-num">17</div><div class="phase-name">Books</div><div class="phase-desc">Published as drafts, from orientation to people, training and education</div></div>
-      <div class="arc-phase"><div class="phase-num">211</div><div class="phase-name">Chapters</div><div class="phase-desc">Plus thirty-four appendices of checklists, matrices, mappings and templates</div></div>
+      <div class="arc-phase"><div class="phase-num">18</div><div class="phase-name">Books</div><div class="phase-desc">Published as drafts, from orientation to AI identity governance</div></div>
+      <div class="arc-phase"><div class="phase-num">221</div><div class="phase-name">Chapters</div><div class="phase-desc">Plus thirty-five appendices of checklists, matrices, mappings and templates</div></div>
       <div class="arc-phase"><div class="phase-num">4</div><div class="phase-name">Questions</div><div class="phase-desc">Why, What, Who and How, in that order, in every book</div></div>
       <div class="arc-phase"><div class="phase-num">15</div><div class="phase-name">Minutes</div><div class="phase-desc">A presentation per book, each with a narrated, captioned edition</div></div>
     </div>
@@ -479,10 +486,7 @@ format:
   <div class="mw-inner">
     <p class="section-label">The Full Workbook</p>
     <h2 class="section-title">Eighteen books in all.</h2>
-    <p class="section-body">The last book is being built from the workbook's earlier documents, which stay in the repository until it is published. <a href="docs/books/index.html">The Workbook Books</a> lists every book and its opening question.</p>
-    <div class="badge-grid">
-      <div class="badge"><b>B17</b>AI Identity Governance</div>
-    </div>
+    <p class="section-body">Every book is now published as a draft and revised as its sources change; the workbook's earlier documents are archived in the repository, and their old addresses forward to the chapters that replaced them. <a href="docs/books/index.html">The Workbook Books</a> lists every book, its opening question and when it was last updated.</p>
   </div>
 </section>
 

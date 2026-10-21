@@ -1,0 +1,22 @@
+# Book 17 Chapter 05 — the three relationships on an agent identity in
+# Microsoft Entra Agent ID (owner, sponsor, manager) and the program's rule
+# that the inventory record names the same sponsor. Relationship rights from
+# Microsoft Learn (administrative relationships in Agent ID); who holds each
+# relationship is program design.
+rankdir: TB
+graph: {nodesep: 0.25, ranksep: 0.4}
+nodes:
+  agent: {tone: blue, width: 520, title: "Agent identity", body: ["=Created from a governed blueprint; object ID and blueprint ID recorded"], size: 12}
+  owner: {tone: slate, width: 210, tag: "Technical", title: "Owner", body: ["Named person or the deployment service", "Settings and credentials", "Can re-enable and restore"], size: 11}
+  sponsor: {tone: violet, width: 210, tag: "Accountable", title: "Sponsor", body: ["Federal employee mastered in HR", "Plus a small dynamic group of stewards", "Decides renewal and retirement", "Can disable, not restore"], size: 11}
+  manager: {tone: slate, width: 210, tag: "Optional", title: "Manager", body: ["Places the agent in the hierarchy", "Requests access for its user account"], size: 11}
+  record: {tone: green, width: 210, title: "Inventory record", body: ["Purpose, object ID, blueprint", "Names the same sponsor"], size: 11}
+edges:
+  - [agent, owner]
+  - [agent, sponsor]
+  - [agent, manager]
+  - [sponsor, record, {label: "must match", style: dashed, tone: green}]
+ranks:
+  - [owner, sponsor, manager]
+order:
+  - [owner, sponsor, manager]

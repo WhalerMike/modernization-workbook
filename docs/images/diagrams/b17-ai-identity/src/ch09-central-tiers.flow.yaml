@@ -1,0 +1,20 @@
+# Book 17 Chapter 09 — the central model's four tiers (program design, kept
+# from the source operational guide). Tiers 0-2 need nothing beyond the
+# public inventory and the agency's existing identity tools; Tier 3 needs
+# per-agency access to the credential surface, which no central scan has.
+# CDM comparison verified on cisa.gov (tools deployed to agencies; agency
+# dashboards push summary data to the Federal Dashboard).
+rankdir: TB
+graph: {nodesep: 0.3, ranksep: 0.38}
+nodes:
+  t0: {tone: violet, width: 460, tag: "Tier 0  Central", title: "Scan the public inventory", body: ["=One run over every agency's published file; no data-sharing agreement needed"], size: 11}
+  t1: {tone: violet, width: 460, tag: "Tier 1  Central to agency", title: "Deliver each agency its own findings", body: ["=Scoped to that agency's rows; agentic and authorization findings first"], size: 11}
+  t2: {tone: blue, width: 460, tag: "Tier 2  Agency", title: "Remediate with existing tools", body: ["=Owners assigned, authorizations reconciled, PIAs located; the inventory updated"], size: 11}
+  t3: {tone: amber, width: 460, tag: "Tier 3  Agency only", title: "Govern the credential itself", body: ["=Directory join, credential lifecycle, shadow AI; Chapters 05 to 07"], size: 11}
+  gap: {tone: red, width: 460, title: "What no central scan can see", body: ["=Whether a credential exists, rotates or was revoked; AI nobody inventoried"], size: 11}
+edges:
+  - [t0, t1]
+  - [t1, t2]
+  - [t2, t3, {tone: amber}]
+  - [t3, gap, {tone: red, style: dashed, label: "closes"}]
+  - [t2, t0, {style: dashed, label: "next vintage shows the fix", attrs: "constraint=false"}]

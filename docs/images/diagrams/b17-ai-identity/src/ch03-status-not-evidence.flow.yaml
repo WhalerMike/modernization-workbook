@@ -1,0 +1,20 @@
+# Book 17 Chapter 03 — the 2025 inventory has a status field for each of
+# M-25-21's seven minimum practices for high-impact AI (field names from
+# OMB's 2025 data dictionary). A status is the agency's own answer; the
+# evidence each practice needs lives elsewhere. Evidence column is program
+# design.
+rankdir: TB
+nodes:
+  t:
+    kind: table
+    tone: slate
+    columns: ["M-25-21 practice", "Inventory field", "Evidence that lives elsewhere"]
+    widths: [210, 240, 290]
+    rows:
+      - ["1 Pre-deployment testing", "`hi_testing_conducted`", "Test plan, results, risk mitigation plan"]
+      - ["2 AI impact assessment", "`hi_assessment_completed`, `hi_potential_impacts`, `hi_independent_review`", "Signed assessment; reviewer comments; the risk acceptor's signature"]
+      - [{text: "3 Ongoing monitoring", tone: blue}, "`hi_ongoing_monitoring`", {text: "Sign-in and audit logs for the system's own identity; drift findings", tone: blue}]
+      - [{text: "4 Human training", tone: blue}, "`hi_training_established`", {text: "Training records tied to the operators' accounts", tone: blue}]
+      - [{text: "5 Human oversight and fail-safe", tone: blue}, "`hi_failsafe_presence`", {text: "Who can disable the identity, and a tested disable", tone: blue}]
+      - ["6 Remedies and appeals", "`hi_appeal_process`", "Appeal procedure and case records"]
+      - ["7 Public and end-user feedback", "`hi_public_consultation`", "Feedback channel and how feedback changed the system"]

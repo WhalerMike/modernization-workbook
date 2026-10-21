@@ -1,0 +1,24 @@
+# Book 17 Chapter 03 — one row of the 2025 Federal AI Use Case Inventory read
+# as identity data. Some fields are anchors an identity record can key on,
+# some are leads that need checking, and the facts an identity record needs
+# most are not in the inventory at all. Field names from OMB's 2025 data
+# dictionary; the reading is program design.
+rankdir: TB
+graph: {nodesep: 0.25, ranksep: 0.4}
+nodes:
+  row: {tone: slate, width: 520, title: "One individually reported AI use case", body: ["=36 columns in OMB's consolidated file; which are required depends on stage and impact"], size: 11}
+  anchors: {tone: green, width: 225, tag: "Anchors", title: "Fields an identity record can key on", body: ["`id`: stable, never reused", "`agency_bureau`: organizational placement", "`development_stage`: lifecycle state; Retired is a leaver event"], size: 11}
+  leads: {tone: amber, width: 225, tag: "Leads", title: "Fields that point somewhere", body: ["`contact_email`: may be a public inbox", "`vendor_name`: a third party", "`system_name_ato`: an authorization boundary", "`classification`: Agentic AI can act"], size: 11}
+  gaps: {tone: red, width: 225, tag: "Not in the inventory", title: "Facts the record still needs", body: ["The principal it signs in as", "Credential type and expiry", "Permissions it holds", "Named owner and risk acceptor", "Delegated or autonomous access"], size: 11}
+  record: {tone: blue, width: 520, title: "AI system identity record", body: ["=Inventory ID joined to the directory objects the system actually uses"], size: 11}
+edges:
+  - [row, anchors]
+  - [row, leads]
+  - [row, gaps]
+  - [anchors, record, {tone: green, label: "key"}]
+  - [leads, record, {tone: amber, label: "verify"}]
+  - [gaps, record, {tone: red, label: "discover", style: dashed}]
+ranks:
+  - [anchors, leads, gaps]
+order:
+  - [anchors, leads, gaps]

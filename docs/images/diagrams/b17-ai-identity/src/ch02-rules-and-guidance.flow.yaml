@@ -1,0 +1,40 @@
+# Book 17 Chapter 02 — the federal AI rule set in force on October 22,
+# 2026, split into what binds agencies (executive orders and OMB memoranda)
+# and what guides them (NIST, CISA, FedRAMP). Dates from the Federal
+# Register, the OMB memoranda, NIST, CISA and FedRAMP pages cited in the
+# chapter.
+rankdir: TB
+graph: {nodesep: 0.3, ranksep: 0.25}
+clusters:
+  - id: bind
+    label: "Binding on agencies"
+    tone: amber
+    margin: 8
+    nodes: [eo14179, m2521, m2522, m2604, eo14409, eo14434]
+  - id: guide
+    label: "Guidance agencies draw on"
+    tone: violet
+    margin: 8
+    nodes: [rmf, gai, cosis, cisa, fr]
+nodes:
+  eo14179: {tone: amber, width: 250, tag: "January 23, 2025", title: "EO 14179", body: ["=Revise M-24-10 and M-24-18"], size: 11}
+  m2521: {tone: amber, width: 250, tag: "April 3, 2025", title: "M-25-21: use and governance", body: ["=Chief AI Officer, inventory, seven minimum practices"], size: 11}
+  m2522: {tone: amber, width: 250, tag: "April 3, 2025", title: "M-25-22: acquisition", body: ["=Contract terms; ATO before deployment"], size: 11}
+  m2604: {tone: amber, width: 250, tag: "December 11, 2025", title: "M-26-04: unbiased AI principles", body: ["=LLM contract terms; sunsets December 2027"], size: 11}
+  eo14409: {tone: amber, width: 250, tag: "June 2, 2026", title: "EO 14409: AI security", body: ["=Harden federal systems; CISA directives"], size: 11}
+  eo14434: {tone: amber, width: 250, tag: "September 29, 2026", title: "EO 14434: terminology", body: ["=Say \"Super Intelligence\"; definitions unchanged"], size: 11}
+  rmf: {tone: violet, width: 250, tag: "January 26, 2023", title: "NIST AI RMF 1.0", body: ["=Voluntary; under revision"], size: 11}
+  gai: {tone: violet, width: 250, tag: "July 26, 2024", title: "NIST AI 600-1", body: ["=Generative AI profile"], size: 11}
+  cosis: {tone: violet, width: 250, tag: "Concept paper, August 2025", title: "SP 800-53 overlays for AI", body: ["=No public draft yet"], size: 11}
+  cisa: {tone: violet, width: 250, tag: "2024 to 2026", title: "CISA joint guidance", body: ["=Deploying AI securely; agentic AI"], size: 11}
+  fr: {tone: violet, width: 250, tag: "August 2025 to April 2026", title: "FedRAMP AI prioritization", body: ["=Completed; provider side only"], size: 11}
+edges:
+  - [eo14179, m2521, {style: invis}]
+  - [m2521, m2522, {style: invis}]
+  - [m2522, m2604, {style: invis}]
+  - [m2604, eo14409, {style: invis}]
+  - [eo14409, eo14434, {style: invis}]
+  - [rmf, gai, {style: invis}]
+  - [gai, cosis, {style: invis}]
+  - [cosis, cisa, {style: invis}]
+  - [cisa, fr, {style: invis}]

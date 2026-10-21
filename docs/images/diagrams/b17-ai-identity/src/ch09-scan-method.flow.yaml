@@ -1,0 +1,28 @@
+# Book 17 Chapter 09 — the program's inventory scan as a loop (program design).
+# Load one inventory vintage, detect identity-governance gaps from the
+# inventory answers (and, at agency level, from the directory join), set a
+# priority, report one row per system, remediate through the owners, and close
+# a finding only when a later observation shows the fixed state. The next
+# annual vintage (M-25-21: at least annually) restarts the loop as a delta.
+rankdir: TB
+graph: {nodesep: 0.3, ranksep: 0.38}
+nodes:
+  load: {tone: slate, width: 460, tag: "1 Load", title: "One inventory vintage", body: ["=The agency's own submission, or OMB's consolidated public file", "=Record the vintage, the file's hash and what is missing"], size: 11}
+  inv: {tone: amber, width: 220, tag: "2 Detect", title: "Inventory answers", body: ["Agentic, no authorization answer", "No authorization answer", "No contact or placement", "PII with no PIA link"], size: 11}
+  dir: {tone: blue, width: 220, tag: "2 Detect, agency only", title: "Directory join", body: ["No identity record", "No accountable sponsor", "Identity with no inventory row", "Retired, still holds access"], size: 11}
+  pri: {tone: violet, width: 460, tag: "3 Prioritize", title: "Priority and route", body: ["=Agentic systems first; severities as in Chapter 07"], size: 11}
+  rep: {tone: violet, width: 220, tag: "4 Report", title: "One row per system", body: ["=Finding, obligation, action, control, owner"], size: 11}
+  fix: {tone: blue, width: 220, tag: "5 Remediate", title: "Owners act", body: ["=Identity team, ISSO, privacy officer, sponsor"], size: 11}
+  done: {tone: green, width: 460, title: "Closed only on a later observation", body: ["=The next scan or the directory shows the fixed state; a ticket closes nothing"], size: 11}
+edges:
+  - [load, inv]
+  - [load, dir]
+  - [inv, pri, {tone: amber}]
+  - [dir, pri, {tone: blue}]
+  - [pri, rep]
+  - [rep, fix]
+  - [fix, done, {tone: green}]
+  - [done, load, {style: dashed, label: "next vintage: delta", attrs: "constraint=false"}]
+order:
+  - [inv, dir]
+  - [rep, fix]

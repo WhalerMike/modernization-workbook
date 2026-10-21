@@ -115,3 +115,9 @@ Book-internal consistency fixes. Factual changes were checked against sources op
 | # | Change | Where | Verdict | Source |
 |---|---|---|---|---|
 | C1 | Naming convention: authentication-context policies named `{Purpose}-c{N}` with no library number (`PIM-Activation-c1`, `ProtectedActions-c2`) | Naming convention | design-consistency (Ch07 conventions, Ch08 Steps 2 and 6) | — |
+
+## Editor update, October 22, 2026
+
+| Claim | Result | Source |
+|---|---|---|
+| Agent targets are preview; agent identities support only Block | updated: Agent ID platform GA April 2026; agent targeting still labeled preview; agent identities Block only, agent risk (preview) only condition; agent users can be granted on a compliant device (Windows 365 Cloud PC for Agents); licensing Microsoft 365 E7 or Agent 365 with Entra ID P1 or Microsoft 365 E3 | Microsoft Learn: howto-target-agent-identities, policy-agent-user, concept-conditional-access-grant, Entra whats-new (April 2026) |

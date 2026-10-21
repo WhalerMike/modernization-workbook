@@ -1,0 +1,20 @@
+# Book 17 Chapter 02 — there is no AI-specific ATO. A high-impact AI use
+# case needs two separate decisions before deployment: M-25-21's risk
+# acceptance, signed on the AI impact assessment (Section 4(b)(ii)(G)), and
+# the information system's authorization to operate under OMB Circular A-130
+# (M-25-21 footnotes 22 and 29; M-25-22 Section 4(e)(i)). Neither replaces
+# the other. The identity record that ties them together is program design.
+rankdir: TB
+graph: {nodesep: 0.35, ranksep: 0.4}
+nodes:
+  uc: {tone: amber, width: 560, title: "A high-impact AI use case, ready to deploy", body: ["=Runs as functionality inside an information system"], size: 12}
+  ra: {tone: violet, width: 260, title: "M-25-21 risk acceptance", body: ["=Impact assessment, independent review, signature of the official accepting the risk"], size: 11}
+  ato: {tone: slate, width: 260, title: "Authorization to operate", body: ["=The system's existing A-130 and RMF process; the authorizing official decides"], size: 11}
+  id: {tone: blue, width: 560, title: "The AI system's identity record", body: ["=Owner, accounts, permissions and the records both decisions rely on"], size: 12}
+  go: {tone: green, width: 300, title: "Deploy", body: ["=Only when both decisions are in place"], size: 11}
+edges:
+  - [uc, id, {tone: blue}]
+  - [id, ra, {tone: violet, style: dashed, label: "evidence"}]
+  - [id, ato, {tone: slate, style: dashed, label: "evidence"}]
+  - [ra, go, {tone: green}]
+  - [ato, go, {tone: green}]

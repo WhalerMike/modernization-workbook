@@ -97,7 +97,7 @@ One table per role family, mapping each role from the role models of [Book 00, C
 
 ## Keeping the map current
 
-The map is a derived artifact. Its source is the set of role chapters it cites. When a role chapter adds, renames or removes a role, or a book adds chapters, the map changes with it through the same currency review that [Chapter 09](09-building-and-running-the-curriculum.md#keeping-the-curriculum-current-as-the-books-change) describes for modules. Book 17, AI Identity Governance, is planned ([workbook index](../index.md)); when it is published, the program expects it to add rows for the people who own and approve AI agent identities, and its chapters join the reading lists of identity engineering, the identity governance officer and the CISO's staff.
+The map is a derived artifact. Its source is the set of role chapters it cites. When a role chapter adds, renames or removes a role, or a book adds chapters, the map changes with it through the same currency review that [Chapter 09](09-building-and-running-the-curriculum.md#keeping-the-curriculum-current-as-the-books-change) describes for modules. [Book 17, AI Identity Governance](../b17-ai-identity/index.md), adds the people who own and approve AI agent identities ([Book 17, Chapter 08](../b17-ai-identity/08-who-owns-ai-identity.md)); the program adds their rows at the next currency review, and Book 17's chapters join the reading lists of identity engineering, the identity governance officer and the CISO's staff.
 
 ::: {.callout-tip}
 ## Continue the book
