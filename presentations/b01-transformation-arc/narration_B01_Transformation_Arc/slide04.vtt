@@ -1,0 +1,73 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.375
+Chapter 02 names the problem.
+
+2
+00:00:02.375 --> 00:00:05.821
+Active Directory was the
+implicit governance model for
+
+3
+00:00:05.821 --> 00:00:08.900
+every Windows-era service,
+and nobody wrote it down.
+
+4
+00:00:08.900 --> 00:00:13.455
+Microsoft's design guidance says
+organizational units exist to apply
+
+5
+00:00:13.455 --> 00:00:18.088
+Group Policy and delegate authority,
+and that both inherit down the tree.
+
+6
+00:00:18.088 --> 00:00:21.762
+So placing one user in an
+OU did five things at once.
+
+7
+00:00:21.762 --> 00:00:24.964
+It handed the account to that
+branch's administrators,
+
+8
+00:00:24.964 --> 00:00:29.661
+applied every policy linked along the
+path, fed the tools that built groups from
+
+9
+00:00:29.661 --> 00:00:34.500
+position, bound it to the branch's delegation
+authority, and drew an audit boundary.
+
+10
+00:00:34.500 --> 00:00:36.775
+Entra ID has no OU tree.
+
+11
+00:00:36.775 --> 00:00:38.920
+Dynamic groups follow attributes,
+
+12
+00:00:38.920 --> 00:00:43.062
+and administrative units scope
+delegated roles but can't be nested.
+
+13
+00:00:43.062 --> 00:00:47.825
+Neither rebuilds the tree on its own;
+the rebuild has to be written down.
+
+14
+00:00:47.825 --> 00:00:51.727
+And Microsoft still supports
+and enhances Active Directory,
+
+15
+00:00:51.727 --> 00:00:55.460
+so retiring it is an agency
+decision, not a vendor deadline.

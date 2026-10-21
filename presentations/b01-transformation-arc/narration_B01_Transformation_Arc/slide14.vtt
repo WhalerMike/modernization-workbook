@@ -1,0 +1,74 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.300
+Chapter 11 turns the inventory
+into change in three stages.
+
+2
+00:00:04.300 --> 00:00:08.462
+Analyze builds current-state and
+target-state graphs and a diff.
+
+3
+00:00:08.462 --> 00:00:12.875
+Plan expands the diff into typed
+actions, each scoped to one object,
+
+4
+00:00:12.875 --> 00:00:16.325
+ordered by dependency and
+paired with its rollback.
+
+5
+00:00:16.325 --> 00:00:18.163
+A plan must pass validation,
+
+6
+00:00:18.163 --> 00:00:22.400
+then authorization by an approver
+of record who isn't the author.
+
+7
+00:00:22.400 --> 00:00:25.889
+Only then does a separate
+execution identity deliver it,
+
+8
+00:00:25.889 --> 00:00:29.600
+verifying every action and
+closing with an evidence packet.
+
+9
+00:00:29.600 --> 00:00:34.951
+The actuation ladder caps how far
+automation may go: record, observe,
+
+10
+00:00:34.951 --> 00:00:40.875
+advise, gated actuation, and autonomy
+only for enumerated low-risk classes.
+
+11
+00:00:40.875 --> 00:00:43.397
+Gated actuation is the default ceiling,
+
+12
+00:00:43.397 --> 00:00:46.912
+because it's a posture an
+authorizing official can sign.
+
+13
+00:00:46.912 --> 00:00:50.071
+CISA calls its maturity
+model a general guide,
+
+14
+00:00:50.071 --> 00:00:54.200
+not a strict set of requirements,
+so this is design, not mandate.
+
+15
+00:00:54.200 --> 00:00:58.460
+When nothing has drifted, the next
+run produces a zero-action plan.

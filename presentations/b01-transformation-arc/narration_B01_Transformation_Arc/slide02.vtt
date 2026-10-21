@@ -1,0 +1,74 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.025
+Why is modernization so hard?
+
+2
+00:00:02.025 --> 00:00:04.125
+The estate got here in four eras.
+
+3
+00:00:04.125 --> 00:00:05.879
+Each solved a real problem,
+
+4
+00:00:05.879 --> 00:00:10.263
+and none replaced what the first
+era had: one authoritative answer.
+
+5
+00:00:10.263 --> 00:00:14.700
+On the mainframe, one machine held
+the data and enforced access to it.
+
+6
+00:00:14.700 --> 00:00:18.185
+By the late 1980s, regional
+databases and directories
+
+7
+00:00:18.185 --> 00:00:21.050
+had spread that truth
+across a dozen systems.
+
+8
+00:00:21.050 --> 00:00:23.925
+From 2010 the direction reversed.
+
+9
+00:00:23.925 --> 00:00:31.213
+OMB reported that federal data centers had
+grown from 432 in 1998 to more than 1,100
+
+10
+00:00:31.213 --> 00:00:38.180
+in 2009, and the December 2010 reform plan
+targeted closing at least 800 by 2015,
+
+11
+00:00:38.180 --> 00:00:42.038
+wiring offices back to distant facilities.
+
+12
+00:00:42.038 --> 00:00:45.176
+Then email and collaboration
+moved to the cloud,
+
+13
+00:00:45.176 --> 00:00:48.001
+while identity stayed in regional domains.
+
+14
+00:00:48.001 --> 00:00:50.650
+And each fix assumes the last one is done.
+
+15
+00:00:50.650 --> 00:00:56.054
+Zero Trust assumes governed identity,
+governed identity assumes a clean directory,
+
+16
+00:00:56.054 --> 00:00:59.040
+and a clean directory
+assumes someone owns it.

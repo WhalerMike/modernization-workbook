@@ -1,0 +1,83 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.298
+Group Policy was Active Directory's
+most ambitious delivery system,
+
+2
+00:00:04.298 --> 00:00:05.938
+and its most network-bound.
+
+3
+00:00:05.938 --> 00:00:09.812
+A client applies it only when it
+can reach a domain controller,
+
+4
+00:00:09.812 --> 00:00:11.863
+and every refresh is a trip to one.
+
+5
+00:00:11.863 --> 00:00:17.188
+A cloud-native endpoint, Entra joined
+and in Intune, has no such dependency.
+
+6
+00:00:17.188 --> 00:00:20.465
+Don't port a fifty-setting
+GPO as fifty settings;
+
+7
+00:00:20.465 --> 00:00:24.750
+that carries dead weight, old
+conflicts and manual targeting.
+
+8
+00:00:24.750 --> 00:00:28.800
+Microsoft's recommended option is
+to start new rather than migrate.
+
+9
+00:00:28.800 --> 00:00:34.421
+So the program regenerates one canonical
+policy per category, keyed to attributes,
+
+10
+00:00:34.421 --> 00:00:37.680
+into Intune, Conditional
+Access and, for servers,
+
+11
+00:00:37.680 --> 00:00:42.812
+Azure machine configuration, because
+Intune doesn't manage Windows Server.
+
+12
+00:00:42.812 --> 00:00:46.105
+Every change passes four
+stages: validation,
+
+13
+00:00:46.105 --> 00:00:50.200
+a simulated tenant, a report-only
+pilot, then production.
+
+14
+00:00:50.200 --> 00:00:53.894
+And prefer require to block,
+except where the federal SCuBA
+
+15
+00:00:53.894 --> 00:00:57.362
+baseline demands a block, as
+for legacy authentication.
+
+16
+00:00:57.362 --> 00:01:00.519
+Book 05 covers the device detail in depth,
+
+17
+00:01:00.519 --> 00:01:03.910
+and Book 04 the
+Conditional Access library.
