@@ -29,7 +29,7 @@ The workbook grew as separate whitepapers, guides, series and case studies. The 
 | **B09** | **[Network & Transport](b09-network/index.md)** | **Why does physics decide the architecture?** | **Draft** | 13 + 3 app. | 280 | 2026-10-21 |
 | **B10** | **[Cloud Boundary & Landing Zone](b10-cloud-boundary/index.md)** | **Why does the authorization boundary decide what you can use?** | **Draft** | 11 + 2 app. | 180 | 2026-10-21 |
 | **B11** | **[Zero Trust & Assessment](b11-zero-trust/index.md)** | **Why is Zero Trust a whole-agency property, not a product?** | **Draft** | 10 + 1 app. | 140 | 2026-10-21 |
-| **B12** | **[Security Operations & Telemetry](b12-security-operations/index.md)** | **Why can't you defend what you can't see?** | **Draft** | 12 + 1 app. | 270 | — |
+| **B12** | **[Security Operations & Telemetry](b12-security-operations/index.md)** | **Why can't you defend what you can't see?** | **Draft** | 12 + 1 app. | 270 | 2026-10-21 |
 | B13 | Governance, Drift & Evidence | Why does compliance decay the day after the audit? | Planned | — | — | — |
 | B14 | Federal Compliance & Authorization | Why does every control need proof, not a promise? | Planned | — | — | — |
 | B15 | Compliance Automation & Day-2 Operations | Why does modernization succeed or fail at the help desk? | Planned | — | — | — |

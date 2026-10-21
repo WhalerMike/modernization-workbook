@@ -1,0 +1,41 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.689
+This briefing comes from Book 12 of
+the Federal Modernization Workbook,
+
+2
+00:00:04.689 --> 00:00:09.792
+Security Operations and Telemetry: how
+an agency makes every part of its estate
+
+3
+00:00:09.792 --> 00:00:14.663
+emit evidence, turns it into detection
+and response, and proves that it works.
+
+4
+00:00:14.663 --> 00:00:18.408
+I'll take four questions: why you
+can't defend what you can't see,
+
+5
+00:00:18.408 --> 00:00:22.004
+what each plane must emit and
+how findings reach one queue,
+
+6
+00:00:22.004 --> 00:00:26.949
+who runs security operations, and how to
+run detection, response and monitoring.
+
+7
+00:00:26.949 --> 00:00:30.847
+The short version: design
+visibility instead of assuming it,
+
+8
+00:00:30.847 --> 00:00:34.660
+and close a finding only when
+the thing is fixed, with proof.

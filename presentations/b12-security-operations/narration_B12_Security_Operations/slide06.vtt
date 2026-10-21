@@ -1,0 +1,73 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.112
+A workspace full of tables
+is still a warehouse.
+
+2
+00:00:03.112 --> 00:00:06.684
+Rules, incidents and automation
+make it a detection engine,
+
+3
+00:00:06.684 --> 00:00:11.422
+and the program's rule is strict: no source
+counts as monitored until an enabled
+
+4
+00:00:11.422 --> 00:00:16.087
+rule reads it, and no rule counts until
+its output reaches a queue someone owns.
+
+5
+00:00:16.087 --> 00:00:19.212
+The engine also sets a
+floor on time to detect.
+
+6
+00:00:19.212 --> 00:00:22.309
+A scheduled rule runs
+every five minutes at best,
+
+7
+00:00:22.309 --> 00:00:24.787
+with a five-minute delay for ingestion.
+
+8
+00:00:24.787 --> 00:00:28.802
+A near-real-time rule runs every
+minute on a two-minute delay,
+
+9
+00:00:28.802 --> 00:00:31.588
+and a workspace can
+enable only 50 of them.
+
+10
+00:00:31.588 --> 00:00:34.324
+Behavioral baselines are slower by design.
+
+11
+00:00:34.324 --> 00:00:40.263
+Defender XDR detects what its own sensors
+see on endpoints, identities and email.
+
+12
+00:00:40.263 --> 00:00:47.075
+Sentinel rules cover what Defender can't
+see: DNS, SASE, SQL audit and other clouds.
+
+13
+00:00:47.075 --> 00:00:51.473
+Then prepare for the assessor's test:
+show an alert from the last 30 days,
+
+14
+00:00:51.473 --> 00:00:53.975
+the incident it opened and what was done.
+
+15
+00:00:53.975 --> 00:00:59.540
+That takes four records: the alert, the
+ticket, the response notes and the closure.

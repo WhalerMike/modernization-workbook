@@ -1,0 +1,79 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:05.783
+Vulnerability management fails at three
+points assessors probe: a stale inventory,
+
+2
+00:00:05.783 --> 00:00:10.288
+prioritization by score alone, and
+no record of found, due and fixed.
+
+3
+00:00:10.288 --> 00:00:12.637
+The program's answer is a daily queue.
+
+4
+00:00:12.637 --> 00:00:15.224
+Pull the KEV feed before
+the morning review.
+
+5
+00:00:15.224 --> 00:00:18.200
+Pull findings from Defender
+Vulnerability Management.
+
+6
+00:00:18.200 --> 00:00:22.975
+Join each device to the authoritative
+asset record and its exposure tag.
+
+7
+00:00:22.975 --> 00:00:27.590
+Look up CISA's automation and impact
+data, apply the directive's table,
+
+8
+00:00:27.590 --> 00:00:31.012
+and keep the first-detected
+date, never resetting it.
+
+9
+00:00:31.012 --> 00:00:32.771
+Use the catalog's due date,
+
+10
+00:00:32.771 --> 00:00:36.874
+because Defender's vulnerability
+data carries no KEV flag.
+
+11
+00:00:36.874 --> 00:00:40.850
+Treat an asset with no exposure
+tag as publicly exposed.
+
+12
+00:00:40.850 --> 00:00:45.387
+And Defender's exports carry no
+history, so the program keeps its own.
+
+13
+00:00:45.387 --> 00:00:48.625
+A scanner authors no
+state; it measures a gap.
+
+14
+00:00:48.625 --> 00:00:51.746
+Each platform patches with
+its own native stack,
+
+15
+00:00:51.746 --> 00:00:56.662
+and every stack returns the same
+remediation record, keyed to the same asset.
+
+16
+00:00:56.662 --> 00:01:01.370
+A finding closes when the fix is recorded
+and the next scan no longer sees it.
