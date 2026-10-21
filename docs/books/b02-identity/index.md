@@ -1,7 +1,7 @@
 ---
 title: "Book 02 — Identity & Directory"
 subtitle: "Active Directory to Entra ID: why identity matters, what changes, who owns it, and how to do it"
-description: "Book 02 of the Modernization Workbook: why identity is the control plane of a modern federal estate, how Active Directory and Entra ID differ, the hidden dependency surface and delegation model, who owns which decisions, and the discovery, assessment, build and migration steps, with a reference deployment and federal requirements crosswalk."
+description: "Book 02 of the Federal Modernization Workbook: why identity is the control plane of a modern federal estate, how Active Directory and Entra ID differ, the hidden dependency surface and delegation model, who owns which decisions, and the discovery, assessment, build and migration steps, with a reference deployment and federal requirements crosswalk."
 doc-type: section-landing
 audience: [Executive, Technical, Customer]
 family: b02-identity
@@ -56,7 +56,7 @@ Appendices: [A — Federal requirements crosswalk](appendix-a-federal-requiremen
 
 ## Where this book sits in the workbook
 
-This is Book 02 of the [Modernization Workbook](../index.md). The workforce side of identity, with HR as the source of authority, is in [HR-Driven Identity](../b03-hr-identity/index.md). The SQL Server estate's move off Windows authentication is in the [SQL Server Identity Transformation](../b06-data-platform/index.md) series.
+This is Book 02 of the [Federal Modernization Workbook](../index.md). The workforce side of identity, with HR as the source of authority, is in [HR-Driven Identity](../b03-hr-identity/index.md). The SQL Server estate's move off Windows authentication is in the [SQL Server Identity Transformation](../b06-data-platform/index.md) series.
 
 ## Chapters
 

@@ -1,7 +1,7 @@
 ---
 title: "Book 07 — PKI & Certificates"
 subtitle: "AD CS to Cloud PKI, Entra CBA and Federal PKI: why certificates outlive every migration, what the target PKI is, who owns the certificate estate, and how to migrate and retire the old CAs"
-description: "Book 07 of the Modernization Workbook: why certificates outlive every migration, what AD CS holds up, hardening the CAs that stay, the target PKI of Cloud PKI, AD CS and Federal PKI, who owns the certificate estate, device and user certificates through Intune and Entra CBA, coexistence and migration, and lifecycle, monitoring and decommissioning."
+description: "Book 07 of the Federal Modernization Workbook: why certificates outlive every migration, what AD CS holds up, hardening the CAs that stay, the target PKI of Cloud PKI, AD CS and Federal PKI, who owns the certificate estate, device and user certificates through Intune and Entra CBA, coexistence and migration, and lifecycle, monitoring and decommissioning."
 doc-type: section-landing
 audience: [Executive, Technical, Customer]
 family: b07-pki
@@ -57,7 +57,7 @@ Appendices: [A — Cloud PKI and CBA deployment checklists](appendix-a-deploymen
 
 ## Where this book sits in the workbook
 
-This is Book 07 of the [Modernization Workbook](../index.md). [Book 02 — Identity & Directory](../b02-identity/04-the-hidden-migration-surface.md) finds the PKI as one of the hidden dependencies on Active Directory. [Book 03 — HR-Driven Identity](../b03-hr-identity/09-credentials-and-certificates.md) covers PIV issuance and termination. [Book 05 — Devices & Endpoints](../b05-devices/index.md) covers the Intune certificate profiles, and [Book 06 — Data Platform](../b06-data-platform/22-where-sql-server-touches-adcs.md) covers where SQL Server depends on AD CS. For control-level depth on certificates, tokens and cryptographic identity, see the Federal Compliance book [Certificates, Tokens and Cryptographic Identity](https://github.com/WhalerMike/modernization-workbook/blob/main/docs/compliance/Vol_I_Book_03_Certificates_Tokens_Cryptographic_Identity.md).
+This is Book 07 of the [Federal Modernization Workbook](../index.md). [Book 02 — Identity & Directory](../b02-identity/04-the-hidden-migration-surface.md) finds the PKI as one of the hidden dependencies on Active Directory. [Book 03 — HR-Driven Identity](../b03-hr-identity/09-credentials-and-certificates.md) covers PIV issuance and termination. [Book 05 — Devices & Endpoints](../b05-devices/index.md) covers the Intune certificate profiles, and [Book 06 — Data Platform](../b06-data-platform/22-where-sql-server-touches-adcs.md) covers where SQL Server depends on AD CS. For control-level depth on certificates, tokens and cryptographic identity, see the Federal Compliance book [Certificates, Tokens and Cryptographic Identity](https://github.com/WhalerMike/modernization-workbook/blob/main/docs/compliance/Vol_I_Book_03_Certificates_Tokens_Cryptographic_Identity.md).
 
 ## Chapters
 
