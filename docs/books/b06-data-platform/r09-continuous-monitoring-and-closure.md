@@ -104,6 +104,56 @@ The closure record monitors the **configuration** state: is `LoginMode` correct,
 
 In the transformed posture the baseline is Entra-authenticated connections only, so **any NTLM- or Kerberos-authenticated connection** to an instance, visible in `auth_scheme`, SQL Server Audit or the host's logon events, should be zero and is an immediate alert. An NTLM connection means one of three things, all requiring investigation: an instance regressed to Mixed Mode (the closure record should already have caught it), an instance was outside the original audit scope (a discovery gap; re-run Runbook R02), or a connection pattern the plan didn't anticipate.
 
+### Illustrative workspace queries
+
+Where the Azure Monitor agent forwards the hosts' Windows logs to a Log Analytics workspace ([Chapter 20](20-the-closure-condition.md)), the protocol checks can run there as scheduled queries. Which table holds the Security log depends on how it's collected. A data collection rule's *Windows Event Logs* data source writes Security events to the `Event` table with the other logs; the Microsoft Sentinel connector *Windows Security Events via AMA* uses the same agent and collects the same events into the `SecurityEvent` table, which has the logon fields as columns.[^r09-ama-events] The NTLM Operational log is a separate channel, `Microsoft-Windows-NTLM/Operational`,[^r09-ntlm-channel] so the rule needs its own XPath entry for it, in the documented `LogName!XPathQuery` form: `Microsoft-Windows-NTLM/Operational!*[System[(EventID=8004)]]` on domain controllers.[^r09-ama-events][^r09-mdi-8004] Those events land in the `Event` table.
+
+::: {.callout-warning}
+## Illustrative queries, not tested against production
+These KQL queries are illustrative. Their table and column names come from Microsoft's Azure Monitor table reference, but they haven't been run against a production workspace. Replace the host names, confirm that the filter values match what your workspace records, and tune the time window before you turn any of them into an alert rule.
+:::
+
+The first query finds successful NTLM network logons on the SQL Server hosts. It assumes the Sentinel connector, so the events are in `SecurityEvent`; `EventID`, `LogonType`, `AuthenticationPackageName`, `Account`, `IpAddress` and `WorkstationName` are columns of that table.[^r09-securityevent] Event 4624 reports the package as `NTLM` for NTLM-family authentication, and logon type 3 is a network logon.[^r09-4624]
+
+```kusto
+// NTLM network logons on SQL Server hosts (SecurityEvent, Sentinel AMA connector)
+let SqlHosts = dynamic(["sqlhost01.example.gov", "sqlhost02.example.gov"]);
+SecurityEvent
+| where TimeGenerated > ago(1d)
+| where EventID == 4624 and LogonType == 3
+| where AuthenticationPackageName == "NTLM"
+| where Computer in~ (SqlHosts)
+| summarize Logons = count(), LastSeen = max(TimeGenerated)
+    by Computer, Account, IpAddress, WorkstationName
+```
+
+The second query reads event 8004 from the domain controllers' NTLM Operational log. The `Event` table keeps the event's fields in `EventData` and its message in `RenderedDescription`, not as separate columns,[^r09-event-table] so the filter matches the SQL Server host names in the message text. Event 8004 records the server each NTLM request was for.[^r09-mdi-8004]
+
+```kusto
+// NTLM requests audited by domain controllers (event 8004, Event table)
+let SqlHostNames = dynamic(["sqlhost01", "sqlhost02"]);
+Event
+| where TimeGenerated > ago(1d)
+| where EventLog == "Microsoft-Windows-NTLM/Operational" and EventID == 8004
+| where RenderedDescription has_any (SqlHostNames)
+| project TimeGenerated, Computer, RenderedDescription, EventData
+```
+
+The third query covers the sign-in side. Once Entra sign-in logs are sent to the workspace through diagnostic settings, each log type is its own table: interactive user sign-ins in `SigninLogs`, and the non-interactive user, service principal and managed identity sign-ins in `AADNonInteractiveUserSignInLogs`, `AADServicePrincipalSignInLogs` and `AADManagedIdentitySignInLogs`.[^r09-signin-streams] All four tables carry `ResourceDisplayName`, `ResultType` and `ConditionalAccessStatus`; `SigninLogs` documents a `ResultType` of 0 as success.[^r09-signinlogs-table] The filter uses the name of the *Azure SQL Database* first-party application, which is the resource Microsoft documents for Conditional Access on Azure SQL,[^r09-ca-sql] and tokens for SQL Server's Entra authentication use the same `https://database.windows.net/` audience ([Runbook R07](r07-groups-aus-and-the-conditional-access-perimeter.md)). That guidance is written for Azure SQL, and this runbook hasn't confirmed the resource name a sign-in to SQL Server enabled by Azure Arc records, so check `ResourceDisplayName` and `ResourceIdentity` on the pilot instance's sign-ins before you rely on the filter.
+
+```kusto
+// Sign-ins to the SQL resource across the four Entra sign-in log tables
+union withsource = LogTable
+    SigninLogs, AADNonInteractiveUserSignInLogs,
+    AADServicePrincipalSignInLogs, AADManagedIdentitySignInLogs
+| where TimeGenerated > ago(30d)
+| where ResourceDisplayName == "Azure SQL Database"
+| summarize SignIns = count(), Failures = countif(ResultType != "0")
+    by LogTable, UserPrincipalName, ServicePrincipalName, ConditionalAccessStatus
+```
+
+The first two queries should return nothing once an instance is in the transformed posture; any row is the immediate alert described above. The third is the population for evidence set 2 below: every row should be a known user, service principal or managed identity.
+
 By design, the closure record keeps the behavioral layer as an external join rather than copying Defender alerts, Entra sign-in logs and host events into the structural record: `New-FMPClosureRecord` marks the MFA field `external` and points at that telemetry. Each layer stays authoritative in its own console, and the closure decision reads both. Collapsing them into one artifact would duplicate a source of truth, which the program's single-source-of-truth principle forbids.
 
 ## The six live evidence sets
@@ -149,3 +199,12 @@ Everything in this runbook is **read-only**: scheduled Spec3-D1.8 runs in invent
 [^r09-ntlm-deprecated]: Microsoft Learn, "Deprecated features for Windows client," entry NTLM ("Use of NTLM will continue to work in the next release of Windows Server and the next annual release of Windows"), <https://learn.microsoft.com/windows/whats-new/deprecated-features> (accessed Oct 20, 2026).
 [^r09-eos-2027]: Microsoft Learn, "Ending Support in 2027" (SQL Server 2017, October 12, 2027), <https://learn.microsoft.com/lifecycle/end-of-support/end-of-support-2027> (accessed Oct 20, 2026).
 [^r09-esu]: Microsoft Learn, "SQL Server Extended Security Updates FAQ," table "ESU Availability and End Dates" (SQL Server 2014 Year 3 ends July 12, 2027; SQL Server 2016 Year 1 ends July 13, 2027), <https://learn.microsoft.com/lifecycle/faq/sql-server-extended-security-updates> (accessed Oct 20, 2026).
+[^r09-ama-events]: Microsoft Learn, "Collect Windows events from virtual machine with Azure Monitor" (Security log in a DCR goes to the `Event` table; the Windows Security Events via AMA connector sends the same events to `SecurityEvent`; XPath entries in the form `LogName!XPathQuery`), <https://learn.microsoft.com/azure/azure-monitor/vm/data-collection-windows-events> (accessed Oct 21, 2026).
+[^r09-ntlm-channel]: Microsoft Support, "Overview of NTLM auditing enhancements in Windows 11, version 24H2, Windows Server 2019, and later versions" (event log channel `Microsoft-Windows-NTLM/Operational`; Event Viewer path Applications and Services Logs > Microsoft > Windows > NTLM > Operational), <https://support.microsoft.com/en-us/servicing/os/windows/2025/07/overview-of-ntlm-auditing-enhancements-in-windows-11-version-24h2-and-windows-server-2025> (accessed Oct 21, 2026).
+[^r09-mdi-8004]: Microsoft Learn, "Configure Windows event auditing" (Microsoft Defender for Identity), section "Configure NTLM auditing" (event 8004, collected on domain controllers only, carries the server-accessed data), <https://learn.microsoft.com/defender-for-identity/deploy/configure-windows-event-collection> (accessed Oct 21, 2026).
+[^r09-securityevent]: Microsoft Learn, Azure Monitor table reference, "SecurityEvent" (columns `EventID`, `LogonType`, `AuthenticationPackageName`, `Account`, `IpAddress`, `WorkstationName`, `Computer`), <https://learn.microsoft.com/azure/azure-monitor/reference/tables/securityevent> (accessed Oct 21, 2026).
+[^r09-4624]: Microsoft Learn, "4624(S): An account was successfully logged on" (logon type 3, Network; authentication package `NTLM` for NTLM-family authentication), <https://learn.microsoft.com/previous-versions/windows/it-pro/windows-10/security/threat-protection/auditing/event-4624> (accessed Oct 21, 2026).
+[^r09-event-table]: Microsoft Learn, Azure Monitor table reference, "Event" (columns `EventLog`, `EventID`, `Computer`, `EventData`, `RenderedDescription`), <https://learn.microsoft.com/azure/azure-monitor/reference/tables/event> (accessed Oct 21, 2026).
+[^r09-signin-streams]: Microsoft Learn, "What are the identity logs you can stream to an endpoint?" (SignInLogs, NonInteractiveUserSignInLogs, ServicePrincipalSignInLogs, ManagedIdentitySignInLogs), <https://learn.microsoft.com/entra/identity/monitoring-health/concept-diagnostic-settings-logs-options> (accessed Oct 21, 2026); Azure Monitor table reference, "AADNonInteractiveUserSignInLogs," "AADServicePrincipalSignInLogs" and "AADManagedIdentitySignInLogs," <https://learn.microsoft.com/azure/azure-monitor/reference/tables/aadnoninteractiveusersigninlogs>, <https://learn.microsoft.com/azure/azure-monitor/reference/tables/aadserviceprincipalsigninlogs>, <https://learn.microsoft.com/azure/azure-monitor/reference/tables/aadmanagedidentitysigninlogs> (accessed Oct 21, 2026).
+[^r09-signinlogs-table]: Microsoft Learn, Azure Monitor table reference, "SigninLogs" (`ResourceDisplayName`, `ResourceIdentity`, `ConditionalAccessStatus`; `ResultType` "0 indicates success; other values are failures"), <https://learn.microsoft.com/azure/azure-monitor/reference/tables/signinlogs> (accessed Oct 21, 2026).
+[^r09-ca-sql]: Microsoft Learn, "Conditional access" (Azure SQL Database, SQL Managed Instance and Azure Synapse; the target resource is the *Azure SQL Database* Microsoft application), <https://learn.microsoft.com/azure/azure-sql/database/conditional-access-configure> (accessed Oct 21, 2026).

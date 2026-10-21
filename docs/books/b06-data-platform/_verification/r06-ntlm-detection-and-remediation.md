@@ -59,3 +59,11 @@ Microsoft claims were checked on Microsoft Learn (MCP search and fetch) on 2026-
 | Verification & rollback | edited | claims 25–26 |
 | Closing italic footer | removed | duplicated the body; repository paths and canon residue |
 | — | added | "Continue the book" callout (R05 ← → R07); footnotes `[^r06-*]` (16) |
+
+## Review fixes, 2026-10-21
+
+Applied from the verified review findings (critique claims re-checked against primary sources on 2026-10-21). Every factual change was re-researched and carries its own footnote; wording-only changes are marked as such.
+
+| # | Change | Where | Verdict | Source |
+|---|---|---|---|---|
+| RF-1 | Two bullets both labelled "Phase B —" relabelled "Phase B, step 1" (refuse LM and NTLMv1) and "Phase B, step 2" (restrict NTLMv2); phase name kept because `Get-FMPNtlmGpoReport` emits `phase_b_ntlmv2_only` | Phased Group Policy restriction (lines 143–144) | wording only, no new factual claim; no new footnote | — |

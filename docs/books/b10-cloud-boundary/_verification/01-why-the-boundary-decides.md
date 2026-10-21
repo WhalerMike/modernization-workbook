@@ -32,6 +32,7 @@ Checked October 21, 2026 by writer W1. Sources: `docs/case-studies/cloud-boundar
 | 24 | In GCC-Moderate, path selection rests on SD-WAN measurements; monitoring services need own authorization | Network edge | verified (consistent) | Book 09 Ch12 (settled, linked) |
 | 25 | GCC engagement archetype: discovered late, SSP references features that don't behave as documented | Shows up late | restated-as-design | Framing pattern, labeled as such in a callout |
 | 26 | Three responses (compensate, exception, alternative) | Three responses | restated-as-design | Book argument per `_BRIEF.md` |
+| 27 | Review fix, Oct 21, 2026 (consistency): added "Going without the capability is also a legitimate outcome when someone decides it and records it." after the three responses, with a pointer to Ch09's risk acceptance | Three responses | restated-as-design (wording-only) | Aligns Ch01 with Ch09 and the index: three responses plus going without, stated the same way. Program design; SP 800-37's fourth option ("does not obtain the service") is already cited in Ch09. No new note. |
 
 ## Carry-forward ledger
 

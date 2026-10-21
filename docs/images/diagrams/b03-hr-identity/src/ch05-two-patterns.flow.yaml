@@ -5,8 +5,8 @@
 rankdir: LR
 graph: {nodesep: 0.35, ranksep: 0.45}
 clusters:
-  - {id: target, label: "After the source of authority moves to the cloud", tone: green, filled: false, nodes: [h2, e2, a2]}
-  - {id: now, label: "While AD is the source of authority", tone: slate, filled: false, nodes: [h1, a1, c1]}
+  - {id: target, label: "After the object SOA moves to the cloud", tone: green, filled: false, nodes: [h2, e2, a2]}
+  - {id: now, label: "While AD holds the object SOA", tone: slate, filled: false, nodes: [h1, a1, c1]}
 nodes:
   h1: {tone: amber, width: 120, title: "HR", body: ["=Core HCM"], size: 12}
   a1: {tone: blue, width: 140, title: "Active Directory", body: ["=Provisioning agent writes the user"], size: 12}

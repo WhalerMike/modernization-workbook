@@ -73,3 +73,11 @@ Verified: 2026-10-20
 | Deletion | edited | added synced-user restore caveat |
 | Continue callout | edited | "Continue the book", "Book index"; Previous now Chapter 07 — Who Owns Workforce Identity |
 | Footnotes | edited | keys `c06-*` → `c08-*`; four new sources; titles and access dates updated |
+
+## Revision 2026-10-21 — review fixes
+
+Applied from the verified review of Books 02–05. Sources were opened again on Oct 21, 2026.
+
+| # | Change | Where | Verdict | Source |
+|---|---|---|---|---|
+| R1 | Synchronized user: "Entra ID doesn't hold the object SOA for that account" (was "isn't the source of authority") | Deletion | restated | c08-deleted-users (unchanged) |

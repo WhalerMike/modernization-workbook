@@ -39,6 +39,7 @@ Microsoft sources opened through the Microsoft Learn MCP tools on October 21, 20
 | 30 | Hierarchy drift; coordinated IPAM/DNS/DHCP plan; no DNS-only run | §IPAM | restated-as-design | Program design |
 | 31 | "Phase 2 never comes" | §Phase 2 | restated-as-design | Program observation |
 | 32 | Source footnote `cs06-adidns` (DNS overview page), `cs06-pdnslink` (VNet links page) | — | removed (source) | Replaced by pages opened this session (rows 6, 14) |
+| 33 | Review fix 3, Oct 21, 2026 (revision-history trim): "Earlier versions of this chapter called authorization 'rogue-server detection'" | DHCP authorization | wording-only | Now "Authorization isn't rogue-server detection; it is narrower than that", kept as a short correction of a common misreading. Facts unchanged under [^c06-dhcpauth] and [^c06-dhcpquick]. |
 
 ## 2. Carry-forward ledger
 

@@ -52,7 +52,7 @@ The authority map below covers devices. Procurement and the asset record are aut
 | Compliance state | Intune compliance policy evaluation | Entra ID `isCompliant`, read by Conditional Access | A spreadsheet or a manual attestation |
 | Threat and exposure state | Defender for Endpoint | Intune compliance (through the machine risk score) | The antivirus console's last scan date |
 
-The source page this chapter replaces listed Azure Arc as a derived pointer of Intune enrollment. That's corrected above: Arc is the management authority for servers in its own right. Intune's supported platforms don't include Windows Server,[^c03-intune-platforms] and an Arc server is a resource in Azure Resource Manager, not an Intune record. The one overlap is Defender security settings management, which lets Intune endpoint security policies reach servers onboarded to Defender for Endpoint without Intune enrollment ([Chapter 09](09-servers-under-azure-arc.md)).[^c03-mde-ssm]
+Azure Arc isn't a derived pointer of Intune enrollment: Arc is the management authority for servers in its own right. Intune's supported platforms don't include Windows Server,[^c03-intune-platforms] and an Arc server is a resource in Azure Resource Manager, not an Intune record. The one overlap is Defender security settings management, which lets Intune endpoint security policies reach servers onboarded to Defender for Endpoint without Intune enrollment ([Chapter 09](09-servers-under-azure-arc.md)).[^c03-mde-ssm]
 
 Azure resources follow the same pattern. The governance record, not the portal, is authoritative.
 

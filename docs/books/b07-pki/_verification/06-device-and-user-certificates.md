@@ -137,3 +137,14 @@ Source: `docs/operational-guides/pki-modernization.md` §6 (6.1–6.5) and §7 (
 | §7.3 Single-Factor vs Multi-Factor CBA | Ch06 "Single-factor and multifactor certificates"; "Conditional Access" | — |
 | §7.4 Staged Rollout Methodology (steps 1–9) | Ch06 "Staged rollout" (program sequence) | Limits corrected; navigation paths updated |
 | §7.5 Migration from ADFS CBA | Ch06 "Migrating from AD FS certificate authentication" | "One-way" corrected; rollback detail in Ch07 wave 5 |
+
+## Review fixes, 2026-10-21
+
+Applied from the verified review findings (critique claims re-checked against primary sources on 2026-10-21). Every factual change was re-researched and carries its own footnote; wording-only changes are marked as such.
+
+| # | Change | Where | Verdict | Source |
+|---|---|---|---|---|
+| RF-1 | Caption spells out the per-row mapping on Windows Server 2008 R2 SP1 and 2008 SP2 (39 as 41, 40 as 48, 41 as 49); a new sentence warns that ID 41 means a SID mismatch on later versions and no strong mapping on 2008/2008 R2, and says to add 48 and 49 to the sweep for 2008-era domain controllers | Finding weak certificates (lines 166–168) | verified | <https://support.microsoft.com/en-us/topic/kb5014754-certificate-based-authentication-changes-on-windows-domain-controllers-ad2c23b0-15d8-4340-a468-4d4f3b188f16> |
+| RF-2 | OCSP bullet footnoted with `[^c06-ocsp]`, quoting "We don't support Online Certificate Status Protocol (OCSP)" (CBA overview) and the stated reason (CRL page) | The trust store (line 210) | verified | <https://learn.microsoft.com/entra/identity/authentication/concept-certificate-based-authentication>; <https://learn.microsoft.com/en-us/entra/identity/authentication/concept-certificate-based-authentication-certificate-revocation-list> |
+
+The chapter file is CRLF; it was edited with CRLF preserved.

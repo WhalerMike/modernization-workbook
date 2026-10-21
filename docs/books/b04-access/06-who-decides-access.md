@@ -87,7 +87,7 @@ Cloud services is the escalation tier above the help desk, not a second intake q
 
 ## What each Entra role can actually do
 
-Decision rights live in the ticket; capability lives in the role. The two diverge in ways the source policies for this chapter didn't account for.
+Decision rights live in the ticket; capability lives in the role. The two diverge in ways a policy has to account for.
 
 | Role or relationship | What Microsoft documents it can do | Consequence for the model |
 |---|---|---|
@@ -122,7 +122,7 @@ Every enterprise application gets a risk tier from the IGO before anyone is give
 | Initial provisioning sign-off | CISO or deputy CISO | None beyond the chain | None beyond the chain |
 | Alerting | Every permission change | Consent grants | Standard audit log |
 
-An app qualifies for Tier 1 if it meets any one Tier 1 criterion, and for Tier 3 only if it meets all the Tier 3 criteria. Reclassification happens whenever the app's scopes, data, operator or owner change, or after a security incident involving it. Moving an app down a tier needs the IGO's documented approval. The tiers and every value in the table are the program's design, carried from the source governance model; the permission names are Microsoft Graph's.
+An app qualifies for Tier 1 if it meets any one Tier 1 criterion, and for Tier 3 only if it meets all the Tier 3 criteria. Reclassification happens whenever the app's scopes, data, operator or owner change, or after a security incident involving it. Moving an app down a tier needs the IGO's documented approval. The tiers and every value in the table are the program's design; the permission names are Microsoft Graph's.
 
 ## The enterprise-application approval model
 
@@ -177,7 +177,7 @@ Admin consent is the highest-risk request in the catalog, because a grant applie
 | Any application permission, any tier | Handled as Tier 1 | IGO; CISO notified |
 | Any permission the program rates Critical ([Chapter 05](05-applications-and-workload-identities.md#permissions-what-an-application-can-be-granted)), any tier | Dual review | IGO and CISO |
 
-The source policy defined the critical-scope trigger as any permission ending in `.All` at application level. That rule misses the most dangerous mail permissions: the Microsoft Graph application permissions to read and write every mailbox and to send as any user are `Mail.ReadWrite` and `Mail.Send`, with no `.All` suffix.[^c06-graph-perms] The program's trigger is the risk level in the permission table, not the name.
+Don't define the critical-scope trigger as any permission ending in `.All` at application level. That rule misses the most dangerous mail permissions: the Microsoft Graph application permissions to read and write every mailbox and to send as any user are `Mail.ReadWrite` and `Mail.Send`, with no `.All` suffix.[^c06-graph-perms] The program's trigger is the risk level in the permission table, not the name.
 
 Approval and execution stay separate even here. After approval, the grant is executed by whoever holds the role that can grant it: Privileged Role Administrator for Microsoft Graph application permissions, Cloud Application Administrator for delegated permissions and other APIs.[^c06-grant-admin] In the program's design that person is in the IGO office, activates the role through PIM against the ticket, and isn't the person who approved the request. The help desk records the outcome but never performs the grant. Requests that arrive through the admin consent workflow are intake for this chain, not a shortcut around it.
 
@@ -283,7 +283,7 @@ A request names the requirement being waived, why it can't be met, the compensat
 | Audit log retention below the minimum | IGO, CISO and CIO, with AO risk acceptance | ISSO; the inspector general where policy requires |
 | Any exception that leaves a control unmet with no compensating control | AO risk acceptance after IGO and CISO | ISSO |
 
-No exception lasts more than six months. At the end, the owner either complies or applies again with fresh justification, and renewals are never automatic. An expired, unrenewed exception moves the app up one risk tier until it complies. A requirement excepted and renewed more than twice goes to the CISO, and to the AO, as a sign that the requirement or the system needs to change. The AO rows are the program's addition to the source model: an exception that accepts risk is a risk acceptance, and [Book 02, Chapter 06](../b02-identity/06-who-owns-the-migration.md#decision-rights-and-work-are-different-things) puts those with the AO.
+No exception lasts more than six months. At the end, the owner either complies or applies again with fresh justification, and renewals are never automatic. An expired, unrenewed exception moves the app up one risk tier until it complies. A requirement excepted and renewed more than twice goes to the CISO, and to the AO, as a sign that the requirement or the system needs to change. The AO rows exist because an exception that accepts risk is a risk acceptance, and [Book 02, Chapter 06](../b02-identity/06-who-owns-the-migration.md#decision-rights-and-work-are-different-things) puts those with the AO.
 
 ## Emergency access
 
@@ -339,7 +339,7 @@ Four rows need comment. A Critical-rated permission still has one decider, the I
 
 ## Evidence and monitoring
 
-Each decision in this chapter has to leave evidence an assessor can read without asking anyone. The closed ticket is the record of the decision; the Entra audit log is the record of the change; the application registry and consent inventory are the record of current state. Microsoft Entra keeps audit and sign-in logs for seven days on the Free tier and 30 days on P1 or P2.[^c06-retention] The source governance model assumed 30 and 90 days; the real figures are shorter, which makes forwarding to the SIEM mandatory, not optional. The program keeps audit, sign-in and PIM logs for at least a year, consent and break-glass events for at least three, and tickets for at least three years active and seven archived. A gap in log forwarding is an incident reported to the CISO within 24 hours.
+Each decision in this chapter has to leave evidence an assessor can read without asking anyone. The closed ticket is the record of the decision; the Entra audit log is the record of the change; the application registry and consent inventory are the record of current state. Microsoft Entra keeps audit and sign-in logs for seven days on the Free tier and 30 days on P1 or P2.[^c06-retention] Those windows are shorter than many plans assume, which makes forwarding to the SIEM mandatory, not optional. The program keeps audit, sign-in and PIM logs for at least a year, consent and break-glass events for at least three, and tickets for at least three years active and seven archived. A gap in log forwarding is an incident reported to the CISO within 24 hours.
 
 The alerts that make the authority split enforceable:
 
@@ -356,7 +356,7 @@ The alerts that make the authority split enforceable:
 | PIM activation outside business hours | Activation outside the agency's defined hours or on holidays | P2 |
 | Orphaned application | Weekly check finds fewer than two owners | P2 |
 
-The credential alert is the program's addition to the source list, because adding a credential is how an Application Administrator or owner becomes the app. [Chapter 10](10-access-as-code-and-evidence.md) turns these records into the evidence package, and [Vol IX Book 06](https://github.com/WhalerMike/modernization-workbook/blob/main/docs/compliance/Vol_IX_Book_06_Identity_Access_Governance.md) maps them to controls.
+The credential alert matters most, because adding a credential is how an Application Administrator or owner becomes the app. [Chapter 10](10-access-as-code-and-evidence.md) turns these records into the evidence package, and [Vol IX Book 06](https://github.com/WhalerMike/modernization-workbook/blob/main/docs/compliance/Vol_IX_Book_06_Identity_Access_Governance.md) maps them to controls.
 
 ::: {.callout-tip}
 ## Continue the book

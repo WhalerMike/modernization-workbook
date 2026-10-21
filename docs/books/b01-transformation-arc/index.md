@@ -28,6 +28,11 @@ lifecycle_review: 2027-04-01
 This book replaces the workbook's *Client-Server to Hybrid-Cloud* series, the *Modernization Journey* whitepaper, the modernization overview page and an earlier copy of the series' opening chapters. Every external claim was checked against a primary source on October 20–21, 2026 and carries a footnote. The earlier pages are kept in the repository's [`archive/b01-transformation-arc/`](https://github.com/WhalerMike/modernization-workbook/tree/main/archive/b01-transformation-arc) folder, and their old addresses forward to the chapters that replaced them.
 :::
 
+::: {.callout-note}
+## Guidance, not policy
+The Federal Modernization Workbook is independent guidance. It isn't federal policy or an official government publication. Where it says a federal document requires something, it cites that document, and the document governs; [Appendix A](appendix-a-requirements-mapping.md) maps each requirement to its source. The program design (the five prerequisites, the gates, the phases and the rollback points) is the workbook's own recommendation. The target state assumes Microsoft's cloud: Microsoft Entra ID, Microsoft Intune, Azure Arc and the Microsoft 365 government clouds. [Appendix B](appendix-b-applicability.md) says where that applies and what changes on other platforms.
+:::
+
 ::: {.callout-tip}
 ## Download and present
 **[b01-transformation-arc-bundle.docx](../../../downloads/b01-transformation-arc-bundle.docx)**: the whole book as one Word document, regenerated on every site deploy.

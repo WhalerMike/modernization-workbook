@@ -128,3 +128,15 @@ Writer W2. All sources opened October 21, 2026. PDFs were downloaded and read as
 - **M-21-31 is rescinded.** Book 08 Chapter 03, Book 08 Appendix B and Book 02 Chapter 11 still present M-21-31 (EL1 passive DNS, EL0–EL3 tiers) as current. This chapter states the rescission once and notes that earlier books describe logging under M-21-31. Those books need an update.
 - Book 08 Chapter 03 calls TIC SCC v3.3 "published September 2026"; that is the republication date. The v3.3 content is dated July 2025 in its revision table. Not contradictory, just imprecise.
 - Diagram sources: `docs/images/diagrams/b09-network/src/ch03-obligation-layers.flow.yaml`, `ch03-telemetry-continuity.flow.yaml`. Neither reused a `src-*` file, so no `src-` copy was deleted.
+
+## Review fixes, 2026-10-21
+
+Applied from the verified review findings (critique claims re-checked against primary sources on 2026-10-21). Every factual change was re-researched and carries its own footnote; wording-only changes are marked as such.
+
+| # | Change | Where | Verdict | Source |
+|---|---|---|---|---|
+| RF-1 | DoD Zero Trust Strategy citation (line 223, footnote `[^c03-dod-ds]`) left on DefenseScoop | The DoD contrast | unchanged | WebFetch of <https://dodcio.defense.gov/Portals/0/Documents/Library/DoD-ZTStrategy.pdf> returned HTTP 403 on 2026-10-21 |
+
+**Manual check needed:** the editor should open the DoD Zero Trust Strategy PDF on dodcio.defense.gov in a browser, confirm the 91 target-level and 61 advanced-level activities and the FY 2027 target, then add it as the primary citation and keep DefenseScoop as corroboration. No unopened URL was cited.
+
+| R-DoD | DoD Zero Trust Strategy: 91 target / 152 total activities, FY 2027 | §DoD counterexample | verified (official source added) | DOD News, June 4, 2024, https://www.war.gov/News/News-Stories/Article/Article/3795170/new-overlays-provide-guide-on-path-to-zero-trust/ (opened in browser Oct 21, 2026); 61 advanced = 152 − 91; strategy PDF downloads only. DefenseScoop kept as secondary. |

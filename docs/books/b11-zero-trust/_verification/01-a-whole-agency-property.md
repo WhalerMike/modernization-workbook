@@ -65,3 +65,9 @@ Checked October 21, 2026 by writer W1. Sources: `docs/whitepapers/zero-trust-who
 | Exec brief: leaver killswitch maturity | Ch01 "What the program adds" | Kept as TARGET |
 | Exec brief: executive takeaway | Ch01 "What the program adds" (overlay, no rip-and-replace) | — |
 | Exec brief: "Where to go deeper" links | — | Links to archived pages; replaced by book cross-links |
+
+## Review round 1 (October 21, 2026)
+
+| # | Claim (short) | Where | Verdict | Source |
+|---|---|---|---|---|
+| R1 | Tool overlap: was "Mostly Entra identity" | comparison table | corrected (consistency) | Aligned with Ch05 lines 68-72 (Defender threat policies added in Zero Trust Assessment 3.1.0, cited there); links Ch05; no new external claim beyond Ch05's cited fact |

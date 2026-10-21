@@ -15,7 +15,7 @@ lifecycle_review: 2027-04-01
 
 # Chapter 03 — What Changed at FedRAMP
 
-*FedRAMP's 2026 rules stopped describing a cloud service as a perimeter the provider draws and started describing it as a set of obligations, which moves the only boundary left onto the agency's own system.*
+*FedRAMP's 2026 rules stopped describing a cloud service as a perimeter the provider draws and started describing it as a set of obligations and a published assessment scope (Rev5 packages still draw that scope as a boundary), which leaves the agency's own system as the only boundary the rules name.*
 
 ::: {.callout-note}
 ## In this chapter
@@ -64,7 +64,7 @@ The four families FedRAMP tags `boundary` say what the word now means:[^c03-crjs
 | VDR | Vulnerability Detection and Response | How weaknesses are detected and handled |
 | CDS | Certification Data Sharing | How the evidence reaches agencies |
 
-So "the boundary" of a certified offering is four sets of obligations, not a line on a diagram. Earlier program material named the second family "UCM"; in the published ruleset it is CMU, and its rules are about documenting and using cryptographic modules validated under NIST's Cryptographic Module Validation Program, with force rising by class (MAY for Classes A and B, SHOULD for Class C, MUST for Class D).[^c03-cmu]
+So "the boundary" of a certified offering is four sets of obligations, not a line on a diagram. The second family is CMU, and its rules are about documenting and using cryptographic modules validated under NIST's Cryptographic Module Validation Program, with force rising by class (MAY for Classes A and B, SHOULD for Class C, MUST for Class D).[^c03-cmu]
 
 None of this removes the agency's authorization boundary. NIST still defines that boundary, from OMB Circular A-130, as "all components of an information system to be authorized for operation by an authorizing official," excluding separately authorized systems it connects to,[^c03-nistab] and FedRAMP's own agency rules assume it. What has gone is a provider-drawn perimeter that agencies inherit wholesale. [Chapter 11](11-the-authorization-package.md) covers how the agency evidences its boundary.
 
@@ -121,7 +121,7 @@ Under the old model, a provider making a significant change to a certified servi
 | Adaptive | Doesn't recur routinely and doesn't introduce substantive new risk; FedRAMP expects most non-routine changes to land here | Notify within 10 business days after finishing, with any new risks identified |
 | Transformative | Introduces substantive risk likely to affect existing risk determinations | Initial plans at least 30 business days before starting, final plans at least 10 business days before, notice within 5 business days after finishing and within 5 business days after verification; updated service documentation within 30 business days |
 
-The deadlines are in business days throughout; earlier program material gave the first transformative deadline as "30 days." Every notification and its audit records must be available "in human-readable and JSON formats," and the provider keeps 12 months of past notifications with its certification data. In an emergency or incident, a provider may make a significant change first and supply the notification materials retroactively.[^c03-scn]
+The deadlines are in business days throughout, not calendar days. Every notification and its audit records must be available "in human-readable and JSON formats," and the provider keeps 12 months of past notifications with its certification data. In an emergency or incident, a provider may make a significant change first and supply the notification materials retroactively.[^c03-scn]
 
 Two consequences follow for an agency. A provider that ships continuously can treat most of that cadence as routine recurring and file nothing, so "keeping current with commercial" no longer carries a per-release compliance cost on the provider's side. And because notifications are machine-readable, an agency can ingest them as data and test each one against its own authorization, which is what the agency rules expect: agencies "MUST review each Ongoing Certification Report" for changes that affect the risk tolerance in their own ATO.[^c03-crjson]
 
@@ -148,7 +148,7 @@ The Consolidated Rules aren't only for new 20x certifications. Each rule family 
 
 In practice the two will coexist for years. A Rev5 package was written in the older vocabulary, with a provider-drawn authorization boundary in its system security plan, and that document doesn't rewrite itself on January 1, 2027. An agency will hold Rev5 packages and 20x packages for different services at the same time, and should read each in its own terms: the boundary diagram in a Rev5 package describes the provider's assessed scope; the Minimum Assessment Scope output in a 20x package describes the same thing as data.
 
-Earlier program material said Rev5 certifications "remain valid to at least 2028-12-31." FedRAMP's notice doesn't say that. It says the end date for existing Rev5 certifications is not final and "likely to be no later than 2029," and new Rev5 requests stop on June 11, 2027.[^c03-ntc0013] Plan against those words, not a specific date.
+FedRAMP hasn't fixed an end date for existing Rev5 certifications. Its notice says the end date is not final and "likely to be no later than 2029," and new Rev5 requests stop on June 11, 2027.[^c03-ntc0013] Plan against those words, not a specific date.
 
 ## What changes for the agency
 

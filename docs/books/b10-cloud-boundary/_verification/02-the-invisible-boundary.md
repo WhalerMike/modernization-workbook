@@ -28,6 +28,8 @@ Checked October 21, 2026 by writer W1. Source: `docs/architecture/boundary-impac
 | 20 | Evidence rules (cite per row, label confidence, name environment, re-read) | Making visible | restated-as-design | Program design, from whitepaper §3 callout and §4.1 |
 | 21 | Why architecture: topology change; same on every boundary | Why architecture | restated-as-design | Program argument |
 | 22 | ATO package treatment; drift finding cites boundary (`DRIFT-PROVENANCE @ gcc-moderate-edge`) | Why architecture | restated-as-design | Program design; detail Ch11 |
+| 23 | Review fix, Oct 21, 2026 (consistency): confidence labels in the Solution paragraph listed three (vendor-confirmed, inferred, restricted) while Label confidence listed four | Solution; Label confidence | restated-as-design (wording-only) | One vocabulary across Ch02 and Ch09: vendor-confirmed, inferred, restricted, retention-limited (matches the register's 8/15/1/2 split). Program vocabulary; no note. |
+| 24 | Review fix, Oct 21, 2026 (consistency): "the register counted it as seven categories, four people-experience and three technology-experience" | Register paragraph | corrected, footnoted | Re-verified on Microsoft Learn, "Microsoft Adoption Score," <https://learn.microsoft.com/microsoft-365/admin/adoption/adoption-score?view=o365-worldwide>, "How the score is calculated": "five categories (six categories if you enabled Copilot licenses)"; Technology experiences and its three categories retired Jan 22 to Feb 2026. Body now gives the current count, points to Ch04 and keeps the register's seven as history. Existing [^c02-adoption] extended with the quoted section. |
 
 ## Carry-forward ledger
 

@@ -163,7 +163,9 @@ The KDC logs three events in the System log when a certificate falls short:[^c06
 | 40 | The certificate predates the account and has no strong mapping |
 | 41 | The certificate's SID extension doesn't match the account's SID |
 
-: KDC strong-mapping events (IDs 41, 48 and 49 on Windows Server 2008 and 2008 R2)[^c06-kb5014754] {.striped .hover}
+: KDC strong-mapping events, source Kdcsvc. On Windows Server 2008 R2 SP1 and Windows Server 2008 SP2 the same events use other IDs: 39 is logged as 41, 40 as 48, and 41 as 49.[^c06-kb5014754] {.striped .hover}
+
+Event ID 41 therefore means two different things: a SID mismatch on later versions and no strong mapping on Windows Server 2008 and 2008 R2.[^c06-kb5014754] On a mixed estate, read the event text or the domain controller's OS version before you classify a hit, and add IDs 48 and 49 to the sweep below for any 2008-era domain controller.
 
 ::: {.callout-warning}
 ## Illustrative, not tested against a production forest
@@ -205,7 +207,7 @@ Upload every CA in the chain that issues user certificates. Microsoft now has a 
 For each CA, set the base CRL URL and, if the CA publishes them, the delta CRL URL. Without a CRL URL, a revoked certificate still authenticates.[^c06-cba-howto] Turn on **Require CRL validation** so that a CA without a CRL fails closed, and use exemptions only while fixing a broken CRL.[^c06-crl] The other revocation facts were verified in [Book 03, Chapter 09](../b03-hr-identity/09-credentials-and-certificates.md) and still hold:[^c06-crl]
 
 - CRLs must be reachable over HTTP or HTTPS from the internet; Microsoft recommends HTTP. Entra ID supports one CRL endpoint per CA and downloads it within 10 seconds or fails.
-- Entra ID **doesn't support OCSP**. The guide said OCSP was supported if configured; that was wrong.
+- Entra ID **doesn't support OCSP**. The guide said OCSP was supported if configured; that was wrong.[^c06-ocsp]
 - Interactive sign-in can download a CRL of up to 20 MB in the commercial cloud (including GCC) and 45 MB in Azure Government; the service limits are 65 MB and 150 MB.
 - Entra ID caches the CRL until its next update. A newly revoked certificate is caught only when a newer base or delta CRL loads, so revoke the user's sessions when revocation must be immediate.
 - Chains are built on Subject Key Identifier and Authority Key Identifier, and CRL validation covers up to 10 CAs from the leaf.
@@ -299,7 +301,7 @@ The device side leaves a list of certificates Intune can't deliver: domain contr
 [^c06-ndes-ra]: Microsoft Learn, "Renewal of 'Enrollment Agent' certificate used by NDES may fail," <https://learn.microsoft.com/troubleshoot/windows-server/certificates-and-public-key-infrastructure-pki/renewal-of-enrollment-agent-certificate-fail> (accessed Oct 20, 2026).
 [^c06-connector]: Microsoft Learn, "Certificate Connector for Microsoft Intune" (capabilities, lifecycle, what's new), <https://learn.microsoft.com/intune/fundamentals/certificates/connector/overview> (accessed Oct 20, 2026).
 [^c06-aadj-plan]: Microsoft Learn, "How to: Plan your Microsoft Entra join implementation," RADIUS and Wi-Fi authentication, <https://learn.microsoft.com/entra/identity/devices/device-join-plan#understand-considerations-for-applications-and-resources> (accessed Oct 20, 2026).
-[^c06-kb5014754]: Microsoft Support, "KB5014754: Certificate-based authentication changes on Windows domain controllers," <https://support.microsoft.com/en-us/topic/kb5014754-certificate-based-authentication-changes-on-windows-domain-controllers-ad2c23b0-15d8-4340-a468-4d4f3b188f16> (accessed Oct 20, 2026).
+[^c06-kb5014754]: Microsoft Support, "KB5014754: Certificate-based authentication changes on Windows domain controllers," section "Audit events" (Kdcsvc events 39, 40 and 41, each listed with its ID "For Windows Server 2008 R2 SP1 and Windows Server 2008 SP2": 41, 48 and 49), <https://support.microsoft.com/en-us/topic/kb5014754-certificate-based-authentication-changes-on-windows-domain-controllers-ad2c23b0-15d8-4340-a468-4d4f3b188f16> (accessed Oct 21, 2026).
 [^c06-scep-profile]: Microsoft Learn, "Create and assign SCEP certificate profiles in Intune," Update certificate connector: strong mapping requirements for KB5014754, <https://learn.microsoft.com/intune/device-configuration/certificates/scep-profiles#update-certificate-connector-strong-mapping-requirements-for-kb5014754> (accessed Oct 20, 2026).
 [^c06-ntauth]: Microsoft Learn, "Guidelines for enabling smart card logon with third-party certification authorities," <https://learn.microsoft.com/troubleshoot/windows-server/certificates-and-public-key-infrastructure-pki/enabling-smart-card-logon-third-party-certification-authorities> (accessed Oct 20, 2026).
 [^c06-intune-notice]: Microsoft Learn, "What's new in Microsoft Intune," Notices, Plan for change: implement strong mapping for SCEP and PKCS certificates, <https://learn.microsoft.com/intune/whats-new/#notices> (accessed Oct 20, 2026).
@@ -310,3 +312,4 @@ The device side leaves a list of certificates Intune can't deliver: domain contr
 [^c06-cba-migrate]: Microsoft Learn, "Migrate from federation to Microsoft Entra certificate-based authentication (CBA)," <https://learn.microsoft.com/entra/identity/authentication/concept-certificate-based-authentication-migration> (accessed Oct 20, 2026).
 [^c06-sro]: Microsoft Learn, "Microsoft Entra Connect: Cloud authentication via Staged Rollout," <https://learn.microsoft.com/en-us/entra/identity/hybrid/connect/how-to-connect-staged-rollout> (accessed Oct 20, 2026).
 [^c06-fed-migrate]: Microsoft Learn, "Migrate from federation to cloud authentication" (prerequisites; plan the project; implement your solution), <https://learn.microsoft.com/entra/identity/hybrid/connect/migrate-from-federation-to-cloud-authentication> (accessed Oct 20, 2026).
+[^c06-ocsp]: Microsoft Learn, "What is Microsoft Entra certificate-based authentication?" section "Unsupported scenarios" ("We don't support Online Certificate Status Protocol (OCSP) or Lightweight Directory Access Protocol (LDAP) URLs"), <https://learn.microsoft.com/entra/identity/authentication/concept-certificate-based-authentication> (accessed Oct 21, 2026); the CRL page gives the reason, "We don't support Online Certificate Status Protocol (OCSP) because of performance and reliability reasons," <https://learn.microsoft.com/en-us/entra/identity/authentication/concept-certificate-based-authentication-certificate-revocation-list> (accessed Oct 21, 2026).

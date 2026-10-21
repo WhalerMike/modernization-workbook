@@ -120,3 +120,18 @@ quarterly (or this chapter changed) so the two books agree.
 | Help Desk guide — Policy exceptions and waivers | Ch 09 "Exceptions" (approval authority, register) | Exception request process detail belongs to Ch 06 |
 | Help Desk guide — Document control and governance | — | Page furniture |
 | Help Desk guide — ServiceNow automation alignment | — | Another writer (ITSM integration) |
+
+## Revision 2026-10-21 — review fixes
+
+Applied from the verified review of Books 02–05. Sources were opened again on Oct 21, 2026.
+
+| # | Change | Where | Verdict | Source |
+|---|---|---|---|---|
+| R1 | Privileged-role review cadence aligned across Books 02 and 04: Tier 0 monthly, other privileged roles quarterly, never self-review alone. The cadence is the program's design; AC-2(j) and AC-6(7) leave the frequency organization-defined; PIM role and privileged-group rows split into Tier 0 (monthly) and others (quarterly); "plus self-attestation" removed | Cadence table | corrected | c09-fedramp-ac <https://fedramp.gov/2026/reference/controls/access-control/>; c09-pim-review <https://learn.microsoft.com/entra/id-governance/privileged-identity-management/pim-create-roles-and-resource-roles-review#create-access-reviews> |
+| R2 | Retention paragraph states current values directly | Retention | restated | c09-retention (unchanged) |
+
+### Revision history moved out of the chapter body
+
+The body now states the guidance directly. These were the earlier positions it used to narrate:
+
+- The program's older guidance put native Entra retention at 30 days for Free and 90 days for P1 and P2.

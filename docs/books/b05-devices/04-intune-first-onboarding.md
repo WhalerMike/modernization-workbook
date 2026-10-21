@@ -19,7 +19,7 @@ lifecycle_review: 2027-04-01
 
 ::: {.callout-note}
 ## In this chapter
-The doctrine for devices that have never been on the network: what Intune-first means, its five pillars and three exception paths, and the five-phase process that carries an organizational assignment from the purchase order to a validated, compliant device. The Windows mechanics in detail (Windows Autopilot versus Autopilot device preparation, registration and group tags, enrollment restrictions, naming, the Enrollment Status Page, and the compliance and configuration baseline), then the other platforms, and the drift classes that catch a device that slipped through.
+The doctrine for devices that have never been on the network: what Intune-first means, its five pillars and four exception paths, and the five-phase process that carries an organizational assignment from the purchase order to a validated, compliant device. The Windows mechanics in detail (Windows Autopilot versus Autopilot device preparation, registration and group tags, enrollment restrictions, naming, the Enrollment Status Page, and the compliance and configuration baseline), then the other platforms, and the drift classes that catch a device that slipped through.
 :::
 
 ::: {.callout-important}
@@ -61,7 +61,7 @@ These are the program's doctrine, not Microsoft requirements.
 | 4 | One management plane per asset; no co-management for new assets | Intune for endpoints. Azure Arc with Azure Policy machine configuration for servers. No greenfield Configuration Manager, no greenfield Group Policy, no greenfield hybrid join. |
 | 5 | Quarantine on failure; never silently degrade | An onboarding failure produces a quarantine entry and a governance ticket, never a production device running in a degraded state. |
 
-Pillar 4 is corrected from the source, which paired Arc with the Intune Settings Catalog for servers. Intune's supported platforms don't include Windows Server,[^c04-platforms] so the Settings Catalog doesn't reach a server. Server configuration is set by Azure Policy machine configuration, and Intune endpoint security policies reach servers only through Defender for Endpoint security settings management ([Chapter 09](09-servers-under-azure-arc.md)).[^c04-mde-ssm]
+Pillar 4 keeps servers out of the Intune Settings Catalog. Intune's supported platforms don't include Windows Server,[^c04-platforms] so the Settings Catalog doesn't reach a server. Server configuration is set by Azure Policy machine configuration, and Intune endpoint security policies reach servers only through Defender for Endpoint security settings management ([Chapter 09](09-servers-under-azure-arc.md)).[^c04-mde-ssm]
 
 ## Where the organizational assignment comes from
 
@@ -90,7 +90,7 @@ Every net-new asset follows the same five phases, whatever the platform. What ch
 
 The program's latency target is 14 calendar days from purchase order to production-governed for standard hardware, and 5 calendar days for expedited orders. The short twin of this page named the phases Procure, Carrier, Validate, Enroll and Verify; the table above is the fuller version, and the two describe the same flow.
 
-The source also described a "pre-staged Entra ID device object placeholder" as a phase 3 output. For classic Autopilot that object isn't something the pipeline creates: Autopilot creates it automatically when the device is registered.[^c04-ap-registration] Phase 3's job is to confirm that the registration exists, carries the right group tag, and matches the procurement record.
+Phase 3 doesn't pre-stage an Entra ID device object. For classic Autopilot that object isn't something the pipeline creates: Autopilot creates it automatically when the device is registered.[^c04-ap-registration] Phase 3's job is to confirm that the registration exists, carries the right group tag, and matches the procurement record.
 
 ### Procurement intake fields
 
@@ -207,9 +207,7 @@ A few facts behind the table, current as of October 2026:
 - Intune supports Linux on Ubuntu Desktop 24.04 and 26.04 LTS and Red Hat Enterprise Linux 9 and 10.[^c04-platforms]
 - DFCI management for Surface works only with classic Autopilot; device preparation doesn't support it. DFCI is in the planned list for GCC High and DoD.[^c04-ap-compare][^c04-intune-gov]
 
-The source's Surface row named specific resellers and firmware security features; those are dropped as vendor positioning that the program doesn't need to rely on.
-
-## The three exception paths
+## The four exception paths
 
 Doctrine carve-outs for cases that can't follow the main path. Each needs written justification, a compensating control and an audit entry.
 
@@ -218,8 +216,20 @@ Doctrine carve-outs for cases that can't follow the main path. Each needs writte
 | A. User-driven enrollment for personal devices | Personally owned devices enrolled into a work profile or partition (iOS user enrollment, Android work profile, Windows registered) | Refusing to govern personal devices pushes users to unmanaged access through personal browsers. Governed at a lower assurance level is better than ungoverned. |
 | B. Linux endpoint with an Arc fallback | Linux endpoints that can't use Intune's Linux management (developer workstations that need root, embedded Linux, air-gapped hosts) | Intune's Linux support covers a limited set of distributions and desktop configurations;[^c04-platforms] Arc with Azure Policy machine configuration is the substitute governance plane. |
 | C. Pre-2025 Windows servers | Windows Server 2019 and 2022 hosts whose OS upgrade isn't yet feasible | Entra ID sign-in for Arc-enabled Windows servers requires Windows Server 2025 or later with Desktop Experience.[^c04-arc-login] Arc-managed without Entra ID sign-in is an acceptable interim state. |
+| D. Windows endpoints that can't enroll | Instrument and laboratory PCs locked to a vendor's validated image, operational technology workstations, and hosts in disconnected enclaves | Some devices can't take MDM without breaking a vendor certification, and some can't reach the cloud at all. Recording them as governed exceptions is better than leaving them outside the inventory. |
 
-Exception C is restated from the source, which cited a program decision. The underlying fact is Microsoft's support boundary, footnoted above.
+Exception C rests on Microsoft's support boundary, footnoted above, not on a program decision.
+
+### Path D under the compliant-device policies
+
+A Windows device that isn't enrolled in Intune can't pass a Conditional Access policy that requires a compliant device. Microsoft's **Require device to be marked as compliant** control supports only devices registered with Microsoft Entra ID and enrolled in Intune (on Windows, a supported partner MDM can also report compliance).[^c04-ca-grant] So every path D device is blocked from the resources behind CA004, CA016 and the other compliant-device policies in [Book 04, Chapter 07](../b04-access/07-the-conditional-access-policy-library.md), and the program handles it in this order:
+
+1. **Isolate it on the network first.** A disconnected or OT host stays on a segmented network with no route to cloud resources ([Book 09, Chapter 07](../b09-network/07-network-access-control.md)). With no sign-in to Microsoft Entra ID, Conditional Access isn't involved; the segment boundary is the control.
+2. **Manage its Defender settings where it has connectivity.** Onboard the device to Microsoft Defender for Endpoint and apply Intune endpoint security policies through Defender for Endpoint security settings management, which is built for devices that can't enroll in Intune and registers the device in Microsoft Entra ID if it isn't already. It doesn't support non-persistent VDI or 32-bit Windows.[^c04-mde-ssm] It manages security settings; it doesn't make the device compliant for Conditional Access.[^c04-ca-grant]
+3. **If its users must reach a protected cloud resource, record a named exclusion.** Put the accounts that use the device in an exclusion group such as `CA-Exclude-NonEnrollable-<device class>`, with a named owner, a written justification, a review date no more than 90 days out, and the authorizing official's risk acceptance ([Chapter 06](06-who-owns-the-endpoint.md)). Pair the exclusion with a policy that blocks that group from every device not on the approved list, using a device filter on `deviceId` with the `NotIn` operator. That is Microsoft's pattern for letting specific accounts work only from specific devices, and a negative operator also catches unregistered devices.[^c04-ca-filter] Microsoft advises using exclusions sparingly and removing them as soon as possible.[^c04-ca-plan]
+4. **Keep the compensating controls on.** The exclusion lifts only the device requirement: the authentication-strength and MFA policies still apply to the group, local administrator rights stay removed, and the device is recorded in the CMDB as its authority record with its owner and review date.
+
+The isolation-first order, the group name and the 90-day review are the program's design; the Conditional Access and Defender behavior is Microsoft's.
 
 ## Devices without a procurement record
 
@@ -256,7 +266,7 @@ The keys these checks join on, and a read-only script that finds three of the fi
 
 [^c04-device-identity]: Microsoft Learn, "What is a device identity?," <https://learn.microsoft.com/entra/identity/devices/overview> (accessed Oct 20, 2026).
 [^c04-platforms]: Microsoft Learn, "Supported operating systems and browsers in Intune," <https://learn.microsoft.com/intune/fundamentals/ref-supported-platforms> (accessed Oct 20, 2026).
-[^c04-mde-ssm]: Microsoft Learn, "Learn how to use Intune endpoint security policies to manage Microsoft Defender for Endpoint on devices that are not enrolled with Intune," <https://learn.microsoft.com/intune/device-security/microsoft-defender/security-settings-management> (accessed Oct 20, 2026).
+[^c04-mde-ssm]: Microsoft Learn, "Learn how to use Intune endpoint security policies to manage Microsoft Defender for Endpoint on devices that are not enrolled with Intune," <https://learn.microsoft.com/intune/device-security/microsoft-defender/security-settings-management> (accessed Oct 21, 2026).
 [^c04-ap-registration]: Microsoft Learn, "Windows Autopilot registration overview," <https://learn.microsoft.com/autopilot/registration-overview> (accessed Oct 20, 2026).
 [^c04-ap-faq]: Microsoft Learn, "Windows Autopilot device preparation FAQ," <https://learn.microsoft.com/autopilot/device-preparation/faq> (accessed Oct 20, 2026).
 [^c04-ap-compare]: Microsoft Learn, "Compare Windows Autopilot device preparation and Windows Autopilot," <https://learn.microsoft.com/autopilot/device-preparation/compare> (accessed Oct 20, 2026).
@@ -279,3 +289,6 @@ The keys these checks join on, and a read-only script that finds three of the fi
 [^c04-baselines]: Microsoft Learn, "Use security baselines to help secure Windows devices you manage with Microsoft Intune," <https://learn.microsoft.com/intune/device-security/security-baselines/overview> (accessed Oct 20, 2026).
 [^c04-arc-login]: Microsoft Learn, "Sign in to an Azure Arc-enabled server using Microsoft Entra ID and Azure Roles Based Access Control," <https://learn.microsoft.com/entra/identity/devices/howto-arc-sign-in-windows> (accessed Oct 20, 2026).
 [^c04-sp800-53]: National Institute of Standards and Technology, SP 800-53 Rev. 5, *Security and Privacy Controls for Information Systems and Organizations*, September 2020 (updated December 10, 2020), <https://csrc.nist.gov/pubs/sp/800/53/r5/upd1/final> (accessed Oct 20, 2026).
+[^c04-ca-grant]: Microsoft Learn, "Conditional Access: Grant," section "Require device to be marked as compliant," <https://learn.microsoft.com/entra/identity/conditional-access/concept-conditional-access-grant#require-device-to-be-marked-as-compliant> (accessed Oct 21, 2026).
+[^c04-ca-filter]: Microsoft Learn, "Conditional Access: Filter for devices," sections "Common scenarios" and "Policy behavior with filter for devices," <https://learn.microsoft.com/entra/identity/conditional-access/concept-condition-filters-for-devices> (accessed Oct 21, 2026).
+[^c04-ca-plan]: Microsoft Learn, "Plan a Conditional Access deployment," section "Roll back policies," <https://learn.microsoft.com/entra/identity/conditional-access/plan-conditional-access#roll-back-policies> (accessed Oct 21, 2026).

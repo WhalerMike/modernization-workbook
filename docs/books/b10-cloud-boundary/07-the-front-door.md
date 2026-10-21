@@ -60,7 +60,7 @@ The front door is a loop with six steps. The step names and their order are the 
 | 5. Reconcile | The address and subnet allocation is written to and reconciled with the enterprise IPAM, and the CMDB is updated | CM-8, CM-8(1) |
 | 6. Close | A validation gate confirms the landing zone matches intent; the change record and the gate's verdict are the evidence | CM-3, AU-2 |
 
-The source volume mapped separation of duties to CM-5 alone. The control that names it is AC-5; CM-5 covers access restrictions on who can make changes. Both apply: AC-5 to the approval, CM-5 to the pipeline identity that's the only thing allowed to apply.
+Separation of duties isn't CM-5 alone. The control that names it is AC-5, Separation of Duties; CM-5, Access Restrictions for Change, covers who can make changes.[^c07-sp80053] Both apply: AC-5 to the approval, CM-5 to the pipeline identity that's the only thing allowed to apply.
 
 ### Step 5 carries the most weight
 
@@ -74,7 +74,7 @@ Many agencies already run their change process in ServiceNow. Two documented int
 
 **HashiCorp's ServiceNow Service Catalog for Terraform.** Version 2.9 (October 2025) added catalog items with an approval workflow: requesting one generates a plan-only run that goes to a designated approver; if the approver accepts, an apply run provisions; if the approver rejects, "the run is discarded, and no changes are made." The announcement describes the integration with HCP Terraform.[^c07-hashi]
 
-The source volume attributed the speculative-plan step to the CPG connector; that couldn't be confirmed in ServiceNow's documentation, and the documented plan-approval workflow is HashiCorp's. Either way, the program's requirement is the same: the approver sees the plan that will be applied, not a description of it, and an approved plan is applied without regeneration or drift.
+The documented plan-approval workflow is HashiCorp's: a plan-only run goes to the approver, and an apply run follows only on acceptance.[^c07-hashi] ServiceNow's CPG instructions for a Terraform catalog item describe no plan-review step.[^c07-cpg] Either way, the program's requirement is the same: the approver sees the plan that will be applied, not a description of it, and an approved plan is applied without regeneration or drift.
 
 The DDI side of the loop already has a pattern. ServiceNow documents an IntegrationHub spoke that reserves addresses from a catalog request and a Service Graph Connector that imports subnets, pools, allocated addresses and DNS data into the CMDB ([Book 08, Chapter 11](../b08-ddi/11-operating-the-control-plane.md)). The landing-zone front door reuses the same records: the same connectors, the same in-boundary MID Server and the same validation-gate discipline, extended from one subnet to a whole landing zone. ServiceNow's own government offering is listed on the FedRAMP Marketplace as Government Community Cloud (F1305072116), FedRAMP Certified at Class D (High).[^c07-fr]
 

@@ -60,3 +60,18 @@ Sources: `docs/operational-guides/access-plane/conditional-access-library.md` Ap
 | Date | Change |
 |---|---|
 | 2026-10-21 | Extension attribute reconciliation: CA025 JSON device filter and CA028 table row moved to device `extensionAttribute12`, matching Chapter 07 and the program attribute map. |
+
+## Revision 2026-10-21 — review fixes
+
+Applied from the verified review of Books 02–05. Sources were opened again on Oct 21, 2026.
+
+| # | Change | Where | Verdict | Source |
+|---|---|---|---|---|
+| R1 | Source-correction narration trimmed | Named location; custom strength | restated | unchanged footnotes |
+
+### Revision history moved out of the chapter body
+
+The body now states the guidance directly. These were the earlier positions it used to narrate:
+
+- The source library listed six countries for the named location.
+- The source library's custom strength allowed FIDO2 only, locking PIV holders out.

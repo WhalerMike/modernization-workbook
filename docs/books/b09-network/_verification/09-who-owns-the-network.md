@@ -59,3 +59,13 @@ Writer: W5. Verified 2026-10-21. New chapter. Built from `docs/projects/network-
 | m365-optimize-exemption index — "The set" signer table; separation of memo and determination | Where the roles come from; matrix SC-7(4) row | Instruments themselves are Appendix A |
 | m365 Attachment A — revert owner | System owner role; matrix cutover row | — |
 | Federal Compliance NAC book — physical-access list; D3 decision | Facilities role; matrix NAC rows | Design detail is Chapter 07 |
+
+## Review fixes, 2026-10-21
+
+Applied from the verified review findings (critique claims re-checked against primary sources on 2026-10-21). Every factual change was re-researched and carries its own footnote; wording-only changes are marked as such.
+
+| # | Change | Where | Verdict | Source |
+|---|---|---|---|---|
+| RF-1 | Sequence table gains step 0, "Secure the governor first": the CISO / ISSO decides, network engineering does the work, security architecture and security operations are consulted, following the matrix row "Controller and edge hardening; administrative access to the governor" | An owner for each step (line 118) | restated-as-design (program sequence) | — |
+
+**Diagram follow-up for the editor:** the `ch09-sequence-owners` figure and its fig-alt still show five steps. Add a step 0 card (violet, as in `ch13-decision-sequence`) to the source under `docs/images/diagrams/b09-network/src/` and update the fig-alt; both were outside this pass's edit scope.

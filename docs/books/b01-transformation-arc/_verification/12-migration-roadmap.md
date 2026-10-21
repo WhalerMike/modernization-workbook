@@ -31,6 +31,10 @@ Editor: W5. Sources: the series chapter in place (old Chapter 09, "Migration Roa
 | 23 | "Requires an inventory, an owner, and a date" | Where to start | restated-as-design | Whitepaper Call to Action |
 | 24 | Old cross-references (Chapters 01–08, 02–03, "Chapter 10 — Leadership Takeaway") | Throughout | corrected to new numbering | — |
 | 25 | Microsoft Learn "Authoritative references" list | End | removed as a list; sources footnoted | — |
+| 26 | Review fix, Oct 21, 2026: the 2026 rules also include rules for agencies' use of certified services, and none of them sets a deadline for the agency's own migration | Key takeaways, item 4 | verified (added) | Opened: FedRAMP, "Agency Use of FedRAMP Certified Cloud Services," <https://www.fedramp.gov/2026/reference/agency-use/> (AGC and USE subsets apply to 20x and Rev5; no migration deadline for agency systems); ruleset `fedramp-consolidated-rules.json` v2026.10.13.01, family AGU, <https://github.com/FedRAMP/rules> (AGU-AGC-NAA and AGU-USE-RSG statements read from the file). New note [^c12-agu]. |
+| 27 | Review fix 2, Oct 21, 2026 (revision-history trim): "The source made 'zero AD-integrated DNS zones' a G4 criterion" | Gate G4 criteria | wording-only | Now "Don't make 'zero AD-integrated DNS zones' a G4 criterion". Rationale unchanged; links Book 08 Ch10. No new claim. |
+| 28 | Review fix 2, Oct 21, 2026 (revision-history trim): "The source kept 'the forest in backup' as the fallback" | Rollback | wording-only | Now "'The forest in backup' isn't a lasting fallback". Tombstone-lifetime fact unchanged under [^c12-tsl]. No new claim. |
+| 29 | Review fix 2, Oct 21, 2026 (revision-history trim): "the source conflated them" and "the source's claim that agencies which haven't modernized 'will not be able to produce' FedRAMP evidence by 2027 is wrong as stated" | External clocks | wording-only | Now "they are easy to conflate" and "the 2027 date doesn't stop an agency that hasn't modernized from producing the evidence its own authorization needs", which follows from the cited [^c12-fedramp-use] (agency authorizes its own systems). No new claim. |
 
 ## Carry-forward ledger — old Chapter 09
 

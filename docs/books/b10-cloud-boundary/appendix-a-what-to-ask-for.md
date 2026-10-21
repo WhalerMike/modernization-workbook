@@ -54,7 +54,7 @@ Each request below follows the same layout: what to ask, why the provider can an
 
 **Ask.** Make the Microsoft 365 admin center's network connectivity layer available in GCC: network assessments per location, network insights, network provider attribution and the Network Provider Index. If it can't be, publish the specific obstacle (which data, which processing location, which control) that prevents it.
 
-**Basis.** Microsoft documents the feature as supporting commercial and 21Vianet tenants "but not GCC Moderate, GCC High, or DoD."[^aA-netconn] It is the largest single documented loss for network decisions: it is the source of the per-location assessments and of the attribution of performance to named network providers, classified as ISP, Overlay ("VPN, Cloud Proxy, SD-WAN, and SASE") or Corporate.[^aA-npp] Without it, an agency funds its own measurement to choose between transport and SASE providers ([Book 09 Chapter 12](../b09-network/12-microsoft-365-traffic.md)).
+**Basis.** Microsoft documents the feature as supporting commercial and 21Vianet tenants "but not GCC Moderate, GCC High, or DoD."[^aA-netconn] It is the broadest documented loss for network decisions: it is the source of the per-location assessments and of the attribution of performance to named network providers, classified as ISP, Overlay ("VPN, Cloud Proxy, SD-WAN, and SASE") or Corporate.[^aA-npp] Without it, an agency funds its own measurement to choose between transport and SASE providers ([Book 09 Chapter 12](../b09-network/12-microsoft-365-traffic.md)).
 
 **A useful answer.** A target date for GCC, or a named obstacle specific enough that the agency can judge whether a compensating capability or an alternative path is the better use of its money.
 

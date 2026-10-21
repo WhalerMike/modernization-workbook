@@ -24,10 +24,10 @@ The working detail of the GPO sunset that [Chapter 07](07-the-gpo-sunset-program
 
 [Chapter 07](07-the-gpo-sunset-program.md) sets the rules: inventory before anything moves, one authority per setting, evidence before a GPO link is disabled, and disable before delete. This chapter is what an endpoint engineer works from inside those rules. It assumes the decision records from Chapter 07 exist, because a template is only applied to a setting that has been classified as required.
 
-The scope is the existing Windows fleet: corporate-owned workstations, privileged access workstations and kiosks, plus personal devices that reach organizational data through app protection only. Two scope facts changed since the source material was written:
+The scope is the existing Windows fleet: corporate-owned workstations, privileged access workstations and kiosks, plus personal devices that reach organizational data through app protection only. Two scope facts shape it:
 
 - **Windows 10 is out of support.** It reached end of support on October 14, 2025. Intune still treats it as an *allowed* version, so devices can enroll and use eligible features, but Microsoft no longer guarantees that functionality works.[^c08-win10-eos] The templates below set Windows 11 as the floor; any Windows 10 device left in the fleet is an exception with an upgrade date.
-- **Windows Server doesn't enroll in Intune.** Intune manages Windows 11 client editions, not Windows Server; Microsoft describes Defender for Endpoint security settings management as the way to extend Intune endpoint security policy to devices that can't enroll, and lists Windows Server 2025 among them.[^c08-supported-os][^c08-ssm] The source's server compliance policy is therefore recast below as a server baseline that [Chapter 09](09-servers-under-azure-arc.md) carries through Azure Arc and Defender.
+- **Windows Server doesn't enroll in Intune.** Intune manages Windows 11 client editions, not Windows Server; Microsoft describes Defender for Endpoint security settings management as the way to extend Intune endpoint security policy to devices that can't enroll, and lists Windows Server 2025 among them.[^c08-supported-os][^c08-ssm] Server compliance is therefore handled below as a server baseline that [Chapter 09](09-servers-under-azure-arc.md) carries through Azure Arc and Defender.
 
 ![The seven phases of the migration, each closed by an exit gate, with the rollback that applies while the phase is open.](../../images/diagrams/b05-devices/svg/ch08-migration-phases.svg){#fig-ch08-migration-phases fig-alt="Seven cards in a chain, each with a phase number, focus, typical duration and the exit gate. Phase 1, slate, inventory and classify, 3 to 5 weeks, gate: a decision record for every setting and a captured baseline. Phase 2, amber, coexistence planning, 2 to 3 weeks, gate: pilot devices enrolled and co-managed, one authority per workload. Phase 3, blue, baseline authoring, 3 to 4 weeks, gate: policies built, unassigned and peer reviewed. Phase 4, blue, pilot, 4 to 6 weeks, gate: no unexplained conflicts on a representative five percent. Phase 5, blue, workload cutover in four waves, 8 to 12 weeks, gate: each wave watched 72 hours before the next. Phase 6, violet, verification and residual cleanup, about 2 weeks, gate: residual settings cleared and evidence collected. Phase 7, green, formal retirement, about 2 weeks plus a 90-day retention window, gate: GPOs archived and deleted, only dated exceptions remain. A red note under the chain reads: rollback while a phase is open, remove assignments, return the slider, re-enable the link."}
 
@@ -91,13 +91,13 @@ Each wave moves one workload for the whole population, in rings: the pilot cohor
 | 3 | 7–9 | Device configuration | Move the device configuration slider; assign SC-001, SC-003 to SC-005, SC-009 and SC-010; disable the matching GPO links per population |
 | 4 | 10–12 | Windows Update policies | Move the Windows Update slider; assign the update rings ([Chapter 10](10-operating-and-evidencing-the-fleet.md#windows-updates)); stop WSUS for migrated devices |
 
-The source plan moved device configuration before Endpoint Protection. That order doesn't work on co-managed devices: switching the device configuration workload also moves Endpoint Protection and resource access, so the two can't be separated once device configuration moves.[^c08-comanage] Endpoint Protection goes first, on its own slider, and device configuration follows. After each wave, validate, watch for 72 hours, and only then start the next.
+Don't move device configuration before Endpoint Protection on co-managed devices: switching the device configuration workload also moves Endpoint Protection and resource access, so the two can't be separated once device configuration moves.[^c08-comanage] Endpoint Protection goes first, on its own slider, and device configuration follows. After each wave, validate, watch for 72 hours, and only then start the next.
 
 ### Phase 6: verification and residual cleanup
 
 Disable the remaining GPO links for migrated populations, one population at a time, with the link procedure in [Chapter 07](07-the-gpo-sunset-program.md#freezing-and-unlinking-gpos). Then deal with what unlinking leaves behind: Group Policy preference items that weren't set to remove themselves stay on the device, so each one needs an Intune setting that takes over the value or a Remediation that clears it.
 
-The source plan also blocked inheritance on migrated OUs. The program doesn't: blocking inheritance stops every higher-level GPO, including domain-level policy that hybrid-joined devices and exceptions still need, and it hides the remaining links rather than retiring them. Disabling specific links keeps the change scoped and reversible.
+The program doesn't block inheritance on migrated OUs: blocking inheritance stops every higher-level GPO, including domain-level policy that hybrid-joined devices and exceptions still need, and it hides the remaining links rather than retiring them. Disabling specific links keeps the change scoped and reversible.
 
 ### Phase 7: formal retirement
 
@@ -134,13 +134,13 @@ Rollback is defined for every phase before the phase starts. Three facts shape i
 | App protection policy | Protects organizational data inside managed apps, including on personal devices that aren't enrolled | AP-xxx | **Apps** > **App protection policies** |
 | App configuration policy | Pushes app-specific key and value settings to managed apps | AC-xxx | **Apps** > **App configuration policies** |
 
-Conflicts between these types follow Microsoft's rules, not the ones in the source material. A compliance policy's setting takes precedence over the same setting in a configuration policy, and between compliance policies the most restrictive value applies. Between configuration policies of any kind (settings catalog, endpoint security, security baselines) there is no precedence: the conflict is reported and must be resolved by hand, and the setting may not apply until it is.[^c08-conflicts][^c08-es-conflicts] The source's "last write wins" for profiles and "endpoint security wins over profiles" were both wrong. The program's rule is the one in Chapter 07: each setting has exactly one owning policy.
+Conflicts between these types follow Microsoft's rules. A compliance policy's setting takes precedence over the same setting in a configuration policy, and between compliance policies the most restrictive value applies. Between configuration policies of any kind (settings catalog, endpoint security, security baselines) there is no precedence: the conflict is reported and must be resolved by hand, and the setting may not apply until it is.[^c08-conflicts][^c08-es-conflicts] Two common beliefs, "last write wins" for profiles and "endpoint security wins over profiles," are both wrong. The program's rule is the one in Chapter 07: each setting has exactly one owning policy.
 
 ### The device attribute schema
 
 Every policy is assigned to dynamic device groups built from attributes, which replaces OU-linked GPO scoping. Microsoft Entra dynamic membership rules for devices can use `extensionAttribute1` through `extensionAttribute15`, but those values must be written to the Entra device object first, through Microsoft Graph.[^c08-dynamic] They aren't the same attributes as the user extension attributes in the [program attribute map](../b03-hr-identity/06-canonical-attribute-schema.md#program-attribute-map); a device object has its own set.
 
-The source material used two numberings for the same attributes. The program standardizes on the one its rules actually use, which is the device half of the [program attribute map](../b03-hr-identity/06-canonical-attribute-schema.md#program-attribute-map):
+The program uses one numbering for these attributes, which is the device half of the [program attribute map](../b03-hr-identity/06-canonical-attribute-schema.md#program-attribute-map):
 
 | Device attribute | Meaning | Example values |
 |---|---|---|
@@ -156,7 +156,7 @@ The values are written by the program's provisioning process when a device is re
 
 - **Include groups.** Dynamic device groups that match the policy's tier, environment and role.
 - **Exclude groups.** Break-glass exclusion groups for emergency override, and staging groups during a phased rollout.
-- **Assignment filters.** A second layer applied at assignment time. Filters can't read device extension attributes. They work on Intune device properties such as `deviceName`, `deviceOwnership`, `deviceTrustType`, `enrollmentProfileName`, `manufacturer`, `model`, `operatingSystemSKU` and `operatingSystemVersion`.[^c08-filters] The source's filters on `extensionAttribute11` and `extensionAttribute13` would not evaluate; attribute targeting belongs in the group rule, and filters handle hardware, ownership, join type and OS.
+- **Assignment filters.** A second layer applied at assignment time. Filters can't read device extension attributes. They work on Intune device properties such as `deviceName`, `deviceOwnership`, `deviceTrustType`, `enrollmentProfileName`, `manufacturer`, `model`, `operatingSystemSKU` and `operatingSystemVersion`.[^c08-filters] A filter on `extensionAttribute11` or `extensionAttribute13` doesn't evaluate; attribute targeting belongs in the group rule, and filters handle hardware, ownership, join type and OS.
 
 ![How a policy reaches a device: attributes drive dynamic groups, assignments add exclusions and filters, and the compliance result flows to Conditional Access.](../../images/diagrams/b05-devices/svg/ch08-targeting-layers.svg){#fig-ch08-targeting-layers fig-alt="Top to bottom. A slate card, device attributes on the Entra device object, lists region, department, security tier, device role and environment, written through Microsoft Graph. It feeds a blue card, dynamic device groups, with example rules on extensionAttribute11 and extensionAttribute12. That feeds a blue card, assignment, listing include group, exclude groups for break-glass and staging, and an assignment filter on Intune properties such as join type, ownership, model or OS SKU. The assignment feeds a green card, one owning policy per setting, listing compliance, configuration, endpoint security and app protection. A dashed violet arrow from the compliance policy leads to a violet card, Conditional Access, require device to be marked as compliant, owned by Book 04."}
 
@@ -201,7 +201,7 @@ Resource access is no longer a separate decision on current Configuration Manage
 
 Compliance policies define the minimum posture a device must meet before Conditional Access grants it access. [Book 04](../b04-access/index.md) owns the Conditional Access policies that consume them. Three Microsoft facts shape every template in this section:
 
-- **Schedules are in days.** Every noncompliance action is scheduled in days from 0 to 365, not hours.[^c08-noncompliance] The source's "24 hours" and "72 hours" are 1 and 3 days.
+- **Schedules are in days.** Every noncompliance action is scheduled in days from 0 to 365, not hours.[^c08-noncompliance] A "24-hour" or "72-hour" action is set as 1 or 3 days.
 - **Windows supports fewer actions.** On Windows, the actions are **Mark device noncompliant**, **Send email to end user** and **Add device to retire list**. Remote lock and push notifications aren't available for Windows. Adding a device to the retire list doesn't retire it; an administrator has to retire it from that list.[^c08-noncompliance] There is no separate "block access" action: blocking is what Conditional Access does with a noncompliant device.
 - **Health attestation settings are measured at boot.** BitLocker, Secure Boot and code integrity are evaluated through Device Health Attestation, so a newly encrypted device needs a restart before it reports compliant.[^c08-win-compliance]
 
@@ -226,7 +226,7 @@ Compliance policies define the minimum posture a device must meet before Conditi
 | Password | Minimum password length | 14 | Account Policies > Password Policy |
 | Password | Password type | Alphanumeric | Account Policies > Password Policy (complexity) |
 
-The minimum OS version is a correction. The source set Windows 10 22H2 and Windows 11 23H2. As of October 2026, Windows 11, version 23H2 Enterprise and Education receive updates only until November 10, 2026, and version 24H2 (build 26100) Enterprise and Education until October 12, 2027; version 25H2 is build 26200.[^c08-win11-release] The program sets 24H2 as the floor and raises it each year as versions leave servicing.
+The minimum OS version follows Microsoft's servicing dates. As of October 2026, Windows 11, version 23H2 Enterprise and Education receive updates only until November 10, 2026, and version 24H2 (build 26100) Enterprise and Education until October 12, 2027; version 25H2 is build 26200.[^c08-win11-release] The program sets 24H2 as the floor and raises it each year as versions leave servicing.
 
 | Action | Schedule | Notes |
 |---|---|---|
@@ -245,7 +245,7 @@ All CP-001 requirements apply, with no grace period and these additions:
 | Defender for Endpoint | Require the device to be at or under the machine risk score | Clear | None |
 | Device health | Require BitLocker, Secure Boot and code integrity | Require (as CP-001) | As CP-001 |
 
-The source listed Credential Guard, network inspection and cloud-delivered protection as compliance settings. Windows compliance policy doesn't evaluate those; they are configuration, set in ES-006 and ES-001, and checked by the drift comparison in Chapter 10. The machine risk score replaces them as the compliance signal from Defender, which Microsoft lists among the Windows compliance settings.[^c08-win-compliance]
+Credential Guard, network inspection and cloud-delivered protection aren't compliance settings: Windows compliance policy doesn't evaluate them; they are configuration, set in ES-006 and ES-001, and checked by the drift comparison in Chapter 10. The machine risk score replaces them as the compliance signal from Defender, which Microsoft lists among the Windows compliance settings.[^c08-win-compliance]
 
 | Action | Schedule |
 |---|---|
@@ -259,8 +259,8 @@ The source listed Credential Guard, network inspection and cloud-delivered prote
 
 | Category | Setting | Value | Notes |
 |---|---|---|---|
-| Device properties | Minimum OS version | 10.0.26100 (Windows 11, version 24H2) | The source allowed Windows 10 21H2 for older hardware; that version is long out of support |
-| Device health | Require BitLocker | Require | The source made BitLocker optional for personal devices; personal devices don't receive this policy, they get AP-002 |
+| Device properties | Minimum OS version | 10.0.26100 (Windows 11, version 24H2) | No exception for older hardware: Windows 10 is out of support |
+| Device health | Require BitLocker | Require | Personal devices don't receive this policy; they get AP-002 |
 | Defender | Antivirus | Require | — |
 | Password | Minimum password length | 12 | Reduced from 14 for usability; a program decision |
 | Password | Password type | Alphanumeric | — |
@@ -275,7 +275,7 @@ The source listed Credential Guard, network inspection and cloud-delivered prote
 
 ### CP-004: server baseline (moved to Chapter 09)
 
-The source defined CP-004 as an Intune compliance policy for Windows Server 2025 reached through Azure Arc. That can't be built: Windows Server doesn't enroll in Intune, and Intune compliance policies apply only to enrolled devices.[^c08-supported-os] The intent survives as a server baseline, delivered and evaluated through the server toolchain in [Chapter 09](09-servers-under-azure-arc.md):
+CP-004 is a server baseline, not an Intune compliance policy for Windows Server 2025 reached through Azure Arc, because that can't be built: Windows Server doesn't enroll in Intune, and Intune compliance policies apply only to enrolled devices.[^c08-supported-os] The intent survives as a server baseline, delivered and evaluated through the server toolchain in [Chapter 09](09-servers-under-azure-arc.md):
 
 | Requirement | Value | Delivered through |
 |---|---|---|
@@ -298,7 +298,7 @@ Security settings management has a licensing catch for servers: if the tenant's 
 | Defender | Real-time protection | Require |
 | System security | Firewall | Require |
 
-The source's "shared device mode" setting isn't a Windows compliance setting; shared and kiosk behavior is configuration, set in a kiosk or shared multi-user device profile. Its "block access" action doesn't exist either; marking the device noncompliant is what lets Conditional Access block it. Kiosks aren't added to the retire list, because they are managed assets that get repaired, not retired.
+"Shared device mode" isn't a Windows compliance setting; shared and kiosk behavior is configuration, set in a kiosk or shared multi-user device profile. A "block access" action doesn't exist either; marking the device noncompliant is what lets Conditional Access block it. Kiosks aren't added to the retire list, because they are managed assets that get repaired, not retired.
 
 | Action | Schedule | Notes |
 |---|---|---|
@@ -320,7 +320,7 @@ The source's "shared device mode" setting isn't a Windows compliance setting; sh
 
 Settings catalog profiles replace ADMX-backed Group Policy with cloud-delivered configuration. Each profile below maps the GPO paths to the settings that replace them. All are assigned to all corporate devices unless the profile says otherwise.
 
-The source library also defined four settings catalog profiles for security settings: SC-002 (Defender Antivirus), SC-006 (BitLocker), SC-007 (Windows Firewall) and SC-008 (Windows LAPS). Each duplicated an Endpoint security policy that configured the same settings, and Microsoft's guidance is to manage a given setting through one method, because duplicates across policy types conflict.[^c08-es-conflicts] The program moved their settings into ES-001, ES-002, ES-003 and ES-006, and retired the four IDs rather than reusing them. [Appendix A](appendix-a-gpo-to-intune-crosswalk.md) maps the GPO settings to the Endpoint security IDs accordingly.
+The IDs SC-002 (Defender Antivirus), SC-006 (BitLocker), SC-007 (Windows Firewall) and SC-008 (Windows LAPS) are retired. Each was a settings catalog profile that duplicated an Endpoint security policy configuring the same settings, and Microsoft's guidance is to manage a given setting through one method, because duplicates across policy types conflict.[^c08-es-conflicts] Their settings live in ES-001, ES-002, ES-003 and ES-006, and the four IDs aren't reused. [Appendix A](appendix-a-gpo-to-intune-crosswalk.md) maps the GPO settings to the Endpoint security IDs accordingly.
 
 ### SC-001: Windows security baseline
 
@@ -334,7 +334,7 @@ The source library also defined four settings catalog profiles for security sett
 | Same | Account lockout duration | Device Lock > Account Lockout Policy | 15 minutes |
 | Same | Reset account lockout counter after | Device Lock > Account Lockout Policy | 15 minutes |
 
-The three values travel as one string in the DeviceLock `AccountLockoutPolicy` setting, for example `AccountLockoutDuration:15, AccountLockoutThreshold:10, ResetAccountLockoutCounterAfter:15`, and the setting needs Windows 11, version 22H2 with KB5053657 or version 24H2 and later.[^c08-devicelock] The source mapped the threshold to `DeviceLock/MaxDevicePasswordFailedAttempts`, which is a different control. On an Entra-joined device this policy governs local accounts; sign-in lockout for Entra accounts is governed in Entra ID, which [Book 02](../b02-identity/10-migrating-and-governing.md) covers.
+The three values travel as one string in the DeviceLock `AccountLockoutPolicy` setting, for example `AccountLockoutDuration:15, AccountLockoutThreshold:10, ResetAccountLockoutCounterAfter:15`, and the setting needs Windows 11, version 22H2 with KB5053657 or version 24H2 and later.[^c08-devicelock] `DeviceLock/MaxDevicePasswordFailedAttempts` is a different control. On an Entra-joined device this policy governs local accounts; sign-in lockout for Entra accounts is governed in Entra ID, which [Book 02](../b02-identity/10-migrating-and-governing.md) covers.
 
 #### Audit policy
 
@@ -360,7 +360,7 @@ The three values travel as one string in the DeviceLock `AccountLockoutPolicy` s
 | Same | Interactive logon: Message text for users attempting to log on | Local Policies Security Options > Interactive Logon Message Text For Users Attempting To Log On | The organization's approved system use notice |
 | Same | Interactive logon: Message title for users attempting to log on | Local Policies Security Options > Interactive Logon Message Title For Users Attempting To Log On | `NOTICE` |
 
-The logon banner text is the organization's approved notice. The source's sample text is a placeholder, not approved wording.
+The logon banner text is the organization's approved notice. Sample text is a placeholder, not approved wording.
 
 ### SC-003: Microsoft Edge
 
@@ -394,26 +394,26 @@ Replaces GPO Folder Redirection and logon-script drive maps with OneDrive Known 
 
 ::: {.callout-important}
 ## Folder Redirection to a file share doesn't move by itself
-The source said Known Folder Move would carry redirected folders from the network share into OneDrive. It doesn't. Known Folder Move doesn't work while Windows Folder Redirection still points Documents, Pictures or Desktop somewhere other than OneDrive. Where the folders are redirected to a network share, Microsoft's sequence is: copy the share contents into each user's OneDrive with Migration Manager, disable the Folder Redirection policy while leaving the content on the share, then enable Known Folder Move, which merges with the copied folders. Microsoft also recommends moving no more than 1,000 existing devices a day, and 4,000 a week, with the silent policy.[^c08-kfm] Provision OneDrive storage before the move. Replace `net use` drive-map logon scripts with SharePoint libraries and OneDrive shortcuts.
+Known Folder Move doesn't carry redirected folders from a network share into OneDrive, though it is often expected to. Known Folder Move doesn't work while Windows Folder Redirection still points Documents, Pictures or Desktop somewhere other than OneDrive. Where the folders are redirected to a network share, Microsoft's sequence is: copy the share contents into each user's OneDrive with Migration Manager, disable the Folder Redirection policy while leaving the content on the share, then enable Known Folder Move, which merges with the copied folders. Microsoft also recommends moving no more than 1,000 existing devices a day, and 4,000 a week, with the silent policy.[^c08-kfm] Provision OneDrive storage before the move. Replace `net use` drive-map logon scripts with SharePoint libraries and OneDrive shortcuts.
 :::
 
 ### SC-005: Windows updates
 
-Replaces WSUS-targeting GPOs with Windows Update client policies (the current name for what the source called Windows Update for Business policies), delivered as an Intune update ring.
+Replaces WSUS-targeting GPOs with Windows Update client policies (the current name for Windows Update for Business policies), delivered as an Intune update ring.
 
 **GPO equivalent:** Computer Configuration > Administrative Templates > Windows Components > Windows Update.
 
 | Setting | Value | Notes |
 |---|---|---|
 | Quality update deferral period (days) | 7 | Range 0–30[^c08-update-rings] |
-| Feature update deferral period (days) | 0 | A feature update policy pins the version instead; the source's 30-day deferral applies only without one |
+| Feature update deferral period (days) | 0 | A feature update policy pins the version instead; a 30-day deferral applies only without one |
 | Windows drivers | Allow | Driver approvals in Chapter 10 |
 | Delivery Optimization download mode | 1 (HTTP blended with peering behind the same NAT) | [^c08-do-csp] |
 | Active hours | 07:00 to 19:00 | — |
 | Use deadline settings | Allow | — |
 | Deadline for quality updates (days) | 7 | Range 2–30[^c08-update-rings] |
 | Deadline for feature updates (days) | 14 | Range 2–30 |
-| Grace period (days) | 2 | Range 0–7; replaces the source's separate 48-hour auto-restart setting |
+| Grace period (days) | 2 | Range 0–7; replaces a separate 48-hour auto-restart setting |
 
 [Chapter 10](10-operating-and-evidencing-the-fleet.md#windows-updates) sets these per ring and covers Windows Autopatch, which can create and maintain the rings itself.
 
@@ -453,7 +453,7 @@ Endpoint security policies live under **Endpoint security** in the Intune admin 
 
 ### ES-001: antivirus
 
-Replaces the Microsoft Defender Antivirus GPOs, and absorbs the source's SC-002 profile.
+Replaces the Microsoft Defender Antivirus GPOs and the retired SC-002 profile.
 
 | Setting | Value | GPO path | Notes |
 |---|---|---|---|
@@ -472,7 +472,7 @@ Replaces the Microsoft Defender Antivirus GPOs, and absorbs the source's SC-002 
 | Path exclusions | Line-of-business data directories | Same | Keep to a minimum |
 | Extension exclusions | Only as required by line-of-business apps | Same | Justify each one |
 
-The source table said "send all samples automatically" while its JSON sent the value for safe samples. The program uses safe samples (value 1). Sending all samples (value 3) can upload documents that contain organizational data, so it is an explicit decision for the data owner.[^c08-defender-csp]
+The program sends safe samples automatically (value 1). Sending all samples (value 3) can upload documents that contain organizational data, so it is an explicit decision for the data owner.[^c08-defender-csp]
 
 Tamper protection through Intune needs the device onboarded to Defender for Endpoint, and Microsoft doesn't support managing it this way on co-managed devices.[^c08-tamper] On a co-managed device it waits until the Endpoint Protection workload has moved.
 
@@ -483,7 +483,7 @@ Every antivirus exclusion widens the attack surface. Record the business reason 
 
 ### ES-002: disk encryption
 
-Replaces the BitLocker Drive Encryption GPOs (Computer Configuration > Administrative Templates > Windows Components > BitLocker Drive Encryption), and absorbs the source's SC-006 profile.
+Replaces the BitLocker Drive Encryption GPOs (Computer Configuration > Administrative Templates > Windows Components > BitLocker Drive Encryption) and the retired SC-006 profile.
 
 | Setting | Value | Notes |
 |---|---|---|
@@ -497,13 +497,13 @@ Replaces the BitLocker Drive Encryption GPOs (Computer Configuration > Administr
 | Silent encryption | On, standard and kiosk policy only | — |
 | Reporting | **Devices** > **Monitor** > **Encryption report** | — |
 
-The source combined silent encryption with a required TPM and PIN for every device. Those can't coexist: silent BitLocker requires that devices don't need a TPM startup PIN or startup key, because both need user interaction.[^c08-bitlocker] The program splits them. Standard and kiosk devices encrypt silently with TPM-only protectors; Tier 0 devices, which are provisioned by hand, use TPM plus PIN. The two groups get separate disk encryption policies, so the settings never conflict on one device.
+Silent encryption and a required TPM and PIN can't apply to the same device: silent BitLocker requires that devices don't need a TPM startup PIN or startup key, because both need user interaction.[^c08-bitlocker] The program splits them. Standard and kiosk devices encrypt silently with TPM-only protectors; Tier 0 devices, which are provisioned by hand, use TPM plus PIN. The two groups get separate disk encryption policies, so the settings never conflict on one device.
 
 With silent encryption, recovery keys go to Entra ID automatically, which needs the device to be Entra joined.[^c08-bitlocker] Chapter 10 covers the operational catch: deleting a device object in Entra ID deletes its recovery keys.
 
 ### ES-003: firewall
 
-Replaces the Windows Defender Firewall with Advanced Security GPOs (Computer Configuration > Windows Settings > Security Settings), and absorbs the source's SC-007 profile and the firewall rows of its SC-001 baseline.
+Replaces the Windows Defender Firewall with Advanced Security GPOs (Computer Configuration > Windows Settings > Security Settings), the retired SC-007 profile, and the firewall rows of the SC-001 baseline.
 
 | Profile | State | Inbound default | Outbound default | Log dropped packets | Log successful connections |
 |---|---|---|---|---|---|
@@ -511,7 +511,7 @@ Replaces the Windows Defender Firewall with Advanced Security GPOs (Computer Con
 | Private | On | Block | Allow | Yes | No |
 | Public | On | Block | Block | Yes | Yes |
 
-The source's two profiles disagreed on the public profile's outbound default (Allow in SC-001, Block in SC-007). With one owner the question has one answer; the program blocks outbound on public networks and allows the management and line-of-business rules it needs.
+With one owning policy, the public profile's outbound default has one answer; the program blocks outbound on public networks and allows the management and line-of-business rules it needs.
 
 | Rule | Protocol | Port | Source | Action | Profile |
 |---|---|---|---|---|---|
@@ -530,7 +530,7 @@ On an Entra-joined device that isn't domain joined, the domain profile doesn't a
 | Microsoft Defender for Endpoint client configuration package type | Auto from connector | Needs the Intune–Defender for Endpoint connection |
 | Sample sharing | All | Matches the program's Defender data-handling decision |
 
-The source listed four more settings for this policy. Telemetry reporting frequency is deprecated and has no effect on new devices.[^c08-edr] Automated investigation level, live response and web content filtering aren't EDR policy settings in Intune; they are configured in the Microsoft Defender portal, and [Chapter 10](10-operating-and-evidencing-the-fleet.md#microsoft-defender-for-endpoint) sets them there.
+Four settings sometimes listed for this policy don't belong in it. Telemetry reporting frequency is deprecated and has no effect on new devices.[^c08-edr] Automated investigation level, live response and web content filtering aren't EDR policy settings in Intune; they are configured in the Microsoft Defender portal, and [Chapter 10](10-operating-and-evidencing-the-fleet.md#microsoft-defender-for-endpoint) sets them there.
 
 ### ES-005: attack surface reduction
 
@@ -553,11 +553,11 @@ The source listed four more settings for this policy. Telemetry reporting freque
 | `7674ba52-37eb-4a4f-a9a1-f0f9a1619a2c` | Block Adobe Reader from creating child processes | Audit | Block |
 | `c1db55ab-c21a-4637-bb3f-a12568109d35` | Use advanced protection against ransomware | Audit | Block |
 
-The source's twelve GUIDs are correct. The program adds the first two, which Microsoft classes as standard protection rules alongside the LSASS rule.[^c08-asr] Microsoft's rule reference adds four rollout notes: the PSExec and WMI rule shouldn't be enabled on devices Configuration Manager manages, because its client depends on WMI; the LSASS rule adds nothing where LSA protection and Credential Guard are on; the LSASS rule produces a large volume of audit events that are almost all safe to ignore, so you can skip audit for it and start blocking on a small set of devices; and the ransomware and obfuscated-script rules need cloud-delivered protection.[^c08-asr]
+The list includes the first two rules because Microsoft classes them as standard protection rules alongside the LSASS rule.[^c08-asr] Microsoft's rule reference adds four rollout notes: the PSExec and WMI rule shouldn't be enabled on devices Configuration Manager manages, because its client depends on WMI; the LSASS rule adds nothing where LSA protection and Credential Guard are on; the LSASS rule produces a large volume of audit events that are almost all safe to ignore, so you can skip audit for it and start blocking on a small set of devices; and the ransomware and obfuscated-script rules need cloud-delivered protection.[^c08-asr]
 
 ### ES-006: account protection
 
-Absorbs the source's SC-008 Windows LAPS profile.
+Replaces the retired SC-008 Windows LAPS profile.
 
 | Setting | Value | Target |
 |---|---|---|
@@ -583,7 +583,7 @@ Replaces the LAPS GPO (Computer Configuration > Administrative Templates > Syste
 | Post-authentication reset delay (hours) | 8 |
 | Administrator account name | Default (built-in Administrator) |
 
-The post-authentication delay can be 0 to 24 hours, where 0 turns the actions off; 24 is the default.[^c08-laps] The program shortens it from the source's 24 to 8 so a disclosed password doesn't outlive a working day. Intune manages Windows LAPS through endpoint security account protection policy and can back passwords up to Entra ID or Active Directory; on Windows 11, version 24H2 and later, automatic account management can also randomize the managed account's name.[^c08-laps-intune] The source listed Windows Server 2025 as a target; servers don't enroll, so server LAPS stays with the server toolchain in Chapter 09.
+The post-authentication delay can be 0 to 24 hours, where 0 turns the actions off; 24 is the default.[^c08-laps] The program sets 8 so a disclosed password doesn't outlive a working day. Intune manages Windows LAPS through endpoint security account protection policy and can back passwords up to Entra ID or Active Directory; on Windows 11, version 24H2 and later, automatic account management can also randomize the managed account's name.[^c08-laps-intune] Windows Server 2025 isn't a target; servers don't enroll, so server LAPS stays with the server toolchain in Chapter 09.
 
 ## App protection policies
 
@@ -591,7 +591,7 @@ The post-authentication delay can be 0 to 24 hours, where 0 turns the actions of
 
 **Type:** app protection policy · **Target:** Outlook, Teams, OneDrive, SharePoint, Word, Excel, PowerPoint and Edge on iOS and Android.
 
-The source wrote AP-001 for Windows with enrollment. That doesn't exist: on Windows, app protection applies to Microsoft Edge only, and only on devices that aren't MDM enrolled or Entra joined; if a device is managed, Windows MAM enrollment is blocked.[^c08-mam-win] Enrolled Windows devices get their data protection from the configuration and compliance policies above. AP-001 therefore targets the mobile Microsoft 365 apps.
+AP-001 has no Windows version for enrolled devices, because none can exist: on Windows, app protection applies to Microsoft Edge only, and only on devices that aren't MDM enrolled or Entra joined; if a device is managed, Windows MAM enrollment is blocked.[^c08-mam-win] Enrolled Windows devices get their data protection from the configuration and compliance policies above. AP-001 therefore targets the mobile Microsoft 365 apps.
 
 | Category | Setting | Value |
 |---|---|---|
@@ -625,7 +625,7 @@ A Conditional Access policy that requires an app protection policy makes these p
 
 The setting-level lookup card that accompanied this library (fifty common GPO settings, each with its closest Intune surface and the program policy that owns it) and the CSP paths behind the key settings are in [Appendix A](appendix-a-gpo-to-intune-crosswalk.md#setting-reference-50-common-gpo-settings), with the policy IDs used in this chapter. The appendix is a reference, not a prescription: it says where a required setting lands, and the regenerate-not-copy philosophy in [Book 01, Chapter 05](../b01-transformation-arc/05-policy-transformation.md) decides its value.
 
-Three corrections from the source carry through both documents. Account lockout maps to the DeviceLock `AccountLockoutPolicy` setting, not `MaxDevicePasswordFailedAttempts`.[^c08-devicelock] Logon auditing sits under `Audit/AccountLogonLogoff_AuditLogon`, not an `AccountLogon_` path.[^c08-audit-csp] And the Defender, BitLocker, firewall and LAPS rows map to the Endpoint security policies ES-001, ES-002, ES-003 and ES-006, not to settings catalog profiles. For a setting with no surface at all, a custom OMA-URI profile delivers it by CSP path; Intune doesn't validate a custom payload, so record its owner like any other policy.[^c08-conflicts]
+Three mappings carry through both documents. Account lockout maps to the DeviceLock `AccountLockoutPolicy` setting, not `MaxDevicePasswordFailedAttempts`.[^c08-devicelock] Logon auditing sits under `Audit/AccountLogonLogoff_AuditLogon`, not an `AccountLogon_` path.[^c08-audit-csp] And the Defender, BitLocker, firewall and LAPS rows map to the Endpoint security policies ES-001, ES-002, ES-003 and ES-006, not to settings catalog profiles. For a setting with no surface at all, a custom OMA-URI profile delivers it by CSP path; Intune doesn't validate a custom payload, so record its owner like any other policy.[^c08-conflicts]
 
 ## Dynamic group and filter templates
 
@@ -676,7 +676,7 @@ foreach ($tier in $tiers) {
 }
 ```
 
-The source labeled the Tier 1 group "Azure Arc–enrolled servers." Servers don't appear in Intune device groups as enrolled devices; Tier 1 here means client devices in Tier 1, and Chapter 09 groups servers through Azure Arc.
+Servers don't appear in Intune device groups as enrolled devices; Tier 1 here means client devices in Tier 1, and Chapter 09 groups servers through Azure Arc.
 
 ### Environment, role, region and department groups
 
@@ -702,7 +702,7 @@ foreach ($g in $groups) {
 }
 ```
 
-The source's region rule matched `EASTUS` while its schema listed `East`. A rule only works if it matches the value provisioning writes, so the program fixes one spelling per value in the schema and uses it everywhere.
+A rule only works if it matches the value provisioning writes, so the program fixes one spelling per value in the schema and uses it everywhere.
 
 ### The same group through the Graph REST API
 
@@ -744,11 +744,11 @@ The `deviceTrustType` values in an Intune filter are the Intune ones (`Azure AD 
 
 ## Microsoft Graph templates
 
-These payloads create the policies as code. They are where the source needed the most correction.
+These payloads create the policies as code.
 
-- **Compliance policies are in v1.0, but most Windows settings aren't.** The v1.0 `windows10CompliancePolicy` resource carries password, OS version and health attestation settings (BitLocker, Secure Boot, code integrity, storage encryption).[^c08-graph-w10cp] The firewall, TPM, Defender, antivirus, antispyware, real-time protection and signature settings exist only on the beta resource.[^c08-graph-w10cp-beta] The source posted all of them to v1.0. The program uses beta for compliance policies and accepts that beta APIs change more often.
+- **Compliance policies are in v1.0, but most Windows settings aren't.** The v1.0 `windows10CompliancePolicy` resource carries password, OS version and health attestation settings (BitLocker, Secure Boot, code integrity, storage encryption).[^c08-graph-w10cp] The firewall, TPM, Defender, antivirus, antispyware, real-time protection and signature settings exist only on the beta resource.[^c08-graph-w10cp-beta] Posting them to v1.0 fails. The program uses beta for compliance policies and accepts that beta APIs change more often.
 - **Every compliance policy needs a scheduled action.** `scheduledActionsForRule` is required when creating a per-platform compliance policy.[^c08-graph-w10cp] Each action's `actionType` is one of `noAction`, `notification`, `block`, `retire`, `wipe`, `removeResourceAccessProfiles` or `pushNotification`, with a grace period in hours.[^c08-graph-action] In Graph, `block` with a grace period is the API form of the portal's **Mark device noncompliant** schedule, which is why the API counts in hours while the portal counts in days.
-- **Settings catalog and endpoint security policies are beta only.** `deviceManagement/configurationPolicies` is a beta API.[^c08-graph-configpolicy] The source's endpoint security example used `deviceManagement/intents`, the older template-based API, which is also beta only;[^c08-graph-intents] current endpoint security policies are settings catalog policies created through `configurationPolicies` with a template reference. The source's intents example is not carried.
+- **Settings catalog and endpoint security policies are beta only.** `deviceManagement/configurationPolicies` is a beta API.[^c08-graph-configpolicy] Don't use `deviceManagement/intents`, the older template-based API, which is also beta only;[^c08-graph-intents] current endpoint security policies are settings catalog policies created through `configurationPolicies` with a template reference.
 
 ### CP-001 as a compliance policy
 
@@ -788,7 +788,7 @@ Content-Type: application/json
 }
 ```
 
-The source set the minimum OS to `10.0.19045` (Windows 10 22H2); it is `10.0.26100` here. The `retire` action at 720 hours is the API form of adding the device to the retire list after 30 days. The `notification` action needs the ID of a notification message template created first.
+The minimum OS is `10.0.26100`. The `retire` action at 720 hours is the API form of adding the device to the retire list after 30 days. The `notification` action needs the ID of a notification message template created first.
 
 ### ES-001's Defender settings as a configuration policy
 
@@ -879,7 +879,7 @@ $complianceBody = @{
 New-MgBetaDeviceManagementDeviceCompliancePolicy -BodyParameter $complianceBody
 ```
 
-The source's script created a compliance policy without the required scheduled action, and created an empty `windows10GeneralConfiguration` profile as "SC-001." That profile type is the older device restrictions template; SC-001 is a settings catalog policy and is created through `configurationPolicies`, as in the ES-001 example.
+A compliance policy needs its scheduled action, and SC-001 isn't a `windows10GeneralConfiguration` profile: that profile type is the older device restrictions template; SC-001 is a settings catalog policy and is created through `configurationPolicies`, as in the ES-001 example.
 
 ::: {.callout-tip}
 ## Continue the book

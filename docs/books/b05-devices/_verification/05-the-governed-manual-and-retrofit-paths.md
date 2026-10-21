@@ -121,3 +121,22 @@ short `intune-arc-*` twins were folded into the fuller pages.
 | guides governed-and-retrofit — Retrofit path rules + when to use | When the estate can't leave the domain yet | Re-scoped: "retrofit" reserved for governance-after-the-fact per book plan; domain-bound rules kept as a cross-path constraint |
 | guides governed-and-retrofit — Relationship to manual path | How to choose (closing) | — |
 | guides governed-and-retrofit — Key risks | Key risks on every path | — |
+
+## Revision 2026-10-21 — review fixes
+
+Applied from the verified review of Books 02–05. Sources were opened again on Oct 21, 2026.
+
+| # | Change | Where | Verdict | Source |
+|---|---|---|---|---|
+| R1 | Source-correction narration trimmed; LAN Manager level 5 kept as a common mistake | Endpoint role; SYSVOL secret; overlap; NTLM staging; SPN; emergency accounts; terms table; retrofit | restated | unchanged footnotes |
+
+### Revision history moved out of the chapter body
+
+The body now states the guidance directly. These were the earlier positions it used to narrate:
+
+- The source runbooks put "Intune Administrator through PIM" on the endpoint line.
+- The source runbook's staging table treated LAN Manager level 5 as "block all NTLM".
+- The source runbook said a duplicate SPN falls back to NTLM silently.
+- The source runbook protected emergency accounts with long unique passwords.
+- A source draft described the governed path as five products (table header was "Source draft term").
+- An earlier version of these guides used "retrofit" for domain-bound devices.

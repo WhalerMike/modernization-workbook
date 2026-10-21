@@ -118,3 +118,15 @@ Checked 2026-10-20 against Microsoft Learn (Learn MCP search and fetch), NIST CS
 - **Chapter 07 has no numbered policy** for the PIM activation authentication context (`PIM-Activation-c1`) or the protected-actions context (`c2`). Suggest adding them to Wave 2.
 - **Book 02 Ch10 access-review row** ("assignees self-attest") conflicts with Microsoft's behavior that self-review excludes role-assignable groups; Ch08 and Appendix B use selected reviewers.
 - **Diagram source:** `docs/images/diagrams/b04-access/src/ch08-activation-sequence.seq.yaml` (4 participants, column 165, gap 22 → ~786 px; not rendered; YAML parses).
+
+## Revision 2026-10-21 — review fixes
+
+Applied from the verified review of Books 02–05. Sources were opened again on Oct 21, 2026.
+
+| # | Change | Where | Verdict | Source |
+|---|---|---|---|---|
+| R1 | License lapse also turns active time-bound assignments into active permanent ones, and the FAQ applies the effects to PIM for Entra roles, Azure resources and Groups | Prerequisites callout | corrected (added) | c08-licensing-faq <https://learn.microsoft.com/entra/id-governance/licensing-fundamentals#licensing-faqs> |
+| R2 | Legacy `/beta/privilegedAccess` API: "Microsoft retires … on October 28, 2026"; after the date calls fail, so automation still calling it is broken | Operating the workflow callout; Known constraints row | verified (reworded to read correctly before and after the date) | c08-apis <https://learn.microsoft.com/entra/id-governance/privileged-identity-management/pim-apis#pim-api-history>; c08-apis-retire <https://learn.microsoft.com/entra/fundamentals/whats-new-archive#october-2025> |
+| R3 | Privileged-role review cadence aligned across Books 02 and 04: Tier 0 monthly, other privileged roles quarterly, never self-review alone. The cadence is the program's design; AC-2(j) and AC-6(7) leave the frequency organization-defined; Step 8 cross-reference to Book 02 Ch05/Ch10 updated | Step 8 | restated-as-design | c08-nist <https://csrc.nist.gov/pubs/sp/800/53/r5/upd1/final> |
+| R4 | Control table note: `AU-` rows are NIST's Audit and Accountability family, not administrative units | Control mapping callout | verified | c08-nist <https://csrc.nist.gov/pubs/sp/800/53/r5/upd1/final> |
+| R5 | 166-line `Set-FMPPimTierPolicy.ps1` script moved to Appendix B; Ch08 keeps a summary and a call example | Step 4, Applying a tier's settings across roles | moved | Appendix B #applying-a-tiers-settings-with-powershell |

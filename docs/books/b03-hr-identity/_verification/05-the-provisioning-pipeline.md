@@ -63,3 +63,11 @@ Footnote keys renamed `c04-*` → `c05-*` (they carried the pre-renumbering chap
 | Native connectors | kept | unchanged |
 | Writeback: optional and one-way per attribute | kept | edited: Microsoft's connector method and Oracle SCIM footnote |
 | Continue the series | kept as "Continue the book" | edited to Book 02 callout style |
+
+## Revision 2026-10-21 — review fixes
+
+Applied from the verified review of Books 02–05. Sources were opened again on Oct 21, 2026.
+
+| # | Change | Where | Verdict | Source |
+|---|---|---|---|---|
+| R1 | Microsoft's directory-level SOA labelled *object SOA* in the diagram caption, fig-alt and the migration paragraph; HR remains the source of authority for the person | Two landing patterns figure; Over the Entra ID migration | restated | c05-soa <https://learn.microsoft.com/en-us/entra/identity/hybrid/user-source-of-authority-overview> |

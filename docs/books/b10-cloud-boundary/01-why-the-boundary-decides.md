@@ -144,6 +144,8 @@ When the overlap of certification, environment and authorization doesn't include
 2. **Use a documented exception.** Some exclusions have a provider-defined path to an exception, with conditions the agency must meet and document. [Chapter 09](09-equivalents-and-exceptions.md) covers when an exception path exists and what it requires, and [Appendix A](appendix-a-what-to-ask-for.md) lists what to ask a provider to publish where none exists.
 3. **Choose an alternative path.** Use a different certified service or a different collaboration pattern that delivers the outcome inside a boundary the agency can authorize. [Chapter 10](10-alternative-collaboration-paths.md) works through collaboration alternatives.
 
+Going without the capability is also a legitimate outcome when someone decides it and records it. [Chapter 09](09-equivalents-and-exceptions.md) treats it as a risk acceptance by the authorizing official.
+
 Whichever response is chosen, the decision belongs in the agency's package as an explicit statement about the boundary, not as a footnote in one control narrative. [Chapter 08](08-who-owns-the-boundary.md) names who makes each decision, and [Chapter 11](11-the-authorization-package.md) shows how to evidence it.
 
 ## Where the boundary becomes concrete

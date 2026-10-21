@@ -73,3 +73,11 @@ Checked 2026-10-21 against the same primary sources as Chapter 12 (see `_verific
 | attachment-b — B3 Telemetry | B3 | NCPS reference corrected |
 | attachment-b — Architecture review determination, signing assertion, signature block | Determination section | — |
 | attachment-b — Re-assessment triggers | Re-assessment triggers callout (two triggers added) | — |
+
+## Review fixes, 2026-10-21
+
+Applied from the verified review findings (critique claims re-checked against primary sources on 2026-10-21). Every factual change was re-researched and carries its own footnote; wording-only changes are marked as such.
+
+| # | Change | Where | Verdict | Source |
+|---|---|---|---|---|
+| RF-1 | "per memo clause 6" and "See memo clause 4" now read "the SC-7(4) exception memo, clause 6/4" | Attachment rows Web (line 225) and Enterprise (line 230) | wording only, no new factual claim; no new footnote | — |

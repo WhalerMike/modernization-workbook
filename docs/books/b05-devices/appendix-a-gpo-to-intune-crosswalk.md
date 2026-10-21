@@ -19,7 +19,7 @@ lifecycle_review: 2027-04-01
 
 ::: {.callout-note}
 ## In this appendix
-The category crosswalk: each Group Policy area, the Intune mechanism that replaces it, and the notes and limits that apply. The program's 50-row setting reference for the most commonly deployed GPO settings, corrected against current Microsoft documentation. The CSP paths behind the program's key settings, and the workload-by-workload comparison of Group Policy, Configuration Manager and Intune.
+The category crosswalk: each Group Policy area, the Intune mechanism that replaces it, and the notes and limits that apply. The program's 50-row setting reference for the most commonly deployed GPO settings, checked against current Microsoft documentation. The CSP paths behind the program's key settings, and the workload-by-workload comparison of Group Policy, Configuration Manager and Intune.
 :::
 
 ## How to use this appendix
@@ -75,7 +75,7 @@ The mechanisms named in the tables are:
 
 ## Setting reference: 50 common GPO settings
 
-The program's lookup card for the most commonly deployed GPO settings in enterprise environments. The program policy IDs refer to the Federal Modernization Program's Intune policy template library (CP compliance, SC settings catalog, ES Endpoint security), covered in [Chapter 08](08-gpo-to-intune-policy-migration.md). The surfaces are corrected against current Microsoft documentation; where a correction changes the source row, the note says so.
+The program's lookup card for the most commonly deployed GPO settings in enterprise environments. The program policy IDs refer to the Federal Modernization Program's Intune policy template library (CP compliance, SC settings catalog, ES Endpoint security), covered in [Chapter 08](08-gpo-to-intune-policy-migration.md). The surfaces are checked against current Microsoft documentation.
 
 | # | GPO path | GPO setting | Intune surface | Intune setting | Program ID | Notes |
 |---|---|---|---|---|---|---|
@@ -128,9 +128,9 @@ The program's lookup card for the most commonly deployed GPO settings in enterpr
 | 47 | Computer > Admin Templates > Windows Components > Data Collection | Allow diagnostic data | Settings catalog (System) | Allow Telemetry | — | Required (Basic) minimum for update reports |
 | 48 | Computer > Admin Templates > Windows Components > Microsoft Defender Exploit Guard > Network Protection | Prevent users and apps from accessing dangerous websites | Endpoint security: antivirus or attack surface reduction | Enable network protection | ES-001 | Source mapped to SC-002 |
 | 49 | Computer > Admin Templates > Windows Components > Microsoft Defender Antivirus | Configure detection for potentially unwanted applications | Endpoint security: antivirus | PUA protection | ES-001 | Source mapped to SC-002 |
-| 50 | Computer > Admin Templates > System > LAPS | Windows LAPS password settings | Endpoint security: account protection | Windows LAPS | ES-006 | Back up to Entra ID; source mapped to SC-008 |
+| 50 | Computer > Admin Templates > System > LAPS | Windows LAPS password settings | Endpoint security: account protection | Windows LAPS | ES-006 | Back up to Entra ID; not the retired SC-008 profile |
 
-Rows 7, 8, 48 and 49 were mapped in the source to a settings catalog Defender profile (SC-002). The program keeps antivirus settings in one Endpoint security antivirus policy, because Microsoft's best practice is to manage a given setting through one method, and duplicate settings across policy types conflict.[^aA-es] Where the program's library still holds an SC-002 profile, retire its overlapping settings when ES-001 is assigned.
+For rows 7, 8, 48 and 49, the program keeps antivirus settings in one Endpoint security antivirus policy, because Microsoft's best practice is to manage a given setting through one method, and duplicate settings across policy types conflict.[^aA-es] Where the program's library still holds an SC-002 profile, retire its overlapping settings when ES-001 is assigned.
 
 ## CSP paths behind key settings
 
@@ -167,7 +167,7 @@ The OMA-URI paths behind the program's key settings, for verification on a devic
 | Start | Start pins | `./Device/Vendor/MSFT/Policy/Config/Start/ConfigureStartPins`[^aA-start] |
 | Personalization | Lock screen and desktop images | `./Vendor/MSFT/Personalization/LockScreenImageUrl`, `./Vendor/MSFT/Personalization/DesktopImageUrl`[^aA-personalization] |
 
-The source mapped account lockout threshold to `DeviceLock/MaxDevicePasswordFailedAttempts`, which is a device-lock password setting, not the account lockout policy; and it mapped Audit Logon to an `Audit/AccountLogon_` path, where the Logon subcategory sits under `AccountLogonLogoff_`. Both are corrected above.
+Two mappings are easy to get wrong. Account lockout threshold isn't `DeviceLock/MaxDevicePasswordFailedAttempts`, which is a device-lock password setting, not the account lockout policy. Audit Logon isn't under an `Audit/AccountLogon_` path; the Logon subcategory sits under `AccountLogonLogoff_`.
 
 A custom OMA-URI profile, for a setting no other surface exposes, takes a name, a description naming the GPO setting it replaces, the OMA-URI (`./Device/Vendor/MSFT/Policy/Config/<Area>/<Setting>` for Policy CSP settings), a data type (integer, string, Boolean or Base64), and the value. ADMX-backed Policy CSP settings need the SyncML string format with `<enabled/>` and `<data id=… value=…/>` elements rather than a plain value.[^aA-bitlocker]
 

@@ -97,3 +97,17 @@ Sources: `docs/operational-guides/intune-arc-modernization/index.md`; the server
 | guides manual-path §3–10 (non-server) | Ch05 | |
 | (new) Defender for Servers, Update Manager, WSM, ESU, Entra sign-in, local agent controls | Ch09 sections | Added per assignment |
 | (new) Figures | `ch09-arc-management-plane`, `ch09-onboarding-wave` | |
+
+## Revision 2026-10-21 — review fixes
+
+Applied from the verified review of Books 02–05. Sources were opened again on Oct 21, 2026.
+
+| # | Change | Where | Verdict | Source |
+|---|---|---|---|---|
+| R1 | Source-correction narration trimmed; Arc sign-in CA assumption kept as a common assumption | Entra ID sign-in section | restated | unchanged footnotes |
+
+### Revision history moved out of the chapter body
+
+The body now states the guidance directly. These were the earlier positions it used to narrate:
+
+- The source material treated Entra ID sign-in on Arc servers as bringing them under workstation Conditional Access.

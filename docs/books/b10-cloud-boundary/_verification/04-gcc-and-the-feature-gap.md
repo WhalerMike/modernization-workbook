@@ -38,6 +38,8 @@ Source: `docs/whitepapers/fedramp-20x-and-the-commercial-feature-gap.md`, ยง2, ย
 | 28 | Agencies may use a package at any security category | Pursuing High | verified | NTC-0004 |
 | 29 | A higher class doesn't restore excluded features; the network layer is absent at Class D in GCC High | Impact level vs feature | verified (facts) / restated-as-design (conclusion) | #8, #24 |
 | 30 | Five practical conclusions | Closing | restated-as-design | Program positions |
+| 31 | Review fix, Oct 21, 2026: removed "Earlier program material attributed that egress-distance insight to the admin center" | Network measurement that remains | wording-only | Kept a short clause that the insight comes from the test tool, not the admin center's network connectivity page (a common confusion). Existing [^c04-tool]; no new claim. |
+| 32 | Review fix, Oct 21, 2026: removed "Earlier program material counted 'seven Adoption Score categories' as separate gaps" | Adoption Score bullet | wording-only | Body states five scored categories (six with Copilot) and that the whole report is unavailable in GCC, under the existing [^c04-adoption]. No new claim. |
 
 ## Carry-forward ledger
 

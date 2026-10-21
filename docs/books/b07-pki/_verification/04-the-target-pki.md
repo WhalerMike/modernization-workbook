@@ -81,3 +81,13 @@ Source: `docs/operational-guides/pki-modernization.md` §5 (5.1–5.3 and the re
 | Compliance Amendment HSM | "Keys" (Cloud PKI custody) | AD CS HSM requirement is in Chapter 03 |
 | §13 cross-reference row for §5 | Not carried | Companion-guide pointer replaced by book links |
 | Appendix A checklist | Not carried | Context only; owned by the Appendix A writer |
+
+## Review fixes, 2026-10-21
+
+Applied from the verified review findings (critique claims re-checked against primary sources on 2026-10-21). Every factual change was re-researched and carries its own footnote; wording-only changes are marked as such.
+
+| # | Change | Where | Verdict | Source |
+|---|---|---|---|---|
+| RF-1 | "Android doesn't follow AIA paths at all" attributed to Microsoft and narrowed: the Android OS requires servers to return the entire chain and doesn't discover missing certificates through AIA | BYOCA bullets (line 74) | corrected (narrowed to what the page says) | <https://learn.microsoft.com/intune/cloud-pki/deployment-models> |
+| RF-2 | CRL wording "HTTP (or HTTPS; HTTP recommended)" | line 77 | verified (same source conflict as Chapter 02, noted in `[^c04-cba-crl]`) | <https://learn.microsoft.com/en-us/entra/identity/authentication/concept-certificate-based-authentication-certificate-revocation-list> |
+| RF-3 | `[^c04-pan]` now cites the SEC Form 8-K Exhibit 99.1, like Chapters 01, 05 and 07; close date February 11, 2026 re-confirmed | Footnote (line 184) | verified | <https://www.sec.gov/Archives/edgar/data/1327567/000119312526045600/d40626dex991.htm> |

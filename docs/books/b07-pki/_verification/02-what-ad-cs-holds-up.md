@@ -68,3 +68,11 @@ Sources: `docs/operational-guides/pki-modernization.md` §2, §4 and §13.
 | §4.2 Certificate Use Case Mapping | Ch02 §The use-case map | Carried with corrections (claims 33–41); "Dependencies" column merged with notes; template-level detail goes to Appendix B |
 | §4.3 PowerShell Inventory Function (`Get-FMPCertificateInventory`) | Ch02 §What the certificate inventory collects (described, not reproduced) | Not carried as code per assignment; stays in the archived guide with Appendix C pending technical review; two defects recorded (claims 24–26) |
 | §13 Companion Document Cross-Reference (table, 11 rows) | — | Not carried: the named companion guides (AD Interaction Guide, AD Security Assessment Guide, Identity Modernization Guide, AD Computer Object Conversion Guide, Network Architecture Guide, Monitoring and Compliance Guide, Program Overview) are being archived or superseded by workbook books; their relationships are expressed as direct links to Book 02, Book 03, Book 05 and Book 06 chapters and to this book's own chapters |
+
+## Review fixes, 2026-10-21
+
+Applied from the verified review findings (critique claims re-checked against primary sources on 2026-10-21). Every factual change was re-researched and carries its own footnote; wording-only changes are marked as such.
+
+| # | Change | Where | Verdict | Source |
+|---|---|---|---|---|
+| RF-1 | CRL location "HTTP (or HTTPS; HTTP recommended)", matching Chapters 07 and 08; new footnote `[^c02-cba-crl]` | CRL distribution points row (line 42) | verified, with a source conflict noted in the footnote: the CRL page says "supports only HTTP or HTTPS. We recommend using HTTP instead of HTTPS"; the CA configuration page (`[^c02-cba-ca]`) and the CBA overview still say HTTP URLs only | <https://learn.microsoft.com/en-us/entra/identity/authentication/concept-certificate-based-authentication-certificate-revocation-list>; <https://learn.microsoft.com/en-us/entra/identity/authentication/how-to-configure-certificate-authorities> |

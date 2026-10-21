@@ -114,7 +114,7 @@ grant:
   operator: OR
 ```
 
-The program numbers its Conditional Access policies once, in a single library: CA001 to CA017 are the baseline that [Book 02](../b02-identity/09-building-the-entra-target.md) builds during the migration, and [Book 04, Chapter 07](../b04-access/07-the-conditional-access-policy-library.md) adds CA018 to CA038 and the report-only instrument CA090. Each display name starts with its number, then the population, then the control. A new policy takes the next open number in that library. Earlier drafts of this chapter used scope bands (CA-000 to CA-999 by enterprise, division, department and role); those bands are retired so that the workbook has one numbering scheme.
+The program numbers its Conditional Access policies once, in a single library: CA001 to CA017 are the baseline that [Book 02](../b02-identity/09-building-the-entra-target.md) builds during the migration, and [Book 04, Chapter 07](../b04-access/07-the-conditional-access-policy-library.md) adds CA018 to CA038 and the report-only instrument CA090. Each display name starts with its number, then the population, then the control. A new policy takes the next open number in that library. The workbook uses this one numbering scheme, not scope bands by enterprise, division, department or role.
 
 ### Prefer "require" to "block"
 

@@ -42,7 +42,7 @@ How to build and run one Privileged Identity Management (PIM) configuration: adm
 
 ::: {.callout-important}
 ## License continuity is a control dependency
-When a P2, Governance or trial license expires, permanent role assignments are unaffected, but PIM stops serving activation and privileged-access management in the admin center, Graph and PowerShell; **eligible Microsoft Entra role assignments are removed**; ongoing access reviews of Entra roles end; PIM configuration settings are removed; and PIM stops sending email about assignment changes.[^c08-licensing] The approval gate is only as durable as the subscription behind it. Treat a license expiry as a configuration-management event with control impact, and keep the role inventory exported ([Chapter 10](10-access-as-code-and-evidence.md)) so the eligible assignments can be restored.
+When a P2, Governance or trial license expires, permanent role assignments are unaffected, but PIM stops serving activation and privileged-access management in the admin center, Graph and PowerShell; **eligible Microsoft Entra role assignments are removed**; ongoing access reviews of Entra roles end; PIM configuration settings are removed; and PIM stops sending email about assignment changes.[^c08-licensing] Microsoft's licensing FAQ adds a consequence that runs the other way: **active time-bound assignments become active permanent and no longer expire**, and the FAQ applies these effects to PIM for Microsoft Entra roles, PIM for Azure resources and PIM for Groups alike.[^c08-licensing-faq] A lapse therefore removes the just-in-time path and turns every expiring grant into standing access. The approval gate is only as durable as the subscription behind it. Treat a license expiry as a configuration-management event with control impact, and keep the role inventory exported ([Chapter 10](10-access-as-code-and-evidence.md)) so the eligible assignments can be restored.
 :::
 
 ## The target design
@@ -315,178 +315,12 @@ Content-Type: application/json
 
 #### Applying a tier's settings across roles
 
-The script applies one tier's settings to a list of roles. `Get-MgPolicyRoleManagementPolicyAssignment` and `Update-MgPolicyRoleManagementPolicyRule` are in the `Microsoft.Graph.Identity.SignIns` module.[^c08-update-rules] The script honors `-WhatIf`.
+The requests above set one rule on one role. To apply a whole tier's gate at once, [Appendix B](appendix-b-pim-role-settings.md#applying-a-tiers-settings-with-powershell) has a PowerShell script, `Set-FMPPimTierPolicy.ps1`, that resolves each role's policy from its template ID and updates the five rules above: approval by the tier's group, the authentication context, justification and ticket, the activation window, and the eligibility expiry. It honors `-WhatIf`. A Tier 0 run looks like this:
 
 ```powershell
-#Requires -Modules Microsoft.Graph.Identity.SignIns
-
-<#
-.SYNOPSIS
-    Apply an FMP privilege-tier PIM policy (approval, authentication context,
-    justification, ticket, duration, eligibility expiry) to Microsoft Entra roles.
-
-.DESCRIPTION
-    Resolves each role's role management policy from its immutable template ID,
-    then updates the five rules that make up the approval gate. Re-running with
-    the same inputs leaves the settings unchanged.
-
-.NOTES
-    Least-privileged role: Privileged Role Administrator.
-    Connect first:
-        Connect-MgGraph -Scopes 'RoleManagementPolicy.ReadWrite.Directory'
-#>
-[CmdletBinding(SupportsShouldProcess, ConfirmImpact = 'High')]
-param(
-    # CONFIGURE: the template IDs of the roles in one tier (Appendix B).
-    [Parameter(Mandatory)]
-    [string[]] $RoleTemplateId,
-
-    # CONFIGURE: object ID of the tier's approver group (Step 1).
-    [Parameter(Mandatory)]
-    [string] $ApproverGroupId,
-
-    # Maximum activation window, ISO 8601, 1 to 24 hours.
-    [ValidatePattern('^PT([1-9]|1[0-9]|2[0-4])H$')]
-    [string] $MaxActivationDuration = 'PT4H',
-
-    # Maximum eligible-assignment lifetime, ISO 8601.
-    [string] $MaxEligibilityDuration = 'P90D',
-
-    # Authentication context required on activation (Step 2).
-    [string] $AuthenticationContext = 'c1'
-)
-
-begin {
-    function New-PimRuleTarget {
-        param(
-            [ValidateSet('EndUser', 'Admin')][string] $Caller = 'EndUser',
-            [ValidateSet('Assignment', 'Eligibility')][string] $Level = 'Assignment'
-        )
-        @{
-            '@odata.type'       = 'microsoft.graph.unifiedRoleManagementPolicyRuleTarget'
-            caller              = $Caller
-            operations          = @('All')
-            level               = $Level
-            inheritableSettings = @()
-            enforcedSettings    = @()
-        }
-    }
-
-    # Activation rules apply to the end user activating their own eligible
-    # assignment; the eligibility-expiry rule applies to the admin who assigns it.
-    $activationTarget  = New-PimRuleTarget -Caller 'EndUser' -Level 'Assignment'
-    $eligibilityTarget = New-PimRuleTarget -Caller 'Admin'   -Level 'Eligibility'
-
-    function Resolve-PimPolicyId {
-        param([Parameter(Mandatory)][string] $TemplateId)
-
-        $filter = "scopeId eq '/' and scopeType eq 'DirectoryRole' and " +
-                  "roleDefinitionId eq '$TemplateId'"
-        $assignment = Get-MgPolicyRoleManagementPolicyAssignment -Filter $filter -ErrorAction Stop
-
-        if (-not $assignment) {
-            throw "No role management policy assignment found for template ID $TemplateId."
-        }
-        # A directory role at tenant scope resolves to exactly one policy.
-        return $assignment[0].PolicyId
-    }
-
-    function Set-PimRule {
-        param(
-            [Parameter(Mandatory)][string]    $PolicyId,
-            [Parameter(Mandatory)][string]    $RuleId,
-            [Parameter(Mandatory)][hashtable] $Body
-        )
-        Update-MgPolicyRoleManagementPolicyRule `
-            -UnifiedRoleManagementPolicyId     $PolicyId `
-            -UnifiedRoleManagementPolicyRuleId $RuleId `
-            -BodyParameter                     $Body `
-            -ErrorAction                       Stop
-    }
-}
-
-process {
-    foreach ($templateId in $RoleTemplateId) {
-
-        $policyId = Resolve-PimPolicyId -TemplateId $templateId
-
-        if (-not $PSCmdlet.ShouldProcess(
-                "role $templateId (policy $policyId)",
-                "Apply tier policy: approval by $ApproverGroupId, context $AuthenticationContext, max $MaxActivationDuration")) {
-            continue
-        }
-
-        # 1. Require approval, routed to the approver group.
-        Set-PimRule -PolicyId $policyId -RuleId 'Approval_EndUser_Assignment' -Body @{
-            '@odata.type' = '#microsoft.graph.unifiedRoleManagementPolicyApprovalRule'
-            id            = 'Approval_EndUser_Assignment'
-            target        = $activationTarget
-            setting       = @{
-                '@odata.type'                    = 'microsoft.graph.approvalSettings'
-                isApprovalRequired               = $true
-                isApprovalRequiredForExtension   = $false
-                isRequestorJustificationRequired = $true
-                approvalMode                     = 'SingleStage'
-                approvalStages                   = @(
-                    @{
-                        approvalStageTimeOutInDays      = 1
-                        isApproverJustificationRequired = $true
-                        escalationTimeInMinutes         = 0
-                        isEscalationEnabled             = $false
-                        escalationApprovers             = @()
-                        primaryApprovers                = @(
-                            @{
-                                '@odata.type' = '#microsoft.graph.groupMembers'
-                                groupId       = $ApproverGroupId
-                            }
-                        )
-                    }
-                )
-            }
-        }
-
-        # 2. Require the authentication context on activation.
-        Set-PimRule -PolicyId $policyId -RuleId 'AuthenticationContext_EndUser_Assignment' -Body @{
-            '@odata.type' = '#microsoft.graph.unifiedRoleManagementPolicyAuthenticationContextRule'
-            id            = 'AuthenticationContext_EndUser_Assignment'
-            isEnabled     = $true
-            claimValue    = $AuthenticationContext
-            target        = $activationTarget
-        }
-
-        # 3. Require justification and ticket information on activation.
-        #    Ticket information is recorded but not validated by Entra.
-        Set-PimRule -PolicyId $policyId -RuleId 'Enablement_EndUser_Assignment' -Body @{
-            '@odata.type' = '#microsoft.graph.unifiedRoleManagementPolicyEnablementRule'
-            id            = 'Enablement_EndUser_Assignment'
-            enabledRules  = @('Justification', 'Ticketing')
-            target        = $activationTarget
-        }
-
-        # 4. Cap the activation window.
-        Set-PimRule -PolicyId $policyId -RuleId 'Expiration_EndUser_Assignment' -Body @{
-            '@odata.type'        = '#microsoft.graph.unifiedRoleManagementPolicyExpirationRule'
-            id                   = 'Expiration_EndUser_Assignment'
-            isExpirationRequired = $true
-            maximumDuration      = $MaxActivationDuration
-            target               = $activationTarget
-        }
-
-        # 5. Bound how long an eligible assignment may live.
-        Set-PimRule -PolicyId $policyId -RuleId 'Expiration_Admin_Eligibility' -Body @{
-            '@odata.type'        = '#microsoft.graph.unifiedRoleManagementPolicyExpirationRule'
-            id                   = 'Expiration_Admin_Eligibility'
-            isExpirationRequired = $true
-            maximumDuration      = $MaxEligibilityDuration
-            target               = $eligibilityTarget
-        }
-
-        Write-Verbose "Applied tier policy to role $templateId (policy $policyId)."
-    }
-}
+.\Set-FMPPimTierPolicy.ps1 -RoleTemplateId $tier0TemplateIds -ApproverGroupId $t0ApproversId `
+    -MaxActivationDuration 'PT4H' -MaxEligibilityDuration 'P90D' -WhatIf
 ```
-
-For a Tier 2 role whose approval has been risk-accepted, set `isApprovalRequired` to `$false` and record the acceptance alongside the role's file in the policy repository ([Chapter 10](10-access-as-code-and-evidence.md)).
 
 ### Step 5 — Convert standing assignments to eligible {#step-5-convert-standing-assignments-to-eligible}
 
@@ -582,7 +416,7 @@ The approval gate controls *use* of privilege; access reviews control *possessio
 | If reviewers don't respond | **Remove access** |
 | Justification | Required for approvals |
 
-Reviewers are never the assignees themselves. Microsoft offers a self-review option, but when it's chosen, role-assignable groups are left out of the review entirely.[^c08-review] Because the program assigns every role to a group, a self-review would review nothing. The monthly Tier 0 cadence follows [Book 02, Chapter 05](../b02-identity/05-delegation-without-ous.md#delegation-principles) ("monthly or on change" for privileged roles); the quarterly cadence is the floor that [Book 02, Chapter 10](../b02-identity/10-migrating-and-governing.md#access-reviews) sets.
+Reviewers are never the assignees themselves. Microsoft offers a self-review option, but when it's chosen, role-assignable groups are left out of the review entirely.[^c08-review] Because the program assigns every role to a group, a self-review would review nothing. The cadences are the same as in [Book 02, Chapter 05](../b02-identity/05-delegation-without-ous.md#delegation-principles) and [Book 02, Chapter 10](../b02-identity/10-migrating-and-governing.md#access-reviews): monthly for Tier 0, quarterly for every other privileged role. They are the program's design choice: AC-6(7) requires the review but leaves its frequency to the organization.[^c08-nist][^c08-fedramp-ac]
 
 ::: {.callout-note}
 ## Groups assigned to roles
@@ -640,8 +474,8 @@ Content-Type: application/json
 `{approvalId}` is the request's approval ID.[^c08-approval] Because the API is beta, the program uses it only in tooling that can tolerate change, and keeps human approval in the admin center as the system of record.
 
 ::: {.callout-important}
-## The legacy PIM API stops on October 28, 2026
-The older `/beta/privilegedAccess` PIM API is deprecated and stops returning data on October 28, 2026.[^c08-apis] Any script, runbook or integration that still calls it, including older ones in the compliance series and vendor connectors, must move to the `roleManagement` APIs used in this chapter before that date.
+## Microsoft retires the legacy PIM API on October 28, 2026
+Microsoft retires the older `/beta/privilegedAccess` PIM API (iteration 2) on October 28, 2026: from that date it returns no data, and calls to it fail.[^c08-apis][^c08-apis-retire] Any script, runbook or integration that still calls it, including older ones in the compliance series and vendor connectors, has to move to the `roleManagement` APIs used in this chapter; after the date, such automation is broken rather than at risk.
 :::
 
 ### The 24-hour window
@@ -712,6 +546,8 @@ Run these after the build, and after any change to role settings, Conditional Ac
 ::: {.callout-important}
 ## How to read this mapping
 FedRAMP Rev. 5 baselines derive from NIST SP 800-53 Revision 5 with FedRAMP-specific additions and parameter values. Every control below is in the NIST SP 800-53B Moderate baseline (release 5.2.0), which FedRAMP Moderate builds on.[^c08-nist-moderate] Before using the table in a system security plan, confirm control selection and parameter values, especially the AU-11 retention period and the AC-6(7) review frequency, against the agency's current authorized FedRAMP baseline. This is a design-intent mapping: it says which build steps bear on which controls. It isn't an implementation statement or an assessment result.
+
+The `AU-` rows are NIST's Audit and Accountability control family.[^c08-nist] They have nothing to do with Microsoft Entra administrative units, which this book also abbreviates AU.
 :::
 
 | Control | Title | How this build bears on it |
@@ -755,7 +591,7 @@ The NIST text behind the AC rows is short: AC-6 requires allowing only the acces
 | Multi-step approval isn't supported[^c08-approval] | A two-level chain can't be expressed in one policy; put the second level in the ITSM before the request |
 | Approving through Graph is beta only; approval of extend and renew isn't supported through Graph[^c08-apis][^c08-approval] | Automate listing and evidence; keep human approval in the admin center |
 | Extend and renew are approved by Global or Privileged Role Administrators, not the role's approvers[^c08-renew] | A second approval path the system security plan must describe |
-| `/beta/privilegedAccess` stops returning data on October 28, 2026[^c08-apis] | Migrate legacy automation now |
+| Microsoft retires `/beta/privilegedAccess` on October 28, 2026; from that date it returns no data[^c08-apis] | Move legacy automation to the `roleManagement` APIs; anything still calling it after the date fails |
 | Activation maximum is 1 to 24 hours[^c08-settings] | Longer work needs repeated activations, each recorded |
 | Assignments can't be shorter than five minutes or removed within five minutes[^c08-assign] | Affects bulk conversion and rollback timing |
 | The last Global Administrator assignment survives expiry and can't be removed[^c08-assign] | Expected behavior, not a failure |
@@ -773,7 +609,8 @@ The NIST text behind the AC rows is short: AC-6 requires allowing only the acces
 :::
 
 [^c08-dod-zt]: Microsoft Learn, "DoD Zero Trust Strategy for the user pillar," section 1.4, "Privileged access management," <https://learn.microsoft.com/security/zero-trust/dod-zero-trust-strategy-user> (accessed Oct 20, 2026).
-[^c08-licensing]: Microsoft Learn, "Microsoft Entra ID Governance licensing fundamentals," section "Privileged Identity Management," <https://learn.microsoft.com/entra/id-governance/licensing-fundamentals> (accessed Oct 20, 2026).
+[^c08-licensing]: Microsoft Learn, "Microsoft Entra ID Governance licensing fundamentals," section "Privileged Identity Management," <https://learn.microsoft.com/entra/id-governance/licensing-fundamentals> (accessed Oct 21, 2026).
+[^c08-licensing-faq]: Microsoft Learn, "Microsoft Entra ID Governance licensing fundamentals," section "Licensing FAQs: What happens to PIM when a license expires?," <https://learn.microsoft.com/entra/id-governance/licensing-fundamentals#licensing-faqs> (accessed Oct 21, 2026).
 [^c08-settings]: Microsoft Learn, "Configure Microsoft Entra role settings in Privileged Identity Management," <https://learn.microsoft.com/entra/id-governance/privileged-identity-management/pim-how-to-change-default-settings> (accessed Oct 20, 2026).
 [^c08-by-task]: Microsoft Learn, "Least privileged roles by task in Microsoft Entra ID," section "Privileged Identity Management least privileged roles," <https://learn.microsoft.com/entra/identity/role-based-access-control/delegate-by-task> (accessed Oct 20, 2026).
 [^c08-alerts]: Microsoft Learn, "Configure security alerts for Microsoft Entra roles in Privileged Identity Management," <https://learn.microsoft.com/entra/id-governance/privileged-identity-management/pim-how-to-configure-security-alerts> (accessed Oct 20, 2026).
@@ -790,11 +627,13 @@ The NIST text behind the AC rows is short: AC-6 requires allowing only the acces
 [^c08-protected-actions-add]: Microsoft Learn, "Add, test, or remove protected actions in Microsoft Entra ID," <https://learn.microsoft.com/entra/identity/role-based-access-control/protected-actions-add> (accessed Oct 20, 2026).
 [^c08-privileged-roles]: Microsoft Learn, "Privileged roles and permissions in Microsoft Entra ID (preview)," <https://learn.microsoft.com/entra/identity/role-based-access-control/privileged-roles-permissions> (accessed Oct 20, 2026).
 [^c08-email]: Microsoft Learn, "Email notifications in PIM," <https://learn.microsoft.com/entra/id-governance/privileged-identity-management/pim-email-notifications> (accessed Oct 20, 2026).
-[^c08-apis]: Microsoft Learn, "Privileged Identity Management APIs," <https://learn.microsoft.com/entra/id-governance/privileged-identity-management/pim-apis> (accessed Oct 20, 2026).
+[^c08-apis]: Microsoft Learn, "Privileged Identity Management APIs," <https://learn.microsoft.com/entra/id-governance/privileged-identity-management/pim-apis> (accessed Oct 21, 2026).
+[^c08-apis-retire]: Microsoft Learn, "Archive for Microsoft Entra releases and announcements," October 2025, "Deprecation - Iteration 2 beta APIs for Microsoft Entra PIM will be retired," <https://learn.microsoft.com/entra/fundamentals/whats-new-archive#october-2025> (accessed Oct 21, 2026).
 [^c08-review]: Microsoft Learn, "Create an access review of Azure resource and Microsoft Entra roles in PIM," <https://learn.microsoft.com/entra/id-governance/privileged-identity-management/pim-create-roles-and-resource-roles-review> (accessed Oct 20, 2026).
 [^c08-audit]: Microsoft Learn, "View audit history for Microsoft Entra roles in Privileged Identity Management," <https://learn.microsoft.com/entra/id-governance/privileged-identity-management/pim-how-to-use-audit-log> (accessed Oct 20, 2026).
 [^c08-retention]: Microsoft Learn, "Microsoft Entra data retention," <https://learn.microsoft.com/entra/identity/monitoring-health/reference-reports-data-retention> (accessed Oct 20, 2026).
 [^c08-activate]: Microsoft Learn, "Activate a Microsoft Entra role in PIM," <https://learn.microsoft.com/entra/id-governance/privileged-identity-management/pim-how-to-activate-role> (accessed Oct 20, 2026).
 [^c08-renew]: Microsoft Learn, "Extend or renew Microsoft Entra role assignments in Privileged Identity Management," <https://learn.microsoft.com/entra/id-governance/privileged-identity-management/pim-how-to-renew-extend> (accessed Oct 20, 2026).
-[^c08-nist]: National Institute of Standards and Technology, SP 800-53 Rev. 5, *Security and Privacy Controls for Information Systems and Organizations*, September 2020 (updated December 10, 2020; current release 5.2.0), <https://csrc.nist.gov/pubs/sp/800/53/r5/upd1/final> (accessed Oct 20, 2026).
+[^c08-nist]: National Institute of Standards and Technology, SP 800-53 Rev. 5, *Security and Privacy Controls for Information Systems and Organizations*, September 2020 (updated December 10, 2020; current release 5.2.0), <https://csrc.nist.gov/pubs/sp/800/53/r5/upd1/final> (accessed Oct 21, 2026).
+[^c08-fedramp-ac]: FedRAMP, "Access Control" (NIST SP 800-53 Rev. 5 controls, catalog release 5.2.0), AC-6(7), <https://fedramp.gov/2026/reference/controls/access-control/> (accessed Oct 21, 2026).
 [^c08-nist-moderate]: National Institute of Standards and Technology, SP 800-53B Moderate baseline, OSCAL profile, release 5.2.0, <https://github.com/usnistgov/oscal-content/blob/main/nist.gov/SP800-53/rev5/json/NIST_SP-800-53_rev5_MODERATE-baseline_profile.json> (accessed Oct 20, 2026).

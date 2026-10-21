@@ -37,6 +37,8 @@ The human capital system of record — Oracle Fusion Cloud HCM for agencies on F
 
 ## System of record versus identity provider
 
+This book uses *source of authority* for the system that owns a person's facts: HR owns the personnel facts of employment, position, organization and dates. Microsoft uses *Source of Authority (SOA)* in a narrower, object-level sense: which directory, Active Directory or Entra ID, masters a user or group object and its attributes.[^c04-soa] Where that sense is meant, this book says **object SOA**. The two don't compete: HR can be the source of authority for a person while the person's account has its object SOA in Active Directory or in Entra ID.
+
 Naming the HCM as the source of authority for identity invites a predictable misreading — that it competes with the identity platform. It does not, and the boundary between them is worth stating precisely, because each is authoritative for a different category of fact:
 
 | Function | System of Record (HCM) | Identity Platform (Entra ID) |
@@ -133,5 +135,6 @@ The HR system is a Privacy Act system of records, and moving its data into a dir
 [^c04-graph-user]: Microsoft Learn, "user resource type" (Microsoft Graph v1.0; `employeeId` maximum length 16 characters), <https://learn.microsoft.com/en-us/graph/api/resources/user> (accessed Oct 20, 2026).
 [^c04-oracle-cwt]: Oracle, *Oracle Fusion Cloud Human Resources 26B What's New*, "New Redwood Process to Change Worker Type," <https://docs.oracle.com/en/cloud/saas/readiness/hcm/26b/hure-26b/26B-hr-wn-f43513.htm> (accessed Oct 20, 2026).
 [^c04-privacy-act]: Privacy Act of 1974, 5 U.S.C. § 552a(b)(1) (disclosure to officers and employees of the maintaining agency who need the record in the performance of their duties) and § 552a(b)(3) (routine use), <https://www.law.cornell.edu/uscode/text/5/552a> (accessed Oct 20, 2026).
-[^c04-a108]: Office of Management and Budget, Circular A-108, *Federal Agency Responsibilities for Review, Reporting, and Publication under the Privacy Act*, December 2016, "Routine Uses," <https://www.whitehouse.gov/wp-content/uploads/legacy_drupal_files/omb/circulars/A108/omb_circular_a_108_12_12_16.pdf> (accessed Oct 20, 2026).
+[^c04-a108]: Office of Management and Budget, Circular A-108, *Federal Agency Responsibilities for Review, Reporting, and Publication under the Privacy Act*, December 2016, "Routine Uses," <https://www.whitehouse.gov/wp-content/uploads/legacy_drupal_files/omb/circulars/A108/omb_circular_a-108.pdf> (accessed Oct 21, 2026).
 [^c04-sorn]: Office of Personnel Management, "Privacy Act of 1974; System of Records" (notice of a modified system of records, OPM/GOVT-1 General Personnel Records), *Federal Register* 88, no. 158, August 17, 2023, <https://www.govinfo.gov/content/pkg/FR-2023-08-17/html/2023-17651.htm> (accessed Oct 20, 2026).
+[^c04-soa]: Microsoft Learn, "Transfer user Source of Authority (SOA) to Microsoft Entra ID," <https://learn.microsoft.com/en-us/entra/identity/hybrid/user-source-of-authority-overview> (accessed Oct 21, 2026).

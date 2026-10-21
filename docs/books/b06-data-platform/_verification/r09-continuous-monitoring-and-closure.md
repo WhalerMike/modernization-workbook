@@ -49,3 +49,21 @@ Microsoft claims were checked on Microsoft Learn on 2026-10-20. Script and funct
 | Safety | edited | book references → runbooks |
 | Closing italic footer | removed | duplicated the body; paths and canon residue |
 | — | added | "Continue the book" callout (R08 ← → R10); footnotes `[^r09-*]` (13) |
+
+## Review fixes, 2026-10-21
+
+Applied from the verified review findings (critique claims re-checked against primary sources on 2026-10-21). Every factual change was re-researched and carries its own footnote; wording-only changes are marked as such.
+
+| # | Change | Where | Verdict | Source |
+|---|---|---|---|---|
+| RF-1 | Security log lands in `Event` via a DCR, or in `SecurityEvent` via the Sentinel *Windows Security Events via AMA* connector; XPath form `LogName!XPathQuery` | Step 4, "Illustrative workspace queries" (from line 107) | verified | <https://learn.microsoft.com/azure/azure-monitor/vm/data-collection-windows-events> |
+| RF-2 | NTLM Operational channel name `Microsoft-Windows-NTLM/Operational` | same | verified | <https://support.microsoft.com/en-us/servicing/os/windows/2025/07/overview-of-ntlm-auditing-enhancements-in-windows-11-version-24h2-and-windows-server-2025> |
+| RF-3 | Event 8004 collected on domain controllers, carries the server accessed | same | verified | <https://learn.microsoft.com/defender-for-identity/deploy/configure-windows-event-collection> |
+| RF-4 | `SecurityEvent` columns `EventID`, `LogonType`, `AuthenticationPackageName`, `Account`, `IpAddress`, `WorkstationName`, `Computer` | KQL query 1 | verified | <https://learn.microsoft.com/azure/azure-monitor/reference/tables/securityevent> |
+| RF-5 | 4624 logon type 3 = Network; authentication package `NTLM` for NTLM-family authentication | KQL query 1 | verified | <https://learn.microsoft.com/previous-versions/windows/it-pro/windows-10/security/threat-protection/auditing/event-4624> |
+| RF-6 | `Event` columns `EventLog`, `EventID`, `Computer`, `EventData`, `RenderedDescription` | KQL query 2 | verified | <https://learn.microsoft.com/azure/azure-monitor/reference/tables/event> |
+| RF-7 | Four sign-in log types export to `SigninLogs`, `AADNonInteractiveUserSignInLogs`, `AADServicePrincipalSignInLogs`, `AADManagedIdentitySignInLogs`; all carry `ResourceDisplayName`, `ResultType` (string), `ConditionalAccessStatus`; `ResultType` 0 = success | KQL query 3 | verified (column names and types checked on each table page) | <https://learn.microsoft.com/entra/identity/monitoring-health/concept-diagnostic-settings-logs-options>; <https://learn.microsoft.com/azure/azure-monitor/reference/tables/signinlogs>; the three AAD* table pages |
+| RF-8 | Conditional Access for Azure SQL targets the *Azure SQL Database* first-party application | KQL query 3 | verified; the resource name an Arc-enabled SQL Server sign-in records wasn't found documented, so the text tells the reader to confirm `ResourceDisplayName` and `ResourceIdentity` on the pilot | <https://learn.microsoft.com/azure/azure-sql/database/conditional-access-configure> |
+| RF-9 | The three KQL blocks carry their own callout-warning (illustrative); none was run against a workspace | same | restated-as-design (illustrative) | — |
+
+Not used: the `LmPackageName` and `PackageName` columns of `SecurityEvent` (the table reference doesn't say which one carries the NTLM version), so the queries don't filter on NTLM version.

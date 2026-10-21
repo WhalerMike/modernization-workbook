@@ -46,3 +46,12 @@ The chapter had no footnotes before this pass. Twelve were added.
 | Continue the series | kept as "Continue the book" | edited to Book 02 callout style; full Chapter 03 title; "Book index" |
 
 Diagram source note: the comment headers in `ch04-*.flow.yaml` still say "Chapter 03" (pre-renumbering); comments aren't rendered, so left alone.
+
+## Revision 2026-10-21 — review fixes
+
+Applied from the verified review of Books 02–05. Sources were opened again on Oct 21, 2026.
+
+| # | Change | Where | Verdict | Source |
+|---|---|---|---|---|
+| R1 | Defines *source of authority* once: HR owns personnel facts; Microsoft's object-level Source of Authority (SOA) is called *object SOA* in this book | System of record versus identity provider | verified | c04-soa <https://learn.microsoft.com/en-us/entra/identity/hybrid/user-source-of-authority-overview> |
+| R2 | OMB Circular A-108 cited with the same whitehouse.gov URL used in Ch07 and Appendix B | c04-a108 footnote | verified (URL unified) | <https://www.whitehouse.gov/wp-content/uploads/legacy_drupal_files/omb/circulars/A108/omb_circular_a-108.pdf> |

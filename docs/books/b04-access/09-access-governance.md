@@ -207,12 +207,14 @@ A multi-stage review runs two or three sets of reviewers in sequence, each in it
 
 A review's recurrence sets how often it runs, and its duration sets how long reviewers have; the recurrence must be at least as long as the duration.[^c09-create-review] Recurrences run from weekly (where the duration can be at most seven days) to monthly, quarterly, semiannual, and annual, and Microsoft recommends quarterly or more frequent reviews of packages that grant external access.[^c09-create-review][^c09-ext-arch]
 
-The program's schedule, by target. It refines the review schedule in [Book 02, Chapter 10](../b02-identity/10-migrating-and-governing.md#access-reviews) by application tier; the cadences, reviewers, and no-response defaults are design positions.
+The program's schedule, by target. It refines the review schedule in [Book 02, Chapter 10](../b02-identity/10-migrating-and-governing.md#access-reviews) by application tier; the cadences, reviewers, and no-response defaults are design positions. SP 800-53 leaves the frequency to the organization (AC-2(j) and AC-6(7) each take an organization-defined frequency).[^c09-fedramp-ac] Reviewers of privileged roles are never the assignees alone: with Microsoft's **Members (self)** reviewer option, role-assignable groups aren't part of a review of Microsoft Entra roles.[^c09-pim-review]
 
 | Review target | Cadence | Duration | Reviewers | Fallback | If reviewers don't respond | Auto-apply |
 |---|---|---|---|---|---|---|
-| PIM-eligible Entra and Azure roles | Quarterly | 14 days | Security team, plus self-attestation | Governance office | Remove access | Yes |
-| PIM-governed privileged access groups | Quarterly | 14 days | Governance office | Privileged Role Administrator | Remove access | Yes |
+| PIM-eligible Tier 0 roles | Monthly | 14 days | `PIM-Approvers-T0` | Governance office | Remove access | Yes |
+| PIM-eligible Tier 1, Tier 2 and read-only roles, and Azure roles | Quarterly | 14 days | Role owner and the tier's approver group, or the security office ([Appendix B](appendix-b-pim-role-settings.md#review-cadence-by-tier)) | Governance office | Remove access | Yes |
+| `PRV-T0-*` privileged access groups | Monthly | 14 days | Governance office | Privileged Role Administrator | Remove access | Yes |
+| Other PIM-governed privileged access groups | Quarterly | 14 days | Governance office | Privileged Role Administrator | Remove access | Yes |
 | Tier 1 application access groups | Quarterly | 14 days (two stages of 7) | Manager, then application owner | Backup application owner | No change; escalate to the governance office | Yes |
 | Tier 2 application access groups | Semiannual (January and July) | 14 days | Application owner | Backup application owner | No change; escalate | Yes |
 | Tier 3 application access groups | Annual (January) | 21 days | Application or department owner | Department owner | No change | Yes |
@@ -296,7 +298,7 @@ An assessor reads governance as records, not as settings. For each mechanism, th
 
 ### Retention: the logs don't keep themselves
 
-The program's older guidance put native Entra retention at 30 days for Free and 90 days for P1 and P2. That was wrong. As of October 2026, Entra ID keeps audit and sign-in logs for 7 days on Free and 30 days on P1 and P2, and upgrading doesn't recover older data.[^c09-retention] Evidence that has to outlast a 30-day window has to leave the service first: Book 02's monitoring design streams every log category to a Log Analytics workspace with 365-day retention ([Book 02, Chapter 10](../b02-identity/10-migrating-and-governing.md#monitoring-audit-and-compliance)).
+Native retention is shorter than is often assumed: as of October 2026, Entra ID keeps audit and sign-in logs for 7 days on Free and 30 days on P1 and P2, and upgrading doesn't recover older data.[^c09-retention] Evidence that has to outlast a 30-day window has to leave the service first: Book 02's monitoring design streams every log category to a Log Analytics workspace with 365-day retention ([Book 02, Chapter 10](../b02-identity/10-migrating-and-governing.md#monitoring-audit-and-compliance)).
 
 The program's retention requirements, as design positions:
 
@@ -329,7 +331,8 @@ Every deviation (a combined package that overrides separation of duties, a revie
 [← Previous: Chapter 08 — PIM Self-Request with Approval](08-pim-self-request-with-approval.md) · [Book index](index.md) · [Next: Chapter 10 — Access as Code, and the Evidence It Produces →](10-access-as-code-and-evidence.md)
 :::
 
-[^c09-fedramp-ac]: FedRAMP, "Access Control" (NIST SP 800-53 Rev. 5 controls, catalog release 5.2.0), <https://fedramp.gov/2026/reference/controls/access-control/> (accessed Oct 20, 2026).
+[^c09-fedramp-ac]: FedRAMP, "Access Control" (NIST SP 800-53 Rev. 5 controls, catalog release 5.2.0), <https://fedramp.gov/2026/reference/controls/access-control/> (accessed Oct 21, 2026).
+[^c09-pim-review]: Microsoft Learn, "Create an access review of Azure resource and Microsoft Entra roles in PIM," section "Create access reviews," <https://learn.microsoft.com/entra/id-governance/privileged-identity-management/pim-create-roles-and-resource-roles-review#create-access-reviews> (accessed Oct 21, 2026).
 [^c09-licensing]: Microsoft Learn, "Microsoft Entra ID Governance licensing fundamentals," <https://learn.microsoft.com/entra/id-governance/licensing-fundamentals> (accessed Oct 20, 2026).
 [^c09-group-assign]: Microsoft Learn, "Manage users and groups assignment to an application," <https://learn.microsoft.com/entra/identity/enterprise-apps/assign-user-or-group-access-portal> (accessed Oct 20, 2026).
 [^c09-create-review]: Microsoft Learn, "Create an access review of groups and applications in Microsoft Entra ID," <https://learn.microsoft.com/entra/id-governance/create-access-review> (accessed Oct 20, 2026).

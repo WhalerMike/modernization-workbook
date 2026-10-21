@@ -29,6 +29,7 @@ Editor: W5. Sources: the series chapter in place (old Chapter 02, "Analyzing the
 | 21 | Each synchronous call pays propagation delay; separation multiplies it; techniques list (BFF/aggregation, async, caching, batching, pooling, stateless conversion) | Profiling | restated-as-design; physics owned by Ch 07 and Book 09 (linked, not re-footnoted) | Whitepaper Principle 5; Ch 07; Book 09 Ch 01 |
 | 22 | "Mirroring the eleven types from Chapter 00" | Streams intro | corrected: renumbered to Chapter 02 | — |
 | 23 | Microsoft Learn "Authoritative references" list | End | removed as a list; both sources now footnoted inline | — |
+| 24 | Review fix 3, Oct 21, 2026 (revision-history trim): "The source of this chapter assumed that a basic read-only account sees little Group Policy, certificate-template or DNS data. That understates the default." | Read tiers | wording-only | Now "A basic read-only account sees more ... than is often assumed"; the list of default-readable data is unchanged under [^c10-writeback]. |
 
 ## Carry-forward ledger
 

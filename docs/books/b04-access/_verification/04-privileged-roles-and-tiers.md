@@ -78,3 +78,12 @@ Chapter 04 draws on the two Federal Compliance books (which stay in place and ar
 - **Tier vocabulary.** Book 02 Ch05 (delegation Tier 1–3) and Book 04 Ch06 (app risk Tier 1–3) use "tier" differently; this chapter adds a crosswalk table and writes privilege tiers as T0/T1/T2.
 - **Book 02 Ch09 emergency-access text** says mandatory MFA "applies to them too" without the public-cloud-only caveat; consider adding it there.
 - **Diagram sources:** `docs/images/diagrams/b04-access/src/ch04-tier-model.flow.yaml`, `ch04-role-group-pim.flow.yaml` (not rendered; YAML parses).
+
+## Revision 2026-10-21 — review fixes
+
+Applied from the verified review of Books 02–05. Sources were opened again on Oct 21, 2026.
+
+| # | Change | Where | Verdict | Source |
+|---|---|---|---|---|
+| R1 | "Administrative unit (AU)" expanded at first use in prose and in the figure's alt text, with Microsoft's definition | Least-privileged choices; tiers figure alt | verified | c04-au <https://learn.microsoft.com/entra/identity/role-based-access-control/administrative-units> |
+| R2 | Tier 1 example list adds Authentication Policy and Compliance Administrator, matching Appendix B | Program's privilege tiers table | restated-as-design | Appendix B (internal) |

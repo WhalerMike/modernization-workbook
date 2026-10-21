@@ -138,7 +138,7 @@ An IP location, marked trusted. CIDR masks must be longer than /8, with up to 2,
 }
 ```
 
-A country location. The source library listed six countries; the program's standard is the United States only, with travel handled by an exclusion group ([Chapter 07](07-the-conditional-access-policy-library.md)).
+A country location. The program's standard is the United States only, with travel handled by an exclusion group ([Chapter 07](07-the-conditional-access-policy-library.md)).
 
 ```json
 {
@@ -171,7 +171,7 @@ Both are created with `New-MgIdentityConditionalAccessNamedLocation -BodyParamet
 }
 ```
 
-It is created with `New-MgPolicyAuthenticationStrengthPolicy -BodyParameter`, which accepts this shape including the FIDO2 combination configuration.[^aA-strength-cmdlet] The policies reference it as `{strength:FMP-Privileged-SeparateDevice}`. The source library's custom strength allowed FIDO2 only, which would have locked PIV holders out of privileged roles.
+It is created with `New-MgPolicyAuthenticationStrengthPolicy -BodyParameter`, which accepts this shape including the FIDO2 combination configuration.[^aA-strength-cmdlet] The policies reference it as `{strength:FMP-Privileged-SeparateDevice}`. Don't make the custom strength FIDO2 only: that locks PIV holders out of privileged roles.
 
 ## Policy templates
 

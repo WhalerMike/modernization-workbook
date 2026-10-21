@@ -128,3 +128,23 @@ Checked October 20, 2026. Source: `docs/operational-guides/target-surface/intune
 | Date | Change |
 |---|---|
 | 2026-10-21 | Extension attribute reconciliation: device schema table is the device half of the program attribute map (Book 03 Ch 06); added `PAW` to device role (`extensionAttribute12`) values for Book 04's CA025; user-attribute link now the program map. Diagram source `ch08-targeting-layers.flow.yaml` checked, already consistent, no change. |
+
+## Revision 2026-10-21 — review fixes
+
+Applied from the verified review of Books 02–05. Sources were opened again on Oct 21, 2026.
+
+| # | Change | Where | Verdict | Source |
+|---|---|---|---|---|
+| R1 | Source-correction narration trimmed throughout; "last write wins" and "endpoint security wins" kept as common beliefs | Scope; sequencing; conflicts; attributes; filters; compliance; profiles; KFM; update ring; ES policies; ASR; LAPS; app protection; Graph payloads | restated | unchanged footnotes |
+
+### Revision history moved out of the chapter body
+
+The body now states the guidance directly. These were the earlier positions it used to narrate:
+
+- Minimum OS: the source set Windows 10 22H2 and Windows 11 23H2, allowed 21H2 for older hardware, and used `10.0.19045` in the payload.
+- The source plan moved device configuration before Endpoint Protection and blocked inheritance on migrated OUs.
+- The source used two attribute numberings, filters on extensionAttribute11/13, hour-based noncompliance schedules and a region rule matching `EASTUS` against `East`.
+- The source listed Credential Guard, network inspection and cloud-delivered protection as compliance settings; made BitLocker optional for personal devices; defined CP-004 for Windows Server through Arc; used a "shared device mode" compliance setting and a "block access" action.
+- The source defined SC-002, SC-006, SC-007 and SC-008 duplicating Endpoint security policies, with conflicting public-profile outbound defaults.
+- The source mapped lockout to `MaxDevicePasswordFailedAttempts`; said Known Folder Move carries redirected folders; used a 30-day deferral and a 48-hour auto-restart setting; sent all samples in its table but safe samples in its JSON; combined silent BitLocker with TPM+PIN; listed four non-EDR settings in the EDR policy; had twelve ASR GUIDs; used a 24-hour LAPS delay and targeted Windows Server 2025; wrote AP-001 for enrolled Windows.
+- The source labelled the Tier 1 group "Azure Arc–enrolled servers"; posted beta-only compliance settings to v1.0; used `deviceManagement/intents`; its script omitted the scheduled action and created SC-001 as `windows10GeneralConfiguration`.

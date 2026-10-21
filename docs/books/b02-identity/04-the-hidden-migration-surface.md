@@ -242,7 +242,7 @@ The sync engine is both the bridge between AD and Entra ID and the tether that k
 
 Retirement criteria (all must be true):
 
-- Every user is provisioned from the authoritative HR source, not from AD sync.
+- Every user is provisioned from the authoritative source for its population, not from AD sync: employees from HR, contractors and vendors from the source the agency designates for them ([Book 03, Chapter 06](../b03-hr-identity/06-canonical-attribute-schema.md#contractors-and-vendors-the-population-hrit-doesnt-cover)), and guests through invitation and entitlement management ([Chapter 10](10-migrating-and-governing.md)).
 - Every group is dynamic or managed in Entra ID.
 - No application uses on-premises AD authentication.
 - Every device is managed by Intune with no AD dependency.

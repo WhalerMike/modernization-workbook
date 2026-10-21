@@ -49,6 +49,7 @@ Microsoft sources opened through the Microsoft Learn MCP tools on October 21, 20
 | 40 | Exceptions via fine-grained password policies (not GPOs) | §Retiring | verified (added) | Learn, "Configure fine grained password policies" |
 | 41 | Default Domain Controllers Policy retires with the last DC | §Retiring | restated-as-design | Program sequencing |
 | 42 | Entra ID Protection risk detections; block legacy auth page (source footnotes `cs05-idp`, `cs05-legacy`) | §Prefer require | removed (source) | Not reopened; claims now carried by the SCuBA baseline (row 25) and Book 04 |
+| 43 | Review fix 3, Oct 21, 2026 (final sweep): "Earlier drafts of this chapter used scope bands (CA-000 to CA-999 ...); those bands are retired" | Policy numbering | wording-only | Now "The workbook uses this one numbering scheme, not scope bands by enterprise, division, department or role." Old band scheme recorded here. No claim changed. |
 
 ## 2. Carry-forward ledger
 

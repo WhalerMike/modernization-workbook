@@ -47,3 +47,17 @@ Source: `docs/architecture/where-data-lives-devices-azure.md` (all sections). Th
 | (new) Authority map figure | `ch03-authority-map` | |
 | (new) Correlation keys figure and table | `ch03-correlation-keys` | |
 | (new) Read-only correlation script | Ch03 "A read-only correlation pass" | |
+
+## Revision 2026-10-21 — review fixes
+
+Applied from the verified review of Books 02–05. Sources were opened again on Oct 21, 2026.
+
+| # | Change | Where | Verdict | Source |
+|---|---|---|---|---|
+| R1 | Source-correction narration trimmed | Arc as management authority | restated | unchanged footnotes |
+
+### Revision history moved out of the chapter body
+
+The body now states the guidance directly. These were the earlier positions it used to narrate:
+
+- The source page listed Azure Arc as a derived pointer of Intune enrollment.
