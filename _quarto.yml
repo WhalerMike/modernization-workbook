@@ -59,8 +59,10 @@ website:
             text: "Book 09 — Network & Transport"
       - href: docs/presentations/index.md
         text: "Presentations"
-      - href: docs/inspiration/index.md
-        text: "Inspiration"
+      - text: "About"
+        menu:
+          - href: docs/inspiration/index.md
+            text: "Inspiration"
       - href: sitemap.qmd
         text: "Site Map"
     right:
