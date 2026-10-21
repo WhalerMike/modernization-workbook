@@ -1,0 +1,88 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:00.663
+How.
+
+2
+00:00:00.663 --> 00:00:03.899
+NTLM is eliminated in three phases.
+
+3
+00:00:03.899 --> 00:00:07.165
+Phase A discovers: the
+authentication audit,
+
+4
+00:00:07.165 --> 00:00:11.312
+together with Windows NTLM
+logging and auditing events.
+
+5
+00:00:11.312 --> 00:00:16.349
+Phase B restricts: fix SPNs, convert
+connections to Kerberos or Entra,
+
+6
+00:00:16.349 --> 00:00:19.000
+and migrate the remaining patterns.
+
+7
+00:00:19.000 --> 00:00:24.001
+Phase C eliminates: the
+domain-wide Restrict NTLM block,
+
+8
+00:00:24.001 --> 00:00:27.262
+on the program's April 2027 backstop.
+
+9
+00:00:27.262 --> 00:00:28.637
+The details matter.
+
+10
+00:00:28.637 --> 00:00:35.054
+LAN Manager authentication level five
+refuses LM and NTLM version one but still
+
+11
+00:00:35.054 --> 00:00:38.502
+accepts version two, so
+it isn't an NTLM block;
+
+12
+00:00:38.502 --> 00:00:41.662
+the block is the Restrict NTLM policies.
+
+13
+00:00:41.662 --> 00:00:46.132
+Their exceptions are lists of server
+names on clients and domain controllers,
+
+14
+00:00:46.132 --> 00:00:48.263
+not the program's exception registry.
+
+15
+00:00:48.263 --> 00:00:54.066
+And Microsoft's October 2026 change
+blocks NTLM-version-one-derived single
+
+16
+00:00:54.066 --> 00:00:59.501
+sign-on credentials for Wi-Fi and VPN;
+it doesn't touch SQL Server traffic.
+
+17
+00:00:59.501 --> 00:01:02.237
+The fastest exit is migration itself.
+
+18
+00:01:02.237 --> 00:01:07.372
+An instance whose logins have moved to
+Entra ID isn't affected by the block,
+
+19
+00:01:07.372 --> 00:01:11.470
+so login migration and NTLM
+elimination are the same work.

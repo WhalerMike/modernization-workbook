@@ -1,0 +1,96 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:00.663
+How.
+
+2
+00:00:00.663 --> 00:00:02.137
+Start with devices.
+
+3
+00:00:02.137 --> 00:00:05.019
+Intune delivers certificates
+by three paths,
+
+4
+00:00:05.019 --> 00:00:09.038
+and each needs the trusted
+certificate profile deployed first.
+
+5
+00:00:09.038 --> 00:00:14.040
+SCEP from Cloud PKI is the cleanest:
+the device makes its own key pair,
+
+6
+00:00:14.040 --> 00:00:17.524
+with no NDES server,
+connector or on-premises CA.
+
+7
+00:00:17.524 --> 00:00:22.259
+SCEP from AD CS runs through NDES
+and the Certificate Connector;
+
+8
+00:00:22.259 --> 00:00:25.922
+its template lets the
+request supply the subject,
+
+9
+00:00:25.922 --> 00:00:30.299
+so its Enroll permission stays
+limited to the NDES account.
+
+10
+00:00:30.299 --> 00:00:34.262
+PKCS makes the key on the
+connector server and exports it,
+
+11
+00:00:34.262 --> 00:00:36.875
+which is why the program prefers SCEP.
+
+12
+00:00:36.875 --> 00:00:39.462
+Strong mapping is no longer optional.
+
+13
+00:00:39.462 --> 00:00:46.050
+KB5014754 began in
+compatibility mode in May 2022.
+
+14
+00:00:46.050 --> 00:00:51.881
+Domain controllers moved to Full
+Enforcement on February 11, 2025, and since
+
+15
+00:00:51.881 --> 00:00:57.712
+the September 9, 2025 update the registry
+key is ignored, so there's no way back.
+
+16
+00:00:57.712 --> 00:01:00.516
+A certificate used against
+a domain controller
+
+17
+00:01:00.516 --> 00:01:02.900
+without a strong mapping is rejected now.
+
+18
+00:01:02.900 --> 00:01:08.211
+So SCEP profiles add the on-premises
+security identifier as a SAN URI, for user
+
+19
+00:01:08.211 --> 00:01:13.937
+certificates on every platform and device
+certificates on hybrid-joined Windows.
+
+20
+00:01:13.937 --> 00:01:18.530
+Pilot it in a new profile, because
+editing one revokes what it issued.

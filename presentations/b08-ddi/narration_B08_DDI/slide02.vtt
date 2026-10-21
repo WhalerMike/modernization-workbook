@@ -1,0 +1,87 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.575
+Why is DNS now the control plane?
+
+2
+00:00:02.575 --> 00:00:09.413
+OMB said it back in 2008: almost every
+network connection begins with a DNS query.
+
+3
+00:00:09.413 --> 00:00:12.012
+What has changed is how
+much the answer decides.
+
+4
+00:00:12.012 --> 00:00:18.424
+In a hybrid multi-cloud agency, DNS does
+six jobs its designers never anticipated.
+
+5
+00:00:18.424 --> 00:00:22.055
+It publishes private endpoints:
+one storage name answers
+
+6
+00:00:22.055 --> 00:00:25.837
+privately inside its network
+and publicly everywhere else.
+
+7
+00:00:25.837 --> 00:00:28.875
+It selects which SaaS
+front door a user reaches.
+
+8
+00:00:28.875 --> 00:00:30.671
+It enforces security policy,
+
+9
+00:00:30.671 --> 00:00:34.263
+blocking a known-bad domain
+before the connection is made.
+
+10
+00:00:34.263 --> 00:00:36.966
+It carries certificate validation,
+
+11
+00:00:36.966 --> 00:00:42.013
+because OCSP responders and CRL
+distribution points are DNS names.
+
+12
+00:00:42.013 --> 00:00:46.913
+It's the stable service identity that
+Zero Trust policy is written against.
+
+13
+00:00:46.913 --> 00:00:50.863
+And a wildcard declares a whole
+namespace of applications.
+
+14
+00:00:50.863 --> 00:00:54.555
+NIST's 2026 deployment
+guide says DNS has become
+
+15
+00:00:54.555 --> 00:00:57.787
+more than a service;
+it's a security control.
+
+16
+00:00:57.787 --> 00:01:02.588
+Yet most agencies run it on as many as
+five platforms that share no state.
+
+17
+00:01:02.588 --> 00:01:05.806
+The answer is one
+authoritative DDI policy plane,
+
+18
+00:01:05.806 --> 00:01:08.230
+a requirement rather than a product.

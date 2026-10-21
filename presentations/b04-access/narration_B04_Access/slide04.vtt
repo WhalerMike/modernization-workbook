@@ -1,0 +1,86 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.738
+What does the policy
+engine actually evaluate?
+
+2
+00:00:02.738 --> 00:00:07.367
+Signals first: the user, their
+groups and roles; the device;
+
+3
+00:00:07.367 --> 00:00:11.799
+the application; the location;
+and sign-in and user risk.
+
+4
+00:00:11.799 --> 00:00:15.825
+Conditions decide which policies
+apply to this particular request.
+
+5
+00:00:15.825 --> 00:00:21.476
+Then controls: block, or grant with requirements
+such as multifactor authentication,
+
+6
+00:00:21.476 --> 00:00:25.216
+a specific authentication
+strength, a compliant device,
+
+7
+00:00:25.216 --> 00:00:28.400
+an app protection policy,
+or acceptance of terms.
+
+8
+00:00:28.400 --> 00:00:32.000
+And session controls, like
+how often to re-authenticate.
+
+9
+00:00:32.000 --> 00:00:34.700
+Three operating rules
+run through the library.
+
+10
+00:00:34.700 --> 00:00:37.863
+Every policy runs in
+report-only mode first,
+
+11
+00:00:37.863 --> 00:00:41.025
+so its impact is visible
+before it enforces.
+
+12
+00:00:41.025 --> 00:00:44.587
+Policies target personas,
+admins, internal staff,
+
+13
+00:00:44.587 --> 00:00:48.150
+guests and workload
+identities, not individuals.
+
+14
+00:00:48.150 --> 00:00:52.914
+And deletion isn't final: deleted
+policies are recoverable for thirty days,
+
+15
+00:00:52.914 --> 00:00:56.525
+and a tenant can hold up to
+two hundred and forty policies.
+
+16
+00:00:56.525 --> 00:01:02.025
+One recent platform change matters:
+the approved client app grant became
+
+17
+00:01:02.025 --> 00:01:08.040
+read-only on June 30, 2026, so mobile access
+now relies on app protection policies.

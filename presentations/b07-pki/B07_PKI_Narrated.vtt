@@ -1,0 +1,1118 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.911
+This briefing comes from Book 07 of
+the Federal Modernization Workbook,
+
+2
+00:00:04.911 --> 00:00:10.178
+PKI and Certificates: the move from
+Active Directory Certificate Services to
+
+3
+00:00:10.178 --> 00:00:15.687
+Microsoft Cloud PKI, Entra certificate-based
+authentication and the Federal PKI.
+
+4
+00:00:15.687 --> 00:00:19.953
+Every other migration changes
+which system answers the question
+
+5
+00:00:19.953 --> 00:00:23.163
+"who is this?" Certificates are
+how that answer gets proved.
+
+6
+00:00:23.163 --> 00:00:28.091
+I'll cover why certificates outlive every
+migration, what the target PKI is, who
+
+7
+00:00:28.091 --> 00:00:29.911
+owns the certificate estate,
+
+8
+00:00:29.911 --> 00:00:33.900
+and how to move it without
+stranding a single certificate.
+
+9
+00:00:34.650 --> 00:00:37.450
+Why do certificates
+outlive every migration?
+
+10
+00:00:37.450 --> 00:00:40.613
+Because a certificate isn't
+a record in a directory.
+
+11
+00:00:40.613 --> 00:00:43.833
+It's a signed statement that's
+already been handed out:
+
+12
+00:00:43.833 --> 00:00:47.126
+the holder of this private
+key is entitled to this name.
+
+13
+00:00:47.126 --> 00:00:50.237
+When the directory moves,
+the certificate doesn't.
+
+14
+00:00:50.237 --> 00:00:54.612
+It keeps working until it expires,
+and then whatever relied on it stops.
+
+15
+00:00:54.612 --> 00:00:56.350
+A great deal relies on it.
+
+16
+00:00:56.350 --> 00:01:00.325
+Domain controllers need
+KDC certificates and LDAPS.
+
+17
+00:01:00.325 --> 00:01:04.432
+Smart card and PIV logon need
+the issuing CA in the forest's
+
+18
+00:01:04.432 --> 00:01:08.625
+NTAuth store and a certificate
+on every domain controller.
+
+19
+00:01:08.625 --> 00:01:13.800
+802.1X and VPN need NPS
+and device certificates.
+
+20
+00:01:13.800 --> 00:01:17.340
+TLS listeners, including
+SQL Server, need them,
+
+21
+00:01:17.340 --> 00:01:20.600
+and so do code signing
+and encryption keys.
+
+22
+00:01:20.600 --> 00:01:22.650
+That gives the program two clocks.
+
+23
+00:01:22.650 --> 00:01:26.870
+On the directory's clock, cutover
+is declared complete and the
+
+24
+00:01:26.870 --> 00:01:31.338
+first expiry wave finds no issuer,
+months later, far from its cause.
+
+25
+00:01:31.338 --> 00:01:35.129
+On the certificate's clock,
+the replacement issuer is
+
+26
+00:01:35.129 --> 00:01:38.749
+live before the first expiry,
+and AD CS retires last.
+
+27
+00:01:38.749 --> 00:01:44.090
+So the estate outlives the directory twice
+over: issued certificates run until they
+
+28
+00:01:44.090 --> 00:01:49.490
+expire, and the forest needs an issuer
+until its last domain controller retires.
+
+29
+00:01:50.240 --> 00:01:54.602
+A certificate estate used to be something
+you could leave alone between renewals.
+
+30
+00:01:54.602 --> 00:01:56.290
+Three changes have ended that.
+
+31
+00:01:56.290 --> 00:02:00.565
+First, public TLS lifetimes are
+shrinking on a fixed schedule.
+
+32
+00:02:00.565 --> 00:02:07.903
+Under the CA/Browser Forum's ballot
+SC-081v3, adopted in April 2025,
+
+33
+00:02:07.903 --> 00:02:15.377
+the maximum validity fell from 398
+days to 200 days on March 15, 2026.
+
+34
+00:02:15.377 --> 00:02:23.566
+It drops to 100 days on March 15,
+2027, and to 47 days on March 15, 2029.
+
+35
+00:02:23.566 --> 00:02:28.066
+On the book's arithmetic, a thousand
+certificates means about seven
+
+36
+00:02:28.066 --> 00:02:32.165
+renewals every working day now,
+and about thirty-one at 47 days.
+
+37
+00:02:32.165 --> 00:02:36.315
+Second, mapping rules changed
+under certificates already in use.
+
+38
+00:02:36.315 --> 00:02:43.731
+Under KB5014754, domain controllers
+moved to Full Enforcement on February 11,
+
+39
+00:02:43.731 --> 00:02:48.865
+2025, with no way back after
+the September 9, 2025 update.
+
+40
+00:02:48.865 --> 00:02:51.477
+Third, the algorithms have a horizon.
+
+41
+00:02:51.477 --> 00:02:56.523
+NIST's draft transition plan
+would deprecate RSA-2048
+
+42
+00:02:56.523 --> 00:03:02.128
+after 2030 and disallow RSA and
+ECDSA signatures after 2035.
+
+43
+00:03:02.128 --> 00:03:05.416
+So manual lifecycle
+management can't keep up,
+
+44
+00:03:05.416 --> 00:03:08.970
+and the move off AD CS
+runs as its own program.
+
+45
+00:03:09.720 --> 00:03:11.770
+What does AD CS hold up today?
+
+46
+00:03:11.770 --> 00:03:13.133
+It isn't one server.
+
+47
+00:03:13.133 --> 00:03:17.495
+It's a hierarchy, usually an offline
+root and enterprise issuing CAs;
+
+48
+00:03:17.495 --> 00:03:21.702
+a set of forest-wide objects in
+the Public Key Services container,
+
+49
+00:03:21.702 --> 00:03:26.844
+including the templates and the NTAuth
+store; and Group Policy autoenrollment,
+
+50
+00:03:26.844 --> 00:03:29.882
+which runs on domain
+members every eight hours.
+
+51
+00:03:29.882 --> 00:03:33.429
+The inventory has four layers:
+the CAs, the templates,
+
+52
+00:03:33.429 --> 00:03:37.470
+the certificates actually
+issued, and the relying parties.
+
+53
+00:03:37.470 --> 00:03:41.410
+The relying parties set the order
+of work, because a new issuer is
+
+54
+00:03:41.410 --> 00:03:45.870
+useful only once everything that
+validates its certificates trusts it.
+
+55
+00:03:45.870 --> 00:03:49.558
+Then every template and use
+case gets one of four verdicts.
+
+56
+00:03:49.558 --> 00:03:55.333
+MIGRATE, where Cloud PKI or Entra
+certificate-based authentication replaces it.
+
+57
+00:03:55.333 --> 00:03:59.486
+BRIDGE, where both issuers
+run because the consumer
+
+58
+00:03:59.486 --> 00:04:03.833
+depends on AD or a server:
+domain controllers, LDAPS, NPS.
+
+59
+00:04:03.833 --> 00:04:08.558
+RETAIN, where there's no cloud
+equivalent, like HSM-held code signing.
+
+60
+00:04:08.558 --> 00:04:11.395
+And RETIRE, where the
+consumer is going away.
+
+61
+00:04:11.395 --> 00:04:16.871
+The book corrects its source here:
+internal web and SQL Server TLS can't move
+
+62
+00:04:16.871 --> 00:04:22.620
+to Cloud PKI, and S/MIME stays BRIDGE
+because its key history has to survive.
+
+63
+00:04:23.370 --> 00:04:27.621
+AD CS keeps issuing trusted
+credentials while the migration runs,
+
+64
+00:04:27.621 --> 00:04:32.645
+so the CA you're leaving has to be the
+best-defended system you own until it's gone.
+
+65
+00:04:32.645 --> 00:04:36.507
+The book frames hardening strictly
+as a detect-and-fix checklist.
+
+66
+00:04:36.507 --> 00:04:41.708
+The eight classes carry the ESC labels
+that Microsoft Defender for Identity also
+
+67
+00:04:41.708 --> 00:04:45.838
+uses: requester-supplied subjects
+on authentication templates;
+
+68
+00:04:45.838 --> 00:04:49.968
+Any Purpose or no-EKU templates;
+open enrollment agent templates;
+
+69
+00:04:49.968 --> 00:04:55.397
+writable template permissions; writable
+Public Key Services objects such as NTAuth;
+
+70
+00:04:55.397 --> 00:04:59.986
+the CA-wide flag that lets any request
+supply a subject alternative name;
+
+71
+00:04:59.986 --> 00:05:01.898
+unprivileged CA permissions;
+
+72
+00:05:01.898 --> 00:05:05.645
+and web enrollment without
+HTTPS and Extended Protection.
+
+73
+00:05:05.645 --> 00:05:08.273
+Defender for Identity
+detects most of them,
+
+74
+00:05:08.273 --> 00:05:11.120
+and the CA-level checks
+need its sensor on the CA.
+
+75
+00:05:11.120 --> 00:05:13.601
+The fifth class has no assessment,
+
+76
+00:05:13.601 --> 00:05:18.032
+so it's a manual review backed
+by directory-change event 5136.
+
+77
+00:05:18.032 --> 00:05:20.119
+The ratings are the program's own scoring.
+
+78
+00:05:20.119 --> 00:05:25.339
+The gate is simple: every Critical and High
+finding is fixed and verified before any
+
+79
+00:05:25.339 --> 00:05:30.558
+workload migrates, because the recommended
+cloud issuer chains to this hierarchy.
+
+80
+00:05:30.558 --> 00:05:33.757
+And none of it has evidence
+until CA auditing is on,
+
+81
+00:05:33.757 --> 00:05:36.390
+which takes two settings together.
+
+82
+00:05:37.140 --> 00:05:38.415
+So what is the target?
+
+83
+00:05:38.415 --> 00:05:41.777
+Not Cloud PKI instead of AD CS.
+
+84
+00:05:41.777 --> 00:05:44.878
+That's true for devices
+and wrong for the estate.
+
+85
+00:05:44.878 --> 00:05:49.027
+The target is four issuers, each
+for the subjects only it can serve.
+
+86
+00:05:49.027 --> 00:05:55.503
+Microsoft Cloud PKI issues to Intune-managed
+devices, and only to them, through
+
+87
+00:05:55.503 --> 00:06:01.878
+SCEP, with three CAs per tenant, a CRL
+valid for seven days and no OCSP responder.
+
+88
+00:06:01.878 --> 00:06:08.251
+A smaller, hardened AD CS stays for domain
+controllers and LDAPS, NPS and RADIUS,
+
+89
+00:06:08.251 --> 00:06:14.428
+internal server TLS, network devices
+through NDES, and HSM-held code signing.
+
+90
+00:06:14.428 --> 00:06:18.869
+The Federal PKI keeps issuing PIV;
+the target's job is to trust it,
+
+91
+00:06:18.869 --> 00:06:23.739
+by distributing the federal root
+and uploading the chain to Entra ID.
+
+92
+00:06:23.739 --> 00:06:27.302
+And a public CA serves names
+the internet must trust.
+
+93
+00:06:27.302 --> 00:06:30.027
+One decision ties them together: the root.
+
+94
+00:06:30.027 --> 00:06:35.459
+For an established hierarchy, the
+program recommends bring-your-own-CA,
+
+95
+00:06:35.459 --> 00:06:39.141
+a Cloud PKI issuing CA
+signed by the offline root.
+
+96
+00:06:39.141 --> 00:06:44.290
+It keeps the existing chain, and makes
+the root's CRL a production dependency.
+
+97
+00:06:44.290 --> 00:06:45.852
+Check the entitlement too.
+
+98
+00:06:45.852 --> 00:06:51.241
+The July 2026 change that puts
+Cloud PKI in Microsoft 365 E5 and E7
+
+99
+00:06:51.241 --> 00:06:57.190
+covers commercial customers, so
+confirm it for a government tenant.
+
+100
+00:06:57.940 --> 00:07:00.527
+Four issuers need one lifecycle platform.
+
+101
+00:07:00.527 --> 00:07:04.878
+Intune and Cloud PKI renew what
+they put on managed devices.
+
+102
+00:07:04.878 --> 00:07:09.578
+Nothing Microsoft-native does that
+for AD CS server certificates,
+
+103
+00:07:09.578 --> 00:07:13.852
+public TLS, appliances, or
+certificates nobody inventoried.
+
+104
+00:07:13.852 --> 00:07:17.275
+That's the job of certificate
+lifecycle management:
+
+105
+00:07:17.275 --> 00:07:21.253
+discovery, ownership and
+automated renewal across issuers.
+
+106
+00:07:21.253 --> 00:07:24.867
+The program's platform is
+CyberArk Certificate Manager,
+
+107
+00:07:24.867 --> 00:07:26.790
+now part of Palo Alto Networks.
+
+108
+00:07:26.790 --> 00:07:28.951
+It's the program's existing vendor,
+
+109
+00:07:28.951 --> 00:07:33.503
+so the program consolidates there
+and adds no second lifecycle vendor.
+
+110
+00:07:33.503 --> 00:07:38.589
+The names have moved: Venafi became
+part of CyberArk in October 2024,
+
+111
+00:07:38.589 --> 00:07:44.130
+Palo Alto Networks completed its
+acquisition of CyberArk on February 11,
+
+112
+00:07:44.130 --> 00:07:49.490
+2026, and the SaaS edition is now sold
+as Next-Generation Trust Security.
+
+113
+00:07:49.490 --> 00:07:51.428
+Two facts shape the deployment.
+
+114
+00:07:51.428 --> 00:07:56.339
+The FedRAMP Marketplace has no listing for
+the certificate product, so the program
+
+115
+00:07:56.339 --> 00:08:00.965
+runs Certificate Manager, Self-Hosted
+inside its own authorization boundary.
+
+116
+00:08:00.965 --> 00:08:05.041
+And its AD CS account holds the
+certificate-manager permission,
+
+117
+00:08:05.041 --> 00:08:09.400
+so it's scoped and reviewed like
+any other certificate manager.
+
+118
+00:08:10.150 --> 00:08:11.962
+Who owns the certificate estate?
+
+119
+00:08:11.962 --> 00:08:14.596
+In most forests, whoever installed the CA.
+
+120
+00:08:14.596 --> 00:08:17.383
+Domain Admins and Enterprise Admins are CA
+
+121
+00:08:17.383 --> 00:08:20.713
+administrators by default,
+and nobody decided that.
+
+122
+00:08:20.713 --> 00:08:22.950
+The book separates deciding from doing.
+
+123
+00:08:22.950 --> 00:08:26.473
+The sponsor and CIO decide
+the target hierarchy,
+
+124
+00:08:26.473 --> 00:08:32.462
+when each AD CS component retires, and who
+owns renewal for each certificate class.
+
+125
+00:08:32.462 --> 00:08:35.642
+The CISO and ISSO decide issuance policy,
+
+126
+00:08:35.642 --> 00:08:39.275
+trust anchors and the
+minimum binding strength.
+
+127
+00:08:39.275 --> 00:08:42.579
+The authorizing official
+accepts standing exceptions,
+
+128
+00:08:42.579 --> 00:08:44.337
+such as a low-affinity binding.
+
+129
+00:08:44.337 --> 00:08:50.962
+PKI and CA administrators run the CAs,
+templates, CRLs and key ceremonies.
+
+130
+00:08:50.962 --> 00:08:56.530
+The identity team owns the Entra trust store
+and bindings, endpoint engineering owns
+
+131
+00:08:56.530 --> 00:09:01.862
+the Intune profiles, and the CLM platform
+owner runs discovery and server renewal.
+
+132
+00:09:01.862 --> 00:09:04.597
+Server, network and application owners,
+
+133
+00:09:04.597 --> 00:09:08.326
+the PIV office and security
+operations are consulted.
+
+134
+00:09:08.326 --> 00:09:10.825
+The principle is separation of duties.
+
+135
+00:09:10.825 --> 00:09:15.950
+Whoever can change a CA must never be the
+only person who decides what it issues.
+
+136
+00:09:15.950 --> 00:09:18.518
+And whoever administers directory sync can
+
+137
+00:09:18.518 --> 00:09:21.580
+change which account a
+certificate signs in as.
+
+138
+00:09:22.330 --> 00:09:22.943
+How.
+
+139
+00:09:22.943 --> 00:09:24.417
+Start with devices.
+
+140
+00:09:24.417 --> 00:09:27.299
+Intune delivers certificates
+by three paths,
+
+141
+00:09:27.299 --> 00:09:31.318
+and each needs the trusted
+certificate profile deployed first.
+
+142
+00:09:31.318 --> 00:09:36.320
+SCEP from Cloud PKI is the cleanest:
+the device makes its own key pair,
+
+143
+00:09:36.320 --> 00:09:39.804
+with no NDES server,
+connector or on-premises CA.
+
+144
+00:09:39.804 --> 00:09:44.539
+SCEP from AD CS runs through NDES
+and the Certificate Connector;
+
+145
+00:09:44.539 --> 00:09:48.202
+its template lets the
+request supply the subject,
+
+146
+00:09:48.202 --> 00:09:52.579
+so its Enroll permission stays
+limited to the NDES account.
+
+147
+00:09:52.579 --> 00:09:56.542
+PKCS makes the key on the
+connector server and exports it,
+
+148
+00:09:56.542 --> 00:09:59.155
+which is why the program prefers SCEP.
+
+149
+00:09:59.155 --> 00:10:01.742
+Strong mapping is no longer optional.
+
+150
+00:10:01.742 --> 00:10:08.330
+KB5014754 began in
+compatibility mode in May 2022.
+
+151
+00:10:08.330 --> 00:10:14.161
+Domain controllers moved to Full
+Enforcement on February 11, 2025, and since
+
+152
+00:10:14.161 --> 00:10:19.992
+the September 9, 2025 update the registry
+key is ignored, so there's no way back.
+
+153
+00:10:19.992 --> 00:10:22.796
+A certificate used against
+a domain controller
+
+154
+00:10:22.796 --> 00:10:25.180
+without a strong mapping is rejected now.
+
+155
+00:10:25.180 --> 00:10:30.491
+So SCEP profiles add the on-premises
+security identifier as a SAN URI, for user
+
+156
+00:10:30.491 --> 00:10:36.217
+certificates on every platform and device
+certificates on hybrid-joined Windows.
+
+157
+00:10:36.217 --> 00:10:41.110
+Pilot it in a new profile, because
+editing one revokes what it issued.
+
+158
+00:10:41.860 --> 00:10:46.647
+On the user side, Entra certificate-based
+authentication is a relying party.
+
+159
+00:10:46.647 --> 00:10:49.662
+It validates certificates and issues none,
+
+160
+00:10:49.662 --> 00:10:54.435
+so its risk is the opposite: a
+certificate that should fail might pass.
+
+161
+00:10:54.435 --> 00:10:56.547
+Trust and revocation first.
+
+162
+00:10:56.547 --> 00:11:01.061
+Upload every CA in the chain
+to the PKI-based trust store.
+
+163
+00:11:01.061 --> 00:11:03.109
+Each CA gets one HTTP CRL,
+
+164
+00:11:03.109 --> 00:11:08.847
+which Entra ID must download within
+ten seconds or the sign-in fails.
+
+165
+00:11:08.847 --> 00:11:11.511
+There's no OCSP and no LDAP.
+
+166
+00:11:11.511 --> 00:11:13.646
+Turn on Require CRL validation,
+
+167
+00:11:13.646 --> 00:11:18.822
+because a CA uploaded without a CRL
+lets revoked certificates keep working.
+
+168
+00:11:18.822 --> 00:11:19.823
+Then binding.
+
+169
+00:11:19.823 --> 00:11:21.573
+Issuer and serial number,
+
+170
+00:11:21.573 --> 00:11:25.823
+subject key identifier and
+public-key hash are high affinity.
+
+171
+00:11:25.823 --> 00:11:29.985
+Principal name, email, subject,
+and issuer plus subject are low;
+
+172
+00:11:29.985 --> 00:11:33.086
+the old guide called
+issuer plus subject high.
+
+173
+00:11:33.086 --> 00:11:38.635
+A certificate counts as multifactor only
+when a PIN or biometric protects it:
+
+174
+00:11:38.635 --> 00:11:41.323
+a PIV card, not a software certificate.
+
+175
+00:11:41.323 --> 00:11:45.560
+And staged rollout is a temporary
+test, limited to ten groups.
+
+176
+00:11:45.560 --> 00:11:48.062
+Production requires high affinity,
+
+177
+00:11:48.062 --> 00:11:51.648
+because CBA is only as strong
+as its weakest binding.
+
+178
+00:11:51.648 --> 00:11:55.916
+But switch only once every user's
+certificate user IDs are right,
+
+179
+00:11:55.916 --> 00:11:58.210
+or those users are locked out.
+
+180
+00:11:58.960 --> 00:12:02.422
+For most of the migration,
+both PKIs are production.
+
+181
+00:12:02.422 --> 00:12:08.048
+Devices carry certificates from both issuers,
+and relying parties trust both chains.
+
+182
+00:12:08.048 --> 00:12:10.597
+Three coexistence rules carry the weight.
+
+183
+00:12:10.597 --> 00:12:12.960
+Trust goes up before issuance moves.
+
+184
+00:12:12.960 --> 00:12:17.510
+Nothing is revoked to force a move;
+old certificates leave at renewal.
+
+185
+00:12:17.510 --> 00:12:22.411
+And every CRL must be reachable from
+inside the network, from the internet
+
+186
+00:12:22.411 --> 00:12:27.473
+and from Entra ID, because most
+coexistence outages are revocation outages.
+
+187
+00:12:27.473 --> 00:12:29.830
+The migration runs in six gated waves,
+
+188
+00:12:29.830 --> 00:12:34.622
+about forty-four weeks on the program's
+planning figures for a single forest.
+
+189
+00:12:34.622 --> 00:12:37.487
+Assess ends when every
+template is classified
+
+190
+00:12:37.487 --> 00:12:39.984
+and Critical and High findings are fixed.
+
+191
+00:12:39.984 --> 00:12:45.310
+Foundation puts the cloud CA live, with
+trust on ninety-nine percent of devices.
+
+192
+00:12:45.310 --> 00:12:48.585
+Pilot needs ninety-five
+percent issuance success.
+
+193
+00:12:48.585 --> 00:12:51.072
+Scale moves every managed device.
+
+194
+00:12:51.072 --> 00:12:57.398
+Cutover converts federated domains and
+turns off AD FS certificate authentication.
+
+195
+00:12:57.398 --> 00:13:01.359
+And Decommission retires what
+served only migrated workloads.
+
+196
+00:13:01.359 --> 00:13:03.635
+Every wave has a rehearsed rollback.
+
+197
+00:13:03.635 --> 00:13:08.004
+Autoenrollment stays on through the
+pilot, and AD FS stays restorable
+
+198
+00:13:08.004 --> 00:13:12.510
+for thirty days after cutover, with
+a four-hour recovery objective.
+
+199
+00:13:13.260 --> 00:13:16.535
+Migration ends on a
+date; certificates don't.
+
+200
+00:13:16.535 --> 00:13:21.150
+With public TLS at 200 days today
+and 47 days from March 2029,
+
+201
+00:13:21.150 --> 00:13:26.047
+no certificate class may depend
+on someone remembering a date.
+
+202
+00:13:26.047 --> 00:13:28.410
+Three renewal engines cover the target.
+
+203
+00:13:28.410 --> 00:13:31.254
+Intune profiles renew managed devices at
+
+204
+00:13:31.254 --> 00:13:34.098
+the profile's threshold,
+with a new key pair.
+
+205
+00:13:34.098 --> 00:13:37.781
+AD CS autoenrollment
+renews domain controllers,
+
+206
+00:13:37.781 --> 00:13:40.747
+LDAPS and RADIUS while the forest stays.
+
+207
+00:13:40.747 --> 00:13:44.198
+And CyberArk Certificate
+Manager renews server,
+
+208
+00:13:44.198 --> 00:13:48.910
+appliance and public TLS, using ACME
+where the endpoint supports it.
+
+209
+00:13:48.910 --> 00:13:54.414
+Monitoring watches signals, not
+outages: expiry with no renewal path,
+
+210
+00:13:54.414 --> 00:13:58.760
+a stale CRL, issuance outside
+policy, trust-store drift.
+
+211
+00:13:58.760 --> 00:14:02.785
+The checks run at least weekly,
+and their history is the evidence.
+
+212
+00:14:02.785 --> 00:14:05.823
+Retiring an AD CS CA comes last.
+
+213
+00:14:05.823 --> 00:14:07.560
+Confirm nothing depends on it.
+
+214
+00:14:07.560 --> 00:14:10.622
+Stop issuance, and back
+up the database and key.
+
+215
+00:14:10.622 --> 00:14:15.511
+Revoke what's left for cessation of
+operation and publish a final CRL.
+
+216
+00:14:15.511 --> 00:14:19.110
+Remove the role services
+and clean every trust store.
+
+217
+00:14:19.110 --> 00:14:24.548
+And keep the CRL and AIA endpoints serving
+until the last certificate expires.
+
+218
+00:14:24.548 --> 00:14:29.230
+Under bring-your-own-CA, the CA
+that signed the cloud issuer stays.
+
+219
+00:14:29.980 --> 00:14:31.355
+So, four decisions.
+
+220
+00:14:31.355 --> 00:14:35.837
+Confirm the root decision: bring-your-own-CA,
+signed by the offline root,
+
+221
+00:14:35.837 --> 00:14:39.005
+once the hierarchy has
+passed the hardening gate.
+
+222
+00:14:39.005 --> 00:14:42.762
+Settle the Cloud PKI entitlement
+for the government tenant,
+
+223
+00:14:42.762 --> 00:14:46.218
+rather than assuming the
+commercial E5 change applies.
+
+224
+00:14:46.218 --> 00:14:49.687
+Stand up CyberArk Certificate
+Manager, Self-Hosted,
+
+225
+00:14:49.687 --> 00:14:54.043
+inside the authorization boundary,
+as the single lifecycle tool.
+
+226
+00:14:54.043 --> 00:14:58.613
+And name the owners: issuance policy
+and trust anchors with the CISO,
+
+227
+00:14:58.613 --> 00:15:01.981
+and one renewal owner for
+every certificate class.
+
+228
+00:15:01.981 --> 00:15:07.683
+The next step is wave one, Assess: four
+weeks to inventory every CA and template,
+
+229
+00:15:07.683 --> 00:15:10.446
+close the Critical and High findings,
+
+230
+00:15:10.446 --> 00:15:14.367
+classify every use case, and
+list every relying party.
+
+231
+00:15:14.367 --> 00:15:16.538
+Run certificates on their own clock,
+
+232
+00:15:16.538 --> 00:15:19.793
+and the old CAs can retire
+without stranding anything.
+
+233
+00:15:19.793 --> 00:15:22.936
+Book 07 has the detail,
+every claim footnoted,
+
+234
+00:15:22.936 --> 00:15:27.354
+with deployment checklists and
+a template-by-template matrix.
+
+235
+00:15:27.354 --> 00:15:28.180
+Thank you.

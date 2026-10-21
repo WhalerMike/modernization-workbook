@@ -1,0 +1,86 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.650
+Re-routing a branch breaks things
+for a short list of reasons,
+
+2
+00:00:03.650 --> 00:00:05.162
+so design around the list.
+
+3
+00:00:05.162 --> 00:00:06.951
+Proxies reap idle connections,
+
+4
+00:00:06.951 --> 00:00:11.491
+TLS inspection breaks pinned certificates
+and channel-bound authentication,
+
+5
+00:00:11.491 --> 00:00:16.375
+and a change in the client's apparent source
+address resets established connections.
+
+6
+00:00:16.375 --> 00:00:19.975
+A path change doesn't
+break TCP sequence numbers.
+
+7
+00:00:19.975 --> 00:00:23.113
+Address continuity is the
+property that matters.
+
+8
+00:00:23.113 --> 00:00:26.230
+Kerberos tolerates NAT
+under Windows defaults:
+
+9
+00:00:26.230 --> 00:00:31.138
+the domain controller doesn't put client
+addresses in tickets or check them.
+
+10
+00:00:31.138 --> 00:00:33.866
+And there's no
+five-millisecond requirement;
+
+11
+00:00:33.866 --> 00:00:36.374
+the five is minutes of allowed clock skew.
+
+12
+00:00:36.374 --> 00:00:41.914
+What genuinely needs a reachable domain
+controller is short: initial logon, service
+
+13
+00:00:41.914 --> 00:00:47.137
+tickets for on-premises services, Group
+Policy, password change and hybrid join.
+
+14
+00:00:47.137 --> 00:00:51.360
+Leave that path out and everything
+works except signing in,
+
+15
+00:00:51.360 --> 00:00:54.375
+while Kerberos quietly falls back to NTLM.
+
+16
+00:00:54.375 --> 00:00:57.150
+Round trips dominate chatty applications.
+
+17
+00:00:57.150 --> 00:01:02.603
+In the book's illustrative arithmetic, a
+better branch path saves 17 to 25 percent;
+
+18
+00:01:02.603 --> 00:01:07.870
+cutting 30 sequential round trips to
+three saves about an order of magnitude.

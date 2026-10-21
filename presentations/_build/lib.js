@@ -7,12 +7,13 @@
 //   await D.save("presentations/b02-identity/B02_Identity.pptx");
 //
 // Needs pptxgenjs (global npm install is fine) and the pptx skill's apply_theme.js,
-// found through $SKILL (the skill directory) or $APPLY_THEME (the file itself).
+// found through $SKILL (the skill directory) or $APPLY_THEME (the file itself), and Python with lxml for the
+// accessibility pass that save() runs on every deck (a11y_fix.py).
 const path = require("path");
 const pptxgen = require("pptxgenjs");
 
 const THEME = {
-  name: "Modernization Workbook",
+  name: "Federal Modernization Workbook",
   headFontFace: "Cambria",
   bodyFontFace: "Calibri",
   colors: {
@@ -28,7 +29,7 @@ const HEX = { navy: "1F2A44", teal: "0F766E", amber: "B45309", red: "B91C1C", sl
 const PART = { Why: HEX.red, What: HEX.navy, Who: HEX.teal, How: HEX.amber };
 const ASSET = (f) => path.join(__dirname, f);
 
-module.exports = function makeDeck({ book, title, footer, author = "Mike Stratton" }) {
+module.exports = function makeDeck({ book, title, footer, author = "Michael F. Stratton" }) {
   const pres = new pptxgen();
   pres.layout = "LAYOUT_WIDE"; // 13.33 x 7.5
   pres.author = author;
@@ -53,7 +54,7 @@ module.exports = function makeDeck({ book, title, footer, author = "Mike Stratto
     objects: [
       { placeholder: { options: { name: "title", type: "title", x: 0.6, y: 0.5, w: 12.1, h: 0.85, fontFace: "Cambria",
         fontSize: 30, bold: true, color: C.text1, valign: "middle", align: "center", margin: 0 }, text: "" } },
-      { text: { text: footer || `Modernization Workbook  ·  ${book} ${title}`, options: { x: 0.6, y: 7.0, w: 9, h: 0.3,
+      { text: { text: footer || `Federal Modernization Workbook  ·  ${book} ${title}`, options: { x: 0.6, y: 7.0, w: 9, h: 0.3,
         fontSize: 10, color: C.accent5, margin: 0 } } },
     ],
     slideNumber: { x: 12.2, y: 7.0, w: 0.5, h: 0.3, fontSize: 10, color: C.accent5, align: "right" },
@@ -65,6 +66,11 @@ module.exports = function makeDeck({ book, title, footer, author = "Mike Stratto
     const s = pres.addSlide({ masterName: "Title", sectionTitle: sectionFor(sec) });
     s.addText(t, { placeholder: "title" });
     s.addText(sub, { placeholder: "body" });
+    // The presenter, bottom-left of every title slide.
+    s.addText([{ text: "Presented by  ", options: { color: HEX.slate } }, { text: author, options: { bold: true, color: HEX.navy } }],
+      { objectName: "Presenter", isTextBox: true, x: 0.8, y: 6.45, w: 7.5, h: 0.4, fontSize: 16, margin: 0, valign: "middle" });
+    s.addText("Not an official U.S. government publication. Independent technical analysis; not reviewed or endorsed by any federal agency.",
+      { objectName: "Disclaimer", isTextBox: true, x: 0.8, y: 6.9, w: 9.5, h: 0.3, fontSize: 10.5, color: HEX.slate, margin: 0, valign: "middle" });
     return s;
   };
   const content = (sec, t) => {
@@ -109,6 +115,8 @@ module.exports = function makeDeck({ book, title, footer, author = "Mike Stratto
     const at = process.env.APPLY_THEME || (process.env.SKILL && path.join(process.env.SKILL, "scripts", "apply_theme.js"));
     if (!at) throw new Error("set SKILL (pptx skill dir) or APPLY_THEME so the theme colors can be written");
     await require(at).applyTheme(out, THEME);
+    // Accessibility pass: author, decorative marking, table header rows (see a11y_fix.py).
+    require("child_process").execFileSync(process.env.PYTHON || "python", [path.join(__dirname, "a11y_fix.py"), out], { stdio: "inherit" });
     console.log("wrote", out);
   };
   return { pres, C, HEX, PART, THEME, titleSlide, content, txt, box, icon, tag, agenda, bullets, tableOpts, head, callout, sources, save };

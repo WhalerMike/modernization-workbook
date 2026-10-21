@@ -1,0 +1,96 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:05.525
+The execution plan has seven phases, and
+each gate is the next phase's precondition.
+
+2
+00:00:05.525 --> 00:00:11.512
+Phase zero aligns the program, naming
+identity as a consumer in both migrations.
+
+3
+00:00:11.512 --> 00:00:15.012
+Phase one settles attribute
+authority and the schema.
+
+4
+00:00:15.012 --> 00:00:17.512
+Phase two builds and tests the pipeline.
+
+5
+00:00:17.512 --> 00:00:19.349
+Phase three is the pilot.
+
+6
+00:00:19.349 --> 00:00:23.675
+Phase four turns on lifecycle automation
+and attribute-derived access.
+
+7
+00:00:23.675 --> 00:00:26.975
+Phase five cuts over
+population by population.
+
+8
+00:00:26.975 --> 00:00:28.775
+And phase six sustains it.
+
+9
+00:00:28.775 --> 00:00:30.237
+Four rules run through it.
+
+10
+00:00:30.237 --> 00:00:33.894
+Start now, from the HR data
+the agency already has,
+
+11
+00:00:33.894 --> 00:00:37.550
+and switch the source to
+Core HCM when it arrives.
+
+12
+00:00:37.550 --> 00:00:40.625
+Run in shadow mode first,
+comparing what HR says
+
+13
+00:00:40.625 --> 00:00:43.700
+with what the directories
+hold, and fix the gaps.
+
+14
+00:00:43.700 --> 00:00:49.088
+Cut over one population at a time, with a
+signed validation report and a rollback.
+
+15
+00:00:49.088 --> 00:00:51.898
+And close the ticket path for a population
+
+16
+00:00:51.898 --> 00:00:54.949
+only when the data proves
+HR is the sole source.
+
+17
+00:00:54.949 --> 00:00:59.600
+The gate thresholds, like ninety-nine
+percent correlation, are proposals.
+
+18
+00:00:59.600 --> 00:01:02.886
+They're starting criteria
+the agency approves through
+
+19
+00:01:02.886 --> 00:01:05.887
+its own risk governance,
+not federal requirements.
+
+20
+00:01:05.887 --> 00:01:10.490
+Chapter 13 walks an illustrative
+agency through all seven phases.

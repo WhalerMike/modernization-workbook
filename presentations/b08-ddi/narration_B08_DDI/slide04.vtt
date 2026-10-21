@@ -1,0 +1,89 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.468
+The federal mandates never name a product,
+
+2
+00:00:02.468 --> 00:00:05.300
+but together they describe
+a governed name layer.
+
+3
+00:00:05.300 --> 00:00:08.050
+It's worth being precise
+about who requires what.
+
+4
+00:00:08.050 --> 00:00:13.826
+OMB M-22-09 requires encrypted DNS
+wherever it's technically supported,
+
+5
+00:00:13.826 --> 00:00:19.025
+with endpoints explicitly configured
+to use agency-designated resolvers.
+
+6
+00:00:19.025 --> 00:00:24.425
+It also notes that DNS must already be
+routed through CISA-operated infrastructure.
+
+7
+00:00:24.425 --> 00:00:28.945
+The requirement that all egress
+resolution go through Protective
+
+8
+00:00:28.945 --> 00:00:32.900
+DNS comes from CISA's own
+guidance, which cites the statute.
+
+9
+00:00:32.900 --> 00:00:38.206
+OMB M-26-14, which rescinded M-21-31
+in May 2026, doesn't name DNS,
+
+10
+00:00:38.206 --> 00:00:45.028
+but it requires logs that show source
+and destination addresses, protocols,
+
+11
+00:00:45.028 --> 00:00:51.525
+ports and sessions, searchable for
+six months and retrievable for a year.
+
+12
+00:00:51.525 --> 00:00:57.863
+M-08-23 and SP 800-53 carry DNSSEC.
+
+13
+00:00:57.863 --> 00:01:04.241
+And version 3.3 of the TIC 3.0
+catalog, published in September 2026,
+
+14
+00:01:04.241 --> 00:01:09.524
+lists five DNS capabilities, from
+sinkholing to Protective DNS.
+
+15
+00:01:09.524 --> 00:01:14.543
+NIST SP 800-81 Revision 3,
+final on March 19, 2026,
+
+16
+00:01:14.543 --> 00:01:21.013
+is the practical guide to all of
+this: guidance, not a mandate.
+
+17
+00:01:21.013 --> 00:01:24.980
+And FedRAMP certifies a cloud
+service, not an architecture;
+
+18
+00:01:24.980 --> 00:01:28.200
+the agency still authorizes
+its own DDI system.

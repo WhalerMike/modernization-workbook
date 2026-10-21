@@ -1,0 +1,639 @@
+{
+ "1": [
+  [
+   0.05,
+   10.938,
+   "This briefing comes from Book 05 of the Federal Modernization Workbook, Devices and Endpoints: the move from Group Policy to Intune for devices, and to Azure Arc for servers."
+  ],
+  [
+   10.988,
+   12.25,
+   "I'll take it through four questions: why Group Policy can't simply be carried to the cloud, what replaces it, who owns the endpoint, and how to migrate a fleet without losing the governance Group Policy quietly provided."
+  ],
+  [
+   23.238,
+   2.975,
+   "The short version: this is not a settings migration."
+  ],
+  [
+   26.212,
+   1.575,
+   "It's a governance rebuild."
+  ]
+ ],
+ "2": [
+  [
+   0.05,
+   2.188,
+   "Why can't Group Policy come to the cloud?"
+  ],
+  [
+   2.237,
+   5.412,
+   "Because Group Policy governed by position, and an Intune-managed device has no position."
+  ],
+  [
+   7.65,
+   4.0,
+   "Where a computer sat in the O U tree quietly did five jobs."
+  ],
+  [
+   11.65,
+   3.263,
+   "It decided targeting: what settings the computer got."
+  ],
+  [
+   14.912,
+   4.275,
+   "Precedence: link order and inheritance decided which setting won."
+  ],
+  [
+   19.188,
+   3.513,
+   "Delegation: O U permissions decided who could change it."
+  ],
+  [
+   22.7,
+   4.575,
+   "Timing: policy refreshed at startup, at sign-in and on a cycle."
+  ],
+  [
+   27.275,
+   4.287,
+   "And evidence: the resultant set of policy told you what actually applied."
+  ],
+  [
+   31.562,
+   3.462,
+   "An Entra-joined, Intune-managed device has none of that."
+  ],
+  [
+   35.025,
+   4.575,
+   "Policy is assigned flatly to groups, and nothing reads the O U tree."
+  ],
+  [
+   39.6,
+   6.175,
+   "When two policies set the same thing, Intune reports a conflict; it doesn't resolve it by order."
+  ],
+  [
+   45.775,
+   2.513,
+   "Devices check in about every eight hours."
+  ],
+  [
+   48.288,
+   5.425,
+   "And some Group Policy jobs, mapped drives for example, have no built-in equivalent at all."
+  ],
+  [
+   53.712,
+   4.425,
+   "Microsoft itself advises against copying GPOs one for one."
+  ],
+  [
+   58.138,
+   2.025,
+   "So this is not a settings migration."
+  ],
+  [
+   60.163,
+   6.95,
+   "Teams that copy GPOs into Intune discover the governance loss after the targeting model has already changed."
+  ],
+  [
+   67.112,
+   4.088,
+   "Every job the tree did implicitly has to be rebuilt explicitly."
+  ]
+ ],
+ "3": [
+  [
+   0.05,
+   4.775,
+   "The obvious shortcut is hybrid join, and the book calls it a trap, carefully."
+  ],
+  [
+   4.825,
+   2.237,
+   "Microsoft's guidance has two halves."
+  ],
+  [
+   7.062,
+   5.912,
+   "New, refurbished or reset Windows devices should be Microsoft Entra joined by default."
+  ],
+  [
+   12.975,
+   7.388,
+   "Existing domain-joined devices can be hybrid joined, which gives them a cloud identity with minimal impact on users."
+  ],
+  [
+   20.363,
+   5.075,
+   "But Microsoft is explicit that hybrid join shouldn't be the long-term end state."
+  ],
+  [
+   25.438,
+   1.075,
+   "Here's the trap."
+  ],
+  [
+   26.512,
+   11.213,
+   "Turning on hybrid join for a fleet is, mechanically, close to a single tenant-wide switch, so a control that assessments score as a multi-quarter program can look finished in a week."
+  ],
+  [
+   37.725,
+   3.475,
+   "But the fleet keeps every on-premises dependency it had."
+  ],
+  [
+   41.2,
+   6.912,
+   "And there's no Microsoft-supported way to convert a hybrid-joined device to Entra join without resetting Windows."
+  ],
+  [
+   48.112,
+   11.55,
+   "So the governed path uses hybrid join where it helps, and plans each device's move to Entra join at a natural event: the next hardware refresh, operating-system upgrade or rebuild."
+  ],
+  [
+   59.663,
+   3.45,
+   "That way the waypoint doesn't quietly become the destination."
+  ]
+ ],
+ "4": [
+  [
+   0.05,
+   1.163,
+   "What replaces it?"
+  ],
+  [
+   1.212,
+   2.575,
+   "Devices and servers take different roads."
+  ],
+  [
+   3.788,
+   13.613,
+   "For endpoints, the Entra ID device object carries the identity, Intune carries configuration and compliance, Autopilot provides zero-touch provisioning, and Defender for Endpoint covers threat and vulnerability."
+  ],
+  [
+   17.4,
+   3.763,
+   "Servers are different, and the old design documents got this wrong."
+  ],
+  [
+   21.163,
+   2.462,
+   "Intune doesn't manage Windows Server."
+  ],
+  [
+   23.625,
+   4.825,
+   "A server comes under governance through Azure Arc, which makes it an Azure resource."
+  ],
+  [
+   28.45,
+   8.1,
+   "Azure Policy machine configuration sets its configuration, and Update Manager and Defender for Servers handle patching and protection."
+  ],
+  [
+   36.55,
+   5.388,
+   "For new devices, the book's doctrine is Intune-first: governed from day zero."
+  ],
+  [
+   41.938,
+   11.012,
+   "The organizational assignment is set when the device is ordered, enrollment is zero-touch, and an onboarding failure goes to quarantine, never into production in a degraded state."
+  ],
+  [
+   52.95,
+   12.338,
+   "Because each system is authoritative for one thing, the program correlates them on stable keys and reconciles the inventory continuously, so the fleet has one answer to \"what do we have, and is it governed?\""
+  ]
+ ],
+ "5": [
+  [
+   0.05,
+   5.213,
+   "For new devices, the book's doctrine is Intune-first, and it has five pillars."
+  ],
+  [
+   5.263,
+   2.9,
+   "One: no ungoverned device, ever."
+  ],
+  [
+   8.162,
+   7.7,
+   "Every device is enrolled in governance before it goes into production use, and quarantine is the safety valve, not the steady state."
+  ],
+  [
+   15.863,
+   3.237,
+   "Two: procurement is the first governance step."
+  ],
+  [
+   19.1,
+   7.888,
+   "The organizational assignment is set when the order is placed, not when the box arrives, the same way HR feeds user provisioning."
+  ],
+  [
+   26.988,
+   1.975,
+   "Three: zero-touch only."
+  ],
+  [
+   28.962,
+   6.2,
+   "Manual enrollment is an exception that needs written justification, a time limit and an audit entry."
+  ],
+  [
+   35.163,
+   2.513,
+   "Four: one management plane per asset."
+  ],
+  [
+   37.675,
+   7.825,
+   "Intune for endpoints, Azure Arc with machine configuration for servers, and no greenfield Group Policy or hybrid join."
+  ],
+  [
+   45.5,
+   2.513,
+   "And five: quarantine on failure."
+  ],
+  [
+   48.013,
+   5.525,
+   "An onboarding failure opens a ticket; it never produces a device running in a degraded state."
+  ],
+  [
+   53.538,
+   12.15,
+   "One practical choice: in a G C C tenant, the book defaults to classic Autopilot, with devices registered by the manufacturer or reseller, because that registration can carry a group tag."
+  ],
+  [
+   65.688,
+   4.95,
+   "The newer Autopilot device preparation has no registration step, so it can't."
+  ],
+  [
+   70.638,
+   3.275,
+   "These pillars are program doctrine for net-new devices."
+  ],
+  [
+   73.912,
+   2.75,
+   "The existing fleet takes one of three paths."
+  ]
+ ],
+ "6": [
+  [
+   0.05,
+   5.112,
+   "There are three paths to the same governed state, and the book uses them deliberately."
+  ],
+  [
+   5.162,
+   6.125,
+   "The governed path is program-orchestrated: every step is recorded, approved and evidenced."
+  ],
+  [
+   11.287,
+   2.938,
+   "It's the default for any population in scope."
+  ],
+  [
+   14.225,
+   5.325,
+   "The manual path is operator-run with the native tools, without the orchestration platform."
+  ],
+  [
+   19.55,
+   5.938,
+   "It's for when the platform isn't available yet, and it trades automation for more hand-collected evidence."
+  ],
+  [
+   25.488,
+   7.975,
+   "The retrofit path brings an estate that was already modernized by hand, before the program existed, under governance after the fact."
+  ],
+  [
+   33.462,
+   6.263,
+   "All three end in the same place: the device or server enrolled, baselined and reconciled."
+  ],
+  [
+   39.725,
+   5.812,
+   "What differs is how much of the proof is produced automatically and how much has to be collected by hand."
+  ],
+  [
+   45.538,
+   14.5,
+   "The chapter also corrects a few things the old path guides got wrong, for example that LAN Manager authentication level five still accepts N T L M version two; blocking N T L M takes the separate Restrict N T L M policies."
+  ]
+ ],
+ "7": [
+  [
+   0.05,
+   1.288,
+   "Who owns the endpoint?"
+  ],
+  [
+   1.337,
+   2.875,
+   "The book separates who decides from who does the work."
+  ],
+  [
+   4.213,
+   6.5,
+   "Deciding: the see-so and I S S O own the baselines, the exceptions and the evidence."
+  ],
+  [
+   10.713,
+   4.0,
+   "The endpoint engineering lead owns policy design and the rollout."
+  ],
+  [
+   14.713,
+   5.263,
+   "And the change board owns the update rings, the migration waves and any pause."
+  ],
+  [
+   19.975,
+   6.65,
+   "Doing: endpoint engineering builds the Intune policies, Autopilot profiles and app deployments."
+  ],
+  [
+   26.625,
+   4.888,
+   "The server team onboards servers to Azure Arc and owns machine configuration."
+  ],
+  [
+   31.512,
+   4.513,
+   "Security operations runs Defender, the alerts and the response."
+  ],
+  [
+   36.025,
+   5.662,
+   "Consulted and affected: application owners supply test results and app packaging."
+  ],
+  [
+   41.688,
+   3.413,
+   "The help desk handles enrollment, wipe and recovery."
+  ],
+  [
+   45.1,
+   3.275,
+   "And end users join pilot waves and tell us what broke."
+  ],
+  [
+   48.375,
+   4.5,
+   "One rule applies to the people as much as the devices: least privilege."
+  ],
+  [
+   52.875,
+   9.175,
+   "Day-to-day work runs on scoped Intune roles, not Intune Administrator; Microsoft advises against using the broad role for routine administration."
+  ]
+ ],
+ "8": [
+  [
+   0.05,
+   0.613,
+   "How."
+  ],
+  [
+   0.662,
+   15.588,
+   "The book runs the Group Policy sunset as a program, setting by setting, in seven steps: inventory and parse, classify each setting, crosswalk it, decide, sequence by population, freeze and unlink, and finally retire."
+  ],
+  [
+   16.25,
+   7.075,
+   "Every setting goes one of three ways: migrate it to Intune, replace it with a cloud-native pattern, or retire it."
+  ],
+  [
+   23.325,
+   3.7,
+   "The coexistence rules matter, and the old guides had them wrong."
+  ],
+  [
+   27.025,
+   4.125,
+   "While a device is under both, Group Policy wins by default."
+  ],
+  [
+   31.15,
+   13.025,
+   "The MDMWinsOverGP setting reverses that, but only for settings in the Policy configuration service provider; Defender settings and Windows Hello for Business have to be removed from Group Policy, not overridden."
+  ],
+  [
+   44.175,
+   8.438,
+   "Group Policy preferences can leave their settings behind after a G P O is unlinked, so every preference item needs a planned cleanup."
+  ],
+  [
+   52.612,
+   6.838,
+   "And the book unlinks one population at a time rather than blocking inheritance, because that's scoped and reversible."
+  ],
+  [
+   59.45,
+   2.737,
+   "One more thing: measure, don't assume."
+  ],
+  [
+   62.188,
+   8.85,
+   "Microsoft publishes no typical percentage of settings that migrate, so the program runs Group Policy analytics against the estate's own exports."
+  ]
+ ],
+ "9": [
+  [
+   0.05,
+   6.425,
+   "The existing fleet then migrates in seven phases, about thirty-four weeks on the book's planning estimates."
+  ],
+  [
+   6.475,
+   5.463,
+   "Phase one inventories and classifies, ending with a decision record for every setting."
+  ],
+  [
+   11.938,
+   4.925,
+   "Phase two plans coexistence, with pilot devices co-managed and syncing."
+  ],
+  [
+   16.863,
+   6.812,
+   "Phase three authors the baselines, unassigned, until every setting is owned by exactly one policy."
+  ],
+  [
+   23.675,
+   3.263,
+   "Phase four pilots on about five percent of devices."
+  ],
+  [
+   26.938,
+   6.0,
+   "Phase five cuts over workload by workload in four waves, each watched for seventy-two hours."
+  ],
+  [
+   32.938,
+   5.388,
+   "Phase six verifies that no migrated device still processes a G P O."
+  ],
+  [
+   38.325,
+   6.05,
+   "And phase seven retires the GPOs, keeping them ninety days before they're archived and deleted."
+  ],
+  [
+   44.375,
+   4.75,
+   "The book also sets a floor: Windows 11 version 24H2."
+  ],
+  [
+   49.125,
+   8.762,
+   "Windows 10 is out of support, and Windows 11 23H2 Enterprise stops getting updates on November 10, 2026."
+  ],
+  [
+   57.888,
+   6.35,
+   "These are planning estimates for a large fleet with an existing Configuration Manager estate, not promises."
+  ],
+  [
+   64.237,
+   5.638,
+   "Every gate is the next phase's precondition, and every phase has a rollback while it's open."
+  ]
+ ],
+ "10": [
+  [
+   0.05,
+   2.925,
+   "Servers come under governance through Azure Arc."
+  ],
+  [
+   2.975,
+   8.238,
+   "Onboarding uses the Connected Machine agent with least privilege: a certificate-based onboarding identity that's needed only at connect time."
+  ],
+  [
+   11.213,
+   5.775,
+   "Configuration comes through Azure Policy machine configuration baselines, assigned by scope."
+  ],
+  [
+   16.988,
+   4.612,
+   "And patching and protection come from Update Manager and Defender for Servers."
+  ],
+  [
+   21.6,
+   1.663,
+   "Two dates make this urgent."
+  ],
+  [
+   23.262,
+   13.25,
+   "Extended security updates for Windows Server 2012 and 2012 R2 ended on October 13, 2026, a week ago, so any remaining 2012 host is a red finding."
+  ],
+  [
+   36.513,
+   6.35,
+   "And Windows Server 2016 reaches end of support on January 12, 2027."
+  ],
+  [
+   42.862,
+   11.188,
+   "The book is careful about rollback too: remove extensions before disconnecting the agent, because disconnecting deletes the Azure resource, which the onboarding role isn't allowed to do."
+  ]
+ ],
+ "11": [
+  [
+   0.05,
+   2.1,
+   "Finally, run it and prove it."
+  ],
+  [
+   2.15,
+   4.787,
+   "In run-state, compliance feeds Conditional Access, which is Book 04."
+  ],
+  [
+   6.938,
+   13.325,
+   "Updates flow through rings and Windows Autopatch, and in a G C C tenant the update evidence comes from Intune and Autopatch reports, because Windows Update for Business reports don't meet G C C compliance."
+  ],
+  [
+   20.262,
+   6.938,
+   "The inventory is reconciled across Entra ID, Intune, Autopilot, Arc and the CMDB."
+  ],
+  [
+   27.2,
+   3.875,
+   "Devices are retired and wiped before the account is deleted."
+  ],
+  [
+   31.075,
+   12.175,
+   "And the evidence maps to the configuration-management and flaw-remediation controls: CM-2, CM-6, CM-7, CM-8 and SI-2."
+  ],
+  [
+   43.25,
+   2.538,
+   "What we need from leadership is four things."
+  ],
+  [
+   45.788,
+   2.913,
+   "Approve Intune-first for every new device."
+  ],
+  [
+   48.7,
+   4.287,
+   "Fund the Group Policy inventory and the Group Policy analytics run."
+  ],
+  [
+   52.987,
+   5.7,
+   "Set the Windows 11 24H2 floor and a plan for servers reaching end of support."
+  ],
+  [
+   58.688,
+   3.812,
+   "And name the owners for endpoints, servers and security."
+  ],
+  [
+   62.5,
+   5.3,
+   "Book 05 has the full migration, with every external claim footnoted."
+  ],
+  [
+   67.8,
+   6.688,
+   "Book 04 covers what a compliant device may reach, and Book 02 the identity it rests on."
+  ],
+  [
+   74.487,
+   0.762,
+   "Thank you."
+  ]
+ ]
+}

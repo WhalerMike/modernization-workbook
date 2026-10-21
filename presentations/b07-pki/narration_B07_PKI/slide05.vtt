@@ -1,0 +1,92 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.301
+AD CS keeps issuing trusted
+credentials while the migration runs,
+
+2
+00:00:04.301 --> 00:00:09.325
+so the CA you're leaving has to be the
+best-defended system you own until it's gone.
+
+3
+00:00:09.325 --> 00:00:13.187
+The book frames hardening strictly
+as a detect-and-fix checklist.
+
+4
+00:00:13.187 --> 00:00:18.388
+The eight classes carry the ESC labels
+that Microsoft Defender for Identity also
+
+5
+00:00:18.388 --> 00:00:22.518
+uses: requester-supplied subjects
+on authentication templates;
+
+6
+00:00:22.518 --> 00:00:26.648
+Any Purpose or no-EKU templates;
+open enrollment agent templates;
+
+7
+00:00:26.648 --> 00:00:32.077
+writable template permissions; writable
+Public Key Services objects such as NTAuth;
+
+8
+00:00:32.077 --> 00:00:36.666
+the CA-wide flag that lets any request
+supply a subject alternative name;
+
+9
+00:00:36.666 --> 00:00:38.578
+unprivileged CA permissions;
+
+10
+00:00:38.578 --> 00:00:42.325
+and web enrollment without
+HTTPS and Extended Protection.
+
+11
+00:00:42.325 --> 00:00:44.953
+Defender for Identity
+detects most of them,
+
+12
+00:00:44.953 --> 00:00:47.800
+and the CA-level checks
+need its sensor on the CA.
+
+13
+00:00:47.800 --> 00:00:50.281
+The fifth class has no assessment,
+
+14
+00:00:50.281 --> 00:00:54.712
+so it's a manual review backed
+by directory-change event 5136.
+
+15
+00:00:54.712 --> 00:00:56.799
+The ratings are the program's own scoring.
+
+16
+00:00:56.799 --> 00:01:02.019
+The gate is simple: every Critical and High
+finding is fixed and verified before any
+
+17
+00:01:02.019 --> 00:01:07.238
+workload migrates, because the recommended
+cloud issuer chains to this hierarchy.
+
+18
+00:01:07.238 --> 00:01:10.437
+And none of it has evidence
+until CA auditing is on,
+
+19
+00:01:10.437 --> 00:01:12.770
+which takes two settings together.

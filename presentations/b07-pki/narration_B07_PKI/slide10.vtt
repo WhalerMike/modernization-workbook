@@ -1,0 +1,101 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.837
+On the user side, Entra certificate-based
+authentication is a relying party.
+
+2
+00:00:04.837 --> 00:00:07.852
+It validates certificates and issues none,
+
+3
+00:00:07.852 --> 00:00:12.625
+so its risk is the opposite: a
+certificate that should fail might pass.
+
+4
+00:00:12.625 --> 00:00:14.737
+Trust and revocation first.
+
+5
+00:00:14.737 --> 00:00:19.251
+Upload every CA in the chain
+to the PKI-based trust store.
+
+6
+00:00:19.251 --> 00:00:21.299
+Each CA gets one HTTP CRL,
+
+7
+00:00:21.299 --> 00:00:27.037
+which Entra ID must download within
+ten seconds or the sign-in fails.
+
+8
+00:00:27.037 --> 00:00:29.701
+There's no OCSP and no LDAP.
+
+9
+00:00:29.701 --> 00:00:31.836
+Turn on Require CRL validation,
+
+10
+00:00:31.836 --> 00:00:37.012
+because a CA uploaded without a CRL
+lets revoked certificates keep working.
+
+11
+00:00:37.012 --> 00:00:38.013
+Then binding.
+
+12
+00:00:38.013 --> 00:00:39.763
+Issuer and serial number,
+
+13
+00:00:39.763 --> 00:00:44.013
+subject key identifier and
+public-key hash are high affinity.
+
+14
+00:00:44.013 --> 00:00:48.175
+Principal name, email, subject,
+and issuer plus subject are low;
+
+15
+00:00:48.175 --> 00:00:51.276
+the old guide called
+issuer plus subject high.
+
+16
+00:00:51.276 --> 00:00:56.825
+A certificate counts as multifactor only
+when a PIN or biometric protects it:
+
+17
+00:00:56.825 --> 00:00:59.513
+a PIV card, not a software certificate.
+
+18
+00:00:59.513 --> 00:01:03.750
+And staged rollout is a temporary
+test, limited to ten groups.
+
+19
+00:01:03.750 --> 00:01:06.252
+Production requires high affinity,
+
+20
+00:01:06.252 --> 00:01:09.838
+because CBA is only as strong
+as its weakest binding.
+
+21
+00:01:09.838 --> 00:01:14.106
+But switch only once every user's
+certificate user IDs are right,
+
+22
+00:01:14.106 --> 00:01:16.100
+or those users are locked out.

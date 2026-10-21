@@ -1,0 +1,88 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.212
+Once it's running, one policy
+plane is only an improvement
+
+2
+00:00:03.212 --> 00:00:06.375
+if divisions can still run
+their own networks through it.
+
+3
+00:00:06.375 --> 00:00:11.692
+So each division gets a scope covering
+its own zones, IP spaces and DHCP scopes,
+
+4
+00:00:11.692 --> 00:00:14.516
+with manager, operator and auditor roles,
+
+5
+00:00:14.516 --> 00:00:18.088
+and automation accounts are
+held to the same scopes.
+
+6
+00:00:18.088 --> 00:00:22.615
+Infrastructure as code, ITSM
+workflows and ACME DNS-01
+
+7
+00:00:22.615 --> 00:00:28.149
+certificate automation all go
+through one API and one audit trail.
+
+8
+00:00:28.149 --> 00:00:32.038
+Locator records are resolved
+every 15 minutes from every site
+
+9
+00:00:32.038 --> 00:00:35.925
+and virtual network until the
+last domain controller retires.
+
+10
+00:00:35.925 --> 00:00:39.668
+Drift reports compare the source
+of truth with every copy,
+
+11
+00:00:39.668 --> 00:00:43.412
+and hygiene jobs catch stale
+records and dangling CNAMEs.
+
+12
+00:00:43.412 --> 00:00:47.201
+The evidence floor is M-26-14.
+
+13
+00:00:47.201 --> 00:00:51.841
+It doesn't name DNS, but it requires
+logs that show source and destination
+
+14
+00:00:51.841 --> 00:00:57.177
+addresses, ports and sessions, searchable
+for six months and retrievable for a year,
+
+15
+00:00:57.177 --> 00:01:02.050
+and readily available to the agency's
+top-level security operations center.
+
+16
+00:01:02.050 --> 00:01:04.807
+Query logs, encrypted queries included,
+
+17
+00:01:04.807 --> 00:01:10.238
+and DHCP lease history with MAC and IP
+addresses are how the name layer meets it.
+
+18
+00:01:10.238 --> 00:01:13.870
+The lease history is what
+turns an address into a device.

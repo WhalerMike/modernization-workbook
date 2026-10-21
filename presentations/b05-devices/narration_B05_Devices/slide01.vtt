@@ -1,0 +1,44 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.672
+This briefing comes from Book 05 of
+the Federal Modernization Workbook,
+
+2
+00:00:04.672 --> 00:00:07.830
+Devices and Endpoints:
+the move from Group Policy
+
+3
+00:00:07.830 --> 00:00:10.988
+to Intune for devices, and
+to Azure Arc for servers.
+
+4
+00:00:10.988 --> 00:00:12.995
+I'll take it through four questions:
+
+5
+00:00:12.995 --> 00:00:16.940
+why Group Policy can't simply be
+carried to the cloud, what replaces it,
+
+6
+00:00:16.940 --> 00:00:20.124
+who owns the endpoint, and
+how to migrate a fleet without
+
+7
+00:00:20.124 --> 00:00:23.238
+losing the governance Group
+Policy quietly provided.
+
+8
+00:00:23.238 --> 00:00:26.213
+The short version: this is
+not a settings migration.
+
+9
+00:00:26.213 --> 00:00:27.840
+It's a governance rebuild.

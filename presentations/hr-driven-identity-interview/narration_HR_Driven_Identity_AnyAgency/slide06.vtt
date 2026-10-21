@@ -1,0 +1,122 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.225
+This is the heart of the proposal, and
+it's the programmatic data knowledge.
+
+2
+00:00:04.225 --> 00:00:08.762
+OPM already defines the personnel
+data every agency records.
+
+3
+00:00:08.762 --> 00:00:12.912
+Agency and subelement give the
+legal employer and component.
+
+4
+00:00:12.912 --> 00:00:15.462
+Duty station is the location of record.
+
+5
+00:00:15.462 --> 00:00:20.700
+Series, pay plan and grade give a
+position category for role-based access.
+
+6
+00:00:20.700 --> 00:00:24.287
+Supervisory status tells us
+who can approve and review.
+
+7
+00:00:24.287 --> 00:00:27.451
+Tenure and appointment type
+drive the worker type.
+
+8
+00:00:27.451 --> 00:00:30.721
+And the nature-of-action
+code, with its effective date,
+
+9
+00:00:30.721 --> 00:00:33.100
+tells us what just happened — next slide.
+
+10
+00:00:33.100 --> 00:00:37.125
+Why build on OPM's standard rather
+than on Oracle's field names?
+
+11
+00:00:37.125 --> 00:00:40.983
+Because OPM standards provide
+a common federal vocabulary
+
+12
+00:00:40.983 --> 00:00:44.300
+that agencies can map into
+a shared canonical model.
+
+13
+00:00:44.300 --> 00:00:49.083
+We map them to Entra ID and AD once,
+for every employee population —
+
+14
+00:00:49.083 --> 00:00:53.325
+and if the HR vendor ever
+changes, the mapping still holds.
+
+15
+00:00:53.325 --> 00:00:57.650
+One honest limit: HRIT covers
+federal employees only.
+
+16
+00:00:57.650 --> 00:00:59.502
+In the processes I have observed,
+
+17
+00:00:59.502 --> 00:01:02.863
+contractors and vendors are
+tracked in COR spreadsheets.
+
+18
+00:01:02.863 --> 00:01:05.752
+A contractor authority
+decision is required,
+
+19
+00:01:05.752 --> 00:01:08.946
+and I propose evaluating
+three candidate sources:
+
+20
+00:01:08.946 --> 00:01:12.064
+Core HCM's Contingent Worker
+type — a person record,
+
+21
+00:01:12.064 --> 00:01:15.410
+an assignment and a lifecycle
+much like an employee's,
+
+22
+00:01:15.410 --> 00:01:18.984
+though with no vendor-management
+layer; PIV sponsorship;
+
+23
+00:01:18.984 --> 00:01:21.494
+and a contractor suitability register,
+
+24
+00:01:21.494 --> 00:01:26.437
+which ties each contractor to an agency
+contract with a suitability decision.
+
+25
+00:01:26.437 --> 00:01:29.550
+That's a decision to put in
+front of the program early.

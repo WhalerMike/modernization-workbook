@@ -25,11 +25,11 @@ const arrow = (s, name, x, y) => txt(s, name, "›", { x, y, w: 0.3, h: 0.75, fo
   const s = D.titleSlide("Why DNS", "Why Is DNS Now the Control Plane?", "Book 08 — DNS, DHCP & IPAM");
   D.agenda(s, 0.8, 4.7, 6.6);
   txt(s, "Series line", [
-    { text: "Modernization Workbook", options: { bold: true, color: HEX.navy, breakLine: true } },
+    { text: "Federal Modernization Workbook", options: { bold: true, color: HEX.navy, breakLine: true } },
     { text: "A 15-minute briefing on the book's argument and plan", options: { color: HEX.slate } },
   ], { x: 0.8, y: 5.6, w: 8, h: 0.8, fontSize: 16 });
   narrate(s,
-`This briefing comes from Book 08 of the Modernization Workbook, DNS, DHCP and IPAM: governing the name and address layer as one control plane across the data center, every cloud and the branch edge.
+`This briefing comes from Book 08 of the Federal Modernization Workbook, DNS, DHCP and IPAM: governing the name and address layer as one control plane across the data center, every cloud and the branch edge.
 
 I'll take four questions: why DNS is now the control plane, what has to change, who owns it, and how to migrate and run it.
 

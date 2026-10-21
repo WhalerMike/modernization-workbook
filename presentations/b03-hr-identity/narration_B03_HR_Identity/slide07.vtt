@@ -1,0 +1,105 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.375
+Who has to be involved.
+
+2
+00:00:01.375 --> 00:00:05.038
+This is an organizational change
+as much as a technical one.
+
+3
+00:00:05.038 --> 00:00:05.887
+Owners.
+
+4
+00:00:05.887 --> 00:00:09.888
+HR owns the personnel data and
+its quality, at the source.
+
+5
+00:00:09.888 --> 00:00:16.225
+The OPM HR 2.0 program owns the platform,
+the standards and the interconnection.
+
+6
+00:00:16.225 --> 00:00:18.875
+And each contractor source
+owns its own record.
+
+7
+00:00:18.875 --> 00:00:19.775
+Users.
+
+8
+00:00:19.775 --> 00:00:25.850
+The CIO's identity team runs Entra ID,
+Active Directory and access from that data.
+
+9
+00:00:25.850 --> 00:00:30.125
+Security sets the Zero Trust
+policy and owns the leaver path.
+
+10
+00:00:30.125 --> 00:00:34.162
+And the help desk moves from routine
+tickets to handling exceptions.
+
+11
+00:00:34.162 --> 00:00:34.975
+Guards.
+
+12
+00:00:34.975 --> 00:00:37.475
+The privacy office is in from the start.
+
+13
+00:00:37.475 --> 00:00:42.652
+Sharing HR records with identity inside
+the agency normally rests on the Privacy
+
+14
+00:00:42.652 --> 00:00:44.403
+Act's need-to-know provision,
+
+15
+00:00:44.403 --> 00:00:47.982
+while disclosures outside the
+agency need a routine use,
+
+16
+00:00:47.982 --> 00:00:51.255
+so the privacy office decides
+the basis for each leg,
+
+17
+00:00:51.255 --> 00:00:55.062
+along with the privacy impact
+assessment and minimization.
+
+18
+00:00:55.062 --> 00:00:58.225
+The PIV office owns
+issuance and termination.
+
+19
+00:00:58.225 --> 00:01:04.150
+And the ISSO and authorizing official
+own the evidence and any accepted risk.
+
+20
+00:01:04.150 --> 00:01:07.660
+The data architect ties it
+together: owning the standards,
+
+21
+00:01:07.660 --> 00:01:12.632
+the crosswalk and the person key, making
+sure every attribute has one accountable
+
+22
+00:01:12.632 --> 00:01:17.380
+owner, and carrying the standard to the
+interagency forums where it's adopted.

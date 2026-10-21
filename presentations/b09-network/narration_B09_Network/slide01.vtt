@@ -1,0 +1,36 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.720
+This briefing comes from Book 09 of
+the Federal Modernization Workbook,
+
+2
+00:00:04.720 --> 00:00:08.690
+Network and Transport: how to
+move branch traffic off the long
+
+3
+00:00:08.690 --> 00:00:12.738
+hairpin without turning a latency
+gain into a compliance loss.
+
+4
+00:00:12.738 --> 00:00:16.651
+I'll take four questions: why
+physics decides the architecture,
+
+5
+00:00:16.651 --> 00:00:20.263
+what has to change, who owns the
+network, and how to get there.
+
+6
+00:00:20.263 --> 00:00:23.555
+The short version: no product
+shortens a fiber path,
+
+7
+00:00:23.555 --> 00:00:27.220
+so buy transport on physics,
+and govern it as compliance.

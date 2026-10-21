@@ -3,6 +3,7 @@
 Writes, next to the deck:
   narration/slideNN.mp3       one clip per slide
   narration/durations.json    seconds per clip
+  narration/sentences.json    sentence timings per clip, [start s, duration s, spoken text] (for captions.py)
   <deck>_Narration_Script.md   the clean spoken script (practice copy)
 """
 import asyncio
@@ -62,7 +63,21 @@ def spoken(text: str) -> str:
     return text
 
 
+async def synth(text: str, mp3: Path) -> list:
+    """Write one clip; return its sentence timings as [start s, duration s, spoken text] (for captions)."""
+    sents = []
+    with open(mp3, "wb") as f:
+        async for ch in edge_tts.Communicate(text, VOICE, rate=RATE, boundary="SentenceBoundary").stream():
+            if ch["type"] == "audio":
+                f.write(ch["data"])
+            elif ch["type"] == "SentenceBoundary":
+                sents.append([round(ch["offset"] / 1e7, 3), round(ch["duration"] / 1e7, 3), ch["text"]])
+    return sents
+
+
 async def main():
+    timing_file = OUT / "sentences.json"
+    timings = json.loads(timing_file.read_text(encoding="utf-8")) if timing_file.exists() else {}
     prs = Presentation(DECK)
     script, durations = [f"# {prs.core_properties.title or DECK.stem} — narration script (practice copy)\n"], {}
     for i, slide in enumerate(prs.slides, 1):
@@ -75,10 +90,11 @@ async def main():
             text = re.sub(r"^Leave up during questions.*?\n", "", text).strip()
         script.append(f"\n## Slide {i} — {title}\n\n{text}\n")
         mp3 = OUT / f"slide{i:02d}.mp3"
-        if not (mp3.exists() and mp3.stat().st_size > 10000):
+        # A clip is re-recorded if it is missing, truncated, or has no sentence timings (captions need them).
+        if not (mp3.exists() and mp3.stat().st_size > 10000 and str(i) in timings):
             for attempt in range(5):
                 try:
-                    await edge_tts.Communicate(spoken(text), VOICE, rate=RATE).save(str(mp3))
+                    timings[str(i)] = await synth(spoken(text), mp3)
                     secs = MP3(mp3).info.length
                     if secs < 0.2 * len(text.split()):  # truncated stream (normal ~0.3-0.43 s/word; truncations ~0.1)
                         raise RuntimeError(f"truncated: {secs:.1f}s for {len(text.split())} words")
@@ -91,6 +107,8 @@ async def main():
         durations[i] = round(MP3(mp3).info.length, 2)
         print(f"slide {i:2d}: {durations[i]:6.1f}s  {title[:60]}")
     (OUT / "durations.json").write_text(json.dumps(durations, indent=1), encoding="utf-8")
+    timings = {k: v for k, v in timings.items() if int(k) in durations}
+    (OUT / "sentences.json").write_text(json.dumps(timings, indent=1), encoding="utf-8")
     (DECK.parent / f"{DECK.stem}_Narration_Script.md").write_text("".join(script), encoding="utf-8")
     last = max(durations)
     total = sum(v for k, v in durations.items() if k != last)

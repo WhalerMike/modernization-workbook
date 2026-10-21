@@ -1,0 +1,772 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.156
+This briefing comes from
+Book 04 of the Federal
+
+2
+00:00:03.156 --> 00:00:06.263
+Modernization Workbook,
+Access and Privilege.
+
+3
+00:00:06.263 --> 00:00:08.750
+Book 02 moved the identity.
+
+4
+00:00:08.750 --> 00:00:11.788
+Book 03 made its facts trustworthy.
+
+5
+00:00:11.788 --> 00:00:16.683
+This book is about what happens with them
+on every sign-in: who gets access to what,
+
+6
+00:00:16.683 --> 00:00:18.167
+under which conditions,
+
+7
+00:00:18.167 --> 00:00:22.025
+and how administrator power is
+kept from becoming an open door.
+
+8
+00:00:22.025 --> 00:00:24.512
+I'll take it through
+why, what, who and how.
+
+9
+00:00:24.512 --> 00:00:29.723
+The short version: in Zero Trust, every
+access decision is a policy decision,
+
+10
+00:00:29.723 --> 00:00:34.620
+and the policy library is the
+agency's access control in practice.
+
+11
+00:00:35.370 --> 00:00:38.520
+Why is every access
+decision a policy decision?
+
+12
+00:00:38.520 --> 00:00:43.158
+Because federal Zero Trust policy says
+so, and the platform works that way.
+
+13
+00:00:43.158 --> 00:00:47.547
+OMB M-22-09 requires that
+every access request be
+
+14
+00:00:47.547 --> 00:00:51.333
+evaluated and that network
+location confer no trust.
+
+15
+00:00:51.333 --> 00:00:56.282
+NIST Special Publication 800-207
+describes the architecture:
+
+16
+00:00:56.282 --> 00:01:00.795
+a policy decision point, separate from
+the places where access is enforced.
+
+17
+00:01:00.795 --> 00:01:05.245
+In Microsoft Entra ID, that decision
+point is Conditional Access.
+
+18
+00:01:05.245 --> 00:01:09.812
+It decides by rule: every applicable
+policy must be satisfied,
+
+19
+00:01:09.812 --> 00:01:13.483
+a block wins, and exclusions
+override everything.
+
+20
+00:01:13.483 --> 00:01:17.408
+What it replaces is access decided
+once and trusted afterward.
+
+21
+00:01:17.408 --> 00:01:19.857
+Inside the network, therefore trusted.
+
+22
+00:01:19.857 --> 00:01:22.670
+In the group, therefore allowed, forever.
+
+23
+00:01:22.670 --> 00:01:25.254
+Those assumptions survive
+a migration unless
+
+24
+00:01:25.254 --> 00:01:27.970
+someone deliberately
+replaces them with policy.
+
+25
+00:01:27.970 --> 00:01:30.258
+Two consequences run through the book.
+
+26
+00:01:30.258 --> 00:01:35.271
+Every exclusion is a standing hole, so
+each one needs an owner and a review.
+
+27
+00:01:35.271 --> 00:01:39.071
+And policy is only as good
+as the attributes it reads,
+
+28
+00:01:39.071 --> 00:01:41.810
+which is why Book 03 matters here.
+
+29
+00:01:42.560 --> 00:01:47.085
+The same logic applies to administrators,
+and this is where most breaches go.
+
+30
+00:01:47.085 --> 00:01:50.381
+A standing administrator
+is always on, at any hour,
+
+31
+00:01:50.381 --> 00:01:55.285
+so any stolen credential or session
+that reaches the role yields all of it.
+
+32
+00:01:55.285 --> 00:01:57.514
+Stronger authentication helps,
+
+33
+00:01:57.514 --> 00:02:01.147
+but it doesn't narrow what the
+role can do, where, or when.
+
+34
+00:02:01.147 --> 00:02:06.270
+An eligible administrator is different:
+the role is activated only when needed,
+
+35
+00:02:06.270 --> 00:02:10.539
+for a set time, with approval from
+someone other than the requester,
+
+36
+00:02:10.539 --> 00:02:13.722
+a fresh strong sign-in, and
+a log of every elevation.
+
+37
+00:02:13.722 --> 00:02:19.441
+NSA and CISA rank poor separation of user
+and administrator privilege among the most
+
+38
+00:02:19.441 --> 00:02:25.002
+common misconfigurations they find, and
+NIST control AC-6 requires least privilege,
+
+39
+00:02:25.002 --> 00:02:28.497
+recurring reviews and logged
+privileged functions.
+
+40
+00:02:28.497 --> 00:02:33.478
+There's one standing exception: two
+break-glass accounts stay permanently active,
+
+41
+00:02:33.478 --> 00:02:36.847
+so the tenant can be recovered
+if everything else fails.
+
+42
+00:02:36.847 --> 00:02:41.311
+They're safe only when they're
+governed: phishing-resistant, monitored,
+
+43
+00:02:41.311 --> 00:02:46.990
+tested every ninety days, and documented as
+a deviation in the system security plan.
+
+44
+00:02:47.740 --> 00:02:50.428
+What does the policy
+engine actually evaluate?
+
+45
+00:02:50.428 --> 00:02:55.056
+Signals first: the user, their
+groups and roles; the device;
+
+46
+00:02:55.056 --> 00:02:59.489
+the application; the location;
+and sign-in and user risk.
+
+47
+00:02:59.489 --> 00:03:03.515
+Conditions decide which policies
+apply to this particular request.
+
+48
+00:03:03.515 --> 00:03:09.166
+Then controls: block, or grant with requirements
+such as multifactor authentication,
+
+49
+00:03:09.166 --> 00:03:12.906
+a specific authentication
+strength, a compliant device,
+
+50
+00:03:12.906 --> 00:03:16.090
+an app protection policy,
+or acceptance of terms.
+
+51
+00:03:16.090 --> 00:03:19.690
+And session controls, like
+how often to re-authenticate.
+
+52
+00:03:19.690 --> 00:03:22.390
+Three operating rules
+run through the library.
+
+53
+00:03:22.390 --> 00:03:25.553
+Every policy runs in
+report-only mode first,
+
+54
+00:03:25.553 --> 00:03:28.715
+so its impact is visible
+before it enforces.
+
+55
+00:03:28.715 --> 00:03:32.278
+Policies target personas,
+admins, internal staff,
+
+56
+00:03:32.278 --> 00:03:35.840
+guests and workload
+identities, not individuals.
+
+57
+00:03:35.840 --> 00:03:40.604
+And deletion isn't final: deleted
+policies are recoverable for thirty days,
+
+58
+00:03:40.604 --> 00:03:44.215
+and a tenant can hold up to
+two hundred and forty policies.
+
+59
+00:03:44.215 --> 00:03:49.715
+One recent platform change matters:
+the approved client app grant became
+
+60
+00:03:49.715 --> 00:03:56.030
+read-only on June 30, 2026, so mobile access
+now relies on app protection policies.
+
+61
+00:03:56.780 --> 00:03:58.455
+What's the structure underneath?
+
+62
+00:03:58.455 --> 00:04:01.080
+Two parts: privilege and applications.
+
+63
+00:04:01.080 --> 00:04:05.041
+For privilege: use the least-privileged
+built-in role for each task;
+
+64
+00:04:05.041 --> 00:04:09.218
+keep fewer than five Global
+Administrators, as Microsoft recommends;
+
+65
+00:04:09.218 --> 00:04:10.875
+use role-assignable groups,
+
+66
+00:04:10.875 --> 00:04:15.628
+which take assigned membership only and
+are limited to five hundred per tenant;
+
+67
+00:04:15.628 --> 00:04:19.446
+and tier everything along
+Microsoft's enterprise access model,
+
+68
+00:04:19.446 --> 00:04:24.055
+which builds on the old Active Directory
+tier model rather than replacing it.
+
+69
+00:04:24.055 --> 00:04:28.317
+For applications: application
+owners actually hold administrator
+
+70
+00:04:28.317 --> 00:04:32.580
+rights over their app, including
+adding a credential, so keep them few.
+
+71
+00:04:32.580 --> 00:04:35.317
+Admin consent goes through
+a governed workflow.
+
+72
+00:04:35.317 --> 00:04:39.626
+Applications authenticate with
+certificates or federated credentials
+
+73
+00:04:39.626 --> 00:04:43.379
+rather than secrets, and Azure
+workloads use managed identities.
+
+74
+00:04:43.379 --> 00:04:46.750
+What people get wrong:
+consent grants never expire,
+
+75
+00:04:46.750 --> 00:04:50.280
+and revoking one leaves
+already-issued tokens valid.
+
+76
+00:04:50.280 --> 00:04:54.530
+So application access needs the
+same review discipline as people.
+
+77
+00:04:55.280 --> 00:04:57.830
+Who decides access, and who executes it?
+
+78
+00:04:57.830 --> 00:04:59.580
+The book keeps those apart.
+
+79
+00:04:59.580 --> 00:05:04.442
+Deciding: business and application owners
+decide who should have access and why.
+
+80
+00:05:04.442 --> 00:05:08.131
+The CISO owns the policy
+baseline and its exceptions.
+
+81
+00:05:08.131 --> 00:05:11.867
+And an identity governance office
+owns approval chains and reviews.
+
+82
+00:05:11.867 --> 00:05:15.655
+Executing: identity engineering
+builds the policies,
+
+83
+00:05:15.655 --> 00:05:18.854
+the PIM settings, consent
+and access packages.
+
+84
+00:05:18.854 --> 00:05:21.793
+The help desk handles
+assignments under a scoped role.
+
+85
+00:05:21.793 --> 00:05:26.480
+Security operations handles alerts,
+risky sign-ins and response.
+
+86
+00:05:26.480 --> 00:05:31.067
+Assuring: the ISSO owns the evidence
+and findings, the authorizing
+
+87
+00:05:31.067 --> 00:05:36.155
+official owns accepted risk, and
+reviewers recertify access on schedule.
+
+88
+00:05:36.155 --> 00:05:37.964
+The rule that holds it together:
+
+89
+00:05:37.964 --> 00:05:41.305
+the people who execute access
+changes never approve them.
+
+90
+00:05:41.305 --> 00:05:45.856
+That's why the help desk works under a
+custom role that manages assignments only,
+
+91
+00:05:45.856 --> 00:05:49.993
+while consent and administrator
+roles stay with identity engineering.
+
+92
+00:05:49.993 --> 00:05:53.799
+The old guide gave the help
+desk Application Administrator,
+
+93
+00:05:53.799 --> 00:05:58.870
+which can grant consent and act as any
+app, so that rule existed only on paper.
+
+94
+00:05:59.620 --> 00:06:00.233
+How.
+
+95
+00:06:00.233 --> 00:06:03.544
+The policy library is
+rolled out in five waves.
+
+96
+00:06:03.544 --> 00:06:08.220
+Wave one is the foundation, starting
+with blocking legacy authentication.
+
+97
+00:06:08.220 --> 00:06:12.284
+Wave two is administrators:
+phishing-resistant authentication
+
+98
+00:06:12.284 --> 00:06:15.670
+and sign-in only from
+privileged access workstations.
+
+99
+00:06:15.670 --> 00:06:21.608
+Wave three is everyone: an MFA
+baseline plus device and app controls.
+
+100
+00:06:21.608 --> 00:06:25.758
+Wave four is risk: blocking
+high-risk users and sign-ins.
+
+101
+00:06:25.758 --> 00:06:28.616
+And wave five covers
+the remaining segments,
+
+102
+00:06:28.616 --> 00:06:31.783
+guests and workload
+identities, and the end state.
+
+103
+00:06:31.783 --> 00:06:36.378
+Every policy passes the same gates:
+two to four weeks in report-only,
+
+104
+00:06:36.378 --> 00:06:41.057
+then a pilot ring, then expanding
+rings, then enforced and monitored.
+
+105
+00:06:41.057 --> 00:06:45.332
+A wave starts only after the previous
+one has run a week without incident.
+
+106
+00:06:45.332 --> 00:06:50.695
+And rollback means switching a policy off
+or back to report-only, never deleting it.
+
+107
+00:06:50.695 --> 00:06:53.420
+The library is built to CISA's baseline.
+
+108
+00:06:53.420 --> 00:07:01.807
+It keeps Book 02's policies CA001 to CA017
+and adds CA018 to CA038 for the BOD 25-01
+
+109
+00:07:01.807 --> 00:07:07.144
+Entra ID requirements, including
+blocking high-risk users
+
+110
+00:07:07.144 --> 00:07:12.400
+and requiring phishing-resistant
+MFA for all members.
+
+111
+00:07:13.150 --> 00:07:15.720
+For administrators, Privileged Identity
+
+112
+00:07:15.720 --> 00:07:18.950
+Management turns privilege
+into a governed request.
+
+113
+00:07:18.950 --> 00:07:22.900
+An administrator holds an eligible
+assignment, not an active one.
+
+114
+00:07:22.900 --> 00:07:27.031
+To use it, they request activation
+with a justification and a ticket;
+
+115
+00:07:27.031 --> 00:07:31.604
+step up through an authentication
+context; get approval from someone else;
+
+116
+00:07:31.604 --> 00:07:36.325
+and receive a time-boxed activation that's
+logged, alerted and later reviewed.
+
+117
+00:07:36.325 --> 00:07:39.725
+The details matter, and the
+old guides had several wrong.
+
+118
+00:07:39.725 --> 00:07:42.679
+Activation can run from
+one to twenty-four hours,
+
+119
+00:07:42.679 --> 00:07:47.037
+and the approval window is a fixed
+twenty-four hours with a single stage.
+
+120
+00:07:47.037 --> 00:07:52.047
+PIM's built-in MFA can be satisfied by
+an earlier sign-in in the same session,
+
+121
+00:07:52.047 --> 00:07:56.563
+so the book uses an authentication
+context to force a fresh step-up.
+
+122
+00:07:56.563 --> 00:08:00.793
+Approvers can't approve their own
+requests, and if a role has no approvers
+
+123
+00:08:00.793 --> 00:08:05.800
+configured, active Privileged Role
+Administrators become the approvers by default.
+
+124
+00:08:05.800 --> 00:08:09.613
+And licensing: PIM needs
+Entra ID P2 or ID Governance,
+
+125
+00:08:09.613 --> 00:08:14.225
+and if those licenses lapse,
+eligible assignments are removed.
+
+126
+00:08:14.225 --> 00:08:18.545
+Appendix B sets every role's
+activation time, approvers,
+
+127
+00:08:18.545 --> 00:08:25.210
+context and notifications, tighter for Tier
+0 and Tier 1 than Book 02's first table.
+
+128
+00:08:25.960 --> 00:08:29.123
+Finally, governance, code and evidence.
+
+129
+00:08:29.123 --> 00:08:34.700
+Governance: access is requested through
+access packages with approval and expiry;
+
+130
+00:08:34.700 --> 00:08:40.197
+reviews run on a tiered cadence; and the
+book reviews groups, not just applications.
+
+131
+00:08:40.197 --> 00:08:42.722
+Guests have sponsors and are reviewed too.
+
+132
+00:08:42.722 --> 00:08:44.577
+As code: Conditional Access,
+
+133
+00:08:44.577 --> 00:08:48.447
+PIM settings and access packages
+live in version control.
+
+134
+00:08:48.447 --> 00:08:51.347
+Changes go through review
+rather than the portal,
+
+135
+00:08:51.347 --> 00:08:55.518
+drift is monitored against a baseline,
+and results are exported before
+
+136
+00:08:55.518 --> 00:08:59.760
+a baseline is changed, because changing
+it erases that monitor's history.
+
+137
+00:08:59.760 --> 00:09:05.118
+Evidence: the book maps all of
+this to the access-control,
+
+138
+00:09:05.118 --> 00:09:11.291
+identification and continuous-monitoring
+controls, AC-2, AC-3,
+
+139
+00:09:11.291 --> 00:09:17.347
+AC-6, IA-2 and CA-7, with every
+elevation and every review on record.
+
+140
+00:09:17.347 --> 00:09:18.923
+Two traps in the tooling.
+
+141
+00:09:18.923 --> 00:09:23.240
+Reviewing an application doesn't remove
+members of the groups assigned to it,
+
+142
+00:09:23.240 --> 00:09:25.735
+so the groups themselves
+have to be reviewed.
+
+143
+00:09:25.735 --> 00:09:30.584
+And Entra keeps sign-in and audit
+logs only thirty days with P1 or P2,
+
+144
+00:09:30.584 --> 00:09:34.300
+so the evidence has to be
+exported from day one.
+
+145
+00:09:35.050 --> 00:09:36.275
+So, four asks.
+
+146
+00:09:36.275 --> 00:09:39.811
+Adopt the library: Book
+04's Conditional Access
+
+147
+00:09:39.811 --> 00:09:43.800
+library and wave plan as the
+agency's access baseline.
+
+148
+00:09:43.800 --> 00:09:48.149
+End standing privilege: every
+administrator role eligible through PIM,
+
+149
+00:09:48.149 --> 00:09:52.425
+with two governed break-glass accounts
+as the only standing exception.
+
+150
+00:09:52.425 --> 00:09:55.623
+Separate deciding from
+executing: name the owners,
+
+151
+00:09:55.623 --> 00:09:59.962
+scope the help desk role, and stand
+up the identity governance office.
+
+152
+00:09:59.962 --> 00:10:02.885
+And manage access as
+code: version control,
+
+153
+00:10:02.885 --> 00:10:07.312
+review and drift monitoring, with
+the evidence kept from day one.
+
+154
+00:10:07.312 --> 00:10:11.612
+In Zero Trust, every access
+decision is a policy decision.
+
+155
+00:10:11.612 --> 00:10:14.081
+Writing that policy down, testing it,
+
+156
+00:10:14.081 --> 00:10:18.524
+and proving it ran is how an agency
+knows who can reach what, and why.
+
+157
+00:10:18.524 --> 00:10:24.325
+Book 04 has the full library and settings,
+with every external claim footnoted.
+
+158
+00:10:24.325 --> 00:10:28.925
+Book 05 covers the device compliance
+that Conditional Access reads.
+
+159
+00:10:28.925 --> 00:10:29.740
+Thank you.

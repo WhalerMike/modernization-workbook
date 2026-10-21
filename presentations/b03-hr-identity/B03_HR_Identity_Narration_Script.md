@@ -2,7 +2,7 @@
 
 ## Slide 1 — Why Should HR Decide Who Exists?
 
-This briefing comes from Book 03 of the Modernization Workbook, HR-Driven Identity.
+This briefing comes from Book 03 of the Federal Modernization Workbook, HR-Driven Identity.
 
 It has one proposal, and I'll take it through four questions, the way I'd take it to leadership: why it matters, what we should do, who has to be involved, and how we'd carry it out and know it's working.
 

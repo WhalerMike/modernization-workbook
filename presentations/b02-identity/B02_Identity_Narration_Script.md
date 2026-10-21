@@ -2,7 +2,7 @@
 
 ## Slide 1 — Why Does Identity Matter?
 
-This briefing comes from Book 02 of the Modernization Workbook, Identity and Directory: the move from Active Directory to Entra ID.
+This briefing comes from Book 02 of the Federal Modernization Workbook, Identity and Directory: the move from Active Directory to Entra ID.
 
 I'll take it through four questions. Why identity matters now. What actually changes when a directory moves to the cloud. Who has to own which decisions. And how to do it without losing the governance that twenty-five years of Active Directory quietly carried.
 

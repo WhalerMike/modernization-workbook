@@ -1,0 +1,79 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.475
+What changes starts
+with the estate itself.
+
+2
+00:00:02.475 --> 00:00:06.962
+Before touching authentication, every
+instance gets one of three verdicts.
+
+3
+00:00:06.962 --> 00:00:12.302
+Retain: it's supported or can be upgraded
+in place to SQL Server 2022 or later,
+
+4
+00:00:12.302 --> 00:00:17.038
+it carries load-bearing work, and
+nothing argues for collapsing it.
+
+5
+00:00:17.038 --> 00:00:22.663
+Consolidate: its workload moves into a target
+platform and the old instance retires.
+
+6
+00:00:22.663 --> 00:00:27.488
+Retire: there's no live workload, so
+it's decommissioned instead of migrated.
+
+7
+00:00:27.488 --> 00:00:30.113
+The inventory has to
+cover the whole forest.
+
+8
+00:00:30.113 --> 00:00:34.675
+The setspn tool needs its -F switch
+to search beyond a single domain.
+
+9
+00:00:34.675 --> 00:00:38.026
+Usage, versions and
+dependencies are read together,
+
+10
+00:00:38.026 --> 00:00:42.934
+and the book warns that index-usage
+counters reset when SQL Server restarts,
+
+11
+00:00:42.934 --> 00:00:45.350
+so they can't prove disuse on their own.
+
+12
+00:00:45.350 --> 00:00:50.767
+And the assessment uses the migration
+component in SQL Server Management Studio,
+
+13
+00:00:50.767 --> 00:00:55.387
+because Microsoft retired the Data
+Migration Assistant in July 2025.
+
+14
+00:00:55.387 --> 00:00:57.388
+This is the gate for the whole program.
+
+15
+00:00:57.388 --> 00:00:59.867
+Migrating an instance
+that should have been
+
+16
+00:00:59.867 --> 00:01:02.660
+retired is the most expensive
+mistake it can make.

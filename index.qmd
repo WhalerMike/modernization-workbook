@@ -407,7 +407,7 @@ format:
       <div class="arc-phase"><div class="phase-num">8</div><div class="phase-name">Books</div><div class="phase-desc">Published as drafts, from identity to the network</div></div>
       <div class="arc-phase"><div class="phase-num">110</div><div class="phase-name">Chapters</div><div class="phase-desc">Plus twenty appendices of checklists, matrices, mappings and templates</div></div>
       <div class="arc-phase"><div class="phase-num">4</div><div class="phase-name">Questions</div><div class="phase-desc">Why, What, Who and How, in that order, in every book</div></div>
-      <div class="arc-phase"><div class="phase-num">15</div><div class="phase-name">Minutes</div><div class="phase-desc">A presentation per book, most with a narrated edition</div></div>
+      <div class="arc-phase"><div class="phase-num">15</div><div class="phase-name">Minutes</div><div class="phase-desc">A presentation per book, each with a narrated, captioned edition</div></div>
     </div>
   </div>
 </section>
@@ -457,7 +457,7 @@ format:
 <section class="mw-section cta-band">
   <p class="section-label">Present It</p>
   <h2 class="section-title">Fifteen minutes per book, ready to give.</h2>
-  <p class="section-body">Every book has a Why / What / Who / How deck with full speaker notes and sourced slides, and most have a narrated, self-running edition.</p>
+  <p class="section-body">Every book has a Why / What / Who / How deck with full speaker notes and sourced slides, and a narrated, self-running edition with built-in captions.</p>
   <div class="hero-actions">
     <a class="btn-primary" href="docs/presentations/index.html">Presentations</a>
     <a class="btn-ghost" href="https://github.com/WhalerMike/modernization-workbook" target="_blank" rel="noopener">Source on GitHub</a>

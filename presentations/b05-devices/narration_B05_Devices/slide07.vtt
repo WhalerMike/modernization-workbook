@@ -1,0 +1,74 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.338
+Who owns the endpoint?
+
+2
+00:00:01.338 --> 00:00:04.212
+The book separates who decides
+from who does the work.
+
+3
+00:00:04.212 --> 00:00:10.713
+Deciding: the CISO and ISSO own the
+baselines, the exceptions and the evidence.
+
+4
+00:00:10.713 --> 00:00:14.713
+The endpoint engineering lead owns
+policy design and the rollout.
+
+5
+00:00:14.713 --> 00:00:19.976
+And the change board owns the update
+rings, the migration waves and any pause.
+
+6
+00:00:19.976 --> 00:00:23.834
+Doing: endpoint engineering
+builds the Intune policies,
+
+7
+00:00:23.834 --> 00:00:26.625
+Autopilot profiles and app deployments.
+
+8
+00:00:26.625 --> 00:00:31.513
+The server team onboards servers to
+Azure Arc and owns machine configuration.
+
+9
+00:00:31.513 --> 00:00:36.025
+Security operations runs Defender,
+the alerts and the response.
+
+10
+00:00:36.025 --> 00:00:41.687
+Consulted and affected: application owners
+supply test results and app packaging.
+
+11
+00:00:41.687 --> 00:00:45.101
+The help desk handles
+enrollment, wipe and recovery.
+
+12
+00:00:45.101 --> 00:00:48.375
+And end users join pilot
+waves and tell us what broke.
+
+13
+00:00:48.375 --> 00:00:52.875
+One rule applies to the people as
+much as the devices: least privilege.
+
+14
+00:00:52.875 --> 00:00:57.197
+Day-to-day work runs on scoped Intune
+roles, not Intune Administrator;
+
+15
+00:00:57.197 --> 00:01:02.110
+Microsoft advises against using the
+broad role for routine administration.

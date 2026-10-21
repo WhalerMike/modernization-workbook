@@ -1,0 +1,92 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.862
+Who owns the certificate estate?
+
+2
+00:00:01.862 --> 00:00:04.496
+In most forests, whoever installed the CA.
+
+3
+00:00:04.496 --> 00:00:07.283
+Domain Admins and Enterprise Admins are CA
+
+4
+00:00:07.283 --> 00:00:10.613
+administrators by default,
+and nobody decided that.
+
+5
+00:00:10.613 --> 00:00:12.850
+The book separates deciding from doing.
+
+6
+00:00:12.850 --> 00:00:16.373
+The sponsor and CIO decide
+the target hierarchy,
+
+7
+00:00:16.373 --> 00:00:22.362
+when each AD CS component retires, and who
+owns renewal for each certificate class.
+
+8
+00:00:22.362 --> 00:00:25.542
+The CISO and ISSO decide issuance policy,
+
+9
+00:00:25.542 --> 00:00:29.175
+trust anchors and the
+minimum binding strength.
+
+10
+00:00:29.175 --> 00:00:32.479
+The authorizing official
+accepts standing exceptions,
+
+11
+00:00:32.479 --> 00:00:34.237
+such as a low-affinity binding.
+
+12
+00:00:34.237 --> 00:00:40.862
+PKI and CA administrators run the CAs,
+templates, CRLs and key ceremonies.
+
+13
+00:00:40.862 --> 00:00:46.430
+The identity team owns the Entra trust store
+and bindings, endpoint engineering owns
+
+14
+00:00:46.430 --> 00:00:51.762
+the Intune profiles, and the CLM platform
+owner runs discovery and server renewal.
+
+15
+00:00:51.762 --> 00:00:54.497
+Server, network and application owners,
+
+16
+00:00:54.497 --> 00:00:58.226
+the PIV office and security
+operations are consulted.
+
+17
+00:00:58.226 --> 00:01:00.725
+The principle is separation of duties.
+
+18
+00:01:00.725 --> 00:01:05.850
+Whoever can change a CA must never be the
+only person who decides what it issues.
+
+19
+00:01:05.850 --> 00:01:08.418
+And whoever administers directory sync can
+
+20
+00:01:08.418 --> 00:01:11.180
+change which account a
+certificate signs in as.

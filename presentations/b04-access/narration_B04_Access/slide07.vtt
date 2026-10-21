@@ -1,0 +1,84 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:00.663
+How.
+
+2
+00:00:00.663 --> 00:00:03.974
+The policy library is
+rolled out in five waves.
+
+3
+00:00:03.974 --> 00:00:08.650
+Wave one is the foundation, starting
+with blocking legacy authentication.
+
+4
+00:00:08.650 --> 00:00:12.714
+Wave two is administrators:
+phishing-resistant authentication
+
+5
+00:00:12.714 --> 00:00:16.100
+and sign-in only from
+privileged access workstations.
+
+6
+00:00:16.100 --> 00:00:22.038
+Wave three is everyone: an MFA
+baseline plus device and app controls.
+
+7
+00:00:22.038 --> 00:00:26.188
+Wave four is risk: blocking
+high-risk users and sign-ins.
+
+8
+00:00:26.188 --> 00:00:29.046
+And wave five covers
+the remaining segments,
+
+9
+00:00:29.046 --> 00:00:32.213
+guests and workload
+identities, and the end state.
+
+10
+00:00:32.213 --> 00:00:36.808
+Every policy passes the same gates:
+two to four weeks in report-only,
+
+11
+00:00:36.808 --> 00:00:41.487
+then a pilot ring, then expanding
+rings, then enforced and monitored.
+
+12
+00:00:41.487 --> 00:00:45.762
+A wave starts only after the previous
+one has run a week without incident.
+
+13
+00:00:45.762 --> 00:00:51.125
+And rollback means switching a policy off
+or back to report-only, never deleting it.
+
+14
+00:00:51.125 --> 00:00:53.850
+The library is built to CISA's baseline.
+
+15
+00:00:53.850 --> 00:01:02.237
+It keeps Book 02's policies CA001 to CA017
+and adds CA018 to CA038 for the BOD 25-01
+
+16
+00:01:02.237 --> 00:01:07.574
+Entra ID requirements, including
+blocking high-risk users
+
+17
+00:01:07.574 --> 00:01:12.530
+and requiring phishing-resistant
+MFA for all members.

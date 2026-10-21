@@ -10,11 +10,11 @@ const OUT = process.argv[2] || "B07_PKI.pptx";
   const s = D.titleSlide("Why certificates", "Why Do Certificates Outlive Every Migration?", "Book 07 — PKI & Certificates");
   D.agenda(s, 0.8, 4.7, 6.6);
   txt(s, "Series line", [
-    { text: "Modernization Workbook", options: { bold: true, color: HEX.navy, breakLine: true } },
+    { text: "Federal Modernization Workbook", options: { bold: true, color: HEX.navy, breakLine: true } },
     { text: "A 15-minute briefing on the book's argument and plan", options: { color: HEX.slate } },
   ], { x: 0.8, y: 5.6, w: 8, h: 0.8, fontSize: 16 });
   s.addNotes(
-`[0:00–0:33]  This briefing comes from Book 07 of the Modernization Workbook, PKI and Certificates: the move from Active Directory Certificate Services to Microsoft Cloud PKI, Entra certificate-based authentication and the Federal PKI.
+`[0:00–0:33]  This briefing comes from Book 07 of the Federal Modernization Workbook, PKI and Certificates: the move from Active Directory Certificate Services to Microsoft Cloud PKI, Entra certificate-based authentication and the Federal PKI.
 
 Every other migration changes which system answers the question "who is this?" Certificates are how that answer gets proved. I'll cover why certificates outlive every migration, what the target PKI is, who owns the certificate estate, and how to move it without stranding a single certificate.
 

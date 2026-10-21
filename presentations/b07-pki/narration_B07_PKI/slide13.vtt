@@ -1,0 +1,82 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.425
+So, four decisions.
+
+2
+00:00:01.425 --> 00:00:05.907
+Confirm the root decision: bring-your-own-CA,
+signed by the offline root,
+
+3
+00:00:05.907 --> 00:00:09.075
+once the hierarchy has
+passed the hardening gate.
+
+4
+00:00:09.075 --> 00:00:12.832
+Settle the Cloud PKI entitlement
+for the government tenant,
+
+5
+00:00:12.832 --> 00:00:16.288
+rather than assuming the
+commercial E5 change applies.
+
+6
+00:00:16.288 --> 00:00:19.757
+Stand up CyberArk Certificate
+Manager, Self-Hosted,
+
+7
+00:00:19.757 --> 00:00:24.113
+inside the authorization boundary,
+as the single lifecycle tool.
+
+8
+00:00:24.113 --> 00:00:28.683
+And name the owners: issuance policy
+and trust anchors with the CISO,
+
+9
+00:00:28.683 --> 00:00:32.051
+and one renewal owner for
+every certificate class.
+
+10
+00:00:32.051 --> 00:00:37.753
+The next step is wave one, Assess: four
+weeks to inventory every CA and template,
+
+11
+00:00:37.753 --> 00:00:40.516
+close the Critical and High findings,
+
+12
+00:00:40.516 --> 00:00:44.437
+classify every use case, and
+list every relying party.
+
+13
+00:00:44.437 --> 00:00:46.608
+Run certificates on their own clock,
+
+14
+00:00:46.608 --> 00:00:49.863
+and the old CAs can retire
+without stranding anything.
+
+15
+00:00:49.863 --> 00:00:53.006
+Book 07 has the detail,
+every claim footnoted,
+
+16
+00:00:53.006 --> 00:00:57.424
+with deployment checklists and
+a template-by-template matrix.
+
+17
+00:00:57.424 --> 00:00:58.250
+Thank you.

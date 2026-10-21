@@ -1,0 +1,74 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.275
+So, four asks.
+
+2
+00:00:01.275 --> 00:00:05.416
+Run the inventory and the gate:
+a retain, consolidate or retire
+
+3
+00:00:05.416 --> 00:00:09.963
+verdict for every instance before
+any authentication work starts.
+
+4
+00:00:09.963 --> 00:00:15.082
+Fund the Arc bridge: a commercial
+subscription in the GCC tenant,
+
+5
+00:00:15.082 --> 00:00:18.463
+with SQL Server 2022 or
+later as the target.
+
+6
+00:00:18.463 --> 00:00:23.850
+Plan the support dates: upgrade
+or retire the 2014, 2016 and 2017
+
+7
+00:00:23.850 --> 00:00:30.274
+instances on their real dates, because
+they can't use Entra authentication.
+
+8
+00:00:30.274 --> 00:00:33.733
+And decide the certificate
+issuer: the Active Directory
+
+9
+00:00:33.733 --> 00:00:38.000
+Certificate Services dependency for
+server TLS needs its own answer.
+
+10
+00:00:38.000 --> 00:00:41.925
+The database is where legacy
+authentication hides longest.
+
+11
+00:00:41.925 --> 00:00:45.349
+Bringing it into Entra ID is
+what lets Conditional Access,
+
+12
+00:00:45.349 --> 00:00:50.413
+phishing-resistant authentication and
+continuous evidence finally reach the data.
+
+13
+00:00:50.413 --> 00:00:56.263
+Book 06 has the narrative and ten runbooks,
+with every external claim footnoted.
+
+14
+00:00:56.263 --> 00:01:02.213
+Book 05 covers Arc on servers, and Book
+04 the access policy it plugs into.
+
+15
+00:01:02.213 --> 00:01:03.020
+Thank you.

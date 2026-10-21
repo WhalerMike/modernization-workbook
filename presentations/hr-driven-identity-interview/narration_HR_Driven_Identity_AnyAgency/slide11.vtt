@@ -1,0 +1,78 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.975
+ICAM — beyond accounts.
+
+2
+00:00:01.975 --> 00:00:05.875
+Credentials: the joiner event
+schedules PIV enrollment.
+
+3
+00:00:05.875 --> 00:00:09.555
+The leaver event blocks sign-in
+and revokes sessions first —
+
+4
+00:00:09.555 --> 00:00:11.432
+Microsoft's documented order,
+
+5
+00:00:11.432 --> 00:00:16.464
+and the step that closes certificate
+sign-in immediately rather than at the next
+
+6
+00:00:16.464 --> 00:00:19.093
+revocation-list refresh
+— then revokes PIV,
+
+7
+00:00:19.093 --> 00:00:24.425
+derived credentials and device certificates
+in parallel, reconciled to completion.
+
+8
+00:00:24.425 --> 00:00:29.227
+Assurance: record each person's proofing
+level and authenticator assurance as
+
+9
+00:00:29.227 --> 00:00:33.302
+governed attributes, treat missing
+proofing evidence as a finding,
+
+10
+00:00:33.302 --> 00:00:37.013
+and enforce phishing-resistant
+MFA under M-22-09.
+
+11
+00:00:37.013 --> 00:00:41.494
+Access: baseline access derived by
+rule from the standard attributes;
+
+12
+00:00:41.494 --> 00:00:46.980
+position attributes scoping candidates
+for privileged eligibility, with explicit
+
+13
+00:00:46.980 --> 00:00:49.066
+approval and PIM still required;
+
+14
+00:00:49.066 --> 00:00:52.388
+and any activity from a
+separated person is an alert.
+
+15
+00:00:52.388 --> 00:00:55.969
+The result: every entitlement
+has a "because" — a rule,
+
+16
+00:00:55.969 --> 00:00:59.850
+an attribute, and the
+personnel action that set it.

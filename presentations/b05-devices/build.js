@@ -10,11 +10,11 @@ const OUT = process.argv[2] || "B05_Devices.pptx";
   const s = D.titleSlide("Why Group Policy", "Why Can't Group Policy Come to the Cloud?", "Book 05 — Devices & Endpoints");
   D.agenda(s, 0.8, 4.7, 6.6);
   txt(s, "Series line", [
-    { text: "Modernization Workbook", options: { bold: true, color: HEX.navy, breakLine: true } },
+    { text: "Federal Modernization Workbook", options: { bold: true, color: HEX.navy, breakLine: true } },
     { text: "A 15-minute briefing on the book's argument and plan", options: { color: HEX.slate } },
   ], { x: 0.8, y: 5.6, w: 8, h: 0.8, fontSize: 16 });
   s.addNotes(
-`[0:00–0:27]  This briefing comes from Book 05 of the Modernization Workbook, Devices and Endpoints: the move from Group Policy to Intune for devices, and to Azure Arc for servers.
+`[0:00–0:27]  This briefing comes from Book 05 of the Federal Modernization Workbook, Devices and Endpoints: the move from Group Policy to Intune for devices, and to Azure Arc for servers.
 
 I'll take it through four questions: why Group Policy can't simply be carried to the cloud, what replaces it, who owns the endpoint, and how to migrate a fleet without losing the governance Group Policy quietly provided.
 

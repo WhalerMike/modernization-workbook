@@ -1,0 +1,84 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.450
+What does "HR as the source
+of truth" actually mean?
+
+2
+00:00:03.450 --> 00:00:05.812
+It means one owner for every fact.
+
+3
+00:00:05.812 --> 00:00:10.012
+The HR system of record is
+authoritative for employment status,
+
+4
+00:00:10.012 --> 00:00:13.737
+position, organization,
+supervisor and effective dates.
+
+5
+00:00:13.737 --> 00:00:17.505
+The identity platform stays
+authoritative for what it does:
+
+6
+00:00:17.505 --> 00:00:21.875
+credentials, authentication, sessions,
+directory objects and policy.
+
+7
+00:00:21.875 --> 00:00:24.855
+And contractors, whom
+HR 2.0 doesn't cover,
+
+8
+00:00:24.855 --> 00:00:29.550
+get their own authoritative source
+mapped into the same model.
+
+9
+00:00:29.550 --> 00:00:32.650
+That model is the canonical
+workforce identity model.
+
+10
+00:00:32.650 --> 00:00:36.991
+Its contract is OPM's standard data
+elements and nature-of-action codes,
+
+11
+00:00:36.991 --> 00:00:39.861
+the government-wide
+personnel data standards,
+
+12
+00:00:39.861 --> 00:00:43.613
+so vendor field names stay at
+the boundary and can be replaced.
+
+13
+00:00:43.613 --> 00:00:48.417
+It's keyed on an enterprise person key
+the agency controls, and that key has
+
+14
+00:00:48.417 --> 00:00:53.537
+to fit Entra ID's employeeId attribute,
+which holds at most sixteen characters.
+
+15
+00:00:53.537 --> 00:00:57.228
+The rule that makes it work:
+every attribute gets one name,
+
+16
+00:00:57.228 --> 00:00:59.976
+one definition and one accountable owner.
+
+17
+00:00:59.976 --> 00:01:04.900
+When a fact is wrong, it gets fixed in its
+source, never patched in the directory.

@@ -1,0 +1,80 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.313
+Identifiers are where data
+architecture earns its keep.
+
+2
+00:00:03.313 --> 00:00:07.724
+A common design says the employee
+ID is the person, for life.
+
+3
+00:00:07.724 --> 00:00:10.253
+It breaks the moment the source changes,
+
+4
+00:00:10.253 --> 00:00:13.087
+a contractor converts,
+or someone is rehired.
+
+5
+00:00:13.087 --> 00:00:18.545
+So I model identifiers in layers: an
+enterprise person key the agency controls;
+
+6
+00:00:18.545 --> 00:00:23.581
+a source key per HR system; an affiliation
+key per employment or contract;
+
+7
+00:00:23.581 --> 00:00:29.038
+a directory ID per account; and credential
+identifiers per PIV or certificate.
+
+8
+00:00:29.038 --> 00:00:32.088
+The person is the tracked
+entity, not the account.
+
+9
+00:00:32.088 --> 00:00:36.074
+That's what survives rehire,
+conversion and reorganization.
+
+10
+00:00:36.074 --> 00:00:40.185
+And many agencies already have a
+strong candidate — for example,
+
+11
+00:00:40.185 --> 00:00:44.612
+a Mainframe PIN that already serves
+as the person ID and employee ID.
+
+12
+00:00:44.612 --> 00:00:48.351
+I propose it for confirmation
+as the enterprise person key;
+
+13
+00:00:48.351 --> 00:00:53.312
+adoption requires validating its
+uniqueness, persistence, non-reassignment,
+
+14
+00:00:53.312 --> 00:00:57.662
+population coverage, privacy
+constraints and historical behavior.
+
+15
+00:00:57.662 --> 00:01:02.672
+Once it's confirmed, map Core HCM's
+PersonNumber to it — so when the agency
+
+16
+00:01:02.672 --> 00:01:08.326
+moves to Core HCM, only the source key
+changes, and nothing downstream has to.

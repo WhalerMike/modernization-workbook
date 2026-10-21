@@ -1,0 +1,89 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:00.837
+Why now?
+
+2
+00:00:00.837 --> 00:00:04.050
+Because two migrations
+open one design window.
+
+3
+00:00:04.050 --> 00:00:11.092
+On the HR side: the December 10, 2025 memo
+from OMB and OPM creates Federal HR 2.0,
+
+4
+00:00:11.092 --> 00:00:15.675
+one government-wide core
+human capital platform.
+
+5
+00:00:15.675 --> 00:00:19.951
+OPM awarded the platform
+contract on June 10, 2026,
+
+6
+00:00:19.951 --> 00:00:25.375
+and the first agencies begin
+moving as fiscal year 2027 starts.
+
+7
+00:00:25.375 --> 00:00:29.036
+The memo's sample timeline runs
+about eight months per agency,
+
+8
+00:00:29.036 --> 00:00:32.912
+with the agency's interconnections
+going live around month five.
+
+9
+00:00:32.912 --> 00:00:36.438
+On the identity side:
+agencies are moving from
+
+10
+00:00:36.438 --> 00:00:40.426
+Active Directory to Entra ID
+anyway, which is Book 02.
+
+11
+00:00:40.426 --> 00:00:45.337
+In Entra ID, attributes drive Conditional
+Access, groups and delegation,
+
+12
+00:00:45.337 --> 00:00:50.413
+and inbound provisioning from an HR
+system is a documented, supported path.
+
+13
+00:00:50.413 --> 00:00:51.563
+So there's a window.
+
+14
+00:00:51.563 --> 00:00:55.066
+The identity feed has to be
+designed in during onboarding,
+
+15
+00:00:55.066 --> 00:00:58.862
+before the interconnection goes
+live, not bolted on afterward.
+
+16
+00:00:58.862 --> 00:01:04.187
+One honest limit: Federal HR 2.0
+covers federal employees only.
+
+17
+00:01:04.187 --> 00:01:07.903
+Contractors and vendors need
+their own authoritative source,
+
+18
+00:01:07.903 --> 00:01:11.040
+and the onboarding is the
+right time to decide it too.

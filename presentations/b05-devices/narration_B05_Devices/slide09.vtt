@@ -1,0 +1,98 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.043
+The existing fleet then
+migrates in seven phases,
+
+2
+00:00:03.043 --> 00:00:06.475
+about thirty-four weeks on
+the book's planning estimates.
+
+3
+00:00:06.475 --> 00:00:08.903
+Phase one inventories and classifies,
+
+4
+00:00:08.903 --> 00:00:11.938
+ending with a decision
+record for every setting.
+
+5
+00:00:11.938 --> 00:00:16.863
+Phase two plans coexistence, with
+pilot devices co-managed and syncing.
+
+6
+00:00:16.863 --> 00:00:20.143
+Phase three authors the
+baselines, unassigned,
+
+7
+00:00:20.143 --> 00:00:23.675
+until every setting is
+owned by exactly one policy.
+
+8
+00:00:23.675 --> 00:00:26.938
+Phase four pilots on about
+five percent of devices.
+
+9
+00:00:26.938 --> 00:00:30.618
+Phase five cuts over workload
+by workload in four waves,
+
+10
+00:00:30.618 --> 00:00:32.938
+each watched for seventy-two hours.
+
+11
+00:00:32.938 --> 00:00:38.326
+Phase six verifies that no migrated
+device still processes a GPO.
+
+12
+00:00:38.326 --> 00:00:40.419
+And phase seven retires the GPOs,
+
+13
+00:00:40.419 --> 00:00:44.375
+keeping them ninety days before
+they're archived and deleted.
+
+14
+00:00:44.375 --> 00:00:49.125
+The book also sets a floor:
+Windows 11 version 24H2.
+
+15
+00:00:49.125 --> 00:00:53.193
+Windows 10 is out of
+support, and Windows 11 23H2
+
+16
+00:00:53.193 --> 00:00:57.887
+Enterprise stops getting
+updates on November 10, 2026.
+
+17
+00:00:57.887 --> 00:01:00.922
+These are planning estimates
+for a large fleet with
+
+18
+00:01:00.922 --> 00:01:04.238
+an existing Configuration
+Manager estate, not promises.
+
+19
+00:01:04.238 --> 00:01:07.017
+Every gate is the next
+phase's precondition,
+
+20
+00:01:07.017 --> 00:01:09.940
+and every phase has a
+rollback while it's open.

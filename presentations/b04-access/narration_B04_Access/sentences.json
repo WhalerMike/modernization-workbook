@@ -1,0 +1,502 @@
+{
+ "1": [
+  [
+   0.05,
+   6.213,
+   "This briefing comes from Book 04 of the Federal Modernization Workbook, Access and Privilege."
+  ],
+  [
+   6.263,
+   2.487,
+   "Book 02 moved the identity."
+  ],
+  [
+   8.75,
+   3.038,
+   "Book 03 made its facts trustworthy."
+  ],
+  [
+   11.787,
+   10.238,
+   "This book is about what happens with them on every sign-in: who gets access to what, under which conditions, and how administrator power is kept from becoming an open door."
+  ],
+  [
+   22.025,
+   2.487,
+   "I'll take it through why, what, who and how."
+  ],
+  [
+   24.512,
+   9.75,
+   "The short version: in Zero Trust, every access decision is a policy decision, and the policy library is the agency's access control in practice."
+  ]
+ ],
+ "2": [
+  [
+   0.05,
+   3.15,
+   "Why is every access decision a policy decision?"
+  ],
+  [
+   3.2,
+   4.638,
+   "Because federal Zero Trust policy says so, and the platform works that way."
+  ],
+  [
+   7.838,
+   8.175,
+   "O M B M twenty-two oh-nine requires that every access request be evaluated and that network location confer no trust."
+  ],
+  [
+   16.012,
+   9.463,
+   "nist Special Publication eight hundred two-oh-seven describes the architecture: a policy decision point, separate from the places where access is enforced."
+  ],
+  [
+   25.475,
+   4.45,
+   "In Microsoft Entra ID, that decision point is Conditional Access."
+  ],
+  [
+   29.925,
+   8.238,
+   "It decides by rule: every applicable policy must be satisfied, a block wins, and exclusions override everything."
+  ],
+  [
+   38.163,
+   3.925,
+   "What it replaces is access decided once and trusted afterward."
+  ],
+  [
+   42.087,
+   2.45,
+   "Inside the network, therefore trusted."
+  ],
+  [
+   44.538,
+   2.812,
+   "In the group, therefore allowed, forever."
+  ],
+  [
+   47.35,
+   5.3,
+   "Those assumptions survive a migration unless someone deliberately replaces them with policy."
+  ],
+  [
+   52.65,
+   2.288,
+   "Two consequences run through the book."
+  ],
+  [
+   54.938,
+   5.013,
+   "Every exclusion is a standing hole, so each one needs an owner and a review."
+  ],
+  [
+   59.95,
+   6.188,
+   "And policy is only as good as the attributes it reads, which is why Book 03 matters here."
+  ]
+ ],
+ "3": [
+  [
+   0.05,
+   4.525,
+   "The same logic applies to administrators, and this is where most breaches go."
+  ],
+  [
+   4.575,
+   8.2,
+   "A standing administrator is always on, at any hour, so any stolen credential or session that reaches the role yields all of it."
+  ],
+  [
+   12.775,
+   5.862,
+   "Stronger authentication helps, but it doesn't narrow what the role can do, where, or when."
+  ],
+  [
+   18.637,
+   12.575,
+   "An eligible administrator is different: the role is activated only when needed, for a set time, with approval from someone other than the requester, a fresh strong sign-in, and a log of every elevation."
+  ],
+  [
+   31.212,
+   14.775,
+   "NSA and sis-uh rank poor separation of user and administrator privilege among the most common misconfigurations they find, and nist control AC-6 requires least privilege, recurring reviews and logged privileged functions."
+  ],
+  [
+   45.987,
+   8.35,
+   "There's one standing exception: two break-glass accounts stay permanently active, so the tenant can be recovered if everything else fails."
+  ],
+  [
+   54.337,
+   9.775,
+   "They're safe only when they're governed: phishing-resistant, monitored, tested every ninety days, and documented as a deviation in the system security plan."
+  ]
+ ],
+ "4": [
+  [
+   0.05,
+   2.688,
+   "What does the policy engine actually evaluate?"
+  ],
+  [
+   2.737,
+   9.062,
+   "Signals first: the user, their groups and roles; the device; the application; the location; and sign-in and user risk."
+  ],
+  [
+   11.8,
+   4.025,
+   "Conditions decide which policies apply to this particular request."
+  ],
+  [
+   15.825,
+   12.575,
+   "Then controls: block, or grant with requirements such as multifactor authentication, a specific authentication strength, a compliant device, an app protection policy, or acceptance of terms."
+  ],
+  [
+   28.4,
+   3.6,
+   "And session controls, like how often to re-authenticate."
+  ],
+  [
+   32.0,
+   2.7,
+   "Three operating rules run through the library."
+  ],
+  [
+   34.7,
+   6.325,
+   "Every policy runs in report-only mode first, so its impact is visible before it enforces."
+  ],
+  [
+   41.025,
+   7.125,
+   "Policies target personas, admins, internal staff, guests and workload identities, not individuals."
+  ],
+  [
+   48.15,
+   8.375,
+   "And deletion isn't final: deleted policies are recoverable for thirty days, and a tenant can hold up to two hundred and forty policies."
+  ],
+  [
+   56.525,
+   11.45,
+   "One recent platform change matters: the approved client app grant became read-only on June 30, 2026, so mobile access now relies on app protection policies."
+  ]
+ ],
+ "5": [
+  [
+   0.05,
+   1.675,
+   "What's the structure underneath?"
+  ],
+  [
+   1.725,
+   2.625,
+   "Two parts: privilege and applications."
+  ],
+  [
+   4.35,
+   22.975,
+   "For privilege: use the least-privileged built-in role for each task; keep fewer than five Global Administrators, as Microsoft recommends; use role-assignable groups, which take assigned membership only and are limited to five hundred per tenant; and tier everything along Microsoft's enterprise access model, which builds on the old Active Directory tier model rather than replacing it."
+  ],
+  [
+   27.325,
+   8.525,
+   "For applications: application owners actually hold administrator rights over their app, including adding a credential, so keep them few."
+  ],
+  [
+   35.85,
+   2.737,
+   "Admin consent goes through a governed workflow."
+  ],
+  [
+   38.587,
+   8.062,
+   "Applications authenticate with certificates or federated credentials rather than secrets, and Azure workloads use managed identities."
+  ],
+  [
+   46.65,
+   6.9,
+   "What people get wrong: consent grants never expire, and revoking one leaves already-issued tokens valid."
+  ],
+  [
+   53.55,
+   3.9,
+   "So application access needs the same review discipline as people."
+  ]
+ ],
+ "6": [
+  [
+   0.05,
+   2.55,
+   "Who decides access, and who executes it?"
+  ],
+  [
+   2.6,
+   1.75,
+   "The book keeps those apart."
+  ],
+  [
+   4.35,
+   4.862,
+   "Deciding: business and application owners decide who should have access and why."
+  ],
+  [
+   9.213,
+   3.688,
+   "The see-so owns the policy baseline and its exceptions."
+  ],
+  [
+   12.9,
+   3.737,
+   "And an identity governance office owns approval chains and reviews."
+  ],
+  [
+   16.637,
+   6.987,
+   "Executing: identity engineering builds the policies, the pim settings, consent and access packages."
+  ],
+  [
+   23.625,
+   2.938,
+   "The help desk handles assignments under a scoped role."
+  ],
+  [
+   26.562,
+   4.688,
+   "Security operations handles alerts, risky sign-ins and response."
+  ],
+  [
+   31.25,
+   9.675,
+   "Assuring: the I S S O owns the evidence and findings, the authorizing official owns accepted risk, and reviewers recertify access on schedule."
+  ],
+  [
+   40.925,
+   5.15,
+   "The rule that holds it together: the people who execute access changes never approve them."
+  ],
+  [
+   46.075,
+   8.688,
+   "That's why the help desk works under a custom role that manages assignments only, while consent and administrator roles stay with identity engineering."
+  ],
+  [
+   54.763,
+   8.525,
+   "The old guide gave the help desk Application Administrator, which can grant consent and act as any app, so that rule existed only on paper."
+  ]
+ ],
+ "7": [
+  [
+   0.05,
+   0.613,
+   "How."
+  ],
+  [
+   0.662,
+   3.312,
+   "The policy library is rolled out in five waves."
+  ],
+  [
+   3.975,
+   4.675,
+   "Wave one is the foundation, starting with blocking legacy authentication."
+  ],
+  [
+   8.65,
+   7.45,
+   "Wave two is administrators: phishing-resistant authentication and sign-in only from privileged access workstations."
+  ],
+  [
+   16.1,
+   5.938,
+   "Wave three is everyone: an M F A baseline plus device and app controls."
+  ],
+  [
+   22.038,
+   4.15,
+   "Wave four is risk: blocking high-risk users and sign-ins."
+  ],
+  [
+   26.188,
+   6.025,
+   "And wave five covers the remaining segments, guests and workload identities, and the end state."
+  ],
+  [
+   32.212,
+   9.275,
+   "Every policy passes the same gates: two to four weeks in report-only, then a pilot ring, then expanding rings, then enforced and monitored."
+  ],
+  [
+   41.487,
+   4.275,
+   "A wave starts only after the previous one has run a week without incident."
+  ],
+  [
+   45.763,
+   5.362,
+   "And rollback means switching a policy off or back to report-only, never deleting it."
+  ],
+  [
+   51.125,
+   2.725,
+   "The library is built to sis-uh's baseline."
+  ],
+  [
+   53.85,
+   18.625,
+   "It keeps Book 02's policies CA001 to CA017 and adds CA018 to CA038 for the B O D twenty-five oh-one Entra ID requirements, including blocking high-risk users and requiring phishing-resistant M F A for all members."
+  ]
+ ],
+ "8": [
+  [
+   0.05,
+   5.8,
+   "For administrators, Privileged Identity Management turns privilege into a governed request."
+  ],
+  [
+   5.85,
+   3.95,
+   "An administrator holds an eligible assignment, not an active one."
+  ],
+  [
+   9.8,
+   13.425,
+   "To use it, they request activation with a justification and a ticket; step up through an authentication context; get approval from someone else; and receive a time-boxed activation that's logged, alerted and later reviewed."
+  ],
+  [
+   23.225,
+   3.4,
+   "The details matter, and the old guides had several wrong."
+  ],
+  [
+   26.625,
+   7.312,
+   "Activation can run from one to twenty-four hours, and the approval window is a fixed twenty-four hours with a single stage."
+  ],
+  [
+   33.938,
+   9.525,
+   "pim's built-in M F A can be satisfied by an earlier sign-in in the same session, so the book uses an authentication context to force a fresh step-up."
+  ],
+  [
+   43.462,
+   9.238,
+   "Approvers can't approve their own requests, and if a role has no approvers configured, active Privileged Role Administrators become the approvers by default."
+  ],
+  [
+   52.7,
+   8.425,
+   "And licensing: pim needs Entra ID P2 or ID Governance, and if those licenses lapse, eligible assignments are removed."
+  ],
+  [
+   61.125,
+   10.613,
+   "Appendix B sets every role's activation time, approvers, context and notifications, tighter for Tier 0 and Tier 1 than Book 02's first table."
+  ]
+ ],
+ "9": [
+  [
+   0.05,
+   3.163,
+   "Finally, governance, code and evidence."
+  ],
+  [
+   3.212,
+   11.075,
+   "Governance: access is requested through access packages with approval and expiry; reviews run on a tiered cadence; and the book reviews groups, not just applications."
+  ],
+  [
+   14.287,
+   2.525,
+   "Guests have sponsors and are reviewed too."
+  ],
+  [
+   16.812,
+   5.725,
+   "As code: Conditional Access, pim settings and access packages live in version control."
+  ],
+  [
+   22.538,
+   11.312,
+   "Changes go through review rather than the portal, drift is monitored against a baseline, and results are exported before a baseline is changed, because changing it erases that monitor's history."
+  ],
+  [
+   33.85,
+   17.587,
+   "Evidence: the book maps all of this to the access-control, identification and continuous-monitoring controls, A C two, AC-3, AC-6, IA-2 and CA-7, with every elevation and every review on record."
+  ],
+  [
+   51.438,
+   1.575,
+   "Two traps in the tooling."
+  ],
+  [
+   53.013,
+   6.812,
+   "Reviewing an application doesn't remove members of the groups assigned to it, so the groups themselves have to be reviewed."
+  ],
+  [
+   59.825,
+   8.2,
+   "And Entra keeps sign-in and audit logs only thirty days with P1 or P2, so the evidence has to be exported from day one."
+  ]
+ ],
+ "10": [
+  [
+   0.05,
+   1.225,
+   "So, four asks."
+  ],
+  [
+   1.275,
+   7.525,
+   "Adopt the library: Book 04's Conditional Access library and wave plan as the agency's access baseline."
+  ],
+  [
+   8.8,
+   8.625,
+   "End standing privilege: every administrator role eligible through pim, with two governed break-glass accounts as the only standing exception."
+  ],
+  [
+   17.425,
+   7.537,
+   "Separate deciding from executing: name the owners, scope the help desk role, and stand up the identity governance office."
+  ],
+  [
+   24.962,
+   7.35,
+   "And manage access as code: version control, review and drift monitoring, with the evidence kept from day one."
+  ],
+  [
+   32.312,
+   4.3,
+   "In Zero Trust, every access decision is a policy decision."
+  ],
+  [
+   36.612,
+   6.912,
+   "Writing that policy down, testing it, and proving it ran is how an agency knows who can reach what, and why."
+  ],
+  [
+   43.525,
+   5.8,
+   "Book 04 has the full library and settings, with every external claim footnoted."
+  ],
+  [
+   49.325,
+   4.6,
+   "Book 05 covers the device compliance that Conditional Access reads."
+  ],
+  [
+   53.925,
+   0.762,
+   "Thank you."
+  ]
+ ]
+}

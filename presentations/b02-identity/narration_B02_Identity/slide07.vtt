@@ -1,0 +1,114 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.388
+One more thing changes, and users
+will feel it: how they sign in.
+
+2
+00:00:04.388 --> 00:00:10.002
+OMB M-22-09 requires phishing-resistant
+multifactor authentication
+
+3
+00:00:10.002 --> 00:00:13.663
+for agency staff, and it names
+PIV as the simplest route.
+
+4
+00:00:13.663 --> 00:00:15.874
+That reorders the usual roadmap.
+
+5
+00:00:15.874 --> 00:00:19.808
+Earlier plans treated smart-card
+sign-in as the last phase,
+
+6
+00:00:19.808 --> 00:00:21.775
+for high-security users only.
+
+7
+00:00:21.775 --> 00:00:25.415
+But a federal workforce already
+carries PIV or CAC cards,
+
+8
+00:00:25.415 --> 00:00:30.681
+so Entra certificate-based authentication
+is the fastest path: the credential is
+
+9
+00:00:30.681 --> 00:00:36.025
+already issued, and it works directly
+against Entra ID without a federation server.
+
+10
+00:00:36.025 --> 00:00:37.725
+The book runs four waves.
+
+11
+00:00:37.725 --> 00:00:42.750
+Privileged accounts first, on FIDO2
+security keys, or their PIV card.
+
+12
+00:00:42.750 --> 00:00:48.037
+Then everyone who holds a PIV or CAC card,
+through certificate-based authentication.
+
+13
+00:00:48.037 --> 00:00:52.126
+Then managed Windows devices,
+with Windows Hello for Business.
+
+14
+00:00:52.126 --> 00:00:55.383
+And finally everyone else,
+including mobile users,
+
+15
+00:00:55.383 --> 00:00:58.175
+with passkeys in Microsoft Authenticator.
+
+16
+00:00:58.175 --> 00:01:02.513
+All four meet Entra's built-in
+phishing-resistant authentication strength.
+
+17
+00:01:02.513 --> 00:01:05.763
+Some things go away: SMS
+and voice codes for staff,
+
+18
+00:01:05.763 --> 00:01:10.232
+which the memo requires agencies
+to stop using for routine access,
+
+19
+00:01:10.232 --> 00:01:14.376
+and legacy protocols that send
+a password with every request.
+
+20
+00:01:14.376 --> 00:01:17.114
+Those are found in the
+sign-in logs, fixed,
+
+21
+00:01:17.114 --> 00:01:19.937
+then blocked, and watched for thirty days.
+
+22
+00:01:19.937 --> 00:01:22.738
+One thing stays on: password hash sync.
+
+23
+00:01:22.738 --> 00:01:25.519
+It enables leaked-credential detection,
+
+24
+00:01:25.519 --> 00:01:29.830
+and it's the manual fallback if
+pass-through agents or AD FS fail.

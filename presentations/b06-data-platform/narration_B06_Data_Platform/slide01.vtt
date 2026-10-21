@@ -1,0 +1,31 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.587
+This briefing comes from Book 06 of
+the Federal Modernization Workbook:
+
+2
+00:00:04.587 --> 00:00:09.350
+the SQL Server estate's move from
+Windows Authentication to cloud identity.
+
+3
+00:00:09.350 --> 00:00:12.945
+Every identity program
+eventually reaches the database,
+
+4
+00:00:12.945 --> 00:00:17.887
+and the database is where it finds the
+most Windows authentication still in use.
+
+5
+00:00:17.887 --> 00:00:22.222
+I'll take it through why that is, what
+replaces it, who owns the work, and how
+
+6
+00:00:22.222 --> 00:00:26.980
+to do it, from the estate inventory to a
+closure condition you can keep proving.

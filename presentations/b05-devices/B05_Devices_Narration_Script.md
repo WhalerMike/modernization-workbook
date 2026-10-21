@@ -2,7 +2,7 @@
 
 ## Slide 1 — Why Can't Group Policy Come to the Cloud?
 
-This briefing comes from Book 05 of the Modernization Workbook, Devices and Endpoints: the move from Group Policy to Intune for devices, and to Azure Arc for servers.
+This briefing comes from Book 05 of the Federal Modernization Workbook, Devices and Endpoints: the move from Group Policy to Intune for devices, and to Azure Arc for servers.
 
 I'll take it through four questions: why Group Policy can't simply be carried to the cloud, what replaces it, who owns the endpoint, and how to migrate a fleet without losing the governance Group Policy quietly provided.
 

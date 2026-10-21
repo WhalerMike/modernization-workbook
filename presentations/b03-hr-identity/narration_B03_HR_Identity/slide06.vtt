@@ -1,0 +1,88 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.100
+Provisioning turns personnel
+records into governed identities.
+
+2
+00:00:04.100 --> 00:00:08.563
+Core HCM publishes worker
+records and personnel actions.
+
+3
+00:00:08.563 --> 00:00:12.638
+A small middleware, inside the
+agency's authorization boundary,
+
+4
+00:00:12.638 --> 00:00:17.792
+does five things for every event: it
+validates the record, applies events in order,
+
+5
+00:00:17.792 --> 00:00:20.176
+normalizes them to the SCIM standard,
+
+6
+00:00:20.176 --> 00:00:23.637
+writes a provenance record,
+and reconciles the result.
+
+7
+00:00:23.637 --> 00:00:28.355
+Then Entra ID's API-driven inbound
+provisioning creates and updates the
+
+8
+00:00:28.355 --> 00:00:33.387
+accounts in Entra ID and, through the
+provisioning agent, in Active Directory.
+
+9
+00:00:33.387 --> 00:00:37.156
+That interface has daily call
+limits that scale with the license,
+
+10
+00:00:37.156 --> 00:00:40.226
+which the book sizes against
+the agency's population.
+
+11
+00:00:40.226 --> 00:00:42.050
+The design fails closed.
+
+12
+00:00:42.050 --> 00:00:44.100
+Unknown worker types are refused.
+
+13
+00:00:44.100 --> 00:00:48.313
+A failed record is retried and
+recorded, never silently skipped.
+
+14
+00:00:48.313 --> 00:00:52.030
+And every event leaves a provenance
+record before the call returns,
+
+15
+00:00:52.030 --> 00:00:54.487
+which is where the
+evidence comes from later.
+
+16
+00:00:54.487 --> 00:00:57.474
+The technology is the
+example, not the point.
+
+17
+00:00:57.474 --> 00:01:01.475
+Today it's Oracle Core
+HCM feeding Entra ID.
+
+18
+00:01:01.475 --> 00:01:06.720
+If the vendors change, the model and the
+rules hold; only the boundary changes.

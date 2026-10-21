@@ -1,0 +1,79 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.514
+With the logins moved,
+
+2
+00:00:01.514 --> 00:00:05.825
+access is granted by attribute
+and applications move by driver.
+
+3
+00:00:05.825 --> 00:00:10.717
+Access control: dynamic Entra
+groups, driven by HR attributes,
+
+4
+00:00:10.717 --> 00:00:14.938
+grant database access, so no
+DBA provisions it by hand.
+
+5
+00:00:14.938 --> 00:00:20.233
+Administrative units delegate group
+management, privileged database roles go
+
+6
+00:00:20.233 --> 00:00:24.975
+through PIM from Book 04, and reviews
+cover the groups, not just the logins.
+
+7
+00:00:24.975 --> 00:00:28.344
+The application chain: the
+book sorts SQL-consuming
+
+8
+00:00:28.344 --> 00:00:32.575
+applications into four classes,
+each with its own migration path.
+
+9
+00:00:32.575 --> 00:00:35.868
+Connection strings name a
+specific Entra authentication
+
+10
+00:00:35.868 --> 00:00:38.825
+mode in production rather
+than the catch-all default.
+
+11
+00:00:38.825 --> 00:00:44.680
+Microsoft.Data.SqlClient, ODBC, OLE
+DB and JDBC all support Entra modes,
+
+12
+00:00:44.680 --> 00:00:49.425
+and the book has a driver table
+with the minimum versions.
+
+13
+00:00:49.425 --> 00:00:54.063
+Managed identities on Arc hosts get their
+tokens from the local agent service.
+
+14
+00:00:54.063 --> 00:00:56.287
+The last mile is the connection string.
+
+15
+00:00:56.287 --> 00:01:01.750
+Every application that still says Integrated
+Security keeps the Windows path alive,
+
+16
+00:01:01.750 --> 00:01:05.810
+so the application inventory is
+part of closure, not a follow-up.

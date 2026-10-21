@@ -1,0 +1,85 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.550
+SD-WAN is the governor's first layer.
+
+2
+00:00:02.550 --> 00:00:08.032
+It splits traffic into a lean class, consensus,
+voice and sign-in, and a bulk class,
+
+3
+00:00:08.032 --> 00:00:10.056
+backups, patches and re-syncs,
+
+4
+00:00:10.056 --> 00:00:15.200
+and keeps bulk transfers from queuing
+ahead of latency-critical packets.
+
+5
+00:00:15.200 --> 00:00:19.951
+It recovers route inflation:
+Microsoft measured a median 78
+
+6
+00:00:19.951 --> 00:00:25.462
+milliseconds from UK South to East
+US, against a fiber floor of about 62.
+
+7
+00:00:25.462 --> 00:00:28.919
+And it tightens the tail with
+forward error correction,
+
+8
+00:00:28.919 --> 00:00:31.324
+packet duplication and fast failover.
+
+9
+00:00:31.324 --> 00:00:34.238
+It reaches the floor;
+it never goes below it.
+
+10
+00:00:34.238 --> 00:00:37.472
+SASE sits above it: secure web gateway,
+
+11
+00:00:37.472 --> 00:00:41.212
+CASB, firewall and zero
+trust network access.
+
+12
+00:00:41.212 --> 00:00:46.247
+CISA lists SD-WAN among SASE's
+networking tools, but mandates neither,
+
+13
+00:00:46.247 --> 00:00:51.112
+and SD-WAN alone doesn't close the
+boundary, flow and malware controls.
+
+14
+00:00:51.112 --> 00:00:52.275
+Two cautions.
+
+15
+00:00:52.275 --> 00:00:54.480
+The enforcement point has a location,
+
+16
+00:00:54.480 --> 00:00:58.250
+so a distant point of presence is
+a hairpin with a different name.
+
+17
+00:00:58.250 --> 00:01:01.387
+And FedRAMP status differs
+by offering, not by vendor,
+
+18
+00:01:01.387 --> 00:01:04.800
+so read the Marketplace when
+the requirement is written.

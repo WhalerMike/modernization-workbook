@@ -1,0 +1,71 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.687
+Good morning, and thank you.
+
+2
+00:00:01.687 --> 00:00:03.250
+I want to make one proposal.
+
+3
+00:00:03.250 --> 00:00:07.097
+Based on current visibility,
+many agencies do not operate
+
+4
+00:00:07.097 --> 00:00:11.025
+a comprehensive enterprise
+HR-driven identity lifecycle.
+
+5
+00:00:11.025 --> 00:00:13.012
+In the processes I have observed,
+
+6
+00:00:13.012 --> 00:00:18.162
+many workforce identity changes in Active
+Directory and Entra ID, and the access and
+
+7
+00:00:18.162 --> 00:00:23.312
+credentials that hang off them, remain
+dependent on tickets or manual coordination.
+
+8
+00:00:23.312 --> 00:00:25.945
+Two changes are coming regardless:
+
+9
+00:00:25.945 --> 00:00:30.757
+Federal HR 2.0 moves each agency's
+HR onto Oracle Core HCM in waves,
+
+10
+00:00:30.757 --> 00:00:34.934
+and current planning assumes
+onboarding through 2027;
+
+11
+00:00:34.934 --> 00:00:39.837
+agency identity is moving from
+Active Directory toward Entra ID.
+
+12
+00:00:39.837 --> 00:00:44.609
+My proposal is to use the two together
+to start HR-driven identity — HR,
+
+13
+00:00:44.609 --> 00:00:47.335
+through OPM's standard personnel data,
+
+14
+00:00:47.335 --> 00:00:52.874
+as the source of authority for Entra ID,
+Active Directory and the rest of ICAM.
+
+15
+00:00:52.874 --> 00:00:56.613
+That's Microsoft's own term:
+HR-driven provisioning.

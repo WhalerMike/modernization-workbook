@@ -1,0 +1,85 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.088
+The second thing that changes
+is the size of the job.
+
+2
+00:00:03.088 --> 00:00:06.112
+Most migration plans
+count users and groups.
+
+3
+00:00:06.112 --> 00:00:09.562
+But Active Directory has also
+been holding the estate together.
+
+4
+00:00:09.562 --> 00:00:15.849
+DNS, DHCP and IP address management,
+with the zones applications depend on.
+
+5
+00:00:15.849 --> 00:00:21.137
+Certificate Services, behind smart
+cards, Wi-Fi, VPN and servers.
+
+6
+00:00:21.137 --> 00:00:25.662
+RADIUS through the Network Policy
+Server for Wi-Fi and VPN sign-in.
+
+7
+00:00:25.662 --> 00:00:29.125
+Applications that bind to
+the directory over LDAP.
+
+8
+00:00:29.125 --> 00:00:32.625
+The sync engine itself,
+which is a tier zero asset.
+
+9
+00:00:32.625 --> 00:00:36.325
+Devices that are domain-joined
+and governed by Group Policy.
+
+10
+00:00:36.325 --> 00:00:39.988
+Time, because Kerberos depends
+on synchronized clocks.
+
+11
+00:00:39.988 --> 00:00:43.837
+And file services, whose
+permissions are bound to AD groups.
+
+12
+00:00:43.837 --> 00:00:47.262
+None of those move just because
+users sync to the cloud.
+
+13
+00:00:47.262 --> 00:00:51.798
+Some, like the NPS extension for
+Entra multifactor authentication,
+
+14
+00:00:51.798 --> 00:00:55.038
+are useful interim steps
+that still depend on AD.
+
+15
+00:00:55.038 --> 00:01:00.076
+The program's answer is an adapter for
+each dependency: an owner, a target, a
+
+16
+00:01:00.076 --> 00:01:02.595
+cutover test and a validation check,
+
+17
+00:01:02.595 --> 00:01:06.100
+retired in priority order
+rather than all at once.

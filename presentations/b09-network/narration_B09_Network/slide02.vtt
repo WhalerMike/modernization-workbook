@@ -1,0 +1,79 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.400
+Why does physics decide the architecture?
+
+2
+00:00:02.400 --> 00:00:05.299
+Because part of every
+delay on a wide-area path
+
+3
+00:00:05.299 --> 00:00:08.275
+is the time light takes
+to travel through glass.
+
+4
+00:00:08.275 --> 00:00:12.981
+ITU-T G.114 plans on 5 microseconds
+per kilometer of fiber,
+
+5
+00:00:12.981 --> 00:00:17.587
+about one millisecond for
+every 200 kilometers, one way.
+
+6
+00:00:17.587 --> 00:00:20.562
+New York to London has
+a round-trip floor of 56
+
+7
+00:00:20.562 --> 00:00:24.100
+milliseconds before any
+equipment touches a packet.
+
+8
+00:00:24.100 --> 00:00:28.250
+Optimization works on the gap above
+that floor, never on the floor.
+
+9
+00:00:28.250 --> 00:00:34.400
+G.114's 150 milliseconds is often
+quoted as the network's voice budget.
+
+10
+00:00:34.400 --> 00:00:35.225
+It isn't.
+
+11
+00:00:35.225 --> 00:00:40.011
+It's mouth to ear, and the terminals
+take 50 to 80 milliseconds of it,
+
+12
+00:00:40.011 --> 00:00:43.113
+which leaves the network
+roughly 70 to 100.
+
+13
+00:00:43.113 --> 00:00:47.748
+On the book's worked arithmetic, a Seattle
+office hairpinning through northern
+
+14
+00:00:47.748 --> 00:00:52.524
+Virginia spends about 60 milliseconds one
+way on the detour: most of the allowance.
+
+15
+00:00:52.524 --> 00:00:57.425
+A synchronous commit pays a round trip
+every time, and no bandwidth changes that.
+
+16
+00:00:57.425 --> 00:01:02.590
+So the answer is to need less global
+synchronization, not faster synchronization.

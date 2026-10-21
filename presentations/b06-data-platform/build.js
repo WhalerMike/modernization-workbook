@@ -10,11 +10,11 @@ const OUT = process.argv[2] || "B06_Data_Platform.pptx";
   const s = D.titleSlide("Why the database", "Why Is the Database Where Legacy Authentication Hides?", "Book 06 — Data Platform: SQL Server Identity");
   D.agenda(s, 0.8, 4.7, 6.6);
   txt(s, "Series line", [
-    { text: "Modernization Workbook", options: { bold: true, color: HEX.navy, breakLine: true } },
+    { text: "Federal Modernization Workbook", options: { bold: true, color: HEX.navy, breakLine: true } },
     { text: "A 15-minute briefing on the book's argument and plan", options: { color: HEX.slate } },
   ], { x: 0.8, y: 5.6, w: 8, h: 0.8, fontSize: 16 });
   s.addNotes(
-`[0:00–0:26]  This briefing comes from Book 06 of the Modernization Workbook: the SQL Server estate's move from Windows Authentication to cloud identity.
+`[0:00–0:26]  This briefing comes from Book 06 of the Federal Modernization Workbook: the SQL Server estate's move from Windows Authentication to cloud identity.
 
 Every identity program eventually reaches the database, and the database is where it finds the most Windows authentication still in use. I'll take it through why that is, what replaces it, who owns the work, and how to do it, from the estate inventory to a closure condition you can keep proving.
 

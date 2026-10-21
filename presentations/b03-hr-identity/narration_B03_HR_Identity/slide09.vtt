@@ -1,0 +1,83 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.300
+Next, access.
+
+2
+00:00:01.300 --> 00:00:05.537
+Once the attributes are trustworthy,
+access is derived from them.
+
+3
+00:00:05.537 --> 00:00:10.246
+A personnel record becomes a canonical
+attribute, a rule or access package
+
+4
+00:00:10.246 --> 00:00:14.500
+turns that into an entitlement, and
+an evidence record captures why.
+
+5
+00:00:14.500 --> 00:00:18.870
+Every entitlement then traces back
+to a rule, an approved exception,
+
+6
+00:00:18.870 --> 00:00:22.850
+an authoritative attribute, or
+a privileged-access decision.
+
+7
+00:00:22.850 --> 00:00:25.100
+That's what makes access explainable.
+
+8
+00:00:25.100 --> 00:00:28.109
+Drift is found by
+comparison, not by complaint:
+
+9
+00:00:28.109 --> 00:00:31.988
+scheduled checks compare HR,
+the model and the directories.
+
+10
+00:00:31.988 --> 00:00:36.637
+It's measured in business terms
+leadership can read: time from separation
+
+11
+00:00:36.637 --> 00:00:40.676
+to blocked access, orphaned accounts,
+and access ready on day one.
+
+12
+00:00:40.676 --> 00:00:43.000
+And the records have to
+be kept long enough.
+
+13
+00:00:43.000 --> 00:00:47.988
+Entra ID keeps audit and provisioning
+logs for thirty days with P1 or P2,
+
+14
+00:00:47.988 --> 00:00:51.200
+so the book exports them
+from the pilot onward.
+
+15
+00:00:51.200 --> 00:00:53.400
+The evidence comes as a byproduct.
+
+16
+00:00:53.400 --> 00:00:57.900
+The same records that run the lifecycle
+answer the auditor's oldest question:
+
+17
+00:00:57.900 --> 00:01:01.900
+does every account belong to a
+current person with a current reason?

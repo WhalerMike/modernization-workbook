@@ -1,0 +1,54 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.604
+This is the data architecture underneath,
+
+2
+00:00:02.604 --> 00:00:06.325
+and one principle carries it:
+the person is the durable entity.
+
+3
+00:00:06.325 --> 00:00:10.462
+Accounts, affiliations, assignments,
+identifiers and credentials
+
+4
+00:00:10.462 --> 00:00:14.600
+have different lifecycles but
+resolve to the same governed person.
+
+5
+00:00:14.600 --> 00:00:19.675
+I propose keying that person on an
+enterprise person key the agency controls.
+
+6
+00:00:19.675 --> 00:00:23.038
+In the proposed canonical
+model, conversion creates a
+
+7
+00:00:23.038 --> 00:00:26.550
+new affiliation for the same
+person, so history survives.
+
+8
+00:00:26.550 --> 00:00:29.684
+The right-hand side shows
+where each piece would live;
+
+9
+00:00:29.684 --> 00:00:31.750
+the backup slides carry the detail.
+
+10
+00:00:31.750 --> 00:00:36.797
+The standard behind it: one name, one
+definition and one owner per attribute,
+
+11
+00:00:36.797 --> 00:00:41.575
+and the DBAs build from the logical
+model, not from a vendor's fields.

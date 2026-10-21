@@ -1,0 +1,91 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.075
+What changes.
+
+2
+00:00:01.075 --> 00:00:04.637
+These are two different models,
+not two versions of one product.
+
+3
+00:00:04.637 --> 00:00:11.013
+Active Directory is a hierarchy: a forest,
+domains, and nested organizational units.
+
+4
+00:00:11.013 --> 00:00:13.462
+Entra ID is one flat tenant.
+
+5
+00:00:13.462 --> 00:00:17.376
+Structure comes from attributes
+and administrative units instead.
+
+6
+00:00:17.376 --> 00:00:21.375
+In AD, much of what you are is
+where you sit in the OU tree.
+
+7
+00:00:21.375 --> 00:00:25.392
+In Entra ID it should be attributes
+from an authoritative source,
+
+8
+00:00:25.392 --> 00:00:27.400
+which for the workforce means HR.
+
+9
+00:00:27.400 --> 00:00:31.025
+Policy in AD is Group
+Policy linked to OUs.
+
+10
+00:00:31.025 --> 00:00:36.100
+In the cloud it's Conditional Access and
+Intune, targeted by those attributes.
+
+11
+00:00:36.100 --> 00:00:39.372
+The protocols change too: Kerberos,
+
+12
+00:00:39.372 --> 00:00:45.125
+NTLM and LDAP give way to OpenID
+Connect, OAuth, SAML and SCIM.
+
+13
+00:00:45.125 --> 00:00:48.792
+Standing Domain Admin membership
+gives way to least-privilege
+
+14
+00:00:48.792 --> 00:00:52.875
+roles activated just in time through
+Privileged Identity Management.
+
+15
+00:00:52.875 --> 00:00:57.338
+And management moves from the
+ActiveDirectory module to Microsoft Graph.
+
+16
+00:00:57.338 --> 00:00:59.537
+The key idea is the bottom line.
+
+17
+00:00:59.537 --> 00:01:03.775
+In Active Directory, governance is
+implied by where an object sits.
+
+18
+00:01:03.775 --> 00:01:06.990
+In Entra ID it has to
+be stated explicitly,
+
+19
+00:01:06.990 --> 00:01:10.370
+as data and rules, or it
+simply doesn't exist.

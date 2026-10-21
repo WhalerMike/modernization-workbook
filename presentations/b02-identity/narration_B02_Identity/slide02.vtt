@@ -1,0 +1,84 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:00.700
+Why.
+
+2
+00:00:00.700 --> 00:00:04.412
+Federal Zero Trust policy
+moved the access decision.
+
+3
+00:00:04.412 --> 00:00:10.026
+OMB memorandum M-22-09 requires agency
+staff to use enterprise-managed
+
+4
+00:00:10.026 --> 00:00:14.437
+identities and phishing-resistant
+multifactor authentication.
+
+5
+00:00:14.437 --> 00:00:19.841
+NIST Special Publication 800-207
+removes implicit trust based
+
+6
+00:00:19.841 --> 00:00:23.600
+on network location: every
+request is evaluated on its own.
+
+7
+00:00:23.600 --> 00:00:29.050
+And CISA's Zero Trust Maturity Model puts
+identity first among its five pillars.
+
+8
+00:00:29.050 --> 00:00:31.261
+What that means in practice is that the
+
+9
+00:00:31.261 --> 00:00:34.162
+identity provider enforces
+whatever it believes.
+
+10
+00:00:34.162 --> 00:00:36.838
+Who is this person,
+and is that still true?
+
+11
+00:00:36.838 --> 00:00:39.625
+Which groups and roles
+do they hold, and why?
+
+12
+00:00:39.625 --> 00:00:42.063
+Is the device they're
+using managed and healthy?
+
+13
+00:00:42.063 --> 00:00:46.233
+Conditional Access, Privileged
+Identity Management and device
+
+14
+00:00:46.233 --> 00:00:50.250
+compliance all read those facts
+and act on them, on every sign-in.
+
+15
+00:00:50.250 --> 00:00:55.375
+So if the facts are wrong, every policy
+built on them is wrong, at machine speed.
+
+16
+00:00:55.375 --> 00:01:00.075
+That's why moving from Active Directory
+to Entra ID isn't a directory upgrade.
+
+17
+00:01:00.075 --> 00:01:04.320
+It decides whether every later
+control has true facts to act on.

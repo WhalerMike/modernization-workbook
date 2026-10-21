@@ -1,0 +1,87 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.770
+Every token in this
+book assumes the device
+
+2
+00:00:02.770 --> 00:00:05.188
+on the wire is the device it claims to be.
+
+3
+00:00:05.188 --> 00:00:10.100
+802.1X turns that assumption
+into a proof at the switch port.
+
+4
+00:00:10.100 --> 00:00:15.900
+Use EAP-TLS, mutual certificate
+authentication, for every managed device.
+
+5
+00:00:15.900 --> 00:00:19.190
+Password methods are failing on their own:
+
+6
+00:00:19.190 --> 00:00:23.421
+Credential Guard blocks
+PEAP-MSCHAPv2 single sign-on,
+
+7
+00:00:23.421 --> 00:00:29.625
+and the October 2026 Windows update
+restricts NTLMv1-derived credentials too.
+
+8
+00:00:29.625 --> 00:00:32.257
+The RADIUS server is
+usually the last piece
+
+9
+00:00:32.257 --> 00:00:34.963
+of the network standing
+on Active Directory.
+
+10
+00:00:34.963 --> 00:00:38.647
+Windows NPS authorizes
+against AD computer objects,
+
+11
+00:00:38.647 --> 00:00:41.662
+and Entra joined devices
+don't support that.
+
+12
+00:00:41.662 --> 00:00:46.574
+There's no Entra RADIUS product;
+the NPS extension adds MFA,
+
+13
+00:00:46.574 --> 00:00:49.950
+but NPS still authenticates against AD.
+
+14
+00:00:49.950 --> 00:00:52.205
+And NPS has no posture engine:
+
+15
+00:00:52.205 --> 00:00:57.937
+Network Access Protection was deprecated
+back in Windows Server 2012 R2.
+
+16
+00:00:57.937 --> 00:01:04.009
+So posture comes from Intune's compliance
+retrieval service, read by a NAC platform,
+
+17
+00:01:04.009 --> 00:01:09.376
+and each device lands in production,
+remediation, quarantine, guest or IoT.
+
+18
+00:01:09.376 --> 00:01:13.940
+After the Blast-RADIUS attack, require
+Message-Authenticator everywhere.

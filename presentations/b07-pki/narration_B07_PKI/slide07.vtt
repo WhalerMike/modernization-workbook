@@ -1,0 +1,87 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.637
+Four issuers need one lifecycle platform.
+
+2
+00:00:02.637 --> 00:00:06.988
+Intune and Cloud PKI renew what
+they put on managed devices.
+
+3
+00:00:06.988 --> 00:00:11.688
+Nothing Microsoft-native does that
+for AD CS server certificates,
+
+4
+00:00:11.688 --> 00:00:15.962
+public TLS, appliances, or
+certificates nobody inventoried.
+
+5
+00:00:15.962 --> 00:00:19.385
+That's the job of certificate
+lifecycle management:
+
+6
+00:00:19.385 --> 00:00:23.363
+discovery, ownership and
+automated renewal across issuers.
+
+7
+00:00:23.363 --> 00:00:26.977
+The program's platform is
+CyberArk Certificate Manager,
+
+8
+00:00:26.977 --> 00:00:28.900
+now part of Palo Alto Networks.
+
+9
+00:00:28.900 --> 00:00:31.061
+It's the program's existing vendor,
+
+10
+00:00:31.061 --> 00:00:35.613
+so the program consolidates there
+and adds no second lifecycle vendor.
+
+11
+00:00:35.613 --> 00:00:40.699
+The names have moved: Venafi became
+part of CyberArk in October 2024,
+
+12
+00:00:40.699 --> 00:00:46.240
+Palo Alto Networks completed its
+acquisition of CyberArk on February 11,
+
+13
+00:00:46.240 --> 00:00:51.600
+2026, and the SaaS edition is now sold
+as Next-Generation Trust Security.
+
+14
+00:00:51.600 --> 00:00:53.538
+Two facts shape the deployment.
+
+15
+00:00:53.538 --> 00:00:58.449
+The FedRAMP Marketplace has no listing for
+the certificate product, so the program
+
+16
+00:00:58.449 --> 00:01:03.075
+runs Certificate Manager, Self-Hosted
+inside its own authorization boundary.
+
+17
+00:01:03.075 --> 00:01:07.151
+And its AD CS account holds the
+certificate-manager permission,
+
+18
+00:01:07.151 --> 00:01:11.210
+so it's scoped and reviewed like
+any other certificate manager.

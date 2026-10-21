@@ -1,0 +1,56 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.225
+Logical architecture and
+Microsoft realization.
+
+2
+00:00:03.225 --> 00:00:07.690
+The top row is the architecture, and
+it's stable: an authoritative source,
+
+3
+00:00:07.690 --> 00:00:11.247
+a boundary transformation,
+the governed identity model,
+
+4
+00:00:11.247 --> 00:00:14.425
+a provisioning service,
+and the targets and ICAM.
+
+5
+00:00:14.425 --> 00:00:20.473
+The bottom row is how Microsoft realizes it
+today: Oracle Core HCM, Azure Functions,
+
+6
+00:00:20.473 --> 00:00:26.698
+the canonical model and provenance store,
+Graph and the Entra provisioning service,
+
+7
+00:00:26.698 --> 00:00:29.900
+then Entra ID, AD, Intune
+and card management.
+
+8
+00:00:29.900 --> 00:00:33.512
+Products in the bottom row can
+change; the top row doesn't.
+
+9
+00:00:33.512 --> 00:00:36.613
+The table is why the two
+migrations belong together.
+
+10
+00:00:36.613 --> 00:00:42.250
+Done separately, the Entra ID migration
+moves ticket-created accounts as they are.
+
+11
+00:00:42.250 --> 00:00:47.813
+Done together, each population arrives
+in Entra ID already HR-sourced.

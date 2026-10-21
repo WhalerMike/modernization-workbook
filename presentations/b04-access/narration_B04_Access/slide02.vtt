@@ -1,0 +1,87 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.200
+Why is every access
+decision a policy decision?
+
+2
+00:00:03.200 --> 00:00:07.838
+Because federal Zero Trust policy says
+so, and the platform works that way.
+
+3
+00:00:07.838 --> 00:00:12.227
+OMB M-22-09 requires that
+every access request be
+
+4
+00:00:12.227 --> 00:00:16.013
+evaluated and that network
+location confer no trust.
+
+5
+00:00:16.013 --> 00:00:20.962
+NIST Special Publication 800-207
+describes the architecture:
+
+6
+00:00:20.962 --> 00:00:25.475
+a policy decision point, separate from
+the places where access is enforced.
+
+7
+00:00:25.475 --> 00:00:29.925
+In Microsoft Entra ID, that decision
+point is Conditional Access.
+
+8
+00:00:29.925 --> 00:00:34.492
+It decides by rule: every applicable
+policy must be satisfied,
+
+9
+00:00:34.492 --> 00:00:38.163
+a block wins, and exclusions
+override everything.
+
+10
+00:00:38.163 --> 00:00:42.088
+What it replaces is access decided
+once and trusted afterward.
+
+11
+00:00:42.088 --> 00:00:44.537
+Inside the network, therefore trusted.
+
+12
+00:00:44.537 --> 00:00:47.350
+In the group, therefore allowed, forever.
+
+13
+00:00:47.350 --> 00:00:49.934
+Those assumptions survive
+a migration unless
+
+14
+00:00:49.934 --> 00:00:52.650
+someone deliberately
+replaces them with policy.
+
+15
+00:00:52.650 --> 00:00:54.938
+Two consequences run through the book.
+
+16
+00:00:54.938 --> 00:00:59.951
+Every exclusion is a standing hole, so
+each one needs an owner and a review.
+
+17
+00:00:59.951 --> 00:01:03.751
+And policy is only as good
+as the attributes it reads,
+
+18
+00:01:03.751 --> 00:01:06.190
+which is why Book 03 matters here.

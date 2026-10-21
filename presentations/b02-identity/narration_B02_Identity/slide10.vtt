@@ -1,0 +1,108 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.713
+Chapter 11 puts the steps together
+in a reference deployment.
+
+2
+00:00:03.713 --> 00:00:09.202
+It's a framing pattern, not a real engagement:
+a civilian agency with two forests,
+
+3
+00:00:09.202 --> 00:00:13.087
+a trust between them, and a
+fleet of SQL Server instances.
+
+4
+00:00:13.087 --> 00:00:16.200
+The figures are illustrative;
+the mechanics are real.
+
+5
+00:00:16.200 --> 00:00:18.113
+It runs in five phases.
+
+6
+00:00:18.113 --> 00:00:22.487
+Discover: a read-only survey of
+both forests, including the service
+
+7
+00:00:22.487 --> 00:00:27.576
+accounts and every service principal
+name the SQL Server work will depend on.
+
+8
+00:00:27.576 --> 00:00:32.750
+Normalize: an organizational registry built
+from that survey and checked against the
+
+9
+00:00:32.750 --> 00:00:35.697
+agency's own chart, with
+a finding raised for every
+
+10
+00:00:35.697 --> 00:00:38.788
+account the registry can't
+attribute to a real owner.
+
+11
+00:00:38.788 --> 00:00:43.559
+Map: one adapter per surface, and
+four carry most of the risk here:
+
+12
+00:00:43.559 --> 00:00:47.688
+synchronization, certificates,
+RADIUS and SQL Server.
+
+13
+00:00:47.688 --> 00:00:51.147
+Migrate: every change recorded
+with who asked for it,
+
+14
+00:00:51.147 --> 00:00:54.526
+on what authority, and a
+hash of the resulting state.
+
+15
+00:00:54.526 --> 00:00:58.119
+And Validate: the before and
+after inventories compared,
+
+16
+00:00:58.119 --> 00:01:01.025
+and every drift finding
+closed with evidence.
+
+17
+00:01:01.025 --> 00:01:03.262
+What comes out is an evidence bundle.
+
+18
+00:01:03.262 --> 00:01:07.377
+It goes to the authorizing official
+and the security control assessor,
+
+19
+00:01:07.377 --> 00:01:11.701
+who authorize the agency's own system
+under the Risk Management Framework.
+
+20
+00:01:11.701 --> 00:01:13.613
+And it belongs to the agency.
+
+21
+00:01:13.613 --> 00:01:16.887
+When the integrator leaves,
+the registry, the schemas,
+
+22
+00:01:16.887 --> 00:01:21.620
+the findings and the evidence stay
+behind for the next authorization cycle.

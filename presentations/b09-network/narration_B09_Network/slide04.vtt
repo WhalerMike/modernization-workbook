@@ -1,0 +1,83 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.450
+What does federal policy actually require?
+
+2
+00:00:02.450 --> 00:00:07.612
+Read from the documents, TIC 3.0
+is descriptive, not prescriptive.
+
+3
+00:00:07.612 --> 00:00:11.430
+There are four use cases,
+Traditional, Branch Office,
+
+4
+00:00:11.430 --> 00:00:14.537
+Remote User and Cloud,
+and no SASE use case.
+
+5
+00:00:14.537 --> 00:00:20.587
+The Security Capabilities Catalog,
+version 3.3, sets goals, not methods.
+
+6
+00:00:20.587 --> 00:00:25.716
+Two statements constrain a branch:
+policy enforcement parity on every path,
+
+7
+00:00:25.716 --> 00:00:30.112
+and preserving CISA's visibility
+as branches connect directly.
+
+8
+00:00:30.112 --> 00:00:38.750
+OMB M-26-14 rescinded
+M-21-31 on May 22, 2026.
+
+9
+00:00:38.750 --> 00:00:42.715
+Logs must be searchable for six
+months and retrievable for a year,
+
+10
+00:00:42.715 --> 00:00:47.488
+and must show source and destination
+addresses, ports and session attributes.
+
+11
+00:00:47.488 --> 00:00:52.487
+The first agency logging plan
+is due November 18, 2026.
+
+12
+00:00:52.487 --> 00:00:57.250
+When branches leave MTIPS, the sensor
+telemetry CISA received stops.
+
+13
+00:00:57.250 --> 00:01:01.940
+The replacement is CLAW, CISA's
+Comprehensive Log Aggregation Warehouse,
+
+14
+00:01:01.940 --> 00:01:06.025
+and onboarding needs the agency,
+CISA and the provider together.
+
+15
+00:01:06.025 --> 00:01:08.837
+Keep MTIPS until CISA confirms parity.
+
+16
+00:01:08.837 --> 00:01:11.490
+Technology-neutral isn't requirement-free:
+
+17
+00:01:11.490 --> 00:01:15.100
+four binding obligations still
+land on branch equipment.
