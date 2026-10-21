@@ -20,6 +20,11 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+        with:
+          # Full commit history (no file contents) so the books table can
+          # date each book's latest change; see scripts/generate_book_metrics.py.
+          fetch-depth: 0
+          filter: blob:none
 
       - name: Install dependencies
         run: sudo apt-get update && sudo apt-get install -y librsvg2-bin python3-yaml

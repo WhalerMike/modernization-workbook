@@ -2,7 +2,10 @@ project:
   type: website
   # Rebuilds _sitemap-tree.md (included by sitemap.qmd) from the pages
   # about to be rendered, so the Site Map always matches the site.
-  pre-render: scripts/generate_sitemap.py
+  pre-render:
+    - scripts/generate_sitemap.py
+    # Fills the Chapters, Pages and Last updated columns of the books table.
+    - scripts/generate_book_metrics.py
   # Writes forwarding pages for removed or merged URLs (scripts/redirects.yml).
   post-render: scripts/write_redirects.py
   output-dir: _site
@@ -86,59 +89,47 @@ website:
         - section: "Book 01 — The Transformation Arc"
           href: docs/books/b01-transformation-arc/index.md
           contents:
-            - auto: "docs/books/b01-transformation-arc/[0-9]*.md"
-            - auto: "docs/books/b01-transformation-arc/appendix-*.md"
+            - auto: "docs/books/b01-transformation-arc/*-*.md"
         - section: "Book 02 — Identity & Directory"
           href: docs/books/b02-identity/index.md
           contents:
-            - auto: "docs/books/b02-identity/[0-9]*.md"
-            - auto: "docs/books/b02-identity/appendix-*.md"
+            - auto: "docs/books/b02-identity/*-*.md"
         - section: "Book 03 — HR-Driven Identity"
           href: docs/books/b03-hr-identity/index.md
           contents:
-            - auto: "docs/books/b03-hr-identity/[0-9]*.md"
-            - auto: "docs/books/b03-hr-identity/appendix-*.md"
+            - auto: "docs/books/b03-hr-identity/*-*.md"
         - section: "Book 04 — Access & Privilege"
           href: docs/books/b04-access/index.md
           contents:
-            - auto: "docs/books/b04-access/[0-9]*.md"
-            - auto: "docs/books/b04-access/appendix-*.md"
+            - auto: "docs/books/b04-access/*-*.md"
         - section: "Book 05 — Devices & Endpoints"
           href: docs/books/b05-devices/index.md
           contents:
-            - auto: "docs/books/b05-devices/[0-9]*.md"
-            - auto: "docs/books/b05-devices/appendix-*.md"
+            - auto: "docs/books/b05-devices/*-*.md"
         - section: "Book 06 — Data Platform: SQL Server Identity"
           href: docs/books/b06-data-platform/index.md
           contents:
-            - auto: "docs/books/b06-data-platform/[0-9]*.md"
-            - auto: "docs/books/b06-data-platform/r[0-9]*.md"
-            - auto: "docs/books/b06-data-platform/appendix-*.md"
+            - auto: "docs/books/b06-data-platform/*-*.md"
         - section: "Book 07 — PKI & Certificates"
           href: docs/books/b07-pki/index.md
           contents:
-            - auto: "docs/books/b07-pki/[0-9]*.md"
-            - auto: "docs/books/b07-pki/appendix-*.md"
+            - auto: "docs/books/b07-pki/*-*.md"
         - section: "Book 08 — DNS, DHCP & IPAM"
           href: docs/books/b08-ddi/index.md
           contents:
-            - auto: "docs/books/b08-ddi/[0-9]*.md"
-            - auto: "docs/books/b08-ddi/appendix-*.md"
+            - auto: "docs/books/b08-ddi/*-*.md"
         - section: "Book 09 — Network & Transport"
           href: docs/books/b09-network/index.md
           contents:
-            - auto: "docs/books/b09-network/[0-9]*.md"
-            - auto: "docs/books/b09-network/appendix-*.md"
+            - auto: "docs/books/b09-network/*-*.md"
         - section: "Book 10 — Cloud Boundary & Landing Zone"
           href: docs/books/b10-cloud-boundary/index.md
           contents:
-            - auto: "docs/books/b10-cloud-boundary/[0-9]*.md"
-            - auto: "docs/books/b10-cloud-boundary/appendix-*.md"
+            - auto: "docs/books/b10-cloud-boundary/*-*.md"
         - section: "Book 11 — Zero Trust & Assessment"
           href: docs/books/b11-zero-trust/index.md
           contents:
-            - auto: "docs/books/b11-zero-trust/[0-9]*.md"
-            - auto: "docs/books/b11-zero-trust/appendix-*.md"
+            - auto: "docs/books/b11-zero-trust/*-*.md"
 
   page-footer:
     left: "Federal Modernization Workbook — topic books for federal IT modernization, each framed Why / What / Who / How."
@@ -149,7 +140,19 @@ website:
 
 format:
   html:
-    theme: cosmo
+    # House theme (assets/fmw-theme.scss) and page header
+    # (assets/partials/title-block.html + assets/fmw-hero.lua), in the style
+    # of the Inspiration page.
+    theme: [cosmo, assets/fmw-theme.scss]
+    template-partials:
+      - assets/partials/title-block.html
+    filters:
+      - assets/fmw-hero.lua
+    include-in-header:
+      - text: |
+          <link rel="preconnect" href="https://fonts.googleapis.com">
+          <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+          <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=IBM+Plex+Mono:wght@400;500&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
     # Disclaimer banner at the top of every page, above the navbar.
     include-before-body:
       - text: |
