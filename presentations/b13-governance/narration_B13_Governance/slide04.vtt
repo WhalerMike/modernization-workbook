@@ -1,0 +1,81 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.475
+Drift can only be measured
+against something.
+
+2
+00:00:02.475 --> 00:00:05.949
+For twenty years many enterprises
+kept their governance,
+
+3
+00:00:05.949 --> 00:00:08.337
+unwritten, in the Active Directory tree.
+
+4
+00:00:08.337 --> 00:00:10.699
+A flat cloud directory doesn't carry it,
+
+5
+00:00:10.699 --> 00:00:15.051
+so the program writes the governance
+down, in one authoritative record.
+
+6
+00:00:15.051 --> 00:00:19.369
+The record is a version-controlled
+repository of policies,
+
+7
+00:00:19.369 --> 00:00:21.837
+plans, evidence, schemas and rules.
+
+8
+00:00:21.837 --> 00:00:23.949
+It doesn't master every fact.
+
+9
+00:00:23.949 --> 00:00:28.538
+HR owns who a worker is; the identity
+platform issues credentials.
+
+10
+00:00:28.538 --> 00:00:33.900
+The record holds the authority: which system
+owns each fact, and who may write it.
+
+11
+00:00:33.900 --> 00:00:36.600
+Runtime systems read
+it and never write it.
+
+12
+00:00:36.600 --> 00:00:40.532
+Private copies are forbidden,
+because a local copy someone reads
+
+13
+00:00:40.532 --> 00:00:44.100
+because the repository was slow
+is a second source of truth.
+
+14
+00:00:44.100 --> 00:00:49.113
+Every derived report carries its
+source, version, time and producer.
+
+15
+00:00:49.113 --> 00:00:51.544
+The record covers six control planes,
+
+16
+00:00:51.544 --> 00:00:56.174
+each authoritative for one domain, so
+every finding has one owning team.
+
+17
+00:00:56.174 --> 00:01:01.300
+NIST's CM-2 baseline is this record,
+kept in a form machines can compare.

@@ -94,10 +94,10 @@ The program's drift classes, as [Book 02](../b02-identity/11-reference-deploymen
 
 | Drift class | What it means | Default lane |
 |---|---|---|
-| Schema | A value's encoding or structure doesn't match the current schema | Machine, autonomous, when the transform is deterministic |
+| Schema | A value's encoding or structure doesn't match the current schema | Machine-executed when the transform is deterministic, gated at L3 unless the authorizing official has accepted the class at L4; a format failure on a claim in use is critical and halts ([Chapter 06](06-the-drift-engine.md)) |
 | Semantic | A value is well formed but means the wrong thing, such as a deprecated naming pattern | Machine, gated; often escalates |
-| Provenance | A state change appears with no provenance event | Halt and alert, human decision |
-| Authorization | A policy contradicts what the record says a principal may do | Halt and alert, human decision |
+| Provenance | A state change appears with no provenance event | Halt and alert when the claim is in active use (P1); otherwise a P3 human decision ([Chapter 06](06-the-drift-engine.md)) |
+| Authorization | A policy contradicts what the record says a principal may do | Halt and alert when the claim is in active use (P1); otherwise a P3 human decision ([Chapter 06](06-the-drift-engine.md)) |
 | Identity | A principal exists with no counterpart in the record, or the reverse | Human decision, then gated |
 
 ## Severity and tempo
@@ -113,7 +113,7 @@ The tempo is how quickly each severity must be handled. It bounds the response, 
 
 The source of this tempo said P3 and P4 findings auto-remediate. In the program's model that holds only for classes enumerated at L4; everywhere else the machine executes after a person approves, which is still a ticket to a machine. [Chapter 10](10-ticket-to-machine.md#which-change-classes-qualify) gives the six tests a class must pass to qualify.
 
-These are the program's internal windows for drift against its own record. They don't replace external timelines: CISA's BOD 26-04 sets remediation timelines for vulnerabilities by exposure, KEV status, automatability and technical impact, and an agency's vulnerability findings follow those.[^aB-bod2604] Where both apply, the shorter window applies.
+These are the program's internal windows for drift against its own record. They don't replace external timelines: CISA's BOD 26-04 sets remediation timelines for vulnerabilities by exposure, KEV status, automatability and technical impact, and an agency's vulnerability findings follow those.[^aB-bod2604] Where both apply, the external clock governs whenever it is shorter or different in kind ([Chapter 10](10-ticket-to-machine.md)).
 
 The tempo also names measures that belong to program leadership, not only to operations. [Chapter 10](10-ticket-to-machine.md) defines them:
 

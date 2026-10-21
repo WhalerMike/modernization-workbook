@@ -1,0 +1,840 @@
+{
+ "1": [
+  [
+   0.05,
+   11.037,
+   "This briefing comes from Book 13 of the Federal Modernization Workbook, Governance, Drift and Evidence: why compliance decays the day after the audit, and the governance that doesn't."
+  ],
+  [
+   11.088,
+   12.238,
+   "I'll take four questions: why a signed package starts aging at once, what keeps governance true between assessments, who governs it, and how to run it at machine tempo, reuse it across agencies and scale it."
+  ],
+  [
+   23.325,
+   8.738,
+   "The short version: keep one authoritative record, let the systems prove they still match it, and keep people on the decisions only people can make."
+  ]
+ ],
+ "2": [
+  [
+   0.05,
+   3.062,
+   "Picture the week an authorization package is signed."
+  ],
+  [
+   3.112,
+   1.9,
+   "On that day the package is true."
+  ],
+  [
+   5.013,
+   9.875,
+   "The next morning an administrator changes a firewall rule to fix an outage, a contractor's account outlives the contract, a cloud provider ships a new default."
+  ],
+  [
+   14.887,
+   1.775,
+   "None of it reaches the package."
+  ],
+  [
+   16.663,
+   3.5,
+   "Federal guidance already points away from the snapshot."
+  ],
+  [
+   20.163,
+   4.675,
+   "FISMA sets a floor: test at least annually, with automated tools."
+  ],
+  [
+   24.837,
+   5.438,
+   "There's no federal three-year rule; the authorization's term is the agency's to set."
+  ],
+  [
+   30.275,
+   4.787,
+   "nist defines continuous monitoring as ongoing awareness, not a calendar."
+  ],
+  [
+   35.062,
+   9.562,
+   "The Risk Management Framework calls reauthorization the static, single point-in-time decision, and asks agencies to make ongoing authorization a priority."
+  ],
+  [
+   44.625,
+   5.312,
+   "O M B's Circular A-130 tells them to make that transition when eligible."
+  ],
+  [
+   49.938,
+   2.138,
+   "So why do so few systems get there?"
+  ],
+  [
+   52.075,
+   6.5,
+   "nist answers it: without substantial automation, ongoing authorization isn't feasible or practical."
+  ],
+  [
+   58.575,
+   4.75,
+   "And adding checkboxes makes reporting heavier while leaving the change untouched."
+  ],
+  [
+   63.325,
+   1.9,
+   "That's the compliance paradox."
+  ]
+ ],
+ "3": [
+  [
+   0.05,
+   2.375,
+   "The mechanism has a name: drift."
+  ],
+  [
+   2.425,
+   6.112,
+   "Drift is any difference between what the authoritative record says should be true and what the running estate does."
+  ],
+  [
+   8.537,
+   7.213,
+   "A setting changed and never recorded, an account that outlived its owner, a rule that quietly stopped evaluating."
+  ],
+  [
+   15.75,
+   13.9,
+   "nist names the sources: unauthorized change, from attackers or from honest errors by authorized staff; changes made outside change control; provider changes that are hard to detect; staff turnover; and upgrades."
+  ],
+  [
+   29.65,
+   4.412,
+   "The program ranks drift first among governance threats for three reasons."
+  ],
+  [
+   34.062,
+   3.312,
+   "It's continuous, a gradient rather than an event."
+  ],
+  [
+   37.375,
+   8.55,
+   "It's silent: the directory reports the rule as configured and the console reports the policy as assigned, because each reports what it was told."
+  ],
+  [
+   45.925,
+   2.15,
+   "And it's the opening other threats use."
+  ],
+  [
+   48.075,
+   6.075,
+   "NSA and sis-uh called the most common misconfigurations their teams find systemic weaknesses."
+  ],
+  [
+   54.15,
+   8.425,
+   "nist's controls describe drift detection without the word: a baseline, controlled change, approved deviations, and someone who keeps checking."
+  ]
+ ],
+ "4": [
+  [
+   0.05,
+   2.425,
+   "Drift can only be measured against something."
+  ],
+  [
+   2.475,
+   5.862,
+   "For twenty years many enterprises kept their governance, unwritten, in the Active Directory tree."
+  ],
+  [
+   8.338,
+   6.713,
+   "A flat cloud directory doesn't carry it, so the program writes the governance down, in one authoritative record."
+  ],
+  [
+   15.05,
+   6.787,
+   "The record is a version-controlled repository of policies, plans, evidence, schemas and rules."
+  ],
+  [
+   21.837,
+   2.112,
+   "It doesn't master every fact."
+  ],
+  [
+   23.95,
+   4.588,
+   "HR owns who a worker is; the identity platform issues credentials."
+  ],
+  [
+   28.538,
+   5.362,
+   "The record holds the authority: which system owns each fact, and who may write it."
+  ],
+  [
+   33.9,
+   2.7,
+   "Runtime systems read it and never write it."
+  ],
+  [
+   36.6,
+   7.5,
+   "Private copies are forbidden, because a local copy someone reads because the repository was slow is a second source of truth."
+  ],
+  [
+   44.1,
+   5.013,
+   "Every derived report carries its source, version, time and producer."
+  ],
+  [
+   49.112,
+   7.062,
+   "The record covers six control planes, each authoritative for one domain, so every finding has one owning team."
+  ],
+  [
+   56.175,
+   5.05,
+   "nist's CM-2 baseline is this record, kept in a form machines can compare."
+  ]
+ ],
+ "5": [
+  [
+   0.05,
+   2.975,
+   "A record is only as good as the path into it."
+  ],
+  [
+   3.025,
+   3.95,
+   "Most drift isn't malicious; it's a hotfix during an outage."
+  ],
+  [
+   6.975,
+   10.425,
+   "So the program allows one path for every operational change, whether it moves, adds, changes, deletes or resets something, and no second path for urgent work."
+  ],
+  [
+   17.4,
+   1.863,
+   "The path has five clauses."
+  ],
+  [
+   19.262,
+   2.225,
+   "Originate from the source of truth."
+  ],
+  [
+   21.488,
+   3.9,
+   "Authorize from the authority model, not from whoever is nearby."
+  ],
+  [
+   25.387,
+   3.725,
+   "Execute under least privilege, elevated just in time."
+  ],
+  [
+   29.113,
+   2.825,
+   "Close with the verification that justified it."
+  ],
+  [
+   31.938,
+   2.288,
+   "And emit the evidence automatically."
+  ],
+  [
+   34.225,
+   5.375,
+   "Skip a clause and the operation isn't a change with a missing form; it's a drift finding."
+  ],
+  [
+   39.6,
+   8.662,
+   "Changes to the record travel as reviewed pull requests: two people, a signed merge, and branch protection that binds administrators too."
+  ],
+  [
+   48.263,
+   5.525,
+   "Emergencies are back-ported within one business day, and reported as drift until then."
+  ],
+  [
+   53.788,
+   4.888,
+   "The identity that decides never acts, and the one that acts never decides."
+  ],
+  [
+   58.675,
+   2.962,
+   "And no closure counts unless it carries its proof."
+  ]
+ ],
+ "6": [
+  [
+   0.05,
+   4.35,
+   "When the program says a control is satisfied, how does anyone know it's right?"
+  ],
+  [
+   4.4,
+   1.887,
+   "The usual answer is trust."
+  ],
+  [
+   6.287,
+   9.938,
+   "The program's answer is determinism: given the same version of the record and the same collected inputs, the platform produces the same evidence, byte for byte."
+  ],
+  [
+   16.225,
+   2.625,
+   "Then an assessor doesn't have to trust the run."
+  ],
+  [
+   18.85,
+   2.425,
+   "They repeat it and compare the hashes."
+  ],
+  [
+   21.275,
+   2.125,
+   "Automation isn't the same thing."
+  ],
+  [
+   23.4,
+   6.6,
+   "Automation makes the answer arrive faster; determinism makes it the same answer no matter who asks."
+  ],
+  [
+   30.0,
+   3.962,
+   "The rules live in three layers, each with its own reviewer."
+  ],
+  [
+   33.962,
+   4.85,
+   "Rules say what exists and what it means, and change only through governance review."
+  ],
+  [
+   38.812,
+   3.025,
+   "Mappings say which rules apply to which controls."
+  ],
+  [
+   41.837,
+   5.075,
+   "Runtime code evaluates them, and is the only layer allowed to change state."
+  ],
+  [
+   46.913,
+   4.612,
+   "One limit: determinism is faithful to the record, not a check on it."
+  ],
+  [
+   51.525,
+   3.188,
+   "A wrong rule gives the same wrong answer every time."
+  ]
+ ],
+ "7": [
+  [
+   0.05,
+   5.675,
+   "The drift engine compares observed state with a versioned record, not a last-known-good snapshot."
+  ],
+  [
+   5.725,
+   3.888,
+   "An approved change updates the record first, so it isn't drift."
+  ],
+  [
+   9.613,
+   3.85,
+   "There's one drift model, with five classes, each a question."
+  ],
+  [
+   13.463,
+   2.237,
+   "Schema: is the shape still valid?"
+  ],
+  [
+   15.7,
+   2.337,
+   "Semantic: is the value still true?"
+  ],
+  [
+   18.038,
+   3.987,
+   "Provenance: does every change trace to an authorized source?"
+  ],
+  [
+   22.025,
+   4.075,
+   "Authorization: did anything act outside what it was authorized to do?"
+  ],
+  [
+   26.1,
+   3.5,
+   "Identity: does every object resolve to the record?"
+  ],
+  [
+   29.6,
+   4.812,
+   "The drift checks in the other books are instances of these five, not separate lists."
+  ],
+  [
+   34.413,
+   6.088,
+   "Severity is computed, not argued, from the class and whether the claim is in active use."
+  ],
+  [
+   40.5,
+   4.55,
+   "P1 halts and alerts a named role, and is never fixed automatically."
+  ],
+  [
+   45.05,
+   3.987,
+   "P2 has an hour, P3 a day, P4 three days."
+  ],
+  [
+   49.038,
+   4.525,
+   "Severity sets the clock; the actuation ladder decides who may act."
+  ],
+  [
+   53.562,
+   10.088,
+   "And be precise with an assessor about what's built: schema and provenance detection are built, semantic is partial, and authorization and identity are still design."
+  ]
+ ],
+ "8": [
+  [
+   0.05,
+   4.675,
+   "An attestation is a person signing that a system was in a stated condition."
+  ],
+  [
+   4.725,
+   4.25,
+   "It answers who is accountable, and federal authorization needs that answer."
+  ],
+  [
+   8.975,
+   4.45,
+   "Evidence answers a different question: is the claim true, and can I check it?"
+  ],
+  [
+   13.425,
+   2.587,
+   "The program inverts the usual package."
+  ],
+  [
+   16.012,
+   9.287,
+   "Evidence is the substance, and attestation is the accountability wrapper: people sign for the rules, the exceptions and the acceptance of risk."
+  ],
+  [
+   25.3,
+   10.738,
+   "nist's assessment guide says that when the intended state is expressed as data and compared automatically with the actual state, the output is equivalent to control assessment results."
+  ],
+  [
+   36.038,
+   4.763,
+   "The Risk Management Framework lets a tool's report serve as the assessment report."
+  ],
+  [
+   40.8,
+   6.588,
+   "And fed-ramp's 2026 rules tell assessors: don't simply review documentation or screenshots."
+  ],
+  [
+   47.388,
+   1.5,
+   "Be careful what you claim."
+  ],
+  [
+   48.888,
+   2.087,
+   "A hash shows that something changed."
+  ],
+  [
+   50.975,
+   2.7,
+   "A hash chain shows removal or reordering."
+  ],
+  [
+   53.675,
+   2.325,
+   "Only a signature shows who produced it."
+  ],
+  [
+   56.0,
+   5.45,
+   "And some controls, like a training record or a contract clause, stay attestations."
+  ]
+ ],
+ "9": [
+  [
+   0.05,
+   3.663,
+   "The program doesn't replace the platforms an agency runs."
+  ],
+  [
+   3.712,
+   10.562,
+   "It reaches each one through an adapter: a translator that reads the platform's native state through its own interface and writes it into the program's common record, with provenance."
+  ],
+  [
+   14.275,
+   5.925,
+   "The rules, the drift engine and the evidence chain see one record, whichever vendor produced it."
+  ],
+  [
+   20.2,
+   3.263,
+   "Adapters hold no rules and make no decisions."
+  ],
+  [
+   23.462,
+   3.625,
+   "Adapters come in two kinds, kept in separate lists."
+  ],
+  [
+   27.087,
+   3.825,
+   "Conformance adapters are read-only and sit at L1."
+  ],
+  [
+   30.913,
+   6.2,
+   "Modernization adapters change state, only on authorized plans, at L3 by default."
+  ],
+  [
+   37.112,
+   4.812,
+   "Each declares one of five missions, and every one inherits four invariants."
+  ],
+  [
+   41.925,
+   3.175,
+   "Read-only comes first, and it has to be verified."
+  ],
+  [
+   45.1,
+   8.688,
+   "sis-uh's ScubaGear is read-only in purpose, yet its documentation notes that a Global Administrator always has the permissions it needs."
+  ],
+  [
+   53.788,
+   4.713,
+   "So the program compares what an identity is actually granted with what it declares."
+  ],
+  [
+   58.5,
+   1.837,
+   "Lock-in doesn't disappear."
+  ],
+  [
+   60.337,
+   5.037,
+   "It moves to small, replaceable adapters and to a record the agency owns."
+  ]
+ ],
+ "10": [
+  [
+   0.05,
+   2.388,
+   "None of this machinery decides anything."
+  ],
+  [
+   2.438,
+   5.662,
+   "A drift finding asks: change the estate, change the record, or carry the difference?"
+  ],
+  [
+   8.1,
+   4.763,
+   "Only people can answer the last two, so the program names one decider for each."
+  ],
+  [
+   12.863,
+   5.45,
+   "The steward keeps the record: its protections, merge rights, checks and backups."
+  ],
+  [
+   18.312,
+   5.513,
+   "The steward doesn't decide what the facts mean; HR, application and data owners do."
+  ],
+  [
+   23.825,
+   6.575,
+   "The see-so decides control requirements, even when they're written as code, and decides on drift evidence."
+  ],
+  [
+   30.4,
+   5.025,
+   "The governance board is the change control element nist's CM-3 calls for."
+  ],
+  [
+   35.425,
+   6.0,
+   "It meets every two weeks and reviews rather than votes, so every decision has one accountable owner."
+  ],
+  [
+   41.425,
+   9.125,
+   "The authorizing official, the only official who can accept risk, signs every open-ended gap and every class of change allowed to run at L4."
+  ],
+  [
+   50.55,
+   7.325,
+   "A bounded exception, with an end date and a compensating control, is the see-so's, and none renews automatically."
+  ],
+  [
+   57.875,
+   8.35,
+   "And the repository is a federal record: the records officer decides retention, and history is never rewritten without that decision."
+  ]
+ ],
+ "11": [
+  [
+   0.05,
+   6.525,
+   "A platform that detects perfectly and closes slowly produces an accurate list of things nobody fixed."
+  ],
+  [
+   6.575,
+   1.725,
+   "Tempo keeps that list short."
+  ],
+  [
+   8.3,
+   7.963,
+   "The program declares a response window for each severity: immediate for P1, then an hour, a day and three days."
+  ],
+  [
+   16.262,
+   9.8,
+   "External clocks win: a known exploited vulnerability runs on BOD 26-04, and an incident runs on sis-uh's one-hour notice."
+  ],
+  [
+   26.062,
+   5.425,
+   "The usual ticket sends a person to a console, and their reply of done is an assertion."
+  ],
+  [
+   31.488,
+   6.125,
+   "The program's rule is that wherever a machine can reach the surface, the ticket authorizes a machine."
+  ],
+  [
+   37.612,
+   9.312,
+   "A person approves; the platform executes from a versioned plan under a service identity, after a dry run, and re-reads the object to verify."
+  ],
+  [
+   46.925,
+   3.0,
+   "A class qualifies when it passes six tests."
+  ],
+  [
+   49.925,
+   4.875,
+   "At L3, the default, a named approver releases each instance."
+  ],
+  [
+   54.8,
+   4.25,
+   "At L4 the authorizing official accepts the whole class in advance."
+  ],
+  [
+   59.05,
+   4.7,
+   "Conditional Access and tenant-wide role changes stay at L3 permanently."
+  ],
+  [
+   63.75,
+   7.388,
+   "Where no machine can reach, the fallback is a declared, recorded privileged session, never a quiet trip to the console."
+  ]
+ ],
+ "12": [
+  [
+   0.05,
+   8.025,
+   "A platform that twenty agencies use is examined by twenty assessment teams, producing twenty snapshots at twenty different times."
+  ],
+  [
+   8.075,
+   2.263,
+   "Reciprocity is the alternative."
+  ],
+  [
+   10.338,
+   3.212,
+   "nist defines it as accepting each other's assessments."
+  ],
+  [
+   13.55,
+   4.7,
+   "Nothing in it lets one authorizing official accept risk for another agency."
+  ],
+  [
+   18.25,
+   2.062,
+   "nist gives three mechanisms."
+  ],
+  [
+   20.312,
+   10.188,
+   "An authorization to use accepts another federal entity's package, and the customer's official carries the same responsibility as one issuing an authorization to operate."
+  ],
+  [
+   30.5,
+   4.787,
+   "A joint authorization has several officials accept one system's risk together."
+  ],
+  [
+   35.288,
+   14.95,
+   "For cloud services, O M B's M-24-15 makes reuse the default: agencies presume a fed-ramp package adequate, but only while continuous monitoring maintains it, and asking for more needs a documented need."
+  ],
+  [
+   50.237,
+   4.487,
+   "fed-ramp is plain that each agency still authorizes its own systems."
+  ],
+  [
+   54.725,
+   8.15,
+   "Its 46 Key Security Indicators bind providers, not agencies; agencies review each provider's quarterly report."
+  ],
+  [
+   62.875,
+   8.838,
+   "So the program's old single-authorization wording is corrected: one package, many decisions, each agency signing for its own risk."
+  ]
+ ],
+ "13": [
+  [
+   0.05,
+   2.5,
+   "A real agency doesn't have one estate."
+  ],
+  [
+   2.55,
+   3.112,
+   "It has hundreds of systems and several boundaries."
+  ],
+  [
+   5.662,
+   11.387,
+   "nist draws the line: each system's monitoring strategy follows an organization-wide one, approved by the senior accountable official for risk management, with minimum frequencies."
+  ],
+  [
+   17.05,
+   4.8,
+   "The program's scaling rule is to hold the definitions small and let the uses grow."
+  ],
+  [
+   21.85,
+   8.475,
+   "The record's core, the five drift classes and the four severities stay fixed, so a P1 means the same thing in every program."
+  ],
+  [
+   30.325,
+   4.425,
+   "Adapters, mappings and evidence grow, each validated on entry."
+  ],
+  [
+   34.75,
+   5.287,
+   "Boundaries are recorded as governed objects, so findings cite the boundary they crossed."
+  ],
+  [
+   40.038,
+   2.0,
+   "Coverage is reported honestly."
+  ],
+  [
+   42.038,
+   4.35,
+   "Every control is covered, partial, a gap, or out of scope."
+  ],
+  [
+   46.388,
+   6.338,
+   "Every partial or gap enters a register with an owner, the evidence that will prove closure, and a date."
+  ],
+  [
+   52.725,
+   8.625,
+   "It closes by configuration, by a compensating control, or by the authorizing official's acceptance, and closed items stay for audit."
+  ]
+ ],
+ "14": [
+  [
+   0.05,
+   1.375,
+   "So, four decisions."
+  ],
+  [
+   1.425,
+   6.075,
+   "Charter the governance board in writing and name the steward, with one decider for every kind of decision."
+  ],
+  [
+   7.5,
+   11.738,
+   "Settle the record before the next migration: which system owns each fact, the rules, and the provenance each value carries, so the migration changes who supplies a fact, not what it means."
+  ],
+  [
+   19.238,
+   10.637,
+   "Set the tempo: response windows by severity, gated actuation at L3 by default, and the authorizing official's signature on every class that runs at L4."
+  ],
+  [
+   29.875,
+   6.825,
+   "And plan the move to ongoing authorization, on evidence the systems produce rather than attestations people assemble."
+  ],
+  [
+   36.7,
+   2.2,
+   "The next step needs no procurement."
+  ],
+  [
+   38.9,
+   9.088,
+   "Classify every control's coverage, open the gap register, and record every drift finding in the same contract shape, however it was found."
+  ],
+  [
+   47.987,
+   1.875,
+   "A package describes one day."
+  ],
+  [
+   49.862,
+   4.4,
+   "Governance that doesn't decay keeps proving itself every day after."
+  ],
+  [
+   54.263,
+   3.712,
+   "Book 13 has the detail, every claim footnoted."
+  ],
+  [
+   57.975,
+   0.762,
+   "Thank you."
+  ]
+ ]
+}

@@ -1,0 +1,86 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.025
+A record is only as good
+as the path into it.
+
+2
+00:00:03.025 --> 00:00:06.975
+Most drift isn't malicious;
+it's a hotfix during an outage.
+
+3
+00:00:06.975 --> 00:00:12.229
+So the program allows one path for every
+operational change, whether it moves,
+
+4
+00:00:12.229 --> 00:00:17.400
+adds, changes, deletes or resets something,
+and no second path for urgent work.
+
+5
+00:00:17.400 --> 00:00:19.263
+The path has five clauses.
+
+6
+00:00:19.263 --> 00:00:21.487
+Originate from the source of truth.
+
+7
+00:00:21.487 --> 00:00:25.388
+Authorize from the authority
+model, not from whoever is nearby.
+
+8
+00:00:25.388 --> 00:00:29.112
+Execute under least privilege,
+elevated just in time.
+
+9
+00:00:29.112 --> 00:00:31.938
+Close with the verification
+that justified it.
+
+10
+00:00:31.938 --> 00:00:34.226
+And emit the evidence automatically.
+
+11
+00:00:34.226 --> 00:00:37.107
+Skip a clause and the
+operation isn't a change
+
+12
+00:00:37.107 --> 00:00:39.600
+with a missing form; it's a drift finding.
+
+13
+00:00:39.600 --> 00:00:43.854
+Changes to the record travel as
+reviewed pull requests: two people,
+
+14
+00:00:43.854 --> 00:00:48.262
+a signed merge, and branch protection
+that binds administrators too.
+
+15
+00:00:48.262 --> 00:00:51.687
+Emergencies are back-ported
+within one business day,
+
+16
+00:00:51.687 --> 00:00:53.788
+and reported as drift until then.
+
+17
+00:00:53.788 --> 00:00:58.676
+The identity that decides never acts,
+and the one that acts never decides.
+
+18
+00:00:58.676 --> 00:01:01.700
+And no closure counts unless
+it carries its proof.

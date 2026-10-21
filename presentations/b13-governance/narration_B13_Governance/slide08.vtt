@@ -1,0 +1,80 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.725
+An attestation is a person signing that
+a system was in a stated condition.
+
+2
+00:00:04.725 --> 00:00:08.975
+It answers who is accountable, and
+federal authorization needs that answer.
+
+3
+00:00:08.975 --> 00:00:13.425
+Evidence answers a different question:
+is the claim true, and can I check it?
+
+4
+00:00:13.425 --> 00:00:16.012
+The program inverts the usual package.
+
+5
+00:00:16.012 --> 00:00:20.892
+Evidence is the substance, and
+attestation is the accountability wrapper:
+
+6
+00:00:20.892 --> 00:00:25.299
+people sign for the rules, the
+exceptions and the acceptance of risk.
+
+7
+00:00:25.299 --> 00:00:30.041
+NIST's assessment guide says that when the
+intended state is expressed as data and
+
+8
+00:00:30.041 --> 00:00:32.761
+compared automatically
+with the actual state,
+
+9
+00:00:32.761 --> 00:00:36.038
+the output is equivalent to
+control assessment results.
+
+10
+00:00:36.038 --> 00:00:40.801
+The Risk Management Framework lets a tool's
+report serve as the assessment report.
+
+11
+00:00:40.801 --> 00:00:43.699
+And FedRAMP's 2026 rules tell assessors:
+
+12
+00:00:43.699 --> 00:00:47.388
+don't simply review
+documentation or screenshots.
+
+13
+00:00:47.388 --> 00:00:48.888
+Be careful what you claim.
+
+14
+00:00:48.888 --> 00:00:50.975
+A hash shows that something changed.
+
+15
+00:00:50.975 --> 00:00:53.675
+A hash chain shows removal or reordering.
+
+16
+00:00:53.675 --> 00:00:56.000
+Only a signature shows who produced it.
+
+17
+00:00:56.000 --> 00:01:01.510
+And some controls, like a training record
+or a contract clause, stay attestations.

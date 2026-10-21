@@ -1,0 +1,83 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.713
+The program doesn't replace
+the platforms an agency runs.
+
+2
+00:00:03.713 --> 00:00:05.980
+It reaches each one through an adapter:
+
+3
+00:00:05.980 --> 00:00:09.950
+a translator that reads the platform's
+native state through its own
+
+4
+00:00:09.950 --> 00:00:14.274
+interface and writes it into the
+program's common record, with provenance.
+
+5
+00:00:14.274 --> 00:00:18.301
+The rules, the drift engine and
+the evidence chain see one record,
+
+6
+00:00:18.301 --> 00:00:20.200
+whichever vendor produced it.
+
+7
+00:00:20.200 --> 00:00:23.463
+Adapters hold no rules
+and make no decisions.
+
+8
+00:00:23.463 --> 00:00:27.087
+Adapters come in two kinds,
+kept in separate lists.
+
+9
+00:00:27.087 --> 00:00:30.912
+Conformance adapters are
+read-only and sit at L1.
+
+10
+00:00:30.912 --> 00:00:37.113
+Modernization adapters change state, only
+on authorized plans, at L3 by default.
+
+11
+00:00:37.113 --> 00:00:41.924
+Each declares one of five missions,
+and every one inherits four invariants.
+
+12
+00:00:41.924 --> 00:00:45.100
+Read-only comes first,
+and it has to be verified.
+
+13
+00:00:45.100 --> 00:00:49.211
+CISA's ScubaGear is read-only in
+purpose, yet its documentation
+
+14
+00:00:49.211 --> 00:00:53.788
+notes that a Global Administrator
+always has the permissions it needs.
+
+15
+00:00:53.788 --> 00:00:58.501
+So the program compares what an identity
+is actually granted with what it declares.
+
+16
+00:00:58.501 --> 00:01:00.337
+Lock-in doesn't disappear.
+
+17
+00:01:00.337 --> 00:01:05.420
+It moves to small, replaceable adapters
+and to a record the agency owns.
