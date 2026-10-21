@@ -1,0 +1,27 @@
+# Book 15 Chapter 02 — the day-two operating model as a path through the book:
+# intake and routing (Ch03), help-desk authority (Ch04), catalogs and SaaS
+# integration (Ch05-06), the configuration database (Ch07), control automation
+# (Ch08-09), attestation (Ch11), runbook and validation (Ch12), with the people
+# who run day two (Ch10) alongside. Program design.
+rankdir: TB
+graph: {nodesep: 0.4, ranksep: 0.25}
+nodes:
+  in: {tone: slate, width: 400, title: "A request, drift finding or HR event", size: 11}
+  c03: {tone: violet, width: 400, tag: "Chapter 03", title: "Intake, triage and routing", body: ["=One front door, routed by authority"], size: 11}
+  c04: {tone: blue, width: 400, tag: "Chapter 04", title: "Help-desk authority in Entra ID", body: ["=Scoped roles, just-in-time elevation, the high-risk tasks"], size: 11}
+  c0506: {tone: blue, width: 400, tag: "Chapters 05 and 06", title: "Service catalogs and SaaS integration", body: ["=Typed, control-mapped items; an authorization verdict before consent"], size: 11}
+  c07: {tone: slate, width: 400, tag: "Chapter 07", title: "Configuration database and asset identity", body: ["=Reconciled to the authoritative inventory"], size: 11}
+  c0809: {tone: blue, width: 400, tag: "Chapters 08 and 09", title: "Control automation", body: ["=Microsoft 365, Azure, AWS and VMware: native state becomes tasks"], size: 11}
+  c11: {tone: green, width: 400, tag: "Chapter 11", title: "Attestation and the compliance application", body: ["=Closures become control evidence"], size: 11}
+  c12: {tone: green, width: 400, tag: "Chapter 12", title: "Runbook and validation", body: ["=Governed tasks and the tests that prove them"], size: 11}
+  c10: {tone: amber, width: 240, tag: "Chapter 10", title: "Who runs day two", body: ["=Owners, approvers and operators"], size: 11}
+edges:
+  - [in, c03]
+  - [c03, c04]
+  - [c04, c0506]
+  - [c0506, c07]
+  - [c07, c0809]
+  - [c0809, c11]
+  - [c11, c12, {tone: green}]
+  - [c10, c03, {tone: amber, style: dashed}]
+  - [c10, c11, {tone: amber, style: dashed}]

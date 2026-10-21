@@ -1,0 +1,36 @@
+# Book 15 Chapter 02 — two estates after the same go-live. Run by hand, each
+# day-two change leaves no record the control recognizes and evidence is
+# assembled before the audit. Run by automation, each change is routed, gated,
+# executed under a just-in-time role and closes with a record, so evidence is
+# continuous (CA-7, SP 800-53 Rev. 5). The columns are the program's argument.
+rankdir: TB
+graph: {nodesep: 0.35, ranksep: 0.35}
+clusters:
+  - id: hand
+    label: "Run by hand"
+    tone: red
+    margin: 8
+    nodes: [h1, h2, h3]
+  - id: auto
+    label: "Run by automation"
+    tone: green
+    margin: 8
+    nodes: [a1, a2, a3]
+nodes:
+  live: {tone: green, width: 470, title: "Go-live", body: ["=The estate is assessed and the package is true"], size: 12}
+  h1: {tone: red, width: 215, title: "Portal clicks on emailed requests", body: ["=Under standing admin"], size: 11}
+  h2: {tone: red, width: 215, title: "No record the control recognizes", body: ["=No approval, no closing check"], size: 11}
+  h3: {tone: red, width: 215, title: "Evidence assembled before the audit", body: ["=Screenshots and exports; ages until the next cycle"], size: 11}
+  a1: {tone: blue, width: 215, title: "Typed requests", body: ["=Each routed by the authority it needs"], size: 11}
+  a2: {tone: blue, width: 215, title: "Gate, role, action", body: ["=Approval, just-in-time role, integration action"], size: 11}
+  a3: {tone: green, width: 215, title: "Closing check and record", body: ["=Emitted to the evidence pipeline"], size: 11}
+  ao: {tone: slate, width: 470, title: "Authorizing official and continuous monitoring", body: ["=CA-7: ongoing assessment, analysis, response and reporting"], size: 12}
+edges:
+  - [live, h1, {tone: red}]
+  - [live, a1, {tone: green}]
+  - [h1, h2, {tone: red}]
+  - [h2, h3, {tone: red}]
+  - [a1, a2, {tone: green}]
+  - [a2, a3, {tone: green}]
+  - [h3, ao, {tone: red, style: dashed, label: "findings"}]
+  - [a3, ao, {tone: green, label: "continuous evidence"}]

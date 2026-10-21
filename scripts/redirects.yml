@@ -376,3 +376,25 @@ redirects:
   docs/compliance/federal-compliance-series-moderate/books/vol-vii-books.html: docs/books/b14-compliance/12-the-series-as-a-map.html
   docs/compliance/federal-compliance-series-moderate/books/vol-viii-books.html: docs/books/b14-compliance/12-the-series-as-a-map.html
   docs/compliance/federal-compliance-series-moderate/books/vol-x-books.html: docs/books/b14-compliance/12-the-series-as-a-map.html
+
+  # Book 15 (Compliance Automation & Day-2 Operations) replaced these pages; sources are in archive/b15-day2-operations/.
+  docs/operational-guides/helpdesk-entra-operations/index.html: docs/books/b15-day2-operations/01-the-help-desk-decides.html
+  docs/operational-guides/helpdesk-entra-operations/helpdesk-flow.html: docs/books/b15-day2-operations/03-intake-triage-and-routing.html
+  docs/operational-guides/helpdesk-entra-operations/help-desk-administrative-responsibilities.html: docs/books/b15-day2-operations/04-help-desk-authority-in-entra.html
+  docs/compliance/Compliance_ServiceNow_Kit_Expansion_Roadmap.html: docs/books/b15-day2-operations/11-attestation-and-the-compliance-app.html
+  docs/compliance/Operator_Runbook_Day2_Compliant.html: docs/books/b15-day2-operations/12-the-day-two-runbook.html
+  docs/compliance/Vol_IX_Book_00_Day2_Operations_Overview.html: docs/books/b15-day2-operations/01-the-help-desk-decides.html
+  docs/compliance/Vol_IX_Book_01_Helpdesk_ITSM_Catalog.html: docs/books/b15-day2-operations/05-the-service-catalogs.html
+  docs/compliance/Vol_IX_Book_04_Teams_Telephony_Catalog.html: docs/books/b15-day2-operations/05-the-service-catalogs.html
+  docs/compliance/Vol_IX_Book_05_SaaS_Integration_Governance.html: docs/books/b15-day2-operations/06-saas-integration-governance.html
+  docs/compliance/Vol_VII_Book_00_ServiceNow_Automation_Overview.html: docs/books/b15-day2-operations/02-day-two-is-where-compliance-lives.html
+  docs/compliance/Vol_VII_Book_01_CMDB_Reconciliation_Asset_Identity.html: docs/books/b15-day2-operations/07-the-cmdb-and-asset-identity.html
+  docs/compliance/Vol_VII_Book_02_M365_Control_Compliance_Automation.html: docs/books/b15-day2-operations/08-control-automation-m365-and-azure.html
+  docs/compliance/Vol_VII_Book_03_Azure_Control_Compliance_Automation.html: docs/books/b15-day2-operations/08-control-automation-m365-and-azure.html
+  docs/compliance/Vol_VII_Book_04_Control_Attestation_Evidence_KSI.html: docs/books/b15-day2-operations/11-attestation-and-the-compliance-app.html
+  docs/compliance/Vol_VII_Book_05_ServiceNow_Compliance_App.html: docs/books/b15-day2-operations/11-attestation-and-the-compliance-app.html
+  docs/compliance/Vol_VII_Book_06_AWS_Control_Compliance_Automation.html: docs/books/b15-day2-operations/09-control-automation-aws-and-vmware.html
+  docs/compliance/Vol_VII_Book_07_VMware_Control_Compliance_Automation.html: docs/books/b15-day2-operations/09-control-automation-aws-and-vmware.html
+  docs/compliance/Vol_VI_Book_00_Implementation_Overview.html: docs/books/b15-day2-operations/02-day-two-is-where-compliance-lives.html
+  docs/compliance/Vol_VI_Book_07_Evidence_ConMon_Pipeline.html: docs/books/b15-day2-operations/11-attestation-and-the-compliance-app.html
+  docs/compliance/Vol_VI_Book_08_Validation_Test_Harnesses.html: docs/books/b15-day2-operations/12-the-day-two-runbook.html

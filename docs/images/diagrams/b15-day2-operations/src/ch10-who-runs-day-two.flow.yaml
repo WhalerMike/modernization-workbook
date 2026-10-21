@@ -1,0 +1,32 @@
+# Book 15 Chapter 10 — who runs day two. Top row: the roles that set
+# requirements and accept risk (the CISO; the authorizing official, who alone
+# accepts risk; the system owner and ISSO, who own each system's changes and
+# evidence). Middle row: the roles that govern the flow of work (the change
+# advisory board, the ITSM platform team, the CMDB owner). Bottom row: the
+# roles that execute (the service desk lines, identity operations and platform
+# owners, security operations). Roles from NIST SP 800-37 Rev. 2, SP 800-128
+# and SP 800-53 CM-3, CM-8(4) and CM-9; the arrangement is program design.
+rankdir: TB
+graph: {nodesep: 0.15, ranksep: 0.45}
+nodes:
+  ciso: {tone: amber, width: 165, tag: "Sets requirements", title: "CISO", body: ["=Identity verification, control requirements, acting playbooks"], size: 12}
+  ao: {tone: amber, width: 165, tag: "Alone accepts risk", title: "Authorizing official", body: ["=Open-ended exceptions, L4 classes, significant change"], size: 12}
+  so: {tone: blue, width: 165, tag: "Owns the system", title: "System owner and ISSO", body: ["=Remediation decisions, change impact, evidence"], size: 12}
+  cab: {tone: amber, width: 165, tag: "CM-3 change element", title: "Change advisory board", body: ["=Authorizes normal and emergency changes; reviews standard-change models"], size: 12}
+  itsm: {tone: violet, width: 165, tag: "Builds the front door", title: "ITSM platform team", body: ["=Catalog items, workflows, approval rules, integrations"], size: 12}
+  cmdb: {tone: violet, width: 165, tag: "Keeps the inventory", title: "CMDB owner", body: ["=CI classes, owners, reconciliation queue, health"], size: 12}
+  sd: {tone: green, width: 165, tag: "Executes, never self-approves", title: "Service desk lines", body: ["=First-line intake and triage; second-line cloud services"], size: 12}
+  ops: {tone: blue, width: 165, tag: "Own runbooks", title: "Identity operations and platform owners", body: ["=Design, escalations, change execution"], size: 12}
+  soc: {tone: violet, width: 165, tag: "Watches the actions", title: "Security operations", body: ["=Alerts on resets and grants; incident response"], size: 12}
+edges:
+  - [ciso, itsm, {label: "requirements", tone: amber}]
+  - [ao, cab, {label: "risk only", style: dashed}]
+  - [so, cmdb, {label: "acknowledges CIs", lw: 70, style: dashed}]
+  - [cab, ops, {label: "authorized changes", lw: 80, tone: amber}]
+  - [itsm, sd, {label: "routed tickets", lw: 70, tone: violet}]
+  - [cmdb, ops, {label: "CI owners", style: dashed}]
+  - [sd, soc, {label: "reset alerts", style: dashed, attrs: "dir=back"}]
+order:
+  - [ciso, ao, so]
+  - [itsm, cab, cmdb]
+  - [sd, ops]

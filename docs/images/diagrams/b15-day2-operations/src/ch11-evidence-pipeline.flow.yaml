@@ -1,0 +1,28 @@
+# Book 15 Chapter 11 — the evidence and continuous-monitoring pipeline.
+# Every source, including the ITSM platform's workflow record, writes one
+# evidence-contract record (Book 12 Ch02). Collect, correlate on asset
+# identity plus time (AU-12(1), High baseline only; adopted as design),
+# bind to control, emit OSCAL on a schedule (CA-7). The telemetry-
+# completeness check (Chapter 12) guards against silent sources.
+rankdir: TB
+graph: {nodesep: 0.25, ranksep: 0.35}
+nodes:
+  plat: {tone: slate, width: 200, title: "Platform mechanisms", body: ["=Baselines, detections, key rotation"], size: 11}
+  itsm: {tone: slate, width: 200, title: "ITSM workflow record", body: ["=Tests, approvals, POA&M items, closures"], size: 11}
+  native: {tone: slate, width: 200, title: "Native posture engines", body: ["=Microsoft 365, Azure, AWS, VMware"], size: 11}
+  collect: {tone: blue, width: 440, tag: "1", title: "Collect", body: ["=Each source writes evidence-contract records to the in-boundary log store"], size: 11}
+  corr: {tone: blue, width: 440, tag: "2", title: "Correlate", body: ["=Joined on authoritative asset identity plus time"], size: 11}
+  bind: {tone: blue, width: 440, tag: "3", title: "Bind", body: ["=Each record tied to its control and evidence category"], size: 11}
+  emit: {tone: green, width: 440, tag: "4 · CA-7", title: "Emit", body: ["=OSCAL assessment plan, results and POA&M regenerated on a schedule"], size: 11}
+  guard: {tone: violet, width: 200, title: "Telemetry-completeness check", body: ["=Chapter 12: a silent source raises an alert"], size: 11}
+edges:
+  - [plat, collect]
+  - [itsm, collect]
+  - [native, collect]
+  - [collect, corr, {tone: blue}]
+  - [corr, bind, {tone: blue}]
+  - [bind, emit, {tone: green}]
+  - [guard, collect, {style: dashed, tone: violet, attrs: "constraint=false"}]
+order:
+  - [plat, itsm, native]
+  - [collect, guard]

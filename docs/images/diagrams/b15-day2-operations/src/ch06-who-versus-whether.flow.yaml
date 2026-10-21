@@ -1,0 +1,25 @@
+# Book 15 Chapter 06 — consent restriction answers who may approve an
+# integration (CISA BOD 25-01 required configurations MS.AAD.5.1v1-5.3v1);
+# only an authorization verdict recorded before configuration answers whether
+# the service on the far end may hold federal data (SA-9). Both are needed.
+# Program design built on the CISA policy text.
+rankdir: TB
+graph: {nodesep: 0.4, ranksep: 0.4}
+nodes:
+  req: {tone: slate, width: 520, title: "An administrator wants to connect a third-party service", size: 12}
+  who: {tone: blue, width: 250, tag: "Consent baseline", title: "Who may approve?", body: ["Only administrators register apps", "Only administrators consent", "Admin consent workflow configured"], size: 11}
+  whether: {tone: amber, width: 250, tag: "Authorization verdict", title: "Whether the service may hold the data?", body: ["FedRAMP Marketplace status recorded", "Before any configuration", "Re-checked on a cadence"], size: 11}
+  leak: {tone: red, width: 250, title: "Consent alone", body: ["=Every check passes and data still leaves the boundary"], size: 11}
+  ok: {tone: green, width: 250, title: "Both answered", body: ["=Integration proceeds through the catalog"], size: 11}
+edges:
+  - [req, who]
+  - [req, whether]
+  - [who, leak, {label: "without a verdict", style: dashed, tone: red}]
+  - [who, ok, {tone: green}]
+  - [whether, ok, {tone: green}]
+ranks:
+  - [who, whether]
+  - [leak, ok]
+order:
+  - [who, whether]
+  - [leak, ok]

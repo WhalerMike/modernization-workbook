@@ -359,7 +359,7 @@ Under FedRAMP 20x the same records support Key Security Indicators. The indicato
 | `KSI-CMT-RMV` Redeploying vs Modifying | Changes go through redeploying version-controlled resources where reasonable | The repository as the only normal path; emergency changes back-ported |
 | `KSI-CMT-VTD` Validating Throughout Deployment | Testing and validation of changes during deployment is automated | Pre-merge checks; report-only stage; plan output attached to each pull request |
 
-The compliance series takes these records further, into the evidence contract and the attestation loop ([Vol VI Book 07](https://github.com/WhalerMike/modernization-workbook/blob/main/docs/compliance/Vol_VI_Book_07_Evidence_ConMon_Pipeline.md), [Vol VII Book 04](https://github.com/WhalerMike/modernization-workbook/blob/main/docs/compliance/Vol_VII_Book_04_Control_Attestation_Evidence_KSI.md)), and its governance book carries the program's control contract for lifecycle automation and certification campaigns ([Vol IX Book 06](https://github.com/WhalerMike/modernization-workbook/blob/main/docs/compliance/Vol_IX_Book_06_Identity_Access_Governance.md)).
+The compliance series takes these records further, into the evidence contract and the attestation loop ([Vol VI Book 07](../b15-day2-operations/11-attestation-and-the-compliance-app.md), [Vol VII Book 04](../b15-day2-operations/11-attestation-and-the-compliance-app.md)), and its governance book carries the program's control contract for lifecycle automation and certification campaigns ([Vol IX Book 06](https://github.com/WhalerMike/modernization-workbook/blob/main/docs/compliance/Vol_IX_Book_06_Identity_Access_Governance.md)).
 
 ### The evidence package for a period
 

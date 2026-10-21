@@ -187,7 +187,7 @@ Every URL below was opened on October 21, 2026. Chapters cite product sources sp
 - [Vol III Book 05 — Data Protection (Purview)](https://github.com/WhalerMike/modernization-workbook/blob/main/docs/compliance/Vol_III_Book_05_Data_Protection_Purview.md)
 - [Vol III Book 06 — SIEM and XDR Detection](https://github.com/WhalerMike/modernization-workbook/blob/main/docs/compliance/Vol_III_Book_06_SIEM_XDR_Detection.md)
 - [Vol III Book 07 — Multi-Cloud Evidence Fabric](https://github.com/WhalerMike/modernization-workbook/blob/main/docs/compliance/Vol_III_Book_07_Multi_Cloud_Evidence_Fabric.md)
-- [Vol VI Book 07 — Evidence and ConMon Pipeline](https://github.com/WhalerMike/modernization-workbook/blob/main/docs/compliance/Vol_VI_Book_07_Evidence_ConMon_Pipeline.md)
+- [Vol VI Book 07 — Evidence and ConMon Pipeline](../b15-day2-operations/11-attestation-and-the-compliance-app.md)
 
 ::: {.callout-tip}
 ## Continue the book

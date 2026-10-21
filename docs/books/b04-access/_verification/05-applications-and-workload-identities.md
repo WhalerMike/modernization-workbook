@@ -103,3 +103,5 @@ identities, workload identity federation and Conditional Access for workload ide
 | EAAG — Revoking Admin Consent | Ch 06 Who approves admin consent (revocation paragraph); Ch 05 Admin consent behaviors | |
 | EAAG — Application ownership: requirement, owners tab note | Ch 05 Ownership (corrected) | Owner duties, backup, registry, transfer, orphan policy in Ch 06 |
 | EAAG — Assigning and updating Application Owners in Entra ID (portal steps) | — | Click-path runbook stays in the linked Help Desk guide |
+
+| SC1 | The program's user-consent setting meets SCuBA MS.AAD.5.2v1 ("User consent to applications SHALL be restricted"), via CISA's flexible option (verified publishers, admin-classified low-risk permissions) | §User consent | verified (added) | https://github.com/cisagov/ScubaGear/blob/main/PowerShell/ScubaGear/baselines/aad.md (opened Oct 21, 2026) |

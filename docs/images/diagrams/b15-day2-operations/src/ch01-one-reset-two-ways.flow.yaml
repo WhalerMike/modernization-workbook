@@ -1,0 +1,39 @@
+# Book 15 Chapter 01 — the same authenticator reset handled two ways. As
+# found: an emailed request, a lookup under standing admin, "Require
+# re-register MFA" (Microsoft Learn: deletes phone, Authenticator and software
+# OATH methods; the user registers a new method at next sign-in) and a "done"
+# reply. Under the new model: a typed request, verification to the CISO's
+# policy, a just-in-time role, a Temporary Access Pass on a separate channel,
+# and a closing record with an alert. Program design.
+rankdir: TB
+graph: {nodesep: 0.3, ranksep: 0.3}
+clusters:
+  - id: found
+    label: "As found"
+    tone: red
+    margin: 8
+    nodes: [f1, f2, f3]
+  - id: model
+    label: "Under the new model"
+    tone: green
+    margin: 8
+    nodes: [m1, m2, m3, m4, m5]
+nodes:
+  req: {tone: slate, width: 460, title: "A request arrives", body: ["=\"My authenticator stopped working, please reset it\""], size: 11}
+  f1: {tone: slate, width: 210, title: "Operator looks up the user", body: ["=Under a standing admin account"], size: 11}
+  f2: {tone: slate, width: 210, title: "Clicks Require re-register MFA", body: ["=No check on who is asking"], size: 11}
+  f3: {tone: red, width: 210, title: "Replies \"done\"", body: ["=The next person to enroll a method controls the account"], size: 11}
+  m1: {tone: violet, width: 210, title: "Typed request", body: ["=Against the identity record, not a portal action"], size: 11}
+  m2: {tone: amber, width: 210, title: "Identity verified to policy", body: ["=The CISO's procedure; second approver for privileged accounts"], size: 11}
+  m3: {tone: blue, width: 210, title: "Just-in-time scoped role", body: ["=The change runs under an eligible role, activated"], size: 11}
+  m4: {tone: blue, width: 210, title: "Temporary Access Pass", body: ["=Delivered on a channel separate from the request"], size: 11}
+  m5: {tone: green, width: 210, title: "Closed with a record", body: ["=Who asked, who approved, how verified, what changed; alert raised"], size: 11}
+edges:
+  - [req, f1, {tone: red}]
+  - [f1, f2]
+  - [f2, f3, {tone: red}]
+  - [req, m1, {tone: green}]
+  - [m1, m2]
+  - [m2, m3]
+  - [m3, m4]
+  - [m4, m5, {tone: green}]

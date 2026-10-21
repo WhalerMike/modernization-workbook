@@ -1,0 +1,26 @@
+# Book 15 Chapter 06 — the SaaS integration catalog in seven phases. The
+# authorization verdict (FedRAMP Marketplace status) is recorded before
+# anything is configured; the integration then becomes an inventory record
+# and an approved change, gets governed credentials, provisions under an
+# approved scope, carries lifecycle events, emits evidence, and is
+# re-verified on a cadence until it is offboarded. Program design.
+rankdir: TB
+graph: {nodesep: 0.3, ranksep: 0.3}
+nodes:
+  p1: {tone: amber, width: 520, tag: "Phase 1", title: "Intake and authorization", body: ["Service, owner, need and the identity attributes it will receive", "FedRAMP Marketplace verdict recorded; assertion-only or standing replica", "Interconnection agreement for the replica path; approver distinct from requester"], size: 11}
+  gate: {tone: red, width: 300, title: "No verdict, no configuration", size: 11}
+  p2: {tone: blue, width: 520, tag: "Phase 2", title: "Register and configure", body: ["Service principal as a reconciled inventory record and an approved change", "Single sign-on through Graph, local passwords disabled; one identifier per person"], size: 11}
+  p3: {tone: blue, width: 520, tag: "Phase 3", title: "Credentials", body: ["=Signing certificate and provisioning token as authenticators with expiry and rotation"], size: 11}
+  p4: {tone: blue, width: 520, tag: "Phase 4", title: "Provision and authorize", body: ["=Provisioning under an approved scope and mapping; assignment required; roles from the organization model"], size: 11}
+  p5: {tone: green, width: 520, tag: "Phase 5", title: "Lifecycle", body: ["=Separation and transfer events reach the service on time, with evidence"], size: 11}
+  p6: {tone: violet, width: 520, tag: "Phase 6", title: "Evidence", body: ["=Account audit, logs to the SIEM at onboarding, a named reviewer"], size: 11}
+  p7: {tone: violet, width: 520, tag: "Phase 7", title: "Attest and exit", body: ["=Re-verify verdict, owner and attribute scope on a cadence; offboard completely"], size: 11}
+edges:
+  - [p1, gate, {tone: red}]
+  - [gate, p2, {tone: blue}]
+  - [p2, p3, {tone: blue}]
+  - [p3, p4, {tone: blue}]
+  - [p4, p5, {tone: green}]
+  - [p5, p6, {tone: violet}]
+  - [p6, p7, {tone: violet}]
+  - [p7, gate, {label: "lapsed authorization raises a task", style: dashed, tone: red}]

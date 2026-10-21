@@ -1,0 +1,23 @@
+# Book 15 Chapter 07 — the reconcile pass for one incoming record. The platform's
+# identification engine finds or creates the CI; the program's pass then
+# matches it to the naming plane by the authoritative key first and the cloud
+# resource ID second, binds the authoritative identity as the correlation key,
+# and flags anything unmatched as an exception of one of two kinds. Program
+# design; the identification step is platform behavior (ServiceNow IRE).
+rankdir: TB
+graph: {nodesep: 0.25, ranksep: 0.35}
+nodes:
+  inc: {tone: slate, width: 420, tag: "Connector or discovery", title: "Incoming record", body: ["=A cloud resource ID, a hostname, an address, a time observed"], size: 11}
+  ire: {tone: blue, width: 420, tag: "Platform", title: "Identify and reconcile attributes", body: ["=Identification rules find the CI; reconciliation rules decide which source may write each attribute"], size: 11}
+  match: {tone: violet, width: 420, tag: "Program pass", title: "Match to the naming plane", body: ["=Authoritative name or address first; cloud resource ID second, never the reverse"], size: 11}
+  bind: {tone: green, width: 200, title: "Bound CI", body: ["=Carries the authoritative identity; trusted for routing"], size: 11}
+  shadow: {tone: red, width: 200, title: "Shadow asset", body: ["=Nobody approved it; a CM-8 finding"], size: 11}
+  gap: {tone: amber, width: 200, title: "Naming-plane gap", body: ["=Fix in IPAM, never in the CMDB"], size: 11}
+edges:
+  - [inc, ire, {tone: blue}]
+  - [ire, match, {tone: violet}]
+  - [match, bind, {label: "match", tone: green}]
+  - [match, shadow, {label: "not authorized", lw: 70, tone: red}]
+  - [match, gap, {label: "authorized, unrecorded", lw: 90, tone: amber}]
+order:
+  - [bind, shadow, gap]

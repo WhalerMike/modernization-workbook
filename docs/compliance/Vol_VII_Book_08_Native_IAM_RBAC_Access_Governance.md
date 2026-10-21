@@ -63,7 +63,7 @@ SailPoint Identity Security Cloud's Cloud Infrastructure Entitlement Management 
 
 # Continuous Monitoring Roll-Up (CA-7)
 
-The engine's loop emits its result into the continuous-monitoring feed: entitlement-review completion, open over-privilege findings by age, idle-entitlement remediation SLA conformance. ServiceNow rolls these into a per-control identity posture that [Vol VII Book 04](Vol_VII_Book_04_Control_Attestation_Evidence_KSI.md) turns into attestation and KSI evidence, keyed to the same reconciled asset identity the M365, Azure, AWS, and VMware postures use — one compliance picture, not a fifth parallel one.
+The engine's loop emits its result into the continuous-monitoring feed: entitlement-review completion, open over-privilege findings by age, idle-entitlement remediation SLA conformance. ServiceNow rolls these into a per-control identity posture that [Vol VII Book 04](../books/b15-day2-operations/11-attestation-and-the-compliance-app.md) turns into attestation and KSI evidence, keyed to the same reconciled asset identity the M365, Azure, AWS, and VMware postures use — one compliance picture, not a fifth parallel one.
 
 # Closure Necessity
 

@@ -1,0 +1,24 @@
+# Book 15 Chapter 08 — three routes from a native Microsoft 365 or Azure result
+# to an owned task: the vendor's connector (Defender for Cloud's ServiceNow
+# integration; GA in Azure, not available in Azure Government; 24-hour sync),
+# the ITSM platform's own import (ServiceNow Configuration Compliance imports
+# Defender for Cloud test results; it doesn't calculate them), or the program's
+# read-only collector. Product facts verified in the chapter footnotes; the
+# choice of one route per source is program design.
+rankdir: LR
+graph: {nodesep: 0.25, ranksep: 0.4}
+nodes:
+  src: {tone: blue, width: 200, title: "Native results", body: ["ScubaGear JSON", "Graph reads", "Azure Policy states", "Defender for Cloud assessments"], size: 11}
+  vend: {tone: amber, width: 250, tag: "Route 1", title: "Vendor connector", body: ["Defender for Cloud to ServiceNow: incident, change or problem", "GA in Azure; not in Azure Government", "Syncs every 24 hours"], size: 11}
+  plat: {tone: slate, width: 250, tag: "Route 2", title: "Platform import", body: ["ServiceNow Configuration Compliance imports Defender test results", "Matches them to CMDB records", "Imports results; doesn't calculate them"], size: 11}
+  coll: {tone: green, width: 250, tag: "Route 3", title: "Program collector", body: ["Read-only service identity", "Resource Graph, Graph, ScubaGear output", "Writes evidence-contract records"], size: 11}
+  task: {tone: violet, width: 200, title: "One task per finding", body: ["=Against the CMDB item: control, owner, due date, exception link; closes on a re-test"], size: 11}
+edges:
+  - [src, vend]
+  - [src, plat]
+  - [src, coll]
+  - [vend, task]
+  - [plat, task]
+  - [coll, task]
+order:
+  - [vend, plat, coll]

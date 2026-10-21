@@ -1,0 +1,23 @@
+# Book 15 Chapter 09 — every platform's native artifact maps into the same
+# evidence-contract fields (Book 12 Chapter 02). The platform's own identifier
+# is mapped to the CMDB asset_id and its evaluation time becomes observed_at;
+# a record with no CMDB match is raised as an inventory finding. Program design.
+rankdir: LR
+graph: {nodesep: 0.25, ranksep: 0.4}
+nodes:
+  ms: {tone: slate, width: 220, title: "Microsoft 365 and Azure", body: ["=ScubaGear JSON, Azure Policy states"], size: 11}
+  aws: {tone: slate, width: 220, title: "AWS", body: ["=Conformance pack results, Security Hub CSPM findings (ASFF)"], size: 11}
+  vmw: {tone: slate, width: 220, title: "VMware", body: ["=Profile and image compliance, posture CSV, InSpec JSON"], size: 11}
+  map: {tone: violet, width: 220, title: "Map and normalize", body: ["Platform ID to CMDB asset_id", "Evaluation time to observed_at"], size: 11}
+  nom: {tone: red, width: 220, title: "No CMDB match", body: ["=Raised as an inventory finding"], size: 11}
+  rec: {tone: green, width: 220, title: "One evidence record", body: ["=source, surface, control, state, verdict, observed_at, disposition; opens or updates one task"], size: 11}
+edges:
+  - [ms, map]
+  - [aws, map]
+  - [vmw, map]
+  - [map, rec, {tone: green}]
+  - [map, nom, {style: dashed, tone: red}]
+order:
+  - [ms, aws, vmw]
+ranks:
+  - [rec, nom]
