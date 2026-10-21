@@ -1,6 +1,6 @@
 ---
 title: "Chapter 11 — Operating the Control Plane: Delegation, Automation and Evidence"
-description: "What the single DDI policy plane must support once it is running: scoped delegation for divisions, API-first automation, ITSM and identity integration, ACME certificate automation, the logging and monitoring that M-21-31 and continuous monitoring require, drift and SRV checks, record hygiene, a troubleshooting reference and the evidence checklist."
+description: "What the single DDI policy plane must support once it is running: scoped delegation for divisions, API-first automation, ITSM and identity integration, ACME certificate automation, the logging and monitoring that M-26-14 and continuous monitoring require, drift and SRV checks, record hygiene, a troubleshooting reference and the evidence checklist."
 doc-type: workbook-chapter
 audience: [Executive, Technical, Customer]
 family: b08-ddi
@@ -19,7 +19,7 @@ lifecycle_review: 2027-04-01
 
 ::: {.callout-note}
 ## In this chapter
-How divisions keep scoped autonomy under one authority, and the Windows and Azure equivalents of that model. The API, ITSM, identity and ACME certificate integrations the plane must support. What to log and monitor, against OMB M-21-31: query and lease logs, platform metrics, SRV checks, drift detection and record hygiene. A troubleshooting reference for the hybrid period, and the evidence checklist that closes [Chapter 10](10-migration-sequence.md)'s final phase.
+How divisions keep scoped autonomy under one authority, and the Windows and Azure equivalents of that model. The API, ITSM, identity and ACME certificate integrations the plane must support. What to log and monitor, against OMB M-26-14: query and lease logs, platform metrics, SRV checks, drift detection and record hygiene. A troubleshooting reference for the hybrid period, and the evidence checklist that closes [Chapter 10](10-migration-sequence.md)'s final phase.
 :::
 
 A single policy plane only works if the divisions that own their own networks can still operate them. This chapter sets out what the plane must support for delegated administration, automation, ITSM and identity integration, certificate automation, monitoring and compliance evidence. Where it names products, they illustrate the requirement; equivalent capabilities should be confirmed in current vendor documentation for any platform under evaluation. Who holds each role is decided in [Chapter 09](09-who-owns-dns.md).
@@ -88,15 +88,15 @@ Identity governance platforms such as SailPoint typically reach DDI through APIs
 
 ## Monitoring and telemetry
 
-The policy plane, and every resolver and DHCP server still in service, should produce the continuous telemetry that incident response, continuous monitoring and Zero Trust reporting need. OMB M-21-31 sets the floor for federal agencies.
+The policy plane, and every resolver and DHCP server still in service, should produce the continuous telemetry that incident response, continuous monitoring and Zero Trust reporting need. OMB M-26-14 sets the floor for federal agencies.
 
-### What M-21-31 requires of DNS and DHCP
+### What M-26-14 requires of DNS and DHCP logs
 
-M-21-31 makes passive DNS part of its first (basic) event-logging tier: agencies must run a DNS logging system that captures requests made over encrypted DNS connections as well as clear-text ones, with analytics that rapidly identify the host behind each query.[^c11-m2131] Its logging tables list DNS query, response and error content for all record types, zone-transfer requests and responses, and DHCP lease information including MAC and IP address, each with a retention of 12 months in active storage and 18 months in cold storage.[^c11-m2131] The control mapping to NIST SP 800-53 is in [Chapter 03](03-federal-requirements.md).
+M-26-14 rescinded M-21-31, whose event-logging tiers made passive DNS a basic requirement and whose logging tables named DNS and DHCP records with 12 months of active and 18 months of cold retention. M-26-14 names neither DNS nor DHCP. It states its minimum baseline as activities the logs must support: among them, determining the identity used for each operation, "determining source and destination network address information, including protocols, ports, and session attributes," identifying changes to IT, OT and IoT infrastructure, hunting for known indicators of compromise and anomalous activity, and determining the attack vector, including lateral movement, with automated alerts for all of them. Retained logs must be actively searchable for six months after creation and retrievable for a year; timestamps must be synchronized to a traceable time source; and logs may be stored anywhere so long as they are readily available to the agency's top-level security operations center.[^c11-m2614] Which log sources meet the baseline is set in the agency's logging plan, using CISA's Logging Reference Architecture. For the name layer, the query log (which host asked for which name) and the lease history (which device held which address) are how resolvers and DHCP servers supply that network-address and attribution evidence; that is this book's design reading, not a line item in the memo. The control mapping to NIST SP 800-53 is in [Chapter 03](03-federal-requirements.md).
 
 ### Sources of query, lease and change logs
 
-![Three evidence streams from the policy plane and the systems that consume them.](../../images/diagrams/b08-ddi/svg/ch11-evidence-flow.svg){#fig-ch11-evidence-flow fig-alt="Left, the DDI policy plane and resolvers. Three violet streams leave it: query and lease logs (source, name, response, policy action, DHCP lease history); change and role audit (who changed what, when, through which interface); and inventory and drift (IPAM discovery, record drift, SRV and consistency checks). On the right, three green consumers: the SIEM and SOC for detection and M-21-31 retention, fed by query logs and the change audit; the CMDB and ITSM for CM-8 inventory and change records, fed by inventory and drift; and the authorization package for continuous monitoring evidence, fed by the change audit and inventory."}
+![Three evidence streams from the policy plane and the systems that consume them.](../../images/diagrams/b08-ddi/svg/ch11-evidence-flow.svg){#fig-ch11-evidence-flow fig-alt="Left, the DDI policy plane and resolvers. Three violet streams leave it: query and lease logs (source, name, response, policy action, DHCP lease history); change and role audit (who changed what, when, through which interface); and inventory and drift (IPAM discovery, record drift, SRV and consistency checks). On the right, three green consumers: the SIEM and SOC for detection and M-26-14 retention, fed by query logs and the change audit; the CMDB and ITSM for CM-8 inventory and change records, fed by inventory and drift; and the authorization package for continuous monitoring evidence, fed by the change audit and inventory."}
 
 | Source | What it logs | How to collect it |
 |---|---|---|
@@ -106,7 +106,7 @@ M-21-31 makes passive DNS part of its first (basic) event-logging tier: agencies
 | Windows DHCP servers | Lease events in the DHCP audit log; failover state changes in the Admin channel and configuration changes in the Operational channel | `Get-DhcpServerAuditLog` shows the audit-log settings;[^c11-dhcp-audit] failover events are also written to the audit log[^c11-dhcp-failover-events] |
 | Azure control plane | Every change to zones, record sets, links and resolvers | The Azure activity log, routed by diagnostic setting[^c11-monitor-ref] |
 
-The DHCP lease history matters as much as the query log: it is what turns "this address queried a command-and-control domain" into "this device, at this time", the attribution M-21-31's host-identification requirement asks for.
+The DHCP lease history matters as much as the query log: it is what turns "this address queried a command-and-control domain" into "this device, at this time", the attribution that M-26-14's network-address and attack-vector requirements depend on.
 
 ### Platform metrics and alert thresholds
 
@@ -181,7 +181,7 @@ The failures below are the common ones during the hybrid period. The resolution 
 
 The policy plane should produce the continuous telemetry and audit trail that FedRAMP, NIST and Zero Trust reporting require:
 
-- DNS query logs (source, query name, response, policy action, timestamp) for Protective DNS, M-21-31 logging and incident response, including queries made over encrypted DNS, exported to the SIEM and SOAR platforms and retained for 12 months active and 18 months cold.[^c11-m2131]
+- DNS query logs (source, query name, response, policy action, timestamp) for Protective DNS, M-26-14 logging and incident response, including queries made over encrypted DNS, exported to the SIEM and SOAR platforms, actively searchable for six months and retrievable for a year.[^c11-m2614]
 - DHCP lease history, so every query can be tied to a device.
 - Response policy and Protective DNS hit data.
 - IPAM discovery and inventory reports for CM-8 component inventory, and continuous discovery data for CMDB reconciliation.[^c11-sp80053]
@@ -203,7 +203,7 @@ For a program office or an authorization package. The first five items are the f
 - **Decision 5.** OCSP and CRL endpoints resolvable from on-premises, every cloud and every branch.
 - Protective DNS and encrypted DNS configuration evidence aligned with M-22-09, CISA guidance and SP 800-81r3 ([Chapter 03](03-federal-requirements.md), [Chapter 05](05-edge-interception-and-bypass.md)).
 - IPAM inventory and discovery reports covering the hybrid address space.
-- Query logs, DHCP lease logs and policy audit trails retained for continuous monitoring at M-21-31 retention.
+- Query logs, DHCP lease logs and policy audit trails retained for continuous monitoring at M-26-14 retention: searchable for six months, retrievable for a year.
 - Rogue DHCP and router advertisement detection, and option 6 and RDNSS consistency controls, documented.
 - Delegated roles and scopes reviewed, with DnsAdmins and equivalent privileged memberships justified.
 
@@ -211,7 +211,7 @@ For a program office or an authorization package. The first five items are the f
 ## What this chapter establishes
 1. A single policy plane must still give each division scoped autonomy, with one audit trail, and any DNS left on Windows or Azure needs the same discipline.
 2. Every change, human or automated, goes through the same API, roles and scopes.
-3. The plane, and every resolver and DHCP server still running, must produce the query, lease, change and inventory evidence that M-21-31, FedRAMP and Zero Trust reporting require, at the required retention.
+3. The plane, and every resolver and DHCP server still running, must produce the query, lease, change and inventory evidence that M-26-14, FedRAMP and Zero Trust reporting require, at the required retention.
 :::
 
 ::: {.callout-tip}
@@ -231,7 +231,7 @@ For a program office or an authorization package. The first five items are the f
 [^c11-snow-sgc]: ServiceNow, "Service Graph Connector for Infoblox," <https://docs.servicenow.com/bundle/xanadu-servicenow-platform/page/product/configuration-management/concept/sgc-cmdb-integration-infoblox.html> (accessed Oct 20, 2026).
 [^c11-poshacme]: Posh-ACME, "Infoblox" (DNS plugin guide), <https://poshac.me/docs/latest/Plugins/Infoblox/> (accessed Oct 20, 2026).
 [^c11-lego]: lego, "Infoblox" (DNS provider), <https://go-acme.github.io/lego/dns/infoblox/> (accessed Oct 20, 2026).
-[^c11-m2131]: Office of Management and Budget, M-21-31, *Improving the Federal Government's Investigative and Remediation Capabilities Related to Cybersecurity Incidents*, August 27, 2021, Table 2 (EL1 Passive DNS) and Appendix C, <https://www.whitehouse.gov/wp-content/uploads/2021/08/M-21-31-Improving-the-Federal-Governments-Investigative-and-Remediation-Capabilities-Related-to-Cybersecurity-Incidents.pdf> (accessed Oct 20, 2026).
+[^c11-m2614]: Office of Management and Budget, M-26-14, *Ensuring Effective and Efficient Agency Logging and Network Visibility to Defend Against Evolving Cyber Threats*, May 22, 2026, rescission of M-21-31, "Agency Logging Plan" and Appendix B (Minimum Logging Baseline Requirements, items 1, 2, 3 and 5), <https://www.whitehouse.gov/wp-content/uploads/2026/05/M-26-14-Ensuring-Effective-and-Efficient-Agency-Logging-and-Network-Visibility-to-Defend-Against-Evolving-Cyber-Threats.pdf> (accessed Oct 21, 2026).
 [^c11-dns-logging]: Microsoft Learn, "Enable DNS Logging and Diagnostics," <https://learn.microsoft.com/windows-server/networking/dns/dns-logging-and-diagnostics> (accessed Oct 20, 2026).
 [^c11-sentinel-dns]: Microsoft Learn, "Stream and filter data from Windows DNS servers with the AMA connector," <https://learn.microsoft.com/azure/sentinel/connect-dns-ama> (accessed Oct 20, 2026).
 [^c11-resolver-policy]: Microsoft Learn, "DNS resolver policy," <https://learn.microsoft.com/azure/dns/dns-security-policy> (accessed Oct 20, 2026).

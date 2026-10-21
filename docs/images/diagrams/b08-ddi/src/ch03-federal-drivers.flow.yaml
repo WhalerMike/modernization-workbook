@@ -4,7 +4,7 @@ graph: {nodesep: 0.2, ranksep: 0.5}
 nodes:
   m2209: {tone: violet, width: 200, tag: "OMB M-22-09", title: "Encrypted DNS", body: ["=Wherever technically supported"], size: 12}
   pdns: {tone: violet, width: 200, tag: "6 U.S.C. § 663 note; CISA", title: "Protective DNS", body: ["=For all egress resolution"], size: 12}
-  m2131: {tone: violet, width: 200, tag: "OMB M-21-31", title: "DNS logging", body: ["=Passive DNS logging at tier EL1, encrypted queries included"], size: 12}
+  m2614: {tone: violet, width: 200, tag: "OMB M-26-14", title: "Event logging", body: ["=Address, port and session logs; 6 months searchable, 1 year retrievable"], size: 12}
   dnssec: {tone: violet, width: 200, tag: "OMB M-08-23; SC-20/21", title: "DNSSEC", body: ["=Signed .gov zones, validating resolvers"], size: 12}
   ipv6: {tone: violet, width: 200, tag: "OMB M-21-07", title: "IPv6", body: ["=80% of IP assets IPv6-only by end of FY2025"], size: 12}
   tic: {tone: violet, width: 200, tag: "CISA TIC 3.0", title: "DNS enforcement points", body: ["=Sinkholing, DNSSEC, domain monitoring, Protective DNS"], size: 12}
@@ -12,7 +12,7 @@ nodes:
 edges:
   - [m2209, nist]
   - [pdns, nist]
-  - [m2131, nist]
+  - [m2614, nist]
   - [dnssec, nist]
   - [ipv6, nist]
   - [tic, nist]

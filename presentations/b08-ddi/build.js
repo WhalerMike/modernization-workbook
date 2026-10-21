@@ -114,7 +114,7 @@ The failure is silent, the change rate outruns any manual process, and every sys
   const rows = [
     ["OMB M-22-09 (January 2022)", "Encrypted DNS wherever technically supported; endpoints set to agency-designated resolvers"],
     ["CISA encrypted DNS guidance (May 2024)", "Protective DNS for all egress DNS resolution, citing 6 U.S.C. § 663 note"],
-    ["OMB M-21-31 (August 2021)", "EL1: log DNS queries, encrypted ones included, with the source host identifiable"],
+    ["OMB M-26-14 (May 2026)", "Logs of source and destination address, port and session; searchable 6 months, retrievable 1 year"],
     ["OMB M-08-23; SP 800-53", "DNSSEC: sign agency zones (SC-20) and validate on resolvers (SC-21)"],
     ["TIC 3.0 catalog v3.3 (September 2026)", "Five DNS capabilities: sinkholing, DNSSEC validation and signing, domain monitoring, Protective DNS"],
   ];
@@ -131,11 +131,11 @@ The failure is silent, the change rate outruns any manual process, and every sys
   ], 13), { x: 8.7, y: 2.42, w: 3.9, h: 2.5, paraSpaceAfter: 6 });
   callout(s, "FedRAMP", 5.2, 1.25, "FaLandmark", HEX.navy, "FedRAMP certifies a service, not an architecture: ",
     "the agency still authorizes its own DDI system. A cloud-delivered policy plane is an external dependency; resolvers in data centers, branches and cloud tenants stay inside the agency's boundary.");
-  sources(s, "Sources: NIST SP 800-81 Rev. 3; OMB M-22-09, M-21-31, M-08-23; CISA Encrypted DNS Implementation Guidance; TIC 3.0 Catalog v3.3; FedRAMP. Book 08, Chapter 03.");
+  sources(s, "Sources: NIST SP 800-81 Rev. 3; OMB M-22-09, M-26-14, M-08-23; CISA Encrypted DNS Implementation Guidance; TIC 3.0 Catalog v3.3; FedRAMP. Book 08, Chapter 03.");
   narrate(s,
 `The federal mandates never name a product, but together they describe a governed name layer. It's worth being precise about who requires what.
 
-OMB M-22-09 requires encrypted DNS wherever it's technically supported, with endpoints explicitly configured to use agency-designated resolvers. It also notes that DNS must already be routed through CISA-operated infrastructure. The requirement that all egress resolution go through Protective DNS comes from CISA's own guidance, which cites the statute. OMB M-21-31 makes DNS logging a basic, EL1 requirement, encrypted queries included, with the source host identifiable. M-08-23 and SP 800-53 carry DNSSEC. And version 3.3 of the TIC 3.0 catalog, published in September 2026, lists five DNS capabilities, from sinkholing to Protective DNS.
+OMB M-22-09 requires encrypted DNS wherever it's technically supported, with endpoints explicitly configured to use agency-designated resolvers. It also notes that DNS must already be routed through CISA-operated infrastructure. The requirement that all egress resolution go through Protective DNS comes from CISA's own guidance, which cites the statute. OMB M-26-14, which rescinded M-21-31 in May 2026, doesn't name DNS, but it requires logs that show source and destination addresses, protocols, ports and sessions, searchable for six months and retrievable for a year. M-08-23 and SP 800-53 carry DNSSEC. And version 3.3 of the TIC 3.0 catalog, published in September 2026, lists five DNS capabilities, from sinkholing to Protective DNS.
 
 NIST SP 800-81 Revision 3, final on March 19, 2026, is the practical guide to all of this: guidance, not a mandate. And FedRAMP certifies a cloud service, not an architecture; the agency still authorizes its own DDI system.`,
   "Book 08, Chapter 03 — Federal Requirements: NIST SP 800-81, FedRAMP and Zero Trust.");
@@ -420,22 +420,22 @@ Decommissioning is gated, never scheduled: the inventory reconciles, every criti
   });
   box(s, "Logging box", 7.35, 1.5, 5.4, 3.6, HEX.navyTint);
   icon(s, "FaFileShield", 7.6, 1.68, 0.62, HEX.navy);
-  txt(s, "Logging head", "The M-21-31 logging floor", { x: 8.4, y: 1.68, w: 4.2, h: 0.62, bold: true, color: HEX.navy, fontSize: 18, fontFace: "Cambria", valign: "middle" });
+  txt(s, "Logging head", "The M-26-14 logging floor", { x: 8.4, y: 1.68, w: 4.2, h: 0.62, bold: true, color: HEX.navy, fontSize: 18, fontFace: "Cambria", valign: "middle" });
   txt(s, "Logging list", bullets([
-    "DNS queries, responses and errors, encrypted ones included",
-    "Zone transfers, and DHCP leases with MAC and IP address",
-    "12 months in active storage, 18 months cold",
+    "Source and destination address, port and session in the logs",
+    "Searchable 6 months, retrievable for a year",
+    "Readily available to the top-level SOC",
     "Lease history ties each query to a device",
   ], 14), { x: 7.6, y: 2.45, w: 5.0, h: 2.6, paraSpaceAfter: 6 });
   callout(s, "Checklist", 5.3, 1.25, "FaListCheck", HEX.amber, "The evidence checklist opens with the five decisions: ",
     "redirect targets, chain order, cloud forwarding, the AD DNS inventory, and OCSP and CRL reachability; then Protective DNS, IPAM inventory, retained logs and role reviews.");
-  sources(s, "Sources: OMB M-21-31; NIST SP 800-53 Rev. 5; Microsoft Learn — DNS logging and diagnostics, Azure DNS monitoring, DNS resolver policy. Book 08, Chapter 11.");
+  sources(s, "Sources: OMB M-26-14; NIST SP 800-53 Rev. 5; Microsoft Learn — DNS logging and diagnostics, Azure DNS monitoring, DNS resolver policy. Book 08, Chapter 11.");
   narrate(s,
 `Once it's running, one policy plane is only an improvement if divisions can still run their own networks through it. So each division gets a scope covering its own zones, IP spaces and DHCP scopes, with manager, operator and auditor roles, and automation accounts are held to the same scopes. Infrastructure as code, ITSM workflows and ACME DNS-01 certificate automation all go through one API and one audit trail.
 
 Locator records are resolved every 15 minutes from every site and virtual network until the last domain controller retires. Drift reports compare the source of truth with every copy, and hygiene jobs catch stale records and dangling CNAMEs.
 
-The evidence floor is M-21-31: DNS queries, responses and errors, encrypted ones included, zone transfers, and DHCP lease history with MAC and IP addresses, kept twelve months in active storage and eighteen months cold. The lease history is what turns an address into a device.`,
+The evidence floor is M-26-14. It doesn't name DNS, but it requires logs that show source and destination addresses, ports and sessions, searchable for six months and retrievable for a year, and readily available to the agency's top-level security operations center. Query logs, encrypted queries included, and DHCP lease history with MAC and IP addresses are how the name layer meets it. The lease history is what turns an address into a device.`,
   "Book 08, Chapter 11 — Operating the Control Plane: Delegation, Automation and Evidence.");
 }
 
@@ -519,7 +519,7 @@ Govern the name layer as one plane, and it can carry the cloud, branch and ident
   const s = D.content("Backup", "Sources behind the slides");
   const src = [
     "NIST SP 800-81 Rev. 3, Secure DNS Deployment Guide (final March 19, 2026).  ·  SP 800-53 Rev. 5 (SC-20, SC-21, SC-22, AU-2, CM-8).  ·  SP 800-37 Rev. 2; SP 800-207.",
-    "OMB M-22-09 (encrypted DNS); M-21-31 (EL1 passive DNS, retention); M-08-23 (DNSSEC); M-21-07 (IPv6).",
+    "OMB M-22-09 (encrypted DNS); M-26-14 (logging baseline and retention; rescinded M-21-31); M-08-23 (DNSSEC); M-21-07 (IPv6).",
     "CISA: Encrypted DNS Implementation Guidance (May 16, 2024); Protective DNS Resolver; TIC 3.0 Security Capabilities Catalog v3.3 (September 2026); get.gov domain management.",
     "Microsoft Learn: DNS and AD DS; DC locator; dynamic update; DNSSEC; Windows DoH client and server; Zero Trust DNS; DHCP failover; DnsServer and DhcpServer modules; Entra Domain Services DNS.",
     "Microsoft Learn: Private Endpoint DNS integration and zone values; Azure Private DNS and FAQ; DNS Private Resolver, endpoints and rulesets; DNS resolver policy; Azure DNS monitoring.  ·  Azure Retail Prices API.",

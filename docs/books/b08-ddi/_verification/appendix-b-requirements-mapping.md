@@ -44,6 +44,7 @@ Checked October 20, 2026. Source: the existing series page (Next Generation DDI,
 | 36 | Vendor integration documentation | Third-party | added as a pointer to Appendix A's individual citations | — |
 | 37 | Word download callout | Page | removed per brief | — |
 | 38 | Front matter, thesis, callouts, Continue link (Next: Appendix C) | Page | restyled; Next corrected from book home to Appendix C per the reading order | brief |
+| 39 | 2026-10-21 correction: "DNS logging (OMB M-21-31)" row, description and Sources entry presented M-21-31 as current | Table; Sources | corrected: M-21-31 was rescinded by M-26-14 (May 22, 2026); row renamed "Event logging (OMB M-26-14)" and restated from M-26-14 Appendix B (address/protocol/port/session and identity logs; 6 months searchable, 1 year retrievable; traceable timestamps; available to top-level SOC) and the plan/Level 1–3 deadlines; EL1 passive-DNS claim dropped (M-26-14 does not name DNS); footnote aB-m2131 replaced by aB-m2614; Sources list entry replaced; access-date sentence notes the Oct 21 access | OMB M-26-14 PDF (whitehouse.gov, text extracted with pdftotext): rescission paragraph, "Prioritization," "Agency Logging Plan," "Agency Actions," Appendix B items 1–5, Appendix C; CISA Logging Reference Architecture page (cisa.gov/logging, publish date August 20, 2026) |
 
 ## Carry-forward ledger
 
