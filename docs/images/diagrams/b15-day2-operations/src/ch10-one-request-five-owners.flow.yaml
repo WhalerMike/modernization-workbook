@@ -1,0 +1,20 @@
+# Book 15 Chapter 10 — one request, five owners. A request is triaged by the
+# service desk, approved by the person the authority level names (or the
+# change advisory board for a normal change), executed by automation or the
+# tier that holds the runbook, recorded against the CI, and closed only when
+# the evidence is attached. Each card names who owns that step and who owns the
+# artifact it runs on. Program design, consistent with Book 04 Chapter 06 and
+# Book 13 Chapter 10.
+rankdir: TB
+graph: {nodesep: 0.25, ranksep: 0.3}
+nodes:
+  intake: {tone: slate, width: 420, tag: "Service desk, first line", title: "Intake and triage", body: ["=Classify by required authority; verify identity to the CISO's procedure", "=Catalog item owned by the platform owner; built by the ITSM platform team"], size: 11}
+  approve: {tone: amber, width: 420, tag: "The approver the authority names", title: "Approve", body: ["=Supervisor or manager, application owner, IGO, or the CAB", "=Approval rule set by the control owner, never by the executor"], size: 11}
+  execute: {tone: green, width: 420, tag: "Automation first, then cloud services or the platform owner", title: "Execute", body: ["=Just-in-time role, against the approved ticket", "=Runbook owned by the platform owner"], size: 11}
+  record: {tone: violet, width: 420, tag: "CMDB owner", title: "Record against the CI", body: ["=Change, owner and time on one bound configuration item"], size: 11}
+  close: {tone: blue, width: 420, tag: "System owner and ISSO", title: "Close with evidence", body: ["=Re-read confirms the result; the record joins the evidence chain"], size: 11}
+edges:
+  - [intake, approve, {tone: amber}]
+  - [approve, execute, {tone: green}]
+  - [execute, record, {tone: violet}]
+  - [record, close, {tone: blue}]

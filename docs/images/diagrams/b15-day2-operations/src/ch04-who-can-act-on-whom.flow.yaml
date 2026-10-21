@@ -1,0 +1,24 @@
+# Book 15 Chapter 04 — the role that may act on a user's credentials is set by
+# what the target user holds, not by who is asking. Rows follow Microsoft's
+# "Who can reset passwords" and "Who can perform sensitive actions" tables;
+# routing the three cases to help desk, identity engineering and Tier 0 holders
+# is the program's design.
+rankdir: TB
+graph: {nodesep: 0.3, ranksep: 0.4}
+nodes:
+  tkt: {tone: slate, width: 260, tag: "Assigned ticket", title: "Target user named", body: ["=Identity verified before any change"], size: 12}
+  ask: {tone: amber, width: 300, tag: "First check", title: "What does the target hold?", body: ["=Roles, role-assignable group membership, restricted AU"], size: 12}
+  none: {tone: green, width: 240, tag: "No admin role", title: "Help desk acts", body: ["Password or Helpdesk Administrator", "Authentication Administrator", "Scoped to an administrative unit"], size: 11}
+  ltd: {tone: amber, width: 240, tag: "Limited admin role", title: "Identity engineering acts", body: ["Tenant-scoped role per Microsoft's table", "AU-scoped roles can't act on admins"], size: 11}
+  priv: {tone: red, width: 240, tag: "Privileged or protected", title: "Tier 0 holder acts", body: ["Privileged Authentication Administrator", "Or the restricted AU's scoped admins", "Never the help desk"], size: 11}
+  rec: {tone: violet, width: 300, tag: "Evidence", title: "Ticket, audit entry, user notified", body: ["=Approver, executor, target, method, time"], size: 12}
+edges:
+  - [tkt, ask]
+  - [ask, none, {tone: green}]
+  - [ask, ltd, {tone: amber}]
+  - [ask, priv, {tone: red}]
+  - [none, rec, {tone: violet}]
+  - [ltd, rec, {tone: violet}]
+  - [priv, rec, {tone: violet}]
+order:
+  - [none, ltd, priv]

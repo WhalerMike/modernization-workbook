@@ -1,0 +1,21 @@
+# Book 15 Chapter 01 — every day-two request answers three questions on three
+# platforms: the service management platform routes and tracks, the identity
+# governance tool approves, Entra ID executes. The help desk performs only the
+# residual manual step under a just-in-time role. Admin consent is approved
+# only by the identity governance authority. Program design (Book 04 Ch06
+# authority split).
+rankdir: TB
+graph: {nodesep: 0.35, ranksep: 0.3}
+nodes:
+  req: {tone: slate, width: 420, title: "A request", body: ["=From a user, a manager or an HR event"], size: 11}
+  itsm: {tone: violet, width: 420, tag: "Where does it go?", title: "Service management platform", body: ["=Triaged by the authority it needs, routed to a pipeline, tracked"], size: 11}
+  iga: {tone: amber, width: 420, tag: "Who may say yes?", title: "Identity governance tool", body: ["=The approver the control requires; never the requester"], size: 11}
+  entra: {tone: blue, width: 420, title: "Entra ID executes", body: ["=An integration action where one exists", "=Otherwise the help desk, under a just-in-time role, for the residual step"], size: 11}
+  ev: {tone: green, width: 420, tag: "What proves it happened?", title: "The closed ticket", body: ["=Approval, elevation, change and a check that it took"], size: 11}
+  consent: {tone: red, width: 240, title: "Admin consent", body: ["=Approved only by the identity governance authority; never the help desk"], size: 11}
+edges:
+  - [req, itsm]
+  - [itsm, iga]
+  - [iga, entra]
+  - [entra, ev, {tone: green}]
+  - [iga, consent, {tone: red, style: dashed}]

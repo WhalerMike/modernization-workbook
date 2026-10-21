@@ -1,0 +1,28 @@
+# Book 15 Chapter 12 — validation harnesses that check the automation
+# itself. Telemetry-completeness (CA-7; CA-7(3) trend, no baseline),
+# detection-efficacy (CA-2; SI-4), deploy smoke tests (CA-2), baseline
+# re-check (CM-6). SI-6 security function verification is High-only and
+# adopted as design. Workflow tests run in non-production only (ServiceNow
+# ATF guidance). Results emit as assessment evidence.
+rankdir: TB
+graph: {nodesep: 0.2, ranksep: 0.35}
+nodes:
+  auto: {tone: slate, width: 560, tag: "Under test", title: "The automation", body: ["=Log sources, detection rules, IaC pipelines, ITSM flows, the evidence pipeline"], size: 12}
+  tel: {tone: violet, width: 172, title: "Telemetry completeness", body: ["=Fires when a source is silent past its freshness limit", "CA-7"], size: 11}
+  eff: {tone: violet, width: 172, title: "Detection efficacy", body: ["=Fires when a replayed known-bad event raises no alert", "CA-2 · SI-4"], size: 11}
+  smoke: {tone: violet, width: 172, title: "Deploy smoke tests", body: ["=Fail the pipeline when a deploy doesn't close its control", "CA-2"], size: 11}
+  base: {tone: violet, width: 172, title: "Baseline re-check and workflow tests", body: ["=Drift past reconciliation; flows tested in non-production", "CM-6"], size: 11}
+  red: {tone: red, width: 260, title: "Silent failure becomes loud", body: ["=High-severity alert or a failed pipeline"], size: 11}
+  ev: {tone: green, width: 260, title: "Assessment evidence", body: ["=Every harness result emits to the evidence contract"], size: 11}
+edges:
+  - [auto, tel]
+  - [auto, eff]
+  - [auto, smoke]
+  - [auto, base]
+  - [tel, red, {tone: red}]
+  - [eff, red, {tone: red}]
+  - [smoke, ev, {tone: green}]
+  - [base, ev, {tone: green}]
+order:
+  - [tel, eff, smoke, base]
+  - [red, ev]

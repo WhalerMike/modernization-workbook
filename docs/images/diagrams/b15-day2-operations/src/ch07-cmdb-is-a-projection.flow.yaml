@@ -1,0 +1,29 @@
+# Book 15 Chapter 07 — the CMDB is a projection, not the authority. The naming
+# plane (IPAM and DDI) owns asset identity. Cloud-native inventories and
+# on-premises discovery report what each surface sees. Connectors populate the
+# CMDB, and every CI is reconciled to the naming plane before it is trusted for
+# routing; what doesn't match goes to the reconciliation exception queue, and
+# the fix happens upstream. The layering is the program's design.
+rankdir: TB
+graph: {nodesep: 0.2, ranksep: 0.4}
+clusters:
+  - id: sources
+    label: "Each surface reports what it sees"
+    tone: slate
+    filled: false
+    margin: 10
+    nodes: [m365, azure, onprem]
+nodes:
+  naming: {tone: green, width: 300, tag: "Owns identity", title: "Naming plane (IPAM and DDI)", body: ["=One authoritative name or address per asset"], size: 12}
+  m365: {tone: slate, width: 200, tag: "Graph", title: "Microsoft 365 and Entra ID", body: ["=Users, groups, devices, policy objects"], size: 12}
+  azure: {tone: slate, width: 200, tag: "Resource Graph, connector", title: "Azure", body: ["=Subscriptions, VMs, storage, key vaults"], size: 12}
+  onprem: {tone: slate, width: 200, tag: "Discovery, MID Server", title: "On premises and hybrid", body: ["=Servers, network devices, Arc-enabled servers"], size: 12}
+  cmdb: {tone: blue, width: 300, tag: "Workflow projection", title: "CMDB", body: ["=CIs and relationships that tickets, changes and findings route to"], size: 12}
+  queue: {tone: amber, width: 260, tag: "Doesn't match", title: "Reconciliation exception queue", body: ["=Shadow asset or naming-plane gap; fixed upstream"], size: 12}
+edges:
+  - [azure, cmdb, {label: "populate", attrs: "ltail=cluster_sources"}]
+  - [cmdb, naming, {label: "reconcile every pass", lw: 90, tone: green, attrs: "dir=back"}]
+  - [cmdb, queue, {label: "exception", tone: amber, style: dashed}]
+order:
+  - [m365, azure, onprem]
+  - [queue, naming]

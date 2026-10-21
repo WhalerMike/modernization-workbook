@@ -1,0 +1,37 @@
+# Book 15 Chapter 09 — two estates, one evidence contract. AWS is provider-
+# operated: the provider publishes control-mapped tests (Config conformance
+# packs, Security Hub CSPM) and the agency owns the follow-through; Audit Manager
+# is in maintenance mode with no GovCloud endpoint. VMware is agency-operated:
+# nothing is inherited, so the agency produces every piece of evidence
+# (Configuration Profiles, vLCM images, VCF Operations Security Posture
+# Management, STIG readiness scans). Product facts verified in the chapter
+# footnotes; the single contract is program design.
+rankdir: TB
+graph: {nodesep: 0.3, ranksep: 0.4}
+clusters:
+  - id: aws
+    label: "AWS · provider-operated"
+    tone: blue
+    filled: false
+    nodes: [awsn, am]
+  - id: vmw
+    label: "VMware · agency-operated"
+    tone: slate
+    filled: false
+    nodes: [vmwn, inh]
+nodes:
+  awsn: {tone: blue, width: 290, title: "Provider-published tests", body: ["Config conformance packs", "Security Hub CSPM controls", "Patch Manager compliance", "=The agency owns the follow-through"], size: 11}
+  am: {tone: amber, width: 290, title: "Audit Manager", body: ["=Closed to new customers since April 30, 2026; no GovCloud endpoint"], size: 11}
+  vmwn: {tone: slate, width: 290, title: "Agency-run tests", body: ["Configuration Profiles compliance", "Lifecycle Manager image compliance", "Security Posture Management", "STIG readiness scans"], size: 11}
+  inh: {tone: red, width: 290, title: "Nothing inherited", body: ["=The agency produces every piece of evidence"], size: 11}
+  rec: {tone: violet, width: 500, title: "One evidence-contract record per finding", body: ["=Asset identity from the CMDB plus time of observation; opens one typed task in the ITSM platform"], size: 11}
+edges:
+  - [awsn, am, {style: dashed, tone: amber}]
+  - [vmwn, inh, {style: dashed, tone: red}]
+  - [awsn, rec, {tone: violet}]
+  - [vmwn, rec, {tone: violet}]
+order:
+  - [awsn, vmwn]
+raw:
+  - '"am" -> "rec" [style=invis];'
+  - '"inh" -> "rec" [style=invis];'

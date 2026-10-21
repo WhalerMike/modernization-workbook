@@ -1,0 +1,24 @@
+# Book 15 Chapter 08 — the five-step control loop the program runs on every
+# surface: the native tool tests (read-only), drift is detected, a typed task is
+# raised in the ITSM platform against the CMDB configuration item, the owning
+# team actuates on the native surface, and the next native test closes the task
+# and produces one evidence record keyed to asset identity. Exceptions are
+# requests with an approver and an expiry. Program design.
+rankdir: TB
+graph: {nodesep: 0.3, ranksep: 0.3}
+nodes:
+  test: {tone: blue, width: 300, tag: "1 · Test", title: "Native tool reads", body: ["=ScubaGear, Graph, Azure Policy, Defender for Cloud"], size: 11}
+  detect: {tone: violet, width: 300, tag: "2 · Detect", title: "Compare to baseline", body: ["=A difference is a candidate finding"], size: 11}
+  raise: {tone: violet, width: 300, tag: "3 · Raise", title: "Typed task in ITSM", body: ["=Against the CMDB item, with control, severity, due date"], size: 11}
+  act: {tone: blue, width: 300, tag: "4 · Actuate", title: "Change on the native surface", body: ["=ITSM never writes the setting"], size: 11}
+  close: {tone: green, width: 300, tag: "5 · Close", title: "Re-test, then record", body: ["=Task, approval and re-test become one evidence record"], size: 11}
+  exc: {tone: amber, width: 220, title: "Exception", body: ["=A request with an approver and an expiry"], size: 11}
+edges:
+  - [test, detect]
+  - [detect, raise]
+  - [raise, act]
+  - [act, close]
+  - [raise, exc, {style: dashed, tone: amber}]
+  - [close, test, {style: dashed, label: "next cycle", lw: 60}]
+ranks:
+  - [raise, exc]

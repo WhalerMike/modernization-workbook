@@ -1,0 +1,26 @@
+# Book 15 Chapter 05 — how Teams resolves and delivers an emergency location.
+# Catalog items keep validated addresses and the network-to-location map
+# current; the client looks up its location (WAP, switch port, switch, subnet,
+# first match wins); the call carries the location to the carrier or emergency
+# routing service and the 911 call center; the emergency calling policy
+# notifies the security desk. Sources: Microsoft Learn, "Plan and configure
+# dynamic emergency calling" and "Manage emergency calling"; 47 CFR 9.16.
+rankdir: TB
+graph: {nodesep: 0.3, ranksep: 0.35}
+nodes:
+  cat: {tone: violet, width: 470, tag: "Catalog", title: "Addresses and the location map", body: ["=Validated, geocoded emergency addresses; network identifiers mapped to them as change items"], size: 11}
+  lis: {tone: blue, width: 470, tag: "Teams", title: "Location Information Service", body: ["=Wireless access points, switch ports, switches and subnets, each linked to an emergency location"], size: 11}
+  cli: {tone: blue, width: 470, tag: "Teams client", title: "Looks up its location", body: ["=At startup, periodically and on network change; first match in the order access point, port, switch, subnet"], size: 11}
+  car: {tone: slate, width: 260, title: "Carrier or routing service", body: ["=Calling Plan or Operator Connect; for Direct Routing an emergency routing provider or ELIN"], size: 11}
+  desk: {tone: amber, width: 220, title: "Security desk", body: ["=Notified and conferenced in by the emergency calling policy"], size: 11}
+  psap: {tone: green, width: 300, title: "911 call center", body: ["=Receives the call and the dispatchable location"], size: 11}
+  gap: {tone: red, width: 220, title: "Gaps to close", body: ["Web client unsupported: turn off web PSTN calling", "Network changes take up to four hours to reach clients"], size: 11}
+edges:
+  - [cat, lis, {tone: violet}]
+  - [lis, cli, {label: "location", tone: blue}]
+  - [cli, car, {label: "emergency call with location", tone: blue}]
+  - [cli, desk, {label: "notifies", style: dashed, tone: amber}]
+  - [car, psap, {tone: green}]
+  - [cli, gap, {style: dashed, tone: red}]
+ranks:
+  - [car, desk, gap]

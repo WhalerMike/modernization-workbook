@@ -1,0 +1,19 @@
+# Book 15 Chapter 05 — the loop every catalog item runs: a typed request,
+# the approval its control requires, execution through the in-boundary
+# connector under a scoped identity, and a change record reconciled to the
+# inventory that feeds attestation. Self-approval and unapproved execution
+# are refused. Program design.
+rankdir: TB
+graph: {nodesep: 0.4, ranksep: 0.4}
+nodes:
+  req: {tone: slate, width: 320, tag: "1", title: "Request", body: ["Typed item against the reconciled identity record", "Requester, target, justification"], size: 11}
+  app: {tone: amber, width: 320, tag: "2", title: "Approve", body: ["The gate the control requires: self-service, manager, identity team, owner or security approver", "Requester never approves"], size: 11}
+  exe: {tone: blue, width: 320, tag: "3", title: "Execute", body: ["Microsoft Graph through the in-boundary connector", "Scoped, logged identity; never standing tenant admin"], size: 11}
+  evi: {tone: green, width: 320, tag: "4", title: "Evidence", body: ["Request, approval and result become one change record", "Reconciled to the inventory; feeds attestation"], size: 11}
+  chk: {tone: violet, width: 320, title: "Closing check", body: ["=A read of the target confirms the change did exactly what was approved"], size: 11}
+edges:
+  - [req, app]
+  - [app, exe, {tone: blue}]
+  - [exe, evi, {tone: green}]
+  - [exe, app, {label: "refused if unapproved or self-approved", lw: 110, style: dashed, tone: red}]
+  - [evi, chk, {style: dashed, tone: violet}]

@@ -1,0 +1,17 @@
+# Book 15 Chapter 12 — the operator runbook by cadence (program design).
+# Frequencies are organization-defined in SP 800-53 (CA-7, AC-6(7)); the
+# monthly Tier 0 / quarterly other privileged review matches Book 04; the
+# monthly package regeneration matches Book 14 Ch11.
+rankdir: TB
+graph: {nodesep: 0.25, ranksep: 0.3}
+nodes:
+  daily: {tone: blue, width: 470, tag: "Daily", title: "Probe and route", body: ["Sync and service-health probe", "Telemetry-completeness check", "Catalog tasks closed with proof", "Log review findings into the queue"], size: 11}
+  weekly: {tone: blue, width: 470, tag: "Weekly", title: "Test the detectors", body: ["Detection-efficacy replay", "Vulnerability finding freshness", "Reconcile-exception queue", "Human-only closures reviewed"], size: 11}
+  monthly: {tone: violet, width: 470, tag: "Monthly", title: "Regenerate and review", body: ["Assessment results and POA&M", "Baseline conformance re-check", "Tier 0 privileged access review", "Harness results reviewed"], size: 11}
+  quarterly: {tone: violet, width: 470, tag: "Quarterly", title: "Step back", body: ["Other privileged access reviews", "Custom role records", "Trend and evidence-quality review", "Known-bad library refreshed"], size: 11}
+  ev: {tone: green, width: 470, title: "Every step emits evidence", body: ["=One evidence-contract record per run, bound to its control (Chapter 11)"], size: 11}
+edges:
+  - [daily, weekly]
+  - [weekly, monthly]
+  - [monthly, quarterly]
+  - [quarterly, ev, {tone: green}]

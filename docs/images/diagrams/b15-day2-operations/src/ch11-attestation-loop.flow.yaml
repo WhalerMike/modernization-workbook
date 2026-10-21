@@ -1,0 +1,25 @@
+# Book 15 Chapter 11 — the attestation loop (program design). The day-two
+# task stream becomes assessed control state (CA-2), a POA&M (CA-5) and an
+# OSCAL emit for continuous monitoring (CA-7). Human attestation is reserved
+# for controls no system can observe (SP 800-37 App. F: fill gaps with
+# manual assessment; SP 800-137: neither manual nor automated alone).
+rankdir: TB
+graph: {nodesep: 0.3, ranksep: 0.35}
+nodes:
+  tasks: {tone: slate, width: 470, tag: "Input", title: "The day-two task stream", body: ["=Remediation tasks, catalog requests, closures with their proof"], size: 12}
+  map: {tone: blue, width: 300, tag: "Step 1", title: "Map", body: ["=Each control knows which tests evidence it, from the authoritative control map"], size: 11}
+  test: {tone: blue, width: 300, tag: "Step 2 · CA-2", title: "Test", body: ["=Scheduled test reads actioned posture and attaches the evidence it read"], size: 11}
+  human: {tone: amber, width: 200, tag: "Only where no system can see", title: "Human attestation", body: ["=Policy approval, contract clause, physical inspection"], size: 11}
+  gap: {tone: blue, width: 300, tag: "Step 3 · CA-5", title: "Gap", body: ["=Fail or partial becomes an owned POA&M item linked to the task that closes it"], size: 11}
+  emit: {tone: blue, width: 300, tag: "Step 4 · CA-7", title: "Emit", body: ["=Assessed state and POA&M exported as OSCAL"], size: 11}
+  pkg: {tone: green, width: 470, title: "Authorization package", body: ["=Read by the authorizing official"], size: 12}
+edges:
+  - [tasks, map]
+  - [map, test, {tone: blue}]
+  - [human, test, {style: dashed, tone: amber}]
+  - [test, gap, {tone: blue}]
+  - [gap, emit, {tone: blue}]
+  - [gap, test, {style: dashed, label: "re-test on cadence", attrs: "constraint=false"}]
+  - [emit, pkg, {tone: green}]
+order:
+  - [test, human]

@@ -1,0 +1,28 @@
+# Book 15 Chapter 03 — the gate before a sensitive action. The executor acts
+# only on an assigned ticket whose approvals and metadata are complete; any gap
+# puts the ticket on hold. For resets, MFA and recovery the person is verified
+# by a phishing-resistant sign-in or by identity proofing, never by email,
+# caller ID or knowledge questions. Then the eligible role is activated with
+# the ticket cited, the change is made and re-read, the user is notified, and
+# the ticket closes with its evidence. Program design; the recovery notice
+# follows NIST SP 800-63B-4 Sec. 4.2.3.
+rankdir: TB
+graph: {nodesep: 0.35, ranksep: 0.4}
+nodes:
+  tk: {tone: slate, width: 300, tag: "Precondition", title: "Assigned ticket", body: ["Every approval stage shows approved", "Assigned to the executor's queue", "Requester, authority class, action recorded"], size: 12}
+  hold: {tone: amber, width: 220, tag: "Gap", title: "On hold", body: ["=Raise it with the supervisor; never chase approvers"], size: 12}
+  idv: {tone: amber, width: 300, tag: "Resets, MFA, recovery", title: "Verify the person", body: ["Phishing-resistant sign-in, or identity proofing", "Never email, caller ID or knowledge questions"], size: 12}
+  esc: {tone: red, width: 220, tag: "Stop", title: "Escalate", body: ["=Verification fails, or the target holds a directory role"], size: 12}
+  pim: {tone: blue, width: 300, tag: "Privilege", title: "Activate the eligible role", body: ["=Justification and ticket number cite this ticket"], size: 12}
+  exe: {tone: green, width: 300, tag: "Execute", title: "Change, re-read, notify", body: ["=Re-read the object; notify the user of any recovery"], size: 12}
+  ev: {tone: violet, width: 300, tag: "Evidence", title: "Close the ticket with its record", body: ["=Approvers, verification method, activation, object IDs, audit reference"], size: 12}
+edges:
+  - [tk, idv, {tone: green, label: "ready"}]
+  - [tk, hold, {tone: amber, style: dashed, label: "missing"}]
+  - [idv, pim, {tone: green, label: "verified"}]
+  - [idv, esc, {tone: red, label: "fails"}]
+  - [pim, exe]
+  - [exe, ev, {tone: violet}]
+ranks:
+  - [idv, hold]
+  - [pim, esc]

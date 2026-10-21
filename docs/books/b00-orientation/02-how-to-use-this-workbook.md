@@ -156,10 +156,10 @@ Training and education will have their own book, Book 16, which is planned. Unti
 | B09 | [Network & Transport](../b09-network/index.md) | Why does physics decide the architecture? | The estate |
 | B10 | [Cloud Boundary & Landing Zone](../b10-cloud-boundary/index.md) | Why does the authorization boundary decide what you can use? | Boundary and assurance |
 | B11 | [Zero Trust & Assessment](../b11-zero-trust/index.md) | Why is Zero Trust a whole-agency property, not a product? | Boundary and assurance |
-| B12 | Security Operations & Telemetry (planned) | Why can't you defend what you can't see? | Running it |
-| B13 | Governance, Drift & Evidence (planned) | Why does compliance decay the day after the audit? | Running it |
-| B14 | Federal Compliance & Authorization (planned) | Why does every control need proof, not a promise? | Boundary and assurance |
-| B15 | Compliance Automation & Day-2 Operations (planned) | Why does modernization succeed or fail at the help desk? | Running it |
+| B12 | [Security Operations & Telemetry](../b12-security-operations/index.md) | Why can't you defend what you can't see? | Running it |
+| B13 | [Governance, Drift & Evidence](../b13-governance/index.md) | Why does compliance decay the day after the audit? | Running it |
+| B14 | [Federal Compliance & Authorization](../b14-compliance/index.md) | Why does every control need proof, not a promise? | Boundary and assurance |
+| B15 | [Compliance Automation & Day-2 Operations](../b15-day2-operations/index.md) | Why does modernization succeed or fail at the help desk? | Running it |
 | B16 | People: Training & Education (planned) | Why do people, not tools, close the gap? | Running it |
 | B17 | AI Identity Governance (planned) | Why do AI agents need identities and owners? | Identity and access |
 

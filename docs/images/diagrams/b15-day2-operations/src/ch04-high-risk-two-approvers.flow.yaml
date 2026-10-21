@@ -1,0 +1,26 @@
+# Book 15 Chapter 04 — a high-risk help desk task in the program's design.
+# Two people other than the executor approve in the ticket before anyone
+# activates a role; urgency claimed on a call goes to the supervisor's
+# emergency change path, never around the gate. PIM itself can't check the
+# ticket number (information-only field), so the SIEM correlates it.
+rankdir: TB
+graph: {nodesep: 0.3, ranksep: 0.35}
+nodes:
+  req: {tone: slate, width: 300, tag: "Request", title: "High-risk task on an assigned ticket", body: ["=Target, exact change, reason, values supplied"], size: 12}
+  idp: {tone: amber, width: 300, tag: "Identity proofing", title: "Requester verified out of band", body: ["=Never email or a callback number the caller gives"], size: 12}
+  ap1: {tone: blue, width: 240, tag: "First approver", title: "Owner of the change", body: ["=Supervisor or identity engineering lead"], size: 11}
+  ap2: {tone: violet, width: 240, tag: "Second approver", title: "Independent of the first", body: ["=Governance officer or security"], size: 11}
+  push: {tone: red, width: 240, tag: "Blocked", title: "Pressure to skip a step", body: ["=Route to the emergency change process"], size: 11}
+  pim: {tone: green, width: 300, tag: "PIM", title: "Activate the narrowest role", body: ["Justification carries the ticket number", "Shortest window the task needs"], size: 12}
+  exe: {tone: green, width: 300, tag: "Execute and verify", title: "Change, re-read, deactivate", body: ["=Stop on any mismatch with the ticket"], size: 12}
+  rec: {tone: violet, width: 300, tag: "Evidence", title: "Ticket, PIM record, audit entry", body: ["=SIEM joins all three; user notified"], size: 12}
+edges:
+  - [req, idp]
+  - [idp, ap1, {tone: blue}]
+  - [ap1, ap2, {tone: violet}]
+  - [push, idp, {label: "not a bypass", tone: red, style: dashed}]
+  - [ap2, pim, {tone: green}]
+  - [pim, exe, {tone: green}]
+  - [exe, rec, {tone: violet}]
+order:
+  - [ap1, ap2]
