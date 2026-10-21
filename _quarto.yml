@@ -68,6 +68,8 @@ website:
             text: "Book 10 — Cloud Boundary & Landing Zone"
           - href: docs/books/b11-zero-trust/index.md
             text: "Book 11 — Zero Trust & Assessment"
+          - href: docs/books/b12-security-operations/index.md
+            text: "Book 12 — Security Operations & Telemetry"
           - href: docs/books/guides/effective-meetings.md
             text: "Guide: Effective Meetings"
       - href: docs/presentations/index.md
@@ -138,6 +140,10 @@ website:
           href: docs/books/b11-zero-trust/index.md
           contents:
             - auto: "docs/books/b11-zero-trust/*-*.md"
+        - section: "Book 12 — Security Operations & Telemetry"
+          href: docs/books/b12-security-operations/index.md
+          contents:
+            - auto: "docs/books/b12-security-operations/*-*.md"
         - section: "Companion guides"
           contents:
             - docs/books/guides/effective-meetings.md

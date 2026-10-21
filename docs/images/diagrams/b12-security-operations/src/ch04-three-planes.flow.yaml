@@ -1,0 +1,21 @@
+# Book 12 Chapter 04 — three emission planes and three mechanisms. The Azure
+# activity log (control plane) is exported by a subscription diagnostic
+# setting; resource logs (data plane) need a setting per resource, enforced by
+# Azure Policy DeployIfNotExists plus remediation tasks; the Microsoft 365
+# unified audit log is verified in Exchange Online PowerShell and collected
+# through the Office 365 Management Activity API. All three land in one
+# workspace with one verification loop (program design). Facts cited in the
+# chapter.
+rankdir: TB
+graph: {nodesep: 0.3, ranksep: 0.45}
+nodes:
+  act: {tone: blue, width: 240, tag: "Control plane", title: "Activity log", body: ["Collected by default, kept 90 days", "Create, update, delete, action; RBAC changes; typically no reads", "One setting per subscription, to `AzureActivity`"], size: 11}
+  res: {tone: blue, width: 240, tag: "Data plane", title: "Resource logs", body: ["Not collected by default", "One setting per resource, `allLogs` group", "Azure Policy DeployIfNotExists plus remediation tasks", "Resource-specific tables"], size: 11}
+  ual: {tone: slate, width: 240, tag: "Microsoft 365", title: "Unified audit log", body: ["Check `Get-AdminAuditLogConfig` in Exchange Online PowerShell", "Management Activity API: five content types", "Kept 180 days or one year by license"], size: 11}
+  ws: {tone: violet, width: 420, title: "One workspace, one verification loop", body: ["=Liveness queries per plane, policy compliance against the inventory, tenant-side audit check"], size: 12}
+edges:
+  - [act, ws, {tone: violet}]
+  - [res, ws, {tone: violet}]
+  - [ual, ws, {tone: violet}]
+order:
+  - [act, res, ual]

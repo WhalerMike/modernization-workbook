@@ -1,0 +1,37 @@
+# Book 12 Chapter 06 — the BOD 26-04 remediation clock. Four questions per
+# vulnerable asset select a row of Appendix A, Table 1 (verified on cisa.gov,
+# June 10, 2026); defaults for missing metadata follow CISA's implementation
+# guidance; the clock starts at KEV listing or first detection, whichever is
+# earlier, and every timeline is a maximum.
+rankdir: TB
+graph: {nodesep: 0.25, ranksep: 0.35}
+nodes:
+  f: {tone: slate, width: 300, title: "A finding", body: ["=One CVE on one asset"], size: 12}
+  q1: {tone: violet, width: 170, title: "Publicly exposed?", body: ["=Agency exposure tag"], size: 11}
+  q2: {tone: violet, width: 170, title: "In the KEV catalog?", body: ["=CISA feed, daily"], size: 11}
+  q3: {tone: violet, width: 170, title: "Automatable?", body: ["=CISA Vulnrichment; no if absent"], size: 11}
+  q4: {tone: violet, width: 170, title: "Technical impact", body: ["=Partial or total; total if absent"], size: 11}
+  t:
+    kind: table
+    tone: slate
+    columns: ["Maximum timeline", "Table 1 rows", "Typical case"]
+    widths: [190, 120, 300]
+    rows:
+      - [{text: "3 days and forensic triage", tone: red}, "1, 3, 9", "KEV with total impact, unless internal and not automatable"]
+      - [{text: "3 days", tone: red}, "2, 5", "Exposed and automatable: KEV partial, or non-KEV total"]
+      - [{text: "14 days", tone: amber}, "4, 6, 7, 10, 11, 12", "Most other KEV findings and exposed findings"]
+      - [{text: "60 days", tone: amber}, "8, 13, 14", "Exposed partial non-automatable; internal automatable non-KEV"]
+      - [{text: "Fix on system upgrade", tone: slate}, "15, 16", "Internal, not in KEV, not automatable"]
+  d: {tone: green, width: 420, title: "The deadline", body: ["Starts at KEV listing or first detection, whichever is earlier", "A maximum: the agency may set shorter targets"], size: 12}
+edges:
+  - [f, q1]
+  - [f, q2]
+  - [f, q3]
+  - [f, q4]
+  - [q1, t]
+  - [q2, t]
+  - [q3, t]
+  - [q4, t]
+  - [t, d, {tone: green}]
+order:
+  - [q1, q2, q3, q4]

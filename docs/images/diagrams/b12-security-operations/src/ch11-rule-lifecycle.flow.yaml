@@ -1,0 +1,19 @@
+# Book 12 Chapter 11 — the lifecycle of one rule in the library. Every step is a
+# commit or a recorded decision; the alert-only window is the tuning period; the
+# review loop catches rot. The lifecycle is the program's design.
+rankdir: TB
+graph: {nodesep: 0.3, ranksep: 0.3}
+nodes:
+  author: {tone: slate, width: 400, tag: "1", title: "Author in the repository", body: ["=Query, entities, ATT&CK tags, thresholds marked TUNE"], size: 12}
+  test: {tone: blue, width: 400, tag: "2", title: "Test against history", body: ["=Results simulation and replay of known-good and known-bad data"], size: 12}
+  shadow: {tone: amber, width: 400, tag: "3", title: "Deploy alert-only", body: ["=Incident creation off; review output daily; log every false positive"], size: 12}
+  promote: {tone: green, width: 400, tag: "4", title: "Promote to incidents", body: ["=Measured false-positive rate recorded; response wired"], size: 12}
+  review: {tone: violet, width: 400, tag: "5", title: "Scheduled review", body: ["=Still firing? Source still emitting? Auto-disabled?"], size: 12}
+  retire: {tone: red, width: 260, title: "Retire", body: ["=Removed from repo and workspace"], size: 11}
+edges:
+  - [author, test]
+  - [test, shadow]
+  - [shadow, promote]
+  - [promote, review]
+  - [review, author, {label: "re-tune", lw: 80, style: dashed, tone: violet, attrs: "constraint=false"}]
+  - [review, retire, {tone: red, style: dashed}]

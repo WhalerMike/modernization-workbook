@@ -1,0 +1,19 @@
+# Book 12 Chapter 11 — the response ladder mapped onto Book 01's actuation rungs.
+# Confidence decides the rung; gated actuation (L3) is the default ceiling for
+# containment; L4 is reserved for enumerated low-blast-radius classes the
+# authorizing official has accepted. The mapping is the program's design.
+rankdir: TB
+graph: {nodesep: 0.25, ranksep: 0.3}
+nodes:
+  l1: {tone: slate, width: 360, tag: "L1 · Observe", title: "Every alert", body: ["=Incident opened, entities mapped, evidence retained"], size: 12}
+  l2: {tone: violet, width: 360, tag: "L2 · Advise", title: "Medium confidence", body: ["=Enrich with identity, device and IP context; open a ticket; analyst decides"], size: 12}
+  l3: {tone: green, width: 360, tag: "L3 · Gated actuation (default)", title: "High confidence", body: ["=Playbook prepares the containment; a named approver releases it"], size: 12}
+  l4: {tone: amber, width: 360, tag: "L4 · Enumerated classes only", title: "Accepted autonomous actions", body: ["=Close known-benign incidents; vendor attack disruption if the AO accepts it"], size: 12}
+  never: {tone: red, width: 230, title: "Never autonomous", body: ["=Isolating servers, disabling privileged or emergency accounts, tenant-wide changes"], size: 12}
+edges:
+  - [l1, l2]
+  - [l2, l3]
+  - [l3, l4, {tone: amber, style: dashed, label: "only with a recorded acceptance", lw: 140}]
+  - [l3, never, {tone: red, style: dashed}]
+order:
+  - [l4, never]

@@ -1,0 +1,28 @@
+# Book 12 Chapter 02 — three stacks report on the same server with three
+# different identifiers. Mapping each record to the naming plane's asset_id
+# and synchronized time turns them into one correlated story (AU-12(1)).
+# Illustrative example; asset and times are not real.
+rankdir: TB
+graph: {nodesep: 0.15, ranksep: 0.4}
+clusters:
+  - id: records
+    label: "Three records about one server at 06:00"
+    tone: slate
+    margin: 8
+    nodes: [r1, r2, r3]
+    order: [r1, r2, r3]
+nodes:
+  r1: {tone: slate, width: 190, tag: "Patch stack", title: "Unpatched", body: ["=Keyed by its machine ID"], size: 11}
+  r2: {tone: slate, width: 190, tag: "Network telemetry", title: "Reachable,\nunencrypted", body: ["=Keyed by IP address"], size: 11}
+  r3: {tone: slate, width: 190, tag: "Configuration stack", title: "Out of baseline", body: ["=Keyed by resource ID"], size: 11}
+  map: {tone: violet, width: 440, title: "Map and normalize", body: ["=Each identifier to the naming plane's `asset_id`; each time to synchronized `observed_at`"], size: 11}
+  story: {tone: green, width: 330, title: "One correlated story", body: ["=As of 06:00, asset A is unpatched, exposed and out of baseline"], size: 11}
+  nostory: {kind: pill, tone: red, text: "No mapping:\nthree unrelated objects"}
+edges:
+  - [r1, map]
+  - [r2, map]
+  - [r3, map]
+  - [map, story, {tone: green}]
+  - [map, nostory, {style: dashed, tone: red}]
+order:
+  - [story, nostory]

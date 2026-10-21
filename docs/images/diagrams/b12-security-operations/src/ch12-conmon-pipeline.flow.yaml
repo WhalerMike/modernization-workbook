@@ -1,0 +1,28 @@
+# Chapter 12 — the continuous-monitoring pipeline, from what each source
+# emits to a risk decision. Emit, normalize and correlate build the
+# system-wide trail on authoritative asset identity plus time; bind,
+# report and respond turn it into control-bound evidence and decisions.
+# Re-test evidence closes the loop. The pipeline is the program's design.
+rankdir: TB
+graph: {nodesep: 0.3, ranksep: 0.35}
+nodes:
+  emit: {tone: blue, width: 200, tag: "1", title: "Emit", body: ["=Every plane writes evidence-contract records on its own cadence"], size: 12}
+  norm: {tone: blue, width: 200, tag: "2", title: "Normalize", body: ["=One shape: asset ID, control, verdict, time"], size: 12}
+  corr: {tone: violet, width: 200, tag: "3", title: "Correlate", body: ["=Join on asset identity plus time into one trail"], size: 12}
+  bind: {tone: violet, width: 200, tag: "4", title: "Bind", body: ["=Map each record to its control and indicator"], size: 12}
+  rep: {tone: green, width: 200, tag: "5", title: "Report", body: ["=Metrics, posture reports, OSCAL results and POA&M"], size: 12}
+  resp: {tone: amber, width: 200, tag: "6", title: "Respond", body: ["=System owner remediates; AO decides on residual risk"], size: 12}
+  name: {kind: pill, tone: slate, text: "The naming plane\nsupplies the join key"}
+  dark: {kind: pill, tone: red, text: "A source that emits nothing is\ninvisible to every later stage"}
+edges:
+  - [emit, norm]
+  - [norm, corr]
+  - [rep, bind, {attrs: "dir=back"}]
+  - [resp, rep, {attrs: "dir=back"}]
+  - [corr, bind]
+  - [emit, resp, {label: "re-test", style: dashed, tone: amber, attrs: "dir=back"}]
+  - [name, corr, {style: dashed}]
+  - [dark, emit, {style: dashed, tone: red}]
+order:
+  - [emit, norm, corr]
+  - [resp, rep, bind]

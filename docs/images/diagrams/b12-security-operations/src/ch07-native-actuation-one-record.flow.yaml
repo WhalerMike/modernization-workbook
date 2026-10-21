@@ -1,0 +1,38 @@
+# Book 12 Chapter 07 — actuation is platform-native, governance is unified
+# (program design). The Chapter 06 queue hands each finding to the stack that
+# can fix it; every stack returns the same record keyed to the naming plane's
+# asset_id. Stack capabilities verified in the chapter footnotes.
+rankdir: TB
+graph: {nodesep: 0.12, ranksep: 0.35}
+clusters:
+  - id: stacks
+    label: "Actuation stays on its own platform"
+    tone: slate
+    margin: 8
+    nodes: [ms, aws, oci, vmw, rh]
+    order: [ms, aws, oci, vmw, rh]
+nodes:
+  q: {tone: amber, width: 420, tag: "Chapter 06", title: "Remediation queue", body: ["=One row per CVE per asset, with its BOD 26-04 deadline"], size: 11}
+  ms: {tone: blue, width: 115, title: "Microsoft", body: ["Update Manager", "Machine configuration", "Intune (clients)"], size: 10}
+  aws: {tone: slate, width: 115, title: "AWS", body: ["Patch Manager", "State Manager"], size: 10}
+  oci: {tone: slate, width: 115, title: "Oracle", body: ["OS Management Hub", "Ksplice"], size: 10}
+  vmw: {tone: slate, width: 115, title: "VMware", body: ["vSphere Lifecycle", "Manager, firmware"], size: 10}
+  rh: {tone: slate, width: 115, title: "Red Hat", body: ["Satellite", "Ansible Automation"], size: 10}
+  rec: {tone: violet, width: 420, title: "The unified record", body: ["=`asset_id` · `source_stack` · `finding_ref` · `deadline` · state · `observed_at` · `disposition` · `evidence_ref`"], size: 11}
+  naming: {kind: pill, tone: slate, text: "Naming plane\n(CM-8)"}
+  out: {tone: green, width: 420, title: "One compliance picture", body: ["=Is CVE-X fixed across the whole estate? To CDM and the authorization package"], size: 11}
+edges:
+  - [q, ms]
+  - [q, aws]
+  - [q, oci]
+  - [q, vmw]
+  - [q, rh]
+  - [ms, rec]
+  - [aws, rec]
+  - [oci, rec]
+  - [vmw, rec]
+  - [rh, rec]
+  - [naming, rec, {style: dashed, label: "asset_id"}]
+  - [rec, out, {tone: green}]
+ranks:
+  - [rec, naming]

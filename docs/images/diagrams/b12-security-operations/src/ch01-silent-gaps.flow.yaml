@@ -1,0 +1,26 @@
+# Book 12 Chapter 01 — four ways a telemetry gap produces no signal, and the
+# one check that finds all of them. Gap types are documented by Microsoft
+# Learn and CISA; the coverage check is M-26-14 Appendix B item 4 as the
+# program applies it.
+rankdir: TB
+graph: {nodesep: 0.15, ranksep: 0.4}
+clusters:
+  - id: gaps
+    label: "Gaps that raise no alarm"
+    tone: red
+    margin: 8
+    nodes: [g1, g2, g3, g4]
+    order: [g1, g2, g3, g4]
+nodes:
+  g1: {tone: red, width: 170, tag: "1", title: "Never connected", body: ["=Resource logs aren't collected until a diagnostic setting exists"], size: 11}
+  g2: {tone: red, width: 170, tag: "2", title: "Connected, not flowing", body: ["=Connector status shows a collection rule, not data"], size: 11}
+  g3: {tone: red, width: 170, tag: "3", title: "Collected, not analyzed", body: ["=Retention-only tiers generate no alerts"], size: 11}
+  g4: {tone: red, width: 170, tag: "4", title: "Tampered or turned off", body: ["=Disabling logging is documented attacker behavior"], size: 11}
+  check: {tone: violet, width: 470, title: "Coverage check", body: ["=Expected emitters from the asset inventory, compared with what arrives, per plane and per asset"], size: 11}
+  finding: {tone: green, width: 470, title: "Gap becomes a finding", body: ["=Owned, tracked, closed"], size: 11}
+edges:
+  - [g1, check, {tone: red}]
+  - [g2, check, {tone: red}]
+  - [g3, check, {tone: red}]
+  - [g4, check, {tone: red}]
+  - [check, finding, {tone: green}]

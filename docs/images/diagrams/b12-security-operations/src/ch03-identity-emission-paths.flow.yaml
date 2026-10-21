@@ -1,0 +1,25 @@
+# Book 12 Chapter 03 — Entra ID identity telemetry. Log categories flow through
+# one tenant-scope diagnostic setting (microsoft.aadiam/diagnosticSettings,
+# deployed from code) to the Log Analytics tables the SOC queries, and
+# optionally to Event Hubs for a non-Microsoft SIEM. Microsoft Graph auditLogs
+# APIs answer specific questions within Entra's own 30-day window; they are not
+# the feed. The completeness query reads the workspace back. Facts are cited in
+# the chapter; the tiering and the read-back loop are the program's design.
+rankdir: TB
+graph: {nodesep: 0.4, ranksep: 0.45}
+nodes:
+  tenant: {tone: slate, width: 320, tag: "Source", title: "Microsoft Entra ID tenant", body: ["Directory audit", "Four sign-in streams: interactive, non-interactive, service principal, managed identity", "Provisioning", "Microsoft Graph activity", "ID Protection risk"], size: 11}
+  setting: {tone: blue, width: 240, tag: "Tenant scope", title: "Diagnostic setting", body: ["`microsoft.aadiam/diagnosticSettings`", "Deployed from code; category list kept in the repository", "No retention here: the block has no effect"], size: 11}
+  law: {tone: green, width: 260, tag: "Evidence of record", title: "Log Analytics workspace", body: ["`SigninLogs`, `AADNonInteractiveUserSignInLogs`", "`AuditLogs`, `MicrosoftGraphActivityLogs`", "Retention set per table: 180 days analytics, 365 days total"], size: 11}
+  eh: {tone: slate, width: 200, title: "Event Hubs", body: ["=Optional stream to a non-Microsoft SIEM"], size: 11}
+  graph: {tone: amber, width: 240, tag: "Targeted pulls", title: "Microsoft Graph auditLogs", body: ["=Specific questions only, within Entra's 30-day window; not built for bulk collection"], size: 11}
+  verify: {tone: violet, width: 240, title: "Completeness query", body: ["=Expected tables compared with arrivals: OK, STALE or MISSING"], size: 11}
+edges:
+  - [tenant, setting]
+  - [setting, law, {tone: green}]
+  - [setting, eh]
+  - [tenant, graph, {label: "evidence pulls", lw: 110, style: dashed, tone: amber}]
+  - [law, verify, {label: "read back daily", lw: 110, style: dashed, tone: violet, attrs: "dir=back"}]
+order:
+  - [law, eh]
+  - [graph, setting]

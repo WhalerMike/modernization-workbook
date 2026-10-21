@@ -1,0 +1,30 @@
+# Book 12 Chapter 06 — from inventory to record: the scan scope is the
+# authoritative inventory, the daily join assigns each CVE-and-asset finding a
+# BOD 26-04 deadline, platform-native actuation (Chapter 07) closes it, and the
+# compliance record proves it. The scanner verifies closure; it never closes.
+rankdir: TB
+graph: {nodesep: 0.5, ranksep: 0.55}
+nodes:
+  inv: {tone: slate, width: 230, tag: "CM-8", title: "Authoritative inventory", body: ["IPAM and device records", "Asset identity, exposure tag"], size: 11}
+  scan: {tone: blue, width: 230, tag: "RA-5", title: "Defender Vulnerability Management", body: ["Arc-enabled servers, endpoints", "CVE-by-asset findings"], size: 11}
+  join: {tone: violet, width: 240, title: "Daily join", body: ["CISA KEV feed", "CISA Vulnrichment (SSVC)", "Agency exposure", "=Assigns the BOD 26-04 deadline"], size: 11}
+  queue: {tone: amber, width: 240, title: "Remediation queue", body: ["One row per CVE per asset", "Start, deadline, triage flag"], size: 11}
+  act: {tone: green, width: 230, tag: "SI-2 · Chapter 07", title: "Platform-native actuation", body: ["Update Manager, Systems Manager,", "Satellite and others"], size: 11}
+  rec: {tone: violet, width: 230, tag: "SI-2(2) · SI-2(3)", title: "Compliance record", body: ["Detected, due, fixed, outcome", "To CDM and the authorization package"], size: 11}
+edges:
+  - [inv, scan, {label: "scan scope"}]
+  - [scan, join]
+  - [inv, join, {style: dashed}]
+  - [queue, join, {attrs: "dir=back"}]
+  - [queue, act, {tone: green, label: "handoff"}]
+  - [act, rec, {label: "remediation status"}]
+  - [scan, rec, {style: dashed, tone: violet, label: "verified closed", lw: 60, attrs: "constraint=false"}]
+order:
+  - [inv, scan]
+  - [queue, join]
+  - [act, rec]
+raw:
+  - '"inv" -> "queue" [style=invis weight=10]'
+  - '"queue" -> "act" [style=invis weight=10]'
+  - '"scan" -> "join" [style=invis weight=10]'
+  - '"join" -> "rec" [style=invis weight=10]'

@@ -1,0 +1,28 @@
+# Book 12 Chapter 09 — one sensitivity label, three enforcement surfaces.
+# Label stored in clear text in file and email metadata (Microsoft Learn,
+# "Learn about sensitivity labels"); Defender for Cloud Apps session policies
+# filter by label; endpoint DLP on onboarded Windows and macOS devices.
+# Events go to the evidence contract (Chapter 02).
+rankdir: TB
+graph: {nodesep: 0.25, ranksep: 0.4}
+nodes:
+  file: {tone: slate, width: 220, title: "File or message", body: ["=The payload the pipe can't read"], size: 11}
+  label: {tone: blue, width: 300, tag: "Microsoft Purview", title: "Sensitivity label", body: ["Manual, auto-labeling or classifier", "Clear text in metadata, travels with the file"], size: 11}
+  enc: {tone: green, width: 230, title: "Label encryption", body: ["=Under the agency's key choice; protects the content wherever it goes"], size: 11}
+  svc: {tone: blue, width: 220, tag: "Service DLP", title: "Exchange, SharePoint, OneDrive, Teams", body: ["=Block external share and send; detect SSNs in chat"], size: 11}
+  ep: {tone: blue, width: 220, tag: "Endpoint DLP", title: "Onboarded Windows and macOS", body: ["=Block print and removable media; audit network shares"], size: 11}
+  casb: {tone: blue, width: 220, tag: "CASB", title: "Defender for Cloud Apps sessions", body: ["=Filter on the label at upload and download"], size: 11}
+  ev: {tone: violet, width: 420, tag: "Chapter 02", title: "Evidence contract", body: ["=Label, DLP, override and key events"], size: 11}
+edges:
+  - [file, label]
+  - [label, svc]
+  - [label, ep]
+  - [label, casb]
+  - [label, enc, {tone: green, style: dashed}]
+  - [svc, ev, {tone: violet}]
+  - [ep, ev, {tone: violet}]
+  - [casb, ev, {tone: violet}]
+ranks:
+  - [label, enc]
+order:
+  - [svc, ep, casb]

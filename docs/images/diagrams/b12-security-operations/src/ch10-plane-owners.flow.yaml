@@ -1,0 +1,37 @@
+# Chapter 10 — each telemetry plane has an owner who keeps it emitting.
+# Security engineering lands the data and joins it on the naming plane's
+# authoritative asset identity; the top-level SOC reads it and sends
+# findings back to the plane owners. The ownership split is the
+# program's design.
+rankdir: TB
+graph: {nodesep: 0.2, ranksep: 0.4}
+clusters:
+  - id: planes
+    label: "Each plane's owner keeps it emitting"
+    tone: slate
+    filled: false
+    margin: 10
+    nodes: [id, cloud, m365, ep, net, data]
+nodes:
+  id: {tone: blue, width: 200, tag: "Identity engineering", title: "Identity", body: ["=Entra ID audit, sign-in and risk logs"], size: 12}
+  cloud: {tone: blue, width: 200, tag: "Cloud platform team", title: "Cloud platform", body: ["=Activity log, resource logs, posture findings"], size: 12}
+  m365: {tone: blue, width: 200, tag: "Collaboration platform team", title: "Microsoft 365", body: ["=Unified audit log, ScubaGear results"], size: 12}
+  ep: {tone: blue, width: 200, tag: "Endpoint and server teams", title: "Endpoints and servers", body: ["=Defender and Arc telemetry, patch state"], size: 12}
+  net: {tone: blue, width: 200, tag: "Network and DDI teams", title: "Network and DNS", body: ["=DNS, SASE and firewall logs"], size: 12}
+  data: {tone: blue, width: 200, tag: "Data office and platform team", title: "Data", body: ["=Purview, SQL audit, key vault logs"], size: 12}
+  eng: {tone: violet, width: 270, tag: "Lands and joins", title: "Security engineering", body: ["=Workspace, connectors, rule library"], size: 12}
+  name: {tone: slate, width: 180, tag: "DDI team", title: "Naming plane", body: ["=Authoritative asset identity"], size: 12}
+  soc: {tone: violet, width: 270, tag: "Reads", title: "Top-level SOC", body: ["=Incidents, hunting, response"], size: 12}
+edges:
+  - [net, eng, {label: "emits", attrs: "ltail=cluster_planes"}]
+  - [eng, name, {label: "join key", style: dashed, attrs: "dir=back"}]
+  - [eng, soc, {label: "incidents"}]
+  - [ep, soc, {label: "findings to remediate", lw: 90, style: dashed, attrs: "dir=back ltail=cluster_planes"}]
+order:
+  - [id, cloud, m365]
+  - [ep, net, data]
+  - [eng, name]
+raw:
+  - '"id" -> "ep" [style=invis]'
+  - '"cloud" -> "net" [style=invis]'
+  - '"m365" -> "data" [style=invis]'

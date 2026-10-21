@@ -1,0 +1,23 @@
+# Book 12 Chapter 07 — the baseline lifecycle (program design): author as
+# code, assign in Audit, measure drift, split each rule into remediate or
+# report, and emit every result to the evidence contract. Assignment types
+# per Microsoft Learn (Audit, ApplyAndMonitor, ApplyAndAutoCorrect).
+rankdir: TB
+graph: {nodesep: 0.35, ranksep: 0.3}
+nodes:
+  author: {tone: green, width: 250, tag: "CM-6", title: "Author", body: ["Baseline as code", "SCuBA, CIS, STIG", "Reviewed in a pull request"], size: 11}
+  assign: {tone: blue, width: 250, tag: "CM-2", title: "Assign", body: ["`Audit` first", "Measure drift before", "any remediation"], size: 11}
+  detect: {tone: violet, width: 250, tag: "CM-6(1)", title: "Detect", body: ["Per setting, per asset", "`guestconfigurationresources`"], size: 11}
+  fix: {tone: green, width: 250, title: "Remediate", body: ["Idempotent, low blast radius", "`ApplyAndMonitor`; autocorrect", "only where silent repair is OK"], size: 11}
+  rep: {tone: amber, width: 250, tag: "CM-6(2)", title: "Report", body: ["Needs judgment", "POA&M item and SI-2 queue row"], size: 11}
+  ev: {tone: violet, width: 250, title: "Evidence contract", body: ["Every drift and repair", "`asset_id`, baseline version,", "`observed_at`"], size: 11}
+edges:
+  - [author, assign]
+  - [assign, detect]
+  - [detect, fix]
+  - [detect, rep]
+  - [fix, ev]
+  - [rep, ev]
+  - [ev, author, {style: dashed, tone: violet, label: "publisher updates"}]
+order:
+  - [fix, rep]

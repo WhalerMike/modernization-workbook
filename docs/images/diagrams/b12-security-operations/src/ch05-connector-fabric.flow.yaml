@@ -1,0 +1,16 @@
+# Book 12 Chapter 05 — the connector fabric. Each source lands in named tables
+# through a documented path; the ASIM unifying parsers give rules one schema across
+# appliance vendors. Tables and paths verified on Microsoft Learn (chapter notes).
+rankdir: LR
+graph: {nodesep: 0.3, ranksep: 0.5}
+nodes:
+  ms: {tone: blue, width: 250, title: "Microsoft first-party", body: ["Entra ID connector (diagnostic settings)", "Defender XDR connector (incidents, alerts, streamed hunting tables)"], size: 11}
+  app: {tone: slate, width: 250, title: "Appliances", body: ["DNS and DDI: Syslog or CEF", "SASE and web gateway: CEF or vendor connector", "=Through a Linux forwarder running AMA"], size: 11}
+  sql: {tone: slate, width: 250, title: "Databases", body: ["Azure SQL auditing to Log Analytics", "SQL Server audit to the Windows Security log", "Defender for SQL alerts"], size: 11}
+  tms: {tone: blue, width: 290, title: "Identity and XDR tables", body: ["`SigninLogs`, `AuditLogs`, `AADUserRiskEvents`", "`SecurityIncident`, `SecurityAlert`", "`DeviceLogonEvents`, `IdentityLogonEvents`"], size: 11}
+  tapp: {tone: blue, width: 290, title: "Appliance tables", body: ["`Syslog`, `CommonSecurityLog`", "=Read through `_Im_Dns` and `_Im_NetworkSession`"], size: 11}
+  tsql: {tone: blue, width: 290, title: "Database tables", body: ["`AzureDiagnostics` (SQLSecurityAuditEvents)", "`SecurityEvent`, `SecurityAlert`"], size: 11}
+edges:
+  - [ms, tms]
+  - [app, tapp]
+  - [sql, tsql]

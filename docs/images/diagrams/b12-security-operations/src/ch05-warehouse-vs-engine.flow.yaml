@@ -1,0 +1,19 @@
+# Book 12 Chapter 05 — the same telemetry, two outcomes. A warehouse stores and
+# answers the queries someone thinks to run; a detection engine runs rules on a
+# schedule, opens incidents, records the response and closes with a determination.
+# AU-6 asks for review, analysis and reporting; only the right-hand path produces
+# the alert-to-closure record. The comparison is the program's framing.
+rankdir: TB
+graph: {nodesep: 0.3, ranksep: 0.35}
+nodes:
+  logs: {tone: slate, width: 420, title: "Telemetry lands in the workspace", body: ["=Entra ID, Defender XDR, DNS and DDI, SASE, SQL audit"], size: 12}
+  wh: {tone: red, width: 260, tag: "Log warehouse", title: "Stored and searchable", body: ["No rule runs on a schedule", "Review happens when someone asks", "Nothing to show for last month"], size: 11}
+  eng: {tone: green, width: 260, tag: "Detection engine", title: "Rules, incidents, response", body: ["Analytics rules run every 5 min to 14 days", "Each firing opens an incident", "Response and closure are recorded"], size: 11}
+  ev: {tone: violet, width: 420, title: "Evidence an assessor can trace", body: ["=Alert, incident ticket, response notes, closure determination"], size: 12}
+edges:
+  - [logs, wh]
+  - [logs, eng]
+  - [eng, ev, {tone: violet}]
+  - [wh, ev, {tone: red, style: dashed, label: "no record to produce"}]
+order:
+  - [wh, eng]

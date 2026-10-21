@@ -1,0 +1,19 @@
+# Book 12 Chapter 01 — telemetry from every plane has value only once it
+# reaches analysis and response. Storage alone, and planes that never
+# connect, both end in silence. AU-6/SI-4 are NIST SP 800-53 Rev. 5; the
+# six planes are the program's design.
+rankdir: TB
+graph: {nodesep: 0.3, ranksep: 0.35}
+nodes:
+  planes: {tone: slate, width: 470, title: "Six planes that must emit", body: ["=Identity · cloud platform · Microsoft 365 · endpoints · network · data"], size: 12}
+  dark: {kind: pill, tone: red, text: "Plane never connected:\nno data, no alert, no error"}
+  store: {tone: slate, width: 470, title: "Collected and stored", body: ["=The log warehouse: searchable 6 months, retrievable 1 year"], size: 12}
+  lake: {tone: red, width: 225, title: "Stored only, never analyzed", body: ["=No rule runs on it, so no alerts", "=Meets retention, not AU-6"], size: 11}
+  analyze: {tone: blue, width: 225, title: "Analysis", body: ["=Rules, correlation, review for unusual activity", "=AU-6, SI-4"], size: 11}
+  respond: {tone: green, width: 225, title: "Response and evidence", body: ["=Findings reported, acted on and closed with proof"], size: 11}
+edges:
+  - [planes, store]
+  - [planes, dark, {style: dashed, tone: red, attrs: "constraint=false"}]
+  - [store, lake, {tone: red}]
+  - [store, analyze]
+  - [analyze, respond, {tone: green}]
