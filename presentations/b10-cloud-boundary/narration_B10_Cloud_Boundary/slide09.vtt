@@ -1,0 +1,78 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.588
+Code anyone can apply from a
+laptop isn't change control.
+
+2
+00:00:03.588 --> 00:00:08.455
+Chapter 07 adds the front door: the
+governed request into the landing zone,
+
+3
+00:00:08.455 --> 00:00:11.487
+which Microsoft calls
+subscription vending.
+
+4
+00:00:11.487 --> 00:00:17.788
+The loop has six steps: request, approve,
+plan, apply, reconcile and close.
+
+5
+00:00:17.788 --> 00:00:24.113
+The requester can't approve their own
+request, which is AC-5, separation of duties.
+
+6
+00:00:24.113 --> 00:00:28.088
+The approver reviews the actual
+plan before anything changes.
+
+7
+00:00:28.088 --> 00:00:30.189
+And step 5 carries the most weight:
+
+8
+00:00:30.189 --> 00:00:35.669
+the pipeline writes the address allocation
+back to the enterprise IPAM and fails the
+
+9
+00:00:35.669 --> 00:00:38.671
+run if the two disagree,
+because an unreconciled
+
+10
+00:00:38.671 --> 00:00:41.599
+block is shadow inventory
+the moment it exists.
+
+11
+00:00:41.599 --> 00:00:44.488
+The pipeline is inside
+the boundary question too.
+
+12
+00:00:44.488 --> 00:00:46.824
+Terraform state is sensitive data.
+
+13
+00:00:46.824 --> 00:00:52.705
+On October 21, 2026, the Marketplace
+had no listing for HCP Terraform; GitHub
+
+14
+00:00:52.705 --> 00:00:55.739
+Enterprise Cloud was listed at Class B,
+
+15
+00:00:55.739 --> 00:00:59.438
+and GitLab Dedicated for
+Government at Class C.
+
+16
+00:00:59.438 --> 00:01:04.250
+The default is a self-hosted runner
+and state inside the agency's boundary.

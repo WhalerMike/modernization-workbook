@@ -1,0 +1,78 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.525
+How do you handle a
+capability that's outside?
+
+2
+00:00:02.525 --> 00:00:06.914
+NIST SP 800-37 names four
+options: compensating controls,
+
+3
+00:00:06.914 --> 00:00:13.263
+accepting greater risk, a more trustworthy
+provider, or not obtaining the service.
+
+4
+00:00:13.263 --> 00:00:18.012
+Build a register, one feature per row,
+each with the provider's own statement.
+
+5
+00:00:18.012 --> 00:00:22.450
+Only vendor-confirmed rows support a
+claim to a provider or an assessor.
+
+6
+00:00:22.450 --> 00:00:25.628
+Probe what actually works in
+your tenant, on a schedule,
+
+7
+00:00:25.628 --> 00:00:28.312
+testing for the output
+rather than the switch.
+
+8
+00:00:28.312 --> 00:00:33.200
+Where a gap is real, build an in-boundary
+equivalent and say it's derived.
+
+9
+00:00:33.200 --> 00:00:34.550
+Or take an exception.
+
+10
+00:00:34.550 --> 00:00:40.042
+ExpressRoute for Microsoft 365 is authorized
+only when a regulatory requirement
+
+11
+00:00:40.042 --> 00:00:42.111
+mandates direct connectivity,
+
+12
+00:00:42.111 --> 00:00:46.250
+and the book found no FedRAMP rule
+or FISMA provision that does.
+
+13
+00:00:46.250 --> 00:00:50.400
+Otherwise the authorizing official
+signs a dated risk acceptance.
+
+14
+00:00:50.400 --> 00:00:55.000
+The 2026 rules add four scope
+arguments, each with a limit.
+
+15
+00:00:55.000 --> 00:00:57.317
+And buy the capability, not the badge:
+
+16
+00:00:57.317 --> 00:01:01.540
+Microsoft's Network Provider
+Program is closed to new providers.

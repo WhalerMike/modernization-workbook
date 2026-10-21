@@ -1,0 +1,85 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.649
+Agencies run two free, read-only
+assessments of their Microsoft cloud,
+
+2
+00:00:04.649 --> 00:00:07.662
+and often drop one because
+it covers identity.
+
+3
+00:00:07.662 --> 00:00:09.337
+They answer different questions.
+
+4
+00:00:09.337 --> 00:00:14.488
+ScubaGear is CISA's tool, and asks whether
+the tenant meets the federal baseline.
+
+5
+00:00:14.488 --> 00:00:22.176
+Version 1.8.0 shipped May 7,
+2026, with 2.0.0 in preview.
+
+6
+00:00:22.176 --> 00:00:25.211
+Microsoft's Zero Trust
+Assessment asks how mature
+
+7
+00:00:25.211 --> 00:00:28.175
+the environment is against
+Microsoft's guidance.
+
+8
+00:00:28.175 --> 00:00:35.587
+Release 3.1.0 shipped October
+20, 2026, with 364 tests.
+
+9
+00:00:35.587 --> 00:00:39.243
+It's a community project
+maintained by Microsoft employees,
+
+10
+00:00:39.243 --> 00:00:43.337
+not an official product, and no
+Microsoft support program covers it.
+
+11
+00:00:43.337 --> 00:00:50.199
+They overlap on Entra ID identity and,
+in 3.1.0, on Defender threat policies.
+
+12
+00:00:50.199 --> 00:00:55.682
+Only ScubaGear covers Exchange Online,
+Teams, SharePoint and Power Platform,
+
+13
+00:00:55.682 --> 00:01:00.050
+and 22 of the 50 mandatory policies
+sit in those four products.
+
+14
+00:01:00.050 --> 00:01:03.584
+Dropping ScubaGear leaves
+mandatory policies unassessed
+
+15
+00:01:03.584 --> 00:01:06.412
+and stops the reporting
+the directive requires.
+
+16
+00:01:06.412 --> 00:01:09.148
+So run both, and reconcile
+at the control level:
+
+17
+00:01:09.148 --> 00:01:14.900
+the tenant setting and the SP
+800-53 control it supports.

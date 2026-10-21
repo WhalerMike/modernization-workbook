@@ -1,0 +1,1151 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.575
+This briefing comes from Book 11 of
+the Federal Modernization Workbook,
+
+2
+00:00:04.575 --> 00:00:09.100
+Zero Trust and Assessment: how an
+agency measures its Zero Trust posture
+
+3
+00:00:09.100 --> 00:00:13.550
+across every estate it runs, and turns
+what the tools find into a program.
+
+4
+00:00:13.550 --> 00:00:18.231
+I'll take four questions: why Zero Trust
+is a whole-agency property, what the
+
+5
+00:00:18.231 --> 00:00:22.988
+mandates and tools actually cover, who
+owns the posture, and how to assess it.
+
+6
+00:00:22.988 --> 00:00:26.482
+The short version: unify
+first, assess second,
+
+7
+00:00:26.482 --> 00:00:31.000
+and treat every tool as
+evidence, never as the verdict.
+
+8
+00:00:31.750 --> 00:00:34.500
+Why is Zero Trust a whole-agency property?
+
+9
+00:00:34.500 --> 00:00:36.750
+Look at the usual assessment calendar.
+
+10
+00:00:36.750 --> 00:00:40.275
+The network team reviews the
+boundary, keyed by address.
+
+11
+00:00:40.275 --> 00:00:45.275
+The cloud team runs each provider's
+posture scan, keyed by resource tags.
+
+12
+00:00:45.275 --> 00:00:48.481
+The virtualization team
+works a hypervisor checklist,
+
+13
+00:00:48.481 --> 00:00:51.687
+keyed by whatever the management
+plane calls a machine.
+
+14
+00:00:51.687 --> 00:00:54.750
+At year end someone puts
+the three reports behind
+
+15
+00:00:54.750 --> 00:00:57.738
+one cover page and calls
+it the agency's maturity.
+
+16
+00:00:57.738 --> 00:01:00.475
+It's three partial
+assessments with one title.
+
+17
+00:01:00.475 --> 00:01:02.425
+The failure is architectural.
+
+18
+00:01:02.425 --> 00:01:07.804
+A database server that runs as a virtual
+machine, sits on an agency subnet and backs
+
+19
+00:01:07.804 --> 00:01:13.025
+up to a cloud bucket can appear as three
+unrelated objects, scored by three tools.
+
+20
+00:01:13.025 --> 00:01:16.425
+A total across them counts
+objects, not architecture.
+
+21
+00:01:16.425 --> 00:01:19.550
+The guidance describes the
+enterprise, not a tenant.
+
+22
+00:01:19.550 --> 00:01:24.525
+Executive Order 14028 says throughout
+all aspects of the infrastructure,
+
+23
+00:01:24.525 --> 00:01:32.388
+and NIST SP 800-207 grants no implicit
+trust from network location or ownership.
+
+24
+00:01:32.388 --> 00:01:36.270
+So unify first, then assess,
+and defend the unified plane,
+
+25
+00:01:36.270 --> 00:01:40.520
+because it becomes a complete
+map of the attack surface.
+
+26
+00:01:41.270 --> 00:01:44.386
+Two documented incidents
+show why the whole-agency
+
+27
+00:01:44.386 --> 00:01:47.720
+view is a security property,
+not a reporting preference.
+
+28
+00:01:47.720 --> 00:01:51.778
+In May and June 2023, an actor
+used a Microsoft consumer
+
+29
+00:01:51.778 --> 00:01:56.107
+signing key to forge tokens
+and read Exchange Online mail.
+
+30
+00:01:56.107 --> 00:02:01.339
+The Cyber Safety Review Board counted
+22 enterprise organizations and 503
+
+31
+00:02:01.339 --> 00:02:06.820
+related personal accounts, with access to
+some mailboxes for at least six weeks.
+
+32
+00:02:06.820 --> 00:02:10.045
+The tokens were valid to every
+system that checked them.
+
+33
+00:02:10.045 --> 00:02:13.068
+What caught the intrusion
+was a custom alert one
+
+34
+00:02:13.068 --> 00:02:16.620
+federal department had built
+on mailbox logs it paid for.
+
+35
+00:02:16.620 --> 00:02:18.682
+The second sits beneath the guest.
+
+36
+00:02:18.682 --> 00:02:25.169
+ESXiArgs compromised more than
+3,800 ESXi servers in February 2023.
+
+37
+00:02:25.169 --> 00:02:30.742
+In 2024, CVE-2024-37085 gave
+full hypervisor control to
+
+38
+00:02:30.742 --> 00:02:37.057
+members of a directory group
+named ESX Admins, matched by name.
+
+39
+00:02:37.057 --> 00:02:39.619
+Even one vendor's two tools don't add up.
+
+40
+00:02:39.619 --> 00:02:43.753
+ScubaGear is CISA's, the Zero
+Trust Assessment is Microsoft's,
+
+41
+00:02:43.753 --> 00:02:46.670
+and neither sees past
+Microsoft's platform.
+
+42
+00:02:46.670 --> 00:02:48.382
+Tools are evidence inputs.
+
+43
+00:02:48.382 --> 00:02:50.900
+The agency owns the verdict.
+
+44
+00:02:51.650 --> 00:02:56.300
+Chapter 02 explains why programs
+stall at Initial or low Advanced.
+
+45
+00:02:56.300 --> 00:03:00.375
+They read CISA's maturity model
+as a five-pillar shopping list.
+
+46
+00:03:00.375 --> 00:03:04.728
+But the model runs those pillars through
+three cross-cutting capabilities,
+
+47
+00:03:04.728 --> 00:03:08.736
+and the one programs fund least is
+Governance, which the model defines
+
+48
+00:03:08.736 --> 00:03:12.813
+as the definition and enforcement of
+policy within and across pillars.
+
+49
+00:03:12.813 --> 00:03:15.958
+Its Traditional stage reads
+like the failure list:
+
+50
+00:03:15.958 --> 00:03:21.275
+siloed pillars of policy enforcement, and
+limited correlation of logs and telemetry.
+
+51
+00:03:21.275 --> 00:03:22.925
+Five principles answer it.
+
+52
+00:03:22.925 --> 00:03:26.584
+Identity is the anchor, but
+it isn't self-authenticating,
+
+53
+00:03:26.584 --> 00:03:30.800
+so sessions are re-evaluated and
+the identity plane is defended.
+
+54
+00:03:30.800 --> 00:03:33.573
+Privileged identity gets
+controls of its own:
+
+55
+00:03:33.573 --> 00:03:37.732
+Microsoft's guidance is zero
+permanently active assignments other
+
+56
+00:03:37.732 --> 00:03:41.600
+than emergency accounts, which
+are tested at least every 90 days.
+
+57
+00:03:41.600 --> 00:03:45.813
+Evidence must be reproducible,
+machine-readable and regenerable.
+
+58
+00:03:45.813 --> 00:03:51.650
+Governance enforces: a policy that only
+produces next quarter's finding is a report.
+
+59
+00:03:51.650 --> 00:03:53.645
+And the cloud boundary is modeled,
+
+60
+00:03:53.645 --> 00:03:58.210
+with each government-cloud feature
+gap recorded as a governed finding.
+
+61
+00:03:58.960 --> 00:04:01.035
+What do the mandates actually require?
+
+62
+00:04:01.035 --> 00:04:03.698
+Four documents get cited
+as if they were one.
+
+63
+00:04:03.698 --> 00:04:08.352
+Executive Order 14028 is binding,
+and required each agency
+
+64
+00:04:08.352 --> 00:04:12.722
+to develop a plan to implement
+Zero Trust Architecture.
+
+65
+00:04:12.722 --> 00:04:17.935
+OMB M-22-09 is binding and sets
+specific actions by pillar:
+
+66
+00:04:17.935 --> 00:04:23.688
+phishing-resistant MFA for staff,
+contractors and partners, reliable device
+
+67
+00:04:23.688 --> 00:04:27.374
+inventories through CDM,
+encrypted DNS and HTTPS,
+
+68
+00:04:27.374 --> 00:04:30.160
+and an environmental isolation plan.
+
+69
+00:04:30.160 --> 00:04:35.173
+CISA's Zero Trust Maturity
+Model, version 2.0, is guidance.
+
+70
+00:04:35.173 --> 00:04:39.883
+It says it should not be viewed as a strict
+set of requirements but as a general
+
+71
+00:04:39.883 --> 00:04:44.298
+guide, and CISA's page for it is now
+marked archived, with no later version.
+
+72
+00:04:44.298 --> 00:04:49.098
+NIST SP 800-207 supplies the architecture.
+
+73
+00:04:49.098 --> 00:04:54.855
+M-22-09's FY 2024 deadlines have
+passed, but OMB hasn't rescinded it,
+
+74
+00:04:54.855 --> 00:04:58.273
+and a passed deadline
+doesn't retire an action.
+
+75
+00:04:58.273 --> 00:05:04.773
+One adjustment: its logging
+action pointed to M-21-31,
+
+76
+00:05:04.773 --> 00:05:09.309
+which M-26-14 rescinded on May 22, 2026.
+
+77
+00:05:09.309 --> 00:05:15.220
+And no federal document defines a Zero
+Trust score, or requires a maturity stage.
+
+78
+00:05:15.970 --> 00:05:19.845
+BOD 25-01 is narrower and more concrete.
+
+79
+00:05:19.845 --> 00:05:22.570
+CISA issued it on December 17, 2024,
+
+80
+00:05:22.570 --> 00:05:27.832
+for every production cloud tenant
+with a finalized SCuBA baseline.
+
+81
+00:05:27.832 --> 00:05:33.211
+It has six required actions: inventory
+the tenants by February 21, 2025;
+
+82
+00:05:33.211 --> 00:05:36.642
+deploy the SCuBA tools
+and report by April 25;
+
+83
+00:05:36.642 --> 00:05:41.651
+implement the mandatory policies
+by June 20; keep up with updates;
+
+84
+00:05:41.651 --> 00:05:47.957
+baseline every new tenant before its ATO;
+and explain deviations with each report.
+
+85
+00:05:47.957 --> 00:05:51.346
+The mandatory list is a
+subset of the baselines.
+
+86
+00:05:51.346 --> 00:05:57.648
+For Microsoft 365, CISA's Required
+Configurations page lists 50 policies;
+
+87
+00:05:57.648 --> 00:06:02.020
+in Entra ID, that's 20 of the
+30 in ScubaGear's baseline.
+
+88
+00:06:02.020 --> 00:06:08.582
+Google Workspace is now in scope too,
+with its policies due December 1, 2026.
+
+89
+00:06:08.582 --> 00:06:13.571
+CISA's guidance limits scope to software
+as a service, so Azure subscriptions are
+
+90
+00:06:13.571 --> 00:06:18.558
+out even when they share the tenant, and
+on-premises Active Directory is untouched.
+
+91
+00:06:18.558 --> 00:06:22.083
+Inventory, deployment and
+explanations take days.
+
+92
+00:06:22.083 --> 00:06:27.500
+Implementing the policies is architecture,
+and that's what the directive exists for.
+
+93
+00:06:28.250 --> 00:06:32.849
+Agencies run two free, read-only
+assessments of their Microsoft cloud,
+
+94
+00:06:32.849 --> 00:06:35.862
+and often drop one because
+it covers identity.
+
+95
+00:06:35.862 --> 00:06:37.537
+They answer different questions.
+
+96
+00:06:37.537 --> 00:06:42.688
+ScubaGear is CISA's tool, and asks whether
+the tenant meets the federal baseline.
+
+97
+00:06:42.688 --> 00:06:50.376
+Version 1.8.0 shipped May 7,
+2026, with 2.0.0 in preview.
+
+98
+00:06:50.376 --> 00:06:53.411
+Microsoft's Zero Trust
+Assessment asks how mature
+
+99
+00:06:53.411 --> 00:06:56.375
+the environment is against
+Microsoft's guidance.
+
+100
+00:06:56.375 --> 00:07:03.787
+Release 3.1.0 shipped October
+20, 2026, with 364 tests.
+
+101
+00:07:03.787 --> 00:07:07.443
+It's a community project
+maintained by Microsoft employees,
+
+102
+00:07:07.443 --> 00:07:11.537
+not an official product, and no
+Microsoft support program covers it.
+
+103
+00:07:11.537 --> 00:07:18.399
+They overlap on Entra ID identity and,
+in 3.1.0, on Defender threat policies.
+
+104
+00:07:18.399 --> 00:07:23.882
+Only ScubaGear covers Exchange Online,
+Teams, SharePoint and Power Platform,
+
+105
+00:07:23.882 --> 00:07:28.250
+and 22 of the 50 mandatory policies
+sit in those four products.
+
+106
+00:07:28.250 --> 00:07:31.784
+Dropping ScubaGear leaves
+mandatory policies unassessed
+
+107
+00:07:31.784 --> 00:07:34.612
+and stops the reporting
+the directive requires.
+
+108
+00:07:34.612 --> 00:07:37.348
+So run both, and reconcile
+at the control level:
+
+109
+00:07:37.348 --> 00:07:43.400
+the tenant setting and the SP
+800-53 control it supports.
+
+110
+00:07:44.150 --> 00:07:48.350
+Everything so far stops at
+the edge of Microsoft 365.
+
+111
+00:07:48.350 --> 00:07:53.034
+Nothing on BOD 25-01's list
+covers infrastructure accounts,
+
+112
+00:07:53.034 --> 00:07:56.000
+the agency network or
+the virtualized estate.
+
+113
+00:07:56.000 --> 00:07:59.674
+So the whole-agency argument
+rests on the Zero Trust documents,
+
+114
+00:07:59.674 --> 00:08:05.750
+and on the SP 800-53 controls
+every system security plan asserts.
+
+115
+00:08:05.750 --> 00:08:08.300
+Three things get reconciled
+before assessing.
+
+116
+00:08:08.300 --> 00:08:14.074
+One inventory: CM-8 forbids
+duplicate accounting of components,
+
+117
+00:08:14.074 --> 00:08:18.650
+and BOD 23-01 requires asset
+discovery every 7 days.
+
+118
+00:08:18.650 --> 00:08:20.231
+One naming authority,
+
+119
+00:08:20.231 --> 00:08:24.975
+because each cloud provider and
+VMware ships its own private DNS.
+
+120
+00:08:24.975 --> 00:08:28.883
+And no implicit trust from any
+boundary: a site-to-site VPN,
+
+121
+00:08:28.883 --> 00:08:34.287
+a default virtual network and a flat
+virtualized segment are the same mistake.
+
+122
+00:08:34.287 --> 00:08:38.074
+The hypervisor is a distinct
+threat class, so its management
+
+123
+00:08:38.074 --> 00:08:42.163
+plane is assessed as its own surface,
+not inferred from its guests.
+
+124
+00:08:42.163 --> 00:08:45.162
+And every provider's tool
+answers for its own platform.
+
+125
+00:08:45.162 --> 00:08:49.574
+AWS says its NIST standard
+supports a subset of requirements.
+
+126
+00:08:49.574 --> 00:08:53.612
+Microsoft calls Azure Policy
+compliance only a partial view.
+
+127
+00:08:53.612 --> 00:08:59.110
+FedRAMP certifies the service; the
+agency authorizes its own use of it.
+
+128
+00:08:59.860 --> 00:09:00.710
+Who owns it?
+
+129
+00:09:00.710 --> 00:09:02.797
+Every pillar already has an owner.
+
+130
+00:09:02.797 --> 00:09:06.372
+What most agencies lack is an
+owner for the posture itself.
+
+131
+00:09:06.372 --> 00:09:12.508
+M-22-09 required each agency to designate
+a zero trust strategy implementation
+
+132
+00:09:12.508 --> 00:09:16.572
+lead within 30 days, and many will
+give this role to that person.
+
+133
+00:09:16.572 --> 00:09:21.213
+The program lead owns the definition of
+the whole-agency score, what it covers
+
+134
+00:09:21.213 --> 00:09:26.072
+and what it excludes, plus cross-pillar
+correlation and the assessment calendar.
+
+135
+00:09:26.072 --> 00:09:29.113
+The lead decides priority
+but doesn't accept risk,
+
+136
+00:09:29.113 --> 00:09:33.934
+and shouldn't also own the agency's
+relationship with its largest cloud vendor.
+
+137
+00:09:33.934 --> 00:09:36.760
+The CIO decides scope and sequence.
+
+138
+00:09:36.760 --> 00:09:39.693
+The CISO sets the evidence
+standard and approves
+
+139
+00:09:39.693 --> 00:09:41.997
+the tools and the accounts that run them.
+
+140
+00:09:41.997 --> 00:09:45.098
+The authorizing official
+accepts residual risk
+
+141
+00:09:45.098 --> 00:09:48.123
+and approves each plan of
+action and milestones.
+
+142
+00:09:48.123 --> 00:09:49.797
+Exceptions split on time.
+
+143
+00:09:49.797 --> 00:09:53.196
+An omission with an expiration
+date is a CISO decision;
+
+144
+00:09:53.196 --> 00:09:58.072
+one with no end date is a standing risk
+acceptance for the authorizing official.
+
+145
+00:09:58.072 --> 00:10:02.920
+Pillar owners decide how to fix a finding,
+never that it doesn't need fixing.
+
+146
+00:10:03.670 --> 00:10:04.695
+How do you get there?
+
+147
+00:10:04.695 --> 00:10:07.020
+First, close before you assess.
+
+148
+00:10:07.020 --> 00:10:10.779
+Agencies met BOD 25-01's early dates:
+
+149
+00:10:10.779 --> 00:10:15.195
+tenants inventoried, ScubaGear
+deployed and reporting.
+
+150
+00:10:15.195 --> 00:10:17.195
+Many now treat that as the answer.
+
+151
+00:10:17.195 --> 00:10:20.530
+But ScubaGear measures
+deviation from a baseline;
+
+152
+00:10:20.530 --> 00:10:24.658
+it doesn't close any, and neither
+does the Zero Trust Assessment.
+
+153
+00:10:24.658 --> 00:10:28.708
+A thermometer that reports a fever
+every day isn't a treatment plan.
+
+154
+00:10:28.708 --> 00:10:33.157
+So the program's six-phase sequence
+puts the assessors at step five,
+
+155
+00:10:33.157 --> 00:10:37.850
+as confirmation rather than discovery:
+understand, design, implement,
+
+156
+00:10:37.850 --> 00:10:42.219
+govern, then validate, and then
+the authorizing official decides.
+
+157
+00:10:42.219 --> 00:10:45.868
+That's the Risk Management
+Framework's own order:
+
+158
+00:10:45.868 --> 00:10:48.695
+implement, assess, authorize, monitor.
+
+159
+00:10:48.695 --> 00:10:53.823
+Before validating, build the layers a
+finding depends on: naming and certificates,
+
+160
+00:10:53.823 --> 00:10:55.708
+device and workload identity,
+
+161
+00:10:55.708 --> 00:11:00.232
+a phased retirement of legacy
+authentication, and governed exceptions.
+
+162
+00:11:00.232 --> 00:11:04.367
+Meanwhile, route every current
+finding to exactly one response:
+
+163
+00:11:04.367 --> 00:11:08.971
+a configuration change now, architectural
+work with an owner and a date,
+
+164
+00:11:08.971 --> 00:11:12.170
+or a risk acceptance by
+the authorizing official.
+
+165
+00:11:12.170 --> 00:11:15.540
+A finding with no response
+is the only failure.
+
+166
+00:11:16.290 --> 00:11:19.127
+Then run the assessment
+and keep the evidence.
+
+167
+00:11:19.127 --> 00:11:23.141
+Five things are decided before either
+tool touches a production tenant.
+
+168
+00:11:23.141 --> 00:11:27.590
+Scope comes from the BOD
+25-01 tenant inventory.
+
+169
+00:11:27.590 --> 00:11:31.968
+The host is a dedicated Windows machine
+inside the authorization boundary,
+
+170
+00:11:31.968 --> 00:11:35.790
+a separate one for each tool,
+because their dependencies conflict.
+
+171
+00:11:35.790 --> 00:11:40.415
+Each tool gets a reader account, with
+consent granted once, separately.
+
+172
+00:11:40.415 --> 00:11:42.703
+Output is handled as controlled data.
+
+173
+00:11:42.703 --> 00:11:48.173
+And the assessment accounts belong
+in the M-26-14 Agency Logging Plan,
+
+174
+00:11:48.173 --> 00:11:52.877
+due 90 days after CISA's August
+20 reference architecture.
+
+175
+00:11:52.877 --> 00:11:56.428
+ScubaGear runs in Windows PowerShell 5.1.
+
+176
+00:11:56.428 --> 00:12:01.323
+Its configuration file is the exception
+record: annotations, omissions with
+
+177
+00:12:01.323 --> 00:12:06.065
+a rationale and an expiration date,
+and exclusions for emergency accounts.
+
+178
+00:12:06.065 --> 00:12:08.099
+It's versioned in the repository,
+
+179
+00:12:08.099 --> 00:12:11.865
+and its hash is recorded with
+every run, like the tool version.
+
+180
+00:12:11.865 --> 00:12:16.940
+The results file is never renamed
+or edited, only hashed and copied.
+
+181
+00:12:16.940 --> 00:12:22.215
+The Zero Trust Assessment needs PowerShell
+7 and can take more than 24 hours.
+
+182
+00:12:22.215 --> 00:12:26.610
+And install the program's toolkit
+only from its own repository:
+
+183
+00:12:26.610 --> 00:12:31.110
+a package named fmp on the public
+Python index is unrelated.
+
+184
+00:12:31.860 --> 00:12:35.609
+Most agencies run ScubaGear,
+save the HTML report,
+
+185
+00:12:35.609 --> 00:12:38.260
+and reopen it when an assessor asks.
+
+186
+00:12:38.260 --> 00:12:43.433
+The program instead treats each tool as an
+adapter, one input to one evidence chain,
+
+187
+00:12:43.433 --> 00:12:47.160
+and leaves the tools exactly
+as their publishers ship them.
+
+188
+00:12:47.160 --> 00:12:49.573
+Each run flows through four stages.
+
+189
+00:12:49.573 --> 00:12:52.372
+The tool writes its own unaltered output.
+
+190
+00:12:52.372 --> 00:12:55.822
+Each result becomes a claim
+in a provenance envelope:
+
+191
+00:12:55.822 --> 00:12:59.272
+who issued it, when it was
+extracted, and a lineage hash.
+
+192
+00:12:59.272 --> 00:13:02.922
+Claims from one interval are
+assembled into a sealed bundle.
+
+193
+00:13:02.922 --> 00:13:05.834
+And the bundle emits
+OSCAL assessment results
+
+194
+00:13:05.834 --> 00:13:08.298
+and plan of action and milestones items.
+
+195
+00:13:08.298 --> 00:13:16.609
+Take MS.AAD.1.1v1, legacy authentication
+shall be blocked, which CISA maps to CM-7.
+
+196
+00:13:16.609 --> 00:13:17.760
+Say it fails.
+
+197
+00:13:17.760 --> 00:13:20.995
+The claim's lineage hash
+ties it to the raw result,
+
+198
+00:13:20.995 --> 00:13:23.098
+and the bundle opens a POA&M item.
+
+199
+00:13:23.098 --> 00:13:26.875
+Months later an assessor can
+rebuild the bundle, check its hash,
+
+200
+00:13:26.875 --> 00:13:30.361
+and walk back to the raw output
+without re-running the tool.
+
+201
+00:13:30.361 --> 00:13:31.685
+The limits are stated.
+
+202
+00:13:31.685 --> 00:13:35.010
+ScubaGear runs on an
+interval, not continuously.
+
+203
+00:13:35.010 --> 00:13:40.010
+And there's no ScubaGoggles adapter
+yet, so Google Workspace is a gap.
+
+204
+00:13:40.760 --> 00:13:43.398
+Last, turn findings into a program.
+
+205
+00:13:43.398 --> 00:13:45.735
+Read each result before counting it.
+
+206
+00:13:45.735 --> 00:13:47.888
+Only ScubaGear's Fail and Warning,
+
+207
+00:13:47.888 --> 00:13:52.272
+and the Zero Trust Assessment's
+Failed and Investigate, are findings.
+
+208
+00:13:52.272 --> 00:13:55.272
+A skipped check isn't
+a gap and isn't a pass.
+
+209
+00:13:55.272 --> 00:13:59.124
+It's absence of evidence, recorded
+with the reason, which is often a
+
+210
+00:13:59.124 --> 00:14:03.547
+license or a government-cloud feature
+that isn't available in the boundary.
+
+211
+00:14:03.547 --> 00:14:09.252
+The program scores findings with a
+documented method: severity from 0 to 100,
+
+212
+00:14:09.252 --> 00:14:12.240
+priority as severity divided by effort,
+
+213
+00:14:12.240 --> 00:14:15.410
+and buckets from P1 at
+50 or above down to P4.
+
+214
+00:14:15.410 --> 00:14:18.176
+Quick wins go into the next change window;
+
+215
+00:14:18.176 --> 00:14:21.348
+major projects go onto a
+pillar owner's roadmap.
+
+216
+00:14:21.348 --> 00:14:27.747
+Both tools' findings are reconciled
+against the same SP 800-53 control,
+
+217
+00:14:27.747 --> 00:14:31.123
+so two pieces of evidence become
+one finding for one owner.
+
+218
+00:14:31.123 --> 00:14:35.943
+Anything not fixed and not excepted becomes
+a plan of action and milestones item,
+
+219
+00:14:35.943 --> 00:14:38.461
+which the authorizing official approves.
+
+220
+00:14:38.461 --> 00:14:42.459
+Drift between intervals goes to
+the authorizing official too,
+
+221
+00:14:42.459 --> 00:14:44.535
+not only to security operations.
+
+222
+00:14:44.535 --> 00:14:47.365
+And re-run after every remediation wave,
+
+223
+00:14:47.365 --> 00:14:51.670
+so a finding is closed by
+evidence, not by a ticket status.
+
+224
+00:14:52.420 --> 00:14:53.795
+So, four decisions.
+
+225
+00:14:53.795 --> 00:14:56.957
+Name an agency-level owner
+of the Zero Trust posture,
+
+226
+00:14:56.957 --> 00:15:00.045
+separate from every cloud
+provider relationship.
+
+227
+00:15:00.045 --> 00:15:03.775
+Reconcile the network, every
+cloud and the virtualization
+
+228
+00:15:03.775 --> 00:15:07.733
+estate to one authoritative record
+before scoring any of them.
+
+229
+00:15:07.733 --> 00:15:14.137
+Close the BOD 25-01 mandatory
+findings before measuring maturity,
+
+230
+00:15:14.137 --> 00:15:17.533
+with Google Workspace
+due December 1, 2026.
+
+231
+00:15:17.533 --> 00:15:21.427
+And move every exception into
+the versioned configuration file,
+
+232
+00:15:21.427 --> 00:15:25.971
+with an expiration, and route each
+standing one to the authorizing official.
+
+233
+00:15:25.971 --> 00:15:28.170
+The next step needs no procurement.
+
+234
+00:15:28.170 --> 00:15:32.251
+Find out, pillar by pillar, which
+evidence can be re-run without
+
+235
+00:15:32.251 --> 00:15:36.332
+the operator's help, because
+every no is the adoption boundary.
+
+236
+00:15:36.332 --> 00:15:40.782
+And put the assessment hosts and
+accounts in the Agency Logging Plan now.
+
+237
+00:15:40.782 --> 00:15:42.459
+Unify first, assess second,
+
+238
+00:15:42.459 --> 00:15:46.421
+and let named people make the
+decisions the evidence supports.
+
+239
+00:15:46.421 --> 00:15:50.032
+Book 11 has the detail,
+every claim footnoted.
+
+240
+00:15:50.032 --> 00:15:50.860
+Thank you.

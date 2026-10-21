@@ -1,0 +1,777 @@
+{
+ "1": [
+  [
+   0.05,
+   12.725,
+   "This briefing comes from Book 10 of the Federal Modernization Workbook, Cloud Boundary and Landing Zone: how the authorization boundary, not the product catalog, decides which cloud features an agency can use,."
+  ],
+  [
+   12.775,
+   7.7,
+   "I'll take four questions: why the boundary decides what you can use, what has to change, who owns the boundary, and how to get there."
+  ],
+  [
+   20.475,
+   8.75,
+   "The short version: treat the boundary as a list you can read, not a perimeter you can only accept, and evidence every choice in your own package."
+  ]
+ ],
+ "2": [
+  [
+   0.05,
+   3.2,
+   "Why does the authorization boundary decide what you can use?"
+  ],
+  [
+   3.25,
+   5.1,
+   "Start with two agencies holding the same Microsoft 365 license."
+  ],
+  [
+   8.35,
+   7.175,
+   "One runs a commercial tenant and sees per-location network assessments, informed network routing and an Adoption Score."
+  ],
+  [
+   15.525,
+   7.787,
+   "The other runs a G C C tenant and sees none of them, because Microsoft documents each one as unavailable there."
+  ],
+  [
+   23.312,
+   3.712,
+   "Three decisions, made by three parties, have to line up."
+  ],
+  [
+   27.025,
+   6.162,
+   "fed-ramp certifies a specific offering at a certification class, and the Marketplace is the record."
+  ],
+  [
+   33.188,
+   5.188,
+   "The provider publishes, feature by feature, what each government environment leaves out."
+  ],
+  [
+   38.375,
+   8.762,
+   "And the agency authorizes its own system: its authorizing official accepts the risk of the configuration selected and the integrations enabled."
+  ],
+  [
+   47.138,
+   6.562,
+   "fed-ramp says an agency should never create a standalone authorization to operate for a cloud service."
+  ],
+  [
+   53.7,
+   3.65,
+   "What the agency can use is the overlap of all three."
+  ],
+  [
+   57.35,
+   4.112,
+   "A feature with no citation is unverified, not available."
+  ]
+ ],
+ "3": [
+  [
+   0.05,
+   5.05,
+   "Chapter 02 explains why the gap stays invisible until a design depends on it."
+  ],
+  [
+   5.1,
+   6.213,
+   "Surfaces are shared: Intune in G C C is the same instance as commercial Intune."
+  ],
+  [
+   11.312,
+   3.612,
+   "Exclusions are scattered, one sentence per feature page."
+  ],
+  [
+   14.925,
+   8.425,
+   "Features move: Microsoft retired Adoption Score's technology-experience categories for every tenant in early 2026."
+  ],
+  [
+   23.35,
+   2.2,
+   "And absence doesn't announce itself."
+  ],
+  [
+   25.55,
+   4.2,
+   "A detection whose input never arrives looks exactly like a quiet day."
+  ],
+  [
+   29.75,
+   3.163,
+   "The book then corrects a widely repeated example."
+  ],
+  [
+   32.913,
+   11.3,
+   "Five features were said to be silently missing from G C C. Checked against Microsoft's documentation, one is: the Locations view of network connectivity in the admin center."
+  ],
+  [
+   44.212,
+   5.65,
+   "Device Health Attestation and expedited updates are G C C High and DoD gaps."
+  ],
+  [
+   49.862,
+   3.638,
+   "Endpoint analytics isn't a documented G C C gap."
+  ],
+  [
+   53.5,
+   4.325,
+   "And Azure Arc is an Azure service, in Azure's fed-ramp High scope."
+  ],
+  [
+   57.825,
+   5.812,
+   "An unverified boundary story sends an agency to build compensations it doesn't need."
+  ]
+ ],
+ "4": [
+  [
+   0.05,
+   4.912,
+   "The book models a boundary as any surface across which four things change."
+  ],
+  [
+   4.963,
+   4.25,
+   "It's the book's own model, not a fed-ramp or Microsoft construct."
+  ],
+  [
+   9.213,
+   4.388,
+   "Telemetry fidelity asks which signals actually arrive on this side."
+  ],
+  [
+   13.6,
+   8.312,
+   "In G C C, admin-center network connectivity, informed network routing and Adoption Score are documented as unavailable."
+  ],
+  [
+   21.913,
+   10.875,
+   "Identity authority asks who a claim's issuer resolves to: G C C pairs with Entra ID in commercial Azure, G C C High and DoD with Azure Government."
+  ],
+  [
+   32.788,
+   10.375,
+   "Enforcement responsibility asks who must enforce a control: without Microsoft's per-circuit feedback, path selection rests on the agency's own SD-WAN measurements."
+  ],
+  [
+   43.163,
+   5.388,
+   "Provenance classification asks whether a claim is still authoritative, or only derived."
+  ],
+  [
+   48.55,
+   2.925,
+   "Each dimension raises its own drift class."
+  ],
+  [
+   51.475,
+   5.175,
+   "Detection is shipped for two classes, partial for one and design only for two."
+  ],
+  [
+   56.65,
+   6.675,
+   "And fed-ramp's definition of federal customer data excludes the analytics and telemetry a provider generates."
+  ],
+  [
+   63.325,
+   2.513,
+   "No certification promises you a signal."
+  ]
+ ],
+ "5": [
+  [
+   0.05,
+   1.425,
+   "What changed at fed-ramp?"
+  ],
+  [
+   1.475,
+   1.038,
+   "Three things."
+  ],
+  [
+   2.513,
+   16.85,
+   "First, services are now certified, in Classes A to D. fed-ramp's February 2026 notice says Class C includes the current Moderate baseline and Class D the current High, and that agencies may authorize at any security category they deem appropriate."
+  ],
+  [
+   19.363,
+   3.688,
+   "Second, the rules have no provider authorization boundary."
+  ],
+  [
+   23.05,
+   9.4,
+   "In the machine-readable ruleset, version 2026.10.13.01, that phrase occurs zero times."
+  ],
+  [
+   32.45,
+   12.738,
+   "The word boundary appears eight times, four of them as a tag on rule families: minimum assessment scope, cryptographic module use, vulnerability detection and response, and certification data sharing."
+  ],
+  [
+   45.188,
+   3.112,
+   "Security category may vary by resource."
+  ],
+  [
+   48.3,
+   5.45,
+   "Third, change is notified, not re-approved, and the deadlines are in business days."
+  ],
+  [
+   53.75,
+   2.712,
+   "Routine recurring changes need no notice."
+  ],
+  [
+   56.462,
+   3.725,
+   "Adaptive changes, within 10 business days after finishing."
+  ],
+  [
+   60.188,
+   4.438,
+   "Transformative changes, initial plans 30 business days before."
+  ],
+  [
+   64.625,
+   8.488,
+   "Adoption is mandatory on January 1, 2027, and new Rev5 requests stop on June 11, 2027."
+  ]
+ ],
+ "6": [
+  [
+   0.05,
+   4.4,
+   "Chapter 04 reads G C C from Microsoft's own documents."
+  ],
+  [
+   4.45,
+   5.463,
+   "It's the worldwide service with a published list of exclusions, and the list isn't a ladder."
+  ],
+  [
+   9.912,
+   12.312,
+   "Network connectivity in the admin center, Adoption Score, the Office 365 CDN and informed network routing are missing in G C C, G C C High and DoD alike."
+  ],
+  [
+   22.225,
+   4.812,
+   "Windows release health and Excel Office Scripts reach G C C and stop there."
+  ],
+  [
+   27.038,
+   13.238,
+   "The largest documented loss is the network connectivity layer: a daily assessment from 0 to 100 for each location, with 80 as the healthy baseline, and performance attributed to named network providers."
+  ],
+  [
+   40.275,
+   3.8,
+   "A G C C agency funds its own measurement instead."
+  ],
+  [
+   44.075,
+   13.225,
+   "On the Marketplace, read October 21, 2026, the G C C package, MSO365MT, is fed-ramp Certified at Class C, Moderate, with 100 authorizations."
+  ],
+  [
+   57.3,
+   4.2,
+   "A second package with the identical name is In Process at Class D."
+  ],
+  [
+   61.5,
+   5.138,
+   "But G C C High is already Class D, and still lacks network connectivity."
+  ],
+  [
+   66.638,
+   3.175,
+   "A higher class doesn't restore an excluded feature."
+  ]
+ ],
+ "7": [
+  [
+   0.05,
+   3.513,
+   "The landing zone is where the boundary stops being a diagram."
+  ],
+  [
+   3.562,
+   5.537,
+   "Each workload landing zone is a subscription placed in a management group that carries its policy."
+  ],
+  [
+   9.1,
+   6.375,
+   "The baseline hierarchy puts an intermediate root under the tenant root, and that's where boundary policy goes."
+  ],
+  [
+   15.475,
+   4.737,
+   "Platform groups hold security, management, connectivity and identity."
+  ],
+  [
+   20.212,
+   4.275,
+   "Landing zone groups hold corporate, online and local workloads."
+  ],
+  [
+   24.488,
+   5.362,
+   "Make Sandbox the default, so no new subscription lands outside the boundary policy."
+  ],
+  [
+   29.85,
+   19.3,
+   "Each boundary decision gets a mechanism: the cloud choice; Allowed locations with Deny; allowed resource types, checked against Microsoft's audit-scope list; the fed-ramp regulatory compliance initiative, which Microsoft calls only a partial view; and exemptions, Mitigated or Waiver, with an expiry date."
+  ],
+  [
+   49.15,
+   2.975,
+   "Roll each policy out in audit mode first."
+  ],
+  [
+   52.125,
+   4.75,
+   "One catch: Microsoft's accelerators are supported only in public Azure."
+  ],
+  [
+   56.875,
+   4.05,
+   "In Azure Government, the platform team adapts the code by hand."
+  ]
+ ],
+ "8": [
+  [
+   0.05,
+   3.337,
+   "Chapter 06 makes the address plan the join key."
+  ],
+  [
+   3.388,
+   6.8,
+   "A scan finds what answered; the eye-pam records what was allocated, so every inventory reconciles against it."
+  ],
+  [
+   10.188,
+   9.775,
+   "BOD 23-01 already asks for automated discovery every 7 days across the entire IPv4 space the agency uses."
+  ],
+  [
+   19.962,
+   3.375,
+   "In Azure the enterprise eye-pam stays the authority."
+  ],
+  [
+   23.337,
+   1.788,
+   "Reserve the block there first."
+  ],
+  [
+   25.125,
+   6.225,
+   "Mirror it into Virtual Network Manager pools, entering ranges used elsewhere as static CIDRs."
+  ],
+  [
+   31.35,
+   7.362,
+   "Then assign an Azure Policy that denies any virtual network without a pool allocation, and reconcile by discovery."
+  ],
+  [
+   38.712,
+   8.562,
+   "Virtual Network Manager isn't named in Microsoft's fed-ramp audit-scope tables, so record it as a dependency until coverage is confirmed."
+  ],
+  [
+   47.275,
+   4.812,
+   "Build it as five layered modules, each writing its state as evidence."
+  ],
+  [
+   52.087,
+   2.175,
+   "And treat outside inputs as code."
+  ],
+  [
+   54.263,
+   10.338,
+   "There's no separate G C C endpoint list: a G C C tenant uses the Worldwide instance, updated monthly, with 30 days' notice of new endpoints."
+  ]
+ ],
+ "9": [
+  [
+   0.05,
+   3.538,
+   "Code anyone can apply from a laptop isn't change control."
+  ],
+  [
+   3.587,
+   7.9,
+   "Chapter 07 adds the front door: the governed request into the landing zone, which Microsoft calls subscription vending."
+  ],
+  [
+   11.488,
+   6.3,
+   "The loop has six steps: request, approve, plan, apply, reconcile and close."
+  ],
+  [
+   17.788,
+   6.325,
+   "The requester can't approve their own request, which is AC-5, separation of duties."
+  ],
+  [
+   24.113,
+   3.975,
+   "The approver reviews the actual plan before anything changes."
+  ],
+  [
+   28.087,
+   13.512,
+   "And step 5 carries the most weight: the pipeline writes the address allocation back to the enterprise eye-pam and fails the run if the two disagree, because an unreconciled block is shadow inventory the moment it exists."
+  ],
+  [
+   41.6,
+   2.888,
+   "The pipeline is inside the boundary question too."
+  ],
+  [
+   44.487,
+   2.337,
+   "Terraform state is sensitive data."
+  ],
+  [
+   46.825,
+   12.613,
+   "On October 21, 2026, the Marketplace had no listing for HCP Terraform; GitHub Enterprise Cloud was listed at Class B, and GitLab Dedicated for Government at Class C."
+  ],
+  [
+   59.438,
+   4.763,
+   "The default is a self-hosted runner and state inside the agency's boundary."
+  ]
+ ],
+ "10": [
+  [
+   0.05,
+   1.35,
+   "Who owns the boundary?"
+  ],
+  [
+   1.4,
+   2.212,
+   "The rule is one decider per row."
+  ],
+  [
+   3.612,
+   8.25,
+   "The authorizing official determines the boundary, signs every documented exception and decides whether a change requires reauthorization."
+  ],
+  [
+   11.863,
+   9.812,
+   "Under SP 800-37, explicit risk acceptance can't be delegated, and for federal agencies the role is assigned to government personnel only."
+  ],
+  [
+   21.675,
+   14.775,
+   "The system owner is the boundary owner: keeper of the boundary record and the package, and the decider on placing a new workload, because vending an unrecorded subscription is the cheapest way to turn an authorized system into an unauthorized one."
+  ],
+  [
+   36.45,
+   6.513,
+   "The see-so sets control requirements, and the I S S O reads provider change notices against the record."
+  ],
+  [
+   42.962,
+   7.513,
+   "The platform team builds the hierarchy, policy, vending and probe, but doesn't decide whether a gap is acceptable."
+  ],
+  [
+   50.475,
+   7.65,
+   "And the contract is a boundary decision: the G C C listing says customers must buy a G C C SKU to be covered."
+  ],
+  [
+   58.125,
+   3.263,
+   "Only a contracting officer changes what the agency bought."
+  ]
+ ],
+ "11": [
+  [
+   0.05,
+   2.475,
+   "How do you handle a capability that's outside?"
+  ],
+  [
+   2.525,
+   10.738,
+   "nist SP 800-37 names four options: compensating controls, accepting greater risk, a more trustworthy provider, or not obtaining the service."
+  ],
+  [
+   13.262,
+   4.75,
+   "Build a register, one feature per row, each with the provider's own statement."
+  ],
+  [
+   18.012,
+   4.438,
+   "Only vendor-confirmed rows support a claim to a provider or an assessor."
+  ],
+  [
+   22.45,
+   5.862,
+   "Probe what actually works in your tenant, on a schedule, testing for the output rather than the switch."
+  ],
+  [
+   28.312,
+   4.888,
+   "Where a gap is real, build an in-boundary equivalent and say it's derived."
+  ],
+  [
+   33.2,
+   1.35,
+   "Or take an exception."
+  ],
+  [
+   34.55,
+   11.7,
+   "ExpressRoute for Microsoft 365 is authorized only when a regulatory requirement mandates direct connectivity, and the book found no fed-ramp rule or FISMA provision that does."
+  ],
+  [
+   46.25,
+   4.15,
+   "Otherwise the authorizing official signs a dated risk acceptance."
+  ],
+  [
+   50.4,
+   4.6,
+   "The 2026 rules add four scope arguments, each with a limit."
+  ],
+  [
+   55.0,
+   6.487,
+   "And buy the capability, not the badge: Microsoft's Network Provider Program is closed to new providers."
+  ]
+ ],
+ "12": [
+  [
+   0.05,
+   7.5,
+   "The third answer is an alternative path: a different certified service for the workload, with the identity plane left where it is."
+  ],
+  [
+   7.55,
+   2.487,
+   "Read the Marketplace, not the announcement."
+  ],
+  [
+   10.037,
+   6.763,
+   "Google Workspace is listed at Class D, while Gemini for Government is a separate listing at Class B."
+  ],
+  [
+   16.8,
+   4.925,
+   "Which AI features sit inside which certification is a question for the package."
+  ],
+  [
+   21.725,
+   2.35,
+   "The public record shows both outcomes."
+  ],
+  [
+   24.075,
+   15.825,
+   "In September 2025 a cabinet-level department awarded a five-year agreement worth up to 89 million dollars to move more than 50,000 employees to Google Workspace, under a GSA agreement with a temporary 71 percent price reduction."
+  ],
+  [
+   39.9,
+   9.088,
+   "A military department went the other way, ending about 150,000 Google email licenses after an audit found about 16 percent in use."
+  ],
+  [
+   48.987,
+   6.9,
+   "Keep Entra ID as the source: provision users, federate sign-in, apply Conditional Access there."
+  ],
+  [
+   55.888,
+   8.012,
+   "Then close the gaps: Google super administrators sign in outside it, and Google's directory is derived, so report drift."
+  ]
+ ],
+ "13": [
+  [
+   0.05,
+   3.987,
+   "Finally, evidence the boundary in the agency's own package."
+  ],
+  [
+   4.037,
+   9.637,
+   "The agency never authorizes a cloud service; it authorizes its system that uses one, and its plan should only contain what the agency is responsible for."
+  ],
+  [
+   13.675,
+   7.025,
+   "fed-ramp's Rev5 guidance is blunt: don't copy and paste provider controls into the agency plan."
+  ],
+  [
+   20.7,
+   22.913,
+   "Write the boundary down once, as a boundary record the system owner keeps, and cite it everywhere: the system description under PL-2, each external service under SA-9 with its Marketplace package, class and SKU, each crossing under CA-3, the gaps the agency will close on the POA&M, and each equivalent in an OSCAL component definition."
+  ],
+  [
+   43.612,
+   1.65,
+   "Know whose package you're reading."
+  ],
+  [
+   45.263,
+   8.762,
+   "The G C C listing says the service leverages Azure Government as its infrastructure, so the inheritance chain runs through two provider packages."
+  ],
+  [
+   54.025,
+   11.363,
+   "A compensating narrative takes four sentences: what the control needs, what's unavailable with its citation, what runs instead marked derived, and where the remaining gap is recorded."
+  ]
+ ],
+ "14": [
+  [
+   0.05,
+   3.15,
+   "Appendix A turns all of this into requests."
+  ],
+  [
+   3.2,
+   8.338,
+   "Three habits make a request hard to deflect: name one item, cite the basis with a link, and ask for data, not documents."
+  ],
+  [
+   11.537,
+   1.462,
+   "Eight requests follow."
+  ],
+  [
+   13.0,
+   3.087,
+   "Publish the per-feature exclusion list as data."
+  ],
+  [
+   16.087,
+   2.462,
+   "Name the exception path for each feature."
+  ],
+  [
+   18.55,
+   6.05,
+   "Restore the network observability layer in G C C, or publish the specific obstacle."
+  ],
+  [
+   24.6,
+   5.85,
+   "Explain the two same-named G C C packages, and what Class D would and wouldn't change."
+  ],
+  [
+   30.45,
+   4.05,
+   "List the agents and clients that sit outside the certified offering."
+  ],
+  [
+   34.5,
+   16.325,
+   "Provide a fed-ramp-compatible trust center with programmatic access: on October 21, 2026, only 110 of 781 Marketplace listings had a trust-center entry, and none of the three Microsoft 365 government packages did."
+  ],
+  [
+   50.825,
+   2.925,
+   "Deliver change notices as a JSON feed."
+  ],
+  [
+   53.75,
+   3.525,
+   "And document the cryptographic modules for each service."
+  ],
+  [
+   57.275,
+   4.662,
+   "Five of the eight rest on obligations the rules already place on providers."
+  ],
+  [
+   61.938,
+   2.475,
+   "A documented no is evidence too."
+  ]
+ ],
+ "15": [
+  [
+   0.05,
+   1.375,
+   "So, four decisions."
+  ],
+  [
+   1.425,
+   8.85,
+   "Build the feature register on cited rows only, one row per feature and environment, and drop or relabel anything without a vendor page."
+  ],
+  [
+   10.275,
+   8.262,
+   "Name the boundary owner: the authorizing official decides the boundary, and the system owner keeps the record and gates every new subscription."
+  ],
+  [
+   18.538,
+   7.412,
+   "Enforce the boundary in the landing zone: policy at the intermediate root, audit before deny, and the governed front door."
+  ],
+  [
+   25.95,
+   7.6,
+   "And evidence every response, whether equivalent, exception or alternative path, in the agency's own package."
+  ],
+  [
+   33.55,
+   12.912,
+   "The next step needs no award: before the next architecture review, list every cloud feature your designs depend on, with its Marketplace package, its availability in your environment and the page that says so."
+  ],
+  [
+   46.462,
+   2.962,
+   "Then put Appendix A's requests to your provider."
+  ],
+  [
+   49.425,
+   4.0,
+   "The license says what you bought; the boundary says what you may use."
+  ],
+  [
+   53.425,
+   3.525,
+   "Book 10 has the detail, every claim footnoted."
+  ],
+  [
+   56.95,
+   0.762,
+   "Thank you."
+  ]
+ ]
+}

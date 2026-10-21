@@ -1,0 +1,79 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.563
+The landing zone is where the
+boundary stops being a diagram.
+
+2
+00:00:03.563 --> 00:00:06.533
+Each workload landing zone
+is a subscription placed
+
+3
+00:00:06.533 --> 00:00:09.099
+in a management group
+that carries its policy.
+
+4
+00:00:09.099 --> 00:00:13.303
+The baseline hierarchy puts an
+intermediate root under the tenant root,
+
+5
+00:00:13.303 --> 00:00:15.475
+and that's where boundary policy goes.
+
+6
+00:00:15.475 --> 00:00:20.212
+Platform groups hold security,
+management, connectivity and identity.
+
+7
+00:00:20.212 --> 00:00:24.487
+Landing zone groups hold corporate,
+online and local workloads.
+
+8
+00:00:24.487 --> 00:00:29.850
+Make Sandbox the default, so no new
+subscription lands outside the boundary policy.
+
+9
+00:00:29.850 --> 00:00:33.541
+Each boundary decision gets a
+mechanism: the cloud choice;
+
+10
+00:00:33.541 --> 00:00:36.924
+Allowed locations with Deny;
+allowed resource types,
+
+11
+00:00:36.924 --> 00:00:39.846
+checked against Microsoft's
+audit-scope list;
+
+12
+00:00:39.846 --> 00:00:44.690
+the FedRAMP regulatory compliance
+initiative, which Microsoft calls only
+
+13
+00:00:44.690 --> 00:00:49.150
+a partial view; and exemptions,
+Mitigated or Waiver, with an expiry date.
+
+14
+00:00:49.150 --> 00:00:52.125
+Roll each policy out in audit mode first.
+
+15
+00:00:52.125 --> 00:00:56.875
+One catch: Microsoft's accelerators
+are supported only in public Azure.
+
+16
+00:00:56.875 --> 00:01:00.980
+In Azure Government, the platform
+team adapts the code by hand.
