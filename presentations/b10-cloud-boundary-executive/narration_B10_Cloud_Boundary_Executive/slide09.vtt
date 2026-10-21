@@ -1,0 +1,160 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.238
+Who owns all this?
+
+2
+00:00:01.238 --> 00:00:06.538
+Chapter 08's rule is one decider per
+row, and it starts from FedRAMP's split.
+
+3
+00:00:06.538 --> 00:00:10.050
+The provider owns the service
+boundary and its certification.
+
+4
+00:00:10.050 --> 00:00:12.932
+The agency owns the
+boundary of its own system,
+
+5
+00:00:12.932 --> 00:00:16.725
+and everything it builds,
+configures and connects inside it.
+
+6
+00:00:16.725 --> 00:00:20.475
+On the agency side, the
+authorizing official determines the
+
+7
+00:00:20.475 --> 00:00:24.075
+authorization boundary, with
+input from the system owner.
+
+8
+00:00:24.075 --> 00:00:27.725
+That comes straight from NIST SP 800-37.
+
+9
+00:00:27.725 --> 00:00:32.290
+The official signs every documented
+exception, approves the plan of action
+
+10
+00:00:32.290 --> 00:00:36.637
+and milestones, and decides whether
+a change requires reauthorization.
+
+11
+00:00:36.637 --> 00:00:39.343
+Explicit risk acceptance
+can't be delegated,
+
+12
+00:00:39.343 --> 00:00:43.950
+and for federal agencies the role is
+assigned to government personnel only.
+
+13
+00:00:43.950 --> 00:00:47.139
+A designated representative
+can run the process;
+
+14
+00:00:47.139 --> 00:00:49.550
+only the authorizing official signs.
+
+15
+00:00:49.550 --> 00:00:51.978
+The system owner is the boundary owner:
+
+16
+00:00:51.978 --> 00:00:54.862
+keeper of the boundary
+record and the package.
+
+17
+00:00:54.862 --> 00:00:59.524
+The CISO sets the control requirements
+and decides what counts as evidence,
+
+18
+00:00:59.524 --> 00:01:02.874
+and the ISSO reads provider
+notices against the record.
+
+19
+00:01:02.874 --> 00:01:06.464
+The sponsor and CIO choose
+the clouds, fund the platform,
+
+20
+00:01:06.464 --> 00:01:09.896
+set the sequence and break
+the ties, which will happen,
+
+21
+00:01:09.896 --> 00:01:13.563
+because everyone can reasonably
+claim the landing zone.
+
+22
+00:01:13.563 --> 00:01:15.250
+Then the people who do the work.
+
+23
+00:01:15.250 --> 00:01:20.067
+The platform team builds the landing
+zone, the policy and subscription vending,
+
+24
+00:01:20.067 --> 00:01:22.987
+but it doesn't decide
+whether a gap is acceptable.
+
+25
+00:01:22.987 --> 00:01:25.224
+That goes to the authorizing official.
+
+26
+00:01:25.224 --> 00:01:28.812
+Workload owners declare the
+features their designs depend on.
+
+27
+00:01:28.812 --> 00:01:31.649
+Security operations runs drift detection.
+
+28
+00:01:31.649 --> 00:01:33.751
+And acquisition holds the contract,
+
+29
+00:01:33.751 --> 00:01:37.812
+because only a contracting officer
+can change what the agency bought.
+
+30
+00:01:37.812 --> 00:01:40.487
+FedRAMP is consulted, not in charge.
+
+31
+00:01:40.487 --> 00:01:42.706
+Agencies notify it after authorizing,
+
+32
+00:01:42.706 --> 00:01:46.937
+and work with it when a determination
+conflicts with a provider's package.
+
+33
+00:01:46.937 --> 00:01:51.076
+Its certification is an input to
+the authorizing official's decision.
+
+34
+00:01:51.076 --> 00:01:52.610
+It never replaces it.

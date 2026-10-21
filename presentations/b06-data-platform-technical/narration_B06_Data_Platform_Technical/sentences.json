@@ -1,0 +1,2078 @@
+{
+ "1": [
+  [
+   0.05,
+   8.262,
+   "This is the technical deep dive for Book 06 of the Federal Modernization Workbook: Data Platform, SQL Server Identity."
+  ],
+  [
+   8.312,
+   15.1,
+   "The book moves the SQL Server estate off Windows Authentication and onto Microsoft Entra ID, and this session is for the people who do that work: database administrators, the identity and server teams beside them, and the security staff who sign off."
+  ],
+  [
+   23.413,
+   2.95,
+   "It runs about fifty minutes, in two parts."
+  ],
+  [
+   26.363,
+   17.062,
+   "Part 1 is the strategy, in three modules: why the inheritance must end and how the estate is rationalized; the authentication audit, the three principal types and the engine-authentication decision; and N T L M elimination, applications and the closure condition."
+  ],
+  [
+   43.425,
+   3.85,
+   "Part 2 walks the ten runbooks in the order a DBA runs them."
+  ],
+  [
+   47.275,
+   5.175,
+   "For each one: what it does, the gate it must pass, and the evidence it leaves."
+  ],
+  [
+   52.45,
+   1.613,
+   "One convention throughout."
+  ],
+  [
+   54.062,
+   9.125,
+   "April 1, 2027 is the program's own N T L M backstop, not a Microsoft deadline, and I'll say which dates are external."
+  ]
+ ],
+ "2": [
+  [
+   0.05,
+   3.175,
+   "Module 1: the inheritance and the estate."
+  ],
+  [
+   3.225,
+   1.175,
+   "Three slides."
+  ],
+  [
+   4.4,
+   7.562,
+   "First, what Windows Authentication in SQL Server actually is, precisely enough to see where N T L M hides."
+  ],
+  [
+   11.963,
+   4.85,
+   "Second, the three drivers that end it, and the 2027 dates that are real."
+  ],
+  [
+   16.812,
+   9.775,
+   "Third, the inventory, the rationalization lenses and the retain, consolidate or retire gate, which decides which instances enter the migration at all."
+  ],
+  [
+   26.587,
+   8.975,
+   "The book's whole order, assess and consolidate, enable Arc, migrate logins, then eliminate N T L M, comes out of this module."
+  ]
+ ],
+ "3": [
+  [
+   0.05,
+   2.225,
+   "Start with what the engine actually does."
+  ],
+  [
+   2.275,
+   3.587,
+   "SQL Server doesn't check the password for a Windows login."
+  ],
+  [
+   5.862,
+   6.987,
+   "It trusts the Windows principal token, and Windows Authentication is always available; it can't be disabled."
+  ],
+  [
+   12.85,
+   11.075,
+   "With Integrated Security, the driver hands off to SSPI, the Security Support Provider Interface, and its Negotiate package picks Kerberos unless one of the systems can't use it."
+  ],
+  [
+   23.925,
+   12.5,
+   "The client asks the KDC on a domain controller for a service ticket to the instance's SPN, which for TCP names the SQL Server service class, the host's fully qualified name and the port."
+  ],
+  [
+   36.425,
+   3.312,
+   "The engine validates the ticket with the service account's key."
+  ],
+  [
+   39.737,
+   4.675,
+   "No password crosses the network, and Kerberos authenticates both ends."
+  ],
+  [
+   44.413,
+   4.737,
+   "The table is Microsoft's authentication defaults, and it's the one to remember."
+  ],
+  [
+   49.15,
+   7.487,
+   "When the SPN maps to the correct account, remote connections use Kerberos, but local connections use N T L M."
+  ],
+  [
+   56.638,
+   5.15,
+   "When the SPN is missing or the lookup fails, both use N T L M."
+  ],
+  [
+   61.788,
+   3.562,
+   "When it's on the wrong account, authentication fails outright."
+  ],
+  [
+   65.35,
+   4.3,
+   "That silent fallback is the most consequential fault in the inheritance."
+  ],
+  [
+   69.65,
+   9.875,
+   "The engine logs a failed SPN registration at startup, but not which protocol each connection used; only the auth scheme column of the connections DMV shows that."
+  ],
+  [
+   79.525,
+   6.2,
+   "And none of these paths produces an Entra sign-in, so Conditional Access has nothing to evaluate."
+  ],
+  [
+   85.725,
+   15.45,
+   "The identities are anchored in Active Directory too: a domain account with a hand-rotated password, a group managed service account the domain controller rotates every thirty days by default, or the virtual account, which reaches the network as the computer account."
+  ],
+  [
+   101.175,
+   6.838,
+   "And the SA login, created disabled in Windows mode, is often left enabled as an emergency way in."
+  ],
+  [
+   108.013,
+   1.575,
+   "None of this was a mistake."
+  ],
+  [
+   109.588,
+   4.338,
+   "It was correct engineering for a domain-joined world that no longer exists."
+  ]
+ ],
+ "4": [
+  [
+   0.05,
+   5.65,
+   "Three drivers end the inheritance, and each is as well reasoned as the original design."
+  ],
+  [
+   5.7,
+   9.8,
+   "The first is N T L M. Microsoft deprecated every version, LAN Manager and N T L M versions 1 and 2, in June 2024."
+  ],
+  [
+   15.5,
+   9.7,
+   "Version 1 is already removed from Windows Server 2025 and Windows 11 version 24H2; version 2 still works there."
+  ],
+  [
+   25.2,
+   9.2,
+   "Microsoft's next step is to disable network N T L M by default in the next major Windows release, subject to change and with no calendar date."
+  ],
+  [
+   34.4,
+   9.0,
+   "So the program set its own backstop: on April 1, 2027 its enforcement phase blocks N T L M across the estate."
+  ],
+  [
+   43.4,
+   1.688,
+   "That isn't the completion date."
+  ],
+  [
+   45.087,
+   6.612,
+   "It's the date by which consolidation, Arc, login migration and connection strings must already be done."
+  ],
+  [
+   51.7,
+   2.125,
+   "The second is zero trust."
+  ],
+  [
+   53.825,
+   7.45,
+   "M twenty-two oh-nine requires phishing-resistant M F A enforced at the application layer, with a device-level signal."
+  ],
+  [
+   61.275,
+   7.987,
+   "Conditional Access can act only on an Entra token request; a Kerberos or N T L M exchange never asks it."
+  ],
+  [
+   69.263,
+   3.075,
+   "Risk-based policies need Entra ID P2."
+  ],
+  [
+   72.338,
+   2.375,
+   "The third is the engine's own identity."
+  ],
+  [
+   74.713,
+   11.775,
+   "When Active Directory stops being the identity source, the engine's service accounts lose their governance foundation, so the engine needs an Entra identity first, which on premises comes through Azure Arc."
+  ],
+  [
+   86.487,
+   3.65,
+   "What's actually due in 2027 are lifecycle dates."
+  ],
+  [
+   90.138,
+   5.175,
+   "Windows Server 2016 leaves extended support on January 12."
+  ],
+  [
+   95.312,
+   10.137,
+   "SQL Server 2014's final extended-security-update year ends on July 12, and SQL Server 2016's first on July 13."
+  ],
+  [
+   105.45,
+   4.662,
+   "SQL Server 2017 leaves support on October 12."
+  ],
+  [
+   110.112,
+   6.438,
+   "None of those versions can take Entra logins, so they're consolidation candidates, not in-place migrations."
+  ],
+  [
+   116.55,
+   8.088,
+   "The dependencies set the order: assess and consolidate, enable Arc, migrate logins, then eliminate N T L M."
+  ]
+ ],
+ "5": [
+  [
+   0.05,
+   6.825,
+   "Before any authentication work, the estate has to be counted, because a twenty-year estate doesn't know what it has."
+  ],
+  [
+   6.875,
+   10.088,
+   "The instances that matter most are the ones nobody manages, so they're discovered, not retrieved from a list, with three instruments that are each blind to what the others find."
+  ],
+  [
+   16.962,
+   11.35,
+   "A network and directory sweep listens: the default instance on TCP 1433, named instances on dynamic ports, and the Browser service on UDP 1434."
+  ],
+  [
+   28.312,
+   6.925,
+   "The community dbatools module's Find-DbaInstance combines those signals, after the program's software approval."
+  ],
+  [
+   35.237,
+   10.475,
+   "The SPN trail is independent: a forest-wide SetSPN query lists every instance ever registered for Kerberos, though not the ones whose registration failed."
+  ],
+  [
+   45.712,
+   14.613,
+   "And Microsoft's assessment tooling adds workload and dependency data: Azure Migrate, the MAP Toolkit, and the migration component in Management Studio, since the Data Migration Assistant was retired on July 16, 2025."
+  ],
+  [
+   60.325,
+   1.538,
+   "Then three lenses."
+  ],
+  [
+   61.862,
+   7.438,
+   "Utilization finds zombies: no connections in over a year, no restores, a retired owning application."
+  ],
+  [
+   69.3,
+   4.125,
+   "Retiring them is the fastest way to shrink the migration surface."
+  ],
+  [
+   73.425,
+   10.725,
+   "Version is a primary input, because Entra logins need SQL Server 2022 or later, and 2008 and 2008 R2 can't upgrade in place."
+  ],
+  [
+   84.15,
+   9.963,
+   "Dependencies most often overturn a naive plan: linked servers, replication, SSIS packages and the quarterly cross-database query."
+  ],
+  [
+   94.112,
+   3.1,
+   "The lenses resolve into one verdict per instance."
+  ],
+  [
+   97.213,
+   1.975,
+   "Retain goes straight to the audit."
+  ],
+  [
+   99.188,
+   3.55,
+   "Consolidate moves the workload and retires the source."
+  ],
+  [
+   102.737,
+   3.825,
+   "Retire removes the instance and every login it carries."
+  ],
+  [
+   106.562,
+   15.338,
+   "Targets are chosen during the assessment, standalone or availability-group SQL Server on Arc hosts, since failover cluster instances can't use Entra authentication, or Azure SQL, so authentication is migrated once, in its final shape."
+  ],
+  [
+   121.9,
+   2.062,
+   "And record the constraints honestly."
+  ]
+ ],
+ "6": [
+  [
+   0.05,
+   4.013,
+   "Module 2: the audit, the principals and the decision."
+  ],
+  [
+   4.062,
+   1.113,
+   "Four slides."
+  ],
+  [
+   5.175,
+   7.475,
+   "What the authentication audit reads on every surviving instance, and why its output is a compliance record rather than a spreadsheet."
+  ],
+  [
+   12.65,
+   7.075,
+   "The three Arc-eligibility categories, and the distinction between the engine and the operating system moving to Entra ID."
+  ],
+  [
+   19.725,
+   4.062,
+   "The three principal types that replace Windows and SQL logins."
+  ],
+  [
+   23.788,
+   6.162,
+   "And the parallel run, with the five decisions that turn the migration pattern into enforceable policy."
+  ]
+ ],
+ "7": [
+  [
+   0.05,
+   8.725,
+   "The audit runs only on what the gate kept, retain instances and consolidation targets, and its deliverable is a per-instance compliance record."
+  ],
+  [
+   8.775,
+   8.525,
+   "For each host it records every instance, with version, edition and build, and the host operating system, which sets the Arc envelope."
+  ],
+  [
+   17.3,
+   17.863,
+   "The Connected Machine agent runs on Windows Server 2012 through 2025, SQL Server enabled by Arc needs 2016 or later, and the program sets its own floor at Windows Server 2019, because 2016 leaves support in January 2027."
+  ],
+  [
+   35.163,
+   5.5,
+   "It records domain-join state and whether the Arc agent and managed identity are present."
+  ],
+  [
+   40.663,
+   1.738,
+   "Then the authentication mode."
+  ],
+  [
+   42.4,
+   5.775,
+   "The registry value LoginMode is one for Windows Authentication mode and two for mixed."
+  ],
+  [
+   48.175,
+   13.475,
+   "The audit cross-checks it against the running instance with the Is Integrated Security Only server property, because a mode change takes effect only after a restart, and any disagreement is an anomaly to resolve before migrating."
+  ],
+  [
+   61.65,
+   9.675,
+   "On SQL Server 2025 enabled by Arc it also reads Is External Authentication Only, which shows the Disable SQL Authentication setting."
+  ],
+  [
+   71.325,
+   17.163,
+   "Every login is classified by its type in sys.server_principals: U, a Windows user; G, a Windows group; S, a SQL login; C and K, certificate- and key-mapped; and E and X, Entra logins already present."
+  ],
+  [
+   88.487,
+   3.188,
+   "The letters are the view's values, not mnemonics."
+  ],
+  [
+   91.675,
+   6.525,
+   "There's no type W, and a query written against one returns zero rows and reports a clean instance."
+  ],
+  [
+   98.2,
+   8.412,
+   "Active SQL logins are a critical finding, and an enabled SA with a non-rotated password is the highest-priority finding of all."
+  ],
+  [
+   106.612,
+   3.938,
+   "The audit captures the engine's service account and checks its SPN."
+  ],
+  [
+   110.55,
+   10.55,
+   "And each run is compared with the last: a new SQL login, a revert to mixed mode, or a new passthrough linked server is drift, and drift is a compliance violation."
+  ]
+ ],
+ "8": [
+  [
+   0.05,
+   9.137,
+   "The audit's most consequential output is a category for every instance, framed around Arc because Arc is the program's path to Entra authentication."
+  ],
+  [
+   9.188,
+   13.887,
+   "Category 1 is Entra-auth-ready: the Connected Machine agent is running, the Azure extension for SQL Server is deployed, Entra authentication is configured and the engine is SQL Server 2022 or later."
+  ],
+  [
+   23.075,
+   4.938,
+   "There the audit's job is a precise login inventory, and migration starts now."
+  ],
+  [
+   28.012,
+   3.3,
+   "Category 2 is Arc-eligible but not enabled."
+  ],
+  [
+   31.312,
+   7.9,
+   "Prioritize by the audit: instances with many Windows logins, active SQL logins or missing SPNs go first."
+  ],
+  [
+   39.212,
+   10.062,
+   "The deployment is a server action, not a SQL Server change; when the agent connects a server with SQL Server installed, Arc installs the extension automatically."
+  ],
+  [
+   49.275,
+   5.938,
+   "Once Entra authentication is configured, the instance becomes Category 1 on the next run."
+  ],
+  [
+   55.212,
+   2.55,
+   "Category 3 isn't yet eligible."
+  ],
+  [
+   57.763,
+   11.363,
+   "An engine older than 2022 can't accept Entra logins, with or without Arc, so it upgrades and follows the Category 2 path, or carries an exception with a sunset date."
+  ],
+  [
+   69.125,
+   7.112,
+   "Failover cluster instances belong here on any version, because Entra authentication isn't supported on them."
+  ],
+  [
+   76.237,
+   9.188,
+   "And an exception doesn't save an instance from the program's N T L M block, which is applied in the operating system's security layer, not in the engine."
+  ],
+  [
+   85.425,
+   3.875,
+   "Then the distinction the book calls the most common misunderstanding."
+  ],
+  [
+   89.3,
+   9.188,
+   "Layer 1 is the engine accepting Entra tokens: SQL Server 2022 or later, not a cluster instance, plus Arc and the extension."
+  ],
+  [
+   98.487,
+   9.363,
+   "It doesn't need the server unjoined or Windows Server 2025; a domain-joined Windows Server 2019 host can have Entra logins today."
+  ],
+  [
+   107.85,
+   4.987,
+   "Layer 2 is administrators signing in to the server itself with Entra ID."
+  ],
+  [
+   112.838,
+   8.85,
+   "That needs Windows Server 2025 with Desktop Experience and Entra-joins the server, so it's a separate program, sequenced on its own."
+  ]
+ ],
+ "9": [
+  [
+   0.05,
+   9.975,
+   "This is where the engine stops accepting Kerberos tickets and N T L M exchanges and starts accepting Entra-issued OAuth 2.0 access tokens."
+  ],
+  [
+   10.025,
+   6.675,
+   "The mechanism is CREATE LOGIN FROM EXTERNAL PROVIDER, on SQL Server 2022 and later."
+  ],
+  [
+   16.7,
+   3.538,
+   "The login is a passwordless external principal in master."
+  ],
+  [
+   20.238,
+   8.387,
+   "At connection time the client presents a token whose audience is database.windows.net, and the engine validates it and maps it to the login."
+  ],
+  [
+   28.625,
+   10.2,
+   "CREATE LOGIN looks the principal up through Microsoft Graph, so the instance's identity needs Graph read permissions with admin consent, or login creation fails."
+  ],
+  [
+   38.825,
+   7.0,
+   "On SQL Server 2025, WITH OBJECT_ID pins a login when display names aren't unique."
+  ],
+  [
+   45.825,
+   5.737,
+   "And Entra connections are always encrypted, so clients must trust the instance's certificate."
+  ],
+  [
+   51.562,
+   1.038,
+   "Three types."
+  ],
+  [
+   52.6,
+   9.65,
+   "An Entra user login, type E, named by the user principal name; UPNs can differ from SAM account names, so the audit captures that mapping first."
+  ],
+  [
+   62.25,
+   2.65,
+   "The engine has no M F A logic."
+  ],
+  [
+   64.9,
+   10.463,
+   "Conditional Access enforces M F A, device compliance and sign-in risk before the token is issued, with no SQL-level prompt and no SQL-level bypass."
+  ],
+  [
+   75.362,
+   6.525,
+   "One limit: fido two security keys aren't yet supported for Entra authentication to SQL Server on Arc."
+  ],
+  [
+   81.888,
+   4.725,
+   "An Entra group login, type X, is the familiar A D group pattern."
+  ],
+  [
+   86.612,
+   9.338,
+   "With a dynamic group driven by HR attributes, people gain and lose access as their attributes change, with no CREATE USER or DROP USER."
+  ],
+  [
+   95.95,
+   7.287,
+   "That needs a P1 license per member, and access is only as strong as the write controls on those attributes."
+  ],
+  [
+   103.237,
+   8.8,
+   "And an application login, also type E, for a managed identity or service principal, replacing a SQL login and its stored password."
+  ],
+  [
+   112.037,
+   7.812,
+   "Conditional Access doesn't cover these; service principals are reachable only through separately licensed workload-identity policies."
+  ],
+  [
+   119.85,
+   7.625,
+   "On an Arc server the managed identity belongs to the server, so one login per server is the honest unit of attribution."
+  ]
+ ],
+ "10": [
+  [
+   0.05,
+   4.45,
+   "No Windows login is dropped until its Entra replacement is validated."
+  ],
+  [
+   4.5,
+   5.625,
+   "The engine-authentication decision makes a three-phase parallel run required in production."
+  ],
+  [
+   10.125,
+   7.175,
+   "Create: for every migrating user or group login, create the external-provider login for its Entra principal."
+  ],
+  [
+   17.3,
+   9.838,
+   "Verify each mapping first; a principal with no confirmed Entra equivalent is a blocking finding, and building that mapping is the most labor-intensive step."
+  ],
+  [
+   27.137,
+   7.275,
+   "Validate: test each new login with the principal's real Entra credential before any legacy login is touched."
+  ],
+  [
+   34.413,
+   7.287,
+   "Then disable, don't drop, the legacy Windows and SQL logins, observe for thirty days, and only then drop them."
+  ],
+  [
+   41.7,
+   2.913,
+   "Observation needs evidence, not silence."
+  ],
+  [
+   44.612,
+   9.75,
+   "Login metadata says what exists; only auditing says what's used, and Microsoft's own sequence uses SQL Server Audit with the successful-login action group."
+  ],
+  [
+   54.362,
+   5.763,
+   "Disable-and-observe keeps every cutover reversible, so a wrong mapping locks no one out."
+  ],
+  [
+   60.125,
+   2.625,
+   "Around the pattern sit five decisions."
+  ],
+  [
+   62.75,
+   2.538,
+   "One, consolidation gates migration."
+  ],
+  [
+   65.287,
+   7.375,
+   "Two, the parallel run is required; non-production may shorten the window only with documented owner sign-off."
+  ],
+  [
+   72.662,
+   18.887,
+   "Three, SQL Authentication is eliminated: every active SQL login migrates to a service principal or managed identity, or carries an exception with a compensating control and a sunset date, and SA is disabled and renamed, with emergency access as a monitored break-glass procedure."
+  ],
+  [
+   91.55,
+   9.525,
+   "On SQL Server 2025 with Arc, the Disable SQL Authentication setting closes the door for every SQL login at once, without a restart."
+  ],
+  [
+   101.075,
+   15.637,
+   "Four, pre-2022 instances and failover cluster instances upgrade, re-platform or carry a sunset-dated exception; connections that can't reach Kerberos or Entra by the backstop use certificate-based authentication as the interim posture."
+  ],
+  [
+   116.713,
+   7.362,
+   "Five, the per-instance compliance record is the closure artifact, so done becomes a queryable posture instead of a claim."
+  ]
+ ],
+ "11": [
+  [
+   0.05,
+   6.037,
+   "Module 3: N T L M, applications and closure, the last of the strategy."
+  ],
+  [
+   6.088,
+   1.113,
+   "Four slides."
+  ],
+  [
+   7.2,
+   9.45,
+   "The four connection patterns that generate N T L M at the SQL layer, because N T L M is a protocol, not a setting, and no single switch removes it."
+  ],
+  [
+   16.65,
+   4.85,
+   "The three phases that do remove it: discover, restrict, eliminate."
+  ],
+  [
+   21.5,
+   5.487,
+   "The four-class pattern for the applications upstream of the database, read on two axes."
+  ],
+  [
+   26.988,
+   5.05,
+   "And the closure condition: five conditions that must hold at once, and keep holding."
+  ]
+ ],
+ "12": [
+  [
+   0.05,
+   9.588,
+   "Microsoft has deprecated every version of N T L M and removed version 1 from current Windows, but nothing in its timeline is a deadline for SQL Server."
+  ],
+  [
+   9.637,
+   6.662,
+   "Eliminating N T L M means naming every connection pattern that produces it, and the book finds four."
+  ],
+  [
+   16.3,
+   4.662,
+   "Pattern one, a missing or incorrect SPN, the most common cause."
+  ],
+  [
+   20.962,
+   5.425,
+   "If the driver can't get a ticket for the SPN it builds, it falls back to N T L M."
+  ],
+  [
+   26.387,
+   5.125,
+   "The fix is SetSPN with the dash S switch, which checks for duplicates before adding."
+  ],
+  [
+   31.512,
+   13.312,
+   "Two neighbors behave differently: an SPN on the wrong account doesn't fall back, it fails, typically with \"Cannot generate SSPI context\", and a duplicate SPN breaks Kerberos with a principal-not-unique error."
+  ],
+  [
+   44.825,
+   2.438,
+   "Pattern two, cross-site connections."
+  ],
+  [
+   47.263,
+   4.975,
+   "The client needs a domain controller of the domain that holds the server's service account."
+  ],
+  [
+   52.237,
+   10.963,
+   "If port 88 is blocked or D N S doesn't resolve it, Negotiate falls back to N T L M where a trust lets the server validate the account, and fails where it doesn't."
+  ],
+  [
+   63.2,
+   3.175,
+   "Confirm with klist before changing firewall rules."
+  ],
+  [
+   66.375,
+   7.5,
+   "Cloud Kerberos trust isn't a fix, because its partial ticket is still exchanged with an on-premises domain controller."
+  ],
+  [
+   73.875,
+   2.5,
+   "Pattern three, linked-server passthrough."
+  ],
+  [
+   76.375,
+   9.562,
+   "Presenting the caller's identity to a second instance is a double hop, and N T L M can't make it; the symptom is a failed login for anonymous logon."
+  ],
+  [
+   85.938,
+   11.088,
+   "Move each definition to a mapped login, an Entra identity on 2022 and later, a managed identity on 2025, or Kerberos constrained delegation."
+  ],
+  [
+   97.025,
+   2.925,
+   "Pattern four, clients with no domain ticket."
+  ],
+  [
+   99.95,
+   10.738,
+   "An application on an unjoined host still using Integrated Security falls back to N T L M or fails, so its connection string moves to managed identity first."
+  ],
+  [
+   110.688,
+   7.225,
+   "Connections on the instance's own host always use N T L M, and legacy providers over named pipes force it."
+  ],
+  [
+   117.912,
+   5.75,
+   "And N T L M version 1 found anywhere is a critical finding, not a migration item."
+  ]
+ ],
+ "13": [
+  [
+   0.05,
+   3.85,
+   "The program's three phases apply to SQL Server unchanged."
+  ],
+  [
+   3.9,
+   12.475,
+   "After the April 2027 block, any connection that needs N T L M fails in the Windows security subsystem, where the Local Security Authority enforces the policy, so the engine never sees it."
+  ],
+  [
+   16.375,
+   4.175,
+   "Every pattern has to be resolved before Phase C, not after."
+  ],
+  [
+   20.55,
+   1.375,
+   "Phase A discovers."
+  ],
+  [
+   21.925,
+   31.8,
+   "The authentication audit is the primary instrument, and Windows logging records what actually happened: events 4624 and 4625 with logon type 3 and the N T L M package on SQL Server hosts; the auth scheme column for per-connection proof; the Restrict N T L M audit policies, which log what a later deny would block, with event 8004 on domain controllers naming the server; and enhanced N T L M logging, which says who used N T L M and why Kerberos wasn't used."
+  ],
+  [
+   53.725,
+   1.562,
+   "Phase B restricts."
+  ],
+  [
+   55.288,
+   3.85,
+   "First, the LAN Manager authentication level set to five."
+  ],
+  [
+   59.138,
+   14.363,
+   "Be precise: domain controllers then refuse LM and version 1 but still accept version 2, so level five is the version-1 block, targeted for the third quarter of 2026, not an N T L M block."
+  ],
+  [
+   73.5,
+   11.625,
+   "Microsoft's October 2026 update is a different control again; it blocks only N T L M version 1 derived single sign-on credentials, on devices without Credential Guard."
+  ],
+  [
+   85.125,
+   6.7,
+   "Then the pattern work: SPNs, domain-controller reachability, linked servers and connection strings."
+  ],
+  [
+   91.825,
+   9.725,
+   "Version 2 is restricted with the Restrict N T L M deny settings, whose exceptions are lists of server names on clients and domain controllers only."
+  ],
+  [
+   101.55,
+   7.625,
+   "There's no list for the server role, so an instance that must keep accepting N T L M can't deny incoming N T L M."
+  ],
+  [
+   109.175,
+   5.562,
+   "Phase C eliminates: Restrict N T L M set to deny on every host."
+  ],
+  [
+   114.737,
+   8.3,
+   "It's safe only after login migration is complete, and an instance on Entra logins is immune, because it isn't using N T L M."
+  ],
+  [
+   123.037,
+   6.1,
+   "The book leaves one decision open: whether the date holds for the pre-2022 long tail."
+  ]
+ ],
+ "14": [
+  [
+   0.05,
+   3.55,
+   "The database is only half of the authentication path."
+  ],
+  [
+   3.6,
+   7.713,
+   "An application that moved its user sign-in to Entra ID but still reaches SQL Server with a SQL login hasn't finished."
+  ],
+  [
+   11.312,
+   6.1,
+   "The chain runs from user to application to database, and both legs have to leave Active Directory."
+  ],
+  [
+   17.413,
+   9.6,
+   "The program's el-dap-dependent-application plan sorts applications into four classes, in strict preference order; the numbers are identifiers, not ranks."
+  ],
+  [
+   27.012,
+   13.025,
+   "Class 3, OpenID Connect, is the destination: Entra ID issues the tokens, there's no el-dap bind and no A D query, and the application reaches SQL Server with its managed identity."
+  ],
+  [
+   40.038,
+   10.3,
+   "Class 2, sam-ul, removes the el-dap dependency but ranks below O I D C, because Microsoft recommends O I D C for new development."
+  ],
+  [
+   50.337,
+   12.825,
+   "Class 1, Application Proxy, fronts an application that can't change; Entra preauthenticates users, so Conditional Access applies, but the application's own A D dependency stays behind the proxy."
+  ],
+  [
+   63.163,
+   8.275,
+   "Class 4, Entra Domain Services, is the last resort: a managed domain with el-dap, Kerberos and N T L M."
+  ],
+  [
+   71.438,
+   11.213,
+   "Its N T L M is still N T L M, and an instance serving a Class 4 application can't reach the Entra-exclusive posture, so it carries a sunset-dated exception."
+  ],
+  [
+   82.65,
+   2.938,
+   "The class describes only the user axis."
+  ],
+  [
+   85.588,
+   18.325,
+   "The database connection is a second axis, set by evidence: does the deployed driver support the Entra mode, can the application use a managed identity or must its code refresh tokens, does pooling survive per-identity tokens, does the vendor support it, and does the platform have an Entra-capable driver."
+  ],
+  [
+   103.912,
+   10.15,
+   "That places each application in column A, configuration only; B, code change; C, vendor-dependent; or D, no Entra path."
+  ],
+  [
+   114.062,
+   8.925,
+   "O I D C or sam-ul in column A moves now; B is scheduled; C gets a dated exception; D means exception or retirement."
+  ],
+  [
+   122.987,
+   8.088,
+   "The application audit supplies the user axis, and it has to be joined to the authentication audit before an instance shows its full chain."
+  ]
+ ],
+ "15": [
+  [
+   0.05,
+   4.85,
+   "A transformation that reaches its end state and stops monitoring will regress."
+  ],
+  [
+   4.9,
+   13.4,
+   "Any administrator with permission can switch an instance back to mixed mode or create a new login, so closure is a posture, kept by continuous audit, drift detection and governance that treats regression as a violation."
+  ],
+  [
+   18.3,
+   6.0,
+   "The transformation is closed when five conditions hold at the same time on every production instance."
+  ],
+  [
+   24.3,
+   9.688,
+   "One: no usable Windows-backed principal, meaning zero enabled user or group logins with CONNECT SQL, apart from a documented break-glass group."
+  ],
+  [
+   33.987,
+   13.5,
+   "Two: SQL Authentication eliminated: no SQL logins outside the exception registry, SA disabled, LoginMode one, and on SQL Server 2025 Is External Authentication Only as well."
+  ],
+  [
+   47.487,
+   7.088,
+   "Disabling SQL authentication doesn't remove logins or end live sessions, so the census still matters."
+  ],
+  [
+   54.575,
+   17.062,
+   "Three: Entra authentication observed working, and nothing else: every usable login is type E or X, the sign-in logs and SQL Server Audit show the expected principals, and the auth scheme column shows no N T L M or Kerberos over the validation period."
+  ],
+  [
+   71.638,
+   11.4,
+   "Four: the engine has a cloud identity, with the Arc agent connected, the extension deployed and Entra authentication configured; a failover cluster instance can't meet this as built."
+  ],
+  [
+   83.037,
+   5.188,
+   "Five: every human authenticates with M F A through Conditional Access."
+  ],
+  [
+   88.225,
+   1.762,
+   "No single setting does this."
+  ],
+  [
+   89.987,
+   7.062,
+   "SQL Server can't turn Windows Authentication off, so LoginMode one proves only that SQL logins are refused."
+  ],
+  [
+   97.05,
+   4.525,
+   "The book calls the combined state the Entra-exclusive operational posture."
+  ],
+  [
+   101.575,
+   2.788,
+   "Two details govern how evidence is read."
+  ],
+  [
+   104.362,
+   10.238,
+   "Every SQL resource shares one token audience, so a sign-in log can't say which instance a principal reached; the per-instance proof is the instance's own audit."
+  ],
+  [
+   114.6,
+   5.975,
+   "And local connections always report N T L M, so separate them from remote ones."
+  ],
+  [
+   120.575,
+   9.05,
+   "Drift is a violation: LoginMode moving from one to two, a new SQL, user or group login, or the Arc agent going offline."
+  ],
+  [
+   129.625,
+   5.388,
+   "And the final months before April 2027 are for validation, not migration."
+  ]
+ ],
+ "16": [
+  [
+   0.05,
+   2.725,
+   "Part 2: the runbooks for DBAs."
+  ],
+  [
+   2.775,
+   12.113,
+   "Module 4 covers the first five: prerequisites, discovery and the consolidation gate, the authentication audit, Arc and the managed identity, and login migration with its parallel run."
+  ],
+  [
+   14.887,
+   6.638,
+   "For each, the steps, the gate that has to hold before the next runbook starts, and the evidence it leaves."
+  ],
+  [
+   21.525,
+   12.088,
+   "One rule runs through all ten: read-only and derivation functions run directly, and anything that changes state plans by default or writes a reviewable script, then goes through change control."
+  ],
+  [
+   33.612,
+   7.037,
+   "The commands are illustrative and untested against a production estate, so each runs first in a test environment."
+  ]
+ ],
+ "17": [
+  [
+   0.05,
+   4.588,
+   "Runbook R01 provisions nothing and changes no production state."
+  ],
+  [
+   4.638,
+   2.013,
+   "It sets up what the other nine assume."
+  ],
+  [
+   6.65,
+   1.837,
+   "Step one, the toolchain."
+  ],
+  [
+   8.488,
+   2.938,
+   "PowerShell 7 or later is the runtime."
+  ],
+  [
+   11.425,
+   8.6,
+   "The one external dependency is a Python interpreter with only the standard library, which the modules call to compute the canonical integrity seal."
+  ],
+  [
+   20.025,
+   10.925,
+   "The discovery Spec scripts are plain PowerShell, and three modules are imported from the repository root: SQL Server migration, identity assessment and plan generators."
+  ],
+  [
+   30.95,
+   9.312,
+   "Live Azure and Graph operations need the Arc agent's command-line tool and the Azure CLI, and run only behind an explicit opt-in switch."
+  ],
+  [
+   40.263,
+   2.125,
+   "Step two, the evidence model."
+  ],
+  [
+   42.388,
+   13.838,
+   "Every derivation and validation function emits a provenance-sealed envelope: the schema and artifact type, the records and summary counts, and provenance with the module, version, a UTC timestamp and a content hash."
+  ],
+  [
+   56.225,
+   4.713,
+   "The seal leaves out the timestamp, so identical inputs give an identical hash."
+  ],
+  [
+   60.938,
+   7.4,
+   "Artifacts are reproducible, and a broken or unattributed envelope is a provenance-drift finding by definition."
+  ],
+  [
+   68.338,
+   7.425,
+   "Write each step's envelope to a dated folder under version control; that's what makes Runbook R09's runs comparable."
+  ],
+  [
+   75.763,
+   2.138,
+   "Step three, the safety model."
+  ],
+  [
+   77.9,
+   3.312,
+   "Read-only and derivation functions run directly."
+  ],
+  [
+   81.213,
+   13.5,
+   "State-changing functions either plan by default and execute only with an execute switch and confirmation, or generate a script and execute nothing; the login and group script generators have no server parameter at all."
+  ],
+  [
+   94.713,
+   1.613,
+   "No secrets are embedded."
+  ],
+  [
+   96.325,
+   7.525,
+   "A G C C-Moderate tenant is an Entra tenant in the commercial cloud, so its Arc resources use the AzureCloud name."
+  ],
+  [
+   103.85,
+   8.338,
+   "Step four, offline snapshots: every function accepts captured input, so the chain can be tested without touching a live estate."
+  ],
+  [
+   112.188,
+   7.088,
+   "The run order is on the right, and nothing touches production until R02 has defined the retain and target set."
+  ]
+ ],
+ "18": [
+  [
+   0.05,
+   6.025,
+   "Runbook R02 is Phase 0: count everything first, decide what survives second."
+  ],
+  [
+   6.075,
+   6.963,
+   "Discovery is read-only; the consolidation it leads to is review-required and belongs to the migration plan."
+  ],
+  [
+   13.037,
+   2.837,
+   "The inventory starts from the program's scripts."
+  ],
+  [
+   15.875,
+   16.538,
+   "The D1.8 audit script, run in discovery-only form, finds instances from their SQL Server SPNs and an explicit target list and reads each host's services over CIM; without a connection, version and authentication mode read Unknown."
+  ],
+  [
+   32.413,
+   12.3,
+   "The D1.5 SPN inventory gives the domain's SPN trail, with duplicates and orphans: SPNs on disabled objects, or on objects with no logon in 180 days."
+  ],
+  [
+   44.712,
+   14.262,
+   "Those scripts miss what has no SPN, like an Express instance an installer dropped on an application server, so cast wider with Find-DbaInstance, a forest-wide SetSPN query, and Azure Migrate or the Arc migration assessment."
+  ],
+  [
+   58.975,
+   3.85,
+   "Then the program's estate-inventory function fuses the sources."
+  ],
+  [
+   62.825,
+   19.938,
+   "It keys every instance on host and instance name, so duplicates collapse, records which instruments found each one, and applies a first pass on two signals: last access at or above 400 days means retire, a pre-2022 engine means consolidate, and 2022 or later means retain."
+  ],
+  [
+   82.763,
+   5.025,
+   "Anything without enough signal lands in review, never silently in retain."
+  ],
+  [
+   87.787,
+   2.562,
+   "The lenses come next, with one caution."
+  ],
+  [
+   90.35,
+   8.475,
+   "The index-usage DMV resets whenever the engine starts, so it can't prove 400 days of disuse unless the instance has run that long."
+  ],
+  [
+   98.825,
+   7.825,
+   "Read the start time beside it, and take long-horizon evidence from login auditing, backup history and the application portfolio."
+  ],
+  [
+   106.65,
+   7.862,
+   "For dependencies, read sys.servers and the linked logins, plus the Agent, replication and SSIS footprint."
+  ],
+  [
+   114.513,
+   5.475,
+   "Finally the architects confirm or override each verdict, with the reason recorded."
+  ],
+  [
+   119.987,
+   5.575,
+   "The evidence is the sealed inventory, with its classification counts and its denominator."
+  ],
+  [
+   125.562,
+   5.513,
+   "And schedule network sweeps with security operations, because intrusion detection can flag them."
+  ]
+ ],
+ "19": [
+  [
+   0.05,
+   3.288,
+   "Runbook R03 is the audit script itself."
+  ],
+  [
+   3.337,
+   3.625,
+   "It changes nothing, so run it first and run it often."
+  ],
+  [
+   6.963,
+   14.113,
+   "The prerequisites are the ActiveDirectory module for the live SPN query and the orphaned-login check, remote CIM to each host, and SQL Server permissions only for the deep audit, which connects with Windows integrated authentication."
+  ],
+  [
+   21.075,
+   1.188,
+   "Watch one trap."
+  ],
+  [
+   22.262,
+   7.987,
+   "Catalog views show only what the caller has permission on, so an under-privileged audit account returns a partial login list with no error."
+  ],
+  [
+   30.25,
+   5.912,
+   "Grant the narrowest read that sees every login, and confirm the count against a known instance."
+  ],
+  [
+   36.163,
+   13.175,
+   "There are three passes, in order: discovery only, which opens no SQL connection; then adding target servers for hosts without an SPN; then the deep audit with query instances and test connectivity."
+  ],
+  [
+   49.337,
+   8.2,
+   "The output is a JSON file per run, an instances CSV and a logins CSV, and the script computes the readiness verdict."
+  ],
+  [
+   57.538,
+   5.438,
+   "Major version sixteen and later gets \"enable Entra ID auth via Azure Arc\"."
+  ],
+  [
+   62.975,
+   6.412,
+   "2019 and earlier gets \"upgrade to 2022 plus Arc\", which is Category 3."
+  ],
+  [
+   69.388,
+   6.287,
+   "The blockers it flags are mixed mode, an enabled SA, orphaned logins and linked servers."
+  ],
+  [
+   75.675,
+   7.225,
+   "It doesn't detect failover cluster instances, so flag those from the cluster inventory and treat them as Category 3."
+  ],
+  [
+   82.9,
+   2.312,
+   "Two input defects to work around."
+  ],
+  [
+   85.213,
+   9.963,
+   "The SPN-inventory input file doesn't match what D1.5 writes, so passing it yields no instances and suppresses the live query; run without it."
+  ],
+  [
+   95.175,
+   4.112,
+   "And the service-account input expects a script that isn't published yet."
+  ],
+  [
+   99.287,
+   8.3,
+   "The run order for SQL Server is D1.5 and D1.7, then D1.8, then the owner matrix."
+  ],
+  [
+   107.588,
+   7.4,
+   "The script degrades rather than crashing: a failed connection is recorded as Query Failed, a slow port as Timeout."
+  ],
+  [
+   114.987,
+   8.338,
+   "Keep every run under version control, because the audit JSON is the raw input to continuous monitoring in Runbook R09."
+  ]
+ ],
+ "20": [
+  [
+   0.05,
+   3.45,
+   "Runbook R04 gives the host its cloud identity."
+  ],
+  [
+   3.5,
+   8.625,
+   "Connecting a server to Arc creates a system-assigned managed identity with no secret anyone manages, and without it there's no Entra login."
+  ],
+  [
+   12.125,
+   6.088,
+   "SQL Server 2025 uses that identity directly as its primary managed identity."
+  ],
+  [
+   18.212,
+   9.387,
+   "SQL Server 2022 authenticates with an app registration and a certificate in Key Vault, and the machine identity is what downloads the certificate."
+  ],
+  [
+   27.6,
+   2.212,
+   "The prerequisites carry the traps."
+  ],
+  [
+   29.812,
+   14.012,
+   "A G C C-Moderate tenant's Entra ID is in the commercial cloud, so the Arc resources live in a commercial subscription in the same tenant, and Entra authentication isn't available for SQL Server on Arc in US Government Virginia."
+  ],
+  [
+   43.825,
+   10.775,
+   "The instance can't be a failover cluster instance, NT AUTHORITY SYSTEM must be able to connect or the extension can't provision, and clients must trust the TLS certificate."
+  ],
+  [
+   54.6,
+   8.675,
+   "The agent and extension need outbound 443, and the engine contacts Entra ID directly, without the agent's proxy."
+  ],
+  [
+   63.275,
+   4.575,
+   "That's the one to miss: the agent shows Connected while Entra logins fail."
+  ],
+  [
+   67.85,
+   1.225,
+   "Then four steps."
+  ],
+  [
+   69.075,
+   7.975,
+   "Enroll with a certificate-based onboarding service principal; the SQL extension installs automatically unless a tag disables it."
+  ],
+  [
+   77.05,
+   12.375,
+   "Validate the token from the local identity endpoint, a two-call challenge: the audience must be database.windows.net, the expiry in the future, and the object ID the machine's principal ID."
+  ],
+  [
+   89.425,
+   1.375,
+   "Never log the token."
+  ],
+  [
+   90.8,
+   2.375,
+   "Confirm the extension shows Succeeded."
+  ],
+  [
+   93.175,
+   10.488,
+   "Then turn on Entra authentication, on a pilot first; a Privileged Role Administrator grants the Graph permissions, and setting the Entra admin creates the first sysadmin login."
+  ],
+  [
+   103.662,
+   13.963,
+   "Two program functions need correcting before you execute with them: the onboarding wrapper adds a proxy flag the agent doesn't have and falls back to interactive sign-in, and the token validator's live mode queries the Azure VM address."
+  ],
+  [
+   117.625,
+   4.975,
+   "Rollback runs in order: remove extensions, disconnect, uninstall."
+  ],
+  [
+   122.6,
+   4.225,
+   "Reconnecting creates a new identity, so permissions are granted again."
+  ],
+  [
+   126.825,
+   5.025,
+   "On SQL Server 2025, treat Entra authentication as one-way."
+  ]
+ ],
+ "21": [
+  [
+   0.05,
+   8.05,
+   "Runbook R05 adds the Entra login beside the Windows one, watches both for thirty days, and disables rather than drops."
+  ],
+  [
+   8.1,
+   4.312,
+   "Every step that runs T-SQL against an instance is review-required."
+  ],
+  [
+   12.412,
+   15.95,
+   "Don't start until the instance is on SQL Server 2022 or later, Arc-connected with a validated token and an Entra admin set; until the estate is consolidated; until you have the R03 logins file; and until clients trust the certificate."
+  ],
+  [
+   28.363,
+   3.788,
+   "Step one generates the statements, dry run first."
+  ],
+  [
+   32.15,
+   5.675,
+   "The mapping from each Windows login to an Entra principal is the one piece of real judgment."
+  ],
+  [
+   37.825,
+   12.075,
+   "The program's mapping function builds it from the identity reconciliation, not a spreadsheet: it maps only cleanly matched principals, prefers an Entra group, and flags every unresolved login."
+  ],
+  [
+   49.9,
+   9.363,
+   "The script generator then writes an idempotent CREATE LOGIN file, with unresolved entries as commented-out to-do lines, and never opens a connection."
+  ],
+  [
+   59.263,
+   10.45,
+   "Step two creates an Entra database user beside each Windows user, with CREATE USER FROM LOGIN and the same roles, permissions, schemas and ownership."
+  ],
+  [
+   69.713,
+   9.137,
+   "Don't convert with ALTER USER WITH LOGIN; on SQL Server it can't change a user's type, and the exception applies only to Azure SQL Managed Instance."
+  ],
+  [
+   78.85,
+   2.975,
+   "Step three is the thirty-day parallel run."
+  ],
+  [
+   81.825,
+   7.575,
+   "Capture successful logins for the whole window with SQL Server Audit, because a point-in-time query misses short connections."
+  ],
+  [
+   89.4,
+   10.675,
+   "The exit criteria: every application and job also appears on its Entra login, no remote N T L M remains, and nothing arrives only on the legacy login."
+  ],
+  [
+   100.075,
+   13.912,
+   "Two cautions: local connections always report N T L M, and Microsoft doesn't document what an Entra connection reports in the auth scheme column, so confirm it on the pilot, and pre-filter local sessions before the readiness check."
+  ],
+  [
+   113.987,
+   7.9,
+   "Step four cuts over by disabling, including any group logins a principal also arrives through, and rollback is re-enabling."
+  ],
+  [
+   121.888,
+   5.825,
+   "And close an enabled SA here: confirm another sysadmin can sign in, then disable it."
+  ]
+ ],
+ "22": [
+  [
+   0.05,
+   18.075,
+   "Module 5 covers the last five runbooks: N T L M detection and remediation; groups, administrative units and the Conditional Access perimeter; the application chain and connection strings; continuous monitoring and the closure record; and certificate discovery for A D CS."
+  ],
+  [
+   18.125,
+   1.3,
+   "The pattern holds."
+  ],
+  [
+   19.425,
+   11.512,
+   "Detection and inventory are read-only and script-backed, and every remediation, provisioning or configuration change is review-required, dry run first, through change control."
+  ],
+  [
+   30.938,
+   6.013,
+   "By the end of this module the posture isn't just reached; it's provable on every scheduled run."
+  ]
+ ],
+ "23": [
+  [
+   0.05,
+   8.55,
+   "Runbook R06 is detect, then remediate, and most of what you find is a missing or misplaced name rather than a protocol choice."
+  ],
+  [
+   8.6,
+   2.587,
+   "Detection is three read-only audits."
+  ],
+  [
+   11.188,
+   5.075,
+   "The D1.5 SPN inventory maps every SQL Server SPN."
+  ],
+  [
+   16.262,
+   12.613,
+   "In the program's experience a missing one is the most common cause of silent N T L M and a duplicate the second, and an instance under a domain account with no SPN usually means registration failed at startup."
+  ],
+  [
+   28.875,
+   11.85,
+   "The D1.7 collision report classifies five collision types and marks as critical any SPN held by two or more enabled accounts, or by both a computer and a user object."
+  ],
+  [
+   40.725,
+   7.138,
+   "Run it against Active Directory directly, because its input-file handoff has the same defect as R03's."
+  ],
+  [
+   47.862,
+   5.825,
+   "And D1.4 finds delegation settings and N T L M-dependency indicators."
+  ],
+  [
+   53.688,
+   8.262,
+   "Remediation changes production, and the program's SPN plan and G P O report enforce nothing; they emit reviewable plans."
+  ],
+  [
+   61.95,
+   5.5,
+   "Register a missing SPN with SetSPN dash S, in the fully qualified form."
+  ],
+  [
+   67.45,
+   7.1,
+   "Repair a collision by removing the SPN from the disabled or wrong account, leaving exactly one enabled owner."
+  ],
+  [
+   74.55,
+   14.725,
+   "For linked-server passthrough, the order of preference is Entra authentication on the linked server, then Kerberos with constrained delegation, then a mapped remote login only as a documented exception, because it brings back a stored password."
+  ],
+  [
+   89.275,
+   16.913,
+   "Then the Group Policy phases: level five refuses LM and version 1; the Restrict N T L M policies restrict version 2, with server-name exceptions at the domain controller and the client; and the full block comes on the program's April 2027 backstop."
+  ],
+  [
+   106.188,
+   5.175,
+   "The G P O report classifies each policy's posture and never sets anything."
+  ],
+  [
+   111.362,
+   7.188,
+   "Verify with klist purge, reconnect and klist, and check that the auth scheme reads KERBEROS from a remote client."
+  ],
+  [
+   118.55,
+   10.2,
+   "Rollback is SetSPN dash D and the prior policy values, and because the block is last, the Kerberos fixes are proven long before anything is refused."
+  ]
+ ],
+ "24": [
+  [
+   0.05,
+   3.737,
+   "Runbook R07 moves the access-control layer."
+  ],
+  [
+   3.788,
+   8.35,
+   "The group model survives; what changes is who maintains membership, who may administer it, and the boundary every sign-in has to cross."
+  ],
+  [
+   12.137,
+   1.688,
+   "Phase 1 is read-only."
+  ],
+  [
+   13.825,
+   8.825,
+   "The program's group export reads Entra groups through Microsoft Graph or replays a snapshot, and the dynamic switch captures membership rules."
+  ],
+  [
+   22.65,
+   3.8,
+   "A G C C tenant keeps the worldwide Graph endpoint."
+  ],
+  [
+   26.45,
+   12.213,
+   "The Conditional Access export confirms the perimeter, but a policy's state only says on, off or report-only; whether it covers SQL Server sign-ins depends on its users and target resources."
+  ],
+  [
+   38.663,
+   4.025,
+   "The classification function gives every group one of four types."
+  ],
+  [
+   42.688,
+   5.125,
+   "Type 1, O U-derived, becomes a dynamic security group and a group login."
+  ],
+  [
+   47.812,
+   5.275,
+   "Type 2, explicit role assignment, becomes an assigned group and a group login."
+  ],
+  [
+   53.087,
+   7.525,
+   "Type 3, a distribution list, becomes a Microsoft 365 group with no SQL Server login at all."
+  ],
+  [
+   60.612,
+   7.612,
+   "Type 4, mail-enabled security, splits into a mail group and an access group, and only the access half gets a login."
+  ],
+  [
+   68.225,
+   2.688,
+   "Group logins are type X, not type E."
+  ],
+  [
+   70.912,
+   3.75,
+   "Phase 2 is review-required, and its order is fixed."
+  ],
+  [
+   74.662,
+   7.3,
+   "First the DBA administrative unit, with restricted management turned on at creation, because it can't be changed later."
+  ],
+  [
+   81.963,
+   6.987,
+   "Second, Groups Administrator scoped to that unit for the DBA lead, eligible through pim rather than standing."
+  ],
+  [
+   88.95,
+   9.425,
+   "Third, the groups inside it, added explicitly, with logins generated by the group-login script, which can never turn a distribution list into a login."
+  ],
+  [
+   98.375,
+   13.825,
+   "Know the costs: tenant administrators can still assign themselves over the unit, though it's audited; its members can't be covered by pim, access reviews or entitlement management; and a tenant gets at most 100 such units."
+  ],
+  [
+   112.2,
+   6.963,
+   "The dividend: once every login is an Entra principal, Conditional Access is the perimeter for human access."
+  ],
+  [
+   119.162,
+   10.325,
+   "Microsoft documents targeting the Azure SQL Database application; that it governs Arc-enabled SQL Server is the program's working assumption, to confirm in the pilot."
+  ],
+  [
+   129.488,
+   3.7,
+   "It reaches users only, and risk conditions need P2."
+  ]
+ ],
+ "25": [
+  [
+   0.05,
+   2.663,
+   "Runbook R08 is the last mile."
+  ],
+  [
+   2.712,
+   9.488,
+   "An application that signs users in with Entra ID but reaches the database with a stored password has moved its front door and left the back door where it was."
+  ],
+  [
+   12.2,
+   6.3,
+   "Phase 1 inventories the el-dap-bind dependency with the read-only D1.9 script."
+  ],
+  [
+   18.5,
+   15.262,
+   "It combines account heuristics with domain controller evidence: event 4624 with logon type 8, a clear-text bind, and events 2887 and 2889 in the Directory Service log."
+  ],
+  [
+   33.763,
+   13.812,
+   "Event 2889 names each client, but only after the el-dap interface diagnostic setting is raised to two, and nothing is logged retroactively, so start the window after the change and set it back afterward."
+  ],
+  [
+   47.575,
+   14.363,
+   "D1.9 doesn't say which instance an application uses, so the program's connection-plan function joins it to the D1.8 audit, assigns each application a class from observable signals, and emits the connection-string change."
+  ],
+  [
+   61.938,
+   7.312,
+   "Phase 2 is the simplest change and the most gated, and it's made in application configuration, never by a script."
+  ],
+  [
+   69.25,
+   5.037,
+   "In production, name a specific mode, such as Active Directory Managed Identity."
+  ],
+  [
+   74.287,
+   7.975,
+   "The Default mode tries credential providers in sequence, which slows the first connection and can switch identity when the host changes."
+  ],
+  [
+   82.263,
+   5.487,
+   "Service principal mode takes its secret from protected configuration, never from source."
+  ],
+  [
+   87.75,
+   4.938,
+   "Setting the mode turns on encryption, so the server certificate must be trusted."
+  ],
+  [
+   92.688,
+   8.975,
+   "On an Arc host the driver gets the machine's token from the local metadata service, and the process must be in the hybrid agent extension applications group."
+  ],
+  [
+   101.662,
+   7.287,
+   "Every application on that host is then the same principal, so give each its own service principal where grants differ."
+  ],
+  [
+   108.95,
+   9.925,
+   "Three gates before cutover: the Entra login exists, the identity holds the right database role, and the change was tested on a production-equivalent Arc stack."
+  ],
+  [
+   118.875,
+   8.3,
+   "The audience is database.windows.net, not the Azure Government one, and pooled applications use the access-token callback."
+  ],
+  [
+   127.175,
+   5.263,
+   "Rollback is the prior connection string, with the legacy login disabled, not dropped."
+  ]
+ ],
+ "26": [
+  [
+   0.05,
+   3.125,
+   "Runbook R09 keeps proving the posture."
+  ],
+  [
+   3.175,
+   7.188,
+   "Closure isn't a day on the calendar; it's a record that keeps coming back clean, and everything here is read-only."
+  ],
+  [
+   10.363,
+   9.562,
+   "Step one runs the D1.8 deep audit on a schedule against the retain and target estate, keeping every run's JSON under version control."
+  ],
+  [
+   19.925,
+   3.888,
+   "It's the same script as R03, on a different cadence."
+  ],
+  [
+   23.812,
+   4.213,
+   "Step two projects each run onto the per-instance closure record."
+  ],
+  [
+   28.025,
+   32.625,
+   "The fields are Windows Authentication mode, which proves only that SQL logins are refused; zero active SQL logins outside the exception registry; zero active user and group logins; every Entra login reconciled to a known principal; SA disabled and renamed; the Arc agent connected; Entra authentication configured, through the managed identity on 2025 or an app registration on 2022; and M F A through Conditional Access, joined from the sign-in logs rather than copied."
+  ],
+  [
+   60.65,
+   6.675,
+   "The program's closure-record function returns closed, closed-excepted or open, with the failing fields."
+  ],
+  [
+   67.325,
+   16.275,
+   "Step three turns the difference between two runs into drift events: mixed mode enabled, a new SQL login, a new Windows login or the Arc agent offline, each a violation, plus instances that appear or disappear, which may be a discovery gap."
+  ],
+  [
+   83.6,
+   7.1,
+   "One caution: the audit reads the running mode, so a registry change is invisible until the service restarts."
+  ],
+  [
+   90.7,
+   3.038,
+   "Add a registry check if earlier warning matters."
+  ],
+  [
+   93.737,
+   4.475,
+   "Step four is the behavioral layer, three sources with distinct jobs."
+  ],
+  [
+   98.213,
+   4.638,
+   "Defender for SQL raises threat alerts but isn't an authentication log."
+  ],
+  [
+   102.85,
+   6.062,
+   "Entra sign-in logs record each token issued, and a token can be reused across connections."
+  ],
+  [
+   108.912,
+   7.6,
+   "The instance and host record the protocol itself, and any N T L M or Kerberos connection is an immediate alert."
+  ],
+  [
+   116.513,
+   14.137,
+   "The transformation is closed when six evidence sets hold together across the validation period: closure records, sign-in logs, protocol telemetry, the SA report, the M F A report and the exception registry."
+  ],
+  [
+   130.65,
+   4.188,
+   "Then April 1, 2027 arrives as a non-event."
+  ]
+ ],
+ "27": [
+  [
+   0.05,
+   4.175,
+   "Runbook R10 is discovery and analysis, not provisioning."
+  ],
+  [
+   4.225,
+   6.3,
+   "Before anyone sets a date to switch off the certificate authority, someone has to find out what it still signs."
+  ],
+  [
+   10.525,
+   8.488,
+   "The program has no decision yet on the move from A D CS to a cloud P K I, so this runbook produces the evidence that decision will need."
+  ],
+  [
+   19.012,
+   16.4,
+   "Step one runs the read-only D1.10 certificate audit across Active Directory: the P K I inventory, machine and user certificates, smart-card-required accounts, and service dependencies, including el-dap over TLS on domain controllers."
+  ],
+  [
+   35.413,
+   7.062,
+   "It records the issuing CA on every certificate, which is exactly the signal for what depends on A D CS."
+  ],
+  [
+   42.475,
+   4.425,
+   "It doesn't reach into an instance, so three in-engine reads supplement it."
+  ],
+  [
+   46.9,
+   6.125,
+   "Join certificates to their logins on the SID, not the principal ID, and read the issuer name."
+  ],
+  [
+   53.025,
+   9.25,
+   "An empty certificate setting doesn't mean no certificate, because SQL Server picks one from the machine store or generates its own; check the error log at startup."
+  ],
+  [
+   62.275,
+   7.1,
+   "And check mirroring and availability-group endpoints; one reporting N T L M is also an R06 finding."
+  ],
+  [
+   69.375,
+   3.438,
+   "Step two maps the results to three dependencies."
+  ],
+  [
+   72.812,
+   10.5,
+   "The engine's TLS certificate: every Entra connection requires encryption, so if the CA is gone when the certificate expires, encryption becomes what breaks the connection."
+  ],
+  [
+   83.312,
+   10.512,
+   "Certificate-mapped logins and endpoints carry less risk than the source claimed, because certificate logins are used only for code signing and can't connect, and most are self-signed."
+  ],
+  [
+   93.825,
+   9.425,
+   "And certificate-based sign-in, the interim posture for the N T L M long tail, needs a replacement CA issuing before A D CS retires."
+  ],
+  [
+   103.25,
+   8.738,
+   "Step three orders the CA migration, roots before issuing CAs, with cycles and cross-domain dependencies flagged as blockers."
+  ],
+  [
+   111.987,
+   11.875,
+   "One fact for the decision: Microsoft Cloud P K I issues to Intune-managed devices, and Intune doesn't support Windows Server, so SQL Server hosts would need another enrollment path."
+  ],
+  [
+   123.862,
+   5.987,
+   "The finding is one question: does the A D CS decommission run earlier than its replacement?"
+  ],
+  [
+   129.85,
+   4.013,
+   "If it does, the interim posture is lost exactly when it's needed."
+  ]
+ ],
+ "28": [
+  [
+   0.05,
+   2.95,
+   "To close, five things to take back to the estate."
+  ],
+  [
+   3.0,
+   2.212,
+   "First, count before you migrate."
+  ],
+  [
+   5.213,
+   11.363,
+   "The inventory and the retain, consolidate or retire gate decide where every hour of authentication work goes; migrating an instance you should have retired is waste against a fixed date."
+  ],
+  [
+   16.575,
+   2.438,
+   "Second, measure, don't assume."
+  ],
+  [
+   19.012,
+   9.5,
+   "A missing SPN turns Kerberos into N T L M silently, and only the auth scheme column, the Windows logs and SQL Server Audit show it."
+  ],
+  [
+   28.512,
+   1.938,
+   "Third, keep it reversible."
+  ],
+  [
+   30.45,
+   5.025,
+   "Create, validate, disable, observe for thirty days, then drop."
+  ],
+  [
+   35.475,
+   2.737,
+   "A disabled login is an instant rollback."
+  ],
+  [
+   38.212,
+   1.663,
+   "Fourth, finish the chain."
+  ],
+  [
+   39.875,
+   10.363,
+   "An instance isn't closed while any application still reaches it with Integrated Security or a stored password, or while a Class 4 application holds it on Windows Authentication."
+  ],
+  [
+   50.237,
+   2.062,
+   "Fifth, prove it continuously."
+  ],
+  [
+   52.3,
+   11.475,
+   "The closure record, drift detection and the six evidence sets make done a queryable posture rather than a claim, and the certificate layer underneath needs its own decision before A D CS goes away."
+  ],
+  [
+   63.775,
+   3.95,
+   "April 1, 2027 is the program's backstop."
+  ],
+  [
+   67.725,
+   6.8,
+   "If the work is finished well before it and the evidence has been clean for months, the block arrives as a non-event."
+  ],
+  [
+   74.525,
+   6.537,
+   "Book 06 has the narrative chapters and the ten runbooks, with every external claim footnoted."
+  ],
+  [
+   81.062,
+   0.762,
+   "Thank you."
+  ]
+ ]
+}

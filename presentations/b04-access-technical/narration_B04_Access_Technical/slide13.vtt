@@ -1,0 +1,165 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:05.301
+Every control that blocks an administrative
+path also creates a way to lock the
+
+2
+00:00:05.301 --> 00:00:08.244
+agency out of its own
+tenant: federation down,
+
+3
+00:00:08.244 --> 00:00:12.938
+every administrator's MFA device
+unavailable, a misconfigured policy,
+
+4
+00:00:12.938 --> 00:00:17.075
+or every privileged role eligible
+with no approver able to act.
+
+5
+00:00:17.075 --> 00:00:20.428
+Emergency access accounts,
+break-glass, are the answer,
+
+6
+00:00:20.428 --> 00:00:24.750
+and they're the only standing privilege
+the program accepts by design.
+
+7
+00:00:24.750 --> 00:00:26.500
+The standard is on the left.
+
+8
+00:00:26.500 --> 00:00:31.593
+Two or more cloud-only accounts on the
+tenant's onmicrosoft dot com domain, neither
+
+9
+00:00:31.593 --> 00:00:36.312
+synchronized nor federated, and not tied
+to one person or an employee's phone.
+
+10
+00:00:36.312 --> 00:00:41.146
+Permanent active Global Administrator;
+together with service principals that can't
+
+11
+00:00:41.146 --> 00:00:45.775
+perform an activation, they're the only
+standing active assignments in the tenant.
+
+12
+00:00:45.775 --> 00:00:50.130
+Phishing-resistant authentication,
+a FIDO2 passkey or certificate-based
+
+13
+00:00:50.130 --> 00:00:54.825
+authentication, using methods different
+from the normal administrator accounts.
+
+14
+00:00:54.825 --> 00:00:59.194
+The older pattern of a password in
+sealed envelopes is superseded,
+
+15
+00:00:59.194 --> 00:01:02.371
+because a password alone
+can no longer reach the
+
+16
+00:01:02.371 --> 00:01:06.025
+admin portals where Microsoft's
+mandatory MFA applies.
+
+17
+00:01:06.025 --> 00:01:10.003
+Excluded from every policy that
+blocks or restricts sign-in,
+
+18
+00:01:10.003 --> 00:01:11.913
+through one dedicated group.
+
+19
+00:01:11.913 --> 00:01:14.986
+Validated at least every
+ninety days by signing
+
+20
+00:01:14.986 --> 00:01:17.675
+in and performing an administrative task.
+
+21
+00:01:17.675 --> 00:01:19.825
+On the right is how
+the build watches them.
+
+22
+00:01:19.825 --> 00:01:23.254
+Report-only policies
+don't need the exclusion,
+
+23
+00:01:23.254 --> 00:01:27.225
+so CA090 is the one policy
+that records their sign-ins.
+
+24
+00:01:27.225 --> 00:01:29.578
+Alerts match the accounts' object IDs,
+
+25
+00:01:29.578 --> 00:01:33.450
+because their names deliberately
+don't reveal their purpose.
+
+26
+00:01:33.450 --> 00:01:38.138
+Every use is a critical incident
+until a post-use review closes it.
+
+27
+00:01:38.138 --> 00:01:43.685
+And because NIST's AC-2(2) expects emergency
+accounts to be disabled automatically
+
+28
+00:01:43.685 --> 00:01:48.836
+after a defined period, the system security
+plan records these as a documented
+
+29
+00:01:48.836 --> 00:01:50.658
+deviation, with monitoring,
+
+30
+00:01:50.658 --> 00:01:55.413
+post-use review and the ninety-day
+validation as compensating controls.
+
+31
+00:01:55.413 --> 00:01:56.799
+Finally, order.
+
+32
+00:01:56.799 --> 00:02:00.375
+The accounts exist and pass
+a test before any role
+
+33
+00:02:00.375 --> 00:02:03.775
+is made eligible or any
+approval is switched on.
+
+34
+00:02:03.775 --> 00:02:07.080
+Module three explains the
+lockout that prevents.

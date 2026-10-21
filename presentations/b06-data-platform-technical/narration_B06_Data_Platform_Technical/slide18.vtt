@@ -1,0 +1,157 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:06.075
+Runbook R02 is Phase 0: count everything
+first, decide what survives second.
+
+2
+00:00:06.075 --> 00:00:09.556
+Discovery is read-only; the
+consolidation it leads to
+
+3
+00:00:09.556 --> 00:00:13.038
+is review-required and
+belongs to the migration plan.
+
+4
+00:00:13.038 --> 00:00:15.874
+The inventory starts from
+the program's scripts.
+
+5
+00:00:15.874 --> 00:00:19.324
+The D1.8 audit script, run
+in discovery-only form,
+
+6
+00:00:19.324 --> 00:00:25.249
+finds instances from their SQL Server SPNs
+and an explicit target list and reads
+
+7
+00:00:25.249 --> 00:00:28.964
+each host's services over
+CIM; without a connection,
+
+8
+00:00:28.964 --> 00:00:32.413
+version and authentication
+mode read Unknown.
+
+9
+00:00:32.413 --> 00:00:39.246
+The D1.5 SPN inventory gives the domain's
+SPN trail, with duplicates and orphans:
+
+10
+00:00:39.246 --> 00:00:44.713
+SPNs on disabled objects, or on
+objects with no logon in 180 days.
+
+11
+00:00:44.713 --> 00:00:46.906
+Those scripts miss what has no SPN,
+
+12
+00:00:46.906 --> 00:00:51.608
+like an Express instance an installer
+dropped on an application server,
+
+13
+00:00:51.608 --> 00:00:55.683
+so cast wider with Find-DbaInstance,
+a forest-wide SetSPN query,
+
+14
+00:00:55.683 --> 00:00:58.974
+and Azure Migrate or the
+Arc migration assessment.
+
+15
+00:00:58.974 --> 00:01:02.825
+Then the program's estate-inventory
+function fuses the sources.
+
+16
+00:01:02.825 --> 00:01:08.287
+It keys every instance on host and
+instance name, so duplicates collapse,
+
+17
+00:01:08.287 --> 00:01:14.387
+records which instruments found each one,
+and applies a first pass on two signals:
+
+18
+00:01:14.387 --> 00:01:17.756
+last access at or above
+400 days means retire,
+
+19
+00:01:17.756 --> 00:01:22.763
+a pre-2022 engine means consolidate,
+and 2022 or later means retain.
+
+20
+00:01:22.763 --> 00:01:27.788
+Anything without enough signal lands
+in review, never silently in retain.
+
+21
+00:01:27.788 --> 00:01:30.349
+The lenses come next, with one caution.
+
+22
+00:01:30.349 --> 00:01:34.017
+The index-usage DMV resets
+whenever the engine starts,
+
+23
+00:01:34.017 --> 00:01:38.825
+so it can't prove 400 days of disuse
+unless the instance has run that long.
+
+24
+00:01:38.825 --> 00:01:43.771
+Read the start time beside it, and take
+long-horizon evidence from login auditing,
+
+25
+00:01:43.771 --> 00:01:46.650
+backup history and the
+application portfolio.
+
+26
+00:01:46.650 --> 00:01:50.947
+For dependencies, read
+sys.servers and the linked logins,
+
+27
+00:01:50.947 --> 00:01:54.512
+plus the Agent, replication
+and SSIS footprint.
+
+28
+00:01:54.512 --> 00:01:59.988
+Finally the architects confirm or override
+each verdict, with the reason recorded.
+
+29
+00:01:59.988 --> 00:02:02.291
+The evidence is the sealed inventory,
+
+30
+00:02:02.291 --> 00:02:05.562
+with its classification
+counts and its denominator.
+
+31
+00:02:05.562 --> 00:02:08.655
+And schedule network sweeps
+with security operations,
+
+32
+00:02:08.655 --> 00:02:11.140
+because intrusion detection can flag them.

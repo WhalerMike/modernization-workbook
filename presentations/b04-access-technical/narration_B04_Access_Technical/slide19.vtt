@@ -1,0 +1,157 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.438
+The approval engine has three
+properties that shape the design.
+
+2
+00:00:03.438 --> 00:00:05.851
+Approvers don't need to hold any role.
+
+3
+00:00:05.851 --> 00:00:10.491
+Approvers can't approve their own requests,
+and service principals can't approve
+
+4
+00:00:10.491 --> 00:00:15.063
+at all; that's enforced by the platform,
+which is worth saying in the security plan.
+
+5
+00:00:15.063 --> 00:00:18.399
+And approvers need a P2
+or Governance license.
+
+6
+00:00:18.399 --> 00:00:20.775
+From those, the separation rules.
+
+7
+00:00:20.775 --> 00:00:25.050
+A tier's approvers aren't members
+of that tier's eligible population;
+
+8
+00:00:25.050 --> 00:00:28.867
+otherwise the approvers and the
+requesters are the same set,
+
+9
+00:00:28.867 --> 00:00:31.463
+and approval degrades to mutual sign-off.
+
+10
+00:00:31.463 --> 00:00:35.862
+The platform blocks self-approval;
+only group design blocks collusion.
+
+11
+00:00:35.862 --> 00:00:37.926
+At least two approvers per tier,
+
+12
+00:00:37.926 --> 00:00:41.737
+held as governed groups,
+because named individuals leave.
+
+13
+00:00:41.737 --> 00:00:45.419
+Tier 0 approvers sit outside
+the Tier 0 population,
+
+14
+00:00:45.419 --> 00:00:47.962
+for example in the security office.
+
+15
+00:00:47.962 --> 00:00:50.984
+The approver's own
+justification is required,
+
+16
+00:00:50.984 --> 00:00:53.687
+so the record holds a
+decision, not a click.
+
+17
+00:00:53.687 --> 00:00:57.513
+And approver groups are reviewed like
+the privileged objects they are.
+
+18
+00:00:57.513 --> 00:01:00.100
+On the right, the signals and records.
+
+19
+00:01:00.100 --> 00:01:03.825
+The most important PIM alert
+is roles assigned outside PIM,
+
+20
+00:01:03.825 --> 00:01:08.387
+high severity, because an assignment
+made outside PIM never met the gate.
+
+21
+00:01:08.387 --> 00:01:10.282
+It detects rather than prevents;
+
+22
+00:01:10.282 --> 00:01:14.351
+limiting who holds Privileged Role
+Administrator is the prevention.
+
+23
+00:01:14.351 --> 00:01:18.526
+The approval window is a fixed
+twenty-four hours with a single stage,
+
+24
+00:01:18.526 --> 00:01:23.223
+so a Tier 0 path staffed by two people in
+one time zone will strand out-of-hours
+
+25
+00:01:23.223 --> 00:01:27.324
+requests; the documented answer
+to "the approvers are unavailable
+
+26
+00:01:27.324 --> 00:01:31.500
+and production is down" is the
+emergency procedure, not a workaround.
+
+27
+00:01:31.500 --> 00:01:36.121
+Role reviews run monthly for Tier 0
+and quarterly otherwise, and never as
+
+28
+00:01:36.121 --> 00:01:41.050
+self-review, because self-review leaves
+role-assignable groups out entirely.
+
+29
+00:01:41.050 --> 00:01:44.165
+And PIM's audit history keeps thirty days,
+
+30
+00:01:44.165 --> 00:01:47.738
+so the logs are exported
+for AU-11 before go-live.
+
+31
+00:01:47.738 --> 00:01:52.513
+One date to act on: the
+legacy beta privileged-access
+
+32
+00:01:52.513 --> 00:01:56.512
+API stops returning data
+on October 28, 2026.
+
+33
+00:01:56.512 --> 00:01:58.870
+Anything still calling it must move now.

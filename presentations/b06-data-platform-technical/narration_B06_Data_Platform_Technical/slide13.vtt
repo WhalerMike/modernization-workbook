@@ -1,0 +1,148 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.900
+The program's three phases
+apply to SQL Server unchanged.
+
+2
+00:00:03.900 --> 00:00:05.718
+After the April 2027 block,
+
+3
+00:00:05.718 --> 00:00:10.675
+any connection that needs NTLM fails
+in the Windows security subsystem,
+
+4
+00:00:10.675 --> 00:00:16.375
+where the Local Security Authority enforces
+the policy, so the engine never sees it.
+
+5
+00:00:16.375 --> 00:00:20.550
+Every pattern has to be resolved
+before Phase C, not after.
+
+6
+00:00:20.550 --> 00:00:21.925
+Phase A discovers.
+
+7
+00:00:21.925 --> 00:00:25.769
+The authentication audit
+is the primary instrument,
+
+8
+00:00:25.769 --> 00:00:29.613
+and Windows logging records
+what actually happened:
+
+9
+00:00:29.613 --> 00:00:35.204
+events 4624 and 4625 with logon type 3
+and the NTLM package on SQL Server hosts;
+
+10
+00:00:35.204 --> 00:00:41.145
+the auth scheme column for per-connection
+proof; the Restrict NTLM audit policies,
+
+11
+00:00:41.145 --> 00:00:43.940
+which log what a later deny would block,
+
+12
+00:00:43.940 --> 00:00:48.046
+with event 8004 on domain
+controllers naming the server;
+
+13
+00:00:48.046 --> 00:00:53.725
+and enhanced NTLM logging, which says who
+used NTLM and why Kerberos wasn't used.
+
+14
+00:00:53.725 --> 00:00:55.287
+Phase B restricts.
+
+15
+00:00:55.287 --> 00:00:59.138
+First, the LAN Manager
+authentication level set to five.
+
+16
+00:00:59.138 --> 00:01:06.024
+Be precise: domain controllers then refuse
+LM and version 1 but still accept version
+
+17
+00:01:06.024 --> 00:01:08.976
+2, so level five is the version-1 block,
+
+18
+00:01:08.976 --> 00:01:13.501
+targeted for the third quarter
+of 2026, not an NTLM block.
+
+19
+00:01:13.501 --> 00:01:19.227
+Microsoft's October 2026 update is a
+different control again; it blocks only NTLM
+
+20
+00:01:19.227 --> 00:01:25.125
+version 1 derived single sign-on credentials,
+on devices without Credential Guard.
+
+21
+00:01:25.125 --> 00:01:29.161
+Then the pattern work: SPNs,
+domain-controller reachability,
+
+22
+00:01:29.161 --> 00:01:31.825
+linked servers and connection strings.
+
+23
+00:01:31.825 --> 00:01:35.958
+Version 2 is restricted with
+the Restrict NTLM deny settings,
+
+24
+00:01:35.958 --> 00:01:41.550
+whose exceptions are lists of server names
+on clients and domain controllers only.
+
+25
+00:01:41.550 --> 00:01:44.062
+There's no list for the server role,
+
+26
+00:01:44.062 --> 00:01:49.175
+so an instance that must keep accepting
+NTLM can't deny incoming NTLM.
+
+27
+00:01:49.175 --> 00:01:54.737
+Phase C eliminates: Restrict
+NTLM set to deny on every host.
+
+28
+00:01:54.737 --> 00:01:58.195
+It's safe only after login
+migration is complete,
+
+29
+00:01:58.195 --> 00:02:03.037
+and an instance on Entra logins is
+immune, because it isn't using NTLM.
+
+30
+00:02:03.037 --> 00:02:05.549
+The book leaves one decision open:
+
+31
+00:02:05.549 --> 00:02:09.190
+whether the date holds for
+the pre-2022 long tail.

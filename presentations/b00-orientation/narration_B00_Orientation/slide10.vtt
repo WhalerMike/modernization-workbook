@@ -1,0 +1,85 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.600
+Inside the program run seven
+complementary projects.
+
+2
+00:00:03.600 --> 00:00:08.389
+Each has its own charter, sponsor,
+lead and pilot-scale success criteria,
+
+3
+00:00:08.389 --> 00:00:12.772
+and each turns a gap the program
+finds often into executable work:
+
+4
+00:00:12.772 --> 00:00:17.804
+identity lifecycle, endpoints, network
+and access, continuous monitoring,
+
+5
+00:00:17.804 --> 00:00:21.700
+privileged access, the data
+platform, and the supply chain.
+
+6
+00:00:21.700 --> 00:00:27.200
+Identity goes first, because everything
+else consumes its attributes and owners.
+
+7
+00:00:27.200 --> 00:00:31.025
+Privileged access is chartered
+fifth but starts early,
+
+8
+00:00:31.025 --> 00:00:34.850
+in the Foundation phase, for
+Tier 0 and emergency access.
+
+9
+00:00:34.850 --> 00:00:39.924
+One detail matters there: Microsoft's
+guidance is at least two cloud-only emergency
+
+10
+00:00:39.924 --> 00:00:43.306
+access accounts with permanent
+Global Administrator,
+
+11
+00:00:43.306 --> 00:00:48.012
+so a target of zero permanent Global
+Administrators must exempt them by name.
+
+12
+00:00:48.012 --> 00:00:49.751
+Two source claims have moved.
+
+13
+00:00:49.751 --> 00:00:55.304
+OMB rescinded the secure-development
+attestation requirement in January 2026,
+
+14
+00:00:55.304 --> 00:01:00.775
+so a software bill of materials is now an
+agency choice backed by contract terms.
+
+15
+00:01:00.775 --> 00:01:05.725
+And FedRAMP certifies a service, while
+the agency authorizes its own system.
+
+16
+00:01:05.725 --> 00:01:09.235
+Finally, no project creates
+a second source of truth,
+
+17
+00:01:09.235 --> 00:01:12.410
+and no project clears a
+program gate on its own.

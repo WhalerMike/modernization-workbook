@@ -1,0 +1,153 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.907
+Runbook R05 adds the Entra
+login beside the Windows one,
+
+2
+00:00:03.907 --> 00:00:08.100
+watches both for thirty days,
+and disables rather than drops.
+
+3
+00:00:08.100 --> 00:00:12.412
+Every step that runs T-SQL against
+an instance is review-required.
+
+4
+00:00:12.412 --> 00:00:16.569
+Don't start until the instance
+is on SQL Server 2022 or later,
+
+5
+00:00:16.569 --> 00:00:20.726
+Arc-connected with a validated
+token and an Entra admin set;
+
+6
+00:00:20.726 --> 00:00:25.477
+until the estate is consolidated;
+until you have the R03 logins file;
+
+7
+00:00:25.477 --> 00:00:28.362
+and until clients trust the certificate.
+
+8
+00:00:28.362 --> 00:00:32.151
+Step one generates the
+statements, dry run first.
+
+9
+00:00:32.151 --> 00:00:35.101
+The mapping from each
+Windows login to an Entra
+
+10
+00:00:35.101 --> 00:00:37.825
+principal is the one
+piece of real judgment.
+
+11
+00:00:37.825 --> 00:00:42.609
+The program's mapping function builds
+it from the identity reconciliation,
+
+12
+00:00:42.609 --> 00:00:46.331
+not a spreadsheet: it maps only
+cleanly matched principals,
+
+13
+00:00:46.331 --> 00:00:49.900
+prefers an Entra group, and
+flags every unresolved login.
+
+14
+00:00:49.900 --> 00:00:54.087
+The script generator then writes
+an idempotent CREATE LOGIN file,
+
+15
+00:00:54.087 --> 00:00:59.263
+with unresolved entries as commented-out
+to-do lines, and never opens a connection.
+
+16
+00:00:59.263 --> 00:01:03.888
+Step two creates an Entra database
+user beside each Windows user,
+
+17
+00:01:03.888 --> 00:01:09.713
+with CREATE USER FROM LOGIN and the same
+roles, permissions, schemas and ownership.
+
+18
+00:01:09.713 --> 00:01:14.164
+Don't convert with ALTER USER WITH
+LOGIN; on SQL Server it can't change a
+
+19
+00:01:14.164 --> 00:01:18.850
+user's type, and the exception applies
+only to Azure SQL Managed Instance.
+
+20
+00:01:18.850 --> 00:01:21.825
+Step three is the thirty-day parallel run.
+
+21
+00:01:21.825 --> 00:01:26.050
+Capture successful logins for the
+whole window with SQL Server Audit,
+
+22
+00:01:26.050 --> 00:01:29.400
+because a point-in-time query
+misses short connections.
+
+23
+00:01:29.400 --> 00:01:35.051
+The exit criteria: every application
+and job also appears on its Entra login,
+
+24
+00:01:35.051 --> 00:01:40.075
+no remote NTLM remains, and nothing
+arrives only on the legacy login.
+
+25
+00:01:40.075 --> 00:01:43.274
+Two cautions: local
+connections always report NTLM,
+
+26
+00:01:43.274 --> 00:01:48.407
+and Microsoft doesn't document what an
+Entra connection reports in the auth scheme
+
+27
+00:01:48.407 --> 00:01:50.416
+column, so confirm it on the pilot,
+
+28
+00:01:50.416 --> 00:01:53.987
+and pre-filter local sessions
+before the readiness check.
+
+29
+00:01:53.987 --> 00:01:57.898
+Step four cuts over by disabling,
+including any group logins
+
+30
+00:01:57.898 --> 00:02:01.887
+a principal also arrives through,
+and rollback is re-enabling.
+
+31
+00:02:01.887 --> 00:02:07.780
+And close an enabled SA here: confirm another
+sysadmin can sign in, then disable it.

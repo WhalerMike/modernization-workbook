@@ -1,0 +1,142 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.238
+Who owns all this?
+
+2
+00:00:01.238 --> 00:00:04.000
+The book's sharpest
+observation is that the most
+
+3
+00:00:04.000 --> 00:00:07.176
+expensive network mistakes
+aren't engineering errors.
+
+4
+00:00:07.176 --> 00:00:11.598
+They're ownership gaps: a circuit bought
+before anyone owned the governor,
+
+5
+00:00:11.598 --> 00:00:14.643
+a cutover before anyone
+filed the boundary change,
+
+6
+00:00:14.643 --> 00:00:19.138
+a telemetry contract cancelled before
+anyone confirmed its replacement.
+
+7
+00:00:19.138 --> 00:00:22.962
+Naming one decider for each step
+is cheaper than any product.
+
+8
+00:00:22.962 --> 00:00:25.437
+The register separates
+deciding from doing.
+
+9
+00:00:25.437 --> 00:00:28.626
+A role decides when it is
+accountable and can say no.
+
+10
+00:00:28.626 --> 00:00:31.239
+Network engineering does most of the work,
+
+11
+00:00:31.239 --> 00:00:34.375
+but decides only physics
+and enforcement phasing.
+
+12
+00:00:34.375 --> 00:00:35.887
+Read down the middle column.
+
+13
+00:00:35.887 --> 00:00:41.278
+The sponsor and CIO decide the governor
+platforms and the order of branch waves,
+
+14
+00:00:41.278 --> 00:00:44.626
+because those fix cost and
+the boundary for years;
+
+15
+00:00:44.626 --> 00:00:49.363
+acquisition is engaged in Phase 0
+and waves follow contract renewals.
+
+16
+00:00:49.363 --> 00:00:53.137
+The CISO sets the security
+envelope every order carries.
+
+17
+00:00:53.137 --> 00:00:58.272
+Security architecture decides the refresh
+attributes and where each enforcement
+
+18
+00:00:58.272 --> 00:01:02.525
+capability sits, but doesn't accept
+the risk of a non-conformant design.
+
+19
+00:01:02.525 --> 00:01:07.944
+The authorizing official accepts risk, so
+four rows land there: the boundary change,
+
+20
+00:01:07.944 --> 00:01:13.441
+decided before the first production cutover;
+the Microsoft 365 Optimize exception,
+
+21
+00:01:13.441 --> 00:01:17.290
+where device-side tenant
+restrictions are a precondition;
+
+22
+00:01:17.290 --> 00:01:21.138
+the interim gap; and any standing
+exception with no end date.
+
+23
+00:01:21.138 --> 00:01:22.900
+Two rows split on purpose.
+
+24
+00:01:22.900 --> 00:01:28.013
+The authorizing official decides whether
+the boundary may change, but the system
+
+25
+00:01:28.013 --> 00:01:32.975
+owner decides, site by site, whether that
+site's control layer is live and logging.
+
+26
+00:01:32.975 --> 00:01:36.424
+And telemetry splits three
+ways: the CISO decides,
+
+27
+00:01:36.424 --> 00:01:41.350
+security operations confirms, and
+the contracting officer terminates.
+
+28
+00:01:41.350 --> 00:01:45.280
+When an architectural refusal
+arrives with no control basis,
+
+29
+00:01:45.280 --> 00:01:49.340
+record it as a governance failure,
+with the refusing role named.

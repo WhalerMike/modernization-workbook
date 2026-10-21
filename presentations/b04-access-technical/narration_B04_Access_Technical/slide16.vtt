@@ -1,0 +1,161 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.600
+Self-request has two layers, and
+an agency can run either or both.
+
+2
+00:00:04.600 --> 00:00:09.675
+Self-request for eligibility is a person
+asking to become eligible for a role.
+
+3
+00:00:09.675 --> 00:00:14.023
+It's decided in entitlement management,
+through an access package for the
+
+4
+00:00:14.023 --> 00:00:18.300
+role-assignable group, and it answers:
+may this person ever hold this role?
+
+5
+00:00:18.300 --> 00:00:21.618
+Self-request for activation
+is an already-eligible
+
+6
+00:00:21.618 --> 00:00:25.013
+person asking to turn the
+role on for a bounded window.
+
+7
+00:00:25.013 --> 00:00:29.837
+It's decided in PIM, and it answers:
+may this person use this role right now?
+
+8
+00:00:29.837 --> 00:00:32.697
+Microsoft's guidance
+for the DoD Zero Trust
+
+9
+00:00:32.697 --> 00:00:35.399
+user pillar treats the two as composable.
+
+10
+00:00:35.399 --> 00:00:41.499
+This module builds the second layer,
+because it produces a per-use, time-bounded,
+
+11
+00:00:41.499 --> 00:00:45.440
+individually justified
+record of privileged use,
+
+12
+00:00:45.440 --> 00:00:49.100
+which is what AC-6(9) and
+AC-17(4) are tested against.
+
+13
+00:00:49.100 --> 00:00:51.620
+Eligibility without an activation gate is
+
+14
+00:00:51.620 --> 00:00:54.350
+standing privilege through
+a nicer front door.
+
+15
+00:00:54.350 --> 00:00:58.238
+If an agency runs only one
+layer, it should run this one.
+
+16
+00:00:58.238 --> 00:01:00.175
+The sequence is six steps.
+
+17
+00:01:00.175 --> 00:01:04.008
+The administrator requests
+activation with a duration within
+
+18
+00:01:04.008 --> 00:01:07.263
+the role's maximum, a
+justification and a ticket number.
+
+19
+00:01:07.263 --> 00:01:10.559
+PIM sends them through
+authentication context c1,
+
+20
+00:01:10.559 --> 00:01:13.776
+which demands a fresh
+phishing-resistant sign-in.
+
+21
+00:01:13.776 --> 00:01:16.887
+The request goes pending,
+and approvers are emailed.
+
+22
+00:01:16.887 --> 00:01:20.938
+An approver from outside the
+requester's tier approves or denies,
+
+23
+00:01:20.938 --> 00:01:22.813
+with their own justification.
+
+24
+00:01:22.813 --> 00:01:26.182
+On approval, the role is
+active until the requested
+
+25
+00:01:26.182 --> 00:01:29.312
+end time and returns to
+eligible with no action.
+
+26
+00:01:29.312 --> 00:01:32.356
+Denied, or undecided
+after twenty-four hours,
+
+27
+00:01:32.356 --> 00:01:35.812
+the role stays eligible and
+a new request is needed.
+
+28
+00:01:35.812 --> 00:01:37.600
+One dependency people miss.
+
+29
+00:01:37.600 --> 00:01:42.650
+If the P2 or Governance license lapses,
+permanent assignments are unaffected,
+
+30
+00:01:42.650 --> 00:01:45.836
+but eligible Entra role
+assignments are removed,
+
+31
+00:01:45.836 --> 00:01:48.788
+PIM settings are removed
+and role reviews end.
+
+32
+00:01:48.788 --> 00:01:52.566
+Treat a license expiry as a
+configuration-management event,
+
+33
+00:01:52.566 --> 00:01:56.930
+and keep the role inventory exported
+so eligibility can be restored.

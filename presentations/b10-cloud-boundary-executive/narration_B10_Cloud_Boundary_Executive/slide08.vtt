@@ -1,0 +1,130 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.816
+Much federal reasoning runs two questions
+together: GCC is Moderate, Moderate
+
+2
+00:00:04.816 --> 00:00:09.288
+is why the feature is missing, and a
+High certification would bring it back.
+
+3
+00:00:09.288 --> 00:00:11.787
+The Marketplace doesn't
+support that chain.
+
+4
+00:00:11.787 --> 00:00:19.099
+Read on October 21, 2026, it lists
+three Microsoft 365 government packages.
+
+5
+00:00:19.099 --> 00:00:23.673
+The GCC package agencies run is
+FedRAMP Certified at Class C,
+
+6
+00:00:23.673 --> 00:00:26.325
+Moderate, with 100 authorizations.
+
+7
+00:00:26.325 --> 00:00:31.775
+A second package with the identical name
+is In Process at Class D, High, with none.
+
+8
+00:00:31.775 --> 00:00:37.025
+And GCC High is a separate package,
+certified at Class D, with 5.
+
+9
+00:00:37.025 --> 00:00:41.520
+The straightforward reading of that
+second package is a High effort for GCC,
+
+10
+00:00:41.520 --> 00:00:44.588
+but the Marketplace doesn't
+state how the two relate,
+
+11
+00:00:44.588 --> 00:00:46.800
+or whether one will replace the other.
+
+12
+00:00:46.800 --> 00:00:49.975
+Treat it as a question for
+the provider, not a roadmap.
+
+13
+00:00:49.975 --> 00:00:53.693
+Microsoft's own GCC service
+description adds a wrinkle:
+
+14
+00:00:53.693 --> 00:00:58.381
+it says Office 365 Government supports
+FedRAMP at a High impact level,
+
+15
+00:00:58.381 --> 00:01:01.210
+while the Marketplace record says Class C.
+
+16
+00:01:01.210 --> 00:01:05.575
+Cite the Marketplace and the
+package, and record the discrepancy.
+
+17
+00:01:05.575 --> 00:01:06.763
+Now the key point.
+
+18
+00:01:06.763 --> 00:01:13.488
+Network connectivity is missing in GCC
+High too, and GCC High is already Class D.
+
+19
+00:01:13.488 --> 00:01:16.837
+A higher class changes what data
+you may place in the service.
+
+20
+00:01:16.837 --> 00:01:20.950
+It doesn't, by itself, restore
+a feature the provider excluded.
+
+21
+00:01:20.950 --> 00:01:24.445
+An agency that defers an equivalent
+because High is coming may
+
+22
+00:01:24.445 --> 00:01:28.075
+wait for something the certification
+was never going to deliver.
+
+23
+00:01:28.075 --> 00:01:31.488
+So plan against the class of
+the package you actually use.
+
+24
+00:01:31.488 --> 00:01:35.303
+And don't hard-code Moderate into
+a multi-year architecture either,
+
+25
+00:01:35.303 --> 00:01:37.037
+because that premise may move.
+
+26
+00:01:37.037 --> 00:01:39.637
+The sponsor and CIO own that honest plan,
+
+27
+00:01:39.637 --> 00:01:43.080
+in the current architecture
+and acquisition cycle.

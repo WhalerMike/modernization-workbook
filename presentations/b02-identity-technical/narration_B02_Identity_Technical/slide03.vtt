@@ -1,0 +1,140 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.125
+What has to move.
+
+2
+00:00:01.125 --> 00:00:06.850
+Chapters 02 through 04 make two points
+that drive everything in this session.
+
+3
+00:00:06.850 --> 00:00:09.462
+First, placement becomes attributes.
+
+4
+00:00:09.462 --> 00:00:12.972
+In Active Directory, an object's
+position in the forest,
+
+5
+00:00:12.972 --> 00:00:17.963
+domain and OU tree decides who administers
+it and which Group Policy applies.
+
+6
+00:00:17.963 --> 00:00:21.162
+Move a user to another OU
+and its administrators,
+
+7
+00:00:21.162 --> 00:00:26.762
+inherited policies and often its access
+all change without anyone editing the user.
+
+8
+00:00:26.762 --> 00:00:28.587
+Entra ID has no tree.
+
+9
+00:00:28.587 --> 00:00:31.757
+It governs objects by what
+they carry: attributes,
+
+10
+00:00:31.757 --> 00:00:35.237
+memberships, role assignments
+and policy conditions.
+
+11
+00:00:35.237 --> 00:00:40.087
+Two limits decide how far the usual
+answer, administrative units, gets you.
+
+12
+00:00:40.087 --> 00:00:45.287
+Administrative units can't nest, so an
+OU tree becomes a flat set of units.
+
+13
+00:00:45.287 --> 00:00:47.926
+An object can belong to
+at most thirty of them.
+
+14
+00:00:47.926 --> 00:00:52.384
+And for synced users, Graph treats
+the extension attributes as read-only,
+
+15
+00:00:52.384 --> 00:00:56.175
+because their source of authority
+is still Active Directory.
+
+16
+00:00:56.175 --> 00:00:58.798
+So the values your rules
+match on are written
+
+17
+00:00:58.798 --> 00:01:01.350
+on-premises and arrive
+with each sync cycle.
+
+18
+00:01:01.350 --> 00:01:04.775
+Second, the surface is bigger
+than users and groups.
+
+19
+00:01:04.775 --> 00:01:08.475
+The program's inventory names
+eleven dependency types.
+
+20
+00:01:08.475 --> 00:01:11.013
+The first five are what
+plans usually count.
+
+21
+00:01:11.013 --> 00:01:17.624
+Types six through nine, DNS and DHCP, PKI,
+RADIUS and the Network Policy Server,
+
+22
+00:01:17.624 --> 00:01:22.976
+and LDAP-bound applications,
+fail silently when AD goes away.
+
+23
+00:01:22.976 --> 00:01:27.199
+Types ten and eleven, service
+principal names and trusts,
+
+24
+00:01:27.199 --> 00:01:30.075
+have no direct counterpart in Entra ID.
+
+25
+00:01:30.075 --> 00:01:32.137
+Each dependency gets an adapter.
+
+26
+00:01:32.137 --> 00:01:38.076
+The PKI, RADIUS and LDAP proxy adapters
+are critical, because they fail silently.
+
+27
+00:01:38.076 --> 00:01:39.931
+The sync engine finishes last,
+
+28
+00:01:39.931 --> 00:01:44.387
+because it's what keeps AD in production
+until everything else has moved.
+
+29
+00:01:44.387 --> 00:01:49.060
+The rest of this session is how you find
+all of that, rebuild it, and prove it.

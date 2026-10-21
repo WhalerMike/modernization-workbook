@@ -1,0 +1,140 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.488
+Now turn the worklist into a program
+the authorizing official can see.
+
+2
+00:00:04.488 --> 00:00:08.707
+Every finding that isn't fixed in the
+next change window and isn't covered
+
+3
+00:00:08.707 --> 00:00:12.787
+by an approved exception becomes a
+plan of action and milestones item.
+
+4
+00:00:12.787 --> 00:00:18.617
+SP 800-53 requires one for each
+system, updated from assessments
+
+5
+00:00:18.617 --> 00:00:22.549
+and continuous monitoring, and the
+authorizing official approves it.
+
+6
+00:00:22.549 --> 00:00:26.609
+Each item names the pillar owner,
+the control it bears on, the evidence
+
+7
+00:00:26.609 --> 00:00:31.025
+that will show it closed, and the
+re-assessment that will test that evidence.
+
+8
+00:00:31.025 --> 00:00:34.753
+Behind those items, the program
+wraps each tool's unaltered
+
+9
+00:00:34.753 --> 00:00:38.100
+output with its provenance
+and seals it into a bundle.
+
+10
+00:00:38.100 --> 00:00:41.478
+Because the same inputs produce
+a byte-identical bundle,
+
+11
+00:00:41.478 --> 00:00:44.928
+an assessor can rebuild it
+months later and walk back from
+
+12
+00:00:44.928 --> 00:00:48.162
+a finding to the raw result
+without re-running the tool.
+
+13
+00:00:48.162 --> 00:00:51.775
+That's the difference between an
+archived opinion and evidence.
+
+14
+00:00:51.775 --> 00:00:56.352
+Re-assessment runs on a calendar the
+program lead owns, and after each
+
+15
+00:00:56.352 --> 00:01:01.250
+remediation wave, so a finding is closed
+by evidence, not by a ticket status.
+
+16
+00:01:01.250 --> 00:01:06.713
+BOD 25-01's reporting routes set the
+floor for ScubaGear at quarterly.
+
+17
+00:01:06.713 --> 00:01:10.420
+A Zero Trust Assessment score
+is compared across runs only
+
+18
+00:01:10.420 --> 00:01:13.976
+on the same tool version, or
+after a review of what changed.
+
+19
+00:01:13.976 --> 00:01:18.925
+And drift goes to the authorizing
+official, not only to security operations.
+
+20
+00:01:18.925 --> 00:01:21.805
+A control that passed
+every interval and failed
+
+21
+00:01:21.805 --> 00:01:24.613
+the last one is a change
+to an authorized system.
+
+22
+00:01:24.613 --> 00:01:28.088
+The book calls treating that
+drift as something the official
+
+23
+00:01:28.088 --> 00:01:31.087
+sees the cheapest adoption
+step in its final chapter.
+
+24
+00:01:31.087 --> 00:01:34.141
+So the decision sits with
+the authorizing official:
+
+25
+00:01:34.141 --> 00:01:36.840
+receive interval-to-interval
+drift findings,
+
+26
+00:01:36.840 --> 00:01:40.035
+prepared by the program lead
+and security operations,
+
+27
+00:01:40.035 --> 00:01:44.438
+every assessment interval, and decide
+which ones are significant changes.
+
+28
+00:01:44.438 --> 00:01:45.910
+Stand it up this quarter.

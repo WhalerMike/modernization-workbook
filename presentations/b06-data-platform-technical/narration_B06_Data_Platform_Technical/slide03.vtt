@@ -1,0 +1,146 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.275
+Start with what the engine actually does.
+
+2
+00:00:02.275 --> 00:00:05.862
+SQL Server doesn't check the
+password for a Windows login.
+
+3
+00:00:05.862 --> 00:00:08.374
+It trusts the Windows principal token,
+
+4
+00:00:08.374 --> 00:00:12.849
+and Windows Authentication is always
+available; it can't be disabled.
+
+5
+00:00:12.849 --> 00:00:16.287
+With Integrated Security,
+the driver hands off to SSPI,
+
+6
+00:00:16.287 --> 00:00:18.960
+the Security Support Provider Interface,
+
+7
+00:00:18.960 --> 00:00:23.925
+and its Negotiate package picks Kerberos
+unless one of the systems can't use it.
+
+8
+00:00:23.925 --> 00:00:28.993
+The client asks the KDC on a domain
+controller for a service ticket to the
+
+9
+00:00:28.993 --> 00:00:33.384
+instance's SPN, which for TCP
+names the SQL Server service class,
+
+10
+00:00:33.384 --> 00:00:36.425
+the host's fully qualified
+name and the port.
+
+11
+00:00:36.425 --> 00:00:39.737
+The engine validates the ticket
+with the service account's key.
+
+12
+00:00:39.737 --> 00:00:44.412
+No password crosses the network, and
+Kerberos authenticates both ends.
+
+13
+00:00:44.412 --> 00:00:49.150
+The table is Microsoft's authentication
+defaults, and it's the one to remember.
+
+14
+00:00:49.150 --> 00:00:51.990
+When the SPN maps to the correct account,
+
+15
+00:00:51.990 --> 00:00:56.637
+remote connections use Kerberos,
+but local connections use NTLM.
+
+16
+00:00:56.637 --> 00:01:01.788
+When the SPN is missing or the
+lookup fails, both use NTLM.
+
+17
+00:01:01.788 --> 00:01:05.350
+When it's on the wrong account,
+authentication fails outright.
+
+18
+00:01:05.350 --> 00:01:09.650
+That silent fallback is the most
+consequential fault in the inheritance.
+
+19
+00:01:09.650 --> 00:01:14.662
+The engine logs a failed SPN registration
+at startup, but not which protocol each
+
+20
+00:01:14.662 --> 00:01:19.525
+connection used; only the auth scheme
+column of the connections DMV shows that.
+
+21
+00:01:19.525 --> 00:01:22.664
+And none of these paths
+produces an Entra sign-in,
+
+22
+00:01:22.664 --> 00:01:25.725
+so Conditional Access
+has nothing to evaluate.
+
+23
+00:01:25.725 --> 00:01:28.815
+The identities are anchored
+in Active Directory too:
+
+24
+00:01:28.815 --> 00:01:31.484
+a domain account with a
+hand-rotated password,
+
+25
+00:01:31.484 --> 00:01:36.400
+a group managed service account the domain
+controller rotates every thirty days by
+
+26
+00:01:36.400 --> 00:01:41.175
+default, or the virtual account, which
+reaches the network as the computer account.
+
+27
+00:01:41.175 --> 00:01:44.816
+And the SA login, created
+disabled in Windows mode,
+
+28
+00:01:44.816 --> 00:01:48.013
+is often left enabled
+as an emergency way in.
+
+29
+00:01:48.013 --> 00:01:49.588
+None of this was a mistake.
+
+30
+00:01:49.588 --> 00:01:53.980
+It was correct engineering for a
+domain-joined world that no longer exists.

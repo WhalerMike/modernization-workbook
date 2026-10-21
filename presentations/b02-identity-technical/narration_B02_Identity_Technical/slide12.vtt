@@ -1,0 +1,157 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.135
+Every computer object is a
+migration decision: Entra join,
+
+2
+00:00:04.135 --> 00:00:08.475
+hybrid join, Azure Arc, retirement,
+or keep in Active Directory.
+
+3
+00:00:08.475 --> 00:00:12.955
+The inventory carries the delegation
+attributes, and the source got two
+
+4
+00:00:12.955 --> 00:00:16.987
+things wrong here, so classify by
+what's actually set, in this order.
+
+5
+00:00:16.987 --> 00:00:21.350
+Trusted for delegation set to
+true is unconstrained delegation.
+
+6
+00:00:21.350 --> 00:00:26.650
+It lets a service impersonate any user
+who authenticates to it, to any service.
+
+7
+00:00:26.650 --> 00:00:30.955
+Domain controllers are expected to
+have it, so exclude them as Defender
+
+8
+00:00:30.955 --> 00:00:35.625
+for Identity does; every other unconstrained
+entry becomes a critical issue.
+
+9
+00:00:35.625 --> 00:00:39.176
+A target list plus
+trusted-to-authenticate-for-delegation
+
+10
+00:00:39.176 --> 00:00:42.437
+is constrained delegation
+with protocol transition.
+
+11
+00:00:42.437 --> 00:00:45.988
+A target list alone is
+constrained, Kerberos only.
+
+12
+00:00:45.988 --> 00:00:50.075
+The source labeled protocol transition
+even without a target list.
+
+13
+00:00:50.075 --> 00:00:52.712
+And resource-based constrained delegation,
+
+14
+00:00:52.712 --> 00:00:56.775
+which the source missed entirely,
+is configured on the resource side.
+
+15
+00:00:56.775 --> 00:01:02.408
+Staleness: Last Logon Date is a converted
+timestamp that can lag the true last logon
+
+16
+00:01:02.408 --> 00:01:07.388
+by up to two weeks, so it's good enough
+for a ninety-day test, not a seven-day one.
+
+17
+00:01:07.388 --> 00:01:09.342
+Pair it with Password Last Set,
+
+18
+00:01:09.342 --> 00:01:12.625
+and treat a computer as
+stale only when both are old.
+
+19
+00:01:12.625 --> 00:01:17.554
+For users, expand the eight privileged
+groups recursively: Domain Admins,
+
+20
+00:01:17.554 --> 00:01:22.887
+Enterprise Admins, Schema Admins,
+Administrators and the four operator groups.
+
+21
+00:01:22.887 --> 00:01:27.455
+Then report orphaned admin count
+accounts, using recursive membership;
+
+22
+00:01:27.455 --> 00:01:32.175
+the source's direct match missed nested
+members and over-reported orphans.
+
+23
+00:01:32.175 --> 00:01:34.400
+Service accounts come in four kinds.
+
+24
+00:01:34.400 --> 00:01:37.257
+User accounts with service
+principal names are
+
+25
+00:01:37.257 --> 00:01:40.400
+Kerberoastable and the
+highest priority to replace.
+
+26
+00:01:40.400 --> 00:01:43.145
+Group managed service
+accounts span servers
+
+27
+00:01:43.145 --> 00:01:45.962
+and stay the default for
+multi-server services.
+
+28
+00:01:45.962 --> 00:01:49.554
+Delegated managed service
+accounts exist only in
+
+29
+00:01:49.554 --> 00:01:53.488
+Server 2025 domains and
+disable the original password.
+
+30
+00:01:53.488 --> 00:01:55.763
+Two limits matter in large forests:
+
+31
+00:01:55.763 --> 00:02:01.336
+a domain controller returns at most five
+thousand values of a multivalued attribute
+
+32
+00:02:01.336 --> 00:02:06.190
+per response, and a principal can be in
+at most one thousand fifteen groups.

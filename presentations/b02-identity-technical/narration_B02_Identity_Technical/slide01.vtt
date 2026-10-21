@@ -1,0 +1,79 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.209
+This is the technical deep
+dive for Book 02 of the
+
+2
+00:00:03.209 --> 00:00:07.000
+Federal Modernization Workbook,
+Identity and Directory.
+
+3
+00:00:07.000 --> 00:00:10.197
+It's for the architects and
+engineers who will actually
+
+4
+00:00:10.197 --> 00:00:13.463
+run the move from Active
+Directory to Microsoft Entra ID.
+
+5
+00:00:13.463 --> 00:00:16.536
+It comes in two parts of about
+twenty-five minutes each,
+
+6
+00:00:16.536 --> 00:00:18.926
+and four modules you can watch separately.
+
+7
+00:00:18.926 --> 00:00:20.723
+Part 1 is assessing the forest:
+
+8
+00:00:20.723 --> 00:00:24.824
+first what a standard account can
+learn without any elevated access,
+
+9
+00:00:24.824 --> 00:00:29.212
+then the full privileged assessment
+and the evidence pipeline behind it.
+
+10
+00:00:29.212 --> 00:00:34.016
+Part 2 is building the Entra ID target
+and migrating onto it: the sync, sign-in,
+
+11
+00:00:34.016 --> 00:00:38.976
+group, service account, privileged
+access and Conditional Access decisions,
+
+12
+00:00:38.976 --> 00:00:41.765
+then governance, the
+eleven-phase playbook,
+
+13
+00:00:41.765 --> 00:00:46.337
+and a reference deployment that shows
+the whole sequence on one estate.
+
+14
+00:00:46.337 --> 00:00:50.087
+The slides show tables,
+flows and decision matrices.
+
+15
+00:00:50.087 --> 00:00:52.781
+The code lives in the
+chapters and appendices;
+
+16
+00:00:52.781 --> 00:00:55.540
+I'll point you to it rather
+than put it on screen.

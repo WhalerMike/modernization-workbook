@@ -1,0 +1,152 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.913
+Why does the library look this way?
+
+2
+00:00:01.913 --> 00:00:07.962
+Much of it is the answer to CISA's BOD
+25-01, which requires federal civilian
+
+3
+00:00:07.962 --> 00:00:13.763
+agencies to implement CISA's mandatory
+configurations for in-scope cloud tenants.
+
+4
+00:00:13.763 --> 00:00:19.174
+The deadline for the configurations
+effective at issuance was June 20, 2025.
+
+5
+00:00:19.174 --> 00:00:23.425
+The table lists the Entra ID items
+that Conditional Access answers.
+
+6
+00:00:23.425 --> 00:00:27.375
+Legacy authentication blocked: CA001.
+
+7
+00:00:27.375 --> 00:00:30.900
+High-risk users blocked: CA013.
+
+8
+00:00:30.900 --> 00:00:34.438
+High-risk sign-ins blocked: CA019.
+
+9
+00:00:34.438 --> 00:00:42.988
+Phishing-resistant MFA for all users:
+CA022, with CA003 for administrators.
+
+10
+00:00:42.988 --> 00:00:51.975
+Another MFA method until then: CA006,
+CA009 and CA018, as the interim.
+
+11
+00:00:51.975 --> 00:00:57.925
+And phishing-resistant MFA for
+highly privileged roles: CA003.
+
+12
+00:00:57.925 --> 00:01:03.925
+Two SHOULD items from the SCuBA
+baseline are met by CA007 and CA020.
+
+13
+00:01:03.925 --> 00:01:08.145
+The other mandatory Entra items, such
+as authentication methods settings,
+
+14
+00:01:08.145 --> 00:01:11.071
+application consent and
+the privileged-role rules,
+
+15
+00:01:11.071 --> 00:01:15.087
+aren't Conditional Access settings,
+and the book covers them elsewhere.
+
+16
+00:01:15.087 --> 00:01:17.338
+One conflict is worth understanding.
+
+17
+00:01:17.338 --> 00:01:20.973
+Book 02 adopted Microsoft's
+current recommendation
+
+18
+00:01:20.973 --> 00:01:24.113
+for high-risk users,
+require risk remediation.
+
+19
+00:01:24.113 --> 00:01:28.625
+BOD 25-01 says high-risk
+users shall be blocked.
+
+20
+00:01:28.625 --> 00:01:32.399
+Both can't win, because when
+several risk policies apply,
+
+21
+00:01:32.399 --> 00:01:34.450
+block overrides remediation.
+
+22
+00:01:34.450 --> 00:01:38.964
+So in any tenant within the directive's
+scope, CA013's grant is Block,
+
+23
+00:01:38.964 --> 00:01:42.165
+it includes all users
+rather than only members,
+
+24
+00:01:42.165 --> 00:01:47.582
+and recovery runs through the help desk:
+an administrator confirms the account,
+
+25
+00:01:47.582 --> 00:01:50.537
+resets credentials and dismisses the risk.
+
+26
+00:01:50.537 --> 00:01:56.074
+Where the directive doesn't apply,
+CA013 uses remediation for members.
+
+27
+00:01:56.074 --> 00:01:58.650
+Last, Microsoft-managed policies.
+
+28
+00:01:58.650 --> 00:02:03.137
+Microsoft creates some policies itself,
+in report-only, and turns them on
+
+29
+00:02:03.137 --> 00:02:07.550
+no less than thirty days later unless
+an administrator sets them to Off.
+
+30
+00:02:07.550 --> 00:02:11.753
+The program writes down a decision
+for each, adopt or supersede,
+
+31
+00:02:11.753 --> 00:02:17.250
+because a policy Microsoft enables on a
+schedule is a change the agency didn't make.
+
+32
+00:02:17.250 --> 00:02:20.110
+Five are superseded by library policies.

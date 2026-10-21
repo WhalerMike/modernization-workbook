@@ -1,0 +1,54 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.263
+Part 2: building the Entra ID
+target and migrating onto it.
+
+2
+00:00:04.263 --> 00:00:06.701
+Module 3 is the target design.
+
+3
+00:00:06.701 --> 00:00:09.512
+The chapter's premise
+fits in one sentence.
+
+4
+00:00:09.512 --> 00:00:13.725
+In Active Directory, where an object
+sits decides what applies to it.
+
+5
+00:00:13.725 --> 00:00:17.525
+In Entra ID, what an object
+says about itself decides.
+
+6
+00:00:17.525 --> 00:00:22.100
+So the target has to be built from
+attributes, not copied from containers.
+
+7
+00:00:22.100 --> 00:00:27.882
+The environment throughout is a Microsoft
+365 Government Community Cloud tenant,
+
+8
+00:00:27.882 --> 00:00:31.485
+which uses the worldwide
+Microsoft Graph endpoint,
+
+9
+00:00:31.485 --> 00:00:35.088
+not the separate endpoints
+that GCC High and DoD use.
+
+10
+00:00:35.088 --> 00:00:39.151
+Check each feature against the
+government service descriptions,
+
+11
+00:00:39.151 --> 00:00:40.990
+because some reach GCC later.

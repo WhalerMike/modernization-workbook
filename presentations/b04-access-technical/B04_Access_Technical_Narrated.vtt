@@ -1,0 +1,3608 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.236
+This is the technical deep
+dive for Book 04 of the
+
+2
+00:00:03.236 --> 00:00:06.900
+Federal Modernization
+Workbook, Access and Privilege.
+
+3
+00:00:06.900 --> 00:00:09.588
+The fifteen-minute briefing
+made the argument.
+
+4
+00:00:09.588 --> 00:00:13.860
+This session is for the people who
+build and run it: identity engineers,
+
+5
+00:00:13.860 --> 00:00:18.500
+architects, and the security and assessment
+staff who have to prove it works.
+
+6
+00:00:18.500 --> 00:00:21.290
+It runs about fifty
+minutes in five modules,
+
+7
+00:00:21.290 --> 00:00:25.088
+and each module stands on its own,
+so you can watch it in parts.
+
+8
+00:00:25.088 --> 00:00:30.432
+After a two-slide orientation, we'll cover
+the Conditional Access policy library;
+
+9
+00:00:30.432 --> 00:00:35.778
+its rollout, exclusions and break-glass
+accounts; PIM self-request with approval;
+
+10
+00:00:35.778 --> 00:00:40.724
+access governance; and finally access
+as code, and the evidence it produces.
+
+11
+00:00:40.724 --> 00:00:44.056
+Every fact comes from a
+footnoted chapter of the book,
+
+12
+00:00:44.056 --> 00:00:46.100
+and each slide names its chapter.
+
+13
+00:00:46.100 --> 00:00:50.440
+Code and JSON stay in the book;
+the slides carry the design.
+
+14
+00:00:51.190 --> 00:00:53.768
+Start with why, because
+every design choice
+
+15
+00:00:53.768 --> 00:00:56.490
+in the next forty-five
+minutes follows from it.
+
+16
+00:00:56.490 --> 00:01:02.049
+OMB M-22-09 says federal applications
+can't rely on the network perimeter,
+
+17
+00:01:02.049 --> 00:01:05.572
+and that every request for
+access should be evaluated,
+
+18
+00:01:05.572 --> 00:01:09.565
+with the ability to evaluate an
+active session continuously.
+
+19
+00:01:09.565 --> 00:01:11.255
+When undue risk appears,
+
+20
+00:01:11.255 --> 00:01:15.565
+the answer can be re-authentication,
+limited access or denial.
+
+21
+00:01:15.565 --> 00:01:19.924
+It also asks agencies to move past
+static roles toward more granular,
+
+22
+00:01:19.924 --> 00:01:25.278
+dynamic permissions, and to use at least
+one device-level signal alongside identity.
+
+23
+00:01:25.278 --> 00:01:29.815
+NIST SP 800-207 gives the architecture.
+
+24
+00:01:29.815 --> 00:01:35.136
+Three of its tenets carry this book:
+network location alone doesn't imply trust;
+
+25
+00:01:35.136 --> 00:01:38.655
+access is granted per session,
+with least privilege;
+
+26
+00:01:38.655 --> 00:01:41.602
+and access is determined
+by dynamic policy.
+
+27
+00:01:41.602 --> 00:01:44.189
+It also separates deciding from enforcing.
+
+28
+00:01:44.189 --> 00:01:48.868
+A policy decision point, made of a policy
+engine and a policy administrator,
+
+29
+00:01:48.868 --> 00:01:52.565
+decides; policy enforcement
+points carry the decision out.
+
+30
+00:01:52.565 --> 00:01:55.927
+The table is how the program
+maps that onto Entra ID.
+
+31
+00:01:55.927 --> 00:01:58.477
+Conditional Access is the policy engine.
+
+32
+00:01:58.477 --> 00:02:02.645
+Entra ID's token issuance
+plays the policy administrator:
+
+33
+00:02:02.645 --> 00:02:06.465
+it issues the token the
+decision allows, or it refuses.
+
+34
+00:02:06.465 --> 00:02:09.904
+The applications that accept
+only Entra-issued tokens,
+
+35
+00:02:09.904 --> 00:02:14.615
+and the gateways in front of older
+applications, are the enforcement points.
+
+36
+00:02:14.615 --> 00:02:20.615
+And Continuous Access Evaluation answers
+M-22-09's active-session requirement,
+
+37
+00:02:20.615 --> 00:02:24.510
+re-evaluating on critical events,
+such as a disabled account,
+
+38
+00:02:24.510 --> 00:02:28.640
+a password reset or token revocation,
+and when location changes.
+
+39
+00:02:28.640 --> 00:02:32.065
+Be careful how you state that
+mapping in a security plan.
+
+40
+00:02:32.065 --> 00:02:37.015
+It's the program's interpretation, not
+a mapping Microsoft or NIST publishes.
+
+41
+00:02:37.015 --> 00:02:42.409
+But it explains why the rest of this session
+treats a Conditional Access policy as
+
+42
+00:02:42.409 --> 00:02:44.153
+the unit of access control:
+
+43
+00:02:44.153 --> 00:02:48.150
+one policy set the agency can
+read, test, change and prove.
+
+44
+00:02:48.900 --> 00:02:53.273
+Now the mechanism, because Conditional
+Access doesn't work like Group Policy,
+
+45
+00:02:53.273 --> 00:02:57.988
+and administrators who bring Group Policy
+habits to it make predictable mistakes.
+
+46
+00:02:57.988 --> 00:02:59.400
+There's no precedence.
+
+47
+00:02:59.400 --> 00:03:02.374
+Within a policy, assignments
+combine with AND:
+
+48
+00:03:02.374 --> 00:03:06.600
+the policy applies only when
+everything it's assigned to matches.
+
+49
+00:03:06.600 --> 00:03:10.825
+Across policies, every applicable
+policy must be satisfied.
+
+50
+00:03:10.825 --> 00:03:14.539
+If one requires MFA and
+another a compliant device,
+
+51
+00:03:14.539 --> 00:03:19.225
+the user does both, and the policy
+numbers are labels, not an order.
+
+52
+00:03:19.225 --> 00:03:23.813
+Block wins: if any applicable
+policy blocks, enforcement stops.
+
+53
+00:03:23.813 --> 00:03:29.637
+Inside a policy, controls combine as
+configured, require all or require one.
+
+54
+00:03:29.637 --> 00:03:31.551
+And exclusions are absolute.
+
+55
+00:03:31.551 --> 00:03:34.625
+The rule that causes the
+most damage is the default.
+
+56
+00:03:34.625 --> 00:03:38.763
+If no policy's conditions trigger
+a control, a token is issued.
+
+57
+00:03:38.763 --> 00:03:44.066
+A policy that says Finance users reaching
+Payroll must use phishing-resistant MFA
+
+58
+00:03:44.066 --> 00:03:46.065
+says nothing about anyone else,
+
+59
+00:03:46.065 --> 00:03:50.138
+so a non-Finance user gets a Payroll
+token with no controls at all.
+
+60
+00:03:50.138 --> 00:03:55.111
+Restricting a resource takes two
+policies, written and reviewed together:
+
+61
+00:03:55.111 --> 00:03:58.800
+a grant for the population,
+and a block for everyone else.
+
+62
+00:03:58.800 --> 00:04:02.821
+Enterprise application assignment,
+with Assignment required set,
+
+63
+00:04:02.821 --> 00:04:07.057
+is usually the cleaner first gate,
+but Global Administrators bypass it,
+
+64
+00:04:07.057 --> 00:04:10.575
+which is why sensitive applications
+keep the block as well.
+
+65
+00:04:10.575 --> 00:04:13.113
+Two timing facts keep our claims honest.
+
+66
+00:04:13.113 --> 00:04:16.706
+Conditional Access runs after
+first-factor authentication,
+
+67
+00:04:16.706 --> 00:04:19.876
+so it isn't a front-line
+defense against password spray.
+
+68
+00:04:19.876 --> 00:04:24.089
+And it evaluates token requests:
+at sign-in, and when a refresh
+
+69
+00:04:24.089 --> 00:04:28.725
+token gets a new access token, about
+once an hour for modern clients.
+
+70
+00:04:28.725 --> 00:04:32.081
+Continuous Access Evaluation
+closes part of that gap,
+
+71
+00:04:32.081 --> 00:04:37.375
+and supporting services enforce critical
+events typically within fifteen minutes.
+
+72
+00:04:37.375 --> 00:04:40.650
+With that model in
+place, on to module one.
+
+73
+00:04:41.400 --> 00:04:44.900
+Module one: the Conditional
+Access policy library.
+
+74
+00:04:44.900 --> 00:04:48.654
+The chapter sets a clear standard
+for when a library is finished:
+
+75
+00:04:48.654 --> 00:04:52.125
+every sign-in in the tenant
+meets a policy that someone owns,
+
+76
+00:04:52.125 --> 00:04:55.525
+and nothing in it depends on
+another policy running first.
+
+77
+00:04:55.525 --> 00:05:00.780
+In the next four slides we'll cover how
+the library is numbered and what it assumes
+
+78
+00:05:00.780 --> 00:05:06.191
+already exists; the personas that every
+policy targets; the five enforcement waves,
+
+79
+00:05:06.191 --> 00:05:09.093
+policy by policy; and
+how the library answers
+
+80
+00:05:09.093 --> 00:05:13.250
+the configurations that
+CISA's BOD 25-01 requires.
+
+81
+00:05:13.250 --> 00:05:18.080
+The deployable JSON template for
+every policy is in Appendix A.
+
+82
+00:05:18.830 --> 00:05:22.268
+The library is one policy
+set, numbered once.
+
+83
+00:05:22.268 --> 00:05:26.913
+Policies CA001 to CA017 are the
+baseline that Book 02 builds
+
+84
+00:05:26.913 --> 00:05:31.467
+during the migration, and they
+keep their identifiers here.
+
+85
+00:05:31.467 --> 00:05:35.793
+CA002 stays retired, so
+that's sixteen policies.
+
+86
+00:05:35.793 --> 00:05:42.129
+Book 04 adds CA018 to CA038, for risk,
+privileged workstations, segmented
+
+87
+00:05:42.129 --> 00:05:49.417
+applications and workload identities, plus
+CA090, the permanent report-only probe.
+
+88
+00:05:49.417 --> 00:05:57.442
+Numbers 001 to 089 are for the library and
+090 to 099 for report-only instruments.
+
+89
+00:05:57.442 --> 00:06:02.281
+Numbers are labels, not order, and
+a retired number is never reused.
+
+90
+00:06:02.281 --> 00:06:05.445
+The earlier library used a
+different numbering scheme,
+
+91
+00:06:05.445 --> 00:06:08.955
+and the chapter maps every one of
+its policies to where it went.
+
+92
+00:06:08.955 --> 00:06:11.877
+Every name follows one pattern: number,
+
+93
+00:06:11.877 --> 00:06:15.530
+population, resource or
+condition, then control.
+
+94
+00:06:15.530 --> 00:06:18.342
+You can read a policy on
+a call without opening it.
+
+95
+00:06:18.342 --> 00:06:21.961
+On the right are the prerequisites,
+and missing ones are the most
+
+96
+00:06:21.961 --> 00:06:25.717
+common reason a report-only policy
+shows failures that aren't real.
+
+97
+00:06:25.717 --> 00:06:27.543
+The emergency access group.
+
+98
+00:06:27.543 --> 00:06:30.733
+Persona groups, the two
+big ones dynamic from
+
+99
+00:06:30.733 --> 00:06:34.181
+extension attributes in
+Book 03's attribute map.
+
+100
+00:06:34.181 --> 00:06:36.880
+Access groups for restricted populations.
+
+101
+00:06:36.880 --> 00:06:38.530
+Three named locations.
+
+102
+00:06:38.530 --> 00:06:42.372
+A custom authentication strength
+that accepts FIDO2 keys from
+
+103
+00:06:42.372 --> 00:06:46.005
+an approved AAGUID list, or
+certificate-based authentication.
+
+104
+00:06:46.005 --> 00:06:50.524
+It leaves out Windows Hello for Business
+on purpose: for privileged accounts,
+
+105
+00:06:50.524 --> 00:06:55.255
+a credential held in the device gaining
+access doesn't count as a separate device.
+
+106
+00:06:55.255 --> 00:06:58.380
+A device label in
+extension attribute twelve.
+
+107
+00:06:58.380 --> 00:07:02.955
+And a custom security attribute that
+tags each application's environment.
+
+108
+00:07:02.955 --> 00:07:04.980
+Four conventions apply everywhere.
+
+109
+00:07:04.980 --> 00:07:08.080
+The emergency access
+exclusion is implicit.
+
+110
+00:07:08.080 --> 00:07:12.411
+Every policy needs Entra ID
+P1; risk policies need P2;
+
+111
+00:07:12.411 --> 00:07:16.943
+workload identity policies
+need Workload ID Premium.
+
+112
+00:07:16.943 --> 00:07:19.630
+Every policy is created in report-only.
+
+113
+00:07:19.630 --> 00:07:23.391
+And none uses the approved
+client app grant,
+
+114
+00:07:23.391 --> 00:07:27.000
+which became read-only on June 30, 2026.
+
+115
+00:07:27.750 --> 00:07:32.763
+Policies target populations, never
+people, and the populations are personas.
+
+116
+00:07:32.763 --> 00:07:36.137
+They're defined in Book 02
+and kept identical here.
+
+117
+00:07:36.137 --> 00:07:39.831
+Admins are users eligible for
+or holding privileged roles,
+
+118
+00:07:39.831 --> 00:07:43.826
+from the account-type attribute
+or the PIM-eligible population.
+
+119
+00:07:43.826 --> 00:07:49.428
+They carry the highest risk and get the
+strictest policies: phishing-resistant MFA,
+
+120
+00:07:49.428 --> 00:07:53.975
+a compliant device, trusted networks,
+and privileged workstations.
+
+121
+00:07:53.975 --> 00:07:57.734
+Internals are employees and
+contractors with standard access,
+
+122
+00:07:57.734 --> 00:08:00.712
+built dynamically from
+the worker-type attribute.
+
+123
+00:08:00.712 --> 00:08:04.596
+Externals are B2B guests
+from partner organizations;
+
+124
+00:08:04.596 --> 00:08:08.226
+Guests are ad hoc external
+users from anywhere else.
+
+125
+00:08:08.226 --> 00:08:11.600
+Workload identities are
+single-tenant service principals.
+
+126
+00:08:11.600 --> 00:08:14.518
+They must be assigned
+to a policy directly,
+
+127
+00:08:14.518 --> 00:08:19.436
+because a policy assigned to a group
+that contains a service principal
+
+128
+00:08:19.436 --> 00:08:24.188
+isn't enforced for it, and only two
+policies reach them, CA015 and CA037.
+
+129
+00:08:24.188 --> 00:08:30.120
+And break-glass: the two emergency accounts,
+excluded from every enforced policy,
+
+130
+00:08:30.120 --> 00:08:33.662
+and still recorded by CA090,
+which is report-only.
+
+131
+00:08:33.662 --> 00:08:37.504
+The library adds named
+sub-populations inside the personas:
+
+132
+00:08:37.504 --> 00:08:42.036
+web-only users without a managed
+device, shared-device frontline staff,
+
+133
+00:08:42.036 --> 00:08:46.338
+server administrators, Azure
+operators and production operators.
+
+134
+00:08:46.338 --> 00:08:47.763
+Each is a governed group.
+
+135
+00:08:47.763 --> 00:08:52.662
+Now the failure mode that drives one of the
+library's most important design choices.
+
+136
+00:08:52.662 --> 00:08:56.051
+Persona groups are dynamic,
+built from attributes.
+
+137
+00:08:56.051 --> 00:09:00.025
+A user whose attribute is empty
+falls outside every persona group,
+
+138
+00:09:00.025 --> 00:09:04.000
+and therefore outside every policy
+that includes only that group.
+
+139
+00:09:04.000 --> 00:09:06.275
+That's an exclusion nobody approved.
+
+140
+00:09:06.275 --> 00:09:12.296
+So the library includes all users and
+excludes narrowly, and it adds CA018,
+
+141
+00:09:12.296 --> 00:09:17.231
+deliberately redundant: MFA for
+all users and all resources,
+
+142
+00:09:17.231 --> 00:09:19.600
+with no resource exclusions.
+
+143
+00:09:19.600 --> 00:09:23.614
+It uses the plain require-MFA
+control rather than a strength,
+
+144
+00:09:23.614 --> 00:09:28.720
+so guests who sign in with email
+one-time passcodes can still satisfy it.
+
+145
+00:09:29.470 --> 00:09:34.257
+The library is enforced in five
+waves, each closing a class of risk.
+
+146
+00:09:34.257 --> 00:09:36.129
+Wave one is the foundation,
+
+147
+00:09:36.129 --> 00:09:40.721
+and it has no visible effect for
+anyone already on modern clients.
+
+148
+00:09:40.721 --> 00:09:47.933
+CA001 blocks legacy authentication, which
+can't do MFA or present device state.
+
+149
+00:09:47.933 --> 00:09:52.804
+Run the legacy query for at least two weeks
+first and move every remaining client,
+
+150
+00:09:52.804 --> 00:09:57.094
+including service accounts and
+multifunction devices that send mail.
+
+151
+00:09:57.094 --> 00:10:01.465
+CA020 requires a managed device
+to register security information,
+
+152
+00:10:01.465 --> 00:10:05.445
+so an attacker with a password
+can't register their own method.
+
+153
+00:10:05.445 --> 00:10:09.850
+CA021 blocks device code flow
+and authentication transfer,
+
+154
+00:10:09.850 --> 00:10:12.670
+the flows used in device-code phishing.
+
+155
+00:10:12.670 --> 00:10:16.507
+And CA090, the probe, never moves to On.
+
+156
+00:10:16.507 --> 00:10:18.657
+Wave two is administrators.
+
+157
+00:10:18.657 --> 00:10:23.536
+CA003 requires the separate-device strength
+with a four-hour sign-in frequency,
+
+158
+00:10:23.536 --> 00:10:27.897
+targeting the Admins persona and the
+highly privileged built-in roles,
+
+159
+00:10:27.897 --> 00:10:33.145
+because role targeting also catches an
+assignment made outside the persona process.
+
+160
+00:10:33.145 --> 00:10:40.372
+CA004 requires a compliant device, CA005
+blocks untrusted locations, and CA025
+
+161
+00:10:40.372 --> 00:10:47.270
+blocks the admin portals and Azure
+management from anything that isn't a PAW.
+
+162
+00:10:47.270 --> 00:10:51.361
+That block is written as an
+exclusion of devices labeled PAW:
+
+163
+00:10:51.361 --> 00:10:55.862
+a positive-operator filter never
+matches an unregistered device,
+
+164
+00:10:55.862 --> 00:10:59.708
+so an unregistered device isn't
+excluded, and it's blocked.
+
+165
+00:10:59.708 --> 00:11:05.613
+CA026 gives server and Arc administration
+the same assurance, and CA027 blocks
+
+166
+00:11:05.613 --> 00:11:11.519
+the Azure management plane for everyone
+who isn't an administrator or operator.
+
+167
+00:11:11.519 --> 00:11:17.909
+Wave three is the one users notice: the
+workforce MFA baseline, managed devices,
+
+168
+00:11:17.909 --> 00:11:24.298
+the country block, partner and guest
+policies, mobile app protection, the CA018
+
+169
+00:11:24.298 --> 00:11:25.871
+catch-all, and CA038,
+
+170
+00:11:25.871 --> 00:11:30.982
+without which CA011's limited
+guest access isn't limited at all.
+
+171
+00:11:30.982 --> 00:11:33.344
+Wave four is risk and workloads.
+
+172
+00:11:33.344 --> 00:11:36.956
+Wave five is segments and the end state:
+
+173
+00:11:36.956 --> 00:11:41.720
+CA022, phishing-resistant
+MFA for every member.
+
+174
+00:11:42.470 --> 00:11:44.333
+Why does the library look this way?
+
+175
+00:11:44.333 --> 00:11:50.382
+Much of it is the answer to CISA's BOD
+25-01, which requires federal civilian
+
+176
+00:11:50.382 --> 00:11:56.183
+agencies to implement CISA's mandatory
+configurations for in-scope cloud tenants.
+
+177
+00:11:56.183 --> 00:12:01.594
+The deadline for the configurations
+effective at issuance was June 20, 2025.
+
+178
+00:12:01.594 --> 00:12:05.845
+The table lists the Entra ID items
+that Conditional Access answers.
+
+179
+00:12:05.845 --> 00:12:09.795
+Legacy authentication blocked: CA001.
+
+180
+00:12:09.795 --> 00:12:13.320
+High-risk users blocked: CA013.
+
+181
+00:12:13.320 --> 00:12:16.858
+High-risk sign-ins blocked: CA019.
+
+182
+00:12:16.858 --> 00:12:25.408
+Phishing-resistant MFA for all users:
+CA022, with CA003 for administrators.
+
+183
+00:12:25.408 --> 00:12:34.395
+Another MFA method until then: CA006,
+CA009 and CA018, as the interim.
+
+184
+00:12:34.395 --> 00:12:40.345
+And phishing-resistant MFA for
+highly privileged roles: CA003.
+
+185
+00:12:40.345 --> 00:12:46.345
+Two SHOULD items from the SCuBA
+baseline are met by CA007 and CA020.
+
+186
+00:12:46.345 --> 00:12:50.565
+The other mandatory Entra items, such
+as authentication methods settings,
+
+187
+00:12:50.565 --> 00:12:53.491
+application consent and
+the privileged-role rules,
+
+188
+00:12:53.491 --> 00:12:57.507
+aren't Conditional Access settings,
+and the book covers them elsewhere.
+
+189
+00:12:57.507 --> 00:12:59.758
+One conflict is worth understanding.
+
+190
+00:12:59.758 --> 00:13:03.393
+Book 02 adopted Microsoft's
+current recommendation
+
+191
+00:13:03.393 --> 00:13:06.533
+for high-risk users,
+require risk remediation.
+
+192
+00:13:06.533 --> 00:13:11.045
+BOD 25-01 says high-risk
+users shall be blocked.
+
+193
+00:13:11.045 --> 00:13:14.819
+Both can't win, because when
+several risk policies apply,
+
+194
+00:13:14.819 --> 00:13:16.870
+block overrides remediation.
+
+195
+00:13:16.870 --> 00:13:21.384
+So in any tenant within the directive's
+scope, CA013's grant is Block,
+
+196
+00:13:21.384 --> 00:13:24.585
+it includes all users
+rather than only members,
+
+197
+00:13:24.585 --> 00:13:30.002
+and recovery runs through the help desk:
+an administrator confirms the account,
+
+198
+00:13:30.002 --> 00:13:32.957
+resets credentials and dismisses the risk.
+
+199
+00:13:32.957 --> 00:13:38.494
+Where the directive doesn't apply,
+CA013 uses remediation for members.
+
+200
+00:13:38.494 --> 00:13:41.070
+Last, Microsoft-managed policies.
+
+201
+00:13:41.070 --> 00:13:45.557
+Microsoft creates some policies itself,
+in report-only, and turns them on
+
+202
+00:13:45.557 --> 00:13:49.970
+no less than thirty days later unless
+an administrator sets them to Off.
+
+203
+00:13:49.970 --> 00:13:54.173
+The program writes down a decision
+for each, adopt or supersede,
+
+204
+00:13:54.173 --> 00:13:59.670
+because a policy Microsoft enables on a
+schedule is a change the agency didn't make.
+
+205
+00:13:59.670 --> 00:14:02.830
+Five are superseded by library policies.
+
+206
+00:14:03.580 --> 00:14:07.268
+Module two: getting the
+library into production safely.
+
+207
+00:14:07.268 --> 00:14:10.053
+A policy that targets
+all users can lock out
+
+208
+00:14:10.053 --> 00:14:13.304
+the whole organization,
+administrators included.
+
+209
+00:14:13.304 --> 00:14:16.511
+So this module is about the
+gates every policy passes,
+
+210
+00:14:16.511 --> 00:14:20.883
+how to read report-only results and
+roll back without deleting anything,
+
+211
+00:14:20.883 --> 00:14:25.328
+why every exclusion is a governed
+object, how the break-glass accounts are
+
+212
+00:14:25.328 --> 00:14:30.280
+built and watched, and what the sign-in
+logs must show once the policies are on.
+
+213
+00:14:31.030 --> 00:14:34.943
+Every policy, in every
+wave, passes the same gates.
+
+214
+00:14:34.943 --> 00:14:38.052
+Book 02 set the durations,
+and Microsoft's own
+
+215
+00:14:38.052 --> 00:14:41.667
+minimum is a week in
+report-only before enforcement.
+
+216
+00:14:41.667 --> 00:14:44.481
+Gate one is report-only,
+two to four weeks,
+
+217
+00:14:44.481 --> 00:14:47.806
+while impact, gaps and
+exclusions are reviewed.
+
+218
+00:14:47.806 --> 00:14:52.467
+Gate two is a pilot ring of IT
+and security staff for two weeks.
+
+219
+00:14:52.467 --> 00:14:56.374
+Gate three expands ring by
+ring, one to two weeks each:
+
+220
+00:14:56.374 --> 00:15:01.280
+headquarters, then field and remote
+staff, then everyone in scope.
+
+221
+00:15:01.280 --> 00:15:05.517
+Then steady state: enforced,
+monitored, with drift alerts.
+
+222
+00:15:05.517 --> 00:15:09.343
+Inside that, the chapter
+consolidates a seven-step cycle.
+
+223
+00:15:09.343 --> 00:15:14.281
+One, a pre-deployment check: prerequisites
+exist, readiness gates are met, the
+
+224
+00:15:14.281 --> 00:15:16.398
+emergency exclusion is present,
+
+225
+00:15:16.398 --> 00:15:20.004
+and the policy JSON has been
+reviewed in source control.
+
+226
+00:15:20.004 --> 00:15:22.842
+Two, create the policy in report-only.
+
+227
+00:15:22.842 --> 00:15:28.389
+One detail: a report-only policy that
+requires a compliant device can prompt users
+
+228
+00:15:28.389 --> 00:15:31.489
+on macOS, iOS and Android
+to pick a certificate,
+
+229
+00:15:31.489 --> 00:15:35.242
+so leave those platforms out
+of the report-only version.
+
+230
+00:15:35.242 --> 00:15:37.906
+Three, measure for at least seven days.
+
+231
+00:15:37.906 --> 00:15:41.745
+Four, analyze and remediate:
+missing registrations,
+
+232
+00:15:41.745 --> 00:15:46.567
+noncompliant devices, untagged
+applications, empty attributes.
+
+233
+00:15:46.567 --> 00:15:50.818
+Fix the cause; add an exclusion
+only as a governed object.
+
+234
+00:15:50.818 --> 00:15:54.904
+Five, security and business owners
+approve the impact analysis,
+
+235
+00:15:54.904 --> 00:15:57.756
+and that approval is
+kept as change evidence.
+
+236
+00:15:57.756 --> 00:16:01.055
+Six, enforce for the
+pilot ring and expand.
+
+237
+00:16:01.055 --> 00:16:06.355
+Turning a policy that targets all users
+straight from off to on is never allowed.
+
+238
+00:16:06.355 --> 00:16:09.630
+Seven, watch for forty-eight
+hours after each ring.
+
+239
+00:16:09.630 --> 00:16:12.346
+The readiness gates are
+the program's numbers:
+
+240
+00:16:12.346 --> 00:16:16.993
+at least ninety-five percent of in-scope
+users have a method that satisfies the
+
+241
+00:16:16.993 --> 00:16:20.352
+policy's strength, and at
+least ninety percent of devices
+
+242
+00:16:20.352 --> 00:16:23.855
+are enrolled and compliant,
+with the attributes populated.
+
+243
+00:16:23.855 --> 00:16:28.005
+The point is that each wave starts with
+a measured number, not an estimate.
+
+244
+00:16:28.005 --> 00:16:30.456
+And a wave starts only
+after the previous one
+
+245
+00:16:30.456 --> 00:16:33.460
+has been enforced for a
+week without an incident.
+
+246
+00:16:34.210 --> 00:16:37.935
+Report-only is a policy state,
+not a test environment.
+
+247
+00:16:37.935 --> 00:16:42.500
+The policy is evaluated at every
+sign-in and its result is logged,
+
+248
+00:16:42.500 --> 00:16:44.222
+but nothing is enforced.
+
+249
+00:16:44.222 --> 00:16:47.522
+There are four results, and you'll
+see them in the sign-in logs
+
+250
+00:16:47.522 --> 00:16:50.822
+and in Microsoft Graph under
+the names in the middle column.
+
+251
+00:16:50.822 --> 00:16:55.991
+Success means the conditions matched
+and the controls were already satisfied,
+
+252
+00:16:55.991 --> 00:16:59.123
+for example an MFA claim
+was already in the token.
+
+253
+00:16:59.123 --> 00:17:02.666
+Failure means the conditions
+matched and a non-interactive
+
+254
+00:17:02.666 --> 00:17:05.147
+control failed: that's
+what a block would do.
+
+255
+00:17:05.147 --> 00:17:09.066
+User action required, which Graph
+calls report-only interrupted,
+
+256
+00:17:09.066 --> 00:17:11.460
+means the user would have been prompted.
+
+257
+00:17:11.460 --> 00:17:14.543
+And not applied means the
+conditions didn't match,
+
+258
+00:17:14.543 --> 00:17:16.723
+often because the user is excluded.
+
+259
+00:17:16.723 --> 00:17:21.148
+Two limits: user-action policies
+can't run in report-only at all,
+
+260
+00:17:21.148 --> 00:17:25.660
+and GPS-based named locations
+still prompt users for location.
+
+261
+00:17:25.660 --> 00:17:30.479
+To change an enforced policy, Microsoft's
+practice is to create a report-only
+
+262
+00:17:30.479 --> 00:17:34.610
+copy with the change, compare the
+two, and then update the original.
+
+263
+00:17:34.610 --> 00:17:38.310
+Rollback has four forms,
+from smallest to largest.
+
+264
+00:17:38.310 --> 00:17:42.735
+Revert one policy to report-only when
+you need data while you investigate.
+
+265
+00:17:42.735 --> 00:17:47.671
+Reduce scope with a time-bound exclusion
+group when one population is blocked,
+
+266
+00:17:47.671 --> 00:17:49.873
+fix the cause, then remove the group.
+
+267
+00:17:49.873 --> 00:17:53.273
+Turn a policy Off when it's
+causing widespread blocks.
+
+268
+00:17:53.273 --> 00:17:56.666
+And when several policies
+in a wave interact badly,
+
+269
+00:17:56.666 --> 00:18:00.222
+set the whole wave to
+report-only and open an incident.
+
+270
+00:18:00.222 --> 00:18:02.510
+What's never on the list is deletion.
+
+271
+00:18:02.510 --> 00:18:07.445
+Microsoft does let you restore a deleted
+policy or named location within thirty
+
+272
+00:18:07.445 --> 00:18:11.864
+days, but a deletion breaks the policy's
+change history in source control,
+
+273
+00:18:11.864 --> 00:18:14.147
+and the drift record has to explain it.
+
+274
+00:18:14.147 --> 00:18:16.477
+If the tenant is locked out entirely,
+
+275
+00:18:16.477 --> 00:18:19.972
+an emergency account signs
+in and reverses the change.
+
+276
+00:18:19.972 --> 00:18:21.485
+If no administrator can,
+
+277
+00:18:21.485 --> 00:18:26.300
+Microsoft support can update the
+blocking policy after verification.
+
+278
+00:18:27.050 --> 00:18:32.347
+Because an exclusion overrides everything,
+each one is a standing hole in policy,
+
+279
+00:18:32.347 --> 00:18:36.538
+and exclusions accumulate the
+way Group Policy exceptions did.
+
+280
+00:18:36.538 --> 00:18:40.374
+So the program treats every
+exclusion as a governed object.
+
+281
+00:18:40.374 --> 00:18:45.207
+The only exclusion that's permanent by
+design is the emergency access group,
+
+282
+00:18:45.207 --> 00:18:47.662
+which every enforced policy excludes.
+
+283
+00:18:47.662 --> 00:18:52.075
+The others in the library are each
+tied to one policy and one reason.
+
+284
+00:18:52.075 --> 00:18:56.304
+Approved travel lets a traveler
+past CA008's country block,
+
+285
+00:18:56.304 --> 00:19:00.447
+granted through PIM for Groups
+after an approved request,
+
+286
+00:19:00.447 --> 00:19:05.712
+for at most fourteen days, and the
+traveler must still meet CA006 and CA018.
+
+287
+00:19:05.712 --> 00:19:10.104
+The device code flow group holds
+Teams Rooms and similar devices that
+
+288
+00:19:10.104 --> 00:19:14.724
+genuinely need that flow, ideally
+narrowed further in a companion policy.
+
+289
+00:19:14.724 --> 00:19:19.778
+The onboarding group lets remote new
+hires who don't have a managed device yet
+
+290
+00:19:19.778 --> 00:19:21.514
+register MFA for a few days,
+
+291
+00:19:21.514 --> 00:19:25.225
+using a Temporary Access Pass
+from the pre-hire workflow.
+
+292
+00:19:25.225 --> 00:19:29.576
+And the not-ready group for
+CA022 is the enrollment backlog:
+
+293
+00:19:29.576 --> 00:19:33.750
+it shrinks as users enroll,
+and every member has an expiry.
+
+294
+00:19:33.750 --> 00:19:36.038
+The rules on the right
+apply to all of them.
+
+295
+00:19:36.038 --> 00:19:40.099
+An exclusion is a group, never
+a user named in a policy.
+
+296
+00:19:40.099 --> 00:19:45.450
+It has an owner, a reason, an expiry, and
+a place in the access review schedule.
+
+297
+00:19:45.450 --> 00:19:50.956
+Where a script or tool signs in as a user,
+the fix is a managed identity or workload
+
+298
+00:19:50.956 --> 00:19:56.712
+identity, not an exclusion; the directory
+sync account is the documented exception.
+
+299
+00:19:56.712 --> 00:19:59.436
+And test the exclusion,
+not just the policy,
+
+300
+00:19:59.436 --> 00:20:03.638
+because an excluded user can still
+be prompted by another policy.
+
+301
+00:20:03.638 --> 00:20:05.663
+The opposite failure is quieter.
+
+302
+00:20:05.663 --> 00:20:11.250
+A policy that includes a dynamic group
+misses every user whose attribute is empty.
+
+303
+00:20:11.250 --> 00:20:13.433
+That's an exclusion nobody approved,
+
+304
+00:20:13.433 --> 00:20:18.381
+which is why the baseline policies include
+all users and exclude narrowly, and why
+
+305
+00:20:18.381 --> 00:20:23.840
+attribute completeness is checked before
+any attribute-scoped policy is enforced.
+
+306
+00:20:24.590 --> 00:20:29.841
+Every control that blocks an administrative
+path also creates a way to lock the
+
+307
+00:20:29.841 --> 00:20:32.784
+agency out of its own
+tenant: federation down,
+
+308
+00:20:32.784 --> 00:20:37.478
+every administrator's MFA device
+unavailable, a misconfigured policy,
+
+309
+00:20:37.478 --> 00:20:41.615
+or every privileged role eligible
+with no approver able to act.
+
+310
+00:20:41.615 --> 00:20:44.968
+Emergency access accounts,
+break-glass, are the answer,
+
+311
+00:20:44.968 --> 00:20:49.290
+and they're the only standing privilege
+the program accepts by design.
+
+312
+00:20:49.290 --> 00:20:51.040
+The standard is on the left.
+
+313
+00:20:51.040 --> 00:20:56.133
+Two or more cloud-only accounts on the
+tenant's onmicrosoft dot com domain, neither
+
+314
+00:20:56.133 --> 00:21:00.852
+synchronized nor federated, and not tied
+to one person or an employee's phone.
+
+315
+00:21:00.852 --> 00:21:05.686
+Permanent active Global Administrator;
+together with service principals that can't
+
+316
+00:21:05.686 --> 00:21:10.315
+perform an activation, they're the only
+standing active assignments in the tenant.
+
+317
+00:21:10.315 --> 00:21:14.670
+Phishing-resistant authentication,
+a FIDO2 passkey or certificate-based
+
+318
+00:21:14.670 --> 00:21:19.365
+authentication, using methods different
+from the normal administrator accounts.
+
+319
+00:21:19.365 --> 00:21:23.734
+The older pattern of a password in
+sealed envelopes is superseded,
+
+320
+00:21:23.734 --> 00:21:26.911
+because a password alone
+can no longer reach the
+
+321
+00:21:26.911 --> 00:21:30.565
+admin portals where Microsoft's
+mandatory MFA applies.
+
+322
+00:21:30.565 --> 00:21:34.543
+Excluded from every policy that
+blocks or restricts sign-in,
+
+323
+00:21:34.543 --> 00:21:36.453
+through one dedicated group.
+
+324
+00:21:36.453 --> 00:21:39.526
+Validated at least every
+ninety days by signing
+
+325
+00:21:39.526 --> 00:21:42.215
+in and performing an administrative task.
+
+326
+00:21:42.215 --> 00:21:44.365
+On the right is how
+the build watches them.
+
+327
+00:21:44.365 --> 00:21:47.794
+Report-only policies
+don't need the exclusion,
+
+328
+00:21:47.794 --> 00:21:51.765
+so CA090 is the one policy
+that records their sign-ins.
+
+329
+00:21:51.765 --> 00:21:54.118
+Alerts match the accounts' object IDs,
+
+330
+00:21:54.118 --> 00:21:57.990
+because their names deliberately
+don't reveal their purpose.
+
+331
+00:21:57.990 --> 00:22:02.678
+Every use is a critical incident
+until a post-use review closes it.
+
+332
+00:22:02.678 --> 00:22:08.225
+And because NIST's AC-2(2) expects emergency
+accounts to be disabled automatically
+
+333
+00:22:08.225 --> 00:22:13.376
+after a defined period, the system security
+plan records these as a documented
+
+334
+00:22:13.376 --> 00:22:15.198
+deviation, with monitoring,
+
+335
+00:22:15.198 --> 00:22:19.953
+post-use review and the ninety-day
+validation as compensating controls.
+
+336
+00:22:19.953 --> 00:22:21.339
+Finally, order.
+
+337
+00:22:21.339 --> 00:22:24.915
+The accounts exist and pass
+a test before any role
+
+338
+00:22:24.915 --> 00:22:28.315
+is made eligible or any
+approval is switched on.
+
+339
+00:22:28.315 --> 00:22:31.920
+Module three explains the
+lockout that prevents.
+
+340
+00:22:32.670 --> 00:22:36.195
+Once policies are on, the
+sign-in logs are the instrument.
+
+341
+00:22:36.195 --> 00:22:39.458
+The queries run against the
+SigninLogs table in a Log
+
+342
+00:22:39.458 --> 00:22:42.795
+Analytics workspace that
+receives Entra sign-in logs.
+
+343
+00:22:42.795 --> 00:22:44.458
+The chapter gives them in full;
+
+344
+00:22:44.458 --> 00:22:48.850
+they're illustrative and haven't been
+tested against a production workspace, so
+
+345
+00:22:48.850 --> 00:22:51.312
+confirm column values
+against your own data
+
+346
+00:22:51.312 --> 00:22:53.707
+before using them for
+alerting or evidence.
+
+347
+00:22:53.707 --> 00:22:55.182
+Six signals matter.
+
+348
+00:22:55.182 --> 00:23:00.207
+Per-policy results over seven days, including
+report-only outcomes; after wave two,
+
+349
+00:23:00.207 --> 00:23:02.793
+members of the Admins group should show no
+
+350
+00:23:02.793 --> 00:23:06.045
+not-applied results for
+the administrator policies.
+
+351
+00:23:06.045 --> 00:23:10.848
+Blocked sign-ins, error 53003, which
+is blocked by Conditional Access;
+
+352
+00:23:10.848 --> 00:23:14.640
+a spike on a single application
+usually means a client
+
+353
+00:23:14.640 --> 00:23:18.432
+that can't do modern
+authentication or app protection.
+
+354
+00:23:18.432 --> 00:23:23.882
+The end-state gap: users who would
+fail CA022 while it's in report-only.
+
+355
+00:23:23.882 --> 00:23:26.758
+That's the list that drives
+the enrollment campaign.
+
+356
+00:23:26.758 --> 00:23:31.060
+Legacy authentication still
+in use, over fourteen days,
+
+357
+00:23:31.060 --> 00:23:34.521
+which must be empty
+before CA001 is enforced.
+
+358
+00:23:34.521 --> 00:23:38.809
+Coverage gaps: successful sign-ins
+that no policy applied to,
+
+359
+00:23:38.809 --> 00:23:43.270
+which should be empty for interactive
+sign-ins once CA018 is on.
+
+360
+00:23:43.270 --> 00:23:46.499
+And emergency account use,
+matched on object IDs,
+
+361
+00:23:46.499 --> 00:23:49.970
+which should be zero outside
+scheduled validation.
+
+362
+00:23:49.970 --> 00:23:50.933
+Then drift.
+
+363
+00:23:50.933 --> 00:23:55.389
+The policy set in the tenant must
+equal the policy set in source control,
+
+364
+00:23:55.389 --> 00:24:00.300
+and the drift check alerts on a policy
+whose state changed without an approved
+
+365
+00:24:00.300 --> 00:24:03.549
+change; a change to any
+exclusion group's membership,
+
+366
+00:24:03.549 --> 00:24:08.535
+especially the emergency access group;
+a change to conditions, named locations,
+
+367
+00:24:08.535 --> 00:24:11.028
+authentication strengths or controls;
+
+368
+00:24:11.028 --> 00:24:14.125
+a policy created or deleted
+outside the pipeline,
+
+369
+00:24:14.125 --> 00:24:18.583
+including a Microsoft-managed policy
+that Microsoft added or enabled;
+
+370
+00:24:18.583 --> 00:24:22.932
+and users or devices missing the
+attributes that put them in scope.
+
+371
+00:24:22.932 --> 00:24:27.513
+Protected actions, which require
+fresh strong authentication to change
+
+372
+00:24:27.513 --> 00:24:32.170
+policies and named locations, narrow
+who can cause drift in the first place.
+
+373
+00:24:32.170 --> 00:24:34.240
+Module three builds them.
+
+374
+00:24:34.990 --> 00:24:39.790
+Module three: Privileged Identity
+Management, self-request with approval.
+
+375
+00:24:39.790 --> 00:24:44.090
+An eligible role is only as safe
+as the moment it turns active.
+
+376
+00:24:44.090 --> 00:24:46.978
+So that moment needs
+fresh proof, a reason,
+
+377
+00:24:46.978 --> 00:24:51.140
+a second person, and a record
+that outlives the audit window.
+
+378
+00:24:51.140 --> 00:24:55.696
+We'll cover the two layers of self-request,
+the activation controls by tier,
+
+379
+00:24:55.696 --> 00:24:59.131
+the build in the order that
+avoids locking yourself out,
+
+380
+00:24:59.131 --> 00:25:02.940
+and the approvers, alerts and
+records an assessor will ask for.
+
+381
+00:25:02.940 --> 00:25:05.790
+Appendix B has every role's settings.
+
+382
+00:25:06.540 --> 00:25:11.090
+Self-request has two layers, and
+an agency can run either or both.
+
+383
+00:25:11.090 --> 00:25:16.165
+Self-request for eligibility is a person
+asking to become eligible for a role.
+
+384
+00:25:16.165 --> 00:25:20.513
+It's decided in entitlement management,
+through an access package for the
+
+385
+00:25:20.513 --> 00:25:24.790
+role-assignable group, and it answers:
+may this person ever hold this role?
+
+386
+00:25:24.790 --> 00:25:28.108
+Self-request for activation
+is an already-eligible
+
+387
+00:25:28.108 --> 00:25:31.503
+person asking to turn the
+role on for a bounded window.
+
+388
+00:25:31.503 --> 00:25:36.327
+It's decided in PIM, and it answers:
+may this person use this role right now?
+
+389
+00:25:36.327 --> 00:25:39.187
+Microsoft's guidance
+for the DoD Zero Trust
+
+390
+00:25:39.187 --> 00:25:41.889
+user pillar treats the two as composable.
+
+391
+00:25:41.889 --> 00:25:47.989
+This module builds the second layer,
+because it produces a per-use, time-bounded,
+
+392
+00:25:47.989 --> 00:25:51.930
+individually justified
+record of privileged use,
+
+393
+00:25:51.930 --> 00:25:55.590
+which is what AC-6(9) and
+AC-17(4) are tested against.
+
+394
+00:25:55.590 --> 00:25:58.110
+Eligibility without an activation gate is
+
+395
+00:25:58.110 --> 00:26:00.840
+standing privilege through
+a nicer front door.
+
+396
+00:26:00.840 --> 00:26:04.728
+If an agency runs only one
+layer, it should run this one.
+
+397
+00:26:04.728 --> 00:26:06.665
+The sequence is six steps.
+
+398
+00:26:06.665 --> 00:26:10.498
+The administrator requests
+activation with a duration within
+
+399
+00:26:10.498 --> 00:26:13.753
+the role's maximum, a
+justification and a ticket number.
+
+400
+00:26:13.753 --> 00:26:17.049
+PIM sends them through
+authentication context c1,
+
+401
+00:26:17.049 --> 00:26:20.266
+which demands a fresh
+phishing-resistant sign-in.
+
+402
+00:26:20.266 --> 00:26:23.377
+The request goes pending,
+and approvers are emailed.
+
+403
+00:26:23.377 --> 00:26:27.428
+An approver from outside the
+requester's tier approves or denies,
+
+404
+00:26:27.428 --> 00:26:29.303
+with their own justification.
+
+405
+00:26:29.303 --> 00:26:32.672
+On approval, the role is
+active until the requested
+
+406
+00:26:32.672 --> 00:26:35.802
+end time and returns to
+eligible with no action.
+
+407
+00:26:35.802 --> 00:26:38.846
+Denied, or undecided
+after twenty-four hours,
+
+408
+00:26:38.846 --> 00:26:42.302
+the role stays eligible and
+a new request is needed.
+
+409
+00:26:42.302 --> 00:26:44.090
+One dependency people miss.
+
+410
+00:26:44.090 --> 00:26:49.140
+If the P2 or Governance license lapses,
+permanent assignments are unaffected,
+
+411
+00:26:49.140 --> 00:26:52.326
+but eligible Entra role
+assignments are removed,
+
+412
+00:26:52.326 --> 00:26:55.278
+PIM settings are removed
+and role reviews end.
+
+413
+00:26:55.278 --> 00:26:59.056
+Treat a license expiry as a
+configuration-management event,
+
+414
+00:26:59.056 --> 00:27:03.720
+and keep the role inventory exported
+so eligibility can be restored.
+
+415
+00:27:04.470 --> 00:27:06.320
+PIM settings are defined per role.
+
+416
+00:27:06.320 --> 00:27:09.606
+Each role's settings are
+independent of every other role's,
+
+417
+00:27:09.606 --> 00:27:12.070
+and every assignment of
+a role follows them.
+
+418
+00:27:12.070 --> 00:27:16.333
+The program sets them by tier,
+from Chapter 04's tier model.
+
+419
+00:27:16.333 --> 00:27:19.776
+Tier 0 is the control plane:
+Global, Privileged Role,
+
+420
+00:27:19.776 --> 00:27:25.107
+Privileged Authentication, Security
+and Conditional Access Administrator.
+
+421
+00:27:25.107 --> 00:27:30.923
+Four-hour activations, authentication context
+c1, justification and ticket required,
+
+422
+00:27:30.923 --> 00:27:33.427
+approval by the Tier 0 approver group,
+
+423
+00:27:33.427 --> 00:27:36.658
+and eligibility that
+expires after ninety days.
+
+424
+00:27:36.658 --> 00:27:40.292
+Tier 1, the management plane,
+such as Exchange, SharePoint,
+
+425
+00:27:40.292 --> 00:27:43.927
+Intune and Application
+Administrator, gets eight hours,
+
+426
+00:27:43.927 --> 00:27:47.407
+the Tier 1 approver group,
+and a hundred and eighty days.
+
+427
+00:27:47.407 --> 00:27:52.170
+Tier 2, scoped operations inside
+administrative units, gets eight hours,
+
+428
+00:27:52.170 --> 00:27:56.694
+and approval is optional, with a
+documented risk acceptance per role.
+
+429
+00:27:56.694 --> 00:27:58.898
+Read-only roles need no approval,
+
+430
+00:27:58.898 --> 00:28:03.795
+but still pass c1 with a justification,
+and their eligibility runs a year.
+
+431
+00:28:03.795 --> 00:28:08.195
+Now, what the controls really do,
+because the old guides got several wrong.
+
+432
+00:28:08.195 --> 00:28:11.838
+The activation maximum runs
+from one to twenty-four hours,
+
+433
+00:28:11.838 --> 00:28:15.708
+and it's the exposure window, so
+set the shortest the work needs.
+
+434
+00:28:15.708 --> 00:28:20.465
+Require MFA on activation may not
+prompt at all if the user authenticated
+
+435
+00:28:20.465 --> 00:28:25.145
+strongly earlier in the session, so
+it proves nothing at activation time.
+
+436
+00:28:25.145 --> 00:28:29.336
+That's why every role uses the
+authentication context instead, which is
+
+437
+00:28:29.336 --> 00:28:34.095
+Microsoft's recommendation when the goal
+is authentication during activation.
+
+438
+00:28:34.095 --> 00:28:38.962
+Ticket information is recorded but never
+checked against a ticketing system;
+
+439
+00:28:38.962 --> 00:28:41.957
+enforced correlation
+belongs in the SIEM or ITSM.
+
+440
+00:28:41.957 --> 00:28:45.720
+And approval needs at least one
+approver, with two recommended.
+
+441
+00:28:45.720 --> 00:28:49.792
+The assignment controls close the
+side door, so a well-built gate can't
+
+442
+00:28:49.792 --> 00:28:54.007
+be bypassed by simply granting
+someone a permanent active assignment.
+
+443
+00:28:54.007 --> 00:28:56.358
+No permanent eligible assignments.
+
+444
+00:28:56.358 --> 00:29:01.470
+No permanent active ones, except Global
+Administrator for the emergency accounts.
+
+445
+00:29:01.470 --> 00:29:06.069
+And MFA and justification are required
+when an active assignment is made,
+
+446
+00:29:06.069 --> 00:29:11.560
+because PIM can't apply an activation
+requirement to someone who's already active.
+
+447
+00:29:12.310 --> 00:29:13.673
+Work the build in order.
+
+448
+00:29:13.673 --> 00:29:16.345
+Step zero isn't optional
+and can't be moved:
+
+449
+00:29:16.345 --> 00:29:20.668
+configuring approval before
+emergency access accounts exist is
+
+450
+00:29:20.668 --> 00:29:24.598
+the one sequence that can lock
+an agency out of its own tenant.
+
+451
+00:29:24.598 --> 00:29:26.235
+Microsoft documents it.
+
+452
+00:29:26.235 --> 00:29:31.002
+Every Privileged Role and Global
+Administrator assignment is eligible,
+
+453
+00:29:31.002 --> 00:29:34.518
+approval is required, and no
+approvers are configured,
+
+454
+00:29:34.518 --> 00:29:38.660
+so the default approvers, the
+active administrators, don't exist.
+
+455
+00:29:38.660 --> 00:29:43.117
+Avoid it with both halves of the fix:
+emergency accounts with permanent active
+
+456
+00:29:43.117 --> 00:29:47.848
+Global Administrator, and named approver
+groups on every role that needs approval.
+
+457
+00:29:47.848 --> 00:29:51.285
+Step one builds those approver
+groups, one per tier.
+
+458
+00:29:51.285 --> 00:29:56.366
+Step two builds authentication context
+c1 and its Conditional Access policy:
+
+459
+00:29:56.366 --> 00:30:01.681
+the separate-device strength and a compliant
+device, sign-in frequency every time,
+
+460
+00:30:01.681 --> 00:30:06.448
+excluding the emergency group, and
+turned On, because Microsoft requires
+
+461
+00:30:06.448 --> 00:30:11.060
+the policy to exist and be enabled
+before the context is selected in PIM.
+
+462
+00:30:11.060 --> 00:30:12.360
+Three constraints.
+
+463
+00:30:12.360 --> 00:30:14.953
+Don't scope that policy
+to a directory role,
+
+464
+00:30:14.953 --> 00:30:18.360
+because at activation the user
+doesn't hold the role yet.
+
+465
+00:30:18.360 --> 00:30:23.767
+The fallback to plain MFA happens only
+when no policy targets the context;
+
+466
+00:30:23.767 --> 00:30:29.085
+it doesn't trigger if the policy is off,
+in report-only or excludes the user.
+
+467
+00:30:29.085 --> 00:30:34.563
+And the context governs
+activation, not use, so CA003,
+
+468
+00:30:34.563 --> 00:30:40.423
+CA004 and CA025 still apply
+to every privileged sign-in.
+
+469
+00:30:40.423 --> 00:30:43.126
+Steps three and four apply role settings,
+
+470
+00:30:43.126 --> 00:30:47.022
+in the portal for one role and
+in Microsoft Graph for thirty.
+
+471
+00:30:47.022 --> 00:30:49.448
+Each role's policy has seventeen rules.
+
+472
+00:30:49.448 --> 00:30:54.516
+Step five converts standing assignments:
+create the eligible assignment first,
+
+473
+00:30:54.516 --> 00:30:58.223
+confirm the person can activate,
+then remove the active one.
+
+474
+00:30:58.223 --> 00:31:00.898
+Step six closes a gap PIM leaves.
+
+475
+00:31:00.898 --> 00:31:04.291
+PIM protects becoming a
+Conditional Access Administrator,
+
+476
+00:31:04.291 --> 00:31:07.685
+but not editing a policy once
+someone holds that permission.
+
+477
+00:31:07.685 --> 00:31:12.585
+Protected actions attach a second
+context, c2, to those permissions.
+
+478
+00:31:12.585 --> 00:31:16.221
+Steps seven to nine are
+notifications and alerts,
+
+479
+00:31:16.221 --> 00:31:19.500
+reviews, and log export,
+on the next slide.
+
+480
+00:31:20.250 --> 00:31:23.638
+The approval engine has three
+properties that shape the design.
+
+481
+00:31:23.638 --> 00:31:26.051
+Approvers don't need to hold any role.
+
+482
+00:31:26.051 --> 00:31:30.691
+Approvers can't approve their own requests,
+and service principals can't approve
+
+483
+00:31:30.691 --> 00:31:35.263
+at all; that's enforced by the platform,
+which is worth saying in the security plan.
+
+484
+00:31:35.263 --> 00:31:38.599
+And approvers need a P2
+or Governance license.
+
+485
+00:31:38.599 --> 00:31:40.975
+From those, the separation rules.
+
+486
+00:31:40.975 --> 00:31:45.250
+A tier's approvers aren't members
+of that tier's eligible population;
+
+487
+00:31:45.250 --> 00:31:49.067
+otherwise the approvers and the
+requesters are the same set,
+
+488
+00:31:49.067 --> 00:31:51.663
+and approval degrades to mutual sign-off.
+
+489
+00:31:51.663 --> 00:31:56.062
+The platform blocks self-approval;
+only group design blocks collusion.
+
+490
+00:31:56.062 --> 00:31:58.126
+At least two approvers per tier,
+
+491
+00:31:58.126 --> 00:32:01.937
+held as governed groups,
+because named individuals leave.
+
+492
+00:32:01.937 --> 00:32:05.619
+Tier 0 approvers sit outside
+the Tier 0 population,
+
+493
+00:32:05.619 --> 00:32:08.162
+for example in the security office.
+
+494
+00:32:08.162 --> 00:32:11.184
+The approver's own
+justification is required,
+
+495
+00:32:11.184 --> 00:32:13.887
+so the record holds a
+decision, not a click.
+
+496
+00:32:13.887 --> 00:32:17.713
+And approver groups are reviewed like
+the privileged objects they are.
+
+497
+00:32:17.713 --> 00:32:20.300
+On the right, the signals and records.
+
+498
+00:32:20.300 --> 00:32:24.025
+The most important PIM alert
+is roles assigned outside PIM,
+
+499
+00:32:24.025 --> 00:32:28.587
+high severity, because an assignment
+made outside PIM never met the gate.
+
+500
+00:32:28.587 --> 00:32:30.482
+It detects rather than prevents;
+
+501
+00:32:30.482 --> 00:32:34.551
+limiting who holds Privileged Role
+Administrator is the prevention.
+
+502
+00:32:34.551 --> 00:32:38.726
+The approval window is a fixed
+twenty-four hours with a single stage,
+
+503
+00:32:38.726 --> 00:32:43.423
+so a Tier 0 path staffed by two people in
+one time zone will strand out-of-hours
+
+504
+00:32:43.423 --> 00:32:47.524
+requests; the documented answer
+to "the approvers are unavailable
+
+505
+00:32:47.524 --> 00:32:51.700
+and production is down" is the
+emergency procedure, not a workaround.
+
+506
+00:32:51.700 --> 00:32:56.321
+Role reviews run monthly for Tier 0
+and quarterly otherwise, and never as
+
+507
+00:32:56.321 --> 00:33:01.250
+self-review, because self-review leaves
+role-assignable groups out entirely.
+
+508
+00:33:01.250 --> 00:33:04.365
+And PIM's audit history keeps thirty days,
+
+509
+00:33:04.365 --> 00:33:07.938
+so the logs are exported
+for AU-11 before go-live.
+
+510
+00:33:07.938 --> 00:33:12.713
+One date to act on: the
+legacy beta privileged-access
+
+511
+00:33:12.713 --> 00:33:16.712
+API stops returning data
+on October 28, 2026.
+
+512
+00:33:16.712 --> 00:33:19.370
+Anything still calling it must move now.
+
+513
+00:33:20.120 --> 00:33:22.695
+Module four: access governance.
+
+514
+00:33:22.695 --> 00:33:26.331
+Conditional Access decides
+whether a session may proceed,
+
+515
+00:33:26.331 --> 00:33:29.745
+and PIM decides whether a
+privileged role may be active.
+
+516
+00:33:29.745 --> 00:33:32.269
+Neither decides whether
+a person should still
+
+517
+00:33:32.269 --> 00:33:34.470
+hold the access they were given last year.
+
+518
+00:33:34.470 --> 00:33:39.345
+A grant nobody re-confirms is a
+decision made once and trusted forever.
+
+519
+00:33:39.345 --> 00:33:43.480
+Three mechanisms close that gap
+without anyone opening a ticket:
+
+520
+00:33:43.480 --> 00:33:48.810
+requests through access packages, reviews
+on a calendar, and lifecycle events.
+
+521
+00:33:49.560 --> 00:33:54.642
+Entitlement management automates access
+requests, assignments, reviews and
+
+522
+00:33:54.642 --> 00:33:58.474
+expiration for groups,
+applications and SharePoint sites,
+
+523
+00:33:58.474 --> 00:34:00.585
+for internal and external users.
+
+524
+00:34:00.585 --> 00:34:02.472
+It has three building blocks.
+
+525
+00:34:02.472 --> 00:34:05.708
+A catalog is the container
+and the unit of delegation;
+
+526
+00:34:05.708 --> 00:34:10.045
+the program creates one per business
+domain, with the domain's business
+
+527
+00:34:10.045 --> 00:34:14.235
+owner as catalog owner, and doesn't
+use the automatic General catalog.
+
+528
+00:34:14.235 --> 00:34:17.047
+An access package bundles resource roles.
+
+529
+00:34:17.047 --> 00:34:22.011
+And a policy says who may request, who
+approves, and when the assignment ends.
+
+530
+00:34:22.011 --> 00:34:26.935
+The approval chains follow the application's
+risk tier, as design positions.
+
+531
+00:34:26.935 --> 00:34:28.626
+Tier 3: the department owner,
+
+532
+00:34:28.626 --> 00:34:33.772
+which is the requestor's manager with a
+fallback approver for anyone with no manager
+
+533
+00:34:33.772 --> 00:34:37.300
+in the directory, seven days to
+decide, and a one-year expiry
+
+534
+00:34:37.300 --> 00:34:41.123
+that extends without approval
+while the user is still in scope.
+
+535
+00:34:41.123 --> 00:34:45.655
+Tier 2: the application owner, with
+the backup owner as alternate,
+
+536
+00:34:45.655 --> 00:34:48.135
+five days, a hundred and eighty days.
+
+537
+00:34:48.135 --> 00:34:49.920
+Tier 1 adds a second stage,
+
+538
+00:34:49.920 --> 00:34:54.085
+the identity governance office,
+and expires in ninety days.
+
+539
+00:34:54.085 --> 00:34:58.065
+The earlier procedure only notified
+the office of Tier 1 grants;
+
+540
+00:34:58.065 --> 00:35:03.097
+a second stage costs a few hours and leaves
+an approval record instead of an email.
+
+541
+00:35:03.097 --> 00:35:07.548
+External users get a separate,
+stricter policy and at most a year.
+
+542
+00:35:07.548 --> 00:35:12.348
+The program never uses "never."
+Underneath is the group substrate.
+
+543
+00:35:12.348 --> 00:35:16.448
+Applications are assigned to
+groups, never to users directly.
+
+544
+00:35:16.448 --> 00:35:18.298
+Nested groups are prohibited,
+
+545
+00:35:18.298 --> 00:35:23.257
+because group assignment to an application
+gives access only to direct members,
+
+546
+00:35:23.257 --> 00:35:27.698
+and a group review shows nested users
+but can only remove direct members.
+
+547
+00:35:27.698 --> 00:35:32.773
+And names follow one convention, so a
+group's purpose and tier can be read from it.
+
+548
+00:35:32.773 --> 00:35:37.796
+Separation of duties: a package can
+list incompatible packages and groups,
+
+549
+00:35:37.796 --> 00:35:41.685
+but the check is one-way, so each
+package must list the other.
+
+550
+00:35:41.685 --> 00:35:44.591
+A legitimate exception
+becomes its own combined
+
+551
+00:35:44.591 --> 00:35:47.922
+package with a shorter expiry
+and more frequent reviews.
+
+552
+00:35:47.922 --> 00:35:51.295
+And privileged access arrives
+through PIM eligibility,
+
+553
+00:35:51.295 --> 00:35:54.660
+never through a package
+that grants an active role.
+
+554
+00:35:55.410 --> 00:35:57.966
+Access reviews are recurring attestation
+
+555
+00:35:57.966 --> 00:36:00.522
+that each person still
+needs what they hold.
+
+556
+00:36:00.522 --> 00:36:04.170
+Each instance captures a snapshot
+of access when it starts,
+
+557
+00:36:04.170 --> 00:36:07.372
+and changes during a review
+show up in the next cycle.
+
+558
+00:36:07.372 --> 00:36:09.360
+The schedule is set by risk.
+
+559
+00:36:09.360 --> 00:36:14.540
+Privileged roles are reviewed in PIM,
+monthly for Tier 0 by the Tier 0 approver
+
+560
+00:36:14.540 --> 00:36:19.397
+group, and quarterly for the other
+tiers, with removal if nobody responds.
+
+561
+00:36:19.397 --> 00:36:24.160
+Tier 1 application groups are reviewed
+quarterly in two stages of seven days:
+
+562
+00:36:24.160 --> 00:36:27.211
+the manager first, then
+the application owner for
+
+563
+00:36:27.211 --> 00:36:30.336
+everyone the manager approved
+or marked don't know.
+
+564
+00:36:30.336 --> 00:36:33.322
+That replaces the old
+manual escalation step.
+
+565
+00:36:33.322 --> 00:36:36.640
+Tier 2 groups are semiannual
+and Tier 3 annual,
+
+566
+00:36:36.640 --> 00:36:39.522
+by the application or department owner.
+
+567
+00:36:39.522 --> 00:36:42.444
+Guests are reviewed
+quarterly by their sponsors,
+
+568
+00:36:42.444 --> 00:36:45.223
+and denied guests are
+blocked and then removed.
+
+569
+00:36:45.223 --> 00:36:47.022
+Four rules make reviews bite.
+
+570
+00:36:47.022 --> 00:36:50.385
+First, review the groups,
+not the applications.
+
+571
+00:36:50.385 --> 00:36:54.946
+Microsoft notes that reviewing an application
+that uses group assignment doesn't
+
+572
+00:36:54.946 --> 00:36:59.110
+remove the members of those groups; they
+keep their access through the group.
+
+573
+00:36:59.110 --> 00:37:02.874
+Second, whenever reviewers
+are managers or group owners,
+
+574
+00:37:02.874 --> 00:37:07.760
+add a fallback reviewer for users with
+no manager and groups with no owner.
+
+575
+00:37:07.760 --> 00:37:11.210
+Third, choose the no-response
+default deliberately.
+
+576
+00:37:11.210 --> 00:37:15.249
+Microsoft warns that combining
+remove access with auto-apply
+
+577
+00:37:15.249 --> 00:37:19.210
+can revoke all access to a resource
+if reviewers don't respond.
+
+578
+00:37:19.210 --> 00:37:24.097
+So the program sets remove only where an
+unreviewed grant is riskier than a lost
+
+579
+00:37:24.097 --> 00:37:27.948
+one, privileged roles and guests,
+and no change with escalation
+
+580
+00:37:27.948 --> 00:37:31.872
+for business applications, where
+a mass removal would stop work.
+
+581
+00:37:31.872 --> 00:37:34.693
+Fourth, justification on every decision,
+
+582
+00:37:34.693 --> 00:37:37.761
+and no bulk decisions
+on privileged reviews.
+
+583
+00:37:37.761 --> 00:37:41.484
+The service can't prevent a bulk
+action, so the history is checked
+
+584
+00:37:41.484 --> 00:37:45.560
+for one reviewer recording many
+identical decisions within minutes.
+
+585
+00:37:45.560 --> 00:37:50.106
+The records: results download as a
+CSV, and review history reports stay
+
+586
+00:37:50.106 --> 00:37:55.800
+downloadable for only thirty days, so each
+one goes straight to the evidence store.
+
+587
+00:37:56.550 --> 00:37:59.213
+The third mechanism is lifecycle events.
+
+588
+00:37:59.213 --> 00:38:03.723
+The HR-driven lifecycle itself,
+from attributes to joiner,
+
+589
+00:38:03.723 --> 00:38:07.012
+mover and leaver design,
+belongs to Book 03.
+
+590
+00:38:07.012 --> 00:38:11.636
+This chapter covers only the Lifecycle
+Workflows tasks that change access,
+
+591
+00:38:11.636 --> 00:38:16.774
+because those tasks are where mover and
+leaver problems turn into access decisions.
+
+592
+00:38:16.774 --> 00:38:20.575
+A joiner gets the onboarding
+package and the department package,
+
+593
+00:38:20.575 --> 00:38:23.038
+never a direct add to
+an application group.
+
+594
+00:38:23.038 --> 00:38:26.113
+A move is a re-derivation,
+not an additional grant:
+
+595
+00:38:26.113 --> 00:38:31.264
+remove the previous department's packages,
+request the new department's package,
+
+596
+00:38:31.264 --> 00:38:35.876
+and send everything the person still
+holds outside packages to a review.
+
+597
+00:38:35.876 --> 00:38:40.328
+Microsoft's built-in job profile change
+template does the first two steps,
+
+598
+00:38:40.328 --> 00:38:43.759
+and its remove-all-assignments
+task defaults to fifteen
+
+599
+00:38:43.759 --> 00:38:46.825
+days after the trigger, a
+grace period for handover.
+
+600
+00:38:46.825 --> 00:38:49.875
+The program keeps that
+grace for standard access
+
+601
+00:38:49.875 --> 00:38:53.000
+and sets it to zero for Tier
+1 and privileged access.
+
+602
+00:38:53.000 --> 00:38:58.287
+A leaver's workflow cancels pending
+requests, removes every package assignment,
+
+603
+00:38:58.287 --> 00:39:02.863
+removes the user from all groups and
+teams, and revokes refresh tokens.
+
+604
+00:39:02.863 --> 00:39:05.861
+And an inactivity workflow
+is the backstop for
+
+605
+00:39:05.861 --> 00:39:09.399
+accounts whose HR record
+never produced a leaver event.
+
+606
+00:39:09.399 --> 00:39:14.375
+A tenant can have fifty workflows, so
+spend them on events, not on applications.
+
+607
+00:39:14.375 --> 00:39:17.817
+Guests are where unreviewed
+access piles up fastest,
+
+608
+00:39:17.817 --> 00:39:21.650
+because nobody's HR record ends
+when a partner project does.
+
+609
+00:39:21.650 --> 00:39:22.638
+Four layers.
+
+610
+00:39:22.638 --> 00:39:24.321
+Invite through a package,
+
+611
+00:39:24.321 --> 00:39:28.488
+so every guest arrives with an
+approver, a sponsor and an expiry.
+
+612
+00:39:28.488 --> 00:39:33.289
+When a governed guest loses their last
+assignment, they're blocked and, by default,
+
+613
+00:39:33.289 --> 00:39:37.948
+removed after thirty days; ungoverned
+guests stay in the tenant indefinitely,
+
+614
+00:39:37.948 --> 00:39:41.962
+so the program marks existing guests
+with assignments as governed.
+
+615
+00:39:41.962 --> 00:39:44.313
+Sponsors review guests quarterly.
+
+616
+00:39:44.313 --> 00:39:47.097
+And guest lifecycle
+policies, still in preview,
+
+617
+00:39:47.097 --> 00:39:50.025
+will be adopted when
+they're generally available.
+
+618
+00:39:50.025 --> 00:39:54.988
+All of this is licensed by Entra ID
+Governance, so plan it for the whole workforce.
+
+619
+00:39:54.988 --> 00:39:58.008
+Partial licensing produces
+a program that governs
+
+620
+00:39:58.008 --> 00:40:00.900
+some people and leaves
+the rest ungoverned.
+
+621
+00:40:01.650 --> 00:40:06.100
+Module five: access as code,
+and the evidence it produces.
+
+622
+00:40:06.100 --> 00:40:10.637
+An access policy that exists only
+as portal clicks can't be diffed,
+
+623
+00:40:10.637 --> 00:40:13.662
+reviewed or replayed, so
+it can't be assessed.
+
+624
+00:40:13.662 --> 00:40:19.065
+The invariant this module enforces: every
+access decision has a reviewable source of
+
+625
+00:40:19.065 --> 00:40:24.087
+truth, a pipeline applies that source, and
+a monitor checks the tenant against it.
+
+626
+00:40:24.087 --> 00:40:26.848
+Then the evidence is
+produced by doing the work,
+
+627
+00:40:26.848 --> 00:40:29.480
+not reconstructed for the assessment.
+
+628
+00:40:30.230 --> 00:40:34.566
+Every access object the program
+governs has a file in the repository,
+
+629
+00:40:34.566 --> 00:40:38.142
+one per object, and the safety
+rules travel with the files.
+
+630
+00:40:38.142 --> 00:40:42.720
+Every blocking or grant policy
+excludes the emergency access group,
+
+631
+00:40:42.720 --> 00:40:46.093
+and new and changed policies
+deploy as report-only.
+
+632
+00:40:46.093 --> 00:40:51.919
+PIM settings require an authentication
+context or MFA, justification, and approval
+
+633
+00:40:51.919 --> 00:40:57.330
+for Tier 0, with no permanent active
+assignment except the emergency accounts.
+
+634
+00:40:57.330 --> 00:41:00.917
+Groups follow the naming
+convention with no nested members.
+
+635
+00:41:00.917 --> 00:41:05.830
+Packages have an expiry, and incompatible
+packages are listed both ways.
+
+636
+00:41:05.830 --> 00:41:09.442
+Review definitions have a
+fallback reviewer and auto-apply.
+
+637
+00:41:09.442 --> 00:41:14.468
+Leaver workflows remove all package
+assignments and revoke refresh tokens.
+
+638
+00:41:14.468 --> 00:41:19.143
+Four tools can hold those objects,
+and every one ends in Microsoft Graph.
+
+639
+00:41:19.143 --> 00:41:22.011
+Graph covers everything,
+but holds no state,
+
+640
+00:41:22.011 --> 00:41:27.429
+so desired state has to live in the repository
+and the comparison has to be written.
+
+641
+00:41:27.429 --> 00:41:32.485
+The Terraform azuread provider, at
+version 3.10.0 as of October 2026,
+
+642
+00:41:32.485 --> 00:41:36.897
+covers most classes but has
+no access review definitions,
+
+643
+00:41:36.897 --> 00:41:43.055
+no Lifecycle Workflows, and no role
+management policy for Entra directory roles.
+
+644
+00:41:43.055 --> 00:41:50.180
+Microsoft365DSC, an open-source community
+module, covers every class in the table.
+
+645
+00:41:50.180 --> 00:41:54.525
+And Microsoft Entra Tenant
+Governance configuration management,
+
+646
+00:41:54.525 --> 00:41:57.164
+built on generally available Graph APIs,
+
+647
+00:41:57.164 --> 00:42:01.742
+monitors a baseline but doesn't cover
+review definitions or workflows.
+
+648
+00:42:01.742 --> 00:42:04.430
+The program's reference
+choice minimizes write
+
+649
+00:42:04.430 --> 00:42:06.917
+paths while keeping
+drift detection native.
+
+650
+00:42:06.917 --> 00:42:12.647
+Microsoft365DSC writes, because it's the
+only declarative tool that covers every
+
+651
+00:42:12.647 --> 00:42:15.259
+class; treat it as a community project,
+
+652
+00:42:15.259 --> 00:42:18.292
+check its release notes,
+and pin its version.
+
+653
+00:42:18.292 --> 00:42:22.046
+A team already invested in Terraform
+can use it where it covers,
+
+654
+00:42:22.046 --> 00:42:24.067
+and Graph PowerShell for the rest.
+
+655
+00:42:24.067 --> 00:42:29.293
+The rule that matters is one writer per
+object class, recorded in the repository.
+
+656
+00:42:29.293 --> 00:42:32.592
+The tenant monitor detects
+drift where it covers;
+
+657
+00:42:32.592 --> 00:42:36.617
+a daily read-only comparison
+handles reviews and workflows.
+
+658
+00:42:36.617 --> 00:42:39.242
+And Entra Exporter takes a weekly backup,
+
+659
+00:42:39.242 --> 00:42:43.150
+kept separate from the
+baselines, as Microsoft advises.
+
+660
+00:42:43.900 --> 00:42:47.375
+The repository is the only
+normal path to production.
+
+661
+00:42:47.375 --> 00:42:52.653
+Six change-control rules, which together
+are how the program meets CM-3 and
+
+662
+00:42:52.653 --> 00:42:58.363
+CM-5 for the identity plane and FedRAMP
+20x's change-management indicators.
+
+663
+00:42:58.363 --> 00:43:02.813
+One, two people per change: the author
+of a pull request can't approve it,
+
+664
+00:43:02.813 --> 00:43:07.420
+and Tier 0 objects, such as emergency
+exclusions and Tier 0 PIM settings,
+
+665
+00:43:07.420 --> 00:43:10.387
+need a second approver
+from the security team.
+
+666
+00:43:10.387 --> 00:43:15.506
+Two, checks before merge: schema
+validation, the emergency exclusion check,
+
+667
+00:43:15.506 --> 00:43:19.963
+the safety rules, and a plan or dry
+run attached to the pull request.
+
+668
+00:43:19.963 --> 00:43:24.827
+Three, report-only first; a policy runs
+at least a week against the sign-in
+
+669
+00:43:24.827 --> 00:43:29.774
+logs and is enabled in a second pull
+request that cites the impact review.
+
+670
+00:43:29.774 --> 00:43:32.967
+Four, the pipeline signs
+in as a service principal
+
+671
+00:43:32.967 --> 00:43:35.925
+with workload identity
+federation, no secret.
+
+672
+00:43:35.925 --> 00:43:40.188
+It can change every access policy in
+the tenant, so it's a Tier 0 asset,
+
+673
+00:43:40.188 --> 00:43:43.522
+with two owners, quarterly
+permission reviews and a
+
+674
+00:43:43.522 --> 00:43:47.475
+workload identity policy
+restricting where it signs in from.
+
+675
+00:43:47.475 --> 00:43:52.396
+Five, emergency changes in the portal happen
+under a PIM activation with a ticket,
+
+676
+00:43:52.396 --> 00:43:55.040
+and are back-ported
+within one business day;
+
+677
+00:43:55.040 --> 00:43:58.713
+until then the drift monitor
+reports them, which is the point.
+
+678
+00:43:58.713 --> 00:44:03.499
+Six, rollback is a revert, so it
+has the same record as the change.
+
+679
+00:44:03.499 --> 00:44:06.046
+Drift detection catches
+what code can't stop,
+
+680
+00:44:06.046 --> 00:44:10.037
+because a Global Administrator can
+still change the tenant directly.
+
+681
+00:44:10.037 --> 00:44:13.013
+The tenant monitor's limits
+shape how it's used.
+
+682
+00:44:13.013 --> 00:44:15.712
+It runs every six hours, fixed.
+
+683
+00:44:15.712 --> 00:44:20.787
+Snapshots expire after seven days, resolved
+drifts are deleted thirty days after
+
+684
+00:44:20.787 --> 00:44:25.787
+they're resolved, and updating a baseline
+deletes that monitor's earlier results.
+
+685
+00:44:25.787 --> 00:44:28.206
+Those are evidence rules in disguise:
+
+686
+00:44:28.206 --> 00:44:31.325
+export every result before
+changing a baseline.
+
+687
+00:44:31.325 --> 00:44:33.600
+Every drift is one of two things.
+
+688
+00:44:33.600 --> 00:44:35.543
+Unauthorized or accidental:
+
+689
+00:44:35.543 --> 00:44:40.238
+redeploy the repository's version
+and investigate from the audit log.
+
+690
+00:44:40.238 --> 00:44:44.451
+Intended but not yet in code:
+back-port it by pull request.
+
+691
+00:44:44.451 --> 00:44:48.798
+A drift open more than one business
+day goes to the governance office,
+
+692
+00:44:48.798 --> 00:44:52.290
+and drift on a Tier 0 object
+is a security incident.
+
+693
+00:44:53.040 --> 00:44:56.178
+Configuration evidence
+proves a setting existed.
+
+694
+00:44:56.178 --> 00:44:59.478
+Operational evidence proves
+the setting did its job.
+
+695
+00:44:59.478 --> 00:45:02.877
+An assessor needs both, for
+the whole assessment period,
+
+696
+00:45:02.877 --> 00:45:04.577
+not just the day of the visit.
+
+697
+00:45:04.577 --> 00:45:06.591
+The table is the program's mapping.
+
+698
+00:45:06.591 --> 00:45:11.547
+AC-2, account management, is met by
+access packages with approval and expiry,
+
+699
+00:45:11.547 --> 00:45:16.582
+scheduled reviews, and Lifecycle Workflows;
+the evidence is the package files,
+
+700
+00:45:16.582 --> 00:45:19.680
+the entitlement audit
+records for each request,
+
+701
+00:45:19.680 --> 00:45:22.778
+the review history and
+the workflow run history.
+
+702
+00:45:22.778 --> 00:45:27.777
+AC-3, access enforcement, is the
+Conditional Access library and group-based
+
+703
+00:45:27.777 --> 00:45:32.695
+assignment, evidenced by policy files,
+their deployment history, monitor
+
+704
+00:45:32.695 --> 00:45:38.016
+results showing no unresolved drift, and
+sign-in logs showing policies applied.
+
+705
+00:45:38.016 --> 00:45:42.353
+AC-5, separation of duties, is
+the three-party group model,
+
+706
+00:45:42.353 --> 00:45:46.503
+incompatible packages and
+two-person pull requests.
+
+707
+00:45:46.503 --> 00:45:51.987
+AC-6 and its review enhancement are PIM
+eligibility instead of standing roles,
+
+708
+00:45:51.987 --> 00:45:55.953
+with reviews monthly for Tier
+0 and quarterly otherwise.
+
+709
+00:45:55.953 --> 00:46:00.049
+IA-2's MFA enhancements are the
+phishing-resistant strength,
+
+710
+00:46:00.049 --> 00:46:04.065
+shown in policy files, sign-ins
+and the registration report.
+
+711
+00:46:04.065 --> 00:46:08.379
+AU-11 isn't met by PIM configuration
+at all, only by the export,
+
+712
+00:46:08.379 --> 00:46:14.190
+and the validation test is an activation
+still queryable after thirty-one days.
+
+713
+00:46:14.190 --> 00:46:18.194
+And CA-7, continuous monitoring,
+is the six-hourly monitor,
+
+714
+00:46:18.194 --> 00:46:22.965
+the daily comparisons and the drift
+issues with their resolutions.
+
+715
+00:46:22.965 --> 00:46:27.308
+FedRAMP doesn't set the account-review
+or privilege-review frequencies;
+
+716
+00:46:27.308 --> 00:46:32.303
+they stay organization-defined, so the
+security plan states the program's schedule.
+
+717
+00:46:32.303 --> 00:46:36.743
+Under FedRAMP 20x, the same records
+support the identity indicators,
+
+718
+00:46:36.743 --> 00:46:39.874
+for automated account
+management, least privilege,
+
+719
+00:46:39.874 --> 00:46:43.587
+just-in-time authorization and
+passwordless methods, and the
+
+720
+00:46:43.587 --> 00:46:48.465
+change-management indicators for logging,
+redeploying and validating changes.
+
+721
+00:46:48.465 --> 00:46:49.927
+And the honest limits.
+
+722
+00:46:49.927 --> 00:46:53.272
+A correct policy file says
+nothing about whether reviewers
+
+723
+00:46:53.272 --> 00:46:56.415
+read what they approved; the
+review history carries that.
+
+724
+00:46:56.415 --> 00:46:58.278
+Native retention is short.
+
+725
+00:46:58.278 --> 00:47:02.752
+And tool coverage moves, so re-check
+the coverage table at every upgrade.
+
+726
+00:47:02.752 --> 00:47:06.680
+This is a design-intent mapping,
+not an assessment result.
+
+727
+00:47:07.430 --> 00:47:10.193
+To close, here's what to
+take back to the tenant.
+
+728
+00:47:10.193 --> 00:47:14.084
+The library: build the prerequisites
+before the first policy,
+
+729
+00:47:14.084 --> 00:47:16.983
+measure readiness rather
+than estimating it,
+
+730
+00:47:16.983 --> 00:47:21.104
+create every policy in report-only,
+and enforce the waves in order.
+
+731
+00:47:21.104 --> 00:47:25.988
+Exceptions: every exclusion is a governed
+group with an owner and an expiry,
+
+732
+00:47:25.988 --> 00:47:31.343
+and the break-glass accounts are alerted
+on every use and tested every ninety days.
+
+733
+00:47:31.343 --> 00:47:35.449
+PIM: emergency accounts first,
+then the c1 policy switched On,
+
+734
+00:47:35.449 --> 00:47:40.542
+then named approver groups, with every
+human administrator eligible only.
+
+735
+00:47:40.542 --> 00:47:43.257
+Governance: packages that always expire,
+
+736
+00:47:43.257 --> 00:47:47.806
+reviews of groups rather than
+applications, and auto-apply turned on.
+
+737
+00:47:47.806 --> 00:47:51.412
+Code: one writer per object
+class, two people per change,
+
+738
+00:47:51.412 --> 00:47:54.217
+and drift monitored against the baseline.
+
+739
+00:47:54.217 --> 00:47:58.785
+And evidence: exported before
+Microsoft's thirty-day window closes,
+
+740
+00:47:58.785 --> 00:48:00.579
+and assembled every month.
+
+741
+00:48:00.579 --> 00:48:04.880
+In Zero Trust, every access
+decision is a policy decision.
+
+742
+00:48:04.880 --> 00:48:08.338
+This session has been about
+making those policies explicit,
+
+743
+00:48:08.338 --> 00:48:12.280
+testing them before they enforce,
+and keeping the proof that they ran.
+
+744
+00:48:12.280 --> 00:48:17.223
+Keep Appendix A at hand for every policy's
+template, Appendix B for every role's
+
+745
+00:48:17.223 --> 00:48:22.243
+settings, and Book 05 for the device
+compliance that Conditional Access reads.
+
+746
+00:48:22.243 --> 00:48:23.080
+Thank you.

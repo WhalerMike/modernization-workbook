@@ -1,0 +1,133 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.875
+How do you respond when
+a capability is outside?
+
+2
+00:00:02.875 --> 00:00:08.863
+NIST SP 800-37 names four options: employ
+compensating controls, accept greater
+
+3
+00:00:08.863 --> 00:00:14.488
+risk, contract with a more trustworthy
+provider, or don't obtain the service.
+
+4
+00:00:14.488 --> 00:00:19.788
+The book turns them into three responses,
+and each one is a decision with an owner.
+
+5
+00:00:19.788 --> 00:00:22.025
+One: compensate in-boundary.
+
+6
+00:00:22.025 --> 00:00:24.670
+Rebuild the capability, or enough of it,
+
+7
+00:00:24.670 --> 00:00:28.637
+from signals inside the boundary,
+and say that it's derived.
+
+8
+00:00:28.637 --> 00:00:30.825
+Take the network connectivity gap.
+
+9
+00:00:30.825 --> 00:00:35.603
+Scheduled runs of Microsoft's test tool
+from each location close part of it,
+
+10
+00:00:35.603 --> 00:00:37.838
+if the results are labeled derived.
+
+11
+00:00:37.838 --> 00:00:41.887
+They don't replace the provider
+comparison, and the register should say so.
+
+12
+00:00:41.887 --> 00:00:47.063
+A narrative that hides the substitution is
+exactly the kind an assessor takes apart.
+
+13
+00:00:47.063 --> 00:00:49.337
+Two: a documented exception.
+
+14
+00:00:49.337 --> 00:00:52.909
+Either a request through the
+provider's own exception process,
+
+15
+00:00:52.909 --> 00:00:56.824
+or the authorizing official accepting
+the residual risk in writing.
+
+16
+00:00:56.824 --> 00:01:00.910
+A gap you intend to close goes on
+the plan of action and milestones,
+
+17
+00:01:00.910 --> 00:01:02.725
+with a milestone and an owner.
+
+18
+00:01:02.725 --> 00:01:07.406
+A gap you've decided to live with goes
+into a signed exception with an end or
+
+19
+00:01:07.406 --> 00:01:12.088
+review date, so that permanent is a
+decision someone repeats, not a default.
+
+20
+00:01:12.088 --> 00:01:13.724
+Three: an alternative path,
+
+21
+00:01:13.724 --> 00:01:17.738
+a different certified service or
+a different way to meet the need.
+
+22
+00:01:17.738 --> 00:01:21.962
+And going without is legitimate
+too, as long as someone decided it.
+
+23
+00:01:21.962 --> 00:01:23.913
+Before any of these, probe.
+
+24
+00:01:23.913 --> 00:01:28.670
+A scripted test of what actually works in
+your own tenant, checking for the output
+
+25
+00:01:28.670 --> 00:01:33.500
+rather than the switch, rerun on a schedule
+and after any relevant provider notice.
+
+26
+00:01:33.500 --> 00:01:38.049
+So for each gap, the system owner
+proposes a response, the authorizing
+
+27
+00:01:38.049 --> 00:01:42.838
+official decides every exception,
+and the CISO sets the evidence class.
+
+28
+00:01:42.838 --> 00:01:47.590
+Make that call per register row, before
+a design depends on the capability.

@@ -1,0 +1,140 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.688
+Field offices are where these
+decisions become a budget line.
+
+2
+00:00:03.688 --> 00:00:08.235
+Chapter 11 works a case many
+civilian agencies will recognize:
+
+3
+00:00:08.235 --> 00:00:13.568
+about 1,500 field offices, about 70,000
+endpoints, and a request for about 50
+
+4
+00:00:13.568 --> 00:00:16.803
+million dollars to refresh a Configuration
+
+5
+00:00:16.803 --> 00:00:20.038
+Manager distribution
+point in every office.
+
+6
+00:00:20.038 --> 00:00:21.238
+Three findings.
+
+7
+00:00:21.238 --> 00:00:24.075
+First, the unit cost doesn't reconcile.
+
+8
+00:00:24.075 --> 00:00:29.331
+Fifty million over 1,500
+offices is 33,333 dollars each,
+
+9
+00:00:29.331 --> 00:00:33.887
+about twice the book's
+fully loaded server case.
+
+10
+00:00:33.887 --> 00:00:37.835
+So the sponsor needs to say whether
+that figure is acquisition cost
+
+11
+00:00:37.835 --> 00:00:41.500
+or five-year cost of ownership,
+and itemize anything bundled in.
+
+12
+00:00:41.500 --> 00:00:43.038
+Second, capacity.
+
+13
+00:00:43.038 --> 00:00:48.240
+Microsoft's published limit is 4,000
+clients per distribution point,
+
+14
+00:00:48.240 --> 00:00:51.800
+so the estate needs 24, two
+at each of 12 hub sites.
+
+15
+00:00:51.800 --> 00:00:57.800
+The other 1,476 exist only to
+compensate for slow branch circuits.
+
+16
+00:00:57.800 --> 00:00:59.225
+Third, timing.
+
+17
+00:00:59.225 --> 00:01:04.528
+Microsoft has moved Configuration Manager
+to an annual release cadence and says new
+
+18
+00:01:04.528 --> 00:01:07.590
+device-management innovation
+happens in Intune,
+
+19
+00:01:07.590 --> 00:01:11.025
+so hardware bought now
+depreciates past its likely use.
+
+20
+00:01:11.025 --> 00:01:15.855
+The alternative fixes the circuit:
+internet access sized to seats,
+
+21
+00:01:15.855 --> 00:01:21.125
+a 5G continuity path, and an SD-WAN
+overlay, with breakout at the hubs first.
+
+22
+00:01:21.125 --> 00:01:25.078
+On the book's labeled planning
+assumptions, that needs about 10 million
+
+23
+00:01:25.078 --> 00:01:29.300
+dollars of first-year capital and turns
+cumulatively positive in year four.
+
+24
+00:01:29.300 --> 00:01:33.612
+But the financial case turns on one
+number the analysis doesn't hold.
+
+25
+00:01:33.612 --> 00:01:39.362
+Breakeven is 873 dollars of current
+MPLS cost per office per month.
+
+26
+00:01:39.362 --> 00:01:41.944
+Above it the program pays for itself;
+
+27
+00:01:41.944 --> 00:01:45.300
+below it, argue capability
+rather than savings.
+
+28
+00:01:45.300 --> 00:01:50.275
+So the decision for the sponsor and CIO
+is to decompose the request and validate
+
+29
+00:01:50.275 --> 00:01:55.460
+that MPLS figure before any comparison,
+and before the refresh money is committed.

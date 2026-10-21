@@ -1,0 +1,93 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.400
+The plan follows Book 01's
+seven phases and six gates.
+
+2
+00:00:04.400 --> 00:00:08.663
+Phase 0, Pre-flight, ends
+at G0, Ready to Plan.
+
+3
+00:00:08.663 --> 00:00:12.112
+Foundation ends at G1,
+Foundation Complete.
+
+4
+00:00:12.112 --> 00:00:15.438
+A pilot division ends at G2, Pilot Clean.
+
+5
+00:00:15.438 --> 00:00:19.013
+General rollout ends at
+G3, Rollout Complete.
+
+6
+00:00:19.013 --> 00:00:22.587
+Legacy retirement ends
+at G4, Legacy Quiet.
+
+7
+00:00:22.587 --> 00:00:26.775
+AD DS retirement ends at G5, AD Retired.
+
+8
+00:00:26.775 --> 00:00:30.175
+And steady state has no gate;
+it's a standing cadence.
+
+9
+00:00:30.175 --> 00:00:32.352
+Five constraints bind every phase:
+
+10
+00:00:32.352 --> 00:00:37.156
+changes originate from the authoritative
+source and close with provenance,
+
+11
+00:00:37.156 --> 00:00:40.609
+privilege is time-bound,
+copies stay non-authoritative,
+
+12
+00:00:40.609 --> 00:00:44.212
+drift stays visible, and nothing
+requires rip-and-replace.
+
+13
+00:00:44.212 --> 00:00:47.975
+Underneath them is one rule:
+assessment before action.
+
+14
+00:00:47.975 --> 00:00:52.385
+The program's detailed master plan
+numbers its phases differently,
+
+15
+00:00:52.385 --> 00:00:56.637
+and its illustrative fifty-two
+weeks stop short of retiring AD DS.
+
+16
+00:00:56.637 --> 00:00:59.950
+Large federal estates
+typically run multi-year.
+
+17
+00:00:59.950 --> 00:01:04.563
+Five workstreams run in parallel,
+identity, policy, services,
+
+18
+00:01:04.563 --> 00:01:10.375
+compute and access, and one dependency
+never relaxes: PKI waits for identity.
+
+19
+00:01:10.375 --> 00:01:14.590
+The gates, not the calendar,
+decide when the next phase starts.

@@ -1,0 +1,138 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:05.225
+For many agencies, neither SD-WAN
+nor a new TIC use case is close.
+
+2
+00:00:05.225 --> 00:00:08.863
+The acquisition isn't funded and
+the task orders aren't placed.
+
+3
+00:00:08.863 --> 00:00:12.752
+The book calls that interval the
+long interim, and it argues the
+
+4
+00:00:12.752 --> 00:00:17.688
+architecture by elimination rather than
+by mandate, because no mandate exists.
+
+5
+00:00:17.688 --> 00:00:23.188
+The legacy telecom vehicles
+all ended by May 31, 2026.
+
+6
+00:00:23.188 --> 00:00:27.052
+The hairpin is still permitted,
+but CISA's own guidebook says it
+
+7
+00:00:27.052 --> 00:00:31.426
+raised the cost and reduced the
+effectiveness of TIC for cloud services.
+
+8
+00:00:31.426 --> 00:00:33.809
+A new agency-operated access point is a
+
+9
+00:00:33.809 --> 00:00:36.863
+capital and round-the-clock
+staffing commitment.
+
+10
+00:00:36.863 --> 00:00:40.062
+VPN backhaul is a hairpin
+under another name.
+
+11
+00:00:40.062 --> 00:00:45.387
+And Microsoft no longer recommends
+ExpressRoute for Microsoft 365.
+
+12
+00:00:45.387 --> 00:00:49.639
+What's left is local breakout, a
+cloud-delivered security stack at a nearby
+
+13
+00:00:49.639 --> 00:00:54.238
+point of presence, and a policy layer at
+the branch edge deciding what goes where.
+
+14
+00:00:54.238 --> 00:00:57.275
+The target is years away
+for structural reasons.
+
+15
+00:00:57.275 --> 00:00:59.200
+Acquisition takes quarters.
+
+16
+00:00:59.200 --> 00:01:02.851
+Agencies send budget
+submissions to OMB in September,
+
+17
+00:01:02.851 --> 00:01:07.313
+so a program conceived now has
+usually missed the next budget year.
+
+18
+00:01:07.313 --> 00:01:11.437
+A thousand branches is a multi-year
+deployment on logistics alone.
+
+19
+00:01:11.437 --> 00:01:15.263
+And every new device class at
+every branch is assessment work.
+
+20
+00:01:15.263 --> 00:01:18.409
+But the interval isn't empty:
+four of the six functions a
+
+21
+00:01:18.409 --> 00:01:22.325
+branch-edge layer provides are
+partly obtainable before any award.
+
+22
+00:01:22.325 --> 00:01:26.075
+The decision on this slide belongs
+to the authorizing official.
+
+23
+00:01:26.075 --> 00:01:30.571
+Record in the risk register and the
+affected packages which control assertions
+
+24
+00:01:30.571 --> 00:01:33.255
+depend on transport evidence
+that doesn't exist,
+
+25
+00:01:33.255 --> 00:01:37.550
+the compensating measures, and the
+remediation with its funding dependency.
+
+26
+00:01:37.550 --> 00:01:41.425
+An undocumented gap found by
+an assessor is a finding.
+
+27
+00:01:41.425 --> 00:01:44.838
+A documented gap with a
+plan is an accepted risk.
+
+28
+00:01:44.838 --> 00:01:47.210
+Do it now, while the gap exists.

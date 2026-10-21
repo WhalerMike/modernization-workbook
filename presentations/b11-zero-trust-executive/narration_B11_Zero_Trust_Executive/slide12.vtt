@@ -1,0 +1,149 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.259
+Pillar by pillar, the book
+maps CISA's five pillars
+
+2
+00:00:03.259 --> 00:00:06.238
+to the teams that own
+them after modernization.
+
+3
+00:00:06.238 --> 00:00:08.937
+Identity engineering owns identity.
+
+4
+00:00:08.937 --> 00:00:11.438
+Endpoint engineering owns devices.
+
+5
+00:00:11.438 --> 00:00:15.738
+Network engineering, with security
+architecture, owns networks.
+
+6
+00:00:15.738 --> 00:00:20.688
+Application owners, with the platform
+teams, own applications and workloads.
+
+7
+00:00:20.688 --> 00:00:23.601
+And the data owners and
+the data office own data,
+
+8
+00:00:23.601 --> 00:00:26.813
+the one pillar without a
+workbook book of its own yet.
+
+9
+00:00:26.813 --> 00:00:28.449
+More owners sit across them.
+
+10
+00:00:28.449 --> 00:00:32.131
+The naming and identity
+plane belongs to identity
+
+11
+00:00:32.131 --> 00:00:36.075
+engineering and the DNS and
+DDI team, governed as Tier 0.
+
+12
+00:00:36.075 --> 00:00:38.998
+Each other cloud and the
+virtualization estate
+
+13
+00:00:38.998 --> 00:00:42.213
+belongs to its platform team,
+reconciled to the plane.
+
+14
+00:00:42.213 --> 00:00:46.137
+Security operations owns
+visibility and analytics.
+
+15
+00:00:46.137 --> 00:00:49.526
+Pillar owners own automation,
+under gated change.
+
+16
+00:00:49.526 --> 00:00:54.017
+And governance, the across-pillars part
+no pillar owner can deliver alone,
+
+17
+00:00:54.017 --> 00:00:58.950
+sits with the program lead, together with
+the CISO and the authorizing official.
+
+18
+00:00:58.950 --> 00:01:01.512
+Pillar owners decide how to fix a finding.
+
+19
+00:01:01.512 --> 00:01:03.825
+They don't decide that
+it doesn't need fixing.
+
+20
+00:01:03.825 --> 00:01:06.450
+Three calls often land on the wrong desk.
+
+21
+00:01:06.450 --> 00:01:10.629
+First, an omission or incorrect-result
+marking with an expiration
+
+22
+00:01:10.629 --> 00:01:15.112
+date is a CISO decision, recorded in
+the versioned configuration file.
+
+23
+00:01:15.112 --> 00:01:19.867
+Second, one with no end date is a
+standing risk acceptance, and goes to the
+
+24
+00:01:19.867 --> 00:01:25.912
+authorizing official, which matches BOD
+25-01's assignment of deviation risk.
+
+25
+00:01:25.912 --> 00:01:30.403
+Third, drift, a control that passed
+every interval and failed the last one,
+
+26
+00:01:30.403 --> 00:01:35.493
+goes to the authorizing official too, because
+it's a change to an authorized system,
+
+27
+00:01:35.493 --> 00:01:38.637
+and the official decides
+whether it's significant.
+
+28
+00:01:38.637 --> 00:01:41.135
+The decision for the CISO, this quarter:
+
+29
+00:01:41.135 --> 00:01:46.053
+move every exception out of documents
+and into the configuration file and the
+
+30
+00:01:46.053 --> 00:01:48.020
+repository, with an expiration,
+
+31
+00:01:48.020 --> 00:01:51.620
+and route each standing one
+to the authorizing official.

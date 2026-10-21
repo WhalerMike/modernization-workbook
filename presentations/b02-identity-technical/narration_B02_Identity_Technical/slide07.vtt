@@ -1,0 +1,152 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.505
+Every gap read-only discovery couldn't
+close gets recorded with four facts:
+
+2
+00:00:04.505 --> 00:00:08.313
+what's missing, the narrowest right
+or export that would close it,
+
+3
+00:00:08.313 --> 00:00:12.050
+why the plan needs it, and whether
+there's a read-only substitute.
+
+4
+00:00:12.050 --> 00:00:18.095
+Replication health and domain controller
+event logs come from an administrator-run
+
+5
+00:00:18.095 --> 00:00:23.288
+summary, a log export, or SIEM access;
+the event logs are where you see NTLM use.
+
+6
+00:00:23.288 --> 00:00:29.109
+DNS server settings like aging and scavenging
+come from a DNS administrator export,
+
+7
+00:00:29.109 --> 00:00:33.100
+because zone reads cover
+records but not server settings.
+
+8
+00:00:33.100 --> 00:00:36.979
+The issued-certificate database
+comes from a CA administrator,
+
+9
+00:00:36.979 --> 00:00:40.857
+and tells you which certificates
+must be reissued from a new PKI.
+
+10
+00:00:40.857 --> 00:00:45.175
+Deleted Objects needs read on that
+one container for one named account.
+
+11
+00:00:45.175 --> 00:00:49.137
+Fine-grained password policies
+need a Domain Admin export.
+
+12
+00:00:49.137 --> 00:00:53.047
+And confidential attributes like
+LAPS and BitLocker recovery
+
+13
+00:00:53.047 --> 00:00:56.513
+data are never requested at
+all: you report coverage only.
+
+14
+00:00:56.513 --> 00:01:00.821
+The gap list becomes a short written
+request, and it follows fixed rules,
+
+15
+00:01:00.821 --> 00:01:05.275
+because the request is what makes the
+least-privilege position credible.
+
+16
+00:01:05.275 --> 00:01:09.199
+Read only: no write, create,
+delete or permission rights,
+
+17
+00:01:09.199 --> 00:01:12.163
+and never the rights that expose secrets.
+
+18
+00:01:12.163 --> 00:01:17.661
+Specific: each line names the right, the
+exact object path and the business reason;
+
+19
+00:01:17.661 --> 00:01:21.600
+"Domain Admin for the assessment"
+is not an acceptable line.
+
+20
+00:01:21.600 --> 00:01:25.887
+Time-bound: each delegation
+expires with the assessment window,
+
+21
+00:01:25.887 --> 00:01:28.475
+and the account's expiry is set to match.
+
+22
+00:01:28.475 --> 00:01:32.988
+One named, dedicated account with
+no existing elevated memberships.
+
+23
+00:01:32.988 --> 00:01:36.587
+And preferably an export: if
+the directory team can run the
+
+24
+00:01:36.587 --> 00:01:40.262
+report and hand over the output,
+that beats granting a right.
+
+25
+00:01:40.262 --> 00:01:44.563
+The directory team implements the
+delegation with its own change process.
+
+26
+00:01:44.563 --> 00:01:45.675
+Run it safely.
+
+27
+00:01:45.675 --> 00:01:50.424
+Tell security operations first, because
+broad LDAP enumeration looks like
+
+28
+00:01:50.424 --> 00:01:55.025
+reconnaissance, and Defender for
+Identity raises discovery alerts for it.
+
+29
+00:01:55.025 --> 00:02:00.776
+The output is a map of the estate, so keep
+it encrypted on a dedicated workstation,
+
+30
+00:02:00.776 --> 00:02:03.477
+record a SHA-256 hash of every file in a
+
+31
+00:02:03.477 --> 00:02:07.100
+manifest and disable the
+account when you're done.

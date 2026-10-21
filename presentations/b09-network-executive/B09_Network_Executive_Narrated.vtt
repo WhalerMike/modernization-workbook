@@ -1,0 +1,2132 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.222
+This is the executive
+briefing for Book 09 of the
+
+2
+00:00:03.222 --> 00:00:06.950
+Federal Modernization Workbook,
+Network and Transport.
+
+3
+00:00:06.950 --> 00:00:12.323
+It's written for the people who fund,
+authorize and answer for the branch network:
+
+4
+00:00:12.323 --> 00:00:16.638
+the CIO, the CISO, network program
+executives and budget owners.
+
+5
+00:00:16.638 --> 00:00:19.712
+It's built around decisions,
+not configuration.
+
+6
+00:00:19.712 --> 00:00:24.300
+For each one I'll say what has to be
+decided, who owns it, and when it's needed.
+
+7
+00:00:24.300 --> 00:00:26.675
+Four questions organize the half hour.
+
+8
+00:00:26.675 --> 00:00:30.150
+Why act now, when the target
+architecture is years away.
+
+9
+00:00:30.150 --> 00:00:34.488
+What federal policy actually requires,
+and where the money should go first.
+
+10
+00:00:34.488 --> 00:00:36.150
+Who decides each step.
+
+11
+00:00:36.150 --> 00:00:40.163
+And how to proceed without turning
+a faster network into a weaker one.
+
+12
+00:00:40.163 --> 00:00:45.269
+The short version: no product shortens a
+fiber path, so buy transport on physics,
+
+13
+00:00:45.269 --> 00:00:49.090
+govern it as compliance, and
+decide in the right order.
+
+14
+00:00:49.840 --> 00:00:51.040
+Here is where we're going.
+
+15
+00:00:51.040 --> 00:00:53.803
+Seven decisions, each with a named owner.
+
+16
+00:00:53.803 --> 00:00:58.153
+None of them is a product choice, and
+none of them requires an award to start.
+
+17
+00:00:58.153 --> 00:01:02.421
+Several of them cost nothing but a
+signature and a few weeks of staff time;
+
+18
+00:01:02.421 --> 00:01:06.546
+the expensive mistakes come from
+leaving them unmade while circuits,
+
+19
+00:01:06.546 --> 00:01:10.103
+refreshes and migrations move
+ahead on their own schedules.
+
+20
+00:01:10.103 --> 00:01:11.027
+Here they are.
+
+21
+00:01:11.027 --> 00:01:15.665
+One: the CISO decides that managed
+TIC circuits end only when CISA
+
+22
+00:01:15.665 --> 00:01:20.053
+confirms the replacement telemetry,
+not when a branch cuts over.
+
+23
+00:01:20.053 --> 00:01:24.718
+Two: the authorizing official records
+today's gap as an accepted risk,
+
+24
+00:01:24.718 --> 00:01:30.202
+with compensating measures and a funded
+plan, so an assessor doesn't find it first.
+
+25
+00:01:30.202 --> 00:01:34.797
+Three: security architecture
+writes the target attributes
+
+26
+00:01:34.797 --> 00:01:39.391
+into the edge-device refresh that
+BOD 26-02 is forcing anyway.
+
+27
+00:01:39.391 --> 00:01:42.710
+Four: the sponsor and CIO
+set the investment order,
+
+28
+00:01:42.710 --> 00:01:46.515
+so staff time and requirements
+work come before capital.
+
+29
+00:01:46.515 --> 00:01:50.039
+Five: the same pair tests the
+field-office refresh request
+
+30
+00:01:50.039 --> 00:01:54.077
+against published capacity limits
+before the money is committed.
+
+31
+00:01:54.077 --> 00:01:58.917
+Six: they choose the network access
+control platform, and tie the retirement
+
+32
+00:01:58.917 --> 00:02:02.989
+of the Windows RADIUS server to
+the Entra migration, not to a date.
+
+33
+00:02:02.989 --> 00:02:07.990
+Seven: the authorizing official and the
+system owner hold the line on order.
+
+34
+00:02:07.990 --> 00:02:10.527
+The governor is live before traffic moves,
+
+35
+00:02:10.527 --> 00:02:14.152
+and the boundary change is
+decided before the first cutover.
+
+36
+00:02:14.152 --> 00:02:16.539
+The thread running through all seven:
+
+37
+00:02:16.539 --> 00:02:19.927
+policy names no product, but
+it isn't requirement-free.
+
+38
+00:02:19.927 --> 00:02:22.828
+A directive is already
+spending the refresh money.
+
+39
+00:02:22.828 --> 00:02:25.627
+And order and ownership
+decide the outcome.
+
+40
+00:02:25.627 --> 00:02:29.875
+The rest of the briefing gives
+the evidence behind each one,
+
+41
+00:02:29.875 --> 00:02:32.500
+in the order why, what, who and how.
+
+42
+00:02:33.250 --> 00:02:34.275
+Why act at all?
+
+43
+00:02:34.275 --> 00:02:37.313
+Start with the two decisions
+programs keep merging.
+
+44
+00:02:37.313 --> 00:02:39.712
+Choosing a pipe is a physics decision.
+
+45
+00:02:39.712 --> 00:02:44.301
+Light in fiber covers about one
+kilometer every five microseconds.
+
+46
+00:02:44.301 --> 00:02:47.275
+New York to London has
+a round-trip floor of 56
+
+47
+00:02:47.275 --> 00:02:50.813
+milliseconds before any
+equipment touches a packet.
+
+48
+00:02:50.813 --> 00:02:55.766
+The well-known 150-millisecond voice
+budget is mouth to ear, and the phones
+
+49
+00:02:55.766 --> 00:03:00.638
+themselves take a large share, which
+leaves the network roughly 70 to 100.
+
+50
+00:03:00.638 --> 00:03:04.669
+On the book's worked arithmetic, a
+Seattle office hairpinning through
+
+51
+00:03:04.669 --> 00:03:08.700
+northern Virginia spends about 60
+milliseconds one way on geography.
+
+52
+00:03:08.700 --> 00:03:13.250
+That's most of the allowance, gone
+before the call reaches anything useful.
+
+53
+00:03:13.250 --> 00:03:15.087
+No product moves that floor.
+
+54
+00:03:15.087 --> 00:03:18.988
+Local breakout fixes the
+geographic part and nothing else.
+
+55
+00:03:18.988 --> 00:03:22.238
+Choosing what governs the pipe
+is a compliance decision.
+
+56
+00:03:22.238 --> 00:03:24.973
+Direct internet access solves the hairpin,
+
+57
+00:03:24.973 --> 00:03:28.088
+and it satisfies none of
+the protection controls.
+
+58
+00:03:28.088 --> 00:03:32.478
+Boundary protection, flow enforcement,
+transmission confidentiality,
+
+59
+00:03:32.478 --> 00:03:36.576
+malware inspection and monitoring
+all come from the control layer.
+
+60
+00:03:36.576 --> 00:03:42.538
+Transport selection closes exactly one
+control family: telecommunications diversity.
+
+61
+00:03:42.538 --> 00:03:45.400
+So here's the risk an
+executive should watch for.
+
+62
+00:03:45.400 --> 00:03:49.075
+A branch moved from a governed
+hairpin to bare local breakout has
+
+63
+00:03:49.075 --> 00:03:52.750
+lost assessed boundary protection
+relative to where it started.
+
+64
+00:03:52.750 --> 00:03:56.800
+The book's phrase for that is a compliance
+regression with better latency.
+
+65
+00:03:56.800 --> 00:03:59.558
+It looks like modernization
+on a dashboard,
+
+66
+00:03:59.558 --> 00:04:02.162
+and it reads as a
+finding in an assessment.
+
+67
+00:04:02.162 --> 00:04:05.883
+Every decision in this briefing
+keeps those two choices separate:
+
+68
+00:04:05.883 --> 00:04:07.709
+buy the pipe on measured physics,
+
+69
+00:04:07.709 --> 00:04:12.038
+and take the protection from the governor
+and the security services above it.
+
+70
+00:04:12.038 --> 00:04:16.297
+Each new pipe also adds a managed
+interface someone has to govern,
+
+71
+00:04:16.297 --> 00:04:21.070
+so more circuits without more control
+means more exposure, not less.
+
+72
+00:04:21.820 --> 00:04:25.933
+The second reason to act is that the
+external clocks are already running,
+
+73
+00:04:25.933 --> 00:04:28.333
+whether or not a network
+program is funded.
+
+74
+00:04:28.333 --> 00:04:29.945
+Read the table from the top.
+
+75
+00:04:29.945 --> 00:04:36.807
+All FIPS 140-2 certificates moved to
+NIST's historical list on September 22.
+
+76
+00:04:36.807 --> 00:04:39.528
+That isn't a ban on existing modules,
+
+77
+00:04:39.528 --> 00:04:43.657
+but new purchases should
+state the 140-3 expectation.
+
+78
+00:04:43.657 --> 00:04:50.342
+OMB M-26-15, the post-quantum memo, wanted
+agency migration plans by October 22,
+
+79
+00:04:50.342 --> 00:04:54.798
+2026, and it says anything
+terminating TLS or IPsec,
+
+80
+00:04:54.798 --> 00:05:02.119
+firewalls and VPN concentrators included,
+must support post-quantum key exchange.
+
+81
+00:05:02.119 --> 00:05:08.137
+OMB M-26-14 rescinded the old logging
+memo; the first agency logging
+
+82
+00:05:08.137 --> 00:05:14.483
+plan is due November 18, with maturity
+milestones running to July 2027.
+
+83
+00:05:14.483 --> 00:05:19.495
+BOD 26-04's third phase lands December 7.
+
+84
+00:05:19.495 --> 00:05:24.445
+FedRAMP's 2026 rules become
+mandatory on January 1.
+
+85
+00:05:24.445 --> 00:05:30.495
+And the GSA EIS first option
+period ends July 31, 2027.
+
+86
+00:05:30.495 --> 00:05:33.057
+The row in red is the
+one that spends money.
+
+87
+00:05:33.057 --> 00:05:39.135
+BOD 26-02 requires all identified
+end-of-support edge devices off agency
+
+88
+00:05:39.135 --> 00:05:45.719
+networks by August 5, 2027, with a first
+decommissioning milestone in February.
+
+89
+00:05:45.719 --> 00:05:47.863
+I'll come back to it,
+because it's the fork
+
+90
+00:05:47.863 --> 00:05:50.408
+in the road for the whole
+branch architecture.
+
+91
+00:05:50.408 --> 00:05:52.733
+The panel on the right is the honest part.
+
+92
+00:05:52.733 --> 00:05:57.178
+Three of these requirements fall inside
+roughly fifteen months, and all of them
+
+93
+00:05:57.178 --> 00:06:01.421
+draw on the same network and security
+staff a branch-edge program would need.
+
+94
+00:06:01.421 --> 00:06:04.483
+An agency promising an
+SD-WAN program next year
+
+95
+00:06:04.483 --> 00:06:07.782
+alongside them is promising
+the same people twice.
+
+96
+00:06:07.782 --> 00:06:10.908
+The book's advice is to say
+that plainly in the plan.
+
+97
+00:06:10.908 --> 00:06:16.745
+One clock has already run out: the legacy
+telecom contracts all ended by May 31,
+
+98
+00:06:16.745 --> 00:06:20.758
+2026, so the architecture is
+now a task-order question,
+
+99
+00:06:20.758 --> 00:06:23.580
+not a contract-vehicle question.
+
+100
+00:06:24.330 --> 00:06:26.505
+Not acting doesn't mean standing still.
+
+101
+00:06:26.505 --> 00:06:28.842
+It means three things happen by default.
+
+102
+00:06:28.842 --> 00:06:32.005
+First, money gets spent
+without a choice being made.
+
+103
+00:06:32.005 --> 00:06:37.117
+The BOD 26-02 refresh will
+happen on a directive clock.
+
+104
+00:06:37.117 --> 00:06:39.018
+Run as like-for-like replacement,
+
+105
+00:06:39.018 --> 00:06:43.734
+the same device class with the same absence
+of policy and telemetry, it spends the
+
+106
+00:06:43.734 --> 00:06:46.338
+money and closes the architecture question
+
+107
+00:06:46.338 --> 00:06:48.731
+for the service life of the new equipment.
+
+108
+00:06:48.731 --> 00:06:50.918
+Deferral also has a measured price.
+
+109
+00:06:50.918 --> 00:06:57.906
+GAO reported in August 2026 that billing
+for six agencies' legacy Networx contracts
+
+110
+00:06:57.906 --> 00:07:02.299
+rose from about 13.4 million
+dollars in February 2025
+
+111
+00:07:02.299 --> 00:07:06.592
+to about 40.9 million in
+March, a 206 percent increase.
+
+112
+00:07:06.592 --> 00:07:11.004
+The book calls that the strongest
+cost-of-delay number in the federal record.
+
+113
+00:07:11.004 --> 00:07:15.193
+Second, gaps surface as findings
+rather than accepted risks.
+
+114
+00:07:15.193 --> 00:07:20.318
+The technical situation is identical either
+way; the institutional position isn't.
+
+115
+00:07:20.318 --> 00:07:25.591
+And cutting managed TIC circuits before
+CISA confirms replacement telemetry
+
+116
+00:07:25.591 --> 00:07:30.156
+trades a gap in transport for a gap
+in CISA's visibility, which is worse.
+
+117
+00:07:30.156 --> 00:07:32.693
+Third, cost gets blamed on the cloud.
+
+118
+00:07:32.693 --> 00:07:36.763
+When workloads migrate before
+transport is governed and measured,
+
+119
+00:07:36.763 --> 00:07:40.179
+slowness is attributed to the
+only thing being measured.
+
+120
+00:07:40.179 --> 00:07:44.742
+The remedies, more instances and
+more caching, raise cloud spend.
+
+121
+00:07:44.742 --> 00:07:48.633
+The book is careful to label
+that pattern its own inference,
+
+122
+00:07:48.633 --> 00:07:53.555
+built on documented parts, so treat it
+as a hypothesis to test in your estate.
+
+123
+00:07:53.555 --> 00:07:55.605
+And one risk sits under all of them.
+
+124
+00:07:55.605 --> 00:07:57.692
+The governor is attack surface.
+
+125
+00:07:57.692 --> 00:08:03.782
+In February 2026, Emergency Directive 26-03
+ordered action on Cisco SD-WAN systems
+
+126
+00:08:03.782 --> 00:08:09.604
+after actors were found compromising
+them and keeping long-term persistence.
+
+127
+00:08:09.604 --> 00:08:13.200
+Whatever you buy, protect it
+before it carries traffic.
+
+128
+00:08:13.950 --> 00:08:16.400
+What does TIC 3.0 actually require?
+
+129
+00:08:16.400 --> 00:08:18.518
+The book reads it from
+the current documents
+
+130
+00:08:18.518 --> 00:08:20.350
+rather than from what's said about them.
+
+131
+00:08:20.350 --> 00:08:24.350
+CISA republished the whole
+set in September 2026.
+
+132
+00:08:24.350 --> 00:08:29.847
+The revision tables say the only 2026
+changes were updated footnote links,
+
+133
+00:08:29.847 --> 00:08:35.788
+so the substance dates from July 2025, and
+April 2021 for the Traditional use case.
+
+134
+00:08:35.788 --> 00:08:39.414
+One practical note for
+anyone writing a package:
+
+135
+00:08:39.414 --> 00:08:44.400
+CISA's landing page labels three
+volumes 1.1, but the covers read 1.2.
+
+136
+00:08:44.400 --> 00:08:45.462
+Cite the cover.
+
+137
+00:08:45.462 --> 00:08:50.675
+There are four use cases: Traditional,
+Branch Office, Remote User and Cloud.
+
+138
+00:08:50.675 --> 00:08:52.637
+There is no SASE use case.
+
+139
+00:08:52.637 --> 00:08:55.923
+An agency deploying SASE
+at its branches operates
+
+140
+00:08:55.923 --> 00:08:58.674
+under the Branch Office
+and Cloud use cases.
+
+141
+00:08:58.674 --> 00:09:02.568
+The program guidebook
+calls TIC 3.0 descriptive,
+
+142
+00:09:02.568 --> 00:09:06.613
+not prescriptive, and the catalog
+says it sets goals, not methods.
+
+143
+00:09:06.613 --> 00:09:08.962
+But two statements constrain a branch.
+
+144
+00:09:08.962 --> 00:09:13.353
+Policy enforcement parity: once
+you decide a capability is needed,
+
+145
+00:09:13.353 --> 00:09:16.467
+you apply it on every
+path, and the Branch Office
+
+146
+00:09:16.467 --> 00:09:19.900
+use case names SD-WAN paths
+as one place that applies.
+
+147
+00:09:19.900 --> 00:09:25.613
+And preserve CISA's visibility as branches
+connect directly to external services.
+
+148
+00:09:25.613 --> 00:09:31.229
+Discretion also carries an obligation: where
+TIC controls don't cover residual risk,
+
+149
+00:09:31.229 --> 00:09:35.000
+agencies must apply controls
+or compensating controls.
+
+150
+00:09:35.000 --> 00:09:40.075
+CISA's June 2026 SASE guide
+states the consequence plainly.
+
+151
+00:09:40.075 --> 00:09:45.306
+TIC 3.0 doesn't require routing
+traffic through TIC access points if
+
+152
+00:09:45.306 --> 00:09:49.913
+an alternative gives both the agency
+and CISA situational awareness.
+
+153
+00:09:49.913 --> 00:09:52.413
+That guide permits and describes SASE.
+
+154
+00:09:52.413 --> 00:09:53.838
+It doesn't require it.
+
+155
+00:09:53.838 --> 00:09:56.730
+So when someone says TIC requires SD-WAN,
+
+156
+00:09:56.730 --> 00:10:01.200
+or that TIC forbids local breakout,
+both claims fail the check.
+
+157
+00:10:01.200 --> 00:10:05.479
+The honest position is narrower
+and stronger: TIC sets goals,
+
+158
+00:10:05.479 --> 00:10:09.074
+local breakout is allowed,
+and the agency must show
+
+159
+00:10:09.074 --> 00:10:13.290
+parity and preserve CISA's
+view on every path it opens.
+
+160
+00:10:14.040 --> 00:10:16.483
+The opposite mistake is just as common:
+
+161
+00:10:16.483 --> 00:10:21.827
+concluding that because policy is
+technology-neutral, the branch is unconstrained.
+
+162
+00:10:21.827 --> 00:10:22.653
+It isn't.
+
+163
+00:10:22.653 --> 00:10:26.170
+Four binding obligations land
+directly on branch equipment,
+
+164
+00:10:26.170 --> 00:10:27.964
+and none of them picks a product.
+
+165
+00:10:27.964 --> 00:10:33.085
+Egress DNS must go to CISA's Protective
+DNS; that's statutory, and a vendor's
+
+166
+00:10:33.085 --> 00:10:38.540
+own resolver in its place satisfies the
+product and breaches the requirement.
+
+167
+00:10:38.540 --> 00:10:43.432
+BOD 23-02 requires internet-exposed
+management interfaces to be
+
+168
+00:10:43.432 --> 00:10:48.415
+taken off the internet, or fronted
+by a separate enforcement point.
+
+169
+00:10:48.415 --> 00:10:56.690
+BOD 26-02 takes end-of-support edge devices
+off agency networks by August 5, 2027.
+
+170
+00:10:56.690 --> 00:11:00.886
+And M-26-15 requires
+post-quantum key exchange
+
+171
+00:11:00.886 --> 00:11:04.640
+on anything that terminates TLS or IPsec.
+
+172
+00:11:04.640 --> 00:11:09.377
+The obligations that bite hardest are
+often the ones an agency wrote itself.
+
+173
+00:11:09.377 --> 00:11:12.966
+Once a branch breaks out locally,
+it's an external boundary,
+
+174
+00:11:12.966 --> 00:11:16.628
+and the system security plan
+asserts boundary protection,
+
+175
+00:11:16.628 --> 00:11:20.440
+traffic flow policy, monitoring
+and alternate paths about it.
+
+176
+00:11:20.440 --> 00:11:23.878
+The gap surfaces at assessment
+time, not deployment time.
+
+177
+00:11:23.878 --> 00:11:26.990
+That's an evidence argument,
+not a mandate argument.
+
+178
+00:11:26.990 --> 00:11:29.665
+The right-hand panel
+matters to budget owners.
+
+179
+00:11:29.665 --> 00:11:33.190
+No federal instrument
+requires SD-WAN or SASE.
+
+180
+00:11:33.190 --> 00:11:38.134
+No instrument requires the WAN itself to
+be encrypted where the payload is already
+
+181
+00:11:38.134 --> 00:11:41.931
+protected end to end, so an overlay
+is a defensible risk decision,
+
+182
+00:11:41.931 --> 00:11:46.015
+and the book says it shouldn't be
+budgeted as a compliance obligation.
+
+183
+00:11:46.015 --> 00:11:51.153
+And FedRAMP certifies cloud services, not
+the routes an agency uses to reach them.
+
+184
+00:11:51.153 --> 00:11:54.567
+When a network change is
+refused on FedRAMP grounds,
+
+185
+00:11:54.567 --> 00:11:57.665
+ask one question: which
+control does it violate?
+
+186
+00:11:57.665 --> 00:12:01.345
+A refusal with no control
+basis is a governance failure,
+
+187
+00:12:01.345 --> 00:12:03.630
+and should be recorded as one.
+
+188
+00:12:04.380 --> 00:12:07.280
+Logging and CISA
+telemetry are where branch
+
+189
+00:12:07.280 --> 00:12:10.180
+modernization most often
+goes wrong quietly.
+
+190
+00:12:10.180 --> 00:12:18.817
+OMB M-26-14 rescinded
+M-21-31 on May 22, 2026.
+
+191
+00:12:18.817 --> 00:12:22.941
+Logs must be searchable for six
+months and retrievable for a year,
+
+192
+00:12:22.941 --> 00:12:26.683
+and among the minimum content,
+agencies must be able to show
+
+193
+00:12:26.683 --> 00:12:30.806
+source and destination addresses,
+ports and session attributes.
+
+194
+00:12:30.806 --> 00:12:35.480
+That's the transport-layer record a branch
+with nothing at its edge doesn't produce.
+
+195
+00:12:35.480 --> 00:12:39.055
+The first agency logging
+plan is due November 18.
+
+196
+00:12:39.055 --> 00:12:42.041
+When branches leave the
+managed TIC service,
+
+197
+00:12:42.041 --> 00:12:45.592
+the sensor telemetry CISA
+has been receiving stops.
+
+198
+00:12:45.592 --> 00:12:48.593
+CISA's SASE guide says so in plain terms.
+
+199
+00:12:48.593 --> 00:12:53.224
+The replacement is CLAW, CISA's
+Comprehensive Log Aggregation Warehouse,
+
+200
+00:12:53.224 --> 00:12:57.781
+and onboarding needs the agency, CISA
+and the provider working together.
+
+201
+00:12:57.781 --> 00:13:01.080
+That's a three-party dependency
+with its own lead time,
+
+202
+00:13:01.080 --> 00:13:04.005
+not a configuration change
+one team completes.
+
+203
+00:13:04.005 --> 00:13:08.115
+It belongs on the critical path
+beside the authorization package,
+
+204
+00:13:08.115 --> 00:13:10.880
+and the field-office case
+starts it in Phase 0.
+
+205
+00:13:10.880 --> 00:13:12.180
+Here is the decision.
+
+206
+00:13:12.180 --> 00:13:16.930
+The exit criterion for leaving MTIPS,
+and for ending each branch's MPLS,
+
+207
+00:13:16.930 --> 00:13:20.780
+is confirmed CLAW parity, not
+branch cutover completion.
+
+208
+00:13:20.780 --> 00:13:24.845
+Cutting circuits first trades a
+transport gap for a visibility gap,
+
+209
+00:13:24.845 --> 00:13:27.530
+which is worse than the
+position being fixed.
+
+210
+00:13:27.530 --> 00:13:30.267
+Ownership splits three ways on purpose.
+
+211
+00:13:30.267 --> 00:13:34.181
+The CISO decides CLAW onboarding
+and when parity is reached.
+
+212
+00:13:34.181 --> 00:13:38.305
+Security operations does the
+confirming, branch by branch.
+
+213
+00:13:38.305 --> 00:13:42.851
+And under the Federal Acquisition
+Regulation only a contracting officer can
+
+214
+00:13:42.851 --> 00:13:46.697
+terminate a contract, so the
+contracting officer ends the circuit,
+
+215
+00:13:46.697 --> 00:13:48.655
+and only after that confirmation.
+
+216
+00:13:48.655 --> 00:13:53.010
+No engineer can cancel a circuit,
+however redundant it looks.
+
+217
+00:13:53.760 --> 00:13:58.935
+For many agencies, neither SD-WAN
+nor a new TIC use case is close.
+
+218
+00:13:58.935 --> 00:14:02.573
+The acquisition isn't funded and
+the task orders aren't placed.
+
+219
+00:14:02.573 --> 00:14:06.462
+The book calls that interval the
+long interim, and it argues the
+
+220
+00:14:06.462 --> 00:14:11.398
+architecture by elimination rather than
+by mandate, because no mandate exists.
+
+221
+00:14:11.398 --> 00:14:16.898
+The legacy telecom vehicles
+all ended by May 31, 2026.
+
+222
+00:14:16.898 --> 00:14:20.762
+The hairpin is still permitted,
+but CISA's own guidebook says it
+
+223
+00:14:20.762 --> 00:14:25.136
+raised the cost and reduced the
+effectiveness of TIC for cloud services.
+
+224
+00:14:25.136 --> 00:14:27.519
+A new agency-operated access point is a
+
+225
+00:14:27.519 --> 00:14:30.573
+capital and round-the-clock
+staffing commitment.
+
+226
+00:14:30.573 --> 00:14:33.772
+VPN backhaul is a hairpin
+under another name.
+
+227
+00:14:33.772 --> 00:14:39.097
+And Microsoft no longer recommends
+ExpressRoute for Microsoft 365.
+
+228
+00:14:39.097 --> 00:14:43.349
+What's left is local breakout, a
+cloud-delivered security stack at a nearby
+
+229
+00:14:43.349 --> 00:14:47.948
+point of presence, and a policy layer at
+the branch edge deciding what goes where.
+
+230
+00:14:47.948 --> 00:14:50.985
+The target is years away
+for structural reasons.
+
+231
+00:14:50.985 --> 00:14:52.910
+Acquisition takes quarters.
+
+232
+00:14:52.910 --> 00:14:56.561
+Agencies send budget
+submissions to OMB in September,
+
+233
+00:14:56.561 --> 00:15:01.023
+so a program conceived now has
+usually missed the next budget year.
+
+234
+00:15:01.023 --> 00:15:05.147
+A thousand branches is a multi-year
+deployment on logistics alone.
+
+235
+00:15:05.147 --> 00:15:08.973
+And every new device class at
+every branch is assessment work.
+
+236
+00:15:08.973 --> 00:15:12.119
+But the interval isn't empty:
+four of the six functions a
+
+237
+00:15:12.119 --> 00:15:16.035
+branch-edge layer provides are
+partly obtainable before any award.
+
+238
+00:15:16.035 --> 00:15:19.785
+The decision on this slide belongs
+to the authorizing official.
+
+239
+00:15:19.785 --> 00:15:24.281
+Record in the risk register and the
+affected packages which control assertions
+
+240
+00:15:24.281 --> 00:15:26.965
+depend on transport evidence
+that doesn't exist,
+
+241
+00:15:26.965 --> 00:15:31.260
+the compensating measures, and the
+remediation with its funding dependency.
+
+242
+00:15:31.260 --> 00:15:35.135
+An undocumented gap found by
+an assessor is a finding.
+
+243
+00:15:35.135 --> 00:15:38.548
+A documented gap with a
+plan is an accepted risk.
+
+244
+00:15:38.548 --> 00:15:41.220
+Do it now, while the gap exists.
+
+245
+00:15:41.970 --> 00:15:44.920
+This is the most important
+planning item in the book.
+
+246
+00:15:44.920 --> 00:15:53.545
+BOD 26-02, issued February 5, 2026, puts
+branch edge hardware on a directive clock.
+
+247
+00:15:53.545 --> 00:15:55.408
+Inventory came due in May.
+
+248
+00:15:55.408 --> 00:15:59.720
+Devices whose support ends by
+February 2027 come out then.
+
+249
+00:15:59.720 --> 00:16:03.333
+All identified end-of-support edge devices
+
+250
+00:16:03.333 --> 00:16:06.945
+must be off agency networks
+by August 5, 2027.
+
+251
+00:16:06.945 --> 00:16:09.870
+After that, discovery is continuous.
+
+252
+00:16:09.870 --> 00:16:14.322
+The directive covers devices on the
+network boundary that are reachable from
+
+253
+00:16:14.322 --> 00:16:18.432
+the internet, so a branch router with
+its own internet circuit qualifies.
+
+254
+00:16:18.432 --> 00:16:20.622
+An interior access switch may not,
+
+255
+00:16:20.622 --> 00:16:23.983
+so don't assume the directive
+funds the access layer.
+
+256
+00:16:23.983 --> 00:16:26.642
+For an agency with aging branch equipment,
+
+257
+00:16:26.642 --> 00:16:31.051
+part of the capital it assumed it didn't
+have is going to be spent anyway,
+
+258
+00:16:31.051 --> 00:16:35.232
+on a compliance basis, inside the
+window everyone calls years away.
+
+259
+00:16:35.232 --> 00:16:39.957
+And a refresh is exactly the moment a
+branch architecture gets chosen again.
+
+260
+00:16:39.957 --> 00:16:43.160
+The default choice is like-for-like,
+which spends the money
+
+261
+00:16:43.160 --> 00:16:46.296
+and closes the question for
+the life of the new equipment.
+
+262
+00:16:46.296 --> 00:16:49.020
+The recommendation is narrow and cheap.
+
+263
+00:16:49.020 --> 00:16:53.032
+Tell whoever is scoping the
+replacements, in writing,
+
+264
+00:16:53.032 --> 00:16:56.953
+what the eventual target
+needs from a branch device:
+
+265
+00:16:56.953 --> 00:17:02.515
+application-aware steering and path
+measurement, deterministic egress,
+
+266
+00:17:02.515 --> 00:17:06.527
+per-application telemetry
+the log pipeline can take,
+
+267
+00:17:06.527 --> 00:17:09.445
+post-quantum key exchange under M-26-15,
+
+268
+00:17:09.445 --> 00:17:15.645
+a management plane that satisfies BOD 23-02,
+and an explicit FIPS 140-3 expectation.
+
+269
+00:17:15.645 --> 00:17:18.305
+Security architecture owns that decision,
+
+270
+00:17:18.305 --> 00:17:23.033
+because the refresh row in the book's
+matrix fixes the branch design for years.
+
+271
+00:17:23.033 --> 00:17:25.657
+Acquisition writes it into every order.
+
+272
+00:17:25.657 --> 00:17:28.244
+It's needed before the
+replacements are scoped.
+
+273
+00:17:28.244 --> 00:17:30.372
+It costs requirements-writing time,
+
+274
+00:17:30.372 --> 00:17:34.200
+and not doing it spends the same
+money and closes the option.
+
+275
+00:17:34.950 --> 00:17:37.588
+So where should the money
+go, and in what order?
+
+276
+00:17:37.588 --> 00:17:42.575
+The book's chapters line up into five
+tiers, cheapest and most certain first.
+
+277
+00:17:42.575 --> 00:17:45.363
+One: staff time, with no award.
+
+278
+00:17:45.363 --> 00:17:50.551
+Write the application-to-path policy
+that SC-7(4) already asks for.
+
+279
+00:17:50.551 --> 00:17:52.762
+Instrument a sample of branches.
+
+280
+00:17:52.762 --> 00:17:56.651
+Fix deterministic egress,
+usually a NAT decision.
+
+281
+00:17:56.651 --> 00:18:00.275
+Register the cleartext
+protocols crossing branch links.
+
+282
+00:18:00.275 --> 00:18:05.800
+And test, not just read, that DNS
+reaches CISA's Protective DNS.
+
+283
+00:18:05.800 --> 00:18:07.475
+Two: requirements time.
+
+284
+00:18:07.475 --> 00:18:13.012
+Put the target attributes
+into the BOD 26-02 refresh.
+
+285
+00:18:13.012 --> 00:18:15.912
+Three: accreditation and CLAW onboarding.
+
+286
+00:18:15.912 --> 00:18:20.759
+The field-office case calls accreditation,
+not procurement, the critical path;
+
+287
+00:18:20.759 --> 00:18:22.921
+circuits arrive in about a quarter,
+
+288
+00:18:22.921 --> 00:18:26.351
+an authorized breakout
+architecture takes far longer.
+
+289
+00:18:26.351 --> 00:18:28.312
+Four: protect the governor.
+
+290
+00:18:28.312 --> 00:18:35.114
+Phishing-resistant MFA, a hardened baseline,
+patching inside BOD 26-04's windows,
+
+291
+00:18:35.114 --> 00:18:40.163
+the shortest of which is three
+days, and logs held off the box.
+
+292
+00:18:40.163 --> 00:18:42.775
+Five, and only then: capital.
+
+293
+00:18:42.775 --> 00:18:46.606
+Hubs first, then office waves
+timed to MPLS contract renewals,
+
+294
+00:18:46.606 --> 00:18:51.113
+scoped to the branches and applications
+where measurement says it pays.
+
+295
+00:18:51.113 --> 00:18:53.425
+The panel on the right is about pricing.
+
+296
+00:18:53.425 --> 00:18:58.876
+Moving from MPLS to internet access plus
+a cloud security service changes the cost
+
+297
+00:18:58.876 --> 00:19:04.011
+variable from site count and port speed
+to user count, and the per-user security
+
+298
+00:19:04.011 --> 00:19:09.225
+subscription is the line most likely to
+dominate, and the one most often left out.
+
+299
+00:19:09.225 --> 00:19:14.988
+Price your own circuits in GSA's EIS pricer
+rather than citing a marketing multiple.
+
+300
+00:19:14.988 --> 00:19:18.034
+And don't justify the
+program on latency alone;
+
+301
+00:19:18.034 --> 00:19:21.400
+the stronger argument is
+governance and evidence.
+
+302
+00:19:21.400 --> 00:19:24.632
+The sponsor and CIO set
+scope, funding and sequence,
+
+303
+00:19:24.632 --> 00:19:30.060
+and this order needs to be settled before
+the next September budget submission.
+
+304
+00:19:30.810 --> 00:19:34.448
+Field offices are where these
+decisions become a budget line.
+
+305
+00:19:34.448 --> 00:19:38.995
+Chapter 11 works a case many
+civilian agencies will recognize:
+
+306
+00:19:38.995 --> 00:19:44.328
+about 1,500 field offices, about 70,000
+endpoints, and a request for about 50
+
+307
+00:19:44.328 --> 00:19:47.563
+million dollars to refresh a Configuration
+
+308
+00:19:47.563 --> 00:19:50.798
+Manager distribution
+point in every office.
+
+309
+00:19:50.798 --> 00:19:51.998
+Three findings.
+
+310
+00:19:51.998 --> 00:19:54.835
+First, the unit cost doesn't reconcile.
+
+311
+00:19:54.835 --> 00:20:00.091
+Fifty million over 1,500
+offices is 33,333 dollars each,
+
+312
+00:20:00.091 --> 00:20:04.647
+about twice the book's
+fully loaded server case.
+
+313
+00:20:04.647 --> 00:20:08.595
+So the sponsor needs to say whether
+that figure is acquisition cost
+
+314
+00:20:08.595 --> 00:20:12.260
+or five-year cost of ownership,
+and itemize anything bundled in.
+
+315
+00:20:12.260 --> 00:20:13.798
+Second, capacity.
+
+316
+00:20:13.798 --> 00:20:19.000
+Microsoft's published limit is 4,000
+clients per distribution point,
+
+317
+00:20:19.000 --> 00:20:22.560
+so the estate needs 24, two
+at each of 12 hub sites.
+
+318
+00:20:22.560 --> 00:20:28.560
+The other 1,476 exist only to
+compensate for slow branch circuits.
+
+319
+00:20:28.560 --> 00:20:29.985
+Third, timing.
+
+320
+00:20:29.985 --> 00:20:35.288
+Microsoft has moved Configuration Manager
+to an annual release cadence and says new
+
+321
+00:20:35.288 --> 00:20:38.350
+device-management innovation
+happens in Intune,
+
+322
+00:20:38.350 --> 00:20:41.785
+so hardware bought now
+depreciates past its likely use.
+
+323
+00:20:41.785 --> 00:20:46.615
+The alternative fixes the circuit:
+internet access sized to seats,
+
+324
+00:20:46.615 --> 00:20:51.885
+a 5G continuity path, and an SD-WAN
+overlay, with breakout at the hubs first.
+
+325
+00:20:51.885 --> 00:20:55.838
+On the book's labeled planning
+assumptions, that needs about 10 million
+
+326
+00:20:55.838 --> 00:21:00.060
+dollars of first-year capital and turns
+cumulatively positive in year four.
+
+327
+00:21:00.060 --> 00:21:04.372
+But the financial case turns on one
+number the analysis doesn't hold.
+
+328
+00:21:04.372 --> 00:21:10.122
+Breakeven is 873 dollars of current
+MPLS cost per office per month.
+
+329
+00:21:10.122 --> 00:21:12.704
+Above it the program pays for itself;
+
+330
+00:21:12.704 --> 00:21:16.060
+below it, argue capability
+rather than savings.
+
+331
+00:21:16.060 --> 00:21:21.035
+So the decision for the sponsor and CIO
+is to decompose the request and validate
+
+332
+00:21:21.035 --> 00:21:26.520
+that MPLS figure before any comparison,
+and before the refresh money is committed.
+
+333
+00:21:27.270 --> 00:21:30.495
+Network access control looks
+like an engineering topic.
+
+334
+00:21:30.495 --> 00:21:33.732
+It reaches the executive agenda
+because it's usually the
+
+335
+00:21:33.732 --> 00:21:37.245
+last piece of the network still
+standing on Active Directory.
+
+336
+00:21:37.245 --> 00:21:41.520
+Windows Network Policy Server, the
+RADIUS server built into Windows,
+
+337
+00:21:41.520 --> 00:21:45.570
+authorizes devices against Active
+Directory computer objects.
+
+338
+00:21:45.570 --> 00:21:50.195
+Microsoft's Entra join guidance says
+Entra joined devices don't support that.
+
+339
+00:21:50.195 --> 00:21:54.357
+There's no Entra RADIUS service,
+and NPS has no posture engine.
+
+340
+00:21:54.357 --> 00:21:58.957
+So as the Entra migration
+progresses, NPS becomes less useful.
+
+341
+00:21:58.957 --> 00:22:02.917
+And if NPS goes away before
+its replacement is validated,
+
+342
+00:22:02.917 --> 00:22:07.970
+the result isn't a degraded experience;
+it's a total loss of network access.
+
+343
+00:22:07.970 --> 00:22:11.170
+The older password methods are
+breaking on their own schedule.
+
+344
+00:22:11.170 --> 00:22:16.378
+Credential Guard, on by default
+on eligible Windows 11 devices,
+
+345
+00:22:16.378 --> 00:22:20.685
+blocks single sign-on for
+PEAP-MSCHAPv2 Wi-Fi and VPN,
+
+346
+00:22:20.685 --> 00:22:27.295
+and the October 2026 Windows update
+restricts NTLMv1-derived credentials too.
+
+347
+00:22:27.295 --> 00:22:31.645
+Agencies that followed older guidance
+now have a deadline they didn't choose.
+
+348
+00:22:31.645 --> 00:22:36.948
+The program's target is certificate-based
+EAP-TLS for every managed device,
+
+349
+00:22:36.948 --> 00:22:41.824
+with posture read from Intune's
+compliance service by a NAC platform,
+
+350
+00:22:41.824 --> 00:22:46.870
+rolled out in four phases over roughly
+90 to 180 days, monitor mode first.
+
+351
+00:22:46.870 --> 00:22:50.962
+One caution for cloud-delivered
+RADIUS: as of October 21, 2026,
+
+352
+00:22:50.962 --> 00:22:56.281
+several well-known cloud RADIUS offerings
+have no FedRAMP listing, so confirm
+
+353
+00:22:56.281 --> 00:23:01.845
+the specific function is inside a certified
+offering before designing around it.
+
+354
+00:23:01.845 --> 00:23:05.139
+The decision sits with
+the sponsor and CIO:
+
+355
+00:23:05.139 --> 00:23:08.245
+which NAC platform, and when NPS retires.
+
+356
+00:23:08.245 --> 00:23:12.712
+The book's rule is that the retirement
+is triggered by the Entra migration,
+
+357
+00:23:12.712 --> 00:23:16.080
+not by a date, and the replacement
+must be in place before
+
+358
+00:23:16.080 --> 00:23:20.108
+cloud-native cutover retires the
+computer objects NPS depends on.
+
+359
+00:23:20.108 --> 00:23:22.840
+The CISO sets the posture requirement.
+
+360
+00:23:23.590 --> 00:23:24.778
+Who owns all this?
+
+361
+00:23:24.778 --> 00:23:27.540
+The book's sharpest
+observation is that the most
+
+362
+00:23:27.540 --> 00:23:30.716
+expensive network mistakes
+aren't engineering errors.
+
+363
+00:23:30.716 --> 00:23:35.138
+They're ownership gaps: a circuit bought
+before anyone owned the governor,
+
+364
+00:23:35.138 --> 00:23:38.183
+a cutover before anyone
+filed the boundary change,
+
+365
+00:23:38.183 --> 00:23:42.678
+a telemetry contract cancelled before
+anyone confirmed its replacement.
+
+366
+00:23:42.678 --> 00:23:46.502
+Naming one decider for each step
+is cheaper than any product.
+
+367
+00:23:46.502 --> 00:23:48.977
+The register separates
+deciding from doing.
+
+368
+00:23:48.977 --> 00:23:52.166
+A role decides when it is
+accountable and can say no.
+
+369
+00:23:52.166 --> 00:23:54.779
+Network engineering does most of the work,
+
+370
+00:23:54.779 --> 00:23:57.915
+but decides only physics
+and enforcement phasing.
+
+371
+00:23:57.915 --> 00:23:59.427
+Read down the middle column.
+
+372
+00:23:59.427 --> 00:24:04.818
+The sponsor and CIO decide the governor
+platforms and the order of branch waves,
+
+373
+00:24:04.818 --> 00:24:08.166
+because those fix cost and
+the boundary for years;
+
+374
+00:24:08.166 --> 00:24:12.903
+acquisition is engaged in Phase 0
+and waves follow contract renewals.
+
+375
+00:24:12.903 --> 00:24:16.677
+The CISO sets the security
+envelope every order carries.
+
+376
+00:24:16.677 --> 00:24:21.812
+Security architecture decides the refresh
+attributes and where each enforcement
+
+377
+00:24:21.812 --> 00:24:26.065
+capability sits, but doesn't accept
+the risk of a non-conformant design.
+
+378
+00:24:26.065 --> 00:24:31.484
+The authorizing official accepts risk, so
+four rows land there: the boundary change,
+
+379
+00:24:31.484 --> 00:24:36.981
+decided before the first production cutover;
+the Microsoft 365 Optimize exception,
+
+380
+00:24:36.981 --> 00:24:40.830
+where device-side tenant
+restrictions are a precondition;
+
+381
+00:24:40.830 --> 00:24:44.678
+the interim gap; and any standing
+exception with no end date.
+
+382
+00:24:44.678 --> 00:24:46.440
+Two rows split on purpose.
+
+383
+00:24:46.440 --> 00:24:51.553
+The authorizing official decides whether
+the boundary may change, but the system
+
+384
+00:24:51.553 --> 00:24:56.515
+owner decides, site by site, whether that
+site's control layer is live and logging.
+
+385
+00:24:56.515 --> 00:24:59.964
+And telemetry splits three
+ways: the CISO decides,
+
+386
+00:24:59.964 --> 00:25:04.890
+security operations confirms, and
+the contracting officer terminates.
+
+387
+00:25:04.890 --> 00:25:08.820
+When an architectural refusal
+arrives with no control basis,
+
+388
+00:25:08.820 --> 00:25:13.180
+record it as a governance failure,
+with the refusing role named.
+
+389
+00:25:13.930 --> 00:25:16.093
+How to proceed comes down to order.
+
+390
+00:25:16.093 --> 00:25:20.530
+Order decides whether branch
+modernization is a gain or a regression.
+
+391
+00:25:20.530 --> 00:25:22.842
+Step zero: secure the governor.
+
+392
+00:25:22.842 --> 00:25:27.595
+The SD-WAN controller and its edges are
+internet-facing with estate-wide authority,
+
+393
+00:25:27.595 --> 00:25:30.212
+so they come under
+vulnerability management,
+
+394
+00:25:30.212 --> 00:25:33.931
+privileged access and off-box
+logging before they carry traffic.
+
+395
+00:25:33.931 --> 00:25:36.701
+Step one: buy the pipe
+on measured physics,
+
+396
+00:25:36.701 --> 00:25:40.205
+latency and loss recorded
+per site before the order.
+
+397
+00:25:40.205 --> 00:25:43.942
+Step two: deploy the governor
+before production traffic;
+
+398
+00:25:43.942 --> 00:25:48.793
+a site whose control layer isn't live
+and logging doesn't get its new egress.
+
+399
+00:25:48.793 --> 00:25:53.121
+Step three: treat the boundary change
+as the significant change it is,
+
+400
+00:25:53.121 --> 00:25:56.006
+decided before the first
+production cutover.
+
+401
+00:25:56.006 --> 00:26:02.268
+Step four: handle Microsoft 365 Optimize
+traffic through its own signed exception.
+
+402
+00:26:02.268 --> 00:26:04.541
+Step five: register the evidence,
+
+403
+00:26:04.541 --> 00:26:09.255
+and confirm CISA telemetry parity
+before any legacy circuit ends.
+
+404
+00:26:09.255 --> 00:26:14.768
+The book is candid that no memo, directive
+or executive order sets this sequence.
+
+405
+00:26:14.768 --> 00:26:19.618
+It's an engineering dependency, and saying
+so is what makes it survive review.
+
+406
+00:26:19.618 --> 00:26:24.734
+Doing it out of order, above all lighting
+up fast circuits before the security layer
+
+407
+00:26:24.734 --> 00:26:29.480
+is live, is in the program's experience
+the most common and most costly mistake.
+
+408
+00:26:29.480 --> 00:26:34.934
+The boundary package carries the evidence:
+the path policy, failover test records,
+
+409
+00:26:34.934 --> 00:26:38.783
+path telemetry, each exception
+with its need and duration,
+
+410
+00:26:38.783 --> 00:26:42.392
+CISA parity, and the known
+limitations stated openly.
+
+411
+00:26:42.392 --> 00:26:46.355
+And when funding becomes possible,
+prove the case in your own estate.
+
+412
+00:26:46.355 --> 00:26:51.780
+Instrument two comparable branches for
+30 days, change one, measure 30 more.
+
+413
+00:26:51.780 --> 00:26:56.342
+The difference in differences is an effect
+size a budget examiner will accept.
+
+414
+00:26:56.342 --> 00:26:58.935
+The decision: adopt this order as program
+
+415
+00:26:58.935 --> 00:27:02.110
+policy before the first
+production cutover.
+
+416
+00:27:02.860 --> 00:27:06.785
+Let me close with what can start now,
+because most of it needs no award.
+
+417
+00:27:06.785 --> 00:27:10.196
+The staff work: write
+the application-to-path
+
+418
+00:27:10.196 --> 00:27:13.423
+routing policy that
+SC-7(4) already asks for.
+
+419
+00:27:13.423 --> 00:27:16.887
+Its absence is the finding,
+not the absence of a device,
+
+420
+00:27:16.887 --> 00:27:21.611
+and it turns the eventual purchase
+into enforcement of existing policy.
+
+421
+00:27:21.611 --> 00:27:25.435
+Instrument a sample of branches
+before the next migration wave.
+
+422
+00:27:25.435 --> 00:27:29.272
+And verify that DNS egress
+really ends at CISA.
+
+423
+00:27:29.272 --> 00:27:33.246
+Before money moves: send
+the target attributes to
+
+424
+00:27:33.246 --> 00:27:37.510
+whoever scopes the BOD 26-02
+replacements, in writing.
+
+425
+00:27:37.510 --> 00:27:42.635
+Ask the field-office refresh request to
+separate acquisition from five-year cost.
+
+426
+00:27:42.635 --> 00:27:47.148
+And re-examine any ExpressRoute
+arrangement for Microsoft 365;
+
+427
+00:27:47.148 --> 00:27:51.660
+an approval granted years ago
+isn't current Microsoft guidance.
+
+428
+00:27:51.660 --> 00:27:55.844
+Before cutover: start CLAW coordination
+with CISA and the provider,
+
+429
+00:27:55.844 --> 00:27:59.147
+because it's a three-party
+effort with its own lead time.
+
+430
+00:27:59.147 --> 00:28:03.709
+Have the authorizing official record
+the interim gap as an accepted risk.
+
+431
+00:28:03.709 --> 00:28:05.472
+And name one decider per row.
+
+432
+00:28:05.472 --> 00:28:09.525
+Recapping the seven decisions:
+MTIPS ends on confirmed parity,
+
+433
+00:28:09.525 --> 00:28:14.200
+the interim gap becomes an accepted
+risk, the refresh carries the target,
+
+434
+00:28:14.200 --> 00:28:19.498
+the investment order starts with staff
+time, the field-office request gets tested,
+
+435
+00:28:19.498 --> 00:28:24.485
+NPS retirement follows the Entra migration,
+and the sequence becomes policy.
+
+436
+00:28:24.485 --> 00:28:25.885
+One point on urgency.
+
+437
+00:28:25.885 --> 00:28:29.660
+The branch measurement baseline
+can't be reconstructed after the
+
+438
+00:28:29.660 --> 00:28:33.297
+next migration wave, and it costs
+staff time rather than capital.
+
+439
+00:28:33.297 --> 00:28:36.335
+Buy transport on physics
+and govern it as compliance,
+
+440
+00:28:36.335 --> 00:28:39.235
+and the branch gets faster
+without getting weaker.
+
+441
+00:28:39.235 --> 00:28:42.354
+Book 09 has the detail,
+every claim footnoted,
+
+442
+00:28:42.354 --> 00:28:47.497
+and the backup slides list the sources
+behind each slide in this briefing.
+
+443
+00:28:47.497 --> 00:28:48.310
+Thank you.

@@ -1,0 +1,157 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.900
+PIM settings are defined per role.
+
+2
+00:00:01.900 --> 00:00:05.186
+Each role's settings are
+independent of every other role's,
+
+3
+00:00:05.186 --> 00:00:07.650
+and every assignment of
+a role follows them.
+
+4
+00:00:07.650 --> 00:00:11.913
+The program sets them by tier,
+from Chapter 04's tier model.
+
+5
+00:00:11.913 --> 00:00:15.356
+Tier 0 is the control plane:
+Global, Privileged Role,
+
+6
+00:00:15.356 --> 00:00:20.687
+Privileged Authentication, Security
+and Conditional Access Administrator.
+
+7
+00:00:20.687 --> 00:00:26.503
+Four-hour activations, authentication context
+c1, justification and ticket required,
+
+8
+00:00:26.503 --> 00:00:29.007
+approval by the Tier 0 approver group,
+
+9
+00:00:29.007 --> 00:00:32.238
+and eligibility that
+expires after ninety days.
+
+10
+00:00:32.238 --> 00:00:35.872
+Tier 1, the management plane,
+such as Exchange, SharePoint,
+
+11
+00:00:35.872 --> 00:00:39.507
+Intune and Application
+Administrator, gets eight hours,
+
+12
+00:00:39.507 --> 00:00:42.987
+the Tier 1 approver group,
+and a hundred and eighty days.
+
+13
+00:00:42.987 --> 00:00:47.750
+Tier 2, scoped operations inside
+administrative units, gets eight hours,
+
+14
+00:00:47.750 --> 00:00:52.274
+and approval is optional, with a
+documented risk acceptance per role.
+
+15
+00:00:52.274 --> 00:00:54.478
+Read-only roles need no approval,
+
+16
+00:00:54.478 --> 00:00:59.375
+but still pass c1 with a justification,
+and their eligibility runs a year.
+
+17
+00:00:59.375 --> 00:01:03.775
+Now, what the controls really do,
+because the old guides got several wrong.
+
+18
+00:01:03.775 --> 00:01:07.418
+The activation maximum runs
+from one to twenty-four hours,
+
+19
+00:01:07.418 --> 00:01:11.288
+and it's the exposure window, so
+set the shortest the work needs.
+
+20
+00:01:11.288 --> 00:01:16.045
+Require MFA on activation may not
+prompt at all if the user authenticated
+
+21
+00:01:16.045 --> 00:01:20.725
+strongly earlier in the session, so
+it proves nothing at activation time.
+
+22
+00:01:20.725 --> 00:01:24.916
+That's why every role uses the
+authentication context instead, which is
+
+23
+00:01:24.916 --> 00:01:29.675
+Microsoft's recommendation when the goal
+is authentication during activation.
+
+24
+00:01:29.675 --> 00:01:34.542
+Ticket information is recorded but never
+checked against a ticketing system;
+
+25
+00:01:34.542 --> 00:01:37.537
+enforced correlation
+belongs in the SIEM or ITSM.
+
+26
+00:01:37.537 --> 00:01:41.300
+And approval needs at least one
+approver, with two recommended.
+
+27
+00:01:41.300 --> 00:01:45.372
+The assignment controls close the
+side door, so a well-built gate can't
+
+28
+00:01:45.372 --> 00:01:49.587
+be bypassed by simply granting
+someone a permanent active assignment.
+
+29
+00:01:49.587 --> 00:01:51.938
+No permanent eligible assignments.
+
+30
+00:01:51.938 --> 00:01:57.050
+No permanent active ones, except Global
+Administrator for the emergency accounts.
+
+31
+00:01:57.050 --> 00:02:01.649
+And MFA and justification are required
+when an active assignment is made,
+
+32
+00:02:01.649 --> 00:02:06.840
+because PIM can't apply an activation
+requirement to someone who's already active.

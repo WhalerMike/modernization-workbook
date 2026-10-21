@@ -1,0 +1,145 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.338
+Runbook R03 is the audit script itself.
+
+2
+00:00:03.338 --> 00:00:06.962
+It changes nothing, so run
+it first and run it often.
+
+3
+00:00:06.962 --> 00:00:11.837
+The prerequisites are the ActiveDirectory
+module for the live SPN query and the
+
+4
+00:00:11.837 --> 00:00:16.202
+orphaned-login check, remote CIM to
+each host, and SQL Server permissions
+
+5
+00:00:16.202 --> 00:00:21.076
+only for the deep audit, which connects
+with Windows integrated authentication.
+
+6
+00:00:21.076 --> 00:00:22.263
+Watch one trap.
+
+7
+00:00:22.263 --> 00:00:25.625
+Catalog views show only what
+the caller has permission on,
+
+8
+00:00:25.625 --> 00:00:30.249
+so an under-privileged audit account
+returns a partial login list with no error.
+
+9
+00:00:30.249 --> 00:00:33.206
+Grant the narrowest read
+that sees every login,
+
+10
+00:00:33.206 --> 00:00:36.162
+and confirm the count
+against a known instance.
+
+11
+00:00:36.162 --> 00:00:41.433
+There are three passes, in order: discovery
+only, which opens no SQL connection;
+
+12
+00:00:41.433 --> 00:00:44.974
+then adding target servers
+for hosts without an SPN;
+
+13
+00:00:44.974 --> 00:00:49.338
+then the deep audit with query
+instances and test connectivity.
+
+14
+00:00:49.338 --> 00:00:54.061
+The output is a JSON file per run,
+an instances CSV and a logins CSV,
+
+15
+00:00:54.061 --> 00:00:57.537
+and the script computes
+the readiness verdict.
+
+16
+00:00:57.537 --> 00:01:02.976
+Major version sixteen and later gets
+"enable Entra ID auth via Azure Arc".
+
+17
+00:01:02.976 --> 00:01:09.387
+2019 and earlier gets "upgrade to
+2022 plus Arc", which is Category 3.
+
+18
+00:01:09.387 --> 00:01:12.044
+The blockers it flags are mixed mode,
+
+19
+00:01:12.044 --> 00:01:15.675
+an enabled SA, orphaned
+logins and linked servers.
+
+20
+00:01:15.675 --> 00:01:18.565
+It doesn't detect failover
+cluster instances,
+
+21
+00:01:18.565 --> 00:01:22.900
+so flag those from the cluster
+inventory and treat them as Category 3.
+
+22
+00:01:22.900 --> 00:01:25.212
+Two input defects to work around.
+
+23
+00:01:25.212 --> 00:01:29.445
+The SPN-inventory input file
+doesn't match what D1.5 writes,
+
+24
+00:01:29.445 --> 00:01:35.176
+so passing it yields no instances and
+suppresses the live query; run without it.
+
+25
+00:01:35.176 --> 00:01:39.287
+And the service-account input expects
+a script that isn't published yet.
+
+26
+00:01:39.287 --> 00:01:47.587
+The run order for SQL Server is D1.5 and
+D1.7, then D1.8, then the owner matrix.
+
+27
+00:01:47.587 --> 00:01:50.373
+The script degrades rather than crashing:
+
+28
+00:01:50.373 --> 00:01:54.988
+a failed connection is recorded as
+Query Failed, a slow port as Timeout.
+
+29
+00:01:54.988 --> 00:01:57.652
+Keep every run under version control,
+
+30
+00:01:57.652 --> 00:02:03.380
+because the audit JSON is the raw input
+to continuous monitoring in Runbook R09.

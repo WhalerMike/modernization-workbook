@@ -1,0 +1,148 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:05.063
+Policies target populations, never
+people, and the populations are personas.
+
+2
+00:00:05.063 --> 00:00:08.437
+They're defined in Book 02
+and kept identical here.
+
+3
+00:00:08.437 --> 00:00:12.131
+Admins are users eligible for
+or holding privileged roles,
+
+4
+00:00:12.131 --> 00:00:16.126
+from the account-type attribute
+or the PIM-eligible population.
+
+5
+00:00:16.126 --> 00:00:21.728
+They carry the highest risk and get the
+strictest policies: phishing-resistant MFA,
+
+6
+00:00:21.728 --> 00:00:26.275
+a compliant device, trusted networks,
+and privileged workstations.
+
+7
+00:00:26.275 --> 00:00:30.034
+Internals are employees and
+contractors with standard access,
+
+8
+00:00:30.034 --> 00:00:33.012
+built dynamically from
+the worker-type attribute.
+
+9
+00:00:33.012 --> 00:00:36.896
+Externals are B2B guests
+from partner organizations;
+
+10
+00:00:36.896 --> 00:00:40.526
+Guests are ad hoc external
+users from anywhere else.
+
+11
+00:00:40.526 --> 00:00:43.900
+Workload identities are
+single-tenant service principals.
+
+12
+00:00:43.900 --> 00:00:46.818
+They must be assigned
+to a policy directly,
+
+13
+00:00:46.818 --> 00:00:51.736
+because a policy assigned to a group
+that contains a service principal
+
+14
+00:00:51.736 --> 00:00:56.488
+isn't enforced for it, and only two
+policies reach them, CA015 and CA037.
+
+15
+00:00:56.488 --> 00:01:02.420
+And break-glass: the two emergency accounts,
+excluded from every enforced policy,
+
+16
+00:01:02.420 --> 00:01:05.962
+and still recorded by CA090,
+which is report-only.
+
+17
+00:01:05.962 --> 00:01:09.804
+The library adds named
+sub-populations inside the personas:
+
+18
+00:01:09.804 --> 00:01:14.336
+web-only users without a managed
+device, shared-device frontline staff,
+
+19
+00:01:14.336 --> 00:01:18.638
+server administrators, Azure
+operators and production operators.
+
+20
+00:01:18.638 --> 00:01:20.063
+Each is a governed group.
+
+21
+00:01:20.063 --> 00:01:24.962
+Now the failure mode that drives one of the
+library's most important design choices.
+
+22
+00:01:24.962 --> 00:01:28.351
+Persona groups are dynamic,
+built from attributes.
+
+23
+00:01:28.351 --> 00:01:32.325
+A user whose attribute is empty
+falls outside every persona group,
+
+24
+00:01:32.325 --> 00:01:36.300
+and therefore outside every policy
+that includes only that group.
+
+25
+00:01:36.300 --> 00:01:38.575
+That's an exclusion nobody approved.
+
+26
+00:01:38.575 --> 00:01:44.596
+So the library includes all users and
+excludes narrowly, and it adds CA018,
+
+27
+00:01:44.596 --> 00:01:49.531
+deliberately redundant: MFA for
+all users and all resources,
+
+28
+00:01:49.531 --> 00:01:51.900
+with no resource exclusions.
+
+29
+00:01:51.900 --> 00:01:55.914
+It uses the plain require-MFA
+control rather than a strength,
+
+30
+00:01:55.914 --> 00:02:00.720
+so guests who sign in with email
+one-time passcodes can still satisfy it.

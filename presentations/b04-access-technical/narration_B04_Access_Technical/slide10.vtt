@@ -1,0 +1,163 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.963
+Every policy, in every
+wave, passes the same gates.
+
+2
+00:00:03.963 --> 00:00:07.072
+Book 02 set the durations,
+and Microsoft's own
+
+3
+00:00:07.072 --> 00:00:10.687
+minimum is a week in
+report-only before enforcement.
+
+4
+00:00:10.687 --> 00:00:13.501
+Gate one is report-only,
+two to four weeks,
+
+5
+00:00:13.501 --> 00:00:16.826
+while impact, gaps and
+exclusions are reviewed.
+
+6
+00:00:16.826 --> 00:00:21.487
+Gate two is a pilot ring of IT
+and security staff for two weeks.
+
+7
+00:00:21.487 --> 00:00:25.394
+Gate three expands ring by
+ring, one to two weeks each:
+
+8
+00:00:25.394 --> 00:00:30.300
+headquarters, then field and remote
+staff, then everyone in scope.
+
+9
+00:00:30.300 --> 00:00:34.537
+Then steady state: enforced,
+monitored, with drift alerts.
+
+10
+00:00:34.537 --> 00:00:38.363
+Inside that, the chapter
+consolidates a seven-step cycle.
+
+11
+00:00:38.363 --> 00:00:43.301
+One, a pre-deployment check: prerequisites
+exist, readiness gates are met, the
+
+12
+00:00:43.301 --> 00:00:45.418
+emergency exclusion is present,
+
+13
+00:00:45.418 --> 00:00:49.024
+and the policy JSON has been
+reviewed in source control.
+
+14
+00:00:49.024 --> 00:00:51.862
+Two, create the policy in report-only.
+
+15
+00:00:51.862 --> 00:00:57.409
+One detail: a report-only policy that
+requires a compliant device can prompt users
+
+16
+00:00:57.409 --> 00:01:00.509
+on macOS, iOS and Android
+to pick a certificate,
+
+17
+00:01:00.509 --> 00:01:04.262
+so leave those platforms out
+of the report-only version.
+
+18
+00:01:04.262 --> 00:01:06.926
+Three, measure for at least seven days.
+
+19
+00:01:06.926 --> 00:01:10.765
+Four, analyze and remediate:
+missing registrations,
+
+20
+00:01:10.765 --> 00:01:15.587
+noncompliant devices, untagged
+applications, empty attributes.
+
+21
+00:01:15.587 --> 00:01:19.838
+Fix the cause; add an exclusion
+only as a governed object.
+
+22
+00:01:19.838 --> 00:01:23.924
+Five, security and business owners
+approve the impact analysis,
+
+23
+00:01:23.924 --> 00:01:26.776
+and that approval is
+kept as change evidence.
+
+24
+00:01:26.776 --> 00:01:30.075
+Six, enforce for the
+pilot ring and expand.
+
+25
+00:01:30.075 --> 00:01:35.375
+Turning a policy that targets all users
+straight from off to on is never allowed.
+
+26
+00:01:35.375 --> 00:01:38.650
+Seven, watch for forty-eight
+hours after each ring.
+
+27
+00:01:38.650 --> 00:01:41.366
+The readiness gates are
+the program's numbers:
+
+28
+00:01:41.366 --> 00:01:46.013
+at least ninety-five percent of in-scope
+users have a method that satisfies the
+
+29
+00:01:46.013 --> 00:01:49.372
+policy's strength, and at
+least ninety percent of devices
+
+30
+00:01:49.372 --> 00:01:52.875
+are enrolled and compliant,
+with the attributes populated.
+
+31
+00:01:52.875 --> 00:01:57.025
+The point is that each wave starts with
+a measured number, not an estimate.
+
+32
+00:01:57.025 --> 00:01:59.476
+And a wave starts only
+after the previous one
+
+33
+00:01:59.476 --> 00:02:02.180
+has been enforced for a
+week without an incident.

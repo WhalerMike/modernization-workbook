@@ -1,0 +1,145 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.475
+What changed at FedRAMP?
+
+2
+00:00:01.475 --> 00:00:06.405
+FedRAMP announced its Consolidated
+Rules for 2026 on June 25,
+
+3
+00:00:06.405 --> 00:00:10.175
+2026, and they rename the
+product of the program.
+
+4
+00:00:10.175 --> 00:00:13.615
+A cloud service offering
+is now FedRAMP Certified,
+
+5
+00:00:13.615 --> 00:00:15.990
+at a certification class from A to D.
+
+6
+00:00:15.990 --> 00:00:20.658
+FedRAMP's February 2026 notice maps
+the classes to the old baselines:
+
+7
+00:00:20.658 --> 00:00:23.852
+Class B covers the former
+low-impact baselines,
+
+8
+00:00:23.852 --> 00:00:29.012
+Class C includes the current Moderate
+baseline, and Class D the current High.
+
+9
+00:00:29.012 --> 00:00:31.388
+It dropped numbered levels on purpose,
+
+10
+00:00:31.388 --> 00:00:35.324
+to avoid confusion with the
+Defense Department's impact levels.
+
+11
+00:00:35.324 --> 00:00:37.650
+Two cautions come with the new labels.
+
+12
+00:00:37.650 --> 00:00:41.029
+The class describes what
+FedRAMP assessed, not your use:
+
+13
+00:00:41.029 --> 00:00:44.628
+agencies may authorize a
+service at any security category
+
+14
+00:00:44.628 --> 00:00:48.300
+they deem appropriate under
+the Risk Management Framework.
+
+15
+00:00:48.300 --> 00:00:51.100
+And certification doesn't
+replace your decision.
+
+16
+00:00:51.100 --> 00:00:55.095
+Each agency still authorizes its
+own federal information systems,
+
+17
+00:00:55.095 --> 00:00:59.375
+and notifies FedRAMP afterward with
+a copy of the authorization letter.
+
+18
+00:00:59.375 --> 00:01:01.025
+The dates matter for planning.
+
+19
+00:01:01.025 --> 00:01:05.425
+Optional early adoption
+began on July 4, 2026.
+
+20
+00:01:05.425 --> 00:01:10.537
+Adoption is mandatory for
+everyone on January 1, 2027.
+
+21
+00:01:10.537 --> 00:01:16.277
+FedRAMP stops accepting new Rev5
+certification requests on June 11, 2027,
+
+22
+00:01:16.277 --> 00:01:21.453
+and says the end date for existing
+Rev5 certifications isn't final,
+
+23
+00:01:21.453 --> 00:01:23.900
+but is likely no later than 2029.
+
+24
+00:01:23.900 --> 00:01:28.500
+Plan against those words, not against
+a specific date someone repeats.
+
+25
+00:01:28.500 --> 00:01:31.725
+So for years you'll hold two
+kinds of package at once.
+
+26
+00:01:31.725 --> 00:01:35.225
+Rev5 packages describe a
+boundary the provider drew.
+
+27
+00:01:35.225 --> 00:01:38.812
+Packages under the new rules
+describe scope, as data.
+
+28
+00:01:38.812 --> 00:01:41.876
+And the new rule families
+on assessment scope,
+
+29
+00:01:41.876 --> 00:01:47.199
+change notification and data sharing
+apply to Rev5 Class C certifications too.
+
+30
+00:01:47.199 --> 00:01:52.460
+Read each package in its own terms, and
+don't force one vocabulary into the other.

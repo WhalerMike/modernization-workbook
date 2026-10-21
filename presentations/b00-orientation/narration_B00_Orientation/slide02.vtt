@@ -1,0 +1,101 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.338
+Why modernize now?
+
+2
+00:00:01.338 --> 00:00:03.662
+Start with what the
+directory has been doing.
+
+3
+00:00:03.662 --> 00:00:07.960
+Most federal estates still run
+the client/server model they built
+
+4
+00:00:07.960 --> 00:00:12.101
+in the early 2000s, with an Active
+Directory forest at the center.
+
+5
+00:00:12.101 --> 00:00:16.238
+Since Windows 2000, the organizational
+unit has grouped objects
+
+6
+00:00:16.238 --> 00:00:20.300
+for delegating administrative
+rights and assigning policies.
+
+7
+00:00:20.300 --> 00:00:23.338
+So placing a user or
+computer in the tree decided
+
+8
+00:00:23.338 --> 00:00:26.300
+several things at once,
+with no separate record.
+
+9
+00:00:26.300 --> 00:00:29.362
+Who administers it, through
+the permissions on the OU.
+
+10
+00:00:29.362 --> 00:00:34.863
+Which policy applies, through Group
+Policy linked to sites, domains and OUs.
+
+11
+00:00:34.863 --> 00:00:37.187
+What it can reach,
+through group membership.
+
+12
+00:00:37.187 --> 00:00:41.101
+How it's named, through DNS
+zones stored in the directory.
+
+13
+00:00:41.101 --> 00:00:45.225
+And whether it's trusted, through
+certificates enrolled by Group Policy.
+
+14
+00:00:45.225 --> 00:00:46.437
+None of that was wrong.
+
+15
+00:00:46.437 --> 00:00:48.163
+It just was never written down.
+
+16
+00:00:48.163 --> 00:00:50.176
+And the cloud doesn't inherit it.
+
+17
+00:00:50.176 --> 00:00:53.339
+Entra ID's administrative
+units can't be nested,
+
+18
+00:00:53.339 --> 00:00:57.638
+and policy is assigned to groups,
+not inherited from a container.
+
+19
+00:00:57.638 --> 00:01:01.364
+An agency that moves the users
+and retires the forest without
+
+20
+00:01:01.364 --> 00:01:05.163
+recovering those decisions
+doesn't modernize its governance.
+
+21
+00:01:05.163 --> 00:01:06.260
+It deletes it.

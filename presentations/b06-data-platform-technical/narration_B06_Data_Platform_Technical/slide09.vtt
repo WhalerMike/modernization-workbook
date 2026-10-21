@@ -1,0 +1,148 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.993
+This is where the engine stops
+accepting Kerberos tickets and NTLM
+
+2
+00:00:04.993 --> 00:00:10.025
+exchanges and starts accepting
+Entra-issued OAuth 2.0 access tokens.
+
+3
+00:00:10.025 --> 00:00:16.700
+The mechanism is CREATE LOGIN FROM EXTERNAL
+PROVIDER, on SQL Server 2022 and later.
+
+4
+00:00:16.700 --> 00:00:20.238
+The login is a passwordless
+external principal in master.
+
+5
+00:00:20.238 --> 00:00:24.211
+At connection time the client
+presents a token whose audience is
+
+6
+00:00:24.211 --> 00:00:28.625
+database.windows.net, and the engine
+validates it and maps it to the login.
+
+7
+00:00:28.625 --> 00:00:33.573
+CREATE LOGIN looks the principal up
+through Microsoft Graph, so the instance's
+
+8
+00:00:33.573 --> 00:00:38.825
+identity needs Graph read permissions with
+admin consent, or login creation fails.
+
+9
+00:00:38.825 --> 00:00:45.825
+On SQL Server 2025, WITH OBJECT_ID pins
+a login when display names aren't unique.
+
+10
+00:00:45.825 --> 00:00:48.546
+And Entra connections
+are always encrypted,
+
+11
+00:00:48.546 --> 00:00:51.562
+so clients must trust the
+instance's certificate.
+
+12
+00:00:51.562 --> 00:00:52.600
+Three types.
+
+13
+00:00:52.600 --> 00:00:56.663
+An Entra user login, type E,
+named by the user principal name;
+
+14
+00:00:56.663 --> 00:01:02.250
+UPNs can differ from SAM account names,
+so the audit captures that mapping first.
+
+15
+00:01:02.250 --> 00:01:04.900
+The engine has no MFA logic.
+
+16
+00:01:04.900 --> 00:01:10.486
+Conditional Access enforces MFA, device
+compliance and sign-in risk before
+
+17
+00:01:10.486 --> 00:01:15.363
+the token is issued, with no SQL-level
+prompt and no SQL-level bypass.
+
+18
+00:01:15.363 --> 00:01:18.863
+One limit: FIDO2 security
+keys aren't yet supported
+
+19
+00:01:18.863 --> 00:01:21.887
+for Entra authentication
+to SQL Server on Arc.
+
+20
+00:01:21.887 --> 00:01:26.613
+An Entra group login, type X, is
+the familiar AD group pattern.
+
+21
+00:01:26.613 --> 00:01:31.238
+With a dynamic group driven by HR
+attributes, people gain and lose
+
+22
+00:01:31.238 --> 00:01:35.950
+access as their attributes change,
+with no CREATE USER or DROP USER.
+
+23
+00:01:35.950 --> 00:01:38.323
+That needs a P1 license per member,
+
+24
+00:01:38.323 --> 00:01:43.237
+and access is only as strong as the
+write controls on those attributes.
+
+25
+00:01:43.237 --> 00:01:48.852
+And an application login, also type E, for
+a managed identity or service principal,
+
+26
+00:01:48.852 --> 00:01:52.037
+replacing a SQL login
+and its stored password.
+
+27
+00:01:52.037 --> 00:01:55.637
+Conditional Access doesn't cover
+these; service principals are
+
+28
+00:01:55.637 --> 00:01:59.849
+reachable only through separately
+licensed workload-identity policies.
+
+29
+00:01:59.849 --> 00:02:03.742
+On an Arc server the managed
+identity belongs to the server,
+
+30
+00:02:03.742 --> 00:02:07.540
+so one login per server is the
+honest unit of attribution.

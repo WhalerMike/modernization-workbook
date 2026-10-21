@@ -1,0 +1,165 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.435
+Governance in Active Directory
+was mostly a ticket queue:
+
+2
+00:00:03.435 --> 00:00:07.525
+someone asked for membership, someone
+added it, and nobody took it away.
+
+3
+00:00:07.525 --> 00:00:09.713
+The target replaces that with a loop.
+
+4
+00:00:09.713 --> 00:00:13.376
+HR-driven provisioning creates
+and updates the account.
+
+5
+00:00:13.376 --> 00:00:17.625
+Lifecycle Workflows run the
+joiner, mover and leaver tasks.
+
+6
+00:00:17.625 --> 00:00:20.763
+Access packages grant
+access with an expiry.
+
+7
+00:00:20.763 --> 00:00:24.137
+And access reviews remove
+what's no longer justified.
+
+8
+00:00:24.137 --> 00:00:28.924
+Lifecycle Workflows act on accounts that
+already exist; they don't create them.
+
+9
+00:00:28.924 --> 00:00:32.875
+The time-based triggers key on
+the native employee hire date and
+
+10
+00:00:32.875 --> 00:00:36.975
+leave date attributes, with an offset
+of up to a hundred eighty days.
+
+11
+00:00:36.975 --> 00:00:41.712
+For synced users, those dates must
+be synced into Entra ID first.
+
+12
+00:00:41.712 --> 00:00:46.931
+Pre-hire runs seven days before the hire
+date: confirm the account exists, disabled;
+
+13
+00:00:46.931 --> 00:00:49.463
+request the onboarding access package;
+
+14
+00:00:49.463 --> 00:00:53.301
+and generate a Temporary Access
+Pass emailed to the manager,
+
+15
+00:00:53.301 --> 00:00:57.675
+so the new hire registers a
+phishing-resistant credential on day one.
+
+16
+00:00:57.675 --> 00:01:02.154
+Joiner runs on the day: enable the
+account, assign licenses by group,
+
+17
+00:01:02.154 --> 00:01:05.900
+send the welcome email,
+request the department package.
+
+18
+00:01:05.900 --> 00:01:10.696
+Mover fires on a change to department,
+division code or position category:
+
+19
+00:01:10.696 --> 00:01:14.313
+remove the old department's
+package, request the new one,
+
+20
+00:01:14.313 --> 00:01:19.738
+let dynamic groups and a dynamic administrative
+unit adjust, and review what's left.
+
+21
+00:01:19.738 --> 00:01:22.944
+Leaver runs on the leave
+date: disable the account,
+
+22
+00:01:22.944 --> 00:01:25.213
+revoke refresh and session tokens,
+
+23
+00:01:25.213 --> 00:01:29.985
+remove access packages and then licenses
+after the mailbox is converted,
+
+24
+00:01:29.985 --> 00:01:33.975
+remove group memberships at
+thirty days and delete at ninety.
+
+25
+00:01:33.975 --> 00:01:35.138
+Two cautions.
+
+26
+00:01:35.138 --> 00:01:38.911
+The delete task doesn't support
+users holding Entra roles or
+
+27
+00:01:38.911 --> 00:01:43.288
+role-assignable group membership,
+so remove privileged access first.
+
+28
+00:01:43.288 --> 00:01:46.166
+And a synced user
+deleted only in the cloud
+
+29
+00:01:46.166 --> 00:01:48.962
+comes back on the next
+sync; delete it in AD.
+
+30
+00:01:48.962 --> 00:01:50.550
+Reviews close the loop.
+
+31
+00:01:50.550 --> 00:01:55.457
+PIM-eligible role assignments are
+reviewed quarterly by the security team,
+
+32
+00:01:55.457 --> 00:01:59.273
+not by self-review, which leaves
+role-assignable groups out;
+
+33
+00:01:59.273 --> 00:02:02.700
+that review is the AC-6(7) evidence.
+
+34
+00:02:02.700 --> 00:02:07.390
+Sensitive groups go quarterly to
+owners, guests quarterly to sponsors.

@@ -1,0 +1,147 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.675
+Two documented incidents
+show why this is a
+
+2
+00:00:02.675 --> 00:00:05.738
+security property and not
+a reporting preference.
+
+3
+00:00:05.738 --> 00:00:10.202
+In May and June 2023, an actor
+used a Microsoft consumer signing
+
+4
+00:00:10.202 --> 00:00:14.925
+key to forge authentication tokens
+and read Exchange Online mail.
+
+5
+00:00:14.925 --> 00:00:20.279
+The federal Cyber Safety Review Board
+counted 22 enterprise organizations and 503
+
+6
+00:00:20.279 --> 00:00:23.951
+related personal accounts,
+with access to some mailboxes
+
+7
+00:00:23.951 --> 00:00:27.775
+for at least six weeks, and
+called the intrusion preventable.
+
+8
+00:00:27.775 --> 00:00:31.000
+The tokens were valid to every
+system that checked them.
+
+9
+00:00:31.000 --> 00:00:33.679
+What caught it was a
+custom alert one federal
+
+10
+00:00:33.679 --> 00:00:36.575
+department had built on
+mailbox logs it paid for.
+
+11
+00:00:36.575 --> 00:00:40.425
+The agency's own evidence found what
+the provider's platform didn't.
+
+12
+00:00:40.425 --> 00:00:42.487
+The second sits beneath the guest.
+
+13
+00:00:42.487 --> 00:00:48.565
+In February 2023, the ESXiArgs campaign
+compromised more than 3,800 VMware ESXi
+
+14
+00:00:48.565 --> 00:00:55.012
+servers by encrypting the configuration
+files of the virtual machines on each host.
+
+15
+00:00:55.012 --> 00:01:02.067
+In 2024, CVE-2024-37085 gave full hypervisor
+control to members of a directory
+
+16
+00:01:02.067 --> 00:01:08.900
+group named ESX Admins, matched by name
+rather than by security identifier.
+
+17
+00:01:08.900 --> 00:01:11.953
+Microsoft noted that many
+security products have
+
+18
+00:01:11.953 --> 00:01:14.788
+limited visibility into
+the hypervisor at all.
+
+19
+00:01:14.788 --> 00:01:17.737
+Both cases make the same
+point from opposite ends.
+
+20
+00:01:17.737 --> 00:01:19.987
+The most consequential failures happened
+
+21
+00:01:19.987 --> 00:01:22.237
+where no single platform's
+tool was looking.
+
+22
+00:01:22.237 --> 00:01:24.324
+And there's a consequence for the fix.
+
+23
+00:01:24.324 --> 00:01:28.593
+Once one plane names and identifies
+everything the agency runs,
+
+24
+00:01:28.593 --> 00:01:31.250
+it's a complete map of the attack surface.
+
+25
+00:01:31.250 --> 00:01:34.656
+NIST already calls the policy
+engine and administrator
+
+26
+00:01:34.656 --> 00:01:37.338
+the key components of
+the entire enterprise.
+
+27
+00:01:37.338 --> 00:01:42.400
+So the decision: govern the unified plane
+as a Tier 0 asset from the day it exists,
+
+28
+00:01:42.400 --> 00:01:46.995
+with eligible, time-boxed administration,
+its own monitored telemetry,
+
+29
+00:01:46.995 --> 00:01:50.500
+and a design that assumes it
+will be attacked directly.
+
+30
+00:01:50.500 --> 00:01:54.790
+Identity engineering and
+the DNS and DDI team own it.

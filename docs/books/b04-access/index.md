@@ -33,6 +33,8 @@ This book consolidates the workbook's access-plane pages (the Conditional Access
 **[b04-access-bundle.docx](../../../downloads/b04-access-bundle.docx)**: the whole book as one Word document, regenerated on every site deploy.
 
 **15-minute presentation**: the Why / What / Who / How deck and its narrated, self-running edition are on the [Presentations](../../presentations/index.md#book-04) page.
+
+**Technical deep dive (about 50 minutes)**: the Conditional Access library, PIM and access governance, in modules on the [Presentations](../../presentations/index.md#technical-b04) page.
 :::
 
 Zero Trust moves every access decision to a policy engine and makes it on every request. In Microsoft Entra ID that engine is Conditional Access: it reads who is signing in, from what device, to what, with what risk, and decides block, grant, or grant with conditions. Access that used to follow from group membership and network location now follows from policy, so the policy library becomes the agency's access control in practice. The same is true of privilege. A standing administrator is an open door; an eligible one, activated just in time with approval and a fresh strong sign-in, is a decision made and recorded each time. This book is the policy, the privilege model and the governance that keep both honest.
