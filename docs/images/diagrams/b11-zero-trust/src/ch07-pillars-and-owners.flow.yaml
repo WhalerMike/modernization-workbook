@@ -1,0 +1,31 @@
+# Chapter 07 — each of CISA's five Zero Trust pillars has an owner; every
+# pillar resolves its objects against one naming and identity plane; the
+# three cross-cutting capabilities have owners too, and Governance sits
+# with the program lead, the CISO and the authorizing official. Owner
+# assignments are the program's recommended model.
+rankdir: TB
+graph: {nodesep: 0.15, ranksep: 0.4}
+nodes:
+  id: {tone: blue, width: 140, tag: "Pillar", title: "Identity", body: ["=Identity engineering"], size: 11}
+  dev: {tone: blue, width: 140, tag: "Pillar", title: "Devices", body: ["=Endpoint engineering"], size: 11}
+  net: {tone: blue, width: 140, tag: "Pillar", title: "Networks", body: ["=Network engineering"], size: 11}
+  app: {tone: blue, width: 140, tag: "Pillar", title: "Applications", body: ["=Application owners, platform teams"], size: 11}
+  dat: {tone: blue, width: 140, tag: "Pillar", title: "Data", body: ["=Data owners, data office"], size: 11}
+  plane: {tone: slate, width: 420, tag: "Every pillar resolves against", title: "Naming and identity plane", body: ["=Identity engineering and the DNS and DDI team; governed as Tier-0"], size: 12}
+  va: {tone: violet, width: 200, tag: "Cross-cutting", title: "Visibility and analytics", body: ["=Security operations"], size: 12}
+  ao2: {tone: violet, width: 200, tag: "Cross-cutting", title: "Automation and orchestration", body: ["=Pillar owners, gated change"], size: 12}
+  gov: {tone: violet, width: 200, tag: "Cross-cutting", title: "Governance", body: ["=ZT program lead with the CISO and AO"], size: 12}
+  risk: {kind: pill, tone: amber, text: "Risk acceptance stays with the authorizing official; the maturity model does not address it"}
+edges:
+  - [id, plane]
+  - [dev, plane]
+  - [net, plane]
+  - [app, plane]
+  - [dat, plane]
+  - [plane, va]
+  - [plane, ao2]
+  - [plane, gov]
+  - [gov, risk, {style: dashed, tone: amber}]
+order:
+  - [id, dev, net, app, dat]
+  - [va, ao2, gov]

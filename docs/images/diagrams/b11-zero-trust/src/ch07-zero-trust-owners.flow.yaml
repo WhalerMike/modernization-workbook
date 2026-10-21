@@ -1,0 +1,36 @@
+# Chapter 07 — who decides, who does the work and who supports a
+# whole-agency Zero Trust posture. The top row holds decision rights:
+# strategy and funding, risk acceptance, control requirements. The Zero
+# Trust program lead owns the posture itself, beside the assessment
+# operators and control assessors. Pillar owners, the naming and identity
+# plane owner and security operations sit in the bottom row. Cloud
+# providers' native tools are consulted as evidence inputs, never owners.
+# This is the program's recommended model, not an external standard.
+rankdir: TB
+graph: {nodesep: 0.2, ranksep: 0.45}
+nodes:
+  cio: {tone: amber, width: 170, tag: "Decides", title: "CIO and sponsor", body: ["=Strategy, scope, funding, tie-breaks"], size: 12}
+  ao: {tone: amber, width: 170, tag: "Decides", title: "Authorizing official", body: ["=Residual risk, POA&M, SCuBA deviations"], size: 12}
+  ciso: {tone: violet, width: 170, tag: "Decides", title: "CISO and ISSO", body: ["=Control requirements, evidence standard, tool rules"], size: 12}
+  ops: {tone: slate, width: 170, tag: "Runs", title: "Assessment operators", body: ["=ScubaGear and the Zero Trust Assessment, scoped accounts"], size: 12}
+  lead: {tone: violet, width: 170, tag: "Owns the posture", title: "Zero Trust program lead", body: ["=Whole-agency score, correlation, calendar"], size: 12}
+  asr: {tone: slate, width: 170, tag: "Assesses", title: "Control assessors", body: ["=Independence the AO sets; re-run the evidence"], size: 12}
+  pil: {tone: blue, width: 170, tag: "Does, per pillar", title: "Pillar owners", body: ["=Identity, devices, networks, apps, data"], size: 12}
+  plane: {tone: blue, width: 170, tag: "Tier-0", title: "Naming and identity plane", body: ["=The record every pillar resolves to"], size: 12}
+  soc: {tone: violet, width: 170, tag: "Operates", title: "Security operations", body: ["=Drift findings, logs, account detections"], size: 12}
+  csp: {kind: pill, tone: slate, text: "Cloud providers' native tools are evidence inputs, consulted, never owners"}
+edges:
+  - [cio, lead, {label: "funding", tone: amber}]
+  - [ao, lead, {label: "risk decisions", tone: amber}]
+  - [ciso, lead, {label: "requirements", tone: violet}]
+  - [ops, lead, {label: "outputs"}]
+  - [asr, lead, {label: "findings", both: true}]
+  - [lead, pil, {label: "priorities"}]
+  - [lead, plane, {label: "resolves to"}]
+  - [lead, soc, {label: "drift"}]
+  - [csp, lead, {label: "consulted", style: dashed, attrs: "constraint=false"}]
+  - [soc, csp, {style: invis}]
+order:
+  - [cio, ao, ciso]
+  - [ops, lead, asr]
+  - [pil, plane, soc]

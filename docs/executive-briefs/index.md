@@ -38,5 +38,5 @@ Status badges follow the Whitepapers status conventions.
 | [evidence-fabric-overview](evidence-fabric-overview.md) | Provenance and evidence pipeline brief | Active | `docs/docs/15_ProvenanceProfile.qmd` |
 | [ksi-conformance-overview](ksi-conformance-overview.md) | Machine-checkable Key Security Indicators | Active | `src/fmp/rules/ksi/` |
 | [reciprocity-single-ato-overview](reciprocity-single-ato-overview.md) | One ATO, many agencies, signed per-agency evidence | Active | `src/fmp/canon/adr/adr-054-single-ato-reciprocity.md` |
-| [zero-trust-overview](zero-trust-overview.md) | Zero-trust identity model brief | Active | `src/fmp/canon/adr/adr-008-zero-trust-identity.md` |
+| [zero-trust-overview](../books/b11-zero-trust/01-a-whole-agency-property.md) | Zero-trust identity model brief | Active | `src/fmp/canon/adr/adr-008-zero-trust-identity.md` |
 | [modernization-overview](modernization-overview.md) | End-to-end modernization program brief | Active | `docs/docs/06_ProgramVision.qmd` |

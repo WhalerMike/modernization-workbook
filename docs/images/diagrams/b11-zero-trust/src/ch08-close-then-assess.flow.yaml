@@ -1,0 +1,32 @@
+# Book 11 Chapter 08 — the program's six-phase sequence (replaces the source
+# whitepaper's six-phase figure): close findings in phases 1-4, then assess
+# as confirmation and authorize; reassessment continues.
+rankdir: TB
+graph: {nodesep: 0.3, ranksep: 0.3}
+clusters:
+  - id: close
+    label: "Close findings first: build what the finding depends on"
+    tone: blue
+    nodes: [p1, p2, p3, p4]
+  - id: assess
+    label: "Then assess and authorize: confirmation, not discovery"
+    tone: green
+    nodes: [p5, p6]
+nodes:
+  p1: {tone: blue, width: 300, tag: "Phase 1", title: "Understand", body: ["=Gaps and root causes against SCuBA and the Zero Trust pillars"], size: 12}
+  p2: {tone: blue, width: 300, tag: "Phase 2", title: "Design", body: ["=The closure pattern for each gap"], size: 12}
+  p3: {tone: blue, width: 300, tag: "Phase 3", title: "Implement", body: ["=Runbooks, deployments, integrations"], size: 12}
+  p4: {tone: blue, width: 300, tag: "Phase 4", title: "Govern", body: ["=Owners, POA&Ms, risk acceptances"], size: 12}
+  p5: {tone: green, width: 300, tag: "Phase 5", title: "Validate", body: ["=ScubaGear and the Zero Trust Assessment confirm the built state"], size: 12}
+  p6: {tone: green, width: 300, tag: "Phase 6", title: "Authorize", body: ["=The authorizing official decides on evidence"], size: 12}
+  note: {tone: amber, width: 240, title: "Where remediation happens", body: ["=BOD 25-01's remediation is phases 1 to 4, not phase 5"], size: 12}
+edges:
+  - [p1, p2]
+  - [p2, p3]
+  - [p3, p4]
+  - [p4, p5]
+  - [p5, p6]
+  - [p6, p5, {tone: violet, style: dashed, label: "continuous reassessment"}]
+  - [note, p3, {style: invis}]
+ranks:
+  - [p3, note]

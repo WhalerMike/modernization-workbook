@@ -1,0 +1,22 @@
+# Chapter 10 — re-assessment adds an interval rather than replacing a
+# report. Each run is compared with the last; drift between intervals goes
+# to the authorizing official, not only to security operations. Cadence
+# and routing are the program's design.
+rankdir: TB
+graph: {nodesep: 0.4, ranksep: 0.5}
+nodes:
+  run: {tone: slate, width: 220, tag: "1", title: "Run on the calendar", body: ["=Tool and configuration versions pinned"], size: 12}
+  seal: {tone: blue, width: 220, tag: "2", title: "Seal the interval", body: ["=Adds an interval; replaces nothing"], size: 12}
+  cmp: {tone: amber, width: 220, tag: "3", title: "Compare with the last", body: ["=Unchanged stays on the plan; new failures are drift"], size: 12}
+  fix: {tone: green, width: 220, tag: "4", title: "Remediate and re-test", body: ["=Pillar owners close through change control"], size: 12}
+  ao: {kind: pill, tone: violet, text: "Drift goes to the authorizing official, not only to security operations"}
+edges:
+  - [run, seal, {attrs: "constraint=false"}]
+  - [run, fix, {style: invis}]
+  - [seal, cmp]
+  - [cmp, fix]
+  - [fix, run, {label: "next run confirms", style: dashed, attrs: "constraint=false"}]
+  - [cmp, ao, {tone: violet}]
+order:
+  - [run, seal]
+  - [fix, cmp]

@@ -12,7 +12,7 @@ Practical how-to documents for modernization activities.
 | [Book 07 — PKI & Certificates](../books/b07-pki/index.md) | Phased migration from AD CS to Cloud PKI, Entra certificate-based authentication and Federal PKI, now a workbook book. |
 | [Read-Only AD Assessment Guide](../books/b02-identity/07-read-only-discovery.md) | Safe discovery of Active Directory state before any modernization action. |
 | [PIM Self-Request with Approval](../books/b04-access/08-pim-self-request-with-approval.md) | Just-in-time privileged access pattern with recorded approval. |
-| [Zero Trust Assessment](zero-trust-assessment.md) | Dimensions and evidence sources for Zero Trust maturity. |
+| [Zero Trust Assessment](../books/b11-zero-trust/09-running-the-assessment.md) | Dimensions and evidence sources for Zero Trust maturity. |
 
 ---
 

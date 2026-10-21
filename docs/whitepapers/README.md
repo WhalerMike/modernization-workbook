@@ -12,7 +12,7 @@ Cleaned, externally usable versions of high-value modernization whitepapers.
 | [Session vs. Telemetry](../books/b02-identity/02-the-structural-problem.md) | Why persistent session-based identity and continuous-verification telemetry are incompatible. Now a chapter of Book 02. |
 | [Network Transport and Governance](../books/b09-network/02-transport-is-physics-control-is-compliance.md) | Transport is a physics decision; control is a compliance decision. |
 | [Federal Compliance for Moderate Agencies](federal-compliance-for-moderate-agencies.md) | Which mandates bind the agency, which bind the vendor. |
-| [Zero Trust Governance Principles](zero-trust-governance-principles.md) | Why cross-cutting capabilities move a program past Initial maturity. |
+| [Zero Trust Governance Principles](../books/b11-zero-trust/02-governance-principles.md) | Why cross-cutting capabilities move a program past Initial maturity. |
 | [Federal SSOT Alignment](../books/b02-identity/02-the-structural-problem.md) | Single Source of Truth as the architectural response to federal data-governance obligations. Now a chapter of Book 02. |
 | [SD-WAN vs. DIA Under TIC 3.0](../books/b09-network/02-transport-is-physics-control-is-compliance.md) | Transport is a physics decision; control is a compliance decision. |
 | [Ticket-to-Machine, Not Ticket-to-Human](ticket-to-machine-not-ticket-to-human.md) | Why changing state isn’t compliance evidence. |

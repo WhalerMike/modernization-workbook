@@ -1,0 +1,37 @@
+# Book 11 Chapter 01 — three separately scoped assessments stapled together
+# versus three assessments that resolve to one naming and identity plane.
+rankdir: TB
+graph: {nodesep: 0.15, ranksep: 0.4}
+clusters:
+  - id: stapled
+    label: "Assess first: three reports, one cover page"
+    tone: red
+    margin: 8
+    nodes: [n1, c1, v1, staple]
+    order: [n1, c1, v1]
+  - id: unified
+    label: "Unify first: one plane, then assess"
+    tone: green
+    margin: 8
+    nodes: [plane, n2, c2, v2, posture]
+    order: [n2, c2, v2]
+nodes:
+  n1: {tone: slate, width: 106, title: "Network review", body: ["=Own inventory"], size: 11}
+  c1: {tone: slate, width: 106, title: "Per-cloud scans", body: ["=Own tags"], size: 11}
+  v1: {tone: slate, width: 106, title: "Hypervisor checklist", body: ["=Own identity source"], size: 11}
+  staple: {tone: red, width: 330, title: "“Whole-agency” score", body: ["One workload appears as three objects", "Totals don't measure one architecture"], size: 11}
+  plane: {tone: violet, width: 330, title: "One naming and identity plane", body: ["=One asset record, one name, one identity; itself governed as a high-value target"], size: 11}
+  n2: {tone: blue, width: 106, title: "Network", body: ["=Resolves to the plane"], size: 11}
+  c2: {tone: blue, width: 106, title: "Every cloud", body: ["=Resolves to the plane"], size: 11}
+  v2: {tone: blue, width: 114, title: "Virtualization", body: ["=Resolves to the plane"], size: 11}
+  posture: {tone: green, width: 330, title: "Agency Zero Trust posture", body: ["=Assessments measure the same objects, so they can be added up"], size: 11}
+edges:
+  - [n1, staple, {tone: red}]
+  - [c1, staple, {tone: red}]
+  - [v1, staple, {tone: red}]
+  - [plane, n2]
+  - [plane, c2]
+  - [plane, v2]
+  - [n2, posture, {tone: green}]
+  - [c2, posture, {tone: green}]
+  - [v2, posture, {tone: green}]

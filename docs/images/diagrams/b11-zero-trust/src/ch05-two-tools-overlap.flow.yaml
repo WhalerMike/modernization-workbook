@@ -1,0 +1,42 @@
+# Book 11 Chapter 05 — where ScubaGear and the Zero Trust Assessment (3.1.0)
+# overlap, and the ground each covers alone. Reconcile at the control level.
+rankdir: TB
+graph: {nodesep: 0.15, ranksep: 0.35}
+clusters:
+  - id: scuba
+    label: "ScubaGear only"
+    tone: slate
+    nodes: [exo, teams, spo, pp]
+  - id: both
+    label: "Both tools"
+    tone: blue
+    nodes: [entra, mdo]
+  - id: zta
+    label: "Zero Trust Assessment only"
+    tone: violet
+    nodes: [intune, azure, purview, secops]
+nodes:
+  exo: {tone: slate, width: 205, title: "Exchange Online mail flow", body: ["=Forwarding, SPF, DKIM, DMARC"], size: 12}
+  teams: {tone: slate, width: 205, title: "Teams policies", body: ["=Meetings and external access"], size: 12}
+  spo: {tone: slate, width: 205, title: "SharePoint and OneDrive", body: ["=Sharing settings"], size: 12}
+  pp: {tone: slate, width: 205, title: "Power Platform and Power BI", body: ["=Governance and DLP"], size: 12}
+  entra: {tone: blue, width: 205, title: "Entra ID identity", body: ["=Legacy auth, MFA, Conditional Access, privileged roles, risky users, app consent"], size: 12}
+  mdo: {tone: blue, width: 205, title: "Defender for Office 365", body: ["=Safe Links, Safe Attachments, anti-phishing, anti-spam"], size: 12}
+  intune: {tone: violet, width: 205, title: "Intune devices", body: ["=Compliance and configuration"], size: 12}
+  azure: {tone: violet, width: 205, title: "Azure and network", body: ["=Networking, infrastructure, Global Secure Access"], size: 12}
+  purview: {tone: violet, width: 205, title: "Microsoft Purview", body: ["=Labels, DLP, rights management"], size: 12}
+  secops: {tone: violet, width: 205, title: "Security operations and AI", body: ["=Sentinel, Defender for Endpoint, AI agents"], size: 12}
+  spine: {tone: green, width: 500, title: "Reconcile at the control level", body: ["=The tenant setting and the NIST SP 800-53 control, not tool to tool"], size: 12}
+edges:
+  - [exo, teams, {style: invis}]
+  - [teams, spo, {style: invis}]
+  - [spo, pp, {style: invis}]
+  - [entra, mdo, {style: invis}]
+  - [intune, azure, {style: invis}]
+  - [azure, purview, {style: invis}]
+  - [purview, secops, {style: invis}]
+  - [pp, spine]
+  - [mdo, spine]
+  - [secops, spine]
+order:
+  - [exo, entra, intune]

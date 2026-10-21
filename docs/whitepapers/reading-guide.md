@@ -81,9 +81,9 @@ Start here for "what is FMP."
 
 | Paper | Status | Role |
 |---|---|---|
-| [Zero Trust Governance](zero-trust-governance-whitepaper.md) | Active | Maps the substrate onto CISA's five ZTMM pillars, pillar by pillar. |
-| [Zero Trust Governance Principles](zero-trust-governance-principles.md) | Active | Broader and newer than the paper above — whole-agency (Network+CSP+VMware) scope, cross-cutting capabilities, the "why programs stall below Advanced" argument. Read *after* the pillar-mapping paper, not instead of it. |
-| [Zero Trust Requires Whole-Agency Scope](zero-trust-whole-agency-unification.md) | Active | Companion to the paper above — the whole-agency unification argument and SCuBA/ZTA worked example, split out 2026-08-03 so the parent paper's core argument stays finishable in one sitting. Read immediately after it, not standalone. |
+| [Zero Trust Governance](../books/b11-zero-trust/10-evidence-not-verdicts.md) | Active | Maps the substrate onto CISA's five ZTMM pillars, pillar by pillar. |
+| [Zero Trust Governance Principles](../books/b11-zero-trust/02-governance-principles.md) | Active | Broader and newer than the paper above — whole-agency (Network+CSP+VMware) scope, cross-cutting capabilities, the "why programs stall below Advanced" argument. Read *after* the pillar-mapping paper, not instead of it. |
+| [Zero Trust Requires Whole-Agency Scope](../books/b11-zero-trust/01-a-whole-agency-property.md) | Active | Companion to the paper above — the whole-agency unification argument and SCuBA/ZTA worked example, split out 2026-08-03 so the parent paper's core argument stays finishable in one sitting. Read immediately after it, not standalone. |
 | [Modernization Governance](modernization-governance-whitepaper.md) | Active | Governance framing specifically for the AD → Entra ID migration — the bridge into Track 2. |
 
 ### Track 2 — Identity & Directory Modernization
@@ -105,9 +105,9 @@ BOD-25-01 and CISA SCuBA.
 
 | Paper | Status | Role |
 |---|---|---|
-| [Assessment Tools vs. Closing BOD-25-01 Findings](bod-25-01-close-before-assess.md) | Active | The sequencing argument — remediate before you assess — that the rest of this track assumes. Read first in this track. |
-| [ScubaGear Integration](scubagear-integration-whitepaper.md) | Active | How CISA's ScubaGear assessor output feeds FMP's evidence pipeline. |
-| [ZTA and SCuBA — How They Relate](zta-scuba-relationship.md) | Active | Disambiguates Microsoft's Zero Trust Assessment from CISA SCuBA — read when a stakeholder asks "aren't these the same tool?" |
+| [Assessment Tools vs. Closing BOD-25-01 Findings](../books/b11-zero-trust/08-close-before-you-assess.md) | Active | The sequencing argument — remediate before you assess — that the rest of this track assumes. Read first in this track. |
+| [ScubaGear Integration](../books/b11-zero-trust/09-running-the-assessment.md) | Active | How CISA's ScubaGear assessor output feeds FMP's evidence pipeline. |
+| [ZTA and SCuBA — How They Relate](../books/b11-zero-trust/05-two-assessment-tools.md) | Active | Disambiguates Microsoft's Zero Trust Assessment from CISA SCuBA — read when a stakeholder asks "aren't these the same tool?" |
 | [Ticket-to-Machine, Not Ticket-to-Human](ticket-to-machine-not-ticket-to-human.md) | Draft | Closure-evidence argument across Azure/AWS/VMware + ServiceNow/SailPoint — the "how do we know a finding is actually closed" question this track builds toward. |
 | [Ticket-to-Machine Appendices](ticket-to-machine-appendices.md) | Active | Code review, access-governance extension, PKI exception, and vendor landscape — split out of the paper above 2026-08-03 so its core argument stays the single-paper read its frontmatter promises. Reference only; skip unless you need that level of detail. |
 
@@ -165,9 +165,9 @@ alphabetical file list.
 **An assessor validating BOD-25-01 / ZTMM claims**
 
 0. [Federal Compliance for Moderate Agencies](federal-compliance-for-moderate-agencies.md) — confirm which mandates in play actually bind the agency you're assessing versus its vendors, before diving into any one of them.
-1. [Assessment Tools vs. Closing BOD-25-01 Findings](bod-25-01-close-before-assess.md) — the sequencing argument.
-2. [ScubaGear Integration](scubagear-integration-whitepaper.md) → [ZTA and SCuBA — How They Relate](zta-scuba-relationship.md) — how the evidence is produced and how it differs from Microsoft's own assessment.
-3. [Zero Trust Governance Principles](zero-trust-governance-principles.md) — the maturity-model context for what "closed" is being measured against.
+1. [Assessment Tools vs. Closing BOD-25-01 Findings](../books/b11-zero-trust/08-close-before-you-assess.md) — the sequencing argument.
+2. [ScubaGear Integration](../books/b11-zero-trust/09-running-the-assessment.md) → [ZTA and SCuBA — How They Relate](../books/b11-zero-trust/05-two-assessment-tools.md) — how the evidence is produced and how it differs from Microsoft's own assessment.
+3. [Zero Trust Governance Principles](../books/b11-zero-trust/02-governance-principles.md) — the maturity-model context for what "closed" is being measured against.
 4. [Ticket-to-Machine, Not Ticket-to-Human](ticket-to-machine-not-ticket-to-human.md) — how closure evidence is distinguished from a changed setting.
 
 **A network/infrastructure architect**

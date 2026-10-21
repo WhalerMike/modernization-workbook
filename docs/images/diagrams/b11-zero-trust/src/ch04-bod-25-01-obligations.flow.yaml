@@ -1,0 +1,35 @@
+# Book 11 Chapter 04 — BOD 25-01's six required actions, split into the
+# administrative obligations and the substantive ones they exist to serve.
+rankdir: TB
+graph: {nodesep: 0.15, ranksep: 0.4}
+clusters:
+  - id: admin
+    label: "Administrative and mechanical"
+    tone: slate
+    margin: 8
+    nodes: [inventory, deploy, explain]
+    order: [inventory, deploy, explain]
+  - id: subst
+    label: "Substantive"
+    tone: blue
+    margin: 8
+    nodes: [implement, updates, newtenant]
+    order: [implement, updates, newtenant]
+nodes:
+  inventory: {tone: slate, width: 200, tag: "Action 1 · Feb 21, 2025", title: "Tenant inventory", body: ["=Refreshed every first quarter"], size: 12}
+  deploy: {tone: slate, width: 200, tag: "Action 2 · Apr 25, 2025", title: "Deploy tools and report", body: ["=Continuous, or quarterly by hand"], size: 12}
+  explain: {tone: slate, width: 200, tag: "Action 6 · each report", title: "Explain deviations", body: ["=Identify them in the tool output"], size: 12}
+  implement: {tone: blue, width: 200, tag: "Action 3 · Jun 20, 2025", title: "Implement mandatory policies", body: ["=Those in effect at issuance"], size: 12}
+  updates: {tone: blue, width: 200, tag: "Action 4 · CISA timelines", title: "Implement policy updates", body: ["=As the Required Configurations list changes"], size: 12}
+  newtenant: {tone: blue, width: 200, tag: "Action 5 · before the ATO", title: "Baseline every new tenant", body: ["=And begin continuous monitoring"], size: 12}
+  remediate: {tone: amber, width: 420, title: "Remediating deviations", body: ["=What the substantive actions mean in practice", "=An authorizing official may accept risk for a deviation under agency policy"], size: 12}
+  evidence: {tone: green, width: 420, title: "Assessment output is evidence", body: ["=It shows whether the substantive actions hold; it doesn't perform them"], size: 12}
+edges:
+  - [inventory, implement, {style: invis}]
+  - [deploy, updates, {style: invis}]
+  - [explain, newtenant, {style: invis}]
+  - [implement, remediate]
+  - [updates, remediate]
+  - [newtenant, remediate]
+  - [remediate, evidence]
+  - [deploy, evidence, {tone: slate, style: dashed, label: "reports", attrs: "constraint=false headport=e"}]

@@ -27,7 +27,7 @@ The workbook grew as separate whitepapers, guides, series and case studies. The 
 | **B08** | **[DNS, DHCP & IPAM](b08-ddi/index.md)** | **Why is DNS now the control plane?** | **Draft** |
 | **B09** | **[Network & Transport](b09-network/index.md)** | **Why does physics decide the architecture?** | **Draft** |
 | **B10** | **[Cloud Boundary & Landing Zone](b10-cloud-boundary/index.md)** | **Why does the authorization boundary decide what you can use?** | **Draft** |
-| B11 | Zero Trust & Assessment | Why is Zero Trust a whole-agency property, not a product? | Planned |
+| **B11** | **[Zero Trust & Assessment](b11-zero-trust/index.md)** | **Why is Zero Trust a whole-agency property, not a product?** | **Draft** |
 | B12 | Security Operations & Telemetry | Why can't you defend what you can't see? | Planned |
 | B13 | Governance, Drift & Evidence | Why does compliance decay the day after the audit? | Planned |
 | B14 | Federal Compliance & Authorization | Why does every control need proof, not a promise? | Planned |

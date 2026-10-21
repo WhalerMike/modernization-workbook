@@ -31,6 +31,7 @@ Every workbook book has a 15-minute briefing that follows the book's four questi
 | [Book 08 — DNS, DHCP & IPAM](../books/b08-ddi/index.md) []{#book-08} | Why is DNS now the control plane? | [Deck](../../presentations/b08-ddi/B08_DDI.pptx) | [Narrated](../../presentations/b08-ddi/B08_DDI_Narrated.pptx) (about 16 min, captions) | [Script](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/b08-ddi/B08_DDI_Narration_Script.md) · [Captions](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/b08-ddi/B08_DDI_Narrated.vtt) |
 | [Book 09 — Network & Transport](../books/b09-network/index.md) []{#book-09} | Why does physics decide the architecture? | [Deck](../../presentations/b09-network/B09_Network.pptx) | [Narrated](../../presentations/b09-network/B09_Network_Narrated.pptx) (about 16 min, captions) | [Script](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/b09-network/B09_Network_Narration_Script.md) · [Captions](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/b09-network/B09_Network_Narrated.vtt) |
 | [Book 10 — Cloud Boundary & Landing Zone](../books/b10-cloud-boundary/index.md) []{#book-10} | Why does the authorization boundary decide what you can use? | Being built | Being built | — |
+| [Book 11 — Zero Trust & Assessment](../books/b11-zero-trust/index.md) []{#book-11} | Why is Zero Trust a whole-agency property, not a product? | Being built | Being built | — |
 
 ## HR-driven identity talk set
 

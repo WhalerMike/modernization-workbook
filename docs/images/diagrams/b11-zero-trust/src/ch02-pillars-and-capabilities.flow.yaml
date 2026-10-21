@@ -1,0 +1,23 @@
+# Book 11 Chapter 02 — CISA's ZTMM: five pillars operated through three
+# cross-cutting capabilities; Governance is where programs under-invest.
+rankdir: TB
+graph: {nodesep: 0.15, ranksep: 0.3}
+nodes:
+  id: {kind: pill, tone: blue, width: 110, text: "Identity"}
+  dev: {kind: pill, tone: blue, width: 110, text: "Devices"}
+  net: {kind: pill, tone: blue, width: 110, text: "Networks"}
+  app: {kind: pill, tone: blue, width: 110, text: "Applications and Workloads"}
+  dat: {kind: pill, tone: blue, width: 110, text: "Data"}
+  va: {tone: violet, width: 640, title: "Visibility and Analytics", body: ["=Observable artifacts across the enterprise that inform policy and response"], size: 11}
+  ao: {tone: violet, width: 640, title: "Automation and Orchestration", body: ["=Automated workflows across products and services, with oversight"], size: 11}
+  gov: {tone: amber, width: 640, title: "Governance", body: ["=Definition and enforcement of policy within and across pillars; the capability programs fund least"], size: 11}
+edges:
+  - [id, va]
+  - [dev, va]
+  - [net, va]
+  - [app, va]
+  - [dat, va]
+  - [va, ao, {style: invis}]
+  - [ao, gov, {style: invis}]
+order:
+  - [id, dev, net, app, dat]

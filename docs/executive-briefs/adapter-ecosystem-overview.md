@@ -71,7 +71,7 @@ per-adapter ADR) or *proposed*.
 
 - `scubagear` — CISA ScubaGear M365 SCuBA assessor across seven workloads
   (Entra ID, Defender, Exchange Online, Power BI, Power Platform, SharePoint,
-  Teams). See the [ScubaGear integration whitepaper](../whitepapers/scubagear-integration-whitepaper.md).
+  Teams). See the [ScubaGear integration whitepaper](../books/b11-zero-trust/09-running-the-assessment.md).
 - `fmp-git-server` — health and evidence telemetry for the self-hosted
   Windows Server 2025 / IIS Git service.
 

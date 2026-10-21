@@ -1,0 +1,16 @@
+# Chapter 09 — illustrative worked trace of one SCuBA result through the
+# four stages: Rego result, claim, bundle, OSCAL observation. The lineage
+# hash lets an assessor walk back from the observation to the raw result
+# without re-running the tool. Illustrative, not a historical finding.
+rankdir: TB
+graph: {nodesep: 0.3, ranksep: 0.3}
+nodes:
+  h1: {tone: red, width: 440, tag: "Hop 1 · Rego result", title: "MS.AAD.1.1v1 returns Fail", body: ["=Legacy authentication SHALL be blocked; no enabled Conditional Access policy blocks it for all users"], size: 12}
+  h2: {tone: blue, width: 440, tag: "Hop 2 · Claim", title: "Provenance envelope", body: ["=Claim ID, tenant Entra ID as issuer, authoritative, timestamp, SHA-256 lineage hash"], size: 12}
+  h3: {tone: violet, width: 440, tag: "Hop 3 · Bundle", title: "Sealed with the run", body: ["=Joins its mapped indicator, opens a POA&M item, sealed with every claim from the interval"], size: 12}
+  h4: {tone: green, width: 440, tag: "Hop 4 · OSCAL", title: "Assessment-results observation", body: ["=Against the mapped control, cross-referenced to the POA&M item"], size: 12}
+edges:
+  - [h1, h2]
+  - [h2, h3]
+  - [h3, h4]
+  - [h4, h1, {label: "lineage hash: walk back without re-running", lw: 140, style: dashed, tone: violet, attrs: "constraint=false"}]

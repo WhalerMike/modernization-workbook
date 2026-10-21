@@ -114,7 +114,7 @@ Drive mappings, printer deployment and other configuration settings aren't acces
 5. Policy is only as good as the data it reads. Attribute-driven targeting moves the access decision onto directory attributes, so those attributes must be complete and governed.
 6. The most dangerous access of all is privileged access that no policy ever re-decides. [Chapter 02](02-why-standing-privilege-fails.md) takes that up.
 
-For depth on the architecture, see the program's [Zero Trust specification](https://github.com/WhalerMike/modernization-workbook/blob/main/docs/modernization-specs/zero-trust.md).
+For depth on the architecture, see [Book 11, Chapter 03 — What CISA's Maturity Model and M-22-09 Actually Require](../b11-zero-trust/03-what-the-mandates-require.md).
 
 ::: {.callout-tip}
 ## Continue the book

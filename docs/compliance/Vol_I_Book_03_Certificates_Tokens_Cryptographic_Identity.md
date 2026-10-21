@@ -332,7 +332,7 @@ The architecture in this book is not one option among several for satisfying the
 For the governance framing above this operational layer — why identity has
 to be the addressing root before the other ZTMM pillars can mature, and how
 ZTMM v2.0 / M-22-09 / SP 800-207 fit together — see
-[Zero Trust Governance Principles](../whitepapers/zero-trust-governance-principles.md).
+[Zero Trust Governance Principles](../books/b11-zero-trust/02-governance-principles.md).
 
 # Machine and Workload Identity
 
