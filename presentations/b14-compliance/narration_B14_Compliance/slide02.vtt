@@ -1,0 +1,90 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.337
+Federal compliance is usually
+described as a list of obligations.
+
+2
+00:00:04.337 --> 00:00:08.703
+What an authorizing official needs is
+narrower: to know that each control
+
+3
+00:00:08.703 --> 00:00:12.638
+is working today, and to be able to
+show anyone who asks how they know.
+
+4
+00:00:12.638 --> 00:00:15.187
+That's the difference
+between a promise and proof.
+
+5
+00:00:15.187 --> 00:00:17.850
+A promise is a statement
+in the security plan,
+
+6
+00:00:17.850 --> 00:00:21.951
+backed by evidence someone gathered
+by hand for the last assessment.
+
+7
+00:00:21.951 --> 00:00:25.600
+It was true the day it was signed,
+and it has been aging since.
+
+8
+00:00:25.600 --> 00:00:28.219
+Proof is a record the
+system itself produces,
+
+9
+00:00:28.219 --> 00:00:31.900
+which another reviewer can check
+again and get the same answer.
+
+10
+00:00:31.900 --> 00:00:34.350
+So start by asking who owes which proof.
+
+11
+00:00:34.350 --> 00:00:38.900
+The cloud provider proves its
+service under FedRAMP's 2026 rules.
+
+12
+00:00:38.900 --> 00:00:43.130
+The agency proves its own system
+and its side of the boundary:
+
+13
+00:00:43.130 --> 00:00:46.937
+its configuration, identities,
+data and integrations.
+
+14
+00:00:46.937 --> 00:00:51.053
+FedRAMP is plain that each agency
+still authorizes its own systems,
+
+15
+00:00:51.053 --> 00:00:55.388
+and should never issue a standalone
+authorization for a cloud service.
+
+16
+00:00:55.388 --> 00:01:00.354
+OMB's M-24-15 gives a provider's
+package a presumption of adequacy,
+
+17
+00:01:00.354 --> 00:01:05.413
+but the authorizing official must
+still issue an authorization.
+
+18
+00:01:05.413 --> 00:01:09.580
+And only that official decides whether
+the remaining risk is acceptable.

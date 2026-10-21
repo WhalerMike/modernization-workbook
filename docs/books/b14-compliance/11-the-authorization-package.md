@@ -286,7 +286,8 @@ CA-7 leaves the frequencies to the organization. The program's design is a four-
 | Quarterly | Evidence quality review: which categories are stale, which verdicts rest on derived or manual evidence | CA-7 | ISSM |
 | Quarterly | Review of each provider's Ongoing Certification Report, and attendance at its Quarterly Review | CA-7, SA-9 | Designated senior official (below) |
 | Quarterly | Training completion review ([Chapter 09](09-training-and-awareness-controls.md)) | AT-2, AT-3 | Training coordinator |
-| Semi-annual | Incident response exercise and contingency plan tabletop ([Chapter 06](06-contingency-and-continuity.md)) | IR-3, CP-4 | SOC lead; continuity lead |
+| Semi-annual | Incident response exercise | IR-3 | SOC lead |
+| Annual | Contingency plan test: a tabletop in the plan's first year, then a functional exercise with a restore from backup ([Chapter 06](06-contingency-and-continuity.md)) | CP-4 | Contingency planning coordinator |
 | Annual | Full re-assessment of every control by the independent assessor, covering those not monitored by automation | CA-2, CA-2(1), CA-7(1) | Control assessor |
 | Annual | Update of the contingency plan, the security plan and the continuous monitoring strategy | CP-2, PL-2, CA-7 | System owner |
 

@@ -417,7 +417,7 @@ A control closes only when the mechanism that closes it exists and its proof is 
 
 | Decision or artifact | Owner |
 |---|---|
-| Supply chain strategy (PM-30) | The CIO, with the CISO and the senior procurement executive |
+| Supply chain strategy (PM-30) | The CISO owns it and its annual review, with the senior procurement executive consulted; the CIO approves the governance charter ([Chapter 05](05-program-management-controls.md), [Chapter 10](10-who-owns-compliance.md)) |
 | Contract terms (SBOM on request, notification, runtime SBOM) | The contracting officer, advised by the CISO's supply chain team |
 | SBOM and provenance pipeline | The engineering teams that build and release software |
 | Exploitability statements | The owning application team, reviewed by security |
