@@ -28,7 +28,7 @@ The failure is silent, the change rate outruns any manual process, and every sys
 
 The federal mandates never name a product, but together they describe a governed name layer. It's worth being precise about who requires what.
 
-OMB M-22-09 requires encrypted DNS wherever it's technically supported, with endpoints explicitly configured to use agency-designated resolvers. It also notes that DNS must already be routed through CISA-operated infrastructure. The requirement that all egress resolution go through Protective DNS comes from CISA's own guidance, which cites the statute. OMB M-21-31 makes DNS logging a basic, EL1 requirement, encrypted queries included, with the source host identifiable. M-08-23 and SP 800-53 carry DNSSEC. And version 3.3 of the TIC 3.0 catalog, published in September 2026, lists five DNS capabilities, from sinkholing to Protective DNS.
+OMB M-22-09 requires encrypted DNS wherever it's technically supported, with endpoints explicitly configured to use agency-designated resolvers. It also notes that DNS must already be routed through CISA-operated infrastructure. The requirement that all egress resolution go through Protective DNS comes from CISA's own guidance, which cites the statute. OMB M-26-14, which rescinded M-21-31 in May 2026, doesn't name DNS, but it requires logs that show source and destination addresses, protocols, ports and sessions, searchable for six months and retrievable for a year. M-08-23 and SP 800-53 carry DNSSEC. And version 3.3 of the TIC 3.0 catalog, published in September 2026, lists five DNS capabilities, from sinkholing to Protective DNS.
 
 NIST SP 800-81 Revision 3, final on March 19, 2026, is the practical guide to all of this: guidance, not a mandate. And FedRAMP certifies a cloud service, not an architecture; the agency still authorizes its own DDI system.
 
@@ -104,7 +104,7 @@ Once it's running, one policy plane is only an improvement if divisions can stil
 
 Locator records are resolved every 15 minutes from every site and virtual network until the last domain controller retires. Drift reports compare the source of truth with every copy, and hygiene jobs catch stale records and dangling CNAMEs.
 
-The evidence floor is M-21-31: DNS queries, responses and errors, encrypted ones included, zone transfers, and DHCP lease history with MAC and IP addresses, kept twelve months in active storage and eighteen months cold. The lease history is what turns an address into a device.
+The evidence floor is M-26-14. It doesn't name DNS, but it requires logs that show source and destination addresses, ports and sessions, searchable for six months and retrievable for a year, and readily available to the agency's top-level security operations center. Query logs, encrypted queries included, and DHCP lease history with MAC and IP addresses are how the name layer meets it. The lease history is what turns an address into a device.
 
 ## Slide 13 — Choose on evidence, price the meters, record the risk
 

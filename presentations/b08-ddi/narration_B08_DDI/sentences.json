@@ -168,26 +168,26 @@
   ],
   [
    32.9,
-   11.05,
-   "O M B M-21-31 makes D N S logging a basic, EL1 requirement, encrypted queries included, with the source host identifiable."
+   18.625,
+   "O M B M-26-14, which rescinded M-21-31 in May 2026, doesn't name D N S, but it requires logs that show source and destination addresses, protocols, ports and sessions, searchable for six months and retrievable for a year."
   ],
   [
-   43.95,
+   51.525,
    6.338,
    "M-08-23 and special publication eight hundred fifty-three carry DNSSEC."
   ],
   [
-   50.288,
+   57.862,
    11.662,
    "And version 3.3 of the tick three point oh catalog, published in September 2026, lists five D N S capabilities, from sinkholing to Protective D N S."
   ],
   [
-   61.95,
+   69.525,
    11.488,
    "nist SP 800-81 Revision 3, final on March 19, 2026, is the practical guide to all of this: guidance, not a mandate."
   ],
   [
-   73.438,
+   81.013,
    7.125,
    "And fed-ramp certifies a cloud service, not an architecture; the agency still authorizes its own D D I system."
   ]
@@ -584,11 +584,21 @@
   ],
   [
    43.413,
-   17.038,
-   "The evidence floor is M-21-31: D N S queries, responses and errors, encrypted ones included, zone transfers, and DHCP lease history with MAC and IP addresses, kept twelve months in active storage and eighteen months cold."
+   3.788,
+   "The evidence floor is M-26-14."
   ],
   [
-   60.45,
+   47.2,
+   14.85,
+   "It doesn't name D N S, but it requires logs that show source and destination addresses, ports and sessions, searchable for six months and retrievable for a year, and readily available to the agency's top-level security operations center."
+  ],
+  [
+   62.05,
+   8.188,
+   "Query logs, encrypted queries included, and DHCP lease history with MAC and IP addresses are how the name layer meets it."
+  ],
+  [
+   70.237,
    3.575,
    "The lease history is what turns an address into a device."
   ]

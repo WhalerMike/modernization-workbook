@@ -40,45 +40,50 @@ DNS comes from CISA's own
 guidance, which cites the statute.
 
 9
-00:00:32.900 --> 00:00:37.849
-OMB M-21-31 makes DNS logging
-a basic, EL1 requirement,
+00:00:32.900 --> 00:00:38.206
+OMB M-26-14, which rescinded M-21-31
+in May 2026, doesn't name DNS,
 
 10
-00:00:37.849 --> 00:00:43.950
-encrypted queries included, with
-the source host identifiable.
+00:00:38.206 --> 00:00:45.028
+but it requires logs that show source
+and destination addresses, protocols,
 
 11
-00:00:43.950 --> 00:00:50.288
-M-08-23 and SP 800-53 carry DNSSEC.
+00:00:45.028 --> 00:00:51.525
+ports and sessions, searchable for
+six months and retrievable for a year.
 
 12
-00:00:50.288 --> 00:00:56.667
+00:00:51.525 --> 00:00:57.863
+M-08-23 and SP 800-53 carry DNSSEC.
+
+13
+00:00:57.863 --> 00:01:04.241
 And version 3.3 of the TIC 3.0
 catalog, published in September 2026,
 
-13
-00:00:56.667 --> 00:01:01.950
+14
+00:01:04.241 --> 00:01:09.524
 lists five DNS capabilities, from
 sinkholing to Protective DNS.
 
-14
-00:01:01.950 --> 00:01:06.968
+15
+00:01:09.524 --> 00:01:14.543
 NIST SP 800-81 Revision 3,
 final on March 19, 2026,
 
-15
-00:01:06.968 --> 00:01:13.438
+16
+00:01:14.543 --> 00:01:21.013
 is the practical guide to all of
 this: guidance, not a mandate.
 
-16
-00:01:13.438 --> 00:01:17.405
+17
+00:01:21.013 --> 00:01:24.980
 And FedRAMP certifies a cloud
 service, not an architecture;
 
-17
-00:01:17.405 --> 00:01:20.620
+18
+00:01:24.980 --> 00:01:28.200
 the agency still authorizes
 its own DDI system.

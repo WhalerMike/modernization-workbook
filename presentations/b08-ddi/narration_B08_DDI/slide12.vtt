@@ -55,21 +55,34 @@ and hygiene jobs catch stale
 records and dangling CNAMEs.
 
 12
-00:00:43.412 --> 00:00:48.322
-The evidence floor is M-21-31:
-DNS queries, responses and errors,
+00:00:43.412 --> 00:00:47.201
+The evidence floor is M-26-14.
 
 13
-00:00:48.322 --> 00:00:54.387
-encrypted ones included, zone transfers,
-and DHCP lease history with MAC and
+00:00:47.201 --> 00:00:51.841
+It doesn't name DNS, but it requires
+logs that show source and destination
 
 14
-00:00:54.387 --> 00:01:00.451
-IP addresses, kept twelve months in
-active storage and eighteen months cold.
+00:00:51.841 --> 00:00:57.177
+addresses, ports and sessions, searchable
+for six months and retrievable for a year,
 
 15
-00:01:00.451 --> 00:01:04.080
+00:00:57.177 --> 00:01:02.050
+and readily available to the agency's
+top-level security operations center.
+
+16
+00:01:02.050 --> 00:01:04.807
+Query logs, encrypted queries included,
+
+17
+00:01:04.807 --> 00:01:10.238
+and DHCP lease history with MAC and IP
+addresses are how the name layer meets it.
+
+18
+00:01:10.238 --> 00:01:13.870
 The lease history is what
 turns an address into a device.
