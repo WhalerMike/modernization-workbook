@@ -140,6 +140,22 @@ website:
 
 format:
   html:
+    # Notes sit at the end of each page. Pandoc writes them without a heading,
+    # so this adds a "Notes" heading, matching the Notes section that ends each
+    # chapter in the Word bundles (scripts/bundle-filter.lua).
+    reference-location: document
+    include-after-body:
+      - text: |
+          <script>
+            document.querySelectorAll("section#footnotes").forEach(function (s) {
+              if (s.querySelector("h2")) return;
+              var h = document.createElement("h2");
+              h.id = "notes"; h.className = "fmw-notes-title"; h.textContent = "Notes";
+              var hr = s.querySelector("hr");
+              s.insertBefore(h, hr ? hr.nextSibling : s.firstChild);
+              if (hr) hr.remove();
+            });
+          </script>
     # House theme (assets/fmw-theme.scss) and page header
     # (assets/partials/title-block.html + assets/fmw-hero.lua), in the style
     # of the Inspiration page.

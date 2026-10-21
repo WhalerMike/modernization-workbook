@@ -6,7 +6,7 @@
 --   * Quarto listing placeholders render empty outside Quarto, so they are
 --     removed together with the heading that introduces them. Their ids come
 --     from the pages' front matter (BUNDLE_LISTING_IDS).
---   * "Continue the series" callouts are removed. In "Download ..." callouts
+--   * "Continue the series" and "Continue the book" callouts are removed. In "Download ..." callouts
 --     the heading and the paragraph with the download link are removed; the
 --     callout is kept only if other text remains.
 --   * Quarto conditional content: `.content-visible when-format="docx"` is
@@ -16,6 +16,10 @@
 --     .docx, so relative links become plain text. External links and links
 --     to headings (#...) are kept.
 --   * Images are pointed at Word-ready copies (BUNDLE_IMAGE_MAP).
+--   * Footnotes become chapter endnotes: each chapter (a level-1 heading)
+--     ends with a "Notes" section, numbered from 1 per chapter, and each
+--     reference is a superscript number linked to its note. A note cited
+--     more than once in a chapter is listed once.
 
 local listing_ids = {}
 for id in (os.getenv("BUNDLE_LISTING_IDS") or "chapters,book-chapters"):gmatch("[^,]+") do
@@ -82,7 +86,7 @@ local function transform(block)
   end
   if has_class(block, "^callout") then
     local title = callout_title(block)
-    if title:match("^Continue the series") then return nil end
+    if title:match("^Continue the series") or title:match("^Continue the book") then return nil end
     if title:match("^Download") then
       local kept = pandoc.List()
       for i, b in ipairs(block.content) do
@@ -168,7 +172,49 @@ local function Pandoc(doc)
   return doc
 end
 
--- Two passes, in order. Block removal runs first so that download callouts are
+-- Chapter endnotes. Runs last, after links are flattened, so the links to
+-- the notes survive.
+local function Endnotes(doc)
+  local out = pandoc.Blocks({})
+  local chapter, notes, seen = 0, {}, {}
+
+  local function anchor(n) return "note-" .. chapter .. "-" .. n end
+
+  local function flush()
+    if #notes == 0 then return end
+    out:insert(pandoc.Header(2, { pandoc.Str("Notes") }, pandoc.Attr("", { "unnumbered" })))
+    local items = {}
+    for n, blocks in ipairs(notes) do
+      items[n] = { pandoc.Div(blocks, pandoc.Attr(anchor(n))) }
+    end
+    out:insert(pandoc.OrderedList(items))
+    notes, seen = {}, {}
+  end
+
+  for _, block in ipairs(doc.blocks) do
+    if block.t == "Header" and block.level == 1 then
+      flush()
+      chapter = chapter + 1
+    end
+    out:insert(block:walk({
+      Note = function(note)
+        local key = pandoc.utils.stringify(note.content)
+        local n = seen[key]
+        if not n then
+          table.insert(notes, note.content)
+          n = #notes
+          seen[key] = n
+        end
+        return pandoc.Superscript({ pandoc.Link({ pandoc.Str(tostring(n)) }, "#" .. anchor(n)) })
+      end,
+    }))
+  end
+  flush()
+  doc.blocks = out
+  return doc
+end
+
+-- Passes, in order. Block removal runs first so that download callouts are
 -- still recognised by their links; links are flattened to text afterwards.
 -- (In a single filter pandoc visits inlines before Pandoc, so the links were
 -- already gone and link-only paragraphs such as "One chapter at a time: 00 ·
@@ -176,4 +222,5 @@ end
 return {
   { Pandoc = Pandoc },
   { Image = Image, Link = Link },
+  { Pandoc = Endnotes },
 }
