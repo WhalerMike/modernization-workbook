@@ -1,0 +1,85 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.377
+The dates that drive this
+work belong to FedRAMP,
+
+2
+00:00:03.377 --> 00:00:06.537
+CISA and OMB, and each
+binds a different party.
+
+3
+00:00:06.537 --> 00:00:12.762
+Every date here was checked against its
+issuing document on October 21, 2026.
+
+4
+00:00:12.762 --> 00:00:17.475
+Where a document gives a period rather
+than a date, the date is counted from it.
+
+5
+00:00:17.475 --> 00:00:23.393
+The nearest is OMB's M-26-15:
+each agency's post-quantum
+
+6
+00:00:23.393 --> 00:00:30.413
+migration plan is due within 120
+days, which is October 22, 2026.
+
+7
+00:00:30.413 --> 00:00:35.164
+The same memorandum sets TLS
+1.3 support by January 2, 2030,
+
+8
+00:00:35.164 --> 00:00:40.825
+and mitigation of as much quantum
+risk as feasible by the end of 2030.
+
+9
+00:00:40.825 --> 00:00:47.788
+Under M-26-14, on logging, the Agency
+Logging Plan falls on November 18.
+
+10
+00:00:47.788 --> 00:00:53.521
+On December 7, CISA's BOD 26-04 holds
+agencies to its remediation timelines,
+
+11
+00:00:53.521 --> 00:00:58.700
+and FedRAMP's vulnerability rules
+become mandatory for providers.
+
+12
+00:00:58.700 --> 00:01:04.043
+FedRAMP's 2026 rules take mandatory
+effect on January 1, 2027,
+
+13
+00:01:04.043 --> 00:01:09.600
+and listed end-of-support edge
+devices must be out by February 5.
+
+14
+00:01:09.600 --> 00:01:10.775
+Some things moved.
+
+15
+00:01:10.775 --> 00:01:16.869
+M-26-05 made software bills of materials
+and attestation forms contract choices,
+
+16
+00:01:16.869 --> 00:01:20.325
+but kept the software
+and hardware inventory.
+
+17
+00:01:20.325 --> 00:01:24.480
+So keep one dated register,
+and re-verify it at every gate.

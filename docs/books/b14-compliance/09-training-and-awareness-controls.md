@@ -140,10 +140,10 @@ The program's cadence, by design:
 |---|---|---|---|---|
 | Incident response procedure walkthrough | Semiannual | SOC and incident response team | Attendance record, procedure version | IR-2 |
 | Playbook drill | Quarterly | SOC analysts | Drill report | IR-2; IR-2(1) if selected |
-| Tabletop: ransomware | Annual | Incident response team and leadership | Attendance, after-action report | IR-2, CP-3 |
+| Tabletop: ransomware (one of the twice-yearly incident response exercises, [Chapter 05](05-program-management-controls.md)) | Annual | Incident response team and leadership | Attendance, after-action report | IR-2, CP-3 |
 | Tabletop: supply chain compromise | Annual | Incident response, development and leadership | Attendance, after-action report | IR-2, AT-3 |
 | Contingency role training | On appointment, then annual | Everyone named in a contingency plan | Completion record per person | CP-3 |
-| Full contingency tabletop: multi-system outage | Annual | All recovery-designated staff and leadership | Attendance, after-action report, plan updates | CP-3, CP-4 |
+| Contingency exercise: multi-system outage (the plan's first-year tabletop, then the annual functional exercise, [Chapter 06](06-contingency-and-continuity.md)) | Annual | All recovery-designated staff and leadership | Attendance, after-action report, plan updates | CP-3, CP-4 |
 | Failover tests by platform | Per [Chapter 06](06-contingency-and-continuity.md) | Platform teams | Test report with measured recovery time | CP-4 |
 
 Every tabletop produces an after-action report that records attendance by role and date, the scenario and its injects, the gaps found against the plan, and corrective actions with owners and due dates. The ISSO reviews it and it is filed with the system's evidence. The corrective actions go where [Book 13, Chapter 09](../b13-governance/09-who-governs.md) sends every finding: fixed inside a window, or carried by a named decision. Lessons learned also go back into the training content, which CP-2 asks for explicitly, and AT-2 and AT-3 ask for in their own words.[^c09-sp80053] [Book 12, Chapter 11](../b12-security-operations/11-detection-engineering-and-response.md) covers the playbooks the drills exercise.

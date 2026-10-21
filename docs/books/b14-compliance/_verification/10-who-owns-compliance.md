@@ -62,3 +62,12 @@ Writer W5. New chapter; no source pages were assigned. Kept consistent with Book
 | Source page § | Went to | Or why not carried |
 |---|---|---|
 | (No source pages assigned; new chapter) | — | The training-program RACI in the Chapter 09 source (ISSO, ISSM, HR/training coordinator, SOC lead, COR, supervisors) was reconciled here and in Chapter 09's "Who owns the training evidence" |
+
+## Consistency fixes from the deck review (2026-10-22)
+
+| # | Change | Verdict |
+|---|---|---|
+| D1 | Ch07 PM-30 owner aligned with Ch05/Ch10: CISO owns the strategy and its review, procurement consulted, CIO approves the charter | design consistency |
+| D2 | Ch06 plan approval aligned with Ch10's matrix: system owner approves; coordinator and ISSO co-sign; AO receives it with the package (CP-2 leaves the approver to the organization) | design consistency |
+| D3 | Contingency testing cadence unified on Ch06 (first-year tabletop, then annual functional exercise with a restore, per SP 800-34 for Moderate): Ch09 and Ch11 tables corrected; semi-annual row now IR only | design consistency |
+| D4 | Ch09's annual ransomware tabletop identified as one of Ch05's twice-yearly IR exercises | wording |

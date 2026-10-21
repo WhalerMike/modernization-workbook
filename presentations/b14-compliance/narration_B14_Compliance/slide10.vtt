@@ -1,0 +1,86 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.463
+The authorizing official doesn't
+read the evidence directly.
+
+2
+00:00:03.463 --> 00:00:05.674
+They read a package that summarizes it.
+
+3
+00:00:05.674 --> 00:00:10.618
+NIST defines the package by its contents:
+the security and privacy plans, the
+
+4
+00:00:10.618 --> 00:00:15.875
+assessment reports, the plans of action
+and milestones, and an executive summary.
+
+5
+00:00:15.875 --> 00:00:19.687
+Each comes from a Risk Management
+Framework task with a named owner.
+
+6
+00:00:19.687 --> 00:00:23.341
+NIST also says the package
+may be generated from a tool,
+
+7
+00:00:23.341 --> 00:00:28.211
+and FedRAMP's 2026 agency rules
+require governance and inventory tools
+
+8
+00:00:28.211 --> 00:00:33.325
+that produce and ingest machine-readable
+artifacts, at least OSCAL and JSON.
+
+9
+00:00:33.325 --> 00:00:36.569
+OSCAL gives each artifact a
+model, and the models link:
+
+10
+00:00:36.569 --> 00:00:40.846
+the assessment plan imports the
+security plan, the results import the
+
+11
+00:00:40.846 --> 00:00:44.975
+assessment plan, and the plan of
+action hangs from the security plan.
+
+12
+00:00:44.975 --> 00:00:47.513
+Every failing item gets a disposition.
+
+13
+00:00:47.513 --> 00:00:51.613
+Actionable drift is an open item
+with an owner and a deadline.
+
+14
+00:00:51.613 --> 00:00:55.662
+A governed exception carries an
+in-date acceptance and its expiry.
+
+15
+00:00:55.662 --> 00:00:57.875
+A lapsed acceptance reverts to open.
+
+16
+00:00:57.875 --> 00:00:59.700
+Nothing is always satisfied.
+
+17
+00:00:59.700 --> 00:01:03.774
+And an empty plan of action on a Moderate
+system should prompt a question:
+
+18
+00:01:03.774 --> 00:01:05.740
+what didn't the assessment look at?
