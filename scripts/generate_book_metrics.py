@@ -5,10 +5,10 @@ docs/books/index.md lists every planned and published book. For each row
 that links a published book (`bNN-folder/index.md`), this script counts:
 
 - Chapters: numbered (and runbook) chapters, plus appendices (`12 + 2 app.`).
-- Pages: the estimated page count of the book's Word edition: one page per
-  400 words, per 7 table rows and per 0.57 diagram (1.75 pages each),
-  rounded to the nearest 5. Fitted to the real Word page counts of Books
-  02, 06, 10 and 11 (October 2026), each within 6%.
+- Pages: the estimated page count of the book's Word edition (with chapter
+  endnotes): one page per 725 words, per 6 table rows and per half a
+  diagram (2 pages each), rounded to the nearest 5. Fitted to the real Word
+  page counts of Books 02, 06, 10 and 11 (October 2026), each within 7%.
 - Last updated: the date of the latest commit that touched the book's
   chapters or its diagrams (`git log`).
 
@@ -31,9 +31,9 @@ BOOKS = ROOT / "docs" / "books"
 INDEX = BOOKS / "index.md"
 HEADER = "| Book | Topic | Opening question | Status | Chapters | Pages | Last updated |"
 RULE = "|---|---|---|---|---:|---:|---|"
-WORDS_PER_PAGE = 400
-ROWS_PER_PAGE = 7
-PAGES_PER_DIAGRAM = 1.75
+WORDS_PER_PAGE = 725
+ROWS_PER_PAGE = 6
+PAGES_PER_DIAGRAM = 2
 DASH = "—"
 
 FRONT_MATTER = re.compile(r"\A---\n.*?\n---\n", re.S)

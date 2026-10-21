@@ -255,12 +255,18 @@ figcaption {
   font-size: 0.9rem;
 }
 
-// Footnotes.
+// Notes (footnotes at the end of the page, titled by a script in _quarto.yml).
 section.footnotes {
   font-size: 0.88rem;
   color: $fmw-muted;
   border-top: 1px solid $fmw-line;
   margin-top: 3rem;
+}
+section.footnotes h2.fmw-notes-title {
+  font-size: 1.5rem;
+  margin: 1.25rem 0 0.75rem;
+  padding: 0;
+  border: 0;
 }
 
 // Sidebar: book sections in the serif, the current page marked in teal.
