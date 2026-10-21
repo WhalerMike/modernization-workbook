@@ -138,16 +138,16 @@ Conflicts between these types follow Microsoft's rules, not the ones in the sour
 
 ### The device attribute schema
 
-Every policy is assigned to dynamic device groups built from attributes, which replaces OU-linked GPO scoping. Microsoft Entra dynamic membership rules for devices can use `extensionAttribute1` through `extensionAttribute15`, but those values must be written to the Entra device object first, through Microsoft Graph.[^c08-dynamic] They aren't the same attributes as the user extension attributes in [Book 02, Appendix C](../b02-identity/appendix-c-identity-assessment-module.md); a device object has its own set.
+Every policy is assigned to dynamic device groups built from attributes, which replaces OU-linked GPO scoping. Microsoft Entra dynamic membership rules for devices can use `extensionAttribute1` through `extensionAttribute15`, but those values must be written to the Entra device object first, through Microsoft Graph.[^c08-dynamic] They aren't the same attributes as the user extension attributes in the [program attribute map](../b03-hr-identity/06-canonical-attribute-schema.md#program-attribute-map); a device object has its own set.
 
-The source material used two numberings for the same attributes. The program standardizes on the one its rules actually use:
+The source material used two numberings for the same attributes. The program standardizes on the one its rules actually use, which is the device half of the [program attribute map](../b03-hr-identity/06-canonical-attribute-schema.md#program-attribute-map):
 
 | Device attribute | Meaning | Example values |
 |---|---|---|
 | `extensionAttribute1` | Region | `EAST`, `WEST`, `CENTRAL` |
 | `extensionAttribute3` | Department or function | `Governance`, `Engineering`, `Finance` |
 | `extensionAttribute11` | Security tier | `Tier0`, `Tier1`, `Tier2` |
-| `extensionAttribute12` | Device role | `Kiosk`, `SharedDevice`, `Dedicated` |
+| `extensionAttribute12` | Device role | `PAW`, `Kiosk`, `SharedDevice`, `Dedicated` |
 | `extensionAttribute13` | Environment | `Production`, `Staging`, `Dev` |
 
 The values are written by the program's provisioning process when a device is registered (see [Chapter 04](04-intune-first-onboarding.md)) and corrected by reconciliation in [Chapter 10](10-operating-and-evidencing-the-fleet.md#device-inventory-reconciliation). A device with no tier value falls into no tier group, which is why the tenant-wide compliance setting in Chapter 10 marks unassigned devices as noncompliant.
@@ -289,7 +289,7 @@ Security settings management has a licensing catch for servers: if the tenant's 
 
 ### CP-005: kiosk and shared devices
 
-**Platform:** Windows 11 · **Target:** kiosk and shared devices · **Group:** `extensionAttribute12` equals `Kiosk`.
+**Platform:** Windows 11 · **Target:** kiosk and shared devices · **Group:** `extensionAttribute12` is `Kiosk` or `SharedDevice`.
 
 | Category | Setting | Value |
 |---|---|---|
@@ -685,7 +685,7 @@ $groups = @(
     @{ Name = 'FMP-Devices-Production';      Rule = '(device.extensionAttribute13 -eq "Production")'; Description = 'Production environment devices' }
     @{ Name = 'FMP-Devices-Staging';         Rule = '(device.extensionAttribute13 -eq "Staging")';    Description = 'Staging environment devices' }
     @{ Name = 'FMP-Devices-Dev';             Rule = '(device.extensionAttribute13 -eq "Dev")';        Description = 'Development environment devices' }
-    @{ Name = 'FMP-Devices-Kiosk';           Rule = '(device.extensionAttribute12 -eq "Kiosk")';      Description = 'Kiosk and shared devices' }
+    @{ Name = 'FMP-Devices-Kiosk';           Rule = '(device.extensionAttribute12 -in ["Kiosk","SharedDevice"])'; Description = 'Kiosk and shared devices' }
     @{ Name = 'FMP-Devices-Region-East';     Rule = '(device.extensionAttribute1 -eq "EAST")';        Description = 'Devices in the East region' }
     @{ Name = 'FMP-Devices-Dept-Governance'; Rule = '(device.extensionAttribute3 -eq "Governance")';  Description = 'Devices assigned to the Governance department' }
 )

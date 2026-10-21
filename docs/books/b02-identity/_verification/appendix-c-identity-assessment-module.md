@@ -68,3 +68,9 @@ Source: `docs/operational-guides/identity/identity-modernization.md` (Appendices
 | Appendix C — C.2 Invoke-FMPIdentityAssessment | Appendix D "The orchestrator" | |
 | §14.3 New-FMPGiteaDriftIssue (from Ch10's source range) | Appendix D "Drift issues in the Git host" | Consolidated into the module |
 | Appendix D — Companion document cross-reference matrix | — | Not carried, per assignment: companion documents aren't B02 pages |
+
+## Change log
+
+| Date | Change |
+|---|---|
+| 2026-10-21 | Extension attribute reconciliation: assignment table replaced by the subset of the program attribute map (Book 03 Ch 06) this book reads, with a link; `accountExpires` note `extensionAttribute8` -> `extensionAttribute3`; LCW carriers 7/8 -> 2/3. Export-FMPUserInventory: property list and `ExtensionAttributes` object re-pointed (Region 4, OrgCode 10, Division 6, PositionCategory 12, CostCenter 5, WorkerType 11, HireDate 2, EndDate 3, ClearanceLevel 9, AccountType 7); labels Department/Role/Classification renamed OrgCode/PositionCategory/WorkerType; logic unchanged. |

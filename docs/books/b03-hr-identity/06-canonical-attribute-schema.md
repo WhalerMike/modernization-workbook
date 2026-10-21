@@ -19,7 +19,7 @@ lifecycle_review: 2027-04-01
 
 ::: {.callout-note}
 ## In this chapter
-The standard-attribute layer: why OPM's data standards, not vendor fields, are the contract for federal employees. Contractors and vendors, whom HRIT doesn't cover: where to source them, and how to split authority among those sources. The design rules behind the schema. The implementation crosswalk, which every other page on this site links to instead of repeating. Why three extension attributes, and why they hold codes. How the hire and leave dates reach Entra ID from each landing zone. Who is allowed to write any of it.
+The standard-attribute layer: why OPM's data standards, not vendor fields, are the contract for federal employees. Contractors and vendors, whom HRIT doesn't cover: where to source them, and how to split authority among those sources. The design rules behind the schema. The implementation crosswalk, which every other page on this site links to instead of repeating. Why three extension attributes, and why they hold codes. The program attribute map: the one assignment of all fifteen extension attributes, which every book uses. How the hire and leave dates reach Entra ID from each landing zone. Who is allowed to write any of it.
 :::
 
 ## The standard-attribute layer
@@ -100,10 +100,10 @@ Settle six things with the register's owner first. The first two decide whether 
 ## Design rules
 
 1. **Use a native Entra attribute wherever one exists.** `employeeId`, `department`, `jobTitle`, `companyName`, `manager`, `employeeType`, `employeeHireDate`, `employeeLeaveDateTime` and `employeeOrgData` already mean what the HR record means. Other Microsoft features (the org chart, Lifecycle Workflows, access-package approvals) read them directly.
-2. **Add an extension attribute only where access needs a value a rule can't read natively.** Rules for dynamic membership support a fixed list of user properties. That list includes `department`, `companyName`, `jobTitle`, `employeeId`, `employeeHireDate` (preview), `userType` and `accountEnabled`, plus `extensionAttribute1`–`15` and directory extension properties. It doesn't include `employeeType`, `employeeOrgData` or `manager` (direct-reports groups use a separate rule form).[^c06-dyn-rules] Three attributes cover the gap.
+2. **Add an extension attribute only where access needs a value a rule can't read natively.** Rules for dynamic membership support a fixed list of user properties. That list includes `department`, `companyName`, `jobTitle`, `employeeId`, `employeeHireDate` (preview), `userType` and `accountEnabled`, plus `extensionAttribute1`–`15` and directory extension properties. It doesn't include `employeeType`, `employeeOrgData` or `manager` (direct-reports groups use a separate rule form).[^c06-dyn-rules] Three attributes cover the access-targeting gap; the [program attribute map](#program-attribute-map) adds the few operational slots that other books need.
 3. **Put codes in access attributes, never display strings.** An organization code changes only when the business fact changes; a display name changes whenever someone retypes it.
 4. **Use the same carrier in both landing zones.** `extensionAttribute1`–`15` exist in on-premises AD and in Entra ID. For synced users, AD is the source and the Entra values are read-only; for cloud-only users they can be set when the user is created or updated.[^c06-onprem-ext] A rule written against `user.extensionAttribute10` works the same for a hybrid user and a cloud-mastered one, which matters during the years of coexistence.
-5. **Don't build an organizational hierarchy into attributes.** The reporting line is the `manager` relationship; organizational placement is `department`, `employeeOrgData` and one organization code. There's no encoded path, tree or composite key to maintain.
+5. **Don't build an organizational hierarchy into attributes.** The reporting line is the `manager` relationship; organizational placement is `department`, `employeeOrgData` and one organization code. There's no encoded path, tree or composite key to maintain. Where a rule needs division or cost center, the program attribute map gives each one a flat code that mirrors its `employeeOrgData` value, not a path.
 
 ## The schema
 
@@ -136,17 +136,57 @@ Notes on the table:
 - **The choice of `extensionAttribute10`–`12` for access codes is this workbook's proposed implementation choice**, not a Microsoft default. Before Phase 1 closes, confirm that each one is in the provisioning app's target attribute list and isn't already used. Exchange calls `extensionAttribute1`–`15` custom attributes 1–15.[^c06-onprem-ext]
 - Rules can't use multi-value extension properties.[^c06-dyn-rules] All three access attributes hold one code.
 
+## Program attribute map
+
+The schema above names the HR-sourced carriers. The other books need more slots: region, cost center and division for groups and administrative units, account type and clearance for personas and restricted access packages, and a flag that keeps an object out of sync. The table below is the one assignment of `extensionAttribute1`–`15` on **user** objects for the whole site. Every page that names a slot uses these meanings or links here. Slots 1–3 follow Microsoft's Oracle HCM worksheet;[^c06-oracle-tutorial] the others are this workbook's proposed choices, to confirm before Phase 1 closes like slots 10–12.
+
+| Slot | Meaning | Source (writer) | Native property, and why a slot is still needed | Used in |
+|---|---|---|---|---|
+| `extensionAttribute1` | Job code (`JobCode`) | Core HCM, through inbound provisioning | None; Microsoft's worksheet maps it here | Book 03 Ch 06 |
+| `extensionAttribute2` | Hire date, AD-side carrier | Core HCM `HireDate` | `employeeHireDate`. AD has no hire-date attribute, so AD-landed users carry it here and a sync rule maps it | Book 02 Ch 10, App C; Book 03 Ch 06 |
+| `extensionAttribute3` | Leave date, AD-side carrier | Core HCM `TermDate` | `employeeLeaveDateTime`, mapped the same way | Book 02 Ch 10, App C; Book 03 Ch 06 |
+| `extensionAttribute4` | Region code | Core HCM duty station, through the crosswalk | None that fits: rules can read `city`, `state` and `country`, but none of them is the agency's region | Book 01 Ch 11; Book 02 Ch 10, App C |
+| `extensionAttribute5` | Cost center code | Core HCM cost center | `employeeOrgData.costCenter` holds the value, but rules can't read it, so license assignment groups use this mirror | Book 02 App C |
+| `extensionAttribute6` | Division code | Core HCM business unit | `employeeOrgData.division` holds the value, but rules can't read it, so administrative-unit rules and the mover trigger use this mirror | Book 02 Ch 10, App C |
+| `extensionAttribute7` | Account type: `Standard`, `Service`, `Privileged` | Identity team; during the transition, a sync rule derives it from OU placement | None (`userType` is only `Member` or `Guest`) | Book 02 Ch 09, App C; Book 04 Ch 03, Ch 07 (Admins persona) |
+| `extensionAttribute8` | Reserved | — | — | — |
+| `extensionAttribute9` | Clearance level | Personnel security system | None | Book 02 App C (restricted access packages) |
+| `extensionAttribute10` | Organization code | Core HCM department ID | `department` holds the name for display; the code is the access input | Book 01 Ch 04; Book 02 App C; Book 03 Ch 07, Ch 10; Book 06 Ch 17 |
+| `extensionAttribute11` | Worker type code, such as `EMP` or `CTR` | Core HCM worker type | `employeeType` holds the value, but rules can't read it | Book 02 Ch 09, App C; Book 03 Ch 10; Book 04 Ch 03, Ch 07 (Internals persona) |
+| `extensionAttribute12` | Position category; also the "role" that Book 02's mover trigger and auto-assignment read | Core HCM job family or position category | None | Book 01 Ch 04; Book 02 Ch 10, App C; Book 03 Ch 10; Book 06 Ch 17 |
+| `extensionAttribute13`–`14` | Reserved | — | — | — |
+| `extensionAttribute15` | `DoNotSync`: excludes the object from sync | Identity operations, in AD | None; read by a sync-rule scoping filter, not by access rules | Book 02 Ch 09 |
+
+: The program attribute map for user objects {.striped .hover}
+
+Earlier drafts of Book 02 gave department code, classification and role slots of their own. They are the organization code, the worker type code and the position category, so they use slots 10, 11 and 12, and the hire and end dates use the worksheet's slots 2 and 3.
+
+Device objects have their own fifteen extension attributes. They are mastered in Entra ID and set through Microsoft Graph, so they never collide with the user slots.[^c06-onprem-ext] The program assigns them as follows:
+
+| Device slot | Meaning | Values | Used in |
+|---|---|---|---|
+| `extensionAttribute1` | Region | `EAST`, `WEST`, `CENTRAL` | Book 05 Ch 08 |
+| `extensionAttribute3` | Department or function | `Governance`, `Engineering`, `Finance` | Book 05 Ch 08 |
+| `extensionAttribute11` | Security tier | `Tier0`, `Tier1`, `Tier2` | Book 05 Ch 08, Ch 10 |
+| `extensionAttribute12` | Device role | `PAW`, `Kiosk`, `SharedDevice`, `Dedicated` | Book 04 Ch 03, Ch 07, App A; Book 05 Ch 08 |
+| `extensionAttribute13` | Environment | `Production`, `Staging`, `Dev` | Book 05 Ch 08 |
+
+: The program attribute map for device objects {.striped .hover}
+
+A privileged access workstation carries `PAW` in slot 12 and `Tier0` in slot 11.
+
 ## Writers
 
 A dynamic membership rule moves the access decision to whoever can write the attribute it reads. Microsoft's guidance is to check write permissions for every attribute a rule uses, in Entra ID and in any source directory, and to restrict self-service write access to attributes used in security-sensitive groups.[^c06-dyn-rules] For this schema that means:
 
-- The **only writer** of every field above is the provisioning service: the API-driven inbound app for cloud-mastered users, the provisioning agent plus Entra Connect for AD-mastered ones.
-- Remove help-desk, self-service and Exchange-admin write paths to `extensionAttribute10`–`12` and to the two date carriers. In AD, review the ACLs on the target OUs; in Exchange, the custom-attribute cmdlets are a write path.
+- The **only writer** of every field in the schema is the provisioning service: the API-driven inbound app for cloud-mastered users, the provisioning agent plus Entra Connect for AD-mastered ones.
+- Slots 7, 9 and 15 in the program attribute map aren't HR fields. Their writers are the ones the map names, and the same rule holds: one writer per slot.
+- Remove help-desk, self-service and Exchange-admin write paths to every slot in the program attribute map, starting with `extensionAttribute10`–`12` and the two date carriers. In AD, review the ACLs on the target OUs; in Exchange, the custom-attribute cmdlets are a write path.
 - Any write by another principal is a drift event (Chapter 11).
 
 ## How other pages use this schema
 
-The [SQL Server Identity Transformation series, Book 07](../b06-data-platform/17-dynamic-membership-delegation-and-privilege.md) applies the same attribute-to-access discipline to SQL Server logins and database roles. [Book 02, Chapter 09 — Building the Entra ID Target](../b02-identity/09-building-the-entra-target.md) and the Conditional Access library link here rather than carrying their own attribute map.
+The [SQL Server Identity Transformation series, Book 07](../b06-data-platform/17-dynamic-membership-delegation-and-privilege.md) applies the same attribute-to-access discipline to SQL Server logins and database roles. [Book 02, Chapter 09 — Building the Entra ID Target](../b02-identity/09-building-the-entra-target.md) and the Conditional Access library link here rather than carrying their own attribute map; the device groups in [Book 05, Chapter 08](../b05-devices/08-gpo-to-intune-policy-migration.md) use the device map above.
 
 
 ::: {.callout-tip}

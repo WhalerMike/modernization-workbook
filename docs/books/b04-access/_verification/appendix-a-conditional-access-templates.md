@@ -54,3 +54,9 @@ Sources: `docs/operational-guides/access-plane/conditional-access-library.md` Ap
 | main App B.3 PowerShell named locations | Appendix A (cmdlet named; JSON bodies used directly) | Hashtable version not reproduced; same bodies via `-BodyParameter` |
 | main App C.1 built-in strengths | Chapter 03 Authentication strengths (table with IDs) | Corrected (claim 19) |
 | main App C.2 custom strength + PowerShell | Appendix A Custom authentication strength | Corrected (claim 18) |
+
+## Change log
+
+| Date | Change |
+|---|---|
+| 2026-10-21 | Extension attribute reconciliation: CA025 JSON device filter and CA028 table row moved to device `extensionAttribute12`, matching Chapter 07 and the program attribute map. |

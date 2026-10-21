@@ -101,3 +101,9 @@ Sources: `docs/libraries/conditional-access-principles.md` (all sections); `docs
 | main §2.4 Grant vs. session controls | Ch03 Grant controls, Session controls | Updated names and retired grant |
 | main §2.5 Report-only methodology | Ch03 Report-only mode; Ch07 Rollout | — |
 | main §2.6 Break-glass exclusion group + Warning | Ch03 Exclusions; Ch07 Conventions | Account UPNs `BreakGlass-Admin0x` not carried (Book 02 naming rule) |
+
+## Change log
+
+| Date | Change |
+|---|---|
+| 2026-10-21 | Extension attribute reconciliation: Internals persona `extensionAttribute6` {Employee, Contractor} -> `extensionAttribute11` {`EMP`, `CTR`}; Admins `extensionAttribute10` -> `extensionAttribute7`; layout link now the program attribute map; device label moved from device `extensionAttribute1` (Book 05's region) to device `extensionAttribute12` (device role) with values `PAW`, `Kiosk`, `SharedDevice`. |

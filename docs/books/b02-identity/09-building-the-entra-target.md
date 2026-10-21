@@ -59,7 +59,7 @@ User objects are the foundational identity type. Each one carries the attributes
 - **OU placement.** OUs decide which Group Policy Objects apply and who can administer the object. Entra ID has no OU; administrative units take the delegation role, and groups take the policy-targeting role.
 - **Attribute richness.** Entra ID maps a subset of AD attributes natively and carries `extensionAttribute1` through `15` in `onPremisesExtensionAttributes`. Custom data beyond that needs directory extensions.
 
-The core user attribute mapping is in the following table. The full reference, including the program's assignments for the fifteen extension attributes, is in [Appendix C](appendix-c-identity-assessment-module.md#attribute-mapping-reference).
+The core user attribute mapping is in the following table. The full reference is in [Appendix C](appendix-c-identity-assessment-module.md#attribute-mapping-reference). The program's assignments for the fifteen extension attributes are the program attribute map in [Book 03, Chapter 06](../b03-hr-identity/06-canonical-attribute-schema.md#program-attribute-map).
 
 | AD attribute | Microsoft Graph user property | Notes |
 |---|---|---|
@@ -71,7 +71,7 @@ The core user attribute mapping is in the following table. The full reference, i
 | `department`, `title` | `department`, `jobTitle` | Direct mapping; both usable in dynamic group rules |
 | `manager` (DN) | `manager` (relationship) | Resolved as a relationship, not an attribute |
 | `memberOf` | `memberOf` (relationship) | Resolved by the sync engine |
-| `extensionAttribute1`–`15` | `onPremisesExtensionAttributes` | Program-assigned meanings in Appendix C |
+| `extensionAttribute1`–`15` | `onPremisesExtensionAttributes` | Program-assigned meanings in the [program attribute map](../b03-hr-identity/06-canonical-attribute-schema.md#program-attribute-map) |
 | `userAccountControl` | `accountEnabled` | The disabled bit becomes a Boolean |
 | `pwdLastSet` | `lastPasswordChangeDateTime` | Password age |
 | `whenCreated` | `createdDateTime` | The date the object reached Entra ID, not the AD creation date |
@@ -279,7 +279,7 @@ Attribute flow defines how AD attributes become Entra ID attributes. In Connect 
 |---|---|---|---|
 | UPN construction | `IIF(IsPresent([userPrincipalName]),IIF(InStr([userPrincipalName],"@contoso.local")>0,Replace([userPrincipalName],"@contoso.local","@contoso.gov"),[userPrincipalName]),Error("UPN required"))` | `userPrincipalName` | Replace a non-routable suffix with a verified domain |
 | Display name normalization | `IIF(IsPresent([sn]),Join(", ",[sn],[givenName]),[displayName])` | `displayName` | Enforce "Last, First" |
-| Account type classification | `IIF(CBool(InStr(LCase([distinguishedName]),"ou=service accounts")),"Service","Standard")` | `extensionAttribute10` | Classify from OU placement during the transition |
+| Account type classification | `IIF(CBool(InStr(LCase([distinguishedName]),"ou=service accounts")),"Service","Standard")` | `extensionAttribute7` | Classify from OU placement during the transition |
 
 The third rule is a bridge, not an end state. It derives a classification from placement, which is exactly the AD habit the migration retires. Once the classification is written to the source object, drop the rule.
 
@@ -721,8 +721,8 @@ Conditional Access replaces the logon restrictions, network access controls, and
 
 | Persona | Description | Identified by | Risk |
 |---|---|---|---|
-| Internals | Employees and contractors with standard access | `extensionAttribute6` in {Employee, Contractor} | Standard |
-| Admins | Users eligible for or holding privileged roles | `extensionAttribute10` = Privileged, or a group of PIM-eligible users | High |
+| Internals | Employees and contractors with standard access | `extensionAttribute11` (worker type code) in {`EMP`, `CTR`} | Standard |
+| Admins | Users eligible for or holding privileged roles | `extensionAttribute7` (account type) = `Privileged`, or a group of PIM-eligible users | High |
 | Externals | B2B guests from partner organizations | User type Guest, partner tenant | Elevated |
 | Guests | Ad hoc external users outside partner organizations | User type Guest, other tenants or identity providers | High |
 | Service accounts | Workload identities (single-tenant service principals) | Workload identity assignment | Variable |

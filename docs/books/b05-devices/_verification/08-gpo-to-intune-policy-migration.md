@@ -122,3 +122,9 @@ Checked October 20, 2026. Source: `docs/operational-guides/target-surface/intune
 | templates — App C C.3 timeline | Choosing the authority per workload | — |
 | templates — App D D.1–D.3 | Chapter 10 | — |
 | templates — GCC feature parity box; footer | Chapter 10 boundary table; footer dropped | — |
+
+## Change log
+
+| Date | Change |
+|---|---|
+| 2026-10-21 | Extension attribute reconciliation: device schema table is the device half of the program attribute map (Book 03 Ch 06); added `PAW` to device role (`extensionAttribute12`) values for Book 04's CA025; user-attribute link now the program map. Diagram source `ch08-targeting-layers.flow.yaml` checked, already consistent, no change. |

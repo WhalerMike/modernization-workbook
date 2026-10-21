@@ -161,3 +161,9 @@ Source: `docs/operational-guides/identity/identity-modernization.md` (front matt
 | 8.5 CA policy table | Ch09 "The policy set" | CA002 retired; CA012/CA013 changed |
 | 8.6 Testing methodology + critical box | Ch09 "Testing and rollout" + callout | |
 | (new) AD → Entra object mapping figure | Ch09 figure `ch09-ad-to-entra-objects` | |
+
+## Change log
+
+| Date | Change |
+|---|---|
+| 2026-10-21 | Extension attribute reconciliation: attribute-mapping text and table row link the program attribute map; account-type sync rule target `extensionAttribute10` -> `extensionAttribute7`; personas: Internals `extensionAttribute6` {Employee, Contractor} -> `extensionAttribute11` {`EMP`, `CTR`}, Admins `extensionAttribute10` -> `extensionAttribute7`. `extensionAttribute15` = `DoNotSync` unchanged. AD *group* export still reads group `extensionAttribute1`/`2` (group objects, not the user map); unchanged. |

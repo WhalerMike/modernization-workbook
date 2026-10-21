@@ -86,7 +86,7 @@ Prompting the user to register Authenticator or a passkey isn't a workflow task.
 
 #### Mover workflow
 
-Trigger: an attribute change on department, division, or role. The program carries these in `department`, `extensionAttribute3`, and `extensionAttribute4`; confirm the attribute you choose is supported as a trigger attribute before relying on it. Based on the "Employee job profile change" template.[^c10-lcw-templates]
+Trigger: an attribute change on department, division, or role. The program carries these in `department`, `extensionAttribute6` (division code), and `extensionAttribute12` (position category), per the [program attribute map](../b03-hr-identity/06-canonical-attribute-schema.md#program-attribute-map); confirm the attribute you choose is supported as a trigger attribute before relying on it. Based on the "Employee job profile change" template.[^c10-lcw-templates]
 
 1. Remove the previous department's access package assignment ("Remove access package assignment for user").
 2. Request the new department's access package.
@@ -375,7 +375,7 @@ Microsoft Purview Compliance Manager has regulation templates for NIST SP 800-53
 - **IA-5 (Authenticator Management):** the Authentication methods policy and service principal credential rotation.
 - **AU-2 (Event Logging):** Log Analytics integration and the detection rules.
 
-Under FedRAMP 20x, the Consolidated Rules for 2026 (launched June 24, 2026) express these as Key Security Indicators, which are what a 20x package evidences.[^c10-ksi-iam] Compliance Manager's templates follow the Rev. 5 control structure and don't produce indicator evidence, so use them as a readiness check, not the deliverable.
+Under FedRAMP 20x, the Consolidated Rules for 2026 (launched June 25, 2026)[^c10-fedramp-launch] express these as Key Security Indicators, which are what a 20x package evidences.[^c10-ksi-iam] Compliance Manager's templates follow the Rev. 5 control structure and don't produce indicator evidence, so use them as a readiness check, not the deliverable.
 
 | Controls | FedRAMP 20x indicator | Where in this book |
 |---|---|---|
@@ -583,6 +583,7 @@ The planned functions aren't in the module yet. Until they are, run the equivale
 [^c10-basic-auth]: Microsoft Learn, "Deprecation of Basic authentication in Exchange Online," <https://learn.microsoft.com/exchange/clients-and-mobile-in-exchange-online/deprecation-of-basic-authentication-exchange-online> (accessed Oct 20, 2026).
 [^c10-fedramp-ia]: FedRAMP, "Identification and Authentication" (NIST SP 800-53 Rev. 5 controls, catalog release 5.2.0), <https://fedramp.gov/2026/reference/controls/identification-and-authentication/> (accessed Oct 20, 2026).
 [^c10-cba-ios]: Microsoft Learn, "Microsoft Entra certificate-based authentication on iOS and macOS," <https://learn.microsoft.com/entra/identity/authentication/concept-certificate-based-authentication-mobile-ios> (accessed Oct 20, 2026).
+[^c10-fedramp-launch]: FedRAMP, "Propelling Change: FedRAMP Launches Consolidated Rules for 2026," June 25, 2026, <https://www.fedramp.gov/2026-06-25-propelling-change-fedramp-launches-consolidated-rules-for-2026/> (accessed Oct 21, 2026).
 [^c10-ksi-iam]: FedRAMP, "Identity and Access Management" (FedRAMP 20x Key Security Indicators, Consolidated Rules for 2026), <https://fedramp.gov/2026/providers/20x/key-security-indicators/identity-and-access-management/> (accessed Oct 20, 2026).
 [^c10-fedramp-ac]: FedRAMP, "Access Control" (NIST SP 800-53 Rev. 5 controls, catalog release 5.2.0), <https://fedramp.gov/2026/reference/controls/access-control/> (accessed Oct 20, 2026).
 [^c10-paw]: Microsoft Learn, "Phase 2: Configure and secure privileged workstations," <https://learn.microsoft.com/security/zero-trust/adopt/implement-privileged-access-devices> (accessed Oct 20, 2026).

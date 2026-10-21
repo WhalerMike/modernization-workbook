@@ -84,3 +84,9 @@ Sources: the series chapter itself (`04-identity-transformation.md`, upgraded in
 | Whitepaper — Figure 14 (rId106.png) | — | Not redrawn; the three-bullet mechanism list carries it (diagram budget used on Figures 10 and 11) |
 | Whitepaper — Principle 2, Principle 5, FedRAMP 20x, network physics, framework alignment, call to action | — | Not identity/platform; owned by W3/W4/W5 chapters |
 | Earlier copy 01 / 02 | — | No identity-transformation content beyond Chapters 03 and 10 (see those ledgers) |
+
+## Change log
+
+| Date | Change |
+|---|---|
+| 2026-10-21 | Extension attribute reconciliation: region-scoped group example now names its carrier, `extensionAttribute4`, and links the program attribute map in Book 03 Ch 06. Existing `extensionAttribute10`/`12` rules already matched. |

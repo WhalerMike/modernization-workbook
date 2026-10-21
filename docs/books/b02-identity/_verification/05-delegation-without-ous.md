@@ -64,3 +64,9 @@ Checked 2026-10-20 against Microsoft Learn (Learn MCP search and fetch) and NIST
 
 - `docs/images/diagrams/b02-identity/src/ch05-three-tier-delegation.flow.yaml`
 - `docs/images/diagrams/b02-identity/src/ch05-au-assignment.flow.yaml`
+
+## Change log
+
+| Date | Change |
+|---|---|
+| 2026-10-21 | Extension attribute reconciliation: division AU paragraph now names `extensionAttribute6` (division code, a rule-readable copy of `employeeOrgData.division`) and links the program attribute map. |

@@ -159,3 +159,9 @@ Sources: `docs/operational-guides/access-plane/conditional-access-library.md` §
 | main Compliance Amendment: CM-3 change tracking | Ch07 Drift; Rollout step 5; Ch10 | — |
 | twin: Policy architecture tiers | Ch07 waves | See Ch03 ledger |
 | twin: Monitoring list (hit rates, report-only impact, failures, break-glass, exclusion residual risk) | Ch07 Monitoring | — |
+
+## Change log
+
+| Date | Change |
+|---|---|
+| 2026-10-21 | Extension attribute reconciliation: persona groups from `extensionAttribute11`/`7`; device labels on device `extensionAttribute12`; CA025 filter `device.extensionAttribute12 -eq "PAW"`; CA028 filter `device.extensionAttribute12 -in ["Kiosk","SharedDevice"]` (the population the old `Shared` label covered); user-attribute link now the program attribute map. |

@@ -229,16 +229,16 @@ A persona is a population with its own access needs and risk. Personas are the p
 
 | Persona | Who | Persona group, and how it's populated | Risk |
 |---|---|---|---|
-| Internals | Employees and contractors with standard access | `CA-Persona-Internals`: dynamic, `extensionAttribute6` in {Employee, Contractor} | Standard |
-| Admins | Users eligible for or holding privileged roles | `CA-Persona-Admins`: `extensionAttribute10` = Privileged, or the PIM-eligible population | High |
+| Internals | Employees and contractors with standard access | `CA-Persona-Internals`: dynamic, `extensionAttribute11` (worker type code) in {`EMP`, `CTR`} | Standard |
+| Admins | Users eligible for or holding privileged roles | `CA-Persona-Admins`: `extensionAttribute7` (account type) = `Privileged`, or the PIM-eligible population | High |
 | Externals | B2B guests from partner organizations | User type Guest from partner tenants, selected as guest or external user types | Elevated |
 | Guests | Ad hoc external users outside partner organizations | User type Guest from other tenants or identity providers | High |
 | Service accounts | Single-tenant service principals | Assigned to policies directly as workload identities | Variable |
 | Break-glass | The emergency access accounts | `CA-Exclude-EmergencyAccess`: assigned, two members | Excluded from enforced policies |
 
-The extension attribute layout is the program's ([Book 02, Appendix C](../b02-identity/appendix-c-identity-assessment-module.md)); [Book 03](../b03-hr-identity/index.md) covers where the values come from. The library adds named sub-populations, each a governed group inside a persona: `CA-Persona-WebOnly` (Internals without a managed device, typically some contractors), `CA-Persona-SharedDevice` (frontline staff on shared devices), `CA-Access-ServerAdmins`, `CA-Access-AzureOperators` and `CA-Access-ProdOperators`.
+The extension attribute layout, for users and for devices, is the [program attribute map](../b03-hr-identity/06-canonical-attribute-schema.md#program-attribute-map) in Book 03, which also says where each value comes from. The library adds named sub-populations, each a governed group inside a persona: `CA-Persona-WebOnly` (Internals without a managed device, typically some contractors), `CA-Persona-SharedDevice` (frontline staff on shared devices), `CA-Access-ServerAdmins`, `CA-Access-AzureOperators` and `CA-Access-ProdOperators`.
 
-Devices carry their own label. The program sets the device object's `extensionAttribute1` to `PAW` for privileged access workstations and `Shared` for shared or kiosk devices, through Microsoft Graph at provisioning. Because positive-operator device filters never match unregistered devices, and extension attributes are only readable on managed, compliant or hybrid-joined devices, policies that *require* a PAW are written as blocks on devices that *aren't* one, as Microsoft's own privileged-workstation example does.[^c03-device-filter]
+Devices carry their own label. The program sets the device object's `extensionAttribute12` (device role) to `PAW` for privileged access workstations and to `Kiosk` or `SharedDevice` for kiosk and shared devices, through Microsoft Graph at provisioning; the device groups in [Book 05, Chapter 08](../b05-devices/08-gpo-to-intune-policy-migration.md#the-device-attribute-schema) read the same slot. Because positive-operator device filters never match unregistered devices, and extension attributes are only readable on managed, compliant or hybrid-joined devices, policies that *require* a PAW are written as blocks on devices that *aren't* one, as Microsoft's own privileged-workstation example does.[^c03-device-filter]
 
 ::: {.callout-tip}
 ## Continue the book
