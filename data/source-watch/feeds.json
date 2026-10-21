@@ -1,0 +1,361 @@
+{
+  "_comment": "New-publication feeds for scripts/source_watch (see its README). Every URL here was opened and parsed on 2026-10-21. A topic keyword with a capital letter matches case-sensitively; an all-lowercase one ignores case. `match` names the item fields searched (default title + summary); `books` on a feed reports every new item of that feed for those books.",
+  "topics": [
+    {
+      "name": "TIC / SASE / network transport",
+      "books": [
+        "B09"
+      ],
+      "keywords": [
+        "TIC",
+        "TIC 3.0",
+        "Trusted Internet Connections",
+        "SASE",
+        "SSE",
+        "MTIPS",
+        "CLAW",
+        "Cloud Log Aggregation Warehouse",
+        "EIS",
+        "VPN",
+        "SD-WAN",
+        "IPv6",
+        "BGP"
+      ]
+    },
+    {
+      "name": "Directives, KEV, SCuBA, zero trust",
+      "books": [
+        "B11",
+        "B12"
+      ],
+      "keywords": [
+        "BOD",
+        "Binding Operational Directive",
+        "Emergency Directive",
+        "KEV",
+        "Known Exploited Vulnerabilities",
+        "SCuBA",
+        "ScubaGear",
+        "Secure Cloud Business Applications",
+        "zero trust",
+        "Zero Trust Maturity Model",
+        "CDM",
+        "Continuous Diagnostics and Mitigation"
+      ]
+    },
+    {
+      "name": "Logging and telemetry",
+      "books": [
+        "B12"
+      ],
+      "keywords": [
+        "logging",
+        "event logging",
+        "M-21-31",
+        "M-26-14",
+        "SIEM",
+        "SOAR",
+        "telemetry",
+        "log retention",
+        "Sentinel"
+      ]
+    },
+    {
+      "name": "FedRAMP and cloud authorization",
+      "books": [
+        "B10"
+      ],
+      "keywords": [
+        "FedRAMP",
+        "FedRAMP 20x",
+        "Key Security Indicators",
+        "KSI",
+        "cloud service offering",
+        "authorization boundary",
+        "GCC High",
+        "GovCloud",
+        "Azure Government"
+      ]
+    },
+    {
+      "name": "Risk management and controls",
+      "books": [
+        "B00",
+        "B10"
+      ],
+      "keywords": [
+        "800-53",
+        "800-53A",
+        "800-53B",
+        "800-37",
+        "800-171",
+        "Risk Management Framework",
+        "RMF",
+        "authorization to operate",
+        "ATO",
+        "FISMA",
+        "OSCAL",
+        "continuous monitoring"
+      ]
+    },
+    {
+      "name": "Digital identity, PIV, FIPS 201",
+      "books": [
+        "B02",
+        "B03",
+        "B04"
+      ],
+      "keywords": [
+        "800-63",
+        "800-63-4",
+        "digital identity",
+        "identity proofing",
+        "identity verification",
+        "identity management",
+        "identity and access",
+        "phishing-resistant",
+        "MFA",
+        "multifactor",
+        "PIV",
+        "Personal Identity Verification",
+        "FIPS 201",
+        "FIDO",
+        "passkey",
+        "passkeys",
+        "ICAM",
+        "Login.gov",
+        "800-73",
+        "800-76",
+        "800-78",
+        "800-79",
+        "800-157",
+        "800-217"
+      ]
+    },
+    {
+      "name": "PKI and certificates",
+      "books": [
+        "B07"
+      ],
+      "keywords": [
+        "PKI",
+        "public key infrastructure",
+        "certificate",
+        "certificates",
+        "Federal PKI",
+        "FPKI",
+        "ADCS",
+        "AD CS",
+        "Certificate Services",
+        "post-quantum",
+        "PQC",
+        "FIPS 203",
+        "FIPS 204",
+        "FIPS 205",
+        "TLS"
+      ]
+    },
+    {
+      "name": "DNS, DHCP, IPAM",
+      "books": [
+        "B08"
+      ],
+      "keywords": [
+        "DNS",
+        "DNSSEC",
+        "protective DNS",
+        "DHCP",
+        "IPAM",
+        ".gov domain",
+        "dotgov",
+        "800-81"
+      ]
+    },
+    {
+      "name": "Microsoft cloud identity and device management",
+      "books": [
+        "B02",
+        "B04",
+        "B05"
+      ],
+      "keywords": [
+        "Entra",
+        "Entra ID",
+        "Azure AD",
+        "Azure Active Directory",
+        "Active Directory",
+        "Intune",
+        "Azure Arc",
+        "Conditional Access",
+        "Kerberos",
+        "Group Policy",
+        "Microsoft 365",
+        "Exchange Online",
+        "Windows Server"
+      ]
+    },
+    {
+      "name": "Data platform",
+      "books": [
+        "B06"
+      ],
+      "keywords": [
+        "SQL Server",
+        "NTLM",
+        "Azure SQL"
+      ]
+    },
+    {
+      "name": "HR-driven identity",
+      "books": [
+        "B03"
+      ],
+      "keywords": [
+        "OPM",
+        "Office of Personnel Management",
+        "HCM",
+        "human capital",
+        "HRIT",
+        "HR IT",
+        "Core HCM",
+        "Federal HR 2.0",
+        "personnel vetting",
+        "Trusted Workforce",
+        "background investigation"
+      ]
+    },
+    {
+      "name": "Program, budget and policy",
+      "books": [
+        "B00"
+      ],
+      "keywords": [
+        "OMB memorandum",
+        "Federal Information Security Modernization Act",
+        "executive order",
+        "Executive Order",
+        "IT modernization",
+        "Technology Modernization Fund",
+        "FITARA",
+        "cybersecurity strategy"
+      ]
+    },
+    {
+      "name": "AI agents and identities",
+      "books": [
+        "B17"
+      ],
+      "keywords": [
+        "AI agent",
+        "AI agents",
+        "agentic",
+        "artificial intelligence",
+        "M-25-21",
+        "M-25-22",
+        "AI RMF"
+      ]
+    }
+  ],
+  "feeds": [
+    {
+      "id": "cisa-advisories",
+      "name": "CISA cybersecurity advisories",
+      "type": "rss",
+      "url": "https://www.cisa.gov/cybersecurity-advisories/all.xml",
+      "source": "Listed on https://www.cisa.gov/about/contact-us/subscribe-updates-cisa"
+    },
+    {
+      "id": "cisa-news",
+      "name": "CISA news",
+      "type": "rss",
+      "url": "https://www.cisa.gov/news.xml",
+      "source": "Listed on https://www.cisa.gov/about/contact-us/subscribe-updates-cisa"
+    },
+    {
+      "id": "cisa-blog",
+      "name": "CISA blog",
+      "type": "rss",
+      "url": "https://www.cisa.gov/cisa/blog.xml",
+      "source": "Listed on https://www.cisa.gov/about/contact-us/subscribe-updates-cisa"
+    },
+    {
+      "id": "cisa-kev",
+      "name": "CISA Known Exploited Vulnerabilities catalog",
+      "type": "cisa_kev",
+      "url": "https://www.cisa.gov/sites/default/files/feeds/known_exploited_vulnerabilities.json",
+      "match": [
+        "title",
+        "summary"
+      ],
+      "source": "CISA's KEV JSON feed (cisa.gov). Every entry's requiredAction cites the BOD, so only the name, product and description are matched."
+    },
+    {
+      "id": "nist-drafts",
+      "name": "NIST CSRC drafts open for comment",
+      "type": "rss",
+      "url": "https://csrc.nist.gov/CSRC/media/feeds/pubs/drafts-open-for-comment.xml",
+      "source": "Linked from https://csrc.nist.gov/publications (Atom; a JSON twin exists at .../drafts-open-for-comment.json)"
+    },
+    {
+      "id": "nist-publications",
+      "name": "NIST CSRC publications (draft and final)",
+      "type": "nist_xlsx",
+      "url": "https://csrc.nist.gov/files/pubs/shared/docs/NIST-Cybersecurity-Publications.xlsx",
+      "match": [
+        "title",
+        "keywords"
+      ],
+      "source": "Linked from https://csrc.nist.gov/publications. CSRC publishes no feed of final publications; this spreadsheet lists every current FIPS, SP, IR, ITL Bulletin and CSWP, so a new row is a new publication or a new stage."
+    },
+    {
+      "id": "federal-register",
+      "name": "Federal Register (OMB, OPM, GSA, DHS/CISA, Commerce/NIST)",
+      "type": "federal_register",
+      "agencies": [
+        "management-and-budget-office",
+        "personnel-management-office",
+        "general-services-administration",
+        "homeland-security-department",
+        "commerce-department",
+        "national-institute-of-standards-and-technology"
+      ],
+      "term": "cybersecurity | \"information security\" | identity | authentication | cloud | FedRAMP | \"zero trust\" | \"public key\" | logging | \"human capital\"",
+      "match": [
+        "title",
+        "summary"
+      ],
+      "source": "https://www.federalregister.gov/developers/documentation/api/v1 (no key). CISA publishes under the homeland-security-department slug; the API has no separate CISA agency."
+    },
+    {
+      "id": "fedramp-rules-commits",
+      "name": "FedRAMP machine-readable rules (FedRAMP/rules commits)",
+      "type": "github_commits",
+      "repo": "FedRAMP/rules",
+      "books": [
+        "B10"
+      ],
+      "source": "https://github.com/FedRAMP/rules publishes fedramp-consolidated-rules.json, the structured FedRAMP Consolidated Rules for 2026. It has no releases yet, so commits are watched."
+    },
+    {
+      "id": "fedramp-rules-releases",
+      "name": "FedRAMP machine-readable rules (releases)",
+      "type": "github_releases",
+      "repo": "FedRAMP/rules",
+      "books": [
+        "B10"
+      ],
+      "source": "Releases of https://github.com/FedRAMP/rules (none as of 2026-10-21; watched in case they start)."
+    },
+    {
+      "id": "scubagear-releases",
+      "name": "CISA ScubaGear releases",
+      "type": "github_releases",
+      "repo": "cisagov/ScubaGear",
+      "books": [
+        "B11",
+        "B12"
+      ],
+      "source": "Releases of https://github.com/cisagov/ScubaGear (CISA's M365 assessment tool; cisa.gov itself blocks automated readers, see README)."
+    }
+  ]
+}
