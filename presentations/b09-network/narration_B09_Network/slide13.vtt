@@ -1,0 +1,84 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.947
+Microsoft says to send
+its Optimize traffic
+
+2
+00:00:02.947 --> 00:00:06.000
+straight to Microsoft,
+without TLS inspection.
+
+3
+00:00:06.000 --> 00:00:08.212
+The boundary says inspect everything.
+
+4
+00:00:08.212 --> 00:00:12.525
+Both positions hold up, so the
+gap is a decision someone signs.
+
+5
+00:00:12.525 --> 00:00:17.931
+Optimize is small: three endpoint sets,
+for Exchange Online, SharePoint and
+
+6
+00:00:17.931 --> 00:00:23.337
+OneDrive, and Teams media, which has no
+names and must be steered by IP prefix.
+
+7
+00:00:23.337 --> 00:00:27.096
+Exempting only Optimize is
+narrower than Microsoft asks,
+
+8
+00:00:27.096 --> 00:00:29.837
+and it leaves sign-in
+on the inspected path.
+
+9
+00:00:29.837 --> 00:00:38.862
+Name what the bypass punctures: SI-3,
+SI-4(10) where it's selected, AC-4 and AU-3.
+
+10
+00:00:38.862 --> 00:00:40.937
+SC-8 is not a gap.
+
+11
+00:00:40.937 --> 00:00:44.572
+The vehicle is SC-7(4):
+each exception documented
+
+12
+00:00:44.572 --> 00:00:48.300
+with its mission need and
+duration, and reviewed.
+
+13
+00:00:48.300 --> 00:00:51.725
+The assessor's attack is
+tenant-to-tenant exfiltration.
+
+14
+00:00:51.725 --> 00:00:55.526
+Only Windows device-side tenant
+restrictions v2 reaches the
+
+15
+00:00:55.526 --> 00:00:59.775
+SharePoint and Exchange data plane,
+so it's a precondition to cutover.
+
+16
+00:00:59.775 --> 00:01:04.034
+Three instruments carry the decision:
+the authorizing official's memo,
+
+17
+00:01:04.034 --> 00:01:09.140
+the system owner's site register and the
+architecture review board's determination.

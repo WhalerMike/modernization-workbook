@@ -1,0 +1,79 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.238
+Chapter 02 pulls apart two decisions
+that programs keep merging.
+
+2
+00:00:04.238 --> 00:00:08.425
+Choosing a pipe, whether
+fiber, MPLS, low earth orbit,
+
+3
+00:00:08.425 --> 00:00:12.612
+5G or direct internet access,
+is a physics decision.
+
+4
+00:00:12.612 --> 00:00:15.863
+Choosing what governs the pipe
+is a compliance decision.
+
+5
+00:00:15.863 --> 00:00:20.188
+Direct internet access solves one
+problem, the geographic hairpin.
+
+6
+00:00:20.188 --> 00:00:25.380
+It satisfies none of the protection controls:
+boundary protection, flow enforcement,
+
+7
+00:00:25.380 --> 00:00:27.355
+transmission confidentiality,
+
+8
+00:00:27.355 --> 00:00:31.450
+malware inspection and monitoring
+all come from the control layer.
+
+9
+00:00:31.450 --> 00:00:36.913
+Transport closes exactly one control
+family, telecommunications diversity.
+
+10
+00:00:36.913 --> 00:00:40.034
+So a branch moved from a
+governed hairpin to bare local
+
+11
+00:00:40.034 --> 00:00:43.363
+breakout is a compliance
+regression with better latency.
+
+12
+00:00:43.363 --> 00:00:46.012
+And the governor is itself attack surface.
+
+13
+00:00:46.012 --> 00:00:52.276
+BOD 26-02 targets end-of-support
+edge devices on the agency boundary.
+
+14
+00:00:52.276 --> 00:00:58.219
+On February 25, 2026, Emergency Directive
+26-03 ordered action on Cisco SD-WAN
+
+15
+00:00:58.219 --> 00:01:05.013
+systems after actors were found compromising
+them and keeping long-term persistence.
+
+16
+00:01:05.013 --> 00:01:09.020
+Protect the controller and every
+edge before they carry traffic.

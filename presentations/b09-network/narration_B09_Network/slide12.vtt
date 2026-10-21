@@ -1,0 +1,74 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.168
+Chapter 11 is a worked case:
+a large field-office estate,
+
+2
+00:00:04.168 --> 00:00:09.659
+about 1,500 offices and 70,000 endpoints,
+asked to fund a 50-million-dollar
+
+3
+00:00:09.659 --> 00:00:15.150
+refresh of a Configuration Manager
+distribution point in every office.
+
+4
+00:00:15.150 --> 00:00:19.588
+Microsoft's published limit is 4,000
+clients per distribution point.
+
+5
+00:00:19.588 --> 00:00:26.637
+On capacity, the estate needs 24, two
+at each of 12 hubs, for 96,000 clients.
+
+6
+00:00:26.637 --> 00:00:32.637
+The other 1,476 exist only to
+compensate for slow branch circuits.
+
+7
+00:00:32.637 --> 00:00:37.281
+So fix the circuit: dedicated
+internet access sized to seats,
+
+8
+00:00:37.281 --> 00:00:40.438
+a 5G continuity path,
+and an SD-WAN overlay.
+
+9
+00:00:40.438 --> 00:00:44.957
+On the book's planning assumptions, the
+network program needs about 10 million
+
+10
+00:00:44.957 --> 00:00:47.391
+dollars of first-year capital and reaches
+
+11
+00:00:47.391 --> 00:00:49.963
+a positive cumulative
+position in year four.
+
+12
+00:00:49.963 --> 00:00:52.512
+But the financial case
+turns on one number.
+
+13
+00:00:52.512 --> 00:00:58.121
+Breakeven is 873 dollars of current
+MPLS cost per office per month;
+
+14
+00:00:58.121 --> 00:01:01.588
+below that, argue capability, not savings.
+
+15
+00:01:01.588 --> 00:01:06.940
+And no office's MPLS is retired until
+its replacement telemetry is confirmed.

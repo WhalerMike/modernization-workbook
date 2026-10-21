@@ -1,0 +1,81 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.713
+How do you get there when
+the target is years away?
+
+2
+00:00:02.713 --> 00:00:04.587
+Make the case by elimination.
+
+3
+00:00:04.587 --> 00:00:10.138
+The legacy telecom contracts
+had all ended by May 31, 2026.
+
+4
+00:00:10.138 --> 00:00:11.981
+The hairpin is still permitted,
+
+5
+00:00:11.981 --> 00:00:16.237
+but CISA's own guidebook says it raised
+the cost of using cloud services.
+
+6
+00:00:16.237 --> 00:00:21.008
+A new access point is a capital
+commitment, VPN backhaul is a hairpin,
+
+7
+00:00:21.008 --> 00:00:25.863
+and Microsoft no longer recommends
+ExpressRoute for Microsoft 365.
+
+8
+00:00:25.863 --> 00:00:27.659
+What's left is local breakout,
+
+9
+00:00:27.659 --> 00:00:30.951
+a cloud security stack and
+a branch-edge policy layer.
+
+10
+00:00:30.951 --> 00:00:37.051
+Meanwhile three deadlines
+compete for the same staff:
+
+11
+00:00:37.051 --> 00:00:44.100
+the M-26-14 logging plan, the M-26-15
+post-quantum plan and BOD 26-04.
+
+12
+00:00:44.100 --> 00:00:47.662
+BOD 26-02 is the fork.
+
+13
+00:00:47.662 --> 00:00:53.310
+End-of-support edge devices must be
+off agency networks by about August 5,
+
+14
+00:00:53.310 --> 00:00:55.851
+2027, so a refresh happens anyway.
+
+15
+00:00:55.851 --> 00:00:59.625
+Tell whoever scopes it, in
+writing, what the target needs.
+
+16
+00:00:59.625 --> 00:01:02.306
+Like-for-like spends the
+same money and closes
+
+17
+00:01:02.306 --> 00:01:04.820
+the question for the
+life of the equipment.

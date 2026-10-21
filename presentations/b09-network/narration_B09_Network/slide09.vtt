@@ -1,0 +1,76 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.398
+Chapter 08 puts the pieces
+together with one rule:
+
+2
+00:00:03.398 --> 00:00:07.563
+align each flow's consistency
+class with its transport class.
+
+3
+00:00:07.563 --> 00:00:11.888
+Only authoritative writes and
+in-region quorum ride the lean path,
+
+4
+00:00:11.888 --> 00:00:14.799
+and neither crosses a
+region synchronously.
+
+5
+00:00:14.799 --> 00:00:17.537
+At the branch, four
+patterns cover practice.
+
+6
+00:00:17.537 --> 00:00:22.138
+A, the hairpin: assessed, but
+every flow pays the detour.
+
+7
+00:00:22.138 --> 00:00:26.712
+B, bare local breakout: not an
+option in the TIC use case at all.
+
+8
+00:00:26.712 --> 00:00:29.957
+C, governed local breakout,
+an SD-WAN edge plus a
+
+9
+00:00:29.957 --> 00:00:33.800
+nearby SASE point of presence:
+the reference pattern.
+
+10
+00:00:33.800 --> 00:00:37.112
+D, agent-delivered SASE,
+for small and roaming sites,
+
+11
+00:00:37.112 --> 00:00:41.425
+if the point of presence is close
+and agentless devices are covered.
+
+12
+00:00:41.425 --> 00:00:47.060
+Five decisions carry most of the risk: one
+writer per region; a written path policy,
+
+13
+00:00:47.060 --> 00:00:51.517
+which SC-7(4) already asks for;
+the boundary change before cutover;
+
+14
+00:00:51.517 --> 00:00:56.900
+the governor protected before it carries
+traffic; and the path made evidence.
+
+15
+00:00:56.900 --> 00:00:59.880
+Each fails quietly, so
+each comes with a check.

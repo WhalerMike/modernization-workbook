@@ -1,0 +1,83 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:00.900
+Who owns it?
+
+2
+00:00:00.900 --> 00:00:04.472
+The most expensive mistakes in
+this book are ownership gaps:
+
+3
+00:00:04.472 --> 00:00:07.472
+a circuit bought before
+anyone owned the governor,
+
+4
+00:00:07.472 --> 00:00:10.472
+a cutover before anyone
+filed the boundary change,
+
+5
+00:00:10.472 --> 00:00:14.687
+a telemetry contract cancelled before
+its replacement was confirmed.
+
+6
+00:00:14.687 --> 00:00:17.076
+So the rule is one decider per row.
+
+7
+00:00:17.076 --> 00:00:22.375
+The sponsor and CIO decide the governor
+platforms and the order of branch waves.
+
+8
+00:00:22.375 --> 00:00:26.618
+The authorizing official
+decides the boundary change,
+
+9
+00:00:26.618 --> 00:00:30.400
+the SC-7(4) exception and
+every standing exception.
+
+10
+00:00:30.400 --> 00:00:35.788
+The CISO sets the control requirements
+and owns confirming CISA telemetry parity.
+
+11
+00:00:35.788 --> 00:00:38.286
+The system owner decides, site by site,
+
+12
+00:00:38.286 --> 00:00:42.476
+whether the governor is live and
+logging before traffic moves.
+
+13
+00:00:42.476 --> 00:00:45.863
+Security architecture
+decides TIC conformance
+
+14
+00:00:45.863 --> 00:00:49.250
+and writes target attributes
+into every refresh.
+
+15
+00:00:49.250 --> 00:00:53.970
+And under the Federal Acquisition
+Regulation only a contracting officer
+
+16
+00:00:53.970 --> 00:00:58.613
+can enter into or terminate a contract,
+so no engineer can cancel a circuit.
+
+17
+00:00:58.613 --> 00:01:02.380
+Network engineering and security
+operations do the work.
