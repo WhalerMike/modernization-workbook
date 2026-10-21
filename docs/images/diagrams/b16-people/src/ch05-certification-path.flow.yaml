@@ -1,0 +1,28 @@
+# Book 16 Chapter 05 — how the program certifies. The two tracks end in
+# capstones scored on one four-level rubric; the closure reconstruction exam
+# is taken for the chosen area (practitioner) or in full (assessor); each
+# credential is one dated, per-person training record (AT-4) and renews every
+# 12 months or when the certified procedure changes. Program design; AT-4 per
+# NIST SP 800-53 Rev. 5.
+rankdir: TB
+graph: {nodesep: 0.3, ranksep: 0.4}
+nodes:
+  ctrack: {tone: blue, width: 260, tag: "Chapter 03", title: "Compliance track", body: ["=Capstone covers all eight evidence areas"], size: 11}
+  itrack: {tone: blue, width: 260, tag: "Chapter 04", title: "Implementation track", body: ["=Capstone builds one area end to end"], size: 11}
+  rubric: {tone: violet, width: 420, title: "Four-level rubric", body: ["=0 missing, 1 named, 2 traced, 3 assessor-ready"], size: 11}
+  exam: {tone: amber, width: 420, title: "Closure reconstruction exam", body: ["=The chosen area for practitioners; in full for assessors"], size: 11}
+  prac: {tone: green, width: 260, tag: "Credential", title: "Practitioner", body: ["=Implementation capstone at pass, plus the exam for its area"], size: 11}
+  asse: {tone: green, width: 260, tag: "Credential", title: "Assessor", body: ["=Full exam, plus the compliance capstone at pass or a scored capstone that agrees with a second assessor"], size: 11}
+  rec: {tone: slate, width: 420, title: "Training record", body: ["=One dated entry per person (AT-4)"], size: 11}
+edges:
+  - [ctrack, rubric, {tone: violet}]
+  - [itrack, rubric, {tone: violet}]
+  - [rubric, exam, {tone: amber}]
+  - [exam, prac, {tone: green}]
+  - [exam, asse, {tone: green}]
+  - [prac, rec]
+  - [asse, rec]
+  - [rec, rubric, {style: dashed, tone: amber, label: "renew every 12 months or when the procedure changes", lw: 160, attrs: "constraint=false"}]
+order:
+  - [ctrack, itrack]
+  - [prac, asse]

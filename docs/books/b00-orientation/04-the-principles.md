@@ -26,7 +26,7 @@ The fifteen principles the program runs on, written for leaders, architects and 
 
 The principles fall into five groups. **Foundation** principles (1, 2 and 11) apply to every change in every domain. **Directory and structure** (3, 4, 5) say what replaces the organizational-unit tree. **Devices and policy** (6, 7, 9, 10) govern endpoints, servers and access policy. **Identity and data** (8, 12) cover the HR feed and the database tier. **Program** principles (13, 14, 15) cover people, Zero Trust governance and the overall direction.
 
-![The fifteen principles in five groups, with the book that carries each in depth.](../../images/diagrams/b00-orientation/svg/ch04-principles-map.svg){#fig-ch04-principles-map fig-alt="A three-column table. Foundation, blue: principle 1 single source of truth, Book 03 and Book 09; principle 2 change control and provenance, Book 01; principle 11 drift detection, Books 03, 02 and 01. Directory and structure, slate: principle 3 attribute-driven structure, Book 02 and Book 01; principle 4 the hidden surface, Book 02; principle 5 eight core concepts, Book 02. Devices and policy, amber: principle 6 hybrid join without governance, Book 05; principle 7 device and server modernization, Books 05 and 06; principle 9 Conditional Access, Book 04; principle 10 Group Policy sunset, Book 05. Identity and data, green: principle 8 HR-driven lifecycle, Book 03; principle 12 SQL Server identity, Book 06. Program, violet: principle 13 education, training and test plans, planned Book 16; principle 14 Zero Trust governance, Book 11; principle 15 the modernization journey, Book 01 and Book 09."}
+![The fifteen principles in five groups, with the book that carries each in depth.](../../images/diagrams/b00-orientation/svg/ch04-principles-map.svg){#fig-ch04-principles-map fig-alt="A three-column table. Foundation, blue: principle 1 single source of truth, Book 03 and Book 09; principle 2 change control and provenance, Book 01; principle 11 drift detection, Books 03, 02 and 01. Directory and structure, slate: principle 3 attribute-driven structure, Book 02 and Book 01; principle 4 the hidden surface, Book 02; principle 5 eight core concepts, Book 02. Devices and policy, amber: principle 6 hybrid join without governance, Book 05; principle 7 device and server modernization, Books 05 and 06; principle 9 Conditional Access, Book 04; principle 10 Group Policy sunset, Book 05. Identity and data, green: principle 8 HR-driven lifecycle, Book 03; principle 12 SQL Server identity, Book 06. Program, violet: principle 13 education, training and test plans, Book 16; principle 14 Zero Trust governance, Book 11; principle 15 the modernization journey, Book 01 and Book 09."}
 
 Rules marked as the program's design are design positions. They need no footnote, but they aren't presented as vendor or federal requirements. Where a rule rests on how a product or a policy actually works, the footnote says where that was checked.
 
@@ -98,7 +98,7 @@ Eight concepts carry the program's design vocabulary. They are design positions,
 
 : The eight core concepts {.striped .hover}
 
-**Carried in depth by:** [Book 02, Chapter 03 — Active Directory and Entra ID, Side by Side](../b02-identity/03-ad-and-entra-side-by-side.md#the-eight-core-concepts-of-directory-migration) (the concepts and how they map to the migration adapters), with addressing in [Book 08](../b08-ddi/index.md) and certificates in [Book 07](../b07-pki/index.md). Telemetry as a control input is the subject of the planned Book 12, Security Operations & Telemetry ([the book list](../index.md)).
+**Carried in depth by:** [Book 02, Chapter 03 — Active Directory and Entra ID, Side by Side](../b02-identity/03-ad-and-entra-side-by-side.md#the-eight-core-concepts-of-directory-migration) (the concepts and how they map to the migration adapters), with addressing in [Book 08](../b08-ddi/index.md) and certificates in [Book 07](../b07-pki/index.md). Telemetry as a control input is the subject of [Book 12, Security Operations & Telemetry](../b12-security-operations/index.md).
 
 ## 6. Hybrid join without governance {#principle-6}
 
@@ -216,7 +216,7 @@ The drift engine doesn't believe that the HR system and the directory still agre
 
 Critical findings halt the remediation pass. The severities are the program's defaults, not an external standard. The four categories govern the attribute values themselves. Each domain adds its own classes on top: HR-to-directory drift (missing identities, stale access, orphan accounts, unauthorized writes, credential drift) and administrative-unit drift (rule differences, paused rule processing, unexpected role assignments) are defined in the books below.
 
-**Carried in depth by:** [Book 03, Chapter 11 — Drift, Metrics and Evidence](../b03-hr-identity/11-drift-metrics-and-evidence.md#drift-between-hr-and-the-directory), [Book 02, Chapter 05](../b02-identity/05-delegation-without-ous.md#drift-detection) for administrative units, and [Book 01, Chapter 04](../b01-transformation-arc/04-identity-transformation.md#drift-categories). The planned Book 13, Governance, Drift & Evidence, will consolidate them ([the book list](../index.md)).
+**Carried in depth by:** [Book 03, Chapter 11 — Drift, Metrics and Evidence](../b03-hr-identity/11-drift-metrics-and-evidence.md#drift-between-hr-and-the-directory), [Book 02, Chapter 05](../b02-identity/05-delegation-without-ous.md#drift-detection) for administrative units, and [Book 01, Chapter 04](../b01-transformation-arc/04-identity-transformation.md#drift-categories). [Book 13, Governance, Drift & Evidence](../b13-governance/index.md), consolidates them.
 
 ## 12. SQL Server identity transformation {#principle-12}
 
@@ -238,7 +238,7 @@ Windows Authentication was good engineering for its world. The destination is cl
 - **Training has two tracks.** Contributors learn to land a reviewed change. Operators learn to run the discovery and drift tools and interpret their output.
 - **Test plans live in one catalog.** Every plan has a canonical entry, declares its pass signal, and stays in the catalog when retired.
 
-These are the program's design. **Carried in depth by:** the planned Book 16, People: Training & Education ([the book list](../index.md)). Until it is published, the books' own acceptance and validation material shows the test-plan pattern: [Book 03, Appendix C — Acceptance and Cutover](../b03-hr-identity/appendix-c-acceptance-and-cutover.md) and the validation test plan in [Book 04, Chapter 08](../b04-access/08-pim-self-request-with-approval.md#validation-test-plan).
+These are the program's design. **Carried in depth by:** [Book 16, People: Training & Education](../b16-people/index.md). The books' own acceptance and validation material shows the test-plan pattern: [Book 03, Appendix C — Acceptance and Cutover](../b03-hr-identity/appendix-c-acceptance-and-cutover.md) and the validation test plan in [Book 04, Chapter 08](../b04-access/08-pim-self-request-with-approval.md#validation-test-plan).
 
 ## 14. Zero Trust governance {#principle-14}
 
@@ -292,9 +292,9 @@ Book 01 states the fourth principle in its operational form, "govern actively": 
 | 8 | HR-driven lifecycle | Identity and data | [B03 Ch04](../b03-hr-identity/04-attribute-authority.md) | [B03 Ch05](../b03-hr-identity/05-the-provisioning-pipeline.md), [B03 Ch08](../b03-hr-identity/08-joiner-mover-leaver.md) |
 | 9 | Conditional Access | Devices and policy | [B04 Ch03](../b04-access/03-the-conditional-access-model.md) | [B04 Ch07](../b04-access/07-the-conditional-access-policy-library.md) |
 | 10 | Group Policy Object sunset | Devices and policy | [B05 Ch07](../b05-devices/07-the-gpo-sunset-program.md) | [B05 Ch08](../b05-devices/08-gpo-to-intune-policy-migration.md) |
-| 11 | Drift detection | Foundation | [B03 Ch11](../b03-hr-identity/11-drift-metrics-and-evidence.md) | [B02 Ch05](../b02-identity/05-delegation-without-ous.md), [B01 Ch04](../b01-transformation-arc/04-identity-transformation.md); planned B13 |
+| 11 | Drift detection | Foundation | [B03 Ch11](../b03-hr-identity/11-drift-metrics-and-evidence.md) | [B02 Ch05](../b02-identity/05-delegation-without-ous.md), [B01 Ch04](../b01-transformation-arc/04-identity-transformation.md); [B13](../b13-governance/index.md) |
 | 12 | SQL Server identity transformation | Identity and data | [B06](../b06-data-platform/index.md) | [B06 Ch07](../b06-data-platform/07-the-authentication-audit.md), [B06 Ch20](../b06-data-platform/20-the-closure-condition.md) |
-| 13 | Education, training and test plans | Program | Planned B16 ([book list](../index.md)) | [B03 App C](../b03-hr-identity/appendix-c-acceptance-and-cutover.md) |
+| 13 | Education, training and test plans | Program | [B16](../b16-people/index.md) | [B03 App C](../b03-hr-identity/appendix-c-acceptance-and-cutover.md) |
 | 14 | Zero Trust governance | Program | [B11 Ch02](../b11-zero-trust/02-governance-principles.md) | [B11 Ch06](../b11-zero-trust/06-beyond-microsoft-365.md), [B04 Ch02](../b04-access/02-why-standing-privilege-fails.md) |
 | 15 | The modernization journey | Program | [B01 Ch12](../b01-transformation-arc/12-migration-roadmap.md) | [B09 Ch04](../b09-network/04-logical-centralization-and-token-security.md) |
 

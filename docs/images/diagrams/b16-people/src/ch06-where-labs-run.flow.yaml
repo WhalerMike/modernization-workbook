@@ -1,0 +1,33 @@
+# Book 16 Chapter 06 — where a lab runs. A fixture when the procedure needs no
+# live service; a product evaluation when it needs a vendor's product; a
+# commercial sandbox tenant when it needs tenant behavior; the agency's own
+# non-production government tenant when the behavior differs in the
+# government cloud. Never production, never production data. Program design;
+# the Microsoft 365 Developer Program is not offered in the government clouds
+# (Microsoft Learn).
+rankdir: TB
+graph: {nodesep: 0.3, ranksep: 0.35}
+nodes:
+  start: {tone: slate, width: 300, title: "A lab rehearses one book procedure", size: 11}
+  q1: {tone: amber, width: 300, title: "Does it need a live service?", size: 11}
+  fix: {tone: green, width: 240, tag: "Fixture tier", title: "Recorded data", body: ["=The evidence tooling, no cloud footprint"], size: 11}
+  q2: {tone: amber, width: 300, title: "Does it need a vendor's product?", body: ["=DDI, network access control, SD-WAN, SQL Server"], size: 11}
+  prod: {tone: blue, width: 240, tag: "Product evaluation tier", title: "Vendor evaluation", body: ["=Evaluation, vendor lab instance or containers"], size: 11}
+  q3: {tone: amber, width: 300, title: "Does the behavior differ in the government cloud?", size: 11}
+  sand: {tone: blue, width: 240, tag: "Sandbox tier", title: "Commercial sandbox", body: ["=Developer or trial tenant, deleted after"], size: 11}
+  gov: {tone: violet, width: 240, tag: "Before the gate", title: "Agency non-production government tenant", body: ["=Rehearse once; record what differed"], size: 11}
+  never: {tone: red, width: 240, tag: "Every tier", title: "Never production", body: ["=No production tenant, data or credentials"], size: 11}
+edges:
+  - [start, q1]
+  - [q1, fix, {label: "no", tone: green}]
+  - [q1, q2, {label: "yes"}]
+  - [q2, prod, {label: "yes", tone: blue}]
+  - [q2, q3, {label: "no"}]
+  - [q3, sand, {label: "no", tone: blue}]
+  - [q3, gov, {label: "yes", tone: violet}]
+  - [sand, never, {style: dashed, tone: red}]
+  - [gov, never, {style: dashed, tone: red}]
+ranks:
+  - [q1, fix]
+  - [q2, prod]
+  - [sand, gov]

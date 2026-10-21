@@ -1,0 +1,26 @@
+# Book 16 Chapter 07 — what end users must learn, and the change in the estate
+# that makes each lesson necessary. Left: three changes (slate, red for the
+# attacker). Middle: the six learning modules in three pairs (blue). Right: one
+# training record per person and module before the wave's cutover (violet).
+# The module list is program design; the requirement to train on significant
+# system change is 5 CFR 930.301(d) and AT-2, cited in the chapter.
+rankdir: LR
+graph: {nodesep: 0.25, ranksep: 0.5}
+nodes:
+  c1: {tone: slate, width: 210, title: "Identity moves to Entra ID", body: ["Sign-in becomes phishing-resistant", "Passwords linger; recovery is self-service"], size: 11}
+  c2: {tone: slate, width: 210, title: "Devices and files move", body: ["PCs enrolled in Intune", "Mapped drives retire"], size: 11}
+  c3: {tone: red, width: 210, title: "Attackers follow the change", body: ["Fake prompts and reset notices", "Fake IT calls"], size: 11}
+  m1: {tone: blue, width: 250, tag: "Modules 1 and 2", title: "Sign in; reset and recover", body: ["PIV, Windows Hello for Business or a passkey", "Two methods registered", "What recovery requires"], size: 11}
+  m2: {tone: blue, width: 250, tag: "Modules 3 and 4", title: "Enroll; find and share files", body: ["Read and fix compliance status", "What the agency can see", "Leave the old drives alone"], size: 11}
+  m3: {tone: blue, width: 250, tag: "Modules 5 and 6", title: "Report; know the help desk rules", body: ["Messages, prompts and notices", "What the help desk will and won't ask"], size: 11}
+  rec: {tone: violet, width: 190, title: "Training record", body: ["=Per person and module, before the wave's cutover"], size: 11}
+edges:
+  - [c1, m1, {tone: slate}]
+  - [c2, m2, {tone: slate}]
+  - [c3, m3, {tone: red}]
+  - [m1, rec, {tone: violet}]
+  - [m2, rec, {tone: violet}]
+  - [m3, rec, {tone: violet}]
+order:
+  - [c1, c2, c3]
+  - [m1, m2, m3]

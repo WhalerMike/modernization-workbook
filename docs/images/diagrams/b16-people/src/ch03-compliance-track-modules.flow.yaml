@@ -1,0 +1,42 @@
+# Book 16 Chapter 03 — the compliance track: orientation, eight evidence-area
+# modules, the package and continuous-monitoring module, and the capstone,
+# each pointing to the book that teaches it. The eight areas are the
+# program's design. Slate = orientation, blue = evidence areas,
+# violet = package and monitoring, green = capstone.
+rankdir: TB
+graph: {nodesep: 0.2, ranksep: 0.45}
+clusters:
+  - id: areas
+    label: "Evidence-area modules, taught in Books 12, 13 and 14, built in the book each module names"
+    tone: blue
+    filled: false
+    nodes: [m1, m2, m3, m4, m5, m6, m7, m8]
+nodes:
+  m0: {tone: slate, width: 420, tag: "Module 0", title: "Orientation", body: ["The Risk Management Framework; who owes which proof", "NIST Moderate baseline and FedRAMP classes as two facts", "The federal clock", "=Book 14 Ch 01 to 03; Book 10 Ch 03"], size: 11}
+  m1: {tone: blue, width: 165, tag: "Module 1", title: "Identity", size: 11}
+  m2: {tone: blue, width: 165, tag: "Module 2", title: "Addressing and inventory", size: 11}
+  m3: {tone: blue, width: 165, tag: "Module 3", title: "Network", size: 11}
+  m4: {tone: blue, width: 165, tag: "Module 4", title: "Telemetry", size: 11}
+  m5: {tone: blue, width: 165, tag: "Module 5", title: "Endpoint", size: 11}
+  m6: {tone: blue, width: 165, tag: "Module 6", title: "Configuration, change, supply chain", size: 11}
+  m7: {tone: blue, width: 165, tag: "Module 7", title: "Continuity", size: 11}
+  m8: {tone: blue, width: 165, tag: "Module 8", title: "Training", size: 11}
+  m9: {tone: violet, width: 420, tag: "Module 9", title: "The package, the POA&M and continuous monitoring", body: ["=Book 14 Ch 11; Book 10 Ch 11; Book 13 Ch 07 and 11; Book 12 Ch 12"], size: 11}
+  cap: {tone: green, width: 420, tag: "Capstone", title: "A continuous-monitoring narrative for one system", body: ["=All eight areas, every claim with its record and date; scored in Chapter 05"], size: 11}
+edges:
+  - [m0, m1]
+  - [m0, m2]
+  - [m0, m3]
+  - [m0, m4]
+  - [m5, m9, {tone: violet}]
+  - [m6, m9, {tone: violet}]
+  - [m7, m9, {tone: violet}]
+  - [m8, m9, {tone: violet}]
+  - [m1, m5, {style: invis}]
+  - [m2, m6, {style: invis}]
+  - [m3, m7, {style: invis}]
+  - [m4, m8, {style: invis}]
+  - [m9, cap, {tone: green}]
+order:
+  - [m1, m2, m3, m4]
+  - [m5, m6, m7, m8]

@@ -1,0 +1,21 @@
+# Book 16 Chapter 04 — the pattern every implementation lab follows. The
+# observe-first step is Microsoft's guidance for Conditional Access
+# (report-only) and the program's design for 802.1X (monitor mode) and
+# provisioning (shadow mode); emergency access first is Microsoft's
+# guidance; "done means the evidence has landed" is the program's rule.
+rankdir: TB
+graph: {nodesep: 0.25, ranksep: 0.4}
+nodes:
+  env: {tone: slate, width: 300, tag: "Chapter 06", title: "Lab environment", body: ["=Fixture, trial tenant or product evaluation; never production"], size: 11}
+  back: {tone: amber, width: 300, title: "Keep a way back in", body: ["=Emergency access accounts and rollback points before anything enforces"], size: 11}
+  obs: {tone: amber, width: 300, title: "Observe first", body: ["Report-only for Conditional Access", "Monitor mode for 802.1X", "Shadow mode for provisioning"], size: 11}
+  enf: {tone: blue, width: 300, title: "Fix what the baseline shows, then enforce", size: 11}
+  exp: {tone: violet, width: 300, title: "Export the record", body: ["=Machine-readable, into the evidence contract (Book 12 Ch 02)"], size: 11}
+  done: {tone: green, width: 300, title: "Done", body: ["=The paired compliance module's check reads the learner's own record"], size: 11}
+edges:
+  - [env, back]
+  - [back, obs]
+  - [obs, enf]
+  - [enf, exp]
+  - [exp, done, {tone: green}]
+  - [obs, exp, {style: dashed, label: "the readiness report is evidence too", lw: 150, attrs: "constraint=false"}]

@@ -1,0 +1,26 @@
+# Book 16 Chapter 02 — the federal workforce requirements in layers. Statutes
+# (FISMA, 44 U.S.C. 3554; the Federal Cybersecurity Workforce Assessment Act,
+# Pub. L. 114-113 div. N title III) set the duties; OMB Circular A-130 and OPM
+# (5 CFR 930.301 and the cybersecurity data standard codes) turn them into policy
+# and rules; NIST supplies the vocabulary (SP 800-181 Rev. 1 and the NICE
+# Framework Components v2.2.0) and the learning-program guidance (SP 800-50
+# Rev. 1). The agency's roster, coded positions and curriculum are where they
+# meet. Sources in the chapter footnotes.
+rankdir: TB
+graph: {nodesep: 0.3, ranksep: 0.4}
+nodes:
+  fisma: {tone: red, width: 300, tag: "Statute · 2014", title: "FISMA", body: ["Trained personnel sufficient to comply", "A qualified senior information security officer", "Awareness training for all users, contractors included"], size: 11}
+  fcwaa: {tone: red, width: 300, tag: "Statute · 2015", title: "Cybersecurity Workforce Assessment Act", body: ["Identify every position doing cyber work", "Assign each a code under the NICE structure"], size: 11}
+  a130: {tone: amber, width: 300, tag: "OMB policy · 2016", title: "Circular A-130", body: ["Competency requirements and workforce planning", "Awareness and role-based training programs"], size: 11}
+  opm: {tone: amber, width: 300, tag: "OPM rule and guidance", title: "OPM", body: ["Training rule at 5 CFR 930.301", "Three-digit cybersecurity data standard codes"], size: 11}
+  nist: {tone: blue, width: 420, tag: "Guidance", title: "NIST", body: ["NICE Framework: SP 800-181 Rev. 1 and its components", "SP 800-50 Rev. 1: the learning program"], size: 11}
+  agency: {tone: violet, width: 420, title: "The agency", body: ["=Where the role roster, the coded positions and the curriculum meet"], size: 11}
+edges:
+  - [fisma, a130]
+  - [fcwaa, opm]
+  - [a130, nist]
+  - [opm, nist]
+  - [nist, agency, {tone: violet}]
+order:
+  - [fisma, fcwaa]
+  - [a130, opm]

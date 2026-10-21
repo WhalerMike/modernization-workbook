@@ -152,7 +152,7 @@ What changes is what happens after the ticket opens.
 - **The help desk is protected as a target.** The help desk becomes a high-value target during a modernization, and the identity-verification procedure for resets is a CISO decision, not a help desk one ([Book 01, Chapter 09](../b01-transformation-arc/09-who-leads-the-transformation.md#the-help-desk)). Moving routine changes off the help desk's keyboards also shrinks what an attacker who talks their way past it can do.
 - **Closure writes back.** The ticket closes when the execution layer's re-read and the next drift run agree, and the closure record flows into the evidence chain ([Chapter 07](07-evidence-over-attestation.md)). The ticket's status is a view of the record, not a substitute for it.
 
-[Book 10, Chapter 07](../b10-cloud-boundary/07-the-front-door.md) shows the same front door for provisioning, including two documented ways to build it on a service management platform and an infrastructure-as-code pipeline. Day-2 operations at the help desk, and the help desk's role in whether modernization sticks, are the subject of Book 15, Compliance Automation & Day-2 Operations (planned, see the [workbook index](../index.md)).
+[Book 10, Chapter 07](../b10-cloud-boundary/07-the-front-door.md) shows the same front door for provisioning, including two documented ways to build it on a service management platform and an infrastructure-as-code pipeline. Day-2 operations at the help desk, and the help desk's role in whether modernization sticks, are the subject of [Book 15, Compliance Automation & Day-2 Operations](../b15-day2-operations/index.md).
 
 ## The operations team's view
 

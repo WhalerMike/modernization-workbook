@@ -165,7 +165,7 @@ The overview is careful about the limit, and so is this chapter. Two regimes rea
 | Indicator tags on program rule results; one evidence path | Program design | — |
 | Seven functional evidence areas and regime crosswalks | Program design | Integration overview (repository) |
 
-The program builds the record, bundle, health checks and cadence validation today. Generating a complete OSCAL system security plan and plan of action and milestones for each consuming agency from the reciprocity record is a target, not yet built. Book 14, Federal Compliance & Authorization (planned, see the [workbook index](../index.md)), will carry the package itself.
+The program builds the record, bundle, health checks and cadence validation today. Generating a complete OSCAL system security plan and plan of action and milestones for each consuming agency from the reciprocity record is a target, not yet built. [Book 14, Federal Compliance & Authorization](../b14-compliance/index.md), carries the package itself.
 
 ::: {.callout-tip}
 ## Continue the book

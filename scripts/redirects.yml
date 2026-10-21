@@ -398,3 +398,14 @@ redirects:
   docs/compliance/Vol_VI_Book_00_Implementation_Overview.html: docs/books/b15-day2-operations/02-day-two-is-where-compliance-lives.html
   docs/compliance/Vol_VI_Book_07_Evidence_ConMon_Pipeline.html: docs/books/b15-day2-operations/11-attestation-and-the-compliance-app.html
   docs/compliance/Vol_VI_Book_08_Validation_Test_Harnesses.html: docs/books/b15-day2-operations/12-the-day-two-runbook.html
+
+  # Book 16 (People: Training & Education) replaced these pages; sources are in archive/b16-people/.
+  docs/compliance/training-index.html: docs/books/b16-people/09-building-and-running-the-curriculum.html
+  docs/compliance/Vol_V_Book_00_Training_Certification_Overview.html: docs/books/b16-people/01-people-close-the-gap.html
+  docs/compliance/Vol_V_Book_01_Compliance_Track.html: docs/books/b16-people/03-the-compliance-track.html
+  docs/compliance/Vol_V_Book_02_Implementation_Track.html: docs/books/b16-people/04-the-implementation-track.html
+  docs/compliance/Vol_V_Book_03_Assessment_Certification.html: docs/books/b16-people/05-assessment-and-certification.html
+  docs/compliance/Vol_V_Book_04_Vendor_Training_Lab_Environments.html: docs/books/b16-people/06-vendor-training-and-labs.html
+  docs/operational-guides/end-user-training.html: docs/books/b16-people/07-end-user-training.html
+  docs/program/education.html: docs/books/b16-people/01-people-close-the-gap.html
+  docs/program/training.html: docs/books/b16-people/09-building-and-running-the-curriculum.html

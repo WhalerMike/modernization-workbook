@@ -58,7 +58,7 @@ Appendices: [A — Control crosswalk](appendix-a-control-crosswalk.md) · [B —
 
 ## Where this book sits in the workbook
 
-This is Book 14 of the [Federal Modernization Workbook](../index.md). The evidence contract it relies on is in [Book 12, Chapter 02](../b12-security-operations/02-the-evidence-contract.md); evidence over attestation, the drift model and reciprocity are in [Book 13](../b13-governance/index.md); and the FedRAMP 2026 rules and the authorization boundary in [Book 10](../b10-cloud-boundary/index.md). Training in depth will be [Book 16](../index.md).
+This is Book 14 of the [Federal Modernization Workbook](../index.md). The evidence contract it relies on is in [Book 12, Chapter 02](../b12-security-operations/02-the-evidence-contract.md); evidence over attestation, the drift model and reciprocity are in [Book 13](../b13-governance/index.md); and the FedRAMP 2026 rules and the authorization boundary in [Book 10](../b10-cloud-boundary/index.md). Training in depth is [Book 16](../b16-people/index.md).
 
 ## Chapters
 

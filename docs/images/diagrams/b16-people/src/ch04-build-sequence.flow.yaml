@@ -1,0 +1,43 @@
+# Book 16 Chapter 04 — the implementation track's build order. The chain
+# DDI -> identity -> network -> data platform, certificates before network
+# access control enforces, and the parallel modules once identity exists
+# are the program's sequencing (from the source curriculum, extended to
+# devices, the cloud platform and day-two operations). Slate = orientation,
+# blue = build modules, violet = parallel group, green = day two.
+rankdir: TB
+graph: {nodesep: 0.2, ranksep: 0.4}
+clusters:
+  - id: par
+    label: "In parallel once identity exists"
+    tone: violet
+    filled: false
+    nodes: [m5, m8, m9]
+nodes:
+  m0: {tone: slate, width: 360, tag: "Module 0", title: "Orientation", body: ["=The program, its gates and the compliance track's Module 0; Books 00 and 01"], size: 11}
+  m1: {tone: blue, width: 220, tag: "Module 1", title: "DNS, DHCP and IPAM", body: ["=Book 08"], size: 11}
+  m2: {tone: blue, width: 220, tag: "Module 2", title: "Identity and lifecycle", body: ["=Books 02 and 03"], size: 11}
+  m3: {tone: blue, width: 200, tag: "Module 3", title: "Certificates", body: ["=Book 07"], size: 11}
+  m4: {tone: blue, width: 200, tag: "Module 4", title: "Access and privileged access", body: ["=Book 04"], size: 11}
+  m6: {tone: blue, width: 200, tag: "Module 6", title: "Network and NAC", body: ["=Book 09"], size: 11}
+  m7: {tone: blue, width: 200, tag: "Module 7", title: "Data platform", body: ["=Book 06"], size: 11}
+  m5: {tone: blue, width: 175, tag: "Module 5", title: "Devices and servers", body: ["=Book 05"], size: 11}
+  m8: {tone: blue, width: 175, tag: "Module 8", title: "Cloud platform", body: ["=Book 10; Book 01 Ch 03"], size: 11}
+  m9: {tone: blue, width: 175, tag: "Module 9", title: "Security operations", body: ["=Book 12"], size: 11}
+  m10: {tone: green, width: 360, tag: "Module 10", title: "Day-two operations", body: ["=Book 15; runs what every other module built"], size: 11}
+edges:
+  - [m0, m1]
+  - [m1, m2]
+  - [m2, m3]
+  - [m2, m4]
+  - [m3, m6, {label: "certificates before enforcement", lw: 130}]
+  - [m6, m7]
+  - [m4, m5, {tone: violet}]
+  - [m4, m8, {tone: violet}]
+  - [m4, m9, {tone: violet}]
+  - [m7, m10, {tone: green}]
+  - [m5, m10, {tone: green}]
+  - [m8, m10, {tone: green}]
+  - [m9, m10, {tone: green}]
+order:
+  - [m3, m4]
+  - [m5, m8, m9]

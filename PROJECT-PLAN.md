@@ -146,7 +146,7 @@ The plan is organized by phases. Each phase has objectives, key activities, deli
 - [Chapter 09 — Migration Roadmap: Phased Plan, Gates, Rollback](docs/books/b01-transformation-arc/12-migration-roadmap.md)
 - [PIM Self-Request with Approval](docs/books/b04-access/08-pim-self-request-with-approval.md) — just-in-time elevation for wave execution
 - [HR-Driven Identity](docs/books/b03-hr-identity/index.md) — originating changes from the authoritative source
-- [End User Training Guide](docs/operational-guides/end-user-training.md)
+- [End User Training Guide](docs/books/b16-people/07-end-user-training.md)
 
 **Exit criteria**
 - The organization has demonstrated that a change can originate from the authoritative source, execute under controlled privilege, close with provenance, and be validated against the intended state.
@@ -170,7 +170,7 @@ The plan is organized by phases. Each phase has objectives, key activities, deli
 **Supporting material**
 - [Continuous Monitoring Strategy](docs/books/b13-governance/12-governance-at-scale.md)
 - [Gap Closure Register](docs/books/b13-governance/12-governance-at-scale.md)
-- [Training Program](docs/program/training.md) and [Education Program](docs/program/education.md)
+- [Training Program](docs/books/b16-people/09-building-and-running-the-curriculum.md) and [Education Program](docs/books/b16-people/01-people-close-the-gap.md)
 
 **Exit criteria**
 - Success criteria from the charter are met or explicitly deferred with rationale.

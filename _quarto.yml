@@ -76,6 +76,8 @@ website:
             text: "Book 14 — Federal Compliance & Authorization"
           - href: docs/books/b15-day2-operations/index.md
             text: "Book 15 — Compliance Automation & Day-2 Operations"
+          - href: docs/books/b16-people/index.md
+            text: "Book 16 — People: Training & Education"
           - href: docs/books/guides/effective-meetings.md
             text: "Guide: Effective Meetings"
       - href: docs/presentations/index.md
@@ -162,6 +164,10 @@ website:
           href: docs/books/b15-day2-operations/index.md
           contents:
             - auto: "docs/books/b15-day2-operations/*-*.md"
+        - section: "Book 16 — People: Training & Education"
+          href: docs/books/b16-people/index.md
+          contents:
+            - auto: "docs/books/b16-people/*-*.md"
         - section: "Companion guides"
           contents:
             - docs/books/guides/effective-meetings.md

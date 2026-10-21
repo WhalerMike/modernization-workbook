@@ -1,0 +1,24 @@
+# Book 16 Chapter 02 — how a coded position becomes a training requirement.
+# Codes per OPM's January 2017 guidance (three digits, up to three per position,
+# 000 for none); work role and code from the NICE Framework Components v2.2.0
+# JSON (IO-WRL-005, code 451); the roster and the disagreement rule are the
+# program's design.
+rankdir: TB
+graph: {nodesep: 0.35, ranksep: 0.35}
+nodes:
+  pd: {tone: slate, width: 300, tag: "HR, with CIO staff", title: "Position description", body: ["=Up to three three-digit OPM codes, or 000 for none"], size: 11}
+  wr: {tone: blue, width: 300, tag: "NICE work role", title: "Systems Administration", body: ["=IO-WRL-005, code 451 (example)"], size: 11}
+  tks: {tone: blue, width: 300, tag: "Components v2.2.0", title: "Tasks, knowledge, skills", body: ["=What the work is and what the learner needs"], size: 11}
+  track: {tone: green, width: 300, title: "Training track", body: ["=Chapters 03 to 07"], size: 11}
+  roster: {tone: violet, width: 280, title: "Role roster", body: ["=Coded positions, eligible-role assignments and the system inventory: who is due, and when"], size: 11}
+  note: {kind: text, width: 280, tone: amber, text: "A code that disagrees with a role assignment is a finding for HR and the CIO's office."}
+edges:
+  - [pd, wr]
+  - [wr, tks]
+  - [tks, track]
+  - [roster, track, {tone: violet}]
+  - [pd, roster, {style: dashed}]
+  - [roster, note, {style: dotted, attrs: "arrowhead=none"}]
+order:
+  - [wr, roster]
+  - [tks, note]

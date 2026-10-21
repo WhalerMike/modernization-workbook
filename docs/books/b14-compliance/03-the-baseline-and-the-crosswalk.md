@@ -88,7 +88,7 @@ The crosswalk indexes 149 distinct controls and enhancements in 18 families. Rec
 | II — Data platform | 22 | [Volume overview](https://github.com/WhalerMike/modernization-workbook/blob/main/docs/compliance/Vol_II_Book_00_Data_Platform_Overview.md); workbook [Book 06](../b06-data-platform/index.md) |
 | III — Security operations | 54 | [Volume overview](https://github.com/WhalerMike/modernization-workbook/blob/main/docs/compliance/Vol_III_Book_00_Security_Operations_Overview.md); workbook [Book 12](../b12-security-operations/index.md) |
 | IV — Governance and assurance | 54 | This book, [Chapters 05](05-program-management-controls.md) to [09](09-training-and-awareness-controls.md) and [11](11-the-authorization-package.md) |
-| V — Training and certification | 2 | [Volume overview](https://github.com/WhalerMike/modernization-workbook/blob/main/docs/compliance/Vol_V_Book_00_Training_Certification_Overview.md); [Chapter 09](09-training-and-awareness-controls.md) |
+| V — Training and certification | 2 | [Volume overview](../b16-people/01-people-close-the-gap.md); [Chapter 09](09-training-and-awareness-controls.md) |
 | VI — Implementation as code | 38 | [Volume overview](../b15-day2-operations/02-day-two-is-where-compliance-lives.md) |
 | VII — Workflow-platform control-compliance automation | 9 | [Volume overview](../b15-day2-operations/02-day-two-is-where-compliance-lives.md) |
 | VIII — Multi-cloud DDI landing-zone automation | 6 | [Volume overview](https://github.com/WhalerMike/modernization-workbook/blob/main/docs/compliance/Vol_VIII_Book_00_DDI_Automation_Overview.md) |

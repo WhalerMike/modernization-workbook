@@ -1,0 +1,20 @@
+# Book 16 Chapter 01 — the training check the program adds to each gate of the
+# roadmap in Book 01 Chapter 12. Gate names from Book 01; the training checks
+# and the roster-based evidence are the program's design.
+rankdir: TB
+graph: {nodesep: 0.25, ranksep: 0.28}
+nodes:
+  g0: {tone: slate, width: 460, tag: "G0 · Ready to Plan", title: "Before planning", body: ["=Education walkthrough for the sponsor and core team; role roster drafted"], size: 11}
+  g1: {tone: blue, width: 460, tag: "G1 · Foundation Complete", title: "Before the foundation goes live", body: ["=Administrators on just-in-time activation; help desk on verification; HR on feed data"], size: 11}
+  g2: {tone: blue, width: 460, tag: "G2 · Pilot Clean", title: "Before the pilot passes", body: ["=Pilot users trained before cutover; lessons folded back into content"], size: 11}
+  g3: {tone: blue, width: 460, tag: "G3 · Rollout Complete", title: "Before each wave", body: ["=Each division's users and champions trained before its wave"], size: 11}
+  g4: {tone: amber, width: 460, tag: "G4 · Legacy Quiet", title: "Before legacy retires", body: ["=Owners retrained on replacements; old procedures removed; IR and contingency training updated"], size: 11}
+  g5: {tone: green, width: 460, tag: "G5 · AD Retired", title: "Before steady state", body: ["=Steady-state roles trained; no course teaches an Active Directory procedure"], size: 11}
+  ev: {tone: violet, width: 460, title: "The evidence at every gate", body: ["=Completion counts against a stated roster, read by the gate's approver"], size: 11}
+edges:
+  - [g0, g1]
+  - [g1, g2]
+  - [g2, g3]
+  - [g3, g4]
+  - [g4, g5]
+  - [g5, ev, {tone: violet, style: dashed}]

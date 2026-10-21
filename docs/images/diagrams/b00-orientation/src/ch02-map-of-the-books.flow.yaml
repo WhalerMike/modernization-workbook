@@ -1,6 +1,6 @@
 # Book 00 Chapter 02 — the workbook's eighteen books in five reading groups
 # (the program's own grouping). Blue = published as a draft book; slate =
-# planned, no pages yet. Status from docs/books/index.md on October 21, 2026.
+# planned, no pages yet. Status from docs/books/index.md on October 22, 2026.
 rankdir: TB
 graph: {nodesep: 0.12, ranksep: 0.3}
 clusters:
@@ -23,11 +23,11 @@ nodes:
   b09: {tone: blue, width: 128, tag: "B09", title: "Network & Transport", size: 11}
   b10: {tone: blue, width: 128, tag: "B10", title: "Cloud Boundary", size: 11}
   b11: {tone: blue, width: 128, tag: "B11", title: "Zero Trust & Assessment", size: 11}
-  b14: {tone: slate, width: 128, tag: "B14 · planned", title: "Compliance & Authorization", size: 11}
-  b12: {tone: slate, width: 128, tag: "B12 · planned", title: "Security Operations", size: 11}
-  b13: {tone: slate, width: 128, tag: "B13 · planned", title: "Governance, Drift & Evidence", size: 11}
-  b15: {tone: slate, width: 128, tag: "B15 · planned", title: "Day-2 Operations", size: 11}
-  b16: {tone: slate, width: 128, tag: "B16 · planned", title: "Training & Education", size: 11}
+  b14: {tone: blue, width: 128, tag: "B14", title: "Compliance & Authorization", size: 11}
+  b12: {tone: blue, width: 128, tag: "B12", title: "Security Operations", size: 11}
+  b13: {tone: blue, width: 128, tag: "B13", title: "Governance, Drift & Evidence", size: 11}
+  b15: {tone: blue, width: 128, tag: "B15", title: "Day-2 Operations", size: 11}
+  b16: {tone: blue, width: 128, tag: "B16", title: "Training & Education", size: 11}
 edges:
   - [b00, b02, {style: invis}]
   - [b02, b05, {style: invis}]

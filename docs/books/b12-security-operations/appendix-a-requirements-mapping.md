@@ -133,7 +133,7 @@ SC-7 is the one control in the list whose substance belongs to another book. Its
 | NIST SP 800-37 Rev. 2, Monitor step | Tasks M-1 to M-7 assign monitoring, ongoing assessment, risk response, package updates, posture reporting and ongoing authorization[^aA-sp80037] | [Ch 10](10-who-runs-security-operations.md), [12](12-evidence-metrics-and-continuous-monitoring.md) | [Book 01, Chapter 09](../b01-transformation-arc/09-who-leads-the-transformation.md) | Posture reports; ongoing authorization decisions |
 | NIST SP 800-137 | Continuous monitoring as ongoing awareness to support risk decisions, with organization-defined metrics[^aA-sp800137] | [Ch 12](12-evidence-metrics-and-continuous-monitoring.md) | — | The continuous monitoring strategy |
 | NIST SP 800-61 Rev. 3 (April 2025) | Incident response recommendations as a CSF 2.0 community profile; supersedes Rev. 2[^aA-sp80061] | [Ch 11](11-detection-engineering-and-response.md) | — | IR plan mapped to the CSF 2.0 functions |
-| NIST SP 800-53A Rev. 5 | Assessment by examine, interview and test, with objects listed per control[^aA-sp80053a] | [Ch 12](12-evidence-metrics-and-continuous-monitoring.md) | Book 14, Federal Compliance & Authorization (planned, see the [workbook index](../index.md)) | The artifact list in Chapter 12 |
+| NIST SP 800-53A Rev. 5 | Assessment by examine, interview and test, with objects listed per control[^aA-sp80053a] | [Ch 12](12-evidence-metrics-and-continuous-monitoring.md) | [Book 14, Federal Compliance & Authorization](../b14-compliance/index.md) | The artifact list in Chapter 12 |
 
 ## Requirements that are cited but don't say what is claimed
 
