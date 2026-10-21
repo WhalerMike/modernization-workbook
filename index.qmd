@@ -432,6 +432,28 @@ format:
   </div>
 </section>
 
+<section class="mw-section band" id="inspiration">
+  <div class="mw-inner problem-grid">
+    <div>
+      <p class="section-label">The Inspiration</p>
+      <h2 class="section-title">"Show your work."</h2>
+      <p class="section-body">In May 2025 the U.S. Federal Chief Information Officer, Gregory J. Barbaccia, sent federal technology leaders sixteen operating principles. They are the standard this workbook tries to meet.</p>
+      <div class="hero-actions" style="justify-content:flex-start;margin-top:1.5rem;">
+        <a class="btn-primary" href="docs/inspiration/index.html">Read the principles</a>
+        <a class="btn-ghost" href="docs/inspiration/expectations-for-public-tech-leadership.pdf">Download the PDF</a>
+      </div>
+    </div>
+    <div>
+      <ul class="problem-list">
+        <li><span><b>Show your work.</b> Every claim in the workbook is checked against a primary source and footnoted, and each book keeps its verification log beside its chapters.</span></li>
+        <li><span><b>Truth over comfort.</b> When a source turns out to be wrong or out of date, the books say so and correct it in the open.</span></li>
+        <li><span><b>Label the problem.</b> Every book names the governance Active Directory quietly did before it proposes what replaces it.</span></li>
+        <li><span><b>Cross-functional thinking is mandatory.</b> Identity, devices, data, certificates, DNS and the network are treated as one system.</span></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
 <section class="mw-section cta-band">
   <p class="section-label">Present It</p>
   <h2 class="section-title">Fifteen minutes per book, ready to give.</h2>

@@ -1,0 +1,185 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Expectations for Public Tech Leadership — the inspiration behind the Federal Modernization Workbook</title>
+<meta name="author" content="Gregory J. Barbaccia (text); edition prepared by Michael F. Stratton">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=IBM+Plex+Mono:wght@400;500&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  @page { size: Letter; margin: 0.75in 0.8in 0.8in; }
+  @page :first { margin: 0; }
+  :root { --navy:#0D1B2E; --teal:#1E8C8C; --amber:#B27210; --red:#B42318; --ink:#243248; --muted:#5a6878; --line:#dfe5ec; --paper2:#f5f7fa; }
+  * { box-sizing: border-box; }
+  body { font-family: 'DM Sans', Calibri, sans-serif; color: var(--ink); font-size: 10.5pt; line-height: 1.6; margin: 0; }
+  .mono { font-family: 'IBM Plex Mono', Consolas, monospace; }
+  /* Cover */
+  .cover { height: 11in; padding: 1.2in 0.95in 0.8in; display: flex; flex-direction: column; page-break-after: always;
+    background: radial-gradient(900px 420px at 85% 0%, rgba(30,140,140,0.13), transparent 70%),
+                radial-gradient(700px 320px at 0% 40%, rgba(232,160,32,0.11), transparent 70%), #fff; }
+  .eyebrow { font-family: 'IBM Plex Mono', monospace; font-size: 8.5pt; letter-spacing: .2em; text-transform: uppercase; color: var(--amber); font-weight: 500; }
+  .cover h1 { font-family: 'DM Serif Display', Georgia, serif; font-weight: 400; font-size: 44pt; line-height: 1.04; color: var(--navy); margin: .35in 0 .25in; letter-spacing: -.01em; }
+  .cover h1 em { color: var(--teal); }
+  .cover .byline { font-size: 13pt; color: var(--navy); font-weight: 600; margin: 0; }
+  .cover .role { font-size: 11pt; color: var(--muted); margin: .04in 0 0; }
+  .cover .lede { font-size: 12pt; color: var(--muted); max-width: 5.6in; margin: .45in 0 0; line-height: 1.55; }
+  .cover .why { margin-top: auto; border-top: 1px solid var(--line); padding-top: .25in; display: grid; grid-template-columns: 1fr 1fr; gap: .35in; }
+  .cover .why h2 { font-family: 'IBM Plex Mono', monospace; font-size: 8pt; letter-spacing: .18em; text-transform: uppercase; color: var(--teal); margin: 0 0 .08in; font-weight: 500; }
+  .cover .why p { margin: 0; font-size: 9.5pt; color: var(--ink); }
+  .cover .disclaimer { margin-top: .3in; font-size: 8pt; color: var(--muted); line-height: 1.45; }
+  /* Body */
+  .running { font-family: 'IBM Plex Mono', monospace; font-size: 7.5pt; letter-spacing: .14em; text-transform: uppercase; color: var(--muted);
+    border-bottom: 1px solid var(--line); padding-bottom: .08in; margin-bottom: .3in; }
+  h2.section { font-family: 'DM Serif Display', Georgia, serif; font-weight: 400; color: var(--navy); font-size: 22pt; margin: 0 0 .12in; }
+  .purpose { font-size: 11.5pt; color: var(--ink); }
+  .grid { column-count: 2; column-gap: .3in; column-fill: auto; margin-top: .3in; }
+  .p { display: block; -webkit-box-decoration-break: clone; box-decoration-break: clone; orphans: 3; widows: 3; margin: 0 0 .2in; border: 1px solid var(--line); border-top: 3px solid var(--teal); border-radius: 5px; padding: .16in .18in .12in; background: #fff; }
+  .p:nth-child(4n+2) { border-top-color: var(--amber); }
+  .p:nth-child(4n+3) { border-top-color: var(--navy); }
+  .p:nth-child(4n+4) { border-top-color: var(--red); }
+  .p.wide { }
+  .num { font-family: 'IBM Plex Mono', monospace; font-size: 8pt; letter-spacing: .18em; color: var(--teal); font-weight: 500; }
+  .p h3 { break-after: avoid; font-family: 'DM Serif Display', Georgia, serif; font-weight: 400; font-size: 14.5pt; color: var(--navy); margin: .03in 0 .08in; line-height: 1.2; }
+  .p p { margin: 0 0 .07in; font-size: 9.6pt; }
+  .p .num { break-after: avoid; } .p ul { margin: .02in 0 .08in; padding-left: .18in; font-size: 9.6pt; }
+  .p li { margin: 0 0 .02in; }
+  .p strong { color: var(--navy); }
+  .sign { margin-top: .35in; padding-top: .18in; border-top: 1px solid var(--line); font-size: 10pt; }
+  .sign b { color: var(--navy); }
+  .note { margin-top: .3in; background: var(--paper2); border: 1px solid var(--line); border-radius: 5px; padding: .16in .2in; font-size: 8.6pt; color: var(--muted); break-inside: avoid; }
+  .note h4 { margin: 0 0 .06in; font-family: 'IBM Plex Mono', monospace; font-size: 7.5pt; letter-spacing: .16em; text-transform: uppercase; color: var(--amber); font-weight: 500; }
+  .note p { margin: 0 0 .06in; }
+  a { color: var(--teal); text-decoration: none; }
+</style>
+</head>
+<body>
+
+<section class="cover">
+  <div class="eyebrow">The inspiration behind the Federal Modernization Workbook</div>
+  <h1>Expectations for <em>Public Tech</em> Leadership</h1>
+  <p class="byline">Gregory J. Barbaccia</p>
+  <p class="role">United States Federal Chief Information Officer, 2025</p>
+  <p class="lede">Sixteen operating principles the Federal CIO sent to federal technology leaders in May 2025: <em>"a commitment to integrity, service, and transformational delivery."</em> They are the standard the Federal Modernization Workbook tries to meet, chapter by chapter.</p>
+  <div class="why">
+    <div>
+      <h2>Why it matters here</h2>
+      <p>The workbook exists to show its work. Every claim is checked against a primary source and footnoted, every correction is logged, and every book names the problem plainly before proposing the fix: the principles below, applied to modernization.</p>
+    </div>
+    <div>
+      <h2>Edition</h2>
+      <p>The full text as written, set in the workbook's style by Michael F. Stratton. Text published by Federal News Network, May 8, 2025.</p>
+    </div>
+  </div>
+  <p class="disclaimer">This is not an official U.S. government publication, and it is not issued by the Office of Management and Budget or the Office of the Federal CIO. The Federal Modernization Workbook is independent technical analysis; it does not represent the position of, and has not been reviewed or endorsed by, any federal agency or by the author of the text reproduced here.</p>
+</section>
+
+<div class="running">Expectations for Public Tech Leadership · Gregory J. Barbaccia, U.S. Federal Chief Information Officer, 2025</div>
+
+<h2 class="section">Purpose</h2>
+<div class="purpose">
+  <p>Choosing to serve in this office means choosing to build. It means choosing accountability over comfort, clarity over confusion, and outcomes over process. This document outlines the expectations we hold for ourselves—and each other—as we modernize the digital infrastructure of the United States.</p>
+  <p>This is not a typical government shop. We are here to fix what's broken and build what's missing. The standards below are how we ensure that mission is fulfilled.</p>
+</div>
+
+<div class="grid">
+
+<div class="p"><div class="num">01</div><h3>Trust Is the Foundation</h3>
+<p>Every success we'll have is downstream of trust. Trust among teammates, between agencies, with the public, and with our partners. Trust is extended to you on day one—and it is yours to lose.</p>
+<p>You will be exposed to sensitive information: interagency cybersecurity gaps, budget vulnerabilities, contract disputes, employee performance data, and more. With transparency comes responsibility.</p>
+<ul><li>Don't lie. Don't omit to mislead.</li><li>Know when to speak and when to withhold. If in doubt, do not tout.</li><li>Confused? Ask a Lead. No one gets in trouble for asking.</li></ul>
+<p>Breach of trust is the one failure from which there is no guaranteed recovery. Everything else is coachable.</p></div>
+
+<div class="p"><div class="num">02</div><h3>Exercise Judgment Relentlessly</h3>
+<p>Judgment is not instinct—it's a learned skill. Learn it. Practice it.</p>
+<p>Good judgment requires understanding both <em>intent</em> (why are we doing this?) and <em>context</em> (what are the circumstances?). If either is unclear, you are expected to ask until it is not.</p>
+<p>Before you act:</p>
+<ul><li>Understand the mission.</li><li>Understand the system.</li><li>Understand the impact.</li></ul>
+<p>No matter your title, you are empowered to improve how we think, decide, and execute—by bringing good judgment to the table.</p></div>
+
+<div class="p"><div class="num">03</div><h3>Own the Outcome</h3>
+<p>Imagine every system failure is your fault. Act accordingly.</p>
+<ul><li>Don't limit yourself to your job description.</li><li>If you see a problem, you own the solution.</li><li>Default to action, not passivity.</li></ul>
+<p>Push beyond your comfort zone. <strong>This is how we shift the culture of federal IT from slow and reactive to bold and effective.</strong> This office only works if everyone behaves like a founder.</p></div>
+
+<div class="p"><div class="num">04</div><h3>Show Your Work</h3>
+<p>Transparency is the fuel of accountability and shared learning. We are not interested in black-box decisions or vague plans.</p>
+<ul><li>Document your logic.</li><li>Share your assumptions.</li><li>Make it easy for others to follow.</li><li>Ask the same of your colleagues.</li></ul>
+<p>This creates a "hive mind" where decisions improve through scrutiny and learning compounds across the team.</p></div>
+
+<div class="p"><div class="num">05</div><h3>Truth Over Comfort</h3>
+<p>We are truth-seeking above all. The truth is often inconvenient, uncomfortable, or career-challenging—but we pursue it anyway.</p>
+<ul><li>Call out broken processes.</li><li>Identify policy contradictions.</li><li>Challenge assumptions, even from the top.</li></ul>
+<p>We don't sugarcoat: the stakes are too high. <strong>This is a mission-driven team, not a compliance-driven bureaucracy.</strong></p></div>
+
+<div class="p"><div class="num">06</div><h3>Default to Positive Intent</h3>
+<p>Start every interaction assuming your colleagues are here for the right reasons. This reduces friction, improves collaboration, and supports high-bandwidth communication.</p>
+<ul><li>If something feels off, assume miscommunication before malice—and talk it out.</li><li>Extend the benefit of the doubt. Expect it in return.</li></ul></div>
+
+<div class="p"><div class="num">07</div><h3>Burnout Is a National Security Risk</h3>
+<p>You can't deliver if you're depleted. And you're not serving the mission by pretending everything is fine.</p>
+<ul><li>Know the signs: cynicism, disengagement, irritability, fatigue.</li><li>Speak up early. Leads are here to help you deal if it's too much.</li><li>Leads are responsible for managing workloads and expectations.</li></ul>
+<p>Preventing burnout requires intentional investment in well-being. We're in this for the long haul—act accordingly.</p></div>
+
+<div class="p"><div class="num">08</div><h3>Feedback Is a Civic Duty</h3>
+<p>High-performing teams give and receive feedback constantly—and constructively.</p>
+<ul><li>Feedback should be frequent, actionable, and kind.</li><li>Don't wait for a performance review.</li><li>Don't talk behind backs. Say it directly, or escalate it responsibly.</li></ul>
+<p>We're not here to coast. We're here to grow.</p></div>
+
+<div class="p"><div class="num">09</div><h3>Label the Problem</h3>
+<p>Call a problem what it is—don't avoid it to protect egos, maintain surface harmony, or wait for someone else to say it.</p>
+<ul><li>Call out technical debt.</li><li>Flag a failed procurement strategy.</li><li>Surface ambiguous goals.</li><li>Name the "elephants in the room."</li></ul>
+<p>Nothing gets better until someone identifies what's broken. Be that someone.</p></div>
+
+<div class="p"><div class="num">10</div><h3>Commitments Are Sacred</h3>
+<p>This office runs on trust and delivery. If you say you'll do something, it gets done—on time, to spec, or renegotiated early.</p>
+<ul><li>Don't ghost.</li><li>Don't leave others guessing.</li><li>If priorities shift, communicate fast.</li></ul>
+<p>Everyone has too much to do. That's why clarity and follow-through matter.</p></div>
+
+<div class="p"><div class="num">11</div><h3>Lead When It's Time, Follow When It's Not</h3>
+<p>Leadership isn't about hierarchy—it's about ownership. When it's your turn to lead, take full responsibility for vision, planning, communication, and outcomes.</p>
+<p>When you're not leading:</p>
+<ul><li>Contribute fully.</li><li>Voice dissent during planning.</li><li>Execute the final plan with conviction.</li></ul>
+<p>Mission-first doesn't mean consensus-first. It means clarity, commitment, and speed.</p></div>
+
+<div class="p"><div class="num">12</div><h3>Proactivity Over Permission-Seeking</h3>
+<p>We're here to build new systems—not wait for new instructions.</p>
+<ul><li>If you need information, go find it.</li><li>If something's unclear, ask fast.</li><li>If bad news is coming, surface it early.</li></ul>
+<p>Don't assume someone else is handling it. Don't hope the issue will resolve on its own.</p>
+<p>You are the system now.</p></div>
+
+<div class="p wide"><div class="num">13</div><h3>Cross-Functional Thinking Is Mandatory</h3>
+<p>Government doesn't need more people who only care about their own swim lane. We need generalists who can spot patterns, challenge assumptions, and think holistically.</p>
+<ul><li>Learn the language of other functions.</li><li>Ask how policy affects engineering.</li><li>Understand how tech affects procurement.</li><li>Think like a product manager, a security officer, and a strategist.</li></ul>
+<p>Our edge is interdisciplinary thinking applied at speed.</p></div>
+
+<div class="p wide"><div class="num">14</div><h3>Forward Deploy to Earn Trust and Surface Truth</h3>
+<p>The mission doesn't live in conference rooms at headquarters. It lives in the systems, networks, and workflows of the 100+ sub-agencies that make up the federal government. If we're not embedded in their world, we can't claim to understand their challenges—let alone solve them.</p>
+<p>That's why we <strong>forward deploy</strong>.</p>
+<p>Whether it's a field office, a regional data center, or a program team buried under legacy systems and outdated contracts, our job is to meet them where they are.</p>
+<ul><li><strong>Proximity creates perspective.</strong> The best policy and architecture decisions are informed by on-the-ground reality.</li>
+<li><strong>Trust is earned face-to-face.</strong> When agency teams see that we show up, listen, and help—without judgment—they start picking up the phone.</li>
+<li><strong>Influence requires empathy.</strong> Transformation doesn't happen from the top down. It spreads when we understand lived pain points and tailor solutions that work in real-world environments.</li></ul>
+<p>You don't need to be asked to visit a sub-agency. You should volunteer. Show up early. Stay late. Ask the hard questions—and the basic ones.</p>
+<p>This is not a remote-control mission. It's a hands-on, forward-leaning effort to unlock the latent potential of government systems by working alongside those who maintain and endure them every day.</p>
+<p>If we want to modernize the system, we have to walk through it.</p></div>
+
+<div class="p"><div class="num">15</div><h3>This Office Only Works If You're All In</h3>
+<p>We are building a new operating model for government. One that delivers faster, secures smarter, and serves better.</p>
+<p>That won't happen with part-time passion or half-hearted effort. This job isn't easy. It's not always fun. But it matters—immensely.</p>
+<p>We are here to serve the public and leave behind a better government than we found.</p>
+<p>That's the standard.</p></div>
+
+<div class="p"><div class="num">16</div><h3>Your Best Is Our Best</h3>
+<p>Your commitment, passion, and drive will deliver success. I am most thankful for all you do!</p></div>
+
+</div>
+
+<div class="sign"><b>Gregory Barbaccia</b><br>US Federal Chief Information Officer<br>Executive Office of the President</div>
+
+<div class="note">
+  <h4>About this edition</h4>
+  <p>Text: Gregory J. Barbaccia, <em>Expectations for Public Tech Leadership</em>, sent by email to federal technology leaders in May 2025, reproduced in full by Federal News Network, "Federal CIO outlines 16 operating principles for IT leaders," Jason Miller, May 8, 2025 (archived at <a href="https://web.archive.org/web/20260118195929/https://federalnewsnetwork.com/cio-news/2025/05/federal-cio-outlines-16-operating-principles-for-it-leaders/">web.archive.org</a>). The principles appear in their original order. The email's cover note to staff and the Office of the Federal CIO logo are not reproduced.</p>
+  <p>Mr. Barbaccia served as Federal CIO from January 2025 to August 2026. Edition prepared for the Federal Modernization Workbook (<a href="https://whalermike.github.io/modernization-workbook/">whalermike.github.io/modernization-workbook</a>) by Michael F. Stratton. Not an official U.S. government publication.</p>
+</div>
+
+</body>
+</html>

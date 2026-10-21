@@ -16,9 +16,11 @@ project:
     - "404.qmd"
     - "docs/books/**/*.md"
     - "docs/presentations/**/*.md"
+    - "docs/inspiration/**/*.md"
   # Slide decks are published so the Presentations page can link them.
   resources:
     - "presentations/**/*.pptx"
+    - "docs/inspiration/*.pdf"
 
 website:
   title: "Federal Modernization Workbook"
@@ -57,6 +59,8 @@ website:
             text: "Book 09 — Network & Transport"
       - href: docs/presentations/index.md
         text: "Presentations"
+      - href: docs/inspiration/index.md
+        text: "Inspiration"
       - href: sitemap.qmd
         text: "Site Map"
     right:
