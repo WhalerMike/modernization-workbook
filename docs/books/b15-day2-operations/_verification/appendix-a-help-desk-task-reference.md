@@ -69,3 +69,9 @@ Method, October 21, 2026: every role claim checked against Microsoft Learn's "Le
 | Escalation matrix | Escalation matrix | Updated |
 | SLA table | Service levels | Labeled design |
 | Non-compliance reporting | Conditions a supervisor reports | — |
+
+## Editor corrections, October 22, 2026
+
+| Claim | Result | Source |
+|---|---|---|
+| Synchronized-account password reset is not help-desk work in Entra ID | corrected: with password writeback enabled, an admin reset in the Microsoft Entra admin center is written back to AD (not from the Microsoft 365 admin center); now consistent with Chapter 03 | Microsoft Learn, concept-sspr-writeback (item 4); password-writeback-microsoft-365-admin-center troubleshooting article |

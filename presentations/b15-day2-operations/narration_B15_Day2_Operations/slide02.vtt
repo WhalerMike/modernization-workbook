@@ -1,0 +1,90 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.356
+A modernization program spends
+most of its attention on day one:
+
+2
+00:00:04.356 --> 00:00:08.500
+the tenant is built, identities
+synchronize, the cutover runs.
+
+3
+00:00:08.500 --> 00:00:12.059
+The estate is judged on
+day two, when every reset,
+
+4
+00:00:12.059 --> 00:00:15.162
+unlock and new hire
+lands at the help desk.
+
+5
+00:00:15.162 --> 00:00:18.537
+In Entra ID the help
+desk's power is explicit.
+
+6
+00:00:18.537 --> 00:00:23.294
+Microsoft labels the Helpdesk Administrator
+role privileged, and warns that
+
+7
+00:00:23.294 --> 00:00:27.976
+changing a user's password may mean the
+ability to assume that user's identity.
+
+8
+00:00:27.976 --> 00:00:31.643
+Requiring M F A re-registration
+deletes the user's phones,
+
+9
+00:00:31.643 --> 00:00:34.999
+Authenticator registrations
+and software tokens,
+
+10
+00:00:34.999 --> 00:00:39.525
+and whoever signs in next and registers
+a method controls the account.
+
+11
+00:00:39.525 --> 00:00:43.750
+So a reset on an unverified
+request isn't a support task.
+
+12
+00:00:43.750 --> 00:00:46.562
+It's a transfer of the
+account to whoever asked.
+
+13
+00:00:46.562 --> 00:00:47.762
+Attackers know it.
+
+14
+00:00:47.762 --> 00:00:52.373
+CISA's advisory on the Scattered
+Spider group describes calls that
+
+15
+00:00:52.373 --> 00:00:57.063
+convinced help desk staff to reset
+passwords and transfer M F A tokens.
+
+16
+00:00:57.063 --> 00:01:01.022
+And when the governed path is
+hard, the desk works around it:
+
+17
+00:01:01.022 --> 00:01:04.899
+an emergency admin account, an
+email treated as a request,
+
+18
+00:01:04.899 --> 00:01:08.260
+a temporary password sent
+back to the same inbox.

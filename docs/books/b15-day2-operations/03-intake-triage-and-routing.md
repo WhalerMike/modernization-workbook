@@ -91,7 +91,7 @@ Triage asks one question: what authority does this task need? Who received the r
 | Class | The triage test | Pipeline |
 |---|---|---|
 | A0 | No access change: a cloud-only password reset after verification, a sign-in or audit log lookup, a client-side fix | ITSM |
-| A1 | Changes to the requester's own account or entitlements: an MFA method reset, a license, a profile attribute | ITSM; the requester's manager approves |
+| A1 | Changes to the requester's own account or entitlements: an MFA method reset, a license, a profile attribute | ITSM; the service desk supervisor or the requester's manager approves |
 | A2 | Access governed by an owner: application access, group creation and ownership, a certification revocation, a joiner or leaver | IGA; the application owner approves |
 | A3 | Governance actions: admin consent, an ImmutableID hard-match repair, anything arriving as a Microsoft notification | IGA; the application owner and the IGO approve; never automated |
 | Out of scope | Conditional Access, directory roles, service principals and app registrations | Escalated to security or identity engineering |
@@ -148,7 +148,7 @@ The source crosswalk mapped more tasks to the spoke than its documentation suppo
 | Group membership, group creation, owners | A1 or A2 | Add or remove user, create security group, add or remove owner | Connector action |
 | Enterprise application access | A2 | Create and Delete Application Assignment; the page doesn't say whether these handle group-to-app-role assignment | Connector for group membership; help desk task for the app-role binding until a pilot proves the action |
 | Device actions | A2 or out of scope | Group membership for devices only; no enable, disable or delete | Device team |
-| ImmutableID hard-match repair | A3 | Not covered | Help desk or identity engineering, through Microsoft Graph, after two approvals |
+| ImmutableID hard-match repair | A3 | Not covered | Identity engineering, not the help desk: usually fixed in AD (`mS-DS-ConsistencyGuid`), after two approvals ([Chapter 04](04-help-desk-authority-in-entra.md#why-immutableid-repair-left-the-help-desk)) |
 | Admin consent | A3 | Not covered | The IGO, never automated |
 | Conditional Access, directory roles, service principals | Out of scope | Service principal actions exist; the program keeps them manual | Security or identity engineering |
 
@@ -167,8 +167,8 @@ Approval also follows the resolution, not the symptom. A OneDrive sync ticket sh
 | Client-side fix: sign out and in, reset or reinstall the client | None | — | Ticket assigned |
 | License assignment or change | Yes | Departmental owner or manager | Approval recorded; scoped role activated |
 | Storage provisioning trigger | Yes | Departmental owner or manager | Approval recorded |
-| MFA reset to break an authentication loop | Yes | The requester's manager, after identity verification | Approval and verification recorded; authentication role activated |
-| ImmutableID repair | Yes, two-stage | Identity engineering lead and the IGO | Both approvals recorded; hybrid identity role activated |
+| MFA reset to break an authentication loop | Yes | The service desk supervisor or the requester's manager, after identity verification | Approval and verification recorded; authentication role activated |
+| ImmutableID repair | Yes, two-stage | Identity engineering lead and the IGO | Both approvals recorded; the fix made in AD, or in the cloud by a role that can write `onPremisesImmutableId` (not Hybrid Identity Administrator) |
 | Conditional Access exception or change | Escalate | Security administrator and the IGO, through the change advisory board | The help desk records and escalates; it doesn't execute |
 
 When a fix turns out to need approval, the technician raises an approval task to the right approver and sets the ticket to pending approval. The ticket returns to the queue when the approver acts.

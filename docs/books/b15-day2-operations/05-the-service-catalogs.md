@@ -48,8 +48,8 @@ The catalog has ten items in three families: lifecycle (joiner, mover, leaver, l
 | New account (joiner) | AC-2 | Manager and identity team | Provisioned from the HR-sourced record ([Book 03, Chapter 08](../b03-hr-identity/08-joiner-mover-leaver.md)) with a least-privilege baseline |
 | Role or scope change (mover) | AC-6 | Manager and identity team | Entitlements re-derived from the new assignment; stale ones removed; an access review of what remains |
 | Deprovision (leaver) | AC-2 | Manager and identity team | Disable, revoke sessions and tokens, reassign owned objects, all evidenced |
-| Password reset | IA-5 | Self-service, or the service desk after verification | Self-service password reset where policy allows; otherwise the verified path in [Chapter 04](04-help-desk-authority-in-entra.md#identity-proofing-before-any-credential-action) |
-| MFA method reset | IA-5 | Service desk, after re-proofing | Re-proofing required; the change is logged and alerts, because it is a social-engineering target |
+| Password reset | IA-5 | Self-service; otherwise the service desk supervisor or the requester's manager, after the service desk verifies the user | Self-service password reset where policy allows; otherwise the verified path in [Chapter 04](04-help-desk-authority-in-entra.md#identity-proofing-before-any-credential-action) |
+| MFA method reset | IA-5 | The service desk supervisor or the requester's manager, after the service desk re-proofs the user | Re-proofing required; the change is logged and alerts, because it is a social-engineering target |
 | Account unlock | IA-5 | Self-service, or the service desk | Repeated unlocks for one account are a detection signal, not just a ticket count |
 | Group membership | AC-6 | Group owner and an approver | Time-bound where the group grants elevation; linked to the access review |
 | License assignment | AC-2 | Manager | Group-based licensing preferred over per-user assignment |
@@ -155,7 +155,7 @@ The catalog only works if the roles behind it stay separate. The program's desig
 | Role | Owns |
 |---|---|
 | Service desk | Verification, execution of items with no connector action, and the record of what was done; never approval |
-| Identity team | Approval of lifecycle and credential items; the joiner, mover and leaver derivations |
+| Identity team | Approval of lifecycle items, alongside the manager; the joiner, mover and leaver derivations. Routine credential items are approved by the service desk supervisor or the requester's manager ([Chapter 10](10-who-runs-day-two.md)) |
 | Resource and group owners | Approval of access items for what they own |
 | Security approver | Conditional Access exceptions, guest invitations, MFA resets for sensitive accounts |
 | Telephony administrators | Numbers, policies, routing and the network-to-location map, through catalog items |
