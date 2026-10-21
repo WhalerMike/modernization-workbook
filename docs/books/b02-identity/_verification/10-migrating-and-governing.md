@@ -137,3 +137,12 @@ Source: `docs/operational-guides/identity/identity-modernization.md` (§9–§15
 | Date | Change |
 |---|---|
 | 2026-10-21 | Extension attribute reconciliation: mover trigger carriers `extensionAttribute3`/`4` -> `extensionAttribute6` (division code)/`extensionAttribute12` (position category), linked to the program attribute map. FedRAMP date fixed: Consolidated Rules for 2026 launched June 25, 2026 (was June 24), per FedRAMP's announcement post dated June 25, 2026 (new footnote `c10-fedramp-launch`, verified Oct 21, 2026). |
+
+## Revision 2026-10-21 — review fixes
+
+Applied from the verified review of Books 02–05. Sources were opened again on Oct 21, 2026.
+
+| # | Change | Where | Verdict | Source |
+|---|---|---|---|---|
+| R1 | Privileged-role review cadence aligned across Books 02 and 04: Tier 0 monthly, other privileged roles quarterly, never self-review alone. The cadence is the program's design; AC-2(j) and AC-6(7) leave the frequency organization-defined; PIM row now monthly Tier 0 / quarterly others; security team, never assignees alone (Members (self) leaves role-assignable groups out of Entra role reviews) | Access reviews table | corrected | c10-pim-review <https://learn.microsoft.com/entra/id-governance/privileged-identity-management/pim-create-roles-and-resource-roles-review#create-access-reviews> |
+| R2 | AC-6(7) evidence paragraphs and Phase 5 step 4 now say monthly (Tier 0) and quarterly reviews; frequency is organization-defined | Access reviews; Reviewing privileged access (AC-6(7)); Phase 5 | corrected | c10-fedramp-ac <https://fedramp.gov/2026/reference/controls/access-control/> |

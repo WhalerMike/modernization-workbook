@@ -46,6 +46,10 @@ Source: `docs/whitepapers/fedramp-20x-and-the-commercial-feature-gap.md` (*What 
 | 36 | Rev5 certifications "remain valid to at least 2028-12-31" | Rev5 side by side | corrected | Not in NTC-0013; replaced with the notice's wording (also settled in Book 09 Ch03) |
 | 37 | The single-level habit is the origin of "we can't have that" reasoning | Security category per resource | restated-as-design | Author's analysis, presented as such |
 | 38 | Five working conclusions | What changes for the agency | restated-as-design | Program positions |
+| 39 | Review fix, Oct 21, 2026: epigraph "moves the only boundary left onto the agency's own system" | Epigraph | corrected (wording-only) | Dropped the qualifier and read as if the provider's scope no longer exists. Now "a set of obligations and a published assessment scope (Rev5 packages still draw that scope as a boundary), which leaves the agency's own system as the only boundary the rules name." Restates what the chapter already supports (MAS, the Rev5 section, #33-34 and the [^c03-crjson] count); no new note. |
+| 40 | Review fix, Oct 21, 2026: removed "Earlier program material named the second family 'UCM'" | Boundary rule families | wording-only | Revision history kept here; the family is CMU per the ruleset. No new claim. |
+| 41 | Review fix, Oct 21, 2026: removed "earlier program material gave the first transformative deadline as '30 days'" | Change control | wording-only | Body now says "in business days throughout, not calendar days" under the existing [^c03-scn] note. No new claim. |
+| 42 | Review fix, Oct 21, 2026: removed "Earlier program material said Rev5 certifications 'remain valid to at least 2028-12-31.' FedRAMP's notice doesn't say that." | Rev5 side by side | wording-only | Body states the NTC-0013 wording plainly (see #36). No new claim. |
 
 ## Carry-forward ledger
 

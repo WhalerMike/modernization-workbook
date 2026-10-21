@@ -117,3 +117,12 @@ Defensive framing: every ESC class is written as description (one sentence), det
 | Compliance Amendment (FIPS 140, HSM CA keys, SC-12/SC-13) | "Hardening the AD CS that remains" (Protect the CA keys) | Cloud PKI key custody covered in Chapter 04 |
 | §13 cross-reference rows for §3 and §11 | Not carried | Pointers to companion guides outside this book; replaced by book cross-links |
 | Appendix A checklist | Not carried here | Context only; Appendix A writer owns it |
+
+## Review fixes, 2026-10-21
+
+Applied from the verified review findings (critique claims re-checked against primary sources on 2026-10-21). Every factual change was re-researched and carries its own footnote; wording-only changes are marked as such.
+
+| # | Change | Where | Verdict | Source |
+|---|---|---|---|---|
+| RF-1 | CRL wording "HTTP (or HTTPS; HTTP recommended)"; `[^c03-cba-crl]` added beside `[^c03-cba-overview]` | Make revocation real (line 263) | verified (same source conflict as Chapter 02, noted in the footnote) | <https://learn.microsoft.com/en-us/entra/identity/authentication/concept-certificate-based-authentication-certificate-revocation-list> |
+| RF-2 | Duplicate footnotes for the configure-ca page merged: `[^c03-cpki-scep-eku]` removed, its one use (line 57) now cites `[^c03-cpki-configure]`, whose annotation now quotes the Intune Administrator and Any Purpose EKU text | Footnotes | verified (page re-opened; quotes checked) | <https://learn.microsoft.com/intune/cloud-pki/configure-ca> |

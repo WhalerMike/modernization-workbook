@@ -187,8 +187,11 @@ These map to the access control family of NIST SP 800-53 Revision 5, which feder
 |---|---|---|
 | Single department | Help desk, local administration | Quarterly |
 | Division or region | Tier 2 operations | Quarterly |
-| Privileged roles | Identity administrators | Monthly or on change |
+| Tier 0 privileged roles | Global, Privileged Role, Privileged Authentication, Security and Conditional Access Administrator | Monthly |
+| Other privileged roles | Service administrators, such as Exchange, SharePoint, Intune and Application Administrator | Quarterly |
 | Break-glass | Emergency only | Continuous monitoring |
+
+These cadences are the program's design choice, not a Microsoft or NIST requirement. SP 800-53 leaves the frequency to the organization: AC-2(j) requires reviewing accounts "[Assignment: organization-defined frequency]", and AC-6(7) requires reviewing the privileges assigned to defined roles and classes of users at an organization-defined frequency and removing those no longer needed.[^c05-nist-80053][^c05-fedramp-ac] The program picks monthly for Tier 0 because those roles can grant every other role. The tiers and the per-tier reviewers are set in [Book 04, Appendix B](../b04-access/appendix-b-pim-role-settings.md#review-cadence-by-tier). Assignees never review only themselves ([Chapter 10](10-migrating-and-governing.md#access-reviews)).
 
 Delegation stays auditable when the scope is a governed attribute and the assignment is recorded. Manual group membership as the only scope mechanism loses that.
 
@@ -245,6 +248,7 @@ $state | Export-Csv -Path .\au-actual-state.csv -NoTypeInformation
 [^c05-rmau]: Microsoft Learn, "Restricted management administrative units in Microsoft Entra ID," <https://learn.microsoft.com/entra/identity/role-based-access-control/admin-units-restricted-management> (accessed Oct 20, 2026).
 [^c05-role-groups]: Microsoft Learn, "Use Microsoft Entra groups to manage role assignments," <https://learn.microsoft.com/entra/identity/role-based-access-control/groups-concept> (accessed Oct 20, 2026).
 [^c05-pim-scope]: Microsoft Learn, "Assign Microsoft Entra roles in Privileged Identity Management," section "Assign a role with restricted scope," <https://learn.microsoft.com/entra/id-governance/privileged-identity-management/pim-how-to-add-role-to-user> (accessed Oct 20, 2026).
-[^c05-nist-80053]: National Institute of Standards and Technology, SP 800-53 Rev. 5, *Security and Privacy Controls for Information Systems and Organizations*, September 2020 (updated December 10, 2020), <https://csrc.nist.gov/pubs/sp/800/53/r5/upd1/final> (accessed Oct 20, 2026).
+[^c05-nist-80053]: National Institute of Standards and Technology, SP 800-53 Rev. 5, *Security and Privacy Controls for Information Systems and Organizations*, September 2020 (updated December 10, 2020), <https://csrc.nist.gov/pubs/sp/800/53/r5/upd1/final> (accessed Oct 21, 2026).
+[^c05-fedramp-ac]: FedRAMP, "Access Control" (NIST SP 800-53 Rev. 5 controls, catalog release 5.2.0), AC-2(j) and AC-6(7), <https://fedramp.gov/2026/reference/controls/access-control/> (accessed Oct 21, 2026).
 [^c05-purview]: Microsoft Learn, "Administrative units in Microsoft Purview," <https://learn.microsoft.com/purview/purview-admin-units> (accessed Oct 20, 2026).
 [^c05-update-au]: Microsoft Learn, "Update-MgDirectoryAdministrativeUnit," <https://learn.microsoft.com/powershell/module/microsoft.graph.identity.directorymanagement/update-mgdirectoryadministrativeunit?view=graph-powershell-1.0> (accessed Oct 20, 2026).

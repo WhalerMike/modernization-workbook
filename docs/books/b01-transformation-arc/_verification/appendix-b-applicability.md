@@ -24,6 +24,7 @@ Editor: W5. Source: the series page in place (old 00a, "Applicability and Scope"
 | 16 | "Read this before Chapter 01" | Opening | corrected: the page is now Appendix B; read alongside Chapter 01 | — |
 | 17 | Old chapter numbers (01, 02–03, 04–08, 07) | Throughout | corrected to new numbering (03, 10–11, 03–08, 07) | — |
 | 18 | Microsoft Learn "Authoritative references" list | End | removed as a list; every entry footnoted | — |
+| 19 | Review fix, Oct 21, 2026: new row "Non-Microsoft identity or cloud stack": the method transfers, the product mappings don't | The environment this book assumes | restated-as-design | Program position; no external claim, no note. Links Book 10 Ch10 for one alternative collaboration path. |
 
 ## Carry-forward ledger
 

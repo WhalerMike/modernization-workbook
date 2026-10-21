@@ -86,3 +86,20 @@ Checked October 20, 2026. Sources: `docs/operational-guides/target-surface/intun
 | governed-path §9 FedRAMP Moderate scope callout | Ch 05 | Owned by Ch 05 |
 | governed-path §9 FedRAMP 20x KSI table and exclusions | FedRAMP 20x Key Security Indicators (verified; mapping labeled as program claim; KSI-PIY-GIV added for inventory) | Also summarized in Ch 05 |
 | endpoint-device-plan (all) | Where to go next (linked; this chapter is its Watch phase) | Stays in place |
+
+## Revision 2026-10-21 — review fixes
+
+Applied from the verified review of Books 02–05. Sources were opened again on Oct 21, 2026.
+
+| # | Change | Where | Verdict | Source |
+|---|---|---|---|---|
+| R1 | Source-correction narration trimmed; Endpoint-security precedence and GCC instance kept as common beliefs | Conflict table; Defender settings; queries; Tier 0 alert; control mapping; boundary | restated | unchanged footnotes |
+
+### Revision history moved out of the chapter body
+
+The body now states the guidance directly. These were the earlier positions it used to narrate:
+
+- The source claimed Endpoint security wins over configuration profiles.
+- The source put Defender-portal settings in the EDR policy; its three KQL queries hard-coded states, joined on a nonexistent `DeviceId` and queried the wrong table.
+- The source alerted on Tier 0 noncompliance from the daily export; mapped a wider control set, including SI-16 and AU-3.
+- The source's boundary table described Intune in GCC (Moderate) as a separate government instance.

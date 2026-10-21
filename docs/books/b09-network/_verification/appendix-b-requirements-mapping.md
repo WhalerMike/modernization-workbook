@@ -42,3 +42,13 @@ Writer W2. All sources opened October 21, 2026. The appendix reuses the verifica
 
 - The source list contains only sources this writer opened. When the other chapters land, add any further requirement-bearing sources they cite (for example Microsoft 365 network connectivity principles for Ch12, or Configuration Manager co-management workloads for Ch11) after checking each URL.
 - "Addressed in" chapter assignments follow the division of work in `_BRIEF.md`; confirm against the finished chapters.
+
+## Review fixes, 2026-10-21
+
+Applied from the verified review findings (critique claims re-checked against primary sources on 2026-10-21). Every factual change was re-researched and carries its own footnote; wording-only changes are marked as such.
+
+| # | Change | Where | Verdict | Source |
+|---|---|---|---|---|
+| RF-1 | DoD Zero Trust Strategy entry in the source list (line 149) left on DefenseScoop | Third-party sources | unchanged | The official PDF returned HTTP 403 to automated fetch on 2026-10-21 |
+
+**Manual check needed:** as for Chapter 03, open the official PDF in a browser, then list it as the primary source.

@@ -96,3 +96,12 @@ Checked October 21, 2026 against primary sources: cisa.gov (BOD 23-02, BOD 26-02
 | §8.5 Paired-branch study; four cost categories; don't import percentages | Ch13 | — |
 | §9 Recommendations 1–10 | Ch10 plan list (1–4, 8 and BOD spec); Ch10 actions (6, 7, 9); Ch03 (2, 5); Ch13 (8, 10) | — |
 | §10 Sources | Footnotes in Ch10 and Ch13; App B | Source list not reproduced; "stated as not found" items carried in Ch13 |
+
+## Review fixes, 2026-10-21
+
+Applied from the verified review findings (critique claims re-checked against primary sources on 2026-10-21). Every factual change was re-researched and carries its own footnote; wording-only changes are marked as such.
+
+| # | Change | Where | Verdict | Source |
+|---|---|---|---|---|
+| RF-1 | "GSA's EIS service list doesn't name SD-WAN" conflicted with Chapter 05. Both GSA pages re-opened: the TIC page lists "SD-WAN Service as fully managed, co-managed, or do-it-yourself implementations" among EIS services; the main EIS page's summary list doesn't name SD-WAN. Sentence rewritten to say both, with the TIC page leading, so Chapter 05 stands | line 41 | corrected | <https://www.gsa.gov/technology/it-contract-vehicles-and-purchasing-programs/enterprise-infrastructure-solutions/trusted-internet-connections>; <https://www.gsa.gov/technology/it-contract-vehicles-and-purchasing-programs/telecommunications-and-network-services/enterprise-infrastructure-solutions> |
+| RF-2 | `[^c10-gsa-tic]` URL updated to the canonical page (the old URL 301-redirects) and annotated with the SD-WAN quote | Footnote | verified | <https://www.gsa.gov/technology/it-contract-vehicles-and-purchasing-programs/enterprise-infrastructure-solutions/trusted-internet-connections> |

@@ -66,7 +66,7 @@ Migration runs in six steps: inventory ([Chapter 10](10-analyzing-the-estate.md)
 
 ## DHCP — AD-authorized to governed DHCP
 
-In an AD domain, a Windows DHCP server must be authorized before it leases addresses. Authorization writes the server into a list in the Configuration container of AD; the DHCP server checks that list every hour and, if its address isn't there, stops serving clients.[^c06-dhcpauth][^c06-dhcpquick] That check is a Windows DHCP Server service policing itself. It stops a misconfigured or unauthorized Windows server, but it doesn't stop a rogue device that was never a Windows DHCP server; switch-level controls do that ([Book 08, Chapter 05](../b08-ddi/05-edge-interception-and-bypass.md)). Earlier versions of this chapter called authorization "rogue-server detection"; it is narrower than that.
+In an AD domain, a Windows DHCP server must be authorized before it leases addresses. Authorization writes the server into a list in the Configuration container of AD; the DHCP server checks that list every hour and, if its address isn't there, stops serving clients.[^c06-dhcpauth][^c06-dhcpquick] That check is a Windows DHCP Server service policing itself. It stops a misconfigured or unauthorized Windows server, but it doesn't stop a rogue device that was never a Windows DHCP server; switch-level controls do that ([Book 08, Chapter 05](../b08-ddi/05-edge-interception-and-bypass.md)). Authorization isn't rogue-server detection; it is narrower than that.
 
 Assessments commonly find reservations for MAC addresses not seen in years, options that push DNS servers whose addresses will change, oversized scopes, and failover relationships never tested.
 

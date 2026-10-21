@@ -92,3 +92,11 @@ Checked 2026-10-20 against Microsoft Learn (Learn MCP search and fetch) and the 
 
 - `docs/images/diagrams/b02-identity/src/ch04-dependency-surface.flow.yaml` (replaces no PNG; sources had none)
 - `docs/images/diagrams/b02-identity/src/ch04-adapter-sequence.flow.yaml`
+
+## Revision 2026-10-21 — review fixes
+
+Applied from the verified review of Books 02–05. Sources were opened again on Oct 21, 2026.
+
+| # | Change | Where | Verdict | Source |
+|---|---|---|---|---|
+| R1 | Sync retirement criterion names the authoritative source per population: HR for employees, the agency-designated source for contractors and vendors (Book 03 Ch06), invitation and entitlement management for guests | Sync engine retirement criteria | restated-as-design | Book 03 Ch06 (internal) |

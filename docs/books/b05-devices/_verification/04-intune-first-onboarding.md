@@ -62,3 +62,23 @@ Sources: `docs/reference-architecture/intune-first.md` (all sections) and its sh
 | intune-first-onboarding.md Bottom line | Ch04 "Where the organizational assignment comes from" (unpositioned marker keeps rules deterministic) | |
 | (new) Autopilot vs device preparation, GCC availability, registration, group tags, enrollment restrictions, naming, ESP, baseline | Ch04 Windows and baseline sections | Added per assignment |
 | (new) Assignment-carrier figure | `ch04-assignment-carrier` | |
+
+## Revision 2026-10-21 — review fixes
+
+Applied from the verified review of Books 02–05. Sources were opened again on Oct 21, 2026.
+
+| # | Change | Where | Verdict | Source |
+|---|---|---|---|---|
+| R1 | Exception path D added: Windows endpoints that can't enroll; compliant-device grant needs Entra registration plus Intune (or partner MDM on Windows) enrollment | The four exception paths; Path D under the compliant-device policies | verified | c04-ca-grant <https://learn.microsoft.com/entra/identity/conditional-access/concept-conditional-access-grant#require-device-to-be-marked-as-compliant> |
+| R2 | Path D: Defender for Endpoint security settings management for unenrolled devices; registers the device in Entra; not on non-persistent VDI or 32-bit Windows | Path D | verified | c04-mde-ssm <https://learn.microsoft.com/intune/device-security/microsoft-defender/security-settings-management> |
+| R3 | Path D: named exclusion group paired with a deviceId NotIn device filter (Microsoft's specific-accounts-on-specific-devices pattern; negative operators match unregistered devices); exclusions used sparingly | Path D | verified; group name, 90-day review and isolation-first order are design | c04-ca-filter <https://learn.microsoft.com/entra/identity/conditional-access/concept-condition-filters-for-devices>; c04-ca-plan <https://learn.microsoft.com/entra/identity/conditional-access/plan-conditional-access#roll-back-policies> |
+| R4 | Source-correction narration trimmed | Pillar 4; phase 3; Surface row; exception C | restated | unchanged footnotes |
+
+### Revision history moved out of the chapter body
+
+The body now states the guidance directly. These were the earlier positions it used to narrate:
+
+- Pillar 4 was corrected from a source that paired Arc with the Intune Settings Catalog for servers.
+- The source described a pre-staged Entra ID device object placeholder as a phase 3 output.
+- The source's Surface row named specific resellers and firmware features (dropped as vendor positioning).
+- Exception C was restated from a source that cited a program decision.

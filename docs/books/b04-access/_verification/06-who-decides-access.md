@@ -104,3 +104,20 @@ access-review mechanics are Chapter 09's.
 | Policy exceptions and waivers (statement, process, authority, duration, register, callout) | Ch 06 Exceptions | |
 | Document control (version history, review cycle, owner, distribution, certification, signatures, effectivity) | — | Source policy's own document control; not book content |
 | ServiceNow automation alignment | Ch 06 Authority split (automation paragraph, link to Help Desk Flow) | Spoke quotation stays in helpdesk-flow.md where it is sourced |
+
+## Revision 2026-10-21 — review fixes
+
+Applied from the verified review of Books 02–05. Sources were opened again on Oct 21, 2026.
+
+| # | Change | Where | Verdict | Source |
+|---|---|---|---|---|
+| R1 | Source-correction narration trimmed; guidance stated directly | Lines on decision rights, `.All` trigger, tier table, AO rows, retention, credential alert | restated | unchanged footnotes |
+
+### Revision history moved out of the chapter body
+
+The body now states the guidance directly. These were the earlier positions it used to narrate:
+
+- The source policies for this chapter didn't account for the ticket/role divergence.
+- The source policy defined the critical-scope trigger as any `.All` application permission (misses `Mail.ReadWrite` and `Mail.Send`).
+- The tier table was carried from the source governance model; the AO rows and the credential alert were additions to it.
+- The source governance model assumed 30 and 90 days of Entra log retention.

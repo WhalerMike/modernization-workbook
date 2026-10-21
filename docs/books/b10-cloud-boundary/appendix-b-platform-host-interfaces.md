@@ -43,7 +43,7 @@ The reference architecture runs Gitea behind IIS. Gitea and IIS are the program'
 | E. Local management | PowerShell 7.6 (signed scripts only), Windows PowerShell 5.1 for legacy IIS cmdlets, the Gitea CLI, IIS Manager and `appcmd`, NTFS storage | Tier 0 administrators |
 | F. Outbound integrations | GitHub upstream pull mirror, PostgreSQL back end (or embedded SQLite), build-time package sources | Upstream ingest, supply chain |
 
-Two planes in the earlier version of this inventory are gone. The host was listed as reporting an Intune compliance policy and as hybrid joined to Entra ID; neither holds for Windows Server 2025, as family B and family C explain.
+Two planes are absent on purpose. The host reports no Intune compliance policy and isn't hybrid joined to Entra ID; neither is possible for Windows Server 2025, as family B and family C explain.
 
 ::: {.callout-warning}
 ## Illustrative configuration
@@ -94,7 +94,7 @@ Used by every `git clone`, `git fetch` and `git push` against the canonical repo
 
 ### A.2 SSH Git transport, TCP 2222
 
-Gitea runs its own SSH server; the operating system's OpenSSH server isn't installed and port 22 isn't used. Gitea's built-in server needs `START_SSH_SERVER = true`, which defaults to `false`; `DISABLE_SSH = false` alone only leaves the SSH feature enabled. `SSH_PORT` is the port shown in clone URLs and `SSH_LISTEN_PORT` the port the built-in server listens on.[^aB-gitea-cheat] (The earlier version listed only `DISABLE_SSH` and `SSH_LISTEN_PORT`, which doesn't start the server.) Users authenticate with SSH public keys they upload in the web UI or through `POST /api/v1/user/keys`.[^aB-gitea-api]
+Gitea runs its own SSH server; the operating system's OpenSSH server isn't installed and port 22 isn't used. Gitea's built-in server needs `START_SSH_SERVER = true`, which defaults to `false`; `DISABLE_SSH = false` alone only leaves the SSH feature enabled. `SSH_PORT` is the port shown in clone URLs and `SSH_LISTEN_PORT` the port the built-in server listens on.[^aB-gitea-cheat] Users authenticate with SSH public keys they upload in the web UI or through `POST /api/v1/user/keys`.[^aB-gitea-api]
 
 The SSH plane is equivalent to HTTPS for `git` operations but bypasses IIS, so it doesn't appear in the IIS W3C logs. Its audit trail is Gitea's own log under `D:\Gitea\log\`, which the conformance adapter reads alongside the IIS log. HTTPS is the default for people (web UI, README, configured push URLs); SSH is for build agents that can't reach HTTPS through the agency's authenticating forward proxy, because SSH doesn't use HTTP proxies.
 
@@ -139,7 +139,7 @@ Routed through IIS to Gitea's HTML surface: repository browsing, blame, raw file
 
 Anonymous access is off. `DISABLE_REGISTRATION = true` (Gitea's default) means only administrators create accounts, and `REQUIRE_SIGNIN_VIEW = true` (default `false`) forces sign-in to view any page or use the API.[^aB-gitea-cheat]
 
-The earlier version said server-side hook bodies were edited in the browser under the webhooks settings. Gitea does offer per-repository Git hook editing, but only when `DISABLE_GIT_HOOKS` is set to `false`, and Gitea's documentation warns that doing so lets users with the Git Hook privilege run arbitrary code on the host.[^aB-gitea-cheat] On a Tier 0 host the program keeps the default (`true`) and deploys hook bodies to disk through the signed build instead.
+Hook bodies aren't edited in the browser, and they aren't part of the webhook settings. Gitea does offer per-repository Git hook editing, but only when `DISABLE_GIT_HOOKS` is set to `false`, and Gitea's documentation warns that doing so lets users with the Git Hook privilege run arbitrary code on the host.[^aB-gitea-cheat] On a Tier 0 host the program keeps the default (`true`) and deploys hook bodies to disk through the signed build instead.
 
 ### A.4 Gitea REST API v1, `https://git.fmp.corp.contoso.com/api/v1/`
 
@@ -154,7 +154,7 @@ The REST API is the machine-to-machine control plane for Gitea. What the web UI 
 | `/api/v1/admin/users/{username}` | `PATCH` | Runtime | Leaver handling (`prohibit_login`) |
 | `/api/v1/repos/{owner}/{repo}/hooks` | `GET`, `POST` | Phase 9 | Webhook registration |
 
-All of these exist in Gitea's API definition.[^aB-gitea-api] One call in the earlier version doesn't: there's no `/api/v1/admin/sources` endpoint, so authentication sources can't be registered through the REST API. Register them with the Gitea CLI (`gitea admin auth add-ldap` and `add-oauth`, shown in family B) or in the site administration pages.[^aB-gitea-cli] The REST surface isn't extended by the program; adapters that need new behavior add server-side hooks, not Gitea endpoints.
+All of these exist in Gitea's API definition.[^aB-gitea-api] There's no `/api/v1/admin/sources` endpoint, though, so authentication sources can't be registered through the REST API. Register them with the Gitea CLI (`gitea admin auth add-ldap` and `add-oauth`, shown in family B) or in the site administration pages.[^aB-gitea-cli] The REST surface isn't extended by the program; adapters that need new behavior add server-side hooks, not Gitea endpoints.
 
 ### A.5 Git LFS
 
@@ -226,14 +226,14 @@ $secret   = Get-Secret -Name 'fmp-gitea-oidc' -AsPlainText
     --group-team-map-removal
 ```
 
-The Gitea options exist as shown;[^aB-gitea-cli] check the `--group-team-map` JSON shape against the reference for your version. Four corrections to the earlier version follow from how Entra ID issues the claim:
+The Gitea options exist as shown;[^aB-gitea-cli] check the `--group-team-map` JSON shape against the reference for your version. Four points follow from how Entra ID issues the claim:
 
-- **`groups` isn't a scope.** The earlier version requested `openid profile email groups`. Group membership comes from the app registration's groups claim configuration, not from a requested scope; request the ordinary OIDC scopes.
+- **`groups` isn't a scope.** Don't request `openid profile email groups`. Group membership comes from the app registration's groups claim configuration, not from a requested scope; request the ordinary OIDC scopes.
 - **The claim carries object IDs.** By default the groups claim contains group object IDs, so `--admin-group` and the team map are keyed by object ID, not display name. Synchronized groups can instead emit `sAMAccountName`, and cloud-only groups their display name, through optional claim settings.[^aB-entra-groupclaims]
 - **Overage.** If a user is in more than 200 groups, a JWT carries no groups claim at all, only an overage indicator pointing to Microsoft Graph.[^aB-entra-groupclaims] Gitea's mapping would then see no groups. Configure the claim as **Groups assigned to the application**, which Microsoft recommends for large organizations, and assign only the groups that map to Gitea roles.[^aB-entra-optional]
 - **Mapping happens at sign-in.** Gitea applies the group-to-team map when the user signs in, and Gitea's only background sync of external users is the LDAP job in B.1; nothing re-reads OIDC group membership between sign-ins.[^aB-gitea-cheat] A user removed from a group keeps their Gitea team membership, personal access tokens and SSH keys until they sign in again or someone acts. The leaver step therefore disables the Gitea account directly (`PATCH /api/v1/admin/users/{username}` with `prohibit_login`), and the drift reporter flags any Gitea account whose Entra ID user is disabled.
 
-Dynamic groups need Microsoft Entra ID P1.[^aB-dynamic-license] The earlier version said a joiner, mover or leaver event reaches Gitea "within roughly fifteen minutes." Microsoft says dynamic membership changes are usually processed within a few hours and can take more than 24 hours, depending on the number of groups, the volume of changes and rule complexity.[^aB-dynamic] For a synced user, the attribute change also waits for a directory sync cycle first. Treat propagation as hours, not minutes, and close the gap for leavers with the direct disable above.
+Dynamic groups need Microsoft Entra ID P1.[^aB-dynamic-license] A joiner, mover or leaver event doesn't reach Gitea in minutes. Microsoft says dynamic membership changes are usually processed within a few hours and can take more than 24 hours, depending on the number of groups, the volume of changes and rule complexity.[^aB-dynamic] For a synced user, the attribute change also waits for a directory sync cycle first. Treat propagation as hours, not minutes, and close the gap for leavers with the direct disable above.
 
 ### B.3 Windows Authentication for the optional API
 
@@ -245,11 +245,11 @@ Three identities matter, and they're different things:
 
 - **The Gitea service account** is a group managed service account (`CORP\svc-fmp-gitea$`). Services configured through the Service Control Manager, IIS application pools and scheduled tasks can all run as a gMSA, and Windows rotates its password automatically.[^aB-gmsa] Gitea's own Windows service instructions register the service with `sc.exe` and run it as the local system account by default, so the service account is set separately (family E).[^aB-gitea-winsvc]
 - **The Arc managed identity** is the host's identity in Azure. Arc creates a system-assigned managed identity whose tokens come from a local endpoint, `http://localhost:40342`.[^aB-arc-mi] A local process can request a token only if it can read the challenge file in the agent's token directory, which is limited to administrators and members of the **Hybrid agent extension applications** group,[^aB-arc-identity] so the account that runs backups and the drift reporter must be in that group. The managed identity has no Azure permissions until role assignments grant them.
-- **A device object in Entra ID** isn't one of them. The earlier version said the host is hybrid joined to the tenant and that its device `extensionAttributes` carry its organizational attributes. Microsoft's supported devices for hybrid join are Windows 11, Windows 10, and Windows Server 2016, 2019 and 2022; Windows Server 2025 isn't on the list.[^aB-hybrid-join] The host's organizational attributes therefore live as tags on its Arc resource, as Book 01 describes. The underlying distinction still holds where a device object exists: device `extensionAttributes` are managed only in Entra ID, while a synced user's `onPremisesExtensionAttributes` are read-only in Microsoft Graph because their source of authority is on-premises AD.[^aB-graph-ext]
+- **A device object in Entra ID** isn't one of them: the host isn't hybrid joined, so it has no device `extensionAttributes` to carry its organizational attributes. Microsoft's supported devices for hybrid join are Windows 11, Windows 10, and Windows Server 2016, 2019 and 2022; Windows Server 2025 isn't on the list.[^aB-hybrid-join] The host's organizational attributes therefore live as tags on its Arc resource, as Book 01 describes. The underlying distinction still holds where a device object exists: device `extensionAttributes` are managed only in Entra ID, while a synced user's `onPremisesExtensionAttributes` are read-only in Microsoft Graph because their source of authority is on-premises AD.[^aB-graph-ext]
 
 ### B.5 Signed-commit verification
 
-The hook chain rejects unsigned pushes to `main`, `canon/*` and any path under the canon directory. Gitea already does most of this natively: it verifies GPG and SSH commit signatures against keys in its own database (without checking key expiry, revocation or key servers),[^aB-gitea-signing] and a protected branch's **Require signed commits** setting rejects pushes containing unsigned or unverifiable commits.[^aB-gitea-protected] Use the branch protection setting as the primary control and keep the hook's own `gpg.exe` check only for rules Gitea can't express, such as path-based requirements. If `gpg.exe` stays, pin its version in the release manifest: the earlier version named Gpg4win 4.3.x, and the current release is Gpg4win 5.1.1 (September 23, 2026).[^aB-gpg4win]
+The hook chain rejects unsigned pushes to `main`, `canon/*` and any path under the canon directory. Gitea already does most of this natively: it verifies GPG and SSH commit signatures against keys in its own database (without checking key expiry, revocation or key servers),[^aB-gitea-signing] and a protected branch's **Require signed commits** setting rejects pushes containing unsigned or unverifiable commits.[^aB-gitea-protected] Use the branch protection setting as the primary control and keep the hook's own `gpg.exe` check only for rules Gitea can't express, such as path-based requirements. If `gpg.exe` stays, pin its version in the release manifest; the current release is Gpg4win 5.1.1 (September 23, 2026).[^aB-gpg4win]
 
 ### B.6 Authentication identity matrix
 
@@ -280,17 +280,17 @@ Phase 11 onboards the host as a `Microsoft.HybridCompute/machines` resource name
 | `management.azure.com` | Azure Resource Manager | Only when the server connects or disconnects |
 | `download.microsoft.com` | Windows installation package | Install and automatic updates |
 
-The earlier version listed only three endpoints and described `management.azure.com` as carrying resource updates and extension installs. Microsoft documents it as needed only to create or delete the Arc resource, and lists the notification and Entra ID endpoints above as always required.[^aB-arc-network] [Book 05, Chapter 09](../b05-devices/09-servers-under-azure-arc.md) covers Arc onboarding and operations for servers in general.
+`management.azure.com` doesn't carry resource updates or extension installs: Microsoft documents it as needed only to create or delete the Arc resource, and lists the notification and Entra ID endpoints above as always required.[^aB-arc-network] [Book 05, Chapter 09](../b05-devices/09-servers-under-azure-arc.md) covers Arc onboarding and operations for servers in general.
 
 ### C.2 Azure Policy and machine configuration
 
 Once the host is in Arc, Azure Policy assignments at `rg-fmp-governance` project machine configuration (formerly Guest Configuration) audits onto it. Results return through the Arc agent to Azure and to the drift engine.
 
-This replaces a plane the earlier version listed: an Intune compliance policy (`windows10CompliancePolicy`) assigned to the host, attesting Secure Boot, BitLocker, code integrity, firewall, antivirus and TPM state. Intune's supported platforms don't include Windows Server,[^aB-intune-platforms] so the host can't enroll and the policy can't apply. The same signals are audited through machine configuration baselines and Defender for Servers on the Arc resource, as Book 05 describes.
+There is no Intune compliance policy (`windows10CompliancePolicy`) assigned to the host attesting Secure Boot, BitLocker, code integrity, firewall, antivirus and TPM state. Intune's supported platforms don't include Windows Server,[^aB-intune-platforms] so the host can't enroll and the policy can't apply. The same signals are audited through machine configuration baselines and Defender for Servers on the Arc resource, as Book 05 describes.
 
 ### C.3 Azure Monitor Agent
 
-Installed as the Arc extension `AzureMonitorWindowsAgent`, governed by data collection rules. It forwards the IIS log, Gitea's log, the Windows security audit categories set in Phase 13 (logon and logoff, object access, privilege use, system, account management, policy change) and the Defender event log to the agency's Log Analytics workspace. The agent's endpoints are `global.handler.control.monitor.azure.com`, `<region>.handler.control.monitor.azure.com`, `<workspace-id>.ods.opinsights.azure.com`, `<region>.monitoring.azure.com` and, where used, a data collection endpoint's `ingest.monitor.azure.com` address.[^aB-arc-proxy] The earlier version listed `*.oms.opinsights.azure.com`, which isn't among the agent's endpoints.
+Installed as the Arc extension `AzureMonitorWindowsAgent`, governed by data collection rules. It forwards the IIS log, Gitea's log, the Windows security audit categories set in Phase 13 (logon and logoff, object access, privilege use, system, account management, policy change) and the Defender event log to the agency's Log Analytics workspace. The agent's endpoints are `global.handler.control.monitor.azure.com`, `<region>.handler.control.monitor.azure.com`, `<workspace-id>.ods.opinsights.azure.com`, `<region>.monitoring.azure.com` and, where used, a data collection endpoint's `ingest.monitor.azure.com` address.[^aB-arc-proxy] `*.oms.opinsights.azure.com` isn't among them.
 
 Three details of IIS log collection affect the evidence:[^aB-ama-iis]
 
@@ -326,7 +326,7 @@ Git invokes `pre-receive`, `update` and `post-receive` from `git-receive-pack`, 
 
 Configured per repository in the web UI or through `/api/v1/repos/{owner}/{repo}/hooks`, and used for three receivers: the drift engine (push events alongside the scheduled Arc state), the documentation build (pushes under `docs/**`), and the public mirror's CI. Gitea signs each delivery with the webhook secret: `X-Gitea-Signature` carries the hex HMAC-SHA256 of the raw body, and `X-Hub-Signature-256` the GitHub-compatible form. It can also send a custom `Authorization` header, and an earlier delivery can be resent from the delivery history.[^aB-gitea-webhooks] The receiver verifies the signature before acting.
 
-Two corrections. The earlier version said failed deliveries are retried with exponential backoff; Gitea's webhook documentation describes manual redelivery, not automatic retries, so the drift engine must tolerate a missed event and reconcile from the scheduled poll. And the earlier version sent a GitHub `repository_dispatch` from a webhook. GitHub's dispatch endpoint (`POST /repos/{owner}/{repo}/dispatches`) takes its own body (`event_type`, optional `client_payload`) and a token with the `repo` scope for classic tokens,[^aB-gh-dispatch] and Gitea's webhook types don't include a GitHub dispatch format.[^aB-gitea-api] Send it from the `post-receive` hook or a small relay, with a narrowly scoped token held in the secret store. That makes it an authenticated outbound call to `api.github.com`, which belongs on the egress allowlist.
+Two cautions. Gitea's webhook documentation describes manual redelivery of failed deliveries, not automatic retries with backoff, so the drift engine must tolerate a missed event and reconcile from the scheduled poll. And a GitHub `repository_dispatch` can't be sent from a Gitea webhook. GitHub's dispatch endpoint (`POST /repos/{owner}/{repo}/dispatches`) takes its own body (`event_type`, optional `client_payload`) and a token with the `repo` scope for classic tokens,[^aB-gh-dispatch] and Gitea's webhook types don't include a GitHub dispatch format.[^aB-gitea-api] Send it from the `post-receive` hook or a small relay, with a narrowly scoped token held in the secret store. That makes it an authenticated outbound call to `api.github.com`, which belongs on the egress allowlist.
 
 ### D.3 Drift reporter
 
@@ -344,13 +344,13 @@ The record of every request on port 443: authenticated principal, URL, user agen
 
 ### E.1 PowerShell
 
-The administrative shell is PowerShell 7.6, the current Long-Term Servicing release (supported to November 14, 2028). The earlier version named PowerShell 7.4, which reaches end of support on November 10, 2026.[^aB-ps-lifecycle] Windows PowerShell 5.1 stays only for `Install-WindowsFeature` and the legacy `WebAdministration` cmdlets; new automation runs on `pwsh`.
+The administrative shell is PowerShell 7.6, the current Long-Term Servicing release (supported to November 14, 2028). PowerShell 7.4 reaches end of support on November 10, 2026.[^aB-ps-lifecycle] Windows PowerShell 5.1 stays only for `Install-WindowsFeature` and the legacy `WebAdministration` cmdlets; new automation runs on `pwsh`.
 
-Signed-only execution comes from application control, not from the execution policy. The earlier version set `AllSigned` at the user scope. The `CurrentUser` and `Process` scopes are set by the user and the `Process` scope overrides the others, while a policy set by Group Policy (`MachinePolicy`) can't be overridden; Windows PowerShell 5.1 and PowerShell 7 also keep separate settings.[^aB-execpolicy] Set the policy by Group Policy for both shells, and rely on App Control for Business (formerly Windows Defender Application Control), which Microsoft recommends over AppLocker because AppLocker receives only security fixes, to refuse unsigned code.[^aB-appcontrol] Keep AppLocker only where it adds user- or group-specific rules.
+Signed-only execution comes from application control, not from the execution policy. An `AllSigned` policy at the user scope isn't enough: the `CurrentUser` and `Process` scopes are set by the user and the `Process` scope overrides the others, while a policy set by Group Policy (`MachinePolicy`) can't be overridden; Windows PowerShell 5.1 and PowerShell 7 also keep separate settings.[^aB-execpolicy] Set the policy by Group Policy for both shells, and rely on App Control for Business (formerly Windows Defender Application Control), which Microsoft recommends over AppLocker because AppLocker receives only security fixes, to refuse unsigned code.[^aB-appcontrol] Keep AppLocker only where it adds user- or group-specific rules.
 
 ### E.2 Gitea CLI and the service
 
-`gitea.exe` is the local management surface: `gitea dump` for backup, `gitea admin user` for break-glass operator actions, `gitea admin auth` for authentication sources, and `gitea generate secret` for `INTERNAL_TOKEN`, `JWT_SECRET` and `SECRET_KEY`.[^aB-gitea-cli] The earlier version used `gitea service install`; Gitea has no such command, and its Windows guidance registers the service with `sc.exe`.[^aB-gitea-winsvc]
+`gitea.exe` is the local management surface: `gitea dump` for backup, `gitea admin user` for break-glass operator actions, `gitea admin auth` for authentication sources, and `gitea generate secret` for `INTERNAL_TOKEN`, `JWT_SECRET` and `SECRET_KEY`.[^aB-gitea-cli] Gitea has no `gitea service install` command; its Windows guidance registers the service with `sc.exe`.[^aB-gitea-winsvc]
 
 ```powershell
 # Illustrative: install and test the gMSA on the host, then register Gitea as a service under it
@@ -408,7 +408,7 @@ Invoke-RestMethod -Method Post `
     -Body $body
 ```
 
-The program's rule is that GitHub is where canon is ingested and the on-premises repository is where canon is authoritative: a commit pushed to GitHub isn't canon until it has been accepted on the host. The earlier version said mirrored commits are "verified by the same hook chain that governs operator pushes." They aren't: a pull mirror updates by fetching, the receive hooks run only on pushes,[^aB-githooks] and a pull mirror is read-only, updated only by its sync.[^aB-gitea-mirror] So the mirror (`fmp-upstream` above) is a quarantine copy, and canon moves into the authoritative repository only by a push or merged pull request from it, which runs the hook chain and the branch protections. The drift reporter flags any difference between the two that hasn't been promoted.
+The program's rule is that GitHub is where canon is ingested and the on-premises repository is where canon is authoritative: a commit pushed to GitHub isn't canon until it has been accepted on the host. Mirrored commits don't pass through the hook chain that governs operator pushes: a pull mirror updates by fetching, the receive hooks run only on pushes,[^aB-githooks] and a pull mirror is read-only: it changes only when it syncs from its upstream,[^aB-gitea-mirror] and Gitea refuses pushes to a mirror repository over both HTTPS and SSH.[^aB-gitea-mirror-ro] So the mirror (`fmp-upstream` above) is a quarantine copy, and canon moves into the authoritative repository only by a push or merged pull request from it, which runs the hook chain and the branch protections. The drift reporter flags any difference between the two that hasn't been promoted.
 
 ### F.2 Database: PostgreSQL or embedded SQLite
 
@@ -432,7 +432,7 @@ Every binary the Phase 1–13 build downloads is pinned to a URL and SHA-256 has
 | Azure Blob backup target | Azure commercial (Class D) — documented exception |
 | GitHub pull mirror | Public internet, read-only ingest |
 
-The earlier version labeled the on-premises planes, Entra ID and Intune as "GCC-Moderate." The on-premises host is inside the agency's own authorization boundary, not a cloud service's; Entra ID for a GCC tenant runs in Azure public; and Intune no longer appears because it doesn't manage the server (C.2). The Azure set is recorded as a discrete exception, with a decision record and risk acceptance, not as a quiet departure from the tenant's boundary.
+None of these planes is "GCC-Moderate." The on-premises host is inside the agency's own authorization boundary, not a cloud service's; Entra ID for a GCC tenant runs in Azure public; and Intune no longer appears because it doesn't manage the server (C.2). The Azure set is recorded as a discrete exception, with a decision record and risk acceptance, not as a quiet departure from the tenant's boundary.
 
 ### Runtime egress allowlist
 
@@ -468,11 +468,11 @@ Control identifiers are from NIST SP 800-53 Revision 5.[^aB-nist] The mapping is
 | Azure Blob backup | CP-9, CP-10 | Nightly archive and retention |
 | Application control | CM-7, SI-7 | App Control for Business publisher rules |
 
-The earlier version mapped CM-6, SI-2 and SI-7 to the Intune compliance plane; with Intune gone, CM-6 sits with machine configuration, and patch evidence (SI-2) comes from Azure Update Manager on the Arc resource, as Book 05 describes.
+CM-6, SI-2 and SI-7 don't map to an Intune compliance plane, because Intune doesn't manage the host: CM-6 sits with machine configuration, and patch evidence (SI-2) comes from Azure Update Manager on the Arc resource, as Book 05 describes.
 
 ## Group governance
 
-Gitea roles map to three groups. The earlier version named them two different ways in two sections; this reference uses one set:
+Gitea roles map to three groups:
 
 | Gitea role | Group |
 |---|---|
@@ -493,7 +493,7 @@ The program evaluated alternatives before choosing Gitea behind IIS. The invento
 | IIS with `git-http-backend` (CGI) | No web UI, native LFS, OIDC, team model, REST API or webhooks; authentication collapses to IIS Windows Authentication. Kept for lab use (see below). |
 | GitHub Enterprise Server | A vendor-supplied Linux appliance with its own upgrade path and REST API; adds a licensing surface. |
 | GitLab self-managed, Bitbucket Data Center | Linux-first, with more components (clustered database, cache, background workers, web tier) to govern, without proportional governance value at this scale. |
-| Azure DevOps Server | Still a current product: its latest release shipped December 9, 2025, with an upgrade path from 2022, 2020, 2019 and TFS 2015.[^aB-ado-server] (The earlier version said it was retired after 2020.) A heavier Windows and SQL Server footprint than this host needs. |
+| Azure DevOps Server | Still a current product: its latest release shipped December 9, 2025, with an upgrade path from 2022, 2020, 2019 and TFS 2015.[^aB-ado-server] It wasn't retired after 2020, as is sometimes assumed. A heavier Windows and SQL Server footprint than this host needs. |
 | SaaS repositories (GitHub Enterprise Cloud, GitLab Dedicated for Government, Azure DevOps Services) | Available at various classes (GitHub Enterprise Cloud is listed at Class B, GitLab Dedicated for Government at Class C)[^aB-marketplace] but they move the authoritative copy outside a host the agency controls. The program keeps canon authority on-premises by design; that's a design choice, not a boundary prohibition. |
 | Plain bare repositories over SSH | No per-URL access control, no read audit, no LFS or OIDC without add-ons. Acceptable only as an emergency offline mirror. |
 
@@ -538,7 +538,8 @@ Anything outside that list is a finding: `DRIFT-SCHEMA` if a plane appeared with
 [^aB-iis-limits]: Microsoft Learn, "Request Limits `<requestLimits>`," <https://learn.microsoft.com/iis/configuration/system.webserver/security/requestfiltering/requestlimits/> (accessed Oct 21, 2026).
 [^aB-gitea-cheat]: Gitea Documentation, "Configuration Cheat Sheet" (`[server]`, `[service]`, `[security]`, `[database]`, `[mirror]`, `[cron.sync_external_users]`), <https://docs.gitea.com/administration/config-cheat-sheet> (accessed Oct 21, 2026).
 [^aB-gitea-api]: Gitea API definition (Swagger), version 29.0.0+dev, <https://gitea.com/swagger.v1.json> (accessed Oct 21, 2026). Checked: the paths in the A.4 table, absence of any `/admin/sources` path, `POST /user/keys`, `EditUserOption.prohibit_login`, the `token` authorization header, and the webhook `type` values.
-[^aB-gitea-mirror]: Gitea Documentation, "Repository Mirror," <https://docs.gitea.com/usage/repo-mirror> (accessed Oct 21, 2026). Pull mirrors are read-only per the Gitea forum answer "New branch in mirror (migrated) repo?," <https://forum.gitea.com/t/new-branch-in-mirror-migrated-repo/3522> (from search results, accessed Oct 21, 2026).
+[^aB-gitea-mirror]: Gitea Documentation, "Repository Mirror," <https://docs.gitea.com/usage/repo-mirror> (accessed Oct 21, 2026). Pull mirroring: the repository "gets mirrored periodically from the remote repository," and **Synchronize Now** in the repository settings forces a sync.
+[^aB-gitea-mirror-ro]: Gitea source code, `routers/web/repo/githttp.go` (a push over HTTP(S) to a mirror is answered 403, "mirror repository is read-only") and `routers/private/serv.go` (write access over SSH to a mirror is refused, "Mirror Repository %s is read-only"), commit 0948aed, <https://github.com/go-gitea/gitea/blob/0948aed411afbcac956c3c9a76cadf5260c6452f/routers/web/repo/githttp.go#L202-L205> and <https://github.com/go-gitea/gitea/blob/0948aed411afbcac956c3c9a76cadf5260c6452f/routers/private/serv.go#L171-L175> (accessed Oct 21, 2026). The documentation doesn't state the rule; confirm it on the host's Gitea version with a test push to the mirror.
 [^aB-gitea-cli]: Gitea Documentation, "Gitea Command Line" (`admin auth add-ldap`, `admin auth add-oauth`, `dump`, `generate secret`, `admin user`), <https://docs.gitea.com/administration/command-line> (accessed Oct 21, 2026).
 [^aB-httpplatform]: Microsoft Learn, "HttpPlatformHandler Configuration Reference," <https://learn.microsoft.com/iis/extensions/httpplatformhandler/httpplatformhandler-configuration-reference> (accessed Oct 21, 2026).
 [^aB-entra-groupclaims]: Microsoft Learn, "Configure group claims for applications by using Microsoft Entra ID," <https://learn.microsoft.com/entra/identity/hybrid/connect/how-to-connect-fed-group-claims>, and "ID token claims reference," groups overage claim, <https://learn.microsoft.com/entra/identity-platform/id-token-claims-reference#groups-overage-claim> (both accessed Oct 21, 2026).

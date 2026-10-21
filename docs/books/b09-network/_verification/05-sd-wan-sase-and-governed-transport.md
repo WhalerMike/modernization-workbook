@@ -103,3 +103,12 @@ Checked 2026-10-21 against CISA (directive pages; the TIC 3.0 Branch Office Use 
 | branch-edge-gap §3.2 — "Adds risk" (ED 26-03, BOD 26-04 patching) | Ch05 "Securing the controller and the edges" | "Redundant" and "Not authorized" owned by Ch02/Ch03 |
 | branch-edge-gap §3.4 — Procurement note | Ch05 "Authorization status is not uniform" | every status re-checked and corrected (claims 29–34) |
 | branch-edge-gap §8 Rec. 2 — specify the branch-edge layer, not as a CISA mandate | Ch05 "SASE above SD-WAN" (program position paragraph) | full recommendation list owned by Ch13 |
+
+## Review fixes, 2026-10-21
+
+Applied from the verified review findings (critique claims re-checked against primary sources on 2026-10-21). Every factual change was re-researched and carries its own footnote; wording-only changes are marked as such.
+
+| # | Change | Where | Verdict | Source |
+|---|---|---|---|---|
+| RF-1 | GSA lists SD-WAN among EIS services for the non-traditional TIC 3.0 use cases | line 127 | verified (kept); `[^c05-gsatic]` now uses the canonical URL (the old one 301-redirects to it) and quotes the page | <https://www.gsa.gov/technology/it-contract-vehicles-and-purchasing-programs/enterprise-infrastructure-solutions/trusted-internet-connections> |
+| RF-2 | Zscaler Internet Access – Government (FR1720454205, Class C, certified December 14, 2018) and the High offering (FR2227062482, Class D, certified July 2, 2022) are separate listings; new footnote `[^c05-fr-zia]` | Cautions after the Marketplace table (line 127) | verified | <https://www.fedramp.gov/marketplace/products.json> |

@@ -24,6 +24,9 @@ Editor: W5. Sources: the series chapter in place (old Chapter 03, "Analysis → 
 | 16 | Old cross-references "Chapter 02", "Chapter 04 — Identity Transformation" | Throughout | corrected to new numbering (Ch 10, Ch 12 next) | — |
 | 17 | Separation of governance and execution | Deliver | linked to Ch 03 rather than re-argued | — |
 | 18 | Microsoft Learn "Authoritative references" list | End | removed as a list; source footnoted inline | — |
+| 19 | Review fix, Oct 21, 2026: removed "The source said FedRAMP continuous monitoring and OMB M-22-09 expect the 'Advanced' stage as the production standard; neither does." | Actuation ladder, L3 target | wording-only | Revision history kept here. The surrounding sentences already state the position and cite ZTMM and M-22-09. No new factual claim. |
+| 20 | Review fix 3, Oct 21, 2026 (revision-history trim): "The source example marked a whole department's administrative unit `restricted: true`" | Plan validation, restricted management | wording-only | Now states the program setting only (`restricted: false` for department units); the limits that justify it stay under [^c11-rmau]. |
+| 21 | Review fix 3, Oct 21, 2026 (revision-history trim): "The source said this identifier goes into the API call headers. For Microsoft Graph that needs one adjustment" | Correlation identifier | restated, footnote kept | Now "The run identifier doesn't go into Microsoft Graph request headers as is." Re-opened Microsoft Learn, "Best practices for working with Microsoft Graph," Reliability and support: "On every request to Microsoft Graph, generate a unique GUID, send it in the client-request-id HTTP request header, and also log it in your application's logs," <https://learn.microsoft.com/graph/best-practices-concept> ([^c11-graphbp]). |
 
 ## Carry-forward ledger
 

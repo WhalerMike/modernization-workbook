@@ -105,3 +105,11 @@ Source: `docs/whitepapers/field-office-wan-transformation-dp-consolidation.md` (
 | Appendix A.2 (SC-7/SC-8/AC-4/SI-3/SI-4/AU-12/CP-8, ZTMM, BOD 25-01) | → Ch03 (and Ch02 for CP-8 telecom diversity) | Owned by Chapter 03 |
 | Sources list | Footnotes | Replaced by footnotes; internal whitepaper links (twin TIC paper, ZT governance, BOD 25-01, ticket-to-machine) not carried — archived sources or other chapters' scope |
 | Closing "prepared for internal review" note | Read this first callout | Intent carried; wording not |
+
+## Review fixes, 2026-10-21
+
+Applied from the verified review findings (critique claims re-checked against primary sources on 2026-10-21). Every factual change was re-researched and carries its own footnote; wording-only changes are marked as such.
+
+| # | Change | Where | Verdict | Source |
+|---|---|---|---|---|
+| RF-1 | Clarified that the Zscaler entry is the Moderate listing (FR1720454205, Class C) and that the High offering in Chapter 05 is a separate listing (FR2227062482, Class D); `[^c11-fr-sse]` annotated | line 231 | verified | <https://www.fedramp.gov/marketplace/products.json> |

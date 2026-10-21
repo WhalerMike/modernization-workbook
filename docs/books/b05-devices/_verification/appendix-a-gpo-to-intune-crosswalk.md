@@ -69,3 +69,18 @@ Checked 2026-10-20 against Microsoft Learn (Learn MCP search and fetch). Only th
 | intune-policy-templates.md Appendix C.2 decision criteria, C.3 timeline | Not carried | Planning and timeline material for Ch08 |
 | intune-policy-templates.md §9 phase 1 categorization (direct/partial/none/deprecated) | Not carried here | Chapter 07 Step 2 and GPA readiness statuses cover it; phase mechanics are Ch08's |
 | intune-policy-templates.md §§1–6, 8–10, Appendices B, D | Not carried here | Policy library, groups, deployment, monitoring, JSON and compliance mapping belong to Ch08/Ch10 |
+
+## Revision 2026-10-21 — review fixes
+
+Applied from the verified review of Books 02–05. Sources were opened again on Oct 21, 2026.
+
+| # | Change | Where | Verdict | Source |
+|---|---|---|---|---|
+| R1 | Source-correction narration trimmed | In this appendix; setting reference intro; rows 7/8/48/49 note; row 50; CSP notes | restated | unchanged footnotes |
+
+### Revision history moved out of the chapter body
+
+The body now states the guidance directly. These were the earlier positions it used to narrate:
+
+- Rows 7, 8, 48 and 49 were mapped in the source to SC-002; row 50 to SC-008.
+- The source mapped account lockout threshold to `MaxDevicePasswordFailedAttempts` and Audit Logon to an `Audit/AccountLogon_` path.

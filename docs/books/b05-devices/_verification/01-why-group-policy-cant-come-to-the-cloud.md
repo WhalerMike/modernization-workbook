@@ -79,3 +79,18 @@ All Microsoft sources opened (fetch or search excerpt) through the Microsoft Lea
 | — "Regenerate, not copy" | Ch01 §GP analytics | — |
 | — "Conflict note" | Ch01 §Running both | Reworded with verified GP/MDM precedence |
 | — "Full library" | Not carried | Pointer to source repository; Appendix A holds the crosswalk |
+
+## Revision 2026-10-21 — review fixes
+
+Applied from the verified review of Books 02–05. Sources were opened again on Oct 21, 2026.
+
+| # | Change | Where | Verdict | Source |
+|---|---|---|---|---|
+| R1 | Source-correction narration trimmed; common misconceptions kept as one clause | GPO coverage figure; coexistence | restated | unchanged footnotes |
+
+### Revision history moved out of the chapter body
+
+The body now states the guidance directly. These were the earlier positions it used to narrate:
+
+- The workbook's source pages quoted 30 to 60 percent of settings with a direct Intune equivalent.
+- The source pages described coexistence as "last writer wins".

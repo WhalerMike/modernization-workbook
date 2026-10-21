@@ -32,6 +32,9 @@ Writer: W4. Verified 2026-10-21. Built from the *Boundary Impact Model* ("How FM
 | 24 | MSO365MT Certified Class C; MSO365MTA In Process, Initial Implementation, Class D, 0 authorizations; FR1824057433 GCC High Class D | Higher class | verified | products.json (c09-fr). Whitepaper's "99 authorizations" now 100 (not used in this chapter) |
 | 25 | High certification wouldn't restore admin-center network connectivity | Higher class | verified (inference from documented facts) | Feature unavailable in GCC High (Class D) per c09-mac and c09-fr; stated as reasoning |
 | 26 | Playbook steps and owners | Playbook | restated-as-design | Program model |
+| 27 | Review fix, Oct 21, 2026 (consistency): evidence classes said "limited" for the class Ch02 calls "restricted", and omitted retention-limited | Disposition fields table | restated-as-design (wording-only) | Now vendor-confirmed, inferred, restricted, retention-limited, as in Ch02. Program vocabulary; no note. |
+| 28 | Review fix, Oct 21, 2026 (consistency): "go without" wording differed from Ch01 and the index | Opening (SP 800-37 paragraph); Response field; playbook step 4 | restated-as-design (wording-only) | Opening now uses the shared sentence "Going without the capability is also a legitimate outcome when someone decides it and records it."; the table and playbook say "going without (decided and recorded)". Ch01 and the index carry the same sentence. No new note. |
+| 29 | Review fix 3, Oct 21, 2026 (final sweep): "each one comes with a limit the whitepaper didn't state" | Using the 2026 rules | wording-only | Now "each one comes with a limit." No claim changed. |
 
 ## 2. Carry-forward ledger
 

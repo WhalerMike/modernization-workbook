@@ -57,7 +57,7 @@ Each configuration profile and endpoint security policy reports per device and p
 |---|---|---|
 | Compliance vs. compliance | The device's compliance details name the policy that flagged it | The most restrictive value applies; confirm it is the intended one[^c10-conflicts] |
 | Configuration vs. configuration | **Conflict** in the device configuration status | Move the setting into the one policy that owns it; adjust assignments |
-| Endpoint security vs. configuration profile | **Conflict** or **Error** on both | Same as above; the source's claim that Endpoint security wins was wrong |
+| Endpoint security vs. configuration profile | **Conflict** or **Error** on both | Same as above; Endpoint security doesn't win, despite a common belief that it does |
 | GPO vs. Intune (a population still in transition) | `gpresult` on the device differs from the Intune value | Remove the GPO copy; [Chapter 07](07-the-gpo-sunset-program.md#coexistence-who-wins) has the coexistence rules |
 
 ## Windows updates
@@ -111,7 +111,7 @@ Devices onboard to Defender for Endpoint through the EDR policy (ES-004 in Chapt
 
 In a GCC tenant, Defender for Endpoint for US Government customers runs in the Azure US Government environment with some feature differences from commercial; the GCC portal is `security.microsoft.com`, and desktop licensing comes from offers such as Microsoft 365 GCC G5, Microsoft 365 G5 Security GCC, or standalone Defender for Endpoint GCC.[^c10-mde-gov] Defender for Endpoint security settings management, which is how Intune endpoint security policy reaches servers, is supported in GCC.[^c10-intune-gov]
 
-The settings the source put in the EDR policy, and that live in the Defender portal instead, are part of the program's Defender configuration:
+The settings that live in the Defender portal rather than the EDR policy are part of the program's Defender configuration:
 
 | Setting | Program value | Where |
 |---|---|---|
@@ -214,7 +214,7 @@ Drift is a difference between the policy library and a device's reported state t
 
 Intune's diagnostic settings send four log categories to a Log Analytics workspace: audit logs, operational logs (enrollment and noncompliance), device compliance organizational logs, and the IntuneDevices inventory. Audit and operational logs are sent immediately. Compliance organizational logs and IntuneDevices are exported once every 24 hours and can take up to 48 hours to arrive; Microsoft says not to rely on a fixed delivery time.[^c10-diag] Two consequences: these tables are for trends and evidence, not for minute-level alerts; and per-setting configuration status isn't among them, so the configuration part of the comparison comes from Microsoft Graph reports, not from Log Analytics.
 
-The source's three queries needed rework. Its compliance query hard-coded state strings, its failed-deployment query joined on a `DeviceId` column that `IntuneOperationalLogs` doesn't have, and its conflict query looked for configuration conflicts in a table that records enrollment and noncompliance.[^c10-oplogs] The program uses these instead:
+Three pitfalls shape these queries: don't hard-code compliance state strings, don't join on a `DeviceId` column, which `IntuneOperationalLogs` doesn't have, and don't look for configuration conflicts in that table, which records enrollment and noncompliance.[^c10-oplogs] The program uses these:
 
 ```kusto
 // Compliance trend over 30 days, by state, from the daily organizational export.
@@ -255,7 +255,7 @@ The table columns used are documented for `IntuneDeviceComplianceOrg`, `IntuneDe
 | BitLocker not encrypted | Noncompliant for more than 2 days | Compliance export | Help desk ticket for the device's user |
 | Inventory mismatch | Any finding from the weekly reconciliation | Reconciliation script | Endpoint team; device owner |
 
-The source alerted on Tier 0 noncompliance from the daily compliance export. With up to 48 hours of export latency, that alert would arrive two days late. Tier 0 is polled from Graph instead, and Conditional Access blocks the device in the meantime because CP-002 has no grace period.
+Don't alert on Tier 0 noncompliance from the daily compliance export: with up to 48 hours of export latency, the alert would arrive two days late. Tier 0 is polled from Graph instead, and Conditional Access blocks the device in the meantime because CP-002 has no grace period.
 
 ## Reporting and the evidence an assessor reads
 
@@ -271,7 +271,7 @@ The program's evidence is the records the services keep, exported on a schedule 
 
 Two notes on the update evidence in a GCC tenant. Windows Update for Business reports, the Log Analytics–based update reporting service, doesn't meet US Government Community Cloud compliance requirements, so the program uses Intune's own Windows update reports and Autopatch reports for SI-2 evidence.[^c10-wufb-reports] And SI-2's "within a defined period" is the organization's parameter; the ring table above is what sets it, so the assessor reads the ring deadlines, not a separate statement.
 
-The source mapped the policy library to a wider set of controls. The program keeps that mapping as its own claim of where each control is implemented on the endpoint surface:
+The program maps the policy library to a wider set of controls, as its own claim of where each control is implemented on the endpoint surface:
 
 | Control | Implemented by (Chapter 08 IDs) |
 |---|---|
@@ -287,7 +287,7 @@ The source mapped the policy library to a wider set of controls. The program kee
 | SI-3 Malicious Code Protection | ES-001 antivirus and tamper protection |
 | SI-4 System Monitoring | ES-004 Defender for Endpoint |
 
-The source also mapped SI-16 (memory protection) to Credential Guard and code integrity, and AU-3 (content of audit records) to EDR telemetry. The program doesn't carry those two mappings until its assessor agrees the features meet the control's parameters; they are recorded as candidates, not claims.
+Two further mappings, SI-16 (memory protection) to Credential Guard and code integrity, and AU-3 (content of audit records) to EDR telemetry, aren't claimed until its assessor agrees the features meet the control's parameters; they are recorded as candidates, not claims.
 
 ### FedRAMP 20x Key Security Indicators
 
@@ -307,7 +307,7 @@ KSI-CNA-EIS is optional for Class B and Class C.[^c10-ksi-cna] Don't cite this s
 
 ## GCC (Moderate) boundary facts
 
-The source's boundary table described Intune and Entra ID in a GCC (Moderate) tenant as a separate government instance. For Intune that's wrong, and it changes where data and endpoints live:
+Intune and Entra ID in a GCC (Moderate) tenant are often described as a separate government instance. For Intune that's wrong, and it changes where data and endpoints live:
 
 | Topic | Fact for a GCC (Moderate) tenant | Program implementation |
 |---|---|---|

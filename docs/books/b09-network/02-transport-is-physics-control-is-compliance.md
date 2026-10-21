@@ -155,6 +155,7 @@ Protecting the governor is ordinary security engineering, applied to a system th
 
 The two decisions have to be made in the right order, because the order decides whether modernization is a gain or a regression:
 
+0. **Secure the governor first**: bring the SD-WAN controller and its edges under vulnerability management, privileged-access control and off-box logging before they carry production traffic ([Chapter 05](05-sd-wan-sase-and-governed-transport.md)).
 1. **Buy the pipe on measured physics**, within the acquisition and supply-chain envelope, and with diversity where the mission needs it.
 2. **Deploy the governor before production traffic** moves onto the new connections.
 3. **Treat the boundary change as the significant change it is**, and file the authorization-boundary update before cutover, not after.

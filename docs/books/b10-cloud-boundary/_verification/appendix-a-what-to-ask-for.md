@@ -24,6 +24,7 @@ Source: `docs/whitepapers/fedramp-20x-and-the-commercial-feature-gap.md`, §7 (f
 | 14 | CMU documentation; validated modules SHOULD at Class C, MUST at Class D; tenant defaults | A8 | verified | CMU-CSO-CMD, -UVM, -CAT |
 | 15 | FIPS 140-2 certificates moved to the Historical List on September 22, 2026 | A8 | verified (settled) | Linked to Book 09 Ch03, which footnotes CMVP |
 | 16 | "Three of [the asks] are strengthened rather than weakened by 20x" | Summary | corrected | Restated against the rules: A1, A5, A6, A7 and A8 rest on obligations the 2026 rules already place on providers |
+| 17 | Review fix, Oct 21, 2026: "the largest single documented loss for network decisions" | A3 Basis | corrected (wording-only) | "Largest" implied a measured ranking the book doesn't have; now "the broadest documented loss," which the capability list that follows supports. No new claim. |
 
 ## Carry-forward ledger
 

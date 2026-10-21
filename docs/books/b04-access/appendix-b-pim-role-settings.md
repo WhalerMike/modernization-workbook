@@ -19,10 +19,10 @@ lifecycle_review: 2027-04-01
 
 ::: {.callout-note}
 ## In this appendix
-The role settings the program applies in Privileged Identity Management (PIM) to each Microsoft Entra administrative role, grouped by the privilege tiers of [Chapter 04](04-privileged-roles-and-tiers.md). The settings common to every role, the notification recipients by tier, where these values tighten [Book 02, Chapter 09](../b02-identity/09-building-the-entra-target.md#pim-configuration-standards), and the role template IDs used to find each role's policy.
+The role settings the program applies in Privileged Identity Management (PIM) to each Microsoft Entra administrative role, grouped by the privilege tiers of [Chapter 04](04-privileged-roles-and-tiers.md). The settings common to every role, the notification recipients by tier, where these values tighten [Book 02, Chapter 09](../b02-identity/09-building-the-entra-target.md#pim-configuration-standards), the role template IDs used to find each role's policy, and a PowerShell script that applies a tier's settings.
 :::
 
-The values are the program's design. The ranges and behaviors they sit inside are Microsoft's, and [Chapter 08](08-pim-self-request-with-approval.md) documents them: an activation maximum of 1 to 24 hours, information-only ticket numbers, a fixed 24-hour approval window, single-stage approval only, and settings defined independently for each role.[^aB-settings][^aB-approval] [Chapter 08](08-pim-self-request-with-approval.md#step-4-configure-role-settings-with-microsoft-graph) shows how to apply a tier's values with Microsoft Graph, and [Chapter 10](10-access-as-code-and-evidence.md) keeps one file per role policy so drift from this table is detectable.
+The values are the program's design. The ranges and behaviors they sit inside are Microsoft's, and [Chapter 08](08-pim-self-request-with-approval.md) documents them: an activation maximum of 1 to 24 hours, information-only ticket numbers, a fixed 24-hour approval window, single-stage approval only, and settings defined independently for each role.[^aB-settings][^aB-approval] [Chapter 08](08-pim-self-request-with-approval.md#step-4-configure-role-settings-with-microsoft-graph) shows how to apply a tier's values with Microsoft Graph, the [script at the end of this appendix](#applying-a-tiers-settings-with-powershell) applies them to a list of roles, and [Chapter 10](10-access-as-code-and-evidence.md) keeps one file per role policy so drift from this table is detectable.
 
 ## Conventions
 
@@ -138,10 +138,11 @@ Each role review is paired with a membership review of its `PRV-*` group, becaus
 | Security Administrator | 8 hours | 4 hours | Tier 0: can change the policies that protect every sign-in |
 | Conditional Access Administrator | 8 hours, no approval | 4 hours, approval by `PIM-Approvers-T0` | Can weaken the activation gate itself ([Chapter 04](04-privileged-roles-and-tiers.md#the-programs-privilege-tiers)) |
 | Exchange, SharePoint, Intune, Application and Compliance Administrator | No approval | Approval by `PIM-Approvers-T1` | Tier 1: service-wide control |
+| Teams, Cloud Application, Hybrid Identity and Authentication Policy Administrator | Not in Chapter 09's table | Eligible only; approval by `PIM-Approvers-T1`, 8 hours, ticket required (Tier 1 table above) | Tier 1: service-wide control, application credentials, the synchronization bridge to AD, or the tenant's authentication methods policy[^aB-roles-ref] |
 | Ticket on activation | Global, Privileged Role and Exchange Administrator only | Every Tier 0, 1 and 2 role | Ticket correlation in the ITSM is how activations are reconciled to approved work |
 | Security Reader, Global Reader | 12 hours, no justification | 8 hours, justification required | Privileged-labeled read access gets a recorded reason |
 | Eligibility expiry | At most 12 months | 90, 180 or 365 days by tier | Within Book 02's ceiling |
-| Role access reviews | Quarterly, assignees self-attest with the security team | Monthly for Tier 0, quarterly otherwise; never self-review | A self-review leaves role-assignable groups out of the review[^aB-review] |
+| Role access reviews | Not set in Chapter 09; [Chapter 05](../b02-identity/05-delegation-without-ous.md#delegation-principles) and [Chapter 10](../b02-identity/10-migrating-and-governing.md#access-reviews) set monthly for Tier 0 and quarterly for other privileged roles, reviewed by the security team, never by the assignees alone | Same cadences; reviewers named per tier ([above](#review-cadence-by-tier)); never self-review | Per-tier approver groups match the activation gate; a self-review leaves role-assignable groups out of the review[^aB-review] |
 
 ## Role template IDs {#role-template-ids}
 
@@ -174,6 +175,186 @@ Template IDs are immutable and the same in every tenant; Graph uses them to find
 
 The privileged label is still described as a preview; recheck it when Microsoft's role reference changes.[^aB-privileged]
 
+## Applying a tier's settings with PowerShell {#applying-a-tiers-settings-with-powershell}
+
+::: {.callout-warning}
+## Illustrative code
+This script is illustrative and hasn't been tested against a production tenant. Review it, and run it with `-WhatIf` against a test tenant, before using it.
+:::
+
+The script applies one tier's PIM settings to a list of roles; [Chapter 08, Step 4](08-pim-self-request-with-approval.md#step-4-configure-role-settings-with-microsoft-graph) explains each rule it sets. Save it as `Set-FMPPimTierPolicy.ps1`. `Get-MgPolicyRoleManagementPolicyAssignment` and `Update-MgPolicyRoleManagementPolicyRule` are in the `Microsoft.Graph.Identity.SignIns` module.[^aB-update-rules] The script honors `-WhatIf`.
+
+```powershell
+#Requires -Modules Microsoft.Graph.Identity.SignIns
+
+<#
+.SYNOPSIS
+    Apply an FMP privilege-tier PIM policy (approval, authentication context,
+    justification, ticket, duration, eligibility expiry) to Microsoft Entra roles.
+
+.DESCRIPTION
+    Resolves each role's role management policy from its immutable template ID,
+    then updates the five rules that make up the approval gate. Re-running with
+    the same inputs leaves the settings unchanged.
+
+.NOTES
+    Least-privileged role: Privileged Role Administrator.
+    Connect first:
+        Connect-MgGraph -Scopes 'RoleManagementPolicy.ReadWrite.Directory'
+#>
+[CmdletBinding(SupportsShouldProcess, ConfirmImpact = 'High')]
+param(
+    # CONFIGURE: the template IDs of the roles in one tier (Role template IDs, above).
+    [Parameter(Mandatory)]
+    [string[]] $RoleTemplateId,
+
+    # CONFIGURE: object ID of the tier's approver group (Chapter 08, Step 1).
+    [Parameter(Mandatory)]
+    [string] $ApproverGroupId,
+
+    # Maximum activation window, ISO 8601, 1 to 24 hours.
+    [ValidatePattern('^PT([1-9]|1[0-9]|2[0-4])H$')]
+    [string] $MaxActivationDuration = 'PT4H',
+
+    # Maximum eligible-assignment lifetime, ISO 8601.
+    [string] $MaxEligibilityDuration = 'P90D',
+
+    # Authentication context required on activation (Chapter 08, Step 2).
+    [string] $AuthenticationContext = 'c1'
+)
+
+begin {
+    function New-PimRuleTarget {
+        param(
+            [ValidateSet('EndUser', 'Admin')][string] $Caller = 'EndUser',
+            [ValidateSet('Assignment', 'Eligibility')][string] $Level = 'Assignment'
+        )
+        @{
+            '@odata.type'       = 'microsoft.graph.unifiedRoleManagementPolicyRuleTarget'
+            caller              = $Caller
+            operations          = @('All')
+            level               = $Level
+            inheritableSettings = @()
+            enforcedSettings    = @()
+        }
+    }
+
+    # Activation rules apply to the end user activating their own eligible
+    # assignment; the eligibility-expiry rule applies to the admin who assigns it.
+    $activationTarget  = New-PimRuleTarget -Caller 'EndUser' -Level 'Assignment'
+    $eligibilityTarget = New-PimRuleTarget -Caller 'Admin'   -Level 'Eligibility'
+
+    function Resolve-PimPolicyId {
+        param([Parameter(Mandatory)][string] $TemplateId)
+
+        $filter = "scopeId eq '/' and scopeType eq 'DirectoryRole' and " +
+                  "roleDefinitionId eq '$TemplateId'"
+        $assignment = Get-MgPolicyRoleManagementPolicyAssignment -Filter $filter -ErrorAction Stop
+
+        if (-not $assignment) {
+            throw "No role management policy assignment found for template ID $TemplateId."
+        }
+        # A directory role at tenant scope resolves to exactly one policy.
+        return $assignment[0].PolicyId
+    }
+
+    function Set-PimRule {
+        param(
+            [Parameter(Mandatory)][string]    $PolicyId,
+            [Parameter(Mandatory)][string]    $RuleId,
+            [Parameter(Mandatory)][hashtable] $Body
+        )
+        Update-MgPolicyRoleManagementPolicyRule `
+            -UnifiedRoleManagementPolicyId     $PolicyId `
+            -UnifiedRoleManagementPolicyRuleId $RuleId `
+            -BodyParameter                     $Body `
+            -ErrorAction                       Stop
+    }
+}
+
+process {
+    foreach ($templateId in $RoleTemplateId) {
+
+        $policyId = Resolve-PimPolicyId -TemplateId $templateId
+
+        if (-not $PSCmdlet.ShouldProcess(
+                "role $templateId (policy $policyId)",
+                "Apply tier policy: approval by $ApproverGroupId, context $AuthenticationContext, max $MaxActivationDuration")) {
+            continue
+        }
+
+        # 1. Require approval, routed to the approver group.
+        Set-PimRule -PolicyId $policyId -RuleId 'Approval_EndUser_Assignment' -Body @{
+            '@odata.type' = '#microsoft.graph.unifiedRoleManagementPolicyApprovalRule'
+            id            = 'Approval_EndUser_Assignment'
+            target        = $activationTarget
+            setting       = @{
+                '@odata.type'                    = 'microsoft.graph.approvalSettings'
+                isApprovalRequired               = $true
+                isApprovalRequiredForExtension   = $false
+                isRequestorJustificationRequired = $true
+                approvalMode                     = 'SingleStage'
+                approvalStages                   = @(
+                    @{
+                        approvalStageTimeOutInDays      = 1
+                        isApproverJustificationRequired = $true
+                        escalationTimeInMinutes         = 0
+                        isEscalationEnabled             = $false
+                        escalationApprovers             = @()
+                        primaryApprovers                = @(
+                            @{
+                                '@odata.type' = '#microsoft.graph.groupMembers'
+                                groupId       = $ApproverGroupId
+                            }
+                        )
+                    }
+                )
+            }
+        }
+
+        # 2. Require the authentication context on activation.
+        Set-PimRule -PolicyId $policyId -RuleId 'AuthenticationContext_EndUser_Assignment' -Body @{
+            '@odata.type' = '#microsoft.graph.unifiedRoleManagementPolicyAuthenticationContextRule'
+            id            = 'AuthenticationContext_EndUser_Assignment'
+            isEnabled     = $true
+            claimValue    = $AuthenticationContext
+            target        = $activationTarget
+        }
+
+        # 3. Require justification and ticket information on activation.
+        #    Ticket information is recorded but not validated by Entra.
+        Set-PimRule -PolicyId $policyId -RuleId 'Enablement_EndUser_Assignment' -Body @{
+            '@odata.type' = '#microsoft.graph.unifiedRoleManagementPolicyEnablementRule'
+            id            = 'Enablement_EndUser_Assignment'
+            enabledRules  = @('Justification', 'Ticketing')
+            target        = $activationTarget
+        }
+
+        # 4. Cap the activation window.
+        Set-PimRule -PolicyId $policyId -RuleId 'Expiration_EndUser_Assignment' -Body @{
+            '@odata.type'        = '#microsoft.graph.unifiedRoleManagementPolicyExpirationRule'
+            id                   = 'Expiration_EndUser_Assignment'
+            isExpirationRequired = $true
+            maximumDuration      = $MaxActivationDuration
+            target               = $activationTarget
+        }
+
+        # 5. Bound how long an eligible assignment may live.
+        Set-PimRule -PolicyId $policyId -RuleId 'Expiration_Admin_Eligibility' -Body @{
+            '@odata.type'        = '#microsoft.graph.unifiedRoleManagementPolicyExpirationRule'
+            id                   = 'Expiration_Admin_Eligibility'
+            isExpirationRequired = $true
+            maximumDuration      = $MaxEligibilityDuration
+            target               = $eligibilityTarget
+        }
+
+        Write-Verbose "Applied tier policy to role $templateId (policy $policyId)."
+    }
+}
+```
+
+For a Tier 2 role whose approval has been risk-accepted, set `isApprovalRequired` to `$false` and record the acceptance alongside the role's file in the policy repository ([Chapter 10](10-access-as-code-and-evidence.md)).
+
 ::: {.callout-tip}
 ## Continue the book
 [← Previous: Appendix A — Conditional Access Policy Templates](appendix-a-conditional-access-templates.md) · [Book index](index.md)
@@ -185,6 +366,7 @@ The privileged label is still described as a preview; recheck it when Microsoft'
 [^aB-privileged]: Microsoft Learn, "Privileged roles and permissions in Microsoft Entra ID (preview)," <https://learn.microsoft.com/entra/identity/role-based-access-control/privileged-roles-permissions> (accessed Oct 20, 2026).
 [^aB-pim-groups]: Microsoft Learn, "Privileged Identity Management (PIM) for Groups," <https://learn.microsoft.com/entra/id-governance/privileged-identity-management/concept-pim-for-groups> (accessed Oct 20, 2026).
 [^aB-rag]: Microsoft Learn, "Use Microsoft Entra groups to manage role assignments," <https://learn.microsoft.com/entra/identity/role-based-access-control/groups-concept> (accessed Oct 20, 2026).
-[^aB-roles-ref]: Microsoft Learn, "Microsoft Entra built-in roles," <https://learn.microsoft.com/entra/identity/role-based-access-control/permissions-reference> (accessed Oct 20, 2026).
+[^aB-roles-ref]: Microsoft Learn, "Microsoft Entra built-in roles," <https://learn.microsoft.com/entra/identity/role-based-access-control/permissions-reference> (accessed Oct 21, 2026).
 [^aB-email]: Microsoft Learn, "Email notifications in PIM," <https://learn.microsoft.com/entra/id-governance/privileged-identity-management/pim-email-notifications> (accessed Oct 20, 2026).
-[^aB-review]: Microsoft Learn, "Create an access review of Azure resource and Microsoft Entra roles in PIM," <https://learn.microsoft.com/entra/id-governance/privileged-identity-management/pim-create-roles-and-resource-roles-review> (accessed Oct 20, 2026).
+[^aB-review]: Microsoft Learn, "Create an access review of Azure resource and Microsoft Entra roles in PIM," <https://learn.microsoft.com/entra/id-governance/privileged-identity-management/pim-create-roles-and-resource-roles-review> (accessed Oct 21, 2026).
+[^aB-update-rules]: Microsoft Learn, "Update rules in PIM by using Microsoft Graph," <https://learn.microsoft.com/graph/how-to-pim-update-rules> (accessed Oct 20, 2026).

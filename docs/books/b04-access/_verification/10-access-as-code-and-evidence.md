@@ -71,3 +71,11 @@ control closures of `docs/compliance/Vol_IX_Book_06_Identity_Access_Governance.m
 | Vol IX Book 06 — Authorities Closed Here | Ch 10 control mapping (AC-2, AC-5, AC-6) | AU-2/IA-4/IA-5 closures summarized via AC-2(4) and Ch 09 evidence |
 | Help Desk guide — Compliance mapping table | Ch 10 control mapping | See claim 40 |
 | Help Desk guide — Mandatory audit events (Policy changes: CA created/modified/deleted) | Ch 10 drift and evidence (audit records); AC-2(4) row | — |
+
+## Revision 2026-10-21 — review fixes
+
+Applied from the verified review of Books 02–05. Sources were opened again on Oct 21, 2026.
+
+| # | Change | Where | Verdict | Source |
+|---|---|---|---|---|
+| R1 | Privileged-role review cadence aligned across Books 02 and 04: Tier 0 monthly, other privileged roles quarterly, never self-review alone. The cadence is the program's design; AC-2(j) and AC-6(7) leave the frequency organization-defined; AC-6(7) row and KSI-IAM-JIT row now say monthly (Tier 0) and quarterly | Control and KSI tables | corrected | c10-fedramp-ac <https://fedramp.gov/2026/reference/controls/access-control/> |

@@ -24,7 +24,7 @@ The playbook for a capability the agency's cloud boundary doesn't deliver: build
 
 [Chapter 02](02-the-invisible-boundary.md) describes the invisible boundary: features that appear in the admin portal and in commercial documentation, and may be written into system security plans and migration plans, but deliver nothing in the agency's cloud. [Chapter 04](04-gcc-and-the-feature-gap.md) describes the gap itself. This chapter is about what to do once a gap is found.
 
-NIST frames the choice in four options. When an agency's trust in an external provider doesn't give enough assurance, SP 800-37 says the organization "employs compensating controls; accepts greater risk; contracts with a more trustworthy external provider; or does not obtain the service."[^c09-sp80037] The program's playbook uses the same four moves under different names. An **in-boundary equivalent** is a compensating control built inside the boundary. A **documented exception** is either a request through the provider's own exception process or the agency accepting greater risk, in writing, with an end date. An **alternative path** is a different provider or a different way of meeting the mission need, which [Chapter 10](10-alternative-collaboration-paths.md) covers for collaboration. Going without is a legitimate outcome too, as long as someone decided it.
+NIST frames the choice in four options. When an agency's trust in an external provider doesn't give enough assurance, SP 800-37 says the organization "employs compensating controls; accepts greater risk; contracts with a more trustworthy external provider; or does not obtain the service."[^c09-sp80037] The program's playbook uses the same four moves under different names. An **in-boundary equivalent** is a compensating control built inside the boundary. A **documented exception** is either a request through the provider's own exception process or the agency accepting greater risk, in writing, with an end date. An **alternative path** is a different provider or a different way of meeting the mission need, which [Chapter 10](10-alternative-collaboration-paths.md) covers for collaboration. Going without the capability is also a legitimate outcome when someone decides it and records it.
 
 ![Three responses to a capability outside the boundary, each ending in evidence the authorization package can cite.](../../images/diagrams/b10-cloud-boundary/svg/ch09-three-responses.svg){#fig-ch09-three-responses fig-alt="Top to bottom. A slate card: a capability the design depends on. An arrow to a violet card: inventory and probe, a register row with a citation and a capability disposition from the boundary probe. If the probe shows the capability works, a green card: use it, disposition recorded. If not, three cards side by side. A blue card: in-boundary equivalent, compensating control built inside the boundary, telemetry marked derived. An amber card: documented exception, either the provider's own exception path with a named regulatory requirement, or a dated risk acceptance signed by the authorizing official. A slate card: alternative path, a different provider or a different way to meet the need, covered in Chapter 10. All three lead to a violet card: one boundary record entry cited by the SSP, the POA&M and the component definition."}
 
@@ -40,11 +40,11 @@ Each register row records:
 |---|---|
 | Capability | The feature, in the provider's own name for it |
 | Clouds affected | Each cloud the exclusion applies to, because exclusions run in more than one direction |
-| Evidence class | **Vendor-confirmed** (the provider documents the exclusion), **inferred** (the program's reading, not yet confirmed), or **limited** (available, but with shorter retention or narrower access) |
+| Evidence class | **Vendor-confirmed** (the provider documents the exclusion), **inferred** (the program's reading, not yet confirmed), **restricted** (available, but with narrower access or other limits) or **retention-limited** (available, but kept for a shorter period) |
 | Citation | The provider page and section, with the date it was read |
 | Probe result | What the boundary probe observed in the agency's own tenant, with the date |
 | Dependent designs | Which agency designs, controls or plans rely on the capability |
-| Response | Use, equivalent, exception, alternative path, or go without, with its owner |
+| Response | Use, equivalent, exception or alternative path, or going without (decided and recorded), with its owner |
 
 The program keeps its own register of this kind for Microsoft 365 GCC telemetry gaps. Of its 26 rows, 8 are vendor-confirmed, 15 are the program's own inference, 1 is a restriction (a signal available with limits) and 2 are retention limits rather than absences ([Chapter 02](02-the-invisible-boundary.md)). The program's rule is that only vendor-confirmed rows support a claim made to a provider or an assessor; inferred rows are hypotheses for the boundary probe to test.
 
@@ -98,7 +98,7 @@ Each exception record carries the register row, the capability disposition, the 
 
 ## Make the scope arguments the 2026 rules allow
 
-[Chapter 03](03-what-changed-at-fedramp.md) describes what changed at FedRAMP. Four of the changes give an agency arguments it can actually use when a capability is refused, and each one comes with a limit the whitepaper didn't state.
+[Chapter 03](03-what-changed-at-fedramp.md) describes what changed at FedRAMP. Four of the changes give an agency arguments it can actually use when a capability is refused, and each one comes with a limit.
 
 **1. Security categories can vary by resource, on the provider's side.** The Minimum Assessment Scope rule MAS-CSO-FLO requires providers to identify and document information flows and security categories for the resources in their offering, and says those resources "MAY vary by security category as appropriate to the type of information handled by or impacted by the information resource."[^c09-mas] Under Rev5 practice one impact level was stamped across an entire boundary. Where a provider has withheld a capability because it would pull a whole offering to a higher level, this rule removes the premise, and the agency can ask the provider which resources carry which category. The limit: the rule binds the provider's description of its offering. The agency's own system is still categorized under the Risk Management Framework, and the agency's system owner and authorizing official still decide that.
 
@@ -129,7 +129,7 @@ Whatever the answer, a higher class is a different axis from feature availabilit
 | 1 | List every capability the agency's designs depend on | Workload owners, with the system owner | Dependency list |
 | 2 | Find the provider's statement for each, per cloud | Platform team | Register rows with citations and evidence class |
 | 3 | Probe each dependency in the agency's own tenant | Platform team | Capability dispositions |
-| 4 | For each gap, choose a response: equivalent, provider exception, risk acceptance, alternative path, or go without | System owner proposes; authorizing official decides exceptions | Response per row |
+| 4 | For each gap, choose a response: equivalent, provider exception, risk acceptance or alternative path, or going without (decided and recorded) | System owner proposes; authorizing official decides exceptions | Response per row |
 | 5 | Build equivalents and label their evidence as derived | Platform team or owning engineering team; CISO sets the evidence class | Equivalent and its evidence |
 | 6 | File provider-side requests with a quoted requirement and link | System owner, with acquisition | Request and answer recorded |
 | 7 | Record accepted gaps on the POA&M or in a dated exception | System owner; authorizing official signs | POA&M entry or signed exception |

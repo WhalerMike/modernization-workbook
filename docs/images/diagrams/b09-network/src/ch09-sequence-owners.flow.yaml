@@ -4,6 +4,7 @@
 rankdir: TB
 graph: {nodesep: 0.3, ranksep: 0.3}
 nodes:
+  s0: {tone: violet, width: 420, tag: "Step 0", title: "Secure the governor first", body: ["=CISO and ISSO decide; network engineering hardens the controller and edges, with security architecture and operations consulted"], size: 12}
   s1: {tone: slate, width: 420, tag: "Step 1", title: "Buy the pipe on measured physics", body: ["=Network engineering decides the physics; the contracting officer buys; the CISO sets the envelope"], size: 12}
   s2: {tone: blue, width: 420, tag: "Step 2", title: "Deploy the governor before production traffic", body: ["=Network engineering builds; the system owner confirms the gate per site"], size: 12}
   s3: {tone: amber, width: 420, tag: "Step 3", title: "File the boundary change before cutover", body: ["=System owner and ISSO prepare; the authorizing official decides"], size: 12}
@@ -11,6 +12,7 @@ nodes:
   s5: {tone: violet, width: 420, tag: "Step 5", title: "Register the evidence", body: ["=ISSO assembles; security operations confirms CISA telemetry parity before any legacy circuit ends"], size: 12}
   warn: {kind: pill, tone: red, text: "Out of order, above all fast circuits before the security layer, is the costliest mistake"}
 edges:
+  - [s0, s1]
   - [s1, s2]
   - [s2, s3]
   - [s3, s4]

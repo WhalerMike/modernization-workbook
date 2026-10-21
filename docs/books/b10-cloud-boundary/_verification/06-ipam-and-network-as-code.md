@@ -36,6 +36,7 @@ Checked 2026-10-21 against Microsoft Learn (Virtual Network Manager IPAM concept
 | 25 | Source: "Infoblox polls daily…worst case 24 hours vs 7+ days manual" | (not carried) | removed: vendor-specific and the manual-cycle figure unverifiable | — |
 | 26 | CM-2(2) and CM-8(1) statements; both in Moderate baseline | Why reproducible | verified | sp80053; moderate |
 | 27 | Honest limits (portal drift; feed currency; mirror lag) | Honest limits | restated-as-design | — |
+| 28 | Review fix 3, Oct 21, 2026 (revision-history trim): "The source volume shows this as provider-neutral pseudocode; it isn't a real Terraform provider's schema" | DNS module | wording-only | Now "The workbook gives no resource code for this module, because the resource schema depends on the provider chosen." Program choice; no new claim. |
 
 ## 2. Carry-forward ledger
 

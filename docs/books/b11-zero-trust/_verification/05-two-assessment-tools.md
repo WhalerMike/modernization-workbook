@@ -53,3 +53,9 @@ Source: `docs/whitepapers/zta-scuba-relationship.md`.
 | Two caveats | Ch05 numbered caveats | Counts corrected |
 | What this means for your agency | Ch05 §What this means | GCC-Moderate maturity-cap caveat removed (row 31) |
 | Producing your own figures (`fmp zta overlap`, `fmp zta remediate`) | Ch09 (referenced from the ILLUSTRATIVE callout) | Running and ingesting the tools is Chapter 09's subject; the operational guide that feeds Ch09 carries the `fmp zta` commands |
+
+## Review round 1 (October 21, 2026)
+
+| # | Claim (short) | Where | Verdict | Source |
+|---|---|---|---|---|
+| R1 | Reconciliation baseline: was "the FedRAMP Moderate baseline" | Where they overlap / reconcile | corrected | CISA ScubaGear v1.8.0 "Mappings": "limited to controls found within the FedRAMP High baseline", https://github.com/cisagov/ScubaGear/blob/v1.8.0/docs/misc/mappings.md (opened Oct 21, 2026); now agrees with Ch09 and Ch10 |

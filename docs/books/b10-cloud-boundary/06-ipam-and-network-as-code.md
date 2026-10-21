@@ -215,7 +215,7 @@ The naming module carries the load, because it's the source of truth the name-re
 | The response policy zone is attached to a named Protective DNS feed, starting in log-only mode | Blocking is a reviewed change, not a toggle | SC-7, SI-4 |
 | The zone's identifier is an output | The inventory join consumes it | CM-8 |
 
-The source volume shows this as provider-neutral pseudocode; it isn't a real Terraform provider's schema, and the workbook doesn't reproduce it. Use the DDI vendor's provider or the cloud's DNS resources, and see [Book 08, Chapter 06](../b08-ddi/06-dns-identity-and-dnssec.md) for DNSSEC and [Book 08, Chapter 05](../b08-ddi/05-edge-interception-and-bypass.md) for Protective DNS. Because DHCP scopes and the address plan come from the same `ipam` source, a device's lease, its address and its inventory record form one chain of custody instead of three independent guesses.
+The workbook gives no resource code for this module, because the resource schema depends on the provider chosen. Use the DDI vendor's provider or the cloud's DNS resources, and see [Book 08, Chapter 06](../b08-ddi/06-dns-identity-and-dnssec.md) for DNSSEC and [Book 08, Chapter 05](../b08-ddi/05-edge-interception-and-bypass.md) for Protective DNS. Because DHCP scopes and the address plan come from the same `ipam` source, a device's lease, its address and its inventory record form one chain of custody instead of three independent guesses.
 
 ### Deployment order
 

@@ -165,3 +165,25 @@ Sources: `docs/operational-guides/access-plane/conditional-access-library.md` §
 | Date | Change |
 |---|---|
 | 2026-10-21 | Extension attribute reconciliation: persona groups from `extensionAttribute11`/`7`; device labels on device `extensionAttribute12`; CA025 filter `device.extensionAttribute12 -eq "PAW"`; CA028 filter `device.extensionAttribute12 -in ["Kiosk","SharedDevice"]` (the population the old `Shared` label covered); user-attribute link now the program attribute map. |
+
+## Revision 2026-10-21 — review fixes
+
+Applied from the verified review of Books 02–05. Sources were opened again on Oct 21, 2026.
+
+| # | Change | Where | Verdict | Source |
+|---|---|---|---|---|
+| R1 | "Microsoft's minimum is a week in report-only" restated as a recommendation (a deployment tip, not a requirement) | Rollout gates | corrected | c07-plan-tip <https://learn.microsoft.com/entra/identity/conditional-access/plan-conditional-access#deploy-conditional-access-policies> |
+| R2 | c07-plan footnote title updated to the page's current title, "Plan a Conditional Access deployment" | Footnotes | corrected | c07-plan |
+| R3 | Source-correction narration trimmed; the CA-0nn mapping table kept as a mapping for tenants that deployed the earlier numbering | Policy notes CA018–CA036; mapping section (renamed "Mapping the earlier CA-0nn numbering"); rollout; emergency alert; control mapping | restated | unchanged footnotes |
+
+### Revision history moved out of the chapter body
+
+The body now states the guidance directly. These were the earlier positions it used to narrate:
+
+- CA026: the source targeted users through a device-attribute group and listed Arc-enabled servers as a cloud app.
+- CA027, CA023/CA024, CA028, CA029, CA030–CA035, CA036 and CA090 were described as carrying or replacing named source-library policies (kiosk app-enforced restrictions, site-based trust, "block production users from development", GitHub Enterprise, insider-risk session policy).
+- CA018 was described as the source library's CA-001, restored.
+- The rollout cycle was consolidated from two versions in the source library; the legacy-auth client list added names the source library used.
+- The source's emergency-access alert matched user names containing "BreakGlass".
+- The source mapped sign-in frequency to AC-11 and risk policies to AC-7.
+- Mapping table: the source's Group Policy equivalent for CA-002 (LAN Manager level) was wrong; CA-040 combined AND and OR and used the retired approved-app grant.

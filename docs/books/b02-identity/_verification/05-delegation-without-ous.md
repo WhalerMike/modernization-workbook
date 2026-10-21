@@ -70,3 +70,11 @@ Checked 2026-10-20 against Microsoft Learn (Learn MCP search and fetch) and NIST
 | Date | Change |
 |---|---|
 | 2026-10-21 | Extension attribute reconciliation: division AU paragraph now names `extensionAttribute6` (division code, a rule-readable copy of `employeeOrgData.division`) and links the program attribute map. |
+
+## Revision 2026-10-21 — review fixes
+
+Applied from the verified review of Books 02–05. Sources were opened again on Oct 21, 2026.
+
+| # | Change | Where | Verdict | Source |
+|---|---|---|---|---|
+| R1 | Privileged-role review cadence aligned across Books 02 and 04: Tier 0 monthly, other privileged roles quarterly, never self-review alone. The cadence is the program's design; AC-2(j) and AC-6(7) leave the frequency organization-defined; "Monthly or on change" row split into Tier 0 (monthly) and other privileged roles (quarterly) | Delegation principles, review cadence table | restated-as-design | c05-nist-80053 <https://csrc.nist.gov/pubs/sp/800/53/r5/upd1/final>; c05-fedramp-ac <https://fedramp.gov/2026/reference/controls/access-control/> |

@@ -5,7 +5,7 @@ rankdir: LR
 graph: {nodesep: 0.3, ranksep: 0.3}
 nodes:
   hcm: {tone: slate, width: 116, tag: "Migration 1", title: "HR moves to Core HCM", body: ["=Federal HR 2.0: new platform, new interconnections, cleaned data"], size: 12}
-  ent: {tone: slate, width: 116, tag: "Migration 2", title: "Identity moves to Entra ID", body: ["=Users' source of authority transfers from AD to the cloud"], size: 12}
+  ent: {tone: slate, width: 116, tag: "Migration 2", title: "Identity moves to Entra ID", body: ["=Users' object source of authority (object SOA) moves from AD to the cloud"], size: 12}
   std: {tone: amber, width: 116, tag: "The contract", title: "OPM standard attributes", body: ["=Data standards and personnel actions"], size: 12}
   model: {tone: blue, width: 116, tag: "Start of authority", title: "HR-driven identity", body: ["=Governed model, provenance per event"], size: 12}
   dirs: {tone: blue, width: 108, title: "Entra ID and AD", body: ["=Accounts created, changed and disabled by HR events"], size: 12}

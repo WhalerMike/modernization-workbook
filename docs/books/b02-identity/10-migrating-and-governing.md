@@ -36,13 +36,13 @@ Access reviews are periodic attestation that people still need the access they h
 
 | Review target | Frequency | Reviewers | Apply results automatically | If reviewers don't respond |
 |---|---|---|---|---|
-| PIM-eligible role assignments | Quarterly | The security team (Microsoft's self-review option leaves role-assignable groups out of the review, so it can't be the only reviewer) | Yes; remove if denied | Remove access |
+| PIM-eligible role assignments | Monthly for Tier 0 roles, quarterly for all other privileged roles ([Chapter 05](05-delegation-without-ous.md#delegation-principles)) | The security team, never the assignees alone: with Microsoft's **Members (self)** option, role-assignable groups aren't part of the review[^c10-pim-review] | Yes; remove if denied | Remove access |
 | Sensitive security group memberships | Quarterly | Group owners | Yes; remove if denied | Remove access |
 | Application assignments (Tier 1 apps) | Semi-annually | Application owners | Yes; remove if denied | No change; escalate |
 | Guest access | Quarterly | Sponsors | Yes; disable if denied | Disable the guest account |
 | Microsoft 365 group memberships | Semi-annually | Group owners | No (recommendations only) | No change |
 
-The quarterly review of privileged roles is also the program's evidence for NIST SP 800-53 AC-6(7) (see [The compliance amendment](#the-compliance-amendment-phishing-resistant-authenticators-and-privileged-access)). Reviews of PIM for Groups membership, and reviews scoped to inactive users, require Entra ID Governance.[^c10-governance-licensing]
+The monthly and quarterly reviews of privileged roles are also the program's evidence for NIST SP 800-53 AC-6(7) (see [The compliance amendment](#the-compliance-amendment-phishing-resistant-authenticators-and-privileged-access)). Reviews of PIM for Groups membership, and reviews scoped to inactive users, require Entra ID Governance.[^c10-governance-licensing]
 
 ### Entitlement management and access packages
 
@@ -302,7 +302,7 @@ The FedRAMP 20x Key Security Indicator for this area, KSI-IAM-APM (Adopting Pass
 
 ### Reviewing privileged access (AC-6(7))
 
-The earlier version of this section mapped AC-6(7) to privileged access workstations. That was wrong. AC-6(7), Review of User Privileges, requires the organization to review, at a defined frequency, the privileges assigned to defined roles and classes of users to validate the need for them, and to reassign or remove privileges as necessary.[^c10-fedramp-ac] The program meets it with the quarterly PIM access reviews in the [access review schedule](#access-reviews), which remove privileges that reviewers deny, and with the 12-month expiry on eligible assignments from [Chapter 09](09-building-the-entra-target.md#pim-configuration-standards). The review results and the PIM audit log are the evidence.
+AC-6(7), Review of User Privileges, is a review control, not a workstation control: it requires the organization to review, at a defined frequency, the privileges assigned to defined roles and classes of users to validate the need for them, and to reassign or remove privileges as necessary.[^c10-fedramp-ac] The frequency is the organization's to define; the program meets it with monthly PIM access reviews for Tier 0 roles and quarterly reviews for the rest, in the [access review schedule](#access-reviews), which remove privileges that reviewers deny, and with the 12-month expiry on eligible assignments from [Chapter 09](09-building-the-entra-target.md#pim-configuration-standards). The review results and the PIM audit log are the evidence.
 
 ### Privileged access workstations
 
@@ -448,7 +448,7 @@ The migration runs in eleven phases, grouped into five waves. Each phase has pre
 | Element | Detail |
 |---|---|
 | Prerequisites | Phase 4 complete; role mapping final ([Chapter 09](09-building-the-entra-target.md#privileged-access)); every administrator registered for a phishing-resistant method |
-| Steps | 1. Configure PIM role settings per the standards. 2. Convert every permanent active assignment to eligible, except the emergency accounts. 3. Configure PIM for Groups for resource-level just-in-time access. 4. Create quarterly access reviews for all eligible assignments. 5. Add protected actions for Conditional Access, cross-tenant settings, named locations, and hard deletion. 6. Train administrators on activation. 7. Watch the PIM audit log for the first two weeks. |
+| Steps | 1. Configure PIM role settings per the standards. 2. Convert every permanent active assignment to eligible, except the emergency accounts. 3. Configure PIM for Groups for resource-level just-in-time access. 4. Create recurring access reviews for all eligible assignments: monthly for Tier 0 roles, quarterly for the rest. 5. Add protected actions for Conditional Access, cross-tenant settings, named locations, and hard deletion. 6. Train administrators on activation. 7. Watch the PIM audit log for the first two weeks. |
 | Validation | Zero permanent active assignments except the emergency accounts; every administrator can activate; the first review cycle started; protected actions enforced |
 | Rollback | Convert eligible assignments back to active, using an emergency account if activation fails |
 | Duration | 2–3 weeks |
@@ -585,7 +585,8 @@ The planned functions aren't in the module yet. Until they are, run the equivale
 [^c10-cba-ios]: Microsoft Learn, "Microsoft Entra certificate-based authentication on iOS and macOS," <https://learn.microsoft.com/entra/identity/authentication/concept-certificate-based-authentication-mobile-ios> (accessed Oct 20, 2026).
 [^c10-fedramp-launch]: FedRAMP, "Propelling Change: FedRAMP Launches Consolidated Rules for 2026," June 25, 2026, <https://www.fedramp.gov/2026-06-25-propelling-change-fedramp-launches-consolidated-rules-for-2026/> (accessed Oct 21, 2026).
 [^c10-ksi-iam]: FedRAMP, "Identity and Access Management" (FedRAMP 20x Key Security Indicators, Consolidated Rules for 2026), <https://fedramp.gov/2026/providers/20x/key-security-indicators/identity-and-access-management/> (accessed Oct 20, 2026).
-[^c10-fedramp-ac]: FedRAMP, "Access Control" (NIST SP 800-53 Rev. 5 controls, catalog release 5.2.0), <https://fedramp.gov/2026/reference/controls/access-control/> (accessed Oct 20, 2026).
+[^c10-fedramp-ac]: FedRAMP, "Access Control" (NIST SP 800-53 Rev. 5 controls, catalog release 5.2.0), <https://fedramp.gov/2026/reference/controls/access-control/> (accessed Oct 21, 2026).
+[^c10-pim-review]: Microsoft Learn, "Create an access review of Azure resource and Microsoft Entra roles in PIM," section "Create access reviews," <https://learn.microsoft.com/entra/id-governance/privileged-identity-management/pim-create-roles-and-resource-roles-review#create-access-reviews> (accessed Oct 21, 2026).
 [^c10-paw]: Microsoft Learn, "Phase 2: Configure and secure privileged workstations," <https://learn.microsoft.com/security/zero-trust/adopt/implement-privileged-access-devices> (accessed Oct 20, 2026).
 [^c10-retention]: Microsoft Learn, "Microsoft Entra data retention," <https://learn.microsoft.com/entra/identity/monitoring-health/reference-reports-data-retention> (accessed Oct 20, 2026).
 [^c10-azure-monitor]: Microsoft Learn, "Integrate Microsoft Entra logs with Azure Monitor logs," <https://learn.microsoft.com/entra/identity/monitoring-health/howto-integrate-activity-logs-with-azure-monitor-logs> (accessed Oct 20, 2026).

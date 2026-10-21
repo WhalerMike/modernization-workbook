@@ -77,3 +77,16 @@ vendor-question sections, and the DNS Modernization Guide cost guidance (§6.3, 
 | Guide §6.3 Cost estimation guidance | Cost — what the cloud-native path meters | Cost drivers corrected (claim 8) |
 | Guide App. B Private Resolver cost calculator (B.1–B.3) | Cost table and correction callout | Prices and example totals replaced with verified, dated meters |
 | Guide App. D Cost Management Guide row | — | Internal companion document, not carried |
+
+## Review fixes, 2026-10-21
+
+Applied from the verified review findings (critique claims re-checked against primary sources on 2026-10-21). Every factual change was re-researched and carries its own footnote; wording-only changes are marked as such.
+
+| # | Change | Where | Verdict | Source |
+|---|---|---|---|---|
+| RF-1 | New paragraph after the platform-model table: for a smaller or single-cloud agency without divisional delegation, the cloud-native path can be enough on its own | line 105 | restated-as-design (program judgment, stated as such) | — |
+| RF-2 | Endpoints use agency-designated encrypted resolvers, not auto-discovered ones; agencies log encrypted query contents at those resolvers | same | verified (M-22-09 says agencies "can" log there; worded as "expects") | <https://www.whitehouse.gov/wp-content/uploads/2022/01/M-22-09.pdf> |
+| RF-3 | Protective DNS for all egress resolution; cloud deployments use authorized DNS providers (agency internal DNS or Protective DNS) and block unauthorized third-party DNS | same | verified (Executive Summary and item 5) | <https://www.cisa.gov/sites/default/files/2024-05/Encrypted%20DNS%20Implementation%20Guidance_508c.pdf> |
+| RF-4 | DC Locator records are dynamically registered by Net Logon, so AD DNS stays (reached by forwarding) until the last domain controller is retired | same | verified | <https://learn.microsoft.com/en-us/windows/client-management/mdm/policy-csp-admx-netlogon> |
+
+Placed after the paragraph that follows the platform-model table (former line 103) rather than in Appendix C, because Chapter 12 is where the cloud-native path is weighed. M-26-14 logging isn't restated there (not re-opened in this pass); Chapter 03 carries it.

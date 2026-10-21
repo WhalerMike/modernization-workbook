@@ -236,7 +236,7 @@ Arc-enabled Windows servers can use Microsoft Entra ID as their sign-in authorit
 - The client device must be Entra joined, hybrid joined or Entra registered to the same directory.
 - **Conditional Access isn't supported** with the Entra join extension on Arc-enabled servers.
 
-The last point corrects an assumption in the source material, which treated Entra ID sign-in on Arc servers as bringing them under the same Conditional Access as workstations. It doesn't. The control you get is Azure RBAC on who may sign in, plus Entra ID's credential and authentication policies, plus Azure Policy to require the extension and flag unapproved local accounts.[^c09-arc-login] Hold the sign-in roles through Privileged Identity Management so that standing access isn't the default.
+The last point corrects a common assumption: Entra ID sign-in doesn't bring Arc servers under the same Conditional Access as workstations. The control you get is Azure RBAC on who may sign in, plus Entra ID's credential and authentication policies, plus Azure Policy to require the extension and flag unapproved local accounts.[^c09-arc-login] Hold the sign-in roles through Privileged Identity Management so that standing access isn't the default.
 
 ```powershell
 # Install the Entra ID sign-in extension on an Arc-enabled Windows Server 2025 machine

@@ -47,3 +47,11 @@ Editor pass of 2026-10-20. Every URL below was opened (or, for PDFs, downloaded 
 | What success looks like | kept | — |
 | Continue the series | edited: "Continue the book"; Previous → book index; Book index; Next → Chapter 02 | — |
 | Footnotes | edited: keys renamed `c00-*` → `c01-*`; access dates updated to Oct 20, 2026; 12 new footnotes | — |
+
+## Revision 2026-10-21 — review fixes
+
+Applied from the verified review of Books 02–05. Sources were opened again on Oct 21, 2026.
+
+| # | Change | Where | Verdict | Source |
+|---|---|---|---|---|
+| R1 | Microsoft's object-level sense of SOA glossed as "which directory masters the account object" | The proposal, second bullet | restated | c01-soa <https://learn.microsoft.com/en-us/entra/identity/hybrid/user-source-of-authority-overview> |

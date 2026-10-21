@@ -88,7 +88,7 @@ Confirm licensing against the agency's own agreements before starting. As of Oct
 | Server configuration, update and change tracking | Included for Windows Server with active Software Assurance or pay-as-you-go licensing after attestation; otherwise purchased per server[^c05-wsm] |
 | Server and SQL Server threat protection | Defender for Servers Plan 2 and Defender for SQL Servers on Machines; on-premises servers must be onboarded to Arc[^c05-defender-servers][^c05-defender-sql] |
 
-The source runbooks put "Intune Administrator through PIM" on the endpoint line. Microsoft now advises against using the Intune Administrator role for day-to-day work, because it grants global read and write across Intune. Use a least-privileged built-in Intune role or a custom role instead.[^c05-intune-rbac] The least-privileged roles for each workstream are:
+Don't use Intune Administrator, even through PIM, as the endpoint line's role. Microsoft advises against using the Intune Administrator role for day-to-day work, because it grants global read and write across Intune. Use a least-privileged built-in Intune role or a custom role instead.[^c05-intune-rbac] The least-privileged roles for each workstream are:
 
 | Work | Role |
 |---|---|
@@ -138,7 +138,7 @@ At-scale onboarding uses a service principal that holds the Azure Connected Mach
 
 ::: {.callout-warning}
 ## Never put an onboarding secret in plain text in a startup script
-The source runbook warned that a service principal secret in a Group Policy startup script is readable by every domain-authenticated user through SYSVOL. Treat it that way. Microsoft's guidance for scripted onboarding is to prefer certificates over secrets, because certificates can be controlled with Conditional Access, to keep parameters in a configuration file instead of on the command line, and to clean the file up afterward. Microsoft's Group Policy onboarding method encrypts that configuration file so only computer accounts can decrypt it.[^c05-arc-onboard-sec] Rotate the credential regularly and keep it in the onboarding role only.
+Treat a service principal secret in a Group Policy startup script as readable by every domain-authenticated user through SYSVOL. Microsoft's guidance for scripted onboarding is to prefer certificates over secrets, because certificates can be controlled with Conditional Access, to keep parameters in a configuration file instead of on the command line, and to clean the file up afterward. Microsoft's Group Policy onboarding method encrypts that configuration file so only computer accounts can decrypt it.[^c05-arc-onboard-sec] Rotate the credential regularly and keep it in the onboarding role only.
 :::
 
 The server baseline comes next. Azure machine configuration, formerly Azure Policy Guest Configuration, audits and can set operating-system settings on Arc servers.[^c05-mc-governance] Azure Policy includes a built-in definition that checks Windows machines against the Azure compute security baseline.[^c05-arc-policy-ref] With Defender for Servers Plan 2 enabled, Defender for Cloud assesses server configuration against the Windows and Linux compute baselines in the Microsoft cloud security benchmark.[^c05-mcsb]
@@ -162,7 +162,7 @@ Deploy configuration in priority order: the security baseline, BitLocker with re
 
 ::: {.callout-important}
 ## Group Policy and Intune: Group Policy wins by default
-The source runbook described a Group Policy and Intune overlap as "last writer wins." Microsoft documents something more specific, and more dangerous. When the same policy is set in both Group Policy and MDM, Group Policy takes precedence.[^c05-gpo-enroll] The *MDMWinsOverGP* setting reverses that, but only for settings in the Policy CSP. It doesn't cover settings defined in other CSPs, such as the Defender CSP. For those, configuring both channels creates a race condition with no guaranteed winner.[^c05-mdmwins] Windows Hello for Business policy lives in the PassportForWork CSP. If Group Policy and Intune both configure it, the conflicting Intune settings aren't applied until the Group Policy settings are cleared.[^c05-whfb-conflict] So document every overlapping setting before Intune enforces anything in production, and retire the Group Policy copy once Intune owns the setting. [Chapter 08](08-gpo-to-intune-policy-migration.md) sets out that retirement sequence.
+A Group Policy and Intune overlap is often described as "last writer wins." Microsoft documents something more specific, and more dangerous. When the same policy is set in both Group Policy and MDM, Group Policy takes precedence.[^c05-gpo-enroll] The *MDMWinsOverGP* setting reverses that, but only for settings in the Policy CSP. It doesn't cover settings defined in other CSPs, such as the Defender CSP. For those, configuring both channels creates a race condition with no guaranteed winner.[^c05-mdmwins] Windows Hello for Business policy lives in the PassportForWork CSP. If Group Policy and Intune both configure it, the conflicting Intune settings aren't applied until the Group Policy settings are cleared.[^c05-whfb-conflict] So document every overlapping setting before Intune enforces anything in production, and retire the Group Policy copy once Intune owns the setting. [Chapter 08](08-gpo-to-intune-policy-migration.md) sets out that retirement sequence.
 :::
 
 ### Phase 3: restrict NTLM in stages
@@ -171,7 +171,7 @@ NTLM is deprecated in all its versions. Microsoft says calls to it should move t
 
 Restricting NTLM too early breaks legacy web applications, file access by IP address or without an SPN, and some third-party products. Enforce restrictions only after a 14 to 30 day audit shows no remaining dependencies, and only after application owners sign off.
 
-The source runbook's staging table was wrong in one important way. It treated LAN Manager authentication level 5 as "block all NTLM." Level 5 makes domain controllers refuse LM and NTLMv1, but they still accept NTLMv2. Level 4 refuses only LM.[^c05-lmlevel] NTLM is blocked by the *Restrict NTLM* policies. *Network security: Restrict NTLM: NTLM authentication in this domain* controls the domain controller, *Incoming NTLM traffic* controls servers, and *Outgoing NTLM traffic to remote servers* controls clients. Exception lists exist for the domain controller and the client roles.[^c05-ntlm-policies] The corrected staging is:
+A common mistake is to treat LAN Manager authentication level 5 as "block all NTLM." Level 5 makes domain controllers refuse LM and NTLMv1, but they still accept NTLMv2. Level 4 refuses only LM.[^c05-lmlevel] NTLM is blocked by the *Restrict NTLM* policies. *Network security: Restrict NTLM: NTLM authentication in this domain* controls the domain controller, *Incoming NTLM traffic* controls servers, and *Outgoing NTLM traffic to remote servers* controls clients. Exception lists exist for the domain controller and the client roles.[^c05-ntlm-policies] The staging is:
 
 | Stage | LAN Manager authentication level | Restrict NTLM policies |
 |---|---|---|
@@ -188,7 +188,7 @@ NTLM is controlled at the Local Security Authority and through these Windows pol
 
 ### Phase 3: repair SPNs before enforcing Kerberos
 
-Kerberos needs a correct, unique SPN for each service. A *missing* SPN is the silent failure. If the client's security layer can't find the SPN in Active Directory, Kerberos isn't attempted and the connection falls back to NTLM, which usually succeeds.[^c05-sspi] A *duplicate* SPN makes Kerberos fail outright. The KDC returns `KDC_ERR_PRINCIPAL_NOT_UNIQUE`, and each SPN must be unique in the forest.[^c05-spn-dup] An SPN left on the old account after a service-account change has to be moved, so that each SPN has exactly one owner.[^c05-gmsa] The source runbook said a duplicate falls back to NTLM silently. In fact, the missing SPN is the quiet case and the duplicate is the loud one. Both need fixing before NTLM is restricted, because stage 3 turns the quiet case into an outage.
+Kerberos needs a correct, unique SPN for each service. A *missing* SPN is the silent failure. If the client's security layer can't find the SPN in Active Directory, Kerberos isn't attempted and the connection falls back to NTLM, which usually succeeds.[^c05-sspi] A *duplicate* SPN makes Kerberos fail outright. The KDC returns `KDC_ERR_PRINCIPAL_NOT_UNIQUE`, and each SPN must be unique in the forest.[^c05-spn-dup] An SPN left on the old account after a service-account change has to be moved, so that each SPN has exactly one owner.[^c05-gmsa] So the missing SPN is the quiet case and the duplicate is the loud one. Both need fixing before NTLM is restricted, because stage 3 turns the quiet case into an outage.
 
 Validate each repair. Purge the client's ticket cache, connect again, and confirm the session used Kerberos. For SQL Server, `sys.dm_exec_connections` reports the authentication scheme:[^c05-sql-spn]
 
@@ -211,7 +211,7 @@ The hardening audit reports the authentication mode (Windows authentication only
 
 The baseline creates the core policies: block legacy authentication, require MFA, require a compliant device, and require MFA for administrators and for the Azure management plane. Create them in report-only mode, measure the impact in the sign-in logs and the insights workbook, and then enforce each one as a separate change.[^c05-ca-report-only] Before anything is enforced, exclude the emergency access group from every policy that blocks or restricts sign-in.
 
-The source runbook described emergency accounts as protected by "long unique passwords." Microsoft's current guidance is different. Emergency access accounts should be cloud-only accounts in the `.onmicrosoft.com` domain. They should use phishing-resistant methods, such as FIDO2 passkeys or certificate-based authentication, that are different from normal admin accounts. They should be monitored with alerts on every sign-in and validated at least every 90 days.[^c05-emergency] [Book 04](../b04-access/index.md) designs the full policy set.
+Long unique passwords aren't enough for emergency accounts. Emergency access accounts should be cloud-only accounts in the `.onmicrosoft.com` domain. They should use phishing-resistant methods, such as FIDO2 passkeys or certificate-based authentication, that are different from normal admin accounts. They should be monitored with alerts on every sign-in and validated at least every 90 days.[^c05-emergency] [Book 04](../b04-access/index.md) designs the full policy set.
 
 ### Phase 4: watch
 
@@ -295,11 +295,11 @@ Import-Module .\lib\IntuneArcModernization.psm1
 
 These are the program's companion kit scripts, not Microsoft cmdlets, and the kit isn't published with this workbook. Read the block as the shape of a governed run: observe, preview, approve, apply, verify.
 
-### Mapping the source's model to the program's terms
+### The program's terms for the governed path
 
-One source draft described the governed path as five products. The concepts exist, but as machinery the program already names. This book uses the program's terms.
+The governed path is sometimes described as five products. The concepts exist, but as machinery the program already names. This book uses the program's terms.
 
-| Source draft term | The program's term |
+| Term you may see | The program's term |
 |---|---|
 | Policy engine | Desired state plus plan, apply and reconcile adapters |
 | Identity registry | The identity control-plane slot |
@@ -364,7 +364,7 @@ Adding governance after the fact isn't a migration. It turns on the observation 
 
 ### When the estate can't leave the domain yet
 
-An earlier version of these guides also used "retrofit" for a different case: devices that can't be treated as new and can't be unjoined in the current wave. This book keeps the word for adding governance after the fact. The domain-bound case is a constraint that can apply on any of the three paths, and it has its own rules:
+"Retrofit" is sometimes also used for a different case: devices that can't be treated as new and can't be unjoined in the current wave. This book keeps the word for adding governance after the fact. The domain-bound case is a constraint that can apply on any of the three paths, and it has its own rules:
 
 - Arc onboarding and Intune enrollment attach the management plane without a domain unjoin.
 - Policy is applied through the management plane. Group Policy stays only where Intune or machine configuration can't yet own the setting.

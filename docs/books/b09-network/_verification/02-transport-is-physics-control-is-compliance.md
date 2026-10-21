@@ -76,3 +76,11 @@ Checked October 20–21, 2026 by writer W1. Sources: the twin papers `docs/white
 | branch-edge-gap §9 Glossary | — | Owned by App C (W6); DIA definition used in Ch02 |
 | branch-edge-gap §10 Sources and verification status | Re-checked items: SASE document (now retrieved), CLAW expansion (corrected), Cisco SD-WAN for Government level (now verified), LEO figure (still unverifiable) | Other items belong to Ch03/Ch06/Ch13 |
 | branch-edge-gap Appendix A Change log | Ch02 (DIA acronym; SD-WAN "adds risk" overstated) | Change log itself not carried |
+
+## Review fixes, 2026-10-21
+
+Applied from the verified review findings (critique claims re-checked against primary sources on 2026-10-21). Every factual change was re-researched and carries its own footnote; wording-only changes are marked as such.
+
+| # | Change | Where | Verdict | Source |
+|---|---|---|---|---|
+| RF-1 | Order of operations gains step 0, "Secure the governor first", so it matches Chapters 05, 09 and 13 | Order of operations | restated-as-design (program sequence; the controls and ED 26-03 are sourced in Chapter 05) | — |

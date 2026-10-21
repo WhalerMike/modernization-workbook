@@ -38,3 +38,13 @@ Checked 2026-10-20 against Microsoft Learn. Footnote keys are `aB-*`.
 
 - **Inconsistency with Book 02, Chapter 09's PIM table** is deliberate and listed in the appendix (Security Admin and CA Admin durations/approval, Tier 1 approvals, tickets, reader durations, review reviewers). Book 04 Chapter 02 links to both; consider updating Book 02 Ch09 to point to this appendix as the governing values.
 - Authentication Policy Administrator and Compliance Administrator were added to Tier 1 (Compliance from Book 02 Ch09's table; Authentication Policy because it controls tenant-wide method policy).
+
+## Revision 2026-10-21 — review fixes
+
+Applied from the verified review of Books 02–05. Sources were opened again on Oct 21, 2026.
+
+| # | Change | Where | Verdict | Source |
+|---|---|---|---|---|
+| R1 | "Role access reviews" row no longer attributes "quarterly, assignees self-attest" to Book 02 Ch09 (Ch09 sets no review cadence); it cites Book 02 Ch05 and Ch10, which now match this appendix | Where this appendix tightens Book 02 | corrected | aB-review <https://learn.microsoft.com/entra/id-governance/privileged-identity-management/pim-create-roles-and-resource-roles-review#create-access-reviews> |
+| R2 | New row: Teams, Cloud Application, Hybrid Identity and Authentication Policy Administrator are Tier 1 here and absent from Book 02's table | Where this appendix tightens Book 02 | verified (absence checked in b02/09 PIM table) | aB-roles-ref <https://learn.microsoft.com/entra/identity/role-based-access-control/permissions-reference#authentication-policy-administrator> |
+| R3 | PowerShell script moved here from Chapter 08, with an illustrative-code warning; footnote aB-update-rules added | Applying a tier's settings with PowerShell | moved | aB-update-rules (Oct 20 source, unchanged claim) |

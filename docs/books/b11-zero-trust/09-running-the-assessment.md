@@ -32,7 +32,7 @@ Most agencies already run ScubaGear. The usual pattern is that someone runs it, 
 
 Five things are decided before either tool touches a production tenant. Each is owned in [Chapter 07](07-who-owns-zero-trust.md).
 
-**Scope.** BOD 25-01 required agencies to inventory their in-scope cloud tenants, with the tenant name and the owning agency or component, and to update the inventory in the first quarter of each fiscal year.[^c09-bod2501] That inventory is the scope list for ScubaGear. The Zero Trust Assessment's scope is wider (Microsoft Entra, Intune, Azure, Purview and more) and its coverage depends on connections, permissions and licenses, so its scope is written down per run, including which Azure subscriptions are tagged for its Infrastructure pillar.[^c09-zta-repo]
+**Scope.** BOD 25-01 required agencies to inventory their in-scope cloud tenants, with the tenant name and the owning agency or component, and to update the inventory "in the first quarter annually."[^c09-bod2501] That inventory is the scope list for ScubaGear. The Zero Trust Assessment's scope is wider (Microsoft Entra, Intune, Azure, Purview and more) and its coverage depends on connections, permissions and licenses, so its scope is written down per run, including which Azure subscriptions are tagged for its Infrastructure pillar.[^c09-zta-repo]
 
 **The host.** ScubaGear runs only on Windows, because at least one of the Microsoft libraries it depends on is tied to Windows PowerShell 5.[^c09-scuba-deps] The Zero Trust Assessment needs PowerShell 7 and, for full coverage, Windows: on other platforms its SharePoint Online and Azure Information Protection checks are skipped.[^c09-zta-guide] Both tools pull tenant configuration onto the host that runs them. The program runs them on dedicated Windows hosts inside the authorization boundary, a separate clean host or session for each tool, because their PowerShell dependencies conflict and because the Zero Trust Assessment's guide recommends a dedicated virtual machine for that reason.[^c09-zta-guide] A shared, internet-hosted build runner is the wrong place for a file that maps a federal tenant's weaknesses.
 
@@ -51,7 +51,7 @@ ScubaGear is CISA's PowerShell assessor for Microsoft 365. It collects tenant co
 The commands in this chapter are illustrative. They haven't been tested against a production tenant. Check them against the documentation for the tool version you have pinned, and run them first against a test tenant with the narrow roles described in Chapter 07.
 :::
 
-Install from the PowerShell Gallery in a Windows PowerShell 5.1 session, then install the dependencies, which include OPA.[^c09-scuba-deps] At v1.8.0 the dependency command is `Initialize-SCuBA`; the development branch renames it `Install-ScubaDependencies` and keeps the old name as an alias.[^c09-scuba-deps]
+Install from the PowerShell Gallery in a Windows PowerShell 5 session, then install the dependencies, which include OPA.[^c09-scuba-deps] At v1.8.0 the dependency command is `Initialize-SCuBA`; the development branch renames it `Install-ScubaDependencies` and keeps the old name as an alias.[^c09-scuba-deps]
 
 ```powershell
 # Windows PowerShell 5.1, on the dedicated assessment host
