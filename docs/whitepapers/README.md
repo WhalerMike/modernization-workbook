@@ -15,7 +15,7 @@ Cleaned, externally usable versions of high-value modernization whitepapers.
 | [Zero Trust Governance Principles](../books/b11-zero-trust/02-governance-principles.md) | Why cross-cutting capabilities move a program past Initial maturity. |
 | [Federal SSOT Alignment](../books/b02-identity/02-the-structural-problem.md) | Single Source of Truth as the architectural response to federal data-governance obligations. Now a chapter of Book 02. |
 | [SD-WAN vs. DIA Under TIC 3.0](../books/b09-network/02-transport-is-physics-control-is-compliance.md) | Transport is a physics decision; control is a compliance decision. |
-| [Ticket-to-Machine, Not Ticket-to-Human](ticket-to-machine-not-ticket-to-human.md) | Why changing state isn’t compliance evidence. |
+| [Ticket-to-Machine, Not Ticket-to-Human](../books/b13-governance/10-ticket-to-machine.md) | Why changing state isn’t compliance evidence. |
 | [Book 08 — DNS, DHCP & IPAM](../books/b08-ddi/index.md) | The former Next Generation DNS whitepaper and Next Generation DDI series, now one workbook book: how DNS became the application surface, security enforcement plane and identity substrate, and how to govern DNS, DHCP, and IPAM as the hybrid multi-cloud control plane, including split-brain, FedRAMP Moderate, SD-WAN interception, and the five critical configuration decisions. |
 | [FMP vs Microsoft Native Tools](../books/b02-identity/06-who-owns-the-migration.md) | Why Microsoft's 12 tools don't replace a governance orchestration layer. Now a chapter of Book 02. |
 | [HR-Driven Identity](../books/b03-hr-identity/index.md) (series) | HR systems of record as the authoritative source for identity provisioning. |

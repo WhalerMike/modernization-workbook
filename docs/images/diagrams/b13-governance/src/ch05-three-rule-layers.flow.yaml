@@ -1,0 +1,15 @@
+# Book 13 Chapter 05 — the three rule layers. Each layer has its own change
+# boundary and is the home of particular drift classes; the two lower layers
+# are read-only to the runtime. The layer model is the program's design.
+rankdir: TB
+graph: {nodesep: 0.35, ranksep: 0.3}
+nodes:
+  run: {tone: blue, width: 360, tag: "Layer 3 · code change + tests", title: "Runtime enforcement", body: ["=How rules are evaluated against live state; the only layer that may change observable state", "=Drift homes: authorization, identity"], size: 12}
+  pol: {tone: amber, width: 360, tag: "Layer 2 · schema-validated change", title: "Policy mappings", body: ["=Which rules apply to which controls, indicators and scopes", "=Drift home: provenance (a mapping that no longer resolves)"], size: 12}
+  rul: {tone: green, width: 360, tag: "Layer 1 · governance review + recorded decision", title: "Authoritative rules", body: ["=What rules exist and what they mean: identifier, statement, schema, provenance", "=Drift homes: schema; semantic where meaning splits from the runtime"], size: 12}
+edges:
+  - [rul, pol, {dir: back, label: "read-only", attrs: "constraint=false"}]
+  - [pol, run, {dir: back, label: "read-only", attrs: "constraint=false"}]
+  - [run, rul, {style: dashed, tone: violet, label: "evidence and drift findings flow back", lw: 120, attrs: "constraint=false"}]
+  - [run, pol, {style: invis}]
+  - [pol, rul, {style: invis}]

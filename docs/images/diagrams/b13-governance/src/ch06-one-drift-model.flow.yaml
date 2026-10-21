@@ -1,0 +1,18 @@
+# Book 13 Chapter 06 — one drift model. The five classes are the program's
+# model; the drift checks other books define are instances of them. Mapping is
+# this chapter's reconciliation of Book 00 Ch04, Book 01 Ch04, Book 02 Ch05 and
+# Ch11, and Book 03 Ch11.
+rankdir: TB
+graph: {nodesep: 0.2, ranksep: 0.3}
+nodes:
+  t:
+    kind: table
+    tone: slate
+    columns: ["Class", "What has diverged", "Checks in other books that are instances of it"]
+    widths: [130, 230, 330]
+    rows:
+      - [{text: "Schema", tone: amber}, "Structure no longer fits the declared schema", "Format; enumeration Value (B00) · record fails validation (B03) · unrepresentable registry entry (B02 Ch05)"]
+      - [{text: "Semantic", tone: amber}, "Structure valid, meaning stale or different from the record", "Phantom, Orphan value (B00) · Value, Processing (B01) · membership rule, paused rule (B02 Ch05) · stale access, attribute (B03)"]
+      - [{text: "Provenance", tone: red}, "A change or reference with no resolvable record behind it", "State change with no provenance event; host or port moved unrecorded (B02 Ch11)"]
+      - [{text: "Authorization", tone: red}, "Something acted outside its authorized envelope", "Role assignment not in the matrix, restriction mismatch (B02 Ch05) · unauthorized write (B03)"]
+      - [{text: "Identity", tone: red}, "An object or issuer that doesn't resolve to the record", "Orphan group (B01) · missing AU (B02 Ch05) · missing identity, orphan account, credential (B03)"]

@@ -21,18 +21,18 @@ redirects:
 
   # Executive Governance: the flat summary copy was removed; the chapter
   # folders are canonical.
-  docs/executive-governance-series/README.html: docs/executive-governance/index.html
-  docs/executive-governance-series/index.html: docs/executive-governance/index.html
-  docs/executive-governance-series/why-governance-fails.html: docs/executive-governance/ch01-why-governance-fails/index.html
-  docs/executive-governance-series/compliance-paradox.html: docs/executive-governance/ch02-compliance-paradox/index.html
-  docs/executive-governance-series/drift-as-primary-threat.html: docs/executive-governance/ch03-drift-as-primary-threat/index.html
-  docs/executive-governance-series/deterministic-governance.html: docs/executive-governance/ch04-deterministic-governance/index.html
-  docs/executive-governance-series/adapter-model.html: docs/executive-governance/ch05-adapter-model/index.html
-  docs/executive-governance-series/evidence-over-attestation.html: docs/executive-governance/ch06-evidence-over-attestation/index.html
-  docs/executive-governance-series/operational-tempo.html: docs/executive-governance/ch07-operational-tempo/index.html
-  docs/executive-governance-series/governance-at-scale.html: docs/executive-governance/ch08-governance-at-scale/index.html
-  docs/executive-governance-series/governance-operating-system.html: docs/executive-governance/index.html
-  docs/executive-governance/ch09-governance-operating-system/index.html: docs/executive-governance/index.html
+  docs/executive-governance-series/README.html: docs/books/b13-governance/index.html
+  docs/executive-governance-series/index.html: docs/books/b13-governance/index.html
+  docs/executive-governance-series/why-governance-fails.html: docs/books/b13-governance/01-why-governance-decays.html
+  docs/executive-governance-series/compliance-paradox.html: docs/books/b13-governance/01-why-governance-decays.html
+  docs/executive-governance-series/drift-as-primary-threat.html: docs/books/b13-governance/02-drift-is-the-primary-threat.html
+  docs/executive-governance-series/deterministic-governance.html: docs/books/b13-governance/05-deterministic-governance.html
+  docs/executive-governance-series/adapter-model.html: docs/books/b13-governance/08-the-adapter-model.html
+  docs/executive-governance-series/evidence-over-attestation.html: docs/books/b13-governance/07-evidence-over-attestation.html
+  docs/executive-governance-series/operational-tempo.html: docs/books/b13-governance/10-ticket-to-machine.html
+  docs/executive-governance-series/governance-at-scale.html: docs/books/b13-governance/12-governance-at-scale.html
+  docs/executive-governance-series/governance-operating-system.html: docs/books/b13-governance/index.html
+  docs/executive-governance/ch09-governance-operating-system/index.html: docs/books/b13-governance/index.html
 
   # Retired content.
   docs/executive-briefs/governance-os-overview.html: docs/executive-briefs/index.html
@@ -48,8 +48,8 @@ redirects:
   docs/modernization-specs/zero-trust/zero-trust.html: docs/books/b11-zero-trust/03-what-the-mandates-require.html
 
   # Architecture duplicates.
-  docs/architecture/architecture-series/evidence-chain.html: docs/architecture/evidence-chain.html
-  docs/architecture/six-plane-architecture.html: docs/architecture/architecture-series/six-plane-architecture.html
+  docs/architecture/architecture-series/evidence-chain.html: docs/books/b13-governance/07-evidence-over-attestation.html
+  docs/architecture/six-plane-architecture.html: docs/books/b13-governance/03-one-authoritative-record.html
   docs/architecture/directory-migration/README.html: docs/books/b02-identity/04-the-hidden-migration-surface.html
   docs/architecture/directory-migration/index.html: docs/books/b02-identity/04-the-hidden-migration-surface.html
 
@@ -296,3 +296,38 @@ redirects:
   docs/operational-guides/siem-telemetry-emission/02-azure-platform.html: docs/books/b12-security-operations/04-platform-and-m365-telemetry.html
   docs/operational-guides/siem-telemetry-emission/03-m365-unified-audit.html: docs/books/b12-security-operations/04-platform-and-m365-telemetry.html
   docs/modernization-specs/telemetry.html: docs/books/b12-security-operations/02-the-evidence-contract.html
+
+  # Book 13 (Governance, Drift & Evidence) replaced these pages; sources are in archive/b13-governance/.
+  docs/architecture/index.html: docs/books/b13-governance/03-one-authoritative-record.html
+  docs/architecture/architecture-series/README.html: docs/books/b13-governance/03-one-authoritative-record.html
+  docs/architecture/architecture-series/six-plane-architecture.html: docs/books/b13-governance/03-one-authoritative-record.html
+  docs/architecture/architecture-series/drift-engine.html: docs/books/b13-governance/06-the-drift-engine.html
+  docs/architecture/architecture-series/three-layer-rule-model.html: docs/books/b13-governance/05-deterministic-governance.html
+  docs/architecture/change-control-and-provenance.html: docs/books/b13-governance/04-change-control-and-provenance.html
+  docs/architecture/continuous-monitoring-strategy.html: docs/books/b13-governance/12-governance-at-scale.html
+  docs/architecture/drift-engine.html: docs/books/b13-governance/06-the-drift-engine.html
+  docs/architecture/evidence-chain.html: docs/books/b13-governance/07-evidence-over-attestation.html
+  docs/architecture/gap-closure-register.html: docs/books/b13-governance/12-governance-at-scale.html
+  docs/architecture/governance-platform-coverage-gap-doctrine.html: docs/books/b13-governance/12-governance-at-scale.html
+  docs/architecture/single-source-of-truth.html: docs/books/b13-governance/03-one-authoritative-record.html
+  docs/architecture/three-layer-rule-model.html: docs/books/b13-governance/05-deterministic-governance.html
+  docs/executive-governance/index.html: docs/books/b13-governance/index.html
+  docs/executive-governance/ch01-why-governance-fails/index.html: docs/books/b13-governance/01-why-governance-decays.html
+  docs/executive-governance/ch02-compliance-paradox/index.html: docs/books/b13-governance/01-why-governance-decays.html
+  docs/executive-governance/ch03-drift-as-primary-threat/index.html: docs/books/b13-governance/02-drift-is-the-primary-threat.html
+  docs/executive-governance/ch04-deterministic-governance/index.html: docs/books/b13-governance/05-deterministic-governance.html
+  docs/executive-governance/ch05-adapter-model/index.html: docs/books/b13-governance/08-the-adapter-model.html
+  docs/executive-governance/ch06-evidence-over-attestation/index.html: docs/books/b13-governance/07-evidence-over-attestation.html
+  docs/executive-governance/ch07-operational-tempo/index.html: docs/books/b13-governance/10-ticket-to-machine.html
+  docs/executive-governance/ch08-governance-at-scale/index.html: docs/books/b13-governance/12-governance-at-scale.html
+  docs/reference-architecture/index.html: docs/books/b13-governance/03-one-authoritative-record.html
+  docs/executive-briefs/adapter-ecosystem-overview.html: docs/books/b13-governance/08-the-adapter-model.html
+  docs/executive-briefs/drift-engine-overview.html: docs/books/b13-governance/02-drift-is-the-primary-threat.html
+  docs/executive-briefs/evidence-fabric-overview.html: docs/books/b13-governance/07-evidence-over-attestation.html
+  docs/executive-briefs/ksi-conformance-overview.html: docs/books/b13-governance/11-reciprocity-and-one-authorization.html
+  docs/executive-briefs/reciprocity-single-ato-overview.html: docs/books/b13-governance/11-reciprocity-and-one-authorization.html
+  docs/whitepapers/modernization-governance-whitepaper.html: docs/books/b13-governance/01-why-governance-decays.html
+  docs/whitepapers/ticket-to-machine-not-ticket-to-human.html: docs/books/b13-governance/10-ticket-to-machine.html
+  docs/whitepapers/ticket-to-machine-appendices.html: docs/books/b13-governance/appendix-b-ticket-to-machine-reference.html
+  docs/projects/continuous-monitoring-charter.html: docs/books/b13-governance/12-governance-at-scale.html
+  docs/projects/continuous-monitoring-plan.html: docs/books/b13-governance/12-governance-at-scale.html

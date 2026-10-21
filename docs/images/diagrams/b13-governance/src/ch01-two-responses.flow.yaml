@@ -1,0 +1,33 @@
+# Book 13 Chapter 01 — two responses to the same audit findings. Checkbox
+# governance makes reporting heavier and leaves drift untouched; deterministic
+# evidence regenerates the package from the authoritative record and the
+# systems' own output, so drift surfaces as findings between assessments.
+# Both columns are the program's argument, not an external standard.
+rankdir: TB
+graph: {nodesep: 0.35, ranksep: 0.35}
+clusters:
+  - id: box
+    label: "Checkbox governance"
+    tone: red
+    margin: 8
+    nodes: [c1, c2, c3]
+  - id: det
+    label: "Deterministic evidence"
+    tone: green
+    margin: 8
+    nodes: [d1, d2, d3]
+nodes:
+  found: {tone: amber, width: 470, title: "Findings at the audit", body: ["=The package no longer matched the estate"], size: 12}
+  c1: {tone: red, width: 215, title: "Add controls, checkpoints, reviewers", size: 11}
+  c2: {tone: red, width: 215, title: "Reporting gets heavier", body: ["=Reviewers approve by pattern"], size: 11}
+  c3: {tone: red, width: 215, title: "Drift untouched", body: ["=Found again at the next audit"], size: 11}
+  d1: {tone: green, width: 215, title: "Regenerate the package", body: ["=From the record plus what the systems emit"], size: 11}
+  d2: {tone: green, width: 215, title: "Same inputs, same output", body: ["=Anyone can re-run it and compare"], size: 11}
+  d3: {tone: green, width: 215, title: "Drift surfaces between audits", body: ["=As findings with owners"], size: 11}
+edges:
+  - [found, c1, {tone: red}]
+  - [found, d1, {tone: green}]
+  - [c1, c2, {tone: red}]
+  - [c2, c3, {tone: red}]
+  - [d1, d2, {tone: green}]
+  - [d2, d3, {tone: green}]

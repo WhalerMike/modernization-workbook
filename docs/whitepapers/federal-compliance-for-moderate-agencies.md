@@ -432,7 +432,7 @@ deployed versus proposed against M-25-21's specific gates.
  Federal Data Strategy) 
 
  Closure-evidence Agency (operational) [Ticket-to-Machine, Not
- standard across cloud Ticket-to-Human](ticket-to-machine-not-ticket-to-human.md)
+ standard across cloud Ticket-to-Human](../books/b13-governance/10-ticket-to-machine.md)
  platforms 
  -----------------------------------------------------------------------------------------------------------------------
 

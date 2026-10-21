@@ -1,0 +1,32 @@
+# Book 13 Chapter 09 — who governs the authoritative record. Top row: the
+# deciders above the program (sponsor and CIO, authorizing official, CISO).
+# Middle row: the governance board that reviews, the steward who keeps the
+# record and decides rule changes, and the information owners who decide what
+# each fact means. Bottom row: platform teams who change the estate only
+# through authorized plans, and the records officer and assessors who keep the
+# record honest. Program design, consistent with Book 01 Ch09 and Book 00 Ch07.
+rankdir: TB
+graph: {nodesep: 0.15, ranksep: 0.45}
+nodes:
+  spon: {tone: amber, width: 155, tag: "Decides", title: "Sponsor and CIO", body: ["=Charter the board; architecture and authoritative-origin changes"], size: 12}
+  ao: {tone: amber, width: 155, tag: "Decides", title: "Authorizing official", body: ["=Residual risk, open-ended exceptions, L4 classes"], size: 12}
+  ciso: {tone: violet, width: 155, tag: "Decides", title: "CISO", body: ["=Requirements, drift evidence, bounded exceptions"], size: 12}
+  board: {tone: amber, width: 155, tag: "Reviews", title: "Governance board", body: ["=Rule changes, drift trend, exception register"], size: 12}
+  stew: {tone: violet, width: 155, tag: "Keeps the record", title: "Steward and program office", body: ["=Custody, rule changes, drift triage"], size: 12}
+  info: {tone: slate, width: 155, tag: "Decides meaning", title: "Information owners", body: ["=HR, application and data owners"], size: 12}
+  plat: {tone: blue, width: 155, tag: "Changes the estate", title: "Platform teams", body: ["=Mappings, runtime code, remediation"], size: 12}
+  rec: {tone: slate, width: 155, tag: "Decides retention", title: "Records officer", body: ["=Schedules for history and evidence"], size: 12}
+  asr: {tone: slate, width: 155, tag: "Reads, never edits", title: "Control assessors", body: ["=Independence set by the AO"], size: 12}
+edges:
+  - [spon, stew, {label: "charter", tone: amber}]
+  - [ao, stew, {label: "risk decisions", lw: 80, tone: amber}]
+  - [ciso, stew, {label: "requirements", tone: violet}]
+  - [board, stew, {label: "reviews", both: true, style: dashed}]
+  - [info, stew, {label: "meaning", style: dashed}]
+  - [stew, plat, {label: "authorized plans", tone: violet}]
+  - [rec, stew, {label: "schedules", style: dashed}]
+  - [asr, ao, {label: "assessments", style: dashed}]
+order:
+  - [spon, ao, ciso]
+  - [board, stew, info]
+  - [plat, rec, asr]

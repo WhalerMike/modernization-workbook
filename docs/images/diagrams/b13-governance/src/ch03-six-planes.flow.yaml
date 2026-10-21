@@ -1,0 +1,19 @@
+# Book 13 Chapter 03 — the six control planes in the order authority flows
+# between them. Each plane has one authoritative input; the only cycles are at
+# runtime and are mediated by an explicit artifact. Program design.
+rankdir: TB
+graph: {nodesep: 0.3, ranksep: 0.22}
+nodes:
+  id: {tone: blue, width: 330, tag: "1 · Root", title: "Identity", body: ["=Every actor named once; assurance anchored here"], size: 12}
+  ad: {tone: slate, width: 330, tag: "2", title: "Addressing", body: ["=IPAM, DNS and DHCP, computed from identity and policy"], size: 12}
+  nw: {tone: slate, width: 330, tag: "3", title: "Network", body: ["=Routing, segmentation and overlay from who and where"], size: 12}
+  tl: {tone: violet, width: 330, tag: "4", title: "Telemetry and location", body: ["=Signals treated as control input, not after-the-fact reporting"], size: 12}
+  sc: {tone: blue, width: 330, tag: "5", title: "Security and compliance", body: ["=Policy decision and enforcement points; authorization alignment"], size: 12}
+  mg: {tone: violet, width: 330, tag: "6", title: "Management", body: ["=Drift detection, stewardship, evidence, device compliance"], size: 12}
+edges:
+  - [id, ad]
+  - [ad, nw]
+  - [nw, tl]
+  - [tl, sc]
+  - [sc, mg]
+  - [mg, id, {label: "runtime only: a drift finding, as a recorded artifact", style: dashed, tone: violet}]

@@ -1,0 +1,22 @@
+# Chapter 12 — the continuous-monitoring program run as a project: charter,
+# then contract, emit, aggregate, and detect-and-assemble, each with the
+# success measure that ends the phase. Phases and measures are the program's
+# design; the strategy they implement is SP 800-37 Task P-7 and PM-31.
+rankdir: TB
+graph: {nodesep: 0.25, ranksep: 0.35}
+nodes:
+  p0: {tone: slate, width: 200, tag: "Phase 0", title: "Charter", body: ["=Record shape, pilot sources and join key agreed"], size: 12}
+  p1: {tone: violet, width: 200, tag: "Phase 1", title: "Contract", body: ["=Normalized record and its control binding documented"], size: 12}
+  p2: {tone: blue, width: 200, tag: "Phase 2", title: "Emit", body: ["=At least two sources writing records"], size: 12}
+  p3: {tone: blue, width: 200, tag: "Phase 3", title: "Aggregate", body: ["=One picture for the pilot scope, joined on asset identity"], size: 12}
+  p4: {tone: green, width: 420, tag: "Phase 4", title: "Detect and assemble", body: ["=Drift detection for one object class; package artifacts generated from the stream; coverage reported as proven or asserted"], size: 12}
+  risk: {kind: pill, tone: amber, text: "Risk: more findings than the\norganization can remediate"}
+edges:
+  - [p0, p1]
+  - [p1, p2]
+  - [p2, p3]
+  - [p3, p4]
+  - [risk, p4, {style: dashed, tone: amber}]
+order:
+  - [p0, p1, p2]
+  - [risk, p3]

@@ -1,0 +1,22 @@
+# Book 13 Chapter 08 — an adapter's lifecycle. A declared name claims no
+# capability; tests at three levels gate active status; deprecation names a
+# successor; retirement flags remaining references and keeps past evidence
+# reproducible. Program design.
+rankdir: TB
+graph: {nodesep: 0.35, ranksep: 0.3}
+nodes:
+  prop: {kind: pill, tone: slate, text: "Proposed or\nreserved"}
+  tests: {tone: violet, width: 260, title: "Three test levels", body: ["Recorded contract fixtures, every change, no network", "Live non-production tenant, on a schedule", "Reference deployment in the target boundary, before active"], size: 11}
+  fail: {kind: pill, tone: red, text: "Any failed test\nblocks the change"}
+  active: {kind: pill, tone: green, text: "Active"}
+  dep: {tone: amber, width: 180, title: "Deprecated", body: ["=Still runs; successor named"], size: 11}
+  ret: {tone: slate, width: 210, title: "Retired", body: ["=References flagged as provenance drift; past evidence reproducible"], size: 11}
+edges:
+  - [prop, tests]
+  - [tests, active, {tone: green}]
+  - [fail, tests, {style: dashed, tone: red}]
+  - [active, dep, {tone: amber}]
+  - [dep, ret]
+ranks:
+  - [tests, fail]
+  - [dep, ret]

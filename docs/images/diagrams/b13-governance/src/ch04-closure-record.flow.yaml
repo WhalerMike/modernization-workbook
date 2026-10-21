@@ -1,0 +1,20 @@
+# Book 13 Chapter 04 — closure provenance. A closure counts only when it
+# carries its proof; human-only closure is a flagged exception state, counted
+# separately; reports are derived from the closure stream and can be re-run.
+# Program design.
+rankdir: LR
+graph: {nodesep: 0.3, ranksep: 0.3}
+nodes:
+  lin: {tone: slate, width: 150, tag: "Lineage", title: "What the close carries", body: ["Originating record", "Authorization", "Just-in-time activation", "Verification payload"], size: 12}
+  rec: {tone: violet, width: 145, tag: "Integrity-protected", title: "Closure record", body: ["=Hashed and signed; time and checker identity"], size: 12}
+  ok: {tone: green, width: 150, tag: "Payload present", title: "Evidence stream", body: ["=Counts toward control tests and service levels"], size: 12}
+  ex: {tone: amber, width: 150, tag: "No payload", title: "Exception state", body: ["=Human-only closure: flagged, counted separately, never aggregated"], size: 12}
+  rep: {tone: violet, width: 150, tag: "Derivations", title: "Reports", body: ["=Regenerated from closure records and diffed"], size: 12}
+edges:
+  - [lin, rec]
+  - [rec, ok, {tone: green}]
+  - [rec, ex, {tone: amber, style: dashed}]
+  - [ok, rep]
+  - [ex, rep, {style: dashed}]
+ranks:
+  - [ok, ex]

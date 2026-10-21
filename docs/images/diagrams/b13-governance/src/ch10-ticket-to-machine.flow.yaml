@@ -1,0 +1,35 @@
+# Book 13 Chapter 10 — the same drift finding handled two ways. Left: the
+# ticket tells a person to open the console, and "done" is a reply. Right: the
+# ticket authorizes a machine; a human approves, the platform executes under a
+# service identity, a re-read verifies and the record closes with evidence.
+# Program design, from the ticket-to-machine whitepaper.
+rankdir: TB
+graph: {nodesep: 0.3, ranksep: 0.3}
+clusters:
+  - id: human
+    label: "Ticket to a human"
+    tone: red
+    margin: 8
+    nodes: [h1, h2, h3]
+  - id: machine
+    label: "Ticket to a machine"
+    tone: green
+    margin: 8
+    nodes: [m1, m2, m3, m4]
+nodes:
+  d: {tone: violet, width: 440, title: "Drift detected against the record", body: ["=A typed task on the configuration item: owner, clock, severity"], size: 11}
+  h1: {tone: slate, width: 200, title: "Person opens the console", body: ["=Because the ticket said so"], size: 11}
+  h2: {tone: slate, width: 200, title: "Changes it by hand", body: ["=Under a personal admin account"], size: 11}
+  h3: {tone: red, width: 200, title: "Replies \"done\"", body: ["=Closure is an assertion"], size: 11}
+  m1: {tone: amber, width: 200, title: "Human approves", body: ["=The instance, or the class in advance"], size: 11}
+  m2: {tone: blue, width: 200, title: "Platform executes", body: ["=Versioned plan, service identity, dry run"], size: 11}
+  m3: {tone: blue, width: 200, title: "Re-read verifies", body: ["=Actual state matches the record"], size: 11}
+  m4: {tone: green, width: 200, title: "Closed with evidence", body: ["=Approval, run log, result, re-test"], size: 11}
+edges:
+  - [d, h1, {tone: red}]
+  - [h1, h2]
+  - [h2, h3]
+  - [d, m1, {tone: green}]
+  - [m1, m2]
+  - [m2, m3]
+  - [m3, m4, {tone: green}]

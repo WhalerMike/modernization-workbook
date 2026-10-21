@@ -11,7 +11,7 @@ The workbook supplies the principles, architecture, and governance framing. Thes
 | Identity Lifecycle & Provisioning | [Charter](identity-lifecycle-charter.md) | [Plan](identity-lifecycle-plan.md) |
 | Endpoint & Device Modernization | [Charter](endpoint-device-charter.md) | [Plan](endpoint-device-plan.md) |
 | Network & Access Modernization | [Charter](network-access-charter.md) | [Plan](network-access-plan.md) |
-| Continuous Monitoring & Evidence Fabric | [Charter](continuous-monitoring-charter.md) | [Plan](continuous-monitoring-plan.md) |
+| Continuous Monitoring & Evidence Fabric | [Charter](../books/b13-governance/12-governance-at-scale.md) | [Plan](../books/b13-governance/12-governance-at-scale.md) |
 | Privileged Access & Administrative Identity | [Charter](privileged-access-charter.md) | [Plan](privileged-access-plan.md) |
 | Data Platform Identity Transformation | [Charter](data-platform-charter.md) | [Plan](data-platform-plan.md) |
 | Supply Chain & Software Bill of Materials | [Charter](supply-chain-charter.md) | [Plan](supply-chain-plan.md) |

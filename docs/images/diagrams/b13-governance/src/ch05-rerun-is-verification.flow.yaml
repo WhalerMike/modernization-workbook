@@ -1,0 +1,22 @@
+# Book 13 Chapter 05 — determinism makes a re-run the verification. The same
+# record version and the same archived inputs, through the same pipeline,
+# produce a byte-identical bundle; an assessor compares hashes. Program design.
+rankdir: TB
+graph: {nodesep: 0.25, ranksep: 0.35}
+nodes:
+  rec: {tone: green, width: 230, title: "Record version", body: ["=Rules and mappings at a known version"], size: 11}
+  inp: {tone: slate, width: 230, title: "Archived inputs", body: ["=Collected state for the window, kept with the record version"], size: 11}
+  pipe: {tone: violet, width: 480, title: "Deterministic pipeline", body: ["No silent drops · append-only · ordered · idempotent", "Canonical serialization, per-claim hashes, bundle hash over them"], size: 11}
+  orig: {tone: blue, width: 230, title: "Sealed bundle", body: ["=Produced by the program; hash H"], size: 11}
+  rerun: {tone: blue, width: 230, title: "Regenerated bundle", body: ["=Produced by the assessor's re-run; hash H′"], size: 11}
+  cmp: {tone: green, width: 480, title: "Compare", body: ["H = H′: the evidence is verified by reproduction", "H ≠ H′: a finding in its own right; something changed or was lost"], size: 11}
+edges:
+  - [rec, pipe]
+  - [inp, pipe]
+  - [pipe, orig]
+  - [pipe, rerun, {style: dashed}]
+  - [orig, cmp]
+  - [rerun, cmp]
+order:
+  - [rec, inp]
+  - [orig, rerun]

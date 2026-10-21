@@ -1,0 +1,22 @@
+# Book 13 Chapter 01 — a point-in-time package is true on the day it is
+# assembled; the estate keeps changing after that, and the next assessment
+# rediscovers the divergence. A continuous comparison against the
+# authoritative record turns each divergence into a finding when it appears.
+# "Systems change" is SP 800-37 Rev. 2 Task M-1; the comparison loop is the
+# program's design.
+rankdir: TB
+graph: {nodesep: 0.3, ranksep: 0.4}
+nodes:
+  assess: {tone: slate, width: 470, tag: "Day 0", title: "Assessment", body: ["=Evidence assembled, package signed: true on this date"], size: 12}
+  change: {tone: red, width: 470, tag: "Day 1 onward", title: "The estate keeps changing", body: ["Configuration changes, inside and outside change control", "People join, move and leave", "Providers and tools update themselves", "Emergency fixes that are never written back"], size: 11}
+  stale: {tone: red, width: 225, title: "The package doesn't change", body: ["=It still describes day 0", "=The risk sits in the gap"], size: 11}
+  compare: {tone: violet, width: 225, title: "Continuous comparison", body: ["=Actual state checked against the authoritative record on a schedule"], size: 11}
+  next: {tone: amber, width: 225, title: "Next assessment", body: ["=The gap is rediscovered as new findings", "=A new snapshot starts aging"], size: 11}
+  finding: {tone: green, width: 225, title: "Finding the day it appears", body: ["=Owned, tracked, closed with evidence"], size: 11}
+edges:
+  - [assess, change]
+  - [change, stale, {tone: red}]
+  - [change, compare, {tone: violet}]
+  - [stale, next, {tone: amber}]
+  - [compare, finding, {tone: green}]
+  - [next, assess, {style: dashed, tone: amber, label: "repeat", attrs: "constraint=false"}]

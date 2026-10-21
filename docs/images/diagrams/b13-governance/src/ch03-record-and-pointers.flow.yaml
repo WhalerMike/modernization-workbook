@@ -1,0 +1,22 @@
+# Book 13 Chapter 03 — one authoritative record. Upstream authorities own their
+# facts; the governed repository records desired state, rules and which system
+# is authoritative for what; runtime systems read it and never write it except
+# through a reviewed change; every derived artifact points back to the source
+# and version it came from. Program design, not an external standard.
+rankdir: TB
+graph: {nodesep: 0.3, ranksep: 0.35}
+nodes:
+  up: {tone: amber, width: 175, tag: "Upstream authorities", title: "Systems that own facts", body: ["HR system of record", "Identity platform", "Asset-lifecycle registry", "Infrastructure as code"], size: 12}
+  pr: {tone: amber, width: 175, tag: "Only write path", title: "Reviewed pull request", body: ["=Registry updated, checks passed, approver of record"], size: 12}
+  rec: {tone: violet, width: 190, tag: "Authoritative record", title: "Governed repository", body: ["Policies, plans, evidence", "Schemas", "Rules and validation logic", "The authority map"], size: 12}
+  rt: {tone: blue, width: 175, tag: "Read-only", title: "Runtime systems", body: ["=Resolve the record by a stable reference; never by a copy"], size: 12}
+  der: {tone: green, width: 175, tag: "Pointers, not copies", title: "Derived artifacts", body: ["Reports and exports", "Evidence packets", "=Each carries source, version, time and producer"], size: 12}
+edges:
+  - [up, rec, {label: "authority recorded", tone: amber}]
+  - [pr, rec, {tone: amber}]
+  - [rec, rt, {tone: violet}]
+  - [rec, der, {tone: violet}]
+  - [der, rec, {label: "cites source and version", style: dashed}]
+ranks:
+  - [up, pr]
+  - [rt, der]
