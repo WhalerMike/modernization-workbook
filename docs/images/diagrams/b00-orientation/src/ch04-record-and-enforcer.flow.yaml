@@ -1,0 +1,20 @@
+# Chapter 04 — principles 11 and 15: the governance layer holds the record of
+# what should be true; the platforms enforce it; the drift loop compares the two.
+rankdir: TB
+graph: {nodesep: 0.2, ranksep: 0.55}
+nodes:
+  gov: {tone: violet, width: 220, tag: "System of record", title: "Governance layer", body: ["Desired state", "Organizational attributes", "Authorized plans"], size: 12}
+  idn: {tone: blue, width: 190, tag: "Enforcer", title: "Identity and access", body: ["=Entra ID, Conditional Access"], size: 12}
+  dev: {tone: blue, width: 190, tag: "Enforcer", title: "Devices and servers", body: ["=Intune, Azure Arc"], size: 12}
+  net: {tone: blue, width: 190, tag: "Enforcer", title: "Network and DNS", body: ["=Fabrics, resolvers, IPAM"], size: 12}
+  loop: {tone: violet, width: 220, tag: "Drift loop", title: "Compare record with reality", body: ["=Snapshot, compare, classify, alert, remediate, verify"], size: 12}
+order:
+  - [idn, dev, net]
+edges:
+  - [gov, idn, {label: "authorized plans", tone: blue}]
+  - [gov, dev, {tone: blue}]
+  - [gov, net, {tone: blue}]
+  - [idn, loop, {label: "observed state", style: dashed}]
+  - [dev, loop, {style: dashed}]
+  - [net, loop, {style: dashed}]
+  - [loop, gov, {label: "findings", style: dashed, tone: violet, attrs: "constraint=false"}]

@@ -1,0 +1,18 @@
+# Chapter 08 — twelve AD domains feed fifteen assessment deliverables; with the
+# streams Book 01 adds (DHCP, LDAP bindings and the SPN map, transaction
+# profiles) they feed eight generated, approved plans, which drive Phases 1 to 5.
+rankdir: TB
+graph: {nodesep: 0.3, ranksep: 0.45}
+nodes:
+  dom: {tone: slate, width: 200, tag: "Assess", title: "Twelve AD domains", body: ["Topology, OUs, GPOs", "DNS, PKI, computers", "Users, groups, trusts", "Service accounts", "Delegation, schema"], size: 12}
+  del: {tone: slate, width: 220, tag: "Deliverables 1 to 15", title: "Assessment artifacts", body: ["Inventories and GPO reports", "Certificate escalation list", "=Manifest with provenance"], size: 12}
+  add: {tone: amber, width: 220, tag: "Added by Book 01", title: "Further streams", body: ["DHCP scopes", "LDAP bindings, SPN map", "Transaction profiles"], size: 12}
+  pl: {tone: violet, width: 220, tag: "Deliverables 16 to 23", title: "Eight plans", body: ["Computer, identity, GPO", "DNS, PKI, attribute design", "Trust, security remediation"], size: 12}
+  out: {tone: green, width: 220, tag: "Drives", title: "Phases 1 to 5", body: ["=Plans, not raw inventory"], size: 12}
+order: [[del, add]]
+edges:
+  - [dom, del]
+  - [dom, add, {style: dashed, tone: amber}]
+  - [del, pl]
+  - [add, pl, {tone: amber}]
+  - [pl, out, {tone: green}]

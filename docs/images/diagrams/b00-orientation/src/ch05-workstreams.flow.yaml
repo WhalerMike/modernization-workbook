@@ -1,0 +1,27 @@
+# Chapter 05 — the five workstreams run in parallel, ordered by their
+# dependencies: identity before policy and compute, identity and policy
+# before access; services start from the assessment and bridge. PKI
+# (certificate-based authentication) waits for identity.
+rankdir: TB
+graph: {nodesep: 0.3, ranksep: 0.45}
+nodes:
+  assess: {tone: slate, width: 230, tag: "Phase 0", title: "Assessment", body: ["=Committed read-only inventory"], size: 12}
+  ident: {tone: blue, width: 230, tag: "Workstream", title: "Identity", body: ["=Attribute model, dynamic groups, HR feed"], size: 12}
+  svc: {tone: slate, width: 230, tag: "Workstream", title: "Services", body: ["=DNS, DHCP and IPAM; may bridge"], size: 12}
+  pol: {tone: blue, width: 230, tag: "Workstream", title: "Policy", body: ["=Intune and Conditional Access scoped by attributes"], size: 12}
+  comp: {tone: blue, width: 230, tag: "Workstream", title: "Compute", body: ["=Devices and Arc-connected servers"], size: 12}
+  acc: {tone: blue, width: 230, tag: "Workstream", title: "Access", body: ["=Certificate-based authentication, PIM, ZTNA"], size: 12}
+  pki: {kind: pill, tone: amber, width: 230, text: "PKI waits for identity"}
+edges:
+  - [assess, ident]
+  - [assess, svc]
+  - [ident, pol]
+  - [ident, comp]
+  - [pol, acc]
+  - [ident, acc, {style: dashed}]
+  - [svc, comp, {label: "bridges", style: dashed}]
+  - [pki, acc, {tone: amber, style: dashed}]
+order:
+  - [ident, svc]
+  - [pol, comp]
+  - [acc, pki]

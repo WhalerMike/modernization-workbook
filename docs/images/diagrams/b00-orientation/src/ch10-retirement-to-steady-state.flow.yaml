@@ -1,0 +1,20 @@
+# Chapter 10 — the last stretch of the program: Phase 4 legacy retirement
+# (the master plan's cutover milestones), Phase 5 AD DS retirement (no
+# master-plan counterpart) and Phase 6 steady state, with gates G3 to G5 and
+# the things that stay on Active Directory until the domain itself retires.
+# Gate owners follow Book 01 Chapter 09. Phases and gates are Book 01's.
+rankdir: TB
+graph: {nodesep: 0.3, ranksep: 0.3}
+nodes:
+  g3: {kind: pill, tone: slate, text: "G3 Rollout Complete cleared"}
+  p4: {tone: amber, width: 320, tag: "Phase 4 · master plan M-038 to M-044", title: "Legacy retirement", body: ["AD FS out of the sign-in path", "AD CS issuance stopped for users and devices", "Forwarders, GPO links, OU groups, DHCP", "Non-essential trusts, SPNs, legacy servers"], size: 12}
+  stay: {tone: slate, width: 250, tag: "Stays until AD retires", title: "What the domain still needs", body: ["Its own DNS zones, including `_msdcs`", "DC and LDAPS certificates on AD CS", "Default domain account policies", "Any Kerberos island, with an end date"], size: 12}
+  p5: {tone: red, width: 320, tag: "Phase 5 · no master-plan counterpart", title: "AD DS retirement", body: ["Freeze, final assessment, evidence packet", "Records officer consulted; logs retained", "Demote or island the domain controllers", "Sanitize and decommission the hosts"], size: 12}
+  p6: {tone: green, width: 320, tag: "Phase 6 · master plan M-045 to M-048", title: "Steady state", body: ["Daily drift, weekly reassessment", "Monthly compliance, quarterly access review", "Annual architecture review", "Ownership held by operations"], size: 12}
+edges:
+  - [g3, p4]
+  - [p4, p5, {label: "G4 Legacy Quiet · steward"}]
+  - [p5, p6, {label: "G5 AD Retired · sponsor and CIO"}]
+  - [stay, p5, {style: dashed, label: "retires with the domain", tone: slate}]
+order:
+  - [p4, stay]

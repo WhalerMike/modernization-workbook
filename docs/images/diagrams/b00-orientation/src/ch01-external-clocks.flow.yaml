@@ -1,0 +1,26 @@
+# Book 00 Chapter 01 — the external clocks as of October 21, 2026: federal
+# policy (M-22-09, BOD 25-01, BOD 26-02, FedRAMP Consolidated Rules, M-26-14)
+# and vendor support dates (Microsoft Lifecycle, Ending Support in 2025-2029),
+# all landing on one estate. Dates verified in the chapter footnotes.
+rankdir: TB
+graph: {nodesep: 0.3, ranksep: 0.45}
+clusters:
+  - id: policy
+    label: "Federal policy"
+    tone: amber
+    filled: false
+    nodes: [pol]
+  - id: vendor
+    label: "Vendor support"
+    tone: red
+    filled: false
+    nodes: [ven]
+nodes:
+  pol: {tone: amber, width: 330, title: "Policy dates", body: ["M-22-09 actions: end of FY 2024 (passed, still in force)", "BOD 25-01 mandatory M365 policies: June 20, 2025", "M-26-14 logging plan: 90 days after the LRA (August 20, 2026)", "FedRAMP Consolidated Rules mandatory: January 1, 2027", "BOD 26-02 listed edge devices out: February 5, 2027", "No new FedRAMP Rev5 applications: June 11, 2027"], size: 11}
+  ven: {tone: red, width: 330, title: "End of support", body: ["Windows 10, Exchange 2016 and 2019: October 14, 2025", "SQL Server 2016, SharePoint 2016 and 2019: July 14, 2026", "Windows Server 2012 and 2012 R2 ESU: October 13, 2026", "Windows Server 2016: January 12, 2027", "SQL Server 2017: October 12, 2027", "Windows Server 2019, MIM 2016: January 9, 2029"], size: 11}
+  prog: {tone: violet, width: 420, title: "One estate, one governed program", body: ["=Every date assumes the agency knows what it runs, who owns it and what governs it"], size: 12}
+edges:
+  - [pol, prog, {tone: violet}]
+  - [ven, prog, {tone: violet}]
+order:
+  - [pol, ven]

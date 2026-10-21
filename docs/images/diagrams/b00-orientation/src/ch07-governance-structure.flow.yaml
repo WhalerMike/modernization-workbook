@@ -1,0 +1,31 @@
+# Chapter 07 — how the program is governed. Top row: the deciders (sponsor
+# and CIO, authorizing official, CISO), as set in Book 01 Chapter 09. Middle
+# row: the steering committee, the steward and program office, and the
+# project manager. Bottom row: workstream leads, complementary project leads,
+# and the owners the program consults (application owners, HR, records, help
+# desk). This is the program's recommended model, not an external standard.
+rankdir: TB
+graph: {nodesep: 0.2, ranksep: 0.45}
+nodes:
+  spon: {tone: amber, width: 180, tag: "Decides", title: "Executive sponsor and CIO", body: ["=Scope, funding, retirement, gates G3 and G5"], size: 12}
+  ao: {tone: amber, width: 180, tag: "Decides", title: "Authorizing official", body: ["=Accepts residual risk"], size: 12}
+  ciso: {tone: violet, width: 180, tag: "Decides", title: "CISO", body: ["=Control requirements and evidence"], size: 12}
+  sc: {tone: amber, width: 180, tag: "Reviews", title: "Steering committee", body: ["=Drift trend, gate G3"], size: 12}
+  stew: {tone: violet, width: 180, tag: "Orchestrates", title: "Steward and program office", body: ["=Plan, repository, gates G0, G1, G2, G4"], size: 12}
+  pm: {tone: slate, width: 180, tag: "Tracks", title: "Project manager", body: ["=Schedule, risk register, reports"], size: 12}
+  ws: {tone: blue, width: 180, tag: "Designs and does", title: "Workstream leads", body: ["=Identity, policy, services, compute, access"], size: 12}
+  proj: {tone: blue, width: 180, tag: "Designs and does", title: "Project leads", body: ["=Seven chartered projects"], size: 12}
+  own: {tone: slate, width: 180, tag: "Consulted", title: "App owners, HR, records, help desk", body: ["=Decide for their own domains"], size: 12}
+edges:
+  - [spon, stew, {label: "scope", tone: amber}]
+  - [ao, stew, {label: "risk decisions", tone: amber}]
+  - [ciso, stew, {label: "requirements", tone: violet}]
+  - [sc, stew, {label: "reports", both: true, style: dashed}]
+  - [pm, stew, {style: dashed}]
+  - [stew, ws, {label: "authorized plans", tone: violet}]
+  - [stew, proj, {tone: violet}]
+  - [stew, own, {label: "consults", both: true, style: dashed}]
+order:
+  - [spon, ao, ciso]
+  - [sc, stew, pm]
+  - [ws, proj, own]

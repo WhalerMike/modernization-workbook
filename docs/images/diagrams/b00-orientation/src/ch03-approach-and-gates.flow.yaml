@@ -1,0 +1,27 @@
+# Chapter 03 — the charter's five steps placed on the Book 01 roadmap (Book 01
+# Chapter 12 is canonical for phases and gates).
+rankdir: LR
+graph: {nodesep: 0.22, ranksep: 0.6}
+clusters:
+  - {id: steps, label: "Charter steps", tone: violet, filled: false, nodes: [s1, s2, s3, s4, s5]}
+  - {id: road, label: "Book 01 phases and gates", tone: slate, filled: false, nodes: [r0, r1, r2, r6]}
+nodes:
+  s1: {tone: violet, width: 200, title: "Assess", body: ["=Read-only inventory of dependencies"], size: 12}
+  s2: {tone: violet, width: 200, title: "Define the target", body: ["=Attributes, units, control-plane boundaries"], size: 12}
+  s3: {tone: violet, width: 200, title: "Plan waves", body: ["=Entry, exit and rollback criteria"], size: 12}
+  s4: {tone: violet, width: 200, title: "Execute under control", body: ["=From the source, least privilege, with evidence"], size: 12}
+  s5: {tone: green, width: 200, title: "Validate and sustain", body: ["=Continuous drift detection"], size: 12}
+  r0: {tone: slate, width: 230, tag: "Phase 0", title: "Pre-flight", foot: "Gate G0 Ready to Plan", size: 12}
+  r1: {tone: blue, width: 230, tag: "Phase 1", title: "Foundation", foot: "Gate G1 Foundation Complete", size: 12}
+  r2: {tone: amber, width: 230, tag: "Phases 2 to 5", title: "Pilot, rollout, legacy and AD DS retirement", foot: "Gates G2 to G5", size: 12}
+  r6: {tone: green, width: 230, tag: "Phase 6", title: "Steady state", foot: "A standing cadence", size: 12}
+order:
+  - [s1, s2, s3, s4, s5]
+  - [r0, r1, r2, r6]
+edges:
+  - [s1, r0]
+  - [s2, r1]
+  - [s3, r2, {label: "each wave"}]
+  - [s4, r2]
+  - [s5, r6]
+  - [s5, s1, {label: "next wave", style: dashed, tone: green, attrs: "constraint=false"}]

@@ -1,0 +1,23 @@
+# Chapter 10 — steady state as a loop: drift detection raises a finding with a
+# severity and an SLA, the finding becomes an authorized plan, delivery emits
+# evidence, and the next run shows zero actions if nothing has drifted. The
+# periodic reviews feed the same repository. SLA values are the program's
+# defaults from the master plan; the agency sets its own.
+rankdir: TB
+graph: {nodesep: 0.3, ranksep: 0.35}
+nodes:
+  det: {tone: violet, width: 260, tag: "Daily", title: "Drift detection", body: ["=Observed state compared with the authoritative repository"], size: 12}
+  fin: {tone: amber, width: 260, tag: "Finding", title: "Severity and SLA", body: ["Critical: fix within 4 hours", "High: 24 hours · Medium: 7 days", "Low: 30 days"], size: 12}
+  plan: {tone: violet, width: 260, tag: "Plan", title: "Reviewed, authorized change", body: ["=Pull request with an approver of record"], size: 12}
+  dl: {tone: blue, width: 260, tag: "Deliver", title: "Governed delivery", body: ["=Least-privilege execution, rollback paired"], size: 12}
+  ev: {tone: green, width: 260, tag: "Evidence", title: "Signed evidence packet", body: ["=To the repository, the SIEM and continuous monitoring"], size: 12}
+  rev: {tone: slate, width: 230, tag: "Periodic", title: "Reviews", body: ["Weekly reassessment diff", "Monthly compliance report", "Quarterly access review", "Annual architecture review"], size: 12}
+edges:
+  - [det, fin, {label: "drift found"}]
+  - [fin, plan]
+  - [plan, dl, {tone: blue, label: "authorized"}]
+  - [dl, ev, {tone: green}]
+  - [ev, det, {style: dashed, attrs: "constraint=false", label: "next run: zero actions if clean"}]
+  - [rev, plan, {style: dashed, label: "findings and decisions"}]
+order:
+  - [fin, rev]

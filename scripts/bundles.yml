@@ -31,6 +31,13 @@ defaults:
   disclaimer: "Not an official U.S. federal government publication. The Federal Modernization Workbook is independent technical analysis. It does not represent the position of, and has not been reviewed or endorsed by, any federal agency."
 
 bundles:
+  - output: b00-orientation-bundle.docx
+    title: "Book 00 — Orientation & Program"
+    subtitle: "Why modernize, and why now — Federal Modernization Workbook, combined edition"
+    root: docs/books/b00-orientation
+    image_dir: docs/images/diagrams/b00-orientation
+    warn_unlisted: ["*.md"]
+    pages: [index.md, "[0-9][0-9]-*.md", "appendix-*.md"]
   - output: b01-transformation-arc-bundle.docx
     aliases: [client-server-to-hybrid-cloud-bundle.docx]
     title: "Book 01 — The Transformation Arc"

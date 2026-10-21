@@ -1,0 +1,20 @@
+# Chapter 09 — Book 01's Phases 1 to 3 and gates G1 to G3, as the program office
+# runs them. Each gate is evaluated from repository and drift data; G2 is the one
+# gate two people sign.
+rankdir: TB
+graph: {nodesep: 0.25, ranksep: 0.28}
+nodes:
+  in: {tone: violet, width: 320, tag: "From G0", title: "Committed assessment", body: ["=Chapter 08; no open priority-one findings"], size: 12}
+  p1: {tone: blue, width: 320, tag: "Phase 1", title: "Foundation", body: ["Eight plans generated and approved", "Designs approved from the plans", "Groups, AUs, Conditional Access baseline, HR feed"], size: 12}
+  g1: {tone: amber, width: 320, tag: "G1 · steward", title: "Foundation Complete", body: ["=Drift-clean; baseline enforced; High findings closed"], size: 12}
+  p2: {tone: blue, width: 320, tag: "Phase 2", title: "Pilot division", body: ["=The whole pattern on one division, measured"], size: 12}
+  g2: {tone: amber, width: 320, tag: "G2 · steward and sponsor", title: "Pilot Clean", body: ["=Zero-drift hold; cut dates set; criteria met"], size: 12}
+  p3: {tone: blue, width: 320, tag: "Phase 3", title: "General rollout", body: ["=Waves by attribute value, two or three divisions at a time"], size: 12}
+  g3: {tone: green, width: 320, tag: "G3 · sponsor and steering committee", title: "Rollout Complete", body: ["=Every division through its exit gate"], size: 12}
+edges:
+  - [in, p1]
+  - [p1, g1]
+  - [g1, p2]
+  - [p2, g2]
+  - [g2, p3]
+  - [p3, g3, {tone: green}]

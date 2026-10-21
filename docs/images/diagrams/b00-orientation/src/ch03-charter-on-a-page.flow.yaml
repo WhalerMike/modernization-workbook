@@ -1,0 +1,13 @@
+# Chapter 03 — the charter on one page: problem, six objectives, the five-step
+# approach, and six success criteria, each measured at a Book 01 gate.
+rankdir: LR
+graph: {nodesep: 0.2, ranksep: 0.3}
+nodes:
+  prob: {tone: red, width: 170, tag: "Problem", title: "Governance hidden in the directory", body: ["Structure implicit in the tree", "Facts copied across stores", "Drift found late", "Evidence hard to produce"], size: 12}
+  obj: {tone: blue, width: 170, tag: "Six objectives", title: "What the program delivers", body: ["One authoritative origin", "Explicit governance", "Drift as a finding", "Controlled waves", "No rip-and-replace", "Continuous evidence"], size: 12}
+  appr: {tone: violet, width: 170, tag: "Approach", title: "Five steps, per wave", body: ["Assess", "Define the target", "Plan waves", "Execute under control", "Validate and sustain"], size: 12}
+  succ: {tone: green, width: 170, tag: "Success criteria", title: "Six, each with a measure", body: ["Checked at G0, G1 and G2", "Thresholds set by the agency"], size: 12}
+edges:
+  - [prob, obj]
+  - [obj, appr]
+  - [appr, succ]

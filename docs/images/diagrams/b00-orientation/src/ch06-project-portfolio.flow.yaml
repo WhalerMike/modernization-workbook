@@ -1,0 +1,22 @@
+# Chapter 06 — the seven complementary projects in their suggested starting
+# order, with the book that carries each. Identity supplies the attributes
+# and owners every later project consumes; privileged access is chartered
+# fifth but starts in the Foundation phase for Tier 0 and emergency access.
+rankdir: TB
+graph: {nodesep: 0.3, ranksep: 0.3}
+nodes:
+  p1: {tone: blue, width: 320, tag: "1 · Books 02, 03, 04", title: "Identity Lifecycle & Provisioning", body: ["=Joiner, mover, leaver from the authoritative source"], size: 12}
+  p2: {tone: blue, width: 320, tag: "2 · Book 05", title: "Endpoint & Device Modernization", body: ["=Governed devices, GPO sunset, NTLM audit"], size: 12}
+  p3: {tone: blue, width: 320, tag: "3 · Books 08, 09, 04", title: "Network & Access Modernization", body: ["=Naming plane and identity-driven access"], size: 12}
+  p4: {tone: violet, width: 320, tag: "4 · Book 11, planned Book 13", title: "Continuous Monitoring & Evidence", body: ["=One evidence contract, drift as an operation"], size: 12}
+  p5: {tone: amber, width: 320, tag: "5 · Book 04", title: "Privileged Access & Admin Identity", body: ["=Just-in-time elevation, governed break-glass"], size: 12}
+  p6: {tone: blue, width: 320, tag: "6 · Book 06", title: "Data Platform Identity", body: ["=Tokens and managed identity; NTLM after audit"], size: 12}
+  p7: {tone: violet, width: 320, tag: "7 · planned Book 14", title: "Supply Chain & SBOM", body: ["=Inventory, risk-based remediation, certification gate"], size: 12}
+edges:
+  - [p1, p2, {label: "attributes and owners"}]
+  - [p2, p3]
+  - [p3, p4]
+  - [p4, p5]
+  - [p5, p6]
+  - [p6, p7]
+  - [p5, p1, {label: "starts early for Tier 0", style: dashed, tone: amber}]

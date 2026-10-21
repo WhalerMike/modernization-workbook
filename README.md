@@ -12,8 +12,8 @@ This repository extracts practical modernization concepts — single source of t
 
 | Step | Document | Why |
 |------|----------|-----|
-| 1 | [How to Use This Repo](docs/HOW-TO-USE.md) | Orientation for new readers. |
-| 2 | [Principles](docs/PRINCIPLES.md) | The rules. Read this first. |
+| 1 | [How to Use This Repo](docs/books/b00-orientation/02-how-to-use-this-workbook.md) | Orientation for new readers. |
+| 2 | [Principles](docs/books/b00-orientation/04-the-principles.md) | The rules. Read this first. |
 | 3 | [Project Charter](PROJECT-CHARTER.md) | Purpose, scope, and success criteria. |
 | 4 | [Project Plan](PROJECT-PLAN.md) | Phased roadmap and domain workstreams. |
 | 5 | [Why Modernization Is Hard](docs/books/b01-transformation-arc/01-why-modernization-is-hard.md) | Leadership framing of the problem. |

@@ -1,0 +1,35 @@
+# Book 00 Chapter 02 — the workbook's eighteen books in five reading groups
+# (the program's own grouping). Blue = published as a draft book; slate =
+# planned, no pages yet. Status from docs/books/index.md on October 21, 2026.
+rankdir: TB
+graph: {nodesep: 0.12, ranksep: 0.3}
+clusters:
+  - {id: g1, label: "Orientation and arc", tone: slate, filled: false, nodes: [b00, b01], order: [b00, b01]}
+  - {id: g2, label: "Identity and access", tone: slate, filled: false, nodes: [b02, b03, b04, b17], order: [b02, b03, b04, b17]}
+  - {id: g3, label: "The estate", tone: slate, filled: false, nodes: [b05, b06, b07, b08, b09], order: [b05, b06, b07, b08, b09]}
+  - {id: g4, label: "Boundary and assurance", tone: slate, filled: false, nodes: [b10, b11, b14], order: [b10, b11, b14]}
+  - {id: g5, label: "Running it", tone: slate, filled: false, nodes: [b12, b13, b15, b16], order: [b12, b13, b15, b16]}
+nodes:
+  b00: {tone: blue, width: 128, tag: "B00", title: "Orientation & Program", size: 11}
+  b01: {tone: blue, width: 128, tag: "B01", title: "Transformation Arc", size: 11}
+  b02: {tone: blue, width: 128, tag: "B02", title: "Identity & Directory", size: 11}
+  b03: {tone: blue, width: 128, tag: "B03", title: "HR-Driven Identity", size: 11}
+  b04: {tone: blue, width: 128, tag: "B04", title: "Access & Privilege", size: 11}
+  b17: {tone: slate, width: 128, tag: "B17 · planned", title: "AI Identity Governance", size: 11}
+  b05: {tone: blue, width: 128, tag: "B05", title: "Devices & Endpoints", size: 11}
+  b06: {tone: blue, width: 128, tag: "B06", title: "Data Platform", size: 11}
+  b07: {tone: blue, width: 128, tag: "B07", title: "PKI & Certificates", size: 11}
+  b08: {tone: blue, width: 128, tag: "B08", title: "DNS, DHCP & IPAM", size: 11}
+  b09: {tone: blue, width: 128, tag: "B09", title: "Network & Transport", size: 11}
+  b10: {tone: blue, width: 128, tag: "B10", title: "Cloud Boundary", size: 11}
+  b11: {tone: blue, width: 128, tag: "B11", title: "Zero Trust & Assessment", size: 11}
+  b14: {tone: slate, width: 128, tag: "B14 · planned", title: "Compliance & Authorization", size: 11}
+  b12: {tone: slate, width: 128, tag: "B12 · planned", title: "Security Operations", size: 11}
+  b13: {tone: slate, width: 128, tag: "B13 · planned", title: "Governance, Drift & Evidence", size: 11}
+  b15: {tone: slate, width: 128, tag: "B15 · planned", title: "Day-2 Operations", size: 11}
+  b16: {tone: slate, width: 128, tag: "B16 · planned", title: "Training & Education", size: 11}
+edges:
+  - [b00, b02, {style: invis}]
+  - [b02, b05, {style: invis}]
+  - [b05, b10, {style: invis}]
+  - [b10, b12, {style: invis}]
