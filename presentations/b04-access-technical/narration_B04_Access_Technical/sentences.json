@@ -1,0 +1,2158 @@
+{
+ "1": [
+  [
+   0.05,
+   6.85,
+   "This is the technical deep dive for Book 04 of the Federal Modernization Workbook, Access and Privilege."
+  ],
+  [
+   6.9,
+   2.688,
+   "The fifteen-minute briefing made the argument."
+  ],
+  [
+   9.588,
+   8.912,
+   "This session is for the people who build and run it: identity engineers, architects, and the security and assessment staff who have to prove it works."
+  ],
+  [
+   18.5,
+   6.588,
+   "It runs about fifty minutes in five modules, and each module stands on its own, so you can watch it in parts."
+  ],
+  [
+   25.087,
+   15.637,
+   "After a two-slide orientation, we'll cover the Conditional Access policy library; its rollout, exclusions and break-glass accounts; pim self-request with approval; access governance; and finally access as code, and the evidence it produces."
+  ],
+  [
+   40.725,
+   5.375,
+   "Every fact comes from a footnoted chapter of the book, and each slide names its chapter."
+  ],
+  [
+   46.1,
+   3.987,
+   "Code and JSON stay in the book; the slides carry the design."
+  ]
+ ],
+ "2": [
+  [
+   0.05,
+   5.3,
+   "Start with why, because every design choice in the next forty-five minutes follows from it."
+  ],
+  [
+   5.35,
+   13.075,
+   "O M B M twenty-two oh-nine says federal applications can't rely on the network perimeter, and that every request for access should be evaluated, with the ability to evaluate an active session continuously."
+  ],
+  [
+   18.425,
+   6.0,
+   "When undue risk appears, the answer can be re-authentication, limited access or denial."
+  ],
+  [
+   24.425,
+   9.713,
+   "It also asks agencies to move past static roles toward more granular, dynamic permissions, and to use at least one device-level signal alongside identity."
+  ],
+  [
+   34.138,
+   4.537,
+   "nist special publication eight hundred two-oh-seven gives the architecture."
+  ],
+  [
+   38.675,
+   11.787,
+   "Three of its tenets carry this book: network location alone doesn't imply trust; access is granted per session, with least privilege; and access is determined by dynamic policy."
+  ],
+  [
+   50.462,
+   2.587,
+   "It also separates deciding from enforcing."
+  ],
+  [
+   53.05,
+   8.375,
+   "A policy decision point, made of a policy engine and a policy administrator, decides; policy enforcement points carry the decision out."
+  ],
+  [
+   61.425,
+   3.362,
+   "The table is how the program maps that onto Entra ID."
+  ],
+  [
+   64.787,
+   2.55,
+   "Conditional Access is the policy engine."
+  ],
+  [
+   67.338,
+   7.987,
+   "Entra ID's token issuance plays the policy administrator: it issues the token the decision allows, or it refuses."
+  ],
+  [
+   75.325,
+   8.15,
+   "The applications that accept only Entra-issued tokens, and the gateways in front of older applications, are the enforcement points."
+  ],
+  [
+   83.475,
+   14.025,
+   "And Continuous Access Evaluation answers M twenty-two oh-nine's active-session requirement, re-evaluating on critical events, such as a disabled account, a password reset or token revocation, and when location changes."
+  ],
+  [
+   97.5,
+   3.425,
+   "Be careful how you state that mapping in a security plan."
+  ],
+  [
+   100.925,
+   4.95,
+   "It's the program's interpretation, not a mapping Microsoft or nist publishes."
+  ],
+  [
+   105.875,
+   10.787,
+   "But it explains why the rest of this session treats a Conditional Access policy as the unit of access control: one policy set the agency can read, test, change and prove."
+  ]
+ ],
+ "3": [
+  [
+   0.05,
+   9.088,
+   "Now the mechanism, because Conditional Access doesn't work like Group Policy, and administrators who bring Group Policy habits to it make predictable mistakes."
+  ],
+  [
+   9.137,
+   1.413,
+   "There's no precedence."
+  ],
+  [
+   10.55,
+   7.2,
+   "Within a policy, assignments combine with AND: the policy applies only when everything it's assigned to matches."
+  ],
+  [
+   17.75,
+   4.225,
+   "Across policies, every applicable policy must be satisfied."
+  ],
+  [
+   21.975,
+   8.4,
+   "If one requires M F A and another a compliant device, the user does both, and the policy numbers are labels, not an order."
+  ],
+  [
+   30.375,
+   4.588,
+   "Block wins: if any applicable policy blocks, enforcement stops."
+  ],
+  [
+   34.962,
+   5.825,
+   "Inside a policy, controls combine as configured, require all or require one."
+  ],
+  [
+   40.788,
+   1.913,
+   "And exclusions are absolute."
+  ],
+  [
+   42.7,
+   3.075,
+   "The rule that causes the most damage is the default."
+  ],
+  [
+   45.775,
+   4.138,
+   "If no policy's conditions trigger a control, a token is issued."
+  ],
+  [
+   49.913,
+   11.375,
+   "A policy that says Finance users reaching Payroll must use phishing-resistant M F A says nothing about anyone else, so a non-Finance user gets a Payroll token with no controls at all."
+  ],
+  [
+   61.288,
+   8.662,
+   "Restricting a resource takes two policies, written and reviewed together: a grant for the population, and a block for everyone else."
+  ],
+  [
+   69.95,
+   11.775,
+   "Enterprise application assignment, with Assignment required set, is usually the cleaner first gate, but Global Administrators bypass it, which is why sensitive applications keep the block as well."
+  ],
+  [
+   81.725,
+   2.538,
+   "Two timing facts keep our claims honest."
+  ],
+  [
+   84.263,
+   6.763,
+   "Conditional Access runs after first-factor authentication, so it isn't a front-line defense against password spray."
+  ],
+  [
+   91.025,
+   8.85,
+   "And it evaluates token requests: at sign-in, and when a refresh token gets a new access token, about once an hour for modern clients."
+  ],
+  [
+   99.875,
+   8.65,
+   "Continuous Access Evaluation closes part of that gap, and supporting services enforce critical events typically within fifteen minutes."
+  ],
+  [
+   108.525,
+   2.913,
+   "With that model in place, on to module one."
+  ]
+ ],
+ "4": [
+  [
+   0.05,
+   3.5,
+   "Module one: the Conditional Access policy library."
+  ],
+  [
+   3.55,
+   10.625,
+   "The chapter sets a clear standard for when a library is finished: every sign-in in the tenant meets a policy that someone owns, and nothing in it depends on another policy running first."
+  ],
+  [
+   14.175,
+   17.725,
+   "In the next four slides we'll cover how the library is numbered and what it assumes already exists; the personas that every policy targets; the five enforcement waves, policy by policy; and how the library answers the configurations that sis-uh's B O D twenty-five oh-one requires."
+  ],
+  [
+   31.9,
+   4.475,
+   "The deployable JSON template for every policy is in Appendix A."
+  ]
+ ],
+ "5": [
+  [
+   0.05,
+   3.438,
+   "The library is one policy set, numbered once."
+  ],
+  [
+   3.487,
+   9.2,
+   "Policies CA001 to CA017 are the baseline that Book 02 builds during the migration, and they keep their identifiers here."
+  ],
+  [
+   12.688,
+   4.325,
+   "CA002 stays retired, so that's sixteen policies."
+  ],
+  [
+   17.012,
+   13.625,
+   "Book 04 adds CA018 to CA038, for risk, privileged workstations, segmented applications and workload identities, plus CA090, the permanent report-only probe."
+  ],
+  [
+   30.637,
+   8.025,
+   "Numbers 001 to 089 are for the library and 090 to 099 for report-only instruments."
+  ],
+  [
+   38.663,
+   4.838,
+   "Numbers are labels, not order, and a retired number is never reused."
+  ],
+  [
+   43.5,
+   6.675,
+   "The earlier library used a different numbering scheme, and the chapter maps every one of its policies to where it went."
+  ],
+  [
+   50.175,
+   6.575,
+   "Every name follows one pattern: number, population, resource or condition, then control."
+  ],
+  [
+   56.75,
+   2.812,
+   "You can read a policy on a call without opening it."
+  ],
+  [
+   59.562,
+   7.375,
+   "On the right are the prerequisites, and missing ones are the most common reason a report-only policy shows failures that aren't real."
+  ],
+  [
+   66.938,
+   1.825,
+   "The emergency access group."
+  ],
+  [
+   68.763,
+   6.638,
+   "Persona groups, the two big ones dynamic from extension attributes in Book 03's attribute map."
+  ],
+  [
+   75.4,
+   2.7,
+   "Access groups for restricted populations."
+  ],
+  [
+   78.1,
+   1.65,
+   "Three named locations."
+  ],
+  [
+   79.75,
+   7.475,
+   "A custom authentication strength that accepts fido two keys from an approved AAGUID list, or certificate-based authentication."
+  ],
+  [
+   87.225,
+   9.25,
+   "It leaves out Windows Hello for Business on purpose: for privileged accounts, a credential held in the device gaining access doesn't count as a separate device."
+  ],
+  [
+   96.475,
+   3.125,
+   "A device label in extension attribute twelve."
+  ],
+  [
+   99.6,
+   4.575,
+   "And a custom security attribute that tags each application's environment."
+  ],
+  [
+   104.175,
+   2.025,
+   "Four conventions apply everywhere."
+  ],
+  [
+   106.2,
+   3.1,
+   "The emergency access exclusion is implicit."
+  ],
+  [
+   109.3,
+   8.863,
+   "Every policy needs Entra ID P1; risk policies need P2; workload identity policies need Workload ID Premium."
+  ],
+  [
+   118.162,
+   2.688,
+   "Every policy is created in report-only."
+  ],
+  [
+   120.85,
+   7.0,
+   "And none uses the approved client app grant, which became read-only on June 30, 2026."
+  ]
+ ],
+ "6": [
+  [
+   0.05,
+   5.013,
+   "Policies target populations, never people, and the populations are personas."
+  ],
+  [
+   5.062,
+   3.375,
+   "They're defined in Book 02 and kept identical here."
+  ],
+  [
+   8.438,
+   7.688,
+   "Admins are users eligible for or holding privileged roles, from the account-type attribute or the pim-eligible population."
+  ],
+  [
+   16.125,
+   10.15,
+   "They carry the highest risk and get the strictest policies: phishing-resistant M F A, a compliant device, trusted networks, and privileged workstations."
+  ],
+  [
+   26.275,
+   6.737,
+   "Internals are employees and contractors with standard access, built dynamically from the worker-type attribute."
+  ],
+  [
+   33.013,
+   7.513,
+   "Externals are B to B guests from partner organizations; Guests are ad hoc external users from anywhere else."
+  ],
+  [
+   40.525,
+   3.375,
+   "Workload identities are single-tenant service principals."
+  ],
+  [
+   43.9,
+   12.588,
+   "They must be assigned to a policy directly, because a policy assigned to a group that contains a service principal isn't enforced for it, and only two policies reach them, CA015 and CA037."
+  ],
+  [
+   56.487,
+   9.475,
+   "And break-glass: the two emergency accounts, excluded from every enforced policy, and still recorded by CA090, which is report-only."
+  ],
+  [
+   65.963,
+   12.675,
+   "The library adds named sub-populations inside the personas: web-only users without a managed device, shared-device frontline staff, server administrators, Azure operators and production operators."
+  ],
+  [
+   78.638,
+   1.425,
+   "Each is a governed group."
+  ],
+  [
+   80.062,
+   4.9,
+   "Now the failure mode that drives one of the library's most important design choices."
+  ],
+  [
+   84.963,
+   3.388,
+   "Persona groups are dynamic, built from attributes."
+  ],
+  [
+   88.35,
+   7.95,
+   "A user whose attribute is empty falls outside every persona group, and therefore outside every policy that includes only that group."
+  ],
+  [
+   96.3,
+   2.275,
+   "That's an exclusion nobody approved."
+  ],
+  [
+   98.575,
+   13.325,
+   "So the library includes all users and excludes narrowly, and it adds CA018, deliberately redundant: M F A for all users and all resources, with no resource exclusions."
+  ],
+  [
+   111.9,
+   8.75,
+   "It uses the plain require-M F A control rather than a strength, so guests who sign in with email one-time passcodes can still satisfy it."
+  ]
+ ],
+ "7": [
+  [
+   0.05,
+   4.787,
+   "The library is enforced in five waves, each closing a class of risk."
+  ],
+  [
+   4.838,
+   6.463,
+   "Wave one is the foundation, and it has no visible effect for anyone already on modern clients."
+  ],
+  [
+   11.3,
+   7.213,
+   "CA001 blocks legacy authentication, which can't do M F A or present device state."
+  ],
+  [
+   18.512,
+   9.162,
+   "Run the legacy query for at least two weeks first and move every remaining client, including service accounts and multifunction devices that send mail."
+  ],
+  [
+   27.675,
+   8.35,
+   "CA020 requires a managed device to register security information, so an attacker with a password can't register their own method."
+  ],
+  [
+   36.025,
+   7.225,
+   "CA021 blocks device code flow and authentication transfer, the flows used in device-code phishing."
+  ],
+  [
+   43.25,
+   3.837,
+   "And CA090, the probe, never moves to On."
+  ],
+  [
+   47.087,
+   2.15,
+   "Wave two is administrators."
+  ],
+  [
+   49.237,
+   14.488,
+   "CA003 requires the separate-device strength with a four-hour sign-in frequency, targeting the Admins persona and the highly privileged built-in roles, because role targeting also catches an assignment made outside the persona process."
+  ],
+  [
+   63.725,
+   14.125,
+   "CA004 requires a compliant device, CA005 blocks untrusted locations, and CA025 blocks the admin portals and Azure management from anything that isn't a P A W."
+  ],
+  [
+   77.85,
+   12.438,
+   "That block is written as an exclusion of devices labeled P A W: a positive-operator filter never matches an unregistered device, so an unregistered device isn't excluded, and it's blocked."
+  ],
+  [
+   90.287,
+   11.812,
+   "CA026 gives server and Arc administration the same assurance, and CA027 blocks the Azure management plane for everyone who isn't an administrator or operator."
+  ],
+  [
+   102.1,
+   19.462,
+   "Wave three is the one users notice: the workforce M F A baseline, managed devices, the country block, partner and guest policies, mobile app protection, the CA018 catch-all, and CA038, without which CA011's limited guest access isn't limited at all."
+  ],
+  [
+   121.562,
+   2.362,
+   "Wave four is risk and workloads."
+  ],
+  [
+   123.925,
+   8.012,
+   "Wave five is segments and the end state: CA022, phishing-resistant M F A for every member."
+  ]
+ ],
+ "8": [
+  [
+   0.05,
+   1.863,
+   "Why does the library look this way?"
+  ],
+  [
+   1.913,
+   11.85,
+   "Much of it is the answer to sis-uh's B O D twenty-five oh-one, which requires federal civilian agencies to implement sis-uh's mandatory configurations for in-scope cloud tenants."
+  ],
+  [
+   13.762,
+   5.412,
+   "The deadline for the configurations effective at issuance was June 20, 2025."
+  ],
+  [
+   19.175,
+   4.25,
+   "The table lists the Entra ID items that Conditional Access answers."
+  ],
+  [
+   23.425,
+   3.95,
+   "Legacy authentication blocked: CA001."
+  ],
+  [
+   27.375,
+   3.525,
+   "High-risk users blocked: CA013."
+  ],
+  [
+   30.9,
+   3.538,
+   "High-risk sign-ins blocked: CA019."
+  ],
+  [
+   34.438,
+   8.55,
+   "Phishing-resistant M F A for all users: CA022, with CA003 for administrators."
+  ],
+  [
+   42.987,
+   8.988,
+   "Another M F A method until then: CA006, CA009 and CA018, as the interim."
+  ],
+  [
+   51.975,
+   5.95,
+   "And phishing-resistant M F A for highly privileged roles: CA003."
+  ],
+  [
+   57.925,
+   6.0,
+   "Two SHOULD items from the scuba baseline are met by CA007 and CA020."
+  ],
+  [
+   63.925,
+   11.162,
+   "The other mandatory Entra items, such as authentication methods settings, application consent and the privileged-role rules, aren't Conditional Access settings, and the book covers them elsewhere."
+  ],
+  [
+   75.088,
+   2.25,
+   "One conflict is worth understanding."
+  ],
+  [
+   77.338,
+   6.775,
+   "Book 02 adopted Microsoft's current recommendation for high-risk users, require risk remediation."
+  ],
+  [
+   84.112,
+   4.513,
+   "B O D twenty-five oh-one says high-risk users shall be blocked."
+  ],
+  [
+   88.625,
+   5.825,
+   "Both can't win, because when several risk policies apply, block overrides remediation."
+  ],
+  [
+   94.45,
+   16.087,
+   "So in any tenant within the directive's scope, CA013's grant is Block, it includes all users rather than only members, and recovery runs through the help desk: an administrator confirms the account, resets credentials and dismisses the risk."
+  ],
+  [
+   110.537,
+   5.537,
+   "Where the directive doesn't apply, CA013 uses remediation for members."
+  ],
+  [
+   116.075,
+   2.575,
+   "Last, Microsoft-managed policies."
+  ],
+  [
+   118.65,
+   8.9,
+   "Microsoft creates some policies itself, in report-only, and turns them on no less than thirty days later unless an administrator sets them to Off."
+  ],
+  [
+   127.55,
+   9.7,
+   "The program writes down a decision for each, adopt or supersede, because a policy Microsoft enables on a schedule is a change the agency didn't make."
+  ],
+  [
+   137.25,
+   2.812,
+   "Five are superseded by library policies."
+  ]
+ ],
+ "9": [
+  [
+   0.05,
+   3.688,
+   "Module two: getting the library into production safely."
+  ],
+  [
+   3.737,
+   6.037,
+   "A policy that targets all users can lock out the whole organization, administrators included."
+  ],
+  [
+   9.775,
+   16.613,
+   "So this module is about the gates every policy passes, how to read report-only results and roll back without deleting anything, why every exclusion is a governed object, how the break-glass accounts are built and watched, and what the sign-in logs must show once the policies are on."
+  ]
+ ],
+ "10": [
+  [
+   0.05,
+   3.913,
+   "Every policy, in every wave, passes the same gates."
+  ],
+  [
+   3.962,
+   6.725,
+   "Book 02 set the durations, and Microsoft's own minimum is a week in report-only before enforcement."
+  ],
+  [
+   10.688,
+   6.138,
+   "Gate one is report-only, two to four weeks, while impact, gaps and exclusions are reviewed."
+  ],
+  [
+   16.825,
+   4.662,
+   "Gate two is a pilot ring of IT and security staff for two weeks."
+  ],
+  [
+   21.488,
+   8.812,
+   "Gate three expands ring by ring, one to two weeks each: headquarters, then field and remote staff, then everyone in scope."
+  ],
+  [
+   30.3,
+   4.237,
+   "Then steady state: enforced, monitored, with drift alerts."
+  ],
+  [
+   34.538,
+   3.825,
+   "Inside that, the chapter consolidates a seven-step cycle."
+  ],
+  [
+   38.362,
+   10.662,
+   "One, a pre-deployment check: prerequisites exist, readiness gates are met, the emergency exclusion is present, and the policy JSON has been reviewed in source control."
+  ],
+  [
+   49.025,
+   2.837,
+   "Two, create the policy in report-only."
+  ],
+  [
+   51.862,
+   12.4,
+   "One detail: a report-only policy that requires a compliant device can prompt users on macOS, iOS and Android to pick a certificate, so leave those platforms out of the report-only version."
+  ],
+  [
+   64.263,
+   2.663,
+   "Three, measure for at least seven days."
+  ],
+  [
+   66.925,
+   8.662,
+   "Four, analyze and remediate: missing registrations, noncompliant devices, untagged applications, empty attributes."
+  ],
+  [
+   75.588,
+   4.25,
+   "Fix the cause; add an exclusion only as a governed object."
+  ],
+  [
+   79.838,
+   6.938,
+   "Five, security and business owners approve the impact analysis, and that approval is kept as change evidence."
+  ],
+  [
+   86.775,
+   3.3,
+   "Six, enforce for the pilot ring and expand."
+  ],
+  [
+   90.075,
+   5.3,
+   "Turning a policy that targets all users straight from off to on is never allowed."
+  ],
+  [
+   95.375,
+   3.275,
+   "Seven, watch for forty-eight hours after each ring."
+  ],
+  [
+   98.65,
+   14.225,
+   "The readiness gates are the program's numbers: at least ninety-five percent of in-scope users have a method that satisfies the policy's strength, and at least ninety percent of devices are enrolled and compliant, with the attributes populated."
+  ],
+  [
+   112.875,
+   4.15,
+   "The point is that each wave starts with a measured number, not an estimate."
+  ],
+  [
+   117.025,
+   5.1,
+   "And a wave starts only after the previous one has been enforced for a week without an incident."
+  ]
+ ],
+ "11": [
+  [
+   0.05,
+   3.725,
+   "Report-only is a policy state, not a test environment."
+  ],
+  [
+   3.775,
+   6.287,
+   "The policy is evaluated at every sign-in and its result is logged, but nothing is enforced."
+  ],
+  [
+   10.062,
+   6.6,
+   "There are four results, and you'll see them in the sign-in logs and in Microsoft Graph under the names in the middle column."
+  ],
+  [
+   16.663,
+   8.3,
+   "Success means the conditions matched and the controls were already satisfied, for example an M F A claim was already in the token."
+  ],
+  [
+   24.962,
+   6.025,
+   "Failure means the conditions matched and a non-interactive control failed: that's what a block would do."
+  ],
+  [
+   30.988,
+   6.312,
+   "User action required, which Graph calls report-only interrupted, means the user would have been prompted."
+  ],
+  [
+   37.3,
+   5.263,
+   "And not applied means the conditions didn't match, often because the user is excluded."
+  ],
+  [
+   42.562,
+   8.938,
+   "Two limits: user-action policies can't run in report-only at all, and GPS-based named locations still prompt users for location."
+  ],
+  [
+   51.5,
+   8.95,
+   "To change an enforced policy, Microsoft's practice is to create a report-only copy with the change, compare the two, and then update the original."
+  ],
+  [
+   60.45,
+   3.7,
+   "Rollback has four forms, from smallest to largest."
+  ],
+  [
+   64.15,
+   4.425,
+   "Revert one policy to report-only when you need data while you investigate."
+  ],
+  [
+   68.575,
+   7.138,
+   "Reduce scope with a time-bound exclusion group when one population is blocked, fix the cause, then remove the group."
+  ],
+  [
+   75.713,
+   3.4,
+   "Turn a policy Off when it's causing widespread blocks."
+  ],
+  [
+   79.112,
+   6.95,
+   "And when several policies in a wave interact badly, set the whole wave to report-only and open an incident."
+  ],
+  [
+   86.062,
+   2.288,
+   "What's never on the list is deletion."
+  ],
+  [
+   88.35,
+   11.637,
+   "Microsoft does let you restore a deleted policy or named location within thirty days, but a deletion breaks the policy's change history in source control, and the drift record has to explain it."
+  ],
+  [
+   99.987,
+   5.825,
+   "If the tenant is locked out entirely, an emergency account signs in and reverses the change."
+  ],
+  [
+   105.812,
+   5.975,
+   "If no administrator can, Microsoft support can update the blocking policy after verification."
+  ]
+ ],
+ "12": [
+  [
+   0.05,
+   9.488,
+   "Because an exclusion overrides everything, each one is a standing hole in policy, and exclusions accumulate the way Group Policy exceptions did."
+  ],
+  [
+   9.537,
+   3.837,
+   "So the program treats every exclusion as a governed object."
+  ],
+  [
+   13.375,
+   7.287,
+   "The only exclusion that's permanent by design is the emergency access group, which every enforced policy excludes."
+  ],
+  [
+   20.663,
+   4.412,
+   "The others in the library are each tied to one policy and one reason."
+  ],
+  [
+   25.075,
+   13.637,
+   "Approved travel lets a traveler past CA008's country block, granted through pim for Groups after an approved request, for at most fourteen days, and the traveler must still meet CA006 and CA018."
+  ],
+  [
+   38.712,
+   9.012,
+   "The device code flow group holds Teams Rooms and similar devices that genuinely need that flow, ideally narrowed further in a companion policy."
+  ],
+  [
+   47.725,
+   10.5,
+   "The onboarding group lets remote new hires who don't have a managed device yet register M F A for a few days, using a Temporary Access Pass from the pre-hire workflow."
+  ],
+  [
+   58.225,
+   8.525,
+   "And the not-ready group for CA022 is the enrollment backlog: it shrinks as users enroll, and every member has an expiry."
+  ],
+  [
+   66.75,
+   2.288,
+   "The rules on the right apply to all of them."
+  ],
+  [
+   69.037,
+   4.062,
+   "An exclusion is a group, never a user named in a policy."
+  ],
+  [
+   73.1,
+   5.35,
+   "It has an owner, a reason, an expiry, and a place in the access review schedule."
+  ],
+  [
+   78.45,
+   11.262,
+   "Where a script or tool signs in as a user, the fix is a managed identity or workload identity, not an exclusion; the directory sync account is the documented exception."
+  ],
+  [
+   89.713,
+   6.925,
+   "And test the exclusion, not just the policy, because an excluded user can still be prompted by another policy."
+  ],
+  [
+   96.638,
+   2.025,
+   "The opposite failure is quieter."
+  ],
+  [
+   98.662,
+   5.588,
+   "A policy that includes a dynamic group misses every user whose attribute is empty."
+  ],
+  [
+   104.25,
+   12.225,
+   "That's an exclusion nobody approved, which is why the baseline policies include all users and exclude narrowly, and why attribute completeness is checked before any attribute-scoped policy is enforced."
+  ]
+ ],
+ "13": [
+  [
+   0.05,
+   17.025,
+   "Every control that blocks an administrative path also creates a way to lock the agency out of its own tenant: federation down, every administrator's M F A device unavailable, a misconfigured policy, or every privileged role eligible with no approver able to act."
+  ],
+  [
+   17.075,
+   7.675,
+   "Emergency access accounts, break-glass, are the answer, and they're the only standing privilege the program accepts by design."
+  ],
+  [
+   24.75,
+   1.75,
+   "The standard is on the left."
+  ],
+  [
+   26.5,
+   9.812,
+   "Two or more cloud-only accounts on the tenant's onmicrosoft dot com domain, neither synchronized nor federated, and not tied to one person or an employee's phone."
+  ],
+  [
+   36.312,
+   9.463,
+   "Permanent active Global Administrator; together with service principals that can't perform an activation, they're the only standing active assignments in the tenant."
+  ],
+  [
+   45.775,
+   9.05,
+   "Phishing-resistant authentication, a fido two passkey or certificate-based authentication, using methods different from the normal administrator accounts."
+  ],
+  [
+   54.825,
+   11.2,
+   "The older pattern of a password in sealed envelopes is superseded, because a password alone can no longer reach the admin portals where Microsoft's mandatory M F A applies."
+  ],
+  [
+   66.025,
+   5.888,
+   "Excluded from every policy that blocks or restricts sign-in, through one dedicated group."
+  ],
+  [
+   71.912,
+   5.763,
+   "Validated at least every ninety days by signing in and performing an administrative task."
+  ],
+  [
+   77.675,
+   2.15,
+   "On the right is how the build watches them."
+  ],
+  [
+   79.825,
+   7.4,
+   "Report-only policies don't need the exclusion, so CA090 is the one policy that records their sign-ins."
+  ],
+  [
+   87.225,
+   6.225,
+   "Alerts match the accounts' object IDs, because their names deliberately don't reveal their purpose."
+  ],
+  [
+   93.45,
+   4.688,
+   "Every use is a critical incident until a post-use review closes it."
+  ],
+  [
+   98.138,
+   17.275,
+   "And because nist's A C two(2) expects emergency accounts to be disabled automatically after a defined period, the system security plan records these as a documented deviation, with monitoring, post-use review and the ninety-day validation as compensating controls."
+  ],
+  [
+   115.412,
+   1.387,
+   "Finally, order."
+  ],
+  [
+   116.8,
+   6.975,
+   "The accounts exist and pass a test before any role is made eligible or any approval is switched on."
+  ],
+  [
+   123.775,
+   3.237,
+   "Module three explains the lockout that prevents."
+  ]
+ ],
+ "14": [
+  [
+   0.05,
+   3.525,
+   "Once policies are on, the sign-in logs are the instrument."
+  ],
+  [
+   3.575,
+   6.6,
+   "The queries run against the SigninLogs table in a Log Analytics workspace that receives Entra sign-in logs."
+  ],
+  [
+   10.175,
+   10.912,
+   "The chapter gives them in full; they're illustrative and haven't been tested against a production workspace, so confirm column values against your own data before using them for alerting or evidence."
+  ],
+  [
+   21.087,
+   1.475,
+   "Six signals matter."
+  ],
+  [
+   22.562,
+   10.863,
+   "Per-policy results over seven days, including report-only outcomes; after wave two, members of the Admins group should show no not-applied results for the administrator policies."
+  ],
+  [
+   33.425,
+   12.387,
+   "Blocked sign-ins, error 53003, which is blocked by Conditional Access; a spike on a single application usually means a client that can't do modern authentication or app protection."
+  ],
+  [
+   45.812,
+   5.45,
+   "The end-state gap: users who would fail CA022 while it's in report-only."
+  ],
+  [
+   51.263,
+   2.875,
+   "That's the list that drives the enrollment campaign."
+  ],
+  [
+   54.138,
+   7.763,
+   "Legacy authentication still in use, over fourteen days, which must be empty before CA001 is enforced."
+  ],
+  [
+   61.9,
+   8.75,
+   "Coverage gaps: successful sign-ins that no policy applied to, which should be empty for interactive sign-ins once CA018 is on."
+  ],
+  [
+   70.65,
+   6.7,
+   "And emergency account use, matched on object IDs, which should be zero outside scheduled validation."
+  ],
+  [
+   77.35,
+   0.963,
+   "Then drift."
+  ],
+  [
+   78.312,
+   30.975,
+   "The policy set in the tenant must equal the policy set in source control, and the drift check alerts on a policy whose state changed without an approved change; a change to any exclusion group's membership, especially the emergency access group; a change to conditions, named locations, authentication strengths or controls; a policy created or deleted outside the pipeline, including a Microsoft-managed policy that Microsoft added or enabled; and users or devices missing the attributes that put"
+  ],
+  [
+   109.287,
+   1.025,
+   "them in scope."
+  ],
+  [
+   110.312,
+   9.238,
+   "Protected actions, which require fresh strong authentication to change policies and named locations, narrow who can cause drift in the first place."
+  ],
+  [
+   119.55,
+   1.7,
+   "Module three builds them."
+  ]
+ ],
+ "15": [
+  [
+   0.05,
+   4.8,
+   "Module three: Privileged Identity Management, self-request with approval."
+  ],
+  [
+   4.85,
+   4.3,
+   "An eligible role is only as safe as the moment it turns active."
+  ],
+  [
+   9.15,
+   7.05,
+   "So that moment needs fresh proof, a reason, a second person, and a record that outlives the audit window."
+  ],
+  [
+   16.2,
+   11.8,
+   "We'll cover the two layers of self-request, the activation controls by tier, the build in the order that avoids locking yourself out, and the approvers, alerts and records an assessor will ask for."
+  ],
+  [
+   28.0,
+   2.5,
+   "Appendix B has every role's settings."
+  ]
+ ],
+ "16": [
+  [
+   0.05,
+   4.55,
+   "Self-request has two layers, and an agency can run either or both."
+  ],
+  [
+   4.6,
+   5.075,
+   "Self-request for eligibility is a person asking to become eligible for a role."
+  ],
+  [
+   9.675,
+   8.625,
+   "It's decided in entitlement management, through an access package for the role-assignable group, and it answers: may this person ever hold this role?"
+  ],
+  [
+   18.3,
+   6.713,
+   "Self-request for activation is an already-eligible person asking to turn the role on for a bounded window."
+  ],
+  [
+   25.012,
+   4.825,
+   "It's decided in pim, and it answers: may this person use this role right now?"
+  ],
+  [
+   29.837,
+   5.562,
+   "Microsoft's guidance for the DoD Zero Trust user pillar treats the two as composable."
+  ],
+  [
+   35.4,
+   13.7,
+   "This module builds the second layer, because it produces a per-use, time-bounded, individually justified record of privileged use, which is what AC-6(9) and AC-17(4) are tested against."
+  ],
+  [
+   49.1,
+   5.25,
+   "Eligibility without an activation gate is standing privilege through a nicer front door."
+  ],
+  [
+   54.35,
+   3.888,
+   "If an agency runs only one layer, it should run this one."
+  ],
+  [
+   58.237,
+   1.938,
+   "The sequence is six steps."
+  ],
+  [
+   60.175,
+   7.088,
+   "The administrator requests activation with a duration within the role's maximum, a justification and a ticket number."
+  ],
+  [
+   67.263,
+   6.513,
+   "pim sends them through authentication context c1, which demands a fresh phishing-resistant sign-in."
+  ],
+  [
+   73.775,
+   3.112,
+   "The request goes pending, and approvers are emailed."
+  ],
+  [
+   76.888,
+   5.925,
+   "An approver from outside the requester's tier approves or denies, with their own justification."
+  ],
+  [
+   82.812,
+   6.5,
+   "On approval, the role is active until the requested end time and returns to eligible with no action."
+  ],
+  [
+   89.312,
+   6.5,
+   "Denied, or undecided after twenty-four hours, the role stays eligible and a new request is needed."
+  ],
+  [
+   95.812,
+   1.788,
+   "One dependency people miss."
+  ],
+  [
+   97.6,
+   11.188,
+   "If the P2 or Governance license lapses, permanent assignments are unaffected, but eligible Entra role assignments are removed, pim settings are removed and role reviews end."
+  ],
+  [
+   108.787,
+   8.088,
+   "Treat a license expiry as a configuration-management event, and keep the role inventory exported so eligibility can be restored."
+  ]
+ ],
+ "17": [
+  [
+   0.05,
+   1.85,
+   "pim settings are defined per role."
+  ],
+  [
+   1.9,
+   5.75,
+   "Each role's settings are independent of every other role's, and every assignment of a role follows them."
+  ],
+  [
+   7.65,
+   4.263,
+   "The program sets them by tier, from Chapter 04's tier model."
+  ],
+  [
+   11.912,
+   8.775,
+   "Tier 0 is the control plane: Global, Privileged Role, Privileged Authentication, Security and Conditional Access Administrator."
+  ],
+  [
+   20.688,
+   11.55,
+   "Four-hour activations, authentication context c1, justification and ticket required, approval by the Tier 0 approver group, and eligibility that expires after ninety days."
+  ],
+  [
+   32.237,
+   10.75,
+   "Tier 1, the management plane, such as Exchange, SharePoint, Intune and Application Administrator, gets eight hours, the Tier 1 approver group, and a hundred and eighty days."
+  ],
+  [
+   42.987,
+   9.287,
+   "Tier 2, scoped operations inside administrative units, gets eight hours, and approval is optional, with a documented risk acceptance per role."
+  ],
+  [
+   52.275,
+   7.1,
+   "Read-only roles need no approval, but still pass c1 with a justification, and their eligibility runs a year."
+  ],
+  [
+   59.375,
+   4.4,
+   "Now, what the controls really do, because the old guides got several wrong."
+  ],
+  [
+   63.775,
+   7.513,
+   "The activation maximum runs from one to twenty-four hours, and it's the exposure window, so set the shortest the work needs."
+  ],
+  [
+   71.287,
+   9.438,
+   "Require M F A on activation may not prompt at all if the user authenticated strongly earlier in the session, so it proves nothing at activation time."
+  ],
+  [
+   80.725,
+   8.95,
+   "That's why every role uses the authentication context instead, which is Microsoft's recommendation when the goal is authentication during activation."
+  ],
+  [
+   89.675,
+   7.862,
+   "Ticket information is recorded but never checked against a ticketing system; enforced correlation belongs in the sim or ITSM."
+  ],
+  [
+   97.537,
+   3.763,
+   "And approval needs at least one approver, with two recommended."
+  ],
+  [
+   101.3,
+   8.287,
+   "The assignment controls close the side door, so a well-built gate can't be bypassed by simply granting someone a permanent active assignment."
+  ],
+  [
+   109.588,
+   2.35,
+   "No permanent eligible assignments."
+  ],
+  [
+   111.938,
+   5.112,
+   "No permanent active ones, except Global Administrator for the emergency accounts."
+  ],
+  [
+   117.05,
+   9.725,
+   "And M F A and justification are required when an active assignment is made, because pim can't apply an activation requirement to someone who's already active."
+  ]
+ ],
+ "18": [
+  [
+   0.05,
+   1.363,
+   "Work the build in order."
+  ],
+  [
+   1.413,
+   10.925,
+   "Step zero isn't optional and can't be moved: configuring approval before emergency access accounts exist is the one sequence that can lock an agency out of its own tenant."
+  ],
+  [
+   12.338,
+   1.637,
+   "Microsoft documents it."
+  ],
+  [
+   13.975,
+   12.425,
+   "Every Privileged Role and Global Administrator assignment is eligible, approval is required, and no approvers are configured, so the default approvers, the active administrators, don't exist."
+  ],
+  [
+   26.4,
+   9.188,
+   "Avoid it with both halves of the fix: emergency accounts with permanent active Global Administrator, and named approver groups on every role that needs approval."
+  ],
+  [
+   35.587,
+   3.438,
+   "Step one builds those approver groups, one per tier."
+  ],
+  [
+   39.025,
+   19.775,
+   "Step two builds authentication context c1 and its Conditional Access policy: the separate-device strength and a compliant device, sign-in frequency every time, excluding the emergency group, and turned On, because Microsoft requires the policy to exist and be enabled before the context is selected in pim."
+  ],
+  [
+   58.8,
+   1.3,
+   "Three constraints."
+  ],
+  [
+   60.1,
+   6.0,
+   "Don't scope that policy to a directory role, because at activation the user doesn't hold the role yet."
+  ],
+  [
+   66.1,
+   10.725,
+   "The fallback to plain M F A happens only when no policy targets the context; it doesn't trigger if the policy is off, in report-only or excludes the user."
+  ],
+  [
+   76.825,
+   11.338,
+   "And the context governs activation, not use, so CA003, CA004 and CA025 still apply to every privileged sign-in."
+  ],
+  [
+   88.162,
+   6.6,
+   "Steps three and four apply role settings, in the portal for one role and in Microsoft Graph for thirty."
+  ],
+  [
+   94.763,
+   2.425,
+   "Each role's policy has seventeen rules."
+  ],
+  [
+   97.188,
+   8.775,
+   "Step five converts standing assignments: create the eligible assignment first, confirm the person can activate, then remove the active one."
+  ],
+  [
+   105.963,
+   2.675,
+   "Step six closes a gap pim leaves."
+  ],
+  [
+   108.638,
+   6.787,
+   "pim protects becoming a Conditional Access Administrator, but not editing a policy once someone holds that permission."
+  ],
+  [
+   115.425,
+   4.9,
+   "Protected actions attach a second context, c2, to those permissions."
+  ],
+  [
+   120.325,
+   6.562,
+   "Steps seven to nine are notifications and alerts, reviews, and log export, on the next slide."
+  ]
+ ],
+ "19": [
+  [
+   0.05,
+   3.388,
+   "The approval engine has three properties that shape the design."
+  ],
+  [
+   3.438,
+   2.413,
+   "Approvers don't need to hold any role."
+  ],
+  [
+   5.85,
+   9.213,
+   "Approvers can't approve their own requests, and service principals can't approve at all; that's enforced by the platform, which is worth saying in the security plan."
+  ],
+  [
+   15.062,
+   3.337,
+   "And approvers need a P2 or Governance license."
+  ],
+  [
+   18.4,
+   2.375,
+   "From those, the separation rules."
+  ],
+  [
+   20.775,
+   10.688,
+   "A tier's approvers aren't members of that tier's eligible population; otherwise the approvers and the requesters are the same set, and approval degrades to mutual sign-off."
+  ],
+  [
+   31.462,
+   4.4,
+   "The platform blocks self-approval; only group design blocks collusion."
+  ],
+  [
+   35.862,
+   5.875,
+   "At least two approvers per tier, held as governed groups, because named individuals leave."
+  ],
+  [
+   41.737,
+   6.225,
+   "Tier 0 approvers sit outside the Tier 0 population, for example in the security office."
+  ],
+  [
+   47.962,
+   5.725,
+   "The approver's own justification is required, so the record holds a decision, not a click."
+  ],
+  [
+   53.688,
+   3.825,
+   "And approver groups are reviewed like the privileged objects they are."
+  ],
+  [
+   57.513,
+   2.587,
+   "On the right, the signals and records."
+  ],
+  [
+   60.1,
+   8.287,
+   "The most important pim alert is roles assigned outside pim, high severity, because an assignment made outside pim never met the gate."
+  ],
+  [
+   68.388,
+   5.963,
+   "It detects rather than prevents; limiting who holds Privileged Role Administrator is the prevention."
+  ],
+  [
+   74.35,
+   17.15,
+   "The approval window is a fixed twenty-four hours with a single stage, so a Tier 0 path staffed by two people in one time zone will strand out-of-hours requests; the documented answer to \"the approvers are unavailable and production is down\" is the emergency procedure, not a workaround."
+  ],
+  [
+   91.5,
+   9.55,
+   "Role reviews run monthly for Tier 0 and quarterly otherwise, and never as self-review, because self-review leaves role-assignable groups out entirely."
+  ],
+  [
+   101.05,
+   6.688,
+   "And pim's audit history keeps thirty days, so the logs are exported for AU-11 before go-live."
+  ],
+  [
+   107.737,
+   8.775,
+   "One date to act on: the legacy beta privileged-access API stops returning data on October 28, 2026."
+  ],
+  [
+   116.513,
+   2.3,
+   "Anything still calling it must move now."
+  ]
+ ],
+ "20": [
+  [
+   0.05,
+   2.575,
+   "Module four: access governance."
+  ],
+  [
+   2.625,
+   7.05,
+   "Conditional Access decides whether a session may proceed, and pim decides whether a privileged role may be active."
+  ],
+  [
+   9.675,
+   4.725,
+   "Neither decides whether a person should still hold the access they were given last year."
+  ],
+  [
+   14.4,
+   4.875,
+   "A grant nobody re-confirms is a decision made once and trusted forever."
+  ],
+  [
+   19.275,
+   9.113,
+   "Three mechanisms close that gap without anyone opening a ticket: requests through access packages, reviews on a calendar, and lifecycle events."
+  ]
+ ],
+ "21": [
+  [
+   0.05,
+   11.025,
+   "Entitlement management automates access requests, assignments, reviews and expiration for groups, applications and SharePoint sites, for internal and external users."
+  ],
+  [
+   11.075,
+   1.887,
+   "It has three building blocks."
+  ],
+  [
+   12.963,
+   11.762,
+   "A catalog is the container and the unit of delegation; the program creates one per business domain, with the domain's business owner as catalog owner, and doesn't use the automatic General catalog."
+  ],
+  [
+   24.725,
+   2.812,
+   "An access package bundles resource roles."
+  ],
+  [
+   27.538,
+   4.963,
+   "And a policy says who may request, who approves, and when the assignment ends."
+  ],
+  [
+   32.5,
+   4.925,
+   "The approval chains follow the application's risk tier, as design positions."
+  ],
+  [
+   37.425,
+   14.188,
+   "Tier 3: the department owner, which is the requestor's manager with a fallback approver for anyone with no manager in the directory, seven days to decide, and a one-year expiry that extends without approval while the user is still in scope."
+  ],
+  [
+   51.612,
+   7.013,
+   "Tier 2: the application owner, with the backup owner as alternate, five days, a hundred and eighty days."
+  ],
+  [
+   58.625,
+   5.95,
+   "Tier 1 adds a second stage, the identity governance office, and expires in ninety days."
+  ],
+  [
+   64.575,
+   9.012,
+   "The earlier procedure only notified the office of Tier 1 grants; a second stage costs a few hours and leaves an approval record instead of an email."
+  ],
+  [
+   73.588,
+   4.45,
+   "External users get a separate, stricter policy and at most a year."
+  ],
+  [
+   78.037,
+   2.6,
+   "The program never uses \"never.\""
+  ],
+  [
+   80.638,
+   2.2,
+   "Underneath is the group substrate."
+  ],
+  [
+   82.838,
+   4.1,
+   "Applications are assigned to groups, never to users directly."
+  ],
+  [
+   86.938,
+   11.25,
+   "Nested groups are prohibited, because group assignment to an application gives access only to direct members, and a group review shows nested users but can only remove direct members."
+  ],
+  [
+   98.188,
+   5.075,
+   "And names follow one convention, so a group's purpose and tier can be read from it."
+  ],
+  [
+   103.263,
+   8.912,
+   "Separation of duties: a package can list incompatible packages and groups, but the check is one-way, so each package must list the other."
+  ],
+  [
+   112.175,
+   6.237,
+   "A legitimate exception becomes its own combined package with a shorter expiry and more frequent reviews."
+  ],
+  [
+   118.412,
+   6.388,
+   "And privileged access arrives through pim eligibility, never through a package that grants an active role."
+  ]
+ ],
+ "22": [
+  [
+   0.05,
+   5.112,
+   "Access reviews are recurring attestation that each person still needs what they hold."
+  ],
+  [
+   5.162,
+   6.85,
+   "Each instance captures a snapshot of access when it starts, and changes during a review show up in the next cycle."
+  ],
+  [
+   12.012,
+   1.988,
+   "The schedule is set by risk."
+  ],
+  [
+   14.0,
+   10.037,
+   "Privileged roles are reviewed in pim, monthly for Tier 0 by the Tier 0 approver group, and quarterly for the other tiers, with removal if nobody responds."
+  ],
+  [
+   24.038,
+   10.938,
+   "Tier 1 application groups are reviewed quarterly in two stages of seven days: the manager first, then the application owner for everyone the manager approved or marked don't know."
+  ],
+  [
+   34.975,
+   2.987,
+   "That replaces the old manual escalation step."
+  ],
+  [
+   37.962,
+   6.2,
+   "Tier 2 groups are semiannual and Tier 3 annual, by the application or department owner."
+  ],
+  [
+   44.163,
+   5.7,
+   "Guests are reviewed quarterly by their sponsors, and denied guests are blocked and then removed."
+  ],
+  [
+   49.862,
+   1.8,
+   "Four rules make reviews bite."
+  ],
+  [
+   51.663,
+   3.362,
+   "First, review the groups, not the applications."
+  ],
+  [
+   55.025,
+   8.725,
+   "Microsoft notes that reviewing an application that uses group assignment doesn't remove the members of those groups; they keep their access through the group."
+  ],
+  [
+   63.75,
+   8.65,
+   "Second, whenever reviewers are managers or group owners, add a fallback reviewer for users with no manager and groups with no owner."
+  ],
+  [
+   72.4,
+   3.45,
+   "Third, choose the no-response default deliberately."
+  ],
+  [
+   75.85,
+   8.0,
+   "Microsoft warns that combining remove access with auto-apply can revoke all access to a resource if reviewers don't respond."
+  ],
+  [
+   83.85,
+   12.662,
+   "So the program sets remove only where an unreviewed grant is riskier than a lost one, privileged roles and guests, and no change with escalation for business applications, where a mass removal would stop work."
+  ],
+  [
+   96.513,
+   5.888,
+   "Fourth, justification on every decision, and no bulk decisions on privileged reviews."
+  ],
+  [
+   102.4,
+   7.8,
+   "The service can't prevent a bulk action, so the history is checked for one reviewer recording many identical decisions within minutes."
+  ],
+  [
+   110.2,
+   9.875,
+   "The records: results download as a CSV, and review history reports stay downloadable for only thirty days, so each one goes straight to the evidence store."
+  ]
+ ],
+ "23": [
+  [
+   0.05,
+   2.663,
+   "The third mechanism is lifecycle events."
+  ],
+  [
+   2.712,
+   7.8,
+   "The HR-driven lifecycle itself, from attributes to joiner, mover and leaver design, belongs to Book 03."
+  ],
+  [
+   10.512,
+   9.762,
+   "This chapter covers only the Lifecycle Workflows tasks that change access, because those tasks are where mover and leaver problems turn into access decisions."
+  ],
+  [
+   20.275,
+   6.263,
+   "A joiner gets the onboarding package and the department package, never a direct add to an application group."
+  ],
+  [
+   26.538,
+   12.838,
+   "A move is a re-derivation, not an additional grant: remove the previous department's packages, request the new department's package, and send everything the person still holds outside packages to a review."
+  ],
+  [
+   39.375,
+   10.95,
+   "Microsoft's built-in job profile change template does the first two steps, and its remove-all-assignments task defaults to fifteen days after the trigger, a grace period for handover."
+  ],
+  [
+   50.325,
+   6.175,
+   "The program keeps that grace for standard access and sets it to zero for Tier 1 and privileged access."
+  ],
+  [
+   56.5,
+   9.863,
+   "A leaver's workflow cancels pending requests, removes every package assignment, removes the user from all groups and teams, and revokes refresh tokens."
+  ],
+  [
+   66.362,
+   6.537,
+   "And an inactivity workflow is the backstop for accounts whose HR record never produced a leaver event."
+  ],
+  [
+   72.9,
+   4.975,
+   "A tenant can have fifty workflows, so spend them on events, not on applications."
+  ],
+  [
+   77.875,
+   7.275,
+   "Guests are where unreviewed access piles up fastest, because nobody's HR record ends when a partner project does."
+  ],
+  [
+   85.15,
+   0.988,
+   "Four layers."
+  ],
+  [
+   86.138,
+   5.85,
+   "Invite through a package, so every guest arrives with an approver, a sponsor and an expiry."
+  ],
+  [
+   91.987,
+   13.475,
+   "When a governed guest loses their last assignment, they're blocked and, by default, removed after thirty days; ungoverned guests stay in the tenant indefinitely, so the program marks existing guests with assignments as governed."
+  ],
+  [
+   105.463,
+   2.35,
+   "Sponsors review guests quarterly."
+  ],
+  [
+   107.812,
+   5.713,
+   "And guest lifecycle policies, still in preview, will be adopted when they're generally available."
+  ],
+  [
+   113.525,
+   4.963,
+   "All of this is licensed by Entra ID Governance, so plan it for the whole workforce."
+  ],
+  [
+   118.487,
+   5.55,
+   "Partial licensing produces a program that governs some people and leaves the rest ungoverned."
+  ]
+ ],
+ "24": [
+  [
+   0.05,
+   4.45,
+   "Module five: access as code, and the evidence it produces."
+  ],
+  [
+   4.5,
+   7.562,
+   "An access policy that exists only as portal clicks can't be diffed, reviewed or replayed, so it can't be assessed."
+  ],
+  [
+   12.062,
+   10.425,
+   "The invariant this module enforces: every access decision has a reviewable source of truth, a pipeline applies that source, and a monitor checks the tenant against it."
+  ],
+  [
+   22.488,
+   5.025,
+   "Then the evidence is produced by doing the work, not reconstructed for the assessment."
+  ]
+ ],
+ "25": [
+  [
+   0.05,
+   7.912,
+   "Every access object the program governs has a file in the repository, one per object, and the safety rules travel with the files."
+  ],
+  [
+   7.963,
+   7.95,
+   "Every blocking or grant policy excludes the emergency access group, and new and changed policies deploy as report-only."
+  ],
+  [
+   15.912,
+   11.238,
+   "pim settings require an authentication context or M F A, justification, and approval for Tier 0, with no permanent active assignment except the emergency accounts."
+  ],
+  [
+   27.15,
+   3.587,
+   "Groups follow the naming convention with no nested members."
+  ],
+  [
+   30.738,
+   4.912,
+   "Packages have an expiry, and incompatible packages are listed both ways."
+  ],
+  [
+   35.65,
+   3.612,
+   "Review definitions have a fallback reviewer and auto-apply."
+  ],
+  [
+   39.263,
+   5.025,
+   "Leaver workflows remove all package assignments and revoke refresh tokens."
+  ],
+  [
+   44.288,
+   4.675,
+   "Four tools can hold those objects, and every one ends in Microsoft Graph."
+  ],
+  [
+   48.962,
+   8.287,
+   "Graph covers everything, but holds no state, so desired state has to live in the repository and the comparison has to be written."
+  ],
+  [
+   57.25,
+   15.625,
+   "The Terraform azuread provider, at version 3.10.0 as of October 2026, covers most classes but has no access review definitions, no Lifecycle Workflows, and no role management policy for Entra directory roles."
+  ],
+  [
+   72.875,
+   7.125,
+   "Microsoft365DSC, an open-source community module, covers every class in the table."
+  ],
+  [
+   80.0,
+   11.562,
+   "And Microsoft Entra Tenant Governance configuration management, built on generally available Graph APIs, monitors a baseline but doesn't cover review definitions or workflows."
+  ],
+  [
+   91.562,
+   5.175,
+   "The program's reference choice minimizes write paths while keeping drift detection native."
+  ],
+  [
+   96.737,
+   11.375,
+   "Microsoft365DSC writes, because it's the only declarative tool that covers every class; treat it as a community project, check its release notes, and pin its version."
+  ],
+  [
+   108.112,
+   5.775,
+   "A team already invested in Terraform can use it where it covers, and Graph PowerShell for the rest."
+  ],
+  [
+   113.888,
+   5.225,
+   "The rule that matters is one writer per object class, recorded in the repository."
+  ],
+  [
+   119.112,
+   7.325,
+   "The tenant monitor detects drift where it covers; a daily read-only comparison handles reviews and workflows."
+  ],
+  [
+   126.438,
+   6.175,
+   "And Entra Exporter takes a weekly backup, kept separate from the baselines, as Microsoft advises."
+  ]
+ ],
+ "26": [
+  [
+   0.05,
+   3.475,
+   "The repository is the only normal path to production."
+  ],
+  [
+   3.525,
+   10.988,
+   "Six change-control rules, which together are how the program meets CM-3 and CM-5 for the identity plane and fed-ramp twenty X's change-management indicators."
+  ],
+  [
+   14.512,
+   12.025,
+   "One, two people per change: the author of a pull request can't approve it, and Tier 0 objects, such as emergency exclusions and Tier 0 pim settings, need a second approver from the security team."
+  ],
+  [
+   26.538,
+   9.575,
+   "Two, checks before merge: schema validation, the emergency exclusion check, the safety rules, and a plan or dry run attached to the pull request."
+  ],
+  [
+   36.112,
+   9.812,
+   "Three, report-only first; a policy runs at least a week against the sign-in logs and is enabled in a second pull request that cites the impact review."
+  ],
+  [
+   45.925,
+   6.15,
+   "Four, the pipeline signs in as a service principal with workload identity federation, no secret."
+  ],
+  [
+   52.075,
+   11.55,
+   "It can change every access policy in the tenant, so it's a Tier 0 asset, with two owners, quarterly permission reviews and a workload identity policy restricting where it signs in from."
+  ],
+  [
+   63.625,
+   11.238,
+   "Five, emergency changes in the portal happen under a pim activation with a ticket, and are back-ported within one business day; until then the drift monitor reports them, which is the point."
+  ],
+  [
+   74.862,
+   4.787,
+   "Six, rollback is a revert, so it has the same record as the change."
+  ],
+  [
+   79.65,
+   6.537,
+   "Drift detection catches what code can't stop, because a Global Administrator can still change the tenant directly."
+  ],
+  [
+   86.188,
+   2.975,
+   "The tenant monitor's limits shape how it's used."
+  ],
+  [
+   89.162,
+   2.7,
+   "It runs every six hours, fixed."
+  ],
+  [
+   91.862,
+   10.075,
+   "Snapshots expire after seven days, resolved drifts are deleted thirty days after they're resolved, and updating a baseline deletes that monitor's earlier results."
+  ],
+  [
+   101.938,
+   5.537,
+   "Those are evidence rules in disguise: export every result before changing a baseline."
+  ],
+  [
+   107.475,
+   2.275,
+   "Every drift is one of two things."
+  ],
+  [
+   109.75,
+   6.638,
+   "Unauthorized or accidental: redeploy the repository's version and investigate from the audit log."
+  ],
+  [
+   116.388,
+   4.213,
+   "Intended but not yet in code: back-port it by pull request."
+  ],
+  [
+   120.6,
+   7.475,
+   "A drift open more than one business day goes to the governance office, and drift on a Tier 0 object is a security incident."
+  ]
+ ],
+ "27": [
+  [
+   0.05,
+   3.138,
+   "Configuration evidence proves a setting existed."
+  ],
+  [
+   3.188,
+   3.3,
+   "Operational evidence proves the setting did its job."
+  ],
+  [
+   6.487,
+   5.1,
+   "An assessor needs both, for the whole assessment period, not just the day of the visit."
+  ],
+  [
+   11.588,
+   2.013,
+   "The table is the program's mapping."
+  ],
+  [
+   13.6,
+   16.188,
+   "A C two, account management, is met by access packages with approval and expiry, scheduled reviews, and Lifecycle Workflows; the evidence is the package files, the entitlement audit records for each request, the review history and the workflow run history."
+  ],
+  [
+   29.788,
+   15.238,
+   "AC-3, access enforcement, is the Conditional Access library and group-based assignment, evidenced by policy files, their deployment history, monitor results showing no unresolved drift, and sign-in logs showing policies applied."
+  ],
+  [
+   45.025,
+   8.488,
+   "AC-5, separation of duties, is the three-party group model, incompatible packages and two-person pull requests."
+  ],
+  [
+   53.513,
+   9.45,
+   "AC-6 and its review enhancement are pim eligibility instead of standing roles, with reviews monthly for Tier 0 and quarterly otherwise."
+  ],
+  [
+   62.962,
+   8.113,
+   "IA-2's M F A enhancements are the phishing-resistant strength, shown in policy files, sign-ins and the registration report."
+  ],
+  [
+   71.075,
+   10.125,
+   "AU-11 isn't met by pim configuration at all, only by the export, and the validation test is an activation still queryable after thirty-one days."
+  ],
+  [
+   81.2,
+   8.775,
+   "And CA-7, continuous monitoring, is the six-hourly monitor, the daily comparisons and the drift issues with their resolutions."
+  ],
+  [
+   89.975,
+   9.338,
+   "fed-ramp doesn't set the account-review or privilege-review frequencies; they stay organization-defined, so the security plan states the program's schedule."
+  ],
+  [
+   99.312,
+   16.163,
+   "Under fed-ramp twenty X, the same records support the identity indicators, for automated account management, least privilege, just-in-time authorization and passwordless methods, and the change-management indicators for logging, redeploying and validating changes."
+  ],
+  [
+   115.475,
+   1.462,
+   "And the honest limits."
+  ],
+  [
+   116.938,
+   6.487,
+   "A correct policy file says nothing about whether reviewers read what they approved; the review history carries that."
+  ],
+  [
+   123.425,
+   1.863,
+   "Native retention is short."
+  ],
+  [
+   125.287,
+   4.475,
+   "And tool coverage moves, so re-check the coverage table at every upgrade."
+  ],
+  [
+   129.762,
+   3.575,
+   "This is a design-intent mapping, not an assessment result."
+  ]
+ ],
+ "28": [
+  [
+   0.05,
+   2.763,
+   "To close, here's what to take back to the tenant."
+  ],
+  [
+   2.812,
+   10.912,
+   "The library: build the prerequisites before the first policy, measure readiness rather than estimating it, create every policy in report-only, and enforce the waves in order."
+  ],
+  [
+   13.725,
+   10.238,
+   "Exceptions: every exclusion is a governed group with an owner and an expiry, and the break-glass accounts are alerted on every use and tested every ninety days."
+  ],
+  [
+   23.962,
+   9.2,
+   "pim: emergency accounts first, then the c1 policy switched On, then named approver groups, with every human administrator eligible only."
+  ],
+  [
+   33.163,
+   7.263,
+   "Governance: packages that always expire, reviews of groups rather than applications, and auto-apply turned on."
+  ],
+  [
+   40.425,
+   6.412,
+   "Code: one writer per object class, two people per change, and drift monitored against the baseline."
+  ],
+  [
+   46.837,
+   6.362,
+   "And evidence: exported before Microsoft's thirty-day window closes, and assembled every month."
+  ],
+  [
+   53.2,
+   4.3,
+   "In Zero Trust, every access decision is a policy decision."
+  ],
+  [
+   57.5,
+   7.4,
+   "This session has been about making those policies explicit, testing them before they enforce, and keeping the proof that they ran."
+  ],
+  [
+   64.9,
+   9.963,
+   "Keep Appendix A at hand for every policy's template, Appendix B for every role's settings, and Book 05 for the device compliance that Conditional Access reads."
+  ],
+  [
+   74.862,
+   0.762,
+   "Thank you."
+  ]
+ ]
+}

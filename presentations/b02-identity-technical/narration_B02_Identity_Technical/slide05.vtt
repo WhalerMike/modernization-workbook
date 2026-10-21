@@ -1,0 +1,149 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.600
+Here's what a standard
+account typically reads.
+
+2
+00:00:02.600 --> 00:00:07.896
+Forest and domain topology, domain
+controllers, sites, subnets and site links are
+
+3
+00:00:07.896 --> 00:00:13.112
+readable, which gives you scope, functional
+levels and the shape of replication.
+
+4
+00:00:13.112 --> 00:00:16.598
+The OU hierarchy and Group
+Policy links are readable:
+
+5
+00:00:16.598 --> 00:00:20.400
+that's the structure the
+attribute design later replaces.
+
+6
+00:00:20.400 --> 00:00:23.775
+GPOs and their settings
+reports are usually readable,
+
+7
+00:00:23.775 --> 00:00:27.225
+unless security filtering
+restricts a particular GPO.
+
+8
+00:00:27.225 --> 00:00:31.350
+Users, groups, computers and service
+principal names are readable,
+
+9
+00:00:31.350 --> 00:00:36.150
+which is your identity inventory and
+the start of service account discovery.
+
+10
+00:00:36.150 --> 00:00:41.947
+Certificate templates and enrollment
+services sit in the configuration partition,
+
+11
+00:00:41.947 --> 00:00:45.050
+so the AD CS dependency
+surface is visible too.
+
+12
+00:00:45.050 --> 00:00:49.313
+AD-integrated DNS zones are
+often readable; test it.
+
+13
+00:00:49.313 --> 00:00:52.154
+What you usually can't
+see is replication health
+
+14
+00:00:52.154 --> 00:00:54.712
+and DNS server settings
+such as scavenging.
+
+15
+00:00:54.712 --> 00:00:56.891
+Those need a right or server access,
+
+16
+00:00:56.891 --> 00:01:01.249
+so they become a delegation item or
+an administrator-provided export.
+
+17
+00:01:01.249 --> 00:01:03.100
+Why is the default so broad?
+
+18
+00:01:03.100 --> 00:01:06.300
+Read access is the sum of
+several default grants.
+
+19
+00:01:06.300 --> 00:01:09.752
+Authenticated Users receives
+the general, public,
+
+20
+00:01:09.752 --> 00:01:13.862
+personal and web information
+property sets on user objects.
+
+21
+00:01:13.862 --> 00:01:18.845
+Pre–Windows 2000 Compatible Access
+receives list, read-all-properties
+
+22
+00:01:18.845 --> 00:01:23.912
+and read-permissions rights on users,
+groups and InetOrgPerson objects.
+
+23
+00:01:23.912 --> 00:01:28.184
+Its membership depends on a choice
+made when the domain was created:
+
+24
+00:01:28.184 --> 00:01:32.456
+in the Windows 2000-and-later mode
+it contains Authenticated Users;
+
+25
+00:01:32.456 --> 00:01:35.812
+in the older compatible
+mode, Everyone and Anonymous.
+
+26
+00:01:35.812 --> 00:01:40.634
+So in most domains a standard account
+reads most attributes of users and groups,
+
+27
+00:01:40.634 --> 00:01:43.775
+but the exact result depends
+on the domain's history.
+
+28
+00:01:43.775 --> 00:01:46.657
+The first step is therefore
+a pre-flight that tests
+
+29
+00:01:46.657 --> 00:01:49.538
+what this account can
+actually read in this forest.
+
+30
+00:01:49.538 --> 00:01:53.090
+Every later export records
+which access it relied on.

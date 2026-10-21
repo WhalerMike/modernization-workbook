@@ -1,0 +1,156 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.358
+Three drivers end the inheritance,
+
+2
+00:00:02.358 --> 00:00:05.700
+and each is as well reasoned
+as the original design.
+
+3
+00:00:05.700 --> 00:00:07.314
+The first is NTLM.
+
+4
+00:00:07.314 --> 00:00:10.888
+Microsoft deprecated every version,
+
+5
+00:00:10.888 --> 00:00:15.500
+LAN Manager and NTLM versions
+1 and 2, in June 2024.
+
+6
+00:00:15.500 --> 00:00:20.297
+Version 1 is already removed
+from Windows Server 2025
+
+7
+00:00:20.297 --> 00:00:25.200
+and Windows 11 version 24H2;
+version 2 still works there.
+
+8
+00:00:25.200 --> 00:00:29.596
+Microsoft's next step is to disable
+network NTLM by default in the
+
+9
+00:00:29.596 --> 00:00:34.400
+next major Windows release, subject
+to change and with no calendar date.
+
+10
+00:00:34.400 --> 00:00:38.318
+So the program set its
+own backstop: on April 1,
+
+11
+00:00:38.318 --> 00:00:43.400
+2027 its enforcement phase
+blocks NTLM across the estate.
+
+12
+00:00:43.400 --> 00:00:45.088
+That isn't the completion date.
+
+13
+00:00:45.088 --> 00:00:47.685
+It's the date by which consolidation, Arc,
+
+14
+00:00:47.685 --> 00:00:51.699
+login migration and connection
+strings must already be done.
+
+15
+00:00:51.699 --> 00:00:53.825
+The second is zero trust.
+
+16
+00:00:53.825 --> 00:00:58.060
+M-22-09 requires
+phishing-resistant MFA enforced at
+
+17
+00:00:58.060 --> 00:01:01.275
+the application layer, with
+a device-level signal.
+
+18
+00:01:01.275 --> 00:01:05.950
+Conditional Access can act only
+on an Entra token request;
+
+19
+00:01:05.950 --> 00:01:09.262
+a Kerberos or NTLM exchange never asks it.
+
+20
+00:01:09.262 --> 00:01:12.338
+Risk-based policies need Entra ID P2.
+
+21
+00:01:12.338 --> 00:01:14.713
+The third is the engine's own identity.
+
+22
+00:01:14.713 --> 00:01:17.881
+When Active Directory stops
+being the identity source,
+
+23
+00:01:17.881 --> 00:01:22.356
+the engine's service accounts lose their
+governance foundation, so the engine
+
+24
+00:01:22.356 --> 00:01:26.488
+needs an Entra identity first, which
+on premises comes through Azure Arc.
+
+25
+00:01:26.488 --> 00:01:30.137
+What's actually due in
+2027 are lifecycle dates.
+
+26
+00:01:30.137 --> 00:01:35.313
+Windows Server 2016 leaves
+extended support on January 12.
+
+27
+00:01:35.313 --> 00:01:41.953
+SQL Server 2014's final
+extended-security-update year ends on July 12,
+
+28
+00:01:41.953 --> 00:01:45.449
+and SQL Server 2016's first on July 13.
+
+29
+00:01:45.449 --> 00:01:50.112
+SQL Server 2017 leaves
+support on October 12.
+
+30
+00:01:50.112 --> 00:01:52.819
+None of those versions
+can take Entra logins,
+
+31
+00:01:52.819 --> 00:01:56.550
+so they're consolidation
+candidates, not in-place migrations.
+
+32
+00:01:56.550 --> 00:02:00.927
+The dependencies set the
+order: assess and consolidate,
+
+33
+00:02:00.927 --> 00:02:04.700
+enable Arc, migrate logins,
+then eliminate NTLM.

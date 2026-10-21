@@ -1,0 +1,143 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.075
+How do you get there?
+
+2
+00:00:01.075 --> 00:00:03.400
+First, close before you assess.
+
+3
+00:00:03.400 --> 00:00:07.159
+Agencies met BOD 25-01's early dates:
+
+4
+00:00:07.159 --> 00:00:11.575
+tenants inventoried, ScubaGear
+deployed and reporting.
+
+5
+00:00:11.575 --> 00:00:13.575
+Many now treat that as the answer.
+
+6
+00:00:13.575 --> 00:00:16.910
+But ScubaGear measures
+deviation from a baseline;
+
+7
+00:00:16.910 --> 00:00:21.038
+it doesn't close any, and neither
+does the Zero Trust Assessment.
+
+8
+00:00:21.038 --> 00:00:25.663
+A thermometer that reports a fever every
+day for a year isn't a treatment plan.
+
+9
+00:00:25.663 --> 00:00:29.885
+Without an architecture to absorb
+the fix, remediation collapses
+
+10
+00:00:29.885 --> 00:00:33.876
+into re-running the scan and filing
+another plan-of-action line.
+
+11
+00:00:33.876 --> 00:00:37.949
+So the program's six-phase sequence
+puts the assessors at step five,
+
+12
+00:00:37.949 --> 00:00:42.987
+as confirmation rather than discovery:
+understand the gaps and their root causes,
+
+13
+00:00:42.987 --> 00:00:47.431
+design the closure pattern, implement
+it, govern it with owners and plans,
+
+14
+00:00:47.431 --> 00:00:51.950
+then validate, and then the authorizing
+official decides on the evidence.
+
+15
+00:00:51.950 --> 00:00:55.598
+That's the Risk Management
+Framework's own order:
+
+16
+00:00:55.598 --> 00:00:58.425
+implement, assess, authorize, monitor.
+
+17
+00:00:58.425 --> 00:01:02.181
+BOD 25-01 says the same for new tenants:
+
+18
+00:01:02.181 --> 00:01:05.938
+baseline first, then the
+authorization to operate.
+
+19
+00:01:05.938 --> 00:01:10.080
+Before validating, build the layers
+a finding depends on: naming,
+
+20
+00:01:10.080 --> 00:01:13.987
+addressing and certificates;
+device and workload identity;
+
+21
+00:01:13.987 --> 00:01:18.676
+a phased retirement of legacy
+authentication; and governed exceptions.
+
+22
+00:01:18.676 --> 00:01:21.188
+Not every finding waits for architecture.
+
+23
+00:01:21.188 --> 00:01:26.249
+Route each one to exactly one response:
+a configuration change that closes now;
+
+24
+00:01:26.249 --> 00:01:29.519
+architectural work with an
+owner and a target date;
+
+25
+00:01:29.519 --> 00:01:34.813
+or a risk acceptance by the authorizing
+official, marked Omitted with a rationale.
+
+26
+00:01:34.813 --> 00:01:37.531
+A finding with no response recorded is the
+
+27
+00:01:37.531 --> 00:01:40.250
+only state the program
+treats as a failure.
+
+28
+00:01:40.250 --> 00:01:46.198
+This is the CIO's sequence decision:
+close the BOD 25-01 findings before the
+
+29
+00:01:46.198 --> 00:01:51.650
+maturity assessment, and staff that order
+against the agency's other deadlines.
+
+30
+00:01:51.650 --> 00:01:54.910
+It's needed before the maturity
+assessment is scheduled.

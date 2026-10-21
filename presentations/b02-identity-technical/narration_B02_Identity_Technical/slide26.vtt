@@ -1,0 +1,156 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.662
+Proving it starts with logs, because
+Entra ID keeps them only briefly.
+
+2
+00:00:04.662 --> 00:00:10.625
+Sign-in and audit logs are kept seven days
+on the free tier and thirty on P1 or P2.
+
+3
+00:00:10.625 --> 00:00:14.275
+Risky sign-ins reach
+ninety days only with P2.
+
+4
+00:00:14.275 --> 00:00:18.913
+Microsoft Graph activity logs aren't
+retained at all; they're export only.
+
+5
+00:00:18.913 --> 00:00:21.900
+And upgrading a license
+doesn't recover older data.
+
+6
+00:00:21.900 --> 00:00:25.791
+So stream every category to
+a Log Analytics workspace and
+
+7
+00:00:25.791 --> 00:00:29.600
+keep sign-in and audit logs
+three hundred sixty-five days.
+
+8
+00:00:29.600 --> 00:00:33.893
+On top of that, scheduled detections:
+stale accounts over ninety days;
+
+9
+00:00:33.893 --> 00:00:37.509
+PIM activation between ten at
+night and six in the morning,
+
+10
+00:00:37.509 --> 00:00:42.781
+after converting from UTC; interactive
+sign-ins with no Conditional Access applied;
+
+11
+00:00:42.781 --> 00:00:48.129
+application credentials expiring within
+thirty days; any emergency account sign-in,
+
+12
+00:00:48.129 --> 00:00:53.100
+which is critical; and more than fifty
+membership changes to one group in an hour.
+
+13
+00:00:53.100 --> 00:00:58.434
+For compliance, Compliance Manager has
+templates for NIST 800-53 Revision 5 and
+
+14
+00:00:58.434 --> 00:01:02.474
+FedRAMP Moderate, but they don't
+produce indicator evidence,
+
+15
+00:01:02.474 --> 00:01:04.737
+so treat them as a readiness check.
+
+16
+00:01:04.737 --> 00:01:08.777
+Under FedRAMP 20x's
+Consolidated Rules for 2026,
+
+17
+00:01:08.777 --> 00:01:12.175
+the controls map to Key
+Security Indicators.
+
+18
+00:01:12.175 --> 00:01:15.752
+Account management maps to
+automating account management,
+
+19
+00:01:15.752 --> 00:01:18.113
+evidenced by the workflows and reviews.
+
+20
+00:01:18.113 --> 00:01:21.607
+Least privilege maps to
+ensuring least privilege and
+
+21
+00:01:21.607 --> 00:01:25.024
+authorizing just-in-time,
+evidenced by groups and PIM.
+
+22
+00:01:25.024 --> 00:01:28.737
+Authentication maps to
+adopting passwordless methods.
+
+23
+00:01:28.737 --> 00:01:33.119
+Non-user authentication maps to
+securing non-user authentication,
+
+24
+00:01:33.119 --> 00:01:34.762
+the service account work.
+
+25
+00:01:34.762 --> 00:01:39.063
+And event logging maps to logging
+event types and reviewing logs.
+
+26
+00:01:39.063 --> 00:01:40.475
+Drift lives in Git.
+
+27
+00:01:40.475 --> 00:01:44.882
+The identity assessment commits its
+JSON to an identity baseline branch,
+
+28
+00:01:44.882 --> 00:01:48.711
+a weekly scan on Sunday at two in
+the morning compares against it,
+
+29
+00:01:48.711 --> 00:01:50.950
+and drift opens an issue with the diff.
+
+30
+00:01:50.950 --> 00:01:55.487
+The rule: close each finding at the
+source, never by editing the copy.
+
+31
+00:01:55.487 --> 00:02:00.801
+Be clear about maturity: the comparison
+covers user additions and removals today;
+
+32
+00:02:00.801 --> 00:02:04.220
+attribute, membership and
+policy diffs are planned.

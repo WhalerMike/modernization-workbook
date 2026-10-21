@@ -1,0 +1,2373 @@
+{
+ "1": [
+  [
+   0.05,
+   6.95,
+   "This is the technical deep dive for Book 02 of the Federal Modernization Workbook, Identity and Directory."
+  ],
+  [
+   7.0,
+   6.463,
+   "It's for the architects and engineers who will actually run the move from Active Directory to Microsoft Entra ID."
+  ],
+  [
+   13.463,
+   5.463,
+   "It comes in two parts of about twenty-five minutes each, and four modules you can watch separately."
+  ],
+  [
+   18.925,
+   10.287,
+   "Part 1 is assessing the forest: first what a standard account can learn without any elevated access, then the full privileged assessment and the evidence pipeline behind it."
+  ],
+  [
+   29.212,
+   17.125,
+   "Part 2 is building the Entra ID target and migrating onto it: the sync, sign-in, group, service account, privileged access and Conditional Access decisions, then governance, the eleven-phase playbook, and a reference deployment that shows the whole sequence on one estate."
+  ],
+  [
+   46.337,
+   3.75,
+   "The slides show tables, flows and decision matrices."
+  ],
+  [
+   50.087,
+   5.388,
+   "The code lives in the chapters and appendices; I'll point you to it rather than put it on screen."
+  ]
+ ],
+ "2": [
+  [
+   0.05,
+   1.188,
+   "Why this matters."
+  ],
+  [
+   1.238,
+   5.125,
+   "Federal policy moved the access decision off the network and onto identity."
+  ],
+  [
+   6.362,
+   15.812,
+   "O M B M twenty-two oh-nine requires centralized identity management, phishing-resistant multifactor authentication for staff, contractors and partners, and at least one device-level signal, and it says users should log into applications rather than networks."
+  ],
+  [
+   22.175,
+   9.9,
+   "nist special publication eight hundred two-oh-seven grants no implicit trust from network location: access is decided per session by dynamic policy."
+  ],
+  [
+   32.075,
+   8.412,
+   "And sis-uh's Zero Trust Maturity Model makes identity the first of its five pillars, validated continuously at the optimal level."
+  ],
+  [
+   40.487,
+   4.25,
+   "So the identity provider is the policy decision point for the whole estate."
+  ],
+  [
+   44.737,
+   6.975,
+   "Whatever it believes about a person, a group or a device is what gets enforced, everywhere, at machine speed."
+  ],
+  [
+   51.712,
+   5.825,
+   "Microsoft isn't retiring Active Directory; it says it continues to support and enhance it."
+  ],
+  [
+   57.538,
+   3.038,
+   "The forcing comes from the direction of its investment."
+  ],
+  [
+   60.575,
+   6.513,
+   "Cloud Sync is replacing Connect Sync, which retires once Cloud Sync reaches full functional parity."
+  ],
+  [
+   67.088,
+   6.112,
+   "Microsoft recommends moving from A D FS to cloud authentication with password hash sync."
+  ],
+  [
+   73.2,
+   11.35,
+   "All versions of N T L M were deprecated in June 2024, and NTLMv1 is removed in Windows 11 24H2 and Windows Server 2025."
+  ],
+  [
+   84.55,
+   6.25,
+   "And since January 2026 you can convert a synced user to cloud-managed, one object at a time."
+  ],
+  [
+   90.8,
+   2.062,
+   "The trap is the lift and shift."
+  ],
+  [
+   92.862,
+   13.537,
+   "Synchronize the forest as it stands, and stale accounts, undocumented trusts and synced privileged accounts arrive in the tenant, while the delegation and policy intent that the O U tree carried has nowhere to land."
+  ]
+ ],
+ "3": [
+  [
+   0.05,
+   1.075,
+   "What has to move."
+  ],
+  [
+   1.125,
+   5.725,
+   "Chapters 02 through 04 make two points that drive everything in this session."
+  ],
+  [
+   6.85,
+   2.612,
+   "First, placement becomes attributes."
+  ],
+  [
+   9.463,
+   8.5,
+   "In Active Directory, an object's position in the forest, domain and O U tree decides who administers it and which Group Policy applies."
+  ],
+  [
+   17.962,
+   8.8,
+   "Move a user to another O U and its administrators, inherited policies and often its access all change without anyone editing the user."
+  ],
+  [
+   26.762,
+   1.825,
+   "Entra ID has no tree."
+  ],
+  [
+   28.587,
+   6.65,
+   "It governs objects by what they carry: attributes, memberships, role assignments and policy conditions."
+  ],
+  [
+   35.237,
+   4.85,
+   "Two limits decide how far the usual answer, administrative units, gets you."
+  ],
+  [
+   40.087,
+   5.2,
+   "Administrative units can't nest, so an O U tree becomes a flat set of units."
+  ],
+  [
+   45.288,
+   2.638,
+   "An object can belong to at most thirty of them."
+  ],
+  [
+   47.925,
+   8.25,
+   "And for synced users, Graph treats the extension attributes as read-only, because their source of authority is still Active Directory."
+  ],
+  [
+   56.175,
+   5.175,
+   "So the values your rules match on are written on-premises and arrive with each sync cycle."
+  ],
+  [
+   61.35,
+   3.425,
+   "Second, the surface is bigger than users and groups."
+  ],
+  [
+   64.775,
+   3.7,
+   "The program's inventory names eleven dependency types."
+  ],
+  [
+   68.475,
+   2.538,
+   "The first five are what plans usually count."
+  ],
+  [
+   71.013,
+   11.963,
+   "Types six through nine, D N S and DHCP, P K I, radius and the Network Policy Server, and el-dap-bound applications, fail silently when A D goes away."
+  ],
+  [
+   82.975,
+   7.1,
+   "Types ten and eleven, service principal names and trusts, have no direct counterpart in Entra ID."
+  ],
+  [
+   90.075,
+   2.062,
+   "Each dependency gets an adapter."
+  ],
+  [
+   92.138,
+   5.938,
+   "The P K I, radius and el-dap proxy adapters are critical, because they fail silently."
+  ],
+  [
+   98.075,
+   6.312,
+   "The sync engine finishes last, because it's what keeps A D in production until everything else has moved."
+  ],
+  [
+   104.388,
+   4.612,
+   "The rest of this session is how you find all of that, rebuild it, and prove it."
+  ]
+ ],
+ "4": [
+  [
+   0.05,
+   2.575,
+   "Module 1: read-only discovery."
+  ],
+  [
+   2.625,
+   3.5,
+   "An assessment team rarely gets privileged access on day one."
+  ],
+  [
+   6.125,
+   5.362,
+   "Authorization paperwork, security review and trust between teams all take time."
+  ],
+  [
+   11.488,
+   5.1,
+   "The program spends that window learning what the directory already tells every employee."
+  ],
+  [
+   16.587,
+   6.463,
+   "A standard domain account, with no rights beyond the default, can read most of what the migration plan needs."
+  ],
+  [
+   23.05,
+   18.262,
+   "Starting there changes nothing in the directory, applies least privilege, nist special publication eight hundred fifty-three control AC-6, to the assessment team itself, and turns the request for elevated access into a list built from evidence instead of a general request for Domain Admin."
+  ]
+ ],
+ "5": [
+  [
+   0.05,
+   2.55,
+   "Here's what a standard account typically reads."
+  ],
+  [
+   2.6,
+   10.512,
+   "Forest and domain topology, domain controllers, sites, subnets and site links are readable, which gives you scope, functional levels and the shape of replication."
+  ],
+  [
+   13.113,
+   7.287,
+   "The O U hierarchy and Group Policy links are readable: that's the structure the attribute design later replaces."
+  ],
+  [
+   20.4,
+   15.75,
+   "GPOs and their settings reports are usually readable, unless security filtering restricts a particular G P O. Users, groups, computers and service principal names are readable, which is your identity inventory and the start of service account discovery."
+  ],
+  [
+   36.15,
+   8.9,
+   "Certificate templates and enrollment services sit in the configuration partition, so the A D CS dependency surface is visible too."
+  ],
+  [
+   45.05,
+   4.263,
+   "A D-integrated D N S zones are often readable; test it."
+  ],
+  [
+   49.312,
+   5.4,
+   "What you usually can't see is replication health and D N S server settings such as scavenging."
+  ],
+  [
+   54.712,
+   6.537,
+   "Those need a right or server access, so they become a delegation item or an administrator-provided export."
+  ],
+  [
+   61.25,
+   1.85,
+   "Why is the default so broad?"
+  ],
+  [
+   63.1,
+   3.2,
+   "Read access is the sum of several default grants."
+  ],
+  [
+   66.3,
+   7.562,
+   "Authenticated Users receives the general, public, personal and web information property sets on user objects."
+  ],
+  [
+   73.862,
+   10.05,
+   "Pre\u2013Windows 2000 Compatible Access receives list, read-all-properties and read-permissions rights on users, groups and InetOrgPerson objects."
+  ],
+  [
+   83.912,
+   11.9,
+   "Its membership depends on a choice made when the domain was created: in the Windows 2000-and-later mode it contains Authenticated Users; in the older compatible mode, Everyone and Anonymous."
+  ],
+  [
+   95.812,
+   7.963,
+   "So in most domains a standard account reads most attributes of users and groups, but the exact result depends on the domain's history."
+  ],
+  [
+   103.775,
+   5.763,
+   "The first step is therefore a pre-flight that tests what this account can actually read in this forest."
+  ],
+  [
+   109.537,
+   3.487,
+   "Every later export records which access it relied on."
+  ]
+ ],
+ "6": [
+  [
+   0.05,
+   7.412,
+   "The assessment report should never claim coverage it doesn't have, so you need to know exactly where the default read boundary sits."
+  ],
+  [
+   7.463,
+   3.65,
+   "Four mechanisms set it, and several are commonly misstated."
+  ],
+  [
+   11.113,
+   2.087,
+   "Protected accounts and groups."
+  ],
+  [
+   13.2,
+   10.25,
+   "The AdminSDHolder object holds template permissions for Domain Admins, Enterprise Admins, Schema Admins, the operator groups, krbtgt and others."
+  ],
+  [
+   23.45,
+   7.9,
+   "A process called S D Prop runs every sixty minutes by default on the PDC emulator and resets those objects to match."
+  ],
+  [
+   31.35,
+   1.938,
+   "It acts on current members only."
+  ],
+  [
+   33.288,
+   5.713,
+   "An account removed from a protected group keeps admin count set to one unless someone clears it."
+  ],
+  [
+   39.0,
+   7.062,
+   "So admin count lists accounts that are or were privileged: a good clean-up list, not the current privileged population."
+  ],
+  [
+   46.062,
+   1.725,
+   "Confidential attributes."
+  ],
+  [
+   47.788,
+   10.688,
+   "Setting bit seven, value one hundred twenty-eight, of an attribute's search flags means reading it needs the control access right as well, which by default only administrators hold."
+  ],
+  [
+   58.475,
+   9.85,
+   "You can still show where a capability is deployed without seeing the secret: with Windows LAPS, the presence and age of the password expiration attribute shows coverage."
+  ],
+  [
+   68.325,
+   10.012,
+   "Legacy Microsoft LAPS is deprecated as of Windows 11 23H2, so a forest still on it has a finding before the assessment even reaches identity."
+  ],
+  [
+   78.338,
+   0.975,
+   "Secrets."
+  ],
+  [
+   79.312,
+   9.05,
+   "Password hashes leave a domain controller only through replication, which needs Replicating Directory Changes and Replicating Directory Changes All."
+  ],
+  [
+   88.362,
+   2.312,
+   "The assessment never requests those."
+  ],
+  [
+   90.675,
+   8.012,
+   "But which accounts already hold them is a key later check: any holder that isn't a domain controller or the sync service account is a finding."
+  ],
+  [
+   98.688,
+   1.65,
+   "Restricted containers."
+  ],
+  [
+   100.338,
+   4.338,
+   "Deleted Objects is visible only to System and Administrators."
+  ],
+  [
+   104.675,
+   4.375,
+   "Restoring needs Reanimate Tombstone, which an assessment never needs."
+  ],
+  [
+   109.05,
+   6.675,
+   "Fine-grained password policies belong to Domain Admins, so record them as not seen rather than inferring them."
+  ],
+  [
+   115.725,
+   2.85,
+   "Finally, report only measured coverage."
+  ]
+ ],
+ "7": [
+  [
+   0.05,
+   12.0,
+   "Every gap read-only discovery couldn't close gets recorded with four facts: what's missing, the narrowest right or export that would close it, why the plan needs it, and whether there's a read-only substitute."
+  ],
+  [
+   12.05,
+   11.238,
+   "Replication health and domain controller event logs come from an administrator-run summary, a log export, or sim access; the event logs are where you see N T L M use."
+  ],
+  [
+   23.288,
+   9.812,
+   "D N S server settings like aging and scavenging come from a D N S administrator export, because zone reads cover records but not server settings."
+  ],
+  [
+   33.1,
+   12.075,
+   "The issued-certificate database comes from a CA administrator, and tells you which certificates must be reissued from a new P K I. Deleted Objects needs read on that one container for one named account."
+  ],
+  [
+   45.175,
+   3.962,
+   "Fine-grained password policies need a Domain Admin export."
+  ],
+  [
+   49.138,
+   7.375,
+   "And confidential attributes like LAPS and BitLocker recovery data are never requested at all: you report coverage only."
+  ],
+  [
+   56.513,
+   8.762,
+   "The gap list becomes a short written request, and it follows fixed rules, because the request is what makes the least-privilege position credible."
+  ],
+  [
+   65.275,
+   6.888,
+   "Read only: no write, create, delete or permission rights, and never the rights that expose secrets."
+  ],
+  [
+   72.162,
+   9.438,
+   "Specific: each line names the right, the exact object path and the business reason; \"Domain Admin for the assessment\" is not an acceptable line."
+  ],
+  [
+   81.6,
+   6.875,
+   "Time-bound: each delegation expires with the assessment window, and the account's expiry is set to match."
+  ],
+  [
+   88.475,
+   4.513,
+   "One named, dedicated account with no existing elevated memberships."
+  ],
+  [
+   92.987,
+   7.275,
+   "And preferably an export: if the directory team can run the report and hand over the output, that beats granting a right."
+  ],
+  [
+   100.263,
+   4.3,
+   "The directory team implements the delegation with its own change process."
+  ],
+  [
+   104.562,
+   1.113,
+   "Run it safely."
+  ],
+  [
+   105.675,
+   9.35,
+   "Tell security operations first, because broad el-dap enumeration looks like reconnaissance, and Defender for Identity raises discovery alerts for it."
+  ],
+  [
+   115.025,
+   12.025,
+   "The output is a map of the estate, so keep it encrypted on a dedicated workstation, record a SHA-256 hash of every file in a manifest and disable the account when you're done."
+  ]
+ ],
+ "8": [
+  [
+   0.05,
+   2.513,
+   "Module 2: assessing the forest."
+  ],
+  [
+   2.562,
+   2.875,
+   "Chapter 07 ends with a gap list."
+  ],
+  [
+   5.438,
+   16.512,
+   "Chapter 08 fills it with the privileged half of discovery: the configuration partition, ACLs on O Us, every G P O's settings, D N S server configuration, the P K I containers and CA settings, and the delegation flags on every account."
+  ],
+  [
+   21.95,
+   5.95,
+   "The program's position is that the assessment is an evidence-producing process, not a set of scripts."
+  ],
+  [
+   27.9,
+   12.4,
+   "Every run collects a fixed set of artifacts into a fixed directory layout, writes a manifest with a SHA-256 hash of every file, and commits the run to the program's Git repository."
+  ],
+  [
+   40.3,
+   7.575,
+   "Appendix B carries the complete module, restored and corrected; Appendix C carries the identity-side module."
+  ]
+ ],
+ "9": [
+  [
+   0.05,
+   13.588,
+   "The full assessment covers eight areas, run in a fixed order: forest topology, the O U hierarchy, Group Policy, D N S, A D CS, computers, users and groups, and trusts."
+  ],
+  [
+   13.637,
+   3.9,
+   "Most of the forest is readable by any authenticated user."
+  ],
+  [
+   17.538,
+   6.475,
+   "The parts that aren't are the reason Chapter 08 exists, so each collector runs on the narrowest right that works."
+  ],
+  [
+   24.012,
+   11.775,
+   "Topology, computers, and users and groups need only an authenticated user; delegation attributes are readable by default, though recursive group expansion is slow in big forests."
+  ],
+  [
+   35.788,
+   7.438,
+   "The O U collector needs read permission on the O Us' security descriptors, because some ACLs aren't readable by default."
+  ],
+  [
+   43.225,
+   7.3,
+   "Group Policy needs read on the GPOs and SYSVOL, plus the backup right through Group Policy Management delegation."
+  ],
+  [
+   50.525,
+   5.175,
+   "D N S needs read on each D N S server, delegated on the server object."
+  ],
+  [
+   55.7,
+   5.188,
+   "A D CS needs read on the Public Key Services containers and on each CA."
+  ],
+  [
+   60.888,
+   6.037,
+   "And trusts: any user can list them, but verification needs domain administrator credentials."
+  ],
+  [
+   66.925,
+   2.95,
+   "Two rights the source design asked for are refused."
+  ],
+  [
+   69.875,
+   11.35,
+   "DnsAdmins: Microsoft treats it as privileged, because its members control the D N S Server service, and Defender for Identity flags non-privileged members as a risk."
+  ],
+  [
+   81.225,
+   4.375,
+   "Grant read on the D N S server object to a dedicated group instead."
+  ],
+  [
+   85.6,
+   3.825,
+   "And standing Domain Admin: no assessment run uses one."
+  ],
+  [
+   89.425,
+   7.188,
+   "Trust verification is the only step that needs those rights, and it runs separately under just-in-time elevation."
+  ],
+  [
+   96.612,
+   10.637,
+   "The host is a domain-joined Windows Server 2025 or Windows 11 machine with the Remote Server Administration Tools, at build 26100 or later."
+  ],
+  [
+   107.25,
+   7.525,
+   "The account is a group managed service account, with delegated read and nothing more, so no password is ever stored."
+  ],
+  [
+   114.775,
+   13.137,
+   "Two corrections from review: the A D CS administration module the source required isn't used by any function, and the PSPKI module is now optional, because its publisher no longer actively supports it."
+  ]
+ ],
+ "10": [
+  [
+   0.05,
+   2.587,
+   "Three areas carry most of the planning weight."
+  ],
+  [
+   2.638,
+   1.4,
+   "Topology first."
+  ],
+  [
+   4.037,
+   3.263,
+   "Active Directory has five operations master roles."
+  ],
+  [
+   7.3,
+   4.65,
+   "Two are forest-wide, the schema master and the domain naming master."
+  ],
+  [
+   11.95,
+   6.862,
+   "Three exist in every domain: the PDC emulator, the RID master and the infrastructure master."
+  ],
+  [
+   18.812,
+   4.7,
+   "So a three-domain forest has eleven role holders to record, not five."
+  ],
+  [
+   23.512,
+   5.688,
+   "The PDC emulator in the forest root is also the authoritative time source for the forest."
+  ],
+  [
+   29.2,
+   3.837,
+   "Record every functional level and flag two conditions."
+  ],
+  [
+   33.038,
+   11.537,
+   "A level below Windows Server 2016 blocks the domain controller refresh, because a Server 2025 controller can join only a domain at 2016 or higher."
+  ],
+  [
+   44.575,
+   1.65,
+   "And mixed domain levels."
+  ],
+  [
+   46.225,
+   5.4,
+   "Server 2025 is the first new functional level since 2016."
+  ],
+  [
+   51.625,
+   8.225,
+   "Capture site links with cost and interval, and the subnet map: an unmapped subnet sends clients to arbitrary domain controllers."
+  ],
+  [
+   59.85,
+   2.175,
+   "Second, the O U hierarchy."
+  ],
+  [
+   62.025,
+   6.625,
+   "The goal is to capture what the tree encodes so the attribute design reproduces intent, not structure."
+  ],
+  [
+   68.65,
+   24.262,
+   "For each O U, record placement and size; its G P O links, preferably through Get-GP-Inheritance, which returns link order, enforcement, enabled state and inheritance blocking; its non-inherited access control entries, with built-in principals dropped, which are the delegations someone made by hand and become the administrative unit candidates; and a text rendering for review."
+  ],
+  [
+   92.912,
+   4.85,
+   "Third, Group Policy, the largest and most consequential artifact."
+  ],
+  [
+   97.763,
+   4.6,
+   "Every live setting moves to Intune, moves elsewhere, or retires."
+  ],
+  [
+   102.362,
+   2.475,
+   "Sort GPOs into three groups."
+  ],
+  [
+   104.838,
+   3.175,
+   "Unlinked or empty ones are retirement candidates."
+  ],
+  [
+   108.013,
+   6.5,
+   "Overlapping settings must be resolved first, because Intune's migration refuses conflicting values."
+  ],
+  [
+   114.513,
+   1.775,
+   "Live settings need a decision."
+  ],
+  [
+   116.287,
+   7.138,
+   "One correction: the source searched only O Us and the domain root, so site-linked GPOs looked unlinked."
+  ],
+  [
+   123.425,
+   7.6,
+   "And Intune's Group Policy analytics imports XML reports under four megabytes, so check sizes in the manifest."
+  ]
+ ],
+ "11": [
+  [
+   0.05,
+   2.75,
+   "A D CS matters twice in a migration."
+  ],
+  [
+   2.8,
+   11.162,
+   "It issues the certificates devices, domain controllers and smart cards depend on, and its misconfigurations are among the most direct privilege-escalation paths in a forest."
+  ],
+  [
+   13.963,
+   10.762,
+   "The ESC naming comes from SpecterOps' 2021 research, which defined ESC1 through ESC8; its tooling now covers patterns through ESC16."
+  ],
+  [
+   24.725,
+   6.0,
+   "Defender for Identity's definitions are the program's reference, and the assessment checks the ones it can see."
+  ],
+  [
+   30.725,
+   12.525,
+   "ESC1 is a template where the enrollee supplies the subject, an authentication extended key usage is allowed, no manager approval or authorized signature is required, and broad groups can enroll."
+  ],
+  [
+   43.25,
+   4.35,
+   "ESC2 is a template with the Any Purpose usage, or none at all."
+  ],
+  [
+   47.6,
+   6.662,
+   "ESC4 is a template ACL that gives a broad group rights such as Full Control or Write DACL."
+  ],
+  [
+   54.263,
+   11.5,
+   "ESC6 is the CA flag that lets every requester specify the subject alternative name for every template; Microsoft's fix is to clear the flag and restart the service."
+  ],
+  [
+   65.763,
+   4.875,
+   "ESC7 is broad groups holding Manage CA or Manage Certificates."
+  ],
+  [
+   70.638,
+   9.375,
+   "That one needs the CA's own security settings, which Appendix B's collector doesn't read; Defender for Identity assesses it where a sensor runs on the CA."
+  ],
+  [
+   80.013,
+   6.425,
+   "The correction that matters most: the source's ESC1 check tested for the Digital Signature key usage."
+  ],
+  [
+   86.438,
+   3.913,
+   "Almost every template has that, so it flagged nearly everything."
+  ],
+  [
+   90.35,
+   10.0,
+   "The check has to test the extended key usage for an authentication purpose: client authentication, smart card logon, PKINIT client authentication, or Any Purpose."
+  ],
+  [
+   100.35,
+   6.45,
+   "And a template that passes is a candidate only if a CA actually publishes it and broad groups can enroll."
+  ],
+  [
+   106.8,
+   1.0,
+   "Report only."
+  ],
+  [
+   107.8,
+   4.812,
+   "Remediation belongs to the P K I owner, through Book 07."
+  ],
+  [
+   112.612,
+   6.388,
+   "The same inventory also tells you whether user certificates can move to Entra certificate-based authentication."
+  ]
+ ],
+ "12": [
+  [
+   0.05,
+   8.425,
+   "Every computer object is a migration decision: Entra join, hybrid join, Azure Arc, retirement, or keep in Active Directory."
+  ],
+  [
+   8.475,
+   8.512,
+   "The inventory carries the delegation attributes, and the source got two things wrong here, so classify by what's actually set, in this order."
+  ],
+  [
+   16.988,
+   4.362,
+   "Trusted for delegation set to true is unconstrained delegation."
+  ],
+  [
+   21.35,
+   5.3,
+   "It lets a service impersonate any user who authenticates to it, to any service."
+  ],
+  [
+   26.65,
+   8.975,
+   "Domain controllers are expected to have it, so exclude them as Defender for Identity does; every other unconstrained entry becomes a critical issue."
+  ],
+  [
+   35.625,
+   6.812,
+   "A target list plus trusted-to-authenticate-for-delegation is constrained delegation with protocol transition."
+  ],
+  [
+   42.438,
+   3.55,
+   "A target list alone is constrained, Kerberos only."
+  ],
+  [
+   45.987,
+   4.088,
+   "The source labeled protocol transition even without a target list."
+  ],
+  [
+   50.075,
+   6.7,
+   "And resource-based constrained delegation, which the source missed entirely, is configured on the resource side."
+  ],
+  [
+   56.775,
+   10.613,
+   "Staleness: Last Logon Date is a converted timestamp that can lag the true last logon by up to two weeks, so it's good enough for a ninety-day test, not a seven-day one."
+  ],
+  [
+   67.388,
+   5.237,
+   "Pair it with Password Last Set, and treat a computer as stale only when both are old."
+  ],
+  [
+   72.625,
+   10.262,
+   "For users, expand the eight privileged groups recursively: Domain Admins, Enterprise Admins, Schema Admins, Administrators and the four operator groups."
+  ],
+  [
+   82.888,
+   9.287,
+   "Then report orphaned admin count accounts, using recursive membership; the source's direct match missed nested members and over-reported orphans."
+  ],
+  [
+   92.175,
+   2.225,
+   "Service accounts come in four kinds."
+  ],
+  [
+   94.4,
+   6.0,
+   "User accounts with service principal names are Kerberoastable and the highest priority to replace."
+  ],
+  [
+   100.4,
+   5.562,
+   "Group managed service accounts span servers and stay the default for multi-server services."
+  ],
+  [
+   105.963,
+   7.525,
+   "Delegated managed service accounts exist only in Server 2025 domains and disable the original password."
+  ],
+  [
+   113.487,
+   12.637,
+   "Two limits matter in large forests: a domain controller returns at most five thousand values of a multivalued attribute per response, and a principal can be in at most one thousand fifteen groups."
+  ]
+ ],
+ "13": [
+  [
+   0.05,
+   3.612,
+   "Trusts are where undocumented history usually hides."
+  ],
+  [
+   3.663,
+   6.9,
+   "Each trust is a trusted domain object in its domain's System container, and Get-A D-Trust returns them all."
+  ],
+  [
+   10.562,
+   7.525,
+   "Decode the trust attributes from the published bit values in the Active Directory technical specification, not from memory."
+  ],
+  [
+   18.087,
+   1.625,
+   "One means non-transitive."
+  ],
+  [
+   19.712,
+   4.263,
+   "Two, uplevel only: Windows 2000 and later clients."
+  ],
+  [
+   23.975,
+   3.825,
+   "Four, quarantined domain: SID filtering applies."
+  ],
+  [
+   27.8,
+   5.138,
+   "Eight, forest transitive: a cross-forest trust between forest root domains."
+  ],
+  [
+   32.938,
+   4.825,
+   "Hex ten, cross-organization: the partner isn't part of your organization."
+  ],
+  [
+   37.763,
+   2.112,
+   "Hex twenty, within forest."
+  ],
+  [
+   39.875,
+   5.775,
+   "And hex forty, treat as external: a forest trust filtered as if it were external."
+  ],
+  [
+   45.65,
+   11.137,
+   "The specification also defines later bits, for AES keys, RC4 and TGT delegation control, so record the raw value as well as the decoded list."
+  ],
+  [
+   56.788,
+   2.6,
+   "That way, bits added later aren't lost."
+  ],
+  [
+   59.388,
+   9.113,
+   "Direction is relative, and access flows the opposite way to trust: members of the trusted domain can reach resources in the trusting domain."
+  ],
+  [
+   68.5,
+   9.912,
+   "Seen from one domain, an inbound trust lets this domain's users reach the partner's resources, and an outbound trust lets the partner's users reach resources here."
+  ],
+  [
+   78.412,
+   1.712,
+   "The source had this reversed."
+  ],
+  [
+   80.125,
+   6.138,
+   "So for each trust, the assessment states plainly which side's users can reach which side's resources."
+  ],
+  [
+   86.263,
+   1.25,
+   "Then rate posture."
+  ],
+  [
+   87.513,
+   2.587,
+   "Selective authentication on is hardened."
+  ],
+  [
+   90.1,
+   1.938,
+   "SID filtering on is standard."
+  ],
+  [
+   92.037,
+   1.3,
+   "Neither is a finding."
+  ],
+  [
+   93.338,
+   6.5,
+   "Verification: the source called Test-A D-Trust, which isn't a cmdlet in the ActiveDirectory module."
+  ],
+  [
+   99.838,
+   8.787,
+   "Use netdom trust with the verify switch, which checks the secure channel secrets, or netdom query trust with verify for every outbound trust."
+  ],
+  [
+   108.625,
+   7.737,
+   "Both need administrative credentials, so verification runs as its own elevated step, outside the scheduled collection."
+  ],
+  [
+   116.362,
+   5.0,
+   "Finally, a forest trust doesn't convert into anything in Entra ID."
+  ],
+  [
+   121.362,
+   7.112,
+   "It identifies a partner whose access has to be redesigned with cross-tenant access settings, which Module 4 covers."
+  ]
+ ],
+ "14": [
+  [
+   0.05,
+   3.525,
+   "What makes a run evidence is the pipeline around the collectors."
+  ],
+  [
+   3.575,
+   17.988,
+   "The orchestrator runs them in the fixed order and writes the assessment manifest: a new GUID for the run; the domain, host and account; the start, end and duration; the staleness threshold; and every output file with its size, time and SHA-256 hash."
+  ],
+  [
+   21.562,
+   6.713,
+   "A failed step is recorded in the manifest rather than stopping the run, so a partial run is visible as partial."
+  ],
+  [
+   28.275,
+   5.9,
+   "Anyone holding the repository can recompute the hashes and show nothing changed after collection."
+  ],
+  [
+   34.175,
+   2.025,
+   "Then one run, one commit."
+  ],
+  [
+   36.2,
+   3.8,
+   "The reference design uses a self-hosted Gitea instance."
+  ],
+  [
+   40.0,
+   10.4,
+   "Each run gets its own branch, named for the domain and timestamp, and the multi-file contents endpoint commits the whole run, manifest included, as a single commit."
+  ],
+  [
+   50.4,
+   4.737,
+   "The source committed one file per API call, hundreds of commits per run."
+  ],
+  [
+   55.138,
+   9.425,
+   "Issues are raised automatically for two classes only: critical P K I patterns, and unconstrained delegation on accounts that aren't domain controllers."
+  ],
+  [
+   64.562,
+   16.512,
+   "Everything else goes to the planning documents: G P O reports to the Intune plan, computers to the device plan, the P K I report to certificate-based authentication readiness, trusts to the partner access plan, and users and groups to the identity design."
+  ],
+  [
+   81.075,
+   3.163,
+   "Drift: run weekly and compare with the last run."
+  ],
+  [
+   84.237,
+   2.55,
+   "A changed hash tells you that something changed."
+  ],
+  [
+   86.787,
+   7.075,
+   "To say what, compare parsed objects by a stable key, a GUID or SID, and exclude timestamps."
+  ],
+  [
+   93.862,
+   4.037,
+   "Schedule under the managed service account, so no password is stored."
+  ],
+  [
+   97.9,
+   3.112,
+   "Handling: the data is a map for an attacker."
+  ],
+  [
+   101.013,
+   13.688,
+   "Encrypt it, restrict the repository, keep runs at least twelve months and delete after thirty-six unless a legal hold applies, sign the module, and keep the API token in a credential store, never in a URL."
+  ],
+  [
+   114.7,
+   3.925,
+   "Appendix B lists sixteen corrections made to the source design."
+  ]
+ ],
+ "15": [
+  [
+   0.05,
+   4.213,
+   "Part 2: building the Entra ID target and migrating onto it."
+  ],
+  [
+   4.263,
+   2.438,
+   "Module 3 is the target design."
+  ],
+  [
+   6.7,
+   2.812,
+   "The chapter's premise fits in one sentence."
+  ],
+  [
+   9.512,
+   4.213,
+   "In Active Directory, where an object sits decides what applies to it."
+  ],
+  [
+   13.725,
+   3.8,
+   "In Entra ID, what an object says about itself decides."
+  ],
+  [
+   17.525,
+   4.575,
+   "So the target has to be built from attributes, not copied from containers."
+  ],
+  [
+   22.1,
+   12.988,
+   "The environment throughout is a Microsoft 365 Government Community Cloud tenant, which uses the worldwide Microsoft Graph endpoint, not the separate endpoints that G C C High and DoD use."
+  ],
+  [
+   35.087,
+   5.838,
+   "Check each feature against the government service descriptions, because some reach G C C later."
+  ]
+ ],
+ "16": [
+  [
+   0.05,
+   7.375,
+   "Before any object moves, decompose the A D identity model into its parts, because each has its own path."
+  ],
+  [
+   7.425,
+   3.237,
+   "O Us do three jobs, and each goes somewhere different."
+  ],
+  [
+   10.662,
+   7.55,
+   "Group Policy scoping becomes Conditional Access and Intune profiles, targeted by group membership, not container."
+  ],
+  [
+   18.212,
+   8.0,
+   "Administrative delegation becomes administrative units, which are free to create, though each AU-scoped administrator needs P1."
+  ],
+  [
+   26.212,
+   4.112,
+   "Logical organization becomes dynamic groups and attributes."
+  ],
+  [
+   30.325,
+   9.55,
+   "The forest maps to the tenant: one trust boundary, no domain trusts inside it, and verified domains are routing suffixes, not security boundaries."
+  ],
+  [
+   39.875,
+   3.925,
+   "Trusts become B to B and cross-tenant access settings."
+  ],
+  [
+   43.8,
+   14.8,
+   "AdminSDHolder has no equivalent; Privileged Identity Management, which makes assignments eligible and time-bound, and protected actions, which demand an authentication context before high-impact permissions are used, together serve its purpose."
+  ],
+  [
+   58.6,
+   3.95,
+   "And Schema Admins has none: Microsoft manages the schema."
+  ],
+  [
+   62.55,
+   4.562,
+   "This is the design principle: Entra ID inverts the governance model."
+  ],
+  [
+   67.112,
+   4.062,
+   "Attributes decide memberships, and memberships decide policy."
+  ],
+  [
+   71.175,
+   3.025,
+   "That's why attribute quality gates everything after it."
+  ],
+  [
+   74.2,
+   2.337,
+   "Licensing gates the governance features."
+  ],
+  [
+   76.537,
+   2.163,
+   "Conditional Access needs P1."
+  ],
+  [
+   78.7,
+   3.125,
+   "Dynamic groups need P1 per unique member."
+  ],
+  [
+   81.825,
+   5.125,
+   "pim, including pim for Groups, and risk-based Conditional Access need P2."
+  ],
+  [
+   86.95,
+   13.35,
+   "As of October 2026, access reviews and entitlement management need Entra ID Governance for the member users involved, with only some capabilities left under P2, and Lifecycle Workflows need Governance."
+  ],
+  [
+   100.3,
+   5.75,
+   "Conditional Access for workload identities is a separate Workload Identities Premium license."
+  ],
+  [
+   106.05,
+   5.1,
+   "The chapters assume P2 for everyone and Governance for the governed populations."
+  ],
+  [
+   111.15,
+   6.0,
+   "One date to act on: the preview member-of operator ends November 3, 2026."
+  ],
+  [
+   117.15,
+   6.625,
+   "After that, dynamic groups, dynamic administrative units and auto-assignment policies that use it freeze."
+  ],
+  [
+   123.775,
+   1.5,
+   "Replace those rules now."
+  ]
+ ],
+ "17": [
+  [
+   0.05,
+   3.087,
+   "The first hybrid-period decision is the sync engine."
+  ],
+  [
+   3.138,
+   4.912,
+   "Connect Sync is the long-standing, full-featured engine on a Windows Server."
+  ],
+  [
+   8.05,
+   9.912,
+   "Cloud Sync is a lightweight agent with its configuration in the cloud, and Microsoft now calls it the strategic direction: new features are built primarily on it."
+  ],
+  [
+   17.962,
+   5.588,
+   "Here's the comparison from Microsoft's decision guide as of its October 2026 revision."
+  ],
+  [
+   23.55,
+   6.888,
+   "Connect Sync runs on a server; Cloud Sync runs as agents, which can sit on existing domain controllers."
+  ],
+  [
+   30.438,
+   7.075,
+   "Both handle connected multi-forest; only Cloud Sync handles disconnected forests, which matters after mergers."
+  ],
+  [
+   37.513,
+   8.525,
+   "For availability, Connect has one active server with a staging standby; Cloud Sync runs multiple active agents with automatic failover."
+  ],
+  [
+   46.038,
+   12.525,
+   "Scale: Cloud Sync supports up to a hundred fifty thousand objects per A D domain and groups up to fifty thousand members; Connect has no stated object limit and goes to two hundred fifty thousand members."
+  ],
+  [
+   58.562,
+   5.325,
+   "Connect has advanced sync rules and cross-forest references; Cloud Sync has neither."
+  ],
+  [
+   63.888,
+   7.287,
+   "And Cloud Sync can provision groups from Entra ID back to A D, and test with on-demand provisioning; Connect can't."
+  ],
+  [
+   71.175,
+   2.212,
+   "Two corrections to older guidance."
+  ],
+  [
+   73.388,
+   10.963,
+   "Group Writeback version two in Connect Sync was a preview that Microsoft discontinued on June 30, 2024; Cloud Sync's group provisioning to A D replaces it."
+  ],
+  [
+   84.35,
+   6.15,
+   "And Cloud Sync now handles Exchange hybrid writeback, so Exchange alone no longer forces Connect."
+  ],
+  [
+   90.5,
+   6.4,
+   "The program's rule: Cloud Sync for new deployments, and plan to migrate existing Connect installations."
+  ],
+  [
+   96.9,
+   13.662,
+   "Stay on Connect only where a forest needs something Cloud Sync doesn't do: more than a hundred fifty thousand objects in a domain, groups over fifty thousand, advanced rules, cross-forest references, or attribute merging."
+  ],
+  [
+   110.562,
+   5.775,
+   "Both engines can run in one forest with mutually exclusive scopes, so you can move in stages."
+  ],
+  [
+   116.338,
+   4.213,
+   "And never run two Connect servers in active mode against one tenant."
+  ]
+ ],
+ "18": [
+  [
+   0.05,
+   3.1,
+   "The second decision is where passwords are validated."
+  ],
+  [
+   3.15,
+   10.6,
+   "With password hash sync, validation happens in the cloud against a synchronized hash of the password hash, with no extra infrastructure, and it survives an on-premises outage."
+  ],
+  [
+   13.75,
+   12.363,
+   "Pass-through authentication validates in the cloud after an on-premises agent checks A D; Microsoft recommends at least three agents in production, treated as tier zero, and it doesn't survive an outage."
+  ],
+  [
+   26.113,
+   9.7,
+   "Federation with A D FS validates on-premises and needs A D FS and Web Application Proxy farms, load balancers and certificates."
+  ],
+  [
+   35.812,
+   3.188,
+   "Leaked-credential detection needs password hash sync."
+  ],
+  [
+   39.0,
+   12.363,
+   "Microsoft recommends enabling it whichever method you choose: it's the fallback if agents or federation fail, and organizations that had it on recovered from ransomware outages in hours rather than weeks."
+  ],
+  [
+   51.362,
+   1.825,
+   "The failover is manual."
+  ],
+  [
+   53.188,
+   8.5,
+   "So the program's position is password hash sync preferred everywhere, pass-through transitional, and A D FS a decommission target."
+  ],
+  [
+   61.688,
+   1.262,
+   "Then, matching."
+  ],
+  [
+   62.95,
+   12.562,
+   "When sync adds an object that might already exist in the cloud, Entra ID tries a hard match first: the source anchor, by default the consistency GUID, against the cloud object's immutable ID."
+  ],
+  [
+   75.513,
+   8.55,
+   "Without one, a soft match on U P N or primary SMTP address, which only works if the cloud object has no immutable ID yet."
+  ],
+  [
+   84.062,
+   6.45,
+   "Either one overwrites the cloud object's attributes, including the password hash, so clean A D first."
+  ],
+  [
+   90.513,
+   8.55,
+   "Two tenant settings block soft match and hard-match takeover; Microsoft advises leaving both blocked except in a planned matching window."
+  ],
+  [
+   99.062,
+   13.338,
+   "And since July 1, 2026, Entra ID blocks a hard match onto a cloud account that already has an on-premises object identifier, or holds or is eligible for a privileged role, for both engines."
+  ],
+  [
+   112.4,
+   3.525,
+   "Don't plan to take over cloud administrator accounts by sync."
+  ]
+ ],
+ "19": [
+  [
+   0.05,
+   4.3,
+   "Groups and service accounts each get one recorded decision per object."
+  ],
+  [
+   4.35,
+   6.737,
+   "For groups, the AGDLP model doesn't map one to one, because Entra ID has no group scope."
+  ],
+  [
+   11.088,
+   3.587,
+   "So every A D security group gets one of five decisions."
+  ],
+  [
+   14.675,
+   7.125,
+   "Used only for on-premises resource ACLs: keep it in A D and don't sync it, since a cloud copy adds nothing."
+  ],
+  [
+   21.8,
+   7.338,
+   "Used for both on-premises and cloud: synchronize it, with A D as the source of authority during the transition."
+  ],
+  [
+   29.137,
+   3.837,
+   "Used only for cloud resources: convert it to cloud-only."
+  ],
+  [
+   32.975,
+   4.812,
+   "Membership follows attributes exactly: convert it to a dynamic group."
+  ],
+  [
+   37.788,
+   3.25,
+   "No members or no assignments: retire it."
+  ],
+  [
+   41.038,
+   7.7,
+   "Where a cloud-only group still has to guard a Kerberos application, Cloud Sync provisions it back to A D as a universal group."
+  ],
+  [
+   48.737,
+   2.962,
+   "Nesting works for fewer things in Entra ID."
+  ],
+  [
+   51.7,
+   8.625,
+   "Conditional Access follows nested members, but group-based application assignment and group-based licensing don't cascade to nested groups."
+  ],
+  [
+   60.325,
+   7.375,
+   "So flatten deep AGDLP chains to direct membership or a dynamic rule, and record the mapping for the audit trail."
+  ],
+  [
+   67.7,
+   4.1,
+   "For service accounts, the rule is to eliminate stored secrets."
+  ],
+  [
+   71.8,
+   13.162,
+   "A traditional account that calls Microsoft 365 or other Entra-protected APIs becomes an application registration with a certificate, or a federated credential where the host has an O I D C issuer."
+  ],
+  [
+   84.963,
+   5.85,
+   "One whose workload runs on an Azure resource becomes a managed identity, user-assigned preferred."
+  ],
+  [
+   90.812,
+   6.425,
+   "On-premises Kerberos workloads, and standalone MSAs, go to a group managed service account."
+  ],
+  [
+   97.237,
+   5.225,
+   "A gMSA whose workload moves to the cloud goes to workload identity federation."
+  ],
+  [
+   102.463,
+   8.488,
+   "A federated credential has three working parts: the issuer, a subject that must match exactly with no wildcards, and an audience."
+  ],
+  [
+   110.95,
+   7.062,
+   "An application holds at most twenty, and a wrong subject fails only at token exchange, so test each one."
+  ],
+  [
+   118.013,
+   4.925,
+   "Every application gets two human owners, and no client secrets in production."
+  ]
+ ],
+ "20": [
+  [
+   0.05,
+   5.15,
+   "Privileged access has one core rule: no standing access to privileged roles."
+  ],
+  [
+   5.2,
+   4.5,
+   "Every privileged assignment is eligible and activated just in time."
+  ],
+  [
+   9.7,
+   3.9,
+   "The only permanent active assignments are the two emergency accounts."
+  ],
+  [
+   13.6,
+   4.55,
+   "The mapping from A D groups is the program's design, not an equivalence."
+  ],
+  [
+   18.15,
+   10.688,
+   "Domain Admins maps to Global Administrator, held by very few; Microsoft recommends fewer than five, and most Domain Admin duties map to narrower roles."
+  ],
+  [
+   28.837,
+   5.35,
+   "Enterprise Admins maps to Privileged Role Administrator, with its own approval chain."
+  ],
+  [
+   34.188,
+   11.475,
+   "Account Operators becomes User Administrator scoped to administrative units; Conditional Access can't target AU-scoped assignments, so put those administrators in a group for policy targeting."
+  ],
+  [
+   45.663,
+   11.975,
+   "Server Operators moves to Intune or Azure role-based access, Backup Operators to service-specific roles, and Group Policy Creator Owners to the Intune Policy and Profile Manager role."
+  ],
+  [
+   57.638,
+   9.65,
+   "The pim standards: Global Administrator and Privileged Role Administrator activate for at most four hours, with approval, justification and a ticket number."
+  ],
+  [
+   67.287,
+   3.275,
+   "Security Administrator gets eight hours with approval."
+  ],
+  [
+   70.562,
+   4.912,
+   "Most other admin roles get eight hours without approval, and the reader roles twelve."
+  ],
+  [
+   75.475,
+   5.162,
+   "Eligibility expires within twelve months and renews through an access review."
+  ],
+  [
+   80.638,
+   12.075,
+   "And because pim's own M F A setting can be satisfied by an earlier sign-in, the program uses pim's authentication context option to force fresh, phishing-resistant authentication at activation."
+  ],
+  [
+   92.713,
+   8.575,
+   "Configure named approvers outside the requester's chain, because with none configured, pim falls back to active admins and can lock the tenant."
+  ],
+  [
+   101.287,
+   13.262,
+   "Emergency access: two cloud-only accounts in the onmicrosoft domain, permanent active Global Administrator, on a passkey security key or certificate-based authentication, each credential stored separately."
+  ],
+  [
+   114.55,
+   7.375,
+   "Microsoft's mandatory M F A for admin portals applies to them too, so a password in a safe isn't enough."
+  ],
+  [
+   121.925,
+   7.525,
+   "Exclude them from every restrictive policy, alert on every sign-in, and test them at least every ninety days."
+  ]
+ ],
+ "21": [
+  [
+   0.05,
+   7.375,
+   "Conditional Access replaces the logon restrictions and network controls that Active Directory enforced through Group Policy."
+  ],
+  [
+   7.425,
+   5.688,
+   "The program organizes it around personas: populations with distinct needs and risk."
+  ],
+  [
+   13.113,
+   4.912,
+   "Internals are employees and contractors, identified by the worker type code."
+  ],
+  [
+   18.025,
+   15.225,
+   "Admins are users eligible for or holding privileged roles, identified by account type or a group of pim-eligible users; target them by group, because role targeting supports built-in directory roles only, not AU-scoped or custom ones."
+  ],
+  [
+   33.25,
+   11.8,
+   "Externals are guests from partner organizations, Guests are ad hoc external users, Service accounts are single-tenant workload identities, and Break-glass is the dedicated exclusion group."
+  ],
+  [
+   45.05,
+   5.025,
+   "The baseline set runs from CA001 through CA017."
+  ],
+  [
+   50.075,
+   1.212,
+   "A few anchors."
+  ],
+  [
+   51.288,
+   4.825,
+   "CA001 blocks legacy authentication for all users."
+  ],
+  [
+   56.112,
+   7.775,
+   "CA003 requires the phishing-resistant authentication strength for admins, with a four-hour sign-in frequency."
+  ],
+  [
+   63.888,
+   6.675,
+   "CA006 requires M F A for internals, phishing-resistant as the end state."
+  ],
+  [
+   70.562,
+   4.55,
+   "CA008 blocks internals outside trusted countries."
+  ],
+  [
+   75.112,
+   12.438,
+   "CA013 uses Microsoft's newer require risk remediation control for high user risk; it isn't supported for guests, so CA012 blocks risky guest sign-ins instead."
+  ],
+  [
+   87.55,
+   5.088,
+   "CA015 blocks workload identities outside trusted networks."
+  ],
+  [
+   92.638,
+   11.325,
+   "CA002, the old break-glass grant policy, is retired: a policy can't create an exemption; the exclusion on every other policy is the exemption."
+  ],
+  [
+   103.963,
+   5.662,
+   "Appendix C carries Graph JSON templates, all created in report-only state."
+  ],
+  [
+   109.625,
+   9.887,
+   "Book 04's library is authoritative and adds CA018 through CA038 for the sis-uh B O D twenty-five oh-one baseline."
+  ],
+  [
+   119.513,
+   11.3,
+   "Authentication strengths name what's accepted: phishing-resistant M F A is Windows Hello for Business, fido two passkeys, or multifactor certificate-based authentication."
+  ],
+  [
+   130.812,
+   4.412,
+   "Authenticator push and phone sign-in aren't phishing-resistant on their own."
+  ],
+  [
+   135.225,
+   10.0,
+   "Rollout has three stages: report-only for two to four weeks, a two-week pilot, then phased waves over four to eight weeks, each behind a monitoring gate."
+  ],
+  [
+   145.225,
+   3.513,
+   "And never switch an all-users policy straight from off to on."
+  ],
+  [
+   148.738,
+   5.188,
+   "Confirm the break-glass exclusion, and that both emergency accounts still sign in."
+  ]
+ ],
+ "22": [
+  [
+   0.05,
+   3.7,
+   "Module 4: migrating, governing, and proving it."
+  ],
+  [
+   3.75,
+   5.475,
+   "Chapter 10 states the finish line: the migration ends when governance runs on its own."
+  ],
+  [
+   9.225,
+   11.625,
+   "Joiners, movers and leavers flow from the HR record without a ticket, every privileged session starts with a phishing-resistant credential, and drift shows up in a diff instead of an incident."
+  ],
+  [
+   20.85,
+   15.15,
+   "We'll cover the governance machinery, the authentication roadmap and the eleven-phase playbook from Chapter 10, then Chapter 11's reference deployment, which runs the whole sequence on one representative two-forest estate and shows what the assessor receives at the end."
+  ]
+ ],
+ "23": [
+  [
+   0.05,
+   7.475,
+   "Governance in Active Directory was mostly a ticket queue: someone asked for membership, someone added it, and nobody took it away."
+  ],
+  [
+   7.525,
+   2.188,
+   "The target replaces that with a loop."
+  ],
+  [
+   9.713,
+   3.663,
+   "HR-driven provisioning creates and updates the account."
+  ],
+  [
+   13.375,
+   4.25,
+   "Lifecycle Workflows run the joiner, mover and leaver tasks."
+  ],
+  [
+   17.625,
+   3.138,
+   "Access packages grant access with an expiry."
+  ],
+  [
+   20.762,
+   3.375,
+   "And access reviews remove what's no longer justified."
+  ],
+  [
+   24.137,
+   4.787,
+   "Lifecycle Workflows act on accounts that already exist; they don't create them."
+  ],
+  [
+   28.925,
+   8.05,
+   "The time-based triggers key on the native employee hire date and leave date attributes, with an offset of up to a hundred eighty days."
+  ],
+  [
+   36.975,
+   4.737,
+   "For synced users, those dates must be synced into Entra ID first."
+  ],
+  [
+   41.712,
+   15.963,
+   "Pre-hire runs seven days before the hire date: confirm the account exists, disabled; request the onboarding access package; and generate a Temporary Access Pass emailed to the manager, so the new hire registers a phishing-resistant credential on day one."
+  ],
+  [
+   57.675,
+   8.225,
+   "Joiner runs on the day: enable the account, assign licenses by group, send the welcome email, request the department package."
+  ],
+  [
+   65.9,
+   13.838,
+   "Mover fires on a change to department, division code or position category: remove the old department's package, request the new one, let dynamic groups and a dynamic administrative unit adjust, and review what's left."
+  ],
+  [
+   79.737,
+   14.238,
+   "Leaver runs on the leave date: disable the account, revoke refresh and session tokens, remove access packages and then licenses after the mailbox is converted, remove group memberships at thirty days and delete at ninety."
+  ],
+  [
+   93.975,
+   1.163,
+   "Two cautions."
+  ],
+  [
+   95.138,
+   8.15,
+   "The delete task doesn't support users holding Entra roles or role-assignable group membership, so remove privileged access first."
+  ],
+  [
+   103.287,
+   5.675,
+   "And a synced user deleted only in the cloud comes back on the next sync; delete it in A D."
+  ],
+  [
+   108.963,
+   1.587,
+   "Reviews close the loop."
+  ],
+  [
+   110.55,
+   12.15,
+   "pim-eligible role assignments are reviewed quarterly by the security team, not by self-review, which leaves role-assignable groups out; that review is the A C six, enhancement seven evidence."
+  ],
+  [
+   122.7,
+   4.638,
+   "Sensitive groups go quarterly to owners, guests quarterly to sponsors."
+  ]
+ ],
+ "24": [
+  [
+   0.05,
+   3.725,
+   "Authentication modernization starts from the federal requirement."
+  ],
+  [
+   3.775,
+   14.963,
+   "O M B M twenty-two oh-nine requires phishing-resistant M F A for staff, contractors and partners, and requires agencies to stop supporting methods that fail to resist phishing, such as SMS and voice codes, for routine access."
+  ],
+  [
+   18.738,
+   2.562,
+   "It names piv as the simplest route."
+  ],
+  [
+   21.3,
+   8.963,
+   "Its targets were set for the end of fiscal year 2024, so as of October 2026 these are requirements to meet, not goals."
+  ],
+  [
+   30.262,
+   1.75,
+   "That reorders the roadmap."
+  ],
+  [
+   32.013,
+   2.75,
+   "Older plans put smart-card sign-in last."
+  ],
+  [
+   34.763,
+   13.738,
+   "But a federal workforce already carries piv or CAC cards, so Entra certificate-based authentication is the fastest path: the credential is issued, and it works directly against Entra ID without a federation server."
+  ],
+  [
+   48.5,
+   12.325,
+   "Phase one, privileged accounts: fido two passkeys with attestation enforced, plus piv or CAC through certificate-based authentication where the admin holds a card, in four to six weeks."
+  ],
+  [
+   60.825,
+   5.125,
+   "Phase two, every piv and CAC holder through certificate-based authentication."
+  ],
+  [
+   65.95,
+   4.55,
+   "Phase three, managed Windows devices on Windows Hello for Business."
+  ],
+  [
+   70.5,
+   5.588,
+   "Phase four, everyone else, including mobile, on passkeys in Microsoft Authenticator."
+  ],
+  [
+   76.088,
+   6.638,
+   "Those last three are eight to twelve weeks each, and all four methods meet the built-in phishing-resistant strength."
+  ],
+  [
+   82.725,
+   13.5,
+   "For nist control I A two, enhancement six, separate device, the program counts piv cards and fido two keys; Windows Hello lives in the device gaining access, so it isn't counted for privileged accounts."
+  ],
+  [
+   96.225,
+   4.725,
+   "The authentication methods policy: SMS and voice off for staff."
+  ],
+  [
+   100.95,
+   6.575,
+   "Temporary Access Pass is one-time use with a one-hour life, against Microsoft's multi-use default."
+  ],
+  [
+   107.525,
+   4.525,
+   "Passkey registration needs M F A in the last five minutes."
+  ],
+  [
+   112.05,
+   1.6,
+   "Then the legacy cutoff."
+  ],
+  [
+   113.65,
+   3.263,
+   "Discover remaining legacy sign-ins in the logs."
+  ],
+  [
+   116.912,
+   4.975,
+   "Remediate onto OAuth, the Graph mail APIs, or a supported relay."
+  ],
+  [
+   121.888,
+   2.362,
+   "Block with CA001."
+  ],
+  [
+   124.25,
+   4.912,
+   "And monitor for thirty days until there are zero successful legacy sign-ins."
+  ]
+ ],
+ "25": [
+  [
+   0.05,
+   3.75,
+   "The migration runs in eleven phases, zero through ten."
+  ],
+  [
+   3.8,
+   11.15,
+   "Each has prerequisites, steps, validation criteria, a rollback procedure and a duration estimate, and a phase starts only when the previous one's validation criteria are met."
+  ],
+  [
+   14.95,
+   6.35,
+   "The durations are planning estimates, not measured results; the total runs forty to seventy weeks."
+  ],
+  [
+   21.3,
+   11.863,
+   "Phase zero is assessment: the forest and identity inventories in Git, a U P N remediation plan, a recorded decision for every group, and every service account classified."
+  ],
+  [
+   33.163,
+   11.412,
+   "Phase one deploys sync: at least two Cloud Sync agents, or Connect where required, password hash sync on, validated by object counts within one percent and no sync errors."
+  ],
+  [
+   44.575,
+   4.362,
+   "Rollback removes objects from scope, recoverable for thirty days."
+  ],
+  [
+   48.938,
+   8.75,
+   "Phase two sets the sign-in method and puts every Conditional Access policy in report-only, with the emergency account sign-in tested and logged."
+  ],
+  [
+   57.688,
+   5.513,
+   "Phase three migrates groups, with dynamic membership validated within two percent."
+  ],
+  [
+   63.2,
+   7.5,
+   "Phase four modernizes service accounts, high-risk first, running old and new credentials in parallel for thirty days."
+  ],
+  [
+   70.7,
+   5.875,
+   "Phase five rolls out pim: zero permanent active assignments except the emergency accounts."
+  ],
+  [
+   76.575,
+   9.562,
+   "Phase six enforces Conditional Access in waves, but only after M F A registration passes ninety-five percent in each targeted population."
+  ],
+  [
+   86.138,
+   15.963,
+   "Phase seven is the phishing-resistant roadmap, validated by every privileged account on fido two or certificate-based authentication, over eighty percent of managed-device users on Windows Hello, and over seventy percent of all users on a phishing-resistant method."
+  ],
+  [
+   102.1,
+   6.675,
+   "Phase eight cuts off legacy authentication after thirty consecutive days with zero legacy sign-ins."
+  ],
+  [
+   108.775,
+   17.387,
+   "Phase nine decommissions federation, where it exists: staged rollout moves users to password hash sync in waves, then each domain is converted to managed with Graph PowerShell, never the retired MSOnline cmdlet, and A D FS stays recoverable for ninety days."
+  ],
+  [
+   126.162,
+   9.688,
+   "Phase ten is steady-state governance: workflows, access packages, reviews and drift detection running, and the operations runbook committed to Git."
+  ]
+ ],
+ "26": [
+  [
+   0.05,
+   4.612,
+   "Proving it starts with logs, because Entra ID keeps them only briefly."
+  ],
+  [
+   4.662,
+   5.963,
+   "Sign-in and audit logs are kept seven days on the free tier and thirty on P1 or P2."
+  ],
+  [
+   10.625,
+   3.65,
+   "Risky sign-ins reach ninety days only with P2."
+  ],
+  [
+   14.275,
+   4.638,
+   "Microsoft Graph activity logs aren't retained at all; they're export only."
+  ],
+  [
+   18.913,
+   2.987,
+   "And upgrading a license doesn't recover older data."
+  ],
+  [
+   21.9,
+   7.7,
+   "So stream every category to a Log Analytics workspace and keep sign-in and audit logs three hundred sixty-five days."
+  ],
+  [
+   29.6,
+   23.5,
+   "On top of that, scheduled detections: stale accounts over ninety days; pim activation between ten at night and six in the morning, after converting from UTC; interactive sign-ins with no Conditional Access applied; application credentials expiring within thirty days; any emergency account sign-in, which is critical; and more than fifty membership changes to one group in an hour."
+  ],
+  [
+   53.1,
+   11.637,
+   "For compliance, Compliance Manager has templates for nist 800-53 Revision 5 and fed-ramp Moderate, but they don't produce indicator evidence, so treat them as a readiness check."
+  ],
+  [
+   64.737,
+   7.438,
+   "Under fed-ramp twenty X's Consolidated Rules for 2026, the controls map to Key Security Indicators."
+  ],
+  [
+   72.175,
+   5.938,
+   "Account management maps to automating account management, evidenced by the workflows and reviews."
+  ],
+  [
+   78.112,
+   6.912,
+   "Least privilege maps to ensuring least privilege and authorizing just-in-time, evidenced by groups and pim."
+  ],
+  [
+   85.025,
+   3.712,
+   "Authentication maps to adopting passwordless methods."
+  ],
+  [
+   88.737,
+   6.025,
+   "Non-user authentication maps to securing non-user authentication, the service account work."
+  ],
+  [
+   94.763,
+   4.3,
+   "And event logging maps to logging event types and reviewing logs."
+  ],
+  [
+   99.062,
+   1.413,
+   "Drift lives in Git."
+  ],
+  [
+   100.475,
+   10.475,
+   "The identity assessment commits its JSON to an identity baseline branch, a weekly scan on Sunday at two in the morning compares against it, and drift opens an issue with the diff."
+  ],
+  [
+   110.95,
+   4.537,
+   "The rule: close each finding at the source, never by editing the copy."
+  ],
+  [
+   115.487,
+   8.675,
+   "Be clear about maturity: the comparison covers user additions and removals today; attribute, membership and policy diffs are planned."
+  ]
+ ],
+ "27": [
+  [
+   0.05,
+   3.763,
+   "Chapter 11 puts it together on one representative estate."
+  ],
+  [
+   3.812,
+   8.575,
+   "It's a framing pattern, not a report on a real engagement: the agency is a composite and the counts are illustrative orders of magnitude."
+  ],
+  [
+   12.387,
+   10.325,
+   "The archetype has about fifty thousand users in two forests, one inherited from an absorbed component, joined by a forest trust nobody documented or owns."
+  ],
+  [
+   22.712,
+   8.512,
+   "About seventy thousand computer accounts, twelve thousand groups, several thousand service accounts, and about ninety SQL Server instances."
+  ],
+  [
+   31.225,
+   4.438,
+   "The destination is Microsoft 365 G C C."
+  ],
+  [
+   35.663,
+   5.45,
+   "Each phase ends with a signed readiness bundle, and the next phase starts only from that bundle."
+  ],
+  [
+   41.112,
+   5.425,
+   "Discover: the read-only survey of both forests, plus the service account scan."
+  ],
+  [
+   46.538,
+   5.75,
+   "About four hundred accounts carry SPNs; about sixty rate critical and a hundred high."
+  ],
+  [
+   52.288,
+   9.125,
+   "Every SQL Server SPN is captured with a pre-migration tag, because a missing or wrong SPN silently falls back to N T L M."
+  ],
+  [
+   61.413,
+   4.925,
+   "About ten instances raise findings because their service accounts can't be attributed."
+  ],
+  [
+   66.338,
+   4.575,
+   "Normalize: both forests have an Operations O U holding different people."
+  ],
+  [
+   70.912,
+   6.312,
+   "The agency builds an organizational registry and resolves the collision there, not by renaming groups."
+  ],
+  [
+   77.225,
+   7.562,
+   "About two thousand users and several hundred service accounts get findings, resolved by the governance team, never auto-assigned."
+  ],
+  [
+   84.787,
+   3.087,
+   "Map: an adapter contract for each surface."
+  ],
+  [
+   87.875,
+   1.363,
+   "Four carry the risk."
+  ],
+  [
+   89.237,
+   7.362,
+   "Sync, where cross-forest manager chains decide the engine, since Cloud Sync doesn't support cross-forest references."
+  ],
+  [
+   96.6,
+   7.6,
+   "P K I and radius, which move in lockstep because 802.1X EAP-TLS depends on the same CA."
+  ],
+  [
+   104.2,
+   9.088,
+   "And SQL Server, whose Entra authentication needs SQL Server 2022 or later and isn't supported on failover cluster instances."
+  ],
+  [
+   113.287,
+   3.8,
+   "Migrate: every operation is a provenance-chained record."
+  ],
+  [
+   117.088,
+   7.763,
+   "About three hundred drift findings appear; one P1 stops a SQL Server migration until a role assignment is reduced."
+  ],
+  [
+   124.85,
+   6.05,
+   "Validate compares the SPN inventories; about three P1 findings are re-registered."
+  ]
+ ],
+ "28": [
+  [
+   0.05,
+   1.913,
+   "Last, what all this produces."
+  ],
+  [
+   1.962,
+   4.463,
+   "During migration the program classifies drift into five classes."
+  ],
+  [
+   6.425,
+   4.912,
+   "Schema drift: an attribute encoding that doesn't match the current schema version."
+  ],
+  [
+   11.338,
+   5.525,
+   "Provenance drift: a state change with no provenance event in the chain, which halts the run."
+  ],
+  [
+   16.863,
+   4.95,
+   "Semantic drift: a value slipping back into a deprecated naming pattern."
+  ],
+  [
+   21.812,
+   6.737,
+   "Authorization drift: a Conditional Access policy that contradicts the assurance level recorded for the principal,."
+  ],
+  [
+   28.55,
+   5.062,
+   "And identity drift: a principal in the tenant with no counterpart in the registry."
+  ],
+  [
+   33.612,
+   1.6,
+   "Be honest about maturity."
+  ],
+  [
+   35.212,
+   11.613,
+   "Schema and provenance detection are shipped, semantic is partial, and authorization and identity detection are design-only; today, people reviewing the assessment modules find those."
+  ],
+  [
+   46.825,
+   22.625,
+   "From Phase 2 on, the agency can produce an evidence bundle at any time: each phase's signed readiness bundle, both phase-tagged SPN inventories and their comparison, the provenance chain for every adapter operation, every drift finding with its remediation, and the G C C boundary finding with its compensating controls and when each was last verified."
+  ],
+  [
+   69.45,
+   1.363,
+   "Who reads it matters."
+  ],
+  [
+   70.812,
+   6.325,
+   "fed-ramp authorizes cloud service offerings, and third-party assessment organizations assess providers."
+  ],
+  [
+   77.138,
+   10.8,
+   "The agency's own system is authorized by its authorizing official under the Risk Management Framework, SP 800-37, which supports ongoing authorization."
+  ],
+  [
+   87.938,
+   8.363,
+   "So the bundle goes to the security control assessor and the authorizing official, as it happens, not assembled over most of a year afterward."
+  ],
+  [
+   96.3,
+   1.913,
+   "And it belongs to the agency."
+  ],
+  [
+   98.213,
+   7.237,
+   "When the integrator leaves, the registry, schemas, findings and evidence stay for the next authorization cycle."
+  ],
+  [
+   105.45,
+   12.588,
+   "So, from Monday: start read-only discovery with a pre-flight; turn the gaps into a narrow, time-bound request; make every run evidence; and gate every phase on its validation."
+  ],
+  [
+   118.037,
+   5.55,
+   "Chapters 07 through 11 and the appendices carry the full detail and the code."
+  ],
+  [
+   123.588,
+   5.612,
+   "Book 03, HR-Driven Identity, picks up where the attributes should come from."
+  ],
+  [
+   129.2,
+   0.762,
+   "Thank you."
+  ]
+ ]
+}

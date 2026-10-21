@@ -1,0 +1,157 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.900
+A transformation that reaches its end
+state and stops monitoring will regress.
+
+2
+00:00:04.900 --> 00:00:09.813
+Any administrator with permission can
+switch an instance back to mixed mode or
+
+3
+00:00:09.813 --> 00:00:13.908
+create a new login, so closure is a
+posture, kept by continuous audit,
+
+4
+00:00:13.908 --> 00:00:18.300
+drift detection and governance that
+treats regression as a violation.
+
+5
+00:00:18.300 --> 00:00:21.335
+The transformation is
+closed when five conditions
+
+6
+00:00:21.335 --> 00:00:24.300
+hold at the same time on
+every production instance.
+
+7
+00:00:24.300 --> 00:00:29.020
+One: no usable Windows-backed
+principal, meaning zero enabled user or
+
+8
+00:00:29.020 --> 00:00:33.988
+group logins with CONNECT SQL, apart
+from a documented break-glass group.
+
+9
+00:00:33.988 --> 00:00:40.452
+Two: SQL Authentication eliminated: no
+SQL logins outside the exception registry,
+
+10
+00:00:40.452 --> 00:00:42.543
+SA disabled, LoginMode one,
+
+11
+00:00:42.543 --> 00:00:47.487
+and on SQL Server 2025 Is External
+Authentication Only as well.
+
+12
+00:00:47.487 --> 00:00:51.200
+Disabling SQL authentication
+doesn't remove logins
+
+13
+00:00:51.200 --> 00:00:54.575
+or end live sessions, so
+the census still matters.
+
+14
+00:00:54.575 --> 00:00:59.096
+Three: Entra authentication
+observed working, and nothing else:
+
+15
+00:00:59.096 --> 00:01:01.314
+every usable login is type E or X,
+
+16
+00:01:01.314 --> 00:01:06.007
+the sign-in logs and SQL Server
+Audit show the expected principals,
+
+17
+00:01:06.007 --> 00:01:11.637
+and the auth scheme column shows no NTLM
+or Kerberos over the validation period.
+
+18
+00:01:11.637 --> 00:01:15.770
+Four: the engine has a cloud identity,
+with the Arc agent connected,
+
+19
+00:01:15.770 --> 00:01:19.748
+the extension deployed and
+Entra authentication configured;
+
+20
+00:01:19.748 --> 00:01:23.038
+a failover cluster instance
+can't meet this as built.
+
+21
+00:01:23.038 --> 00:01:28.225
+Five: every human authenticates with
+MFA through Conditional Access.
+
+22
+00:01:28.225 --> 00:01:29.987
+No single setting does this.
+
+23
+00:01:29.987 --> 00:01:33.277
+SQL Server can't turn
+Windows Authentication off,
+
+24
+00:01:33.277 --> 00:01:37.049
+so LoginMode one proves only
+that SQL logins are refused.
+
+25
+00:01:37.049 --> 00:01:41.575
+The book calls the combined state the
+Entra-exclusive operational posture.
+
+26
+00:01:41.575 --> 00:01:44.363
+Two details govern how evidence is read.
+
+27
+00:01:44.363 --> 00:01:49.321
+Every SQL resource shares one token
+audience, so a sign-in log can't say which
+
+28
+00:01:49.321 --> 00:01:54.600
+instance a principal reached; the per-instance
+proof is the instance's own audit.
+
+29
+00:01:54.600 --> 00:02:00.575
+And local connections always report
+NTLM, so separate them from remote ones.
+
+30
+00:02:00.575 --> 00:02:04.903
+Drift is a violation: LoginMode
+moving from one to two,
+
+31
+00:02:04.903 --> 00:02:09.625
+a new SQL, user or group login,
+or the Arc agent going offline.
+
+32
+00:02:09.625 --> 00:02:15.070
+And the final months before April 2027
+are for validation, not migration.

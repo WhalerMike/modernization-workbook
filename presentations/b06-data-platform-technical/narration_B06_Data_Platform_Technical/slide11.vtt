@@ -1,0 +1,40 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:06.087
+Module 3: NTLM, applications and
+closure, the last of the strategy.
+
+2
+00:00:06.087 --> 00:00:07.201
+Four slides.
+
+3
+00:00:07.201 --> 00:00:11.716
+The four connection patterns that
+generate NTLM at the SQL layer,
+
+4
+00:00:11.716 --> 00:00:16.650
+because NTLM is a protocol, not a
+setting, and no single switch removes it.
+
+5
+00:00:16.650 --> 00:00:21.500
+The three phases that do remove
+it: discover, restrict, eliminate.
+
+6
+00:00:21.500 --> 00:00:24.359
+The four-class pattern
+for the applications
+
+7
+00:00:24.359 --> 00:00:26.987
+upstream of the database,
+read on two axes.
+
+8
+00:00:26.987 --> 00:00:32.090
+And the closure condition: five conditions
+that must hold at once, and keep holding.

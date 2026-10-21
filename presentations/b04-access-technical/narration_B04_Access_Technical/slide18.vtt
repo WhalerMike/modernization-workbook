@@ -1,0 +1,160 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.413
+Work the build in order.
+
+2
+00:00:01.413 --> 00:00:04.085
+Step zero isn't optional
+and can't be moved:
+
+3
+00:00:04.085 --> 00:00:08.408
+configuring approval before
+emergency access accounts exist is
+
+4
+00:00:08.408 --> 00:00:12.338
+the one sequence that can lock
+an agency out of its own tenant.
+
+5
+00:00:12.338 --> 00:00:13.975
+Microsoft documents it.
+
+6
+00:00:13.975 --> 00:00:18.742
+Every Privileged Role and Global
+Administrator assignment is eligible,
+
+7
+00:00:18.742 --> 00:00:22.258
+approval is required, and no
+approvers are configured,
+
+8
+00:00:22.258 --> 00:00:26.400
+so the default approvers, the
+active administrators, don't exist.
+
+9
+00:00:26.400 --> 00:00:30.857
+Avoid it with both halves of the fix:
+emergency accounts with permanent active
+
+10
+00:00:30.857 --> 00:00:35.588
+Global Administrator, and named approver
+groups on every role that needs approval.
+
+11
+00:00:35.588 --> 00:00:39.025
+Step one builds those approver
+groups, one per tier.
+
+12
+00:00:39.025 --> 00:00:44.106
+Step two builds authentication context
+c1 and its Conditional Access policy:
+
+13
+00:00:44.106 --> 00:00:49.421
+the separate-device strength and a compliant
+device, sign-in frequency every time,
+
+14
+00:00:49.421 --> 00:00:54.188
+excluding the emergency group, and
+turned On, because Microsoft requires
+
+15
+00:00:54.188 --> 00:00:58.800
+the policy to exist and be enabled
+before the context is selected in PIM.
+
+16
+00:00:58.800 --> 00:01:00.100
+Three constraints.
+
+17
+00:01:00.100 --> 00:01:02.693
+Don't scope that policy
+to a directory role,
+
+18
+00:01:02.693 --> 00:01:06.100
+because at activation the user
+doesn't hold the role yet.
+
+19
+00:01:06.100 --> 00:01:11.507
+The fallback to plain MFA happens only
+when no policy targets the context;
+
+20
+00:01:11.507 --> 00:01:16.825
+it doesn't trigger if the policy is off,
+in report-only or excludes the user.
+
+21
+00:01:16.825 --> 00:01:22.303
+And the context governs
+activation, not use, so CA003,
+
+22
+00:01:22.303 --> 00:01:28.163
+CA004 and CA025 still apply
+to every privileged sign-in.
+
+23
+00:01:28.163 --> 00:01:30.866
+Steps three and four apply role settings,
+
+24
+00:01:30.866 --> 00:01:34.762
+in the portal for one role and
+in Microsoft Graph for thirty.
+
+25
+00:01:34.762 --> 00:01:37.188
+Each role's policy has seventeen rules.
+
+26
+00:01:37.188 --> 00:01:42.256
+Step five converts standing assignments:
+create the eligible assignment first,
+
+27
+00:01:42.256 --> 00:01:45.963
+confirm the person can activate,
+then remove the active one.
+
+28
+00:01:45.963 --> 00:01:48.638
+Step six closes a gap PIM leaves.
+
+29
+00:01:48.638 --> 00:01:52.032
+PIM protects becoming a
+Conditional Access Administrator,
+
+30
+00:01:52.032 --> 00:01:55.425
+but not editing a policy once
+someone holds that permission.
+
+31
+00:01:55.425 --> 00:02:00.325
+Protected actions attach a second
+context, c2, to those permissions.
+
+32
+00:02:00.325 --> 00:02:03.961
+Steps seven to nine are
+notifications and alerts,
+
+33
+00:02:03.961 --> 00:02:06.940
+reviews, and log export,
+on the next slide.

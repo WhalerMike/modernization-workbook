@@ -1,0 +1,63 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.563
+Module 2: assessing the forest.
+
+2
+00:00:02.563 --> 00:00:05.437
+Chapter 07 ends with a gap list.
+
+3
+00:00:05.437 --> 00:00:09.722
+Chapter 08 fills it with the
+privileged half of discovery:
+
+4
+00:00:09.722 --> 00:00:15.077
+the configuration partition, ACLs on
+OUs, every GPO's settings, DNS server
+
+5
+00:00:15.077 --> 00:00:18.826
+configuration, the PKI
+containers and CA settings,
+
+6
+00:00:18.826 --> 00:00:21.950
+and the delegation flags on every account.
+
+7
+00:00:21.950 --> 00:00:24.852
+The program's position is
+that the assessment is
+
+8
+00:00:24.852 --> 00:00:27.900
+an evidence-producing process,
+not a set of scripts.
+
+9
+00:00:27.900 --> 00:00:33.153
+Every run collects a fixed set of
+artifacts into a fixed directory layout,
+
+10
+00:00:33.153 --> 00:00:36.683
+writes a manifest with a
+SHA-256 hash of every file,
+
+11
+00:00:36.683 --> 00:00:40.300
+and commits the run to the
+program's Git repository.
+
+12
+00:00:40.300 --> 00:00:44.761
+Appendix B carries the complete
+module, restored and corrected;
+
+13
+00:00:44.761 --> 00:00:47.930
+Appendix C carries the
+identity-side module.

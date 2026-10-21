@@ -1,0 +1,39 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.625
+Module four: access governance.
+
+2
+00:00:02.625 --> 00:00:06.261
+Conditional Access decides
+whether a session may proceed,
+
+3
+00:00:06.261 --> 00:00:09.675
+and PIM decides whether a
+privileged role may be active.
+
+4
+00:00:09.675 --> 00:00:12.199
+Neither decides whether
+a person should still
+
+5
+00:00:12.199 --> 00:00:14.400
+hold the access they were given last year.
+
+6
+00:00:14.400 --> 00:00:19.275
+A grant nobody re-confirms is a
+decision made once and trusted forever.
+
+7
+00:00:19.275 --> 00:00:23.410
+Three mechanisms close that gap
+without anyone opening a ticket:
+
+8
+00:00:23.410 --> 00:00:28.440
+requests through access packages, reviews
+on a calendar, and lifecycle events.

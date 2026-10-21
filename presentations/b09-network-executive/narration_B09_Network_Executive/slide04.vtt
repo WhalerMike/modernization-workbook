@@ -1,0 +1,136 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.163
+The second reason to act is that the
+external clocks are already running,
+
+2
+00:00:04.163 --> 00:00:06.563
+whether or not a network
+program is funded.
+
+3
+00:00:06.563 --> 00:00:08.175
+Read the table from the top.
+
+4
+00:00:08.175 --> 00:00:15.037
+All FIPS 140-2 certificates moved to
+NIST's historical list on September 22.
+
+5
+00:00:15.037 --> 00:00:17.758
+That isn't a ban on existing modules,
+
+6
+00:00:17.758 --> 00:00:21.887
+but new purchases should
+state the 140-3 expectation.
+
+7
+00:00:21.887 --> 00:00:28.572
+OMB M-26-15, the post-quantum memo, wanted
+agency migration plans by October 22,
+
+8
+00:00:28.572 --> 00:00:33.028
+2026, and it says anything
+terminating TLS or IPsec,
+
+9
+00:00:33.028 --> 00:00:40.349
+firewalls and VPN concentrators included,
+must support post-quantum key exchange.
+
+10
+00:00:40.349 --> 00:00:46.367
+OMB M-26-14 rescinded the old logging
+memo; the first agency logging
+
+11
+00:00:46.367 --> 00:00:52.713
+plan is due November 18, with maturity
+milestones running to July 2027.
+
+12
+00:00:52.713 --> 00:00:57.725
+BOD 26-04's third phase lands December 7.
+
+13
+00:00:57.725 --> 00:01:02.675
+FedRAMP's 2026 rules become
+mandatory on January 1.
+
+14
+00:01:02.675 --> 00:01:08.725
+And the GSA EIS first option
+period ends July 31, 2027.
+
+15
+00:01:08.725 --> 00:01:11.287
+The row in red is the
+one that spends money.
+
+16
+00:01:11.287 --> 00:01:17.365
+BOD 26-02 requires all identified
+end-of-support edge devices off agency
+
+17
+00:01:17.365 --> 00:01:23.949
+networks by August 5, 2027, with a first
+decommissioning milestone in February.
+
+18
+00:01:23.949 --> 00:01:26.093
+I'll come back to it,
+because it's the fork
+
+19
+00:01:26.093 --> 00:01:28.638
+in the road for the whole
+branch architecture.
+
+20
+00:01:28.638 --> 00:01:30.963
+The panel on the right is the honest part.
+
+21
+00:01:30.963 --> 00:01:35.408
+Three of these requirements fall inside
+roughly fifteen months, and all of them
+
+22
+00:01:35.408 --> 00:01:39.651
+draw on the same network and security
+staff a branch-edge program would need.
+
+23
+00:01:39.651 --> 00:01:42.713
+An agency promising an
+SD-WAN program next year
+
+24
+00:01:42.713 --> 00:01:46.012
+alongside them is promising
+the same people twice.
+
+25
+00:01:46.012 --> 00:01:49.138
+The book's advice is to say
+that plainly in the plan.
+
+26
+00:01:49.138 --> 00:01:54.975
+One clock has already run out: the legacy
+telecom contracts all ended by May 31,
+
+27
+00:01:54.975 --> 00:01:58.988
+2026, so the architecture is
+now a task-order question,
+
+28
+00:01:58.988 --> 00:02:01.510
+not a contract-vehicle question.

@@ -1,0 +1,143 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.469
+The audit's most consequential output
+is a category for every instance,
+
+2
+00:00:04.469 --> 00:00:09.187
+framed around Arc because Arc is the
+program's path to Entra authentication.
+
+3
+00:00:09.187 --> 00:00:14.160
+Category 1 is Entra-auth-ready: the
+Connected Machine agent is running,
+
+4
+00:00:14.160 --> 00:00:17.503
+the Azure extension for
+SQL Server is deployed,
+
+5
+00:00:17.503 --> 00:00:23.075
+Entra authentication is configured and
+the engine is SQL Server 2022 or later.
+
+6
+00:00:23.075 --> 00:00:28.013
+There the audit's job is a precise login
+inventory, and migration starts now.
+
+7
+00:00:28.013 --> 00:00:31.312
+Category 2 is Arc-eligible
+but not enabled.
+
+8
+00:00:31.312 --> 00:00:35.959
+Prioritize by the audit: instances
+with many Windows logins,
+
+9
+00:00:35.959 --> 00:00:39.212
+active SQL logins or
+missing SPNs go first.
+
+10
+00:00:39.212 --> 00:00:44.319
+The deployment is a server action, not a
+SQL Server change; when the agent connects
+
+11
+00:00:44.319 --> 00:00:49.274
+a server with SQL Server installed, Arc
+installs the extension automatically.
+
+12
+00:00:49.274 --> 00:00:52.084
+Once Entra authentication is configured,
+
+13
+00:00:52.084 --> 00:00:55.213
+the instance becomes
+Category 1 on the next run.
+
+14
+00:00:55.213 --> 00:00:57.762
+Category 3 isn't yet eligible.
+
+15
+00:00:57.762 --> 00:01:03.141
+An engine older than 2022 can't accept
+Entra logins, with or without Arc, so it
+
+16
+00:01:03.141 --> 00:01:06.090
+upgrades and follows the Category 2 path,
+
+17
+00:01:06.090 --> 00:01:09.126
+or carries an exception
+with a sunset date.
+
+18
+00:01:09.126 --> 00:01:12.720
+Failover cluster instances
+belong here on any version,
+
+19
+00:01:12.720 --> 00:01:16.237
+because Entra authentication
+isn't supported on them.
+
+20
+00:01:16.237 --> 00:01:20.678
+And an exception doesn't save an
+instance from the program's NTLM block,
+
+21
+00:01:20.678 --> 00:01:25.425
+which is applied in the operating system's
+security layer, not in the engine.
+
+22
+00:01:25.425 --> 00:01:29.300
+Then the distinction the book calls
+the most common misunderstanding.
+
+23
+00:01:29.300 --> 00:01:34.644
+Layer 1 is the engine accepting Entra
+tokens: SQL Server 2022 or later,
+
+24
+00:01:34.644 --> 00:01:38.488
+not a cluster instance,
+plus Arc and the extension.
+
+25
+00:01:38.488 --> 00:01:42.767
+It doesn't need the server
+unjoined or Windows Server 2025;
+
+26
+00:01:42.767 --> 00:01:47.850
+a domain-joined Windows Server 2019
+host can have Entra logins today.
+
+27
+00:01:47.850 --> 00:01:52.837
+Layer 2 is administrators signing in
+to the server itself with Entra ID.
+
+28
+00:01:52.837 --> 00:01:58.545
+That needs Windows Server 2025 with Desktop
+Experience and Entra-joins the server,
+
+29
+00:01:58.545 --> 00:02:01.750
+so it's a separate program,
+sequenced on its own.

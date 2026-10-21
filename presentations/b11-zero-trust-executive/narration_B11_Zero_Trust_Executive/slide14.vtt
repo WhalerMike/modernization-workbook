@@ -1,0 +1,141 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.238
+Then the evidence.
+
+2
+00:00:01.238 --> 00:00:04.140
+The two tools use different
+words for the same outcomes,
+
+3
+00:00:04.140 --> 00:00:06.663
+and some of their outcomes
+aren't findings at all.
+
+4
+00:00:06.663 --> 00:00:10.588
+Only four results are findings:
+ScubaGear's Fail and Warning,
+
+5
+00:00:10.588 --> 00:00:14.199
+and the Zero Trust Assessment's
+Failed and Investigate.
+
+6
+00:00:14.199 --> 00:00:17.557
+A not-applicable result
+is usually a manual check
+
+7
+00:00:17.557 --> 00:00:20.750
+for the pillar owner to
+verify by hand, not a pass.
+
+8
+00:00:20.750 --> 00:00:24.925
+An error is absence of evidence:
+fix the run and re-run.
+
+9
+00:00:24.925 --> 00:00:28.088
+And a skipped check isn't
+a gap and isn't a pass.
+
+10
+00:00:28.088 --> 00:00:31.974
+The tool's own guide says missing
+prerequisites produce skipped checks,
+
+11
+00:00:31.974 --> 00:00:34.824
+not evidence that the tenant
+meets a recommendation.
+
+12
+00:00:34.824 --> 00:00:36.621
+Often the reason is a license,
+
+13
+00:00:36.621 --> 00:00:40.887
+or a feature that isn't available or
+authorized in a government cloud.
+
+14
+00:00:40.887 --> 00:00:43.624
+Scoring it as a failure
+overstates the gap;
+
+15
+00:00:43.624 --> 00:00:46.438
+scoring it as a pass
+overstates the posture.
+
+16
+00:00:46.438 --> 00:00:48.964
+So it's recorded as absence of evidence,
+
+17
+00:00:48.964 --> 00:00:52.201
+with the reason, and it
+becomes a boundary finding.
+
+18
+00:00:52.201 --> 00:00:57.870
+The program then scores the real findings
+with a documented method: severity
+
+19
+00:00:57.870 --> 00:01:03.362
+from 0 to 100, priority as severity over
+effort, and buckets from P1 down to P4.
+
+20
+00:01:03.362 --> 00:01:05.812
+Quick wins go into the next change window.
+
+21
+00:01:05.812 --> 00:01:09.534
+The method is the program's,
+not a federal standard,
+
+22
+00:01:09.534 --> 00:01:12.712
+and a P1 is a priority,
+not a risk acceptance.
+
+23
+00:01:12.712 --> 00:01:16.351
+Last, reconcile at the
+control, not tool to tool.
+
+24
+00:01:16.351 --> 00:01:21.297
+A ScubaGear failure and a Zero Trust
+Assessment failure on the same setting and the
+
+25
+00:01:21.297 --> 00:01:27.535
+same SP 800-53 control are one
+finding with two pieces of evidence,
+
+26
+00:01:27.535 --> 00:01:29.112
+routed to one pillar owner.
+
+27
+00:01:29.112 --> 00:01:33.144
+Underneath all of this sits
+the CISO's evidence standard:
+
+28
+00:01:33.144 --> 00:01:38.437
+a pinned tool version, a recorded run
+time, an unaltered output file and a hash.
+
+29
+00:01:38.437 --> 00:01:41.950
+It's needed before any result
+is scored or reported.

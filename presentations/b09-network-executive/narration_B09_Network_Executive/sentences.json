@@ -1,0 +1,1424 @@
+{
+ "1": [
+  [
+   0.05,
+   6.9,
+   "This is the executive briefing for Book 09 of the Federal Modernization Workbook, Network and Transport."
+  ],
+  [
+   6.95,
+   9.688,
+   "It's written for the people who fund, authorize and answer for the branch network: the C I O, the see-so, network program executives and budget owners."
+  ],
+  [
+   16.637,
+   3.075,
+   "It's built around decisions, not configuration."
+  ],
+  [
+   19.712,
+   4.588,
+   "For each one I'll say what has to be decided, who owns it, and when it's needed."
+  ],
+  [
+   24.3,
+   2.375,
+   "Four questions organize the half hour."
+  ],
+  [
+   26.675,
+   3.475,
+   "Why act now, when the target architecture is years away."
+  ],
+  [
+   30.15,
+   4.338,
+   "What federal policy actually requires, and where the money should go first."
+  ],
+  [
+   34.487,
+   1.663,
+   "Who decides each step."
+  ],
+  [
+   36.15,
+   4.013,
+   "And how to proceed without turning a faster network into a weaker one."
+  ],
+  [
+   40.163,
+   8.562,
+   "The short version: no product shortens a fiber path, so buy transport on physics, govern it as compliance, and decide in the right order."
+  ]
+ ],
+ "2": [
+  [
+   0.05,
+   1.2,
+   "Here is where we're going."
+  ],
+  [
+   1.25,
+   2.763,
+   "Seven decisions, each with a named owner."
+  ],
+  [
+   4.013,
+   4.35,
+   "None of them is a product choice, and none of them requires an award to start."
+  ],
+  [
+   8.363,
+   11.95,
+   "Several of them cost nothing but a signature and a few weeks of staff time; the expensive mistakes come from leaving them unmade while circuits, refreshes and migrations move ahead on their own schedules."
+  ],
+  [
+   20.312,
+   0.925,
+   "Here they are."
+  ],
+  [
+   21.238,
+   9.025,
+   "One: the see-so decides that managed TIC circuits end only when sis-uh confirms the replacement telemetry, not when a branch cuts over."
+  ],
+  [
+   30.262,
+   10.15,
+   "Two: the authorizing official records today's gap as an accepted risk, with compensating measures and a funded plan, so an assessor doesn't find it first."
+  ],
+  [
+   40.413,
+   9.188,
+   "Three: security architecture writes the target attributes into the edge-device refresh that BOD 26-02 is forcing anyway."
+  ],
+  [
+   49.6,
+   7.125,
+   "Four: the sponsor and C I O set the investment order, so staff time and requirements work come before capital."
+  ],
+  [
+   56.725,
+   7.562,
+   "Five: the same pair tests the field-office refresh request against published capacity limits before the money is committed."
+  ],
+  [
+   64.287,
+   8.912,
+   "Six: they choose the network access control platform, and tie the retirement of the Windows radius server to the Entra migration, not to a date."
+  ],
+  [
+   73.2,
+   5.0,
+   "Seven: the authorizing official and the system owner hold the line on order."
+  ],
+  [
+   78.2,
+   6.162,
+   "The governor is live before traffic moves, and the boundary change is decided before the first cutover."
+  ],
+  [
+   84.362,
+   5.775,
+   "The thread running through all seven: policy names no product, but it isn't requirement-free."
+  ],
+  [
+   90.138,
+   2.9,
+   "A directive is already spending the refresh money."
+  ],
+  [
+   93.037,
+   2.8,
+   "And order and ownership decide the outcome."
+  ],
+  [
+   95.838,
+   6.5,
+   "The rest of the briefing gives the evidence behind each one, in the order why, what, who and how."
+  ]
+ ],
+ "3": [
+  [
+   0.05,
+   1.025,
+   "Why act at all?"
+  ],
+  [
+   1.075,
+   3.038,
+   "Start with the two decisions programs keep merging."
+  ],
+  [
+   4.112,
+   2.4,
+   "Choosing a pipe is a physics decision."
+  ],
+  [
+   6.513,
+   4.588,
+   "Light in fiber covers about one kilometer every five microseconds."
+  ],
+  [
+   11.1,
+   6.513,
+   "New York to London has a round-trip floor of 56 milliseconds before any equipment touches a packet."
+  ],
+  [
+   17.613,
+   9.825,
+   "The well-known 150-millisecond voice budget is mouth to ear, and the phones themselves take a large share, which leaves the network roughly 70 to 100."
+  ],
+  [
+   27.438,
+   8.062,
+   "On the book's worked arithmetic, a Seattle office hairpinning through northern Virginia spends about 60 milliseconds one way on geography."
+  ],
+  [
+   35.5,
+   4.55,
+   "That's most of the allowance, gone before the call reaches anything useful."
+  ],
+  [
+   40.05,
+   1.837,
+   "No product moves that floor."
+  ],
+  [
+   41.888,
+   3.9,
+   "Local breakout fixes the geographic part and nothing else."
+  ],
+  [
+   45.788,
+   3.25,
+   "Choosing what governs the pipe is a compliance decision."
+  ],
+  [
+   49.038,
+   5.85,
+   "Direct internet access solves the hairpin, and it satisfies none of the protection controls."
+  ],
+  [
+   54.888,
+   8.488,
+   "Boundary protection, flow enforcement, transmission confidentiality, malware inspection and monitoring all come from the control layer."
+  ],
+  [
+   63.375,
+   5.963,
+   "Transport selection closes exactly one control family: telecommunications diversity."
+  ],
+  [
+   69.338,
+   2.862,
+   "So here's the risk an executive should watch for."
+  ],
+  [
+   72.2,
+   7.35,
+   "A branch moved from a governed hairpin to bare local breakout has lost assessed boundary protection relative to where it started."
+  ],
+  [
+   79.55,
+   4.05,
+   "The book's phrase for that is a compliance regression with better latency."
+  ],
+  [
+   83.6,
+   5.362,
+   "It looks like modernization on a dashboard, and it reads as a finding in an assessment."
+  ],
+  [
+   88.963,
+   9.875,
+   "Every decision in this briefing keeps those two choices separate: buy the pipe on measured physics, and take the protection from the governor and the security services above it."
+  ],
+  [
+   98.838,
+   8.675,
+   "Each new pipe also adds a managed interface someone has to govern, so more circuits without more control means more exposure, not less."
+  ]
+ ],
+ "4": [
+  [
+   0.05,
+   6.513,
+   "The second reason to act is that the external clocks are already running, whether or not a network program is funded."
+  ],
+  [
+   6.562,
+   1.613,
+   "Read the table from the top."
+  ],
+  [
+   8.175,
+   6.862,
+   "All FIPS 140-2 certificates moved to nist's historical list on September 22."
+  ],
+  [
+   15.037,
+   6.85,
+   "That isn't a ban on existing modules, but new purchases should state the 140-3 expectation."
+  ],
+  [
+   21.887,
+   18.462,
+   "O M B M-26-15, the post-quantum memo, wanted agency migration plans by October 22, 2026, and it says anything terminating TLS or IPsec, firewalls and VPN concentrators included, must support post-quantum key exchange."
+  ],
+  [
+   40.35,
+   12.363,
+   "O M B M-26-14 rescinded the old logging memo; the first agency logging plan is due November 18, with maturity milestones running to July 2027."
+  ],
+  [
+   52.712,
+   5.013,
+   "BOD 26-04's third phase lands December 7."
+  ],
+  [
+   57.725,
+   4.95,
+   "fed-ramp's 2026 rules become mandatory on January 1."
+  ],
+  [
+   62.675,
+   6.05,
+   "And the GSA EIS first option period ends July 31, 2027."
+  ],
+  [
+   68.725,
+   2.562,
+   "The row in red is the one that spends money."
+  ],
+  [
+   71.287,
+   12.662,
+   "BOD 26-02 requires all identified end-of-support edge devices off agency networks by August 5, 2027, with a first decommissioning milestone in February."
+  ],
+  [
+   83.95,
+   4.688,
+   "I'll come back to it, because it's the fork in the road for the whole branch architecture."
+  ],
+  [
+   88.638,
+   2.325,
+   "The panel on the right is the honest part."
+  ],
+  [
+   90.963,
+   8.688,
+   "Three of these requirements fall inside roughly fifteen months, and all of them draw on the same network and security staff a branch-edge program would need."
+  ],
+  [
+   99.65,
+   6.362,
+   "An agency promising an SD-WAN program next year alongside them is promising the same people twice."
+  ],
+  [
+   106.013,
+   3.125,
+   "The book's advice is to say that plainly in the plan."
+  ],
+  [
+   109.138,
+   12.312,
+   "One clock has already run out: the legacy telecom contracts all ended by May 31, 2026, so the architecture is now a task-order question, not a contract-vehicle question."
+  ]
+ ],
+ "5": [
+  [
+   0.05,
+   2.175,
+   "Not acting doesn't mean standing still."
+  ],
+  [
+   2.225,
+   2.337,
+   "It means three things happen by default."
+  ],
+  [
+   4.562,
+   3.163,
+   "First, money gets spent without a choice being made."
+  ],
+  [
+   7.725,
+   5.112,
+   "The BOD 26-02 refresh will happen on a directive clock."
+  ],
+  [
+   12.838,
+   11.613,
+   "Run as like-for-like replacement, the same device class with the same absence of policy and telemetry, it spends the money and closes the architecture question for the service life of the new equipment."
+  ],
+  [
+   24.45,
+   2.188,
+   "Deferral also has a measured price."
+  ],
+  [
+   26.637,
+   15.675,
+   "GAO reported in August 2026 that billing for six agencies' legacy Networx contracts rose from about 13.4 million dollars in February 2025 to about 40.9 million in March, a 206 percent increase."
+  ],
+  [
+   42.312,
+   4.412,
+   "The book calls that the strongest cost-of-delay number in the federal record."
+  ],
+  [
+   46.725,
+   4.188,
+   "Second, gaps surface as findings rather than accepted risks."
+  ],
+  [
+   50.913,
+   5.125,
+   "The technical situation is identical either way; the institutional position isn't."
+  ],
+  [
+   56.038,
+   9.838,
+   "And cutting managed TIC circuits before sis-uh confirms replacement telemetry trades a gap in transport for a gap in sis-uh's visibility, which is worse."
+  ],
+  [
+   65.875,
+   2.538,
+   "Third, cost gets blamed on the cloud."
+  ],
+  [
+   68.412,
+   7.487,
+   "When workloads migrate before transport is governed and measured, slowness is attributed to the only thing being measured."
+  ],
+  [
+   75.9,
+   4.562,
+   "The remedies, more instances and more caching, raise cloud spend."
+  ],
+  [
+   80.463,
+   8.812,
+   "The book is careful to label that pattern its own inference, built on documented parts, so treat it as a hypothesis to test in your estate."
+  ],
+  [
+   89.275,
+   2.05,
+   "And one risk sits under all of them."
+  ],
+  [
+   91.325,
+   2.087,
+   "The governor is attack surface."
+  ],
+  [
+   93.412,
+   11.912,
+   "In February 2026, Emergency Directive 26-03 ordered action on Cisco SD-WAN systems after actors were found compromising them and keeping long-term persistence."
+  ],
+  [
+   105.325,
+   3.237,
+   "Whatever you buy, protect it before it carries traffic."
+  ]
+ ],
+ "6": [
+  [
+   0.05,
+   2.45,
+   "What does tick three point oh actually require?"
+  ],
+  [
+   2.5,
+   3.95,
+   "The book reads it from the current documents rather than from what's said about them."
+  ],
+  [
+   6.45,
+   4.0,
+   "sis-uh republished the whole set in September 2026."
+  ],
+  [
+   10.45,
+   11.438,
+   "The revision tables say the only 2026 changes were updated footnote links, so the substance dates from July 2025, and April 2021 for the Traditional use case."
+  ],
+  [
+   21.887,
+   8.613,
+   "One practical note for anyone writing a package: sis-uh's landing page labels three volumes 1.1, but the covers read 1.2."
+  ],
+  [
+   30.5,
+   1.062,
+   "Cite the cover."
+  ],
+  [
+   31.562,
+   5.213,
+   "There are four use cases: Traditional, Branch Office, Remote User and Cloud."
+  ],
+  [
+   36.775,
+   1.962,
+   "There is no sassy use case."
+  ],
+  [
+   38.737,
+   6.037,
+   "An agency deploying sassy at its branches operates under the Branch Office and Cloud use cases."
+  ],
+  [
+   44.775,
+   7.938,
+   "The program guidebook calls tick three point oh descriptive, not prescriptive, and the catalog says it sets goals, not methods."
+  ],
+  [
+   52.712,
+   2.35,
+   "But two statements constrain a branch."
+  ],
+  [
+   55.062,
+   10.938,
+   "Policy enforcement parity: once you decide a capability is needed, you apply it on every path, and the Branch Office use case names SD-WAN paths as one place that applies."
+  ],
+  [
+   66.0,
+   5.713,
+   "And preserve sis-uh's visibility as branches connect directly to external services."
+  ],
+  [
+   71.713,
+   9.387,
+   "Discretion also carries an obligation: where TIC controls don't cover residual risk, agencies must apply controls or compensating controls."
+  ],
+  [
+   81.1,
+   5.075,
+   "sis-uh's June 2026 sassy guide states the consequence plainly."
+  ],
+  [
+   86.175,
+   9.838,
+   "tick three point oh doesn't require routing traffic through TIC access points if an alternative gives both the agency and sis-uh situational awareness."
+  ],
+  [
+   96.013,
+   2.5,
+   "That guide permits and describes sassy."
+  ],
+  [
+   98.513,
+   1.425,
+   "It doesn't require it."
+  ],
+  [
+   99.938,
+   7.362,
+   "So when someone says TIC requires SD-WAN, or that TIC forbids local breakout, both claims fail the check."
+  ],
+  [
+   107.3,
+   11.725,
+   "The honest position is narrower and stronger: TIC sets goals, local breakout is allowed, and the agency must show parity and preserve sis-uh's view on every path it opens."
+  ]
+ ],
+ "7": [
+  [
+   0.05,
+   7.787,
+   "The opposite mistake is just as common: concluding that because policy is technology-neutral, the branch is unconstrained."
+  ],
+  [
+   7.838,
+   0.825,
+   "It isn't."
+  ],
+  [
+   8.662,
+   5.312,
+   "Four binding obligations land directly on branch equipment, and none of them picks a product."
+  ],
+  [
+   13.975,
+   10.575,
+   "Egress D N S must go to sis-uh's Protective D N S; that's statutory, and a vendor's own resolver in its place satisfies the product and breaches the requirement."
+  ],
+  [
+   24.55,
+   9.875,
+   "BOD 23-02 requires internet-exposed management interfaces to be taken off the internet, or fronted by a separate enforcement point."
+  ],
+  [
+   34.425,
+   8.275,
+   "BOD 26-02 takes end-of-support edge devices off agency networks by August 5, 2027."
+  ],
+  [
+   42.7,
+   7.95,
+   "And M-26-15 requires post-quantum key exchange on anything that terminates TLS or IPsec."
+  ],
+  [
+   50.65,
+   4.737,
+   "The obligations that bite hardest are often the ones an agency wrote itself."
+  ],
+  [
+   55.388,
+   11.062,
+   "Once a branch breaks out locally, it's an external boundary, and the system security plan asserts boundary protection, traffic flow policy, monitoring and alternate paths about it."
+  ],
+  [
+   66.45,
+   3.438,
+   "The gap surfaces at assessment time, not deployment time."
+  ],
+  [
+   69.888,
+   3.112,
+   "That's an evidence argument, not a mandate argument."
+  ],
+  [
+   73.0,
+   2.675,
+   "The right-hand panel matters to budget owners."
+  ],
+  [
+   75.675,
+   3.525,
+   "No federal instrument requires SD-WAN or sassy."
+  ],
+  [
+   79.2,
+   12.825,
+   "No instrument requires the WAN itself to be encrypted where the payload is already protected end to end, so an overlay is a defensible risk decision, and the book says it shouldn't be budgeted as a compliance obligation."
+  ],
+  [
+   92.025,
+   5.138,
+   "And fed-ramp certifies cloud services, not the routes an agency uses to reach them."
+  ],
+  [
+   97.162,
+   6.513,
+   "When a network change is refused on fed-ramp grounds, ask one question: which control does it violate?"
+  ],
+  [
+   103.675,
+   5.6,
+   "A refusal with no control basis is a governance failure, and should be recorded as one."
+  ]
+ ],
+ "8": [
+  [
+   0.05,
+   5.8,
+   "Logging and sis-uh telemetry are where branch modernization most often goes wrong quietly."
+  ],
+  [
+   5.85,
+   8.637,
+   "O M B M-26-14 rescinded M-21-31 on May 22, 2026."
+  ],
+  [
+   14.488,
+   11.988,
+   "Logs must be searchable for six months and retrievable for a year, and among the minimum content, agencies must be able to show source and destination addresses, ports and session attributes."
+  ],
+  [
+   26.475,
+   4.675,
+   "That's the transport-layer record a branch with nothing at its edge doesn't produce."
+  ],
+  [
+   31.15,
+   3.575,
+   "The first agency logging plan is due November 18."
+  ],
+  [
+   34.725,
+   6.537,
+   "When branches leave the managed TIC service, the sensor telemetry sis-uh has been receiving stops."
+  ],
+  [
+   41.263,
+   3.0,
+   "sis-uh's sassy guide says so in plain terms."
+  ],
+  [
+   44.263,
+   9.188,
+   "The replacement is CLAW, sis-uh's Comprehensive Log Aggregation Warehouse, and onboarding needs the agency, sis-uh and the provider working together."
+  ],
+  [
+   53.45,
+   6.225,
+   "That's a three-party dependency with its own lead time, not a configuration change one team completes."
+  ],
+  [
+   59.675,
+   6.875,
+   "It belongs on the critical path beside the authorization package, and the field-office case starts it in Phase 0."
+  ],
+  [
+   66.55,
+   1.3,
+   "Here is the decision."
+  ],
+  [
+   67.85,
+   8.6,
+   "The exit criterion for leaving MTIPS, and for ending each branch's MPLS, is confirmed CLAW parity, not branch cutover completion."
+  ],
+  [
+   76.45,
+   6.75,
+   "Cutting circuits first trades a transport gap for a visibility gap, which is worse than the position being fixed."
+  ],
+  [
+   83.2,
+   2.737,
+   "Ownership splits three ways on purpose."
+  ],
+  [
+   85.938,
+   3.913,
+   "The see-so decides CLAW onboarding and when parity is reached."
+  ],
+  [
+   89.85,
+   4.125,
+   "Security operations does the confirming, branch by branch."
+  ],
+  [
+   93.975,
+   10.35,
+   "And under the Federal Acquisition Regulation only a contracting officer can terminate a contract, so the contracting officer ends the circuit, and only after that confirmation."
+  ],
+  [
+   104.325,
+   4.0,
+   "No engineer can cancel a circuit, however redundant it looks."
+  ]
+ ],
+ "9": [
+  [
+   0.05,
+   5.175,
+   "For many agencies, neither SD-WAN nor a new TIC use case is close."
+  ],
+  [
+   5.225,
+   3.638,
+   "The acquisition isn't funded and the task orders aren't placed."
+  ],
+  [
+   8.863,
+   8.825,
+   "The book calls that interval the long interim, and it argues the architecture by elimination rather than by mandate, because no mandate exists."
+  ],
+  [
+   17.688,
+   5.5,
+   "The legacy telecom vehicles all ended by May 31, 2026."
+  ],
+  [
+   23.188,
+   8.238,
+   "The hairpin is still permitted, but sis-uh's own guidebook says it raised the cost and reduced the effectiveness of TIC for cloud services."
+  ],
+  [
+   31.425,
+   5.438,
+   "A new agency-operated access point is a capital and round-the-clock staffing commitment."
+  ],
+  [
+   36.862,
+   3.2,
+   "VPN backhaul is a hairpin under another name."
+  ],
+  [
+   40.062,
+   5.325,
+   "And Microsoft no longer recommends ExpressRoute for Microsoft 365."
+  ],
+  [
+   45.388,
+   8.85,
+   "What's left is local breakout, a cloud-delivered security stack at a nearby point of presence, and a policy layer at the branch edge deciding what goes where."
+  ],
+  [
+   54.237,
+   3.038,
+   "The target is years away for structural reasons."
+  ],
+  [
+   57.275,
+   1.925,
+   "Acquisition takes quarters."
+  ],
+  [
+   59.2,
+   8.113,
+   "Agencies send budget submissions to O M B in September, so a program conceived now has usually missed the next budget year."
+  ],
+  [
+   67.312,
+   4.125,
+   "A thousand branches is a multi-year deployment on logistics alone."
+  ],
+  [
+   71.438,
+   3.825,
+   "And every new device class at every branch is assessment work."
+  ],
+  [
+   75.263,
+   7.062,
+   "But the interval isn't empty: four of the six functions a branch-edge layer provides are partly obtainable before any award."
+  ],
+  [
+   82.325,
+   3.75,
+   "The decision on this slide belongs to the authorizing official."
+  ],
+  [
+   86.075,
+   11.475,
+   "Record in the risk register and the affected packages which control assertions depend on transport evidence that doesn't exist, the compensating measures, and the remediation with its funding dependency."
+  ],
+  [
+   97.55,
+   3.875,
+   "An undocumented gap found by an assessor is a finding."
+  ],
+  [
+   101.425,
+   3.413,
+   "A documented gap with a plan is an accepted risk."
+  ],
+  [
+   104.838,
+   2.3,
+   "Do it now, while the gap exists."
+  ]
+ ],
+ "10": [
+  [
+   0.05,
+   2.95,
+   "This is the most important planning item in the book."
+  ],
+  [
+   3.0,
+   8.625,
+   "BOD 26-02, issued February 5, 2026, puts branch edge hardware on a directive clock."
+  ],
+  [
+   11.625,
+   1.863,
+   "Inventory came due in May."
+  ],
+  [
+   13.488,
+   4.312,
+   "Devices whose support ends by February 2027 come out then."
+  ],
+  [
+   17.8,
+   7.225,
+   "All identified end-of-support edge devices must be off agency networks by August 5, 2027."
+  ],
+  [
+   25.025,
+   2.925,
+   "After that, discovery is continuous."
+  ],
+  [
+   27.95,
+   8.562,
+   "The directive covers devices on the network boundary that are reachable from the internet, so a branch router with its own internet circuit qualifies."
+  ],
+  [
+   36.513,
+   5.55,
+   "An interior access switch may not, so don't assume the directive funds the access layer."
+  ],
+  [
+   42.062,
+   11.25,
+   "For an agency with aging branch equipment, part of the capital it assumed it didn't have is going to be spent anyway, on a compliance basis, inside the window everyone calls years away."
+  ],
+  [
+   53.312,
+   4.725,
+   "And a refresh is exactly the moment a branch architecture gets chosen again."
+  ],
+  [
+   58.038,
+   6.338,
+   "The default choice is like-for-like, which spends the money and closes the question for the life of the new equipment."
+  ],
+  [
+   64.375,
+   2.725,
+   "The recommendation is narrow and cheap."
+  ],
+  [
+   67.1,
+   26.625,
+   "Tell whoever is scoping the replacements, in writing, what the eventual target needs from a branch device: application-aware steering and path measurement, deterministic egress, per-application telemetry the log pipeline can take, post-quantum key exchange under M-26-15, a management plane that satisfies BOD 23-02, and an explicit FIPS 140-3 expectation."
+  ],
+  [
+   93.725,
+   7.388,
+   "Security architecture owns that decision, because the refresh row in the book's matrix fixes the branch design for years."
+  ],
+  [
+   101.112,
+   2.625,
+   "Acquisition writes it into every order."
+  ],
+  [
+   103.737,
+   2.587,
+   "It's needed before the replacements are scoped."
+  ],
+  [
+   106.325,
+   5.6,
+   "It costs requirements-writing time, and not doing it spends the same money and closes the option."
+  ]
+ ],
+ "11": [
+  [
+   0.05,
+   2.638,
+   "So where should the money go, and in what order?"
+  ],
+  [
+   2.688,
+   4.987,
+   "The book's chapters line up into five tiers, cheapest and most certain first."
+  ],
+  [
+   7.675,
+   2.788,
+   "One: staff time, with no award."
+  ],
+  [
+   10.463,
+   5.188,
+   "Write the application-to-path policy that SC-7(4) already asks for."
+  ],
+  [
+   15.65,
+   2.212,
+   "Instrument a sample of branches."
+  ],
+  [
+   17.863,
+   3.888,
+   "Fix deterministic egress, usually a NAT decision."
+  ],
+  [
+   21.75,
+   3.625,
+   "Register the cleartext protocols crossing branch links."
+  ],
+  [
+   25.375,
+   5.525,
+   "And test, not just read, that D N S reaches sis-uh's Protective D N S."
+  ],
+  [
+   30.9,
+   1.675,
+   "Two: requirements time."
+  ],
+  [
+   32.575,
+   5.537,
+   "Put the target attributes into the BOD 26-02 refresh."
+  ],
+  [
+   38.112,
+   2.9,
+   "Three: accreditation and CLAW onboarding."
+  ],
+  [
+   41.013,
+   10.438,
+   "The field-office case calls accreditation, not procurement, the critical path; circuits arrive in about a quarter, an authorized breakout architecture takes far longer."
+  ],
+  [
+   51.45,
+   1.962,
+   "Four: protect the governor."
+  ],
+  [
+   53.413,
+   11.85,
+   "Phishing-resistant M F A, a hardened baseline, patching inside BOD 26-04's windows, the shortest of which is three days, and logs held off the box."
+  ],
+  [
+   65.263,
+   2.612,
+   "Five, and only then: capital."
+  ],
+  [
+   67.875,
+   8.338,
+   "Hubs first, then office waves timed to MPLS contract renewals, scoped to the branches and applications where measurement says it pays."
+  ],
+  [
+   76.213,
+   2.312,
+   "The panel on the right is about pricing."
+  ],
+  [
+   78.525,
+   15.8,
+   "Moving from MPLS to internet access plus a cloud security service changes the cost variable from site count and port speed to user count, and the per-user security subscription is the line most likely to dominate, and the one most often left out."
+  ],
+  [
+   94.325,
+   5.763,
+   "Price your own circuits in GSA's EIS pricer rather than citing a marketing multiple."
+  ],
+  [
+   100.088,
+   6.412,
+   "And don't justify the program on latency alone; the stronger argument is governance and evidence."
+  ],
+  [
+   106.5,
+   8.312,
+   "The sponsor and C I O set scope, funding and sequence, and this order needs to be settled before the next September budget submission."
+  ]
+ ],
+ "12": [
+  [
+   0.05,
+   3.638,
+   "Field offices are where these decisions become a budget line."
+  ],
+  [
+   3.688,
+   16.35,
+   "Chapter 11 works a case many civilian agencies will recognize: about 1,500 field offices, about 70,000 endpoints, and a request for about 50 million dollars to refresh a Configuration Manager distribution point in every office."
+  ],
+  [
+   20.038,
+   1.2,
+   "Three findings."
+  ],
+  [
+   21.238,
+   2.837,
+   "First, the unit cost doesn't reconcile."
+  ],
+  [
+   24.075,
+   9.812,
+   "Fifty million over 1,500 offices is 33,333 dollars each, about twice the book's fully loaded server case."
+  ],
+  [
+   33.888,
+   7.612,
+   "So the sponsor needs to say whether that figure is acquisition cost or five-year cost of ownership, and itemize anything bundled in."
+  ],
+  [
+   41.5,
+   1.538,
+   "Second, capacity."
+  ],
+  [
+   43.038,
+   8.762,
+   "Microsoft's published limit is 4,000 clients per distribution point, so the estate needs 24, two at each of 12 hub sites."
+  ],
+  [
+   51.8,
+   6.0,
+   "The other 1,476 exist only to compensate for slow branch circuits."
+  ],
+  [
+   57.8,
+   1.425,
+   "Third, timing."
+  ],
+  [
+   59.225,
+   11.8,
+   "Microsoft has moved Configuration Manager to an annual release cadence and says new device-management innovation happens in Intune, so hardware bought now depreciates past its likely use."
+  ],
+  [
+   71.025,
+   10.1,
+   "The alternative fixes the circuit: internet access sized to seats, a 5G continuity path, and an SD-WAN overlay, with breakout at the hubs first."
+  ],
+  [
+   81.125,
+   8.175,
+   "On the book's labeled planning assumptions, that needs about 10 million dollars of first-year capital and turns cumulatively positive in year four."
+  ],
+  [
+   89.3,
+   4.312,
+   "But the financial case turns on one number the analysis doesn't hold."
+  ],
+  [
+   93.612,
+   5.75,
+   "Breakeven is 873 dollars of current MPLS cost per office per month."
+  ],
+  [
+   99.362,
+   5.938,
+   "Above it the program pays for itself; below it, argue capability rather than savings."
+  ],
+  [
+   105.3,
+   10.1,
+   "So the decision for the sponsor and C I O is to decompose the request and validate that MPLS figure before any comparison, and before the refresh money is committed."
+  ]
+ ],
+ "13": [
+  [
+   0.05,
+   3.225,
+   "Network access control looks like an engineering topic."
+  ],
+  [
+   3.275,
+   6.75,
+   "It reaches the executive agenda because it's usually the last piece of the network still standing on Active Directory."
+  ],
+  [
+   10.025,
+   8.325,
+   "Windows Network Policy Server, the radius server built into Windows, authorizes devices against Active Directory computer objects."
+  ],
+  [
+   18.35,
+   4.625,
+   "Microsoft's Entra join guidance says Entra joined devices don't support that."
+  ],
+  [
+   22.975,
+   4.162,
+   "There's no Entra radius service, and NPS has no posture engine."
+  ],
+  [
+   27.137,
+   4.6,
+   "So as the Entra migration progresses, NPS becomes less useful."
+  ],
+  [
+   31.738,
+   9.012,
+   "And if NPS goes away before its replacement is validated, the result isn't a degraded experience; it's a total loss of network access."
+  ],
+  [
+   40.75,
+   3.2,
+   "The older password methods are breaking on their own schedule."
+  ],
+  [
+   43.95,
+   16.125,
+   "Credential Guard, on by default on eligible Windows 11 devices, blocks single sign-on for PEAP-MSCHAPv2 Wi-Fi and VPN, and the October 2026 Windows update restricts NTLMv1-derived credentials too."
+  ],
+  [
+   60.075,
+   4.35,
+   "Agencies that followed older guidance now have a deadline they didn't choose."
+  ],
+  [
+   64.425,
+   15.225,
+   "The program's target is certificate-based EAP-TLS for every managed device, with posture read from Intune's compliance service by a NAC platform, rolled out in four phases over roughly 90 to 180 days, monitor mode first."
+  ],
+  [
+   79.65,
+   14.975,
+   "One caution for cloud-delivered radius: as of October 21, 2026, several well-known cloud radius offerings have no fed-ramp listing, so confirm the specific function is inside a certified offering before designing around it."
+  ],
+  [
+   94.625,
+   6.4,
+   "The decision sits with the sponsor and C I O: which NAC platform, and when NPS retires."
+  ],
+  [
+   101.025,
+   11.863,
+   "The book's rule is that the retirement is triggered by the Entra migration, not by a date, and the replacement must be in place before cloud-native cutover retires the computer objects NPS depends on."
+  ],
+  [
+   112.888,
+   2.362,
+   "The see-so sets the posture requirement."
+  ]
+ ],
+ "14": [
+  [
+   0.05,
+   1.188,
+   "Who owns all this?"
+  ],
+  [
+   1.238,
+   5.938,
+   "The book's sharpest observation is that the most expensive network mistakes aren't engineering errors."
+  ],
+  [
+   7.175,
+   11.963,
+   "They're ownership gaps: a circuit bought before anyone owned the governor, a cutover before anyone filed the boundary change, a telemetry contract cancelled before anyone confirmed its replacement."
+  ],
+  [
+   19.137,
+   3.825,
+   "Naming one decider for each step is cheaper than any product."
+  ],
+  [
+   22.962,
+   2.475,
+   "The register separates deciding from doing."
+  ],
+  [
+   25.438,
+   3.188,
+   "A role decides when it is accountable and can say no."
+  ],
+  [
+   28.625,
+   5.75,
+   "Network engineering does most of the work, but decides only physics and enforcement phasing."
+  ],
+  [
+   34.375,
+   1.512,
+   "Read down the middle column."
+  ],
+  [
+   35.888,
+   13.475,
+   "The sponsor and C I O decide the governor platforms and the order of branch waves, because those fix cost and the boundary for years; acquisition is engaged in Phase 0 and waves follow contract renewals."
+  ],
+  [
+   49.362,
+   3.775,
+   "The see-so sets the security envelope every order carries."
+  ],
+  [
+   53.138,
+   9.387,
+   "Security architecture decides the refresh attributes and where each enforcement capability sits, but doesn't accept the risk of a non-conformant design."
+  ],
+  [
+   62.525,
+   18.613,
+   "The authorizing official accepts risk, so four rows land there: the boundary change, decided before the first production cutover; the Microsoft 365 Optimize exception, where device-side tenant restrictions are a precondition; the interim gap; and any standing exception with no end date."
+  ],
+  [
+   81.138,
+   1.762,
+   "Two rows split on purpose."
+  ],
+  [
+   82.9,
+   10.075,
+   "The authorizing official decides whether the boundary may change, but the system owner decides, site by site, whether that site's control layer is live and logging."
+  ],
+  [
+   92.975,
+   8.375,
+   "And telemetry splits three ways: the see-so decides, security operations confirms, and the contracting officer terminates."
+  ],
+  [
+   101.35,
+   7.938,
+   "When an architectural refusal arrives with no control basis, record it as a governance failure, with the refusing role named."
+  ]
+ ],
+ "15": [
+  [
+   0.05,
+   2.163,
+   "How to proceed comes down to order."
+  ],
+  [
+   2.212,
+   4.438,
+   "Order decides whether branch modernization is a gain or a regression."
+  ],
+  [
+   6.65,
+   2.312,
+   "Step zero: secure the governor."
+  ],
+  [
+   8.963,
+   11.088,
+   "The SD-WAN controller and its edges are internet-facing with estate-wide authority, so they come under vulnerability management, privileged access and off-box logging before they carry traffic."
+  ],
+  [
+   20.05,
+   6.275,
+   "Step one: buy the pipe on measured physics, latency and loss recorded per site before the order."
+  ],
+  [
+   26.325,
+   8.588,
+   "Step two: deploy the governor before production traffic; a site whose control layer isn't live and logging doesn't get its new egress."
+  ],
+  [
+   34.913,
+   7.213,
+   "Step three: treat the boundary change as the significant change it is, decided before the first production cutover."
+  ],
+  [
+   42.125,
+   6.263,
+   "Step four: handle Microsoft 365 Optimize traffic through its own signed exception."
+  ],
+  [
+   48.388,
+   6.987,
+   "Step five: register the evidence, and confirm sis-uh telemetry parity before any legacy circuit ends."
+  ],
+  [
+   55.375,
+   5.513,
+   "The book is candid that no memo, directive or executive order sets this sequence."
+  ],
+  [
+   60.888,
+   4.85,
+   "It's an engineering dependency, and saying so is what makes it survive review."
+  ],
+  [
+   65.737,
+   9.863,
+   "Doing it out of order, above all lighting up fast circuits before the security layer is live, is in the program's experience the most common and most costly mistake."
+  ],
+  [
+   75.6,
+   12.912,
+   "The boundary package carries the evidence: the path policy, failover test records, path telemetry, each exception with its need and duration, sis-uh parity, and the known limitations stated openly."
+  ],
+  [
+   88.513,
+   3.962,
+   "And when funding becomes possible, prove the case in your own estate."
+  ],
+  [
+   92.475,
+   5.425,
+   "Instrument two comparable branches for 30 days, change one, measure 30 more."
+  ],
+  [
+   97.9,
+   4.562,
+   "The difference in differences is an effect size a budget examiner will accept."
+  ],
+  [
+   102.463,
+   5.412,
+   "The decision: adopt this order as program policy before the first production cutover."
+  ]
+ ],
+ "16": [
+  [
+   0.05,
+   3.925,
+   "Let me close with what can start now, because most of it needs no award."
+  ],
+  [
+   3.975,
+   6.638,
+   "The staff work: write the application-to-path routing policy that SC-7(4) already asks for."
+  ],
+  [
+   10.613,
+   8.188,
+   "Its absence is the finding, not the absence of a device, and it turns the eventual purchase into enforcement of existing policy."
+  ],
+  [
+   18.8,
+   3.825,
+   "Instrument a sample of branches before the next migration wave."
+  ],
+  [
+   22.625,
+   3.837,
+   "And verify that D N S egress really ends at sis-uh."
+  ],
+  [
+   26.462,
+   8.238,
+   "Before money moves: send the target attributes to whoever scopes the BOD 26-02 replacements, in writing."
+  ],
+  [
+   34.7,
+   5.125,
+   "Ask the field-office refresh request to separate acquisition from five-year cost."
+  ],
+  [
+   39.825,
+   9.025,
+   "And re-examine any ExpressRoute arrangement for Microsoft 365; an approval granted years ago isn't current Microsoft guidance."
+  ],
+  [
+   48.85,
+   7.487,
+   "Before cutover: start CLAW coordination with sis-uh and the provider, because it's a three-party effort with its own lead time."
+  ],
+  [
+   56.337,
+   4.562,
+   "Have the authorizing official record the interim gap as an accepted risk."
+  ],
+  [
+   60.9,
+   1.762,
+   "And name one decider per row."
+  ],
+  [
+   62.663,
+   19.012,
+   "Recapping the seven decisions: MTIPS ends on confirmed parity, the interim gap becomes an accepted risk, the refresh carries the target, the investment order starts with staff time, the field-office request gets tested, NPS retirement follows the Entra migration, and the sequence becomes policy."
+  ],
+  [
+   81.675,
+   1.4,
+   "One point on urgency."
+  ],
+  [
+   83.075,
+   7.412,
+   "The branch measurement baseline can't be reconstructed after the next migration wave, and it costs staff time rather than capital."
+  ],
+  [
+   90.487,
+   5.938,
+   "Buy transport on physics and govern it as compliance, and the branch gets faster without getting weaker."
+  ],
+  [
+   96.425,
+   8.262,
+   "Book 09 has the detail, every claim footnoted, and the backup slides list the sources behind each slide in this briefing."
+  ],
+  [
+   104.688,
+   0.762,
+   "Thank you."
+  ]
+ ]
+}

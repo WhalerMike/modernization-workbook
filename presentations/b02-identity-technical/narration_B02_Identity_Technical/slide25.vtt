@@ -1,0 +1,167 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.800
+The migration runs in eleven
+phases, zero through ten.
+
+2
+00:00:03.800 --> 00:00:07.153
+Each has prerequisites,
+steps, validation criteria,
+
+3
+00:00:07.153 --> 00:00:10.116
+a rollback procedure
+and a duration estimate,
+
+4
+00:00:10.116 --> 00:00:14.950
+and a phase starts only when the previous
+one's validation criteria are met.
+
+5
+00:00:14.950 --> 00:00:17.459
+The durations are planning estimates,
+
+6
+00:00:17.459 --> 00:00:21.300
+not measured results; the total
+runs forty to seventy weeks.
+
+7
+00:00:21.300 --> 00:00:26.544
+Phase zero is assessment: the forest
+and identity inventories in Git, a UPN
+
+8
+00:00:26.544 --> 00:00:30.412
+remediation plan, a recorded
+decision for every group,
+
+9
+00:00:30.412 --> 00:00:33.163
+and every service account classified.
+
+10
+00:00:33.163 --> 00:00:38.621
+Phase one deploys sync: at least two Cloud
+Sync agents, or Connect where required,
+
+11
+00:00:38.621 --> 00:00:40.109
+password hash sync on,
+
+12
+00:00:40.109 --> 00:00:44.575
+validated by object counts within
+one percent and no sync errors.
+
+13
+00:00:44.575 --> 00:00:48.937
+Rollback removes objects from
+scope, recoverable for thirty days.
+
+14
+00:00:48.937 --> 00:00:53.535
+Phase two sets the sign-in method and
+puts every Conditional Access policy
+
+15
+00:00:53.535 --> 00:00:57.688
+in report-only, with the emergency
+account sign-in tested and logged.
+
+16
+00:00:57.688 --> 00:01:03.201
+Phase three migrates groups, with dynamic
+membership validated within two percent.
+
+17
+00:01:03.201 --> 00:01:06.834
+Phase four modernizes service
+accounts, high-risk first,
+
+18
+00:01:06.834 --> 00:01:10.700
+running old and new credentials
+in parallel for thirty days.
+
+19
+00:01:10.700 --> 00:01:12.246
+Phase five rolls out PIM:
+
+20
+00:01:12.246 --> 00:01:16.575
+zero permanent active assignments
+except the emergency accounts.
+
+21
+00:01:16.575 --> 00:01:21.188
+Phase six enforces Conditional
+Access in waves, but only after MFA
+
+22
+00:01:21.188 --> 00:01:26.137
+registration passes ninety-five
+percent in each targeted population.
+
+23
+00:01:26.137 --> 00:01:28.955
+Phase seven is the
+phishing-resistant roadmap,
+
+24
+00:01:28.955 --> 00:01:34.300
+validated by every privileged account on
+FIDO2 or certificate-based authentication,
+
+25
+00:01:34.300 --> 00:01:37.984
+over eighty percent of managed-device
+users on Windows Hello,
+
+26
+00:01:37.984 --> 00:01:42.101
+and over seventy percent of all
+users on a phishing-resistant method.
+
+27
+00:01:42.101 --> 00:01:45.438
+Phase eight cuts off legacy
+authentication after
+
+28
+00:01:45.438 --> 00:01:48.775
+thirty consecutive days
+with zero legacy sign-ins.
+
+29
+00:01:48.775 --> 00:01:52.483
+Phase nine decommissions
+federation, where it exists:
+
+30
+00:01:52.483 --> 00:01:56.438
+staged rollout moves users to
+password hash sync in waves,
+
+31
+00:01:56.438 --> 00:02:00.806
+then each domain is converted to
+managed with Graph PowerShell,
+
+32
+00:02:00.806 --> 00:02:06.162
+never the retired MSOnline cmdlet, and
+AD FS stays recoverable for ninety days.
+
+33
+00:02:06.162 --> 00:02:10.450
+Phase ten is steady-state governance:
+workflows, access packages,
+
+34
+00:02:10.450 --> 00:02:15.910
+reviews and drift detection running, and
+the operations runbook committed to Git.

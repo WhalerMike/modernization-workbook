@@ -1,0 +1,55 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.625
+Module 1: read-only discovery.
+
+2
+00:00:02.625 --> 00:00:06.125
+An assessment team rarely gets
+privileged access on day one.
+
+3
+00:00:06.125 --> 00:00:11.487
+Authorization paperwork, security review
+and trust between teams all take time.
+
+4
+00:00:11.487 --> 00:00:14.072
+The program spends that
+window learning what
+
+5
+00:00:14.072 --> 00:00:16.588
+the directory already
+tells every employee.
+
+6
+00:00:16.588 --> 00:00:20.259
+A standard domain account, with
+no rights beyond the default,
+
+7
+00:00:20.259 --> 00:00:23.050
+can read most of what
+the migration plan needs.
+
+8
+00:00:23.050 --> 00:00:27.768
+Starting there changes nothing in the
+directory, applies least privilege,
+
+9
+00:00:27.768 --> 00:00:33.779
+NIST SP 800-53 control AC-6,
+to the assessment team itself,
+
+10
+00:00:33.779 --> 00:00:37.507
+and turns the request for
+elevated access into a list built
+
+11
+00:00:37.507 --> 00:00:41.380
+from evidence instead of a
+general request for Domain Admin.

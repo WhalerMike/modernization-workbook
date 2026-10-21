@@ -1,0 +1,153 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:06.791
+The full assessment covers eight areas,
+run in a fixed order: forest topology,
+
+2
+00:00:06.791 --> 00:00:13.638
+the OU hierarchy, Group Policy, DNS, AD CS,
+computers, users and groups, and trusts.
+
+3
+00:00:13.638 --> 00:00:17.537
+Most of the forest is readable
+by any authenticated user.
+
+4
+00:00:17.537 --> 00:00:20.669
+The parts that aren't are
+the reason Chapter 08 exists,
+
+5
+00:00:20.669 --> 00:00:24.013
+so each collector runs on the
+narrowest right that works.
+
+6
+00:00:24.013 --> 00:00:28.865
+Topology, computers, and users and
+groups need only an authenticated user;
+
+7
+00:00:28.865 --> 00:00:32.048
+delegation attributes
+are readable by default,
+
+8
+00:00:32.048 --> 00:00:35.787
+though recursive group expansion
+is slow in big forests.
+
+9
+00:00:35.787 --> 00:00:40.389
+The OU collector needs read permission
+on the OUs' security descriptors,
+
+10
+00:00:40.389 --> 00:00:43.226
+because some ACLs aren't
+readable by default.
+
+11
+00:00:43.226 --> 00:00:46.176
+Group Policy needs read
+on the GPOs and SYSVOL,
+
+12
+00:00:46.176 --> 00:00:50.525
+plus the backup right through
+Group Policy Management delegation.
+
+13
+00:00:50.525 --> 00:00:55.700
+DNS needs read on each DNS server,
+delegated on the server object.
+
+14
+00:00:55.700 --> 00:01:00.888
+AD CS needs read on the Public Key
+Services containers and on each CA.
+
+15
+00:01:00.888 --> 00:01:03.005
+And trusts: any user can list them,
+
+16
+00:01:03.005 --> 00:01:06.925
+but verification needs domain
+administrator credentials.
+
+17
+00:01:06.925 --> 00:01:09.875
+Two rights the source design
+asked for are refused.
+
+18
+00:01:09.875 --> 00:01:15.592
+DnsAdmins: Microsoft treats it as privileged,
+because its members control the DNS
+
+19
+00:01:15.592 --> 00:01:21.225
+Server service, and Defender for Identity
+flags non-privileged members as a risk.
+
+20
+00:01:21.225 --> 00:01:25.600
+Grant read on the DNS server object
+to a dedicated group instead.
+
+21
+00:01:25.600 --> 00:01:29.425
+And standing Domain Admin:
+no assessment run uses one.
+
+22
+00:01:29.425 --> 00:01:33.290
+Trust verification is the only
+step that needs those rights,
+
+23
+00:01:33.290 --> 00:01:36.613
+and it runs separately under
+just-in-time elevation.
+
+24
+00:01:36.613 --> 00:01:41.930
+The host is a domain-joined Windows
+Server 2025 or Windows 11 machine
+
+25
+00:01:41.930 --> 00:01:47.249
+with the Remote Server Administration
+Tools, at build 26100 or later.
+
+26
+00:01:47.249 --> 00:01:50.372
+The account is a group
+managed service account,
+
+27
+00:01:50.372 --> 00:01:54.775
+with delegated read and nothing
+more, so no password is ever stored.
+
+28
+00:01:54.775 --> 00:01:56.697
+Two corrections from review:
+
+29
+00:01:56.697 --> 00:02:01.904
+the AD CS administration module the source
+required isn't used by any function,
+
+30
+00:02:01.904 --> 00:02:04.307
+and the PSPKI module is now optional,
+
+31
+00:02:04.307 --> 00:02:07.970
+because its publisher no
+longer actively supports it.

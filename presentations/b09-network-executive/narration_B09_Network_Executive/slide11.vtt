@@ -1,0 +1,138 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.688
+So where should the money
+go, and in what order?
+
+2
+00:00:02.688 --> 00:00:07.675
+The book's chapters line up into five
+tiers, cheapest and most certain first.
+
+3
+00:00:07.675 --> 00:00:10.463
+One: staff time, with no award.
+
+4
+00:00:10.463 --> 00:00:15.651
+Write the application-to-path policy
+that SC-7(4) already asks for.
+
+5
+00:00:15.651 --> 00:00:17.862
+Instrument a sample of branches.
+
+6
+00:00:17.862 --> 00:00:21.751
+Fix deterministic egress,
+usually a NAT decision.
+
+7
+00:00:21.751 --> 00:00:25.375
+Register the cleartext
+protocols crossing branch links.
+
+8
+00:00:25.375 --> 00:00:30.900
+And test, not just read, that DNS
+reaches CISA's Protective DNS.
+
+9
+00:00:30.900 --> 00:00:32.575
+Two: requirements time.
+
+10
+00:00:32.575 --> 00:00:38.112
+Put the target attributes
+into the BOD 26-02 refresh.
+
+11
+00:00:38.112 --> 00:00:41.012
+Three: accreditation and CLAW onboarding.
+
+12
+00:00:41.012 --> 00:00:45.859
+The field-office case calls accreditation,
+not procurement, the critical path;
+
+13
+00:00:45.859 --> 00:00:48.021
+circuits arrive in about a quarter,
+
+14
+00:00:48.021 --> 00:00:51.451
+an authorized breakout
+architecture takes far longer.
+
+15
+00:00:51.451 --> 00:00:53.412
+Four: protect the governor.
+
+16
+00:00:53.412 --> 00:01:00.214
+Phishing-resistant MFA, a hardened baseline,
+patching inside BOD 26-04's windows,
+
+17
+00:01:00.214 --> 00:01:05.263
+the shortest of which is three
+days, and logs held off the box.
+
+18
+00:01:05.263 --> 00:01:07.875
+Five, and only then: capital.
+
+19
+00:01:07.875 --> 00:01:11.706
+Hubs first, then office waves
+timed to MPLS contract renewals,
+
+20
+00:01:11.706 --> 00:01:16.213
+scoped to the branches and applications
+where measurement says it pays.
+
+21
+00:01:16.213 --> 00:01:18.525
+The panel on the right is about pricing.
+
+22
+00:01:18.525 --> 00:01:23.976
+Moving from MPLS to internet access plus
+a cloud security service changes the cost
+
+23
+00:01:23.976 --> 00:01:29.111
+variable from site count and port speed
+to user count, and the per-user security
+
+24
+00:01:29.111 --> 00:01:34.325
+subscription is the line most likely to
+dominate, and the one most often left out.
+
+25
+00:01:34.325 --> 00:01:40.088
+Price your own circuits in GSA's EIS pricer
+rather than citing a marketing multiple.
+
+26
+00:01:40.088 --> 00:01:43.134
+And don't justify the
+program on latency alone;
+
+27
+00:01:43.134 --> 00:01:46.500
+the stronger argument is
+governance and evidence.
+
+28
+00:01:46.500 --> 00:01:49.732
+The sponsor and CIO set
+scope, funding and sequence,
+
+29
+00:01:49.732 --> 00:01:54.860
+and this order needs to be settled before
+the next September budget submission.

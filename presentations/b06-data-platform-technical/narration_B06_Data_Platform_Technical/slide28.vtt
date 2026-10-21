@@ -1,0 +1,115 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.000
+To close, five things to
+take back to the estate.
+
+2
+00:00:03.000 --> 00:00:05.212
+First, count before you migrate.
+
+3
+00:00:05.212 --> 00:00:06.984
+The inventory and the retain,
+
+4
+00:00:06.984 --> 00:00:11.928
+consolidate or retire gate decide where
+every hour of authentication work goes;
+
+5
+00:00:11.928 --> 00:00:16.576
+migrating an instance you should have
+retired is waste against a fixed date.
+
+6
+00:00:16.576 --> 00:00:19.013
+Second, measure, don't assume.
+
+7
+00:00:19.013 --> 00:00:22.701
+A missing SPN turns Kerberos
+into NTLM silently,
+
+8
+00:00:22.701 --> 00:00:28.512
+and only the auth scheme column, the
+Windows logs and SQL Server Audit show it.
+
+9
+00:00:28.512 --> 00:00:30.450
+Third, keep it reversible.
+
+10
+00:00:30.450 --> 00:00:35.475
+Create, validate, disable, observe
+for thirty days, then drop.
+
+11
+00:00:35.475 --> 00:00:38.212
+A disabled login is an instant rollback.
+
+12
+00:00:38.212 --> 00:00:39.875
+Fourth, finish the chain.
+
+13
+00:00:39.875 --> 00:00:44.598
+An instance isn't closed while any
+application still reaches it with Integrated
+
+14
+00:00:44.598 --> 00:00:46.361
+Security or a stored password,
+
+15
+00:00:46.361 --> 00:00:50.238
+or while a Class 4 application
+holds it on Windows Authentication.
+
+16
+00:00:50.238 --> 00:00:52.299
+Fifth, prove it continuously.
+
+17
+00:00:52.299 --> 00:00:57.218
+The closure record, drift detection and
+the six evidence sets make done a queryable
+
+18
+00:00:57.218 --> 00:01:00.425
+posture rather than a claim,
+and the certificate layer
+
+19
+00:01:00.425 --> 00:01:03.775
+underneath needs its own
+decision before AD CS goes away.
+
+20
+00:01:03.775 --> 00:01:07.725
+April 1, 2027 is the program's backstop.
+
+21
+00:01:07.725 --> 00:01:11.051
+If the work is finished well
+before it and the evidence
+
+22
+00:01:11.051 --> 00:01:14.525
+has been clean for months, the
+block arrives as a non-event.
+
+23
+00:01:14.525 --> 00:01:18.430
+Book 06 has the narrative
+chapters and the ten runbooks,
+
+24
+00:01:18.430 --> 00:01:21.062
+with every external claim footnoted.
+
+25
+00:01:21.062 --> 00:01:21.890
+Thank you.

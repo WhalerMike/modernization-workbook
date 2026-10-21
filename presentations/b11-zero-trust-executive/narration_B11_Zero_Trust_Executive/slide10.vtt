@@ -1,0 +1,137 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:05.612
+Everything so far stops at the edge of
+Microsoft 365 and Google Workspace.
+
+2
+00:00:05.612 --> 00:00:10.296
+Nothing on BOD 25-01's list
+covers infrastructure accounts,
+
+3
+00:00:10.296 --> 00:00:13.262
+the agency network or
+the virtualized estate.
+
+4
+00:00:13.262 --> 00:00:16.947
+So the whole-agency argument
+rests on the Zero Trust documents,
+
+5
+00:00:16.947 --> 00:00:23.537
+and on the SP 800-53 controls every
+system security plan already asserts.
+
+6
+00:00:23.537 --> 00:00:27.150
+Three things get reconciled before
+those estates are assessed.
+
+7
+00:00:27.150 --> 00:00:33.444
+One inventory: control CM-8 forbids
+duplicate accounting of components, and BOD
+
+8
+00:00:33.444 --> 00:00:37.735
+23-01 requires automated
+asset discovery every 7 days,
+
+9
+00:00:37.735 --> 00:00:40.500
+including cloud virtual machines.
+
+10
+00:00:40.500 --> 00:00:42.081
+One naming authority,
+
+11
+00:00:42.081 --> 00:00:46.825
+because each cloud provider and
+VMware ships its own private DNS.
+
+12
+00:00:46.825 --> 00:00:51.866
+And no implicit trust from any boundary:
+a site-to-site VPN, a default virtual
+
+13
+00:00:51.866 --> 00:00:57.150
+network and a flat virtualized segment
+are architecturally the same mistake.
+
+14
+00:00:57.150 --> 00:01:01.769
+The hypervisor is a distinct threat class,
+so its management plane is assessed
+
+15
+00:01:01.769 --> 00:01:06.175
+as its own surface, not inferred from
+the posture of the guests running on it.
+
+16
+00:01:06.175 --> 00:01:10.363
+Then the providers' own tools, each
+of which describes its own limits.
+
+17
+00:01:10.363 --> 00:01:13.314
+AWS says its NIST standard
+supports a subset
+
+18
+00:01:13.314 --> 00:01:16.187
+of requirements through automated checks.
+
+19
+00:01:16.187 --> 00:01:21.888
+Microsoft says Azure Policy compliance is
+only a partial view of overall compliance.
+
+20
+00:01:21.888 --> 00:01:25.136
+Broadcom calls its VMware
+hardening material general
+
+21
+00:01:25.136 --> 00:01:28.738
+guidance whose assumptions may
+not hold in your environment.
+
+22
+00:01:28.738 --> 00:01:31.723
+And FedRAMP certifies the
+cloud service offering,
+
+23
+00:01:31.723 --> 00:01:34.780
+while each agency still
+authorizes its own systems,
+
+24
+00:01:34.780 --> 00:01:39.187
+including the configuration it selected
+and the integrations it enabled.
+
+25
+00:01:39.187 --> 00:01:41.362
+The decision is the program lead's:
+
+26
+00:01:41.362 --> 00:01:45.631
+admit each native tool's findings
+as evidence for its own platform,
+
+27
+00:01:45.631 --> 00:01:49.901
+under the CISO's evidence standard,
+and never as the agency's score.
+
+28
+00:01:49.901 --> 00:01:53.330
+It's needed before any
+whole-agency figure is reported.
