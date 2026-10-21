@@ -1,0 +1,88 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.644
+Microsoft, AWS and VMware
+already ship tools that
+
+2
+00:00:03.644 --> 00:00:07.150
+test most of the settings
+an assessor asks about.
+
+3
+00:00:07.150 --> 00:00:11.326
+The gap is turning each failed
+test into owned work with a clock,
+
+4
+00:00:11.326 --> 00:00:13.575
+and each closed task into a record.
+
+5
+00:00:13.575 --> 00:00:18.819
+The program runs one loop everywhere:
+the native tool tests, drift is detected,
+
+6
+00:00:18.819 --> 00:00:22.507
+a typed task is raised against
+the configuration item,
+
+7
+00:00:22.507 --> 00:00:27.587
+the owning team fixes it natively, and
+the task closes on a re-test, not a click.
+
+8
+00:00:27.587 --> 00:00:31.824
+The service management platform reads
+control state; it never writes it.
+
+9
+00:00:31.824 --> 00:00:33.513
+The government clouds differ.
+
+10
+00:00:33.513 --> 00:00:38.388
+Defender for Cloud's ServiceNow integration
+isn't available in Azure Government.
+
+11
+00:00:38.388 --> 00:00:44.033
+Compliance Manager's continuous
+assessments are still rolling out in GCC.
+
+12
+00:00:44.033 --> 00:00:48.039
+AWS Audit Manager closed to
+new customers on April 30,
+
+13
+00:00:48.039 --> 00:00:50.588
+2026, and has no GovCloud endpoint.
+
+14
+00:00:50.588 --> 00:00:54.900
+AWS's ServiceNow connector
+loses support on March 31,
+
+15
+00:00:54.900 --> 00:00:59.312
+2027, and Security Hub keeps
+findings only ninety days.
+
+16
+00:00:59.312 --> 00:01:03.693
+In VMware Cloud Foundation 9.1,
+the compliance benchmarks were
+
+17
+00:01:03.693 --> 00:01:08.074
+replaced by a posture tool that
+lists no NIST or DISA benchmark.
+
+18
+00:01:08.074 --> 00:01:12.860
+On premises, the agency produces
+every piece of evidence itself.

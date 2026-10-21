@@ -1,0 +1,92 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.949
+Every ticket names an asset,
+
+2
+00:00:01.949 --> 00:00:06.325
+so the help desk can only be as
+right as the inventory it routes to.
+
+3
+00:00:06.325 --> 00:00:09.985
+The configuration database
+earns that trust by agreeing
+
+4
+00:00:09.985 --> 00:00:13.112
+with one authoritative
+identity, not by being one.
+
+5
+00:00:13.112 --> 00:00:15.534
+Discovery and connectors populate it;
+
+6
+00:00:15.534 --> 00:00:18.788
+the naming and addressing
+record governs identity.
+
+7
+00:00:18.788 --> 00:00:23.950
+Where the two disagree, the database is
+wrong, and the disagreement is a finding.
+
+8
+00:00:23.950 --> 00:00:28.112
+The inventory control asks for no
+duplicate accounting of components.
+
+9
+00:00:28.112 --> 00:00:32.639
+ServiceNow's identification and
+reconciliation engine already prevents
+
+10
+00:00:32.639 --> 00:00:36.663
+duplicates and lets only authorized
+sources write each attribute.
+
+11
+00:00:36.663 --> 00:00:42.083
+The program adds one pass: match each
+asset to the naming record first, bind it,
+
+12
+00:00:42.083 --> 00:00:46.041
+and flag the rest, either a
+shadow asset nobody approved,
+
+13
+00:00:46.041 --> 00:00:50.601
+or a gap that's fixed in address
+management, never in the database.
+
+14
+00:00:50.601 --> 00:00:53.149
+Duplicates are resolved by binding,
+
+15
+00:00:53.149 --> 00:00:56.462
+not deleting, so no open
+finding loses its asset.
+
+16
+00:00:56.462 --> 00:01:00.112
+Stale items are disabled and
+attested before they're retired.
+
+17
+00:01:00.112 --> 00:01:02.476
+It matters because a fix that lands on one
+
+18
+00:01:02.476 --> 00:01:05.187
+duplicate leaves the
+finding open on the other.
+
+19
+00:01:05.187 --> 00:01:09.460
+And watch the connector that quietly
+returns half its usual records.

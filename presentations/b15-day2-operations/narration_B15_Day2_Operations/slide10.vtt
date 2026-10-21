@@ -1,0 +1,85 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.775
+Before anyone builds a compliance application,
+know what the platform already does.
+
+2
+00:00:04.775 --> 00:00:07.757
+ServiceNow's Policy and
+Compliance Management
+
+3
+00:00:07.757 --> 00:00:10.963
+schedules control tests
+and turns gaps into issues.
+
+4
+00:00:10.963 --> 00:00:16.361
+Continuous Authorization and Monitoring
+walks the seven steps of the Risk Management
+
+5
+00:00:16.361 --> 00:00:21.242
+Framework, gives one view of every plan
+of action, and in recent releases imports
+
+6
+00:00:21.242 --> 00:00:25.901
+and exports security plans, plans of
+action and assessment results in OSCAL.
+
+7
+00:00:25.901 --> 00:00:29.257
+Configuration Compliance
+imports Defender for Cloud
+
+8
+00:00:29.257 --> 00:00:32.250
+results and matches them
+to configuration items.
+
+9
+00:00:32.250 --> 00:00:36.675
+The government offering is listed as
+FedRAMP Certified at Class D, High.
+
+10
+00:00:36.675 --> 00:00:41.669
+So the recommendation is to buy the native
+applications first and build only what
+
+11
+00:00:41.669 --> 00:00:45.856
+they don't do: join every finding to
+the authoritative asset identity,
+
+12
+00:00:45.856 --> 00:00:48.941
+close only with proof and
+flag human-only closures,
+
+13
+00:00:48.941 --> 00:00:52.613
+and check the platform's control
+set against the control map.
+
+14
+00:00:52.613 --> 00:00:57.200
+A control is proven by system evidence
+wherever a system can see it;
+
+15
+00:00:57.200 --> 00:01:00.537
+people attest only to what
+no system can observe.
+
+16
+00:01:00.537 --> 00:01:03.320
+And FedRAMP's indicators bind providers;
+
+17
+00:01:03.320 --> 00:01:06.890
+for the agency they're
+vocabulary, not a deliverable.

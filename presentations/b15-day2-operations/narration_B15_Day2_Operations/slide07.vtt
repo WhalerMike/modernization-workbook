@@ -1,0 +1,85 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.088
+Every routine change
+arrives as a typed request.
+
+2
+00:00:03.088 --> 00:00:08.388
+The help desk catalog has ten items, for
+joiners, movers, leavers, credentials,
+
+3
+00:00:08.388 --> 00:00:12.595
+groups, licenses, Conditional
+Access exceptions and guests,
+
+4
+00:00:12.595 --> 00:00:17.812
+each bound to the control it exercises
+and the approval that control needs.
+
+5
+00:00:17.812 --> 00:00:22.000
+Each item closes only when a read
+of the target confirms the change.
+
+6
+00:00:22.000 --> 00:00:26.620
+The leaver fails audits most often:
+disable the account, revoke sessions,
+
+7
+00:00:26.620 --> 00:00:31.625
+deprovision every connected application,
+and reassign what the person owned.
+
+8
+00:00:31.625 --> 00:00:35.596
+And federal 911 rules bind
+whoever operates the phone system,
+
+9
+00:00:35.596 --> 00:00:39.800
+so a validated emergency address
+gates every number assignment.
+
+10
+00:00:39.800 --> 00:00:42.400
+SaaS integration is the densest moment.
+
+11
+00:00:42.400 --> 00:00:47.173
+In GCC, an administrator sees the full
+commercial application gallery and can
+
+12
+00:00:47.173 --> 00:00:50.625
+federate a third-party service
+in about fifteen minutes,
+
+13
+00:00:50.625 --> 00:00:54.150
+and nothing in the vendor's
+path asks about authorization.
+
+14
+00:00:54.150 --> 00:00:56.869
+Restricting consent
+decides who may approve,
+
+15
+00:00:56.869 --> 00:00:59.588
+not whether the service
+may hold federal data.
+
+16
+00:00:59.588 --> 00:01:05.112
+So the catalog records a FedRAMP Marketplace
+verdict before anything is configured,
+
+17
+00:01:05.112 --> 00:01:09.290
+with Class C or higher as the
+program's default for identity data.

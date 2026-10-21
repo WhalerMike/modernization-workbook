@@ -180,7 +180,7 @@ do {
             surface     = 'cloud service provider'
             control     = 'CM-6'
             state       = $row.defRef
-            verdict     = if ($row.state -eq 'Exempt') { 'warn' } else { 'fail' }
+            verdict     = if ($row.state -eq 'Exempt') { 'exception' } else { 'drift' }
             observed_at = $row.evalAt
             disposition = if ($row.state -eq 'Exempt') { 'exception (check register)' } else { 'open' }
             source_ref  = $row.resId
@@ -196,7 +196,7 @@ foreach ($p in Get-MgIdentityConditionalAccessPolicy -All) {
         surface     = 'identity'
         control     = 'AC-2'
         state       = "$($p.DisplayName) [$($p.State)] excluded users: $(@($p.Conditions.Users.ExcludeUsers).Count)"
-        verdict     = 'warn'   # set by comparison with the approved exception register
+        verdict     = 'exception'   # until compared with the approved exception register; drift if not on it
         observed_at = $observedAt
         disposition = 'open'
         source_ref  = $p.Id

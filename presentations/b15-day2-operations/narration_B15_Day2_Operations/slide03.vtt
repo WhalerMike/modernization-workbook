@@ -1,0 +1,84 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.625
+Two federal documents frame
+the reset and recovery path.
+
+2
+00:00:03.625 --> 00:00:09.161
+OMB's zero trust memorandum, M-22-09,
+requires phishing-resistant M F A,
+
+3
+00:00:09.161 --> 00:00:13.870
+and then names the hole: recovery
+processes are a potential bypass of
+
+4
+00:00:13.870 --> 00:00:19.075
+standard authentication, and a significant
+threat vector if not mitigated.
+
+5
+00:00:19.075 --> 00:00:23.223
+It asks for high-friction methods
+that are costly for an adversary,
+
+6
+00:00:23.223 --> 00:00:26.013
+such as in-person
+verification or live video.
+
+7
+00:00:26.013 --> 00:00:28.835
+NIST's digital identity guidelines,
+
+8
+00:00:28.835 --> 00:00:32.787
+revised in July 2025, give
+recovery its own section.
+
+9
+00:00:32.787 --> 00:00:36.180
+They recognize four methods:
+saved recovery codes,
+
+10
+00:00:36.180 --> 00:00:41.188
+issued recovery codes, recovery
+contacts, and repeated identity proofing.
+
+11
+00:00:41.188 --> 00:00:45.818
+A help desk agent is allowed only on
+the basis of a documented risk analysis,
+
+12
+00:00:45.818 --> 00:00:49.402
+repeated proofing has to be
+consistent with the original,
+
+13
+00:00:49.402 --> 00:00:52.538
+and every recovery must
+notify the account holder.
+
+14
+00:00:52.538 --> 00:00:57.137
+Read together, the help desk reset has
+to be an exception, not the main path;
+
+15
+00:00:57.137 --> 00:00:59.436
+high-friction for the account's risk;
+
+16
+00:00:59.436 --> 00:01:04.188
+at least as strong as the original
+proofing; and always followed by a notice.
+
+17
+00:01:04.188 --> 00:01:08.020
+Email, caller I D and knowledge
+questions verify no one.
