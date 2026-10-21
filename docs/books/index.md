@@ -38,3 +38,11 @@ The workbook grew as separate whitepapers, guides, series and case studies. The 
 :::
 
 **Chapters** counts each book's chapters and appendices. **Pages** is the estimated page count of its Word edition, worked out from its words, tables and diagrams and checked against Word's own count (within about 7%). **Last updated** is the date of the book's latest change. All three are recalculated on every site build.
+
+## Companion guides
+
+Short, practical guides that support every book but belong to none of them.
+
+| Guide | What it covers |
+|---|---|
+| [Effective Meetings — Purpose, Agenda, Roles, and Follow-Through](guides/effective-meetings.md) | Running program meetings: a real agenda, named roles, a parking lot, and written action items with owners and dates. Includes agenda and notes templates and a one-page checklist. |

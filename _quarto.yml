@@ -68,6 +68,8 @@ website:
             text: "Book 10 — Cloud Boundary & Landing Zone"
           - href: docs/books/b11-zero-trust/index.md
             text: "Book 11 — Zero Trust & Assessment"
+          - href: docs/books/guides/effective-meetings.md
+            text: "Guide: Effective Meetings"
       - href: docs/presentations/index.md
         text: "Presentations"
       - text: "About"
@@ -136,6 +138,9 @@ website:
           href: docs/books/b11-zero-trust/index.md
           contents:
             - auto: "docs/books/b11-zero-trust/*-*.md"
+        - section: "Companion guides"
+          contents:
+            - docs/books/guides/effective-meetings.md
 
   page-footer:
     left: "Federal Modernization Workbook — topic books for federal IT modernization, each framed Why / What / Who / How."

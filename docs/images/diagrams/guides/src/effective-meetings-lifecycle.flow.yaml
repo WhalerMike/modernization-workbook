@@ -1,0 +1,12 @@
+# Effective Meetings — what each phase of a meeting produces; the
+# follow-up feeds the next meeting's agenda.
+rankdir: LR
+graph: {nodesep: 0.3, ranksep: 0.45}
+nodes:
+  before: {tone: slate, width: 200, title: "Before", body: ["Purpose and meeting type", "Agenda sent a day ahead", "Roles assigned", "Only the people needed"], size: 12}
+  during: {tone: blue, width: 200, title: "During", body: ["Start on time", "Confirm purpose and roles", "Follow the agenda", "Parking lot, timekeeping"], size: 12}
+  after: {tone: green, width: 210, title: "After", body: ["Notes sent the same day", "Actions: owner and due date", "Parking lot routed", "Reviewed at next meeting"], size: 12}
+edges:
+  - [before, during]
+  - [during, after]
+  - [after, before, {tone: violet, label: "next agenda"}]
