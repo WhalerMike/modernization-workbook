@@ -72,7 +72,7 @@ Book 01 evaluates every gate from data and names who decides it.[^c10-roadmap] W
 | G4 Legacy Quiet | AD administrators moving to new roles trained and assessed in those roles; AD-era modules marked for retirement | Steward |
 | G5 AD Retired | AD-era modules and runbooks retired from the catalog; no active assignments to retired courses | Executive sponsor and CIO |
 
-Each wave inside Phase 3 has the same check before it moves, decided at the division-level exit that Book 01 gives to the division lead and the steward. A wave that isn't ready moves its date, not its threshold. Microsoft's deployment guidance makes the same trade explicit for sign-in changes: when help desk ticket volume rises, slow the pace of deployment, communications and enforcement, and ramp them back up as it falls.[^c10-ms-passwordless]
+Each wave inside Phase 3 has the same check before it moves. The wave owner, identity engineering, decides the wave's go/no-go ([Chapter 08](08-who-owns-workforce-readiness.md)), and the division lead and steward confirm readiness at the division-level exit Book 01 gives them. A wave that isn't ready moves its date, not its threshold. Microsoft's deployment guidance makes the same trade explicit for sign-in changes: when help desk ticket volume rises, slow the pace of deployment, communications and enforcement, and ramp them back up as it falls.[^c10-ms-passwordless]
 
 ## Signals beyond the learning management system
 

@@ -126,7 +126,7 @@ One correction to the source material belongs here. It treated FedRAMP's trainin
 The book follows the same Why / What / Who / How shape as the others.
 
 - **Why.** This chapter, and [Chapter 02](02-what-the-workforce-rules-require.md) on what federal workforce law and policy require: FISMA, OPM's training rule, the NICE Workforce Framework, cybersecurity position coding and OMB A-130.
-- **What.** The four tracks: compliance ([Chapter 03](03-the-compliance-track.md)), implementation ([Chapter 04](04-the-implementation-track.md)), assessment and certification ([Chapter 05](05-assessment-and-certification.md)), vendor training and labs ([Chapter 06](06-vendor-training-and-labs.md)), and end-user training for the modernized estate ([Chapter 07](07-end-user-training.md)).
+- **What.** The four tracks: compliance ([Chapter 03](03-the-compliance-track.md)), implementation ([Chapter 04](04-the-implementation-track.md)), vendor training and labs ([Chapter 06](06-vendor-training-and-labs.md)), and end-user training for the modernized estate ([Chapter 07](07-end-user-training.md)), with assessment and certification across all of them ([Chapter 05](05-assessment-and-certification.md)).
 - **Who.** [Chapter 08](08-who-owns-workforce-readiness.md) names who owns workforce readiness: who decides what each role must learn, who delivers it, and who signs for it at each gate.
 - **How.** [Chapter 09](09-building-and-running-the-curriculum.md) covers building and running the curriculum, and [Chapter 10](10-measuring-readiness.md) covers measuring readiness and evidencing it.
 - **Appendix.** [Appendix A](appendix-a-curriculum-map.md) maps each role to the books it needs and the track that teaches them.

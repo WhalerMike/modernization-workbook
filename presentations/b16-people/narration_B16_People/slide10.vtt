@@ -1,0 +1,76 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.150
+Every user will sign in differently.
+
+2
+00:00:02.150 --> 00:00:04.375
+Federal policy sets the target.
+
+3
+00:00:04.375 --> 00:00:10.007
+OMB's zero trust memo and NIST's authentication
+guideline require phishing-resistant
+
+4
+00:00:10.007 --> 00:00:13.762
+sign-in for staff, contractors
+and partners, and passwords,
+
+5
+00:00:13.762 --> 00:00:16.813
+one-time codes and push
+approvals don't qualify.
+
+6
+00:00:16.813 --> 00:00:21.252
+So users learn a PIV card, Windows
+Hello for Business or a passkey,
+
+7
+00:00:21.252 --> 00:00:23.849
+with at least two methods registered.
+
+8
+00:00:23.849 --> 00:00:29.186
+The course has six short modules:
+sign-in; reset and recovery; devices;
+
+9
+00:00:29.186 --> 00:00:34.713
+where files now live; reporting; and
+what the help desk will and won't ask.
+
+10
+00:00:34.713 --> 00:00:39.249
+Password lessons teach length and
+passphrases, not character classes.
+
+11
+00:00:39.249 --> 00:00:41.081
+The last module matters most,
+
+12
+00:00:41.081 --> 00:00:45.125
+because the help desk becomes a
+target the moment users trust it.
+
+13
+00:00:45.125 --> 00:00:50.263
+CISA's Scattered Spider advisory
+describes attackers posing as I T staff.
+
+14
+00:00:50.263 --> 00:00:54.988
+The real help desk never asks for a
+password, a PIN or a code, never asks you to
+
+15
+00:00:54.988 --> 00:00:56.615
+approve a prompt for them,
+
+16
+00:00:56.615 --> 00:01:00.170
+and never sends a pass to an
+address you give on the call.
