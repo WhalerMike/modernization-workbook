@@ -405,8 +405,8 @@ For each month, the pipeline assembles the period's records in the evidence stor
 [^c10-tf-plan]: HashiCorp, "terraform plan command reference," <https://developer.hashicorp.com/terraform/cli/commands/plan> (accessed Oct 20, 2026).
 [^c10-m365dsc-repo]: Microsoft365DSC, repository README, <https://github.com/Microsoft365DSC/Microsoft365DSC> (accessed Oct 20, 2026).
 [^c10-m365dsc-release]: Microsoft365DSC, release 2.26.1015.1, <https://github.com/Microsoft365DSC/Microsoft365DSC/releases> (accessed Oct 20, 2026).
-[^c10-m365dsc-resources]: Microsoft365DSC, DSC resource modules, <https://github.com/Microsoft365DSC/Microsoft365DSC/tree/dev/Modules/Microsoft365DSC/DscResources> (accessed Oct 20, 2026).
-[^c10-m365dsc-pwsh]: Microsoft365DSC, `Show-PwshWarning.ps1` (PowerShell version requirement), <https://github.com/Microsoft365DSC/Microsoft365DSC/blob/dev/Modules/Microsoft365DSC/Show-PwshWarning.ps1> (accessed Oct 20, 2026).
+[^c10-m365dsc-resources]: Microsoft365DSC, DSC resource modules, <https://github.com/Microsoft365DSC/Microsoft365DSC/tree/Dev/Modules/Microsoft365DSC/DscResources> (accessed Oct 21, 2026; the default branch was renamed from `dev` to `Dev`).
+[^c10-m365dsc-pwsh]: Microsoft365DSC, `Show-PwshWarning.ps1` (PowerShell version requirement), <https://github.com/Microsoft365DSC/Microsoft365DSC/blob/Dev/Modules/Microsoft365DSC/Show-PwshWarning.ps1> (accessed Oct 21, 2026).
 [^c10-tcm-concepts]: Microsoft Learn, "Configuration management" (Microsoft Entra Tenant Governance), <https://learn.microsoft.com/entra/id-governance/tenant-governance/configuration-management> (accessed Oct 20, 2026).
 [^c10-tcm-deploy]: Microsoft Learn, "Deploy Microsoft Entra Tenant Governance end to end," <https://learn.microsoft.com/entra/id-governance/tenant-governance/deployment-guide> (accessed Oct 20, 2026).
 [^c10-tcm-entra]: Microsoft Learn, "Supported Microsoft Entra resources for Tenant Configuration Management," <https://learn.microsoft.com/graph/utcm-entra-resources> (accessed Oct 20, 2026).
