@@ -1,0 +1,15 @@
+# Chapter 04 — the three Microsoft 365 government packages on the FedRAMP
+# Marketplace (read October 21, 2026), and the identity pairing Microsoft documents.
+rankdir: TB
+graph: {nodesep: 0.25, ranksep: 0.4}
+nodes:
+  gcc: {tone: green, width: 240, tag: "MSO365MT", title: "M365 Government Community Cloud & Supporting Services", body: ["FedRAMP Certified, Class C (Moderate)", "100 authorizations", "Worldwide endpoint set", "Paired with Entra ID in Azure"], size: 12}
+  gcca: {tone: amber, width: 240, tag: "MSO365MTA", title: "Same name as MSO365MT", body: ["FedRAMP In Process, Class D (High)", "Initial Implementation, 0 authorizations", "Relationship to MSO365MT not stated"], size: 12}
+  gcch: {tone: blue, width: 240, tag: "FR1824057433", title: "M365 Government Community Cloud-High", body: ["FedRAMP Certified, Class D (High)", "5 authorizations", "Own endpoint set", "Paired with Entra ID in Azure Government"], size: 12}
+  gap: {tone: red, width: 600, tag: "Feature availability is a separate axis", title: "Admin center network connectivity: not in GCC, GCC High or DoD", body: ["=Already absent at Class D in GCC High, so a higher class for GCC would not by itself bring it back"], size: 12}
+edges:
+  - [gcc, gap, {tone: red, style: dashed, none: true}]
+  - [gcca, gap, {tone: red, style: dashed, none: true}]
+  - [gcch, gap, {tone: red, style: dashed, none: true}]
+ranks:
+  - [gcc, gcca, gcch]

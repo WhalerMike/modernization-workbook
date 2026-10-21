@@ -1,0 +1,24 @@
+# Chapter 10 — deciding whether an alternative collaboration path fits.
+# Start from where the pain is; check the certification class, then whether
+# the identity plane can provision and federate the suite with drift visible;
+# pilot with coexistence and rollback triggers; record the decision.
+rankdir: TB
+graph: {nodesep: 0.3, ranksep: 0.4}
+nodes:
+  q1: {tone: amber, width: 260, tag: "Question 1", title: "Where is the problem?", body: ["=Collaboration experience, cost or a missing feature, or the identity model?"], size: 12}
+  idfix: {tone: red, width: 230, tag: "Identity problem", title: "Not a suite decision", body: ["=Hierarchy, attribute authority and policy scope stay identity-plane work"], size: 12}
+  q2: {tone: amber, width: 260, tag: "Question 2", title: "Is the suite certified at the class you need?", body: ["=Check the Marketplace listing, not the announcement"], size: 12}
+  stop: {tone: red, width: 230, tag: "No", title: "Compensate or except", body: ["=Use an in-boundary equivalent or a documented exception"], size: 12}
+  q3: {tone: amber, width: 260, tag: "Question 3", title: "Can the identity plane drive it?", body: ["Provisioning and federated sign-in", "Admin accounts outside SSO protected", "Drift between directories reported"], size: 12}
+  pilot: {tone: green, width: 260, tag: "Proceed", title: "Pilot with coexistence", body: ["Adoption measured, not assumed", "Rollback triggers set in advance"], size: 12}
+  rec: {tone: violet, width: 260, tag: "Evidence", title: "Record it in the package", body: ["=Decision, certification class, configuration, integrations"], size: 12}
+ranks:
+  - [idfix, q2]
+edges:
+  - [q1, idfix, {tone: red, label: "identity"}]
+  - [q1, q2, {label: "collaboration"}]
+  - [q2, stop, {tone: red, label: "no"}]
+  - [q2, q3, {tone: green, label: "yes"}]
+  - [q3, pilot, {tone: green, label: "yes"}]
+  - [q3, stop, {tone: red, style: dashed, label: "no"}]
+  - [pilot, rec, {tone: violet}]

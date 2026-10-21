@@ -1,0 +1,26 @@
+# Chapter 09 — the playbook for a capability outside the boundary:
+# inventory and probe, then use it, build an in-boundary equivalent, take a
+# documented exception or choose an alternative path, each ending in one
+# boundary record entry. Maps to the four options in NIST SP 800-37
+# Appendix G (compensate, accept greater risk, change provider, go without).
+rankdir: TB
+graph: {nodesep: 0.25, ranksep: 0.4}
+nodes:
+  need: {tone: slate, width: 420, tag: "Start", title: "A capability the design depends on", body: ["=Named in the provider's own words, per cloud"], size: 12}
+  inv: {tone: violet, width: 420, tag: "Inventory and probe", title: "Register row and capability disposition", body: ["=Citation and evidence class; what the agency's own tenant actually does"], size: 12}
+  use: {kind: pill, tone: green, text: "Works: use it, disposition recorded"}
+  eq: {tone: blue, width: 200, tag: "Compensate", title: "In-boundary equivalent", body: ["=Built inside the boundary; evidence marked derived"], size: 12}
+  ex: {tone: amber, width: 200, tag: "Except", title: "Documented exception", body: ["=Provider's own path with a quoted requirement, or a dated risk acceptance"], size: 12}
+  alt: {tone: slate, width: 200, tag: "Change path", title: "Alternative path", body: ["=Another provider or another way to meet the need (Chapter 10)"], size: 12}
+  rec: {tone: violet, width: 420, tag: "Evidence", title: "One boundary record entry", body: ["=Cited by the SSP, the POA&M and the component definition"], size: 12}
+edges:
+  - [need, inv]
+  - [inv, use, {label: "works", tone: green}]
+  - [inv, eq, {label: "gap", tone: amber, attrs: "minlen=2"}]
+  - [inv, ex, {label: "gap", tone: amber, attrs: "minlen=2"}]
+  - [inv, alt, {label: "gap", tone: amber, attrs: "minlen=2"}]
+  - [eq, rec]
+  - [ex, rec]
+  - [alt, rec]
+order:
+  - [eq, ex, alt]

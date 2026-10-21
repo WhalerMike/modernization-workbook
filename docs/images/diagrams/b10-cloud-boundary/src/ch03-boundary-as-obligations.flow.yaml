@@ -1,0 +1,24 @@
+# Chapter 03 — what "the boundary" means in the Consolidated Rules for 2026:
+# no provider-drawn perimeter, four rule families tagged "boundary", and the
+# only boundary the rules name is the agency's own.
+rankdir: TB
+graph: {nodesep: 0.15, ranksep: 0.4}
+clusters:
+  - id: csp
+    label: "Provider obligations tagged \"boundary\""
+    tone: blue
+    nodes: [mas, cmu, vdr, cds]
+    order: [mas, cmu, vdr, cds]
+nodes:
+  old: {tone: slate, width: 300, tag: "Rev5 package habit", title: "A perimeter the provider draws", body: ["=One impact level stamped across everything inside it"], size: 12}
+  mas: {tone: blue, width: 160, tag: "MAS", title: "Minimum Assessment Scope", body: ["=What is in the offering: resources likely to handle or affect federal customer data"], size: 12}
+  cmu: {tone: blue, width: 160, tag: "CMU", title: "Cryptographic Module Use", body: ["=How federal customer data is protected inside it"], size: 12}
+  vdr: {tone: blue, width: 160, tag: "VDR", title: "Vulnerability Detection and Response", body: ["=How weaknesses are found and handled"], size: 12}
+  cds: {tone: blue, width: 160, tag: "CDS", title: "Certification Data Sharing", body: ["=How the evidence reaches agencies"], size: 12}
+  agency: {tone: violet, width: 420, tag: "The boundary the rules name", title: "The agency's federal information system", body: ["=Includes the certified offering \"in its boundary\"; the agency authorizes it and accepts the risk of its own configuration and integrations"], size: 12}
+edges:
+  - [old, cmu, {style: dashed, tone: slate, label: "replaced by", lw: 100}]
+  - [mas, agency, {tone: violet}]
+  - [cmu, agency, {tone: violet}]
+  - [vdr, agency, {tone: violet}]
+  - [cds, agency, {tone: violet}]

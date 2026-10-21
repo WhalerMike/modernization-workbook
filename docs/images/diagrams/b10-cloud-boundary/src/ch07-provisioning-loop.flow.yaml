@@ -1,0 +1,21 @@
+# Chapter 07 — the landing-zone front door: six steps from catalog request to
+# closed change; a rejected plan is discarded and nothing changes.
+rankdir: TB
+graph: {nodesep: 0.3, ranksep: 0.35}
+nodes:
+  s1: {tone: slate, width: 300, tag: "Step 1", title: "Request", body: ["=Catalog item with typed variables: environment, size, address need, owner, budget, classification"], size: 12}
+  s2: {tone: amber, width: 300, tag: "Step 2", title: "Approve", body: ["=Routed approval; the requester can't approve their own request"], size: 12}
+  s3: {tone: amber, width: 300, tag: "Step 3", title: "Plan", body: ["=Speculative plan reviewed before anything changes"], size: 12}
+  s4: {tone: blue, width: 300, tag: "Step 4", title: "Apply", body: ["=The pipeline applies the reviewed source"], size: 12}
+  s5: {tone: green, width: 300, tag: "Step 5: carries the most weight", title: "Reconcile", body: ["=Allocation written to and checked against the enterprise IPAM; CMDB updated"], size: 12}
+  s6: {tone: violet, width: 300, tag: "Step 6", title: "Close", body: ["=Validation gate; change record and verdict become evidence"], size: 12}
+  rej: {tone: red, width: 220, tag: "Rejected", title: "Run discarded", body: ["=Nothing changes"], size: 12}
+edges:
+  - [s1, s2]
+  - [s2, s3]
+  - [s3, s4, {label: "approved"}]
+  - [s4, s5]
+  - [s5, s6]
+  - [s3, rej, {tone: red, style: dashed, label: "rejected"}]
+ranks:
+  - [s4, rej]

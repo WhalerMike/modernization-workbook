@@ -187,7 +187,7 @@ months after the original audit and verify the bundle hash.
 
 ScubaGear is interesting in GCC-Moderate because it sits **inside the
 boundary** and reads tenant state via in-boundary APIs. Per the
-[Boundary Impact Model](../architecture/boundary-impact-model.md),
+[Boundary Impact Model](../books/b10-cloud-boundary/02-the-invisible-boundary.md),
 this means:
 
 - **Telemetry fidelity:** ScubaGear can read the configuration state

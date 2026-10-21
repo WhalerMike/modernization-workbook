@@ -193,7 +193,7 @@ sequences within that plan:
  canonical claims with full provenance from day one.
 3. **Compensating-enforcement phase.** Where platform features are
  unavailable (especially in GCC-Moderate per the
- [Boundary Impact Model](../architecture/boundary-impact-model.md)),
+ [Boundary Impact Model](../books/b10-cloud-boundary/02-the-invisible-boundary.md)),
  stand up compensating enforcement adapters whose evidence flows
  through the same chain.
 4. **Cutover.** The directory transition is itself a substrate event:

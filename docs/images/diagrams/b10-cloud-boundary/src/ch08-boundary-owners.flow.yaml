@@ -1,0 +1,35 @@
+# Chapter 08 — who decides, who builds and runs, and who supplies the
+# evidence for the agency's cloud boundary. Top row: decision rights
+# (funding and cloud choice, boundary and risk, control requirements).
+# Middle row: the system owner as boundary owner, the cloud platform team
+# and acquisition. Bottom row: workload owners, security operations and
+# the cloud provider. FedRAMP is consulted. This is the program's
+# recommended model, not an external standard.
+rankdir: TB
+graph: {nodesep: 0.15, ranksep: 0.45}
+nodes:
+  spon: {tone: amber, width: 150, tag: "Decides", title: "Sponsor and CIO", body: ["=Funding, choice of cloud, sequence"], size: 12}
+  ao: {tone: amber, width: 150, tag: "Decides", title: "Authorizing official", body: ["=Authorization boundary, residual risk, every exception"], size: 12}
+  ciso: {tone: violet, width: 150, tag: "Decides", title: "CISO and ISSO", body: ["=Control requirements, evidence, provider reports"], size: 12}
+  so: {tone: amber, width: 150, tag: "Keeps the record", title: "System owner", body: ["=Boundary record and authorization package"], size: 12}
+  plat: {tone: blue, width: 150, tag: "Builds and runs", title: "Cloud platform team", body: ["=Landing zone, policy, subscription vending, probe"], size: 12}
+  acq: {tone: slate, width: 150, tag: "Buys", title: "Acquisition and CO", body: ["=Cloud contract, SKU, responsibility terms"], size: 12}
+  wl: {tone: blue, width: 150, tag: "Builds inside", title: "Workload owners", body: ["=Applications in vended subscriptions"], size: 12}
+  soc: {tone: violet, width: 150, tag: "Operates", title: "Security operations", body: ["=Drift detection, provider change notices"], size: 12}
+  csp: {tone: slate, width: 150, tag: "Supplies", title: "Cloud provider", body: ["=Certification package, change notices, configuration guides"], size: 12}
+  frp: {kind: pill, tone: slate, width: 150, text: "FedRAMP receives the agency's ATO letter and handles package conflicts; consulted"}
+edges:
+  - [spon, so, {label: "funding", tone: amber}]
+  - [ao, so, {label: "boundary decision", lw: 70, tone: amber}]
+  - [ciso, so, {label: "requirements", tone: violet}]
+  - [so, plat, {label: "boundary record", lw: 70}]
+  - [plat, acq, {label: "requirements, orders", lw: 70, both: true}]
+  - [plat, wl, {label: "vended subscriptions", lw: 70}]
+  - [plat, soc, {label: "drift, probe results", lw: 70}]
+  - [csp, plat, {label: "configuration guides", lw: 70, style: dashed}]
+  - [ao, frp, {label: "consulted", style: dashed, attrs: "dir=back"}]
+order:
+  - [spon, ao, ciso]
+  - [frp, so]
+  - [csp, plat, acq]
+  - [wl, soc]

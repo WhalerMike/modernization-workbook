@@ -74,7 +74,7 @@ cleanup, cutover, post-cutover.
 ### Phase 3 — boundary treatment
 
 Apply the cloud-boundary pattern (see
-[Cloud Boundary Case Study](cloud-boundary-case-study.md)): boundary
+[Cloud Boundary Case Study](../books/b10-cloud-boundary/01-why-the-boundary-decides.md)): boundary
 probe, in-boundary telemetry, compensating enforcement, ATO
 documentation surface.
 
@@ -162,6 +162,6 @@ is documented when reviewed material is available.
 
 - Executive Governance Series
 - [Identity Case Study](../books/b02-identity/01-why-identity-matters.md)
-- [Cloud Boundary Case Study](cloud-boundary-case-study.md)
+- [Cloud Boundary Case Study](../books/b10-cloud-boundary/01-why-the-boundary-decides.md)
 - Program Vision (canon)
 - Modernization Timeline (canon)

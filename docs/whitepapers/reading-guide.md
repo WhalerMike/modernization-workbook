@@ -120,7 +120,7 @@ BOD-25-01 and CISA SCuBA.
 | [Book 08 — DNS, DHCP & IPAM](../books/b08-ddi/index.md) | Draft | The DNS layer underneath the same Act 4 architecture — split-brain DNS, Universal DDI, Cisco SD-WAN interception. Sibling to the SD-WAN paper, not sequential to it. |
 | [Book 08, Appendix A — DNS Record Types and Ecosystem Integrations](../books/b08-ddi/appendix-a-dns-record-types.md) | Draft | The record-type catalog and ecosystem-integration table — bookmarkable reference, not meant to be read start to finish. |
 | [Field Office WAN Transformation and Distribution Point Consolidation](../books/b09-network/11-field-office-wan-transformation.md) | Draft | A worked capital-planning case built on the SD-WAN and TIC 3.0 arguments above, plus new content neither covers: Configuration Manager distribution-point unit economics against a proposed hardware refresh. Read after the SD-WAN paper; assumes its transport argument and the DNS paper's INR/GCC finding rather than re-deriving either. |
-| [FMP Git Server Interfaces](git-server-interfaces-whitepaper.md) | Draft | Platform deployment surface (Windows Server 2025) — narrower scope, useful once an agency has committed to an FMP deployment rather than during the architecture-decision phase the rest of this track addresses. |
+| [FMP Git Server Interfaces](../books/b10-cloud-boundary/appendix-b-platform-host-interfaces.md) | Draft | Platform deployment surface (Windows Server 2025) — narrower scope, useful once an agency has committed to an FMP deployment rather than during the architecture-decision phase the rest of this track addresses. |
 
 ::: {.callout-note}
 ## One arc, one paper — consolidated 2026-09-09
@@ -174,7 +174,7 @@ alphabetical file list.
 
 1. [Modernization Journey](../books/b01-transformation-arc/01-why-modernization-is-hard.md) — the full arc and the physics argument.
 2. [SD-WAN vs. DIA Under TIC 3.0](../books/b09-network/02-transport-is-physics-control-is-compliance.md) and [Book 08 — DNS, DHCP & IPAM](../books/b08-ddi/index.md) — read in either order; both sit under Act 4 independently.
-3. [FMP Git Server Interfaces](git-server-interfaces-whitepaper.md) — once an FMP deployment is actually being planned.
+3. [FMP Git Server Interfaces](../books/b10-cloud-boundary/appendix-b-platform-host-interfaces.md) — once an FMP deployment is actually being planned.
 
 **An identity/directory team running an AD → Entra ID modernization**
 

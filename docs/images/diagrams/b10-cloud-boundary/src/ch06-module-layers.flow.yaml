@@ -1,0 +1,22 @@
+# Chapter 06 — network as code: five layered modules, each depending only on
+# the layers beneath it, all writing deployed state to the evidence record.
+rankdir: BT
+graph: {nodesep: 0.3, ranksep: 0.4}
+nodes:
+  platform: {tone: blue, width: 250, tag: "Foundation", title: "platform", body: ["=Management groups, subscriptions or accounts, organization policy"], size: 12}
+  ipam: {tone: blue, width: 250, tag: "Addressing", title: "ipam", body: ["=Address-space allocation and subnet plan: the source of truth"], size: 12}
+  ddi: {tone: blue, width: 220, tag: "Naming", title: "ddi", body: ["=Authoritative DNS, DNSSEC, response policy zones, DHCP scopes"], size: 12}
+  network: {tone: blue, width: 220, tag: "Transport", title: "network", body: ["=Hub and spoke, segmentation, firewall and route intent"], size: 12}
+  edge: {tone: green, width: 250, tag: "Enforcement", title: "edge", body: ["=SASE or TIC 3.0 policy enforcement point capabilities"], size: 12}
+  ev: {tone: violet, width: 170, tag: "Evidence", title: "Evidence record", body: ["=Deployed state from every module"], size: 12}
+edges:
+  - [platform, ipam]
+  - [ipam, ddi]
+  - [ipam, network]
+  - [ddi, edge]
+  - [network, edge]
+  - [platform, ev, {tone: violet, style: dashed}]
+  - [ipam, ev, {tone: violet, style: dashed}]
+  - [edge, ev, {tone: violet, style: dashed, label: "deployed state"}]
+order:
+  - [ddi, network]
