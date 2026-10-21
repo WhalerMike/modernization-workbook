@@ -1,0 +1,22 @@
+# Chapter 08 — an owner for each of the Boundary Impact Model's four
+# dimensions, and the drift class each raises when violated. Owners are the
+# program's recommended model; drift classes are the program's taxonomy.
+# Four rows, dimension on the left and owners on the right.
+rankdir: LR
+graph: {nodesep: 0.25, ranksep: 0.5}
+nodes:
+  tel: {tone: violet, width: 240, tag: "DRIFT-SCHEMA, DRIFT-PROVENANCE", title: "Telemetry fidelity", body: ["=Which signals actually arrive on this side?"], size: 12}
+  tel_o: {tone: violet, width: 300, tag: "Owners", title: "CISO decides", body: ["=Platform team runs the boundary probe; security operations runs in-boundary telemetry"], size: 12}
+  idn: {tone: blue, width: 240, tag: "DRIFT-IDENTITY", title: "Identity authority", body: ["=Who can a claim's issuer be resolved to here?"], size: 12}
+  idn_o: {tone: blue, width: 300, tag: "Owners", title: "CISO decides", body: ["=Identity engineering sets and runs the resolution rules"], size: 12}
+  enf: {tone: amber, width: 240, tag: "DRIFT-AUTHZ", title: "Enforcement responsibility", body: ["=Who must enforce this control on this side?"], size: 12}
+  enf_o: {tone: amber, width: 300, tag: "Owners", title: "Authorizing official decides", body: ["=Compensate or accept; the platform team or owning engineering team builds the compensation"], size: 12}
+  prov: {tone: slate, width: 240, tag: "DRIFT-SEMANTIC", title: "Provenance classification", body: ["=Still authoritative here, or only derived?"], size: 12}
+  prov_o: {tone: slate, width: 300, tag: "Owners", title: "ISSO decides", body: ["=How derived evidence is labeled; the system owner keeps the record"], size: 12}
+edges:
+  - [tel, tel_o]
+  - [idn, idn_o]
+  - [enf, enf_o]
+  - [prov, prov_o]
+order:
+  - [tel, idn, enf, prov]

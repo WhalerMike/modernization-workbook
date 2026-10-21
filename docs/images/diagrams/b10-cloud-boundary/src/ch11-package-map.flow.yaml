@@ -1,0 +1,30 @@
+# Chapter 11 — the boundary record as the single source every package
+# artifact cites. Inputs: the provider's certification package and secure
+# configuration guide, and the boundary probe. Outputs: SSP, POA&M,
+# component definition, continuous monitoring, and the authorizing
+# official's decision.
+rankdir: TB
+graph: {nodesep: 0.2, ranksep: 0.4}
+nodes:
+  pkg: {tone: slate, width: 260, tag: "Provider", title: "Certification package", body: ["=Inherited controls, customer responsibilities, secure configuration guide"], size: 12}
+  probe: {tone: slate, width: 260, tag: "Agency", title: "Boundary probe", body: ["=Capability dispositions, rerun on a cadence"], size: 12}
+  rec: {tone: violet, width: 420, tag: "Kept by the system owner", title: "Boundary record", body: ["In-scope services, tenants, subscriptions, connections", "Exclusion register and dispositions", "In-boundary equivalents and evidence class", "Documented exceptions"], size: 12}
+  ssp: {tone: blue, width: 170, tag: "Cites the record", title: "System security plan", body: ["=Boundary, external services, exchanges, narratives"], size: 12}
+  poam: {tone: amber, width: 170, tag: "Cites the record", title: "POA&M", body: ["=Gaps the agency intends to close"], size: 12}
+  cdef: {tone: blue, width: 170, tag: "Cites the record", title: "Component definition", body: ["=Each equivalent, in OSCAL"], size: 12}
+  conmon: {tone: violet, width: 170, tag: "Cites the record", title: "Continuous monitoring", body: ["=Drift findings, provider notices"], size: 12}
+  ao: {tone: green, width: 420, tag: "Decision", title: "Authorizing official", body: ["=Authorization, with signed exceptions"], size: 12}
+edges:
+  - [pkg, rec]
+  - [probe, rec]
+  - [rec, ssp]
+  - [rec, poam]
+  - [rec, cdef]
+  - [rec, conmon]
+  - [ssp, ao]
+  - [poam, ao]
+  - [cdef, ao]
+  - [conmon, ao]
+order:
+  - [pkg, probe]
+  - [ssp, poam, cdef, conmon]

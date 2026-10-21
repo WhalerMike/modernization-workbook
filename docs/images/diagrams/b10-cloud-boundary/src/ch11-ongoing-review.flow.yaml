@@ -1,0 +1,21 @@
+# Chapter 11 — keeping the package current. Provider inputs, probe reruns
+# and drift findings feed one review against the boundary record; only the
+# authorizing official decides whether an item changes the agency's risk.
+rankdir: TB
+graph: {nodesep: 0.25, ranksep: 0.4}
+nodes:
+  prov: {tone: slate, width: 200, tag: "Provider", title: "Change notices and reports", body: ["=Significant change notifications, ongoing certification reports, Quarterly Reviews"], size: 12}
+  probe: {tone: violet, width: 200, tag: "Agency", title: "Probe rerun", body: ["=Dispositions on a cadence"], size: 12}
+  drift: {tone: violet, width: 200, tag: "Agency", title: "Drift findings", body: ["=Each cites the boundary it crossed"], size: 12}
+  rev: {tone: amber, width: 420, tag: "Review", title: "ISSO and the CISO's designated official", body: ["=Does this change a disposition, an equivalent or an exception?"], size: 12}
+  ok: {tone: green, width: 200, tag: "No change in risk", title: "Record updated", body: ["=Package stays current"], size: 12}
+  ao: {tone: amber, width: 200, tag: "May change risk", title: "Authorizing official", body: ["=Significant change, new POA&M entry or new exception"], size: 12}
+edges:
+  - [prov, rev]
+  - [probe, rev]
+  - [drift, rev]
+  - [rev, ok, {label: "no", tone: green}]
+  - [rev, ao, {label: "maybe", tone: amber}]
+order:
+  - [prov, probe, drift]
+  - [ok, ao]

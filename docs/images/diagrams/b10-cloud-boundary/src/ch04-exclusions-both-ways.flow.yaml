@@ -1,0 +1,17 @@
+# Chapter 04 — feature gaps are published one feature at a time, and they don't
+# form a ladder: some features reach GCC and stop there, some miss every
+# government environment.
+rankdir: TB
+graph: {nodesep: 0.25, ranksep: 0.4}
+nodes:
+  ww: {tone: slate, width: 520, tag: "Worldwide commercial", title: "The full feature set", body: ["=GCC rides the same Worldwide endpoints; gaps are documented feature by feature"], size: 12}
+  all: {tone: red, width: 250, tag: "Missing in GCC, GCC High and DoD", title: "Excluded everywhere", body: ["Admin center network connectivity", "Adoption Score", "Office 365 CDN", "Informed network routing"], size: 12}
+  gcconly: {tone: amber, width: 250, tag: "In GCC, not in GCC High or DoD", title: "Excluded further up", body: ["Windows release health", "Word version history", "Excel Office Scripts"], size: 12}
+  reg: {tone: violet, width: 520, tag: "The agency's register", title: "One row per feature, with the citation", body: ["=Feeds the compensate, exception or alternative-path decision in Chapter 09"], size: 12}
+edges:
+  - [ww, all, {tone: red}]
+  - [ww, gcconly, {tone: amber}]
+  - [all, reg, {tone: violet}]
+  - [gcconly, reg, {tone: violet}]
+ranks:
+  - [all, gcconly]

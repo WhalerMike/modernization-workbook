@@ -8,7 +8,7 @@ These narratives illustrate intended modernization behavior using synthetic agen
 
 | Document | Framing |
 |----------|---------|
-| [Cloud Boundary](cloud-boundary.md) | Government-cloud boundary establishment |
+| [Cloud Boundary](../books/b10-cloud-boundary/01-why-the-boundary-decides.md) | Government-cloud boundary establishment |
 | [Federal Modernization](federal-modernization.md) | End-to-end federal agency modernization arc |
 | [AD to Cloud Identity Reference Deployment](../books/b02-identity/01-why-identity-matters.md) | Active Directory to cloud identity plus SQL estate, end-to-end |
 | [HR-Driven Identity — Reference Deployment](../books/b03-hr-identity/13-reference-deployment.md) | Inbound HR provisioning into the cloud identity platform (illustrative) |

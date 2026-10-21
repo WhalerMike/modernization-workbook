@@ -1,0 +1,22 @@
+# Chapter 03 — Significant Change Notification under the Consolidated Rules for
+# 2026: the provider's evaluation order and what each change type owes.
+rankdir: TB
+graph: {nodesep: 0.15, ranksep: 0.4}
+nodes:
+  eval: {tone: slate, width: 520, tag: "SCN-CSO-EVA", title: "Provider evaluates every potential significant change", body: ["=Records of the evaluation kept and available to FedRAMP on request"], size: 12}
+  cls: {tone: red, width: 160, tag: "Class change", title: "Changes the certification class", body: ["=Needs a new assessment; can't be handled as a significant change"], size: 12}
+  rtr: {tone: green, width: 160, tag: "Routine recurring", title: "Regular operations and remediation", body: ["=Exempt: no formal notification"], size: 12}
+  trf: {tone: amber, width: 160, tag: "Transformative", title: "Substantive new risk", body: ["30 business days before: initial plans", "10 business days before: final plans", "5 business days after finishing", "5 business days after verification"], size: 12}
+  adp: {tone: blue, width: 160, tag: "Adaptive", title: "Everything else", body: ["=Notify within 10 business days after finishing"], size: 12}
+  out: {tone: violet, width: 420, tag: "Every notification", title: "Human-readable and JSON, 12 months kept with the certification data", body: ["=Emergency changes may go first and be notified retroactively"], size: 12}
+edges:
+  - [eval, cls, {tone: red}]
+  - [eval, rtr, {tone: green}]
+  - [eval, trf, {tone: amber}]
+  - [eval, adp, {tone: blue}]
+  - [trf, out, {tone: violet}]
+  - [adp, out, {tone: violet}]
+  - [cls, out, {style: invis}]
+  - [rtr, out, {style: invis}]
+ranks:
+  - [cls, rtr, trf, adp]

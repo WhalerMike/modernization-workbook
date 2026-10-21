@@ -1,0 +1,20 @@
+# Book 10 Chapter 01 — what decides whether a cloud feature is usable: the
+# FedRAMP certified offering, the environment's per-feature exclusions and the
+# agency's own authorization, checked in sequence against the product catalog.
+rankdir: TB
+graph: {nodesep: 0.35, ranksep: 0.35}
+nodes:
+  catalog: {tone: slate, width: 280, tag: "What the provider sells", title: "Product catalog and license", body: ["=Commercial documentation describes the full product"], size: 12}
+  portal: {tone: red, width: 250, tag: "The trap", title: "Visible is not usable", body: ["=A feature can appear in the portal and still fail one of the three checks"], size: 12}
+  cert: {tone: blue, width: 300, tag: "Check 1 · FedRAMP", title: "Certified offering", body: ["Is the service part of a certified package?", "At what class? Read the Marketplace listing"], size: 12}
+  env: {tone: amber, width: 300, tag: "Check 2 · Provider", title: "Environment exclusions", body: ["Published per feature for GCC, GCC High, DoD", "Not a ladder: some features are GCC-only"], size: 12}
+  ato: {tone: violet, width: 300, tag: "Check 3 · Agency", title: "Agency's own authorization", body: ["The AO accepts the configuration and integrations", "Agency-installed agents are the agency's to assess"], size: 12}
+  use: {tone: green, width: 300, tag: "Result", title: "What the agency can use", body: ["=The overlap of all three, each row cited"], size: 12}
+edges:
+  - [catalog, cert]
+  - [cert, env]
+  - [env, ato]
+  - [ato, use, {tone: green}]
+  - [catalog, portal, {tone: red, style: dashed}]
+ranks:
+  - [catalog, portal]

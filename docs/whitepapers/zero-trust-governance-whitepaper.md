@@ -216,7 +216,7 @@ constraint: many of the platform-emitted signals that commercial Microsoft
 365 customers use for ZT analytics are **silently unavailable** in
 GCC-Moderate (Endpoint Analytics, Device Health Attestation, Network Fence,
 ARC Server Monitoring). See the
-[Boundary Impact Model](../architecture/boundary-impact-model.md)
+[Boundary Impact Model](../books/b10-cloud-boundary/02-the-invisible-boundary.md)
 and the
 GCC-Moderate Boundary Problem Statement.
 

@@ -1,0 +1,20 @@
+# Chapter 10 — the identity plane and the collaboration plane are separable.
+# Entra ID stays the authoritative identity plane; the collaboration suite is a
+# workload that consumes identity through provisioning and federated sign-in.
+# Whichever suite the agency uses, the agency's own authorization package
+# records the choice and the evidence.
+rankdir: TB
+graph: {nodesep: 0.35, ranksep: 0.4}
+nodes:
+  hr: {tone: slate, width: 200, tag: "Authoritative source", title: "HR and governed attributes", body: ["=Joiner, mover and leaver events"], size: 12}
+  idp: {tone: blue, width: 230, tag: "Identity plane (stays)", title: "Microsoft Entra ID", body: ["Users, groups, attributes", "Conditional Access at sign-in", "Provisioning and sign-in logs"], size: 12}
+  m365: {tone: blue, width: 230, tag: "Collaboration workload", title: "Microsoft 365 GCC", body: ["=Certified Class C (Moderate)"], size: 12}
+  alt: {tone: amber, width: 230, tag: "Collaboration workload", title: "Alternative suite", body: ["=For example, a Class D (High) suite", "Its directory is derived, not authoritative"], size: 12}
+  pkg: {tone: violet, width: 230, tag: "Agency evidence", title: "Authorization package", body: ["Certification class checked", "Configuration and integrations", "Drift between planes reported"], size: 12}
+order: [[m365, alt]]
+edges:
+  - [hr, idp, {label: "attributes"}]
+  - [idp, m365, {tone: blue, label: "native"}]
+  - [idp, alt, {tone: amber, label: "provision + federate"}]
+  - [m365, pkg, {tone: violet, style: dashed}]
+  - [alt, pkg, {tone: violet, style: dashed}]

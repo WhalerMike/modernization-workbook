@@ -59,6 +59,8 @@ website:
             text: "Book 08 — DNS, DHCP & IPAM"
           - href: docs/books/b09-network/index.md
             text: "Book 09 — Network & Transport"
+          - href: docs/books/b10-cloud-boundary/index.md
+            text: "Book 10 — Cloud Boundary & Landing Zone"
       - href: docs/presentations/index.md
         text: "Presentations"
       - text: "About"
@@ -125,6 +127,11 @@ website:
           contents:
             - auto: "docs/books/b09-network/[0-9]*.md"
             - auto: "docs/books/b09-network/appendix-*.md"
+        - section: "Book 10 — Cloud Boundary & Landing Zone"
+          href: docs/books/b10-cloud-boundary/index.md
+          contents:
+            - auto: "docs/books/b10-cloud-boundary/[0-9]*.md"
+            - auto: "docs/books/b10-cloud-boundary/appendix-*.md"
 
   page-footer:
     left: "Federal Modernization Workbook — topic books for federal IT modernization, each framed Why / What / Who / How."

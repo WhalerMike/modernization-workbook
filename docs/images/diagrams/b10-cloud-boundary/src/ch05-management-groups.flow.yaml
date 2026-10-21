@@ -1,0 +1,23 @@
+# Chapter 05 — the baseline Azure landing zone management group hierarchy, with
+# boundary policy assigned at the intermediate root and inherited downward.
+rankdir: TB
+graph: {nodesep: 0.25, ranksep: 0.4}
+nodes:
+  root: {tone: slate, width: 260, tag: "Tenant", title: "Tenant root group", body: ["=Nothing assigned here"], size: 12}
+  inter: {tone: violet, width: 300, tag: "Boundary policy", title: "Intermediate root (agency prefix)", body: ["Allowed locations (deny)", "Allowed resource types (deny)", "FedRAMP compliance initiative (audit)"], size: 12}
+  plat: {tone: blue, width: 200, tag: "Platform", title: "Platform", body: ["Security", "Management", "Connectivity", "Identity"], foot: "One dedicated subscription each", size: 12}
+  lz: {tone: blue, width: 200, tag: "Workloads", title: "Landing zones", body: ["Corp: hub-connected", "Online: internet-facing", "Local: Azure Local"], foot: "Workload subscriptions", size: 12}
+  sand: {tone: amber, width: 200, tag: "Default for new subscriptions", title: "Sandbox", body: ["=Looser policy; isolated from corporate networks"], size: 12}
+  decom: {tone: slate, width: 200, title: "Decommissioned", body: ["=Cancelled subscriptions until deletion"], size: 12}
+  note: {kind: text, width: 240, tone: violet, text: "Policy assigned at a management group is inherited by every subscription below it. Only resources in subscriptions and resource groups are evaluated."}
+edges:
+  - [root, inter]
+  - [inter, plat, {tone: violet}]
+  - [inter, lz, {tone: violet}]
+  - [inter, sand, {tone: violet}]
+  - [inter, decom, {tone: violet}]
+  - [plat, sand, {attrs: "style=invis"}]
+  - [lz, decom, {attrs: "style=invis"}]
+order:
+  - [plat, lz]
+  - [sand, decom, note]

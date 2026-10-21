@@ -123,7 +123,7 @@ GCC-Moderate (the substrate's primary), the two named Commercial
 exceptions per the program decision (Amazon Connect, SailPoint NERM), classified
 boundaries, agency-to-agency federation. Each boundary impacts
 telemetry, identity, enforcement, and provenance per the
-[Boundary Impact Model](../../architecture/boundary-impact-model.md).
+[Boundary Impact Model](../../books/b10-cloud-boundary/02-the-invisible-boundary.md).
 
 The substrate scales across boundaries by treating each as a
 **first-class canonical object** rather than as an implicit

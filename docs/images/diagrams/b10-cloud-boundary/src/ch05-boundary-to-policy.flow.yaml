@@ -1,0 +1,19 @@
+# Chapter 05 — each boundary decision in the authorization package and the
+# landing-zone mechanism that enforces it.
+rankdir: LR
+graph: {nodesep: 0.2, ranksep: 0.7}
+nodes:
+  pkg: {tone: slate, width: 200, tag: "Package", title: "Authorization boundary", body: ["=As written in the system security plan"], size: 12}
+  cloud: {tone: blue, width: 290, tag: "Which cloud", title: "Tenant and subscription choice", body: ["=Azure or Azure Government; both FedRAMP High"], size: 12}
+  region: {tone: green, width: 290, tag: "Which regions", title: "Allowed locations", body: ["=Deny at the intermediate root; add the resource-group variant"], size: 12}
+  svc: {tone: green, width: 290, tag: "Which services", title: "Allowed resource types", body: ["=Deny, checked against Microsoft's audit-scope list; built-in covers only types with tags and location"], size: 12}
+  set: {tone: violet, width: 290, tag: "Which settings", title: "FedRAMP compliance initiative", body: ["=Audit mode; a partial view, not a verdict"], size: 12}
+  exc: {tone: amber, width: 290, tag: "Which exceptions", title: "Policy exemption", body: ["=Mitigated or Waiver, with an expiry and a decision reference"], size: 12}
+edges:
+  - [pkg, cloud]
+  - [pkg, region]
+  - [pkg, svc]
+  - [pkg, set]
+  - [pkg, exc, {tone: amber, style: dashed}]
+order:
+  - [cloud, region, svc, set, exc]

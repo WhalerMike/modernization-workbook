@@ -1,0 +1,26 @@
+# Appendix B — the platform host's interface families. Clients reach one TLS
+# endpoint at IIS (plus Gitea's own SSH listener); Gitea itself listens only on
+# loopback. Identity comes from Active Directory (LDAPS) and Entra ID (OIDC).
+# The cloud management planes run in Azure commercial and are recorded as a
+# documented exception; the GitHub mirror is read-only ingest.
+rankdir: TB
+graph: {nodesep: 0.2, ranksep: 0.4}
+clusters:
+  - {id: host, label: "Platform host, Windows Server 2025", tone: violet, filled: false, nodes: [iis, gitea, local]}
+nodes:
+  clients: {tone: slate, width: 200, tag: "A. Client transport", title: "Contributors and automation", body: ["HTTPS 443 through IIS", "SSH 2222 to Gitea directly"], size: 12}
+  iis: {tone: slate, width: 210, tag: "Reverse proxy", title: "IIS with URL Rewrite and ARR", body: ["TLS, security headers, W3C log"], size: 12}
+  gitea: {tone: green, width: 230, tag: "Source of truth", title: "Gitea on 127.0.0.1:3000", body: ["Web UI, REST API, LFS", "Server-side hooks", "Webhooks out"], size: 12}
+  local: {tone: violet, width: 210, tag: "E. Local management", title: "Signed PowerShell, Gitea CLI", body: ["WinRM 5986 from the admin subnet"], size: 12}
+  ad: {tone: slate, width: 200, tag: "B. Identity", title: "Active Directory", body: ["=LDAPS 636, read-only bind"], size: 12}
+  entra: {tone: blue, width: 200, tag: "B. Identity", title: "Microsoft Entra ID", body: ["=OIDC sign-in with groups claim"], size: 12}
+  azure: {tone: amber, width: 220, tag: "C. Cloud management", title: "Azure Arc, Monitor, Blob", body: ["Azure commercial", "=Documented exception"], size: 12}
+  gh: {tone: slate, width: 200, tag: "F. Outbound", title: "GitHub upstream", body: ["=Read-only pull mirror"], size: 12}
+edges:
+  - [clients, iis, {label: "443"}]
+  - [clients, gitea, {style: dashed, label: "2222"}]
+  - [iis, gitea, {label: "loopback"}]
+  - [gitea, ad, {label: "LDAPS"}]
+  - [gitea, entra, {tone: blue, label: "OIDC"}]
+  - [local, azure, {tone: amber, label: "D. telemetry, backup"}]
+  - [gitea, gh, {style: dashed, label: "fetch"}]

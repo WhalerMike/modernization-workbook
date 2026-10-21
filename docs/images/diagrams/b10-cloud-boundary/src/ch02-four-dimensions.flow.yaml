@@ -1,0 +1,16 @@
+# Book 10 Chapter 02 — the program's four impact dimensions of a boundary, the
+# drift class each raises when violated, and the detection status recorded on
+# the workbook's Drift Engine page. Adapted from
+# architecture/src/boundary-impact-four-dimensions.flow.yaml (status column added).
+rankdir: TB
+nodes:
+  t:
+    kind: table
+    tone: slate
+    columns: ["Impact dimension", "What changes across the boundary", "Drift class on violation", "Detection"]
+    widths: [160, 250, 200, 110]
+    rows:
+      - [{text: "Telemetry fidelity", tone: blue}, "Which signals are actually available on this side", "`DRIFT-SCHEMA` (missing fields), `DRIFT-PROVENANCE` (broken chain)", {text: "Shipped", tone: green}]
+      - [{text: "Identity authority", tone: blue}, "Who the issuer of a claim can be resolved to here", "`DRIFT-IDENTITY`", {text: "Design only", tone: amber}]
+      - [{text: "Enforcement responsibility", tone: blue}, "Who must enforce the control on this side: platform or agency", "`DRIFT-AUTHZ`", {text: "Design only", tone: amber}]
+      - [{text: "Provenance classification", tone: blue}, "Whether the claim is still authoritative here, or only derived", "`DRIFT-SEMANTIC`", {text: "Partial target", tone: amber}]

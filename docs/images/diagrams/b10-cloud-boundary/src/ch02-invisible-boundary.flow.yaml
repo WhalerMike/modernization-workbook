@@ -1,0 +1,17 @@
+# Book 10 Chapter 02 — the GCC invisible-boundary example, corrected against
+# Microsoft Learn (Oct 21, 2026): one of the five features is a documented GCC
+# gap; four are not. Adapted from
+# architecture/src/boundary-impact-invisible-boundary.flow.yaml.
+rankdir: TB
+graph: {nodesep: 0.3, ranksep: 0.4}
+nodes:
+  portal: {tone: slate, width: 300, tag: "What the portal and commercial docs suggest", title: "Five features said to be missing", body: ["Endpoint analytics", "Device Health Attestation", "Locations / network fence", "Arc server monitoring", "Expedited updates"], size: 12}
+  real: {tone: red, width: 280, tag: "Documented unavailable in GCC", title: "Real GCC gaps", body: ["Admin-center network connectivity, incl. Locations", "Informed network routing", "Adoption Score", "Office 365 CDN"], size: 12}
+  notgcc: {tone: amber, width: 280, tag: "Checked and corrected", title: "Not GCC gaps", body: ["Endpoint analytics: available (Intune GCC is the commercial instance)", "Health attestation, expedited updates: GCC High and DoD gaps", "Arc: an Azure service in Azure's FedRAMP High scope"], size: 12}
+  comp: {tone: blue, width: 300, tag: "In-boundary mechanisms", title: "How the real gaps are answered", body: ["Boundary probe: test what actually works", "In-boundary telemetry, marked derived", "Compensating enforcement by the agency", "One documentation surface the SSP, POA&M and component definition cite"], size: 12}
+edges:
+  - [portal, real, {tone: red, style: dashed, label: "documented per feature", lw: 150}]
+  - [portal, notgcc, {tone: amber, label: "checked and corrected", lw: 150}]
+  - [real, comp, {tone: blue}]
+ranks:
+  - [real, notgcc]

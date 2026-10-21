@@ -40,7 +40,7 @@ redirects:
   docs/platform/active-governance.html: index.html
 
   # Modernization Specs: nested copies merged into the flat specs.
-  docs/modernization-specs/cloud/cloud.html: docs/modernization-specs/cloud.html
+  docs/modernization-specs/cloud/cloud.html: docs/books/b10-cloud-boundary/05-the-landing-zone.html
   docs/modernization-specs/identity/identity.html: docs/books/b02-identity/appendix-a-federal-requirements-crosswalk.html
   docs/modernization-specs/sase/sase.html: docs/books/b09-network/05-sd-wan-sase-and-governed-transport.html
   docs/modernization-specs/sdwan/sdwan.html: docs/books/b09-network/05-sd-wan-sase-and-governed-transport.html
@@ -261,3 +261,12 @@ redirects:
   docs/operational-guides/client-server-to-hybrid-cloud/00-introduction.html: docs/books/b01-transformation-arc/02-the-problem.html
   docs/operational-guides/client-server-to-hybrid-cloud/01-platform-foundation.html: docs/books/b01-transformation-arc/03-platform-foundation.html
   docs/operational-guides/client-server-to-hybrid-cloud/02-legacy-ingestion.html: docs/books/b01-transformation-arc/10-analyzing-the-estate.html
+
+  # Book 10 (Cloud Boundary & Landing Zone) replaced these pages; sources are in archive/b10-cloud-boundary/.
+  docs/architecture/boundary-impact-model.html: docs/books/b10-cloud-boundary/02-the-invisible-boundary.html
+  docs/case-studies/cloud-boundary-case-study.html: docs/books/b10-cloud-boundary/01-why-the-boundary-decides.html
+  docs/case-studies/cloud-boundary.html: docs/books/b10-cloud-boundary/01-why-the-boundary-decides.html
+  docs/whitepapers/fedramp-20x-and-the-commercial-feature-gap.html: docs/books/b10-cloud-boundary/03-what-changed-at-fedramp.html
+  docs/case-studies/google-workspace-collaboration-path.html: docs/books/b10-cloud-boundary/10-alternative-collaboration-paths.html
+  docs/modernization-specs/cloud.html: docs/books/b10-cloud-boundary/05-the-landing-zone.html
+  docs/whitepapers/git-server-interfaces-whitepaper.html: docs/books/b10-cloud-boundary/appendix-b-platform-host-interfaces.html
