@@ -1,6 +1,6 @@
 # Book 00 Chapter 02 — the workbook's eighteen books in five reading groups
-# (the program's own grouping). Blue = published as a draft book; slate =
-# planned, no pages yet. Status from docs/books/index.md on October 22, 2026.
+# (the program's own grouping). Blue = published as a draft book; all
+# eighteen are published. Status from docs/books/index.md on October 22, 2026.
 rankdir: TB
 graph: {nodesep: 0.12, ranksep: 0.3}
 clusters:
@@ -15,7 +15,7 @@ nodes:
   b02: {tone: blue, width: 128, tag: "B02", title: "Identity & Directory", size: 11}
   b03: {tone: blue, width: 128, tag: "B03", title: "HR-Driven Identity", size: 11}
   b04: {tone: blue, width: 128, tag: "B04", title: "Access & Privilege", size: 11}
-  b17: {tone: slate, width: 128, tag: "B17 · planned", title: "AI Identity Governance", size: 11}
+  b17: {tone: blue, width: 128, tag: "B17", title: "AI Identity Governance", size: 11}
   b05: {tone: blue, width: 128, tag: "B05", title: "Devices & Endpoints", size: 11}
   b06: {tone: blue, width: 128, tag: "B06", title: "Data Platform", size: 11}
   b07: {tone: blue, width: 128, tag: "B07", title: "PKI & Certificates", size: 11}

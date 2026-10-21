@@ -58,7 +58,7 @@ Appendix: [A — The curriculum map: role, book and track](appendix-a-curriculum
 
 ## Where this book sits in the workbook
 
-This is Book 16 of the [Federal Modernization Workbook](../index.md). The training controls and their evidence (AT-2, AT-3, AT-4, IR-2, CP-3) are in [Book 14, Chapter 09](../b14-compliance/09-training-and-awareness-controls.md); the roles people are trained for are in [Book 00](../b00-orientation/07-who-runs-the-program.md), [Book 01](../b01-transformation-arc/09-who-leads-the-transformation.md), [Book 13](../b13-governance/09-who-governs.md), [Book 14](../b14-compliance/10-who-owns-compliance.md) and [Book 15](../b15-day2-operations/10-who-runs-day-two.md); and the phases and gates training aligns to are in [Book 01, Chapter 12](../b01-transformation-arc/12-migration-roadmap.md). The last book, Book 17 on AI identity governance, is planned ([book list](../index.md)).
+This is Book 16 of the [Federal Modernization Workbook](../index.md). The training controls and their evidence (AT-2, AT-3, AT-4, IR-2, CP-3) are in [Book 14, Chapter 09](../b14-compliance/09-training-and-awareness-controls.md); the roles people are trained for are in [Book 00](../b00-orientation/07-who-runs-the-program.md), [Book 01](../b01-transformation-arc/09-who-leads-the-transformation.md), [Book 13](../b13-governance/09-who-governs.md), [Book 14](../b14-compliance/10-who-owns-compliance.md) and [Book 15](../b15-day2-operations/10-who-runs-day-two.md); and the phases and gates training aligns to are in [Book 01, Chapter 12](../b01-transformation-arc/12-migration-roadmap.md). The last book, [Book 17, AI Identity Governance](../b17-ai-identity/index.md), applies the same discipline to AI agents and their owners.
 
 ## Chapters
 

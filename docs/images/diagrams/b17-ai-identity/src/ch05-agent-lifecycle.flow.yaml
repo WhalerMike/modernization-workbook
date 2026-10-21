@@ -1,0 +1,26 @@
+# Book 17 Chapter 05 — the AI identity lifecycle. Creation with a named
+# sponsor and an inventory record (joiner); operation on access packages with
+# end dates; sponsor or organization change carried by the Lifecycle Workflows
+# sponsorship tasks and confirmed by the new sponsor (mover); recertification at
+# each expiry (extend with a new approval, or let lapse); retirement by disable
+# then delete with a 30-day soft-delete window (leaver). An agent whose anchors
+# fail is orphaned and suspended. Platform behavior from Microsoft Learn
+# (Agent ID administrative relationships, access packages for agents, sponsor
+# tasks, agent identity deletion); triggers and grace periods are program design.
+rankdir: TB
+graph: {nodesep: 0.4, ranksep: 0.3}
+nodes:
+  create: {tone: blue, width: 430, tag: "Joiner", title: "Create", body: ["Inventory record and purpose; sponsor is a federal employee", "Technical owner named; one identity per agent from a governed blueprint"], size: 11}
+  operate: {tone: blue, width: 430, title: "Operate", body: ["=Access only through access packages with an end date, never standing direct grants"], size: 11}
+  mover: {tone: amber, width: 430, tag: "Mover", title: "Sponsor or organization changes", body: ["=Workflow notifies and transfers sponsorship; new sponsor confirms within the grace period"], size: 11}
+  recert: {tone: violet, width: 430, title: "Recertify", body: ["=At each expiry the sponsor extends, with a new approval, or lets access lapse"], size: 11}
+  retire: {tone: slate, width: 430, tag: "Leaver", title: "Retire", body: ["=Disable first, then delete; record the decision; restore only within 30 days"], size: 11}
+  orphan: {tone: red, width: 230, title: "Orphaned", body: ["No confirmed sponsor", "No owner", "No activity", "Blueprint deleted"], size: 11}
+edges:
+  - [create, operate, {tone: blue}]
+  - [operate, mover, {tone: amber}]
+  - [mover, recert, {tone: violet}]
+  - [recert, retire, {tone: slate}]
+  - [mover, orphan, {label: "no successor confirmed", style: dashed, tone: red}]
+  - [recert, orphan, {label: "no attestation", style: dashed, tone: red}]
+  - [orphan, retire, {label: "suspend, then decide", tone: red}]

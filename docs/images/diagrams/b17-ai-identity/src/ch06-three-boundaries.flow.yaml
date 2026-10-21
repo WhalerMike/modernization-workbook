@@ -1,0 +1,23 @@
+# Book 17 Chapter 06 — three boundaries on what an agent can call: the
+# identity layer (consents, app roles, expiring access packages; MCP servers
+# validate token audience), the tool registry (Agent 365 Tools page, approval
+# and consent), and the data layer (Purview for agents where available; scoped
+# permissions in GCC, where the Purview agent features aren't listed). API keys
+# and unauthenticated or local servers sit outside all three. Platform facts
+# from Microsoft Learn (Conditional Access for agents; Agent 365 service
+# description; manage MCP servers) and the MCP authorization specification;
+# the layering is program design.
+rankdir: TB
+graph: {nodesep: 0.4, ranksep: 0.3}
+nodes:
+  call: {tone: slate, width: 400, title: "An agent wants to call a tool", size: 12}
+  l1: {tone: blue, width: 400, tag: "Layer 1", title: "Identity", body: ["Consents, app roles and expiring access packages", "MCP servers must validate the token audience"], size: 11}
+  l2: {tone: violet, width: 400, tag: "Layer 2", title: "Tool registry", body: ["Approved, consented servers on the Tools page", "Recorded per agent in the inventory"], size: 11}
+  l3: {tone: amber, width: 400, tag: "Layer 3", title: "Data", body: ["Labels and data loss prevention for agents where available", "In GCC, scoped permissions are the only data boundary"], size: 11}
+  out: {tone: red, width: 230, title: "Outside every layer", body: ["API keys", "Unauthenticated or local servers", "=The finding is drift"], size: 11}
+edges:
+  - [call, l1]
+  - [l1, l2]
+  - [l2, l3]
+  - [l1, out, {label: "skips Entra ID", style: dashed, tone: red}]
+  - [l2, out, {label: "unregistered server", style: dashed, tone: red}]

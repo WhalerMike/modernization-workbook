@@ -131,7 +131,7 @@ The book follows the same Why / What / Who / How shape as the others.
 - **How.** [Chapter 09](09-building-and-running-the-curriculum.md) covers building and running the curriculum, and [Chapter 10](10-measuring-readiness.md) covers measuring readiness and evidencing it.
 - **Appendix.** [Appendix A](appendix-a-curriculum-map.md) maps each role to the books it needs and the track that teaches them.
 
-The book after this one, Book 17, AI Identity Governance, is planned and listed on the [workbook index](../index.md). It extends the same question to a new kind of worker: AI agents that act in the estate need identities, owners and rules, and the people who own them need to know what those rules are.
+The book after this one, [Book 17, AI Identity Governance](../b17-ai-identity/index.md), extends the same question to a new kind of worker: AI agents that act in the estate need identities, owners and rules, and the people who own them need to know what those rules are.
 
 ## What changes, in one table
 

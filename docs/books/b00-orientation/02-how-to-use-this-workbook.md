@@ -26,13 +26,13 @@ The workbook grew the way most program material grows: as whitepapers, operation
 
 The books fix that. Each book takes one topic, consolidates every page the workbook had on it into an ordered reading sequence, checks every external claim against a primary source as of the day it was built, and replaces the earlier pages. This chapter explains how the books are built so that a reader can use them with confidence, and so that a reader who finds a problem knows where to look.
 
-![The Federal Modernization Workbook's eighteen books in five groups: orientation and the transformation arc, identity and access, the estate, boundary and assurance, and running the modernized estate.](../../images/diagrams/b00-orientation/svg/ch02-map-of-the-books.svg){#fig-ch02-map-of-the-books fig-alt="Five groups of book cards. Orientation and arc: Book 00, Orientation and Program, why modernize and why now; Book 01, The Transformation Arc, why modernization is so hard. Identity and access: Book 02, Identity and Directory; Book 03, HR-Driven Identity; Book 04, Access and Privilege; Book 17, AI Identity Governance, planned. The estate: Book 05, Devices and Endpoints; Book 06, Data Platform, SQL Server identity; Book 07, PKI and Certificates; Book 08, DNS, DHCP and IPAM; Book 09, Network and Transport. Boundary and assurance: Book 10, Cloud Boundary and Landing Zone; Book 11, Zero Trust and Assessment; Book 14, Federal Compliance and Authorization. Running it: Book 12, Security Operations and Telemetry; Book 13, Governance, Drift and Evidence; Book 15, Compliance Automation and Day-2 Operations; Book 16, People, Training and Education. Published books are blue; planned books are slate."}
+![The Federal Modernization Workbook's eighteen books in five groups: orientation and the transformation arc, identity and access, the estate, boundary and assurance, and running the modernized estate.](../../images/diagrams/b00-orientation/svg/ch02-map-of-the-books.svg){#fig-ch02-map-of-the-books fig-alt="Five groups of book cards. Orientation and arc: Book 00, Orientation and Program, why modernize and why now; Book 01, The Transformation Arc, why modernization is so hard. Identity and access: Book 02, Identity and Directory; Book 03, HR-Driven Identity; Book 04, Access and Privilege; Book 17, AI Identity Governance. The estate: Book 05, Devices and Endpoints; Book 06, Data Platform, SQL Server identity; Book 07, PKI and Certificates; Book 08, DNS, DHCP and IPAM; Book 09, Network and Transport. Boundary and assurance: Book 10, Cloud Boundary and Landing Zone; Book 11, Zero Trust and Assessment; Book 14, Federal Compliance and Authorization. Running it: Book 12, Security Operations and Telemetry; Book 13, Governance, Drift and Evidence; Book 15, Compliance Automation and Day-2 Operations; Book 16, People, Training and Education. All eighteen books are published, shown in blue."}
 
 ## Eighteen books
 
 The workbook is organized as eighteen books, numbered B00 to B17. Book 00, this one, is the front door: it makes the case for modernizing now and sets out the program that the other books carry out. Book 01 tells the end-to-end transformation arc from client/server to hybrid cloud. Books 02 to 17 each take one domain in depth.
 
-The numbering follows the dependency chain [Chapter 01](01-why-modernize-now.md) describes. Identity comes first because every later decision depends on it; the estate's infrastructure follows; boundary, assurance and operations come after. The map above groups the books that way, and the [book index](../index.md) lists them with their status. Books marked *planned* have no pages yet; their source material is still in the [repository](https://github.com/WhalerMike/modernization-workbook), and published chapters link to it there until the book is built.
+The numbering follows the dependency chain [Chapter 01](01-why-modernize-now.md) describes. Identity comes first because every later decision depends on it; the estate's infrastructure follows; boundary, assurance and operations come after. The map above groups the books that way, and the [book index](../index.md) lists them with their status.
 
 The books are written to be read in any order. Each one states what it assumes and links to the book that carries a topic in depth rather than repeating it. When two books touch the same subject, one is the authoritative home and the other links to it. Book 01, for example, is the canonical source for the program's phases and gates, and every other book, including this one, uses its phase names.
 
@@ -161,9 +161,9 @@ Training and education have their own book, [Book 16, People: Training & Educati
 | B14 | [Federal Compliance & Authorization](../b14-compliance/index.md) | Why does every control need proof, not a promise? | Boundary and assurance |
 | B15 | [Compliance Automation & Day-2 Operations](../b15-day2-operations/index.md) | Why does modernization succeed or fail at the help desk? | Running it |
 | B16 | [People: Training & Education](../b16-people/index.md) | Why do people, not tools, close the gap? | Running it |
-| B17 | AI Identity Governance (planned) | Why do AI agents need identities and owners? | Identity and access |
+| B17 | [AI Identity Governance](../b17-ai-identity/index.md) | Why do AI agents need identities and owners? | Identity and access |
 
-The planned books are listed on the [book index](../index.md), which shows each book's status as it is built.
+The [book index](../index.md) shows each book's status and when it was last updated.
 
 ## If you find a problem
 

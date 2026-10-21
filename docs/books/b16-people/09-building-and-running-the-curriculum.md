@@ -119,7 +119,7 @@ The program's design makes the link between a module and its sources explicit an
 - **Versions are recorded, not overwritten.** Each revision gets a new course version in the learning management system. Completions stay attached to the version that was taken, so the record shows who was trained on the old procedure and may need the update.
 - **Incidents and audit findings feed the same queue.** AT-2 and AT-3 both ask that lessons learned from security incidents or breaches be incorporated into training.[^c09-sp80053] A finding from an exercise or an incident is a change event like any other, routed to the module that should have prevented it.
 
-New books add modules the same way. Book 17, AI Identity Governance, is planned ([the workbook index](../index.md)); when it is published, its chapters enter the curriculum map with owners and a refresh cadence, and nothing about the process changes.
+New books add modules the same way. [Book 17, AI Identity Governance](../b17-ai-identity/index.md), is the latest example: its chapters enter the curriculum map with owners and a refresh cadence, and nothing about the process changes.
 
 ## What the learning management system records
 

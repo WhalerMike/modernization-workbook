@@ -1,0 +1,28 @@
+# Book 17 Chapter 07 — where shadow AI shows up and which kind of tool sees
+# it. Four surfaces: staff using generative AI services, applications that
+# hold consented access to agency data, agents running on endpoints or
+# reaching the internet, and AI workloads built in the agency's own cloud
+# subscriptions. Each discovery result is reconciled with the identity
+# record: a match is a governed system, no match is a shadow finding. Tool
+# examples and their release stages are from Microsoft Learn; the
+# reconciliation is program design.
+rankdir: TB
+graph: {nodesep: 0.2, ranksep: 0.4}
+nodes:
+  saas: {tone: slate, width: 165, tag: "People", title: "Generative AI services in use", body: ["=Cloud app discovery; network discovery"], size: 11}
+  oauth: {tone: slate, width: 165, tag: "Consent", title: "Apps holding granted access", body: ["=Consent inventory; app governance"], size: 11}
+  agents: {tone: slate, width: 165, tag: "Agents", title: "Local and network-visible agents", body: ["=Endpoint discovery; network discovery (preview)"], size: 11}
+  cloud: {tone: slate, width: 165, tag: "Workloads", title: "AI built in agency clouds", body: ["=Cloud posture discovery of AI services"], size: 11}
+  rec: {tone: violet, width: 420, title: "Reconcile with the identity record", body: ["=Match on the identity record key, not on a display name"], size: 11}
+  ok: {tone: green, width: 200, title: "Governed", body: ["=Record, owner and authorization all present"], size: 11}
+  sh: {tone: red, width: 200, title: "Shadow AI finding", body: ["=No record: P1 if it acts with credentials"], size: 11}
+edges:
+  - [saas, rec]
+  - [oauth, rec]
+  - [agents, rec]
+  - [cloud, rec]
+  - [rec, ok, {tone: green, label: "match"}]
+  - [rec, sh, {tone: red, label: "no match"}]
+order:
+  - [saas, oauth, agents, cloud]
+  - [ok, sh]

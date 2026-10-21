@@ -1,0 +1,19 @@
+# Book 17 Chapter 01 — the program's model: the seven things every AI
+# system that holds access needs, what each means, and where this book
+# builds it. Program design, not a federal requirement; the controls
+# behind each row (AC-2, IA-4, IA-5, AC-6, CA-7) are SP 800-53 Rev. 5.
+rankdir: TB
+nodes:
+  t:
+    kind: table
+    tone: violet
+    columns: ["Every AI identity needs", "What it means", "Built in"]
+    widths: [205, 345, 170]
+    rows:
+      - ["An identity record", "One record per AI system, joined to its inventory entry and its accounts", "Chapters 03 and 04"]
+      - ["An accountable human owner", "A named person who answers for the system and can be found in HR records", "Chapter 05"]
+      - ["An organizational placement", "The office that owns the mission it serves", "Chapters 03 and 05"]
+      - [{text: "Credentials without stored secrets", tone: blue}, {text: "Managed identity or federation first; least privilege; no standing broad grants", tone: blue}, {text: "Chapter 06", tone: blue}]
+      - ["Monitoring and drift detection", "Sign-ins and actions logged; unowned or changed access found and routed", "Chapter 07"]
+      - ["A lifecycle that ends", "Joiner, mover and leaver for the system and for its owner", "Chapter 05"]
+      - [{text: "Evidence the authorizing official can use", tone: green}, {text: "Records that show the controls ran, inside the existing authorization", tone: green}, {text: "Chapter 10", tone: green}]

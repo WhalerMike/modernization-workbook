@@ -1,6 +1,6 @@
 ---
 title: "Chapter 12 — The Series as a Map: Which Volume and Book Closes Each Control"
-description: "A reader's map of the Federal Compliance series: for each volume, what it covers, which workbook book now carries it (Books 00 to 16, and the planned Book 17), and which control families it claims closure for; what the agency's first assessment can be expected to find before the program; and the residual compliance risk an agency should expect even with the whole program in place."
+description: "A reader's map of the Federal Compliance series: for each volume, what it covers, which workbook book now carries it (Books 00 to 17), and which control families it claims closure for; what the agency's first assessment can be expected to find before the program; and the residual compliance risk an agency should expect even with the whole program in place."
 doc-type: workbook-chapter
 audience: [Executive, Technical, Customer]
 family: b14-compliance
@@ -52,7 +52,7 @@ Three conventions apply to everything below.
 | IX. Day-2 operations | The governed catalog: help desk requests, the landing zone front door, application registration, telephony, SaaS integration and identity governance | [Book 15](../b15-day2-operations/index.md); front door in Book [10](../b10-cloud-boundary/index.md); application registration and identity governance in Book [04](../b04-access/index.md) | No new closures; it re-expresses AC-2, AC-5, AC-6, IA-4, IA-5, CM-2, CM-3, CM-8, SA-9, CA-3, AU-2 as governed requests |
 | X. Governance platform integration | How the series' evidence lands on a governance platform, and why that binding is optional | Book [13](../b13-governance/index.md) | No new closures; it routes and explains |
 
-Book 17, AI Identity Governance, is planned ([book list](../index.md)) and has no volume behind it; its material is new.
+[Book 17, AI Identity Governance](../b17-ai-identity/index.md), has no volume behind it; its material is new.
 
 ### Where the full volumes still are
 

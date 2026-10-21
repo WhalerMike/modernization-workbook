@@ -1,0 +1,22 @@
+# Book 17 Chapter 08 — two decision tracks meet on one AI system. The AI
+# use-case track under OMB M-25-21 (inventory, high-impact determination,
+# impact assessment and its risk acceptance, waivers) runs through the Chief
+# AI Officer and the official accountable for the use case. The information
+# system authorization track (security categorization, controls, assessment,
+# authorization to operate) runs through the system owner and the
+# authorizing official. M-25-21 says the AI risk process is separate from,
+# and doesn't supersede, system authorization. Both tracks read the same
+# identity record. Arrangement is program design.
+rankdir: TB
+graph: {nodesep: 0.3, ranksep: 0.4}
+nodes:
+  ai: {tone: violet, width: 260, tag: "AI use-case track (M-25-21)", title: "Chief AI Officer", body: ["Inventory and high-impact determination", "Waivers, not delegable", "Accountable official signs the impact assessment"], size: 11}
+  ato: {tone: amber, width: 260, tag: "Authorization track (RMF)", title: "Authorizing official", body: ["Authorization to operate before deployment", "Alone accepts security and privacy risk", "Ongoing authorization"], size: 11}
+  sys: {tone: blue, width: 420, title: "One AI system, one identity record", body: ["=Owner, sponsor, placement, credentials, permissions, authorization and PIA references"], size: 11}
+  no: {kind: pill, tone: red, text: "Neither decision stands in for the other"}
+edges:
+  - [ai, sys, {tone: violet}]
+  - [ato, sys, {tone: amber}]
+  - [sys, no, {style: dashed}]
+order:
+  - [ai, ato]

@@ -1,0 +1,28 @@
+# Book 17 Chapter 07 — monitoring AI identities joins three sources. The
+# declared side is the inventory entry and the AI system's identity record;
+# the observed side is the sign-in, audit and risk signal for identities the
+# agency knows about; the discovered side is what discovery tools find that
+# nobody declared. The comparison raises drift findings with a severity,
+# and each finding becomes a record in the evidence contract. Program design
+# on Book 12 Chapter 02 and Book 13 Chapter 06; signals from Microsoft Learn.
+rankdir: TB
+graph: {nodesep: 0.25, ranksep: 0.4}
+nodes:
+  dec: {tone: green, width: 220, tag: "Declared", title: "Inventory entry and identity record", body: ["Owner, sponsor, placement", "Authorization and PIA references"], size: 11}
+  obs: {tone: blue, width: 220, tag: "Observed", title: "Sign-in, audit and risk signals", body: ["Workload and agent sign-ins", "Credential and permission changes", "Risky workload identities and agents"], size: 11}
+  dis: {tone: amber, width: 220, tag: "Discovered", title: "What nobody declared", body: ["Generative AI apps in use", "Consented AI apps", "Local and cloud-built agents"], size: 11}
+  cmp: {tone: violet, width: 420, title: "Compare and classify", body: ["=Each gap is a drift finding with a class, a severity and an owner"], size: 11}
+  p1: {tone: red, width: 200, tag: "P1", title: "Halt and alert", body: ["=Never fixed automatically; a named person decides"], size: 11}
+  p2: {tone: amber, width: 200, tag: "P2 to P4", title: "On the clock", body: ["=Routed to the owner with a window"], size: 11}
+  ev: {kind: pill, tone: violet, text: "One evidence record per finding;\ncloses only on re-observation"}
+edges:
+  - [dec, cmp, {tone: green}]
+  - [obs, cmp, {tone: blue}]
+  - [dis, cmp, {tone: amber}]
+  - [cmp, p1, {tone: red}]
+  - [cmp, p2, {tone: amber}]
+  - [p1, ev, {style: dashed}]
+  - [p2, ev, {style: dashed}]
+order:
+  - [dec, obs, dis]
+  - [p1, p2]

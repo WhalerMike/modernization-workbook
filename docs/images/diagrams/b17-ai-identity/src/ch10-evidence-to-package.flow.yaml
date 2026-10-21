@@ -1,0 +1,20 @@
+# Book 17 Chapter 10 — how AI identity evidence reaches the authorization
+# package. Five evidence areas (program design) map to OSCAL 1.2.3 SSP
+# structures (system-implementation users with authorized-privileges, components
+# with status states under-development / operational / disposition) and to the
+# assessment layer (observations, findings, POA&M). The AO alone accepts risk
+# (SP 800-37 Rev. 2, Task R-4).
+rankdir: LR
+graph: {nodesep: 0.25, ranksep: 0.35}
+nodes:
+  ev: {tone: violet, width: 196, tag: "Evidence areas", title: "The identity record", body: ["Owner and sponsor", "Credentials", "Permissions", "Monitoring", "Lifecycle and end date"], size: 11}
+  ssp: {tone: blue, width: 196, tag: "OSCAL SSP", title: "What the system is", body: ["Component per AI system, with status", "User per identity, with privileges", "Responsible roles named"], size: 11}
+  ar: {tone: blue, width: 196, tag: "OSCAL assessment layer", title: "How it is doing", body: ["Observations from logs and scans", "Findings with evidence links", "POA&M items for open gaps"], size: 11}
+  ao: {tone: green, width: 196, title: "Authorizing official", body: ["=Reads the package, accepts or rejects the risk; can't delegate the decision"], size: 11}
+edges:
+  - [ev, ssp, {label: "describes"}]
+  - [ev, ar, {label: "proves"}]
+  - [ssp, ao]
+  - [ar, ao]
+order:
+  - [ssp, ar]

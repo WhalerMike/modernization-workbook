@@ -1,0 +1,28 @@
+# Book 17 Chapter 08 — one AI identity, several owners, each for a different
+# question. The sponsor answers whether the agent should still exist and what
+# it is for; the technical owner keeps its configuration and credentials;
+# the system owner decides what it may reach; the identity governance
+# officer decides consent and keeps ownership current; security operations
+# decides whether its behavior is an incident; the authorizing official
+# alone accepts residual risk. Sponsor and owner semantics from Microsoft
+# Entra Agent ID; the rest is program design on Books 04, 12, 13 and 14.
+rankdir: TB
+graph: {nodesep: 0.2, ranksep: 0.35}
+nodes:
+  sp: {tone: green, width: 220, tag: "Why it exists", title: "Sponsor", body: ["=Purpose, renewal, removal; an agency employee"], size: 11}
+  to: {tone: blue, width: 220, tag: "How it is built", title: "Technical owner", body: ["=Configuration and credentials; may be a contractor"], size: 11}
+  so: {tone: blue, width: 220, tag: "What it may reach", title: "System owner", body: ["=Access to the system's data, with the information owner"], size: 11}
+  rec: {tone: violet, width: 420, title: "The AI system's identity record", body: ["=Every role is named on the record, with a review date"], size: 11}
+  igo: {tone: violet, width: 220, tag: "Who may grant", title: "Identity governance officer", body: ["=Admin consent, ownership transfers, orphans"], size: 11}
+  soc: {tone: violet, width: 220, tag: "Is this an incident", title: "Security operations", body: ["=Risk triage; disable during an incident"], size: 11}
+  ao: {tone: amber, width: 220, tag: "What risk remains", title: "Authorizing official", body: ["=Authorization and open-ended exceptions"], size: 11}
+edges:
+  - [sp, rec, {tone: green}]
+  - [to, rec, {tone: blue}]
+  - [so, rec, {tone: blue}]
+  - [rec, igo, {tone: violet, style: dashed}]
+  - [rec, soc, {tone: violet, style: dashed}]
+  - [rec, ao, {tone: amber, style: dashed}]
+order:
+  - [sp, to, so]
+  - [igo, soc, ao]

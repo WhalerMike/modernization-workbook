@@ -1,0 +1,25 @@
+# Book 17 Chapter 01 — an AI agent reaches agency data in one of three
+# ways. Two run through Microsoft Entra ID, where the token subject is either
+# the signed-in user (on-behalf-of) or the agent's own identity (app-only);
+# Conditional Access evaluates the token request. The third, an API key or
+# other stored secret, bypasses Entra ID token issuance entirely, so
+# Conditional Access never sees it (Microsoft Learn, "Conditional Access for
+# agents," boundaries and limitations). Red marks the path the identity
+# program can't see.
+rankdir: TB
+graph: {nodesep: 0.3, ranksep: 0.4}
+nodes:
+  agent: {tone: amber, width: 560, title: "An AI agent that can act, not just answer", body: ["=Reads mail, files tickets, updates records, calls tools"], size: 12}
+  obo: {tone: blue, width: 220, title: "On behalf of a user", body: ["=Delegated token; the user is the subject and the agent is the actor"], size: 11}
+  app: {tone: blue, width: 220, title: "As itself", body: ["=App-only token; the agent's own identity is the subject"], size: 11}
+  key: {tone: red, width: 220, title: "With an API key or stored secret", body: ["=No token from the identity provider; Conditional Access never sees it"], size: 11}
+  gate: {tone: violet, width: 465, title: "Identity provider issues the token", body: ["=Conditional Access, risk detection and sign-in logs apply"], size: 11}
+  data: {tone: slate, width: 560, title: "Agency mail, files, records, tickets and tools", body: ["=The same data a person's account would reach"], size: 12}
+edges:
+  - [agent, obo, {tone: blue}]
+  - [agent, app, {tone: blue}]
+  - [agent, key, {tone: red}]
+  - [obo, gate, {tone: blue}]
+  - [app, gate, {tone: blue}]
+  - [gate, data, {tone: blue}]
+  - [key, data, {tone: red, style: dashed, label: "unseen"}]

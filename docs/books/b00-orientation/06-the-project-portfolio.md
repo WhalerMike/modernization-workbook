@@ -114,7 +114,7 @@ Two rules keep the portfolio coherent. First, a project never designates a secon
 
 **Success at pilot scale.** The evidence contract documented and at least two sources emitting normalized records; one reconciled picture for a limited scope; drift detection operating for one object class (identity attributes or device posture); authorization artifacts generated from the stream for the pilot; a coverage report that separates proven from asserted claims.
 
-**Where it lives.** [Book 11, Chapter 10](../b11-zero-trust/10-evidence-not-verdicts.md) for evidence rather than verdicts; [Book 01, Chapter 11](../b01-transformation-arc/11-analysis-plan-delivery.md) for drift and the evidence packet; the planned Book 13, Governance, Drift & Evidence, will carry it in full.
+**Where it lives.** [Book 11, Chapter 10](../b11-zero-trust/10-evidence-not-verdicts.md) for evidence rather than verdicts; [Book 01, Chapter 11](../b01-transformation-arc/11-analysis-plan-delivery.md) for drift and the evidence packet; [Book 13, Governance, Drift & Evidence](../b13-governance/index.md), carries it in full.
 
 ### 5. Privileged Access & Administrative Identity
 

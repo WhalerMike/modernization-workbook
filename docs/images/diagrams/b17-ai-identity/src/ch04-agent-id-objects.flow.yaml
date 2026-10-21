@@ -1,0 +1,24 @@
+# Book 17 Chapter 04 — the Microsoft Entra Agent ID object model. The
+# blueprint holds the credentials and is the credential boundary; the
+# blueprint principal is what acts in a tenant; each agent identity is a
+# special service principal with its own permissions and a required sponsor;
+# an agent's user account is optional and 1:1. From Microsoft Learn.
+rankdir: TB
+graph: {nodesep: 0.35, ranksep: 0.4}
+nodes:
+  bp: {tone: blue, width: 300, tag: "Template", title: "Agent identity blueprint", body: ["Holds the credentials: federated credential, certificate or secret", "Inheritable permissions; app roles; publisher", "Sponsor required"], size: 11}
+  bpp: {tone: blue, width: 300, tag: "In each tenant", title: "Blueprint principal", body: ["Acquires tokens and creates agent identities", "Appears in audit logs for the blueprint"], size: 11}
+  gov: {tone: violet, width: 240, tag: "Accountability", title: "Sponsors and owners", body: ["Sponsor: business owner, required", "Owner: technical admin, optional", "Manager: on the agent's user account"], size: 11}
+  ai1: {tone: blue, width: 240, title: "Agent identity", body: ["Special service principal", "No credentials of its own", "Single-tenant"], size: 11}
+  ai2: {tone: blue, width: 240, title: "Agent identity", body: ["Own object ID and permissions", "Own sponsor"], size: 11}
+  au: {tone: amber, width: 240, title: "Agent's user account", body: ["Optional, 1:1 with one agent identity", "Frontier preview only"], size: 11}
+edges:
+  - [bp, bpp, {tone: blue}]
+  - [bpp, ai1, {tone: blue, label: "creates"}]
+  - [bpp, ai2, {tone: blue, label: "creates"}]
+  - [ai2, au, {tone: amber, label: "optional"}]
+  - [gov, bp, {tone: violet, style: dashed}]
+  - [gov, ai1, {tone: violet, style: dashed}]
+ranks:
+  - [bp, gov]
+  - [ai1, ai2]
