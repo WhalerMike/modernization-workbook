@@ -1,0 +1,75 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.575
+The same logic applies to administrators,
+and this is where most breaches go.
+
+2
+00:00:04.575 --> 00:00:07.871
+A standing administrator
+is always on, at any hour,
+
+3
+00:00:07.871 --> 00:00:12.775
+so any stolen credential or session
+that reaches the role yields all of it.
+
+4
+00:00:12.775 --> 00:00:15.004
+Stronger authentication helps,
+
+5
+00:00:15.004 --> 00:00:18.637
+but it doesn't narrow what the
+role can do, where, or when.
+
+6
+00:00:18.637 --> 00:00:23.760
+An eligible administrator is different:
+the role is activated only when needed,
+
+7
+00:00:23.760 --> 00:00:28.029
+for a set time, with approval from
+someone other than the requester,
+
+8
+00:00:28.029 --> 00:00:31.212
+a fresh strong sign-in, and
+a log of every elevation.
+
+9
+00:00:31.212 --> 00:00:36.931
+NSA and CISA rank poor separation of user
+and administrator privilege among the most
+
+10
+00:00:36.931 --> 00:00:42.492
+common misconfigurations they find, and
+NIST control AC-6 requires least privilege,
+
+11
+00:00:42.492 --> 00:00:45.987
+recurring reviews and logged
+privileged functions.
+
+12
+00:00:45.987 --> 00:00:50.968
+There's one standing exception: two
+break-glass accounts stay permanently active,
+
+13
+00:00:50.968 --> 00:00:54.337
+so the tenant can be recovered
+if everything else fails.
+
+14
+00:00:54.337 --> 00:00:58.801
+They're safe only when they're
+governed: phishing-resistant, monitored,
+
+15
+00:00:58.801 --> 00:01:04.180
+tested every ninety days, and documented as
+a deviation in the system security plan.

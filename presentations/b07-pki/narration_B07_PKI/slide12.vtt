@@ -1,0 +1,96 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.325
+Migration ends on a
+date; certificates don't.
+
+2
+00:00:03.325 --> 00:00:07.940
+With public TLS at 200 days today
+and 47 days from March 2029,
+
+3
+00:00:07.940 --> 00:00:12.837
+no certificate class may depend
+on someone remembering a date.
+
+4
+00:00:12.837 --> 00:00:15.200
+Three renewal engines cover the target.
+
+5
+00:00:15.200 --> 00:00:18.044
+Intune profiles renew managed devices at
+
+6
+00:00:18.044 --> 00:00:20.888
+the profile's threshold,
+with a new key pair.
+
+7
+00:00:20.888 --> 00:00:24.571
+AD CS autoenrollment
+renews domain controllers,
+
+8
+00:00:24.571 --> 00:00:27.537
+LDAPS and RADIUS while the forest stays.
+
+9
+00:00:27.537 --> 00:00:30.988
+And CyberArk Certificate
+Manager renews server,
+
+10
+00:00:30.988 --> 00:00:35.700
+appliance and public TLS, using ACME
+where the endpoint supports it.
+
+11
+00:00:35.700 --> 00:00:41.204
+Monitoring watches signals, not
+outages: expiry with no renewal path,
+
+12
+00:00:41.204 --> 00:00:45.550
+a stale CRL, issuance outside
+policy, trust-store drift.
+
+13
+00:00:45.550 --> 00:00:49.575
+The checks run at least weekly,
+and their history is the evidence.
+
+14
+00:00:49.575 --> 00:00:52.613
+Retiring an AD CS CA comes last.
+
+15
+00:00:52.613 --> 00:00:54.350
+Confirm nothing depends on it.
+
+16
+00:00:54.350 --> 00:00:57.412
+Stop issuance, and back
+up the database and key.
+
+17
+00:00:57.412 --> 00:01:02.301
+Revoke what's left for cessation of
+operation and publish a final CRL.
+
+18
+00:01:02.301 --> 00:01:05.900
+Remove the role services
+and clean every trust store.
+
+19
+00:01:05.900 --> 00:01:11.338
+And keep the CRL and AIA endpoints serving
+until the last certificate expires.
+
+20
+00:01:11.338 --> 00:01:15.720
+Under bring-your-own-CA, the CA
+that signed the cloud issuer stays.

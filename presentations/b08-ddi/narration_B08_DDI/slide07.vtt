@@ -1,0 +1,79 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:05.352
+A certificate can be valid, unrevoked and
+issued for the right name, and still fail,
+
+2
+00:00:05.352 --> 00:00:10.020
+because every check that makes it
+trustworthy starts with a DNS lookup:
+
+3
+00:00:10.020 --> 00:00:14.372
+the endpoint, the revocation
+endpoints, the FQDN that policy names,
+
+4
+00:00:14.372 --> 00:00:17.300
+and the sign-in endpoint
+for the token's cloud.
+
+5
+00:00:17.300 --> 00:00:20.777
+If an agency CRL name
+exists only in AD DNS,
+
+6
+00:00:20.777 --> 00:00:25.788
+a workload in AWS can't resolve
+it without a forwarding rule.
+
+7
+00:00:25.788 --> 00:00:30.026
+The revocation check fails, the
+ticket is opened against PKI,
+
+8
+00:00:30.026 --> 00:00:32.738
+and the root cause can take days to find.
+
+9
+00:00:32.738 --> 00:00:37.299
+DNSSEC adds origin authentication
+and integrity, not encryption.
+
+10
+00:00:37.299 --> 00:00:39.905
+The program's position follows NIST:
+
+11
+00:00:39.905 --> 00:00:43.900
+sign external zones and the
+dot-gov delegations, always.
+
+12
+00:00:43.900 --> 00:00:48.225
+Validate on every agency resolver,
+with the root trust anchor.
+
+13
+00:00:48.225 --> 00:00:52.830
+And sign internal zones only where the
+system's authorization requires it;
+
+14
+00:00:52.830 --> 00:00:57.137
+NIST calls internal signing of
+limited value for most organizations.
+
+15
+00:00:57.137 --> 00:01:01.978
+Validation stays on agency resolvers
+because Azure DNS and Route 53
+
+16
+00:01:01.978 --> 00:01:07.060
+sign public zones only, and the default
+Azure resolver doesn't validate.

@@ -1,0 +1,64 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:05.766
+HR-driven identity is one piece of a larger
+set of modernizations I've designed over
+
+2
+00:00:05.766 --> 00:00:08.666
+the last several years:
+Entra ID migration,
+
+3
+00:00:08.666 --> 00:00:11.897
+next-generation DNS and
+IP address management,
+
+4
+00:00:11.897 --> 00:00:15.211
+field office WAN and
+data-center consolidation,
+
+5
+00:00:15.211 --> 00:00:21.508
+the TIC 3.0 Cloud and Branch Office cases,
+the client-server to hybrid cloud path,
+
+6
+00:00:21.508 --> 00:00:26.313
+SQL Server identity, the move from
+Group Policy to Intune and Azure Arc,
+
+7
+00:00:26.313 --> 00:00:32.112
+and continuous compliance against
+SCuBA, BOD 25-01 and FedRAMP 20x.
+
+8
+00:00:32.112 --> 00:00:37.167
+They share the same data discipline you
+just saw: a named authority for every fact,
+
+9
+00:00:37.167 --> 00:00:40.487
+a governed model, and evidence
+produced by operation.
+
+10
+00:00:40.487 --> 00:00:42.299
+I'm happy to go into any of them.
+
+11
+00:00:42.299 --> 00:00:47.397
+Two companion decks go deeper on this
+one: the Contractor Identity Source deck,
+
+12
+00:00:47.397 --> 00:00:50.063
+on who is authoritative for a contractor,
+
+13
+00:00:50.063 --> 00:00:55.238
+and the original HR-Driven Identity deck,
+with the full model, lifecycle and plan.

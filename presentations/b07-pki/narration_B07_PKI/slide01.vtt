@@ -1,0 +1,40 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.911
+This briefing comes from Book 07 of
+the Federal Modernization Workbook,
+
+2
+00:00:04.911 --> 00:00:10.178
+PKI and Certificates: the move from
+Active Directory Certificate Services to
+
+3
+00:00:10.178 --> 00:00:15.687
+Microsoft Cloud PKI, Entra certificate-based
+authentication and the Federal PKI.
+
+4
+00:00:15.687 --> 00:00:19.953
+Every other migration changes
+which system answers the question
+
+5
+00:00:19.953 --> 00:00:23.163
+"who is this?" Certificates are
+how that answer gets proved.
+
+6
+00:00:23.163 --> 00:00:28.091
+I'll cover why certificates outlive every
+migration, what the target PKI is, who
+
+7
+00:00:28.091 --> 00:00:29.911
+owns the certificate estate,
+
+8
+00:00:29.911 --> 00:00:33.600
+and how to move it without
+stranding a single certificate.

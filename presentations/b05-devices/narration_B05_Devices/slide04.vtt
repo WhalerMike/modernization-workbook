@@ -1,0 +1,82 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.213
+What replaces it?
+
+2
+00:00:01.213 --> 00:00:03.787
+Devices and servers take different roads.
+
+3
+00:00:03.787 --> 00:00:07.743
+For endpoints, the Entra ID device
+object carries the identity,
+
+4
+00:00:07.743 --> 00:00:12.686
+Intune carries configuration and
+compliance, Autopilot provides zero-touch
+
+5
+00:00:12.686 --> 00:00:17.401
+provisioning, and Defender for Endpoint
+covers threat and vulnerability.
+
+6
+00:00:17.401 --> 00:00:21.163
+Servers are different, and the old
+design documents got this wrong.
+
+7
+00:00:21.163 --> 00:00:23.625
+Intune doesn't manage Windows Server.
+
+8
+00:00:23.625 --> 00:00:28.450
+A server comes under governance through
+Azure Arc, which makes it an Azure resource.
+
+9
+00:00:28.450 --> 00:00:32.042
+Azure Policy machine configuration
+sets its configuration,
+
+10
+00:00:32.042 --> 00:00:36.550
+and Update Manager and Defender for
+Servers handle patching and protection.
+
+11
+00:00:36.550 --> 00:00:41.938
+For new devices, the book's doctrine is
+Intune-first: governed from day zero.
+
+12
+00:00:41.938 --> 00:00:45.956
+The organizational assignment is
+set when the device is ordered,
+
+13
+00:00:45.956 --> 00:00:50.346
+enrollment is zero-touch, and an
+onboarding failure goes to quarantine,
+
+14
+00:00:50.346 --> 00:00:52.950
+never into production in a degraded state.
+
+15
+00:00:52.950 --> 00:00:56.127
+Because each system is
+authoritative for one thing,
+
+16
+00:00:56.127 --> 00:01:00.634
+the program correlates them on stable
+keys and reconciles the inventory
+
+17
+00:01:00.634 --> 00:01:05.350
+continuously, so the fleet has one answer
+to "what do we have, and is it governed?"

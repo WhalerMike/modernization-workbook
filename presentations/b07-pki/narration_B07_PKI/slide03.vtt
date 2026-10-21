@@ -1,0 +1,79 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.412
+A certificate estate used to be something
+you could leave alone between renewals.
+
+2
+00:00:04.412 --> 00:00:06.100
+Three changes have ended that.
+
+3
+00:00:06.100 --> 00:00:10.375
+First, public TLS lifetimes are
+shrinking on a fixed schedule.
+
+4
+00:00:10.375 --> 00:00:17.713
+Under the CA/Browser Forum's ballot
+SC-081v3, adopted in April 2025,
+
+5
+00:00:17.713 --> 00:00:25.187
+the maximum validity fell from 398
+days to 200 days on March 15, 2026.
+
+6
+00:00:25.187 --> 00:00:33.376
+It drops to 100 days on March 15,
+2027, and to 47 days on March 15, 2029.
+
+7
+00:00:33.376 --> 00:00:37.876
+On the book's arithmetic, a thousand
+certificates means about seven
+
+8
+00:00:37.876 --> 00:00:41.975
+renewals every working day now,
+and about thirty-one at 47 days.
+
+9
+00:00:41.975 --> 00:00:46.125
+Second, mapping rules changed
+under certificates already in use.
+
+10
+00:00:46.125 --> 00:00:53.541
+Under KB5014754, domain controllers
+moved to Full Enforcement on February 11,
+
+11
+00:00:53.541 --> 00:00:58.675
+2025, with no way back after
+the September 9, 2025 update.
+
+12
+00:00:58.675 --> 00:01:01.287
+Third, the algorithms have a horizon.
+
+13
+00:01:01.287 --> 00:01:06.333
+NIST's draft transition plan
+would deprecate RSA-2048
+
+14
+00:01:06.333 --> 00:01:11.938
+after 2030 and disallow RSA and
+ECDSA signatures after 2035.
+
+15
+00:01:11.938 --> 00:01:15.226
+So manual lifecycle
+management can't keep up,
+
+16
+00:01:15.226 --> 00:01:18.480
+and the move off AD CS
+runs as its own program.

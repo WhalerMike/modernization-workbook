@@ -1,0 +1,90 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.300
+Why we need HR-driven ICAM
+at all — and why now.
+
+2
+00:00:03.300 --> 00:00:06.982
+Zero Trust is federal
+strategy — OMB M-22-09,
+
+3
+00:00:06.982 --> 00:00:15.163
+with NIST SP 800-207 as the architecture
+and CISA's maturity model as the yardstick.
+
+4
+00:00:15.163 --> 00:00:20.136
+SASE is one way these controls can be
+delivered near users and cloud resources,
+
+5
+00:00:20.136 --> 00:00:25.637
+which TIC 3.0 opens up for agencies,
+instead of only at our network perimeter.
+
+6
+00:00:25.637 --> 00:00:30.309
+Reliable ICAM supplies critical
+identity signals to those decisions:
+
+7
+00:00:30.309 --> 00:00:34.521
+the user presents a token from a
+PIV card or phishing-resistant MFA,
+
+8
+00:00:34.521 --> 00:00:38.120
+and Entra ID decides access
+through Conditional Access
+
+9
+00:00:38.120 --> 00:00:41.337
+and dynamic groups that
+read the user's attributes.
+
+10
+00:00:41.337 --> 00:00:45.612
+In the perimeter era, a wrong department
+meant a wrong phone-book entry.
+
+11
+00:00:45.612 --> 00:00:49.058
+Now it means the wrong groups,
+and so the wrong access —
+
+12
+00:00:49.058 --> 00:00:51.462
+and a stale status is worse than ever.
+
+13
+00:00:51.462 --> 00:00:54.592
+In the perimeter era an
+orphaned account was already a
+
+14
+00:00:54.592 --> 00:00:57.862
+standing security violation
+that could enable a breach.
+
+15
+00:00:57.862 --> 00:01:00.662
+Now it's a valid token
+for someone who has left,
+
+16
+00:01:00.662 --> 00:01:04.825
+usable from anywhere, because there
+is no perimeter left to stop it.
+
+17
+00:01:04.825 --> 00:01:07.749
+When access decisions
+depend on attributes,
+
+18
+00:01:07.749 --> 00:01:12.000
+the accuracy of employee data
+drives the accuracy of access.

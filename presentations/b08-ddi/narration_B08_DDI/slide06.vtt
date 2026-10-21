@@ -1,0 +1,87 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.087
+Every control in the policy plane
+assumes the query reaches it.
+
+2
+00:00:04.087 --> 00:00:07.189
+Three ordinary mechanisms
+decide whether it does,
+
+3
+00:00:07.189 --> 00:00:09.551
+and none of them reports when it doesn't.
+
+4
+00:00:09.551 --> 00:00:10.937
+First, the edge.
+
+5
+00:00:10.937 --> 00:00:16.169
+Cisco Catalyst SD-WAN's redirect-dns
+action, as one example,
+
+6
+00:00:16.169 --> 00:00:22.163
+sends branch DNS to a policy-designated
+resolver, IPv4 and UDP only.
+
+7
+00:00:22.163 --> 00:00:25.457
+It must be a network-addressable
+agency resolver,
+
+8
+00:00:25.457 --> 00:00:30.438
+not a loopback agent on the device, and
+any SASE resolver belongs behind it.
+
+9
+00:00:30.438 --> 00:00:32.660
+Second, encrypted DNS.
+
+10
+00:00:32.660 --> 00:00:36.857
+DNS over TLS and DNS
+over QUIC use port 853,
+
+11
+00:00:36.857 --> 00:00:41.301
+so block them except
+to approved resolvers.
+
+12
+00:00:41.301 --> 00:00:45.405
+DNS over HTTPS shares port
+443 with all web traffic,
+
+13
+00:00:45.405 --> 00:00:49.509
+so it's governed at the
+endpoint: Windows DoH policy,
+
+14
+00:00:49.509 --> 00:00:55.862
+the Edge and Chrome DoH mode, and an
+NXDOMAIN answer for Firefox's canary domain.
+
+15
+00:00:55.862 --> 00:00:58.187
+Third, rogue DHCP.
+
+16
+00:00:58.187 --> 00:01:02.426
+One rogue server handing out its
+own resolver in option 6 moves a
+
+17
+00:01:02.426 --> 00:01:07.063
+whole subnet at once, and rogue IPv6
+router advertisements do the same.
+
+18
+00:01:07.063 --> 00:01:13.250
+AD authorization doesn't stop them; DHCP
+snooping and RA Guard on the switches do.

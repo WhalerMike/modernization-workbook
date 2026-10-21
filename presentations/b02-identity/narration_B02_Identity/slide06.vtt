@@ -1,0 +1,92 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.088
+The third change is delegation.
+
+2
+00:00:02.088 --> 00:00:06.449
+In Active Directory, who can manage
+what was largely expressed by OUs.
+
+3
+00:00:06.449 --> 00:00:11.675
+Entra ID has no OUs, so delegation
+has to be rebuilt on purpose.
+
+4
+00:00:11.675 --> 00:00:13.887
+The program uses three tiers.
+
+5
+00:00:13.887 --> 00:00:18.912
+Tier zero is tenant-wide control:
+Global Administrator and similar roles,
+
+6
+00:00:18.912 --> 00:00:22.537
+plus break-glass accounts,
+all activated just in time.
+
+7
+00:00:22.537 --> 00:00:27.501
+Tier one is service administration,
+such as Exchange, Intune and security.
+
+8
+00:00:27.501 --> 00:00:30.187
+Tier two is departmental administration,
+
+9
+00:00:30.187 --> 00:00:33.412
+like the help desk, scoped
+to administrative units.
+
+10
+00:00:33.412 --> 00:00:38.088
+The platform sets real limits, and the
+old design documents got several wrong.
+
+11
+00:00:38.088 --> 00:00:40.500
+Administrative units can't be nested.
+
+12
+00:00:40.500 --> 00:00:43.513
+Groups that hold roles can't
+have dynamic membership.
+
+13
+00:00:43.513 --> 00:00:46.875
+Reader roles like Global Reader
+apply to the whole tenant.
+
+14
+00:00:46.875 --> 00:00:52.237
+And restricted management is chosen when a
+unit is created; it can't be added later.
+
+15
+00:00:52.237 --> 00:00:56.483
+It also takes those users and
+groups out of Entra ID Governance:
+
+16
+00:00:56.483 --> 00:00:59.912
+no access reviews or
+lifecycle workflows for them.
+
+17
+00:00:59.912 --> 00:01:04.900
+So the program's decision is that administrative
+units are unrestricted by default.
+
+18
+00:01:04.900 --> 00:01:09.013
+Restricted management is a per-unit
+choice for sensitive accounts,
+
+19
+00:01:09.013 --> 00:01:12.000
+recorded in the registry
+before the unit exists.

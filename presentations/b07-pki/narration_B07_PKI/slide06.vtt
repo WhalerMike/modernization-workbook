@@ -1,0 +1,87 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.325
+So what is the target?
+
+2
+00:00:01.325 --> 00:00:04.687
+Not Cloud PKI instead of AD CS.
+
+3
+00:00:04.687 --> 00:00:07.788
+That's true for devices
+and wrong for the estate.
+
+4
+00:00:07.788 --> 00:00:11.937
+The target is four issuers, each
+for the subjects only it can serve.
+
+5
+00:00:11.937 --> 00:00:18.413
+Microsoft Cloud PKI issues to Intune-managed
+devices, and only to them, through
+
+6
+00:00:18.413 --> 00:00:24.788
+SCEP, with three CAs per tenant, a CRL
+valid for seven days and no OCSP responder.
+
+7
+00:00:24.788 --> 00:00:31.161
+A smaller, hardened AD CS stays for domain
+controllers and LDAPS, NPS and RADIUS,
+
+8
+00:00:31.161 --> 00:00:37.338
+internal server TLS, network devices
+through NDES, and HSM-held code signing.
+
+9
+00:00:37.338 --> 00:00:41.779
+The Federal PKI keeps issuing PIV;
+the target's job is to trust it,
+
+10
+00:00:41.779 --> 00:00:46.649
+by distributing the federal root
+and uploading the chain to Entra ID.
+
+11
+00:00:46.649 --> 00:00:50.212
+And a public CA serves names
+the internet must trust.
+
+12
+00:00:50.212 --> 00:00:52.937
+One decision ties them together: the root.
+
+13
+00:00:52.937 --> 00:00:58.369
+For an established hierarchy, the
+program recommends bring-your-own-CA,
+
+14
+00:00:58.369 --> 00:01:02.051
+a Cloud PKI issuing CA
+signed by the offline root.
+
+15
+00:01:02.051 --> 00:01:07.200
+It keeps the existing chain, and makes
+the root's CRL a production dependency.
+
+16
+00:01:07.200 --> 00:01:08.762
+Check the entitlement too.
+
+17
+00:01:08.762 --> 00:01:14.151
+The July 2026 change that puts
+Cloud PKI in Microsoft 365 E5 and E7
+
+18
+00:01:14.151 --> 00:01:19.800
+covers commercial customers, so
+confirm it for a government tenant.

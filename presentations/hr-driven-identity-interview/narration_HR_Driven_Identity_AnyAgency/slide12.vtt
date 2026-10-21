@@ -1,0 +1,59 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.012
+Privacy — which is where a data
+architect earns trust with HR.
+
+2
+00:00:04.012 --> 00:00:09.188
+Moving HR attributes into a directory
+is a disclosure of personnel records.
+
+3
+00:00:09.188 --> 00:00:15.303
+So: confirm the routine-use basis under
+the governing system-of-records notices —
+
+4
+00:00:15.303 --> 00:00:18.453
+OPM/GOVT-1 for general personnel records,
+
+5
+00:00:18.453 --> 00:00:21.788
+plus the agency's own —
+before anything flows.
+
+6
+00:00:21.788 --> 00:00:26.587
+Minimize: send only attributes an
+identity decision actually reads,
+
+7
+00:00:26.587 --> 00:00:31.050
+as codes rather than narrative, and
+never use the SSN as a join key.
+
+8
+00:00:31.050 --> 00:00:35.600
+Update the privacy impact assessment
+for the new flow and its consumers.
+
+9
+00:00:35.600 --> 00:00:38.095
+And protect the flow: encrypt every leg,
+
+10
+00:00:38.095 --> 00:00:43.162
+and keep logs to the person key and a
+payload hash rather than the record itself.
+
+11
+00:00:43.162 --> 00:00:47.407
+The principle underneath: HR
+remains the system of records;
+
+12
+00:00:47.407 --> 00:00:53.076
+identity is a governed consumer that
+never writes an HR-mastered fact back.

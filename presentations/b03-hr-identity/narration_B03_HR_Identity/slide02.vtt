@@ -1,0 +1,97 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:00.700
+Why.
+
+2
+00:00:00.700 --> 00:00:04.700
+In many agencies today, nothing
+connects HR to identity.
+
+3
+00:00:04.700 --> 00:00:09.219
+Accounts, access and credentials
+are created and removed by ticket,
+
+4
+00:00:09.219 --> 00:00:10.913
+and that costs three ways.
+
+5
+00:00:10.913 --> 00:00:12.749
+Access outlives the job.
+
+6
+00:00:12.749 --> 00:00:16.888
+When someone leaves or changes
+roles, removal waits for a ticket.
+
+7
+00:00:16.888 --> 00:00:21.590
+Yet the federal PIV standard, FIPS
+201-3, requires a card that can't
+
+8
+00:00:21.590 --> 00:00:26.737
+be collected to be terminated within
+eighteen hours of notification.
+
+9
+00:00:26.737 --> 00:00:29.676
+A ticket-driven process
+struggles to meet that.
+
+10
+00:00:29.676 --> 00:00:32.635
+Records drift: the phone
+book, the manager and the
+
+11
+00:00:32.635 --> 00:00:36.113
+approval routing are wrong
+until someone files a ticket.
+
+12
+00:00:36.113 --> 00:00:39.674
+And every joiner, mover and
+leaver is help-desk work.
+
+13
+00:00:39.674 --> 00:00:42.125
+Zero Trust makes the gap visible.
+
+14
+00:00:42.125 --> 00:00:44.913
+A token proves
+cryptographically who signed it.
+
+15
+00:00:44.913 --> 00:00:48.688
+It can't prove the claim is true:
+that the person still works here,
+
+16
+00:00:48.688 --> 00:00:51.809
+still holds the position
+the access was granted for,
+
+17
+00:00:51.809 --> 00:00:54.713
+still reports to the
+supervisor who approved it.
+
+18
+00:00:54.713 --> 00:00:57.737
+Those are workforce facts,
+and they live in HR.
+
+19
+00:00:57.737 --> 00:01:02.675
+If we do nothing, HR moves to Core
+HCM, identity moves to Entra ID,
+
+20
+00:01:02.675 --> 00:01:07.680
+and we rebuild the same manual
+process twice, on new platforms.

@@ -1,0 +1,88 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.825
+The obvious shortcut is hybrid join,
+and the book calls it a trap, carefully.
+
+2
+00:00:04.825 --> 00:00:07.062
+Microsoft's guidance has two halves.
+
+3
+00:00:07.062 --> 00:00:09.936
+New, refurbished or reset Windows devices
+
+4
+00:00:09.936 --> 00:00:12.974
+should be Microsoft
+Entra joined by default.
+
+5
+00:00:12.974 --> 00:00:16.361
+Existing domain-joined
+devices can be hybrid joined,
+
+6
+00:00:16.361 --> 00:00:20.363
+which gives them a cloud identity
+with minimal impact on users.
+
+7
+00:00:20.363 --> 00:00:25.438
+But Microsoft is explicit that hybrid join
+shouldn't be the long-term end state.
+
+8
+00:00:25.438 --> 00:00:26.513
+Here's the trap.
+
+9
+00:00:26.513 --> 00:00:29.738
+Turning on hybrid join for
+a fleet is, mechanically,
+
+10
+00:00:29.738 --> 00:00:33.962
+close to a single tenant-wide
+switch, so a control that assessments
+
+11
+00:00:33.962 --> 00:00:37.725
+score as a multi-quarter program
+can look finished in a week.
+
+12
+00:00:37.725 --> 00:00:41.200
+But the fleet keeps every
+on-premises dependency it had.
+
+13
+00:00:41.200 --> 00:00:44.288
+And there's no Microsoft-supported
+way to convert a
+
+14
+00:00:44.288 --> 00:00:48.112
+hybrid-joined device to Entra
+join without resetting Windows.
+
+15
+00:00:48.112 --> 00:00:51.537
+So the governed path uses
+hybrid join where it helps,
+
+16
+00:00:51.537 --> 00:00:55.440
+and plans each device's move to
+Entra join at a natural event:
+
+17
+00:00:55.440 --> 00:00:59.662
+the next hardware refresh,
+operating-system upgrade or rebuild.
+
+18
+00:00:59.662 --> 00:01:03.170
+That way the waypoint doesn't
+quietly become the destination.

@@ -11,11 +11,11 @@ const OUT = process.argv[2] || "B03_HR_Identity.pptx";
   const s = D.titleSlide("Why HR decides", "Why Should HR Decide Who Exists?", "Book 03 — HR-Driven Identity");
   D.agenda(s, 0.8, 4.7, 6.6);
   txt(s, "Series line", [
-    { text: "Modernization Workbook", options: { bold: true, color: HEX.navy, breakLine: true } },
+    { text: "Federal Modernization Workbook", options: { bold: true, color: HEX.navy, breakLine: true } },
     { text: "A 15-minute briefing on the book's proposal and plan", options: { color: HEX.slate } },
   ], { x: 0.8, y: 5.6, w: 8, h: 0.8, fontSize: 16 });
   s.addNotes(
-`[0:00–0:30]  This briefing comes from Book 03 of the Modernization Workbook, HR-Driven Identity.
+`[0:00–0:30]  This briefing comes from Book 03 of the Federal Modernization Workbook, HR-Driven Identity.
 
 It has one proposal, and I'll take it through four questions, the way I'd take it to leadership: why it matters, what we should do, who has to be involved, and how we'd carry it out and know it's working.
 

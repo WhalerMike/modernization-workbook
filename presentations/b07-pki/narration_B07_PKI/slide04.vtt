@@ -1,0 +1,89 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.100
+What does AD CS hold up today?
+
+2
+00:00:02.100 --> 00:00:03.463
+It isn't one server.
+
+3
+00:00:03.463 --> 00:00:07.825
+It's a hierarchy, usually an offline
+root and enterprise issuing CAs;
+
+4
+00:00:07.825 --> 00:00:12.032
+a set of forest-wide objects in
+the Public Key Services container,
+
+5
+00:00:12.032 --> 00:00:17.174
+including the templates and the NTAuth
+store; and Group Policy autoenrollment,
+
+6
+00:00:17.174 --> 00:00:20.212
+which runs on domain
+members every eight hours.
+
+7
+00:00:20.212 --> 00:00:23.759
+The inventory has four layers:
+the CAs, the templates,
+
+8
+00:00:23.759 --> 00:00:27.800
+the certificates actually
+issued, and the relying parties.
+
+9
+00:00:27.800 --> 00:00:31.740
+The relying parties set the order
+of work, because a new issuer is
+
+10
+00:00:31.740 --> 00:00:36.200
+useful only once everything that
+validates its certificates trusts it.
+
+11
+00:00:36.200 --> 00:00:39.888
+Then every template and use
+case gets one of four verdicts.
+
+12
+00:00:39.888 --> 00:00:45.663
+MIGRATE, where Cloud PKI or Entra
+certificate-based authentication replaces it.
+
+13
+00:00:45.663 --> 00:00:49.816
+BRIDGE, where both issuers
+run because the consumer
+
+14
+00:00:49.816 --> 00:00:54.163
+depends on AD or a server:
+domain controllers, LDAPS, NPS.
+
+15
+00:00:54.163 --> 00:00:58.888
+RETAIN, where there's no cloud
+equivalent, like HSM-held code signing.
+
+16
+00:00:58.888 --> 00:01:01.725
+And RETIRE, where the
+consumer is going away.
+
+17
+00:01:01.725 --> 00:01:07.201
+The book corrects its source here:
+internal web and SQL Server TLS can't move
+
+18
+00:01:07.201 --> 00:01:12.650
+to Cloud PKI, and S/MIME stays BRIDGE
+because its key history has to survive.

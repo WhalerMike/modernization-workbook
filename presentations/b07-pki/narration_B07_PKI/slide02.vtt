@@ -1,0 +1,99 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.850
+Why do certificates
+outlive every migration?
+
+2
+00:00:02.850 --> 00:00:06.013
+Because a certificate isn't
+a record in a directory.
+
+3
+00:00:06.013 --> 00:00:09.233
+It's a signed statement that's
+already been handed out:
+
+4
+00:00:09.233 --> 00:00:12.526
+the holder of this private
+key is entitled to this name.
+
+5
+00:00:12.526 --> 00:00:15.637
+When the directory moves,
+the certificate doesn't.
+
+6
+00:00:15.637 --> 00:00:20.012
+It keeps working until it expires,
+and then whatever relied on it stops.
+
+7
+00:00:20.012 --> 00:00:21.750
+A great deal relies on it.
+
+8
+00:00:21.750 --> 00:00:25.725
+Domain controllers need
+KDC certificates and LDAPS.
+
+9
+00:00:25.725 --> 00:00:29.832
+Smart card and PIV logon need
+the issuing CA in the forest's
+
+10
+00:00:29.832 --> 00:00:34.025
+NTAuth store and a certificate
+on every domain controller.
+
+11
+00:00:34.025 --> 00:00:39.200
+802.1X and VPN need NPS
+and device certificates.
+
+12
+00:00:39.200 --> 00:00:42.740
+TLS listeners, including
+SQL Server, need them,
+
+13
+00:00:42.740 --> 00:00:46.000
+and so do code signing
+and encryption keys.
+
+14
+00:00:46.000 --> 00:00:48.050
+That gives the program two clocks.
+
+15
+00:00:48.050 --> 00:00:52.270
+On the directory's clock, cutover
+is declared complete and the
+
+16
+00:00:52.270 --> 00:00:56.738
+first expiry wave finds no issuer,
+months later, far from its cause.
+
+17
+00:00:56.738 --> 00:01:00.529
+On the certificate's clock,
+the replacement issuer is
+
+18
+00:01:00.529 --> 00:01:04.149
+live before the first expiry,
+and AD CS retires last.
+
+19
+00:01:04.149 --> 00:01:09.490
+So the estate outlives the directory twice
+over: issued certificates run until they
+
+20
+00:01:09.490 --> 00:01:14.590
+expire, and the forest needs an issuer
+until its last domain controller retires.

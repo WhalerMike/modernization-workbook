@@ -1,0 +1,99 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.112
+Three facts that don't fit together.
+
+2
+00:00:02.112 --> 00:00:03.324
+First, scope.
+
+3
+00:00:03.324 --> 00:00:09.403
+The Federal HR 2.0 memo of December 10,
+2025 scopes Core HCM to personnel action
+
+4
+00:00:09.403 --> 00:00:15.575
+processing, the employee system of record
+and the federal employee lifecycle.
+
+5
+00:00:15.575 --> 00:00:19.875
+The June 2026 Oracle award
+covers civilian employees.
+
+6
+00:00:19.875 --> 00:00:23.900
+Neither establishes contractor
+treatment in the sources reviewed.
+
+7
+00:00:23.900 --> 00:00:27.889
+Oracle Fusion HCM can hold
+contingent workers as a product,
+
+8
+00:00:27.889 --> 00:00:30.250
+but the program doesn't commit to it.
+
+9
+00:00:30.250 --> 00:00:32.263
+Second, what I have observed.
+
+10
+00:00:32.263 --> 00:00:36.700
+In the processes I have observed,
+contractors are tracked in COR spreadsheets,
+
+11
+00:00:36.700 --> 00:00:39.188
+and many of their accounts
+come from tickets.
+
+12
+00:00:39.188 --> 00:00:42.240
+Based on current visibility,
+nothing authoritative
+
+13
+00:00:42.240 --> 00:00:45.500
+tells identity that a contractor's
+engagement has ended.
+
+14
+00:00:45.500 --> 00:00:46.988
+Third, guidance.
+
+15
+00:00:46.988 --> 00:00:50.898
+Federal lifecycle guidance,
+including GSA's ILM Playbook,
+
+16
+00:00:50.898 --> 00:00:56.683
+calls for an authoritative personnel source
+for identity creation and termination,
+
+17
+00:00:56.683 --> 00:01:00.350
+and CDM's master user record
+must include contractors.
+
+18
+00:01:00.350 --> 00:01:02.244
+Employee HR may not carry them,
+
+19
+00:01:02.244 --> 00:01:06.563
+so contractors need an equivalent
+authoritative personnel source.
+
+20
+00:01:06.563 --> 00:01:09.010
+Something else has to be the authority,
+
+21
+00:01:09.010 --> 00:01:11.987
+and it needs the same
+rigor as the HR record.

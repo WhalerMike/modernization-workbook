@@ -1,0 +1,76 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.767
+Personnel actions can
+initiate the lifecycle,
+
+2
+00:00:02.767 --> 00:00:06.738
+after their identity interpretations
+and exceptions are approved.
+
+3
+00:00:06.738 --> 00:00:11.413
+For federal employees, every personnel
+action carries a nature-of-action code,
+
+4
+00:00:11.413 --> 00:00:16.737
+and I propose mapping the families to
+identity events: the 100 series are joiners,
+
+5
+00:00:16.737 --> 00:00:23.212
+the 700 series movers, the 500 series
+conversions, the 300 series separations.
+
+6
+00:00:23.212 --> 00:00:29.187
+Contractors have no SF-50; their events
+come from contract start and end dates.
+
+7
+00:00:29.187 --> 00:00:31.763
+Two families matter more
+than people expect.
+
+8
+00:00:31.763 --> 00:00:36.991
+The 400 series — furlough, leave without
+pay, suspension — is not a leaver;
+
+9
+00:00:36.991 --> 00:00:41.174
+the person is still employed and
+policy restricts the account.
+
+10
+00:00:41.174 --> 00:00:45.500
+The 200 series, return to
+duty, lifts those restrictions.
+
+11
+00:00:45.500 --> 00:00:48.158
+Getting this wrong either
+locks out people on
+
+12
+00:00:48.158 --> 00:00:51.025
+leave or leaves access open
+for people who've left.
+
+13
+00:00:51.025 --> 00:00:56.000
+The codes also settle precedence — a
+separation wins — and rescinded offers.
+
+14
+00:00:56.000 --> 00:01:00.904
+HR, security, labor-relations, privacy,
+and personnel-policy owners would
+
+15
+00:01:00.904 --> 00:01:06.925
+validate the mappings, exceptions, precedence
+rules, and actions before automation.

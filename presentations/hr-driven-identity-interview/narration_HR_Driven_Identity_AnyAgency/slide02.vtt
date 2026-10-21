@@ -1,0 +1,63 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.012
+The thesis in one slide.
+
+2
+00:00:02.012 --> 00:00:07.020
+On the left, two migrations that happen
+regardless: HR moves to Core HCM,
+
+3
+00:00:07.020 --> 00:00:11.163
+and identity moves from Active
+Directory toward Entra ID.
+
+4
+00:00:11.163 --> 00:00:16.337
+Meanwhile, the enterprise lifecycle remains
+substantially manual and fragmented.
+
+5
+00:00:16.337 --> 00:00:18.949
+In the middle, what OPM leaves to us.
+
+6
+00:00:18.949 --> 00:00:22.718
+OPM fixes the HR side; how
+the agency's directories
+
+7
+00:00:22.718 --> 00:00:26.762
+and ICAM consume that data
+is the agency's decision.
+
+8
+00:00:26.762 --> 00:00:30.966
+And the solicitation requires
+SCIM 2.0 provisioning —
+
+9
+00:00:30.966 --> 00:00:33.450
+exactly what Entra ID consumes.
+
+10
+00:00:33.450 --> 00:00:37.247
+On the right, the proposal:
+start HR-driven identity,
+
+11
+00:00:37.247 --> 00:00:42.762
+with HR as the source of authority,
+expressed in OPM's standard attributes.
+
+12
+00:00:42.762 --> 00:00:47.641
+So the real choice is: carry ticket-driven
+identity through both migrations,
+
+13
+00:00:47.641 --> 00:00:53.051
+or start HR-driven identity once, while
+both platforms are being rebuilt anyway.

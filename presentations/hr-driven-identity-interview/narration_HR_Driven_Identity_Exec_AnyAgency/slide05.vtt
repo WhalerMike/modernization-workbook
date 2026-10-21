@@ -1,0 +1,117 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.375
+Who has to be involved.
+
+2
+00:00:01.375 --> 00:00:04.989
+This is an organizational change
+as much as a technical one,
+
+3
+00:00:04.989 --> 00:00:06.612
+so it matters who owns what.
+
+4
+00:00:06.612 --> 00:00:10.612
+HR owns the personnel data and
+its quality, at the source.
+
+5
+00:00:10.612 --> 00:00:15.301
+When the data is wrong, it gets fixed
+in HR, not patched in the directory.
+
+6
+00:00:15.301 --> 00:00:21.700
+And the OPM HR 2.0 program owns the platform,
+the standards and the interconnection.
+
+7
+00:00:21.700 --> 00:00:28.050
+The CIO's identity team uses that data to
+run Entra ID, Active Directory and access.
+
+8
+00:00:28.050 --> 00:00:32.325
+Security sets the Zero Trust
+policy and owns the leaver path.
+
+9
+00:00:32.325 --> 00:00:36.487
+And the help desk moves from routine
+tickets to handling the exceptions.
+
+10
+00:00:36.487 --> 00:00:38.162
+Then the guards and partners.
+
+11
+00:00:38.162 --> 00:00:42.320
+The privacy office is in from the
+start, because using HR data for
+
+12
+00:00:42.320 --> 00:00:46.713
+identity is a disclosure that needs
+a routine use and minimization.
+
+13
+00:00:46.713 --> 00:00:51.774
+For people HR doesn't cover, contractor
+sponsors, credentialing, acquisition,
+
+14
+00:00:51.774 --> 00:00:55.649
+suitability and HR systems each
+may hold part of the record;
+
+15
+00:00:55.649 --> 00:01:00.474
+the authority decision identifies
+which source owns each required fact.
+
+16
+00:01:00.474 --> 00:01:04.587
+And partner agencies need the same
+standard if we're going to share services.
+
+17
+00:01:04.587 --> 00:01:09.210
+My role, as an enterprise data
+architect, is to own the data standards,
+
+18
+00:01:09.210 --> 00:01:13.749
+the logical model and the person
+key: every attribute gets one name,
+
+19
+00:01:13.749 --> 00:01:16.638
+one definition and one accountable owner.
+
+20
+00:01:16.638 --> 00:01:19.373
+I'd chair the data working
+group for the effort,
+
+21
+00:01:19.373 --> 00:01:24.266
+review the HR 2.0 integrator's design
+artifacts against those standards, and carry
+
+22
+00:01:24.266 --> 00:01:29.376
+the standard to the interagency committees
+and working groups where it gets adopted.
+
+23
+00:01:29.376 --> 00:01:33.715
+The person model and its attributes
+also become a governed piece of the
+
+24
+00:01:33.715 --> 00:01:38.575
+agency's data and metadata inventory,
+which auditors increasingly ask for.

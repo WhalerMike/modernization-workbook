@@ -1,0 +1,111 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.050
+What should we do?
+
+2
+00:00:01.050 --> 00:00:06.332
+I've weighed four realistic options against
+what leadership actually has to balance:
+
+3
+00:00:06.332 --> 00:00:10.350
+the mission and the public we serve,
+security, cost and resilience.
+
+4
+00:00:10.350 --> 00:00:14.550
+Compliance matters, but on its
+own it isn't a reason to invest.
+
+5
+00:00:14.550 --> 00:00:17.696
+A, keep ticket-driven
+identity: no new investment,
+
+6
+00:00:17.696 --> 00:00:21.000
+but the risk and the manual
+work stay where they are.
+
+7
+00:00:21.000 --> 00:00:22.800
+That's the cost of doing nothing.
+
+8
+00:00:22.800 --> 00:00:28.200
+B, automate inside the directories with
+scripts and exports: quick and cheap.
+
+9
+00:00:28.200 --> 00:00:30.143
+It can automate selected changes,
+
+10
+00:00:30.143 --> 00:00:34.237
+but without a governed authority
+model and complete lifecycle events,
+
+11
+00:00:34.237 --> 00:00:39.025
+it risks propagating inconsistent data
+and being rebuilt when the source changes.
+
+12
+00:00:39.025 --> 00:00:45.525
+C, wait for HR 2.0 and integrate afterward:
+defensible, and less work this year.
+
+13
+00:00:45.525 --> 00:00:49.404
+But program material describes
+interconnections occurring during
+
+14
+00:00:49.404 --> 00:00:53.150
+the onboarding period, so waiting
+means retrofitting after go-live.
+
+15
+00:00:53.150 --> 00:00:58.461
+D, start now: HR as the source of truth,
+in OPM's standard personnel data,
+
+16
+00:00:58.461 --> 00:01:03.488
+designed into both the HR onboarding
+and the Entra ID migration.
+
+17
+00:01:03.488 --> 00:01:07.253
+It costs design effort up front
+and needs shared governance,
+
+18
+00:01:07.253 --> 00:01:09.512
+which is why it's only partial on cost.
+
+19
+00:01:09.512 --> 00:01:14.988
+The judgment call: if HR 2.0 slipped
+a long way, C becomes reasonable.
+
+20
+00:01:14.988 --> 00:01:19.303
+But D's first step — data standards,
+ownership and the person key —
+
+21
+00:01:19.303 --> 00:01:24.720
+is no-regret either way, and it can start
+now from the HR data the agency already
+
+22
+00:01:24.720 --> 00:01:26.836
+has, subject to data profiling,
+
+23
+00:01:26.836 --> 00:01:30.775
+with the source switched to
+Core HCM when it arrives.

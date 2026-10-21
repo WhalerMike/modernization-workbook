@@ -1,0 +1,83 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.600
+Who decides access, and who executes it?
+
+2
+00:00:02.600 --> 00:00:04.350
+The book keeps those apart.
+
+3
+00:00:04.350 --> 00:00:09.212
+Deciding: business and application owners
+decide who should have access and why.
+
+4
+00:00:09.212 --> 00:00:12.901
+The CISO owns the policy
+baseline and its exceptions.
+
+5
+00:00:12.901 --> 00:00:16.637
+And an identity governance office
+owns approval chains and reviews.
+
+6
+00:00:16.637 --> 00:00:20.425
+Executing: identity engineering
+builds the policies,
+
+7
+00:00:20.425 --> 00:00:23.624
+the PIM settings, consent
+and access packages.
+
+8
+00:00:23.624 --> 00:00:26.563
+The help desk handles
+assignments under a scoped role.
+
+9
+00:00:26.563 --> 00:00:31.250
+Security operations handles alerts,
+risky sign-ins and response.
+
+10
+00:00:31.250 --> 00:00:35.837
+Assuring: the ISSO owns the evidence
+and findings, the authorizing
+
+11
+00:00:35.837 --> 00:00:40.925
+official owns accepted risk, and
+reviewers recertify access on schedule.
+
+12
+00:00:40.925 --> 00:00:42.734
+The rule that holds it together:
+
+13
+00:00:42.734 --> 00:00:46.075
+the people who execute access
+changes never approve them.
+
+14
+00:00:46.075 --> 00:00:50.626
+That's why the help desk works under a
+custom role that manages assignments only,
+
+15
+00:00:50.626 --> 00:00:54.763
+while consent and administrator
+roles stay with identity engineering.
+
+16
+00:00:54.763 --> 00:00:58.569
+The old guide gave the help
+desk Application Administrator,
+
+17
+00:00:58.569 --> 00:01:03.340
+which can grant consent and act as any
+app, so that rule existed only on paper.

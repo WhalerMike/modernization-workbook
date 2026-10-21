@@ -1,0 +1,85 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.620
+For administrators, Privileged Identity
+
+2
+00:00:02.620 --> 00:00:05.850
+Management turns privilege
+into a governed request.
+
+3
+00:00:05.850 --> 00:00:09.800
+An administrator holds an eligible
+assignment, not an active one.
+
+4
+00:00:09.800 --> 00:00:13.931
+To use it, they request activation
+with a justification and a ticket;
+
+5
+00:00:13.931 --> 00:00:18.504
+step up through an authentication
+context; get approval from someone else;
+
+6
+00:00:18.504 --> 00:00:23.225
+and receive a time-boxed activation that's
+logged, alerted and later reviewed.
+
+7
+00:00:23.225 --> 00:00:26.625
+The details matter, and the
+old guides had several wrong.
+
+8
+00:00:26.625 --> 00:00:29.579
+Activation can run from
+one to twenty-four hours,
+
+9
+00:00:29.579 --> 00:00:33.937
+and the approval window is a fixed
+twenty-four hours with a single stage.
+
+10
+00:00:33.937 --> 00:00:38.947
+PIM's built-in MFA can be satisfied by
+an earlier sign-in in the same session,
+
+11
+00:00:38.947 --> 00:00:43.463
+so the book uses an authentication
+context to force a fresh step-up.
+
+12
+00:00:43.463 --> 00:00:47.693
+Approvers can't approve their own
+requests, and if a role has no approvers
+
+13
+00:00:47.693 --> 00:00:52.700
+configured, active Privileged Role
+Administrators become the approvers by default.
+
+14
+00:00:52.700 --> 00:00:56.513
+And licensing: PIM needs
+Entra ID P2 or ID Governance,
+
+15
+00:00:56.513 --> 00:01:01.125
+and if those licenses lapse,
+eligible assignments are removed.
+
+16
+00:01:01.125 --> 00:01:05.445
+Appendix B sets every role's
+activation time, approvers,
+
+17
+00:01:05.445 --> 00:01:11.810
+context and notifications, tighter for Tier
+0 and Tier 1 than Book 02's first table.

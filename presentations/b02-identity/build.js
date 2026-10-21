@@ -11,11 +11,11 @@ const OUT = process.argv[2] || "B02_Identity.pptx";
   const s = D.titleSlide("Why identity matters", "Why Does Identity Matter?", "Book 02 — Active Directory to Entra ID");
   D.agenda(s, 0.8, 4.7, 6.6);
   txt(s, "Series line", [
-    { text: "Modernization Workbook", options: { bold: true, color: HEX.navy, breakLine: true } },
+    { text: "Federal Modernization Workbook", options: { bold: true, color: HEX.navy, breakLine: true } },
     { text: "A 15-minute briefing on the book's argument and plan", options: { color: HEX.slate } },
   ], { x: 0.8, y: 5.6, w: 8, h: 0.8, fontSize: 16 });
   s.addNotes(
-`[0:00–0:29]  This briefing comes from Book 02 of the Modernization Workbook, Identity and Directory: the move from Active Directory to Entra ID.
+`[0:00–0:29]  This briefing comes from Book 02 of the Federal Modernization Workbook, Identity and Directory: the move from Active Directory to Entra ID.
 
 I'll take it through four questions. Why identity matters now. What actually changes when a directory moves to the cloud. Who has to own which decisions. And how to do it without losing the governance that twenty-five years of Active Directory quietly carried.
 

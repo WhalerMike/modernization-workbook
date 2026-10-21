@@ -1,0 +1,82 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.213
+Finally, governance, code and evidence.
+
+2
+00:00:03.213 --> 00:00:08.790
+Governance: access is requested through
+access packages with approval and expiry;
+
+3
+00:00:08.790 --> 00:00:14.287
+reviews run on a tiered cadence; and the
+book reviews groups, not just applications.
+
+4
+00:00:14.287 --> 00:00:16.812
+Guests have sponsors and are reviewed too.
+
+5
+00:00:16.812 --> 00:00:18.667
+As code: Conditional Access,
+
+6
+00:00:18.667 --> 00:00:22.537
+PIM settings and access packages
+live in version control.
+
+7
+00:00:22.537 --> 00:00:25.437
+Changes go through review
+rather than the portal,
+
+8
+00:00:25.437 --> 00:00:29.608
+drift is monitored against a baseline,
+and results are exported before
+
+9
+00:00:29.608 --> 00:00:33.850
+a baseline is changed, because changing
+it erases that monitor's history.
+
+10
+00:00:33.850 --> 00:00:39.208
+Evidence: the book maps all of
+this to the access-control,
+
+11
+00:00:39.208 --> 00:00:45.381
+identification and continuous-monitoring
+controls, AC-2, AC-3,
+
+12
+00:00:45.381 --> 00:00:51.437
+AC-6, IA-2 and CA-7, with every
+elevation and every review on record.
+
+13
+00:00:51.437 --> 00:00:53.013
+Two traps in the tooling.
+
+14
+00:00:53.013 --> 00:00:57.330
+Reviewing an application doesn't remove
+members of the groups assigned to it,
+
+15
+00:00:57.330 --> 00:00:59.825
+so the groups themselves
+have to be reviewed.
+
+16
+00:00:59.825 --> 00:01:04.674
+And Entra keeps sign-in and audit
+logs only thirty days with P1 or P2,
+
+17
+00:01:04.674 --> 00:01:08.090
+so the evidence has to be
+exported from day one.

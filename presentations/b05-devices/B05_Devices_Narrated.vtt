@@ -1,0 +1,911 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.672
+This briefing comes from Book 05 of
+the Federal Modernization Workbook,
+
+2
+00:00:04.672 --> 00:00:07.830
+Devices and Endpoints:
+the move from Group Policy
+
+3
+00:00:07.830 --> 00:00:10.988
+to Intune for devices, and
+to Azure Arc for servers.
+
+4
+00:00:10.988 --> 00:00:12.995
+I'll take it through four questions:
+
+5
+00:00:12.995 --> 00:00:16.940
+why Group Policy can't simply be
+carried to the cloud, what replaces it,
+
+6
+00:00:16.940 --> 00:00:20.124
+who owns the endpoint, and
+how to migrate a fleet without
+
+7
+00:00:20.124 --> 00:00:23.238
+losing the governance Group
+Policy quietly provided.
+
+8
+00:00:23.238 --> 00:00:26.213
+The short version: this is
+not a settings migration.
+
+9
+00:00:26.213 --> 00:00:28.140
+It's a governance rebuild.
+
+10
+00:00:28.890 --> 00:00:31.078
+Why can't Group Policy come to the cloud?
+
+11
+00:00:31.078 --> 00:00:33.746
+Because Group Policy governed by position,
+
+12
+00:00:33.746 --> 00:00:36.489
+and an Intune-managed
+device has no position.
+
+13
+00:00:36.489 --> 00:00:40.490
+Where a computer sat in the OU
+tree quietly did five jobs.
+
+14
+00:00:40.490 --> 00:00:43.753
+It decided targeting: what
+settings the computer got.
+
+15
+00:00:43.753 --> 00:00:48.027
+Precedence: link order and
+inheritance decided which setting won.
+
+16
+00:00:48.027 --> 00:00:51.541
+Delegation: OU permissions
+decided who could change it.
+
+17
+00:00:51.541 --> 00:00:56.115
+Timing: policy refreshed at
+startup, at sign-in and on a cycle.
+
+18
+00:00:56.115 --> 00:01:00.402
+And evidence: the resultant set of
+policy told you what actually applied.
+
+19
+00:01:00.402 --> 00:01:03.864
+An Entra-joined, Intune-managed
+device has none of that.
+
+20
+00:01:03.864 --> 00:01:08.440
+Policy is assigned flatly to groups,
+and nothing reads the OU tree.
+
+21
+00:01:08.440 --> 00:01:10.877
+When two policies set the same thing,
+
+22
+00:01:10.877 --> 00:01:14.615
+Intune reports a conflict; it
+doesn't resolve it by order.
+
+23
+00:01:14.615 --> 00:01:17.128
+Devices check in about every eight hours.
+
+24
+00:01:17.128 --> 00:01:20.443
+And some Group Policy jobs,
+mapped drives for example,
+
+25
+00:01:20.443 --> 00:01:22.553
+have no built-in equivalent at all.
+
+26
+00:01:22.553 --> 00:01:26.977
+Microsoft itself advises against
+copying GPOs one for one.
+
+27
+00:01:26.977 --> 00:01:29.003
+So this is not a settings migration.
+
+28
+00:01:29.003 --> 00:01:32.669
+Teams that copy GPOs into
+Intune discover the governance
+
+29
+00:01:32.669 --> 00:01:35.953
+loss after the targeting
+model has already changed.
+
+30
+00:01:35.953 --> 00:01:40.400
+Every job the tree did implicitly
+has to be rebuilt explicitly.
+
+31
+00:01:41.150 --> 00:01:45.925
+The obvious shortcut is hybrid join,
+and the book calls it a trap, carefully.
+
+32
+00:01:45.925 --> 00:01:48.162
+Microsoft's guidance has two halves.
+
+33
+00:01:48.162 --> 00:01:51.036
+New, refurbished or reset Windows devices
+
+34
+00:01:51.036 --> 00:01:54.074
+should be Microsoft
+Entra joined by default.
+
+35
+00:01:54.074 --> 00:01:57.461
+Existing domain-joined
+devices can be hybrid joined,
+
+36
+00:01:57.461 --> 00:02:01.463
+which gives them a cloud identity
+with minimal impact on users.
+
+37
+00:02:01.463 --> 00:02:06.538
+But Microsoft is explicit that hybrid join
+shouldn't be the long-term end state.
+
+38
+00:02:06.538 --> 00:02:07.613
+Here's the trap.
+
+39
+00:02:07.613 --> 00:02:10.838
+Turning on hybrid join for
+a fleet is, mechanically,
+
+40
+00:02:10.838 --> 00:02:15.062
+close to a single tenant-wide
+switch, so a control that assessments
+
+41
+00:02:15.062 --> 00:02:18.825
+score as a multi-quarter program
+can look finished in a week.
+
+42
+00:02:18.825 --> 00:02:22.300
+But the fleet keeps every
+on-premises dependency it had.
+
+43
+00:02:22.300 --> 00:02:25.388
+And there's no Microsoft-supported
+way to convert a
+
+44
+00:02:25.388 --> 00:02:29.212
+hybrid-joined device to Entra
+join without resetting Windows.
+
+45
+00:02:29.212 --> 00:02:32.637
+So the governed path uses
+hybrid join where it helps,
+
+46
+00:02:32.637 --> 00:02:36.540
+and plans each device's move to
+Entra join at a natural event:
+
+47
+00:02:36.540 --> 00:02:40.762
+the next hardware refresh,
+operating-system upgrade or rebuild.
+
+48
+00:02:40.762 --> 00:02:44.570
+That way the waypoint doesn't
+quietly become the destination.
+
+49
+00:02:45.320 --> 00:02:46.483
+What replaces it?
+
+50
+00:02:46.483 --> 00:02:49.057
+Devices and servers take different roads.
+
+51
+00:02:49.057 --> 00:02:53.013
+For endpoints, the Entra ID device
+object carries the identity,
+
+52
+00:02:53.013 --> 00:02:57.956
+Intune carries configuration and
+compliance, Autopilot provides zero-touch
+
+53
+00:02:57.956 --> 00:03:02.671
+provisioning, and Defender for Endpoint
+covers threat and vulnerability.
+
+54
+00:03:02.671 --> 00:03:06.433
+Servers are different, and the old
+design documents got this wrong.
+
+55
+00:03:06.433 --> 00:03:08.895
+Intune doesn't manage Windows Server.
+
+56
+00:03:08.895 --> 00:03:13.720
+A server comes under governance through
+Azure Arc, which makes it an Azure resource.
+
+57
+00:03:13.720 --> 00:03:17.312
+Azure Policy machine configuration
+sets its configuration,
+
+58
+00:03:17.312 --> 00:03:21.820
+and Update Manager and Defender for
+Servers handle patching and protection.
+
+59
+00:03:21.820 --> 00:03:27.208
+For new devices, the book's doctrine is
+Intune-first: governed from day zero.
+
+60
+00:03:27.208 --> 00:03:31.226
+The organizational assignment is
+set when the device is ordered,
+
+61
+00:03:31.226 --> 00:03:35.616
+enrollment is zero-touch, and an
+onboarding failure goes to quarantine,
+
+62
+00:03:35.616 --> 00:03:38.220
+never into production in a degraded state.
+
+63
+00:03:38.220 --> 00:03:41.397
+Because each system is
+authoritative for one thing,
+
+64
+00:03:41.397 --> 00:03:45.904
+the program correlates them on stable
+keys and reconciles the inventory
+
+65
+00:03:45.904 --> 00:03:50.920
+continuously, so the fleet has one answer
+to "what do we have, and is it governed?"
+
+66
+00:03:51.670 --> 00:03:56.883
+For new devices, the book's doctrine is
+Intune-first, and it has five pillars.
+
+67
+00:03:56.883 --> 00:03:59.783
+One: no ungoverned device, ever.
+
+68
+00:03:59.783 --> 00:04:04.202
+Every device is enrolled in governance
+before it goes into production use,
+
+69
+00:04:04.202 --> 00:04:07.482
+and quarantine is the safety
+valve, not the steady state.
+
+70
+00:04:07.482 --> 00:04:10.720
+Two: procurement is the
+first governance step.
+
+71
+00:04:10.720 --> 00:04:14.626
+The organizational assignment is
+set when the order is placed,
+
+72
+00:04:14.626 --> 00:04:18.608
+not when the box arrives, the same
+way HR feeds user provisioning.
+
+73
+00:04:18.608 --> 00:04:20.583
+Three: zero-touch only.
+
+74
+00:04:20.583 --> 00:04:24.915
+Manual enrollment is an exception
+that needs written justification,
+
+75
+00:04:24.915 --> 00:04:26.782
+a time limit and an audit entry.
+
+76
+00:04:26.782 --> 00:04:29.296
+Four: one management plane per asset.
+
+77
+00:04:29.296 --> 00:04:34.086
+Intune for endpoints, Azure Arc with
+machine configuration for servers,
+
+78
+00:04:34.086 --> 00:04:37.120
+and no greenfield Group
+Policy or hybrid join.
+
+79
+00:04:37.120 --> 00:04:39.633
+And five: quarantine on failure.
+
+80
+00:04:39.633 --> 00:04:41.887
+An onboarding failure opens a ticket;
+
+81
+00:04:41.887 --> 00:04:45.158
+it never produces a device
+running in a degraded state.
+
+82
+00:04:45.158 --> 00:04:50.227
+One practical choice: in a GCC tenant,
+the book defaults to classic Autopilot,
+
+83
+00:04:50.227 --> 00:04:54.089
+with devices registered by
+the manufacturer or reseller,
+
+84
+00:04:54.089 --> 00:04:57.308
+because that registration
+can carry a group tag.
+
+85
+00:04:57.308 --> 00:05:02.258
+The newer Autopilot device preparation
+has no registration step, so it can't.
+
+86
+00:05:02.258 --> 00:05:05.533
+These pillars are program
+doctrine for net-new devices.
+
+87
+00:05:05.533 --> 00:05:08.650
+The existing fleet takes
+one of three paths.
+
+88
+00:05:09.400 --> 00:05:12.321
+There are three paths to
+the same governed state,
+
+89
+00:05:12.321 --> 00:05:14.512
+and the book uses them deliberately.
+
+90
+00:05:14.512 --> 00:05:17.452
+The governed path is program-orchestrated:
+
+91
+00:05:17.452 --> 00:05:20.637
+every step is recorded,
+approved and evidenced.
+
+92
+00:05:20.637 --> 00:05:23.575
+It's the default for
+any population in scope.
+
+93
+00:05:23.575 --> 00:05:26.699
+The manual path is operator-run
+with the native tools,
+
+94
+00:05:26.699 --> 00:05:28.900
+without the orchestration platform.
+
+95
+00:05:28.900 --> 00:05:31.455
+It's for when the platform
+isn't available yet,
+
+96
+00:05:31.455 --> 00:05:34.838
+and it trades automation for
+more hand-collected evidence.
+
+97
+00:05:34.838 --> 00:05:39.155
+The retrofit path brings an estate
+that was already modernized by hand,
+
+98
+00:05:39.155 --> 00:05:42.813
+before the program existed,
+under governance after the fact.
+
+99
+00:05:42.813 --> 00:05:44.987
+All three end in the same place:
+
+100
+00:05:44.987 --> 00:05:49.075
+the device or server enrolled,
+baselined and reconciled.
+
+101
+00:05:49.075 --> 00:05:51.810
+What differs is how much
+of the proof is produced
+
+102
+00:05:51.810 --> 00:05:54.887
+automatically and how much
+has to be collected by hand.
+
+103
+00:05:54.887 --> 00:05:59.476
+The chapter also corrects a few
+things the old path guides got wrong,
+
+104
+00:05:59.476 --> 00:06:04.309
+for example that LAN Manager
+authentication level five still accepts
+
+105
+00:06:04.309 --> 00:06:09.750
+NTLM version two; blocking NTLM takes
+the separate Restrict NTLM policies.
+
+106
+00:06:10.500 --> 00:06:11.788
+Who owns the endpoint?
+
+107
+00:06:11.788 --> 00:06:14.662
+The book separates who decides
+from who does the work.
+
+108
+00:06:14.662 --> 00:06:21.163
+Deciding: the CISO and ISSO own the
+baselines, the exceptions and the evidence.
+
+109
+00:06:21.163 --> 00:06:25.163
+The endpoint engineering lead owns
+policy design and the rollout.
+
+110
+00:06:25.163 --> 00:06:30.426
+And the change board owns the update
+rings, the migration waves and any pause.
+
+111
+00:06:30.426 --> 00:06:34.284
+Doing: endpoint engineering
+builds the Intune policies,
+
+112
+00:06:34.284 --> 00:06:37.075
+Autopilot profiles and app deployments.
+
+113
+00:06:37.075 --> 00:06:41.963
+The server team onboards servers to
+Azure Arc and owns machine configuration.
+
+114
+00:06:41.963 --> 00:06:46.475
+Security operations runs Defender,
+the alerts and the response.
+
+115
+00:06:46.475 --> 00:06:52.137
+Consulted and affected: application owners
+supply test results and app packaging.
+
+116
+00:06:52.137 --> 00:06:55.551
+The help desk handles
+enrollment, wipe and recovery.
+
+117
+00:06:55.551 --> 00:06:58.825
+And end users join pilot
+waves and tell us what broke.
+
+118
+00:06:58.825 --> 00:07:03.325
+One rule applies to the people as
+much as the devices: least privilege.
+
+119
+00:07:03.325 --> 00:07:07.647
+Day-to-day work runs on scoped Intune
+roles, not Intune Administrator;
+
+120
+00:07:07.647 --> 00:07:12.860
+Microsoft advises against using the
+broad role for routine administration.
+
+121
+00:07:13.610 --> 00:07:14.223
+How.
+
+122
+00:07:14.223 --> 00:07:19.358
+The book runs the Group Policy sunset
+as a program, setting by setting,
+
+123
+00:07:19.358 --> 00:07:24.674
+in seven steps: inventory and parse,
+classify each setting, crosswalk it,
+
+124
+00:07:24.674 --> 00:07:29.810
+decide, sequence by population, freeze
+and unlink, and finally retire.
+
+125
+00:07:29.810 --> 00:07:33.546
+Every setting goes one of three
+ways: migrate it to Intune,
+
+126
+00:07:33.546 --> 00:07:36.885
+replace it with a cloud-native
+pattern, or retire it.
+
+127
+00:07:36.885 --> 00:07:40.585
+The coexistence rules matter, and
+the old guides had them wrong.
+
+128
+00:07:40.585 --> 00:07:44.710
+While a device is under both,
+Group Policy wins by default.
+
+129
+00:07:44.710 --> 00:07:47.286
+The MDMWinsOverGP setting reverses that,
+
+130
+00:07:47.286 --> 00:07:51.480
+but only for settings in the Policy
+configuration service provider;
+
+131
+00:07:51.480 --> 00:07:54.571
+Defender settings and
+Windows Hello for Business
+
+132
+00:07:54.571 --> 00:07:57.735
+have to be removed from
+Group Policy, not overridden.
+
+133
+00:07:57.735 --> 00:08:02.999
+Group Policy preferences can leave their
+settings behind after a GPO is unlinked,
+
+134
+00:08:02.999 --> 00:08:06.173
+so every preference item
+needs a planned cleanup.
+
+135
+00:08:06.173 --> 00:08:10.825
+And the book unlinks one population at
+a time rather than blocking inheritance,
+
+136
+00:08:10.825 --> 00:08:13.010
+because that's scoped and reversible.
+
+137
+00:08:13.010 --> 00:08:15.747
+One more thing: measure, don't assume.
+
+138
+00:08:15.747 --> 00:08:19.990
+Microsoft publishes no typical
+percentage of settings that migrate,
+
+139
+00:08:19.990 --> 00:08:24.950
+so the program runs Group Policy analytics
+against the estate's own exports.
+
+140
+00:08:25.700 --> 00:08:28.693
+The existing fleet then
+migrates in seven phases,
+
+141
+00:08:28.693 --> 00:08:32.125
+about thirty-four weeks on
+the book's planning estimates.
+
+142
+00:08:32.125 --> 00:08:34.553
+Phase one inventories and classifies,
+
+143
+00:08:34.553 --> 00:08:37.588
+ending with a decision
+record for every setting.
+
+144
+00:08:37.588 --> 00:08:42.513
+Phase two plans coexistence, with
+pilot devices co-managed and syncing.
+
+145
+00:08:42.513 --> 00:08:45.793
+Phase three authors the
+baselines, unassigned,
+
+146
+00:08:45.793 --> 00:08:49.325
+until every setting is
+owned by exactly one policy.
+
+147
+00:08:49.325 --> 00:08:52.588
+Phase four pilots on about
+five percent of devices.
+
+148
+00:08:52.588 --> 00:08:56.268
+Phase five cuts over workload
+by workload in four waves,
+
+149
+00:08:56.268 --> 00:08:58.588
+each watched for seventy-two hours.
+
+150
+00:08:58.588 --> 00:09:03.976
+Phase six verifies that no migrated
+device still processes a GPO.
+
+151
+00:09:03.976 --> 00:09:06.069
+And phase seven retires the GPOs,
+
+152
+00:09:06.069 --> 00:09:10.025
+keeping them ninety days before
+they're archived and deleted.
+
+153
+00:09:10.025 --> 00:09:14.775
+The book also sets a floor:
+Windows 11 version 24H2.
+
+154
+00:09:14.775 --> 00:09:18.843
+Windows 10 is out of
+support, and Windows 11 23H2
+
+155
+00:09:18.843 --> 00:09:23.537
+Enterprise stops getting
+updates on November 10, 2026.
+
+156
+00:09:23.537 --> 00:09:26.572
+These are planning estimates
+for a large fleet with
+
+157
+00:09:26.572 --> 00:09:29.888
+an existing Configuration
+Manager estate, not promises.
+
+158
+00:09:29.888 --> 00:09:32.667
+Every gate is the next
+phase's precondition,
+
+159
+00:09:32.667 --> 00:09:35.890
+and every phase has a
+rollback while it's open.
+
+160
+00:09:36.640 --> 00:09:39.565
+Servers come under governance
+through Azure Arc.
+
+161
+00:09:39.565 --> 00:09:43.442
+Onboarding uses the Connected
+Machine agent with least privilege:
+
+162
+00:09:43.442 --> 00:09:47.803
+a certificate-based onboarding identity
+that's needed only at connect time.
+
+163
+00:09:47.803 --> 00:09:50.907
+Configuration comes through
+Azure Policy machine
+
+164
+00:09:50.907 --> 00:09:53.578
+configuration baselines,
+assigned by scope.
+
+165
+00:09:53.578 --> 00:09:58.190
+And patching and protection come from
+Update Manager and Defender for Servers.
+
+166
+00:09:58.190 --> 00:09:59.853
+Two dates make this urgent.
+
+167
+00:09:59.853 --> 00:10:07.687
+Extended security updates for Windows Server
+2012 and 2012 R2 ended on October 13,
+
+168
+00:10:07.687 --> 00:10:13.102
+2026, a week ago, so any remaining
+2012 host is a red finding.
+
+169
+00:10:13.102 --> 00:10:19.453
+And Windows Server 2016 reaches
+end of support on January 12, 2027.
+
+170
+00:10:19.453 --> 00:10:21.762
+The book is careful about rollback too:
+
+171
+00:10:21.762 --> 00:10:26.309
+remove extensions before disconnecting
+the agent, because disconnecting
+
+172
+00:10:26.309 --> 00:10:31.010
+deletes the Azure resource, which the
+onboarding role isn't allowed to do.
+
+173
+00:10:31.760 --> 00:10:33.860
+Finally, run it and prove it.
+
+174
+00:10:33.860 --> 00:10:38.647
+In run-state, compliance feeds
+Conditional Access, which is Book 04.
+
+175
+00:10:38.647 --> 00:10:41.999
+Updates flow through rings
+and Windows Autopatch,
+
+176
+00:10:41.999 --> 00:10:47.265
+and in a GCC tenant the update evidence
+comes from Intune and Autopatch reports,
+
+177
+00:10:47.265 --> 00:10:51.973
+because Windows Update for Business
+reports don't meet GCC compliance.
+
+178
+00:10:51.973 --> 00:10:58.910
+The inventory is reconciled across Entra
+ID, Intune, Autopilot, Arc and the CMDB.
+
+179
+00:10:58.910 --> 00:11:02.785
+Devices are retired and wiped
+before the account is deleted.
+
+180
+00:11:02.785 --> 00:11:09.414
+And the evidence maps to the
+configuration-management and
+
+181
+00:11:09.414 --> 00:11:14.960
+flaw-remediation controls:
+CM-2, CM-6, CM-7, CM-8 and SI-2.
+
+182
+00:11:14.960 --> 00:11:17.498
+What we need from
+leadership is four things.
+
+183
+00:11:17.498 --> 00:11:20.411
+Approve Intune-first for every new device.
+
+184
+00:11:20.411 --> 00:11:24.697
+Fund the Group Policy inventory
+and the Group Policy analytics run.
+
+185
+00:11:24.697 --> 00:11:30.397
+Set the Windows 11 24H2 floor and a plan
+for servers reaching end of support.
+
+186
+00:11:30.397 --> 00:11:34.210
+And name the owners for
+endpoints, servers and security.
+
+187
+00:11:34.210 --> 00:11:39.510
+Book 05 has the full migration, with
+every external claim footnoted.
+
+188
+00:11:39.510 --> 00:11:43.387
+Book 04 covers what a
+compliant device may reach,
+
+189
+00:11:43.387 --> 00:11:46.198
+and Book 02 the identity it rests on.
+
+190
+00:11:46.198 --> 00:11:47.020
+Thank you.

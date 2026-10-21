@@ -1,0 +1,90 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.512
+For most of the migration,
+both PKIs are production.
+
+2
+00:00:03.512 --> 00:00:09.138
+Devices carry certificates from both issuers,
+and relying parties trust both chains.
+
+3
+00:00:09.138 --> 00:00:11.687
+Three coexistence rules carry the weight.
+
+4
+00:00:11.687 --> 00:00:14.050
+Trust goes up before issuance moves.
+
+5
+00:00:14.050 --> 00:00:18.600
+Nothing is revoked to force a move;
+old certificates leave at renewal.
+
+6
+00:00:18.600 --> 00:00:23.501
+And every CRL must be reachable from
+inside the network, from the internet
+
+7
+00:00:23.501 --> 00:00:28.563
+and from Entra ID, because most
+coexistence outages are revocation outages.
+
+8
+00:00:28.563 --> 00:00:30.920
+The migration runs in six gated waves,
+
+9
+00:00:30.920 --> 00:00:35.712
+about forty-four weeks on the program's
+planning figures for a single forest.
+
+10
+00:00:35.712 --> 00:00:38.577
+Assess ends when every
+template is classified
+
+11
+00:00:38.577 --> 00:00:41.074
+and Critical and High findings are fixed.
+
+12
+00:00:41.074 --> 00:00:46.400
+Foundation puts the cloud CA live, with
+trust on ninety-nine percent of devices.
+
+13
+00:00:46.400 --> 00:00:49.675
+Pilot needs ninety-five
+percent issuance success.
+
+14
+00:00:49.675 --> 00:00:52.162
+Scale moves every managed device.
+
+15
+00:00:52.162 --> 00:00:58.488
+Cutover converts federated domains and
+turns off AD FS certificate authentication.
+
+16
+00:00:58.488 --> 00:01:02.449
+And Decommission retires what
+served only migrated workloads.
+
+17
+00:01:02.449 --> 00:01:04.725
+Every wave has a rehearsed rollback.
+
+18
+00:01:04.725 --> 00:01:09.094
+Autoenrollment stays on through the
+pilot, and AD FS stays restorable
+
+19
+00:01:09.094 --> 00:01:13.300
+for thirty days after cutover, with
+a four-hour recovery objective.

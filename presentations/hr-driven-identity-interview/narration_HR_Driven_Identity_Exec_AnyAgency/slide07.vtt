@@ -1,0 +1,114 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.112
+Here is how I propose we carry it out.
+
+2
+00:00:02.112 --> 00:00:02.787
+Data.
+
+3
+00:00:02.787 --> 00:00:08.027
+One governed crosswalk maps OPM's standard
+data elements into that person model,
+
+4
+00:00:08.027 --> 00:00:12.563
+so when HR changes platforms only
+the crosswalk's source side changes.
+
+5
+00:00:12.563 --> 00:00:18.049
+Validated personnel-action mappings then
+initiate the identity events — joiner,
+
+6
+00:00:18.049 --> 00:00:23.699
+mover, leaver — using a proposed classification
+that the data owners validate first.
+
+7
+00:00:23.699 --> 00:00:28.775
+Contractors come into the same model once
+the contractor authority decision is made.
+
+8
+00:00:28.775 --> 00:00:29.750
+Security.
+
+9
+00:00:29.750 --> 00:00:34.069
+The leaver path blocks access first,
+within the approved threshold,
+
+10
+00:00:34.069 --> 00:00:37.000
+and then reconciles
+every downstream action.
+
+11
+00:00:37.000 --> 00:00:39.528
+The integration runs with least privilege,
+
+12
+00:00:39.528 --> 00:00:44.162
+using managed identities and secretless
+authentication wherever supported.
+
+13
+00:00:44.162 --> 00:00:47.716
+And anything that fails goes
+to a quarantine with an owner;
+
+14
+00:00:47.716 --> 00:00:49.863
+nothing resolves itself silently.
+
+15
+00:00:49.863 --> 00:00:50.999
+Operations.
+
+16
+00:00:50.999 --> 00:00:54.630
+We start now, from the HR
+data the agency already has,
+
+17
+00:00:54.630 --> 00:00:59.988
+subject to data profiling, and switch
+the source to Core HCM when it arrives.
+
+18
+00:00:59.988 --> 00:01:03.185
+We run in shadow mode first,
+comparing what HR says
+
+19
+00:01:03.185 --> 00:01:06.462
+with what the directories
+hold, and fixing the gaps.
+
+20
+00:01:06.462 --> 00:01:08.838
+We cut over one population at a time.
+
+21
+00:01:08.838 --> 00:01:11.780
+And we close the ticket
+path for a population
+
+22
+00:01:11.780 --> 00:01:14.801
+only when the data proves
+HR is the sole source.
+
+23
+00:01:14.801 --> 00:01:17.685
+The products on the slide
+are one realization;
+
+24
+00:01:17.685 --> 00:01:21.325
+the agency-owned model
+remains stable if they change.

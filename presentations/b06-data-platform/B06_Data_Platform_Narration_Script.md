@@ -2,7 +2,7 @@
 
 ## Slide 1 — Why Is the Database Where Legacy Authentication Hides?
 
-This briefing comes from Book 06 of the Modernization Workbook: the SQL Server estate's move from Windows Authentication to cloud identity.
+This briefing comes from Book 06 of the Federal Modernization Workbook: the SQL Server estate's move from Windows Authentication to cloud identity.
 
 Every identity program eventually reaches the database, and the database is where it finds the most Windows authentication still in use. I'll take it through why that is, what replaces it, who owns the work, and how to do it, from the estate inventory to a closure condition you can keep proving.
 

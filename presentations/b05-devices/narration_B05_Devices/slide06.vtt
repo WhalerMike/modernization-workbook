@@ -1,0 +1,87 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.971
+There are three paths to
+the same governed state,
+
+2
+00:00:02.971 --> 00:00:05.162
+and the book uses them deliberately.
+
+3
+00:00:05.162 --> 00:00:08.102
+The governed path is program-orchestrated:
+
+4
+00:00:08.102 --> 00:00:11.287
+every step is recorded,
+approved and evidenced.
+
+5
+00:00:11.287 --> 00:00:14.225
+It's the default for
+any population in scope.
+
+6
+00:00:14.225 --> 00:00:17.349
+The manual path is operator-run
+with the native tools,
+
+7
+00:00:17.349 --> 00:00:19.550
+without the orchestration platform.
+
+8
+00:00:19.550 --> 00:00:22.105
+It's for when the platform
+isn't available yet,
+
+9
+00:00:22.105 --> 00:00:25.488
+and it trades automation for
+more hand-collected evidence.
+
+10
+00:00:25.488 --> 00:00:29.805
+The retrofit path brings an estate
+that was already modernized by hand,
+
+11
+00:00:29.805 --> 00:00:33.463
+before the program existed,
+under governance after the fact.
+
+12
+00:00:33.463 --> 00:00:35.637
+All three end in the same place:
+
+13
+00:00:35.637 --> 00:00:39.725
+the device or server enrolled,
+baselined and reconciled.
+
+14
+00:00:39.725 --> 00:00:42.460
+What differs is how much
+of the proof is produced
+
+15
+00:00:42.460 --> 00:00:45.537
+automatically and how much
+has to be collected by hand.
+
+16
+00:00:45.537 --> 00:00:50.126
+The chapter also corrects a few
+things the old path guides got wrong,
+
+17
+00:00:50.126 --> 00:00:54.959
+for example that LAN Manager
+authentication level five still accepts
+
+18
+00:00:54.959 --> 00:01:00.100
+NTLM version two; blocking NTLM takes
+the separate Restrict NTLM policies.

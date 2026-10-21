@@ -1,0 +1,81 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.425
+So, four decisions.
+
+2
+00:00:01.425 --> 00:00:05.907
+Authorize a single authoritative DDI
+policy plane, and assign an owner,
+
+3
+00:00:05.907 --> 00:00:10.237
+typically the enterprise architecture
+or network operations lead.
+
+4
+00:00:10.237 --> 00:00:14.446
+Have that owner settle the five
+configuration decisions within 90 days,
+
+5
+00:00:14.446 --> 00:00:17.813
+and report the residual risk
+to the authorizing official.
+
+6
+00:00:17.813 --> 00:00:20.250
+Choose the platform model on evidence:
+
+7
+00:00:20.250 --> 00:00:25.049
+authorization at the right impact level,
+and quotes on the same assumptions.
+
+8
+00:00:25.049 --> 00:00:28.274
+And name the owners, one decider per row,
+
+9
+00:00:28.274 --> 00:00:33.513
+with the DNS/DDI team deciding
+what every branch edge points at.
+
+10
+00:00:33.513 --> 00:00:39.181
+The next step is Phase 1, the inventory:
+export every AD DNS zone, SRV record,
+
+11
+00:00:39.181 --> 00:00:44.566
+conditional forwarder and DHCP
+scope, and every redirect-dns target
+
+12
+00:00:44.566 --> 00:00:49.951
+and revocation endpoint, before
+anyone touches a domain controller.
+
+13
+00:00:49.951 --> 00:00:54.425
+It's read-only, and it's the one step
+whose omission can't be repaired later.
+
+14
+00:00:54.425 --> 00:00:56.757
+Govern the name layer as one plane,
+
+15
+00:00:56.757 --> 00:01:00.837
+and it can carry the cloud,
+branch and identity transitions.
+
+16
+00:01:00.837 --> 00:01:04.912
+Book 08 has the detail,
+every claim footnoted.
+
+17
+00:01:04.912 --> 00:01:05.740
+Thank you.

@@ -1,0 +1,79 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.550
+What has to change starts
+with Active Directory.
+
+2
+00:00:02.550 --> 00:00:07.467
+For twenty years AD has been the hidden
+DNS service of the on-premises network:
+
+3
+00:00:07.467 --> 00:00:11.385
+a domain's name becomes a zone,
+and every domain-joined machine
+
+4
+00:00:11.385 --> 00:00:15.150
+points at the domain controllers
+for all of its resolution.
+
+5
+00:00:15.150 --> 00:00:19.953
+Netlogon on each domain controller
+registers the SRV locator records
+
+6
+00:00:19.953 --> 00:00:24.187
+that clients use to find LDAP,
+Kerberos and the global catalog.
+
+7
+00:00:24.187 --> 00:00:27.313
+Secure dynamic update keeps
+those records current.
+
+8
+00:00:27.313 --> 00:00:32.262
+Forwarders, GlobalNames, reverse and
+signed zones each need a decision.
+
+9
+00:00:32.262 --> 00:00:35.438
+Microsoft Entra ID inherits none of it.
+
+10
+00:00:35.438 --> 00:00:38.794
+It hosts no zones and
+publishes no locator records,
+
+11
+00:00:38.794 --> 00:00:42.870
+yet hybrid-joined devices still
+look for a domain controller,
+
+12
+00:00:42.870 --> 00:00:46.626
+and Entra Domain Services adds
+a DNS authority of its own.
+
+13
+00:00:46.626 --> 00:00:52.546
+So the locator records stay where domain
+controllers can register them securely,
+
+14
+00:00:52.546 --> 00:00:56.552
+on AD DNS or a DDI platform
+that accepts GSS-TSIG updates,
+
+15
+00:00:56.552 --> 00:00:59.338
+until the last domain controller goes.
+
+16
+00:00:59.338 --> 00:01:03.140
+Everything else moves zone by
+zone, once it's inventoried.

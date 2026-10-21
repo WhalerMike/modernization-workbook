@@ -1,0 +1,105 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:05.263
+For new devices, the book's doctrine is
+Intune-first, and it has five pillars.
+
+2
+00:00:05.263 --> 00:00:08.163
+One: no ungoverned device, ever.
+
+3
+00:00:08.163 --> 00:00:12.582
+Every device is enrolled in governance
+before it goes into production use,
+
+4
+00:00:12.582 --> 00:00:15.862
+and quarantine is the safety
+valve, not the steady state.
+
+5
+00:00:15.862 --> 00:00:19.100
+Two: procurement is the
+first governance step.
+
+6
+00:00:19.100 --> 00:00:23.006
+The organizational assignment is
+set when the order is placed,
+
+7
+00:00:23.006 --> 00:00:26.988
+not when the box arrives, the same
+way HR feeds user provisioning.
+
+8
+00:00:26.988 --> 00:00:28.963
+Three: zero-touch only.
+
+9
+00:00:28.963 --> 00:00:33.295
+Manual enrollment is an exception
+that needs written justification,
+
+10
+00:00:33.295 --> 00:00:35.162
+a time limit and an audit entry.
+
+11
+00:00:35.162 --> 00:00:37.676
+Four: one management plane per asset.
+
+12
+00:00:37.676 --> 00:00:42.466
+Intune for endpoints, Azure Arc with
+machine configuration for servers,
+
+13
+00:00:42.466 --> 00:00:45.500
+and no greenfield Group
+Policy or hybrid join.
+
+14
+00:00:45.500 --> 00:00:48.013
+And five: quarantine on failure.
+
+15
+00:00:48.013 --> 00:00:50.267
+An onboarding failure opens a ticket;
+
+16
+00:00:50.267 --> 00:00:53.538
+it never produces a device
+running in a degraded state.
+
+17
+00:00:53.538 --> 00:00:58.607
+One practical choice: in a GCC tenant,
+the book defaults to classic Autopilot,
+
+18
+00:00:58.607 --> 00:01:02.469
+with devices registered by
+the manufacturer or reseller,
+
+19
+00:01:02.469 --> 00:01:05.688
+because that registration
+can carry a group tag.
+
+20
+00:01:05.688 --> 00:01:10.638
+The newer Autopilot device preparation
+has no registration step, so it can't.
+
+21
+00:01:10.638 --> 00:01:13.913
+These pillars are program
+doctrine for net-new devices.
+
+22
+00:01:13.913 --> 00:01:16.730
+The existing fleet takes
+one of three paths.

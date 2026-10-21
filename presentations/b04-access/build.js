@@ -10,11 +10,11 @@ const OUT = process.argv[2] || "B04_Access.pptx";
   const s = D.titleSlide("Why policy decides", "Why Is Every Access Decision a Policy Decision?", "Book 04 — Access & Privilege");
   D.agenda(s, 0.8, 4.7, 6.6);
   txt(s, "Series line", [
-    { text: "Modernization Workbook", options: { bold: true, color: HEX.navy, breakLine: true } },
+    { text: "Federal Modernization Workbook", options: { bold: true, color: HEX.navy, breakLine: true } },
     { text: "A 15-minute briefing on the book's argument and plan", options: { color: HEX.slate } },
   ], { x: 0.8, y: 5.6, w: 8, h: 0.8, fontSize: 16 });
   s.addNotes(
-`[0:00–0:34]  This briefing comes from Book 04 of the Modernization Workbook, Access and Privilege.
+`[0:00–0:34]  This briefing comes from Book 04 of the Federal Modernization Workbook, Access and Privilege.
 
 Book 02 moved the identity. Book 03 made its facts trustworthy. This book is about what happens with them on every sign-in: who gets access to what, under which conditions, and how administrator power is kept from becoming an open door.
 

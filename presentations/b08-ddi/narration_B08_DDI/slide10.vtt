@@ -1,0 +1,96 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:00.900
+Who owns it?
+
+2
+00:00:00.900 --> 00:00:06.014
+In an AD estate, DNS belonged to
+whoever ran the domain controllers;
+
+3
+00:00:06.014 --> 00:00:10.013
+DnsAdmins has full control
+of every zone by default.
+
+4
+00:00:10.013 --> 00:00:13.071
+A single policy plane
+concentrates that authority,
+
+5
+00:00:13.071 --> 00:00:16.912
+so its owners have to be named on
+purpose, one decider per decision.
+
+6
+00:00:16.912 --> 00:00:20.219
+The sponsor and CIO decide the platform
+
+7
+00:00:20.219 --> 00:00:23.926
+model and when AD DNS
+and Windows DHCP retire.
+
+8
+00:00:23.926 --> 00:00:26.982
+The CISO and ISSO set the requirements:
+
+9
+00:00:26.982 --> 00:00:31.800
+designated resolvers, allowed
+transports, DNSSEC and logging.
+
+10
+00:00:31.800 --> 00:00:37.287
+The authorizing official accepts residual
+risk, including every standing exception.
+
+11
+00:00:37.287 --> 00:00:42.855
+The DNS/DDI team runs the policy plane
+and decides what the edge points at;
+
+12
+00:00:42.855 --> 00:00:45.638
+network engineering configures it.
+
+13
+00:00:45.638 --> 00:00:50.200
+AD administrators own the
+inventory until AD DNS retires,
+
+14
+00:00:50.200 --> 00:00:54.476
+and cloud teams run their DNS
+as consumers of the plane.
+
+15
+00:00:54.476 --> 00:00:56.837
+Record changes come in three classes.
+
+16
+00:00:56.837 --> 00:01:00.925
+Standard changes inside a delegated
+namespace are pre-approved.
+
+17
+00:01:00.925 --> 00:01:04.403
+Policy-driven records, like
+private endpoint entries,
+
+18
+00:01:04.403 --> 00:01:08.962
+need no per-change approval, but the
+policy itself is change-controlled.
+
+19
+00:01:08.962 --> 00:01:13.262
+High-impact changes, zones,
+delegations, forwarding, SRV,
+
+20
+00:01:13.262 --> 00:01:17.420
+wildcards and response policy,
+go to the change board.

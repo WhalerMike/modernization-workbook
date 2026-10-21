@@ -1,0 +1,84 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.075
+How do you get there?
+
+2
+00:00:01.075 --> 00:00:07.539
+In six phases: inventory, coexist,
+migrate authority, federate the clouds,
+
+3
+00:00:07.539 --> 00:00:12.387
+decommission AD DNS and DHCP,
+then harden and evidence.
+
+4
+00:00:12.387 --> 00:00:15.083
+Each phase ends with
+a rollback point and a
+
+5
+00:00:15.083 --> 00:00:18.549
+resolution test from every
+origin, not a calendar date.
+
+6
+00:00:18.549 --> 00:00:22.522
+Every move of authority,
+whether a zone, a forwarder,
+
+7
+00:00:22.522 --> 00:00:26.400
+a DHCP scope or a wave of
+clients, runs the same loop.
+
+8
+00:00:26.400 --> 00:00:30.950
+Lower the TTL to 300 seconds
+at least 48 hours ahead.
+
+9
+00:00:30.950 --> 00:00:37.713
+Import with a dry run, never moving
+the SOA, apex NS or AD locator records.
+
+10
+00:00:37.713 --> 00:00:39.774
+Validate from every origin.
+
+11
+00:00:39.774 --> 00:00:44.350
+Switch, then hold and observe, while
+the old authority keeps answering.
+
+12
+00:00:44.350 --> 00:00:49.119
+In Azure Private DNS, removing a
+virtual network link deletes the records
+
+13
+00:00:49.119 --> 00:00:53.575
+autoregistered through it, and
+Microsoft says they can't be restored.
+
+14
+00:00:53.575 --> 00:00:57.612
+So unlinking is safe only for
+zones without autoregistration.
+
+15
+00:00:57.612 --> 00:01:02.493
+Decommissioning is gated, never
+scheduled: the inventory reconciles,
+
+16
+00:01:02.493 --> 00:01:08.047
+every critical SRV record resolves for
+30 consecutive days, 90 days of parallel
+
+17
+00:01:08.047 --> 00:01:13.080
+operation pass cleanly, failover is
+tested, and the old servers are idle.

@@ -2,7 +2,7 @@
 
 ## Slide 1 — Why Is Every Access Decision a Policy Decision?
 
-This briefing comes from Book 04 of the Modernization Workbook, Access and Privilege.
+This briefing comes from Book 04 of the Federal Modernization Workbook, Access and Privilege.
 
 Book 02 moved the identity. Book 03 made its facts trustworthy. This book is about what happens with them on every sign-in: who gets access to what, under which conditions, and how administrator power is kept from becoming an open door.
 

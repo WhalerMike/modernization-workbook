@@ -1,0 +1,75 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.212
+Once it's running, one policy
+plane is only an improvement
+
+2
+00:00:03.212 --> 00:00:06.375
+if divisions can still run
+their own networks through it.
+
+3
+00:00:06.375 --> 00:00:11.692
+So each division gets a scope covering
+its own zones, IP spaces and DHCP scopes,
+
+4
+00:00:11.692 --> 00:00:14.516
+with manager, operator and auditor roles,
+
+5
+00:00:14.516 --> 00:00:18.088
+and automation accounts are
+held to the same scopes.
+
+6
+00:00:18.088 --> 00:00:22.615
+Infrastructure as code, ITSM
+workflows and ACME DNS-01
+
+7
+00:00:22.615 --> 00:00:28.149
+certificate automation all go
+through one API and one audit trail.
+
+8
+00:00:28.149 --> 00:00:32.038
+Locator records are resolved
+every 15 minutes from every site
+
+9
+00:00:32.038 --> 00:00:35.925
+and virtual network until the
+last domain controller retires.
+
+10
+00:00:35.925 --> 00:00:39.668
+Drift reports compare the source
+of truth with every copy,
+
+11
+00:00:39.668 --> 00:00:43.412
+and hygiene jobs catch stale
+records and dangling CNAMEs.
+
+12
+00:00:43.412 --> 00:00:48.322
+The evidence floor is M-21-31:
+DNS queries, responses and errors,
+
+13
+00:00:48.322 --> 00:00:54.387
+encrypted ones included, zone transfers,
+and DHCP lease history with MAC and
+
+14
+00:00:54.387 --> 00:01:00.451
+IP addresses, kept twelve months in
+active storage and eighteen months cold.
+
+15
+00:01:00.451 --> 00:01:04.080
+The lease history is what
+turns an address into a device.

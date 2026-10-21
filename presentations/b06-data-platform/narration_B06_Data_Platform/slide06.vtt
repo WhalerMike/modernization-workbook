@@ -1,0 +1,74 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.838
+The logins themselves move to
+Entra principals, in parallel.
+
+2
+00:00:03.838 --> 00:00:07.698
+People become Entra users,
+ideally granted through groups,
+
+3
+00:00:07.698 --> 00:00:11.637
+and they get phishing-resistant
+MFA and Conditional Access.
+
+4
+00:00:11.637 --> 00:00:16.509
+Groups become Entra group logins,
+which SQL Server records as type X,
+
+5
+00:00:16.509 --> 00:00:20.337
+with membership driven by
+HR attributes from Book 03.
+
+6
+00:00:20.337 --> 00:00:24.025
+Applications become service
+principals and managed identities,
+
+7
+00:00:24.025 --> 00:00:28.450
+and the book is clear that Conditional
+Access doesn't cover managed identities.
+
+8
+00:00:28.450 --> 00:00:30.750
+The migration is a parallel run.
+
+9
+00:00:30.750 --> 00:00:35.825
+Create the Entra user beside the Windows
+user and copy its roles and permissions.
+
+10
+00:00:35.825 --> 00:00:39.661
+Keep both until the audit shows
+no remaining Windows sessions,
+
+11
+00:00:39.661 --> 00:00:41.137
+then disable the old one.
+
+12
+00:00:41.137 --> 00:00:46.724
+Never convert in one step; and the old
+runbook's shortcut, ALTER USER with LOGIN,
+
+13
+00:00:46.724 --> 00:00:51.175
+only converts on Azure SQL Managed
+Instance, not on SQL Server.
+
+14
+00:00:51.175 --> 00:00:56.073
+One trap: the instance's Entra
+administrator becomes sysadmin, and changing
+
+15
+00:00:56.073 --> 00:01:00.790
+that administrator leaves the old
+login as sysadmin until a DBA drops it.

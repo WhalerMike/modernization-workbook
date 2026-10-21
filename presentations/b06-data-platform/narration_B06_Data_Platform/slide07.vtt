@@ -1,0 +1,88 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:00.900
+Who owns it?
+
+2
+00:00:00.900 --> 00:00:04.413
+The book's new Chapter 13
+separates deciding from doing.
+
+3
+00:00:04.413 --> 00:00:10.137
+Deciding: the CIO and data leadership
+decide retain, consolidate or retire.
+
+4
+00:00:10.137 --> 00:00:14.737
+The CISO, the ISSO and the
+authorizing official decide
+
+5
+00:00:14.737 --> 00:00:18.937
+NTLM and SQL-login exceptions
+and sign off closure.
+
+6
+00:00:18.937 --> 00:00:23.876
+Application and data owners decide the
+cutover window for each application.
+
+7
+00:00:23.876 --> 00:00:29.625
+Doing: the data platform team runs logins,
+roles, the audit and the parallel run.
+
+8
+00:00:29.625 --> 00:00:33.054
+The identity team creates
+Entra logins and groups
+
+9
+00:00:33.054 --> 00:00:35.912
+and grants the Graph
+consent the DBAs can't.
+
+10
+00:00:35.912 --> 00:00:38.475
+The server team onboards hosts to Arc.
+
+11
+00:00:38.475 --> 00:00:42.349
+Supporting: developers change
+connection strings and drivers,
+
+12
+00:00:42.349 --> 00:00:45.492
+the help desk handles sign-in
+issues during cutover,
+
+13
+00:00:45.492 --> 00:00:49.000
+and security operations watches
+Defender for SQL alerts.
+
+14
+00:00:49.000 --> 00:00:50.875
+And there are hidden administrators.
+
+15
+00:00:50.875 --> 00:00:56.022
+Azure Contributor on an Arc server is an
+indirect administrator of SQL Server on
+
+16
+00:00:56.022 --> 00:00:58.864
+that host, and Owner or
+Contributor on the SQL
+
+17
+00:00:58.864 --> 00:01:01.937
+resource can switch SQL
+authentication back on.
+
+18
+00:01:01.937 --> 00:01:05.420
+Azure role assignments need
+the same care as sysadmin.

@@ -1,0 +1,92 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.575
+Why is the database where
+legacy authentication hides?
+
+2
+00:00:03.575 --> 00:00:06.900
+Because SQL Server trusts
+whatever Windows tells it.
+
+3
+00:00:06.900 --> 00:00:09.987
+A connection reaches the
+engine in one of four ways.
+
+4
+00:00:09.987 --> 00:00:13.200
+Kerberos, when the service
+principal name is right.
+
+5
+00:00:13.200 --> 00:00:17.325
+NTLM, silently, when the SPN is missing.
+
+6
+00:00:17.325 --> 00:00:20.925
+A SQL login, where the engine
+checks a password itself.
+
+7
+00:00:20.925 --> 00:00:23.326
+Or Microsoft Entra authentication,
+
+8
+00:00:23.326 --> 00:00:26.688
+which is the only one
+Conditional Access ever sees.
+
+9
+00:00:26.688 --> 00:00:29.326
+Three facts make the
+inheritance hard to see.
+
+10
+00:00:29.326 --> 00:00:32.645
+Windows Authentication can't
+be turned off in SQL Server,
+
+11
+00:00:32.645 --> 00:00:36.600
+because the engine delegates it to
+the Windows security subsystem.
+
+12
+00:00:36.600 --> 00:00:40.828
+Which protocol a connection
+used isn't written to any log;
+
+13
+00:00:40.828 --> 00:00:45.775
+it shows only in a dynamic management
+view, sys.dm_exec_connections.
+
+14
+00:00:45.775 --> 00:00:49.855
+And local connections use NTLM
+even when the SPN is right,
+
+15
+00:00:49.855 --> 00:00:55.238
+while an SPN registered on the wrong
+account makes the login fail outright.
+
+16
+00:00:55.238 --> 00:00:57.368
+The book is careful about one thing:
+
+17
+00:00:57.368 --> 00:01:01.849
+Windows Authentication was good
+engineering for a domain-joined estate.
+
+18
+00:01:01.849 --> 00:01:05.746
+The case for replacing it rests
+on that world no longer existing,
+
+19
+00:01:05.746 --> 00:01:07.420
+not on calling it a mistake.

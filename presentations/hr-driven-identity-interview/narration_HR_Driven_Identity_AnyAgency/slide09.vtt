@@ -1,0 +1,50 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.888
+Logical and physical modeling,
+following the data from HR to ICAM.
+
+2
+00:00:04.888 --> 00:00:09.052
+In the middle is the logical model:
+a person with an enterprise key the
+
+3
+00:00:09.052 --> 00:00:13.800
+agency controls — their assignments, and
+the lifecycle events that change them.
+
+4
+00:00:13.800 --> 00:00:17.229
+On the left, the OPM element
+that feeds each field;
+
+5
+00:00:17.229 --> 00:00:22.031
+then where it lands in Entra ID and
+Active Directory; and on the right,
+
+6
+00:00:22.031 --> 00:00:27.432
+what ICAM does with it — component scope,
+location policy, role-based access,
+
+7
+00:00:27.432 --> 00:00:32.062
+approvals, and the joiner, mover
+and leaver actions, including PIV.
+
+8
+00:00:32.062 --> 00:00:37.673
+Three physical rules: native attributes
+first; codes, never display strings, in
+
+9
+00:00:37.673 --> 00:00:39.744
+anything that grants access;
+
+10
+00:00:39.744 --> 00:00:44.274
+and one governed crosswalk as
+the only place mappings live.

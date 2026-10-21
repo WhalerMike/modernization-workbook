@@ -1,0 +1,48 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.778
+This briefing comes from Book 02 of
+the Federal Modernization Workbook,
+
+2
+00:00:04.778 --> 00:00:09.112
+Identity and Directory: the move
+from Active Directory to Entra ID.
+
+3
+00:00:09.112 --> 00:00:10.888
+I'll take it through four questions.
+
+4
+00:00:10.888 --> 00:00:12.587
+Why identity matters now.
+
+5
+00:00:12.587 --> 00:00:15.738
+What actually changes when a
+directory moves to the cloud.
+
+6
+00:00:15.738 --> 00:00:17.676
+Who has to own which decisions.
+
+7
+00:00:17.676 --> 00:00:20.413
+And how to do it without
+losing the governance that
+
+8
+00:00:20.413 --> 00:00:23.412
+twenty-five years of Active
+Directory quietly carried.
+
+9
+00:00:23.412 --> 00:00:26.351
+The short version: this is
+not a directory upgrade.
+
+10
+00:00:26.351 --> 00:00:30.020
+It decides whether every
+security control after it works.

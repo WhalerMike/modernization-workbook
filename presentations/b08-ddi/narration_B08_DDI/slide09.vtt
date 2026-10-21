@@ -1,0 +1,71 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:05.300
+A branch client's query passes the SD-WAN
+edge to an agency-controlled resolver,
+
+2
+00:00:05.300 --> 00:00:09.581
+then the DDI policy plane, with
+its response policy zones, DNSSEC,
+
+3
+00:00:09.581 --> 00:00:13.700
+IPAM and forwarding rules, then
+the per-cloud private zones.
+
+4
+00:00:13.700 --> 00:00:17.913
+Internet-bound recursion leaves
+through CISA's Protective DNS.
+
+5
+00:00:17.913 --> 00:00:21.638
+Five decisions carry almost
+all of the operational risk.
+
+6
+00:00:21.638 --> 00:00:26.799
+One: the redirect-dns target is a
+network-addressable agency resolver.
+
+7
+00:00:26.799 --> 00:00:32.537
+Two: the agency resolver is the first hop,
+and any other resolver is its forwarder.
+
+8
+00:00:32.537 --> 00:00:37.376
+Three: the policy plane holds every
+per-cloud conditional forwarding rule.
+
+9
+00:00:37.376 --> 00:00:43.638
+Four: AD DNS is inventoried and reprovisioned
+before any domain controller goes.
+
+10
+00:00:43.638 --> 00:00:48.588
+Five: OCSP and CRL endpoints
+resolve from every origin.
+
+11
+00:00:48.588 --> 00:00:51.822
+Each fails silently: the
+query still resolves,
+
+12
+00:00:51.822 --> 00:00:54.887
+just outside policy or
+to the wrong address.
+
+13
+00:00:54.887 --> 00:00:59.062
+So each comes with a check, run
+in the live configuration rather
+
+14
+00:00:59.062 --> 00:01:03.140
+than the design document, before
+the next SD-WAN or DDI change.

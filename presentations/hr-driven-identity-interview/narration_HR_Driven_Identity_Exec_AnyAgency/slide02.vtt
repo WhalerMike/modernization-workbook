@@ -1,0 +1,140 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:00.700
+Why.
+
+2
+00:00:00.700 --> 00:00:04.547
+Based on current visibility,
+many agencies do not operate
+
+3
+00:00:04.547 --> 00:00:08.475
+a comprehensive enterprise
+HR-driven identity lifecycle.
+
+4
+00:00:08.475 --> 00:00:12.954
+In the processes I have observed, many
+workforce identity changes remain
+
+5
+00:00:12.954 --> 00:00:17.287
+dependent on tickets or manual
+coordination, and that costs three ways.
+
+6
+00:00:17.287 --> 00:00:21.104
+Access outlives the job: when
+someone leaves or changes roles,
+
+7
+00:00:21.104 --> 00:00:24.921
+removal can wait for a ticket,
+and a stale account is a security
+
+8
+00:00:24.921 --> 00:00:28.513
+violation that can enable a
+breach of the public's records.
+
+9
+00:00:28.513 --> 00:00:32.653
+Federal standards require revoking
+a separated person's credentials,
+
+10
+00:00:32.653 --> 00:00:35.812
+and a ticket-dependent process
+struggles to meet that.
+
+11
+00:00:35.812 --> 00:00:39.240
+Records we can't trust: in
+the processes I have observed,
+
+12
+00:00:39.240 --> 00:00:43.734
+the phone book is wrong until someone
+files a ticket, and every change of
+
+13
+00:00:43.734 --> 00:00:48.762
+manager means the organization, the manager
+and tool access are updated by hand.
+
+14
+00:00:48.762 --> 00:00:51.051
+Approvals route through that same data.
+
+15
+00:00:51.051 --> 00:00:56.712
+And cost and delay: many joiners, movers
+and leavers become help-desk work.
+
+16
+00:00:56.712 --> 00:00:59.274
+But the bigger why is where
+the mission is heading.
+
+17
+00:00:59.274 --> 00:01:02.220
+Take an illustrative
+shared-service scenario:
+
+18
+00:01:02.220 --> 00:01:06.750
+a cross-agency contact center, one
+front door for two agencies' customers.
+
+19
+00:01:06.750 --> 00:01:09.362
+It's an example, not an approved program.
+
+20
+00:01:09.362 --> 00:01:12.349
+The hard part of an idea
+like that isn't the phones:
+
+21
+00:01:12.349 --> 00:01:15.187
+cloud contact centers
+make the front end easy.
+
+22
+00:01:15.187 --> 00:01:16.376
+It's the back end.
+
+23
+00:01:16.376 --> 00:01:17.575
+Who is this agent?
+
+24
+00:01:17.575 --> 00:01:19.687
+Which agency's records may they see?
+
+25
+00:01:19.687 --> 00:01:23.438
+And does their access end the
+day they leave, in both agencies?
+
+26
+00:01:23.438 --> 00:01:26.912
+A standardized, HR-driven
+identity supplies the trusted
+
+27
+00:01:26.912 --> 00:01:30.238
+facts needed to answer those
+questions consistently.
+
+28
+00:01:30.238 --> 00:01:35.361
+And if we do nothing, HR moves to
+Core HCM, identity moves to Entra ID,
+
+29
+00:01:35.361 --> 00:01:40.500
+and we rebuild the same manual
+process twice, on new platforms.

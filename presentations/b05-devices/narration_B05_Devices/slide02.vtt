@@ -1,0 +1,100 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.238
+Why can't Group Policy come to the cloud?
+
+2
+00:00:02.238 --> 00:00:04.906
+Because Group Policy governed by position,
+
+3
+00:00:04.906 --> 00:00:07.649
+and an Intune-managed
+device has no position.
+
+4
+00:00:07.649 --> 00:00:11.650
+Where a computer sat in the OU
+tree quietly did five jobs.
+
+5
+00:00:11.650 --> 00:00:14.913
+It decided targeting: what
+settings the computer got.
+
+6
+00:00:14.913 --> 00:00:19.187
+Precedence: link order and
+inheritance decided which setting won.
+
+7
+00:00:19.187 --> 00:00:22.701
+Delegation: OU permissions
+decided who could change it.
+
+8
+00:00:22.701 --> 00:00:27.275
+Timing: policy refreshed at
+startup, at sign-in and on a cycle.
+
+9
+00:00:27.275 --> 00:00:31.562
+And evidence: the resultant set of
+policy told you what actually applied.
+
+10
+00:00:31.562 --> 00:00:35.024
+An Entra-joined, Intune-managed
+device has none of that.
+
+11
+00:00:35.024 --> 00:00:39.600
+Policy is assigned flatly to groups,
+and nothing reads the OU tree.
+
+12
+00:00:39.600 --> 00:00:42.038
+When two policies set the same thing,
+
+13
+00:00:42.038 --> 00:00:45.775
+Intune reports a conflict; it
+doesn't resolve it by order.
+
+14
+00:00:45.775 --> 00:00:48.288
+Devices check in about every eight hours.
+
+15
+00:00:48.288 --> 00:00:51.603
+And some Group Policy jobs,
+mapped drives for example,
+
+16
+00:00:51.603 --> 00:00:53.713
+have no built-in equivalent at all.
+
+17
+00:00:53.713 --> 00:00:58.137
+Microsoft itself advises against
+copying GPOs one for one.
+
+18
+00:00:58.137 --> 00:01:00.163
+So this is not a settings migration.
+
+19
+00:01:00.163 --> 00:01:03.829
+Teams that copy GPOs into
+Intune discover the governance
+
+20
+00:01:03.829 --> 00:01:07.113
+loss after the targeting
+model has already changed.
+
+21
+00:01:07.113 --> 00:01:11.260
+Every job the tree did implicitly
+has to be rebuilt explicitly.
