@@ -193,7 +193,7 @@ The program's wave calendar applies that cadence to each group. The days are rel
 | 60 and 45 days before | What is changing, why, and what stays the same; how to register a phishing-resistant method now | The wave's dates and their staff's part | Champions are named and briefed; the help desk sees the wave's script |
 | 30 days before | The enforcement date; complete the assigned modules; the help desk rules (Module 6) | Their staff's completion and registration so far | The help desk is trained on the wave's changes and its assistive-technology questions |
 | 15 and 7 days before | Reminders, with drop-in sessions and help desk contacts | Names of staff not yet registered or trained | Extra staffing for the wave's first week is confirmed |
-| Readiness check | — | — | The gate owner checks registration, completion and ticket volume against the wave's thresholds |
+| Readiness check | — | — | The wave owner checks registration, completion and ticket volume against the wave's thresholds at the go/no-go ([Chapter 08](08-who-owns-workforce-readiness.md)) |
 | 1 day before | Enforcement happens tomorrow; how to get help | — | Floor support in place |
 | Up to 14 days after | Short follow-up lessons on the problems the help desk saw; a feedback survey | Their staff's remaining gaps | Ticket themes feed the next wave's materials |
 

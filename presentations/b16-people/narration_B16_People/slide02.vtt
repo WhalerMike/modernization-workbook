@@ -1,0 +1,69 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:05.138
+A Conditional Access policy can require
+phishing-resistant sign-in for every user.
+
+2
+00:00:05.138 --> 00:00:08.325
+It can't decide what happens
+when a caller tells the help
+
+3
+00:00:08.325 --> 00:00:11.651
+desk their security key is lost
+and they need to sign in now.
+
+4
+00:00:11.651 --> 00:00:14.943
+An entitlement review can
+list everyone with access,
+
+5
+00:00:14.943 --> 00:00:17.338
+but it can't make the owner read the list.
+
+6
+00:00:17.338 --> 00:00:20.379
+A drift check can find a
+server that left its baseline,
+
+7
+00:00:20.379 --> 00:00:24.112
+but it can't say whether the
+exception behind it was ever approved.
+
+8
+00:00:24.112 --> 00:00:26.895
+The program's position
+is that this technology
+
+9
+00:00:26.895 --> 00:00:29.463
+moves risk from configuration to judgment.
+
+10
+00:00:29.463 --> 00:00:33.475
+What's left is a smaller number of
+human decisions that carry more weight.
+
+11
+00:00:33.475 --> 00:00:38.385
+And almost every book splits a job into
+deciding and doing, and moves some
+
+12
+00:00:38.385 --> 00:00:43.213
+decisions to people outside I T, such
+as HR staff and application owners.
+
+13
+00:00:43.213 --> 00:00:46.742
+A person who doesn't know the new
+rule falls back on the old habit,
+
+14
+00:00:46.742 --> 00:00:50.210
+which is exactly what the
+modernization was meant to remove.
