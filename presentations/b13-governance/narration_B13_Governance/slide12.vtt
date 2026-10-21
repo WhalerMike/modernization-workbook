@@ -1,0 +1,89 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.688
+A platform that twenty agencies use is
+examined by twenty assessment teams,
+
+2
+00:00:04.688 --> 00:00:08.075
+producing twenty snapshots
+at twenty different times.
+
+3
+00:00:08.075 --> 00:00:10.338
+Reciprocity is the alternative.
+
+4
+00:00:10.338 --> 00:00:13.550
+NIST defines it as accepting
+each other's assessments.
+
+5
+00:00:13.550 --> 00:00:18.250
+Nothing in it lets one authorizing
+official accept risk for another agency.
+
+6
+00:00:18.250 --> 00:00:20.312
+NIST gives three mechanisms.
+
+7
+00:00:20.312 --> 00:00:24.258
+An authorization to use accepts
+another federal entity's package,
+
+8
+00:00:24.258 --> 00:00:26.913
+and the customer's
+official carries the same
+
+9
+00:00:26.913 --> 00:00:30.500
+responsibility as one issuing
+an authorization to operate.
+
+10
+00:00:30.500 --> 00:00:35.287
+A joint authorization has several officials
+accept one system's risk together.
+
+11
+00:00:35.287 --> 00:00:39.441
+For cloud services, OMB's
+M-24-15 makes reuse the default:
+
+12
+00:00:39.441 --> 00:00:44.978
+agencies presume a FedRAMP package
+adequate, but only while continuous
+
+13
+00:00:44.978 --> 00:00:50.238
+monitoring maintains it, and asking
+for more needs a documented need.
+
+14
+00:00:50.238 --> 00:00:54.724
+FedRAMP is plain that each agency
+still authorizes its own systems.
+
+15
+00:00:54.724 --> 00:00:59.154
+Its 46 Key Security Indicators
+bind providers, not agencies;
+
+16
+00:00:59.154 --> 00:01:02.875
+agencies review each
+provider's quarterly report.
+
+17
+00:01:02.875 --> 00:01:07.294
+So the program's old single-authorization
+wording is corrected:
+
+18
+00:01:07.294 --> 00:01:11.780
+one package, many decisions, each
+agency signing for its own risk.

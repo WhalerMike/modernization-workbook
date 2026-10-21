@@ -1,0 +1,72 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.400
+When the program says a control is
+satisfied, how does anyone know it's right?
+
+2
+00:00:04.400 --> 00:00:06.287
+The usual answer is trust.
+
+3
+00:00:06.287 --> 00:00:11.103
+The program's answer is determinism:
+given the same version of the record and
+
+4
+00:00:11.103 --> 00:00:16.225
+the same collected inputs, the platform
+produces the same evidence, byte for byte.
+
+5
+00:00:16.225 --> 00:00:18.850
+Then an assessor doesn't
+have to trust the run.
+
+6
+00:00:18.850 --> 00:00:21.275
+They repeat it and compare the hashes.
+
+7
+00:00:21.275 --> 00:00:23.400
+Automation isn't the same thing.
+
+8
+00:00:23.400 --> 00:00:26.298
+Automation makes the answer arrive faster;
+
+9
+00:00:26.298 --> 00:00:30.000
+determinism makes it the same
+answer no matter who asks.
+
+10
+00:00:30.000 --> 00:00:33.962
+The rules live in three layers,
+each with its own reviewer.
+
+11
+00:00:33.962 --> 00:00:38.812
+Rules say what exists and what it means,
+and change only through governance review.
+
+12
+00:00:38.812 --> 00:00:41.837
+Mappings say which rules
+apply to which controls.
+
+13
+00:00:41.837 --> 00:00:46.912
+Runtime code evaluates them, and is
+the only layer allowed to change state.
+
+14
+00:00:46.912 --> 00:00:51.525
+One limit: determinism is faithful
+to the record, not a check on it.
+
+15
+00:00:51.525 --> 00:00:54.770
+A wrong rule gives the same
+wrong answer every time.

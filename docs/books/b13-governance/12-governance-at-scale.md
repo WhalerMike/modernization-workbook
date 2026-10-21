@@ -203,7 +203,7 @@ Federal guidance is clear that automation doesn't excuse unmonitored controls. S
 
 The program's own limits today are these:
 
-- **Runtime detection is partial.** Schema and provenance drift are detected in continuous integration; semantic, authorization and identity drift are detected only where an adapter has been implemented for the platform concerned. Coverage is growing, adapter by adapter ([Chapter 06](06-the-drift-engine.md)).
+- **Runtime detection is partial.** Schema and provenance drift are detected in continuous integration; semantic drift detection is partly built, and authorization and identity drift detection are still design. Coverage grows adapter by adapter as each is built ([Chapter 06](06-the-drift-engine.md)).
 - **Adapters are still engineering.** The platform makes adapter work consistent; it doesn't make it unnecessary.
 - **Cross-agency federation is designed, not built.** Federation patterns appear in the program's decision records, but the runtime that would govern drift across agency boundaries isn't there yet. [Chapter 11](11-reciprocity-and-one-authorization.md)'s reciprocity model works within one shared service; it doesn't yet span agencies' own estates.
 - **The package reflects the evidence present.** A mechanism that emits nothing is invisible, and the package can't attest a control whose evidence doesn't exist. Those controls are assessed manually, at the frequency the strategy sets, and labeled as such.

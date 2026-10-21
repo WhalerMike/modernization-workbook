@@ -1,0 +1,81 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.952
+The drift engine compares observed
+state with a versioned record,
+
+2
+00:00:03.952 --> 00:00:05.725
+not a last-known-good snapshot.
+
+3
+00:00:05.725 --> 00:00:09.613
+An approved change updates the
+record first, so it isn't drift.
+
+4
+00:00:09.613 --> 00:00:13.463
+There's one drift model, with
+five classes, each a question.
+
+5
+00:00:13.463 --> 00:00:15.700
+Schema: is the shape still valid?
+
+6
+00:00:15.700 --> 00:00:18.037
+Semantic: is the value still true?
+
+7
+00:00:18.037 --> 00:00:22.025
+Provenance: does every change
+trace to an authorized source?
+
+8
+00:00:22.025 --> 00:00:26.100
+Authorization: did anything act
+outside what it was authorized to do?
+
+9
+00:00:26.100 --> 00:00:29.600
+Identity: does every object
+resolve to the record?
+
+10
+00:00:29.600 --> 00:00:34.412
+The drift checks in the other books are
+instances of these five, not separate lists.
+
+11
+00:00:34.412 --> 00:00:36.761
+Severity is computed, not argued,
+
+12
+00:00:36.761 --> 00:00:40.501
+from the class and whether
+the claim is in active use.
+
+13
+00:00:40.501 --> 00:00:45.050
+P1 halts and alerts a named role,
+and is never fixed automatically.
+
+14
+00:00:45.050 --> 00:00:49.037
+P2 has an hour, P3 a day, P4 three days.
+
+15
+00:00:49.037 --> 00:00:53.563
+Severity sets the clock; the
+actuation ladder decides who may act.
+
+16
+00:00:53.563 --> 00:00:58.718
+And be precise with an assessor about what's
+built: schema and provenance detection
+
+17
+00:00:58.718 --> 00:01:03.720
+are built, semantic is partial, and
+authorization and identity are still design.

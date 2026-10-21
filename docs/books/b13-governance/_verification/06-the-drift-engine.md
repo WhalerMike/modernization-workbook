@@ -49,3 +49,12 @@ Book 01 Ch04 (drift categories) and Ch11 (actuation ladder), Book 02 Ch05 (drift
 | drift-engine.md: Why this is different from a config-drift tool | Why this isn't a configuration-drift tool | — |
 | drift-engine.md: What this means for an ATO package | The remediation contract; Why this isn't a config-drift tool (assessor re-run) | Merged |
 | architecture-series twin (all sections) | Same places as the long version | Condensed duplicate; consolidated |
+
+## Consistency fixes from the deck review (2026-10-21)
+
+| # | Change | Verdict |
+|---|---|---|
+| D1 | App B lane for schema drift aligned to Ch06/Ch10: machine-executed, gated at L3 unless accepted at L4; format failure on a live claim halts | design consistency |
+| D2 | App B provenance and authorization lanes: P1 halt only when the claim is in active use, P3 when dormant (Ch06) | design consistency |
+| D3 | App B clock rule aligned to Ch10: the external clock governs when shorter or different in kind | design consistency |
+| D4 | Ch12 runtime-detection maturity aligned to Ch06's table (semantic partly built; authorization and identity design only) | design consistency |
