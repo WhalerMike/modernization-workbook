@@ -54,3 +54,11 @@ All ten original footnotes were re-opened and reformatted; none was broken.
 | Book_05: Continue the series | Continue the book | edited |
 
 Diagram source edited (labels only): `book-05-principal-mapping` ("Book 07" → "Chapter 16").
+
+## Consistency fixes, round 2 (2026-10-21)
+
+Book-wide consistency pass. *Design-consistency* rows restate a program choice the same way everywhere and need no new note; *factual* rows were re-researched against the primary source on 2026-10-21 and carry their own footnote.
+
+| # | Change | Where | Kind | Source |
+|---|---|---|---|---|
+| CR2-1 | Service-principal credential rule restated as the book-wide rule: managed identity first; otherwise a service principal with a client certificate in Key Vault through a token callback; a client secret only where the mechanism accepts nothing else (the built-in service-principal connection-string mode; a linked server's access-token login on SQL Server 2022), as a documented exception, held in Key Vault, never inline or in a file, and rotated. Was "never a client secret," which contradicted Chapter 19 and Runbook R08. New notes `[^c11-sp-cert]`, `[^c11-sp-secret]` | line 57; notes lines 100-101 | design-consistency (rule chosen) with factual support | SqlClient Entra authentication, "Replace deprecated password authentication" and "Use service principal authentication," <https://learn.microsoft.com/sql/connect/ado-net/sql/azure-active-directory-authentication>; SqlClient security best practices, "Passwords," <https://learn.microsoft.com/sql/connect/ado-net/sql/application-security-scenarios-sql-server> |

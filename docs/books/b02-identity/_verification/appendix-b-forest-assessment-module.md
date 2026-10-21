@@ -81,3 +81,12 @@ Source: `docs/operational-guides/ad-interaction-guide.md`, Appendix A (module ma
 | Appendix B.2 GPOInventory.json | C.4 GPOInventory.json | Example added |
 | Appendix B.3 AssessmentManifest.json | C.4 AssessmentManifest.json | `Steps` field added; example added |
 | Appendix B.4 Additional schema files | C.4 Other files table; PKISecurityReport and TrustMap examples | — |
+
+## Revision 2026-10-21 — consistency round 2
+
+Internal-consistency fixes from the Book 02 deck review. Sources were opened again on Oct 21, 2026.
+
+| # | Change | Where | Kind | Source |
+|---|---|---|---|---|
+| K1 | Section labels C.1-C.4 -> B.1-B.4 (Module manifest, Module file, Installation, Output schema reference), so they no longer collide with Appendix C. Repo-wide search of docs/books found no inbound links or anchors to these headings; nothing else changed. References to "C.3"/"C.4" in the ledger above mean B.3/B.4 | Headings (lines 53, 98, 1484, 1504) | label only | — |
+| K2 | ESC7 statement ("isn't collected here; Defender for Identity assesses it where a sensor is installed on the CA") re-checked and kept; Chapter 08 now agrees | Line 881 | verified, no change | aB-mdi-cert <https://learn.microsoft.com/defender-for-identity/security-posture-assessments/certificates> |

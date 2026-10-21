@@ -115,7 +115,7 @@ Checked 2026-10-20 against Microsoft Learn (Learn MCP search and fetch), NIST CS
 
 ## 3. Notes for the editor
 
-- **Chapter 07 has no numbered policy** for the PIM activation authentication context (`PIM-Activation-c1`) or the protected-actions context (`c2`). Suggest adding them to Wave 2.
+- **Chapter 07 has no numbered policy** for the PIM activation authentication context (`PIM-Activation-c1`) or the protected-actions context (`c2`). Suggest adding them to Wave 2. *Resolved 2026-10-21 (consistency round 2, C1): kept unnumbered and documented as authentication-context policies in Ch03, Ch07 and Ch08.*
 - **Book 02 Ch10 access-review row** ("assignees self-attest") conflicts with Microsoft's behavior that self-review excludes role-assignable groups; Ch08 and Appendix B use selected reviewers.
 - **Diagram source:** `docs/images/diagrams/b04-access/src/ch08-activation-sequence.seq.yaml` (4 participants, column 165, gap 22 → ~786 px; not rendered; YAML parses).
 
@@ -130,3 +130,12 @@ Applied from the verified review of Books 02–05. Sources were opened again on 
 | R3 | Privileged-role review cadence aligned across Books 02 and 04: Tier 0 monthly, other privileged roles quarterly, never self-review alone. The cadence is the program's design; AC-2(j) and AC-6(7) leave the frequency organization-defined; Step 8 cross-reference to Book 02 Ch05/Ch10 updated | Step 8 | restated-as-design | c08-nist <https://csrc.nist.gov/pubs/sp/800/53/r5/upd1/final> |
 | R4 | Control table note: `AU-` rows are NIST's Audit and Accountability family, not administrative units | Control mapping callout | verified | c08-nist <https://csrc.nist.gov/pubs/sp/800/53/r5/upd1/final> |
 | R5 | 166-line `Set-FMPPimTierPolicy.ps1` script moved to Appendix B; Ch08 keeps a summary and a call example | Step 4, Applying a tier's settings across roles | moved | Appendix B #applying-a-tiers-settings-with-powershell |
+
+## Revision 2026-10-21 — consistency round 2
+
+Book-internal consistency fixes. Factual changes were checked against sources opened on Oct 21, 2026; design-consistency changes carry no new note.
+
+| # | Change | Where | Verdict | Source |
+|---|---|---|---|---|
+| C1 | `PIM-Activation-c1` described as an authentication-context policy named for its context, outside the Ch07 numbering (Step 2, with link to Ch07 conventions); the protected-actions policy is named `ProtectedActions-c2` (Step 6) and in the evidence table. Resolves the editor note "Chapter 07 has no numbered policy": the decision is not to number them, because the library's numbers count user/resource policies (Ch07 "twenty-two more", CA018–CA038 plus CA090) and these policies follow their context's lifecycle (On before the context is selected) | Step 2; Step 6; evidence table | design-consistency | — |
+| C2 | Step 2 grammar: "and excluding" → "and exclude" | Step 2 | editorial | — |

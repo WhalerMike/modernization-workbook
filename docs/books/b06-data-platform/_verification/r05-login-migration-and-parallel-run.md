@@ -44,3 +44,11 @@ Verified: 2026-10-20
 | The `sa` account | edited | claims 16–17 |
 | Closing italic footer | removed | duplicated the body; canon residue |
 | — | added | "Continue the book" callout (R04 ← → R06) |
+
+## Consistency fixes, round 2 (2026-10-21)
+
+Book-wide consistency pass. *Design-consistency* rows restate a program choice the same way everywhere and need no new note; *factual* rows were re-researched against the primary source on 2026-10-21 and carry their own footnote.
+
+| # | Change | Where | Kind | Source |
+|---|---|---|---|---|
+| CR2-1 | `sa`: "rename it if your standard requires it" changed to disable and rename, the program's standard (Chapter 12); the rename statement in the code block is no longer commented out. New note `[^r05-alter-login-name]` | lines 200-205; note line 228 | design-consistency with factual support | <https://learn.microsoft.com/sql/t-sql/statements/alter-login-transact-sql> (argument `NAME`, example D) |

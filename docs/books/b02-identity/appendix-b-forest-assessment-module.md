@@ -50,7 +50,7 @@ The source module was flattened onto single lines during conversion, and several
 | Gitea | One commit per file; labels never resolved | One multi-file commit on a run branch; label IDs looked up | One run, one commit; the API takes label IDs[^aB-gitea] |
 | Credentials | Token in a text file; user account with typed password | Token from the credential store; gMSA | No stored secrets |
 
-## C.1 Module manifest (`FMPADAssessment.psd1`)
+## B.1 Module manifest (`FMPADAssessment.psd1`)
 
 Generate a new GUID with `New-Guid` and paste it in; the source's placeholder GUID isn't unique.
 
@@ -95,7 +95,7 @@ Generate a new GUID with `New-Guid` and paste it in; the source's placeholder GU
 }
 ```
 
-## C.2 Module file (`FMPADAssessment.psm1`)
+## B.2 Module file (`FMPADAssessment.psm1`)
 
 The module file is one script. It's shown here in sections, in file order.
 
@@ -1481,7 +1481,7 @@ Register-ScheduledTask -TaskName 'FMP-AD-Assessment' -Action $action -Trigger $t
 
 The source passed `-ExecutionPolicy Bypass`. Sign the module and rely on the host's `AllSigned` or `RemoteSigned` policy instead.
 
-## C.3 Installation
+## B.3 Installation
 
 ```powershell
 # Copy the module to a program-owned path.
@@ -1501,7 +1501,7 @@ Get-Command -Module FMPADAssessment
 Test-FMPPrerequisites
 ```
 
-## C.4 Output schema reference
+## B.4 Output schema reference
 
 Every file is UTF-8 JSON (or CSV, XML, HTML or text where noted). Timestamps are ISO 8601 with offset. Enumerations are written as strings.
 

@@ -53,7 +53,7 @@ It is the only arrangement that works for this runbook in any case. SQL Server e
 
 ### The host and the instance
 
-- A supported Windows Server host running the SQL Server instance from the [Runbook R03](r03-the-authentication-audit.md) audit, with `MigrationTarget` showing SQL Server 2022 or later. Older versions upgrade first.
+- A Windows Server 2019 or later host, the program's floor ([Chapter 07](07-the-authentication-audit.md)); SQL Server enabled by Azure Arc itself supports Windows Server 2016 and later,[^r04-sql-os] but the program doesn't onboard new work to Windows Server 2016, whose extended support ends on January 12, 2027.[^r04-ws2016] The host runs the SQL Server instance from the [Runbook R03](r03-the-authentication-audit.md) audit, with `MigrationTarget` showing SQL Server 2022 or later. Older versions upgrade first.
 - Not a failover cluster instance: Microsoft Entra authentication isn't supported on FCIs.[^r04-entra-sql]
 - The `NT AUTHORITY\SYSTEM` login must be able to connect to the instance (an enabled login with `CONNECT SQL`), or the Azure extension for SQL Server can't provision.[^r04-sql-prereq] Check this before onboarding on hardened instances that removed the login.
 - A TLS certificate the clients trust. Connections authenticated by Entra ID are always encrypted; with a self-signed certificate, clients must set "trust server certificate."[^r04-sql-2022]
@@ -245,3 +245,7 @@ Before Step 4, nothing in SQL Server depends on the machine identity, so rolling
 [^r04-azcm-disconnect]: Microsoft Learn, "`azcmagent disconnect`," <https://learn.microsoft.com/azure/azure-arc/servers/azcmagent-disconnect> (accessed Oct 20, 2026).
 
 [^r04-sql-disconnect]: Microsoft Learn, "Disconnect SQL Server instances from Azure Arc," uninstall Azure Extension for SQL Server, <https://learn.microsoft.com/sql/sql-server/azure-arc/delete-from-azure-arc> (accessed Oct 20, 2026).
+
+[^r04-sql-os]: Microsoft Learn, "Prerequisites - SQL Server enabled by Azure Arc," section "Supported configurations," operating systems ("Windows Server 2016 and later versions"), <https://learn.microsoft.com/sql/sql-server/azure-arc/prerequisites#supported-configurations> (accessed Oct 21, 2026).
+
+[^r04-ws2016]: Microsoft Learn, "Windows Server 2016" (Microsoft Lifecycle; extended end date listed as 1/13/2027 6:59:59 AM Pacific, the end of January 12, 2027), <https://learn.microsoft.com/lifecycle/products/windows-server-2016> (accessed Oct 21, 2026).

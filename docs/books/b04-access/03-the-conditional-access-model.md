@@ -221,7 +221,7 @@ Microsoft recommends a naming standard that shows a sequence number, the resourc
 | Resource or condition | What narrows the policy, omitted when it's all resources with no condition | `HighUserRisk`, `OfficeApps`, `ProductionApps` |
 | Control | The response | `Block`, `RequirePhishResistantMFA` |
 
-Contingency policies follow Microsoft's emergency naming pattern: they're created disabled, begin with `ENABLE IN EMERGENCY`, name the disruption, and carry an order number, for example `EM01 - ENABLE IN EMERGENCY: MFA Disruption [1/4]`.[^c03-plan] Groups used by policies are prefixed by purpose: `CA-Persona-` for persona groups, `CA-Access-` for populations allowed to reach a restricted resource, and `CA-Exclude-` for governed exclusions.
+Contingency policies follow Microsoft's emergency naming pattern: they're created disabled, begin with `ENABLE IN EMERGENCY`, name the disruption, and carry an order number, for example `EM01 - ENABLE IN EMERGENCY: MFA Disruption [1/4]`.[^c03-plan] Policies that target an authentication context instead of users and resources are named for the context, `{Purpose}-c{N}`, and take no library number: `PIM-Activation-c1` gates privileged role activation and `ProtectedActions-c2` gates protected actions ([Chapter 08](08-pim-self-request-with-approval.md#step-2-build-the-authentication-context-and-its-policy)). Groups used by policies are prefixed by purpose: `CA-Persona-` for persona groups, `CA-Access-` for populations allowed to reach a restricted resource, and `CA-Exclude-` for governed exclusions.
 
 ### Personas
 

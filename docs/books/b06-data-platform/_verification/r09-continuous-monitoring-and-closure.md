@@ -67,3 +67,13 @@ Applied from the verified review findings (critique claims re-checked against pr
 | RF-9 | The three KQL blocks carry their own callout-warning (illustrative); none was run against a workspace | same | restated-as-design (illustrative) | — |
 
 Not used: the `LmPackageName` and `PackageName` columns of `SecurityEvent` (the table reference doesn't say which one carries the NTLM version), so the queries don't filter on NTLM version.
+
+## Consistency fixes, round 2 (2026-10-21)
+
+Book-wide consistency pass. *Design-consistency* rows restate a program choice the same way everywhere and need no new note; *factual* rows were re-researched against the primary source on 2026-10-21 and carry their own footnote.
+
+| # | Change | Where | Kind | Source |
+|---|---|---|---|---|
+| CR2-1 | Step 2 table rebuilt on Chapter 20's canonical field set: Condition column added; break-glass exception on the Windows-login field (was zero); `IsExternalAuthenticationOnly` merged into the `LoginMode` row; new rows for zero remote NTLM/Kerberos connections, Entra sign-ins observed, and extension deployed; the runbook no longer defines its own field set | lines 52-68 | design-consistency | — |
+| CR2-2 | New paragraph after `New-FMPClosureRecord`: as the program defines it, the projection lists `sa` disabled (not renamed), tolerates only type-S exceptions (so a registered break-glass group shows as failing), and doesn't carry the Condition 3 joins; the reviewer closes each gap. No claim about module behavior beyond what claim 12 already verified | line 72 | design-consistency | — |
+| CR2-3 | Evidence set 4: `sa` "disabled" changed to "disabled and renamed" | line 171 | design-consistency | — |

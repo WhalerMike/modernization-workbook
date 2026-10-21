@@ -197,12 +197,11 @@ The Windows database users from Step 2 are still in place, so re-enabling the lo
 
 ## The `sa` account
 
-If the R03 audit flagged `sa` as enabled (`EntraIDBlockers`), remediate it here, independently of user migration. Confirm first that another `sysadmin` can sign in, such as the Entra admin set in [Runbook R04](r04-arc-deployment-and-managed-identity.md). Then disable `sa`, and rename it if your standard requires it. It's never a migration target; it's a finding to close.
+If the R03 audit flagged `sa` as enabled (`EntraIDBlockers`), remediate it here, independently of user migration. Confirm first that another `sysadmin` can sign in, such as the Entra admin set in [Runbook R04](r04-arc-deployment-and-managed-identity.md). Then disable `sa` and rename it: the program's standard is both ([Chapter 12](12-the-engine-authentication-decision.md)), and `ALTER LOGIN ... WITH NAME` renames a login.[^r05-alter-login-name] It's never a migration target; it's a finding to close.
 
 ```sql
 ALTER LOGIN [sa] DISABLE;
--- Optional, if your standard requires it:
--- ALTER LOGIN [sa] WITH NAME = [<new name>];
+ALTER LOGIN [sa] WITH NAME = [<new name>];
 ```
 
 Closing the enabled `sa` account is one step toward Windows-only, then Entra-only, authentication. For instances connected to Arc, Microsoft added a portal option to disable SQL authentication, generally available since April 2026; use it, after the SQL logins themselves are migrated, to close mixed mode.[^r05-arc-release-notes]
@@ -225,5 +224,7 @@ Closing the enabled `sa` account is one step toward Windows-only, then Entra-onl
 [^r05-create-audit]: Microsoft Learn, "CREATE SERVER AUDIT (Transact-SQL)," <https://learn.microsoft.com/sql/t-sql/statements/create-server-audit-transact-sql> (accessed Oct 20, 2026).
 
 [^r05-alter-login]: Microsoft Learn, "ALTER LOGIN (Transact-SQL)," permissions, <https://learn.microsoft.com/sql/t-sql/statements/alter-login-transact-sql> (accessed Oct 20, 2026).
+
+[^r05-alter-login-name]: Microsoft Learn, "ALTER LOGIN (Transact-SQL)," argument `NAME = login_name` and example D, "Change the name of a login," <https://learn.microsoft.com/sql/t-sql/statements/alter-login-transact-sql> (accessed Oct 21, 2026).
 
 [^r05-arc-release-notes]: Microsoft Learn, "Release notes - SQL Server enabled by Azure Arc," general availability, <https://learn.microsoft.com/sql/sql-server/azure-arc/release-notes> (accessed Oct 20, 2026).

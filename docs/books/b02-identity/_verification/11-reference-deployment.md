@@ -58,3 +58,13 @@ Source page: `docs/case-studies/reference-deployment-fedciv-ad-to-entra.md`. All
 | The Evidence Bundle the assessor consumes | The evidence bundle the assessor consumes | Finding ID `GCC-BOUNDARY-3WAY-001` and §4 reference dropped; 3PAO/FedRAMP-cycle claim corrected to AO/SCA under RMF |
 | What survives the engagement | What survives the engagement | Kept, including the metrics list; whitepaper link retargeted |
 | Cross-references | Inline links throughout; Where to go next | Internal canon docs (B.1, B.1.1, Drift Standard, Directory Migration README, SQL adapter interface) have no workbook pages except the Drift Engine page, which is linked; the two companion case studies (identity-modernization, cloud-boundary) are not linked, because their content belongs to other B02 chapters and the case-studies pages may be archived |
+
+## Revision 2026-10-21 — consistency round 2
+
+Internal-consistency fixes from the Book 02 deck review. Sources were opened again on Oct 21, 2026.
+
+| # | Change | Where | Kind | Source |
+|---|---|---|---|---|
+| K1 | Phase 5 SPN host/port change with no provenance record: severity P2 -> P1, matching Phase 4's "DRIFT-PROVENANCE is critical (P1)" and the Drift Engine severity model (P1 = active-use claim with provenance or identity drift). Sentence added that severity derives from class plus liveness | Phase 5 intro (line 93) and table (line 98) | design consistency; no new note | docs/architecture/drift-engine.md, Severity model |
+| K2 | Not changed, flagged: row 4 (`DRIFT-IDENTITY`, P2) is also below what the severity model gives identity drift on a live claim; left for the author because the row is a decision gap, not a confirmed identity mismatch | Phase 5 table | open | — |
+| R2-6b | Phase 5 row 4 severity (P2) | Phase 5 table | design-consistency (no new note) | Kept P2 and stated why: no claim in active use has broken; the finding is a missing decision, unlike rows 1-3 |

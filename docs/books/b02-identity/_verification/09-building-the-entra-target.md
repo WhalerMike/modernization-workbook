@@ -167,3 +167,15 @@ Source: `docs/operational-guides/identity/identity-modernization.md` (front matt
 | Date | Change |
 |---|---|
 | 2026-10-21 | Extension attribute reconciliation: attribute-mapping text and table row link the program attribute map; account-type sync rule target `extensionAttribute10` -> `extensionAttribute7`; personas: Internals `extensionAttribute6` {Employee, Contractor} -> `extensionAttribute11` {`EMP`, `CTR`}, Admins `extensionAttribute10` -> `extensionAttribute7`. `extensionAttribute15` = `DoNotSync` unchanged. AD *group* export still reads group `extensionAttribute1`/`2` (group objects, not the user map); unchanged. |
+
+## Revision 2026-10-21 — consistency round 2
+
+Internal-consistency fixes from the Book 02 deck review. Sources were opened again on Oct 21, 2026.
+
+| # | Change | Where | Kind | Source |
+|---|---|---|---|---|
+| K1 | Service account forms "three" -> "four"; dMSA row added to the AD-type table, matching Chapter 08's four kinds | Service accounts (lines 99, 106) | factual; new note | c09-dmsa <https://learn.microsoft.com/windows-server/identity/ad-ds/manage/delegated-managed-service-accounts/delegated-managed-service-accounts-overview> (Windows Server 2025; supersedes a traditional account; disables the original password; machine-bound) |
+| K2 | Migration matrix: on-premises Kerberos target now "gMSA, or a dMSA on a Windows Server 2025 domain" (matches Chapter 08); MSA row notes an MSA or gMSA can't be migrated to a dMSA; dMSA row added | Migration path matrix (lines 500-502) | factual; new note | c09-dmsa <https://learn.microsoft.com/windows-server/identity/ad-ds/manage/delegated-managed-service-accounts/delegated-managed-service-accounts-overview> ("You can't migrate from a managed service account or a gMSA to a dMSA") |
+| K3 | Location policy restated per persona to match the policy set: Internals outside the US blocked (CA008, travel exceptions), Admins trusted networks only (CA005), workload identities trusted networks (CA015), Externals and guests not location-blocked. Replaces "for all personas" | Named locations (line 744) | design consistency; no new note | Program design; CA table and Appendix C CA008 JSON |
+| K4 | Callout added: Connect Sync must be 2.6.84.0+ with application-based authentication by April 7, 2027, or all sync services fail; existing servers aren't switched to app-based auth automatically from 2.6.84.0 (run the wizard); upgrading over an existing ADSync database needs 2.6.91.0+. Carries the B02 deck date into the chapter that owns the sync-engine decision | Cloud Sync or Connect Sync (line 265) | factual; new notes | c09-connect-hardening <https://learn.microsoft.com/entra/identity/hybrid/connect/harden-update-ad-fs-pingfederate>; c09-connect-versions <https://learn.microsoft.com/entra/identity/hybrid/connect/reference-connect-version-history> (2.6.84.0 release notes: updated feature 4, known issue 1) |
+| K5 | Managed identities in the service account tables left as is: Chapter 08 now agrees they are a target for Azure-hosted workloads | Service accounts; matrix | no change | — |

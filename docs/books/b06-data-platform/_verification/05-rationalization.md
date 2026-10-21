@@ -37,3 +37,11 @@ Checked October 20, 2026. Source: the existing page (former Book 02, Chapter 3) 
 | "What Book 02 establishes — Chapter 3" | "What this chapter establishes" | edited (version point added; stray footnote removed) |
 | Footnotes `b02c03-create-login`, `b02c03-entra-sql` | `c05-create-login`, `c05-entra-sql` | kept; re-opened |
 | Diagram `book-02-ch03-rationalization-lenses` | Same position | kept; source edited: "From Chapter 2" → "From Chapter 04"; "(Book 08)" → "(Chapters 18–19)" |
+
+## Consistency fixes, round 2 (2026-10-21)
+
+Book-wide consistency pass. *Design-consistency* rows restate a program choice the same way everywhere and need no new note; *factual* rows were re-researched against the primary source on 2026-10-21 and carry their own footnote.
+
+| # | Change | Where | Kind | Source |
+|---|---|---|---|---|
+| CR2-1 | Zombie threshold "over a year" changed to "400 or more days," named as the default of Runbook R02's classifier | line 33 | design-consistency | — |

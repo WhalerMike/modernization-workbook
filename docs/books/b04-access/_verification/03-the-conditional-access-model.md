@@ -107,3 +107,11 @@ Sources: `docs/libraries/conditional-access-principles.md` (all sections); `docs
 | Date | Change |
 |---|---|
 | 2026-10-21 | Extension attribute reconciliation: Internals persona `extensionAttribute6` {Employee, Contractor} -> `extensionAttribute11` {`EMP`, `CTR`}; Admins `extensionAttribute10` -> `extensionAttribute7`; layout link now the program attribute map; device label moved from device `extensionAttribute1` (Book 05's region) to device `extensionAttribute12` (device role) with values `PAW`, `Kiosk`, `SharedDevice`. |
+
+## Revision 2026-10-21 — consistency round 2
+
+Book-internal consistency fixes. Factual changes were checked against sources opened on Oct 21, 2026; design-consistency changes carry no new note.
+
+| # | Change | Where | Verdict | Source |
+|---|---|---|---|---|
+| C1 | Naming convention: authentication-context policies named `{Purpose}-c{N}` with no library number (`PIM-Activation-c1`, `ProtectedActions-c2`) | Naming convention | design-consistency (Ch07 conventions, Ch08 Steps 2 and 6) | — |

@@ -256,7 +256,8 @@ The ESC naming for AD CS escalation patterns comes from SpecterOps' 2021 researc
 | ESC2 | Template has the Any Purpose EKU or no EKU | EKU attributes |
 | ESC4 | Template ACL lets broad groups write to it | Template ACL |
 | ESC6 | CA has `EDITF_ATTRIBUTESUBJECTALTNAME2` set, so any requester can add a SAN | `certutil -getreg policy\EditFlags` |
-| ESC7 | Broad groups hold Manage CA or Manage Certificates on the CA | CA ACL |
+
+ESC7, where broad groups hold Manage CA or Manage Certificates on the CA, isn't in that list. It lives in the CA's own security settings, which the read-only module doesn't collect; Defender for Identity assesses it where a sensor is installed on the AD CS server.[^c08-mdi-cert]
 
 Defender for Identity's definitions are the reference. ESC1 is a template with *Supply in the request* on, an authentication EKU such as Client Authentication, Smart Card Logon, PKINIT client authentication or Any Purpose, and enrollment open to unprivileged groups, unless manager approval or authorized signatures mitigate it.[^c08-mdi-cert] ESC6 is the CA flag that lets every requester specify the SAN for every template; Microsoft's remediation is `certutil -setreg policy\EditFlags -EDITF_ATTRIBUTESUBJECTALTNAME2` and a service restart.[^c08-mdi-cert] ESC4 is a template ACL that gives a broad group rights such as Full Control or Write DACL.[^c08-mdi-cert]
 
@@ -327,7 +328,7 @@ Service accounts come in four kinds, and the inventory records all of them:
 
 A dMSA is the Windows Server 2025 account type that replaces a traditional service account with a machine-bound managed identity and disables the original account's password, which defends against Kerberoasting.[^c08-dmsa] gMSAs remain the default for services that run on more than one server.[^c08-gmsa] Record the raw `ObjectClass` that `Get-ADServiceAccount` returns rather than guessing the type from the name.
 
-The source mapped service accounts to "gMSA or managed identities." Managed identities are an Azure resource feature and outside this program's boundary. For workloads that stay on premises the target is a gMSA or dMSA; for workloads that move to cloud services, the target is a Microsoft Entra workload identity, which [Chapter 09](09-building-the-entra-target.md) covers.
+The source mapped every service account to "gMSA or managed identities." That's too broad. A managed identity can be assigned only to a workload running on an Azure resource, so it's the target for workloads that move onto Azure and nothing else.[^c08-managed-identity] For workloads that stay on premises the target is a gMSA or dMSA; for workloads that move to cloud services, the target is a Microsoft Entra workload identity (an application registration with a federated credential or certificate, or a managed identity where the workload runs on Azure), which [Chapter 09](09-building-the-entra-target.md) covers.
 
 ### Groups
 
@@ -576,6 +577,7 @@ Every JSON file is either a root object with an `AssessmentTimestamp` and named 
 [^c08-adminsdholder]: Microsoft Learn, "Appendix C: Protected Accounts and Groups in Active Directory," <https://learn.microsoft.com/windows-server/identity/ad-ds/plan/security-best-practices/appendix-c--protected-accounts-and-groups-in-active-directory> (accessed Oct 20, 2026).
 [^c08-reducing]: Microsoft Learn, "Reducing the Active Directory Attack Surface," section "Privileged Accounts and Groups in Active Directory," <https://learn.microsoft.com/windows-server/identity/ad-ds/plan/security-best-practices/reducing-the-active-directory-attack-surface> (accessed Oct 20, 2026).
 [^c08-dmsa]: Microsoft Learn, "Delegated Managed Service Accounts overview," <https://learn.microsoft.com/windows-server/identity/ad-ds/manage/delegated-managed-service-accounts/delegated-managed-service-accounts-overview> (accessed Oct 20, 2026).
+[^c08-managed-identity]: Microsoft Learn, "What is managed identities for Azure resources?," <https://learn.microsoft.com/entra/identity/managed-identities-azure-resources/overview> (accessed Oct 21, 2026).
 [^c08-gmsa]: Microsoft Learn, "Manage group Managed Service Accounts," <https://learn.microsoft.com/windows-server/identity/ad-ds/manage/group-managed-service-accounts/group-managed-service-accounts/manage-group-managed-service-accounts> (accessed Oct 20, 2026).
 [^c08-maxval]: Microsoft Learn, "Windows Server 2008 and newer domain controller returns only 5000 values in an LDAP response," <https://learn.microsoft.com/troubleshoot/windows-server/active-directory/domain-controller-returns-500-values-ldap-response> (accessed Oct 20, 2026).
 [^c08-limits]: Microsoft Learn, "Active Directory Domain Services maximum limits and scalability," section "Group Memberships for security principals," <https://learn.microsoft.com/windows-server/identity/ad-ds/plan/active-directory-domain-services-maximum-limits> (accessed Oct 20, 2026).

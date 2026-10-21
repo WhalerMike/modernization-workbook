@@ -79,3 +79,13 @@ Applied from the verified review of Books 02–05. Sources were opened again on 
 | # | Change | Where | Verdict | Source |
 |---|---|---|---|---|
 | R1 | Privileged-role review cadence aligned across Books 02 and 04: Tier 0 monthly, other privileged roles quarterly, never self-review alone. The cadence is the program's design; AC-2(j) and AC-6(7) leave the frequency organization-defined; AC-6(7) row and KSI-IAM-JIT row now say monthly (Tier 0) and quarterly | Control and KSI tables | corrected | c10-fedramp-ac <https://fedramp.gov/2026/reference/controls/access-control/> |
+
+## Revision 2026-10-21 — consistency round 2
+
+Book-internal consistency fixes. Factual changes were checked against sources opened on Oct 21, 2026; design-consistency changes carry no new note.
+
+| # | Change | Where | Verdict | Source |
+|---|---|---|---|---|
+| C1 | Illustrative policy renamed from "CA001 - Require phishing-resistant MFA for all resources" to the library's `CA022-Members-RequirePhishResistantMFA` (CA001 is Block Legacy Auth in Ch07); Graph JSON and Terraform now carry CA022's Members scope (`excludeGuestsOrExternalUsers` / `excluded_guests_or_external_users`, all external tenants) and the `CA-Exclude-PhishResistantNotReady` exclusion; Terraform resource `ca001` renamed `ca022`, new variable for the not-ready group | Illustrative code: Graph JSON, Terraform | design-consistency (name and scope from Ch07 and Appendix A); schema shape verified | c10-ca-guests <https://learn.microsoft.com/graph/api/resources/conditionalaccessguestsorexternalusers?view=graph-rest-1.0>; c10-ca-alltenants <https://learn.microsoft.com/graph/api/resources/conditionalaccessallexternaltenants?view=graph-rest-1.0>; c10-tf-guests <https://github.com/hashicorp/terraform-provider-azuread/blob/main/docs/resources/conditional_access_policy.md> |
+| C2 | PIM pre-merge rule: was "MFA or an authentication context … approval for Tier 0 roles"; now authentication context `c1` and justification for every role, approval by the tier's approver group for Tier 0 and Tier 1, Tier 2 without approval cites its risk acceptance | Repository table, PIM row | design-consistency (Ch08 settings-by-tier table; Appendix B Tier 1 table) | — |
+| C3 | Sweep: every `CA0nn` reference in Book 04 (chapters, appendices, logs) checked against the Ch07 library numbers and full names; the two Ch10 code examples above were the only mismatches | Whole book | verified | Ch07 library |

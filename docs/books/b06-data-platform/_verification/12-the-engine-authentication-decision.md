@@ -41,3 +41,13 @@ All eight original footnotes were re-opened and reformatted; none was broken. Tw
 | (none) | Continue the book; Next → Chapter 13 — Who Owns the Data Platform | added |
 
 Diagram source edited (labels only): `book-05-ch02-five-decisions` ("Book 02" → "Chapter 06"; "the program's" 2027-04-01 block).
+
+## Consistency fixes, round 2 (2026-10-21)
+
+Book-wide consistency pass. *Design-consistency* rows restate a program choice the same way everywhere and need no new note; *factual* rows were re-researched against the primary source on 2026-10-21 and carry their own footnote.
+
+| # | Change | Where | Kind | Source |
+|---|---|---|---|---|
+| CR2-1 | Decision 5's closure list replaced by a summary of Chapter 20's five conditions, with Chapter 20's field set named as canonical. Adds the break-glass exception to the Windows-login field and the Entra reconciliation and protocol/sign-in evidence (Condition 3); the Arc agent is "connected" (no separate "healthy" field) | lines 57-63 | design-consistency | — |
+| CR2-2 | Break-glass: "zero Windows logins" reconciled with Chapter 20 and Appendix B. The one documented break-glass Windows group, empty by default and in the exception registry, is the only Windows login allowed at closure | lines 47, 59, 65 | design-consistency | — |
+| CR2-3 | `sa` disabled **and renamed** kept as the program's standard (already stated here; the other chapters and runbooks now match) | — | design-consistency (no change here) | — |

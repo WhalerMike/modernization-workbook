@@ -59,7 +59,7 @@ Expiration of assignments and separation-of-duties checks work with P2; automati
 
 Lifecycle Workflows automate joiner, mover, and leaver tasks. They act on accounts that already exist; HR-driven inbound provisioning creates and updates the account. A workflow runs when a user meets its execution conditions, a trigger plus a scope. The triggers available as of October 2026 are a time-based attribute, an attribute change, a group membership change, sign-in inactivity, and on-demand.[^c10-lcw-execution] Time-based joiner and leaver workflows key on the native `employeeHireDate` and `employeeLeaveDateTime` attributes (or `createdDateTime` for joiners); the offset can be 0 to 180 days before or after the date, and a preview "V2" trigger extends that to 365 days with relative comparisons.[^c10-lcw-execution] Custom attribute triggers are in preview.
 
-For users synced from Active Directory, those date attributes must be synced to Entra ID before the workflow can use them, and attribute-change and group triggers fire only after the sync cycle delivers the change.[^c10-lcw-onprem] The canonical HR-driven design, including where the dates come from, is in [HR-Driven Identity, Chapter 6](../b03-hr-identity/08-joiner-mover-leaver.md). Scope rules can filter on standard attributes such as `department` and `jobTitle` and on `extensionAttribute1` through `15`.[^c10-lcw-scope] A tenant can have up to 50 workflows and 100 custom task extensions.[^c10-governance-licensing]
+For users synced from Active Directory, those date attributes must be synced to Entra ID before the workflow can use them, and attribute-change and group triggers fire only after the sync cycle delivers the change.[^c10-lcw-onprem] The canonical HR-driven design, including where the dates come from, is in [Book 03, Chapter 08](../b03-hr-identity/08-joiner-mover-leaver.md). Scope rules can filter on standard attributes such as `department` and `jobTitle` and on `extensionAttribute1` through `15`.[^c10-lcw-scope] A tenant can have up to 50 workflows and 100 custom task extensions.[^c10-governance-licensing]
 
 The workflows below use Microsoft's built-in tasks where they exist.[^c10-lcw-tasks] Steps that have no built-in task, marked "custom," run through a custom task extension, which calls an Azure Logic App, or through a separate service.
 
@@ -205,6 +205,8 @@ That changes the order of the program's roadmap. The earlier version treated cer
 | 2 | PIV and CAC holders | Microsoft Entra certificate-based authentication | Certificate authorities and revocation checking configured; username bindings validated; workbook PKI material | 8–12 weeks |
 | 3 | Managed Windows devices | Windows Hello for Business | Intune enrollment; Windows Hello for Business policy; TPM 2.0 | 8–12 weeks |
 | 4 | Remaining users, including mobile | Passkeys in Microsoft Authenticator | Android 14 or iOS 17 or later; a passkey profile targeting the Authenticator AAGUIDs; registration campaign[^c10-authenticator-passkey] | 8–12 weeks |
+
+Phase 1 runs first, so administrators are protected before anyone else. Phases 2 to 4 reach different populations with different methods and run in parallel once phase 1 is done, so the roadmap takes 12 to 18 weeks end to end, not the 28 to 42 weeks its rows would add up to in sequence. Playbook Phase 7 below carries that 12–18 week estimate.
 
 All four methods meet the built-in phishing-resistant MFA authentication strength (passkeys in Authenticator count as FIDO2 passkeys).[^c10-auth-strengths] Passkey profiles let you set different rules for different groups; for example, device-bound passkeys with attestation enforced for administrators, and synced passkeys allowed for lower-risk populations.[^c10-passkeys]
 
@@ -389,7 +391,7 @@ The indicator IDs and titles are from FedRAMP's published indicator pages.[^c10-
 
 ## The migration execution playbook
 
-The migration runs in eleven phases, grouped into five waves. Each phase has prerequisites, steps, validation criteria, a rollback procedure, and a duration estimate. Phases run in order: a phase's validation criteria must be met before the next begins. The durations are the program's planning estimates, not measured results; the total runs 40 to 70 weeks.
+The migration runs in eleven phases, grouped into five waves. Each phase has prerequisites, steps, validation criteria, a rollback procedure, and a duration estimate. Phases run in order: a phase's validation criteria must be met before the next begins. The durations are the program's planning estimates, not measured results; the phase estimates add up to 43 to 68 weeks, counting Phase 10's initial setup.
 
 ![The eleven playbook phases in five waves: foundation, objects, privilege and policy, authentication, and sustain.](../../images/diagrams/b02-identity/svg/ch10-migration-waves.svg){#fig-ch10-migration-waves fig-alt="Five boxes in a left-to-right chain. Phases 0 to 2, foundation, in slate: assess, sync, PHS, Conditional Access in report-only. Phases 3 and 4, objects, in blue: groups, then service accounts. Phases 5 and 6, privilege and policy, in amber: PIM, then Conditional Access enforced in waves. Phases 7 to 9, authentication, in blue: phishing-resistant methods, legacy cutoff, AD FS out. Phase 10, sustain, in violet: lifecycle, reviews, drift detection."}
 
@@ -407,7 +409,7 @@ The migration runs in eleven phases, grouped into five waves. Each phase has pre
 
 | Element | Detail |
 |---|---|
-| Prerequisites | Phase 0 complete; the sync engine chosen ([Chapter 09](09-building-the-entra-target.md#cloud-sync-or-connect-sync)); servers built to the workbook's server standards; OU scoping finalized; UPN remediation complete; soft and hard match blocks reviewed |
+| Prerequisites | Phase 0 complete; the sync engine chosen ([Chapter 09](09-building-the-entra-target.md#cloud-sync-or-connect-sync)); any Connect Sync server on version 2.6.84.0 or later with application-based authentication, which Microsoft requires by April 7, 2027;[^c10-connect-hardening] servers built to the workbook's server standards; OU scoping finalized; UPN remediation complete; soft and hard match blocks reviewed |
 | Steps | 1. Deploy Cloud Sync agents (at least two), or install Connect Sync where a Connect-only requirement applies. 2. Configure OU scoping. 3. Configure attribute mappings. 4. Enable PHS, even if PTA or federation is primary. 5. For Connect Sync, run the initial sync in staging mode and check object counts and attribute mapping; for Cloud Sync, test with on-demand provisioning. 6. Enable export after validation. 7. For Connect Sync, build the staging-mode standby server. 8. Commit the sync configuration export to Git. |
 | Validation | Object counts in Entra ID match the expected count (±1%); no sync errors; attribute spot-check (10 users, 5 groups) correct; standby verified |
 | Rollback | Stop sync; remove the synced objects from scope (they're soft-deleted and recoverable for 30 days); reconfigure from a clean state. Don't hard-delete during rollback. |
@@ -471,7 +473,7 @@ The migration runs in eleven phases, grouped into five waves. Each phase has pre
 | Steps | 1. FIDO2 keys and CBA for privileged accounts (roadmap phase 1). 2. CBA for PIV and CAC holders (phase 2). 3. Windows Hello for Business on managed Windows devices (phase 3). 4. Authenticator passkey registration campaign (phase 4). 5. Track registration in the authentication methods reports. 6. Raise Conditional Access authentication strengths to phishing-resistant as each population crosses its threshold. |
 | Validation | 100% of privileged accounts on FIDO2 or CBA; more than 80% of managed-device users on Windows Hello for Business; more than 70% of all users on a phishing-resistant method; the remainder on a dated plan |
 | Rollback | Lower the authentication strength to MFA for the affected population; keep the existing methods |
-| Duration | 8–16 weeks |
+| Duration | 12–18 weeks (roadmap phase 1, then phases 2–4 in parallel) |
 
 ### Phase 8: Legacy authentication cutoff
 
@@ -514,7 +516,7 @@ The identity assessment produces structured JSON inventories that go into Git, w
 3. **Compare.** Each later run is compared with the committed baseline. New objects, removed objects, and attribute changes are drift.
 4. **Raise issues.** Drift above a threshold opens an issue with the diff, a severity, and a recommended action.
 
-The design rule is the same as in [HR-Driven Identity, Chapter 9](../b03-hr-identity/11-drift-metrics-and-evidence.md): close each finding at the source (fix the record or the rule), never by editing the copy.
+The design rule is the same as in [Book 03, Chapter 11](../b03-hr-identity/11-drift-metrics-and-evidence.md): close each finding at the source (fix the record or the rule), never by editing the copy.
 
 ### Scheduled tasks
 
@@ -555,6 +557,7 @@ The planned functions aren't in the module yet. Until they are, run the equivale
 [← Previous: Chapter 09 — Building the Entra ID Target](09-building-the-entra-target.md) · [Book index](index.md) · [Next: Chapter 11 — Reference Deployment →](11-reference-deployment.md)
 :::
 
+[^c10-connect-hardening]: Microsoft Learn, "Hardening update to Microsoft Entra Connect Sync," <https://learn.microsoft.com/entra/identity/hybrid/connect/harden-update-ad-fs-pingfederate> (accessed Oct 21, 2026).
 [^c10-governance-licensing]: Microsoft Learn, "Microsoft Entra ID Governance licensing fundamentals," <https://learn.microsoft.com/entra/id-governance/licensing-fundamentals> (accessed Oct 20, 2026).
 [^c10-entra-licensing]: Microsoft Learn, "Microsoft Entra licensing," <https://learn.microsoft.com/entra/fundamentals/licensing> (accessed Oct 20, 2026).
 [^c10-memberof]: Microsoft Learn, "Configure dynamic membership groups with the memberOf operator in the Entra Admin Center (preview)," <https://learn.microsoft.com/entra/identity/users/groups-dynamic-rule-member-of> (accessed Oct 20, 2026).

@@ -35,7 +35,7 @@ Every access object the program governs has a file in the repository, one file p
 | Object class | Held as | Safety rule checked before merge |
 |---|---|---|
 | Conditional Access policies, named locations, authentication strengths | One JSON or HCL file per object | Every blocking or grant policy excludes the emergency access group ([Chapter 07](07-the-conditional-access-policy-library.md)); new and changed policies deploy as report-only |
-| PIM role settings for Entra roles and PIM for Groups | One file per role policy (the role's rules) | Activation requires MFA or an authentication context, justification, and approval for Tier 0 roles; no rule permits a permanent active assignment except the documented emergency accounts ([Chapter 08](08-pim-self-request-with-approval.md)) |
+| PIM role settings for Entra roles and PIM for Groups | One file per role policy (the role's rules) | Activation requires the authentication context `c1` and justification for every role, and approval by the tier's approver group for Tier 0 and Tier 1 roles; a Tier 2 role without approval cites its documented risk acceptance; no rule permits a permanent active assignment except the documented emergency accounts ([Chapter 08](08-pim-self-request-with-approval.md)) |
 | Eligible role assignments | One file per role, listing eligible groups | Eligibility goes to role-assignable groups, not individuals ([Chapter 04](04-privileged-roles-and-tiers.md)) |
 | Groups used for access | One file per group | Names follow the `APP-` convention; no nested members; dynamic rules only where the tier allows ([Chapter 09](09-access-governance.md#naming-and-membership-type)) |
 | Catalogs, access packages, assignment policies | One file per package with its policies | Expiry set (never "never"); approval chain matches the tier; incompatible packages listed both ways |
@@ -113,16 +113,26 @@ The code in this chapter is illustrative. It hasn't been tested against a produc
 
 ### A Conditional Access policy as Graph JSON
 
-The compliance series' illustrative policy needed three corrections. Graph identifies groups and authentication strengths by ID, not by name: the built-in phishing-resistant MFA strength is `00000000-0000-0000-0000-000000000004`, and the excluded emergency access group must be its object ID.[^c10-authstrength] And a new policy should first deploy as report-only (`enabledForReportingButNotEnforced`), not `enabled`.
+The compliance series' illustrative policy needed three corrections. Graph identifies groups and authentication strengths by ID, not by name: the built-in phishing-resistant MFA strength is `00000000-0000-0000-0000-000000000004`, and the excluded emergency access group must be its object ID.[^c10-authstrength] And a new policy should first deploy as report-only (`enabledForReportingButNotEnforced`), not `enabled`. The example is the library's own end-state policy, CA022 ([Chapter 07](07-the-conditional-access-policy-library.md#wave-5-segments-and-the-end-state)), so it keeps CA022's name and Members scope: every guest and external user type is excluded through `excludeGuestsOrExternalUsers` with all external tenants, and the time-bound `CA-Exclude-PhishResistantNotReady` group is excluded alongside the emergency access group.[^c10-ca-guests][^c10-ca-alltenants]
 
 ```json
 {
-  "displayName": "CA001 - Require phishing-resistant MFA for all resources",
+  "displayName": "CA022-Members-RequirePhishResistantMFA",
   "state": "enabledForReportingButNotEnforced",
   "conditions": {
     "users": {
       "includeUsers": ["All"],
-      "excludeGroups": ["<emergency-access-group-object-id>"]
+      "excludeGroups": [
+        "<emergency-access-group-object-id>",
+        "<phish-resistant-not-ready-group-object-id>"
+      ],
+      "excludeGuestsOrExternalUsers": {
+        "guestOrExternalUserTypes": "internalGuest,b2bCollaborationGuest,b2bCollaborationMember,b2bDirectConnectUser,otherExternalUser,serviceProvider",
+        "externalTenants": {
+          "@odata.type": "#microsoft.graph.conditionalAccessAllExternalTenants",
+          "membershipKind": "all"
+        }
+      }
     },
     "applications": {
       "includeApplications": ["All"]
@@ -142,7 +152,7 @@ Held as a file, the exclusion is visible in the pull request, where a reviewer (
 
 ### The same policy in Terraform
 
-In the `azuread` provider, a hard-coded authentication strength ID takes the `/policies/authenticationStrengthPolicies/` prefix.[^c10-tf-ca]
+In the `azuread` provider, a hard-coded authentication strength ID takes the `/policies/authenticationStrengthPolicies/` prefix.[^c10-tf-ca] The Members scope is an `excluded_guests_or_external_users` block, which takes a list of guest or external user types and an `external_tenants` block with `membership_kind` set to `all`.[^c10-tf-guests]
 
 ```hcl
 variable "emergency_access_group_id" {
@@ -150,8 +160,13 @@ variable "emergency_access_group_id" {
   description = "Object ID of the emergency access (break-glass) group"
 }
 
-resource "azuread_conditional_access_policy" "ca001" {
-  display_name = "CA001 - Require phishing-resistant MFA for all resources"
+variable "phish_resistant_not_ready_group_id" {
+  type        = string
+  description = "Object ID of CA-Exclude-PhishResistantNotReady (time-bound members)"
+}
+
+resource "azuread_conditional_access_policy" "ca022" {
+  display_name = "CA022-Members-RequirePhishResistantMFA"
   state        = "enabledForReportingButNotEnforced"
 
   conditions {
@@ -163,7 +178,18 @@ resource "azuread_conditional_access_policy" "ca001" {
 
     users {
       included_users  = ["All"]
-      excluded_groups = [var.emergency_access_group_id]
+      excluded_groups = [
+        var.emergency_access_group_id,
+        var.phish_resistant_not_ready_group_id,
+      ]
+
+      excluded_guests_or_external_users {
+        guest_or_external_user_types = ["internalGuest", "b2bCollaborationGuest", "b2bCollaborationMember", "b2bDirectConnectUser", "otherExternalUser", "serviceProvider"]
+
+        external_tenants {
+          membership_kind = "all"
+        }
+      }
     }
   }
 
@@ -366,6 +392,8 @@ For each month, the pipeline assembles the period's records in the evidence stor
 [← Previous: Chapter 09 — Access Governance: Packages, Reviews and Lifecycle](09-access-governance.md) · [Book index](index.md) · [Next: Appendix A — Conditional Access Policy Templates →](appendix-a-conditional-access-templates.md)
 :::
 
+[^c10-ca-guests]: Microsoft Learn, "conditionalAccessGuestsOrExternalUsers resource type" (Microsoft Graph v1.0), <https://learn.microsoft.com/graph/api/resources/conditionalaccessguestsorexternalusers?view=graph-rest-1.0> (accessed Oct 21, 2026).
+[^c10-ca-alltenants]: Microsoft Learn, "conditionalAccessAllExternalTenants resource type" (Microsoft Graph v1.0), <https://learn.microsoft.com/graph/api/resources/conditionalaccessallexternaltenants?view=graph-rest-1.0> (accessed Oct 21, 2026).
 [^c10-ca-create]: Microsoft Learn, "Create conditionalAccessPolicy," <https://learn.microsoft.com/graph/api/conditionalaccessroot-post-policies?view=graph-rest-1.0> (accessed Oct 20, 2026).
 [^c10-pim-rules]: Microsoft Learn, "Update rules in PIM by using Microsoft Graph," <https://learn.microsoft.com/graph/how-to-pim-update-rules> (accessed Oct 20, 2026).
 [^c10-ap-policy]: Microsoft Learn, "Change request settings for an access package in entitlement management," <https://learn.microsoft.com/entra/id-governance/entitlement-management-access-package-request-policy> (accessed Oct 20, 2026).
@@ -373,6 +401,7 @@ For each month, the pipeline assembles the period's records in the evidence stor
 [^c10-tf-release]: HashiCorp, terraform-provider-azuread releases (v3.10.0), <https://github.com/hashicorp/terraform-provider-azuread/releases> (accessed Oct 20, 2026).
 [^c10-tf-resources]: HashiCorp, terraform-provider-azuread resource documentation index, <https://github.com/hashicorp/terraform-provider-azuread/tree/main/docs/resources> (accessed Oct 20, 2026).
 [^c10-tf-ca]: HashiCorp, "azuread_conditional_access_policy" resource documentation, <https://github.com/hashicorp/terraform-provider-azuread/blob/main/docs/resources/conditional_access_policy.md> (accessed Oct 20, 2026).
+[^c10-tf-guests]: HashiCorp, "azuread_conditional_access_policy" resource documentation, `guests_or_external_users` and `external_tenants` blocks, <https://github.com/hashicorp/terraform-provider-azuread/blob/main/docs/resources/conditional_access_policy.md> (accessed Oct 21, 2026).
 [^c10-tf-plan]: HashiCorp, "terraform plan command reference," <https://developer.hashicorp.com/terraform/cli/commands/plan> (accessed Oct 20, 2026).
 [^c10-m365dsc-repo]: Microsoft365DSC, repository README, <https://github.com/Microsoft365DSC/Microsoft365DSC> (accessed Oct 20, 2026).
 [^c10-m365dsc-release]: Microsoft365DSC, release 2.26.1015.1, <https://github.com/Microsoft365DSC/Microsoft365DSC/releases> (accessed Oct 20, 2026).
