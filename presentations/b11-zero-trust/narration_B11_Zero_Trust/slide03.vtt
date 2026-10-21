@@ -1,0 +1,87 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.166
+Two documented incidents
+show why the whole-agency
+
+2
+00:00:03.166 --> 00:00:06.500
+view is a security property,
+not a reporting preference.
+
+3
+00:00:06.500 --> 00:00:10.558
+In May and June 2023, an actor
+used a Microsoft consumer
+
+4
+00:00:10.558 --> 00:00:14.887
+signing key to forge tokens
+and read Exchange Online mail.
+
+5
+00:00:14.887 --> 00:00:20.119
+The Cyber Safety Review Board counted
+22 enterprise organizations and 503
+
+6
+00:00:20.119 --> 00:00:25.600
+related personal accounts, with access to
+some mailboxes for at least six weeks.
+
+7
+00:00:25.600 --> 00:00:28.825
+The tokens were valid to every
+system that checked them.
+
+8
+00:00:28.825 --> 00:00:31.848
+What caught the intrusion
+was a custom alert one
+
+9
+00:00:31.848 --> 00:00:35.400
+federal department had built
+on mailbox logs it paid for.
+
+10
+00:00:35.400 --> 00:00:37.462
+The second sits beneath the guest.
+
+11
+00:00:37.462 --> 00:00:43.949
+ESXiArgs compromised more than
+3,800 ESXi servers in February 2023.
+
+12
+00:00:43.949 --> 00:00:49.522
+In 2024, CVE-2024-37085 gave
+full hypervisor control to
+
+13
+00:00:49.522 --> 00:00:55.837
+members of a directory group
+named ESX Admins, matched by name.
+
+14
+00:00:55.837 --> 00:00:58.399
+Even one vendor's two tools don't add up.
+
+15
+00:00:58.399 --> 00:01:02.533
+ScubaGear is CISA's, the Zero
+Trust Assessment is Microsoft's,
+
+16
+00:01:02.533 --> 00:01:05.450
+and neither sees past
+Microsoft's platform.
+
+17
+00:01:05.450 --> 00:01:07.162
+Tools are evidence inputs.
+
+18
+00:01:07.162 --> 00:01:09.380
+The agency owns the verdict.

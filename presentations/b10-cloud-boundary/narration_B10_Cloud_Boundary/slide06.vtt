@@ -1,0 +1,75 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.450
+Chapter 04 reads GCC from
+Microsoft's own documents.
+
+2
+00:00:04.450 --> 00:00:08.341
+It's the worldwide service with
+a published list of exclusions,
+
+3
+00:00:08.341 --> 00:00:09.913
+and the list isn't a ladder.
+
+4
+00:00:09.913 --> 00:00:16.017
+Network connectivity in the admin
+center, Adoption Score, the Office 365
+
+5
+00:00:16.017 --> 00:00:22.224
+CDN and informed network routing are
+missing in GCC, GCC High and DoD alike.
+
+6
+00:00:22.224 --> 00:00:27.037
+Windows release health and Excel Office
+Scripts reach GCC and stop there.
+
+7
+00:00:27.037 --> 00:00:31.239
+The largest documented loss is
+the network connectivity layer:
+
+8
+00:00:31.239 --> 00:00:36.550
+a daily assessment from 0 to 100 for each
+location, with 80 as the healthy baseline,
+
+9
+00:00:36.550 --> 00:00:40.276
+and performance attributed
+to named network providers.
+
+10
+00:00:40.276 --> 00:00:44.075
+A GCC agency funds its
+own measurement instead.
+
+11
+00:00:44.075 --> 00:00:50.627
+On the Marketplace, read October
+21, 2026, the GCC package, MSO365MT,
+
+12
+00:00:50.627 --> 00:00:57.300
+is FedRAMP Certified at Class C,
+Moderate, with 100 authorizations.
+
+13
+00:00:57.300 --> 00:01:01.500
+A second package with the identical
+name is In Process at Class D.
+
+14
+00:01:01.500 --> 00:01:06.638
+But GCC High is already Class D, and
+still lacks network connectivity.
+
+15
+00:01:06.638 --> 00:01:09.860
+A higher class doesn't
+restore an excluded feature.

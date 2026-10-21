@@ -1,0 +1,790 @@
+{
+ "1": [
+  [
+   0.05,
+   13.5,
+   "This briefing comes from Book 11 of the Federal Modernization Workbook, Zero Trust and Assessment: how an agency measures its Zero Trust posture across every estate it runs, and turns what the tools find into a program."
+  ],
+  [
+   13.55,
+   9.438,
+   "I'll take four questions: why Zero Trust is a whole-agency property, what the mandates and tools actually cover, who owns the posture, and how to assess it."
+  ],
+  [
+   22.988,
+   7.65,
+   "The short version: unify first, assess second, and treat every tool as evidence, never as the verdict."
+  ]
+ ],
+ "2": [
+  [
+   0.05,
+   2.75,
+   "Why is Zero Trust a whole-agency property?"
+  ],
+  [
+   2.8,
+   2.25,
+   "Look at the usual assessment calendar."
+  ],
+  [
+   5.05,
+   3.525,
+   "The network team reviews the boundary, keyed by address."
+  ],
+  [
+   8.575,
+   5.0,
+   "The cloud team runs each provider's posture scan, keyed by resource tags."
+  ],
+  [
+   13.575,
+   6.412,
+   "The virtualization team works a hypervisor checklist, keyed by whatever the management plane calls a machine."
+  ],
+  [
+   19.988,
+   6.05,
+   "At year end someone puts the three reports behind one cover page and calls it the agency's maturity."
+  ],
+  [
+   26.038,
+   2.737,
+   "It's three partial assessments with one title."
+  ],
+  [
+   28.775,
+   1.95,
+   "The failure is architectural."
+  ],
+  [
+   30.725,
+   10.6,
+   "A database server that runs as a virtual machine, sits on an agency subnet and backs up to a cloud bucket can appear as three unrelated objects, scored by three tools."
+  ],
+  [
+   41.325,
+   3.4,
+   "A total across them counts objects, not architecture."
+  ],
+  [
+   44.725,
+   3.125,
+   "The guidance describes the enterprise, not a tenant."
+  ],
+  [
+   47.85,
+   12.838,
+   "Executive Order 14028 says throughout all aspects of the infrastructure, and nist special publication eight hundred two-oh-seven grants no implicit trust from network location or ownership."
+  ],
+  [
+   60.688,
+   7.763,
+   "So unify first, then assess, and defend the unified plane, because it becomes a complete map of the attack surface."
+  ]
+ ],
+ "3": [
+  [
+   0.05,
+   6.45,
+   "Two documented incidents show why the whole-agency view is a security property, not a reporting preference."
+  ],
+  [
+   6.5,
+   8.387,
+   "In May and June 2023, an actor used a Microsoft consumer signing key to forge tokens and read Exchange Online mail."
+  ],
+  [
+   14.887,
+   10.713,
+   "The Cyber Safety Review Board counted 22 enterprise organizations and 503 related personal accounts, with access to some mailboxes for at least six weeks."
+  ],
+  [
+   25.6,
+   3.225,
+   "The tokens were valid to every system that checked them."
+  ],
+  [
+   28.825,
+   6.575,
+   "What caught the intrusion was a custom alert one federal department had built on mailbox logs it paid for."
+  ],
+  [
+   35.4,
+   2.062,
+   "The second sits beneath the guest."
+  ],
+  [
+   37.462,
+   6.487,
+   "ESXiArgs compromised more than 3,800 ESXi servers in February 2023."
+  ],
+  [
+   43.95,
+   11.887,
+   "In 2024, CVE-2024-37085 gave full hypervisor control to members of a directory group named ESX Admins, matched by name."
+  ],
+  [
+   55.837,
+   2.562,
+   "Even one vendor's two tools don't add up."
+  ],
+  [
+   58.4,
+   7.05,
+   "ScubaGear is sis-uh's, the Zero Trust Assessment is Microsoft's, and neither sees past Microsoft's platform."
+  ],
+  [
+   65.45,
+   1.712,
+   "Tools are evidence inputs."
+  ],
+  [
+   67.162,
+   2.163,
+   "The agency owns the verdict."
+  ]
+ ],
+ "4": [
+  [
+   0.05,
+   4.65,
+   "Chapter 02 explains why programs stall at Initial or low Advanced."
+  ],
+  [
+   4.7,
+   4.075,
+   "They read sis-uh's maturity model as a five-pillar shopping list."
+  ],
+  [
+   8.775,
+   12.438,
+   "But the model runs those pillars through three cross-cutting capabilities, and the one programs fund least is Governance, which the model defines as the definition and enforcement of policy within and across pillars."
+  ],
+  [
+   21.212,
+   8.463,
+   "Its Traditional stage reads like the failure list: siloed pillars of policy enforcement, and limited correlation of logs and telemetry."
+  ],
+  [
+   29.675,
+   1.65,
+   "Five principles answer it."
+  ],
+  [
+   31.325,
+   7.875,
+   "Identity is the anchor, but it isn't self-authenticating, so sessions are re-evaluated and the identity plane is defended."
+  ],
+  [
+   39.2,
+   10.8,
+   "Privileged identity gets controls of its own: Microsoft's guidance is zero permanently active assignments other than emergency accounts, which are tested at least every 90 days."
+  ],
+  [
+   50.0,
+   4.213,
+   "Evidence must be reproducible, machine-readable and regenerable."
+  ],
+  [
+   54.212,
+   5.838,
+   "Governance enforces: a policy that only produces next quarter's finding is a report."
+  ],
+  [
+   60.05,
+   6.2,
+   "And the cloud boundary is modeled, with each government-cloud feature gap recorded as a governed finding."
+  ]
+ ],
+ "5": [
+  [
+   0.05,
+   2.075,
+   "What do the mandates actually require?"
+  ],
+  [
+   2.125,
+   2.663,
+   "Four documents get cited as if they were one."
+  ],
+  [
+   4.787,
+   9.025,
+   "Executive Order 14028 is binding, and required each agency to develop a plan to implement Zero Trust Architecture."
+  ],
+  [
+   13.812,
+   17.438,
+   "O M B M twenty-two oh-nine is binding and sets specific actions by pillar: phishing-resistant M F A for staff, contractors and partners, reliable device inventories through CDM, encrypted D N S and HTTPS, and an environmental isolation plan."
+  ],
+  [
+   31.25,
+   5.013,
+   "sis-uh's Zero Trust Maturity Model, version 2.0, is guidance."
+  ],
+  [
+   36.263,
+   9.125,
+   "It says it should not be viewed as a strict set of requirements but as a general guide, and sis-uh's page for it is now marked archived, with no later version."
+  ],
+  [
+   45.388,
+   4.8,
+   "nist special publication eight hundred two-oh-seven supplies the architecture."
+  ],
+  [
+   50.188,
+   9.175,
+   "M twenty-two oh-nine's FY 2024 deadlines have passed, but O M B hasn't rescinded it, and a passed deadline doesn't retire an action."
+  ],
+  [
+   59.362,
+   11.037,
+   "One adjustment: its logging action pointed to M-21-31, which M-26-14 rescinded on May 22, 2026."
+  ],
+  [
+   70.4,
+   5.537,
+   "And no federal document defines a Zero Trust score, or requires a maturity stage."
+  ]
+ ],
+ "6": [
+  [
+   0.05,
+   3.875,
+   "B O D twenty-five oh-one is narrower and more concrete."
+  ],
+  [
+   3.925,
+   7.987,
+   "sis-uh issued it on December 17, 2024, for every production cloud tenant with a finalized scuba baseline."
+  ],
+  [
+   11.912,
+   20.125,
+   "It has six required actions: inventory the tenants by February 21, 2025; deploy the scuba tools and report by April 25; implement the mandatory policies by June 20; keep up with updates; baseline every new tenant before its ATO; and explain deviations with each report."
+  ],
+  [
+   32.038,
+   3.388,
+   "The mandatory list is a subset of the baselines."
+  ],
+  [
+   35.425,
+   10.675,
+   "For Microsoft 365, sis-uh's Required Configurations page lists 50 policies; in Entra ID, that's 20 of the 30 in ScubaGear's baseline."
+  ],
+  [
+   46.1,
+   6.562,
+   "Google Workspace is now in scope too, with its policies due December 1, 2026."
+  ],
+  [
+   52.663,
+   9.975,
+   "sis-uh's guidance limits scope to software as a service, so Azure subscriptions are out even when they share the tenant, and on-premises Active Directory is untouched."
+  ],
+  [
+   62.638,
+   3.525,
+   "Inventory, deployment and explanations take days."
+  ],
+  [
+   66.162,
+   5.05,
+   "Implementing the policies is architecture, and that's what the directive exists for."
+  ]
+ ],
+ "7": [
+  [
+   0.05,
+   7.612,
+   "Agencies run two free, read-only assessments of their Microsoft cloud, and often drop one because it covers identity."
+  ],
+  [
+   7.662,
+   1.675,
+   "They answer different questions."
+  ],
+  [
+   9.338,
+   5.15,
+   "ScubaGear is sis-uh's tool, and asks whether the tenant meets the federal baseline."
+  ],
+  [
+   14.488,
+   7.688,
+   "Version 1.8.0 shipped May 7, 2026, with 2.0.0 in preview."
+  ],
+  [
+   22.175,
+   6.0,
+   "Microsoft's Zero Trust Assessment asks how mature the environment is against Microsoft's guidance."
+  ],
+  [
+   28.175,
+   7.412,
+   "Release 3.1.0 shipped October 20, 2026, with 364 tests."
+  ],
+  [
+   35.587,
+   7.75,
+   "It's a community project maintained by Microsoft employees, not an official product, and no Microsoft support program covers it."
+  ],
+  [
+   43.337,
+   6.862,
+   "They overlap on Entra ID identity and, in 3.1.0, on Defender threat policies."
+  ],
+  [
+   50.2,
+   9.85,
+   "Only ScubaGear covers Exchange Online, Teams, SharePoint and Power Platform, and 22 of the 50 mandatory policies sit in those four products."
+  ],
+  [
+   60.05,
+   6.362,
+   "Dropping ScubaGear leaves mandatory policies unassessed and stops the reporting the directive requires."
+  ],
+  [
+   66.412,
+   8.425,
+   "So run both, and reconcile at the control level: the tenant setting and the special publication eight hundred fifty-three control it supports."
+  ]
+ ],
+ "8": [
+  [
+   0.05,
+   4.2,
+   "Everything so far stops at the edge of Microsoft 365."
+  ],
+  [
+   4.25,
+   7.65,
+   "Nothing on B O D twenty-five oh-one's list covers infrastructure accounts, the agency network or the virtualized estate."
+  ],
+  [
+   11.9,
+   9.75,
+   "So the whole-agency argument rests on the Zero Trust documents, and on the special publication eight hundred fifty-three controls every system security plan asserts."
+  ],
+  [
+   21.65,
+   2.55,
+   "Three things get reconciled before assessing."
+  ],
+  [
+   24.2,
+   10.35,
+   "One inventory: CM-8 forbids duplicate accounting of components, and BOD 23-01 requires asset discovery every 7 days."
+  ],
+  [
+   34.55,
+   6.325,
+   "One naming authority, because each cloud provider and VMware ships its own private D N S."
+  ],
+  [
+   40.875,
+   9.312,
+   "And no implicit trust from any boundary: a site-to-site VPN, a default virtual network and a flat virtualized segment are the same mistake."
+  ],
+  [
+   50.188,
+   7.875,
+   "The hypervisor is a distinct threat class, so its management plane is assessed as its own surface, not inferred from its guests."
+  ],
+  [
+   58.062,
+   3.0,
+   "And every provider's tool answers for its own platform."
+  ],
+  [
+   61.062,
+   4.412,
+   "AWS says its nist standard supports a subset of requirements."
+  ],
+  [
+   65.475,
+   4.037,
+   "Microsoft calls Azure Policy compliance only a partial view."
+  ],
+  [
+   69.513,
+   5.15,
+   "fed-ramp certifies the service; the agency authorizes its own use of it."
+  ]
+ ],
+ "9": [
+  [
+   0.05,
+   0.85,
+   "Who owns it?"
+  ],
+  [
+   0.9,
+   2.087,
+   "Every pillar already has an owner."
+  ],
+  [
+   2.987,
+   3.575,
+   "What most agencies lack is an owner for the posture itself."
+  ],
+  [
+   6.562,
+   10.2,
+   "M twenty-two oh-nine required each agency to designate a zero trust strategy implementation lead within 30 days, and many will give this role to that person."
+  ],
+  [
+   16.762,
+   9.5,
+   "The program lead owns the definition of the whole-agency score, what it covers and what it excludes, plus cross-pillar correlation and the assessment calendar."
+  ],
+  [
+   26.262,
+   7.862,
+   "The lead decides priority but doesn't accept risk, and shouldn't also own the agency's relationship with its largest cloud vendor."
+  ],
+  [
+   34.125,
+   2.825,
+   "The C I O decides scope and sequence."
+  ],
+  [
+   36.95,
+   5.237,
+   "The see-so sets the evidence standard and approves the tools and the accounts that run them."
+  ],
+  [
+   42.188,
+   6.125,
+   "The authorizing official accepts residual risk and approves each plan of action and milestones."
+  ],
+  [
+   48.312,
+   1.675,
+   "Exceptions split on time."
+  ],
+  [
+   49.987,
+   8.275,
+   "An omission with an expiration date is a see-so decision; one with no end date is a standing risk acceptance for the authorizing official."
+  ],
+  [
+   58.263,
+   4.487,
+   "Pillar owners decide how to fix a finding, never that it doesn't need fixing."
+  ]
+ ],
+ "10": [
+  [
+   0.05,
+   1.025,
+   "How do you get there?"
+  ],
+  [
+   1.075,
+   2.325,
+   "First, close before you assess."
+  ],
+  [
+   3.4,
+   8.175,
+   "Agencies met B O D twenty-five oh-one's early dates: tenants inventoried, ScubaGear deployed and reporting."
+  ],
+  [
+   11.575,
+   2.0,
+   "Many now treat that as the answer."
+  ],
+  [
+   13.575,
+   7.463,
+   "But ScubaGear measures deviation from a baseline; it doesn't close any, and neither does the Zero Trust Assessment."
+  ],
+  [
+   21.038,
+   4.05,
+   "A thermometer that reports a fever every day isn't a treatment plan."
+  ],
+  [
+   25.087,
+   13.512,
+   "So the program's six-phase sequence puts the assessors at step five, as confirmation rather than discovery: understand, design, implement, govern, then validate, and then the authorizing official decides."
+  ],
+  [
+   38.6,
+   6.475,
+   "That's the Risk Management Framework's own order: implement, assess, authorize, monitor."
+  ],
+  [
+   45.075,
+   11.537,
+   "Before validating, build the layers a finding depends on: naming and certificates, device and workload identity, a phased retirement of legacy authentication, and governed exceptions."
+  ],
+  [
+   56.612,
+   11.938,
+   "Meanwhile, route every current finding to exactly one response: a configuration change now, architectural work with an owner and a date, or a risk acceptance by the authorizing official."
+  ],
+  [
+   68.55,
+   3.0,
+   "A finding with no response is the only failure."
+  ]
+ ],
+ "11": [
+  [
+   0.05,
+   2.837,
+   "Then run the assessment and keep the evidence."
+  ],
+  [
+   2.888,
+   4.013,
+   "Five things are decided before either tool touches a production tenant."
+  ],
+  [
+   6.9,
+   4.45,
+   "Scope comes from the B O D twenty-five oh-one tenant inventory."
+  ],
+  [
+   11.35,
+   8.2,
+   "The host is a dedicated Windows machine inside the authorization boundary, a separate one for each tool, because their dependencies conflict."
+  ],
+  [
+   19.55,
+   4.625,
+   "Each tool gets a reader account, with consent granted once, separately."
+  ],
+  [
+   24.175,
+   2.288,
+   "Output is handled as controlled data."
+  ],
+  [
+   26.462,
+   10.175,
+   "And the assessment accounts belong in the M-26-14 Agency Logging Plan, due 90 days after sis-uh's August 20 reference architecture."
+  ],
+  [
+   36.638,
+   3.55,
+   "ScubaGear runs in Windows PowerShell 5.1."
+  ],
+  [
+   40.188,
+   9.637,
+   "Its configuration file is the exception record: annotations, omissions with a rationale and an expiration date, and exclusions for emergency accounts."
+  ],
+  [
+   49.825,
+   5.8,
+   "It's versioned in the repository, and its hash is recorded with every run, like the tool version."
+  ],
+  [
+   55.625,
+   5.075,
+   "The results file is never renamed or edited, only hashed and copied."
+  ],
+  [
+   60.7,
+   5.275,
+   "The Zero Trust Assessment needs PowerShell 7 and can take more than 24 hours."
+  ],
+  [
+   65.975,
+   8.537,
+   "And install the program's toolkit only from its own repository: a package named fmp on the public Python index is unrelated."
+  ]
+ ],
+ "12": [
+  [
+   0.05,
+   6.4,
+   "Most agencies run ScubaGear, save the HTML report, and reopen it when an assessor asks."
+  ],
+  [
+   6.45,
+   8.9,
+   "The program instead treats each tool as an adapter, one input to one evidence chain, and leaves the tools exactly as their publishers ship them."
+  ],
+  [
+   15.35,
+   2.413,
+   "Each run flows through four stages."
+  ],
+  [
+   17.762,
+   2.8,
+   "The tool writes its own unaltered output."
+  ],
+  [
+   20.562,
+   6.9,
+   "Each result becomes a claim in a provenance envelope: who issued it, when it was extracted, and a lineage hash."
+  ],
+  [
+   27.462,
+   3.65,
+   "Claims from one interval are assembled into a sealed bundle."
+  ],
+  [
+   31.113,
+   5.375,
+   "And the bundle emits OSCAL assessment results and plan of action and milestones items."
+  ],
+  [
+   36.487,
+   8.312,
+   "Take MS.AAD.1.1v1, legacy authentication shall be blocked, which sis-uh maps to CM-7."
+  ],
+  [
+   44.8,
+   1.15,
+   "Say it fails."
+  ],
+  [
+   45.95,
+   5.338,
+   "The claim's lineage hash ties it to the raw result, and the bundle opens a POA&M item."
+  ],
+  [
+   51.288,
+   7.263,
+   "Months later an assessor can rebuild the bundle, check its hash, and walk back to the raw output without re-running the tool."
+  ],
+  [
+   58.55,
+   1.325,
+   "The limits are stated."
+  ],
+  [
+   59.875,
+   3.325,
+   "ScubaGear runs on an interval, not continuously."
+  ],
+  [
+   63.2,
+   4.625,
+   "And there's no ScubaGoggles adapter yet, so Google Workspace is a gap."
+  ]
+ ],
+ "13": [
+  [
+   0.05,
+   2.638,
+   "Last, turn findings into a program."
+  ],
+  [
+   2.688,
+   2.337,
+   "Read each result before counting it."
+  ],
+  [
+   5.025,
+   6.537,
+   "Only ScubaGear's Fail and Warning, and the Zero Trust Assessment's Failed and Investigate, are findings."
+  ],
+  [
+   11.562,
+   3.0,
+   "A skipped check isn't a gap and isn't a pass."
+  ],
+  [
+   14.562,
+   8.275,
+   "It's absence of evidence, recorded with the reason, which is often a license or a government-cloud feature that isn't available in the boundary."
+  ],
+  [
+   22.837,
+   11.863,
+   "The program scores findings with a documented method: severity from 0 to 100, priority as severity divided by effort, and buckets from P1 at 50 or above down to P4."
+  ],
+  [
+   34.7,
+   5.938,
+   "Quick wins go into the next change window; major projects go onto a pillar owner's roadmap."
+  ],
+  [
+   40.638,
+   9.775,
+   "Both tools' findings are reconciled against the same special publication eight hundred fifty-three control, so two pieces of evidence become one finding for one owner."
+  ],
+  [
+   50.413,
+   7.338,
+   "Anything not fixed and not excepted becomes a plan of action and milestones item, which the authorizing official approves."
+  ],
+  [
+   57.75,
+   6.075,
+   "Drift between intervals goes to the authorizing official too, not only to security operations."
+  ],
+  [
+   63.825,
+   6.775,
+   "And re-run after every remediation wave, so a finding is closed by evidence, not by a ticket status."
+  ]
+ ],
+ "14": [
+  [
+   0.05,
+   1.375,
+   "So, four decisions."
+  ],
+  [
+   1.425,
+   6.25,
+   "Name an agency-level owner of the Zero Trust posture, separate from every cloud provider relationship."
+  ],
+  [
+   7.675,
+   7.688,
+   "Reconcile the network, every cloud and the virtualization estate to one authoritative record before scoring any of them."
+  ],
+  [
+   15.363,
+   9.8,
+   "Close the B O D twenty-five oh-one mandatory findings before measuring maturity, with Google Workspace due December 1, 2026."
+  ],
+  [
+   25.163,
+   8.438,
+   "And move every exception into the versioned configuration file, with an expiration, and route each standing one to the authorizing official."
+  ],
+  [
+   33.6,
+   2.2,
+   "The next step needs no procurement."
+  ],
+  [
+   35.8,
+   8.162,
+   "Find out, pillar by pillar, which evidence can be re-run without the operator's help, because every no is the adoption boundary."
+  ],
+  [
+   43.962,
+   4.45,
+   "And put the assessment hosts and accounts in the Agency Logging Plan now."
+  ],
+  [
+   48.413,
+   5.638,
+   "Unify first, assess second, and let named people make the decisions the evidence supports."
+  ],
+  [
+   54.05,
+   3.612,
+   "Book 11 has the detail, every claim footnoted."
+  ],
+  [
+   57.663,
+   0.762,
+   "Thank you."
+  ]
+ ]
+}

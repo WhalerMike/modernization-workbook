@@ -1,0 +1,84 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.700
+Chapter 02 explains why programs
+stall at Initial or low Advanced.
+
+2
+00:00:04.700 --> 00:00:08.775
+They read CISA's maturity model
+as a five-pillar shopping list.
+
+3
+00:00:08.775 --> 00:00:13.128
+But the model runs those pillars through
+three cross-cutting capabilities,
+
+4
+00:00:13.128 --> 00:00:17.136
+and the one programs fund least is
+Governance, which the model defines
+
+5
+00:00:17.136 --> 00:00:21.213
+as the definition and enforcement of
+policy within and across pillars.
+
+6
+00:00:21.213 --> 00:00:24.358
+Its Traditional stage reads
+like the failure list:
+
+7
+00:00:24.358 --> 00:00:29.675
+siloed pillars of policy enforcement, and
+limited correlation of logs and telemetry.
+
+8
+00:00:29.675 --> 00:00:31.325
+Five principles answer it.
+
+9
+00:00:31.325 --> 00:00:34.984
+Identity is the anchor, but
+it isn't self-authenticating,
+
+10
+00:00:34.984 --> 00:00:39.200
+so sessions are re-evaluated and
+the identity plane is defended.
+
+11
+00:00:39.200 --> 00:00:41.973
+Privileged identity gets
+controls of its own:
+
+12
+00:00:41.973 --> 00:00:46.132
+Microsoft's guidance is zero
+permanently active assignments other
+
+13
+00:00:46.132 --> 00:00:50.000
+than emergency accounts, which
+are tested at least every 90 days.
+
+14
+00:00:50.000 --> 00:00:54.213
+Evidence must be reproducible,
+machine-readable and regenerable.
+
+15
+00:00:54.213 --> 00:01:00.050
+Governance enforces: a policy that only
+produces next quarter's finding is a report.
+
+16
+00:01:00.050 --> 00:01:02.045
+And the cloud boundary is modeled,
+
+17
+00:01:02.045 --> 00:01:06.310
+with each government-cloud feature
+gap recorded as a governed finding.

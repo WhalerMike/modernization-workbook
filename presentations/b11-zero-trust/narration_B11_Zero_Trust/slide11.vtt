@@ -1,0 +1,88 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.887
+Then run the assessment
+and keep the evidence.
+
+2
+00:00:02.887 --> 00:00:06.901
+Five things are decided before either
+tool touches a production tenant.
+
+3
+00:00:06.901 --> 00:00:11.350
+Scope comes from the BOD
+25-01 tenant inventory.
+
+4
+00:00:11.350 --> 00:00:15.728
+The host is a dedicated Windows machine
+inside the authorization boundary,
+
+5
+00:00:15.728 --> 00:00:19.550
+a separate one for each tool,
+because their dependencies conflict.
+
+6
+00:00:19.550 --> 00:00:24.175
+Each tool gets a reader account, with
+consent granted once, separately.
+
+7
+00:00:24.175 --> 00:00:26.463
+Output is handled as controlled data.
+
+8
+00:00:26.463 --> 00:00:31.933
+And the assessment accounts belong
+in the M-26-14 Agency Logging Plan,
+
+9
+00:00:31.933 --> 00:00:36.637
+due 90 days after CISA's August
+20 reference architecture.
+
+10
+00:00:36.637 --> 00:00:40.188
+ScubaGear runs in Windows PowerShell 5.1.
+
+11
+00:00:40.188 --> 00:00:45.083
+Its configuration file is the exception
+record: annotations, omissions with
+
+12
+00:00:45.083 --> 00:00:49.825
+a rationale and an expiration date,
+and exclusions for emergency accounts.
+
+13
+00:00:49.825 --> 00:00:51.859
+It's versioned in the repository,
+
+14
+00:00:51.859 --> 00:00:55.625
+and its hash is recorded with
+every run, like the tool version.
+
+15
+00:00:55.625 --> 00:01:00.700
+The results file is never renamed
+or edited, only hashed and copied.
+
+16
+00:01:00.700 --> 00:01:05.975
+The Zero Trust Assessment needs PowerShell
+7 and can take more than 24 hours.
+
+17
+00:01:05.975 --> 00:01:10.370
+And install the program's toolkit
+only from its own repository:
+
+18
+00:01:10.370 --> 00:01:14.570
+a package named fmp on the public
+Python index is unrelated.

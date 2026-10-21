@@ -1,0 +1,77 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.962
+The book models a boundary as any
+surface across which four things change.
+
+2
+00:00:04.962 --> 00:00:09.213
+It's the book's own model, not a
+FedRAMP or Microsoft construct.
+
+3
+00:00:09.213 --> 00:00:13.601
+Telemetry fidelity asks which
+signals actually arrive on this side.
+
+4
+00:00:13.601 --> 00:00:16.539
+In GCC, admin-center network connectivity,
+
+5
+00:00:16.539 --> 00:00:21.912
+informed network routing and Adoption
+Score are documented as unavailable.
+
+6
+00:00:21.912 --> 00:00:26.358
+Identity authority asks who
+a claim's issuer resolves to:
+
+7
+00:00:26.358 --> 00:00:32.788
+GCC pairs with Entra ID in commercial Azure,
+GCC High and DoD with Azure Government.
+
+8
+00:00:32.788 --> 00:00:37.975
+Enforcement responsibility asks who must
+enforce a control: without Microsoft's
+
+9
+00:00:37.975 --> 00:00:43.163
+per-circuit feedback, path selection rests
+on the agency's own SD-WAN measurements.
+
+10
+00:00:43.163 --> 00:00:45.784
+Provenance classification asks whether a
+
+11
+00:00:45.784 --> 00:00:48.551
+claim is still authoritative,
+or only derived.
+
+12
+00:00:48.551 --> 00:00:51.475
+Each dimension raises its own drift class.
+
+13
+00:00:51.475 --> 00:00:56.650
+Detection is shipped for two classes,
+partial for one and design only for two.
+
+14
+00:00:56.650 --> 00:00:59.697
+And FedRAMP's definition
+of federal customer data
+
+15
+00:00:59.697 --> 00:01:03.325
+excludes the analytics and
+telemetry a provider generates.
+
+16
+00:01:03.325 --> 00:01:05.900
+No certification promises you a signal.

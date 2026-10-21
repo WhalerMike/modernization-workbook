@@ -1,0 +1,90 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.475
+What changed at FedRAMP?
+
+2
+00:00:01.475 --> 00:00:02.513
+Three things.
+
+3
+00:00:02.513 --> 00:00:05.950
+First, services are now
+certified, in Classes A to D.
+
+4
+00:00:05.950 --> 00:00:11.818
+FedRAMP's February 2026 notice says Class
+C includes the current Moderate baseline
+
+5
+00:00:11.818 --> 00:00:15.255
+and Class D the current
+High, and that agencies may
+
+6
+00:00:15.255 --> 00:00:19.363
+authorize at any security
+category they deem appropriate.
+
+7
+00:00:19.363 --> 00:00:23.051
+Second, the rules have no
+provider authorization boundary.
+
+8
+00:00:23.051 --> 00:00:26.728
+In the machine-readable ruleset,
+
+9
+00:00:26.728 --> 00:00:32.450
+version 2026.10.13.01, that
+phrase occurs zero times.
+
+10
+00:00:32.450 --> 00:00:37.208
+The word boundary appears eight times,
+four of them as a tag on rule families:
+
+11
+00:00:37.208 --> 00:00:40.584
+minimum assessment scope,
+cryptographic module use,
+
+12
+00:00:40.584 --> 00:00:45.188
+vulnerability detection and response,
+and certification data sharing.
+
+13
+00:00:45.188 --> 00:00:48.300
+Security category may vary by resource.
+
+14
+00:00:48.300 --> 00:00:53.750
+Third, change is notified, not re-approved,
+and the deadlines are in business days.
+
+15
+00:00:53.750 --> 00:00:56.462
+Routine recurring changes need no notice.
+
+16
+00:00:56.462 --> 00:01:00.187
+Adaptive changes, within 10
+business days after finishing.
+
+17
+00:01:00.187 --> 00:01:04.626
+Transformative changes, initial
+plans 30 business days before.
+
+18
+00:01:04.626 --> 00:01:08.806
+Adoption is mandatory on January 1, 2027,
+
+19
+00:01:08.806 --> 00:01:13.180
+and new Rev5 requests
+stop on June 11, 2027.

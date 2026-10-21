@@ -1,0 +1,78 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.037
+Finally, evidence the boundary
+in the agency's own package.
+
+2
+00:00:04.037 --> 00:00:09.357
+The agency never authorizes a cloud service;
+it authorizes its system that uses one,
+
+3
+00:00:09.357 --> 00:00:13.674
+and its plan should only contain
+what the agency is responsible for.
+
+4
+00:00:13.674 --> 00:00:16.171
+FedRAMP's Rev5 guidance is blunt:
+
+5
+00:00:16.171 --> 00:00:20.700
+don't copy and paste provider
+controls into the agency plan.
+
+6
+00:00:20.700 --> 00:00:25.811
+Write the boundary down once, as a
+boundary record the system owner keeps,
+
+7
+00:00:25.811 --> 00:00:29.814
+and cite it everywhere: the
+system description under PL-2,
+
+8
+00:00:29.814 --> 00:00:35.180
+each external service under SA-9 with
+its Marketplace package, class and SKU,
+
+9
+00:00:35.180 --> 00:00:39.780
+each crossing under CA-3, the gaps
+the agency will close on the POA&M,
+
+10
+00:00:39.780 --> 00:00:43.613
+and each equivalent in an
+OSCAL component definition.
+
+11
+00:00:43.613 --> 00:00:45.262
+Know whose package you're reading.
+
+12
+00:00:45.262 --> 00:00:50.332
+The GCC listing says the service leverages
+Azure Government as its infrastructure,
+
+13
+00:00:50.332 --> 00:00:54.025
+so the inheritance chain runs
+through two provider packages.
+
+14
+00:00:54.025 --> 00:00:58.465
+A compensating narrative takes four
+sentences: what the control needs,
+
+15
+00:00:58.465 --> 00:01:02.905
+what's unavailable with its citation,
+what runs instead marked derived,
+
+16
+00:01:02.905 --> 00:01:05.450
+and where the remaining gap is recorded.

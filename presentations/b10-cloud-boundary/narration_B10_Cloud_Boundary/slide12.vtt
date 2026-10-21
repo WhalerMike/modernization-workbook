@@ -1,0 +1,79 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.729
+The third answer is an alternative
+path: a different certified
+
+2
+00:00:03.729 --> 00:00:07.550
+service for the workload, with the
+identity plane left where it is.
+
+3
+00:00:07.550 --> 00:00:10.037
+Read the Marketplace,
+not the announcement.
+
+4
+00:00:10.037 --> 00:00:12.625
+Google Workspace is listed at Class D,
+
+5
+00:00:12.625 --> 00:00:16.800
+while Gemini for Government is
+a separate listing at Class B.
+
+6
+00:00:16.800 --> 00:00:21.725
+Which AI features sit inside which
+certification is a question for the package.
+
+7
+00:00:21.725 --> 00:00:24.075
+The public record shows both outcomes.
+
+8
+00:00:24.075 --> 00:00:29.967
+In September 2025 a cabinet-level department
+awarded a five-year agreement worth up
+
+9
+00:00:29.967 --> 00:00:35.270
+to 89 million dollars to move more than
+50,000 employees to Google Workspace,
+
+10
+00:00:35.270 --> 00:00:39.900
+under a GSA agreement with a
+temporary 71 percent price reduction.
+
+11
+00:00:39.900 --> 00:00:44.273
+A military department went the
+other way, ending about 150,000
+
+12
+00:00:44.273 --> 00:00:48.988
+Google email licenses after an
+audit found about 16 percent in use.
+
+13
+00:00:48.988 --> 00:00:52.213
+Keep Entra ID as the
+source: provision users,
+
+14
+00:00:52.213 --> 00:00:55.887
+federate sign-in, apply
+Conditional Access there.
+
+15
+00:00:55.887 --> 00:01:00.513
+Then close the gaps: Google super
+administrators sign in outside it,
+
+16
+00:01:00.513 --> 00:01:03.960
+and Google's directory is
+derived, so report drift.

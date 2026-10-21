@@ -1,0 +1,86 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.400
+Who owns the boundary?
+
+2
+00:00:01.400 --> 00:00:03.612
+The rule is one decider per row.
+
+3
+00:00:03.612 --> 00:00:07.980
+The authorizing official determines
+the boundary, signs every documented
+
+4
+00:00:07.980 --> 00:00:11.862
+exception and decides whether a
+change requires reauthorization.
+
+5
+00:00:11.862 --> 00:00:16.156
+Under SP 800-37, explicit risk
+acceptance can't be delegated,
+
+6
+00:00:16.156 --> 00:00:21.675
+and for federal agencies the role is
+assigned to government personnel only.
+
+7
+00:00:21.675 --> 00:00:24.004
+The system owner is the boundary owner:
+
+8
+00:00:24.004 --> 00:00:26.770
+keeper of the boundary
+record and the package,
+
+9
+00:00:26.770 --> 00:00:31.137
+and the decider on placing a new
+workload, because vending an unrecorded
+
+10
+00:00:31.137 --> 00:00:33.757
+subscription is the
+cheapest way to turn an
+
+11
+00:00:33.757 --> 00:00:36.450
+authorized system into
+an unauthorized one.
+
+12
+00:00:36.450 --> 00:00:38.883
+The CISO sets control requirements,
+
+13
+00:00:38.883 --> 00:00:42.963
+and the ISSO reads provider change
+notices against the record.
+
+14
+00:00:42.963 --> 00:00:46.147
+The platform team builds
+the hierarchy, policy,
+
+15
+00:00:46.147 --> 00:00:50.475
+vending and probe, but doesn't
+decide whether a gap is acceptable.
+
+16
+00:00:50.475 --> 00:00:53.480
+And the contract is a boundary decision:
+
+17
+00:00:53.480 --> 00:00:58.125
+the GCC listing says customers
+must buy a GCC SKU to be covered.
+
+18
+00:00:58.125 --> 00:01:01.440
+Only a contracting officer
+changes what the agency bought.

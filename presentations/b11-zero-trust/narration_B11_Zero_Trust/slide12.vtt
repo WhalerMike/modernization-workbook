@@ -1,0 +1,94 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.799
+Most agencies run ScubaGear,
+save the HTML report,
+
+2
+00:00:03.799 --> 00:00:06.450
+and reopen it when an assessor asks.
+
+3
+00:00:06.450 --> 00:00:11.623
+The program instead treats each tool as an
+adapter, one input to one evidence chain,
+
+4
+00:00:11.623 --> 00:00:15.350
+and leaves the tools exactly
+as their publishers ship them.
+
+5
+00:00:15.350 --> 00:00:17.763
+Each run flows through four stages.
+
+6
+00:00:17.763 --> 00:00:20.562
+The tool writes its own unaltered output.
+
+7
+00:00:20.562 --> 00:00:24.012
+Each result becomes a claim
+in a provenance envelope:
+
+8
+00:00:24.012 --> 00:00:27.462
+who issued it, when it was
+extracted, and a lineage hash.
+
+9
+00:00:27.462 --> 00:00:31.112
+Claims from one interval are
+assembled into a sealed bundle.
+
+10
+00:00:31.112 --> 00:00:34.024
+And the bundle emits
+OSCAL assessment results
+
+11
+00:00:34.024 --> 00:00:36.488
+and plan of action and milestones items.
+
+12
+00:00:36.488 --> 00:00:44.799
+Take MS.AAD.1.1v1, legacy authentication
+shall be blocked, which CISA maps to CM-7.
+
+13
+00:00:44.799 --> 00:00:45.950
+Say it fails.
+
+14
+00:00:45.950 --> 00:00:49.185
+The claim's lineage hash
+ties it to the raw result,
+
+15
+00:00:49.185 --> 00:00:51.288
+and the bundle opens a POA&M item.
+
+16
+00:00:51.288 --> 00:00:55.065
+Months later an assessor can
+rebuild the bundle, check its hash,
+
+17
+00:00:55.065 --> 00:00:58.551
+and walk back to the raw output
+without re-running the tool.
+
+18
+00:00:58.551 --> 00:00:59.875
+The limits are stated.
+
+19
+00:00:59.875 --> 00:01:03.200
+ScubaGear runs on an
+interval, not continuously.
+
+20
+00:01:03.200 --> 00:01:07.900
+And there's no ScubaGoggles adapter
+yet, so Google Workspace is a gap.
