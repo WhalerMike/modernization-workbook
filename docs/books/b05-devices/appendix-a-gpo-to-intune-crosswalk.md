@@ -24,7 +24,7 @@ The category crosswalk: each Group Policy area, the Intune mechanism that replac
 
 ## How to use this appendix
 
-This is a semantic translation reference. Engineers use it to answer "what is the closest Intune surface for this GPO setting?" It isn't a prescription to recreate every GPO setting, and it isn't authority for what a setting's value should be in the new system. The disposition of each setting comes first, through the four questions in [Chapter 07](07-the-gpo-sunset-program.md#step-2-classify-each-setting); the values come from current policy intent, under the regenerate-not-copy philosophy of [Policy Transformation](https://github.com/WhalerMike/modernization-workbook/blob/main/docs/client-server-to-hybrid-cloud/05-policy-transformation.md). The step-by-step migration is in [Chapter 08](08-gpo-to-intune-policy-migration.md).
+This is a semantic translation reference. Engineers use it to answer "what is the closest Intune surface for this GPO setting?" It isn't a prescription to recreate every GPO setting, and it isn't authority for what a setting's value should be in the new system. The disposition of each setting comes first, through the four questions in [Chapter 07](07-the-gpo-sunset-program.md#step-2-classify-each-setting); the values come from current policy intent, under the regenerate-not-copy philosophy of [Policy Transformation](../b01-transformation-arc/05-policy-transformation.md). The step-by-step migration is in [Chapter 08](08-gpo-to-intune-policy-migration.md).
 
 The mechanisms named in the tables are:
 

@@ -1,0 +1,25 @@
+# Chapter 08 — re-anchoring smart-card sign-in before AD DS retires. The user
+# still inserts a PIV/CAC card and enters a PIN; only the end of the
+# validation chain moves. Today: the domain controller validates the logon
+# certificate against NTAuth and maps it to an AD account. Target: Entra ID
+# validates the chain against its PKI-based trust store, checks the CRL at an
+# internet-facing HTTP URL, binds the certificate to a user (high-affinity
+# bindings preferred), and Conditional Access evaluates. Issuance is a
+# separate decision: an AD CS enterprise CA depends on AD DS, so issuance must
+# move to the PIV issuer, a standalone or third-party CA, or (for
+# Intune-managed device certificates only) Microsoft Cloud PKI.
+rankdir: TB
+graph: {nodesep: 0.3, ranksep: 0.4}
+nodes:
+  card: {tone: slate, width: 280, tag: "Unchanged", title: "Card and PIN", body: ["=The user experience doesn't change"], size: 12}
+  dc: {tone: red, width: 240, tag: "Retiring", title: "Domain controller validates", body: ["NTAuth store and AD account mapping", "=Ends when AD DS retires"], size: 12}
+  entra: {tone: blue, width: 240, tag: "Target", title: "Entra ID validates", body: ["PKI-based trust store, root and issuing CAs", "CRL at an internet-facing HTTP URL", "Username binding, high affinity preferred", "Bound as multifactor for phishing-resistant MFA"], size: 12}
+  ca: {tone: blue, width: 280, tag: "Then", title: "Conditional Access evaluates", body: ["=Token issued; sign-in visible in the sign-in logs"], size: 12}
+  issue: {tone: amber, width: 300, tag: "Separate decision", title: "Who issues the certificates", body: ["PIV/CAC: the agency's PIV issuer under the Federal PKI", "Servers and other users: standalone or third-party CA", "Intune-managed devices only: Microsoft Cloud PKI", "=An AD CS enterprise CA depends on AD DS"], size: 12}
+edges:
+  - [card, dc, {label: "today", tone: red, style: dashed}]
+  - [card, entra, {label: "target"}]
+  - [entra, ca]
+  - [issue, entra, {label: "same CAs in the trust store", tone: amber, style: dashed}]
+order:
+  - [dc, entra]

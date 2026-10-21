@@ -1,0 +1,22 @@
+# Chapter 07 — the server path: six steps; the domain unjoin (step 5) waits
+# until every SPN on the server is resolved and no local administrators are
+# anchored in AD.
+rankdir: TB
+graph: {nodesep: 0.4, ranksep: 0.3}
+nodes:
+  a1: {tone: blue, width: 300, tag: "Step 1", title: "Connect to Arc", body: ["=Connected Machine agent, registration, tags"], size: 12}
+  a2: {tone: violet, width: 300, tag: "Step 2", title: "Onboard reporting", body: ["=Defender for Servers and machine configuration"], size: 12}
+  a3: {tone: blue, width: 300, tag: "Step 3", title: "Assign policy", body: ["=Azure Policy and machine configuration replace Group Policy"], size: 12}
+  a4: {tone: green, width: 300, tag: "Step 4", title: "Validate", body: ["=Compliant, zero drift"], size: 12}
+  a5: {tone: amber, width: 300, tag: "Step 5", title: "Leave the domain", body: ["Every SPN resolved", "No AD-anchored local administrators"], size: 12}
+  a6: {tone: green, width: 300, tag: "Step 6", title: "Re-validate", body: ["=Clean reboot, heartbeat continues, configuration reapplies without AD"], size: 12}
+  block: {kind: text, tone: red, width: 180, text: "An unresolved SPN blocks the unjoin"}
+edges:
+  - [a1, a2]
+  - [a2, a3]
+  - [a3, a4]
+  - [a4, a5]
+  - [a5, a6, {tone: green}]
+  - [block, a5, {style: dashed, tone: red}]
+ranks:
+  - [a5, block]

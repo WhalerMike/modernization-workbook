@@ -33,7 +33,7 @@ This document is a **draft proposal** developed by the **CSI Team (Cloud Service
 ::: {.aan-note}
 **Relationship to the published whitepaper.** This narrative is also
 published, in provenance-anchored form, as the whitepaper
-[Modernization Journey](../whitepapers/modernization-journey.md),
+[Modernization Journey](../books/b01-transformation-arc/01-why-modernization-is-hard.md),
 whose closing section maps each Act-4 claim line-by-line to the governance
 engine's decision records. That publication owns the narrative and its
 provenance mapping; this book owns the federal control-closure framing

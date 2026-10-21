@@ -1,0 +1,17 @@
+# Chapter 05 — every policy change passes four gates; a failure at plan
+# validation, the simulated tenant or the pilot returns the change to the plan.
+rankdir: TB
+graph: {nodesep: 0.4, ranksep: 0.35}
+nodes:
+  s1: {tone: amber, width: 280, tag: "Stage 1", title: "Plan validation", body: ["=Schema, boundary and one-owning-layer checks"], size: 12}
+  s2: {tone: blue, width: 280, tag: "Stage 2", title: "Simulated tenant", body: ["=Tests assert the expected effect"], size: 12}
+  s3: {tone: violet, width: 280, tag: "Stage 3", title: "Pilot", body: ["Pilot group watched by the drift engine", "Conditional Access in report-only mode"], size: 12}
+  s4: {tone: green, width: 280, tag: "Stage 4", title: "Production", body: ["=Only after a clean pilot"], size: 12}
+  back: {kind: pill, tone: slate, width: 170, text: "Return to plan"}
+edges:
+  - [s1, s2]
+  - [s2, s3]
+  - [s3, s4, {tone: green}]
+  - [s1, back, {style: dashed, tone: red, label: "fails"}]
+  - [s2, back, {style: dashed, tone: red}]
+  - [s3, back, {style: dashed, tone: red}]

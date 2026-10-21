@@ -1,0 +1,25 @@
+# Chapter 03 — governance and execution never mix on the host. The governance layer
+# validates and signs a plan but never touches a target; the execution layer acts on
+# an authorized plan but decides nothing. Each runs under its own identity,
+# credential store and log stream. A person approves before execution (gated
+# actuation); the targets remain the runtime data planes. Program design, not an
+# external standard.
+rankdir: LR
+graph: {nodesep: 0.3, ranksep: 0.3}
+nodes:
+  plan: {tone: amber, width: 150, tag: "Input", title: "Proposed plan", body: ["=From the assessment and plan generator"], size: 12}
+  gov: {tone: violet, width: 160, tag: "Decides", title: "Governance layer", body: ["Validates the plan", "Enforces boundary rules", "Signs the commit, writes audit", "Never touches a target"], size: 12}
+  human: {tone: amber, width: 150, tag: "Gate", title: "Human approval", body: ["=Required before any write"], size: 12}
+  exec: {tone: blue, width: 160, tag: "Acts", title: "Execution layer", body: ["Calls the adapters", "Writes a structured result", "Decides nothing"], size: 12}
+  dp: {tone: blue, width: 150, tag: "Data planes", title: "Target surfaces", body: ["=Authenticate, route, resolve and store at runtime"], size: 12}
+  sep: {tone: slate, width: 160, tag: "Separation", title: "Two of everything", body: ["Service accounts", "Credential stores", "Log streams"], size: 12}
+edges:
+  - [plan, gov]
+  - [human, gov, {label: "approves", tone: amber, xlabel: true}]
+  - [gov, exec, {label: "authorized plan", tone: violet, lw: 60}]
+  - [exec, dp, {tone: blue}]
+  - [exec, gov, {label: "result", style: dashed}]
+  - [sep, exec, {style: dashed}]
+ranks:
+  - [gov, human]
+  - [exec, sep]

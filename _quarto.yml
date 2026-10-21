@@ -41,6 +41,8 @@ website:
         menu:
           - href: docs/books/index.md
             text: "All books"
+          - href: docs/books/b01-transformation-arc/index.md
+            text: "Book 01 — The Transformation Arc"
           - href: docs/books/b02-identity/index.md
             text: "Book 02 — Identity & Directory"
           - href: docs/books/b03-hr-identity/index.md
@@ -77,6 +79,11 @@ website:
       collapse-level: 1
       contents:
         - docs/books/index.md
+        - section: "Book 01 — The Transformation Arc"
+          href: docs/books/b01-transformation-arc/index.md
+          contents:
+            - auto: "docs/books/b01-transformation-arc/[0-9]*.md"
+            - auto: "docs/books/b01-transformation-arc/appendix-*.md"
         - section: "Book 02 — Identity & Directory"
           href: docs/books/b02-identity/index.md
           contents:

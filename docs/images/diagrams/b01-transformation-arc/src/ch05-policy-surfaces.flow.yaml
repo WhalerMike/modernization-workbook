@@ -1,0 +1,21 @@
+# Chapter 05 — Group Policy is regenerated, not copied, into three modern
+# surfaces, each reached by assignment rather than by position in the OU tree.
+# Every change starts in report-only or pilot; emergency access accounts are
+# excluded from every enforced Conditional Access policy.
+rankdir: TB
+graph: {nodesep: 0.3, ranksep: 0.45}
+nodes:
+  gp: {tone: slate, width: 300, tag: "Legacy", title: "Group Policy", body: ["Settings delivered by OU position", "Read from SYSVOL on a domain controller"], size: 12}
+  regen: {tone: amber, width: 300, tag: "Regenerate, not copy", title: "One canonical policy per category", body: ["=Keyed to attributes; overrides only where data justifies"], size: 12}
+  intune: {tone: blue, width: 220, tag: "User devices", title: "Intune configuration and compliance", body: ["Settings catalog, baselines", "Compliance state"], size: 12}
+  ca: {tone: blue, width: 220, tag: "Sign-in", title: "Conditional Access", body: ["Reads device compliance", "One numbered library"], size: 12}
+  mc: {tone: blue, width: 220, tag: "Servers", title: "Azure machine configuration", body: ["Through Azure Arc", "Assigned at Azure scopes and tags"], size: 12}
+  gate: {kind: text, tone: violet, width: 300, text: "Every change starts in report-only or pilot; emergency access accounts are excluded from every enforced Conditional Access policy"}
+edges:
+  - [gp, regen]
+  - [regen, intune, {tone: blue}]
+  - [regen, ca, {tone: blue}]
+  - [regen, mc, {tone: blue}]
+  - [ca, gate, {none: true, style: dashed, tone: violet}]
+ranks:
+  - [intune, ca, mc]

@@ -1,0 +1,24 @@
+# Chapter 02 — the dependency chain: nine steps from inventory to proven steady
+# state, each with the Book 01 chapter that owns it. The arrows are dependencies,
+# not a calendar.
+rankdir: TB
+graph: {nodesep: 0.3, ranksep: 0.25}
+nodes:
+  inv: {tone: violet, width: 320, tag: "Chapter 10", title: "Inventory", body: ["=All eleven categories enumerated, read-only, with provenance"], size: 12}
+  plan: {tone: violet, width: 320, tag: "Chapters 03 and 11", title: "Plan", body: ["=Reviewed, authorized, rollback-paired plans"], size: 12}
+  ident: {tone: blue, width: 320, tag: "Chapter 04", title: "Identity", body: ["=Entra ID authoritative for people and delegation; HR drives lifecycle"], size: 12}
+  pol: {tone: blue, width: 320, tag: "Chapter 05", title: "Policy", body: ["=Group Policy regenerated into Intune, Conditional Access and machine configuration"], size: 12}
+  net: {tone: blue, width: 320, tag: "Chapter 06", title: "Network services", body: ["=DNS, DHCP and IPAM governed outside AD"], size: 12}
+  dev: {tone: blue, width: 320, tag: "Chapter 07", title: "Devices and servers", body: ["=PCs Entra joined; servers Arc-connected; SPNs resolved"], size: 12}
+  acc: {tone: blue, width: 320, tag: "Chapter 08", title: "Access plane", body: ["=Phishing-resistant MFA, Conditional Access, ZTNA; certificate issuance off AD"], size: 12}
+  retire: {tone: amber, width: 320, tag: "Chapter 12", title: "Retire AD DS", body: ["=No live dependency on AD authentication, or documented Kerberos islands"], size: 12}
+  steady: {tone: green, width: 320, tag: "Chapters 12 and 09", title: "Prove steady state", body: ["=Zero drift and zero-action plans, evidenced continuously"], size: 12}
+edges:
+  - [inv, plan]
+  - [plan, ident]
+  - [ident, pol]
+  - [pol, net]
+  - [net, dev]
+  - [dev, acc]
+  - [acc, retire, {tone: amber}]
+  - [retire, steady, {tone: green}]

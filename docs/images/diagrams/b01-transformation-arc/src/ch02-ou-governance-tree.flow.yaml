@@ -1,0 +1,12 @@
+# Chapter 02 — the OU tree was the governance tree: one placement in an OU did
+# five things at once; in Entra ID each has to be rebuilt as an explicit
+# construct, fed by a source of truth and kept correct by drift detection.
+rankdir: LR
+graph: {nodesep: 0.35, ranksep: 0.5}
+nodes:
+  ou: {tone: slate, width: 250, tag: "Active Directory", title: "Placing a user in an OU", body: ["Delegated administrators", "Inherited Group Policy", "OU-driven group membership", "Delegation authority", "Audit boundary"], size: 12}
+  entra: {tone: blue, width: 260, tag: "Entra ID", title: "Rebuilt explicitly", body: ["Organizational position as attributes", "Dynamic groups materialize structure", "Administrative units scope roles (no nesting)", "Conditional Access enforces access", "Intune and Azure Arc carry configuration"], size: 12}
+  keep: {tone: violet, width: 260, title: "Kept correct", body: ["=A source of truth for the attributes, and drift detection against the intended state"], size: 12}
+edges:
+  - [ou, entra, {label: "rebuilt explicitly", tone: blue}]
+  - [keep, entra, {tone: violet, style: dashed}]

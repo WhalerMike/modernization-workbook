@@ -33,10 +33,10 @@ The plan is organized by phases. Each phase has objectives, key activities, deli
 - Initial risk register.
 
 **Supporting material**
-- [Why Modernization Is Hard](docs/client-server-to-hybrid-cloud/00-prologue-why-modernization-is-hard.md) — leadership framing of the problem
+- [Why Modernization Is Hard](docs/books/b01-transformation-arc/01-why-modernization-is-hard.md) — leadership framing of the problem
 - [Principles](docs/PRINCIPLES.md) — the rules the charter commits to
-- [Chapter 00 — The Problem Nobody Talks About](docs/client-server-to-hybrid-cloud/00-the-problem.md)
-- [Chapter 10 — Leadership Takeaway](docs/client-server-to-hybrid-cloud/10-leadership-takeaway.md)
+- [Chapter 00 — The Problem Nobody Talks About](docs/books/b01-transformation-arc/02-the-problem.md)
+- [Chapter 10 — Leadership Takeaway](docs/books/b01-transformation-arc/09-who-leads-the-transformation.md)
 
 **Exit criteria**
 - Leadership can state the problem, the target outcome, and how success will be measured.
@@ -59,7 +59,7 @@ The plan is organized by phases. Each phase has objectives, key activities, deli
 
 **Supporting material**
 - [Read-Only AD Assessment Guide](docs/books/b02-identity/07-read-only-discovery.md) — discovery without changing the directory
-- [Chapter 02 — Analyzing the Client/Server Estate](docs/client-server-to-hybrid-cloud/02-analyzing-the-estate.md)
+- [Chapter 02 — Analyzing the Client/Server Estate](docs/books/b01-transformation-arc/10-analyzing-the-estate.md)
 - [Identity and Directory Transformation Inventory](docs/books/b02-identity/04-the-hidden-migration-surface.md)
 - [GPO-to-Cloud Governance Gaps](docs/books/b05-devices/01-why-group-policy-cant-come-to-the-cloud.md)
 - [Old AD vs New Entra ID](docs/books/b02-identity/03-ad-and-entra-side-by-side.md) — reference for the assessment team
@@ -114,8 +114,8 @@ The plan is organized by phases. Each phase has objectives, key activities, deli
 - Evidence checklist applicable to every wave.
 
 **Supporting material**
-- [Chapter 03 — Analysis → Plan → Delivery](docs/client-server-to-hybrid-cloud/03-analysis-plan-delivery.md)
-- [Chapters 04–08 — identity, policy, services, compute and access playbooks](docs/client-server-to-hybrid-cloud/04-identity-transformation.md)
+- [Chapter 03 — Analysis → Plan → Delivery](docs/books/b01-transformation-arc/11-analysis-plan-delivery.md)
+- [Chapters 04–08 — identity, policy, services, compute and access playbooks](docs/books/b01-transformation-arc/04-identity-transformation.md)
 - [GPO Sunset Program](docs/books/b05-devices/07-the-gpo-sunset-program.md) and [GPO Parse and Crosswalk](docs/books/b05-devices/appendix-a-gpo-to-intune-crosswalk.md)
 - [Conditional Access Policy Library](docs/books/b04-access/07-the-conditional-access-policy-library.md)
 - [Intune + Azure Arc Modernization](docs/books/b05-devices/05-the-governed-manual-and-retrofit-paths.md)
@@ -143,7 +143,7 @@ The plan is organized by phases. Each phase has objectives, key activities, deli
 - Updated playbooks and wave plan based on lessons learned.
 
 **Supporting material**
-- [Chapter 09 — Migration Roadmap: Phased Plan, Gates, Rollback](docs/client-server-to-hybrid-cloud/09-migration-roadmap.md)
+- [Chapter 09 — Migration Roadmap: Phased Plan, Gates, Rollback](docs/books/b01-transformation-arc/12-migration-roadmap.md)
 - [PIM Self-Request with Approval](docs/books/b04-access/08-pim-self-request-with-approval.md) — just-in-time elevation for wave execution
 - [HR-Driven Identity](docs/books/b03-hr-identity/index.md) — originating changes from the authoritative source
 - [End User Training Guide](docs/operational-guides/end-user-training.md)

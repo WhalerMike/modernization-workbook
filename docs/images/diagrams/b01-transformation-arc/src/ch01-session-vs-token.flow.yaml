@@ -1,0 +1,19 @@
+# Chapter 01 — sessions versus tokens: Active Directory carries trust from sign-in
+# in long-lived Kerberos tickets; Entra ID evaluates each token request against
+# Conditional Access, and continuous access evaluation lets services reject a
+# token in near real time after a critical event.
+rankdir: LR
+graph: {nodesep: 0.35, ranksep: 0.45}
+clusters:
+  - {id: ad, label: "Session-based: Active Directory", tone: slate, filled: false, nodes: [signin, tickets]}
+  - {id: entra, label: "Token-based: Entra ID", tone: blue, filled: false, nodes: [ca, token, events]}
+nodes:
+  signin: {tone: slate, width: 220, title: "Sign in once", body: ["=Ticket-granting ticket: 10 hours, renewable for 7 days"], size: 12}
+  tickets: {tone: slate, width: 220, title: "Service tickets", body: ["600 minutes by default", "Open connections not interrupted at expiry", "Disabled account keeps working tickets"], size: 12}
+  ca: {tone: blue, width: 220, title: "Conditional Access", body: ["=Evaluates each token request against current policy"], size: 12}
+  token: {tone: blue, width: 220, title: "Access token", body: ["One hour by default", "Up to 28 hours in CAE sessions"], size: 12}
+  events: {tone: violet, width: 220, title: "Critical events", body: ["Account disabled or password reset", "High user risk", "=Service rejects the token in near real time"], size: 12}
+edges:
+  - [signin, tickets, {label: "carries trust"}]
+  - [ca, token, {label: "issues", tone: blue}]
+  - [events, token, {label: "revokes", tone: violet}]

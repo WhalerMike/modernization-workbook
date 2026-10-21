@@ -1,0 +1,34 @@
+# Chapter 09 — who leads, decides and does the work across the whole
+# program. Top row: decision rights (the sponsor and CIO own scope, funding,
+# sequence and AD retirement; the authorizing official accepts residual risk;
+# the CISO sets control requirements). Middle row: the program office holds
+# the authoritative repository and the gates; HR and the records officer
+# supply authority the directory can't. Bottom row: platform teams and
+# application owners do the work; the help desk supports users. Each book in
+# the workbook has its own Who chapter that applies this model to its domain.
+# This is the program's recommended model, not an external standard.
+rankdir: TB
+graph: {nodesep: 0.2, ranksep: 0.45}
+nodes:
+  spon: {tone: amber, width: 170, tag: "Decides", title: "Executive sponsor and CIO", body: ["=Scope, funding, sequence, AD retirement, gates G3 and G5"], size: 12}
+  ao: {tone: amber, width: 170, tag: "Decides", title: "Authorizing official", body: ["=Accepts residual risk, signs boundary changes and exceptions"], size: 12}
+  ciso: {tone: violet, width: 170, tag: "Decides", title: "CISO and ISSO", body: ["=Control requirements, privileged access, evidence"], size: 12}
+  pmo: {tone: violet, width: 170, tag: "Orchestrates", title: "Program office and steward", body: ["=Repository, plans, gate evaluation, drift trend"], size: 12}
+  hr: {tone: amber, width: 170, tag: "Authority", title: "HR and contractor sources", body: ["=Who is a worker, where they sit, who they report to"], size: 12}
+  rec: {tone: slate, width: 170, tag: "Authority", title: "Records officer and privacy", body: ["=Retention of AD-era logs, privacy review"], size: 12}
+  plat: {tone: blue, width: 170, tag: "Designs and does", title: "Platform teams", body: ["=Identity, endpoint, server, network, DNS, PKI, data"], size: 12}
+  app: {tone: slate, width: 170, tag: "Decides for its app", title: "Application owners", body: ["=Dependencies, test sign-off, cutover windows"], size: 12}
+  hd: {tone: green, width: 170, tag: "Supports", title: "Help desk", body: ["=Scoped roles, identity checks, recovery"], size: 12}
+edges:
+  - [spon, pmo, {label: "scope and gates", tone: amber}]
+  - [ao, pmo, {label: "risk decisions", tone: amber}]
+  - [ciso, pmo, {label: "requirements", tone: violet}]
+  - [hr, pmo, {label: "authoritative attributes", tone: amber, style: dashed, lw: 80}]
+  - [rec, pmo, {label: "retention rules", style: dashed, lw: 70}]
+  - [pmo, plat, {label: "authorized plans", tone: violet}]
+  - [app, plat, {label: "consulted", both: true, style: dashed}]
+  - [plat, hd, {label: "runbooks"}]
+order:
+  - [spon, ao, ciso]
+  - [hr, pmo, rec]
+  - [app, plat, hd]

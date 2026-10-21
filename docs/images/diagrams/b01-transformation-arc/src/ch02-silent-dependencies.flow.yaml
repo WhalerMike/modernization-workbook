@@ -1,0 +1,14 @@
+# Chapter 02 — silent dependencies: migration plans count the visible objects;
+# the hidden coupling to Active Directory fails silently and has to become
+# explicit, owned contracts before AD retires.
+rankdir: LR
+graph: {nodesep: 0.35, ranksep: 0.5}
+nodes:
+  visible: {tone: slate, width: 240, tag: "What plans count", title: "Active Directory", body: ["Users and computers", "Security groups", "Group Policy Objects"], size: 12}
+  hidden: {tone: red, width: 240, tag: "What plans miss", title: "Hidden coupling", body: ["Service accounts and SPNs", "DNS and DHCP", "PKI and certificate services", "RADIUS and NPS", "LDAP-bound applications", "Trust relationships"], foot: "Fails silently", size: 12}
+  contracts: {tone: green, width: 240, tag: "Before AD retires", title: "Explicit contracts", body: ["Every dependency inventoried", "Mapped to a modern target", "Given an owner", "Delivered through a governed plan", "Watched for drift"], size: 12}
+edges:
+  - [visible, contracts, {tone: green}]
+  - [hidden, contracts, {tone: green}]
+ranks:
+  - [visible, hidden]

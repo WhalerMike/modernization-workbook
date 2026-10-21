@@ -1,0 +1,16 @@
+# Chapter 11 — the program's actuation ladder (the same rungs as Book 05 Chapter 02):
+# each operation class has a ceiling; gated actuation is the default ceiling for
+# high-blast-radius classes, and autonomy is allowed only for enumerated low-risk ones.
+rankdir: TB
+graph: {nodesep: 0.25, ranksep: 0.25}
+nodes:
+  l0: {tone: slate, width: 320, tag: "L0", title: "Record", body: ["=Desired state held in the authoritative source"], size: 12}
+  l1: {tone: slate, width: 320, tag: "L1", title: "Observe", body: ["=Actual state collected and drift detected; read-only"], size: 12}
+  l2: {tone: violet, width: 320, tag: "L2", title: "Advise", body: ["=Corrective plan generated and surfaced; no writes"], size: 12}
+  l3: {tone: green, width: 320, tag: "L3 · default ceiling", title: "Gated actuation", body: ["=A human authorizes; dry run first; the engine executes"], size: 12}
+  l4: {tone: amber, width: 320, tag: "L4 · enumerated classes only", title: "Autonomous within guardrails", body: ["=Never for tenant-wide roles, Conditional Access or bulk device state"], size: 12}
+edges:
+  - [l0, l1]
+  - [l1, l2]
+  - [l2, l3]
+  - [l3, l4, {tone: amber, style: dashed, label: "low blast radius only"}]

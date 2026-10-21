@@ -1,0 +1,30 @@
+# Chapter 03 — the platform host: one Windows Server 2025 host plays five roles
+# (repository, reverse proxy, authentication bridge, engine, adapter dispatcher).
+# It reads Active Directory read-only, writes to the cloud only through authorized
+# plans, and replicates to a standby that never becomes a second writer.
+rankdir: TB
+graph: {nodesep: 0.2, ranksep: 0.4}
+clusters:
+  - {id: host, label: "One platform host (Windows Server 2025)", tone: violet, filled: false, nodes: [proxy, repo, bridge, engine, disp]}
+nodes:
+  adm: {tone: violet, width: 150, tag: "People", title: "Administrators and reviewers", body: ["=Certificate-based access only"], size: 12}
+  proxy: {tone: violet, width: 150, tag: "Role 2", title: "Reverse proxy", body: ["IIS, URL Rewrite, ARR", "TLS, mutual TLS, HSTS"], size: 12}
+  repo: {tone: violet, width: 150, tag: "Role 1", title: "Source of truth", body: ["Version-controlled repository", "Signed, attributable commits"], size: 12}
+  stby: {tone: amber, width: 150, tag: "Recovery", title: "Standby replica", body: ["=Cold by default; hot with witness-gated failover"], size: 12}
+  bridge: {tone: violet, width: 150, tag: "Role 3", title: "Authentication bridge", body: ["Domain-joined (Kerberos)", "Arc managed identity", "Enterprise-CA server certificate"], size: 12}
+  engine: {tone: violet, width: 150, tag: "Role 4", title: "Transformation engine", body: ["PowerShell, Python", "API integrators"], size: 12}
+  disp: {tone: violet, width: 150, tag: "Role 5", title: "Adapter dispatcher", body: ["=One contract per dependency category"], size: 12}
+  ad: {tone: slate, width: 150, tag: "Read-only", title: "Active Directory forest", body: ["=Forest, GPO, DNS, DHCP and AD CS reads"], size: 12}
+  cloud: {tone: blue, width: 150, tag: "Read-write", title: "Target surfaces", body: ["=Entra ID, Intune, Arc, IPAM, NAC, ITSM, PAM"], size: 12}
+edges:
+  - [adm, proxy, {label: "mutual TLS", tone: violet}]
+  - [proxy, repo, {label: "loopback"}]
+  - [repo, stby, {label: "replication", tone: amber, style: dashed}]
+  - [repo, engine, {label: "plans, results, logs", attrs: "dir=back"}]
+  - [bridge, ad, {label: "least-privilege reads", style: dashed}]
+  - [engine, disp]
+  - [disp, cloud, {label: "authorized plans only", tone: blue}]
+order:
+  - [proxy, repo, stby]
+  - [bridge, engine, disp]
+  - [ad, cloud]

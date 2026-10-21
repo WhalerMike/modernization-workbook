@@ -1,0 +1,25 @@
+# Chapter 04 — session-based versus token-based identity. A Kerberos client must
+# reach a KDC on a domain controller to get its ticket-granting and service tickets
+# (the service then validates the ticket without calling a DC). A token is issued
+# by the cloud identity provider after Conditional Access evaluates the request,
+# and the application validates its signature against published keys. Either way,
+# the claim is only as true as the directory attributes behind it.
+rankdir: LR
+graph: {nodesep: 0.3, ranksep: 0.4}
+clusters:
+  - {id: sess, label: "Session-based: Kerberos", tone: slate, filled: false, nodes: [kc, kdc, ksvc]}
+  - {id: tok, label: "Token-based: OAuth 2.0 and OpenID Connect", tone: blue, filled: false, nodes: [tc, idp, app]}
+nodes:
+  kc: {tone: slate, width: 140, title: "Domain client", body: ["=Needs a path to a DC"], size: 12}
+  kdc: {tone: slate, width: 150, title: "KDC on a domain controller", body: ["=Issues TGT and service tickets"], size: 12}
+  ksvc: {tone: slate, width: 140, title: "Service", body: ["=Validates the ticket without a DC call"], size: 12}
+  tc: {tone: blue, width: 140, title: "Any client", body: ["=Over any network"], size: 12}
+  idp: {tone: blue, width: 150, title: "Entra ID", body: ["=Evaluates Conditional Access, signs the token"], size: 12}
+  app: {tone: blue, width: 140, title: "Application", body: ["=Checks signature, issuer and audience"], size: 12}
+  attrs: {tone: amber, width: 160, tag: "The dependency", title: "Authoritative attributes", body: ["=A well-formed claim can still be false"], size: 12}
+edges:
+  - [kc, kdc, {label: "AS and TGS requests"}]
+  - [kc, ksvc, {label: "ticket"}]
+  - [tc, idp, {label: "sign-in", tone: blue}]
+  - [tc, app, {label: "token", tone: blue}]
+  - [attrs, idp, {label: "claims and groups", tone: amber}]
