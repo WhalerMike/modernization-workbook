@@ -140,3 +140,18 @@ Applied from the verified review findings (critique claims re-checked against pr
 **Manual check needed:** the editor should open the DoD Zero Trust Strategy PDF on dodcio.defense.gov in a browser, confirm the 91 target-level and 61 advanced-level activities and the FY 2027 target, then add it as the primary citation and keep DefenseScoop as corroboration. No unopened URL was cited.
 
 | R-DoD | DoD Zero Trust Strategy: 91 target / 152 total activities, FY 2027 | §DoD counterexample | verified (official source added) | DOD News, June 4, 2024, https://www.war.gov/News/News-Stories/Article/Article/3795170/new-overlays-provide-guide-on-path-to-zero-trust/ (opened in browser Oct 21, 2026); 61 advanced = 152 − 91; strategy PDF downloads only. DefenseScoop kept as secondary. |
+
+## Revision 2026-10-21 — TIC 3.0 Program Guidebook (v1.2, September 2026), read in full
+
+Source: CISA, *TIC 3.0 Core Guidance Volume 1: Program Guidebook*, Version 1.2, September 2026 (27 pp., read page by page from the published PDF, https://www.cisa.gov/sites/default/files/2026-09/TIC_3.0_Program_Guidebook_September_2026_47.pdf).
+
+| # | Claim (short) | Where | Verdict | Source |
+|---|---|---|---|---|
+| G1 | Five security objectives and their descriptions; agency discretion; independent, not order of operations; map to CSF 2.0's six functions | new section | verified (added) | Guidebook §5, Table 3, p. 6 |
+| G2 | M-19-26 retired TCV; compliance responsibility moves to the agency (quoted); automated metric collection via CDM replaces TIC FISMA metrics and manual TCV; non-FedRAMP vendor = agency assesses and authorizes | new section | verified (added) | Guidebook §4 p. 5, §9 pp. 11–12 |
+| G3 | Four-step TIC information cycle | new section | verified (added) | Guidebook §10.1 and Figure 5, pp. 12–13 |
+| G4 | TIC delegates' role; TICAP (NOC and SOC); Multi-Service TICAP or MTIPS; EIS managed-security-service model | new section | verified (added) | Guidebook §11–12, pp. 13–14 |
+| G5 | Telemetry guide is the *CISA Cloud Interface Reference Architecture* (C-CIRA, formerly NCIRA), two volumes, for providing cloud security information to CLAW | §Logging and CISA telemetry | corrected (was "CLAW Cloud Interface Reference Architecture (formerly the NCPS …)") | Guidebook §13 "TIC and EINSTEIN", p. 16 |
+| G6 | Revision history v1.2 July 2025 changed "Cloud" to "Comprehensive" for CLAW | §Logging (existing) | re-verified | Guidebook Table 1, p. ii |
+| G7 | Note: §4 says "seven strategic goals" but lists six (Boundary-Focused; Descriptive, Not Prescriptive; Risk-Based; Environment-Agnostic; Dynamic and Readily Adaptable; Automated and Streamlined Verification); the chapter doesn't state a count | — | noted | Guidebook §4, pp. 4–5 |
+| G8 | Revision-history aside in "The document set" reworded to a plain statement | §The document set | wording-only | — |
