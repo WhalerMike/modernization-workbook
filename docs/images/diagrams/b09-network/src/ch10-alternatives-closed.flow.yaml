@@ -1,0 +1,21 @@
+# Chapter 10 — the case by elimination: five alternatives to a branch-edge
+# policy layer, each closed for its own reason, leave one residual architecture.
+rankdir: LR
+graph: {nodesep: 0.22, ranksep: 0.6}
+nodes:
+  vehicles: {tone: red, width: 270, tag: "Closed", title: "Legacy transport vehicles", body: ["=Networx and the other expiring contracts ended by May 31, 2026; the architecture is now an EIS task-order question"], size: 12}
+  hairpin: {tone: red, width: 270, tag: "Closed", title: "Hairpin through a TIC access point", body: ["=Still permitted; M-19-26 moved to capability-based compliance, and CISA says the hairpin raised cost for cloud"], size: 12}
+  ticap: {tone: red, width: 270, tag: "Closed", title: "A new agency-operated access point", body: ["=Capital, floor space, refresh cycle and around-the-clock staff"], size: 12}
+  vpn: {tone: red, width: 270, tag: "Closed", title: "VPN backhaul to a data center", body: ["=A hairpin under another name"], size: 12}
+  private: {tone: red, width: 270, tag: "Closed", title: "Cloud-provider private connectivity", body: ["=One provider's regions only; not SaaS, the internet or the branch", "=Microsoft no longer recommends it for Microsoft 365"], size: 12}
+  residual: {tone: green, width: 270, tag: "What remains", title: "The residual architecture", body: ["Local internet breakout at the branch", "Cloud-delivered security stack at a nearby PoP", "Branch-edge policy layer deciding what goes where"], size: 12}
+  scarce: {tone: amber, width: 270, tag: "Interim", title: "Scarce: the product, not the functions", body: ["=Four of six branch-edge functions are partly obtainable before an award"], size: 12}
+edges:
+  - [vehicles, residual]
+  - [hairpin, residual]
+  - [ticap, residual]
+  - [vpn, residual]
+  - [private, residual]
+  - [residual, scarce, {tone: amber}]
+ranks:
+  - [residual, scarce]

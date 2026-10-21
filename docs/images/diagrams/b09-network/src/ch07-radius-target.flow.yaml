@@ -1,0 +1,21 @@
+# Chapter 07 — NPS carries the hybrid-joined phase; the target splits the
+# RADIUS workload three ways: a NAC platform for managed-device 802.1X with
+# Intune compliance, Entra-federated VPN or ZTNA for remote access, and MAB
+# with profiling for devices that cannot run a supplicant. The trigger for
+# each move is the retirement of the AD objects NPS authorizes against. This
+# is the program's design (governance decision D3), not a vendor statement.
+rankdir: LR
+graph: {nodesep: 0.25, ranksep: 0.5}
+nodes:
+  nps: {tone: amber, width: 240, tag: "Today, hybrid phase", title: "NPS on Windows Server", body: ["802.1X and VPN against AD computer and user objects", "No posture engine", "No support for cloud-native devices"], size: 12}
+  trig: {kind: pill, tone: red, text: "Trigger: retirement of the AD objects NPS authorizes against"}
+  nac: {tone: green, width: 260, tag: "Managed-device 802.1X", title: "NAC platform", body: ["EAP-TLS with Intune-delivered certificates", "Compliance from Intune's compliance retrieval service", "Change of Authorization from its own session state"], size: 12}
+  ztna: {tone: blue, width: 260, tag: "Remote access", title: "VPN or ZTNA federated to Entra ID", body: ["SAML or OIDC instead of RADIUS", "Conditional Access and device compliance apply"], size: 12}
+  mab: {tone: slate, width: 260, tag: "No supplicant possible", title: "MAB with profiling", body: ["DHCP fingerprint and approved device class", "Restricted segments only"], size: 12}
+edges:
+  - [nps, nac, {tone: green}]
+  - [nps, ztna, {tone: blue}]
+  - [nps, mab]
+  - [nps, trig, {style: dashed, tone: red}]
+ranks:
+  - [nac, ztna, mab]

@@ -1,0 +1,28 @@
+# Book 09 Chapter 01 — observed round-trip time is the propagation floor plus
+# an addressable gap; the floors for four representative paths.
+# Floors: great-circle distance (haversine, mean Earth radius 6,371 km) x the
+# ITU-T G.114 planning value of 5 us/km for optical fibre.
+rankdir: TB
+graph: {nodesep: 0.3, ranksep: 0.35}
+nodes:
+  obs: {kind: pill, tone: slate, text: "Observed round-trip time =", width: 260}
+  floor: {tone: red, width: 260, title: "Propagation delay", body: ["=Distance at the speed of light in fiber (about 5 µs per km). Engineering cannot reduce it."], size: 12}
+  gap: {tone: green, width: 260, title: "Everything else", body: ["=Queueing, congestion, jitter, loss and retransmits, routes longer than the great circle. This is where optimization works."], size: 12}
+  t:
+    kind: table
+    tone: red
+    columns: ["Path (great-circle)", "One-way floor", "Round-trip floor"]
+    widths: [250, 130, 140]
+    rows:
+      - ["Within a metro (50 km)", "0.25 ms", "0.5 ms"]
+      - ["Cross-region, same continent (1,000 km)", "5 ms", "10 ms"]
+      - ["New York to London (5,570 km)", "28 ms", {text: "56 ms", tone: red}]
+      - ["New York to Singapore (15,330 km)", "77 ms", {text: "153 ms", tone: red}]
+      - [{text: "Straight-fiber minimums. Measured internet round trips run several times the vacuum speed-of-light bound.", span: 3, tone: plain}]
+edges:
+  - [obs, floor, {none: true}]
+  - [obs, gap, {none: true, label: "+"}]
+  - [floor, t, {tone: red, label: "floors by path"}]
+  - [gap, t, {style: invis}]
+ranks:
+  - [floor, gap]

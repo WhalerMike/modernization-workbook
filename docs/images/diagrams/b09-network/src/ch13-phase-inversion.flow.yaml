@@ -1,0 +1,20 @@
+# Chapter 13 — phase inversion as a loop: no transport metrics, so cost is
+# attributed to the cloud and the remedies raise the misattributed cost.
+rankdir: TB
+graph: {nodesep: 0.4, ranksep: 0.35}
+nodes:
+  mig: {tone: red, width: 280, title: "Migration before governed transport", body: ["=Cloud migration completes; branch transport is neither governed nor measured"], size: 12}
+  worse: {tone: slate, width: 280, title: "Worse than the business case", body: ["=Response times and cloud bills both exceed the plan"], size: 12}
+  attr: {tone: amber, width: 280, title: "Cost attributed to the cloud", body: ["=Only cloud and application metrics exist"], size: 12}
+  rem: {tone: red, width: 280, title: "Remedies follow the attribution", body: ["=More instances, caching, read replicas, a delivery layer: each raises cloud spend"], size: 12}
+  narr: {tone: red, width: 280, title: "\"Cloud is too expensive\"", body: ["=Repatriation pressure; the transport cause never appears in the data"], size: 12}
+  fix: {tone: green, width: 240, tag: "The correction", title: "Instrument a branch sample first", body: ["=Before the next migration wave, so transport enters the data"], size: 12}
+edges:
+  - [mig, worse]
+  - [worse, attr]
+  - [attr, rem]
+  - [rem, narr]
+  - [narr, attr, {style: dashed, tone: red, label: "reinforces"}]
+  - [fix, attr, {style: dashed, tone: green}]
+ranks:
+  - [attr, fix]

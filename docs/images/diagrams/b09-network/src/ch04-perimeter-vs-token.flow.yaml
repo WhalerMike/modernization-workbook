@@ -1,0 +1,30 @@
+# Chapter 04 — the perimeter model forces a store per trust domain; the token
+# model lets one store serve many, with no long-lived database secret.
+rankdir: TB
+graph: {nodesep: 0.25, ranksep: 0.4}
+clusters:
+  - id: per
+    label: "Perimeter model: trust lives in network location"
+    tone: red
+    dashed: true
+    nodes: [da, db, secret]
+    order: [da, db]
+  - id: tok
+    label: "Token model: trust lives in a verifiable claim"
+    tone: blue
+    nodes: [ta, tb, store, pg]
+    order: [ta, tb]
+nodes:
+  da: {tone: slate, width: 150, title: "Domain A store", body: ["=behind its own boundary"], size: 12}
+  db: {tone: slate, width: 150, title: "Domain B store", body: ["=behind its own boundary"], size: 12}
+  secret: {tone: red, width: 320, title: "Long-lived credentials", body: ["=The highest-value secret: steal it once and the store is exposed"], size: 12}
+  ta: {tone: blue, width: 150, title: "Tenant A", body: ["=Entra token (tid claim)"], size: 12}
+  tb: {tone: blue, width: 150, title: "Tenant B", body: ["=Entra token (tid claim)"], size: 12}
+  store: {tone: green, width: 320, title: "One shared store", body: ["=Each request verified and scoped to its tenant namespace"], size: 12}
+  pg: {tone: green, width: 320, title: "Database sign-in with a short-lived token", body: ["=Minted on demand; no long-lived database password exists"], size: 12}
+edges:
+  - [da, secret, {style: invis}]
+  - [db, secret, {style: invis}]
+  - [ta, store, {tone: blue}]
+  - [tb, store, {tone: blue}]
+  - [store, pg, {tone: blue}]

@@ -1,0 +1,24 @@
+# Chapter 05 — the SD-WAN governor's own exposure: management, orchestration
+# and control components with estate-wide authority, internet-facing edges,
+# and the controls and directives that bound them.
+rankdir: TB
+graph: {nodesep: 0.3, ranksep: 0.4}
+clusters:
+  - id: cp
+    label: "Control and management plane: estate-wide authority"
+    tone: red
+    dashed: true
+    nodes: [mgr, val, ctl]
+    order: [mgr, val, ctl]
+nodes:
+  mgr: {tone: slate, width: 170, title: "Manager", body: ["=Configures and provisions every edge"], size: 12}
+  val: {tone: slate, width: 170, title: "Validator", body: ["=Authenticates and onboards edges"], size: 12}
+  ctl: {tone: slate, width: 170, title: "Controller", body: ["=Distributes routes and policy"], size: 12}
+  fleet: {tone: amber, width: 300, title: "Internet-facing edges", body: ["=One per office, replacing a few hardened egress points"], size: 12}
+  ctrls: {tone: green, width: 300, title: "Controls owed to the governor", body: ["MFA for privileged access; log privileged functions", "Hardened configuration and component inventory", "Flaw remediation on BOD 26-04 windows", "End-of-support replacement under BOD 26-02", "Management-plane logs held off-box"], size: 12}
+  ed: {tone: red, width: 300, title: "Why it matters", body: ["=ED 26-03 (2026): authentication bypass in a widely used SD-WAN manager and controller, actively exploited"], size: 12}
+edges:
+  - [mgr, fleet, {tone: red, style: dashed}]
+  - [ctl, fleet, {tone: red, style: dashed}]
+  - [fleet, ctrls, {tone: green}]
+  - [ctrls, ed, {style: invis}]

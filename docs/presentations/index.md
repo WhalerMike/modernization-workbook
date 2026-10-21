@@ -29,6 +29,7 @@ Narrated editions of Books 07 and 08 are being recorded; their decks and speaker
 | [Book 06 — Data Platform: SQL Server Identity](../books/b06-data-platform/index.md) []{#book-06} | Why is the database where legacy authentication hides? | [Deck](../../presentations/b06-data-platform/B06_Data_Platform.pptx) | [Narrated](../../presentations/b06-data-platform/B06_Data_Platform_Narrated.pptx) (about 12 min) | [Script](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/b06-data-platform/B06_Data_Platform_Narration_Script.md) |
 | [Book 07 — PKI & Certificates](../books/b07-pki/index.md) []{#book-07} | Why do certificates outlive every migration? | [Deck](../../presentations/b07-pki/B07_PKI.pptx) | Being recorded | In the deck's speaker notes |
 | [Book 08 — DNS, DHCP & IPAM](../books/b08-ddi/index.md) []{#book-08} | Why is DNS now the control plane? | [Deck](../../presentations/b08-ddi/B08_DDI.pptx) | Being recorded | In the deck's speaker notes |
+| [Book 09 — Network & Transport](../books/b09-network/index.md) []{#book-09} | Why does physics decide the architecture? | Being built | Being built | — |
 
 ## HR-driven identity talk set
 

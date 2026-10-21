@@ -42,8 +42,8 @@ redirects:
   # Modernization Specs: nested copies merged into the flat specs.
   docs/modernization-specs/cloud/cloud.html: docs/modernization-specs/cloud.html
   docs/modernization-specs/identity/identity.html: docs/books/b02-identity/appendix-a-federal-requirements-crosswalk.html
-  docs/modernization-specs/sase/sase.html: docs/modernization-specs/sase.html
-  docs/modernization-specs/sdwan/sdwan.html: docs/modernization-specs/sdwan.html
+  docs/modernization-specs/sase/sase.html: docs/books/b09-network/05-sd-wan-sase-and-governed-transport.html
+  docs/modernization-specs/sdwan/sdwan.html: docs/books/b09-network/05-sd-wan-sase-and-governed-transport.html
   docs/modernization-specs/telemetry/telemetry.html: docs/modernization-specs/telemetry.html
   docs/modernization-specs/zero-trust/zero-trust.html: docs/modernization-specs/zero-trust.html
 
@@ -216,3 +216,26 @@ redirects:
   docs/operational-guides/network-transformation/dns-modernization.html: docs/books/b08-ddi/10-migration-sequence.html
   docs/operational-guides/dns-modernization.html: docs/books/b08-ddi/10-migration-sequence.html
   docs/whitepapers/infoblox-dns-reference.html: docs/books/b08-ddi/appendix-a-dns-record-types.html
+
+  # Book 09 (Network & Transport) replaced these pages; sources are in archive/b09-network/.
+  docs/ssot-network-physics/index.html: docs/books/b09-network/index.html
+  docs/ssot-network-physics/00-executive-summary.html: docs/books/b09-network/01-why-physics-decides-the-architecture.html
+  docs/ssot-network-physics/01-logical-centralization.html: docs/books/b09-network/04-logical-centralization-and-token-security.html
+  docs/ssot-network-physics/02-token-security-enabler.html: docs/books/b09-network/04-logical-centralization-and-token-security.html
+  docs/ssot-network-physics/03-speed-of-light-tax.html: docs/books/b09-network/01-why-physics-decides-the-architecture.html
+  docs/ssot-network-physics/04-sdwan-differentiated-transport.html: docs/books/b09-network/05-sd-wan-sase-and-governed-transport.html
+  docs/ssot-network-physics/05-governed-path-transport.html: docs/books/b09-network/05-sd-wan-sase-and-governed-transport.html
+  docs/ssot-network-physics/06-consistency-network-classes.html: docs/books/b09-network/08-reference-architecture.html
+  docs/ssot-network-physics/07-reference-architecture.html: docs/books/b09-network/08-reference-architecture.html
+  docs/whitepapers/branch-edge-gap.html: docs/books/b09-network/02-transport-is-physics-control-is-compliance.html
+  docs/whitepapers/the-long-interim.html: docs/books/b09-network/10-the-long-interim.html
+  docs/whitepapers/field-office-wan-transformation-dp-consolidation.html: docs/books/b09-network/11-field-office-wan-transformation.html
+  docs/whitepapers/tic3-sdwan-vs-dia.html: docs/books/b09-network/02-transport-is-physics-control-is-compliance.html
+  docs/whitepapers/network-transport-and-governance.html: docs/books/b09-network/02-transport-is-physics-control-is-compliance.html
+  docs/operational-guides/m365-optimize-exemption/index.html: docs/books/b09-network/12-microsoft-365-traffic.html
+  docs/operational-guides/m365-optimize-exemption/attachment-a-site-register.html: docs/books/b09-network/appendix-a-optimize-exemption-instruments.html
+  docs/operational-guides/m365-optimize-exemption/attachment-b-architecture-review.html: docs/books/b09-network/appendix-a-optimize-exemption-instruments.html
+  docs/operational-guides/network-transformation/index.html: docs/books/b09-network/index.html
+  docs/operational-guides/network-transformation/radius-802-1x-modernization.html: docs/books/b09-network/07-network-access-control.html
+  docs/modernization-specs/sdwan.html: docs/books/b09-network/05-sd-wan-sase-and-governed-transport.html
+  docs/modernization-specs/sase.html: docs/books/b09-network/05-sd-wan-sase-and-governed-transport.html

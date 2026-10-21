@@ -347,7 +347,7 @@ to satisfy TIC 3.0, but no vendor is itself bound by the directive ---
 the compliance obligation, and the accountability for it, stays with the
 agency regardless of which vendor stack it procures.
 
-**Read deeper:** [SD-WAN vs. DIA Under TIC 3.0](tic3-sdwan-vs-dia.md)
+**Read deeper:** [SD-WAN vs. DIA Under TIC 3.0](../books/b09-network/02-transport-is-physics-control-is-compliance.md)
 is the dedicated treatment --- the "pipe vs. governor" argument, the
 physics budget behind TIC 3.0's use cases, and the five-step decision
 sequence for an actual transport/SD-WAN procurement. [Book 08 — DNS, DHCP
@@ -421,7 +421,7 @@ deployed versus proposed against M-25-21's specific gates.
  [From Mainframe to Application-Aware
  Modernization](modernization-journey.md)
 
- OMB M-19-26 (TIC 3.0) Agency [SD-WAN vs. DIA Under TIC 3.0](tic3-sdwan-vs-dia.md), [Book 08 — DNS,
+ OMB M-19-26 (TIC 3.0) Agency [SD-WAN vs. DIA Under TIC 3.0](../books/b09-network/02-transport-is-physics-control-is-compliance.md), [Book 08 — DNS,
  DHCP & IPAM](../books/b08-ddi/index.md)
 
  OMB M-25-21 (Federal AI Agency [Federal AI Governance --- Submission

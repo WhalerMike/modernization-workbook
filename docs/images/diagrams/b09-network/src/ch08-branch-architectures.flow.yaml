@@ -1,0 +1,14 @@
+# Chapter 08 — four branch egress architectures compared on where the path
+# goes, where enforcement sits, and whether the boundary is still assessed.
+rankdir: TB
+nodes:
+  t:
+    kind: table
+    tone: slate
+    columns: ["Architecture", "Path to cloud", "Where enforcement sits", "Boundary and evidence"]
+    widths: [170, 175, 170, 185]
+    rows:
+      - [{text: "A. Hairpin", tone: amber}, "Branch to campus or MTIPS access point, then out", "Central access point", {text: "Assessed; every flow pays the detour", tone: amber}]
+      - [{text: "B. Bare local breakout", tone: red}, "Branch straight to the internet", "Nowhere the agency controls", {text: "Regression: egress outside any assessed boundary", tone: red}]
+      - [{text: "C. Governed local breakout", tone: green}, "SD-WAN edge to a nearby PEP, then the cloud", "Branch edge and SASE PoP", {text: "Assessed after the boundary change; per-app telemetry", tone: green}]
+      - [{text: "D. Agent-delivered SASE", tone: blue}, "Device agent forwards to the nearest PoP", "SASE PoP; edge NGFW for agentless devices", {text: "Assessed once PoP proximity and telemetry are verified", tone: blue}]

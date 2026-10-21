@@ -1,0 +1,13 @@
+# Chapter 10 — the BOD 26-02 refresh is the fork: like-for-like closes the
+# architecture question; a replacement specified to the target keeps it open.
+rankdir: TB
+graph: {nodesep: 0.4, ranksep: 0.4}
+nodes:
+  clock: {tone: amber, width: 300, tag: "BOD 26-02", title: "The refresh is on a directive clock", body: ["=All identified end-of-support edge devices off agency networks by about August 5, 2027, funded program or not"], size: 12}
+  like: {tone: red, width: 260, tag: "Default", title: "Like-for-like replacement", body: ["Same device class and topology", "Same absence of policy and telemetry", "=Money spent; architecture question closed for the life of the equipment"], size: 12}
+  spec: {tone: green, width: 260, tag: "Recommended", title: "Specified to the target", body: ["Application-aware steering, path measurement", "Deterministic egress", "Exportable per-application telemetry", "PQC-capable key exchange (M-26-15)", "Management plane meets BOD 23-02", "Stated FIPS 140-3 expectation"], size: 12}
+  option: {tone: green, width: 260, title: "Option preserved", body: ["=Costs requirements-writing time, not capital"], size: 12}
+edges:
+  - [clock, like, {tone: red}]
+  - [clock, spec, {tone: green}]
+  - [spec, option, {tone: green}]

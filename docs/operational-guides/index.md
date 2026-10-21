@@ -66,7 +66,7 @@ from AD's hidden governance surface to the Hybrid-Cloud access plane.
 | [D. Directory Migration (DM_\*)](../books/b02-identity/04-the-hidden-migration-surface.html) | IPAM, DNS, DHCP, PKI, RADIUS, LDAP, sync, devices, NTP, DFS, SPN, Trusts | 12 |
 | [E. Target Surface](../books/b05-devices/08-gpo-to-intune-policy-migration.html) | Entra ID, Intune, Azure Arc, M365, AUs, CA, PIM | 7 |
 | [F. Access Plane](../books/b04-access/index.html) | MFA, Zero Trust, SASE, CBA, PAM, break-glass | 6 |
-| [G. Network Transformation](network-transformation/index.html) | SD-WAN, IPAM, DNS, DHCP, firewall, 802.1X | 6 |
+| [G. Network Transformation](../books/b09-network/index.html) | SD-WAN, IPAM, DNS, DHCP, firewall, 802.1X | 6 |
 | [H. Program Management](program-management/index.html) | Master Project Plan, roadmap, ADRs, ServiceNow, SAM, training | 6 |
 
 ## Cross-cutting guides

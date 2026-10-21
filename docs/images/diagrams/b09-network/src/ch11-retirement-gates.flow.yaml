@@ -1,0 +1,23 @@
+# Chapter 11 — the last distribution point retires when five gates close,
+# not on a calendar date; an open gate keeps the 24-DP tier in place.
+rankdir: TB
+graph: {nodesep: 0.3, ranksep: 0.35}
+nodes:
+  tier: {tone: amber, width: 300, tag: "Interim", title: "24-DP hub content tier", body: ["=Consolidated, not permanent"], size: 12}
+  g1: {tone: slate, width: 300, tag: "Gate 1", title: "App content", body: ["Client apps and Office Click-to-Run workloads on Intune", "No deployment still sourced from Configuration Manager"], size: 12}
+  g2: {tone: slate, width: 300, tag: "Gate 2", title: "Update content", body: ["Windows Update and device configuration workloads on Intune", "Configuration Manager software updates turned off in client settings"], size: 12}
+  g3: {tone: slate, width: 300, tag: "Gate 3", title: "OS provisioning", body: ["=Task-sequence imaging replaced by Windows Autopilot; not a co-management workload"], size: 12}
+  g4: {tone: slate, width: 300, tag: "Gate 4", title: "Caching role", body: ["=No Connected Cache instance still running on distribution-point hardware"], size: 12}
+  g5: {tone: slate, width: 300, tag: "Gate 5", title: "Compliance evidence", body: ["=No control evidence still sourced from the Configuration Manager site database"], size: 12}
+  done: {tone: green, width: 300, title: "Retire the last distribution point", body: ["=When all five are closed, in whatever month that is"], size: 12}
+  hold: {tone: red, width: 220, title: "Any gate open", body: ["=Keep the tier; don't force the cutover"], size: 12}
+edges:
+  - [tier, g1]
+  - [g1, g2]
+  - [g2, g3]
+  - [g3, g4]
+  - [g4, g5]
+  - [g5, done, {tone: green, label: "all closed", lw: 80}]
+  - [g3, hold, {style: dashed, tone: red, label: "open gate", lw: 80}]
+ranks:
+  - [g3, hold]

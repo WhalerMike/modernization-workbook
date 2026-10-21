@@ -1,0 +1,39 @@
+# Book 09 Chapter 02 — the common branch (DIA plus SASE, no branch edge)
+# against the governed branch. Same inspection at the PoP; only the second
+# is governed and measured between the user and the PoP.
+rankdir: TB
+graph: {nodesep: 0.4, ranksep: 0.35}
+clusters:
+  - id: common
+    label: "Common: inspection without transport governance"
+    tone: red
+    nodes: [u1, r1, d1, p1]
+  - id: governed
+    label: "Governed: a branch-edge policy layer"
+    tone: green
+    nodes: [u2, e2, d2, l2, p2]
+nodes:
+  u1: {kind: pill, tone: slate, text: "Branch users", width: 220}
+  r1: {tone: red, width: 220, title: "Static router", body: ["No application steering or QoS", "No path-health measurement", "No failover, no per-app telemetry"], size: 12}
+  d1: {kind: pill, tone: slate, text: "One DIA circuit", width: 220}
+  p1: {tone: violet, width: 220, title: "SASE PoP", body: ["=SWG · CASB · FWaaS · ZTNA"], size: 12}
+  u2: {kind: pill, tone: slate, text: "Branch users", width: 220}
+  e2: {tone: blue, width: 220, title: "Branch edge", body: ["Application-aware steering and QoS", "Continuous path-health measurement", "Sub-second failover, per-app telemetry"], size: 12}
+  d2: {kind: pill, tone: slate, text: "DIA (primary)", width: 105}
+  l2: {kind: pill, tone: slate, text: "Second circuit or 5G", width: 105}
+  p2: {tone: violet, width: 220, title: "SASE PoP", body: ["=SWG · CASB · FWaaS · ZTNA"], size: 12}
+edges:
+  - [u1, r1]
+  - [r1, d1, {tone: red}]
+  - [d1, p1]
+  - [u2, e2]
+  - [e2, d2, {tone: blue}]
+  - [e2, l2, {tone: blue}]
+  - [d2, p2]
+  - [l2, p2]
+order:
+  - [u1, u2]
+ranks:
+  - [u1, u2]
+  - [r1, e2]
+  - [p1, p2]

@@ -1,0 +1,21 @@
+# Chapter 12 — what the Optimize inspection exemption changes at a branch:
+# only the Optimize endpoint sets leave locally; Allow, Default and web traffic
+# still reach the campus PEP; the exception and its preconditions sit beside the path.
+rankdir: LR
+graph: {nodesep: 0.3, ranksep: 0.4}
+nodes:
+  branch: {tone: slate, width: 200, title: "Branch site", body: ["Users and managed Windows devices", "Edge classifies by Microsoft endpoint set ID"], size: 12}
+  opt: {tone: amber, width: 240, tag: "SC-7(4) exception", title: "Optimize sets 1, 31 and 11", body: ["Exchange Online, SharePoint and OneDrive, Teams media", "Local direct internet access, no TLS break-and-inspect", "Steering log is the enforcement evidence"], size: 12}
+  rest: {tone: slate, width: 240, title: "Allow, Default and web traffic", body: ["Includes Microsoft Entra sign-in endpoints (Allow)", "Backhauled over the overlay, as before"], size: 12}
+  m365: {tone: blue, width: 210, title: "Nearest Microsoft 365 front door", body: ["=TLS and SRTP protect the flow (SC-8 not punctured)"], size: 12}
+  campus: {tone: slate, width: 210, title: "Campus PEP", body: ["TLS inspection, web gateway, CASB", "Proxy-based tenant restrictions (sign-in only)"], size: 12}
+  pre: {tone: violet, width: 220, title: "Preconditions on the exempt path", body: ["Tenant restrictions v2 signaled from the Windows device", "Branch DNS resolution local to the egress", "Branch telemetry reaching CISA services"], size: 12}
+edges:
+  - [branch, opt, {tone: amber}]
+  - [branch, rest]
+  - [opt, m365, {tone: amber}]
+  - [rest, campus]
+  - [pre, opt, {style: dashed, tone: violet, none: true}]
+ranks:
+  - [opt, rest]
+  - [m365, campus]

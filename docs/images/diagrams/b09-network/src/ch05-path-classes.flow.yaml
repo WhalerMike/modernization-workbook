@@ -1,0 +1,19 @@
+# Chapter 05 — SD-WAN carries each class of traffic on the path built for it;
+# it narrows the gap to the propagation floor but never goes below it.
+rankdir: LR
+graph: {nodesep: 0.3, ranksep: 0.5}
+nodes:
+  lean_t: {tone: blue, width: 210, tag: "Latency-critical", title: "Traffic class", body: ["Consensus heartbeats, leader election", "Synchronous-commit quorum acks", "Clock synchronization, voice, sign-in"], size: 12}
+  fat_t: {tone: slate, width: 210, tag: "Bulk", title: "Traffic class", body: ["Snapshots, backups, re-sync", "Analytics replication, async log shipping", "Patch and content distribution"], size: 12}
+  lean: {tone: blue, width: 180, title: "Lean / low-latency path", body: ["=Shortest, least-congested path; minimum RTT and jitter"], size: 12}
+  fat: {tone: slate, width: 180, title: "Fat / bulk path", body: ["=High bandwidth, cost-efficient, latency-tolerant"], size: 12}
+  buys: {tone: green, width: 220, title: "What SD-WAN buys", body: ["Better underlay: route inflation pulled toward the floor", "Tighter tail: FEC, packet duplication, fast failover", "Bulk transfers can't starve latency-critical traffic"], size: 12}
+  ceil: {tone: red, width: 220, title: "Hard ceiling", body: ["=It reaches the floor, never below it: New York to London stays at least 56 ms per synchronous round trip"], size: 12}
+edges:
+  - [lean_t, lean, {tone: blue}]
+  - [fat_t, fat]
+  - [lean, buys]
+  - [fat, buys]
+  - [buys, ceil, {style: invis}]
+ranks:
+  - [buys, ceil]

@@ -1,0 +1,41 @@
+# Chapter 03 — three layers of obligation on a branch network: TIC 3.0 goals,
+# binding instruments, and the agency's own control assertions.
+rankdir: TB
+graph: {nodesep: 0.2, ranksep: 0.35}
+clusters:
+  - id: tic
+    label: "TIC 3.0: descriptive goals"
+    tone: blue
+    nodes: [usecases, scc, telem]
+    order: [usecases, scc, telem]
+  - id: bind
+    label: "Binding instruments: hard constraints on branch equipment"
+    tone: amber
+    nodes: [pdns, bod2302, bod2602, m2615, m2614]
+    order: [pdns, bod2302, bod2602]
+  - id: own
+    label: "The agency's own control assertions: evidence at assessment"
+    tone: violet
+    nodes: [boundary, crypto, monitor]
+    order: [boundary, crypto, monitor]
+nodes:
+  usecases: {tone: blue, width: 230, tag: "Four use cases", title: "Traditional, Branch Office, Remote User, Cloud", body: ["=No SASE use case"], size: 12}
+  scc: {tone: blue, width: 230, tag: "Catalog v3.3", title: "Goals, not products", body: ["=Policy enforcement parity on every path"], size: 12}
+  telem: {tone: blue, width: 230, tag: "Use cases", title: "Preserve CISA visibility", body: ["=Telemetry obligations still apply"], size: 12}
+  pdns: {tone: amber, width: 230, tag: "6 U.S.C. § 663 note", title: "Protective DNS", body: ["=All egress DNS resolution"], size: 12}
+  bod2302: {tone: amber, width: 230, tag: "BOD 23-02", title: "Management interfaces", body: ["=Off the internet or behind a separate PEP"], size: 12}
+  bod2602: {tone: amber, width: 230, tag: "BOD 26-02", title: "End-of-support edge devices", body: ["=All removed by Aug 5, 2027"], size: 12}
+  m2615: {tone: amber, width: 230, tag: "OMB M-26-15", title: "Post-quantum key exchange", body: ["=Anything terminating TLS or IPsec"], size: 12}
+  m2614: {tone: amber, width: 230, tag: "OMB M-26-14", title: "Logging maturity", body: ["=Source and destination, ports, sessions"], size: 12}
+  boundary: {tone: violet, width: 230, tag: "SC-7, SC-7(4), SC-7(8)", title: "Boundary and traffic flow policy", body: ["=Each external service managed"], size: 12}
+  crypto: {tone: violet, width: 230, tag: "SC-8, SC-8(1), AC-4", title: "Transmission protection", body: ["=TLS or IPsec; no WAN overlay required"], size: 12}
+  monitor: {tone: violet, width: 230, tag: "SI-4, CA-7, CP-8", title: "Monitoring and diversity", body: ["=Telemetry and alternate paths"], size: 12}
+edges:
+  - [usecases, pdns, {style: invis}]
+  - [scc, bod2302, {style: invis}]
+  - [telem, bod2602, {style: invis}]
+  - [pdns, m2615, {style: invis}]
+  - [bod2302, m2614, {style: invis}]
+  - [m2615, boundary, {style: invis}]
+  - [m2614, crypto, {style: invis}]
+  - [bod2602, monitor, {style: invis}]

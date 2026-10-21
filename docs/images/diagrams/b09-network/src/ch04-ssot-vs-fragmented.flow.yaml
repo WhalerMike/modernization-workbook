@@ -1,0 +1,31 @@
+# Chapter 04 — many small authoritative stores versus one logical source of
+# truth with explicitly derived, subordinate copies.
+rankdir: TB
+graph: {nodesep: 0.2, ranksep: 0.45}
+clusters:
+  - id: frag
+    label: "Many small stores"
+    tone: red
+    nodes: [a, b, q]
+  - id: one
+    label: "One logical source of truth"
+    tone: green
+    nodes: [sot, rr, cache, stamp]
+    order: [rr, cache, stamp]
+nodes:
+  a: {tone: slate, width: 130, title: "Service A store", body: ["=customers"], size: 12}
+  b: {tone: slate, width: 130, title: "Service B store", body: ["=customers (copy)"], size: 12}
+  q: {tone: red, width: 180, title: "“Which value is correct?”", body: ["Reconciliation jobs", "N schemas, N sources of error", "Drift surface multiplies with every copy"], size: 12}
+  sot: {tone: green, width: 200, title: "Source of truth", body: ["One authoritative writer", "Real foreign keys and transactions", "One schema, one answer"], size: 12}
+  rr: {tone: blue, width: 105, title: "Read replica", body: ["=derived, rebuildable"], size: 12}
+  cache: {tone: blue, width: 105, title: "Cache", body: ["=derived, disposable"], size: 12}
+  stamp: {tone: amber, width: 105, title: "Compliance stamp", body: ["=deliberate exception"], size: 12}
+edges:
+  - [a, b, {tone: red, style: dashed, label: "drift", both: true}]
+  - [a, q, {style: invis}]
+  - [b, q, {style: invis}]
+  - [sot, rr]
+  - [sot, cache]
+  - [sot, stamp]
+ranks:
+  - [a, b]

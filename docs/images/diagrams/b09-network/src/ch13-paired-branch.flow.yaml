@@ -1,0 +1,15 @@
+# Chapter 13 — the paired-branch study: difference in differences across two
+# comparable branches, a change at one, 30 days either side.
+rankdir: TB
+graph: {nodesep: 0.3, ranksep: 0.3}
+nodes:
+  pick: {tone: slate, width: 300, tag: "1", title: "Pick two branches", body: ["=Comparable users and application mix"], size: 12}
+  pre: {tone: violet, width: 300, tag: "2 · 30 days", title: "Instrument both", body: ["WAN path events", "Server CPU, new connections", "Authentication volume", "Cache hit ratio", "Tickets by application"], size: 12}
+  change: {tone: amber, width: 300, tag: "3", title: "Change one branch", body: ["=Deploy the branch-edge layer, or run across a migration wave"], size: 12}
+  post: {tone: violet, width: 300, tag: "4 · 30 days", title: "Instrument both again", size: 12}
+  effect: {tone: green, width: 300, tag: "5", title: "Effect size", body: ["=Post-period difference adjusted for the pre-period difference"], size: 12}
+edges:
+  - [pick, pre]
+  - [pre, change]
+  - [change, post]
+  - [post, effect]

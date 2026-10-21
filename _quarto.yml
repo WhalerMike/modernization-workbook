@@ -53,6 +53,8 @@ website:
             text: "Book 07 — PKI & Certificates"
           - href: docs/books/b08-ddi/index.md
             text: "Book 08 — DNS, DHCP & IPAM"
+          - href: docs/books/b09-network/index.md
+            text: "Book 09 — Network & Transport"
       - href: docs/presentations/index.md
         text: "Presentations"
       - href: sitemap.qmd
@@ -105,6 +107,11 @@ website:
           contents:
             - auto: "docs/books/b08-ddi/[0-9]*.md"
             - auto: "docs/books/b08-ddi/appendix-*.md"
+        - section: "Book 09 — Network & Transport"
+          href: docs/books/b09-network/index.md
+          contents:
+            - auto: "docs/books/b09-network/[0-9]*.md"
+            - auto: "docs/books/b09-network/appendix-*.md"
 
   page-footer:
     left: "Federal Modernization Workbook — topic books for federal IT modernization, each framed Why / What / Who / How."

@@ -1,0 +1,15 @@
+# Book 09 Chapter 02 — transport is a physics decision, control is a
+# compliance decision: what each layer closes.
+rankdir: TB
+graph: {nodesep: 0.3, ranksep: 0.4}
+nodes:
+  sase: {tone: violet, width: 300, tag: "Control: security service edge", title: "SASE policy enforcement points", body: ["Boundary and flow enforcement (SC-7, AC-4)", "Malware and web inspection (SI-3)", "Monitoring and telemetry to CISA (SI-4, AU)"], size: 12}
+  gov: {tone: blue, width: 300, tag: "Control: transport governor", title: "SD-WAN or equivalent branch edge", body: ["Encryption across every circuit (SC-8)", "Traffic-class separation and path selection", "Per-application path telemetry"], size: 12}
+  pipes: {tone: slate, width: 300, tag: "Transport: physics", title: "Fiber DIA · MPLS · LEO · 5G · broadband", body: ["=Latency, loss and capacity differ enormously", "=Protection controls closed: none"], size: 12}
+  div: {tone: green, width: 220, title: "The one family transport closes", body: ["Telecommunications diversity (CP-8, SC-47)"], size: 12}
+edges:
+  - [sase, gov, {label: "rides on"}]
+  - [gov, pipes, {label: "governs"}]
+  - [pipes, div, {tone: green, label: "more than one pipe"}]
+ranks:
+  - [pipes, div]

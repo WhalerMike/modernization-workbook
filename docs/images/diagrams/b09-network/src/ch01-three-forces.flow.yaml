@@ -1,0 +1,22 @@
+# Book 09 Chapter 01 — three forces push toward logical centralization;
+# physical centralization stops at the propagation floor.
+# (Adapted from the physics series' chapter 00 figure.)
+rankdir: TB
+graph: {nodesep: 0.25, ranksep: 0.4}
+nodes:
+  wan: {tone: blue, width: 200, title: "Fat, application-aware WAN", body: ["=Removes the bandwidth penalty that kept data next to compute"], size: 12}
+  tok: {tone: blue, width: 200, title: "Token-based (zero-trust) security", body: ["=One store can serve many trust domains; no sharding for security"], size: 12}
+  ssot: {tone: blue, width: 200, title: "Single source of truth", body: ["=Fewer authoritative copies: less drift, lower reasoning cost"], size: 12}
+  logical: {tone: green, width: 300, title: "Logical centralization", body: ["=One source of truth; every other copy is derived and subordinate"], size: 12}
+  phys: {tone: amber, width: 200, title: "Physical centralization", body: ["=Only where physics allows: within a region"], size: 12}
+  floor: {tone: red, width: 200, title: "Speed-of-light floor", body: ["=About 5 µs per km of fiber; no product moves it"], size: 12}
+edges:
+  - [wan, logical]
+  - [tok, logical]
+  - [ssot, logical]
+  - [logical, phys]
+  - [phys, floor, {tone: red, style: dashed, label: "bounded by"}]
+order:
+  - [wan, tok, ssot]
+ranks:
+  - [phys, floor]
