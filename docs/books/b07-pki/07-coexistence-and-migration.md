@@ -258,7 +258,7 @@ Two corrections to the guide's version of this wave:
 - Removing a SCEP profile assignment revokes the certificates it issued on Windows, iOS/iPadOS and macOS, and so does editing the profile.[^c07-intune-remove] Treat profile changes and unassignment as changes with impact, not as a harmless undo.
 - Staged rollout changes for existing groups can take up to 24 hours,[^c07-sro] so a user rollback isn't instant; plan the communication accordingly.
 
-For the federal policy context behind the move to phishing-resistant, certificate-based sign-in, see the Federal Compliance book on [certificates, tokens and cryptographic identity](../../compliance/Vol_I_Book_03_Certificates_Tokens_Cryptographic_Identity.md).
+For the federal policy context behind the move to phishing-resistant, certificate-based sign-in, see the Federal Compliance book on [certificates, tokens and cryptographic identity](https://github.com/WhalerMike/modernization-workbook/blob/main/docs/compliance/Vol_I_Book_03_Certificates_Tokens_Cryptographic_Identity.md).
 
 ::: {.callout-tip}
 ## Continue the book

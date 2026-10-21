@@ -94,7 +94,7 @@ The architecture implements mechanisms and produces evidence for these controls.
 
 : What the architecture contributes to account-management and personnel-security controls {.striped .hover}
 
-The agency's full requirements mapping should separate binding authorities (OMB M-19-17,[^c11-m1917] FIPS 201-3,[^c11-fips201] the agency's own policy) from implementation guidance (the FICAM Identity Lifecycle Management Playbook, which describes itself as best practice rather than policy,[^c11-ilm] and CISA's Zero Trust Maturity Model[^c11-ztmm]), and record for each control the organization-defined parameters, inherited controls, residual procedures, evidence, and validation status. The compliance treatment of the same controls is in [Federal Compliance Vol I Book 04](../../compliance/Vol_I_Book_04_HRIT_Identity_Org_SSOT.md).
+The agency's full requirements mapping should separate binding authorities (OMB M-19-17,[^c11-m1917] FIPS 201-3,[^c11-fips201] the agency's own policy) from implementation guidance (the FICAM Identity Lifecycle Management Playbook, which describes itself as best practice rather than policy,[^c11-ilm] and CISA's Zero Trust Maturity Model[^c11-ztmm]), and record for each control the organization-defined parameters, inherited controls, residual procedures, evidence, and validation status. The compliance treatment of the same controls is in [Federal Compliance Vol I Book 04](https://github.com/WhalerMike/modernization-workbook/blob/main/docs/compliance/Vol_I_Book_04_HRIT_Identity_Org_SSOT.md).
 
 ::: {.callout-tip}
 ## Continue the book

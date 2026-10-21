@@ -322,7 +322,7 @@ SigninLogs
 | project TimeGenerated, UserPrincipalName, AppDisplayName, IPAddress, ResultType
 ```
 
-The source library's emergency-access alert matched on user names containing "BreakGlass." That stops working once the accounts follow Book 02's naming rule, so the program alerts on object IDs. Every match is a critical incident until a post-use review closes it; the storage, alerting and validation procedure is in [Book 02, Chapter 09](../b02-identity/09-building-the-entra-target.md#emergency-access-accounts) and [Vol III Book 01](../../compliance/Vol_III_Book_01_Privileged_Access_Management.md).
+The source library's emergency-access alert matched on user names containing "BreakGlass." That stops working once the accounts follow Book 02's naming rule, so the program alerts on object IDs. Every match is a critical incident until a post-use review closes it; the storage, alerting and validation procedure is in [Book 02, Chapter 09](../b02-identity/09-building-the-entra-target.md#emergency-access-accounts) and [Vol III Book 01](https://github.com/WhalerMike/modernization-workbook/blob/main/docs/compliance/Vol_III_Book_01_Privileged_Access_Management.md).
 
 ### Workbooks and views
 

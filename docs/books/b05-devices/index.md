@@ -32,7 +32,7 @@ This book consolidates the workbook's device and server modernization pages (the
 ## Download and present
 **[b05-devices-bundle.docx](../../../downloads/b05-devices-bundle.docx)**: the whole book as one Word document, regenerated on every site deploy.
 
-**15-minute presentation**: the Why / What / Who / How deck and its narrated, self-running version are in the repository under [`presentations/b05-devices/`](https://github.com/WhalerMike/modernization-workbook/tree/main/presentations/b05-devices).
+**15-minute presentation**: the Why / What / Who / How deck and its narrated, self-running edition are on the [Presentations](../../presentations/index.md#book-05) page.
 :::
 
 For twenty years Group Policy did a great deal of governance without anyone writing it down. Where a computer sat in the OU tree decided which settings it got, in which order, and which ones won. Moving devices to Entra ID and Intune removes that machinery. Nothing in the cloud reads the OU tree, and Intune applies policy by assignment, not by precedence. So the settings, the targeting and the exceptions all have to be stated again on purpose. Servers follow a different road: Intune doesn't manage Windows Server, so servers come under governance through Azure Arc and Azure Policy. This book is the plan for both, and for the hybrid-join shortcut that looks like progress but isn't an end state.
@@ -56,7 +56,7 @@ Appendix: [A — GPO to Intune crosswalk](appendix-a-gpo-to-intune-crosswalk.md)
 
 ## Where this book sits in the workbook
 
-This is Book 05 of the [Modernization Workbook](../index.md). It builds on [Book 02 — Identity & Directory](../b02-identity/index.md) for the directory migration, and hands device compliance to [Book 04 — Access & Privilege](../b04-access/index.md), where Conditional Access decides what a compliant device may reach. The [Endpoint & Device Modernization project](../../projects/endpoint-device-charter.md) ([plan](../../projects/endpoint-device-plan.md)) delivers it, and the Client-Server to Hybrid-Cloud chapters on [policy](../../client-server-to-hybrid-cloud/05-policy-transformation.md) and [compute](../../client-server-to-hybrid-cloud/07-compute-transformation.md) tell the same story at the level of the whole estate.
+This is Book 05 of the [Modernization Workbook](../index.md). It builds on [Book 02 — Identity & Directory](../b02-identity/index.md) for the directory migration, and hands device compliance to [Book 04 — Access & Privilege](../b04-access/index.md), where Conditional Access decides what a compliant device may reach. The [Endpoint & Device Modernization project](https://github.com/WhalerMike/modernization-workbook/blob/main/docs/projects/endpoint-device-charter.md) ([plan](https://github.com/WhalerMike/modernization-workbook/blob/main/docs/projects/endpoint-device-plan.md)) delivers it, and the Client-Server to Hybrid-Cloud chapters on [policy](https://github.com/WhalerMike/modernization-workbook/blob/main/docs/client-server-to-hybrid-cloud/05-policy-transformation.md) and [compute](https://github.com/WhalerMike/modernization-workbook/blob/main/docs/client-server-to-hybrid-cloud/07-compute-transformation.md) tell the same story at the level of the whole estate.
 
 ## Chapters
 

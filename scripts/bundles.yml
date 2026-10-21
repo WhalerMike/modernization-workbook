@@ -125,10 +125,6 @@ bundles:
     root: docs/books/b06-data-platform
     pages: ["r[0-9][0-9]-*.md"]
 
-  # ---------------------------------------------------------------------
-  # Book 08 — DNS, DHCP & IPAM (replaced the Next Generation DDI series;
-  # the old download names are aliases of the book bundle).
-  # ---------------------------------------------------------------------
   - output: b08-ddi-bundle.docx
     aliases: [next-generation-ddi-bundle.docx, next-generation-ddi-ch01-bundle.docx, next-generation-ddi-ch02-bundle.docx, next-generation-ddi-ch03-bundle.docx, next-generation-ddi-ch04-bundle.docx, next-generation-ddi-ch05-bundle.docx, next-generation-ddi-ch06-bundle.docx, next-generation-ddi-ch07-bundle.docx, next-generation-ddi-ch08-bundle.docx, next-generation-ddi-ch09-bundle.docx, next-generation-ddi-ch10-bundle.docx, next-generation-ddi-ch11-bundle.docx, next-generation-ddi-appb-bundle.docx]
     title: "Book 08 — DNS, DHCP & IPAM"
@@ -137,11 +133,6 @@ bundles:
     image_dir: docs/images/diagrams/b08-ddi
     warn_unlisted: ["*.md"]
     pages: [index.md, "[0-9][0-9]-*.md", "appendix-*.md"]
-  # HR-Driven Identity series: combined edition plus one bundle per chapter.
-  # ---------------------------------------------------------------------
-  # ---------------------------------------------------------------------
-  # Workbook Book 02 — Identity & Directory
-  # ---------------------------------------------------------------------
   - output: b02-identity-bundle.docx
     title: "Book 02 — Identity & Directory"
     subtitle: "Active Directory to Entra ID — Modernization Workbook, combined edition"
@@ -149,8 +140,6 @@ bundles:
     image_dir: docs/images/diagrams/b02-identity
     warn_unlisted: ["*.md"]
     pages: [index.md, "[0-9][0-9]-*.md", "appendix-*.md"]
-  # Book 05 — Devices & Endpoints (absorbed the target-surface section; its old
-  # download name stays as an alias).
   - output: b05-devices-bundle.docx
     aliases: [target-surface-bundle.docx]
     title: "Book 05 — Devices & Endpoints"
@@ -160,8 +149,6 @@ bundles:
     warn_unlisted: ["*.md"]
     pages: [index.md, "[0-9][0-9]-*.md", "appendix-*.md"]
 
-  # Book 04 — Access & Privilege (absorbed the access-plane section; its old
-  # download name stays as an alias).
   - output: b04-access-bundle.docx
     aliases: [access-plane-bundle.docx]
     title: "Book 04 — Access & Privilege"
@@ -171,8 +158,6 @@ bundles:
     warn_unlisted: ["*.md"]
     pages: [index.md, "[0-9][0-9]-*.md", "appendix-*.md"]
 
-  # Book 03 — HR-Driven Identity (was the hr-driven-iam series; old download
-  # names stay available as aliases so published links keep working).
   - output: b03-hr-identity-bundle.docx
     aliases: [hr-driven-iam-bundle.docx]
     title: "Book 03 — HR-Driven Identity"
@@ -245,134 +230,3 @@ bundles:
     subtitle: "Book 03 — HR-Driven Identity: from the HR system of record to Entra ID"
     root: docs/books/b03-hr-identity
     pages: [13-reference-deployment.md]
-
-  # ---------------------------------------------------------------------
-  # Section bundles: every published page in the section folder, index first.
-  # ---------------------------------------------------------------------
-  - output: architecture-series-bundle.docx
-    root: docs/architecture
-    # index.md is the deprecated landing page; the bundle opens with its successor.
-    title: "Architecture Series"
-    pages: ["architecture-series/README.md", "**/*.md"]
-    exclude: ["index.md"]
-
-  - output: case-studies-bundle.docx
-    root: docs/case-studies
-    pages: ["index.md", "**/*.md"]
-
-  - output: executive-briefs-bundle.docx
-    root: docs/executive-briefs
-    pages: ["index.md", "**/*.md"]
-
-  - output: executive-governance-series-bundle.docx
-    root: docs/executive-governance
-    pages: ["index.md", "**/*.md"]
-
-  - output: operational-guides-bundle.docx
-    root: docs/operational-guides
-    pages: ["index.md", "**/*.md"]
-
-  - output: network-transformation-bundle.docx
-    root: docs/operational-guides/network-transformation
-    pages: ["index.md", "**/*.md"]
-
-  - output: program-management-bundle.docx
-    root: docs/operational-guides/program-management
-    pages: ["index.md", "**/*.md"]
-
-  - output: reference-architecture-bundle.docx
-    root: docs/reference-architecture
-    pages: ["index.md", "**/*.md"]
-
-  - output: ssot-network-physics-bundle.docx
-    root: docs/ssot-network-physics
-    pages: ["index.md", "**/*.md"]
-
-  # ---------------------------------------------------------------------
-  # Federal Compliance Series: the whole series, then one bundle per volume.
-  # ---------------------------------------------------------------------
-  - output: federal-compliance-series-bundle.docx
-    root: docs/compliance
-    pages:
-      - index.md
-      - "federal-compliance-series-overview.md"
-      - "federal-compliance-series-moderate-overview.md"
-      - "Vol_0_Book_*.md"
-      - "Vol_I_Book_*.md"
-      - "Vol_II_Book_*.md"
-      - "Vol_III_Book_*.md"
-      - "Vol_IV_Book_*.md"
-      - "Vol_V_Book_*.md"
-      - "Vol_VI_Book_*.md"
-      - "Vol_VII_Book_*.md"
-      - "Vol_VIII_Book_*.md"
-      - "Vol_IX_Book_*.md"
-      - "Vol_X_Book_*.md"
-      - "training-index.md"
-      - "**/*.md"                      # everything else in the section
-
-  - output: "Vol_0-Executive Summary, Questionnaire & Control Crosswalk-Bundle.docx"
-    title: "Volume 0 — Executive Summary, Questionnaire & Control Crosswalk"
-    subtitle: "Federal Compliance Series"
-    root: docs/compliance
-    pages: ["Vol_0_Book_*.md"]
-
-  - output: "Vol_I-Foundation & Transport-Bundle.docx"
-    title: "Volume I — Foundation & Transport"
-    subtitle: "Federal Compliance Series"
-    root: docs/compliance
-    pages: ["Vol_I_Book_*.md"]
-
-  - output: "Vol_II-Data Platform-Bundle.docx"
-    title: "Volume II — Data Platform"
-    subtitle: "Federal Compliance Series"
-    root: docs/compliance
-    pages: ["Vol_II_Book_*.md"]
-
-  - output: "Vol_III-Security Operations-Bundle.docx"
-    title: "Volume III — Security Operations"
-    subtitle: "Federal Compliance Series"
-    root: docs/compliance
-    pages: ["Vol_III_Book_*.md"]
-
-  - output: "Vol_IV-Governance & Assurance-Bundle.docx"
-    title: "Volume IV — Governance & Assurance"
-    subtitle: "Federal Compliance Series"
-    root: docs/compliance
-    pages: ["Vol_IV_Book_*.md"]
-
-  - output: "Vol_V-Training & Certification-Bundle.docx"
-    title: "Volume V — Training & Certification"
-    subtitle: "Federal Compliance Series"
-    root: docs/compliance
-    pages: ["Vol_V_Book_*.md"]
-
-  - output: "Vol_VI-Implementation-Bundle.docx"
-    title: "Volume VI — Implementation"
-    subtitle: "Federal Compliance Series"
-    root: docs/compliance
-    pages: ["Vol_VI_Book_*.md"]
-
-  - output: "Vol_VII-ServiceNow Automation-Bundle.docx"
-    title: "Volume VII — ServiceNow Automation"
-    subtitle: "Federal Compliance Series"
-    root: docs/compliance
-    pages: ["Vol_VII_Book_*.md"]
-
-  - output: "Vol_VIII-Multi-Cloud DDI-Bundle.docx"
-    title: "Volume VIII — Multi-Cloud DDI"
-    subtitle: "Federal Compliance Series"
-    root: docs/compliance
-    pages: ["Vol_VIII_Book_*.md"]
-
-  - output: "Vol_IX-Day-2 Operations-Bundle.docx"
-    title: "Volume IX — Day-2 Operations"
-    subtitle: "Federal Compliance Series"
-    root: docs/compliance
-    pages: ["Vol_IX_Book_*.md"]
-
-  - output: "Vol_X-Governance-Substrate Integration-Bundle.docx"
-    title: "Volume X — Governance-Substrate Integration"
-    subtitle: "Federal Compliance Series"
-    root: docs/compliance
-    pages: ["Vol_X_Book_*.md"]

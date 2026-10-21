@@ -250,7 +250,7 @@ Federation is what turns separate address managers into one inventory. A DDI pla
 - Pair address consistency with DNS consistency: private zones and records created in cloud or NSX DNS services must be synchronized or conditionally forwarded, so that resolution matches the address that was allocated.
 - Monitor synchronization health. Integration reduces independent authoring but adds a failure mode if the central IPAM is unreachable or sync lag allows a conflicting allocation (Chapter 12).
 
-SDN–IPAM consistency is the address-layer counterpart to split-brain DNS. A single authoritative DDI plane that federates with cloud and VMware networking prevents the overlaps and inventory gaps that otherwise surface only when connectivity fails or an audit finds undocumented address space. The landing-zone build for each provider is in [Federal Compliance Volume I, Book 01](../../compliance/Vol_I_Book_01_Cloud_Landing_Zone_IPAM_FedRAMP.md) and [Volume VIII](../../compliance/Vol_VIII_Book_00_DDI_Automation_Overview.md).
+SDN–IPAM consistency is the address-layer counterpart to split-brain DNS. A single authoritative DDI plane that federates with cloud and VMware networking prevents the overlaps and inventory gaps that otherwise surface only when connectivity fails or an audit finds undocumented address space. The landing-zone build for each provider is in [Federal Compliance Volume I, Book 01](https://github.com/WhalerMike/modernization-workbook/blob/main/docs/compliance/Vol_I_Book_01_Cloud_Landing_Zone_IPAM_FedRAMP.md) and [Volume VIII](https://github.com/WhalerMike/modernization-workbook/blob/main/docs/compliance/Vol_VIII_Book_00_DDI_Automation_Overview.md).
 
 ## IPv6 lifecycle and dual-stack considerations
 

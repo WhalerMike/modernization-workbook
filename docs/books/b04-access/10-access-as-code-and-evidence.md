@@ -42,7 +42,7 @@ Every access object the program governs has a file in the repository, one file p
 | Access review definitions | One file per review series | Fallback reviewer present whenever reviewers are managers or owners; auto-apply on; no-response default matches the schedule |
 | Lifecycle Workflows | One file per workflow | Leaver workflows include "remove all access package assignments" and "revoke all refresh tokens" |
 
-Port authentication (802.1X) and certificate lifecycle automation are the other half of the identity-as-code work in the program's compliance series; they are network and PKI subjects and stay there ([Vol VI Book 02](../../compliance/Vol_VI_Book_02_Identity_Access_as_Code.md), with [Vol I Book 02](../../compliance/Vol_I_Book_02_Network_Access_Control_802_1X.md) and [Vol I Book 03](../../compliance/Vol_I_Book_03_Certificates_Tokens_Cryptographic_Identity.md)).
+Port authentication (802.1X) and certificate lifecycle automation are the other half of the identity-as-code work in the program's compliance series; they are network and PKI subjects and stay there ([Vol VI Book 02](https://github.com/WhalerMike/modernization-workbook/blob/main/docs/compliance/Vol_VI_Book_02_Identity_Access_as_Code.md), with [Vol I Book 02](https://github.com/WhalerMike/modernization-workbook/blob/main/docs/compliance/Vol_I_Book_02_Network_Access_Control_802_1X.md) and [Vol I Book 03](https://github.com/WhalerMike/modernization-workbook/blob/main/docs/compliance/Vol_I_Book_03_Certificates_Tokens_Cryptographic_Identity.md)).
 
 ## The tools, and where each one stands
 
@@ -333,7 +333,7 @@ Under FedRAMP 20x the same records support Key Security Indicators. The indicato
 | `KSI-CMT-RMV` Redeploying vs Modifying | Changes go through redeploying version-controlled resources where reasonable | The repository as the only normal path; emergency changes back-ported |
 | `KSI-CMT-VTD` Validating Throughout Deployment | Testing and validation of changes during deployment is automated | Pre-merge checks; report-only stage; plan output attached to each pull request |
 
-The compliance series takes these records further, into the evidence contract and the attestation loop ([Vol VI Book 07](../../compliance/Vol_VI_Book_07_Evidence_ConMon_Pipeline.md), [Vol VII Book 04](../../compliance/Vol_VII_Book_04_Control_Attestation_Evidence_KSI.md)), and its governance book carries the program's control contract for lifecycle automation and certification campaigns ([Vol IX Book 06](../../compliance/Vol_IX_Book_06_Identity_Access_Governance.md)).
+The compliance series takes these records further, into the evidence contract and the attestation loop ([Vol VI Book 07](https://github.com/WhalerMike/modernization-workbook/blob/main/docs/compliance/Vol_VI_Book_07_Evidence_ConMon_Pipeline.md), [Vol VII Book 04](https://github.com/WhalerMike/modernization-workbook/blob/main/docs/compliance/Vol_VII_Book_04_Control_Attestation_Evidence_KSI.md)), and its governance book carries the program's control contract for lifecycle automation and certification campaigns ([Vol IX Book 06](https://github.com/WhalerMike/modernization-workbook/blob/main/docs/compliance/Vol_IX_Book_06_Identity_Access_Governance.md)).
 
 ### The evidence package for a period
 

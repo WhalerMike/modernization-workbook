@@ -1,31 +1,437 @@
 ---
 title: "Modernization Workbook"
-subtitle: "Public-facing documentation for federal IT modernization"
+subtitle: "Federal IT modernization, one topic book at a time"
+pagetitle: "Modernization Workbook"
+page-layout: full
+toc: false
+format:
+  html:
+    anchor-sections: false
+    include-in-header:
+      - text: |
+          <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=IBM+Plex+Mono:wght@400;500&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+          <style>
+            :root {
+              --mw-navy:    #0D1B2E;
+              --mw-teal:    #1E8C8C;
+              --mw-teal-lt: #27BEBE;
+              --mw-teal-bg: #e9f6f5;
+              --mw-amber:   #B27210;
+              --mw-amber-lt:#E8A020;
+              --mw-red:     #B42318;
+              --mw-blue:    #4a6a8c;
+              --mw-steel:   #6B7A8D;
+              --mw-ink:     #243248;
+              --mw-muted:   #5a6878;
+              --mw-paper:   #ffffff;
+              --mw-paper-2: #f5f7fa;
+              --mw-paper-3: #eef2f7;
+              --mw-line:    #dfe5ec;
+            }
+
+            /* The landing renders its own hero, so hide Quarto's title block */
+            body #title-block-header { display: none !important; }
+
+            /* Full-bleed page */
+            body main.content,
+            body div#quarto-document-content,
+            body div.page-columns {
+              padding-left: 0 !important;
+              padding-right: 0 !important;
+              max-width: none !important;
+            }
+
+            .mw-landing {
+              font-family: 'DM Sans', system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+              color: var(--mw-ink); line-height: 1.7;
+              -webkit-font-smoothing: antialiased;
+            }
+            .mw-landing a { color: var(--mw-teal); }
+            .mw-landing a:hover { color: var(--mw-teal-lt); }
+
+            /* Hero */
+            .mw-landing .mw-hero {
+              padding: 5rem 3rem 4rem; text-align: center;
+              background:
+                radial-gradient(900px 380px at 80% 0%, rgba(30,140,140,0.12), transparent 70%),
+                radial-gradient(700px 280px at 0% 30%, rgba(232,160,32,0.10), transparent 70%),
+                var(--mw-paper);
+              border-bottom: 1px solid var(--mw-line);
+            }
+            .mw-landing .hero-eyebrow {
+              font-family: 'IBM Plex Mono', monospace; font-size: .78rem; letter-spacing: .2em;
+              color: var(--mw-amber); text-transform: uppercase; margin-bottom: 1.25rem; font-weight: 500;
+            }
+            .mw-landing .mw-hero h1 {
+              font-family: 'DM Serif Display', serif; font-size: clamp(2.4rem, 6vw, 5rem);
+              font-weight: 400; line-height: 1.05; letter-spacing: -.02em;
+              color: var(--mw-navy); max-width: 18ch; margin: 0 auto 1.25rem;
+            }
+            .mw-landing .mw-hero h1 em { font-style: italic; color: var(--mw-teal); }
+            .mw-landing .hero-sub { font-size: 1.15rem; color: var(--mw-muted); max-width: 60ch; margin: 0 auto 2.5rem; }
+            .mw-landing .hero-actions { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+            .mw-landing .btn-primary,
+            .mw-landing .btn-ghost {
+              font-family: 'IBM Plex Mono', monospace; font-size: .82rem; letter-spacing: .08em;
+              padding: .85rem 1.8rem; text-decoration: none; text-transform: uppercase;
+              font-weight: 500; border-radius: 4px; display: inline-block;
+              transition: background .2s, transform .15s, box-shadow .2s, border-color .2s, color .2s;
+            }
+            .mw-landing .btn-primary { background: var(--mw-teal); color: white !important; border: 1px solid var(--mw-teal); }
+            .mw-landing .btn-primary:hover {
+              background: var(--mw-teal-lt); border-color: var(--mw-teal-lt); transform: translateY(-2px);
+              box-shadow: 0 10px 22px -10px rgba(30,140,140,0.5);
+            }
+            .mw-landing .btn-ghost { border: 1px solid var(--mw-steel); color: var(--mw-navy) !important; background: white; }
+            .mw-landing .btn-ghost:hover { border-color: var(--mw-teal); color: var(--mw-teal) !important; transform: translateY(-2px); }
+
+            /* Marquee */
+            .mw-landing .marquee-wrap {
+              overflow: hidden; border-top: 1px solid var(--mw-line); border-bottom: 1px solid var(--mw-line);
+              padding: .9rem 0; background: var(--mw-paper-2);
+            }
+            .mw-landing .marquee-track { display: flex; gap: 3rem; white-space: nowrap; animation: mwMarquee 34s linear infinite; }
+            .mw-landing .marquee-item {
+              font-family: 'IBM Plex Mono', monospace; font-size: .72rem; letter-spacing: .15em;
+              color: var(--mw-muted); text-transform: uppercase; flex-shrink: 0;
+            }
+            .mw-landing .marquee-item span { color: var(--mw-teal); margin-right: .6rem; }
+            .mw-landing .marquee-track:hover { animation-play-state: paused; }
+
+            /* Sections */
+            .mw-landing .mw-section { padding: 5rem 3rem; }
+            .mw-landing .mw-inner { max-width: 1200px; margin: 0 auto; }
+            .mw-landing .section-label {
+              font-family: 'IBM Plex Mono', monospace; font-size: .72rem; letter-spacing: .2em;
+              color: var(--mw-amber); text-transform: uppercase; margin-bottom: .8rem; font-weight: 500;
+            }
+            .mw-landing .section-title {
+              font-family: 'DM Serif Display', serif; font-weight: 400;
+              font-size: clamp(1.8rem, 3.4vw, 2.6rem); line-height: 1.18;
+              color: var(--mw-navy); max-width: 26ch; margin: 0 0 1.25rem; border: 0;
+            }
+            .mw-landing .section-body { color: var(--mw-muted); max-width: 64ch; font-size: 1rem; }
+            .mw-landing .band {
+              background: var(--mw-paper-2);
+              border-top: 1px solid var(--mw-line); border-bottom: 1px solid var(--mw-line);
+            }
+
+            /* Why / What / Who / How pillars */
+            .mw-landing .pillars { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem; margin-top: 2.5rem; }
+            @media (max-width: 1200px) { .mw-landing .pillars { grid-template-columns: repeat(2, 1fr); } }
+            .mw-landing .pillar {
+              background: white; border: 1px solid var(--mw-line); border-top: 3px solid var(--mw-red);
+              border-radius: 6px; padding: 2rem 1.6rem;
+              transition: transform .15s ease, box-shadow .15s ease;
+            }
+            .mw-landing .pillar.what { border-top-color: var(--mw-navy); }
+            .mw-landing .pillar.who  { border-top-color: var(--mw-teal); }
+            .mw-landing .pillar.how  { border-top-color: var(--mw-amber-lt); }
+            .mw-landing .pillar:hover { transform: translateY(-2px); box-shadow: 0 14px 30px -18px rgba(13,27,46,0.18); }
+            .mw-landing .pillar-label {
+              font-family: 'IBM Plex Mono', monospace; font-size: .7rem; letter-spacing: .18em;
+              color: var(--mw-red); text-transform: uppercase; font-weight: 500;
+            }
+            .mw-landing .pillar.what .pillar-label { color: var(--mw-navy); }
+            .mw-landing .pillar.who  .pillar-label { color: var(--mw-teal); }
+            .mw-landing .pillar.how  .pillar-label { color: var(--mw-amber); }
+            .mw-landing .pillar h3 {
+              font-family: 'DM Serif Display', serif; font-weight: 400; color: var(--mw-navy);
+              font-size: 1.5rem; margin: .6rem 0 .8rem; line-height: 1.2; border: 0;
+            }
+            .mw-landing .pillar p { color: var(--mw-muted); font-size: .95rem; margin: 0; }
+
+            /* Problem */
+            .mw-landing .problem-grid {
+              display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: start;
+            }
+            .mw-landing .problem-list { list-style: none; margin: 1.5rem 0 0; padding: 0; display: flex; flex-direction: column; gap: 1rem; }
+            .mw-landing .problem-list li { display: flex; gap: 1rem; align-items: flex-start; color: var(--mw-ink); font-size: .98rem; }
+            .mw-landing .problem-list li::before {
+              content: '//'; font-family: 'IBM Plex Mono', monospace; color: var(--mw-teal);
+              flex-shrink: 0; margin-top: .1rem; font-weight: 500;
+            }
+            .mw-landing .problem-list a { font-family: 'IBM Plex Mono', monospace; font-size: .78rem; letter-spacing: .06em; white-space: nowrap; }
+
+            /* Book cards */
+            .mw-landing .book-cards {
+              display: grid; grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
+              gap: 1.25rem; margin: 2.5rem 0 0;
+            }
+            .mw-landing .book-card {
+              background: white; border: 1px solid var(--mw-line); border-radius: 6px;
+              padding: 1.6rem 1.4rem 1.3rem; display: flex; flex-direction: column;
+              transition: transform .15s, box-shadow .15s, border-color .15s;
+            }
+            .mw-landing .book-card:hover {
+              transform: translateY(-2px); box-shadow: 0 14px 30px -18px rgba(13,27,46,0.18); border-color: var(--mw-teal);
+            }
+            .mw-landing .book-num {
+              font-family: 'IBM Plex Mono', monospace; font-size: .68rem; letter-spacing: .18em;
+              text-transform: uppercase; color: var(--mw-amber); margin-bottom: .5rem; font-weight: 500;
+            }
+            .mw-landing .book-title {
+              font-family: 'DM Serif Display', serif; font-weight: 400; font-size: 1.3rem;
+              color: var(--mw-navy); margin-bottom: .4rem; line-height: 1.25;
+            }
+            .mw-landing .book-title a { color: var(--mw-navy); text-decoration: none; }
+            .mw-landing .book-title a:hover { color: var(--mw-teal); }
+            .mw-landing .book-q { font-style: italic; color: var(--mw-ink); font-size: .95rem; margin-bottom: .5rem; }
+            .mw-landing .book-desc { font-size: .85rem; color: var(--mw-muted); line-height: 1.5; margin-bottom: 1rem; }
+            .mw-landing .book-links { margin-top: auto; display: flex; gap: 1.1rem; flex-wrap: wrap; }
+            .mw-landing .book-links a {
+              font-family: 'IBM Plex Mono', monospace; font-size: .72rem; letter-spacing: .12em;
+              color: var(--mw-teal); text-transform: uppercase; text-decoration: none; font-weight: 500;
+            }
+            .mw-landing .book-links a:hover { color: var(--mw-teal-lt); }
+
+            /* Numbers */
+            .mw-landing .arc-grid {
+              display: grid; grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
+              gap: 1px; background: var(--mw-line); border: 1px solid var(--mw-line);
+              border-radius: 6px; overflow: hidden; margin: 2rem 0 0;
+            }
+            .mw-landing .arc-phase { background: white; padding: 1.5rem 1.2rem; text-align: center; transition: background .2s; }
+            .mw-landing .arc-phase:hover { background: var(--mw-teal-bg); }
+            .mw-landing .phase-num { font-family: 'IBM Plex Mono', monospace; font-size: 1.6rem; font-weight: 500; color: var(--mw-teal); margin-bottom: .4rem; }
+            .mw-landing .phase-name { font-family: 'DM Serif Display', serif; font-size: 1.05rem; color: var(--mw-navy); margin-bottom: .4rem; line-height: 1.25; }
+            .mw-landing .phase-desc { font-size: .82rem; color: var(--mw-muted); line-height: 1.45; }
+
+            /* Planned books */
+            .mw-landing .badge-grid { display: flex; flex-wrap: wrap; gap: .75rem; margin-top: 1.5rem; }
+            .mw-landing .badge {
+              font-family: 'IBM Plex Mono', monospace; font-size: .74rem; letter-spacing: .1em;
+              padding: .6rem 1.1rem; border: 1px solid var(--mw-line); color: var(--mw-navy);
+              text-transform: uppercase; background: white; border-radius: 4px; font-weight: 500;
+            }
+            .mw-landing .badge b { color: var(--mw-teal); font-weight: 500; margin-right: .5rem; }
+
+            /* CTA */
+            .mw-landing .cta-band {
+              background:
+                radial-gradient(700px 280px at 100% 0%, rgba(30,140,140,0.18), transparent 70%),
+                radial-gradient(500px 220px at 0% 100%, rgba(232,160,32,0.14), transparent 70%),
+                var(--mw-paper-2);
+              border-top: 1px solid var(--mw-line); text-align: center;
+            }
+            .mw-landing .cta-band .section-title,
+            .mw-landing .cta-band .section-body { margin-left: auto; margin-right: auto; }
+            .mw-landing .cta-band .section-body { margin-bottom: 2rem; }
+
+            @keyframes mwMarquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+            @media (max-width: 900px) {
+              .mw-landing .pillars { grid-template-columns: 1fr; }
+              .mw-landing .problem-grid { grid-template-columns: 1fr; gap: 2rem; }
+            }
+            @media (max-width: 640px) {
+              .mw-landing .mw-section { padding: 3.5rem 1rem; }
+              .mw-landing .mw-hero { padding: 3.5rem 1rem 3rem; }
+            }
+
+            .mw-landing section[id] { scroll-margin-top: 84px; }
+            .mw-landing a:focus-visible { outline: 2px solid var(--mw-teal); outline-offset: 3px; border-radius: 4px; }
+            @media (prefers-reduced-motion: reduce) {
+              .mw-landing .marquee-track { animation: none; }
+              .mw-landing .btn-primary, .mw-landing .btn-ghost, .mw-landing .pillar,
+              .mw-landing .book-card, .mw-landing .arc-phase { transition: none; }
+              .mw-landing .btn-primary:hover, .mw-landing .btn-ghost:hover,
+              .mw-landing .pillar:hover, .mw-landing .book-card:hover { transform: none; }
+            }
+          </style>
 ---
 
-# Modernization Workbook
+::: {.mw-landing}
 
-A clean, standalone project for federal IT modernization. Content is written for reuse without internal branding or source-system identifiers.
+```{=html}
+<section class="mw-hero">
+  <p class="hero-eyebrow">Identity · Devices · Data · Certificates · DNS</p>
+  <h1>Every migration is a <em>governance</em> migration.</h1>
+  <p class="hero-sub">The Modernization Workbook is a set of topic books for moving a federal IT estate from Active Directory, Group Policy and on-premises infrastructure to cloud identity and governed hybrid operations. Each book opens with one question, answers it in four parts, and footnotes every external claim to a primary source.</p>
+  <div class="hero-actions">
+    <a class="btn-primary" href="#books">Browse the books</a>
+    <a class="btn-ghost" href="docs/presentations/index.html">Presentations</a>
+  </div>
+</section>
 
-## Start here
+<div class="marquee-wrap" aria-hidden="true">
+  <div class="marquee-track">
+    <span class="marquee-item"><span>⬡</span>Active Directory to Entra ID</span>
+    <span class="marquee-item"><span>⬡</span>HR-Driven Identity</span>
+    <span class="marquee-item"><span>⬡</span>Conditional Access</span>
+    <span class="marquee-item"><span>⬡</span>Group Policy to Intune</span>
+    <span class="marquee-item"><span>⬡</span>Azure Arc</span>
+    <span class="marquee-item"><span>⬡</span>SQL Server Identity</span>
+    <span class="marquee-item"><span>⬡</span>Cloud PKI</span>
+    <span class="marquee-item"><span>⬡</span>DNS · DHCP · IPAM</span>
+    <span class="marquee-item"><span>⬡</span>FedRAMP Moderate</span>
+    <span class="marquee-item"><span>⬡</span>NIST SP 800-53</span>
+    <span class="marquee-item"><span>⬡</span>Active Directory to Entra ID</span>
+    <span class="marquee-item"><span>⬡</span>HR-Driven Identity</span>
+    <span class="marquee-item"><span>⬡</span>Conditional Access</span>
+    <span class="marquee-item"><span>⬡</span>Group Policy to Intune</span>
+    <span class="marquee-item"><span>⬡</span>Azure Arc</span>
+    <span class="marquee-item"><span>⬡</span>SQL Server Identity</span>
+    <span class="marquee-item"><span>⬡</span>Cloud PKI</span>
+    <span class="marquee-item"><span>⬡</span>DNS · DHCP · IPAM</span>
+    <span class="marquee-item"><span>⬡</span>FedRAMP Moderate</span>
+    <span class="marquee-item"><span>⬡</span>NIST SP 800-53</span>
+  </div>
+</div>
 
-| Topic | HTML | DOCX |
-|-------|------|------|
-| Principles | [Principles](docs/PRINCIPLES.html) | [DOCX](docs/PRINCIPLES.docx) |
-| SQL Server Identity Transformation | [Series Overview](docs/books/b06-data-platform/index.html) | [DOCX](docs/case-studies/sql-server-narrative/series-overview.docx) |
-| Client-Server to Hybrid-Cloud | [Chapter 00](docs/client-server-to-hybrid-cloud/00-the-problem.html) | [DOCX](docs/client-server-to-hybrid-cloud/00-the-problem.docx) |
-| Whitepapers | [Whitepapers](docs/whitepapers/README.html) | [DOCX](docs/whitepapers/README.docx) |
-| Case Studies | [Case Studies](docs/case-studies/README.html) | [DOCX](docs/case-studies/README.docx) |
-| Executive Briefs | [Modernization Overview](docs/executive-briefs/modernization-overview.html) | [DOCX](docs/executive-briefs/modernization-overview.docx) |
-| Compliance Series | [Executive Summary](docs/compliance/federal-compliance-series-moderate/executive-summary.html) | [DOCX](docs/compliance/federal-compliance-series-moderate/executive-summary.docx) |
+<section class="mw-section" id="approach">
+  <div class="mw-inner">
+    <p class="section-label">How Every Book Works</p>
+    <h2 class="section-title">One question. Four parts. Every claim sourced.</h2>
+    <p class="section-body">Each book takes one modernization topic and answers the same four questions in order. Every external fact is checked against a primary source (Microsoft Learn, NIST, OMB, CISA, FedRAMP, the IETF) and footnoted, the diagrams share one house style, and each book comes with a Word edition and a 15-minute presentation.</p>
+    <div class="pillars">
+      <div class="pillar">
+        <div class="pillar-label">Why</div>
+        <h3>Why the topic matters now.</h3>
+        <p>The opening question each book answers, and the mandate, risk or loss that makes it urgent.</p>
+      </div>
+      <div class="pillar what">
+        <div class="pillar-label">What</div>
+        <h3>What changes, and what replaces it.</h3>
+        <p>What the old system quietly did, what the target architecture is, and the decisions that carry the risk.</p>
+      </div>
+      <div class="pillar who">
+        <div class="pillar-label">Who</div>
+        <h3>Who decides, and who does the work.</h3>
+        <p>Owners, approvers and operators, with the separation of duties the controls expect.</p>
+      </div>
+      <div class="pillar how">
+        <div class="pillar-label">How</div>
+        <h3>How to migrate, operate and evidence it.</h3>
+        <p>Phased migration with rollback at every step, day-two operations, and the evidence an assessor will ask for.</p>
+      </div>
+    </div>
+  </div>
+</section>
 
-## Download complete series
+<section class="mw-section band" id="problem">
+  <div class="mw-inner problem-grid">
+    <div>
+      <p class="section-label">The Problem</p>
+      <h2 class="section-title">Active Directory did more governance than anyone wrote down.</h2>
+    </div>
+    <div>
+      <p class="section-body">For twenty years the directory quietly decided who existed, what a computer received, which certificates were trusted and where names resolved. Moving to the cloud removes that machinery, and each piece fails in its own way, often long after the cutover is declared done. Each book takes one of those pieces.</p>
+      <ul class="problem-list">
+        <li><span>Identity lifecycle driven by IT tickets instead of the HR system of record. <a href="docs/books/b03-hr-identity/index.html">Book 03</a></span></li>
+        <li><span>Access decisions scattered across groups, roles and exceptions with no single policy. <a href="docs/books/b04-access/index.html">Book 04</a></span></li>
+        <li><span>Group Policy targeting by OU position, which nothing in Intune reads. <a href="docs/books/b05-devices/index.html">Book 05</a></span></li>
+        <li><span>Windows Authentication and NTLM hidden inside the database estate. <a href="docs/books/b06-data-platform/index.html">Book 06</a></span></li>
+        <li><span>Certificates that keep working after cutover, until the first expiry finds no issuer. <a href="docs/books/b07-pki/index.html">Book 07</a></span></li>
+        <li><span>Split-brain DNS that surfaces as certificate errors and access denials. <a href="docs/books/b08-ddi/index.html">Book 08</a></span></li>
+      </ul>
+    </div>
+  </div>
+</section>
 
-- [SQL Server Narrative Series (ZIP)](downloads/sql-server-narrative-series.zip) — Markdown, modern images, and rendered DOCX
-- [SQL Server Narrative Bundle (DOCX)](downloads/sql-server-narrative-bundle.docx) — all books combined into one Word document
-- [Client-Server to Hybrid-Cloud Series (ZIP)](downloads/client-server-to-hybrid-cloud-series.zip)
+<section class="mw-section" id="books">
+  <div class="mw-inner">
+    <p class="section-label">The Books</p>
+    <h2 class="section-title">Seven books published. Eleven more on the way.</h2>
+    <p class="section-body">Start with Book 02 for the directory migration as a whole, or go straight to the topic in front of you. Every book reads in its Why / What / Who / How order and downloads as one Word document.</p>
+    <div class="book-cards">
+      <div class="book-card">
+        <div class="book-num">Book 02 · 11 chapters</div>
+        <div class="book-title"><a href="docs/books/b02-identity/index.html">Identity &amp; Directory</a></div>
+        <div class="book-q">Why does identity matter?</div>
+        <div class="book-desc">Active Directory to Entra ID: the hidden migration surface, delegation without OUs, assessing the forest, and building the Entra ID target.</div>
+        <div class="book-links"><a href="docs/books/b02-identity/index.html">Read</a><a href="downloads/b02-identity-bundle.docx">Word</a><a href="docs/presentations/index.html#book-02">Deck</a></div>
+      </div>
+      <div class="book-card">
+        <div class="book-num">Book 03 · 13 chapters</div>
+        <div class="book-title"><a href="docs/books/b03-hr-identity/index.html">HR-Driven Identity</a></div>
+        <div class="book-q">Why should HR, not IT, decide who exists?</div>
+        <div class="book-desc">Federal HR 2.0 and the Entra ID migration as one opportunity: the HR record as the source of identity.</div>
+        <div class="book-links"><a href="docs/books/b03-hr-identity/index.html">Read</a><a href="downloads/b03-hr-identity-bundle.docx">Word</a><a href="docs/presentations/index.html#book-03">Deck</a></div>
+      </div>
+      <div class="book-card">
+        <div class="book-num">Book 04 · 10 chapters</div>
+        <div class="book-title"><a href="docs/books/b04-access/index.html">Access &amp; Privilege</a></div>
+        <div class="book-q">Why is every access decision a policy decision?</div>
+        <div class="book-desc">Conditional Access, privileged roles and tiers, applications and workload identities, and access governance.</div>
+        <div class="book-links"><a href="docs/books/b04-access/index.html">Read</a><a href="downloads/b04-access-bundle.docx">Word</a><a href="docs/presentations/index.html#book-04">Deck</a></div>
+      </div>
+      <div class="book-card">
+        <div class="book-num">Book 05 · 10 chapters</div>
+        <div class="book-title"><a href="docs/books/b05-devices/index.html">Devices &amp; Endpoints</a></div>
+        <div class="book-q">Why can't Group Policy come to the cloud?</div>
+        <div class="book-desc">Group Policy to Intune for devices and Azure Arc for servers, the hybrid-join trap, and the GPO sunset.</div>
+        <div class="book-links"><a href="docs/books/b05-devices/index.html">Read</a><a href="downloads/b05-devices-bundle.docx">Word</a><a href="docs/presentations/index.html#book-05">Deck</a></div>
+      </div>
+      <div class="book-card">
+        <div class="book-num">Book 06 · 33 chapters</div>
+        <div class="book-title"><a href="docs/books/b06-data-platform/index.html">Data Platform: SQL Server Identity</a></div>
+        <div class="book-q">Why is the database where legacy authentication hides?</div>
+        <div class="book-desc">From Windows Authentication to cloud identity: the estate inventory, the authentication audit, Arc, and NTLM elimination.</div>
+        <div class="book-links"><a href="docs/books/b06-data-platform/index.html">Read</a><a href="downloads/b06-data-platform-bundle.docx">Word</a><a href="docs/presentations/index.html#book-06">Deck</a></div>
+      </div>
+      <div class="book-card">
+        <div class="book-num">Book 07 · 8 chapters</div>
+        <div class="book-title"><a href="docs/books/b07-pki/index.html">PKI &amp; Certificates</a></div>
+        <div class="book-q">Why do certificates outlive every migration?</div>
+        <div class="book-desc">AD CS to Cloud PKI, Entra certificate-based authentication and Federal PKI, and retiring the old CAs.</div>
+        <div class="book-links"><a href="docs/books/b07-pki/index.html">Read</a><a href="downloads/b07-pki-bundle.docx">Word</a><a href="docs/presentations/index.html#book-07">Deck</a></div>
+      </div>
+      <div class="book-card">
+        <div class="book-num">Book 08 · 12 chapters</div>
+        <div class="book-title"><a href="docs/books/b08-ddi/index.html">DNS, DHCP &amp; IPAM</a></div>
+        <div class="book-q">Why is DNS now the control plane?</div>
+        <div class="book-desc">Split-brain DNS, the Active Directory DNS departure, cloud private endpoints, and the five critical decisions.</div>
+        <div class="book-links"><a href="docs/books/b08-ddi/index.html">Read</a><a href="downloads/b08-ddi-bundle.docx">Word</a><a href="docs/presentations/index.html#book-08">Deck</a></div>
+      </div>
+    </div>
+  </div>
+</section>
 
-## Project documents
+<section class="mw-section band" id="by-the-numbers">
+  <div class="mw-inner">
+    <p class="section-label">What's In Them</p>
+    <h2 class="section-title">Built to be checked, not taken on trust.</h2>
+    <p class="section-body">Each book keeps a verification log beside its chapters: every claim, the source it was checked against, and what changed when the source disagreed with the earlier draft.</p>
+    <div class="arc-grid">
+      <div class="arc-phase"><div class="phase-num">7</div><div class="phase-name">Books</div><div class="phase-desc">Published as drafts, from identity to DNS</div></div>
+      <div class="arc-phase"><div class="phase-num">97</div><div class="phase-name">Chapters</div><div class="phase-desc">Plus seventeen appendices of checklists, matrices and mappings</div></div>
+      <div class="arc-phase"><div class="phase-num">4</div><div class="phase-name">Questions</div><div class="phase-desc">Why, What, Who and How, in that order, in every book</div></div>
+      <div class="arc-phase"><div class="phase-num">15</div><div class="phase-name">Minutes</div><div class="phase-desc">A presentation per book, most with a narrated edition</div></div>
+    </div>
+  </div>
+</section>
 
-- [Project Charter](PROJECT-CHARTER.md)
-- [Project Plan](PROJECT-PLAN.md)
+<section class="mw-section" id="coming">
+  <div class="mw-inner">
+    <p class="section-label">The Full Workbook</p>
+    <h2 class="section-title">Eighteen books in all.</h2>
+    <p class="section-body">The remaining books are being built from the workbook's earlier documents, which stay in the repository until their book is published. <a href="docs/books/index.html">The Workbook Books</a> lists every book and its opening question.</p>
+    <div class="badge-grid">
+      <div class="badge"><b>B00</b>Orientation &amp; Program</div>
+      <div class="badge"><b>B01</b>The Transformation Arc</div>
+      <div class="badge"><b>B09</b>Network &amp; Transport</div>
+      <div class="badge"><b>B10</b>Cloud Boundary &amp; Landing Zone</div>
+      <div class="badge"><b>B11</b>Zero Trust &amp; Assessment</div>
+      <div class="badge"><b>B12</b>Security Operations &amp; Telemetry</div>
+      <div class="badge"><b>B13</b>Governance, Drift &amp; Evidence</div>
+      <div class="badge"><b>B14</b>Federal Compliance &amp; Authorization</div>
+      <div class="badge"><b>B15</b>Compliance Automation &amp; Day-2</div>
+      <div class="badge"><b>B16</b>Training &amp; Education</div>
+      <div class="badge"><b>B17</b>AI Identity Governance</div>
+    </div>
+  </div>
+</section>
+
+<section class="mw-section cta-band">
+  <p class="section-label">Present It</p>
+  <h2 class="section-title">Fifteen minutes per book, ready to give.</h2>
+  <p class="section-body">Every book has a Why / What / Who / How deck with full speaker notes and sourced slides, and most have a narrated, self-running edition.</p>
+  <div class="hero-actions">
+    <a class="btn-primary" href="docs/presentations/index.html">Presentations</a>
+    <a class="btn-ghost" href="https://github.com/WhalerMike/modernization-workbook" target="_blank" rel="noopener">Source on GitHub</a>
+  </div>
+</section>
+```
+
+:::

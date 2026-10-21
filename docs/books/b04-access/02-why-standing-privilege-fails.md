@@ -94,7 +94,7 @@ Three details decide whether the activation is a real control:
 
 PIM requires Microsoft Entra ID P2 or Microsoft Entra ID Governance licensing.[^c02-rbac-best]
 
-Just-in-time isn't only for directory roles. Server local administrator rights, Azure subscription Owner and Contributor, and membership in groups that guard sensitive applications are all standing privilege in most estates. PIM covers Azure resource roles and, through PIM for Groups, group membership and ownership.[^c02-pim] The Federal Compliance book [Vol III Book 01, Privileged Access Management](../../compliance/Vol_III_Book_01_Privileged_Access_Management.md) carries the detailed design for server access, privileged access workstations and session controls, and [Chapter 05](05-applications-and-workload-identities.md) takes up the non-human identities, like the application in the Midnight Blizzard case, that hold privilege without a person behind them.
+Just-in-time isn't only for directory roles. Server local administrator rights, Azure subscription Owner and Contributor, and membership in groups that guard sensitive applications are all standing privilege in most estates. PIM covers Azure resource roles and, through PIM for Groups, group membership and ownership.[^c02-pim] The Federal Compliance book [Vol III Book 01, Privileged Access Management](https://github.com/WhalerMike/modernization-workbook/blob/main/docs/compliance/Vol_III_Book_01_Privileged_Access_Management.md) carries the detailed design for server access, privileged access workstations and session controls, and [Chapter 05](05-applications-and-workload-identities.md) takes up the non-human identities, like the application in the Midnight Blizzard case, that hold privilege without a person behind them.
 
 ## Break-glass: the one governed exception
 
@@ -110,13 +110,13 @@ Emergency access ("break-glass") accounts are the answer, and they are the only 
 | Test periodically | Validate sign-in and an administrative task at least every 90 days, and after staff changes |
 | Alert on use | Alert on every sign-in and audit event, and review every use afterward as planned drill, real emergency, or misuse |
 
-The program adds three rules of its own. Break-glass accounts don't share authentication methods with normal administrator accounts, as Microsoft also advises.[^c02-emergency] Their names don't announce their purpose. And because NIST's AC-2(2) expects emergency accounts to be disabled automatically after a defined period,[^c02-sp80053] the system security plan records the permanent break-glass accounts as a documented deviation with compensating controls (monitoring, post-use review, and the 90-day validation) rather than leaving the conflict unstated. [Book 02, Chapter 09](../b02-identity/09-building-the-entra-target.md#emergency-access-accounts) gives the configuration standard; the procedure for storage, alerting and quarterly tests is in [Vol III Book 01](../../compliance/Vol_III_Book_01_Privileged_Access_Management.md).
+The program adds three rules of its own. Break-glass accounts don't share authentication methods with normal administrator accounts, as Microsoft also advises.[^c02-emergency] Their names don't announce their purpose. And because NIST's AC-2(2) expects emergency accounts to be disabled automatically after a defined period,[^c02-sp80053] the system security plan records the permanent break-glass accounts as a documented deviation with compensating controls (monitoring, post-use review, and the 90-day validation) rather than leaving the conflict unstated. [Book 02, Chapter 09](../b02-identity/09-building-the-entra-target.md#emergency-access-accounts) gives the configuration standard; the procedure for storage, alerting and quarterly tests is in [Vol III Book 01](https://github.com/WhalerMike/modernization-workbook/blob/main/docs/compliance/Vol_III_Book_01_Privileged_Access_Management.md).
 
 An undocumented, untested or shared break-glass account is the worst standing privilege of all: full tenant control, excluded from policy, owned by nobody. Governing it is the first thing the privileged-access project does.
 
 ## The privileged-access project
 
-The program runs this work as the [Privileged Access and Administrative Identity project](../../projects/privileged-access-charter.md). Its premise is the chapter's argument: administrative identity is the root of the root and needs controls of its own.
+The program runs this work as the [Privileged Access and Administrative Identity project](https://github.com/WhalerMike/modernization-workbook/blob/main/docs/projects/privileged-access-charter.md). Its premise is the chapter's argument: administrative identity is the root of the root and needs controls of its own.
 
 ### The problem it addresses
 

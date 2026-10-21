@@ -62,7 +62,7 @@ Every path runs the same four phases in the same order. Nothing is restricted un
 | 3 — Harden | State-changing | SPN repair, NTLM restriction, Conditional Access baseline | Close the identity gaps, only after Phase 1 is signed off |
 | 4 — Watch | Read-only | Conditional Access drift, compliance and cross-domain status | Keep the estate from drifting back |
 
-The endpoint project plan follows the same sequence, with a Phase 0 for charter and alignment in front of it ([endpoint and device project plan](../../projects/endpoint-device-plan.md)).
+The endpoint project plan follows the same sequence, with a Phase 0 for charter and alignment in front of it ([endpoint and device project plan](https://github.com/WhalerMike/modernization-workbook/blob/main/docs/projects/endpoint-device-plan.md)).
 
 ### Rules that hold on every path
 
@@ -391,7 +391,7 @@ The paths share the observe-before-change rule and the evidence requirement. The
 - Onboarding secrets left in plain text in startup scripts expose a credential that can register servers into your subscription.
 - Enforcing Conditional Access without the emergency access exclusion locks out recovery.
 - Treating domain unjoin as a side effect of onboarding instead of a sequenced decision.
-- Incomplete attribute population lets devices fall outside policy scope, which the endpoint charter lists as a key risk ([endpoint and device project charter](../../projects/endpoint-device-charter.md)).
+- Incomplete attribute population lets devices fall outside policy scope, which the endpoint charter lists as a key risk ([endpoint and device project charter](https://github.com/WhalerMike/modernization-workbook/blob/main/docs/projects/endpoint-device-charter.md)).
 
 ::: {.callout-tip}
 ## Continue the book

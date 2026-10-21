@@ -279,7 +279,7 @@ Many agencies run AD FS only to do certificate authentication. Entra CBA removes
 
 ## What Chapter 07 takes from here
 
-The device side leaves a list of certificates Intune can't deliver: domain controllers, LDAPS, NPS and other servers. The user side leaves a set of CAs Entra ID must trust and CRLs it must reach. [Chapter 07](07-coexistence-and-migration.md) runs both AD CS and the cloud issuers side by side while those lists shrink, and sequences the cutover. For the lifecycle and token context behind CBA, see the Federal Compliance book on [certificates, tokens and cryptographic identity](../../compliance/Vol_I_Book_03_Certificates_Tokens_Cryptographic_Identity.md).
+The device side leaves a list of certificates Intune can't deliver: domain controllers, LDAPS, NPS and other servers. The user side leaves a set of CAs Entra ID must trust and CRLs it must reach. [Chapter 07](07-coexistence-and-migration.md) runs both AD CS and the cloud issuers side by side while those lists shrink, and sequences the cutover. For the lifecycle and token context behind CBA, see the Federal Compliance book on [certificates, tokens and cryptographic identity](https://github.com/WhalerMike/modernization-workbook/blob/main/docs/compliance/Vol_I_Book_03_Certificates_Tokens_Cryptographic_Identity.md).
 
 ::: {.callout-tip}
 ## Continue the book
