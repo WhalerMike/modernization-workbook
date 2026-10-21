@@ -54,3 +54,16 @@ Sources: the existing page `20-the-closure-condition.md` (former narrative Book 
 | Book_09.md chapter listing, dependency-chain line ("Step 9 — Demonstrate sustained posture") | Listing replaced by Continue-the-book navigation; dependency-chain page is being archived | removed |
 | Book_09.md Authoritative references list (6 links) | Each source now footnoted where used (Disable SQL auth, dm_exec_connections, sign-in logs, Defender for SQL, SQL Audit); CISA ZTMM moved to Appendix A | kept (as footnotes) |
 | Book_09.md Continue-the-series links | Replaced with Chapter 19 / index / Chapter 21 | edited |
+
+## Consistency fixes, round 2 (2026-10-21)
+
+Book-wide consistency pass. *Design-consistency* rows restate a program choice the same way everywhere and need no new note; *factual* rows were re-researched against the primary source on 2026-10-21 and carry their own footnote.
+
+| # | Change | Where | Kind | Source |
+|---|---|---|---|---|
+| CR2-1 | New section "The closure record's field set": the single canonical table of closure fields (11 fields under the five conditions), adopted by Chapter 12 and projected by Runbook R09. Folds in R09's Entra-reconciliation field and Chapter 12's `IsExternalAuthenticationOnly` and extension-deployed fields | lines 50-66 | design-consistency | — |
+| CR2-2 | Paragraph listing the record's contents replaced by a reference to the table; the field set is defined here, not in Chapter 12 | lines 70-72 | design-consistency | — |
+| CR2-3 | Condition 1 names the break-glass group and its design (a Windows group holding `sysadmin`, empty by default; Appendix B) | line 40 | design-consistency | — |
+| CR2-4 | Condition 2: `sa` "disabled" changed to "disabled and renamed" | line 42 | design-consistency | — |
+| CR2-5 | Condition 3: usable logins outside the exception registry are type E or X **and map to a known Entra principal** (Chapter 17) | line 44 | design-consistency | — |
+| CR2-6 | "What this chapter establishes" item 1 names the field set | line 100 | design-consistency | — |

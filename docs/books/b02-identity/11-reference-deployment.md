@@ -90,14 +90,14 @@ The archetype produces about three hundred drift findings across the migration w
 
 ## Phase 5 — Validate
 
-After migration, the SPN inventory is captured again with a `post_migration` tag, and the two inventories are compared. The program checks four conditions:
+After migration, the SPN inventory is captured again with a `post_migration` tag, and the two inventories are compared. The program checks four conditions. Severity follows the Drift Engine's severity model, which derives it from the drift class and whether the claim is in active use; provenance drift on a live SPN is P1, as in Phase 4.
 
 | Condition | Drift class | Severity | How it's detected |
 |---|---|---|---|
 | SPN present before migration, absent after | `DRIFT-IDENTITY` | P1 | Set difference between the two phase-tagged inventories |
-| SPN host or port changed with no provenance record | `DRIFT-PROVENANCE` | P2 | Same service class and principal, different host or port |
+| SPN host or port changed with no provenance record | `DRIFT-PROVENANCE` | P1 | Same service class and principal, different host or port |
 | SPN owner changed with no recorded migration event | `DRIFT-AUTHZ` | P1 | Same SPN, different principal, no transition record |
-| SPN still in AD but no decided authentication path for the instance | `DRIFT-IDENTITY` | P2 | The instance has neither a configured Entra authentication path nor a recorded decision to keep Kerberos |
+| SPN still in AD but no decided authentication path for the instance | `DRIFT-IDENTITY` | P2: nothing in use has broken yet; a decision is missing | The instance has neither a configured Entra authentication path nor a recorded decision to keep Kerberos |
 
 The fourth row is restated from the source page, which described it as a cross-check against "Entra Kerberos delegation" and workload-identity federation. Entra ID doesn't take over Kerberos delegation for on-premises SQL Server SPNs. Those SPNs stay in Active Directory until the instance stops using Windows authentication. What gets validated is whether every instance has a decided path.
 

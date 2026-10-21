@@ -117,7 +117,7 @@ Three properties of the approval engine shape the design:
 For privileged roles "require MFA on activation" isn't enough, because an earlier sign-in can satisfy it.[^c08-settings] The program's objective is a fresh, phishing-resistant proof from a managed device at the moment of elevation, so it uses an authentication context. The order matters: Microsoft requires the Conditional Access policy to exist and be enabled before the context is selected in PIM.[^c08-settings]
 
 1. Create authentication context **`c1`**, display name `FMP-PIM-Activation`. Authentication contexts are labels `c1` to `c99` ([Chapter 03](03-the-conditional-access-model.md)).
-2. Create the Conditional Access policy for it, `PIM-Activation-c1`, targeting the authentication context, **all users** (or the eligible population), and excluding the emergency access group. Grant: authentication strength `FMP-Privileged-SeparateDevice` ([Appendix A](appendix-a-conditional-access-templates.md)) **and** compliant device. Session: **sign-in frequency, Every time**, which forces reauthentication on every activation.[^c08-settings] Turn it **On**; report-only doesn't count.
+2. Create the Conditional Access policy for it, `PIM-Activation-c1`, named for its context rather than numbered, because authentication-context policies sit outside the [Chapter 07](07-the-conditional-access-policy-library.md#conventions-used-in-every-policy) library's numbering. Target the authentication context and **all users** (or the eligible population), and exclude the emergency access group. Grant: authentication strength `FMP-Privileged-SeparateDevice` ([Appendix A](appendix-a-conditional-access-templates.md)) **and** compliant device. Session: **sign-in frequency, Every time**, which forces reauthentication on every activation.[^c08-settings] Turn it **On**; report-only doesn't count.
 3. Only then select `c1` in each role's settings (Steps 3 and 4).
 
 Constraints to design around:[^c08-settings]
@@ -370,7 +370,7 @@ Cross-tenant access settings and named-location permissions can also be protecte
 The build order runs the same way as Step 2:[^c08-protected-actions-add]
 
 1. Confirm you hold Conditional Access Administrator or Security Administrator.
-2. Create a second authentication context, **`c2`** (`FMP-ProtectedActions`), and its Conditional Access policy: the privileged authentication strength and compliant device, **excluding an emergency access account**.
+2. Create a second authentication context, **`c2`** (`FMP-ProtectedActions`), and its Conditional Access policy, `ProtectedActions-c2`: the privileged authentication strength and compliant device, **excluding an emergency access account**.
 3. Confirm the policy is **On**. A policy that's off or in report-only mode doesn't satisfy a protected action.
 4. Assign `c2` to the permissions above under **Entra ID** > **Roles & admins** > **Protected actions**.
 5. Test by performing each action and confirming the step-up prompt appears.
@@ -512,7 +512,7 @@ What an assessor will ask for, and where it comes from:
 | Role access reviews, outcomes and removals | PIM access review history | Each review cycle |
 | PIM alert state, especially assignments outside PIM | **Microsoft Entra roles** > **Alerts**; SIEM incidents | Continuous |
 | Emergency access inventory, exclusions, credential custody, test and use records | Tenant configuration; alert rule; test and post-use records | Each 90-day test |
-| `PIM-Activation-c1` and protected-action policies, with state **On** | Conditional Access export | On change |
+| `PIM-Activation-c1` and `ProtectedActions-c2`, with state **On** | Conditional Access export | On change |
 | Audit export configuration and retention | Azure Monitor diagnostic settings; workspace retention | On change |
 
 ::: {.callout-note}

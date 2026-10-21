@@ -146,3 +146,14 @@ Applied from the verified review of Books 02–05. Sources were opened again on 
 |---|---|---|---|---|
 | R1 | Privileged-role review cadence aligned across Books 02 and 04: Tier 0 monthly, other privileged roles quarterly, never self-review alone. The cadence is the program's design; AC-2(j) and AC-6(7) leave the frequency organization-defined; PIM row now monthly Tier 0 / quarterly others; security team, never assignees alone (Members (self) leaves role-assignable groups out of Entra role reviews) | Access reviews table | corrected | c10-pim-review <https://learn.microsoft.com/entra/id-governance/privileged-identity-management/pim-create-roles-and-resource-roles-review#create-access-reviews> |
 | R2 | AC-6(7) evidence paragraphs and Phase 5 step 4 now say monthly (Tier 0) and quarterly reviews; frequency is organization-defined | Access reviews; Reviewing privileged access (AC-6(7)); Phase 5 | corrected | c10-fedramp-ac <https://fedramp.gov/2026/reference/controls/access-control/> |
+
+## Revision 2026-10-21 — consistency round 2
+
+Internal-consistency fixes from the Book 02 deck review. Sources were opened again on Oct 21, 2026.
+
+| # | Change | Where | Kind | Source |
+|---|---|---|---|---|
+| K1 | Roadmap sequencing stated: phase 1 first, phases 2-4 in parallel, 12-18 weeks end to end (rows would sum to 28-42 in sequence). Playbook Phase 7 duration 8-16 -> 12-18 weeks to match | Phishing-resistant roadmap (line 209); Phase 7 (line 476) | design consistency; no new note | Program estimates |
+| K2 | Playbook total "40 to 70 weeks" -> "43 to 68 weeks, counting Phase 10's initial setup"; the sum of the eleven phase estimates (2-4, 2-3, 3-4, 4-6, 6-8, 2-3, 4-6, 12-18, 2-4, 4-8, 2-4) | Playbook intro (line 394) | arithmetic consistency; no new note | Program estimates |
+| K3 | Cross-reference labels fixed: "HR-Driven Identity, Chapter 6" -> "Book 03, Chapter 08" (target 08-joiner-mover-leaver.md); "HR-Driven Identity, Chapter 9" -> "Book 03, Chapter 11" (target 11-drift-metrics-and-evidence.md). Targets unchanged; labels now match the Book 03 chapter titles and the workbook's "Book NN, Chapter NN" convention | Lifecycle Workflows (line 62); drift (line 519) | wording only | Book 03 chapter front matter |
+| K4 | Phase 1 prerequisite added: any Connect Sync server on 2.6.84.0+ with application-based authentication, required by April 7, 2027 | Phase 1 (line 412) | factual; new note | c10-connect-hardening <https://learn.microsoft.com/entra/identity/hybrid/connect/harden-update-ad-fs-pingfederate> |

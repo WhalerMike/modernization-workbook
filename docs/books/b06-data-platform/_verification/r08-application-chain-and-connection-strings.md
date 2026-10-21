@@ -58,3 +58,11 @@ Microsoft claims were checked on Microsoft Learn on 2026-10-20. Script and funct
 | Verification & rollback | edited | claim 26 |
 | Closing italic footer | removed | duplicated the body; paths and canon residue |
 | — | added | "Continue the book" callout (R07 ← → R09); footnotes `[^r08-*]` (15) |
+
+## Consistency fixes, round 2 (2026-10-21)
+
+Book-wide consistency pass. *Design-consistency* rows restate a program choice the same way everywhere and need no new note; *factual* rows were re-researched against the primary source on 2026-10-21 and carry their own footnote.
+
+| # | Change | Where | Kind | Source |
+|---|---|---|---|---|
+| CR2-1 | Service-principal connection string marked a documented exception (comment in the code block); the credential bullet states Chapter 11's rule: prefer the certificate through a token callback, the secret-based mode only as an exception, secret from Key Vault and rotated. New note `[^r08-sp-cert]` | lines 124-125, 134; note line 193 | design-consistency with factual support | <https://learn.microsoft.com/sql/connect/ado-net/sql/azure-active-directory-authentication>; <https://learn.microsoft.com/sql/connect/ado-net/sql/application-security-scenarios-sql-server> |

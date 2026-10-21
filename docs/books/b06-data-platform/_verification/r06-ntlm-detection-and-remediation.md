@@ -67,3 +67,12 @@ Applied from the verified review findings (critique claims re-checked against pr
 | # | Change | Where | Verdict | Source |
 |---|---|---|---|---|
 | RF-1 | Two bullets both labelled "Phase B —" relabelled "Phase B, step 1" (refuse LM and NTLMv1) and "Phase B, step 2" (restrict NTLMv2); phase name kept because `Get-FMPNtlmGpoReport` emits `phase_b_ntlmv2_only` | Phased Group Policy restriction (lines 143–144) | wording only, no new factual claim; no new footnote | — |
+
+## Consistency fixes, round 2 (2026-10-21)
+
+Book-wide consistency pass. *Design-consistency* rows restate a program choice the same way everywhere and need no new note; *factual* rows were re-researched against the primary source on 2026-10-21 and carry their own footnote.
+
+| # | Change | Where | Kind | Source |
+|---|---|---|---|---|
+| CR2-1 | Linked-server remediation option 1 no longer offers the Entra password option: SQL Server 2025 managed identity; SQL Server 2022 access token generated from the application's client secret (Chapter 11's documented exception); the password option named and rejected as deprecated and incompatible with mandatory MFA, matching Chapter 14. New notes `[^r06-linked-token]`, `[^r06-entra-password]` | line 133; notes lines 176-177 | factual | <https://learn.microsoft.com/sql/relational-databases/security/authentication-access/azure-ad-authentication-sql-server-linked-server>; <https://learn.microsoft.com/sql/connect/oledb/features/using-azure-active-directory> |
+| CR2-2 | October 2026 NTLMv1 scope ("Windows 11 versions 24H2 to 26H2 and Windows Server 2025") verified correct; no change | line 143 | verified | <https://learn.microsoft.com/windows/release-health/windows-message-center> |

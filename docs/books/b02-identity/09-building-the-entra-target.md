@@ -96,13 +96,14 @@ Distribution groups route mail. They're either mail-enabled security groups, whi
 
 ### Service accounts
 
-Service accounts are a critical identity class that is often under-governed. They come in three forms in Active Directory, each with a different path to Entra ID. The detailed migration matrix is in [Modernizing service accounts](#modernizing-service-accounts).
+Service accounts are a critical identity class that is often under-governed. They come in four forms in Active Directory, each with a different path to Entra ID. The detailed migration matrix is in [Modernizing service accounts](#modernizing-service-accounts).
 
 | AD service account type | Characteristics | Entra ID target | Risk profile |
 |---|---|---|---|
 | Traditional (user object, often an `svc-` prefix) | Password-based, often "password never expires," often allowed to log on interactively | Application registration with a certificate or federated credential; managed identity where the workload runs in Azure | High: static credentials, often over-privileged |
 | Managed service account (MSA) | Automatically managed password, bound to one server | gMSA on-premises; managed identity if the workload moves to Azure | Medium: server-scoped, little governance visibility |
 | Group managed service account (gMSA) | Automatically managed password, usable by several servers | Retain for on-premises Kerberos workloads; workload identity federation when the workload moves | Medium: better than traditional, still AD-dependent |
+| Delegated managed service account (dMSA) | Windows Server 2025 domains only; supersedes a traditional account, binds authentication to mapped machine identities, and disables the original account's password[^c09-dmsa] | Retain for on-premises Kerberos workloads; same cloud path as a gMSA when the workload moves | Low to medium: resists Kerberoasting, still AD-dependent |
 
 ### Computer objects
 
@@ -258,6 +259,11 @@ Two corrections to older guidance matter here. First, Group Writeback v2 in Conn
 ::: {.callout-tip}
 ## Recommendation: Cloud Sync unless a Connect-only requirement applies
 Use Cloud Sync for new deployments and plan to migrate existing Connect Sync installations to it. Stay on Connect Sync, for now, only where a forest needs something Cloud Sync doesn't do: more than 150,000 objects in a domain, groups over 50,000 members, advanced sync rules, cross-forest references, or attribute merging across domains. Both engines can run in the same forest with mutually exclusive scopes, which lets you move populations in stages.[^c09-hybrid-scenarios]
+:::
+
+::: {.callout-important}
+## Connect Sync deadline: April 7, 2027
+Every server still running Connect Sync must be on version 2.6.84.0 or later and configured for application-based authentication by April 7, 2027. Microsoft is retiring the legacy authentication the sync service uses, and from that date all synchronization services fail on a server that doesn't meet both conditions, until it's upgraded.[^c09-connect-hardening] The upgrade alone isn't enough. Starting with 2.6.84.0, Connect Sync no longer switches an existing server from the legacy directory synchronization account to application-based authentication on its own; run the wizard and choose *Configure application-based authentication to Microsoft Entra ID*.[^c09-connect-versions] Installing or upgrading to 2.6.84.0 over an existing ADSync database can fail, so use 2.6.91.0 or later in that case.[^c09-connect-versions] The date applies whatever the Cloud Sync migration schedule says.
 :::
 
 ![The sync and sign-in decision: Cloud Sync unless a Connect-only requirement applies, password hash sync in every case, pass-through authentication only as a transition, and AD FS as a decommission target.](../../images/diagrams/b02-identity/svg/ch09-sync-auth-decision.svg){#fig-ch09-sync-auth-decision fig-alt="A top-to-bottom decision flow. A slate box, forest assessment (object counts per domain, group sizes, sync rules, trusts), leads to an amber decision: any Connect-only requirement, listing over 150,000 objects in a domain, groups over 50,000 members, advanced sync rules or cross-forest references, and pass-through or AD FS configured by the sync tool. A green no branch leads to Microsoft Entra Cloud Sync, labeled default, with multiple active agents and group provisioning to AD. A yes branch leads to Microsoft Entra Connect Sync with a staging server. Both lead to a green box, password hash sync on, required for leaked-credential detection and outage survival. That leads to an amber decision: must on-premises account state be enforced at sign-in. A green no branch leads to PHS as the sign-in method, labeled recommended. An amber yes branch leads to pass-through auth with three or more agents, labeled transitional. A separate red box, AD FS federation, labeled legacy, has a dashed red arrow labeled migrate pointing to PHS as the sign-in method, with the note move users with staged rollout, then convert domains."}
@@ -491,8 +497,9 @@ Each AD service account maps to an Entra ID construct that depends on where the 
 |---|---|---|---|---|
 | Traditional | Calls Microsoft 365 or other Entra-protected APIs | Application registration and service principal | Certificate, or federated credential where the host has an OIDC issuer | Certificate rotation (program standard: annual), or no stored secret |
 | Traditional | Azure resource | Managed identity (user-assigned preferred) | Managed by Azure | None |
-| Traditional | On-premises, Kerberos only | gMSA | Kerberos | Managed by AD |
-| MSA | On-premises | gMSA (upgrade first) | Kerberos | Managed by AD |
+| Traditional | On-premises, Kerberos only | gMSA, or a dMSA on a Windows Server 2025 domain | Kerberos | Managed by AD |
+| MSA | On-premises | gMSA (upgrade first; an MSA or gMSA can't be migrated to a dMSA)[^c09-dmsa] | Kerberos | Managed by AD |
+| dMSA | On-premises | Keep the dMSA | Kerberos | Managed by AD |
 | gMSA | Moving to the cloud | Workload identity federation or managed identity | Federated token or managed | No stored secrets |
 | gMSA | Hybrid | Keep the gMSA, plus an application registration for cloud calls | Kerberos on-premises; certificate or federated credential to the cloud | Split |
 | IIS application pool identity | On-premises IIS | gMSA now; managed identity once moved to Azure | Kerberos, then managed | Progressive |
@@ -734,7 +741,7 @@ Target the Admins persona with a group rather than by directory role alone: Cond
 
 - **Trusted networks.** IP ranges for offices, VPN egress points, and trusted proxies.
 - **Trusted countries.** The United States, with others added only with documented justification.
-- **Location policy.** Block sign-ins from outside the United States for all personas except approved travel exceptions. This is a program policy choice, not a property of GCC itself. GCC provides U.S. data residency,[^c09-gov-clouds] but users can sign in from anywhere unless policy blocks it.
+- **Location policy.** Location blocking is set per persona. Internals are blocked outside the United States except for approved travel exceptions (CA008). Admins are held to the stricter rule of trusted networks only (CA005), and workload identities likewise (CA015). Externals and guests aren't location-blocked in this baseline; MFA, terms of use and risk policies govern them. This is a program policy choice, not a property of GCC itself. GCC provides U.S. data residency,[^c09-gov-clouds] but users can sign in from anywhere unless policy blocks it.
 
 ### Authentication strengths
 
@@ -810,6 +817,9 @@ Never switch a policy that targets all users from off straight to on. A misconfi
 [^c09-ad-attack-surface]: Microsoft Learn, "Reducing the Active Directory Attack Surface," <https://learn.microsoft.com/windows-server/identity/ad-ds/plan/security-best-practices/reducing-the-active-directory-attack-surface> (accessed Oct 20, 2026).
 [^c09-protected-actions]: Microsoft Learn, "What are protected actions in Microsoft Entra ID?," <https://learn.microsoft.com/entra/identity/role-based-access-control/protected-actions-overview> (accessed Oct 20, 2026).
 [^c09-managed-identity]: Microsoft Learn, "What is managed identities for Azure resources?," <https://learn.microsoft.com/entra/identity/managed-identities-azure-resources/overview> (accessed Oct 20, 2026).
+[^c09-dmsa]: Microsoft Learn, "Delegated Managed Service Accounts overview," <https://learn.microsoft.com/windows-server/identity/ad-ds/manage/delegated-managed-service-accounts/delegated-managed-service-accounts-overview> (accessed Oct 21, 2026).
+[^c09-connect-hardening]: Microsoft Learn, "Hardening update to Microsoft Entra Connect Sync," <https://learn.microsoft.com/entra/identity/hybrid/connect/harden-update-ad-fs-pingfederate> (accessed Oct 21, 2026).
+[^c09-connect-versions]: Microsoft Learn, "Microsoft Entra Connect: Version release history," <https://learn.microsoft.com/entra/identity/hybrid/connect/reference-connect-version-history> (accessed Oct 21, 2026).
 [^c09-cloud-sync-decision]: Microsoft Learn, "Microsoft Entra Cloud Sync migration decision guide," <https://learn.microsoft.com/entra/identity/hybrid/cloud-sync/connect-to-cloud-sync-decision-guide> (accessed Oct 20, 2026).
 [^c09-governance-licensing]: Microsoft Learn, "Microsoft Entra ID Governance licensing fundamentals," <https://learn.microsoft.com/entra/id-governance/licensing-fundamentals> (accessed Oct 20, 2026).
 [^c09-dynamic-license]: Microsoft Learn, "Manage rules for dynamic membership groups in Microsoft Entra ID," <https://learn.microsoft.com/entra/identity/users/groups-dynamic-membership> (accessed Oct 20, 2026).

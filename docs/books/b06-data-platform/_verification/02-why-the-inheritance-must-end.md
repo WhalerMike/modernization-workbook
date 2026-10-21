@@ -55,3 +55,12 @@ Checked October 20, 2026. Source: the existing page (former Book 01, Chapter 2) 
 | Footnotes (8) | Re-opened and reformatted; `ntlm-removed` now cites what it says; added deprecated-features, FAQ, KB5066470, LmCompat, lifecycle, risk-policies, cloud-first, without-Arc, SP 800-53 | edited |
 | Diagram `book-01-ch02-three-drivers-and-order` | Same position | kept; source edited: step tags "Book 02/04/05/06" → "Chapters 03–06 / 09–10 / 11–12 / 14–15" (stale references) |
 | Diagram `book-01-ch02-conditional-access-leverage` | Same position | kept; source unchanged |
+
+## Consistency fixes, round 2 (2026-10-21)
+
+Book-wide consistency pass. *Design-consistency* rows restate a program choice the same way everywhere and need no new note; *factual* rows were re-researched against the primary source on 2026-10-21 and carry their own footnote.
+
+| # | Change | Where | Kind | Source |
+|---|---|---|---|---|
+| CR2-1 | October 2026 `BlockNTLMv1SSO` default change scoped to Windows 11, versions 24H2, 25H2, 26H1 and 26H2, and Windows Server 2025 (was "Windows 11" unqualified); new note `[^c02-ntlmv1-mc]`. Chapter 14 and Runbook R06 ("24H2 through 26H2") were already right | line 33; note line 102 | factual (corrected; this chapter was the wrong one) | Windows message center entry of Oct 14, 2026, <https://learn.microsoft.com/windows/release-health/windows-message-center>; KB5066470, <https://support.microsoft.com/help/5066470> |
+| CR2-2 | `[^c02-blockntlmv1sso]` title updated to the KB's current title, "Manage NTLMv1 changes and prevent network authentication issues in Windows," with its applies-to list; accessed date Oct 21, 2026 | note line 86 | factual (citation corrected) | <https://support.microsoft.com/help/5066470> |

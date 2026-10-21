@@ -43,3 +43,11 @@ Checked October 20, 2026. Source: the existing page (former Book 08, Chapter 2) 
 | — | Continue the book | added (Next → Chapter 20) |
 
 Diagram source edited: `book-08-ch02-connection-string-migration.flow.yaml` — the service-principal row said "A certificate (preferred) or secret, from Azure Key Vault"; the connection-string mode takes a secret, so it now says the secret comes from Key Vault and a certificate needs a token callback in code (claim 4). Needs re-render. `book-08-ch02-credential-chain.flow.yaml` checked, no change.
+
+## Consistency fixes, round 2 (2026-10-21)
+
+Book-wide consistency pass. *Design-consistency* rows restate a program choice the same way everywhere and need no new note; *factual* rows were re-researched against the primary source on 2026-10-21 and carry their own footnote.
+
+| # | Change | Where | Kind | Source |
+|---|---|---|---|---|
+| CR2-1 | Service-principal paragraph restated with Chapter 11's credential rule: prefer a certificate through `AccessTokenCallback`; the secret-based connection-string mode is a documented exception, secret in Key Vault, injected at runtime, rotated. New notes `[^c19-sp-cert]`, `[^c19-sp-secret]` | line 44; notes lines 101-102 | design-consistency with factual support | <https://learn.microsoft.com/sql/connect/ado-net/sql/azure-active-directory-authentication>; <https://learn.microsoft.com/sql/connect/ado-net/sql/application-security-scenarios-sql-server> |

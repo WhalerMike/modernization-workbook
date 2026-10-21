@@ -39,3 +39,11 @@ Checked October 20, 2026. Sources: the existing page (former Book 02, Chapter 1)
 | Ch1 Forest Entanglement | Forest entanglement | kept (renumbering) |
 | Ch1 "What Book 02 establishes" | "What this chapter establishes" | kept |
 | Diagram `book-02-ch01-three-forms-of-sprawl` | After the opening prose | kept; source unchanged ("Versions from 2008 to 2022" still accurate for the legacy population) |
+
+## Consistency fixes, round 2 (2026-10-21)
+
+Book-wide consistency pass. *Design-consistency* rows restate a program choice the same way everywhere and need no new note; *factual* rows were re-researched against the primary source on 2026-10-21 and carry their own footnote.
+
+| # | Change | Where | Kind | Source |
+|---|---|---|---|---|
+| CR2-1 | Zombie definition "no connection in over a year" changed to "400 or more days, the program's zombie threshold" (matches Chapter 05 and Runbook R02's `-ZombieThresholdDays` default of 400) | line 48 | design-consistency | — |

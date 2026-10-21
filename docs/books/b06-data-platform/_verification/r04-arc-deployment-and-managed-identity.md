@@ -61,3 +61,11 @@ Consistency check: Book 05, Chapter 09 (`../b05-devices/09-servers-under-azure-a
 | Rollback | edited | claims 29–30 |
 | Closing italic footer | removed | duplicated the body; canon residue |
 | — | added | "Continue the book" callout (R03 ← → R05) |
+
+## Consistency fixes, round 2 (2026-10-21)
+
+Book-wide consistency pass. *Design-consistency* rows restate a program choice the same way everywhere and need no new note; *factual* rows were re-researched against the primary source on 2026-10-21 and carry their own footnote.
+
+| # | Change | Where | Kind | Source |
+|---|---|---|---|---|
+| CR2-1 | Host prerequisite "a supported Windows Server host" changed to Windows Server 2019 or later, the program's floor from Chapter 07; adds that SQL Server enabled by Azure Arc itself supports Windows Server 2016 and later, and that Windows Server 2016's extended support ends January 12, 2027. New notes `[^r04-sql-os]`, `[^r04-ws2016]` | line 56; notes lines 249, 251 | design-consistency with factual support | <https://learn.microsoft.com/sql/sql-server/azure-arc/prerequisites#supported-configurations>; <https://learn.microsoft.com/lifecycle/products/windows-server-2016> |

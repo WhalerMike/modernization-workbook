@@ -63,3 +63,12 @@ Checked October 20, 2026. Sources: the existing page (former Book 06, Chapter 1)
 | Book_06 "Continue the series" | Continue the book callout | edited (new reading order; Previous → Chapter 13) |
 
 Diagram source edited: `book-06-ch01-when-sspi-falls-back.flow.yaml` — q3/p1 now say a missing SPN gives NTLM while a duplicate or wrong-account SPN fails (claim 14–15); "Book 05" → "Chapters 11–12". Needs re-render.
+
+## Consistency fixes, round 2 (2026-10-21)
+
+Book-wide consistency pass. *Design-consistency* rows restate a program choice the same way everywhere and need no new note; *factual* rows were re-researched against the primary source on 2026-10-21 and carry their own footnote.
+
+| # | Change | Where | Kind | Source |
+|---|---|---|---|---|
+| CR2-1 | Linked-server Entra option on SQL Server 2022 restated as an access token for an Entra application, generated from the application's client secret, a documented exception under Chapter 11's rule (was "an Entra identity in the provider string"); new note `[^c14-linked-token]`. The existing advice to avoid the deprecated password option stands, and Runbook R06 now matches it | line 97; note line 138 | factual | <https://learn.microsoft.com/sql/relational-databases/security/authentication-access/azure-ad-authentication-sql-server-linked-server> |
+| CR2-2 | `[^c14-kb]` title updated to the KB's current title and applies-to list; events 4024 and 4025 re-checked; accessed date Oct 21, 2026. The October 2026 scope in this chapter (24H2 through 26H2, and Windows Server 2025) was verified correct | note line 121 | factual (citation corrected; scope verified) | <https://support.microsoft.com/help/5066470>; <https://learn.microsoft.com/windows/release-health/windows-message-center> |

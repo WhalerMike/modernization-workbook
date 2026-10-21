@@ -44,7 +44,7 @@ Non-production instances may compress the 30-day observation window only with do
 
 Every active type-S login on a retain or target instance migrates to a service-principal or managed-identity login, or carries a documented exception with a named compensating control and a sunset date. Open-ended retention isn't an option. A SQL Authentication login is checked against a password in `master` and never reaches Microsoft Entra ID or a domain controller, so Conditional Access can't evaluate it[^c12-ca] and Microsoft Defender for Identity, whose sensors run on domain controllers and other identity servers, never sees it.[^c12-mdi]
 
-`sa` is disabled and renamed on every production instance. Any retained emergency recovery is a documented, monitored break-glass procedure, not an active `sa`. An enabled `sa` with a non-rotated password is the authentication audit's highest-priority finding. On SQL Server 2025 enabled by Azure Arc, the Disable SQL Authentication setting closes the door for `sa` and every other SQL login together.[^c12-disable-sql]
+`sa` is disabled and renamed on every production instance. Any retained emergency recovery is a documented, monitored break-glass procedure, not an active `sa`: the break-glass Windows group of [Appendix B](appendix-b-ato-kit.md), empty by default and recorded in the exception registry. An enabled `sa` with a non-rotated password is the authentication audit's highest-priority finding. On SQL Server 2025 enabled by Azure Arc, the Disable SQL Authentication setting closes the door for `sa` and every other SQL login together.[^c12-disable-sql]
 
 ## Decision 4: pre-2022 instances are upgrade-or-except
 
@@ -54,15 +54,15 @@ Connections that can't reach Kerberos or Entra authentication by that date use c
 
 ## Decision 5: the per-instance compliance record is the closure artifact
 
-An instance is closed when its compliance record simultaneously shows:
+An instance is closed when its compliance record simultaneously satisfies the five closure conditions. The decision adopts the field set of [Chapter 20](20-the-closure-condition.md), which is the canonical list; in summary:
 
-- SQL authentication refused: `LoginMode = 1` (`SERVERPROPERTY('IsIntegratedSecurityOnly') = 1`), and on SQL Server 2025 the Disable SQL Authentication setting on (`SERVERPROPERTY('IsExternalAuthenticationOnly') = 1`)[^c12-auth-mode][^c12-disable-sql]
-- zero active type-S logins outside the exception registry, and zero active type-U or type-G logins
-- `sa` disabled and renamed
-- the Arc Connected Machine agent connected and healthy, and the Azure extension for SQL Server deployed with Entra authentication configured[^c12-arc-servers]
-- for human principals, Conditional Access MFA enforcement satisfied for SQL Server resource sign-ins over a defined validation period
+1. No usable Windows-backed principal: zero usable type-U and type-G logins, other than the documented break-glass group in the exception registry.
+2. SQL Authentication eliminated: SQL logins refused (`LoginMode = 1`, so `SERVERPROPERTY('IsIntegratedSecurityOnly') = 1`, and on SQL Server 2025 the Disable SQL Authentication setting on, `SERVERPROPERTY('IsExternalAuthenticationOnly') = 1`),[^c12-auth-mode][^c12-disable-sql] zero usable type-S logins outside the exception registry, and `sa` disabled and renamed.
+3. Entra authentication observed working: every other usable login is a type-E or type-X login that maps to a known Entra principal, with no remote NTLM or Kerberos connections and the expected Entra sign-ins over the validation period.
+4. A cloud identity for the engine: the Arc Connected Machine agent connected, the Azure extension for SQL Server deployed, and Entra authentication configured.[^c12-arc-servers]
+5. MFA for every human: Conditional Access MFA satisfied for SQL Server resource sign-ins over the validation period.
 
-"Done" becomes a queryable posture instead of a claim. Because Windows Authentication is always available and no engine setting disables it,[^c12-choose-mode] the record evidences the Entra-exclusive posture through the absence of Windows logins rather than by reading a mode switch ([Chapter 20](20-the-closure-condition.md)). Closure is continuously verified: the authentication audit runs on a schedule, and drift (`LoginMode` reverting, a new type-S, U or G login, the Arc agent going offline) is a violation that triggers remediation.
+"Done" becomes a queryable posture instead of a claim. Because Windows Authentication is always available and no engine setting disables it,[^c12-choose-mode] the record evidences the Entra-exclusive posture through the absence of Windows logins outside the break-glass exception rather than by reading a mode switch ([Chapter 20](20-the-closure-condition.md)). Closure is continuously verified: the authentication audit runs on a schedule, and drift (`LoginMode` reverting, a new type-S, U or G login, the Arc agent going offline) is a violation that triggers remediation.
 
 ::: {.callout-note title="What this chapter establishes"}
 1. Consolidation gates migration, and the parallel run is required in production.

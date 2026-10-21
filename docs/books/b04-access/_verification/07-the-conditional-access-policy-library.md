@@ -187,3 +187,11 @@ The body now states the guidance directly. These were the earlier positions it u
 - The source's emergency-access alert matched user names containing "BreakGlass".
 - The source mapped sign-in frequency to AC-11 and risk policies to AC-7.
 - Mapping table: the source's Group Policy equivalent for CA-002 (LAN Manager level) was wrong; CA-040 combined AND and OR and used the retired approved-app grant.
+
+## Revision 2026-10-21 — consistency round 2
+
+Book-internal consistency fixes. Factual changes were checked against sources opened on Oct 21, 2026; design-consistency changes carry no new note.
+
+| # | Change | Where | Verdict | Source |
+|---|---|---|---|---|
+| C1 | New conventions bullet: authentication-context policies (`PIM-Activation-c1`, `ProtectedActions-c2`) aren't numbered, are named for their context, defined in Ch08, held as code with the library, and turned On before their context is selected instead of following the report-only waves | Conventions used in every policy | design-consistency (Ch08 Steps 2 and 6; Ch03 naming) | — |
