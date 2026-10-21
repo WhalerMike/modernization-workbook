@@ -1,7 +1,7 @@
 ---
 title: "Book 03 — HR-Driven Identity"
 subtitle: "HR-Driven Identity Modernization — an enterprise data architecture case study: using Federal HR 2.0 and the Entra ID migration to start HR-driven Entra ID, Active Directory and ICAM on OPM standard attributes"
-description: "Book 03 of the Modernization Workbook, one book for HR-driven identity modernization in a federal civilian agency: the modernization outcomes, why the HR system of record is the source of authority, the Federal HR 2.0 program, attribute authority, provisioning services, the canonical workforce identity model, joiner-mover-leaver with Lifecycle Workflows, credentials and certificates, attribute-derived access, drift and evidence, the phased execution plan, and an illustrative reference deployment."
+description: "Book 03 of the Federal Modernization Workbook, one book for HR-driven identity modernization in a federal civilian agency: the modernization outcomes, why the HR system of record is the source of authority, the Federal HR 2.0 program, attribute authority, provisioning services, the canonical workforce identity model, joiner-mover-leaver with Lifecycle Workflows, credentials and certificates, attribute-derived access, drift and evidence, the phased execution plan, and an illustrative reference deployment."
 doc-type: section-landing
 audience: [Executive, Technical, Customer]
 family: b03-hr-identity

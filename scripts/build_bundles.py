@@ -483,9 +483,10 @@ class Builder:
         self.media.mkdir(parents=True)
         self.prepared: dict[Path, Prepared] = {}
         self.word_ready: dict[Path, Path] = {}
-        reference = (yaml.safe_load(CONFIG.read_text()).get("defaults") or {}).get(
-            "reference_doc", "assets/reference-mslearn.docx")
+        cfg_defaults = yaml.safe_load(CONFIG.read_text(encoding="utf-8")).get("defaults") or {}
+        reference = cfg_defaults.get("reference_doc", "assets/reference-mslearn.docx")
         self.reference_doc = REPO / reference
+        self.disclaimer = cfg_defaults.get("disclaimer", "")  # printed under the title of every bundle
 
     # Pages are prepared once and shared by every bundle that uses them.
     def prepare(self, page: Path) -> Prepared:
@@ -573,6 +574,7 @@ class Builder:
             "--output", str(output),
             "--metadata", f"title={b.title}",
             *(["--metadata", f"subtitle={b.subtitle}"] if b.subtitle else []),
+            *(["--metadata", f"abstract={self.disclaimer}"] if self.disclaimer else []),
             "--toc", f"--toc-depth={b.toc_depth}",
             "--lua-filter", str(FILTER),
             "--reference-doc", str(self.reference_doc),

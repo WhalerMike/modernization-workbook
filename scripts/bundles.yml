@@ -28,6 +28,7 @@ defaults:
   reference_doc: assets/reference-mslearn.docx
   toc_depth: 2
   subtitle: "Federal Modernization Workbook — Word edition"
+  disclaimer: "Not an official U.S. federal government publication. The Federal Modernization Workbook is independent technical analysis. It does not represent the position of, and has not been reviewed or endorsed by, any federal agency."
 
 bundles:
   # ---------------------------------------------------------------------
