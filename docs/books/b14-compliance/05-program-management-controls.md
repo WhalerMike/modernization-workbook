@@ -219,7 +219,7 @@ FISMA sets the floor for testing: periodic testing and evaluation of the effecti
 | Contingency plan test | Annually, at the exercise level SP 800-34 recommends for the system's impact level | System security officer | Test plan, results and after-action report ([Chapter 06](06-contingency-and-continuity.md)) |
 | Configuration baseline review | Quarterly | DevSecOps | Baseline comparison |
 
-The training plan covers role-based security awareness for all users, program procedures for the security team, incident response for the response team, supply chain awareness for developers and acquisition staff, and privacy for everyone with access to personally identifiable information. [Chapter 09](09-training-and-awareness-controls.md) covers the AT controls and their evidence; Book 16, People: Training & Education (planned, see the [workbook index](../index.md)), will carry training in depth. The monitoring plan is the continuous monitoring strategy above.
+The training plan covers role-based security awareness for all users, program procedures for the security team, incident response for the response team, supply chain awareness for developers and acquisition staff, and privacy for everyone with access to personally identifiable information. [Chapter 09](09-training-and-awareness-controls.md) covers the AT controls and their evidence; [Book 16, People: Training & Education](../b16-people/index.md), carries training in depth. The monitoring plan is the continuous monitoring strategy above.
 
 ## Security contacts (PM-15)
 

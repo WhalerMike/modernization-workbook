@@ -1,0 +1,20 @@
+# Book 16 Chapter 06 — how every lab ends. The lab rehearses one book
+# procedure in its tier with synthetic data; the learner places the evidence
+# where the rubric reads it and re-runs the evidence tooling; the completion
+# is recorded as one dated per-person entry (AT-4); then the lab is torn down.
+# If the result didn't move, the artifact is fixed, never the check.
+# Program design.
+rankdir: TB
+graph: {nodesep: 0.3, ranksep: 0.35}
+nodes:
+  proc: {tone: slate, width: 300, title: "Book procedure", body: ["=The chapter or runbook rehearsed"], size: 11}
+  lab: {tone: blue, width: 300, title: "Run the lab", body: ["=Fixture, sandbox or product evaluation; synthetic data"], size: 11}
+  bind: {tone: violet, width: 300, title: "Place the evidence", body: ["=Where the rubric reads it; re-run the tooling"], size: 11}
+  rec: {tone: green, width: 300, title: "Record it", body: ["=One dated entry per person (AT-4)"], size: 11}
+  down: {tone: red, width: 300, title: "Tear down", body: ["=Delete what the lab created"], size: 11}
+edges:
+  - [proc, lab]
+  - [lab, bind]
+  - [bind, rec, {tone: green}]
+  - [rec, down, {tone: red}]
+  - [bind, lab, {style: dashed, tone: amber, label: "result didn't move: fix the artifact, not the check", lw: 150, attrs: "constraint=false"}]

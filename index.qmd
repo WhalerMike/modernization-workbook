@@ -335,7 +335,7 @@ format:
 <section class="mw-section" id="books">
   <div class="mw-inner">
     <p class="section-label">The Books</p>
-    <h2 class="section-title">Sixteen books published. Two more on the way.</h2>
+    <h2 class="section-title">Seventeen books published. One more on the way.</h2>
     <p class="section-body">Start with Book 01 for the whole arc, or go straight to the topic in front of you. Every book reads in its Why / What / Who / How order and downloads as one Word document.</p>
     <div class="book-cards">
       <div class="book-card">
@@ -450,6 +450,13 @@ format:
         <div class="book-desc">Help-desk authority and identity checks, intake and routing, the CMDB, control automation across clouds, attestation and the day-two runbook.</div>
         <div class="book-links"><a href="docs/books/b15-day2-operations/index.html">Read</a><a href="downloads/b15-day2-operations-bundle.docx">Word</a><a href="docs/presentations/index.html#book-15">Deck</a></div>
       </div>
+      <div class="book-card">
+        <div class="book-num">Book 16 · 10 chapters</div>
+        <div class="book-title"><a href="docs/books/b16-people/index.html">People: Training &amp; Education</a></div>
+        <div class="book-q">Why do people, not tools, close the gap?</div>
+        <div class="book-desc">The workforce rules, the compliance and implementation tracks, assessment and certification, labs, end-user training, who owns readiness and how to measure it.</div>
+        <div class="book-links"><a href="docs/books/b16-people/index.html">Read</a><a href="downloads/b16-people-bundle.docx">Word</a><a href="docs/presentations/index.html#book-16">Deck</a></div>
+      </div>
     </div>
   </div>
 </section>
@@ -460,8 +467,8 @@ format:
     <h2 class="section-title">Built to be checked, not taken on trust.</h2>
     <p class="section-body">Each book keeps a verification log beside its chapters: every claim, the source it was checked against, and what changed when the source disagreed with the earlier draft.</p>
     <div class="arc-grid">
-      <div class="arc-phase"><div class="phase-num">16</div><div class="phase-name">Books</div><div class="phase-desc">Published as drafts, from orientation to day-two operations</div></div>
-      <div class="arc-phase"><div class="phase-num">201</div><div class="phase-name">Chapters</div><div class="phase-desc">Plus thirty-three appendices of checklists, matrices, mappings and templates</div></div>
+      <div class="arc-phase"><div class="phase-num">17</div><div class="phase-name">Books</div><div class="phase-desc">Published as drafts, from orientation to people, training and education</div></div>
+      <div class="arc-phase"><div class="phase-num">211</div><div class="phase-name">Chapters</div><div class="phase-desc">Plus thirty-four appendices of checklists, matrices, mappings and templates</div></div>
       <div class="arc-phase"><div class="phase-num">4</div><div class="phase-name">Questions</div><div class="phase-desc">Why, What, Who and How, in that order, in every book</div></div>
       <div class="arc-phase"><div class="phase-num">15</div><div class="phase-name">Minutes</div><div class="phase-desc">A presentation per book, each with a narrated, captioned edition</div></div>
     </div>
@@ -472,9 +479,8 @@ format:
   <div class="mw-inner">
     <p class="section-label">The Full Workbook</p>
     <h2 class="section-title">Eighteen books in all.</h2>
-    <p class="section-body">The remaining books are being built from the workbook's earlier documents, which stay in the repository until their book is published. <a href="docs/books/index.html">The Workbook Books</a> lists every book and its opening question.</p>
+    <p class="section-body">The last book is being built from the workbook's earlier documents, which stay in the repository until it is published. <a href="docs/books/index.html">The Workbook Books</a> lists every book and its opening question.</p>
     <div class="badge-grid">
-      <div class="badge"><b>B16</b>Training &amp; Education</div>
       <div class="badge"><b>B17</b>AI Identity Governance</div>
     </div>
   </div>

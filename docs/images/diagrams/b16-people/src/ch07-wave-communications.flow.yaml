@@ -1,0 +1,21 @@
+# Book 16 Chapter 07 — training and messages around one migration wave. The
+# 60/45/30/15/7/1-day cadence and pacing by help desk ticket volume follow
+# Microsoft's phishing-resistant passwordless deployment guidance; the
+# readiness check (registration, training completion, ticket volume) and the
+# follow-up lessons are program design. Days are relative to enforcement.
+rankdir: TB
+graph: {nodesep: 0.2, ranksep: 0.4}
+nodes:
+  t60: {tone: slate, width: 330, tag: "60 to 45 days before", title: "Announce", body: ["What changes and why; what stays the same", "Registration opens; champions named"], size: 11}
+  t30: {tone: blue, width: 330, tag: "30 days before", title: "Assign and date", body: ["The wave's modules assigned", "Enforcement date and the help desk's rules"], size: 11}
+  t15: {tone: blue, width: 330, tag: "15 and 7 days before", title: "Remind", body: ["Help desk contacts and drop-in sessions", "Managers get the not-yet-registered list"], size: 11}
+  gate: {tone: amber, width: 330, tag: "Readiness check", title: "Is the wave ready?", body: ["Registration rate", "Training completion", "Help desk ticket volume"], size: 11}
+  go: {tone: green, width: 330, tag: "Enforcement day", title: "Enforce", body: ["24-hour notice, then enforcement", "Floor support in place"], size: 11}
+  after: {tone: violet, width: 330, tag: "Up to 14 days after", title: "Follow up", body: ["Short lessons on what users got wrong", "Feedback shapes the next wave"], size: 11}
+edges:
+  - [t60, t30, {tone: blue}]
+  - [t30, t15, {tone: blue}]
+  - [t15, gate, {tone: amber}]
+  - [gate, go, {label: "ready", tone: green}]
+  - [gate, t15, {label: "hold", tone: amber, style: dashed}]
+  - [go, after, {tone: violet}]

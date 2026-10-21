@@ -1,0 +1,18 @@
+# Book 16 Chapter 05 — three signals of one person's readiness. The NICE
+# Framework work role describes the job (role names and OPM codes from NICE
+# Framework Components v2.2.0); an industry certification evidences general
+# skill on its own body's renewal cycle; the program credential evidences the
+# agency's procedures. All three are held as dated records. Program design.
+rankdir: TB
+graph: {nodesep: 0.25, ranksep: 0.4}
+nodes:
+  nice: {tone: slate, width: 230, tag: "Describes the job", title: "NICE work role", body: ["=For example Security Control Assessment, OPM code 612"], size: 11}
+  ind: {tone: blue, width: 230, tag: "Evidences general skill", title: "Industry certification", body: ["=Vendor or certification body; renewed on that body's cycle"], size: 11}
+  prog: {tone: green, width: 230, tag: "Evidences the procedures", title: "Program credential", body: ["=Practitioner or assessor; earned with artifacts; renewed every 12 months"], size: 11}
+  pic: {tone: violet, width: 420, title: "Readiness picture for one person", body: ["=Dated records in the training system of record", "=Read by the role's manager and by access reviews"], size: 11}
+edges:
+  - [nice, pic, {tone: violet}]
+  - [ind, pic, {tone: violet}]
+  - [prog, pic, {tone: violet}]
+order:
+  - [nice, ind, prog]

@@ -1,0 +1,28 @@
+# Book 16 Chapter 10 — readiness signals. Completion (LMS against the role
+# roster), competence (assessments and labs), sentiment (surveys) and behavior
+# (help desk tickets, sign-in method registration, phishing report rates) feed
+# one readiness record per role and gate. It serves the gate decision (Book 01
+# Chapter 12's authorities), the AT-4 training evidence the ISSO reviews (Book 14
+# Chapter 09) and the steering committee report. Program design.
+rankdir: TB
+graph: {nodesep: 0.2, ranksep: 0.4}
+nodes:
+  comp: {tone: blue, width: 170, tag: "Completion", title: "LMS records", body: ["=Set against the role roster"], size: 11}
+  skill: {tone: blue, width: 170, tag: "Competence", title: "Assessments", body: ["=Labs and observed scenarios for risky roles"], size: 11}
+  survey: {tone: slate, width: 170, tag: "Sentiment", title: "Surveys", body: ["=Anonymous, summarized"], size: 11}
+  behave: {tone: slate, width: 170, tag: "Behavior", title: "Tickets and sign-ins", body: ["=Ticket trends, method registration, phish reports"], size: 11}
+  rec: {tone: violet, width: 420, title: "Readiness record, per role and gate", body: ["=Required, complete, competent, and each signal's trend", "=Counts, no names"], size: 11}
+  gate: {tone: amber, width: 170, tag: "Decides", title: "Gate decision", body: ["=The gate's authority in Book 01"], size: 11}
+  at4: {tone: violet, width: 170, tag: "Evidence", title: "AT-4 record", body: ["=Reviewed by the ISSO"], size: 11}
+  sc: {tone: slate, width: 170, tag: "Reads", title: "Steering committee", body: ["=One-page readiness view"], size: 11}
+edges:
+  - [comp, rec, {tone: violet}]
+  - [skill, rec, {tone: violet}]
+  - [survey, rec, {tone: violet}]
+  - [behave, rec, {tone: violet}]
+  - [rec, gate, {tone: amber}]
+  - [rec, at4, {tone: violet}]
+  - [rec, sc, {style: dashed}]
+order:
+  - [comp, skill, survey, behave]
+  - [gate, at4, sc]

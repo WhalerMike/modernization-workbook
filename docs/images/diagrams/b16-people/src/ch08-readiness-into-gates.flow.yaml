@@ -1,0 +1,19 @@
+# Book 16 Chapter 08 — how training readiness reaches a decision. The training
+# lead reports completion against the roster; the ISSO reviews the training
+# evidence record (AT-4); the program office checks the training criteria with
+# the other gate criteria; the gate or wave owner named in Book 01 Chapter 12
+# and Book 02 Chapter 06 decides. Separation of report, review and decision is
+# program design.
+rankdir: LR
+graph: {nodesep: 0.25, ranksep: 0.45}
+nodes:
+  roster: {tone: slate, width: 155, title: "Roster", body: ["=Who must be trained, from HR and identity"], size: 11}
+  lead: {tone: blue, width: 155, title: "Training lead reports", body: ["=Completion per population, from the LMS"], size: 11}
+  isso: {tone: violet, width: 155, title: "ISSO reviews", body: ["=Confirms the record, routes the gaps"], size: 11}
+  owner: {tone: amber, width: 155, title: "Gate or wave owner decides", body: ["=Go, no-go or conditional go, with the other criteria"], size: 11}
+edges:
+  - [roster, lead, {tone: slate}]
+  - [lead, isso, {tone: blue}]
+  - [isso, owner, {label: "checked by the program office", lw: 90, tone: violet}]
+order:
+  - [roster, lead, isso, owner]

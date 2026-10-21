@@ -1,0 +1,30 @@
+# Book 16 Chapter 09 — how the curriculum is built, delivered and kept current.
+# Module owners write each module from named book chapters; qualified
+# instructors and department champions deliver it; completions are recorded by
+# course version; a scheduled check on the books' sources flags changed
+# chapters, and instructor and learner feedback flow back to the owners.
+# Program design; instructor evaluation and learner testing per NIST SP 800-50 Rev. 1.
+rankdir: TB
+graph: {nodesep: 0.25, ranksep: 0.38}
+nodes:
+  books: {tone: slate, width: 240, tag: "Sources", title: "Workbook chapters", body: ["=Each module names the chapters and versions it teaches"], size: 11}
+  watch: {tone: violet, width: 240, tag: "Scheduled check", title: "Source changes", body: ["=Changed chapters become modules to review"], size: 11}
+  owners: {tone: blue, width: 500, tag: "Write and revise", title: "Module owners", body: ["=Subject-matter experts from the owning workstream; test each new module on the pilot"], size: 11}
+  inst: {tone: blue, width: 240, tag: "Deliver role training", title: "Qualified instructors", body: ["=Pass the assessment, then an observed teach-back"], size: 11}
+  champ: {tone: green, width: 240, tag: "Support each wave", title: "Department champions", body: ["=Explain and route; never reset or grant"], size: 11}
+  learn: {tone: blue, width: 240, tag: "Learners", title: "Role holders and wave users", body: ["=Assigned from the role roster"], size: 11}
+  lms: {tone: violet, width: 240, tag: "System of record", title: "Learning management system", body: ["=Completion and result per person, course and version"], size: 11}
+edges:
+  - [books, watch, {tone: violet}]
+  - [watch, owners, {tone: violet}]
+  - [books, owners]
+  - [owners, inst]
+  - [owners, champ]
+  - [inst, learn]
+  - [champ, learn]
+  - [learn, lms, {tone: violet}]
+  - [inst, owners, {label: "feedback", style: dashed}]
+order:
+  - [books, watch]
+  - [inst, champ]
+  - [learn, lms]

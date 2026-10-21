@@ -1,0 +1,32 @@
+# Book 16 Chapter 08 — who owns workforce readiness. Top row: the officials who
+# set policy, people and money (sponsor and CIO; CISO; CHCO and workforce
+# office). Middle row: the roles that build and evidence the training (training
+# lead; ISSO and system owner; program office, which puts readiness into the
+# gates). Bottom row: the roles that carry it to people (managers and
+# supervisors; help desk; communications office). Duties come from FISMA,
+# 5 U.S.C. 1402, 5 CFR 410.201 and 930.301, SP 800-37 Rev. 2 and SP 800-50
+# Rev. 1; the arrangement is program design.
+rankdir: TB
+graph: {nodesep: 0.15, ranksep: 0.45}
+nodes:
+  cio: {tone: amber, width: 158, tag: "Funds", title: "Sponsor and CIO", body: ["=Scope, funding, wave readiness, the Section 508 program"], size: 12}
+  ciso: {tone: amber, width: 158, tag: "Sets the rules", title: "CISO", body: ["=AT policy, significant roles, threshold, help desk verification"], size: 12}
+  chco: {tone: violet, width: 158, tag: "Owns the workforce", title: "CHCO and workforce office", body: ["=Development strategy, position coding, rosters, labor relations"], size: 12}
+  lead: {tone: blue, width: 158, tag: "Builds", title: "Training lead", body: ["=Curriculum, modules, assignments, reports"], size: 12}
+  isso: {tone: blue, width: 158, tag: "Evidences", title: "ISSO and system owner", body: ["=Training record review, system rules, AT evidence"], size: 12}
+  pmo: {tone: violet, width: 158, tag: "Gates", title: "Program office", body: ["=Training criteria in every gate and wave check"], size: 12}
+  mgr: {tone: slate, width: 158, tag: "Accountable for staff", title: "Managers and supervisors", body: ["=Time to learn, completion, development plans"], size: 12}
+  hd: {tone: slate, width: 158, tag: "Supports", title: "Help desk", body: ["=Trained first, follows the verification rules, reports themes"], size: 12}
+  comms: {tone: slate, width: 158, tag: "Delivers", title: "Communications office", body: ["=One sender, channels, wave calendar"], size: 12}
+edges:
+  - [cio, lead, {label: "funding", tone: amber}]
+  - [ciso, isso, {label: "policy", tone: amber}]
+  - [chco, pmo, {label: "rosters", style: dashed}]
+  - [lead, mgr, {label: "assignments", tone: blue}]
+  - [isso, pmo, {label: "evidence", tone: violet}]
+  - [lead, hd, {label: "wave briefing", lw: 60, tone: blue}]
+  - [lead, comms, {label: "content", style: dashed}]
+order:
+  - [cio, ciso, chco]
+  - [lead, isso, pmo]
+  - [mgr, hd, comms]

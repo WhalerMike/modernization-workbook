@@ -94,7 +94,7 @@ Built in the identity and access books. Joiner, mover and leaver events drive ac
 
 ### Awareness and Training (AT)
 
-No infrastructure book builds a training program. [Chapter 09](09-training-and-awareness-controls.md) covers the AT controls and the evidence they should leave; Book 16, People: Training & Education (planned, see the [workbook index](../index.md)), will carry training in depth.
+No infrastructure book builds a training program. [Chapter 09](09-training-and-awareness-controls.md) covers the AT controls and the evidence they should leave; [Book 16, People: Training & Education](../b16-people/index.md), carries training in depth.
 
 | Control | Title | NIST SP 800-53B | FedRAMP 2026 class | Workbook chapter | Status (design) |
 |---|---|---|---|---|---|

@@ -1,9 +1,9 @@
 # Book 14 Chapter 12 — the Federal Compliance series volumes (left) and the
 # workbook books that carry them now (right). Mapping is from the books'
 # own links to the volumes and the book list: Vol 0 and Vol IV are this
-# book; Vol V goes to planned Book 16; Vols VII and IX to planned Book 15,
+# book; Vol V goes to Book 16; Vols VII and IX to Book 15,
 # with parts already in Books 04, 10 and 11. Blue = published book,
-# slate = planned book, green = this book, violet = volume.
+# green = this book, violet = volume.
 rankdir: LR
 graph: {nodesep: 0.18, ranksep: 0.9}
 nodes:
@@ -23,8 +23,8 @@ nodes:
   b14: {tone: green, width: 280, title: "Book 14", body: ["=This book"], size: 11}
   b13: {tone: blue, width: 280, title: "Book 13", body: ["=Governance, drift and evidence"], size: 11}
   b11: {tone: blue, width: 280, title: "Book 11", body: ["=Zero Trust (Microsoft 365 automation)"], size: 11}
-  b15: {tone: slate, width: 280, title: "Book 15, planned", body: ["=Compliance automation and day-2"], size: 11}
-  b16: {tone: slate, width: 280, title: "Book 16, planned", body: ["=People: training and education"], size: 11}
+  b15: {tone: blue, width: 280, title: "Book 15", body: ["=Compliance automation and day-2"], size: 11}
+  b16: {tone: blue, width: 280, title: "Book 16", body: ["=People: training and education"], size: 11}
 edges:
   - [v1, bid]
   - [v1, bnet]

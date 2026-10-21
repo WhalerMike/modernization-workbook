@@ -64,7 +64,7 @@ still be there:
 |---|---|---|
 | **Executive Brief** | Leadership, sponsors, procurement | The [two-page Executive Brief](../books/b14-compliance/01-proof-not-a-promise.md), then the [Executive Summary](../books/b14-compliance/02-the-federal-clock.md) and the [Product Inventory Questionnaire](../books/b14-compliance/appendix-b-product-inventory-questionnaire.md) |
 | **Practitioner Quickstart** | ISSOs and engineers who need the working core first | The training program's Core Compliance Pathway (nine-book spine + four labs), the `<engine>` tooling note, and the deployable kits — the [ServiceNow compliance app](../books/b15-day2-operations/11-attestation-and-the-compliance-app.md) and the Day-2 catalog (Vol IX) — via the Downloads page |
-| **Full Academy** | Anyone pursuing the credentials | [Vol V — Training & Certification](Vol_V_Book_00_Training_Certification_Overview.md) and the two-track Compliance Training Program with its capstones and rubrics |
+| **Full Academy** | Anyone pursuing the credentials | [Vol V — Training & Certification](../books/b16-people/01-people-close-the-gap.md) and the two-track Compliance Training Program with its capstones and rubrics |
 
 ## One lifecycle, two pillars {#macdr}
 

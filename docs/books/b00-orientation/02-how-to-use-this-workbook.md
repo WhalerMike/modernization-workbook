@@ -26,7 +26,7 @@ The workbook grew the way most program material grows: as whitepapers, operation
 
 The books fix that. Each book takes one topic, consolidates every page the workbook had on it into an ordered reading sequence, checks every external claim against a primary source as of the day it was built, and replaces the earlier pages. This chapter explains how the books are built so that a reader can use them with confidence, and so that a reader who finds a problem knows where to look.
 
-![The Federal Modernization Workbook's eighteen books in five groups: orientation and the transformation arc, identity and access, the estate, boundary and assurance, and running the modernized estate.](../../images/diagrams/b00-orientation/svg/ch02-map-of-the-books.svg){#fig-ch02-map-of-the-books fig-alt="Five groups of book cards. Orientation and arc: Book 00, Orientation and Program, why modernize and why now; Book 01, The Transformation Arc, why modernization is so hard. Identity and access: Book 02, Identity and Directory; Book 03, HR-Driven Identity; Book 04, Access and Privilege; Book 17, AI Identity Governance, planned. The estate: Book 05, Devices and Endpoints; Book 06, Data Platform, SQL Server identity; Book 07, PKI and Certificates; Book 08, DNS, DHCP and IPAM; Book 09, Network and Transport. Boundary and assurance: Book 10, Cloud Boundary and Landing Zone; Book 11, Zero Trust and Assessment; Book 14, Federal Compliance and Authorization, planned. Running it: Book 12, Security Operations and Telemetry; Book 13, Governance, Drift and Evidence; Book 15, Compliance Automation and Day-2 Operations; Book 16, People, Training and Education; all four planned. Published books are blue; planned books are slate."}
+![The Federal Modernization Workbook's eighteen books in five groups: orientation and the transformation arc, identity and access, the estate, boundary and assurance, and running the modernized estate.](../../images/diagrams/b00-orientation/svg/ch02-map-of-the-books.svg){#fig-ch02-map-of-the-books fig-alt="Five groups of book cards. Orientation and arc: Book 00, Orientation and Program, why modernize and why now; Book 01, The Transformation Arc, why modernization is so hard. Identity and access: Book 02, Identity and Directory; Book 03, HR-Driven Identity; Book 04, Access and Privilege; Book 17, AI Identity Governance, planned. The estate: Book 05, Devices and Endpoints; Book 06, Data Platform, SQL Server identity; Book 07, PKI and Certificates; Book 08, DNS, DHCP and IPAM; Book 09, Network and Transport. Boundary and assurance: Book 10, Cloud Boundary and Landing Zone; Book 11, Zero Trust and Assessment; Book 14, Federal Compliance and Authorization. Running it: Book 12, Security Operations and Telemetry; Book 13, Governance, Drift and Evidence; Book 15, Compliance Automation and Day-2 Operations; Book 16, People, Training and Education. Published books are blue; planned books are slate."}
 
 ## Eighteen books
 
@@ -138,7 +138,7 @@ Nobody needs to read the whole workbook. These paths start with the chapters tha
 | **Authorizing officials, ISSOs and assessors** | [Book 10, Chapters 03, 08 and 11](../b10-cloud-boundary/index.md); [Book 11, Chapters 03, 08 and 10](../b11-zero-trust/index.md) | This book, Appendix A, for control traceability |
 | **HR and identity data owners** | [Book 03](../b03-hr-identity/index.md), Chapters 01 to 03 | [Book 02, Chapter 06](../b02-identity/06-who-owns-the-migration.md) for who owns the migration |
 
-Training and education will have their own book, Book 16, which is planned. Until it is built, the narrated presentations are the quickest way to brief a team.
+Training and education have their own book, [Book 16, People: Training & Education](../b16-people/index.md). For a quick team briefing, the narrated presentations are the fastest route.
 
 ## Map of the books
 
@@ -160,7 +160,7 @@ Training and education will have their own book, Book 16, which is planned. Unti
 | B13 | [Governance, Drift & Evidence](../b13-governance/index.md) | Why does compliance decay the day after the audit? | Running it |
 | B14 | [Federal Compliance & Authorization](../b14-compliance/index.md) | Why does every control need proof, not a promise? | Boundary and assurance |
 | B15 | [Compliance Automation & Day-2 Operations](../b15-day2-operations/index.md) | Why does modernization succeed or fail at the help desk? | Running it |
-| B16 | People: Training & Education (planned) | Why do people, not tools, close the gap? | Running it |
+| B16 | [People: Training & Education](../b16-people/index.md) | Why do people, not tools, close the gap? | Running it |
 | B17 | AI Identity Governance (planned) | Why do AI agents need identities and owners? | Identity and access |
 
 The planned books are listed on the [book index](../index.md), which shows each book's status as it is built.

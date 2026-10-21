@@ -50,6 +50,13 @@ bundles:
   # Book 06 — Data Platform: SQL Server Identity (was the SQL Server narrative
   # series and its implementation companion). The old download names stay as
   # aliases so published links keep working.
+  - output: b16-people-bundle.docx
+    title: "Book 16 — People: Training & Education"
+    subtitle: "People, not tools, close the gap — Federal Modernization Workbook, combined edition"
+    root: docs/books/b16-people
+    image_dir: docs/images/diagrams/b16-people
+    warn_unlisted: ["*.md"]
+    pages: [index.md, "[0-9][0-9]-*.md", "appendix-*.md"]
   - output: b15-day2-operations-bundle.docx
     title: "Book 15 — Compliance Automation & Day-2 Operations"
     subtitle: "Where modernization becomes routine — Federal Modernization Workbook, combined edition"

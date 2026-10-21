@@ -1,0 +1,19 @@
+# Book 16 Chapter 01 — the book's argument. The earlier books change the
+# estate; tools enforce the new rules, people make the decisions the rules
+# depend on, and the gap closes only when the configured target is also the
+# operated target. Training reaches the people before each gate. Program
+# design; no external claims in the figure.
+rankdir: LR
+graph: {nodesep: 0.3, ranksep: 0.55}
+nodes:
+  books: {tone: slate, width: 170, tag: "Books 00 to 15", title: "The earlier books", body: ["=Change identity, access, devices, certificates, DNS, networks, the boundary, security operations, governance and compliance"], size: 11}
+  tools: {tone: blue, width: 200, tag: "Enforce", title: "The tools", body: ["Conditional Access", "Privileged Identity Management", "Intune and Arc baselines", "Lifecycle workflows", "Drift checks"], size: 11}
+  people: {tone: violet, width: 200, tag: "Decide", title: "The people", body: ["Help desk verifies before a reset", "Owners approve access", "Stewards keep the record", "ISSOs assemble evidence", "Users sign in a new way"], size: 11}
+  gap: {tone: green, width: 160, title: "The gap closes", body: ["=When the configured target is also the operated target"], size: 11}
+edges:
+  - [books, tools]
+  - [books, people]
+  - [tools, gap, {tone: green}]
+  - [people, gap, {tone: amber, style: dashed, label: "training, before each gate", lw: 90}]
+order:
+  - [tools, people]

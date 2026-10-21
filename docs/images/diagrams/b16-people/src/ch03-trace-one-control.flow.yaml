@@ -1,0 +1,23 @@
+# Book 16 Chapter 03 — the tracing skill the compliance track teaches:
+# mechanism, record, evidence contract (Book 12 Ch 02), assessment
+# (SP 800-53A procedures), then the package or the plan of action and
+# milestones (SP 800-37 Tasks R-1 and A-6). The governed exception is the
+# program's design (Book 14 Ch 11).
+rankdir: TB
+graph: {nodesep: 0.25, ranksep: 0.45}
+nodes:
+  mech: {tone: blue, width: 200, tag: "Built by a book", title: "The mechanism", body: ["=For example, approval-gated role activation (Book 04)"], size: 11}
+  rec: {tone: blue, width: 200, tag: "Emitted", title: "The record", body: ["=An activation and audit event, with identity and time"], size: 11}
+  ec: {tone: violet, width: 200, tag: "Book 12 Ch 02", title: "The evidence contract", body: ["=One record shape for every source"], size: 11}
+  asm: {tone: violet, width: 200, tag: "SP 800-53A", title: "The assessment", body: ["=A procedure applied to the record"], size: 11}
+  pkg: {tone: green, width: 220, title: "The authorization package", body: ["=The claim, backed by a current record"], size: 11}
+  poam: {tone: amber, width: 220, title: "The plan of action and milestones", body: ["=A failing result with an owner and a date, or a governed exception with its expiry"], size: 11}
+edges:
+  - [mech, rec]
+  - [rec, ec]
+  - [ec, asm]
+  - [asm, pkg, {tone: green}]
+  - [asm, poam, {tone: amber}]
+  - [poam, ec, {style: dashed, label: "next monitoring cycle", lw: 140, attrs: "constraint=false"}]
+order:
+  - [pkg, poam]

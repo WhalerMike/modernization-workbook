@@ -32,8 +32,8 @@ The workbook grew as separate whitepapers, guides, series and case studies. The 
 | **B12** | **[Security Operations & Telemetry](b12-security-operations/index.md)** | **Why can't you defend what you can't see?** | **Draft** | 12 + 1 app. | 270 | 2026-10-21 |
 | **B13** | **[Governance, Drift & Evidence](b13-governance/index.md)** | **Why does compliance decay the day after the audit?** | **Draft** | 12 + 2 app. | 220 | 2026-10-21 |
 | **B14** | **[Federal Compliance & Authorization](b14-compliance/index.md)** | **Why does every control need proof, not a promise?** | **Draft** | 12 + 2 app. | 325 | 2026-10-21 |
-| **B15** | **[Compliance Automation & Day-2 Operations](b15-day2-operations/index.md)** | **Why does modernization succeed or fail at the help desk?** | **Draft** | 12 + 1 app. | 240 | — |
-| B16 | People: Training & Education | Why do people, not tools, close the gap? | Planned | — | — | — |
+| **B15** | **[Compliance Automation & Day-2 Operations](b15-day2-operations/index.md)** | **Why does modernization succeed or fail at the help desk?** | **Draft** | 12 + 1 app. | 245 | 2026-10-21 |
+| **B16** | **[People: Training & Education](b16-people/index.md)** | **Why do people, not tools, close the gap?** | **Draft** | 10 + 1 app. | 180 | — |
 | B17 | AI Identity Governance | Why do AI agents need identities and owners? | Planned | — | — | — |
 :::
 

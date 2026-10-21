@@ -58,7 +58,7 @@ Appendix: [A — Help desk task reference](appendix-a-help-desk-task-reference.m
 
 ## Where this book sits in the workbook
 
-This is Book 15 of the [Federal Modernization Workbook](../index.md). Privileged access and the help desk's role tiers are in [Book 04](../b04-access/index.md); routine remediation as a ticket to a machine, and the governance roles, in [Book 13](../b13-governance/index.md); the evidence contract and security operations in [Book 12](../b12-security-operations/index.md); and the authorization package and continuous monitoring in [Book 14](../b14-compliance/index.md). Training for the help desk and the wider workforce will be [Book 16](../index.md).
+This is Book 15 of the [Federal Modernization Workbook](../index.md). Privileged access and the help desk's role tiers are in [Book 04](../b04-access/index.md); routine remediation as a ticket to a machine, and the governance roles, in [Book 13](../b13-governance/index.md); the evidence contract and security operations in [Book 12](../b12-security-operations/index.md); and the authorization package and continuous monitoring in [Book 14](../b14-compliance/index.md). Training for the help desk and the wider workforce is [Book 16](../b16-people/index.md).
 
 ## Chapters
 
