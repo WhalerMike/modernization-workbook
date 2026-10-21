@@ -1,0 +1,21 @@
+# Book 11 Chapter 06 — who can answer for which estate. BOD 25-01 required
+# configurations (M365, Google Workspace); AWS Security Hub CSPM NIST 800-53
+# standard ("a subset", automated checks only); Azure Policy ("only a partial
+# view"); Broadcom VCF guidelines disclaimer; FedRAMP "certifies the cloud
+# service offering". The agency row is the chapter's argument.
+rankdir: TB
+graph: {nodesep: 0.3, ranksep: 0.35}
+nodes:
+  t:
+    kind: table
+    tone: slate
+    columns: ["Source", "Reaches", "Doesn't reach"]
+    widths: [210, 270, 270]
+    rows:
+      - ["BOD 25-01 and SCuBA tools", "Microsoft 365 and Google Workspace tenants with a published baseline", "IaaS accounts, the network, the virtualized estate"]
+      - ["Microsoft's Zero Trust Assessment", "The Microsoft cloud tenant", "Other providers, the network, the hypervisor"]
+      - ["AWS Security Hub CSPM (NIST 800-53)", "A subset of controls, automated checks on AWS resources", "Manual-check requirements; anything outside AWS"]
+      - ["Azure Policy regulatory compliance", "Azure resources: \"only a partial view\"", "Controls with no policy definition; anything outside Azure"]
+      - ["VMware hardening baselines", "vSphere and VCF configuration", "General guidance; assumptions may not hold"]
+      - ["FedRAMP certification", "The provider's cloud service offering", "The agency's configuration and integrations"]
+      - [{text: "The agency", tone: green}, {text: "Every estate and the network", tone: green}, {text: "Reconciled at the control level", tone: green}]

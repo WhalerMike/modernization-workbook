@@ -1,0 +1,21 @@
+# Book 11 Chapter 08 — every ScubaGear or Zero Trust Assessment finding is
+# routed to exactly one of three responses, each ending in an owner and a date.
+rankdir: TB
+graph: {nodesep: 0.25, ranksep: 0.4}
+nodes:
+  finding: {tone: slate, width: 300, title: "A finding", body: ["=From ScubaGear or the Zero Trust Assessment"], size: 12}
+  decide: {tone: amber, width: 360, title: "Closable by a setting change today?", body: ["=Without breaking something that depends on the old behavior"], size: 12}
+  config: {tone: green, width: 230, title: "Configuration change", body: ["=Closes now through change control"], size: 12}
+  arch: {tone: blue, width: 230, title: "Architectural work", body: ["=Owner and target date on the layer it depends on"], size: 12}
+  accept: {tone: violet, width: 230, title: "Risk acceptance", body: ["=Authorizing official; dated; Omitted with rationale"], size: 12}
+  next: {tone: green, width: 360, title: "Next assessment", body: ["=Confirms it closed, or shows it open and aging"], size: 12}
+edges:
+  - [finding, decide]
+  - [decide, config, {label: "yes"}]
+  - [decide, arch, {label: "no: a layer is missing"}]
+  - [decide, accept, {label: "no: needed for now"}]
+  - [config, next]
+  - [arch, next]
+  - [accept, next]
+order:
+  - [config, arch, accept]

@@ -1,0 +1,38 @@
+# Book 11 Chapter 03 — the federal Zero Trust instruments by kind of
+# authority: binding instruments, guidance that sets the vocabulary, and
+# adjacent instruments that bind particular surfaces. EO 14028 §3(b)(ii) and
+# §10(k); M-22-09 §III; ZTMM v2.0 §5; SP 800-207; BOD 25-01; M-26-14 App. A.
+rankdir: TB
+graph: {nodesep: 0.15, ranksep: 0.35}
+clusters:
+  - id: bind
+    label: "Binding on agencies"
+    tone: amber
+    nodes: [eo, m2209]
+    order: [eo, m2209]
+  - id: guide
+    label: "Guidance that sets the vocabulary"
+    tone: blue
+    nodes: [ztmm, sp207]
+    order: [ztmm, sp207]
+  - id: adj
+    label: "Adjacent instruments that bind particular surfaces"
+    tone: violet
+    nodes: [bod, m2614, ssp]
+    order: [bod, m2614, ssp]
+nodes:
+  eo: {tone: amber, width: 280, tag: "EO 14028 §3(b)(ii)", title: "A plan to implement zero trust architecture", body: ["=Required of every agency; §10(k): throughout all aspects of the infrastructure"], size: 12}
+  m2209: {tone: amber, width: 280, tag: "OMB M-22-09", title: "Specific actions by pillar", body: ["=FY 2024 deadlines; strategy lead and implementation plan; sets no maturity stage"], size: 12}
+  ztmm: {tone: blue, width: 280, tag: "CISA ZTMM v2.0", title: "Five pillars, three capabilities, four stages", body: ["=A general guide, not a strict set of requirements"], size: 12}
+  sp207: {tone: blue, width: 280, tag: "NIST SP 800-207", title: "Tenets and logical components", body: ["=Policy engine, administrator and enforcement points; guidance"], size: 12}
+  bod: {tone: violet, width: 210, tag: "CISA BOD 25-01", title: "Cloud tenant configuration", body: ["=Products with a published SCuBA baseline"], size: 12}
+  m2614: {tone: violet, width: 210, tag: "OMB M-26-14", title: "Logging", body: ["=Reference architecture aligns with the ZTMM"], size: 12}
+  ssp: {tone: violet, width: 210, tag: "NIST SP 800-53", title: "The agency's control assertions", body: ["=In each system security plan"], size: 12}
+  note: {kind: pill, tone: slate, width: 520, text: "No document defines a Zero Trust score or requires a maturity stage"}
+edges:
+  - [eo, ztmm, {style: invis}]
+  - [m2209, sp207, {style: invis}]
+  - [m2209, ztmm, {tone: amber, style: dashed, label: "organized by its pillars"}]
+  - [ztmm, m2614, {style: invis}]
+  - [sp207, m2614, {style: invis}]
+  - [m2614, note, {style: invis}]

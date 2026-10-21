@@ -1,0 +1,15 @@
+# Book 11 Chapter 01 — assessment tools are evidence inputs; the agency
+# reconciles them at the control level against one record and owns the posture.
+rankdir: LR
+graph: {nodesep: 0.25, ranksep: 0.45}
+nodes:
+  scuba: {tone: blue, width: 190, tag: "Compliance", title: "ScubaGear", body: ["=Microsoft 365 against the SCuBA baselines BOD 25-01 names"], size: 11}
+  zta: {tone: blue, width: 190, tag: "Maturity", title: "Zero Trust Assessment", body: ["=Microsoft's tenant checks for Entra, Intune, Azure networks and Purview"], size: 11}
+  other: {tone: slate, width: 190, tag: "Everything else", title: "Other native tools", body: ["=Other clouds, network, hypervisors: each sees only its own platform"], size: 11}
+  recon: {tone: violet, width: 210, title: "Reconcile at the control level", body: ["Map findings to SP 800-53 controls", "Resolve every finding to the one asset and identity record"], size: 11}
+  own: {tone: green, width: 190, title: "Agency-owned posture", body: ["=The verdict; no single tool or tenant score can issue it"], size: 11}
+edges:
+  - [scuba, recon]
+  - [zta, recon]
+  - [other, recon]
+  - [recon, own, {tone: green}]

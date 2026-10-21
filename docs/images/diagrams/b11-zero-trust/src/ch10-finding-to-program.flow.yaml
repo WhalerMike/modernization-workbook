@@ -1,0 +1,18 @@
+# Chapter 10 — a tool result becomes a program decision only after it is
+# read, scored, reconciled and owned. Status handling, the scoring method
+# and the approval rule for exceptions are the program's design; result
+# names come from ScubaGear and the Zero Trust Assessment.
+rankdir: TB
+graph: {nodesep: 0.3, ranksep: 0.3}
+nodes:
+  res: {tone: slate, width: 440, tag: "Input", title: "Tool results", body: ["=ScubaGear and the Zero Trust Assessment, sealed as evidence"], size: 12}
+  read: {tone: blue, width: 440, tag: "Read before counting", title: "Which results are findings", body: ["=Fail, Warning, Failed, Investigate are findings", "=Skipped, Planned, N/A, Error are absence of evidence or manual checks"], size: 12}
+  score: {tone: violet, width: 440, tag: "Score and rank", title: "Severity and priority", body: ["=Severity from risk and status; priority is severity over effort; P1 to P4, quick wins"], size: 12}
+  dec: {tone: amber, width: 440, tag: "Reconcile and decide", title: "Map to a control, then fix or except", body: ["=Expiring exceptions: CISO. Standing exceptions: authorizing official"], size: 12}
+  prog: {tone: green, width: 440, tag: "Program", title: "POA&M, remediation, re-assessment", body: ["=Pillar owners fix through change control; the next run confirms"], size: 12}
+edges:
+  - [res, read]
+  - [read, score]
+  - [score, dec]
+  - [dec, prog]
+  - [prog, res, {label: "re-run and compare", lw: 100, style: dashed, tone: violet, attrs: "constraint=false"}]

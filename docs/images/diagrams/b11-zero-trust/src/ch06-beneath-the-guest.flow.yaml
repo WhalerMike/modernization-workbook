@@ -1,0 +1,36 @@
+# Book 11 Chapter 06 — the hypervisor sits beneath the guest controls.
+# AA23-039A (ESXiArgs, SLP); Microsoft, July 29, 2024 (CVE-2024-37085,
+# "ESX Admins" matched by name; limited security-product visibility into
+# ESXi; forward ESXi logs to a SIEM). The response row is the program's design.
+rankdir: TB
+graph: {nodesep: 0.2, ranksep: 0.4}
+clusters:
+  - id: guests
+    label: "Guest controls observe the guest"
+    tone: blue
+    nodes: [vm1, vm2, vm3]
+    order: [vm1, vm2, vm3]
+  - id: resp
+    label: "The program's response"
+    tone: violet
+    nodes: [scope, ident]
+    order: [scope, ident]
+nodes:
+  vm1: {tone: blue, width: 190, title: "Virtual machine", body: ["=EDR, identity signals, host firewall"], size: 12}
+  vm2: {tone: blue, width: 190, title: "Virtual machine", body: ["=EDR, identity signals, host firewall"], size: 12}
+  vm3: {tone: blue, width: 190, title: "Virtual machine", body: ["=EDR, identity signals, host firewall"], size: 12}
+  hv: {tone: red, width: 340, tag: "ESXi and vCenter", title: "Hypervisor and management plane", body: ["=One compromise reaches every virtual machine on the host; many security products have limited visibility here"], size: 12}
+  slp: {tone: red, width: 180, title: "Exposed management service", body: ["=ESXiArgs: disable SLP, keep hosts off the internet"], size: 12}
+  grp: {tone: red, width: 180, title: "Directory group trusted by name", body: ["=CVE-2024-37085: \"ESX Admins\""], size: 12}
+  scope: {tone: violet, width: 280, title: "Assess the host as its own surface", body: ["=Inventory, hardening baseline, scans, ESXi logs to the SIEM"], size: 12}
+  ident: {tone: violet, width: 280, title: "Bind identities by verified identifier", body: ["=Host authentication assessed apart from vCenter sign-in"], size: 12}
+edges:
+  - [vm1, hv, {style: invis}]
+  - [vm2, hv, {style: invis}]
+  - [vm3, hv, {style: invis}]
+  - [slp, hv, {tone: red}]
+  - [grp, hv, {tone: red}]
+  - [slp, scope, {style: invis}]
+  - [grp, ident, {style: invis}]
+order:
+  - [slp, hv, grp]

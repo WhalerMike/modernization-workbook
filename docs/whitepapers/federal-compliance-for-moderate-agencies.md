@@ -207,12 +207,12 @@ directly bound by BOD 25-01 --- the directive's obligations run to the
 agency operating the tenant, not to the platform or tool vendor.
 
 **Read deeper:** [Assessment Tools vs. Closing BOD-25-01
-Findings](bod-25-01-close-before-assess.md) is this paper's dedicated
+Findings](../books/b11-zero-trust/08-close-before-you-assess.md) is this paper's dedicated
 treatment of the directive, including why "run the assessor" and "close
 the findings" are different obligations and the correct sequencing
 between them. [ScubaGear
-Integration](scubagear-integration-whitepaper.md) and [ZTA and SCuBA
---- How They Relate](zta-scuba-relationship.md) cover the tooling layer
+Integration](../books/b11-zero-trust/09-running-the-assessment.md) and [ZTA and SCuBA
+--- How They Relate](../books/b11-zero-trust/05-two-assessment-tools.md) cover the tooling layer
 this directive requires.
 
 ## 4. CISA BOD 26-04 (risk-based vulnerability remediation) --- binds agencies directly
@@ -253,7 +253,7 @@ December 7, 2026 date for exactly that reason.
 
 **Read deeper:** this directive is new enough that no whitepaper in this
 section yet carries a dedicated treatment --- [Assessment Tools
-vs. Closing BOD-25-01 Findings](bod-25-01-close-before-assess.md)'s
+vs. Closing BOD-25-01 Findings](../books/b11-zero-trust/08-close-before-you-assess.md)'s
 remediate-before-assess sequencing argument applies directly to BOD
 26-04's remediation clock, even though that paper predates BOD 26-04's
 issuance and doesn't name it.
@@ -286,12 +286,12 @@ maturity model, but no vendor's tool, on its own, satisfies the model
 --- that's the paper's own central argument, not incidental to it.
 
 **Read deeper:** [Zero Trust Governance
-Principles](zero-trust-governance-principles.md) is the primary
+Principles](../books/b11-zero-trust/02-governance-principles.md) is the primary
 treatment; its companion [Zero Trust Requires Whole-Agency
-Scope](zero-trust-whole-agency-unification.md) covers why Network,
+Scope](../books/b11-zero-trust/01-a-whole-agency-property.md) covers why Network,
 every CSP, and any on-premises virtualization estate have to be assessed
 as one system. [Zero Trust
-Governance](zero-trust-governance-whitepaper.md) maps the five pillars
+Governance](../books/b11-zero-trust/10-evidence-not-verdicts.md) maps the five pillars
 to specific canon-anchored mechanisms.
 
 ## 6. OMB M-22-09 (Federal Zero Trust Strategy) --- the policy memo that makes ZTMM the reference standard
@@ -402,19 +402,19 @@ deployed versus proposed against M-25-21's specific gates.
  (RMF, ATO) citations
 
  CISA BOD 25-01 (SCuBA) Agency [Assessment Tools vs. Closing BOD-25-01
- Findings](bod-25-01-close-before-assess.md), [ScubaGear
- Integration](scubagear-integration-whitepaper.md), [ZTA and SCuBA ---
- How They Relate](zta-scuba-relationship.md)
+ Findings](../books/b11-zero-trust/08-close-before-you-assess.md), [ScubaGear
+ Integration](../books/b11-zero-trust/09-running-the-assessment.md), [ZTA and SCuBA ---
+ How They Relate](../books/b11-zero-trust/05-two-assessment-tools.md)
 
  CISA BOD 26-04 Agency No dedicated paper yet in this section --- see [§4](#bod-26-04) and the
  (risk-based sequencing argument in [Assessment Tools vs. Closing BOD-25-01
- vulnerability Findings](bod-25-01-close-before-assess.md)
+ vulnerability Findings](../books/b11-zero-trust/08-close-before-you-assess.md)
  remediation) 
 
  CISA Zero Trust Agency (measurement [Zero Trust Governance
- Maturity Model v2.0 framework) Principles](zero-trust-governance-principles.md), [Zero Trust Requires
- Whole-Agency Scope](zero-trust-whole-agency-unification.md), [Zero
- Trust Governance](zero-trust-governance-whitepaper.md)
+ Maturity Model v2.0 framework) Principles](../books/b11-zero-trust/02-governance-principles.md), [Zero Trust Requires
+ Whole-Agency Scope](../books/b11-zero-trust/01-a-whole-agency-property.md), [Zero
+ Trust Governance](../books/b11-zero-trust/10-evidence-not-verdicts.md)
 
  OMB M-22-09 (Zero Trust Agency [Federal Application Aware Networking
  Strategy) Architecture](../books/b01-transformation-arc/01-why-modernization-is-hard.md),

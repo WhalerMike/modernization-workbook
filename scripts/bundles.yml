@@ -43,6 +43,13 @@ bundles:
   # Book 06 — Data Platform: SQL Server Identity (was the SQL Server narrative
   # series and its implementation companion). The old download names stay as
   # aliases so published links keep working.
+  - output: b11-zero-trust-bundle.docx
+    title: "Book 11 — Zero Trust & Assessment"
+    subtitle: "Zero Trust as a whole-agency property — Federal Modernization Workbook, combined edition"
+    root: docs/books/b11-zero-trust
+    image_dir: docs/images/diagrams/b11-zero-trust
+    warn_unlisted: ["*.md"]
+    pages: [index.md, "[0-9][0-9]-*.md", "appendix-*.md"]
   - output: b10-cloud-boundary-bundle.docx
     title: "Book 10 — Cloud Boundary & Landing Zone"
     subtitle: "What the authorization boundary lets you use — Federal Modernization Workbook, combined edition"

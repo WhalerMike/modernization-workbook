@@ -1,0 +1,19 @@
+# Book 11 Chapter 02 — Principle One: other pillars name their objects through
+# the identity plane, and the plane is defended because it is not self-authenticating.
+rankdir: TB
+graph: {nodesep: 0.2, ranksep: 0.4}
+nodes:
+  d: {tone: slate, width: 140, title: "Devices", body: ["=Claims keyed to an identity object"], size: 11}
+  a: {tone: slate, width: 140, title: "Addresses", body: ["=Derived from identity context"], size: 11}
+  w: {tone: slate, width: 140, title: "Workloads", body: ["=Access decisions consume identity claims"], size: 11}
+  x: {tone: slate, width: 140, title: "Data", body: ["=Labels and evidence tied to the same record"], size: 11}
+  plane: {tone: blue, width: 340, title: "Identity plane: the root namespace", body: ["=One record each object resolves through; a naming claim, not a trust claim"], size: 11}
+  hard: {tone: violet, width: 340, title: "Defended as the highest-value target", body: ["Session re-evaluation (continuous access evaluation)", "Phishing-resistant credentials", "Just-in-time, verified administration", "Its own telemetry stream"], size: 11}
+edges:
+  - [d, plane]
+  - [a, plane]
+  - [w, plane]
+  - [x, plane]
+  - [plane, hard, {tone: violet, style: dashed, label: "defended by"}]
+order:
+  - [d, a, w, x]

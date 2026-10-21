@@ -45,7 +45,7 @@ redirects:
   docs/modernization-specs/sase/sase.html: docs/books/b09-network/05-sd-wan-sase-and-governed-transport.html
   docs/modernization-specs/sdwan/sdwan.html: docs/books/b09-network/05-sd-wan-sase-and-governed-transport.html
   docs/modernization-specs/telemetry/telemetry.html: docs/modernization-specs/telemetry.html
-  docs/modernization-specs/zero-trust/zero-trust.html: docs/modernization-specs/zero-trust.html
+  docs/modernization-specs/zero-trust/zero-trust.html: docs/books/b11-zero-trust/03-what-the-mandates-require.html
 
   # Architecture duplicates.
   docs/architecture/architecture-series/evidence-chain.html: docs/architecture/evidence-chain.html
@@ -270,3 +270,14 @@ redirects:
   docs/case-studies/google-workspace-collaboration-path.html: docs/books/b10-cloud-boundary/10-alternative-collaboration-paths.html
   docs/modernization-specs/cloud.html: docs/books/b10-cloud-boundary/05-the-landing-zone.html
   docs/whitepapers/git-server-interfaces-whitepaper.html: docs/books/b10-cloud-boundary/appendix-b-platform-host-interfaces.html
+  # Book 11 (Zero Trust & Assessment) replaced these pages; sources are in archive/b11-zero-trust/.
+  docs/executive-briefs/zero-trust-overview.html: docs/books/b11-zero-trust/01-a-whole-agency-property.html
+  docs/operational-guides/zero-trust-assessment/index.html: docs/books/b11-zero-trust/09-running-the-assessment.html
+  docs/operational-guides/zero-trust-assessment.html: docs/books/b11-zero-trust/09-running-the-assessment.html
+  docs/whitepapers/bod-25-01-close-before-assess.html: docs/books/b11-zero-trust/08-close-before-you-assess.html
+  docs/whitepapers/scubagear-integration-whitepaper.html: docs/books/b11-zero-trust/09-running-the-assessment.html
+  docs/whitepapers/zero-trust-governance-principles.html: docs/books/b11-zero-trust/02-governance-principles.html
+  docs/whitepapers/zero-trust-governance-whitepaper.html: docs/books/b11-zero-trust/10-evidence-not-verdicts.html
+  docs/whitepapers/zero-trust-whole-agency-unification.html: docs/books/b11-zero-trust/01-a-whole-agency-property.html
+  docs/whitepapers/zta-scuba-relationship.html: docs/books/b11-zero-trust/05-two-assessment-tools.html
+  docs/modernization-specs/zero-trust.html: docs/books/b11-zero-trust/03-what-the-mandates-require.html

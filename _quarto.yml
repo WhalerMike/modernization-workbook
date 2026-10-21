@@ -61,6 +61,8 @@ website:
             text: "Book 09 — Network & Transport"
           - href: docs/books/b10-cloud-boundary/index.md
             text: "Book 10 — Cloud Boundary & Landing Zone"
+          - href: docs/books/b11-zero-trust/index.md
+            text: "Book 11 — Zero Trust & Assessment"
       - href: docs/presentations/index.md
         text: "Presentations"
       - text: "About"
@@ -132,6 +134,11 @@ website:
           contents:
             - auto: "docs/books/b10-cloud-boundary/[0-9]*.md"
             - auto: "docs/books/b10-cloud-boundary/appendix-*.md"
+        - section: "Book 11 — Zero Trust & Assessment"
+          href: docs/books/b11-zero-trust/index.md
+          contents:
+            - auto: "docs/books/b11-zero-trust/[0-9]*.md"
+            - auto: "docs/books/b11-zero-trust/appendix-*.md"
 
   page-footer:
     left: "Federal Modernization Workbook — topic books for federal IT modernization, each framed Why / What / Who / How."
