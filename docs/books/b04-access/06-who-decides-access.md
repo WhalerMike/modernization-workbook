@@ -248,7 +248,7 @@ Everything above describes who approves. The authority split decides which pipel
 
 Two routing rules sit above the table. Any message that appears to come from Microsoft, including security notifications about consent or new service principals, is forced to A3 and escalate-only: the help desk verifies the event in the audit log within four business hours, checks it against an approved ticket, and escalates to the IGO within an hour if it can't match it. Nobody approves or denies anything on the strength of an email. And a request that lands directly on cloud services goes back to triage, because cloud services is the escalation tier, not the front door.
 
-Execution prefers automation. Most A0 to A2 tasks can run as connector actions in the ITSM tool's identity integration, so the help desk does only the residual manual work. [Help Desk Flow](../../operational-guides/helpdesk-entra-operations/helpdesk-flow.md) holds the intake mechanisms and the task-by-task automation crosswalk, and the [Enterprise Application Access Governance](../../operational-guides/helpdesk-entra-operations/enterprise-application-access-governance.md) guide holds the full runbook, catalog definitions and notification templates.
+Execution prefers automation. Most A0 to A2 tasks can run as connector actions in the ITSM tool's identity integration, so the help desk does only the residual manual work. [Help Desk Flow](https://github.com/WhalerMike/modernization-workbook/blob/main/docs/operational-guides/helpdesk-entra-operations/helpdesk-flow.md) holds the intake mechanisms and the task-by-task automation crosswalk, and the [Enterprise Application Access Governance](https://github.com/WhalerMike/modernization-workbook/blob/main/docs/operational-guides/helpdesk-entra-operations/enterprise-application-access-governance.md) guide holds the full runbook, catalog definitions and notification templates.
 
 Before acting, an executor checks three things and puts the ticket on hold if any is missing: every stage of the approval chain shows approved; the task is in the executor's queue in an assigned state; and the ticket carries the approvers, requester, application, tier and the specific action. The executor then activates the needed role through PIM, makes the change, records the object IDs and audit log reference, and closes the ticket within an hour of the change.
 
@@ -356,7 +356,7 @@ The alerts that make the authority split enforceable:
 | PIM activation outside business hours | Activation outside the agency's defined hours or on holidays | P2 |
 | Orphaned application | Weekly check finds fewer than two owners | P2 |
 
-The credential alert is the program's addition to the source list, because adding a credential is how an Application Administrator or owner becomes the app. [Chapter 10](10-access-as-code-and-evidence.md) turns these records into the evidence package, and [Vol IX Book 06](../../compliance/Vol_IX_Book_06_Identity_Access_Governance.md) maps them to controls.
+The credential alert is the program's addition to the source list, because adding a credential is how an Application Administrator or owner becomes the app. [Chapter 10](10-access-as-code-and-evidence.md) turns these records into the evidence package, and [Vol IX Book 06](https://github.com/WhalerMike/modernization-workbook/blob/main/docs/compliance/Vol_IX_Book_06_Identity_Access_Governance.md) maps them to controls.
 
 ::: {.callout-tip}
 ## Continue the book

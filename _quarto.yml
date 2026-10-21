@@ -7,36 +7,18 @@ project:
   post-render: scripts/write_redirects.py
   output-dir: _site
   render:
-    - "*.qmd"
-    - "docs/**/*.md"
-    - "PROJECT-CHARTER.md"
-    - "PROJECT-PLAN.md"
-    - "CONTRIBUTING.md"
-    # Quarto skips README.md when matched by a glob, so section landing pages
-    # are listed by path.
-    - "docs/architecture/architecture-series/README.md"
-    - "docs/case-studies/README.md"
-    - "docs/client-server-to-hybrid-cloud/README.md"
-    - "docs/compliance/federal-compliance-series-moderate/README.md"
-    - "docs/compliance/federal-compliance-series-moderate/books/README.md"
-    - "docs/executive-briefs/README.md"
-    - "docs/modernization-specs/README.md"
-    - "docs/operational-guides/README.md"
-    - "docs/project-management/README.md"
-    - "docs/projects/README.md"
-    - "docs/whitepapers/README.md"
-    - "!STATUS.md"
-    # Day-2 kit wrappers include ServiceNow kit files not yet in this repo;
-    # kept in the repo, excluded from the build until the kit is imported.
-    - "!docs/compliance/day2-kit/"
-    - "!docs/compliance/ServiceNow_Kit_Expansion_Roadmap_page.md"
-    # Source-system internals, kept in the repo but not published: the
-    # substrate runbooks, and canonical-specs (module specs, plus security
-    # templates that are stubs pointing at the source system's own package).
-    - "!docs/substrate/"
-    # Pages a workbook book replaced; kept for history, never published.
-    - "!archive/"
-    - "!docs/canonical-specs/"
+    # The site publishes only the workbook books, the presentations, and the
+    # home and site-map pages. Every other document stays in the repository,
+    # unpublished, until the book that absorbs it is built (see
+    # docs/books/index.md); books link to those sources on GitHub.
+    - "index.qmd"
+    - "sitemap.qmd"
+    - "404.qmd"
+    - "docs/books/**/*.md"
+    - "docs/presentations/**/*.md"
+  # Slide decks are published so the Presentations page can link them.
+  resources:
+    - "presentations/**/*.pptx"
 
 website:
   title: "Modernization Workbook"
@@ -53,22 +35,10 @@ website:
     left:
       - href: index.qmd
         text: "Home"
-      - href: docs/PRINCIPLES.md
-        text: "Principles"
-      - text: "Case Studies"
-        menu:
-          - href: docs/case-studies/README.md
-            text: "All Case Studies"
-          - href: docs/books/b06-data-platform/index.md
-            text: "SQL Server Identity (Book 06)"
-      - href: docs/compliance/index.md
-        text: "Federal Compliance"
-      - href: docs/operational-guides/index.md
-        text: "Operational Guides"
-      - text: "Series"
+      - text: "Books"
         menu:
           - href: docs/books/index.md
-            text: "The Workbook Books"
+            text: "All books"
           - href: docs/books/b02-identity/index.md
             text: "Book 02 — Identity & Directory"
           - href: docs/books/b03-hr-identity/index.md
@@ -83,30 +53,8 @@ website:
             text: "Book 07 — PKI & Certificates"
           - href: docs/books/b08-ddi/index.md
             text: "Book 08 — DNS, DHCP & IPAM"
-          - href: docs/client-server-to-hybrid-cloud/README.md
-            text: "Client-Server to Hybrid-Cloud"
-          - href: docs/executive-governance/index.md
-            text: "Executive Governance"
-          - href: docs/executive-briefs/index.md
-            text: "Executive Briefs"
-          - href: docs/ssot-network-physics/index.md
-            text: "SSOT Network Physics"
-          - href: docs/modernization-specs/README.md
-            text: "Modernization Specs"
-      - href: docs/whitepapers/README.md
-        text: "Whitepapers"
-      - text: "About"
-        menu:
-          - href: docs/HOW-TO-USE.md
-            text: "How to Use This Workbook"
-          - href: PROJECT-CHARTER.md
-            text: "Project Charter"
-          - href: PROJECT-PLAN.md
-            text: "Project Plan"
-          - href: docs/projects/README.md
-            text: "Projects"
-          - href: CONTRIBUTING.md
-            text: "Contributing"
+      - href: docs/presentations/index.md
+        text: "Presentations"
       - href: sitemap.qmd
         text: "Site Map"
     right:
@@ -114,248 +62,52 @@ website:
         text: "GitHub"
         icon: github
 
-  # Section sidebars. A page shows the sidebar that lists it, which gives
-  # every published page a menu path from the navbar. Globs pick up new
-  # pages automatically; README.md files are listed by path because Quarto
-  # skips README.md in globs.
   sidebar:
-    - id: case-studies
-      title: "Case Studies"
+    - id: books
+      title: "The Workbook Books"
       style: docked
       collapse-level: 1
       contents:
-        - docs/case-studies/README.md
-        - docs/case-studies/index.md
-        - section: "Other case studies"
+        - docs/books/index.md
+        - section: "Book 02 — Identity & Directory"
+          href: docs/books/b02-identity/index.md
           contents:
-            - auto: "docs/case-studies/*.md"
-
-    - id: compliance
-      title: "Federal Compliance"
-      style: docked
-      collapse-level: 1
-      contents:
-        - docs/compliance/index.md
-        - section: "Series overview"
+            - auto: "docs/books/b02-identity/[0-9]*.md"
+            - auto: "docs/books/b02-identity/appendix-*.md"
+        - section: "Book 03 — HR-Driven Identity"
+          href: docs/books/b03-hr-identity/index.md
           contents:
-            - docs/compliance/federal-compliance-series-overview.md
-            - docs/compliance/federal-compliance-series-moderate-overview.md
-            - docs/compliance/federal-compliance-series-moderate/README.md
-            - docs/compliance/federal-compliance-series-moderate/executive-brief.md
-            - docs/compliance/federal-compliance-series-moderate/executive-summary.md
-            - docs/compliance/training-index.md
-        - section: "Volume summaries"
+            - auto: "docs/books/b03-hr-identity/[0-9]*.md"
+            - auto: "docs/books/b03-hr-identity/appendix-*.md"
+        - section: "Book 04 — Access & Privilege"
+          href: docs/books/b04-access/index.md
           contents:
-            - auto: "docs/compliance/federal-compliance-series-moderate/vol-*.md"
-        - section: "Book lists"
+            - auto: "docs/books/b04-access/[0-9]*.md"
+            - auto: "docs/books/b04-access/appendix-*.md"
+        - section: "Book 05 — Devices & Endpoints"
+          href: docs/books/b05-devices/index.md
           contents:
-            - docs/compliance/federal-compliance-series-moderate/books/README.md
-            - auto: "docs/compliance/federal-compliance-series-moderate/books/vol-*.md"
-        - section: "Volume 0 — Executive Summary"
+            - auto: "docs/books/b05-devices/[0-9]*.md"
+            - auto: "docs/books/b05-devices/appendix-*.md"
+        - section: "Book 06 — Data Platform: SQL Server Identity"
+          href: docs/books/b06-data-platform/index.md
           contents:
-            - auto: "docs/compliance/Vol_0_Book_*.md"
-        - section: "Volume I — Foundation & Transport"
+            - auto: "docs/books/b06-data-platform/[0-9]*.md"
+            - auto: "docs/books/b06-data-platform/r[0-9]*.md"
+            - auto: "docs/books/b06-data-platform/appendix-*.md"
+        - section: "Book 07 — PKI & Certificates"
+          href: docs/books/b07-pki/index.md
           contents:
-            - auto: "docs/compliance/Vol_I_Book_*.md"
-        - section: "Volume II — Data Platform"
+            - auto: "docs/books/b07-pki/[0-9]*.md"
+            - auto: "docs/books/b07-pki/appendix-*.md"
+        - section: "Book 08 — DNS, DHCP & IPAM"
+          href: docs/books/b08-ddi/index.md
           contents:
-            - auto: "docs/compliance/Vol_II_Book_*.md"
-        - section: "Volume III — Security Operations"
-          contents:
-            - auto: "docs/compliance/Vol_III_Book_*.md"
-        - section: "Volume IV — Governance & Assurance"
-          contents:
-            - docs/compliance/Vol_IV_Book_00_Governance_Assurance_Overview.md
-            - docs/compliance/Vol_IV_Book_01_Business_Continuity.md
-            - docs/compliance/Vol_IV_Book_02_Supply_Chain_Risk_Management.md
-            - docs/compliance/Vol_IV_Book_03_Program_Management_Governance.md
-            - docs/compliance/Vol_IV_Book_04_PII_Processing_Transparency.md
-            - docs/compliance/Vol_IV_Book_05_Cybersecurity_Training_Awareness.md
-            # Its front matter sets a docx-only format, so link the HTML page
-            # explicitly; otherwise the sidebar points at the .docx.
-            - text: "Vol IV Book 06 — Federal Compliance — Authorization Package & ConMon"
-              href: docs/compliance/Vol_IV_Book_06_Authorization_Package_ConMon.html
-        - section: "Volume V — Training & Certification"
-          contents:
-            - auto: "docs/compliance/Vol_V_Book_*.md"
-        - section: "Volume VI — Implementation"
-          contents:
-            - auto: "docs/compliance/Vol_VI_Book_*.md"
-        - section: "Volume VII — ServiceNow Automation"
-          contents:
-            - auto: "docs/compliance/Vol_VII_Book_*.md"
-        - section: "Volume VIII — Multi-Cloud DDI"
-          contents:
-            - auto: "docs/compliance/Vol_VIII_Book_*.md"
-        - section: "Volume IX — Day-2 Operations"
-          contents:
-            - auto: "docs/compliance/Vol_IX_Book_*.md"
-        - section: "Volume X — Governance-Substrate Integration"
-          contents:
-            - auto: "docs/compliance/Vol_X_Book_*.md"
-        - section: "Supporting documents"
-          contents:
-            - docs/compliance/Compliance_ServiceNow_Kit_Expansion_Roadmap.md
-            - docs/compliance/Evidence_Contract_Spec.md
-            - docs/compliance/Operator_Runbook_Day2_Compliant.md
-
-    - id: operational-guides
-      title: "Operational Guides"
-      style: docked
-      collapse-level: 1
-      contents:
-        - docs/operational-guides/index.md
-        - docs/operational-guides/README.md
-        - section: "Guides"
-          contents:
-            - auto: "docs/operational-guides/*.md"
-        - section: "AI Identity Governance"
-          contents:
-            - auto: "docs/operational-guides/ai-identity-governance/*.md"
-        - section: "Client-Server to Hybrid-Cloud (runbooks)"
-          contents:
-            - auto: "docs/operational-guides/client-server-to-hybrid-cloud/*.md"
-        - section: "Help Desk and Entra Operations"
-          contents:
-            - docs/operational-guides/helpdesk-entra-operations/index.md
-            - auto: "docs/operational-guides/helpdesk-entra-operations/*.md"
-        - section: "M365 Optimize Exemption"
-          contents:
-            - docs/operational-guides/m365-optimize-exemption/index.md
-            - auto: "docs/operational-guides/m365-optimize-exemption/*.md"
-        - section: "Network Transformation"
-          contents:
-            - auto: "docs/operational-guides/network-transformation/*.md"
-        - section: "Platform Substrate"
-          contents:
-            - auto: "docs/operational-guides/platform-substrate/*.md"
-        - section: "Program Management"
-          contents:
-            - auto: "docs/operational-guides/program-management/*.md"
-        - section: "SIEM Telemetry Emission"
-          contents:
-            - auto: "docs/operational-guides/siem-telemetry-emission/*.md"
-        - section: "Transformation Engine"
-          contents:
-            - auto: "docs/operational-guides/transformation-engine/*.md"
-        - section: "Zero Trust Assessment"
-          contents:
-            - auto: "docs/operational-guides/zero-trust-assessment/*.md"
-
-    - id: architecture
-      title: "Architecture"
-      style: docked
-      collapse-level: 1
-      contents:
-        - section: "Architecture topics"
-          contents:
-            - auto: "docs/architecture/*.md"
-        - section: "Architecture Series"
-          contents:
-            - docs/architecture/architecture-series/README.md
-            - auto: "docs/architecture/architecture-series/*.md"
-        - section: "Reference Architecture"
-          contents:
-            - docs/reference-architecture/index.md
-            - auto: "docs/reference-architecture/*.md"
-
-    - id: series
-      title: "Series"
-      style: docked
-      collapse-level: 1
-      contents:
-        - section: "The Workbook Books"
-          href: docs/books/index.md
-          contents:
-            - section: "Book 02 — Identity & Directory"
-              href: docs/books/b02-identity/index.md
-              contents:
-                - auto: "docs/books/b02-identity/[0-9]*.md"
-                - auto: "docs/books/b02-identity/appendix-*.md"
-            - section: "Book 03 — HR-Driven Identity"
-              href: docs/books/b03-hr-identity/index.md
-              contents:
-                - auto: "docs/books/b03-hr-identity/[0-9]*.md"
-                - auto: "docs/books/b03-hr-identity/appendix-*.md"
-            - section: "Book 04 — Access & Privilege"
-              href: docs/books/b04-access/index.md
-              contents:
-                - auto: "docs/books/b04-access/[0-9]*.md"
-                - auto: "docs/books/b04-access/appendix-*.md"
-            - section: "Book 05 — Devices & Endpoints"
-              href: docs/books/b05-devices/index.md
-              contents:
-                - auto: "docs/books/b05-devices/[0-9]*.md"
-                - auto: "docs/books/b05-devices/appendix-*.md"
-            - section: "Book 06 — Data Platform: SQL Server Identity"
-              href: docs/books/b06-data-platform/index.md
-              contents:
-                - auto: "docs/books/b06-data-platform/[0-9]*.md"
-                - auto: "docs/books/b06-data-platform/r[0-9]*.md"
-                - auto: "docs/books/b06-data-platform/appendix-*.md"
-            - section: "Book 07 — PKI & Certificates"
-              href: docs/books/b07-pki/index.md
-              contents:
-                - auto: "docs/books/b07-pki/[0-9]*.md"
-                - auto: "docs/books/b07-pki/appendix-*.md"
-            - section: "Book 08 — DNS, DHCP & IPAM"
-              href: docs/books/b08-ddi/index.md
-              contents:
-                - auto: "docs/books/b08-ddi/[0-9]*.md"
-                - auto: "docs/books/b08-ddi/appendix-*.md"
-        - section: "Client-Server to Hybrid-Cloud"
-          href: docs/client-server-to-hybrid-cloud/README.md
-          contents:
-            - auto: "docs/client-server-to-hybrid-cloud/*.md"
-        - section: "Executive Governance"
-          href: docs/executive-governance/index.md
-          contents:
-            - auto: "docs/executive-governance/ch*/index.md"
-        - section: "Executive Briefs"
-          href: docs/executive-briefs/index.md
-          contents:
-            - docs/executive-briefs/README.md
-            - auto: "docs/executive-briefs/*.md"
-        - section: "SSOT Network Physics"
-          href: docs/ssot-network-physics/index.md
-          contents:
-            - auto: "docs/ssot-network-physics/*.md"
-        - section: "Modernization Specs"
-          href: docs/modernization-specs/README.md
-          contents:
-            - auto: "docs/modernization-specs/*.md"
-
-    - id: whitepapers
-      title: "Whitepapers"
-      style: docked
-      contents:
-        - docs/whitepapers/README.md
-        - auto: "docs/whitepapers/*.md"
-
-    - id: about
-      title: "About"
-      style: docked
-      contents:
-        - docs/PRINCIPLES.md
-        - docs/HOW-TO-USE.md
-        - PROJECT-CHARTER.md
-        - PROJECT-PLAN.md
-        - CONTRIBUTING.md
-        - docs/modernization/index.md
-        - section: "Program"
-          contents:
-            - auto: "docs/program/*.md"
-        - section: "Projects"
-          contents:
-            - docs/projects/README.md
-            - auto: "docs/projects/*.md"
-        - section: "Project Management"
-          contents:
-            - docs/project-management/README.md
-            - docs/project-management/master-project-plan.md
+            - auto: "docs/books/b08-ddi/[0-9]*.md"
+            - auto: "docs/books/b08-ddi/appendix-*.md"
 
   page-footer:
-    left: "Modernization Workbook — a clean, standalone project for federal IT modernization."
+    left: "Modernization Workbook — topic books for federal IT modernization, each framed Why / What / Who / How."
     right:
       - href: https://github.com/WhalerMike/modernization-workbook
         text: "Source"

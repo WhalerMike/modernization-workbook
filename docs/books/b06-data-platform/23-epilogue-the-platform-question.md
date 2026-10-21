@@ -24,7 +24,7 @@ What to do with the rationalized estate once its authentication has moved to Mic
 
 ::: {.callout-note}
 ## An epilogue, not another migration step
-Chapters 01–22 are the SQL Server identity transformation. This epilogue starts where they end: with a rationalized estate whose authentication has moved to Microsoft Entra ID. Nothing in Chapters 01–22 depends on it, and the [Data Platform project charter](../../projects/data-platform-charter.md) leaves full consolidation and platform replacement out of its initial phase.
+Chapters 01–22 are the SQL Server identity transformation. This epilogue starts where they end: with a rationalized estate whose authentication has moved to Microsoft Entra ID. Nothing in Chapters 01–22 depends on it, and the [Data Platform project charter](https://github.com/WhalerMike/modernization-workbook/blob/main/docs/projects/data-platform-charter.md) leaves full consolidation and platform replacement out of its initial phase.
 :::
 
 ## The fragmentation cost

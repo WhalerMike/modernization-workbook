@@ -32,7 +32,7 @@ This book consolidates twenty-two earlier workbook pages on identity and directo
 ## Download and present
 **[b02-identity-bundle.docx](../../../downloads/b02-identity-bundle.docx)**: the whole book as one Word document, regenerated on every site deploy.
 
-**15-minute presentation**: the Why / What / Who / How deck and its narrated, self-running version are in the repository under [`presentations/b02-identity/`](https://github.com/WhalerMike/modernization-workbook/tree/main/presentations/b02-identity).
+**15-minute presentation**: the Why / What / Who / How deck and its narrated, self-running edition are on the [Presentations](../../presentations/index.md#book-02) page.
 :::
 
 Every access decision in a modern federal estate starts with a question about identity: who is this, is the claim about them still true, and what is this device or workload allowed to do? For twenty-five years Active Directory answered those questions inside the network perimeter, and it quietly took on much more: DNS, certificates, Wi-Fi and VPN authentication, file shares, time, application logins, and the organization chart encoded as OUs. Zero Trust moves the decision to the identity provider and evaluates it on every request. Moving from Active Directory to Entra ID is therefore not a directory upgrade. It decides whether every later control works.

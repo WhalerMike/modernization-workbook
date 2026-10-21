@@ -293,7 +293,7 @@ On the governed path, the same scripts run with `-ApprovalRef` on every state-ch
 - Watch the three baselines together: machine configuration compliance, Update Manager compliance and Defender for Cloud recommendations. A server that's connected but failing all three is addressable, not governed.
 - Track ESU coverage and end-of-support dates as a standing report until the last Windows Server 2016 and SQL Server 2014 host is gone.
 
-[Chapter 10](10-operating-and-evidencing-the-fleet.md) brings the server and workstation signals together. The compute side of the same transition, from the application's point of view, is in the Client-Server to Hybrid-Cloud series, [Chapter 07 — Compute Transformation](../../client-server-to-hybrid-cloud/07-compute-transformation.md).
+[Chapter 10](10-operating-and-evidencing-the-fleet.md) brings the server and workstation signals together. The compute side of the same transition, from the application's point of view, is in the Client-Server to Hybrid-Cloud series, [Chapter 07 — Compute Transformation](https://github.com/WhalerMike/modernization-workbook/blob/main/docs/client-server-to-hybrid-cloud/07-compute-transformation.md).
 
 ## What this chapter establishes
 

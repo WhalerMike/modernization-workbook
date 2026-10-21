@@ -324,7 +324,7 @@ The source's boundary table described Intune and Entra ID in a GCC (Moderate) te
 
 - [Book 02 — Identity & Directory](../b02-identity/index.md), for the identities these devices authenticate: [Chapter 04](../b02-identity/04-the-hidden-migration-surface.md) treats devices as one of the migration's hidden adapters, and [Chapter 10](../b02-identity/10-migrating-and-governing.md) covers Windows Hello for Business and phishing-resistant sign-in.
 - [Book 04 — Access & Privilege](../b04-access/index.md), for the Conditional Access policies that consume device compliance, and for the privileged access model that Tier 0 devices serve.
-- The [Endpoint & Device Modernization project plan](../../projects/endpoint-device-plan.md), which tracks this work as Observe, Onboard, Harden and Watch; this chapter is its Watch phase.
+- The [Endpoint & Device Modernization project plan](https://github.com/WhalerMike/modernization-workbook/blob/main/docs/projects/endpoint-device-plan.md), which tracks this work as Observe, Onboard, Harden and Watch; this chapter is its Watch phase.
 
 ::: {.callout-tip}
 ## Continue the book

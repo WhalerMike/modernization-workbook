@@ -12,7 +12,7 @@ lifecycle_review: 2027-04-01
 
 # The Workbook Books {.unnumbered}
 
-The workbook grew as separate whitepapers, guides, series and case studies. The books reorganize that material by topic. Each book opens with one question (its **Why**), then covers **What** changes, **Who** owns it, and **How** to do it. Every external claim is checked against a primary source and footnoted, diagrams follow one house style, and each book has a Word edition and a 15-minute narrated presentation. When a book is built, the pages it replaces move to the repository's `archive/` folder and their old addresses forward to the new chapters.
+The workbook grew as separate whitepapers, guides, series and case studies. The books reorganize that material by topic. Each book opens with one question (its **Why**), then covers **What** changes, **Who** owns it, and **How** to do it. Every external claim is checked against a primary source and footnoted, diagrams follow one house style, and each book has a Word edition and a 15-minute narrated presentation. This site publishes only the books. When a book is built, the pages it replaces move to the repository's `archive/` folder and their old addresses forward to the new chapters. Until then, a planned book's source documents stay unpublished in the [repository](https://github.com/WhalerMike/modernization-workbook), and published chapters link to them there. Each book's deck is on the [Presentations](../presentations/index.md) page.
 
 | Book | Topic | Opening question | Status |
 |---|---|---|---|
