@@ -134,7 +134,7 @@ Get-DnsServerSigningKey -ZoneName example.gov
 
 ### Moving signed zones
 
-Signed zones move by their own sequence, which [Chapter 10](10-migration-sequence.md)'s Phase 6 relies on:
+Signed zones move by their own sequence. In [Chapter 10](10-migration-sequence.md) they move during Phase 3, like every other zone, and the new chain of trust must validate before the Phase 5 decommission gate can pass:
 
 1. **Finish key rollovers first.** Complete any ZSK or KSK rollover in progress before a signed zone migrates, and start no new rollover during the migration.
 2. **Keep the old signing until the new chain validates.** Sign the zone on its new platform, publish the new DS record at the parent (for an external zone, through the registrar), confirm from an independent validator that the new chain of trust holds, and only then stop signing at the source. Removing DNSSEC is the reverse: Microsoft documents that the DS record must be removed from the parent and its TTL allowed to expire before a zone is unsigned.[^c06-az-unsign]

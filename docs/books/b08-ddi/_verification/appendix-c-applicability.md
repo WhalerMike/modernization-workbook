@@ -42,3 +42,9 @@ Checked October 20, 2026. Source: the existing series page "Applicability" (the 
 | Air-Gapped and Classified Networks | "Air-gapped and classified networks" | Azure Government Secret example added |
 | Quick Reference table | "Quick reference" table | Private Resolver row added |
 | Previous/Next links | "Continue the book" callout | per brief |
+
+## Cross-chapter consistency pass (October 21, 2026)
+
+| # | Claim (short) | Where | Verdict | Source |
+|---|---|---|---|---|
+| CP-1 | Confirm DNS resolver policy (formerly DNS security policy) availability in Azure Government | Azure Government bullet | name updated | Microsoft Learn, "DNS resolver policy," <https://learn.microsoft.com/en-us/azure/dns/dns-security-policy> (opened Oct 21, 2026): page title and every heading use "DNS resolver policy"; portal resource "DNS Resolver Policies"; URL keeps `dns-security-policy`; networking design guide <https://learn.microsoft.com/azure/networking/design-guide/dns-security> still says "DNS security policy" |

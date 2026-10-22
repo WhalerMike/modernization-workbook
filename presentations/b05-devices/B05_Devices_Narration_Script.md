@@ -12,7 +12,7 @@ The short version: this is not a settings migration. It's a governance rebuild.
 
 Why can't Group Policy come to the cloud? Because Group Policy governed by position, and an Intune-managed device has no position.
 
-Where a computer sat in the OU tree quietly did five jobs. It decided targeting: what settings the computer got. Precedence: link order and inheritance decided which setting won. Delegation: OU permissions decided who could change it. Timing: policy refreshed at startup, at sign-in and on a cycle. And evidence: the resultant set of policy told you what actually applied.
+Where a computer sat in the organizational unit (OU) tree quietly did five jobs. It decided targeting: what settings the computer got. Precedence: link order and inheritance decided which setting won. Delegation: OU permissions decided who could change it. Timing: policy refreshed at startup, at sign-in and on a cycle. And evidence: the resultant set of policy told you what actually applied.
 
 An Entra-joined, Intune-managed device has none of that. Policy is assigned flatly to groups, and nothing reads the OU tree. When two policies set the same thing, Intune reports a conflict; it doesn't resolve it by order. Devices check in about every eight hours. And some Group Policy jobs, mapped drives for example, have no built-in equivalent at all. Microsoft itself advises against copying GPOs one for one.
 

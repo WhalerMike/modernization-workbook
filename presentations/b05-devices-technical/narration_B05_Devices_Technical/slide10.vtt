@@ -1,0 +1,140 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.862
+Three places in the shared
+runbook cause most of the outages.
+
+2
+00:00:03.862 --> 00:00:05.137
+Precedence first.
+
+3
+00:00:05.137 --> 00:00:10.723
+Moving the existing fleet into Intune
+usually goes through Group Policy triggered
+
+4
+00:00:10.723 --> 00:00:15.988
+automatic enrollment of hybrid joined
+devices: no reimage, no user interaction.
+
+5
+00:00:15.988 --> 00:00:21.313
+Confirm with dsregcmd that the device shows
+both Azure AD joined and domain joined.
+
+6
+00:00:21.313 --> 00:00:25.212
+But while the GPOs are still
+linked, overlaps are dangerous.
+
+7
+00:00:25.212 --> 00:00:29.637
+When the same policy is set in
+both, Group Policy takes precedence.
+
+8
+00:00:29.637 --> 00:00:34.249
+MDM wins over GP reverses
+that only for the Policy CSP.
+
+9
+00:00:34.249 --> 00:00:37.725
+For the Defender CSP
+and others, it's a race.
+
+10
+00:00:37.725 --> 00:00:41.279
+And Windows Hello for Business,
+in the PassportForWork CSP,
+
+11
+00:00:41.279 --> 00:00:45.775
+won't take the Intune settings until
+the Group Policy settings are cleared.
+
+12
+00:00:45.775 --> 00:00:49.975
+So document every overlap before
+Intune enforces anything.
+
+13
+00:00:49.975 --> 00:00:51.937
+NTLM second.
+
+14
+00:00:51.937 --> 00:00:54.908
+It's deprecated in all versions,
+
+15
+00:00:54.908 --> 00:01:00.163
+and NTLMv1 is removed in
+Windows 11 24H2 and Server 2025.
+
+16
+00:01:00.163 --> 00:01:05.425
+A common mistake is treating LAN
+Manager level 5 as block all NTLM.
+
+17
+00:01:05.425 --> 00:01:12.149
+Level 5 makes domain controllers refuse LM
+and NTLMv1, but they still accept NTLMv2.
+
+18
+00:01:12.149 --> 00:01:15.950
+Blocking is done by the
+Restrict NTLM policies.
+
+19
+00:01:15.950 --> 00:01:19.976
+So stage it: audit, refuse the
+legacy variants, then deny all,
+
+20
+00:01:19.976 --> 00:01:23.415
+removing exceptions as
+each dependency retires,
+
+21
+00:01:23.415 --> 00:01:28.700
+and only after a fourteen to thirty day
+audit and application owner sign-off.
+
+22
+00:01:28.700 --> 00:01:31.100
+Conditional Access can't help here:
+
+23
+00:01:31.100 --> 00:01:35.900
+a Kerberos or NTLM exchange with a
+domain controller never reaches it.
+
+24
+00:01:35.900 --> 00:01:37.150
+SPNs third.
+
+25
+00:01:37.150 --> 00:01:41.918
+A missing SPN is the silent
+case: Kerberos isn't attempted,
+
+26
+00:01:41.918 --> 00:01:46.787
+and NTLM usually succeeds, until
+stage 3 makes it an outage.
+
+27
+00:01:46.787 --> 00:01:48.837
+A duplicate is the loud case.
+
+28
+00:01:48.837 --> 00:01:51.868
+Validate each repair by
+purging the ticket cache
+
+29
+00:01:51.868 --> 00:01:54.820
+and checking that SQL
+Server reports Kerberos.

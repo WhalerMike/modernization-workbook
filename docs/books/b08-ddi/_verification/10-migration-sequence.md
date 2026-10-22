@@ -174,3 +174,10 @@ Checked 2026-10-20 against Microsoft Learn (Learn MCP search and fetch: DnsServe
 |---|---|
 | `ch10-migration-phases.flow.yaml` | Kept; comment line corrected from "Chapter 09" to "Chapter 10" |
 | `ch10-cutover-loop.flow.yaml` | New: the per-zone cutover loop and rollback point |
+
+## Cross-chapter consistency pass (October 21, 2026)
+
+| # | Claim (short) | Where | Verdict | Source |
+|---|---|---|---|---|
+| CP-1 | Signed zones move in Phase 3 by the signed-zone sequence and must validate before the Phase 5 gate; Phase 5 gate 1 counts a signed zone as moved only once its new chain validates and old signing has stopped; Phase 6 covers newly signed zones and validation | Inventory table; component table; Phase 3; Phase 5 gate 1; Phase 6 | resolved internal contradiction (program design) | Chapter 06 "Moving signed zones" (revised to match) |
+| CP-2 | Observe at least 30 days after a zone switch; the old copy stays as rollback point until decommissioning in Phase 5 (was "before the old copy is retired") | Phase 3, Zones and records | aligned with the cutover loop step 6 (program design) | Cutover loop step 6, this chapter |

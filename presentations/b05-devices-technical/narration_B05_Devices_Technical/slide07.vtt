@@ -1,0 +1,137 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.496
+Here's how the procurement
+decision reaches a
+
+2
+00:00:02.496 --> 00:00:05.263
+device's configuration
+without anyone touching it.
+
+3
+00:00:05.263 --> 00:00:09.813
+The purchase order carries an organizational
+node code and the serial number.
+
+4
+00:00:09.813 --> 00:00:14.470
+The OEM, reseller or distributor
+registers the hardware hash at purchase,
+
+5
+00:00:14.470 --> 00:00:16.837
+which is also what makes it zero-touch.
+
+6
+00:00:16.837 --> 00:00:22.138
+A supplier can register devices only after
+the organization's Global Administrator
+
+7
+00:00:22.138 --> 00:00:26.618
+authorizes it; Microsoft calls out
+that this one feature needs that role,
+
+8
+00:00:26.618 --> 00:00:30.575
+so plan the consent as a one-time,
+recorded approval per supplier.
+
+9
+00:00:30.575 --> 00:00:35.489
+The group tag Intune stores on the
+registration appears on the Entra device
+
+10
+00:00:35.489 --> 00:00:40.013
+as an Order ID physical ID, and the
+purchase order as a Purchase Order ID.
+
+11
+00:00:40.013 --> 00:00:43.829
+A dynamic group rule matches on
+them, and the Autopilot profile,
+
+12
+00:00:43.829 --> 00:00:47.351
+compliance and configuration
+are assigned to that group.
+
+13
+00:00:47.351 --> 00:00:51.493
+The program's convention is that
+the tag holds the node identifier,
+
+14
+00:00:51.493 --> 00:00:53.603
+never a free-text department name,
+
+15
+00:00:53.603 --> 00:00:58.575
+so a reorganization changes the mapping
+table, not thousands of registrations.
+
+16
+00:00:58.575 --> 00:01:02.200
+Enrollment restrictions give the
+doctrine its enforcement point.
+
+17
+00:01:02.200 --> 00:01:06.960
+Block personally owned Windows enrollment,
+and Intune authorizes corporate
+
+18
+00:01:06.960 --> 00:01:10.987
+enrollment only through approved
+paths, of which Autopilot is one.
+
+19
+00:01:10.987 --> 00:01:15.114
+Device preparation devices are
+blocked unless they're pre-identified
+
+20
+00:01:15.114 --> 00:01:18.612
+with corporate identifiers or
+bound by device association.
+
+21
+00:01:18.612 --> 00:01:23.071
+An unregistered device then fails
+with an enrollment restriction error,
+
+22
+00:01:23.071 --> 00:01:24.825
+which is pillar 5 in practice.
+
+23
+00:01:24.825 --> 00:01:31.100
+Naming: fifteen characters or fewer, letters,
+numbers and hyphens, not all numbers.
+
+24
+00:01:31.100 --> 00:01:35.331
+The program uses a short asset-class
+prefix plus the serial macro,
+
+25
+00:01:35.331 --> 00:01:38.387
+because the serial is
+the procurement join key.
+
+26
+00:01:38.387 --> 00:01:40.051
+Position goes in the tag.
+
+27
+00:01:40.051 --> 00:01:44.431
+And the Enrollment Status Page: use
+a custom one, block on a Selected
+
+28
+00:01:44.431 --> 00:01:49.100
+list of security-critical items, and
+don't let users bypass it for those.

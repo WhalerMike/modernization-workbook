@@ -40,7 +40,7 @@ Book 01's illustrative calendar gives these phases weeks 5 to 36; the master pla
 
 ## Phase 1 — Foundation
 
-Phase 1 opens with the eight plans: generated from the committed assessment and approved by the steward, the workstream leads and the security lead ([Chapter 08](08-pre-flight-and-assessment.md#five-steps-from-default-read-to-approved-plans), steps 4 and 5). Then it has two halves that run together: designing every surface from the approved plans, and building the shared primitives the pilot needs. The master plan treated the second half as the last week of assessment, but it creates objects in the target tenant, so it belongs here.
+Phase 1 opens with the eight plans: generated from the committed assessment, reviewed by the workstream leads and the security lead, and approved by the steward, with the steering committee reviewing the combined set ([Chapter 08](08-pre-flight-and-assessment.md#five-steps-from-default-read-to-approved-plans), steps 4 and 5). Then it has two halves that run together: designing every surface from the approved plans, and building the shared primitives the pilot needs. The master plan treated the second half as the last week of assessment, but it creates objects in the target tenant, so it belongs here.
 
 ### Design milestones
 
@@ -238,7 +238,7 @@ Scale exposes what a pilot can't. The master plan's risk table for this phase, w
 
 | Risk | Impact | Mitigation | Contingency |
 |---|---|---|---|
-| A wave exposes applications the pilot didn't see | Authentication failures, business disruption | Application discovery before each wave; Conditional Access in report-only for 48 hours before enforcement | Exclude the application through a governed exception policy |
+| A wave exposes applications the pilot didn't see | Authentication failures, business disruption | Application discovery before each wave; Conditional Access in report-only for at least a week before enforcement, as for the pilot[^c09-ca-plan] | Exclude the application through a governed exception policy |
 | GPO-to-Intune gaps appear at scale | Configuration drift, compliance failures | Keep GPO links during the wave; unlink only after seven days of clean compliance | Re-enable GPO for the affected OUs; record the gap |
 | Dynamic group processing slows at high user counts | Policy assignment delays, enrollment gaps | Stagger attribute writes; monitor processing time; plan in hours | Convert critical policies to assigned groups for the wave |
 | Mass certificate issuance strains Cloud PKI | Issuance failures, Wi-Fi and VPN disruption | Stagger SCEP profile deployment across the wave; monitor issuance | Throttle enrollment; extend the wave |

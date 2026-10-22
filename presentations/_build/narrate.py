@@ -36,7 +36,7 @@ PHON = [
     (r"\bSOA\b", "S O A"), (r"\bPIA\b", "P I A"), (r"\bSORNs\b", "sorns"), (r"\bSORN\b", "sorn"), (r"\bNOA\b", "N O A"),
     (r"\b100 series\b", "one hundred series"), (r"\b200 series\b", "two hundred series"), (r"\b300 series\b", "three hundred series"),
     (r"\b400 series\b", "four hundred series"), (r"\b500 series\b", "five hundred series"), (r"\b700 series\b", "seven hundred series"),
-    (r"\bNTLM\b", "N T L M"), (r"\bLDAP\b", "el-dap"), (r"\bOUs\b", "O Us"), (r"\bOU\b", "O U"), (r"\bAUs\b", "A Us"),
+    (r"\bNTLM\b", "N T L M"), (r"\bLDAP\b", "el-dap"), (r"\bOUs\b", "O U's"), (r"\bOU\b", "O U"), (r"\bAUs\b", "A U's"),
     (r"\bUPN\b", "U P N"), (r"\bOIDC\b", "O I D C"), (r"\bSAML\b", "sam-ul"), (r"\bAD CS\b", "A D C S"), (r"\bMFA\b", "M F A"),
     (r"\bFIDO2\b", "fido two"), (r"\bPAWs?\b", "P A W"), (r"\bDNS\b", "D N S"), (r"\bCISA\b", "sis-uh"), (r"\bZTMM\b", "Z T M M"),
     (r"\bNIST\b", "nist"), (r"\bOMB\b", "O M B"), (r"\bFedRAMP\b", "fed-ramp"), (r"\bGCC\b", "G C C"), (r"\bPKI\b", "P K I"),
@@ -46,6 +46,25 @@ PHON = [
     (r"\bAC-6\(7\)", "A C six, enhancement seven"), (r"\bAC-2\b", "A C two"),
     (r"—", ", "),
 ]
+
+
+# Spell out an abbreviation the first time a deck uses it: "organizational units (OUs)", then "OUs".
+EXPAND = {"OU": ("organizational unit", "organizational units"), "AU": ("administrative unit", "administrative units")}
+
+
+def expand_first(text: str, introduced: set) -> str:
+    for ab, (one, many) in EXPAND.items():
+        if ab in introduced:
+            continue
+        m = re.search(rf"\b{ab}(s?)\b(?!-\d)", text)  # not a control ID such as AU-12
+        if not m:
+            continue
+        introduced.add(ab)
+        if re.search(rf"{one}s?\s*\(\s*{ab}s?\s*\)", text, re.I):  # already written out
+            continue
+        full = (many if m.group(1) else one) + f" ({ab}{m.group(1)})"
+        text = text[:m.start()] + full + text[m.end():]
+    return text
 
 
 def clean(notes: str) -> str:
@@ -79,6 +98,7 @@ async def main():
     timing_file = OUT / "sentences.json"
     timings = json.loads(timing_file.read_text(encoding="utf-8")) if timing_file.exists() else {}
     prs = Presentation(DECK)
+    introduced = set()
     script, durations = [f"# {prs.core_properties.title or DECK.stem} — narration script (practice copy)\n"], {}
     for i, slide in enumerate(prs.slides, 1):
         title = next((sh.text_frame.text for sh in slide.shapes if sh.is_placeholder and sh.placeholder_format.idx == 0 and sh.has_text_frame), None)             or next((sh.text_frame.text for sh in slide.shapes if sh.has_text_frame and sh.text_frame.text.strip()), f"Slide {i}")
@@ -86,6 +106,7 @@ async def main():
             break
         notes = slide.notes_slide.notes_text_frame.text if slide.has_notes_slide else ""
         text = clean(notes)
+        text = expand_first(text, introduced)
         if title.startswith("More modernizations"):  # teaser: drop the stage direction
             text = re.sub(r"^Leave up during questions.*?\n", "", text).strip()
         script.append(f"\n## Slide {i} — {title}\n\n{text}\n")

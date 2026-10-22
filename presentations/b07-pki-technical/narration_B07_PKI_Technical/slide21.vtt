@@ -1,0 +1,150 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.700
+How a CBA sign-in works,
+as Microsoft documents it.
+
+2
+00:00:03.700 --> 00:00:07.540
+The user enters a username;
+Entra ID performs home realm
+
+3
+00:00:07.540 --> 00:00:11.213
+discovery and offers Use a
+certificate or smart card.
+
+4
+00:00:11.213 --> 00:00:15.595
+The client is redirected to the
+certificate authentication endpoint,
+
+5
+00:00:15.595 --> 00:00:20.051
+certauth dot login dot microsoftonline
+dot com in the commercial cloud,
+
+6
+00:00:20.051 --> 00:00:23.913
+which includes GCC, and the dot
+us endpoint in Azure Government.
+
+7
+00:00:23.913 --> 00:00:27.875
+It requests the client certificate
+in a mutual-TLS handshake.
+
+8
+00:00:27.875 --> 00:00:30.426
+Entra ID checks the chain and the CRL,
+
+9
+00:00:30.426 --> 00:00:33.912
+and finds one user through
+the username bindings.
+
+10
+00:00:33.912 --> 00:00:39.590
+If Conditional Access requires MFA and
+the certificate counts as multifactor, the
+
+11
+00:00:39.590 --> 00:00:44.938
+user is signed in; if it's single-factor,
+Entra offers a registered second factor.
+
+12
+00:00:44.938 --> 00:00:49.273
+Allow the endpoint through proxies
+and turn off TLS inspection for it,
+
+13
+00:00:49.273 --> 00:00:52.338
+or the client certificate
+never reaches Entra ID.
+
+14
+00:00:52.338 --> 00:00:53.474
+The trust store.
+
+15
+00:00:53.474 --> 00:00:57.500
+Upload every CA in the chain
+that issues user certificates.
+
+16
+00:00:57.500 --> 00:01:01.245
+Microsoft highly recommends
+the PKI-based trust store,
+
+17
+00:01:01.245 --> 00:01:03.850
+which holds up to two hundred fifty CAs.
+
+18
+00:01:03.850 --> 00:01:08.126
+Managing it takes Privileged
+Authentication Administrator,
+
+19
+00:01:08.126 --> 00:01:10.100
+and bulk upload needs P1 or P2.
+
+20
+00:01:10.100 --> 00:01:14.005
+The trust store is also a blast
+radius: adding a CA lets any
+
+21
+00:01:14.005 --> 00:01:18.325
+certificate it issues authenticate
+any user it can be bound to.
+
+22
+00:01:18.325 --> 00:01:19.337
+Revocation.
+
+23
+00:01:19.337 --> 00:01:24.310
+Set each CA's base CRL URL, and the
+delta if published; without one,
+
+24
+00:01:24.310 --> 00:01:30.526
+a revoked certificate still authenticates,
+so turn on Require CRL validation.
+
+25
+00:01:30.526 --> 00:01:36.044
+Entra ID supports one CRL endpoint
+per CA over HTTP or HTTPS,
+
+26
+00:01:36.044 --> 00:01:41.113
+with HTTP recommended,
+downloaded within ten seconds.
+
+27
+00:01:41.113 --> 00:01:43.337
+It doesn't support OCSP.
+
+28
+00:01:43.337 --> 00:01:47.652
+Interactive sign-in downloads CRLs
+up to twenty megabytes in the
+
+29
+00:01:47.652 --> 00:01:52.125
+commercial cloud including GCC,
+and forty-five in Azure Government.
+
+30
+00:01:52.125 --> 00:01:55.014
+And it caches the CRL
+until its next update,
+
+31
+00:01:55.014 --> 00:01:59.450
+so revoke the user's sessions when
+revocation must be immediate.

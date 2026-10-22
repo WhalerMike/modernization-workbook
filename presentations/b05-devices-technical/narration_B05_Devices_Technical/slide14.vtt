@@ -1,0 +1,138 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.465
+While a population has both
+GPOs and Intune policies,
+
+2
+00:00:03.465 --> 00:00:08.200
+three conflict systems are in play,
+and the program plans against each one.
+
+3
+00:00:08.200 --> 00:00:12.843
+Inside Intune: two compliance policies
+take the most restrictive value;
+
+4
+00:00:12.843 --> 00:00:17.408
+a compliance setting beats the same
+setting in a configuration policy;
+
+5
+00:00:17.408 --> 00:00:21.664
+and between configuration policies
+of any type, settings catalog,
+
+6
+00:00:21.664 --> 00:00:25.688
+endpoint security, security
+baselines, there is no precedence.
+
+7
+00:00:25.688 --> 00:00:29.850
+The conflict is reported and the setting
+might not apply until it's fixed.
+
+8
+00:00:29.850 --> 00:00:33.784
+The chapter states two corrections
+to earlier program material:
+
+9
+00:00:33.784 --> 00:00:36.261
+profiles don't resolve by last write wins,
+
+10
+00:00:36.261 --> 00:00:40.850
+and endpoint security doesn't
+automatically beat configuration profiles.
+
+11
+00:00:40.850 --> 00:00:44.050
+So each setting has
+exactly one owning policy.
+
+12
+00:00:44.050 --> 00:00:47.642
+Between Group Policy and
+MDM: in the Policy CSP,
+
+13
+00:00:47.642 --> 00:00:53.598
+Group Policy keeps winning unless MDM wins
+over GP is set to one; set it where a
+
+14
+00:00:53.598 --> 00:00:59.837
+population is in transition and remove
+the GPO copy as Intune takes the setting.
+
+15
+00:00:59.837 --> 00:01:01.979
+Outside the Policy CSP it's a race,
+
+16
+00:01:01.979 --> 00:01:06.899
+and Windows Hello for Business shouldn't
+be configured through both at all.
+
+17
+00:01:06.899 --> 00:01:12.748
+For Windows Update, Microsoft
+recommends Ignore Windows Update
+
+18
+00:01:12.748 --> 00:01:18.812
+Group Policies instead, on Windows
+11 24H2 with KB5101684 and later.
+
+19
+00:01:18.812 --> 00:01:21.464
+Between Configuration Manager and Intune,
+
+20
+00:01:21.464 --> 00:01:25.000
+the co-management slider sets
+one authority per workload.
+
+21
+00:01:25.000 --> 00:01:30.091
+Note two traps: switching device
+configuration also moves resource access and
+
+22
+00:01:30.091 --> 00:01:33.485
+Endpoint Protection; and
+with Pilot Intune selected,
+
+23
+00:01:33.485 --> 00:01:37.650
+Intune deploys policies but doesn't
+remove them on unassignment.
+
+24
+00:01:37.650 --> 00:01:42.038
+Disabling a link is the moment production
+behavior changes, so it's gated.
+
+25
+00:01:42.038 --> 00:01:46.872
+Freeze the GPO, back it up, prove
+the replacement reports success,
+
+26
+00:01:46.872 --> 00:01:51.525
+then disable the link, not the
+GPO, with one reversible command.
+
+27
+00:01:51.525 --> 00:01:54.135
+And remember that preference
+items stay on the
+
+28
+00:01:54.135 --> 00:01:56.880
+device unless configured
+to remove themselves.

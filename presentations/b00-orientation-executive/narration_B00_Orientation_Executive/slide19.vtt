@@ -1,0 +1,126 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.150
+The risk register starts
+with five program risks.
+
+2
+00:00:03.150 --> 00:00:06.848
+Hidden dependencies are missed
+in discovery: the answer is a
+
+3
+00:00:06.848 --> 00:00:11.212
+structured assessment and a pilot
+designed to surface unknowns early.
+
+4
+00:00:11.212 --> 00:00:13.631
+Competing sources of truth persist:
+
+5
+00:00:13.631 --> 00:00:17.500
+one authoritative origin is
+designated per object class.
+
+6
+00:00:17.500 --> 00:00:20.780
+The organization resists
+making authority explicit:
+
+7
+00:00:20.780 --> 00:00:25.300
+the answer is early alignment, and
+decision rights with one decider per row.
+
+8
+00:00:25.300 --> 00:00:28.855
+Tooling leads the design:
+the target model comes first,
+
+9
+00:00:28.855 --> 00:00:32.962
+because tools bought first
+automate the old ambiguity faster.
+
+10
+00:00:32.962 --> 00:00:36.618
+And physics or data residency
+limits centralization,
+
+11
+00:00:36.618 --> 00:00:41.575
+so truth is centralized logically,
+not necessarily in one physical store.
+
+12
+00:00:41.575 --> 00:00:44.425
+Beneath them sit
+twenty-five delivery risks.
+
+13
+00:00:44.425 --> 00:00:46.613
+A few deserve executive attention.
+
+14
+00:00:46.613 --> 00:00:52.087
+Critical certificate-services
+misconfigurations can force emergency PKI work.
+
+15
+00:00:52.087 --> 00:00:57.125
+Legacy applications depend on NTLM,
+which Conditional Access can't evaluate,
+
+16
+00:00:57.125 --> 00:01:01.849
+so each dependency becomes a finding
+with an owner and a dated exception.
+
+17
+00:01:01.849 --> 00:01:05.376
+Strong certificate mapping
+is no longer a future risk:
+
+18
+00:01:05.376 --> 00:01:07.962
+domain controllers already enforce it.
+
+19
+00:01:07.962 --> 00:01:11.640
+And at the end, access records
+can be lost at decommission,
+
+20
+00:01:11.640 --> 00:01:14.613
+and governance can decay
+once the team leaves.
+
+21
+00:01:14.613 --> 00:01:17.162
+The register doesn't satisfy a control.
+
+22
+00:01:17.162 --> 00:01:20.700
+It tells the agency when its
+system security plan and its
+
+23
+00:01:20.700 --> 00:01:24.237
+risk assessment have to be
+updated, which is at every gate.
+
+24
+00:01:24.237 --> 00:01:26.700
+The project manager keeps the register,
+
+25
+00:01:26.700 --> 00:01:30.881
+the authorizing official accepts
+residual risk, and security risk
+
+26
+00:01:30.881 --> 00:01:34.970
+left open past a gate becomes a
+plan of action and milestones item.

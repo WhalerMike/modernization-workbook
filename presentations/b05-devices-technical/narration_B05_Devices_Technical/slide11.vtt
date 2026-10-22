@@ -1,0 +1,39 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.138
+Module 2: the GPO sunset
+and policy migration.
+
+2
+00:00:04.138 --> 00:00:06.238
+This is the existing-fleet program.
+
+3
+00:00:06.238 --> 00:00:10.804
+It replaces Group Policy Objects on
+endpoints that are already deployed,
+
+4
+00:00:10.804 --> 00:00:13.799
+and it ends when those
+GPOs are formally retired.
+
+5
+00:00:13.799 --> 00:00:18.912
+The program measures it by GPOs retired
+with evidence, not by settings copied.
+
+6
+00:00:18.912 --> 00:00:20.974
+Chapter 07 runs it as a program,
+
+7
+00:00:20.974 --> 00:00:26.662
+Chapter 08 is what an endpoint engineer
+works from inside those rules, and Appendix
+
+8
+00:00:26.662 --> 00:00:31.990
+A is the crosswalk: where a control lands
+in Intune, not what its value should be.

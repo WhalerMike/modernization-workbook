@@ -1,0 +1,125 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.238
+Why this matters.
+
+2
+00:00:01.238 --> 00:00:05.237
+Almost every network connection
+begins with a DNS query,
+
+3
+00:00:05.237 --> 00:00:10.938
+and in a hybrid multi-cloud agency the
+answer now decides far more than an address.
+
+4
+00:00:10.938 --> 00:00:16.442
+NIST's 2026 DNS deployment guide,
+SP 800-81 Revision 3, says DNS
+
+5
+00:00:16.442 --> 00:00:23.376
+infrastructure has become more than a
+service; it is also a security control.
+
+6
+00:00:23.376 --> 00:00:27.525
+Chapter 01 names six jobs DNS now does.
+
+7
+00:00:27.525 --> 00:00:32.279
+It publishes private addresses: an Azure
+Storage account with a private endpoint
+
+8
+00:00:32.279 --> 00:00:37.312
+resolves privately inside the hosting
+virtual network and publicly everywhere else.
+
+9
+00:00:37.312 --> 00:00:43.179
+It selects SaaS front doors: Microsoft
+365 publishes a Worldwide list,
+
+10
+00:00:43.179 --> 00:00:49.349
+which includes GCC, and separate lists
+and namespaces for GCC High and DoD.
+
+11
+00:00:49.349 --> 00:00:54.837
+It enforces security policy through
+response policy zones and DNS firewalls.
+
+12
+00:00:54.837 --> 00:01:00.624
+It anchors certificate validation,
+because OCSP and CRL endpoints are names.
+
+13
+00:01:00.624 --> 00:01:03.948
+And the FQDN is the service
+identity that gateways,
+
+14
+00:01:03.948 --> 00:01:07.825
+certificates and Zero Trust
+policies are written against.
+
+15
+00:01:07.825 --> 00:01:12.625
+Yet most agencies run it on as many as
+five platforms that share no state.
+
+16
+00:01:12.625 --> 00:01:16.475
+AD DNS or a DDI grid on premises.
+
+17
+00:01:16.475 --> 00:01:21.700
+Route 53's VPC Resolver,
+formerly Route 53 Resolver.
+
+18
+00:01:21.700 --> 00:01:26.075
+Azure, where private zones
+resolve only for linked networks,
+
+19
+00:01:26.075 --> 00:01:30.275
+and where DNS resolver policy
+now gives an RPZ equivalent.
+
+20
+00:01:30.275 --> 00:01:32.350
+Google Cloud's metadata server.
+
+21
+00:01:32.350 --> 00:01:36.625
+And the NSX forwarder, which
+workloads reach only if configured to.
+
+22
+00:01:36.625 --> 00:01:39.150
+The cost shows up on every change.
+
+23
+00:01:39.150 --> 00:01:43.589
+A new Azure private endpoint
+can need four more DNS changes,
+
+24
+00:01:43.589 --> 00:01:46.125
+on four consoles, in four syntaxes.
+
+25
+00:01:46.125 --> 00:01:49.838
+Chapter 09 assigns ownership,
+because the forwarding rules
+
+26
+00:01:49.838 --> 00:01:53.620
+that connect the platforms
+usually belong to no single team.

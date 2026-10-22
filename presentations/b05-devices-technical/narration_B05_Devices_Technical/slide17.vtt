@@ -1,0 +1,146 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.566
+Endpoint security policies
+aren't a higher-priority source;
+
+2
+00:00:03.566 --> 00:00:06.800
+they have the same standing
+as configuration profiles.
+
+3
+00:00:06.800 --> 00:00:12.500
+In the program's library they own
+every Defender, BitLocker, firewall,
+
+4
+00:00:12.500 --> 00:00:18.800
+account protection and LAPS setting,
+and the four settings catalog IDs that
+
+5
+00:00:18.800 --> 00:00:24.300
+duplicated them, SC-002, 006, 007 and
+008, are retired and never reused.
+
+6
+00:00:24.300 --> 00:00:30.244
+ES-001, antivirus: cloud block level
+High, a fifty-second extended timeout,
+
+7
+00:00:30.244 --> 00:00:35.000
+which is the maximum, and safe
+samples sent automatically.
+
+8
+00:00:35.000 --> 00:00:39.150
+Sending all samples can upload
+documents with organizational data,
+
+9
+00:00:39.150 --> 00:00:41.188
+so that's the data owner's decision.
+
+10
+00:00:41.188 --> 00:00:45.103
+Tamper protection needs Defender
+onboarding and isn't supported
+
+11
+00:00:45.103 --> 00:00:48.876
+this way on co-managed devices
+until Endpoint Protection moves.
+
+12
+00:00:48.876 --> 00:00:55.317
+ES-002, BitLocker: silent encryption and
+a TPM PIN can't apply to the same device,
+
+13
+00:00:55.317 --> 00:01:00.450
+so standard and kiosk devices
+encrypt silently with TPM only,
+
+14
+00:01:00.450 --> 00:01:04.375
+and Tier 0 uses TPM plus
+PIN in a separate policy.
+
+15
+00:01:04.375 --> 00:01:09.772
+ES-003, firewall: on an Entra-joined
+device the domain profile doesn't apply,
+
+16
+00:01:09.772 --> 00:01:13.842
+so management rules need a
+private-profile equivalent,
+
+17
+00:01:13.842 --> 00:01:18.000
+and Group Policy analytics
+can't migrate firewall rules.
+
+18
+00:01:18.000 --> 00:01:21.215
+ES-004, EDR: automated investigation,
+
+19
+00:01:21.215 --> 00:01:28.287
+live response and web content filtering
+are set in the Defender portal, not here.
+
+20
+00:01:28.287 --> 00:01:34.190
+ES-005: attack surface reduction rules
+in audit for thirty days, then block;
+
+21
+00:01:34.190 --> 00:01:39.415
+the PSExec and WMI rule stays off
+Configuration Manager devices,
+
+22
+00:01:39.415 --> 00:01:42.125
+because its client depends on WMI.
+
+23
+00:01:42.125 --> 00:01:46.759
+ES-006: Credential Guard, which
+needs Enterprise or Education,
+
+24
+00:01:46.759 --> 00:01:52.937
+Hello for Business, and Windows LAPS with
+an eight-hour post-authentication reset.
+
+25
+00:01:52.937 --> 00:01:55.238
+Appendix A flags the traps.
+
+26
+00:01:55.238 --> 00:01:58.900
+Account lockout maps to the
+DeviceLock lockout policy.
+
+27
+00:01:58.900 --> 00:02:02.075
+Audit Logon sits under
+the logon-logoff path.
+
+28
+00:02:02.075 --> 00:02:05.275
+A logon message breaks
+Autopilot pre-provisioning.
+
+29
+00:02:05.275 --> 00:02:09.320
+And Known Folder Move won't carry
+folders redirected to a share:
+
+30
+00:02:09.320 --> 00:02:11.950
+copy them first with Migration Manager.

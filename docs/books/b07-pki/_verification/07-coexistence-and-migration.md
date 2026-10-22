@@ -81,3 +81,14 @@ Source: `docs/operational-guides/pki-modernization.md` §8 (8.1–8.5) and §9 (
 | §9 Phase 4 Scale | Ch07 "Wave 4 — Scale" | Staged rollout pacing corrected |
 | §9 Phase 5 Cutover | Ch07 "Wave 5 — Cutover" | Commands verified; AD FS decommission guidance added |
 | §9 Phase 6 Decommission | Ch07 "Wave 6 — Decommission" (gate, summary, corrections, rollback) | Step-by-step procedure in Ch08 (other writer) to avoid duplication |
+
+## Consistency fixes, 2026-10-21
+
+Cross-chapter consistency pass. Every changed external fact was re-checked on the primary source on 2026-10-21; program decisions are marked as such.
+
+| # | Change | Where | Verdict | Source |
+|---|---|---|---|---|
+| CF-1 | Wave 1 exit gate: every Critical and High finding remediated and re-tested (was Critical only), matching Chapter 03's migration gate and the wave table | Waves table; Wave 1 exit gate | restated-as-design | Chapter 03 migration gate (program decision) |
+| CF-2 | LDAPS: removed "the Domain Controller template already has the right properties"; LDAPS uses the DC certificate from the Kerberos Authentication copy; Microsoft's LDAPS article uses the Domain Controller template only as its example | LDAPS | verified | <https://learn.microsoft.com/windows-server/identity/ad-ds/configure-ldap-signing-certificates>; <https://learn.microsoft.com/windows/security/identity-protection/hello-for-business/deploy/on-premises-cert-trust#configure-the-enterprise-pki> |
+| CF-3 | Flagged a documented difference: the LDAPS article requires a Schannel-provider key, the Kerberos Authentication copy guidance sets a Key Storage Provider; program rule is an ldp.exe bind test on port 636 before unpublishing superseded templates, with a dedicated NTDS-store certificate as the recorded exception | LDAPS | verified (both requirements as stated by Microsoft); test step is program design | <https://learn.microsoft.com/windows-server/identity/ad-ds/configure-ldap-signing-certificates>; <https://learn.microsoft.com/windows/security/identity-protection/hello-for-business/deploy/on-premises-cert-trust#configure-the-enterprise-pki> |
+| CF-4 | Other server certificates: renewal through CyberArk Certificate Manager per Chapter 04 (was "AD CS auto-enrollment or manual enrollment"); cross-reference now Chapter 04 | Other server certificates | restated-as-design | Chapter 04 issuer decision |

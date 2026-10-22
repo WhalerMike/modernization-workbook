@@ -52,3 +52,11 @@ All sources opened on October 21, 2026. NIST SP 800-37 Rev. 2, M-22-09 and M-19-
 | Master plan App C RACI matrix | Ch07 §The workstream RACI (relabeled phases, added decider column) | — |
 | Master plan App D Phase gate review template | Ch07 §The gate review | Blank form fields (date, attendees, paths) described, not reproduced |
 | Book 01 Ch09 (program-wide decision matrix, roles) | Linked throughout | Not duplicated, per brief |
+
+## Cross-chapter consistency pass
+
+Checked October 21, 2026. Book 00's chapters were reconciled with each other; each external fact touched was re-opened on its primary source.
+
+| # | Claim (short) | Where | Verdict | Source |
+|---|---|---|---|---|
+| X1 | Plan review and approval: the steward approves (plans are governance artifacts whose status is the steward's per the decision matrix); the steering committee reviews only | Workstream RACI | corrected (was "Steering committee approves"); Ch07 decision matrix made canonical; Ch08 step 5 and Ch09 Phase 1 aligned | Internal: Ch07 roles table (steering committee reviews drift trend and gate readiness) and decision matrix (governance artifacts: steward) |

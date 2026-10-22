@@ -28,7 +28,7 @@ Distance doesn't break tickets. It hurts the trips to a domain controller: sign-
 
 Chapter 02 names the problem. Active Directory was the implicit governance model for every Windows-era service, and nobody wrote it down.
 
-Microsoft's design guidance says organizational units exist to apply Group Policy and delegate authority, and that both inherit down the tree. So placing one user in an OU did five things at once. It handed the account to that branch's administrators, applied every policy linked along the path, fed the tools that built groups from position, bound it to the branch's delegation authority, and drew an audit boundary.
+Microsoft's design guidance says organizational units exist to apply Group Policy and delegate authority, and that both inherit down the tree. So placing one user in an organizational unit (OU) did five things at once. It handed the account to that branch's administrators, applied every policy linked along the path, fed the tools that built groups from position, bound it to the branch's delegation authority, and drew an audit boundary.
 
 Entra ID has no OU tree. Dynamic groups follow attributes, and administrative units scope delegated roles but can't be nested. Neither rebuilds the tree on its own; the rebuild has to be written down.
 

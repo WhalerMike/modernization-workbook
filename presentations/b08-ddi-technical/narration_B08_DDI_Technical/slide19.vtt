@@ -1,0 +1,146 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.777
+Two rules turn Azure
+private endpoints from a
+
+2
+00:00:02.777 --> 00:00:05.575
+source of split-brain
+into something governed.
+
+3
+00:00:05.575 --> 00:00:07.662
+First, forward the public zone.
+
+4
+00:00:07.662 --> 00:00:12.223
+Forwarders on non-Azure resolvers
+point at each service's public zone,
+
+5
+00:00:12.223 --> 00:00:16.549
+for example database dot windows
+dot net, not the privatelink zone.
+
+6
+00:00:16.549 --> 00:00:20.126
+Every origin, on-premises
+resolvers, Route 53 rules,
+
+7
+00:00:20.126 --> 00:00:24.894
+Cloud DNS forwarding zones and branch
+paths, sends it to the Private
+
+8
+00:00:24.894 --> 00:00:30.087
+Resolver's inbound endpoint, or to an
+agency resolver that forwards there.
+
+9
+00:00:30.087 --> 00:00:32.528
+Azure Government uses different names,
+
+10
+00:00:32.528 --> 00:00:35.487
+so a design spanning both
+clouds needs both sets.
+
+11
+00:00:35.487 --> 00:00:40.077
+Forwarding a whole public zone also
+carries other organizations' lookups,
+
+12
+00:00:40.077 --> 00:00:43.187
+which is why fallback to
+internet goes on the links.
+
+13
+00:00:43.187 --> 00:00:47.936
+Autoregistration is separate:
+VMs only, primary NIC only,
+
+14
+00:00:47.936 --> 00:00:51.876
+no PTR records, and no
+role in privatelink zones.
+
+15
+00:00:51.876 --> 00:00:56.813
+Second, build the resolver in the hub as
+a forwarding bridge, not an authority.
+
+16
+00:00:56.813 --> 00:01:00.824
+Because it isn't authoritative,
+on-premises DNS reaches
+
+17
+00:01:00.824 --> 00:01:04.662
+it by conditional forwarding,
+never by NS delegation.
+
+18
+00:01:04.662 --> 00:01:06.012
+The rules that matter.
+
+19
+00:01:06.012 --> 00:01:08.933
+Each endpoint gets its
+own delegated subnet,
+
+20
+00:01:08.933 --> 00:01:11.538
+slash twenty-eight to slash twenty-four.
+
+21
+00:01:11.538 --> 00:01:15.459
+A resolver supports five inbound
+and five outbound endpoints;
+
+22
+00:01:15.459 --> 00:01:19.381
+a ruleset holds a thousand rules
+across five hundred networks;
+
+23
+00:01:19.381 --> 00:01:22.699
+each endpoint handles ten
+thousand queries a second.
+
+24
+00:01:22.699 --> 00:01:27.762
+No encrypted networks, IPv6
+subnets, FastPath or Lighthouse.
+
+25
+00:01:27.762 --> 00:01:31.625
+Static inbound addresses, so
+forwarders are written once.
+
+26
+00:01:31.625 --> 00:01:34.772
+Never link a ruleset to
+the network whose inbound
+
+27
+00:01:34.772 --> 00:01:37.612
+endpoint one of its rules
+targets; that loops.
+
+28
+00:01:37.612 --> 00:01:42.173
+Don't list a custom resolver
+beside 168.63.129.16,
+
+29
+00:01:42.173 --> 00:01:46.850
+because some clients pick
+among listed servers.
+
+30
+00:01:46.850 --> 00:01:48.840
+And a resolver in each region.

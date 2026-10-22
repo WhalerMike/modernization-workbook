@@ -1,0 +1,79 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.661
+This is the technical deep
+dive for Book 07 of the
+
+2
+00:00:03.661 --> 00:00:07.813
+Federal Modernization
+Workbook, PKI and Certificates.
+
+3
+00:00:07.813 --> 00:00:10.776
+It's for the PKI engineers
+and architects who will
+
+4
+00:00:10.776 --> 00:00:14.174
+run the move off Active
+Directory Certificate Services.
+
+5
+00:00:14.174 --> 00:00:17.248
+It comes in two parts of about
+twenty-five minutes each,
+
+6
+00:00:17.248 --> 00:00:19.638
+and four modules you can watch separately.
+
+7
+00:00:19.638 --> 00:00:21.811
+Part 1 is hardening and the target:
+
+8
+00:00:21.811 --> 00:00:26.238
+first how to make the AD CS that stays
+the best-defended system you own,
+
+9
+00:00:26.238 --> 00:00:30.975
+then the target architecture of four
+issuers and one lifecycle platform.
+
+10
+00:00:30.975 --> 00:00:36.016
+Part 2 is issuing, migrating and
+retiring: the Intune certificate profiles,
+
+11
+00:00:36.016 --> 00:00:41.383
+strong mapping and Entra certificate-based
+authentication, then coexistence,
+
+12
+00:00:41.383 --> 00:00:47.075
+the six-wave migration, lifecycle monitoring
+and the decommissioning of the old CAs.
+
+13
+00:00:47.075 --> 00:00:50.925
+The slides show tables,
+checklists and decision matrices.
+
+14
+00:00:50.925 --> 00:00:53.772
+The commands live in the
+chapters and appendices,
+
+15
+00:00:53.772 --> 00:00:58.008
+and the book marks them as illustrative
+and untested against production;
+
+16
+00:00:58.008 --> 00:01:00.980
+I'll point you to them rather
+than put them on screen.

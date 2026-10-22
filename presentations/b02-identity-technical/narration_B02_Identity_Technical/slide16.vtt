@@ -10,151 +10,151 @@ the AD identity model into its parts,
 because each has its own path.
 
 3
-00:00:07.425 --> 00:00:10.662
+00:00:07.425 --> 00:00:10.688
 OUs do three jobs, and each
 goes somewhere different.
 
 4
-00:00:10.662 --> 00:00:15.302
+00:00:10.688 --> 00:00:15.328
 Group Policy scoping becomes
 Conditional Access and Intune profiles,
 
 5
-00:00:15.302 --> 00:00:18.212
+00:00:15.328 --> 00:00:18.238
 targeted by group
 membership, not container.
 
 6
-00:00:18.212 --> 00:00:21.916
-Administrative delegation
-becomes administrative units,
+00:00:18.238 --> 00:00:23.794
+Administrative delegation becomes
+administrative units, which are free to create,
 
 7
-00:00:21.916 --> 00:00:26.212
-which are free to create, though each
-AU-scoped administrator needs P1.
+00:00:23.794 --> 00:00:28.238
+though each administrative unit
+(AU)-scoped administrator needs P1.
 
 8
-00:00:26.212 --> 00:00:30.324
+00:00:28.238 --> 00:00:32.350
 Logical organization becomes
 dynamic groups and attributes.
 
 9
-00:00:30.324 --> 00:00:35.301
+00:00:32.350 --> 00:00:37.326
 The forest maps to the tenant: one trust
 boundary, no domain trusts inside it,
 
 10
-00:00:35.301 --> 00:00:39.875
+00:00:37.326 --> 00:00:41.900
 and verified domains are routing
 suffixes, not security boundaries.
 
 11
-00:00:39.875 --> 00:00:43.800
+00:00:41.900 --> 00:00:45.825
 Trusts become B2B and
 cross-tenant access settings.
 
 12
-00:00:43.800 --> 00:00:47.804
+00:00:45.825 --> 00:00:49.829
 AdminSDHolder has no equivalent;
 Privileged Identity Management,
 
 13
-00:00:47.804 --> 00:00:52.094
+00:00:49.829 --> 00:00:54.119
 which makes assignments eligible and
 time-bound, and protected actions,
 
 14
-00:00:52.094 --> 00:00:55.669
+00:00:54.119 --> 00:00:57.694
 which demand an authentication
 context before high-impact
 
 15
-00:00:55.669 --> 00:00:58.600
+00:00:57.694 --> 00:01:00.625
 permissions are used,
 together serve its purpose.
 
 16
-00:00:58.600 --> 00:01:02.550
+00:01:00.625 --> 00:01:04.575
 And Schema Admins has none:
 Microsoft manages the schema.
 
 17
-00:01:02.550 --> 00:01:07.112
+00:01:04.575 --> 00:01:09.137
 This is the design principle: Entra
 ID inverts the governance model.
 
 18
-00:01:07.112 --> 00:01:11.174
+00:01:09.137 --> 00:01:13.200
 Attributes decide memberships,
 and memberships decide policy.
 
 19
-00:01:11.174 --> 00:01:14.200
+00:01:13.200 --> 00:01:16.225
 That's why attribute quality
 gates everything after it.
 
 20
-00:01:14.200 --> 00:01:16.537
+00:01:16.225 --> 00:01:18.562
 Licensing gates the governance features.
 
 21
-00:01:16.537 --> 00:01:18.700
+00:01:18.562 --> 00:01:20.725
 Conditional Access needs P1.
 
 22
-00:01:18.700 --> 00:01:21.825
+00:01:20.725 --> 00:01:23.850
 Dynamic groups need P1 per unique member.
 
 23
-00:01:21.825 --> 00:01:26.950
+00:01:23.850 --> 00:01:28.975
 PIM, including PIM for Groups, and
 risk-based Conditional Access need P2.
 
 24
-00:01:26.950 --> 00:01:31.956
+00:01:28.975 --> 00:01:33.981
 As of October 2026, access reviews and
 entitlement management need Entra ID
 
 25
-00:01:31.956 --> 00:01:34.737
+00:01:33.981 --> 00:01:36.762
 Governance for the member users involved,
 
 26
-00:01:34.737 --> 00:01:40.300
+00:01:36.762 --> 00:01:42.325
 with only some capabilities left under P2,
 and Lifecycle Workflows need Governance.
 
 27
-00:01:40.300 --> 00:01:43.140
+00:01:42.325 --> 00:01:45.165
 Conditional Access for
 workload identities is
 
 28
-00:01:43.140 --> 00:01:46.050
+00:01:45.165 --> 00:01:48.075
 a separate Workload
 Identities Premium license.
 
 29
-00:01:46.050 --> 00:01:51.150
+00:01:48.075 --> 00:01:53.175
 The chapters assume P2 for everyone and
 Governance for the governed populations.
 
 30
-00:01:51.150 --> 00:01:57.150
+00:01:53.175 --> 00:01:59.175
 One date to act on: the preview
 member-of operator ends November 3, 2026.
 
 31
-00:01:57.150 --> 00:02:00.387
+00:01:59.175 --> 00:02:02.412
 After that, dynamic groups,
 dynamic administrative
 
 32
-00:02:00.387 --> 00:02:03.775
+00:02:02.412 --> 00:02:05.800
 units and auto-assignment
 policies that use it freeze.
 
 33
-00:02:03.775 --> 00:02:05.330
+00:02:05.800 --> 00:02:07.370
 Replace those rules now.

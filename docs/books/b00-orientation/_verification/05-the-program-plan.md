@@ -82,3 +82,12 @@ All sources opened on October 21, 2026. Microsoft Learn pages were fetched or se
 | Master plan App D Gate review template | Ch07 §The gate review | — |
 | Master plan App E Glossary | — | Glossary terms are defined in the books that use them; its expansion of the program acronym is not carried (naming rule) |
 | Master plan Compliance amendment (PL-2 traceability, RA-3 register) | App A (W5) | — |
+
+## Cross-chapter consistency pass
+
+Checked October 21, 2026. Book 00's chapters were reconciled with each other; each external fact touched was re-opened on its primary source.
+
+| # | Claim (short) | Where | Verdict | Source |
+|---|---|---|---|---|
+| X1 | Jan 1, 2027 mandatory "for all stakeholders" (not only CSPs), subject to area-specific dates; CSPs have the following year to comply to keep certification | §External clocks | corrected (was "mandatory for cloud service providers"); aligned with Ch01 | FedRAMP, "Important Dates for the Consolidated Rules for 2026" (fedramp.gov/2026/timeline), Mandatory Adoption entry, fetched Oct 21, 2026 |
+| X2 | Assessment workstation sanitized under SP 800-88 Rev. 2, not just "destroyed" | §Infrastructure | corrected; aligned with Appendix A R-021 | csrc.nist.gov SP 800-88 r2 final page (Date Published September 2025; history 09/26/25 Final; supersedes Rev. 1, 12/17/2014; no withdrawal or successor listed), fetched Oct 21, 2026 |

@@ -82,7 +82,7 @@ The master plan's twenty-five-item checklist is the most useful single artifact 
 | 16 | Every trust marked for removal removed | Trust decommission plan: all non-essential trusts gone | Identity lead |
 | 17 | AD FS farm out of the sign-in path (if present) | No federated domains remain; no AD FS sign-in activity | Identity lead |
 | 18 | Service accounts migrated to group managed service accounts or workload identities, or documented as exceptions | Service account inventory | Identity lead |
-| 19 | Drift detection running and producing weekly reports | Repository history shows weekly assessment diffs | Steward |
+| 19 | Drift detection running daily, with weekly reassessment reports | Repository history shows daily drift results and weekly assessment diffs | Steward |
 | 20 | Every planning document at its current, approved status | Repository status audit | Steward |
 | 21 | Decommissioned servers removed from AD computer objects | Re-scan of the computer inventory | Infrastructure lead |
 | 22 | Monitoring and alerting configured for every modernized service | Alert test for each workstream | All leads |
@@ -167,7 +167,7 @@ The master plan made four of these into standing milestones, each committed to t
 
 | Milestone | Cadence | Owner |
 |---|---|---|
-| M-045 — Drift assessment | Weekly, automated | Automation, reviewed by the steward |
+| M-045 — Drift assessment | Daily drift detection and a weekly reassessment diff, automated | Automation, reviewed by the steward |
 | M-046 — Compliance report | Monthly | Security lead |
 | M-047 — Access review | Quarterly | Identity lead |
 | M-048 — Architecture review | Annual | Steward |

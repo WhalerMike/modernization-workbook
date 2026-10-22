@@ -1,0 +1,131 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.425
+Chapter 08 breaks the seven
+phases into working tasks.
+
+2
+00:00:04.425 --> 00:00:09.023
+The durations come from the program's
+reference plan for a large fleet with an
+
+3
+00:00:09.023 --> 00:00:13.837
+existing Configuration Manager estate; a
+fleet without one skips most of Phase 2.
+
+4
+00:00:13.837 --> 00:00:17.995
+Phase 1, three to five weeks:
+export and import every GPO,
+
+5
+00:00:17.995 --> 00:00:23.814
+find the GPO-on-GPO conflicts that OU
+precedence hid, classify every setting,
+
+6
+00:00:23.814 --> 00:00:30.188
+and capture an effective-policy baseline
+per device tier with gpresult on a sample.
+
+7
+00:00:30.188 --> 00:00:35.436
+Phase 2, two to three weeks: enable
+co-management for a pilot collection,
+
+8
+00:00:35.436 --> 00:00:41.588
+set the first workloads to Pilot Intune,
+and decide MDM wins over GP per population.
+
+9
+00:00:41.588 --> 00:00:44.845
+The matching Intune policy
+must already exist,
+
+10
+00:00:44.845 --> 00:00:49.775
+because a co-managed device syncs MDM
+policy as soon as a workload moves.
+
+11
+00:00:49.775 --> 00:00:54.680
+Phase 3, three to four weeks, can overlap
+it: build every policy unassigned,
+
+12
+00:00:54.680 --> 00:01:00.322
+with attack surface reduction and controlled
+folder access in audit mode, and peer
+
+13
+00:01:00.322 --> 00:01:05.963
+review that every setting traces to a
+decision record and no setting appears twice.
+
+14
+00:01:05.963 --> 00:01:11.272
+Phase 4 is the pilot, about five percent
+of the fleet, representative across tiers,
+
+15
+00:01:11.272 --> 00:01:15.788
+regions and departments, with a
+seven-day grace period instead of one.
+
+16
+00:01:15.788 --> 00:01:19.115
+GPOs stay linked: the
+pilot measures conflicts by
+
+17
+00:01:19.115 --> 00:01:22.687
+comparing gpresult with
+Intune's per-setting status.
+
+18
+00:01:22.687 --> 00:01:27.651
+Phase 5 is four waves of three weeks
+each, watched for seventy-two hours.
+
+19
+00:01:27.651 --> 00:01:31.886
+Endpoint Protection goes before
+device configuration, because moving
+
+20
+00:01:31.886 --> 00:01:36.475
+device configuration drags Endpoint
+Protection and resource access with it.
+
+21
+00:01:36.475 --> 00:01:42.041
+Phases 6 and 7 disable the remaining
+links, clear tattooed preferences,
+
+22
+00:01:42.041 --> 00:01:47.512
+then disable each GPO, keep it ninety
+days, back it up, archive and delete.
+
+23
+00:01:47.512 --> 00:01:52.117
+On these estimates the program reaches
+Phase 7 in roughly thirty-four weeks,
+
+24
+00:01:52.117 --> 00:01:55.113
+with the last deletions
+about three months later.
+
+25
+00:01:55.113 --> 00:01:58.453
+Remember that rolling back
+a pilot means reassigning a
+
+26
+00:01:58.453 --> 00:02:02.060
+policy with the old value, not
+just removing the assignment.

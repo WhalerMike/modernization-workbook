@@ -131,3 +131,9 @@ Checked 2026-10-20 against Microsoft Learn (Entra national-cloud endpoints, AADS
 |---|---|
 | `ch06-trust-chain.flow.yaml` | Kept unchanged |
 | `ch06-dnssec-validation.flow.yaml` | Kept unchanged |
+
+## Cross-chapter consistency pass (October 21, 2026)
+
+| # | Claim (short) | Where | Verdict | Source |
+|---|---|---|---|---|
+| CP-1 | Signed zones move during Chapter 10 Phase 3 and must validate before the Phase 5 gate (was: Phase 6 relies on the sequence) | Moving signed zones | aligned with Chapter 10 (program design) | Chapter 10 Phase 3, Phase 5 gate 1 and Phase 6 as revised in this pass |

@@ -57,3 +57,10 @@ Checked October 20, 2026. Sources: the existing series page (Next Generation DDI
 | Twin · What DNS has become | What DNS has become | — |
 | Twin · Leadership takeaway | Closing paragraph of "What DNS has become" | — |
 | Twin · Split-brain, AD departure, One policy plane, SD-WAN, Sovereign cloud, Five decisions | Chapters 02, 04, 08, 05, Appendix C, 08 | Not duplicated here |
+
+## Cross-chapter consistency pass (October 21, 2026)
+
+| # | Claim (short) | Where | Verdict | Source |
+|---|---|---|---|---|
+| CP-1 | Ask: the DNS/DDI team settles the five configuration decisions (network engineering configures the edge for Decisions 1 and 2), replacing "the enterprise architecture or network operations lead" | The case in one paragraph (Ask) | aligned to Chapter 09 (program design) | Chapter 09 responsibility matrix: DNS/DDI team holds D on Decisions 1-5; network engineering R on Decisions 1-2 |
+| CP-2 | Table row: "DNS resolver policy (formerly DNS security policy)" is the current Azure name | Cloud platforms table | re-verified | Microsoft Learn, "DNS resolver policy," <https://learn.microsoft.com/en-us/azure/dns/dns-security-policy> (opened Oct 21, 2026): page title and every heading use "DNS resolver policy"; portal resource "DNS Resolver Policies"; URL keeps `dns-security-policy`; networking design guide <https://learn.microsoft.com/azure/networking/design-guide/dns-security> still says "DNS security policy" |

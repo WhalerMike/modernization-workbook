@@ -35,6 +35,8 @@ This book brings together the workbook's Next Generation DDI series, the Next Ge
 **[b08-ddi-bundle.docx](../../../downloads/b08-ddi-bundle.docx)**: the whole book as one Word document, regenerated on every site deploy.
 
 **15-minute presentation**: the Why / What / Who / How deck and its narrated, self-running edition, with built-in captions, are on the [Presentations](../../presentations/index.md#book-08) page.
+
+**Technical deep dive (about 50 minutes)**: the AD DNS departure, DNSSEC, private endpoints and IPAM and the migration sequence, in modules on the [Presentations](../../presentations/index.md#technical-b08) page.
 :::
 
 DNS was designed to answer one question: what is the address for this name? In a hybrid multi-cloud agency it now does far more. It publishes private endpoints, selects SaaS front doors, enforces security policy, anchors certificate validation and defines the application surface that Zero Trust policy is written against. Most agencies still run it as a commodity utility spread across independent platforms: Active Directory DNS or an on-premises DDI grid, AWS Route 53, Azure DNS, Google Cloud DNS and VMware NSX. The result is split-brain DNS that breaks private connectivity, certificate trust and Layer 7 policy at once, and that shows up as certificate errors and access denials rather than DNS errors. This book makes the case for one authoritative DDI policy plane, and walks through who owns it, how to get there and how to run it.

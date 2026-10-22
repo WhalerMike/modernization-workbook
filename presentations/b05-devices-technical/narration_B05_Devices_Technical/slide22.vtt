@@ -1,0 +1,155 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.313
+A connected server is
+addressable, not yet governed.
+
+2
+00:00:03.313 --> 00:00:05.787
+Attach three things on the same change.
+
+3
+00:00:05.787 --> 00:00:11.074
+Govern with Azure machine configuration,
+formerly Azure Policy Guest Configuration.
+
+4
+00:00:11.074 --> 00:00:15.735
+It extends Azure Policy inside the
+operating system, using Desired State
+
+5
+00:00:15.735 --> 00:00:20.700
+Configuration to audit or set OS settings,
+and reports compliance per machine.
+
+6
+00:00:20.700 --> 00:00:24.725
+Unlike Group Policy it's scoped
+by Azure resource scope,
+
+7
+00:00:24.725 --> 00:00:28.312
+subscription, resource
+group or machine, not by OU.
+
+8
+00:00:28.312 --> 00:00:32.887
+The agent includes the service natively,
+so there's no extension to deploy.
+
+9
+00:00:32.887 --> 00:00:37.876
+The Windows and Linux audit baselines are
+built-in definitions against the Azure
+
+10
+00:00:37.876 --> 00:00:40.737
+compute security baseline,
+both customizable,
+
+11
+00:00:40.737 --> 00:00:44.038
+and a CIS benchmark definition
+for Linux is in preview.
+
+12
+00:00:44.038 --> 00:00:46.744
+Deploy the prerequisite initiative first,
+
+13
+00:00:46.744 --> 00:00:51.555
+keep the customized baseline in the
+governance repository as policy-as-code,
+
+14
+00:00:51.555 --> 00:00:55.388
+and treat noncompliance as a
+finding, not a failed deployment.
+
+15
+00:00:55.388 --> 00:00:57.513
+Patch with Azure Update Manager.
+
+16
+00:00:57.513 --> 00:01:01.523
+It assesses every twenty-four hours
+when periodic assessment is on,
+
+17
+00:01:01.523 --> 00:01:06.536
+patches in maintenance windows, and groups
+machines by tag through dynamic scoping,
+
+18
+00:01:06.536 --> 00:01:09.400
+which is where the patch
+group tag earns its keep.
+
+19
+00:01:09.400 --> 00:01:11.652
+It's charged per Arc server per month,
+
+20
+00:01:11.652 --> 00:01:15.030
+except when the server is
+enabled for ESUs through Arc,
+
+21
+00:01:15.030 --> 00:01:18.634
+when Defender for Servers Plan
+2 covers the subscription,
+
+22
+00:01:18.634 --> 00:01:22.763
+or with Software Assurance, a
+subscription or pay-as-you-go license.
+
+23
+00:01:22.763 --> 00:01:24.825
+Protect with Defender for Servers.
+
+24
+00:01:24.825 --> 00:01:30.006
+Plan 1 centers on endpoint detection and
+response; Plan 2 adds agentless scanning,
+
+25
+00:01:30.006 --> 00:01:33.816
+regulatory compliance, premium
+vulnerability management,
+
+26
+00:01:33.816 --> 00:01:37.550
+configuration assessment and
+file integrity monitoring.
+
+27
+00:01:37.550 --> 00:01:40.950
+The program's FedRAMP
+Moderate scope uses Plan 2,
+
+28
+00:01:40.950 --> 00:01:44.350
+plus Defender for SQL on
+Arc-connected SQL hosts.
+
+29
+00:01:44.350 --> 00:01:48.035
+Onboard through Arc rather than
+installing Defender directly,
+
+30
+00:01:48.035 --> 00:01:49.912
+which gives only Plan 1 function.
+
+31
+00:01:49.912 --> 00:01:54.002
+And if your only Defender entitlement
+comes through Defender for Servers,
+
+32
+00:01:54.002 --> 00:01:56.640
+security settings
+management isn't available.

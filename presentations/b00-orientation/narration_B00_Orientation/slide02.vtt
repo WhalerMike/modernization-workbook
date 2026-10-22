@@ -40,62 +40,62 @@ several things at once,
 with no separate record.
 
 9
-00:00:26.300 --> 00:00:29.362
-Who administers it, through
-the permissions on the OU.
+00:00:26.300 --> 00:00:30.925
+Who administers it, through the permissions
+on the organizational unit (OU).
 
 10
-00:00:29.362 --> 00:00:34.863
+00:00:30.925 --> 00:00:36.575
 Which policy applies, through Group
 Policy linked to sites, domains and OUs.
 
 11
-00:00:34.863 --> 00:00:37.187
+00:00:36.575 --> 00:00:38.900
 What it can reach,
 through group membership.
 
 12
-00:00:37.187 --> 00:00:41.101
+00:00:38.900 --> 00:00:42.813
 How it's named, through DNS
 zones stored in the directory.
 
 13
-00:00:41.101 --> 00:00:45.225
+00:00:42.813 --> 00:00:46.937
 And whether it's trusted, through
 certificates enrolled by Group Policy.
 
 14
-00:00:45.225 --> 00:00:46.437
+00:00:46.937 --> 00:00:48.150
 None of that was wrong.
 
 15
-00:00:46.437 --> 00:00:48.163
+00:00:48.150 --> 00:00:49.875
 It just was never written down.
 
 16
-00:00:48.163 --> 00:00:50.176
+00:00:49.875 --> 00:00:51.888
 And the cloud doesn't inherit it.
 
 17
-00:00:50.176 --> 00:00:53.339
+00:00:51.888 --> 00:00:55.052
 Entra ID's administrative
 units can't be nested,
 
 18
-00:00:53.339 --> 00:00:57.638
+00:00:55.052 --> 00:00:59.351
 and policy is assigned to groups,
 not inherited from a container.
 
 19
-00:00:57.638 --> 00:01:01.364
+00:00:59.351 --> 00:01:03.076
 An agency that moves the users
 and retires the forest without
 
 20
-00:01:01.364 --> 00:01:05.163
+00:01:03.076 --> 00:01:06.875
 recovering those decisions
 doesn't modernize its governance.
 
 21
-00:01:05.163 --> 00:01:06.260
+00:01:06.875 --> 00:01:07.990
 It deletes it.

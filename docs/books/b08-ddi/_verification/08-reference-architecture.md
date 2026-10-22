@@ -63,3 +63,9 @@ Checked 2026-10-20 against CISA, Microsoft Learn (Learn MCP), AWS documentation,
 | WP Call to Action / Five steps | "Check" bullet under each decision | Merged into decisions |
 | Short twin `whitepapers/next-generation-dns.md` — One policy plane; Five configuration decisions | Policy-plane components; decisions | Duplicates; nothing additional |
 | Diagram `ch08-reference-architecture` | Kept unchanged | Facts and chapter numbers current |
+
+## Cross-chapter consistency pass (October 21, 2026)
+
+| # | Claim (short) | Where | Verdict | Source |
+|---|---|---|---|---|
+| CP-1 | July 2026 Infoblox release: restated as describing the offering's components; no longer says they "had been added"; footnote explains the date difference | Infoblox example paragraph; c08-ibxpr | corrected | Infoblox press release, July 22, 2026 (opened Oct 21, 2026): headline announces Moderate certification; lists Universal DDI Management, NIOS-X Servers, Universal Asset Insights; gives no certification date, no prior authorization, no Rev5/20x mention. FedRAMP `products.json` (fetched Oct 21, 2026, last_change 2026-10-22T00:15Z), FR2017257053: event log 2020-09-24 Agency In Process, 2022-07-01 FedRAMP In Process, 2022-12-15 FedRAMP Certified; no later status change; cert_class Class C, Moderate |

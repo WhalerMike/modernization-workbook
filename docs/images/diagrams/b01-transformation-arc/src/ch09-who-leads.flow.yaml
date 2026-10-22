@@ -10,7 +10,7 @@
 rankdir: TB
 graph: {nodesep: 0.2, ranksep: 0.45}
 nodes:
-  spon: {tone: amber, width: 170, tag: "Decides", title: "Executive sponsor and CIO", body: ["=Scope, funding, sequence, AD retirement, gates G3 and G5"], size: 12}
+  spon: {tone: amber, width: 170, tag: "Decides", title: "Executive sponsor and CIO", body: ["=Scope, funding, sequence, AD retirement, gates G3 and G5; co-sign G2"], size: 12}
   ao: {tone: amber, width: 170, tag: "Decides", title: "Authorizing official", body: ["=Accepts residual risk, signs boundary changes and exceptions"], size: 12}
   ciso: {tone: violet, width: 170, tag: "Decides", title: "CISO and ISSO", body: ["=Control requirements, privileged access, evidence"], size: 12}
   pmo: {tone: violet, width: 170, tag: "Orchestrates", title: "Program office and steward", body: ["=Repository, plans, gate evaluation, drift trend"], size: 12}

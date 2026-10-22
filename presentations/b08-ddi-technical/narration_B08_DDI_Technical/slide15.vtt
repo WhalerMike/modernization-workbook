@@ -1,0 +1,136 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.719
+DNSSEC adds data-origin authentication,
+
+2
+00:00:02.719 --> 00:00:06.800
+integrity protection and
+authenticated denial of existence.
+
+3
+00:00:06.800 --> 00:00:11.522
+It doesn't encrypt anything; it lets a
+resolver verify the answer is authentic,
+
+4
+00:00:11.522 --> 00:00:15.875
+and a validating resolver that finds
+a bad signature answers SERVFAIL.
+
+5
+00:00:15.875 --> 00:00:21.508
+NIST is explicit that DNSSEC and encrypted
+DNS are complements: DNSSEC doesn't
+
+6
+00:00:21.508 --> 00:00:23.935
+protect confidentiality, and DoH,
+
+7
+00:00:23.935 --> 00:00:27.662
+DoT and DoQ protect the
+transaction but not the data.
+
+8
+00:00:27.662 --> 00:00:29.026
+The federal position.
+
+9
+00:00:29.026 --> 00:00:37.075
+M-08-23 required DNSSEC by December
+2009, with agency dot gov domains signed.
+
+10
+00:00:37.075 --> 00:00:42.524
+SC-20 asks authoritative services
+for origin and integrity artifacts,
+
+11
+00:00:42.524 --> 00:00:48.250
+and SC-21 asks the recursive resolver
+to request and perform verification.
+
+12
+00:00:48.250 --> 00:00:51.438
+SP 800-81 Revision 3 recommends the root
+
+13
+00:00:51.438 --> 00:00:55.013
+key as trust anchor with
+automated rollover.
+
+14
+00:00:55.013 --> 00:00:58.389
+On internal zones it's more
+cautious than the whitepaper:
+
+15
+00:00:58.389 --> 00:01:03.273
+signing them is likely of limited value
+and recommended against unless required,
+
+16
+00:01:03.273 --> 00:01:07.727
+because they may not chain to the root,
+dynamic zones re-sign on every update,
+
+17
+00:01:07.727 --> 00:01:10.743
+and signing is pointless
+where authoritative and
+
+18
+00:01:10.743 --> 00:01:14.263
+recursive service share servers,
+as on domain controllers.
+
+19
+00:01:14.263 --> 00:01:17.825
+Where required, use a delegation
+that chains to the root.
+
+20
+00:01:17.825 --> 00:01:22.928
+So the program signs external zones
+always, validates on every agency resolver,
+
+21
+00:01:22.928 --> 00:01:27.800
+and signs internal zones only where
+the system's authorization requires it.
+
+22
+00:01:27.800 --> 00:01:29.425
+The platforms aren't equal.
+
+23
+00:01:29.425 --> 00:01:34.425
+Windows Server uses a Key
+Master, can replicate keys in AD,
+
+24
+00:01:34.425 --> 00:01:41.234
+and supports RFC 5011 rollover; its
+wizard's default 1,024-bit RSA zone-signing
+
+25
+00:01:41.234 --> 00:01:47.937
+key is below NIST's floor, so the program
+uses ECDSA or RSA of at least 2,048 bits.
+
+26
+00:01:47.937 --> 00:01:53.052
+Azure DNS and Route 53 sign public
+zones only; Azure's default
+
+27
+00:01:53.052 --> 00:01:58.575
+resolver doesn't validate, and Route
+53's ignores the DO and CD bits.
+
+28
+00:01:58.575 --> 00:02:01.680
+Neither gives the agency
+validation it controls.

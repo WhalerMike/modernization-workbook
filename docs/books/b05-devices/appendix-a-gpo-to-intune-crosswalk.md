@@ -87,7 +87,7 @@ The program's lookup card for the most commonly deployed GPO settings in enterpr
 | 6 | Computer > Admin Templates > Windows Components > BitLocker > OS Drives | Require additional authentication at startup | Endpoint security: disk encryption | System drives require startup authentication (TPM+PIN) | ES-002 | Source mapped to SC-006 |
 | 7 | Computer > Admin Templates > Windows Components > Defender | Turn on real-time protection | Endpoint security: antivirus; compliance to evaluate | Real-time protection | CP-001 / ES-001 | — |
 | 8 | Computer > Admin Templates > Windows Components > Defender > MAPS | Cloud-delivered protection level | Endpoint security: antivirus | Cloud block level | ES-001 | Requires MAPS enabled |
-| 9 | Computer > Admin Templates > Windows Components > Defender > Exploit Guard | Attack surface reduction rules | Endpoint security: attack surface reduction | ASR rules | ES-005 | Program set: 12 rules |
+| 9 | Computer > Admin Templates > Windows Components > Defender > Exploit Guard | Attack surface reduction rules | Endpoint security: attack surface reduction | ASR rules | ES-005 | Program set: 14 rules ([Chapter 08](08-gpo-to-intune-policy-migration.md)) |
 | 10 | Computer > Windows Settings > Security Settings > Windows Firewall | Domain profile: firewall state | Endpoint security: firewall | Enable firewall (domain) | ES-003 | Firewall rules can't be migrated by Group Policy analytics |
 | 11 | Computer > Windows Settings > Security Settings > Windows Firewall | Public profile: firewall state | Endpoint security: firewall | Enable firewall (public) | ES-003 | — |
 | 12 | Computer > Admin Templates > Windows Components > Windows Update | Configure Automatic Updates | Update ring | Automatic update behavior | SC-005 | Replaces WSUS targeting |
@@ -101,7 +101,7 @@ The program's lookup card for the most commonly deployed GPO settings in enterpr
 | 20 | Computer > Admin Templates > Microsoft Edge > Extensions | Control which extensions cannot be installed | Settings catalog | Extension install blocklist | SC-003 | — |
 | 21 | Computer > Admin Templates > OneDrive | Silently move Windows known folders to OneDrive | Settings catalog (OneDrive) | Silently move Windows known folders to OneDrive | SC-004 | Pace existing devices |
 | 22 | Computer > Admin Templates > OneDrive | Prevent users from syncing personal OneDrive accounts | Settings catalog (OneDrive) | Prevent users from syncing personal OneDrive accounts | SC-004 | User-scoped setting |
-| 23 | Computer > Admin Templates > System > Device Guard | Turn on Virtualization Based Security | Settings catalog or Endpoint security: account protection | Credential Guard | ES-006 | Enterprise edition; Tier 0 only. Source mapped to compliance |
+| 23 | Computer > Admin Templates > System > Device Guard | Turn on Virtualization Based Security | Settings catalog or Endpoint security: account protection | Credential Guard | ES-006 | Enterprise edition; with UEFI lock on Tier 0 and without lock on Tiers 1 and 2 ([Chapter 08](08-gpo-to-intune-policy-migration.md)). Source mapped to compliance |
 | 24 | Computer > Admin Templates > Remote Desktop Services | Allow users to connect remotely | Settings catalog | Allow users to connect remotely | SC-009 | — |
 | 25 | Computer > Admin Templates > Remote Desktop Services | Require Network Level Authentication | Settings catalog | Require user authentication by using NLA | SC-009 | — |
 | 26 | Computer > Admin Templates > Remote Desktop Services | Set time limit for idle sessions | Settings catalog | Idle session time limit | SC-009 | — |
@@ -130,7 +130,7 @@ The program's lookup card for the most commonly deployed GPO settings in enterpr
 | 49 | Computer > Admin Templates > Windows Components > Microsoft Defender Antivirus | Configure detection for potentially unwanted applications | Endpoint security: antivirus | PUA protection | ES-001 | Source mapped to SC-002 |
 | 50 | Computer > Admin Templates > System > LAPS | Windows LAPS password settings | Endpoint security: account protection | Windows LAPS | ES-006 | Back up to Entra ID; not the retired SC-008 profile |
 
-For rows 7, 8, 48 and 49, the program keeps antivirus settings in one Endpoint security antivirus policy, because Microsoft's best practice is to manage a given setting through one method, and duplicate settings across policy types conflict.[^aA-es] Where the program's library still holds an SC-002 profile, retire its overlapping settings when ES-001 is assigned.
+For rows 7, 8, 48 and 49, the program keeps antivirus settings in one Endpoint security antivirus policy, because Microsoft's best practice is to manage a given setting through one method, and duplicate settings across policy types conflict.[^aA-es] The settings catalog profile that once duplicated them, SC-002, is retired and its ID isn't reused ([Chapter 08](08-gpo-to-intune-policy-migration.md)); an agency that still has an equivalent profile retires its overlapping settings when ES-001 is assigned.
 
 ## CSP paths behind key settings
 

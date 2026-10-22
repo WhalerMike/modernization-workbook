@@ -69,56 +69,56 @@
   ],
   [
    26.3,
-   3.062,
-   "Who administers it, through the permissions on the O U."
+   4.625,
+   "Who administers it, through the permissions on the organizational unit (O U)."
   ],
   [
-   29.363,
-   5.5,
-   "Which policy applies, through Group Policy linked to sites, domains and O Us."
+   30.925,
+   5.65,
+   "Which policy applies, through Group Policy linked to sites, domains and O U's."
   ],
   [
-   34.862,
+   36.575,
    2.325,
    "What it can reach, through group membership."
   ],
   [
-   37.188,
+   38.9,
    3.913,
    "How it's named, through D N S zones stored in the directory."
   ],
   [
-   41.1,
+   42.812,
    4.125,
    "And whether it's trusted, through certificates enrolled by Group Policy."
   ],
   [
-   45.225,
+   46.938,
    1.212,
    "None of that was wrong."
   ],
   [
-   46.438,
+   48.15,
    1.725,
    "It just was never written down."
   ],
   [
-   48.163,
+   49.875,
    2.013,
    "And the cloud doesn't inherit it."
   ],
   [
-   50.175,
+   51.888,
    7.463,
    "Entra ID's administrative units can't be nested, and policy is assigned to groups, not inherited from a container."
   ],
   [
-   57.638,
+   59.35,
    7.525,
    "An agency that moves the users and retires the forest without recovering those decisions doesn't modernize its governance."
   ],
   [
-   65.162,
+   66.875,
    1.05,
    "It deletes it."
   ]

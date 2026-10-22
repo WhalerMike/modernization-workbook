@@ -91,3 +91,12 @@ Applied from the verified review findings (critique claims re-checked against pr
 | RF-1 | "Android doesn't follow AIA paths at all" attributed to Microsoft and narrowed: the Android OS requires servers to return the entire chain and doesn't discover missing certificates through AIA | BYOCA bullets (line 74) | corrected (narrowed to what the page says) | <https://learn.microsoft.com/intune/cloud-pki/deployment-models> |
 | RF-2 | CRL wording "HTTP (or HTTPS; HTTP recommended)" | line 77 | verified (same source conflict as Chapter 02, noted in `[^c04-cba-crl]`) | <https://learn.microsoft.com/en-us/entra/identity/authentication/concept-certificate-based-authentication-certificate-revocation-list> |
 | RF-3 | `[^c04-pan]` now cites the SEC Form 8-K Exhibit 99.1, like Chapters 01, 05 and 07; close date February 11, 2026 re-confirmed | Footnote (line 184) | verified | <https://www.sec.gov/Archives/edgar/data/1327567/000119312526045600/d40626dex991.htm> |
+
+## Consistency fixes, 2026-10-21
+
+Cross-chapter consistency pass. Every changed external fact was re-checked on the primary source on 2026-10-21; program decisions are marked as such.
+
+| # | Change | Where | Verdict | Source |
+|---|---|---|---|---|
+| CF-1 | NPS/RADIUS/VPN gateway server certificates fall under the internal server issuer decision (AD CS through CyberArk); "ends when" no longer implies a different CLM-managed issuer | Retained AD CS table; issuer decision bullet | restated-as-design | Program decision; makes Chapters 05 and 08 consistent with it |
+| CF-2 | Domain controller certificates, which also serve LDAPS, stay on autoenrollment | Issuer decision bullet | restated-as-design | Program decision (Chapter 07 template rule) |

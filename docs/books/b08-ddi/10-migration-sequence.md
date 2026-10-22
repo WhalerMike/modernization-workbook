@@ -83,7 +83,7 @@ The inventory is read-only, so it carries no rollback risk, and it is the step w
 | Zone health: aging and scavenging state, stale records, duplicate host names, reverse records with no matching forward record | Clean up before migrating, not after; stale records migrate as faithfully as good ones |
 | The critical AD locator records, resolved from every DNS server and every site | The baseline the Phase 5 gate is measured against |
 | Conditional and server-level forwarders, with a reachability test of each target over DNS, not just ICMP | Forwarders that point at retired servers are common and must not be carried forward |
-| DNSSEC state: signed zones, key master, keys and rollover schedule, trust anchors | Signed zones move on their own schedule (Phase 6 and [Chapter 06](06-dns-identity-and-dnssec.md)) |
+| DNSSEC state: signed zones, key master, keys and rollover schedule, trust anchors | Signed zones move in Phase 3 by their own sequence ([Chapter 06](06-dns-identity-and-dnssec.md)) and must validate on the new platform before the Phase 5 gate |
 | DHCP: scopes, exclusions, reservations, options (especially option 6, the DNS servers), failover relationships, dynamic-update credentials | Scopes move with their options, or clients land on the wrong resolver |
 | Resolution paths: client resolver settings, VNet and VPC DNS settings, SD-WAN redirect-dns targets, forwarding chains | The paths [Chapter 08](08-reference-architecture.md)'s decisions govern |
 | OCSP and CRL endpoints, and where each resolves | Decision 5: they must resolve from every origin |
@@ -130,7 +130,7 @@ The inventory sorts every component into a target and a method. The target is th
 | AD locator records (SRV, `_msdcs`) | Stay with a service that accepts domain controller registration until the last DC goes | None (see below) | Forward the AD namespaces to the domain controllers; monitor | High |
 | Dynamic registration | DHCP-driven DDNS on the DDI platform | Autoregistration for VMs only | Re-establish per client population | Medium |
 | Reverse lookup zones | Reverse zones aligned to IPAM | Private `in-addr.arpa` zones | Create per reverse zone, import PTRs | Medium |
-| DNSSEC-signed zones | Signed authoritative zone ([Chapter 06](06-dns-identity-and-dnssec.md)) | Public zones only; Azure Private DNS does not sign (Chapter 06) | Stay signed on the old platform until the new chain validates (Phase 6) | High |
+| DNSSEC-signed zones | Signed authoritative zone ([Chapter 06](06-dns-identity-and-dnssec.md)) | Public zones only; Azure Private DNS does not sign (Chapter 06) | Move in Phase 3 by the signed-zone sequence: the old signing stays until the new chain validates, which must happen before the Phase 5 gate | High |
 
 Two Azure behaviors drive the "None" and "VMs only" entries. Azure Private DNS populates autoregistered records from the Azure DHCP service and ignores client registration messages, so domain controllers cannot register their own locator records there; statically imported SRV records would go stale the first time a domain controller changes.[^c10-pdns-faq] And autoregistration creates A records for a VM's primary NIC only: it does not create PTR records, and it does not cover load balancers or other resources.[^c10-autoreg] Reverse zones and non-VM records therefore need IPAM-driven or automated record management.
 
@@ -172,7 +172,7 @@ This is where zones, forwarders, DHCP scopes and clients move. Each move is one 
 
 ### Zones and records
 
-The record migration follows the loop: export each zone's records to structured output, transform them to the target's record format (record sets grouped by name and type, TTLs carried across), import with a dry run first, validate from every vantage point, then switch the delegation or forwarders and observe for 30 days before the old copy is retired. To lower a record's TTL ahead of cutover on a Windows DNS server, copy the record object, change its TTL and write it back:[^c10-set-rr]
+The record migration follows the loop: export each zone's records to structured output, transform them to the target's record format (record sets grouped by name and type, TTLs carried across), import with a dry run first, validate from every vantage point, then switch the delegation or forwarders and observe for at least 30 days. The old copy stays in place, unchanged, as the rollback point until decommissioning in Phase 5. Signed zones run the same loop with the added steps in [Chapter 06](06-dns-identity-and-dnssec.md)'s signed-zone sequence: finish any key rollover first, and keep the old signing until the new chain of trust validates. To lower a record's TTL ahead of cutover on a Windows DNS server, copy the record object, change its TTL and write it back:[^c10-set-rr]
 
 ```powershell
 $old = Get-DnsServerResourceRecord -ZoneName corp.example.gov -Name app01 -RRType A
@@ -242,7 +242,7 @@ Decommissioning is the one step whose mistakes cannot be rolled back cheaply, so
 
 The gates, all of which must pass:
 
-1. **The inventory reconciles.** Every zone, record, forwarder and scope from Phase 1 is accounted for in the target or deliberately retired, in both directions: nothing missing from the target and nothing unexplained in it.
+1. **The inventory reconciles.** Every zone, record, forwarder and scope from Phase 1 is accounted for in the target or deliberately retired, in both directions: nothing missing from the target and nothing unexplained in it. A signed zone counts as moved only when its new chain of trust validates and the old signing has stopped; a signed zone still in transfer holds the gate.
 2. **SRV resolution holds.** Every critical locator record resolves from every VNet and every on-premises site, checked every 15 minutes, with 100% success for 30 consecutive days and no open alerts ([Chapter 11](11-operating-the-control-plane.md) has the monitoring).
 3. **Parallel operation has run its course.** The program requires 90 days of parallel operation with no critical alerts and no unresolved drift.
 4. **Failover has been tested** on the new resolvers and DHCP servers, not assumed.
@@ -257,7 +257,7 @@ Do not remove legacy DNS servers until the parallel-operation period has passed 
 
 ## Phase 6 — Policy and compliance hardening
 
-With authority moved, the controls that depend on a single governed path can be switched on everywhere: Protective DNS forwarding and encrypted DNS ([Chapter 05](05-edge-interception-and-bypass.md)), DNSSEC signing and validation where required ([Chapter 06](06-dns-identity-and-dnssec.md); the program's own rule for the migration period is to finish any key rollover in progress before a signed zone moves, start no new rollover while zones are moving, and keep the old signing in place until the new chain of trust validates), and the monitoring and evidence in [Chapter 11](11-operating-the-control-plane.md). The phase closes when the evidence checklist in Chapter 11 is complete.
+With authority moved, the controls that depend on a single governed path can be switched on everywhere: Protective DNS forwarding and encrypted DNS ([Chapter 05](05-edge-interception-and-bypass.md)), DNSSEC signing and validation where required ([Chapter 06](06-dns-identity-and-dnssec.md)): signing zones that weren't signed before and turning validation on at every resolver. Zones that were already signed don't wait for this phase; they moved in Phase 3 under the program's signed-zone rule (finish any key rollover in progress before a signed zone moves, start no new rollover while zones are moving, and keep the old signing in place until the new chain of trust validates) and had to validate before the Phase 5 gate, and the monitoring and evidence in [Chapter 11](11-operating-the-control-plane.md). The phase closes when the evidence checklist in Chapter 11 is complete.
 
 ## What success looks like
 

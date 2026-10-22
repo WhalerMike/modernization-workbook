@@ -1,0 +1,113 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:00.837
+Compute.
+
+2
+00:00:00.837 --> 00:00:04.184
+Once identity, policy and
+network services have moved,
+
+3
+00:00:04.184 --> 00:00:08.051
+domain-joined machines are the
+largest remaining dependency.
+
+4
+00:00:08.051 --> 00:00:12.905
+A machine leaves only when its identity,
+its policy and its trust have each
+
+5
+00:00:12.905 --> 00:00:17.362
+been replaced, so the domain join is
+the last thing to go, not the first.
+
+6
+00:00:17.362 --> 00:00:20.697
+User PCs end Entra joined
+and managed in Intune,
+
+7
+00:00:20.697 --> 00:00:24.288
+and every hardware refresh
+should arrive that way.
+
+8
+00:00:24.288 --> 00:00:28.739
+Hybrid join is a transition: there's
+no supported way to convert a
+
+9
+00:00:28.739 --> 00:00:33.526
+hybrid-joined PC without resetting
+it, so time that reset to a refresh.
+
+10
+00:00:33.526 --> 00:00:37.075
+A program that leaves devices
+hybrid joined hasn't finished.
+
+11
+00:00:37.075 --> 00:00:38.725
+Servers take a different road.
+
+12
+00:00:38.725 --> 00:00:43.082
+Azure Arc projects them into Azure
+for policy and posture while they stay
+
+13
+00:00:43.082 --> 00:00:47.725
+where they are, and leaving the domain is
+a separate decision for each workload.
+
+14
+00:00:47.725 --> 00:00:50.600
+What holds servers in the
+domain is applications.
+
+15
+00:00:50.600 --> 00:00:54.505
+Every Kerberos service principal
+name is an application,
+
+16
+00:00:54.505 --> 00:00:59.793
+and each gets one of three answers: migrate
+to modern authentication, retire it,
+
+17
+00:00:59.793 --> 00:01:05.000
+or, as a last resort, keep it on a small
+documented island with an end-of-life date.
+
+18
+00:01:05.000 --> 00:01:08.075
+NTLM is resolved in the same pass.
+
+19
+00:01:08.075 --> 00:01:12.838
+And an application's compute stays with
+its data until its round trips are reduced,
+
+20
+00:01:12.838 --> 00:01:15.500
+because distance multiplies
+with every call.
+
+21
+00:01:15.500 --> 00:01:19.812
+Only an application's owner can make
+that call and sign off its cutover.
+
+22
+00:01:19.812 --> 00:01:25.491
+Keeping legacy authentication open is
+a risk acceptance, so the authorizing
+
+23
+00:01:25.491 --> 00:01:31.490
+official sets every island and NTLM end
+date, and every name is resolved by Gate G4.

@@ -1,0 +1,112 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.075
+Who decides?
+
+2
+00:00:01.075 --> 00:00:04.214
+The book's advice: name the
+people allowed to say no,
+
+3
+00:00:04.214 --> 00:00:09.038
+give each decision one of them, and make
+the repository remember who said yes.
+
+4
+00:00:09.038 --> 00:00:12.312
+The book uses Book 01's
+program-wide model.
+
+5
+00:00:12.312 --> 00:00:17.067
+The executive sponsor, with the CIO,
+owns scope, funding and sequence,
+
+6
+00:00:17.067 --> 00:00:21.737
+breaks ties, and decides when
+Active Directory components retire.
+
+7
+00:00:21.737 --> 00:00:26.257
+The CISO sets the control requirements
+every target surface must meet:
+
+8
+00:00:26.257 --> 00:00:30.550
+authentication strength, the
+Conditional Access baseline, logging.
+
+9
+00:00:30.550 --> 00:00:33.481
+The authorizing official
+is the only official
+
+10
+00:00:33.481 --> 00:00:36.037
+who can accept security and privacy risk.
+
+11
+00:00:36.037 --> 00:00:39.597
+The steward leads the program
+office and owns the plan,
+
+12
+00:00:39.597 --> 00:00:43.788
+wave sequencing, cross-domain
+dependencies and the repository.
+
+13
+00:00:43.788 --> 00:00:48.420
+A change to the target architecture, or
+to the rules for authoritative origin,
+
+14
+00:00:48.420 --> 00:00:51.025
+needs the steward and
+the sponsor together.
+
+15
+00:00:51.025 --> 00:00:54.563
+HR decides what each
+organizational attribute means.
+
+16
+00:00:54.563 --> 00:00:59.374
+And workstream leads own their designs,
+inside the CISO's requirements.
+
+17
+00:00:59.374 --> 00:01:03.650
+Two federal requirements already name
+people who belong in these rows.
+
+18
+00:01:03.650 --> 00:01:09.085
+M-22-09 required a zero trust
+implementation lead within 30 days,
+
+19
+00:01:09.085 --> 00:01:10.613
+and an aligned C-suite.
+
+20
+00:01:10.613 --> 00:01:16.537
+M-19-17 requires an integrated,
+agency-wide ICAM governance structure.
+
+21
+00:01:16.537 --> 00:01:20.838
+So the decision for the sponsor and
+CIO, in Phase 0: name the sponsor,
+
+22
+00:01:20.838 --> 00:01:23.467
+the steward and the steering committee,
+
+23
+00:01:23.467 --> 00:01:27.500
+and build them from those existing
+roles, not alongside them.

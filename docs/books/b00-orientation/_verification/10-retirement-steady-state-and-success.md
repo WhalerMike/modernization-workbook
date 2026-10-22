@@ -64,3 +64,11 @@ Writer: W5. Sources: `docs/operational-guides/program-management/master-project-
 
 - `docs/images/diagrams/b00-orientation/src/ch10-retirement-to-steady-state.flow.yaml`
 - `docs/images/diagrams/b00-orientation/src/ch10-steady-state-loop.flow.yaml`
+
+## Cross-chapter consistency pass
+
+Checked October 21, 2026. Book 00's chapters were reconciled with each other; each external fact touched was re-opened on its primary source.
+
+| # | Claim (short) | Where | Verdict | Source |
+|---|---|---|---|---|
+| X1 | M-045 drift assessment = daily drift detection plus weekly reassessment diff; checklist item 19 likewise | Operating cadence milestones; cutover item 19 | aligned with the operating cadence table (detection daily, reassessment weekly) | Internal |

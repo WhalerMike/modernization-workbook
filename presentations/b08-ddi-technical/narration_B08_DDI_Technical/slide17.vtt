@@ -1,0 +1,50 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.213
+Part 2: building and
+running the control plane.
+
+2
+00:00:03.213 --> 00:00:05.424
+Module 3 covers the design.
+
+3
+00:00:05.424 --> 00:00:10.885
+Chapter 07's premise: every cloud ships
+its own private DNS and its own address
+
+4
+00:00:10.885 --> 00:00:13.871
+manager, and unless
+one plane governs both,
+
+5
+00:00:13.871 --> 00:00:17.625
+names and addresses drift
+apart one console at a time.
+
+6
+00:00:17.625 --> 00:00:22.882
+We'll take the four private DNS models,
+Azure private endpoints and the Private
+
+7
+00:00:22.882 --> 00:00:28.625
+Resolver in detail, then IPAM as the authority
+for address blocks across the clouds.
+
+8
+00:00:28.625 --> 00:00:33.805
+Chapter 08 then draws the reference
+architecture and the five decisions that carry
+
+9
+00:00:33.805 --> 00:00:38.023
+almost all of its operational risk,
+each with a check to run in the live
+
+10
+00:00:38.023 --> 00:00:42.600
+configuration, and Appendix C sets
+out what changes in government clouds.

@@ -25,49 +25,49 @@ Group Policy and delegate authority,
 and that both inherit down the tree.
 
 6
-00:00:18.088 --> 00:00:21.762
-So placing one user in an
-OU did five things at once.
+00:00:18.088 --> 00:00:23.800
+So placing one user in an organizational
+unit (OU) did five things at once.
 
 7
-00:00:21.762 --> 00:00:24.964
+00:00:23.800 --> 00:00:27.002
 It handed the account to that
 branch's administrators,
 
 8
-00:00:24.964 --> 00:00:29.661
+00:00:27.002 --> 00:00:31.699
 applied every policy linked along the
 path, fed the tools that built groups from
 
 9
-00:00:29.661 --> 00:00:34.500
+00:00:31.699 --> 00:00:36.538
 position, bound it to the branch's delegation
 authority, and drew an audit boundary.
 
 10
-00:00:34.500 --> 00:00:36.775
+00:00:36.538 --> 00:00:38.813
 Entra ID has no OU tree.
 
 11
-00:00:36.775 --> 00:00:38.920
+00:00:38.813 --> 00:00:40.957
 Dynamic groups follow attributes,
 
 12
-00:00:38.920 --> 00:00:43.062
+00:00:40.957 --> 00:00:45.099
 and administrative units scope
 delegated roles but can't be nested.
 
 13
-00:00:43.062 --> 00:00:47.825
+00:00:45.099 --> 00:00:49.863
 Neither rebuilds the tree on its own;
 the rebuild has to be written down.
 
 14
-00:00:47.825 --> 00:00:51.727
+00:00:49.863 --> 00:00:53.764
 And Microsoft still supports
 and enhances Active Directory,
 
 15
-00:00:51.727 --> 00:00:55.460
+00:00:53.764 --> 00:00:57.500
 so retiring it is an agency
 decision, not a vendor deadline.

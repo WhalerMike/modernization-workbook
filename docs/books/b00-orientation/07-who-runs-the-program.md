@@ -76,7 +76,7 @@ Below the program-wide matrix, the master plan assigned every major activity acr
 | Full delegated assessment (0) | A | C | R | C | R | R | C | I | — |
 | Security assessment (0) | A | I | C | I | I | C | R | I | CISO sets which findings are priority one for G0 |
 | Modernization plan generation (0–1) | A | I | R | R | R | R | R | I | — |
-| Plan review and approval (1) | R/A | C | C | C | C | C | C | C | Steering committee approves |
+| Plan review and approval (1) | R/A | C | C | C | C | C | C | C | — (the steward approves each plan after the workstream and security leads review it; the steering committee reviews the combined set but doesn't sign) |
 | Attribute taxonomy (1) | A | I | R | C | I | I | I | I | HR decides what each attribute means |
 | Intune policy design (1) | A | I | C | R | I | I | C | I | CISO's control requirements |
 | Conditional Access design (1) | A | I | C | C | I | I | R | I | CISO decides the baseline |

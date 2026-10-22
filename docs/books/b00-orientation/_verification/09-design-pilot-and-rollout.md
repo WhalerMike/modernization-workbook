@@ -68,3 +68,12 @@ Alignment note: following Chapter 05 (W3), Phase 1 opens with plan generation an
 | §12.1 License requirements | Ch09 states only dynamic-group P1 need | License table → Ch05 (W3) |
 | Appendix A milestone register (M-014–M-037) | Ch09 milestone tables | Status column not carried |
 | Appendix C RACI (design, pilot, scaling rows) | — | Ch07 (W3) |
+
+## Cross-chapter consistency pass
+
+Checked October 21, 2026. Book 00's chapters were reconciled with each other; each external fact touched was re-opened on its primary source.
+
+| # | Claim (short) | Where | Verdict | Source |
+|---|---|---|---|---|
+| X1 | Scaling risk: report-only for at least a week before enforcement (was 48 hours) | Scaling risks table | corrected; aligned with §Conditional Access and Ch08 | Learn, "Plan a Conditional Access deployment," Deploy Conditional Access policies tip ("Enable each policy in report-only mode for at least one week before enforcement"), fetched Oct 21, 2026 |
+| X2 | Plans reviewed by workstream and security leads, approved by the steward; steering committee reviews | Phase 1 opening | corrected; aligned with Ch07 decision matrix | Internal |

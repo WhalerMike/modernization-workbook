@@ -1,0 +1,117 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.648
+Network services are the part
+organizations most often defer,
+
+2
+00:00:04.648 --> 00:00:08.450
+because DNS, DHCP and address
+management still work.
+
+3
+00:00:08.450 --> 00:00:11.588
+That's exactly how they keep
+the old directory alive.
+
+4
+00:00:11.588 --> 00:00:13.526
+The three form one surface.
+
+5
+00:00:13.526 --> 00:00:17.687
+DNS usually lives in zones
+integrated with Active Directory,
+
+6
+00:00:17.687 --> 00:00:21.767
+so every domain controller sits
+in the name-resolution path,
+
+7
+00:00:21.767 --> 00:00:25.113
+and Active Directory can't
+retire until DNS moves.
+
+8
+00:00:25.113 --> 00:00:29.701
+DHCP servers are authorized in the
+forest, but that check is Windows
+
+9
+00:00:29.701 --> 00:00:34.863
+policing itself: it stops an unauthorized
+Windows server, not a rogue device.
+
+10
+00:00:34.863 --> 00:00:37.883
+And address management,
+in many organizations,
+
+11
+00:00:37.883 --> 00:00:40.362
+is a spreadsheet one person maintains.
+
+12
+00:00:40.362 --> 00:00:43.662
+Without it, DNS and DHCP drift.
+
+13
+00:00:43.662 --> 00:00:45.738
+So the program moves them together.
+
+14
+00:00:45.738 --> 00:00:50.307
+One governed IPAM authority
+covers the whole address surface,
+
+15
+00:00:50.307 --> 00:00:54.962
+on-premises and cloud, and DNS and
+DHCP derive their records from it.
+
+16
+00:00:54.962 --> 00:00:59.862
+Disagreement between them is drift,
+and there's no DNS-only run.
+
+17
+00:00:59.862 --> 00:01:06.181
+Federal controls point the same
+way: SP 800-53 treats secure name
+
+18
+00:01:06.181 --> 00:01:10.149
+resolution and the component
+inventory as controls of their own.
+
+19
+00:01:10.149 --> 00:01:13.767
+The common failure is to
+modernize identity and policy
+
+20
+00:01:13.767 --> 00:01:16.913
+and leave these for a Phase
+2 that rarely happens.
+
+21
+00:01:16.913 --> 00:01:20.874
+A forest that still hosts
+DNS has not been retired.
+
+22
+00:01:20.874 --> 00:01:25.924
+That makes it a scope and funding
+decision for the sponsor and the CIO:
+
+23
+00:01:25.924 --> 00:01:31.238
+put DNS, DHCP and IPAM in the core
+program now, with one IPAM authority.
+
+24
+00:01:31.238 --> 00:01:34.200
+The pilot division's
+zones move in Phase 2.

@@ -1,0 +1,2172 @@
+{
+ "1": [
+  [
+   0.05,
+   7.763,
+   "This is the technical deep dive for Book 07 of the Federal Modernization Workbook, P K I and Certificates."
+  ],
+  [
+   7.812,
+   6.362,
+   "It's for the P K I engineers and architects who will run the move off Active Directory Certificate Services."
+  ],
+  [
+   14.175,
+   5.463,
+   "It comes in two parts of about twenty-five minutes each, and four modules you can watch separately."
+  ],
+  [
+   19.637,
+   11.338,
+   "Part 1 is hardening and the target: first how to make the A D CS that stays the best-defended system you own, then the target architecture of four issuers and one lifecycle platform."
+  ],
+  [
+   30.975,
+   16.1,
+   "Part 2 is issuing, migrating and retiring: the Intune certificate profiles, strong mapping and Entra certificate-based authentication, then coexistence, the six-wave migration, lifecycle monitoring and the decommissioning of the old CAs."
+  ],
+  [
+   47.075,
+   3.85,
+   "The slides show tables, checklists and decision matrices."
+  ],
+  [
+   50.925,
+   10.0,
+   "The commands live in the chapters and appendices, and the book marks them as illustrative and untested against production; I'll point you to them rather than put them on screen."
+  ]
+ ],
+ "2": [
+  [
+   0.05,
+   1.188,
+   "Why this matters."
+  ],
+  [
+   1.238,
+   4.062,
+   "A certificate is a signed naming claim that has already been handed out."
+  ],
+  [
+   5.3,
+   6.938,
+   "It sits in device stores, on smart cards, in load balancers and in trust stores nobody remembers configuring."
+  ],
+  [
+   12.238,
+   2.4,
+   "It doesn't move when the directory moves."
+  ],
+  [
+   14.637,
+   4.375,
+   "It keeps working until it expires, and then whatever relied on it stops."
+  ],
+  [
+   19.012,
+   4.763,
+   "Three properties make A D CS the hardest part of Active Directory to leave."
+  ],
+  [
+   23.775,
+   10.238,
+   "An enterprise CA is wired into the forest: its templates, enrollment services, NTAuth trust and publication points live in the configuration partition."
+  ],
+  [
+   34.013,
+   9.575,
+   "The cloud replacements cover only part of the estate: Cloud P K I issues to Intune-managed devices, and Intune doesn't manage Windows Server."
+  ],
+  [
+   43.587,
+   4.9,
+   "And domain controllers need certificates for as long as domain controllers exist."
+  ],
+  [
+   48.487,
+   3.812,
+   "Meanwhile the rules are moving under certificates already issued."
+  ],
+  [
+   52.3,
+   11.075,
+   "Public TLS maximum validity is two hundred days today, a hundred days from March 15, 2027, and forty-seven days from March 15, 2029."
+  ],
+  [
+   63.375,
+   12.688,
+   "KB5014754 put domain controllers in Full Enforcement on February 11, 2025, and Compatibility mode has been gone since September 9, 2025."
+  ],
+  [
+   76.062,
+   22.275,
+   "nist's draft post-quantum transition plan proposes deprecating RSA-2048 signatures after 2030 and disallowing RSA and ECDSA signatures after 2035, and O M B M-26-15 gave agencies a hundred and twenty days from June 24, 2026 to submit a migration plan."
+  ],
+  [
+   98.338,
+   3.3,
+   "So the move off A D CS runs as its own program."
+  ],
+  [
+   101.638,
+   5.7,
+   "It fails at expiry, not at cutover, which can be months later and far from its cause."
+  ]
+ ],
+ "3": [
+  [
+   0.05,
+   1.85,
+   "What A D CS holds up."
+  ],
+  [
+   1.9,
+   1.363,
+   "It isn't one server."
+  ],
+  [
+   3.263,
+   12.838,
+   "The typical estate is a two-tier hierarchy: an offline standalone root that signs the issuing CAs and its own CRL, and enterprise issuing CAs that issue from templates stored in Active Directory."
+  ],
+  [
+   16.1,
+   15.625,
+   "Every enterprise CA also lives as objects in the forest's Public Key Services branch: certificate templates, enrollment services, the NTAuth certificates object, AIA and CDP containers, key recovery agents and OIDs."
+  ],
+  [
+   31.725,
+   5.875,
+   "Those objects are forest-wide, which is exactly what ties A D CS to Active Directory."
+  ],
+  [
+   37.6,
+   9.775,
+   "Domain members enroll through Group Policy autoenrollment, which runs every eight hours and renews a certificate after it passes eighty percent of its validity."
+  ],
+  [
+   47.375,
+   8.25,
+   "Chapter 02's inventory has four layers: the CAs, the templates, the issued certificates and the relying parties."
+  ],
+  [
+   55.625,
+   8.312,
+   "The relying-party layer decides the order of work later, because a new issuer is useful only once everything that validates it trusts it."
+  ],
+  [
+   63.938,
+   4.9,
+   "Then every template and use case gets one of four verdicts, asked in order."
+  ],
+  [
+   68.838,
+   2.95,
+   "RETIRE first, if the consumer is going away."
+  ],
+  [
+   71.787,
+   9.488,
+   "MIGRATE, if Cloud P K I through Intune or Entra CBA replaces it: Wi-Fi, VPN, device authentication, tenant sign-in."
+  ],
+  [
+   81.275,
+   8.812,
+   "BRIDGE, if it depends on A D itself or a server the cloud can't reach: domain controllers, LDAPS, NPS and NTAuth trust."
+  ],
+  [
+   90.088,
+   6.737,
+   "RETAIN is what's left, such as HSM-held code signing, and every entry gets an owner and a review date."
+  ],
+  [
+   96.825,
+   5.562,
+   "Appendix B applies these verdicts template by template; we'll come back to it in Module 4."
+  ]
+ ],
+ "4": [
+  [
+   0.05,
+   2.55,
+   "Module 1: hardening what stays."
+  ],
+  [
+   2.6,
+   5.362,
+   "A migration off A D CS takes months, and for some workloads it never finishes."
+  ],
+  [
+   7.963,
+   11.062,
+   "Throughout that time the enterprise CA keeps issuing certificates that domain controllers, VPN gateways, radius servers and Entra ID accept as proof of identity."
+  ],
+  [
+   19.025,
+   9.688,
+   "A CA can create credentials the whole environment trusts, so one over-privileged account or misconfigured setting on it can undo every other identity control."
+  ],
+  [
+   28.712,
+   4.838,
+   "That makes hardening the first technical workstream, not a cleanup task at the end."
+  ],
+  [
+   33.55,
+   6.875,
+   "Everything in this module is defensive: what each misconfiguration is, how to detect it, and how to fix it."
+  ]
+ ],
+ "5": [
+  [
+   0.05,
+   10.575,
+   "The program carries one rule forward unchanged: misconfigurations rated Critical or High are remediated and verified before any certificate workload migrates."
+  ],
+  [
+   10.625,
+   8.137,
+   "Migrating from a CA that can be made to issue arbitrary credentials propagates the weakness into whatever trusts the hierarchy next."
+  ],
+  [
+   18.762,
+   12.463,
+   "And under the bring-your-own-CA model the program recommends, the new Cloud P K I issuing CA chains to the existing A D CS hierarchy, so it inherits every weakness the day it goes live."
+  ],
+  [
+   31.225,
+   10.188,
+   "The ESC names come from SpecterOps' 2021 research; Microsoft adopted the same labels in Defender for Identity, which is why they're the shared vocabulary."
+  ],
+  [
+   41.413,
+   3.3,
+   "The book uses them only as labels for defensive checks."
+  ],
+  [
+   44.712,
+   2.688,
+   "The classes live in four control points."
+  ],
+  [
+   47.4,
+   3.712,
+   "Template objects hold ESC1 through ESC4."
+  ],
+  [
+   51.112,
+   12.512,
+   "The Public Key Services objects hold ESC5, which Defender for Identity doesn't assess, so detection is an ACL review plus directory change auditing, event 5136."
+  ],
+  [
+   63.625,
+   8.338,
+   "The CA's own configuration holds ESC6 and ESC7, and HTTP enrollment endpoints hold ESC8."
+  ],
+  [
+   71.963,
+   13.037,
+   "Certificate template assessments are available to every customer with A D CS; CA assessments need a Defender for Identity sensor on the A D CS server, so install it on every enterprise CA that stays."
+  ],
+  [
+   85.0,
+   1.7,
+   "Two caveats from the book."
+  ],
+  [
+   86.7,
+   16.4,
+   "In G C C, Defender for Identity uses the security dot microsoft dot com portal; Microsoft says new features reach G C C, G C C High and DoD within ninety days of commercial release, but preview features may not be supported there."
+  ],
+  [
+   103.1,
+   9.0,
+   "The ESC1 and ESC6 assessments are still labeled preview, so confirm they appear in your tenant, and run the manual checks in the meantime."
+  ]
+ ],
+ "6": [
+  [
+   0.05,
+   2.35,
+   "The template classes, as a checklist."
+  ],
+  [
+   2.4,
+   13.988,
+   "ESC1: a template lets the requester supply the subject or subject alternative name, permits client authentication, and broad unprivileged groups can enroll, so a member could obtain a certificate that names someone else."
+  ],
+  [
+   16.387,
+   18.65,
+   "Detect it with Defender for Identity, and by hand: Supply in the request on the Subject Name tab, an authentication purpose such as Client Authentication, Smart Card Logon, PKINIT or Any Purpose, and Enroll granted to Authenticated Users, Domain Users, Domain Computers or Everyone."
+  ],
+  [
+   35.038,
+   9.287,
+   "On the CA, events 4886 and 4887 show requests where the requester and the issued subject differ."
+  ],
+  [
+   44.325,
+   15.45,
+   "Any one remediation closes it: build the subject from Active Directory, remove authentication EKUs the template doesn't need, restrict Enroll, require CA certificate manager approval, or take the template off every CA if it's unused."
+  ],
+  [
+   59.775,
+   5.35,
+   "ESC2 is Any Purpose or no EKU on a broadly enrollable template."
+  ],
+  [
+   65.125,
+   7.375,
+   "A no-EKU template restricted to P K I administrators, such as a subordinate CA template, isn't the same exposure."
+  ],
+  [
+   72.5,
+   4.25,
+   "ESC3 is a broadly enrollable enrollment agent template."
+  ],
+  [
+   76.75,
+   4.312,
+   "Treat an enrollment agent certificate as an impersonation capability."
+  ],
+  [
+   81.062,
+   9.588,
+   "Microsoft doesn't publish a Windows Server 2025 procedure for enrollment agent restrictions, so validate the existing configuration in a lab first."
+  ],
+  [
+   90.65,
+   6.662,
+   "ESC4 is write rights or ownership on a template held by anyone but the P K I administrators."
+  ],
+  [
+   97.312,
+   8.588,
+   "Changes are logged as event 5136 only when directory change auditing is on and the objects carry a matching SACL."
+  ],
+  [
+   105.9,
+   11.188,
+   "One trap when you fix it: if you remove Authenticated Users from a template ACL, grant each issuing CA's computer account Read, or the CA can no longer read the template."
+  ]
+ ],
+ "7": [
+  [
+   0.05,
+   2.362,
+   "The directory and CA classes."
+  ],
+  [
+   2.413,
+   5.9,
+   "ESC5 is unprivileged write access on the forest's Public Key Services objects."
+  ],
+  [
+   8.312,
+   11.562,
+   "The NTAuth certificates object holds the CAs trusted to issue logon and domain controller certificates, and each enrollment services object records what a CA can issue and who can enroll."
+  ],
+  [
+   19.875,
+   3.413,
+   "Write access to either is control over authentication."
+  ],
+  [
+   23.288,
+   11.575,
+   "Defender for Identity has no ESC5 assessment, so review the ACLs, compare the NTAuth store with your approved CA list, and audit changes through event 5136."
+  ],
+  [
+   34.862,
+   7.4,
+   "ESC6 is the CA-wide flag that lets any requester supply subject alternative names on any template."
+  ],
+  [
+   42.263,
+   6.787,
+   "Find out why it was turned on, since some old workflows depended on it, then clear it and restart the service."
+  ],
+  [
+   49.05,
+   15.488,
+   "The book corrects a common belief here: KB5014754 introduced strong mapping, which reduces what a forged name can do against Kerberos, but it doesn't change what the CA will sign, and other relying parties may still trust the name."
+  ],
+  [
+   64.537,
+   1.738,
+   "Clear the flag regardless."
+  ],
+  [
+   66.275,
+   5.487,
+   "ESC7 is unprivileged Manage CA or Issue and Manage Certificates."
+  ],
+  [
+   71.763,
+   7.862,
+   "Build separate groups for CA administrators, certificate managers, enrollment agents, auditors and backup custodians."
+  ],
+  [
+   79.625,
+   10.738,
+   "Service accounts count too: the Intune Certificate Connector and lifecycle tooling both hold Issue and Manage Certificates, so each is a certificate manager in all but name."
+  ],
+  [
+   90.362,
+   8.312,
+   "ESC8 is an HTTP enrollment endpoint that accepts N T L M without HTTPS or Extended Protection."
+  ],
+  [
+   98.675,
+   9.775,
+   "Microsoft's advisory: Extended Protection set to Required, Require SSL, restart IIS, and restrict N T L M where you can."
+  ],
+  [
+   108.45,
+   6.325,
+   "Better still, remove Web Enrollment wherever nothing depends on it, and apply the same rules to NDES."
+  ]
+ ],
+ "8": [
+  [
+   0.05,
+   5.95,
+   "Every detection in this module depends on evidence, and A D CS produces none by default."
+  ],
+  [
+   6.0,
+   3.3,
+   "Two settings are needed, and neither works without the other."
+  ],
+  [
+   9.3,
+   3.95,
+   "The CA's audit filter selects which CA operations are audited."
+  ],
+  [
+   13.25,
+   6.737,
+   "The Audit Certification Services advanced audit subcategory lets the operating system generate the events."
+  ],
+  [
+   19.988,
+   12.125,
+   "Set the subcategory to Success and Failure in a dedicated G P O linked to the CA servers, set the audit filter to cover every category, and restart the service in a maintenance window."
+  ],
+  [
+   32.112,
+   8.037,
+   "Full auditing includes the start and stop category, which can slow restarts on a CA with a large database, so test that first."
+  ],
+  [
+   40.15,
+   2.475,
+   "Then watch Microsoft's focused baseline."
+  ],
+  [
+   42.625,
+   14.225,
+   "4886, 4887 and 4888 are requests received, issued and denied: issuance volume per template, every credential issued, and probing of templates that should be restricted."
+  ],
+  [
+   56.85,
+   2.875,
+   "4870 is revocation evidence."
+  ],
+  [
+   59.725,
+   7.325,
+   "4882 and 4890 are permission and certificate manager changes, which is ESC7 drift."
+  ],
+  [
+   67.05,
+   3.4,
+   "4885 is someone changing the audit filter."
+  ],
+  [
+   70.45,
+   5.5,
+   "4892 is a CA property change, which catches the ESC6 flag."
+  ],
+  [
+   75.95,
+   4.138,
+   "4896 is rows deleted from the CA database."
+  ],
+  [
+   80.088,
+   3.425,
+   "4897 is role separation enabled."
+  ],
+  [
+   83.513,
+   9.05,
+   "Microsoft recommends generating each event in a nonproduction test before writing the collection rule, so an assumed event doesn't become a blind spot."
+  ],
+  [
+   92.562,
+   4.075,
+   "Forward through Windows Event Forwarding to a collector and the sim."
+  ],
+  [
+   96.638,
+   8.988,
+   "Forwarding doesn't stop a full local log from overwriting evidence, so size the CA's Security log for the longest plausible collection outage."
+  ]
+ ],
+ "9": [
+  [
+   0.05,
+   3.188,
+   "The program scores each class for prioritization."
+  ],
+  [
+   3.237,
+   1.663,
+   "Be clear about what's whose."
+  ],
+  [
+   4.9,
+   7.463,
+   "The risk level, domain-compromise and priority columns are the program's own scoring, carried forward from its P K I guide."
+  ],
+  [
+   12.363,
+   3.263,
+   "The detection column is from Microsoft's documentation."
+  ],
+  [
+   15.625,
+   7.925,
+   "Four classes are Critical with Immediate priority: ESC1, ESC2, ESC6 and ESC8."
+  ],
+  [
+   23.55,
+   8.162,
+   "Four are High, to be fixed within two weeks: ESC3, ESC4, ESC5 and ESC7."
+  ],
+  [
+   31.712,
+   15.113,
+   "One change from the original guide: ESC2 is downgraded from Yes to Possible for domain compromise, because Microsoft describes its main effect as undermining trust in other certificate consumers rather than direct user impersonation."
+  ],
+  [
+   46.825,
+   7.525,
+   "Immediate means the finding is fixed, or the template or endpoint is taken out of service, before the next change window closes."
+  ],
+  [
+   54.35,
+   4.013,
+   "And every row is a migration blocker until it's verified closed."
+  ],
+  [
+   58.362,
+   15.45,
+   "Verified has a definition: the Defender for Identity assessment shows no exposed entities, remembering that scores and statuses update every twenty-four hours, plus a manual re-check for ESC5, which Defender for Identity doesn't assess."
+  ],
+  [
+   73.812,
+   1.925,
+   "That's the record the gate reads."
+  ],
+  [
+   75.737,
+   11.725,
+   "Chapter 07's first wave doesn't exit until every Critical and High finding is remediated and re-tested, and the P K I owner and the security team have approved the assessment."
+  ]
+ ],
+ "10": [
+  [
+   0.05,
+   2.212,
+   "Three baselines close the module."
+  ],
+  [
+   2.263,
+   6.1,
+   "The A D CS that remains keeps running for months or years for BRIDGE and RETAIN workloads."
+  ],
+  [
+   8.363,
+   6.213,
+   "Remove every template those workloads don't need from each CA's issuance list; it's reversible."
+  ],
+  [
+   14.575,
+   3.938,
+   "Alert on requests for templates that should no longer be requested."
+  ],
+  [
+   18.512,
+   5.4,
+   "Keep CRL publication on schedule, and test it from representative client networks."
+  ],
+  [
+   23.913,
+   2.462,
+   "Back up the CA before every change."
+  ],
+  [
+   26.375,
+   8.1,
+   "Treat CA servers as Tier 0, the program's designation, because the CA can mint domain authentication credentials."
+  ],
+  [
+   34.475,
+   12.262,
+   "And the program requires FIPS 140-2 or 140-3 validated modules, CA keys held non-exportable in an HSM, and dual control for root ceremonies."
+  ],
+  [
+   46.737,
+   4.638,
+   "Cloud P K I removes most of that attack surface but adds its own."
+  ],
+  [
+   51.375,
+   8.037,
+   "Scope administrators with custom Intune roles and scope tags; there's no built-in Intune P K I Administrator role."
+  ],
+  [
+   59.413,
+   1.95,
+   "EKUs are fixed at creation."
+  ],
+  [
+   61.362,
+   13.25,
+   "On Windows, set the key storage provider to TPM, otherwise fail; a 4096-bit key can only live in the software provider, so the program uses 2048-bit RSA in the TPM."
+  ],
+  [
+   74.612,
+   2.212,
+   "The program sets one-year validity."
+  ],
+  [
+   76.825,
+   2.775,
+   "And don't build production CAs during a trial."
+  ],
+  [
+   79.6,
+   5.625,
+   "Entra CBA is a relying party, so its hardening is about trust and binding."
+  ],
+  [
+   85.225,
+   2.85,
+   "Require high-affinity bindings in production."
+  ],
+  [
+   88.075,
+   8.325,
+   "Use a custom authentication strength that names issuers or policy OIDs, up to five of each, for sensitive resources."
+  ],
+  [
+   96.4,
+   10.213,
+   "Require CRL validation; the program wants each trusted issuing CA to publish a CRL at least every twenty-four hours, because Entra caches it."
+  ],
+  [
+   106.612,
+   8.412,
+   "And CA scoping, generally available since April 2026, ties each CA to one group, with up to thirty rules."
+  ],
+  [
+   115.025,
+   2.888,
+   "A mistake can lock users out, so pilot it."
+  ]
+ ],
+ "11": [
+  [
+   0.05,
+   2.775,
+   "Module 2: the target P K I."
+  ],
+  [
+   2.825,
+   9.162,
+   "The guide this book replaces said Microsoft Cloud P K I eliminates the need for on-premises A D CS for most certificate use cases."
+  ],
+  [
+   11.988,
+   3.1,
+   "That's true for devices and wrong for the estate."
+  ],
+  [
+   15.088,
+   3.075,
+   "There's no single replacement for A D CS."
+  ],
+  [
+   18.163,
+   17.462,
+   "The target is four issuers, each chosen for the subjects only it can serve: Cloud P K I for Intune-managed devices, a smaller and hardened A D CS for what still depends on Active Directory, the Federal P K I for piv, and public CAs for names the internet must trust."
+  ],
+  [
+   35.625,
+   4.888,
+   "Entra ID sits beside all of them as a relying party, not an issuer."
+  ],
+  [
+   40.513,
+   4.55,
+   "One root-of-trust decision and one lifecycle platform hold them together."
+  ]
+ ],
+ "12": [
+  [
+   0.05,
+   5.75,
+   "Cloud P K I is a Microsoft-hosted P K I managed in the Intune admin center."
+  ],
+  [
+   5.8,
+   16.95,
+   "It hosts the root and issuing CAs, a SCEP registration authority for each issuing CA, the CRL distribution point and the AIA endpoint, which together replace the on-premises CA, NDES server and Certificate Connector for device certificates."
+  ],
+  [
+   22.75,
+   0.95,
+   "What it can do."
+  ],
+  [
+   23.7,
+   7.237,
+   "Issue client-authentication certificates to Intune-enrolled Android, Apple and Windows devices, through SCEP."
+  ],
+  [
+   30.938,
+   8.125,
+   "Publish a CRL per CA, valid seven days, republished every three and a half days and on every revocation."
+  ],
+  [
+   39.062,
+   2.375,
+   "And host up to three CAs per tenant."
+  ],
+  [
+   41.438,
+   0.925,
+   "What it can't."
+  ],
+  [
+   42.362,
+   12.3,
+   "Issue to anything not enrolled in Intune; Intune doesn't support Windows Server, so no domain controller, NPS server, web server or SQL Server gets a Cloud P K I certificate."
+  ],
+  [
+   54.663,
+   9.4,
+   "Issue the server certificates radius and VPN gateways present; Microsoft says those must come from another CA. Issue through PKCS."
+  ],
+  [
+   64.062,
+   1.613,
+   "Answer OCSP."
+  ],
+  [
+   65.675,
+   2.925,
+   "And change a CA's EKUs after creation."
+  ],
+  [
+   68.6,
+   2.888,
+   "Plan the three-CA count before you create anything."
+  ],
+  [
+   71.487,
+   8.15,
+   "Keys: licensed CAs use Azure Managed HSM; trial CAs use software keys that can't be converted after purchase."
+  ],
+  [
+   79.638,
+   5.588,
+   "Licensing: Cloud P K I is a subscription on top of Intune Plan 1 or 2."
+  ],
+  [
+   85.225,
+   16.038,
+   "From July 2026, Microsoft 365 E5 and E7 include it for commercial customers; Microsoft says Government plans are planned to align, subject to compliance and regulatory requirements, so confirm the entitlement on the current SKU."
+  ],
+  [
+   101.263,
+   8.262,
+   "And availability: G C C uses the commercial Intune service, so availability follows it and licensing is the question."
+  ],
+  [
+   109.525,
+   8.625,
+   "Cloud P K I became available in G C C High in the week of September 28, 2026, and isn't supported in DoD."
+  ]
+ ],
+ "13": [
+  [
+   0.05,
+   5.85,
+   "Cloud P K I offers two ways to anchor trust, and both can coexist in one tenant."
+  ],
+  [
+   5.9,
+   6.475,
+   "The Cloud P K I root CA: you create a root and one or more issuing CAs in the cloud."
+  ],
+  [
+   12.375,
+   1.875,
+   "It's a two-tier hierarchy."
+  ],
+  [
+   14.25,
+   11.412,
+   "In the admin center the root's validity is five to twenty-five years and an issuing CA's is two to ten, never longer than its root; the Graph API allows custom periods."
+  ],
+  [
+   25.663,
+   3.9,
+   "The catch is that every relying party has to be given the new root."
+  ],
+  [
+   29.562,
+   9.125,
+   "Bring your own CA: you create an issuing CA in the cloud, Intune generates a certificate signing request, and your private CA signs it."
+  ],
+  [
+   38.688,
+   1.387,
+   "Four details matter."
+  ],
+  [
+   40.075,
+   9.75,
+   "The signer doesn't have to be the root; Microsoft says it can be a root or issuing CA from any tier, using the Subordinate Certification Authority template."
+  ],
+  [
+   49.825,
+   13.275,
+   "The signer sets the terms: validity and hash algorithm come from the signing CA, the key size you choose caps the SCEP profiles that use it, and 1024-bit keys and SHA-1 aren't supported."
+  ],
+  [
+   63.1,
+   13.137,
+   "The AIA comes from your CA, and A D CS defaults to an el-dap location, so configure an HTTP AIA before signing; Android doesn't follow AIA paths, so deploy the full chain there."
+  ],
+  [
+   76.237,
+   12.113,
+   "And relying parties still get one new certificate: Microsoft recommends deploying the BYOCA issuing CA certificate to them, because AIA retrieval isn't guaranteed on every platform."
+  ],
+  [
+   88.35,
+   1.788,
+   "Renewal repeats the signing."
+  ],
+  [
+   90.138,
+   2.975,
+   "One consequence matters more than any of these."
+  ],
+  [
+   93.112,
+   8.537,
+   "Under BYOCA the private root CRL stays where it is, and every relying party, Entra ID included, must still fetch it."
+  ],
+  [
+   101.65,
+   8.325,
+   "An offline root that publishes its CRL only over el-dap, or late, breaks the cloud issuer as surely as the on-premises one."
+  ]
+ ],
+ "14": [
+  [
+   0.05,
+   12.25,
+   "A Cloud P K I root needs no existing private P K I, brings a new chain that has to reach every relying party and every forest, and keeps the root key in a Microsoft-managed HSM."
+  ],
+  [
+   12.3,
+   17.863,
+   "BYOCA needs a private CA to sign, preserves the chain relying parties already hold, keeps root custody wherever your A D CS root key is, and adds one ongoing on-premises dependency: the private root's CRL must stay published and reachable over HTTP."
+  ],
+  [
+   30.163,
+   9.15,
+   "Neither model can serve domain controller, LDAPS or server certificates, because Cloud P K I issues only to Intune-enrolled devices."
+  ],
+  [
+   39.312,
+   6.675,
+   "And rollback is simpler under BYOCA, because the original root and its issuing CAs keep running."
+  ],
+  [
+   45.987,
+   9.537,
+   "The program's recommendation, for an organization with an established A D CS hierarchy, an offline root and cross-forest trust, is BYOCA."
+  ],
+  [
+   55.525,
+   6.487,
+   "It preserves the trust chain, needs one cloud CA rather than two, and keeps a natural rollback path."
+  ],
+  [
+   62.013,
+   9.988,
+   "For an organization building P K I for the first time alongside cloud-first identity, a Cloud P K I root removes every on-premises dependency."
+  ],
+  [
+   72.0,
+   2.65,
+   "Three program rules go with BYOCA."
+  ],
+  [
+   74.65,
+   16.637,
+   "Harden first: the root's hierarchy passes the Chapter 03 gate before it signs a cloud issuing CA. Sign with the root, not an A D CS issuing CA, so the cloud issuer is a peer of the existing issuing CAs and retiring them later doesn't touch it."
+  ],
+  [
+   91.287,
+   13.162,
+   "And treat the root CRL as production: publish it to an internet-reachable HTTP location on a schedule with margin, monitor it, and record the next ceremony date before the current CRL expires."
+  ]
+ ],
+ "15": [
+  [
+   0.05,
+   5.075,
+   "Chapter 04 records what A D CS is kept for and when each use ends."
+  ],
+  [
+   5.125,
+   17.275,
+   "Domain controller and KDC certificates stay until the last domain controller retires: servers can't get Cloud P K I certificates, and smart card or certificate logon to the domain needs a domain controller certificate chaining to a CA in the forest's NTAuth store."
+  ],
+  [
+   22.4,
+   3.312,
+   "LDAPS stays until el-dap-bound applications move."
+  ],
+  [
+   25.712,
+   9.162,
+   "NPS, radius and VPN gateway server certificates stay until radius moves, and until then they fall under the server issuer decision."
+  ],
+  [
+   34.875,
+   4.75,
+   "Network equipment through NDES and HSM-held code signing stay too."
+  ],
+  [
+   39.625,
+   7.963,
+   "And S/MIME: delivery can move to Intune imported PKCS, but the issuer and its key history stay."
+  ],
+  [
+   47.587,
+   6.537,
+   "That leaves internal server TLS, which Chapter 02 parked as BRIDGE until an issuer was named."
+  ],
+  [
+   54.125,
+   2.425,
+   "The program's decision has three parts."
+  ],
+  [
+   56.55,
+   17.1,
+   "Internal names are issued by the retained A D CS hierarchy, but requested and renewed through CyberArk Certificate Manager rather than by hand or by server autoenrollment, so every server certificate has an owner, an expiry alert and automated renewal in one place."
+  ],
+  [
+   73.65,
+   7.963,
+   "That covers NPS and radius servers, VPN and Remote Desktop gateways and SQL Server as well as web servers."
+  ],
+  [
+   81.612,
+   5.062,
+   "Domain controller certificates, which also serve LDAPS, stay on autoenrollment."
+  ],
+  [
+   86.675,
+   8.6,
+   "Names the internet must trust come from a public CA, also through the lifecycle platform, because public lifetimes are on the shrinking schedule."
+  ],
+  [
+   95.275,
+   6.425,
+   "And after Active Directory: enterprise CAs need A D, and standalone CAs don't use templates."
+  ],
+  [
+   101.7,
+   12.3,
+   "When the forest retires, server issuance moves to a standalone A D CS issuing CA under the same root, still driven by the lifecycle platform, which supports both kinds of Microsoft CA."
+  ],
+  [
+   114.0,
+   5.175,
+   "That keeps server certificates on the existing chain with no new root to distribute."
+  ]
+ ],
+ "16": [
+  [
+   0.05,
+   8.213,
+   "piv certificates aren't issued by Cloud P K I or by the program's A D CS, and the migration doesn't change their issuer."
+  ],
+  [
+   8.262,
+   11.025,
+   "The Federal P K I's root for the federal government is the Federal Common Policy CA G2, and shared service providers are contracted to issue the certificates on piv cards."
+  ],
+  [
+   19.288,
+   4.4,
+   "What the target P K I has to do for piv is trust, not issue."
+  ],
+  [
+   23.688,
+   12.45,
+   "Distribute the federal root, because it isn't in the Microsoft, Mozilla or Apple trust stores by default: an Intune trusted certificate profile for managed devices, Group Policy for domain members."
+  ],
+  [
+   36.138,
+   12.725,
+   "Keep NTAuth right while the domain exists, because smart card logon with certificates from a non-Microsoft CA needs that issuing CA in NTAuth, and a certificate on every authenticating domain controller."
+  ],
+  [
+   48.862,
+   6.025,
+   "And upload the chain to Entra ID, which validates piv certificates against its trust store."
+  ],
+  [
+   54.888,
+   1.212,
+   "Then lifecycle."
+  ],
+  [
+   56.1,
+   5.537,
+   "Cloud P K I and Intune issue, renew and revoke what they put on managed devices."
+  ],
+  [
+   61.638,
+   14.863,
+   "Everything else is the lifecycle platform's job, and for this program it's CyberArk Certificate Manager, now part of Palo Alto Networks, from the program's existing machine-identity vendor; the program doesn't add a second lifecycle vendor."
+  ],
+  [
+   76.5,
+   2.087,
+   "Two facts shape how it's deployed."
+  ],
+  [
+   78.588,
+   11.262,
+   "Its CA account is privileged: to enroll through a Microsoft CA it holds Read, Issue and Manage Certificates, and Request Certificates, so it falls under the ESC7 review."
+  ],
+  [
+   89.85,
+   11.45,
+   "And in the fed-ramp Marketplace dataset as of October 20, 2026, none of Palo Alto Networks' authorized packages is Certificate Manager or Next-Generation Trust Security."
+  ],
+  [
+   101.3,
+   7.162,
+   "Until one is, the program deploys Certificate Manager, Self-Hosted inside its own authorization boundary."
+  ],
+  [
+   108.463,
+   4.125,
+   "That's a program decision, to revisit when the Marketplace changes."
+  ]
+ ],
+ "17": [
+  [
+   0.05,
+   3.3,
+   "Module 3: device and user certificates."
+  ],
+  [
+   3.35,
+   2.5,
+   "Intune puts certificates on devices."
+  ],
+  [
+   5.85,
+   3.913,
+   "Entra ID decides whether a certificate proves who someone is."
+  ],
+  [
+   9.762,
+   3.3,
+   "Those are two jobs, and each one fails differently."
+  ],
+  [
+   13.062,
+   7.15,
+   "When Intune delivery fails, a device has no certificate and Wi-Fi, VPN or an application refuses it."
+  ],
+  [
+   20.212,
+   3.65,
+   "The failure is local and visible in the profile report."
+  ],
+  [
+   23.863,
+   13.825,
+   "When Entra certificate-based authentication goes wrong, the danger is the opposite: a certificate that should fail might pass, because the trust store holds too much, revocation isn't configured, or a binding is weak."
+  ],
+  [
+   37.688,
+   2.087,
+   "Keep the two jobs apart in planning."
+  ],
+  [
+   39.775,
+   8.338,
+   "They meet at one point, a user certificate delivered by Intune and then used to sign in, and that's where most migration surprises come from."
+  ]
+ ],
+ "18": [
+  [
+   0.05,
+   3.525,
+   "Every other profile depends on the trusted certificate profile."
+  ],
+  [
+   3.575,
+   7.1,
+   "It deploys the public certificate of the root and of intermediate or issuing CAs, so the device can build the chain."
+  ],
+  [
+   10.675,
+   7.487,
+   "Export each CA certificate as a DER-encoded file, never the private key, and create one profile per platform."
+  ],
+  [
+   18.163,
+   5.175,
+   "With Cloud P K I, that's the Cloud P K I root and issuing CAs."
+  ],
+  [
+   23.337,
+   8.025,
+   "With BYOCA, it's every CA in the private hierarchy as well as the BYOCA issuing CA, on every platform."
+  ],
+  [
+   31.363,
+   5.4,
+   "If a device doesn't trust the root, the SCEP or PKCS profile fails."
+  ],
+  [
+   36.763,
+   1.488,
+   "Then three paths."
+  ],
+  [
+   38.25,
+   9.188,
+   "SCEP with Cloud P K I: the device generates its own key pair and request; the old guide said Intune generates it, and it doesn't."
+  ],
+  [
+   47.438,
+   7.35,
+   "The Cloud P K I registration authority checks the request against the Intune challenge, and the issuing CA signs."
+  ],
+  [
+   54.788,
+   3.875,
+   "No on-premises CA, NDES server or connector."
+  ],
+  [
+   58.663,
+   5.425,
+   "Don't mix NDES and Cloud P K I SCEP URLs in one profile."
+  ],
+  [
+   64.088,
+   11.6,
+   "SCEP with A D CS runs through two pieces of on-premises software: NDES as the registration authority, and the Certificate Connector, which adds the Intune policy module."
+  ],
+  [
+   75.688,
+   3.0,
+   "The private key still never leaves the device."
+  ],
+  [
+   78.688,
+   2.962,
+   "PKCS doesn't use NDES."
+  ],
+  [
+   81.65,
+   8.725,
+   "The connector generates the key pair on its own server, requests the certificate, and hands the certificate and key to Intune as a PFX."
+  ],
+  [
+   90.375,
+   7.675,
+   "So the template must allow export, and the private key exists, however briefly, somewhere other than the device that uses it."
+  ],
+  [
+   98.05,
+   8.387,
+   "That's the trade PKCS makes for not needing NDES, and it's why the program prefers SCEP wherever a use case allows either."
+  ]
+ ],
+ "19": [
+  [
+   0.05,
+   4.375,
+   "When the issuer is A D CS, the infrastructure rules are strict."
+  ],
+  [
+   4.425,
+   4.875,
+   "The CA must be an enterprise CA; a standalone CA isn't supported."
+  ],
+  [
+   9.3,
+   13.562,
+   "The NDES and connector server is domain-joined in the same forest, and is neither a domain controller nor the issuing CA. Publishing NDES to the internet needs a reverse proxy with passthrough preauthentication."
+  ],
+  [
+   22.863,
+   15.387,
+   "The SCEP template supplies the subject in the request, which is exactly the setting Chapter 03 treats as dangerous; here the policy module enforces the subject, so the template is safe only while Enroll is limited to the NDES service account."
+  ],
+  [
+   38.25,
+   2.3,
+   "Audit that ACL like any other."
+  ],
+  [
+   40.55,
+   8.675,
+   "And the connector's Issue and Manage Certificates right is a CA officer right, so the connector server belongs in the CA's administrative tier."
+  ],
+  [
+   49.225,
+   5.688,
+   "NDES picks a template by the request's purpose, so one server serves at most three templates."
+  ],
+  [
+   54.913,
+   4.862,
+   "It can't be clustered; for availability, run several identical servers."
+  ],
+  [
+   59.775,
+   6.312,
+   "Its own two registration-authority certificates expire like any other and are a frequent cause of outages."
+  ],
+  [
+   66.088,
+   1.512,
+   "Keep the connector current."
+  ],
+  [
+   67.6,
+   8.562,
+   "The current release is 6.2510.3.3007, from May 18, 2026."
+  ],
+  [
+   76.162,
+   3.425,
+   "Let it update itself and alert on Warning or Error."
+  ],
+  [
+   79.588,
+   1.85,
+   "Which profile for which use."
+  ],
+  [
+   81.438,
+   25.2,
+   "Wi-Fi, VPN, web application client certificates and user certificates for Entra CBA are trusted plus SCEP, from Cloud P K I, or from A D CS while a relying party trusts only A D CS. S/MIME signing is PKCS; S/MIME encryption is imported PKCS from a CA with key archival, because old mail needs the old keys."
+  ],
+  [
+   106.638,
+   8.312,
+   "And a user certificate for certificate logon to A D needs the SID added, from A D CS or a CA in NTAuth."
+  ]
+ ],
+ "20": [
+  [
+   0.05,
+   5.475,
+   "Before May 2022, a domain controller mapped a certificate to an account by name."
+  ],
+  [
+   5.525,
+   5.8,
+   "KB5014754 changed the KDC to want a strong mapping."
+  ],
+  [
+   11.325,
+   5.638,
+   "The old guide said enforcement began in February 2025; that was one step of four."
+  ],
+  [
+   16.962,
+   2.75,
+   "May 2022, Compatibility mode."
+  ],
+  [
+   19.712,
+   3.9,
+   "April 2023, the Disabled setting is ignored."
+  ],
+  [
+   23.613,
+   6.138,
+   "February 11, 2025, Full Enforcement for domain controllers with no value set."
+  ],
+  [
+   29.75,
+   5.162,
+   "September 9, 2025, the registry key is no longer honored."
+  ],
+  [
+   34.913,
+   6.95,
+   "As of October 2026, every current domain controller is in Full Enforcement with no supported way back."
+  ],
+  [
+   41.862,
+   16.538,
+   "A strong mapping is the SID extension A D CS adds, the SID in a tagged SAN URL, which is Intune's form, or an explicit strong value on the account, such as issuer and serial number, SKI or SHA-1 public key."
+  ],
+  [
+   58.4,
+   1.938,
+   "What Intune profiles need."
+  ],
+  [
+   60.337,
+   10.4,
+   "It applies to user certificates on all platforms and to device certificates only on hybrid joined Windows devices, and the user or device must be synced from A D."
+  ],
+  [
+   70.737,
+   6.963,
+   "For SCEP, add a SAN attribute of type URI with the on-premises security identifier variable."
+  ],
+  [
+   77.7,
+   6.175,
+   "The old guide said Cloud P K I adds it automatically; Microsoft's instructions say you must add it."
+  ],
+  [
+   83.875,
+   6.688,
+   "For PKCS, run the current connector and set the SID security extension registry value."
+  ],
+  [
+   90.562,
+   4.088,
+   "Logon certificates need their issuing CA in NTAuth."
+  ],
+  [
+   94.65,
+   5.275,
+   "Pilot with a new profile, because editing a SCEP profile revokes what it issued."
+  ],
+  [
+   99.925,
+   6.713,
+   "To find weak certificates, sweep the KDC's System log for events 39, 40 and 41."
+  ],
+  [
+   106.638,
+   11.688,
+   "One trap on a mixed estate: on Server 2008 and 2008 R2, event 41 means no strong mapping, and the other two are logged as 48 and 49."
+  ],
+  [
+   118.325,
+   2.987,
+   "Read the event text before you classify a hit."
+  ]
+ ],
+ "21": [
+  [
+   0.05,
+   3.65,
+   "How a CBA sign-in works, as Microsoft documents it."
+  ],
+  [
+   3.7,
+   7.513,
+   "The user enters a username; Entra ID performs home realm discovery and offers Use a certificate or smart card."
+  ],
+  [
+   11.213,
+   12.7,
+   "The client is redirected to the certificate authentication endpoint, certauth dot login dot microsoftonline dot com in the commercial cloud, which includes G C C, and the dot us endpoint in Azure Government."
+  ],
+  [
+   23.913,
+   3.962,
+   "It requests the client certificate in a mutual-TLS handshake."
+  ],
+  [
+   27.875,
+   6.037,
+   "Entra ID checks the chain and the CRL, and finds one user through the username bindings."
+  ],
+  [
+   33.913,
+   11.025,
+   "If Conditional Access requires M F A and the certificate counts as multifactor, the user is signed in; if it's single-factor, Entra offers a registered second factor."
+  ],
+  [
+   44.938,
+   7.4,
+   "Allow the endpoint through proxies and turn off TLS inspection for it, or the client certificate never reaches Entra ID."
+  ],
+  [
+   52.337,
+   1.137,
+   "The trust store."
+  ],
+  [
+   53.475,
+   4.025,
+   "Upload every CA in the chain that issues user certificates."
+  ],
+  [
+   57.5,
+   6.35,
+   "Microsoft highly recommends the P K I-based trust store, which holds up to two hundred fifty CAs."
+  ],
+  [
+   63.85,
+   6.25,
+   "Managing it takes Privileged Authentication Administrator, and bulk upload needs P1 or P2."
+  ],
+  [
+   70.1,
+   8.225,
+   "The trust store is also a blast radius: adding a CA lets any certificate it issues authenticate any user it can be bound to."
+  ],
+  [
+   78.325,
+   1.012,
+   "Revocation."
+  ],
+  [
+   79.338,
+   11.188,
+   "Set each CA's base CRL URL, and the delta if published; without one, a revoked certificate still authenticates, so turn on Require CRL validation."
+  ],
+  [
+   90.525,
+   10.588,
+   "Entra ID supports one CRL endpoint per CA over HTTP or HTTPS, with HTTP recommended, downloaded within ten seconds."
+  ],
+  [
+   101.112,
+   2.225,
+   "It doesn't support OCSP."
+  ],
+  [
+   103.338,
+   8.787,
+   "Interactive sign-in downloads CRLs up to twenty megabytes in the commercial cloud including G C C, and forty-five in Azure Government."
+  ],
+  [
+   112.125,
+   7.263,
+   "And it caches the CRL until its next update, so revoke the user's sessions when revocation must be immediate."
+  ]
+ ],
+ "22": [
+  [
+   0.05,
+   4.338,
+   "Username bindings map a certificate field to a user attribute."
+  ],
+  [
+   4.388,
+   4.513,
+   "By default the SAN principal name maps to the user principal name."
+  ],
+  [
+   8.9,
+   12.125,
+   "Microsoft classes subject key identifier, SHA-1 public key, and issuer and serial number as high affinity, and principal name, email, subject, and issuer and subject as low."
+  ],
+  [
+   21.025,
+   9.188,
+   "The old guide classed issuer plus subject as high; Microsoft classes it as low, because a CA can issue several certificates with the same subject."
+  ],
+  [
+   30.212,
+   2.175,
+   "How Entra ID evaluates them."
+  ],
+  [
+   32.388,
+   5.237,
+   "In priority order, lowest number first, and only Graph shows the priority."
+  ],
+  [
+   37.625,
+   6.175,
+   "If the tenant or a custom rule requires high affinity, every low-affinity binding is dropped."
+  ],
+  [
+   43.8,
+   5.125,
+   "So with several bindings, CBA is only as secure as the lowest-affinity one."
+  ],
+  [
+   48.925,
+   2.925,
+   "Configure one low-affinity binding at most."
+  ],
+  [
+   51.85,
+   8.775,
+   "The program's position: production tenants require high affinity, using issuer and serial number or SKI in certificate user IDs."
+  ],
+  [
+   60.625,
+   3.875,
+   "Low-affinity U P N binding is acceptable in a pilot."
+  ],
+  [
+   64.5,
+   6.362,
+   "But setting the tenant-wide requirement to high before every user's values are correct locks those users out."
+  ],
+  [
+   70.862,
+   4.075,
+   "The authentication binding policy decides one factor or two."
+  ],
+  [
+   74.938,
+   5.838,
+   "The default is single-factor; rules can be by issuer, by policy OID, or both."
+  ],
+  [
+   80.775,
+   9.463,
+   "Issuer-and-OID rules beat OID rules, and OID rules beat issuer rules; a certificate whose OIDs map to both is single-factor."
+  ],
+  [
+   90.237,
+   9.925,
+   "Microsoft says to treat a certificate as multifactor only if a pin or biometric protects it, so a piv card qualifies and a software certificate doesn't."
+  ],
+  [
+   100.162,
+   1.738,
+   "Two rules prevent lockout."
+  ],
+  [
+   101.9,
+   9.762,
+   "Target CBA to groups that hold valid certificates, never All users, and give people without a certificate another path, such as a Temporary Access Pass."
+  ],
+  [
+   111.662,
+   7.612,
+   "CBA itself needs no premium license; Conditional Access, which every real deployment uses, needs P1."
+  ]
+ ],
+ "23": [
+  [
+   0.05,
+   11.088,
+   "Staged rollout lets synchronized users in a federated domain sign in at Entra ID with CBA instead of being sent to A D FS, while everyone else stays federated."
+  ],
+  [
+   11.137,
+   8.537,
+   "Microsoft is explicit that it's a temporary testing mechanism, not a permanent mixed state, and its limits are tighter than the old guide implied."
+  ],
+  [
+   19.675,
+   9.8,
+   "It applies only to users synced by Entra Connect, and only to browser and modern authentication; legacy authentication still goes to the federation server."
+  ],
+  [
+   29.475,
+   3.962,
+   "Up to ten groups per feature, and no nested or dynamic groups."
+  ],
+  [
+   33.438,
+   7.088,
+   "A group added for the first time is limited to two hundred users, and later membership changes take up to twenty-four hours."
+  ],
+  [
+   40.525,
+   4.95,
+   "Password sign-in for CBA pilot users works only with password hash sync."
+  ],
+  [
+   45.475,
+   7.737,
+   "And issue a Temporary Access Pass right after adding a user, so the first sign-in doesn't fall back to the federation server."
+  ],
+  [
+   53.212,
+   11.2,
+   "The program pilots with cloud groups of ten to twenty users, confirms in the sign-in log which binding matched and what level was granted, and grows in steps until the domain converts."
+  ],
+  [
+   64.412,
+   10.088,
+   "Moving off A D FS certificate authentication doesn't change the credential or the P K I; only the place where authentication and revocation are checked moves."
+  ],
+  [
+   74.5,
+   11.762,
+   "Get trust parity, with internet-reachable CRLs. Get binding parity, syncing account mappings to certificate user IDs where A D FS used them, and protect that sync path."
+  ],
+  [
+   86.263,
+   7.662,
+   "Keep staged rollout short, because staged users stay exposed to a federation server compromise until the domain converts."
+  ],
+  [
+   93.925,
+   3.525,
+   "Record the federation configuration and back up the farm."
+  ],
+  [
+   97.45,
+   3.462,
+   "And the old guide called conversion one-way; it isn't."
+  ],
+  [
+   100.912,
+   6.25,
+   "Microsoft's rollback is to re-federate, which works only while A D FS can still be brought back."
+  ]
+ ],
+ "24": [
+  [
+   0.05,
+   4.2,
+   "Module 4: coexistence, migration and retirement."
+  ],
+  [
+   4.25,
+   5.588,
+   "Coexistence isn't a phase at the end of the project; it's the condition the project runs in."
+  ],
+  [
+   9.838,
+   15.062,
+   "From the day the first Cloud P K I certificate is issued until the last A D CS-dependent workload retires, devices carry certificates from both issuers, relying parties trust both chains, and two sets of CRLs have to stay reachable."
+  ],
+  [
+   24.9,
+   3.513,
+   "For most of the migration, both PKIs are production."
+  ],
+  [
+   28.413,
+   5.588,
+   "The plan has to say which one each certificate comes from on any given day, and how to go back."
+  ],
+  [
+   34.0,
+   10.4,
+   "Then, after the migration, the work becomes keeping every certificate owned, renewed and checkable, and retiring the old CAs without stranding a single one."
+  ]
+ ],
+ "25": [
+  [
+   0.05,
+   2.163,
+   "The program's coexistence rules."
+  ],
+  [
+   2.212,
+   10.262,
+   "Each use case has one issuer at a time per population: a device group gets its Wi-Fi certificate from A D CS or from Cloud P K I, never both by design."
+  ],
+  [
+   12.475,
+   9.338,
+   "Trust goes up before issuance moves: a relying party trusts the new chain before the first certificate from it reaches anything that relying party sees."
+  ],
+  [
+   21.812,
+   3.8,
+   "Revocation must be reachable wherever validation happens."
+  ],
+  [
+   25.613,
+   6.35,
+   "Nothing is revoked to force a move: an A D CS certificate is replaced at renewal or expiry."
+  ],
+  [
+   31.962,
+   4.7,
+   "And every move has a tested rollback that doesn't depend on something the move retired."
+  ],
+  [
+   36.663,
+   3.737,
+   "What stays on A D CS until Active Directory retires."
+  ],
+  [
+   40.4,
+   5.138,
+   "Domain controller certificates, because Cloud P K I doesn't issue to servers."
+  ],
+  [
+   45.538,
+   3.05,
+   "Use a copy of the Kerberos Authentication template."
+  ],
+  [
+   48.587,
+   8.175,
+   "Entra-joined devices can't read a CRL from A D before they authenticate, so publish an HTTP CRL listed first."
+  ],
+  [
+   56.763,
+   6.55,
+   "LDAPS stays too; the old guide said it could move to Cloud P K I, but an LDAPS endpoint is a server."
+  ],
+  [
+   63.312,
+   8.275,
+   "Other server certificates stay on A D CS as well, renewed through CyberArk Certificate Manager, as Chapter 04 decided."
+  ],
+  [
+   71.588,
+   13.425,
+   "NPS needs care: it must trust the Cloud P K I chain before the first pilot device gets a cloud Wi-Fi certificate, and keep trusting A D CS until the last A D CS client certificate expires."
+  ],
+  [
+   85.013,
+   1.675,
+   "Trust runs both ways."
+  ],
+  [
+   86.688,
+   14.625,
+   "A D CS into Entra ID: upload the root and every intermediate and issuing CA, each with an internet-facing CRL; that's also what lets A D FS certificate authentication move without reissuing anything."
+  ],
+  [
+   101.312,
+   5.275,
+   "The cloud chain into the forest: by Group Policy or by publishing to the directory."
+  ],
+  [
+   106.588,
+   4.025,
+   "NTAuth only for CAs that will issue logon certificates."
+  ],
+  [
+   110.612,
+   7.8,
+   "And each forest needs its own distribution, while every forest's user-issuing root goes into the single Entra trust store."
+  ]
+ ],
+ "26": [
+  [
+   0.05,
+   3.263,
+   "Most coexistence outages are revocation outages."
+  ],
+  [
+   3.312,
+   12.662,
+   "Relying parties now sit in three places, inside the network, on the internet, and in Entra ID, and each CA's CRL must be reachable from all three wherever its certificates are validated."
+  ],
+  [
+   15.975,
+   12.625,
+   "Every relying party that validates Cloud P K I certificates, including on-premises radius and VPN servers, needs outbound HTTP to the Intune-hosted CDP and AIA."
+  ],
+  [
+   28.6,
+   12.387,
+   "A BYOCA issuing CA's own CRL is Intune-hosted too, but its parent CRL and AIA come from the private CA, and A D CS defaults to an el-dap AIA location."
+  ],
+  [
+   40.987,
+   25.988,
+   "A D CS CAs that issue user certificates for Entra CBA usually publish over el-dap plus an internal HTTP URL; Entra ID needs one internet HTTP or HTTPS URL per CA, HTTP recommended, with no OCSP and no el-dap, and watch the CRL size limits, twenty megabytes for commercial and G C C and forty-five for Azure Government."
+  ],
+  [
+   66.975,
+   9.5,
+   "And the CAs behind domain controller certificates must serve Entra-joined devices that haven't authenticated yet, so el-dap-only distribution points break them."
+  ],
+  [
+   76.475,
+   3.975,
+   "Fixing an A D CS distribution point means two things."
+  ],
+  [
+   80.45,
+   6.875,
+   "Add an HTTP location reachable from the internet, using HTTP rather than HTTPS."
+  ],
+  [
+   87.325,
+   5.525,
+   "And recognize that the new URL appears only in certificates issued after the change."
+  ],
+  [
+   92.85,
+   15.275,
+   "Entra ID uses the CRL URL configured in its trust store, not the one inside each certificate, so CBA works as soon as the trust store points at the published CRL; other relying parties keep failing until their certificates renew."
+  ],
+  [
+   108.125,
+   11.45,
+   "The program publishes on plain anonymous HTTP, not through an application proxy, because Entra ID must download the CRL without authentication within ten seconds."
+  ]
+ ],
+ "27": [
+  [
+   0.05,
+   2.275,
+   "The migration runs as six waves."
+  ],
+  [
+   2.325,
+   5.013,
+   "Each wave's exit gate is the next one's entry gate, and each has its own rollback."
+  ],
+  [
+   7.338,
+   7.862,
+   "The durations are program planning figures for a single-forest estate, not commitments; scale them to the wave 1 inventory."
+  ],
+  [
+   15.2,
+   5.688,
+   "Appendix A turns each wave into a checklist with an owner and a verification per line."
+  ],
+  [
+   20.887,
+   14.387,
+   "Wave 1, Assess, weeks one to four: inventory every CA and template, run the Chapter 03 checklist, classify every template, list every relying party, and run the strong-mapping sweep."
+  ],
+  [
+   35.275,
+   2.487,
+   "It reads, so it needs no rollback."
+  ],
+  [
+   37.763,
+   14.575,
+   "Wave 2, Foundation: create the Cloud P K I CAs with licensed keys, upload user-issuing CAs to the Entra trust store, deploy trust profiles and the cloud chain to domain-joined relying parties, and test."
+  ],
+  [
+   52.337,
+   8.938,
+   "The gate is trust profiles on at least ninety-nine percent of managed devices and every CRL reachable from inside, outside and Entra."
+  ],
+  [
+   61.275,
+   12.162,
+   "Wave 3, Pilot, fifty to a hundred devices: Wi-Fi then VPN, then CBA through staged rollout, with A D CS autoenrollment left on so the rollback works."
+  ],
+  [
+   73.438,
+   3.237,
+   "The gate is ninety-five percent issuance success."
+  ],
+  [
+   76.675,
+   7.188,
+   "Wave 4, Scale, in rings; remove autoenrollment for each ring once its cloud certificates are accepted."
+  ],
+  [
+   83.862,
+   12.887,
+   "Wave 5, Cutover: record federation settings, convert domains starting with the smallest, and keep A D FS restorable for thirty days, which is what makes the four-hour recovery objective achievable."
+  ],
+  [
+   96.75,
+   1.837,
+   "Wave 6, Decommission."
+  ],
+  [
+   98.588,
+   8.887,
+   "The rules across waves: rehearse each rollback in a test scope first, and never let a rollback depend on a component the same wave retires."
+  ],
+  [
+   107.475,
+   9.175,
+   "Removing or editing a SCEP profile revokes its certificates on Windows and Apple platforms, so treat profile changes as changes with impact."
+  ]
+ ],
+ "28": [
+  [
+   0.05,
+   3.725,
+   "Appendix B is the starting matrix that seeds wave 1."
+  ],
+  [
+   3.775,
+   4.025,
+   "Classify each template by what it actually issued, not by its name."
+  ],
+  [
+   7.8,
+   2.062,
+   "Three facts drive most rows."
+  ],
+  [
+   9.863,
+   12.812,
+   "Cloud P K I issues only through SCEP, only to Intune-enrolled devices, and Intune doesn't manage Windows Server, so every server certificate is BRIDGE or RETAIN, never MIGRATE."
+  ],
+  [
+   22.675,
+   6.175,
+   "And PKCS profiles move delivery to Intune, not issuance off A D CS."
+  ],
+  [
+   28.85,
+   14.963,
+   "So: User, Computer and Workstation Authentication are MIGRATE for Intune-managed devices, to Cloud P K I SCEP, with the SID URI where the certificate is used against A D; servers stay on autoenrollment."
+  ],
+  [
+   43.812,
+   9.55,
+   "Web Server is RETAIN, on A D CS or a public CA for internet-facing names, with lifecycle automation through CyberArk Certificate Manager."
+  ],
+  [
+   53.362,
+   5.875,
+   "The old guide had it as MIGRATE to Cloud P K I; web servers aren't Intune devices."
+  ],
+  [
+   59.237,
+   9.963,
+   "Kerberos Authentication and LDAPS are BRIDGE until the last domain controller; the domain controller certificate from the Kerberos Authentication copy serves LDAPS."
+  ],
+  [
+   69.2,
+   8.188,
+   "The older Domain Controller templates lack the KDC Authentication OID, so they're superseded by a Kerberos Authentication copy."
+  ],
+  [
+   77.388,
+   6.05,
+   "RAS and IAS Server stays while NPS runs, renewed through CyberArk Certificate Manager."
+  ],
+  [
+   83.438,
+   2.9,
+   "Exchange Signature Only migrates delivery."
+  ],
+  [
+   86.338,
+   10.537,
+   "Exchange User carries two verdicts: MIGRATE for delivery, because Intune delivers it, and RETAIN for the issuer, because the existing CA and its key history stay."
+  ],
+  [
+   96.875,
+   8.588,
+   "EFS retires, but the recovery agent retires last: keep its certificates and keys until no encrypted data remains."
+  ],
+  [
+   105.463,
+   6.575,
+   "Before any MIGRATE row moves, four things must be true, and they're wave 4's per-ring exit test."
+  ],
+  [
+   112.037,
+   4.35,
+   "Every relying party trusts the new chain and can reach its CRL."
+  ],
+  [
+   116.388,
+   3.788,
+   "The Intune profile issues at the program's success threshold."
+  ],
+  [
+   120.175,
+   4.112,
+   "Certificates used against Active Directory carry a strong mapping."
+  ],
+  [
+   124.287,
+   8.238,
+   "And the template's remaining certificates are on a dated path to expiry, with autoenrollment removed only after the profile is issuing."
+  ],
+  [
+   132.525,
+   6.088,
+   "For BRIDGE rows, record the event that ends them, so retirement is scheduled rather than forgotten."
+  ]
+ ],
+ "29": [
+  [
+   0.05,
+   3.275,
+   "Migration ends on a date; certificates don't."
+  ],
+  [
+   3.325,
+   5.862,
+   "Public TLS validity falls to forty-seven days from March 15, 2029."
+  ],
+  [
+   9.188,
+   8.438,
+   "The schedule binds publicly trusted certificates, but the program aligns internal lifetimes with it as automation proves itself."
+  ],
+  [
+   17.625,
+   4.925,
+   "The design rule: no certificate class may depend on a person remembering a date."
+  ],
+  [
+   22.55,
+   2.45,
+   "The target has three renewal engines."
+  ],
+  [
+   25.0,
+   8.075,
+   "Intune profiles renew certificates on managed devices at the profile's renewal threshold, with a new key pair for SCEP."
+  ],
+  [
+   33.075,
+   10.088,
+   "On Apple platforms, renewal happens only inside the threshold window with the device unlocked, and a failed renewal leaves the expired certificate in place without a retry."
+  ],
+  [
+   43.163,
+   9.188,
+   "A D CS autoenrollment renews domain controller certificates, which also serve LDAPS, so the CA must stay online and its CRL current."
+  ],
+  [
+   52.35,
+   14.0,
+   "And CyberArk Certificate Manager discovers, tracks and renews server TLS, including NPS and radius servers, appliances, public TLS and network devices, with a Server Owner on every certificate."
+  ],
+  [
+   66.35,
+   6.588,
+   "Neither Microsoft issuer in the target offers ACME, so the program provides it through the lifecycle platform."
+  ],
+  [
+   72.938,
+   6.375,
+   "CyberArk documents the http-01 and dns-01 challenges."
+  ],
+  [
+   79.312,
+   10.113,
+   "One federal limit: win-acme requires FIPS mode to be disabled on the CyberArk server, so where FIPS mode is required, use another tested client."
+  ],
+  [
+   89.425,
+   7.75,
+   "The drift checks run at least weekly and are committed to the evidence repository, because an assessor asks how long a finding stayed open."
+  ],
+  [
+   97.175,
+   13.0,
+   "Watch for certificates within two renewal windows of expiry with no engine bound, issuance outside policy, missing strong mapping, trust store anchors that aren't approved, stale CRLs, and posture regressions."
+  ],
+  [
+   110.175,
+   6.75,
+   "And treat a SID mismatch as a security event: it can mean the certificate was issued to a different user."
+  ],
+  [
+   116.925,
+   10.588,
+   "That's event 41 on current domain controllers, but event 49 on Server 2008 and 2008 R2, where 41 means no strong mapping."
+  ]
+ ],
+ "30": [
+  [
+   0.05,
+   4.562,
+   "Last, retiring A D CS, which is the program's sixth wave."
+  ],
+  [
+   4.612,
+   13.975,
+   "It applies only to the CAs and role services that no longer serve a retained class; domain controller, LDAPS and radius certificates usually keep at least one issuing CA alive for as long as domain controllers exist."
+  ],
+  [
+   18.587,
+   8.662,
+   "The gate: cutover complete, the thirty-day rollback window passed with no incidents, and every retained class running on the CAs that remain."
+  ],
+  [
+   27.25,
+   5.787,
+   "Confirm nothing depends on the CA, using the lifecycle inventory and the CA database."
+  ],
+  [
+   33.038,
+   6.263,
+   "Stop new issuance: remove the templates, unlink autoenrollment, deny pending requests."
+  ],
+  [
+   39.3,
+   5.125,
+   "Back up the database and key, with the backup and its password through separate channels."
+  ],
+  [
+   44.425,
+   8.475,
+   "Revoke outstanding certificates for cessation of operation, set the CRL lifetime past the remaining certificates' lifetime, and publish."
+  ],
+  [
+   52.9,
+   7.625,
+   "Remove NDES and the web services before the CA, and move any OCSP consumers to CRL checking."
+  ],
+  [
+   60.525,
+   6.5,
+   "Clean up trust in Entra, Intune, Group Policy, NTAuth and the lifecycle platform."
+  ],
+  [
+   67.025,
+   11.412,
+   "Keep the CDP and AIA endpoints serving until the last certificate expires, delete templates only after every CA in the forest is gone, and commit a decommission record."
+  ],
+  [
+   78.438,
+   6.213,
+   "Under BYOCA, the root and any CA that signed the Cloud P K I issuing CA stay."
+  ],
+  [
+   84.65,
+   20.3,
+   "The assessor reads nist special publication eight hundred fifty-three evidence: key storage and binding settings for IA-5 enhancement two, the trust store and CRL configuration for path validation, HSM key protection for SC-12, and the certificate policy and approved trust anchors for SC-17."
+  ],
+  [
+   104.95,
+   13.738,
+   "So, from Monday: harden first and gate on it, choose the root deliberately, issue strongly mapped certificates, run both PKIs with reachable CRLs, and retire A D CS last, with evidence."
+  ],
+  [
+   118.688,
+   4.75,
+   "Chapters 03 through 08 and the appendices carry the detail."
+  ],
+  [
+   123.438,
+   0.762,
+   "Thank you."
+  ]
+ ]
+}

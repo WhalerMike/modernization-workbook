@@ -1,0 +1,155 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.649
+A net-new device should arrive at a known
+
+2
+00:00:02.649 --> 00:00:05.563
+baseline before anyone
+uses it, in two halves.
+
+3
+00:00:05.563 --> 00:00:07.512
+Compliance decides access.
+
+4
+00:00:07.512 --> 00:00:09.491
+First set the tenant-wide setting,
+
+5
+00:00:09.491 --> 00:00:13.375
+mark devices with no compliance
+policy assigned as Not compliant,
+
+6
+00:00:13.375 --> 00:00:17.189
+so an unassigned device can't pass
+Conditional Access by default;
+
+7
+00:00:17.189 --> 00:00:21.638
+Microsoft recommends this whenever
+compliance feeds Conditional Access.
+
+8
+00:00:21.638 --> 00:00:27.094
+The Windows policy typically requires
+BitLocker, Secure Boot and code integrity;
+
+9
+00:00:27.094 --> 00:00:29.823
+firewall, TPM, antivirus and antispyware;
+
+10
+00:00:29.823 --> 00:00:34.799
+current Defender intelligence with
+real-time protection; and a minimum OS.
+
+11
+00:00:34.799 --> 00:00:38.950
+With Defender for Endpoint connected,
+add a machine risk score ceiling.
+
+12
+00:00:38.950 --> 00:00:41.225
+Configuration sets the device up.
+
+13
+00:00:41.225 --> 00:00:44.043
+Start from the Windows security baseline,
+
+14
+00:00:44.043 --> 00:00:48.712
+version 25H2 being the latest, and
+the Defender for Endpoint baseline.
+
+15
+00:00:48.712 --> 00:00:52.929
+Existing baseline profiles don't
+move to a new version automatically,
+
+16
+00:00:52.929 --> 00:00:57.874
+and different baselines can set the same
+setting differently, so review overlaps.
+
+17
+00:00:57.874 --> 00:01:00.628
+Then BitLocker with escrow to Entra ID,
+
+18
+00:01:00.628 --> 00:01:04.500
+Windows Hello for Business,
+firewall and Windows LAPS.
+
+19
+00:01:04.500 --> 00:01:08.963
+Because these devices never had Group
+Policy, there's nothing to conflict with.
+
+20
+00:01:08.963 --> 00:01:10.113
+That's the payoff.
+
+21
+00:01:10.113 --> 00:01:13.712
+Four exception paths cover what
+can't follow the main path,
+
+22
+00:01:13.712 --> 00:01:18.437
+each with written justification, a
+compensating control and an audit entry.
+
+23
+00:01:18.437 --> 00:01:22.050
+A: personal devices,
+governed at lower assurance.
+
+24
+00:01:22.050 --> 00:01:25.550
+B: Linux that Intune
+can't manage, under Arc.
+
+25
+00:01:25.550 --> 00:01:30.080
+C: Server 2019 and 2022, under
+Arc without Entra sign-in,
+
+26
+00:01:30.080 --> 00:01:33.375
+which is Microsoft's support boundary.
+
+27
+00:01:33.375 --> 00:01:39.088
+D: Windows that can't enroll, such as
+instrument PCs or disconnected enclaves.
+
+28
+00:01:39.088 --> 00:01:42.063
+Path D can't pass a
+compliant-device policy.
+
+29
+00:01:42.063 --> 00:01:43.574
+So isolate it first.
+
+30
+00:01:43.574 --> 00:01:47.235
+Manage its Defender settings through
+security settings management,
+
+31
+00:01:47.235 --> 00:01:48.875
+which doesn't make it compliant.
+
+32
+00:01:48.875 --> 00:01:53.773
+And if its users must reach a protected
+resource, record a named exclusion, paired
+
+33
+00:01:53.773 --> 00:01:58.580
+with a policy that blocks that group from
+every device not on the approved list.

@@ -1,0 +1,143 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.925
+Last, what the assessor reads.
+
+2
+00:00:01.925 --> 00:00:06.862
+The program's evidence is the records
+the services keep, exported on a schedule
+
+3
+00:00:06.862 --> 00:00:11.875
+and retained, for the configuration
+management and flaw remediation controls.
+
+4
+00:00:11.875 --> 00:00:19.167
+The control wording is from NIST SP
+800-53 Revision 5, release 5.2.0,
+
+5
+00:00:19.167 --> 00:00:25.187
+which FedRAMP's 2026 catalog uses without
+adding parameter values to these controls.
+
+6
+00:00:25.187 --> 00:00:30.354
+CM-2, baseline configuration: the
+policy library exported from Graph,
+
+7
+00:00:30.354 --> 00:00:33.888
+under version control,
+with its review history.
+
+8
+00:00:33.888 --> 00:00:37.397
+CM-6, configuration
+settings: per-setting status,
+
+9
+00:00:37.397 --> 00:00:43.188
+the exception register with approvals,
+and the Intune audit log of every change.
+
+10
+00:00:43.188 --> 00:00:47.832
+CM-7, least functionality: attack
+surface reduction in block,
+
+11
+00:00:47.832 --> 00:00:51.825
+the firewall rule set, the
+Edge extension allow list.
+
+12
+00:00:51.825 --> 00:00:56.112
+CM-8, inventory: the
+weekly reconciliation.
+
+13
+00:00:56.112 --> 00:01:01.587
+SI-2, flaw remediation: the ring
+table and per-ring compliance.
+
+14
+00:01:01.587 --> 00:01:05.004
+SI-2's defined period is the
+organization's parameter,
+
+15
+00:01:05.004 --> 00:01:07.412
+and the ring deadlines are what set it.
+
+16
+00:01:07.412 --> 00:01:11.487
+Two GCC facts change where
+data and endpoints live.
+
+17
+00:01:11.487 --> 00:01:17.226
+Intune in a GCC tenant isn't a separate
+government instance: GCC uses the
+
+18
+00:01:17.226 --> 00:01:23.549
+commercial service and worldwide Graph,
+and only GCC High and DoD are separate.
+
+19
+00:01:23.549 --> 00:01:28.590
+Defender for Endpoint for US Government
+is built in Azure US Government,
+
+20
+00:01:28.590 --> 00:01:32.286
+with the GCC portal at security
+dot microsoft dot com.
+
+21
+00:01:32.286 --> 00:01:37.914
+And Windows Update for Business reports
+don't meet GCC compliance requirements,
+
+22
+00:01:37.914 --> 00:01:41.862
+so SI-2 evidence comes from
+Intune and Autopatch reports.
+
+23
+00:01:41.862 --> 00:01:47.329
+The program also maps this evidence to
+FedRAMP 20x Key Security Indicators,
+
+24
+00:01:47.329 --> 00:01:52.225
+as its own claim, written for cloud
+service offerings, not an agency fleet.
+
+25
+00:01:52.225 --> 00:01:57.805
+So, from Monday: inventory and triage every
+GPO; set the tenant compliance defaults;
+
+26
+00:01:57.805 --> 00:02:01.908
+carry procurement into the group
+tag; onboard servers with a
+
+27
+00:02:01.908 --> 00:02:06.750
+short-lived certificate principal;
+and reconcile inventories weekly.
+
+28
+00:02:06.750 --> 00:02:11.025
+Chapters 04 to 10 and
+Appendix A carry the detail.
+
+29
+00:02:11.025 --> 00:02:11.860
+Thank you.

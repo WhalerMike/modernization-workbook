@@ -119,16 +119,21 @@ one object at a time.
 The trap is the lift and shift.
 
 26
-00:01:32.862 --> 00:01:36.380
+00:01:32.862 --> 00:01:36.400
 Synchronize the forest as it
 stands, and stale accounts,
 
 27
-00:01:36.380 --> 00:01:41.122
+00:01:36.400 --> 00:01:41.170
 undocumented trusts and synced privileged
 accounts arrive in the tenant,
 
 28
-00:01:41.122 --> 00:01:46.460
-while the delegation and policy intent that
-the OU tree carried has nowhere to land.
+00:01:41.170 --> 00:01:44.247
+while the delegation and
+policy intent that the
+
+29
+00:01:44.247 --> 00:01:47.930
+organizational unit (OU) tree
+carried has nowhere to land.

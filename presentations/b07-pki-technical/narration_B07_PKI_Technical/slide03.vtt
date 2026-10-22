@@ -1,0 +1,123 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.900
+What AD CS holds up.
+
+2
+00:00:01.900 --> 00:00:03.263
+It isn't one server.
+
+3
+00:00:03.263 --> 00:00:06.071
+The typical estate is
+a two-tier hierarchy:
+
+4
+00:00:06.071 --> 00:00:10.645
+an offline standalone root that signs
+the issuing CAs and its own CRL,
+
+5
+00:00:10.645 --> 00:00:16.101
+and enterprise issuing CAs that issue from
+templates stored in Active Directory.
+
+6
+00:00:16.101 --> 00:00:21.718
+Every enterprise CA also lives as objects
+in the forest's Public Key Services
+
+7
+00:00:21.718 --> 00:00:27.950
+branch: certificate templates, enrollment
+services, the NTAuth certificates object,
+
+8
+00:00:27.950 --> 00:00:31.725
+AIA and CDP containers, key
+recovery agents and OIDs.
+
+9
+00:00:31.725 --> 00:00:37.600
+Those objects are forest-wide, which is
+exactly what ties AD CS to Active Directory.
+
+10
+00:00:37.600 --> 00:00:42.669
+Domain members enroll through Group Policy
+autoenrollment, which runs every eight
+
+11
+00:00:42.669 --> 00:00:47.375
+hours and renews a certificate after it
+passes eighty percent of its validity.
+
+12
+00:00:47.375 --> 00:00:50.820
+Chapter 02's inventory
+has four layers: the CAs,
+
+13
+00:00:50.820 --> 00:00:55.625
+the templates, the issued
+certificates and the relying parties.
+
+14
+00:00:55.625 --> 00:00:59.039
+The relying-party layer decides
+the order of work later,
+
+15
+00:00:59.039 --> 00:01:03.937
+because a new issuer is useful only once
+everything that validates it trusts it.
+
+16
+00:01:03.937 --> 00:01:08.838
+Then every template and use case gets
+one of four verdicts, asked in order.
+
+17
+00:01:08.838 --> 00:01:11.788
+RETIRE first, if the
+consumer is going away.
+
+18
+00:01:11.788 --> 00:01:17.117
+MIGRATE, if Cloud PKI through
+Intune or Entra CBA replaces it:
+
+19
+00:01:17.117 --> 00:01:21.275
+Wi-Fi, VPN, device
+authentication, tenant sign-in.
+
+20
+00:01:21.275 --> 00:01:26.351
+BRIDGE, if it depends on AD itself
+or a server the cloud can't reach:
+
+21
+00:01:26.351 --> 00:01:30.087
+domain controllers, LDAPS,
+NPS and NTAuth trust.
+
+22
+00:01:30.087 --> 00:01:33.584
+RETAIN is what's left, such
+as HSM-held code signing,
+
+23
+00:01:33.584 --> 00:01:36.825
+and every entry gets an
+owner and a review date.
+
+24
+00:01:36.825 --> 00:01:40.456
+Appendix B applies these
+verdicts template by template;
+
+25
+00:01:40.456 --> 00:01:42.460
+we'll come back to it in Module 4.

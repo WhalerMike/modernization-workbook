@@ -33,6 +33,8 @@ This book replaces the workbook's PKI Modernization Guide with one ordered book.
 **[b07-pki-bundle.docx](../../../downloads/b07-pki-bundle.docx)**: the whole book as one Word document, regenerated on every site deploy.
 
 **15-minute presentation**: the Why / What / Who / How deck and its narrated, self-running edition, with built-in captions, are on the [Presentations](../../presentations/index.md#book-07) page.
+
+**Technical deep dive (about 50 minutes)**: hardening AD CS, the target PKI, device and user certificates and decommissioning, in modules on the [Presentations](../../presentations/index.md#technical-b07) page.
 :::
 
 Every other migration in this workbook changes which system answers "who is this?" Certificates are how that answer gets proved: domain controllers prove themselves with them, Wi-Fi and VPN trust devices because of them, servers encrypt with them, and PIV cards are them. They also run on their own clock. A certificate issued last year keeps working after the directory it came from is cut over, right up to the day it expires and finds nothing to renew it. That's why the PKI can't be retired on the directory's schedule. The target isn't one replacement for AD CS but four issuers, each serving the subjects only it can: Microsoft Cloud PKI for Intune-managed devices, a smaller and hardened AD CS for what still depends on Active Directory, the Federal PKI for PIV, and a public CA for names the internet must trust. One lifecycle platform keeps them owned and renewed. For this program that platform is CyberArk Certificate Manager (now part of Palo Alto Networks), because the program already has a CyberArk relationship and doesn't need a second certificate-lifecycle vendor.

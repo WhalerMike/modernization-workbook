@@ -1,0 +1,140 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:05.125
+Chapter 04 records what AD CS is
+kept for and when each use ends.
+
+2
+00:00:05.125 --> 00:00:10.379
+Domain controller and KDC certificates
+stay until the last domain controller
+
+3
+00:00:10.379 --> 00:00:13.643
+retires: servers can't get
+Cloud PKI certificates,
+
+4
+00:00:13.643 --> 00:00:17.862
+and smart card or certificate
+logon to the domain needs a domain
+
+5
+00:00:17.862 --> 00:00:22.400
+controller certificate chaining to
+a CA in the forest's NTAuth store.
+
+6
+00:00:22.400 --> 00:00:25.712
+LDAPS stays until LDAP-bound
+applications move.
+
+7
+00:00:25.712 --> 00:00:30.802
+NPS, RADIUS and VPN gateway server
+certificates stay until RADIUS moves,
+
+8
+00:00:30.802 --> 00:00:34.874
+and until then they fall under
+the server issuer decision.
+
+9
+00:00:34.874 --> 00:00:39.625
+Network equipment through NDES and
+HSM-held code signing stay too.
+
+10
+00:00:39.625 --> 00:00:44.190
+And S/MIME: delivery can move
+to Intune imported PKCS,
+
+11
+00:00:44.190 --> 00:00:47.588
+but the issuer and its key history stay.
+
+12
+00:00:47.588 --> 00:00:49.909
+That leaves internal server TLS,
+
+13
+00:00:49.909 --> 00:00:54.124
+which Chapter 02 parked as BRIDGE
+until an issuer was named.
+
+14
+00:00:54.124 --> 00:00:56.550
+The program's decision has three parts.
+
+15
+00:00:56.550 --> 00:01:00.298
+Internal names are issued by
+the retained AD CS hierarchy,
+
+16
+00:01:00.298 --> 00:01:05.842
+but requested and renewed through CyberArk
+Certificate Manager rather than by hand
+
+17
+00:01:05.842 --> 00:01:10.371
+or by server autoenrollment, so every
+server certificate has an owner,
+
+18
+00:01:10.371 --> 00:01:13.650
+an expiry alert and automated
+renewal in one place.
+
+19
+00:01:13.650 --> 00:01:16.335
+That covers NPS and RADIUS servers,
+
+20
+00:01:16.335 --> 00:01:21.613
+VPN and Remote Desktop gateways and
+SQL Server as well as web servers.
+
+21
+00:01:21.613 --> 00:01:26.674
+Domain controller certificates, which
+also serve LDAPS, stay on autoenrollment.
+
+22
+00:01:26.674 --> 00:01:30.688
+Names the internet must trust come
+from a public CA, also through the
+
+23
+00:01:30.688 --> 00:01:35.275
+lifecycle platform, because public
+lifetimes are on the shrinking schedule.
+
+24
+00:01:35.275 --> 00:01:38.922
+And after Active Directory:
+enterprise CAs need AD,
+
+25
+00:01:38.922 --> 00:01:41.700
+and standalone CAs don't use templates.
+
+26
+00:01:41.700 --> 00:01:47.066
+When the forest retires, server issuance
+moves to a standalone AD CS issuing CA
+
+27
+00:01:47.066 --> 00:01:51.111
+under the same root, still driven
+by the lifecycle platform,
+
+28
+00:01:51.111 --> 00:01:54.000
+which supports both kinds of Microsoft CA.
+
+29
+00:01:54.000 --> 00:01:59.230
+That keeps server certificates on the existing
+chain with no new root to distribute.

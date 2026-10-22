@@ -1,0 +1,55 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.250
+Module 4: coexistence,
+migration and retirement.
+
+2
+00:00:04.250 --> 00:00:07.432
+Coexistence isn't a phase
+at the end of the project;
+
+3
+00:00:07.432 --> 00:00:09.838
+it's the condition the project runs in.
+
+4
+00:00:09.838 --> 00:00:14.565
+From the day the first Cloud PKI
+certificate is issued until the last AD
+
+5
+00:00:14.565 --> 00:00:19.773
+CS-dependent workload retires, devices
+carry certificates from both issuers,
+
+6
+00:00:19.773 --> 00:00:24.900
+relying parties trust both chains, and
+two sets of CRLs have to stay reachable.
+
+7
+00:00:24.900 --> 00:00:28.413
+For most of the migration,
+both PKIs are production.
+
+8
+00:00:28.413 --> 00:00:31.283
+The plan has to say which
+one each certificate
+
+9
+00:00:31.283 --> 00:00:34.001
+comes from on any given
+day, and how to go back.
+
+10
+00:00:34.001 --> 00:00:39.119
+Then, after the migration, the work
+becomes keeping every certificate owned,
+
+11
+00:00:39.119 --> 00:00:44.450
+renewed and checkable, and retiring the
+old CAs without stranding a single one.

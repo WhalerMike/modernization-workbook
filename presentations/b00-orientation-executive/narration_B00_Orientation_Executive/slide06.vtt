@@ -1,0 +1,129 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.525
+Now, what the program is.
+
+2
+00:00:01.525 --> 00:00:04.816
+It starts with a short charter:
+the page the sponsor signs,
+
+3
+00:00:04.816 --> 00:00:09.438
+and the page every later decision is
+checked against: is this inside the scope we
+
+4
+00:00:09.438 --> 00:00:12.099
+chartered, does it serve
+one of the objectives,
+
+5
+00:00:12.099 --> 00:00:14.200
+and does it move a success criterion?
+
+6
+00:00:14.200 --> 00:00:17.238
+The problem it sets out
+to remove has four costs:
+
+7
+00:00:17.238 --> 00:00:20.743
+migration risk concentrated
+in hidden dependencies;
+
+8
+00:00:20.743 --> 00:00:25.027
+ongoing drift between intended
+and actual state; weak evidence of
+
+9
+00:00:25.027 --> 00:00:29.700
+change and compliance; and a high cost
+of reconciling fragmented stores.
+
+10
+00:00:29.700 --> 00:00:32.025
+Against those, six objectives.
+
+11
+00:00:32.025 --> 00:00:35.602
+One authoritative origin for
+organizational structure,
+
+12
+00:00:35.602 --> 00:00:39.700
+identity attributes and key claims,
+with every other copy derived.
+
+13
+00:00:39.700 --> 00:00:43.123
+Governance rebuilt explicitly,
+through attributes,
+
+14
+00:00:43.123 --> 00:00:45.612
+dynamic membership and scoped policy.
+
+15
+00:00:45.612 --> 00:00:48.087
+Drift treated as a classified finding.
+
+16
+00:00:48.087 --> 00:00:52.227
+Change in controlled waves that
+start from the authoritative source,
+
+17
+00:00:52.227 --> 00:00:55.225
+run under least privilege,
+and close with evidence.
+
+18
+00:00:55.225 --> 00:00:58.238
+Domain transformations
+without rip-and-replace.
+
+19
+00:00:58.238 --> 00:01:01.000
+And continuous, machine-usable evidence.
+
+20
+00:01:01.000 --> 00:01:02.650
+The scope is deliberate.
+
+21
+00:01:02.650 --> 00:01:06.413
+The program feeds compliance
+frameworks; it doesn't replace them.
+
+22
+00:01:06.413 --> 00:01:10.046
+Identity providers, network
+fabrics and device managers
+
+23
+00:01:10.046 --> 00:01:13.074
+stay the enforcers, and
+the program governs them.
+
+24
+00:01:13.074 --> 00:01:16.263
+And the adopting agency
+executes its own cutover.
+
+25
+00:01:16.263 --> 00:01:18.963
+An agency can adopt
+the charter as written.
+
+26
+00:01:18.963 --> 00:01:23.656
+The decision: the sponsor signs it,
+and names go into its governance table,
+
+27
+00:01:23.656 --> 00:01:27.860
+starting with the sponsor and the
+steward, as Phase 0's entry work.

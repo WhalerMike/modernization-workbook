@@ -1,0 +1,115 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.966
+Now what changes, starting
+with the platform:
+
+2
+00:00:02.966 --> 00:00:07.537
+one place where every decision is
+written down, signed and replayable.
+
+3
+00:00:07.537 --> 00:00:12.468
+The book's reference design runs
+every analysis, plan, delivery and
+
+4
+00:00:12.468 --> 00:00:17.937
+evidence step on one Windows Server
+2025 host, with a standby for recovery.
+
+5
+00:00:17.937 --> 00:00:21.601
+The property that matters is
+a single authoritative writer:
+
+6
+00:00:21.601 --> 00:00:23.213
+two writers would diverge.
+
+7
+00:00:23.213 --> 00:00:26.512
+Every change is a signed
+commit, never a portal click.
+
+8
+00:00:26.512 --> 00:00:29.874
+It's built from standard
+components; it isn't a product.
+
+9
+00:00:29.874 --> 00:00:32.112
+Two design rules matter at this level.
+
+10
+00:00:32.112 --> 00:00:35.487
+First, governance and execution never mix.
+
+11
+00:00:35.487 --> 00:00:37.878
+The governance layer validates plans,
+
+12
+00:00:37.878 --> 00:00:41.837
+signs them and writes the audit
+trail, but never touches a target.
+
+13
+00:00:41.837 --> 00:00:45.949
+The execution layer runs authorized
+plans and decides nothing.
+
+14
+00:00:45.949 --> 00:00:48.156
+They run under separate identities,
+
+15
+00:00:48.156 --> 00:00:52.275
+because a component that both decides
+and acts can cover its tracks.
+
+16
+00:00:52.275 --> 00:00:55.275
+Second, the host is a control-plane asset.
+
+17
+00:00:55.275 --> 00:00:59.333
+It reads the forest and
+writes to cloud identity,
+
+18
+00:00:59.333 --> 00:01:04.912
+so it's treated as Tier 0: hardened,
+and logged centrally under M-26-14.
+
+19
+00:01:04.912 --> 00:01:09.112
+The program's target posture for
+federal production is gated actuation.
+
+20
+00:01:09.112 --> 00:01:13.500
+The host proposes a correction, and
+a person approves it before it runs.
+
+21
+00:01:13.500 --> 00:01:17.476
+The decision belongs to the
+program office, under the steward:
+
+22
+00:01:17.476 --> 00:01:21.997
+stand up the host as the only
+authoritative writer, protected as Tier 0,
+
+23
+00:01:21.997 --> 00:01:26.675
+and record the standby model and the
+actuation stage in the decision log.
+
+24
+00:01:26.675 --> 00:01:30.620
+Gate G0 needs it operational
+by the end of Phase 0.

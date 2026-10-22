@@ -90,3 +90,9 @@ Applied from the verified review findings (critique claims re-checked against pr
 | RF-4 | DC Locator records are dynamically registered by Net Logon, so AD DNS stays (reached by forwarding) until the last domain controller is retired | same | verified | <https://learn.microsoft.com/en-us/windows/client-management/mdm/policy-csp-admx-netlogon> |
 
 Placed after the paragraph that follows the platform-model table (former line 103) rather than in Appendix C, because Chapter 12 is where the cloud-native path is weighed. M-26-14 logging isn't restated there (not re-opened in this pass); Chapter 03 carries it.
+
+## Cross-chapter consistency pass (October 21, 2026)
+
+| # | Claim (short) | Where | Verdict | Source |
+|---|---|---|---|---|
+| CP-1 | Azure feature is "DNS resolver policy," formerly DNS security policy; price meters keep the old name | Cost paragraph; price table row; platform-model table; c12-azure-dns-security | corrected (name updated; footnote now cites the feature page) | Microsoft Learn, "DNS resolver policy," <https://learn.microsoft.com/en-us/azure/dns/dns-security-policy> (opened Oct 21, 2026): page title and every heading use "DNS resolver policy"; portal resource "DNS Resolver Policies"; URL keeps `dns-security-policy`; networking design guide <https://learn.microsoft.com/azure/networking/design-guide/dns-security> still says "DNS security policy". Meter name "DNS Security Policy" as already logged for the Azure Retail Prices API (Oct 20, 2026); not re-queried |

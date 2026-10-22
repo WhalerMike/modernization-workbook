@@ -1,0 +1,148 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.713
+Arc is the management plane.
+
+2
+00:00:01.713 --> 00:00:05.306
+It isn't the identity plane, and
+onboarding doesn't change how
+
+3
+00:00:05.306 --> 00:00:09.187
+the server authenticates users or
+whether it's joined to a domain.
+
+4
+00:00:09.187 --> 00:00:11.525
+Keep the two separate in every plan.
+
+5
+00:00:11.525 --> 00:00:16.696
+What changes: the server gets an Azure
+resource ID in a resource group alongside
+
+6
+00:00:16.696 --> 00:00:21.083
+other Azure resources; Azure RBAC,
+tags and Azure Policy apply to it;
+
+7
+00:00:21.083 --> 00:00:25.628
+it gets a system-assigned managed
+identity in Entra ID; and extensions
+
+8
+00:00:25.628 --> 00:00:30.250
+can be installed from Azure, running
+with full privileges on the server.
+
+9
+00:00:30.250 --> 00:00:35.450
+What doesn't: its domain membership; how
+users and services authenticate to it,
+
+10
+00:00:35.450 --> 00:00:38.618
+unless you enable Entra
+ID sign-in; the workload,
+
+11
+00:00:38.618 --> 00:00:42.762
+since an Arc outage impairs
+management only; and where it runs.
+
+12
+00:00:42.762 --> 00:00:44.738
+Arc isn't a migration to Azure.
+
+13
+00:00:44.738 --> 00:00:47.375
+Two properties shape the operating model.
+
+14
+00:00:47.375 --> 00:00:49.970
+Azure is the source of
+truth for the agent:
+
+15
+00:00:49.970 --> 00:00:54.167
+the only way to tell it to do something
+is to act on the server's Azure
+
+16
+00:00:54.167 --> 00:00:56.685
+representation, so RBAC and policy are
+
+17
+00:00:56.685 --> 00:00:59.738
+evaluated before any
+change reaches the server.
+
+18
+00:00:59.738 --> 00:01:01.987
+And connection state is evidence.
+
+19
+00:01:01.987 --> 00:01:04.875
+The agent sends a heartbeat
+every five minutes.
+
+20
+00:01:04.875 --> 00:01:09.094
+A server that stops shows Disconnected
+within fifteen to thirty minutes,
+
+21
+00:01:09.094 --> 00:01:12.552
+and one disconnected for forty-five
+days can become Expired,
+
+22
+00:01:12.552 --> 00:01:16.563
+unmanageable until an administrator
+disconnects and reconnects it.
+
+23
+00:01:16.563 --> 00:01:21.088
+If a server disconnects, its guest
+assignments are kept for fourteen days
+
+24
+00:01:21.088 --> 00:01:25.762
+and then deleted, so a long outage
+silently removes its baseline evaluation.
+
+25
+00:01:25.762 --> 00:01:28.526
+Plan cost by service, not by connection.
+
+26
+00:01:28.526 --> 00:01:32.134
+If the Windows Server licenses
+carry Software Assurance,
+
+27
+00:01:32.134 --> 00:01:34.315
+or are subscription or pay-as-you-go,
+
+28
+00:01:34.315 --> 00:01:38.525
+Windows Server Management enabled
+by Arc provides Update Manager,
+
+29
+00:01:38.525 --> 00:01:43.187
+Change Tracking and Inventory and
+machine configuration at no extra cost.
+
+30
+00:01:43.187 --> 00:01:46.836
+But it isn't automatic: you
+attest each server's licensing,
+
+31
+00:01:46.836 --> 00:01:49.920
+and that becomes a recorded
+step in the runbook.

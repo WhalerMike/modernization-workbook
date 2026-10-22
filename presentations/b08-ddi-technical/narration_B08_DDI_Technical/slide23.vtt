@@ -1,0 +1,51 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.638
+Module 4: the migration sequence
+and operating the control plane.
+
+2
+00:00:04.638 --> 00:00:08.771
+Name resolution has to keep
+working while its authority moves,
+
+3
+00:00:08.771 --> 00:00:12.110
+so Chapter 10 makes the
+migration a series of small,
+
+4
+00:00:12.110 --> 00:00:17.038
+reversible cutovers, each proven from
+every origin before the next starts.
+
+5
+00:00:17.038 --> 00:00:21.747
+Chapter 11 then covers what the
+plane must support once it exists:
+
+6
+00:00:21.747 --> 00:00:26.370
+scoped autonomy for divisions, one
+API and audit trail, the query,
+
+7
+00:00:26.370 --> 00:00:31.951
+lease and change evidence that OMB M-26-14
+and an authorizing official ask for,
+
+8
+00:00:31.951 --> 00:00:35.963
+and a troubleshooting reference
+for the hybrid period.
+
+9
+00:00:35.963 --> 00:00:38.793
+Appendix A's record-type
+catalog and Appendix
+
+10
+00:00:38.793 --> 00:00:41.690
+B's requirements mapping
+sit underneath both.

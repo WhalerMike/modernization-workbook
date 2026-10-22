@@ -1,0 +1,164 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.001
+Three services keep their
+own device inventory,
+
+2
+00:00:03.001 --> 00:00:05.362
+and they disagree in predictable ways.
+
+3
+00:00:05.362 --> 00:00:09.144
+Intune's managed devices drift
+when devices stop checking in,
+
+4
+00:00:09.144 --> 00:00:10.849
+and cleanup rules hide them.
+
+5
+00:00:10.849 --> 00:00:14.482
+Entra ID accumulates stale
+objects from reimaging,
+
+6
+00:00:14.482 --> 00:00:18.113
+broken hybrid trust, or
+devices that never enrolled.
+
+7
+00:00:18.113 --> 00:00:23.400
+Defender has devices onboarded but not
+enrolled, or enrolled but never onboarded.
+
+8
+00:00:23.400 --> 00:00:27.112
+The program reconciles them
+weekly on the Entra device ID.
+
+9
+00:00:27.112 --> 00:00:30.873
+Every enrolled device must have
+an Entra object with its tier,
+
+10
+00:00:30.873 --> 00:00:35.001
+role and environment attributes
+set, and a healthy Defender sensor.
+
+11
+00:00:35.001 --> 00:00:39.725
+Every Entra object for a corporate Windows
+device must have an Intune enrollment.
+
+12
+00:00:39.725 --> 00:00:44.266
+A device missing from any one is a
+finding, and the same comparison is the
+
+13
+00:00:44.266 --> 00:00:49.037
+evidence for CM-8's requirement of a
+complete inventory with no duplicates.
+
+14
+00:00:49.037 --> 00:00:50.726
+Stale records need care.
+
+15
+00:00:50.726 --> 00:00:55.617
+Intune cleanup rules hide devices after
+thirty to two hundred seventy days,
+
+16
+00:00:55.617 --> 00:00:58.800
+per platform; the program
+uses ninety for Windows.
+
+17
+00:00:58.800 --> 00:01:03.888
+They don't wipe or retire anything,
+and hidden devices stay in Entra ID.
+
+18
+00:01:03.888 --> 00:01:07.622
+Entra's last sign-in timestamp
+isn't updated on every sign-in,
+
+19
+00:01:07.622 --> 00:01:11.508
+so Microsoft advises not treating
+anything newer than about
+
+20
+00:01:11.508 --> 00:01:15.013
+twenty-one days as stale, and
+disabling before deleting.
+
+21
+00:01:15.013 --> 00:01:19.488
+Hybrid devices are removed in Active
+Directory, and the change syncs.
+
+22
+00:01:19.488 --> 00:01:21.434
+Retirement follows a fixed order,
+
+23
+00:01:21.434 --> 00:01:24.562
+because the order decides
+what can still be recovered.
+
+24
+00:01:24.562 --> 00:01:29.099
+Record first: export the BitLocker
+keys and the LAPS password.
+
+25
+00:01:29.099 --> 00:01:32.913
+Retiring or deleting the Intune
+object of an Entra-joined
+
+26
+00:01:32.913 --> 00:01:36.488
+BitLocker device suspends
+BitLocker, so back up first.
+
+27
+00:01:36.488 --> 00:01:39.794
+Then act on the device:
+wipe a corporate device,
+
+28
+00:01:39.794 --> 00:01:43.362
+retire a personal one;
+actions run at next check-in.
+
+29
+00:01:43.362 --> 00:01:46.275
+Deregister from Autopilot
+if it's leaving for good.
+
+30
+00:01:46.275 --> 00:01:48.087
+Delete the Intune record.
+
+31
+00:01:48.087 --> 00:01:51.608
+And delete the Entra object
+last, after a disable period,
+
+32
+00:01:51.608 --> 00:01:54.363
+because that permanently deletes its keys.
+
+33
+00:01:54.363 --> 00:01:56.836
+Plan mass refreshes in daily batches:
+
+34
+00:01:56.836 --> 00:02:01.300
+the tenant limit is a thousand
+retires and a thousand deletes a day.

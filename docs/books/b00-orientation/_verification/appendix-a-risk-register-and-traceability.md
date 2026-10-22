@@ -46,3 +46,15 @@ Writer: W5. Sources: `docs/operational-guides/program-management/master-project-
 | PROJECT-CHARTER §8 Key Risks | — | Overlaps PROJECT-PLAN §6 (same four themes); charter belongs to Ch03 |
 | Master plan §7.3 Scaling risk management | — | Wave-level risks belong to Ch09 (rollout) |
 | Master plan Appendix D (risk register updates on gate agenda) | Register intro ("reviewed at every gate review") | — |
+
+## Cross-chapter consistency pass
+
+Checked October 21, 2026. Book 00's chapters were reconciled with each other; each external fact touched was re-opened on its primary source.
+
+| # | Claim (short) | Where | Verdict | Source |
+|---|---|---|---|---|
+| X1 | M-011 to M-013 are Phase 1 (after G0), not Phase 0 | Traceability table | corrected; aligned with Ch08 and Ch09 | Internal |
+| X2 | Steady-state M-045: daily drift detection and weekly reassessment | Traceability table | aligned with Ch10 | Internal |
+| X3 | R-002: scan for the current escalation list, not ESC1–ESC8; MDI assesses ESC15 (CVE-2024-49019) | R-002 | corrected; aligned with Ch08 step 3 | Learn, "Security assessment: Certificates" (ESC15 section), searched Oct 21, 2026 |
+| X4 | R-018: a hook can't see pull-mirror syncs; the drift reporter checks the mirror's last sync | R-018 | corrected; aligned with Ch08 repository conventions | Internal (Ch08, Gitea mirror and githooks notes) |
+| X5 | SP 800-88 Rev. 2 still current final | R-021 note | verified, note expanded | csrc.nist.gov SP 800-88 r2 final page (Date Published September 2025; history 09/26/25 Final; supersedes Rev. 1, 12/17/2014; no withdrawal or successor listed), fetched Oct 21, 2026 |

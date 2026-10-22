@@ -61,3 +61,11 @@ Source: `docs/operational-guides/pki-modernization.md` Appendix A (Cloud PKI Dep
 | Appendix D — Entra CBA Configuration Checklist intro ("follow in order") | Appendix A, A.2 lead-in | — |
 | Appendix D rows 1–20 | Appendix A, checklist A.2 (#1–24) | Rows 4, 7, 8, 15, 18 new; row 13 token check replaced (claim 37) |
 | Document Version Control callout and footer (after Appendix D) | Not carried | Document metadata of the archived guide; not content |
+
+## Consistency fixes, 2026-10-21
+
+Cross-chapter consistency pass. Every changed external fact was re-checked on the primary source on 2026-10-21; program decisions are marked as such.
+
+| # | Change | Where | Verdict | Source |
+|---|---|---|---|---|
+| CF-1 | Step 24 lists the same five CRL error codes as Chapter 08 (AADSTS220501, 500173, 500179, 2205012, 2205014); `[^aA-crl]` updated | A.2 #24 | verified | <https://learn.microsoft.com/entra/identity/authentication/concept-certificate-based-authentication-certificate-revocation-list#crl-error-reference>; <https://learn.microsoft.com/troubleshoot/entra/entra-id/app-integration/error-code-aadsts220501-unable-to-download-certificate-revocation-list> |

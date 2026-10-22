@@ -1,0 +1,130 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.625
+Then the cycle that turns
+analysis into delivered change.
+
+2
+00:00:03.625 --> 00:00:06.050
+Nothing touches the target without a plan,
+
+3
+00:00:06.050 --> 00:00:10.000
+and no plan touches it without someone
+of record having read it first.
+
+4
+00:00:10.000 --> 00:00:13.042
+Analyze compares the current
+state with the target
+
+5
+00:00:13.042 --> 00:00:15.588
+and produces a diff and
+a blast-radius score.
+
+6
+00:00:15.588 --> 00:00:20.749
+Plan turns the diff into a sequence of
+actions, each bounded to a single object,
+
+7
+00:00:20.749 --> 00:00:24.378
+ordered by dependency and
+paired with its own inverse,
+
+8
+00:00:24.378 --> 00:00:26.313
+so the plan can run backwards.
+
+9
+00:00:26.313 --> 00:00:27.537
+Then two gates.
+
+10
+00:00:27.537 --> 00:00:30.793
+Validation rejects any
+plan that breaks naming,
+
+11
+00:00:30.793 --> 00:00:35.025
+scope or safety rules, such as
+deleting too many objects at once.
+
+12
+00:00:35.025 --> 00:00:37.594
+Authorization needs a review and at least
+
+13
+00:00:37.594 --> 00:00:40.163
+one approver of record
+who isn't the author.
+
+14
+00:00:40.163 --> 00:00:44.496
+Only then does the execution
+layer, under a separate identity,
+
+15
+00:00:44.496 --> 00:00:48.150
+deliver each action, verify
+it and record the result.
+
+16
+00:00:48.150 --> 00:00:52.962
+When something fails, the default is
+to halt, and rollback is explicit.
+
+17
+00:00:52.962 --> 00:00:55.928
+Every run ends in a
+signed evidence packet,
+
+18
+00:00:55.928 --> 00:01:00.249
+and when nothing has drifted, the
+next run is a zero-action plan.
+
+19
+00:01:00.249 --> 00:01:05.055
+A separate rule caps how far
+automation may go: record, observe,
+
+20
+00:01:05.055 --> 00:01:10.425
+advise, gated actuation, and autonomy
+only for named low-risk classes.
+
+21
+00:01:10.425 --> 00:01:14.065
+Tenant-wide role changes,
+Conditional Access enforcement
+
+22
+00:01:14.065 --> 00:01:17.037
+and bulk device changes
+stay gated permanently.
+
+23
+00:01:17.037 --> 00:01:19.562
+No federal document requires that ceiling.
+
+24
+00:01:19.562 --> 00:01:23.937
+The book chooses it because it's a
+posture an authorizing official can sign.
+
+25
+00:01:23.937 --> 00:01:26.476
+So before the first production delivery,
+
+26
+00:01:26.476 --> 00:01:30.805
+the authorizing official agrees the
+ceiling for each class of change,
+
+27
+00:01:30.805 --> 00:01:34.300
+with its dry run, its approver
+and its rollback on record.

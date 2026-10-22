@@ -1,0 +1,149 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.325
+Migration ends on a
+date; certificates don't.
+
+2
+00:00:03.325 --> 00:00:09.187
+Public TLS validity falls to
+forty-seven days from March 15, 2029.
+
+3
+00:00:09.187 --> 00:00:12.517
+The schedule binds publicly
+trusted certificates,
+
+4
+00:00:12.517 --> 00:00:17.626
+but the program aligns internal lifetimes
+with it as automation proves itself.
+
+5
+00:00:17.626 --> 00:00:22.550
+The design rule: no certificate class may
+depend on a person remembering a date.
+
+6
+00:00:22.550 --> 00:00:25.000
+The target has three renewal engines.
+
+7
+00:00:25.000 --> 00:00:29.285
+Intune profiles renew certificates
+on managed devices at the
+
+8
+00:00:29.285 --> 00:00:33.075
+profile's renewal threshold,
+with a new key pair for SCEP.
+
+9
+00:00:33.075 --> 00:00:38.084
+On Apple platforms, renewal happens only
+inside the threshold window with the device
+
+10
+00:00:38.084 --> 00:00:40.482
+unlocked, and a failed renewal leaves the
+
+11
+00:00:40.482 --> 00:00:43.163
+expired certificate in
+place without a retry.
+
+12
+00:00:43.163 --> 00:00:47.587
+AD CS autoenrollment renews
+domain controller certificates,
+
+13
+00:00:47.587 --> 00:00:52.351
+which also serve LDAPS, so the CA
+must stay online and its CRL current.
+
+14
+00:00:52.351 --> 00:00:57.775
+And CyberArk Certificate Manager
+discovers, tracks and renews server TLS,
+
+15
+00:00:57.775 --> 00:01:01.100
+including NPS and RADIUS
+servers, appliances,
+
+16
+00:01:01.100 --> 00:01:06.350
+public TLS and network devices, with
+a Server Owner on every certificate.
+
+17
+00:01:06.350 --> 00:01:09.429
+Neither Microsoft issuer
+in the target offers ACME,
+
+18
+00:01:09.429 --> 00:01:12.938
+so the program provides it
+through the lifecycle platform.
+
+19
+00:01:12.938 --> 00:01:19.313
+CyberArk documents the
+http-01 and dns-01 challenges.
+
+20
+00:01:19.313 --> 00:01:24.107
+One federal limit: win-acme requires
+FIPS mode to be disabled on the
+
+21
+00:01:24.107 --> 00:01:29.425
+CyberArk server, so where FIPS mode is
+required, use another tested client.
+
+22
+00:01:29.425 --> 00:01:34.048
+The drift checks run at least weekly and
+are committed to the evidence repository,
+
+23
+00:01:34.048 --> 00:01:37.175
+because an assessor asks how
+long a finding stayed open.
+
+24
+00:01:37.175 --> 00:01:42.285
+Watch for certificates within two renewal
+windows of expiry with no engine bound,
+
+25
+00:01:42.285 --> 00:01:45.366
+issuance outside policy,
+missing strong mapping,
+
+26
+00:01:45.366 --> 00:01:50.175
+trust store anchors that aren't approved,
+stale CRLs, and posture regressions.
+
+27
+00:01:50.175 --> 00:01:53.068
+And treat a SID mismatch
+as a security event:
+
+28
+00:01:53.068 --> 00:01:56.925
+it can mean the certificate
+was issued to a different user.
+
+29
+00:01:56.925 --> 00:02:01.116
+That's event 41 on current
+domain controllers,
+
+30
+00:02:01.116 --> 00:02:07.580
+but event 49 on Server 2008 and 2008
+R2, where 41 means no strong mapping.

@@ -38,54 +38,54 @@ from an authoritative source,
 which for the workforce means HR.
 
 9
-00:00:27.400 --> 00:00:31.025
+00:00:27.400 --> 00:00:31.338
 Policy in AD is Group
 Policy linked to OUs.
 
 10
-00:00:31.025 --> 00:00:36.100
+00:00:31.338 --> 00:00:36.412
 In the cloud it's Conditional Access and
 Intune, targeted by those attributes.
 
 11
-00:00:36.100 --> 00:00:39.372
+00:00:36.412 --> 00:00:39.685
 The protocols change too: Kerberos,
 
 12
-00:00:39.372 --> 00:00:45.125
+00:00:39.685 --> 00:00:45.438
 NTLM and LDAP give way to OpenID
 Connect, OAuth, SAML and SCIM.
 
 13
-00:00:45.125 --> 00:00:48.792
+00:00:45.438 --> 00:00:49.105
 Standing Domain Admin membership
 gives way to least-privilege
 
 14
-00:00:48.792 --> 00:00:52.875
+00:00:49.105 --> 00:00:53.188
 roles activated just in time through
 Privileged Identity Management.
 
 15
-00:00:52.875 --> 00:00:57.338
+00:00:53.188 --> 00:00:57.651
 And management moves from the
 ActiveDirectory module to Microsoft Graph.
 
 16
-00:00:57.338 --> 00:00:59.537
+00:00:57.651 --> 00:00:59.850
 The key idea is the bottom line.
 
 17
-00:00:59.537 --> 00:01:03.775
+00:00:59.850 --> 00:01:04.087
 In Active Directory, governance is
 implied by where an object sits.
 
 18
-00:01:03.775 --> 00:01:06.990
+00:01:04.087 --> 00:01:07.303
 In Entra ID it has to
 be stated explicitly,
 
 19
-00:01:06.990 --> 00:01:10.370
+00:01:07.303 --> 00:01:10.680
 as data and rules, or it
 simply doesn't exist.

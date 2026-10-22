@@ -1,0 +1,146 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.683
+This is the book's canonical
+sequence applied to the move from
+
+2
+00:00:04.683 --> 00:00:10.225
+AD-integrated DNS and DHCP, plus
+independent cloud DNS, to one policy plane.
+
+3
+00:00:10.225 --> 00:00:16.589
+Phase 1, inventory: export every zone,
+SRV record, forwarder and DHCP scope,
+
+4
+00:00:16.589 --> 00:00:19.347
+and document resolution paths,
+
+5
+00:00:19.347 --> 00:00:24.862
+including redirect-dns targets
+and the OCSP and CRL endpoints.
+
+6
+00:00:24.862 --> 00:00:29.750
+Phase 2, coexistence: new resolvers
+and their Microsoft DNS and
+
+7
+00:00:29.750 --> 00:00:34.638
+DHCP synchronization, with
+forwarding so both systems answer.
+
+8
+00:00:34.638 --> 00:00:41.588
+Phase 3, migrate authority: zone by zone,
+clients in waves, redirect-dns retargeted.
+
+9
+00:00:41.588 --> 00:00:47.499
+Phase 4, cloud federation: private endpoint
+resolution validated from every origin.
+
+10
+00:00:47.499 --> 00:00:54.080
+Phase 5, decommission AD DNS and DHCP, only
+after reconciliation and failover tests,
+
+11
+00:00:54.080 --> 00:01:00.850
+preserving the SRV and underscore msdcs
+records remaining domain controllers need.
+
+12
+00:01:00.850 --> 00:01:05.213
+Phase 6, hardening: Protective
+DNS, encrypted DNS,
+
+13
+00:01:05.213 --> 00:01:09.575
+DNSSEC where required,
+monitoring and evidence.
+
+14
+00:01:09.575 --> 00:01:12.260
+Each phase ends with
+a rollback point and a
+
+15
+00:01:12.260 --> 00:01:15.713
+resolution-path consistency
+test, not a calendar date.
+
+16
+00:01:15.713 --> 00:01:20.446
+The operational playbook splits the work
+into eleven steps for an Azure-heavy
+
+17
+00:01:20.446 --> 00:01:24.451
+estate; its durations are planning
+estimates, and the gates decide.
+
+18
+00:01:24.451 --> 00:01:28.768
+Hardening has no step of its own:
+logging starts at the first step,
+
+19
+00:01:28.768 --> 00:01:31.538
+and evidence is filed as each step closes.
+
+20
+00:01:31.538 --> 00:01:34.225
+Every move of authority runs one loop.
+
+21
+00:01:34.225 --> 00:01:37.199
+Lower the TTL, to three
+hundred seconds at least
+
+22
+00:01:37.199 --> 00:01:40.325
+forty-eight hours ahead,
+recording the originals.
+
+23
+00:01:40.325 --> 00:01:46.436
+Export, transform and import with a dry run,
+never migrating SOA or apex NS records,
+
+24
+00:01:46.436 --> 00:01:51.362
+and leaving locator records where
+domain controllers register.
+
+25
+00:01:51.362 --> 00:01:55.050
+Validate from every origin,
+forward and reverse.
+
+26
+00:01:55.050 --> 00:01:57.563
+Switch authority one mechanism at a time.
+
+27
+00:01:57.563 --> 00:02:01.149
+Hold and observe until no
+client queries the old server.
+
+28
+00:02:01.149 --> 00:02:04.338
+Then restore the TTL
+and file the evidence.
+
+29
+00:02:04.338 --> 00:02:06.565
+A failed check reverts the switch,
+
+30
+00:02:06.565 --> 00:02:09.890
+and the old authority,
+still intact, answers again.

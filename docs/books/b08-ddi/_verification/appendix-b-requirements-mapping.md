@@ -61,3 +61,9 @@ Checked October 20, 2026. Source: the existing series page (Next Generation DDI,
 | Primary sources: cloud and platform provider documentation | Same section | Azure Gov roadmap, DNSSEC how-to, DC locator, Route 53 alias added |
 | Third-party sources | Same section | integration-documentation pointer added |
 | Previous/Next links | "Continue the book" callout | Next now Appendix C |
+
+## Cross-chapter consistency pass (October 21, 2026)
+
+| # | Claim (short) | Where | Verdict | Source |
+|---|---|---|---|---|
+| CP-1 | Source-list entry title is "DNS resolver policy," formerly DNS security policy | Primary sources: cloud and platform provider documentation | corrected (page title is not "Overview of ...") | Microsoft Learn, "DNS resolver policy," <https://learn.microsoft.com/en-us/azure/dns/dns-security-policy> (opened Oct 21, 2026): page title and every heading use "DNS resolver policy"; portal resource "DNS Resolver Policies"; URL keeps `dns-security-policy`; networking design guide <https://learn.microsoft.com/azure/networking/design-guide/dns-security> still says "DNS security policy" |

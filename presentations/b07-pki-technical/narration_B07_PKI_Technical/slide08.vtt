@@ -1,0 +1,124 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.654
+Every detection in this
+module depends on evidence,
+
+2
+00:00:03.654 --> 00:00:06.000
+and AD CS produces none by default.
+
+3
+00:00:06.000 --> 00:00:09.300
+Two settings are needed, and
+neither works without the other.
+
+4
+00:00:09.300 --> 00:00:13.250
+The CA's audit filter selects
+which CA operations are audited.
+
+5
+00:00:13.250 --> 00:00:16.326
+The Audit Certification
+Services advanced audit
+
+6
+00:00:16.326 --> 00:00:19.987
+subcategory lets the operating
+system generate the events.
+
+7
+00:00:19.987 --> 00:00:25.231
+Set the subcategory to Success and Failure
+in a dedicated GPO linked to the CA
+
+8
+00:00:25.231 --> 00:00:28.836
+servers, set the audit filter
+to cover every category,
+
+9
+00:00:28.836 --> 00:00:32.113
+and restart the service
+in a maintenance window.
+
+10
+00:00:32.113 --> 00:00:35.534
+Full auditing includes the
+start and stop category,
+
+11
+00:00:35.534 --> 00:00:40.149
+which can slow restarts on a CA with
+a large database, so test that first.
+
+12
+00:00:40.149 --> 00:00:42.625
+Then watch Microsoft's focused baseline.
+
+13
+00:00:42.625 --> 00:00:49.428
+4886, 4887 and 4888 are requests received,
+issued and denied: issuance volume per
+
+14
+00:00:49.428 --> 00:00:52.418
+template, every credential issued,
+
+15
+00:00:52.418 --> 00:00:56.850
+and probing of templates
+that should be restricted.
+
+16
+00:00:56.850 --> 00:00:59.725
+4870 is revocation evidence.
+
+17
+00:00:59.725 --> 00:01:07.050
+4882 and 4890 are permission and certificate
+manager changes, which is ESC7 drift.
+
+18
+00:01:07.050 --> 00:01:10.450
+4885 is someone changing the audit filter.
+
+19
+00:01:10.450 --> 00:01:15.950
+4892 is a CA property change,
+which catches the ESC6 flag.
+
+20
+00:01:15.950 --> 00:01:20.088
+4896 is rows deleted from the CA database.
+
+21
+00:01:20.088 --> 00:01:23.513
+4897 is role separation enabled.
+
+22
+00:01:23.513 --> 00:01:28.110
+Microsoft recommends generating each
+event in a nonproduction test before
+
+23
+00:01:28.110 --> 00:01:32.563
+writing the collection rule, so an
+assumed event doesn't become a blind spot.
+
+24
+00:01:32.563 --> 00:01:36.637
+Forward through Windows Event
+Forwarding to a collector and the SIEM.
+
+25
+00:01:36.637 --> 00:01:40.940
+Forwarding doesn't stop a full
+local log from overwriting evidence,
+
+26
+00:01:40.940 --> 00:01:45.700
+so size the CA's Security log for the
+longest plausible collection outage.

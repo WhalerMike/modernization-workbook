@@ -138,31 +138,31 @@
   ],
   [
    18.087,
-   3.675,
-   "So placing one user in an O U did five things at once."
+   5.713,
+   "So placing one user in an organizational unit (O U) did five things at once."
   ],
   [
-   21.762,
+   23.8,
    12.738,
    "It handed the account to that branch's administrators, applied every policy linked along the path, fed the tools that built groups from position, bound it to the branch's delegation authority, and drew an audit boundary."
   ],
   [
-   34.5,
+   36.538,
    2.275,
    "Entra ID has no O U tree."
   ],
   [
-   36.775,
+   38.812,
    6.287,
    "Dynamic groups follow attributes, and administrative units scope delegated roles but can't be nested."
   ],
   [
-   43.062,
+   45.1,
    4.763,
    "Neither rebuilds the tree on its own; the rebuild has to be written down."
   ],
   [
-   47.825,
+   49.862,
    7.575,
    "And Microsoft still supports and enhances Active Directory, so retiring it is an agency decision, not a vendor deadline."
   ]

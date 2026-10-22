@@ -84,3 +84,13 @@ Alignment note: Chapter 05 (W3) places plan generation and approval (master plan
 | Appendix D gate review template | Ch08 links Ch05 | Assumed carried by Ch05 (W3); flagged to editor |
 | Appendix E glossary | Terms used in place (ARR, LDAPS, OIDC, PAW, RSAT, AS-REP, Kerberoasting) | Glossary itself not carried; site glossary is the editor's |
 | Compliance amendment (PL-2, RA-3) | — | Appendix A (W5) |
+
+## Cross-chapter consistency pass
+
+Checked October 21, 2026. Book 00's chapters were reconciled with each other; each external fact touched was re-opened on its primary source.
+
+| # | Claim (short) | Where | Verdict | Source |
+|---|---|---|---|---|
+| X1 | Steward approves each plan; steering committee review is an input, not a signature | Step 5 | clarified; aligned with Ch07 and Ch09 | Internal: Ch07 decision matrix |
+| X2 | Assessment workstation sanitized under SP 800-88 Rev. 2 (was "rebuilt or retired") | The twenty-three deliverables | corrected; aligned with Appendix A R-021 | csrc.nist.gov SP 800-88 r2 final page (Date Published September 2025; history 09/26/25 Final; supersedes Rev. 1, 12/17/2014; no withdrawal or successor listed), fetched Oct 21, 2026 |
+| X3 | RADIUS/NPS inventoried separately from Book 01's eleven streams; charter criterion 1 requires all eleven dependency types (incl. RADIUS) by G0; G0 checklist item added | Twelve domains; Gate G0; takeaway 4 | gap closed | Internal: B01 Ch10 "The eleven ingestion streams"; B00 Ch03 criterion 1; B00 Ch04 principle 4; B09 Ch07 "The RADIUS server is the Active Directory dependency" and inventory step (line 208) |

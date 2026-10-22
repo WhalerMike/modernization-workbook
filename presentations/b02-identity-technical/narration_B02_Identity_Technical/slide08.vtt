@@ -9,55 +9,55 @@ Module 2: assessing the forest.
 Chapter 07 ends with a gap list.
 
 3
-00:00:05.437 --> 00:00:09.722
+00:00:05.437 --> 00:00:09.732
 Chapter 08 fills it with the
 privileged half of discovery:
 
 4
-00:00:09.722 --> 00:00:15.077
+00:00:09.732 --> 00:00:15.100
 the configuration partition, ACLs on
 OUs, every GPO's settings, DNS server
 
 5
-00:00:15.077 --> 00:00:18.826
+00:00:15.100 --> 00:00:18.857
 configuration, the PKI
 containers and CA settings,
 
 6
-00:00:18.826 --> 00:00:21.950
+00:00:18.857 --> 00:00:21.988
 and the delegation flags on every account.
 
 7
-00:00:21.950 --> 00:00:24.852
+00:00:21.988 --> 00:00:24.890
 The program's position is
 that the assessment is
 
 8
-00:00:24.852 --> 00:00:27.900
+00:00:24.890 --> 00:00:27.938
 an evidence-producing process,
 not a set of scripts.
 
 9
-00:00:27.900 --> 00:00:33.153
+00:00:27.938 --> 00:00:33.191
 Every run collects a fixed set of
 artifacts into a fixed directory layout,
 
 10
-00:00:33.153 --> 00:00:36.683
+00:00:33.191 --> 00:00:36.721
 writes a manifest with a
 SHA-256 hash of every file,
 
 11
-00:00:36.683 --> 00:00:40.300
+00:00:36.721 --> 00:00:40.338
 and commits the run to the
 program's Git repository.
 
 12
-00:00:40.300 --> 00:00:44.761
+00:00:40.338 --> 00:00:44.798
 Appendix B carries the complete
 module, restored and corrected;
 
 13
-00:00:44.761 --> 00:00:47.930
+00:00:44.798 --> 00:00:47.980
 Appendix C carries the
 identity-side module.

@@ -1,0 +1,109 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.025
+Two external clocks bear on the
+schedule, and they're easy to conflate.
+
+2
+00:00:04.025 --> 00:00:09.094
+FedRAMP's Consolidated Rules
+for 2026, announced on June 25,
+
+3
+00:00:09.094 --> 00:00:13.025
+2026, govern how cloud
+services are certified.
+
+4
+00:00:13.025 --> 00:00:17.425
+They become mandatory for
+everyone on January 1, 2027,
+
+5
+00:00:17.425 --> 00:00:24.225
+and FedRAMP stops accepting new Rev5
+certification applications on June 11, 2027.
+
+6
+00:00:24.225 --> 00:00:27.125
+None of that certifies
+the agency's own estate.
+
+7
+00:00:27.125 --> 00:00:32.279
+FedRAMP is explicit that each agency still
+authorizes its own federal information
+
+8
+00:00:32.279 --> 00:00:37.213
+systems, and should never create a standalone
+authorization for a cloud service.
+
+9
+00:00:37.213 --> 00:00:42.762
+What the 2027 date changes is the evidence
+your providers publish and you inherit.
+
+10
+00:00:42.762 --> 00:00:48.380
+The deadlines that bind the agency
+directly come from OMB and CISA:
+
+11
+00:00:48.380 --> 00:00:51.790
+M-26-14's logging plan
+and maturity levels,
+
+12
+00:00:51.790 --> 00:00:59.713
+and BOD 25-01's secure configuration
+baselines for in-scope Microsoft 365 tenants.
+
+13
+00:00:59.713 --> 00:01:01.762
+The estate has its own dates too.
+
+14
+00:01:01.762 --> 00:01:06.713
+Windows 10 reached end of
+support on October 14, 2025.
+
+15
+00:01:06.713 --> 00:01:14.646
+Extended security updates for Windows Server
+2012 and 2012 R2 ended on October 13,
+
+16
+00:01:14.646 --> 00:01:21.413
+2026, and Windows Server 2016 reaches
+end of support on January 12, 2027.
+
+17
+00:01:21.413 --> 00:01:23.712
+Mainframes have a place in the sequence.
+
+18
+00:01:23.712 --> 00:01:26.995
+Token-based access joins
+the access workstream late,
+
+19
+00:01:26.995 --> 00:01:32.440
+discrete read-mostly transactions first,
+and M-22-09 notes that mainframes
+
+20
+00:01:32.440 --> 00:01:37.288
+may need other zero trust mechanisms
+where endpoint detection tools don't fit.
+
+21
+00:01:37.288 --> 00:01:42.226
+So the sponsor and the CIO sequence
+the program against the agency's own
+
+22
+00:01:42.226 --> 00:01:47.810
+deadlines and end-of-support dates, starting
+now, not against FedRAMP's 2027 date.

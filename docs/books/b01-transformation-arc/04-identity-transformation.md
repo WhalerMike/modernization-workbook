@@ -235,11 +235,11 @@ Pick one division, compute its attribute mappings, stage the transformation plan
 
 ### Phase 3: division-by-division rollout
 
-Each division gets its own plan, review and delivery. No division is rolled out until the previous one's drift findings are zero.
+Each division gets its own plan, review and delivery, and no division reaches full availability until its own in-division pilot is drift-clean. Two or three divisions can run in parallel ([Chapter 12](12-migration-roadmap.md)).
 
 ### Phase 4: legacy retirement
 
-Once every user has organizational attributes and every OU has a dynamic-group equivalent, the OU-based security groups and legacy GPOs are retired in a governed deprecation pass. This is the only destructive phase, and it requires explicit approval per item.
+Once every user has organizational attributes and every OU has a dynamic-group equivalent, the OU-based security groups and the legacy GPOs that remain are retired in a governed deprecation pass; GPOs already migrated for a division retire as that division moves ([Chapter 05](05-policy-transformation.md)). This is the only destructive phase, and it requires explicit approval per item.
 
 ### Phase 5: steady state
 
