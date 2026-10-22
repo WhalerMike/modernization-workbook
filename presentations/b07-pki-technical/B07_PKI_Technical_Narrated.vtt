@@ -3414,200 +3414,205 @@ CyberArk documents the
 http-01 and dns-01 challenges.
 
 708
-00:49:18.733 --> 00:49:23.527
-One federal limit: win-acme requires
-FIPS mode to be disabled on the
+00:49:18.733 --> 00:49:24.560
+One federal limit: CyberArk's installation
+guide says FIPS mode isn't supported for
 
 709
-00:49:23.527 --> 00:49:28.845
-CyberArk server, so where FIPS mode is
-required, use another tested client.
+00:49:24.560 --> 00:49:27.938
+its ACME service at all,
+so run the ACME service on
 
 710
-00:49:28.845 --> 00:49:33.468
+00:49:27.938 --> 00:49:31.570
+dedicated servers outside
+the FIPS-mode server set.
+
+711
+00:49:31.570 --> 00:49:36.193
 The drift checks run at least weekly and
 are committed to the evidence repository,
 
-711
-00:49:33.468 --> 00:49:36.595
+712
+00:49:36.193 --> 00:49:39.320
 because an assessor asks how
 long a finding stayed open.
 
-712
-00:49:36.595 --> 00:49:41.705
+713
+00:49:39.320 --> 00:49:44.430
 Watch for certificates within two renewal
 windows of expiry with no engine bound,
 
-713
-00:49:41.705 --> 00:49:44.786
+714
+00:49:44.430 --> 00:49:47.511
 issuance outside policy,
 missing strong mapping,
 
-714
-00:49:44.786 --> 00:49:49.595
+715
+00:49:47.511 --> 00:49:52.320
 trust store anchors that aren't approved,
 stale CRLs, and posture regressions.
 
-715
-00:49:49.595 --> 00:49:52.488
+716
+00:49:52.320 --> 00:49:55.213
 And treat a SID mismatch
 as a security event:
 
-716
-00:49:52.488 --> 00:49:56.345
+717
+00:49:55.213 --> 00:49:59.070
 it can mean the certificate
 was issued to a different user.
 
-717
-00:49:56.345 --> 00:50:00.536
+718
+00:49:59.070 --> 00:50:03.261
 That's event 41 on current
 domain controllers,
 
-718
-00:50:00.536 --> 00:50:07.300
+719
+00:50:03.261 --> 00:50:10.020
 but event 49 on Server 2008 and 2008
 R2, where 41 means no strong mapping.
 
-719
-00:50:08.050 --> 00:50:12.612
+720
+00:50:10.770 --> 00:50:15.332
 Last, retiring AD CS, which
 is the program's sixth wave.
 
-720
-00:50:12.612 --> 00:50:17.902
+721
+00:50:15.332 --> 00:50:20.622
 It applies only to the CAs and role services
 that no longer serve a retained class;
 
-721
-00:50:17.902 --> 00:50:22.244
+722
+00:50:20.622 --> 00:50:24.964
 domain controller, LDAPS and RADIUS
 certificates usually keep at
 
-722
-00:50:22.244 --> 00:50:26.587
+723
+00:50:24.964 --> 00:50:29.307
 least one issuing CA alive for as
 long as domain controllers exist.
 
-723
-00:50:26.587 --> 00:50:31.784
+724
+00:50:29.307 --> 00:50:34.504
 The gate: cutover complete, the thirty-day
 rollback window passed with no incidents,
 
-724
-00:50:31.784 --> 00:50:35.249
+725
+00:50:34.504 --> 00:50:37.969
 and every retained class
 running on the CAs that remain.
 
-725
-00:50:35.249 --> 00:50:37.565
+726
+00:50:37.969 --> 00:50:40.285
 Confirm nothing depends on the CA,
 
-726
-00:50:37.565 --> 00:50:41.037
+727
+00:50:40.285 --> 00:50:43.757
 using the lifecycle inventory
 and the CA database.
 
-727
-00:50:41.037 --> 00:50:43.909
+728
+00:50:43.757 --> 00:50:46.629
 Stop new issuance: remove the templates,
 
-728
-00:50:43.909 --> 00:50:47.301
+729
+00:50:46.629 --> 00:50:50.021
 unlink autoenrollment,
 deny pending requests.
 
-729
-00:50:47.301 --> 00:50:48.915
+730
+00:50:50.021 --> 00:50:51.635
 Back up the database and key,
 
-730
-00:50:48.915 --> 00:50:52.425
+731
+00:50:51.635 --> 00:50:55.145
 with the backup and its password
 through separate channels.
 
-731
-00:50:52.425 --> 00:50:56.257
+732
+00:50:55.145 --> 00:50:58.977
 Revoke outstanding certificates
 for cessation of operation,
 
-732
-00:50:56.257 --> 00:51:00.900
+733
+00:50:58.977 --> 00:51:03.620
 set the CRL lifetime past the remaining
 certificates' lifetime, and publish.
 
-733
-00:51:00.900 --> 00:51:04.816
+734
+00:51:03.620 --> 00:51:07.536
 Remove NDES and the web
 services before the CA,
 
-734
-00:51:04.816 --> 00:51:08.525
+735
+00:51:07.536 --> 00:51:11.245
 and move any OCSP
 consumers to CRL checking.
 
-735
-00:51:08.525 --> 00:51:15.025
+736
+00:51:11.245 --> 00:51:17.745
 Clean up trust in Entra, Intune, Group
 Policy, NTAuth and the lifecycle platform.
 
-736
-00:51:15.025 --> 00:51:20.648
+737
+00:51:17.745 --> 00:51:23.368
 Keep the CDP and AIA endpoints serving
 until the last certificate expires, delete
 
-737
-00:51:20.648 --> 00:51:24.122
+738
+00:51:23.368 --> 00:51:26.842
 templates only after every
 CA in the forest is gone,
 
-738
-00:51:24.122 --> 00:51:26.437
+739
+00:51:26.842 --> 00:51:29.157
 and commit a decommission record.
 
-739
-00:51:26.437 --> 00:51:32.651
+740
+00:51:29.157 --> 00:51:35.371
 Under BYOCA, the root and any CA that
 signed the Cloud PKI issuing CA stay.
 
-740
-00:51:32.651 --> 00:51:38.378
+741
+00:51:35.371 --> 00:51:41.098
 The assessor reads NIST
 SP 800-53 evidence:
 
-741
-00:51:38.378 --> 00:51:42.421
+742
+00:51:41.098 --> 00:51:45.141
 key storage and binding settings
 for IA-5 enhancement two,
 
-742
-00:51:42.421 --> 00:51:47.896
+743
+00:51:45.141 --> 00:51:50.616
 the trust store and CRL configuration
 for path validation, HSM key protection
 
-743
-00:51:47.896 --> 00:51:52.950
+744
+00:51:50.616 --> 00:51:55.670
 for SC-12, and the certificate policy
 and approved trust anchors for SC-17.
 
-744
-00:51:52.950 --> 00:51:58.464
+745
+00:51:55.670 --> 00:52:01.184
 So, from Monday: harden first and gate
 on it, choose the root deliberately,
 
-745
-00:51:58.464 --> 00:52:03.978
+746
+00:52:01.184 --> 00:52:06.698
 issue strongly mapped certificates,
 run both PKIs with reachable CRLs,
 
-746
-00:52:03.978 --> 00:52:06.688
+747
+00:52:06.698 --> 00:52:09.408
 and retire AD CS last, with evidence.
 
-747
-00:52:06.688 --> 00:52:11.438
+748
+00:52:09.408 --> 00:52:14.158
 Chapters 03 through 08 and the
 appendices carry the detail.
 
-748
-00:52:11.438 --> 00:52:12.250
+749
+00:52:14.158 --> 00:52:14.970
 Thank you.

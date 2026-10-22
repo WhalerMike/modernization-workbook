@@ -11,91 +11,105 @@ Contractor information usually appears
 in several operational contexts.
 
 3
-00:00:08.337 --> 00:00:13.838
+00:00:08.337 --> 00:00:14.526
 COR spreadsheets: real, but kept per
 COR, with no common format or timing.
 
 4
-00:00:13.838 --> 00:00:15.776
+00:00:14.526 --> 00:00:16.463
 They're evidence, not a source.
 
 5
-00:00:15.776 --> 00:00:19.808
+00:00:16.463 --> 00:00:20.495
 The contractor suitability
 register: many agencies keep one,
 
 6
-00:00:19.808 --> 00:00:22.575
+00:00:20.495 --> 00:00:23.262
 under personnel security or contracting.
 
 7
-00:00:22.575 --> 00:00:26.255
+00:00:23.262 --> 00:00:26.942
 It typically holds contractors
 working on agency contracts,
 
 8
-00:00:26.255 --> 00:00:29.213
+00:00:26.942 --> 00:00:29.900
 with the suitability
 determination and its date.
 
 9
-00:00:29.213 --> 00:00:33.064
+00:00:29.900 --> 00:00:33.752
 Its coverage, contract
 identifiers, lifecycle fields,
 
 10
-00:00:33.064 --> 00:00:37.087
+00:00:33.752 --> 00:00:37.775
 owner, interface and update
 cadence require validation.
 
 11
-00:00:37.087 --> 00:00:41.259
+00:00:37.775 --> 00:00:41.947
 PIV enrollment: the credentialing
 system enrolls employees,
 
 12
-00:00:41.259 --> 00:00:43.550
+00:00:41.947 --> 00:00:44.238
 contractors and other personnel.
 
 13
-00:00:43.550 --> 00:00:47.507
+00:00:44.238 --> 00:00:48.194
 It covers identity proofing and
 background-investigation workflows,
 
 14
-00:00:47.507 --> 00:00:50.525
+00:00:48.194 --> 00:00:51.212
 and the card management
 system issues the credential.
 
 15
-00:00:50.525 --> 00:00:54.447
+00:00:51.212 --> 00:00:55.134
 That makes it a candidate source
 for proofing and credential status;
 
 16
-00:00:54.447 --> 00:00:58.713
+00:00:55.134 --> 00:00:59.400
 its authoritative fields and population
 coverage require confirmation.
 
 17
-00:00:58.713 --> 00:01:03.519
+00:00:59.400 --> 00:01:04.207
 What's usually missing is any link from
 these to Entra ID or Active Directory:
 
 18
-00:01:03.519 --> 00:01:06.037
+00:01:04.207 --> 00:01:06.725
 contractor accounts come from tickets.
 
 19
-00:01:06.037 --> 00:01:10.559
+00:01:06.725 --> 00:01:11.247
 Core HCM's Contingent Worker type
 is a possible fourth source later,
 
 20
-00:01:10.559 --> 00:01:13.062
+00:01:11.247 --> 00:01:13.750
 if the agency chooses to configure it.
 
 21
-00:01:13.062 --> 00:01:18.112
+00:01:13.750 --> 00:01:18.500
 It won't exist before the agency's
 Core HCM onboarding wave.
+
+22
+00:01:18.500 --> 00:01:23.551
+Sources: FIPS 201-3 and
+OMB M-19-17 (PIV for
+
+23
+00:01:23.551 --> 00:01:31.408
+employees and contractors);
+NIST SP 800-53 Rev.
+
+24
+00:01:31.408 --> 00:01:34.730
+5, PS-7 (external personnel security).

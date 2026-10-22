@@ -1,4 +1,4 @@
-# HR-Driven Identity — narration script (practice copy)
+# Contractor Identity Source — narration script (practice copy)
 
 ## Slide 1 — Who is authoritative for a contractor?
 
@@ -16,6 +16,8 @@ Second, what I have observed. In the processes I have observed, contractors are 
 
 Third, guidance. Federal lifecycle guidance, including GSA's ILM Playbook, calls for an authoritative personnel source for identity creation and termination, and CDM's master user record must include contractors. Employee HR may not carry them, so contractors need an equivalent authoritative personnel source. Something else has to be the authority, and it needs the same rigor as the HR record.
 
+Sources: OMB/OPM, Creating Federal HR 2.0 (2025-12-10); GSA ILM Playbook v2.0; FIPS 201-3 and OMB M-19-17 cover employees and contractors; NIST SP 800-53 PS-7 (external personnel security).
+
 ## Slide 3 — Three operational contexts hold contractor information
 
 The useful finding: most agencies aren't starting from zero. Contractor information usually appears in several operational contexts.
@@ -29,6 +31,8 @@ PIV enrollment: the credentialing system enrolls employees, contractors and othe
 What's usually missing is any link from these to Entra ID or Active Directory: contractor accounts come from tickets.
 
 Core HCM's Contingent Worker type is a possible fourth source later, if the agency chooses to configure it. It won't exist before the agency's Core HCM onboarding wave.
+
+Sources: FIPS 201-3 and OMB M-19-17 (PIV for employees and contractors); NIST SP 800-53 Rev. 5, PS-7 (external personnel security).
 
 ## Slide 4 — Four candidate sources, compared
 
@@ -58,6 +62,8 @@ I propose the enterprise person key, the same as for employees, proposed for con
 
 On the right: access ends at the earliest of five events. The last two close the gap the Digital Worker playbook leaves open: what happens when the sponsor leaves. The sponsor is a live reference into HR, not a name on a form.
 
+Design reference: the proposed sponsored-identity pattern, with an accountable sponsor, a governed engagement record, identity linkage, recertification and explicit end conditions. The PIV cross-check follows FIPS 201-3; separation follows NIST SP 800-53 PS-4 and PS-7.
+
 ## Slide 6 — What must be true before a register can be an authority
 
 Six things to establish before calling a suitability register an authority. The first two decide whether it can be the leaver signal at all.
@@ -73,6 +79,8 @@ Privacy: which SORN covers the register, and does a routine use cover disclosure
 Join on the key: if contractors may already get the enterprise key with their PIV card, confirm coverage and timing. The question is also whether the register records it. If it does, the register, PIV enrollment and the directories join on one key. If not, the first job is a crosswalk from the register to the key.
 
 Coverage: who works without a PIV card and isn't in the register? Those people still need a sponsor-only path.
+
+Source: the register's owner, and the agency's SORN and PIA catalog.
 
 ## Slide 7 — Sequence: start with what already exists
 

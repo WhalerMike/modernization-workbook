@@ -103,31 +103,31 @@ I found no built-in registration into
 your own Route 53 zones in AWS's docs.
 
 22
-00:01:24.650 --> 00:01:32.772
+00:01:24.650 --> 00:01:32.380
 Sources: Microsoft Learn: DNS aging and
 scavenging [S30], azcmagent connect [S15],
 
 23
-00:01:32.772 --> 00:01:41.529
+00:01:32.380 --> 00:01:40.714
 Rename Azure Arc-enabled servers [S16],
 VirtualMachineOSProfile.ComputerName [S17],
 
 24
-00:01:41.529 --> 00:01:49.778
+00:01:40.714 --> 00:01:48.566
 Azure DNS private zones autoregistration
 [S20]; FreeIPA ipa-client-install [S14];
 
 25
-00:01:49.778 --> 00:01:57.647
+00:01:48.566 --> 00:01:56.054
 AWS: EC2 instance hostname types [S21],
 Working with private hosted zones [S22],
 
 26
-00:01:57.647 --> 00:02:02.216
-AWS Compute Blog, Building
-a Dynamic DNS for
+00:01:56.054 --> 00:02:02.094
+AWS Compute Blog, Building a Dynamic
+DNS for Route 53 (2016) [S23];
 
 27
-00:02:02.216 --> 00:02:06.220
-Route 53 (2016) [S23];
-Book 08 Ch07 and Ch10.
+00:02:02.094 --> 00:02:08.060
+the Federal Modernization
+Workbook's Book 08 Ch07 and Ch10.

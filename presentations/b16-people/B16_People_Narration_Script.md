@@ -118,4 +118,4 @@ And certify with artifacts: capstones and two credentials, renewed every year.
 
 The next step needs no procurement. Build the role roster from HR records, coded positions and eligible-role assignments; name a training lead and an owner for each track; and brief the workforce office, labor relations and the Section 508 program manager before the first gate.
 
-People, not tools, close the gap. Book 16 has the detail, every claim footnoted. Thank you.
+People, not tools, close the gap. The Federal Modernization Workbook's Book 16 has the detail, every claim footnoted. Thank you.

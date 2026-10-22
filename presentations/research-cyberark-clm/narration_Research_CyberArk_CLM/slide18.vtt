@@ -1,0 +1,133 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.647
+Enrollment automation, starting
+with the third correction
+
+2
+00:00:03.647 --> 00:00:06.525
+to the Federal Modernization
+Workbook's Book 07.
+
+3
+00:00:06.525 --> 00:00:12.701
+Book 07 Chapter 08 says CyberArk documents
+that the win-acme client needs FIPS mode
+
+4
+00:00:12.701 --> 00:00:18.787
+off, and advises using another tested client
+where the server must run in FIPS mode.
+
+5
+00:00:18.787 --> 00:00:22.863
+The 26.1 Installation and
+Upgrade Guide is broader.
+
+6
+00:00:22.863 --> 00:00:27.049
+It says that because FIPS is
+not supported for ACMEv2,
+
+7
+00:00:27.049 --> 00:00:31.425
+you can't have FIPS enabled on
+any server used for ACMEv2.
+
+8
+00:00:31.425 --> 00:00:34.129
+The topic page still names only win-acme;
+
+9
+00:00:34.129 --> 00:00:38.063
+the stricter text governs
+until CyberArk says otherwise.
+
+10
+00:00:38.063 --> 00:00:43.761
+The program's design guidance: run the ACME
+service on dedicated servers that aren't
+
+11
+00:00:43.761 --> 00:00:48.800
+in FIPS mode, kept out of the FIPS-mode
+set, or get a written vendor statement.
+
+12
+00:00:48.800 --> 00:00:51.650
+Book 07 has been updated to match.
+
+13
+00:00:51.650 --> 00:00:59.676
+The ACME service itself implements RFC
+8555 with http-01 and dns-01 challenges,
+
+14
+00:00:59.676 --> 00:01:05.850
+and was designed and tested with
+certbot, win-acme and acme.sh.
+
+15
+00:01:05.850 --> 00:01:10.587
+The page both lists wildcard issuance
+and calls it future work, so test it.
+
+16
+00:01:10.587 --> 00:01:16.823
+EST runs on port 50443 with client-certificate
+authentication, and a CA label in
+
+17
+00:01:16.823 --> 00:01:22.963
+the URL selects the CA template; three
+optional EST functions aren't supported.
+
+18
+00:01:22.963 --> 00:01:26.488
+SCEP, for network devices, needs port 80.
+
+19
+00:01:26.488 --> 00:01:30.947
+For everything else there's
+the REST API with OAuth tokens,
+
+20
+00:01:30.947 --> 00:01:35.778
+and CyberArk's vCert command-line
+tool, currently version 5.13.9,
+
+21
+00:01:35.778 --> 00:01:39.587
+which needs view, read,
+write and create on its zone.
+
+22
+00:01:39.587 --> 00:01:43.435
+Agentless drivers push
+certificates to the endpoints,
+
+23
+00:01:43.435 --> 00:01:47.951
+licensed per instance in 26.1, and
+the Server Agent covers the rest.
+
+24
+00:01:47.951 --> 00:01:53.056
+Sources: CyberArk 26.1
+Installation and Upgrade Guide p.
+
+25
+00:01:53.056 --> 00:02:00.048
+50; ACME overview; EST overview,
+limitations and reference; Configuring SCEP;
+
+26
+00:02:00.048 --> 00:02:05.375
+NDE rules; Setting up OAuth;
+System Requirements; What's New;
+
+27
+00:02:05.375 --> 00:02:10.100
+vCert README and latest
+release; Book 07, Chapter 08.

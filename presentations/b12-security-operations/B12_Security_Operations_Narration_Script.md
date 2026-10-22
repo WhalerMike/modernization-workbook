@@ -132,4 +132,4 @@ And send every blind spot to the authorizing official: a telemetry gap, a suppre
 
 The next step needs no procurement. Run the coverage check against the inventory, tag the exposure of every externally reachable asset before December 7, and count a source as covered only when a tested rule reads it.
 
-You can't defend what you can't see, and a finding closes only when the thing is fixed, with proof. Book 12 has the detail, every claim footnoted. Thank you.
+You can't defend what you can't see, and a finding closes only when the thing is fixed, with proof. The Federal Modernization Workbook's Book 12 has the detail, every claim footnoted. Thank you.

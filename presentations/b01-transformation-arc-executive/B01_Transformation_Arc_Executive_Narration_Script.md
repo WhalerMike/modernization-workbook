@@ -220,4 +220,4 @@ The CISO sets the control requirements, enforced at Gate G1. HR defines what the
 
 None of this requires a vendor decision on day one. It requires an inventory, an owner and a date: the read-only assessment, a named sponsor and steward, and Gate G0 on the calendar.
 
-Microsoft has supplied the instruments. The program is the orchestra, and the people named in this briefing are the ones who have to play it. Retiring Active Directory is a governance transformation, and it should be led as one. Book 01 has the detail, with every claim footnoted. Thank you.
+Microsoft has supplied the instruments. The program is the orchestra, and the people named in this briefing are the ones who have to play it. Retiring Active Directory is a governance transformation, and it should be led as one. The Federal Modernization Workbook's Book 01 has the detail, with every claim footnoted. Thank you.

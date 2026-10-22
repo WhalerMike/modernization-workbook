@@ -24,7 +24,7 @@ Why now? Because two migrations open one design window.
 
 On the HR side: the December 10, 2025 memo from OMB and OPM creates Federal HR 2.0, one government-wide core human capital platform. OPM awarded the platform contract on June 10, 2026, and the first agencies begin moving as fiscal year 2027 starts. The memo's sample timeline runs about eight months per agency, with the agency's interconnections going live around month five.
 
-On the identity side: agencies are moving from Active Directory to Entra ID anyway, which is Book 02. In Entra ID, attributes drive Conditional Access, groups and delegation, and inbound provisioning from an HR system is a documented, supported path.
+On the identity side: agencies are moving from Active Directory to Entra ID anyway, which is the Federal Modernization Workbook's Book 02. In Entra ID, attributes drive Conditional Access, groups and delegation, and inbound provisioning from an HR system is a documented, supported path.
 
 So there's a window. The identity feed has to be designed in during onboarding, before the interconnection goes live, not bolted on afterward.
 
@@ -112,4 +112,4 @@ Five measures, each baselined in phase one, and each one a business measure lead
 
 What we need from leadership is one decision: start HR-driven identity now, as a design requirement of the HR 2.0 onboarding and the Entra ID migration. And to act on it: a sponsor across HR, the identity team and privacy; identity named as a consumer in the HR 2.0 interconnection plan; data owners designated and the person key confirmed; and a small team for the pre-onboarding data work.
 
-Book 03 has the full design, with every external claim footnoted, and Book 02 covers the directory migration it builds on. Thank you.
+The Federal Modernization Workbook's Book 03 has the full design, with every external claim footnoted, and Book 02 covers the directory migration it builds on. Thank you.

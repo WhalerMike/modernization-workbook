@@ -94,8 +94,8 @@
   ],
   [
    59.95,
-   6.188,
-   "And policy is only as good as the attributes it reads, which is why Book 03 matters here."
+   8.062,
+   "And policy is only as good as the attributes it reads, which is why the Federal Modernization Workbook's Book 03 matters here."
   ]
  ],
  "3": [
@@ -349,8 +349,8 @@
   ],
   [
    53.85,
-   18.625,
-   "It keeps Book 02's policies CA001 to CA017 and adds CA018 to CA038 for the B O D twenty-five oh-one Entra ID requirements, including blocking high-risk users and requiring phishing-resistant M F A for all members."
+   20.288,
+   "It keeps the Federal Modernization Workbook's Book 02's policies CA001 to CA017 and adds CA018 to CA038 for the B O D twenty-five oh-one Entra ID requirements, including blocking high-risk users and requiring phishing-resistant M F A for all members."
   ]
  ],
  "8": [
@@ -396,8 +396,8 @@
   ],
   [
    61.125,
-   10.613,
-   "Appendix B sets every role's activation time, approvers, context and notifications, tighter for Tier 0 and Tier 1 than Book 02's first table."
+   12.562,
+   "Appendix B sets every role's activation time, approvers, context and notifications, tighter for Tier 0 and Tier 1 than the Federal Modernization Workbook's Book 02's first table."
   ]
  ],
  "9": [
@@ -455,46 +455,46 @@
   ],
   [
    1.275,
-   7.525,
-   "Adopt the library: Book 04's Conditional Access library and wave plan as the agency's access baseline."
+   9.688,
+   "Adopt the library: the Federal Modernization Workbook's Book 04's Conditional Access library and wave plan as the agency's access baseline."
   ],
   [
-   8.8,
+   10.963,
    8.625,
    "End standing privilege: every administrator role eligible through pim, with two governed break-glass accounts as the only standing exception."
   ],
   [
-   17.425,
+   19.587,
    7.537,
    "Separate deciding from executing: name the owners, scope the help desk role, and stand up the identity governance office."
   ],
   [
-   24.962,
+   27.125,
    7.35,
    "And manage access as code: version control, review and drift monitoring, with the evidence kept from day one."
   ],
   [
-   32.312,
+   34.475,
    4.3,
    "In Zero Trust, every access decision is a policy decision."
   ],
   [
-   36.612,
+   38.775,
    6.912,
    "Writing that policy down, testing it, and proving it ran is how an agency knows who can reach what, and why."
   ],
   [
-   43.525,
+   45.688,
    5.8,
    "Book 04 has the full library and settings, with every external claim footnoted."
   ],
   [
-   49.325,
+   51.487,
    4.6,
    "Book 05 covers the device compliance that Conditional Access reads."
   ],
   [
-   53.925,
+   56.087,
    0.762,
    "Thank you."
   ]

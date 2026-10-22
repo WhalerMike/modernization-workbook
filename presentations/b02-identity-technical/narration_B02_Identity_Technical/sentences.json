@@ -837,11 +837,11 @@
   ],
   [
    107.8,
-   4.812,
-   "Remediation belongs to the P K I owner, through Book 07."
+   6.612,
+   "Remediation belongs to the P K I owner, through the Federal Modernization Workbook's Book 07."
   ],
   [
-   112.612,
+   114.412,
    6.388,
    "The same inventory also tells you whether user certificates can move to Entra certificate-based authentication."
   ]
@@ -1737,31 +1737,31 @@
   ],
   [
    109.625,
-   9.887,
-   "Book 04's library is authoritative and adds CA018 through CA038 for the sis-uh B O D twenty-five oh-one baseline."
+   11.688,
+   "The Federal Modernization Workbook's Book 04's library is authoritative and adds CA018 through CA038 for the sis-uh B O D twenty-five oh-one baseline."
   ],
   [
-   119.513,
+   121.312,
    11.3,
    "Authentication strengths name what's accepted: phishing-resistant M F A is Windows Hello for Business, fido two passkeys, or multifactor certificate-based authentication."
   ],
   [
-   130.812,
+   132.613,
    4.412,
    "Authenticator push and phone sign-in aren't phishing-resistant on their own."
   ],
   [
-   135.225,
+   137.025,
    10.0,
    "Rollout has three stages: report-only for two to four weeks, a two-week pilot, then phased waves over four to eight weeks, each behind a monitoring gate."
   ],
   [
-   145.225,
+   147.025,
    3.513,
    "And never switch an all-users policy straight from off to on."
   ],
   [
-   148.738,
+   150.537,
    5.188,
    "Confirm the break-glass exclusion, and that both emergency accounts still sign in."
   ]
@@ -2361,11 +2361,11 @@
   ],
   [
    123.588,
-   5.612,
-   "Book 03, HR-Driven Identity, picks up where the attributes should come from."
+   7.8,
+   "The Federal Modernization Workbook's Book 03, HR-Driven Identity, picks up where the attributes should come from."
   ],
   [
-   129.2,
+   131.387,
    0.762,
    "Thank you."
   ]

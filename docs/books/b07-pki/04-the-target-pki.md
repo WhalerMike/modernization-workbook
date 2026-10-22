@@ -147,7 +147,7 @@ The program's CLM platform is **CyberArk Certificate Manager** (now part of Palo
 
 | Issuer | Who manages the lifecycle |
 |---|---|
-| Cloud PKI | Intune issues, renews and revokes. The CLM platform reads its inventory for reporting rather than managing it |
+| Cloud PKI | Intune issues, renews and revokes. CyberArk documents no Cloud PKI import, so getting these certificates into the CLM inventory for reporting needs a custom job from Microsoft Graph's Cloud PKI leaf-certificate report, a beta API, into the CLM's import interface; the CLM never manages them[^c04-cpki-graph] |
 | AD CS (retained) | The CLM platform requests, renews and tracks server certificates through its Microsoft CA integration, which supports enterprise and standalone CAs[^c04-tpf-msca] |
 | Public CAs | The CLM platform |
 | Federal PKI (PIV) | The card management system and the agency's credentialing office ([Book 03](../b03-hr-identity/09-credentials-and-certificates.md)) |
@@ -182,5 +182,6 @@ Two facts from the vendor documentation and the FedRAMP Marketplace shape how th
 [^c04-fips201]: NIST, FIPS 201-3, *Personal Identity Verification (PIV) of Federal Employees and Contractors*, January 2022, <https://csrc.nist.gov/pubs/fips/201-3/final> (accessed Oct 20, 2026).
 [^c04-venafi]: Thoma Bravo, "CyberArk Completes Acquisition of Machine Identity Management Leader Venafi," October 1, 2024, <https://www.thomabravo.com/press-releases/cyberark-completes-acquisition-of-machine-identity-management-leader-venafi> (accessed Oct 20, 2026).
 [^c04-pan]: Palo Alto Networks, "Palo Alto Networks Completes Acquisition of CyberArk to Secure the AI Era," press release, February 11, 2026, filed as Exhibit 99.1 to Form 8-K, <https://www.sec.gov/Archives/edgar/data/1327567/000119312526045600/d40626dex991.htm> (accessed Oct 21, 2026).
+[^c04-cpki-graph]: Microsoft Learn, "retrieveCloudPkiLeafCertificateSummaryReport" (Microsoft Graph beta), <https://learn.microsoft.com/graph/api/intune-cloudpkigraphservice-devicemanagementreports-retrievecloudpkileafcertificatesummaryreport?view=graph-rest-beta> (accessed Oct 22, 2026); CyberArk, Certificate Manager, Self-Hosted 26.1 documentation, CA import types (Microsoft CA, Amazon Private CA, Certificate Manager SaaS) (accessed Oct 22, 2026).
 [^c04-ngts]: Palo Alto Networks, "CyberArk Certificate Manager is now Next-Generation Trust Security" (cyberark.com/products/certificate-manager redirects here), <https://www.paloaltonetworks.com/network-security/next-gen-trust-security/certificate-manager> (accessed Oct 20, 2026).
 [^c04-fedramp]: General Services Administration, FedRAMP Marketplace product dataset (packages FR2001619337, FR2001619708, FR1913470600 and FR2317253567 for Palo Alto Networks; no package for Certificate Manager or Next-Generation Trust Security), <https://www.fedramp.gov/marketplace/products.json> (dataset last changed Oct 20, 2026; accessed Oct 20, 2026).

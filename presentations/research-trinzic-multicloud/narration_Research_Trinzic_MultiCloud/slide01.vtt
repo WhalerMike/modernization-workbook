@@ -83,11 +83,16 @@ labeled as design
 guidance, not endorsements.
 
 18
-00:00:59.675 --> 00:01:07.498
-Sources: Infoblox NIOS 9.1.x, vNIOS and
-Universal DDI documentation; AWS, Microsoft
+00:00:59.675 --> 00:01:05.788
+Sources: Infoblox NIOS 9.1.x, vNIOS
+and Universal DDI documentation; AWS,
 
 19
-00:01:07.498 --> 00:01:15.500
-Learn and Google Cloud documentation;
-FedRAMP Marketplace products.json; Book 08.
+00:01:05.788 --> 00:01:10.109
+Microsoft Learn and Google
+Cloud documentation;
+
+20
+00:01:10.109 --> 00:01:17.330
+FedRAMP Marketplace products.json; the
+Federal Modernization Workbook's Book 08.

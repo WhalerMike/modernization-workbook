@@ -94,56 +94,61 @@ CyberArk documents the
 http-01 and dns-01 challenges.
 
 20
-00:01:19.313 --> 00:01:24.107
-One federal limit: win-acme requires
-FIPS mode to be disabled on the
+00:01:19.313 --> 00:01:25.140
+One federal limit: CyberArk's installation
+guide says FIPS mode isn't supported for
 
 21
-00:01:24.107 --> 00:01:29.425
-CyberArk server, so where FIPS mode is
-required, use another tested client.
+00:01:25.140 --> 00:01:28.518
+its ACME service at all,
+so run the ACME service on
 
 22
-00:01:29.425 --> 00:01:34.048
+00:01:28.518 --> 00:01:32.150
+dedicated servers outside
+the FIPS-mode server set.
+
+23
+00:01:32.150 --> 00:01:36.773
 The drift checks run at least weekly and
 are committed to the evidence repository,
 
-23
-00:01:34.048 --> 00:01:37.175
+24
+00:01:36.773 --> 00:01:39.900
 because an assessor asks how
 long a finding stayed open.
 
-24
-00:01:37.175 --> 00:01:42.285
+25
+00:01:39.900 --> 00:01:45.010
 Watch for certificates within two renewal
 windows of expiry with no engine bound,
 
-25
-00:01:42.285 --> 00:01:45.366
+26
+00:01:45.010 --> 00:01:48.091
 issuance outside policy,
 missing strong mapping,
 
-26
-00:01:45.366 --> 00:01:50.175
+27
+00:01:48.091 --> 00:01:52.900
 trust store anchors that aren't approved,
 stale CRLs, and posture regressions.
 
-27
-00:01:50.175 --> 00:01:53.068
+28
+00:01:52.900 --> 00:01:55.793
 And treat a SID mismatch
 as a security event:
 
-28
-00:01:53.068 --> 00:01:56.925
+29
+00:01:55.793 --> 00:01:59.650
 it can mean the certificate
 was issued to a different user.
 
-29
-00:01:56.925 --> 00:02:01.116
+30
+00:01:59.650 --> 00:02:03.841
 That's event 41 on current
 domain controllers,
 
-30
-00:02:01.116 --> 00:02:07.580
+31
+00:02:03.841 --> 00:02:10.300
 but event 49 on Server 2008 and 2008
 R2, where 41 means no strong mapping.

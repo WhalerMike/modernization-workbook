@@ -67,8 +67,8 @@
   ],
   [
    61.725,
-   34.025,
-   "Sources: Research brief, After Active Directory: Who Names Devices, Who Registers Their D N S Records, and What an Agency Must Do (verified Oct. 22, 2026); Microsoft Learn, Apple, freedesktop.org, cloud-init, NetworkManager, FreeIPA, AWS and Infoblox NIOS 9.1 documentation; IETF RFCs; Book 05 Ch04; Book 08 Ch04, Ch07, Ch10."
+   35.737,
+   "Sources: Research brief, After Active Directory: Who Names Devices, Who Registers Their D N S Records, and What an Agency Must Do (verified Oct. 22, 2026); Microsoft Learn, Apple, freedesktop.org, cloud-init, NetworkManager, FreeIPA, AWS and Infoblox NIOS 9.1 documentation; IETF RFCs; the Federal Modernization Workbook's Book 05 Ch04; Book 08 Ch04, Ch07, Ch10."
   ]
  ],
  "2": [
@@ -134,8 +134,8 @@
   ],
   [
    76.675,
-   20.288,
-   "Sources: Book 08, Chapter 04, What A D-integrated D N S actually is, and Secure dynamic updates and the DHCP server; Microsoft Learn, Dynamic update (Windows Server D N S) [S26]; Policy CSP ADMX_DnsClient [S27]."
+   22.012,
+   "Sources: the Federal Modernization Workbook's Book 08, Chapter 04, What A D-integrated D N S actually is, and Secure dynamic updates and the DHCP server; Microsoft Learn, Dynamic update (Windows Server D N S) [S26]; Policy CSP ADMX_DnsClient [S27]."
   ]
  ],
  "3": [
@@ -176,36 +176,36 @@
   ],
   [
    45.675,
-   6.025,
-   "As an inference, Book 05's description of device preparation needs a review against this."
+   8.15,
+   "As an inference, the Federal Modernization Workbook's Book 05's description of device preparation needs a review against this."
   ],
   [
-   51.7,
+   53.825,
    9.137,
    "After enrollment, Intune's Rename action can rename corporate-owned Windows PCs and Macs, but not hybrid-joined devices, which need domain methods."
   ],
   [
-   60.837,
+   62.962,
    5.162,
    "Macs have no enrollment-time name template that I found; you rename after enrollment."
   ],
   [
-   66.0,
+   68.125,
    3.462,
    "Linux takes its name from cloud-init or a static hostname."
   ],
   [
-   69.463,
+   71.588,
    3.975,
    "Azure Arc keeps the server's hostname as a fixed resource name."
   ],
   [
-   73.438,
+   75.562,
    2.55,
    "Cloud VMs get names at create time."
   ],
   [
-   75.987,
+   78.112,
    43.475,
    "Sources: Microsoft Learn: Autopilot device preparation Entra join policy [S1], Compare device preparation and Autopilot [S2], Entra join Autopilot profile [S3], Hybrid join Domain Join profile [S4], Rename a device in Intune [S5], Accounts CSP [S6], macOS automated device enrollment [S7]; hostnamectl and hostname(5) [S10, S11]; cloud-init Set Hostname [S12]; azcmagent connect and Arc rename [S15, S16]; Azure ComputerName [S17]; EC2 hostname types [S21]; Book 05 Ch04, Naming."
   ]
@@ -370,8 +370,13 @@
   ],
   [
    79.987,
-   52.987,
-   "Sources: RFC 4701 DHCID, RFC 4702 DHCPv4 Client FQDN option, RFC 4703 FQDN conflict resolution, RFC 4704 DHCPv6 Client FQDN option [S31\u2013S34]; Microsoft Learn Dynamic update [S26]; Infoblox NIOS 9.1: Understanding DDNS Updates from DHCP, About the Client FQDN Option, Sending Updates for Zones on an External Name Server, Configuring D N S Servers for DDNS, Configuring DDNS Features, Accepting DDNS Updates from DHCP Clients [S40\u2013S44, S47]; Book 08 Ch04, Secure dynamic updates and the DHCP server."
+   51.9,
+   "Sources: RFC 4701 DHCID, RFC 4702 DHCPv4 Client FQDN option, RFC 4703 FQDN conflict resolution, RFC 4704 DHCPv6 Client FQDN option [S31\u2013S34]; Microsoft Learn Dynamic update [S26]; Infoblox NIOS 9.1: Understanding DDNS Updates from DHCP, About the Client FQDN Option, Sending Updates for Zones on an External Name Server, Configuring D N S Servers for DDNS, Configuring DDNS Features, Accepting DDNS Updates from DHCP Clients [S40\u2013S44, S47]; the Federal Modernization Workbook's Book 08 Ch04, Secure"
+  ],
+  [
+   131.887,
+   2.938,
+   "dynamic updates and the DHCP server."
   ]
  ],
  "6": [
@@ -519,8 +524,8 @@
   ],
   [
    84.3,
-   35.337,
-   "Sources: RFC 4862 IPv6 Stateless Address Autoconfiguration [S37]; RFC 8981 Temporary Address Extensions [S38]; RFC 4704 DHCPv6 Client FQDN option [S34]; Amazon EC2 instance hostname types [S21]; Book 08 Ch07 (Azure D N S Private Resolver platform constraints); research brief, Couldn't verify (Windows temporary IPv6 addresses)."
+   37.2,
+   "Sources: RFC 4862 IPv6 Stateless Address Autoconfiguration [S37]; RFC 8981 Temporary Address Extensions [S38]; RFC 4704 DHCPv6 Client FQDN option [S34]; Amazon EC2 instance hostname types [S21]; the Federal Modernization Workbook's Book 08 Ch07 (Azure D N S Private Resolver platform constraints); research brief, Couldn't verify (Windows temporary IPv6 addresses)."
   ]
  ],
  "8": [
@@ -581,8 +586,8 @@
   ],
   [
    84.65,
-   41.5,
-   "Sources: Microsoft Learn: D N S aging and scavenging [S30], azcmagent connect [S15], Rename Azure Arc-enabled servers [S16], VirtualMachineOSProfile.ComputerName [S17], Azure D N S private zones autoregistration [S20]; FreeIPA ipa-client-install [S14]; AWS: EC2 instance hostname types [S21], Working with private hosted zones [S22], AWS Compute Blog, Building a Dynamic D N S for Route 53 (2016) [S23]; Book 08 Ch07 and Ch10."
+   43.362,
+   "Sources: Microsoft Learn: D N S aging and scavenging [S30], azcmagent connect [S15], Rename Azure Arc-enabled servers [S16], VirtualMachineOSProfile.ComputerName [S17], Azure D N S private zones autoregistration [S20]; FreeIPA ipa-client-install [S14]; AWS: EC2 instance hostname types [S21], Working with private hosted zones [S22], AWS Compute Blog, Building a Dynamic D N S for Route 53 (2016) [S23]; the Federal Modernization Workbook's Book 08 Ch07 and Ch10."
   ]
  ],
  "9": [
@@ -690,56 +695,56 @@
   ],
   [
    17.587,
-   8.8,
-   "And Book 08 explains that if a name resolves to the wrong host, a perfectly valid ticket is presented to the wrong machine and rejected."
+   10.475,
+   "And the Federal Modernization Workbook's Book 08 explains that if a name resolves to the wrong host, a perfectly valid ticket is presented to the wrong machine and rejected."
   ],
   [
-   26.387,
+   28.062,
    1.762,
    "Second, certificates."
   ],
   [
-   28.15,
+   29.825,
    2.55,
    "A certificate binds a name to a key."
   ],
   [
-   30.7,
+   32.375,
    13.25,
    "Intune's SCEP certificate profiles, the protocol Intune uses to request device certificates, offer a device-name variable, but the full domain name variable is only for Windows domain-joined devices."
   ],
   [
-   43.95,
+   45.625,
    12.062,
    "As an inference, after A D the certificate's D N S name has to be built from the device name plus a fixed agency suffix, and it only matches D N S if that same name is registered."
   ],
   [
-   56.013,
+   57.688,
    1.275,
    "Third, logs."
   ],
   [
-   57.288,
+   58.962,
    5.088,
    "Book 12 joins every evidence record on an asset identity from the naming plane."
   ],
   [
-   62.375,
+   64.05,
    5.213,
    "Microsoft's own log model calls a hostname used as a device ID a last resort."
   ],
   [
-   67.588,
+   69.263,
    4.612,
    "As an inference, an unregistered or duplicated name breaks that join."
   ],
   [
-   72.2,
+   73.875,
    5.862,
    "Fourth, duplicates: Microsoft says its naming macros don't guarantee unique names."
   ],
   [
-   78.062,
+   79.737,
    36.9,
    "Sources: Microsoft Learn: How SSO to on-premises resources works on Microsoft Entra joined devices [S55]; Create and assign SCEP certificate profiles in Intune [S54]; Accounts CSP [S6]; Infoblox NIOS 9.1 About the Client FQDN Option [S41]; Book 08 Ch04 (What Kerberos needs from D N S); Book 12 Ch02 (evidence contract, ASIM); Book 15 Ch07 (CMDB reconcile); Book 07 Ch01."
   ]
@@ -802,8 +807,8 @@
   ],
   [
    66.475,
-   47.2,
-   "Sources: Research brief, Per-platform table, and the sources cited in each row: Autopilot and Rename [S1, S3\u2013S5], Accounts CSP [S6], macOS ADE and Apple MDM [S7, S9], systemd, cloud-init, NetworkManager, FreeIPA [S10\u2013S14], Arc and Azure [S15\u2013S17, S19, S20], AWS [S21\u2013S23], Dynamic update and ADMX_DnsClient [S26, S27], aging [S30], NIOS [S41, S42, S48]; Book 08 Ch04 and Ch10."
+   48.65,
+   "Sources: Research brief, Per-platform table, and the sources cited in each row: Autopilot and Rename [S1, S3\u2013S5], Accounts CSP [S6], macOS ADE and Apple MDM [S7, S9], systemd, cloud-init, NetworkManager, FreeIPA [S10\u2013S14], Arc and Azure [S15\u2013S17, S19, S20], AWS [S21\u2013S23], Dynamic update and ADMX_DnsClient [S26, S27], aging [S30], NIOS [S41, S42, S48]; the Federal Modernization Workbook's Book 08 Ch04 and Ch10."
   ]
  ],
  "12": [
@@ -879,8 +884,8 @@
   ],
   [
    84.188,
-   45.062,
-   "Sources: Research brief, Agency checklist (steps 1\u201317, all PROGRAM DESIGN GUIDANCE) and the facts each step cites: [S1\u2013S6, S10, S12, S14\u2013S17, S19\u2013S21, S23, S26, S27, S29, S30, S34\u2013S39, S41, S43\u2013S46, S48\u2013S52, S54]; Book 08 Ch04 and Ch10; Book 12 Ch02; Book 15 Ch07; Book 07 Ch01."
+   46.663,
+   "Sources: Research brief, Agency checklist (steps 1\u201317, all PROGRAM DESIGN GUIDANCE) and the facts each step cites: [S1\u2013S6, S10, S12, S14\u2013S17, S19\u2013S21, S23, S26, S27, S29, S30, S34\u2013S39, S41, S43\u2013S46, S48\u2013S52, S54]; the Federal Modernization Workbook's Book 08 Ch04 and Ch10; Book 12 Ch02; Book 15 Ch07; Book 07 Ch01."
   ]
  ],
  "13": [
@@ -921,51 +926,51 @@
   ],
   [
    30.85,
-   8.137,
-   "Book 05's description of device preparation, and its note on availability in the higher government clouds, both need a recheck."
+   9.925,
+   "The Federal Modernization Workbook's Book 05's description of device preparation, and its note on availability in the higher government clouds, both need a recheck."
   ],
   [
-   38.987,
+   40.775,
    4.987,
    "And ask any third-party VPN vendor whether its concentrator registers clients."
   ],
   [
-   43.975,
+   45.763,
    1.137,
    "Where does this fit?"
   ],
   [
-   45.112,
+   46.9,
    6.025,
    "Book 05, Chapter 04 covers Intune-first onboarding and the naming convention."
   ],
   [
-   51.138,
+   52.925,
    10.825,
    "Book 08 covers the A D D N S departure in Chapter 04, cloud private D N S in Chapter 07, and the migration sequence in Chapter 10."
   ],
   [
-   61.962,
+   63.75,
    9.65,
    "And two research items sit beside this one: Trinzic Alone, or Trinzic Plus Cloud D D I, and Infoblox D D I for Federal Agencies."
   ],
   [
-   71.612,
+   73.4,
    6.325,
    "One note on standing: this is research under review, not an endorsement by any federal agency."
   ],
   [
-   77.938,
+   79.725,
    0.762,
    "Thank you."
   ],
   [
-   78.7,
+   80.487,
    17.738,
    "Sources: Research brief, Couldn't verify and Agency checklist; Book 05 Ch04, Intune-First Onboarding; Book 08 Ch04, Ch07 and Ch10; research items Trinzic Alone, or Trinzic Plus Cloud D D I?"
   ],
   [
-   96.438,
+   98.225,
    3.212,
    "and Infoblox D D I for Federal Agencies."
   ]

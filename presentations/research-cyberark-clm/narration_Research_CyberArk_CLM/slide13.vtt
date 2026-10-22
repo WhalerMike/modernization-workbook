@@ -1,0 +1,142 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.475
+The public and cloud CA drivers.
+
+2
+00:00:02.475 --> 00:00:07.684
+For public TLS, 26.1 documents
+drivers for DigiCert,
+
+3
+00:00:07.684 --> 00:00:13.637
+Sectigo, GlobalSign, HID,
+QuoVadis, VikingCloud and Amazon.
+
+4
+00:00:13.637 --> 00:00:17.062
+Two 26.1 changes matter
+before you upgrade.
+
+5
+00:00:17.062 --> 00:00:21.597
+Entrust Certificate Services is no
+longer supported as a standalone CA;
+
+6
+00:00:21.597 --> 00:00:26.661
+CyberArk says those customers migrated
+to Sectigo Certificate Manager, though
+
+7
+00:00:26.661 --> 00:00:31.650
+the Entrust CA Gateway driver for Entrust's
+own CA software is still documented.
+
+8
+00:00:31.650 --> 00:00:37.125
+So if the agency's public CA is Entrust,
+plan the issuing path before the upgrade.
+
+9
+00:00:37.125 --> 00:00:42.736
+And for DigiCert client and S/MIME
+certificates, an email subject alternative
+
+10
+00:00:42.736 --> 00:00:48.175
+name is now required; automated renewals
+without one fail after the upgrade.
+
+11
+00:00:48.175 --> 00:00:49.525
+Note one absence.
+
+12
+00:00:49.525 --> 00:00:53.195
+There's no documented ACME
+client driver for public CAs,
+
+13
+00:00:53.195 --> 00:00:56.387
+so no Let's Encrypt-style
+path out to the internet.
+
+14
+00:00:56.387 --> 00:01:00.210
+The platform is an ACME
+server for your own clients,
+
+15
+00:01:00.210 --> 00:01:02.576
+not an ACME client to public CAs.
+
+16
+00:01:02.576 --> 00:01:06.100
+On the cloud side, I'm stating
+only what's documented.
+
+17
+00:01:06.100 --> 00:01:11.927
+The AWS Certificate Manager driver issues
+public and private certificates and works
+
+18
+00:01:11.927 --> 00:01:17.188
+with Amazon Private CA, and CA Import
+can pull Private CA certificates through
+
+19
+00:01:17.188 --> 00:01:22.125
+audit reports written to S3, which AWS
+limits to once every thirty minutes.
+
+20
+00:01:22.125 --> 00:01:26.678
+Azure Key Vault is a provisioning
+target, not a CA: the platform stores
+
+21
+00:01:26.678 --> 00:01:30.912
+certificates, keys and chains there
+and can bind them to web apps.
+
+22
+00:01:30.912 --> 00:01:33.659
+What I couldn't find is
+any statement that the Key
+
+23
+00:01:33.659 --> 00:01:36.612
+Vault driver supports
+Azure Government endpoints.
+
+24
+00:01:36.612 --> 00:01:40.199
+Test that, or ask CyberArk,
+before you rely on it.
+
+25
+00:01:40.199 --> 00:01:45.176
+Sources: CyberArk 26.1 System
+Requirements; Supported integrations;
+
+26
+00:01:45.176 --> 00:01:49.454
+Deprecated features; Important
+considerations; DigiCert,
+
+27
+00:01:49.454 --> 00:01:55.653
+GlobalSign and Entrust CA Gateway driver
+pages; AWS Certificate Manager CA template;
+
+28
+00:01:55.653 --> 00:01:58.796
+Configuring import from Amazon Private CA;
+
+29
+00:01:58.796 --> 00:02:02.620
+Azure integration
+prerequisites and permissions.

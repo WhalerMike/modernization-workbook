@@ -21,116 +21,116 @@ forwarding rules and policy, and
 every cloud DNS service consumes it.
 
 5
-00:00:16.713 --> 00:00:20.861
-Book 08 calls this overlay
-management, not replacement:
+00:00:16.713 --> 00:00:22.181
+The Federal Modernization Workbook's
+Book 08 calls this overlay management,
 
 6
-00:00:20.861 --> 00:00:25.913
-Route 53 still serves Route 53 zones,
-but the policy plane holds each
+00:00:22.181 --> 00:00:27.393
+not replacement: Route 53 still serves
+Route 53 zones, but the policy plane
 
 7
-00:00:25.913 --> 00:00:30.874
-rule once and pushes it everywhere,
-including to branch resolvers.
+00:00:27.393 --> 00:00:32.862
+holds each rule once and pushes it
+everywhere, including to branch resolvers.
 
 8
-00:00:30.874 --> 00:00:34.160
+00:00:32.862 --> 00:00:36.147
 Underneath, SC-22 asks
 for fault-tolerant name
 
 9
-00:00:34.160 --> 00:00:37.963
+00:00:36.147 --> 00:00:39.950
 service with internal and
 external roles separated.
 
 10
-00:00:37.963 --> 00:00:41.088
+00:00:39.950 --> 00:00:43.076
 When you evaluate products,
 ask whether each cloud
 
 11
-00:00:41.088 --> 00:00:44.362
+00:00:43.076 --> 00:00:46.350
 integration writes to the
 cloud or only reads from it.
 
 12
-00:00:44.362 --> 00:00:46.062
+00:00:46.350 --> 00:00:48.050
 The book gives examples.
 
 13
-00:00:46.062 --> 00:00:49.374
+00:00:48.050 --> 00:00:51.362
 One product's cloud
 discovery imports Route 53,
 
 14
-00:00:49.374 --> 00:00:53.025
+00:00:51.362 --> 00:00:55.013
 Azure and Google zones but
 can't export changes back.
 
 15
-00:00:53.025 --> 00:00:56.725
+00:00:55.013 --> 00:00:58.713
 Another's Azure DNS sync
 handles only simple-routing
 
 16
-00:00:56.725 --> 00:00:59.500
+00:00:58.713 --> 00:01:01.488
 records and leaves NS records read-only.
 
 17
-00:00:59.500 --> 00:01:02.125
+00:01:01.488 --> 00:01:04.112
 Each decides how a change
 reaches the cloud.
 
 18
-00:01:02.125 --> 00:01:05.112
+00:01:04.112 --> 00:01:07.099
 Second, DNSSEC with central key custody.
 
 19
-00:01:05.112 --> 00:01:10.019
+00:01:07.099 --> 00:01:12.007
 The book's position is to sign external
 zones and dot-gov delegations always,
 
 20
-00:01:10.019 --> 00:01:12.278
+00:01:12.007 --> 00:01:14.266
 validate on every agency resolver,
 
 21
-00:01:12.278 --> 00:01:16.562
+00:01:14.266 --> 00:01:18.550
 and sign internal zones only where
 the authorization requires it.
 
 22
-00:01:16.562 --> 00:01:21.137
+00:01:18.550 --> 00:01:23.125
 Rollover should be automated and audited
 in one place, and NIST recommends
 
 23
-00:01:21.137 --> 00:01:25.712
+00:01:23.125 --> 00:01:27.700
 a hardware security module for important
 keys, usually the key-signing key.
 
 24
-00:01:25.712 --> 00:01:30.963
+00:01:27.700 --> 00:01:32.950
 The clouds don't fill the gap: Route 53
 and Azure DNS sign public zones only,
 
 25
-00:01:30.963 --> 00:01:34.463
+00:01:32.950 --> 00:01:36.450
 and the default Azure
 resolver doesn't validate.
 
 26
-00:01:34.463 --> 00:01:35.901
+00:01:36.450 --> 00:01:37.888
 And check the defaults.
 
 27
-00:01:35.901 --> 00:01:41.142
+00:01:37.888 --> 00:01:43.130
 Windows Server's default
 zone-signing key is 1,024-bit RSA,
 
 28
-00:01:41.142 --> 00:01:46.010
+00:01:43.130 --> 00:01:47.980
 below NIST's floor, and NIOS
 defaults to RSA with SHA-1.

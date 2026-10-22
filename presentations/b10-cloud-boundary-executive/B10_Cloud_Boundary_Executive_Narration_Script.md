@@ -200,4 +200,4 @@ The next step needs no award. Before the next architecture review, list every cl
 
 The rules become mandatory on January 1, 2027, and new Rev5 requests stop on June 11, 2027. Neither date moves your own boundary. It's still yours to draw, to evidence and to sign.
 
-The license says what you bought; the boundary says what you may use. Book 10 has the detail, with every claim footnoted. Thank you.
+The license says what you bought; the boundary says what you may use. The Federal Modernization Workbook's Book 10 has the detail, with every claim footnoted. Thank you.

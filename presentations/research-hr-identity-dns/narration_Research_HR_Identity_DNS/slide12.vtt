@@ -75,67 +75,68 @@ They're all listed in the backup.
 Where does this fit?
 
 17
-00:00:48.512 --> 00:00:51.540
+00:00:48.512 --> 00:00:54.293
+The Federal Modernization Workbook's
 Book 03 covers HR-driven identity,
 
 18
-00:00:51.540 --> 00:00:58.351
+00:00:54.293 --> 00:01:00.363
 with Federal HR 2.0 in Chapter 03 and
 the provisioning pipeline in Chapter 05.
 
 19
-00:00:58.351 --> 00:01:04.987
+00:01:00.363 --> 00:01:06.999
 Book 08 covers DNS, DHCP and IP address
 management: split-brain DNS in Chapter 02,
 
 20
-00:01:04.987 --> 00:01:11.828
+00:01:06.999 --> 00:01:13.840
 cloud private endpoints in Chapter 07,
 the reference architecture in Chapter 08,
 
 21
-00:01:11.828 --> 00:01:15.300
+00:01:13.840 --> 00:01:17.312
 and the migration sequence in Chapter 10.
 
 22
-00:01:15.300 --> 00:01:21.639
+00:01:17.312 --> 00:01:23.651
 Three research items sit beside this one:
 Trinzic Alone, or Trinzic Plus Cloud DDI;
 
 23
-00:01:21.639 --> 00:01:26.937
+00:01:23.651 --> 00:01:28.949
 Infoblox DDI for Federal Agencies;
 and Who Names the Device After AD.
 
 24
-00:01:26.937 --> 00:01:30.433
+00:01:28.949 --> 00:01:32.445
 One note on standing: this
 is research under review,
 
 25
-00:01:30.433 --> 00:01:33.263
+00:01:32.445 --> 00:01:35.275
 not an endorsement by any federal agency.
 
 26
-00:01:33.263 --> 00:01:34.025
+00:01:35.275 --> 00:01:36.037
 Thank you.
 
 27
-00:01:34.025 --> 00:01:40.201
+00:01:36.037 --> 00:01:42.213
 Sources: Research brief, Couldn't
 verify and Agency checklist;
 
 28
-00:01:40.201 --> 00:01:45.287
+00:01:42.213 --> 00:01:47.299
 Book 03 Ch03 and Ch05; Book
 08 Ch02, Ch07, Ch08 and Ch10;
 
 29
-00:01:45.287 --> 00:01:50.857
+00:01:47.299 --> 00:01:52.869
 research items Trinzic Alone,
 or Trinzic Plus Cloud DDI?,
 
 30
-00:01:50.857 --> 00:01:57.700
+00:01:52.869 --> 00:01:59.710
 Infoblox DDI for Federal Agencies,
 and Who Names the Device After AD?

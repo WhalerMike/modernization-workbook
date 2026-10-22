@@ -16,59 +16,63 @@ and they get phishing-resistant
 MFA and Conditional Access.
 
 4
-00:00:11.637 --> 00:00:16.509
-Groups become Entra group logins,
-which SQL Server records as type X,
+00:00:11.637 --> 00:00:16.455
+Groups become Entra group logins, which
+SQL Server records as type X, with
 
 5
-00:00:16.509 --> 00:00:20.337
-with membership driven by
-HR attributes from Book 03.
+00:00:16.455 --> 00:00:19.426
+membership driven by
+HR attributes from the
 
 6
-00:00:20.337 --> 00:00:24.025
+00:00:19.426 --> 00:00:22.237
+Federal Modernization Workbook's Book 03.
+
+7
+00:00:22.237 --> 00:00:25.926
 Applications become service
 principals and managed identities,
 
-7
-00:00:24.025 --> 00:00:28.450
+8
+00:00:25.926 --> 00:00:30.351
 and the book is clear that Conditional
 Access doesn't cover managed identities.
 
-8
-00:00:28.450 --> 00:00:30.750
+9
+00:00:30.351 --> 00:00:32.650
 The migration is a parallel run.
 
-9
-00:00:30.750 --> 00:00:35.825
+10
+00:00:32.650 --> 00:00:37.725
 Create the Entra user beside the Windows
 user and copy its roles and permissions.
 
-10
-00:00:35.825 --> 00:00:39.661
+11
+00:00:37.725 --> 00:00:41.561
 Keep both until the audit shows
 no remaining Windows sessions,
 
-11
-00:00:39.661 --> 00:00:41.137
+12
+00:00:41.561 --> 00:00:43.037
 then disable the old one.
 
-12
-00:00:41.137 --> 00:00:46.724
+13
+00:00:43.037 --> 00:00:48.624
 Never convert in one step; and the old
 runbook's shortcut, ALTER USER with LOGIN,
 
-13
-00:00:46.724 --> 00:00:51.175
+14
+00:00:48.624 --> 00:00:53.075
 only converts on Azure SQL Managed
 Instance, not on SQL Server.
 
-14
-00:00:51.175 --> 00:00:56.073
+15
+00:00:53.075 --> 00:00:57.973
 One trap: the instance's Entra
 administrator becomes sysadmin, and changing
 
-15
-00:00:56.073 --> 00:01:00.790
+16
+00:00:57.973 --> 00:01:02.690
 that administrator leaves the old
 login as sysadmin until a DBA drops it.

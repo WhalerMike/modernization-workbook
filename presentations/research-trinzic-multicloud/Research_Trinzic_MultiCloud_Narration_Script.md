@@ -8,7 +8,7 @@ It's built for someone still learning DDI, so every term is explained the first 
 
 This is research under review. Every fact comes from vendor or government documentation opened on October twenty-second, 2026, and recommendations are labeled as design guidance, not endorsements.
 
-Sources: Infoblox NIOS 9.1.x, vNIOS and Universal DDI documentation; AWS, Microsoft Learn and Google Cloud documentation; FedRAMP Marketplace products.json; Book 08.
+Sources: Infoblox NIOS 9.1.x, vNIOS and Universal DDI documentation; AWS, Microsoft Learn and Google Cloud documentation; FedRAMP Marketplace products.json; the Federal Modernization Workbook's Book 08.
 
 ## Slide 2 — The words you need before we start
 
@@ -30,7 +30,7 @@ On premises, a Trinzic Grid is the agency's DNS and DHCP servers plus its addres
 
 It does several things well. DNS views let one Grid give internal clients one answer and outside clients another, on purpose. Response policy zones, which Infoblox calls DNS Firewall, block or redirect bad names, up to thirty-two of them, with hits logged to syslog. DNSSEC signing is centralized: only the Grid Master can be primary for a signed zone, and keys live on the Grid Master or on an external hardware security module, a Thales Luna or Entrust nShield, but not both. One caution: the default algorithm is RSA with SHA-1, which a federal deployment should change. DHCP runs as failover pairs. And the Grid can manage existing Windows DNS and DHCP servers without agents.
 
-Why does that matter? Book 08 of the workbook argues for one DDI policy plane: a single system of record for zones, forwarding rules, address data and security policy, with cloud DNS managed as an overlay, not replaced. On premises, the Grid fits that role. The question is the cloud edge. And note that on-premises appliances aren't a FedRAMP cloud service; they sit inside the agency's own boundary.
+Why does that matter? The Federal Modernization Workbook's Book 08 of the workbook argues for one DDI policy plane: a single system of record for zones, forwarding rules, address data and security policy, with cloud DNS managed as an overlay, not replaced. On premises, the Grid fits that role. The question is the cloud edge. And note that on-premises appliances aren't a FedRAMP cloud service; they sit inside the agency's own boundary.
 
 Sources: Infoblox NIOS 9.1.x: About Grids, Configuring DNS Views, About Infoblox DNS Firewall, Configuring DNSSEC on a Grid, Setting DNSSEC Parameters, DHCP Failover, About Managing Microsoft Windows Servers; Book 08, Chapter 08, What a DDI policy plane is made of; FedRAMP Marketplace products.json (FR2017257053 scope).
 
@@ -102,7 +102,7 @@ Three: DNSSEC keys stay on the Grid Master or its hardware security module. Rout
 
 Four: IPAM authority stays on the Grid. Clouds get delegated blocks, and one network view for routable space lets the Grid catch overlaps.
 
-Sources: Research synthesis, Avoiding split-brain, DNSSEC keys and IPAM authority: Infoblox Route 53, Azure DNS and GCP sync pages; Discovering Cloud Forwarder Endpoints; AWS private hosted zones, Resolver, GovCloud Route 53, DNSSEC signing; Microsoft Learn DNS Private Resolver and Azure DNSSEC; Google Cloud DNS best practices; Infoblox DNSSEC on a Grid and Network Views; Book 08, Chapter 02.
+Sources: Research synthesis, Avoiding split-brain, DNSSEC keys and IPAM authority: Infoblox Route 53, Azure DNS and GCP sync pages; Discovering Cloud Forwarder Endpoints; AWS private hosted zones, Resolver, GovCloud Route 53, DNSSEC signing; Microsoft Learn DNS Private Resolver and Azure DNSSEC; Google Cloud DNS best practices; Infoblox DNSSEC on a Grid and Network Views; the Federal Modernization Workbook's Book 08, Chapter 02.
 
 ## Slide 9 — Which option fits your agency? Design guidance
 
@@ -122,7 +122,7 @@ Sources: Research decision guidance table and its cited sources: Infoblox vDisco
 
 ## Slide 10 — Where this fits the workbook, and next steps
 
-Where does this fit? Book 08 makes the vendor-neutral case. Chapter 02 explains split-brain, Chapter 07 covers cloud private endpoints and IPAM, Chapter 08 describes the policy plane that overlays cloud DNS, and Chapter 12 covers platform selection. The research deep dive, Infoblox DDI for Federal Agencies, covers the platform, its FedRAMP scope, its risks, and how divisions share it.
+Where does this fit? The Federal Modernization Workbook's Book 08 makes the vendor-neutral case. Chapter 02 explains split-brain, Chapter 07 covers cloud private endpoints and IPAM, Chapter 08 describes the policy plane that overlays cloud DNS, and Chapter 12 covers platform selection. The research deep dive, Infoblox DDI for Federal Agencies, covers the platform, its FedRAMP scope, its risks, and how divisions share it.
 
 The decisions to take: which option for each cloud and impact level; one named owner for every zone; where DNSSEC keys live; and how address blocks reach each cloud.
 

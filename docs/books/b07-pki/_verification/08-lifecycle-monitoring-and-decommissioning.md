@@ -100,3 +100,9 @@ Cross-chapter consistency pass. Every changed external fact was re-checked on th
 | CF-1 | Renewal engines: AD CS autoenrollment now covers domain controller certificates (which serve LDAPS); NPS and RADIUS server certificates move to the CyberArk row, per Chapter 04 | Renewal engines table | restated-as-design | Chapter 04 issuer decision |
 | CF-2 | KDC event 41 caveat: IDs as stated hold from Server 2012 on; on 2008 R2 SP1 and 2008 SP2, 41 = no strong mapping and a SID mismatch is 49 | Revocation and strong mapping paragraph; troubleshooting row | verified | <https://support.microsoft.com/en-us/topic/kb5014754-certificate-based-authentication-changes-on-windows-domain-controllers-ad2c23b0-15d8-4340-a468-4d4f3b188f16> |
 | CF-3 | CBA CRL troubleshooting row lists AADSTS220501, 500173, 500179, 2205012 and 2205014 with causes; all five exist with these meanings (Appendix A's 500173 and 2205012 were correct too) | Troubleshooting reference | verified | <https://learn.microsoft.com/entra/identity/authentication/concept-certificate-based-authentication-certificate-revocation-list#crl-error-reference>; <https://learn.microsoft.com/troubleshoot/entra/entra-id/app-integration/error-code-aadsts220501-unable-to-download-certificate-revocation-list> |
+
+## Editor correction, October 22, 2026
+
+| Claim | Result | Source |
+|---|---|---|
+| Only win-acme needs FIPS mode off | corrected after the CyberArk implementation-guide research | CyberArk 26.1 Installation Guide p.50: FIPS not supported for ACMEv2 on any server |

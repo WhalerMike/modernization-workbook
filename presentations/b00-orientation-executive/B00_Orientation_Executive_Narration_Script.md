@@ -92,7 +92,7 @@ The decision here is the steward's, and it comes before the first change is made
 
 A plan earns its keep by saying what has to be true before the next step starts, not by putting dates on a chart.
 
-Book 01 of the workbook is canonical: seven phases and six gates. Phase 0, Pre-flight, ends at G0, Ready to Plan. Phase 1, Foundation, ends at G1, Foundation Complete. Phase 2, the pilot division, ends at G2, Pilot Clean. Phase 3, general rollout, at G3, Rollout Complete. Phase 4, legacy retirement, at G4, Legacy Quiet. Phase 5, AD DS retirement, at G5, AD Retired. Phase 6, steady state, runs on a cadence indefinitely.
+The Federal Modernization Workbook's Book 01 of the workbook is canonical: seven phases and six gates. Phase 0, Pre-flight, ends at G0, Ready to Plan. Phase 1, Foundation, ends at G1, Foundation Complete. Phase 2, the pilot division, ends at G2, Pilot Clean. Phase 3, general rollout, at G3, Rollout Complete. Phase 4, legacy retirement, at G4, Legacy Quiet. Phase 5, AD DS retirement, at G5, AD Retired. Phase 6, steady state, runs on a cadence indefinitely.
 
 The gates are owned in proportion to what they end. The steward clears G0, G1 and G4, and co-signs G2 with the executive sponsor. The sponsor and steering committee clear G3. The sponsor and the CIO clear G5.
 
@@ -106,7 +106,7 @@ Inside the phases, five workstreams carry the work: identity, policy, services, 
 
 They still have an order. Identity comes first, the attribute model, dynamic membership and the lifecycle origin, because policy, access, devices and data all decide on the basis of who or what is asking. Policy follows identity. Services, naming and addressing, can run in parallel and may bridge. Compute, the device and server work, comes mid to late. Access, token-based and application-aware, comes later, because it consumes both identity and policy.
 
-The master plan organized the same work as five technology pillars, and that view leaves two gaps. Nobody owns the question of which policy surface owns a setting, and the access plane has no pillar at all. Book 01 closes them by giving policy a security-engineering lead and access a joint identity and security lead.
+The master plan organized the same work as five technology pillars, and that view leaves two gaps. Nobody owns the question of which policy surface owns a setting, and the access plane has no pillar at all. The Federal Modernization Workbook's Book 01 closes them by giving policy a security-engineering lead and access a joint identity and security lead.
 
 The critical path runs through the platform, the assessment, attribute and group design, the pilot, each rollout wave, and cutover validation. Every week lost in assessment or attribute design moves every later gate. And one dependency never relaxes: PKI waits for identity.
 
@@ -128,7 +128,7 @@ The projects don't form a second governance structure, and no project clears a p
 
 Who decides? The book's advice: name the people allowed to say no, give each decision one of them, and make the repository remember who said yes.
 
-The book uses Book 01's program-wide model. The executive sponsor, with the CIO, owns scope, funding and sequence, breaks ties, and decides when Active Directory components retire. The CISO sets the control requirements every target surface must meet: authentication strength, the Conditional Access baseline, logging. The authorizing official is the only official who can accept security and privacy risk. The steward leads the program office and owns the plan, wave sequencing, cross-domain dependencies and the repository. A change to the target architecture, or to the rules for authoritative origin, needs the steward and the sponsor together. HR decides what each organizational attribute means. And workstream leads own their designs, inside the CISO's requirements.
+The book uses the Federal Modernization Workbook's Book 01's program-wide model. The executive sponsor, with the CIO, owns scope, funding and sequence, breaks ties, and decides when Active Directory components retire. The CISO sets the control requirements every target surface must meet: authentication strength, the Conditional Access baseline, logging. The authorizing official is the only official who can accept security and privacy risk. The steward leads the program office and owns the plan, wave sequencing, cross-domain dependencies and the repository. A change to the target architecture, or to the rules for authoritative origin, needs the steward and the sponsor together. HR decides what each organizational attribute means. And workstream leads own their designs, inside the CISO's requirements.
 
 Two federal requirements already name people who belong in these rows. M-22-09 required a zero trust implementation lead within 30 days, and an aligned C-suite. M-19-17 requires an integrated, agency-wide ICAM governance structure.
 
@@ -142,7 +142,7 @@ Residual risk. The plans let the security lead and the steward accept it jointly
 
 Budget and licenses. They belong to the sponsor and CIO, who own funding. The steward prepares the case.
 
-Gate decisions. The master plan made the steward the sole signatory at every gate. Book 01 spreads the gates across the steward, the sponsor, the steering committee and the CIO, in proportion to what each gate ends.
+Gate decisions. The master plan made the steward the sole signatory at every gate. The Federal Modernization Workbook's Book 01 spreads the gates across the steward, the sponsor, the steering committee and the CIO, in proportion to what each gate ends.
 
 Four separations keep the governance honest. The authorizing official is a government official, the decision can't be delegated, and the role stays outside the program office: contractors can prepare a risk acceptance, but can't sign one. No one holds two roles that check each other. Requesters don't approve their own changes. And the component that decides isn't the one that acts.
 
@@ -164,7 +164,7 @@ Now, how it runs, starting with pre-flight. The program adopts one rule unchange
 
 First, the program builds the place where every decision will be written down: a platform host with one authoritative, protected writer. The reference design is Gitea on Windows Server 2025, one way to meet the requirement, not the only one. The host is a Tier 0 system, and a branch protection the steward can quietly override is a convention, not a control.
 
-Then it reads the estate: read-only first, at default rights, then narrow delegated additions and a security assessment. The master plan's twelve Active Directory domains are joined by the DHCP, LDAP-binding and service-principal-name streams that Book 01 adds, and by an inventory of RADIUS and NPS, which depend on the directory too. The phase delivers twenty-three artifacts: fifteen committed before G0, and eight generated plans approved just after it.
+Then it reads the estate: read-only first, at default rights, then narrow delegated additions and a security assessment. The master plan's twelve Active Directory domains are joined by the DHCP, LDAP-binding and service-principal-name streams that the Federal Modernization Workbook's Book 01 adds, and by an inventory of RADIUS and NPS, which depend on the directory too. The phase delivers twenty-three artifacts: fifteen committed before G0, and eight generated plans approved just after it.
 
 G0 has three conditions: the platform host is operational, the assessment is committed, and no priority-one finding is open. Every finding is classed Critical, High, Medium or Low, and each class has a gate that closes it.
 
@@ -176,7 +176,7 @@ Phase 1, Foundation, opens by generating the eight plans from the committed asse
 
 The steward clears G1 when the plans and designs are approved, the baseline Conditional Access policies are enforced after at least a week in report-only, the emergency access accounts are vaulted and tested, the HR feed is live, and every High finding is remediated.
 
-Phase 2 proves the whole pattern on real people. Book 01 sets the pilot's scope as one division, typically IT, which tolerates disruption best, and the master plan's sizes are a floor for what it must exercise. It's measured against eight criteria, from sign-in success to help desk volume. The values are illustrative: set them in the decision log before the pilot opens, and evaluate them from the systems, not from opinion. Every surface has a rollback trigger and a procedure.
+Phase 2 proves the whole pattern on real people. The Federal Modernization Workbook's Book 01 sets the pilot's scope as one division, typically IT, which tolerates disruption best, and the master plan's sizes are a floor for what it must exercise. It's measured against eight criteria, from sign-in success to help desk volume. The values are illustrative: set them in the decision log before the pilot opens, and evaluate them from the systems, not from opinion. Every surface has a rollback trigger and a procedure.
 
 G2 is signed jointly by the steward and the executive sponsor: zero drift for the agreed hold period, every criterion met, and no hybrid-joined PC without a cut date.
 

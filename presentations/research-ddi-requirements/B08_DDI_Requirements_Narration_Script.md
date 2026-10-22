@@ -10,7 +10,7 @@ Vendors appear on these slides only as examples. Nothing here recommends or rank
 
 ## Slide 2 — DNS, DHCP and IPAM now form a control plane
 
-Almost every network connection begins with a DNS query, and in a hybrid multi-cloud agency the answer decides much more than an address. Book 08 counts six jobs DNS now does: publishing private endpoint addresses, selecting SaaS front doors, enforcing security policy, anchoring certificate revocation checks, and carrying the service identity and application surface that Zero Trust policy is written against. NIST's 2026 DNS deployment guide puts it plainly: DNS has become more than a service; it's a security control.
+Almost every network connection begins with a DNS query, and in a hybrid multi-cloud agency the answer decides much more than an address. The Federal Modernization Workbook's Book 08 counts six jobs DNS now does: publishing private endpoint addresses, selecting SaaS front doors, enforcing security policy, anchoring certificate revocation checks, and carrying the service identity and application surface that Zero Trust policy is written against. NIST's 2026 DNS deployment guide puts it plainly: DNS has become more than a service; it's a security control.
 
 Yet most agencies run it across as many as five independent platforms: Active Directory DNS or an on-premises grid, Route 53, Azure DNS, Google Cloud DNS and VMware NSX. None shares state with the others. The result is split-brain DNS, the same name giving different answers depending on where the query starts, and it fails quietly, as certificate errors and access denials rather than DNS errors. And the forwarding rules that join the platforms usually belong to no team at all.
 
@@ -34,7 +34,7 @@ NIST SP 800-81 Revision 3 ties these together. It's guidance, not a mandate, and
 
 Now seven capabilities, each tied to a requirement.
 
-First, authoritative DNS across every environment without split-brain. The platform has to hold one system of record for zones, forwarding rules and policy, and every cloud DNS service consumes it. Book 08 calls this overlay management, not replacement: Route 53 still serves Route 53 zones, but the policy plane holds each rule once and pushes it everywhere, including to branch resolvers. Underneath, SC-22 asks for fault-tolerant name service with internal and external roles separated.
+First, authoritative DNS across every environment without split-brain. The platform has to hold one system of record for zones, forwarding rules and policy, and every cloud DNS service consumes it. The Federal Modernization Workbook's Book 08 calls this overlay management, not replacement: Route 53 still serves Route 53 zones, but the policy plane holds each rule once and pushes it everywhere, including to branch resolvers. Underneath, SC-22 asks for fault-tolerant name service with internal and external roles separated.
 
 When you evaluate products, ask whether each cloud integration writes to the cloud or only reads from it. The book gives examples. One product's cloud discovery imports Route 53, Azure and Google zones but can't export changes back. Another's Azure DNS sync handles only simple-routing records and leaves NS records read-only. Each decides how a change reaches the cloud.
 
@@ -44,7 +44,7 @@ Second, DNSSEC with central key custody. The book's position is to sign external
 
 Third, DNS security: two layers in series. The agency's own resolvers apply the agency's policy, response policy zones or a DNS firewall, with every hit logged. Then all egress recursion goes upstream through CISA's Protective DNS, which blocks, redirects or sinkholes queries that match threat indicators. So the platform has to forward to it, preferably encrypted, and that's worth testing: CISA's own guidance notes that some vendors don't support the protocols for forwarding queries to its resolver.
 
-Order matters more than presence. Book 08's Decision 2 is that the agency resolver is always the first hop. If the agency also uses a SASE provider's DNS service, that service is a forwarding target of the agency resolver, never the place the branch edge redirects to. Every component present, in the wrong order, quietly removes the agency's own policy, validation and logging.
+Order matters more than presence. The Federal Modernization Workbook's Book 08's Decision 2 is that the agency resolver is always the first hop. If the agency also uses a SASE provider's DNS service, that service is a forwarding target of the agency resolver, never the place the branch edge redirects to. Every component present, in the wrong order, quietly removes the agency's own policy, validation and logging.
 
 Encrypted DNS completes it. M-22-09 requires encrypted DNS wherever technically supported, with endpoints explicitly configured to agency-designated resolvers rather than ones they discover. So the platform must terminate DNS over HTTPS or TLS on its resolvers and use it upstream. And clients mustn't route around it: TIC 3.0 includes filtering that blocks unauthorized DNS over HTTPS resolvers.
 
@@ -60,7 +60,7 @@ Fifth, DHCP that stays up and stays honest. Failover partners move and are teste
 
 ## Slide 7 — Automation and logging: every change and query on record
 
-Sixth, automation. No rule requires an API, but Book 08's operating model depends on one. Every object, addresses, DHCP, DNS configuration and DNS data, should be reachable through a documented API, so infrastructure as code, ITSM workflows, certificate automation and pipelines all go through the same authority and the same audit trail. Automation runs as non-interactive service accounts, held to the same roles and scopes as people and unable to log in to the console. Expect supported Terraform and Ansible, ITSM actions that reserve an address or register a record, and a path for existing scripts. Check how the API authenticates; NIOS, for example, added OAuth 2.0 and OpenID Connect for its API in release 9.1.
+Sixth, automation. No rule requires an API, but the Federal Modernization Workbook's Book 08's operating model depends on one. Every object, addresses, DHCP, DNS configuration and DNS data, should be reachable through a documented API, so infrastructure as code, ITSM workflows, certificate automation and pipelines all go through the same authority and the same audit trail. Automation runs as non-interactive service accounts, held to the same roles and scopes as people and unable to log in to the console. Expect supported Terraform and Ansible, ITSM actions that reserve an address or register a record, and a path for existing scripts. Check how the API authenticates; NIOS, for example, added OAuth 2.0 and OpenID Connect for its API in release 9.1.
 
 Seventh, logging to the SIEM, sized for the load. The requirement here is M-26-14's retention: logs searchable for six months and retrievable for a year, with synchronized timestamps, available to the agency's security operations center. The name layer contributes query logs, lease history, policy hits and the change audit trail.
 
@@ -92,7 +92,7 @@ So every candidate has a gap to close, in the contract or in a plan of action an
 
 ## Slide 10 — Divisions get a fenced scope; everything else is denied
 
-Now the question many agencies care about most: can divisions run their own DNS, DHCP and IPAM without breaking central governance? Book 08 says yes, if the platform supports a specific model. Corporate administrators see everything. Each division gets a scope limited to its own zones, address blocks and DHCP scopes, with predefined manager, operator and auditor roles, and automation accounts held to the same scope.
+Now the question many agencies care about most: can divisions run their own DNS, DHCP and IPAM without breaking central governance? The Federal Modernization Workbook's Book 08 says yes, if the platform supports a specific model. Corporate administrators see everything. Each division gets a scope limited to its own zones, address blocks and DHCP scopes, with predefined manager, operator and auditor roles, and automation accounts held to the same scope.
 
 As an example, in Infoblox NIOS every resource is denied by default. A division's administrator group gets read-write on its own address block, which cascades to its networks, ranges and reservations; read-write on its own zones, with read-only on the parent view; and DNS and DHCP permissions, including service restarts, on its own servers only. One setting matters: it makes address and pointer records need rights on both the zone and the address block, so a division with access to a shared zone can't point a name into another division's space. And only central superusers create groups, roles and tag definitions, so a division can't widen its own rights.
 
@@ -148,7 +148,7 @@ The research lab numbered itself in a range that overlaps headquarters. It gets 
 
 ## Slide 15 — Who decides, under Book 08's responsibility matrix
 
-Who decides all this? Book 08's Chapter 09 gives one decider per row, and separates deciding from doing.
+Who decides all this? The Federal Modernization Workbook's Book 08's Chapter 09 gives one decider per row, and separates deciding from doing.
 
 The sponsor and CIO decide the platform and its deployment model, with the DNS/DDI team doing the evaluation and the CISO, the authorizing official and the operating teams consulted. They also decide how divisions are scoped, and break ties over the resolver path.
 
@@ -164,7 +164,7 @@ That team holds the most powerful roles in the design, so the book scopes its au
 
 So, the decisions and the next steps.
 
-First, the sponsor and CIO authorize one authoritative DDI policy plane, and the DNS/DDI team settles Book 08's five configuration decisions within 90 days and reports the residual risk to the authorizing official. That's the book's ask.
+First, the sponsor and CIO authorize one authoritative DDI policy plane, and the DNS/DDI team settles the Federal Modernization Workbook's Book 08's five configuration decisions within 90 days and reports the residual risk to the authorizing official. That's the book's ask.
 
 Second, write the requirement as capabilities, each mapped to the rule behind it: signing and validation, encrypted DNS, Protective DNS forwarding, discovery and inventory, IPv6, logging retention. No rule names a product, so the solicitation shouldn't either.
 

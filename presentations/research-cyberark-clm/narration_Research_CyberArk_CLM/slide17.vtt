@@ -1,0 +1,137 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:00.900
+Ownership.
+
+2
+00:00:00.900 --> 00:00:06.333
+The Federal Modernization Workbook's Book
+07 Chapter 05 says an expired certificate
+
+3
+00:00:06.333 --> 00:00:11.154
+is almost always an ownership failure
+first, so every certificate class has
+
+4
+00:00:11.154 --> 00:00:15.975
+one renewal owner, who answers for it
+even when automation does the renewing.
+
+5
+00:00:15.975 --> 00:00:18.138
+The platform is where that's recorded.
+
+6
+00:00:18.138 --> 00:00:21.525
+What the platform provides:
+placement rules and placement
+
+7
+00:00:21.525 --> 00:00:24.775
+jobs move discovered certificates
+into policy folders.
+
+8
+00:00:24.775 --> 00:00:28.123
+A folder's policy sets
+inherited configuration,
+
+9
+00:00:28.123 --> 00:00:30.550
+such as the CA template and key size.
+
+10
+00:00:30.550 --> 00:00:35.350
+Object permissions are granted on folders
+and objects, and Teams group the people.
+
+11
+00:00:35.350 --> 00:00:39.835
+The documented roles are Master Admin,
+Server Owner, Certificate Approver
+
+12
+00:00:39.835 --> 00:00:44.175
+and Team Owner, and workflows can
+require approvals at lifecycle stages.
+
+13
+00:00:44.175 --> 00:00:47.438
+The program's design guidance
+turns that into ownership.
+
+14
+00:00:47.438 --> 00:00:52.261
+Build the policy tree to mirror Book
+07 Chapter 05's certificate classes,
+
+15
+00:00:52.261 --> 00:00:56.763
+so a certificate's folder tells you
+its class and its renewal engine.
+
+16
+00:00:56.763 --> 00:00:59.600
+Give every certificate
+a named Server Owner.
+
+17
+00:00:59.600 --> 00:01:04.123
+Map Teams to Entra groups;
+release 26.1 adds SCIM 2.0,
+
+18
+00:01:04.123 --> 00:01:08.425
+and CyberArk lists Entra
+ID as supported for it.
+
+19
+00:01:08.425 --> 00:01:12.802
+If the agency adopts the ServiceNow
+app, which we'll see next, associate
+
+20
+00:01:12.802 --> 00:01:15.746
+certificates with
+configuration items so the
+
+21
+00:01:15.746 --> 00:01:18.312
+CMDB owner and the platform's owner agree.
+
+22
+00:01:18.312 --> 00:01:23.330
+And follow Chapter 08's alert: any
+certificate within two renewal windows of
+
+23
+00:01:23.330 --> 00:01:28.587
+expiry with no renewal path bound to it is
+an incident while it can still be fixed.
+
+24
+00:01:28.587 --> 00:01:33.301
+Sources: CyberArk 26.1 Placement
+rules; Policies overview;
+
+25
+00:01:33.301 --> 00:01:39.487
+Permissions and abilities; Teams and
+policy folder permissions; Workflows;
+
+26
+00:01:39.487 --> 00:01:45.182
+Configuring expiration event
+intervals; Notifications and logging;
+
+27
+00:01:45.182 --> 00:01:50.386
+Notification channels; What's New
+(SCIM 2.0); Vendor support for SSO;
+
+28
+00:01:50.386 --> 00:01:56.420
+ServiceNow Store, Machine Identity
+Protection; Book 07, Chapters 05 and 08.

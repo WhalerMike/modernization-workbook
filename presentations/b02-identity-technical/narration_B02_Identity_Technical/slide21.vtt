@@ -118,46 +118,46 @@ Appendix C carries Graph JSON templates,
 all created in report-only state.
 
 25
-00:01:49.625 --> 00:01:54.129
-Book 04's library is
-authoritative and adds CA018
+00:01:49.625 --> 00:01:55.469
+The Federal Modernization Workbook's
+Book 04's library is authoritative
 
 26
-00:01:54.129 --> 00:01:59.512
-through CA038 for the
-CISA BOD 25-01 baseline.
+00:01:55.469 --> 00:02:01.313
+and adds CA018 through CA038
+for the CISA BOD 25-01 baseline.
 
 27
-00:01:59.512 --> 00:02:04.965
+00:02:01.313 --> 00:02:06.764
 Authentication strengths name what's
 accepted: phishing-resistant MFA is Windows
 
 28
-00:02:04.965 --> 00:02:10.813
+00:02:06.764 --> 00:02:12.612
 Hello for Business, FIDO2 passkeys, or
 multifactor certificate-based authentication.
 
 29
-00:02:10.813 --> 00:02:15.224
+00:02:12.612 --> 00:02:17.025
 Authenticator push and phone sign-in
 aren't phishing-resistant on their own.
 
 30
-00:02:15.224 --> 00:02:20.266
+00:02:17.025 --> 00:02:22.066
 Rollout has three stages: report-only
 for two to four weeks, a two-week pilot,
 
 31
-00:02:20.266 --> 00:02:25.225
+00:02:22.066 --> 00:02:27.025
 then phased waves over four to eight
 weeks, each behind a monitoring gate.
 
 32
-00:02:25.225 --> 00:02:28.738
+00:02:27.025 --> 00:02:30.538
 And never switch an all-users
 policy straight from off to on.
 
 33
-00:02:28.738 --> 00:02:33.980
+00:02:30.538 --> 00:02:35.780
 Confirm the break-glass exclusion, and that
 both emergency accounts still sign in.

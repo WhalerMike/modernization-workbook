@@ -1283,6 +1283,7 @@ srcSlide("Learn more: official Infoblox training", [
   "Hands-on: browser labs at infoblox.com/labs (four hours per lab); 60-day vNIOS evaluation (NIOS 9.0.3 images); lab guides at docs.education.infoblox.com/lab.",
   "Automation: NIOS 9.1.0 WAPI documentation (PDF), Universal DDI API Guide, Developer Portal, WAPI Bytes video playlist.",
   "Community and video: community.infoblox.com forums; YouTube @InfobloxInc playlists. NetMRI Administrator (IMA) exam retires Dec. 31, 2026.",
+  "Federal session (vendor): \"Strengthening Federal Cybersecurity with Encrypted DNS and Zero Trust\" (Infoblox, Nov. 6, 2025; youtube.com/watch?v=Tytqevx9pdg). It cites EO 14028; the federal encrypted-DNS requirements are M-22-09 and EO 14144 sec. 4(c).",
 ]);
 
 // ------------------------------------------------------------------ report

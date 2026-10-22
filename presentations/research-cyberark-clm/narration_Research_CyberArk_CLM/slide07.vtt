@@ -1,0 +1,138 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.400
+Who signs in to the console, and how.
+
+2
+00:00:02.400 --> 00:00:08.729
+Version 26.1 supports single sign-on to
+the web console through OIDC or SAML, and
+
+3
+00:00:08.729 --> 00:00:11.989
+CyberArk's vendor table lists Microsoft
+
+4
+00:00:11.989 --> 00:00:15.537
+Entra ID as supported
+for SAML, OIDC and SCIM.
+
+5
+00:00:15.537 --> 00:00:19.812
+The MMC snap-ins sign in
+with the OIDC device flow.
+
+6
+00:00:19.812 --> 00:00:23.369
+CyberArk also documents
+client-certificate login:
+
+7
+00:00:23.369 --> 00:00:27.753
+you enable certificate authentication,
+choose the trusted CAs,
+
+8
+00:00:27.753 --> 00:00:32.882
+and set the IIS site to require client
+certificates; the platform takes the
+
+9
+00:00:32.882 --> 00:00:37.762
+identity from the certificate's UPN,
+email, common name, or SID extension.
+
+10
+00:00:37.762 --> 00:00:41.863
+What CyberArk doesn't document
+is PIV or CAC by name.
+
+11
+00:00:41.863 --> 00:00:46.373
+So the program's design guidance is to
+federate the web console to Entra ID,
+
+12
+00:00:46.373 --> 00:00:51.328
+and let administrators present their
+PIV card through Entra certificate-based
+
+13
+00:00:51.328 --> 00:00:54.212
+authentication, as the
+Federal Modernization
+
+14
+00:00:54.212 --> 00:00:56.874
+Workbook's Book 07
+Chapter 06 configures it.
+
+15
+00:00:56.874 --> 00:01:02.267
+That keeps one CBA trust store and
+Conditional Access in front of the console,
+
+16
+00:01:02.267 --> 00:01:05.637
+rather than a second,
+separate trust store in IIS.
+
+17
+00:01:05.637 --> 00:01:08.963
+The native client-certificate
+login stays a fallback.
+
+18
+00:01:08.963 --> 00:01:11.746
+Master Admin is eligible, not standing,
+
+19
+00:01:11.746 --> 00:01:14.963
+and the local master
+admin is the break-glass.
+
+20
+00:01:14.963 --> 00:01:16.138
+Then the API.
+
+21
+00:01:16.138 --> 00:01:18.905
+Automation authenticates with OAuth tokens
+
+22
+00:01:18.905 --> 00:01:21.526
+from the platform's authentication server.
+
+23
+00:01:21.526 --> 00:01:25.422
+The defaults are a ninety-day
+access token and a one-year grant,
+
+24
+00:01:25.422 --> 00:01:28.250
+and the program's guidance
+is to shorten both.
+
+25
+00:01:28.250 --> 00:01:30.475
+API keys are no longer supported.
+
+26
+00:01:30.475 --> 00:01:36.406
+Sources: CyberArk 26.1 What's New; Login
+experience; Vendor support for SSO;
+
+27
+00:01:36.406 --> 00:01:40.162
+Configuration Console Authentication node;
+
+28
+00:01:40.162 --> 00:01:46.982
+Configuring certificate authentication in
+the platform and IIS; Setting up OAuth;
+
+29
+00:01:46.982 --> 00:01:52.970
+Authentication options; Deprecated
+features; Book 07, Chapters 05 and 06.

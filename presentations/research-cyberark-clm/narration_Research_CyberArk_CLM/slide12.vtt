@@ -1,0 +1,168 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.437
+Now the sensitive part.
+
+2
+00:00:01.437 --> 00:00:06.201
+Issue and Manage Certificates is
+the AD CS certificate-manager right.
+
+3
+00:00:06.201 --> 00:00:08.971
+Microsoft says it lets
+the holder issue, deny,
+
+4
+00:00:08.971 --> 00:00:13.838
+revoke and reinstate certificates
+without the broader Manage CA permission.
+
+5
+00:00:13.838 --> 00:00:19.226
+Defender for Identity's ESC7 assessment
+flags unprivileged holders of it.
+
+6
+00:00:19.226 --> 00:00:24.113
+Here's the first correction to the
+Federal Modernization Workbook's Book 07.
+
+7
+00:00:24.113 --> 00:00:28.322
+Chapter 05 says the program scopes
+the account to the templates
+
+8
+00:00:28.322 --> 00:00:32.451
+the platform is meant to issue, as
+if the CA had a control for that.
+
+9
+00:00:32.451 --> 00:00:37.697
+Microsoft's current guidance says to define
+each certificate manager's templates and
+
+10
+00:00:37.697 --> 00:00:41.705
+requesters and to run positive
+and negative authorization tests,
+
+11
+00:00:41.705 --> 00:00:46.660
+but it also says Microsoft Learn doesn't
+publish a Windows Server 2025 step-by-step
+
+12
+00:00:46.660 --> 00:00:50.523
+procedure for configuring
+certificate-manager restrictions,
+
+13
+00:00:50.523 --> 00:00:53.875
+and to validate any existing
+restriction in a lab first.
+
+14
+00:00:53.875 --> 00:00:56.595
+So the scoping rests on
+template permissions,
+
+15
+00:00:56.595 --> 00:00:59.888
+plus allowed and denied test
+requests proven in the lab.
+
+16
+00:00:59.888 --> 00:01:03.413
+Book 07 has been updated
+to match to say so.
+
+17
+00:01:03.413 --> 00:01:05.480
+My inference about why that matters:
+
+18
+00:01:05.480 --> 00:01:08.788
+template permissions limit
+what the account can request.
+
+19
+00:01:08.788 --> 00:01:11.840
+They don't narrow the
+certificate-manager right itself,
+
+20
+00:01:11.840 --> 00:01:15.225
+which is why the negative test
+and the alerts carry the weight.
+
+21
+00:01:15.225 --> 00:01:18.200
+The program's controls,
+as design guidance.
+
+22
+00:01:18.200 --> 00:01:21.474
+A dedicated account, a group
+managed service account
+
+23
+00:01:21.474 --> 00:01:24.450
+where the CA allows it,
+denied interactive logon.
+
+24
+00:01:24.450 --> 00:01:28.550
+DCOM to the CA allowed only from
+the platform's engine servers.
+
+25
+00:01:28.550 --> 00:01:31.725
+Read and Enroll only on
+the platform's templates.
+
+26
+00:01:31.725 --> 00:01:37.432
+Alerts on event 4887 when this
+requester gets a certificate
+
+27
+00:01:37.432 --> 00:01:42.112
+outside those templates,
+and on 4882, 4890 and 4892.
+
+28
+00:01:42.112 --> 00:01:45.627
+And the account goes into
+the quarterly ESC7 review,
+
+29
+00:01:45.627 --> 00:01:48.325
+with the negative test result on record.
+
+30
+00:01:48.325 --> 00:01:54.434
+Sources: Microsoft Learn, Secure, delegate
+and audit a certification authority;
+
+31
+00:01:54.434 --> 00:01:58.506
+Review and dispose of
+pending certificate requests;
+
+32
+00:01:58.506 --> 00:02:02.949
+Defender for Identity
+certificate posture assessments;
+
+33
+00:02:02.949 --> 00:02:08.687
+CyberArk 26.1 Microsoft ADCS CA template
+and Securing credential objects;
+
+34
+00:02:08.687 --> 00:02:13.560
+Book 07, Chapter 03 (ESC7) and
+Chapter 05 (four permission systems).

@@ -16,7 +16,7 @@ OMB M-22-09 requires that every access request be evaluated and that network loc
 
 What it replaces is access decided once and trusted afterward. Inside the network, therefore trusted. In the group, therefore allowed, forever. Those assumptions survive a migration unless someone deliberately replaces them with policy.
 
-Two consequences run through the book. Every exclusion is a standing hole, so each one needs an owner and a review. And policy is only as good as the attributes it reads, which is why Book 03 matters here.
+Two consequences run through the book. Every exclusion is a standing hole, so each one needs an owner and a review. And policy is only as good as the attributes it reads, which is why the Federal Modernization Workbook's Book 03 matters here.
 
 ## Slide 3 — Standing privilege is an open door
 
@@ -68,7 +68,7 @@ Wave one is the foundation, starting with blocking legacy authentication. Wave t
 
 Every policy passes the same gates: two to four weeks in report-only, then a pilot ring, then expanding rings, then enforced and monitored. A wave starts only after the previous one has run a week without incident. And rollback means switching a policy off or back to report-only, never deleting it.
 
-The library is built to CISA's baseline. It keeps Book 02's policies CA001 to CA017 and adds CA018 to CA038 for the BOD 25-01 Entra ID requirements, including blocking high-risk users and requiring phishing-resistant MFA for all members.
+The library is built to CISA's baseline. It keeps the Federal Modernization Workbook's Book 02's policies CA001 to CA017 and adds CA018 to CA038 for the BOD 25-01 Entra ID requirements, including blocking high-risk users and requiring phishing-resistant MFA for all members.
 
 ## Slide 8 — PIM: eligible, requested, approved, logged
 
@@ -78,7 +78,7 @@ An administrator holds an eligible assignment, not an active one. To use it, the
 
 The details matter, and the old guides had several wrong. Activation can run from one to twenty-four hours, and the approval window is a fixed twenty-four hours with a single stage. PIM's built-in MFA can be satisfied by an earlier sign-in in the same session, so the book uses an authentication context to force a fresh step-up. Approvers can't approve their own requests, and if a role has no approvers configured, active Privileged Role Administrators become the approvers by default. And licensing: PIM needs Entra ID P2 or ID Governance, and if those licenses lapse, eligible assignments are removed.
 
-Appendix B sets every role's activation time, approvers, context and notifications, tighter for Tier 0 and Tier 1 than Book 02's first table.
+Appendix B sets every role's activation time, approvers, context and notifications, tighter for Tier 0 and Tier 1 than the Federal Modernization Workbook's Book 02's first table.
 
 ## Slide 9 — Govern access, manage it as code, prove it
 
@@ -96,7 +96,7 @@ Two traps in the tooling. Reviewing an application doesn't remove members of the
 
 So, four asks.
 
-Adopt the library: Book 04's Conditional Access library and wave plan as the agency's access baseline.
+Adopt the library: the Federal Modernization Workbook's Book 04's Conditional Access library and wave plan as the agency's access baseline.
 
 End standing privilege: every administrator role eligible through PIM, with two governed break-glass accounts as the only standing exception.
 

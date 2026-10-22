@@ -5,123 +5,128 @@ WEBVTT
 Sixth, automation.
 
 2
-00:00:01.488 --> 00:00:06.876
-No rule requires an API, but Book
-08's operating model depends on one.
+00:00:01.488 --> 00:00:05.303
+No rule requires an API, but
+the Federal Modernization
 
 3
-00:00:06.876 --> 00:00:11.167
+00:00:05.303 --> 00:00:08.863
+Workbook's Book 08's operating
+model depends on one.
+
+4
+00:00:08.863 --> 00:00:13.155
 Every object, addresses, DHCP,
 DNS configuration and DNS data,
 
-4
-00:00:11.167 --> 00:00:16.318
+5
+00:00:13.155 --> 00:00:18.306
 should be reachable through a documented
 API, so infrastructure as code,
 
-5
-00:00:16.318 --> 00:00:20.524
+6
+00:00:18.306 --> 00:00:22.512
 ITSM workflows, certificate
 automation and pipelines all
 
-6
-00:00:20.524 --> 00:00:24.387
+7
+00:00:22.512 --> 00:00:26.375
 go through the same authority
 and the same audit trail.
 
-7
-00:00:24.387 --> 00:00:27.918
+8
+00:00:26.375 --> 00:00:29.906
 Automation runs as
 non-interactive service accounts,
 
-8
-00:00:27.918 --> 00:00:32.862
+9
+00:00:29.906 --> 00:00:34.850
 held to the same roles and scopes as people
 and unable to log in to the console.
 
-9
-00:00:32.862 --> 00:00:37.497
+10
+00:00:34.850 --> 00:00:39.485
 Expect supported Terraform and
 Ansible, ITSM actions that reserve
 
-10
-00:00:37.497 --> 00:00:41.800
+11
+00:00:39.485 --> 00:00:43.788
 an address or register a record,
 and a path for existing scripts.
 
-11
-00:00:41.800 --> 00:00:46.470
+12
+00:00:43.788 --> 00:00:48.458
 Check how the API authenticates;
 NIOS, for example,
 
-12
-00:00:46.470 --> 00:00:51.937
+13
+00:00:48.458 --> 00:00:53.925
 added OAuth 2.0 and OpenID Connect
 for its API in release 9.1.
 
-13
-00:00:51.937 --> 00:00:55.250
+14
+00:00:53.925 --> 00:00:57.237
 Seventh, logging to the
 SIEM, sized for the load.
 
-14
-00:00:55.250 --> 00:00:58.315
+15
+00:00:57.237 --> 00:01:00.302
 The requirement here is
 M-26-14's retention:
 
-15
-00:00:58.315 --> 00:01:02.520
+16
+00:01:00.302 --> 00:01:04.507
 logs searchable for six months
 and retrievable for a year,
 
-16
-00:01:02.520 --> 00:01:08.738
+17
+00:01:04.507 --> 00:01:10.725
 with synchronized timestamps, available to
 the agency's security operations center.
 
-17
-00:01:08.738 --> 00:01:11.269
+18
+00:01:10.725 --> 00:01:13.257
 The name layer contributes query logs,
 
-18
-00:01:11.269 --> 00:01:14.750
+19
+00:01:13.257 --> 00:01:16.738
 lease history, policy hits
 and the change audit trail.
 
-19
-00:01:14.750 --> 00:01:17.163
+20
+00:01:16.738 --> 00:01:19.150
 Capacity is where designs fail.
 
-20
-00:01:17.163 --> 00:01:21.181
+21
+00:01:19.150 --> 00:01:23.169
 Microsoft measured about five
 percent degradation from
 
-21
-00:01:21.181 --> 00:01:25.199
+22
+00:01:23.169 --> 00:01:27.187
 full Windows DNS query logging
 at 100,000 queries a second.
 
-22
-00:01:25.199 --> 00:01:30.085
+23
+00:01:27.187 --> 00:01:32.073
 NIOS reporting appliances have daily
 ingest limits, and after five overruns
 
-23
-00:01:30.085 --> 00:01:35.200
+24
+00:01:32.073 --> 00:01:37.188
 in a rolling thirty days the reporting
 functions lock until support intervenes.
 
-24
-00:01:35.200 --> 00:01:38.027
+25
+00:01:37.188 --> 00:01:40.015
 And dnstap on NIOS drops
 records rather than
 
-25
-00:01:38.027 --> 00:01:40.625
+26
+00:01:40.015 --> 00:01:42.613
 buffering them when the receiver is down.
 
-26
-00:01:40.625 --> 00:01:43.990
+27
+00:01:42.613 --> 00:01:45.980
 Size for peak, and test
 with the SIEM unreachable.

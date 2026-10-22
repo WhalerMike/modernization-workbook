@@ -528,81 +528,81 @@
   ],
   [
    6.425,
-   5.15,
-   "Book 01 of the workbook is canonical: seven phases and six gates."
+   7.188,
+   "The Federal Modernization Workbook's Book 01 of the workbook is canonical: seven phases and six gates."
   ],
   [
-   11.575,
+   13.613,
    4.263,
    "Phase 0, Pre-flight, ends at G0, Ready to Plan."
   ],
   [
-   15.838,
+   17.875,
    4.562,
    "Phase 1, Foundation, ends at G1, Foundation Complete."
   ],
   [
-   20.4,
+   22.438,
    4.4,
    "Phase 2, the pilot division, ends at G2, Pilot Clean."
   ],
   [
-   24.8,
+   26.837,
    4.6,
    "Phase 3, general rollout, at G3, Rollout Complete."
   ],
   [
-   29.4,
+   31.438,
    4.412,
    "Phase 4, legacy retirement, at G4, Legacy Quiet."
   ],
   [
-   33.812,
+   35.85,
    5.037,
    "Phase 5, A D DS retirement, at G5, A D Retired."
   ],
   [
-   38.85,
+   40.888,
    4.15,
    "Phase 6, steady state, runs on a cadence indefinitely."
   ],
   [
-   43.0,
+   45.038,
    2.688,
    "The gates are owned in proportion to what they end."
   ],
   [
-   45.688,
+   47.725,
    6.825,
    "The steward clears G0, G1 and G4, and co-signs G2 with the executive sponsor."
   ],
   [
-   52.513,
+   54.55,
    3.163,
    "The sponsor and steering committee clear G3."
   ],
   [
-   55.675,
+   57.712,
    3.288,
    "The sponsor and the C I O clear G5."
   ],
   [
-   58.962,
+   61.0,
    6.35,
    "And five constraints bind every phase, from provenance on every change to no rip-and-replace."
   ],
   [
-   65.312,
+   67.35,
    9.75,
    "The program's detailed master plan sequences 48 milestones over an illustrative 52 weeks, but its cutover ends with A D DS still running."
   ],
   [
-   75.062,
+   77.1,
    8.438,
    "Book 01's own fifty-two-week sequence models a mid-size, clean forest, and large federal estates typically run multi-year."
   ],
   [
-   83.5,
+   85.537,
    9.4,
    "So the decision for the sponsor and C I O, when they accept the plan: budget the A D DS retirement phase on top of the master plan's 52 weeks."
   ]
@@ -660,26 +660,26 @@
   ],
   [
    55.638,
-   7.838,
-   "Book 01 closes them by giving policy a security-engineering lead and access a joint identity and security lead."
+   10.025,
+   "The Federal Modernization Workbook's Book 01 closes them by giving policy a security-engineering lead and access a joint identity and security lead."
   ],
   [
-   63.475,
+   65.662,
    8.812,
    "The critical path runs through the platform, the assessment, attribute and group design, the pilot, each rollout wave, and cutover validation."
   ],
   [
-   72.287,
+   74.475,
    4.888,
    "Every week lost in assessment or attribute design moves every later gate."
   ],
   [
-   77.175,
+   79.362,
    4.3,
    "And one dependency never relaxes: P K I waits for identity."
   ],
   [
-   81.475,
+   83.662,
    8.4,
    "The decision, made while Phase 0's stakeholders and decision rights are confirmed: name the five workstream leads, including those two."
   ]
@@ -759,61 +759,61 @@
   ],
   [
    9.037,
-   3.275,
-   "The book uses Book 01's program-wide model."
+   5.275,
+   "The book uses the Federal Modernization Workbook's Book 01's program-wide model."
   ],
   [
-   12.312,
+   14.312,
    9.425,
    "The executive sponsor, with the C I O, owns scope, funding and sequence, breaks ties, and decides when Active Directory components retire."
   ],
   [
-   21.738,
+   23.738,
    8.812,
    "The see-so sets the control requirements every target surface must meet: authentication strength, the Conditional Access baseline, logging."
   ],
   [
-   30.55,
+   32.55,
    5.487,
    "The authorizing official is the only official who can accept security and privacy risk."
   ],
   [
-   36.038,
+   38.038,
    7.75,
    "The steward leads the program office and owns the plan, wave sequencing, cross-domain dependencies and the repository."
   ],
   [
-   43.788,
+   45.788,
    7.237,
    "A change to the target architecture, or to the rules for authoritative origin, needs the steward and the sponsor together."
   ],
   [
-   51.025,
+   53.025,
    3.538,
    "HR decides what each organizational attribute means."
   ],
   [
-   54.562,
+   56.562,
    4.812,
    "And workstream leads own their designs, inside the see-so's requirements."
   ],
   [
-   59.375,
+   61.375,
    4.275,
    "Two federal requirements already name people who belong in these rows."
   ],
   [
-   63.65,
+   65.65,
    6.963,
    "M twenty-two oh-nine required a zero trust implementation lead within 30 days, and an aligned C-suite."
   ],
   [
-   70.612,
+   72.612,
    5.925,
    "M nineteen seventeen requires an integrated, agency-wide eye-cam governance structure."
   ],
   [
-   76.537,
+   78.537,
    10.912,
    "So the decision for the sponsor and C I O, in Phase 0: name the sponsor, the steward and the steering committee, and build them from those existing roles, not alongside them."
   ]
@@ -876,36 +876,36 @@
   ],
   [
    38.85,
-   8.838,
-   "Book 01 spreads the gates across the steward, the sponsor, the steering committee and the C I O, in proportion to what each gate ends."
+   10.688,
+   "The Federal Modernization Workbook's Book 01 spreads the gates across the steward, the sponsor, the steering committee and the C I O, in proportion to what each gate ends."
   ],
   [
-   47.688,
+   49.538,
    2.513,
    "Four separations keep the governance honest."
   ],
   [
-   50.2,
+   52.05,
    11.525,
    "The authorizing official is a government official, the decision can't be delegated, and the role stays outside the program office: contractors can prepare a risk acceptance, but can't sign one."
   ],
   [
-   61.725,
+   63.575,
    2.4,
    "No one holds two roles that check each other."
   ],
   [
-   64.125,
+   65.975,
    2.575,
    "Requesters don't approve their own changes."
   ],
   [
-   66.7,
+   68.55,
    3.45,
    "And the component that decides isn't the one that acts."
   ],
   [
-   70.15,
+   72.0,
    11.838,
    "The decision sits with the authorizing official from G0 onward, where an unremediated Critical finding needs the official's acceptance: every risk acceptance comes in writing, with an end date."
   ]
@@ -1000,31 +1000,31 @@
   ],
   [
    47.825,
-   14.15,
-   "The master plan's twelve Active Directory domains are joined by the DHCP, el-dap-binding and service-principal-name streams that Book 01 adds, and by an inventory of radius and NPS, which depend on the directory too."
+   16.275,
+   "The master plan's twelve Active Directory domains are joined by the DHCP, el-dap-binding and service-principal-name streams that the Federal Modernization Workbook's Book 01 adds, and by an inventory of radius and NPS, which depend on the directory too."
   ],
   [
-   61.975,
+   64.1,
    8.0,
    "The phase delivers twenty-three artifacts: fifteen committed before G0, and eight generated plans approved just after it."
   ],
   [
-   69.975,
+   72.1,
    8.375,
    "G0 has three conditions: the platform host is operational, the assessment is committed, and no priority-one finding is open."
   ],
   [
-   78.35,
+   80.475,
    6.725,
    "Every finding is classed Critical, High, Medium or Low, and each class has a gate that closes it."
   ],
   [
-   85.075,
+   87.2,
    6.475,
    "A Critical finding is remediated before G0, or formally accepted by the authorizing official."
   ],
   [
-   91.55,
+   93.675,
    5.1,
    "The steward clears G0 on that basis, with the executive sponsor as backup."
   ]
@@ -1057,26 +1057,26 @@
   ],
   [
    42.35,
-   10.738,
-   "Book 01 sets the pilot's scope as one division, typically IT, which tolerates disruption best, and the master plan's sizes are a floor for what it must exercise."
+   12.7,
+   "The Federal Modernization Workbook's Book 01 sets the pilot's scope as one division, typically IT, which tolerates disruption best, and the master plan's sizes are a floor for what it must exercise."
   ],
   [
-   53.087,
+   55.05,
    4.925,
    "It's measured against eight criteria, from sign-in success to help desk volume."
   ],
   [
-   58.013,
+   59.975,
    8.125,
    "The values are illustrative: set them in the decision log before the pilot opens, and evaluate them from the systems, not from opinion."
   ],
   [
-   66.138,
+   68.1,
    3.4,
    "Every surface has a rollback trigger and a procedure."
   ],
   [
-   69.537,
+   71.5,
    11.1,
    "G2 is signed jointly by the steward and the executive sponsor: zero drift for the agreed hold period, every criterion met, and no hybrid-joined PC without a cut date."
   ]

@@ -296,4 +296,4 @@ Fourth, finish the chain. An instance isn't closed while any application still r
 
 Fifth, prove it continuously. The closure record, drift detection and the six evidence sets make done a queryable posture rather than a claim, and the certificate layer underneath needs its own decision before AD CS goes away.
 
-April 1, 2027 is the program's backstop. If the work is finished well before it and the evidence has been clean for months, the block arrives as a non-event. Book 06 has the narrative chapters and the ten runbooks, with every external claim footnoted. Thank you.
+April 1, 2027 is the program's backstop. If the work is finished well before it and the evidence has been clean for months, the block arrives as a non-event. The Federal Modernization Workbook's Book 06 has the narrative chapters and the ten runbooks, with every external claim footnoted. Thank you.

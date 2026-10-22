@@ -98,26 +98,30 @@ And I couldn't verify whether Windows
 registers its temporary addresses.
 
 21
-00:01:24.300 --> 00:01:31.583
+00:01:24.300 --> 00:01:31.133
 Sources: RFC 4862 IPv6 Stateless
 Address Autoconfiguration [S37];
 
 22
-00:01:31.583 --> 00:01:36.439
+00:01:31.133 --> 00:01:35.688
 RFC 8981 Temporary
 Address Extensions [S38];
 
 23
-00:01:36.439 --> 00:01:45.205
+00:01:35.688 --> 00:01:43.912
 RFC 4704 DHCPv6 Client FQDN option [S34];
 Amazon EC2 instance hostname types [S21];
 
 24
-00:01:45.205 --> 00:01:52.219
-Book 08 Ch07 (Azure DNS Private
-Resolver platform constraints);
+00:01:43.912 --> 00:01:52.137
+the Federal Modernization Workbook's
+Book 08 Ch07 (Azure DNS Private Resolver
 
 25
-00:01:52.219 --> 00:01:59.690
-research brief, Couldn't verify
-(Windows temporary IPv6 addresses).
+00:01:52.137 --> 00:01:56.186
+platform constraints); research brief,
+
+26
+00:01:56.186 --> 00:02:01.560
+Couldn't verify (Windows
+temporary IPv6 addresses).

@@ -82,7 +82,5 @@ Research follows the same rules as the books: every external claim is checked ag
 
 ## Implementation guides
 
-None yet. The first is planned to implement Book 08's DDI design on Infoblox.
-
 ::: {#research-implementation}
 :::

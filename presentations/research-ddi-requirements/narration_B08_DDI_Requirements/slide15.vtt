@@ -5,115 +5,120 @@ WEBVTT
 Who decides all this?
 
 2
-00:00:01.350 --> 00:00:07.525
-Book 08's Chapter 09 gives one decider per
-row, and separates deciding from doing.
+00:00:01.350 --> 00:00:05.342
+The Federal Modernization
+Workbook's Book 08's Chapter 09
 
 3
-00:00:07.525 --> 00:00:12.102
+00:00:05.342 --> 00:00:09.500
+gives one decider per row, and
+separates deciding from doing.
+
+4
+00:00:09.500 --> 00:00:14.077
 The sponsor and CIO decide the
 platform and its deployment model,
 
-4
-00:00:12.102 --> 00:00:16.002
+5
+00:00:14.077 --> 00:00:17.977
 with the DNS/DDI team doing
 the evaluation and the CISO,
 
-5
-00:00:16.002 --> 00:00:20.325
+6
+00:00:17.977 --> 00:00:22.300
 the authorizing official and
 the operating teams consulted.
 
-6
-00:00:20.325 --> 00:00:25.175
+7
+00:00:22.300 --> 00:00:27.150
 They also decide how divisions are scoped,
 and break ties over the resolver path.
 
-7
-00:00:25.175 --> 00:00:30.306
+8
+00:00:27.150 --> 00:00:32.281
 The authorizing official decides whether
 a cloud-delivered management plane is
 
-8
-00:00:30.306 --> 00:00:34.607
+9
+00:00:32.281 --> 00:00:36.582
 authorized for the agency's use,
 and accepts the standing exceptions:
 
-9
-00:00:34.607 --> 00:00:37.700
+10
+00:00:36.582 --> 00:00:39.675
 an internal zone that loses
 DNSSEC in its new home,
 
-10
-00:00:37.700 --> 00:00:41.850
+11
+00:00:39.675 --> 00:00:43.825
 or an encrypted DNS exception that
 has outlived the agency's limit.
 
-11
-00:00:41.850 --> 00:00:45.385
+12
+00:00:43.825 --> 00:00:47.360
 The CISO and ISSO set
 the control requirements:
 
-12
-00:00:45.385 --> 00:00:50.335
+13
+00:00:47.360 --> 00:00:52.310
 DNSSEC signing of public zones and
 validation on agency resolvers,
 
-13
-00:00:50.335 --> 00:00:55.550
+14
+00:00:52.310 --> 00:00:57.525
 encrypted DNS policy, and Protective
 DNS forwarding and query logging.
 
-14
-00:00:55.550 --> 00:01:01.579
+15
+00:00:57.525 --> 00:01:03.554
 The DNS/DDI team decides the namespace and
 the delegation of zones to divisions and
 
-15
-00:01:01.579 --> 00:01:05.948
+16
+00:01:03.554 --> 00:01:07.923
 applications, owns the address
 plan and its top-level blocks,
 
-16
-00:01:05.948 --> 00:01:10.055
+17
+00:01:07.923 --> 00:01:12.030
 and approves high-impact changes:
 zones, NS and DS records,
 
-17
-00:01:10.055 --> 00:01:13.637
+18
+00:01:12.030 --> 00:01:15.612
 forwarding rules, wildcards
 and response policy.
 
-18
-00:01:13.637 --> 00:01:18.510
+19
+00:01:15.612 --> 00:01:20.484
 Standard record changes inside a division's
 delegated namespace are pre-approved,
 
-19
-00:01:18.510 --> 00:01:21.476
+20
+00:01:20.484 --> 00:01:23.450
 so the division or application
 owner does the work
 
-20
-00:01:21.476 --> 00:01:24.300
+21
+00:01:23.450 --> 00:01:26.274
 through a scoped account,
 without a change board.
 
-21
-00:01:24.300 --> 00:01:27.426
+22
+00:01:26.274 --> 00:01:29.401
 That team holds the most
 powerful roles in the design,
 
-22
-00:01:27.426 --> 00:01:31.688
+23
+00:01:29.401 --> 00:01:33.663
 so the book scopes its automation, puts
 a second approver in front of zone,
 
-23
-00:01:31.688 --> 00:01:33.819
+24
+00:01:33.663 --> 00:01:35.794
 delegation and forwarding changes,
 
-24
-00:01:33.819 --> 00:01:37.580
+25
+00:01:35.794 --> 00:01:39.550
 and keeps its privileged roles
 eligible rather than standing.

@@ -114,4 +114,4 @@ And generate the package: machine-readable records, a disposition on every faili
 
 The next step needs no procurement. Fill the product inventory questionnaire against the estate as it is, verify each FedRAMP status on the day you record it, and decide every flag before the security plan is written.
 
-A promise is true on the day it's signed. Proof keeps showing itself. Book 14 has the detail, every claim footnoted. Thank you.
+A promise is true on the day it's signed. Proof keeps showing itself. The Federal Modernization Workbook's Book 14 has the detail, every claim footnoted. Thank you.

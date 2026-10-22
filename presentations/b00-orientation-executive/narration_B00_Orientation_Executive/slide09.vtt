@@ -11,99 +11,104 @@ the next step starts, not by
 putting dates on a chart.
 
 3
-00:00:06.425 --> 00:00:11.575
-Book 01 of the workbook is canonical:
-seven phases and six gates.
+00:00:06.425 --> 00:00:10.105
+The Federal Modernization
+Workbook's Book 01 of the
 
 4
-00:00:11.575 --> 00:00:15.838
+00:00:10.105 --> 00:00:13.613
+workbook is canonical:
+seven phases and six gates.
+
+5
+00:00:13.613 --> 00:00:17.876
 Phase 0, Pre-flight, ends
 at G0, Ready to Plan.
 
-5
-00:00:15.838 --> 00:00:20.400
+6
+00:00:17.876 --> 00:00:22.437
 Phase 1, Foundation, ends
 at G1, Foundation Complete.
 
-6
-00:00:20.400 --> 00:00:24.800
+7
+00:00:22.437 --> 00:00:26.838
 Phase 2, the pilot division,
 ends at G2, Pilot Clean.
 
-7
-00:00:24.800 --> 00:00:29.400
+8
+00:00:26.838 --> 00:00:31.437
 Phase 3, general rollout,
 at G3, Rollout Complete.
 
-8
-00:00:29.400 --> 00:00:33.812
+9
+00:00:31.437 --> 00:00:35.850
 Phase 4, legacy retirement,
 at G4, Legacy Quiet.
 
-9
-00:00:33.812 --> 00:00:38.849
+10
+00:00:35.850 --> 00:00:40.887
 Phase 5, AD DS retirement,
 at G5, AD Retired.
 
-10
-00:00:38.849 --> 00:00:43.000
+11
+00:00:40.887 --> 00:00:45.038
 Phase 6, steady state, runs
 on a cadence indefinitely.
 
-11
-00:00:43.000 --> 00:00:45.688
+12
+00:00:45.038 --> 00:00:47.726
 The gates are owned in
 proportion to what they end.
 
-12
-00:00:45.688 --> 00:00:52.513
+13
+00:00:47.726 --> 00:00:54.550
 The steward clears G0, G1 and G4, and
 co-signs G2 with the executive sponsor.
 
-13
-00:00:52.513 --> 00:00:55.676
+14
+00:00:54.550 --> 00:00:57.713
 The sponsor and steering
 committee clear G3.
 
-14
-00:00:55.676 --> 00:00:58.963
+15
+00:00:57.713 --> 00:01:01.000
 The sponsor and the CIO clear G5.
 
-15
-00:00:58.963 --> 00:01:01.636
+16
+00:01:01.000 --> 00:01:03.674
 And five constraints bind every phase,
 
-16
-00:01:01.636 --> 00:01:05.312
+17
+00:01:03.674 --> 00:01:07.350
 from provenance on every
 change to no rip-and-replace.
 
-17
-00:01:05.312 --> 00:01:10.187
+18
+00:01:07.350 --> 00:01:12.225
 The program's detailed master plan
 sequences 48 milestones over an
 
-18
-00:01:10.187 --> 00:01:15.062
+19
+00:01:12.225 --> 00:01:17.100
 illustrative 52 weeks, but its
 cutover ends with AD DS still running.
 
-19
-00:01:15.062 --> 00:01:18.850
+20
+00:01:17.100 --> 00:01:20.888
 Book 01's own fifty-two-week
 sequence models a mid-size,
 
-20
-00:01:18.850 --> 00:01:23.500
+21
+00:01:20.888 --> 00:01:25.538
 clean forest, and large federal
 estates typically run multi-year.
 
-21
-00:01:23.500 --> 00:01:28.071
+22
+00:01:25.538 --> 00:01:30.108
 So the decision for the sponsor
 and CIO, when they accept the plan:
 
-22
-00:01:28.071 --> 00:01:32.950
+23
+00:01:30.108 --> 00:01:34.990
 budget the AD DS retirement phase on
 top of the master plan's 52 weeks.

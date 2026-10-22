@@ -76,77 +76,77 @@ and the book covers them elsewhere.
 One conflict is worth understanding.
 
 17
-00:01:17.338 --> 00:01:20.973
+00:01:17.338 --> 00:01:21.469
+The Federal Modernization Workbook's
 Book 02 adopted Microsoft's
-current recommendation
 
 18
-00:01:20.973 --> 00:01:24.113
-for high-risk users,
-require risk remediation.
+00:01:21.469 --> 00:01:25.900
+current recommendation for high-risk
+users, require risk remediation.
 
 19
-00:01:24.113 --> 00:01:28.625
+00:01:25.900 --> 00:01:30.413
 BOD 25-01 says high-risk
 users shall be blocked.
 
 20
-00:01:28.625 --> 00:01:32.399
+00:01:30.413 --> 00:01:34.186
 Both can't win, because when
 several risk policies apply,
 
 21
-00:01:32.399 --> 00:01:34.450
+00:01:34.186 --> 00:01:36.237
 block overrides remediation.
 
 22
-00:01:34.450 --> 00:01:38.964
+00:01:36.237 --> 00:01:40.751
 So in any tenant within the directive's
 scope, CA013's grant is Block,
 
 23
-00:01:38.964 --> 00:01:42.165
+00:01:40.751 --> 00:01:43.952
 it includes all users
 rather than only members,
 
 24
-00:01:42.165 --> 00:01:47.582
+00:01:43.952 --> 00:01:49.369
 and recovery runs through the help desk:
 an administrator confirms the account,
 
 25
-00:01:47.582 --> 00:01:50.537
+00:01:49.369 --> 00:01:52.324
 resets credentials and dismisses the risk.
 
 26
-00:01:50.537 --> 00:01:56.074
+00:01:52.324 --> 00:01:57.862
 Where the directive doesn't apply,
 CA013 uses remediation for members.
 
 27
-00:01:56.074 --> 00:01:58.650
+00:01:57.862 --> 00:02:00.437
 Last, Microsoft-managed policies.
 
 28
-00:01:58.650 --> 00:02:03.137
+00:02:00.437 --> 00:02:04.925
 Microsoft creates some policies itself,
 in report-only, and turns them on
 
 29
-00:02:03.137 --> 00:02:07.550
+00:02:04.925 --> 00:02:09.338
 no less than thirty days later unless
 an administrator sets them to Off.
 
 30
-00:02:07.550 --> 00:02:11.753
+00:02:09.338 --> 00:02:13.541
 The program writes down a decision
 for each, adopt or supersede,
 
 31
-00:02:11.753 --> 00:02:17.250
+00:02:13.541 --> 00:02:19.038
 because a policy Microsoft enables on a
 schedule is a change the agency didn't make.
 
 32
-00:02:17.250 --> 00:02:20.110
+00:02:19.038 --> 00:02:21.910
 Five are superseded by library policies.

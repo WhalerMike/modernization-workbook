@@ -47,8 +47,8 @@
   ],
   [
    59.675,
-   15.762,
-   "Sources: Infoblox NIOS 9.1.x, vNIOS and Universal D D I documentation; AWS, Microsoft Learn and Google Cloud documentation; fed-ramp Marketplace products.json; Book 08."
+   17.6,
+   "Sources: Infoblox NIOS 9.1.x, vNIOS and Universal D D I documentation; AWS, Microsoft Learn and Google Cloud documentation; fed-ramp Marketplace products.json; the Federal Modernization Workbook's Book 08."
   ]
  ],
  "2": [
@@ -211,26 +211,26 @@
   ],
   [
    63.025,
-   14.425,
-   "Book 08 of the workbook argues for one D D I policy plane: a single system of record for zones, forwarding rules, address data and security policy, with cloud D N S managed as an overlay, not replaced."
+   16.188,
+   "The Federal Modernization Workbook's Book 08 of the workbook argues for one D D I policy plane: a single system of record for zones, forwarding rules, address data and security policy, with cloud D N S managed as an overlay, not replaced."
   ],
   [
-   77.45,
+   79.213,
    2.562,
    "On premises, the Grid fits that role."
   ],
   [
-   80.013,
+   81.775,
    2.05,
    "The question is the cloud edge."
   ],
   [
-   82.062,
+   83.825,
    6.75,
    "And note that on-premises appliances aren't a fed-ramp cloud service; they sit inside the agency's own boundary."
   ],
   [
-   88.812,
+   90.575,
    31.312,
    "Sources: Infoblox NIOS 9.1.x: About Grids, Configuring D N S Views, About Infoblox D N S Firewall, Configuring DNSSEC on a Grid, Setting DNSSEC Parameters, DHCP Failover, About Managing Microsoft Windows Servers; Book 08, Chapter 08, What a D D I policy plane is made of; fed-ramp Marketplace products.json (FR2017257053 scope)."
   ]
@@ -691,8 +691,8 @@
   ],
   [
    90.912,
-   33.562,
-   "Sources: Research synthesis, Avoiding split-brain, DNSSEC keys and eye-pam authority: Infoblox Route 53, Azure D N S and GCP sync pages; Discovering Cloud Forwarder Endpoints; AWS private hosted zones, Resolver, GovCloud Route 53, DNSSEC signing; Microsoft Learn D N S Private Resolver and Azure DNSSEC; Google Cloud D N S best practices; Infoblox DNSSEC on a Grid and Network Views; Book 08, Chapter 02."
+   35.575,
+   "Sources: Research synthesis, Avoiding split-brain, DNSSEC keys and eye-pam authority: Infoblox Route 53, Azure D N S and GCP sync pages; Discovering Cloud Forwarder Endpoints; AWS private hosted zones, Resolver, GovCloud Route 53, DNSSEC signing; Microsoft Learn D N S Private Resolver and Azure DNSSEC; Google Cloud D N S best practices; Infoblox DNSSEC on a Grid and Network Views; the Federal Modernization Workbook's Book 08, Chapter 02."
   ]
  ],
  "9": [
@@ -780,61 +780,61 @@
   ],
   [
    1.137,
-   3.0,
-   "Book 08 makes the vendor-neutral case."
+   4.95,
+   "The Federal Modernization Workbook's Book 08 makes the vendor-neutral case."
   ],
   [
-   4.138,
+   6.088,
    13.775,
    "Chapter 02 explains split-brain, Chapter 07 covers cloud private endpoints and eye-pam, Chapter 08 describes the policy plane that overlays cloud D N S, and Chapter 12 covers platform selection."
   ],
   [
-   17.913,
+   19.863,
    9.537,
    "The research deep dive, Infoblox D D I for Federal Agencies, covers the platform, its fed-ramp scope, its risks, and how divisions share it."
   ],
   [
-   27.45,
+   29.4,
    10.55,
    "The decisions to take: which option for each cloud and impact level; one named owner for every zone; where DNSSEC keys live; and how address blocks reach each cloud."
   ],
   [
-   38.0,
+   39.95,
    1.163,
    "The next steps."
   ],
   [
-   39.163,
+   41.112,
    7.425,
    "Ask Infoblox for the Government Cloud authorization boundary and a feature matrix for GovCloud and Azure Government accounts."
   ],
   [
-   46.587,
+   48.538,
    6.95,
    "Confirm that D N S Private Resolver and Virtual Network Manager eye-pam are available in Azure Government."
   ],
   [
-   53.538,
+   55.487,
    3.638,
    "Size NIOS-X capacity if you want cloud forwarders."
   ],
   [
-   57.175,
+   59.125,
    3.663,
    "And test forwarding in both directions from every origin."
   ],
   [
-   60.837,
+   62.788,
    6.325,
    "One note on standing: this is research under review, not an endorsement by any federal agency."
   ],
   [
-   67.162,
+   69.112,
    0.762,
    "Thank you."
   ],
   [
-   67.925,
+   69.875,
    13.775,
    "Sources: Book 08, Chapters 02, 07, 08 and 12; research item Infoblox D D I for Federal Agencies; research_multicloud, Couldn't verify."
   ]

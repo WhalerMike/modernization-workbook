@@ -132,16 +132,20 @@ and broad groups can enroll.
 Report only.
 
 28
-00:01:47.800 --> 00:01:52.612
-Remediation belongs to the
-PKI owner, through Book 07.
+00:01:47.800 --> 00:01:50.497
+Remediation belongs to the PKI owner,
 
 29
-00:01:52.612 --> 00:01:56.041
+00:01:50.497 --> 00:01:54.412
+through the Federal
+Modernization Workbook's Book 07.
+
+30
+00:01:54.412 --> 00:01:57.841
 The same inventory also tells
 you whether user certificates
 
-30
-00:01:56.041 --> 00:01:59.060
+31
+00:01:57.841 --> 00:02:00.860
 can move to Entra
 certificate-based authentication.

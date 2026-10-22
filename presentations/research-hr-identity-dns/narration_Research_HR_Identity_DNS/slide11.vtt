@@ -122,25 +122,29 @@ Any public answer or NXDOMAIN
 for a private name is a defect.
 
 27
-00:01:30.838 --> 00:01:35.571
+00:01:30.838 --> 00:01:35.119
 Sources: Research brief §9,
 
 28
-00:01:35.571 --> 00:01:50.445
+00:01:35.119 --> 00:01:48.575
 Agency checklist steps 1–13 (all PROGRAM
 DESIGN GUIDANCE) and the facts each step
 
 29
-00:01:50.445 --> 00:02:01.938
+00:01:48.575 --> 00:01:58.973
 cites: Microsoft Learn [S1, S2, S4, S4b,
 S7b, S8, S10, S10c, S11b, S12, S12b,
 
 30
-00:02:01.938 --> 00:02:11.629
-S13–S15, S14b]; Oracle [S18, S21–S23];
-AWS [S25, S27–S30, S32, S33];
+00:01:58.973 --> 00:02:09.982
+S13–S15, S14b]; Oracle [S18, S21–S23]; AWS
+[S25, S27–S30, S32, S33]; Broadcom [S36];
 
 31
-00:02:11.629 --> 00:02:24.770
-Broadcom [S36]; Infoblox [S37]; Book 03
-Ch03, Ch05; Book 08 Ch02, Ch07, Ch08, Ch10.
+00:02:09.982 --> 00:02:20.787
+Infoblox [S37]; the Federal
+Modernization Workbook's Book 03 Ch03,
+
+32
+00:02:20.787 --> 00:02:26.140
+Ch05; Book 08 Ch02, Ch07, Ch08, Ch10.

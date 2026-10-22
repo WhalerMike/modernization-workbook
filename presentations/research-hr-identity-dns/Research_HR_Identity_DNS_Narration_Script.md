@@ -8,11 +8,11 @@ This explainer answers three questions. Which names must resolve where? What bre
 
 This is research under review. Every fact comes from sources opened on October twenty-second, 2026, mostly vendor documentation. A few Microsoft facts come from search excerpts of Microsoft Learn pages rather than full pages, and I'll say so when they come up. Where I drew a conclusion that no source states directly, I'll call it an inference. And recommendations are labeled program design guidance.
 
-Sources: Research brief, DNS for HR-driven identity across Oracle, Microsoft, on-premises, VMware and AWS (verified Oct. 22, 2026), Method and Bottom line; Book 03 Ch03 (OPM as the Federal HR 2.0 program owner); Book 08.
+Sources: Research brief, DNS for HR-driven identity across Oracle, Microsoft, on-premises, VMware and AWS (verified Oct. 22, 2026), Method and Bottom line; the Federal Modernization Workbook's Book 03 Ch03 (OPM as the Federal HR 2.0 program owner); Book 08.
 
 ## Slide 2 — The HR-driven chain, end to end
 
-Here's the chain end to end, as Microsoft's Oracle tutorial and Book 03 describe it.
+Here's the chain end to end, as Microsoft's Oracle tutorial and the Federal Modernization Workbook's Book 03 describe it.
 
 It starts in Oracle Fusion Cloud HCM, the HR system Oracle runs as a service. HCM means human capital management. Changes leave Fusion as extracts, or as Atom feeds, which are lists of recent changes that another program polls. In this pattern, the middleware pulls from Oracle.
 
@@ -34,7 +34,7 @@ Private DNS is needed, along with forwarding, which means one resolver passing a
 
 Everything else is ordinary public resolution.
 
-Sources: Research brief, Bottom line items 1 and 2, citing Microsoft Learn [S2, S4, S10], Oracle [S20, S23], AWS [S27–S29, S31], Broadcom [S36]; Book 08 Ch07 and Ch08; research_multicloud.md [prior-M S57].
+Sources: Research brief, Bottom line items 1 and 2, citing Microsoft Learn [S2, S4, S10], Oracle [S20, S23], AWS [S27–S29, S31], Broadcom [S36]; the Federal Modernization Workbook's Book 08 Ch07 and Ch08; research_multicloud.md [prior-M S57].
 
 ## Slide 4 — What must resolve where
 
@@ -48,7 +48,7 @@ The provisioning agent resolves domain controller locator records internally, an
 
 On-premises systems reach cloud private names by forwarding from the Grid, meaning the Infoblox appliances, to each cloud's inbound endpoint: an address inside the cloud network that accepts queries from outside. Fusion users on Oracle's private access still get Fusion's public DNS answer. A Lambda function in a VPC, a virtual private cloud, reaches agency APIs through an outbound rule to the Grid. And vCenter and ESXi need forward and reverse records, A and PTR, in the Grid.
 
-Sources: Research brief §8, What must resolve where, and the sources in each row: Microsoft Learn [S2, S4, S4b (excerpt), S8 (excerpt), S11b (excerpt), S13–S15 (excerpts)]; Oracle [S20–S24]; AWS [S29, S30]; Broadcom [S36]; Book 08 Ch07 and Ch08; research_multicloud.md [prior-M S31, S57].
+Sources: Research brief §8, What must resolve where, and the sources in each row: Microsoft Learn [S2, S4, S4b (excerpt), S8 (excerpt), S11b (excerpt), S13–S15 (excerpts)]; Oracle [S20–S24]; AWS [S29, S30]; Broadcom [S36]; the Federal Modernization Workbook's Book 08 Ch07 and Ch08; research_multicloud.md [prior-M S31, S57].
 
 ## Slide 5 — Government clouds use different names
 
@@ -124,7 +124,7 @@ Six, the wrong cloud's endpoints, as we saw on the government-cloud slide.
 
 Seven, capacity. A Route 53 Resolver endpoint address handles about ten thousand queries per second, but as few as fifteen hundred with connection tracking. Size endpoints before each onboarding wave.
 
-Sources: Research brief §6, failure modes F1, F4, F5, F6, F9, F10, F11: Microsoft Learn [S2, S10 (excerpt), S10b (excerpt), S12 (excerpt), S14b (excerpt)]; AWS [S25, S32]; Oracle [S23]; Infoblox NIOS 9.1, Specifying Forwarders [S37]; Book 08 Ch02 and Ch10.
+Sources: Research brief §6, failure modes F1, F4, F5, F6, F9, F10, F11: Microsoft Learn [S2, S10 (excerpt), S10b (excerpt), S12 (excerpt), S14b (excerpt)]; AWS [S25, S32]; Oracle [S23]; Infoblox NIOS 9.1, Specifying Forwarders [S37]; the Federal Modernization Workbook's Book 08 Ch02 and Ch10.
 
 ## Slide 10 — Hub, not mesh
 
@@ -150,7 +150,7 @@ Components. Put the middleware in a Logic Apps Standard or Functions plan joined
 
 And test from every origin. Any public answer or NXDOMAIN for a private name is a defect.
 
-Sources: Research brief §9, Agency checklist steps 1–13 (all PROGRAM DESIGN GUIDANCE) and the facts each step cites: Microsoft Learn [S1, S2, S4, S4b, S7b, S8, S10, S10c, S11b, S12, S12b, S13–S15, S14b]; Oracle [S18, S21–S23]; AWS [S25, S27–S30, S32, S33]; Broadcom [S36]; Infoblox [S37]; Book 03 Ch03, Ch05; Book 08 Ch02, Ch07, Ch08, Ch10.
+Sources: Research brief §9, Agency checklist steps 1–13 (all PROGRAM DESIGN GUIDANCE) and the facts each step cites: Microsoft Learn [S1, S2, S4, S4b, S7b, S8, S10, S10c, S11b, S12, S12b, S13–S15, S14b]; Oracle [S18, S21–S23]; AWS [S25, S27–S30, S32, S33]; Broadcom [S36]; Infoblox [S37]; the Federal Modernization Workbook's Book 03 Ch03, Ch05; Book 08 Ch02, Ch07, Ch08, Ch10.
 
 ## Slide 12 — Decisions, next steps and where this fits
 
@@ -158,7 +158,7 @@ The decisions. Who owns each namespace, the Grid or a cloud. Which middleware pl
 
 The next steps are the things I couldn't verify. Which Oracle environment and hostnames the agency's Core HCM tenant will use. Whether API-driven inbound provisioning is available in the U.S. Government Graph cloud. Whether Azure's DNS Private Resolver, Lifecycle Workflows and Connect private endpoints are available in the government clouds. And the VMware install guides' DNS rules and Oracle's own connectivity patterns, which I couldn't open. They're all listed in the backup.
 
-Where does this fit? Book 03 covers HR-driven identity, with Federal HR 2.0 in Chapter 03 and the provisioning pipeline in Chapter 05. Book 08 covers DNS, DHCP and IP address management: split-brain DNS in Chapter 02, cloud private endpoints in Chapter 07, the reference architecture in Chapter 08, and the migration sequence in Chapter 10. Three research items sit beside this one: Trinzic Alone, or Trinzic Plus Cloud DDI; Infoblox DDI for Federal Agencies; and Who Names the Device After AD.
+Where does this fit? The Federal Modernization Workbook's Book 03 covers HR-driven identity, with Federal HR 2.0 in Chapter 03 and the provisioning pipeline in Chapter 05. Book 08 covers DNS, DHCP and IP address management: split-brain DNS in Chapter 02, cloud private endpoints in Chapter 07, the reference architecture in Chapter 08, and the migration sequence in Chapter 10. Three research items sit beside this one: Trinzic Alone, or Trinzic Plus Cloud DDI; Infoblox DDI for Federal Agencies; and Who Names the Device After AD.
 
 One note on standing: this is research under review, not an endorsement by any federal agency. Thank you.
 

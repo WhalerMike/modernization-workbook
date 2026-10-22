@@ -42,58 +42,73 @@ but the program doesn't commit to it.
 Second, what I have observed.
 
 10
-00:00:32.263 --> 00:00:36.700
+00:00:32.263 --> 00:00:36.986
 In the processes I have observed,
 contractors are tracked in COR spreadsheets,
 
 11
-00:00:36.700 --> 00:00:39.188
+00:00:36.986 --> 00:00:39.675
 and many of their accounts
 come from tickets.
 
 12
-00:00:39.188 --> 00:00:42.240
+00:00:39.675 --> 00:00:42.727
 Based on current visibility,
 nothing authoritative
 
 13
-00:00:42.240 --> 00:00:45.500
+00:00:42.727 --> 00:00:45.987
 tells identity that a contractor's
 engagement has ended.
 
 14
-00:00:45.500 --> 00:00:46.988
+00:00:45.987 --> 00:00:47.475
 Third, guidance.
 
 15
-00:00:46.988 --> 00:00:50.898
+00:00:47.475 --> 00:00:51.254
 Federal lifecycle guidance,
 including GSA's ILM Playbook,
 
 16
-00:00:50.898 --> 00:00:56.683
+00:00:51.254 --> 00:00:56.844
 calls for an authoritative personnel source
 for identity creation and termination,
 
 17
-00:00:56.683 --> 00:01:00.350
+00:00:56.844 --> 00:01:00.387
 and CDM's master user record
 must include contractors.
 
 18
-00:01:00.350 --> 00:01:02.244
+00:01:00.387 --> 00:01:02.282
 Employee HR may not carry them,
 
 19
-00:01:02.244 --> 00:01:06.563
+00:01:02.282 --> 00:01:06.601
 so contractors need an equivalent
 authoritative personnel source.
 
 20
-00:01:06.563 --> 00:01:09.010
+00:01:06.601 --> 00:01:09.048
 Something else has to be the authority,
 
 21
-00:01:09.010 --> 00:01:11.987
+00:01:09.048 --> 00:01:11.725
 and it needs the same
 rigor as the HR record.
+
+22
+00:01:11.725 --> 00:01:19.483
+Sources: OMB/OPM, Creating Federal HR
+2.0 (2025-12-10); GSA ILM Playbook v2.0;
+
+23
+00:01:19.483 --> 00:01:27.241
+FIPS 201-3 and OMB M-19-17
+cover employees and contractors;
+
+24
+00:01:27.241 --> 00:01:36.600
+NIST SP 800-53 PS-7 (external
+personnel security).

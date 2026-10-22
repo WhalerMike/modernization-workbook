@@ -126,31 +126,31 @@
   ],
   [
    32.913,
-   7.513,
-   "On the identity side: agencies are moving from Active Directory to Entra ID anyway, which is Book 02."
+   9.488,
+   "On the identity side: agencies are moving from Active Directory to Entra ID anyway, which is the Federal Modernization Workbook's Book 02."
   ],
   [
-   40.425,
+   42.4,
    9.988,
    "In Entra ID, attributes drive Conditional Access, groups and delegation, and inbound provisioning from an HR system is a documented, supported path."
   ],
   [
-   50.413,
+   52.388,
    1.15,
    "So there's a window."
   ],
   [
-   51.562,
+   53.538,
    7.3,
    "The identity feed has to be designed in during onboarding, before the interconnection goes live, not bolted on afterward."
   ],
   [
-   58.862,
+   60.837,
    5.325,
    "One honest limit: Federal HR 2.0 covers federal employees only."
   ],
   [
-   64.188,
+   66.162,
    6.787,
    "Contractors and vendors need their own authoritative source, and the onboarding is the right time to decide it too."
   ]
@@ -667,11 +667,11 @@
   ],
   [
    53.95,
-   8.787,
-   "Book 03 has the full design, with every external claim footnoted, and Book 02 covers the directory migration it builds on."
+   10.55,
+   "The Federal Modernization Workbook's Book 03 has the full design, with every external claim footnoted, and Book 02 covers the directory migration it builds on."
   ],
   [
-   62.737,
+   64.5,
    0.762,
    "Thank you."
   ]

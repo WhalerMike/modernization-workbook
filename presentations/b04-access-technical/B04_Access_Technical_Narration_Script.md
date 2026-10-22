@@ -44,7 +44,7 @@ In the next four slides we'll cover how the library is numbered and what it assu
 
 ## Slide 5 — One library, numbered once
 
-The library is one policy set, numbered once. Policies CA001 to CA017 are the baseline that Book 02 builds during the migration, and they keep their identifiers here. CA002 stays retired, so that's sixteen policies. Book 04 adds CA018 to CA038, for risk, privileged workstations, segmented applications and workload identities, plus CA090, the permanent report-only probe. Numbers 001 to 089 are for the library and 090 to 099 for report-only instruments. Numbers are labels, not order, and a retired number is never reused. The earlier library used a different numbering scheme, and the chapter maps every one of its policies to where it went.
+The library is one policy set, numbered once. Policies CA001 to CA017 are the baseline that the Federal Modernization Workbook's Book 02 builds during the migration, and they keep their identifiers here. CA002 stays retired, so that's sixteen policies. Book 04 adds CA018 to CA038, for risk, privileged workstations, segmented applications and workload identities, plus CA090, the permanent report-only probe. Numbers 001 to 089 are for the library and 090 to 099 for report-only instruments. Numbers are labels, not order, and a retired number is never reused. The earlier library used a different numbering scheme, and the chapter maps every one of its policies to where it went.
 
 Every name follows one pattern: number, population, resource or condition, then control. You can read a policy on a call without opening it.
 
@@ -54,7 +54,7 @@ Four conventions apply everywhere. The emergency access exclusion is implicit. E
 
 ## Slide 6 — Personas decide who each policy reaches
 
-Policies target populations, never people, and the populations are personas. They're defined in Book 02 and kept identical here.
+Policies target populations, never people, and the populations are personas. They're defined in the Federal Modernization Workbook's Book 02 and kept identical here.
 
 Admins are users eligible for or holding privileged roles, from the account-type attribute or the PIM-eligible population. They carry the highest risk and get the strictest policies: phishing-resistant MFA, a compliant device, trusted networks, and privileged workstations. Internals are employees and contractors with standard access, built dynamically from the worker-type attribute. Externals are B2B guests from partner organizations; Guests are ad hoc external users from anywhere else. Workload identities are single-tenant service principals. They must be assigned to a policy directly, because a policy assigned to a group that contains a service principal isn't enforced for it, and only two policies reach them, CA015 and CA037. And break-glass: the two emergency accounts, excluded from every enforced policy, and still recorded by CA090, which is report-only.
 
@@ -80,7 +80,7 @@ Why does the library look this way? Much of it is the answer to CISA's BOD 25-01
 
 The table lists the Entra ID items that Conditional Access answers. Legacy authentication blocked: CA001. High-risk users blocked: CA013. High-risk sign-ins blocked: CA019. Phishing-resistant MFA for all users: CA022, with CA003 for administrators. Another MFA method until then: CA006, CA009 and CA018, as the interim. And phishing-resistant MFA for highly privileged roles: CA003. Two SHOULD items from the SCuBA baseline are met by CA007 and CA020. The other mandatory Entra items, such as authentication methods settings, application consent and the privileged-role rules, aren't Conditional Access settings, and the book covers them elsewhere.
 
-One conflict is worth understanding. Book 02 adopted Microsoft's current recommendation for high-risk users, require risk remediation. BOD 25-01 says high-risk users shall be blocked. Both can't win, because when several risk policies apply, block overrides remediation. So in any tenant within the directive's scope, CA013's grant is Block, it includes all users rather than only members, and recovery runs through the help desk: an administrator confirms the account, resets credentials and dismisses the risk. Where the directive doesn't apply, CA013 uses remediation for members.
+One conflict is worth understanding. The Federal Modernization Workbook's Book 02 adopted Microsoft's current recommendation for high-risk users, require risk remediation. BOD 25-01 says high-risk users shall be blocked. Both can't win, because when several risk policies apply, block overrides remediation. So in any tenant within the directive's scope, CA013's grant is Block, it includes all users rather than only members, and recovery runs through the help desk: an administrator confirms the account, resets credentials and dismisses the risk. Where the directive doesn't apply, CA013 uses remediation for members.
 
 Last, Microsoft-managed policies. Microsoft creates some policies itself, in report-only, and turns them on no less than thirty days later unless an administrator sets them to Off. The program writes down a decision for each, adopt or supersede, because a policy Microsoft enables on a schedule is a change the agency didn't make. Five are superseded by library policies.
 
@@ -92,7 +92,7 @@ A policy that targets all users can lock out the whole organization, administrat
 
 ## Slide 10 — Every policy passes the same gates
 
-Every policy, in every wave, passes the same gates. Book 02 set the durations, and Microsoft's own minimum is a week in report-only before enforcement.
+Every policy, in every wave, passes the same gates. The Federal Modernization Workbook's Book 02 set the durations, and Microsoft's own minimum is a week in report-only before enforcement.
 
 Gate one is report-only, two to four weeks, while impact, gaps and exclusions are reviewed. Gate two is a pilot ring of IT and security staff for two weeks. Gate three expands ring by ring, one to two weeks each: headquarters, then field and remote staff, then everyone in scope. Then steady state: enforced, monitored, with drift alerts.
 
@@ -216,7 +216,7 @@ The records: results download as a CSV, and review history reports stay download
 
 ## Slide 23 — Lifecycle events and guest access
 
-The third mechanism is lifecycle events. The HR-driven lifecycle itself, from attributes to joiner, mover and leaver design, belongs to Book 03. This chapter covers only the Lifecycle Workflows tasks that change access, because those tasks are where mover and leaver problems turn into access decisions.
+The third mechanism is lifecycle events. The HR-driven lifecycle itself, from attributes to joiner, mover and leaver design, belongs to the Federal Modernization Workbook's Book 03. This chapter covers only the Lifecycle Workflows tasks that change access, because those tasks are where mover and leaver problems turn into access decisions.
 
 A joiner gets the onboarding package and the department package, never a direct add to an application group. A move is a re-derivation, not an additional grant: remove the previous department's packages, request the new department's package, and send everything the person still holds outside packages to a review. Microsoft's built-in job profile change template does the first two steps, and its remove-all-assignments task defaults to fifteen days after the trigger, a grace period for handover. The program keeps that grace for standard access and sets it to zero for Tier 1 and privileged access. A leaver's workflow cancels pending requests, removes every package assignment, removes the user from all groups and teams, and revokes refresh tokens. And an inactivity workflow is the backstop for accounts whose HR record never produced a leaver event. A tenant can have fifty workflows, so spend them on events, not on applications.
 
@@ -266,4 +266,4 @@ The library: build the prerequisites before the first policy, measure readiness 
 
 In Zero Trust, every access decision is a policy decision. This session has been about making those policies explicit, testing them before they enforce, and keeping the proof that they ran.
 
-Keep Appendix A at hand for every policy's template, Appendix B for every role's settings, and Book 05 for the device compliance that Conditional Access reads. Thank you.
+Keep Appendix A at hand for every policy's template, Appendix B for every role's settings, and the Federal Modernization Workbook's Book 05 for the device compliance that Conditional Access reads. Thank you.

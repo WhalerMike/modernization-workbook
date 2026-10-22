@@ -24,7 +24,7 @@ First, NTLM elimination. Microsoft deprecated all versions of NTLM in June 2024 
 
 Second, Zero Trust in the authentication path. OMB M-22-09 puts phishing-resistant MFA and the Entra identity plane in front of human access, and Windows Authentication bypasses both.
 
-Third, service-account credentials. The directory modernization in Book 02 ends the domain-joined world those service accounts depend on.
+Third, service-account credentials. The directory modernization in the Federal Modernization Workbook's Book 02 ends the domain-joined world those service accounts depend on.
 
 The book is precise about 2027. There's no external NTLM deadline; Microsoft hasn't dated the disable-by-default step. The dates that are real are support dates: SQL Server 2016 went out of support in July 2026, Windows Server 2016 follows in January 2027, the last SQL Server 2014 extended-security year ends in July 2027, and SQL Server 2017 goes out of support in October 2027. SQL Server 2014 and 2017 can't use Entra authentication at all, so they reach the closed state only by upgrade or retirement.
 
@@ -46,13 +46,13 @@ On SQL Server 2025, that's the Arc managed identity. On SQL Server 2022, it's an
 
 The limits matter, and the old documents missed several. Failover cluster instances can't use Entra authentication on any version. Entra authentication through Arc isn't available in the US Government Virginia region, so a GCC tenant uses a commercial subscription in the same tenant; the old runbook's Azure Government setup would never have produced Entra logins. FIDO2 isn't supported for SQL Server on Arc. And granting the instance identity its Graph permissions needs a Privileged Role Administrator, so that step can't sit with the DBAs.
 
-Arc is the program's chosen path, not the only one: Microsoft documents a manual setup for SQL Server 2022 and later on Windows. Arc wins because it also carries inventory, policy, updates and Defender for the host, which is Book 05.
+Arc is the program's chosen path, not the only one: Microsoft documents a manual setup for SQL Server 2022 and later on Windows. Arc wins because it also carries inventory, policy, updates and Defender for the host, which is the Federal Modernization Workbook's Book 05.
 
 ## Slide 6 — Logins move to Entra principals, in parallel
 
 The logins themselves move to Entra principals, in parallel.
 
-People become Entra users, ideally granted through groups, and they get phishing-resistant MFA and Conditional Access. Groups become Entra group logins, which SQL Server records as type X, with membership driven by HR attributes from Book 03. Applications become service principals and managed identities, and the book is clear that Conditional Access doesn't cover managed identities.
+People become Entra users, ideally granted through groups, and they get phishing-resistant MFA and Conditional Access. Groups become Entra group logins, which SQL Server records as type X, with membership driven by HR attributes from the Federal Modernization Workbook's Book 03. Applications become service principals and managed identities, and the book is clear that Conditional Access doesn't cover managed identities.
 
 The migration is a parallel run. Create the Entra user beside the Windows user and copy its roles and permissions. Keep both until the audit shows no remaining Windows sessions, then disable the old one. Never convert in one step; and the old runbook's shortcut, ALTER USER with LOGIN, only converts on Azure SQL Managed Instance, not on SQL Server.
 
@@ -84,7 +84,7 @@ The fastest exit is migration itself. An instance whose logins have moved to Ent
 
 With the logins moved, access is granted by attribute and applications move by driver.
 
-Access control: dynamic Entra groups, driven by HR attributes, grant database access, so no DBA provisions it by hand. Administrative units delegate group management, privileged database roles go through PIM from Book 04, and reviews cover the groups, not just the logins.
+Access control: dynamic Entra groups, driven by HR attributes, grant database access, so no DBA provisions it by hand. Administrative units delegate group management, privileged database roles go through PIM from the Federal Modernization Workbook's Book 04, and reviews cover the groups, not just the logins.
 
 The application chain: the book sorts SQL-consuming applications into four classes, each with its own migration path. Connection strings name a specific Entra authentication mode in production rather than the catch-all default. Microsoft.Data.SqlClient, ODBC, OLE DB and JDBC all support Entra modes, and the book has a driver table with the minimum versions. Managed identities on Arc hosts get their tokens from the local agent service.
 
@@ -114,4 +114,4 @@ And decide the certificate issuer: the Active Directory Certificate Services dep
 
 The database is where legacy authentication hides longest. Bringing it into Entra ID is what lets Conditional Access, phishing-resistant authentication and continuous evidence finally reach the data.
 
-Book 06 has the narrative and ten runbooks, with every external claim footnoted. Book 05 covers Arc on servers, and Book 04 the access policy it plugs into. Thank you.
+The Federal Modernization Workbook's Book 06 has the narrative and ten runbooks, with every external claim footnoted. Book 05 covers Arc on servers, and Book 04 the access policy it plugs into. Thank you.

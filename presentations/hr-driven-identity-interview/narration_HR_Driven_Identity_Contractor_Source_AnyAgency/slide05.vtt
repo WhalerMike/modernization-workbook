@@ -58,72 +58,96 @@ or a contractor record with
 no badge, is a finding.
 
 13
-00:00:40.550 --> 00:00:44.121
+00:00:40.550 --> 00:00:44.431
 The accountable party is a
 federal employee sponsor,
 
 14
-00:00:44.121 --> 00:00:46.313
+00:00:44.431 --> 00:00:46.725
 normally the COR, mastered in HR.
 
 15
-00:00:46.313 --> 00:00:51.485
+00:00:46.725 --> 00:00:51.898
 The contractor's organization placement is
 an explicit authoritative assignment; the
 
 16
-00:00:51.485 --> 00:00:56.374
+00:00:51.898 --> 00:00:56.787
 sponsor's organization is a default only
 where policy confirms that relationship.
 
 17
-00:00:56.374 --> 00:00:58.731
+00:00:56.787 --> 00:00:59.144
 I propose the enterprise person key,
 
 18
-00:00:58.731 --> 00:01:02.187
+00:00:59.144 --> 00:01:02.600
 the same as for employees,
 proposed for confirmation.
 
 19
-00:01:02.187 --> 00:01:07.041
+00:01:02.600 --> 00:01:07.453
 Many agencies already issue it to
 contractors along with their PIV card,
 
 20
-00:01:07.041 --> 00:01:09.063
+00:01:07.453 --> 00:01:09.475
 for example as a Mainframe PIN.
 
 21
-00:01:09.063 --> 00:01:12.883
+00:01:09.475 --> 00:01:13.296
 Where they do, a contractor is
 keyed exactly like an employee,
 
 22
-00:01:12.883 --> 00:01:17.392
+00:01:13.296 --> 00:01:17.805
 and keeps the same key on a new contract;
 in the proposed canonical model,
 
 23
-00:01:17.392 --> 00:01:22.512
+00:01:17.805 --> 00:01:22.925
 conversion to federal employment creates
 a new affiliation for the same person.
 
 24
-00:01:22.512 --> 00:01:26.526
+00:01:22.925 --> 00:01:26.938
 On the right: access ends at
 the earliest of five events.
 
 25
-00:01:26.526 --> 00:01:30.314
+00:01:26.938 --> 00:01:30.727
 The last two close the gap the
 Digital Worker playbook leaves open:
 
 26
-00:01:30.314 --> 00:01:32.450
+00:01:30.727 --> 00:01:32.863
 what happens when the sponsor leaves.
 
 27
-00:01:32.450 --> 00:01:36.875
+00:01:32.863 --> 00:01:36.987
 The sponsor is a live reference
 into HR, not a name on a form.
+
+28
+00:01:36.987 --> 00:01:40.696
+Design reference: the proposed
+sponsored-identity pattern,
+
+29
+00:01:40.696 --> 00:01:44.331
+with an accountable sponsor,
+a governed engagement record,
+
+30
+00:01:44.331 --> 00:01:48.337
+identity linkage, recertification
+and explicit end conditions.
+
+31
+00:01:48.337 --> 00:01:51.662
+The PIV cross-check follows FIPS 201-3;
+
+32
+00:01:51.662 --> 00:01:59.540
+separation follows NIST
+SP 800-53 PS-4 and PS-7.

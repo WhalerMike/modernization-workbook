@@ -1,0 +1,112 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.088
+This is an implementation guide.
+
+2
+00:00:02.088 --> 00:00:07.215
+The Federal Modernization Workbook's Book
+07 decided that the program's certificate
+
+3
+00:00:07.215 --> 00:00:10.465
+lifecycle platform is
+CyberArk Certificate Manager,
+
+4
+00:00:10.465 --> 00:00:14.149
+from the vendor the agency
+already uses for machine identity.
+
+5
+00:00:14.149 --> 00:00:17.366
+This guide shows how to
+build it, self-hosted,
+
+6
+00:00:17.366 --> 00:00:20.850
+and connect it to Book 07's
+design, phase by phase.
+
+7
+00:00:20.850 --> 00:00:24.062
+It runs in four parts
+after a short orientation.
+
+8
+00:00:24.062 --> 00:00:27.188
+Part 1 builds the platform: architecture,
+
+9
+00:00:27.188 --> 00:00:31.325
+the FIPS posture, console
+sign-in, hardening, and backup.
+
+10
+00:00:31.325 --> 00:00:35.804
+Part 2 connects the issuers: Active
+Directory Certificate Services,
+
+11
+00:00:35.804 --> 00:00:39.575
+the public certificate authorities,
+the cloud, and Intune.
+
+12
+00:00:39.575 --> 00:00:44.013
+Part 3 covers discovery, ownership
+and enrollment automation.
+
+13
+00:00:44.013 --> 00:00:50.063
+And Part 4 maps the build onto Book 07's
+six migration waves and covers running it.
+
+14
+00:00:50.063 --> 00:00:51.374
+Three ground rules.
+
+15
+00:00:51.374 --> 00:00:56.895
+Every fact comes from a primary source
+opened on October twenty-second,
+
+16
+00:00:56.895 --> 00:01:00.825
+2026, mostly CyberArk's
+version 26.1 documentation.
+
+17
+00:01:00.825 --> 00:01:03.738
+Recommendations are
+labeled design guidance.
+
+18
+00:01:03.738 --> 00:01:08.382
+And in three places the research
+corrects Book 07; I'll state the
+
+19
+00:01:08.382 --> 00:01:13.562
+corrected fact each time, and Book 07
+has been updated to match to match.
+
+20
+00:01:13.562 --> 00:01:19.736
+Sources: Research brief,
+Implementing Book 07's certificate
+
+21
+00:01:19.736 --> 00:01:26.898
+lifecycle on CyberArk Certificate
+Manager, Self-Hosted (verified Oct.
+
+22
+00:01:26.898 --> 00:01:33.690
+22, 2026); CyberArk Trust Protection
+Foundation 26.1 documentation;
+
+23
+00:01:33.690 --> 00:01:37.080
+Book 07, Chapters 01, 04, 05, 07 and 08.

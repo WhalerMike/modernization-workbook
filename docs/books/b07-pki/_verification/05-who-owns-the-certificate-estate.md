@@ -60,3 +60,9 @@ Cross-chapter consistency pass. Every changed external fact was re-checked on th
 | # | Change | Where | Verdict | Source |
 |---|---|---|---|---|
 | CF-1 | RADIUS servers: issuer retained AD CS through the CLM platform; renewal engine CyberArk Certificate Manager (was "Autoenrollment or CLM") | Renewal table | restated-as-design | Chapter 04 issuer decision |
+
+## Editor correction, October 22, 2026
+
+| Claim | Result | Source |
+|---|---|---|
+| CLM CA account scoped to its templates | corrected after the CyberArk implementation-guide research | Microsoft Learn: no WS2025 procedure for certificate-manager restrictions; positive and negative tests required |

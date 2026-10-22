@@ -2068,26 +2068,26 @@
   ],
   [
    79.312,
-   10.113,
-   "One federal limit: win-acme requires FIPS mode to be disabled on the CyberArk server, so where FIPS mode is required, use another tested client."
+   12.838,
+   "One federal limit: CyberArk's installation guide says FIPS mode isn't supported for its ACME service at all, so run the ACME service on dedicated servers outside the FIPS-mode server set."
   ],
   [
-   89.425,
+   92.15,
    7.75,
    "The drift checks run at least weekly and are committed to the evidence repository, because an assessor asks how long a finding stayed open."
   ],
   [
-   97.175,
+   99.9,
    13.0,
    "Watch for certificates within two renewal windows of expiry with no engine bound, issuance outside policy, missing strong mapping, trust store anchors that aren't approved, stale CRLs, and posture regressions."
   ],
   [
-   110.175,
+   112.9,
    6.75,
    "And treat a SID mismatch as a security event: it can mean the certificate was issued to a different user."
   ],
   [
-   116.925,
+   119.65,
    10.588,
    "That's event 41 on current domain controllers, but event 49 on Server 2008 and 2008 R2, where 41 means no strong mapping."
   ]

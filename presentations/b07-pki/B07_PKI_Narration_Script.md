@@ -130,4 +130,4 @@ And name the owners: issuance policy and trust anchors with the CISO, and one re
 
 The next step is wave one, Assess: four weeks to inventory every CA and template, close the Critical and High findings, classify every use case, and list every relying party.
 
-Run certificates on their own clock, and the old CAs can retire without stranding anything. Book 07 has the detail, every claim footnoted, with deployment checklists and a template-by-template matrix. Thank you.
+Run certificates on their own clock, and the old CAs can retire without stranding anything. The Federal Modernization Workbook's Book 07 has the detail, every claim footnoted, with deployment checklists and a template-by-template matrix. Thank you.

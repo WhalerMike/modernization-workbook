@@ -829,83 +829,88 @@ onboarding role isn't allowed to do.
 Finally, run it and prove it.
 
 174
-00:10:35.780 --> 00:10:40.567
-In run-state, compliance feeds
-Conditional Access, which is Book 04.
+00:10:35.780 --> 00:10:39.032
+In run-state, compliance
+feeds Conditional Access,
 
 175
-00:10:40.567 --> 00:10:43.919
+00:10:39.032 --> 00:10:42.517
+which is the Federal
+Modernization Workbook's Book 04.
+
+176
+00:10:42.517 --> 00:10:45.868
 Updates flow through rings
 and Windows Autopatch,
 
-176
-00:10:43.919 --> 00:10:49.185
+177
+00:10:45.868 --> 00:10:51.134
 and in a GCC tenant the update evidence
 comes from Intune and Autopatch reports,
 
-177
-00:10:49.185 --> 00:10:53.893
+178
+00:10:51.134 --> 00:10:55.842
 because Windows Update for Business
 reports don't meet GCC compliance.
 
-178
-00:10:53.893 --> 00:11:00.830
+179
+00:10:55.842 --> 00:11:02.780
 The inventory is reconciled across Entra
 ID, Intune, Autopilot, Arc and the CMDB.
 
-179
-00:11:00.830 --> 00:11:04.705
+180
+00:11:02.780 --> 00:11:06.655
 Devices are retired and wiped
 before the account is deleted.
 
-180
-00:11:04.705 --> 00:11:11.334
+181
+00:11:06.655 --> 00:11:13.284
 And the evidence maps to the
 configuration-management and
 
-181
-00:11:11.334 --> 00:11:16.880
+182
+00:11:13.284 --> 00:11:18.830
 flaw-remediation controls:
 CM-2, CM-6, CM-7, CM-8 and SI-2.
 
-182
-00:11:16.880 --> 00:11:19.418
+183
+00:11:18.830 --> 00:11:21.368
 What we need from
 leadership is four things.
 
-183
-00:11:19.418 --> 00:11:22.331
+184
+00:11:21.368 --> 00:11:24.280
 Approve Intune-first for every new device.
 
-184
-00:11:22.331 --> 00:11:26.617
+185
+00:11:24.280 --> 00:11:28.567
 Fund the Group Policy inventory
 and the Group Policy analytics run.
 
-185
-00:11:26.617 --> 00:11:32.317
+186
+00:11:28.567 --> 00:11:34.268
 Set the Windows 11 24H2 floor and a plan
 for servers reaching end of support.
 
-186
-00:11:32.317 --> 00:11:36.130
+187
+00:11:34.268 --> 00:11:38.080
 And name the owners for
 endpoints, servers and security.
 
-187
-00:11:36.130 --> 00:11:41.430
+188
+00:11:38.080 --> 00:11:43.380
 Book 05 has the full migration, with
 every external claim footnoted.
 
-188
-00:11:41.430 --> 00:11:45.307
+189
+00:11:43.380 --> 00:11:47.257
 Book 04 covers what a
 compliant device may reach,
 
-189
-00:11:45.307 --> 00:11:48.118
+190
+00:11:47.257 --> 00:11:50.068
 and Book 02 the identity it rests on.
 
-190
-00:11:48.118 --> 00:11:48.940
+191
+00:11:50.068 --> 00:11:50.890
 Thank you.

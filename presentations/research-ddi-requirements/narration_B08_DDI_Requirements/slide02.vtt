@@ -11,99 +11,99 @@ and in a hybrid multi-cloud agency the
 answer decides much more than an address.
 
 3
-00:00:09.425 --> 00:00:14.606
+00:00:09.425 --> 00:00:14.227
+The Federal Modernization Workbook's
 Book 08 counts six jobs DNS now does:
-publishing private endpoint addresses,
 
 4
-00:00:14.606 --> 00:00:18.388
+00:00:14.227 --> 00:00:18.714
+publishing private endpoint addresses,
 selecting SaaS front doors,
-enforcing security policy,
 
 5
-00:00:18.388 --> 00:00:23.075
-anchoring certificate revocation
-checks, and carrying the service
+00:00:18.714 --> 00:00:24.461
+enforcing security policy, anchoring
+certificate revocation checks, and carrying the
 
 6
-00:00:23.075 --> 00:00:28.338
-identity and application surface that
-Zero Trust policy is written against.
+00:00:24.461 --> 00:00:30.050
+service identity and application surface
+that Zero Trust policy is written against.
 
 7
-00:00:28.338 --> 00:00:32.314
+00:00:30.050 --> 00:00:34.027
 NIST's 2026 DNS deployment
 guide puts it plainly:
 
 8
-00:00:32.314 --> 00:00:36.987
+00:00:34.027 --> 00:00:38.700
 DNS has become more than a
 service; it's a security control.
 
 9
-00:00:36.987 --> 00:00:42.927
+00:00:38.700 --> 00:00:44.640
 Yet most agencies run it across as
 many as five independent platforms:
 
 10
-00:00:42.927 --> 00:00:46.613
+00:00:44.640 --> 00:00:48.326
 Active Directory DNS or
 an on-premises grid,
 
 11
-00:00:46.613 --> 00:00:50.812
+00:00:48.326 --> 00:00:52.525
 Route 53, Azure DNS, Google
 Cloud DNS and VMware NSX.
 
 12
-00:00:50.812 --> 00:00:52.712
+00:00:52.525 --> 00:00:54.425
 None shares state with the others.
 
 13
-00:00:52.712 --> 00:00:54.556
+00:00:54.425 --> 00:00:56.269
 The result is split-brain DNS,
 
 14
-00:00:54.556 --> 00:00:59.625
+00:00:56.269 --> 00:01:01.338
 the same name giving different answers
 depending on where the query starts, and
 
 15
-00:00:59.625 --> 00:01:04.849
+00:01:01.338 --> 00:01:06.562
 it fails quietly, as certificate errors
 and access denials rather than DNS errors.
 
 16
-00:01:04.849 --> 00:01:09.313
+00:01:06.562 --> 00:01:11.025
 And the forwarding rules that join the
 platforms usually belong to no team at all.
 
 17
-00:01:09.313 --> 00:01:13.424
+00:01:11.025 --> 00:01:15.137
 IPAM and DHCP are the address
 half of the same problem.
 
 18
-00:01:13.424 --> 00:01:16.307
+00:01:15.137 --> 00:01:18.020
 IPAM is the record of
 who owns which block,
 
 19
-00:01:16.307 --> 00:01:21.350
+00:01:18.020 --> 00:01:23.063
 and DHCP lease data is how an address
 becomes a device in the asset inventory.
 
 20
-00:01:21.350 --> 00:01:25.113
+00:01:23.063 --> 00:01:26.825
 The book's answer is one
 authoritative DDI policy plane.
 
 21
-00:01:25.113 --> 00:01:28.005
+00:01:26.825 --> 00:01:29.719
 That's an architectural
 requirement, not a product,
 
 22
-00:01:28.005 --> 00:01:30.960
+00:01:29.719 --> 00:01:32.660
 and it's the yardstick for
 everything that follows.

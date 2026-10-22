@@ -42,8 +42,8 @@
   ],
   [
    77.213,
-   15.8,
-   "Sources: Infoblox NIOS 9.1.x and Universal D D I docs; fed-ramp Marketplace products.json; nist CMVP; DISA STIG file store; O M B and sis-uh publications; Book 08."
+   17.775,
+   "Sources: Infoblox NIOS 9.1.x and Universal D D I docs; fed-ramp Marketplace products.json; nist CMVP; DISA STIG file store; O M B and sis-uh publications; the Federal Modernization Workbook's Book 08."
   ]
  ],
  "2": [
@@ -79,56 +79,56 @@
   ],
   [
    41.9,
-   5.425,
-   "Book 08 of the workbook describes what that plane is made of, and it isn't one box."
+   7.412,
+   "The Federal Modernization Workbook's Book 08 of the workbook describes what that plane is made of, and it isn't one box."
   ],
   [
-   47.325,
+   49.312,
    9.225,
    "There's an authoritative and recursive layer on premises that hosts internal zones, answers clients, and applies response policy zones and DNSSEC."
   ],
   [
-   56.55,
+   58.538,
    10.25,
    "There's a management plane, more and more often delivered as a cloud service, that holds the system of record for zones, forwarding rules, address data and security policy."
   ],
   [
-   66.8,
+   68.787,
    6.412,
    "And there are local resolvers and agents that keep answering from local state if the management plane can't be reached."
   ],
   [
-   73.213,
+   75.2,
    4.425,
    "Cloud D N S isn't replaced; it's managed as an overlay."
   ],
   [
-   77.638,
+   79.625,
    2.375,
    "So here is the argument of the whole session."
   ],
   [
-   80.013,
+   82.0,
    3.413,
    "Federal rules require capabilities, not products."
   ],
   [
-   83.425,
+   85.412,
    5.513,
    "Those capabilities, taken together, need one authoritative and governed D D I plane."
   ],
   [
-   88.938,
+   90.925,
    7.713,
    "Infoblox is one of the strongest ways to deliver that plane, with evidence, and it also carries real risks you have to manage."
   ],
   [
-   96.65,
+   98.638,
    1.15,
    "We'll cover both."
   ],
   [
-   97.8,
+   99.787,
    8.438,
    "Sources: nist SP 800-81r3; Book 08, Chapters 01 and 08."
   ]
@@ -1491,8 +1491,8 @@
   ],
   [
    40.612,
-   9.113,
-   "Sources: Infoblox NIOS 9.1.x and 9.0 administration guides; Book 08, Chapter 11."
+   10.775,
+   "Sources: Infoblox NIOS 9.1.x and 9.0 administration guides; the Federal Modernization Workbook's Book 08, Chapter 11."
   ]
  ],
  "21": [
@@ -2065,8 +2065,8 @@
   ],
   [
    34.475,
-   8.438,
-   "Sources: Infoblox Portal and Universal D D I documentation; Book 08, Chapters 09 and 10."
+   10.287,
+   "Sources: Infoblox Portal and Universal D D I documentation; the Federal Modernization Workbook's Book 08, Chapters 09 and 10."
   ]
  ],
  "30": [
@@ -2373,66 +2373,66 @@
   ],
   [
    1.0,
-   11.088,
-   "This matrix is adapted from Book 08's responsibility matrix, which separates deciding from doing: D decides and is accountable, R does the work, C is consulted."
+   12.812,
+   "This matrix is adapted from the Federal Modernization Workbook's Book 08's responsibility matrix, which separates deciding from doing: D decides and is accountable, R does the work, C is consulted."
   ],
   [
-   12.088,
+   13.812,
    2.95,
    "I've added a Division column for the delegated model."
   ],
   [
-   15.037,
+   16.762,
    10.45,
    "The C I O decides the platform and deployment model, NIOS, the SaaS, or hybrid, with the central D D I team doing the evaluation and everyone else consulted."
   ],
   [
-   25.488,
+   27.212,
    6.5,
    "The authorizing official decides whether a cloud-delivered management plane is authorized at the right impact level."
   ],
   [
-   31.988,
+   33.712,
    10.2,
    "The C I O also decides how divisions are scoped in the policy plane, and the central D D I team builds it: admin groups, network views, access views."
   ],
   [
-   42.188,
+   43.913,
    4.763,
    "Divisions are consulted, because a scope they can't work in becomes a workaround."
   ],
   [
-   46.95,
+   48.675,
    5.9,
    "Central D D I owns the top-level address blocks and namespace design, deciding and doing."
   ],
   [
-   52.85,
+   54.575,
    13.925,
    "DNSSEC signing and key rollover, and response policy and Threat Defense policy, are control requirements, so the see-so decides them and central D D I runs them, with security operations consulted on response policy."
   ],
   [
-   66.775,
+   68.5,
    4.475,
    "Standard record changes in a division's zone are where delegation pays off."
   ],
   [
-   71.25,
+   72.975,
    8.963,
    "Central decided in advance what a standard change is; the division does the work, inside its scope, through the approval workflow where one applies."
   ],
   [
-   80.213,
+   81.938,
    11.363,
    "High-impact changes, such as zones, NS and SRV records, apex records, wildcards and RPZ, stay with central to decide and do, with divisions consulted."
   ],
   [
-   91.575,
+   93.3,
    12.625,
    "And an encrypted D N S exception that has no end date, or has outlived the agency's limit, goes to the authorizing official, because at that point it's a risk acceptance, not a configuration choice."
   ],
   [
-   104.2,
+   105.925,
    14.9,
    "Sources: Book 08, Chapter 09, \"Decision rights and work are different things,\" \"The roles,\" \"The responsibility matrix\"; Infoblox NIOS approval workflows; Universal D D I access policies."
   ]
@@ -2445,106 +2445,106 @@
   ],
   [
    4.95,
-   5.162,
-   "The sequence follows Book 08's canonical order, adapted for divisions."
+   7.162,
+   "The sequence follows the Federal Modernization Workbook's Book 08's canonical order, adapted for divisions."
   ],
   [
-   10.113,
+   12.113,
    11.1,
    "One: inventory everything first, zones, scopes, forwarders, and every record Active Directory D N S holds, before any domain controller is touched."
   ],
   [
-   21.212,
+   23.212,
    11.287,
    "Two: build the central pieces, the Grid Master and candidates, the HSM if you'll use one, and a build standard that sets the DNSSEC algorithm, logging and STIG settings."
   ],
   [
-   32.5,
+   34.5,
    9.2,
    "Three: coexist, by managing the existing Windows D N S and DHCP servers from the Grid in place, so nothing moves until you're ready."
   ],
   [
-   41.7,
+   43.7,
    9.363,
    "Four: onboard divisions one at a time, starting with pattern (a), the simplest, and adding views or delegations only where a division needs them."
   ],
   [
-   51.062,
+   53.062,
    2.237,
    "Five: federate the clouds."
   ],
   [
-   53.3,
+   55.3,
    8.025,
    "Six: harden and evidence, with the STIG applied, logs at retention, and audit trails the authorizing official can read."
   ],
   [
-   61.325,
+   63.325,
    1.675,
    "The decisions to take now."
   ],
   [
-   63.0,
+   65.0,
    6.188,
    "Which platform model, NIOS, Universal D D I or hybrid, for each impact level."
   ],
   [
-   69.188,
+   71.188,
    6.25,
    "Which delegation pattern for each division, and who approves changes for a bureau that needs confidentiality."
   ],
   [
-   75.438,
+   77.438,
    5.75,
    "Whether to wait for the FIPS 140-3 certificate or proceed with a POA&M."
   ],
   [
-   81.188,
+   83.188,
    3.3,
    "And where logs will live to stay searchable for six months."
   ],
   [
-   84.487,
+   86.487,
    1.25,
    "And the next steps."
   ],
   [
-   85.737,
+   87.737,
    3.413,
    "Send Infoblox the procurement asks from Module 2."
   ],
   [
-   89.15,
+   91.15,
    5.15,
    "Confirm which roles access views support, and what value Entra sends for group matching."
   ],
   [
-   94.3,
+   96.3,
    6.2,
    "Lab-test encrypted forwarding to sis-uh's Protective D N S and the DNSSEC algorithm change."
   ],
   [
-   100.5,
+   102.5,
    5.162,
    "And draft each division's scope and the responsibility matrix with the division itself."
   ],
   [
-   105.662,
+   107.662,
    10.05,
    "In the program's analysis, Infoblox is one of the strongest ways to build a governed D D I plane for a federal agency, as long as you manage its risks in the open."
   ],
   [
-   115.713,
+   117.713,
    7.875,
    "One note on standing: this is the program's research analysis, under review, not an endorsement by any federal agency."
   ],
   [
-   123.588,
+   125.588,
    0.762,
    "Thank you."
   ],
   [
-   124.35,
+   126.35,
    14.438,
    "Sources: Book 08, index (canonical sequence) and Chapter 10; Infoblox NIOS and Universal D D I documentation; federal requirements and validation research cited in Modules 1 and 2."
   ]
@@ -2552,81 +2552,81 @@
  "14": [
   [
    0.05,
-   9.662,
-   "A narrower question: if an agency buys Trinzic, the physical NIOS appliances, how well does the hardware fit the design in Book 08 of the workbook?"
+   11.562,
+   "A narrower question: if an agency buys Trinzic, the physical NIOS appliances, how well does the hardware fit the design in the Federal Modernization Workbook's Book 08 of the workbook?"
   ],
   [
-   9.713,
+   11.613,
    7.975,
    "One authoritative policy plane: the Grid gives you one shared database, an HA Grid Master and a candidate with a full copy."
   ],
   [
-   17.688,
+   19.587,
    7.0,
    "But candidate promotion is manual, and Infoblox publishes no Grid scale limits, so size it with the vendor."
   ],
   [
-   24.688,
+   26.587,
    9.162,
    "Leaving Active Directory\u2013integrated D N S: GSS-TSIG lets domain controllers send Kerberos-signed updates to the Grid."
   ],
   [
-   33.85,
+   35.75,
    6.963,
    "But an appliance can send GSS-TSIG updates or accept them, not both, so plan which members do which."
   ],
   [
-   40.812,
+   42.712,
    8.088,
    "DNSSEC signing is central, on the Grid Master, with keys there or in a Thales Luna or Entrust nShield HSM."
   ],
   [
-   48.9,
+   50.8,
    2.9,
    "Change the RSA SHA-1 default."
   ],
   [
-   51.8,
+   53.7,
    8.05,
    "Encrypted D N S is served by BIND from 9.1, free only on X6; X5 needs an extra license."
   ],
   [
-   59.85,
+   61.75,
    10.4,
    "eye-pam and basic discovery are built in, but Network Insight needs a Discovery license and dedicated ND-series appliances that run no D N S or DHCP."
   ],
   [
-   70.25,
+   72.15,
    7.388,
    "Reporting appliances have daily ingest caps; five overruns in thirty days lock reporting, so send logs to the sim."
   ],
   [
-   77.638,
+   79.537,
    4.162,
    "Trinzic sits inside the agency's own boundary and ATO."
   ],
   [
-   81.8,
+   83.7,
    5.138,
    "The fed-ramp Moderate listing doesn't cover it, which is why it's the path for High and DoD."
   ],
   [
-   86.938,
+   88.838,
    18.087,
    "Assurance and lifecycle: certificate 4531 for Trinzic hardware went Historical in September, the FIPS 140-3 Trinzic modules are pending review, and NIAP has been evaluating Trinzic appliances with NIOS 9.0 since August 17."
   ],
   [
-   105.025,
+   106.925,
    4.263,
    "X6 needs NIOS 9.0.1 or later."
   ],
   [
-   109.287,
+   111.188,
    12.925,
    "Hardware is typically supported about four years after its last order date, and an internet-facing appliance past end of support may fall under BOD 26-02, though it doesn't name D N S appliances."
   ],
   [
-   122.213,
+   124.112,
    38.837,
    "Sources: Infoblox NIOS 9.1.x: Promoting a Grid Master Candidate, About Grids, About GSS-TSIG, Configuring DNSSEC on a Grid, Setting DNSSEC Parameters, Thales Luna HSM, DoT and DoH Architecture, About Network Insight, Supported Reporting Appliances; NIOS 9.1.0 blog (vendor); nist CMVP certificate 4531 and Modules In Process list; NIAP PCL; Infoblox End-of-Life policy; sis-uh BOD 26-02; fed-ramp products.json; Book 08."
   ]

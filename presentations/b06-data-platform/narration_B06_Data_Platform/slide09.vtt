@@ -20,60 +20,65 @@ grant database access, so no
 DBA provisions it by hand.
 
 5
-00:00:14.938 --> 00:00:20.233
-Administrative units delegate group
-management, privileged database roles go
+00:00:14.938 --> 00:00:18.012
+Administrative units
+delegate group management,
 
 6
-00:00:20.233 --> 00:00:24.975
-through PIM from Book 04, and reviews
-cover the groups, not just the logins.
+00:00:18.012 --> 00:00:22.550
+privileged database roles go through
+PIM from the Federal Modernization
 
 7
-00:00:24.975 --> 00:00:28.344
+00:00:22.550 --> 00:00:26.575
+Workbook's Book 04, and reviews cover
+the groups, not just the logins.
+
+8
+00:00:26.575 --> 00:00:29.944
 The application chain: the
 book sorts SQL-consuming
 
-8
-00:00:28.344 --> 00:00:32.575
+9
+00:00:29.944 --> 00:00:34.175
 applications into four classes,
 each with its own migration path.
 
-9
-00:00:32.575 --> 00:00:35.868
+10
+00:00:34.175 --> 00:00:37.468
 Connection strings name a
 specific Entra authentication
 
-10
-00:00:35.868 --> 00:00:38.825
+11
+00:00:37.468 --> 00:00:40.425
 mode in production rather
 than the catch-all default.
 
-11
-00:00:38.825 --> 00:00:44.680
+12
+00:00:40.425 --> 00:00:46.280
 Microsoft.Data.SqlClient, ODBC, OLE
 DB and JDBC all support Entra modes,
 
-12
-00:00:44.680 --> 00:00:49.425
+13
+00:00:46.280 --> 00:00:51.025
 and the book has a driver table
 with the minimum versions.
 
-13
-00:00:49.425 --> 00:00:54.063
+14
+00:00:51.025 --> 00:00:55.663
 Managed identities on Arc hosts get their
 tokens from the local agent service.
 
-14
-00:00:54.063 --> 00:00:56.287
+15
+00:00:55.663 --> 00:00:57.888
 The last mile is the connection string.
 
-15
-00:00:56.287 --> 00:01:01.750
+16
+00:00:57.888 --> 00:01:03.350
 Every application that still says Integrated
 Security keeps the Windows path alive,
 
-16
-00:01:01.750 --> 00:01:05.810
+17
+00:01:03.350 --> 00:01:07.420
 so the application inventory is
 part of closure, not a follow-up.

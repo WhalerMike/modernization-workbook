@@ -62,6 +62,12 @@ Book 16's lab rules apply: labs never touch production, use synthetic data, and 
 
 The research explainer [Trinzic Alone, or Trinzic Plus Cloud DDI?](trinzic-multicloud-ddi.md) explains when each of these patterns fits.
 
+## Federal-focused sessions
+
+| Session | Link | Notes |
+|---|---|---|
+| *Strengthening Federal Cybersecurity with Encrypted DNS and Zero Trust* (Infoblox, November 6, 2025; about 50 minutes; Cricket Liu and Craig Sanderson) | [YouTube, official Infoblox channel](https://www.youtube.com/watch?v=Tytqevx9pdg) | For architects, security operations and decision makers. The session ties encrypted DNS to "EO 14028 requirements"; the workbook's verified research found no DNS text in EO 14028. The federal encrypted-DNS requirements are OMB M-22-09 and EO 14144 section 4(c) ([Infoblox DDI for Federal Agencies](infoblox-ddi-federal.md); [What a Federal DDI Platform Must Do](ddi-platform-requirements.md)). This is a vendor presentation. |
+
 ## Community and video
 
 - [Infoblox Community](https://community.infoblox.com/), readable without an account, with forums for [NIOS DDI](https://community.infoblox.com/categories/nios-ddi-1), [Universal DDI](https://community.infoblox.com/categories/universal-ddi-management-1), [Threat Defense](https://community.infoblox.com/categories/infoblox-threat-defense-1) and [automation](https://community.infoblox.com/categories/automation), and [product announcements](https://community.infoblox.com/categories/product-announcements), where end-of-life notices appear.

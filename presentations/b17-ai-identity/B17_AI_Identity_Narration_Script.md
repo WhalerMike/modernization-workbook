@@ -116,4 +116,4 @@ And authorize AI through the process you already run: two signatures for high-im
 
 The next step needs no new tooling. Run the inventory checks on the agency's own submission, start with agentic systems and missing authorizations, and confirm each agent capability for your own cloud before planning on it.
 
-Every AI system needs an identity and an owner. Book 17 has the detail, every claim footnoted. Thank you.
+Every AI system needs an identity and an owner. The Federal Modernization Workbook's Book 17 has the detail, every claim footnoted. Thank you.

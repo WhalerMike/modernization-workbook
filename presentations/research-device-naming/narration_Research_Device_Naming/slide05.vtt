@@ -95,41 +95,41 @@ On Windows DHCP, always updating both records
 makes the client skip its own attempt.
 
 21
-00:01:19.988 --> 00:01:26.393
+00:01:19.988 --> 00:01:26.231
 Sources: RFC 4701 DHCID, RFC
 4702 DHCPv4 Client FQDN option,
 
 22
-00:01:26.393 --> 00:01:34.935
+00:01:26.231 --> 00:01:34.555
 RFC 4703 FQDN conflict resolution, RFC
 4704 DHCPv6 Client FQDN option [S31–S34];
 
 23
-00:01:34.935 --> 00:01:40.808
+00:01:34.555 --> 00:01:40.279
 Microsoft Learn Dynamic update
 [S26]; Infoblox NIOS 9.1:
 
 24
-00:01:40.808 --> 00:01:48.282
+00:01:40.279 --> 00:01:47.563
 Understanding DDNS Updates from
 DHCP, About the Client FQDN Option,
 
 25
-00:01:48.282 --> 00:01:54.155
+00:01:47.563 --> 00:01:53.286
 Sending Updates for Zones
 on an External Name Server,
 
 26
-00:01:54.155 --> 00:02:00.962
+00:01:53.286 --> 00:01:59.920
 Configuring DNS Servers for
 DDNS, Configuring DDNS Features,
 
 27
-00:02:00.962 --> 00:02:06.834
-Accepting DDNS Updates from
-DHCP Clients [S40–S44, S47];
+00:01:59.920 --> 00:02:06.944
+Accepting DDNS Updates from DHCP
+Clients [S40–S44, S47]; the Federal
 
 28
-00:02:06.834 --> 00:02:13.030
-Book 08 Ch04, Secure dynamic
-updates and the DHCP server.
+00:02:06.944 --> 00:02:14.880
+Modernization Workbook's Book 08 Ch04,
+Secure dynamic updates and the DHCP server.

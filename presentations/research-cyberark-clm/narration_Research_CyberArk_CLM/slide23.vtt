@@ -1,0 +1,131 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.750
+Monitoring and drift.
+
+2
+00:00:01.750 --> 00:00:07.231
+The Federal Modernization Workbook's
+Book 07 Chapter 08 collects certificate
+
+3
+00:00:07.231 --> 00:00:12.713
+signals from many places into one view,
+and security operations owns the alerts.
+
+4
+00:00:12.713 --> 00:00:18.284
+The platform contributes the inventory,
+every certificate it knows with its owner,
+
+5
+00:00:18.284 --> 00:00:23.451
+expiry and renewal status, and sends its
+events to the SIEM over syslog with TLS.
+
+6
+00:00:23.451 --> 00:00:27.500
+Four of Chapter 08's drift patterns
+are the platform's to catch.
+
+7
+00:00:27.500 --> 00:00:31.460
+Expiring with no renewal
+path: a certificate within two
+
+8
+00:00:31.460 --> 00:00:35.162
+renewal windows of expiry
+with no engine bound to it.
+
+9
+00:00:35.162 --> 00:00:40.866
+Issuance outside policy: a discovered
+certificate with no enrollment record, or,
+
+10
+00:00:40.866 --> 00:00:44.186
+from Part 2, event 4887
+showing the platform's CA
+
+11
+00:00:44.186 --> 00:00:48.101
+account received a certificate
+outside its templates.
+
+12
+00:00:48.101 --> 00:00:50.995
+CRLs near their next
+update or served stale:
+
+13
+00:00:50.995 --> 00:00:55.177
+the platform's Certificate
+Revocation Monitoring component
+
+14
+00:00:55.177 --> 00:00:59.600
+checks CRL distribution points and
+OCSP endpoints, at least daily.
+
+15
+00:00:59.600 --> 00:01:05.054
+And trust store drift: the program's guidance
+is to keep the platform's Roots tree
+
+16
+00:01:05.054 --> 00:01:07.450
+limited to approved trust anchors,
+
+17
+00:01:07.450 --> 00:01:10.838
+which is the SC-17 part b
+question an assessor asks.
+
+18
+00:01:10.838 --> 00:01:12.550
+And persist the evidence.
+
+19
+00:01:12.550 --> 00:01:15.709
+In the program's model the drift
+checks run at least weekly,
+
+20
+00:01:15.709 --> 00:01:19.000
+and their outputs are committed
+to the evidence repository.
+
+21
+00:01:19.000 --> 00:01:23.118
+History matters more than any single
+run, because an assessor asks
+
+22
+00:01:23.118 --> 00:01:26.787
+how long a finding stayed open,
+not only whether it's open now.
+
+23
+00:01:26.787 --> 00:01:33.169
+Sources: Book 07, Chapter 05 (security
+operations role) and Chapter 08 (monitoring,
+
+24
+00:01:33.169 --> 00:01:36.457
+drift patterns, persisting the evidence);
+
+25
+00:01:36.457 --> 00:01:40.229
+CyberArk 26.1 Installation
+and Upgrade Guide p.
+
+26
+00:01:40.229 --> 00:01:43.420
+89 (Certificate Revocation Monitoring);
+
+27
+00:01:43.420 --> 00:01:48.120
+Syslog channel configuration;
+research brief section 11.

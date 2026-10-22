@@ -130,4 +130,4 @@ And name the owners, one decider per row, with the DNS/DDI team deciding what ev
 
 The next step is Phase 1, the inventory: export every AD DNS zone, SRV record, conditional forwarder and DHCP scope, and every redirect-dns target and revocation endpoint, before anyone touches a domain controller. It's read-only, and it's the one step whose omission can't be repaired later.
 
-Govern the name layer as one plane, and it can carry the cloud, branch and identity transitions. Book 08 has the detail, every claim footnoted. Thank you.
+Govern the name layer as one plane, and it can carry the cloud, branch and identity transitions. The Federal Modernization Workbook's Book 08 has the detail, every claim footnoted. Thank you.
