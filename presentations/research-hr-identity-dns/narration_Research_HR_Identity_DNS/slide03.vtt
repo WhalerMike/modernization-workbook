@@ -1,0 +1,117 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.412
+That leads to the key idea of this talk.
+
+2
+00:00:02.412 --> 00:00:06.400
+Almost every name in this path
+is public and owned by a vendor.
+
+3
+00:00:06.400 --> 00:00:10.254
+The Fusion host, which looks
+like your environment's name,
+
+4
+00:00:10.254 --> 00:00:13.123
+then dot f-a dot o-c-s
+dot oraclecloud dot com.
+
+5
+00:00:13.123 --> 00:00:16.075
+Microsoft Graph and the
+Entra sign-in hosts.
+
+6
+00:00:16.075 --> 00:00:18.463
+The provisioning agent's relay names.
+
+7
+00:00:18.463 --> 00:00:22.800
+And the Amazon Connect names that
+contact-center agents' browsers use.
+
+8
+00:00:22.800 --> 00:00:25.656
+The agency's job is to
+resolve those correctly
+
+9
+00:00:25.656 --> 00:00:28.287
+from every resolver a component can reach.
+
+10
+00:00:28.287 --> 00:00:31.838
+A resolver is the DNS
+server a machine asks.
+
+11
+00:00:31.838 --> 00:00:37.100
+The agency must never host or shadow
+those names in a private zone of its own.
+
+12
+00:00:37.100 --> 00:00:39.088
+We'll see why on the failure slide.
+
+13
+00:00:39.088 --> 00:00:43.748
+Private DNS is needed, along with
+forwarding, which means one resolver
+
+14
+00:00:43.748 --> 00:00:48.249
+passing a query to another that knows
+the answer, in only four places.
+
+15
+00:00:48.249 --> 00:00:53.404
+One: names the agency owns, like AD
+domains and their service records,
+
+16
+00:00:53.404 --> 00:00:59.387
+the middleware's evidence store, internal
+HR or identity APIs, and VMware hosts.
+
+17
+00:00:59.387 --> 00:01:04.381
+Two: cloud private endpoints the middleware
+uses, such as a storage account behind
+
+18
+00:01:04.381 --> 00:01:09.300
+Azure Private Link, which gives a cloud
+service a private address in your network.
+
+19
+00:01:09.300 --> 00:01:13.500
+Three: cloud private zones that
+on-premises systems must read.
+
+20
+00:01:13.500 --> 00:01:17.763
+Four: AWS interface
+endpoints with private DNS.
+
+21
+00:01:17.763 --> 00:01:20.801
+Everything else is ordinary
+public resolution.
+
+22
+00:01:20.801 --> 00:01:32.346
+Sources: Research brief, Bottom line items
+1 and 2, citing Microsoft Learn [S2, S4,
+
+23
+00:01:32.346 --> 00:01:39.201
+S10], Oracle [S20, S23], AWS
+[S27–S29, S31], Broadcom [S36];
+
+24
+00:01:39.201 --> 00:01:47.570
+Book 08 Ch07 and Ch08;
+research_multicloud.md [prior-M S57].

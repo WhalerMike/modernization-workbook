@@ -1,0 +1,140 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.994
+Next, the government clouds
+use different names,
+
+2
+00:00:02.994 --> 00:00:05.275
+and getting this wrong fails quietly.
+
+3
+00:00:05.275 --> 00:00:08.350
+Microsoft Graph has a
+separate address per cloud.
+
+4
+00:00:08.350 --> 00:00:14.084
+A GCC tenant, Microsoft's government
+community cloud, keeps using the worldwide
+
+5
+00:00:14.084 --> 00:00:19.644
+endpoints: graph dot microsoft dot com,
+and login dot microsoftonline dot com.
+
+6
+00:00:19.644 --> 00:00:23.119
+A GCC High tenant uses
+graph dot microsoft dot us,
+
+7
+00:00:23.119 --> 00:00:25.812
+and login dot microsoftonline dot us.
+
+8
+00:00:25.812 --> 00:00:30.549
+The higher government cloud has its own
+Graph host and the same dot-us sign-in.
+
+9
+00:00:30.549 --> 00:00:33.479
+Microsoft says access
+tokens from one national
+
+10
+00:00:33.479 --> 00:00:36.188
+cloud aren't interchangeable
+with another's.
+
+11
+00:00:36.188 --> 00:00:38.513
+The provisioning agent has its own list.
+
+12
+00:00:38.513 --> 00:00:41.816
+In the public cloud, which
+GCC tenants also use,
+
+13
+00:00:41.816 --> 00:00:47.813
+it reaches relay names under msappproxy
+dot net and servicebus dot windows dot net.
+
+14
+00:00:47.813 --> 00:00:48.353
+In the U.S.
+
+15
+00:00:48.353 --> 00:00:52.525
+Government cloud those become
+msappproxy dot us and servicebus
+
+16
+00:00:52.525 --> 00:00:56.775
+dot usgovcloudapi dot net, with
+dot-us certificate-check names too.
+
+17
+00:00:56.775 --> 00:01:01.390
+The agent uses outbound port
+443 for service traffic and port
+
+18
+00:01:01.390 --> 00:01:06.187
+80 for certificate revocation
+lists, and needs no inbound ports.
+
+19
+00:01:06.187 --> 00:01:08.893
+Per Microsoft Learn, from search excerpts:
+
+20
+00:01:08.893 --> 00:01:12.294
+public DNS for these names
+is a chain of CNAME records,
+
+21
+00:01:12.294 --> 00:01:17.549
+you should avoid inline TLS inspection,
+meaning a proxy that decrypts the traffic,
+
+22
+00:01:17.549 --> 00:01:22.650
+and the agent installs to the default
+Azure environment unless told otherwise.
+
+23
+00:01:22.650 --> 00:01:27.100
+So keep a per-cloud list of names,
+and test through the real egress path.
+
+24
+00:01:27.100 --> 00:01:32.508
+Sources: Microsoft Learn: Microsoft
+Graph national cloud deployments [S2];
+
+25
+00:01:32.508 --> 00:01:38.625
+Prerequisites for Microsoft Entra Cloud
+Sync, firewall and proxy requirements [S4];
+
+26
+00:01:38.625 --> 00:01:41.640
+Cloud sync troubleshooting
+[S4b (excerpt)];
+
+27
+00:01:41.640 --> 00:01:47.314
+On-premises application provisioning
+architecture [S6 (excerpt)]; Install the
+
+28
+00:01:47.314 --> 00:01:50.328
+provisioning agent and Hybrid identity
+
+29
+00:01:50.328 --> 00:01:54.020
+considerations for Azure
+Government [S7 (excerpt)].

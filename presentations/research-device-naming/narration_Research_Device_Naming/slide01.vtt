@@ -1,0 +1,108 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.587
+When an agency retires Active Directory,
+
+2
+00:00:02.587 --> 00:00:07.587
+two questions come up that nobody owned
+before, because AD answered them quietly.
+
+3
+00:00:07.587 --> 00:00:09.300
+Who gives a device its name?
+
+4
+00:00:09.300 --> 00:00:12.718
+And who puts that name into
+DNS, the system that turns
+
+5
+00:00:12.718 --> 00:00:16.612
+names into network addresses,
+so other machines can find it?
+
+6
+00:00:16.612 --> 00:00:18.563
+This explainer walks through both.
+
+7
+00:00:18.563 --> 00:00:20.735
+It's built for someone still learning,
+
+8
+00:00:20.735 --> 00:00:23.750
+so every term is explained
+the first time it appears.
+
+9
+00:00:23.750 --> 00:00:26.438
+We start with the two jobs AD did at once.
+
+10
+00:00:26.438 --> 00:00:28.813
+Then who names each kind of device now.
+
+11
+00:00:28.813 --> 00:00:33.319
+Then why devices can't register
+their own names securely without AD,
+
+12
+00:00:33.319 --> 00:00:37.987
+what takes over, and where nothing
+does, such as IPv6 and remote clients.
+
+13
+00:00:37.987 --> 00:00:42.728
+Then why names still matter, and a
+checklist of what the agency must do,
+
+14
+00:00:42.728 --> 00:00:44.974
+before, during and after cutover.
+
+15
+00:00:44.974 --> 00:00:46.775
+This is research under review.
+
+16
+00:00:46.775 --> 00:00:51.950
+Every fact comes from sources opened
+on October twenty-second, 2026.
+
+17
+00:00:51.950 --> 00:00:56.750
+Where I drew a conclusion that no source
+states directly, I'll call it an inference.
+
+18
+00:00:56.750 --> 00:01:01.725
+And recommendations are labeled program
+design guidance, not vendor requirements.
+
+19
+00:01:01.725 --> 00:01:09.151
+Sources: Research brief, After
+Active Directory: Who Names Devices,
+
+20
+00:01:09.151 --> 00:01:17.117
+Who Registers Their DNS Records, and
+What an Agency Must Do (verified Oct.
+
+21
+00:01:17.117 --> 00:01:25.488
+22, 2026); Microsoft Learn, Apple,
+freedesktop.org, cloud-init, NetworkManager,
+
+22
+00:01:25.488 --> 00:01:30.889
+FreeIPA, AWS and Infoblox
+NIOS 9.1 documentation;
+
+23
+00:01:30.889 --> 00:01:35.810
+IETF RFCs; Book 05 Ch04;
+Book 08 Ch04, Ch07, Ch10.

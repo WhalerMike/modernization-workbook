@@ -3,6 +3,8 @@ title: "What a Federal DDI Platform Must Do"
 subtitle: "A 25-minute, vendor-neutral briefing: the requirements behind DNS, DHCP and IPAM, the evidence to check before buying, and how divisions manage their own DDI under central governance"
 description: "Research under review: a narrated, vendor-neutral briefing for CIOs, CISOs, network and DDI leads, and acquisition teams on what federal requirements demand of a DNS, DHCP and IPAM platform and how to delegate it to divisions."
 research-status: in review
+research-type: explainer
+research-book: "Book 08"
 date-modified: 2026-10-22
 ---
 

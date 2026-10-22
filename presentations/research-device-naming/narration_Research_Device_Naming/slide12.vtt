@@ -1,0 +1,126 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.700
+So what must the agency do?
+
+2
+00:00:01.700 --> 00:00:04.828
+Everything on this slide is
+program design guidance,
+
+3
+00:00:04.828 --> 00:00:09.663
+not a vendor or standards requirement,
+condensed from a seventeen-step checklist.
+
+4
+00:00:09.663 --> 00:00:13.324
+Before AD DNS retires:
+choose one naming authority
+
+5
+00:00:13.324 --> 00:00:16.899
+for each platform and write
+down its length limit.
+
+6
+00:00:16.899 --> 00:00:21.952
+For Windows, default to classic Autopilot
+with Entra join and the serial number,
+
+7
+00:00:21.952 --> 00:00:26.775
+and use device preparation naming only
+once device association is in place.
+
+8
+00:00:26.775 --> 00:00:29.725
+Inventory who registers each record today.
+
+9
+00:00:29.725 --> 00:00:32.444
+Make the DHCP server the registrant,
+
+10
+00:00:32.444 --> 00:00:36.975
+and lock each zone so only the
+DHCP servers' keys can update it.
+
+11
+00:00:36.975 --> 00:00:42.794
+Pick DHCID or TXT ownership records
+once, turn off address randomization
+
+12
+00:00:42.794 --> 00:00:47.563
+on agency Wi-Fi, and create
+reverse zones for every DHCP scope.
+
+13
+00:00:47.563 --> 00:00:50.507
+At cutover: deliver
+DNS suffixes both ways,
+
+14
+00:00:50.507 --> 00:00:55.724
+through DHCP options and router
+announcements, and through Intune policy.
+
+15
+00:00:55.724 --> 00:00:59.918
+For Entra-joined Windows, either
+turn client registration off or
+
+16
+00:00:59.918 --> 00:01:04.188
+accept refused attempts, but never
+open zones to unsigned updates.
+
+17
+00:01:04.188 --> 00:01:06.726
+Handle cloud names and servers separately.
+
+18
+00:01:06.726 --> 00:01:10.222
+After: turn on scavenging
+only after a quiet period,
+
+19
+00:01:10.222 --> 00:01:12.887
+with lease times matched to its timers.
+
+20
+00:01:12.887 --> 00:01:17.326
+Monitor duplicates, mismatched
+records and devices with no record.
+
+21
+00:01:17.326 --> 00:01:20.925
+Expect no AAAA records
+for SLAAC addresses.
+
+22
+00:01:20.925 --> 00:01:24.188
+And build certificate names from
+the registered device name.
+
+23
+00:01:24.188 --> 00:01:33.925
+Sources: Research brief,
+Agency checklist (steps 1–17,
+
+24
+00:01:33.925 --> 00:01:47.059
+all PROGRAM DESIGN GUIDANCE) and the
+facts each step cites: [S1–S6, S10, S12,
+
+25
+00:01:47.059 --> 00:01:57.928
+S14–S17, S19–S21, S23, S26, S27, S29,
+S30, S34–S39, S41, S43–S46, S48–S52,
+
+26
+00:01:57.928 --> 00:02:09.310
+S54]; Book 08 Ch04 and Ch10; Book 12
+Ch02; Book 15 Ch07; Book 07 Ch01.

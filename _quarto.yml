@@ -202,6 +202,8 @@ format:
     # chapter in the Word bundles (scripts/bundle-filter.lua).
     reference-location: document
     include-after-body:
+      # Copy-link buttons: page links, and share links beside downloads (assets/copy-link.html).
+      - file: assets/copy-link.html
       - text: |
           <script>
             document.querySelectorAll("section#footnotes").forEach(function (s) {

@@ -1,0 +1,129 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.312
+Here's the core problem.
+
+2
+00:00:01.312 --> 00:00:07.562
+A PC joined only to Microsoft Entra ID
+still tries to register its name in DNS.
+
+3
+00:00:07.562 --> 00:00:08.574
+What happens?
+
+4
+00:00:08.574 --> 00:00:11.930
+By default, Windows tries
+an unsigned update first,
+
+5
+00:00:11.930 --> 00:00:15.125
+and only if that's refused
+does it try a secure one.
+
+6
+00:00:15.125 --> 00:00:18.129
+A zone that is set to
+accept only secure updates
+
+7
+00:00:18.129 --> 00:00:20.825
+refuses the unsigned
+attempt, as it should.
+
+8
+00:00:20.825 --> 00:00:25.281
+Then the secure attempt: Microsoft
+documents that Windows dynamic
+
+9
+00:00:25.281 --> 00:00:29.975
+update clients and DNS servers can
+use only Kerberos for secure update.
+
+10
+00:00:29.975 --> 00:00:34.410
+As an inference, an Entra-joined PC
+has no machine account in the domain,
+
+11
+00:00:34.410 --> 00:00:38.463
+so it can't sign, and the zone gets
+no record from that client at all.
+
+12
+00:00:38.463 --> 00:00:42.174
+The tempting fix is to let the
+zone accept unsigned updates.
+
+13
+00:00:42.174 --> 00:00:42.863
+Don't.
+
+14
+00:00:42.863 --> 00:00:45.494
+Microsoft says that without secure update,
+
+15
+00:00:45.494 --> 00:00:49.149
+any computer on the network can
+modify the existing A record.
+
+16
+00:00:49.149 --> 00:00:50.225
+More facts.
+
+17
+00:00:50.225 --> 00:00:54.537
+Over a VPN, Windows doesn't
+attempt dynamic update by default.
+
+18
+00:00:54.537 --> 00:01:00.220
+Since the May 2020 Windows 10 update, it
+also skips servers named in an NRPT rule,
+
+19
+00:01:00.220 --> 00:01:06.251
+the Name Resolution Policy Table, which
+sends certain names to certain DNS servers.
+
+20
+00:01:06.251 --> 00:01:09.029
+And Microsoft's advice
+to let clients register
+
+21
+00:01:09.029 --> 00:01:11.950
+their own records assumes
+domain-joined clients.
+
+22
+00:01:11.950 --> 00:01:14.312
+As an inference, it can't apply here.
+
+23
+00:01:14.312 --> 00:01:17.924
+So something else has to register
+endpoints, and it has to sign.
+
+24
+00:01:17.924 --> 00:01:24.677
+Sources: Microsoft Learn: Dynamic
+update (Windows Server DNS) [S26];
+
+25
+00:01:24.677 --> 00:01:27.862
+Policy CSP ADMX_DnsClient [S27];
+
+26
+00:01:27.862 --> 00:01:36.399
+How to enable or disable DNS updates in
+Windows [S28]; Troubleshooting DNS dynamic
+
+27
+00:01:36.399 --> 00:01:44.500
+update issues [S29]; DirectAccess known
+issues (DNS registration and NRPT) [S56].

@@ -1,0 +1,132 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:05.888
+Two more components: Amazon Connect,
+AWS's contact center service, and VMware.
+
+2
+00:00:05.888 --> 00:00:10.028
+Connect agents work in a browser,
+in the Contact Control Panel,
+
+3
+00:00:10.028 --> 00:00:13.763
+and AWS says that traffic
+traverses the public network.
+
+4
+00:00:13.763 --> 00:00:19.779
+AWS prefers a domain allowlist: the
+instance name under my dot connect dot aws,
+
+5
+00:00:19.779 --> 00:00:25.513
+plus telemetry, participant and transport
+names, and media names for TURN,
+
+6
+00:00:25.513 --> 00:00:29.462
+a relay that carries the call
+audio, on UDP port 3478.
+
+7
+00:00:29.462 --> 00:00:32.506
+If agents' DNS can't
+resolve those TURN names,
+
+8
+00:00:32.506 --> 00:00:35.550
+the softphone can't set
+up its media channel.
+
+9
+00:00:35.550 --> 00:00:38.625
+So don't over-restrict DNS for agents.
+
+10
+00:00:38.625 --> 00:00:43.675
+In AWS GovCloud, Connect is
+available only in the US-West region.
+
+11
+00:00:43.675 --> 00:00:46.876
+It uses names under govcloud
+dot connect dot aws,
+
+12
+00:00:46.876 --> 00:00:51.598
+has no cross-partition integration
+with commercial regions, and lacks
+
+13
+00:00:51.598 --> 00:00:56.800
+several features, including Customer
+Profiles, Cases and outbound campaigns.
+
+14
+00:00:56.800 --> 00:01:03.081
+AWS PrivateLink, which gives an AWS API
+a private address inside your network,
+
+15
+00:01:03.081 --> 00:01:06.025
+covers only a subset of Connect APIs.
+
+16
+00:01:06.025 --> 00:01:11.875
+As an inference, that helps workloads making
+API calls, not the agent or voice path.
+
+17
+00:01:11.875 --> 00:01:15.580
+A Lambda function attached
+to a VPC can reach only
+
+18
+00:01:15.580 --> 00:01:19.375
+that VPC unless you add
+NAT or interface endpoints.
+
+19
+00:01:19.375 --> 00:01:24.805
+VMware: a Broadcom knowledge article says
+changing vCenter's hostname or address
+
+20
+00:01:24.805 --> 00:01:27.280
+runs forward and reverse DNS lookups,
+
+21
+00:01:27.280 --> 00:01:31.113
+and the change is blocked if
+the name doesn't fully resolve.
+
+22
+00:01:31.113 --> 00:01:33.087
+Keep those records right in the Grid.
+
+23
+00:01:33.087 --> 00:01:39.904
+Sources: AWS: Amazon Connect, Set
+up your network for the CCP [S27];
+
+24
+00:01:39.904 --> 00:01:45.250
+AWS GovCloud (US) User Guide,
+Connect Customer [S28];
+
+25
+00:01:45.250 --> 00:01:51.798
+Amazon Connect and interface
+VPC endpoints [S29]; AWS Lambda,
+
+26
+00:01:51.798 --> 00:01:57.277
+Giving functions access to
+resources in a VPC [S30];
+
+27
+00:01:57.277 --> 00:02:03.480
+Broadcom KB 440783, VAMI hostname
+or IP change fails [S36].

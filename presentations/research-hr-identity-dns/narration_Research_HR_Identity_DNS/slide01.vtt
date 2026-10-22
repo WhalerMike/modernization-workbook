@@ -1,0 +1,113 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.205
+Federal HR 2.0, the program OPM runs,
+
+2
+00:00:03.205 --> 00:00:08.500
+moves agencies' core HR records
+onto one Oracle platform.
+
+3
+00:00:08.500 --> 00:00:12.051
+If an agency builds HR-driven
+identity on top of it,
+
+4
+00:00:12.051 --> 00:00:17.335
+so that a hire in HR becomes an account
+and a departure removes one, the data
+
+5
+00:00:17.335 --> 00:00:20.280
+crosses Oracle's cloud, Microsoft's cloud,
+
+6
+00:00:20.280 --> 00:00:23.225
+the agency's own network,
+and possibly AWS.
+
+7
+00:00:23.225 --> 00:00:26.950
+Every one of those hops
+starts with a DNS lookup.
+
+8
+00:00:26.950 --> 00:00:32.163
+DNS, the domain name system, turns
+a name into a network address.
+
+9
+00:00:32.163 --> 00:00:34.750
+This explainer answers three questions.
+
+10
+00:00:34.750 --> 00:00:36.562
+Which names must resolve where?
+
+11
+00:00:36.562 --> 00:00:37.574
+What breaks?
+
+12
+00:00:37.574 --> 00:00:43.038
+And when do you need private DNS or
+forwarding, instead of ordinary public DNS?
+
+13
+00:00:43.038 --> 00:00:47.163
+It's built for architects still
+learning, so terms are defined as we go.
+
+14
+00:00:47.163 --> 00:00:48.963
+This is research under review.
+
+15
+00:00:48.963 --> 00:00:53.447
+Every fact comes from sources
+opened on October twenty-second,
+
+16
+00:00:53.447 --> 00:00:55.949
+2026, mostly vendor documentation.
+
+17
+00:00:55.949 --> 00:00:59.950
+A few Microsoft facts come from
+search excerpts of Microsoft Learn
+
+18
+00:00:59.950 --> 00:01:03.450
+pages rather than full pages, and
+I'll say so when they come up.
+
+19
+00:01:03.450 --> 00:01:08.250
+Where I drew a conclusion that no source
+states directly, I'll call it an inference.
+
+20
+00:01:08.250 --> 00:01:11.638
+And recommendations are labeled
+program design guidance.
+
+21
+00:01:11.638 --> 00:01:18.834
+Sources: Research brief, DNS for
+HR-driven identity across Oracle,
+
+22
+00:01:18.834 --> 00:01:24.431
+Microsoft, on-premises,
+VMware and AWS (verified Oct.
+
+23
+00:01:24.431 --> 00:01:27.762
+22, 2026), Method and Bottom line;
+
+24
+00:01:27.762 --> 00:01:34.080
+Book 03 Ch03 (OPM as the Federal
+HR 2.0 program owner); Book 08.

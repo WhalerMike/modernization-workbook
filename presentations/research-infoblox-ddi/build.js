@@ -730,7 +730,7 @@ On the right are the procurement asks that turn these risks into obligations. A 
 // ================================================================== 18 Module 3 divider
 {
   const s = divider(P2, "Module 3: Divisions on NIOS", "Part 2 — Divisions under central governance",
-    ["The permission model and scoping a group to one division", "Network views, DNS views, attributes and approvals", "Sign-in, Microsoft servers, what stays central, reporting"], 12,
+    ["The permission model and scoping a group to one division", "Network views, DNS views, attributes and approvals", "Sign-in, Microsoft servers, what stays central, reporting", "Separating DNS, DHCP and IPAM by team"], 16,
     "Sources: Infoblox NIOS 9.1.x and 9.0 admin guides — permissions, admin groups, views, EAs, approvals, authentication, reporting.");
   notes(s,
 `Part 2: divisions under central governance. Module 3 covers divisions on NIOS.
@@ -958,6 +958,83 @@ Second, what stays central in every design. The Grid Master and its candidates, 
 
 Third, a limitation that surprises almost everyone. NIOS reporting doesn't filter by object permissions. Infoblox's page says that when you view a DNS or DHCP report, you see all the data, even for objects you have no permission to see. So giving a division the Reporting app exposes agency-wide DNS and DHCP data, which matters a great deal for a law-enforcement bureau. Scope reporting by which dashboards you share with each division's role, filtered by the Division attribute, not by row-level security.`,
   "Infoblox NIOS: Managing Microsoft Servers; About Admin Roles; Administrative Permission for the Grid; Configuring DNSSEC on a Grid; RPZ license and permissions; Reporting permissions; EA filters and Smart Folders.");
+}
+
+// ================================================================== 24a Separating by service team
+{
+  const s = content(P2, "Separating DNS, DHCP and IPAM by team");
+  tag(s, "How");
+  T(s, "Label", [
+    { text: "ILLUSTRATIVE DESIGN — NOT A VALIDATED CONFIGURATION.  ", options: { bold: true, color: HEX.red } },
+    { text: "Deny by default; first match wins, most specific object first, group before roles." },
+  ], { x: 0.6, y: 1.45, w: 12.15, h: 0.35, fontSize: 12.5 });
+  table(s, "Teams", 1.85, [1.6, 3.65, 3.2, 3.7], ["Team", "What to grant", "What to deny or leave out", "The catch"], [
+    ["DNS team", "RW on its DNS views and zones (record types as needed); Member DNS and restart on its DNS members", "Networks, ranges and fixed addresses; DHCP members", "Per-type grants work (RW on MX and SRV, Deny on CNAME); RPZ rules take only global permissions"],
+    ["DHCP team", "Object permissions on DHCP ranges and fixed addresses; Member DHCP and restart on DHCP members", "Networks and containers; zones", "A permission on a network covers its ranges and fixed addresses, so grant the ranges, not the network"],
+    ["IPAM team", "RW on network containers and networks, to allocate space", "DNS and DHCP members; explicit Deny on DHCP ranges", "Network RW inherits to ranges and fixed addresses; the Deny keeps DHCP ranges with the DHCP team"],
+    [{ text: "Division admin (contrast)", options: { color: HEX.slate } }, "RW on its own container and zones; Member DNS and DHCP on its own members", "Everything else, at the default Deny", "Cuts by address space, not by service: one group runs all three"],
+  ], { fontSize: 11 });
+  panel(s, "Coupling", 0.6, 4.95, 7.0, 1.55, HEX.amber, HEX.amberTint, "THE DELIBERATE COUPLING", null, [
+    "Grid property \"Enable DNS Object Permissions in Networks and Ranges\": A, AAAA and PTR records and hosts need RW on the zone and the network",
+    "A check between the DNS and IPAM teams; decide who holds both",
+  ], 11.5);
+  panel(s, "Central", 7.75, 4.95, 5.0, 1.55, HEX.navy, HEX.navyTint, "CENTRAL STAYS CENTRAL", null, [
+    "Only superusers create admin groups, roles, EAs and approval workflows",
+    "No defined permission on a Grid member means Deny",
+  ], 11.5);
+  sources(s, "Sources: Infoblox NIOS — Administrative Permissions; Global and Object Permissions; Managing Overlaps; Zones; Grid Members; DNS in Networks and Ranges; Admin Groups.");
+  notes(s,
+`Divisions aren't the only way to cut DDI. Many agencies split it by service instead: DNS, DHCP and IPAM teams, each working across the whole agency. NIOS supports that with the same permission model, but each service has a catch. This is an illustrative design, not a validated configuration.
+
+First, the rules. Everything is denied by default. A global permission covers every object of a type, so read-write on all DHCP networks also covers their ranges and fixed addresses. An object permission covers one member, zone, network, record or fixed address. Inheritance runs parent to child, a more specific permission overrides, and the first match wins, with the group's own permissions checked before its roles.
+
+The DNS team gets read-write on its DNS views and zones, per record type if needed, and Member DNS on its DNS members. No network rights. Note that response policy zone rules only take global permissions.
+
+The DHCP team is where the catch is. A permission on a network covers its ranges and fixed addresses, so don't grant networks. Grant object permissions on the ranges and fixed addresses, plus Member DHCP and restart on the DHCP members.
+
+The IPAM team gets read-write on network containers and networks to allocate space. That inherits down to ranges and fixed addresses, so if the DHCP team must own them, add an explicit deny on the DHCP ranges.
+
+For contrast, a division admin gets all three services inside one slice of address space.
+
+Two points stay Grid-wide. Turn on DNS Object Permissions in Networks and Ranges, and A, AAAA and PTR records and hosts need read-write on both the zone and the network. That's a deliberate check between the DNS and IPAM teams. And only superusers create groups, roles, attributes and approval workflows.`,
+  "Infoblox NIOS: About Administrative Permissions; Defining Global Permissions; Defining Object Permissions; Applying Permissions and Managing Overlaps; Administrative Permissions for Zones; DNS and DHCP Permissions on Grid Members; Administrative Permission for the Grid; Permissions for DNS Resources in Networks and Ranges; About Admin Groups.");
+}
+
+// ================================================================== 24b Service teams and divisions together
+{
+  const s = content(P2, "Service teams and divisions together");
+  tag(s, "Who");
+  T(s, "Label", [
+    { text: "ILLUSTRATIVE DESIGN — NOT A VALIDATED CONFIGURATION.  ", options: { bold: true, color: HEX.red } },
+    { text: "The worked example's four divisions, scoped by service and by space." },
+  ], { x: 0.6, y: 1.45, w: 12.15, h: 0.35, fontSize: 12.5 });
+  table(s, "Grid", 1.85, [1.6, 3.65, 3.35, 3.55], ["Division", "DNS", "DHCP", "IPAM"], [
+    ["HQ", "Central DNS team: agency.gov internal and external; DNSSEC signing", "HQ admins: Member DHCP and its ranges in 10.0.0.0/12", "Central IPAM team keeps the top-level blocks as containers"],
+    ["LEB", "leb.agency.gov on leb-ns-1/2, with Member DNS", "Member DHCP and its ranges in 10.16.0.0/12", "Container 10.16.0.0/12, allocated by central"],
+    ["REG", "reg.agency.gov from its Windows servers", "Rights on its own Microsoft server objects", "Container 10.32.0.0/12, allocated by central"],
+    ["LAB", "lab.agency.gov delegated to lab BIND; DS records to central", "Member DHCP on lab-dhcp-1/2, in view nv-lab", "10.0.0.0/16 in its own view nv-lab (overlaps HQ)"],
+  ], { fontSize: 11 });
+  panel(s, "UDDI", 0.6, 4.8, 7.9, 1.7, HEX.teal, HEX.tealTint, "ON UNIVERSAL DDI", null, [
+    "Access policy = role + user group + access view; divisions can't manage users or roles",
+    "Separate DNS and DHCP roles? Docs conflict (IPAM, DNS, DHCP roles vs. four IPAM roles only): confirm with Infoblox",
+    "DHCP objects can't be assigned to access views; ranges, subnets, fixed addresses inherit the parent's view",
+  ], 11);
+  panel(s, "Report", 8.65, 4.8, 4.1, 1.7, HEX.red, HEX.redTint, "REPORTING CAUTION", null, [
+    "NIOS report and search data ignore object permissions",
+    "A service split doesn't hide data in reports",
+  ], 11.5);
+  sources(s, "Sources: illustrative, from Infoblox NIOS permissions, network views, DNSSEC, Microsoft servers, reporting; Portal Access Views, Access Control, Access Policies.");
+  notes(s,
+`Service teams and divisions aren't alternatives. Most agencies combine them, because a grant can be scoped by service and by address space at once. Again, it's illustrative, using the worked example's four divisions.
+
+The central DNS team keeps agency dot gov, internal and external, and DNSSEC signing, which only the Grid Master or its HSM can do. The central IPAM team keeps the top-level blocks as network containers and allocates each division its slash twelve. Divisions take over DHCP: each division's admins get Member DHCP and restart on their own DHCP members, and read-write on their ranges, inside their own space.
+
+Read the grid by row. HQ's DHCP admins work in ten slash twelve. LEB serves its own zone from its own members, with Member DNS and DHCP on them. REG's Windows servers are managed from the Grid, so its admins get rights on those server objects. And LAB, with overlapping space, has its own network view, its own DHCP members, and a delegated zone whose DS records go to central.
+
+On Universal DDI the picture changes. An access policy binds a role, a user group and an access view. Whether a division can have separate DNS and DHCP roles depends on a documentation conflict: one Infoblox page lists DDI IPAM, DNS and DHCP roles, while another says only the four DDI IPAM roles are supported in this release. Confirm with Infoblox. DHCP objects can't be assigned to access views directly; ranges, subnets and fixed addresses inherit their access view from their parent. And divisions can't administer their own users or roles.
+
+One reporting caution applies however you split. On NIOS, report and search data ignore object permissions, so any team or division with the Reporting app sees agency-wide DNS and DHCP data.`,
+  "Illustrative design synthesized from Infoblox NIOS: Object Permissions, DNS and DHCP Permissions on Grid Members, Network Views, Network Containers, Delegated Zones, Configuring DNSSEC on a Grid, Managing Microsoft Servers, Reporting permissions; Infoblox Portal: About Access Views, Supported Objects for Access Views, Setting Up Access Control, Creating Access Policies.");
 }
 
 // ================================================================== 25 Module 4 divider
@@ -1194,6 +1271,18 @@ srcSlide("Sources behind Part 2 — Divisions and operating model", [
   "Universal DDI (BloxOneDDI): IP Spaces; IPAM Federation and Federated Realms; Zone Delegation; Tags; NIOS Grid Connector; Universal DDI Agent for Microsoft.",
   "Book 08, Ch 09 (roles and responsibility matrix; NIST SP 800-37 authorizing official) and Ch 10 and index (canonical migration sequence).",
   "The worked example and the four patterns are illustrative syntheses of the pages above, not validated configurations.",
+  "Separating DNS, DHCP and IPAM by team (base infoblox-docs.atlassian.net/wiki/spaces/<space>/pages/<id>): nios90/280275424 Administrative Permissions; nios90/1343324540 Global; docs.infoblox.com/space/nios90/1343095459 Object; nios91x/2397439547 Overlaps; nios91x/2397014241 Zones; nios90/1343095499 Grid Members; nios90/280668320 Grid; nios90/280401646 DNS in Networks and Ranges; nios90/280275587 Admin Groups; nios90/280857269 Reporting.",
+  "Service teams and divisions together: nios91x/2456224006 Network Views; nios90/1346013877 Network Containers; nios91x/2456846341 DNSSEC on a Grid; nios90/1432781524 Delegated Zones; nios90/280662903 Microsoft Servers; BloxOneCloud/680362600 About Access Views; BloxOneCloud/680657470 Supported Objects; BloxOneCloud/680362726 Setting Up Access Control; BloxOneCloud/35431431 Creating Access Policies.",
+]);
+
+srcSlide("Learn more: official Infoblox training", [
+  "Learning paths by role, costs and links: the workbook's Research page \"Infoblox Training and Learning Paths\" (docs/research/infoblox-training).",
+  "Launchpad, Infoblox's learning portal: launchpad.education.infoblox.com (free with Infoblox products; organizational .gov email required; catalog behind sign-in).",
+  "Certifications: NIOS Operator → Administrator → Expert (INO → INA → INE); vendor-neutral DDIA/DDIP and DSA/DSP; exams $29 / $69 / $99 per attempt (Education KB, Oct. 2026).",
+  "Version currency: NIOS courses were \"refreshed against NIOS 8.6\"; pair them with the NIOS 9.1.x documentation at docs.infoblox.com and confirm the lab version with Infoblox Education.",
+  "Hands-on: browser labs at infoblox.com/labs (four hours per lab); 60-day vNIOS evaluation (NIOS 9.0.3 images); lab guides at docs.education.infoblox.com/lab.",
+  "Automation: NIOS 9.1.0 WAPI documentation (PDF), Universal DDI API Guide, Developer Portal, WAPI Bytes video playlist.",
+  "Community and video: community.infoblox.com forums; YouTube @InfobloxInc playlists. NetMRI Administrator (IMA) exam retires Dec. 31, 2026.",
 ]);
 
 // ------------------------------------------------------------------ report

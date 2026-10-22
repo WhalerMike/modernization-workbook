@@ -1,0 +1,120 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:05.225
+The decisions: which tool names each kind
+of device, and how long names may be.
+
+2
+00:00:05.225 --> 00:00:08.554
+The DHCP server as the
+registrant for endpoints,
+
+3
+00:00:08.554 --> 00:00:11.550
+and exactly which keys
+may update each zone.
+
+4
+00:00:11.550 --> 00:00:14.025
+DHCID or TXT ownership records.
+
+5
+00:00:14.025 --> 00:00:17.775
+And whether Entra-joined Windows
+PCs try to register at all.
+
+6
+00:00:17.775 --> 00:00:20.250
+The next steps are the
+things I couldn't verify.
+
+7
+00:00:20.250 --> 00:00:24.024
+Which Apple setting Intune's
+Mac rename actually sends,
+
+8
+00:00:24.024 --> 00:00:26.075
+and how Macs handle DHCP names.
+
+9
+00:00:26.075 --> 00:00:30.850
+Whether an Entra-joined device's
+display name follows an Intune rename.
+
+10
+00:00:30.850 --> 00:00:33.745
+Book 05's description
+of device preparation,
+
+11
+00:00:33.745 --> 00:00:38.987
+and its note on availability in the higher
+government clouds, both need a recheck.
+
+12
+00:00:38.987 --> 00:00:43.974
+And ask any third-party VPN vendor whether
+its concentrator registers clients.
+
+13
+00:00:43.974 --> 00:00:45.112
+Where does this fit?
+
+14
+00:00:45.112 --> 00:00:51.137
+Book 05, Chapter 04 covers Intune-first
+onboarding and the naming convention.
+
+15
+00:00:51.137 --> 00:00:55.468
+Book 08 covers the AD DNS
+departure in Chapter 04,
+
+16
+00:00:55.468 --> 00:01:01.963
+cloud private DNS in Chapter 07, and
+the migration sequence in Chapter 10.
+
+17
+00:01:01.963 --> 00:01:06.498
+And two research items sit
+beside this one: Trinzic Alone,
+
+18
+00:01:06.498 --> 00:01:11.612
+or Trinzic Plus Cloud DDI, and
+Infoblox DDI for Federal Agencies.
+
+19
+00:01:11.612 --> 00:01:15.107
+One note on standing: this
+is research under review,
+
+20
+00:01:15.107 --> 00:01:17.937
+not an endorsement by any federal agency.
+
+21
+00:01:17.937 --> 00:01:18.700
+Thank you.
+
+22
+00:01:18.700 --> 00:01:25.962
+Sources: Research brief, Couldn't verify
+and Agency checklist; Book 05 Ch04,
+
+23
+00:01:25.962 --> 00:01:30.962
+Intune-First Onboarding;
+Book 08 Ch04, Ch07 and Ch10;
+
+24
+00:01:30.962 --> 00:01:36.438
+research items Trinzic Alone,
+or Trinzic Plus Cloud DDI?
+
+25
+00:01:36.438 --> 00:01:39.720
+and Infoblox DDI for Federal Agencies.

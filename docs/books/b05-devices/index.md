@@ -35,6 +35,8 @@ This book consolidates the workbook's device and server modernization pages (the
 **15-minute presentation**: the Why / What / Who / How deck and its narrated, self-running edition are on the [Presentations](../../presentations/index.md#book-05) page.
 
 **Technical deep dive (about 50 minutes)**: onboarding, the GPO sunset, Azure Arc and operating the fleet, in modules on the [Presentations](../../presentations/index.md#technical-b05) page.
+
+**Research (under review)**: [Who Names the Device After AD?](../../research/device-naming-after-ad.md) explains device naming and DNS registration once Active Directory retires; it's on the [Research](../../research/index.md) page.
 :::
 
 For twenty years Group Policy did a great deal of governance without anyone writing it down. Where a computer sat in the OU tree decided which settings it got, in which order, and which ones won. Moving devices to Entra ID and Intune removes that machinery. Nothing in the cloud reads the OU tree, and Intune applies policy by assignment, not by precedence. So the settings, the targeting and the exceptions all have to be stated again on purpose. Servers follow a different road: Intune doesn't manage Windows Server, so servers come under governance through Azure Arc and Azure Policy. This book is the plan for both, and for the hybrid-join shortcut that looks like progress but isn't an end state.

@@ -1,0 +1,124 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:05.988
+Here's the chain end to end, as Microsoft's
+Oracle tutorial and Book 03 describe it.
+
+2
+00:00:05.988 --> 00:00:12.299
+It starts in Oracle Fusion Cloud HCM,
+the HR system Oracle runs as a service.
+
+3
+00:00:12.299 --> 00:00:15.063
+HCM means human capital management.
+
+4
+00:00:15.063 --> 00:00:18.254
+Changes leave Fusion as
+extracts, or as Atom feeds,
+
+5
+00:00:18.254 --> 00:00:22.224
+which are lists of recent changes
+that another program polls.
+
+6
+00:00:22.224 --> 00:00:25.212
+In this pattern, the
+middleware pulls from Oracle.
+
+7
+00:00:25.212 --> 00:00:27.574
+The middleware is the
+program in the middle.
+
+8
+00:00:27.574 --> 00:00:32.470
+Microsoft says it can run in Oracle
+Integration Cloud, called OIC,
+
+9
+00:00:32.470 --> 00:00:37.637
+or in Azure as an Azure Function, a
+Logic App, or a Data Factory pipeline.
+
+10
+00:00:37.637 --> 00:00:42.575
+It turns HR records into a standard
+format called SCIM and posts them to
+
+11
+00:00:42.575 --> 00:00:47.513
+Microsoft Graph, Microsoft's main API,
+at an endpoint called bulkUpload.
+
+12
+00:00:47.513 --> 00:00:50.801
+That's Entra's API-driven
+inbound provisioning.
+
+13
+00:00:50.801 --> 00:00:54.962
+The Entra provisioning service then
+writes the user into Entra ID.
+
+14
+00:00:54.962 --> 00:00:57.756
+For users who still live
+in Active Directory,
+
+15
+00:00:57.756 --> 00:01:01.758
+it hands the change to a provisioning
+agent: a small service on an
+
+16
+00:01:01.758 --> 00:01:06.516
+on-premises server that makes outbound
+connections only, and writes into AD.
+
+17
+00:01:06.516 --> 00:01:11.575
+Lifecycle Workflows then run joiner and
+leaver tasks on the hire and leave dates.
+
+18
+00:01:11.575 --> 00:01:13.625
+Notice the DNS pattern.
+
+19
+00:01:13.625 --> 00:01:17.237
+Every arrow in the top row
+crosses a vendor's public name.
+
+20
+00:01:17.237 --> 00:01:21.125
+Only the agent-to-AD
+hop needs internal DNS.
+
+21
+00:01:21.125 --> 00:01:28.431
+Sources: Microsoft Learn: Configure Oracle
+HCM for automatic user provisioning [S1],
+
+22
+00:01:28.431 --> 00:01:35.419
+Perform bulkUpload [S5], On-premises
+application provisioning architecture [S6
+
+23
+00:01:35.419 --> 00:01:41.878
+(excerpt)], Plan cloud HR application to
+Entra user provisioning [S8 (excerpt)],
+
+24
+00:01:41.878 --> 00:01:46.855
+Lifecycle workflows attribute
+sync [S11 (excerpt)]; Oracle,
+
+25
+00:01:46.855 --> 00:01:52.010
+Working with Atom [S18]; Book
+03 Ch05, Provisioning Services.

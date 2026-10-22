@@ -1,0 +1,123 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.050
+If devices sign in with cloud
+tokens, why do names still matter?
+
+2
+00:00:04.050 --> 00:00:05.075
+Four reasons.
+
+3
+00:00:05.075 --> 00:00:07.063
+First, Kerberos islands.
+
+4
+00:00:07.063 --> 00:00:12.209
+Microsoft says an Entra-joined device
+signing in to on-premises resources needs
+
+5
+00:00:12.209 --> 00:00:17.587
+line-of-sight to domain controllers, which
+clients find through DNS service records.
+
+6
+00:00:17.587 --> 00:00:21.587
+And Book 08 explains that if a
+name resolves to the wrong host,
+
+7
+00:00:21.587 --> 00:00:26.387
+a perfectly valid ticket is presented
+to the wrong machine and rejected.
+
+8
+00:00:26.387 --> 00:00:28.149
+Second, certificates.
+
+9
+00:00:28.149 --> 00:00:30.700
+A certificate binds a name to a key.
+
+10
+00:00:30.700 --> 00:00:33.109
+Intune's SCEP certificate profiles,
+
+11
+00:00:33.109 --> 00:00:38.248
+the protocol Intune uses to request
+device certificates, offer a device-name
+
+12
+00:00:38.248 --> 00:00:41.139
+variable, but the full
+domain name variable
+
+13
+00:00:41.139 --> 00:00:43.950
+is only for Windows domain-joined devices.
+
+14
+00:00:43.950 --> 00:00:49.806
+As an inference, after AD the certificate's
+DNS name has to be built from the device
+
+15
+00:00:49.806 --> 00:00:52.079
+name plus a fixed agency suffix,
+
+16
+00:00:52.079 --> 00:00:56.012
+and it only matches DNS if
+that same name is registered.
+
+17
+00:00:56.012 --> 00:00:57.288
+Third, logs.
+
+18
+00:00:57.288 --> 00:01:02.376
+Book 12 joins every evidence record on
+an asset identity from the naming plane.
+
+19
+00:01:02.376 --> 00:01:07.588
+Microsoft's own log model calls a hostname
+used as a device ID a last resort.
+
+20
+00:01:07.588 --> 00:01:12.200
+As an inference, an unregistered or
+duplicated name breaks that join.
+
+21
+00:01:12.200 --> 00:01:18.062
+Fourth, duplicates: Microsoft says its
+naming macros don't guarantee unique names.
+
+22
+00:01:18.062 --> 00:01:26.996
+Sources: Microsoft Learn: How SSO to
+on-premises resources works on Microsoft Entra
+
+23
+00:01:26.996 --> 00:01:35.411
+joined devices [S55]; Create and assign
+SCEP certificate profiles in Intune [S54];
+
+24
+00:01:35.411 --> 00:01:42.403
+Accounts CSP [S6]; Infoblox NIOS 9.1
+About the Client FQDN Option [S41];
+
+25
+00:01:42.403 --> 00:01:50.171
+Book 08 Ch04 (What Kerberos needs from
+DNS); Book 12 Ch02 (evidence contract,
+
+26
+00:01:50.171 --> 00:01:55.030
+ASIM); Book 15 Ch07 (CMDB
+reconcile); Book 07 Ch01.

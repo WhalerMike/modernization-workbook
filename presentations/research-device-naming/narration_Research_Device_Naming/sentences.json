@@ -1,0 +1,973 @@
+{
+ "1": [
+  [
+   0.05,
+   7.537,
+   "When an agency retires Active Directory, two questions come up that nobody owned before, because A D answered them quietly."
+  ],
+  [
+   7.588,
+   1.712,
+   "Who gives a device its name?"
+  ],
+  [
+   9.3,
+   7.312,
+   "And who puts that name into D N S, the system that turns names into network addresses, so other machines can find it?"
+  ],
+  [
+   16.613,
+   1.95,
+   "This explainer walks through both."
+  ],
+  [
+   18.562,
+   5.188,
+   "It's built for someone still learning, so every term is explained the first time it appears."
+  ],
+  [
+   23.75,
+   2.688,
+   "We start with the two jobs A D did at once."
+  ],
+  [
+   26.438,
+   2.375,
+   "Then who names each kind of device now."
+  ],
+  [
+   28.812,
+   9.175,
+   "Then why devices can't register their own names securely without A D, what takes over, and where nothing does, such as IPv6 and remote clients."
+  ],
+  [
+   37.987,
+   6.987,
+   "Then why names still matter, and a checklist of what the agency must do, before, during and after cutover."
+  ],
+  [
+   44.975,
+   1.8,
+   "This is research under review."
+  ],
+  [
+   46.775,
+   5.175,
+   "Every fact comes from sources opened on October twenty-second, 2026."
+  ],
+  [
+   51.95,
+   4.8,
+   "Where I drew a conclusion that no source states directly, I'll call it an inference."
+  ],
+  [
+   56.75,
+   4.975,
+   "And recommendations are labeled program design guidance, not vendor requirements."
+  ],
+  [
+   61.725,
+   34.025,
+   "Sources: Research brief, After Active Directory: Who Names Devices, Who Registers Their D N S Records, and What an Agency Must Do (verified Oct. 22, 2026); Microsoft Learn, Apple, freedesktop.org, cloud-init, NetworkManager, FreeIPA, AWS and Infoblox NIOS 9.1 documentation; IETF RFCs; Book 05 Ch04; Book 08 Ch04, Ch07, Ch10."
+  ]
+ ],
+ "2": [
+  [
+   0.05,
+   5.925,
+   "In Active Directory, a Windows PC joined to the domain gets two jobs done almost for free."
+  ],
+  [
+   5.975,
+   1.35,
+   "Job one is the name."
+  ],
+  [
+   7.325,
+   9.25,
+   "The PC has a computer name, say pc-zero-zero-four-two, and a primary D N S suffix, which is usually the name of the A D domain it joined."
+  ],
+  [
+   16.575,
+   5.562,
+   "Put them together and you get its full name, its FQDN, or fully qualified domain name."
+  ],
+  [
+   22.137,
+   2.525,
+   "Job two is the D N S record."
+  ],
+  [
+   24.663,
+   12.762,
+   "An A record maps a name to an IPv4 address; an AAAA record maps a name to an IPv6 address; and a PTR record goes the other way, address to name, in what's called a reverse zone."
+  ],
+  [
+   37.425,
+   4.888,
+   "Dynamic update is the standard way to add or change those records over the network."
+  ],
+  [
+   42.312,
+   9.375,
+   "In A D, the domain's D N S zone lives in the directory, on domain controllers, and by default it accepts only secure dynamic updates."
+  ],
+  [
+   51.688,
+   8.875,
+   "Secure means the update is signed with Kerberos, A D's ticket-based sign-in protocol, and once a name exists, only its owner can change it."
+  ],
+  [
+   60.562,
+   4.35,
+   "The domain-joined PC has a machine account in A D, so it can sign."
+  ],
+  [
+   64.912,
+   6.787,
+   "By default, the PC registers its own A record and the Windows DHCP server registers the PTR."
+  ],
+  [
+   71.7,
+   4.975,
+   "When A D retires, both jobs need a new owner, and the second one is harder."
+  ],
+  [
+   76.675,
+   20.288,
+   "Sources: Book 08, Chapter 04, What A D-integrated D N S actually is, and Secure dynamic updates and the DHCP server; Microsoft Learn, Dynamic update (Windows Server D N S) [S26]; Policy CSP ADMX_DnsClient [S27]."
+  ]
+ ],
+ "3": [
+  [
+   0.05,
+   1.675,
+   "So who names the device now?"
+  ],
+  [
+   1.725,
+   3.288,
+   "The short answer: whatever provisions it, at build time."
+  ],
+  [
+   5.013,
+   5.075,
+   "For Windows, that's usually Autopilot, which sets up a new PC out of the box."
+  ],
+  [
+   10.088,
+   13.85,
+   "Classic Autopilot with Microsoft Entra join, which joins the PC to Microsoft's cloud directory instead of A D, has a name template: fifteen characters or fewer, with macros for the serial number or random digits."
+  ],
+  [
+   23.938,
+   6.7,
+   "Hybrid join, which joins both A D and Entra, gets only a prefix, and the rest is random."
+  ],
+  [
+   30.637,
+   6.35,
+   "The newer Autopilot device preparation now has a name template too, up to sixty-three characters."
+  ],
+  [
+   36.987,
+   8.688,
+   "The caveat matters: it works only for devices with device association, and has no effect on devices onboarded with corporate identifiers only."
+  ],
+  [
+   45.675,
+   6.025,
+   "As an inference, Book 05's description of device preparation needs a review against this."
+  ],
+  [
+   51.7,
+   9.137,
+   "After enrollment, Intune's Rename action can rename corporate-owned Windows PCs and Macs, but not hybrid-joined devices, which need domain methods."
+  ],
+  [
+   60.837,
+   5.162,
+   "Macs have no enrollment-time name template that I found; you rename after enrollment."
+  ],
+  [
+   66.0,
+   3.462,
+   "Linux takes its name from cloud-init or a static hostname."
+  ],
+  [
+   69.463,
+   3.975,
+   "Azure Arc keeps the server's hostname as a fixed resource name."
+  ],
+  [
+   73.438,
+   2.55,
+   "Cloud VMs get names at create time."
+  ],
+  [
+   75.987,
+   43.475,
+   "Sources: Microsoft Learn: Autopilot device preparation Entra join policy [S1], Compare device preparation and Autopilot [S2], Entra join Autopilot profile [S3], Hybrid join Domain Join profile [S4], Rename a device in Intune [S5], Accounts CSP [S6], macOS automated device enrollment [S7]; hostnamectl and hostname(5) [S10, S11]; cloud-init Set Hostname [S12]; azcmagent connect and Arc rename [S15, S16]; Azure ComputerName [S17]; EC2 hostname types [S21]; Book 05 Ch04, Naming."
+  ]
+ ],
+ "4": [
+  [
+   0.05,
+   1.262,
+   "Here's the core problem."
+  ],
+  [
+   1.312,
+   6.25,
+   "A PC joined only to Microsoft Entra ID still tries to register its name in D N S."
+  ],
+  [
+   7.562,
+   1.012,
+   "What happens?"
+  ],
+  [
+   8.575,
+   6.55,
+   "By default, Windows tries an unsigned update first, and only if that's refused does it try a secure one."
+  ],
+  [
+   15.125,
+   5.7,
+   "A zone that is set to accept only secure updates refuses the unsigned attempt, as it should."
+  ],
+  [
+   20.825,
+   9.15,
+   "Then the secure attempt: Microsoft documents that Windows dynamic update clients and D N S servers can use only Kerberos for secure update."
+  ],
+  [
+   29.975,
+   8.488,
+   "As an inference, an Entra-joined PC has no machine account in the domain, so it can't sign, and the zone gets no record from that client at all."
+  ],
+  [
+   38.462,
+   3.712,
+   "The tempting fix is to let the zone accept unsigned updates."
+  ],
+  [
+   42.175,
+   0.688,
+   "Don't."
+  ],
+  [
+   42.862,
+   6.287,
+   "Microsoft says that without secure update, any computer on the network can modify the existing A record."
+  ],
+  [
+   49.15,
+   1.075,
+   "More facts."
+  ],
+  [
+   50.225,
+   4.312,
+   "Over a VPN, Windows doesn't attempt dynamic update by default."
+  ],
+  [
+   54.538,
+   11.713,
+   "Since the May 2020 Windows 10 update, it also skips servers named in an NRPT rule, the Name Resolution Policy Table, which sends certain names to certain D N S servers."
+  ],
+  [
+   66.25,
+   5.7,
+   "And Microsoft's advice to let clients register their own records assumes domain-joined clients."
+  ],
+  [
+   71.95,
+   2.362,
+   "As an inference, it can't apply here."
+  ],
+  [
+   74.312,
+   3.612,
+   "So something else has to register endpoints, and it has to sign."
+  ],
+  [
+   77.925,
+   26.5,
+   "Sources: Microsoft Learn: Dynamic update (Windows Server D N S) [S26]; Policy CSP ADMX_DnsClient [S27]; How to enable or disable D N S updates in Windows [S28]; Troubleshooting D N S dynamic update issues [S29]; DirectAccess known issues (D N S registration and NRPT) [S56]."
+  ]
+ ],
+ "5": [
+  [
+   0.05,
+   2.587,
+   "What takes over is the DHCP server."
+  ],
+  [
+   2.638,
+   5.8,
+   "DHCP is the service that hands a device its address for a set time, called a lease."
+  ],
+  [
+   8.438,
+   3.788,
+   "It already talks to every device, so it can register names for them."
+  ],
+  [
+   12.225,
+   1.087,
+   "Here's the flow."
+  ],
+  [
+   13.312,
+   9.537,
+   "The device asks for an address and sends its host name, in DHCP option twelve, or its full name in option eighty-one, the client FQDN option."
+  ],
+  [
+   22.85,
+   5.025,
+   "For IPv6 the equivalent is DHCPv6 option thirty-nine."
+  ],
+  [
+   27.875,
+   10.95,
+   "The DHCP server is set to always update D N S, and signs its updates with TSIG, a shared-key signature, or GSS-TSIG, which uses Kerberos."
+  ],
+  [
+   38.825,
+   14.55,
+   "On Infoblox NIOS, a D D I platform, meaning D N S, DHCP and IP address management in one product, a server accepts no dynamic updates by default; a setting called Allow updates from lists who may."
+  ],
+  [
+   53.375,
+   2.425,
+   "Make that the DHCP servers only."
+  ],
+  [
+   55.8,
+   1.25,
+   "Two safeguards."
+  ],
+  [
+   57.05,
+   6.612,
+   "Beside each name, the server writes an ownership record, so only one client holds a name at a time."
+  ],
+  [
+   63.663,
+   6.312,
+   "That's a TXT record in Infoblox's default Interim mode, or a DHCID record in Standard mode."
+  ],
+  [
+   69.975,
+   4.125,
+   "And when the lease expires, the server removes the records it created."
+  ],
+  [
+   74.1,
+   5.888,
+   "On Windows DHCP, always updating both records makes the client skip its own attempt."
+  ],
+  [
+   79.987,
+   52.987,
+   "Sources: RFC 4701 DHCID, RFC 4702 DHCPv4 Client FQDN option, RFC 4703 FQDN conflict resolution, RFC 4704 DHCPv6 Client FQDN option [S31\u2013S34]; Microsoft Learn Dynamic update [S26]; Infoblox NIOS 9.1: Understanding DDNS Updates from DHCP, About the Client FQDN Option, Sending Updates for Zones on an External Name Server, Configuring D N S Servers for DDNS, Configuring DDNS Features, Accepting DDNS Updates from DHCP Clients [S40\u2013S44, S47]; Book 08 Ch04, Secure dynamic updates and the DHCP server."
+  ]
+ ],
+ "6": [
+  [
+   0.05,
+   1.5,
+   "Now the migration trap."
+  ],
+  [
+   1.55,
+   4.25,
+   "Ownership records only help if the old and new systems agree on them."
+  ],
+  [
+   5.8,
+   5.075,
+   "Infoblox's default mode, Interim, checks ownership with TXT records."
+  ],
+  [
+   10.875,
+   5.088,
+   "Its Standard mode uses DHCID records, the format the standards define."
+  ],
+  [
+   15.963,
+   4.037,
+   "Infoblox documents three cases where TXT checking fails."
+  ],
+  [
+   20.0,
+   10.363,
+   "First, migration from Microsoft-based systems: those records have no TXT, and, in Infoblox's words, new DDNS updates fail after the migration."
+  ],
+  [
+   30.363,
+   4.375,
+   "Second, a mix of Microsoft and ISC DHCP servers."
+  ],
+  [
+   34.737,
+   6.013,
+   "Third, mobility: a laptop's wired and Wi-Fi interfaces look like two different clients."
+  ],
+  [
+   40.75,
+   2.125,
+   "The second trap is on Macs."
+  ],
+  [
+   42.875,
+   7.013,
+   "Apple's private Wi-Fi address feature gives a Mac a different hardware address, its MAC address, on each network."
+  ],
+  [
+   49.888,
+   7.1,
+   "Fixed is the default on WPA2 or better networks; Rotating changes the address every two weeks."
+  ],
+  [
+   56.987,
+   9.562,
+   "An MDM, mobile device management, profile can turn it off with a key called DisableAssociationMACRandomization, on macOS fifteen and later."
+  ],
+  [
+   66.55,
+   8.325,
+   "As an inference, a rotating address changes the DHCP identity that ownership records rest on, the same mobility failure."
+  ],
+  [
+   74.875,
+   3.25,
+   "I didn't verify the Android or Windows equivalents."
+  ],
+  [
+   78.125,
+   9.025,
+   "The program design guidance: pick Standard or Interim once, migrate deliberately, and turn off address randomization on agency Wi-Fi."
+  ],
+  [
+   87.15,
+   30.913,
+   "Sources: Infoblox NIOS 9.1: Enabling DDNS for IPv4 and IPv6 DHCP Clients (Interim vs Standard) [S45], Configuring DDNS Update Verification [S46]; Apple Support, Use private Wi-Fi addresses on Apple devices [S49]; apple/device-management com.apple.wifi.managed.yaml [S50]; research checklist steps 6 and 7 (program design guidance)."
+  ]
+ ],
+ "7": [
+  [
+   0.05,
+   3.337,
+   "There are two ways a device gets an IPv6 address."
+  ],
+  [
+   3.388,
+   3.5,
+   "In the first, a DHCPv6 server assigns it."
+  ],
+  [
+   6.888,
+   5.188,
+   "The server knows the address, so it can register an AAAA record using option thirty-nine."
+  ],
+  [
+   12.075,
+   8.425,
+   "In the second, called SLAAC, stateless address autoconfiguration, the device builds its own address from what the router announces."
+  ],
+  [
+   20.5,
+   6.737,
+   "Devices also create temporary, or privacy, addresses, typically used for outgoing connections."
+  ],
+  [
+   27.238,
+   5.688,
+   "The DHCPv6 name option covers only addresses DHCPv6 assigned."
+  ],
+  [
+   32.925,
+   9.537,
+   "So, as an inference, no DHCPv6 server ever learns a SLAAC address, and no server-side registration creates an AAAA record for it."
+  ],
+  [
+   42.462,
+   6.7,
+   "The device could register it itself, but as we saw, a post-A D Windows client can't do that securely."
+  ],
+  [
+   49.163,
+   9.562,
+   "The consequence, also an inference: for Entra-joined endpoints, treat AAAA records for SLAAC or privacy addresses as absent by design."
+  ],
+  [
+   58.725,
+   9.3,
+   "Find endpoints by their DHCP-assigned addresses, and correlate IPv6 activity from DHCP and neighbor logs, not D N S."
+  ],
+  [
+   68.025,
+   12.2,
+   "Two cloud notes: in AWS, only the instance resource name returns AAAA records, and Azure's D N S Private Resolver doesn't support IPv6-enabled subnets."
+  ],
+  [
+   80.225,
+   4.075,
+   "And I couldn't verify whether Windows registers its temporary addresses."
+  ],
+  [
+   84.3,
+   35.337,
+   "Sources: RFC 4862 IPv6 Stateless Address Autoconfiguration [S37]; RFC 8981 Temporary Address Extensions [S38]; RFC 4704 DHCPv6 Client FQDN option [S34]; Amazon EC2 instance hostname types [S21]; Book 08 Ch07 (Azure D N S Private Resolver platform constraints); research brief, Couldn't verify (Windows temporary IPv6 addresses)."
+  ]
+ ],
+ "8": [
+  [
+   0.05,
+   3.525,
+   "Servers and cloud machines don't follow the endpoint pattern."
+  ],
+  [
+   3.575,
+   5.838,
+   "On premises, servers with fixed addresses get static records in the eye-pam and D D I system."
+  ],
+  [
+   9.412,
+   5.688,
+   "Static records aren't removed by scavenging, the cleanup job that deletes stale entries."
+  ],
+  [
+   15.1,
+   7.662,
+   "As program design guidance, the build pipeline that creates a server should also create and delete its A and PTR records."
+  ],
+  [
+   22.762,
+   12.637,
+   "Linux servers in an identity domain can register themselves with GSS-TSIG, but watch for one documented behavior: if signing fails at install, the client falls back to unauthenticated updates."
+  ],
+  [
+   35.4,
+   7.037,
+   "For Azure Arc, set the resource name to match the D N S name at connect time, because it can't change later."
+  ],
+  [
+   42.438,
+   14.9,
+   "In Azure, private D N S autoregistration does the job, with limits: virtual machines only, the primary network interface only, A records only, no PTR records, and one autoregistration zone per virtual network."
+  ],
+  [
+   57.337,
+   7.9,
+   "Records disappear when the VM is deleted or stopped, deleted records can't be restored, and unlinking the network deletes them."
+  ],
+  [
+   65.237,
+   4.025,
+   "In AWS, instances get AWS-made names."
+  ],
+  [
+   69.263,
+   9.162,
+   "An AWS blog from 2016 says VPC D N S doesn't create records dynamically, and offers a sample event-driven pipeline."
+  ],
+  [
+   78.425,
+   6.225,
+   "I found no built-in registration into your own Route 53 zones in AWS's docs."
+  ],
+  [
+   84.65,
+   41.5,
+   "Sources: Microsoft Learn: D N S aging and scavenging [S30], azcmagent connect [S15], Rename Azure Arc-enabled servers [S16], VirtualMachineOSProfile.ComputerName [S17], Azure D N S private zones autoregistration [S20]; FreeIPA ipa-client-install [S14]; AWS: EC2 instance hostname types [S21], Working with private hosted zones [S22], AWS Compute Blog, Building a Dynamic D N S for Route 53 (2016) [S23]; Book 08 Ch07 and Ch10."
+  ]
+ ],
+ "9": [
+  [
+   0.05,
+   1.837,
+   "What about people working remotely?"
+  ],
+  [
+   1.887,
+   5.013,
+   "Take Microsoft's Global Secure Access, which includes Entra Private Access."
+  ],
+  [
+   6.9,
+   6.812,
+   "You list your private D N S suffixes, and its client on the laptop turns them into NRPT rules."
+  ],
+  [
+   13.713,
+   9.1,
+   "Matching queries go to a D N S proxy at Microsoft's edge, and a connector inside your network resolves them against on-premises D N S."
+  ],
+  [
+   22.812,
+   5.175,
+   "The laptop gets back a synthetic IP address, a stand-in that routes through the tunnel."
+  ],
+  [
+   27.988,
+   3.85,
+   "Notice what's missing: that's all about the laptop finding names."
+  ],
+  [
+   31.837,
+   8.363,
+   "I found no primary source saying Global Secure Access registers the laptop's own name or address in agency D N S."
+  ],
+  [
+   40.2,
+   5.6,
+   "So, as an inference, remote clients are resolvers of names, not registrants."
+  ],
+  [
+   45.8,
+   3.9,
+   "Windows also skips dynamic update over VPN by default."
+  ],
+  [
+   49.7,
+   2.875,
+   "Third-party VPN products weren't researched."
+  ],
+  [
+   52.575,
+   3.275,
+   "That changes how the help desk finds a remote device."
+  ],
+  [
+   55.85,
+   7.963,
+   "Intune's Remote Help starts from the Intune admin center: you pick the device from the device list, and no D N S lookup is needed."
+  ],
+  [
+   63.812,
+   2.288,
+   "But you pick it by its Intune device name."
+  ],
+  [
+   66.1,
+   3.663,
+   "As an inference, that name must be unique and meaningful."
+  ],
+  [
+   69.763,
+   6.688,
+   "One subtlety: renaming in the admin center doesn't change the management name or the name in the Company Portal app."
+  ],
+  [
+   76.45,
+   27.1,
+   "Sources: Microsoft Learn: Understand Microsoft Entra Private D N S and Troubleshoot application access (Global Secure Access) [S51]; Dynamic update [S26]; DirectAccess known issues (NRPT) [S56]; Using Remote Help with Microsoft Intune [S52]; TeamViewer integration in Intune [S53]; Rename a device in Intune [S5]."
+  ]
+ ],
+ "10": [
+  [
+   0.05,
+   4.0,
+   "If devices sign in with cloud tokens, why do names still matter?"
+  ],
+  [
+   4.05,
+   1.025,
+   "Four reasons."
+  ],
+  [
+   5.075,
+   1.988,
+   "First, Kerberos islands."
+  ],
+  [
+   7.062,
+   10.525,
+   "Microsoft says an Entra-joined device signing in to on-premises resources needs line-of-sight to domain controllers, which clients find through D N S service records."
+  ],
+  [
+   17.587,
+   8.8,
+   "And Book 08 explains that if a name resolves to the wrong host, a perfectly valid ticket is presented to the wrong machine and rejected."
+  ],
+  [
+   26.387,
+   1.762,
+   "Second, certificates."
+  ],
+  [
+   28.15,
+   2.55,
+   "A certificate binds a name to a key."
+  ],
+  [
+   30.7,
+   13.25,
+   "Intune's SCEP certificate profiles, the protocol Intune uses to request device certificates, offer a device-name variable, but the full domain name variable is only for Windows domain-joined devices."
+  ],
+  [
+   43.95,
+   12.062,
+   "As an inference, after A D the certificate's D N S name has to be built from the device name plus a fixed agency suffix, and it only matches D N S if that same name is registered."
+  ],
+  [
+   56.013,
+   1.275,
+   "Third, logs."
+  ],
+  [
+   57.288,
+   5.088,
+   "Book 12 joins every evidence record on an asset identity from the naming plane."
+  ],
+  [
+   62.375,
+   5.213,
+   "Microsoft's own log model calls a hostname used as a device ID a last resort."
+  ],
+  [
+   67.588,
+   4.612,
+   "As an inference, an unregistered or duplicated name breaks that join."
+  ],
+  [
+   72.2,
+   5.862,
+   "Fourth, duplicates: Microsoft says its naming macros don't guarantee unique names."
+  ],
+  [
+   78.062,
+   36.9,
+   "Sources: Microsoft Learn: How SSO to on-premises resources works on Microsoft Entra joined devices [S55]; Create and assign SCEP certificate profiles in Intune [S54]; Accounts CSP [S6]; Infoblox NIOS 9.1 About the Client FQDN Option [S41]; Book 08 Ch04 (What Kerberos needs from D N S); Book 12 Ch02 (evidence contract, ASIM); Book 15 Ch07 (CMDB reconcile); Book 07 Ch01."
+  ]
+ ],
+ "11": [
+  [
+   0.05,
+   1.262,
+   "Here's the whole picture."
+  ],
+  [
+   1.312,
+   3.112,
+   "The full version, with notes, is in the backup."
+  ],
+  [
+   4.425,
+   8.988,
+   "For Windows devices joined to Entra, Autopilot or Intune names the device, and the DHCP server registers it, with signed updates."
+  ],
+  [
+   13.412,
+   8.463,
+   "Hybrid-joined Windows, during the transition, keeps working as it does today, through A D; it moves to the first row when it's rebuilt."
+  ],
+  [
+   21.875,
+   2.913,
+   "Macs are renamed in Intune after enrollment."
+  ],
+  [
+   24.788,
+   7.725,
+   "The DHCP server should register them, but that's an inference: I couldn't verify how macOS behaves with dynamic D N S."
+  ],
+  [
+   32.513,
+   8.863,
+   "Linux gets its name from cloud-init or a static hostname, and DHCP registers it, unless it's in an identity domain that signs its own updates."
+  ],
+  [
+   41.375,
+   3.875,
+   "On-premises servers with fixed addresses get static records."
+  ],
+  [
+   45.25,
+   5.2,
+   "Azure VMs are named at create time and autoregistered, within the limits we saw."
+  ],
+  [
+   50.45,
+   7.263,
+   "AWS instances get AWS names, and anything custom needs your own pipeline or eye-pam integration."
+  ],
+  [
+   57.712,
+   8.762,
+   "And printers and other devices that can't be managed get their names from a reservation or the device itself, with DHCP registering on their behalf."
+  ],
+  [
+   66.475,
+   47.2,
+   "Sources: Research brief, Per-platform table, and the sources cited in each row: Autopilot and Rename [S1, S3\u2013S5], Accounts CSP [S6], macOS ADE and Apple MDM [S7, S9], systemd, cloud-init, NetworkManager, FreeIPA [S10\u2013S14], Arc and Azure [S15\u2013S17, S19, S20], AWS [S21\u2013S23], Dynamic update and ADMX_DnsClient [S26, S27], aging [S30], NIOS [S41, S42, S48]; Book 08 Ch04 and Ch10."
+  ]
+ ],
+ "12": [
+  [
+   0.05,
+   1.65,
+   "So what must the agency do?"
+  ],
+  [
+   1.7,
+   7.963,
+   "Everything on this slide is program design guidance, not a vendor or standards requirement, condensed from a seventeen-step checklist."
+  ],
+  [
+   9.662,
+   7.237,
+   "Before A D D N S retires: choose one naming authority for each platform and write down its length limit."
+  ],
+  [
+   16.9,
+   9.875,
+   "For Windows, default to classic Autopilot with Entra join and the serial number, and use device preparation naming only once device association is in place."
+  ],
+  [
+   26.775,
+   2.95,
+   "Inventory who registers each record today."
+  ],
+  [
+   29.725,
+   7.25,
+   "Make the DHCP server the registrant, and lock each zone so only the DHCP servers' keys can update it."
+  ],
+  [
+   36.975,
+   10.588,
+   "Pick DHCID or TXT ownership records once, turn off address randomization on agency Wi-Fi, and create reverse zones for every DHCP scope."
+  ],
+  [
+   47.562,
+   8.162,
+   "At cutover: deliver D N S suffixes both ways, through DHCP options and router announcements, and through Intune policy."
+  ],
+  [
+   55.725,
+   8.463,
+   "For Entra-joined Windows, either turn client registration off or accept refused attempts, but never open zones to unsigned updates."
+  ],
+  [
+   64.188,
+   2.538,
+   "Handle cloud names and servers separately."
+  ],
+  [
+   66.725,
+   6.162,
+   "After: turn on scavenging only after a quiet period, with lease times matched to its timers."
+  ],
+  [
+   72.888,
+   4.438,
+   "Monitor duplicates, mismatched records and devices with no record."
+  ],
+  [
+   77.325,
+   3.6,
+   "Expect no AAAA records for SLAAC addresses."
+  ],
+  [
+   80.925,
+   3.263,
+   "And build certificate names from the registered device name."
+  ],
+  [
+   84.188,
+   45.062,
+   "Sources: Research brief, Agency checklist (steps 1\u201317, all PROGRAM DESIGN GUIDANCE) and the facts each step cites: [S1\u2013S6, S10, S12, S14\u2013S17, S19\u2013S21, S23, S26, S27, S29, S30, S34\u2013S39, S41, S43\u2013S46, S48\u2013S52, S54]; Book 08 Ch04 and Ch10; Book 12 Ch02; Book 15 Ch07; Book 07 Ch01."
+  ]
+ ],
+ "13": [
+  [
+   0.05,
+   5.175,
+   "The decisions: which tool names each kind of device, and how long names may be."
+  ],
+  [
+   5.225,
+   6.325,
+   "The DHCP server as the registrant for endpoints, and exactly which keys may update each zone."
+  ],
+  [
+   11.55,
+   2.475,
+   "DHCID or TXT ownership records."
+  ],
+  [
+   14.025,
+   3.75,
+   "And whether Entra-joined Windows PCs try to register at all."
+  ],
+  [
+   17.775,
+   2.475,
+   "The next steps are the things I couldn't verify."
+  ],
+  [
+   20.25,
+   5.825,
+   "Which Apple setting Intune's Mac rename actually sends, and how Macs handle DHCP names."
+  ],
+  [
+   26.075,
+   4.775,
+   "Whether an Entra-joined device's display name follows an Intune rename."
+  ],
+  [
+   30.85,
+   8.137,
+   "Book 05's description of device preparation, and its note on availability in the higher government clouds, both need a recheck."
+  ],
+  [
+   38.987,
+   4.987,
+   "And ask any third-party VPN vendor whether its concentrator registers clients."
+  ],
+  [
+   43.975,
+   1.137,
+   "Where does this fit?"
+  ],
+  [
+   45.112,
+   6.025,
+   "Book 05, Chapter 04 covers Intune-first onboarding and the naming convention."
+  ],
+  [
+   51.138,
+   10.825,
+   "Book 08 covers the A D D N S departure in Chapter 04, cloud private D N S in Chapter 07, and the migration sequence in Chapter 10."
+  ],
+  [
+   61.962,
+   9.65,
+   "And two research items sit beside this one: Trinzic Alone, or Trinzic Plus Cloud D D I, and Infoblox D D I for Federal Agencies."
+  ],
+  [
+   71.612,
+   6.325,
+   "One note on standing: this is research under review, not an endorsement by any federal agency."
+  ],
+  [
+   77.938,
+   0.762,
+   "Thank you."
+  ],
+  [
+   78.7,
+   17.738,
+   "Sources: Research brief, Couldn't verify and Agency checklist; Book 05 Ch04, Intune-First Onboarding; Book 08 Ch04, Ch07 and Ch10; research items Trinzic Alone, or Trinzic Plus Cloud D D I?"
+  ],
+  [
+   96.438,
+   3.212,
+   "and Infoblox D D I for Federal Agencies."
+  ]
+ ]
+}
