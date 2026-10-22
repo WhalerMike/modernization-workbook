@@ -1,0 +1,115 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.050
+Those pieces make four delegation
+patterns, each with a cost.
+
+2
+00:00:04.050 --> 00:00:09.100
+They're drawn from Infoblox's documentation
+but apply to any comparable platform.
+
+3
+00:00:09.100 --> 00:00:14.262
+Pattern A: one central platform with
+delegated division administrator groups.
+
+4
+00:00:14.262 --> 00:00:16.588
+You get one database, one audit log,
+
+5
+00:00:16.588 --> 00:00:21.987
+and one DNSSEC and response-policy posture,
+with everything denied by default.
+
+6
+00:00:21.987 --> 00:00:27.231
+The risks are permission sprawl, first-match
+ordering surprises when roles overlap,
+
+7
+00:00:27.231 --> 00:00:30.676
+the import bypass, and reports
+that ignore permissions.
+
+8
+00:00:30.676 --> 00:00:34.675
+Pattern B: division-owned servers
+inside the central platform.
+
+9
+00:00:34.675 --> 00:00:38.950
+The division gets local resilience
+and can restart its own services,
+
+10
+00:00:38.950 --> 00:00:40.675
+confined to its own servers.
+
+11
+00:00:40.675 --> 00:00:45.386
+But it can't change platform-wide settings,
+and signed zones still have a central
+
+12
+00:00:45.386 --> 00:00:47.742
+hidden primary, because in NIOS only the
+
+13
+00:00:47.742 --> 00:00:50.312
+Grid Master can be
+primary for a signed zone.
+
+14
+00:00:50.312 --> 00:00:54.650
+Pattern C: a separate network
+view or IP space per division.
+
+15
+00:00:54.650 --> 00:00:58.435
+It's the only way to hold
+overlapping private address space,
+
+16
+00:00:58.435 --> 00:01:01.062
+and it draws a clean visibility boundary.
+
+17
+00:01:01.062 --> 00:01:03.915
+It needs dedicated DHCP servers per view,
+
+18
+00:01:03.915 --> 00:01:07.187
+and uniqueness across
+views needs federation.
+
+19
+00:01:07.187 --> 00:01:12.626
+Pattern D: delegate a zone to DNS
+servers the division runs itself.
+
+20
+00:01:12.626 --> 00:01:16.237
+That's full autonomy,
+with any DNS software.
+
+21
+00:01:16.237 --> 00:01:18.516
+But central loses the audit trail,
+
+22
+00:01:18.516 --> 00:01:23.645
+the response policy coverage and the
+signing of that zone, and keeps only the
+
+23
+00:01:23.645 --> 00:01:28.774
+parent zone, the delegation records and,
+if the child is signed, its DS records.
+
+24
+00:01:28.774 --> 00:01:32.620
+The patterns combine, and the
+worked example uses all four.

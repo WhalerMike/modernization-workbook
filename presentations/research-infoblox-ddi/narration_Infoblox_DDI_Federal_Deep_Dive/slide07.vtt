@@ -1,0 +1,149 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.975
+DNS on NIOS 9.1, with the
+catch for each feature.
+
+2
+00:00:04.975 --> 00:00:08.493
+DNS views serve different
+answers to different clients
+
+3
+00:00:08.493 --> 00:00:11.787
+from match lists of client
+or destination addresses.
+
+4
+00:00:11.787 --> 00:00:15.318
+The first match wins, and you
+can set forwarders per view,
+
+5
+00:00:15.318 --> 00:00:19.462
+which is how you'd point an internal
+view at CISA's Protective DNS.
+
+6
+00:00:19.462 --> 00:00:22.949
+DNSSEC is strong, with
+structure you must plan around.
+
+7
+00:00:22.949 --> 00:00:26.138
+Only the Grid Master can be
+primary for a signed zone.
+
+8
+00:00:26.138 --> 00:00:30.624
+It acts as a hidden primary and
+members serve the zone as secondaries.
+
+9
+00:00:30.624 --> 00:00:35.640
+Keys live either on the Grid Master
+or on an external network HSM,
+
+10
+00:00:35.640 --> 00:00:38.762
+Thales Luna or Entrust nShield, not both.
+
+11
+00:00:38.762 --> 00:00:43.173
+Zone-signing keys roll automatically
+every thirty days by default,
+
+12
+00:00:43.173 --> 00:00:46.638
+and key-signing keys yearly,
+automatically or by hand.
+
+13
+00:00:46.638 --> 00:00:51.843
+If the parent zone is in the Grid, the new
+DS record is inserted for you; otherwise
+
+14
+00:00:51.843 --> 00:00:56.888
+someone exports it to the parent, which
+for a dot-gov zone means the registrar.
+
+15
+00:00:56.888 --> 00:01:01.988
+DNS Firewall uses response policy
+zones: local, feed or FireEye,
+
+16
+00:01:01.988 --> 00:01:07.088
+up to thirty-two of them, with hits
+logged to syslog in CEF format.
+
+17
+00:01:07.088 --> 00:01:12.038
+GSS-TSIG lets Windows domain controllers
+make Kerberos-signed updates,
+
+18
+00:01:12.038 --> 00:01:14.926
+up to two hundred
+fifty-six keys per member.
+
+19
+00:01:14.926 --> 00:01:20.925
+Grid members can manage Windows DNS
+and DHCP servers without an agent,
+
+20
+00:01:20.925 --> 00:01:26.200
+over MS-RPC, read-only or read-write,
+and 9.1 adds IPv6 management.
+
+21
+00:01:26.200 --> 00:01:31.812
+Encrypted DNS: from 9.1.0,
+DNS over TLS and DNS over
+
+22
+00:01:31.812 --> 00:01:37.712
+HTTPS are served by BIND,
+but only on X6 appliances.
+
+23
+00:01:37.712 --> 00:01:42.325
+Infoblox says they're free on X6
+and need an extra license on X5.
+
+24
+00:01:42.325 --> 00:01:45.404
+One configuration item you must change:
+
+25
+00:01:45.404 --> 00:01:48.950
+the default DNSSEC
+algorithm is RSA with SHA-1.
+
+26
+00:01:48.950 --> 00:01:54.175
+Pick SHA-256 or an ECDSA curve
+before you sign anything.
+
+27
+00:01:54.175 --> 00:02:02.112
+Sources: Infoblox NIOS 9.1.x: Configuring
+DNS Views, Anycast, DNSSEC on a Grid,
+
+28
+00:02:02.112 --> 00:02:10.179
+Setting DNSSEC Parameters, Thales Luna
+HSM, DNS Firewall, GSS-TSIG, Managing
+
+29
+00:02:10.179 --> 00:02:14.994
+Microsoft Servers, DoT
+and DoH Architecture,
+
+30
+00:02:14.994 --> 00:02:18.700
+9.1.0 What's New; NIOS
+9.1.0 blog (vendor).

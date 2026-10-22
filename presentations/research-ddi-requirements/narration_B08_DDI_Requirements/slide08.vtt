@@ -1,0 +1,130 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.013
+Before buying any DDI product,
+
+2
+00:00:02.013 --> 00:00:06.175
+check the evidence an assessor will
+ask for, not the feature list.
+
+3
+00:00:06.175 --> 00:00:10.700
+Start with FedRAMP, and read the
+listing's scope, not just its badge.
+
+4
+00:00:10.700 --> 00:00:14.138
+FedRAMP certifies a specific
+cloud service offering.
+
+5
+00:00:14.138 --> 00:00:18.173
+A SaaS management plane needs a
+certification at the right level,
+
+6
+00:00:18.173 --> 00:00:21.312
+and the agency still
+authorizes its own DDI system.
+
+7
+00:00:21.312 --> 00:00:25.914
+Software and appliances the agency
+runs aren't covered by any listing;
+
+8
+00:00:25.914 --> 00:00:28.612
+they sit inside the agency's own boundary.
+
+9
+00:00:28.612 --> 00:00:32.888
+And a Moderate certification
+doesn't cover High or DoD workloads.
+
+10
+00:00:32.888 --> 00:00:34.788
+Then the security baselines.
+
+11
+00:00:34.788 --> 00:00:40.099
+Especially for DoD systems, ask whether
+DISA publishes a vendor-specific STIG,
+
+12
+00:00:40.099 --> 00:00:44.838
+or whether only the generic DNS
+security requirements guide applies.
+
+13
+00:00:44.838 --> 00:00:50.612
+Ask for an active FIPS 140-3 certificate,
+and look up its status yourself.
+
+14
+00:00:50.612 --> 00:00:56.628
+FIPS 140-2 certificates moved to NIST's
+historical list on September 21,
+
+15
+00:00:56.628 --> 00:01:02.237
+2026, and historical modules may
+be used for existing systems only.
+
+16
+00:01:02.237 --> 00:01:04.953
+So a new deployment that
+relies on validated
+
+17
+00:01:04.953 --> 00:01:08.037
+cryptography can't cite
+a historical certificate.
+
+18
+00:01:08.037 --> 00:01:09.437
+Ask about NIAP.
+
+19
+00:01:09.437 --> 00:01:13.323
+And know that CISA's CDM
+Approved Products List isn't
+
+20
+00:01:13.323 --> 00:01:17.825
+accepting new submissions; the
+latest list is from April 2025.
+
+21
+00:01:17.825 --> 00:01:23.375
+Advisory response: does the vendor track
+the open-source DNS code underneath?
+
+22
+00:01:23.375 --> 00:01:27.177
+CISA added an old BIND
+vulnerability to its Known
+
+23
+00:01:27.177 --> 00:01:31.250
+Exploited Vulnerabilities
+catalog on October 8, 2026.
+
+24
+00:01:31.250 --> 00:01:33.500
+And licensing: know what's metered.
+
+25
+00:01:33.500 --> 00:01:39.490
+Azure's DNS Private Resolver bills 180
+dollars a month per endpoint at list price;
+
+26
+00:01:39.490 --> 00:01:44.675
+one DDI vendor's SaaS uses subscription
+tokens that expire at term end.
+
+27
+00:01:44.675 --> 00:01:46.630
+Model three to five years.

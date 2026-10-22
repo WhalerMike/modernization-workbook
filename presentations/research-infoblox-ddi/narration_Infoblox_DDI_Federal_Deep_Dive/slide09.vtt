@@ -1,0 +1,175 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.441
+Infoblox Threat Defense,
+formerly BloxOne Threat Defense,
+
+2
+00:00:04.441 --> 00:00:06.950
+is the DNS-layer security product.
+
+3
+00:00:06.950 --> 00:00:11.506
+It bundles three things: DNS Firewall
+using response policy zones, TIDE,
+
+4
+00:00:11.506 --> 00:00:14.054
+the Threat Intelligence Data Exchange,
+
+5
+00:00:14.054 --> 00:00:19.151
+which aggregates and distributes
+machine-readable intelligence, and Dossier,
+
+6
+00:00:19.151 --> 00:00:23.475
+which researches an indicator across
+about a dozen sources at once.
+
+7
+00:00:23.475 --> 00:00:26.906
+It detects DNS tunneling
+and data exfiltration,
+
+8
+00:00:26.906 --> 00:00:31.537
+domain generation algorithms,
+command-and-control and phishing.
+
+9
+00:00:31.537 --> 00:00:33.175
+It's delivered two ways.
+
+10
+00:00:33.175 --> 00:00:36.397
+From the cloud, through
+the DNS Forwarding Proxy,
+
+11
+00:00:36.397 --> 00:00:39.700
+the Infoblox Endpoint
+agent and a cloud resolver.
+
+12
+00:00:39.700 --> 00:00:44.588
+And on premises, as RPZ
+feeds into NIOS or NIOS-X.
+
+13
+00:00:44.588 --> 00:00:48.268
+On NIOS, Threat Insight
+detects tunneling and adds
+
+14
+00:00:48.268 --> 00:00:52.037
+the destination to a
+mitigation RPZ automatically.
+
+15
+00:00:52.037 --> 00:00:57.793
+Threat Defense Detection Mode streams DNS
+reply metadata from NIOS to the cloud for
+
+16
+00:00:57.793 --> 00:01:02.150
+passive detection; that metadata
+includes client IP addresses,
+
+17
+00:01:02.150 --> 00:01:05.438
+so treat it as a boundary
+decision, not a checkbox.
+
+18
+00:01:05.438 --> 00:01:08.529
+Licensing comes in four tiers: Essentials,
+
+19
+00:01:08.529 --> 00:01:12.238
+Business On-Premises,
+Business Cloud and Advanced.
+
+20
+00:01:12.238 --> 00:01:16.487
+The cloud delivery pieces come
+with Business Cloud and Advanced.
+
+21
+00:01:16.487 --> 00:01:19.750
+Custom feed ingest in
+TIDE is Advanced only.
+
+22
+00:01:19.750 --> 00:01:22.890
+Dossier gives thirty-two
+thousand queries a year on
+
+23
+00:01:22.890 --> 00:01:26.250
+the Business tiers and
+sixty-four thousand on Advanced.
+
+24
+00:01:26.250 --> 00:01:28.688
+There's one strong independent signal.
+
+25
+00:01:28.688 --> 00:01:32.243
+Google Cloud's own
+documentation describes its
+
+26
+00:01:32.243 --> 00:01:35.975
+DNS Armor threat detection
+as powered by Infoblox.
+
+27
+00:01:35.975 --> 00:01:39.562
+That's a cloud provider's
+statement, not Infoblox marketing.
+
+28
+00:01:39.562 --> 00:01:40.937
+And then there's the marketing.
+
+29
+00:01:40.937 --> 00:01:45.987
+Infoblox says it stops ninety percent
+of threats before the first query,
+
+30
+00:01:45.987 --> 00:01:49.690
+detects threats sixty-eight
+days before other tools,
+
+31
+00:01:49.690 --> 00:01:52.888
+and has a false-positive
+rate of 0.0002 percent.
+
+32
+00:01:52.888 --> 00:01:55.901
+Nobody independent has
+verified those figures.
+
+33
+00:01:55.901 --> 00:01:58.325
+Keep them out of anything
+an assessor reads.
+
+34
+00:01:58.325 --> 00:02:04.494
+Sources: Infoblox About Threat
+Defense; Licensing and Subscriptions;
+
+35
+00:02:04.494 --> 00:02:10.662
+Dossier and TIDE Overview; About Threat
+Insight (NIOS 9.1.x); TDDM for NIOS;
+
+36
+00:02:10.662 --> 00:02:17.420
+Google Cloud DNS Armor docs; infoblox.com
+Threat Defense page (vendor claims).

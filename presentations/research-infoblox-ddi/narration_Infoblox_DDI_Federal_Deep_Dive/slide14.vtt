@@ -1,0 +1,148 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.088
+Assurance evidence, checked
+on October twenty-second.
+
+2
+00:00:03.088 --> 00:00:05.162
+DISA STIGs are a real strength.
+
+3
+00:00:05.162 --> 00:00:10.937
+DISA's file store has an Infoblox
+NIOS 9.x STIG, version 1 release 1,
+
+4
+00:00:10.937 --> 00:00:17.474
+with a benchmark date of July 28, 2026
+and forty-five rules, and an Infoblox
+
+5
+00:00:17.474 --> 00:00:24.012
+8.x DNS STIG at version 1 release 4 from
+September 30, with sixty-nine rules.
+
+6
+00:00:24.012 --> 00:00:27.400
+The generic DNS SRG applies too.
+
+7
+00:00:27.400 --> 00:00:31.525
+Neither BlueCat nor EfficientIP
+has a vendor-specific STIG.
+
+8
+00:00:31.525 --> 00:00:35.487
+FIPS 140 is the weak
+spot, so say it plainly.
+
+9
+00:00:35.487 --> 00:00:39.625
+Infoblox has no active FIPS
+140 certificate today.
+
+10
+00:00:39.625 --> 00:00:46.582
+Its FIPS 140-2 certificates, 4531 for
+hardware and 4535 for virtual appliances,
+
+11
+00:00:46.582 --> 00:00:52.147
+moved to the Historical list with
+the September 21, 2026 sunset,
+
+12
+00:00:52.147 --> 00:00:58.462
+and NIST says Historical modules may
+be used for existing systems only.
+
+13
+00:00:58.462 --> 00:01:02.395
+Four FIPS 140-3 submissions
+are in the CMVP queue,
+
+14
+00:01:02.395 --> 00:01:07.900
+in review or pending review since
+late September and early October.
+
+15
+00:01:07.900 --> 00:01:11.621
+Until those certificates post,
+a new NIOS deployment that
+
+16
+00:01:11.621 --> 00:01:15.575
+depends on validated crypto
+can't cite an active certificate.
+
+17
+00:01:15.575 --> 00:01:19.175
+NIAP: there's no current
+Common Criteria certificate.
+
+18
+00:01:19.175 --> 00:01:25.400
+NIOS 9.0 has been in evaluation
+since August 17, 2026.
+
+19
+00:01:25.400 --> 00:01:28.615
+Infoblox isn't on the CDM
+Approved Products List,
+
+20
+00:01:28.615 --> 00:01:33.437
+and that list isn't accepting new
+submissions, so don't expect it to change.
+
+21
+00:01:33.437 --> 00:01:37.286
+And a word on NIST SP 800-81 Revision 3,
+
+22
+00:01:37.286 --> 00:01:42.801
+the Secure DNS Deployment
+Guide, final in March 2026.
+
+23
+00:01:42.801 --> 00:01:47.113
+It's the best practical guide
+we have: Protective DNS,
+
+24
+00:01:47.113 --> 00:01:51.325
+query logging, lease history,
+encrypted DNS, DNSSEC.
+
+25
+00:01:51.325 --> 00:01:56.887
+But two of its three authors, Cricket Liu
+and Ross Gibson, are Infoblox employees.
+
+26
+00:01:56.887 --> 00:02:00.500
+That's expertise and influence,
+not an authorization.
+
+27
+00:02:00.500 --> 00:02:06.463
+Whenever you cite 800-81r3 in support
+of choosing Infoblox, disclose it.
+
+28
+00:02:06.463 --> 00:02:15.122
+Sources: DISA STIG file store,
+U_Infoblox_NIOS_9-x_V1R1 and U_IB_8-x_DNS_V1R4;
+
+29
+00:02:15.122 --> 00:02:23.782
+NIST CMVP certificates 4531, 4535 and
+modules-in-process list; NIAP PCL;
+
+30
+00:02:23.782 --> 00:02:33.100
+Common Criteria Portal; CISA CDM APL,
+April 2025; NIST SP 800-81r3 title page.

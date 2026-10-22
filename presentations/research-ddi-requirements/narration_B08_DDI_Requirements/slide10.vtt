@@ -1,0 +1,125 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:05.332
+Now the question many agencies care about
+most: can divisions run their own DNS,
+
+2
+00:00:05.332 --> 00:00:08.988
+DHCP and IPAM without
+breaking central governance?
+
+3
+00:00:08.988 --> 00:00:13.288
+Book 08 says yes, if the platform
+supports a specific model.
+
+4
+00:00:13.288 --> 00:00:15.774
+Corporate administrators see everything.
+
+5
+00:00:15.774 --> 00:00:21.061
+Each division gets a scope limited to its
+own zones, address blocks and DHCP scopes,
+
+6
+00:00:21.061 --> 00:00:24.481
+with predefined manager,
+operator and auditor roles,
+
+7
+00:00:24.481 --> 00:00:27.513
+and automation accounts
+held to the same scope.
+
+8
+00:00:27.513 --> 00:00:32.650
+As an example, in Infoblox NIOS
+every resource is denied by default.
+
+9
+00:00:32.650 --> 00:00:37.518
+A division's administrator group gets
+read-write on its own address block,
+
+10
+00:00:37.518 --> 00:00:41.268
+which cascades to its networks,
+ranges and reservations;
+
+11
+00:00:41.268 --> 00:00:45.178
+read-write on its own zones, with
+read-only on the parent view;
+
+12
+00:00:45.178 --> 00:00:50.525
+and DNS and DHCP permissions, including
+service restarts, on its own servers only.
+
+13
+00:00:50.525 --> 00:00:55.524
+One setting matters: it makes address and
+pointer records need rights on both the
+
+14
+00:00:55.524 --> 00:00:58.957
+zone and the address block, so
+a division with access to a
+
+15
+00:00:58.957 --> 00:01:02.613
+shared zone can't point a name
+into another division's space.
+
+16
+00:01:02.613 --> 00:01:05.647
+And only central superusers create groups,
+
+17
+00:01:05.647 --> 00:01:10.200
+roles and tag definitions, so a
+division can't widen its own rights.
+
+18
+00:01:10.200 --> 00:01:12.525
+Administrators must prove who they are.
+
+19
+00:01:12.525 --> 00:01:17.721
+Expect PIV and CAC certificate login
+checked against OCSP, and SAML single
+
+20
+00:01:17.721 --> 00:01:22.587
+sign-on where the identity provider's
+group decides the user's division.
+
+21
+00:01:22.587 --> 00:01:27.059
+In NIOS, group names must match
+exactly and the first match wins,
+
+22
+00:01:27.059 --> 00:01:29.638
+so order the mappings deliberately.
+
+23
+00:01:29.638 --> 00:01:32.051
+Keep a local break-glass administrator.
+
+24
+00:01:32.051 --> 00:01:35.362
+And check automation scoping in
+the product you're evaluating.
+
+25
+00:01:35.362 --> 00:01:38.610
+In Universal DDI, service users can't sign
+
+26
+00:01:38.610 --> 00:01:42.120
+in to a divisional access
+view with API keys.

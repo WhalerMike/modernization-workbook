@@ -115,7 +115,8 @@ async def main():
         if not (mp3.exists() and mp3.stat().st_size > 10000 and str(i) in timings):
             for attempt in range(5):
                 try:
-                    timings[str(i)] = await synth(spoken(text), mp3)
+                    # A hung request to the voice service fails here and retries, not at the outer timeout.
+                    timings[str(i)] = await asyncio.wait_for(synth(spoken(text), mp3), timeout=180)
                     secs = MP3(mp3).info.length
                     if secs < 0.2 * len(text.split()):  # truncated stream (normal ~0.3-0.43 s/word; truncations ~0.1)
                         raise RuntimeError(f"truncated: {secs:.1f}s for {len(text.split())} words")
@@ -125,6 +126,8 @@ async def main():
                     await asyncio.sleep(5 * (attempt + 1))
             else:
                 raise SystemExit(f"slide {i}: no audio after retries")
+            # Save progress after every clip, so a run that is stopped resumes here instead of re-recording.
+            timing_file.write_text(json.dumps(timings, indent=1), encoding="utf-8")
         durations[i] = round(MP3(mp3).info.length, 2)
         print(f"slide {i:2d}: {durations[i]:6.1f}s  {title[:60]}")
     (OUT / "durations.json").write_text(json.dumps(durations, indent=1), encoding="utf-8")

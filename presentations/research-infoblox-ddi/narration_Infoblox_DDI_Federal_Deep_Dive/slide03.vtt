@@ -1,0 +1,156 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.950
+Here is what the rules actually
+require, stated as capabilities.
+
+2
+00:00:03.950 --> 00:00:11.826
+DNSSEC: SC-20 in the low and moderate
+baselines means signing agency zones,
+
+3
+00:00:11.826 --> 00:00:16.086
+and OMB M-08-23, from
+2008, is still in force;
+
+4
+00:00:16.086 --> 00:00:22.025
+we checked every 2025 and 2026
+memo, and none rescinds it.
+
+5
+00:00:22.025 --> 00:00:26.700
+SC-21 means validating answers
+on recursive resolvers.
+
+6
+00:00:26.700 --> 00:00:33.075
+SC-22 asks for fault-tolerant DNS with
+internal and external roles separated.
+
+7
+00:00:33.075 --> 00:00:36.917
+TIC 3.0, version 3.3, carries signing and
+
+8
+00:00:36.917 --> 00:00:41.125
+validation as policy
+enforcement point capabilities.
+
+9
+00:00:41.125 --> 00:00:48.587
+Encrypted DNS: M-22-09 says agencies must
+resolve DNS using encrypted DNS wherever
+
+10
+00:00:48.587 --> 00:00:53.688
+it's technically supported, and
+Executive Order 14144, section 4(c),
+
+11
+00:00:53.688 --> 00:00:57.183
+which the June 2025
+amendment left standing,
+
+12
+00:00:57.183 --> 00:01:03.700
+repeats the push and adds contract language
+for any product that acts as a resolver.
+
+13
+00:01:03.700 --> 00:01:06.642
+CISA's Protective DNS sits upstream:
+
+14
+00:01:06.642 --> 00:01:11.862
+internal resolvers forward to it,
+and the agency keeps its own logs.
+
+15
+00:01:11.862 --> 00:01:13.124
+Logging is subtle.
+
+16
+00:01:13.124 --> 00:01:23.025
+M-26-14, from May 2026, rescinded
+M-21-31 and doesn't mention DNS anywhere.
+
+17
+00:01:23.025 --> 00:01:29.110
+What carries DNS and DHCP logging forward
+is CISA's Logging Reference Architecture
+
+18
+00:01:29.110 --> 00:01:32.109
+from August, which maps
+the old DNS and DHCP
+
+19
+00:01:32.109 --> 00:01:35.537
+categories into its
+network-activity baseline.
+
+20
+00:01:35.537 --> 00:01:39.200
+Retention is six months searchable
+and twelve retrievable.
+
+21
+00:01:39.200 --> 00:01:47.477
+Inventory: BOD 23-01 wants discovery of
+all agency IPv4 space every seven days,
+
+22
+00:01:47.477 --> 00:01:51.875
+and BOD 26-04, which
+replaced 19-02 and 22-01,
+
+23
+00:01:51.875 --> 00:01:58.600
+wants public IP addresses and
+domains attested every quarter.
+
+24
+00:01:58.600 --> 00:02:04.700
+M-21-07 set IPv6-only
+targets that have all passed.
+
+25
+00:02:04.700 --> 00:02:08.525
+And SC-13 wants validated cryptography.
+
+26
+00:02:08.525 --> 00:02:10.213
+Now the honest starting point.
+
+27
+00:02:10.213 --> 00:02:16.488
+No rule names Infoblox or any DDI vendor,
+and nothing requires a DDI platform.
+
+28
+00:02:16.488 --> 00:02:22.775
+Windows DNS, BIND, or cloud DNS with a
+separate IPAM can meet these rules too.
+
+29
+00:02:22.775 --> 00:02:25.525
+Choosing a platform is an
+architecture decision.
+
+30
+00:02:25.525 --> 00:02:39.190
+Sources: NIST SP 800-53r5 OSCAL 5.2.0;
+OMB M-08-23, M-22-09, M-26-14, M-21-07;
+
+31
+00:02:39.190 --> 00:02:52.414
+EO 14144, EO 14306; CISA Protective
+DNS, Logging Reference Architecture,
+
+32
+00:02:52.414 --> 00:03:01.510
+TIC 3.0 v3.3, BOD 23-01,
+BOD 26-04; NIST CMVP.

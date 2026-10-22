@@ -1,0 +1,53 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.988
+Module 1: the platform.
+
+2
+00:00:01.988 --> 00:00:04.544
+Before arguing for or against Infoblox,
+
+3
+00:00:04.544 --> 00:00:08.108
+we need an accurate picture of
+what it is in October 2026,
+
+4
+00:00:08.108 --> 00:00:12.601
+because the names have changed and a
+lot of older material is now wrong.
+
+5
+00:00:12.601 --> 00:00:17.844
+We'll start with the NIOS Grid, the
+on-premises architecture most agencies know,
+
+6
+00:00:17.844 --> 00:00:22.280
+then the cloud-managed side,
+Universal DDI and the Infoblox Portal,
+
+7
+00:00:22.280 --> 00:00:25.588
+including the limits
+Infoblox itself documents.
+
+8
+00:00:25.588 --> 00:00:30.476
+Then DNS, DHCP and IPAM in turn,
+the Threat Defense security layer,
+
+9
+00:00:30.476 --> 00:00:35.987
+and finally the automation interfaces
+and the logging and reporting path.
+
+10
+00:00:35.987 --> 00:00:39.839
+Sources: Infoblox NIOS 9.1.x admin guide;
+
+11
+00:00:39.839 --> 00:00:44.830
+Universal DDI and Threat
+Defense documentation.
