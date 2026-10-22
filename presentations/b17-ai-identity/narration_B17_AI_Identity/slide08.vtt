@@ -1,0 +1,79 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.146
+An agent has no hire date
+and no separation date,
+
+2
+00:00:03.146 --> 00:00:06.400
+so its lifecycle has to hang
+from a person who does.
+
+3
+00:00:06.400 --> 00:00:11.328
+Agent ID separates the owner, who manages
+credentials, from the sponsor, who is
+
+4
+00:00:11.328 --> 00:00:16.488
+accountable for purpose and lifecycle and
+can switch an agent off but not back on.
+
+5
+00:00:16.488 --> 00:00:20.063
+Left to defaults, the sponsor
+is whoever built the agent.
+
+6
+00:00:20.063 --> 00:00:24.938
+The program decides instead: the sponsor
+is a federal employee mastered in HR,
+
+7
+00:00:24.938 --> 00:00:28.443
+a small dynamic group of
+stewards is the second sponsor,
+
+8
+00:00:28.443 --> 00:00:31.262
+and the technical owner
+is never the sponsor.
+
+9
+00:00:31.262 --> 00:00:33.275
+The lifecycle follows that person.
+
+10
+00:00:33.275 --> 00:00:37.342
+When the sponsor moves or leaves,
+the HR event triggers a transfer,
+
+11
+00:00:37.342 --> 00:00:42.162
+and the new sponsor has ten business days
+to confirm the agent is still needed.
+
+12
+00:00:42.162 --> 00:00:45.218
+Access comes through
+packages with end dates,
+
+13
+00:00:45.218 --> 00:00:49.801
+so expiry is the review: a sponsor
+who does nothing removes the access.
+
+14
+00:00:49.801 --> 00:00:52.800
+Retirement is disable first, then delete.
+
+15
+00:00:52.800 --> 00:00:58.251
+Once an orphaned agent is confirmed, a
+person disables it, never an automatic rule,
+
+16
+00:00:58.251 --> 00:01:02.300
+and its office has thirty days
+to name a sponsor or retire it.

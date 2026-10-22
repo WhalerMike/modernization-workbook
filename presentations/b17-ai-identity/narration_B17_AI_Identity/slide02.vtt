@@ -1,0 +1,76 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.950
+A chat assistant that
+drafts a memo is a tool.
+
+2
+00:00:02.950 --> 00:00:07.375
+Nothing it does reaches a record until
+a person reads the draft and acts.
+
+3
+00:00:07.375 --> 00:00:08.813
+An agent is different.
+
+4
+00:00:08.813 --> 00:00:13.762
+It sends replies from a mailbox, closes
+tickets and updates case records.
+
+5
+00:00:13.762 --> 00:00:16.297
+Each step is an action
+against agency data,
+
+6
+00:00:16.297 --> 00:00:19.700
+taken by something that signed
+in and holds permissions.
+
+7
+00:00:19.700 --> 00:00:21.638
+That makes an agent an identity.
+
+8
+00:00:21.638 --> 00:00:26.946
+An AI system that acts reaches data
+in one of four ways: on behalf of a
+
+9
+00:00:26.946 --> 00:00:32.062
+signed-in user, as itself, as its own
+user account, or with an A P I key.
+
+10
+00:00:32.062 --> 00:00:35.112
+The first three run through
+the identity provider.
+
+11
+00:00:35.112 --> 00:00:37.365
+The fourth bypasses it entirely,
+
+12
+00:00:37.365 --> 00:00:41.787
+so Conditional Access never applies
+and no sign-in is evaluated.
+
+13
+00:00:41.787 --> 00:00:44.051
+Today the agentic share is small.
+
+14
+00:00:44.051 --> 00:00:52.375
+OMB's 2025 inventory holds 3,611
+use cases, 445 of them high-impact.
+
+15
+00:00:52.375 --> 00:00:57.862
+117 are classified agentic, and 38
+of those are in pilot or deployed.
+
+16
+00:00:57.862 --> 00:01:00.340
+It's also the share that grows fastest.

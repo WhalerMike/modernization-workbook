@@ -60,7 +60,7 @@ For each AI system, the program's design asks the package to answer five questio
 
 | Area | Question the official should be able to answer | Evidence | Produced in | Controls |
 |---|---|---|---|---|
-| Owner | Who answers for this system's identity, and are they still here? | The identity record: sponsor and technical owner, both agency employees; the record's join to the inventory ID and the system inventory | [Chapter 05](05-owners-sponsors-and-lifecycle.md), [Chapter 08](08-who-owns-ai-identity.md) | AC-2 ("assign account managers"), CM-8(4) (accountability information), IA-4 |
+| Owner | Who answers for this system's identity, and are they still here? | The identity record: a sponsor who is an agency employee and a named technical owner (a contractor may serve, under government oversight); the record's join to the inventory ID and the system inventory | [Chapter 05](05-owners-sponsors-and-lifecycle.md), [Chapter 08](08-who-owns-ai-identity.md) | AC-2 ("assign account managers"), CM-8(4) (accountability information), IA-4 |
 | Credentials | How does it authenticate, and where are its secrets? | Credential type per identity (managed identity, federated credential, certificate), with no stored client secrets; certificate expiry; the credential change log | [Chapter 06](06-credentials-and-least-privilege.md) | IA-5 (authenticator management), IA-9 (service identification and authentication) |
 | Permissions | What can it reach, and who approved that? | Granted application and delegated permissions, role assignments and access packages, each with an approval record; the access mode (on behalf of a user, or on its own) | [Chapter 04](04-kinds-of-ai-identity.md), [Chapter 06](06-credentials-and-least-privilege.md) | AC-6 (least privilege), AC-6(7) (review of privileges), AC-3 |
 | Monitoring | Is anyone watching what it does, and what have they found? | Sign-in and audit log coverage for every identity; detections and risk signals; the open findings from the drift process, with dispositions | [Chapter 07](07-monitoring-drift-and-shadow-ai.md) | AU-6 (audit record review), AU-12, AC-2(12), CA-7 |
@@ -191,7 +191,7 @@ Until an overlay is final, the program's position is the one SP 800-53 already s
 | Check | Where |
 |---|---|
 | Every AI system in the inventory that runs in this boundary is a component in the plan, with the inventory use case ID | Security plan; the latest vintage comparison |
-| Every component has a named sponsor and technical owner, both agency employees | Security plan roles; identity record |
+| Every component has a named sponsor who is an agency employee and a named technical owner | Security plan roles; identity record |
 | Every identity the AI system uses is listed, with its credential type, and none uses a stored client secret without a recorded exception | Security plan users; credential evidence |
 | Granted permissions match the plan's described privileges, by observation, not by narrative | Assessment results observations |
 | IA-9 is tailored in, with the services and applications named | Security plan control selection |
