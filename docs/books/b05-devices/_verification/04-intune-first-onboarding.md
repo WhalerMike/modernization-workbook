@@ -82,3 +82,10 @@ The body now states the guidance directly. These were the earlier positions it u
 - The source described a pre-staged Entra ID device object placeholder as a phase 3 output.
 - The source's Surface row named specific resellers and firmware features (dropped as vendor positioning).
 - Exception C was restated from a source that cited a program decision.
+
+## Editor update, October 22, 2026
+
+| Claim | Result | Source |
+|---|---|---|
+| Device preparation has no registration, so it has no carrier | qualified: device association (added Aug 27, 2026) binds a device to the tenant before enrollment, marks it corporate-owned and enables device-targeted policy and naming; it starts from device-exported data uploaded one device per CSV, so it is an admin-side binding, not a vendor carrier. Recommendation unchanged. | Microsoft Learn: device association overview; device preparation What's new |
+| Device preparation naming | added: Apply device name template, up to 63 characters, associated devices only | Microsoft Learn: device preparation policy, Configuration settings |

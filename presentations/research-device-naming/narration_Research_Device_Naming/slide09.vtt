@@ -1,0 +1,122 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.887
+What about people working remotely?
+
+2
+00:00:01.887 --> 00:00:06.900
+Take Microsoft's Global Secure Access,
+which includes Entra Private Access.
+
+3
+00:00:06.900 --> 00:00:09.570
+You list your private DNS suffixes,
+
+4
+00:00:09.570 --> 00:00:13.712
+and its client on the laptop
+turns them into NRPT rules.
+
+5
+00:00:13.712 --> 00:00:17.490
+Matching queries go to a DNS
+proxy at Microsoft's edge,
+
+6
+00:00:17.490 --> 00:00:22.813
+and a connector inside your network
+resolves them against on-premises DNS.
+
+7
+00:00:22.813 --> 00:00:25.473
+The laptop gets back a
+synthetic IP address,
+
+8
+00:00:25.473 --> 00:00:27.987
+a stand-in that routes through the tunnel.
+
+9
+00:00:27.987 --> 00:00:31.838
+Notice what's missing: that's all
+about the laptop finding names.
+
+10
+00:00:31.838 --> 00:00:35.973
+I found no primary source
+saying Global Secure Access
+
+11
+00:00:35.973 --> 00:00:40.200
+registers the laptop's own
+name or address in agency DNS.
+
+12
+00:00:40.200 --> 00:00:45.800
+So, as an inference, remote clients are
+resolvers of names, not registrants.
+
+13
+00:00:45.800 --> 00:00:49.700
+Windows also skips dynamic
+update over VPN by default.
+
+14
+00:00:49.700 --> 00:00:52.575
+Third-party VPN products
+weren't researched.
+
+15
+00:00:52.575 --> 00:00:55.850
+That changes how the help
+desk finds a remote device.
+
+16
+00:00:55.850 --> 00:00:59.519
+Intune's Remote Help starts
+from the Intune admin center:
+
+17
+00:00:59.519 --> 00:01:03.813
+you pick the device from the device
+list, and no DNS lookup is needed.
+
+18
+00:01:03.813 --> 00:01:06.100
+But you pick it by its Intune device name.
+
+19
+00:01:06.100 --> 00:01:09.763
+As an inference, that name
+must be unique and meaningful.
+
+20
+00:01:09.763 --> 00:01:13.107
+One subtlety: renaming in the
+admin center doesn't change
+
+21
+00:01:13.107 --> 00:01:16.451
+the management name or the name
+in the Company Portal app.
+
+22
+00:01:16.451 --> 00:01:24.161
+Sources: Microsoft Learn: Understand
+Microsoft Entra Private DNS and Troubleshoot
+
+23
+00:01:24.161 --> 00:01:30.110
+application access (Global Secure
+Access) [S51]; Dynamic update [S26];
+
+24
+00:01:30.110 --> 00:01:37.161
+DirectAccess known issues (NRPT) [S56];
+Using Remote Help with Microsoft Intune
+
+25
+00:01:37.161 --> 00:01:43.610
+[S52]; TeamViewer integration in Intune
+[S53]; Rename a device in Intune [S5].

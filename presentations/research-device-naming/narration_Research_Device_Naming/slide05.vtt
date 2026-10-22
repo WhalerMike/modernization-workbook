@@ -1,0 +1,135 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.637
+What takes over is the DHCP server.
+
+2
+00:00:02.637 --> 00:00:08.438
+DHCP is the service that hands a device
+its address for a set time, called a lease.
+
+3
+00:00:08.438 --> 00:00:12.226
+It already talks to every device,
+so it can register names for them.
+
+4
+00:00:12.226 --> 00:00:13.312
+Here's the flow.
+
+5
+00:00:13.312 --> 00:00:18.639
+The device asks for an address and sends
+its host name, in DHCP option twelve,
+
+6
+00:00:18.639 --> 00:00:22.849
+or its full name in option
+eighty-one, the client FQDN option.
+
+7
+00:00:22.849 --> 00:00:27.875
+For IPv6 the equivalent is
+DHCPv6 option thirty-nine.
+
+8
+00:00:27.875 --> 00:00:34.176
+The DHCP server is set to always update
+DNS, and signs its updates with TSIG,
+
+9
+00:00:34.176 --> 00:00:38.825
+a shared-key signature, or
+GSS-TSIG, which uses Kerberos.
+
+10
+00:00:38.825 --> 00:00:42.226
+On Infoblox NIOS, a DDI
+platform, meaning DNS,
+
+11
+00:00:42.226 --> 00:00:47.990
+DHCP and IP address management in one
+product, a server accepts no dynamic
+
+12
+00:00:47.990 --> 00:00:53.375
+updates by default; a setting called
+Allow updates from lists who may.
+
+13
+00:00:53.375 --> 00:00:55.800
+Make that the DHCP servers only.
+
+14
+00:00:55.800 --> 00:00:57.050
+Two safeguards.
+
+15
+00:00:57.050 --> 00:01:00.949
+Beside each name, the server
+writes an ownership record,
+
+16
+00:01:00.949 --> 00:01:03.662
+so only one client holds a name at a time.
+
+17
+00:01:03.662 --> 00:01:07.520
+That's a TXT record in
+Infoblox's default Interim mode,
+
+18
+00:01:07.520 --> 00:01:09.975
+or a DHCID record in Standard mode.
+
+19
+00:01:09.975 --> 00:01:14.100
+And when the lease expires, the server
+removes the records it created.
+
+20
+00:01:14.100 --> 00:01:19.988
+On Windows DHCP, always updating both records
+makes the client skip its own attempt.
+
+21
+00:01:19.988 --> 00:01:26.393
+Sources: RFC 4701 DHCID, RFC
+4702 DHCPv4 Client FQDN option,
+
+22
+00:01:26.393 --> 00:01:34.935
+RFC 4703 FQDN conflict resolution, RFC
+4704 DHCPv6 Client FQDN option [S31–S34];
+
+23
+00:01:34.935 --> 00:01:40.808
+Microsoft Learn Dynamic update
+[S26]; Infoblox NIOS 9.1:
+
+24
+00:01:40.808 --> 00:01:48.282
+Understanding DDNS Updates from
+DHCP, About the Client FQDN Option,
+
+25
+00:01:48.282 --> 00:01:54.155
+Sending Updates for Zones
+on an External Name Server,
+
+26
+00:01:54.155 --> 00:02:00.962
+Configuring DNS Servers for
+DDNS, Configuring DDNS Features,
+
+27
+00:02:00.962 --> 00:02:06.834
+Accepting DDNS Updates from
+DHCP Clients [S40–S44, S47];
+
+28
+00:02:06.834 --> 00:02:13.030
+Book 08 Ch04, Secure dynamic
+updates and the DHCP server.

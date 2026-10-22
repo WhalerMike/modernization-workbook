@@ -1,0 +1,119 @@
+<!-- Copy-link buttons (included after the body on every page).
+     1. "Copy link" next to the page title copies the page's address.
+     2. "Copy link" next to each download link (deck, Word bundle, video, captions, PDF) copies a link to
+        the place on the site that describes the document: its table row's anchor, else its section
+        heading, else the page. A shared link opens that page; it never starts a file download. -->
+<style>
+  .fmw-copy-link {
+    display: inline-flex; align-items: center; gap: .3em;
+    margin-left: .45em; padding: .05em .55em;
+    font-size: .78rem; line-height: 1.5; font-family: inherit;
+    color: #0f5e5c; background: #eef6f5;
+    border: 1px solid #b9dcd8; border-radius: 999px;
+    cursor: pointer; vertical-align: middle; white-space: nowrap;
+  }
+  .fmw-copy-link:hover, .fmw-copy-link:focus-visible { background: #d9eeeb; border-color: #0f5e5c; outline: none; }
+  .fmw-copy-link:focus-visible { box-shadow: 0 0 0 2px #0f5e5c40; }
+  .fmw-copy-link.fmw-copied { color: #1d4d1f; background: #e6f4e6; border-color: #8cc28f; }
+  .fmw-copy-link svg { width: 1em; height: 1em; }
+  .fmw-copy-page { margin: .35rem 0 0; }
+  .fmw-copy-status { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+  @media print { .fmw-copy-link { display: none; } }
+</style>
+<script>
+(function () {
+  var FILE = /\.(pptx|docx|mp4|vtt|pdf|zip|xlsx)(?:[?#].*)?$/i;
+  var ICON = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">' +
+             '<path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/></svg>';
+
+  var status = document.createElement("div");
+  status.className = "fmw-copy-status";
+  status.setAttribute("role", "status");
+  status.setAttribute("aria-live", "polite");
+  document.body.appendChild(status);
+
+  function pageUrl() { return location.href.split("#")[0]; }
+
+  // The place that describes a download link: its table row's anchor, else the nearest section, else the page.
+  function shareUrlFor(link) {
+    var row = link.closest("tr");
+    if (row) {
+      var anchored = row.querySelector("[id]");
+      if (anchored && anchored.id) return pageUrl() + "#" + anchored.id;
+    }
+    var section = link.closest("section[id]");
+    if (section) return pageUrl() + "#" + section.id;
+    return pageUrl();
+  }
+
+  function copy(text, button, label) {
+    function done(ok) {
+      button.classList.toggle("fmw-copied", ok);
+      button.lastChild.textContent = ok ? " Copied" : " Copy failed";
+      status.textContent = ok ? "Link copied: " + label : "Couldn't copy the link";
+      setTimeout(function () { button.classList.remove("fmw-copied"); button.lastChild.textContent = " Copy link"; }, 1800);
+    }
+    if (navigator.clipboard && window.isSecureContext) {
+      navigator.clipboard.writeText(text).then(function () { done(true); }, function () { done(fallback(text)); });
+    } else {
+      done(fallback(text));
+    }
+  }
+
+  function fallback(text) {
+    var t = document.createElement("textarea");
+    t.value = text; t.setAttribute("readonly", ""); t.style.position = "fixed"; t.style.top = "-1000px";
+    document.body.appendChild(t); t.select();
+    var ok = false;
+    try { ok = document.execCommand("copy"); } catch (e) { ok = false; }
+    document.body.removeChild(t);
+    return ok;
+  }
+
+  function makeButton(getUrl, label, title) {
+    var b = document.createElement("button");
+    b.type = "button";
+    b.className = "fmw-copy-link";
+    b.title = title;
+    b.setAttribute("aria-label", "Copy link to " + label);
+    b.innerHTML = ICON + '<span> Copy link</span>';
+    b.addEventListener("click", function (e) { e.preventDefault(); copy(getUrl(), b, label); });
+    return b;
+  }
+
+  // 1. Page link, under the title.
+  var title = document.querySelector("#title-block-header h1.title, header h1.title, main h1");
+  if (title) {
+    var wrap = document.createElement("div");
+    wrap.className = "fmw-copy-page";
+    var name = (title.textContent || document.title).trim();
+    wrap.appendChild(makeButton(pageUrl, "this page: " + name, "Copy a link to this page"));
+    title.insertAdjacentElement("afterend", wrap);
+  }
+
+  // 2. Share links for downloads in the page content. In a table, one button per row, in its first
+  //    cell (a row's deck, narrated edition and captions share one place on the page); elsewhere,
+  //    one button beside each download link.
+  var TIP = "Copy a link to where this document is described on the site (opens the page, not a download)";
+  var main = document.querySelector("main") || document.body;
+  var rowsDone = [];
+  main.querySelectorAll("a[href]").forEach(function (a) {
+    var href = a.getAttribute("href") || "";
+    if (!FILE.test(href) || a.closest("nav, .sidebar, #quarto-header")) return;
+    var row = a.closest("tr");
+    if (row) {
+      if (rowsDone.indexOf(row) !== -1) return;
+      rowsDone.push(row);
+      var first = row.querySelector("td, th");
+      var label = (first ? first.textContent : a.textContent).trim();
+      if (first) first.appendChild(makeButton(function () { return shareUrlFor(a); }, label, TIP));
+      return;
+    }
+    var name = (a.textContent || href).trim();
+    var heading = a.closest("section[id]");
+    var where = heading ? heading.querySelector("h1, h2, h3, h4") : null;
+    a.insertAdjacentElement("afterend", makeButton(function () { return shareUrlFor(a); },
+      name + (where ? " (" + where.textContent.trim() + ")" : ""), TIP));
+  });
+})();
+</script>

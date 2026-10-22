@@ -352,7 +352,39 @@ Third, a limitation that surprises almost everyone. NIOS reporting doesn't filte
 
 Sources: Infoblox NIOS: Managing Microsoft Servers; About Admin Roles; Administrative Permission for the Grid; Configuring DNSSEC on a Grid; RPZ license and permissions; Reporting permissions; EA filters and Smart Folders.
 
-## Slide 27 — Module 4: Universal DDI divisions and operating model
+## Slide 27 — Separating DNS, DHCP and IPAM by team
+
+Divisions aren't the only way to cut DDI. Many agencies split it by service instead: DNS, DHCP and IPAM teams, each working across the whole agency. NIOS supports that with the same permission model, but each service has a catch. This is an illustrative design, not a validated configuration.
+
+First, the rules. Everything is denied by default. A global permission covers every object of a type, so read-write on all DHCP networks also covers their ranges and fixed addresses. An object permission covers one member, zone, network, record or fixed address. Inheritance runs parent to child, a more specific permission overrides, and the first match wins, with the group's own permissions checked before its roles.
+
+The DNS team gets read-write on its DNS views and zones, per record type if needed, and Member DNS on its DNS members. No network rights. Note that response policy zone rules only take global permissions.
+
+The DHCP team is where the catch is. A permission on a network covers its ranges and fixed addresses, so don't grant networks. Grant object permissions on the ranges and fixed addresses, plus Member DHCP and restart on the DHCP members.
+
+The IPAM team gets read-write on network containers and networks to allocate space. That inherits down to ranges and fixed addresses, so if the DHCP team must own them, add an explicit deny on the DHCP ranges.
+
+For contrast, a division admin gets all three services inside one slice of address space.
+
+Two points stay Grid-wide. Turn on DNS Object Permissions in Networks and Ranges, and A, AAAA and PTR records and hosts need read-write on both the zone and the network. That's a deliberate check between the DNS and IPAM teams. And only superusers create groups, roles, attributes and approval workflows.
+
+Sources: Infoblox NIOS: About Administrative Permissions; Defining Global Permissions; Defining Object Permissions; Applying Permissions and Managing Overlaps; Administrative Permissions for Zones; DNS and DHCP Permissions on Grid Members; Administrative Permission for the Grid; Permissions for DNS Resources in Networks and Ranges; About Admin Groups.
+
+## Slide 28 — Service teams and divisions together
+
+Service teams and divisions aren't alternatives. Most agencies combine them, because a grant can be scoped by service and by address space at once. Again, it's illustrative, using the worked example's four divisions.
+
+The central DNS team keeps agency dot gov, internal and external, and DNSSEC signing, which only the Grid Master or its HSM can do. The central IPAM team keeps the top-level blocks as network containers and allocates each division its slash twelve. Divisions take over DHCP: each division's admins get Member DHCP and restart on their own DHCP members, and read-write on their ranges, inside their own space.
+
+Read the grid by row. HQ's DHCP admins work in ten slash twelve. LEB serves its own zone from its own members, with Member DNS and DHCP on them. REG's Windows servers are managed from the Grid, so its admins get rights on those server objects. And LAB, with overlapping space, has its own network view, its own DHCP members, and a delegated zone whose DS records go to central.
+
+On Universal DDI the picture changes. An access policy binds a role, a user group and an access view. Whether a division can have separate DNS and DHCP roles depends on a documentation conflict: one Infoblox page lists DDI IPAM, DNS and DHCP roles, while another says only the four DDI IPAM roles are supported in this release. Confirm with Infoblox. DHCP objects can't be assigned to access views directly; ranges, subnets and fixed addresses inherit their access view from their parent. And divisions can't administer their own users or roles.
+
+One reporting caution applies however you split. On NIOS, report and search data ignore object permissions, so any team or division with the Reporting app sees agency-wide DNS and DHCP data.
+
+Sources: Illustrative design synthesized from Infoblox NIOS: Object Permissions, DNS and DHCP Permissions on Grid Members, Network Views, Network Containers, Delegated Zones, Configuring DNSSEC on a Grid, Managing Microsoft Servers, Reporting permissions; Infoblox Portal: About Access Views, Supported Objects for Access Views, Setting Up Access Control, Creating Access Policies.
+
+## Slide 29 — Module 4: Universal DDI divisions and operating model
 
 Module 4: divisions on Universal DDI, and the operating model.
 
@@ -360,7 +392,7 @@ Universal DDI has its own divisional construct, access views, and its own answer
 
 Sources: Infoblox Portal and Universal DDI documentation; Book 08, Chapters 09 and 10.
 
-## Slide 28 — Universal DDI: access views, IP spaces, federation
+## Slide 30 — Universal DDI: access views, IP spaces, federation
 
 On Universal DDI the division construct is the access view, which Infoblox describes as a logical container for DDI resources, built for divisional admins. The account itself is the default access view. Corporate admins create sub-views under it, and only one level is allowed. Divisional admins can't see or manage anything outside their sub-view.
 
@@ -374,7 +406,7 @@ And a documentation conflict. One Infoblox page lists IPAM, DNS and DHCP roles f
 
 Sources: Infoblox Portal: About Access Views, Supported Objects, Setting Up Access Control, Creating Access Views, Interactive and Service Users, Access Policies, Restricting User Groups, SAML for Entra ID, Mapping User Groups, Audit Logs; Universal DDI: IP Spaces, IPAM Federation.
 
-## Slide 29 — Four delegation patterns and their trade-offs
+## Slide 31 — Four delegation patterns and their trade-offs
 
 Put together, the constructs give four delegation patterns.
 
@@ -390,7 +422,7 @@ Most agencies mix them: (a) as the default, (b) where local resilience matters, 
 
 Sources: Synthesis of Infoblox NIOS: Administrative Permissions, Managing Overlaps, DNS and DHCP Permissions on Grid Members, Network Views, Delegated Zones, DNSSEC on a Grid, Approval Workflows, Reporting permissions; Universal DDI: Access Views, IPAM Federation.
 
-## Slide 30 — Worked example: four divisions on one Grid
+## Slide 32 — Worked example: four divisions on one Grid
 
 Here's a worked example. It's an illustrative design, not a validated configuration.
 
@@ -404,7 +436,7 @@ Grid-wide controls: turn on DNS object permissions, so HQ can't point a name int
 
 Sources: Illustrative design synthesized from Infoblox NIOS: Network Views, DNS Views, Extensible Attributes, Object Permissions, DNS Resources in Networks and Ranges, Delegated Zones, Approval Workflows, SAML, Managing Microsoft Servers, Reporting permissions.
 
-## Slide 31 — Who does what: the DDI responsibility matrix
+## Slide 33 — Who does what: the DDI responsibility matrix
 
 Who does what. This matrix is adapted from Book 08's responsibility matrix, which separates deciding from doing: D decides and is accountable, R does the work, C is consulted. I've added a Division column for the delegated model.
 
@@ -420,7 +452,7 @@ And an encrypted DNS exception that has no end date, or has outlived the agency'
 
 Sources: Book 08, Chapter 09, "Decision rights and work are different things," "The roles," "The responsibility matrix"; Infoblox NIOS approval workflows; Universal DDI access policies.
 
-## Slide 32 — Rollout sequence, decisions and next steps
+## Slide 34 — Rollout sequence, decisions and next steps
 
 To close, a rollout sequence, the decisions to take, and the next steps.
 

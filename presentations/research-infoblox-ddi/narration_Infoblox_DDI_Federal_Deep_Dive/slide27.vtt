@@ -1,50 +1,174 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:04.975
-Module 4: divisions on Universal
-DDI, and the operating model.
+00:00:00.050 --> 00:00:02.912
+Divisions aren't the only way to cut DDI.
 
 2
-00:00:04.975 --> 00:00:09.406
-Universal DDI has its own
-divisional construct, access views,
+00:00:02.912 --> 00:00:06.680
+Many agencies split it
+by service instead: DNS,
 
 3
-00:00:09.406 --> 00:00:15.487
-and its own answer to overlapping address
-space, IPAM Federation, which NIOS lacks.
+00:00:06.680 --> 00:00:11.538
+DHCP and IPAM teams, each
+working across the whole agency.
 
 4
-00:00:15.487 --> 00:00:18.973
-We'll cover those and their
-limits, including a conflict in
+00:00:11.538 --> 00:00:16.137
+NIOS supports that with the same permission
+model, but each service has a catch.
 
 5
-00:00:18.973 --> 00:00:22.676
-Infoblox's own documentation
-you'll need to resolve with them.
+00:00:16.137 --> 00:00:20.275
+This is an illustrative design,
+not a validated configuration.
 
 6
-00:00:22.676 --> 00:00:26.585
-Then we'll step back to four delegation
-patterns and their trade-offs,
+00:00:20.275 --> 00:00:21.862
+First, the rules.
 
 7
-00:00:26.585 --> 00:00:30.976
-walk through an illustrative design for
-four divisions, set out who does what,
+00:00:21.862 --> 00:00:23.963
+Everything is denied by default.
 
 8
-00:00:30.976 --> 00:00:34.475
-and end with a rollout sequence
-and the decisions to take next.
+00:00:23.963 --> 00:00:27.344
+A global permission covers
+every object of a type,
 
 9
-00:00:34.475 --> 00:00:40.382
-Sources: Infoblox Portal and
-Universal DDI documentation;
+00:00:27.344 --> 00:00:32.787
+so read-write on all DHCP networks also
+covers their ranges and fixed addresses.
 
 10
-00:00:40.382 --> 00:00:42.980
-Book 08, Chapters 09 and 10.
+00:00:32.787 --> 00:00:38.663
+An object permission covers one member,
+zone, network, record or fixed address.
+
+11
+00:00:38.663 --> 00:00:43.116
+Inheritance runs parent to child, a
+more specific permission overrides,
+
+12
+00:00:43.116 --> 00:00:48.163
+and the first match wins, with the group's
+own permissions checked before its roles.
+
+13
+00:00:48.163 --> 00:00:52.467
+The DNS team gets read-write
+on its DNS views and zones,
+
+14
+00:00:52.467 --> 00:00:57.163
+per record type if needed, and
+Member DNS on its DNS members.
+
+15
+00:00:57.163 --> 00:00:58.538
+No network rights.
+
+16
+00:00:58.538 --> 00:01:02.676
+Note that response policy zone
+rules only take global permissions.
+
+17
+00:01:02.676 --> 00:01:05.363
+The DHCP team is where the catch is.
+
+18
+00:01:05.363 --> 00:01:09.401
+A permission on a network covers
+its ranges and fixed addresses,
+
+19
+00:01:09.401 --> 00:01:10.849
+so don't grant networks.
+
+20
+00:01:10.849 --> 00:01:15.114
+Grant object permissions on
+the ranges and fixed addresses,
+
+21
+00:01:15.114 --> 00:01:18.525
+plus Member DHCP and
+restart on the DHCP members.
+
+22
+00:01:18.525 --> 00:01:23.837
+The IPAM team gets read-write on network
+containers and networks to allocate space.
+
+23
+00:01:23.837 --> 00:01:27.576
+That inherits down to
+ranges and fixed addresses,
+
+24
+00:01:27.576 --> 00:01:32.863
+so if the DHCP team must own them, add
+an explicit deny on the DHCP ranges.
+
+25
+00:01:32.863 --> 00:01:36.004
+For contrast, a division
+admin gets all three
+
+26
+00:01:36.004 --> 00:01:39.062
+services inside one
+slice of address space.
+
+27
+00:01:39.062 --> 00:01:40.750
+Two points stay Grid-wide.
+
+28
+00:01:40.750 --> 00:01:44.983
+Turn on DNS Object Permissions
+in Networks and Ranges, and A,
+
+29
+00:01:44.983 --> 00:01:50.512
+AAAA and PTR records and hosts need
+read-write on both the zone and the network.
+
+30
+00:01:50.512 --> 00:01:54.813
+That's a deliberate check
+between the DNS and IPAM teams.
+
+31
+00:01:54.813 --> 00:02:00.624
+And only superusers create groups, roles,
+attributes and approval workflows.
+
+32
+00:02:00.624 --> 00:02:04.513
+Sources: Infoblox NIOS: About
+Administrative Permissions;
+
+33
+00:02:04.513 --> 00:02:08.480
+Defining Global Permissions;
+Defining Object Permissions;
+
+34
+00:02:08.480 --> 00:02:14.114
+Applying Permissions and Managing Overlaps;
+Administrative Permissions for Zones;
+
+35
+00:02:14.114 --> 00:02:19.510
+DNS and DHCP Permissions on Grid Members;
+Administrative Permission for the Grid;
+
+36
+00:02:19.510 --> 00:02:24.410
+Permissions for DNS Resources in
+Networks and Ranges; About Admin Groups.

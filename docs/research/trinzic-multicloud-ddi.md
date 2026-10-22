@@ -3,6 +3,8 @@ title: "Trinzic Alone, or Trinzic Plus Cloud DDI?"
 subtitle: "A 15-minute, plain-language explainer: what Infoblox's on-premises appliances can and can't do in AWS, Azure and Google Cloud, the three ways to extend them, and which fits which agency"
 description: "Research under review: a narrated explainer for architects learning DDI, on whether Infoblox Trinzic appliances can run an agency's DNS, DHCP and IPAM alone or should be combined with vNIOS, Universal DDI or native cloud DNS for multi-cloud."
 research-status: in review
+research-type: explainer
+research-book: "Book 08"
 date-modified: 2026-10-22
 ---
 

@@ -1,0 +1,141 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.187
+The decisions.
+
+2
+00:00:01.187 --> 00:00:04.638
+Who owns each namespace,
+the Grid or a cloud.
+
+3
+00:00:04.638 --> 00:00:08.938
+Which middleware platform, and so which
+network and resolver path it uses.
+
+4
+00:00:08.938 --> 00:00:10.900
+The hub design in each cloud.
+
+5
+00:00:10.900 --> 00:00:14.314
+And whether Oracle's private
+access is needed at all,
+
+6
+00:00:14.314 --> 00:00:16.775
+remembering that it's routing, not DNS.
+
+7
+00:00:16.775 --> 00:00:19.250
+The next steps are the
+things I couldn't verify.
+
+8
+00:00:19.250 --> 00:00:25.075
+Which Oracle environment and hostnames
+the agency's Core HCM tenant will use.
+
+9
+00:00:25.075 --> 00:00:29.086
+Whether API-driven inbound
+provisioning is available in the U.S.
+
+10
+00:00:29.086 --> 00:00:30.600
+Government Graph cloud.
+
+11
+00:00:30.600 --> 00:00:34.741
+Whether Azure's DNS Private
+Resolver, Lifecycle Workflows and
+
+12
+00:00:34.741 --> 00:00:39.200
+Connect private endpoints are
+available in the government clouds.
+
+13
+00:00:39.200 --> 00:00:42.567
+And the VMware install
+guides' DNS rules and Oracle's
+
+14
+00:00:42.567 --> 00:00:45.700
+own connectivity patterns,
+which I couldn't open.
+
+15
+00:00:45.700 --> 00:00:47.375
+They're all listed in the backup.
+
+16
+00:00:47.375 --> 00:00:48.512
+Where does this fit?
+
+17
+00:00:48.512 --> 00:00:51.540
+Book 03 covers HR-driven identity,
+
+18
+00:00:51.540 --> 00:00:58.351
+with Federal HR 2.0 in Chapter 03 and
+the provisioning pipeline in Chapter 05.
+
+19
+00:00:58.351 --> 00:01:04.987
+Book 08 covers DNS, DHCP and IP address
+management: split-brain DNS in Chapter 02,
+
+20
+00:01:04.987 --> 00:01:11.828
+cloud private endpoints in Chapter 07,
+the reference architecture in Chapter 08,
+
+21
+00:01:11.828 --> 00:01:15.300
+and the migration sequence in Chapter 10.
+
+22
+00:01:15.300 --> 00:01:21.639
+Three research items sit beside this one:
+Trinzic Alone, or Trinzic Plus Cloud DDI;
+
+23
+00:01:21.639 --> 00:01:26.937
+Infoblox DDI for Federal Agencies;
+and Who Names the Device After AD.
+
+24
+00:01:26.937 --> 00:01:30.433
+One note on standing: this
+is research under review,
+
+25
+00:01:30.433 --> 00:01:33.263
+not an endorsement by any federal agency.
+
+26
+00:01:33.263 --> 00:01:34.025
+Thank you.
+
+27
+00:01:34.025 --> 00:01:40.201
+Sources: Research brief, Couldn't
+verify and Agency checklist;
+
+28
+00:01:40.201 --> 00:01:45.287
+Book 03 Ch03 and Ch05; Book
+08 Ch02, Ch07, Ch08 and Ch10;
+
+29
+00:01:45.287 --> 00:01:50.857
+research items Trinzic Alone,
+or Trinzic Plus Cloud DDI?,
+
+30
+00:01:50.857 --> 00:01:57.700
+Infoblox DDI for Federal Agencies,
+and Who Names the Device After AD?

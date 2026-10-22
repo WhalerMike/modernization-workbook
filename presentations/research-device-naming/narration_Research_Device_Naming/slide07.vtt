@@ -1,0 +1,123 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.387
+There are two ways a device
+gets an IPv6 address.
+
+2
+00:00:03.387 --> 00:00:06.888
+In the first, a DHCPv6 server assigns it.
+
+3
+00:00:06.888 --> 00:00:08.617
+The server knows the address,
+
+4
+00:00:08.617 --> 00:00:12.076
+so it can register an AAAA
+record using option thirty-nine.
+
+5
+00:00:12.076 --> 00:00:16.326
+In the second, called SLAAC,
+stateless address autoconfiguration,
+
+6
+00:00:16.326 --> 00:00:20.500
+the device builds its own address
+from what the router announces.
+
+7
+00:00:20.500 --> 00:00:23.485
+Devices also create temporary, or privacy,
+
+8
+00:00:23.485 --> 00:00:27.237
+addresses, typically used
+for outgoing connections.
+
+9
+00:00:27.237 --> 00:00:32.926
+The DHCPv6 name option covers
+only addresses DHCPv6 assigned.
+
+10
+00:00:32.926 --> 00:00:37.740
+So, as an inference, no DHCPv6
+server ever learns a SLAAC address,
+
+11
+00:00:37.740 --> 00:00:42.462
+and no server-side registration
+creates an AAAA record for it.
+
+12
+00:00:42.462 --> 00:00:45.898
+The device could register
+it itself, but as we saw,
+
+13
+00:00:45.898 --> 00:00:49.162
+a post-AD Windows client
+can't do that securely.
+
+14
+00:00:49.162 --> 00:00:53.683
+The consequence, also an inference:
+for Entra-joined endpoints,
+
+15
+00:00:53.683 --> 00:00:58.725
+treat AAAA records for SLAAC or
+privacy addresses as absent by design.
+
+16
+00:00:58.725 --> 00:01:02.781
+Find endpoints by their
+DHCP-assigned addresses,
+
+17
+00:01:02.781 --> 00:01:08.025
+and correlate IPv6 activity from
+DHCP and neighbor logs, not DNS.
+
+18
+00:01:08.025 --> 00:01:14.377
+Two cloud notes: in AWS, only the instance
+resource name returns AAAA records,
+
+19
+00:01:14.377 --> 00:01:20.225
+and Azure's DNS Private Resolver
+doesn't support IPv6-enabled subnets.
+
+20
+00:01:20.225 --> 00:01:24.300
+And I couldn't verify whether Windows
+registers its temporary addresses.
+
+21
+00:01:24.300 --> 00:01:31.583
+Sources: RFC 4862 IPv6 Stateless
+Address Autoconfiguration [S37];
+
+22
+00:01:31.583 --> 00:01:36.439
+RFC 8981 Temporary
+Address Extensions [S38];
+
+23
+00:01:36.439 --> 00:01:45.205
+RFC 4704 DHCPv6 Client FQDN option [S34];
+Amazon EC2 instance hostname types [S21];
+
+24
+00:01:45.205 --> 00:01:52.219
+Book 08 Ch07 (Azure DNS Private
+Resolver platform constraints);
+
+25
+00:01:52.219 --> 00:01:59.690
+research brief, Couldn't verify
+(Windows temporary IPv6 addresses).

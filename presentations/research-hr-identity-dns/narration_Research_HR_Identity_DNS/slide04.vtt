@@ -1,0 +1,119 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.063
+This table condenses the brief's
+what-must-resolve-where table.
+
+2
+00:00:04.063 --> 00:00:06.149
+The full version is in the backup.
+
+3
+00:00:06.149 --> 00:00:11.445
+The HR middleware, if it runs as Azure
+Functions or Logic Apps Standard joined to a
+
+4
+00:00:11.445 --> 00:00:14.211
+virtual network, resolves the Fusion host,
+
+5
+00:00:14.211 --> 00:00:17.925
+Graph and sign-in publicly,
+through the agency's resolver.
+
+6
+00:00:17.925 --> 00:00:21.885
+Its evidence store and key vault
+sit behind private endpoints,
+
+7
+00:00:21.885 --> 00:00:26.225
+so it needs a linked private zone, or
+a resolver that forwards to Azure.
+
+8
+00:00:26.225 --> 00:00:30.505
+Microsoft documents an app
+setting, WEBSITE_DNS_SERVER,
+
+9
+00:00:30.505 --> 00:00:33.762
+for pointing the app at
+your own DNS server.
+
+10
+00:00:33.762 --> 00:00:39.250
+Lifecycle Workflow extensions run in
+Consumption Logic Apps, the multitenant kind.
+
+11
+00:00:39.250 --> 00:00:42.525
+As an inference, they can
+reach only public names.
+
+12
+00:00:42.525 --> 00:00:47.531
+The provisioning agent resolves domain
+controller locator records internally,
+
+13
+00:00:47.531 --> 00:00:50.475
+and Microsoft's relay and
+sign-in names publicly.
+
+14
+00:00:50.475 --> 00:00:54.997
+On-premises systems reach cloud private
+names by forwarding from the Grid,
+
+15
+00:00:54.997 --> 00:00:59.009
+meaning the Infoblox appliances,
+to each cloud's inbound endpoint:
+
+16
+00:00:59.009 --> 00:01:03.313
+an address inside the cloud network
+that accepts queries from outside.
+
+17
+00:01:03.313 --> 00:01:09.062
+Fusion users on Oracle's private access
+still get Fusion's public DNS answer.
+
+18
+00:01:09.062 --> 00:01:12.626
+A Lambda function in a VPC,
+a virtual private cloud,
+
+19
+00:01:12.626 --> 00:01:16.712
+reaches agency APIs through
+an outbound rule to the Grid.
+
+20
+00:01:16.712 --> 00:01:22.726
+And vCenter and ESXi need forward and
+reverse records, A and PTR, in the Grid.
+
+21
+00:01:22.726 --> 00:01:33.796
+Sources: Research brief §8, What must
+resolve where, and the sources in each row:
+
+22
+00:01:33.796 --> 00:01:42.231
+Microsoft Learn [S2, S4, S4b (excerpt),
+S8 (excerpt), S11b (excerpt),
+
+23
+00:01:42.231 --> 00:01:50.314
+S13–S15 (excerpts)]; Oracle [S20–S24];
+AWS [S29, S30]; Broadcom [S36];
+
+24
+00:01:50.314 --> 00:01:58.990
+Book 08 Ch07 and Ch08;
+research_multicloud.md [prior-M S31, S57].
