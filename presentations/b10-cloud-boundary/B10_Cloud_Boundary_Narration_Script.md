@@ -138,4 +138,4 @@ And evidence every response, whether equivalent, exception or alternative path, 
 
 The next step needs no award: before the next architecture review, list every cloud feature your designs depend on, with its Marketplace package, its availability in your environment and the page that says so. Then put Appendix A's requests to your provider.
 
-The license says what you bought; the boundary says what you may use. Book 10 has the detail, every claim footnoted. Thank you.
+The license says what you bought; the boundary says what you may use. The Federal Modernization Workbook's Book 10 has the detail, every claim footnoted. Thank you.

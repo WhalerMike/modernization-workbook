@@ -83,26 +83,26 @@ And recommendations are labeled program
 design guidance, not vendor requirements.
 
 19
-00:01:01.725 --> 00:01:09.151
+00:01:01.725 --> 00:01:08.646
 Sources: Research brief, After
 Active Directory: Who Names Devices,
 
 20
-00:01:09.151 --> 00:01:17.117
+00:01:08.646 --> 00:01:16.070
 Who Registers Their DNS Records, and
 What an Agency Must Do (verified Oct.
 
 21
-00:01:17.117 --> 00:01:25.488
+00:01:16.070 --> 00:01:23.872
 22, 2026); Microsoft Learn, Apple,
 freedesktop.org, cloud-init, NetworkManager,
 
 22
-00:01:25.488 --> 00:01:30.889
-FreeIPA, AWS and Infoblox
-NIOS 9.1 documentation;
+00:01:23.872 --> 00:01:29.912
+FreeIPA, AWS and Infoblox NIOS
+9.1 documentation; IETF RFCs;
 
 23
-00:01:30.889 --> 00:01:35.810
-IETF RFCs; Book 05 Ch04;
-Book 08 Ch04, Ch07, Ch10.
+00:01:29.912 --> 00:01:37.510
+the Federal Modernization Workbook's
+Book 05 Ch04; Book 08 Ch04, Ch07, Ch10.

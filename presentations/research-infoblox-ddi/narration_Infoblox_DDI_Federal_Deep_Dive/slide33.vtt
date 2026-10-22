@@ -5,129 +5,134 @@ WEBVTT
 Who does what.
 
 2
-00:00:01.000 --> 00:00:06.501
-This matrix is adapted from Book 08's
-responsibility matrix, which separates
+00:00:01.000 --> 00:00:05.934
+This matrix is adapted from the Federal
+Modernization Workbook's Book 08's
 
 3
-00:00:06.501 --> 00:00:12.088
-deciding from doing: D decides and is
-accountable, R does the work, C is consulted.
+00:00:05.934 --> 00:00:09.992
+responsibility matrix, which
+separates deciding from doing:
 
 4
-00:00:12.088 --> 00:00:15.038
+00:00:09.992 --> 00:00:13.812
+D decides and is accountable, R
+does the work, C is consulted.
+
+5
+00:00:13.812 --> 00:00:16.762
 I've added a Division column
 for the delegated model.
 
-5
-00:00:15.038 --> 00:00:20.178
+6
+00:00:16.762 --> 00:00:21.903
 The CIO decides the platform and deployment
 model, NIOS, the SaaS, or hybrid,
 
-6
-00:00:20.178 --> 00:00:25.487
+7
+00:00:21.903 --> 00:00:27.212
 with the central DDI team doing the
 evaluation and everyone else consulted.
 
-7
-00:00:25.487 --> 00:00:28.836
+8
+00:00:27.212 --> 00:00:30.560
 The authorizing official decides
 whether a cloud-delivered
 
-8
-00:00:28.836 --> 00:00:31.988
+9
+00:00:30.560 --> 00:00:33.712
 management plane is authorized
 at the right impact level.
 
-9
-00:00:31.988 --> 00:00:36.736
+10
+00:00:33.712 --> 00:00:38.460
 The CIO also decides how divisions
 are scoped in the policy plane,
 
-10
-00:00:36.736 --> 00:00:42.188
+11
+00:00:38.460 --> 00:00:43.912
 and the central DDI team builds it: admin
 groups, network views, access views.
 
-11
-00:00:42.188 --> 00:00:46.951
+12
+00:00:43.912 --> 00:00:48.676
 Divisions are consulted, because a scope
 they can't work in becomes a workaround.
 
-12
-00:00:46.951 --> 00:00:50.064
+13
+00:00:48.676 --> 00:00:51.789
 Central DDI owns the
 top-level address blocks
 
-13
-00:00:50.064 --> 00:00:52.850
+14
+00:00:51.789 --> 00:00:54.575
 and namespace design, deciding and doing.
 
-14
-00:00:52.850 --> 00:00:58.042
+15
+00:00:54.575 --> 00:00:59.767
 DNSSEC signing and key rollover, and
 response policy and Threat Defense policy,
 
-15
-00:00:58.042 --> 00:01:03.077
+16
+00:00:59.767 --> 00:01:04.802
 are control requirements, so the CISO
 decides them and central DDI runs them,
 
-16
-00:01:03.077 --> 00:01:06.775
+17
+00:01:04.802 --> 00:01:08.500
 with security operations
 consulted on response policy.
 
-17
-00:01:06.775 --> 00:01:11.250
+18
+00:01:08.500 --> 00:01:12.975
 Standard record changes in a division's
 zone are where delegation pays off.
 
-18
-00:01:11.250 --> 00:01:16.139
+19
+00:01:12.975 --> 00:01:17.864
 Central decided in advance what a standard
 change is; the division does the work,
 
-19
-00:01:16.139 --> 00:01:20.213
+20
+00:01:17.864 --> 00:01:21.938
 inside its scope, through the
 approval workflow where one applies.
 
-20
-00:01:20.213 --> 00:01:25.369
+21
+00:01:21.938 --> 00:01:27.094
 High-impact changes, such as zones,
 NS and SRV records, apex records,
 
-21
-00:01:25.369 --> 00:01:31.576
+22
+00:01:27.094 --> 00:01:33.301
 wildcards and RPZ, stay with central to
 decide and do, with divisions consulted.
 
-22
-00:01:31.576 --> 00:01:34.952
+23
+00:01:33.301 --> 00:01:36.677
 And an encrypted DNS exception
 that has no end date,
 
-23
-00:01:34.952 --> 00:01:39.456
+24
+00:01:36.677 --> 00:01:41.181
 or has outlived the agency's limit,
 goes to the authorizing official,
 
-24
-00:01:39.456 --> 00:01:44.200
+25
+00:01:41.181 --> 00:01:45.925
 because at that point it's a risk
 acceptance, not a configuration choice.
 
-25
-00:01:44.200 --> 00:01:46.430
+26
+00:01:45.925 --> 00:01:48.155
 Sources: Book 08, Chapter 09,
 
-26
-00:01:46.430 --> 00:01:52.917
+27
+00:01:48.155 --> 00:01:54.642
 "Decision rights and work are different
 things," "The roles," "The responsibility
 
-27
-00:01:52.917 --> 00:01:59.160
+28
+00:01:54.642 --> 00:02:00.890
 matrix"; Infoblox NIOS approval
 workflows; Universal DDI access policies.

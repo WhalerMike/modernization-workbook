@@ -1,0 +1,50 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.000
+Part 1: build the platform.
+
+2
+00:00:02.000 --> 00:00:04.728
+We'll start with the
+architecture: the cluster,
+
+3
+00:00:04.728 --> 00:00:08.175
+its components, how to size it
+and make it highly available.
+
+4
+00:00:08.175 --> 00:00:12.263
+Then the FIPS posture, where you have
+to be careful about what you claim.
+
+5
+00:00:12.263 --> 00:00:15.074
+Then how administrators
+sign in to the console.
+
+6
+00:00:15.074 --> 00:00:18.636
+And finally hardening,
+least-privilege service accounts,
+
+7
+00:00:18.636 --> 00:00:21.900
+and backup and recovery for
+the database and its keys.
+
+8
+00:00:21.900 --> 00:00:27.799
+Sources: CyberArk 26.1 System Requirements,
+Installation and Upgrade Guide,
+
+9
+00:00:27.799 --> 00:00:33.136
+security hardening and disaster
+recovery documentation; NIST CMVP;
+
+10
+00:00:33.136 --> 00:00:37.610
+the Federal Modernization
+Workbook's Book 07, Chapter 05.

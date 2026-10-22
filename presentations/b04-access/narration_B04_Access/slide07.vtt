@@ -69,16 +69,16 @@ or back to report-only, never deleting it.
 The library is built to CISA's baseline.
 
 15
-00:00:53.850 --> 00:01:02.237
-It keeps Book 02's policies CA001 to CA017
-and adds CA018 to CA038 for the BOD 25-01
+00:00:53.850 --> 00:01:00.746
+It keeps the Federal Modernization Workbook's
+Book 02's policies CA001 to CA017 and
 
 16
-00:01:02.237 --> 00:01:07.574
+00:01:00.746 --> 00:01:07.542
+adds CA018 to CA038 for the BOD 25-01
 Entra ID requirements, including
-blocking high-risk users
 
 17
-00:01:07.574 --> 00:01:12.530
-and requiring phishing-resistant
-MFA for all members.
+00:01:07.542 --> 00:01:14.210
+blocking high-risk users and requiring
+phishing-resistant MFA for all members.

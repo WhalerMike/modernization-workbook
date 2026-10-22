@@ -30,7 +30,7 @@ The sequence starts with identity, because policy, access, devices and data all 
 
 ## Slide 5 — How the workbook works: eighteen books, four questions
 
-A word on how the workbook works, because this briefing comes from it. It's organized as eighteen books, B00 to B17, numbered along the same dependency chain: identity first, then the estate's infrastructure, then the boundary, assurance and operations. Every book asks the same four questions, why, what, who and how, so a reader who knows one can find their way through any other. One book is the authoritative home for each topic; Book 01, for example, is canonical for the program's phases and gates.
+A word on how the workbook works, because this briefing comes from it. It's organized as eighteen books, B00 to B17, numbered along the same dependency chain: identity first, then the estate's infrastructure, then the boundary, assurance and operations. Every book asks the same four questions, why, what, who and how, so a reader who knows one can find their way through any other. One book is the authoritative home for each topic; the Federal Modernization Workbook's Book 01, for example, is canonical for the program's phases and gates.
 
 Statements come in three kinds. An external fact is footnoted to a primary source, checked on the day the book was built, here October 21, 2026. A program design position is the program's own view, open to argument rather than fact-checking. And an illustrative example is labeled as one; the case studies are framing patterns, not real engagements. Each chapter keeps a verification file, with a claims log and a carry-forward ledger, so every correction is visible.
 
@@ -56,7 +56,7 @@ Directory and structure principles say what replaces the OU tree. Devices and po
 
 ## Slide 9 — Seven phases and six gates: Book 01's model
 
-The plan follows Book 01's seven phases and six gates. Phase 0, Pre-flight, ends at G0, Ready to Plan. Foundation ends at G1, Foundation Complete. A pilot division ends at G2, Pilot Clean. General rollout ends at G3, Rollout Complete. Legacy retirement ends at G4, Legacy Quiet. AD DS retirement ends at G5, AD Retired. And steady state has no gate; it's a standing cadence.
+The plan follows the Federal Modernization Workbook's Book 01's seven phases and six gates. Phase 0, Pre-flight, ends at G0, Ready to Plan. Foundation ends at G1, Foundation Complete. A pilot division ends at G2, Pilot Clean. General rollout ends at G3, Rollout Complete. Legacy retirement ends at G4, Legacy Quiet. AD DS retirement ends at G5, AD Retired. And steady state has no gate; it's a standing cadence.
 
 Five constraints bind every phase: changes originate from the authoritative source and close with provenance, privilege is time-bound, copies stay non-authoritative, drift stays visible, and nothing requires rip-and-replace. Underneath them is one rule: assessment before action.
 
@@ -72,7 +72,7 @@ Two source claims have moved. OMB rescinded the secure-development attestation r
 
 ## Slide 11 — Who decides: one owner for every decision
 
-Who decides? The workbook uses Book 01's model, and gives every decision an owner. The executive sponsor, with the CIO, owns scope, funding and sequence, and decides when Active Directory components retire. The CISO sets the control requirements. The steward leads the program office and owns the plan and the repository. Gates follow what each one ends: the steward clears G0, G1 and G4; the steward and sponsor co-sign G2; the sponsor and steering committee clear G3; and the sponsor and the CIO clear G5.
+Who decides? The workbook uses the Federal Modernization Workbook's Book 01's model, and gives every decision an owner. The executive sponsor, with the CIO, owns scope, funding and sequence, and decides when Active Directory components retire. The CISO sets the control requirements. The steward leads the program office and owns the plan and the repository. Gates follow what each one ends: the steward clears G0, G1 and G4; the steward and sponsor co-sign G2; the sponsor and steering committee clear G3; and the sponsor and the CIO clear G5.
 
 The program's plans gave three decisions to the wrong person. Residual risk belongs to the authorizing official alone: under the Risk Management Framework, no one else can accept it, and for federal agencies the role is inherently governmental. Budget belongs to the sponsor and CIO. And gates aren't the steward's alone.
 
@@ -100,4 +100,4 @@ And set the thresholds and evidence rules before the first change: success crite
 
 The recommended first wave is identity structure and dynamic membership, because every later wave scopes itself with them. And one clock is close: by the program's count, M-26-14's Agency Logging Plan is due November 18, 2026, so confirm that date with the CISO's office now.
 
-Recover the governance once, in one program, and let named people make the decisions the evidence supports. Book 00 has the detail, every claim footnoted. Thank you.
+Recover the governance once, in one program, and let named people make the decisions the evidence supports. The Federal Modernization Workbook's Book 00 has the detail, every claim footnoted. Thank you.

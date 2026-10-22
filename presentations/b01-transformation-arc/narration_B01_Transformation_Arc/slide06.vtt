@@ -69,11 +69,11 @@ The host reads Active Directory
 read-only and is protected as Tier 0.
 
 15
-00:00:55.138 --> 00:00:58.825
-Book 05 covers servers
-under Azure Arc in depth,
+00:00:55.138 --> 00:00:59.873
+The Federal Modernization Workbook's
+Book 05 covers servers under
 
 16
-00:00:58.825 --> 00:01:02.570
-and Book 04 covers change
-as code with evidence.
+00:00:59.873 --> 00:01:04.490
+Azure Arc in depth, and Book 04
+covers change as code with evidence.

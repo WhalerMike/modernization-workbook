@@ -61,60 +61,64 @@ then narrow delegated additions
 and a security assessment.
 
 13
-00:00:47.824 --> 00:00:52.704
+00:00:47.824 --> 00:00:52.565
 The master plan's twelve Active
 Directory domains are joined by the DHCP,
 
 14
-00:00:52.704 --> 00:00:57.258
+00:00:52.565 --> 00:00:58.017
 LDAP-binding and service-principal-name
-streams that Book 01 adds,
+streams that the Federal Modernization
 
 15
-00:00:57.258 --> 00:01:01.975
-and by an inventory of RADIUS and NPS,
-which depend on the directory too.
+00:00:58.017 --> 00:01:01.888
+Workbook's Book 01 adds, and by
+an inventory of RADIUS and NPS,
 
 16
-00:01:01.975 --> 00:01:06.727
+00:01:01.888 --> 00:01:04.100
+which depend on the directory too.
+
+17
+00:01:04.100 --> 00:01:08.852
 The phase delivers twenty-three
 artifacts: fifteen committed before G0,
 
-17
-00:01:06.727 --> 00:01:09.975
+18
+00:01:08.852 --> 00:01:12.100
 and eight generated plans
 approved just after it.
 
-18
-00:01:09.975 --> 00:01:13.955
+19
+00:01:12.100 --> 00:01:16.080
 G0 has three conditions: the
 platform host is operational,
 
-19
-00:01:13.955 --> 00:01:18.350
+20
+00:01:16.080 --> 00:01:20.475
 the assessment is committed, and
 no priority-one finding is open.
 
-20
-00:01:18.350 --> 00:01:21.270
+21
+00:01:20.475 --> 00:01:23.395
 Every finding is classed Critical, High,
 
-21
-00:01:21.270 --> 00:01:25.075
+22
+00:01:23.395 --> 00:01:27.200
 Medium or Low, and each class
 has a gate that closes it.
 
-22
-00:01:25.075 --> 00:01:28.063
+23
+00:01:27.200 --> 00:01:30.188
 A Critical finding is
 remediated before G0,
 
-23
-00:01:28.063 --> 00:01:31.550
+24
+00:01:30.188 --> 00:01:33.675
 or formally accepted by
 the authorizing official.
 
-24
-00:01:31.550 --> 00:01:36.720
+25
+00:01:33.675 --> 00:01:38.830
 The steward clears G0 on that basis,
 with the executive sponsor as backup.

@@ -106,7 +106,7 @@ The book is careful about rollback too: remove extensions before disconnecting t
 
 ## Slide 11 — Run it, prove it, and what we need
 
-Finally, run it and prove it. In run-state, compliance feeds Conditional Access, which is Book 04. Updates flow through rings and Windows Autopatch, and in a GCC tenant the update evidence comes from Intune and Autopatch reports, because Windows Update for Business reports don't meet GCC compliance. The inventory is reconciled across Entra ID, Intune, Autopilot, Arc and the CMDB. Devices are retired and wiped before the account is deleted. And the evidence maps to the configuration-management and flaw-remediation controls: CM-2, CM-6, CM-7, CM-8 and SI-2.
+Finally, run it and prove it. In run-state, compliance feeds Conditional Access, which is the Federal Modernization Workbook's Book 04. Updates flow through rings and Windows Autopatch, and in a GCC tenant the update evidence comes from Intune and Autopatch reports, because Windows Update for Business reports don't meet GCC compliance. The inventory is reconciled across Entra ID, Intune, Autopilot, Arc and the CMDB. Devices are retired and wiped before the account is deleted. And the evidence maps to the configuration-management and flaw-remediation controls: CM-2, CM-6, CM-7, CM-8 and SI-2.
 
 What we need from leadership is four things. Approve Intune-first for every new device. Fund the Group Policy inventory and the Group Policy analytics run. Set the Windows 11 24H2 floor and a plan for servers reaching end of support. And name the owners for endpoints, servers and security.
 

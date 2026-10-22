@@ -200,4 +200,4 @@ The CISO moves every exception into the configuration file, with an expiration; 
 
 The program lead and security operations stand up drift detection, and the authorizing official receives its findings. And the system owner and ISSO record each government-cloud feature gap as a governed finding, rather than an unstated assumption.
 
-Each is a structural step that compounds. Unify first, assess second, and let named people make the decisions the evidence supports. No tool, and no number of tools, certifies Zero Trust maturity. Book 11 has the detail, with every claim footnoted. Thank you.
+Each is a structural step that compounds. Unify first, assess second, and let named people make the decisions the evidence supports. No tool, and no number of tools, certifies Zero Trust maturity. The Federal Modernization Workbook's Book 11 has the detail, with every claim footnoted. Thank you.

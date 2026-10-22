@@ -40,50 +40,50 @@ with the agency's interconnections
 going live around month five.
 
 9
-00:00:32.912 --> 00:00:36.438
-On the identity side:
-agencies are moving from
+00:00:32.912 --> 00:00:38.623
+On the identity side: agencies are moving
+from Active Directory to Entra ID anyway,
 
 10
-00:00:36.438 --> 00:00:40.426
-Active Directory to Entra ID
-anyway, which is Book 02.
+00:00:38.623 --> 00:00:42.401
+which is the Federal
+Modernization Workbook's Book 02.
 
 11
-00:00:40.426 --> 00:00:45.337
+00:00:42.401 --> 00:00:47.312
 In Entra ID, attributes drive Conditional
 Access, groups and delegation,
 
 12
-00:00:45.337 --> 00:00:50.413
+00:00:47.312 --> 00:00:52.388
 and inbound provisioning from an HR
 system is a documented, supported path.
 
 13
-00:00:50.413 --> 00:00:51.563
+00:00:52.388 --> 00:00:53.538
 So there's a window.
 
 14
-00:00:51.563 --> 00:00:55.066
+00:00:53.538 --> 00:00:57.042
 The identity feed has to be
 designed in during onboarding,
 
 15
-00:00:55.066 --> 00:00:58.862
+00:00:57.042 --> 00:01:00.838
 before the interconnection goes
 live, not bolted on afterward.
 
 16
-00:00:58.862 --> 00:01:04.187
+00:01:00.838 --> 00:01:06.162
 One honest limit: Federal HR 2.0
 covers federal employees only.
 
 17
-00:01:04.187 --> 00:01:07.903
+00:01:06.162 --> 00:01:09.877
 Contractors and vendors need
 their own authoritative source,
 
 18
-00:01:07.903 --> 00:01:11.040
+00:01:09.877 --> 00:01:13.010
 and the onboarding is the
 right time to decide it too.

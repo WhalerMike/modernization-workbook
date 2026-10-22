@@ -120,30 +120,35 @@ and one network view for routable
 space lets the Grid catch overlaps.
 
 26
-00:01:30.912 --> 00:01:38.185
+00:01:30.912 --> 00:01:37.927
 Sources: Research synthesis, Avoiding
 split-brain, DNSSEC keys and IPAM authority:
 
 27
-00:01:38.185 --> 00:01:42.134
+00:01:37.927 --> 00:01:41.735
 Infoblox Route 53, Azure
 DNS and GCP sync pages;
 
 28
-00:01:42.134 --> 00:01:48.680
+00:01:41.735 --> 00:01:48.048
 Discovering Cloud Forwarder Endpoints;
 AWS private hosted zones, Resolver,
 
 29
-00:01:48.680 --> 00:01:51.590
+00:01:48.048 --> 00:01:50.854
 GovCloud Route 53, DNSSEC signing;
 
 30
-00:01:51.590 --> 00:01:58.240
-Microsoft Learn DNS Private Resolver
-and Azure DNSSEC; Google Cloud DNS best
+00:01:50.854 --> 00:01:55.464
+Microsoft Learn DNS Private
+Resolver and Azure DNSSEC;
 
 31
-00:01:58.240 --> 00:02:04.540
-practices; Infoblox DNSSEC on a Grid
-and Network Views; Book 08, Chapter 02.
+00:01:55.464 --> 00:02:01.777
+Google Cloud DNS best practices; Infoblox
+DNSSEC on a Grid and Network Views;
+
+32
+00:02:01.777 --> 00:02:06.550
+the Federal Modernization
+Workbook's Book 08, Chapter 02.

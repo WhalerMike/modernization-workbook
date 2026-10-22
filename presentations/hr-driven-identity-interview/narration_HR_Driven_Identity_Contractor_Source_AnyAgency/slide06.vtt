@@ -36,60 +36,65 @@ Then the end date has to come from the
 contract record or from the sponsor.
 
 8
-00:00:28.187 --> 00:00:32.376
+00:00:28.187 --> 00:00:32.601
 Freshness: if the register is keyed
 by hand from COR spreadsheets,
 
 9
-00:00:32.376 --> 00:00:37.325
+00:00:32.601 --> 00:00:37.913
 it inherits their lag, and every separation
 delay carries over to contractors.
 
 10
-00:00:37.325 --> 00:00:39.895
+00:00:37.913 --> 00:00:40.483
 Privacy: which SORN covers the register,
 
 11
-00:00:39.895 --> 00:00:43.788
+00:00:40.483 --> 00:00:44.376
 and does a routine use cover
 disclosure to identity systems?
 
 12
-00:00:43.788 --> 00:00:47.163
+00:00:44.376 --> 00:00:47.750
 It's the same question the
 main deck asks for HR data.
 
 13
-00:00:47.163 --> 00:00:51.252
+00:00:47.750 --> 00:00:51.839
 Join on the key: if contractors
 may already get the enterprise
 
 14
-00:00:51.252 --> 00:00:54.700
+00:00:51.839 --> 00:00:55.287
 key with their PIV card,
 confirm coverage and timing.
 
 15
-00:00:54.700 --> 00:00:57.638
+00:00:55.287 --> 00:00:58.226
 The question is also whether
 the register records it.
 
 16
-00:00:57.638 --> 00:01:03.138
+00:00:58.226 --> 00:01:03.725
 If it does, the register, PIV enrollment
 and the directories join on one key.
 
 17
-00:01:03.138 --> 00:01:07.038
+00:01:03.725 --> 00:01:07.625
 If not, the first job is a crosswalk
 from the register to the key.
 
 18
-00:01:07.038 --> 00:01:11.475
+00:01:07.625 --> 00:01:12.063
 Coverage: who works without a PIV
 card and isn't in the register?
 
 19
-00:01:11.475 --> 00:01:14.225
+00:01:12.063 --> 00:01:14.512
 Those people still need
 a sponsor-only path.
+
+20
+00:01:14.512 --> 00:01:20.020
+Source: the register's owner, and
+the agency's SORN and PIA catalog.

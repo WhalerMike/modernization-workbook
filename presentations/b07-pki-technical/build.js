@@ -895,7 +895,7 @@ Before any MIGRATE row moves, four things must be true, and they're wave 4's per
   ], { fontSize: 12 });
   panel(s, "ACME", 10.15, 1.5, 2.6, 2.25, HEX.navy, HEX.navyTint, "ACME", null, [
     "Through the CLM platform: http-01, dns-01",
-    "win-acme needs FIPS mode off",
+    "ACME service: FIPS mode off",
   ], 11.5);
   panel(s, "Drift", 0.6, 3.9, 12.15, 2.55, HEX.red, HEX.redTint, "DRIFT THE PROGRAM DETECTS, AT LEAST WEEKLY", null, [
     "Expiring within two renewal windows with no engine bound  ·  issuance outside policy (4887 for retired templates, NTAuth changes, unrecorded certificates)",
@@ -908,7 +908,7 @@ Before any MIGRATE row moves, four things must be true, and they're wave 4's per
 
 Intune profiles renew certificates on managed devices at the profile's renewal threshold, with a new key pair for SCEP. On Apple platforms, renewal happens only inside the threshold window with the device unlocked, and a failed renewal leaves the expired certificate in place without a retry. AD CS autoenrollment renews domain controller certificates, which also serve LDAPS, so the CA must stay online and its CRL current. And CyberArk Certificate Manager discovers, tracks and renews server TLS, including NPS and RADIUS servers, appliances, public TLS and network devices, with a Server Owner on every certificate.
 
-Neither Microsoft issuer in the target offers ACME, so the program provides it through the lifecycle platform. CyberArk documents the http-01 and dns-01 challenges. One federal limit: win-acme requires FIPS mode to be disabled on the CyberArk server, so where FIPS mode is required, use another tested client.
+Neither Microsoft issuer in the target offers ACME, so the program provides it through the lifecycle platform. CyberArk documents the http-01 and dns-01 challenges. One federal limit: CyberArk's installation guide says FIPS mode isn't supported for its ACME service at all, so run the ACME service on dedicated servers outside the FIPS-mode server set.
 
 The drift checks run at least weekly and are committed to the evidence repository, because an assessor asks how long a finding stayed open. Watch for certificates within two renewal windows of expiry with no engine bound, issuance outside policy, missing strong mapping, trust store anchors that aren't approved, stale CRLs, and posture regressions. And treat a SID mismatch as a security event: it can mean the certificate was issued to a different user. That's event 41 on current domain controllers, but event 49 on Server 2008 and 2008 R2, where 41 means no strong mapping.`,
   "Book 07, Chapter 08 — Lifecycle, Monitoring and Decommissioning, \"Renewal at scale,\" \"ACME where it applies,\" \"Monitoring,\" \"Compliance and drift detection.\"");

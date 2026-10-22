@@ -280,31 +280,31 @@
   ],
   [
    25.475,
-   8.688,
-   "One book is the authoritative home for each topic; Book 01, for example, is canonical for the program's phases and gates."
+   10.7,
+   "One book is the authoritative home for each topic; the Federal Modernization Workbook's Book 01, for example, is canonical for the program's phases and gates."
   ],
   [
-   34.163,
+   36.175,
    2.038,
    "Statements come in three kinds."
   ],
   [
-   36.2,
+   38.212,
    8.475,
    "An external fact is footnoted to a primary source, checked on the day the book was built, here October 21, 2026."
   ],
   [
-   44.675,
+   46.688,
    6.013,
    "A program design position is the program's own view, open to argument rather than fact-checking."
   ],
   [
-   50.688,
+   52.7,
    6.9,
    "And an illustrative example is labeled as one; the case studies are framing patterns, not real engagements."
   ],
   [
-   57.587,
+   59.6,
    7.3,
    "Each chapter keeps a verification file, with a claims log and a carry-forward ledger, so every correction is visible."
   ]
@@ -458,71 +458,71 @@
  "9": [
   [
    0.05,
-   4.35,
-   "The plan follows Book 01's seven phases and six gates."
+   6.362,
+   "The plan follows the Federal Modernization Workbook's Book 01's seven phases and six gates."
   ],
   [
-   4.4,
+   6.412,
    4.263,
    "Phase 0, Pre-flight, ends at G0, Ready to Plan."
   ],
   [
-   8.662,
+   10.675,
    3.45,
    "Foundation ends at G1, Foundation Complete."
   ],
   [
-   12.113,
+   14.125,
    3.325,
    "A pilot division ends at G2, Pilot Clean."
   ],
   [
-   15.438,
+   17.45,
    3.575,
    "General rollout ends at G3, Rollout Complete."
   ],
   [
-   19.012,
+   21.025,
    3.575,
    "Legacy retirement ends at G4, Legacy Quiet."
   ],
   [
-   22.587,
+   24.6,
    4.188,
    "A D DS retirement ends at G5, A D Retired."
   ],
   [
-   26.775,
+   28.788,
    3.4,
    "And steady state has no gate; it's a standing cadence."
   ],
   [
-   30.175,
+   32.188,
    14.037,
    "Five constraints bind every phase: changes originate from the authoritative source and close with provenance, privilege is time-bound, copies stay non-authoritative, drift stays visible, and nothing requires rip-and-replace."
   ],
   [
-   44.212,
+   46.225,
    3.763,
    "Underneath them is one rule: assessment before action."
   ],
   [
-   47.975,
+   49.987,
    8.662,
    "The program's detailed master plan numbers its phases differently, and its illustrative fifty-two weeks stop short of retiring A D DS."
   ],
   [
-   56.638,
+   58.65,
    3.312,
    "Large federal estates typically run multi-year."
   ],
   [
-   59.95,
+   61.962,
    10.425,
    "Five workstreams run in parallel, identity, policy, services, compute and access, and one dependency never relaxes: P K I waits for identity."
   ],
   [
-   70.375,
+   72.388,
    4.15,
    "The gates, not the calendar, decide when the next phase starts."
   ]
@@ -582,56 +582,56 @@
   ],
   [
    1.075,
-   5.075,
-   "The workbook uses Book 01's model, and gives every decision an owner."
+   6.85,
+   "The workbook uses the Federal Modernization Workbook's Book 01's model, and gives every decision an owner."
   ],
   [
-   6.15,
+   7.925,
    8.412,
    "The executive sponsor, with the C I O, owns scope, funding and sequence, and decides when Active Directory components retire."
   ],
   [
-   14.562,
+   16.337,
    2.562,
    "The see-so sets the control requirements."
   ],
   [
-   17.125,
+   18.9,
    4.537,
    "The steward leads the program office and owns the plan and the repository."
   ],
   [
-   21.663,
+   23.438,
    14.787,
    "Gates follow what each one ends: the steward clears G0, G1 and G4; the steward and sponsor co-sign G2; the sponsor and steering committee clear G3; and the sponsor and the C I O clear G5."
   ],
   [
-   36.45,
+   38.225,
    3.587,
    "The program's plans gave three decisions to the wrong person."
   ],
   [
-   40.038,
+   41.812,
    11.137,
    "Residual risk belongs to the authorizing official alone: under the Risk Management Framework, no one else can accept it, and for federal agencies the role is inherently governmental."
   ],
   [
-   51.175,
+   52.95,
    2.8,
    "Budget belongs to the sponsor and C I O."
   ],
   [
-   53.975,
+   55.75,
    2.05,
    "And gates aren't the steward's alone."
   ],
   [
-   56.025,
+   57.8,
    4.475,
    "The master plan's core team is about five and a half full-time equivalents."
   ],
   [
-   60.5,
+   62.275,
    7.325,
    "Budget beyond it, for application owners, the help desk, HR, records and the authorizing official's time."
   ]
@@ -736,11 +736,11 @@
   ],
   [
    64.625,
-   4.2,
-   "Book 00 has the detail, every claim footnoted."
+   5.963,
+   "The Federal Modernization Workbook's Book 00 has the detail, every claim footnoted."
   ],
   [
-   68.825,
+   70.588,
    0.762,
    "Thank you."
   ]

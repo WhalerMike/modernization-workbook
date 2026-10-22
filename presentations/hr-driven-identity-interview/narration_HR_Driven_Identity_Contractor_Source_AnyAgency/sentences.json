@@ -1,0 +1,486 @@
+{
+ "1": [
+  [
+   0.05,
+   11.825,
+   "The interview deck makes one honest limit explicit: published Federal HR 2.0 scope centers on the federal employee lifecycle, so a contractor authority decision is required."
+  ],
+  [
+   11.875,
+   5.175,
+   "In the processes I have observed, contractors are tracked in C O R spreadsheets."
+  ],
+  [
+   17.05,
+   2.438,
+   "This companion goes one step further."
+  ],
+  [
+   19.488,
+   9.25,
+   "It asks which record should be authoritative for a contractor, and it adds an option the main deck doesn't name: the agency's contractor suitability register."
+  ],
+  [
+   28.738,
+   3.775,
+   "The one-sentence version: don't wait for one contractor feed."
+  ],
+  [
+   32.513,
+   5.175,
+   "Most agencies maintain contractor information in several operational contexts."
+  ],
+  [
+   37.688,
+   7.713,
+   "Evaluate them as candidate authorities, give each fact one authority, and hang the record on an accountable federal sponsor."
+  ]
+ ],
+ "2": [
+  [
+   0.05,
+   2.062,
+   "Three facts that don't fit together."
+  ],
+  [
+   2.112,
+   1.212,
+   "First, scope."
+  ],
+  [
+   3.325,
+   12.25,
+   "The Federal HR 2.0 memo of December 10, 2025 scopes Core H C M to personnel action processing, the employee system of record and the federal employee lifecycle."
+  ],
+  [
+   15.575,
+   4.3,
+   "The June 2026 Oracle award covers civilian employees."
+  ],
+  [
+   19.875,
+   4.025,
+   "Neither establishes contractor treatment in the sources reviewed."
+  ],
+  [
+   23.9,
+   6.35,
+   "Oracle Fusion H C M can hold contingent workers as a product, but the program doesn't commit to it."
+  ],
+  [
+   30.25,
+   2.013,
+   "Second, what I have observed."
+  ],
+  [
+   32.263,
+   7.412,
+   "In the processes I have observed, contractors are tracked in C O R spreadsheets, and many of their accounts come from tickets."
+  ],
+  [
+   39.675,
+   6.312,
+   "Based on current visibility, nothing authoritative tells identity that a contractor's engagement has ended."
+  ],
+  [
+   45.987,
+   1.488,
+   "Third, guidance."
+  ],
+  [
+   47.475,
+   12.912,
+   "Federal lifecycle guidance, including GSA's ILM Playbook, calls for an authoritative personnel source for identity creation and termination, and CDM's master user record must include contractors."
+  ],
+  [
+   60.388,
+   6.213,
+   "Employee HR may not carry them, so contractors need an equivalent authoritative personnel source."
+  ],
+  [
+   66.6,
+   5.125,
+   "Something else has to be the authority, and it needs the same rigor as the HR record."
+  ],
+  [
+   71.725,
+   24.825,
+   "Sources: O M B and O P M, Creating Federal HR 2.0 (2025-12-10); GSA ILM Playbook v2.0; FIPS 201-3 and O M B M nineteen seventeen cover employees and contractors; nist special publication eight hundred fifty-three PS-7 (external personnel security)."
+  ]
+ ],
+ "3": [
+  [
+   0.05,
+   3.75,
+   "The useful finding: most agencies aren't starting from zero."
+  ],
+  [
+   3.8,
+   4.537,
+   "Contractor information usually appears in several operational contexts."
+  ],
+  [
+   8.338,
+   6.188,
+   "C O R spreadsheets: real, but kept per C O R, with no common format or timing."
+  ],
+  [
+   14.525,
+   1.938,
+   "They're evidence, not a source."
+  ],
+  [
+   16.462,
+   6.8,
+   "The contractor suitability register: many agencies keep one, under personnel security or contracting."
+  ],
+  [
+   23.262,
+   6.638,
+   "It typically holds contractors working on agency contracts, with the suitability determination and its date."
+  ],
+  [
+   29.9,
+   7.875,
+   "Its coverage, contract identifiers, lifecycle fields, owner, interface and update cadence require validation."
+  ],
+  [
+   37.775,
+   6.463,
+   "piv enrollment: the credentialing system enrolls employees, contractors and other personnel."
+  ],
+  [
+   44.237,
+   6.975,
+   "It covers identity proofing and background-investigation workflows, and the card management system issues the credential."
+  ],
+  [
+   51.212,
+   8.188,
+   "That makes it a candidate source for proofing and credential status; its authoritative fields and population coverage require confirmation."
+  ],
+  [
+   59.4,
+   7.325,
+   "What's usually missing is any link from these to Entra ID or Active Directory: contractor accounts come from tickets."
+  ],
+  [
+   66.725,
+   7.025,
+   "Core H C M's Contingent Worker type is a possible fourth source later, if the agency chooses to configure it."
+  ],
+  [
+   73.75,
+   4.75,
+   "It won't exist before the agency's Core H C M onboarding wave."
+  ],
+  [
+   78.5,
+   16.163,
+   "Sources: FIPS 201-3 and O M B M nineteen seventeen (piv for employees and contractors); nist special publication eight hundred fifty-three Rev. 5, PS-7 (external personnel security)."
+  ]
+ ],
+ "4": [
+  [
+   0.05,
+   3.538,
+   "Same four sources, against the facts identity needs."
+  ],
+  [
+   3.587,
+   3.913,
+   "C O R spreadsheets exist now, but they're not a governed record."
+  ],
+  [
+   7.5,
+   2.825,
+   "Use them to reconcile, not as a source."
+  ],
+  [
+   10.325,
+   7.037,
+   "Core H C M's Contingent Worker type would give a person record and an assignment with dates, like an employee's."
+  ],
+  [
+   17.363,
+   9.938,
+   "But it has no contract or vetting data, it sits outside the Federal HR 2.0 program scope, and current planning puts it no earlier than 2027."
+  ],
+  [
+   27.3,
+   9.162,
+   "Where an agency keeps a contractor suitability register, it is the only one that links a person to an agency contract with a suitability decision."
+  ],
+  [
+   36.462,
+   7.888,
+   "What varies by agency: who owns it, how it's accessed, how fast it's updated, and whether it records the end of an engagement."
+  ],
+  [
+   44.35,
+   6.412,
+   "piv enrollment covers everyone with a badge and carries proofing and background-investigation status."
+  ],
+  [
+   50.763,
+   7.925,
+   "But it manages a card, not an identity with an organization and entitlements, and it misses anyone who works without a piv card."
+  ],
+  [
+   58.688,
+   1.775,
+   "So the answer isn't to pick one."
+  ],
+  [
+   60.462,
+   2.3,
+   "It's to give each fact one authority."
+  ],
+  [
+   62.763,
+   1.05,
+   "Next slide."
+  ]
+ ],
+ "5": [
+  [
+   0.05,
+   3.388,
+   "I propose this working position; it is not yet a decision."
+  ],
+  [
+   3.438,
+   5.263,
+   "It's the same discipline as the employee design: a named authority for every fact."
+  ],
+  [
+   8.7,
+   9.875,
+   "I propose the contractor suitability register as the candidate authority for existence, the contract link and suitability, subject to the questions on the next slide."
+  ],
+  [
+   18.575,
+   7.588,
+   "If it also records the end of the engagement, it becomes the contractor's leaver signal, the equivalent of a separation action."
+  ],
+  [
+   26.163,
+   1.8,
+   "That's the first thing to confirm."
+  ],
+  [
+   27.962,
+   4.6,
+   "piv enrollment is the authority for proofing and credential status."
+  ],
+  [
+   32.562,
+   2.438,
+   "Identity reads it and cross-checks it."
+  ],
+  [
+   35.0,
+   5.55,
+   "A badge with no contractor record, or a contractor record with no badge, is a finding."
+  ],
+  [
+   40.55,
+   6.175,
+   "The accountable party is a federal employee sponsor, normally the C O R, mastered in HR."
+  ],
+  [
+   46.725,
+   10.062,
+   "The contractor's organization placement is an explicit authoritative assignment; the sponsor's organization is a default only where policy confirms that relationship."
+  ],
+  [
+   56.788,
+   5.812,
+   "I propose the enterprise person key, the same as for employees, proposed for confirmation."
+  ],
+  [
+   62.6,
+   6.875,
+   "Many agencies already issue it to contractors along with their piv card, for example as a Mainframe pin."
+  ],
+  [
+   69.475,
+   13.45,
+   "Where they do, a contractor is keyed exactly like an employee, and keeps the same key on a new contract; in the proposed canonical model, conversion to federal employment creates a new affiliation for the same person."
+  ],
+  [
+   82.925,
+   4.013,
+   "On the right: access ends at the earliest of five events."
+  ],
+  [
+   86.938,
+   5.925,
+   "The last two close the gap the Digital Worker playbook leaves open: what happens when the sponsor leaves."
+  ],
+  [
+   92.862,
+   4.125,
+   "The sponsor is a live reference into HR, not a name on a form."
+  ],
+  [
+   96.987,
+   11.35,
+   "Design reference: the proposed sponsored-identity pattern, with an accountable sponsor, a governed engagement record, identity linkage, recertification and explicit end conditions."
+  ],
+  [
+   108.338,
+   11.15,
+   "The piv cross-check follows FIPS 201-3; separation follows nist special publication eight hundred fifty-three P S four and PS-7."
+  ]
+ ],
+ "6": [
+  [
+   0.05,
+   4.362,
+   "Six things to establish before calling a suitability register an authority."
+  ],
+  [
+   4.412,
+   3.337,
+   "The first two decide whether it can be the leaver signal at all."
+  ],
+  [
+   7.75,
+   3.288,
+   "Owner: is it contracting or personnel security?"
+  ],
+  [
+   11.037,
+   5.25,
+   "The owner has to accept identity as a named consumer, just as I'm asking HR to."
+  ],
+  [
+   16.288,
+   7.938,
+   "Content: if the register records only the suitability decision and its date, it's a vetting source, not a lifecycle source."
+  ],
+  [
+   24.225,
+   3.962,
+   "Then the end date has to come from the contract record or from the sponsor."
+  ],
+  [
+   28.188,
+   9.725,
+   "Freshness: if the register is keyed by hand from C O R spreadsheets, it inherits their lag, and every separation delay carries over to contractors."
+  ],
+  [
+   37.913,
+   6.463,
+   "Privacy: which sorn covers the register, and does a routine use cover disclosure to identity systems?"
+  ],
+  [
+   44.375,
+   3.375,
+   "It's the same question the main deck asks for HR data."
+  ],
+  [
+   47.75,
+   7.537,
+   "Join on the key: if contractors may already get the enterprise key with their piv card, confirm coverage and timing."
+  ],
+  [
+   55.288,
+   2.938,
+   "The question is also whether the register records it."
+  ],
+  [
+   58.225,
+   5.5,
+   "If it does, the register, piv enrollment and the directories join on one key."
+  ],
+  [
+   63.725,
+   3.9,
+   "If not, the first job is a crosswalk from the register to the key."
+  ],
+  [
+   67.625,
+   4.438,
+   "Coverage: who works without a piv card and isn't in the register?"
+  ],
+  [
+   72.062,
+   2.45,
+   "Those people still need a sponsor-only path."
+  ],
+  [
+   74.513,
+   5.45,
+   "Source: the register's owner, and the agency's sorn and P I A catalog."
+  ]
+ ],
+ "7": [
+  [
+   0.05,
+   3.125,
+   "Start with what already exists, and start read-only."
+  ],
+  [
+   3.175,
+   7.287,
+   "Now: reconcile the register and piv enrollment against the contractor accounts in A D and Entra ID."
+  ],
+  [
+   10.463,
+   9.912,
+   "The output is unmatched accounts, unmatched contractor records, credential mismatches, and any records the available source shows as expired or inactive."
+  ],
+  [
+   20.375,
+   2.163,
+   "Nothing is written to any directory."
+  ],
+  [
+   22.538,
+   3.987,
+   "That measures the problem before anyone is asked to change a process."
+  ],
+  [
+   26.525,
+   9.887,
+   "Before Core H C M: I propose that the register plus sponsor attestation become the contractor source, once the contractor authority decision is made."
+  ],
+  [
+   36.413,
+   4.938,
+   "Ship the leaver trigger first, because that's where the risk is, then the joiner."
+  ],
+  [
+   41.35,
+   3.625,
+   "Mismatches between badges and records become findings."
+  ],
+  [
+   44.975,
+   5.388,
+   "At Core H C M go-live: decide whether to configure the Contingent Worker type."
+  ],
+  [
+   50.362,
+   7.775,
+   "If the agency adopts it, it holds the person and the assignment, and the register stays the authority for the contract and suitability."
+  ],
+  [
+   58.138,
+   3.175,
+   "Either way, the identity pipeline doesn't change."
+  ],
+  [
+   61.312,
+   3.05,
+   "It reads one canonical record whatever the source."
+  ],
+  [
+   64.362,
+   16.7,
+   "The ask is small: make the contractor authority decision, evaluating the suitability register, sponsorship, and contingent-worker records; name its owner; validate the planning assumptions with the data owners; and give read access to the register for a shadow reconciliation."
+  ]
+ ]
+}

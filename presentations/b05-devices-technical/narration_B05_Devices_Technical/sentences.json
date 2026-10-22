@@ -1790,76 +1790,76 @@
   ],
   [
    7.525,
-   2.6,
-   "Book 04 owns that second decision."
+   4.9,
+   "The Federal Modernization Workbook's Book 04 owns that second decision."
   ],
   [
-   10.125,
+   12.425,
    10.988,
    "This book's side of the hand-off is making sure the compliance signal is accurate, and remember that the compliant-device grant works only for devices registered in Entra ID and enrolled in Intune."
   ],
   [
-   21.113,
+   23.413,
    3.075,
    "Two tenant settings sit above every policy."
   ],
   [
-   24.188,
+   26.488,
    13.575,
    "Devices with no compliance policy assigned default to Compliant; the program sets Not compliant, so a device that falls outside every group, a missing tier attribute for example, can't pass Conditional Access by default."
   ],
   [
-   37.763,
+   40.062,
    8.425,
    "And the compliance status validity period defaults to thirty days, with a range of one to a hundred twenty; the program uses fourteen."
   ],
   [
-   46.188,
+   48.487,
    10.15,
    "That's a program choice: short enough that a device left in a drawer loses access before its posture is stale by a whole patch cycle, long enough not to catch staff on leave."
   ],
   [
-   56.337,
+   58.638,
    1.863,
    "Read the dashboard carefully."
   ],
   [
-   58.2,
+   60.5,
    5.963,
    "In grace period means noncompliant, but inside the schedule on the mark noncompliant action."
   ],
   [
-   64.162,
+   66.463,
    5.075,
    "Not evaluated is a new device, or one that hasn't checked in since a policy changed."
   ],
   [
-   69.237,
+   71.537,
    7.537,
    "A compliance setting that returns Error keeps the existing status for up to seven days, then the device becomes noncompliant."
   ],
   [
-   76.775,
+   79.075,
    6.45,
    "The program reviews Not evaluated and Error weekly, because both hide devices from the noncompliant count."
   ],
   [
-   83.225,
+   85.525,
    9.15,
    "Configuration status is per device and per setting: Succeeded, Error, or Conflict, which means another policy sets the same setting differently."
   ],
   [
-   92.375,
+   94.675,
    2.538,
    "A conflict is a defect in the library."
   ],
   [
-   94.912,
+   97.213,
    3.075,
    "Move the setting into the one policy that owns it."
   ],
   [
-   97.987,
+   100.287,
    10.825,
    "And on Tier 0, the risk score requirement means a Defender detection on a privileged access workstation becomes a compliance failure, and through Conditional Access, a loss of access."
   ]

@@ -100,3 +100,9 @@ Cross-chapter consistency pass. Every changed external fact was re-checked on th
 |---|---|---|---|---|
 | CF-1 | NPS/RADIUS/VPN gateway server certificates fall under the internal server issuer decision (AD CS through CyberArk); "ends when" no longer implies a different CLM-managed issuer | Retained AD CS table; issuer decision bullet | restated-as-design | Program decision; makes Chapters 05 and 08 consistent with it |
 | CF-2 | Domain controller certificates, which also serve LDAPS, stay on autoenrollment | Issuer decision bullet | restated-as-design | Program decision (Chapter 07 template rule) |
+
+## Editor correction, October 22, 2026
+
+| Claim | Result | Source |
+|---|---|---|
+| CLM reads Cloud PKI inventory | corrected after the CyberArk implementation-guide research | No CyberArk Cloud PKI import documented; Graph beta leaf report is the only machine-readable source |

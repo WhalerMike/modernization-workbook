@@ -210,4 +210,4 @@ Recapping the seven decisions: MTIPS ends on confirmed parity, the interim gap b
 
 One point on urgency. The branch measurement baseline can't be reconstructed after the next migration wave, and it costs staff time rather than capital.
 
-Buy transport on physics and govern it as compliance, and the branch gets faster without getting weaker. Book 09 has the detail, every claim footnoted, and the backup slides list the sources behind each slide in this briefing. Thank you.
+Buy transport on physics and govern it as compliance, and the branch gets faster without getting weaker. The Federal Modernization Workbook's Book 09 has the detail, every claim footnoted, and the backup slides list the sources behind each slide in this briefing. Thank you.

@@ -63,78 +63,79 @@ and has no effect on devices onboarded
 with corporate identifiers only.
 
 14
-00:00:45.675 --> 00:00:48.399
-As an inference, Book 05's description of
+00:00:45.675 --> 00:00:49.711
+As an inference, the Federal
+Modernization Workbook's Book 05's
 
 15
-00:00:48.399 --> 00:00:51.700
-device preparation needs
-a review against this.
+00:00:49.711 --> 00:00:53.825
+description of device preparation
+needs a review against this.
 
 16
-00:00:51.700 --> 00:00:56.533
+00:00:53.825 --> 00:00:58.658
 After enrollment, Intune's Rename action
 can rename corporate-owned Windows
 
 17
-00:00:56.533 --> 00:01:00.837
+00:00:58.658 --> 00:01:02.962
 PCs and Macs, but not hybrid-joined
 devices, which need domain methods.
 
 18
-00:01:00.837 --> 00:01:04.229
+00:01:02.962 --> 00:01:06.354
 Macs have no enrollment-time
 name template that I found;
 
 19
-00:01:04.229 --> 00:01:05.999
+00:01:06.354 --> 00:01:08.124
 you rename after enrollment.
 
 20
-00:01:05.999 --> 00:01:09.462
+00:01:08.124 --> 00:01:11.587
 Linux takes its name from
 cloud-init or a static hostname.
 
 21
-00:01:09.462 --> 00:01:13.438
+00:01:11.587 --> 00:01:15.563
 Azure Arc keeps the server's
 hostname as a fixed resource name.
 
 22
-00:01:13.438 --> 00:01:15.988
+00:01:15.563 --> 00:01:18.112
 Cloud VMs get names at create time.
 
 23
-00:01:15.988 --> 00:01:23.568
+00:01:18.112 --> 00:01:25.693
 Sources: Microsoft Learn: Autopilot device
 preparation Entra join policy [S1],
 
 24
-00:01:23.568 --> 00:01:31.268
+00:01:25.693 --> 00:01:33.393
 Compare device preparation and Autopilot
 [S2], Entra join Autopilot profile [S3],
 
 25
-00:01:31.268 --> 00:01:37.428
+00:01:33.393 --> 00:01:39.553
 Hybrid join Domain Join profile
 [S4], Rename a device in Intune [S5],
 
 26
-00:01:37.428 --> 00:01:42.759
+00:01:39.553 --> 00:01:44.884
 Accounts CSP [S6], macOS
 automated device enrollment [S7];
 
 27
-00:01:42.759 --> 00:01:48.919
+00:01:44.884 --> 00:01:51.044
 hostnamectl and hostname(5) [S10,
 S11]; cloud-init Set Hostname [S12];
 
 28
-00:01:48.919 --> 00:01:55.316
+00:01:51.044 --> 00:01:57.441
 azcmagent connect and Arc rename
 [S15, S16]; Azure ComputerName [S17];
 
 29
-00:01:55.316 --> 00:01:59.520
+00:01:57.441 --> 00:02:01.660
 EC2 hostname types [S21];
 Book 05 Ch04, Naming.

@@ -2983,732 +2983,733 @@ Conditional Access decides what
 a noncompliant device can reach.
 
 619
-00:40:33.205 --> 00:40:35.805
+00:40:33.205 --> 00:40:38.105
+The Federal Modernization Workbook's
 Book 04 owns that second decision.
 
 620
-00:40:35.805 --> 00:40:40.309
+00:40:38.105 --> 00:40:42.609
 This book's side of the hand-off is making
 sure the compliance signal is accurate,
 
 621
-00:40:40.309 --> 00:40:43.517
+00:40:42.609 --> 00:40:45.817
 and remember that the
 compliant-device grant works only
 
 622
-00:40:43.517 --> 00:40:46.793
+00:40:45.817 --> 00:40:49.093
 for devices registered in Entra
 ID and enrolled in Intune.
 
 623
-00:40:46.793 --> 00:40:49.868
+00:40:49.093 --> 00:40:52.168
 Two tenant settings
 sit above every policy.
 
 624
-00:40:49.868 --> 00:40:53.993
+00:40:52.168 --> 00:40:56.293
 Devices with no compliance policy
 assigned default to Compliant;
 
 625
-00:40:53.993 --> 00:40:58.568
+00:40:56.293 --> 00:41:00.868
 the program sets Not compliant, so a
 device that falls outside every group,
 
 626
-00:40:58.568 --> 00:41:03.443
+00:41:00.868 --> 00:41:05.743
 a missing tier attribute for example,
 can't pass Conditional Access by default.
 
 627
-00:41:03.443 --> 00:41:07.771
+00:41:05.743 --> 00:41:10.070
 And the compliance status validity
 period defaults to thirty days,
 
 628
-00:41:07.771 --> 00:41:11.868
+00:41:10.070 --> 00:41:14.167
 with a range of one to a hundred
 twenty; the program uses fourteen.
 
 629
-00:41:11.868 --> 00:41:16.649
+00:41:14.167 --> 00:41:18.948
 That's a program choice: short enough that
 a device left in a drawer loses access
 
 630
-00:41:16.649 --> 00:41:19.664
+00:41:18.948 --> 00:41:21.963
 before its posture is stale
 by a whole patch cycle,
 
 631
-00:41:19.664 --> 00:41:22.018
+00:41:21.963 --> 00:41:24.317
 long enough not to catch staff on leave.
 
 632
-00:41:22.018 --> 00:41:23.880
+00:41:24.317 --> 00:41:26.181
 Read the dashboard carefully.
 
 633
-00:41:23.880 --> 00:41:26.203
+00:41:26.181 --> 00:41:28.503
 In grace period means noncompliant,
 
 634
-00:41:26.203 --> 00:41:29.843
+00:41:28.503 --> 00:41:32.143
 but inside the schedule on
 the mark noncompliant action.
 
 635
-00:41:29.843 --> 00:41:34.917
+00:41:32.143 --> 00:41:37.218
 Not evaluated is a new device, or one that
 hasn't checked in since a policy changed.
 
 636
-00:41:34.917 --> 00:41:38.541
+00:41:37.218 --> 00:41:40.841
 A compliance setting that
 returns Error keeps the existing
 
 637
-00:41:38.541 --> 00:41:42.454
+00:41:40.841 --> 00:41:44.754
 status for up to seven days, then
 the device becomes noncompliant.
 
 638
-00:41:42.454 --> 00:41:45.571
+00:41:44.754 --> 00:41:47.871
 The program reviews Not
 evaluated and Error weekly,
 
 639
-00:41:45.571 --> 00:41:48.905
+00:41:47.871 --> 00:41:51.205
 because both hide devices
 from the noncompliant count.
 
 640
-00:41:48.905 --> 00:41:53.288
+00:41:51.205 --> 00:41:55.588
 Configuration status is per device
 and per setting: Succeeded, Error,
 
 641
-00:41:53.288 --> 00:41:58.055
+00:41:55.588 --> 00:42:00.355
 or Conflict, which means another policy
 sets the same setting differently.
 
 642
-00:41:58.055 --> 00:42:00.593
+00:42:00.355 --> 00:42:02.893
 A conflict is a defect in the library.
 
 643
-00:42:00.593 --> 00:42:03.667
+00:42:02.893 --> 00:42:05.968
 Move the setting into the
 one policy that owns it.
 
 644
-00:42:03.667 --> 00:42:08.614
+00:42:05.968 --> 00:42:10.914
 And on Tier 0, the risk score requirement
 means a Defender detection on a privileged
 
 645
-00:42:08.614 --> 00:42:11.624
+00:42:10.914 --> 00:42:13.924
 access workstation becomes
 a compliance failure,
 
 646
-00:42:11.624 --> 00:42:14.840
+00:42:13.924 --> 00:42:17.150
 and through Conditional
 Access, a loss of access.
 
 647
-00:42:15.590 --> 00:42:20.990
+00:42:17.900 --> 00:42:23.300
 Intune manages Windows updates through four
 policy types built on the Windows Update
 
 648
-00:42:20.990 --> 00:42:25.265
+00:42:23.300 --> 00:42:27.575
 client policies: update rings for
 deferrals, deadlines and restarts;
 
 649
-00:42:25.265 --> 00:42:30.440
+00:42:27.575 --> 00:42:32.750
 feature update policies that pin a Windows
 version; quality update policies, which
 
 650
-00:42:30.440 --> 00:42:35.540
+00:42:32.750 --> 00:42:37.850
 can expedite a critical update or deliver
 hotpatches; and driver update policies.
 
 651
-00:42:35.540 --> 00:42:38.127
+00:42:37.850 --> 00:42:40.437
 Rings stage each month's quality update.
 
 652
-00:42:38.127 --> 00:42:41.710
+00:42:40.437 --> 00:42:44.020
 The names follow Windows
 Autopatch, Test, First,
 
 653
-00:42:41.710 --> 00:42:45.477
+00:42:44.020 --> 00:42:47.787
 Fast and Broad; the values
 are the program's design.
 
 654
-00:42:45.477 --> 00:42:49.978
+00:42:47.787 --> 00:42:52.288
 Test is the engineering lab, with
 no deferral and a two-day deadline.
 
 655
-00:42:49.978 --> 00:42:53.178
+00:42:52.288 --> 00:42:55.488
 First is the pilot cohort,
 about five percent.
 
 656
-00:42:53.178 --> 00:42:55.303
+00:42:55.488 --> 00:42:57.613
 Fast is about a quarter of the fleet.
 
 657
-00:42:55.303 --> 00:42:58.655
+00:42:57.613 --> 00:43:00.965
 Broad is everyone else,
 with a seven-day deferral,
 
 658
-00:42:58.655 --> 00:43:01.840
+00:43:00.965 --> 00:43:04.150
 a seven-day deadline and
 a two-day grace period.
 
 659
-00:43:01.840 --> 00:43:04.898
+00:43:04.150 --> 00:43:07.208
 Rings allow deferrals
 of zero to thirty days,
 
 660
-00:43:04.898 --> 00:43:08.452
+00:43:07.208 --> 00:43:10.762
 deadlines of two to thirty
 and grace of zero to seven.
 
 661
-00:43:08.452 --> 00:43:13.695
+00:43:10.762 --> 00:43:16.005
 With these values a quality update reaches
 every online device within about sixteen
 
 662
-00:43:13.695 --> 00:43:18.641
+00:43:16.005 --> 00:43:20.951
 days of release, and an update that breaks
 Test or First can be paused before Broad.
 
 663
-00:43:18.641 --> 00:43:21.078
+00:43:20.951 --> 00:43:23.388
 Feature deferral is zero everywhere,
 
 664
-00:43:21.078 --> 00:43:24.302
+00:43:23.388 --> 00:43:26.612
 because a feature update
 policy pins the version.
 
 665
-00:43:24.302 --> 00:43:28.891
+00:43:26.612 --> 00:43:31.201
 Windows Autopatch automates ring
 management, sequencing and reporting.
 
 666
-00:43:28.891 --> 00:43:34.936
+00:43:31.201 --> 00:43:37.246
 For government tenants, it's
 included for GCC customers with
 
 667
-00:43:34.936 --> 00:43:41.465
+00:43:37.246 --> 00:43:43.775
 Microsoft 365 G3 GCC or G5 GCC, and
 isn't supported in GCC High or DoD.
 
 668
-00:43:41.465 --> 00:43:46.072
+00:43:43.775 --> 00:43:48.382
 Devices must be Entra joined or hybrid
 joined, and co-managed devices need
 
 669
-00:43:46.072 --> 00:43:50.678
+00:43:48.382 --> 00:43:52.988
 the update and device configuration
 workloads at Intune or Pilot Intune.
 
 670
-00:43:50.678 --> 00:43:56.040
+00:43:52.988 --> 00:43:58.350
 Autopatch creates and maintains its own
 rings, so don't assign yours to its devices.
 
 671
-00:43:56.040 --> 00:43:58.612
+00:43:58.350 --> 00:44:00.922
 The program's position:
 use it where licensed,
 
 672
-00:43:58.612 --> 00:44:02.852
+00:44:00.922 --> 00:44:05.162
 and keep the ring table as the
 specification its groups are configured to.
 
 673
-00:44:02.852 --> 00:44:07.029
+00:44:05.162 --> 00:44:09.339
 Version currency: 23H2
 Enterprise and Education
 
 674
-00:44:07.029 --> 00:44:11.002
+00:44:09.339 --> 00:44:13.312
 stop receiving updates
 on November tenth, 2026.
 
 675
-00:44:11.002 --> 00:44:14.785
+00:44:13.312 --> 00:44:17.095
 So the feature update
 policy targets 25H2 now,
 
 676
-00:44:14.785 --> 00:44:19.130
+00:44:17.095 --> 00:44:21.440
 and the compliance floor
 of 24H2 rises each year.
 
 677
-00:44:19.880 --> 00:44:22.831
+00:44:22.190 --> 00:44:25.141
 Three services keep their
 own device inventory,
 
 678
-00:44:22.831 --> 00:44:25.192
+00:44:25.141 --> 00:44:27.502
 and they disagree in predictable ways.
 
 679
-00:44:25.192 --> 00:44:28.974
+00:44:27.502 --> 00:44:31.284
 Intune's managed devices drift
 when devices stop checking in,
 
 680
-00:44:28.974 --> 00:44:30.679
+00:44:31.284 --> 00:44:32.989
 and cleanup rules hide them.
 
 681
-00:44:30.679 --> 00:44:34.312
+00:44:32.989 --> 00:44:36.622
 Entra ID accumulates stale
 objects from reimaging,
 
 682
-00:44:34.312 --> 00:44:37.943
+00:44:36.622 --> 00:44:40.253
 broken hybrid trust, or
 devices that never enrolled.
 
 683
-00:44:37.943 --> 00:44:43.230
+00:44:40.253 --> 00:44:45.540
 Defender has devices onboarded but not
 enrolled, or enrolled but never onboarded.
 
 684
-00:44:43.230 --> 00:44:46.942
+00:44:45.540 --> 00:44:49.252
 The program reconciles them
 weekly on the Entra device ID.
 
 685
-00:44:46.942 --> 00:44:50.703
+00:44:49.252 --> 00:44:53.013
 Every enrolled device must have
 an Entra object with its tier,
 
 686
-00:44:50.703 --> 00:44:54.831
+00:44:53.013 --> 00:44:57.141
 role and environment attributes
 set, and a healthy Defender sensor.
 
 687
-00:44:54.831 --> 00:44:59.555
+00:44:57.141 --> 00:45:01.865
 Every Entra object for a corporate Windows
 device must have an Intune enrollment.
 
 688
-00:44:59.555 --> 00:45:04.096
+00:45:01.865 --> 00:45:06.406
 A device missing from any one is a
 finding, and the same comparison is the
 
 689
-00:45:04.096 --> 00:45:08.867
+00:45:06.406 --> 00:45:11.177
 evidence for CM-8's requirement of a
 complete inventory with no duplicates.
 
 690
-00:45:08.867 --> 00:45:10.556
+00:45:11.177 --> 00:45:12.866
 Stale records need care.
 
 691
-00:45:10.556 --> 00:45:15.447
+00:45:12.866 --> 00:45:17.757
 Intune cleanup rules hide devices after
 thirty to two hundred seventy days,
 
 692
-00:45:15.447 --> 00:45:18.630
+00:45:17.757 --> 00:45:20.940
 per platform; the program
 uses ninety for Windows.
 
 693
-00:45:18.630 --> 00:45:23.718
+00:45:20.940 --> 00:45:26.028
 They don't wipe or retire anything,
 and hidden devices stay in Entra ID.
 
 694
-00:45:23.718 --> 00:45:27.452
+00:45:26.028 --> 00:45:29.762
 Entra's last sign-in timestamp
 isn't updated on every sign-in,
 
 695
-00:45:27.452 --> 00:45:31.338
+00:45:29.762 --> 00:45:33.648
 so Microsoft advises not treating
 anything newer than about
 
 696
-00:45:31.338 --> 00:45:34.843
+00:45:33.648 --> 00:45:37.153
 twenty-one days as stale, and
 disabling before deleting.
 
 697
-00:45:34.843 --> 00:45:39.318
+00:45:37.153 --> 00:45:41.628
 Hybrid devices are removed in Active
 Directory, and the change syncs.
 
 698
-00:45:39.318 --> 00:45:41.264
+00:45:41.628 --> 00:45:43.574
 Retirement follows a fixed order,
 
 699
-00:45:41.264 --> 00:45:44.392
+00:45:43.574 --> 00:45:46.702
 because the order decides
 what can still be recovered.
 
 700
-00:45:44.392 --> 00:45:48.929
+00:45:46.702 --> 00:45:51.239
 Record first: export the BitLocker
 keys and the LAPS password.
 
 701
-00:45:48.929 --> 00:45:52.743
+00:45:51.239 --> 00:45:55.053
 Retiring or deleting the Intune
 object of an Entra-joined
 
 702
-00:45:52.743 --> 00:45:56.318
+00:45:55.053 --> 00:45:58.628
 BitLocker device suspends
 BitLocker, so back up first.
 
 703
-00:45:56.318 --> 00:45:59.624
+00:45:58.628 --> 00:46:01.934
 Then act on the device:
 wipe a corporate device,
 
 704
-00:45:59.624 --> 00:46:03.192
+00:46:01.934 --> 00:46:05.502
 retire a personal one;
 actions run at next check-in.
 
 705
-00:46:03.192 --> 00:46:06.105
+00:46:05.502 --> 00:46:08.415
 Deregister from Autopilot
 if it's leaving for good.
 
 706
-00:46:06.105 --> 00:46:07.917
+00:46:08.415 --> 00:46:10.227
 Delete the Intune record.
 
 707
-00:46:07.917 --> 00:46:11.438
+00:46:10.227 --> 00:46:13.748
 And delete the Entra object
 last, after a disable period,
 
 708
-00:46:11.438 --> 00:46:14.193
+00:46:13.748 --> 00:46:16.503
 because that permanently deletes its keys.
 
 709
-00:46:14.193 --> 00:46:16.666
+00:46:16.503 --> 00:46:18.976
 Plan mass refreshes in daily batches:
 
 710
-00:46:16.666 --> 00:46:21.430
+00:46:18.976 --> 00:46:23.740
 the tenant limit is a thousand
 retires and a thousand deletes a day.
 
 711
-00:46:22.180 --> 00:46:27.216
+00:46:24.490 --> 00:46:29.526
 Drift is a difference between the policy
 library and a device's reported state that
 
 712
-00:46:27.216 --> 00:46:31.522
+00:46:29.526 --> 00:46:33.832
 the policy should have prevented:
 BitLocker off, tamper protection off,
 
 713
-00:46:31.522 --> 00:46:34.442
+00:46:33.832 --> 00:46:36.752
 an OS below the floor, a
 setting stuck in Conflict.
 
 714
-00:46:34.442 --> 00:46:38.471
+00:46:36.752 --> 00:46:40.781
 The program detects it with the
 same loop Chapter 05 describes
 
 715
-00:46:38.471 --> 00:46:41.880
+00:46:40.781 --> 00:46:44.190
 for the governed path, applied
 to Intune and Defender.
 
 716
-00:46:41.880 --> 00:46:46.480
+00:46:44.190 --> 00:46:48.790
 A daily export of compliance,
 configuration and inventory status.
 
 717
-00:46:46.480 --> 00:46:50.130
+00:46:48.790 --> 00:46:52.440
 A comparison against the
 template values in Chapter 08.
 
 718
-00:46:50.130 --> 00:46:53.455
+00:46:52.440 --> 00:46:55.765
 Classification as a policy
 gap, a device fault,
 
 719
-00:46:53.455 --> 00:46:57.568
+00:46:55.765 --> 00:46:59.878
 a conflict or an inventory
 mismatch, alerted by severity.
 
 720
-00:46:57.568 --> 00:47:01.111
+00:46:59.878 --> 00:47:03.421
 And remediation: a device
 sync or a Remediation script,
 
 721
-00:47:01.111 --> 00:47:05.993
+00:47:03.421 --> 00:47:08.303
 or a policy change through change
 control when the library itself is wrong.
 
 722
-00:47:05.993 --> 00:47:10.542
+00:47:08.303 --> 00:47:12.852
 On the governed path every remediating
 write carries an approval reference.
 
 723
-00:47:10.542 --> 00:47:13.293
+00:47:12.852 --> 00:47:15.603
 Know what Log Analytics
 receives, and when.
 
 724
-00:47:13.293 --> 00:47:17.475
+00:47:15.603 --> 00:47:19.785
 Intune's diagnostic settings send
 audit logs, operational logs,
 
 725
-00:47:17.475 --> 00:47:21.893
+00:47:19.785 --> 00:47:24.203
 compliance organizational logs
 and the Intune devices inventory.
 
 726
-00:47:21.893 --> 00:47:24.868
+00:47:24.203 --> 00:47:27.178
 Audit and operational logs
 are sent immediately.
 
 727
-00:47:24.868 --> 00:47:30.177
+00:47:27.178 --> 00:47:32.487
 Compliance and inventory are exported once
 every twenty-four hours and can take up
 
 728
-00:47:30.177 --> 00:47:35.179
+00:47:32.487 --> 00:47:37.489
 to forty-eight to arrive, and Microsoft
 says not to rely on a fixed delivery time.
 
 729
-00:47:35.179 --> 00:47:39.318
+00:47:37.489 --> 00:47:41.628
 So those tables are for trends and
 evidence, not minute-level alerts.
 
 730
-00:47:39.318 --> 00:47:42.534
+00:47:41.628 --> 00:47:44.844
 And per-setting configuration
 status isn't among them,
 
 731
-00:47:42.534 --> 00:47:46.680
+00:47:44.844 --> 00:47:48.990
 so the configuration comparison
 comes from Microsoft Graph reports.
 
 732
-00:47:46.680 --> 00:47:50.571
+00:47:48.990 --> 00:47:52.881
 Three query pitfalls: don't
 hard-code compliance state strings,
 
 733
-00:47:50.571 --> 00:47:54.687
+00:47:52.881 --> 00:47:56.997
 don't join the operational logs on
 a device ID column it doesn't have,
 
 734
-00:47:54.687 --> 00:47:57.755
+00:47:56.997 --> 00:48:00.065
 and don't look for
 configuration conflicts there.
 
 735
-00:47:57.755 --> 00:47:59.330
+00:48:00.065 --> 00:48:01.640
 The alerts follow from that.
 
 736
-00:47:59.330 --> 00:48:03.742
+00:48:01.640 --> 00:48:06.052
 Fleet-wide noncompliance above ten
 percent comes from the daily export.
 
 737
-00:48:03.742 --> 00:48:07.485
+00:48:06.052 --> 00:48:09.795
 But Tier 0 noncompliance is
 polled from Graph hourly:
 
 738
-00:48:07.485 --> 00:48:11.142
+00:48:09.795 --> 00:48:13.452
 from the export, the alert
 would arrive two days late.
 
 739
-00:48:11.142 --> 00:48:18.370
+00:48:13.452 --> 00:48:20.680
 Meanwhile Conditional Access blocks the
 device, because CP-002 has no grace period.
 
 740
-00:48:19.120 --> 00:48:20.995
+00:48:21.430 --> 00:48:23.305
 Last, what the assessor reads.
 
 741
-00:48:20.995 --> 00:48:25.932
+00:48:23.305 --> 00:48:28.242
 The program's evidence is the records
 the services keep, exported on a schedule
 
 742
-00:48:25.932 --> 00:48:30.945
+00:48:28.242 --> 00:48:33.255
 and retained, for the configuration
 management and flaw remediation controls.
 
 743
-00:48:30.945 --> 00:48:38.237
+00:48:33.255 --> 00:48:40.547
 The control wording is from NIST SP
 800-53 Revision 5, release 5.2.0,
 
 744
-00:48:38.237 --> 00:48:44.257
+00:48:40.547 --> 00:48:46.567
 which FedRAMP's 2026 catalog uses without
 adding parameter values to these controls.
 
 745
-00:48:44.257 --> 00:48:49.424
+00:48:46.567 --> 00:48:51.734
 CM-2, baseline configuration: the
 policy library exported from Graph,
 
 746
-00:48:49.424 --> 00:48:52.958
+00:48:51.734 --> 00:48:55.268
 under version control,
 with its review history.
 
 747
-00:48:52.958 --> 00:48:56.467
+00:48:55.268 --> 00:48:58.777
 CM-6, configuration
 settings: per-setting status,
 
 748
-00:48:56.467 --> 00:49:02.258
+00:48:58.777 --> 00:49:04.568
 the exception register with approvals,
 and the Intune audit log of every change.
 
 749
-00:49:02.258 --> 00:49:06.902
+00:49:04.568 --> 00:49:09.212
 CM-7, least functionality: attack
 surface reduction in block,
 
 750
-00:49:06.902 --> 00:49:10.895
+00:49:09.212 --> 00:49:13.205
 the firewall rule set, the
 Edge extension allow list.
 
 751
-00:49:10.895 --> 00:49:15.182
+00:49:13.205 --> 00:49:17.492
 CM-8, inventory: the
 weekly reconciliation.
 
 752
-00:49:15.182 --> 00:49:20.657
+00:49:17.492 --> 00:49:22.967
 SI-2, flaw remediation: the ring
 table and per-ring compliance.
 
 753
-00:49:20.657 --> 00:49:24.074
+00:49:22.967 --> 00:49:26.384
 SI-2's defined period is the
 organization's parameter,
 
 754
-00:49:24.074 --> 00:49:26.482
+00:49:26.384 --> 00:49:28.792
 and the ring deadlines are what set it.
 
 755
-00:49:26.482 --> 00:49:30.557
+00:49:28.792 --> 00:49:32.867
 Two GCC facts change where
 data and endpoints live.
 
 756
-00:49:30.557 --> 00:49:36.296
+00:49:32.867 --> 00:49:38.606
 Intune in a GCC tenant isn't a separate
 government instance: GCC uses the
 
 757
-00:49:36.296 --> 00:49:42.619
+00:49:38.606 --> 00:49:44.929
 commercial service and worldwide Graph,
 and only GCC High and DoD are separate.
 
 758
-00:49:42.619 --> 00:49:47.660
+00:49:44.929 --> 00:49:49.970
 Defender for Endpoint for US Government
 is built in Azure US Government,
 
 759
-00:49:47.660 --> 00:49:51.356
+00:49:49.970 --> 00:49:53.666
 with the GCC portal at security
 dot microsoft dot com.
 
 760
-00:49:51.356 --> 00:49:56.984
+00:49:53.666 --> 00:49:59.294
 And Windows Update for Business reports
 don't meet GCC compliance requirements,
 
 761
-00:49:56.984 --> 00:50:00.932
+00:49:59.294 --> 00:50:03.242
 so SI-2 evidence comes from
 Intune and Autopatch reports.
 
 762
-00:50:00.932 --> 00:50:06.399
+00:50:03.242 --> 00:50:08.709
 The program also maps this evidence to
 FedRAMP 20x Key Security Indicators,
 
 763
-00:50:06.399 --> 00:50:11.295
+00:50:08.709 --> 00:50:13.605
 as its own claim, written for cloud
 service offerings, not an agency fleet.
 
 764
-00:50:11.295 --> 00:50:16.875
+00:50:13.605 --> 00:50:19.185
 So, from Monday: inventory and triage every
 GPO; set the tenant compliance defaults;
 
 765
-00:50:16.875 --> 00:50:20.978
+00:50:19.185 --> 00:50:23.288
 carry procurement into the group
 tag; onboard servers with a
 
 766
-00:50:20.978 --> 00:50:25.820
+00:50:23.288 --> 00:50:28.130
 short-lived certificate principal;
 and reconcile inventories weekly.
 
 767
-00:50:25.820 --> 00:50:30.095
+00:50:28.130 --> 00:50:32.405
 Chapters 04 to 10 and
 Appendix A carry the detail.
 
 768
-00:50:30.095 --> 00:50:30.930
+00:50:32.405 --> 00:50:33.240
 Thank you.

@@ -1,93 +1,97 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:04.400
-The plan follows Book 01's
-seven phases and six gates.
+00:00:00.050 --> 00:00:03.189
+The plan follows the Federal Modernization
 
 2
-00:00:04.400 --> 00:00:08.663
+00:00:03.189 --> 00:00:06.412
+Workbook's Book 01's seven
+phases and six gates.
+
+3
+00:00:06.412 --> 00:00:10.675
 Phase 0, Pre-flight, ends
 at G0, Ready to Plan.
 
-3
-00:00:08.663 --> 00:00:12.112
+4
+00:00:10.675 --> 00:00:14.125
 Foundation ends at G1,
 Foundation Complete.
 
-4
-00:00:12.112 --> 00:00:15.438
+5
+00:00:14.125 --> 00:00:17.450
 A pilot division ends at G2, Pilot Clean.
 
-5
-00:00:15.438 --> 00:00:19.013
+6
+00:00:17.450 --> 00:00:21.025
 General rollout ends at
 G3, Rollout Complete.
 
-6
-00:00:19.013 --> 00:00:22.587
+7
+00:00:21.025 --> 00:00:24.600
 Legacy retirement ends
 at G4, Legacy Quiet.
 
-7
-00:00:22.587 --> 00:00:26.775
+8
+00:00:24.600 --> 00:00:28.788
 AD DS retirement ends at G5, AD Retired.
 
-8
-00:00:26.775 --> 00:00:30.175
+9
+00:00:28.788 --> 00:00:32.188
 And steady state has no gate;
 it's a standing cadence.
 
-9
-00:00:30.175 --> 00:00:32.352
+10
+00:00:32.188 --> 00:00:34.365
 Five constraints bind every phase:
 
-10
-00:00:32.352 --> 00:00:37.156
+11
+00:00:34.365 --> 00:00:39.169
 changes originate from the authoritative
 source and close with provenance,
 
-11
-00:00:37.156 --> 00:00:40.609
+12
+00:00:39.169 --> 00:00:42.622
 privilege is time-bound,
 copies stay non-authoritative,
 
-12
-00:00:40.609 --> 00:00:44.212
+13
+00:00:42.622 --> 00:00:46.225
 drift stays visible, and nothing
 requires rip-and-replace.
 
-13
-00:00:44.212 --> 00:00:47.975
+14
+00:00:46.225 --> 00:00:49.988
 Underneath them is one rule:
 assessment before action.
 
-14
-00:00:47.975 --> 00:00:52.385
+15
+00:00:49.988 --> 00:00:54.397
 The program's detailed master plan
 numbers its phases differently,
 
-15
-00:00:52.385 --> 00:00:56.637
+16
+00:00:54.397 --> 00:00:58.649
 and its illustrative fifty-two
 weeks stop short of retiring AD DS.
 
-16
-00:00:56.637 --> 00:00:59.950
+17
+00:00:58.649 --> 00:01:01.962
 Large federal estates
 typically run multi-year.
 
-17
-00:00:59.950 --> 00:01:04.563
+18
+00:01:01.962 --> 00:01:06.575
 Five workstreams run in parallel,
 identity, policy, services,
 
-18
-00:01:04.563 --> 00:01:10.375
+19
+00:01:06.575 --> 00:01:12.387
 compute and access, and one dependency
 never relaxes: PKI waits for identity.
 
-19
-00:01:10.375 --> 00:01:14.590
+20
+00:01:12.387 --> 00:01:16.610
 The gates, not the calendar,
 decide when the next phase starts.

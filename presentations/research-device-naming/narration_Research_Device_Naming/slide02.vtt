@@ -98,16 +98,20 @@ When AD retires, both jobs need a new
 owner, and the second one is harder.
 
 21
-00:01:16.675 --> 00:01:23.102
-Sources: Book 08, Chapter 04, What
-AD-integrated DNS actually is,
+00:01:16.675 --> 00:01:22.834
+Sources: the Federal Modernization
+Workbook's Book 08, Chapter 04,
 
 22
-00:01:23.102 --> 00:01:29.780
-and Secure dynamic updates and
-the DHCP server; Microsoft Learn,
+00:01:22.834 --> 00:01:30.589
+What AD-integrated DNS actually is, and
+Secure dynamic updates and the DHCP server;
 
 23
-00:01:29.780 --> 00:01:37.030
-Dynamic update (Windows Server DNS)
-[S26]; Policy CSP ADMX_DnsClient [S27].
+00:01:30.589 --> 00:01:35.836
+Microsoft Learn, Dynamic update
+(Windows Server DNS) [S26];
+
+24
+00:01:35.836 --> 00:01:38.740
+Policy CSP ADMX_DnsClient [S27].

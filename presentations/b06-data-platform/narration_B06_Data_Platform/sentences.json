@@ -121,26 +121,26 @@
   ],
   [
    37.55,
-   6.225,
-   "The directory modernization in Book 02 ends the domain-joined world those service accounts depend on."
+   8.012,
+   "The directory modernization in the Federal Modernization Workbook's Book 02 ends the domain-joined world those service accounts depend on."
   ],
   [
-   43.775,
+   45.562,
    2.7,
    "The book is precise about 2027."
   ],
   [
-   46.475,
+   48.263,
    6.138,
    "There's no external N T L M deadline; Microsoft hasn't dated the disable-by-default step."
   ],
   [
-   52.612,
+   54.4,
    22.788,
    "The dates that are real are support dates: SQL Server 2016 went out of support in July 2026, Windows Server 2016 follows in January 2027, the last SQL Server 2014 extended-security year ends in July 2027, and SQL Server 2017 goes out of support in October 2027."
   ],
   [
-   75.4,
+   77.188,
    9.787,
    "SQL Server 2014 and 2017 can't use Entra authentication at all, so they reach the closed state only by upgrade or retirement."
   ]
@@ -260,8 +260,8 @@
   ],
   [
    65.425,
-   7.2,
-   "Arc wins because it also carries inventory, policy, updates and Defender for the host, which is Book 05."
+   9.175,
+   "Arc wins because it also carries inventory, policy, updates and Defender for the host, which is the Federal Modernization Workbook's Book 05."
   ]
  ],
  "6": [
@@ -277,36 +277,36 @@
   ],
   [
    11.637,
-   8.7,
-   "Groups become Entra group logins, which SQL Server records as type X, with membership driven by HR attributes from Book 03."
+   10.6,
+   "Groups become Entra group logins, which SQL Server records as type X, with membership driven by HR attributes from the Federal Modernization Workbook's Book 03."
   ],
   [
-   20.337,
+   22.238,
    8.113,
    "Applications become service principals and managed identities, and the book is clear that Conditional Access doesn't cover managed identities."
   ],
   [
-   28.45,
+   30.35,
    2.3,
    "The migration is a parallel run."
   ],
   [
-   30.75,
+   32.65,
    5.075,
    "Create the Entra user beside the Windows user and copy its roles and permissions."
   ],
   [
-   35.825,
+   37.725,
    5.312,
    "Keep both until the audit shows no remaining Windows sessions, then disable the old one."
   ],
   [
-   41.138,
+   43.038,
    10.037,
    "Never convert in one step; and the old runbook's shortcut, ALTER USER with LOGIN, only converts on Azure SQL Managed Instance, not on SQL Server."
   ],
   [
-   51.175,
+   53.075,
    9.562,
    "One trap: the instance's Entra administrator becomes sysadmin, and changing that administrator leaves the old login as sysadmin until a DBA drops it."
   ]
@@ -443,36 +443,36 @@
   ],
   [
    14.938,
-   10.037,
-   "Administrative units delegate group management, privileged database roles go through pim from Book 04, and reviews cover the groups, not just the logins."
+   11.637,
+   "Administrative units delegate group management, privileged database roles go through pim from the Federal Modernization Workbook's Book 04, and reviews cover the groups, not just the logins."
   ],
   [
-   24.975,
+   26.575,
    7.6,
    "The application chain: the book sorts SQL-consuming applications into four classes, each with its own migration path."
   ],
   [
-   32.575,
+   34.175,
    6.25,
    "Connection strings name a specific Entra authentication mode in production rather than the catch-all default."
   ],
   [
-   38.825,
+   40.425,
    10.6,
    "Microsoft.Data.SqlClient, ODBC, OLE DB and JDBC all support Entra modes, and the book has a driver table with the minimum versions."
   ],
   [
-   49.425,
+   51.025,
    4.638,
    "Managed identities on Arc hosts get their tokens from the local agent service."
   ],
   [
-   54.062,
+   55.663,
    2.225,
    "The last mile is the connection string."
   ],
   [
-   56.288,
+   57.888,
    9.463,
    "Every application that still says Integrated Security keeps the Windows path alive, so the application inventory is part of closure, not a follow-up."
   ]
@@ -557,16 +557,16 @@
   ],
   [
    50.413,
-   5.85,
-   "Book 06 has the narrative and ten runbooks, with every external claim footnoted."
+   7.713,
+   "The Federal Modernization Workbook's Book 06 has the narrative and ten runbooks, with every external claim footnoted."
   ],
   [
-   56.263,
+   58.125,
    5.95,
    "Book 05 covers Arc on servers, and Book 04 the access policy it plugs into."
   ],
   [
-   62.212,
+   64.075,
    0.762,
    "Thank you."
   ]

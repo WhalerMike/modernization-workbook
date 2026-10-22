@@ -5,163 +5,163 @@ WEBVTT
 The third mechanism is lifecycle events.
 
 2
-00:00:02.713 --> 00:00:07.223
+00:00:02.713 --> 00:00:06.802
 The HR-driven lifecycle itself,
 from attributes to joiner,
 
 3
-00:00:07.223 --> 00:00:10.512
-mover and leaver design,
-belongs to Book 03.
+00:00:06.802 --> 00:00:12.512
+mover and leaver design, belongs to the
+Federal Modernization Workbook's Book 03.
 
 4
-00:00:10.512 --> 00:00:15.136
+00:00:12.512 --> 00:00:17.136
 This chapter covers only the Lifecycle
 Workflows tasks that change access,
 
 5
-00:00:15.136 --> 00:00:20.274
+00:00:17.136 --> 00:00:22.274
 because those tasks are where mover and
 leaver problems turn into access decisions.
 
 6
-00:00:20.274 --> 00:00:24.075
+00:00:22.274 --> 00:00:26.075
 A joiner gets the onboarding
 package and the department package,
 
 7
-00:00:24.075 --> 00:00:26.538
+00:00:26.075 --> 00:00:28.538
 never a direct add to
 an application group.
 
 8
-00:00:26.538 --> 00:00:29.613
+00:00:28.538 --> 00:00:31.613
 A move is a re-derivation,
 not an additional grant:
 
 9
-00:00:29.613 --> 00:00:34.764
+00:00:31.613 --> 00:00:36.764
 remove the previous department's packages,
 request the new department's package,
 
 10
-00:00:34.764 --> 00:00:39.376
+00:00:36.764 --> 00:00:41.376
 and send everything the person still
 holds outside packages to a review.
 
 11
-00:00:39.376 --> 00:00:43.828
+00:00:41.376 --> 00:00:45.828
 Microsoft's built-in job profile change
 template does the first two steps,
 
 12
-00:00:43.828 --> 00:00:47.259
+00:00:45.828 --> 00:00:49.259
 and its remove-all-assignments
 task defaults to fifteen
 
 13
-00:00:47.259 --> 00:00:50.325
+00:00:49.259 --> 00:00:52.325
 days after the trigger, a
 grace period for handover.
 
 14
-00:00:50.325 --> 00:00:53.375
+00:00:52.325 --> 00:00:55.375
 The program keeps that
 grace for standard access
 
 15
-00:00:53.375 --> 00:00:56.500
+00:00:55.375 --> 00:00:58.500
 and sets it to zero for Tier
 1 and privileged access.
 
 16
-00:00:56.500 --> 00:01:01.787
+00:00:58.500 --> 00:01:03.787
 A leaver's workflow cancels pending
 requests, removes every package assignment,
 
 17
-00:01:01.787 --> 00:01:06.363
+00:01:03.787 --> 00:01:08.363
 removes the user from all groups and
 teams, and revokes refresh tokens.
 
 18
-00:01:06.363 --> 00:01:09.361
+00:01:08.363 --> 00:01:11.361
 And an inactivity workflow
 is the backstop for
 
 19
-00:01:09.361 --> 00:01:12.899
+00:01:11.361 --> 00:01:14.899
 accounts whose HR record
 never produced a leaver event.
 
 20
-00:01:12.899 --> 00:01:17.875
+00:01:14.899 --> 00:01:19.875
 A tenant can have fifty workflows, so
 spend them on events, not on applications.
 
 21
-00:01:17.875 --> 00:01:21.317
+00:01:19.875 --> 00:01:23.317
 Guests are where unreviewed
 access piles up fastest,
 
 22
-00:01:21.317 --> 00:01:25.150
+00:01:23.317 --> 00:01:27.150
 because nobody's HR record ends
 when a partner project does.
 
 23
-00:01:25.150 --> 00:01:26.138
+00:01:27.150 --> 00:01:28.138
 Four layers.
 
 24
-00:01:26.138 --> 00:01:27.821
+00:01:28.138 --> 00:01:29.821
 Invite through a package,
 
 25
-00:01:27.821 --> 00:01:31.988
+00:01:29.821 --> 00:01:33.988
 so every guest arrives with an
 approver, a sponsor and an expiry.
 
 26
-00:01:31.988 --> 00:01:36.789
+00:01:33.988 --> 00:01:38.789
 When a governed guest loses their last
 assignment, they're blocked and, by default,
 
 27
-00:01:36.789 --> 00:01:41.448
+00:01:38.789 --> 00:01:43.448
 removed after thirty days; ungoverned
 guests stay in the tenant indefinitely,
 
 28
-00:01:41.448 --> 00:01:45.462
+00:01:43.448 --> 00:01:47.462
 so the program marks existing guests
 with assignments as governed.
 
 29
-00:01:45.462 --> 00:01:47.813
+00:01:47.462 --> 00:01:49.813
 Sponsors review guests quarterly.
 
 30
-00:01:47.813 --> 00:01:50.597
+00:01:49.813 --> 00:01:52.597
 And guest lifecycle
 policies, still in preview,
 
 31
-00:01:50.597 --> 00:01:53.525
+00:01:52.597 --> 00:01:55.525
 will be adopted when
 they're generally available.
 
 32
-00:01:53.525 --> 00:01:58.488
+00:01:55.525 --> 00:02:00.488
 All of this is licensed by Entra ID
 Governance, so plan it for the whole workforce.
 
 33
-00:01:58.488 --> 00:02:01.508
+00:02:00.488 --> 00:02:03.508
 Partial licensing produces
 a program that governs
 
 34
-00:02:01.508 --> 00:02:04.100
+00:02:03.508 --> 00:02:06.100
 some people and leaves
 the rest ungoverned.

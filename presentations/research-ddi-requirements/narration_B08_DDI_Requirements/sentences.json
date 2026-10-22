@@ -59,51 +59,51 @@
   ],
   [
    9.425,
-   18.913,
-   "Book 08 counts six jobs D N S now does: publishing private endpoint addresses, selecting SaaS front doors, enforcing security policy, anchoring certificate revocation checks, and carrying the service identity and application surface that Zero Trust policy is written against."
+   20.625,
+   "The Federal Modernization Workbook's Book 08 counts six jobs D N S now does: publishing private endpoint addresses, selecting SaaS front doors, enforcing security policy, anchoring certificate revocation checks, and carrying the service identity and application surface that Zero Trust policy is written against."
   ],
   [
-   28.337,
+   30.05,
    8.65,
    "nist's 2026 D N S deployment guide puts it plainly: D N S has become more than a service; it's a security control."
   ],
   [
-   36.987,
+   38.7,
    13.825,
    "Yet most agencies run it across as many as five independent platforms: Active Directory D N S or an on-premises grid, Route 53, Azure D N S, Google Cloud D N S and VMware NSX."
   ],
   [
-   50.812,
+   52.525,
    1.9,
    "None shares state with the others."
   ],
   [
-   52.712,
+   54.425,
    12.137,
    "The result is split-brain D N S, the same name giving different answers depending on where the query starts, and it fails quietly, as certificate errors and access denials rather than D N S errors."
   ],
   [
-   64.85,
+   66.562,
    4.463,
    "And the forwarding rules that join the platforms usually belong to no team at all."
   ],
   [
-   69.312,
+   71.025,
    4.112,
    "eye-pam and DHCP are the address half of the same problem."
   ],
   [
-   73.425,
+   75.138,
    7.925,
    "eye-pam is the record of who owns which block, and DHCP lease data is how an address becomes a device in the asset inventory."
   ],
   [
-   81.35,
+   83.062,
    3.763,
    "The book's answer is one authoritative D D I policy plane."
   ],
   [
-   85.112,
+   86.825,
    5.787,
    "That's an architectural requirement, not a product, and it's the yardstick for everything that follows."
   ]
@@ -208,66 +208,66 @@
   ],
   [
    16.712,
-   14.162,
-   "Book 08 calls this overlay management, not replacement: Route 53 still serves Route 53 zones, but the policy plane holds each rule once and pushes it everywhere, including to branch resolvers."
+   16.15,
+   "The Federal Modernization Workbook's Book 08 calls this overlay management, not replacement: Route 53 still serves Route 53 zones, but the policy plane holds each rule once and pushes it everywhere, including to branch resolvers."
   ],
   [
-   30.875,
+   32.862,
    7.088,
    "Underneath, SC-22 asks for fault-tolerant name service with internal and external roles separated."
   ],
   [
-   37.962,
+   39.95,
    6.4,
    "When you evaluate products, ask whether each cloud integration writes to the cloud or only reads from it."
   ],
   [
-   44.362,
+   46.35,
    1.7,
    "The book gives examples."
   ],
   [
-   46.062,
+   48.05,
    6.963,
    "One product's cloud discovery imports Route 53, Azure and Google zones but can't export changes back."
   ],
   [
-   53.025,
+   55.013,
    6.475,
    "Another's Azure D N S sync handles only simple-routing records and leaves NS records read-only."
   ],
   [
-   59.5,
+   61.487,
    2.625,
    "Each decides how a change reaches the cloud."
   ],
   [
-   62.125,
+   64.112,
    2.987,
    "Second, DNSSEC with central key custody."
   ],
   [
-   65.112,
+   67.1,
    11.45,
    "The book's position is to sign external zones and dot-gov delegations always, validate on every agency resolver, and sign internal zones only where the authorization requires it."
   ],
   [
-   76.562,
+   78.55,
    9.15,
    "Rollover should be automated and audited in one place, and nist recommends a hardware security module for important keys, usually the key-signing key."
   ],
   [
-   85.713,
+   87.7,
    8.75,
    "The clouds don't fill the gap: Route 53 and Azure D N S sign public zones only, and the default Azure resolver doesn't validate."
   ],
   [
-   94.463,
+   96.45,
    1.438,
    "And check the defaults."
   ],
   [
-   95.9,
+   97.888,
    10.037,
    "Windows Server's default zone-signing key is 1,024-bit RSA, below nist's floor, and NIOS defaults to RSA with SHA-1."
   ]
@@ -300,51 +300,51 @@
   ],
   [
    36.362,
-   5.425,
-   "Book 08's Decision 2 is that the agency resolver is always the first hop."
+   7.513,
+   "The Federal Modernization Workbook's Book 08's Decision 2 is that the agency resolver is always the first hop."
   ],
   [
-   41.788,
+   43.875,
    10.475,
    "If the agency also uses a sassy provider's D N S service, that service is a forwarding target of the agency resolver, never the place the branch edge redirects to."
   ],
   [
-   52.263,
+   54.35,
    7.662,
    "Every component present, in the wrong order, quietly removes the agency's own policy, validation and logging."
   ],
   [
-   59.925,
+   62.013,
    2.65,
    "Encrypted D N S completes it."
   ],
   [
-   62.575,
+   64.662,
    11.375,
    "M twenty-two oh-nine requires encrypted D N S wherever technically supported, with endpoints explicitly configured to agency-designated resolvers rather than ones they discover."
   ],
   [
-   73.95,
+   76.037,
    7.475,
    "So the platform must terminate D N S over HTTPS or TLS on its resolvers and use it upstream."
   ],
   [
-   81.425,
+   83.513,
    9.338,
    "And clients mustn't route around it: tick three point oh includes filtering that blocks unauthorized D N S over HTTPS resolvers."
   ],
   [
-   90.763,
+   92.85,
    1.8,
    "One product detail to check."
   ],
   [
-   92.562,
+   94.65,
    5.138,
    "Endpoint D N S agents commonly listen on the device's loopback address."
   ],
   [
-   97.7,
+   99.787,
    7.925,
    "They protect a roaming laptop, but an SD-WAN edge can't redirect to them, so they don't replace a network-addressable branch resolver."
   ]
@@ -429,66 +429,66 @@
   ],
   [
    1.488,
-   5.388,
-   "No rule requires an API, but Book 08's operating model depends on one."
+   7.375,
+   "No rule requires an API, but the Federal Modernization Workbook's Book 08's operating model depends on one."
   ],
   [
-   6.875,
+   8.863,
    17.512,
    "Every object, addresses, DHCP, D N S configuration and D N S data, should be reachable through a documented API, so infrastructure as code, ITSM workflows, certificate automation and pipelines all go through the same authority and the same audit trail."
   ],
   [
-   24.387,
+   26.375,
    8.475,
    "Automation runs as non-interactive service accounts, held to the same roles and scopes as people and unable to log in to the console."
   ],
   [
-   32.862,
+   34.85,
    8.938,
    "Expect supported Terraform and Ansible, ITSM actions that reserve an address or register a record, and a path for existing scripts."
   ],
   [
-   41.8,
+   43.788,
    10.137,
    "Check how the API authenticates; NIOS, for example, added OAuth 2.0 and OpenID Connect for its API in release 9.1."
   ],
   [
-   51.938,
+   53.925,
    3.312,
    "Seventh, logging to the sim, sized for the load."
   ],
   [
-   55.25,
+   57.237,
    13.488,
    "The requirement here is M-26-14's retention: logs searchable for six months and retrievable for a year, with synchronized timestamps, available to the agency's security operations center."
   ],
   [
-   68.737,
+   70.725,
    6.013,
    "The name layer contributes query logs, lease history, policy hits and the change audit trail."
   ],
   [
-   74.75,
+   76.737,
    2.413,
    "Capacity is where designs fail."
   ],
   [
-   77.162,
+   79.15,
    8.037,
    "Microsoft measured about five percent degradation from full Windows D N S query logging at 100,000 queries a second."
   ],
   [
-   85.2,
+   87.188,
    10.0,
    "NIOS reporting appliances have daily ingest limits, and after five overruns in a rolling thirty days the reporting functions lock until support intervenes."
   ],
   [
-   95.2,
+   97.188,
    5.425,
    "And dnstap on NIOS drops records rather than buffering them when the receiver is down."
   ],
   [
-   100.625,
+   102.612,
    3.3,
    "Size for peak, and test with the sim unreachable."
   ]
@@ -690,66 +690,66 @@
   ],
   [
    8.988,
-   4.3,
-   "Book 08 says yes, if the platform supports a specific model."
+   6.4,
+   "The Federal Modernization Workbook's Book 08 says yes, if the platform supports a specific model."
   ],
   [
-   13.287,
+   15.387,
    2.487,
    "Corporate administrators see everything."
   ],
   [
-   15.775,
+   17.875,
    11.738,
    "Each division gets a scope limited to its own zones, address blocks and DHCP scopes, with predefined manager, operator and auditor roles, and automation accounts held to the same scope."
   ],
   [
-   27.512,
+   29.613,
    5.138,
    "As an example, in Infoblox NIOS every resource is denied by default."
   ],
   [
-   32.65,
+   34.75,
    17.875,
    "A division's administrator group gets read-write on its own address block, which cascades to its networks, ranges and reservations; read-write on its own zones, with read-only on the parent view; and D N S and DHCP permissions, including service restarts, on its own servers only."
   ],
   [
-   50.525,
+   52.625,
    12.088,
    "One setting matters: it makes address and pointer records need rights on both the zone and the address block, so a division with access to a shared zone can't point a name into another division's space."
   ],
   [
-   62.612,
+   64.713,
    7.588,
    "And only central superusers create groups, roles and tag definitions, so a division can't widen its own rights."
   ],
   [
-   70.2,
+   72.3,
    2.325,
    "Administrators must prove who they are."
   ],
   [
-   72.525,
+   74.625,
    10.062,
    "Expect piv and CAC certificate login checked against OCSP, and sam-ul single sign-on where the identity provider's group decides the user's division."
   ],
   [
-   82.588,
+   84.688,
    7.05,
    "In NIOS, group names must match exactly and the first match wins, so order the mappings deliberately."
   ],
   [
-   89.638,
+   91.737,
    2.413,
    "Keep a local break-glass administrator."
   ],
   [
-   92.05,
+   94.15,
    3.312,
    "And check automation scoping in the product you're evaluating."
   ],
   [
-   95.362,
+   97.463,
    6.688,
    "In Universal D D I, service users can't sign in to a divisional access view with API keys."
   ]
@@ -1085,41 +1085,41 @@
   ],
   [
    1.35,
-   6.175,
-   "Book 08's Chapter 09 gives one decider per row, and separates deciding from doing."
+   8.15,
+   "The Federal Modernization Workbook's Book 08's Chapter 09 gives one decider per row, and separates deciding from doing."
   ],
   [
-   7.525,
+   9.5,
    12.8,
    "The sponsor and C I O decide the platform and its deployment model, with the D N S/D D I team doing the evaluation and the see-so, the authorizing official and the operating teams consulted."
   ],
   [
-   20.325,
+   22.3,
    4.85,
    "They also decide how divisions are scoped, and break ties over the resolver path."
   ],
   [
-   25.175,
+   27.15,
    16.675,
    "The authorizing official decides whether a cloud-delivered management plane is authorized for the agency's use, and accepts the standing exceptions: an internal zone that loses DNSSEC in its new home, or an encrypted D N S exception that has outlived the agency's limit."
   ],
   [
-   41.85,
+   43.825,
    13.7,
    "The see-so and I S S O set the control requirements: DNSSEC signing of public zones and validation on agency resolvers, encrypted D N S policy, and Protective D N S forwarding and query logging."
   ],
   [
-   55.55,
+   57.525,
    18.087,
    "The D N S/D D I team decides the namespace and the delegation of zones to divisions and applications, owns the address plan and its top-level blocks, and approves high-impact changes: zones, NS and DS records, forwarding rules, wildcards and response policy."
   ],
   [
-   73.638,
+   75.612,
    10.662,
    "Standard record changes inside a division's delegated namespace are pre-approved, so the division or application owner does the work through a scoped account, without a change board."
   ],
   [
-   84.3,
+   86.275,
    13.213,
    "That team holds the most powerful roles in the design, so the book scopes its automation, puts a second approver in front of zone, delegation and forwarding changes, and keeps its privileged roles eligible rather than standing."
   ]
@@ -1132,61 +1132,61 @@
   ],
   [
    2.862,
-   16.1,
-   "First, the sponsor and C I O authorize one authoritative D D I policy plane, and the D N S/D D I team settles Book 08's five configuration decisions within 90 days and reports the residual risk to the authorizing official."
+   18.163,
+   "First, the sponsor and C I O authorize one authoritative D D I policy plane, and the D N S/D D I team settles the Federal Modernization Workbook's Book 08's five configuration decisions within 90 days and reports the residual risk to the authorizing official."
   ],
   [
-   18.962,
+   21.025,
    1.363,
    "That's the book's ask."
   ],
   [
-   20.325,
+   22.387,
    14.537,
    "Second, write the requirement as capabilities, each mapped to the rule behind it: signing and validation, encrypted D N S, Protective D N S forwarding, discovery and inventory, IPv6, logging retention."
   ],
   [
-   34.862,
+   36.925,
    3.938,
    "No rule names a product, so the solicitation shouldn't either."
   ],
   [
-   38.8,
+   40.862,
    18.062,
    "Third, request the same evidence pack from every candidate: the fed-ramp listing and exactly what its scope covers, the STIG, an active FIPS 140-3 certificate, Common Criteria status, the advisory response commitment, and a three-to-five-year cost on the same assumptions."
   ],
   [
-   56.862,
+   58.925,
    2.138,
    "Record every gap with an owner."
   ],
   [
-   59.0,
+   61.062,
    12.15,
    "Fourth, choose a delegation pattern for each division, write down what stays central, and pilot it with one division, ideally one with overlapping address space, because that's where the design gets tested."
   ],
   [
-   71.15,
+   73.213,
    8.7,
    "Fifth, the see-so sizes logging to M-26-14's retention, and tests it at peak query rates and with the sim down."
   ],
   [
-   79.85,
+   81.912,
    1.913,
    "The next step needs no award."
   ],
   [
-   81.763,
+   83.825,
    9.075,
    "List every D N S, DHCP and eye-pam requirement your systems inherit, the capability each needs, and the evidence that would prove it."
   ],
   [
-   90.838,
+   92.9,
    4.5,
    "Book 08 has the detail, with every claim footnoted."
   ],
   [
-   95.338,
+   97.4,
    0.762,
    "Thank you."
   ]

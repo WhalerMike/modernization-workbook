@@ -44,78 +44,83 @@ forwarding queries to its resolver.
 Order matters more than presence.
 
 10
-00:00:36.363 --> 00:00:41.787
-Book 08's Decision 2 is that the agency
-resolver is always the first hop.
+00:00:36.363 --> 00:00:40.285
+The Federal Modernization
+Workbook's Book 08's Decision
 
 11
-00:00:41.787 --> 00:00:47.267
+00:00:40.285 --> 00:00:43.875
+2 is that the agency resolver
+is always the first hop.
+
+12
+00:00:43.875 --> 00:00:49.354
 If the agency also uses a SASE provider's
 DNS service, that service is a forwarding
 
-12
-00:00:47.267 --> 00:00:52.263
+13
+00:00:49.354 --> 00:00:54.350
 target of the agency resolver, never
 the place the branch edge redirects to.
 
-13
-00:00:52.263 --> 00:00:55.362
+14
+00:00:54.350 --> 00:00:57.449
 Every component present,
 in the wrong order,
 
-14
-00:00:55.362 --> 00:00:59.925
+15
+00:00:57.449 --> 00:01:02.012
 quietly removes the agency's own
 policy, validation and logging.
 
-15
-00:00:59.925 --> 00:01:02.575
+16
+00:01:02.012 --> 00:01:04.663
 Encrypted DNS completes it.
 
-16
-00:01:02.575 --> 00:01:08.414
+17
+00:01:04.663 --> 00:01:10.501
 M-22-09 requires encrypted DNS wherever
 technically supported, with endpoints
 
-17
-00:01:08.414 --> 00:01:13.950
+18
+00:01:10.501 --> 00:01:16.037
 explicitly configured to agency-designated
 resolvers rather than ones they discover.
 
-18
-00:01:13.950 --> 00:01:17.841
+19
+00:01:16.037 --> 00:01:19.928
 So the platform must
 terminate DNS over HTTPS
 
-19
-00:01:17.841 --> 00:01:21.425
+20
+00:01:19.928 --> 00:01:23.512
 or TLS on its resolvers
 and use it upstream.
 
-20
-00:01:21.425 --> 00:01:24.004
+21
+00:01:23.512 --> 00:01:26.092
 And clients mustn't route around it:
 
-21
-00:01:24.004 --> 00:01:30.763
+22
+00:01:26.092 --> 00:01:32.851
 TIC 3.0 includes filtering that blocks
 unauthorized DNS over HTTPS resolvers.
 
-22
-00:01:30.763 --> 00:01:32.563
+23
+00:01:32.851 --> 00:01:34.650
 One product detail to check.
 
-23
-00:01:32.563 --> 00:01:37.700
+24
+00:01:34.650 --> 00:01:39.788
 Endpoint DNS agents commonly listen
 on the device's loopback address.
 
-24
-00:01:37.700 --> 00:01:41.922
+25
+00:01:39.788 --> 00:01:44.009
 They protect a roaming laptop, but an
 SD-WAN edge can't redirect to them,
 
-25
-00:01:41.922 --> 00:01:45.700
+26
+00:01:44.009 --> 00:01:47.780
 so they don't replace a
 network-addressable branch resolver.

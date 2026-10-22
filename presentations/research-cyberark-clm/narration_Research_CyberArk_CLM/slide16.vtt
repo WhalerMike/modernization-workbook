@@ -1,0 +1,137 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:00.937
+Discovery.
+
+2
+00:00:00.937 --> 00:00:05.002
+The Federal Modernization
+Workbook's Book 07 Chapter 02
+
+3
+00:00:05.002 --> 00:00:09.238
+points out that a CA database
+shows only what that CA issued.
+
+4
+00:00:09.238 --> 00:00:14.116
+Certificates from public CAs, appliances
+or self-signing don't appear there,
+
+5
+00:00:14.116 --> 00:00:16.826
+and finding them takes network discovery.
+
+6
+00:00:16.826 --> 00:00:18.775
+The platform has five ways in.
+
+7
+00:00:18.775 --> 00:00:24.313
+Network Discovery scans IPv4 ranges
+and ports for TLS listeners,
+
+8
+00:00:24.313 --> 00:00:28.825
+and can instantly check a
+single IPv4 or IPv6 address.
+
+9
+00:00:28.825 --> 00:00:33.144
+CA Import pulls what a Microsoft
+CA or Amazon Private CA issued,
+
+10
+00:00:33.144 --> 00:00:38.625
+template by template, optionally including
+expired and revoked certificates.
+
+11
+00:00:38.625 --> 00:00:43.800
+Onboard Discovery is agentless and brings
+the application configuration with it.
+
+12
+00:00:43.800 --> 00:00:48.020
+And the Discovery Import API takes
+results from a collector you write,
+
+13
+00:00:48.020 --> 00:00:49.912
+such as the Graph job from Part 2.
+
+14
+00:00:49.912 --> 00:00:52.638
+Reconciliation decides
+whether a discovered
+
+15
+00:00:52.638 --> 00:00:55.363
+certificate is one the
+platform already knows.
+
+16
+00:00:55.363 --> 00:01:00.337
+It matches on subject, key usage, extended
+key usage and the DNS names in the
+
+17
+00:01:00.337 --> 00:01:05.475
+subject alternative name, and the newer
+certificate becomes the active one.
+
+18
+00:01:05.475 --> 00:01:08.875
+It doesn't apply to CA
+Import or Onboard Discovery.
+
+19
+00:01:08.875 --> 00:01:13.707
+The program's rule, from Book 07
+Chapter 08: every certificate found
+
+20
+00:01:13.707 --> 00:01:18.187
+on a listener with no issuance
+record and no owner is a finding.
+
+21
+00:01:18.187 --> 00:01:22.417
+As design guidance for Wave 1,
+run read-only network scans of
+
+22
+00:01:22.417 --> 00:01:27.250
+server and appliance ranges, and
+import the in-scope AD CS templates.
+
+23
+00:01:27.250 --> 00:01:30.417
+That import needs the
+privileged CA account,
+
+24
+00:01:30.417 --> 00:01:33.412
+so create it under the
+ESC7 controls first.
+
+25
+00:01:33.412 --> 00:01:37.899
+Sources: CyberArk 26.1
+Certificate discovery overview;
+
+26
+00:01:37.899 --> 00:01:44.532
+Configuring Network Discovery; Certificate
+reconciliation; Onboard Discovery;
+
+27
+00:01:44.532 --> 00:01:51.067
+Agent discovery; Importing certificates
+from a CA; WebSDK POST Discovery/Import;
+
+28
+00:01:51.067 --> 00:01:55.800
+Book 07, Chapter 02 and Chapter
+08; research brief section 9.

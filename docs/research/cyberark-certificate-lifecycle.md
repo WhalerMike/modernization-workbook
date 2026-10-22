@@ -1,0 +1,47 @@
+---
+title: "Certificate Lifecycle on CyberArk Certificate Manager"
+subtitle: "An implementation guide: building Book 07's certificate lifecycle on CyberArk Certificate Manager, Self-Hosted, from platform build to the six migration waves"
+description: "Research under review: a narrated implementation guide for running Book 07's certificate lifecycle management on CyberArk Certificate Manager, Self-Hosted: platform build, FIPS posture, issuer integrations, Intune coexistence, discovery and ownership, enrollment automation, and the migration waves."
+research-status: in review
+research-type: implementation guide
+research-book: "Book 07"
+date-modified: 2026-10-22
+---
+
+# Certificate Lifecycle on CyberArk Certificate Manager {.unnumbered}
+
+[Book 07 — PKI & Certificates](../books/b07-pki/index.md) sets the certificate architecture: Microsoft Cloud PKI through Intune for managed devices, a hardened AD CS retained for servers and domain controllers, the Federal PKI for PIV, public CAs for internet-facing names, and one certificate lifecycle management (CLM) platform as the system of record for everything Intune and the PIV system don't manage. This implementation guide builds that CLM layer on CyberArk Certificate Manager, the program's choice because CyberArk is the agency's existing machine-identity vendor and the program doesn't add a second CLM vendor.
+
+## Watch or download
+
+| Edition | File |
+|---|---|
+| Deck | [Research_CyberArk_CLM.pptx](../../presentations/research-cyberark-clm/Research_CyberArk_CLM.pptx) |
+| Narrated, self-running (about 44 minutes, captions) | [Research_CyberArk_CLM_Narrated.pptx](../../presentations/research-cyberark-clm/Research_CyberArk_CLM_Narrated.pptx) |
+| Narration script and caption track | [Script](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/research-cyberark-clm/Research_CyberArk_CLM_Narration_Script.md) · [Captions](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/research-cyberark-clm/Research_CyberArk_CLM_Narrated.vtt) |
+
+## What it covers
+
+| Part | Content |
+|---|---|
+| Orientation | Book 07's issuer map and the CLM's role; prerequisites and decisions: the self-hosted edition (no FedRAMP package exists for the SaaS edition), version 26.1, Windows Server and SQL Server requirements |
+| 1. Build the platform | Architecture and high availability; FIPS posture, and what can't be claimed; console sign-in through Entra single sign-on with certificate-based authentication (design guidance); hardening and least-privilege service accounts; backup and recovery of the database and keys |
+| 2. Connect the issuers | The AD CS driver, its permissions and scoping the CA account under ESC7; public and cloud CA drivers in 26.1 (the Entrust driver is gone); Intune coexistence: Intune keeps device certificates, and the CLM's own SCEP-CA option is documented but rejected as a second issuer |
+| 3. Discover, own and automate | Discovery scans and CA import; ownership through policy folders tied to identity and CMDB owners; enrollment automation (ACME, EST, SCEP, REST, agents); Kubernetes through cert-manager inside the boundary; ServiceNow (only a third-party Store app) and SIEM |
+| 4. Migrate and operate | The build mapped to Book 07's six waves (design guidance); renewal as public TLS lifetimes shrink; monitoring and drift; decommissioning AD CS with the CLM inventory; decisions, vendor asks and next steps |
+
+The backup section holds an assessor's evidence checklist, a risks register, what couldn't be verified or sits behind a login, and the full source list.
+
+## What the research changed in Book 07
+
+The research behind this guide corrected three points in Book 07, now updated:
+
+- **ACME and FIPS** ([Chapter 08](../books/b07-pki/08-lifecycle-monitoring-and-decommissioning.md)): CyberArk's 26.1 installation guide says FIPS mode isn't supported for its ACME service at all, not only for the win-acme client, so the ACME service runs on dedicated servers outside the FIPS-mode server set.
+- **Cloud PKI inventory** ([Chapter 04](../books/b07-pki/04-the-target-pki.md)): CyberArk documents no Cloud PKI import; reporting those certificates in the CLM needs a custom job from a Microsoft Graph beta report.
+- **Scoping the CLM's CA account** ([Chapter 05](../books/b07-pki/05-who-owns-the-certificate-estate.md)): Microsoft publishes no Windows Server 2025 procedure for certificate-manager restrictions, so the scoping rests on template permissions plus tested allowed and denied requests.
+
+## Status and review
+
+**In review.** Every claim was checked against CyberArk's 26.1 documentation, Microsoft Learn, AWS documentation, the ServiceNow Store, the NIST CMVP list and FedRAMP Marketplace data on October 22, 2026. Open items, including Windows Server 2025 CA support in the vendor's integrations table, Azure Government support for the Key Vault driver, which cryptographic module the product uses, and console sign-in with PIV, are listed as vendor asks in the deck. To move this guide to **Proved**, build it in a lab or pilot boundary and record the evidence on this page. Comments and corrections are welcome as [issues on GitHub](https://github.com/WhalerMike/modernization-workbook/issues).
+
+Related: [Book 07 — PKI & Certificates](../books/b07-pki/index.md), the [Book 07 technical deep dive](../presentations/index.md#technical-b07), and the research explainer [Who Names the Device After AD?](device-naming-after-ad.md), which covers the DNS names certificates carry.

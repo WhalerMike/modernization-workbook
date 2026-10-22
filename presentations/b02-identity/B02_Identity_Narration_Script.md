@@ -114,4 +114,4 @@ And agree what done means: every control backed by evidence an assessor can read
 
 Identity matters because it is now where every access decision is made. Getting it right once, while the platform is being rebuilt anyway, is far cheaper than rebuilding the same gaps twice.
 
-Book 02 has the full argument and the runbooks, with every external claim footnoted. Book 03, HR-Driven Identity, picks up where the facts in the directory should come from. Thank you.
+The Federal Modernization Workbook's Book 02 has the full argument and the runbooks, with every external claim footnoted. Book 03, HR-Driven Identity, picks up where the facts in the directory should come from. Thank you.

@@ -6,154 +6,154 @@ The library is one policy
 set, numbered once.
 
 2
-00:00:03.488 --> 00:00:08.133
-Policies CA001 to CA017 are the
-baseline that Book 02 builds
+00:00:03.488 --> 00:00:09.264
+Policies CA001 to CA017 are the baseline
+that the Federal Modernization Workbook's
 
 3
-00:00:08.133 --> 00:00:12.687
-during the migration, and they
-keep their identifiers here.
+00:00:09.264 --> 00:00:14.299
+Book 02 builds during the migration,
+and they keep their identifiers here.
 
 4
-00:00:12.687 --> 00:00:17.013
+00:00:14.299 --> 00:00:18.625
 CA002 stays retired, so
 that's sixteen policies.
 
 5
-00:00:17.013 --> 00:00:23.349
+00:00:18.625 --> 00:00:24.962
 Book 04 adds CA018 to CA038, for risk,
 privileged workstations, segmented
 
 6
-00:00:23.349 --> 00:00:30.637
+00:00:24.962 --> 00:00:32.250
 applications and workload identities, plus
 CA090, the permanent report-only probe.
 
 7
-00:00:30.637 --> 00:00:38.662
+00:00:32.250 --> 00:00:40.275
 Numbers 001 to 089 are for the library and
 090 to 099 for report-only instruments.
 
 8
-00:00:38.662 --> 00:00:43.501
+00:00:40.275 --> 00:00:45.113
 Numbers are labels, not order, and
 a retired number is never reused.
 
 9
-00:00:43.501 --> 00:00:46.665
+00:00:45.113 --> 00:00:48.277
 The earlier library used a
 different numbering scheme,
 
 10
-00:00:46.665 --> 00:00:50.175
+00:00:48.277 --> 00:00:51.787
 and the chapter maps every one of
 its policies to where it went.
 
 11
-00:00:50.175 --> 00:00:53.097
+00:00:51.787 --> 00:00:54.710
 Every name follows one pattern: number,
 
 12
-00:00:53.097 --> 00:00:56.750
+00:00:54.710 --> 00:00:58.363
 population, resource or
 condition, then control.
 
 13
-00:00:56.750 --> 00:00:59.562
+00:00:58.363 --> 00:01:01.174
 You can read a policy on
 a call without opening it.
 
 14
-00:00:59.562 --> 00:01:03.181
+00:01:01.174 --> 00:01:04.794
 On the right are the prerequisites,
 and missing ones are the most
 
 15
-00:01:03.181 --> 00:01:06.937
+00:01:04.794 --> 00:01:08.550
 common reason a report-only policy
 shows failures that aren't real.
 
 16
-00:01:06.937 --> 00:01:08.763
+00:01:08.550 --> 00:01:10.375
 The emergency access group.
 
 17
-00:01:08.763 --> 00:01:11.953
+00:01:10.375 --> 00:01:13.565
 Persona groups, the two
 big ones dynamic from
 
 18
-00:01:11.953 --> 00:01:15.401
+00:01:13.565 --> 00:01:17.013
 extension attributes in
 Book 03's attribute map.
 
 19
-00:01:15.401 --> 00:01:18.100
+00:01:17.013 --> 00:01:19.713
 Access groups for restricted populations.
 
 20
-00:01:18.100 --> 00:01:19.750
+00:01:19.713 --> 00:01:21.363
 Three named locations.
 
 21
-00:01:19.750 --> 00:01:23.592
+00:01:21.363 --> 00:01:25.204
 A custom authentication strength
 that accepts FIDO2 keys from
 
 22
-00:01:23.592 --> 00:01:27.225
+00:01:25.204 --> 00:01:28.837
 an approved AAGUID list, or
 certificate-based authentication.
 
 23
-00:01:27.225 --> 00:01:31.744
+00:01:28.837 --> 00:01:33.357
 It leaves out Windows Hello for Business
 on purpose: for privileged accounts,
 
 24
-00:01:31.744 --> 00:01:36.475
+00:01:33.357 --> 00:01:38.088
 a credential held in the device gaining
 access doesn't count as a separate device.
 
 25
-00:01:36.475 --> 00:01:39.600
+00:01:38.088 --> 00:01:41.213
 A device label in
 extension attribute twelve.
 
 26
-00:01:39.600 --> 00:01:44.175
+00:01:41.213 --> 00:01:45.788
 And a custom security attribute that
 tags each application's environment.
 
 27
-00:01:44.175 --> 00:01:46.200
+00:01:45.788 --> 00:01:47.812
 Four conventions apply everywhere.
 
 28
-00:01:46.200 --> 00:01:49.300
+00:01:47.812 --> 00:01:50.912
 The emergency access
 exclusion is implicit.
 
 29
-00:01:49.300 --> 00:01:53.631
+00:01:50.912 --> 00:01:55.243
 Every policy needs Entra ID
 P1; risk policies need P2;
 
 30
-00:01:53.631 --> 00:01:58.163
+00:01:55.243 --> 00:01:59.775
 workload identity policies
 need Workload ID Premium.
 
 31
-00:01:58.163 --> 00:02:00.850
+00:01:59.775 --> 00:02:02.463
 Every policy is created in report-only.
 
 32
-00:02:00.850 --> 00:02:04.611
+00:02:02.463 --> 00:02:06.224
 And none uses the approved
 client app grant,
 
 33
-00:02:04.611 --> 00:02:07.920
+00:02:06.224 --> 00:02:09.530
 which became read-only on June 30, 2026.

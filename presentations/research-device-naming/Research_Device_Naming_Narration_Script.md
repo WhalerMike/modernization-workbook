@@ -8,7 +8,7 @@ This explainer walks through both. It's built for someone still learning, so eve
 
 This is research under review. Every fact comes from sources opened on October twenty-second, 2026. Where I drew a conclusion that no source states directly, I'll call it an inference. And recommendations are labeled program design guidance, not vendor requirements.
 
-Sources: Research brief, After Active Directory: Who Names Devices, Who Registers Their DNS Records, and What an Agency Must Do (verified Oct. 22, 2026); Microsoft Learn, Apple, freedesktop.org, cloud-init, NetworkManager, FreeIPA, AWS and Infoblox NIOS 9.1 documentation; IETF RFCs; Book 05 Ch04; Book 08 Ch04, Ch07, Ch10.
+Sources: Research brief, After Active Directory: Who Names Devices, Who Registers Their DNS Records, and What an Agency Must Do (verified Oct. 22, 2026); Microsoft Learn, Apple, freedesktop.org, cloud-init, NetworkManager, FreeIPA, AWS and Infoblox NIOS 9.1 documentation; IETF RFCs; the Federal Modernization Workbook's Book 05 Ch04; Book 08 Ch04, Ch07, Ch10.
 
 ## Slide 2 — Two jobs Active Directory did at once
 
@@ -22,7 +22,7 @@ In AD, the domain's DNS zone lives in the directory, on domain controllers, and 
 
 When AD retires, both jobs need a new owner, and the second one is harder.
 
-Sources: Book 08, Chapter 04, What AD-integrated DNS actually is, and Secure dynamic updates and the DHCP server; Microsoft Learn, Dynamic update (Windows Server DNS) [S26]; Policy CSP ADMX_DnsClient [S27].
+Sources: the Federal Modernization Workbook's Book 08, Chapter 04, What AD-integrated DNS actually is, and Secure dynamic updates and the DHCP server; Microsoft Learn, Dynamic update (Windows Server DNS) [S26]; Policy CSP ADMX_DnsClient [S27].
 
 ## Slide 3 — Who names the device now
 
@@ -30,7 +30,7 @@ So who names the device now? The short answer: whatever provisions it, at build 
 
 For Windows, that's usually Autopilot, which sets up a new PC out of the box. Classic Autopilot with Microsoft Entra join, which joins the PC to Microsoft's cloud directory instead of AD, has a name template: fifteen characters or fewer, with macros for the serial number or random digits. Hybrid join, which joins both AD and Entra, gets only a prefix, and the rest is random.
 
-The newer Autopilot device preparation now has a name template too, up to sixty-three characters. The caveat matters: it works only for devices with device association, and has no effect on devices onboarded with corporate identifiers only. As an inference, Book 05's description of device preparation needs a review against this.
+The newer Autopilot device preparation now has a name template too, up to sixty-three characters. The caveat matters: it works only for devices with device association, and has no effect on devices onboarded with corporate identifiers only. As an inference, the Federal Modernization Workbook's Book 05's description of device preparation needs a review against this.
 
 After enrollment, Intune's Rename action can rename corporate-owned Windows PCs and Macs, but not hybrid-joined devices, which need domain methods. Macs have no enrollment-time name template that I found; you rename after enrollment.
 
@@ -62,7 +62,7 @@ Two safeguards. Beside each name, the server writes an ownership record, so only
 
 On Windows DHCP, always updating both records makes the client skip its own attempt.
 
-Sources: RFC 4701 DHCID, RFC 4702 DHCPv4 Client FQDN option, RFC 4703 FQDN conflict resolution, RFC 4704 DHCPv6 Client FQDN option [S31–S34]; Microsoft Learn Dynamic update [S26]; Infoblox NIOS 9.1: Understanding DDNS Updates from DHCP, About the Client FQDN Option, Sending Updates for Zones on an External Name Server, Configuring DNS Servers for DDNS, Configuring DDNS Features, Accepting DDNS Updates from DHCP Clients [S40–S44, S47]; Book 08 Ch04, Secure dynamic updates and the DHCP server.
+Sources: RFC 4701 DHCID, RFC 4702 DHCPv4 Client FQDN option, RFC 4703 FQDN conflict resolution, RFC 4704 DHCPv6 Client FQDN option [S31–S34]; Microsoft Learn Dynamic update [S26]; Infoblox NIOS 9.1: Understanding DDNS Updates from DHCP, About the Client FQDN Option, Sending Updates for Zones on an External Name Server, Configuring DNS Servers for DDNS, Configuring DDNS Features, Accepting DDNS Updates from DHCP Clients [S40–S44, S47]; the Federal Modernization Workbook's Book 08 Ch04, Secure dynamic updates and the DHCP server.
 
 ## Slide 6 — The migration trap: who owns the existing names
 
@@ -86,7 +86,7 @@ The consequence, also an inference: for Entra-joined endpoints, treat AAAA recor
 
 Two cloud notes: in AWS, only the instance resource name returns AAAA records, and Azure's DNS Private Resolver doesn't support IPv6-enabled subnets. And I couldn't verify whether Windows registers its temporary addresses.
 
-Sources: RFC 4862 IPv6 Stateless Address Autoconfiguration [S37]; RFC 8981 Temporary Address Extensions [S38]; RFC 4704 DHCPv6 Client FQDN option [S34]; Amazon EC2 instance hostname types [S21]; Book 08 Ch07 (Azure DNS Private Resolver platform constraints); research brief, Couldn't verify (Windows temporary IPv6 addresses).
+Sources: RFC 4862 IPv6 Stateless Address Autoconfiguration [S37]; RFC 8981 Temporary Address Extensions [S38]; RFC 4704 DHCPv6 Client FQDN option [S34]; Amazon EC2 instance hostname types [S21]; the Federal Modernization Workbook's Book 08 Ch07 (Azure DNS Private Resolver platform constraints); research brief, Couldn't verify (Windows temporary IPv6 addresses).
 
 ## Slide 8 — Servers and the cloud register differently
 
@@ -98,7 +98,7 @@ In Azure, private DNS autoregistration does the job, with limits: virtual machin
 
 In AWS, instances get AWS-made names. An AWS blog from 2016 says VPC DNS doesn't create records dynamically, and offers a sample event-driven pipeline. I found no built-in registration into your own Route 53 zones in AWS's docs.
 
-Sources: Microsoft Learn: DNS aging and scavenging [S30], azcmagent connect [S15], Rename Azure Arc-enabled servers [S16], VirtualMachineOSProfile.ComputerName [S17], Azure DNS private zones autoregistration [S20]; FreeIPA ipa-client-install [S14]; AWS: EC2 instance hostname types [S21], Working with private hosted zones [S22], AWS Compute Blog, Building a Dynamic DNS for Route 53 (2016) [S23]; Book 08 Ch07 and Ch10.
+Sources: Microsoft Learn: DNS aging and scavenging [S30], azcmagent connect [S15], Rename Azure Arc-enabled servers [S16], VirtualMachineOSProfile.ComputerName [S17], Azure DNS private zones autoregistration [S20]; FreeIPA ipa-client-install [S14]; AWS: EC2 instance hostname types [S21], Working with private hosted zones [S22], AWS Compute Blog, Building a Dynamic DNS for Route 53 (2016) [S23]; the Federal Modernization Workbook's Book 08 Ch07 and Ch10.
 
 ## Slide 9 — Remote and VPN clients: resolved, not registered
 
@@ -116,7 +116,7 @@ Sources: Microsoft Learn: Understand Microsoft Entra Private DNS and Troubleshoo
 
 If devices sign in with cloud tokens, why do names still matter? Four reasons.
 
-First, Kerberos islands. Microsoft says an Entra-joined device signing in to on-premises resources needs line-of-sight to domain controllers, which clients find through DNS service records. And Book 08 explains that if a name resolves to the wrong host, a perfectly valid ticket is presented to the wrong machine and rejected. 
+First, Kerberos islands. Microsoft says an Entra-joined device signing in to on-premises resources needs line-of-sight to domain controllers, which clients find through DNS service records. And the Federal Modernization Workbook's Book 08 explains that if a name resolves to the wrong host, a perfectly valid ticket is presented to the wrong machine and rejected. 
 
 Second, certificates. A certificate binds a name to a key. Intune's SCEP certificate profiles, the protocol Intune uses to request device certificates, offer a device-name variable, but the full domain name variable is only for Windows domain-joined devices. As an inference, after AD the certificate's DNS name has to be built from the device name plus a fixed agency suffix, and it only matches DNS if that same name is registered.
 
@@ -138,7 +138,7 @@ Linux gets its name from cloud-init or a static hostname, and DHCP registers it,
 
 On-premises servers with fixed addresses get static records. Azure VMs are named at create time and autoregistered, within the limits we saw. AWS instances get AWS names, and anything custom needs your own pipeline or IPAM integration. And printers and other devices that can't be managed get their names from a reservation or the device itself, with DHCP registering on their behalf.
 
-Sources: Research brief, Per-platform table, and the sources cited in each row: Autopilot and Rename [S1, S3–S5], Accounts CSP [S6], macOS ADE and Apple MDM [S7, S9], systemd, cloud-init, NetworkManager, FreeIPA [S10–S14], Arc and Azure [S15–S17, S19, S20], AWS [S21–S23], Dynamic update and ADMX_DnsClient [S26, S27], aging [S30], NIOS [S41, S42, S48]; Book 08 Ch04 and Ch10.
+Sources: Research brief, Per-platform table, and the sources cited in each row: Autopilot and Rename [S1, S3–S5], Accounts CSP [S6], macOS ADE and Apple MDM [S7, S9], systemd, cloud-init, NetworkManager, FreeIPA [S10–S14], Arc and Azure [S15–S17, S19, S20], AWS [S21–S23], Dynamic update and ADMX_DnsClient [S26, S27], aging [S30], NIOS [S41, S42, S48]; the Federal Modernization Workbook's Book 08 Ch04 and Ch10.
 
 ## Slide 12 — What the agency must do: before, cutover, after
 
@@ -150,13 +150,13 @@ At cutover: deliver DNS suffixes both ways, through DHCP options and router anno
 
 After: turn on scavenging only after a quiet period, with lease times matched to its timers. Monitor duplicates, mismatched records and devices with no record. Expect no AAAA records for SLAAC addresses. And build certificate names from the registered device name.
 
-Sources: Research brief, Agency checklist (steps 1–17, all PROGRAM DESIGN GUIDANCE) and the facts each step cites: [S1–S6, S10, S12, S14–S17, S19–S21, S23, S26, S27, S29, S30, S34–S39, S41, S43–S46, S48–S52, S54]; Book 08 Ch04 and Ch10; Book 12 Ch02; Book 15 Ch07; Book 07 Ch01.
+Sources: Research brief, Agency checklist (steps 1–17, all PROGRAM DESIGN GUIDANCE) and the facts each step cites: [S1–S6, S10, S12, S14–S17, S19–S21, S23, S26, S27, S29, S30, S34–S39, S41, S43–S46, S48–S52, S54]; the Federal Modernization Workbook's Book 08 Ch04 and Ch10; Book 12 Ch02; Book 15 Ch07; Book 07 Ch01.
 
 ## Slide 13 — Decisions, next steps and where this fits
 
 The decisions: which tool names each kind of device, and how long names may be. The DHCP server as the registrant for endpoints, and exactly which keys may update each zone. DHCID or TXT ownership records. And whether Entra-joined Windows PCs try to register at all.
 
-The next steps are the things I couldn't verify. Which Apple setting Intune's Mac rename actually sends, and how Macs handle DHCP names. Whether an Entra-joined device's display name follows an Intune rename. Book 05's description of device preparation, and its note on availability in the higher government clouds, both need a recheck. And ask any third-party VPN vendor whether its concentrator registers clients.
+The next steps are the things I couldn't verify. Which Apple setting Intune's Mac rename actually sends, and how Macs handle DHCP names. Whether an Entra-joined device's display name follows an Intune rename. The Federal Modernization Workbook's Book 05's description of device preparation, and its note on availability in the higher government clouds, both need a recheck. And ask any third-party VPN vendor whether its concentrator registers clients.
 
 Where does this fit? Book 05, Chapter 04 covers Intune-first onboarding and the naming convention. Book 08 covers the AD DNS departure in Chapter 04, cloud private DNS in Chapter 07, and the migration sequence in Chapter 10. And two research items sit beside this one: Trinzic Alone, or Trinzic Plus Cloud DDI, and Infoblox DDI for Federal Agencies.
 

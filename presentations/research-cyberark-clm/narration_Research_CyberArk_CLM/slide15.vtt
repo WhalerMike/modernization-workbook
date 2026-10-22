@@ -1,0 +1,53 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.213
+Part 3: discover, own and automate.
+
+2
+00:00:03.213 --> 00:00:08.550
+First, how the platform finds certificates:
+discovery scans and CA import.
+
+3
+00:00:08.550 --> 00:00:11.109
+Then how each certificate gets an owner,
+
+4
+00:00:11.109 --> 00:00:14.675
+through policy folders tied
+to identity and to the CMDB.
+
+5
+00:00:14.675 --> 00:00:18.284
+Then the enrollment protocols,
+where the third correction
+
+6
+00:00:18.284 --> 00:00:21.525
+to the Federal Modernization
+Workbook's Book 07 sits.
+
+7
+00:00:21.525 --> 00:00:24.723
+And finally three
+integrations: Kubernetes,
+
+8
+00:00:24.723 --> 00:00:28.525
+ServiceNow and the SIEM, each
+with a boundary question.
+
+9
+00:00:28.525 --> 00:00:35.501
+Sources: CyberArk 26.1 discovery, policy,
+permissions, ACME, EST, SCEP, OAuth,
+
+10
+00:00:35.501 --> 00:00:40.384
+Kubernetes discovery and
+logging documentation;
+
+11
+00:00:40.384 --> 00:00:44.040
+vCert; cert-manager; ServiceNow Store.

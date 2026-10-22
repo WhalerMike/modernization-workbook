@@ -5,112 +5,117 @@ WEBVTT
 So, the decisions and the next steps.
 
 2
-00:00:02.862 --> 00:00:08.320
+00:00:02.862 --> 00:00:08.076
 First, the sponsor and CIO authorize
 one authoritative DDI policy plane,
 
 3
-00:00:08.320 --> 00:00:13.413
-and the DNS/DDI team settles Book
-08's five configuration decisions
+00:00:08.076 --> 00:00:13.812
+and the DNS/DDI team settles the Federal
+Modernization Workbook's Book 08's five
 
 4
-00:00:13.413 --> 00:00:18.962
-within 90 days and reports the residual
-risk to the authorizing official.
+00:00:13.812 --> 00:00:17.636
+configuration decisions
+within 90 days and reports
 
 5
-00:00:18.962 --> 00:00:20.325
-That's the book's ask.
+00:00:17.636 --> 00:00:21.025
+the residual risk to the
+authorizing official.
 
 6
-00:00:20.325 --> 00:00:26.247
+00:00:21.025 --> 00:00:22.388
+That's the book's ask.
+
+7
+00:00:22.388 --> 00:00:28.309
 Second, write the requirement as capabilities,
 each mapped to the rule behind it:
 
-7
-00:00:26.247 --> 00:00:31.183
+8
+00:00:28.309 --> 00:00:33.245
 signing and validation, encrypted
 DNS, Protective DNS forwarding,
 
-8
-00:00:31.183 --> 00:00:34.862
+9
+00:00:33.245 --> 00:00:36.924
 discovery and inventory,
 IPv6, logging retention.
 
-9
-00:00:34.862 --> 00:00:38.800
+10
+00:00:36.924 --> 00:00:40.863
 No rule names a product, so the
 solicitation shouldn't either.
 
-10
-00:00:38.800 --> 00:00:42.823
+11
+00:00:40.863 --> 00:00:44.885
 Third, request the same evidence
 pack from every candidate:
 
-11
-00:00:42.823 --> 00:00:47.092
+12
+00:00:44.885 --> 00:00:49.154
 the FedRAMP listing and exactly
 what its scope covers, the STIG,
 
-12
-00:00:47.092 --> 00:00:51.854
+13
+00:00:49.154 --> 00:00:53.916
 an active FIPS 140-3 certificate,
 Common Criteria status, the advisory
 
-13
-00:00:51.854 --> 00:00:56.862
+14
+00:00:53.916 --> 00:00:58.924
 response commitment, and a three-to-five-year
 cost on the same assumptions.
 
-14
-00:00:56.862 --> 00:00:59.000
+15
+00:00:58.924 --> 00:01:01.063
 Record every gap with an owner.
 
-15
-00:00:59.000 --> 00:01:02.254
+16
+00:01:01.063 --> 00:01:04.316
 Fourth, choose a delegation
 pattern for each division,
 
-16
-00:01:02.254 --> 00:01:06.594
+17
+00:01:04.316 --> 00:01:08.656
 write down what stays central, and
 pilot it with one division, ideally one
 
-17
-00:01:06.594 --> 00:01:11.150
+18
+00:01:08.656 --> 00:01:13.212
 with overlapping address space, because
 that's where the design gets tested.
 
-18
-00:01:11.150 --> 00:01:15.449
+19
+00:01:13.212 --> 00:01:17.512
 Fifth, the CISO sizes logging
 to M-26-14's retention,
 
-19
-00:01:15.449 --> 00:01:19.850
+20
+00:01:17.512 --> 00:01:21.913
 and tests it at peak query
 rates and with the SIEM down.
 
-20
-00:01:19.850 --> 00:01:21.763
+21
+00:01:21.913 --> 00:01:23.825
 The next step needs no award.
 
-21
-00:01:21.763 --> 00:01:26.386
+22
+00:01:23.825 --> 00:01:28.448
 List every DNS, DHCP and IPAM
 requirement your systems inherit,
 
-22
-00:01:26.386 --> 00:01:30.838
+23
+00:01:28.448 --> 00:01:32.900
 the capability each needs, and
 the evidence that would prove it.
 
-23
-00:01:30.838 --> 00:01:35.338
+24
+00:01:32.900 --> 00:01:37.400
 Book 08 has the detail,
 with every claim footnoted.
 
-24
-00:01:35.338 --> 00:01:36.170
+25
+00:01:37.400 --> 00:01:38.230
 Thank you.

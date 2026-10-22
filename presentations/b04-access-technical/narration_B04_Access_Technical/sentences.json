@@ -240,111 +240,111 @@
   ],
   [
    3.487,
-   9.2,
-   "Policies CA001 to CA017 are the baseline that Book 02 builds during the migration, and they keep their identifiers here."
+   10.812,
+   "Policies CA001 to CA017 are the baseline that the Federal Modernization Workbook's Book 02 builds during the migration, and they keep their identifiers here."
   ],
   [
-   12.688,
+   14.3,
    4.325,
    "CA002 stays retired, so that's sixteen policies."
   ],
   [
-   17.012,
+   18.625,
    13.625,
    "Book 04 adds CA018 to CA038, for risk, privileged workstations, segmented applications and workload identities, plus CA090, the permanent report-only probe."
   ],
   [
-   30.637,
+   32.25,
    8.025,
    "Numbers 001 to 089 are for the library and 090 to 099 for report-only instruments."
   ],
   [
-   38.663,
+   40.275,
    4.838,
    "Numbers are labels, not order, and a retired number is never reused."
   ],
   [
-   43.5,
+   45.112,
    6.675,
    "The earlier library used a different numbering scheme, and the chapter maps every one of its policies to where it went."
   ],
   [
-   50.175,
+   51.788,
    6.575,
    "Every name follows one pattern: number, population, resource or condition, then control."
   ],
   [
-   56.75,
+   58.362,
    2.812,
    "You can read a policy on a call without opening it."
   ],
   [
-   59.562,
+   61.175,
    7.375,
    "On the right are the prerequisites, and missing ones are the most common reason a report-only policy shows failures that aren't real."
   ],
   [
-   66.938,
+   68.55,
    1.825,
    "The emergency access group."
   ],
   [
-   68.763,
+   70.375,
    6.638,
    "Persona groups, the two big ones dynamic from extension attributes in Book 03's attribute map."
   ],
   [
-   75.4,
+   77.013,
    2.7,
    "Access groups for restricted populations."
   ],
   [
-   78.1,
+   79.713,
    1.65,
    "Three named locations."
   ],
   [
-   79.75,
+   81.362,
    7.475,
    "A custom authentication strength that accepts fido two keys from an approved AAGUID list, or certificate-based authentication."
   ],
   [
-   87.225,
+   88.838,
    9.25,
    "It leaves out Windows Hello for Business on purpose: for privileged accounts, a credential held in the device gaining access doesn't count as a separate device."
   ],
   [
-   96.475,
+   98.088,
    3.125,
    "A device label in extension attribute twelve."
   ],
   [
-   99.6,
+   101.213,
    4.575,
    "And a custom security attribute that tags each application's environment."
   ],
   [
-   104.175,
+   105.787,
    2.025,
    "Four conventions apply everywhere."
   ],
   [
-   106.2,
+   107.812,
    3.1,
    "The emergency access exclusion is implicit."
   ],
   [
-   109.3,
+   110.912,
    8.863,
    "Every policy needs Entra ID P1; risk policies need P2; workload identity policies need Workload ID Premium."
   ],
   [
-   118.162,
+   119.775,
    2.688,
    "Every policy is created in report-only."
   ],
   [
-   120.85,
+   122.463,
    7.0,
    "And none uses the approved client app grant, which became read-only on June 30, 2026."
   ]
@@ -357,81 +357,81 @@
   ],
   [
    5.062,
-   3.375,
-   "They're defined in Book 02 and kept identical here."
+   5.312,
+   "They're defined in the Federal Modernization Workbook's Book 02 and kept identical here."
   ],
   [
-   8.438,
+   10.375,
    7.688,
    "Admins are users eligible for or holding privileged roles, from the account-type attribute or the pim-eligible population."
   ],
   [
-   16.125,
+   18.062,
    10.15,
    "They carry the highest risk and get the strictest policies: phishing-resistant M F A, a compliant device, trusted networks, and privileged workstations."
   ],
   [
-   26.275,
+   28.212,
    6.737,
    "Internals are employees and contractors with standard access, built dynamically from the worker-type attribute."
   ],
   [
-   33.013,
+   34.95,
    7.513,
    "Externals are B to B guests from partner organizations; Guests are ad hoc external users from anywhere else."
   ],
   [
-   40.525,
+   42.462,
    3.375,
    "Workload identities are single-tenant service principals."
   ],
   [
-   43.9,
+   45.837,
    12.588,
    "They must be assigned to a policy directly, because a policy assigned to a group that contains a service principal isn't enforced for it, and only two policies reach them, CA015 and CA037."
   ],
   [
-   56.487,
+   58.425,
    9.475,
    "And break-glass: the two emergency accounts, excluded from every enforced policy, and still recorded by CA090, which is report-only."
   ],
   [
-   65.963,
+   67.9,
    12.675,
    "The library adds named sub-populations inside the personas: web-only users without a managed device, shared-device frontline staff, server administrators, Azure operators and production operators."
   ],
   [
-   78.638,
+   80.575,
    1.425,
    "Each is a governed group."
   ],
   [
-   80.062,
+   82.0,
    4.9,
    "Now the failure mode that drives one of the library's most important design choices."
   ],
   [
-   84.963,
+   86.9,
    3.388,
    "Persona groups are dynamic, built from attributes."
   ],
   [
-   88.35,
+   90.287,
    7.95,
    "A user whose attribute is empty falls outside every persona group, and therefore outside every policy that includes only that group."
   ],
   [
-   96.3,
+   98.237,
    2.275,
    "That's an exclusion nobody approved."
   ],
   [
-   98.575,
+   100.513,
    13.325,
    "So the library includes all users and excludes narrowly, and it adds CA018, deliberately redundant: M F A for all users and all resources, with no resource exclusions."
   ],
   [
-   111.9,
+   113.838,
    8.75,
    "It uses the plain require-M F A control rather than a strength, so guests who sign in with email one-time passcodes can still satisfy it."
   ]
@@ -581,46 +581,46 @@
   ],
   [
    77.338,
-   6.775,
-   "Book 02 adopted Microsoft's current recommendation for high-risk users, require risk remediation."
+   8.562,
+   "The Federal Modernization Workbook's Book 02 adopted Microsoft's current recommendation for high-risk users, require risk remediation."
   ],
   [
-   84.112,
+   85.9,
    4.513,
    "B O D twenty-five oh-one says high-risk users shall be blocked."
   ],
   [
-   88.625,
+   90.412,
    5.825,
    "Both can't win, because when several risk policies apply, block overrides remediation."
   ],
   [
-   94.45,
+   96.237,
    16.087,
    "So in any tenant within the directive's scope, CA013's grant is Block, it includes all users rather than only members, and recovery runs through the help desk: an administrator confirms the account, resets credentials and dismisses the risk."
   ],
   [
-   110.537,
+   112.325,
    5.537,
    "Where the directive doesn't apply, CA013 uses remediation for members."
   ],
   [
-   116.075,
+   117.862,
    2.575,
    "Last, Microsoft-managed policies."
   ],
   [
-   118.65,
+   120.438,
    8.9,
    "Microsoft creates some policies itself, in report-only, and turns them on no less than thirty days later unless an administrator sets them to Off."
   ],
   [
-   127.55,
+   129.338,
    9.7,
    "The program writes down a decision for each, adopt or supersede, because a policy Microsoft enables on a schedule is a change the agency didn't make."
   ],
   [
-   137.25,
+   139.037,
    2.812,
    "Five are superseded by library policies."
   ]
@@ -650,96 +650,96 @@
   ],
   [
    3.962,
-   6.725,
-   "Book 02 set the durations, and Microsoft's own minimum is a week in report-only before enforcement."
+   8.775,
+   "The Federal Modernization Workbook's Book 02 set the durations, and Microsoft's own minimum is a week in report-only before enforcement."
   ],
   [
-   10.688,
+   12.738,
    6.138,
    "Gate one is report-only, two to four weeks, while impact, gaps and exclusions are reviewed."
   ],
   [
-   16.825,
+   18.875,
    4.662,
    "Gate two is a pilot ring of IT and security staff for two weeks."
   ],
   [
-   21.488,
+   23.538,
    8.812,
    "Gate three expands ring by ring, one to two weeks each: headquarters, then field and remote staff, then everyone in scope."
   ],
   [
-   30.3,
+   32.35,
    4.237,
    "Then steady state: enforced, monitored, with drift alerts."
   ],
   [
-   34.538,
+   36.587,
    3.825,
    "Inside that, the chapter consolidates a seven-step cycle."
   ],
   [
-   38.362,
+   40.413,
    10.662,
    "One, a pre-deployment check: prerequisites exist, readiness gates are met, the emergency exclusion is present, and the policy JSON has been reviewed in source control."
   ],
   [
-   49.025,
+   51.075,
    2.837,
    "Two, create the policy in report-only."
   ],
   [
-   51.862,
+   53.913,
    12.4,
    "One detail: a report-only policy that requires a compliant device can prompt users on macOS, iOS and Android to pick a certificate, so leave those platforms out of the report-only version."
   ],
   [
-   64.263,
+   66.312,
    2.663,
    "Three, measure for at least seven days."
   ],
   [
-   66.925,
+   68.975,
    8.662,
    "Four, analyze and remediate: missing registrations, noncompliant devices, untagged applications, empty attributes."
   ],
   [
-   75.588,
+   77.638,
    4.25,
    "Fix the cause; add an exclusion only as a governed object."
   ],
   [
-   79.838,
+   81.888,
    6.938,
    "Five, security and business owners approve the impact analysis, and that approval is kept as change evidence."
   ],
   [
-   86.775,
+   88.825,
    3.3,
    "Six, enforce for the pilot ring and expand."
   ],
   [
-   90.075,
+   92.125,
    5.3,
    "Turning a policy that targets all users straight from off to on is never allowed."
   ],
   [
-   95.375,
+   97.425,
    3.275,
    "Seven, watch for forty-eight hours after each ring."
   ],
   [
-   98.65,
+   100.7,
    14.225,
    "The readiness gates are the program's numbers: at least ninety-five percent of in-scope users have a method that satisfies the policy's strength, and at least ninety percent of devices are enrolled and compliant, with the attributes populated."
   ],
   [
-   112.875,
+   114.925,
    4.15,
    "The point is that each wave starts with a measured number, not an estimate."
   ],
   [
-   117.025,
+   119.075,
    5.1,
    "And a wave starts only after the previous one has been enforced for a week without an incident."
   ]
@@ -1716,86 +1716,86 @@
   ],
   [
    2.712,
-   7.8,
-   "The HR-driven lifecycle itself, from attributes to joiner, mover and leaver design, belongs to Book 03."
+   9.8,
+   "The HR-driven lifecycle itself, from attributes to joiner, mover and leaver design, belongs to the Federal Modernization Workbook's Book 03."
   ],
   [
-   10.512,
+   12.512,
    9.762,
    "This chapter covers only the Lifecycle Workflows tasks that change access, because those tasks are where mover and leaver problems turn into access decisions."
   ],
   [
-   20.275,
+   22.275,
    6.263,
    "A joiner gets the onboarding package and the department package, never a direct add to an application group."
   ],
   [
-   26.538,
+   28.538,
    12.838,
    "A move is a re-derivation, not an additional grant: remove the previous department's packages, request the new department's package, and send everything the person still holds outside packages to a review."
   ],
   [
-   39.375,
+   41.375,
    10.95,
    "Microsoft's built-in job profile change template does the first two steps, and its remove-all-assignments task defaults to fifteen days after the trigger, a grace period for handover."
   ],
   [
-   50.325,
+   52.325,
    6.175,
    "The program keeps that grace for standard access and sets it to zero for Tier 1 and privileged access."
   ],
   [
-   56.5,
+   58.5,
    9.863,
    "A leaver's workflow cancels pending requests, removes every package assignment, removes the user from all groups and teams, and revokes refresh tokens."
   ],
   [
-   66.362,
+   68.362,
    6.537,
    "And an inactivity workflow is the backstop for accounts whose HR record never produced a leaver event."
   ],
   [
-   72.9,
+   74.9,
    4.975,
    "A tenant can have fifty workflows, so spend them on events, not on applications."
   ],
   [
-   77.875,
+   79.875,
    7.275,
    "Guests are where unreviewed access piles up fastest, because nobody's HR record ends when a partner project does."
   ],
   [
-   85.15,
+   87.15,
    0.988,
    "Four layers."
   ],
   [
-   86.138,
+   88.138,
    5.85,
    "Invite through a package, so every guest arrives with an approver, a sponsor and an expiry."
   ],
   [
-   91.987,
+   93.987,
    13.475,
    "When a governed guest loses their last assignment, they're blocked and, by default, removed after thirty days; ungoverned guests stay in the tenant indefinitely, so the program marks existing guests with assignments as governed."
   ],
   [
-   105.463,
+   107.463,
    2.35,
    "Sponsors review guests quarterly."
   ],
   [
-   107.812,
+   109.812,
    5.713,
    "And guest lifecycle policies, still in preview, will be adopted when they're generally available."
   ],
   [
-   113.525,
+   115.525,
    4.963,
    "All of this is licensed by Entra ID Governance, so plan it for the whole workforce."
   ],
   [
-   118.487,
+   120.487,
    5.55,
    "Partial licensing produces a program that governs some people and leaves the rest ungoverned."
   ]
@@ -2146,11 +2146,11 @@
   ],
   [
    64.9,
-   9.963,
-   "Keep Appendix A at hand for every policy's template, Appendix B for every role's settings, and Book 05 for the device compliance that Conditional Access reads."
+   11.85,
+   "Keep Appendix A at hand for every policy's template, Appendix B for every role's settings, and the Federal Modernization Workbook's Book 05 for the device compliance that Conditional Access reads."
   ],
   [
-   74.862,
+   76.75,
    0.762,
    "Thank you."
   ]

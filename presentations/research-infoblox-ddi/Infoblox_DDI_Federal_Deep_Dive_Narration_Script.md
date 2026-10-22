@@ -8,7 +8,7 @@ After a five-minute orientation, it comes in two parts of about twenty-two minut
 
 Two ground rules. Every fact here comes from a primary source opened on October twenty-second, 2026. And anything that is only Infoblox marketing is called a vendor claim when it appears.
 
-Sources: Infoblox NIOS 9.1.x and Universal DDI docs; FedRAMP Marketplace products.json; NIST CMVP; DISA STIG file store; OMB and CISA publications; Book 08.
+Sources: Infoblox NIOS 9.1.x and Universal DDI docs; FedRAMP Marketplace products.json; NIST CMVP; DISA STIG file store; OMB and CISA publications; the Federal Modernization Workbook's Book 08.
 
 ## Slide 2 — DNS, DHCP and IPAM are one control plane
 
@@ -16,7 +16,7 @@ Why this matters. Almost every connection an agency makes starts with a DNS look
 
 DHCP and IP address management sit right beside it. NIST's Secure DNS Deployment Guide, SP 800-81 Revision 3, tells agencies to keep DHCP lease history so an IP address can be mapped to an asset. And the address plan is the record behind everything the inventory directives ask for, which we'll see on the next slide. That's why this deck treats DNS, DHCP and IPAM as one control plane rather than three services.
 
-Book 08 of the workbook describes what that plane is made of, and it isn't one box. There's an authoritative and recursive layer on premises that hosts internal zones, answers clients, and applies response policy zones and DNSSEC. There's a management plane, more and more often delivered as a cloud service, that holds the system of record for zones, forwarding rules, address data and security policy. And there are local resolvers and agents that keep answering from local state if the management plane can't be reached. Cloud DNS isn't replaced; it's managed as an overlay.
+The Federal Modernization Workbook's Book 08 of the workbook describes what that plane is made of, and it isn't one box. There's an authoritative and recursive layer on premises that hosts internal zones, answers clients, and applies response policy zones and DNSSEC. There's a management plane, more and more often delivered as a cloud service, that holds the system of record for zones, forwarding rules, address data and security policy. And there are local resolvers and agents that keep answering from local state if the management plane can't be reached. Cloud DNS isn't replaced; it's managed as an overlay.
 
 So here is the argument of the whole session. Federal rules require capabilities, not products. Those capabilities, taken together, need one authoritative and governed DDI plane. Infoblox is one of the strongest ways to deliver that plane, with evidence, and it also carries real risks you have to manage. We'll cover both.
 
@@ -164,7 +164,7 @@ Sources: FedRAMP Marketplace products.json, FR2017257053 (accessed Oct. 22, 2026
 
 ## Slide 14 — Trinzic hardware against the workbook's design
 
-A narrower question: if an agency buys Trinzic, the physical NIOS appliances, how well does the hardware fit the design in Book 08 of the workbook?
+A narrower question: if an agency buys Trinzic, the physical NIOS appliances, how well does the hardware fit the design in the Federal Modernization Workbook's Book 08 of the workbook?
 
 One authoritative policy plane: the Grid gives you one shared database, an HA Grid Master and a candidate with a full copy. But candidate promotion is manual, and Infoblox publishes no Grid scale limits, so size it with the vendor.
 
@@ -270,7 +270,7 @@ Part 2: divisions under central governance. Module 3 covers divisions on NIOS.
 
 Most agencies aren't one network. Bureaus, regional offices and labs run their own address space and often their own DNS, and a central policy plane only works if those divisions can still do their jobs through it, because a division that can't will work around it. NIOS has a detailed permission model for exactly this. We'll go through how it decides access, how to scope an admin group to one division, the views and attributes that separate divisions, approvals and their one big gap, sign-in, Microsoft servers, what stays central, and a reporting surprise.
 
-Sources: Infoblox NIOS 9.1.x and 9.0 administration guides; Book 08, Chapter 11.
+Sources: Infoblox NIOS 9.1.x and 9.0 administration guides; the Federal Modernization Workbook's Book 08, Chapter 11.
 
 ## Slide 21 — The NIOS permission model: deny first, most specific
 
@@ -390,7 +390,7 @@ Module 4: divisions on Universal DDI, and the operating model.
 
 Universal DDI has its own divisional construct, access views, and its own answer to overlapping address space, IPAM Federation, which NIOS lacks. We'll cover those and their limits, including a conflict in Infoblox's own documentation you'll need to resolve with them. Then we'll step back to four delegation patterns and their trade-offs, walk through an illustrative design for four divisions, set out who does what, and end with a rollout sequence and the decisions to take next.
 
-Sources: Infoblox Portal and Universal DDI documentation; Book 08, Chapters 09 and 10.
+Sources: Infoblox Portal and Universal DDI documentation; the Federal Modernization Workbook's Book 08, Chapters 09 and 10.
 
 ## Slide 30 — Universal DDI: access views, IP spaces, federation
 
@@ -438,7 +438,7 @@ Sources: Illustrative design synthesized from Infoblox NIOS: Network Views, DNS 
 
 ## Slide 33 — Who does what: the DDI responsibility matrix
 
-Who does what. This matrix is adapted from Book 08's responsibility matrix, which separates deciding from doing: D decides and is accountable, R does the work, C is consulted. I've added a Division column for the delegated model.
+Who does what. This matrix is adapted from the Federal Modernization Workbook's Book 08's responsibility matrix, which separates deciding from doing: D decides and is accountable, R does the work, C is consulted. I've added a Division column for the delegated model.
 
 The CIO decides the platform and deployment model, NIOS, the SaaS, or hybrid, with the central DDI team doing the evaluation and everyone else consulted. The authorizing official decides whether a cloud-delivered management plane is authorized at the right impact level.
 
@@ -456,7 +456,7 @@ Sources: Book 08, Chapter 09, "Decision rights and work are different things," "
 
 To close, a rollout sequence, the decisions to take, and the next steps.
 
-The sequence follows Book 08's canonical order, adapted for divisions. One: inventory everything first, zones, scopes, forwarders, and every record Active Directory DNS holds, before any domain controller is touched. Two: build the central pieces, the Grid Master and candidates, the HSM if you'll use one, and a build standard that sets the DNSSEC algorithm, logging and STIG settings. Three: coexist, by managing the existing Windows DNS and DHCP servers from the Grid in place, so nothing moves until you're ready. Four: onboard divisions one at a time, starting with pattern (a), the simplest, and adding views or delegations only where a division needs them. Five: federate the clouds. Six: harden and evidence, with the STIG applied, logs at retention, and audit trails the authorizing official can read.
+The sequence follows the Federal Modernization Workbook's Book 08's canonical order, adapted for divisions. One: inventory everything first, zones, scopes, forwarders, and every record Active Directory DNS holds, before any domain controller is touched. Two: build the central pieces, the Grid Master and candidates, the HSM if you'll use one, and a build standard that sets the DNSSEC algorithm, logging and STIG settings. Three: coexist, by managing the existing Windows DNS and DHCP servers from the Grid in place, so nothing moves until you're ready. Four: onboard divisions one at a time, starting with pattern (a), the simplest, and adding views or delegations only where a division needs them. Five: federate the clouds. Six: harden and evidence, with the STIG applied, logs at retention, and audit trails the authorizing official can read.
 
 The decisions to take now. Which platform model, NIOS, Universal DDI or hybrid, for each impact level. Which delegation pattern for each division, and who approves changes for a bureau that needs confidentiality. Whether to wait for the FIPS 140-3 certificate or proceed with a POA&M. And where logs will live to stay searchable for six months.
 

@@ -67,6 +67,25 @@ def expand_first(text: str, introduced: set) -> str:
     return text
 
 
+# Name the workbook with the first book reference on each slide, so a slide watched or shared on its own
+# says where "Book 08" lives: "the Federal Modernization Workbook's Book 08". Later references on the
+# slide stay short, and a slide that already names the workbook is left alone.
+WORKBOOK = "Federal Modernization Workbook"
+
+
+def name_workbook(text: str) -> str:
+    if WORKBOOK in text:
+        return text
+    m = re.search(r"\bBooks? \d\d\b", text)
+    if not m:
+        return text
+    before = text[:m.start()]
+    if re.search(r"\b[Tt]he $", before):  # "the Book 08 deck" -> "the Federal Modernization Workbook's Book 08 deck"
+        return before + f"{WORKBOOK}'s " + text[m.start():]
+    lead = "The" if re.search(r"(^|[.!?]\s+|\n)$", before) else "the"
+    return before + f"{lead} {WORKBOOK}'s " + text[m.start():]
+
+
 def clean(notes: str) -> str:
     t = re.sub(r"^\[[^\]]*\]\s*", "", notes.strip())          # timing cue
     t = t.split("\n\nWorkbook:")[0]                             # workbook reference
@@ -107,6 +126,7 @@ async def main():
         notes = slide.notes_slide.notes_text_frame.text if slide.has_notes_slide else ""
         text = clean(notes)
         text = expand_first(text, introduced)
+        text = name_workbook(text)
         if title.startswith("More modernizations"):  # teaser: drop the stage direction
             text = re.sub(r"^Leave up during questions.*?\n", "", text).strip()
         script.append(f"\n## Slide {i} — {title}\n\n{text}\n")

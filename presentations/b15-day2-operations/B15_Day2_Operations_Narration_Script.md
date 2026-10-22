@@ -106,4 +106,4 @@ And fund the third layer: an owner, a gate, a clock and an evidence feed for eve
 
 The next step needs no procurement. Measure before you build: run the read-only integration inventory and synchronization probe in a test tenant, size the catalog from what they find, and plan the move off AWS's ServiceNow connector before March 31, 2027.
 
-Operations is where modernization becomes routine or quietly reverts. Book 15 has the detail, every claim footnoted. Thank you.
+Operations is where modernization becomes routine or quietly reverts. The Federal Modernization Workbook's Book 15 has the detail, every claim footnoted. Thank you.

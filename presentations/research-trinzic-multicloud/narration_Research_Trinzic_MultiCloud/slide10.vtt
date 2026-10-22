@@ -5,96 +5,97 @@ WEBVTT
 Where does this fit?
 
 2
-00:00:01.137 --> 00:00:04.137
+00:00:01.137 --> 00:00:06.087
+The Federal Modernization Workbook's
 Book 08 makes the vendor-neutral case.
 
 3
-00:00:04.137 --> 00:00:10.376
+00:00:06.087 --> 00:00:12.326
 Chapter 02 explains split-brain, Chapter 07
 covers cloud private endpoints and IPAM,
 
 4
-00:00:10.376 --> 00:00:14.881
+00:00:12.326 --> 00:00:16.831
 Chapter 08 describes the policy
 plane that overlays cloud DNS,
 
 5
-00:00:14.881 --> 00:00:17.913
+00:00:16.831 --> 00:00:19.863
 and Chapter 12 covers platform selection.
 
 6
-00:00:17.913 --> 00:00:22.075
+00:00:19.863 --> 00:00:24.025
 The research deep dive, Infoblox
 DDI for Federal Agencies,
 
 7
-00:00:22.075 --> 00:00:27.450
+00:00:24.025 --> 00:00:29.400
 covers the platform, its FedRAMP scope,
 its risks, and how divisions share it.
 
 8
-00:00:27.450 --> 00:00:32.885
+00:00:29.400 --> 00:00:34.835
 The decisions to take: which option for each
 cloud and impact level; one named owner
 
 9
-00:00:32.885 --> 00:00:38.000
+00:00:34.835 --> 00:00:39.950
 for every zone; where DNSSEC keys live;
 and how address blocks reach each cloud.
 
 10
-00:00:38.000 --> 00:00:39.163
+00:00:39.950 --> 00:00:41.113
 The next steps.
 
 11
-00:00:39.163 --> 00:00:42.841
+00:00:41.113 --> 00:00:44.790
 Ask Infoblox for the Government
 Cloud authorization boundary
 
 12
-00:00:42.841 --> 00:00:46.588
+00:00:44.790 --> 00:00:48.537
 and a feature matrix for GovCloud
 and Azure Government accounts.
 
 13
-00:00:46.588 --> 00:00:50.220
+00:00:48.537 --> 00:00:52.171
 Confirm that DNS Private
 Resolver and Virtual Network
 
 14
-00:00:50.220 --> 00:00:53.537
+00:00:52.171 --> 00:00:55.488
 Manager IPAM are available
 in Azure Government.
 
 15
-00:00:53.537 --> 00:00:57.176
+00:00:55.488 --> 00:00:59.125
 Size NIOS-X capacity if
 you want cloud forwarders.
 
 16
-00:00:57.176 --> 00:01:00.838
+00:00:59.125 --> 00:01:02.788
 And test forwarding in both
 directions from every origin.
 
 17
-00:01:00.838 --> 00:01:04.332
+00:01:02.788 --> 00:01:06.283
 One note on standing: this
 is research under review,
 
 18
-00:01:04.332 --> 00:01:07.162
+00:01:06.283 --> 00:01:09.113
 not an endorsement by any federal agency.
 
 19
-00:01:07.162 --> 00:01:07.924
+00:01:09.113 --> 00:01:09.874
 Thank you.
 
 20
-00:01:07.924 --> 00:01:14.812
+00:01:09.874 --> 00:01:16.763
 Sources: Book 08, Chapters 02, 07,
 08 and 12; research item Infoblox
 
 21
-00:01:14.812 --> 00:01:21.770
+00:01:16.763 --> 00:01:23.710
 DDI for Federal Agencies;
 research_multicloud, Couldn't verify.

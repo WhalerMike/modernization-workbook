@@ -50,7 +50,7 @@ The host has five roles: a version-controlled source of truth with signed commit
 
 Governance and execution never mix. One layer validates and signs plans but never touches a target. The other runs authorized plans but decides nothing, under separate accounts, credentials and logs. The host reads Active Directory read-only and is protected as Tier 0.
 
-Book 05 covers servers under Azure Arc in depth, and Book 04 covers change as code with evidence.
+The Federal Modernization Workbook's Book 05 covers servers under Azure Arc in depth, and Book 04 covers change as code with evidence.
 
 ## Slide 7 — Identity: one HR stamp drives five outcomes
 
@@ -60,7 +60,7 @@ Four mechanisms rebuild what the OU tree did: attributes replace OU placement, d
 
 Two cautions. Dynamic membership usually updates within a few hours but can take more than 24, so design movers around that window. And HR provisioning must be the only writer of those attributes.
 
-Tokens only work if this is right. Books 02 and 03 carry identity in depth.
+Tokens only work if this is right. The Federal Modernization Workbook's Books 02 and 03 carry identity in depth.
 
 ## Slide 8 — Policy: regenerate Group Policy, don't copy it
 
@@ -70,7 +70,7 @@ Don't port a fifty-setting GPO as fifty settings; that carries dead weight, old 
 
 Every change passes four stages: validation, a simulated tenant, a report-only pilot, then production. And prefer require to block, except where the federal SCuBA baseline demands a block, as for legacy authentication.
 
-Book 05 covers the device detail in depth, and Book 04 the Conditional Access library.
+The Federal Modernization Workbook's Book 05 covers the device detail in depth, and Book 04 the Conditional Access library.
 
 ## Slide 9 — DNS, DHCP and IPAM move together, and with AD
 
@@ -80,7 +80,7 @@ AD-integrated zones replicate with Active Directory, and domain-joined clients f
 
 A Windows DHCP server checks its authorization in AD every hour. That stops an unauthorized Windows server, not a rogue device. And one IPAM authority owns the address space; DNS and DHCP derive from it.
 
-Leave the three for "Phase 2" and it rarely comes. A forest that still hosts DNS hasn't been retired. Book 08 covers the design in depth, and Book 09 the network underneath.
+Leave the three for "Phase 2" and it rarely comes. A forest that still hosts DNS hasn't been retired. The Federal Modernization Workbook's Book 08 covers the design in depth, and Book 09 the network underneath.
 
 ## Slide 10 — Compute: the domain join is the last thing to go
 
@@ -90,7 +90,7 @@ Hybrid join is a waypoint. Microsoft says it shouldn't be anyone's end state, an
 
 Every service principal name is an application that expects Kerberos, and each needs a decision: migrate it to modern authentication, retire it, or, as a last resort, island it with an end-of-life date. No server leaves the domain until every SPN on it is resolved, and NTLM goes in the same pass.
 
-And compute stays with its data until profiling shows the round trips are reduced. Books 05 and 06 carry the detail in depth.
+And compute stays with its data until profiling shows the round trips are reduced. The Federal Modernization Workbook's Books 05 and 06 carry the detail in depth.
 
 ## Slide 11 — The access plane: every request decided again
 
@@ -100,7 +100,7 @@ The replacement has four surfaces: Zero Trust as the model, Conditional Access a
 
 Smart cards stay. Entra certificate-based authentication moves validation from the domain controller to Entra ID, but a card counts as phishing-resistant only if the binding policy makes it multifactor. And issuance needs a successor first, because an enterprise CA depends on AD DS.
 
-Administrators hold no standing privilege: roles are eligible in Privileged Identity Management, and a vault covers what can't be made just in time. Book 04 covers the policy and privilege model in depth, and Book 07 the certificates.
+Administrators hold no standing privilege: roles are eligible in Privileged Identity Management, and a vault covers what can't be made just in time. The Federal Modernization Workbook's Book 04 covers the policy and privilege model in depth, and Book 07 the certificates.
 
 ## Slide 12 — Instruments versus orchestra: who leads it
 
@@ -152,4 +152,4 @@ And set the dates: gate dates on the sponsor's calendar, and every exception's e
 
 None of this requires a vendor decision on day one. Start with an inventory, an owner, and a date.
 
-Modernization is a governance rebuild, not a platform swap. Book 01 is the map, and Books 02 to 09 carry each part in depth, every claim footnoted. Thank you.
+Modernization is a governance rebuild, not a platform swap. The Federal Modernization Workbook's Book 01 is the map, and Books 02 to 09 carry each part in depth, every claim footnoted. Thank you.

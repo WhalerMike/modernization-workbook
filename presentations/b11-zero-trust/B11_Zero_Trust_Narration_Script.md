@@ -124,4 +124,4 @@ And move every exception into the versioned configuration file, with an expirati
 
 The next step needs no procurement. Find out, pillar by pillar, which evidence can be re-run without the operator's help, because every no is the adoption boundary. And put the assessment hosts and accounts in the Agency Logging Plan now.
 
-Unify first, assess second, and let named people make the decisions the evidence supports. Book 11 has the detail, every claim footnoted. Thank you.
+Unify first, assess second, and let named people make the decisions the evidence supports. The Federal Modernization Workbook's Book 11 has the detail, every claim footnoted. Thank you.

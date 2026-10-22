@@ -99,21 +99,25 @@ And vCenter and ESXi need forward and
 reverse records, A and PTR, in the Grid.
 
 21
-00:01:22.726 --> 00:01:33.796
+00:01:22.726 --> 00:01:32.936
 Sources: Research brief §8, What must
 resolve where, and the sources in each row:
 
 22
-00:01:33.796 --> 00:01:42.231
+00:01:32.936 --> 00:01:40.716
 Microsoft Learn [S2, S4, S4b (excerpt),
 S8 (excerpt), S11b (excerpt),
 
 23
-00:01:42.231 --> 00:01:50.314
+00:01:40.716 --> 00:01:48.172
 S13–S15 (excerpts)]; Oracle [S20–S24];
 AWS [S29, S30]; Broadcom [S36];
 
 24
-00:01:50.314 --> 00:01:58.990
-Book 08 Ch07 and Ch08;
+00:01:48.172 --> 00:01:56.113
+the Federal Modernization
+Workbook's Book 08 Ch07 and Ch08;
+
+25
+00:01:56.113 --> 00:02:01.370
 research_multicloud.md [prior-M S31, S57].

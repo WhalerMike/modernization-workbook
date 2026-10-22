@@ -134,4 +134,4 @@ And name one decider per row, from the authorizing official to the contracting o
 
 The next step needs no award: write the application-to-path policy that SC-7(4) already asks for, and instrument a sample of branches before the next migration wave, because that baseline can't be rebuilt afterward.
 
-Buy transport on physics and govern it as compliance, and the branch gets faster without getting weaker. Book 09 has the detail, every claim footnoted. Thank you.
+Buy transport on physics and govern it as compliance, and the branch gets faster without getting weaker. The Federal Modernization Workbook's Book 09 has the detail, every claim footnoted. Thank you.

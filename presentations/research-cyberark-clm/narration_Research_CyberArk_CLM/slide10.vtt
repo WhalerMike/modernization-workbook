@@ -1,0 +1,50 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.213
+Part 2: connect the issuers.
+
+2
+00:00:02.213 --> 00:00:05.215
+First the AD CS driver:
+what it needs on the CA,
+
+3
+00:00:05.215 --> 00:00:09.887
+how templates map, and which Windows
+Server versions are confirmed.
+
+4
+00:00:09.887 --> 00:00:13.798
+Then how to scope its privileged
+account under the ESC7 review,
+
+5
+00:00:13.798 --> 00:00:19.137
+which includes the first correction to the
+Federal Modernization Workbook's Book 07.
+
+6
+00:00:19.137 --> 00:00:24.637
+Then the public and cloud CA drivers,
+where release 26.1 changed one.
+
+7
+00:00:24.637 --> 00:00:29.812
+And finally how the platform coexists with
+Intune, which owns device certificates.
+
+8
+00:00:29.812 --> 00:00:36.692
+Sources: CyberArk 26.1 CA driver
+documentation, Supported integrations,
+
+9
+00:00:36.692 --> 00:00:40.820
+Deprecated features;
+Microsoft Learn AD CS,
+
+10
+00:00:40.820 --> 00:00:46.390
+Intune and Microsoft Graph pages;
+Book 07, Chapters 03 to 07.

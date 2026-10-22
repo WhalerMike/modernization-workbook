@@ -1,0 +1,39 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.362
+Part 4: migrate and operate.
+
+2
+00:00:02.362 --> 00:00:06.778
+First, how the platform build fits
+into the Federal Modernization
+
+3
+00:00:06.778 --> 00:00:11.274
+Workbook's Book 07's six migration
+waves, as program design guidance.
+
+4
+00:00:11.274 --> 00:00:14.173
+Then renewal as public
+TLS lifetimes shrink,
+
+5
+00:00:14.173 --> 00:00:18.012
+and how the platform feeds
+monitoring and drift detection.
+
+6
+00:00:18.012 --> 00:00:21.137
+Then its role in decommissioning AD CS.
+
+7
+00:00:21.137 --> 00:00:25.862
+And finally the decisions to take, the
+questions for the vendor, and next steps.
+
+8
+00:00:25.862 --> 00:00:36.430
+Sources: Book 07, Chapters 01, 05, 07
+and 08; CyberArk 26.1 documentation.

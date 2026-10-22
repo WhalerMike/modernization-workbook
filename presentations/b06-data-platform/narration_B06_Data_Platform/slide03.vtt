@@ -43,57 +43,57 @@ Windows Authentication bypasses both.
 Third, service-account credentials.
 
 10
-00:00:37.550 --> 00:00:40.479
-The directory modernization
-in Book 02 ends the
+00:00:37.550 --> 00:00:41.590
+The directory modernization in the
+Federal Modernization Workbook's
 
 11
-00:00:40.479 --> 00:00:43.775
-domain-joined world those
-service accounts depend on.
+00:00:41.590 --> 00:00:45.562
+Book 02 ends the domain-joined world
+those service accounts depend on.
 
 12
-00:00:43.775 --> 00:00:46.475
+00:00:45.562 --> 00:00:48.262
 The book is precise about 2027.
 
 13
-00:00:46.475 --> 00:00:48.930
+00:00:48.262 --> 00:00:50.718
 There's no external NTLM deadline;
 
 14
-00:00:48.930 --> 00:00:52.613
+00:00:50.718 --> 00:00:54.401
 Microsoft hasn't dated the
 disable-by-default step.
 
 15
-00:00:52.613 --> 00:00:56.319
+00:00:54.401 --> 00:00:58.107
 The dates that are real are support dates:
 
 16
-00:00:56.319 --> 00:01:00.571
+00:00:58.107 --> 00:01:02.359
 SQL Server 2016 went out
 of support in July 2026,
 
 17
-00:01:00.571 --> 00:01:06.786
+00:01:02.359 --> 00:01:08.574
 Windows Server 2016 follows in
 January 2027, the last SQL Server 2014
 
 18
-00:01:06.786 --> 00:01:10.493
+00:01:08.574 --> 00:01:12.281
 extended-security year ends in July 2027,
 
 19
-00:01:10.493 --> 00:01:15.400
+00:01:12.281 --> 00:01:17.188
 and SQL Server 2017 goes out
 of support in October 2027.
 
 20
-00:01:15.400 --> 00:01:20.342
+00:01:17.188 --> 00:01:22.130
 SQL Server 2014 and 2017 can't
 use Entra authentication at all,
 
 21
-00:01:20.342 --> 00:01:25.250
+00:01:22.130 --> 00:01:27.020
 so they reach the closed state
 only by upgrade or retirement.

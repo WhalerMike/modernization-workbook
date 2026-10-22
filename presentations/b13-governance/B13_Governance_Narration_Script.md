@@ -136,4 +136,4 @@ And plan the move to ongoing authorization, on evidence the systems produce rath
 
 The next step needs no procurement. Classify every control's coverage, open the gap register, and record every drift finding in the same contract shape, however it was found.
 
-A package describes one day. Governance that doesn't decay keeps proving itself every day after. Book 13 has the detail, every claim footnoted. Thank you.
+A package describes one day. Governance that doesn't decay keeps proving itself every day after. The Federal Modernization Workbook's Book 13 has the detail, every claim footnoted. Thank you.

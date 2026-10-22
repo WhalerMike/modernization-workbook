@@ -102,7 +102,7 @@ ESC1 is a template where the enrollee supplies the subject, an authentication ex
 
 The correction that matters most: the source's ESC1 check tested for the Digital Signature key usage. Almost every template has that, so it flagged nearly everything. The check has to test the extended key usage for an authentication purpose: client authentication, smart card logon, PKINIT client authentication, or Any Purpose. And a template that passes is a candidate only if a CA actually publishes it and broad groups can enroll.
 
-Report only. Remediation belongs to the PKI owner, through Book 07. The same inventory also tells you whether user certificates can move to Entra certificate-based authentication.
+Report only. Remediation belongs to the PKI owner, through the Federal Modernization Workbook's Book 07. The same inventory also tells you whether user certificates can move to Entra certificate-based authentication.
 
 ## Slide 12 — Delegation, privileged groups and service accounts
 
@@ -212,7 +212,7 @@ Conditional Access replaces the logon restrictions and network controls that Act
 
 Internals are employees and contractors, identified by the worker type code. Admins are users eligible for or holding privileged roles, identified by account type or a group of PIM-eligible users; target them by group, because role targeting supports built-in directory roles only, not AU-scoped or custom ones. Externals are guests from partner organizations, Guests are ad hoc external users, Service accounts are single-tenant workload identities, and Break-glass is the dedicated exclusion group.
 
-The baseline set runs from CA001 through CA017. A few anchors. CA001 blocks legacy authentication for all users. CA003 requires the phishing-resistant authentication strength for admins, with a four-hour sign-in frequency. CA006 requires MFA for internals, phishing-resistant as the end state. CA008 blocks internals outside trusted countries. CA013 uses Microsoft's newer require risk remediation control for high user risk; it isn't supported for guests, so CA012 blocks risky guest sign-ins instead. CA015 blocks workload identities outside trusted networks. CA002, the old break-glass grant policy, is retired: a policy can't create an exemption; the exclusion on every other policy is the exemption. Appendix C carries Graph JSON templates, all created in report-only state. Book 04's library is authoritative and adds CA018 through CA038 for the CISA BOD 25-01 baseline.
+The baseline set runs from CA001 through CA017. A few anchors. CA001 blocks legacy authentication for all users. CA003 requires the phishing-resistant authentication strength for admins, with a four-hour sign-in frequency. CA006 requires MFA for internals, phishing-resistant as the end state. CA008 blocks internals outside trusted countries. CA013 uses Microsoft's newer require risk remediation control for high user risk; it isn't supported for guests, so CA012 blocks risky guest sign-ins instead. CA015 blocks workload identities outside trusted networks. CA002, the old break-glass grant policy, is retired: a policy can't create an exemption; the exclusion on every other policy is the exemption. Appendix C carries Graph JSON templates, all created in report-only state. The Federal Modernization Workbook's Book 04's library is authoritative and adds CA018 through CA038 for the CISA BOD 25-01 baseline.
 
 Authentication strengths name what's accepted: phishing-resistant MFA is Windows Hello for Business, FIDO2 passkeys, or multifactor certificate-based authentication. Authenticator push and phone sign-in aren't phishing-resistant on their own.
 
@@ -292,4 +292,4 @@ Who reads it matters. FedRAMP authorizes cloud service offerings, and third-part
 
 And it belongs to the agency. When the integrator leaves, the registry, schemas, findings and evidence stay for the next authorization cycle.
 
-So, from Monday: start read-only discovery with a pre-flight; turn the gaps into a narrow, time-bound request; make every run evidence; and gate every phase on its validation. Chapters 07 through 11 and the appendices carry the full detail and the code. Book 03, HR-Driven Identity, picks up where the attributes should come from. Thank you.
+So, from Monday: start read-only discovery with a pre-flight; turn the gaps into a narrow, time-bound request; make every run evidence; and gate every phase on its validation. Chapters 07 through 11 and the appendices carry the full detail and the code. The Federal Modernization Workbook's Book 03, HR-Driven Identity, picks up where the attributes should come from. Thank you.

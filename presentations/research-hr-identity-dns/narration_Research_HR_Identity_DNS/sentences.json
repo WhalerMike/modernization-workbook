@@ -72,83 +72,83 @@
   ],
   [
    71.638,
-   22.387,
-   "Sources: Research brief, D N S for HR-driven identity across Oracle, Microsoft, on-premises, VMware and AWS (verified Oct. 22, 2026), Method and Bottom line; Book 03 Ch03 (OPM as the Federal HR 2.0 program owner); Book 08."
+   24.05,
+   "Sources: Research brief, D N S for HR-driven identity across Oracle, Microsoft, on-premises, VMware and AWS (verified Oct. 22, 2026), Method and Bottom line; the Federal Modernization Workbook's Book 03 Ch03 (OPM as the Federal HR 2.0 program owner); Book 08."
   ]
  ],
  "2": [
   [
    0.05,
-   5.938,
-   "Here's the chain end to end, as Microsoft's Oracle tutorial and Book 03 describe it."
+   7.912,
+   "Here's the chain end to end, as Microsoft's Oracle tutorial and the Federal Modernization Workbook's Book 03 describe it."
   ],
   [
-   5.987,
+   7.963,
    6.312,
    "It starts in Oracle Fusion Cloud H C M, the HR system Oracle runs as a service."
   ],
   [
-   12.3,
+   14.275,
    2.763,
    "H C M means human capital management."
   ],
   [
-   15.062,
+   17.038,
    7.162,
    "Changes leave Fusion as extracts, or as Atom feeds, which are lists of recent changes that another program polls."
   ],
   [
-   22.225,
+   24.2,
    2.987,
    "In this pattern, the middleware pulls from Oracle."
   ],
   [
-   25.212,
+   27.188,
    2.362,
    "The middleware is the program in the middle."
   ],
   [
-   27.575,
+   29.55,
    10.062,
    "Microsoft says it can run in Oracle Integration Cloud, called OIC, or in Azure as an Azure Function, a Logic App, or a Data Factory pipeline."
   ],
   [
-   37.638,
+   39.612,
    9.875,
    "It turns HR records into a standard format called skim and posts them to Microsoft Graph, Microsoft's main API, at an endpoint called bulkUpload."
   ],
   [
-   47.513,
+   49.487,
    3.288,
    "That's Entra's API-driven inbound provisioning."
   ],
   [
-   50.8,
+   52.775,
    4.162,
    "The Entra provisioning service then writes the user into Entra ID."
   ],
   [
-   54.962,
+   56.938,
    16.613,
    "For users who still live in Active Directory, it hands the change to a provisioning agent: a small service on an on-premises server that makes outbound connections only, and writes into A D. Lifecycle Workflows then run joiner and leaver tasks on the hire and leave dates."
   ],
   [
-   71.575,
+   73.55,
    2.05,
    "Notice the D N S pattern."
   ],
   [
-   73.625,
+   75.6,
    3.612,
    "Every arrow in the top row crosses a vendor's public name."
   ],
   [
-   77.237,
+   79.213,
    3.888,
    "Only the agent-to-A D hop needs internal D N S."
   ],
   [
-   81.125,
+   83.1,
    30.812,
    "Sources: Microsoft Learn: Configure Oracle H C M for automatic user provisioning [S1], Perform bulkUpload [S5], On-premises application provisioning architecture [S6 (excerpt)], Plan cloud HR application to Entra user provisioning [S8 (excerpt)], Lifecycle workflows attribute sync [S11 (excerpt)]; Oracle, Working with Atom [S18]; Book 03 Ch05, Provisioning Services."
   ]
@@ -231,8 +231,8 @@
   ],
   [
    80.8,
-   26.7,
-   "Sources: Research brief, Bottom line items 1 and 2, citing Microsoft Learn [S2, S4, S10], Oracle [S20, S23], AWS [S27\u2013S29, S31], Broadcom [S36]; Book 08 Ch07 and Ch08; research_multicloud.md [prior-M S57]."
+   28.425,
+   "Sources: Research brief, Bottom line items 1 and 2, citing Microsoft Learn [S2, S4, S10], Oracle [S20, S23], AWS [S27\u2013S29, S31], Broadcom [S36]; the Federal Modernization Workbook's Book 08 Ch07 and Ch08; research_multicloud.md [prior-M S57]."
   ]
  ],
  "4": [
@@ -298,8 +298,8 @@
   ],
   [
    82.725,
-   36.2,
-   "Sources: Research brief \u00a78, What must resolve where, and the sources in each row: Microsoft Learn [S2, S4, S4b (excerpt), S8 (excerpt), S11b (excerpt), S13\u2013S15 (excerpts)]; Oracle [S20\u2013S24]; AWS [S29, S30]; Broadcom [S36]; Book 08 Ch07 and Ch08; research_multicloud.md [prior-M S31, S57]."
+   38.575,
+   "Sources: Research brief \u00a78, What must resolve where, and the sources in each row: Microsoft Learn [S2, S4, S4b (excerpt), S8 (excerpt), S11b (excerpt), S13\u2013S15 (excerpts)]; Oracle [S20\u2013S24]; AWS [S29, S30]; Broadcom [S36]; the Federal Modernization Workbook's Book 08 Ch07 and Ch08; research_multicloud.md [prior-M S31, S57]."
   ]
  ],
  "5": [
@@ -733,8 +733,8 @@
   ],
   [
    84.638,
-   35.125,
-   "Sources: Research brief \u00a76, failure modes F1, F4, F5, F6, F9, F10, F11: Microsoft Learn [S2, S10 (excerpt), S10b (excerpt), S12 (excerpt), S14b (excerpt)]; AWS [S25, S32]; Oracle [S23]; Infoblox NIOS 9.1, Specifying Forwarders [S37]; Book 08 Ch02 and Ch10."
+   36.938,
+   "Sources: Research brief \u00a76, failure modes F1, F4, F5, F6, F9, F10, F11: Microsoft Learn [S2, S10 (excerpt), S10b (excerpt), S12 (excerpt), S14b (excerpt)]; AWS [S25, S32]; Oracle [S23]; Infoblox NIOS 9.1, Specifying Forwarders [S37]; the Federal Modernization Workbook's Book 08 Ch02 and Ch10."
   ]
  ],
  "10": [
@@ -922,8 +922,8 @@
   ],
   [
    90.838,
-   53.862,
-   "Sources: Research brief \u00a79, Agency checklist steps 1\u201313 (all PROGRAM DESIGN GUIDANCE) and the facts each step cites: Microsoft Learn [S1, S2, S4, S4b, S7b, S8, S10, S10c, S11b, S12, S12b, S13\u2013S15, S14b]; Oracle [S18, S21\u2013S23]; AWS [S25, S27\u2013S30, S32, S33]; Broadcom [S36]; Infoblox [S37]; Book 03 Ch03, Ch05; Book 08 Ch02, Ch07, Ch08, Ch10."
+   55.25,
+   "Sources: Research brief \u00a79, Agency checklist steps 1\u201313 (all PROGRAM DESIGN GUIDANCE) and the facts each step cites: Microsoft Learn [S1, S2, S4, S4b, S7b, S8, S10, S10c, S11b, S12, S12b, S13\u2013S15, S14b]; Oracle [S18, S21\u2013S23]; AWS [S25, S27\u2013S30, S32, S33]; Broadcom [S36]; Infoblox [S37]; the Federal Modernization Workbook's Book 03 Ch03, Ch05; Book 08 Ch02, Ch07, Ch08, Ch10."
   ]
  ],
  "12": [
@@ -989,31 +989,31 @@
   ],
   [
    48.513,
-   9.838,
-   "Book 03 covers HR-driven identity, with Federal HR 2.0 in Chapter 03 and the provisioning pipeline in Chapter 05."
+   11.85,
+   "The Federal Modernization Workbook's Book 03 covers HR-driven identity, with Federal HR 2.0 in Chapter 03 and the provisioning pipeline in Chapter 05."
   ],
   [
-   58.35,
+   60.362,
    16.95,
    "Book 08 covers D N S, DHCP and IP address management: split-brain D N S in Chapter 02, cloud private endpoints in Chapter 07, the reference architecture in Chapter 08, and the migration sequence in Chapter 10."
   ],
   [
-   75.3,
+   77.312,
    11.637,
    "Three research items sit beside this one: Trinzic Alone, or Trinzic Plus Cloud D D I; Infoblox D D I for Federal Agencies; and Who Names the Device After A D."
   ],
   [
-   86.938,
+   88.95,
    6.325,
    "One note on standing: this is research under review, not an endorsement by any federal agency."
   ],
   [
-   93.263,
+   95.275,
    0.762,
    "Thank you."
   ],
   [
-   94.025,
+   96.037,
    23.613,
    "Sources: Research brief, Couldn't verify and Agency checklist; Book 03 Ch03 and Ch05; Book 08 Ch02, Ch07, Ch08 and Ch10; research items Trinzic Alone, or Trinzic Plus Cloud D D I?, Infoblox D D I for Federal Agencies, and Who Names the Device After A D?"
   ]

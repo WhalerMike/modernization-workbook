@@ -1,169 +1,174 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:05.209
+00:00:00.050 --> 00:00:04.906
 A narrower question: if an agency buys
 Trinzic, the physical NIOS appliances,
 
 2
-00:00:05.209 --> 00:00:09.712
-how well does the hardware fit the
-design in Book 08 of the workbook?
+00:00:04.906 --> 00:00:07.912
+how well does the hardware
+fit the design in the
 
 3
-00:00:09.712 --> 00:00:14.466
+00:00:07.912 --> 00:00:11.612
+Federal Modernization Workbook's
+Book 08 of the workbook?
+
+4
+00:00:11.612 --> 00:00:16.366
 One authoritative policy plane: the
 Grid gives you one shared database,
 
-4
-00:00:14.466 --> 00:00:17.688
+5
+00:00:16.366 --> 00:00:19.588
 an HA Grid Master and a
 candidate with a full copy.
 
-5
-00:00:17.688 --> 00:00:20.021
+6
+00:00:19.588 --> 00:00:21.920
 But candidate promotion is manual,
 
-6
-00:00:20.021 --> 00:00:24.688
+7
+00:00:21.920 --> 00:00:26.587
 and Infoblox publishes no Grid scale
 limits, so size it with the vendor.
 
-7
-00:00:24.688 --> 00:00:27.994
+8
+00:00:26.587 --> 00:00:29.893
 Leaving Active Directory–integrated DNS:
 
-8
-00:00:27.994 --> 00:00:33.850
+9
+00:00:29.893 --> 00:00:35.749
 GSS-TSIG lets domain controllers send
 Kerberos-signed updates to the Grid.
 
-9
-00:00:33.850 --> 00:00:37.993
+10
+00:00:35.749 --> 00:00:39.893
 But an appliance can send
 GSS-TSIG updates or accept them,
 
-10
-00:00:37.993 --> 00:00:40.813
+11
+00:00:39.893 --> 00:00:42.713
 not both, so plan which members do which.
 
-11
-00:00:40.813 --> 00:00:44.375
+12
+00:00:42.713 --> 00:00:46.275
 DNSSEC signing is central,
 on the Grid Master,
 
-12
-00:00:44.375 --> 00:00:48.900
+13
+00:00:46.275 --> 00:00:50.800
 with keys there or in a Thales
 Luna or Entrust nShield HSM.
 
-13
-00:00:48.900 --> 00:00:51.800
+14
+00:00:50.800 --> 00:00:53.700
 Change the RSA SHA-1 default.
 
-14
-00:00:51.800 --> 00:00:55.763
+15
+00:00:53.700 --> 00:00:57.663
 Encrypted DNS is served by BIND from 9.1,
 
-15
-00:00:55.763 --> 00:00:59.850
+16
+00:00:57.663 --> 00:01:01.750
 free only on X6; X5
 needs an extra license.
 
-16
-00:00:59.850 --> 00:01:04.703
+17
+00:01:01.750 --> 00:01:06.603
 IPAM and basic discovery are built
 in, but Network Insight needs a
 
-17
-00:01:04.703 --> 00:01:10.250
+18
+00:01:06.603 --> 00:01:12.150
 Discovery license and dedicated ND-series
 appliances that run no DNS or DHCP.
 
-18
-00:01:10.250 --> 00:01:13.269
+19
+00:01:12.150 --> 00:01:15.169
 Reporting appliances
 have daily ingest caps;
 
-19
-00:01:13.269 --> 00:01:17.638
+20
+00:01:15.169 --> 00:01:19.538
 five overruns in thirty days lock
 reporting, so send logs to the SIEM.
 
-20
-00:01:17.638 --> 00:01:21.800
+21
+00:01:19.538 --> 00:01:23.699
 Trinzic sits inside the
 agency's own boundary and ATO.
 
-21
-00:01:21.800 --> 00:01:24.550
+22
+00:01:23.699 --> 00:01:26.450
 The FedRAMP Moderate
 listing doesn't cover it,
 
-22
-00:01:24.550 --> 00:01:26.938
+23
+00:01:26.450 --> 00:01:28.838
 which is why it's the
 path for High and DoD.
 
-23
-00:01:26.938 --> 00:01:33.819
+24
+00:01:28.838 --> 00:01:35.719
 Assurance and lifecycle: certificate 4531
 for Trinzic hardware went Historical in
 
-24
-00:01:33.819 --> 00:01:38.734
+25
+00:01:35.719 --> 00:01:40.634
 September, the FIPS 140-3 Trinzic
 modules are pending review,
 
-25
-00:01:38.734 --> 00:01:45.025
+26
+00:01:40.634 --> 00:01:46.925
 and NIAP has been evaluating Trinzic
 appliances with NIOS 9.0 since August 17.
 
-26
-00:01:45.025 --> 00:01:49.288
+27
+00:01:46.925 --> 00:01:51.188
 X6 needs NIOS 9.0.1 or later.
 
-27
-00:01:49.288 --> 00:01:54.473
+28
+00:01:51.188 --> 00:01:56.374
 Hardware is typically supported about
 four years after its last order date,
 
-28
-00:01:54.473 --> 00:01:59.660
+29
+00:01:56.374 --> 00:02:01.561
 and an internet-facing appliance past
 end of support may fall under BOD 26-02,
 
-29
-00:01:59.660 --> 00:02:02.212
+30
+00:02:01.561 --> 00:02:04.113
 though it doesn't name DNS appliances.
 
-30
-00:02:02.212 --> 00:02:09.370
+31
+00:02:04.113 --> 00:02:11.269
 Sources: Infoblox NIOS 9.1.x: Promoting
 a Grid Master Candidate, About Grids,
 
-31
-00:02:09.370 --> 00:02:16.293
+32
+00:02:11.269 --> 00:02:18.192
 About GSS-TSIG, Configuring DNSSEC on
 a Grid, Setting DNSSEC Parameters,
 
-32
-00:02:16.293 --> 00:02:22.511
+33
+00:02:18.192 --> 00:02:24.410
 Thales Luna HSM, DoT and DoH
 Architecture, About Network Insight,
 
-33
-00:02:22.511 --> 00:02:27.791
+34
+00:02:24.410 --> 00:02:29.690
 Supported Reporting Appliances;
 NIOS 9.1.0 blog (vendor);
 
-34
-00:02:27.791 --> 00:02:34.010
+35
+00:02:29.690 --> 00:02:35.909
 NIST CMVP certificate 4531 and
 Modules In Process list; NIAP PCL;
 
-35
-00:02:34.010 --> 00:02:41.110
+36
+00:02:35.909 --> 00:02:43.010
 Infoblox End-of-Life policy; CISA BOD
 26-02; FedRAMP products.json; Book 08.

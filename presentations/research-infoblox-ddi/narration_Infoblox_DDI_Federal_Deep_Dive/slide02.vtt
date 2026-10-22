@@ -49,79 +49,84 @@ DHCP and IPAM as one control
 plane rather than three services.
 
 11
-00:00:41.899 --> 00:00:47.325
-Book 08 of the workbook describes what that
-plane is made of, and it isn't one box.
+00:00:41.899 --> 00:00:45.838
+The Federal Modernization
+Workbook's Book 08 of the workbook
 
 12
-00:00:47.325 --> 00:00:52.618
+00:00:45.838 --> 00:00:49.312
+describes what that plane is
+made of, and it isn't one box.
+
+13
+00:00:49.312 --> 00:00:54.605
 There's an authoritative and recursive
 layer on premises that hosts internal zones,
 
-13
-00:00:52.618 --> 00:00:56.550
+14
+00:00:54.605 --> 00:00:58.537
 answers clients, and applies
 response policy zones and DNSSEC.
 
-14
-00:00:56.550 --> 00:01:01.122
+15
+00:00:58.537 --> 00:01:03.110
 There's a management plane, more and
 more often delivered as a cloud service,
 
-15
-00:01:01.122 --> 00:01:03.629
+16
+00:01:03.110 --> 00:01:05.617
 that holds the system of record for zones,
 
-16
-00:01:03.629 --> 00:01:06.800
+17
+00:01:05.617 --> 00:01:08.788
 forwarding rules, address
 data and security policy.
 
-17
-00:01:06.800 --> 00:01:10.137
+18
+00:01:08.788 --> 00:01:12.124
 And there are local resolvers
 and agents that keep answering
 
-18
-00:01:10.137 --> 00:01:13.212
+19
+00:01:12.124 --> 00:01:15.199
 from local state if the management
 plane can't be reached.
 
-19
-00:01:13.212 --> 00:01:17.638
+20
+00:01:15.199 --> 00:01:19.625
 Cloud DNS isn't replaced;
 it's managed as an overlay.
 
-20
-00:01:17.638 --> 00:01:20.013
+21
+00:01:19.625 --> 00:01:22.000
 So here is the argument
 of the whole session.
 
-21
-00:01:20.013 --> 00:01:23.426
+22
+00:01:22.000 --> 00:01:25.413
 Federal rules require
 capabilities, not products.
 
-22
-00:01:23.426 --> 00:01:28.938
+23
+00:01:25.413 --> 00:01:30.925
 Those capabilities, taken together, need
 one authoritative and governed DDI plane.
 
-23
-00:01:28.938 --> 00:01:32.680
+24
+00:01:30.925 --> 00:01:34.667
 Infoblox is one of the strongest
 ways to deliver that plane,
 
-24
-00:01:32.680 --> 00:01:36.651
+25
+00:01:34.667 --> 00:01:38.638
 with evidence, and it also carries
 real risks you have to manage.
 
-25
-00:01:36.651 --> 00:01:37.800
+26
+00:01:38.638 --> 00:01:39.788
 We'll cover both.
 
-26
-00:01:37.800 --> 00:01:46.300
+27
+00:01:39.788 --> 00:01:48.290
 Sources: NIST SP 800-81r3;
 Book 08, Chapters 01 and 08.

@@ -94,11 +94,16 @@ only Infoblox marketing
 is called a vendor claim when it appears.
 
 20
-00:01:17.213 --> 00:01:24.671
-Sources: Infoblox NIOS 9.1.x and
-Universal DDI docs; FedRAMP Marketplace
+00:01:17.213 --> 00:01:21.855
+Sources: Infoblox NIOS 9.1.x
+and Universal DDI docs;
 
 21
-00:01:24.671 --> 00:01:33.070
-products.json; NIST CMVP; DISA STIG file
-store; OMB and CISA publications; Book 08.
+00:01:21.855 --> 00:01:28.082
+FedRAMP Marketplace products.json;
+NIST CMVP; DISA STIG file store;
+
+22
+00:01:28.082 --> 00:01:35.040
+OMB and CISA publications; the Federal
+Modernization Workbook's Book 08.

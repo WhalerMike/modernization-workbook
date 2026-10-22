@@ -80,41 +80,41 @@ policy surface owns a setting,
 and the access plane has no pillar at all.
 
 18
-00:00:55.637 --> 00:00:59.898
-Book 01 closes them by giving
-policy a security-engineering
+00:00:55.637 --> 00:01:00.651
+The Federal Modernization Workbook's
+Book 01 closes them by giving policy
 
 19
-00:00:59.898 --> 00:01:03.476
-lead and access a joint
-identity and security lead.
+00:01:00.651 --> 00:01:05.663
+a security-engineering lead and access
+a joint identity and security lead.
 
 20
-00:01:03.476 --> 00:01:07.273
+00:01:05.663 --> 00:01:09.460
 The critical path runs through
 the platform, the assessment,
 
 21
-00:01:07.273 --> 00:01:12.287
+00:01:09.460 --> 00:01:14.474
 attribute and group design, the pilot,
 each rollout wave, and cutover validation.
 
 22
-00:01:12.287 --> 00:01:17.175
+00:01:14.474 --> 00:01:19.363
 Every week lost in assessment or
 attribute design moves every later gate.
 
 23
-00:01:17.175 --> 00:01:21.475
+00:01:19.363 --> 00:01:23.662
 And one dependency never
 relaxes: PKI waits for identity.
 
 24
-00:01:21.475 --> 00:01:26.621
+00:01:23.662 --> 00:01:28.808
 The decision, made while Phase 0's stakeholders
 and decision rights are confirmed:
 
 25
-00:01:26.621 --> 00:01:29.930
+00:01:28.808 --> 00:01:32.110
 name the five workstream
 leads, including those two.

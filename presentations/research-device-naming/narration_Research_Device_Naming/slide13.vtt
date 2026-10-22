@@ -44,77 +44,77 @@ Whether an Entra-joined device's
 display name follows an Intune rename.
 
 10
-00:00:30.850 --> 00:00:33.745
-Book 05's description
-of device preparation,
+00:00:30.850 --> 00:00:35.885
+The Federal Modernization Workbook's Book
+05's description of device preparation,
 
 11
-00:00:33.745 --> 00:00:38.987
+00:00:35.885 --> 00:00:40.775
 and its note on availability in the higher
 government clouds, both need a recheck.
 
 12
-00:00:38.987 --> 00:00:43.974
+00:00:40.775 --> 00:00:45.762
 And ask any third-party VPN vendor whether
 its concentrator registers clients.
 
 13
-00:00:43.974 --> 00:00:45.112
+00:00:45.762 --> 00:00:46.900
 Where does this fit?
 
 14
-00:00:45.112 --> 00:00:51.137
+00:00:46.900 --> 00:00:52.925
 Book 05, Chapter 04 covers Intune-first
 onboarding and the naming convention.
 
 15
-00:00:51.137 --> 00:00:55.468
+00:00:52.925 --> 00:00:57.255
 Book 08 covers the AD DNS
 departure in Chapter 04,
 
 16
-00:00:55.468 --> 00:01:01.963
+00:00:57.255 --> 00:01:03.750
 cloud private DNS in Chapter 07, and
 the migration sequence in Chapter 10.
 
 17
-00:01:01.963 --> 00:01:06.498
+00:01:03.750 --> 00:01:08.285
 And two research items sit
 beside this one: Trinzic Alone,
 
 18
-00:01:06.498 --> 00:01:11.612
+00:01:08.285 --> 00:01:13.400
 or Trinzic Plus Cloud DDI, and
 Infoblox DDI for Federal Agencies.
 
 19
-00:01:11.612 --> 00:01:15.107
+00:01:13.400 --> 00:01:16.895
 One note on standing: this
 is research under review,
 
 20
-00:01:15.107 --> 00:01:17.937
+00:01:16.895 --> 00:01:19.725
 not an endorsement by any federal agency.
 
 21
-00:01:17.937 --> 00:01:18.700
+00:01:19.725 --> 00:01:20.487
 Thank you.
 
 22
-00:01:18.700 --> 00:01:25.962
+00:01:20.487 --> 00:01:27.749
 Sources: Research brief, Couldn't verify
 and Agency checklist; Book 05 Ch04,
 
 23
-00:01:25.962 --> 00:01:30.962
+00:01:27.749 --> 00:01:32.749
 Intune-First Onboarding;
 Book 08 Ch04, Ch07 and Ch10;
 
 24
-00:01:30.962 --> 00:01:36.438
+00:01:32.749 --> 00:01:38.225
 research items Trinzic Alone,
 or Trinzic Plus Cloud DDI?
 
 25
-00:01:36.438 --> 00:01:39.720
+00:01:38.225 --> 00:01:41.500
 and Infoblox DDI for Federal Agencies.

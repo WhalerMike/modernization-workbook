@@ -230,7 +230,7 @@ The run state replaces the OU answer with three records: the policy library from
 
 ## Slide 25 — Making the compliance signal accurate
 
-The compliance policies decide whether a device is compliant; Conditional Access decides what a noncompliant device can reach. Book 04 owns that second decision. This book's side of the hand-off is making sure the compliance signal is accurate, and remember that the compliant-device grant works only for devices registered in Entra ID and enrolled in Intune.
+The compliance policies decide whether a device is compliant; Conditional Access decides what a noncompliant device can reach. The Federal Modernization Workbook's Book 04 owns that second decision. This book's side of the hand-off is making sure the compliance signal is accurate, and remember that the compliant-device grant works only for devices registered in Entra ID and enrolled in Intune.
 
 Two tenant settings sit above every policy. Devices with no compliance policy assigned default to Compliant; the program sets Not compliant, so a device that falls outside every group, a missing tier attribute for example, can't pass Conditional Access by default. And the compliance status validity period defaults to thirty days, with a range of one to a hundred twenty; the program uses fourteen. That's a program choice: short enough that a device left in a drawer loses access before its posture is stale by a whole patch cycle, long enough not to catch staff on leave.
 

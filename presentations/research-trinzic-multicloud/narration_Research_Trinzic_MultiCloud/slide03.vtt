@@ -81,58 +81,58 @@ DNS and DHCP servers without agents.
 Why does that matter?
 
 18
-00:01:03.025 --> 00:01:07.133
-Book 08 of the workbook argues
-for one DDI policy plane:
+00:01:03.025 --> 00:01:08.648
+The Federal Modernization Workbook's Book
+08 of the workbook argues for one DDI
 
 19
-00:01:07.133 --> 00:01:12.155
-a single system of record for zones,
-forwarding rules, address data
+00:01:08.648 --> 00:01:13.931
+policy plane: a single system of record
+for zones, forwarding rules, address
 
 20
-00:01:12.155 --> 00:01:17.450
-and security policy, with cloud DNS
-managed as an overlay, not replaced.
+00:01:13.931 --> 00:01:19.213
+data and security policy, with cloud
+DNS managed as an overlay, not replaced.
 
 21
-00:01:17.450 --> 00:01:20.012
+00:01:19.213 --> 00:01:21.775
 On premises, the Grid fits that role.
 
 22
-00:01:20.012 --> 00:01:22.063
+00:01:21.775 --> 00:01:23.825
 The question is the cloud edge.
 
 23
-00:01:22.063 --> 00:01:26.262
+00:01:23.825 --> 00:01:28.025
 And note that on-premises appliances
 aren't a FedRAMP cloud service;
 
 24
-00:01:26.262 --> 00:01:28.812
+00:01:28.025 --> 00:01:30.575
 they sit inside the agency's own boundary.
 
 25
-00:01:28.812 --> 00:01:34.978
+00:01:30.575 --> 00:01:36.741
 Sources: Infoblox NIOS 9.1.x:
 About Grids, Configuring DNS Views,
 
 26
-00:01:34.978 --> 00:01:40.781
+00:01:36.741 --> 00:01:42.544
 About Infoblox DNS Firewall,
 Configuring DNSSEC on a Grid,
 
 27
-00:01:40.781 --> 00:01:49.364
+00:01:42.544 --> 00:01:51.127
 Setting DNSSEC Parameters, DHCP Failover,
 About Managing Microsoft Windows Servers;
 
 28
-00:01:49.364 --> 00:01:54.442
+00:01:51.127 --> 00:01:56.205
 Book 08, Chapter 08, What a
 DDI policy plane is made of;
 
 29
-00:01:54.442 --> 00:02:00.190
+00:01:56.205 --> 00:02:01.940
 FedRAMP Marketplace products.json
 (FR2017257053 scope).
