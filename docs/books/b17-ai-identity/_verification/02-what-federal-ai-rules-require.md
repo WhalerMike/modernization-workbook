@@ -80,3 +80,10 @@ Manual checks: the NSA/CISA *AI Data Security* information sheet PDF on media.de
 | Figure 02 (three moves) and The three moves | — | Competitive framing |
 | Bottom line | — | Competitive framing |
 | References (program decisions; compliance series volume) | — | Internal references |
+
+## Editor corrections, October 22, 2026
+
+| Claim | Result | Source |
+|---|---|---|
+| FedRAMP AI Prioritization criteria | completed: all five criteria (enterprise features, data separation, demand, GSA MAS, 20x within two months) | fedramp.gov/ai, Historical Prioritization Criteria |
+| Overlay project URL | corrected to csrc.nist.gov/projects/cosis (old /cosais redirects there) | NIST CSRC |

@@ -1,0 +1,1084 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.866
+This briefing comes from Book 17 of
+the Federal Modernization Workbook,
+
+2
+00:00:04.866 --> 00:00:08.238
+AI Identity Governance, the
+last book in the series.
+
+3
+00:00:08.238 --> 00:00:12.184
+It's written for Chief AI
+Officers, C I Os and CISOs,
+
+4
+00:00:12.184 --> 00:00:18.300
+identity and security operations teams,
+I S S Os, and authorizing officials.
+
+5
+00:00:18.300 --> 00:00:22.679
+I'll take four questions: why AI
+agents need identities and owners;
+
+6
+00:00:22.679 --> 00:00:26.085
+what governing them involves;
+who owns AI identity;
+
+7
+00:00:26.085 --> 00:00:30.950
+and how to scan the inventory and
+evidence AI systems for authorization.
+
+8
+00:00:30.950 --> 00:00:35.500
+The short version: an AI system that
+can act is an account with permissions.
+
+9
+00:00:35.500 --> 00:00:38.498
+Most were deployed outside
+the identity program,
+
+10
+00:00:38.498 --> 00:00:42.230
+and there's no separate AI
+authorization to fall back on.
+
+11
+00:00:42.980 --> 00:00:45.880
+A chat assistant that
+drafts a memo is a tool.
+
+12
+00:00:45.880 --> 00:00:50.305
+Nothing it does reaches a record until
+a person reads the draft and acts.
+
+13
+00:00:50.305 --> 00:00:51.743
+An agent is different.
+
+14
+00:00:51.743 --> 00:00:56.692
+It sends replies from a mailbox, closes
+tickets and updates case records.
+
+15
+00:00:56.692 --> 00:00:59.227
+Each step is an action
+against agency data,
+
+16
+00:00:59.227 --> 00:01:02.630
+taken by something that signed
+in and holds permissions.
+
+17
+00:01:02.630 --> 00:01:04.568
+That makes an agent an identity.
+
+18
+00:01:04.568 --> 00:01:09.876
+An AI system that acts reaches data
+in one of four ways: on behalf of a
+
+19
+00:01:09.876 --> 00:01:14.992
+signed-in user, as itself, as its own
+user account, or with an A P I key.
+
+20
+00:01:14.992 --> 00:01:18.042
+The first three run through
+the identity provider.
+
+21
+00:01:18.042 --> 00:01:20.295
+The fourth bypasses it entirely,
+
+22
+00:01:20.295 --> 00:01:24.717
+so Conditional Access never applies
+and no sign-in is evaluated.
+
+23
+00:01:24.717 --> 00:01:26.981
+Today the agentic share is small.
+
+24
+00:01:26.981 --> 00:01:35.305
+OMB's 2025 inventory holds 3,611
+use cases, 445 of them high-impact.
+
+25
+00:01:35.305 --> 00:01:40.792
+117 are classified agentic, and 38
+of those are in pilot or deployed.
+
+26
+00:01:40.792 --> 00:01:43.570
+It's also the share that grows fastest.
+
+27
+00:01:44.320 --> 00:01:48.088
+People join through a pipeline
+the identity program built,
+
+28
+00:01:48.088 --> 00:01:50.395
+from an HR record to a leaver process.
+
+29
+00:01:50.395 --> 00:01:52.245
+AI mostly came in another way.
+
+30
+00:01:52.245 --> 00:01:54.758
+A mission office ran
+a pilot with a vendor.
+
+31
+00:01:54.758 --> 00:01:58.683
+A developer put an A P I
+key in a configuration file.
+
+32
+00:01:58.683 --> 00:02:02.457
+A product the agency already
+licensed shipped an assistant.
+
+33
+00:02:02.457 --> 00:02:05.531
+None of those paths produces
+an owner of record,
+
+34
+00:02:05.531 --> 00:02:08.683
+a placement, a governed
+credential or an end date.
+
+35
+00:02:08.683 --> 00:02:10.683
+The risk is identity-shaped.
+
+36
+00:02:10.683 --> 00:02:14.520
+NIST's generative AI profile
+describes prompt injection,
+
+37
+00:02:14.520 --> 00:02:17.558
+where planted input
+makes a system misbehave.
+
+38
+00:02:17.558 --> 00:02:22.413
+Against an agent with broad permissions,
+a successful injection is an action,
+
+39
+00:02:22.413 --> 00:02:26.358
+a message sent or a record changed,
+under a legitimate identity.
+
+40
+00:02:26.358 --> 00:02:29.232
+The blast radius is the access it holds.
+
+41
+00:02:29.232 --> 00:02:31.257
+No new control family is needed.
+
+42
+00:02:31.257 --> 00:02:34.890
+Account management, identifier
+and authenticator management,
+
+43
+00:02:34.890 --> 00:02:39.482
+least privilege and service authentication
+already cover non-person accounts.
+
+44
+00:02:39.482 --> 00:02:43.145
+The gap is coverage: the AI
+system's account is often missing
+
+45
+00:02:43.145 --> 00:02:47.230
+from the account inventory the
+controls are tested against.
+
+46
+00:02:47.980 --> 00:02:51.393
+Federal AI policy was rewritten in 2025.
+
+47
+00:02:51.393 --> 00:02:56.873
+OMB memo M twenty-five twenty-one governs
+use: a Chief AI Officer, an annual
+
+48
+00:02:56.873 --> 00:02:59.704
+use-case inventory, compliance plans,
+
+49
+00:02:59.704 --> 00:03:03.267
+and seven minimum practices
+for high-impact AI.
+
+50
+00:03:03.267 --> 00:03:08.395
+Its companion, M twenty-five twenty-two,
+governs acquisition, and says AI operated
+
+51
+00:03:08.395 --> 00:03:13.905
+as an information system must receive an
+authorization to operate before deployment.
+
+52
+00:03:13.905 --> 00:03:16.180
+What the rules don't do matters as much.
+
+53
+00:03:16.180 --> 00:03:18.718
+There is no AI-specific authorization.
+
+54
+00:03:18.718 --> 00:03:23.886
+Agencies must keep following Circular
+A-130 for AI systems, and the memo's own
+
+55
+00:03:23.886 --> 00:03:29.218
+risk acceptance is separate from, and
+doesn't supersede, system authorization.
+
+56
+00:03:29.218 --> 00:03:31.643
+It sets no identity requirements at all.
+
+57
+00:03:31.643 --> 00:03:35.372
+So a high-impact use case needs
+two decisions before it deploys:
+
+58
+00:03:35.372 --> 00:03:40.392
+the signed risk acceptance on its impact
+assessment, and the system's authorization.
+
+59
+00:03:40.392 --> 00:03:41.417
+One more note.
+
+60
+00:03:41.417 --> 00:03:45.183
+Executive Order fourteen four
+thirty-four tells agencies
+
+61
+00:03:45.183 --> 00:03:48.642
+to say Super Intelligence
+in non-statutory documents.
+
+62
+00:03:48.642 --> 00:03:52.289
+The definition hasn't changed,
+and the book keeps the term AI,
+
+63
+00:03:52.289 --> 00:03:55.620
+because the instruments
+it applies still use it.
+
+64
+00:03:56.370 --> 00:04:00.444
+The inventory is the only
+government-wide list of federal AI,
+
+65
+00:04:00.444 --> 00:04:03.133
+so the program reads it as identity data.
+
+66
+00:04:03.133 --> 00:04:04.795
+A few fields are anchors.
+
+67
+00:04:04.795 --> 00:04:09.270
+The use-case ID is stable and never
+reused, so it can key a record.
+
+68
+00:04:09.270 --> 00:04:10.933
+The bureau gives a placement.
+
+69
+00:04:10.933 --> 00:04:15.333
+The stage is a lifecycle state,
+and Retired is a leaver event.
+
+70
+00:04:15.333 --> 00:04:19.286
+Other fields are leads to check:
+the contact may be a public inbox,
+
+71
+00:04:19.286 --> 00:04:22.345
+and the authorization
+field points to a boundary.
+
+72
+00:04:22.345 --> 00:04:26.883
+The facts that decide access aren't
+there at all: the principal the system
+
+73
+00:04:26.883 --> 00:04:31.345
+signs in as, its credential, its
+permissions, and the person accountable.
+
+74
+00:04:31.345 --> 00:04:34.707
+The high-impact fields
+report status, not evidence.
+
+75
+00:04:34.707 --> 00:04:39.758
+Each of the seven practices has a field,
+but each holds the agency's own answer.
+
+76
+00:04:39.758 --> 00:04:41.458
+In the published file,
+
+77
+00:04:41.458 --> 00:04:46.370
+101 of 227 deployed high-impact
+use cases answered none of them.
+
+78
+00:04:46.370 --> 00:04:48.363
+And a use case isn't an identity,
+
+79
+00:04:48.363 --> 00:04:52.230
+so the program records the
+join on the directory side.
+
+80
+00:04:52.980 --> 00:04:55.962
+An AI system's kind of
+identity is decided by
+
+81
+00:04:55.962 --> 00:04:59.193
+whose token it presents,
+not by the model it runs.
+
+82
+00:04:59.193 --> 00:05:00.606
+There are four answers.
+
+83
+00:05:00.606 --> 00:05:05.621
+Acting for a signed-in user, the user is
+the token's subject and the agent is the
+
+84
+00:05:05.621 --> 00:05:07.850
+actor, so the user's policies apply,
+
+85
+00:05:07.850 --> 00:05:10.955
+and the agent can reach
+everything the user can.
+
+86
+00:05:10.955 --> 00:05:14.740
+Acting as itself, the agent's
+own identity is the subject,
+
+87
+00:05:14.740 --> 00:05:18.442
+and the only Conditional
+Access control is to block it.
+
+88
+00:05:18.442 --> 00:05:23.517
+Acting as its own user account, it isn't
+covered by policies aimed at all users.
+
+89
+00:05:23.517 --> 00:05:28.304
+And with a stored A P I key,
+Entra ID issues no token at all.
+
+90
+00:05:28.304 --> 00:05:33.598
+Microsoft Entra Agent ID adds identity
+types built for agents: a blueprint that
+
+91
+00:05:33.598 --> 00:05:37.368
+holds the credentials, agent
+identities created from it,
+
+92
+00:05:37.368 --> 00:05:39.293
+and a required human sponsor.
+
+93
+00:05:39.293 --> 00:05:41.692
+It governs only agents that use it.
+
+94
+00:05:41.692 --> 00:05:46.261
+Most AI still runs as ordinary service
+principals and managed identities,
+
+95
+00:05:46.261 --> 00:05:49.050
+and the same governance applies to them.
+
+96
+00:05:49.800 --> 00:05:52.708
+The agency's cloud
+decides what it can use,
+
+97
+00:05:52.708 --> 00:05:56.813
+so the book dates every product
+statement to October 2026.
+
+98
+00:05:56.813 --> 00:06:02.537
+Microsoft announced the Agent ID platform,
+with blueprints, agent identities and
+
+99
+00:06:02.537 --> 00:06:05.821
+sponsors, as generally
+available in April 2026,
+
+100
+00:06:05.821 --> 00:06:08.599
+and sponsor lifecycle workflows in May.
+
+101
+00:06:08.599 --> 00:06:10.775
+Several controls are still preview.
+
+102
+00:06:10.775 --> 00:06:15.677
+The policy builder labels agent targeting
+in Conditional Access as preview,
+
+103
+00:06:15.677 --> 00:06:20.349
+agent identities support only Block,
+the agent risk condition is preview,
+
+104
+00:06:20.349 --> 00:06:24.562
+and agents' user accounts are
+limited to Frontier program tenants.
+
+105
+00:06:24.562 --> 00:06:30.175
+GCC has a partial, documented subset:
+identity and access governance for agents,
+
+106
+00:06:30.175 --> 00:06:34.937
+but not Microsoft's audit, data loss
+prevention or network controls.
+
+107
+00:06:34.937 --> 00:06:38.223
+GCC High and D O D have no
+published availability,
+
+108
+00:06:38.223 --> 00:06:42.657
+so treat agent identities as
+unavailable there until Microsoft
+
+109
+00:06:42.657 --> 00:06:47.338
+confirms otherwise in writing, and
+govern AI as workload identities.
+
+110
+00:06:47.338 --> 00:06:52.025
+And Agent 365's FedRAMP High
+authorization is still pending.
+
+111
+00:06:52.025 --> 00:06:56.499
+The program builds on what is generally
+available in the agency's own cloud,
+
+112
+00:06:56.499 --> 00:06:59.390
+and keeps preview features as watch items.
+
+113
+00:07:00.140 --> 00:07:03.236
+An agent has no hire date
+and no separation date,
+
+114
+00:07:03.236 --> 00:07:06.490
+so its lifecycle has to hang
+from a person who does.
+
+115
+00:07:06.490 --> 00:07:11.418
+Agent ID separates the owner, who manages
+credentials, from the sponsor, who is
+
+116
+00:07:11.418 --> 00:07:16.578
+accountable for purpose and lifecycle and
+can switch an agent off but not back on.
+
+117
+00:07:16.578 --> 00:07:20.153
+Left to defaults, the sponsor
+is whoever built the agent.
+
+118
+00:07:20.153 --> 00:07:25.028
+The program decides instead: the sponsor
+is a federal employee mastered in HR,
+
+119
+00:07:25.028 --> 00:07:28.533
+a small dynamic group of
+stewards is the second sponsor,
+
+120
+00:07:28.533 --> 00:07:31.352
+and the technical owner
+is never the sponsor.
+
+121
+00:07:31.352 --> 00:07:33.365
+The lifecycle follows that person.
+
+122
+00:07:33.365 --> 00:07:37.432
+When the sponsor moves or leaves,
+the HR event triggers a transfer,
+
+123
+00:07:37.432 --> 00:07:42.252
+and the new sponsor has ten business days
+to confirm the agent is still needed.
+
+124
+00:07:42.252 --> 00:07:45.308
+Access comes through
+packages with end dates,
+
+125
+00:07:45.308 --> 00:07:49.891
+so expiry is the review: a sponsor
+who does nothing removes the access.
+
+126
+00:07:49.891 --> 00:07:52.890
+Retirement is disable first, then delete.
+
+127
+00:07:52.890 --> 00:07:58.341
+Once an orphaned agent is confirmed, a
+person disables it, never an automatic rule,
+
+128
+00:07:58.341 --> 00:08:02.690
+and its office has thirty days
+to name a sponsor or retire it.
+
+129
+00:08:03.440 --> 00:08:06.170
+An agent can't be asked
+for a second factor,
+
+130
+00:08:06.170 --> 00:08:09.140
+so everything it may do
+is decided in advance.
+
+131
+00:08:09.140 --> 00:08:10.578
+Start with the credential.
+
+132
+00:08:10.578 --> 00:08:15.696
+In Agent ID it lives on the blueprint and
+is shared by every agent created from it,
+
+133
+00:08:15.696 --> 00:08:18.565
+so the blueprint is the
+credential boundary.
+
+134
+00:08:18.565 --> 00:08:23.466
+The order is settled: a managed identity
+federated to the blueprint where the agent
+
+135
+00:08:23.466 --> 00:08:28.011
+runs on Azure, workload identity federation
+from its own platform elsewhere,
+
+136
+00:08:28.011 --> 00:08:31.065
+a certificate in a vault
+only where neither applies,
+
+137
+00:08:31.065 --> 00:08:33.977
+and a client secret only
+for development and test.
+
+138
+00:08:33.977 --> 00:08:35.152
+Then privilege.
+
+139
+00:08:35.152 --> 00:08:38.314
+Microsoft blocks agents
+from Global Administrator,
+
+140
+00:08:38.314 --> 00:08:41.764
+but still allows Exchange
+and SharePoint Administrator.
+
+141
+00:08:41.764 --> 00:08:43.969
+That's a floor, not least privilege,
+
+142
+00:08:43.969 --> 00:08:48.927
+so the program's rule is that no AI
+identity holds a standing privileged role.
+
+143
+00:08:48.927 --> 00:08:52.152
+Last, an agent's reach is
+bounded by its tokens,
+
+144
+00:08:52.152 --> 00:08:55.028
+its approved tools, and data protection.
+
+145
+00:08:55.028 --> 00:08:58.320
+In GCC, Purview's agent
+controls aren't available,
+
+146
+00:08:58.320 --> 00:09:01.720
+so scoped permissions
+are the data boundary.
+
+147
+00:09:02.470 --> 00:09:07.098
+Every AI identity drifts once it
+exists: a sponsor changes jobs,
+
+148
+00:09:07.098 --> 00:09:10.658
+a developer adds a secret,
+an agent gets a new tool.
+
+149
+00:09:10.658 --> 00:09:15.657
+M twenty-five twenty-one asks monitoring
+of high-impact AI to detect changes to a
+
+150
+00:09:15.657 --> 00:09:20.808
+system after deployment, and the identity
+logs are where those changes land first.
+
+151
+00:09:20.808 --> 00:09:26.190
+So the program collects every AI identity's
+sign-ins, audit events and risk signals,
+
+152
+00:09:26.190 --> 00:09:28.803
+and ties each one to its identity record,
+
+153
+00:09:28.803 --> 00:09:32.682
+because nothing in a service
+principal's sign-in says it's AI.
+
+154
+00:09:32.682 --> 00:09:34.845
+Discovery is a standing input.
+
+155
+00:09:34.845 --> 00:09:39.850
+Shadow AI shows up in four places:
+services people use, apps holding
+
+156
+00:09:39.850 --> 00:09:45.583
+consented access, agents on endpoints,
+and AI built in the agency's own clouds.
+
+157
+00:09:45.583 --> 00:09:48.508
+Anything found without
+a record is a finding.
+
+158
+00:09:48.508 --> 00:09:51.794
+An agentic AI system with
+no governed identity
+
+159
+00:09:51.794 --> 00:09:54.744
+is the finding this
+book exists to prevent.
+
+160
+00:09:54.744 --> 00:09:58.201
+It's high priority: it halts,
+alerts a named person,
+
+161
+00:09:58.201 --> 00:10:00.620
+and is never fixed automatically.
+
+162
+00:10:00.620 --> 00:10:04.040
+And A P I keys stay
+invisible to all of it.
+
+163
+00:10:04.790 --> 00:10:09.390
+Ask who owns an AI agent's identity
+and three offices answer at once.
+
+164
+00:10:09.390 --> 00:10:13.778
+The way out is to separate the decisions
+and give each one a single decider.
+
+165
+00:10:13.778 --> 00:10:17.427
+AI adds one new executive
+and one new kind of decision.
+
+166
+00:10:17.427 --> 00:10:19.854
+The Chief AI Officer owns the inventory,
+
+167
+00:10:19.854 --> 00:10:24.778
+high-impact determinations and waivers,
+and can't delegate the waiver authority.
+
+168
+00:10:24.778 --> 00:10:29.128
+The official accountable for the mission
+signs the use-case risk acceptance.
+
+169
+00:10:29.128 --> 00:10:31.027
+Neither authorizes the system.
+
+170
+00:10:31.027 --> 00:10:36.153
+The authorizing official alone accepts
+its residual security and privacy risk,
+
+171
+00:10:36.153 --> 00:10:41.278
+and the system owner owns the AI system
+and decides what its identities may reach.
+
+172
+00:10:41.278 --> 00:10:44.859
+For the identity itself, the
+sponsor, an agency employee,
+
+173
+00:10:44.859 --> 00:10:48.752
+decides whether the agent should
+exist; the technical owner,
+
+174
+00:10:48.752 --> 00:10:51.321
+who may be a contractor, keeps it running;
+
+175
+00:10:51.321 --> 00:10:56.303
+and the identity governance officer
+decides consent, transfers and orphans.
+
+176
+00:10:56.303 --> 00:11:00.960
+Two signatures stay two, even
+when one person holds both roles.
+
+177
+00:11:01.710 --> 00:11:05.900
+The inventory scan is the program's
+method, not a federal requirement,
+
+178
+00:11:05.900 --> 00:11:09.648
+and it's cheap because it reads
+answers agencies already gave.
+
+179
+00:11:09.648 --> 00:11:12.322
+Load one vintage and
+record what's missing.
+
+180
+00:11:12.322 --> 00:11:15.809
+Detect gaps, from the answers
+and then the directory.
+
+181
+00:11:15.809 --> 00:11:17.823
+Put agentic systems first.
+
+182
+00:11:17.823 --> 00:11:21.511
+Report one row per finding,
+routed to a named role.
+
+183
+00:11:21.511 --> 00:11:24.548
+And close a finding only
+on a later observation.
+
+184
+00:11:24.548 --> 00:11:25.859
+The scale is real.
+
+185
+00:11:25.859 --> 00:11:33.332
+Of the 1,480 use cases recorded as piloted
+or deployed in the published 2025 file,
+
+186
+00:11:33.332 --> 00:11:38.653
+799 give no authorization
+answer and 488 have no contact;
+
+187
+00:11:38.653 --> 00:11:41.823
+72 percent trip at least one check.
+
+188
+00:11:41.823 --> 00:11:45.911
+These are answers to reconcile,
+not findings against agencies.
+
+189
+00:11:45.911 --> 00:11:51.110
+The checks that matter most need the
+directory, so only the agency can run them:
+
+190
+00:11:51.110 --> 00:11:56.310
+no identity record, no accountable sponsor,
+an identity with no inventory row,
+
+191
+00:11:56.310 --> 00:12:00.210
+and a retired use case whose
+identities still hold access.
+
+192
+00:12:00.210 --> 00:12:03.933
+A central scan of the public file
+could start that conversation,
+
+193
+00:12:03.933 --> 00:12:05.900
+but it can't see a credential.
+
+194
+00:12:06.650 --> 00:12:09.425
+Everything ends in the
+authorization package.
+
+195
+00:12:09.425 --> 00:12:14.546
+It has to answer five questions about each
+AI system's identity: who owns it, how
+
+196
+00:12:14.546 --> 00:12:19.587
+it authenticates, what it can reach, who's
+watching it, and when its access ends.
+
+197
+00:12:19.587 --> 00:12:22.338
+Each has an artifact
+and controls behind it.
+
+198
+00:12:22.338 --> 00:12:23.688
+Two points stand out.
+
+199
+00:12:23.688 --> 00:12:28.446
+First, service identification and
+authentication, control I A nine,
+
+200
+00:12:28.446 --> 00:12:32.611
+describes an AI system calling
+a tool with its own identity,
+
+201
+00:12:32.611 --> 00:12:35.925
+and it's in no NIST baseline
+and no FedRAMP class.
+
+202
+00:12:35.925 --> 00:12:37.700
+So the program tailors it in.
+
+203
+00:12:37.700 --> 00:12:42.414
+Second, three of the seven high-impact
+practices can be evidenced by the identity
+
+204
+00:12:42.414 --> 00:12:46.143
+program: monitoring from the
+system's own logs, training checked
+
+205
+00:12:46.143 --> 00:12:50.012
+against the operators' group, and a
+fail-safe that's a tested disable.
+
+206
+00:12:50.012 --> 00:12:55.276
+The package can be machine-readable in OSCAL,
+with no AI-specific structures needed.
+
+207
+00:12:55.276 --> 00:12:57.373
+NIST's overlays for AI systems,
+
+208
+00:12:57.373 --> 00:13:01.738
+renamed under the new executive
+order, have no public draft yet.
+
+209
+00:13:01.738 --> 00:13:05.560
+So tailor the baseline now,
+and compare when they're final.
+
+210
+00:13:06.310 --> 00:13:07.685
+So, four decisions.
+
+211
+00:13:07.685 --> 00:13:10.647
+Count AI identities, not AI projects.
+
+212
+00:13:10.647 --> 00:13:14.762
+No use case is recorded as
+piloted or deployed without a link
+
+213
+00:13:14.762 --> 00:13:19.123
+to its identity record, created
+before any credential is issued.
+
+214
+00:13:19.123 --> 00:13:23.384
+Put a person's name on every one:
+an agency employee as sponsor,
+
+215
+00:13:23.384 --> 00:13:27.048
+with HR's mover and leaver
+events reaching the agent.
+
+216
+00:13:27.048 --> 00:13:31.914
+Take away stored secrets and standing
+privilege: federated credentials first,
+
+217
+00:13:31.914 --> 00:13:35.453
+no standing privileged roles,
+and a block-unless-approved
+
+218
+00:13:35.453 --> 00:13:39.435
+policy kept in report-only mode
+while agent targeting is preview.
+
+219
+00:13:39.435 --> 00:13:43.082
+And authorize AI through
+the process you already run:
+
+220
+00:13:43.082 --> 00:13:47.060
+two signatures for high-impact
+AI, with I A nine tailored in.
+
+221
+00:13:47.060 --> 00:13:49.210
+The next step needs no new tooling.
+
+222
+00:13:49.210 --> 00:13:52.560
+Run the inventory checks on
+the agency's own submission,
+
+223
+00:13:52.560 --> 00:13:55.982
+start with agentic systems
+and missing authorizations,
+
+224
+00:13:55.982 --> 00:14:00.497
+and confirm each agent capability for
+your own cloud before planning on it.
+
+225
+00:14:00.497 --> 00:14:03.947
+Every AI system needs an
+identity and an owner.
+
+226
+00:14:03.947 --> 00:14:07.898
+Book 17 has the detail,
+every claim footnoted.
+
+227
+00:14:07.898 --> 00:14:08.710
+Thank you.

@@ -1,0 +1,76 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.032
+An AI system's kind of
+identity is decided by
+
+2
+00:00:03.032 --> 00:00:06.263
+whose token it presents,
+not by the model it runs.
+
+3
+00:00:06.263 --> 00:00:07.676
+There are four answers.
+
+4
+00:00:07.676 --> 00:00:12.691
+Acting for a signed-in user, the user is
+the token's subject and the agent is the
+
+5
+00:00:12.691 --> 00:00:14.920
+actor, so the user's policies apply,
+
+6
+00:00:14.920 --> 00:00:18.025
+and the agent can reach
+everything the user can.
+
+7
+00:00:18.025 --> 00:00:21.810
+Acting as itself, the agent's
+own identity is the subject,
+
+8
+00:00:21.810 --> 00:00:25.512
+and the only Conditional
+Access control is to block it.
+
+9
+00:00:25.512 --> 00:00:30.587
+Acting as its own user account, it isn't
+covered by policies aimed at all users.
+
+10
+00:00:30.587 --> 00:00:35.374
+And with a stored A P I key,
+Entra ID issues no token at all.
+
+11
+00:00:35.374 --> 00:00:40.668
+Microsoft Entra Agent ID adds identity
+types built for agents: a blueprint that
+
+12
+00:00:40.668 --> 00:00:44.438
+holds the credentials, agent
+identities created from it,
+
+13
+00:00:44.438 --> 00:00:46.363
+and a required human sponsor.
+
+14
+00:00:46.363 --> 00:00:48.762
+It governs only agents that use it.
+
+15
+00:00:48.762 --> 00:00:53.331
+Most AI still runs as ordinary service
+principals and managed identities,
+
+16
+00:00:53.331 --> 00:00:55.820
+and the same governance applies to them.

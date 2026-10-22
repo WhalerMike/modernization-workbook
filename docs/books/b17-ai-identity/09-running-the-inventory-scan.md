@@ -32,7 +32,7 @@ The program's scan script isn't published with the workbook. Everything below de
 
 ## What the scan reads
 
-M-25-21 requires each agency other than the Department of Defense and the Intelligence Community to inventory its AI use cases at least annually, submit the inventory to OMB and post a public version; it encourages agencies to update the public version on an ongoing basis.[^c09-m2521] For the 2025 cycle, OMB's guidance set December 22, 2025 for submissions and January 28, 2026 for a machine-readable CSV at each agency's `/ai` page.[^c09-guidance] OMB then compiled the public inventories into one repository. As of April 13, 2026 it holds 3,611 individually reported use cases from 41 agency submissions, of which 1,818 are deployed or piloted and 445 are high-impact.[^c09-repo]
+M-25-21 requires each agency other than the Department of Defense and the Intelligence Community to inventory its AI use cases at least annually, submit the inventory to OMB and post a public version; it encourages agencies to update the public version on an ongoing basis.[^c09-m2521] For the 2025 cycle, OMB's guidance set December 22, 2025 for submissions and January 28, 2026 for a machine-readable CSV at each agency's `/ai` page.[^c09-guidance] OMB then compiled the public inventories into one repository. As of April 13, 2026 it holds 3,611 individually reported use cases from the 41 agencies that reported use cases individually, of which 1,818 are deployed or piloted and 445 are high-impact.[^c09-repo]
 
 There are therefore two files the scan can read, and they aren't the same.
 

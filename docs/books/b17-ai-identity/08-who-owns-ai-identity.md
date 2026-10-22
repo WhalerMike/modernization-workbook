@@ -161,7 +161,7 @@ D = decides (accountable) · R = does the work · C = consulted · blank = infor
 | Privacy impact assessment for an AI system with PII | C | | | | C | R | | | | D | |
 | AI acquisition: identity, logging and credential terms | C | D | C | | | R | | C | | C | R |
 | Training for operators of a high-impact AI system | C | | C | | | D, R | C | | | | |
-| Retire an AI system: identities, grants, inventory entry | R | | | | C | D | R | R | | | |
+| Retire an AI system as a whole: identities, grants, inventory entry (retiring a single agent is its sponsor's decision) | R | | | | C | D | R | R | | | |
 | AI identity evidence in the authorization package | C | | C | | | D, R | | R | R | | |
 
 Eight rows need comment.

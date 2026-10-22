@@ -1,0 +1,51 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.866
+This briefing comes from Book 17 of
+the Federal Modernization Workbook,
+
+2
+00:00:04.866 --> 00:00:08.238
+AI Identity Governance, the
+last book in the series.
+
+3
+00:00:08.238 --> 00:00:12.184
+It's written for Chief AI
+Officers, C I Os and CISOs,
+
+4
+00:00:12.184 --> 00:00:18.300
+identity and security operations teams,
+I S S Os, and authorizing officials.
+
+5
+00:00:18.300 --> 00:00:22.679
+I'll take four questions: why AI
+agents need identities and owners;
+
+6
+00:00:22.679 --> 00:00:26.085
+what governing them involves;
+who owns AI identity;
+
+7
+00:00:26.085 --> 00:00:30.950
+and how to scan the inventory and
+evidence AI systems for authorization.
+
+8
+00:00:30.950 --> 00:00:35.500
+The short version: an AI system that
+can act is an account with permissions.
+
+9
+00:00:35.500 --> 00:00:38.498
+Most were deployed outside
+the identity program,
+
+10
+00:00:38.498 --> 00:00:41.930
+and there's no separate AI
+authorization to fall back on.

@@ -86,3 +86,9 @@ Checked October 21, 2026 by writer W2. Sources: `docs/operational-guides/ai-iden
 | whitepaper, figure 02 and Three moves | — | Win-probability content; dropped |
 | whitepaper, Bottom line | — | Competitive framing; dropped |
 | whitepaper, References (internal decisions, compliance series) | — | Internal references; not linked |
+
+## Editor corrections, October 22, 2026
+
+| Claim | Result | Source |
+|---|---|---|
+| 15 identifiers appear more than once | corrected: 13 distinct IDs appear more than once, on 28 rows (15 extra rows) | 2025_individually_reported_AI_use_cases.csv, recounted |

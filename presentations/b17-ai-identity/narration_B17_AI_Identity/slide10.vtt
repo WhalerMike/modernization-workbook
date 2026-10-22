@@ -1,0 +1,78 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.678
+Every AI identity drifts once it
+exists: a sponsor changes jobs,
+
+2
+00:00:04.678 --> 00:00:08.238
+a developer adds a secret,
+an agent gets a new tool.
+
+3
+00:00:08.238 --> 00:00:13.237
+M twenty-five twenty-one asks monitoring
+of high-impact AI to detect changes to a
+
+4
+00:00:13.237 --> 00:00:18.388
+system after deployment, and the identity
+logs are where those changes land first.
+
+5
+00:00:18.388 --> 00:00:23.770
+So the program collects every AI identity's
+sign-ins, audit events and risk signals,
+
+6
+00:00:23.770 --> 00:00:26.383
+and ties each one to its identity record,
+
+7
+00:00:26.383 --> 00:00:30.262
+because nothing in a service
+principal's sign-in says it's AI.
+
+8
+00:00:30.262 --> 00:00:32.425
+Discovery is a standing input.
+
+9
+00:00:32.425 --> 00:00:37.430
+Shadow AI shows up in four places:
+services people use, apps holding
+
+10
+00:00:37.430 --> 00:00:43.163
+consented access, agents on endpoints,
+and AI built in the agency's own clouds.
+
+11
+00:00:43.163 --> 00:00:46.088
+Anything found without
+a record is a finding.
+
+12
+00:00:46.088 --> 00:00:49.374
+An agentic AI system with
+no governed identity
+
+13
+00:00:49.374 --> 00:00:52.324
+is the finding this
+book exists to prevent.
+
+14
+00:00:52.324 --> 00:00:55.781
+It's high priority: it halts,
+alerts a named person,
+
+15
+00:00:55.781 --> 00:00:58.200
+and is never fixed automatically.
+
+16
+00:00:58.200 --> 00:01:01.320
+And A P I keys stay
+invisible to all of it.

@@ -1,0 +1,76 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.124
+The inventory is the only
+government-wide list of federal AI,
+
+2
+00:00:04.124 --> 00:00:06.813
+so the program reads it as identity data.
+
+3
+00:00:06.813 --> 00:00:08.475
+A few fields are anchors.
+
+4
+00:00:08.475 --> 00:00:12.950
+The use-case ID is stable and never
+reused, so it can key a record.
+
+5
+00:00:12.950 --> 00:00:14.613
+The bureau gives a placement.
+
+6
+00:00:14.613 --> 00:00:19.013
+The stage is a lifecycle state,
+and Retired is a leaver event.
+
+7
+00:00:19.013 --> 00:00:22.966
+Other fields are leads to check:
+the contact may be a public inbox,
+
+8
+00:00:22.966 --> 00:00:26.025
+and the authorization
+field points to a boundary.
+
+9
+00:00:26.025 --> 00:00:30.563
+The facts that decide access aren't
+there at all: the principal the system
+
+10
+00:00:30.563 --> 00:00:35.025
+signs in as, its credential, its
+permissions, and the person accountable.
+
+11
+00:00:35.025 --> 00:00:38.387
+The high-impact fields
+report status, not evidence.
+
+12
+00:00:38.387 --> 00:00:43.438
+Each of the seven practices has a field,
+but each holds the agency's own answer.
+
+13
+00:00:43.438 --> 00:00:45.138
+In the published file,
+
+14
+00:00:45.138 --> 00:00:50.050
+101 of 227 deployed high-impact
+use cases answered none of them.
+
+15
+00:00:50.050 --> 00:00:52.043
+And a use case isn't an identity,
+
+16
+00:00:52.043 --> 00:00:55.610
+so the program records the
+join on the directory side.
