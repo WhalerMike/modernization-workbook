@@ -1,0 +1,100 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.137
+Where does this fit?
+
+2
+00:00:01.137 --> 00:00:04.137
+Book 08 makes the vendor-neutral case.
+
+3
+00:00:04.137 --> 00:00:10.376
+Chapter 02 explains split-brain, Chapter 07
+covers cloud private endpoints and IPAM,
+
+4
+00:00:10.376 --> 00:00:14.881
+Chapter 08 describes the policy
+plane that overlays cloud DNS,
+
+5
+00:00:14.881 --> 00:00:17.913
+and Chapter 12 covers platform selection.
+
+6
+00:00:17.913 --> 00:00:22.075
+The research deep dive, Infoblox
+DDI for Federal Agencies,
+
+7
+00:00:22.075 --> 00:00:27.450
+covers the platform, its FedRAMP scope,
+its risks, and how divisions share it.
+
+8
+00:00:27.450 --> 00:00:32.885
+The decisions to take: which option for each
+cloud and impact level; one named owner
+
+9
+00:00:32.885 --> 00:00:38.000
+for every zone; where DNSSEC keys live;
+and how address blocks reach each cloud.
+
+10
+00:00:38.000 --> 00:00:39.163
+The next steps.
+
+11
+00:00:39.163 --> 00:00:42.841
+Ask Infoblox for the Government
+Cloud authorization boundary
+
+12
+00:00:42.841 --> 00:00:46.588
+and a feature matrix for GovCloud
+and Azure Government accounts.
+
+13
+00:00:46.588 --> 00:00:50.220
+Confirm that DNS Private
+Resolver and Virtual Network
+
+14
+00:00:50.220 --> 00:00:53.537
+Manager IPAM are available
+in Azure Government.
+
+15
+00:00:53.537 --> 00:00:57.176
+Size NIOS-X capacity if
+you want cloud forwarders.
+
+16
+00:00:57.176 --> 00:01:00.838
+And test forwarding in both
+directions from every origin.
+
+17
+00:01:00.838 --> 00:01:04.332
+One note on standing: this
+is research under review,
+
+18
+00:01:04.332 --> 00:01:07.162
+not an endorsement by any federal agency.
+
+19
+00:01:07.162 --> 00:01:07.924
+Thank you.
+
+20
+00:01:07.924 --> 00:01:14.812
+Sources: Book 08, Chapters 02, 07,
+08 and 12; research item Infoblox
+
+21
+00:01:14.812 --> 00:01:21.770
+DDI for Federal Agencies;
+research_multicloud, Couldn't verify.

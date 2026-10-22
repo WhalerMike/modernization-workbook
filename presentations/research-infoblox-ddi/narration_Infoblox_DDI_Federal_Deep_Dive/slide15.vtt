@@ -1,170 +1,179 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:02.425
-A fair comparison, column by column.
+00:00:00.050 --> 00:00:03.324
+So can Trinzic run an
+agency's DDI alone once
 
 2
-00:00:02.425 --> 00:00:08.662
-FedRAMP: Infoblox is the only dedicated DDI
-vendor here with a listing, at Moderate.
+00:00:03.324 --> 00:00:06.688
+workloads move to AWS,
+Azure and Google Cloud?
 
 3
-00:00:08.662 --> 00:00:11.012
-BlueCat and EfficientIP have none.
+00:00:06.688 --> 00:00:09.538
+On its own, it can see into the clouds.
 
 4
-00:00:11.012 --> 00:00:15.109
-But the hyperscalers' government
-clouds are all FedRAMP High,
+00:00:09.538 --> 00:00:14.381
+vDiscovery pulls in cloud
+networks and VMs on a schedule,
 
 5
-00:00:15.109 --> 00:00:17.600
-a higher ceiling than Infoblox's SaaS.
+00:00:14.381 --> 00:00:20.875
+and NIOS can import Route 53, Azure DNS
+and Google Cloud DNS zones, one way only.
 
 6
-00:00:17.600 --> 00:00:20.738
-FIPS 140: BlueCat leads.
+00:00:20.875 --> 00:00:23.063
+What it can't do is own cloud DNS.
 
 7
-00:00:20.738 --> 00:00:28.463
-It holds an active FIPS 140-3
-certificate, number 5506, valid to 2029.
+00:00:23.063 --> 00:00:25.688
+Changes made in NIOS don't write back,
 
 8
-00:00:28.463 --> 00:00:32.487
-Infoblox's is still in review,
-and EfficientIP has none.
+00:00:25.688 --> 00:00:28.838
+and it can't create the
+clouds' private zones.
 
 9
-00:00:32.487 --> 00:00:36.518
-STIGs: Infoblox has two
-current vendor-specific STIGs;
+00:00:28.838 --> 00:00:32.984
+No NIOS document describes
+managing Route 53 VPC
 
 10
-00:00:36.518 --> 00:00:41.087
-BlueCat and EfficientIP have
-none, and Windows DNS has its own.
+00:00:32.984 --> 00:00:37.637
+Resolver rules or Azure DNS
+Private Resolver rulesets.
 
 11
-00:00:41.087 --> 00:00:45.180
-Multi-cloud DNS: Infoblox
-manages Route 53,
+00:00:37.637 --> 00:00:40.906
+It isn't the authority for AWS VPC IPAM,
 
 12
-00:00:45.180 --> 00:00:49.974
-Azure DNS and Google Cloud
-DNS from one interface.
+00:00:40.906 --> 00:00:45.263
+and DHCP in cloud subnets
+stays with the cloud fabric.
 
 13
-00:00:49.974 --> 00:00:54.325
-BlueCat and EfficientIP claim similar
-coverage on their product pages.
+00:00:45.263 --> 00:00:48.188
+There are three ways to
+extend it, and they combine.
 
 14
-00:00:54.325 --> 00:00:59.075
-Each cloud's native service covers only
-that cloud, and Windows covers none.
+00:00:48.188 --> 00:00:52.452
+Option A puts vNIOS members in
+each cloud, joined to the Grid,
 
 15
-00:00:59.075 --> 00:01:02.256
-DNS security: Infoblox
-has the broadest set,
+00:00:52.452 --> 00:00:57.151
+Azure Government included, so
+answers stay local during a WAN cut.
 
 16
-00:01:02.256 --> 00:01:08.087
-response policy zones plus TIDE intelligence
-and tunneling and DGA analytics.
+00:00:57.151 --> 00:01:00.057
+Option B joins the Grid to Universal DDI,
 
 17
-00:01:08.087 --> 00:01:11.296
-Azure uses domain lists
-and a Microsoft feed,
+00:01:00.057 --> 00:01:05.872
+the only Infoblox path that writes back
+to cloud DNS, but the government edition
 
 18
-00:01:11.296 --> 00:01:16.931
-AWS DNS Firewall Advanced adds DGA and
-tunneling detection, Google's response
+00:01:05.872 --> 00:01:11.863
+is Moderate only, with limited discovery:
+single AWS accounts and no Azure tenants.
 
 19
-00:01:16.931 --> 00:01:22.826
-policies are passthrough only, and Windows
-DNS policies have no feed integration.
+00:01:11.863 --> 00:01:16.800
+Its cloud forwarders run on NIOS-X
+servers, not classic Trinzic.
 
 20
-00:01:22.826 --> 00:01:26.240
-DHCPv6 failover is missing
-everywhere we checked,
+00:01:16.800 --> 00:01:20.192
+Option C keeps the native
+cloud resolvers and wires them
 
 21
-00:01:26.240 --> 00:01:30.225
-Infoblox and Windows included,
-so it's not a differentiator.
+00:01:20.192 --> 00:01:23.800
+to the Grid with conditional
+forwarding in both directions.
 
 22
-00:01:30.225 --> 00:01:35.800
-EfficientIP claims extra DHCP
-high-availability modes; that's a vendor claim.
+00:01:23.800 --> 00:01:29.725
+And the AWS VPC IPAM handoff to
+Infoblox isn't available in GovCloud.
 
 23
-00:01:35.800 --> 00:01:39.215
-Automation: two partner-tier
-Terraform providers,
+00:01:29.725 --> 00:01:32.638
+The bottom row is design
+guidance, not a rule.
 
 24
-00:01:39.215 --> 00:01:44.013
-two Ansible collections and ServiceNow
-give Infoblox the deepest set.
+00:01:32.638 --> 00:01:35.222
+Mostly on premises: Option C.
 
 25
-00:01:44.013 --> 00:01:47.475
-EfficientIP's Terraform
-provider is community tier.
+00:01:35.222 --> 00:01:37.918
+Hybrid with one cloud: A plus C.
 
 26
-00:01:47.475 --> 00:01:52.537
-Where alternatives win: BlueCat's
-Micetro manages existing Windows and BIND
+00:01:37.918 --> 00:01:41.400
+Multi-cloud at Moderate or below: add B.
 
 27
-00:01:52.537 --> 00:01:57.362
-servers in place, and a single-cloud
-workload may need no third-party plane.
+00:01:41.400 --> 00:01:45.219
+GovCloud, Azure Government, FedRAMP High,
 
 28
-00:01:57.362 --> 00:01:59.911
-So the fair claim is the one on the slide:
+00:01:45.219 --> 00:01:49.600
+or IL4 and IL5: A plus C,
+and don't depend on the SaaS.
 
 29
-00:01:59.911 --> 00:02:04.612
-a strong default for a hybrid federal
-estate, not the only viable choice.
+00:01:49.600 --> 00:01:53.072
+For the full reasoning,
+see the Research explainer,
 
 30
-00:02:04.612 --> 00:02:10.660
-Sources: FedRAMP Marketplace
-products.json; NIST CMVP certificate 5506;
+00:01:53.072 --> 00:01:55.800
+Trinzic Alone, or Trinzic Plus Cloud DDI?
 
 31
-00:02:10.660 --> 00:02:15.095
-DISA STIG store; BlueCat
-Integrity and Micetro pages,
+00:01:55.800 --> 00:02:02.884
+Sources: Infoblox NIOS 9.1.x vDiscovery
+and Cloud Network Automation; Route 53,
 
 32
-00:02:15.095 --> 00:02:18.825
-EfficientIP SOLIDserver
-datasheet (vendor);
+00:02:02.884 --> 00:02:08.640
+Azure DNS and Google Cloud DNS
+integration pages; vNIOS for AWS,
 
 33
-00:02:18.825 --> 00:02:25.075
-Microsoft Learn DNS Policies and DHCP
-failover; Azure DNS resolver policy;
+00:02:08.640 --> 00:02:16.056
+Azure and Google Cloud; Onboarding NIOS
+Services; Configuring Cloud Forwarders;
 
 34
-00:02:25.075 --> 00:02:31.526
-Route 53 DNS Firewall Advanced; Google
-Cloud response policies and DNS Armor;
+00:02:16.056 --> 00:02:23.693
+What's New in Universal DDI for FedRAMP;
+Universal Asset Insights credential pages;
 
 35
-00:02:31.526 --> 00:02:34.610
-Terraform Registry; Ansible Galaxy.
+00:02:23.693 --> 00:02:26.460
+Limitations of Universal DDI;
+
+36
+00:02:26.460 --> 00:02:31.773
+AWS Route 53 VPC Resolver and
+VPC IPAM docs, What's New Nov.
+
+37
+00:02:31.773 --> 00:02:36.533
+17, 2025; Microsoft Learn
+Azure DNS Private Resolver;
+
+38
+00:02:36.533 --> 00:02:39.620
+Google Cloud DNS best practices.

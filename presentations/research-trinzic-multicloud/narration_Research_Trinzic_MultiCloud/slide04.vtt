@@ -1,0 +1,140 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:00.925
+It can see.
+
+2
+00:00:00.925 --> 00:00:05.204
+vDiscovery logs in to AWS,
+Azure, Google Cloud or VMware
+
+3
+00:00:05.204 --> 00:00:09.863
+on a schedule and pulls back
+networks and virtual machines.
+
+4
+00:00:09.863 --> 00:00:14.675
+AWS jobs have a GovCloud option, and
+Azure jobs cover Azure Government.
+
+5
+00:00:14.675 --> 00:00:17.356
+Discovered subnets
+become managed networks,
+
+6
+00:00:17.356 --> 00:00:22.013
+and the Grid can create records for
+discovered machines in zones it already has.
+
+7
+00:00:22.013 --> 00:00:24.624
+It's a scheduled pull, not a live feed.
+
+8
+00:00:24.624 --> 00:00:26.625
+It can also import cloud zones.
+
+9
+00:00:26.625 --> 00:00:32.880
+With a Cloud Network Automation license,
+NIOS copies Route 53, Azure DNS and Google
+
+10
+00:00:32.880 --> 00:00:38.675
+Cloud DNS zones into the Grid, so
+on-premises clients can resolve cloud names.
+
+11
+00:00:38.675 --> 00:00:40.088
+The import is one way.
+
+12
+00:00:40.088 --> 00:00:44.060
+For Route 53, Infoblox says
+the sync runs into NIOS,
+
+13
+00:00:44.060 --> 00:00:49.099
+not vice versa, and NIOS edits to
+those records are overwritten.
+
+14
+00:00:49.099 --> 00:00:50.550
+Now what it can't control.
+
+15
+00:00:50.550 --> 00:00:53.500
+It can't create or own
+a cloud private zone.
+
+16
+00:00:53.500 --> 00:00:58.144
+No NIOS document describes
+managing Route 53 VPC Resolver
+
+17
+00:00:58.144 --> 00:01:02.125
+endpoints or rules, or
+Azure's forwarding rulesets.
+
+18
+00:01:02.125 --> 00:01:08.700
+It can't be the outside authority for AWS
+VPC IPAM; that's a Universal DDI feature.
+
+19
+00:01:08.700 --> 00:01:11.800
+And it can't run DHCP for cloud subnets.
+
+20
+00:01:11.800 --> 00:01:15.938
+AWS hands out addresses
+from its own DHCP servers.
+
+21
+00:01:15.938 --> 00:01:19.571
+Google limits vNIOS DHCP
+to on-premises networks,
+
+22
+00:01:19.571 --> 00:01:24.888
+and Azure doesn't support running DHCP
+in Azure for on-premises networks.
+
+23
+00:01:24.888 --> 00:01:29.606
+So, as an inference: in the cloud,
+Infoblox's job is DNS and IPAM,
+
+24
+00:01:29.606 --> 00:01:34.138
+and the cloud's resolver still
+answers cloud private zones.
+
+25
+00:01:34.138 --> 00:01:40.302
+Sources: Infoblox NIOS 9.1.x Selecting
+the Endpoint Server, vDiscovery AWS,
+
+26
+00:01:40.302 --> 00:01:46.465
+Guidelines for vDiscovery Jobs, Creating
+DNS Records for Discovered VMs,
+
+27
+00:01:46.465 --> 00:01:51.922
+Cloud Network Automation; Amazon
+Route 53 Integration Overview;
+
+28
+00:01:51.922 --> 00:01:58.793
+Integrating Azure DNS and Google Cloud
+DNS with NIOS and their limitations pages;
+
+29
+00:01:58.793 --> 00:02:05.620
+AWS DHCP option sets; Limitations of vNIOS
+for Google Cloud; About vNIOS for Azure.

@@ -1,144 +1,142 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:02.867
-Three constructs separate
-divisions on NIOS,
+00:00:00.050 --> 00:00:05.425
+The NIOS permission model has three
+levels: read-write, read-only and deny.
 
 2
-00:00:02.867 --> 00:00:05.388
-and each has a rule
-that shapes the design.
+00:00:05.425 --> 00:00:09.556
+Deny is the default for every resource,
+which is the right starting point
 
 3
-00:00:05.388 --> 00:00:06.551
-Network views.
+00:00:09.556 --> 00:00:13.412
+for divisions: a new group sees
+nothing until you grant it something.
 
 4
-00:00:06.551 --> 00:00:10.587
-A network view is a single routing
-domain with its own networks.
+00:00:13.412 --> 00:00:15.337
+Permissions come in two scopes.
 
 5
-00:00:10.587 --> 00:00:15.037
-Views are mutually exclusive, so two
-of them can hold the same addresses;
+00:00:15.337 --> 00:00:21.150
+Global permissions cover every object of
+a type, for example every DHCP network.
 
 6
-00:00:15.037 --> 00:00:19.938
-You can have up to a thousand, and the
-default view can be renamed but not deleted.
+00:00:21.150 --> 00:00:26.326
+Object permissions cover one specific
+member, zone, response policy zone,
 
 7
-00:00:19.938 --> 00:00:24.262
-The design rule: a DHCP member
-serves only one network view,
+00:00:26.326 --> 00:00:30.738
+network, record or fixed address,
+together with what's inside it.
 
 8
-00:00:24.262 --> 00:00:27.776
-and both failover peers
-must serve the same one.
+00:00:30.738 --> 00:00:33.225
+Inheritance runs from parent to child,
 
 9
-00:00:27.776 --> 00:00:32.250
-So a division with overlapping
-space needs its own DHCP members.
+00:00:33.225 --> 00:00:37.577
+and you override it by setting a
+permission at a more specific level,
 
 10
-00:00:32.250 --> 00:00:37.410
-Remember too that nothing on NIOS
-enforces uniqueness across views;
+00:00:37.577 --> 00:00:41.463
+such as deny on one fixed address
+inside a read-write network.
 
 11
-00:00:37.410 --> 00:00:40.488
-that's a Universal DDI
-feature, in Module 4.
+00:00:41.463 --> 00:00:45.762
+When permissions overlap, NIOS
+resolves them in a fixed order.
 
 12
-00:00:40.488 --> 00:00:44.222
-DNS views give different
-answers to different clients,
+00:00:45.762 --> 00:00:48.926
+It starts at the most
+specific object and works up.
 
 13
-00:00:44.222 --> 00:00:48.362
-matched on source address or TSIG
-key, and the first match wins.
+00:00:48.926 --> 00:00:52.964
+At each level it checks permissions
+assigned directly to the group first,
 
 14
-00:00:48.362 --> 00:00:54.065
-Every network view gets an automatic DNS
-view called default dot the view name,
+00:00:52.964 --> 00:00:55.613
+then the group's roles in
+the order they're listed.
 
 15
-00:00:54.065 --> 00:00:57.662
-and a DNS view belongs to
-exactly one network view.
+00:00:55.613 --> 00:00:59.687
+The first permission it finds wins,
+and everything after it is ignored.
 
 16
-00:00:57.662 --> 00:01:03.113
-Only one DNS view per network view
-can receive dynamic DNS updates.
+00:00:59.687 --> 00:01:03.421
+So if one role grants read-only
+on A records and a later role
 
 17
-00:01:03.113 --> 00:01:06.210
-And order matters: put a
-catch-all external view
+00:01:03.421 --> 00:01:07.388
+grants read-write on the same
+records, the admin gets read-only.
 
 18
-00:01:06.210 --> 00:01:09.149
-first and the internal
-view is never reached.
+00:01:07.388 --> 00:01:12.463
+Grid Manager flags overlaps with a See
+Conflicts link and an Overlaps filter.
 
 19
-00:01:09.149 --> 00:01:14.059
-Extensible attributes are metadata:
-such as Division and CostCenter,
+00:01:12.463 --> 00:01:16.413
+Roles are reusable permission
+sets, up to twenty-one per group.
 
 20
-00:01:14.059 --> 00:01:17.275
-with types, allowed values
-and a required flag.
+00:01:16.413 --> 00:01:21.608
+Be careful with the system roles: DNS
+Admin and DHCP Admin grant read-write
 
 21
-00:01:17.275 --> 00:01:22.687
-They inherit down from the network view to
-the container, network, range and host.
+00:01:21.608 --> 00:01:27.400
+across all members and all managed Microsoft
+servers, far too broad for a division.
 
 22
-00:01:22.687 --> 00:01:23.851
-Two cautions.
+00:01:27.400 --> 00:01:29.512
+The governance lever is on the left.
 
 23
-00:01:23.851 --> 00:01:29.006
-Required is enforced only in Grid
-Manager; objects created through the API
+00:01:29.512 --> 00:01:32.905
+Only superusers can create
+admin groups and roles,
 
 24
-00:01:29.006 --> 00:01:34.162
-or CSV import can skip it, so your
-automation has to enforce the Division tag.
+00:01:32.905 --> 00:01:37.751
+or define extensible attributes, so a
+division can't widen its own rights.
 
 25
-00:01:34.162 --> 00:01:39.312
-And attributes drive smart folders,
-dashboards and reports, not permissions.
+00:01:37.751 --> 00:01:40.712
+And a local admin superuser always exists,
 
 26
-00:01:39.312 --> 00:01:42.537
-We found no way to grant
-access by attribute value.
+00:01:40.712 --> 00:01:44.775
+so someone can still log in if
+the directory or OCSP is down.
 
 27
-00:01:42.537 --> 00:01:48.562
-Access is always scoped by objects:
-containers, networks, views and zones.
+00:01:44.775 --> 00:01:49.963
+Sources: Infoblox NIOS: About Administrative
+Permissions, About Admin Groups,
 
 28
-00:01:48.562 --> 00:01:55.005
-Sources: Infoblox NIOS: Configuring
-Network Views; About DNS Views; Managing
+00:01:49.963 --> 00:01:54.193
+About Admin Roles, Applying
+Permissions and Managing Overlaps,
 
 29
-00:01:55.005 --> 00:02:02.110
-Extensible Attributes; Configuring
-Inheritable EAs; Smart Folders and EA filters.
+00:01:54.193 --> 00:01:58.730
+Creating Superuser Admin Groups,
+Managing Extensible Attributes.

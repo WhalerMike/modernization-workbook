@@ -162,7 +162,37 @@ Two practical notes. With reuse at zero, expect to do your own ATO work rather t
 
 Sources: FedRAMP Marketplace products.json, FR2017257053 (accessed Oct. 22, 2026); Infoblox blog, July 22, 2026 (vendor); What's New in Universal DDI for FedRAMP; vNIOS for Azure.
 
-## Slide 14 — Assurance: STIGs, FIPS 140, NIAP and SP 800-81r3
+## Slide 14 — Trinzic hardware against the workbook's design
+
+A narrower question: if an agency buys Trinzic, the physical NIOS appliances, how well does the hardware fit the design in Book 08 of the workbook?
+
+One authoritative policy plane: the Grid gives you one shared database, an HA Grid Master and a candidate with a full copy. But candidate promotion is manual, and Infoblox publishes no Grid scale limits, so size it with the vendor.
+
+Leaving Active Directory–integrated DNS: GSS-TSIG lets domain controllers send Kerberos-signed updates to the Grid. But an appliance can send GSS-TSIG updates or accept them, not both, so plan which members do which.
+
+DNSSEC signing is central, on the Grid Master, with keys there or in a Thales Luna or Entrust nShield HSM. Change the RSA SHA-1 default. Encrypted DNS is served by BIND from 9.1, free only on X6; X5 needs an extra license.
+
+IPAM and basic discovery are built in, but Network Insight needs a Discovery license and dedicated ND-series appliances that run no DNS or DHCP. Reporting appliances have daily ingest caps; five overruns in thirty days lock reporting, so send logs to the SIEM.
+
+Trinzic sits inside the agency's own boundary and ATO. The FedRAMP Moderate listing doesn't cover it, which is why it's the path for High and DoD.
+
+Assurance and lifecycle: certificate 4531 for Trinzic hardware went Historical in September, the FIPS 140-3 Trinzic modules are pending review, and NIAP has been evaluating Trinzic appliances with NIOS 9.0 since August 17. X6 needs NIOS 9.0.1 or later. Hardware is typically supported about four years after its last order date, and an internet-facing appliance past end of support may fall under BOD 26-02, though it doesn't name DNS appliances.
+
+Sources: Infoblox NIOS 9.1.x: Promoting a Grid Master Candidate, About Grids, About GSS-TSIG, Configuring DNSSEC on a Grid, Setting DNSSEC Parameters, Thales Luna HSM, DoT and DoH Architecture, About Network Insight, Supported Reporting Appliances; NIOS 9.1.0 blog (vendor); NIST CMVP certificate 4531 and Modules In Process list; NIAP PCL; Infoblox End-of-Life policy; CISA BOD 26-02; FedRAMP products.json; Book 08.
+
+## Slide 15 — Trinzic alone, or with cloud DDI?
+
+So can Trinzic run an agency's DDI alone once workloads move to AWS, Azure and Google Cloud?
+
+On its own, it can see into the clouds. vDiscovery pulls in cloud networks and VMs on a schedule, and NIOS can import Route 53, Azure DNS and Google Cloud DNS zones, one way only. What it can't do is own cloud DNS. Changes made in NIOS don't write back, and it can't create the clouds' private zones. No NIOS document describes managing Route 53 VPC Resolver rules or Azure DNS Private Resolver rulesets. It isn't the authority for AWS VPC IPAM, and DHCP in cloud subnets stays with the cloud fabric.
+
+There are three ways to extend it, and they combine. Option A puts vNIOS members in each cloud, joined to the Grid, Azure Government included, so answers stay local during a WAN cut. Option B joins the Grid to Universal DDI, the only Infoblox path that writes back to cloud DNS, but the government edition is Moderate only, with limited discovery: single AWS accounts and no Azure tenants. Its cloud forwarders run on NIOS-X servers, not classic Trinzic. Option C keeps the native cloud resolvers and wires them to the Grid with conditional forwarding in both directions. And the AWS VPC IPAM handoff to Infoblox isn't available in GovCloud.
+
+The bottom row is design guidance, not a rule. Mostly on premises: Option C. Hybrid with one cloud: A plus C. Multi-cloud at Moderate or below: add B. GovCloud, Azure Government, FedRAMP High, or IL4 and IL5: A plus C, and don't depend on the SaaS. For the full reasoning, see the Research explainer, Trinzic Alone, or Trinzic Plus Cloud DDI?
+
+Sources: Infoblox NIOS 9.1.x vDiscovery and Cloud Network Automation; Route 53, Azure DNS and Google Cloud DNS integration pages; vNIOS for AWS, Azure and Google Cloud; Onboarding NIOS Services; Configuring Cloud Forwarders; What's New in Universal DDI for FedRAMP; Universal Asset Insights credential pages; Limitations of Universal DDI; AWS Route 53 VPC Resolver and VPC IPAM docs, What's New Nov. 17, 2025; Microsoft Learn Azure DNS Private Resolver; Google Cloud DNS best practices.
+
+## Slide 16 — Assurance: STIGs, FIPS 140, NIAP and SP 800-81r3
 
 Assurance evidence, checked on October twenty-second.
 
@@ -176,7 +206,7 @@ And a word on NIST SP 800-81 Revision 3, the Secure DNS Deployment Guide, final 
 
 Sources: DISA STIG file store, U_Infoblox_NIOS_9-x_V1R1 and U_IB_8-x_DNS_V1R4; NIST CMVP certificates 4531, 4535 and modules-in-process list; NIAP PCL; Common Criteria Portal; CISA CDM APL, April 2025; NIST SP 800-81r3 title page.
 
-## Slide 15 — A fair comparison: dedicated DDI and native clouds
+## Slide 17 — A fair comparison: dedicated DDI and native clouds
 
 A fair comparison, column by column.
 
@@ -198,7 +228,7 @@ Where alternatives win: BlueCat's Micetro manages existing Windows and BIND serv
 
 Sources: FedRAMP Marketplace products.json; NIST CMVP certificate 5506; DISA STIG store; BlueCat Integrity and Micetro pages, EfficientIP SOLIDserver datasheet (vendor); Microsoft Learn DNS Policies and DHCP failover; Azure DNS resolver policy; Route 53 DNS Firewall Advanced; Google Cloud response policies and DNS Armor; Terraform Registry; Ansible Galaxy.
 
-## Slide 16 — Risks: certifications, vulnerabilities, authorization
+## Slide 18 — Risks: certifications, vulnerabilities, authorization
 
 Now the risks, stated plainly, with how to manage each one.
 
@@ -214,7 +244,7 @@ Fifth, the SaaS ceiling is Moderate, and reuse is zero. Use agency-operated vNIO
 
 Sources: NIST CMVP certificates 4531, 4535, 5506 and modules-in-process list; NIAP PCL; CISA CDM APL; NVD CVE API (keyword Infoblox); CISA KEV catalog 2026.10.21; Infoblox Cloud release notes; FedRAMP products.json.
 
-## Slide 17 — Risks: cost, capacity, features, and procurement asks
+## Slide 19 — Risks: cost, capacity, features, and procurement asks
 
 The second set of risks is about cost, capacity and features.
 
@@ -234,7 +264,7 @@ On the right are the procurement asks that turn these risks into obligations. A 
 
 Sources: Infoblox Universal DDI Tokens FAQ and Supplemental Terms (vendor); Supported Reporting Appliances; NIOS 9.1.0 blog (vendor); Setting DNSSEC Parameters; Limitations of Universal DDI; Infoblox EOL policy; Infoblox Top 12 Questions post (search summary).
 
-## Slide 18 — Module 3: Divisions on NIOS
+## Slide 20 — Module 3: Divisions on NIOS
 
 Part 2: divisions under central governance. Module 3 covers divisions on NIOS.
 
@@ -242,7 +272,7 @@ Most agencies aren't one network. Bureaus, regional offices and labs run their o
 
 Sources: Infoblox NIOS 9.1.x and 9.0 administration guides; Book 08, Chapter 11.
 
-## Slide 19 — The NIOS permission model: deny first, most specific
+## Slide 21 — The NIOS permission model: deny first, most specific
 
 The NIOS permission model has three levels: read-write, read-only and deny. Deny is the default for every resource, which is the right starting point for divisions: a new group sees nothing until you grant it something.
 
@@ -256,7 +286,7 @@ The governance lever is on the left. Only superusers can create admin groups and
 
 Sources: Infoblox NIOS: About Administrative Permissions, About Admin Groups, About Admin Roles, Applying Permissions and Managing Overlaps, Creating Superuser Admin Groups, Managing Extensible Attributes.
 
-## Slide 20 — Scoping an admin group to one division
+## Slide 22 — Scoping an admin group to one division
 
 Here is the recipe for scoping one admin group to one division, built from Infoblox's permission pages.
 
@@ -270,7 +300,7 @@ Step four is the one people miss. Turn on the Grid property called Enable DNS Ob
 
 Sources: Infoblox NIOS: Creating Limited-Access Admin Groups; Defining Object Permissions; Administrative Permissions for Network Views, IPAM Resources, DNS Views, Zones and Resource Records; Permissions for DNS Resources in Networks and Ranges; DNS and DHCP Permissions on Grid Members.
 
-## Slide 21 — Network views, DNS views and extensible attributes
+## Slide 23 — Network views, DNS views and extensible attributes
 
 Three constructs separate divisions on NIOS, and each has a rule that shapes the design.
 
@@ -282,7 +312,7 @@ Extensible attributes are metadata: such as Division and CostCenter, with types,
 
 Sources: Infoblox NIOS: Configuring Network Views; About DNS Views; Managing Extensible Attributes; Configuring Inheritable EAs; Smart Folders and EA filters.
 
-## Slide 22 — Approval workflow, and the CSV import gap
+## Slide 24 — Approval workflow, and the CSV import gap
 
 The approval workflow is how central keeps a hand on division changes without doing the work.
 
@@ -296,7 +326,7 @@ Now the gap. CSV imports bypass approval entirely. Infoblox's own page says CSV 
 
 Sources: Infoblox NIOS: Configuring Approval Workflows; Creating Approval Workflows; Unsupported Operations for Submitters; Supported Tasks for Different Admin Groups; Scheduling Tasks; Audit Log.
 
-## Slide 23 — Admin sign-in: CAC/PIV, SAML with Entra, directories
+## Slide 25 — Admin sign-in: CAC/PIV, SAML with Entra, directories
 
 Who can sign in, and which group they land in, is the other half of division scoping.
 
@@ -310,7 +340,7 @@ Four things to check. Certificate-based sign-in to the API doesn't work if the G
 
 Sources: Infoblox NIOS: Authenticating Administrators; Defining the Authentication Policy; About Remote Admins; Two-Factor and Certificate Authentication Services; SAML pages; AD Nested Groups; Creating Limited-Access Admin Groups; Universal DDI SAML for Entra ID.
 
-## Slide 24 — Microsoft servers, what stays central, and reporting
+## Slide 26 — Microsoft servers, what stays central, and reporting
 
 Three topics close the NIOS module.
 
@@ -322,7 +352,7 @@ Third, a limitation that surprises almost everyone. NIOS reporting doesn't filte
 
 Sources: Infoblox NIOS: Managing Microsoft Servers; About Admin Roles; Administrative Permission for the Grid; Configuring DNSSEC on a Grid; RPZ license and permissions; Reporting permissions; EA filters and Smart Folders.
 
-## Slide 25 — Module 4: Universal DDI divisions and operating model
+## Slide 27 — Module 4: Universal DDI divisions and operating model
 
 Module 4: divisions on Universal DDI, and the operating model.
 
@@ -330,7 +360,7 @@ Universal DDI has its own divisional construct, access views, and its own answer
 
 Sources: Infoblox Portal and Universal DDI documentation; Book 08, Chapters 09 and 10.
 
-## Slide 26 — Universal DDI: access views, IP spaces, federation
+## Slide 28 — Universal DDI: access views, IP spaces, federation
 
 On Universal DDI the division construct is the access view, which Infoblox describes as a logical container for DDI resources, built for divisional admins. The account itself is the default access view. Corporate admins create sub-views under it, and only one level is allowed. Divisional admins can't see or manage anything outside their sub-view.
 
@@ -344,7 +374,7 @@ And a documentation conflict. One Infoblox page lists IPAM, DNS and DHCP roles f
 
 Sources: Infoblox Portal: About Access Views, Supported Objects, Setting Up Access Control, Creating Access Views, Interactive and Service Users, Access Policies, Restricting User Groups, SAML for Entra ID, Mapping User Groups, Audit Logs; Universal DDI: IP Spaces, IPAM Federation.
 
-## Slide 27 — Four delegation patterns and their trade-offs
+## Slide 29 — Four delegation patterns and their trade-offs
 
 Put together, the constructs give four delegation patterns.
 
@@ -360,7 +390,7 @@ Most agencies mix them: (a) as the default, (b) where local resilience matters, 
 
 Sources: Synthesis of Infoblox NIOS: Administrative Permissions, Managing Overlaps, DNS and DHCP Permissions on Grid Members, Network Views, Delegated Zones, DNSSEC on a Grid, Approval Workflows, Reporting permissions; Universal DDI: Access Views, IPAM Federation.
 
-## Slide 28 — Worked example: four divisions on one Grid
+## Slide 30 — Worked example: four divisions on one Grid
 
 Here's a worked example. It's an illustrative design, not a validated configuration.
 
@@ -374,7 +404,7 @@ Grid-wide controls: turn on DNS object permissions, so HQ can't point a name int
 
 Sources: Illustrative design synthesized from Infoblox NIOS: Network Views, DNS Views, Extensible Attributes, Object Permissions, DNS Resources in Networks and Ranges, Delegated Zones, Approval Workflows, SAML, Managing Microsoft Servers, Reporting permissions.
 
-## Slide 29 — Who does what: the DDI responsibility matrix
+## Slide 31 — Who does what: the DDI responsibility matrix
 
 Who does what. This matrix is adapted from Book 08's responsibility matrix, which separates deciding from doing: D decides and is accountable, R does the work, C is consulted. I've added a Division column for the delegated model.
 
@@ -390,7 +420,7 @@ And an encrypted DNS exception that has no end date, or has outlived the agency'
 
 Sources: Book 08, Chapter 09, "Decision rights and work are different things," "The roles," "The responsibility matrix"; Infoblox NIOS approval workflows; Universal DDI access policies.
 
-## Slide 30 — Rollout sequence, decisions and next steps
+## Slide 32 — Rollout sequence, decisions and next steps
 
 To close, a rollout sequence, the decisions to take, and the next steps.
 

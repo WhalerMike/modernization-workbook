@@ -1,147 +1,140 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:02.713
-Three topics close the NIOS module.
+00:00:00.050 --> 00:00:02.543
+The approval workflow
+is how central keeps a
 
 2
-00:00:02.713 --> 00:00:07.874
-First, a division that still
-runs Windows DNS and DHCP.
+00:00:02.543 --> 00:00:05.238
+hand on division changes
+without doing the work.
 
 3
-00:00:07.874 --> 00:00:13.342
-NIOS manages those servers over MS-RPC
-with no agent, read-only or read-write,
+00:00:05.238 --> 00:00:07.699
+Only superusers create workflows.
 
 4
-00:00:13.342 --> 00:00:17.750
-with a Microsoft Management
-license on the managing member.
+00:00:07.699 --> 00:00:11.998
+Each workflow routes tasks from one
+submitter group to an approver group; a
 
 5
-00:00:17.750 --> 00:00:21.434
-Each Windows server syncs
-into exactly one network
+00:00:11.998 --> 00:00:16.850
+submitter group has exactly one workflow,
+while an approver group can serve several.
 
 6
-00:00:21.434 --> 00:00:24.775
-view and one DNS view,
-fixed after the first sync.
+00:00:16.850 --> 00:00:21.500
+Approvers approve, approve with
+a new execution time, or reject.
 
 7
-00:00:24.775 --> 00:00:29.267
-Each server object carries its own
-permissions inside Grid Manager,
+00:00:21.500 --> 00:00:24.895
+Approved tasks run with
+the submitter's permissions
 
 8
-00:00:29.267 --> 00:00:33.759
-so give the division's group rights
-on its own servers rather than the
+00:00:24.895 --> 00:00:27.287
+and land in the audit log with a task ID.
 
 9
-00:00:33.759 --> 00:00:38.488
-system DNS Admin or DHCP Admin roles,
-which cover every Microsoft server.
+00:00:27.287 --> 00:00:31.438
+You can require a ticket number and
+comments, and notify either side.
 
 10
-00:00:38.488 --> 00:00:43.183
-And be careful: changing the managing
-member, or switching from read-write
+00:00:31.438 --> 00:00:37.071
+What can go through approval: DNS zones,
+views and records except SOA; hosts,
 
 11
-00:00:43.183 --> 00:00:47.649
-to read-only, reverts any edits made
-in Grid Manager since the last sync.
+00:00:37.071 --> 00:00:41.966
+networks, containers, ranges,
+fixed addresses and reservations;
 
 12
-00:00:47.649 --> 00:00:50.675
-Second, what stays
-central in every design.
+00:00:41.966 --> 00:00:47.876
+Microsoft objects that NIOS supports;
+response policy zones and their rules.
 
 13
-00:00:50.675 --> 00:00:55.740
-The Grid Master and its candidates,
-and Grid-level DNS and DHCP properties,
+00:00:47.876 --> 00:00:50.800
+Service restarts aren't
+subject to approval.
 
 14
-00:00:55.740 --> 00:00:58.563
-which only superusers can change anyway.
+00:00:50.800 --> 00:00:56.057
+Some operations are blocked for submitters
+even if they hold the permission:
 
 15
-00:00:58.563 --> 00:01:03.987
-DNSSEC keys and signing, because only
-the Grid Master or its HSM can sign.
+00:00:56.057 --> 00:01:01.396
+signing or unsigning zones, importing DS
+records and rolling key-signing keys;
 
 16
-00:01:03.987 --> 00:01:09.437
-Response policy zones and Threat Defense
-policy, so security posture is uniform.
+00:01:01.396 --> 00:01:04.436
+reclaiming, resizing
+or splitting networks;
 
 17
-00:01:09.437 --> 00:01:11.571
-The definitions of groups, roles,
+00:01:04.436 --> 00:01:08.625
+bulk edits and deletes; Recycle
+Bin restores and RPZ ordering.
 
 18
-00:01:11.571 --> 00:01:15.363
-attributes and workflows, and
-the authentication policy.
+00:01:08.625 --> 00:01:12.263
+Those stay with central staff,
+which suits a federal model well.
 
 19
-00:01:15.363 --> 00:01:17.375
-And the top-level address blocks.
+00:01:12.263 --> 00:01:13.251
+Now the gap.
 
 20
-00:01:17.375 --> 00:01:20.888
-Third, a limitation that
-surprises almost everyone.
+00:01:13.251 --> 00:01:16.212
+CSV imports bypass approval entirely.
 
 21
-00:01:20.888 --> 00:01:24.613
-NIOS reporting doesn't filter
-by object permissions.
+00:01:16.212 --> 00:01:20.202
+Infoblox's own page says CSV
+imports do not require approvals,
 
 22
-00:01:24.613 --> 00:01:28.924
-Infoblox's page says that when
-you view a DNS or DHCP report,
+00:01:20.202 --> 00:01:25.676
+and Grid Manager shows a warning when a
+submitter group holds CSV import permission.
 
 23
-00:01:28.924 --> 00:01:33.774
-you see all the data, even for
-objects you have no permission to see.
+00:01:25.676 --> 00:01:27.738
+If you leave that permission in place,
 
 24
-00:01:33.774 --> 00:01:39.035
-So giving a division the Reporting app
-exposes agency-wide DNS and DHCP data,
+00:01:27.738 --> 00:01:31.000
+a division can load a thousand
+records with no review at all.
 
 25
-00:01:39.035 --> 00:01:42.875
-which matters a great deal
-for a law-enforcement bureau.
+00:01:31.000 --> 00:01:34.317
+Remove CSV import from every
+division submitter group,
 
 26
-00:01:42.875 --> 00:01:47.125
-Scope reporting by which dashboards
-you share with each division's role,
+00:01:34.317 --> 00:01:38.500
+and give bulk loads to a central group
+that works under a change ticket.
 
 27
-00:01:47.125 --> 00:01:50.737
-filtered by the Division attribute,
-not by row-level security.
+00:01:38.500 --> 00:01:44.518
+Sources: Infoblox NIOS: Configuring Approval
+Workflows; Creating Approval Workflows;
 
 28
-00:01:50.737 --> 00:01:55.757
-Sources: Infoblox NIOS: Managing
-Microsoft Servers; About Admin Roles;
+00:01:44.518 --> 00:01:47.360
+Unsupported Operations for Submitters;
 
 29
-00:01:55.757 --> 00:02:00.777
-Administrative Permission for the
-Grid; Configuring DNSSEC on a Grid;
-
-30
-00:02:00.777 --> 00:02:06.720
-RPZ license and permissions; Reporting
-permissions; EA filters and Smart Folders.
+00:01:47.360 --> 00:01:52.440
+Supported Tasks for Different Admin
+Groups; Scheduling Tasks; Audit Log.

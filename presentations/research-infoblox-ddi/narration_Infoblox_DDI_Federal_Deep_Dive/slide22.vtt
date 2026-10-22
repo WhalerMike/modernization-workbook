@@ -1,140 +1,156 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:02.543
-The approval workflow
-is how central keeps a
+00:00:00.050 --> 00:00:04.019
+Here is the recipe for scoping
+one admin group to one division,
 
 2
-00:00:02.543 --> 00:00:05.238
-hand on division changes
-without doing the work.
+00:00:04.019 --> 00:00:06.587
+built from Infoblox's permission pages.
 
 3
-00:00:05.238 --> 00:00:07.699
-Only superusers create workflows.
+00:00:06.587 --> 00:00:12.269
+Step one, as a superuser, create a
+limited-access group and turn on only
 
 4
-00:00:07.699 --> 00:00:11.998
-Each workflow routes tasks from one
-submitter group to an approver group; a
+00:00:12.269 --> 00:00:17.850
+the interfaces it needs: GUI, API,
+or CLI with specific command groups.
 
 5
-00:00:11.998 --> 00:00:16.850
-submitter group has exactly one workflow,
-while an approver group can serve several.
+00:00:17.850 --> 00:00:20.412
+Limited-access groups
+never get the console.
 
 6
-00:00:16.850 --> 00:00:21.500
-Approvers approve, approve with
-a new execution time, or reject.
+00:00:20.412 --> 00:00:25.235
+For help-desk staff, a group can be
+restricted to the Tasks Dashboard only,
 
 7
-00:00:21.500 --> 00:00:24.895
-Approved tasks run with
-the submitter's permissions
+00:00:25.235 --> 00:00:28.450
+so they run approved task
+packs and nothing else.
 
 8
-00:00:24.895 --> 00:00:27.287
-and land in the audit log with a task ID.
+00:00:28.450 --> 00:00:31.000
+Step two, grant object permissions.
 
 9
-00:00:27.287 --> 00:00:31.438
-You can require a ticket number and
-comments, and notify either side.
+00:00:31.000 --> 00:00:34.586
+Read-write on the division's
+network container or networks
 
 10
-00:00:31.438 --> 00:00:37.071
-What can go through approval: DNS zones,
-views and records except SOA; hosts,
+00:00:34.586 --> 00:00:38.537
+reaches every object inside them
+and overrides global settings.
 
 11
-00:00:37.071 --> 00:00:41.966
-networks, containers, ranges,
-fixed addresses and reservations;
+00:00:38.537 --> 00:00:43.294
+If the division has overlapping space,
+grant read-write on its own network
 
 12
-00:00:41.966 --> 00:00:47.876
-Microsoft objects that NIOS supports;
-response policy zones and their rules.
+00:00:43.294 --> 00:00:47.738
+view instead, which reaches its
+networks, ranges and fixed addresses.
 
 13
-00:00:47.876 --> 00:00:50.800
-Service restarts aren't
-subject to approval.
+00:00:47.738 --> 00:00:53.047
+For DNS, the documented pattern is read-only
+on the parent DNS view and read-write
 
 14
-00:00:50.800 --> 00:00:56.057
-Some operations are blocked for submitters
-even if they hold the permission:
+00:00:53.047 --> 00:00:58.437
+on the division's zones, so the division
+can create zones without editing the view.
 
 15
-00:00:56.057 --> 00:01:01.396
-signing or unsigning zones, importing DS
-records and rolling key-signing keys;
+00:00:58.437 --> 00:01:04.613
+You can go finer, per record type:
+read-write on MX and SRV, deny on CNAME.
 
 16
-00:01:01.396 --> 00:01:04.436
-reclaiming, resizing
-or splitting networks;
+00:01:04.613 --> 00:01:09.753
+And Member DNS and Member DHCP permissions
+confine the group's service work to its
 
 17
-00:01:04.436 --> 00:01:08.625
-bulk edits and deletes; Recycle
-Bin restores and RPZ ordering.
+00:01:09.753 --> 00:01:12.400
+own members, with a separate permission to
 
 18
-00:01:08.625 --> 00:01:12.263
-Those stay with central staff,
-which suits a federal model well.
+00:01:12.400 --> 00:01:15.424
+restart services without
+changing properties.
 
 19
-00:01:12.263 --> 00:01:13.251
-Now the gap.
+00:01:15.424 --> 00:01:20.537
+Only superusers can change
+Grid-level DNS and DHCP properties.
 
 20
-00:01:13.251 --> 00:01:16.212
-CSV imports bypass approval entirely.
+00:01:20.537 --> 00:01:23.800
+Step three, leave everything
+else at the default deny.
 
 21
-00:01:16.212 --> 00:01:20.202
-Infoblox's own page says CSV
-imports do not require approvals,
+00:01:23.800 --> 00:01:26.050
+Step four is the one people miss.
 
 22
-00:01:20.202 --> 00:01:25.676
-and Grid Manager shows a warning when a
-submitter group holds CSV import permission.
+00:01:26.050 --> 00:01:29.031
+Turn on the Grid property
+called Enable DNS
 
 23
-00:01:25.676 --> 00:01:27.738
-If you leave that permission in place,
+00:01:29.031 --> 00:01:32.013
+Object Permissions in Networks and Ranges.
 
 24
-00:01:27.738 --> 00:01:31.000
-a division can load a thousand
-records with no review at all.
+00:01:32.013 --> 00:01:36.691
+With it on, creating an A, AAAA or
+PTR record or a host needs read-write
 
 25
-00:01:31.000 --> 00:01:34.317
-Remove CSV import from every
-division submitter group,
+00:01:36.691 --> 00:01:41.113
+on both the zone and the network
+or range that holds the address.
 
 26
-00:01:34.317 --> 00:01:38.500
-and give bulk loads to a central group
-that works under a change ticket.
+00:01:41.113 --> 00:01:44.041
+Without it, a division with
+write access to a shared
 
 27
-00:01:38.500 --> 00:01:44.518
-Sources: Infoblox NIOS: Configuring Approval
-Workflows; Creating Approval Workflows;
+00:01:44.041 --> 00:01:47.250
+zone could point a name at
+another division's addresses.
 
 28
-00:01:44.518 --> 00:01:47.360
-Unsupported Operations for Submitters;
+00:01:47.250 --> 00:01:51.700
+Fixed address and reservation permissions
+are always enforced either way.
 
 29
-00:01:47.360 --> 00:01:52.440
-Supported Tasks for Different Admin
-Groups; Scheduling Tasks; Audit Log.
+00:01:51.700 --> 00:01:56.205
+Sources: Infoblox NIOS: Creating
+Limited-Access Admin Groups;
+
+30
+00:01:56.205 --> 00:02:01.947
+Defining Object Permissions; Administrative
+Permissions for Network Views,
+
+31
+00:02:01.947 --> 00:02:07.511
+IPAM Resources, DNS Views, Zones and
+Resource Records; Permissions for DNS
+
+32
+00:02:07.511 --> 00:02:13.060
+Resources in Networks and Ranges; DNS
+and DHCP Permissions on Grid Members.

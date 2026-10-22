@@ -1,156 +1,54 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:04.019
-Here is the recipe for scoping
-one admin group to one division,
+00:00:00.050 --> 00:00:03.075
+Part 2: divisions under
+central governance.
 
 2
-00:00:04.019 --> 00:00:06.587
-built from Infoblox's permission pages.
+00:00:03.075 --> 00:00:06.300
+Module 3 covers divisions on NIOS.
 
 3
-00:00:06.587 --> 00:00:12.269
-Step one, as a superuser, create a
-limited-access group and turn on only
+00:00:06.300 --> 00:00:08.425
+Most agencies aren't one network.
 
 4
-00:00:12.269 --> 00:00:17.850
-the interfaces it needs: GUI, API,
-or CLI with specific command groups.
+00:00:08.425 --> 00:00:13.429
+Bureaus, regional offices and labs run
+their own address space and often their own
 
 5
-00:00:17.850 --> 00:00:20.412
-Limited-access groups
-never get the console.
+00:00:13.429 --> 00:00:17.845
+DNS, and a central policy plane only
+works if those divisions can still do
 
 6
-00:00:20.412 --> 00:00:25.235
-For help-desk staff, a group can be
-restricted to the Tasks Dashboard only,
+00:00:17.845 --> 00:00:22.113
+their jobs through it, because a
+division that can't will work around it.
 
 7
-00:00:25.235 --> 00:00:28.450
-so they run approved task
-packs and nothing else.
+00:00:22.113 --> 00:00:25.626
+NIOS has a detailed permission
+model for exactly this.
 
 8
-00:00:28.450 --> 00:00:31.000
-Step two, grant object permissions.
+00:00:25.626 --> 00:00:30.750
+We'll go through how it decides access, how
+to scope an admin group to one division,
 
 9
-00:00:31.000 --> 00:00:34.586
-Read-write on the division's
-network container or networks
+00:00:30.750 --> 00:00:36.031
+the views and attributes that separate
+divisions, approvals and their one big gap,
 
 10
-00:00:34.586 --> 00:00:38.537
-reaches every object inside them
-and overrides global settings.
+00:00:36.031 --> 00:00:40.613
+sign-in, Microsoft servers, what stays
+central, and a reporting surprise.
 
 11
-00:00:38.537 --> 00:00:43.294
-If the division has overlapping space,
-grant read-write on its own network
-
-12
-00:00:43.294 --> 00:00:47.738
-view instead, which reaches its
-networks, ranges and fixed addresses.
-
-13
-00:00:47.738 --> 00:00:53.047
-For DNS, the documented pattern is read-only
-on the parent DNS view and read-write
-
-14
-00:00:53.047 --> 00:00:58.437
-on the division's zones, so the division
-can create zones without editing the view.
-
-15
-00:00:58.437 --> 00:01:04.613
-You can go finer, per record type:
-read-write on MX and SRV, deny on CNAME.
-
-16
-00:01:04.613 --> 00:01:09.753
-And Member DNS and Member DHCP permissions
-confine the group's service work to its
-
-17
-00:01:09.753 --> 00:01:12.400
-own members, with a separate permission to
-
-18
-00:01:12.400 --> 00:01:15.424
-restart services without
-changing properties.
-
-19
-00:01:15.424 --> 00:01:20.537
-Only superusers can change
-Grid-level DNS and DHCP properties.
-
-20
-00:01:20.537 --> 00:01:23.800
-Step three, leave everything
-else at the default deny.
-
-21
-00:01:23.800 --> 00:01:26.050
-Step four is the one people miss.
-
-22
-00:01:26.050 --> 00:01:29.031
-Turn on the Grid property
-called Enable DNS
-
-23
-00:01:29.031 --> 00:01:32.013
-Object Permissions in Networks and Ranges.
-
-24
-00:01:32.013 --> 00:01:36.691
-With it on, creating an A, AAAA or
-PTR record or a host needs read-write
-
-25
-00:01:36.691 --> 00:01:41.113
-on both the zone and the network
-or range that holds the address.
-
-26
-00:01:41.113 --> 00:01:44.041
-Without it, a division with
-write access to a shared
-
-27
-00:01:44.041 --> 00:01:47.250
-zone could point a name at
-another division's addresses.
-
-28
-00:01:47.250 --> 00:01:51.700
-Fixed address and reservation permissions
-are always enforced either way.
-
-29
-00:01:51.700 --> 00:01:56.205
-Sources: Infoblox NIOS: Creating
-Limited-Access Admin Groups;
-
-30
-00:01:56.205 --> 00:02:01.947
-Defining Object Permissions; Administrative
-Permissions for Network Views,
-
-31
-00:02:01.947 --> 00:02:07.511
-IPAM Resources, DNS Views, Zones and
-Resource Records; Permissions for DNS
-
-32
-00:02:07.511 --> 00:02:13.060
-Resources in Networks and Ranges; DNS
-and DHCP Permissions on Grid Members.
+00:00:40.613 --> 00:00:49.780
+Sources: Infoblox NIOS 9.1.x and 9.0
+administration guides; Book 08, Chapter 11.
