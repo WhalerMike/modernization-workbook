@@ -1,0 +1,149 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.475
+Whatever option you pick, four
+rules prevent split-brain.
+
+2
+00:00:03.475 --> 00:00:06.913
+One: every zone has
+exactly one writable owner.
+
+3
+00:00:06.913 --> 00:00:13.137
+That's the Grid, Route 53, Azure
+Private DNS or Cloud DNS, never two.
+
+4
+00:00:13.137 --> 00:00:16.112
+Everything else reaches
+the owner by forwarding,
+
+5
+00:00:16.112 --> 00:00:18.725
+or holds a copy that is
+explicitly read-only.
+
+6
+00:00:18.725 --> 00:00:21.757
+NIOS overwrites edits to
+imported cloud zones,
+
+7
+00:00:21.757 --> 00:00:25.800
+and portal-owned resolver rules
+overwrite cloud-side changes.
+
+8
+00:00:25.800 --> 00:00:28.387
+So decide ownership
+before you turn sync on.
+
+9
+00:00:28.387 --> 00:00:31.112
+Two: divide the namespace by owner.
+
+10
+00:00:31.112 --> 00:00:35.074
+For example, corp dot agency
+dot gov lives on the Grid,
+
+11
+00:00:35.074 --> 00:00:40.601
+and aws dot corp dot agency dot gov
+lives in a Route 53 private hosted zone.
+
+12
+00:00:40.601 --> 00:00:44.253
+On-premises resolvers
+forward the child to AWS,
+
+13
+00:00:44.253 --> 00:00:47.250
+and AWS forwards the parent to the Grid.
+
+14
+00:00:47.250 --> 00:00:49.921
+AWS also allows inbound delegation,
+
+15
+00:00:49.921 --> 00:00:53.838
+but Resolver delegation
+isn't available in GovCloud.
+
+16
+00:00:53.838 --> 00:00:57.053
+And don't create a cloud
+private zone with the same name
+
+17
+00:00:57.053 --> 00:01:00.412
+as a Grid zone unless it's a
+deliberate split-horizon view.
+
+18
+00:01:00.412 --> 00:01:05.575
+Three: DNSSEC keys stay on the Grid
+Master or its hardware security module.
+
+19
+00:01:05.575 --> 00:01:10.915
+Route 53 can't sign private hosted zones,
+and Universal DDI doesn't sync DNSSEC
+
+20
+00:01:10.915 --> 00:01:15.837
+records, so don't sign in one system
+and manage through sync from another.
+
+21
+00:01:15.837 --> 00:01:18.559
+Validation belongs on agency resolvers;
+
+22
+00:01:18.559 --> 00:01:21.601
+the Azure-provided
+resolver doesn't validate.
+
+23
+00:01:21.601 --> 00:01:24.425
+Four: IPAM authority stays on the Grid.
+
+24
+00:01:24.425 --> 00:01:26.347
+Clouds get delegated blocks,
+
+25
+00:01:26.347 --> 00:01:30.912
+and one network view for routable
+space lets the Grid catch overlaps.
+
+26
+00:01:30.912 --> 00:01:38.185
+Sources: Research synthesis, Avoiding
+split-brain, DNSSEC keys and IPAM authority:
+
+27
+00:01:38.185 --> 00:01:42.134
+Infoblox Route 53, Azure
+DNS and GCP sync pages;
+
+28
+00:01:42.134 --> 00:01:48.680
+Discovering Cloud Forwarder Endpoints;
+AWS private hosted zones, Resolver,
+
+29
+00:01:48.680 --> 00:01:51.590
+GovCloud Route 53, DNSSEC signing;
+
+30
+00:01:51.590 --> 00:01:58.240
+Microsoft Learn DNS Private Resolver
+and Azure DNSSEC; Google Cloud DNS best
+
+31
+00:01:58.240 --> 00:02:04.540
+practices; Infoblox DNSSEC on a Grid
+and Network Views; Book 08, Chapter 02.

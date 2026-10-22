@@ -1,0 +1,161 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.413
+Option A puts vNIOS
+members inside each cloud,
+
+2
+00:00:03.413 --> 00:00:06.688
+as Grid members and
+high-availability pairs.
+
+3
+00:00:06.688 --> 00:00:11.274
+Infoblox's AWS reference design
+puts the pair in a shared-services
+
+4
+00:00:11.274 --> 00:00:14.776
+hub VPC that syncs with the
+on-premises Grid Master.
+
+5
+00:00:14.776 --> 00:00:17.949
+Signed zones stay signed:
+the members serve them,
+
+6
+00:00:17.949 --> 00:00:20.250
+but the keys stay on the Grid Master.
+
+7
+00:00:20.250 --> 00:00:22.888
+How do cloud workloads reach vNIOS?
+
+8
+00:00:22.888 --> 00:00:24.612
+Two documented patterns.
+
+9
+00:00:24.612 --> 00:00:28.876
+Pattern one: point the
+network's DNS at vNIOS.
+
+10
+00:00:28.876 --> 00:00:36.050
+In AWS that's a DHCP option set; in Azure,
+the virtual network's custom DNS setting.
+
+11
+00:00:36.050 --> 00:00:37.713
+Simple, with a catch.
+
+12
+00:00:37.713 --> 00:00:40.644
+In Azure, queries then
+go straight to vNIOS,
+
+13
+00:00:40.644 --> 00:00:43.912
+and Azure private zones
+aren't consulted first.
+
+14
+00:00:43.912 --> 00:00:51.447
+So vNIOS has to forward Azure-private
+names back to Azure DNS at 168.63.129.16,
+
+15
+00:00:51.447 --> 00:00:55.700
+or to a Private Resolver inbound endpoint.
+
+16
+00:00:55.700 --> 00:01:01.262
+Pattern two: keep the cloud's own resolver
+and forward chosen domains to vNIOS.
+
+17
+00:01:01.262 --> 00:01:05.870
+In AWS, that's an outbound endpoint
+and one forwarding rule per domain,
+
+18
+00:01:05.870 --> 00:01:08.538
+and rules can be shared across accounts.
+
+19
+00:01:08.538 --> 00:01:12.212
+In Azure, it's an outbound
+endpoint and a forwarding ruleset,
+
+20
+00:01:12.212 --> 00:01:13.937
+and clients change nothing.
+
+21
+00:01:13.937 --> 00:01:17.525
+In Google, it's a forwarding
+zone, which Google prefers.
+
+22
+00:01:17.525 --> 00:01:19.450
+One AWS caution.
+
+23
+00:01:19.450 --> 00:01:24.192
+If vNIOS has to resolve Route 53
+private zones for other networks,
+
+24
+00:01:24.192 --> 00:01:26.475
+forward to an inbound endpoint.
+
+25
+00:01:26.475 --> 00:01:29.924
+AWS says forwarding to a
+VPC's built-in plus-two
+
+26
+00:01:29.924 --> 00:01:34.100
+resolver address from outside
+that VPC isn't supported.
+
+27
+00:01:34.100 --> 00:01:39.373
+And every vNIOS member is agency-operated
+and inside the agency's boundary;
+
+28
+00:01:39.373 --> 00:01:41.925
+no FedRAMP authorization covers it.
+
+29
+00:01:41.925 --> 00:01:47.966
+Sources: Infoblox About vNIOS for
+AWS, Shared-Services VPC Deployments,
+
+30
+00:01:47.966 --> 00:01:53.802
+About vNIOS for Azure, Configure
+vNIOS as Primary DNS for Azure VNets,
+
+31
+00:01:53.802 --> 00:01:59.945
+vNIOS for Google Cloud; AWS DHCP option
+sets, What is Route 53 VPC Resolver,
+
+32
+00:01:59.945 --> 00:02:06.703
+Forwarding outbound queries, Resolving
+queries between VPCs and your network;
+
+33
+00:02:06.703 --> 00:02:12.129
+Microsoft Learn DNS Private
+Resolver and VNet name resolution;
+
+34
+00:02:12.129 --> 00:02:17.930
+Google Cloud DNS best practices;
+research_platform (DNSSEC on a Grid).

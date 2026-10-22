@@ -1,148 +1,169 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:03.088
-Assurance evidence, checked
-on October twenty-second.
+00:00:00.050 --> 00:00:05.209
+A narrower question: if an agency buys
+Trinzic, the physical NIOS appliances,
 
 2
-00:00:03.088 --> 00:00:05.162
-DISA STIGs are a real strength.
+00:00:05.209 --> 00:00:09.712
+how well does the hardware fit the
+design in Book 08 of the workbook?
 
 3
-00:00:05.162 --> 00:00:10.937
-DISA's file store has an Infoblox
-NIOS 9.x STIG, version 1 release 1,
+00:00:09.712 --> 00:00:14.466
+One authoritative policy plane: the
+Grid gives you one shared database,
 
 4
-00:00:10.937 --> 00:00:17.474
-with a benchmark date of July 28, 2026
-and forty-five rules, and an Infoblox
+00:00:14.466 --> 00:00:17.688
+an HA Grid Master and a
+candidate with a full copy.
 
 5
-00:00:17.474 --> 00:00:24.012
-8.x DNS STIG at version 1 release 4 from
-September 30, with sixty-nine rules.
+00:00:17.688 --> 00:00:20.021
+But candidate promotion is manual,
 
 6
-00:00:24.012 --> 00:00:27.400
-The generic DNS SRG applies too.
+00:00:20.021 --> 00:00:24.688
+and Infoblox publishes no Grid scale
+limits, so size it with the vendor.
 
 7
-00:00:27.400 --> 00:00:31.525
-Neither BlueCat nor EfficientIP
-has a vendor-specific STIG.
+00:00:24.688 --> 00:00:27.994
+Leaving Active Directory–integrated DNS:
 
 8
-00:00:31.525 --> 00:00:35.487
-FIPS 140 is the weak
-spot, so say it plainly.
+00:00:27.994 --> 00:00:33.850
+GSS-TSIG lets domain controllers send
+Kerberos-signed updates to the Grid.
 
 9
-00:00:35.487 --> 00:00:39.625
-Infoblox has no active FIPS
-140 certificate today.
+00:00:33.850 --> 00:00:37.993
+But an appliance can send
+GSS-TSIG updates or accept them,
 
 10
-00:00:39.625 --> 00:00:46.582
-Its FIPS 140-2 certificates, 4531 for
-hardware and 4535 for virtual appliances,
+00:00:37.993 --> 00:00:40.813
+not both, so plan which members do which.
 
 11
-00:00:46.582 --> 00:00:52.147
-moved to the Historical list with
-the September 21, 2026 sunset,
+00:00:40.813 --> 00:00:44.375
+DNSSEC signing is central,
+on the Grid Master,
 
 12
-00:00:52.147 --> 00:00:58.462
-and NIST says Historical modules may
-be used for existing systems only.
+00:00:44.375 --> 00:00:48.900
+with keys there or in a Thales
+Luna or Entrust nShield HSM.
 
 13
-00:00:58.462 --> 00:01:02.395
-Four FIPS 140-3 submissions
-are in the CMVP queue,
+00:00:48.900 --> 00:00:51.800
+Change the RSA SHA-1 default.
 
 14
-00:01:02.395 --> 00:01:07.900
-in review or pending review since
-late September and early October.
+00:00:51.800 --> 00:00:55.763
+Encrypted DNS is served by BIND from 9.1,
 
 15
-00:01:07.900 --> 00:01:11.621
-Until those certificates post,
-a new NIOS deployment that
+00:00:55.763 --> 00:00:59.850
+free only on X6; X5
+needs an extra license.
 
 16
-00:01:11.621 --> 00:01:15.575
-depends on validated crypto
-can't cite an active certificate.
+00:00:59.850 --> 00:01:04.703
+IPAM and basic discovery are built
+in, but Network Insight needs a
 
 17
-00:01:15.575 --> 00:01:19.175
-NIAP: there's no current
-Common Criteria certificate.
+00:01:04.703 --> 00:01:10.250
+Discovery license and dedicated ND-series
+appliances that run no DNS or DHCP.
 
 18
-00:01:19.175 --> 00:01:25.400
-NIOS 9.0 has been in evaluation
-since August 17, 2026.
+00:01:10.250 --> 00:01:13.269
+Reporting appliances
+have daily ingest caps;
 
 19
-00:01:25.400 --> 00:01:28.615
-Infoblox isn't on the CDM
-Approved Products List,
+00:01:13.269 --> 00:01:17.638
+five overruns in thirty days lock
+reporting, so send logs to the SIEM.
 
 20
-00:01:28.615 --> 00:01:33.437
-and that list isn't accepting new
-submissions, so don't expect it to change.
+00:01:17.638 --> 00:01:21.800
+Trinzic sits inside the
+agency's own boundary and ATO.
 
 21
-00:01:33.437 --> 00:01:37.286
-And a word on NIST SP 800-81 Revision 3,
+00:01:21.800 --> 00:01:24.550
+The FedRAMP Moderate
+listing doesn't cover it,
 
 22
-00:01:37.286 --> 00:01:42.801
-the Secure DNS Deployment
-Guide, final in March 2026.
+00:01:24.550 --> 00:01:26.938
+which is why it's the
+path for High and DoD.
 
 23
-00:01:42.801 --> 00:01:47.113
-It's the best practical guide
-we have: Protective DNS,
+00:01:26.938 --> 00:01:33.819
+Assurance and lifecycle: certificate 4531
+for Trinzic hardware went Historical in
 
 24
-00:01:47.113 --> 00:01:51.325
-query logging, lease history,
-encrypted DNS, DNSSEC.
+00:01:33.819 --> 00:01:38.734
+September, the FIPS 140-3 Trinzic
+modules are pending review,
 
 25
-00:01:51.325 --> 00:01:56.887
-But two of its three authors, Cricket Liu
-and Ross Gibson, are Infoblox employees.
+00:01:38.734 --> 00:01:45.025
+and NIAP has been evaluating Trinzic
+appliances with NIOS 9.0 since August 17.
 
 26
-00:01:56.887 --> 00:02:00.500
-That's expertise and influence,
-not an authorization.
+00:01:45.025 --> 00:01:49.288
+X6 needs NIOS 9.0.1 or later.
 
 27
-00:02:00.500 --> 00:02:06.463
-Whenever you cite 800-81r3 in support
-of choosing Infoblox, disclose it.
+00:01:49.288 --> 00:01:54.473
+Hardware is typically supported about
+four years after its last order date,
 
 28
-00:02:06.463 --> 00:02:15.122
-Sources: DISA STIG file store,
-U_Infoblox_NIOS_9-x_V1R1 and U_IB_8-x_DNS_V1R4;
+00:01:54.473 --> 00:01:59.660
+and an internet-facing appliance past
+end of support may fall under BOD 26-02,
 
 29
-00:02:15.122 --> 00:02:23.782
-NIST CMVP certificates 4531, 4535 and
-modules-in-process list; NIAP PCL;
+00:01:59.660 --> 00:02:02.212
+though it doesn't name DNS appliances.
 
 30
-00:02:23.782 --> 00:02:33.100
-Common Criteria Portal; CISA CDM APL,
-April 2025; NIST SP 800-81r3 title page.
+00:02:02.212 --> 00:02:09.370
+Sources: Infoblox NIOS 9.1.x: Promoting
+a Grid Master Candidate, About Grids,
+
+31
+00:02:09.370 --> 00:02:16.293
+About GSS-TSIG, Configuring DNSSEC on
+a Grid, Setting DNSSEC Parameters,
+
+32
+00:02:16.293 --> 00:02:22.511
+Thales Luna HSM, DoT and DoH
+Architecture, About Network Insight,
+
+33
+00:02:22.511 --> 00:02:27.791
+Supported Reporting Appliances;
+NIOS 9.1.0 blog (vendor);
+
+34
+00:02:27.791 --> 00:02:34.010
+NIST CMVP certificate 4531 and
+Modules In Process list; NIAP PCL;
+
+35
+00:02:34.010 --> 00:02:41.110
+Infoblox End-of-Life policy; CISA BOD
+26-02; FedRAMP products.json; Book 08.

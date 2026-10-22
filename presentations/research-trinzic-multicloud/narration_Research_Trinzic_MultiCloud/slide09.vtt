@@ -1,0 +1,143 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.387
+The decision table.
+
+2
+00:00:01.387 --> 00:00:04.446
+Every row is design
+guidance, not an endorsement,
+
+3
+00:00:04.446 --> 00:00:06.587
+resting on the facts we've covered.
+
+4
+00:00:06.587 --> 00:00:11.050
+Mostly on premises, with a small
+cloud footprint: Trinzic with native
+
+5
+00:00:11.050 --> 00:00:15.826
+cloud resolvers and conditional
+forwarding, the minimal form of Option C.
+
+6
+00:00:15.826 --> 00:00:19.455
+It's the lowest cost, needs
+no new SaaS authorization,
+
+7
+00:00:19.455 --> 00:00:21.987
+and NIOS can't own cloud zones anyway.
+
+8
+00:00:21.987 --> 00:00:25.957
+Hybrid with one cloud,
+commercial or government:
+
+9
+00:00:25.957 --> 00:00:30.025
+add an HA vNIOS pair in a
+hub network, Option A plus C.
+
+10
+00:00:30.025 --> 00:00:34.706
+It keeps resolution local if the WAN
+fails and extends response policy,
+
+11
+00:00:34.706 --> 00:00:37.562
+signed zones and Grid IPAM into the cloud.
+
+12
+00:00:37.562 --> 00:00:41.737
+vNIOS is documented for both
+GovCloud and Azure Government.
+
+13
+00:00:41.737 --> 00:00:44.497
+Multi-cloud at FedRAMP Moderate and below:
+
+14
+00:00:44.497 --> 00:00:48.912
+add Universal DDI on top, through
+Government Cloud for federal work.
+
+15
+00:00:48.912 --> 00:00:52.896
+It's the only Infoblox mechanism
+that writes to cloud DNS,
+
+16
+00:00:52.896 --> 00:00:55.438
+within the Government Cloud limits.
+
+17
+00:00:55.438 --> 00:00:58.772
+GovCloud, Azure Government, FedRAMP High,
+
+18
+00:00:58.772 --> 00:01:03.676
+or Defense Impact Levels 4 and 5:
+stay with options A and C only.
+
+19
+00:01:03.676 --> 00:01:09.242
+Infoblox's SaaS is Moderate-only, the
+VPC IPAM integration excludes GovCloud,
+
+20
+00:01:09.242 --> 00:01:13.038
+and native services carry
+the higher authorizations.
+
+21
+00:01:13.038 --> 00:01:19.262
+Google lists Cloud DNS for High,
+IL4 and IL5 under Assured Workloads.
+
+22
+00:01:19.262 --> 00:01:24.575
+For Azure Government, confirm DNS
+Private Resolver is available first.
+
+23
+00:01:24.575 --> 00:01:29.834
+In short, the design guidance is: Trinzic
+plus native cloud resolvers as the
+
+24
+00:01:29.834 --> 00:01:35.263
+baseline, with vNIOS and Universal DDI
+added only where they earn their place.
+
+25
+00:01:35.263 --> 00:01:40.512
+Sources: Research decision guidance
+table and its cited sources:
+
+26
+00:01:40.512 --> 00:01:45.179
+Infoblox vDiscovery, vNIOS for
+AWS and Azure, Route 53 sync,
+
+27
+00:01:45.179 --> 00:01:49.651
+Universal DDI integrations
+and FedRAMP release notes,
+
+28
+00:01:49.651 --> 00:01:55.872
+Universal Asset Insights discovery pages;
+AWS Resolver, VPC IPAM + Infoblox,
+
+29
+00:01:55.872 --> 00:02:01.122
+GovCloud Route 53; Google Assured
+Workloads supported products;
+
+30
+00:02:01.122 --> 00:02:04.100
+FedRAMP Marketplace products.json.

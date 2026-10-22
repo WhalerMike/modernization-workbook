@@ -1,0 +1,138 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.896
+On premises, a Trinzic Grid is
+the agency's DNS and DHCP servers
+
+2
+00:00:04.896 --> 00:00:09.362
+plus its address record, all
+managed from the Grid Master.
+
+3
+00:00:09.362 --> 00:00:13.576
+Changes made there replicate to
+every member over encrypted tunnels.
+
+4
+00:00:13.576 --> 00:00:15.087
+It does several things well.
+
+5
+00:00:15.087 --> 00:00:18.512
+DNS views let one Grid
+give internal clients one
+
+6
+00:00:18.512 --> 00:00:21.851
+answer and outside clients
+another, on purpose.
+
+7
+00:00:21.851 --> 00:00:26.179
+Response policy zones, which
+Infoblox calls DNS Firewall,
+
+8
+00:00:26.179 --> 00:00:31.950
+block or redirect bad names, up to thirty-two
+of them, with hits logged to syslog.
+
+9
+00:00:31.950 --> 00:00:34.121
+DNSSEC signing is centralized:
+
+10
+00:00:34.121 --> 00:00:37.710
+only the Grid Master can be
+primary for a signed zone,
+
+11
+00:00:37.710 --> 00:00:42.886
+and keys live on the Grid Master or on
+an external hardware security module,
+
+12
+00:00:42.886 --> 00:00:45.975
+a Thales Luna or Entrust
+nShield, but not both.
+
+13
+00:00:45.975 --> 00:00:49.834
+One caution: the default
+algorithm is RSA with SHA-1,
+
+14
+00:00:49.834 --> 00:00:53.050
+which a federal deployment should change.
+
+15
+00:00:53.050 --> 00:00:55.938
+DHCP runs as failover pairs.
+
+16
+00:00:55.938 --> 00:01:01.838
+And the Grid can manage existing Windows
+DNS and DHCP servers without agents.
+
+17
+00:01:01.838 --> 00:01:03.025
+Why does that matter?
+
+18
+00:01:03.025 --> 00:01:07.133
+Book 08 of the workbook argues
+for one DDI policy plane:
+
+19
+00:01:07.133 --> 00:01:12.155
+a single system of record for zones,
+forwarding rules, address data
+
+20
+00:01:12.155 --> 00:01:17.450
+and security policy, with cloud DNS
+managed as an overlay, not replaced.
+
+21
+00:01:17.450 --> 00:01:20.012
+On premises, the Grid fits that role.
+
+22
+00:01:20.012 --> 00:01:22.063
+The question is the cloud edge.
+
+23
+00:01:22.063 --> 00:01:26.262
+And note that on-premises appliances
+aren't a FedRAMP cloud service;
+
+24
+00:01:26.262 --> 00:01:28.812
+they sit inside the agency's own boundary.
+
+25
+00:01:28.812 --> 00:01:34.978
+Sources: Infoblox NIOS 9.1.x:
+About Grids, Configuring DNS Views,
+
+26
+00:01:34.978 --> 00:01:40.781
+About Infoblox DNS Firewall,
+Configuring DNSSEC on a Grid,
+
+27
+00:01:40.781 --> 00:01:49.364
+Setting DNSSEC Parameters, DHCP Failover,
+About Managing Microsoft Windows Servers;
+
+28
+00:01:49.364 --> 00:01:54.442
+Book 08, Chapter 08, What a
+DDI policy plane is made of;
+
+29
+00:01:54.442 --> 00:02:00.190
+FedRAMP Marketplace products.json
+(FR2017257053 scope).

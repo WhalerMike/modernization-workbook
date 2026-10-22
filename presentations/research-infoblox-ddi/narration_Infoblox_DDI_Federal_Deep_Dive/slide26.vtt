@@ -1,157 +1,147 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:05.253
-On Universal DDI the division construct
-is the access view, which Infoblox
+00:00:00.050 --> 00:00:02.713
+Three topics close the NIOS module.
 
 2
-00:00:05.253 --> 00:00:10.875
-describes as a logical container for DDI
-resources, built for divisional admins.
+00:00:02.713 --> 00:00:07.874
+First, a division that still
+runs Windows DNS and DHCP.
 
 3
-00:00:10.875 --> 00:00:13.775
-The account itself is
-the default access view.
+00:00:07.874 --> 00:00:13.342
+NIOS manages those servers over MS-RPC
+with no agent, read-only or read-write,
 
 4
-00:00:13.775 --> 00:00:18.238
-Corporate admins create sub-views under
-it, and only one level is allowed.
+00:00:13.342 --> 00:00:17.750
+with a Microsoft Management
+license on the managing member.
 
 5
-00:00:18.238 --> 00:00:22.563
-Divisional admins can't see or manage
-anything outside their sub-view.
+00:00:17.750 --> 00:00:21.434
+Each Windows server syncs
+into exactly one network
 
 6
-00:00:22.563 --> 00:00:26.863
-You can assign IP spaces, address
-blocks, DNS views and zones,
+00:00:21.434 --> 00:00:24.775
+view and one DNS view,
+fixed after the first sync.
 
 7
-00:00:26.863 --> 00:00:30.637
-including synced cloud and
-Active Directory zones.
+00:00:24.775 --> 00:00:29.267
+Each server object carries its own
+permissions inside Grid Manager,
 
 8
-00:00:30.637 --> 00:00:34.087
-Assign an IP space and
-everything in it follows.
+00:00:29.267 --> 00:00:33.759
+so give the division's group rights
+on its own servers rather than the
 
 9
-00:00:34.087 --> 00:00:35.950
-The constraints are significant.
+00:00:33.759 --> 00:00:38.488
+system DNS Admin or DHCP Admin roles,
+which cover every Microsoft server.
 
 10
-00:00:35.950 --> 00:00:39.976
-Users, roles and policies are
-defined only at the default view,
+00:00:38.488 --> 00:00:43.183
+And be careful: changing the managing
+member, or switching from read-write
 
 11
-00:00:39.976 --> 00:00:42.975
-so divisions can't
-administer their own users.
+00:00:43.183 --> 00:00:47.649
+to read-only, reverts any edits made
+in Grid Manager since the last sync.
 
 12
-00:00:42.975 --> 00:00:47.925
-Access views can't be deleted or renamed
-once created, so name them carefully.
+00:00:47.649 --> 00:00:50.675
+Second, what stays
+central in every design.
 
 13
-00:00:47.925 --> 00:00:50.213
-They take about ten minutes to propagate.
+00:00:50.675 --> 00:00:55.740
+The Grid Master and its candidates,
+and Grid-level DNS and DHCP properties,
 
 14
-00:00:50.213 --> 00:00:53.575
-And only interactive
-users work fully in them;
+00:00:55.740 --> 00:00:58.563
+which only superusers can change anyway.
 
 15
-00:00:53.575 --> 00:00:56.850
-service users with API
-keys can't log in to one.
+00:00:58.563 --> 00:01:03.987
+DNSSEC keys and signing, because only
+the Grid Master or its HSM can sign.
 
 16
-00:00:56.850 --> 00:01:02.613
-IP spaces are the Universal DDI version
-of network views, and they can overlap.
+00:01:03.987 --> 00:01:09.437
+Response policy zones and Threat Defense
+policy, so security posture is uniform.
 
 17
-00:01:02.613 --> 00:01:08.922
-What NIOS lacks is IPAM Federation, which
-enforces uniqueness across Universal DDI,
+00:01:09.437 --> 00:01:11.571
+The definitions of groups, roles,
 
 18
-00:01:08.922 --> 00:01:13.654
-NIOS and cloud IPAM, with realms,
-federated blocks, delegations,
+00:01:11.571 --> 00:01:15.363
+attributes and workflows, and
+the authentication policy.
 
 19
-00:01:13.654 --> 00:01:18.124
-overlapping blocks for space
-behind NAT, and reserved blocks.
+00:01:15.363 --> 00:01:17.375
+And the top-level address blocks.
 
 20
-00:01:18.124 --> 00:01:22.400
-Access policies bind a role, a
-user group and an access view.
+00:01:17.375 --> 00:01:20.888
+Third, a limitation that
+surprises almost everyone.
 
 21
-00:01:22.400 --> 00:01:26.875
-Keep the Threat Defense and access-control
-administrator policies central.
+00:01:20.888 --> 00:01:24.613
+NIOS reporting doesn't filter
+by object permissions.
 
 22
-00:01:26.875 --> 00:01:30.783
-Entra sign-in uses a
-non-gallery SAML app whose group
+00:01:24.613 --> 00:01:28.924
+Infoblox's page says that when
+you view a DNS or DHCP report,
 
 23
-00:01:30.783 --> 00:01:34.425
-claim carries object IDs,
-mapped to Portal groups.
+00:01:28.924 --> 00:01:33.774
+you see all the data, even for
+objects you have no permission to see.
 
 24
-00:01:34.425 --> 00:01:36.838
-The audit log keeps thirteen months.
+00:01:33.774 --> 00:01:39.035
+So giving a division the Reporting app
+exposes agency-wide DNS and DHCP data,
 
 25
-00:01:36.838 --> 00:01:38.800
-And a documentation conflict.
+00:01:39.035 --> 00:01:42.875
+which matters a great deal
+for a law-enforcement bureau.
 
 26
-00:01:38.800 --> 00:01:43.677
-One Infoblox page lists IPAM, DNS
-and DHCP roles for access views;
+00:01:42.875 --> 00:01:47.125
+Scope reporting by which dashboards
+you share with each division's role,
 
 27
-00:01:43.677 --> 00:01:48.200
-another says only IPAM roles
-are supported in this release.
+00:01:47.125 --> 00:01:50.737
+filtered by the Division attribute,
+not by row-level security.
 
 28
-00:01:48.200 --> 00:01:53.300
-Confirm with Infoblox before you
-design around DNS or DHCP roles.
+00:01:50.737 --> 00:01:55.757
+Sources: Infoblox NIOS: Managing
+Microsoft Servers; About Admin Roles;
 
 29
-00:01:53.300 --> 00:01:58.280
-Sources: Infoblox Portal: About
-Access Views, Supported Objects,
+00:01:55.757 --> 00:02:00.777
+Administrative Permission for the
+Grid; Configuring DNSSEC on a Grid;
 
 30
-00:01:58.280 --> 00:02:04.576
-Setting Up Access Control, Creating Access
-Views, Interactive and Service Users,
-
-31
-00:02:04.576 --> 00:02:09.274
-Access Policies, Restricting
-User Groups, SAML for Entra ID,
-
-32
-00:02:09.274 --> 00:02:15.170
-Mapping User Groups, Audit Logs;
-Universal DDI: IP Spaces, IPAM Federation.
+00:02:00.777 --> 00:02:06.720
+RPZ license and permissions; Reporting
+permissions; EA filters and Smart Folders.

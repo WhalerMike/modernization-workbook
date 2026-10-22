@@ -1,161 +1,170 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:04.212
-The second set of risks is about
-cost, capacity and features.
+00:00:00.050 --> 00:00:02.425
+A fair comparison, column by column.
 
 2
-00:00:04.212 --> 00:00:05.138
-Licensing.
+00:00:02.425 --> 00:00:08.662
+FedRAMP: Infoblox is the only dedicated DDI
+vendor here with a listing, at Moderate.
 
 3
-00:00:05.138 --> 00:00:08.958
-Universal DDI uses three
-token types, management,
+00:00:08.662 --> 00:00:11.012
+BlueCat and EfficientIP have none.
 
 4
-00:00:08.958 --> 00:00:12.313
-server and reporting,
-sold in minimum packs.
+00:00:11.012 --> 00:00:15.109
+But the hyperscalers' government
+clouds are all FedRAMP High,
 
 5
-00:00:12.313 --> 00:00:16.691
-Tokens are a subscription entitlement
-that expires at the end of the term,
+00:00:15.109 --> 00:00:17.600
+a higher ceiling than Infoblox's SaaS.
 
 6
-00:00:16.691 --> 00:00:20.352
-can only be rebalanced within a
-type, and overage is handled by
+00:00:17.600 --> 00:00:20.738
+FIPS 140: BlueCat leads.
 
 7
-00:00:20.352 --> 00:00:24.300
-what Infoblox calls True Forward,
-on a rolling three-month average.
+00:00:20.738 --> 00:00:28.463
+It holds an active FIPS 140-3
+certificate, number 5506, valid to 2029.
 
 8
-00:00:24.300 --> 00:00:29.077
-Model total cost over three to five
-years, including the hardware refresh:
+00:00:28.463 --> 00:00:32.487
+Infoblox's is still in review,
+and EfficientIP has none.
 
 9
-00:00:29.077 --> 00:00:32.287
-Infoblox's end-of-life
-policy typically supports
+00:00:32.487 --> 00:00:36.518
+STIGs: Infoblox has two
+current vendor-specific STIGs;
 
 10
-00:00:32.287 --> 00:00:35.263
-hardware four years after
-its last order date.
+00:00:36.518 --> 00:00:41.087
+BlueCat and EfficientIP have
+none, and Windows DNS has its own.
 
 11
-00:00:35.263 --> 00:00:36.688
-Reporting capacity.
+00:00:41.087 --> 00:00:45.180
+Multi-cloud DNS: Infoblox
+manages Route 53,
 
 12
-00:00:36.688 --> 00:00:41.313
-We covered the ingest caps; five
-overruns in thirty days locks reporting.
+00:00:45.180 --> 00:00:49.974
+Azure DNS and Google Cloud
+DNS from one interface.
 
 13
-00:00:41.313 --> 00:00:44.401
-Size the Reporting tier
-for the retention you need,
+00:00:49.974 --> 00:00:54.325
+BlueCat and EfficientIP claim similar
+coverage on their product pages.
 
 14
-00:00:44.401 --> 00:00:47.049
-or make the SIEM the
-system of record for logs.
+00:00:54.325 --> 00:00:59.075
+Each cloud's native service covers only
+that cloud, and Windows covers none.
 
 15
-00:00:47.049 --> 00:00:52.488
-Encrypted DNS needs X6 hardware,
-or an extra license on X5.
+00:00:59.075 --> 00:01:02.256
+DNS security: Infoblox
+has the broadest set,
 
 16
-00:00:52.488 --> 00:00:56.700
-Plan the refresh around
-the encrypted DNS deadline.
+00:01:02.256 --> 00:01:08.087
+response policy zones plus TIDE intelligence
+and tunneling and DGA analytics.
 
 17
-00:00:56.700 --> 00:00:59.800
-DNSSEC defaults to RSA with SHA-1.
+00:01:08.087 --> 00:01:11.296
+Azure uses domain lists
+and a Microsoft feed,
 
 18
-00:00:59.800 --> 00:01:06.825
-Put SHA-256 or ECDSA in the build standard
-so nobody signs with the default.
+00:01:11.296 --> 00:01:16.931
+AWS DNS Firewall Advanced adds DGA and
+tunneling detection, Google's response
 
 19
-00:01:06.825 --> 00:01:10.939
-Hybrid limits: the Portal can't
-promote a Grid Master Candidate or
+00:01:16.931 --> 00:01:22.826
+policies are passthrough only, and Windows
+DNS policies have no feed integration.
 
 20
-00:01:10.939 --> 00:01:15.663
-manage DHCP failover associations, so
-keep Grid Manager runbooks for both.
+00:01:22.826 --> 00:01:26.240
+DHCPv6 failover is missing
+everywhere we checked,
 
 21
-00:01:15.663 --> 00:01:19.231
-And stale collateral: an
-older Infoblox blog post
+00:01:26.240 --> 00:01:30.225
+Infoblox and Windows included,
+so it's not a differentiator.
 
 22
-00:01:19.231 --> 00:01:22.800
-still says Universal DDI
-isn't FedRAMP compliant.
+00:01:30.225 --> 00:01:35.800
+EfficientIP claims extra DHCP
+high-availability modes; that's a vendor claim.
 
 23
-00:01:22.800 --> 00:01:24.825
-Cite only the Marketplace record.
+00:01:35.800 --> 00:01:39.215
+Automation: two partner-tier
+Terraform providers,
 
 24
-00:01:24.825 --> 00:01:29.413
-On the right are the procurement asks
-that turn these risks into obligations.
+00:01:39.215 --> 00:01:44.013
+two Ansible collections and ServiceNow
+give Infoblox the deepest set.
 
 25
-00:01:29.413 --> 00:01:35.925
-A FIPS 140-3 certificate timeline, the
-versions it covers, and a remedy if it slips.
+00:01:44.013 --> 00:01:47.475
+EfficientIP's Terraform
+provider is community tier.
 
 26
-00:01:35.925 --> 00:01:40.150
-A BIND advisory SLA with a
-KEV not-affected attestation.
+00:01:47.475 --> 00:01:52.537
+Where alternatives win: BlueCat's
+Micetro manages existing Windows and BIND
 
 27
-00:01:40.150 --> 00:01:43.712
-The FedRAMP boundary diagram
-and a commercial-parity list.
+00:01:52.537 --> 00:01:57.362
+servers in place, and a single-cloud
+workload may need no third-party plane.
 
 28
-00:01:43.712 --> 00:01:46.226
-Reporting sized for six months searchable.
+00:01:57.362 --> 00:01:59.911
+So the fair claim is the one on the slide:
 
 29
-00:01:46.226 --> 00:01:50.800
-Caps on token true-forward, and a clause
-guaranteeing you can export your data.
+00:01:59.911 --> 00:02:04.612
+a strong default for a hybrid federal
+estate, not the only viable choice.
 
 30
-00:01:50.800 --> 00:01:57.103
-Sources: Infoblox Universal DDI Tokens
-FAQ and Supplemental Terms (vendor);
+00:02:04.612 --> 00:02:10.660
+Sources: FedRAMP Marketplace
+products.json; NIST CMVP certificate 5506;
 
 31
-00:01:57.103 --> 00:02:04.016
-Supported Reporting Appliances; NIOS 9.1.0
-blog (vendor); Setting DNSSEC Parameters;
+00:02:10.660 --> 00:02:15.095
+DISA STIG store; BlueCat
+Integrity and Micetro pages,
 
 32
-00:02:04.016 --> 00:02:08.285
-Limitations of Universal
-DDI; Infoblox EOL policy;
+00:02:15.095 --> 00:02:18.825
+EfficientIP SOLIDserver
+datasheet (vendor);
 
 33
-00:02:08.285 --> 00:02:12.310
-Infoblox Top 12 Questions
-post (search summary).
+00:02:18.825 --> 00:02:25.075
+Microsoft Learn DNS Policies and DHCP
+failover; Azure DNS resolver policy;
+
+34
+00:02:25.075 --> 00:02:31.526
+Route 53 DNS Firewall Advanced; Google
+Cloud response policies and DNS Armor;
+
+35
+00:02:31.526 --> 00:02:34.610
+Terraform Registry; Ansible Galaxy.

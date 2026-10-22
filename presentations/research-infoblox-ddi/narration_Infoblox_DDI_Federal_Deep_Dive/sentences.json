@@ -1040,7 +1040,7 @@
    "Sources: fed-ramp Marketplace products.json, FR2017257053 (accessed Oct. 22, 2026); Infoblox blog, July 22, 2026 (vendor); What's New in Universal D D I for fed-ramp; vNIOS for Azure."
   ]
  ],
- "14": [
+ "16": [
   [
    0.05,
    3.038,
@@ -1137,7 +1137,7 @@
    "Sources: DISA STIG file store, U_Infoblox_NIOS_9-x_V1R1 and U_IB_8-x_DNS_V1R4; nist CMVP certificates 4531, 4535 and modules-in-process list; NIAP PCL; Common Criteria Portal; sis-uh CDM APL, April 2025; nist SP 800-81r3 title page."
   ]
  ],
- "15": [
+ "17": [
   [
    0.05,
    2.375,
@@ -1239,7 +1239,7 @@
    "Sources: fed-ramp Marketplace products.json; nist CMVP certificate 5506; DISA STIG store; BlueCat Integrity and Micetro pages, EfficientIP SOLIDserver datasheet (vendor); Microsoft Learn D N S Policies and DHCP failover; Azure D N S resolver policy; Route 53 D N S Firewall Advanced; Google Cloud response policies and D N S Armor; Terraform Registry; Ansible Galaxy."
   ]
  ],
- "16": [
+ "18": [
   [
    0.05,
    4.025,
@@ -1346,7 +1346,7 @@
    "Sources: nist CMVP certificates 4531, 4535, 5506 and modules-in-process list; NIAP PCL; sis-uh CDM APL; NVD CVE API (keyword Infoblox); sis-uh KEV catalog 2026.10.21; Infoblox Cloud release notes; fed-ramp products.json."
   ]
  ],
- "17": [
+ "19": [
   [
    0.05,
    4.162,
@@ -1458,7 +1458,7 @@
    "Sources: Infoblox Universal D D I Tokens FAQ and Supplemental Terms (vendor); Supported Reporting Appliances; NIOS 9.1.0 blog (vendor); Setting DNSSEC Parameters; Limitations of Universal D D I; Infoblox EOL policy; Infoblox Top 12 Questions post (search summary)."
   ]
  ],
- "18": [
+ "20": [
   [
    0.05,
    3.025,
@@ -1495,7 +1495,7 @@
    "Sources: Infoblox NIOS 9.1.x and 9.0 administration guides; Book 08, Chapter 11."
   ]
  ],
- "19": [
+ "21": [
   [
    0.05,
    5.375,
@@ -1587,7 +1587,7 @@
    "Sources: Infoblox NIOS: About Administrative Permissions, About Admin Groups, About Admin Roles, Applying Permissions and Managing Overlaps, Creating Superuser Admin Groups, Managing Extensible Attributes."
   ]
  ],
- "20": [
+ "22": [
   [
    0.05,
    6.537,
@@ -1679,7 +1679,7 @@
    "Sources: Infoblox NIOS: Creating Limited-Access Admin Groups; Defining Object Permissions; Administrative Permissions for Network Views, eye-pam Resources, D N S Views, Zones and Resource Records; Permissions for D N S Resources in Networks and Ranges; D N S and DHCP Permissions on Grid Members."
   ]
  ],
- "21": [
+ "23": [
   [
    0.05,
    5.338,
@@ -1776,7 +1776,7 @@
    "Sources: Infoblox NIOS: Configuring Network Views; About D N S Views; Managing Extensible Attributes; Configuring Inheritable EAs; Smart Folders and EA filters."
   ]
  ],
- "22": [
+ "24": [
   [
    0.05,
    5.188,
@@ -1858,7 +1858,7 @@
    "Sources: Infoblox NIOS: Configuring Approval Workflows; Creating Approval Workflows; Unsupported Operations for Submitters; Supported Tasks for Different Admin Groups; Scheduling Tasks; Audit Log."
   ]
  ],
- "23": [
+ "25": [
   [
    0.05,
    4.963,
@@ -1950,7 +1950,7 @@
    "Sources: Infoblox NIOS: Authenticating Administrators; Defining the Authentication Policy; About Remote Admins; Two-Factor and Certificate Authentication Services; sam-ul pages; A D Nested Groups; Creating Limited-Access Admin Groups; Universal D D I sam-ul for Entra ID."
   ]
  ],
- "24": [
+ "26": [
   [
    0.05,
    2.663,
@@ -2042,7 +2042,7 @@
    "Sources: Infoblox NIOS: Managing Microsoft Servers; About Admin Roles; Administrative Permission for the Grid; Configuring DNSSEC on a Grid; RPZ license and permissions; Reporting permissions; EA filters and Smart Folders."
   ]
  ],
- "25": [
+ "27": [
   [
    0.05,
    4.925,
@@ -2069,7 +2069,7 @@
    "Sources: Infoblox Portal and Universal D D I documentation; Book 08, Chapters 09 and 10."
   ]
  ],
- "26": [
+ "28": [
   [
    0.05,
    10.825,
@@ -2176,7 +2176,7 @@
    "Sources: Infoblox Portal: About Access Views, Supported Objects, Setting Up Access Control, Creating Access Views, Interactive and Service Users, Access Policies, Restricting User Groups, sam-ul for Entra ID, Mapping User Groups, Audit Logs; Universal D D I: IP Spaces, eye-pam Federation."
   ]
  ],
- "27": [
+ "29": [
   [
    0.05,
    3.763,
@@ -2263,7 +2263,7 @@
    "Sources: Synthesis of Infoblox NIOS: Administrative Permissions, Managing Overlaps, D N S and DHCP Permissions on Grid Members, Network Views, Delegated Zones, DNSSEC on a Grid, Approval Workflows, Reporting permissions; Universal D D I: Access Views, eye-pam Federation."
   ]
  ],
- "28": [
+ "30": [
   [
    0.05,
    1.387,
@@ -2365,7 +2365,7 @@
    "Sources: Illustrative design synthesized from Infoblox NIOS: Network Views, D N S Views, Extensible Attributes, Object Permissions, D N S Resources in Networks and Ranges, Delegated Zones, Approval Workflows, sam-ul, Managing Microsoft Servers, Reporting permissions."
   ]
  ],
- "29": [
+ "31": [
   [
    0.05,
    0.95,
@@ -2437,7 +2437,7 @@
    "Sources: Book 08, Chapter 09, \"Decision rights and work are different things,\" \"The roles,\" \"The responsibility matrix\"; Infoblox NIOS approval workflows; Universal D D I access policies."
   ]
  ],
- "30": [
+ "32": [
   [
    0.05,
    4.9,
@@ -2547,6 +2547,175 @@
    124.35,
    14.438,
    "Sources: Book 08, index (canonical sequence) and Chapter 10; Infoblox NIOS and Universal D D I documentation; federal requirements and validation research cited in Modules 1 and 2."
+  ]
+ ],
+ "14": [
+  [
+   0.05,
+   9.662,
+   "A narrower question: if an agency buys Trinzic, the physical NIOS appliances, how well does the hardware fit the design in Book 08 of the workbook?"
+  ],
+  [
+   9.713,
+   7.975,
+   "One authoritative policy plane: the Grid gives you one shared database, an HA Grid Master and a candidate with a full copy."
+  ],
+  [
+   17.688,
+   7.0,
+   "But candidate promotion is manual, and Infoblox publishes no Grid scale limits, so size it with the vendor."
+  ],
+  [
+   24.688,
+   9.162,
+   "Leaving Active Directory\u2013integrated D N S: GSS-TSIG lets domain controllers send Kerberos-signed updates to the Grid."
+  ],
+  [
+   33.85,
+   6.963,
+   "But an appliance can send GSS-TSIG updates or accept them, not both, so plan which members do which."
+  ],
+  [
+   40.812,
+   8.088,
+   "DNSSEC signing is central, on the Grid Master, with keys there or in a Thales Luna or Entrust nShield HSM."
+  ],
+  [
+   48.9,
+   2.9,
+   "Change the RSA SHA-1 default."
+  ],
+  [
+   51.8,
+   8.05,
+   "Encrypted D N S is served by BIND from 9.1, free only on X6; X5 needs an extra license."
+  ],
+  [
+   59.85,
+   10.4,
+   "eye-pam and basic discovery are built in, but Network Insight needs a Discovery license and dedicated ND-series appliances that run no D N S or DHCP."
+  ],
+  [
+   70.25,
+   7.388,
+   "Reporting appliances have daily ingest caps; five overruns in thirty days lock reporting, so send logs to the sim."
+  ],
+  [
+   77.638,
+   4.162,
+   "Trinzic sits inside the agency's own boundary and ATO."
+  ],
+  [
+   81.8,
+   5.138,
+   "The fed-ramp Moderate listing doesn't cover it, which is why it's the path for High and DoD."
+  ],
+  [
+   86.938,
+   18.087,
+   "Assurance and lifecycle: certificate 4531 for Trinzic hardware went Historical in September, the FIPS 140-3 Trinzic modules are pending review, and NIAP has been evaluating Trinzic appliances with NIOS 9.0 since August 17."
+  ],
+  [
+   105.025,
+   4.263,
+   "X6 needs NIOS 9.0.1 or later."
+  ],
+  [
+   109.287,
+   12.925,
+   "Hardware is typically supported about four years after its last order date, and an internet-facing appliance past end of support may fall under BOD 26-02, though it doesn't name D N S appliances."
+  ],
+  [
+   122.213,
+   38.837,
+   "Sources: Infoblox NIOS 9.1.x: Promoting a Grid Master Candidate, About Grids, About GSS-TSIG, Configuring DNSSEC on a Grid, Setting DNSSEC Parameters, Thales Luna HSM, DoT and DoH Architecture, About Network Insight, Supported Reporting Appliances; NIOS 9.1.0 blog (vendor); nist CMVP certificate 4531 and Modules In Process list; NIAP PCL; Infoblox End-of-Life policy; sis-uh BOD 26-02; fed-ramp products.json; Book 08."
+  ]
+ ],
+ "15": [
+  [
+   0.05,
+   6.638,
+   "So can Trinzic run an agency's D D I alone once workloads move to AWS, Azure and Google Cloud?"
+  ],
+  [
+   6.688,
+   2.85,
+   "On its own, it can see into the clouds."
+  ],
+  [
+   9.537,
+   11.338,
+   "vDiscovery pulls in cloud networks and VMs on a schedule, and NIOS can import Route 53, Azure D N S and Google Cloud D N S zones, one way only."
+  ],
+  [
+   20.875,
+   7.963,
+   "What it can't do is own cloud D N S. Changes made in NIOS don't write back, and it can't create the clouds' private zones."
+  ],
+  [
+   28.837,
+   8.8,
+   "No NIOS document describes managing Route 53 VPC Resolver rules or Azure D N S Private Resolver rulesets."
+  ],
+  [
+   37.638,
+   7.625,
+   "It isn't the authority for AWS VPC eye-pam, and DHCP in cloud subnets stays with the cloud fabric."
+  ],
+  [
+   45.263,
+   2.925,
+   "There are three ways to extend it, and they combine."
+  ],
+  [
+   48.188,
+   8.963,
+   "Option A puts vNIOS members in each cloud, joined to the Grid, Azure Government included, so answers stay local during a WAN cut."
+  ],
+  [
+   57.15,
+   14.713,
+   "Option B joins the Grid to Universal D D I, the only Infoblox path that writes back to cloud D N S, but the government edition is Moderate only, with limited discovery: single AWS accounts and no Azure tenants."
+  ],
+  [
+   71.862,
+   4.938,
+   "Its cloud forwarders run on NIOS-X servers, not classic Trinzic."
+  ],
+  [
+   76.8,
+   7.0,
+   "Option C keeps the native cloud resolvers and wires them to the Grid with conditional forwarding in both directions."
+  ],
+  [
+   83.8,
+   5.925,
+   "And the AWS VPC eye-pam handoff to Infoblox isn't available in GovCloud."
+  ],
+  [
+   89.725,
+   2.913,
+   "The bottom row is design guidance, not a rule."
+  ],
+  [
+   92.638,
+   16.962,
+   "Mostly on premises: Option C. Hybrid with one cloud: A plus C. Multi-cloud at Moderate or below: add B. GovCloud, Azure Government, fed-ramp High, or IL4 and IL5: A plus C, and don't depend on the SaaS."
+  ],
+  [
+   109.6,
+   6.2,
+   "For the full reasoning, see the Research explainer, Trinzic Alone, or Trinzic Plus Cloud D D I?"
+  ],
+  [
+   115.8,
+   42.725,
+   "Sources: Infoblox NIOS 9.1.x vDiscovery and Cloud Network Automation; Route 53, Azure D N S and Google Cloud D N S integration pages; vNIOS for AWS, Azure and Google Cloud; Onboarding NIOS Services; Configuring Cloud Forwarders; What's New in Universal D D I for fed-ramp; Universal Asset Insights credential pages; Limitations of Universal D D I; AWS Route 53 VPC Resolver and VPC eye-pam docs, What's New Nov. 17, 2025; Microsoft Learn Azure D N S Private Resolver; Google Cloud D N S best"
+  ],
+  [
+   158.525,
+   1.038,
+   "practices."
   ]
  ]
 }

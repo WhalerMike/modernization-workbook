@@ -504,6 +504,93 @@ Two practical notes. With reuse at zero, expect to do your own ATO work rather t
   "FedRAMP Marketplace products.json, FR2017257053 (accessed Oct. 22, 2026); Infoblox blog, July 22, 2026 (vendor); What's New in Universal DDI for FedRAMP; vNIOS for Azure.");
 }
 
+// ================================================================== 13a Trinzic against the design
+{
+  const s = content(P1, "Trinzic hardware against the workbook's design");
+  tag(s, "What");
+  table(s, "Trinzic fit", 1.5, [2.3, 5.25, 4.6], ["Workbook requirement", "What Trinzic and NIOS deliver", "Caveat"], [
+    ["One authoritative policy plane", "NIOS Grid: one shared database; Grid Master as an HA pair; a candidate holds a full copy", "Candidate promotion is manual; no published Grid scale limits"],
+    ["Leave AD-integrated DNS", "GSS-TSIG: Kerberos-signed updates from Windows DCs; up to 256 keys per member", "An appliance sends or accepts GSS-TSIG, not both at once"],
+    ["Central DNSSEC signing", "Grid Master signs as hidden primary; keys on the Grid Master or a Thales Luna or Entrust nShield HSM", "Default algorithm is RSA/SHA1: change it before signing"],
+    ["Encrypted DNS (DoT, DoH)", "Served by BIND from NIOS 9.1.0, on X6 appliances", "Free only on X6; X5 needs an extra license (vendor)"],
+    ["IPAM authority and discovery", "Network views, containers, extensible attributes; ICMP, NetBIOS, TCP discovery; vDiscovery", "Network Insight needs a Discovery license and dedicated ND-series appliances that run no DNS or DHCP"],
+    ["Logs at federal retention", "Reporting appliances: TR-2205 10 GB a day; TR-1405 and TR-805 5 GB a day", "5 overruns in 30 days lock reporting; send logs to the SIEM"],
+    ["Authorization boundary", "Trinzic runs inside the agency's own boundary and ATO", "Not covered by the FedRAMP Moderate SaaS listing; it is the path for High or DoD"],
+    ["Assurance and lifecycle", "FIPS 140-2 #4531 (Trinzic HW) Historical, Sept. 2026; 140-3 Trinzic modules Pending Review; NIAP: \"Trinzic Appliances with NIOS v9.0\" in evaluation since Aug. 17, 2026", "X6 needs NIOS 9.0.1+; hardware typically supported ~4 years after last order date; BOD 26-02 if internet-facing at end of support"],
+  ], { fontSize: 10.5 });
+  sources(s, "Sources: Infoblox NIOS 9.1.x — GMC, Scale, GSS-TSIG, DNSSEC, HSM, DoT/DoH, Network Insight, Reporting; NIST CMVP #4531, MIP list; NIAP PCL; Infoblox EOL policy; CISA BOD 26-02; Book 08.");
+  notes(s,
+`A narrower question: if an agency buys Trinzic, the physical NIOS appliances, how well does the hardware fit the design in Book 08 of the workbook?
+
+One authoritative policy plane: the Grid gives you one shared database, an HA Grid Master and a candidate with a full copy. But candidate promotion is manual, and Infoblox publishes no Grid scale limits, so size it with the vendor.
+
+Leaving Active Directory–integrated DNS: GSS-TSIG lets domain controllers send Kerberos-signed updates to the Grid. But an appliance can send GSS-TSIG updates or accept them, not both, so plan which members do which.
+
+DNSSEC signing is central, on the Grid Master, with keys there or in a Thales Luna or Entrust nShield HSM. Change the RSA SHA-1 default. Encrypted DNS is served by BIND from 9.1, free only on X6; X5 needs an extra license.
+
+IPAM and basic discovery are built in, but Network Insight needs a Discovery license and dedicated ND-series appliances that run no DNS or DHCP. Reporting appliances have daily ingest caps; five overruns in thirty days lock reporting, so send logs to the SIEM.
+
+Trinzic sits inside the agency's own boundary and ATO. The FedRAMP Moderate listing doesn't cover it, which is why it's the path for High and DoD.
+
+Assurance and lifecycle: certificate 4531 for Trinzic hardware went Historical in September, the FIPS 140-3 Trinzic modules are pending review, and NIAP has been evaluating Trinzic appliances with NIOS 9.0 since August 17. X6 needs NIOS 9.0.1 or later. Hardware is typically supported about four years after its last order date, and an internet-facing appliance past end of support may fall under BOD 26-02, though it doesn't name DNS appliances.`,
+  "Infoblox NIOS 9.1.x: Promoting a Grid Master Candidate, About Grids, About GSS-TSIG, Configuring DNSSEC on a Grid, Setting DNSSEC Parameters, Thales Luna HSM, DoT and DoH Architecture, About Network Insight, Supported Reporting Appliances; NIOS 9.1.0 blog (vendor); NIST CMVP certificate 4531 and Modules In Process list; NIAP PCL; Infoblox End-of-Life policy; CISA BOD 26-02; FedRAMP products.json; Book 08.");
+}
+
+// ================================================================== 13b Trinzic alone or with cloud DDI
+{
+  const s = content(P1, "Trinzic alone, or with cloud DDI?");
+  tag(s, "How");
+  panel(s, "Alone", 0.6, 1.5, 4.65, 2.5, HEX.navy, HEX.navyTint, "TRINZIC ALONE", null, [
+    "Sees into clouds: vDiscovery of AWS, Azure, Google Cloud; one-way import of Route 53, Azure DNS, Cloud DNS zones",
+    "Can't own cloud DNS: no write-back, no cloud private zones",
+    "Doesn't manage Route 53 VPC Resolver rules or Azure rulesets",
+    "Not the VPC IPAM authority; no DHCP in cloud subnets",
+  ], 11.5);
+  const opts = [
+    [HEX.teal, HEX.tealTint, "A  vNIOS in each cloud", "Grid members in AWS, Azure (incl. Azure Government) or Google Cloud, in HA pairs; they serve signed zones without holding keys."],
+    [HEX.navy, HEX.navyTint, "B  Grid + Universal DDI", "The only Infoblox path that writes back to cloud DNS. Government edition: Moderate, limited discovery. Cloud forwarders run on NIOS-X, not classic Trinzic."],
+    [HEX.amber, HEX.amberTint, "C  Trinzic beside native cloud DNS", "Conditional forwarding both ways through the clouds' resolver endpoints. The VPC IPAM handoff to Infoblox isn't available in GovCloud."],
+  ];
+  opts.forEach((o, i) => {
+    const y = 1.5 + i * 0.85;
+    box(s, `Option ${"ABC"[i]}`, 5.45, y, 7.3, 0.78, o[1], o[0]);
+    T(s, `Option ${"ABC"[i]} text`, [
+      { text: o[2], options: { bold: true, color: o[0], fontSize: 12.5, fontFace: "Cambria", breakLine: true } },
+      { text: o[3], options: { fontSize: 11 } },
+    ], { x: 5.6, y: y + 0.04, w: 7.05, h: 0.72, fontSize: 11 });
+  });
+  subhead(s, "Guidance head", "DESIGN GUIDANCE, NOT A RULE: WHICH PATTERN FITS", 0.6, 4.2, 12.15);
+  const rows = [
+    ["Mostly on premises", "C: the Grid stays authoritative; clouds forward to it"],
+    ["Hybrid, one cloud", "A + C: an HA vNIOS pair keeps answers local"],
+    ["Multi-cloud, Moderate or below", "Add B for cloud DNS write-back"],
+    ["GovCloud, Azure Gov, High, IL4–5", "A + C only; don't depend on the SaaS"],
+  ];
+  const gw = (12.15 - 3 * 0.15) / 4;
+  rows.forEach((r, i) => {
+    const x = 0.6 + i * (gw + 0.15);
+    box(s, `Guide ${i + 1}`, x, 4.55, gw, 1.05, "FFFFFF", HEX.line);
+    T(s, `Guide ${i + 1} text`, [
+      { text: r[0], options: { bold: true, color: HEX.navy, fontSize: 12, breakLine: true } },
+      { text: r[1], options: { fontSize: 11 } },
+    ], { x: x + 0.1, y: 4.6, w: gw - 0.2, h: 0.95, fontSize: 11 });
+  });
+  T(s, "Explainer", [
+    { text: "Go deeper: ", options: { bold: true, color: HEX.teal } },
+    { text: "the Research explainer \"Trinzic Alone, or Trinzic Plus Cloud DDI?\" covers each option, split-brain and where keys and IPAM authority live." },
+  ], { x: 0.6, y: 5.8, w: 12.15, h: 0.6, fontSize: 12.5 });
+  sources(s, "Sources: Infoblox vDiscovery, cloud DNS sync, vNIOS, Onboarding NIOS, Cloud Forwarders, FedRAMP notes; AWS Route 53 Resolver, VPC IPAM; Microsoft Learn; Google Cloud DNS.");
+  notes(s,
+`So can Trinzic run an agency's DDI alone once workloads move to AWS, Azure and Google Cloud?
+
+On its own, it can see into the clouds. vDiscovery pulls in cloud networks and VMs on a schedule, and NIOS can import Route 53, Azure DNS and Google Cloud DNS zones, one way only. What it can't do is own cloud DNS. Changes made in NIOS don't write back, and it can't create the clouds' private zones. No NIOS document describes managing Route 53 VPC Resolver rules or Azure DNS Private Resolver rulesets. It isn't the authority for AWS VPC IPAM, and DHCP in cloud subnets stays with the cloud fabric.
+
+There are three ways to extend it, and they combine. Option A puts vNIOS members in each cloud, joined to the Grid, Azure Government included, so answers stay local during a WAN cut. Option B joins the Grid to Universal DDI, the only Infoblox path that writes back to cloud DNS, but the government edition is Moderate only, with limited discovery: single AWS accounts and no Azure tenants. Its cloud forwarders run on NIOS-X servers, not classic Trinzic. Option C keeps the native cloud resolvers and wires them to the Grid with conditional forwarding in both directions. And the AWS VPC IPAM handoff to Infoblox isn't available in GovCloud.
+
+The bottom row is design guidance, not a rule. Mostly on premises: Option C. Hybrid with one cloud: A plus C. Multi-cloud at Moderate or below: add B. GovCloud, Azure Government, FedRAMP High, or IL4 and IL5: A plus C, and don't depend on the SaaS. For the full reasoning, see the Research explainer, Trinzic Alone, or Trinzic Plus Cloud DDI?`,
+  "Infoblox NIOS 9.1.x vDiscovery and Cloud Network Automation; Route 53, Azure DNS and Google Cloud DNS integration pages; vNIOS for AWS, Azure and Google Cloud; Onboarding NIOS Services; Configuring Cloud Forwarders; What's New in Universal DDI for FedRAMP; Universal Asset Insights credential pages; Limitations of Universal DDI; AWS Route 53 VPC Resolver and VPC IPAM docs, What's New Nov. 17, 2025; Microsoft Learn Azure DNS Private Resolver; Google Cloud DNS best practices.");
+}
+
 // ================================================================== 14 Assurance
 {
   const s = content(P1, "Assurance: STIGs, FIPS 140, NIAP and SP 800-81r3");
@@ -1094,6 +1181,8 @@ srcSlide("Sources behind Module 2 — Federal fit and risks", [
   "AWS: VPC IPAM; Integrate VPC IPAM with Infoblox; What's New Nov. 17, 2025; Route 53 DNSSEC signing; Route 53 in GovCloud; DNS Firewall Advanced  ·  Google Cloud: DNSSEC; response policies; DNS Armor.",
   "Terraform Registry API (infobloxopen, bluecatlabs, efficientip-labs, menandmice providers); Ansible Galaxy API (infoblox, menandmice collections).",
   "Infoblox (vendor): Universal DDI Tokens FAQ; Universal DDI Supplemental Terms; End-of-Life policy (Mar. 31, 2025); \"Universal DDI comes to Infoblox Government Cloud\" (July 22, 2026); \"Top 12 Questions\" post (search summary).",
+  "Trinzic slides — Infoblox: vDiscovery (Endpoint Server, AWS, Azure, Guidelines); Cloud Network Automation; Cloud Platform License Limitations; Route 53, Azure DNS, Google Cloud DNS integration and limits; vNIOS for AWS, Azure, Google Cloud (About, Limitations); Shared-Services VPC; Onboarding NIOS Services; Cloud Forwarders; Discovering Cloud Forwarder Endpoints; UAI AWS, Azure, GCP credentials; CMVP Modules In Process; CISA BOD 26-02.",
+  "Trinzic slides — clouds: AWS Route 53 private hosted zones, VPC Resolver, inbound/outbound forwarding, GovCloud Route 53, DHCP option sets, VPC IPAM + Infoblox; Microsoft Learn DNS Private Resolver, VNet name resolution, AVNM IPAM; Google Cloud DNS best practices, server policies, Assured Workloads.",
 ]);
 srcSlide("Sources behind Part 2 — Divisions and operating model", [
   "Infoblox NIOS (spaces nios91x and nios90): About Administrative Permissions; About Admin Groups; About Admin Roles; Creating Limited-Access and Superuser Admin Groups; Applying Permissions and Managing Overlaps; Global and Object Permissions.",
