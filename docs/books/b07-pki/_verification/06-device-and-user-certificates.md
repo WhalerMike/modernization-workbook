@@ -148,3 +148,11 @@ Applied from the verified review findings (critique claims re-checked against pr
 | RF-2 | OCSP bullet footnoted with `[^c06-ocsp]`, quoting "We don't support Online Certificate Status Protocol (OCSP)" (CBA overview) and the stated reason (CRL page) | The trust store (line 210) | verified | <https://learn.microsoft.com/entra/identity/authentication/concept-certificate-based-authentication>; <https://learn.microsoft.com/en-us/entra/identity/authentication/concept-certificate-based-authentication-certificate-revocation-list> |
 
 The chapter file is CRLF; it was edited with CRLF preserved.
+
+## Consistency fixes, 2026-10-21
+
+Cross-chapter consistency pass. Every changed external fact was re-checked on the primary source on 2026-10-21; program decisions are marked as such.
+
+| # | Change | Where | Verdict | Source |
+|---|---|---|---|---|
+| CF-1 | Server-certificate cross-reference now points to Chapter 04 (where the decision is made) and Chapter 07 (coexistence) | Constraints, first bullet | wording-only | — |

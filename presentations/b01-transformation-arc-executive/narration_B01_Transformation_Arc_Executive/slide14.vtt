@@ -1,0 +1,116 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.738
+Now how to deliver it,
+starting with the estate.
+
+2
+00:00:02.738 --> 00:00:06.260
+You can't modernize what you haven't
+enumerated, and nothing can be
+
+3
+00:00:06.260 --> 00:00:10.175
+retired until someone has written
+down everything it was quietly doing.
+
+4
+00:00:10.175 --> 00:00:15.001
+Ask what's in a long-lived forest and the
+honest answer is usually more than anyone
+
+5
+00:00:15.001 --> 00:00:18.098
+on the current team knows:
+trusts no one can fully map,
+
+6
+00:00:18.098 --> 00:00:20.763
+Group Policy whose
+authors left a decade ago,
+
+7
+00:00:20.763 --> 00:00:25.372
+certificate templates whose permissions
+open privilege-escalation paths,
+
+8
+00:00:25.372 --> 00:00:29.550
+and servers past support, each of
+which needs a disposition in the plan.
+
+9
+00:00:29.550 --> 00:00:31.800
+The assessment follows three rules.
+
+10
+00:00:31.800 --> 00:00:36.287
+It's read-only, enforced in the
+account, the code and the audit trail.
+
+11
+00:00:36.287 --> 00:00:41.027
+It's least-privilege: never a domain
+or enterprise admin, starting from
+
+12
+00:00:41.027 --> 00:00:46.338
+default read rights and adding only
+narrow, recorded additions, never secrets.
+
+13
+00:00:46.338 --> 00:00:50.231
+And every run carries
+provenance: who ran it, when,
+
+14
+00:00:50.231 --> 00:00:54.612
+against what, with which rights,
+and a hash of every file.
+
+15
+00:00:54.612 --> 00:00:56.862
+The engine rejects a run without it.
+
+16
+00:00:56.862 --> 00:01:00.294
+The output maps privileged
+groups and service accounts,
+
+17
+00:01:00.294 --> 00:01:03.287
+so it's stored encrypted
+and handled as sensitive.
+
+18
+00:01:03.287 --> 00:01:06.916
+And because broad enumeration
+looks like reconnaissance,
+
+19
+00:01:06.916 --> 00:01:09.063
+security operations is told first.
+
+20
+00:01:09.063 --> 00:01:12.715
+One more input decides whether
+an application may move:
+
+21
+00:01:12.715 --> 00:01:16.924
+how many round trips it makes to
+its data, measured, not estimated.
+
+22
+00:01:16.924 --> 00:01:19.387
+The steward commissions it in Phase 0.
+
+23
+00:01:19.387 --> 00:01:23.567
+In the program's experience a first
+pass takes days to a few weeks,
+
+24
+00:01:23.567 --> 00:01:25.610
+and Gate G0 needs it committed.

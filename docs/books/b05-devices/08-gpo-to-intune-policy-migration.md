@@ -528,7 +528,7 @@ On an Entra-joined device that isn't domain joined, the domain profile doesn't a
 | Setting | Value | Notes |
 |---|---|---|
 | Microsoft Defender for Endpoint client configuration package type | Auto from connector | Needs the Intune–Defender for Endpoint connection |
-| Sample sharing | All | Matches the program's Defender data-handling decision |
+| Sample sharing | All | The Defender for Endpoint setting that sends files for deep analysis, separate from the antivirus sample submission in ES-001; set None on devices the data owner considers too sensitive[^c08-edr-sample] |
 
 Four settings sometimes listed for this policy don't belong in it. Telemetry reporting frequency is deprecated and has no effect on new devices.[^c08-edr] Automated investigation level, live response and web content filtering aren't EDR policy settings in Intune; they are configured in the Microsoft Defender portal, and [Chapter 10](10-operating-and-evidencing-the-fleet.md#microsoft-defender-for-endpoint) sets them there.
 
@@ -901,6 +901,7 @@ A compliance policy needs its scheduled action, and SC-001 isn't a `windows10Gen
 [^c08-win11-release]: Microsoft Learn, "Windows 11 release information," section "Windows 11 current versions by servicing option," <https://learn.microsoft.com/windows/release-health/windows11-release-information> (accessed Oct 20, 2026).
 [^c08-devicelock]: Microsoft Learn, "Policy CSP - DeviceLock," section "AccountLockoutPolicy," <https://learn.microsoft.com/windows/client-management/mdm/policy-csp-devicelock> (accessed Oct 20, 2026).
 [^c08-audit-csp]: Microsoft Learn, "Policy CSP - Audit," <https://learn.microsoft.com/windows/client-management/mdm/policy-csp-audit> (accessed Oct 20, 2026).
+[^c08-edr-sample]: Microsoft Learn, "Endpoint detection and response policy settings for endpoint security in Intune," Sample sharing for all files, <https://learn.microsoft.com/intune/device-configuration/endpoint-security/ref-edr-settings> (accessed Oct 22, 2026).
 [^c08-defender-csp]: Microsoft Learn, "Policy CSP - Defender," sections "CloudBlockLevel," "CloudExtendedTimeout," "PUAProtection" and "SubmitSamplesConsent," <https://learn.microsoft.com/windows/client-management/mdm/policy-csp-defender> (accessed Oct 20, 2026).
 [^c08-asr]: Microsoft Learn, "Attack surface reduction (ASR) rules reference," <https://learn.microsoft.com/defender-endpoint/attack-surface-reduction-rules-reference> (accessed Oct 20, 2026).
 [^c08-ie]: Microsoft Learn, "Lifecycle FAQ - Internet Explorer and Microsoft Edge," <https://learn.microsoft.com/lifecycle/faq/internet-explorer-microsoft-edge>; and "Essential Eight user application hardening," section "Internet Explorer 11 is disabled or removed," <https://learn.microsoft.com/compliance/anz/e8-app-harden> (both accessed Oct 20, 2026).

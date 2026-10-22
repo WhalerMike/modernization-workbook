@@ -1,0 +1,117 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.423
+A Cloud PKI root needs
+no existing private PKI,
+
+2
+00:00:03.423 --> 00:00:08.749
+brings a new chain that has to reach
+every relying party and every forest,
+
+3
+00:00:08.749 --> 00:00:12.300
+and keeps the root key in
+a Microsoft-managed HSM.
+
+4
+00:00:12.300 --> 00:00:18.343
+BYOCA needs a private CA to sign, preserves
+the chain relying parties already hold,
+
+5
+00:00:18.343 --> 00:00:24.386
+keeps root custody wherever your AD CS root
+key is, and adds one ongoing on-premises
+
+6
+00:00:24.386 --> 00:00:30.163
+dependency: the private root's CRL must
+stay published and reachable over HTTP.
+
+7
+00:00:30.163 --> 00:00:35.284
+Neither model can serve domain
+controller, LDAPS or server certificates,
+
+8
+00:00:35.284 --> 00:00:39.313
+because Cloud PKI issues only
+to Intune-enrolled devices.
+
+9
+00:00:39.313 --> 00:00:41.847
+And rollback is simpler under BYOCA,
+
+10
+00:00:41.847 --> 00:00:45.987
+because the original root and
+its issuing CAs keep running.
+
+11
+00:00:45.987 --> 00:00:51.056
+The program's recommendation, for
+an organization with an established
+
+12
+00:00:51.056 --> 00:00:55.524
+AD CS hierarchy, an offline root
+and cross-forest trust, is BYOCA.
+
+13
+00:00:55.524 --> 00:00:59.742
+It preserves the trust chain,
+needs one cloud CA rather than two,
+
+14
+00:00:59.742 --> 00:01:02.012
+and keeps a natural rollback path.
+
+15
+00:01:02.012 --> 00:01:08.093
+For an organization building PKI for the
+first time alongside cloud-first identity,
+
+16
+00:01:08.093 --> 00:01:12.001
+a Cloud PKI root removes
+every on-premises dependency.
+
+17
+00:01:12.001 --> 00:01:14.650
+Three program rules go with BYOCA.
+
+18
+00:01:14.650 --> 00:01:17.890
+Harden first: the root's
+hierarchy passes the
+
+19
+00:01:17.890 --> 00:01:21.480
+Chapter 03 gate before it
+signs a cloud issuing CA.
+
+20
+00:01:21.480 --> 00:01:26.033
+Sign with the root, not an AD CS
+issuing CA, so the cloud issuer is a
+
+21
+00:01:26.033 --> 00:01:31.287
+peer of the existing issuing CAs and
+retiring them later doesn't touch it.
+
+22
+00:01:31.287 --> 00:01:33.818
+And treat the root CRL as production:
+
+23
+00:01:33.818 --> 00:01:39.134
+publish it to an internet-reachable HTTP
+location on a schedule with margin,
+
+24
+00:01:39.134 --> 00:01:44.520
+monitor it, and record the next ceremony
+date before the current CRL expires.

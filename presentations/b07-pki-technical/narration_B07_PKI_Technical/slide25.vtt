@@ -1,0 +1,145 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.213
+The program's coexistence rules.
+
+2
+00:00:02.213 --> 00:00:07.431
+Each use case has one issuer at a time
+per population: a device group gets
+
+3
+00:00:07.431 --> 00:00:12.474
+its Wi-Fi certificate from AD CS or
+from Cloud PKI, never both by design.
+
+4
+00:00:12.474 --> 00:00:16.922
+Trust goes up before issuance moves:
+a relying party trusts the new chain
+
+5
+00:00:16.922 --> 00:00:21.813
+before the first certificate from it
+reaches anything that relying party sees.
+
+6
+00:00:21.813 --> 00:00:25.612
+Revocation must be reachable
+wherever validation happens.
+
+7
+00:00:25.612 --> 00:00:28.082
+Nothing is revoked to force a move:
+
+8
+00:00:28.082 --> 00:00:31.963
+an AD CS certificate is
+replaced at renewal or expiry.
+
+9
+00:00:31.963 --> 00:00:34.213
+And every move has a tested rollback that
+
+10
+00:00:34.213 --> 00:00:36.662
+doesn't depend on
+something the move retired.
+
+11
+00:00:36.662 --> 00:00:40.400
+What stays on AD CS until
+Active Directory retires.
+
+12
+00:00:40.400 --> 00:00:45.538
+Domain controller certificates, because
+Cloud PKI doesn't issue to servers.
+
+13
+00:00:45.538 --> 00:00:48.588
+Use a copy of the Kerberos
+Authentication template.
+
+14
+00:00:48.588 --> 00:00:54.037
+Entra-joined devices can't read a
+CRL from AD before they authenticate,
+
+15
+00:00:54.037 --> 00:00:56.762
+so publish an HTTP CRL listed first.
+
+16
+00:00:56.762 --> 00:01:00.986
+LDAPS stays too; the old guide
+said it could move to Cloud PKI,
+
+17
+00:01:00.986 --> 00:01:03.313
+but an LDAPS endpoint is a server.
+
+18
+00:01:03.313 --> 00:01:06.639
+Other server certificates
+stay on AD CS as well,
+
+19
+00:01:06.639 --> 00:01:11.587
+renewed through CyberArk Certificate
+Manager, as Chapter 04 decided.
+
+20
+00:01:11.587 --> 00:01:17.756
+NPS needs care: it must trust the Cloud PKI
+chain before the first pilot device gets
+
+21
+00:01:17.756 --> 00:01:21.203
+a cloud Wi-Fi certificate,
+and keep trusting AD
+
+22
+00:01:21.203 --> 00:01:25.013
+CS until the last AD CS
+client certificate expires.
+
+23
+00:01:25.013 --> 00:01:26.688
+Trust runs both ways.
+
+24
+00:01:26.688 --> 00:01:32.138
+AD CS into Entra ID: upload the root
+and every intermediate and issuing CA,
+
+25
+00:01:32.138 --> 00:01:36.317
+each with an internet-facing
+CRL; that's also what lets AD
+
+26
+00:01:36.317 --> 00:01:41.313
+FS certificate authentication
+move without reissuing anything.
+
+27
+00:01:41.313 --> 00:01:46.587
+The cloud chain into the forest: by Group
+Policy or by publishing to the directory.
+
+28
+00:01:46.587 --> 00:01:50.613
+NTAuth only for CAs that will
+issue logon certificates.
+
+29
+00:01:50.613 --> 00:01:53.420
+And each forest needs
+its own distribution,
+
+30
+00:01:53.420 --> 00:01:58.460
+while every forest's user-issuing root
+goes into the single Entra trust store.

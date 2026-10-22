@@ -1,0 +1,151 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.625
+Step 2 gives every setting
+in the inventory one tag.
+
+2
+00:00:03.625 --> 00:00:08.000
+Required: still needed, so it's
+translated to a modern control.
+
+3
+00:00:08.000 --> 00:00:11.646
+Obsolete: an old Windows
+version, a retired product,
+
+4
+00:00:11.646 --> 00:00:15.725
+a network assumption that no
+longer holds, so it's retired.
+
+5
+00:00:15.725 --> 00:00:21.050
+High-risk: it weakens security, so it's
+retired or replaced with something stronger.
+
+6
+00:00:21.050 --> 00:00:23.836
+Redundant: already enforced by another
+
+7
+00:00:23.836 --> 00:00:26.875
+control or a Windows
+default, so it's retired.
+
+8
+00:00:26.875 --> 00:00:30.948
+A required setting then gets a
+disposition from four questions,
+
+9
+00:00:30.948 --> 00:00:33.638
+asked in order, where
+the first yes decides.
+
+10
+00:00:33.638 --> 00:00:36.450
+Is it still required in
+the target operating model?
+
+11
+00:00:36.450 --> 00:00:40.950
+Group Policy accumulated settings that
+existed only because it could set them.
+
+12
+00:00:40.950 --> 00:00:43.512
+Does a native Intune equivalent exist?
+
+13
+00:00:43.512 --> 00:00:44.425
+Most do.
+
+14
+00:00:44.425 --> 00:00:46.775
+Does a cloud-native
+pattern remove the need?
+
+15
+00:00:46.775 --> 00:00:50.678
+Folder redirection becomes
+OneDrive Known Folder Move,
+
+16
+00:00:50.678 --> 00:00:56.075
+mapped printers become Universal Print,
+WSUS targeting becomes update rings.
+
+17
+00:00:56.075 --> 00:00:58.113
+And can a script enforce and prove it?
+
+18
+00:00:58.113 --> 00:01:02.000
+Then it's a Remediation, reviewed
+later for a native replacement.
+
+19
+00:01:02.000 --> 00:01:05.250
+A setting that fails all
+four is a dated exception,
+
+20
+00:01:05.250 --> 00:01:08.975
+and its GPO stays linked for
+that population and no other.
+
+21
+00:01:08.975 --> 00:01:12.416
+For each one, also record
+whether it's configuration,
+
+22
+00:01:12.416 --> 00:01:15.537
+compliance, or both, and
+what evidence proves it.
+
+23
+00:01:15.537 --> 00:01:18.599
+The questions send settings
+to four landing zones.
+
+24
+00:01:18.599 --> 00:01:22.834
+The settings catalog holds most
+ADMX and security settings;
+
+25
+00:01:22.834 --> 00:01:28.762
+the old Administrative Templates profile
+has been read-only since the 2412 release.
+
+26
+00:01:28.762 --> 00:01:33.346
+Imported ADMX is for third-party
+templates: public preview,
+
+27
+00:01:33.346 --> 00:01:36.713
+twenty files of a megabyte
+or less, en-us only.
+
+28
+00:01:36.713 --> 00:01:42.487
+Endpoint security owns antivirus, encryption,
+firewall, attack surface reduction,
+
+29
+00:01:42.487 --> 00:01:47.926
+account protection and EDR, and Microsoft's
+practice is one method per setting.
+
+30
+00:01:47.926 --> 00:01:52.167
+Remediations need Enterprise,
+Education or VDA licensing,
+
+31
+00:01:52.167 --> 00:01:54.910
+up to two hundred packages per tenant.

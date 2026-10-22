@@ -1,0 +1,111 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.250
+The book's decision matrix runs
+on one rule: one decider per row.
+
+2
+00:00:04.250 --> 00:00:07.656
+The single deliberate
+exception is the pilot gate,
+
+3
+00:00:07.656 --> 00:00:10.575
+G2, which the steward
+and the sponsor co-sign.
+
+4
+00:00:10.575 --> 00:00:15.753
+The sponsor and the CIO own scope, funding
+and sequence, break ties, and decide
+
+5
+00:00:15.753 --> 00:00:21.425
+when Active Directory components retire,
+because each retirement ends a fallback.
+
+6
+00:00:21.425 --> 00:00:24.606
+They clear gate G3 with
+the steering committee,
+
+7
+00:00:24.606 --> 00:00:27.950
+and G5, the retirement of
+Active Directory itself.
+
+8
+00:00:27.950 --> 00:00:32.612
+Their job is to keep it a program, not
+five projects that finish one at a time.
+
+9
+00:00:32.612 --> 00:00:37.087
+The CISO decides the control
+requirements every surface must meet.
+
+10
+00:00:37.087 --> 00:00:42.130
+The authorizing official is the only
+official who can accept risk on the agency's
+
+11
+00:00:42.130 --> 00:00:47.323
+behalf, so every place the program carries
+risk instead of removing it reaches that
+
+12
+00:00:47.323 --> 00:00:50.259
+desk: a deferred
+legacy-authentication cutoff,
+
+13
+00:00:50.259 --> 00:00:54.775
+a Kerberos island with no end date, a
+deviation from a mandatory baseline.
+
+14
+00:00:54.775 --> 00:00:58.625
+The program office, led by the
+steward, runs the orchestra.
+
+15
+00:00:58.625 --> 00:01:03.124
+It holds the repository, turns
+assessments into authorized plans
+
+16
+00:01:03.124 --> 00:01:07.050
+and evaluates the gates, but it
+doesn't decide risk or scope.
+
+17
+00:01:07.050 --> 00:01:10.287
+The platform teams do the
+work inside each domain.
+
+18
+00:01:10.287 --> 00:01:13.737
+Application owners decide
+for their own applications.
+
+19
+00:01:13.737 --> 00:01:16.437
+HR decides what the
+worker attributes mean.
+
+20
+00:01:16.437 --> 00:01:21.455
+The sponsor's decision, before the program
+starts: fill in the matrix with names,
+
+21
+00:01:21.455 --> 00:01:24.233
+one decider per row,
+and get the authorizing
+
+22
+00:01:24.233 --> 00:01:27.530
+official's agreement to
+every risk-acceptance row.

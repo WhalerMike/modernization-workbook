@@ -1,0 +1,112 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.975
+Three decisions often
+land on the wrong desk,
+
+2
+00:00:02.975 --> 00:00:05.425
+and the book moves each one on purpose.
+
+3
+00:00:05.425 --> 00:00:09.688
+First, end dates for legacy
+authentication and NTLM.
+
+4
+00:00:09.688 --> 00:00:14.774
+They sit with the authorizing official, not
+with the engineers who'd like more time,
+
+5
+00:00:14.774 --> 00:00:18.887
+because keeping legacy authentication
+open is a risk acceptance,
+
+6
+00:00:18.887 --> 00:00:22.926
+and BOD 25-01 makes blocking
+it a mandatory baseline.
+
+7
+00:00:22.926 --> 00:00:25.636
+Authorizing officials may accept risk for
+
+8
+00:00:25.636 --> 00:00:28.950
+deviations from those
+policies, under agency policy.
+
+9
+00:00:28.950 --> 00:00:32.475
+Second, the help desk's
+identity-verification procedure.
+
+10
+00:00:32.475 --> 00:00:36.988
+The help desk supports users through
+every wave, and that makes it a target.
+
+11
+00:00:36.988 --> 00:00:41.374
+CISA's advisory on the Scattered
+Spider group describes attackers
+
+12
+00:00:41.374 --> 00:00:45.837
+phoning help desks to get passwords
+reset and MFA tokens transferred.
+
+13
+00:00:45.837 --> 00:00:50.712
+So the procedure for resets and temporary
+access passes is a CISO decision.
+
+14
+00:00:50.712 --> 00:00:54.000
+The help desk carries it out
+with narrowly scoped roles.
+
+15
+00:00:54.000 --> 00:00:55.587
+Third, records.
+
+16
+00:00:55.587 --> 00:01:00.887
+Retiring Active Directory retires the
+systems that hold years of access records.
+
+17
+00:01:00.887 --> 00:01:06.204
+NARA's General Records Schedule 3.2 keeps
+some system access records for six years
+
+18
+00:01:06.204 --> 00:01:10.661
+after the account is terminated, and
+once a domain controller is gone,
+
+19
+00:01:10.661 --> 00:01:14.101
+its logs can't be recovered
+for an audit or a legal hold.
+
+20
+00:01:14.101 --> 00:01:19.108
+So the records officer decides retention
+before anything is decommissioned:
+
+21
+00:01:19.108 --> 00:01:23.500
+any domain controller, federation
+farm, sync server or SIEM connector.
+
+22
+00:01:23.500 --> 00:01:26.218
+And the privacy office is consulted before
+
+23
+00:01:26.218 --> 00:01:29.140
+any new attribute flow
+carries personal data.

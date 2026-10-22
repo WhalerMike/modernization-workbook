@@ -34,76 +34,76 @@
   ],
   [
    7.65,
-   4.0,
-   "Where a computer sat in the O U tree quietly did five jobs."
+   5.925,
+   "Where a computer sat in the organizational unit (O U) tree quietly did five jobs."
   ],
   [
-   11.65,
+   13.575,
    3.263,
    "It decided targeting: what settings the computer got."
   ],
   [
-   14.912,
+   16.837,
    4.275,
    "Precedence: link order and inheritance decided which setting won."
   ],
   [
-   19.188,
+   21.113,
    3.513,
    "Delegation: O U permissions decided who could change it."
   ],
   [
-   22.7,
+   24.625,
    4.575,
    "Timing: policy refreshed at startup, at sign-in and on a cycle."
   ],
   [
-   27.275,
+   29.2,
    4.287,
    "And evidence: the resultant set of policy told you what actually applied."
   ],
   [
-   31.562,
+   33.487,
    3.462,
    "An Entra-joined, Intune-managed device has none of that."
   ],
   [
-   35.025,
+   36.95,
    4.575,
    "Policy is assigned flatly to groups, and nothing reads the O U tree."
   ],
   [
-   39.6,
+   41.525,
    6.175,
    "When two policies set the same thing, Intune reports a conflict; it doesn't resolve it by order."
   ],
   [
-   45.775,
+   47.7,
    2.513,
    "Devices check in about every eight hours."
   ],
   [
-   48.288,
+   50.212,
    5.425,
    "And some Group Policy jobs, mapped drives for example, have no built-in equivalent at all."
   ],
   [
-   53.712,
+   55.638,
    4.425,
    "Microsoft itself advises against copying GPOs one for one."
   ],
   [
-   58.138,
+   60.062,
    2.025,
    "So this is not a settings migration."
   ],
   [
-   60.163,
+   62.087,
    6.95,
    "Teams that copy GPOs into Intune discover the governance loss after the targeting model has already changed."
   ],
   [
-   67.112,
+   69.037,
    4.088,
    "Every job the tree did implicitly has to be rebuilt explicitly."
   ]

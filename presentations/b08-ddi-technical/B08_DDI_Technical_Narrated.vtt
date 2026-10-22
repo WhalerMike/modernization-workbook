@@ -1,0 +1,3598 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.086
+This is the technical deep
+dive for Book 08 of the
+
+2
+00:00:04.086 --> 00:00:08.525
+Federal Modernization
+Workbook: DNS, DHCP and IPAM.
+
+3
+00:00:08.525 --> 00:00:13.089
+It's for the network and DDI engineers
+who will design the resolution paths,
+
+4
+00:00:13.089 --> 00:00:16.475
+move authority off Active
+Directory, and run the result.
+
+5
+00:00:16.475 --> 00:00:19.625
+It comes in two parts of about
+twenty-five minutes each,
+
+6
+00:00:19.625 --> 00:00:22.075
+and four modules you
+can watch on their own.
+
+7
+00:00:22.075 --> 00:00:24.187
+Part 1 covers the hard surfaces:
+
+8
+00:00:24.187 --> 00:00:28.329
+split-brain DNS and what Active
+Directory DNS really carries,
+
+9
+00:00:28.329 --> 00:00:32.146
+then the places queries escape
+agency policy, at the edge,
+
+10
+00:00:32.146 --> 00:00:34.746
+at the endpoint and on the access layer,
+
+11
+00:00:34.746 --> 00:00:39.700
+and the DNS identity and DNSSEC work
+underneath certificates and tokens.
+
+12
+00:00:39.700 --> 00:00:44.575
+Part 2 covers building and running the
+control plane: cloud private endpoints,
+
+13
+00:00:44.575 --> 00:00:49.225
+the Azure DNS Private Resolver, IPAM
+as the authority for address blocks,
+
+14
+00:00:49.225 --> 00:00:53.575
+the reference architecture and its
+five decisions, then the six-phase
+
+15
+00:00:53.575 --> 00:00:58.225
+migration and the telemetry, drift
+checks and evidence that keep it honest.
+
+16
+00:00:58.225 --> 00:01:03.525
+Vendors and products appear only as the
+book's examples, never as endorsements.
+
+17
+00:01:03.525 --> 00:01:07.330
+The commands stay in the
+chapters, marked illustrative.
+
+18
+00:01:08.080 --> 00:01:09.268
+Why this matters.
+
+19
+00:01:09.268 --> 00:01:13.267
+Almost every network connection
+begins with a DNS query,
+
+20
+00:01:13.267 --> 00:01:18.968
+and in a hybrid multi-cloud agency the
+answer now decides far more than an address.
+
+21
+00:01:18.968 --> 00:01:24.472
+NIST's 2026 DNS deployment guide,
+SP 800-81 Revision 3, says DNS
+
+22
+00:01:24.472 --> 00:01:31.406
+infrastructure has become more than a
+service; it is also a security control.
+
+23
+00:01:31.406 --> 00:01:35.555
+Chapter 01 names six jobs DNS now does.
+
+24
+00:01:35.555 --> 00:01:40.309
+It publishes private addresses: an Azure
+Storage account with a private endpoint
+
+25
+00:01:40.309 --> 00:01:45.342
+resolves privately inside the hosting
+virtual network and publicly everywhere else.
+
+26
+00:01:45.342 --> 00:01:51.209
+It selects SaaS front doors: Microsoft
+365 publishes a Worldwide list,
+
+27
+00:01:51.209 --> 00:01:57.379
+which includes GCC, and separate lists
+and namespaces for GCC High and DoD.
+
+28
+00:01:57.379 --> 00:02:02.867
+It enforces security policy through
+response policy zones and DNS firewalls.
+
+29
+00:02:02.867 --> 00:02:08.654
+It anchors certificate validation,
+because OCSP and CRL endpoints are names.
+
+30
+00:02:08.654 --> 00:02:11.978
+And the FQDN is the service
+identity that gateways,
+
+31
+00:02:11.978 --> 00:02:15.855
+certificates and Zero Trust
+policies are written against.
+
+32
+00:02:15.855 --> 00:02:20.655
+Yet most agencies run it on as many as
+five platforms that share no state.
+
+33
+00:02:20.655 --> 00:02:24.505
+AD DNS or a DDI grid on premises.
+
+34
+00:02:24.505 --> 00:02:29.730
+Route 53's VPC Resolver,
+formerly Route 53 Resolver.
+
+35
+00:02:29.730 --> 00:02:34.105
+Azure, where private zones
+resolve only for linked networks,
+
+36
+00:02:34.105 --> 00:02:38.305
+and where DNS resolver policy
+now gives an RPZ equivalent.
+
+37
+00:02:38.305 --> 00:02:40.380
+Google Cloud's metadata server.
+
+38
+00:02:40.380 --> 00:02:44.655
+And the NSX forwarder, which
+workloads reach only if configured to.
+
+39
+00:02:44.655 --> 00:02:47.180
+The cost shows up on every change.
+
+40
+00:02:47.180 --> 00:02:51.619
+A new Azure private endpoint
+can need four more DNS changes,
+
+41
+00:02:51.619 --> 00:02:54.155
+on four consoles, in four syntaxes.
+
+42
+00:02:54.155 --> 00:02:57.868
+Chapter 09 assigns ownership,
+because the forwarding rules
+
+43
+00:02:57.868 --> 00:03:01.950
+that connect the platforms
+usually belong to no single team.
+
+44
+00:03:02.700 --> 00:03:06.350
+Chapter 03 quotes the mandates
+rather than paraphrasing
+
+45
+00:03:06.350 --> 00:03:09.012
+them into something
+stronger, and so will I.
+
+46
+00:03:09.012 --> 00:03:15.417
+OMB M-22-09 says agencies must resolve DNS
+queries using encrypted DNS wherever it
+
+47
+00:03:15.417 --> 00:03:20.607
+is technically supported, and should
+explicitly configure endpoints to use
+
+48
+00:03:20.607 --> 00:03:23.931
+agency-designated encrypted
+DNS servers rather
+
+49
+00:03:23.931 --> 00:03:27.012
+than relying on automatic
+network discovery.
+
+50
+00:03:27.012 --> 00:03:31.939
+CISA's Protective DNS is required
+for federal civilian agencies,
+
+51
+00:03:31.939 --> 00:03:36.775
+and CISA's guidance says it is used
+for all egress DNS resolution.
+
+52
+00:03:36.775 --> 00:03:41.107
+OMB M-26-14 rescinded M-21-31
+and its event-logging tiers;
+
+53
+00:03:41.107 --> 00:03:43.033
+it doesn't name DNS at all,
+
+54
+00:03:43.033 --> 00:03:49.195
+but its baseline needs source and
+destination network address information,
+
+55
+00:03:49.195 --> 00:03:54.875
+and logs actively searchable for six
+months and retrievable for a year.
+
+56
+00:03:54.875 --> 00:03:59.477
+M-08-23 required DNSSEC by December 2009,
+
+57
+00:03:59.477 --> 00:04:07.287
+and SC-20 and SC-21 carry signing
+and validation into every baseline.
+
+58
+00:04:07.287 --> 00:04:12.900
+M-21-07's IPv6-only
+targets have all passed.
+
+59
+00:04:12.900 --> 00:04:19.863
+And TIC 3.0, version 3.3, lists
+five DNS enforcement capabilities.
+
+60
+00:04:19.863 --> 00:04:23.642
+NIST SP 800-81 Revision
+3, from March 2026,
+
+61
+00:04:23.642 --> 00:04:29.826
+is the practical guide to meeting
+them; it's guidance, not a mandate.
+
+62
+00:04:29.826 --> 00:04:34.916
+Read together: agency-controlled
+resolvers that log, encrypt, validate,
+
+63
+00:04:34.916 --> 00:04:39.575
+forward egress through Protective
+DNS, and can't be routed around.
+
+64
+00:04:39.575 --> 00:04:43.120
+FedRAMP certifies a cloud
+service, not an architecture,
+
+65
+00:04:43.120 --> 00:04:46.125
+and the agency still
+authorizes its own system.
+
+66
+00:04:46.125 --> 00:04:51.519
+As an example, the Marketplace lists
+Infoblox Government Cloud at Class C,
+
+67
+00:04:51.519 --> 00:04:55.675
+its label for Moderate, delivered
+as SaaS in AWS GovCloud.
+
+68
+00:04:55.675 --> 00:04:59.151
+A Moderate certification
+doesn't cover High or DoD,
+
+69
+00:04:59.151 --> 00:05:03.537
+and on-premises appliances sit
+inside the agency's own boundary.
+
+70
+00:05:03.537 --> 00:05:09.834
+Every chapter follows one sequence:
+inventory, coexist, migrate authority,
+
+71
+00:05:09.834 --> 00:05:15.825
+federate clouds, decommission AD DNS
+and DHCP, then harden and evidence.
+
+72
+00:05:15.825 --> 00:05:20.315
+Five configuration decisions carry
+most of the risk along the way;
+
+73
+00:05:20.315 --> 00:05:22.800
+we'll meet each one in its module.
+
+74
+00:05:23.550 --> 00:05:29.050
+Module 1: split-brain DNS and the
+Active Directory DNS departure.
+
+75
+00:05:29.050 --> 00:05:34.332
+Chapter 02 defines the structural problem:
+the same name returning different answers
+
+76
+00:05:34.332 --> 00:05:39.100
+depending on where the query starts,
+silently, because the name still resolves.
+
+77
+00:05:39.100 --> 00:05:43.550
+Chapter 04 takes the surface
+most agencies underestimate.
+
+78
+00:05:43.550 --> 00:05:47.945
+Active Directory never presented
+itself as the agency's DNS service,
+
+79
+00:05:47.945 --> 00:05:49.872
+but for twenty years it was one,
+
+80
+00:05:49.872 --> 00:05:54.575
+and the records it kept for itself don't
+follow the identities to the cloud.
+
+81
+00:05:54.575 --> 00:05:59.179
+Leaving AD DNS is an inventory problem
+before it is a migration problem,
+
+82
+00:05:59.179 --> 00:06:04.910
+and the inventory has to be finished before
+the first domain controller is retired.
+
+83
+00:06:05.660 --> 00:06:08.341
+Split-brain is the same
+name returning different
+
+84
+00:06:08.341 --> 00:06:11.022
+answers depending on where
+the query originates.
+
+85
+00:06:11.022 --> 00:06:15.384
+Intentional split-horizon, designed
+and governed, is legitimate.
+
+86
+00:06:15.384 --> 00:06:20.355
+The unintentional kind is the problem,
+and with several DNS systems holding
+
+87
+00:06:20.355 --> 00:06:24.772
+copies of the same names and no shared
+state, it's close to guaranteed.
+
+88
+00:06:24.772 --> 00:06:27.436
+Chapter 02 shows three forms.
+
+89
+00:06:27.436 --> 00:06:29.085
+Private-IP split-brain.
+
+90
+00:06:29.085 --> 00:06:34.773
+An Azure Storage private endpoint
+gives the public name a CNAME into the
+
+91
+00:06:34.773 --> 00:06:39.798
+privatelink subdomain, and the private
+zone maps it to, say, 10.1.0.4.
+
+92
+00:06:39.798 --> 00:06:44.679
+An EC2 instance sees that only if
+a Route 53 outbound rule forwards
+
+93
+00:06:44.679 --> 00:06:49.738
+blob.core.windows.net to an Azure
+Private Resolver inbound endpoint,
+
+94
+00:06:49.738 --> 00:06:52.223
+or to an agency resolver that does.
+
+95
+00:06:52.223 --> 00:06:57.610
+If the rule is missing or stale, the name
+still resolves, to the public address.
+
+96
+00:06:57.610 --> 00:07:01.408
+Microsoft's guide to 403 errors
+through a private endpoint
+
+97
+00:07:01.408 --> 00:07:05.360
+attributes roughly seventy
+percent of cases to exactly that.
+
+98
+00:07:05.360 --> 00:07:07.085
+Public SaaS split-brain.
+
+99
+00:07:07.085 --> 00:07:09.717
+GCC uses the Worldwide endpoint list,
+
+100
+00:07:09.717 --> 00:07:14.047
+so for a GCC-Moderate agency the
+risk isn't a wrong-cloud answer;
+
+101
+00:07:14.047 --> 00:07:18.292
+it's path consistency: every
+reachable resolver must return
+
+102
+00:07:18.292 --> 00:07:22.198
+what Microsoft publishes,
+through the designed egress.
+
+103
+00:07:22.198 --> 00:07:25.673
+GCC High and DoD have
+their own namespaces.
+
+104
+00:07:25.673 --> 00:07:29.672
+Drift looks like sign-in failures
+or Conditional Access denials.
+
+105
+00:07:29.672 --> 00:07:31.610
+Security policy split-brain.
+
+106
+00:07:31.610 --> 00:07:34.674
+Block lists apply only at
+the resolver that answers,
+
+107
+00:07:34.674 --> 00:07:37.881
+and the cloud equivalents
+are configured per network,
+
+108
+00:07:37.881 --> 00:07:41.872
+so the effective posture is the
+weakest resolver a client can reach.
+
+109
+00:07:41.872 --> 00:07:45.651
+That matters beyond compliance:
+NIST notes DNS servers can
+
+110
+00:07:45.651 --> 00:07:49.660
+often prevent security incidents
+earlier than other systems.
+
+111
+00:07:49.660 --> 00:07:52.323
+Runbooks fail because
+the failure is silent,
+
+112
+00:07:52.323 --> 00:07:56.210
+the change rate outruns them, and
+the systems behave differently.
+
+113
+00:07:56.210 --> 00:07:59.360
+The fix is structural: a control plane.
+
+114
+00:08:00.110 --> 00:08:03.423
+When a domain is deployed,
+its DNS name becomes a zone,
+
+115
+00:08:03.423 --> 00:08:08.970
+the domain controllers running the DNS Server
+role become its authoritative servers,
+
+116
+00:08:08.970 --> 00:08:13.823
+and every domain-joined machine is
+pointed at them for all of its resolution.
+
+117
+00:08:13.823 --> 00:08:17.872
+Nobody chose that as a DNS
+architecture, but it is one.
+
+118
+00:08:17.872 --> 00:08:23.028
+A zone stored in Active Directory exists
+only on domain controllers that run DNS,
+
+119
+00:08:23.028 --> 00:08:28.030
+and storing it there brings two things
+a file-backed zone lacks: secure dynamic
+
+120
+00:08:28.030 --> 00:08:30.338
+updates, and multi-master operation,
+
+121
+00:08:30.338 --> 00:08:33.647
+where every hosting domain
+controller is a primary.
+
+122
+00:08:33.647 --> 00:08:39.570
+Replication rides on AD replication, and
+the replication scope, exposed as Domain,
+
+123
+00:08:39.570 --> 00:08:44.797
+Forest, Legacy or Custom, decides
+which domain controllers hold the zone.
+
+124
+00:08:44.797 --> 00:08:48.985
+The rest decomposes into
+components, each needing a decision.
+
+125
+00:08:48.985 --> 00:08:52.402
+The AD-integrated zones,
+including underscore msdcs,
+
+126
+00:08:52.402 --> 00:08:56.052
+lose multi-master and secure
+updates with the directory,
+
+127
+00:08:56.052 --> 00:09:01.022
+so each is re-created on a platform that
+gives its clients what they still need.
+
+128
+00:09:01.022 --> 00:09:06.122
+File-backed zones are the simplest to
+move; watch clients pointed at a secondary.
+
+129
+00:09:06.122 --> 00:09:08.959
+Stub zones usually
+become forwarding rules.
+
+130
+00:09:08.959 --> 00:09:13.548
+Conditional forwarders carry trusts,
+partners and cloud namespaces.
+
+131
+00:09:13.548 --> 00:09:16.747
+GlobalNames then depends
+on suffix search lists.
+
+132
+00:09:16.747 --> 00:09:20.886
+Reverse zones must align with
+IPAM or fill with orphans.
+
+133
+00:09:20.886 --> 00:09:23.497
+And signed zones move
+on their own sequence.
+
+134
+00:09:23.497 --> 00:09:26.211
+One correction: the
+source whitepaper called
+
+135
+00:09:26.211 --> 00:09:28.923
+conditional forwarders
+not easily exported.
+
+136
+00:09:28.923 --> 00:09:34.360
+Windows stores each one as a zone,
+so Get-DNS-Server-Zone lists it.
+
+137
+00:09:34.360 --> 00:09:36.960
+Forwarders accumulate for partners,
+
+138
+00:09:36.960 --> 00:09:40.735
+trusts and retired systems,
+often with no record of why.
+
+139
+00:09:40.735 --> 00:09:44.950
+Finding them is easy; deciding
+which still matter is the work.
+
+140
+00:09:45.700 --> 00:09:49.693
+Domain controllers advertise
+themselves through DNS.
+
+141
+00:09:49.693 --> 00:09:55.075
+Netlogon on each domain controller
+registers a family of SRV and A records.
+
+142
+00:09:55.075 --> 00:09:59.501
+A client finds a domain controller
+by calling D S Get D C Name,
+
+143
+00:09:59.501 --> 00:10:03.745
+which queries DNS for SRV
+records, sends an LDAP UDP ping
+
+144
+00:10:03.745 --> 00:10:07.900
+to the candidates and caches
+the first one that answers.
+
+145
+00:10:07.900 --> 00:10:11.446
+These records are dynamic:
+Netlogon re-registers them,
+
+146
+00:10:11.446 --> 00:10:15.937
+and they change as domain controllers
+come and go and as sites change.
+
+147
+00:10:15.937 --> 00:10:17.913
+Here's what fails without each.
+
+148
+00:10:17.913 --> 00:10:22.551
+The LDAP record: domain join,
+authentication and Group Policy.
+
+149
+00:10:22.551 --> 00:10:25.463
+The Kerberos records: ticket acquisition,
+
+150
+00:10:25.463 --> 00:10:29.875
+falling back to NTLM where it's
+still allowed, otherwise failing.
+
+151
+00:10:29.875 --> 00:10:34.650
+The global catalog records: universal
+groups and forest-wide searches.
+
+152
+00:10:34.650 --> 00:10:37.024
+The site records: clients reach a distant
+
+153
+00:10:37.024 --> 00:10:39.887
+domain controller rather
+than failing outright.
+
+154
+00:10:39.887 --> 00:10:43.312
+The PDC record, and kpasswd
+for password changes.
+
+155
+00:10:43.312 --> 00:10:45.951
+Two sources make the inventory complete:
+
+156
+00:10:45.951 --> 00:10:49.598
+the Netlogon dot DNS file each
+domain controller writes,
+
+157
+00:10:49.598 --> 00:10:51.926
+listing what it intends to register,
+
+158
+00:10:51.926 --> 00:10:56.505
+which Microsoft points to for agencies
+running AD on non-Microsoft DNS,
+
+159
+00:10:56.505 --> 00:11:01.238
+and the underscore msdcs and underscore
+sites folders of the domain zone.
+
+160
+00:11:01.238 --> 00:11:06.497
+The program's assessment resolves each
+critical record from every DNS server and
+
+161
+00:11:06.497 --> 00:11:09.281
+every site, and Chapter
+10 makes thirty days
+
+162
+00:11:09.281 --> 00:11:12.375
+of clean resolution a
+gate for decommissioning.
+
+163
+00:11:12.375 --> 00:11:16.818
+Because they're registered dynamically,
+these records can only live on
+
+164
+00:11:16.818 --> 00:11:21.412
+a DNS service that accepts secure
+registration from domain controllers.
+
+165
+00:11:21.412 --> 00:11:26.948
+That's why they stay on AD DNS, or a DDI
+platform that accepts GSS-TSIG updates,
+
+166
+00:11:26.948 --> 00:11:33.110
+until the last domain controller goes,
+and why Azure Private DNS can't host them.
+
+167
+00:11:33.860 --> 00:11:39.998
+Clients keep their own records current
+through dynamic update, RFC 2136.
+
+168
+00:11:39.998 --> 00:11:43.369
+Secure dynamic update
+authenticates the client and
+
+169
+00:11:43.369 --> 00:11:46.586
+records each name's owner
+in an access control list.
+
+170
+00:11:46.586 --> 00:11:51.372
+It exists only for AD-integrated
+zones, which default to secure-only.
+
+171
+00:11:51.372 --> 00:11:55.473
+Any authenticated user can
+create a new A or PTR record;
+
+172
+00:11:55.473 --> 00:11:59.847
+once a name exists, only principals
+on its ACL can change it.
+
+173
+00:11:59.847 --> 00:12:03.323
+Windows signs these updates with GSS-TSIG.
+
+174
+00:12:03.323 --> 00:12:05.217
+The DHCP server is part of this,
+
+175
+00:12:05.217 --> 00:12:09.234
+and five settings decide whether
+the records stay trustworthy.
+
+176
+00:12:09.234 --> 00:12:14.385
+Name ownership: a DHCP server that performs
+a secure update becomes the name's
+
+177
+00:12:14.385 --> 00:12:19.053
+owner, so if its failover partner takes
+over, the partner can't update it;
+
+178
+00:12:19.053 --> 00:12:22.272
+both partners must use
+the same DNS credentials.
+
+179
+00:12:22.272 --> 00:12:27.403
+DnsUpdateProxy solves ownership by
+leaving its members' records unsecured;
+
+180
+00:12:27.403 --> 00:12:30.610
+Microsoft warns against
+it in secure-only zones.
+
+181
+00:12:30.610 --> 00:12:34.065
+A dedicated credential is
+the recommended pattern:
+
+182
+00:12:34.065 --> 00:12:37.360
+one standard user account
+every DHCP server uses.
+
+183
+00:12:37.360 --> 00:12:42.411
+It matters most when DHCP runs on a domain
+controller, which would otherwise lend
+
+184
+00:12:42.411 --> 00:12:47.160
+its authority over every record, and it
+isn't backed up with the DHCP database.
+
+185
+00:12:47.160 --> 00:12:49.716
+Name protection creates DHCID records,
+
+186
+00:12:49.716 --> 00:12:54.673
+so an update fails rather than overwrites
+when another client holds the name.
+
+187
+00:12:54.673 --> 00:12:58.973
+And scavenging: without it DNS becomes
+a map of where devices used to be,
+
+188
+00:12:58.973 --> 00:13:03.942
+and Microsoft documents that when scavenging
+and lease durations disagree, you
+
+189
+00:13:03.942 --> 00:13:09.059
+get duplicate records and Kerberos tickets
+for one computer delivered to another.
+
+190
+00:13:09.059 --> 00:13:12.425
+These settings are rarely
+documented outside the servers,
+
+191
+00:13:12.425 --> 00:13:14.210
+so they belong in the inventory.
+
+192
+00:13:14.210 --> 00:13:18.100
+Chapter 04 gives read-only
+cmdlets for each.
+
+193
+00:13:18.850 --> 00:13:24.675
+Microsoft's guidance is a phased
+source-of-authority conversion toward cloud-first
+
+194
+00:13:24.675 --> 00:13:28.503
+and A D-minimized states, not
+an all-at-once decommission,
+
+195
+00:13:28.503 --> 00:13:34.162
+and AD DS itself isn't deprecated: Windows
+Server 2025 ships new functional levels.
+
+196
+00:13:34.162 --> 00:13:37.413
+What changes is where the
+DNS records come from.
+
+197
+00:13:37.413 --> 00:13:41.626
+Entra ID publishes no zones
+and no locator records.
+
+198
+00:13:41.626 --> 00:13:46.088
+Entra-joined devices use tokens and
+don't look for a domain controller;
+
+199
+00:13:46.088 --> 00:13:48.088
+hybrid-joined devices still do.
+
+200
+00:13:48.088 --> 00:13:53.304
+Kerberos survives in pockets, such as
+Application Proxy with constrained
+
+201
+00:13:53.304 --> 00:13:57.763
+delegation and cloud Kerberos
+trust, each with a DNS dependency.
+
+202
+00:13:57.763 --> 00:14:01.299
+And Entra Domain Services
+brings its own DNS,
+
+203
+00:14:01.299 --> 00:14:05.506
+needs conditional forwarders
+for on-premises zones,
+
+204
+00:14:05.506 --> 00:14:11.243
+and Microsoft says any server-level
+forwarder other than 168.63.129.16 is
+
+205
+00:14:11.243 --> 00:14:16.023
+unsupported: a DNS authority
+whose upstream you can't change,
+
+206
+00:14:16.023 --> 00:14:18.700
+which matters for Protective DNS.
+
+207
+00:14:18.700 --> 00:14:22.625
+Kerberos needs more from
+DNS than tickets reveal.
+
+208
+00:14:22.625 --> 00:14:27.482
+The source whitepaper described the
+service resolving the SPN back to an IP;
+
+209
+00:14:27.482 --> 00:14:30.875
+Kerberos does no such check,
+and the book corrected it.
+
+210
+00:14:30.875 --> 00:14:35.748
+The real failure is simpler and worse:
+resolve the name to the wrong host and
+
+211
+00:14:35.748 --> 00:14:40.463
+a valid ticket for computer A is
+presented to computer B, which rejects it.
+
+212
+00:14:40.463 --> 00:14:44.225
+A missing SPN silently drops to NTLM.
+
+213
+00:14:44.225 --> 00:14:48.144
+Either way it looks like
+identity, and the cause is DNS.
+
+214
+00:14:48.144 --> 00:14:52.598
+Decoupling DNS from identity
+also removes a shared failure:
+
+215
+00:14:52.598 --> 00:14:56.963
+an identity outage no longer
+takes name resolution with it.
+
+216
+00:14:56.963 --> 00:14:59.318
+Before any domain controller goes:
+
+217
+00:14:59.318 --> 00:15:04.029
+keep locator records resolvable
+until every consumer is token-based;
+
+218
+00:15:04.029 --> 00:15:08.821
+test conditional forwarders over DNS,
+not ICMP, and retire the dead ones;
+
+219
+00:15:08.821 --> 00:15:14.426
+create the internal namespace explicitly;
+re-establish dynamic registration per
+
+220
+00:15:14.426 --> 00:15:17.187
+client population; and move GlobalNames,
+
+221
+00:15:17.187 --> 00:15:20.274
+reverse and signed zones
+by their own methods.
+
+222
+00:15:20.274 --> 00:15:24.060
+DDI platforms commonly
+offer a coexistence mode;
+
+223
+00:15:24.060 --> 00:15:26.738
+Infoblox NIOS is the book's example.
+
+224
+00:15:26.738 --> 00:15:29.850
+Confirm the capability
+for whatever you deploy.
+
+225
+00:15:30.600 --> 00:15:35.738
+Module 2: edge interception,
+DNS identity and DNSSEC.
+
+226
+00:15:35.738 --> 00:15:40.797
+Every control in the policy plane,
+response policy zones, DNSSEC validation,
+
+227
+00:15:40.797 --> 00:15:45.375
+logging and Protective DNS forwarding,
+assumes the query reaches it.
+
+228
+00:15:45.375 --> 00:15:50.049
+Chapter 05 takes the three ordinary
+mechanisms that decide whether it does,
+
+229
+00:15:50.049 --> 00:15:53.313
+at the network edge, the
+endpoint and the access layer,
+
+230
+00:15:53.313 --> 00:15:55.687
+and none of them reports when it doesn't.
+
+231
+00:15:55.687 --> 00:15:59.200
+Chapter 06 then shows why
+a certificate can be valid,
+
+232
+00:15:59.200 --> 00:16:02.877
+unrevoked and issued for the
+right name and still fail:
+
+233
+00:16:02.877 --> 00:16:07.125
+every check that makes it
+trustworthy starts with a DNS lookup.
+
+234
+00:16:07.125 --> 00:16:09.150
+It closes with DNSSEC.
+
+235
+00:16:09.900 --> 00:16:12.841
+SD-WAN edges can intercept DNS regardless
+
+236
+00:16:12.841 --> 00:16:15.950
+of the resolver a client
+was configured with.
+
+237
+00:16:15.950 --> 00:16:19.373
+In Cisco Catalyst SD-WAN,
+the book's worked example,
+
+238
+00:16:19.373 --> 00:16:23.547
+this is the redirect-dns action
+of a centralized data policy:
+
+239
+00:16:23.547 --> 00:16:28.639
+the edge matches DNS traffic and sends
+it to a policy-designated resolver,
+
+240
+00:16:28.639 --> 00:16:32.563
+either unconditionally, or
+only for named applications.
+
+241
+00:16:32.563 --> 00:16:36.325
+The destination decides whether
+agency policy applies at all.
+
+242
+00:16:36.325 --> 00:16:41.302
+On the correct path the query goes through
+the edge to a network-addressable agency
+
+243
+00:16:41.302 --> 00:16:44.764
+resolver, into the policy plane
+for response policy zones,
+
+244
+00:16:44.764 --> 00:16:49.525
+validation and logging, and internet
+recursion leaves through Protective DNS.
+
+245
+00:16:49.525 --> 00:16:55.078
+On the bypassed path the edge hands it
+to an external resolver: no log entry,
+
+246
+00:16:55.078 --> 00:17:00.175
+no RPZ, no validation under agency
+trust anchors, and nothing alerts.
+
+247
+00:17:00.175 --> 00:17:02.287
+The feature has documented limits.
+
+248
+00:17:02.287 --> 00:17:07.813
+Service-side redirect
+arrived in IOS XE 17.8.1a.
+
+249
+00:17:07.813 --> 00:17:12.054
+It's IPv4 and UDP only, so
+TCP DNS isn't redirected,
+
+250
+00:17:12.054 --> 00:17:18.362
+and it skips overlay-tunnel DNS,
+fragments and the router's own queries.
+
+251
+00:17:18.362 --> 00:17:23.175
+Cisco's Umbrella integration is a
+separate mechanism whose local bypass
+
+252
+00:17:23.175 --> 00:17:27.988
+list is effectively a second copy of
+the internal namespace on every edge.
+
+253
+00:17:27.988 --> 00:17:29.300
+Two refinements.
+
+254
+00:17:29.300 --> 00:17:33.670
+The target must be a server the edge
+can address; a loopback agent such as
+
+255
+00:17:33.670 --> 00:17:38.263
+Infoblox Endpoint protects the roaming
+device but isn't a redirect target.
+
+256
+00:17:38.263 --> 00:17:43.601
+And a SASE resolver, even Cisco's Umbrella
+for Government in an offering listed
+
+257
+00:17:43.601 --> 00:17:48.454
+FedRAMP Certified at High, which
+describes Protective DNS integration,
+
+258
+00:17:48.454 --> 00:17:50.962
+still bypasses the agency's own plane.
+
+259
+00:17:50.962 --> 00:17:54.629
+So the redirect target is
+always the agency resolver,
+
+260
+00:17:54.629 --> 00:17:56.962
+with any SASE resolver behind it.
+
+261
+00:17:56.962 --> 00:18:02.166
+Microsoft 365 informed network
+routing supports Worldwide
+
+262
+00:18:02.166 --> 00:18:06.962
+commercial tenants only, not
+GCC Moderate, GCC High or DoD.
+
+263
+00:18:06.962 --> 00:18:11.160
+It's a traffic optimization,
+not a DNS dependency.
+
+264
+00:18:11.910 --> 00:18:17.385
+Client-side encrypted DNS to a public
+resolver is the most common bypass.
+
+265
+00:18:17.385 --> 00:18:24.040
+M-22-09 wants encrypted DNS wherever
+supported and endpoints set explicitly to
+
+266
+00:18:24.040 --> 00:18:28.879
+agency resolvers; CISA's target
+state has Protective DNS upstream
+
+267
+00:18:28.879 --> 00:18:33.460
+and endpoints unable to reach
+third-party DNS over any protocol.
+
+268
+00:18:33.460 --> 00:18:39.572
+So encrypted DNS must terminate at an
+agency resolver or Protective DNS.
+
+269
+00:18:39.572 --> 00:18:41.922
+Each transport leaves a different handle.
+
+270
+00:18:41.922 --> 00:18:47.522
+Plain DNS on 53 can be intercepted,
+redirected and blocked by port.
+
+271
+00:18:47.522 --> 00:18:53.930
+DNS over TLS and DNS over QUIC, on port
+853, can't be redirected without breaking
+
+272
+00:18:53.930 --> 00:19:00.236
+the session, but are straightforward
+to block except to approved resolvers.
+
+273
+00:19:00.236 --> 00:19:06.439
+DNS over HTTPS shares 443 with all web
+traffic, so redirect-dns can't see it;
+
+274
+00:19:06.439 --> 00:19:12.125
+NIST suggests RPZ entries for known
+DoH names plus firewall rules,
+
+275
+00:19:12.125 --> 00:19:14.710
+and CISA adds TLS inspection.
+
+276
+00:19:14.710 --> 00:19:18.410
+An edge-only design can't
+govern encrypted DNS.
+
+277
+00:19:18.410 --> 00:19:23.141
+On Windows, the client uses DoH only
+with servers on its known list,
+
+278
+00:19:23.141 --> 00:19:27.873
+which ships with Cloudflare, Google
+and Quad9; add the agency's own.
+
+279
+00:19:27.873 --> 00:19:33.444
+Since June 2026 the Windows Server
+2025 DNS Server accepts client DoH,
+
+280
+00:19:33.444 --> 00:19:36.998
+but its upstream traffic
+stays unencrypted.
+
+281
+00:19:36.998 --> 00:19:42.245
+CISA says IPsec isn't an acceptable
+substitute, suggests an encrypting proxy,
+
+282
+00:19:42.245 --> 00:19:46.120
+requires root hints disabled,
+and allows public fallback
+
+283
+00:19:46.120 --> 00:19:50.560
+resolvers only when Protective
+DNS is unavailable, with alerting.
+
+284
+00:19:50.560 --> 00:19:54.538
+Zero Trust DNS, on Windows
+11 Enterprise and Education,
+
+285
+00:19:54.538 --> 00:20:00.548
+permits outbound traffic only to addresses
+its Protective DNS servers resolved.
+
+286
+00:20:00.548 --> 00:20:02.973
+Browsers resolve names themselves.
+
+287
+00:20:02.973 --> 00:20:08.739
+The program adopts CISA's configuration:
+the OS resolver, or DoH only to agency
+
+288
+00:20:08.739 --> 00:20:14.772
+resolvers, as mandatory policy, and an
+NXDOMAIN answer for Firefox's canary domain.
+
+289
+00:20:14.772 --> 00:20:19.217
+Microsoft documents that on a
+managed device with the policy unset,
+
+290
+00:20:19.217 --> 00:20:21.260
+Edge sends no DoH queries.
+
+291
+00:20:22.010 --> 00:20:24.698
+The third bypass sits on the access layer.
+
+292
+00:20:24.698 --> 00:20:30.161
+A rogue DHCP server that hands out a malicious
+resolver in option 6 can move a whole
+
+293
+00:20:30.161 --> 00:20:33.215
+subnet onto an attacker's
+resolver in one step,
+
+294
+00:20:33.215 --> 00:20:37.635
+past every response policy zone
+and every Protective DNS control.
+
+295
+00:20:37.635 --> 00:20:42.254
+MITRE ATT&CK catalogs it as
+DHCP Spoofing, T1557.003;
+
+296
+00:20:42.254 --> 00:20:49.623
+the whitepaper's claim of federal incidents
+couldn't be verified and was removed.
+
+297
+00:20:49.623 --> 00:20:54.663
+In IPv6, rogue router advertisements
+carrying the RDNSS option do the same,
+
+298
+00:20:54.663 --> 00:20:57.102
+and they're often the larger surface,
+
+299
+00:20:57.102 --> 00:21:01.410
+because many networks govern
+router advertisements not at all.
+
+300
+00:21:01.410 --> 00:21:06.839
+M-22-09's instruction to configure
+agency resolvers explicitly
+
+301
+00:21:06.839 --> 00:21:10.910
+is the federal answer to
+discovery channels like RFC 9463.
+
+302
+00:21:10.910 --> 00:21:14.335
+Option 6 isn't the only
+option that moves traffic.
+
+303
+00:21:14.335 --> 00:21:19.072
+Option 15, the default domain,
+must match the authoritative zone.
+
+304
+00:21:19.072 --> 00:21:23.772
+Option 119, the search list,
+misdirects queries when stale.
+
+305
+00:21:23.772 --> 00:21:27.509
+Option 81 decides who
+registers the client's records.
+
+306
+00:21:27.509 --> 00:21:32.098
+Option 82 identifies the switch
+port for IPAM attribution.
+
+307
+00:21:32.098 --> 00:21:36.436
+And 252 for WPAD is a
+convention, not an assignment;
+
+308
+00:21:36.436 --> 00:21:39.611
+a wrong value bypasses the web proxy.
+
+309
+00:21:39.611 --> 00:21:42.360
+The Windows control is
+narrower than it looks.
+
+310
+00:21:42.360 --> 00:21:45.718
+An unauthorized Windows
+DHCP server checks its
+
+311
+00:21:45.718 --> 00:21:49.160
+own status in Active
+Directory and stops leasing.
+
+312
+00:21:49.160 --> 00:21:52.204
+That stops a misconfigured Windows server,
+
+313
+00:21:52.204 --> 00:21:56.348
+not a rogue appliance, a home
+router in a wall port, or malware.
+
+314
+00:21:56.348 --> 00:22:00.335
+Those need DHCP snooping and RA
+Guard on the access switches,
+
+315
+00:22:00.335 --> 00:22:04.242
+centralized scope and option
+management, rogue detection,
+
+316
+00:22:04.242 --> 00:22:08.548
+and IPAM integration so an
+unexpected lease is visible at once.
+
+317
+00:22:08.548 --> 00:22:12.132
+Prevention is never complete,
+so watch for failure:
+
+318
+00:22:12.132 --> 00:22:17.338
+hosts whose queries never reach the
+governed logs, fallback resolver use,
+
+319
+00:22:17.338 --> 00:22:22.740
+port 853 to unapproved destinations,
+and DoH to known public endpoints.
+
+320
+00:22:23.490 --> 00:22:28.198
+DNS identity, the authoritative
+mapping of names to addresses,
+
+321
+00:22:28.198 --> 00:22:32.453
+owners and lifecycle, is the
+first link in the trust chain.
+
+322
+00:22:32.453 --> 00:22:36.919
+Certificates, FQDN-based policy
+and tokens all name their
+
+323
+00:22:36.919 --> 00:22:41.014
+subject by FQDN and trust
+DNS to take the caller there.
+
+324
+00:22:41.014 --> 00:22:44.601
+Moving from Kerberos to
+Entra ID tokens removes the
+
+325
+00:22:44.601 --> 00:22:48.103
+KDC but adds names that
+must resolve consistently.
+
+326
+00:22:48.103 --> 00:22:54.111
+The token endpoint: GCC uses the global
+login dot microsoftonline dot com;
+
+327
+00:22:54.111 --> 00:22:59.528
+Azure Government, serving GCC High
+and DoD, uses the dot us endpoint.
+
+328
+00:22:59.528 --> 00:23:03.752
+The whitepaper grouped GCC with
+dot us; the book corrected it.
+
+329
+00:23:03.752 --> 00:23:08.700
+The token audience in v2.0 tokens
+is the API's client ID, a GUID,
+
+330
+00:23:08.700 --> 00:23:15.264
+so a host rename clients don't pick up
+fails as an audience or redirect-URI error.
+
+331
+00:23:15.264 --> 00:23:18.403
+SANs must contain the name
+the client asked for.
+
+332
+00:23:18.403 --> 00:23:23.685
+Entra certificate-based
+authentication checks one HTTP
+
+333
+00:23:23.685 --> 00:23:27.977
+CRL per CA and no OCSP, so
+the CRL URL must resolve.
+
+334
+00:23:27.977 --> 00:23:32.887
+And ACME dns-01 makes the zone
+the gate for automated issuance,
+
+335
+00:23:32.887 --> 00:23:38.952
+exercised constantly as public TLS
+lifetimes fall toward forty-seven days.
+
+336
+00:23:38.952 --> 00:23:45.753
+Certificate split-brain: a service's
+OCSP and CRL names exist only in AD DNS,
+
+337
+00:23:45.753 --> 00:23:49.878
+and an EC2 caller has no
+Route 53 rule for them.
+
+338
+00:23:49.878 --> 00:23:54.353
+A hard-fail client breaks the handshake;
+a soft-fail client skips the check.
+
+339
+00:23:54.353 --> 00:23:58.815
+The agency resolver logs nothing,
+and the ticket goes to PKI.
+
+340
+00:23:58.815 --> 00:24:00.228
+That's Decision 5.
+
+341
+00:24:00.228 --> 00:24:06.163
+Geographic scoping: RFC 9525 allows a
+certificate wildcard only as the whole
+
+342
+00:24:06.163 --> 00:24:08.853
+leftmost label, matching one label,
+
+343
+00:24:08.853 --> 00:24:13.027
+so application dot star dot
+agency dot gov doesn't work.
+
+344
+00:24:13.027 --> 00:24:17.681
+Use per-region names, per-region
+SANs, and name constraints,
+
+345
+00:24:17.681 --> 00:24:22.431
+the only cryptographic layer;
+RFC 5280 says clients should,
+
+346
+00:24:22.431 --> 00:24:26.860
+not must, process them, so
+test your relying parties.
+
+347
+00:24:27.610 --> 00:24:30.279
+DNSSEC adds data-origin authentication,
+
+348
+00:24:30.279 --> 00:24:34.360
+integrity protection and
+authenticated denial of existence.
+
+349
+00:24:34.360 --> 00:24:39.082
+It doesn't encrypt anything; it lets a
+resolver verify the answer is authentic,
+
+350
+00:24:39.082 --> 00:24:43.435
+and a validating resolver that finds
+a bad signature answers SERVFAIL.
+
+351
+00:24:43.435 --> 00:24:49.068
+NIST is explicit that DNSSEC and encrypted
+DNS are complements: DNSSEC doesn't
+
+352
+00:24:49.068 --> 00:24:51.495
+protect confidentiality, and DoH,
+
+353
+00:24:51.495 --> 00:24:55.222
+DoT and DoQ protect the
+transaction but not the data.
+
+354
+00:24:55.222 --> 00:24:56.586
+The federal position.
+
+355
+00:24:56.586 --> 00:25:04.635
+M-08-23 required DNSSEC by December
+2009, with agency dot gov domains signed.
+
+356
+00:25:04.635 --> 00:25:10.084
+SC-20 asks authoritative services
+for origin and integrity artifacts,
+
+357
+00:25:10.084 --> 00:25:15.810
+and SC-21 asks the recursive resolver
+to request and perform verification.
+
+358
+00:25:15.810 --> 00:25:18.998
+SP 800-81 Revision 3 recommends the root
+
+359
+00:25:18.998 --> 00:25:22.573
+key as trust anchor with
+automated rollover.
+
+360
+00:25:22.573 --> 00:25:25.949
+On internal zones it's more
+cautious than the whitepaper:
+
+361
+00:25:25.949 --> 00:25:30.833
+signing them is likely of limited value
+and recommended against unless required,
+
+362
+00:25:30.833 --> 00:25:35.287
+because they may not chain to the root,
+dynamic zones re-sign on every update,
+
+363
+00:25:35.287 --> 00:25:38.303
+and signing is pointless
+where authoritative and
+
+364
+00:25:38.303 --> 00:25:41.823
+recursive service share servers,
+as on domain controllers.
+
+365
+00:25:41.823 --> 00:25:45.385
+Where required, use a delegation
+that chains to the root.
+
+366
+00:25:45.385 --> 00:25:50.488
+So the program signs external zones
+always, validates on every agency resolver,
+
+367
+00:25:50.488 --> 00:25:55.360
+and signs internal zones only where
+the system's authorization requires it.
+
+368
+00:25:55.360 --> 00:25:56.985
+The platforms aren't equal.
+
+369
+00:25:56.985 --> 00:26:01.985
+Windows Server uses a Key
+Master, can replicate keys in AD,
+
+370
+00:26:01.985 --> 00:26:08.794
+and supports RFC 5011 rollover; its
+wizard's default 1,024-bit RSA zone-signing
+
+371
+00:26:08.794 --> 00:26:15.497
+key is below NIST's floor, so the program
+uses ECDSA or RSA of at least 2,048 bits.
+
+372
+00:26:15.497 --> 00:26:20.612
+Azure DNS and Route 53 sign public
+zones only; Azure's default
+
+373
+00:26:20.612 --> 00:26:26.135
+resolver doesn't validate, and Route
+53's ignores the DO and CD bits.
+
+374
+00:26:26.135 --> 00:26:29.540
+Neither gives the agency
+validation it controls.
+
+375
+00:26:30.290 --> 00:26:34.702
+Operating DNSSEC is mostly key
+management, automated and audited.
+
+376
+00:26:34.702 --> 00:26:40.050
+NIST recommends a hardware security module
+for important keys, usually the KSK,
+
+377
+00:26:40.050 --> 00:26:43.210
+signature validity of
+about five to seven days,
+
+378
+00:26:43.210 --> 00:26:45.803
+and key lifetimes of one to three years.
+
+379
+00:26:45.803 --> 00:26:54.107
+Its acceptable algorithms include RSA with
+SHA-256 at 2,048 bits or more and ECDSA
+
+380
+00:26:54.107 --> 00:27:02.040
+P-256 and P-384, and it prefers ECDSA,
+because smaller keys keep responses small.
+
+381
+00:27:02.040 --> 00:27:07.444
+On denial of existence, Windows
+labels NSEC3 recommended,
+
+382
+00:27:07.444 --> 00:27:14.762
+while NIST notes NSEC3 relies on SHA-1
+and calls NSEC the more prudent approach;
+
+383
+00:27:14.762 --> 00:27:20.278
+compact denial of existence, RFC
+9824, is what Azure DNS uses.
+
+384
+00:27:20.278 --> 00:27:25.603
+Signing grows responses, so EDNS zero
+and fragmentation handling matter.
+
+385
+00:27:25.603 --> 00:27:28.199
+And a zone signed in
+one view but not another
+
+386
+00:27:28.199 --> 00:27:30.940
+fails as an application
+or certificate error.
+
+387
+00:27:30.940 --> 00:27:34.958
+Moving a signed zone has its own
+sequence, run during Chapter 10's
+
+388
+00:27:34.958 --> 00:27:38.977
+Phase 3 so the new chain validates
+before the decommission gate.
+
+389
+00:27:38.977 --> 00:27:43.477
+First, finish any rollover in progress
+and start none during the move.
+
+390
+00:27:43.477 --> 00:27:47.111
+Second, keep the old signing
+until the new chain validates:
+
+391
+00:27:47.111 --> 00:27:50.593
+sign on the new platform,
+publish the new DS at the parent,
+
+392
+00:27:50.593 --> 00:27:55.590
+confirm from an independent validator,
+and only then stop signing at the source.
+
+393
+00:27:55.590 --> 00:28:00.577
+Third, watch the validators, because
+clients see only generic failures.
+
+394
+00:28:00.577 --> 00:28:05.149
+Fourth, an AD-signed internal zone
+landing on Azure Private DNS,
+
+395
+00:28:05.149 --> 00:28:08.490
+which can't sign, is a
+documented risk decision.
+
+396
+00:28:08.490 --> 00:28:12.209
+The book corrects two compensations
+the source guide listed:
+
+397
+00:28:12.209 --> 00:28:15.709
+Azure virtual network traffic
+isn't encrypted by default,
+
+398
+00:28:15.709 --> 00:28:19.428
+and Private Link doesn't make
+in-network answers tamper-proof.
+
+399
+00:28:19.428 --> 00:28:24.276
+Removing DNSSEC is the reverse:
+Microsoft documents that the DS record
+
+400
+00:28:24.276 --> 00:28:28.878
+comes off the parent and its TTL
+expires before the zone is unsigned.
+
+401
+00:28:28.878 --> 00:28:34.090
+Fifth, remove retired trust anchors
+after the ninety-day validation period.
+
+402
+00:28:34.840 --> 00:28:38.003
+Part 2: building and
+running the control plane.
+
+403
+00:28:38.003 --> 00:28:40.214
+Module 3 covers the design.
+
+404
+00:28:40.214 --> 00:28:45.675
+Chapter 07's premise: every cloud ships
+its own private DNS and its own address
+
+405
+00:28:45.675 --> 00:28:48.661
+manager, and unless
+one plane governs both,
+
+406
+00:28:48.661 --> 00:28:52.415
+names and addresses drift
+apart one console at a time.
+
+407
+00:28:52.415 --> 00:28:57.672
+We'll take the four private DNS models,
+Azure private endpoints and the Private
+
+408
+00:28:57.672 --> 00:29:03.415
+Resolver in detail, then IPAM as the authority
+for address blocks across the clouds.
+
+409
+00:29:03.415 --> 00:29:08.595
+Chapter 08 then draws the reference
+architecture and the five decisions that carry
+
+410
+00:29:08.595 --> 00:29:12.813
+almost all of its operational risk,
+each with a check to run in the live
+
+411
+00:29:12.813 --> 00:29:17.690
+configuration, and Appendix C sets
+out what changes in government clouds.
+
+412
+00:29:18.440 --> 00:29:23.475
+Each cloud ships its own private DNS,
+with its own console, API, zone model
+
+413
+00:29:23.475 --> 00:29:28.765
+and failure behavior, and none was
+designed to share policy with the others.
+
+414
+00:29:28.765 --> 00:29:34.341
+AWS has Route 53 private hosted zones
+answered by the VPC Resolver, inbound
+
+415
+00:29:34.341 --> 00:29:37.038
+endpoints for queries from outside,
+
+416
+00:29:37.038 --> 00:29:41.265
+outbound endpoints and Resolver
+rules, and DNS Firewall.
+
+417
+00:29:41.265 --> 00:29:45.674
+Azure has Private DNS zones
+resolvable only from linked networks,
+
+418
+00:29:45.674 --> 00:29:50.965
+the Private Resolver's endpoints and
+forwarding rulesets, and resolver policy.
+
+419
+00:29:50.965 --> 00:29:55.826
+Google Cloud has private zones per
+VPC network, inbound server policies,
+
+420
+00:29:55.826 --> 00:29:59.390
+forwarding and peering zones,
+and response policies.
+
+421
+00:29:59.390 --> 00:30:02.015
+VMware NSX has no private zone at all:
+
+422
+00:30:02.015 --> 00:30:06.740
+a gateway forwarder holds a default
+zone and up to five FQDN zones
+
+423
+00:30:06.740 --> 00:30:11.290
+of three servers each, used only
+by workloads configured for it.
+
+424
+00:30:11.290 --> 00:30:15.840
+Azure private endpoints are the most
+common source of private-IP split-brain.
+
+425
+00:30:15.840 --> 00:30:20.284
+With private DNS integration, a zone
+group writes the endpoint's A record
+
+426
+00:30:20.284 --> 00:30:24.803
+into the matching privatelink zone
+and removes it when the endpoint goes.
+
+427
+00:30:24.803 --> 00:30:28.381
+Public DNS carries a CNAME
+into the privatelink name,
+
+428
+00:30:28.381 --> 00:30:30.740
+so connection strings don't change.
+
+429
+00:30:30.740 --> 00:30:34.915
+The private answer comes back only from
+a resolver that can see a linked zone.
+
+430
+00:30:34.915 --> 00:30:36.865
+Three behaviors catch teams out.
+
+431
+00:30:36.865 --> 00:30:42.209
+DNS answers don't grant access: the public
+chain resolves from anywhere by design,
+
+432
+00:30:42.209 --> 00:30:45.080
+and access is the
+service's network setting,
+
+433
+00:30:45.080 --> 00:30:49.865
+so a wrong answer shows up as a
+public-path connection or an access denial.
+
+434
+00:30:49.865 --> 00:30:54.649
+Use one zone per service type everywhere,
+with Microsoft's recommended names,
+
+435
+00:30:54.649 --> 00:30:57.340
+since records are
+generated only for those.
+
+436
+00:30:57.340 --> 00:31:02.169
+And the NXDOMAIN trap: a partner's storage
+account with its own private endpoint
+
+437
+00:31:02.169 --> 00:31:04.364
+leads into your empty zone and fails;
+
+438
+00:31:04.364 --> 00:31:07.650
+the fix is fallback to
+internet on the zone's link.
+
+439
+00:31:08.400 --> 00:31:11.127
+Two rules turn Azure
+private endpoints from a
+
+440
+00:31:11.127 --> 00:31:13.925
+source of split-brain
+into something governed.
+
+441
+00:31:13.925 --> 00:31:16.012
+First, forward the public zone.
+
+442
+00:31:16.012 --> 00:31:20.573
+Forwarders on non-Azure resolvers
+point at each service's public zone,
+
+443
+00:31:20.573 --> 00:31:24.899
+for example database dot windows
+dot net, not the privatelink zone.
+
+444
+00:31:24.899 --> 00:31:28.476
+Every origin, on-premises
+resolvers, Route 53 rules,
+
+445
+00:31:28.476 --> 00:31:33.244
+Cloud DNS forwarding zones and branch
+paths, sends it to the Private
+
+446
+00:31:33.244 --> 00:31:38.437
+Resolver's inbound endpoint, or to an
+agency resolver that forwards there.
+
+447
+00:31:38.437 --> 00:31:40.878
+Azure Government uses different names,
+
+448
+00:31:40.878 --> 00:31:43.837
+so a design spanning both
+clouds needs both sets.
+
+449
+00:31:43.837 --> 00:31:48.427
+Forwarding a whole public zone also
+carries other organizations' lookups,
+
+450
+00:31:48.427 --> 00:31:51.537
+which is why fallback to
+internet goes on the links.
+
+451
+00:31:51.537 --> 00:31:56.286
+Autoregistration is separate:
+VMs only, primary NIC only,
+
+452
+00:31:56.286 --> 00:32:00.226
+no PTR records, and no
+role in privatelink zones.
+
+453
+00:32:00.226 --> 00:32:05.163
+Second, build the resolver in the hub as
+a forwarding bridge, not an authority.
+
+454
+00:32:05.163 --> 00:32:09.174
+Because it isn't authoritative,
+on-premises DNS reaches
+
+455
+00:32:09.174 --> 00:32:13.012
+it by conditional forwarding,
+never by NS delegation.
+
+456
+00:32:13.012 --> 00:32:14.362
+The rules that matter.
+
+457
+00:32:14.362 --> 00:32:17.283
+Each endpoint gets its
+own delegated subnet,
+
+458
+00:32:17.283 --> 00:32:19.888
+slash twenty-eight to slash twenty-four.
+
+459
+00:32:19.888 --> 00:32:23.809
+A resolver supports five inbound
+and five outbound endpoints;
+
+460
+00:32:23.809 --> 00:32:27.731
+a ruleset holds a thousand rules
+across five hundred networks;
+
+461
+00:32:27.731 --> 00:32:31.049
+each endpoint handles ten
+thousand queries a second.
+
+462
+00:32:31.049 --> 00:32:36.112
+No encrypted networks, IPv6
+subnets, FastPath or Lighthouse.
+
+463
+00:32:36.112 --> 00:32:39.975
+Static inbound addresses, so
+forwarders are written once.
+
+464
+00:32:39.975 --> 00:32:43.122
+Never link a ruleset to
+the network whose inbound
+
+465
+00:32:43.122 --> 00:32:45.962
+endpoint one of its rules
+targets; that loops.
+
+466
+00:32:45.962 --> 00:32:50.523
+Don't list a custom resolver
+beside 168.63.129.16,
+
+467
+00:32:50.523 --> 00:32:55.200
+because some clients pick
+among listed servers.
+
+468
+00:32:55.200 --> 00:32:57.490
+And a resolver in each region.
+
+469
+00:32:58.240 --> 00:33:01.528
+The address side has the same
+structure as the name side.
+
+470
+00:33:01.528 --> 00:33:03.950
+AWS VPCs, Azure virtual networks,
+
+471
+00:33:03.950 --> 00:33:09.155
+Google Cloud VPC networks and NSX
+segments each allocate on their own,
+
+472
+00:33:09.155 --> 00:33:13.553
+so a CIDR created in a console
+can overlap on-premises space,
+
+473
+00:33:13.553 --> 00:33:17.860
+another cloud or another
+division, and the enterprise DDI
+
+474
+00:33:17.860 --> 00:33:22.527
+system doesn't know until discovery
+runs or a conflict appears.
+
+475
+00:33:22.527 --> 00:33:24.452
+Integration depth differs.
+
+476
+00:33:24.452 --> 00:33:29.658
+Amazon VPC IPAM can hand a private
+scope's authority to an external IPAM;
+
+477
+00:33:29.658 --> 00:33:33.128
+since November 2025 the
+book's example is Infoblox,
+
+478
+00:33:33.128 --> 00:33:37.177
+which chooses a block or accepts
+or rejects a requested one.
+
+479
+00:33:37.177 --> 00:33:41.199
+It needs the Advanced Tier, covers
+private scopes only, and isn't
+
+480
+00:33:41.199 --> 00:33:45.839
+available in GovCloud or China, so it
+doesn't help a GovCloud estate today.
+
+481
+00:33:45.839 --> 00:33:51.524
+Azure Virtual Network Manager offers
+hierarchical pools, a root and up to
+
+482
+00:33:51.524 --> 00:33:56.928
+seven layers, IPv4 and IPv6, with
+static CIDRs for ranges outside Azure.
+
+483
+00:33:56.928 --> 00:34:00.152
+Google Cloud's internal
+ranges can reserve blocks.
+
+484
+00:34:00.152 --> 00:34:03.188
+Neither hands authority
+to an external IPAM,
+
+485
+00:34:03.188 --> 00:34:07.314
+so mirror the enterprise reservations
+into them and reconcile.
+
+486
+00:34:07.314 --> 00:34:13.766
+VMware Cloud Foundation 9.1 added native
+Infoblox allocation and FQDN registration;
+
+487
+00:34:13.766 --> 00:34:19.490
+the source is a vendor blog without IPv6
+or limits, so confirm the scope first.
+
+488
+00:34:19.490 --> 00:34:24.942
+The rule: reserve blocks in the enterprise
+IPAM before any cloud or NSX network is
+
+489
+00:34:24.942 --> 00:34:27.076
+created, integrate where you can,
+
+490
+00:34:27.076 --> 00:34:31.027
+mirror and reconcile where you
+can't, and monitor sync health.
+
+491
+00:34:31.027 --> 00:34:35.780
+Federation plus active and passive
+discovery produce one hierarchy,
+
+492
+00:34:35.780 --> 00:34:41.516
+which catches overlap before two networks
+are peered and reports the CM-8 inventory.
+
+493
+00:34:41.516 --> 00:34:47.403
+The program also wants IPAM to track
+FQDNs, wildcards and bound certificates.
+
+494
+00:34:47.403 --> 00:34:52.866
+IPv6: M-21-07's milestones have passed.
+
+495
+00:34:52.866 --> 00:34:59.620
+Plan both protocols together; the Private
+Resolver can't use IPv6-enabled subnets.
+
+496
+00:35:00.370 --> 00:35:03.295
+Chapter 08's architecture
+is simple to draw.
+
+497
+00:35:03.295 --> 00:35:08.253
+A branch query goes through the SD-WAN
+edge to a network-addressable agency
+
+498
+00:35:08.253 --> 00:35:12.571
+resolver, into the policy plane
+for policy, response policy zones,
+
+499
+00:35:12.571 --> 00:35:16.170
+DNSSEC and IPAM, and on to
+the per-cloud private zones.
+
+500
+00:35:16.170 --> 00:35:21.139
+Internet-bound recursion leaves
+through CISA's Protective DNS Resolver,
+
+501
+00:35:21.139 --> 00:35:26.108
+which blocks, redirects or sinkholes
+queries matching threat indicators.
+
+502
+00:35:26.108 --> 00:35:29.854
+On-premises clients reach
+the agency resolver directly;
+
+503
+00:35:29.854 --> 00:35:34.796
+cloud workloads reach the plane through
+Chapter 07's per-cloud forwarding.
+
+504
+00:35:34.796 --> 00:35:40.320
+Five decisions carry almost all of the
+operational risk, and each fails silently:
+
+505
+00:35:40.320 --> 00:35:45.020
+the query still resolves, just outside
+policy or to the wrong address.
+
+506
+00:35:45.020 --> 00:35:48.591
+So each has a check to run
+in the live configuration,
+
+507
+00:35:48.591 --> 00:35:52.757
+not the design document, before
+the next SD-WAN or DDI change.
+
+508
+00:35:52.757 --> 00:35:58.018
+Decision 1, the redirect-dns destination:
+a DDI resolver or forwarding
+
+509
+00:35:58.018 --> 00:36:02.371
+proxy at the branch or a regional
+hub, never a loopback stub.
+
+510
+00:36:02.371 --> 00:36:04.982
+Check every branch's running data policy.
+
+511
+00:36:04.982 --> 00:36:08.745
+Decision 2, forwarding chain
+order: a SASE resolver is a
+
+512
+00:36:08.745 --> 00:36:13.407
+forwarding target of the agency
+resolver, never the redirect target.
+
+513
+00:36:13.407 --> 00:36:16.339
+The common failure is
+every component present
+
+514
+00:36:16.339 --> 00:36:19.270
+with the SASE service
+first, so trace the order.
+
+515
+00:36:19.270 --> 00:36:23.846
+Decision 3, per-cloud conditional
+forwarding: the plane holds every
+
+516
+00:36:23.846 --> 00:36:28.995
+private namespace's rule and pushes it
+to every resolver, branches included.
+
+517
+00:36:28.995 --> 00:36:32.831
+Check: resolve one name per
+namespace from on-premises,
+
+518
+00:36:32.831 --> 00:36:37.945
+each cloud and a branch; a public
+address or NXDOMAIN means a missing rule.
+
+519
+00:36:37.945 --> 00:36:44.004
+Decision 4, the AD DNS inventory, reprovisioned
+before any domain controller goes,
+
+520
+00:36:44.004 --> 00:36:49.707
+because once the last one holding a zone
+is gone, its records can't be recovered.
+
+521
+00:36:49.707 --> 00:36:53.270
+Check for a dated, reconciled
+export before approval.
+
+522
+00:36:53.270 --> 00:36:58.470
+Decision 5, OCSP and CRL
+reachability from every origin.
+
+523
+00:36:58.470 --> 00:37:04.700
+Check: resolve each endpoint in the issuing
+CA certificates, and fetch a response.
+
+524
+00:37:05.450 --> 00:37:07.750
+The policy plane isn't one box.
+
+525
+00:37:07.750 --> 00:37:11.150
+It has three parts, which
+products package differently.
+
+526
+00:37:11.150 --> 00:37:17.147
+An on-premises DNS and DHCP layer hosts
+the internal zones that replace AD DNS,
+
+527
+00:37:17.147 --> 00:37:22.113
+serves recursion, and applies
+response policy zones and DNSSEC.
+
+528
+00:37:22.113 --> 00:37:24.483
+Grid members answer from local copies,
+
+529
+00:37:24.483 --> 00:37:29.374
+so the program's position is that changes
+converge in seconds, not milliseconds,
+
+530
+00:37:29.374 --> 00:37:34.562
+and an emergency block must be verified on
+the members serving the affected clients.
+
+531
+00:37:34.562 --> 00:37:37.736
+A management plane,
+increasingly a cloud service,
+
+532
+00:37:37.736 --> 00:37:41.063
+holds the system of record
+and pushes it everywhere.
+
+533
+00:37:41.063 --> 00:37:44.019
+And local resolvers and
+agents keep resolving
+
+534
+00:37:44.019 --> 00:37:46.975
+from local state if
+management is unreachable.
+
+535
+00:37:46.975 --> 00:37:49.236
+It's overlay, not replacement:
+
+536
+00:37:49.236 --> 00:37:53.475
+Route 53 and Azure Private
+DNS still serve their zones.
+
+537
+00:37:53.475 --> 00:37:59.913
+Infoblox is the book's example: the NIOS
+grid, and Universal DDI as the cloud plane.
+
+538
+00:37:59.913 --> 00:38:05.261
+Its FedRAMP-listed offering is Infoblox
+Government Cloud, certified at Moderate;
+
+539
+00:38:05.261 --> 00:38:08.172
+on-premises NIOS appliances
+aren't a FedRAMP
+
+540
+00:38:08.172 --> 00:38:11.475
+cloud service and sit inside
+the agency's boundary.
+
+541
+00:38:11.475 --> 00:38:15.863
+Chapter 12 evaluates other platforms
+against the same requirements.
+
+542
+00:38:15.863 --> 00:38:21.100
+The architecture is the same everywhere;
+authorization and integrations change.
+
+543
+00:38:21.100 --> 00:38:25.127
+A plane certified at Moderate, plus
+the agency's own authorization,
+
+544
+00:38:25.127 --> 00:38:29.887
+suffices for Moderate systems but doesn't
+cover High: use a service authorized
+
+545
+00:38:29.887 --> 00:38:33.987
+at the required level or keep the
+plane inside the agency's boundary.
+
+546
+00:38:33.987 --> 00:38:36.176
+Azure Government's zone names differ.
+
+547
+00:38:36.176 --> 00:38:40.000
+VPC IPAM's external
+authority isn't in GovCloud.
+
+548
+00:38:40.000 --> 00:38:45.676
+The Private Resolver is at FedRAMP
+High in Azure Government and forecast,
+
+549
+00:38:45.676 --> 00:38:48.188
+not yet authorized, at IL4 and IL5.
+
+550
+00:38:48.188 --> 00:38:51.687
+Azure Private DNS can't
+be signed anywhere.
+
+551
+00:38:51.687 --> 00:38:58.280
+And informed network routing isn't
+available in GCC-Moderate, GCC High or DoD.
+
+552
+00:38:59.030 --> 00:39:03.618
+Module 4: the migration sequence
+and operating the control plane.
+
+553
+00:39:03.618 --> 00:39:07.751
+Name resolution has to keep
+working while its authority moves,
+
+554
+00:39:07.751 --> 00:39:11.090
+so Chapter 10 makes the
+migration a series of small,
+
+555
+00:39:11.090 --> 00:39:16.018
+reversible cutovers, each proven from
+every origin before the next starts.
+
+556
+00:39:16.018 --> 00:39:20.727
+Chapter 11 then covers what the
+plane must support once it exists:
+
+557
+00:39:20.727 --> 00:39:25.350
+scoped autonomy for divisions, one
+API and audit trail, the query,
+
+558
+00:39:25.350 --> 00:39:30.931
+lease and change evidence that OMB M-26-14
+and an authorizing official ask for,
+
+559
+00:39:30.931 --> 00:39:34.943
+and a troubleshooting reference
+for the hybrid period.
+
+560
+00:39:34.943 --> 00:39:37.773
+Appendix A's record-type
+catalog and Appendix
+
+561
+00:39:37.773 --> 00:39:40.970
+B's requirements mapping
+sit underneath both.
+
+562
+00:39:41.720 --> 00:39:46.353
+This is the book's canonical
+sequence applied to the move from
+
+563
+00:39:46.353 --> 00:39:51.895
+AD-integrated DNS and DHCP, plus
+independent cloud DNS, to one policy plane.
+
+564
+00:39:51.895 --> 00:39:58.259
+Phase 1, inventory: export every zone,
+SRV record, forwarder and DHCP scope,
+
+565
+00:39:58.259 --> 00:40:01.017
+and document resolution paths,
+
+566
+00:40:01.017 --> 00:40:06.532
+including redirect-dns targets
+and the OCSP and CRL endpoints.
+
+567
+00:40:06.532 --> 00:40:11.420
+Phase 2, coexistence: new resolvers
+and their Microsoft DNS and
+
+568
+00:40:11.420 --> 00:40:16.308
+DHCP synchronization, with
+forwarding so both systems answer.
+
+569
+00:40:16.308 --> 00:40:23.258
+Phase 3, migrate authority: zone by zone,
+clients in waves, redirect-dns retargeted.
+
+570
+00:40:23.258 --> 00:40:29.169
+Phase 4, cloud federation: private endpoint
+resolution validated from every origin.
+
+571
+00:40:29.169 --> 00:40:35.750
+Phase 5, decommission AD DNS and DHCP, only
+after reconciliation and failover tests,
+
+572
+00:40:35.750 --> 00:40:42.520
+preserving the SRV and underscore msdcs
+records remaining domain controllers need.
+
+573
+00:40:42.520 --> 00:40:46.882
+Phase 6, hardening: Protective
+DNS, encrypted DNS,
+
+574
+00:40:46.882 --> 00:40:51.245
+DNSSEC where required,
+monitoring and evidence.
+
+575
+00:40:51.245 --> 00:40:53.930
+Each phase ends with
+a rollback point and a
+
+576
+00:40:53.930 --> 00:40:57.383
+resolution-path consistency
+test, not a calendar date.
+
+577
+00:40:57.383 --> 00:41:02.116
+The operational playbook splits the work
+into eleven steps for an Azure-heavy
+
+578
+00:41:02.116 --> 00:41:06.121
+estate; its durations are planning
+estimates, and the gates decide.
+
+579
+00:41:06.121 --> 00:41:10.438
+Hardening has no step of its own:
+logging starts at the first step,
+
+580
+00:41:10.438 --> 00:41:13.208
+and evidence is filed as each step closes.
+
+581
+00:41:13.208 --> 00:41:15.895
+Every move of authority runs one loop.
+
+582
+00:41:15.895 --> 00:41:18.869
+Lower the TTL, to three
+hundred seconds at least
+
+583
+00:41:18.869 --> 00:41:21.995
+forty-eight hours ahead,
+recording the originals.
+
+584
+00:41:21.995 --> 00:41:28.106
+Export, transform and import with a dry run,
+never migrating SOA or apex NS records,
+
+585
+00:41:28.106 --> 00:41:33.032
+and leaving locator records where
+domain controllers register.
+
+586
+00:41:33.032 --> 00:41:36.720
+Validate from every origin,
+forward and reverse.
+
+587
+00:41:36.720 --> 00:41:39.233
+Switch authority one mechanism at a time.
+
+588
+00:41:39.233 --> 00:41:42.819
+Hold and observe until no
+client queries the old server.
+
+589
+00:41:42.819 --> 00:41:46.008
+Then restore the TTL
+and file the evidence.
+
+590
+00:41:46.008 --> 00:41:48.235
+A failed check reverts the switch,
+
+591
+00:41:48.235 --> 00:41:51.860
+and the old authority,
+still intact, answers again.
+
+592
+00:41:52.610 --> 00:41:56.093
+Phase 1 is read-only, so it
+carries no rollback risk,
+
+593
+00:41:56.093 --> 00:41:58.897
+and its omission can't be repaired later.
+
+594
+00:41:58.897 --> 00:42:03.889
+The assessment collects every zone
+with its type, replication scope,
+
+595
+00:42:03.889 --> 00:42:09.318
+update setting and signing state; every
+record with type, TTL and timestamp;
+
+596
+00:42:09.318 --> 00:42:14.397
+zone health, because stale records
+migrate as faithfully as good ones;
+
+597
+00:42:14.397 --> 00:42:20.002
+the locator records resolved from every
+server and site, the Phase 5 baseline;
+
+598
+00:42:20.002 --> 00:42:25.431
+forwarders tested over DNS; DNSSEC state;
+DHCP scopes, options and failover;
+
+599
+00:42:25.431 --> 00:42:28.933
+resolution paths; and the
+OCSP and CRL endpoints,
+
+600
+00:42:28.933 --> 00:42:32.436
+committed as JSON to the
+assessment repository.
+
+601
+00:42:32.436 --> 00:42:36.451
+Import from the record-level
+export: Microsoft documents
+
+602
+00:42:36.451 --> 00:42:41.472
+Export-DNS-Server-Zone as a troubleshooting
+export, not zone-file format.
+
+603
+00:42:41.472 --> 00:42:44.035
+Each component gets a target and a method.
+
+604
+00:42:44.035 --> 00:42:47.610
+Internal zones become authoritative
+zones on the platform.
+
+605
+00:42:47.610 --> 00:42:51.985
+External zones need an NS change at
+the registrar, so they're high risk.
+
+606
+00:42:51.985 --> 00:42:54.847
+Stubs and forwarders
+become forwarding rules.
+
+607
+00:42:54.847 --> 00:42:58.736
+GlobalNames becomes CNAMEs
+plus a suffix search list.
+
+608
+00:42:58.736 --> 00:43:02.658
+Locator records stay where
+domain controllers can register;
+
+609
+00:43:02.658 --> 00:43:06.581
+there's no Azure-native equivalent,
+because Azure Private DNS
+
+610
+00:43:06.581 --> 00:43:10.735
+ignores client registrations and
+imported SRV records go stale.
+
+611
+00:43:10.735 --> 00:43:14.523
+Dynamic registration
+becomes DHCP-driven updates.
+
+612
+00:43:14.523 --> 00:43:16.623
+Reverse zones align to IPAM.
+
+613
+00:43:16.623 --> 00:43:21.215
+Signed zones move in Phase 3 by their
+own sequence, keeping the old signing
+
+614
+00:43:21.215 --> 00:43:25.884
+until the new chain validates, and that
+has to happen before the Phase 5 gate.
+
+615
+00:43:25.884 --> 00:43:29.097
+Phase 2 adds resolvers
+without moving authority.
+
+616
+00:43:29.097 --> 00:43:32.610
+Synchronize read-only first,
+and forward both ways.
+
+617
+00:43:32.610 --> 00:43:38.222
+Give every namespace exactly one
+authoritative path, or queries loop, and open
+
+618
+00:43:38.222 --> 00:43:43.747
+UDP and TCP 53 from the resolver subnets
+through the network security groups.
+
+619
+00:43:43.747 --> 00:43:49.864
+Two errors cause most failures: an on-premises
+forwarder pointed at 168.63.129.16,
+
+620
+00:43:49.864 --> 00:43:54.868
+reachable only inside a virtual
+network, and Windows forwarding
+
+621
+00:43:54.868 --> 00:44:00.680
+timeouts of three seconds or less,
+where Microsoft wants more than four.
+
+622
+00:44:01.430 --> 00:44:06.487
+Phase 3 is where zones, forwarders,
+DHCP scopes and clients actually move,
+
+623
+00:44:06.487 --> 00:44:09.942
+and each move is one pass
+through the cutover loop.
+
+624
+00:44:09.942 --> 00:44:13.672
+Records follow the loop, then
+observe for at least thirty days,
+
+625
+00:44:13.672 --> 00:44:18.280
+with the old copy left in place as the
+rollback point until decommissioning.
+
+626
+00:44:18.280 --> 00:44:22.405
+Signed zones move here too,
+by Chapter 06's sequence.
+
+627
+00:44:22.405 --> 00:44:25.093
+Three patterns cover almost every zone.
+
+628
+00:44:25.093 --> 00:44:29.295
+Split horizon, a private answer
+inside and a public one outside,
+
+629
+00:44:29.295 --> 00:44:32.204
+rolls back by withdrawing
+the private view.
+
+630
+00:44:32.204 --> 00:44:36.153
+Subdomain delegation, a child
+moving while the parent stays,
+
+631
+00:44:36.153 --> 00:44:38.680
+rolls back by removing the delegation.
+
+632
+00:44:38.680 --> 00:44:43.481
+Progressive migration with conditional
+forwarding moves whole zones one at a
+
+633
+00:44:43.481 --> 00:44:48.355
+time and rolls back by restoring the
+archived export and repointing forwarders.
+
+634
+00:44:48.355 --> 00:44:52.741
+Check record types the target
+handles differently before importing;
+
+635
+00:44:52.741 --> 00:44:54.480
+Appendix A is the reference.
+
+636
+00:44:54.480 --> 00:44:59.368
+SRV records are the most security-consequential
+type in Active Directory
+
+637
+00:44:59.368 --> 00:45:03.705
+and the most underestimated: nothing
+moves them when AD is retired.
+
+638
+00:45:03.705 --> 00:45:07.702
+PTR records are the most
+neglected in cloud private space,
+
+639
+00:45:07.702 --> 00:45:10.867
+so IPAM should create
+the A and PTR together.
+
+640
+00:45:10.867 --> 00:45:15.367
+A CNAME pointing at a deprovisioned
+resource invites subdomain takeover.
+
+641
+00:45:15.367 --> 00:45:20.392
+ALIAS and ANAME are provider-specific,
+absent from the IANA registry.
+
+642
+00:45:20.392 --> 00:45:24.368
+Re-test SPF, DKIM and
+DMARC after the move.
+
+643
+00:45:24.368 --> 00:45:30.092
+And HTTPS records missing from private zones
+make clients behave differently inside.
+
+644
+00:45:30.092 --> 00:45:33.830
+DHCP moves scope by
+scope, with its options.
+
+645
+00:45:33.830 --> 00:45:37.028
+Option 6 moves clients onto
+the governed resolvers,
+
+646
+00:45:37.028 --> 00:45:39.705
+so set it per scope and
+check it after import.
+
+647
+00:45:39.705 --> 00:45:43.716
+Keep failover through the move,
+hot standby or load balance,
+
+648
+00:45:43.716 --> 00:45:46.418
+and re-establish dynamic registration.
+
+649
+00:45:46.418 --> 00:45:51.592
+Clients move last, in waves: pilot,
+a department, then everyone.
+
+650
+00:45:51.592 --> 00:45:55.506
+VMs keep old settings until
+restart or lease renewal.
+
+651
+00:45:55.506 --> 00:45:59.598
+And removing a VNet link from an
+Azure Private DNS zone deletes
+
+652
+00:45:59.598 --> 00:46:04.005
+its autoregistered records, which
+Microsoft says can't be restored.
+
+653
+00:46:04.005 --> 00:46:06.050
+Plan that rollback first.
+
+654
+00:46:06.800 --> 00:46:10.991
+Phase 4 brings each cloud's DNS
+and address data under the plane,
+
+655
+00:46:10.991 --> 00:46:14.456
+with private endpoint zones
+published once and the
+
+656
+00:46:14.456 --> 00:46:18.163
+per-cloud forwarding rules
+held in one place, Decision 3.
+
+657
+00:46:18.163 --> 00:46:21.114
+Its contribution is the validation matrix:
+
+658
+00:46:21.114 --> 00:46:25.050
+every class of name resolves
+correctly from every origin.
+
+659
+00:46:25.050 --> 00:46:29.419
+On-premises names resolve natively
+on premises, through the outbound
+
+660
+00:46:29.419 --> 00:46:33.562
+rule from each cloud, and through
+the agency resolver from a branch.
+
+661
+00:46:33.562 --> 00:46:37.812
+Cloud names resolve through the
+inbound endpoint from on premises.
+
+662
+00:46:37.812 --> 00:46:41.637
+Private endpoint names return the
+private address from all three.
+
+663
+00:46:41.637 --> 00:46:46.613
+Locator records resolve from each cloud
+through the rule to the domain controllers.
+
+664
+00:46:46.613 --> 00:46:50.887
+And OCSP and CRL endpoints
+resolve everywhere.
+
+665
+00:46:50.887 --> 00:46:54.675
+A private endpoint name returning
+a public address from any
+
+666
+00:46:54.675 --> 00:46:58.613
+origin is a failed test, even if
+the application appears to work.
+
+667
+00:46:58.613 --> 00:47:02.901
+Phase 5 is the one step whose mistakes
+can't be rolled back cheaply,
+
+668
+00:47:02.901 --> 00:47:04.649
+so it's gated, not scheduled.
+
+669
+00:47:04.649 --> 00:47:06.487
+All five gates must pass.
+
+670
+00:47:06.487 --> 00:47:11.841
+The inventory reconciles in both directions:
+nothing missing, nothing unexplained,
+
+671
+00:47:11.841 --> 00:47:16.812
+and every signed zone validating on its
+new chain with the old signing stopped.
+
+672
+00:47:16.812 --> 00:47:20.813
+Every critical locator record
+resolves from every VNet and site,
+
+673
+00:47:20.813 --> 00:47:25.925
+checked every fifteen minutes, at one
+hundred percent for thirty consecutive days.
+
+674
+00:47:25.925 --> 00:47:31.237
+Ninety days of parallel operation with
+no critical alerts or unresolved drift.
+
+675
+00:47:31.237 --> 00:47:32.487
+Failover tested.
+
+676
+00:47:32.487 --> 00:47:37.325
+And a final query-log review shows
+nothing still querying the legacy servers.
+
+677
+00:47:37.325 --> 00:47:43.074
+Then decommission in order: remove
+legacy DNS addresses from DHCP options,
+
+678
+00:47:43.074 --> 00:47:47.524
+Group Policy and VNets; remove
+forwarders for moved zones;
+
+679
+00:47:47.524 --> 00:47:52.160
+archive the final exports;
+de-authorize the old DHCP servers;
+
+680
+00:47:52.160 --> 00:47:55.962
+only then remove the roles,
+with a seven-day burn-in.
+
+681
+00:47:55.962 --> 00:47:59.905
+The burn-in rollback reinstalls
+the role from the archived exports,
+
+682
+00:47:59.905 --> 00:48:03.213
+which is why they're archived
+before anything is removed.
+
+683
+00:48:03.213 --> 00:48:06.369
+Losing locator records
+early causes forest-wide
+
+684
+00:48:06.369 --> 00:48:09.430
+authentication and domain-join failures.
+
+685
+00:48:10.180 --> 00:48:14.095
+A single policy plane only works if
+divisions can still operate their
+
+686
+00:48:14.095 --> 00:48:17.943
+networks through it, because a division
+that can't will work around it.
+
+687
+00:48:17.943 --> 00:48:21.341
+Corporate administrators
+see the whole estate;
+
+688
+00:48:21.341 --> 00:48:26.014
+each division gets a scope over its
+zones, IP spaces and DHCP scopes,
+
+689
+00:48:26.014 --> 00:48:30.942
+with manager, operator and auditor
+roles and no visibility outside it.
+
+690
+00:48:30.942 --> 00:48:35.049
+Infoblox access views are the book's
+illustration, and the book notes
+
+691
+00:48:35.049 --> 00:48:39.517
+they currently scope only IPAM roles,
+so confirm what a release supports.
+
+692
+00:48:39.517 --> 00:48:43.392
+Whatever stays on Windows or
+Azure needs the same discipline.
+
+693
+00:48:43.392 --> 00:48:49.593
+DnsAdmins grants full rights on DNS data,
+and Microsoft lists it as privileged.
+
+694
+00:48:49.593 --> 00:48:53.608
+Azure's DNS Zone Contributor
+covers public zones only;
+
+695
+00:48:53.608 --> 00:48:57.892
+Private DNS Zone Contributor
+can be scoped to a record set.
+
+696
+00:48:57.892 --> 00:49:01.137
+A role without delete
+doesn't protect a record set,
+
+697
+00:49:01.137 --> 00:49:05.568
+because modify can empty it, so add
+resource locks on critical zones.
+
+698
+00:49:05.568 --> 00:49:11.774
+Every object should sit behind one documented
+API, so infrastructure as code, ITSM,
+
+699
+00:49:11.774 --> 00:49:17.341
+ACME DNS-01 automation and pipelines
+share the same roles and audit trail,
+
+700
+00:49:17.341 --> 00:49:21.630
+with ACME accounts limited to
+TXT records in their zones.
+
+701
+00:49:21.630 --> 00:49:22.593
+Telemetry.
+
+702
+00:49:22.593 --> 00:49:32.456
+M-26-14 rescinded M-21-31, whose tables
+named DNS and DHCP logs, and names neither.
+
+703
+00:49:32.456 --> 00:49:36.827
+Its baseline needs source and
+destination network address information,
+
+704
+00:49:36.827 --> 00:49:39.980
+searchable for six months
+and retrievable for a year.
+
+705
+00:49:39.980 --> 00:49:44.134
+The book's reading is that query
+logs, which host asked for which name,
+
+706
+00:49:44.134 --> 00:49:47.992
+and lease history, which device
+held which address, supply that.
+
+707
+00:49:47.992 --> 00:49:52.678
+Sources include the DDI resolvers,
+the Windows DNS analytic log,
+
+708
+00:49:52.678 --> 00:49:57.275
+about five percent cost at a
+hundred thousand queries a second,
+
+709
+00:49:57.275 --> 00:50:02.940
+Azure resolver policy logs, the DHCP
+audit log, and the Azure activity log.
+
+710
+00:50:03.690 --> 00:50:07.402
+Last, keeping it honest during
+and after the hybrid period.
+
+711
+00:50:07.402 --> 00:50:11.428
+Chapter 11's troubleshooting
+reference covers the common failures.
+
+712
+00:50:11.428 --> 00:50:17.618
+A private endpoint returning its public
+address usually means the privatelink zone
+
+713
+00:50:17.618 --> 00:50:22.587
+isn't linked to the querying network,
+a forwarder targets 168.63.129.16,
+
+714
+00:50:22.587 --> 00:50:25.552
+or a Windows forwarder times out too soon.
+
+715
+00:50:25.552 --> 00:50:29.960
+Domain join failing from a cloud VM
+means the locator records aren't
+
+716
+00:50:29.960 --> 00:50:35.153
+resolvable from that network, so prove
+SRV forwarding before any cloud VM joins.
+
+717
+00:50:35.153 --> 00:50:38.677
+Queries that never resolve
+are usually a forwarding loop.
+
+718
+00:50:38.677 --> 00:50:42.503
+Old answers after a move are
+cached within the old TTL.
+
+719
+00:50:42.503 --> 00:50:47.127
+And DNSSEC failing after a move means
+the parent's DS record wasn't updated.
+
+720
+00:50:47.127 --> 00:50:48.514
+Watch continuously.
+
+721
+00:50:48.514 --> 00:50:51.897
+Resolve the locator records
+every fifteen minutes
+
+722
+00:50:51.897 --> 00:50:54.965
+from every site and VNet,
+site records included.
+
+723
+00:50:54.965 --> 00:50:59.670
+Detect drift by normalizing both
+sides to name, type and data,
+
+724
+00:50:59.670 --> 00:51:05.127
+excluding SOA and NS, and commit each
+report so the history is evidence.
+
+725
+00:51:05.127 --> 00:51:08.315
+Report stale-record and
+dangling-CNAME rates monthly.
+
+726
+00:51:08.315 --> 00:51:11.691
+The Private Resolver has no
+forwarding-failure metric,
+
+727
+00:51:11.691 --> 00:51:15.067
+so alert on inbound queries
+at zero in business hours or
+
+728
+00:51:15.067 --> 00:51:18.590
+spiking over two hundred percent,
+and use synthetic tests.
+
+729
+00:51:18.590 --> 00:51:24.342
+The evidence checklist opens with the
+five decisions, each checked live,
+
+730
+00:51:24.342 --> 00:51:30.191
+then Protective DNS and encrypted DNS
+evidence, IPAM inventory for CM-8,
+
+731
+00:51:30.191 --> 00:51:33.834
+logs at M-26-14 retention,
+rogue DHCP and router
+
+732
+00:51:33.834 --> 00:51:38.052
+advertisement detection,
+and reviewed delegations.
+
+733
+00:51:38.052 --> 00:51:41.427
+Appendix B maps each
+requirement to its evidence.
+
+734
+00:51:41.427 --> 00:51:46.782
+So, before the next SD-WAN or DDI change:
+audit every branch's redirect-dns target,
+
+735
+00:51:46.782 --> 00:51:50.406
+verify the chain order in
+the running configuration,
+
+736
+00:51:50.406 --> 00:51:55.020
+complete the AD DNS inventory before
+touching a domain controller,
+
+737
+00:51:55.020 --> 00:52:00.127
+confirm the sovereign-cloud limits,
+and take open questions to the vendors.
+
+738
+00:52:00.127 --> 00:52:02.544
+Chapter 09 assigns who does each,
+
+739
+00:52:02.544 --> 00:52:07.377
+and Chapter 12 measures success
+as resolution-path consistency.
+
+740
+00:52:07.377 --> 00:52:08.200
+Thank you.

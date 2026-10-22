@@ -1,0 +1,146 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.683
+The compliance policies decide
+whether a device is compliant;
+
+2
+00:00:03.683 --> 00:00:07.525
+Conditional Access decides what
+a noncompliant device can reach.
+
+3
+00:00:07.525 --> 00:00:10.125
+Book 04 owns that second decision.
+
+4
+00:00:10.125 --> 00:00:14.629
+This book's side of the hand-off is making
+sure the compliance signal is accurate,
+
+5
+00:00:14.629 --> 00:00:17.837
+and remember that the
+compliant-device grant works only
+
+6
+00:00:17.837 --> 00:00:21.113
+for devices registered in Entra
+ID and enrolled in Intune.
+
+7
+00:00:21.113 --> 00:00:24.188
+Two tenant settings
+sit above every policy.
+
+8
+00:00:24.188 --> 00:00:28.313
+Devices with no compliance policy
+assigned default to Compliant;
+
+9
+00:00:28.313 --> 00:00:32.888
+the program sets Not compliant, so a
+device that falls outside every group,
+
+10
+00:00:32.888 --> 00:00:37.763
+a missing tier attribute for example,
+can't pass Conditional Access by default.
+
+11
+00:00:37.763 --> 00:00:42.091
+And the compliance status validity
+period defaults to thirty days,
+
+12
+00:00:42.091 --> 00:00:46.188
+with a range of one to a hundred
+twenty; the program uses fourteen.
+
+13
+00:00:46.188 --> 00:00:50.969
+That's a program choice: short enough that
+a device left in a drawer loses access
+
+14
+00:00:50.969 --> 00:00:53.984
+before its posture is stale
+by a whole patch cycle,
+
+15
+00:00:53.984 --> 00:00:56.338
+long enough not to catch staff on leave.
+
+16
+00:00:56.338 --> 00:00:58.200
+Read the dashboard carefully.
+
+17
+00:00:58.200 --> 00:01:00.523
+In grace period means noncompliant,
+
+18
+00:01:00.523 --> 00:01:04.163
+but inside the schedule on
+the mark noncompliant action.
+
+19
+00:01:04.163 --> 00:01:09.237
+Not evaluated is a new device, or one that
+hasn't checked in since a policy changed.
+
+20
+00:01:09.237 --> 00:01:12.861
+A compliance setting that
+returns Error keeps the existing
+
+21
+00:01:12.861 --> 00:01:16.774
+status for up to seven days, then
+the device becomes noncompliant.
+
+22
+00:01:16.774 --> 00:01:19.891
+The program reviews Not
+evaluated and Error weekly,
+
+23
+00:01:19.891 --> 00:01:23.225
+because both hide devices
+from the noncompliant count.
+
+24
+00:01:23.225 --> 00:01:27.608
+Configuration status is per device
+and per setting: Succeeded, Error,
+
+25
+00:01:27.608 --> 00:01:32.375
+or Conflict, which means another policy
+sets the same setting differently.
+
+26
+00:01:32.375 --> 00:01:34.913
+A conflict is a defect in the library.
+
+27
+00:01:34.913 --> 00:01:37.987
+Move the setting into the
+one policy that owns it.
+
+28
+00:01:37.987 --> 00:01:42.934
+And on Tier 0, the risk score requirement
+means a Defender detection on a privileged
+
+29
+00:01:42.934 --> 00:01:45.944
+access workstation becomes
+a compliance failure,
+
+30
+00:01:45.944 --> 00:01:48.860
+and through Conditional
+Access, a loss of access.

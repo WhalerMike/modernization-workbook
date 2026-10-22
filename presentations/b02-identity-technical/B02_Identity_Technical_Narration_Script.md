@@ -16,7 +16,7 @@ So the identity provider is the policy decision point for the whole estate. What
 
 Microsoft isn't retiring Active Directory; it says it continues to support and enhance it. The forcing comes from the direction of its investment. Cloud Sync is replacing Connect Sync, which retires once Cloud Sync reaches full functional parity. Microsoft recommends moving from AD FS to cloud authentication with password hash sync. All versions of NTLM were deprecated in June 2024, and NTLMv1 is removed in Windows 11 24H2 and Windows Server 2025. And since January 2026 you can convert a synced user to cloud-managed, one object at a time.
 
-The trap is the lift and shift. Synchronize the forest as it stands, and stale accounts, undocumented trusts and synced privileged accounts arrive in the tenant, while the delegation and policy intent that the OU tree carried has nowhere to land.
+The trap is the lift and shift. Synchronize the forest as it stands, and stale accounts, undocumented trusts and synced privileged accounts arrive in the tenant, while the delegation and policy intent that the organizational unit (OU) tree carried has nowhere to land.
 
 ## Slide 3 — What the migration actually has to move
 
@@ -156,7 +156,7 @@ The chapter's premise fits in one sentence. In Active Directory, where an object
 
 Before any object moves, decompose the AD identity model into its parts, because each has its own path.
 
-OUs do three jobs, and each goes somewhere different. Group Policy scoping becomes Conditional Access and Intune profiles, targeted by group membership, not container. Administrative delegation becomes administrative units, which are free to create, though each AU-scoped administrator needs P1. Logical organization becomes dynamic groups and attributes. The forest maps to the tenant: one trust boundary, no domain trusts inside it, and verified domains are routing suffixes, not security boundaries. Trusts become B2B and cross-tenant access settings. AdminSDHolder has no equivalent; Privileged Identity Management, which makes assignments eligible and time-bound, and protected actions, which demand an authentication context before high-impact permissions are used, together serve its purpose. And Schema Admins has none: Microsoft manages the schema.
+OUs do three jobs, and each goes somewhere different. Group Policy scoping becomes Conditional Access and Intune profiles, targeted by group membership, not container. Administrative delegation becomes administrative units, which are free to create, though each administrative unit (AU)-scoped administrator needs P1. Logical organization becomes dynamic groups and attributes. The forest maps to the tenant: one trust boundary, no domain trusts inside it, and verified domains are routing suffixes, not security boundaries. Trusts become B2B and cross-tenant access settings. AdminSDHolder has no equivalent; Privileged Identity Management, which makes assignments eligible and time-bound, and protected actions, which demand an authentication context before high-impact permissions are used, together serve its purpose. And Schema Admins has none: Microsoft manages the schema.
 
 This is the design principle: Entra ID inverts the governance model. Attributes decide memberships, and memberships decide policy. That's why attribute quality gates everything after it.
 

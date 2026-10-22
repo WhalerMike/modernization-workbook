@@ -1,0 +1,1362 @@
+{
+ "1": [
+  [
+   0.05,
+   7.263,
+   "This is the executive briefing for Book 00 of the Federal Modernization Workbook, Orientation and Program."
+  ],
+  [
+   7.312,
+   10.3,
+   "It runs about thirty minutes, and it's for the people who sponsor, fund and answer for modernization: executive sponsors, CIOs, CISOs and program executives."
+  ],
+  [
+   17.613,
+   1.212,
+   "One point first."
+  ],
+  [
+   18.825,
+   4.237,
+   "The workbook is independent technical guidance, not federal policy."
+  ],
+  [
+   23.062,
+   5.375,
+   "Where it says a law, memorandum or directive requires something, it cites that source."
+  ],
+  [
+   28.438,
+   12.062,
+   "Everything else, including the program's phases, gates, principles and decision rights, is the workbook's own recommendation: one way to meet those requirements, not a requirement itself."
+  ],
+  [
+   40.5,
+   1.425,
+   "The argument is short."
+  ],
+  [
+   41.925,
+   4.537,
+   "For twenty years Active Directory quietly did governance nobody wrote down."
+  ],
+  [
+   46.462,
+   5.15,
+   "Federal policy and vendor lifecycles now set clocks the estate can't ignore."
+  ],
+  [
+   51.612,
+   8.713,
+   "Meeting them one product at a time rebuilds the same governance gaps in a new place, so modernization has to run as one governed program."
+  ],
+  [
+   60.325,
+   7.8,
+   "I'll take four questions in order: why now, what the program is, who decides, and how it runs from pre-flight to steady state."
+  ],
+  [
+   68.125,
+   4.55,
+   "Every decision slide names the decision, its owner, and when it's needed."
+  ]
+ ],
+ "2": [
+  [
+   0.05,
+   1.038,
+   "Start with why."
+  ],
+  [
+   1.087,
+   8.438,
+   "Most federal estates still run the client/server model they built in the early 2000s, with an Active Directory forest at the center."
+  ],
+  [
+   9.525,
+   8.062,
+   "Since Windows 2000, the organizational unit has grouped objects for delegating administrative rights and assigning policy."
+  ],
+  [
+   17.587,
+   15.875,
+   "So placing a user or a computer in the tree decided, at the same moment and with no separate record, who administers it, which Group Policy applies to it, what its groups let it reach, how it's named in directory-integrated D N S, and which certificates it receives."
+  ],
+  [
+   33.462,
+   6.0,
+   "It was efficient, and for a quarter century agencies got governance as a side effect of running a directory."
+  ],
+  [
+   39.462,
+   2.1,
+   "The cost is that it was never stated."
+  ],
+  [
+   41.562,
+   2.138,
+   "The cloud estate doesn't inherit it."
+  ],
+  [
+   43.7,
+   3.362,
+   "Entra ID's administrative units can't be nested."
+  ],
+  [
+   47.062,
+   8.85,
+   "Intune applies policy to groups with no hierarchy, and two policies that disagree produce a conflict to resolve, not an inheritance rule."
+  ],
+  [
+   55.913,
+   6.7,
+   "Access, names and trust move to Conditional Access, a D D I platform and a target P K I."
+  ],
+  [
+   62.612,
+   3.587,
+   "Each replacement needs someone to decide what the old placement meant."
+  ],
+  [
+   66.2,
+   7.25,
+   "An agency that moves users and retires the forest without recovering those decisions doesn't modernize its governance."
+  ],
+  [
+   73.45,
+   1.05,
+   "It deletes it."
+  ],
+  [
+   74.5,
+   9.137,
+   "So the first decision is the sponsor's, when the charter is signed: treat modernization as governance reconstruction, not only a technical migration."
+  ],
+  [
+   83.638,
+   6.213,
+   "If stakeholders don't accept that, the charter says, resistance becomes the program's main risk."
+  ]
+ ],
+ "3": [
+  [
+   0.05,
+   1.962,
+   "The second reason is the schedule."
+  ],
+  [
+   2.013,
+   4.987,
+   "Two kinds of clock now set dates from outside, and the first is federal policy."
+  ],
+  [
+   7.0,
+   8.637,
+   "O M B M twenty-two oh-nine, from January 2022, set Zero Trust objectives for the end of fiscal 2024."
+  ],
+  [
+   15.637,
+   6.362,
+   "That date has passed, but the actions remain in force, on-premises and hybrid as well as cloud."
+  ],
+  [
+   22.0,
+   13.162,
+   "sis-uh's B O D twenty-five oh-one set mandatory configurations for cloud tenants, with the policies due June 20, 2025, and every new tenant baselined before its authorization to operate."
+  ],
+  [
+   35.163,
+   13.0,
+   "BOD 26-02, from February 2026, directs agencies to remove internet-facing end-of-support edge devices; the listed ones go by February 5, 2027."
+  ],
+  [
+   48.163,
+   11.412,
+   "O M B M-26-14, issued May 22, 2026, rescinded M-21-31 and set a risk-based approach to logging."
+  ],
+  [
+   59.575,
+   14.175,
+   "And fed-ramp's Consolidated Rules for 2026, launched June 25, take mandatory effect for all stakeholders on January 1, 2027, and providers then have a year to follow them to keep their certification."
+  ],
+  [
+   73.75,
+   6.525,
+   "fed-ramp accepts no new Rev5 certification applications after June 11, 2027."
+  ],
+  [
+   80.275,
+   8.875,
+   "M-26-14 counts its deadlines from sis-uh's Logging Reference Architecture, published August 20, 2026."
+  ],
+  [
+   89.15,
+   14.012,
+   "Counted from that date, the Agency Logging Plan falls on November 18 of this year, Level 1 on December 18, Level 2 on February 16, 2027, and Level 3 on July 6, 2027."
+  ],
+  [
+   103.162,
+   4.588,
+   "Those four dates are the program's arithmetic, not dates O M B published."
+  ],
+  [
+   107.75,
+   8.075,
+   "So the nearest decision: confirm them with the see-so's office, starting with the logging plan, due November 18 by the program's count."
+  ]
+ ],
+ "4": [
+  [
+   0.05,
+   2.612,
+   "The second set of clocks is vendor support."
+  ],
+  [
+   2.663,
+   9.2,
+   "After end of support there are no new security updates and no assisted support, and for an estate built in the early 2000s, the dates cluster."
+  ],
+  [
+   11.863,
+   16.9,
+   "Windows 10 and Exchange Server 2016 and 2019 ended in October 2025; SQL Server 2016, SharePoint Server 2016 and 2019, and the last Windows Server 2012 security updates ended this year."
+  ],
+  [
+   28.762,
+   11.3,
+   "Windows Server 2016 ends on January 12, 2027, under three months away, and it's the operating system of many domain controllers built in the last decade."
+  ],
+  [
+   40.062,
+   8.287,
+   "Windows Server 2019 and Microsoft Identity Manager 2016 end on January 9, 2029."
+  ],
+  [
+   48.35,
+   9.088,
+   "Identity Manager's date was extended from 2026, so an agency that syncs HR data through it has a date, not an open-ended bridge."
+  ],
+  [
+   57.438,
+   4.325,
+   "A vendor date isn't a federal mandate on its own, but the two connect."
+  ],
+  [
+   61.763,
+   13.075,
+   "BOD 26-02 turns end of support into a directed action for internet-facing edge devices, and every system security plan asserts flaw remediation that an unsupported product can't deliver."
+  ],
+  [
+   74.838,
+   7.575,
+   "So running past end of support is a decision, and it belongs to the authorizing official, who has to sign the risk acceptance."
+  ],
+  [
+   82.412,
+   5.45,
+   "The first of those falls due with Windows Server 2016, on January 12."
+  ]
+ ],
+ "5": [
+  [
+   0.05,
+   2.625,
+   "The clocks are often quoted for more than they say."
+  ],
+  [
+   2.675,
+   1.525,
+   "Four corrections recur."
+  ],
+  [
+   4.2,
+   11.787,
+   "fed-ramp certifies cloud services, and each agency still authorizes its own systems, so the 2027 date changes what providers publish, not whether the agency's own systems comply."
+  ],
+  [
+   15.988,
+   6.938,
+   "Moderate is now a certification class: Class C includes the current Moderate baseline, and Class D the High."
+  ],
+  [
+   22.925,
+   3.962,
+   "No federal document requires a Zero Trust maturity stage."
+  ],
+  [
+   26.887,
+   9.75,
+   "And B O D twenty-five oh-one covers production cloud tenants, not on-premises Active Directory, though the forest still decides much of what a tenant can enforce."
+  ],
+  [
+   36.638,
+   2.9,
+   "Nothing makes the estate fail on a single date."
+  ],
+  [
+   39.538,
+   8.8,
+   "It's surrounded by deadlines, each binding a different part of it, and each assuming the agency knows what it runs, who owns it and what governs it."
+  ],
+  [
+   48.337,
+   2.225,
+   "That's why it can't be a set of projects."
+  ],
+  [
+   50.562,
+   7.875,
+   "Moving devices to Intune needs the policy G P O links carried; Conditional Access needs the access groups granted."
+  ],
+  [
+   58.438,
+   4.375,
+   "Separate projects rediscover those decisions differently, or not at all."
+  ],
+  [
+   62.812,
+   5.625,
+   "A program can sequence the work against the dates; a collection of projects can only race them."
+  ],
+  [
+   68.438,
+   11.537,
+   "Hence the decision for the sponsor and C I O, before the budget lines are set: fund and govern modernization as one sequenced program, with one dependency chain and one set of gates."
+  ]
+ ],
+ "6": [
+  [
+   0.05,
+   1.475,
+   "Now, what the program is."
+  ],
+  [
+   1.525,
+   12.675,
+   "It starts with a short charter: the page the sponsor signs, and the page every later decision is checked against: is this inside the scope we chartered, does it serve one of the objectives, and does it move a success criterion?"
+  ],
+  [
+   14.2,
+   15.5,
+   "The problem it sets out to remove has four costs: migration risk concentrated in hidden dependencies; ongoing drift between intended and actual state; weak evidence of change and compliance; and a high cost of reconciling fragmented stores."
+  ],
+  [
+   29.7,
+   2.325,
+   "Against those, six objectives."
+  ],
+  [
+   32.025,
+   7.675,
+   "One authoritative origin for organizational structure, identity attributes and key claims, with every other copy derived."
+  ],
+  [
+   39.7,
+   5.912,
+   "Governance rebuilt explicitly, through attributes, dynamic membership and scoped policy."
+  ],
+  [
+   45.612,
+   2.475,
+   "Drift treated as a classified finding."
+  ],
+  [
+   48.087,
+   7.138,
+   "Change in controlled waves that start from the authoritative source, run under least privilege, and close with evidence."
+  ],
+  [
+   55.225,
+   3.013,
+   "Domain transformations without rip-and-replace."
+  ],
+  [
+   58.237,
+   2.763,
+   "And continuous, machine-usable evidence."
+  ],
+  [
+   61.0,
+   1.65,
+   "The scope is deliberate."
+  ],
+  [
+   62.65,
+   3.763,
+   "The program feeds compliance frameworks; it doesn't replace them."
+  ],
+  [
+   66.412,
+   6.662,
+   "Identity providers, network fabrics and device managers stay the enforcers, and the program governs them."
+  ],
+  [
+   73.075,
+   3.188,
+   "And the adopting agency executes its own cutover."
+  ],
+  [
+   76.263,
+   2.7,
+   "An agency can adopt the charter as written."
+  ],
+  [
+   78.963,
+   8.838,
+   "The decision: the sponsor signs it, and names go into its governance table, starting with the sponsor and the steward, as Phase 0's entry work."
+  ]
+ ],
+ "7": [
+  [
+   0.05,
+   10.0,
+   "A sponsor can't sign off an outcome with no test, so the charter turns each success criterion into a measure, the evidence that shows it, and the gate where it's checked."
+  ],
+  [
+   10.05,
+   10.963,
+   "First, a current-state assessment that covers every forest in scope and all eleven dependency object types, with zero open priority-one findings, checked at G0."
+  ],
+  [
+   21.012,
+   8.325,
+   "Second, a target structure in which every attribute that drives access has exactly one designated source, checked at G1."
+  ],
+  [
+   29.337,
+   12.988,
+   "Third, a domain playbook whose entry and exit criteria are written as queries, proven when the pilot division clears G2 with zero drift for a hold period; fourteen days is the illustrative example."
+  ],
+  [
+   42.325,
+   10.45,
+   "Fourth, a change-control pattern in use: every pilot change carries all five clauses of the change lifecycle, and every human-only closure is logged as an exception."
+  ],
+  [
+   52.775,
+   7.975,
+   "Fifth, drift classes with a detection signal, a severity and a response, where a missed run is itself a halt condition."
+  ],
+  [
+   60.75,
+   6.6,
+   "Sixth, leadership can describe the path, the risks and the measures without citing internal decision records."
+  ],
+  [
+   67.35,
+   7.2,
+   "The numbers are illustrative defaults: the agency sets its own, records them, and doesn't change them silently."
+  ],
+  [
+   74.55,
+   2.75,
+   "And the criteria stop at the pilot on purpose."
+  ],
+  [
+   77.3,
+   2.612,
+   "The sixth criterion is the sponsor's own."
+  ],
+  [
+   79.912,
+   7.225,
+   "The sponsor answers yes to each pre-start question by G0, and the steering committee reviews the drift trend monthly."
+  ]
+ ],
+ "8": [
+  [
+   0.05,
+   14.562,
+   "The charter's six guiding principles expand to fifteen in Chapter 04, and one idea runs underneath them all: keep the record of what should be true apart from the systems that enforce it, and make every change prove itself against that record."
+  ],
+  [
+   14.613,
+   3.25,
+   "The foundation principles apply to every change."
+  ],
+  [
+   17.863,
+   2.65,
+   "Every claim has one authoritative origin."
+  ],
+  [
+   20.512,
+   17.087,
+   "Every move, add, change, deletion and reset travels five clauses: it originates with the source of truth, carries an authoritative authorization, executes under just-in-time least privilege, closes with provenance, and emits evidence automatically."
+  ],
+  [
+   37.6,
+   2.812,
+   "No closure counts unless it carries its proof."
+  ],
+  [
+   40.413,
+   2.475,
+   "And drift detection re-checks on a schedule."
+  ],
+  [
+   42.888,
+   15.412,
+   "The structure and estate principles replace the organizational unit (O U) tree with attributes, and they carry one rule executives should hear: a user with an empty attribute falls out of the dynamic group, and so out of every policy that targets it."
+  ],
+  [
+   58.3,
+   2.95,
+   "Attribute completeness is a security control."
+  ],
+  [
+   61.25,
+   5.287,
+   "The program principles cover people, Zero Trust governance and the direction of travel."
+  ],
+  [
+   66.537,
+   10.488,
+   "Two source rules were corrected on the way: Intune policy conflicts, and token lifetimes, where the principle that survives is continuous evaluation, not a short clock."
+  ],
+  [
+   77.025,
+   9.6,
+   "The decision here is the steward's, and it comes before the first change is made: set the evidence and provenance expectations that every later change must meet."
+  ]
+ ],
+ "9": [
+  [
+   0.05,
+   6.375,
+   "A plan earns its keep by saying what has to be true before the next step starts, not by putting dates on a chart."
+  ],
+  [
+   6.425,
+   5.15,
+   "Book 01 of the workbook is canonical: seven phases and six gates."
+  ],
+  [
+   11.575,
+   4.263,
+   "Phase 0, Pre-flight, ends at G0, Ready to Plan."
+  ],
+  [
+   15.838,
+   4.562,
+   "Phase 1, Foundation, ends at G1, Foundation Complete."
+  ],
+  [
+   20.4,
+   4.4,
+   "Phase 2, the pilot division, ends at G2, Pilot Clean."
+  ],
+  [
+   24.8,
+   4.6,
+   "Phase 3, general rollout, at G3, Rollout Complete."
+  ],
+  [
+   29.4,
+   4.412,
+   "Phase 4, legacy retirement, at G4, Legacy Quiet."
+  ],
+  [
+   33.812,
+   5.037,
+   "Phase 5, A D DS retirement, at G5, A D Retired."
+  ],
+  [
+   38.85,
+   4.15,
+   "Phase 6, steady state, runs on a cadence indefinitely."
+  ],
+  [
+   43.0,
+   2.688,
+   "The gates are owned in proportion to what they end."
+  ],
+  [
+   45.688,
+   6.825,
+   "The steward clears G0, G1 and G4, and co-signs G2 with the executive sponsor."
+  ],
+  [
+   52.513,
+   3.163,
+   "The sponsor and steering committee clear G3."
+  ],
+  [
+   55.675,
+   3.288,
+   "The sponsor and the C I O clear G5."
+  ],
+  [
+   58.962,
+   6.35,
+   "And five constraints bind every phase, from provenance on every change to no rip-and-replace."
+  ],
+  [
+   65.312,
+   9.75,
+   "The program's detailed master plan sequences 48 milestones over an illustrative 52 weeks, but its cutover ends with A D DS still running."
+  ],
+  [
+   75.062,
+   8.438,
+   "Book 01's own fifty-two-week sequence models a mid-size, clean forest, and large federal estates typically run multi-year."
+  ],
+  [
+   83.5,
+   9.4,
+   "So the decision for the sponsor and C I O, when they accept the plan: budget the A D DS retirement phase on top of the master plan's 52 weeks."
+  ]
+ ],
+ "10": [
+  [
+   0.05,
+   7.438,
+   "Inside the phases, five workstreams carry the work: identity, policy, services, compute and access."
+  ],
+  [
+   7.487,
+   5.1,
+   "They run together; finishing one before starting the next roughly doubles the program."
+  ],
+  [
+   12.588,
+   1.312,
+   "They still have an order."
+  ],
+  [
+   13.9,
+   12.062,
+   "Identity comes first, the attribute model, dynamic membership and the lifecycle origin, because policy, access, devices and data all decide on the basis of who or what is asking."
+  ],
+  [
+   25.962,
+   1.712,
+   "Policy follows identity."
+  ],
+  [
+   27.675,
+   4.85,
+   "Services, naming and addressing, can run in parallel and may bridge."
+  ],
+  [
+   32.525,
+   3.65,
+   "Compute, the device and server work, comes mid to late."
+  ],
+  [
+   36.175,
+   6.938,
+   "Access, token-based and application-aware, comes later, because it consumes both identity and policy."
+  ],
+  [
+   43.112,
+   5.963,
+   "The master plan organized the same work as five technology pillars, and that view leaves two gaps."
+  ],
+  [
+   49.075,
+   6.562,
+   "Nobody owns the question of which policy surface owns a setting, and the access plane has no pillar at all."
+  ],
+  [
+   55.638,
+   7.838,
+   "Book 01 closes them by giving policy a security-engineering lead and access a joint identity and security lead."
+  ],
+  [
+   63.475,
+   8.812,
+   "The critical path runs through the platform, the assessment, attribute and group design, the pilot, each rollout wave, and cutover validation."
+  ],
+  [
+   72.287,
+   4.888,
+   "Every week lost in assessment or attribute design moves every later gate."
+  ],
+  [
+   77.175,
+   4.3,
+   "And one dependency never relaxes: P K I waits for identity."
+  ],
+  [
+   81.475,
+   8.4,
+   "The decision, made while Phase 0's stakeholders and decision rights are confirmed: name the five workstream leads, including those two."
+  ]
+ ],
+ "11": [
+  [
+   0.05,
+   8.925,
+   "Seven complementary projects turn the program's most common gaps into executable work, each with its own sponsor, lead and pilot."
+  ],
+  [
+   8.975,
+   20.113,
+   "In their suggested starting order: Identity Lifecycle and Provisioning; Endpoint and Device Modernization; Network and Access Modernization; Continuous Monitoring and the Evidence Fabric; Privileged Access and Administrative Identity; Data Platform Identity Transformation; and Supply Chain and Software Bill of Materials."
+  ],
+  [
+   29.087,
+   5.112,
+   "The order says which project has to be far enough along before the next can show results."
+  ],
+  [
+   34.2,
+   10.2,
+   "Identity is first, because everything else consumes its attributes and owners; a device project started on unreliable attributes produces policy bypass."
+  ],
+  [
+   44.4,
+   6.487,
+   "Monitoring comes fourth, because an evidence fabric needs at least two sources already emitting records."
+  ],
+  [
+   50.888,
+   13.2,
+   "Privileged access is chartered fifth, but it isn't fifth in practice: the Foundation gate already needs emergency access accounts vaulted and tested, and Tier 0 administrators registered for phishing-resistant sign-in."
+  ],
+  [
+   64.088,
+   3.85,
+   "Every charter asks for a working pilot, not a finished estate."
+  ],
+  [
+   67.938,
+   2.45,
+   "Two rules keep the portfolio coherent."
+  ],
+  [
+   70.388,
+   5.325,
+   "No project designates a second authoritative source for something another project owns."
+  ],
+  [
+   75.713,
+   5.013,
+   "And every project emits evidence in the shape the monitoring project defines."
+  ],
+  [
+   80.725,
+   5.95,
+   "The projects don't form a second governance structure, and no project clears a program gate on its own."
+  ],
+  [
+   86.675,
+   6.062,
+   "Filling in their names is each project's first act, and every project lead reports to the steward."
+  ]
+ ],
+ "12": [
+  [
+   0.05,
+   1.025,
+   "Who decides?"
+  ],
+  [
+   1.075,
+   7.963,
+   "The book's advice: name the people allowed to say no, give each decision one of them, and make the repository remember who said yes."
+  ],
+  [
+   9.037,
+   3.275,
+   "The book uses Book 01's program-wide model."
+  ],
+  [
+   12.312,
+   9.425,
+   "The executive sponsor, with the C I O, owns scope, funding and sequence, breaks ties, and decides when Active Directory components retire."
+  ],
+  [
+   21.738,
+   8.812,
+   "The see-so sets the control requirements every target surface must meet: authentication strength, the Conditional Access baseline, logging."
+  ],
+  [
+   30.55,
+   5.487,
+   "The authorizing official is the only official who can accept security and privacy risk."
+  ],
+  [
+   36.038,
+   7.75,
+   "The steward leads the program office and owns the plan, wave sequencing, cross-domain dependencies and the repository."
+  ],
+  [
+   43.788,
+   7.237,
+   "A change to the target architecture, or to the rules for authoritative origin, needs the steward and the sponsor together."
+  ],
+  [
+   51.025,
+   3.538,
+   "HR decides what each organizational attribute means."
+  ],
+  [
+   54.562,
+   4.812,
+   "And workstream leads own their designs, inside the see-so's requirements."
+  ],
+  [
+   59.375,
+   4.275,
+   "Two federal requirements already name people who belong in these rows."
+  ],
+  [
+   63.65,
+   6.963,
+   "M twenty-two oh-nine required a zero trust implementation lead within 30 days, and an aligned C-suite."
+  ],
+  [
+   70.612,
+   5.925,
+   "M nineteen seventeen requires an integrated, agency-wide eye-cam governance structure."
+  ],
+  [
+   76.537,
+   10.912,
+   "So the decision for the sponsor and C I O, in Phase 0: name the sponsor, the steward and the steering committee, and build them from those existing roles, not alongside them."
+  ]
+ ],
+ "13": [
+  [
+   0.05,
+   3.388,
+   "Most of what the program's plans said about decisions holds."
+  ],
+  [
+   3.438,
+   1.262,
+   "Three items don't."
+  ],
+  [
+   4.7,
+   1.312,
+   "Residual risk."
+  ],
+  [
+   6.013,
+   3.75,
+   "The plans let the security lead and the steward accept it jointly."
+  ],
+  [
+   9.762,
+   7.588,
+   "Under the Risk Management Framework, only the authorizing official can accept security and privacy risk to the organization."
+  ],
+  [
+   17.35,
+   8.988,
+   "So the security lead and steward prepare and recommend, and the acceptance carries a justification, compensating controls and an end date."
+  ],
+  [
+   26.337,
+   1.462,
+   "Budget and licenses."
+  ],
+  [
+   27.8,
+   3.6,
+   "They belong to the sponsor and C I O, who own funding."
+  ],
+  [
+   31.4,
+   1.925,
+   "The steward prepares the case."
+  ],
+  [
+   33.325,
+   1.25,
+   "Gate decisions."
+  ],
+  [
+   34.575,
+   4.275,
+   "The master plan made the steward the sole signatory at every gate."
+  ],
+  [
+   38.85,
+   8.838,
+   "Book 01 spreads the gates across the steward, the sponsor, the steering committee and the C I O, in proportion to what each gate ends."
+  ],
+  [
+   47.688,
+   2.513,
+   "Four separations keep the governance honest."
+  ],
+  [
+   50.2,
+   11.525,
+   "The authorizing official is a government official, the decision can't be delegated, and the role stays outside the program office: contractors can prepare a risk acceptance, but can't sign one."
+  ],
+  [
+   61.725,
+   2.4,
+   "No one holds two roles that check each other."
+  ],
+  [
+   64.125,
+   2.575,
+   "Requesters don't approve their own changes."
+  ],
+  [
+   66.7,
+   3.45,
+   "And the component that decides isn't the one that acts."
+  ],
+  [
+   70.15,
+   11.838,
+   "The decision sits with the authorizing official from G0 onward, where an unremediated Critical finding needs the official's acceptance: every risk acceptance comes in writing, with an end date."
+  ]
+ ],
+ "14": [
+  [
+   0.05,
+   1.025,
+   "Who does the work?"
+  ],
+  [
+   1.075,
+   19.562,
+   "The master plan estimated the program office and workstreams at about five and a half full-time equivalents, for an illustrative 52-week program: half a steward; a full-time infrastructure lead, identity lead and endpoint lead; and half-time D N S, P K I and security leads and a project manager."
+  ],
+  [
+   20.637,
+   2.712,
+   "It's a planning model, not a staffing standard."
+  ],
+  [
+   23.35,
+   17.312,
+   "What matters more is what the estimate leaves out: application owners for every application that moves, help desk capacity for every wave, HR and contractor-source owners, records and privacy, and the see-so's and authorizing official's time for requirements and risk decisions."
+  ],
+  [
+   40.663,
+   4.062,
+   "The program can't run without them, so budget for them explicitly."
+  ],
+  [
+   44.725,
+   2.325,
+   "And cross-train two people per workstream."
+  ],
+  [
+   47.05,
+   6.412,
+   "The rhythm: daily standups, and a weekly report rating each workstream green, yellow or red."
+  ],
+  [
+   53.462,
+   11.325,
+   "The steering committee meets every two weeks, the steward and sponsor review gate readiness monthly, and each gate gets a ninety-minute review that ends in go, no-go or conditional go."
+  ],
+  [
+   64.787,
+   3.987,
+   "And two consecutive red weeks for any workstream go to the sponsor."
+  ],
+  [
+   68.775,
+   9.863,
+   "The decision for the sponsor and C I O: put those people in the Phase 0 business case, alongside the licenses, and approve the budget before design begins."
+  ]
+ ],
+ "15": [
+  [
+   0.05,
+   2.9,
+   "Now, how it runs, starting with pre-flight."
+  ],
+  [
+   2.95,
+   4.688,
+   "The program adopts one rule unchanged: assessment before action."
+  ],
+  [
+   7.638,
+   9.25,
+   "No migration work starts until the whole forest is inventoried, classified and committed to the repository, and every plan is generated from that data."
+  ],
+  [
+   16.887,
+   8.275,
+   "First, the program builds the place where every decision will be written down: a platform host with one authoritative, protected writer."
+  ],
+  [
+   25.163,
+   7.1,
+   "The reference design is Gitea on Windows Server 2025, one way to meet the requirement, not the only one."
+  ],
+  [
+   32.263,
+   7.7,
+   "The host is a Tier 0 system, and a branch protection the steward can quietly override is a convention, not a control."
+  ],
+  [
+   39.962,
+   7.862,
+   "Then it reads the estate: read-only first, at default rights, then narrow delegated additions and a security assessment."
+  ],
+  [
+   47.825,
+   14.15,
+   "The master plan's twelve Active Directory domains are joined by the DHCP, el-dap-binding and service-principal-name streams that Book 01 adds, and by an inventory of radius and NPS, which depend on the directory too."
+  ],
+  [
+   61.975,
+   8.0,
+   "The phase delivers twenty-three artifacts: fifteen committed before G0, and eight generated plans approved just after it."
+  ],
+  [
+   69.975,
+   8.375,
+   "G0 has three conditions: the platform host is operational, the assessment is committed, and no priority-one finding is open."
+  ],
+  [
+   78.35,
+   6.725,
+   "Every finding is classed Critical, High, Medium or Low, and each class has a gate that closes it."
+  ],
+  [
+   85.075,
+   6.475,
+   "A Critical finding is remediated before G0, or formally accepted by the authorizing official."
+  ],
+  [
+   91.55,
+   5.1,
+   "The steward clears G0 on that basis, with the executive sponsor as backup."
+  ]
+ ],
+ "16": [
+  [
+   0.05,
+   6.425,
+   "Phase 1, Foundation, opens by generating the eight plans from the committed assessment and approving them."
+  ],
+  [
+   6.475,
+   13.238,
+   "It then designs every surface from those plans, attributes, dynamic groups, Intune policy, Conditional Access, sync, D N S and P K I, and builds the shared foundation the pilot needs."
+  ],
+  [
+   19.712,
+   3.25,
+   "Group processing is planned in hours, not minutes."
+  ],
+  [
+   22.962,
+   16.613,
+   "The steward clears G1 when the plans and designs are approved, the baseline Conditional Access policies are enforced after at least a week in report-only, the emergency access accounts are vaulted and tested, the HR feed is live, and every High finding is remediated."
+  ],
+  [
+   39.575,
+   2.775,
+   "Phase 2 proves the whole pattern on real people."
+  ],
+  [
+   42.35,
+   10.738,
+   "Book 01 sets the pilot's scope as one division, typically IT, which tolerates disruption best, and the master plan's sizes are a floor for what it must exercise."
+  ],
+  [
+   53.087,
+   4.925,
+   "It's measured against eight criteria, from sign-in success to help desk volume."
+  ],
+  [
+   58.013,
+   8.125,
+   "The values are illustrative: set them in the decision log before the pilot opens, and evaluate them from the systems, not from opinion."
+  ],
+  [
+   66.138,
+   3.4,
+   "Every surface has a rollback trigger and a procedure."
+  ],
+  [
+   69.537,
+   11.1,
+   "G2 is signed jointly by the steward and the executive sponsor: zero drift for the agreed hold period, every criterion met, and no hybrid-joined PC without a cut date."
+  ]
+ ],
+ "17": [
+  [
+   0.05,
+   5.875,
+   "Phase 3, general rollout, repeats the proven pattern until every division has moved."
+  ],
+  [
+   5.925,
+   7.025,
+   "A wave is a set of divisions chosen by attribute value, usually by region, with the lowest-risk region first."
+  ],
+  [
+   12.95,
+   7.588,
+   "Group Policy links stay in place during a wave, and come off a migrated O U only after seven days of clean compliance."
+  ],
+  [
+   20.538,
+   5.987,
+   "The sponsor and steering committee clear G3 when every division has passed its own exit gate."
+  ],
+  [
+   26.525,
+   4.125,
+   "Then the work changes character: these phases take old things away."
+  ],
+  [
+   30.65,
+   13.537,
+   "Phase 4 retires A D FS, user and device certificate issuance from A D CS, D N S forwarders, Group Policy links, non-essential trusts and legacy servers, each through its own plan."
+  ],
+  [
+   44.188,
+   3.788,
+   "A component is retired only while its rollback still works."
+  ],
+  [
+   47.975,
+   10.075,
+   "Some things stay until the domain itself retires: its own D N S zones, the domain controller and LDAPS certificates, and the default domain account policies."
+  ],
+  [
+   58.05,
+   1.925,
+   "The steward clears G4."
+  ],
+  [
+   59.975,
+   9.363,
+   "Phase 5 retires A D DS itself, which the master plan never reached, or reduces it to a documented Kerberos island with an end date."
+  ],
+  [
+   69.338,
+   1.988,
+   "Two steps are easy to forget."
+  ],
+  [
+   71.325,
+   1.837,
+   "Records come before hardware."
+  ],
+  [
+   73.162,
+   7.162,
+   "And domain controllers store the password hashes of every account, so retired hosts and their storage are sanitized."
+  ],
+  [
+   80.325,
+   8.137,
+   "The sponsor and C I O clear G5, and they decide when each component retires, after the records officer is consulted."
+  ]
+ ],
+ "18": [
+  [
+   0.05,
+   3.337,
+   "Phase 6, steady state, has no exit gate."
+  ],
+  [
+   3.388,
+   11.988,
+   "The modernized estate runs under continuous governance: reassessment weekly, drift detection daily, a monthly compliance report, quarterly access reviews and an annual architecture review."
+  ],
+  [
+   15.375,
+   7.425,
+   "The finish line is zero drift findings, zero actions from the nightly plan run, and signed evidence flowing to the sim."
+  ],
+  [
+   22.8,
+   3.837,
+   "Every finding gets a severity, and every severity a clock."
+  ],
+  [
+   26.637,
+   6.625,
+   "The master plan's defaults run from a Critical finding fixed within four hours to a Low one within thirty days."
+  ],
+  [
+   33.263,
+   9.213,
+   "The agency sets its own values; what the program insists on is that there are some, written into its continuous monitoring strategy and measured."
+  ],
+  [
+   42.475,
+   2.0,
+   "Success is measured twice."
+  ],
+  [
+   44.475,
+   17.512,
+   "Delivery measures turn green gate by gate: the assessment accepted at G0, the target model agreed at G1, the first wave run with full provenance and evidence at G2, drift detection operating by G2 and G3, and every residual risk owned by G5."
+  ],
+  [
+   61.987,
+   4.312,
+   "Outcome measures are what operations keeps green after the project ends."
+  ],
+  [
+   66.3,
+   6.95,
+   "A program can meet every delivery measure and still fail if the outcome measures drift after the project team leaves."
+  ],
+  [
+   73.25,
+   2.513,
+   "That's why the handover is part of the scorecard."
+  ],
+  [
+   75.763,
+   9.137,
+   "The steward records it before the team leaves: who owns the repository and its protections, each drift class, each severity and each review."
+  ]
+ ],
+ "19": [
+  [
+   0.05,
+   3.1,
+   "The risk register starts with five program risks."
+  ],
+  [
+   3.15,
+   8.062,
+   "Hidden dependencies are missed in discovery: the answer is a structured assessment and a pilot designed to surface unknowns early."
+  ],
+  [
+   11.213,
+   6.287,
+   "Competing sources of truth persist: one authoritative origin is designated per object class."
+  ],
+  [
+   17.5,
+   7.8,
+   "The organization resists making authority explicit: the answer is early alignment, and decision rights with one decider per row."
+  ],
+  [
+   25.3,
+   7.662,
+   "Tooling leads the design: the target model comes first, because tools bought first automate the old ambiguity faster."
+  ],
+  [
+   32.962,
+   8.613,
+   "And physics or data residency limits centralization, so truth is centralized logically, not necessarily in one physical store."
+  ],
+  [
+   41.575,
+   2.85,
+   "Beneath them sit twenty-five delivery risks."
+  ],
+  [
+   44.425,
+   2.188,
+   "A few deserve executive attention."
+  ],
+  [
+   46.612,
+   5.475,
+   "Critical certificate-services misconfigurations can force emergency P K I work."
+  ],
+  [
+   52.087,
+   9.762,
+   "Legacy applications depend on N T L M, which Conditional Access can't evaluate, so each dependency becomes a finding with an owner and a dated exception."
+  ],
+  [
+   61.85,
+   6.112,
+   "Strong certificate mapping is no longer a future risk: domain controllers already enforce it."
+  ],
+  [
+   67.963,
+   6.65,
+   "And at the end, access records can be lost at decommission, and governance can decay once the team leaves."
+  ],
+  [
+   74.612,
+   2.55,
+   "The register doesn't satisfy a control."
+  ],
+  [
+   77.162,
+   7.075,
+   "It tells the agency when its system security plan and its risk assessment have to be updated, which is at every gate."
+  ],
+  [
+   84.237,
+   10.675,
+   "The project manager keeps the register, the authorizing official accepts residual risk, and security risk left open past a gate becomes a plan of action and milestones item."
+  ]
+ ],
+ "20": [
+  [
+   0.05,
+   2.7,
+   "So, the decisions, with their owners."
+  ],
+  [
+   2.75,
+   8.375,
+   "The executive sponsor charters the program as governance reconstruction, signs the charter, and puts names in it as Phase 0's entry work."
+  ],
+  [
+   11.125,
+   11.75,
+   "The sponsor and C I O fund one sequenced program, with the A D DS retirement phase and the people beyond the five-and-a-half-person core in the budget, approved before design begins."
+  ],
+  [
+   22.875,
+   7.6,
+   "And they build the steward and steering committee from the zero trust lead and the eye-cam governance body the agency already has."
+  ],
+  [
+   30.475,
+   9.7,
+   "The see-so's office confirms the M-26-14 dates, starting with the Agency Logging Plan, due November 18 by the program's count."
+  ],
+  [
+   40.175,
+   8.7,
+   "The authorizing official decides whether anything runs past end of support, beginning with Windows Server 2016 on January 12."
+  ],
+  [
+   48.875,
+   11.325,
+   "The steward sets the evidence and provenance expectations before the first change, and clears G0 only when every Critical finding is closed or accepted by the authorizing official."
+  ],
+  [
+   60.2,
+   5.938,
+   "The steward and sponsor record the pilot's thresholds before it opens, and sign G2 on the data."
+  ],
+  [
+   66.138,
+   7.325,
+   "The sponsor and C I O decide when each Active Directory component retires, after the records officer is consulted."
+  ],
+  [
+   73.463,
+   4.662,
+   "And the steward records the handover to operations before the project team leaves."
+  ],
+  [
+   78.125,
+   1.65,
+   "None of these is a purchase."
+  ],
+  [
+   79.775,
+   14.438,
+   "The case for modernizing now is that the estate's governance was never written down, the dates that bind it now belong to others, and the only way to meet them without losing that governance is to recover it deliberately, once, in one program."
+  ],
+  [
+   94.213,
+   0.762,
+   "Thank you."
+  ]
+ ]
+}

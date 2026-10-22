@@ -60,3 +60,10 @@ Checked October 20, 2026. Sources: the existing series page (Next Generation DDI
 ## Diagram change
 
 `docs/images/diagrams/b08-ddi/src/ch03-federal-drivers.flow.yaml`: M-21-31 card now reads "Passive DNS logging at tier EL1, encrypted queries included" (was "Required from event-logging tier EL-1"); new violet card "CISA TIC 3.0 — DNS enforcement points: Sinkholing, DNSSEC, domain monitoring, Protective DNS" with an edge to the NIST card. The left rank now holds six cards stacked vertically; check width and height after rendering. Needs re-rendering.
+
+## Cross-chapter consistency pass (October 21, 2026)
+
+| # | Claim (short) | Where | Verdict | Source |
+|---|---|---|---|---|
+| CP-1 | M-26-14 footnote cites Appendix B items 1, 3 and 5 | c03-m2614 | verified (no change) | M-26-14 PDF, whitehouse.gov (opened Oct 21, 2026), Appendix B: item 1 retention 6 months searchable / 1 year retrievable; item 2 storage readily available to the top-level SOC; item 3 timestamp and traceable time source; item 5 activities incl. 5a identity and 5b network address. Chapter 03 uses 1, 3 and 5 only; Chapter 11 also uses item 2, so its "1, 2, 3 and 5" is also correct |
+| CP-2 | July 2026 Infoblox release: restated as the vendor describing what the offering includes, not as new scope; footnote explains why its 2026 date differs from the 2022 Marketplace certification date | FedRAMP example paragraph; c03-ibxpr | corrected (release says "includes," not "now includes" or "added") | Infoblox press release, July 22, 2026 (opened Oct 21, 2026): headline announces Moderate certification; lists Universal DDI Management, NIOS-X Servers, Universal Asset Insights; gives no certification date, no prior authorization, no Rev5/20x mention. FedRAMP `products.json` (fetched Oct 21, 2026, last_change 2026-10-22T00:15Z), FR2017257053: event log 2020-09-24 Agency In Process, 2022-07-01 FedRAMP In Process, 2022-12-15 FedRAMP Certified; no later status change; cert_class Class C, Moderate |

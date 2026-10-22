@@ -1,0 +1,84 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.086
+This is the technical deep
+dive for Book 08 of the
+
+2
+00:00:04.086 --> 00:00:08.525
+Federal Modernization
+Workbook: DNS, DHCP and IPAM.
+
+3
+00:00:08.525 --> 00:00:13.089
+It's for the network and DDI engineers
+who will design the resolution paths,
+
+4
+00:00:13.089 --> 00:00:16.475
+move authority off Active
+Directory, and run the result.
+
+5
+00:00:16.475 --> 00:00:19.625
+It comes in two parts of about
+twenty-five minutes each,
+
+6
+00:00:19.625 --> 00:00:22.075
+and four modules you
+can watch on their own.
+
+7
+00:00:22.075 --> 00:00:24.187
+Part 1 covers the hard surfaces:
+
+8
+00:00:24.187 --> 00:00:28.329
+split-brain DNS and what Active
+Directory DNS really carries,
+
+9
+00:00:28.329 --> 00:00:32.146
+then the places queries escape
+agency policy, at the edge,
+
+10
+00:00:32.146 --> 00:00:34.746
+at the endpoint and on the access layer,
+
+11
+00:00:34.746 --> 00:00:39.700
+and the DNS identity and DNSSEC work
+underneath certificates and tokens.
+
+12
+00:00:39.700 --> 00:00:44.575
+Part 2 covers building and running the
+control plane: cloud private endpoints,
+
+13
+00:00:44.575 --> 00:00:49.225
+the Azure DNS Private Resolver, IPAM
+as the authority for address blocks,
+
+14
+00:00:49.225 --> 00:00:53.575
+the reference architecture and its
+five decisions, then the six-phase
+
+15
+00:00:53.575 --> 00:00:58.225
+migration and the telemetry, drift
+checks and evidence that keep it honest.
+
+16
+00:00:58.225 --> 00:01:03.525
+Vendors and products appear only as the
+book's examples, never as endorsements.
+
+17
+00:01:03.525 --> 00:01:07.030
+The commands stay in the
+chapters, marked illustrative.

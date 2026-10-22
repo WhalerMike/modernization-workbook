@@ -1,0 +1,130 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:05.637
+Staged rollout lets synchronized users
+in a federated domain sign in at Entra
+
+2
+00:00:05.637 --> 00:00:11.138
+ID with CBA instead of being sent to AD
+FS, while everyone else stays federated.
+
+3
+00:00:11.138 --> 00:00:14.867
+Microsoft is explicit that it's
+a temporary testing mechanism,
+
+4
+00:00:14.867 --> 00:00:19.674
+not a permanent mixed state, and its limits
+are tighter than the old guide implied.
+
+5
+00:00:19.674 --> 00:00:24.157
+It applies only to users synced by
+Entra Connect, and only to browser and
+
+6
+00:00:24.157 --> 00:00:29.475
+modern authentication; legacy authentication
+still goes to the federation server.
+
+7
+00:00:29.475 --> 00:00:33.437
+Up to ten groups per feature,
+and no nested or dynamic groups.
+
+8
+00:00:33.437 --> 00:00:37.124
+A group added for the first time
+is limited to two hundred users,
+
+9
+00:00:37.124 --> 00:00:40.526
+and later membership changes
+take up to twenty-four hours.
+
+10
+00:00:40.526 --> 00:00:45.475
+Password sign-in for CBA pilot users
+works only with password hash sync.
+
+11
+00:00:45.475 --> 00:00:49.266
+And issue a Temporary Access
+Pass right after adding a user,
+
+12
+00:00:49.266 --> 00:00:53.212
+so the first sign-in doesn't fall
+back to the federation server.
+
+13
+00:00:53.212 --> 00:00:56.895
+The program pilots with cloud
+groups of ten to twenty users,
+
+14
+00:00:56.895 --> 00:01:01.631
+confirms in the sign-in log which binding
+matched and what level was granted,
+
+15
+00:01:01.631 --> 00:01:04.412
+and grows in steps until
+the domain converts.
+
+16
+00:01:04.412 --> 00:01:09.456
+Moving off AD FS certificate authentication
+doesn't change the credential or
+
+17
+00:01:09.456 --> 00:01:14.500
+the PKI; only the place where authentication
+and revocation are checked moves.
+
+18
+00:01:14.500 --> 00:01:17.873
+Get trust parity, with
+internet-reachable CRLs.
+
+19
+00:01:17.873 --> 00:01:22.284
+Get binding parity, syncing
+account mappings to certificate
+
+20
+00:01:22.284 --> 00:01:26.262
+user IDs where AD FS used them,
+and protect that sync path.
+
+21
+00:01:26.262 --> 00:01:30.094
+Keep staged rollout short,
+because staged users stay exposed
+
+22
+00:01:30.094 --> 00:01:33.925
+to a federation server compromise
+until the domain converts.
+
+23
+00:01:33.925 --> 00:01:37.450
+Record the federation
+configuration and back up the farm.
+
+24
+00:01:37.450 --> 00:01:40.912
+And the old guide called
+conversion one-way; it isn't.
+
+25
+00:01:40.912 --> 00:01:43.544
+Microsoft's rollback is to re-federate,
+
+26
+00:01:43.544 --> 00:01:47.230
+which works only while AD FS
+can still be brought back.

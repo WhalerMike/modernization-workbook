@@ -1,0 +1,125 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.965
+A single policy plane only works if
+divisions can still operate their
+
+2
+00:00:03.965 --> 00:00:07.813
+networks through it, because a division
+that can't will work around it.
+
+3
+00:00:07.813 --> 00:00:11.211
+Corporate administrators
+see the whole estate;
+
+4
+00:00:11.211 --> 00:00:15.884
+each division gets a scope over its
+zones, IP spaces and DHCP scopes,
+
+5
+00:00:15.884 --> 00:00:20.812
+with manager, operator and auditor
+roles and no visibility outside it.
+
+6
+00:00:20.812 --> 00:00:24.919
+Infoblox access views are the book's
+illustration, and the book notes
+
+7
+00:00:24.919 --> 00:00:29.387
+they currently scope only IPAM roles,
+so confirm what a release supports.
+
+8
+00:00:29.387 --> 00:00:33.262
+Whatever stays on Windows or
+Azure needs the same discipline.
+
+9
+00:00:33.262 --> 00:00:39.463
+DnsAdmins grants full rights on DNS data,
+and Microsoft lists it as privileged.
+
+10
+00:00:39.463 --> 00:00:43.478
+Azure's DNS Zone Contributor
+covers public zones only;
+
+11
+00:00:43.478 --> 00:00:47.762
+Private DNS Zone Contributor
+can be scoped to a record set.
+
+12
+00:00:47.762 --> 00:00:51.007
+A role without delete
+doesn't protect a record set,
+
+13
+00:00:51.007 --> 00:00:55.438
+because modify can empty it, so add
+resource locks on critical zones.
+
+14
+00:00:55.438 --> 00:01:01.644
+Every object should sit behind one documented
+API, so infrastructure as code, ITSM,
+
+15
+00:01:01.644 --> 00:01:07.211
+ACME DNS-01 automation and pipelines
+share the same roles and audit trail,
+
+16
+00:01:07.211 --> 00:01:11.500
+with ACME accounts limited to
+TXT records in their zones.
+
+17
+00:01:11.500 --> 00:01:12.463
+Telemetry.
+
+18
+00:01:12.463 --> 00:01:22.326
+M-26-14 rescinded M-21-31, whose tables
+named DNS and DHCP logs, and names neither.
+
+19
+00:01:22.326 --> 00:01:26.697
+Its baseline needs source and
+destination network address information,
+
+20
+00:01:26.697 --> 00:01:29.850
+searchable for six months
+and retrievable for a year.
+
+21
+00:01:29.850 --> 00:01:34.004
+The book's reading is that query
+logs, which host asked for which name,
+
+22
+00:01:34.004 --> 00:01:37.862
+and lease history, which device
+held which address, supply that.
+
+23
+00:01:37.862 --> 00:01:42.548
+Sources include the DDI resolvers,
+the Windows DNS analytic log,
+
+24
+00:01:42.548 --> 00:01:47.145
+about five percent cost at a
+hundred thousand queries a second,
+
+25
+00:01:47.145 --> 00:01:52.510
+Azure resolver policy logs, the DHCP
+audit log, and the Azure activity log.

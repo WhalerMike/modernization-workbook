@@ -1,0 +1,132 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.338
+The address side has the same
+structure as the name side.
+
+2
+00:00:03.338 --> 00:00:05.760
+AWS VPCs, Azure virtual networks,
+
+3
+00:00:05.760 --> 00:00:10.965
+Google Cloud VPC networks and NSX
+segments each allocate on their own,
+
+4
+00:00:10.965 --> 00:00:15.363
+so a CIDR created in a console
+can overlap on-premises space,
+
+5
+00:00:15.363 --> 00:00:19.670
+another cloud or another
+division, and the enterprise DDI
+
+6
+00:00:19.670 --> 00:00:24.337
+system doesn't know until discovery
+runs or a conflict appears.
+
+7
+00:00:24.337 --> 00:00:26.262
+Integration depth differs.
+
+8
+00:00:26.262 --> 00:00:31.468
+Amazon VPC IPAM can hand a private
+scope's authority to an external IPAM;
+
+9
+00:00:31.468 --> 00:00:34.938
+since November 2025 the
+book's example is Infoblox,
+
+10
+00:00:34.938 --> 00:00:38.987
+which chooses a block or accepts
+or rejects a requested one.
+
+11
+00:00:38.987 --> 00:00:43.009
+It needs the Advanced Tier, covers
+private scopes only, and isn't
+
+12
+00:00:43.009 --> 00:00:47.649
+available in GovCloud or China, so it
+doesn't help a GovCloud estate today.
+
+13
+00:00:47.649 --> 00:00:53.334
+Azure Virtual Network Manager offers
+hierarchical pools, a root and up to
+
+14
+00:00:53.334 --> 00:00:58.738
+seven layers, IPv4 and IPv6, with
+static CIDRs for ranges outside Azure.
+
+15
+00:00:58.738 --> 00:01:01.962
+Google Cloud's internal
+ranges can reserve blocks.
+
+16
+00:01:01.962 --> 00:01:04.998
+Neither hands authority
+to an external IPAM,
+
+17
+00:01:04.998 --> 00:01:09.124
+so mirror the enterprise reservations
+into them and reconcile.
+
+18
+00:01:09.124 --> 00:01:15.576
+VMware Cloud Foundation 9.1 added native
+Infoblox allocation and FQDN registration;
+
+19
+00:01:15.576 --> 00:01:21.300
+the source is a vendor blog without IPv6
+or limits, so confirm the scope first.
+
+20
+00:01:21.300 --> 00:01:26.752
+The rule: reserve blocks in the enterprise
+IPAM before any cloud or NSX network is
+
+21
+00:01:26.752 --> 00:01:28.886
+created, integrate where you can,
+
+22
+00:01:28.886 --> 00:01:32.837
+mirror and reconcile where you
+can't, and monitor sync health.
+
+23
+00:01:32.837 --> 00:01:37.590
+Federation plus active and passive
+discovery produce one hierarchy,
+
+24
+00:01:37.590 --> 00:01:43.326
+which catches overlap before two networks
+are peered and reports the CM-8 inventory.
+
+25
+00:01:43.326 --> 00:01:49.213
+The program also wants IPAM to track
+FQDNs, wildcards and bound certificates.
+
+26
+00:01:49.213 --> 00:01:54.676
+IPv6: M-21-07's milestones have passed.
+
+27
+00:01:54.676 --> 00:02:01.130
+Plan both protocols together; the Private
+Resolver can't use IPv6-enabled subnets.

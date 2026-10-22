@@ -52,3 +52,11 @@ Chapter 06, not repeated here.
 | pki-modernization.md §9 gate wording ("approved by PKI administrator and security team") | This chapter, matrix (template retirement, evidence rows) | Phase detail itself is Chapter 07 and Chapter 08 |
 | pki-modernization.md Appendix A "Owner" column (Licensing, PKI Architect, PKI Admin) | Informed the matrix and the renewal table | Checklist itself goes to Appendix A |
 | pki-modernization.md §11.1 "Restrict Cloud PKI administration to dedicated roles; PIM" | This chapter, Intune RBAC paragraph and role map (corrected: Intune has no built-in "PKI Administrator" role; uses a custom role with Cloud PKI permissions) | Rest of §11 is Chapter 03 / Chapter 06 |
+
+## Consistency fixes, 2026-10-21
+
+Cross-chapter consistency pass. Every changed external fact was re-checked on the primary source on 2026-10-21; program decisions are marked as such.
+
+| # | Change | Where | Verdict | Source |
+|---|---|---|---|---|
+| CF-1 | RADIUS servers: issuer retained AD CS through the CLM platform; renewal engine CyberArk Certificate Manager (was "Autoenrollment or CLM") | Renewal table | restated-as-design | Chapter 04 issuer decision |

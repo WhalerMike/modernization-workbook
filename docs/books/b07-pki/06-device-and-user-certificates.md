@@ -50,7 +50,7 @@ Cloud PKI hosts the CAs, a SCEP registration authority for each issuing CA, the 
 
 The constraints that shape design:
 
-- **Only Intune-enrolled devices.** Leaf certificates go to Intune MDM-enrolled devices whose platform supports the SCEP profile: Android, iOS/iPadOS, macOS and Windows.[^c06-cpki] Intune's supported platforms don't include Windows Server,[^c06-intune-platforms] so domain controllers, NPS servers, web servers and other servers can't get Cloud PKI certificates. [Book 05](../b05-devices/09-servers-under-azure-arc.md) explains how servers are managed instead; [Chapter 07](07-coexistence-and-migration.md) covers where their certificates come from.
+- **Only Intune-enrolled devices.** Leaf certificates go to Intune MDM-enrolled devices whose platform supports the SCEP profile: Android, iOS/iPadOS, macOS and Windows.[^c06-cpki] Intune's supported platforms don't include Windows Server,[^c06-intune-platforms] so domain controllers, NPS servers, web servers and other servers can't get Cloud PKI certificates. [Book 05](../b05-devices/09-servers-under-azure-arc.md) explains how servers are managed instead; [Chapter 04](04-the-target-pki.md) decides where their certificates come from and how they renew; [Chapter 07](07-coexistence-and-migration.md) covers them during coexistence.
 - **SCEP only.** Cloud PKI issues through SCEP; it isn't a PKCS issuer.[^c06-cpki]
 - **Three CAs per tenant**, counting root, issuing and BYOCA issuing CAs together.[^c06-cpki]
 - **Fixed CA properties.** A CA's extended key usages can't be edited after creation, Any Purpose isn't allowed, and a SCEP profile that asks for an EKU the issuing CA doesn't carry fails. Don't mix NDES SCEP URLs and Cloud PKI SCEP URLs in one profile.[^c06-byoca]

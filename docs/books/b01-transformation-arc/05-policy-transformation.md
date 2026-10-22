@@ -163,13 +163,13 @@ Every policy change passes four stages, and the pipeline rejects any change that
 
 ## Retiring legacy Group Policy Objects
 
-Once every user device is in Intune, every server is Arc-connected and every Conditional Access policy is attribute-scoped, legacy GPOs retire in three steps: unlink each migrated GPO from its OU; keep unlinked GPOs for a rollback window (for example, ninety days, illustrative); then delete them through a governed change once the modern surface shows zero drift.
+GPOs retire population by population, starting with the pilot ([Chapter 12](12-migration-roadmap.md)). Once a population's devices are in Intune, its servers are Arc-connected and its Conditional Access policies are attribute-scoped, the GPOs migrated for it retire in three steps: unlink each migrated GPO from its OU; keep unlinked GPOs for a rollback window (for example, ninety days, illustrative); then delete them through a governed change once the modern surface shows zero drift.
 
 The last GPO is typically the Default Domain Policy, because domain account policies (password and lockout) can be defined in only one GPO linked to the domain.[^c05-pwpolicy] Exceptions for specific users and groups live in fine-grained password policies, which are directory objects rather than GPOs and retire with the domain.[^c05-fgpp] Those policies still govern the remaining AD accounts, including Kerberos-application service accounts, so they retire only when compute migration is complete and no AD accounts remain in use ([Chapter 07](07-compute-transformation.md)). The Default Domain Controllers Policy goes with the last domain controller.
 
 ## Verification
 
-Policy migration passes when every Intune profile, compliance policy, Conditional Access policy and machine configuration assignment derives from a repository manifest that targets attribute-scoped dynamic groups or tagged Azure scopes, and the forest has no linked GPOs except those inside the rollback window.
+Policy migration passes when every Intune profile, compliance policy, Conditional Access policy and machine configuration assignment derives from a repository manifest that targets attribute-scoped dynamic groups or tagged Azure scopes, and the forest has no linked GPOs except those inside their rollback window, the two default domain policies, and the minimum set a remaining Kerberos island needs.
 
 ## Key takeaways
 

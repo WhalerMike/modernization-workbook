@@ -1,0 +1,140 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.262
+Three baselines close the module.
+
+2
+00:00:02.262 --> 00:00:05.021
+The AD CS that remains keeps running for
+
+3
+00:00:05.021 --> 00:00:08.363
+months or years for BRIDGE
+and RETAIN workloads.
+
+4
+00:00:08.363 --> 00:00:11.671
+Remove every template
+those workloads don't need
+
+5
+00:00:11.671 --> 00:00:14.576
+from each CA's issuance
+list; it's reversible.
+
+6
+00:00:14.576 --> 00:00:18.513
+Alert on requests for templates
+that should no longer be requested.
+
+7
+00:00:18.513 --> 00:00:23.912
+Keep CRL publication on schedule, and test
+it from representative client networks.
+
+8
+00:00:23.912 --> 00:00:26.375
+Back up the CA before every change.
+
+9
+00:00:26.375 --> 00:00:30.120
+Treat CA servers as Tier 0,
+the program's designation,
+
+10
+00:00:30.120 --> 00:00:34.475
+because the CA can mint domain
+authentication credentials.
+
+11
+00:00:34.475 --> 00:00:40.059
+And the program requires FIPS
+140-2 or 140-3 validated modules,
+
+12
+00:00:40.059 --> 00:00:46.737
+CA keys held non-exportable in an HSM,
+and dual control for root ceremonies.
+
+13
+00:00:46.737 --> 00:00:51.375
+Cloud PKI removes most of that
+attack surface but adds its own.
+
+14
+00:00:51.375 --> 00:00:55.869
+Scope administrators with custom
+Intune roles and scope tags;
+
+15
+00:00:55.869 --> 00:00:59.412
+there's no built-in Intune
+PKI Administrator role.
+
+16
+00:00:59.412 --> 00:01:01.363
+EKUs are fixed at creation.
+
+17
+00:01:01.363 --> 00:01:07.780
+On Windows, set the key storage provider
+to TPM, otherwise fail; a 4096-bit key
+
+18
+00:01:07.780 --> 00:01:14.612
+can only live in the software provider, so
+the program uses 2048-bit RSA in the TPM.
+
+19
+00:01:14.612 --> 00:01:16.824
+The program sets one-year validity.
+
+20
+00:01:16.824 --> 00:01:19.600
+And don't build production
+CAs during a trial.
+
+21
+00:01:19.600 --> 00:01:25.225
+Entra CBA is a relying party, so its
+hardening is about trust and binding.
+
+22
+00:01:25.225 --> 00:01:28.075
+Require high-affinity
+bindings in production.
+
+23
+00:01:28.075 --> 00:01:33.333
+Use a custom authentication strength
+that names issuers or policy OIDs,
+
+24
+00:01:33.333 --> 00:01:36.400
+up to five of each, for
+sensitive resources.
+
+25
+00:01:36.400 --> 00:01:41.462
+Require CRL validation; the program
+wants each trusted issuing CA to
+
+26
+00:01:41.462 --> 00:01:46.613
+publish a CRL at least every twenty-four
+hours, because Entra caches it.
+
+27
+00:01:46.613 --> 00:01:51.071
+And CA scoping, generally
+available since April 2026,
+
+28
+00:01:51.071 --> 00:01:55.024
+ties each CA to one group,
+with up to thirty rules.
+
+29
+00:01:55.024 --> 00:01:57.980
+A mistake can lock users out, so pilot it.

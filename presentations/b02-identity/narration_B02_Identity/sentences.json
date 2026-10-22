@@ -161,8 +161,8 @@
   ],
   [
    74.213,
-   9.912,
-   "Meanwhile the governance that the hierarchy carried, who could manage what and where policy applied, is left behind, because Entra ID has no O U tree to carry it."
+   12.025,
+   "Meanwhile the governance that the hierarchy carried, who could manage what and where policy applied, is left behind, because Entra ID has no organizational unit (O U) tree to carry it."
   ]
  ],
  "4": [
@@ -203,41 +203,41 @@
   ],
   [
    27.4,
-   3.625,
-   "Policy in A D is Group Policy linked to O Us."
+   3.938,
+   "Policy in A D is Group Policy linked to O U's."
   ],
   [
-   31.025,
+   31.337,
    5.075,
    "In the cloud it's Conditional Access and Intune, targeted by those attributes."
   ],
   [
-   36.1,
+   36.413,
    9.025,
    "The protocols change too: Kerberos, N T L M and el-dap give way to OpenID Connect, OAuth, sam-ul and skim."
   ],
   [
-   45.125,
+   45.438,
    7.75,
    "Standing Domain Admin membership gives way to least-privilege roles activated just in time through Privileged Identity Management."
   ],
   [
-   52.875,
+   53.188,
    4.463,
    "And management moves from the ActiveDirectory module to Microsoft Graph."
   ],
   [
-   57.337,
+   57.65,
    2.2,
    "The key idea is the bottom line."
   ],
   [
-   59.538,
+   59.85,
    4.237,
    "In Active Directory, governance is implied by where an object sits."
   ],
   [
-   63.775,
+   64.088,
    6.525,
    "In Entra ID it has to be stated explicitly, as data and rules, or it simply doesn't exist."
   ]
@@ -322,71 +322,71 @@
   ],
   [
    2.087,
-   4.362,
-   "In Active Directory, who can manage what was largely expressed by O Us."
+   4.475,
+   "In Active Directory, who can manage what was largely expressed by O U's."
   ],
   [
-   6.45,
-   5.225,
-   "Entra ID has no O Us, so delegation has to be rebuilt on purpose."
+   6.562,
+   5.338,
+   "Entra ID has no O U's, so delegation has to be rebuilt on purpose."
   ],
   [
-   11.675,
+   11.9,
    2.212,
    "The program uses three tiers."
   ],
   [
-   13.887,
+   14.113,
    8.65,
    "Tier zero is tenant-wide control: Global Administrator and similar roles, plus break-glass accounts, all activated just in time."
   ],
   [
-   22.538,
+   22.762,
    4.963,
    "Tier one is service administration, such as Exchange, Intune and security."
   ],
   [
-   27.5,
+   27.725,
    5.912,
    "Tier two is departmental administration, like the help desk, scoped to administrative units."
   ],
   [
-   33.413,
+   33.638,
    4.675,
    "The platform sets real limits, and the old design documents got several wrong."
   ],
   [
-   38.087,
+   38.312,
    2.413,
    "Administrative units can't be nested."
   ],
   [
-   40.5,
+   40.725,
    3.013,
    "Groups that hold roles can't have dynamic membership."
   ],
   [
-   43.513,
+   43.737,
    3.362,
    "Reader roles like Global Reader apply to the whole tenant."
   ],
   [
-   46.875,
+   47.1,
    5.362,
    "And restricted management is chosen when a unit is created; it can't be added later."
   ],
   [
-   52.237,
+   52.462,
    7.675,
    "It also takes those users and groups out of Entra ID Governance: no access reviews or lifecycle workflows for them."
   ],
   [
-   59.913,
+   60.138,
    4.987,
    "So the program's decision is that administrative units are unrestricted by default."
   ],
   [
-   64.9,
+   65.125,
    7.05,
    "Restricted management is a per-unit choice for sensitive accounts, recorded in the registry before the unit exists."
   ]

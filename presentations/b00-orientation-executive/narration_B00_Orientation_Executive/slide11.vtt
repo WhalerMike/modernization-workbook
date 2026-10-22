@@ -1,0 +1,123 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.681
+Seven complementary projects turn
+the program's most common gaps
+
+2
+00:00:04.681 --> 00:00:08.975
+into executable work, each with
+its own sponsor, lead and pilot.
+
+3
+00:00:08.975 --> 00:00:13.436
+In their suggested starting order:
+Identity Lifecycle and Provisioning;
+
+4
+00:00:13.436 --> 00:00:17.752
+Endpoint and Device Modernization;
+Network and Access Modernization;
+
+5
+00:00:17.752 --> 00:00:20.677
+Continuous Monitoring
+and the Evidence Fabric;
+
+6
+00:00:20.677 --> 00:00:25.139
+Privileged Access and Administrative
+Identity; Data Platform Identity
+
+7
+00:00:25.139 --> 00:00:29.088
+Transformation; and Supply Chain
+and Software Bill of Materials.
+
+8
+00:00:29.088 --> 00:00:31.501
+The order says which project has to be far
+
+9
+00:00:31.501 --> 00:00:34.199
+enough along before the
+next can show results.
+
+10
+00:00:34.199 --> 00:00:39.419
+Identity is first, because everything
+else consumes its attributes and owners;
+
+11
+00:00:39.419 --> 00:00:44.400
+a device project started on unreliable
+attributes produces policy bypass.
+
+12
+00:00:44.400 --> 00:00:47.643
+Monitoring comes fourth,
+because an evidence fabric
+
+13
+00:00:47.643 --> 00:00:50.887
+needs at least two sources
+already emitting records.
+
+14
+00:00:50.887 --> 00:00:54.950
+Privileged access is chartered fifth,
+but it isn't fifth in practice:
+
+15
+00:00:54.950 --> 00:00:59.881
+the Foundation gate already needs emergency
+access accounts vaulted and tested,
+
+16
+00:00:59.881 --> 00:01:04.088
+and Tier 0 administrators registered
+for phishing-resistant sign-in.
+
+17
+00:01:04.088 --> 00:01:07.938
+Every charter asks for a working
+pilot, not a finished estate.
+
+18
+00:01:07.938 --> 00:01:10.388
+Two rules keep the portfolio coherent.
+
+19
+00:01:10.388 --> 00:01:13.157
+No project designates
+a second authoritative
+
+20
+00:01:13.157 --> 00:01:15.713
+source for something another project owns.
+
+21
+00:01:15.713 --> 00:01:20.726
+And every project emits evidence in the
+shape the monitoring project defines.
+
+22
+00:01:20.726 --> 00:01:23.951
+The projects don't form a
+second governance structure,
+
+23
+00:01:23.951 --> 00:01:26.675
+and no project clears a
+program gate on its own.
+
+24
+00:01:26.675 --> 00:01:29.821
+Filling in their names is
+each project's first act,
+
+25
+00:01:29.821 --> 00:01:32.810
+and every project lead
+reports to the steward.

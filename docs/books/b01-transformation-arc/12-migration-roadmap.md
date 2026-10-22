@@ -108,7 +108,7 @@ This is the longest phase. Illustratively, budget two to three weeks per divisio
 
 **Gate G4, Legacy Quiet:**
 
-- No active GPOs beyond the minimum set a Kerberos island needs, and no AD security groups in active use.
+- No active GPOs beyond the Default Domain Policy, the Default Domain Controllers Policy and the minimum set a Kerberos island needs ([Chapter 05](05-policy-transformation.md)), and no AD security groups in active use.
 - Every DNS zone moved or retired except the AD domain's zones, including `_msdcs`. Don't make "zero AD-integrated DNS zones" a G4 criterion: while any domain controller runs, its domain's zones must stay on a DNS service that accepts secure dynamic registration from domain controllers; they move last ([Book 08, Chapter 10](../b08-ddi/10-migration-sequence.md)).
 - Certificate issuance for users and devices moved to a CA that doesn't depend on AD DS, and AD CS no longer used for smart-card logon. Domain controller and LDAPS certificates stay on AD CS until Active Directory itself retires ([Book 07, Chapter 07](../b07-pki/07-coexistence-and-migration.md)).
 - Every service principal name migrated, retired or islanded.

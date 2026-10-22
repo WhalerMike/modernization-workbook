@@ -1,0 +1,103 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.075
+Who does the work?
+
+2
+00:00:01.075 --> 00:00:06.605
+The master plan estimated the program
+office and workstreams at about five and a
+
+3
+00:00:06.605 --> 00:00:11.970
+half full-time equivalents, for an
+illustrative 52-week program: half a steward;
+
+4
+00:00:11.970 --> 00:00:16.427
+a full-time infrastructure lead,
+identity lead and endpoint lead;
+
+5
+00:00:16.427 --> 00:00:20.637
+and half-time DNS, PKI and security
+leads and a project manager.
+
+6
+00:00:20.637 --> 00:00:23.349
+It's a planning model,
+not a staffing standard.
+
+7
+00:00:23.349 --> 00:00:26.463
+What matters more is what
+the estimate leaves out:
+
+8
+00:00:26.463 --> 00:00:29.880
+application owners for every
+application that moves,
+
+9
+00:00:29.880 --> 00:00:34.056
+help desk capacity for every wave,
+HR and contractor-source owners,
+
+10
+00:00:34.056 --> 00:00:37.321
+records and privacy, and
+the CISO's and authorizing
+
+11
+00:00:37.321 --> 00:00:40.662
+official's time for requirements
+and risk decisions.
+
+12
+00:00:40.662 --> 00:00:44.725
+The program can't run without them,
+so budget for them explicitly.
+
+13
+00:00:44.725 --> 00:00:47.050
+And cross-train two people per workstream.
+
+14
+00:00:47.050 --> 00:00:48.956
+The rhythm: daily standups,
+
+15
+00:00:48.956 --> 00:00:53.462
+and a weekly report rating each
+workstream green, yellow or red.
+
+16
+00:00:53.462 --> 00:00:56.350
+The steering committee
+meets every two weeks,
+
+17
+00:00:56.350 --> 00:00:59.847
+the steward and sponsor review
+gate readiness monthly,
+
+18
+00:00:59.847 --> 00:01:04.787
+and each gate gets a ninety-minute review
+that ends in go, no-go or conditional go.
+
+19
+00:01:04.787 --> 00:01:08.774
+And two consecutive red weeks for
+any workstream go to the sponsor.
+
+20
+00:01:08.774 --> 00:01:14.104
+The decision for the sponsor and CIO: put
+those people in the Phase 0 business case,
+
+21
+00:01:14.104 --> 00:01:18.700
+alongside the licenses, and approve
+the budget before design begins.

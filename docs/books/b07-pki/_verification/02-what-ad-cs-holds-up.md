@@ -76,3 +76,16 @@ Applied from the verified review findings (critique claims re-checked against pr
 | # | Change | Where | Verdict | Source |
 |---|---|---|---|---|
 | RF-1 | CRL location "HTTP (or HTTPS; HTTP recommended)", matching Chapters 07 and 08; new footnote `[^c02-cba-crl]` | CRL distribution points row (line 42) | verified, with a source conflict noted in the footnote: the CRL page says "supports only HTTP or HTTPS. We recommend using HTTP instead of HTTPS"; the CA configuration page (`[^c02-cba-ca]`) and the CBA overview still say HTTP URLs only | <https://learn.microsoft.com/en-us/entra/identity/authentication/concept-certificate-based-authentication-certificate-revocation-list>; <https://learn.microsoft.com/en-us/entra/identity/authentication/how-to-configure-certificate-authorities> |
+
+## Consistency fixes, 2026-10-21
+
+Cross-chapter consistency pass. Every changed external fact was re-checked on the primary source on 2026-10-21; program decisions are marked as such.
+
+| # | Change | Where | Verdict | Source |
+|---|---|---|---|---|
+| CF-1 | Two-verdict convention stated (sign-in path or delivery vs issuer; RETAIN; was BRIDGE until Chapter 04 named the issuer), same wording in Chapter 02 and Appendix B | Use-case map intro | restated-as-design | Program classification (Chapter 02 definitions) |
+| CF-2 | Smart card logon: MIGRATE (sign-in path, to Entra CBA); BRIDGE (issuer, while smart card logon to AD remains), matching Appendix B | Use-case map, PIV and smart card row | restated-as-design | Program classification; NTAuth dependency already cited `[^c02-smartcard]` |
+| CF-3 | Internal web server TLS and SQL Server TLS: RETAIN; was BRIDGE until Chapter 04 named the issuer; delivery CyberArk Certificate Manager, matching Appendix B and Chapter 04 | Use-case map | restated-as-design | Chapter 04 issuer decision |
+| CF-4 | S/MIME encryption: MIGRATE (delivery); RETAIN (issuer), matching Appendix B and Chapter 04 | Use-case map | restated-as-design | Program classification; imported-PKCS facts already cited |
+| CF-5 | NPS/RADIUS delivery: requested and renewed through CyberArk Certificate Manager (Chapter 04 decision), not autoenrollment | Use-case map | restated-as-design | Chapter 04 issuer decision |
+| CF-6 | LDAPS template: the Kerberos Authentication copy (the DC certificate), which carries Server Authentication and the DNS name in the SAN and supersedes the Domain Controller template | Use-case map, LDAPS row | verified | <https://learn.microsoft.com/windows-server/identity/ad-ds/configure-ldap-signing-certificates> (LDAPS requirements); <https://learn.microsoft.com/windows/security/identity-protection/hello-for-business/deploy/on-premises-cert-trust#configure-the-enterprise-pki> (Kerberos Authentication copy: Server Authentication EKU, DNS name in SAN; supersedes Domain Controller and Domain Controller Authentication) |

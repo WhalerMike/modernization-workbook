@@ -34,7 +34,7 @@ The workbook grew as separate whitepapers, guides, series and case studies. The 
 | **B14** | **[Federal Compliance & Authorization](b14-compliance/index.md)** | **Why does every control need proof, not a promise?** | **Draft** | 12 + 2 app. | 325 | 2026-10-21 |
 | **B15** | **[Compliance Automation & Day-2 Operations](b15-day2-operations/index.md)** | **Why does modernization succeed or fail at the help desk?** | **Draft** | 12 + 1 app. | 245 | 2026-10-21 |
 | **B16** | **[People: Training & Education](b16-people/index.md)** | **Why do people, not tools, close the gap?** | **Draft** | 10 + 1 app. | 185 | 2026-10-21 |
-| **B17** | **[AI Identity Governance](b17-ai-identity/index.md)** | **Why do AI agents need identities and owners?** | **Draft** | 10 + 1 app. | 205 | — |
+| **B17** | **[AI Identity Governance](b17-ai-identity/index.md)** | **Why do AI agents need identities and owners?** | **Draft** | 10 + 1 app. | 205 | 2026-10-21 |
 :::
 
 **Chapters** counts each book's chapters and appendices. **Pages** is the estimated page count of its Word edition, worked out from its words, tables and diagrams and checked against Word's own count (within about 7%). **Last updated** is the date of the book's latest change. All three are recalculated on every site build.

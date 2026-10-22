@@ -1,0 +1,120 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.955
+Inside the phases, five
+workstreams carry the work:
+
+2
+00:00:03.955 --> 00:00:07.488
+identity, policy, services,
+compute and access.
+
+3
+00:00:07.488 --> 00:00:09.825
+They run together; finishing one before
+
+4
+00:00:09.825 --> 00:00:12.587
+starting the next roughly
+doubles the program.
+
+5
+00:00:12.587 --> 00:00:13.900
+They still have an order.
+
+6
+00:00:13.900 --> 00:00:16.832
+Identity comes first, the attribute model,
+
+7
+00:00:16.832 --> 00:00:21.606
+dynamic membership and the lifecycle
+origin, because policy, access,
+
+8
+00:00:21.606 --> 00:00:25.962
+devices and data all decide on the
+basis of who or what is asking.
+
+9
+00:00:25.962 --> 00:00:27.674
+Policy follows identity.
+
+10
+00:00:27.674 --> 00:00:32.525
+Services, naming and addressing,
+can run in parallel and may bridge.
+
+11
+00:00:32.525 --> 00:00:36.175
+Compute, the device and server
+work, comes mid to late.
+
+12
+00:00:36.175 --> 00:00:39.937
+Access, token-based and
+application-aware, comes later,
+
+13
+00:00:39.937 --> 00:00:43.113
+because it consumes both
+identity and policy.
+
+14
+00:00:43.113 --> 00:00:47.286
+The master plan organized the same
+work as five technology pillars,
+
+15
+00:00:47.286 --> 00:00:49.075
+and that view leaves two gaps.
+
+16
+00:00:49.075 --> 00:00:53.119
+Nobody owns the question of which
+policy surface owns a setting,
+
+17
+00:00:53.119 --> 00:00:55.637
+and the access plane has no pillar at all.
+
+18
+00:00:55.637 --> 00:00:59.898
+Book 01 closes them by giving
+policy a security-engineering
+
+19
+00:00:59.898 --> 00:01:03.476
+lead and access a joint
+identity and security lead.
+
+20
+00:01:03.476 --> 00:01:07.273
+The critical path runs through
+the platform, the assessment,
+
+21
+00:01:07.273 --> 00:01:12.287
+attribute and group design, the pilot,
+each rollout wave, and cutover validation.
+
+22
+00:01:12.287 --> 00:01:17.175
+Every week lost in assessment or
+attribute design moves every later gate.
+
+23
+00:01:17.175 --> 00:01:21.475
+And one dependency never
+relaxes: PKI waits for identity.
+
+24
+00:01:21.475 --> 00:01:26.621
+The decision, made while Phase 0's stakeholders
+and decision rights are confirmed:
+
+25
+00:01:26.621 --> 00:01:29.930
+name the five workstream
+leads, including those two.

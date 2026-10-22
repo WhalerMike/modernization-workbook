@@ -1,0 +1,131 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.043
+Domain controllers advertise
+themselves through DNS.
+
+2
+00:00:04.043 --> 00:00:09.425
+Netlogon on each domain controller
+registers a family of SRV and A records.
+
+3
+00:00:09.425 --> 00:00:13.851
+A client finds a domain controller
+by calling D S Get D C Name,
+
+4
+00:00:13.851 --> 00:00:18.095
+which queries DNS for SRV
+records, sends an LDAP UDP ping
+
+5
+00:00:18.095 --> 00:00:22.250
+to the candidates and caches
+the first one that answers.
+
+6
+00:00:22.250 --> 00:00:25.796
+These records are dynamic:
+Netlogon re-registers them,
+
+7
+00:00:25.796 --> 00:00:30.287
+and they change as domain controllers
+come and go and as sites change.
+
+8
+00:00:30.287 --> 00:00:32.263
+Here's what fails without each.
+
+9
+00:00:32.263 --> 00:00:36.901
+The LDAP record: domain join,
+authentication and Group Policy.
+
+10
+00:00:36.901 --> 00:00:39.813
+The Kerberos records: ticket acquisition,
+
+11
+00:00:39.813 --> 00:00:44.225
+falling back to NTLM where it's
+still allowed, otherwise failing.
+
+12
+00:00:44.225 --> 00:00:49.000
+The global catalog records: universal
+groups and forest-wide searches.
+
+13
+00:00:49.000 --> 00:00:51.374
+The site records: clients reach a distant
+
+14
+00:00:51.374 --> 00:00:54.237
+domain controller rather
+than failing outright.
+
+15
+00:00:54.237 --> 00:00:57.662
+The PDC record, and kpasswd
+for password changes.
+
+16
+00:00:57.662 --> 00:01:00.301
+Two sources make the inventory complete:
+
+17
+00:01:00.301 --> 00:01:03.948
+the Netlogon dot DNS file each
+domain controller writes,
+
+18
+00:01:03.948 --> 00:01:06.276
+listing what it intends to register,
+
+19
+00:01:06.276 --> 00:01:10.855
+which Microsoft points to for agencies
+running AD on non-Microsoft DNS,
+
+20
+00:01:10.855 --> 00:01:15.588
+and the underscore msdcs and underscore
+sites folders of the domain zone.
+
+21
+00:01:15.588 --> 00:01:20.847
+The program's assessment resolves each
+critical record from every DNS server and
+
+22
+00:01:20.847 --> 00:01:23.631
+every site, and Chapter
+10 makes thirty days
+
+23
+00:01:23.631 --> 00:01:26.725
+of clean resolution a
+gate for decommissioning.
+
+24
+00:01:26.725 --> 00:01:31.168
+Because they're registered dynamically,
+these records can only live on
+
+25
+00:01:31.168 --> 00:01:35.762
+a DNS service that accepts secure
+registration from domain controllers.
+
+26
+00:01:35.762 --> 00:01:41.298
+That's why they stay on AD DNS, or a DDI
+platform that accepts GSS-TSIG updates,
+
+27
+00:01:41.298 --> 00:01:47.160
+until the last domain controller goes,
+and why Azure Private DNS can't host them.

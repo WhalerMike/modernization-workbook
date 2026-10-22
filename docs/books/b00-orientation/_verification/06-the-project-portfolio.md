@@ -48,3 +48,11 @@ All sources opened on October 21, 2026. The M-26-05 PDF was downloaded from whit
 | All charters §9 governance (sponsor, lead, domain leads) | Ch06 §What the charters leave; Ch07 §The complementary projects | Domain-lead lists per project not tabulated |
 | All charters footers | Ch06 §Why the program has projects | — |
 | Project plans (`*-plan.md`) | — | Not in the assignment beyond the charters' first sections; linked from each charter |
+
+## Cross-chapter consistency pass
+
+Checked October 21, 2026. Book 00's chapters were reconciled with each other; each external fact touched was re-opened on its primary source.
+
+| # | Claim (short) | Where | Verdict | Source |
+|---|---|---|---|---|
+| X1 | "Short-lived tokens" replaced by token/managed-identity auth with event-driven revocation (CAE where the resource supports it); CAE tokens up to 28 hours; reduced lifetimes degrade UX without eliminating risk; CAE initially Exchange, Teams, SharePoint Online | P6 Data Platform Identity, principles | corrected; aligned with Ch04 "Token lifetimes, corrected" | Learn, "Continuous access evaluation," Overview and Token lifetime, searched Oct 21, 2026 |

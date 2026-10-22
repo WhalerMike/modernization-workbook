@@ -109,8 +109,8 @@
   ],
   [
    92.862,
-   13.537,
-   "Synchronize the forest as it stands, and stale accounts, undocumented trusts and synced privileged accounts arrive in the tenant, while the delegation and policy intent that the O U tree carried has nowhere to land."
+   15.0,
+   "Synchronize the forest as it stands, and stale accounts, undocumented trusts and synced privileged accounts arrive in the tenant, while the delegation and policy intent that the organizational unit (O U) tree carried has nowhere to land."
   ]
  ],
  "3": [
@@ -536,21 +536,21 @@
   ],
   [
    5.438,
-   16.512,
-   "Chapter 08 fills it with the privileged half of discovery: the configuration partition, ACLs on O Us, every G P O's settings, D N S server configuration, the P K I containers and CA settings, and the delegation flags on every account."
+   16.55,
+   "Chapter 08 fills it with the privileged half of discovery: the configuration partition, ACLs on O U's, every G P O's settings, D N S server configuration, the P K I containers and CA settings, and the delegation flags on every account."
   ],
   [
-   21.95,
+   21.988,
    5.95,
    "The program's position is that the assessment is an evidence-producing process, not a set of scripts."
   ],
   [
-   27.9,
+   27.938,
    12.4,
    "Every run collects a fixed set of artifacts into a fixed directory layout, writes a manifest with a SHA-256 hash of every file, and commits the run to the program's Git repository."
   ],
   [
-   40.3,
+   40.337,
    7.575,
    "Appendix B carries the complete module, restored and corrected; Appendix C carries the identity-side module."
   ]
@@ -578,66 +578,66 @@
   ],
   [
    35.788,
-   7.438,
-   "The O U collector needs read permission on the O Us' security descriptors, because some ACLs aren't readable by default."
+   7.55,
+   "The O U collector needs read permission on the O U's' security descriptors, because some ACLs aren't readable by default."
   ],
   [
-   43.225,
+   43.337,
    7.3,
    "Group Policy needs read on the GPOs and SYSVOL, plus the backup right through Group Policy Management delegation."
   ],
   [
-   50.525,
+   50.638,
    5.175,
    "D N S needs read on each D N S server, delegated on the server object."
   ],
   [
-   55.7,
+   55.812,
    5.188,
    "A D CS needs read on the Public Key Services containers and on each CA."
   ],
   [
-   60.888,
+   61.0,
    6.037,
    "And trusts: any user can list them, but verification needs domain administrator credentials."
   ],
   [
-   66.925,
+   67.037,
    2.95,
    "Two rights the source design asked for are refused."
   ],
   [
-   69.875,
+   69.987,
    11.35,
    "DnsAdmins: Microsoft treats it as privileged, because its members control the D N S Server service, and Defender for Identity flags non-privileged members as a risk."
   ],
   [
-   81.225,
+   81.338,
    4.375,
    "Grant read on the D N S server object to a dedicated group instead."
   ],
   [
-   85.6,
+   85.713,
    3.825,
    "And standing Domain Admin: no assessment run uses one."
   ],
   [
-   89.425,
+   89.537,
    7.188,
    "Trust verification is the only step that needs those rights, and it runs separately under just-in-time elevation."
   ],
   [
-   96.612,
+   96.725,
    10.637,
    "The host is a domain-joined Windows Server 2025 or Windows 11 machine with the Remote Server Administration Tools, at build 26100 or later."
   ],
   [
-   107.25,
+   107.362,
    7.525,
    "The account is a group managed service account, with delegated read and nothing more, so no password is ever stored."
   ],
   [
-   114.775,
+   114.888,
    13.137,
    "Two corrections from review: the A D CS administration module the source required isn't used by any function, and the PSPKI module is now optional, because its publisher no longer actively supports it."
   ]
@@ -750,11 +750,11 @@
   ],
   [
    116.287,
-   7.138,
-   "One correction: the source searched only O Us and the domain root, so site-linked GPOs looked unlinked."
+   7.3,
+   "One correction: the source searched only O U's and the domain root, so site-linked GPOs looked unlinked."
   ],
   [
-   123.425,
+   123.588,
    7.6,
    "And Intune's Group Policy analytics imports XML reports under four megabytes, so check sizes in the manifest."
   ]
@@ -1202,106 +1202,106 @@
   ],
   [
    7.425,
-   3.237,
-   "O Us do three jobs, and each goes somewhere different."
+   3.263,
+   "O U's do three jobs, and each goes somewhere different."
   ],
   [
-   10.662,
+   10.688,
    7.55,
    "Group Policy scoping becomes Conditional Access and Intune profiles, targeted by group membership, not container."
   ],
   [
-   18.212,
-   8.0,
-   "Administrative delegation becomes administrative units, which are free to create, though each AU-scoped administrator needs P1."
+   18.238,
+   10.0,
+   "Administrative delegation becomes administrative units, which are free to create, though each administrative unit (AU)-scoped administrator needs P1."
   ],
   [
-   26.212,
+   28.238,
    4.112,
    "Logical organization becomes dynamic groups and attributes."
   ],
   [
-   30.325,
+   32.35,
    9.55,
    "The forest maps to the tenant: one trust boundary, no domain trusts inside it, and verified domains are routing suffixes, not security boundaries."
   ],
   [
-   39.875,
+   41.9,
    3.925,
    "Trusts become B to B and cross-tenant access settings."
   ],
   [
-   43.8,
+   45.825,
    14.8,
    "AdminSDHolder has no equivalent; Privileged Identity Management, which makes assignments eligible and time-bound, and protected actions, which demand an authentication context before high-impact permissions are used, together serve its purpose."
   ],
   [
-   58.6,
+   60.625,
    3.95,
    "And Schema Admins has none: Microsoft manages the schema."
   ],
   [
-   62.55,
+   64.575,
    4.562,
    "This is the design principle: Entra ID inverts the governance model."
   ],
   [
-   67.112,
+   69.138,
    4.062,
    "Attributes decide memberships, and memberships decide policy."
   ],
   [
-   71.175,
+   73.2,
    3.025,
    "That's why attribute quality gates everything after it."
   ],
   [
-   74.2,
+   76.225,
    2.337,
    "Licensing gates the governance features."
   ],
   [
-   76.537,
+   78.562,
    2.163,
    "Conditional Access needs P1."
   ],
   [
-   78.7,
+   80.725,
    3.125,
    "Dynamic groups need P1 per unique member."
   ],
   [
-   81.825,
+   83.85,
    5.125,
    "pim, including pim for Groups, and risk-based Conditional Access need P2."
   ],
   [
-   86.95,
+   88.975,
    13.35,
    "As of October 2026, access reviews and entitlement management need Entra ID Governance for the member users involved, with only some capabilities left under P2, and Lifecycle Workflows need Governance."
   ],
   [
-   100.3,
+   102.325,
    5.75,
    "Conditional Access for workload identities is a separate Workload Identities Premium license."
   ],
   [
-   106.05,
+   108.075,
    5.1,
    "The chapters assume P2 for everyone and Governance for the governed populations."
   ],
   [
-   111.15,
+   113.175,
    6.0,
    "One date to act on: the preview member-of operator ends November 3, 2026."
   ],
   [
-   117.15,
+   119.175,
    6.625,
    "After that, dynamic groups, dynamic administrative units and auto-assignment policies that use it freeze."
   ],
   [
-   123.775,
+   125.8,
    1.5,
    "Replace those rules now."
   ]

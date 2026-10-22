@@ -1,0 +1,103 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.387
+Phase 6, steady state, has no exit gate.
+
+2
+00:00:03.387 --> 00:00:08.333
+The modernized estate runs under continuous
+governance: reassessment weekly,
+
+3
+00:00:08.333 --> 00:00:11.555
+drift detection daily, a
+monthly compliance report,
+
+4
+00:00:11.555 --> 00:00:15.376
+quarterly access reviews and
+an annual architecture review.
+
+5
+00:00:15.376 --> 00:00:17.850
+The finish line is zero drift findings,
+
+6
+00:00:17.850 --> 00:00:22.800
+zero actions from the nightly plan run,
+and signed evidence flowing to the SIEM.
+
+7
+00:00:22.800 --> 00:00:26.637
+Every finding gets a severity,
+and every severity a clock.
+
+8
+00:00:26.637 --> 00:00:29.950
+The master plan's defaults
+run from a Critical finding
+
+9
+00:00:29.950 --> 00:00:33.262
+fixed within four hours to a
+Low one within thirty days.
+
+10
+00:00:33.262 --> 00:00:38.373
+The agency sets its own values; what the
+program insists on is that there are some,
+
+11
+00:00:38.373 --> 00:00:42.476
+written into its continuous
+monitoring strategy and measured.
+
+12
+00:00:42.476 --> 00:00:44.475
+Success is measured twice.
+
+13
+00:00:44.475 --> 00:00:49.919
+Delivery measures turn green gate by
+gate: the assessment accepted at G0,
+
+14
+00:00:49.919 --> 00:00:56.089
+the target model agreed at G1, the first
+wave run with full provenance and evidence
+
+15
+00:00:56.089 --> 00:01:01.987
+at G2, drift detection operating by G2 and
+G3, and every residual risk owned by G5.
+
+16
+00:01:01.987 --> 00:01:06.299
+Outcome measures are what operations
+keeps green after the project ends.
+
+17
+00:01:06.299 --> 00:01:09.668
+A program can meet every
+delivery measure and still fail
+
+18
+00:01:09.668 --> 00:01:13.250
+if the outcome measures drift
+after the project team leaves.
+
+19
+00:01:13.250 --> 00:01:15.763
+That's why the handover
+is part of the scorecard.
+
+20
+00:01:15.763 --> 00:01:20.412
+The steward records it before the
+team leaves: who owns the repository
+
+21
+00:01:20.412 --> 00:01:24.960
+and its protections, each drift
+class, each severity and each review.

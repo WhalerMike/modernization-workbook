@@ -1,0 +1,125 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.250
+What has to be true?
+
+2
+00:00:01.250 --> 00:00:06.062
+The workbook reads federal Zero Trust
+guidance as requiring five things.
+
+3
+00:00:06.062 --> 00:00:14.924
+No single document publishes this list;
+it's the program's synthesis of SP 800-207,
+
+4
+00:00:14.924 --> 00:00:18.812
+M-22-09, CISA's maturity
+model and M-26-14.
+
+5
+00:00:18.812 --> 00:00:22.190
+One: a single authoritative
+source of identity,
+
+6
+00:00:22.190 --> 00:00:24.962
+one record per user, device and account.
+
+7
+00:00:24.962 --> 00:00:26.786
+Two: a governed directory,
+
+8
+00:00:26.786 --> 00:00:31.475
+rationalized before the move to a
+flat cloud directory, not after.
+
+9
+00:00:31.475 --> 00:00:35.400
+Three: continuous verification,
+not one-time sign-in.
+
+10
+00:00:35.400 --> 00:00:37.732
+Four: telemetry used for management,
+
+11
+00:00:37.732 --> 00:00:41.075
+feeding governance and not
+only incident response.
+
+12
+00:00:41.075 --> 00:00:44.010
+And five: governance
+that runs automatically,
+
+13
+00:00:44.010 --> 00:00:47.562
+because manual review can't
+keep up with a hybrid estate.
+
+14
+00:00:47.562 --> 00:00:51.100
+The third is where the old
+world and the new differ most.
+
+15
+00:00:51.100 --> 00:00:54.440
+In Active Directory a user
+signs in once and gets a
+
+16
+00:00:54.440 --> 00:00:58.025
+ticket that lasts ten hours,
+renewable for seven days.
+
+17
+00:00:58.025 --> 00:01:01.202
+Entra ID checks tokens
+against Conditional Access:
+
+18
+00:01:01.202 --> 00:01:03.713
+an access token lasts one hour by default,
+
+19
+00:01:03.713 --> 00:01:08.515
+or up to twenty-eight hours under
+continuous access evaluation, which revokes
+
+20
+00:01:08.515 --> 00:01:12.800
+it within about fifteen minutes of
+an event such as a disabled account.
+
+21
+00:01:12.800 --> 00:01:14.963
+Distance matters, but narrowly.
+
+22
+00:01:14.963 --> 00:01:18.702
+What it hurts is the operations
+that need a domain controller:
+
+23
+00:01:18.702 --> 00:01:23.613
+hybrid-joined devices need line of sight
+for sign-in, password changes and policy.
+
+24
+00:01:23.613 --> 00:01:27.246
+Light in fiber from Portland,
+Oregon to Washington takes about
+
+25
+00:01:27.246 --> 00:01:31.300
+forty-five milliseconds round trip,
+and bandwidth doesn't change that.
+
+26
+00:01:31.300 --> 00:01:34.340
+The durable answer is to
+remove the dependency.

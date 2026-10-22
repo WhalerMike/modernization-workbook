@@ -1,0 +1,137 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.325
+The migration runs as six waves.
+
+2
+00:00:02.325 --> 00:00:07.338
+Each wave's exit gate is the next one's
+entry gate, and each has its own rollback.
+
+3
+00:00:07.338 --> 00:00:11.931
+The durations are program planning
+figures for a single-forest estate,
+
+4
+00:00:11.931 --> 00:00:15.200
+not commitments; scale them
+to the wave 1 inventory.
+
+5
+00:00:15.200 --> 00:00:18.125
+Appendix A turns each
+wave into a checklist
+
+6
+00:00:18.125 --> 00:00:20.888
+with an owner and a verification per line.
+
+7
+00:00:20.888 --> 00:00:26.046
+Wave 1, Assess, weeks one to four:
+inventory every CA and template,
+
+8
+00:00:26.046 --> 00:00:30.511
+run the Chapter 03 checklist,
+classify every template,
+
+9
+00:00:30.511 --> 00:00:35.274
+list every relying party, and
+run the strong-mapping sweep.
+
+10
+00:00:35.274 --> 00:00:37.762
+It reads, so it needs no rollback.
+
+11
+00:00:37.762 --> 00:00:42.380
+Wave 2, Foundation: create the
+Cloud PKI CAs with licensed keys,
+
+12
+00:00:42.380 --> 00:00:46.997
+upload user-issuing CAs to the
+Entra trust store, deploy trust
+
+13
+00:00:46.997 --> 00:00:52.338
+profiles and the cloud chain to
+domain-joined relying parties, and test.
+
+14
+00:00:52.338 --> 00:00:57.011
+The gate is trust profiles on at
+least ninety-nine percent of managed
+
+15
+00:00:57.011 --> 00:01:01.275
+devices and every CRL reachable
+from inside, outside and Entra.
+
+16
+00:01:01.275 --> 00:01:07.251
+Wave 3, Pilot, fifty to a hundred
+devices: Wi-Fi then VPN, then CBA through
+
+17
+00:01:07.251 --> 00:01:13.437
+staged rollout, with AD CS autoenrollment
+left on so the rollback works.
+
+18
+00:01:13.437 --> 00:01:16.675
+The gate is ninety-five
+percent issuance success.
+
+19
+00:01:16.675 --> 00:01:20.139
+Wave 4, Scale, in rings;
+remove autoenrollment for
+
+20
+00:01:20.139 --> 00:01:23.863
+each ring once its cloud
+certificates are accepted.
+
+21
+00:01:23.863 --> 00:01:26.744
+Wave 5, Cutover: record
+federation settings,
+
+22
+00:01:26.744 --> 00:01:31.626
+convert domains starting with the
+smallest, and keep AD FS restorable for
+
+23
+00:01:31.626 --> 00:01:36.749
+thirty days, which is what makes the
+four-hour recovery objective achievable.
+
+24
+00:01:36.749 --> 00:01:38.587
+Wave 6, Decommission.
+
+25
+00:01:38.587 --> 00:01:43.031
+The rules across waves: rehearse
+each rollback in a test scope first,
+
+26
+00:01:43.031 --> 00:01:47.475
+and never let a rollback depend on
+a component the same wave retires.
+
+27
+00:01:47.475 --> 00:01:52.180
+Removing or editing a SCEP profile
+revokes its certificates on Windows
+
+28
+00:01:52.180 --> 00:01:56.710
+and Apple platforms, so treat profile
+changes as changes with impact.

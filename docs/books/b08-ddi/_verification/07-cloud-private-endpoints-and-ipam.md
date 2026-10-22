@@ -110,3 +110,9 @@ Checked 2026-10-20 against Microsoft Learn (Learn MCP search and fetch), AWS doc
 | Short twin `operational-guides/dns-modernization.md` — Key risks (private endpoint fallback) | Core behavior; recommended pattern | Phases and success criteria belong to Ch10/Ch12 |
 | Diagram `ch07-private-endpoint-forwarding` | Kept | Comment and AWS node name corrected (rows 2, 19) |
 | Diagram `ch07-sdn-ipam` | Kept | Azure node text updated (row 45) |
+
+## Cross-chapter consistency pass (October 21, 2026)
+
+| # | Claim (short) | Where | Verdict | Source |
+|---|---|---|---|---|
+| CP-1 | Autoregistered VM records are removed when the VM is deleted or stopped and deallocated (was "stopped or deleted") | Private zones: record kinds | corrected; new footnote c07-pdns-faq | Microsoft Learn, "Azure Private DNS FAQ," <https://learn.microsoft.com/azure/dns/dns-faq-private> (opened Oct 21, 2026): removed "when you stop a virtual machine and it is deallocated"; autoregistration overview <https://learn.microsoft.com/azure/dns/private-dns-autoregistration> (opened Oct 21, 2026) says "deleted or stopped"; design guide says "deallocate or delete." Now matches Chapter 11 |

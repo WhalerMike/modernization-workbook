@@ -90,3 +90,13 @@ the NIST control-closure table (stay in place; linked).
 | Compliance Amendment, SC-12/SC-13 (FIPS, HSM) | Evidence table, SC-12 row | SC-13 FIPS validation detail belongs with hardening (Chapter 03/04) |
 | Vol I Book 03, "Certificate Lifecycle Automation" (failure mode, arithmetic, automation stack, revocation in a short-lived world, telemetry as evidence) | Linked throughout; analytics restated as program design | Stays in place per brief |
 | Vol I Book 03, NIST control closure (IA-5(2), SC-12, SC-17) | Evidence table; linked | Closure Necessity argument stays in place |
+
+## Consistency fixes, 2026-10-21
+
+Cross-chapter consistency pass. Every changed external fact was re-checked on the primary source on 2026-10-21; program decisions are marked as such.
+
+| # | Change | Where | Verdict | Source |
+|---|---|---|---|---|
+| CF-1 | Renewal engines: AD CS autoenrollment now covers domain controller certificates (which serve LDAPS); NPS and RADIUS server certificates move to the CyberArk row, per Chapter 04 | Renewal engines table | restated-as-design | Chapter 04 issuer decision |
+| CF-2 | KDC event 41 caveat: IDs as stated hold from Server 2012 on; on 2008 R2 SP1 and 2008 SP2, 41 = no strong mapping and a SID mismatch is 49 | Revocation and strong mapping paragraph; troubleshooting row | verified | <https://support.microsoft.com/en-us/topic/kb5014754-certificate-based-authentication-changes-on-windows-domain-controllers-ad2c23b0-15d8-4340-a468-4d4f3b188f16> |
+| CF-3 | CBA CRL troubleshooting row lists AADSTS220501, 500173, 500179, 2205012 and 2205014 with causes; all five exist with these meanings (Appendix A's 500173 and 2205012 were correct too) | Troubleshooting reference | verified | <https://learn.microsoft.com/entra/identity/authentication/concept-certificate-based-authentication-certificate-revocation-list#crl-error-reference>; <https://learn.microsoft.com/troubleshoot/entra/entra-id/app-integration/error-code-aadsts220501-unable-to-download-certificate-revocation-list> |

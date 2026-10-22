@@ -1,0 +1,147 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:05.162
+Before the first server connects,
+settle roles, network, tags and images.
+
+2
+00:00:05.162 --> 00:00:07.399
+Use the narrowest built-in roles.
+
+3
+00:00:07.399 --> 00:00:12.690
+Azure Connected Machine Onboarding goes to
+the onboarding service principal only: it
+
+4
+00:00:12.690 --> 00:00:17.687
+can read and create Arc server resources,
+but not delete them or manage extensions.
+
+5
+00:00:17.687 --> 00:00:22.175
+Azure Connected Machine Resource Administrator
+is for the server operations team.
+
+6
+00:00:22.175 --> 00:00:26.948
+And Virtual Machine Administrator
+Login or User Login are for people
+
+7
+00:00:26.948 --> 00:00:31.475
+who sign in with Entra ID; Owner and
+Contributor don't confer sign-in.
+
+8
+00:00:31.475 --> 00:00:33.537
+Then remember what extensions can do.
+
+9
+00:00:33.537 --> 00:00:36.400
+They run arbitrary scripts
+with full privileges,
+
+10
+00:00:36.400 --> 00:00:40.867
+so Microsoft says to treat any Contributor
+on the Arc resource as an indirect
+
+11
+00:00:40.867 --> 00:00:45.124
+administrator of the server, and the
+Cloud Adoption Framework warns that
+
+12
+00:00:45.124 --> 00:00:48.125
+Contributor, Owner and
+the resource administrator
+
+13
+00:00:48.125 --> 00:00:50.638
+role can effectively delegate root access.
+
+14
+00:00:50.638 --> 00:00:53.549
+Scope those roles to the
+resource groups a team owns,
+
+15
+00:00:53.549 --> 00:00:56.663
+and hold them through
+Privileged Identity Management.
+
+16
+00:00:56.663 --> 00:01:03.051
+Network: the agent communicates outbound
+over TCP 443, with no inbound rule.
+
+17
+00:01:03.051 --> 00:01:08.148
+Allow the Azure Active Directory,
+Traffic Manager, Resource Manager, Arc
+
+18
+00:01:08.148 --> 00:01:11.376
+Infrastructure and
+Storage service tags and,
+
+19
+00:01:11.376 --> 00:01:14.350
+as of April 2026, Azure
+Front Door Frontend.
+
+20
+00:01:14.350 --> 00:01:19.052
+A proxy doesn't add security, because
+the traffic is already encrypted;
+
+21
+00:01:19.052 --> 00:01:22.375
+a private link scope keeps
+it off public networks.
+
+22
+00:01:22.375 --> 00:01:25.660
+Run azcmagent check from a
+representative server first,
+
+23
+00:01:25.660 --> 00:01:28.525
+adding the cloud parameter
+for Azure Government.
+
+24
+00:01:28.525 --> 00:01:32.978
+Tags: one taxonomy at connection
+time, which drives policy scope,
+
+25
+00:01:32.978 --> 00:01:36.675
+Update Manager's dynamic
+scoping and cost reporting.
+
+26
+00:01:36.675 --> 00:01:39.113
+They're plain text, so nothing sensitive.
+
+27
+00:01:39.113 --> 00:01:42.748
+A server with SQL Server
+installed connects its instances
+
+28
+00:01:42.748 --> 00:01:46.162
+to Arc automatically; opt out
+with a tag when you connect.
+
+29
+00:01:46.162 --> 00:01:49.487
+And images: install the
+agent in a golden image,
+
+30
+00:01:49.487 --> 00:01:54.260
+but never connect the image, or
+every clone shares one resource ID.

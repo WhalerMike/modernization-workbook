@@ -1,0 +1,140 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.425
+When the issuer is AD CS, the
+infrastructure rules are strict.
+
+2
+00:00:04.425 --> 00:00:09.300
+The CA must be an enterprise CA;
+a standalone CA isn't supported.
+
+3
+00:00:09.300 --> 00:00:13.485
+The NDES and connector server is
+domain-joined in the same forest,
+
+4
+00:00:13.485 --> 00:00:16.895
+and is neither a domain
+controller nor the issuing CA.
+
+5
+00:00:16.895 --> 00:00:19.995
+Publishing NDES to the
+internet needs a reverse
+
+6
+00:00:19.995 --> 00:00:22.862
+proxy with passthrough preauthentication.
+
+7
+00:00:22.862 --> 00:00:26.360
+The SCEP template supplies
+the subject in the request,
+
+8
+00:00:26.360 --> 00:00:30.246
+which is exactly the setting
+Chapter 03 treats as dangerous;
+
+9
+00:00:30.246 --> 00:00:33.121
+here the policy module
+enforces the subject,
+
+10
+00:00:33.121 --> 00:00:38.250
+so the template is safe only while Enroll
+is limited to the NDES service account.
+
+11
+00:00:38.250 --> 00:00:40.550
+Audit that ACL like any other.
+
+12
+00:00:40.550 --> 00:00:45.295
+And the connector's Issue and Manage
+Certificates right is a CA officer right,
+
+13
+00:00:45.295 --> 00:00:49.225
+so the connector server belongs
+in the CA's administrative tier.
+
+14
+00:00:49.225 --> 00:00:52.107
+NDES picks a template by
+the request's purpose,
+
+15
+00:00:52.107 --> 00:00:54.913
+so one server serves at
+most three templates.
+
+16
+00:00:54.913 --> 00:00:59.775
+It can't be clustered; for availability,
+run several identical servers.
+
+17
+00:00:59.775 --> 00:01:03.179
+Its own two registration-authority
+certificates expire
+
+18
+00:01:03.179 --> 00:01:06.087
+like any other and are a
+frequent cause of outages.
+
+19
+00:01:06.087 --> 00:01:07.600
+Keep the connector current.
+
+20
+00:01:07.600 --> 00:01:16.162
+The current release is
+6.2510.3.3007, from May 18, 2026.
+
+21
+00:01:16.162 --> 00:01:19.587
+Let it update itself and
+alert on Warning or Error.
+
+22
+00:01:19.587 --> 00:01:21.438
+Which profile for which use.
+
+23
+00:01:21.438 --> 00:01:28.713
+Wi-Fi, VPN, web application client certificates
+and user certificates for Entra CBA
+
+24
+00:01:28.713 --> 00:01:31.876
+are trusted plus SCEP, from Cloud PKI,
+
+25
+00:01:31.876 --> 00:01:36.305
+or from AD CS while a relying
+party trusts only AD CS.
+
+26
+00:01:36.305 --> 00:01:41.682
+S/MIME signing is PKCS; S/MIME
+encryption is imported PKCS from
+
+27
+00:01:41.682 --> 00:01:46.638
+a CA with key archival, because
+old mail needs the old keys.
+
+28
+00:01:46.638 --> 00:01:52.740
+And a user certificate for certificate
+logon to AD needs the SID added,
+
+29
+00:01:52.740 --> 00:01:55.010
+from AD CS or a CA in NTAuth.

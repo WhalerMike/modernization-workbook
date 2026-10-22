@@ -1,0 +1,143 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.388
+Username bindings map a certificate
+field to a user attribute.
+
+2
+00:00:04.388 --> 00:00:08.901
+By default the SAN principal name
+maps to the user principal name.
+
+3
+00:00:08.901 --> 00:00:13.174
+Microsoft classes subject key
+identifier, SHA-1 public key,
+
+4
+00:00:13.174 --> 00:00:16.489
+and issuer and serial
+number as high affinity,
+
+5
+00:00:16.489 --> 00:00:21.025
+and principal name, email, subject,
+and issuer and subject as low.
+
+6
+00:00:21.025 --> 00:00:25.966
+The old guide classed issuer plus subject
+as high; Microsoft classes it as low,
+
+7
+00:00:25.966 --> 00:00:30.213
+because a CA can issue several
+certificates with the same subject.
+
+8
+00:00:30.213 --> 00:00:32.387
+How Entra ID evaluates them.
+
+9
+00:00:32.387 --> 00:00:37.625
+In priority order, lowest number first,
+and only Graph shows the priority.
+
+10
+00:00:37.625 --> 00:00:41.200
+If the tenant or a custom
+rule requires high affinity,
+
+11
+00:00:41.200 --> 00:00:43.800
+every low-affinity binding is dropped.
+
+12
+00:00:43.800 --> 00:00:48.925
+So with several bindings, CBA is only
+as secure as the lowest-affinity one.
+
+13
+00:00:48.925 --> 00:00:51.850
+Configure one low-affinity
+binding at most.
+
+14
+00:00:51.850 --> 00:00:56.403
+The program's position: production
+tenants require high affinity,
+
+15
+00:00:56.403 --> 00:01:00.625
+using issuer and serial number
+or SKI in certificate user IDs.
+
+16
+00:01:00.625 --> 00:01:04.500
+Low-affinity UPN binding
+is acceptable in a pilot.
+
+17
+00:01:04.500 --> 00:01:07.752
+But setting the tenant-wide
+requirement to high before
+
+18
+00:01:07.752 --> 00:01:10.862
+every user's values are
+correct locks those users out.
+
+19
+00:01:10.862 --> 00:01:14.937
+The authentication binding policy
+decides one factor or two.
+
+20
+00:01:14.937 --> 00:01:20.776
+The default is single-factor; rules can
+be by issuer, by policy OID, or both.
+
+21
+00:01:20.776 --> 00:01:26.032
+Issuer-and-OID rules beat OID rules,
+and OID rules beat issuer rules;
+
+22
+00:01:26.032 --> 00:01:30.238
+a certificate whose OIDs map
+to both is single-factor.
+
+23
+00:01:30.238 --> 00:01:35.520
+Microsoft says to treat a certificate as
+multifactor only if a PIN or biometric
+
+24
+00:01:35.520 --> 00:01:40.162
+protects it, so a PIV card qualifies
+and a software certificate doesn't.
+
+25
+00:01:40.162 --> 00:01:41.900
+Two rules prevent lockout.
+
+26
+00:01:41.900 --> 00:01:46.230
+Target CBA to groups that hold
+valid certificates, never All users,
+
+27
+00:01:46.230 --> 00:01:51.662
+and give people without a certificate another
+path, such as a Temporary Access Pass.
+
+28
+00:01:51.662 --> 00:01:56.025
+CBA itself needs no premium
+license; Conditional Access,
+
+29
+00:01:56.025 --> 00:01:59.330
+which every real
+deployment uses, needs P1.

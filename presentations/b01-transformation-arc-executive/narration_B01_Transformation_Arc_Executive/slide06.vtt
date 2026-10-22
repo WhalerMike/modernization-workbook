@@ -1,0 +1,109 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.362
+Identity comes first in
+the chain, because policy,
+
+2
+00:00:03.362 --> 00:00:06.513
+devices and access all
+target identity groups.
+
+3
+00:00:06.513 --> 00:00:12.175
+The OU tree carried delegation, policy
+scope and accountability in one structure.
+
+4
+00:00:12.175 --> 00:00:16.175
+A flat cloud directory has none of
+that until the program writes it down.
+
+5
+00:00:16.175 --> 00:00:21.078
+The book rebuilds it with four Microsoft
+mechanisms bound into one model:
+
+6
+00:00:21.078 --> 00:00:26.062
+attributes, dynamic groups, administrative
+units and Conditional Access.
+
+7
+00:00:26.062 --> 00:00:31.429
+Setting a user's attributes from the HR
+record produces every downstream effect:
+
+8
+00:00:31.429 --> 00:00:37.037
+group membership, delegated scope, policy
+targeting, licenses and drift visibility.
+
+9
+00:00:37.037 --> 00:00:39.100
+One stamp, five outcomes.
+
+10
+00:00:39.100 --> 00:00:41.725
+That only works if the
+attributes are true.
+
+11
+00:00:41.725 --> 00:00:47.212
+M-22-09 requires centralized identity
+management for agency users.
+
+12
+00:00:47.212 --> 00:00:51.737
+For the workforce, the authoritative
+source is the HR system of record.
+
+13
+00:00:51.737 --> 00:00:56.137
+HR owns who works for the agency,
+where they sit and who they report to.
+
+14
+00:00:56.137 --> 00:01:01.088
+A dynamic rule is only as trustworthy as
+whoever can write the attribute it reads,
+
+15
+00:01:01.088 --> 00:01:04.561
+so the help-desk and self-service
+write paths are removed,
+
+16
+00:01:04.561 --> 00:01:06.925
+and HR provisioning is the only writer.
+
+17
+00:01:06.925 --> 00:01:10.137
+Then joiner, mover and
+leaver run on their own.
+
+18
+00:01:10.137 --> 00:01:14.938
+Tokens don't fix a wrong model; they
+sign broken authorizations efficiently.
+
+19
+00:01:14.938 --> 00:01:18.254
+So HR decides what the
+authoritative attributes mean,
+
+20
+00:01:18.254 --> 00:01:21.201
+and identity engineering
+decides how they flow.
+
+21
+00:01:21.201 --> 00:01:24.225
+Contractors need an authoritative
+source of their own.
+
+22
+00:01:24.225 --> 00:01:28.680
+Gate G1 requires the HR feed
+working before any rollout.

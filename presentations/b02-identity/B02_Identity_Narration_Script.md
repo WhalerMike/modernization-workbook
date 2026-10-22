@@ -24,7 +24,7 @@ In June 2024 Microsoft deprecated all versions of NTLM, and NTLMv1 is removed fr
 
 Behind those dates is a direction: Cloud Sync replacing Connect Sync, cloud authentication instead of AD FS, and sources of authority converted to the cloud one object at a time.
 
-The trap is the lift and shift. Synchronize the forest as it stands, and twenty-five years of organizational units, stale accounts and undocumented trusts arrive in the tenant. Meanwhile the governance that the hierarchy carried, who could manage what and where policy applied, is left behind, because Entra ID has no OU tree to carry it.
+The trap is the lift and shift. Synchronize the forest as it stands, and twenty-five years of organizational units, stale accounts and undocumented trusts arrive in the tenant. Meanwhile the governance that the hierarchy carried, who could manage what and where policy applied, is left behind, because Entra ID has no organizational unit (OU) tree to carry it.
 
 ## Slide 4 — Two directories, two different models
 

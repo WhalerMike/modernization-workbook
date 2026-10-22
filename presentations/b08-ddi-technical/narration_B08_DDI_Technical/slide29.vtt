@@ -1,0 +1,152 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.762
+Last, keeping it honest during
+and after the hybrid period.
+
+2
+00:00:03.762 --> 00:00:07.788
+Chapter 11's troubleshooting
+reference covers the common failures.
+
+3
+00:00:07.788 --> 00:00:13.978
+A private endpoint returning its public
+address usually means the privatelink zone
+
+4
+00:00:13.978 --> 00:00:18.947
+isn't linked to the querying network,
+a forwarder targets 168.63.129.16,
+
+5
+00:00:18.947 --> 00:00:21.912
+or a Windows forwarder times out too soon.
+
+6
+00:00:21.912 --> 00:00:26.320
+Domain join failing from a cloud VM
+means the locator records aren't
+
+7
+00:00:26.320 --> 00:00:31.513
+resolvable from that network, so prove
+SRV forwarding before any cloud VM joins.
+
+8
+00:00:31.513 --> 00:00:35.037
+Queries that never resolve
+are usually a forwarding loop.
+
+9
+00:00:35.037 --> 00:00:38.863
+Old answers after a move are
+cached within the old TTL.
+
+10
+00:00:38.863 --> 00:00:43.487
+And DNSSEC failing after a move means
+the parent's DS record wasn't updated.
+
+11
+00:00:43.487 --> 00:00:44.874
+Watch continuously.
+
+12
+00:00:44.874 --> 00:00:48.257
+Resolve the locator records
+every fifteen minutes
+
+13
+00:00:48.257 --> 00:00:51.325
+from every site and VNet,
+site records included.
+
+14
+00:00:51.325 --> 00:00:56.030
+Detect drift by normalizing both
+sides to name, type and data,
+
+15
+00:00:56.030 --> 00:01:01.487
+excluding SOA and NS, and commit each
+report so the history is evidence.
+
+16
+00:01:01.487 --> 00:01:04.675
+Report stale-record and
+dangling-CNAME rates monthly.
+
+17
+00:01:04.675 --> 00:01:08.051
+The Private Resolver has no
+forwarding-failure metric,
+
+18
+00:01:08.051 --> 00:01:11.427
+so alert on inbound queries
+at zero in business hours or
+
+19
+00:01:11.427 --> 00:01:14.950
+spiking over two hundred percent,
+and use synthetic tests.
+
+20
+00:01:14.950 --> 00:01:20.702
+The evidence checklist opens with the
+five decisions, each checked live,
+
+21
+00:01:20.702 --> 00:01:26.551
+then Protective DNS and encrypted DNS
+evidence, IPAM inventory for CM-8,
+
+22
+00:01:26.551 --> 00:01:30.194
+logs at M-26-14 retention,
+rogue DHCP and router
+
+23
+00:01:30.194 --> 00:01:34.412
+advertisement detection,
+and reviewed delegations.
+
+24
+00:01:34.412 --> 00:01:37.787
+Appendix B maps each
+requirement to its evidence.
+
+25
+00:01:37.787 --> 00:01:43.142
+So, before the next SD-WAN or DDI change:
+audit every branch's redirect-dns target,
+
+26
+00:01:43.142 --> 00:01:46.766
+verify the chain order in
+the running configuration,
+
+27
+00:01:46.766 --> 00:01:51.380
+complete the AD DNS inventory before
+touching a domain controller,
+
+28
+00:01:51.380 --> 00:01:56.487
+confirm the sovereign-cloud limits,
+and take open questions to the vendors.
+
+29
+00:01:56.487 --> 00:01:58.904
+Chapter 09 assigns who does each,
+
+30
+00:01:58.904 --> 00:02:03.737
+and Chapter 12 measures success
+as resolution-path consistency.
+
+31
+00:02:03.737 --> 00:02:04.560
+Thank you.

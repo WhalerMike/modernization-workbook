@@ -151,20 +151,20 @@ refuses conflicting values.
 Live settings need a decision.
 
 32
-00:01:56.288 --> 00:02:00.845
+00:01:56.288 --> 00:02:00.948
 One correction: the source searched
 only OUs and the domain root,
 
 33
-00:02:00.845 --> 00:02:03.425
+00:02:00.948 --> 00:02:03.587
 so site-linked GPOs looked unlinked.
 
 34
-00:02:03.425 --> 00:02:07.394
+00:02:03.587 --> 00:02:07.557
 And Intune's Group Policy
 analytics imports XML reports
 
 35
-00:02:07.394 --> 00:02:11.090
+00:02:07.557 --> 00:02:11.260
 under four megabytes, so
 check sizes in the manifest.

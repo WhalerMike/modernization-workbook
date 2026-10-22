@@ -113,7 +113,7 @@ AD CS stays because some subjects can't be served by Cloud PKI and some protocol
 |---|---|---|
 | Domain controller and KDC certificates | Servers can't get Cloud PKI certificates;[^c04-cpki-fund] smart card and certificate logon to the domain needs a DC certificate chaining to a CA in the forest's NTAuth store[^c04-ntauth-3p] | The last domain controller retires |
 | LDAPS | Same server limit; LDAP clients need the chain | LDAP-bound applications move ([Book 02, Chapter 04](../b02-identity/04-the-hidden-migration-surface.md)) |
-| NPS, RADIUS and VPN gateway server certificates | Cloud PKI doesn't provide relying-party TLS certificates[^c04-cpki-deploy] | RADIUS moves, or a CLM-managed issuer takes the server certificate |
+| NPS, RADIUS and VPN gateway server certificates | Cloud PKI doesn't provide relying-party TLS certificates[^c04-cpki-deploy] | RADIUS moves to a successor service. Until then these are internal server certificates under the issuer decision below |
 | Internal server TLS, including SQL Server | Servers aren't Intune-managed[^c04-intune-platforms] ([Book 06, Chapter 22](../b06-data-platform/22-where-sql-server-touches-adcs.md)) | See the issuer decision below |
 | Network equipment and other non-Intune devices through NDES | Cloud PKI serves only Intune-enrolled devices[^c04-cpki-fund] | The devices are replaced or another enrollment path is approved |
 | HSM-held code signing | The key and ceremony stay with the HSM | The signing requirement ends |
@@ -123,7 +123,7 @@ AD CS stays because some subjects can't be served by Cloud PKI and some protocol
 
 [Chapter 02](02-what-ad-cs-holds-up.md) classified internal server TLS as BRIDGE until this chapter named its issuer. The program's decision:
 
-- **Internal names** are issued by the retained AD CS hierarchy, requested and renewed through CyberArk Certificate Manager rather than by hand or by server autoenrollment. That gives every server certificate an owner, an expiry alert and automated renewal in one place ([Chapter 05](05-who-owns-the-certificate-estate.md)).
+- **Internal names** are issued by the retained AD CS hierarchy, requested and renewed through CyberArk Certificate Manager rather than by hand or by server autoenrollment. That gives every server certificate an owner, an expiry alert and automated renewal in one place ([Chapter 05](05-who-owns-the-certificate-estate.md)). The decision covers NPS and RADIUS servers, VPN gateways, Remote Desktop gateways and SQL Server as well as web servers. Domain controller certificates, which also serve LDAPS, stay on autoenrollment ([Chapter 07](07-coexistence-and-migration.md)).
 - **Names the internet must trust** are issued by a public CA, also through the CLM platform, because public lifetimes are on the shrinking CA/Browser Forum schedule ([Chapter 01](01-why-certificates-outlive-every-migration.md)).
 - **After Active Directory.** Enterprise CAs need AD; standalone CAs don't use certificate templates.[^c04-templates] When the forest retires, server issuance moves to a standalone AD CS issuing CA under the same root, still driven by the CLM platform, which supports both enterprise and standalone Microsoft CAs.[^c04-tpf-msca] Template-based policy then lives in the CLM platform's policy rather than in AD. That keeps server certificates on the existing trust chain with no new root to distribute.
 

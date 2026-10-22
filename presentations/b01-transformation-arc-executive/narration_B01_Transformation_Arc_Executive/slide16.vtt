@@ -1,0 +1,114 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.862
+The roadmap sequences all of this as an
+illustrative fifty-two-week program.
+
+2
+00:00:04.862 --> 00:00:08.000
+The weeks are a sequencing
+model, not a commitment;
+
+3
+00:00:08.000 --> 00:00:11.062
+large federal estates
+typically run multi-year.
+
+4
+00:00:11.062 --> 00:00:13.399
+There are seven phases and six gates.
+
+5
+00:00:13.399 --> 00:00:17.232
+Phase 0, pre-flight, stands
+up the platform host
+
+6
+00:00:17.232 --> 00:00:20.762
+and runs the assessment;
+G0 is Ready to Plan.
+
+7
+00:00:20.762 --> 00:00:25.051
+Phase 1, foundation, puts the
+identity primitives in place,
+
+8
+00:00:25.051 --> 00:00:30.412
+including the access baseline and the
+HR feed; G1 is Foundation Complete.
+
+9
+00:00:30.412 --> 00:00:34.556
+Phase 2 proves the whole
+pattern on one pilot division,
+
+10
+00:00:34.556 --> 00:00:39.251
+typically IT; G2, Pilot Clean,
+needs zero drift for a hold period.
+
+11
+00:00:39.251 --> 00:00:44.950
+Phase 3, the longest, rolls out division
+by division, two or three at a time.
+
+12
+00:00:44.950 --> 00:00:48.851
+Phase 4 retires legacy
+policy, groups, DNS,
+
+13
+00:00:48.851 --> 00:00:54.587
+DHCP and the last service principal
+names; G4 is Legacy Quiet.
+
+14
+00:00:54.587 --> 00:00:58.624
+Phase 5, the shortest, retires AD DS.
+
+15
+00:00:58.624 --> 00:01:00.850
+And Phase 6 is steady state.
+
+16
+00:01:00.850 --> 00:01:02.487
+Two properties define it.
+
+17
+00:01:02.487 --> 00:01:07.377
+The five workstreams, identity,
+policy, services, compute and access,
+
+18
+00:01:07.377 --> 00:01:10.084
+run in parallel, each with a named lead;
+
+19
+00:01:10.084 --> 00:01:14.537
+finishing one before starting
+the next doubles the duration.
+
+20
+00:01:14.537 --> 00:01:18.837
+And it's gated: a phase opens only
+when the previous gate clears.
+
+21
+00:01:18.837 --> 00:01:21.726
+The decision closes the loop on ownership.
+
+22
+00:01:21.726 --> 00:01:24.280
+Put the gate dates on
+the sponsor's calendar,
+
+23
+00:01:24.280 --> 00:01:28.113
+and the end date of every exception
+on the authorizing official's.
+
+24
+00:01:28.113 --> 00:01:31.320
+Gate G0 gets its date in Phase 0.

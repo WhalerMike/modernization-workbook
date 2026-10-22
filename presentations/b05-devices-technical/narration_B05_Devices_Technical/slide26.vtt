@@ -1,0 +1,148 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:05.450
+Intune manages Windows updates through four
+policy types built on the Windows Update
+
+2
+00:00:05.450 --> 00:00:09.725
+client policies: update rings for
+deferrals, deadlines and restarts;
+
+3
+00:00:09.725 --> 00:00:14.900
+feature update policies that pin a Windows
+version; quality update policies, which
+
+4
+00:00:14.900 --> 00:00:20.000
+can expedite a critical update or deliver
+hotpatches; and driver update policies.
+
+5
+00:00:20.000 --> 00:00:22.587
+Rings stage each month's quality update.
+
+6
+00:00:22.587 --> 00:00:26.170
+The names follow Windows
+Autopatch, Test, First,
+
+7
+00:00:26.170 --> 00:00:29.937
+Fast and Broad; the values
+are the program's design.
+
+8
+00:00:29.937 --> 00:00:34.438
+Test is the engineering lab, with
+no deferral and a two-day deadline.
+
+9
+00:00:34.438 --> 00:00:37.638
+First is the pilot cohort,
+about five percent.
+
+10
+00:00:37.638 --> 00:00:39.763
+Fast is about a quarter of the fleet.
+
+11
+00:00:39.763 --> 00:00:43.115
+Broad is everyone else,
+with a seven-day deferral,
+
+12
+00:00:43.115 --> 00:00:46.300
+a seven-day deadline and
+a two-day grace period.
+
+13
+00:00:46.300 --> 00:00:49.358
+Rings allow deferrals
+of zero to thirty days,
+
+14
+00:00:49.358 --> 00:00:52.912
+deadlines of two to thirty
+and grace of zero to seven.
+
+15
+00:00:52.912 --> 00:00:58.155
+With these values a quality update reaches
+every online device within about sixteen
+
+16
+00:00:58.155 --> 00:01:03.101
+days of release, and an update that breaks
+Test or First can be paused before Broad.
+
+17
+00:01:03.101 --> 00:01:05.538
+Feature deferral is zero everywhere,
+
+18
+00:01:05.538 --> 00:01:08.762
+because a feature update
+policy pins the version.
+
+19
+00:01:08.762 --> 00:01:13.351
+Windows Autopatch automates ring
+management, sequencing and reporting.
+
+20
+00:01:13.351 --> 00:01:19.396
+For government tenants, it's
+included for GCC customers with
+
+21
+00:01:19.396 --> 00:01:25.925
+Microsoft 365 G3 GCC or G5 GCC, and
+isn't supported in GCC High or DoD.
+
+22
+00:01:25.925 --> 00:01:30.531
+Devices must be Entra joined or hybrid
+joined, and co-managed devices need
+
+23
+00:01:30.531 --> 00:01:35.138
+the update and device configuration
+workloads at Intune or Pilot Intune.
+
+24
+00:01:35.138 --> 00:01:40.500
+Autopatch creates and maintains its own
+rings, so don't assign yours to its devices.
+
+25
+00:01:40.500 --> 00:01:43.072
+The program's position:
+use it where licensed,
+
+26
+00:01:43.072 --> 00:01:47.312
+and keep the ring table as the
+specification its groups are configured to.
+
+27
+00:01:47.312 --> 00:01:51.489
+Version currency: 23H2
+Enterprise and Education
+
+28
+00:01:51.489 --> 00:01:55.462
+stop receiving updates
+on November tenth, 2026.
+
+29
+00:01:55.462 --> 00:01:59.245
+So the feature update
+policy targets 25H2 now,
+
+30
+00:01:59.245 --> 00:02:03.290
+and the compliance floor
+of 24H2 rises each year.

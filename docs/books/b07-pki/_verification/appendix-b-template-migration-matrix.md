@@ -50,3 +50,15 @@ Source: `docs/operational-guides/pki-modernization.md` Appendix B (Certificate T
 | Column "Dependencies" | Matrix "Dependencies and notes" | — |
 | Column "Status" (Not Started / Retain / Retire) | Not carried | Per-estate tracking; Appendix B tells readers to keep status in the program tracker |
 | All 15 template rows | Matrix rows (User; Computer; Web Server; Smartcard Logon/User; DC/DC Authentication; Kerberos Authentication; RAS and IAS; Exchange User; Code Signing; Basic EFS; EFS Recovery Agent; OCSP Response Signing; Enrollment Agent; IPSEC (Offline request)) | Smartcard User and Smartcard Logon merged into one row; Domain Controller split from Kerberos Authentication; nine rows added |
+
+## Consistency fixes, 2026-10-21
+
+Cross-chapter consistency pass. Every changed external fact was re-checked on the primary source on 2026-10-21; program decisions are marked as such.
+
+| # | Change | Where | Verdict | Source |
+|---|---|---|---|---|
+| CF-1 | Two-verdict convention stated (sign-in path or delivery vs issuer; RETAIN; was BRIDGE until Chapter 04 named the issuer), same wording in Chapter 02 and Appendix B | Intro after "Three facts" | restated-as-design | Program classification |
+| CF-2 | Smartcard Logon: MIGRATE (sign-in path, to Entra CBA); BRIDGE (issuer, while smart card logon to AD remains), matching Chapter 02 | Matrix | restated-as-design | Program classification |
+| CF-3 | Web Server: RETAIN; was BRIDGE until Chapter 04 named the issuer; target issuer per Chapter 04 (link moved from Chapter 08) | Matrix | restated-as-design | Chapter 04 issuer decision |
+| CF-4 | LDAPS row: the DC certificate from the Kerberos Authentication copy; dedicated NTDS-store certificate only by recorded exception; bind test before unpublishing Domain Controller | Matrix | verified | <https://learn.microsoft.com/windows-server/identity/ad-ds/configure-ldap-signing-certificates>; <https://learn.microsoft.com/windows/security/identity-protection/hello-for-business/deploy/on-premises-cert-trust#configure-the-enterprise-pki> |
+| CF-5 | RAS and IAS Server: AD CS while NPS runs, requested and renewed through CyberArk Certificate Manager | Matrix | restated-as-design | Chapter 04 issuer decision |

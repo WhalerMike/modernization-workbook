@@ -1,0 +1,49 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:05.188
+Module 2: edge interception,
+DNS identity and DNSSEC.
+
+2
+00:00:05.188 --> 00:00:10.247
+Every control in the policy plane,
+response policy zones, DNSSEC validation,
+
+3
+00:00:10.247 --> 00:00:14.825
+logging and Protective DNS forwarding,
+assumes the query reaches it.
+
+4
+00:00:14.825 --> 00:00:19.499
+Chapter 05 takes the three ordinary
+mechanisms that decide whether it does,
+
+5
+00:00:19.499 --> 00:00:22.763
+at the network edge, the
+endpoint and the access layer,
+
+6
+00:00:22.763 --> 00:00:25.137
+and none of them reports when it doesn't.
+
+7
+00:00:25.137 --> 00:00:28.650
+Chapter 06 then shows why
+a certificate can be valid,
+
+8
+00:00:28.650 --> 00:00:32.327
+unrevoked and issued for the
+right name and still fail:
+
+9
+00:00:32.327 --> 00:00:36.575
+every check that makes it
+trustworthy starts with a DNS lookup.
+
+10
+00:00:36.575 --> 00:00:38.300
+It closes with DNSSEC.

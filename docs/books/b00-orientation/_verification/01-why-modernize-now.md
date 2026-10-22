@@ -67,3 +67,11 @@ Diagram sources: `docs/images/diagrams/b00-orientation/src/ch01-implicit-governa
 | federal-modernization.md — Intervention | Ch01 "Why one program" (sequencing) | Carried as design position |
 | federal-modernization.md — Observed behavior (intended) | Ch01 "What leadership should take from this" item 2 | Gates on evidence carried |
 | federal-modernization.md — Lessons | Ch01 "What leadership should take from this" items 1 and 3 | Carried |
+
+## Cross-chapter consistency pass
+
+Checked October 21, 2026. Book 00's chapters were reconciled with each other; each external fact touched was re-opened on its primary source.
+
+| # | Claim (short) | Where | Verdict | Source |
+|---|---|---|---|---|
+| X1 | Jan 1, 2027: rules take mandatory effect "for all stakeholders," subject to area-specific applicability and effective dates; over the next year all CSPs must follow them to keep certification | Federal policy table | verified; wording made exact, and aligned with Ch05 (which had narrowed it to providers) | FedRAMP, "Important Dates for the Consolidated Rules for 2026" (fedramp.gov/2026/timeline), Mandatory Adoption entry, fetched Oct 21, 2026 |

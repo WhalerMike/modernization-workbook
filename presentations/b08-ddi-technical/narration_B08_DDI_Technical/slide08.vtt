@@ -1,0 +1,127 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:06.188
+Clients keep their own records current
+through dynamic update, RFC 2136.
+
+2
+00:00:06.188 --> 00:00:09.559
+Secure dynamic update
+authenticates the client and
+
+3
+00:00:09.559 --> 00:00:12.776
+records each name's owner
+in an access control list.
+
+4
+00:00:12.776 --> 00:00:17.562
+It exists only for AD-integrated
+zones, which default to secure-only.
+
+5
+00:00:17.562 --> 00:00:21.663
+Any authenticated user can
+create a new A or PTR record;
+
+6
+00:00:21.663 --> 00:00:26.037
+once a name exists, only principals
+on its ACL can change it.
+
+7
+00:00:26.037 --> 00:00:29.513
+Windows signs these updates with GSS-TSIG.
+
+8
+00:00:29.513 --> 00:00:31.407
+The DHCP server is part of this,
+
+9
+00:00:31.407 --> 00:00:35.424
+and five settings decide whether
+the records stay trustworthy.
+
+10
+00:00:35.424 --> 00:00:40.575
+Name ownership: a DHCP server that performs
+a secure update becomes the name's
+
+11
+00:00:40.575 --> 00:00:45.243
+owner, so if its failover partner takes
+over, the partner can't update it;
+
+12
+00:00:45.243 --> 00:00:48.462
+both partners must use
+the same DNS credentials.
+
+13
+00:00:48.462 --> 00:00:53.593
+DnsUpdateProxy solves ownership by
+leaving its members' records unsecured;
+
+14
+00:00:53.593 --> 00:00:56.800
+Microsoft warns against
+it in secure-only zones.
+
+15
+00:00:56.800 --> 00:01:00.255
+A dedicated credential is
+the recommended pattern:
+
+16
+00:01:00.255 --> 00:01:03.550
+one standard user account
+every DHCP server uses.
+
+17
+00:01:03.550 --> 00:01:08.601
+It matters most when DHCP runs on a domain
+controller, which would otherwise lend
+
+18
+00:01:08.601 --> 00:01:13.350
+its authority over every record, and it
+isn't backed up with the DHCP database.
+
+19
+00:01:13.350 --> 00:01:15.906
+Name protection creates DHCID records,
+
+20
+00:01:15.906 --> 00:01:20.863
+so an update fails rather than overwrites
+when another client holds the name.
+
+21
+00:01:20.863 --> 00:01:25.163
+And scavenging: without it DNS becomes
+a map of where devices used to be,
+
+22
+00:01:25.163 --> 00:01:30.132
+and Microsoft documents that when scavenging
+and lease durations disagree, you
+
+23
+00:01:30.132 --> 00:01:35.249
+get duplicate records and Kerberos tickets
+for one computer delivered to another.
+
+24
+00:01:35.249 --> 00:01:38.615
+These settings are rarely
+documented outside the servers,
+
+25
+00:01:38.615 --> 00:01:40.400
+so they belong in the inventory.
+
+26
+00:01:40.400 --> 00:01:43.990
+Chapter 04 gives read-only
+cmdlets for each.

@@ -1,0 +1,155 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:05.875
+Microsoft's guidance is a phased
+source-of-authority conversion toward cloud-first
+
+2
+00:00:05.875 --> 00:00:09.703
+and A D-minimized states, not
+an all-at-once decommission,
+
+3
+00:00:09.703 --> 00:00:15.362
+and AD DS itself isn't deprecated: Windows
+Server 2025 ships new functional levels.
+
+4
+00:00:15.362 --> 00:00:18.613
+What changes is where the
+DNS records come from.
+
+5
+00:00:18.613 --> 00:00:22.826
+Entra ID publishes no zones
+and no locator records.
+
+6
+00:00:22.826 --> 00:00:27.288
+Entra-joined devices use tokens and
+don't look for a domain controller;
+
+7
+00:00:27.288 --> 00:00:29.288
+hybrid-joined devices still do.
+
+8
+00:00:29.288 --> 00:00:34.504
+Kerberos survives in pockets, such as
+Application Proxy with constrained
+
+9
+00:00:34.504 --> 00:00:38.963
+delegation and cloud Kerberos
+trust, each with a DNS dependency.
+
+10
+00:00:38.963 --> 00:00:42.499
+And Entra Domain Services
+brings its own DNS,
+
+11
+00:00:42.499 --> 00:00:46.706
+needs conditional forwarders
+for on-premises zones,
+
+12
+00:00:46.706 --> 00:00:52.443
+and Microsoft says any server-level
+forwarder other than 168.63.129.16 is
+
+13
+00:00:52.443 --> 00:00:57.223
+unsupported: a DNS authority
+whose upstream you can't change,
+
+14
+00:00:57.223 --> 00:00:59.900
+which matters for Protective DNS.
+
+15
+00:00:59.900 --> 00:01:03.825
+Kerberos needs more from
+DNS than tickets reveal.
+
+16
+00:01:03.825 --> 00:01:08.682
+The source whitepaper described the
+service resolving the SPN back to an IP;
+
+17
+00:01:08.682 --> 00:01:12.075
+Kerberos does no such check,
+and the book corrected it.
+
+18
+00:01:12.075 --> 00:01:16.948
+The real failure is simpler and worse:
+resolve the name to the wrong host and
+
+19
+00:01:16.948 --> 00:01:21.663
+a valid ticket for computer A is
+presented to computer B, which rejects it.
+
+20
+00:01:21.663 --> 00:01:25.425
+A missing SPN silently drops to NTLM.
+
+21
+00:01:25.425 --> 00:01:29.344
+Either way it looks like
+identity, and the cause is DNS.
+
+22
+00:01:29.344 --> 00:01:33.798
+Decoupling DNS from identity
+also removes a shared failure:
+
+23
+00:01:33.798 --> 00:01:38.163
+an identity outage no longer
+takes name resolution with it.
+
+24
+00:01:38.163 --> 00:01:40.518
+Before any domain controller goes:
+
+25
+00:01:40.518 --> 00:01:45.229
+keep locator records resolvable
+until every consumer is token-based;
+
+26
+00:01:45.229 --> 00:01:50.021
+test conditional forwarders over DNS,
+not ICMP, and retire the dead ones;
+
+27
+00:01:50.021 --> 00:01:55.626
+create the internal namespace explicitly;
+re-establish dynamic registration per
+
+28
+00:01:55.626 --> 00:01:58.387
+client population; and move GlobalNames,
+
+29
+00:01:58.387 --> 00:02:01.474
+reverse and signed zones
+by their own methods.
+
+30
+00:02:01.474 --> 00:02:05.260
+DDI platforms commonly
+offer a coexistence mode;
+
+31
+00:02:05.260 --> 00:02:07.938
+Infoblox NIOS is the book's example.
+
+32
+00:02:07.938 --> 00:02:10.750
+Confirm the capability
+for whatever you deploy.

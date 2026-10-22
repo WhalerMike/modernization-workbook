@@ -1,0 +1,140 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.800
+Chapter 05 is about how the
+existing estate gets there.
+
+2
+00:00:03.800 --> 00:00:09.293
+The workbook's sources described three
+separate kits that repeated most of the same
+
+3
+00:00:09.293 --> 00:00:14.550
+steps, because the destination is the same:
+servers in Arc, workstations in Intune,
+
+4
+00:00:14.550 --> 00:00:18.944
+NTLM restricted after it's measured,
+clean service principal names,
+
+5
+00:00:18.944 --> 00:00:22.475
+hardened SQL Server, and
+Conditional Access enforced.
+
+6
+00:00:22.475 --> 00:00:24.975
+What differs is who holds
+the decision record.
+
+7
+00:00:24.975 --> 00:00:30.575
+The rule all three obey: the control
+plane governs, the data plane executes.
+
+8
+00:00:30.575 --> 00:00:36.400
+The program holds desired state,
+observes, classifies drift and reconciles.
+
+9
+00:00:36.400 --> 00:00:42.000
+Entra ID, Intune, Azure Policy and
+Active Directory do the runtime work.
+
+10
+00:00:42.000 --> 00:00:46.875
+An adapter may call a management API;
+it never sits inline in a sign-in.
+
+11
+00:00:46.875 --> 00:00:49.130
+Every path runs four phases in order,
+
+12
+00:00:49.130 --> 00:00:52.437
+and nothing is restricted
+until it has been measured.
+
+13
+00:00:52.437 --> 00:00:54.126
+Observe is read-only.
+
+14
+00:00:54.126 --> 00:00:56.800
+Onboard attaches the management planes.
+
+15
+00:00:56.800 --> 00:01:01.388
+Harden closes the identity gaps,
+only after Phase 1 is signed off.
+
+16
+00:01:01.388 --> 00:01:03.863
+Watch keeps the estate from drifting back.
+
+17
+00:01:03.863 --> 00:01:08.639
+Budget at least two weeks of assessment,
+treat every first run as a dry run,
+
+18
+00:01:08.639 --> 00:01:11.665
+deploy Conditional Access
+report-only first,
+
+19
+00:01:11.665 --> 00:01:15.725
+and exclude the emergency access
+accounts before enforcing.
+
+20
+00:01:15.725 --> 00:01:18.287
+Domain unjoin is a separate decision.
+
+21
+00:01:18.287 --> 00:01:23.562
+The manual path suits small estates and
+pilots; the operator owns the change record.
+
+22
+00:01:23.562 --> 00:01:28.649
+The governed path is for larger estates, or
+where an authorizing official must sign:
+
+23
+00:01:28.649 --> 00:01:32.187
+every state-changing step
+carries an approval reference.
+
+24
+00:01:32.187 --> 00:01:36.388
+The retrofit adopts a hand-modernized
+estate without re-enrollment.
+
+25
+00:01:36.388 --> 00:01:39.144
+Its risk is that registering
+the current state
+
+26
+00:01:39.144 --> 00:01:41.688
+as desired blesses
+whatever drift is there.
+
+27
+00:01:41.688 --> 00:01:44.150
+Every governed operation declares a rung.
+
+28
+00:01:44.150 --> 00:01:50.000
+The federal ceiling is L3, human
+approval, and autonomous L4 is refused.
+
+29
+00:01:50.000 --> 00:01:55.320
+Where Intune Multi Admin Approval covers
+a workload, it is the L3 approval.

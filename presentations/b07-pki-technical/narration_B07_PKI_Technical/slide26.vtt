@@ -1,0 +1,115 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.313
+Most coexistence outages
+are revocation outages.
+
+2
+00:00:03.313 --> 00:00:08.581
+Relying parties now sit in three places,
+inside the network, on the internet,
+
+3
+00:00:08.581 --> 00:00:11.980
+and in Entra ID, and each
+CA's CRL must be reachable
+
+4
+00:00:11.980 --> 00:00:15.974
+from all three wherever its
+certificates are validated.
+
+5
+00:00:15.974 --> 00:00:22.625
+Every relying party that validates Cloud
+PKI certificates, including on-premises
+
+6
+00:00:22.625 --> 00:00:28.600
+RADIUS and VPN servers, needs outbound
+HTTP to the Intune-hosted CDP and AIA.
+
+7
+00:00:28.600 --> 00:00:34.740
+A BYOCA issuing CA's own CRL is
+Intune-hosted too, but its parent CRL and
+
+8
+00:00:34.740 --> 00:00:40.987
+AIA come from the private CA, and AD
+CS defaults to an LDAP AIA location.
+
+9
+00:00:40.987 --> 00:00:48.206
+AD CS CAs that issue user certificates for
+Entra CBA usually publish over LDAP plus
+
+10
+00:00:48.206 --> 00:00:54.290
+an internal HTTP URL; Entra ID needs
+one internet HTTP or HTTPS URL per CA,
+
+11
+00:00:54.290 --> 00:01:00.375
+HTTP recommended, with no OCSP and no
+LDAP, and watch the CRL size limits,
+
+12
+00:01:00.375 --> 00:01:06.975
+twenty megabytes for commercial and GCC
+and forty-five for Azure Government.
+
+13
+00:01:06.975 --> 00:01:11.938
+And the CAs behind domain controller
+certificates must serve Entra-joined devices
+
+14
+00:01:11.938 --> 00:01:16.475
+that haven't authenticated yet, so
+LDAP-only distribution points break them.
+
+15
+00:01:16.475 --> 00:01:20.450
+Fixing an AD CS distribution
+point means two things.
+
+16
+00:01:20.450 --> 00:01:27.325
+Add an HTTP location reachable from the
+internet, using HTTP rather than HTTPS.
+
+17
+00:01:27.325 --> 00:01:32.850
+And recognize that the new URL appears only
+in certificates issued after the change.
+
+18
+00:01:32.850 --> 00:01:36.546
+Entra ID uses the CRL URL
+configured in its trust store,
+
+19
+00:01:36.546 --> 00:01:39.009
+not the one inside each certificate,
+
+20
+00:01:39.009 --> 00:01:43.444
+so CBA works as soon as the trust
+store points at the published CRL;
+
+21
+00:01:43.444 --> 00:01:48.125
+other relying parties keep failing
+until their certificates renew.
+
+22
+00:01:48.125 --> 00:01:53.766
+The program publishes on plain anonymous
+HTTP, not through an application proxy,
+
+23
+00:01:53.766 --> 00:01:59.640
+because Entra ID must download the CRL
+without authentication within ten seconds.

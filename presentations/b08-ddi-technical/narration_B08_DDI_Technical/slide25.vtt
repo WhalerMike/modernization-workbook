@@ -1,0 +1,148 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.533
+Phase 1 is read-only, so it
+carries no rollback risk,
+
+2
+00:00:03.533 --> 00:00:06.337
+and its omission can't be repaired later.
+
+3
+00:00:06.337 --> 00:00:11.329
+The assessment collects every zone
+with its type, replication scope,
+
+4
+00:00:11.329 --> 00:00:16.758
+update setting and signing state; every
+record with type, TTL and timestamp;
+
+5
+00:00:16.758 --> 00:00:21.837
+zone health, because stale records
+migrate as faithfully as good ones;
+
+6
+00:00:21.837 --> 00:00:27.442
+the locator records resolved from every
+server and site, the Phase 5 baseline;
+
+7
+00:00:27.442 --> 00:00:32.871
+forwarders tested over DNS; DNSSEC state;
+DHCP scopes, options and failover;
+
+8
+00:00:32.871 --> 00:00:36.373
+resolution paths; and the
+OCSP and CRL endpoints,
+
+9
+00:00:36.373 --> 00:00:39.876
+committed as JSON to the
+assessment repository.
+
+10
+00:00:39.876 --> 00:00:43.891
+Import from the record-level
+export: Microsoft documents
+
+11
+00:00:43.891 --> 00:00:48.912
+Export-DNS-Server-Zone as a troubleshooting
+export, not zone-file format.
+
+12
+00:00:48.912 --> 00:00:51.475
+Each component gets a target and a method.
+
+13
+00:00:51.475 --> 00:00:55.050
+Internal zones become authoritative
+zones on the platform.
+
+14
+00:00:55.050 --> 00:00:59.425
+External zones need an NS change at
+the registrar, so they're high risk.
+
+15
+00:00:59.425 --> 00:01:02.287
+Stubs and forwarders
+become forwarding rules.
+
+16
+00:01:02.287 --> 00:01:06.176
+GlobalNames becomes CNAMEs
+plus a suffix search list.
+
+17
+00:01:06.176 --> 00:01:10.098
+Locator records stay where
+domain controllers can register;
+
+18
+00:01:10.098 --> 00:01:14.021
+there's no Azure-native equivalent,
+because Azure Private DNS
+
+19
+00:01:14.021 --> 00:01:18.175
+ignores client registrations and
+imported SRV records go stale.
+
+20
+00:01:18.175 --> 00:01:21.963
+Dynamic registration
+becomes DHCP-driven updates.
+
+21
+00:01:21.963 --> 00:01:24.063
+Reverse zones align to IPAM.
+
+22
+00:01:24.063 --> 00:01:28.655
+Signed zones move in Phase 3 by their
+own sequence, keeping the old signing
+
+23
+00:01:28.655 --> 00:01:33.324
+until the new chain validates, and that
+has to happen before the Phase 5 gate.
+
+24
+00:01:33.324 --> 00:01:36.537
+Phase 2 adds resolvers
+without moving authority.
+
+25
+00:01:36.537 --> 00:01:40.050
+Synchronize read-only first,
+and forward both ways.
+
+26
+00:01:40.050 --> 00:01:45.662
+Give every namespace exactly one
+authoritative path, or queries loop, and open
+
+27
+00:01:45.662 --> 00:01:51.187
+UDP and TCP 53 from the resolver subnets
+through the network security groups.
+
+28
+00:01:51.187 --> 00:01:57.304
+Two errors cause most failures: an on-premises
+forwarder pointed at 168.63.129.16,
+
+29
+00:01:57.304 --> 00:02:02.308
+reachable only inside a virtual
+network, and Windows forwarding
+
+30
+00:02:02.308 --> 00:02:07.820
+timeouts of three seconds or less,
+where Microsoft wants more than four.
