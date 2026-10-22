@@ -1,0 +1,163 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.898
+This is the core of the argument: each
+requirement, the capability it demands,
+
+2
+00:00:04.898 --> 00:00:08.437
+the Infoblox feature that
+delivers it, and what to watch.
+
+3
+00:00:08.437 --> 00:00:13.111
+Signing agency zones: the Grid
+Master signs as a hidden primary,
+
+4
+00:00:13.111 --> 00:00:16.975
+rolls keys automatically,
+and can keep keys in an HSM.
+
+5
+00:00:16.975 --> 00:00:20.299
+Watch the RSA-SHA1
+default and the DS record
+
+6
+00:00:20.299 --> 00:00:23.438
+you'll still hand to
+the dot-gov registrar.
+
+7
+00:00:23.438 --> 00:00:28.109
+Resilient, role-separated DNS:
+Grid replication, HA pairs,
+
+8
+00:00:28.109 --> 00:00:33.475
+a Grid Master Candidate, anycast,
+and internal and external views.
+
+9
+00:00:33.475 --> 00:00:38.550
+Watch that candidate promotion is manual,
+so it belongs in a tested runbook.
+
+10
+00:00:38.550 --> 00:00:42.548
+Encrypted DNS at agency
+resolvers: from 9.1,
+
+11
+00:00:42.548 --> 00:00:46.888
+BIND serves DoT and DoH,
+but on X6 hardware only.
+
+12
+00:00:46.888 --> 00:00:49.898
+Protective DNS: per-view forwarders send
+
+13
+00:00:49.898 --> 00:00:53.351
+egress to CISA while the
+Grid keeps local logs.
+
+14
+00:00:53.351 --> 00:00:54.400
+Watch one thing.
+
+15
+00:00:54.400 --> 00:00:59.764
+CISA's FAQ notes that some vendors don't
+support the protocols for forwarding to its
+
+16
+00:00:59.764 --> 00:01:04.054
+resolver, and our research found
+no Infoblox document on encrypted
+
+17
+00:01:04.054 --> 00:01:07.962
+forwarding to CISA, so confirm it
+in a lab before you rely on it.
+
+18
+00:01:07.962 --> 00:01:10.983
+Logging: query capture,
+dnstap, lease history,
+
+19
+00:01:10.983 --> 00:01:15.554
+CEF syslog and the Data Connector
+cover what the Logging Reference
+
+20
+00:01:15.554 --> 00:01:20.125
+Architecture maps; watch the ingest
+caps and dnstap's drop behavior.
+
+21
+00:01:20.125 --> 00:01:25.378
+Inventory for BOD 23-01, BOD
+26-04 and CM-8: IPAM, discovery,
+
+22
+00:01:25.378 --> 00:01:32.531
+cloud vDiscovery and Asset Insights
+give the authoritative address record;
+
+23
+00:01:32.531 --> 00:01:37.225
+watch the dedicated hardware
+for Network Insight.
+
+24
+00:01:37.225 --> 00:01:46.725
+IPv6: IPv6 Grids, DHCPv6 and prefix
+delegation, but DHCP failover is IPv4 only.
+
+25
+00:01:46.725 --> 00:01:51.538
+And validated cryptography is
+the gap: Infoblox's FIPS 140-3
+
+26
+00:01:51.538 --> 00:01:56.450
+modules are in NIST review, with
+no active certificate today.
+
+27
+00:01:56.450 --> 00:01:59.945
+Read across the rows:
+seven of eight requirements
+
+28
+00:01:59.945 --> 00:02:02.588
+land on one platform and one database.
+
+29
+00:02:02.588 --> 00:02:06.244
+That consolidation is the case
+for a governed DDI plane,
+
+30
+00:02:06.244 --> 00:02:09.026
+and for Infoblox as a
+strong way to build it.
+
+31
+00:02:09.026 --> 00:02:20.416
+Sources: NIST SP 800-53r5; OMB
+M-08-23, M-22-09, M-21-07; EO 14144;
+
+32
+00:02:20.416 --> 00:02:28.552
+CISA Protective DNS FAQ;
+CISA LRA; BOD 23-01, 26-04;
+
+33
+00:02:28.552 --> 00:02:40.420
+Infoblox NIOS 9.1.x and Universal DDI
+docs; NIST CMVP modules in process.

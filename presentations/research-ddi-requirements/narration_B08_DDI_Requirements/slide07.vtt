@@ -1,0 +1,127 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.488
+Sixth, automation.
+
+2
+00:00:01.488 --> 00:00:06.876
+No rule requires an API, but Book
+08's operating model depends on one.
+
+3
+00:00:06.876 --> 00:00:11.167
+Every object, addresses, DHCP,
+DNS configuration and DNS data,
+
+4
+00:00:11.167 --> 00:00:16.318
+should be reachable through a documented
+API, so infrastructure as code,
+
+5
+00:00:16.318 --> 00:00:20.524
+ITSM workflows, certificate
+automation and pipelines all
+
+6
+00:00:20.524 --> 00:00:24.387
+go through the same authority
+and the same audit trail.
+
+7
+00:00:24.387 --> 00:00:27.918
+Automation runs as
+non-interactive service accounts,
+
+8
+00:00:27.918 --> 00:00:32.862
+held to the same roles and scopes as people
+and unable to log in to the console.
+
+9
+00:00:32.862 --> 00:00:37.497
+Expect supported Terraform and
+Ansible, ITSM actions that reserve
+
+10
+00:00:37.497 --> 00:00:41.800
+an address or register a record,
+and a path for existing scripts.
+
+11
+00:00:41.800 --> 00:00:46.470
+Check how the API authenticates;
+NIOS, for example,
+
+12
+00:00:46.470 --> 00:00:51.937
+added OAuth 2.0 and OpenID Connect
+for its API in release 9.1.
+
+13
+00:00:51.937 --> 00:00:55.250
+Seventh, logging to the
+SIEM, sized for the load.
+
+14
+00:00:55.250 --> 00:00:58.315
+The requirement here is
+M-26-14's retention:
+
+15
+00:00:58.315 --> 00:01:02.520
+logs searchable for six months
+and retrievable for a year,
+
+16
+00:01:02.520 --> 00:01:08.738
+with synchronized timestamps, available to
+the agency's security operations center.
+
+17
+00:01:08.738 --> 00:01:11.269
+The name layer contributes query logs,
+
+18
+00:01:11.269 --> 00:01:14.750
+lease history, policy hits
+and the change audit trail.
+
+19
+00:01:14.750 --> 00:01:17.163
+Capacity is where designs fail.
+
+20
+00:01:17.163 --> 00:01:21.181
+Microsoft measured about five
+percent degradation from
+
+21
+00:01:21.181 --> 00:01:25.199
+full Windows DNS query logging
+at 100,000 queries a second.
+
+22
+00:01:25.199 --> 00:01:30.085
+NIOS reporting appliances have daily
+ingest limits, and after five overruns
+
+23
+00:01:30.085 --> 00:01:35.200
+in a rolling thirty days the reporting
+functions lock until support intervenes.
+
+24
+00:01:35.200 --> 00:01:38.027
+And dnstap on NIOS drops
+records rather than
+
+25
+00:01:38.027 --> 00:01:40.625
+buffering them when the receiver is down.
+
+26
+00:01:40.625 --> 00:01:43.990
+Size for peak, and test
+with the SIEM unreachable.

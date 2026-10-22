@@ -1,0 +1,137 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.807
+The NIOS Grid is a group of appliances
+that share sections of one distributed
+
+2
+00:00:04.807 --> 00:00:09.862
+database, configured and monitored through
+a single access point, the Grid Master.
+
+3
+00:00:09.862 --> 00:00:14.297
+The Grid Master can be one appliance
+or a high-availability pair, and every
+
+4
+00:00:14.297 --> 00:00:16.840
+administrator reaches the GUI through it,
+
+5
+00:00:16.840 --> 00:00:19.675
+even administrators scoped
+to a single member.
+
+6
+00:00:19.675 --> 00:00:26.150
+Members can be physical Infoblox hardware
+or virtual vNIOS, singly or in HA pairs.
+
+7
+00:00:26.150 --> 00:00:32.169
+The Grid Master talks to every member
+hub-and-spoke, over encrypted VPN tunnels
+
+8
+00:00:32.169 --> 00:00:38.187
+on UDP 1194 by default, after a
+challenge-response authentication on port 2114.
+
+9
+00:00:38.187 --> 00:00:42.188
+A Grid Master Candidate holds a
+complete copy of the database.
+
+10
+00:00:42.188 --> 00:00:46.526
+Promoting it is a manual operation, and
+you can't do it from the cloud portal.
+
+11
+00:00:46.526 --> 00:00:50.028
+HA pairs share one virtual
+IP and virtual MAC,
+
+12
+00:00:50.028 --> 00:00:53.437
+with VRRP advertisements as the heartbeat.
+
+13
+00:00:53.437 --> 00:00:59.238
+A Grid can run IPv4-only,
+IPv6-only or dual mode.
+
+14
+00:00:59.238 --> 00:01:00.425
+Form factors.
+
+15
+00:01:00.425 --> 00:01:06.650
+The current hardware line is Trinzic
+X6, supported from NIOS 9.0.1.
+
+16
+00:01:06.650 --> 00:01:11.781
+vNIOS for VMware runs from four virtual
+CPUs and thirty-two gigabytes up to
+
+17
+00:01:11.781 --> 00:01:17.325
+thirty-two CPUs and three hundred eighty-four,
+and every model can be a Grid Master.
+
+18
+00:01:17.325 --> 00:01:23.378
+vNIOS for Azure supports HA from 9.0.4
+and explicitly covers Azure Government;
+
+19
+00:01:23.378 --> 00:01:29.525
+note that Azure doesn't support running
+DHCP in Azure for on-premises networks.
+
+20
+00:01:29.525 --> 00:01:36.025
+vNIOS for AWS can be a Grid Master in HA,
+and its vDiscovery has a GovCloud option.
+
+21
+00:01:36.025 --> 00:01:41.863
+Google Cloud and Oracle Cloud are
+covered too, with OCI HA new in 9.1.
+
+22
+00:01:41.863 --> 00:01:46.862
+NIOS-X servers are the data plane
+for Universal DDI, which is next.
+
+23
+00:01:46.862 --> 00:01:54.512
+Versions: NIOS 9.1.0 went GA in
+March 2026 and ships BIND 9.20.
+
+24
+00:01:54.512 --> 00:01:57.604
+NIOS 9.0.6 introduced a Long-Term Support
+
+25
+00:01:57.604 --> 00:02:01.163
+train with up to twenty-four
+months of support.
+
+26
+00:02:01.163 --> 00:02:08.852
+Sources: Infoblox NIOS 9.1.x About Grids,
+Promoting a Grid Master Candidate,
+
+27
+00:02:08.852 --> 00:02:14.399
+About HA Failover, 9.1.0 What's
+New; vNIOS install guides;
+
+28
+00:02:14.399 --> 00:02:21.890
+Supported Platforms for NIOS-X Servers;
+Infoblox NIOS 9.0.6 and 9.1.0 blogs.

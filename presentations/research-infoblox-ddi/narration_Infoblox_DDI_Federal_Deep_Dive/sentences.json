@@ -1,0 +1,2552 @@
+{
+ "1": [
+  [
+   0.05,
+   15.188,
+   "This is a technical deep dive on Infoblox D D I for federal agencies: D N S, DHCP and IP address management, delivered on Infoblox's NIOS Grid and on its cloud-managed service, Universal D D I."
+  ],
+  [
+   15.238,
+   8.2,
+   "It's for the architects and engineers who will decide whether to build an agency's name and address layer on Infoblox, and how to run it once they do."
+  ],
+  [
+   23.438,
+   7.463,
+   "After a five-minute orientation, it comes in two parts of about twenty-two minutes each, in four modules you can watch on their own."
+  ],
+  [
+   30.9,
+   15.713,
+   "Part 1 covers the platform, then the case for it: which federal requirements it answers, what its fed-ramp listing actually covers, how it compares with BlueCat, EfficientIP, Microsoft and the native cloud services, and the risks you have to manage if you choose it."
+  ],
+  [
+   46.612,
+   18.0,
+   "Part 2 covers divisions: how a central team hands D N S, DHCP and address management to bureaus and offices, on NIOS and on Universal D D I, without losing control, and it ends with a worked example, a responsibility matrix and a rollout sequence."
+  ],
+  [
+   64.612,
+   1.312,
+   "Two ground rules."
+  ],
+  [
+   65.925,
+   6.037,
+   "Every fact here comes from a primary source opened on October twenty-second, 2026."
+  ],
+  [
+   71.963,
+   5.25,
+   "And anything that is only Infoblox marketing is called a vendor claim when it appears."
+  ],
+  [
+   77.213,
+   15.8,
+   "Sources: Infoblox NIOS 9.1.x and Universal D D I docs; fed-ramp Marketplace products.json; nist CMVP; DISA STIG file store; O M B and sis-uh publications; Book 08."
+  ]
+ ],
+ "2": [
+  [
+   0.05,
+   1.188,
+   "Why this matters."
+  ],
+  [
+   1.238,
+   9.75,
+   "Almost every connection an agency makes starts with a D N S lookup, and in a hybrid, multi-cloud estate that answer decides far more than an address."
+  ],
+  [
+   10.988,
+   4.037,
+   "DHCP and IP address management sit right beside it."
+  ],
+  [
+   15.025,
+   12.3,
+   "nist's Secure D N S Deployment Guide, SP 800-81 Revision 3, tells agencies to keep DHCP lease history so an IP address can be mapped to an asset."
+  ],
+  [
+   27.325,
+   7.263,
+   "And the address plan is the record behind everything the inventory directives ask for, which we'll see on the next slide."
+  ],
+  [
+   34.587,
+   7.312,
+   "That's why this deck treats D N S, DHCP and eye-pam as one control plane rather than three services."
+  ],
+  [
+   41.9,
+   5.425,
+   "Book 08 of the workbook describes what that plane is made of, and it isn't one box."
+  ],
+  [
+   47.325,
+   9.225,
+   "There's an authoritative and recursive layer on premises that hosts internal zones, answers clients, and applies response policy zones and DNSSEC."
+  ],
+  [
+   56.55,
+   10.25,
+   "There's a management plane, more and more often delivered as a cloud service, that holds the system of record for zones, forwarding rules, address data and security policy."
+  ],
+  [
+   66.8,
+   6.412,
+   "And there are local resolvers and agents that keep answering from local state if the management plane can't be reached."
+  ],
+  [
+   73.213,
+   4.425,
+   "Cloud D N S isn't replaced; it's managed as an overlay."
+  ],
+  [
+   77.638,
+   2.375,
+   "So here is the argument of the whole session."
+  ],
+  [
+   80.013,
+   3.413,
+   "Federal rules require capabilities, not products."
+  ],
+  [
+   83.425,
+   5.513,
+   "Those capabilities, taken together, need one authoritative and governed D D I plane."
+  ],
+  [
+   88.938,
+   7.713,
+   "Infoblox is one of the strongest ways to deliver that plane, with evidence, and it also carries real risks you have to manage."
+  ],
+  [
+   96.65,
+   1.15,
+   "We'll cover both."
+  ],
+  [
+   97.8,
+   8.438,
+   "Sources: nist SP 800-81r3; Book 08, Chapters 01 and 08."
+  ]
+ ],
+ "3": [
+  [
+   0.05,
+   3.9,
+   "Here is what the rules actually require, stated as capabilities."
+  ],
+  [
+   3.95,
+   18.075,
+   "DNSSEC: SC-20 in the low and moderate baselines means signing agency zones, and O M B M-08-23, from 2008, is still in force; we checked every 2025 and 2026 memo, and none rescinds it."
+  ],
+  [
+   22.025,
+   4.675,
+   "SC-21 means validating answers on recursive resolvers."
+  ],
+  [
+   26.7,
+   6.375,
+   "SC-22 asks for fault-tolerant D N S with internal and external roles separated."
+  ],
+  [
+   33.075,
+   8.05,
+   "tick three point oh, version 3.3, carries signing and validation as policy enforcement point capabilities."
+  ],
+  [
+   41.125,
+   22.575,
+   "Encrypted D N S: M twenty-two oh-nine says agencies must resolve D N S using encrypted D N S wherever it's technically supported, and Executive Order 14144, section 4(c), which the June 2025 amendment left standing, repeats the push and adds contract language for any product that acts as a resolver."
+  ],
+  [
+   63.7,
+   8.162,
+   "sis-uh's Protective D N S sits upstream: internal resolvers forward to it, and the agency keeps its own logs."
+  ],
+  [
+   71.862,
+   1.262,
+   "Logging is subtle."
+  ],
+  [
+   73.125,
+   9.9,
+   "M-26-14, from May 2026, rescinded M-21-31 and doesn't mention D N S anywhere."
+  ],
+  [
+   83.025,
+   12.512,
+   "What carries D N S and DHCP logging forward is sis-uh's Logging Reference Architecture from August, which maps the old D N S and DHCP categories into its network-activity baseline."
+  ],
+  [
+   95.537,
+   3.663,
+   "Retention is six months searchable and twelve retrievable."
+  ],
+  [
+   99.2,
+   19.4,
+   "Inventory: BOD 23-01 wants discovery of all agency IPv4 space every seven days, and BOD 26-04, which replaced 19-02 and 22-01, wants public IP addresses and domains attested every quarter."
+  ],
+  [
+   118.6,
+   6.1,
+   "M-21-07 set IPv6-only targets that have all passed."
+  ],
+  [
+   124.7,
+   3.825,
+   "And SC-13 wants validated cryptography."
+  ],
+  [
+   128.525,
+   1.688,
+   "Now the honest starting point."
+  ],
+  [
+   130.213,
+   6.275,
+   "No rule names Infoblox or any D D I vendor, and nothing requires a D D I platform."
+  ],
+  [
+   136.488,
+   6.287,
+   "Windows D N S, BIND, or cloud D N S with a separate eye-pam can meet these rules too."
+  ],
+  [
+   142.775,
+   2.75,
+   "Choosing a platform is an architecture decision."
+  ],
+  [
+   145.525,
+   35.925,
+   "Sources: nist SP 800-53r5 OSCAL 5.2.0; O M B M-08-23, M twenty-two oh-nine, M-26-14, M-21-07; EO 14144, EO 14306; sis-uh Protective D N S, Logging Reference Architecture, tick three point oh v3.3, BOD 23-01, BOD 26-04; nist CMVP."
+  ]
+ ],
+ "4": [
+  [
+   0.05,
+   1.938,
+   "Module 1: the platform."
+  ],
+  [
+   1.988,
+   10.613,
+   "Before arguing for or against Infoblox, we need an accurate picture of what it is in October 2026, because the names have changed and a lot of older material is now wrong."
+  ],
+  [
+   12.6,
+   12.988,
+   "We'll start with the NIOS Grid, the on-premises architecture most agencies know, then the cloud-managed side, Universal D D I and the Infoblox Portal, including the limits Infoblox itself documents."
+  ],
+  [
+   25.587,
+   10.4,
+   "Then D N S, DHCP and eye-pam in turn, the Threat Defense security layer, and finally the automation interfaces and the logging and reporting path."
+  ],
+  [
+   35.987,
+   8.787,
+   "Sources: Infoblox NIOS 9.1.x admin guide; Universal D D I and Threat Defense documentation."
+  ]
+ ],
+ "5": [
+  [
+   0.05,
+   9.812,
+   "The NIOS Grid is a group of appliances that share sections of one distributed database, configured and monitored through a single access point, the Grid Master."
+  ],
+  [
+   9.863,
+   9.812,
+   "The Grid Master can be one appliance or a high-availability pair, and every administrator reaches the GUI through it, even administrators scoped to a single member."
+  ],
+  [
+   19.675,
+   6.475,
+   "Members can be physical Infoblox hardware or virtual vNIOS, singly or in HA pairs."
+  ],
+  [
+   26.15,
+   12.037,
+   "The Grid Master talks to every member hub-and-spoke, over encrypted VPN tunnels on UDP 1194 by default, after a challenge-response authentication on port 2114."
+  ],
+  [
+   38.188,
+   4.0,
+   "A Grid Master Candidate holds a complete copy of the database."
+  ],
+  [
+   42.188,
+   4.338,
+   "Promoting it is a manual operation, and you can't do it from the cloud portal."
+  ],
+  [
+   46.525,
+   6.912,
+   "HA pairs share one virtual IP and virtual MAC, with VRRP advertisements as the heartbeat."
+  ],
+  [
+   53.438,
+   5.8,
+   "A Grid can run IPv4-only, IPv6-only or dual mode."
+  ],
+  [
+   59.237,
+   1.188,
+   "Form factors."
+  ],
+  [
+   60.425,
+   6.225,
+   "The current hardware line is Trinzic X6, supported from NIOS 9.0.1."
+  ],
+  [
+   66.65,
+   10.675,
+   "vNIOS for VMware runs from four virtual CPUs and thirty-two gigabytes up to thirty-two CPUs and three hundred eighty-four, and every model can be a Grid Master."
+  ],
+  [
+   77.325,
+   12.2,
+   "vNIOS for Azure supports HA from 9.0.4 and explicitly covers Azure Government; note that Azure doesn't support running DHCP in Azure for on-premises networks."
+  ],
+  [
+   89.525,
+   6.5,
+   "vNIOS for AWS can be a Grid Master in HA, and its vDiscovery has a GovCloud option."
+  ],
+  [
+   96.025,
+   5.838,
+   "Google Cloud and Oracle Cloud are covered too, with OCI HA new in 9.1."
+  ],
+  [
+   101.862,
+   5.0,
+   "NIOS-X servers are the data plane for Universal D D I, which is next."
+  ],
+  [
+   106.862,
+   7.65,
+   "Versions: NIOS 9.1.0 went GA in March 2026 and ships BIND 9.20."
+  ],
+  [
+   114.513,
+   6.65,
+   "NIOS 9.0.6 introduced a Long-Term Support train with up to twenty-four months of support."
+  ],
+  [
+   121.162,
+   20.675,
+   "Sources: Infoblox NIOS 9.1.x About Grids, Promoting a Grid Master Candidate, About HA Failover, 9.1.0 What's New; vNIOS install guides; Supported Platforms for NIOS-X Servers; Infoblox NIOS 9.0.6 and 9.1.0 blogs."
+  ]
+ ],
+ "6": [
+  [
+   0.05,
+   3.138,
+   "Universal D D I is the cloud-managed side."
+  ],
+  [
+   3.188,
+   9.488,
+   "It used to be called BloxOne D D I; Infoblox renamed it in September 2024, and the on-premises hosts became NIOS-X servers."
+  ],
+  [
+   12.675,
+   11.0,
+   "The old Cloud Services Portal is now the Infoblox Portal, although the documentation still uses both names and the API host is still csp dot infoblox dot com."
+  ],
+  [
+   23.675,
+   10.088,
+   "The data plane is NIOS-X servers that you run, or NIOS-X as a Service, which Infoblox runs from its own points of presence in AWS and Google Cloud."
+  ],
+  [
+   33.763,
+   11.35,
+   "The management plane reaches outward to Route 53, Azure D N S, Google Cloud D N S, Cloudflare and Akamai, and to Microsoft D N S and DHCP."
+  ],
+  [
+   45.112,
+   9.5,
+   "It can also manage NIOS Grids from inside the Portal, and the documented hybrid D N S pattern makes NIOS primary and NIOS-X secondary."
+  ],
+  [
+   54.612,
+   9.1,
+   "Infoblox markets this as a single cloud-based control plane and API; that's a vendor claim, and the limits on the right are why you should test it."
+  ],
+  [
+   63.712,
+   3.0,
+   "These limits come from Infoblox's own pages."
+  ],
+  [
+   66.713,
+   10.225,
+   "Inside the Portal, the embedded NIOS view can't promote a Grid Master Candidate, show Splunk reporting or download files, and Multi-Grid Management isn't supported."
+  ],
+  [
+   76.938,
+   4.763,
+   "NIOS DHCP failover associations can't be managed from the Portal."
+  ],
+  [
+   81.7,
+   3.075,
+   "WAPI Passthrough reaches only the Grid Master."
+  ],
+  [
+   84.775,
+   10.125,
+   "NIOS-X as a Service has no IPv6, no overlapping IP spaces and no Azure points of presence, which matters under the IPv6 mandate."
+  ],
+  [
+   94.9,
+   10.0,
+   "The cloud D N S integrations sync simple routing records only, without tags, with NS records read-only and alias records turned into CNAMEs."
+  ],
+  [
+   104.9,
+   2.712,
+   "And Google's DNSSEC records don't sync."
+  ],
+  [
+   107.612,
+   6.412,
+   "So \"one console\" is overstated: in practice you'll run Grid Manager and the Portal side by side."
+  ],
+  [
+   114.025,
+   22.137,
+   "Sources: Infoblox What's New in Universal D D I; Limitations of Universal D D I; Limitations of NIOS-X as a Service; Universal D D I and NIOS Grid Hybrid Deployment; Route 53, Azure D N S and GCP integration pages; infoblox.com Universal D D I page (vendor)."
+  ]
+ ],
+ "7": [
+  [
+   0.05,
+   4.925,
+   "D N S on NIOS 9.1, with the catch for each feature."
+  ],
+  [
+   4.975,
+   6.812,
+   "D N S views serve different answers to different clients from match lists of client or destination addresses."
+  ],
+  [
+   11.787,
+   7.675,
+   "The first match wins, and you can set forwarders per view, which is how you'd point an internal view at sis-uh's Protective D N S."
+  ],
+  [
+   19.462,
+   3.487,
+   "DNSSEC is strong, with structure you must plan around."
+  ],
+  [
+   22.95,
+   3.188,
+   "Only the Grid Master can be primary for a signed zone."
+  ],
+  [
+   26.137,
+   4.487,
+   "It acts as a hidden primary and members serve the zone as secondaries."
+  ],
+  [
+   30.625,
+   8.137,
+   "Keys live either on the Grid Master or on an external network HSM, Thales Luna or Entrust nShield, not both."
+  ],
+  [
+   38.763,
+   7.875,
+   "Zone-signing keys roll automatically every thirty days by default, and key-signing keys yearly, automatically or by hand."
+  ],
+  [
+   46.638,
+   10.25,
+   "If the parent zone is in the Grid, the new DS record is inserted for you; otherwise someone exports it to the parent, which for a dot-gov zone means the registrar."
+  ],
+  [
+   56.888,
+   10.2,
+   "D N S Firewall uses response policy zones: local, feed or FireEye, up to thirty-two of them, with hits logged to syslog in CEF format."
+  ],
+  [
+   67.088,
+   7.838,
+   "GSS-TSIG lets Windows domain controllers make Kerberos-signed updates, up to two hundred fifty-six keys per member."
+  ],
+  [
+   74.925,
+   11.275,
+   "Grid members can manage Windows D N S and DHCP servers without an agent, over MS-RPC, read-only or read-write, and 9.1 adds IPv6 management."
+  ],
+  [
+   86.2,
+   11.512,
+   "Encrypted D N S: from 9.1.0, D N S over TLS and D N S over HTTPS are served by BIND, but only on X6 appliances."
+  ],
+  [
+   97.713,
+   4.612,
+   "Infoblox says they're free on X6 and need an extra license on X5."
+  ],
+  [
+   102.325,
+   6.625,
+   "One configuration item you must change: the default DNSSEC algorithm is RSA with SHA-1."
+  ],
+  [
+   108.95,
+   5.225,
+   "Pick SHA-256 or an ECDSA curve before you sign anything."
+  ],
+  [
+   114.175,
+   24.462,
+   "Sources: Infoblox NIOS 9.1.x: Configuring D N S Views, Anycast, DNSSEC on a Grid, Setting DNSSEC Parameters, Thales Luna HSM, D N S Firewall, GSS-TSIG, Managing Microsoft Servers, DoT and DoH Architecture, 9.1.0 What's New; NIOS 9.1.0 blog (vendor)."
+  ]
+ ],
+ "8": [
+  [
+   0.05,
+   1.525,
+   "DHCP first."
+  ],
+  [
+   1.575,
+   10.287,
+   "Failover peers form an association over TCP, split clients by a hash of the MAC address, fifty-fifty by default, and send each other lease updates directly."
+  ],
+  [
+   11.863,
+   4.725,
+   "The Grid Master isn't involved in failover, whatever older material says."
+  ],
+  [
+   16.587,
+   6.4,
+   "An association serves ranges in one network view only, and failover is IPv4 only."
+  ],
+  [
+   22.988,
+   7.2,
+   "That last point matters under the IPv6 mandate, though as we'll see in Module 2, Windows has the same gap."
+  ],
+  [
+   30.188,
+   7.987,
+   "DHCPv6 itself is supported, including prefix delegation, and fixed addresses arrived in 9.0.6."
+  ],
+  [
+   38.175,
+   8.075,
+   "Fingerprinting matches options 55 and 60 and is on by default, and filters can deny leases to device types per range."
+  ],
+  [
+   46.25,
+   5.838,
+   "Lease history is archived and exportable, which is the address-to-asset record nist asks for."
+  ],
+  [
+   52.087,
+   5.487,
+   "Dynamic D N S updates from DHCP are something you turn on, not automatic."
+  ],
+  [
+   57.575,
+   0.85,
+   "eye-pam."
+  ],
+  [
+   58.425,
+   4.45,
+   "A network view is a single routing domain, up to one thousand per Grid."
+  ],
+  [
+   62.875,
+   4.862,
+   "Views are mutually exclusive, so the same address space can exist in two of them."
+  ],
+  [
+   67.737,
+   3.725,
+   "A DHCP member serves only one network view."
+  ],
+  [
+   71.463,
+   7.812,
+   "Network containers hold the large blocks, and extensible attributes tag objects with metadata such as division or cost center."
+  ],
+  [
+   79.275,
+   9.113,
+   "Discovery uses ICMP, NetBIOS or TCP, and vDiscovery reads vCenter, OpenStack, Azure and AWS."
+  ],
+  [
+   88.388,
+   10.775,
+   "Network Insight, the layer-two and layer-three device discovery, needs its own license and dedicated appliances that run no D N S or DHCP; budget for that."
+  ],
+  [
+   99.162,
+   3.975,
+   "Universal Asset Insights is the SaaS inventory service."
+  ],
+  [
+   103.138,
+   7.588,
+   "And AWS documents Infoblox as the external authority for a VPC eye-pam private scope, on the Advanced tier."
+  ],
+  [
+   110.725,
+   2.3,
+   "Two corrections to common claims."
+  ],
+  [
+   113.025,
+   3.812,
+   "Separate network views permit overlap; they don't prevent it."
+  ],
+  [
+   116.838,
+   4.5,
+   "And the AWS eye-pam integration excludes the GovCloud regions."
+  ],
+  [
+   121.338,
+   29.087,
+   "Sources: Infoblox NIOS 9.1.x: DHCP Failover, DHCPv6 RFC Compliance, DHCP Fingerprint Detection, Lease History, Enabling DDNS, Configuring Network Views, About Discovery, About Network Insight, Extensible Attributes; Universal Asset Insights; AWS VPC eye-pam user guide; AWS What's New, Nov. 17, 2025."
+  ]
+ ],
+ "9": [
+  [
+   0.05,
+   6.9,
+   "Infoblox Threat Defense, formerly BloxOne Threat Defense, is the D N S-layer security product."
+  ],
+  [
+   6.95,
+   16.525,
+   "It bundles three things: D N S Firewall using response policy zones, TIDE, the Threat Intelligence Data Exchange, which aggregates and distributes machine-readable intelligence, and Dossier, which researches an indicator across about a dozen sources at once."
+  ],
+  [
+   23.475,
+   8.062,
+   "It detects D N S tunneling and data exfiltration, domain generation algorithms, command-and-control and phishing."
+  ],
+  [
+   31.538,
+   1.637,
+   "It's delivered two ways."
+  ],
+  [
+   33.175,
+   6.525,
+   "From the cloud, through the D N S Forwarding Proxy, the Infoblox Endpoint agent and a cloud resolver."
+  ],
+  [
+   39.7,
+   4.888,
+   "And on premises, as RPZ feeds into NIOS or NIOS-X."
+  ],
+  [
+   44.587,
+   7.45,
+   "On NIOS, Threat Insight detects tunneling and adds the destination to a mitigation RPZ automatically."
+  ],
+  [
+   52.038,
+   13.4,
+   "Threat Defense Detection Mode streams D N S reply metadata from NIOS to the cloud for passive detection; that metadata includes client IP addresses, so treat it as a boundary decision, not a checkbox."
+  ],
+  [
+   65.438,
+   6.8,
+   "Licensing comes in four tiers: Essentials, Business On-Premises, Business Cloud and Advanced."
+  ],
+  [
+   72.237,
+   4.25,
+   "The cloud delivery pieces come with Business Cloud and Advanced."
+  ],
+  [
+   76.487,
+   3.263,
+   "Custom feed ingest in TIDE is Advanced only."
+  ],
+  [
+   79.75,
+   6.5,
+   "Dossier gives thirty-two thousand queries a year on the Business tiers and sixty-four thousand on Advanced."
+  ],
+  [
+   86.25,
+   2.438,
+   "There's one strong independent signal."
+  ],
+  [
+   88.688,
+   7.287,
+   "Google Cloud's own documentation describes its D N S Armor threat detection as powered by Infoblox."
+  ],
+  [
+   95.975,
+   3.587,
+   "That's a cloud provider's statement, not Infoblox marketing."
+  ],
+  [
+   99.562,
+   1.375,
+   "And then there's the marketing."
+  ],
+  [
+   100.938,
+   11.95,
+   "Infoblox says it stops ninety percent of threats before the first query, detects threats sixty-eight days before other tools, and has a false-positive rate of 0.0002 percent."
+  ],
+  [
+   112.888,
+   3.013,
+   "Nobody independent has verified those figures."
+  ],
+  [
+   115.9,
+   2.425,
+   "Keep them out of anything an assessor reads."
+  ],
+  [
+   118.325,
+   19.038,
+   "Sources: Infoblox About Threat Defense; Licensing and Subscriptions; Dossier and TIDE Overview; About Threat Insight (NIOS 9.1.x); TDDM for NIOS; Google Cloud D N S Armor docs; infoblox.com Threat Defense page (vendor claims)."
+  ]
+ ],
+ "10": [
+  [
+   0.05,
+   5.5,
+   "Automation and logging, the two things that decide whether the platform can be governed at scale."
+  ],
+  [
+   5.55,
+   4.438,
+   "On automation, Infoblox is ahead of the other D D I vendors."
+  ],
+  [
+   9.988,
+   14.912,
+   "NIOS's REST API, WAPI, shows version 2.14 in the 9.1.0 examples, and 9.1 adds OAuth 2.0 and OpenID Connect sign-in for the API and immutable object IDs."
+  ],
+  [
+   24.9,
+   4.938,
+   "Universal D D I has its own REST API with API-key tokens."
+  ],
+  [
+   29.837,
+   8.762,
+   "There's also a WAPI-compatible API for Universal D D I, but Infoblox says it's for migration only and isn't a long-term API."
+  ],
+  [
+   38.6,
+   18.0,
+   "For infrastructure as code, the infobloxopen/infoblox Terraform provider went to a 3.0 beta on October thirteenth: one provider for both NIOS and Universal D D I, replacing three older ones, and not backward compatible, so state has to be re-imported."
+  ],
+  [
+   56.6,
+   4.075,
+   "Plan that migration; don't build new work on the older providers."
+  ],
+  [
+   60.675,
+   8.225,
+   "Ansible has current collections for both, and ServiceNow publishes an Infoblox spoke that needs IntegrationHub and a MID Server."
+  ],
+  [
+   68.9,
+   1.688,
+   "Logging has sharper edges."
+  ],
+  [
+   70.588,
+   12.213,
+   "Query and response capture rolls files every ten minutes or hundred megabytes, with local retention capped by model, and Infoblox recommends not logging queries and responses together because of the load."
+  ],
+  [
+   82.8,
+   8.088,
+   "dnstap runs on BIND in 9.1, but drops logs rather than buffering them if the receiver is down, so monitor the receiver."
+  ],
+  [
+   90.888,
+   2.712,
+   "RPZ hits go to syslog in CEF."
+  ],
+  [
+   93.6,
+   7.375,
+   "Cloud logs reach Splunk or Microsoft Sentinel through the Data Connector; Splunk's own Infoblox add-on is archived."
+  ],
+  [
+   100.975,
+   7.175,
+   "And the built-in Reporting appliances have daily ingest caps: ten gigabytes on the largest, five on the others."
+  ],
+  [
+   108.15,
+   6.213,
+   "Exceed the cap five times in thirty days and reporting locks until Infoblox Support steps in."
+  ],
+  [
+   114.362,
+   4.787,
+   "For federal retention, send logs to the sim and size Reporting deliberately."
+  ],
+  [
+   119.15,
+   28.962,
+   "Sources: Infoblox NIOS 9.1.0 What's New; Universal D D I API Guide; WAPI 2.0 for Universal D D I; infobloxopen terraform-provider-infoblox releases; infoblox-ansible and universal-ddi-ansible; ServiceNow Infoblox spoke; D N S Query and Response Captures; dnstap limits; Data Connector; Supported Reporting Appliances; Splunkbase 2934."
+  ]
+ ],
+ "11": [
+  [
+   0.05,
+   5.888,
+   "Module 2: why Infoblox is a top recommendation, and why federal networks need what it does."
+  ],
+  [
+   5.938,
+   2.05,
+   "We'll build the case in four steps."
+  ],
+  [
+   7.987,
+   6.975,
+   "First, map each federal requirement to the capability it demands and to the Infoblox feature that delivers it."
+  ],
+  [
+   14.963,
+   6.275,
+   "Second, look closely at what the fed-ramp listing covers and what stays inside the agency's own boundary."
+  ],
+  [
+   21.238,
+   8.175,
+   "Third, compare the assurance evidence and the features against BlueCat, EfficientIP, Microsoft and the native cloud services."
+  ],
+  [
+   29.413,
+   6.35,
+   "And fourth, lay out the risks plainly, with how to manage each one and what to ask for in the contract."
+  ],
+  [
+   35.763,
+   5.037,
+   "A recommendation that hides its risks isn't one an authorizing official can use."
+  ],
+  [
+   40.8,
+   12.387,
+   "Sources: fed-ramp Marketplace products.json; DISA STIG file store; nist CMVP; NIAP PCL; sis-uh CDM APL; NVD; sis-uh KEV."
+  ]
+ ],
+ "12": [
+  [
+   0.05,
+   8.387,
+   "This is the core of the argument: each requirement, the capability it demands, the Infoblox feature that delivers it, and what to watch."
+  ],
+  [
+   8.438,
+   8.537,
+   "Signing agency zones: the Grid Master signs as a hidden primary, rolls keys automatically, and can keep keys in an HSM."
+  ],
+  [
+   16.975,
+   6.463,
+   "Watch the RSA-SHA1 default and the DS record you'll still hand to the dot-gov registrar."
+  ],
+  [
+   23.438,
+   10.037,
+   "Resilient, role-separated D N S: Grid replication, HA pairs, a Grid Master Candidate, anycast, and internal and external views."
+  ],
+  [
+   33.475,
+   5.075,
+   "Watch that candidate promotion is manual, so it belongs in a tested runbook."
+  ],
+  [
+   38.55,
+   8.338,
+   "Encrypted D N S at agency resolvers: from 9.1, BIND serves DoT and DoH, but on X6 hardware only."
+  ],
+  [
+   46.888,
+   6.463,
+   "Protective D N S: per-view forwarders send egress to sis-uh while the Grid keeps local logs."
+  ],
+  [
+   53.35,
+   1.05,
+   "Watch one thing."
+  ],
+  [
+   54.4,
+   13.562,
+   "sis-uh's FAQ notes that some vendors don't support the protocols for forwarding to its resolver, and our research found no Infoblox document on encrypted forwarding to sis-uh, so confirm it in a lab before you rely on it."
+  ],
+  [
+   67.963,
+   12.162,
+   "Logging: query capture, dnstap, lease history, CEF syslog and the Data Connector cover what the Logging Reference Architecture maps; watch the ingest caps and dnstap's drop behavior."
+  ],
+  [
+   80.125,
+   17.1,
+   "Inventory for BOD 23-01, BOD 26-04 and CM-8: eye-pam, discovery, cloud vDiscovery and Asset Insights give the authoritative address record; watch the dedicated hardware for Network Insight."
+  ],
+  [
+   97.225,
+   9.5,
+   "IPv6: IPv6 Grids, DHCPv6 and prefix delegation, but DHCP failover is IPv4 only."
+  ],
+  [
+   106.725,
+   9.725,
+   "And validated cryptography is the gap: Infoblox's FIPS 140-3 modules are in nist review, with no active certificate today."
+  ],
+  [
+   116.45,
+   6.138,
+   "Read across the rows: seven of eight requirements land on one platform and one database."
+  ],
+  [
+   122.588,
+   6.438,
+   "That consolidation is the case for a governed D D I plane, and for Infoblox as a strong way to build it."
+  ],
+  [
+   129.025,
+   31.325,
+   "Sources: nist SP 800-53r5; O M B M-08-23, M twenty-two oh-nine, M-21-07; EO 14144; sis-uh Protective D N S FAQ; sis-uh LRA; BOD 23-01, 26-04; Infoblox NIOS 9.1.x and Universal D D I docs; nist CMVP modules in process."
+  ]
+ ],
+ "13": [
+  [
+   0.05,
+   5.6,
+   "fed-ramp is the most misquoted part of any Infoblox proposal, so let's read the record."
+  ],
+  [
+   5.65,
+   17.225,
+   "The Marketplace lists Infoblox Government Cloud, package FR2017257053, as fed-ramp Certified at Moderate, which the Marketplace now labels Class C, on the agency path, as SaaS hosted in AWS GovCloud."
+  ],
+  [
+   22.875,
+   5.838,
+   "It was certified in December 2022 through the agency path, with Kratos as assessor."
+  ],
+  [
+   28.712,
+   3.938,
+   "It shows one agency authorization and a reuse count of zero."
+  ],
+  [
+   32.65,
+   4.55,
+   "There's no High listing, and we couldn't verify any DoD impact level."
+  ],
+  [
+   37.2,
+   1.038,
+   "What's in scope?"
+  ],
+  [
+   38.237,
+   8.25,
+   "The listing names Universal D D I, Universal Asset Insights, and the Threat Defense component services TIDE and Dossier."
+  ],
+  [
+   46.487,
+   9.137,
+   "Infoblox's July 2026 blog says the offering now includes NIOS-X servers; treat that as a vendor claim until the package says so."
+  ],
+  [
+   55.625,
+   6.412,
+   "What isn't named: the Threat Defense cloud resolver, the D N S Forwarding Proxy and the Data Connector."
+  ],
+  [
+   62.038,
+   4.975,
+   "Ask Infoblox for the authorization boundary diagram before you design around them."
+  ],
+  [
+   67.013,
+   7.013,
+   "And the biggest point: NIOS appliances and vNIOS running on agency infrastructure aren't a cloud service at all."
+  ],
+  [
+   74.025,
+   2.325,
+   "No fed-ramp authorization covers them."
+  ],
+  [
+   76.35,
+   10.363,
+   "They sit inside the agency's own boundary and its own ATO, so a statement like \"Infoblox's fed-ramp authorization covers the D D I layer\" is an overclaim."
+  ],
+  [
+   86.713,
+   9.8,
+   "For High or DoD systems, the path is agency-operated vNIOS, for example from the Azure Government Marketplace, which Infoblox documents."
+  ],
+  [
+   96.513,
+   1.462,
+   "Two practical notes."
+  ],
+  [
+   97.975,
+   6.425,
+   "With reuse at zero, expect to do your own ATO work rather than ride a widely reused package."
+  ],
+  [
+   104.4,
+   12.225,
+   "And Infoblox keeps separate fed-ramp release notes whose latest entry is March fourteenth, while the commercial notes run to October seventeenth, which suggests the fed-ramp instance lags commercial features."
+  ],
+  [
+   116.625,
+   1.6,
+   "Ask for the parity list."
+  ],
+  [
+   118.225,
+   21.163,
+   "Sources: fed-ramp Marketplace products.json, FR2017257053 (accessed Oct. 22, 2026); Infoblox blog, July 22, 2026 (vendor); What's New in Universal D D I for fed-ramp; vNIOS for Azure."
+  ]
+ ],
+ "14": [
+  [
+   0.05,
+   3.038,
+   "Assurance evidence, checked on October twenty-second."
+  ],
+  [
+   3.087,
+   2.075,
+   "DISA STIGs are a real strength."
+  ],
+  [
+   5.162,
+   18.85,
+   "DISA's file store has an Infoblox NIOS 9.x STIG, version 1 release 1, with a benchmark date of July 28, 2026 and forty-five rules, and an Infoblox 8.x D N S STIG at version 1 release 4 from September 30, with sixty-nine rules."
+  ],
+  [
+   24.012,
+   3.388,
+   "The generic D N S SRG applies too."
+  ],
+  [
+   27.4,
+   4.125,
+   "Neither BlueCat nor EfficientIP has a vendor-specific STIG."
+  ],
+  [
+   31.525,
+   3.962,
+   "FIPS 140 is the weak spot, so say it plainly."
+  ],
+  [
+   35.487,
+   4.138,
+   "Infoblox has no active FIPS 140 certificate today."
+  ],
+  [
+   39.625,
+   18.837,
+   "Its FIPS 140-2 certificates, 4531 for hardware and 4535 for virtual appliances, moved to the Historical list with the September 21, 2026 sunset, and nist says Historical modules may be used for existing systems only."
+  ],
+  [
+   58.462,
+   9.438,
+   "Four FIPS 140-3 submissions are in the CMVP queue, in review or pending review since late September and early October."
+  ],
+  [
+   67.9,
+   7.675,
+   "Until those certificates post, a new NIOS deployment that depends on validated crypto can't cite an active certificate."
+  ],
+  [
+   75.575,
+   3.6,
+   "NIAP: there's no current Common Criteria certificate."
+  ],
+  [
+   79.175,
+   6.225,
+   "NIOS 9.0 has been in evaluation since August 17, 2026."
+  ],
+  [
+   85.4,
+   8.037,
+   "Infoblox isn't on the CDM Approved Products List, and that list isn't accepting new submissions, so don't expect it to change."
+  ],
+  [
+   93.438,
+   9.363,
+   "And a word on nist SP 800-81 Revision 3, the Secure D N S Deployment Guide, final in March 2026."
+  ],
+  [
+   102.8,
+   8.525,
+   "It's the best practical guide we have: Protective D N S, query logging, lease history, encrypted D N S, DNSSEC."
+  ],
+  [
+   111.325,
+   5.562,
+   "But two of its three authors, Cricket Liu and Ross Gibson, are Infoblox employees."
+  ],
+  [
+   116.888,
+   3.612,
+   "That's expertise and influence, not an authorization."
+  ],
+  [
+   120.5,
+   5.963,
+   "Whenever you cite 800-81r3 in support of choosing Infoblox, disclose it."
+  ],
+  [
+   126.463,
+   26.575,
+   "Sources: DISA STIG file store, U_Infoblox_NIOS_9-x_V1R1 and U_IB_8-x_DNS_V1R4; nist CMVP certificates 4531, 4535 and modules-in-process list; NIAP PCL; Common Criteria Portal; sis-uh CDM APL, April 2025; nist SP 800-81r3 title page."
+  ]
+ ],
+ "15": [
+  [
+   0.05,
+   2.375,
+   "A fair comparison, column by column."
+  ],
+  [
+   2.425,
+   6.237,
+   "fed-ramp: Infoblox is the only dedicated D D I vendor here with a listing, at Moderate."
+  ],
+  [
+   8.662,
+   2.35,
+   "BlueCat and EfficientIP have none."
+  ],
+  [
+   11.012,
+   6.588,
+   "But the hyperscalers' government clouds are all fed-ramp High, a higher ceiling than Infoblox's SaaS."
+  ],
+  [
+   17.6,
+   3.138,
+   "FIPS 140: BlueCat leads."
+  ],
+  [
+   20.738,
+   7.725,
+   "It holds an active FIPS 140-3 certificate, number 5506, valid to 2029."
+  ],
+  [
+   28.462,
+   4.025,
+   "Infoblox's is still in review, and EfficientIP has none."
+  ],
+  [
+   32.487,
+   8.6,
+   "STIGs: Infoblox has two current vendor-specific STIGs; BlueCat and EfficientIP have none, and Windows D N S has its own."
+  ],
+  [
+   41.087,
+   8.887,
+   "Multi-cloud D N S: Infoblox manages Route 53, Azure D N S and Google Cloud D N S from one interface."
+  ],
+  [
+   49.975,
+   4.35,
+   "BlueCat and EfficientIP claim similar coverage on their product pages."
+  ],
+  [
+   54.325,
+   4.75,
+   "Each cloud's native service covers only that cloud, and Windows covers none."
+  ],
+  [
+   59.075,
+   9.012,
+   "D N S security: Infoblox has the broadest set, response policy zones plus TIDE intelligence and tunneling and DGA analytics."
+  ],
+  [
+   68.088,
+   14.738,
+   "Azure uses domain lists and a Microsoft feed, AWS D N S Firewall Advanced adds DGA and tunneling detection, Google's response policies are passthrough only, and Windows D N S policies have no feed integration."
+  ],
+  [
+   82.825,
+   7.4,
+   "DHCPv6 failover is missing everywhere we checked, Infoblox and Windows included, so it's not a differentiator."
+  ],
+  [
+   90.225,
+   5.575,
+   "EfficientIP claims extra DHCP high-availability modes; that's a vendor claim."
+  ],
+  [
+   95.8,
+   8.213,
+   "Automation: two partner-tier Terraform providers, two Ansible collections and ServiceNow give Infoblox the deepest set."
+  ],
+  [
+   104.013,
+   3.462,
+   "EfficientIP's Terraform provider is community tier."
+  ],
+  [
+   107.475,
+   9.887,
+   "Where alternatives win: BlueCat's Micetro manages existing Windows and BIND servers in place, and a single-cloud workload may need no third-party plane."
+  ],
+  [
+   117.362,
+   7.25,
+   "So the fair claim is the one on the slide: a strong default for a hybrid federal estate, not the only viable choice."
+  ],
+  [
+   124.612,
+   29.938,
+   "Sources: fed-ramp Marketplace products.json; nist CMVP certificate 5506; DISA STIG store; BlueCat Integrity and Micetro pages, EfficientIP SOLIDserver datasheet (vendor); Microsoft Learn D N S Policies and DHCP failover; Azure D N S resolver policy; Route 53 D N S Firewall Advanced; Google Cloud response policies and D N S Armor; Terraform Registry; Ansible Galaxy."
+  ]
+ ],
+ "16": [
+  [
+   0.05,
+   4.025,
+   "Now the risks, stated plainly, with how to manage each one."
+  ],
+  [
+   4.075,
+   2.438,
+   "First, cryptographic validation."
+  ],
+  [
+   6.513,
+   3.362,
+   "There's no active FIPS 140 certificate today."
+  ],
+  [
+   9.875,
+   8.912,
+   "The 140-2 certificates went Historical with the September 21 sunset, and four 140-3 modules are in nist review."
+  ],
+  [
+   18.788,
+   2.175,
+   "BlueCat holds an active certificate."
+  ],
+  [
+   20.962,
+   9.012,
+   "If your system requires validated cryptography at award, make go-live depend on the issued certificate, or carry the gap as a POA&M item with a date."
+  ],
+  [
+   29.975,
+   7.013,
+   "Ask Infoblox which NIOS versions the pending modules cover, because a certificate for the wrong version doesn't help."
+  ],
+  [
+   36.987,
+   6.275,
+   "Second, there's no current NIAP certificate; NIOS 9.0 is in evaluation."
+  ],
+  [
+   43.263,
+   5.85,
+   "And Infoblox isn't on the CDM Approved Products List, which is closed to new submissions."
+  ],
+  [
+   49.112,
+   4.9,
+   "Track the NIAP evaluation, and don't promise anyone APL status."
+  ],
+  [
+   54.013,
+   2.0,
+   "Third, vulnerabilities."
+  ],
+  [
+   56.013,
+   19.5,
+   "NVD lists four NIOS CVEs from February 2025 rated between 9.1 and 9.8, including improper authentication for Grids, and a remote-code-execution deserialization flaw, CVE-2025-61880, from February 2026."
+  ],
+  [
+   75.513,
+   5.338,
+   "None of the Infoblox CVEs is in sis-uh's Known Exploited Vulnerabilities catalog."
+  ],
+  [
+   80.85,
+   8.425,
+   "Write the patch cadence and the Long-Term Support train into the ATO plan, and keep the Grid management plane off untrusted networks."
+  ],
+  [
+   89.275,
+   2.05,
+   "Fourth, the BIND dependency."
+  ],
+  [
+   91.325,
+   8.925,
+   "NIOS and NIOS-X run on BIND, and NIOS-X updates in September 2026 shipped to address lists of BIND CVEs."
+  ],
+  [
+   100.25,
+   8.725,
+   "On October eighth sis-uh added an old BIND flaw, CVE-2015-5477, to the KEV catalog."
+  ],
+  [
+   108.975,
+   10.838,
+   "Ask Infoblox for its BIND advisory SLA and a written attestation that current releases aren't affected by KEV-listed BIND CVEs, and track ISC's advisories yourself."
+  ],
+  [
+   119.812,
+   3.975,
+   "Fifth, the SaaS ceiling is Moderate, and reuse is zero."
+  ],
+  [
+   123.787,
+   6.362,
+   "Use agency-operated vNIOS for High or DoD systems, and budget a full ATO."
+  ],
+  [
+   130.15,
+   24.712,
+   "Sources: nist CMVP certificates 4531, 4535, 5506 and modules-in-process list; NIAP PCL; sis-uh CDM APL; NVD CVE API (keyword Infoblox); sis-uh KEV catalog 2026.10.21; Infoblox Cloud release notes; fed-ramp products.json."
+  ]
+ ],
+ "17": [
+  [
+   0.05,
+   4.162,
+   "The second set of risks is about cost, capacity and features."
+  ],
+  [
+   4.213,
+   0.925,
+   "Licensing."
+  ],
+  [
+   5.138,
+   7.175,
+   "Universal D D I uses three token types, management, server and reporting, sold in minimum packs."
+  ],
+  [
+   12.312,
+   11.988,
+   "Tokens are a subscription entitlement that expires at the end of the term, can only be rebalanced within a type, and overage is handled by what Infoblox calls True Forward, on a rolling three-month average."
+  ],
+  [
+   24.3,
+   10.963,
+   "Model total cost over three to five years, including the hardware refresh: Infoblox's end-of-life policy typically supports hardware four years after its last order date."
+  ],
+  [
+   35.263,
+   1.425,
+   "Reporting capacity."
+  ],
+  [
+   36.688,
+   4.625,
+   "We covered the ingest caps; five overruns in thirty days locks reporting."
+  ],
+  [
+   41.312,
+   5.737,
+   "Size the Reporting tier for the retention you need, or make the sim the system of record for logs."
+  ],
+  [
+   47.05,
+   5.438,
+   "Encrypted D N S needs X6 hardware, or an extra license on X5."
+  ],
+  [
+   52.487,
+   4.213,
+   "Plan the refresh around the encrypted D N S deadline."
+  ],
+  [
+   56.7,
+   3.1,
+   "DNSSEC defaults to RSA with SHA-1."
+  ],
+  [
+   59.8,
+   7.025,
+   "Put SHA-256 or ECDSA in the build standard so nobody signs with the default."
+  ],
+  [
+   66.825,
+   8.838,
+   "Hybrid limits: the Portal can't promote a Grid Master Candidate or manage DHCP failover associations, so keep Grid Manager runbooks for both."
+  ],
+  [
+   75.662,
+   7.138,
+   "And stale collateral: an older Infoblox blog post still says Universal D D I isn't fed-ramp compliant."
+  ],
+  [
+   82.8,
+   2.025,
+   "Cite only the Marketplace record."
+  ],
+  [
+   84.825,
+   4.588,
+   "On the right are the procurement asks that turn these risks into obligations."
+  ],
+  [
+   89.412,
+   6.513,
+   "A FIPS 140-3 certificate timeline, the versions it covers, and a remedy if it slips."
+  ],
+  [
+   95.925,
+   4.225,
+   "A BIND advisory SLA with a KEV not-affected attestation."
+  ],
+  [
+   100.15,
+   3.562,
+   "The fed-ramp boundary diagram and a commercial-parity list."
+  ],
+  [
+   103.713,
+   2.513,
+   "Reporting sized for six months searchable."
+  ],
+  [
+   106.225,
+   4.575,
+   "Caps on token true-forward, and a clause guaranteeing you can export your data."
+  ],
+  [
+   110.8,
+   21.45,
+   "Sources: Infoblox Universal D D I Tokens FAQ and Supplemental Terms (vendor); Supported Reporting Appliances; NIOS 9.1.0 blog (vendor); Setting DNSSEC Parameters; Limitations of Universal D D I; Infoblox EOL policy; Infoblox Top 12 Questions post (search summary)."
+  ]
+ ],
+ "18": [
+  [
+   0.05,
+   3.025,
+   "Part 2: divisions under central governance."
+  ],
+  [
+   3.075,
+   3.225,
+   "Module 3 covers divisions on NIOS."
+  ],
+  [
+   6.3,
+   2.125,
+   "Most agencies aren't one network."
+  ],
+  [
+   8.425,
+   13.688,
+   "Bureaus, regional offices and labs run their own address space and often their own D N S, and a central policy plane only works if those divisions can still do their jobs through it, because a division that can't will work around it."
+  ],
+  [
+   22.113,
+   3.513,
+   "NIOS has a detailed permission model for exactly this."
+  ],
+  [
+   25.625,
+   14.988,
+   "We'll go through how it decides access, how to scope an admin group to one division, the views and attributes that separate divisions, approvals and their one big gap, sign-in, Microsoft servers, what stays central, and a reporting surprise."
+  ],
+  [
+   40.612,
+   9.113,
+   "Sources: Infoblox NIOS 9.1.x and 9.0 administration guides; Book 08, Chapter 11."
+  ]
+ ],
+ "19": [
+  [
+   0.05,
+   5.375,
+   "The NIOS permission model has three levels: read-write, read-only and deny."
+  ],
+  [
+   5.425,
+   7.987,
+   "Deny is the default for every resource, which is the right starting point for divisions: a new group sees nothing until you grant it something."
+  ],
+  [
+   13.412,
+   1.925,
+   "Permissions come in two scopes."
+  ],
+  [
+   15.338,
+   5.812,
+   "Global permissions cover every object of a type, for example every DHCP network."
+  ],
+  [
+   21.15,
+   9.588,
+   "Object permissions cover one specific member, zone, response policy zone, network, record or fixed address, together with what's inside it."
+  ],
+  [
+   30.738,
+   10.725,
+   "Inheritance runs from parent to child, and you override it by setting a permission at a more specific level, such as deny on one fixed address inside a read-write network."
+  ],
+  [
+   41.462,
+   4.3,
+   "When permissions overlap, NIOS resolves them in a fixed order."
+  ],
+  [
+   45.763,
+   3.163,
+   "It starts at the most specific object and works up."
+  ],
+  [
+   48.925,
+   6.688,
+   "At each level it checks permissions assigned directly to the group first, then the group's roles in the order they're listed."
+  ],
+  [
+   55.612,
+   4.075,
+   "The first permission it finds wins, and everything after it is ignored."
+  ],
+  [
+   59.688,
+   7.7,
+   "So if one role grants read-only on A records and a later role grants read-write on the same records, the admin gets read-only."
+  ],
+  [
+   67.388,
+   5.075,
+   "Grid Manager flags overlaps with a See Conflicts link and an Overlaps filter."
+  ],
+  [
+   72.463,
+   3.95,
+   "Roles are reusable permission sets, up to twenty-one per group."
+  ],
+  [
+   76.412,
+   10.988,
+   "Be careful with the system roles: D N S Admin and DHCP Admin grant read-write across all members and all managed Microsoft servers, far too broad for a division."
+  ],
+  [
+   87.4,
+   2.112,
+   "The governance lever is on the left."
+  ],
+  [
+   89.513,
+   8.238,
+   "Only superusers can create admin groups and roles, or define extensible attributes, so a division can't widen its own rights."
+  ],
+  [
+   97.75,
+   7.025,
+   "And a local admin superuser always exists, so someone can still log in if the directory or OCSP is down."
+  ],
+  [
+   104.775,
+   13.887,
+   "Sources: Infoblox NIOS: About Administrative Permissions, About Admin Groups, About Admin Roles, Applying Permissions and Managing Overlaps, Creating Superuser Admin Groups, Managing Extensible Attributes."
+  ]
+ ],
+ "20": [
+  [
+   0.05,
+   6.537,
+   "Here is the recipe for scoping one admin group to one division, built from Infoblox's permission pages."
+  ],
+  [
+   6.588,
+   11.262,
+   "Step one, as a superuser, create a limited-access group and turn on only the interfaces it needs: GUI, API, or CLI with specific command groups."
+  ],
+  [
+   17.85,
+   2.562,
+   "Limited-access groups never get the console."
+  ],
+  [
+   20.413,
+   8.037,
+   "For help-desk staff, a group can be restricted to the Tasks Dashboard only, so they run approved task packs and nothing else."
+  ],
+  [
+   28.45,
+   2.55,
+   "Step two, grant object permissions."
+  ],
+  [
+   31.0,
+   7.537,
+   "Read-write on the division's network container or networks reaches every object inside them and overrides global settings."
+  ],
+  [
+   38.538,
+   9.2,
+   "If the division has overlapping space, grant read-write on its own network view instead, which reaches its networks, ranges and fixed addresses."
+  ],
+  [
+   47.737,
+   10.7,
+   "For D N S, the documented pattern is read-only on the parent D N S view and read-write on the division's zones, so the division can create zones without editing the view."
+  ],
+  [
+   58.438,
+   6.175,
+   "You can go finer, per record type: read-write on MX and SRV, deny on CNAME."
+  ],
+  [
+   64.612,
+   10.812,
+   "And Member D N S and Member DHCP permissions confine the group's service work to its own members, with a separate permission to restart services without changing properties."
+  ],
+  [
+   75.425,
+   5.112,
+   "Only superusers can change Grid-level D N S and DHCP properties."
+  ],
+  [
+   80.537,
+   3.263,
+   "Step three, leave everything else at the default deny."
+  ],
+  [
+   83.8,
+   2.25,
+   "Step four is the one people miss."
+  ],
+  [
+   86.05,
+   5.963,
+   "Turn on the Grid property called Enable D N S Object Permissions in Networks and Ranges."
+  ],
+  [
+   92.013,
+   9.1,
+   "With it on, creating an A, AAAA or PTR record or a host needs read-write on both the zone and the network or range that holds the address."
+  ],
+  [
+   101.112,
+   6.138,
+   "Without it, a division with write access to a shared zone could point a name at another division's addresses."
+  ],
+  [
+   107.25,
+   4.45,
+   "Fixed address and reservation permissions are always enforced either way."
+  ],
+  [
+   111.7,
+   21.288,
+   "Sources: Infoblox NIOS: Creating Limited-Access Admin Groups; Defining Object Permissions; Administrative Permissions for Network Views, eye-pam Resources, D N S Views, Zones and Resource Records; Permissions for D N S Resources in Networks and Ranges; D N S and DHCP Permissions on Grid Members."
+  ]
+ ],
+ "21": [
+  [
+   0.05,
+   5.338,
+   "Three constructs separate divisions on NIOS, and each has a rule that shapes the design."
+  ],
+  [
+   5.388,
+   1.163,
+   "Network views."
+  ],
+  [
+   6.55,
+   4.037,
+   "A network view is a single routing domain with its own networks."
+  ],
+  [
+   10.588,
+   9.35,
+   "Views are mutually exclusive, so two of them can hold the same addresses; You can have up to a thousand, and the default view can be renamed but not deleted."
+  ],
+  [
+   19.938,
+   7.838,
+   "The design rule: a DHCP member serves only one network view, and both failover peers must serve the same one."
+  ],
+  [
+   27.775,
+   4.475,
+   "So a division with overlapping space needs its own DHCP members."
+  ],
+  [
+   32.25,
+   8.238,
+   "Remember too that nothing on NIOS enforces uniqueness across views; that's a Universal D D I feature, in Module 4."
+  ],
+  [
+   40.487,
+   7.875,
+   "D N S views give different answers to different clients, matched on source address or TSIG key, and the first match wins."
+  ],
+  [
+   48.362,
+   9.3,
+   "Every network view gets an automatic D N S view called default dot the view name, and a D N S view belongs to exactly one network view."
+  ],
+  [
+   57.663,
+   5.45,
+   "Only one D N S view per network view can receive dynamic D N S updates."
+  ],
+  [
+   63.112,
+   6.037,
+   "And order matters: put a catch-all external view first and the internal view is never reached."
+  ],
+  [
+   69.15,
+   8.125,
+   "Extensible attributes are metadata: such as Division and CostCenter, with types, allowed values and a required flag."
+  ],
+  [
+   77.275,
+   5.412,
+   "They inherit down from the network view to the container, network, range and host."
+  ],
+  [
+   82.688,
+   1.163,
+   "Two cautions."
+  ],
+  [
+   83.85,
+   10.312,
+   "Required is enforced only in Grid Manager; objects created through the API or CSV import can skip it, so your automation has to enforce the Division tag."
+  ],
+  [
+   94.162,
+   5.15,
+   "And attributes drive smart folders, dashboards and reports, not permissions."
+  ],
+  [
+   99.312,
+   3.225,
+   "We found no way to grant access by attribute value."
+  ],
+  [
+   102.537,
+   6.025,
+   "Access is always scoped by objects: containers, networks, views and zones."
+  ],
+  [
+   108.562,
+   13.5,
+   "Sources: Infoblox NIOS: Configuring Network Views; About D N S Views; Managing Extensible Attributes; Configuring Inheritable EAs; Smart Folders and EA filters."
+  ]
+ ],
+ "22": [
+  [
+   0.05,
+   5.188,
+   "The approval workflow is how central keeps a hand on division changes without doing the work."
+  ],
+  [
+   5.237,
+   2.462,
+   "Only superusers create workflows."
+  ],
+  [
+   7.7,
+   9.15,
+   "Each workflow routes tasks from one submitter group to an approver group; a submitter group has exactly one workflow, while an approver group can serve several."
+  ],
+  [
+   16.85,
+   4.65,
+   "Approvers approve, approve with a new execution time, or reject."
+  ],
+  [
+   21.5,
+   5.787,
+   "Approved tasks run with the submitter's permissions and land in the audit log with a task ID."
+  ],
+  [
+   27.288,
+   4.15,
+   "You can require a ticket number and comments, and notify either side."
+  ],
+  [
+   31.438,
+   16.438,
+   "What can go through approval: D N S zones, views and records except S O A; hosts, networks, containers, ranges, fixed addresses and reservations; Microsoft objects that NIOS supports; response policy zones and their rules."
+  ],
+  [
+   47.875,
+   2.925,
+   "Service restarts aren't subject to approval."
+  ],
+  [
+   50.8,
+   17.825,
+   "Some operations are blocked for submitters even if they hold the permission: signing or unsigning zones, importing DS records and rolling key-signing keys; reclaiming, resizing or splitting networks; bulk edits and deletes; Recycle Bin restores and RPZ ordering."
+  ],
+  [
+   68.625,
+   3.638,
+   "Those stay with central staff, which suits a federal model well."
+  ],
+  [
+   72.263,
+   0.988,
+   "Now the gap."
+  ],
+  [
+   73.25,
+   2.962,
+   "CSV imports bypass approval entirely."
+  ],
+  [
+   76.213,
+   9.463,
+   "Infoblox's own page says CSV imports do not require approvals, and Grid Manager shows a warning when a submitter group holds CSV import permission."
+  ],
+  [
+   85.675,
+   5.325,
+   "If you leave that permission in place, a division can load a thousand records with no review at all."
+  ],
+  [
+   91.0,
+   7.5,
+   "Remove CSV import from every division submitter group, and give bulk loads to a central group that works under a change ticket."
+  ],
+  [
+   98.5,
+   13.875,
+   "Sources: Infoblox NIOS: Configuring Approval Workflows; Creating Approval Workflows; Unsupported Operations for Submitters; Supported Tasks for Different Admin Groups; Scheduling Tasks; Audit Log."
+  ]
+ ],
+ "23": [
+  [
+   0.05,
+   4.963,
+   "Who can sign in, and which group they land in, is the other half of division scoping."
+  ],
+  [
+   5.013,
+   8.287,
+   "NIOS supports local accounts, radius, Active Directory, el-dap, TACACS+ and sam-ul, in any combination."
+  ],
+  [
+   13.3,
+   8.438,
+   "The authentication policy is an ordered list of server groups, plus an ordered list that maps remote groups to local admin groups by name."
+  ],
+  [
+   21.738,
+   3.337,
+   "The first match wins, and there's an optional default group."
+  ],
+  [
+   25.075,
+   10.275,
+   "So a directory, for example an A D security group per division, decides which division an administrator belongs to, and A D nested groups are resolved recursively."
+  ],
+  [
+   35.35,
+   3.75,
+   "For federal staff the important one is certificate authentication."
+  ],
+  [
+   39.1,
+   10.5,
+   "NIOS authenticates administrators by X.509 client certificate, and its documentation names CAC and piv smart-card holders as the example."
+  ],
+  [
+   49.6,
+   9.412,
+   "Certificate status is checked against an ordered list of OCSP responders, and both the authentication policy and the OCSP check must pass."
+  ],
+  [
+   59.013,
+   4.838,
+   "The admin name is matched from the certificate's U P N, email or subject."
+  ],
+  [
+   63.85,
+   5.25,
+   "sam-ul 2.0 lists Azure SSO among its identity provider types."
+  ],
+  [
+   69.1,
+   9.088,
+   "The provider sends a group attribute, and the user lands in the NIOS group whose name exactly matches; otherwise in a default sam-ul group."
+  ],
+  [
+   78.188,
+   1.163,
+   "Four things to check."
+  ],
+  [
+   79.35,
+   9.912,
+   "Certificate-based sign-in to the API doesn't work if the Grid Master holds a Cloud Network Automation or Cloud API license, so decide that before you license."
+  ],
+  [
+   89.263,
+   3.138,
+   "sam-ul-only users can't run CLI commands."
+  ],
+  [
+   92.4,
+   13.25,
+   "Infoblox's Universal D D I guide says Entra sends group object IDs, while NIOS needs an exact group name match, and we couldn't confirm which the NIOS Azure SSO type expects, so test it."
+  ],
+  [
+   105.65,
+   6.287,
+   "And because the first mapping wins, order mappings so a user in two groups lands where you intend."
+  ],
+  [
+   111.938,
+   2.438,
+   "Keep the local admin as break-glass."
+  ],
+  [
+   114.375,
+   19.75,
+   "Sources: Infoblox NIOS: Authenticating Administrators; Defining the Authentication Policy; About Remote Admins; Two-Factor and Certificate Authentication Services; sam-ul pages; A D Nested Groups; Creating Limited-Access Admin Groups; Universal D D I sam-ul for Entra ID."
+  ]
+ ],
+ "24": [
+  [
+   0.05,
+   2.663,
+   "Three topics close the NIOS module."
+  ],
+  [
+   2.712,
+   5.162,
+   "First, a division that still runs Windows D N S and DHCP."
+  ],
+  [
+   7.875,
+   9.875,
+   "NIOS manages those servers over MS-RPC with no agent, read-only or read-write, with a Microsoft Management license on the managing member."
+  ],
+  [
+   17.75,
+   7.025,
+   "Each Windows server syncs into exactly one network view and one D N S view, fixed after the first sync."
+  ],
+  [
+   24.775,
+   13.713,
+   "Each server object carries its own permissions inside Grid Manager, so give the division's group rights on its own servers rather than the system D N S Admin or DHCP Admin roles, which cover every Microsoft server."
+  ],
+  [
+   38.487,
+   9.162,
+   "And be careful: changing the managing member, or switching from read-write to read-only, reverts any edits made in Grid Manager since the last sync."
+  ],
+  [
+   47.65,
+   3.025,
+   "Second, what stays central in every design."
+  ],
+  [
+   50.675,
+   7.888,
+   "The Grid Master and its candidates, and Grid-level D N S and DHCP properties, which only superusers can change anyway."
+  ],
+  [
+   58.562,
+   5.425,
+   "DNSSEC keys and signing, because only the Grid Master or its HSM can sign."
+  ],
+  [
+   63.987,
+   5.45,
+   "Response policy zones and Threat Defense policy, so security posture is uniform."
+  ],
+  [
+   69.438,
+   5.925,
+   "The definitions of groups, roles, attributes and workflows, and the authentication policy."
+  ],
+  [
+   75.362,
+   2.013,
+   "And the top-level address blocks."
+  ],
+  [
+   77.375,
+   3.513,
+   "Third, a limitation that surprises almost everyone."
+  ],
+  [
+   80.888,
+   3.725,
+   "NIOS reporting doesn't filter by object permissions."
+  ],
+  [
+   84.612,
+   9.162,
+   "Infoblox's page says that when you view a D N S or DHCP report, you see all the data, even for objects you have no permission to see."
+  ],
+  [
+   93.775,
+   9.1,
+   "So giving a division the Reporting app exposes agency-wide D N S and DHCP data, which matters a great deal for a law-enforcement bureau."
+  ],
+  [
+   102.875,
+   7.862,
+   "Scope reporting by which dashboards you share with each division's role, filtered by the Division attribute, not by row-level security."
+  ],
+  [
+   110.737,
+   15.925,
+   "Sources: Infoblox NIOS: Managing Microsoft Servers; About Admin Roles; Administrative Permission for the Grid; Configuring DNSSEC on a Grid; RPZ license and permissions; Reporting permissions; EA filters and Smart Folders."
+  ]
+ ],
+ "25": [
+  [
+   0.05,
+   4.925,
+   "Module 4: divisions on Universal D D I, and the operating model."
+  ],
+  [
+   4.975,
+   10.512,
+   "Universal D D I has its own divisional construct, access views, and its own answer to overlapping address space, eye-pam Federation, which NIOS lacks."
+  ],
+  [
+   15.488,
+   7.188,
+   "We'll cover those and their limits, including a conflict in Infoblox's own documentation you'll need to resolve with them."
+  ],
+  [
+   22.675,
+   11.8,
+   "Then we'll step back to four delegation patterns and their trade-offs, walk through an illustrative design for four divisions, set out who does what, and end with a rollout sequence and the decisions to take next."
+  ],
+  [
+   34.475,
+   8.438,
+   "Sources: Infoblox Portal and Universal D D I documentation; Book 08, Chapters 09 and 10."
+  ]
+ ],
+ "26": [
+  [
+   0.05,
+   10.825,
+   "On Universal D D I the division construct is the access view, which Infoblox describes as a logical container for D D I resources, built for divisional admins."
+  ],
+  [
+   10.875,
+   2.9,
+   "The account itself is the default access view."
+  ],
+  [
+   13.775,
+   4.463,
+   "Corporate admins create sub-views under it, and only one level is allowed."
+  ],
+  [
+   18.238,
+   4.325,
+   "Divisional admins can't see or manage anything outside their sub-view."
+  ],
+  [
+   22.562,
+   8.075,
+   "You can assign IP spaces, address blocks, D N S views and zones, including synced cloud and Active Directory zones."
+  ],
+  [
+   30.637,
+   3.45,
+   "Assign an IP space and everything in it follows."
+  ],
+  [
+   34.087,
+   1.863,
+   "The constraints are significant."
+  ],
+  [
+   35.95,
+   7.025,
+   "Users, roles and policies are defined only at the default view, so divisions can't administer their own users."
+  ],
+  [
+   42.975,
+   4.95,
+   "Access views can't be deleted or renamed once created, so name them carefully."
+  ],
+  [
+   47.925,
+   2.288,
+   "They take about ten minutes to propagate."
+  ],
+  [
+   50.212,
+   6.638,
+   "And only interactive users work fully in them; service users with API keys can't log in to one."
+  ],
+  [
+   56.85,
+   5.763,
+   "IP spaces are the Universal D D I version of network views, and they can overlap."
+  ],
+  [
+   62.612,
+   15.512,
+   "What NIOS lacks is eye-pam Federation, which enforces uniqueness across Universal D D I, NIOS and cloud eye-pam, with realms, federated blocks, delegations, overlapping blocks for space behind NAT, and reserved blocks."
+  ],
+  [
+   78.125,
+   4.275,
+   "Access policies bind a role, a user group and an access view."
+  ],
+  [
+   82.4,
+   4.475,
+   "Keep the Threat Defense and access-control administrator policies central."
+  ],
+  [
+   86.875,
+   7.55,
+   "Entra sign-in uses a non-gallery sam-ul app whose group claim carries object IDs, mapped to Portal groups."
+  ],
+  [
+   94.425,
+   2.413,
+   "The audit log keeps thirteen months."
+  ],
+  [
+   96.838,
+   1.962,
+   "And a documentation conflict."
+  ],
+  [
+   98.8,
+   9.4,
+   "One Infoblox page lists eye-pam, D N S and DHCP roles for access views; another says only eye-pam roles are supported in this release."
+  ],
+  [
+   108.2,
+   5.1,
+   "Confirm with Infoblox before you design around D N S or DHCP roles."
+  ],
+  [
+   113.3,
+   21.8,
+   "Sources: Infoblox Portal: About Access Views, Supported Objects, Setting Up Access Control, Creating Access Views, Interactive and Service Users, Access Policies, Restricting User Groups, sam-ul for Entra ID, Mapping User Groups, Audit Logs; Universal D D I: IP Spaces, eye-pam Federation."
+  ]
+ ],
+ "27": [
+  [
+   0.05,
+   3.763,
+   "Put together, the constructs give four delegation patterns."
+  ],
+  [
+   3.812,
+   8.113,
+   "Pattern (a): one central Grid, with division admin groups scoped by object permissions and changes routed through approval workflows."
+  ],
+  [
+   11.925,
+   8.15,
+   "Its risks are permission sprawl, first-match ordering surprises, the CSV import bypass, and reporting that ignores permissions."
+  ],
+  [
+   20.075,
+   5.375,
+   "Central keeps the definitions of groups, roles and attributes, and the Grid properties."
+  ],
+  [
+   25.45,
+   8.125,
+   "Pattern (b): the division owns members inside the central Grid, with member D N S and DHCP and restart permissions."
+  ],
+  [
+   33.575,
+   5.088,
+   "It gets local resilience and local restarts, confined to its own appliances."
+  ],
+  [
+   38.663,
+   6.338,
+   "But it can't change Grid-level properties, and if a zone is signed, the Grid Master is still its hidden primary."
+  ],
+  [
+   45.0,
+   4.513,
+   "Central keeps the Grid Master, its candidates and the DNSSEC keys."
+  ],
+  [
+   49.513,
+   7.338,
+   "Pattern (c): the division gets its own network view on NIOS, or its own IP space on Universal D D I."
+  ],
+  [
+   56.85,
+   6.412,
+   "It's the only way to hold overlapping private address space, and it draws a clean visibility boundary."
+  ],
+  [
+   63.263,
+   10.762,
+   "It costs dedicated DHCP members per view, and on NIOS nothing enforces uniqueness across views; on Universal D D I, eye-pam Federation does."
+  ],
+  [
+   74.025,
+   2.312,
+   "Central keeps the top-level blocks."
+  ],
+  [
+   76.338,
+   6.0,
+   "Pattern (d): delegate a zone to D N S servers the division runs, Infoblox or not."
+  ],
+  [
+   82.338,
+   11.05,
+   "Full autonomy, at a price: central loses the audit trail, RPZ coverage and DNSSEC for that child zone, and the delegation must sit inside a zone with a Grid primary."
+  ],
+  [
+   93.388,
+   4.987,
+   "Central keeps the parent, the NS and glue records, and the DS records."
+  ],
+  [
+   98.375,
+   12.488,
+   "Most agencies mix them: (a) as the default, (b) where local resilience matters, (c) only for overlap, and (d) only where autonomy is worth the lost coverage."
+  ],
+  [
+   110.862,
+   21.025,
+   "Sources: Synthesis of Infoblox NIOS: Administrative Permissions, Managing Overlaps, D N S and DHCP Permissions on Grid Members, Network Views, Delegated Zones, DNSSEC on a Grid, Approval Workflows, Reporting permissions; Universal D D I: Access Views, eye-pam Federation."
+  ]
+ ],
+ "28": [
+  [
+   0.05,
+   1.387,
+   "Here's a worked example."
+  ],
+  [
+   1.438,
+   3.675,
+   "It's an illustrative design, not a validated configuration."
+  ],
+  [
+   5.112,
+   5.175,
+   "The agency owns ten slash eight and agency dot gov, with four divisions."
+  ],
+  [
+   10.287,
+   2.875,
+   "HQ is the central network operations team."
+  ],
+  [
+   13.162,
+   5.338,
+   "LEB is a law-enforcement bureau that needs confidentiality from the other divisions."
+  ],
+  [
+   18.5,
+   5.162,
+   "REG is a regional office still running Windows D N S and DHCP."
+  ],
+  [
+   23.663,
+   5.625,
+   "And LAB is a research lab whose ten dot zero slash sixteen overlaps HQ."
+  ],
+  [
+   29.288,
+   10.225,
+   "HQ, LEB and REG share the network view called agency, each with its own slash twelve container tagged with a Division attribute that inherits down."
+  ],
+  [
+   39.513,
+   8.613,
+   "HQ's group gets read-write on its container and zones and read-only on the internal view; central keeps agency dot gov itself."
+  ],
+  [
+   48.125,
+   8.463,
+   "LEB adds pattern (b): its zone is served by its own members, with member D N S, DHCP and restart rights on them."
+  ],
+  [
+   56.587,
+   8.325,
+   "REG's Windows servers are managed from the Grid, and its group gets rights on those server objects and its zone, not the system Microsoft roles."
+  ],
+  [
+   64.912,
+   1.9,
+   "LAB is the overlap case."
+  ],
+  [
+   66.812,
+   7.963,
+   "It gets its own network view, nv-lab, with its own DHCP members, because a DHCP member serves one view."
+  ],
+  [
+   74.775,
+   12.175,
+   "And its zone is delegated to two lab-run BIND servers, pattern (d), inside the Grid-primary agency dot gov. If agency dot gov is signed, the lab hands its DS records to central."
+  ],
+  [
+   86.95,
+   7.85,
+   "Grid-wide controls: turn on D N S object permissions, so HQ can't point a name into LEB's space."
+  ],
+  [
+   94.8,
+   2.913,
+   "No CSV import for any division group."
+  ],
+  [
+   97.713,
+   5.763,
+   "One approval workflow per division, approved by a central group, with a ticket number required."
+  ],
+  [
+   103.475,
+   4.938,
+   "sam-ul group names that match exactly, and the local admin as break-glass."
+  ],
+  [
+   108.412,
+   8.762,
+   "For LEB, keep its data out of other divisions' dashboards, and consider a bureau-lead approver group if central shouldn't see change detail."
+  ],
+  [
+   117.175,
+   19.587,
+   "Sources: Illustrative design synthesized from Infoblox NIOS: Network Views, D N S Views, Extensible Attributes, Object Permissions, D N S Resources in Networks and Ranges, Delegated Zones, Approval Workflows, sam-ul, Managing Microsoft Servers, Reporting permissions."
+  ]
+ ],
+ "29": [
+  [
+   0.05,
+   0.95,
+   "Who does what."
+  ],
+  [
+   1.0,
+   11.088,
+   "This matrix is adapted from Book 08's responsibility matrix, which separates deciding from doing: D decides and is accountable, R does the work, C is consulted."
+  ],
+  [
+   12.088,
+   2.95,
+   "I've added a Division column for the delegated model."
+  ],
+  [
+   15.037,
+   10.45,
+   "The C I O decides the platform and deployment model, NIOS, the SaaS, or hybrid, with the central D D I team doing the evaluation and everyone else consulted."
+  ],
+  [
+   25.488,
+   6.5,
+   "The authorizing official decides whether a cloud-delivered management plane is authorized at the right impact level."
+  ],
+  [
+   31.988,
+   10.2,
+   "The C I O also decides how divisions are scoped in the policy plane, and the central D D I team builds it: admin groups, network views, access views."
+  ],
+  [
+   42.188,
+   4.763,
+   "Divisions are consulted, because a scope they can't work in becomes a workaround."
+  ],
+  [
+   46.95,
+   5.9,
+   "Central D D I owns the top-level address blocks and namespace design, deciding and doing."
+  ],
+  [
+   52.85,
+   13.925,
+   "DNSSEC signing and key rollover, and response policy and Threat Defense policy, are control requirements, so the see-so decides them and central D D I runs them, with security operations consulted on response policy."
+  ],
+  [
+   66.775,
+   4.475,
+   "Standard record changes in a division's zone are where delegation pays off."
+  ],
+  [
+   71.25,
+   8.963,
+   "Central decided in advance what a standard change is; the division does the work, inside its scope, through the approval workflow where one applies."
+  ],
+  [
+   80.213,
+   11.363,
+   "High-impact changes, such as zones, NS and SRV records, apex records, wildcards and RPZ, stay with central to decide and do, with divisions consulted."
+  ],
+  [
+   91.575,
+   12.625,
+   "And an encrypted D N S exception that has no end date, or has outlived the agency's limit, goes to the authorizing official, because at that point it's a risk acceptance, not a configuration choice."
+  ],
+  [
+   104.2,
+   14.9,
+   "Sources: Book 08, Chapter 09, \"Decision rights and work are different things,\" \"The roles,\" \"The responsibility matrix\"; Infoblox NIOS approval workflows; Universal D D I access policies."
+  ]
+ ],
+ "30": [
+  [
+   0.05,
+   4.9,
+   "To close, a rollout sequence, the decisions to take, and the next steps."
+  ],
+  [
+   4.95,
+   5.162,
+   "The sequence follows Book 08's canonical order, adapted for divisions."
+  ],
+  [
+   10.113,
+   11.1,
+   "One: inventory everything first, zones, scopes, forwarders, and every record Active Directory D N S holds, before any domain controller is touched."
+  ],
+  [
+   21.212,
+   11.287,
+   "Two: build the central pieces, the Grid Master and candidates, the HSM if you'll use one, and a build standard that sets the DNSSEC algorithm, logging and STIG settings."
+  ],
+  [
+   32.5,
+   9.2,
+   "Three: coexist, by managing the existing Windows D N S and DHCP servers from the Grid in place, so nothing moves until you're ready."
+  ],
+  [
+   41.7,
+   9.363,
+   "Four: onboard divisions one at a time, starting with pattern (a), the simplest, and adding views or delegations only where a division needs them."
+  ],
+  [
+   51.062,
+   2.237,
+   "Five: federate the clouds."
+  ],
+  [
+   53.3,
+   8.025,
+   "Six: harden and evidence, with the STIG applied, logs at retention, and audit trails the authorizing official can read."
+  ],
+  [
+   61.325,
+   1.675,
+   "The decisions to take now."
+  ],
+  [
+   63.0,
+   6.188,
+   "Which platform model, NIOS, Universal D D I or hybrid, for each impact level."
+  ],
+  [
+   69.188,
+   6.25,
+   "Which delegation pattern for each division, and who approves changes for a bureau that needs confidentiality."
+  ],
+  [
+   75.438,
+   5.75,
+   "Whether to wait for the FIPS 140-3 certificate or proceed with a POA&M."
+  ],
+  [
+   81.188,
+   3.3,
+   "And where logs will live to stay searchable for six months."
+  ],
+  [
+   84.487,
+   1.25,
+   "And the next steps."
+  ],
+  [
+   85.737,
+   3.413,
+   "Send Infoblox the procurement asks from Module 2."
+  ],
+  [
+   89.15,
+   5.15,
+   "Confirm which roles access views support, and what value Entra sends for group matching."
+  ],
+  [
+   94.3,
+   6.2,
+   "Lab-test encrypted forwarding to sis-uh's Protective D N S and the DNSSEC algorithm change."
+  ],
+  [
+   100.5,
+   5.162,
+   "And draft each division's scope and the responsibility matrix with the division itself."
+  ],
+  [
+   105.662,
+   10.05,
+   "In the program's analysis, Infoblox is one of the strongest ways to build a governed D D I plane for a federal agency, as long as you manage its risks in the open."
+  ],
+  [
+   115.713,
+   7.875,
+   "One note on standing: this is the program's research analysis, under review, not an endorsement by any federal agency."
+  ],
+  [
+   123.588,
+   0.762,
+   "Thank you."
+  ],
+  [
+   124.35,
+   14.438,
+   "Sources: Book 08, index (canonical sequence) and Chapter 10; Infoblox NIOS and Universal D D I documentation; federal requirements and validation research cited in Modules 1 and 2."
+  ]
+ ]
+}

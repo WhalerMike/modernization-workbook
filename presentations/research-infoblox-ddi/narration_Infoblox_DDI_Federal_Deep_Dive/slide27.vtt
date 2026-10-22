@@ -1,0 +1,147 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.813
+Put together, the constructs
+give four delegation patterns.
+
+2
+00:00:03.813 --> 00:00:07.573
+Pattern (a): one central Grid,
+with division admin groups scoped
+
+3
+00:00:07.573 --> 00:00:11.925
+by object permissions and changes
+routed through approval workflows.
+
+4
+00:00:11.925 --> 00:00:16.077
+Its risks are permission sprawl,
+first-match ordering surprises,
+
+5
+00:00:16.077 --> 00:00:20.075
+the CSV import bypass, and
+reporting that ignores permissions.
+
+6
+00:00:20.075 --> 00:00:22.613
+Central keeps the definitions of groups,
+
+7
+00:00:22.613 --> 00:00:25.450
+roles and attributes,
+and the Grid properties.
+
+8
+00:00:25.450 --> 00:00:29.914
+Pattern (b): the division owns
+members inside the central Grid,
+
+9
+00:00:29.914 --> 00:00:33.575
+with member DNS and DHCP
+and restart permissions.
+
+10
+00:00:33.575 --> 00:00:38.663
+It gets local resilience and local
+restarts, confined to its own appliances.
+
+11
+00:00:38.663 --> 00:00:42.408
+But it can't change Grid-level
+properties, and if a zone is signed,
+
+12
+00:00:42.408 --> 00:00:45.001
+the Grid Master is still
+its hidden primary.
+
+13
+00:00:45.001 --> 00:00:49.513
+Central keeps the Grid Master, its
+candidates and the DNSSEC keys.
+
+14
+00:00:49.513 --> 00:00:54.014
+Pattern (c): the division gets
+its own network view on NIOS,
+
+15
+00:00:54.014 --> 00:00:56.851
+or its own IP space on Universal DDI.
+
+16
+00:00:56.851 --> 00:01:00.635
+It's the only way to hold
+overlapping private address space,
+
+17
+00:01:00.635 --> 00:01:03.262
+and it draws a clean visibility boundary.
+
+18
+00:01:03.262 --> 00:01:08.787
+It costs dedicated DHCP members per
+view, and on NIOS nothing enforces
+
+19
+00:01:08.787 --> 00:01:14.025
+uniqueness across views; on
+Universal DDI, IPAM Federation does.
+
+20
+00:01:14.025 --> 00:01:16.337
+Central keeps the top-level blocks.
+
+21
+00:01:16.337 --> 00:01:22.338
+Pattern (d): delegate a zone to DNS
+servers the division runs, Infoblox or not.
+
+22
+00:01:22.338 --> 00:01:27.821
+Full autonomy, at a price: central loses
+the audit trail, RPZ coverage and DNSSEC
+
+23
+00:01:27.821 --> 00:01:33.388
+for that child zone, and the delegation
+must sit inside a zone with a Grid primary.
+
+24
+00:01:33.388 --> 00:01:38.375
+Central keeps the parent, the NS and
+glue records, and the DS records.
+
+25
+00:01:38.375 --> 00:01:44.725
+Most agencies mix them: (a) as the default,
+(b) where local resilience matters,
+
+26
+00:01:44.725 --> 00:01:50.863
+(c) only for overlap, and (d) only where
+autonomy is worth the lost coverage.
+
+27
+00:01:50.863 --> 00:01:57.647
+Sources: Synthesis of Infoblox NIOS:
+Administrative Permissions, Managing Overlaps,
+
+28
+00:01:57.647 --> 00:02:03.381
+DNS and DHCP Permissions on Grid
+Members, Network Views, Delegated Zones,
+
+29
+00:02:03.381 --> 00:02:08.160
+DNSSEC on a Grid, Approval
+Workflows, Reporting permissions;
+
+30
+00:02:08.160 --> 00:02:11.950
+Universal DDI: Access
+Views, IPAM Federation.

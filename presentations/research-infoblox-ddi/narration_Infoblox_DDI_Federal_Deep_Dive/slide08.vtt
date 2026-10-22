@@ -1,0 +1,168 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.575
+DHCP first.
+
+2
+00:00:01.575 --> 00:00:06.555
+Failover peers form an association over
+TCP, split clients by a hash of the
+
+3
+00:00:06.555 --> 00:00:11.862
+MAC address, fifty-fifty by default, and
+send each other lease updates directly.
+
+4
+00:00:11.862 --> 00:00:16.588
+The Grid Master isn't involved in
+failover, whatever older material says.
+
+5
+00:00:16.588 --> 00:00:22.987
+An association serves ranges in one network
+view only, and failover is IPv4 only.
+
+6
+00:00:22.987 --> 00:00:26.371
+That last point matters
+under the IPv6 mandate,
+
+7
+00:00:26.371 --> 00:00:30.188
+though as we'll see in Module
+2, Windows has the same gap.
+
+8
+00:00:30.188 --> 00:00:35.167
+DHCPv6 itself is supported,
+including prefix delegation,
+
+9
+00:00:35.167 --> 00:00:38.175
+and fixed addresses arrived in 9.0.6.
+
+10
+00:00:38.175 --> 00:00:42.510
+Fingerprinting matches options
+55 and 60 and is on by default,
+
+11
+00:00:42.510 --> 00:00:46.250
+and filters can deny leases
+to device types per range.
+
+12
+00:00:46.250 --> 00:00:48.939
+Lease history is archived and exportable,
+
+13
+00:00:48.939 --> 00:00:52.088
+which is the address-to-asset
+record NIST asks for.
+
+14
+00:00:52.088 --> 00:00:57.574
+Dynamic DNS updates from DHCP are
+something you turn on, not automatic.
+
+15
+00:00:57.574 --> 00:00:58.425
+IPAM.
+
+16
+00:00:58.425 --> 00:01:02.875
+A network view is a single routing
+domain, up to one thousand per Grid.
+
+17
+00:01:02.875 --> 00:01:07.737
+Views are mutually exclusive, so the same
+address space can exist in two of them.
+
+18
+00:01:07.737 --> 00:01:11.462
+A DHCP member serves
+only one network view.
+
+19
+00:01:11.462 --> 00:01:14.042
+Network containers hold the large blocks,
+
+20
+00:01:14.042 --> 00:01:19.275
+and extensible attributes tag objects with
+metadata such as division or cost center.
+
+21
+00:01:19.275 --> 00:01:22.846
+Discovery uses ICMP, NetBIOS or TCP,
+
+22
+00:01:22.846 --> 00:01:28.388
+and vDiscovery reads vCenter,
+OpenStack, Azure and AWS.
+
+23
+00:01:28.388 --> 00:01:33.689
+Network Insight, the layer-two and
+layer-three device discovery, needs its
+
+24
+00:01:33.689 --> 00:01:39.163
+own license and dedicated appliances that
+run no DNS or DHCP; budget for that.
+
+25
+00:01:39.163 --> 00:01:43.137
+Universal Asset Insights is
+the SaaS inventory service.
+
+26
+00:01:43.137 --> 00:01:47.063
+And AWS documents Infoblox
+as the external authority
+
+27
+00:01:47.063 --> 00:01:50.726
+for a VPC IPAM private
+scope, on the Advanced tier.
+
+28
+00:01:50.726 --> 00:01:53.025
+Two corrections to common claims.
+
+29
+00:01:53.025 --> 00:01:56.837
+Separate network views permit
+overlap; they don't prevent it.
+
+30
+00:01:56.837 --> 00:02:01.338
+And the AWS IPAM integration
+excludes the GovCloud regions.
+
+31
+00:02:01.338 --> 00:02:07.761
+Sources: Infoblox NIOS 9.1.x: DHCP
+Failover, DHCPv6 RFC Compliance,
+
+32
+00:02:07.761 --> 00:02:16.366
+DHCP Fingerprint Detection, Lease History,
+Enabling DDNS, Configuring Network Views,
+
+33
+00:02:16.366 --> 00:02:22.790
+About Discovery, About Network
+Insight, Extensible Attributes;
+
+34
+00:02:22.790 --> 00:02:29.698
+Universal Asset Insights; AWS VPC
+IPAM user guide; AWS What's New, Nov.
+
+35
+00:02:29.698 --> 00:02:30.480
+17, 2025.

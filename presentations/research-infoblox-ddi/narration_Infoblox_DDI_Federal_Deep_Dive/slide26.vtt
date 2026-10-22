@@ -1,0 +1,157 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:05.253
+On Universal DDI the division construct
+is the access view, which Infoblox
+
+2
+00:00:05.253 --> 00:00:10.875
+describes as a logical container for DDI
+resources, built for divisional admins.
+
+3
+00:00:10.875 --> 00:00:13.775
+The account itself is
+the default access view.
+
+4
+00:00:13.775 --> 00:00:18.238
+Corporate admins create sub-views under
+it, and only one level is allowed.
+
+5
+00:00:18.238 --> 00:00:22.563
+Divisional admins can't see or manage
+anything outside their sub-view.
+
+6
+00:00:22.563 --> 00:00:26.863
+You can assign IP spaces, address
+blocks, DNS views and zones,
+
+7
+00:00:26.863 --> 00:00:30.637
+including synced cloud and
+Active Directory zones.
+
+8
+00:00:30.637 --> 00:00:34.087
+Assign an IP space and
+everything in it follows.
+
+9
+00:00:34.087 --> 00:00:35.950
+The constraints are significant.
+
+10
+00:00:35.950 --> 00:00:39.976
+Users, roles and policies are
+defined only at the default view,
+
+11
+00:00:39.976 --> 00:00:42.975
+so divisions can't
+administer their own users.
+
+12
+00:00:42.975 --> 00:00:47.925
+Access views can't be deleted or renamed
+once created, so name them carefully.
+
+13
+00:00:47.925 --> 00:00:50.213
+They take about ten minutes to propagate.
+
+14
+00:00:50.213 --> 00:00:53.575
+And only interactive
+users work fully in them;
+
+15
+00:00:53.575 --> 00:00:56.850
+service users with API
+keys can't log in to one.
+
+16
+00:00:56.850 --> 00:01:02.613
+IP spaces are the Universal DDI version
+of network views, and they can overlap.
+
+17
+00:01:02.613 --> 00:01:08.922
+What NIOS lacks is IPAM Federation, which
+enforces uniqueness across Universal DDI,
+
+18
+00:01:08.922 --> 00:01:13.654
+NIOS and cloud IPAM, with realms,
+federated blocks, delegations,
+
+19
+00:01:13.654 --> 00:01:18.124
+overlapping blocks for space
+behind NAT, and reserved blocks.
+
+20
+00:01:18.124 --> 00:01:22.400
+Access policies bind a role, a
+user group and an access view.
+
+21
+00:01:22.400 --> 00:01:26.875
+Keep the Threat Defense and access-control
+administrator policies central.
+
+22
+00:01:26.875 --> 00:01:30.783
+Entra sign-in uses a
+non-gallery SAML app whose group
+
+23
+00:01:30.783 --> 00:01:34.425
+claim carries object IDs,
+mapped to Portal groups.
+
+24
+00:01:34.425 --> 00:01:36.838
+The audit log keeps thirteen months.
+
+25
+00:01:36.838 --> 00:01:38.800
+And a documentation conflict.
+
+26
+00:01:38.800 --> 00:01:43.677
+One Infoblox page lists IPAM, DNS
+and DHCP roles for access views;
+
+27
+00:01:43.677 --> 00:01:48.200
+another says only IPAM roles
+are supported in this release.
+
+28
+00:01:48.200 --> 00:01:53.300
+Confirm with Infoblox before you
+design around DNS or DHCP roles.
+
+29
+00:01:53.300 --> 00:01:58.280
+Sources: Infoblox Portal: About
+Access Views, Supported Objects,
+
+30
+00:01:58.280 --> 00:02:04.576
+Setting Up Access Control, Creating Access
+Views, Interactive and Service Users,
+
+31
+00:02:04.576 --> 00:02:09.274
+Access Policies, Restricting
+User Groups, SAML for Entra ID,
+
+32
+00:02:09.274 --> 00:02:15.170
+Mapping User Groups, Audit Logs;
+Universal DDI: IP Spaces, IPAM Federation.

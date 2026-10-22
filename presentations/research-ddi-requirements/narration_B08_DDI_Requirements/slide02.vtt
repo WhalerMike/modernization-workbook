@@ -1,0 +1,109 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.984
+Almost every network connection
+begins with a DNS query,
+
+2
+00:00:03.984 --> 00:00:09.425
+and in a hybrid multi-cloud agency the
+answer decides much more than an address.
+
+3
+00:00:09.425 --> 00:00:14.606
+Book 08 counts six jobs DNS now does:
+publishing private endpoint addresses,
+
+4
+00:00:14.606 --> 00:00:18.388
+selecting SaaS front doors,
+enforcing security policy,
+
+5
+00:00:18.388 --> 00:00:23.075
+anchoring certificate revocation
+checks, and carrying the service
+
+6
+00:00:23.075 --> 00:00:28.338
+identity and application surface that
+Zero Trust policy is written against.
+
+7
+00:00:28.338 --> 00:00:32.314
+NIST's 2026 DNS deployment
+guide puts it plainly:
+
+8
+00:00:32.314 --> 00:00:36.987
+DNS has become more than a
+service; it's a security control.
+
+9
+00:00:36.987 --> 00:00:42.927
+Yet most agencies run it across as
+many as five independent platforms:
+
+10
+00:00:42.927 --> 00:00:46.613
+Active Directory DNS or
+an on-premises grid,
+
+11
+00:00:46.613 --> 00:00:50.812
+Route 53, Azure DNS, Google
+Cloud DNS and VMware NSX.
+
+12
+00:00:50.812 --> 00:00:52.712
+None shares state with the others.
+
+13
+00:00:52.712 --> 00:00:54.556
+The result is split-brain DNS,
+
+14
+00:00:54.556 --> 00:00:59.625
+the same name giving different answers
+depending on where the query starts, and
+
+15
+00:00:59.625 --> 00:01:04.849
+it fails quietly, as certificate errors
+and access denials rather than DNS errors.
+
+16
+00:01:04.849 --> 00:01:09.313
+And the forwarding rules that join the
+platforms usually belong to no team at all.
+
+17
+00:01:09.313 --> 00:01:13.424
+IPAM and DHCP are the address
+half of the same problem.
+
+18
+00:01:13.424 --> 00:01:16.307
+IPAM is the record of
+who owns which block,
+
+19
+00:01:16.307 --> 00:01:21.350
+and DHCP lease data is how an address
+becomes a device in the asset inventory.
+
+20
+00:01:21.350 --> 00:01:25.113
+The book's answer is one
+authoritative DDI policy plane.
+
+21
+00:01:25.113 --> 00:01:28.005
+That's an architectural
+requirement, not a product,
+
+22
+00:01:28.005 --> 00:01:30.960
+and it's the yardstick for
+everything that follows.

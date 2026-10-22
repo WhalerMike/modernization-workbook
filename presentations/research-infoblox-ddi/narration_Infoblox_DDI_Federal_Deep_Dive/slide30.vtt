@@ -1,0 +1,174 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.950
+To close, a rollout sequence, the
+decisions to take, and the next steps.
+
+2
+00:00:04.950 --> 00:00:10.112
+The sequence follows Book 08's
+canonical order, adapted for divisions.
+
+3
+00:00:10.112 --> 00:00:15.337
+One: inventory everything first,
+zones, scopes, forwarders, and every
+
+4
+00:00:15.337 --> 00:00:21.213
+record Active Directory DNS holds,
+before any domain controller is touched.
+
+5
+00:00:21.213 --> 00:00:25.424
+Two: build the central pieces,
+the Grid Master and candidates,
+
+6
+00:00:25.424 --> 00:00:28.793
+the HSM if you'll use one,
+and a build standard that
+
+7
+00:00:28.793 --> 00:00:32.499
+sets the DNSSEC algorithm,
+logging and STIG settings.
+
+8
+00:00:32.499 --> 00:00:36.923
+Three: coexist, by managing the
+existing Windows DNS and DHCP
+
+9
+00:00:36.923 --> 00:00:41.700
+servers from the Grid in place, so
+nothing moves until you're ready.
+
+10
+00:00:41.700 --> 00:00:45.771
+Four: onboard divisions one at a
+time, starting with pattern (a),
+
+11
+00:00:45.771 --> 00:00:51.063
+the simplest, and adding views or
+delegations only where a division needs them.
+
+12
+00:00:51.063 --> 00:00:53.299
+Five: federate the clouds.
+
+13
+00:00:53.299 --> 00:00:57.730
+Six: harden and evidence, with the
+STIG applied, logs at retention,
+
+14
+00:00:57.730 --> 00:01:01.325
+and audit trails the
+authorizing official can read.
+
+15
+00:01:01.325 --> 00:01:03.000
+The decisions to take now.
+
+16
+00:01:03.000 --> 00:01:09.188
+Which platform model, NIOS, Universal
+DDI or hybrid, for each impact level.
+
+17
+00:01:09.188 --> 00:01:11.702
+Which delegation pattern
+for each division,
+
+18
+00:01:11.702 --> 00:01:15.438
+and who approves changes for a
+bureau that needs confidentiality.
+
+19
+00:01:15.438 --> 00:01:21.188
+Whether to wait for the FIPS 140-3
+certificate or proceed with a POA&M.
+
+20
+00:01:21.188 --> 00:01:24.488
+And where logs will live to
+stay searchable for six months.
+
+21
+00:01:24.488 --> 00:01:25.737
+And the next steps.
+
+22
+00:01:25.737 --> 00:01:29.150
+Send Infoblox the procurement
+asks from Module 2.
+
+23
+00:01:29.150 --> 00:01:31.619
+Confirm which roles access views support,
+
+24
+00:01:31.619 --> 00:01:34.300
+and what value Entra
+sends for group matching.
+
+25
+00:01:34.300 --> 00:01:37.149
+Lab-test encrypted forwarding to CISA's
+
+26
+00:01:37.149 --> 00:01:40.500
+Protective DNS and the
+DNSSEC algorithm change.
+
+27
+00:01:40.500 --> 00:01:42.763
+And draft each division's scope and the
+
+28
+00:01:42.763 --> 00:01:45.662
+responsibility matrix
+with the division itself.
+
+29
+00:01:45.662 --> 00:01:51.043
+In the program's analysis, Infoblox is one
+of the strongest ways to build a governed
+
+30
+00:01:51.043 --> 00:01:55.712
+DDI plane for a federal agency, as long
+as you manage its risks in the open.
+
+31
+00:01:55.712 --> 00:01:59.858
+One note on standing: this is
+the program's research analysis,
+
+32
+00:01:59.858 --> 00:02:03.588
+under review, not an endorsement
+by any federal agency.
+
+33
+00:02:03.588 --> 00:02:04.350
+Thank you.
+
+34
+00:02:04.350 --> 00:02:08.998
+Sources: Book 08, index (canonical
+sequence) and Chapter 10;
+
+35
+00:02:08.998 --> 00:02:12.953
+Infoblox NIOS and Universal
+DDI documentation;
+
+36
+00:02:12.953 --> 00:02:18.840
+federal requirements and validation
+research cited in Modules 1 and 2.

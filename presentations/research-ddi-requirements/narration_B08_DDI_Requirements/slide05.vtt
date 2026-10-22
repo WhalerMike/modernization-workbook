@@ -1,0 +1,121 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.287
+Third, DNS security: two layers in series.
+
+2
+00:00:04.287 --> 00:00:08.290
+The agency's own resolvers
+apply the agency's policy,
+
+3
+00:00:08.290 --> 00:00:13.037
+response policy zones or a DNS
+firewall, with every hit logged.
+
+4
+00:00:13.037 --> 00:00:17.921
+Then all egress recursion goes upstream
+through CISA's Protective DNS,
+
+5
+00:00:17.921 --> 00:00:23.049
+which blocks, redirects or sinkholes
+queries that match threat indicators.
+
+6
+00:00:23.049 --> 00:00:26.393
+So the platform has to forward
+to it, preferably encrypted,
+
+7
+00:00:26.393 --> 00:00:30.363
+and that's worth testing: CISA's
+own guidance notes that some vendors
+
+8
+00:00:30.363 --> 00:00:34.263
+don't support the protocols for
+forwarding queries to its resolver.
+
+9
+00:00:34.263 --> 00:00:36.363
+Order matters more than presence.
+
+10
+00:00:36.363 --> 00:00:41.787
+Book 08's Decision 2 is that the agency
+resolver is always the first hop.
+
+11
+00:00:41.787 --> 00:00:47.267
+If the agency also uses a SASE provider's
+DNS service, that service is a forwarding
+
+12
+00:00:47.267 --> 00:00:52.263
+target of the agency resolver, never
+the place the branch edge redirects to.
+
+13
+00:00:52.263 --> 00:00:55.362
+Every component present,
+in the wrong order,
+
+14
+00:00:55.362 --> 00:00:59.925
+quietly removes the agency's own
+policy, validation and logging.
+
+15
+00:00:59.925 --> 00:01:02.575
+Encrypted DNS completes it.
+
+16
+00:01:02.575 --> 00:01:08.414
+M-22-09 requires encrypted DNS wherever
+technically supported, with endpoints
+
+17
+00:01:08.414 --> 00:01:13.950
+explicitly configured to agency-designated
+resolvers rather than ones they discover.
+
+18
+00:01:13.950 --> 00:01:17.841
+So the platform must
+terminate DNS over HTTPS
+
+19
+00:01:17.841 --> 00:01:21.425
+or TLS on its resolvers
+and use it upstream.
+
+20
+00:01:21.425 --> 00:01:24.004
+And clients mustn't route around it:
+
+21
+00:01:24.004 --> 00:01:30.763
+TIC 3.0 includes filtering that blocks
+unauthorized DNS over HTTPS resolvers.
+
+22
+00:01:30.763 --> 00:01:32.563
+One product detail to check.
+
+23
+00:01:32.563 --> 00:01:37.700
+Endpoint DNS agents commonly listen
+on the device's loopback address.
+
+24
+00:01:37.700 --> 00:01:41.922
+They protect a roaming laptop, but an
+SD-WAN edge can't redirect to them,
+
+25
+00:01:41.922 --> 00:01:45.700
+so they don't replace a
+network-addressable branch resolver.

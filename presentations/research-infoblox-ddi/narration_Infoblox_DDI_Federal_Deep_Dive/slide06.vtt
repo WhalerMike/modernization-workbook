@@ -1,0 +1,142 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.188
+Universal DDI is the cloud-managed side.
+
+2
+00:00:03.188 --> 00:00:08.861
+It used to be called BloxOne DDI;
+Infoblox renamed it in September 2024,
+
+3
+00:00:08.861 --> 00:00:12.676
+and the on-premises hosts
+became NIOS-X servers.
+
+4
+00:00:12.676 --> 00:00:18.729
+The old Cloud Services Portal is now the
+Infoblox Portal, although the documentation
+
+5
+00:00:18.729 --> 00:00:23.675
+still uses both names and the API host
+is still csp dot infoblox dot com.
+
+6
+00:00:23.675 --> 00:00:28.324
+The data plane is NIOS-X servers that
+you run, or NIOS-X as a Service,
+
+7
+00:00:28.324 --> 00:00:33.763
+which Infoblox runs from its own points
+of presence in AWS and Google Cloud.
+
+8
+00:00:33.763 --> 00:00:39.010
+The management plane reaches
+outward to Route 53, Azure DNS,
+
+9
+00:00:39.010 --> 00:00:45.113
+Google Cloud DNS, Cloudflare and
+Akamai, and to Microsoft DNS and DHCP.
+
+10
+00:00:45.113 --> 00:00:48.894
+It can also manage NIOS
+Grids from inside the Portal,
+
+11
+00:00:48.894 --> 00:00:54.612
+and the documented hybrid DNS pattern
+makes NIOS primary and NIOS-X secondary.
+
+12
+00:00:54.612 --> 00:00:59.005
+Infoblox markets this as a single
+cloud-based control plane and API;
+
+13
+00:00:59.005 --> 00:01:03.712
+that's a vendor claim, and the limits on
+the right are why you should test it.
+
+14
+00:01:03.712 --> 00:01:06.712
+These limits come from
+Infoblox's own pages.
+
+15
+00:01:06.712 --> 00:01:11.673
+Inside the Portal, the embedded NIOS view
+can't promote a Grid Master Candidate,
+
+16
+00:01:11.673 --> 00:01:16.938
+show Splunk reporting or download files,
+and Multi-Grid Management isn't supported.
+
+17
+00:01:16.938 --> 00:01:21.701
+NIOS DHCP failover associations
+can't be managed from the Portal.
+
+18
+00:01:21.701 --> 00:01:24.775
+WAPI Passthrough reaches
+only the Grid Master.
+
+19
+00:01:24.775 --> 00:01:29.738
+NIOS-X as a Service has no IPv6,
+no overlapping IP spaces and no
+
+20
+00:01:29.738 --> 00:01:34.900
+Azure points of presence, which
+matters under the IPv6 mandate.
+
+21
+00:01:34.900 --> 00:01:40.339
+The cloud DNS integrations sync simple
+routing records only, without tags,
+
+22
+00:01:40.339 --> 00:01:44.900
+with NS records read-only and
+alias records turned into CNAMEs.
+
+23
+00:01:44.900 --> 00:01:47.612
+And Google's DNSSEC records don't sync.
+
+24
+00:01:47.612 --> 00:01:49.664
+So "one console" is overstated:
+
+25
+00:01:49.664 --> 00:01:54.024
+in practice you'll run Grid Manager
+and the Portal side by side.
+
+26
+00:01:54.024 --> 00:02:00.922
+Sources: Infoblox What's New in Universal
+DDI; Limitations of Universal DDI;
+
+27
+00:02:00.922 --> 00:02:08.375
+Limitations of NIOS-X as a Service; Universal
+DDI and NIOS Grid Hybrid Deployment;
+
+28
+00:02:08.375 --> 00:02:12.491
+Route 53, Azure DNS and
+GCP integration pages;
+
+29
+00:02:12.491 --> 00:02:16.220
+infoblox.com Universal DDI page (vendor).

@@ -1,0 +1,109 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:05.103
+Here's an illustrative design, not a
+validated configuration, for an agency
+
+2
+00:00:05.103 --> 00:00:10.075
+that owns ten dot zero slash eight and
+example dot gov, with four divisions.
+
+3
+00:00:10.075 --> 00:00:13.088
+Headquarters is the central
+network operations team.
+
+4
+00:00:13.088 --> 00:00:17.388
+It holds its own slash-twelve block
+and its own zone under pattern A,
+
+5
+00:00:17.388 --> 00:00:21.688
+and it hosts the central superusers
+and a read-only approver group.
+
+6
+00:00:21.688 --> 00:00:23.459
+If example dot gov is signed,
+
+7
+00:00:23.459 --> 00:00:27.000
+the central management node
+signs it as hidden primary.
+
+8
+00:00:27.000 --> 00:00:31.088
+The law-enforcement bureau needs
+confidentiality from the other divisions.
+
+9
+00:00:31.088 --> 00:00:35.561
+It gets its own block and its own
+zone, served from its own two servers,
+
+10
+00:00:35.561 --> 00:00:40.275
+patterns A and B, and nothing else,
+because everything else stays denied.
+
+11
+00:00:40.275 --> 00:00:42.625
+Its data stays out of shared dashboards.
+
+12
+00:00:42.625 --> 00:00:46.124
+If its change detail shouldn't
+reach headquarters approvers,
+
+13
+00:00:46.124 --> 00:00:48.937
+a bureau-lead approver
+group can own its workflow.
+
+14
+00:00:48.937 --> 00:00:53.688
+The regional office still
+runs Windows DNS and DHCP.
+
+15
+00:00:53.688 --> 00:00:59.177
+The platform manages those servers, and the
+region's group gets rights on them only,
+
+16
+00:00:59.177 --> 00:01:03.051
+never the platform-wide DNS
+and DHCP administrator roles.
+
+17
+00:01:03.051 --> 00:01:06.188
+Each server's network view
+is fixed at first sync.
+
+18
+00:01:06.188 --> 00:01:10.488
+The research lab numbered itself in
+a range that overlaps headquarters.
+
+19
+00:01:10.488 --> 00:01:15.189
+It gets its own network view or
+IP space and its own DHCP pair,
+
+20
+00:01:15.189 --> 00:01:20.562
+pattern C, and its zone is delegated
+to lab-run BIND servers, pattern D.
+
+21
+00:01:20.562 --> 00:01:24.174
+The lab hands central the DS
+records for its signed zone,
+
+22
+00:01:24.174 --> 00:01:28.700
+and federation records its space as
+an overlapping block behind NAT.

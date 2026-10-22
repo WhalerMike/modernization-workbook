@@ -1,0 +1,147 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.713
+Three topics close the NIOS module.
+
+2
+00:00:02.713 --> 00:00:07.874
+First, a division that still
+runs Windows DNS and DHCP.
+
+3
+00:00:07.874 --> 00:00:13.342
+NIOS manages those servers over MS-RPC
+with no agent, read-only or read-write,
+
+4
+00:00:13.342 --> 00:00:17.750
+with a Microsoft Management
+license on the managing member.
+
+5
+00:00:17.750 --> 00:00:21.434
+Each Windows server syncs
+into exactly one network
+
+6
+00:00:21.434 --> 00:00:24.775
+view and one DNS view,
+fixed after the first sync.
+
+7
+00:00:24.775 --> 00:00:29.267
+Each server object carries its own
+permissions inside Grid Manager,
+
+8
+00:00:29.267 --> 00:00:33.759
+so give the division's group rights
+on its own servers rather than the
+
+9
+00:00:33.759 --> 00:00:38.488
+system DNS Admin or DHCP Admin roles,
+which cover every Microsoft server.
+
+10
+00:00:38.488 --> 00:00:43.183
+And be careful: changing the managing
+member, or switching from read-write
+
+11
+00:00:43.183 --> 00:00:47.649
+to read-only, reverts any edits made
+in Grid Manager since the last sync.
+
+12
+00:00:47.649 --> 00:00:50.675
+Second, what stays
+central in every design.
+
+13
+00:00:50.675 --> 00:00:55.740
+The Grid Master and its candidates,
+and Grid-level DNS and DHCP properties,
+
+14
+00:00:55.740 --> 00:00:58.563
+which only superusers can change anyway.
+
+15
+00:00:58.563 --> 00:01:03.987
+DNSSEC keys and signing, because only
+the Grid Master or its HSM can sign.
+
+16
+00:01:03.987 --> 00:01:09.437
+Response policy zones and Threat Defense
+policy, so security posture is uniform.
+
+17
+00:01:09.437 --> 00:01:11.571
+The definitions of groups, roles,
+
+18
+00:01:11.571 --> 00:01:15.363
+attributes and workflows, and
+the authentication policy.
+
+19
+00:01:15.363 --> 00:01:17.375
+And the top-level address blocks.
+
+20
+00:01:17.375 --> 00:01:20.888
+Third, a limitation that
+surprises almost everyone.
+
+21
+00:01:20.888 --> 00:01:24.613
+NIOS reporting doesn't filter
+by object permissions.
+
+22
+00:01:24.613 --> 00:01:28.924
+Infoblox's page says that when
+you view a DNS or DHCP report,
+
+23
+00:01:28.924 --> 00:01:33.774
+you see all the data, even for
+objects you have no permission to see.
+
+24
+00:01:33.774 --> 00:01:39.035
+So giving a division the Reporting app
+exposes agency-wide DNS and DHCP data,
+
+25
+00:01:39.035 --> 00:01:42.875
+which matters a great deal
+for a law-enforcement bureau.
+
+26
+00:01:42.875 --> 00:01:47.125
+Scope reporting by which dashboards
+you share with each division's role,
+
+27
+00:01:47.125 --> 00:01:50.737
+filtered by the Division attribute,
+not by row-level security.
+
+28
+00:01:50.737 --> 00:01:55.757
+Sources: Infoblox NIOS: Managing
+Microsoft Servers; About Admin Roles;
+
+29
+00:01:55.757 --> 00:02:00.777
+Administrative Permission for the
+Grid; Configuring DNSSEC on a Grid;
+
+30
+00:02:00.777 --> 00:02:06.720
+RPZ license and permissions; Reporting
+permissions; EA filters and Smart Folders.

@@ -20,6 +20,9 @@ project:
     - "docs/books/**/*.md"
     - "docs/presentations/**/*.md"
     - "docs/inspiration/**/*.md"
+    # Research under review: published in its own area, labeled, kept out of
+    # the books (see docs/research/index.md and assets/research-banner.lua).
+    - "docs/research/**/*.md"
   # Slide decks are published so the Presentations page can link them.
   resources:
     - "presentations/**/*.pptx"
@@ -84,6 +87,8 @@ website:
             text: "Guide: Effective Meetings"
       - href: docs/presentations/index.md
         text: "Presentations"
+      - href: docs/research/index.md
+        text: "Research"
       - text: "About"
         menu:
           - href: docs/inspiration/index.md
@@ -96,6 +101,11 @@ website:
         icon: github
 
   sidebar:
+    - id: research
+      title: "Research"
+      style: docked
+      contents:
+        - auto: "docs/research/*.md"
     - id: books
       title: "The Workbook Books"
       style: docked
@@ -210,6 +220,7 @@ format:
     template-partials:
       - assets/partials/title-block.html
     filters:
+      - assets/research-banner.lua
       - assets/fmw-hero.lua
     include-in-header:
       - text: |
