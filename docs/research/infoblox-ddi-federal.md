@@ -44,3 +44,5 @@ This research item asks a narrower question than [Book 08](../books/b08-ddi/inde
 Training: [Infoblox Training and Learning Paths](infoblox-training.md) maps Infoblox's official courses, certifications, labs and videos to the roles in this deck; the deck's backup ends with a "Learn more" slide.
 
 Two companions: the plain-language explainer [Trinzic Alone, or Trinzic Plus Cloud DDI?](trinzic-multicloud-ddi.md), and the vendor-neutral [What a Federal DDI Platform Must Do](ddi-platform-requirements.md), which covers the same requirements and delegation patterns without recommending a product.
+
+Implementation: [Implementing Book 08 on Infoblox NIOS](infoblox-nios-implementation.md) is the step-by-step companion: Phase 0 decisions, the Grid build, migration from Microsoft DNS and DHCP, DNSSEC, the STIG, FIPS mode and operations, mapped to Book 08's six phases.

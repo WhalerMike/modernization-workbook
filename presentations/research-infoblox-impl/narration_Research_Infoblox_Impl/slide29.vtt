@@ -1,0 +1,133 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.025
+To close: decisions, vendor
+asks, and next steps.
+
+2
+00:00:04.025 --> 00:00:05.500
+The decisions to take.
+
+3
+00:00:05.500 --> 00:00:08.812
+FIPS mode, knowing it
+costs cloud management.
+
+4
+00:00:08.812 --> 00:00:13.624
+A hardware security module, or a stealth
+Grid Master with a documented exception.
+
+5
+00:00:13.624 --> 00:00:17.388
+NSEC or NSEC3 for internal zones.
+
+6
+00:00:17.388 --> 00:00:20.401
+Whether the locator zones stay on AD DNS,
+
+7
+00:00:20.401 --> 00:00:26.337
+which is the Federal Modernization Workbook's
+Book 08's default, or move to NIOS.
+
+8
+00:00:26.337 --> 00:00:29.637
+And how many physical managing
+members you need, and where.
+
+9
+00:00:29.637 --> 00:00:34.310
+Ask Infoblox, in writing: which
+build is the current approved federal
+
+10
+00:00:34.310 --> 00:00:39.966
+long-term-support release; when the FIPS
+140-3 and Common Criteria certificates are
+
+11
+00:00:39.966 --> 00:00:45.623
+expected; whether Kerberos-signed updates
+are supported with Windows Server 2025
+
+12
+00:00:45.623 --> 00:00:51.197
+domain controllers; whether vNIOS high
+availability works in GovCloud and Azure
+
+13
+00:00:51.197 --> 00:00:55.870
+Government; whether clients keep
+their addresses in a DHCP takeover;
+
+14
+00:00:55.870 --> 00:00:58.575
+and whether a SHA-2
+NTP key type is coming.
+
+15
+00:00:58.575 --> 00:00:59.650
+Next steps.
+
+16
+00:00:59.650 --> 00:01:03.800
+Stand up a lab Grid on
+Infoblox's evaluation images.
+
+17
+00:01:03.800 --> 00:01:08.112
+Set the DNSSEC defaults, then
+sign a test zone and validate it.
+
+18
+00:01:08.112 --> 00:01:11.612
+Pilot one DHCP scope takeover end to end.
+
+19
+00:01:11.612 --> 00:01:14.162
+And run the STIG
+checklist against the lab.
+
+20
+00:01:14.162 --> 00:01:19.034
+The program's view is plain: Infoblox
+NIOS can carry Book 08's design,
+
+21
+00:01:19.034 --> 00:01:24.437
+and its risks are known and manageable
+if the Phase 0 decisions come first.
+
+22
+00:01:24.437 --> 00:01:27.349
+The backup slides list
+the assessor evidence,
+
+23
+00:01:27.349 --> 00:01:29.800
+the risks, and what couldn't be verified.
+
+24
+00:01:29.800 --> 00:01:32.840
+This is the program's
+research, under review,
+
+25
+00:01:32.840 --> 00:01:35.712
+not an endorsement by any federal agency.
+
+26
+00:01:35.712 --> 00:01:36.475
+Thank you.
+
+27
+00:01:36.475 --> 00:01:44.230
+Sources: Research brief sections 0 and
+12, and Couldn't verify; Book 08, Chapters
+
+28
+00:01:44.230 --> 00:01:51.190
+04, 06, 10 and 11; Infoblox NIOS and
+DISA STIG sources cited in Parts 1 to 3.

@@ -1,0 +1,157 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.313
+What the DISA STIG for
+NIOS 9 actually checks.
+
+2
+00:00:03.313 --> 00:00:07.417
+Version one, release one,
+accepted in August 2026,
+
+3
+00:00:07.417 --> 00:00:13.062
+has forty-five rules: five in category
+one and forty in category two.
+
+4
+00:00:13.062 --> 00:00:17.349
+Its scope is only the DNS
+capabilities of the appliance.
+
+5
+00:00:17.349 --> 00:00:23.325
+DHCP and IPAM hardening aren't in it, so
+those rely on the program's own baseline.
+
+6
+00:00:23.325 --> 00:00:26.938
+It was written for the Department
+of War, and the overview says
+
+7
+00:00:26.938 --> 00:00:30.763
+other agencies are free to use it,
+though some settings may not fit.
+
+8
+00:00:30.763 --> 00:00:32.837
+The five category one rules.
+
+9
+00:00:32.837 --> 00:00:37.510
+The Grid Master is stealth, hidden,
+in every zone and name server group,
+
+10
+00:00:37.510 --> 00:00:40.462
+which isn't a finding if
+the keys are on an HSM.
+
+11
+00:00:40.462 --> 00:00:42.987
+DNSSEC is enabled and validating.
+
+12
+00:00:42.987 --> 00:00:46.011
+NIOS runs the current
+approved long-term-support
+
+13
+00:00:46.011 --> 00:00:48.962
+version for federal
+systems, under maintenance.
+
+14
+00:00:48.962 --> 00:00:53.500
+Cryptography is FIPS-validated,
+so no RSA with SHA-1,
+
+15
+00:00:53.500 --> 00:00:56.850
+which doesn't apply on a FIPS-mode Grid.
+
+16
+00:00:56.850 --> 00:00:58.937
+And no DSA for DNSSEC.
+
+17
+00:00:58.937 --> 00:01:02.188
+The forty category two
+rules group into areas.
+
+18
+00:01:02.188 --> 00:01:05.113
+Zone transfers only to named secondaries,
+
+19
+00:01:05.113 --> 00:01:09.876
+and dynamic updates restricted by
+Kerberos signing or access lists.
+
+20
+00:01:09.876 --> 00:01:12.540
+Internal and external roles kept apart,
+
+21
+00:01:12.540 --> 00:01:16.175
+with no recursion on external
+authoritative servers.
+
+22
+00:01:16.175 --> 00:01:21.086
+Administrator access through a
+multi-factor policy with a remote service,
+
+23
+00:01:21.086 --> 00:01:23.700
+a password policy, and only approved CAs.
+
+24
+00:01:23.700 --> 00:01:27.888
+External syslog plus a copy
+of the audit log to syslog.
+
+25
+00:01:27.888 --> 00:01:34.200
+And resilience: a documented primary
+promotion procedure, HSM signing, and NTP.
+
+26
+00:01:34.200 --> 00:01:36.445
+One practical point from the overview:
+
+27
+00:01:36.445 --> 00:01:40.163
+check these settings at the zone
+level, not only at the Grid level.
+
+28
+00:01:40.163 --> 00:01:49.841
+Sources: DISA Infoblox NIOS 9.x STIG
+V1R1: XCCDF benchmark (July 28,
+
+29
+00:01:49.841 --> 00:01:56.415
+2026) and Overview
+document, downloaded Oct.
+
+30
+00:01:56.415 --> 00:01:59.702
+22, 2026 and re-read Oct.
+
+31
+00:01:59.702 --> 00:02:06.824
+23, 2026; rules V-285229,
+V-285259, V-285269, V-285274,
+
+32
+00:02:06.824 --> 00:02:16.319
+V-285279 and the CAT II rules cited
+in research brief section 5.1;
+
+33
+00:02:16.319 --> 00:02:23.690
+earlier federal brief
+(Infoblox 8.x DNS STIG V1R4).

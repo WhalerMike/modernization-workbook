@@ -1,0 +1,140 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.050
+Automation, and its limits.
+
+2
+00:00:02.050 --> 00:00:08.279
+Terraform's NIOS provider,
+version 2.1.0 from July 2026,
+
+3
+00:00:08.279 --> 00:00:13.375
+needs NIOS 9.1.0 or later
+and WAPI version 2.14.
+
+4
+00:00:13.375 --> 00:00:20.425
+That settles a question the earlier
+research left open: 9.1.0 is WAPI 2.14.
+
+5
+00:00:20.425 --> 00:00:27.287
+The older 1.x provider works
+with 9.0.6 and WAPI 2.13.6.
+
+6
+00:00:27.287 --> 00:00:33.248
+Version 2 identifies resources by UUID,
+and its resources cover Grid members,
+
+7
+00:00:33.248 --> 00:00:38.836
+upgrade groups and schedules, zones,
+views, records, networks, DHCP ranges,
+
+8
+00:00:38.836 --> 00:00:43.027
+failover, fixed addresses,
+managed Microsoft servers,
+
+9
+00:00:43.027 --> 00:00:46.938
+admin groups and roles,
+SAML, and syslog endpoints.
+
+10
+00:00:46.938 --> 00:00:50.186
+There's also a new combined provider,
+
+11
+00:00:50.186 --> 00:00:56.575
+version 3.0.0 beta from October 2026,
+for NIOS and Universal DDI together.
+
+12
+00:00:56.575 --> 00:01:00.850
+It isn't backward compatible, so
+moving to it means re-importing state.
+
+13
+00:01:00.850 --> 00:01:04.320
+My inference: build on the
+NIOS version 2 provider now,
+
+14
+00:01:04.320 --> 00:01:08.500
+and plan a state re-import when
+version 3 is generally available.
+
+15
+00:01:08.500 --> 00:01:13.437
+Ansible's NIOS collection, version 1.10.0,
+
+16
+00:01:13.437 --> 00:01:18.225
+needs WAPI 2.12.3 or
+later and Python 3.10.
+
+17
+00:01:18.225 --> 00:01:22.893
+It covers zones, records,
+networks, ranges, members and more,
+
+18
+00:01:22.893 --> 00:01:27.463
+but it has no module for
+failover associations or DNSSEC.
+
+19
+00:01:27.463 --> 00:01:29.088
+And some things stay manual.
+
+20
+00:01:29.088 --> 00:01:32.452
+FIPS and Common Criteria
+mode, the factory reset,
+
+21
+00:01:32.452 --> 00:01:37.413
+promoting the candidate, and temporary
+licenses are command-line only.
+
+22
+00:01:37.413 --> 00:01:40.060
+HSM groups and DNSSEC signing have no
+
+23
+00:01:40.060 --> 00:01:43.562
+Terraform or Ansible
+resource in those listings.
+
+24
+00:01:43.562 --> 00:01:46.874
+Write those as runbooks that
+capture their evidence as they go.
+
+25
+00:01:46.874 --> 00:01:55.905
+Sources: GitHub infobloxopen/terraform-provider-nios
+README compatibility matrix and
+
+26
+00:01:55.905 --> 00:02:03.714
+resource listing (v2.1.0);
+infobloxopen/terraform-provider-infoblox releases
+
+27
+00:02:03.714 --> 00:02:07.985
+(v3.0.0-beta);
+infobloxopen/infoblox-ansible
+
+28
+00:02:07.985 --> 00:02:12.255
+README and modules
+(v1.10.0); all accessed Oct.
+
+29
+00:02:12.255 --> 00:02:15.600
+23, 2026; research brief section 9.

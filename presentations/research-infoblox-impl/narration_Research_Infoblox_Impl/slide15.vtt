@@ -1,0 +1,113 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.862
+Rollback, method by method.
+
+2
+00:00:01.862 --> 00:00:04.719
+If you're managing the
+Windows servers read-only,
+
+3
+00:00:04.719 --> 00:00:08.788
+rollback is simply to stop managing
+them; nothing on Windows changed.
+
+4
+00:00:08.788 --> 00:00:14.043
+In read-write mode, be careful: changing
+the managing member, or switching to
+
+5
+00:00:14.043 --> 00:00:19.299
+read-only, reverts any Grid Manager
+edits made since the last sync, silently.
+
+6
+00:00:19.299 --> 00:00:24.648
+For zone import, the Windows zone stays
+authoritative until you change delegation or
+
+7
+00:00:24.648 --> 00:00:29.468
+forwarders, so the Federal Modernization
+Workbook's Book 08's cutover loop is
+
+8
+00:00:29.468 --> 00:00:34.138
+the real rollback point, and NIOS can
+also restore zone data after an import.
+
+9
+00:00:34.138 --> 00:00:38.800
+For the DHCP takeover, I found
+no Infoblox rollback procedure.
+
+10
+00:00:38.800 --> 00:00:43.598
+My inference, mirroring the forward
+steps: reverse the server assignments,
+
+11
+00:00:43.598 --> 00:00:46.925
+reactivate the Windows scope,
+and let clients renew.
+
+12
+00:00:46.925 --> 00:00:49.743
+For configuration mistakes on NIOS itself,
+
+13
+00:00:49.743 --> 00:00:53.813
+there's the database snapshot,
+which you take from Grid Manager.
+
+14
+00:00:53.813 --> 00:00:58.637
+Rolling back to it is faster than a
+restore, but it covers only the database.
+
+15
+00:00:58.637 --> 00:01:04.101
+There's only one, and a candidate promotion,
+an upgrade or a restore deletes it.
+
+16
+00:01:04.101 --> 00:01:08.200
+Don't use it to undo migration data
+that clients already depend on.
+
+17
+00:01:08.200 --> 00:01:10.453
+And Book 08's rule holds throughout:
+
+18
+00:01:10.453 --> 00:01:15.657
+each phase ends with a rollback point and
+a resolution-path consistency test, not
+
+19
+00:01:15.657 --> 00:01:20.862
+a calendar date, and the Windows exports
+are archived before anything is removed.
+
+20
+00:01:20.862 --> 00:01:26.112
+Sources: Infoblox NIOS 9.1.x
+Microsoft server management modes;
+
+21
+00:01:26.112 --> 00:01:32.877
+Importing zone data and Restoring zone
+data; Modifying DHCP server assignments;
+
+22
+00:01:32.877 --> 00:01:36.713
+Database snapshots;
+earlier divisions brief
+
+23
+00:01:36.713 --> 00:01:40.610
+(read/write revert behavior);
+Book 08, Chapter 10.

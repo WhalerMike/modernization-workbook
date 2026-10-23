@@ -1,0 +1,130 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.400
+Logging, and the evidence it produces.
+
+2
+00:00:02.400 --> 00:00:05.520
+Syslog: in the Grid's
+monitoring properties,
+
+3
+00:00:05.520 --> 00:00:09.768
+log to external syslog servers
+over Secure TCP, on port 6514,
+
+4
+00:00:09.768 --> 00:00:15.575
+with the server's certificate uploaded,
+and send it out the management interface.
+
+5
+00:00:15.575 --> 00:00:18.215
+The audit log: use the Detailed type,
+
+6
+00:00:18.215 --> 00:00:21.675
+or WAPI Detailed, which
+also records API calls.
+
+7
+00:00:21.675 --> 00:00:24.529
+And turn on Copy Audit
+Log Message to Syslog,
+
+8
+00:00:24.529 --> 00:00:28.175
+which the STIG requires in
+addition to external syslog.
+
+9
+00:00:28.175 --> 00:00:32.972
+DNS queries and responses: Infoblox
+warns that turning on the queries and
+
+10
+00:00:32.972 --> 00:00:38.163
+responses logging categories will
+significantly affect system performance.
+
+11
+00:00:38.163 --> 00:00:41.041
+Use the capture feature or dnstap instead,
+
+12
+00:00:41.041 --> 00:00:44.413
+and note dnstap drops data
+if its receiver is down.
+
+13
+00:00:44.413 --> 00:00:47.478
+DHCP lease history is
+archived and exportable,
+
+14
+00:00:47.478 --> 00:00:51.643
+and it's the source the Federal
+Modernization Workbook's Book 08
+
+15
+00:00:51.643 --> 00:00:55.651
+Chapter 11 needs to tie an address
+to a device at a point in time.
+
+16
+00:00:55.651 --> 00:01:00.264
+The Data Connector forwards DNS data
+to a SIEM in CEF or LEEF format,
+
+17
+00:01:00.264 --> 00:01:03.168
+but it's managed from the Infoblox Portal,
+
+18
+00:01:03.168 --> 00:01:07.013
+so by my inference it isn't
+available on a FIPS-mode Grid.
+
+19
+00:01:07.013 --> 00:01:10.713
+There, use Secure TCP syslog or dnstap.
+
+20
+00:01:10.713 --> 00:01:12.938
+And the SIEM is the system of record.
+
+21
+00:01:12.938 --> 00:01:18.316
+OMB memorandum M-26-14 requires
+logs searchable for six months and
+
+22
+00:01:18.316 --> 00:01:23.401
+retrievable for twelve, which
+NIOS's local retention can't meet.
+
+23
+00:01:23.401 --> 00:01:30.272
+Sources: Infoblox NIOS 9.1.x
+Logging to external syslog servers;
+
+24
+00:01:30.272 --> 00:01:35.954
+Audit log types and rolling;
+DNS logging categories;
+
+25
+00:01:35.954 --> 00:01:40.844
+Capturing DNS queries
+and responses; dnstap;
+
+26
+00:01:40.844 --> 00:01:49.037
+Data Connector overview and registration;
+DISA Infoblox NIOS 9.x STIG V1R1,
+
+27
+00:01:49.037 --> 00:01:55.580
+V-285237; earlier federal brief
+(OMB M-26-14); Book 08, Chapter 11.
