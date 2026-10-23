@@ -1,0 +1,21 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.763
+Module 2 is governed transport and
+the legacy protocols that ride on it.
+
+2
+00:00:04.763 --> 00:00:10.125
+First the governor itself: what SD-WAN and
+SASE each close, and how to protect them.
+
+3
+00:00:10.125 --> 00:00:13.079
+Then what actually breaks
+when you re-route a branch,
+
+4
+00:00:13.079 --> 00:00:17.540
+which turns out to be a shorter, and
+different, list than the folklore suggests.

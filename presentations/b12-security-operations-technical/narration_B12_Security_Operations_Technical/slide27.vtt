@@ -1,0 +1,49 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.438
+Labels only matter if
+something acts on them.
+
+2
+00:00:02.438 --> 00:00:05.662
+Data loss prevention acts in three places:
+
+3
+00:00:05.662 --> 00:00:11.188
+inside the Microsoft 365 services, on
+the device, and at the cloud session.
+
+4
+00:00:11.188 --> 00:00:14.463
+The program's minimum set of
+policies is on the slide.
+
+5
+00:00:14.463 --> 00:00:16.938
+The rollout discipline
+is the part to copy.
+
+6
+00:00:16.938 --> 00:00:21.407
+Every policy starts in simulation,
+measured against real content,
+
+7
+00:00:21.407 --> 00:00:24.738
+because a false-positive
+storm that stamps CUI on
+
+8
+00:00:24.738 --> 00:00:28.313
+routine files becomes an
+agency-wide help desk event.
+
+9
+00:00:28.313 --> 00:00:32.262
+And once enforcement starts, watch
+the people who keep overriding it.
+
+10
+00:00:32.262 --> 00:00:35.280
+Next, the encryption keys behind all this.

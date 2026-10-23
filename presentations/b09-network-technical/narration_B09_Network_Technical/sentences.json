@@ -1,0 +1,1106 @@
+{
+ "1": [
+  [
+   0.05,
+   0.713,
+   "Welcome."
+  ],
+  [
+   0.762,
+   12.463,
+   "This is the technical deep dive for Book 09 of the Federal Modernization Workbook, Network and Transport, and it's for the network engineers and architects who'll actually move branches off hairpinned transport."
+  ],
+  [
+   13.225,
+   6.862,
+   "The whole book rests on one idea: transport is a physics decision, and control is a compliance decision."
+  ],
+  [
+   20.087,
+   5.7,
+   "Mix them up, or do them in the wrong order, and a faster network becomes a compliance finding."
+  ],
+  [
+   25.788,
+   10.012,
+   "Part 1 covers policy and transport: what tick three point oh really requires, then SD-WAN, sassy and the legacy protocols riding on new paths."
+  ],
+  [
+   35.8,
+   9.363,
+   "Part 2 covers access and architecture: 802.1X after Active Directory, then the reference design and who owns each decision."
+  ],
+  [
+   45.163,
+   1.25,
+   "Let's start with why."
+  ]
+ ],
+ "2": [
+  [
+   0.05,
+   1.387,
+   "Here's why this matters."
+  ],
+  [
+   1.438,
+   5.588,
+   "Light in fiber covers about two hundred kilometers per millisecond, and nothing you can buy changes that."
+  ],
+  [
+   7.025,
+   11.5,
+   "The famous 150-millisecond voice budget is mouth to ear, so the network really gets seventy to a hundred, and a cross-country hairpin can burn most of it before a call goes anywhere useful."
+  ],
+  [
+   18.525,
+   1.25,
+   "That's the physics."
+  ],
+  [
+   19.775,
+   7.737,
+   "The compliance side is just as firm: a circuit closes exactly one control family, telecommunications diversity."
+  ],
+  [
+   27.512,
+   3.2,
+   "Everything else comes from the layer that governs the circuit."
+  ],
+  [
+   30.712,
+   4.338,
+   "So a bare local breakout fixes latency and loses the boundary."
+  ],
+  [
+   35.05,
+   2.65,
+   "Which brings us to the order you do things in."
+  ]
+ ],
+ "3": [
+  [
+   0.05,
+   3.788,
+   "This is the spine of the whole deck: an order of operations."
+  ],
+  [
+   3.837,
+   8.925,
+   "Step zero is securing the governor itself, because an SD-WAN controller is an internet-facing system with authority over every branch."
+  ],
+  [
+   12.762,
+   16.188,
+   "Then buy the pipe on measured physics, get the governor live and logging, decide the boundary change before cutover, handle Microsoft 365 through its own exception, and register the evidence, including sis-uh's telemetry, before any old circuit goes away."
+  ],
+  [
+   28.95,
+   7.312,
+   "The book is candid that this is an engineering dependency, not a mandate, and that's exactly why it holds up in review."
+  ],
+  [
+   36.263,
+   1.587,
+   "The table is our map."
+  ],
+  [
+   37.85,
+   3.05,
+   "Module 1 starts with what policy actually says."
+  ]
+ ],
+ "4": [
+  [
+   0.05,
+   2.913,
+   "Module 1 is tick three point oh in practice."
+  ],
+  [
+   2.962,
+   7.338,
+   "Branch decisions get argued in policy terms, and most of those arguments don't survive a careful read of the documents."
+  ],
+  [
+   10.3,
+   5.612,
+   "But the opposite mistake is just as common: assuming technology-neutral means requirement-free."
+  ],
+  [
+   15.912,
+   5.013,
+   "We'll read what's really there, and finish with how token security changes where data can live."
+  ]
+ ],
+ "5": [
+  [
+   0.05,
+   5.225,
+   "Let's read tick three point oh from the documents themselves, not from what people say about them."
+  ],
+  [
+   5.275,
+   7.55,
+   "There are four use cases, and no sassy use case; sis-uh's sassy guide describes an approach, it doesn't require one."
+  ],
+  [
+   12.825,
+   2.375,
+   "What constrains a branch are two rules."
+  ],
+  [
+   15.2,
+   10.975,
+   "First, policy enforcement parity: if you need a capability anywhere, you need it on every path, and that's the only place TIC mentions SD-WAN, as something to govern."
+  ],
+  [
+   26.175,
+   4.375,
+   "Second, sis-uh keeps its visibility when branches break out locally."
+  ],
+  [
+   30.55,
+   4.275,
+   "So technology-neutral gives you discretion, with an obligation attached."
+  ],
+  [
+   34.825,
+   3.05,
+   "And binding instruments sit right beside TIC."
+  ]
+ ],
+ "6": [
+  [
+   0.05,
+   3.9,
+   "This slide is the answer to \"TIC doesn't require anything.\""
+  ],
+  [
+   3.95,
+   3.725,
+   "Four binding obligations land directly on branch equipment."
+  ],
+  [
+   7.675,
+   7.625,
+   "Egress D N S has to reach sis-uh's Protective D N S. Management interfaces can't sit exposed on the internet."
+  ],
+  [
+   15.3,
+   3.575,
+   "End-of-support edge devices come out on a dated schedule."
+  ],
+  [
+   18.875,
+   5.975,
+   "And anything terminating TLS or IPsec has to support post-quantum key exchange."
+  ],
+  [
+   24.85,
+   3.525,
+   "None of them picks a product, but together they shape the box."
+  ],
+  [
+   28.375,
+   8.775,
+   "The big takeaway is the refresh: replacing branch hardware is already a dated obligation, so that purchase is where the architecture gets chosen."
+  ],
+  [
+   37.15,
+   3.95,
+   "Next, the controls an agency asserts about its own boundary."
+  ]
+ ],
+ "7": [
+  [
+   0.05,
+   4.1,
+   "The hardest test at a branch is often one the agency wrote itself."
+  ],
+  [
+   4.15,
+   11.225,
+   "Once a branch breaks out locally, it's an external boundary, and the security plan makes promises about it: boundary monitoring, a traffic-flow policy per service, continuous monitoring."
+  ],
+  [
+   15.375,
+   5.112,
+   "Lacking SD-WAN isn't a finding; being unable to produce that evidence is."
+  ],
+  [
+   20.488,
+   2.638,
+   "On encryption, the book is precise."
+  ],
+  [
+   23.125,
+   9.125,
+   "The controls accept TLS or IPsec, and nothing in the baselines demands an encrypted WAN when the payload is already protected end to end."
+  ],
+  [
+   32.25,
+   7.213,
+   "Where encryption really matters is cleartext protocols, so inventory those and treat the list as an exposure register."
+  ],
+  [
+   39.462,
+   2.913,
+   "Now, what happens to D N S and telemetry."
+  ]
+ ],
+ "8": [
+  [
+   0.05,
+   4.325,
+   "When traffic stops passing the old access point, three things move with it."
+  ],
+  [
+   4.375,
+   9.387,
+   "D N S still has to end at sis-uh, and the trap is quietly forwarding to a vendor's look-alike resolver: everything works, and you're out of compliance."
+  ],
+  [
+   13.762,
+   6.688,
+   "Logging now runs under M-26-14, with maturity dates already on the calendar."
+  ],
+  [
+   20.45,
+   6.188,
+   "And sis-uh's telemetry, which used to come from sensors on the MTIPS path, has to come through CLAW instead."
+  ],
+  [
+   26.637,
+   7.25,
+   "The rule the book recommends is simple: don't turn off MTIPS until sis-uh confirms the replacement telemetry is flowing."
+  ],
+  [
+   33.888,
+   2.513,
+   "Then a quick check on which policies are still current."
+  ]
+ ],
+ "9": [
+  [
+   0.05,
+   6.825,
+   "A lot of network documents carry at least one stale citation, so here's where things stand in October 2026."
+  ],
+  [
+   6.875,
+   8.662,
+   "M-21-31 is gone, older vulnerability directives have been replaced, and the legacy telecom contracts have expired."
+  ],
+  [
+   15.537,
+   2.4,
+   "The fed-ramp point matters most day to day."
+  ],
+  [
+   17.938,
+   4.088,
+   "fed-ramp certifies a cloud service, not the route you take to reach it."
+  ],
+  [
+   22.025,
+   5.625,
+   "So when someone refuses a network change for fed-ramp reasons, ask which control it violates."
+  ],
+  [
+   27.65,
+   5.6,
+   "There isn't one, and the book treats a refusal without a control basis as a governance problem."
+  ],
+  [
+   33.25,
+   3.462,
+   "Now the data-side idea that makes centralization safe."
+  ]
+ ],
+ "10": [
+  [
+   0.05,
+   3.538,
+   "This slide explains why network people should care about tokens."
+  ],
+  [
+   3.587,
+   4.7,
+   "The old reason to split data into many stores was isolation by perimeter."
+  ],
+  [
+   8.287,
+   11.162,
+   "Tokens remove it: when every request carries a verifiable identity, one store can safely serve many trust domains, and the long-lived database password disappears."
+  ],
+  [
+   19.45,
+   1.788,
+   "The physics still applies, though."
+  ],
+  [
+   21.238,
+   8.025,
+   "Strong consistency over long distances is expensive, so keep it inside a region and let everything else be asynchronous."
+  ],
+  [
+   29.262,
+   3.325,
+   "That choice decides which flows need a fast path at all."
+  ],
+  [
+   32.587,
+   7.925,
+   "And the price is named honestly: isolation now lives in code, so that code has to be small, tested and fail-closed."
+  ],
+  [
+   40.513,
+   1.663,
+   "That wraps up Module 1."
+  ]
+ ],
+ "11": [
+  [
+   0.05,
+   4.713,
+   "Module 2 is governed transport and the legacy protocols that ride on it."
+  ],
+  [
+   4.763,
+   5.362,
+   "First the governor itself: what SD-WAN and sassy each close, and how to protect them."
+  ],
+  [
+   10.125,
+   7.35,
+   "Then what actually breaks when you re-route a branch, which turns out to be a shorter, and different, list than the folklore suggests."
+  ]
+ ],
+ "12": [
+  [
+   0.05,
+   2.775,
+   "Here's the honest version of what SD-WAN does."
+  ],
+  [
+   2.825,
+   7.575,
+   "It can't beat the speed of light, but most real paths run well above that floor, and the gap is where SD-WAN earns its keep."
+  ],
+  [
+   10.4,
+   7.263,
+   "It separates lean, latency-sensitive traffic from bulk transfers, and it recovers some of the detour in real routes."
+  ],
+  [
+   17.663,
+   2.0,
+   "The underrated part is the tail."
+  ],
+  [
+   19.663,
+   9.637,
+   "A quorum commit or a voice call is only as good as its unluckiest packet, and tools like forward error correction and packet duplication shrink that tail."
+  ],
+  [
+   29.3,
+   2.3,
+   "What it never does is go below the floor."
+  ],
+  [
+   31.6,
+   1.887,
+   "So what does sassy add on top?"
+  ]
+ ],
+ "13": [
+  [
+   0.05,
+   3.575,
+   "SD-WAN decides paths; it doesn't inspect anything."
+  ],
+  [
+   3.625,
+   10.325,
+   "Boundary protection, web policy, malware inspection and private-app access come from the sassy services above it, and this table shows which layer closes which control."
+  ],
+  [
+   13.95,
+   1.512,
+   "Two practical points."
+  ],
+  [
+   15.463,
+   9.2,
+   "The enforcement point has a location, so a distant or poorly peered point of presence is just a hairpin with a new name; measure it before cutover."
+  ],
+  [
+   24.663,
+   7.275,
+   "And fed-ramp status is per offering, not per vendor, and it covers the cloud service, not the boxes in your offices."
+  ],
+  [
+   31.938,
+   3.837,
+   "Which raises the question nobody likes: who protects the governor?"
+  ]
+ ],
+ "14": [
+  [
+   0.05,
+   6.425,
+   "The governor deserves its own security program, because it becomes the most consequential network system you own."
+  ],
+  [
+   6.475,
+   7.688,
+   "SD-WAN trades a few hardened egress points for hundreds of internet-facing edges and one controller that can reroute everything."
+  ],
+  [
+   14.162,
+   11.463,
+   "This isn't hypothetical: in February 2026, sis-uh issued an emergency directive for one vendor's SD-WAN control plane, and its sequence makes a good drill whatever you run."
+  ],
+  [
+   25.625,
+   5.8,
+   "Inventory, preserve the logs, patch, hunt, rebuild if needed, harden."
+  ],
+  [
+   31.425,
+   2.438,
+   "The table is the minimum control set."
+  ],
+  [
+   33.862,
+   3.875,
+   "Be able to run that drill before production traffic depends on it."
+  ],
+  [
+   37.737,
+   3.45,
+   "Next, where the program would like to take the path itself."
+  ]
+ ],
+ "15": [
+  [
+   0.05,
+   2.925,
+   "This slide is a proposal, and it's labeled that way."
+  ],
+  [
+   2.975,
+   7.75,
+   "The idea: today identity is checked on every call to the data, but a network session is trusted once and then coasts."
+  ],
+  [
+   10.725,
+   10.075,
+   "The proposed governed path treats the path itself like a token, leased for one purpose and expiring with it, so a flow with no token behind it shows up as drift."
+  ],
+  [
+   20.8,
+   9.838,
+   "Whether or not that's adopted, one part applies now: SD-WAN and sassy decisions should land as records, with identity, policy and time attached."
+  ],
+  [
+   30.637,
+   1.425,
+   "That's your evidence later."
+  ],
+  [
+   32.062,
+   2.263,
+   "Now, what breaks when paths change."
+  ]
+ ],
+ "16": [
+  [
+   0.05,
+   5.013,
+   "Re-routing a branch does break things, but for specific, documented reasons."
+  ],
+  [
+   5.062,
+   9.162,
+   "Proxies time out idle connections, inspection breaks pinned certificates and mutual TLS, and some applications care about the client's IP address."
+  ],
+  [
+   14.225,
+   1.962,
+   "That's the list to design around."
+  ],
+  [
+   16.188,
+   2.225,
+   "Just as useful is what doesn't break."
+  ],
+  [
+   18.413,
+   8.012,
+   "A path change doesn't scramble TCP; a changed source address does, so address continuity is the property to protect."
+  ],
+  [
+   26.425,
+   9.787,
+   "And Kerberos doesn't check client addresses by default, doesn't need a domain controller within milliseconds, and no policy mandates short token lifetimes."
+  ],
+  [
+   36.212,
+   2.6,
+   "Wrong mechanisms lead to wrong fixes."
+  ],
+  [
+   38.812,
+   2.925,
+   "The real Kerberos dependency is next."
+  ]
+ ],
+ "17": [
+  [
+   0.05,
+   5.537,
+   "This is the slide behind the classic help-desk report: everything works except signing in."
+  ],
+  [
+   5.588,
+   7.575,
+   "A handful of operations still need a reachable domain controller, like first logon, Group Policy and password changes."
+  ],
+  [
+   13.162,
+   8.262,
+   "A branch on local breakout reaches the internet just fine, but if nobody planned its path to a domain controller, those operations fail."
+  ],
+  [
+   21.425,
+   6.775,
+   "Worse, Windows quietly falls back to N T L M, which is exactly what the program is trying to retire."
+  ],
+  [
+   28.2,
+   8.838,
+   "So give every branch a defined path, through a private link, a connector or a KDC proxy, or remove the dependency with Entra join."
+  ],
+  [
+   37.038,
+   2.625,
+   "Then, a reality check on performance."
+  ]
+ ],
+ "18": [
+  [
+   0.05,
+   1.663,
+   "Two practical lessons here."
+  ],
+  [
+   1.712,
+   9.512,
+   "First, for chatty applications, transport improvements help modestly, about a fifth, because a branch device only touches the first leg of the trip."
+  ],
+  [
+   11.225,
+   3.65,
+   "Cutting thirty round trips down to three helps about tenfold."
+  ],
+  [
+   14.875,
+   4.975,
+   "So the application change usually wins, and that belongs to the application owner."
+  ],
+  [
+   19.85,
+   6.225,
+   "Second, for token-based access, the network matters through a stable, known egress address."
+  ],
+  [
+   26.075,
+   7.938,
+   "Conditional Access and continuous access evaluation rely on seeing the same addresses for sign-in and for resource traffic."
+  ],
+  [
+   34.013,
+   4.638,
+   "Unpredictable egress means false alarms and weaker location policy."
+  ],
+  [
+   38.65,
+   1.4,
+   "That closes Part 1."
+  ]
+ ],
+ "19": [
+  [
+   0.05,
+   4.325,
+   "Module 3 is network access control after Active Directory."
+  ],
+  [
+   4.375,
+   6.525,
+   "Sign-in controls can't stop someone who simply plugs a laptop into a conference-room jack; only the port can."
+  ],
+  [
+   10.9,
+   6.75,
+   "And the radius server checking that port is usually the last piece of the network still standing on Active Directory."
+  ],
+  [
+   17.65,
+   4.75,
+   "So this module is about proving devices, and retiring that dependency safely."
+  ]
+ ],
+ "20": [
+  [
+   0.05,
+   8.137,
+   "Port admission has three players: software on the device, the switch or access point that relays, and the radius server that decides."
+  ],
+  [
+   8.188,
+   8.787,
+   "The method that matters is EAP-TLS, a certificate on each side, so neither the device nor the network can be faked without a private key."
+  ],
+  [
+   16.975,
+   2.475,
+   "The urgency comes from Windows itself."
+  ],
+  [
+   19.45,
+   11.113,
+   "Password-based methods like PEAP with MS-CHAPv2 are being cut off from single sign-on, first by Credential Guard and now by the October 2026 hardening."
+  ],
+  [
+   30.562,
+   4.662,
+   "So agencies still on password-based Wi-Fi have a deadline they didn't choose."
+  ],
+  [
+   35.225,
+   2.3,
+   "Next, the server doing the checking."
+  ]
+ ],
+ "21": [
+  [
+   0.05,
+   4.075,
+   "Windows NPS works today because devices are hybrid-joined."
+  ],
+  [
+   4.125,
+   5.775,
+   "The trouble is that it leans on Active Directory computer objects, and Entra-joined devices don't have them."
+  ],
+  [
+   9.9,
+   6.213,
+   "Entra ID offers no radius service of its own, and NPS has no way to read device health."
+  ],
+  [
+   16.113,
+   3.663,
+   "So NPS gets less useful with every device you move."
+  ],
+  [
+   19.775,
+   10.113,
+   "The options are an on-premises NAC platform, a cloud radius service with the right fed-ramp status for that function, or taking radius out of remote access entirely."
+  ],
+  [
+   29.887,
+   6.0,
+   "The program's rule: tie the switch to the migration timeline, and authorize cloud devices first."
+  ],
+  [
+   35.888,
+   2.4,
+   "Next, where the health signal comes from."
+  ]
+ ],
+ "22": [
+  [
+   0.05,
+   4.25,
+   "The program doesn't add a separate posture probe; it reads Intune."
+  ],
+  [
+   4.3,
+   11.512,
+   "A NAC product registers with Entra ID, the device certificate carries its Intune device ID, and on connect the NAC asks Intune whether the device is compliant."
+  ],
+  [
+   15.812,
+   2.087,
+   "Two realities to plan for."
+  ],
+  [
+   17.9,
+   4.963,
+   "Posture is only as fresh as Intune's last check-in, which can be hours old."
+  ],
+  [
+   22.863,
+   6.338,
+   "And when a device falls out of compliance mid-shift, something has to move the port, which is Change of Authorization."
+  ],
+  [
+   29.2,
+   6.938,
+   "NPS can't send it, and building your own is real engineering, which is a strong argument for a NAC platform."
+  ],
+  [
+   36.138,
+   1.738,
+   "So where do devices land?"
+  ]
+ ],
+ "23": [
+  [
+   0.05,
+   4.4,
+   "Every device lands in one of five segments, and this flow shows how."
+  ],
+  [
+   4.45,
+   2.475,
+   "No valid certificate means quarantine."
+  ],
+  [
+   6.925,
+   9.088,
+   "A good certificate but failed compliance means remediation, where the device can fix itself and come back, and never drifts silently into production."
+  ],
+  [
+   16.012,
+   10.425,
+   "Devices that can't run a supplicant, like badge readers and printers, are classified by MAC address, and the book is blunt that this is classification, not authentication."
+  ],
+  [
+   26.438,
+   4.237,
+   "The eight-hour re-authentication is the backstop when nothing else fires."
+  ],
+  [
+   30.675,
+   2.362,
+   "Next, hardening radius itself."
+  ]
+ ],
+ "24": [
+  [
+   0.05,
+   2.212,
+   "radius has a weakness of its own."
+  ],
+  [
+   2.263,
+   8.5,
+   "Over plain UDP it relies on MD5, and the 2024 Blast-radius research showed an attacker in the middle could forge an accept."
+  ],
+  [
+   10.762,
+   11.938,
+   "EAP is largely protected, but the fix is cheap: require the message authenticator everywhere, use strong rotated secrets, and move to radius over TLS where the hardware allows."
+  ],
+  [
+   22.7,
+   7.237,
+   "On the wire, one certificate serves wired and wireless, and WPA3-Enterprise is the target."
+  ],
+  [
+   29.938,
+   9.363,
+   "And don't forget the server certificates: they renew through the lifecycle platform, and one, the NPS M F A extension's, is easy to miss."
+  ],
+  [
+   39.3,
+   2.55,
+   "Now, rolling this out without an outage."
+  ]
+ ],
+ "25": [
+  [
+   0.05,
+   5.763,
+   "The fastest way to cause an outage with access control is to enforce before you know what's on the network."
+  ],
+  [
+   5.812,
+   7.037,
+   "So the rollout starts in monitor mode: everything authenticates, nothing is blocked, and the logs build a baseline."
+  ],
+  [
+   12.85,
+   9.662,
+   "Then wired enforcement, then wireless, then tightening the device segments, finishing with a tabletop where someone plugs a rogue laptop into a meeting room."
+  ],
+  [
+   22.512,
+   4.85,
+   "Done this way, it closes real device-authentication and inventory controls."
+  ],
+  [
+   27.363,
+   6.237,
+   "One correction worth knowing: it doesn't close the external-connections control people often claim for it."
+  ],
+  [
+   33.6,
+   1.975,
+   "That wraps up access control."
+  ]
+ ],
+ "26": [
+  [
+   0.05,
+   9.05,
+   "Module 4 pulls everything together into a reference architecture, then answers the question behind most of the expensive mistakes: who decides."
+  ],
+  [
+   9.1,
+   6.912,
+   "Circuits get bought before anyone owns the governor, and cutovers happen before anyone files the boundary change."
+  ],
+  [
+   16.012,
+   3.587,
+   "Naming one decider per step costs less than any product."
+  ]
+ ],
+ "27": [
+  [
+   0.05,
+   7.4,
+   "One rule ties the data and network layers together: match each flow's consistency needs to the transport built for it."
+  ],
+  [
+   7.45,
+   5.938,
+   "Strongly consistent writes and their quorum stay inside one region, on the fast path."
+  ],
+  [
+   13.387,
+   4.825,
+   "Everything that crosses regions is asynchronous and rides the bulk path."
+  ],
+  [
+   18.212,
+   3.375,
+   "That's not a limitation; it's using physics on purpose."
+  ],
+  [
+   21.587,
+   10.125,
+   "The program's own SaaS data plane is the worked example: one regional writer and tokens on both sides, so SD-WAN would matter only for background replication."
+  ],
+  [
+   31.712,
+   1.812,
+   "Now the same rule at a branch."
+  ]
+ ],
+ "28": [
+  [
+   0.05,
+   5.925,
+   "At a branch, the question is where traffic leaves the building and what enforces policy when it does."
+  ],
+  [
+   5.975,
+   1.425,
+   "There are four patterns."
+  ],
+  [
+   7.4,
+   2.175,
+   "The hairpin is assessed but slow."
+  ],
+  [
+   9.575,
+   2.65,
+   "Bare breakout is fast, and a regression."
+  ],
+  [
+   12.225,
+   5.513,
+   "Governed breakout, with an edge device and a nearby security service, is the reference pattern."
+  ],
+  [
+   17.738,
+   6.925,
+   "And agent-based sassy suits small or roaming sites, as long as the nearest point of presence really is near."
+  ],
+  [
+   24.663,
+   6.412,
+   "The guidance is to choose per site from measured latency and device mix, and never to choose bare breakout."
+  ],
+  [
+   31.075,
+   2.375,
+   "Five decisions carry most of the risk."
+  ]
+ ],
+ "29": [
+  [
+   0.05,
+   6.638,
+   "Most of the risk sits in five decisions, and what makes them dangerous is that skipping one breaks nothing on the day."
+  ],
+  [
+   6.688,
+   1.688,
+   "Keep one writer per region."
+  ],
+  [
+   8.375,
+   6.763,
+   "Write the path policy for every application class, which is also the traffic-flow policy an assessor will ask for."
+  ],
+  [
+   15.137,
+   4.287,
+   "Pick the egress pattern per site, and file the boundary change first."
+  ],
+  [
+   19.425,
+   3.312,
+   "Bring the governor under control before it carries traffic."
+  ],
+  [
+   22.738,
+   2.112,
+   "And make the path itself evidence."
+  ],
+  [
+   24.85,
+   3.513,
+   "Each one comes with a concrete check, so you can prove it was done."
+  ],
+  [
+   28.363,
+   1.538,
+   "Next, who owns them."
+  ]
+ ],
+ "30": [
+  [
+   0.05,
+   3.062,
+   "Here's the part of the book that's new: ownership."
+  ],
+  [
+   3.112,
+   8.488,
+   "Many network decisions are really risk decisions dressed up as engineering or purchasing, so they have to reach the person who can accept the risk."
+  ],
+  [
+   11.6,
+   2.438,
+   "This matrix gives one decider per row."
+  ],
+  [
+   14.037,
+   1.45,
+   "A few are worth noticing."
+  ],
+  [
+   15.488,
+   8.238,
+   "The authorizing official decides that the boundary may change, but the system owner decides, site by site, whether that site is ready."
+  ],
+  [
+   23.725,
+   7.625,
+   "And a circuit ends only after security operations confirms sis-uh's telemetry, and only the contracting officer can end it."
+  ],
+  [
+   31.35,
+   2.475,
+   "Next, a named gate for each step."
+  ]
+ ],
+ "31": [
+  [
+   0.05,
+   6.662,
+   "Each step in the order of operations now has one decider, and the gate between steps is a person, not a date."
+  ],
+  [
+   6.713,
+   10.875,
+   "The see-so signs off on the governor's security, the system owner on each site's readiness, and the authorizing official on the boundary change and the Microsoft 365 exception."
+  ],
+  [
+   17.587,
+   10.6,
+   "The boundary change rides on evidence: the path policy, failover tests, path telemetry, exceptions, CLAW confirmation, and an honest list of what you can't show yet."
+  ],
+  [
+   28.188,
+   2.825,
+   "Let's finish with what to decide, and what to start."
+  ]
+ ],
+ "32": [
+  [
+   0.05,
+   10.162,
+   "To close: five decisions to put in front of the people who own them, from the governor platform and the NPS exit trigger to the boundary change and the rule for leaving MTIPS."
+  ],
+  [
+   10.213,
+   3.4,
+   "And there's plenty you can start on Monday without a new contract."
+  ],
+  [
+   13.613,
+   3.125,
+   "Verify where your D N S really goes."
+  ],
+  [
+   16.738,
+   2.575,
+   "Inventory cleartext protocols."
+  ],
+  [
+   19.312,
+   3.075,
+   "Check each branch's path to a domain controller."
+  ],
+  [
+   22.387,
+   1.45,
+   "Write the path policy."
+  ],
+  [
+   23.837,
+   2.925,
+   "Put the right attributes into every refresh."
+  ],
+  [
+   26.762,
+   4.225,
+   "Start CLAW onboarding and 802.1X monitor mode."
+  ],
+  [
+   30.988,
+   2.288,
+   "And measure a pair of branches before you buy."
+  ],
+  [
+   33.275,
+   5.463,
+   "Governor before traffic, boundary before cutover, evidence before a circuit ends."
+  ],
+  [
+   38.737,
+   0.762,
+   "Thank you."
+  ]
+ ]
+}

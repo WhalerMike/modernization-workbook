@@ -1,0 +1,63 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:00.763
+Welcome.
+
+2
+00:00:00.763 --> 00:00:05.605
+This is the technical deep dive for Book
+09 of the Federal Modernization Workbook,
+
+3
+00:00:05.605 --> 00:00:09.166
+Network and Transport, and it's
+for the network engineers and
+
+4
+00:00:09.166 --> 00:00:13.225
+architects who'll actually move
+branches off hairpinned transport.
+
+5
+00:00:13.225 --> 00:00:17.555
+The whole book rests on one idea:
+transport is a physics decision,
+
+6
+00:00:17.555 --> 00:00:20.087
+and control is a compliance decision.
+
+7
+00:00:20.087 --> 00:00:22.552
+Mix them up, or do them
+in the wrong order,
+
+8
+00:00:22.552 --> 00:00:25.787
+and a faster network becomes
+a compliance finding.
+
+9
+00:00:25.787 --> 00:00:31.321
+Part 1 covers policy and transport:
+what TIC 3.0 really requires,
+
+10
+00:00:31.321 --> 00:00:35.800
+then SD-WAN, SASE and the legacy
+protocols riding on new paths.
+
+11
+00:00:35.800 --> 00:00:41.084
+Part 2 covers access and architecture:
+802.1X after Active Directory,
+
+12
+00:00:41.084 --> 00:00:45.163
+then the reference design
+and who owns each decision.
+
+13
+00:00:45.163 --> 00:00:46.460
+Let's start with why.

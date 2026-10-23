@@ -1,0 +1,53 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.713
+Two practical lessons here.
+
+2
+00:00:01.713 --> 00:00:06.350
+First, for chatty applications,
+transport improvements help modestly,
+
+3
+00:00:06.350 --> 00:00:11.224
+about a fifth, because a branch device
+only touches the first leg of the trip.
+
+4
+00:00:11.224 --> 00:00:14.875
+Cutting thirty round trips down
+to three helps about tenfold.
+
+5
+00:00:14.875 --> 00:00:19.850
+So the application change usually wins,
+and that belongs to the application owner.
+
+6
+00:00:19.850 --> 00:00:21.953
+Second, for token-based access,
+
+7
+00:00:21.953 --> 00:00:26.075
+the network matters through a
+stable, known egress address.
+
+8
+00:00:26.075 --> 00:00:30.044
+Conditional Access and continuous
+access evaluation rely on
+
+9
+00:00:30.044 --> 00:00:34.013
+seeing the same addresses for
+sign-in and for resource traffic.
+
+10
+00:00:34.013 --> 00:00:38.651
+Unpredictable egress means false
+alarms and weaker location policy.
+
+11
+00:00:38.651 --> 00:00:40.100
+That closes Part 1.

@@ -1,0 +1,52 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:05.063
+Re-routing a branch does break things,
+but for specific, documented reasons.
+
+2
+00:00:05.063 --> 00:00:09.793
+Proxies time out idle connections,
+inspection breaks pinned certificates
+
+3
+00:00:09.793 --> 00:00:14.224
+and mutual TLS, and some applications
+care about the client's IP address.
+
+4
+00:00:14.224 --> 00:00:16.187
+That's the list to design around.
+
+5
+00:00:16.187 --> 00:00:18.413
+Just as useful is what doesn't break.
+
+6
+00:00:18.413 --> 00:00:22.930
+A path change doesn't scramble TCP;
+a changed source address does,
+
+7
+00:00:22.930 --> 00:00:26.425
+so address continuity is
+the property to protect.
+
+8
+00:00:26.425 --> 00:00:31.205
+And Kerberos doesn't check client
+addresses by default, doesn't need a domain
+
+9
+00:00:31.205 --> 00:00:36.212
+controller within milliseconds, and no
+policy mandates short token lifetimes.
+
+10
+00:00:36.212 --> 00:00:38.812
+Wrong mechanisms lead to wrong fixes.
+
+11
+00:00:38.812 --> 00:00:41.810
+The real Kerberos dependency is next.

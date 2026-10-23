@@ -1,0 +1,44 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.288
+One rule ties the data and
+network layers together:
+
+2
+00:00:03.288 --> 00:00:07.450
+match each flow's consistency needs
+to the transport built for it.
+
+3
+00:00:07.450 --> 00:00:10.673
+Strongly consistent
+writes and their quorum
+
+4
+00:00:10.673 --> 00:00:13.388
+stay inside one region, on the fast path.
+
+5
+00:00:13.388 --> 00:00:18.212
+Everything that crosses regions is
+asynchronous and rides the bulk path.
+
+6
+00:00:18.212 --> 00:00:21.587
+That's not a limitation; it's
+using physics on purpose.
+
+7
+00:00:21.587 --> 00:00:26.491
+The program's own SaaS data plane is
+the worked example: one regional writer
+
+8
+00:00:26.491 --> 00:00:31.712
+and tokens on both sides, so SD-WAN would
+matter only for background replication.
+
+9
+00:00:31.712 --> 00:00:33.580
+Now the same rule at a branch.

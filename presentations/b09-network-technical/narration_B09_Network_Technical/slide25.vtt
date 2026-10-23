@@ -1,0 +1,50 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.066
+The fastest way to cause an
+outage with access control
+
+2
+00:00:03.066 --> 00:00:05.813
+is to enforce before you
+know what's on the network.
+
+3
+00:00:05.813 --> 00:00:09.855
+So the rollout starts in monitor
+mode: everything authenticates,
+
+4
+00:00:09.855 --> 00:00:12.849
+nothing is blocked, and
+the logs build a baseline.
+
+5
+00:00:12.849 --> 00:00:17.532
+Then wired enforcement, then wireless,
+then tightening the device segments,
+
+6
+00:00:17.532 --> 00:00:22.512
+finishing with a tabletop where someone
+plugs a rogue laptop into a meeting room.
+
+7
+00:00:22.512 --> 00:00:27.362
+Done this way, it closes real
+device-authentication and inventory controls.
+
+8
+00:00:27.362 --> 00:00:30.269
+One correction worth knowing:
+it doesn't close the
+
+9
+00:00:30.269 --> 00:00:33.600
+external-connections control
+people often claim for it.
+
+10
+00:00:33.600 --> 00:00:35.640
+That wraps up access control.

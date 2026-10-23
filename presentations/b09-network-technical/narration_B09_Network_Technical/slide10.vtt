@@ -1,0 +1,54 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.588
+This slide explains why network
+people should care about tokens.
+
+2
+00:00:03.588 --> 00:00:08.287
+The old reason to split data into many
+stores was isolation by perimeter.
+
+3
+00:00:08.287 --> 00:00:13.827
+Tokens remove it: when every request
+carries a verifiable identity, one store can
+
+4
+00:00:13.827 --> 00:00:19.449
+safely serve many trust domains, and the
+long-lived database password disappears.
+
+5
+00:00:19.449 --> 00:00:21.238
+The physics still applies, though.
+
+6
+00:00:21.238 --> 00:00:24.849
+Strong consistency over long
+distances is expensive,
+
+7
+00:00:24.849 --> 00:00:29.263
+so keep it inside a region and let
+everything else be asynchronous.
+
+8
+00:00:29.263 --> 00:00:32.587
+That choice decides which
+flows need a fast path at all.
+
+9
+00:00:32.587 --> 00:00:36.902
+And the price is named honestly:
+isolation now lives in code,
+
+10
+00:00:36.902 --> 00:00:40.512
+so that code has to be small,
+tested and fail-closed.
+
+11
+00:00:40.512 --> 00:00:42.240
+That wraps up Module 1.

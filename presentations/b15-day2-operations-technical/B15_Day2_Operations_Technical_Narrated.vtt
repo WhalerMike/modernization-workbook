@@ -1,0 +1,1447 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:00.763
+Welcome.
+
+2
+00:00:00.763 --> 00:00:06.218
+This is the technical deep dive for Book
+15 of the Federal Modernization Workbook,
+
+3
+00:00:06.218 --> 00:00:09.187
+Compliance Automation
+and Day-2 Operations.
+
+4
+00:00:09.187 --> 00:00:12.578
+It's for help desk leads,
+cloud and platform engineers,
+
+5
+00:00:12.578 --> 00:00:17.663
+and the people who automate controls: the
+teams who run the estate after cutover.
+
+6
+00:00:17.663 --> 00:00:21.916
+Part 1 is the front door and the
+authority: how a request comes in,
+
+7
+00:00:21.916 --> 00:00:26.251
+gets routed and verified, and what
+the help desk may do in Entra ID.
+
+8
+00:00:26.251 --> 00:00:31.788
+Part 2 is catalogs, records and controls:
+typed requests, SaaS integrations,
+
+9
+00:00:31.788 --> 00:00:37.325
+the CMDB, and control automation across
+four platforms, then who runs it all.
+
+10
+00:00:37.325 --> 00:00:40.400
+Let's start with why
+day two matters so much.
+
+11
+00:00:41.150 --> 00:00:42.537
+Here's why this matters.
+
+12
+00:00:42.537 --> 00:00:45.374
+A modernized estate
+isn't judged at cutover;
+
+13
+00:00:45.374 --> 00:00:48.525
+it's judged the first Monday
+someone can't sign in.
+
+14
+00:00:48.525 --> 00:00:52.738
+And the most dangerous routine action
+on the help desk is a single button.
+
+15
+00:00:52.738 --> 00:00:56.981
+Requiring a user to re-register
+for MFA wipes their methods,
+
+16
+00:00:56.981 --> 00:00:59.925
+and whoever signs in
+next sets up new ones.
+
+17
+00:00:59.925 --> 00:01:04.362
+So a reset done on an unverified
+request doesn't fix an account;
+
+18
+00:01:04.362 --> 00:01:06.363
+it hands it to whoever asked.
+
+19
+00:01:06.363 --> 00:01:10.450
+Attackers know this, and they call
+help desks to do exactly that.
+
+20
+00:01:10.450 --> 00:01:13.509
+Federal guidance agrees:
+recovery is a bypass,
+
+21
+00:01:13.509 --> 00:01:17.213
+and it needs high friction and
+a notice to the real owner.
+
+22
+00:01:17.213 --> 00:01:20.975
+So this book treats every
+reset as an account transfer.
+
+23
+00:01:20.975 --> 00:01:23.900
+Next, the model that makes that workable.
+
+24
+00:01:24.650 --> 00:01:29.479
+Every day-two request has to answer
+three questions before anything changes:
+
+25
+00:01:29.479 --> 00:01:33.100
+where does it go, who may say
+yes, and what proves it happened.
+
+26
+00:01:33.100 --> 00:01:36.844
+The book answers them with
+platforms the agency already runs:
+
+27
+00:01:36.844 --> 00:01:39.340
+the service management platform routes,
+
+28
+00:01:39.340 --> 00:01:44.038
+the identity governance tool approves,
+and Entra ID is where the change lands.
+
+29
+00:01:44.038 --> 00:01:48.182
+Underneath sits a contract, not a
+product: every task has an owner,
+
+30
+00:01:48.182 --> 00:01:50.684
+every change has an approval on record,
+
+31
+00:01:50.684 --> 00:01:55.688
+automation runs under a narrow identity,
+and evidence comes out the other end.
+
+32
+00:01:55.688 --> 00:01:59.287
+The five rules along the
+bottom apply to every request.
+
+33
+00:01:59.287 --> 00:02:03.801
+If any one is missing, the change may
+be right, but it can't be attested.
+
+34
+00:02:03.801 --> 00:02:06.250
+Module 1 starts at the front door.
+
+35
+00:02:07.000 --> 00:02:09.654
+Module 1 is intake, triage and routing:
+
+36
+00:02:09.654 --> 00:02:13.850
+the everyday mechanics that
+make the authority model real.
+
+37
+00:02:13.850 --> 00:02:17.920
+An estate with a clean role model
+still slides backward if the team
+
+38
+00:02:17.920 --> 00:02:22.063
+keeps answering email, or if a manager's
+'just do it' counts as approval.
+
+39
+00:02:22.063 --> 00:02:24.360
+So we start with how work comes in.
+
+40
+00:02:25.110 --> 00:02:27.435
+The rule is simple: one front door.
+
+41
+00:02:27.435 --> 00:02:30.860
+Nothing is handled as ad
+hoc email to the cloud team.
+
+42
+00:02:30.860 --> 00:02:36.274
+The team mailbox gets a mail-flow rule that
+redirects into the ticketing platform,
+
+43
+00:02:36.274 --> 00:02:41.210
+and the detail matters: a blind copy
+leaves two queues, a redirect leaves one.
+
+44
+00:02:41.210 --> 00:02:45.335
+Run the rule in audit mode
+first, compare, then enforce.
+
+45
+00:02:45.335 --> 00:02:50.453
+New mail becomes a triage record with nobody
+assigned, and a reroute rule pulls back
+
+46
+00:02:50.453 --> 00:02:55.423
+anything sent straight to cloud services,
+because old habits survive a redirect.
+
+47
+00:02:55.423 --> 00:02:59.561
+Cloud services is the escalation
+tier, not a second inbox.
+
+48
+00:02:59.561 --> 00:03:04.347
+Approvals carry due dates that reject,
+so silence never grants access.
+
+49
+00:03:04.347 --> 00:03:08.270
+Once a request is in, triage
+decides where it goes.
+
+50
+00:03:09.020 --> 00:03:13.057
+Triage asks one question: what
+authority does this task need?
+
+51
+00:03:13.057 --> 00:03:17.908
+Not who received it, not how urgent the
+caller sounds, and not how senior they are.
+
+52
+00:03:17.908 --> 00:03:21.336
+The checks run in a fixed order,
+and the first match wins,
+
+53
+00:03:21.336 --> 00:03:26.516
+so the dangerous cases are caught first:
+anything claiming to come from Microsoft,
+
+54
+00:03:26.516 --> 00:03:28.954
+and any target that holds an admin role,
+
+55
+00:03:28.954 --> 00:03:34.058
+because a role that can reset ordinary
+users can't safely reset an administrator.
+
+56
+00:03:34.058 --> 00:03:36.057
+One rule deserves emphasis.
+
+57
+00:03:36.057 --> 00:03:40.557
+Nothing is approved from an email,
+even a convincing one from Microsoft.
+
+58
+00:03:40.557 --> 00:03:43.794
+A sender address is a
+quick filter, not proof.
+
+59
+00:03:43.794 --> 00:03:48.782
+The check that counts is the tenant's own
+audit log, matched to an approved ticket.
+
+60
+00:03:48.782 --> 00:03:51.800
+Next, what automation can actually carry.
+
+61
+00:03:52.550 --> 00:03:57.109
+Wherever a connector action exists, the
+ticket should authorize the machine,
+
+62
+00:03:57.109 --> 00:03:59.388
+and the person's role stops at approval.
+
+63
+00:03:59.388 --> 00:04:01.788
+But check what the
+connector really documents.
+
+64
+00:04:01.788 --> 00:04:04.787
+The book checked ServiceNow's
+Entra ID spoke and
+
+65
+00:04:04.787 --> 00:04:07.712
+found the older design
+had mapped too much to it.
+
+66
+00:04:07.712 --> 00:04:11.376
+Its password reset works
+only for cloud-only users.
+
+67
+00:04:11.376 --> 00:04:15.843
+There's no action at all for an MFA
+reset, so that stays a person's task,
+
+68
+00:04:15.843 --> 00:04:19.662
+which makes verification the
+control that matters most.
+
+69
+00:04:19.662 --> 00:04:22.900
+And the connection type decides
+which actions run at all,
+
+70
+00:04:22.900 --> 00:04:26.275
+because some of them work only
+with delegated permissions.
+
+71
+00:04:26.275 --> 00:04:30.550
+Coverage changes by release, so validate
+it against what you've installed.
+
+72
+00:04:30.550 --> 00:04:33.120
+Which brings us to verifying the person.
+
+73
+00:04:33.870 --> 00:04:36.295
+Approval answers whether
+something should be done.
+
+74
+00:04:36.295 --> 00:04:39.495
+It doesn't answer whether the
+caller is who they claim to be,
+
+75
+00:04:39.495 --> 00:04:41.495
+and that's the gap attackers exploit.
+
+76
+00:04:41.495 --> 00:04:44.317
+So the book builds a verification ladder,
+
+77
+00:04:44.317 --> 00:04:47.470
+and it's the CISO's decision,
+not the help desk's.
+
+78
+00:04:47.470 --> 00:04:50.919
+If someone can still sign in with
+a phishing-resistant method,
+
+79
+00:04:50.919 --> 00:04:52.745
+that session proves who they are.
+
+80
+00:04:52.745 --> 00:04:56.540
+If they've lost everything, it
+takes real identity proofing,
+
+81
+00:04:56.540 --> 00:05:01.420
+in person or through Entra's new account
+recovery, followed by a one-time pass.
+
+82
+00:05:01.420 --> 00:05:07.220
+What never counts: email, caller ID,
+knowledge questions or a manager's say-so.
+
+83
+00:05:07.220 --> 00:05:11.382
+The ticket records which rung was
+used, never the evidence itself.
+
+84
+00:05:11.382 --> 00:05:13.820
+Then the ticket has to close properly.
+
+85
+00:05:14.570 --> 00:05:17.407
+A ticket closed with 'done'
+is just an assertion.
+
+86
+00:05:17.407 --> 00:05:21.537
+The book wants three records that
+agree: the ticket shows the decision,
+
+87
+00:05:21.537 --> 00:05:26.021
+the elevation record shows the privilege,
+and the audit log shows the change.
+
+88
+00:05:26.021 --> 00:05:29.958
+Two gaps have to be built, because
+Entra won't close them for you.
+
+89
+00:05:29.958 --> 00:05:34.480
+Privileged Identity Management asks for
+a ticket number but never checks it,
+
+90
+00:05:34.480 --> 00:05:38.296
+so a detection rule has to match
+every activation to a real ticket.
+
+91
+00:05:38.296 --> 00:05:42.545
+And Entra keeps its logs for only
+thirty days, so they go to the SIEM.
+
+92
+00:05:42.545 --> 00:05:45.810
+The service levels on the
+right are program defaults,
+
+93
+00:05:45.810 --> 00:05:48.258
+and a shorter outside clock always wins.
+
+94
+00:05:48.258 --> 00:05:51.880
+Module 2 turns to the
+roles behind all this.
+
+95
+00:05:52.630 --> 00:05:56.117
+Module 2 is help desk
+authority in Entra ID.
+
+96
+00:05:56.117 --> 00:05:57.369
+In Active Directory,
+
+97
+00:05:57.369 --> 00:06:01.343
+the directory tree answered whose
+password the desk could reset.
+
+98
+00:06:01.343 --> 00:06:06.374
+Entra answers it in three parts: the role
+decides what a technician can do, the
+
+99
+00:06:06.374 --> 00:06:08.690
+target decides whether it applies,
+
+100
+00:06:08.690 --> 00:06:12.205
+and administrative units
+(AUs) narrow the population.
+
+101
+00:06:12.205 --> 00:06:17.020
+Get any one wrong, and the desk either
+can't work or can do far too much.
+
+102
+00:06:17.770 --> 00:06:21.250
+Five built-in roles carry
+most help desk identity work,
+
+103
+00:06:21.250 --> 00:06:23.570
+and all five are labeled privileged.
+
+104
+00:06:23.570 --> 00:06:27.407
+The column people get wrong is
+whose account each role can touch.
+
+105
+00:06:27.407 --> 00:06:30.969
+Most can act only on users with
+no admin role, and members of
+
+106
+00:06:30.969 --> 00:06:35.420
+role-assignable groups are protected
+from everyone except the top tier.
+
+107
+00:06:35.420 --> 00:06:37.226
+That protection is deliberate:
+
+108
+00:06:37.226 --> 00:06:41.045
+whoever took over a member's account
+would inherit the group's role.
+
+109
+00:06:41.045 --> 00:06:44.308
+The other lesson is that
+capability isn't authority.
+
+110
+00:06:44.308 --> 00:06:46.674
+Some of these roles can delete users,
+
+111
+00:06:46.674 --> 00:06:50.145
+and one can grant consent,
+which the desk must never do.
+
+112
+00:06:50.145 --> 00:06:54.668
+So the platform's limits aren't the
+policy; the ticket and monitoring enforce
+
+113
+00:06:54.668 --> 00:06:59.120
+the rest, and the desk gets a narrow
+custom role for app assignments instead.
+
+114
+00:06:59.120 --> 00:07:00.720
+Next, scope.
+
+115
+00:07:01.470 --> 00:07:03.545
+Scope is what keeps those roles narrow.
+
+116
+00:07:03.545 --> 00:07:05.991
+Help desk roles are assigned over AUs,
+
+117
+00:07:05.991 --> 00:07:09.857
+and at that scope they reach
+only members with no admin role.
+
+118
+00:07:09.857 --> 00:07:14.176
+Executives go further, into a
+restricted unit that only a small,
+
+119
+00:07:14.176 --> 00:07:19.158
+approved support group can touch; even
+tenant-wide admins can't edit them.
+
+120
+00:07:19.158 --> 00:07:22.291
+One caution: don't put the
+technicians themselves in one,
+
+121
+00:07:22.291 --> 00:07:25.083
+because governance features
+stop working there.
+
+122
+00:07:25.083 --> 00:07:29.310
+Roles reach technicians through one
+group per role and scope, eligible
+
+123
+00:07:29.310 --> 00:07:33.895
+rather than active, and activated with
+a justification that cites the ticket.
+
+124
+00:07:33.895 --> 00:07:36.420
+Those groups also protect their members,
+
+125
+00:07:36.420 --> 00:07:40.283
+so one technician can't reset
+another and inherit their access.
+
+126
+00:07:40.283 --> 00:07:43.480
+Now, recovering someone
+who's lost everything.
+
+127
+00:07:44.230 --> 00:07:47.164
+When a user has lost
+their only strong method,
+
+128
+00:07:47.164 --> 00:07:52.318
+re-registration alone leaves a gap: whoever
+signs in next sets up the new method.
+
+129
+00:07:52.318 --> 00:07:55.192
+A Temporary Access Pass closes that gap.
+
+130
+00:07:55.192 --> 00:07:59.006
+The sequence on the slide is the
+heart of it: re-proof the person,
+
+131
+00:07:59.006 --> 00:08:03.718
+revoke their sessions, remove the lost
+method, then issue a one-time pass with
+
+132
+00:08:03.718 --> 00:08:08.430
+the shortest lifetime the handover
+allows, straight to the verified person.
+
+133
+00:08:08.430 --> 00:08:12.686
+Stay with them while they register
+something phishing-resistant, then tell
+
+134
+00:08:12.686 --> 00:08:16.942
+them on another channel, so a victim
+learns about a reset they never asked for.
+
+135
+00:08:16.942 --> 00:08:20.068
+The table shows the pass's
+own limits worth knowing.
+
+136
+00:08:20.068 --> 00:08:23.700
+Some tasks, though, need
+more than one approver.
+
+137
+00:08:24.450 --> 00:08:29.428
+Some tasks are high-risk because one person
+could use them to take over an identity,
+
+138
+00:08:29.428 --> 00:08:33.600
+break its link to the source of truth,
+or open an app to the wrong people.
+
+139
+00:08:33.600 --> 00:08:38.683
+For those, the book requires two approvers
+besides the person doing the work,
+
+140
+00:08:38.683 --> 00:08:41.587
+both recorded before
+any role is activated.
+
+141
+00:08:41.587 --> 00:08:45.266
+The second approver checks that
+the requester was verified,
+
+142
+00:08:45.266 --> 00:08:48.650
+the change is exactly specified,
+and the urgency is real.
+
+143
+00:08:48.650 --> 00:08:53.541
+ImmutableID repair is the telling
+example: it left the help desk entirely,
+
+144
+00:08:53.541 --> 00:08:57.950
+because the right fix is usually in
+Active Directory, not the cloud.
+
+145
+00:08:57.950 --> 00:09:01.300
+And three detection rules
+watch everything the desk does.
+
+146
+00:09:01.300 --> 00:09:02.670
+That's Part 1.
+
+147
+00:09:03.420 --> 00:09:08.420
+Part 2 begins with Module 3:
+catalogs, SaaS and the CMDB.
+
+148
+00:09:08.420 --> 00:09:12.460
+Hundreds of identity changes a
+week, each done as a portal click,
+
+149
+00:09:12.460 --> 00:09:15.645
+are the biggest steady
+source of control erosion.
+
+150
+00:09:15.645 --> 00:09:20.503
+The answer is a catalog of typed
+requests, plus two things it leans on:
+
+151
+00:09:20.503 --> 00:09:24.600
+governed SaaS integrations
+and a CMDB you can trust.
+
+152
+00:09:25.350 --> 00:09:30.476
+Every catalog item runs the same loop:
+a typed request against a named target,
+
+153
+00:09:30.476 --> 00:09:34.951
+the approval its control needs,
+execution under a narrow identity,
+
+154
+00:09:34.951 --> 00:09:39.100
+and a record that closes only
+when a check confirms the change.
+
+155
+00:09:39.100 --> 00:09:43.241
+Every identity change is one
+of five verbs: add, move,
+
+156
+00:09:43.241 --> 00:09:47.875
+change, delete or reset, and
+each has its own closing check.
+
+157
+00:09:47.875 --> 00:09:50.400
+The one that fails audits is the leaver.
+
+158
+00:09:50.400 --> 00:09:54.807
+Disabling the account isn't enough;
+sessions, connected applications
+
+159
+00:09:54.807 --> 00:09:59.062
+and everything the person owned all
+have to be handled and recorded.
+
+160
+00:09:59.062 --> 00:10:02.583
+Apps without automatic
+provisioning become manual tasks,
+
+161
+00:10:02.583 --> 00:10:05.888
+with no automatic check that
+the account is really gone.
+
+162
+00:10:05.888 --> 00:10:09.590
+Telephony has its own
+catalog, with real stakes.
+
+163
+00:10:10.340 --> 00:10:15.018
+Teams Phone is where a silent configuration
+error has physical consequences:
+
+164
+00:10:15.018 --> 00:10:18.977
+a wrong emergency address sends
+responders to the wrong building.
+
+165
+00:10:18.977 --> 00:10:22.599
+And the federal rules bind
+whoever operates the phone system,
+
+166
+00:10:22.599 --> 00:10:24.090
+which includes an agency.
+
+167
+00:10:24.090 --> 00:10:29.646
+Kari's Law requires direct 911 dialing and
+a notice to someone such as a front desk,
+
+168
+00:10:29.646 --> 00:10:34.290
+and the FCC's rules require a
+dispatchable location with every call.
+
+169
+00:10:34.290 --> 00:10:36.068
+Teams provides the mechanisms,
+
+170
+00:10:36.068 --> 00:10:39.215
+but someone has to configure
+them and keep them current.
+
+171
+00:10:39.215 --> 00:10:43.196
+So a validated address becomes
+a gate on every number,
+
+172
+00:10:43.196 --> 00:10:48.715
+network changes raise their own mapping
+item, and a 933 test call closes it.
+
+173
+00:10:48.715 --> 00:10:52.803
+Counsel decides compliance;
+the catalog keeps the evidence.
+
+174
+00:10:52.803 --> 00:10:54.460
+Next, SaaS.
+
+175
+00:10:55.210 --> 00:10:59.742
+An administrator can connect a third-party
+SaaS service in about fifteen minutes,
+
+176
+00:10:59.742 --> 00:11:02.407
+and nothing along the
+vendor's path asks whether
+
+177
+00:11:02.407 --> 00:11:05.073
+that service is authorized
+to hold federal data.
+
+178
+00:11:05.073 --> 00:11:06.735
+That's the point of this slide.
+
+179
+00:11:06.735 --> 00:11:09.874
+Consent controls decide who
+may approve an integration;
+
+180
+00:11:09.874 --> 00:11:13.347
+they don't decide whether the
+service should get the data at all.
+
+181
+00:11:13.347 --> 00:11:18.611
+So the book puts a gate first: no
+authorization verdict, no configuration.
+
+182
+00:11:18.611 --> 00:11:23.542
+Its default for identity data is a FedRAMP
+certification at Class C or higher,
+
+183
+00:11:23.542 --> 00:11:26.085
+read from the Marketplace's own dataset.
+
+184
+00:11:26.085 --> 00:11:30.835
+Name matching only ever creates a
+review queue, never an automatic no.
+
+185
+00:11:30.835 --> 00:11:34.510
+Then the question is how to
+configure it with least privilege.
+
+186
+00:11:35.260 --> 00:11:38.708
+The catalog configures integrations
+through Microsoft Graph,
+
+187
+00:11:38.708 --> 00:11:43.198
+and the book checked the older design's
+permissions against Microsoft's reference.
+
+188
+00:11:43.198 --> 00:11:46.159
+The operations were right;
+the permissions weren't.
+
+189
+00:11:46.159 --> 00:11:50.868
+One narrow permission, limited to applications
+the connector owns, covers almost
+
+190
+00:11:50.868 --> 00:11:53.776
+everything, and adding
+the broad synchronization
+
+191
+00:11:53.776 --> 00:11:55.922
+permission would undo that boundary.
+
+192
+00:11:55.922 --> 00:12:00.796
+The real trap is assignment: the permission
+it needs can grant anything to anyone,
+
+193
+00:12:00.796 --> 00:12:04.434
+which turns the connector into
+a privileged administrator.
+
+194
+00:12:04.434 --> 00:12:06.445
+So it stays off the connector,
+
+195
+00:12:06.445 --> 00:12:10.885
+and a person binds the access group
+once, under a just-in-time role.
+
+196
+00:12:10.885 --> 00:12:14.185
+After that, access changes
+are just group membership.
+
+197
+00:12:14.185 --> 00:12:19.810
+Every integration also has to land
+correctly in the CMDB, so that's next.
+
+198
+00:12:20.560 --> 00:12:22.444
+Every ticket names an asset,
+
+199
+00:12:22.444 --> 00:12:26.622
+so the help desk can only be as
+right as the inventory behind it.
+
+200
+00:12:26.622 --> 00:12:31.772
+The book's position is clear: the CMDB
+is a projection, not the authority.
+
+201
+00:12:31.772 --> 00:12:36.814
+Discovery and connectors fill it, but
+identity comes from the naming plane,
+
+202
+00:12:36.814 --> 00:12:39.660
+the IP address management and DNS records.
+
+203
+00:12:39.660 --> 00:12:42.513
+ServiceNow's engine
+already decides whether a
+
+204
+00:12:42.513 --> 00:12:45.585
+record is new and which
+source may write each field.
+
+205
+00:12:45.585 --> 00:12:50.082
+The book adds one more pass: match
+each asset to the naming plane,
+
+206
+00:12:50.082 --> 00:12:54.060
+bind that identity, and flag
+anything that doesn't match.
+
+207
+00:12:54.060 --> 00:12:56.006
+A shadow asset is a finding,
+
+208
+00:12:56.006 --> 00:12:59.985
+and a gap gets fixed upstream,
+never patched in the CMDB.
+
+209
+00:12:59.985 --> 00:13:02.470
+Then come the everyday defects.
+
+210
+00:13:03.220 --> 00:13:06.758
+This slide shows why CMDB
+hygiene isn't a nicety.
+
+211
+00:13:06.758 --> 00:13:10.264
+A missing, duplicate or stale
+record breaks patching and
+
+212
+00:13:10.264 --> 00:13:13.994
+evidence in different ways, and
+the table walks through each.
+
+213
+00:13:13.994 --> 00:13:16.997
+Duplicates come from
+the sources themselves,
+
+214
+00:13:16.997 --> 00:13:19.683
+from reimaged devices to merged records.
+
+215
+00:13:19.683 --> 00:13:23.700
+The rule is to bind, not delete:
+keep the record that carries the
+
+216
+00:13:23.700 --> 00:13:28.270
+authoritative identity, and move
+its tickets and findings over first.
+
+217
+00:13:28.270 --> 00:13:32.747
+Stale records follow a sequence:
+detect, have the owner confirm,
+
+218
+00:13:32.747 --> 00:13:37.483
+retire, and only then delete, because
+some deletions can't be undone.
+
+219
+00:13:37.483 --> 00:13:42.307
+A deleted device, for example, takes
+its BitLocker recovery keys with it.
+
+220
+00:13:42.307 --> 00:13:44.171
+That closes Module 3.
+
+221
+00:13:44.171 --> 00:13:47.410
+Module 4 turns to control automation.
+
+222
+00:13:48.160 --> 00:13:51.435
+Module 4 is control
+automation, and who runs it.
+
+223
+00:13:51.435 --> 00:13:55.747
+The vendors already test most of
+the settings an assessor asks about.
+
+224
+00:13:55.747 --> 00:14:00.195
+The gap is everything around the
+test: who owns the finding, what clock
+
+225
+00:14:00.195 --> 00:14:05.160
+they work against, who approved the
+fix, and what re-test proved it closed.
+
+226
+00:14:05.910 --> 00:14:11.321
+The book runs one loop on every platform:
+test with the native tool, detect drift,
+
+227
+00:14:11.321 --> 00:14:16.648
+raise a typed task against the asset, fix
+it natively, and close on the next test.
+
+228
+00:14:16.648 --> 00:14:18.209
+Two rules matter most.
+
+229
+00:14:18.209 --> 00:14:22.396
+The ticketing platform reads
+control state but never writes it,
+
+230
+00:14:22.396 --> 00:14:24.923
+and a task closes on a
+re-test, not a click.
+
+231
+00:14:24.923 --> 00:14:28.679
+On Microsoft 365, CISA's
+ScubaGear is the main test,
+
+232
+00:14:28.679 --> 00:14:34.135
+and its stable policy IDs let the mapping
+from failure to task live as data.
+
+233
+00:14:34.135 --> 00:14:37.431
+Conditional Access exceptions
+get the same treatment,
+
+234
+00:14:37.431 --> 00:14:39.223
+with an approver and an expiry.
+
+235
+00:14:39.223 --> 00:14:41.088
+Compliance Manager is useful,
+
+236
+00:14:41.088 --> 00:14:44.372
+but it's a readiness signal,
+not the evidence of record.
+
+237
+00:14:44.372 --> 00:14:47.990
+Azure works the same way,
+with its own caveats.
+
+238
+00:14:48.740 --> 00:14:53.828
+Azure ships a lot of help here, and Microsoft
+is unusually candid about its limits.
+
+239
+00:14:53.828 --> 00:14:57.861
+Azure Policy's FedRAMP initiative
+reports compliant only for the
+
+240
+00:14:57.861 --> 00:15:02.041
+settings it can test, which is a partial
+view, not a verdict on a control.
+
+241
+00:15:02.041 --> 00:15:06.740
+Results arrive on a daily cycle, so
+closures lag the fix by up to a day.
+
+242
+00:15:06.740 --> 00:15:09.413
+Exceptions have a native
+form with an expiry,
+
+243
+00:15:09.413 --> 00:15:12.665
+and the book allows them only
+from an approved request.
+
+244
+00:15:12.665 --> 00:15:16.142
+Defender for Cloud adds
+dashboards and exports,
+
+245
+00:15:16.142 --> 00:15:20.140
+but an export only fires on
+change, so silence isn't proof.
+
+246
+00:15:20.140 --> 00:15:22.877
+Resource Graph is the simple read path.
+
+247
+00:15:22.877 --> 00:15:25.420
+So how do results reach the ticket queue?
+
+248
+00:15:26.170 --> 00:15:30.580
+There are three routes from a native
+result into the ticketing platform: the
+
+249
+00:15:30.580 --> 00:15:35.270
+vendor's own connector, the platform's
+import, or the program's read-only collector.
+
+250
+00:15:35.270 --> 00:15:39.066
+Which one you can use depends on
+your cloud; the Defender connector,
+
+251
+00:15:39.066 --> 00:15:41.895
+for instance, isn't available
+in Azure Government.
+
+252
+00:15:41.895 --> 00:15:44.400
+The important rule is
+one route per source,
+
+253
+00:15:44.400 --> 00:15:48.695
+because two routes give you two tasks
+and two clocks for the same finding.
+
+254
+00:15:48.695 --> 00:15:50.470
+And the clock itself matters.
+
+255
+00:15:50.470 --> 00:15:55.706
+For vulnerabilities it's CISA's new
+directive on prioritizing security updates,
+
+256
+00:15:55.706 --> 00:15:59.864
+set by exposure and known
+exploitation, not FedRAMP's timeframes,
+
+257
+00:15:59.864 --> 00:16:02.482
+which bind cloud providers, not agencies.
+
+258
+00:16:02.482 --> 00:16:06.620
+Next, AWS, where the
+ground shifted this year.
+
+259
+00:16:07.370 --> 00:16:11.570
+On AWS, the evidence path has
+changed under people's feet.
+
+260
+00:16:11.570 --> 00:16:16.114
+Config conformance packs and Security
+Hub's posture checks are the foundation,
+
+261
+00:16:16.114 --> 00:16:19.832
+and both run in GovCloud, though
+with differences you need to test.
+
+262
+00:16:19.832 --> 00:16:24.757
+Security Hub keeps findings for only
+ninety days, so copy them out first.
+
+263
+00:16:24.757 --> 00:16:29.941
+The big correction is Audit Manager: it
+closed to new customers in April 2026,
+
+264
+00:16:29.941 --> 00:16:35.371
+has no GovCloud endpoint, and its FedRAMP
+framework is still on the old revision.
+
+265
+00:16:35.371 --> 00:16:38.295
+Nobody should start a federal
+evidence program on it.
+
+266
+00:16:38.295 --> 00:16:41.813
+And the ServiceNow
+connector most agencies used
+
+267
+00:16:41.813 --> 00:16:45.245
+loses support in March
+2027, so plan that move now.
+
+268
+00:16:45.245 --> 00:16:47.440
+VMware is harder still.
+
+269
+00:16:48.190 --> 00:16:51.865
+In the agency's own data center,
+there's nothing to inherit.
+
+270
+00:16:51.865 --> 00:16:56.314
+No provider operates the hypervisor,
+no one publishes a control mapping,
+
+271
+00:16:56.314 --> 00:17:00.540
+and an agent inside a virtual machine
+can't see the host underneath it.
+
+272
+00:17:00.540 --> 00:17:04.065
+So every piece of evidence
+is the agency's to produce.
+
+273
+00:17:04.065 --> 00:17:10.130
+The tools exist, but they're moving:
+Broadcom replaced its compliance feature
+
+274
+00:17:10.130 --> 00:17:15.815
+between versions 9.0 and 9.1, and the
+new one doesn't list an 800-53 benchmark.
+
+275
+00:17:15.815 --> 00:17:20.640
+Moving clusters to images unlocks both
+the patch and configuration tests.
+
+276
+00:17:20.640 --> 00:17:23.263
+And where no machine
+can reach, a recorded,
+
+277
+00:17:23.263 --> 00:17:26.040
+time-boxed session is
+a declared exception.
+
+278
+00:17:26.040 --> 00:17:28.500
+Finally, who runs all of this.
+
+279
+00:17:29.250 --> 00:17:33.562
+Day two is run by the people who touch
+the estate most and decide the least,
+
+280
+00:17:33.562 --> 00:17:38.162
+so the design puts every decision with
+someone who isn't holding the keyboard.
+
+281
+00:17:38.162 --> 00:17:40.287
+The slide shows one decider per row,
+
+282
+00:17:40.287 --> 00:17:44.534
+from the CISO's verification procedure
+to the change advisory board,
+
+283
+00:17:44.534 --> 00:17:48.488
+which authorizes changes even to
+the approval rules themselves.
+
+284
+00:17:48.488 --> 00:17:51.975
+Only the authorizing official
+accepts open-ended risk.
+
+285
+00:17:51.975 --> 00:17:54.276
+The separations on the
+right are the ones the
+
+286
+00:17:54.276 --> 00:17:57.012
+platform should enforce
+rather than leave to memory.
+
+287
+00:17:57.012 --> 00:17:59.568
+Above all, nobody approves their own work,
+
+288
+00:17:59.568 --> 00:18:02.424
+and nobody changes the
+gate they pass through.
+
+289
+00:18:02.424 --> 00:18:05.780
+Contractors can prepare every
+decision here except the
+
+290
+00:18:05.780 --> 00:18:09.063
+authorizing official's, which
+is a government-only role.
+
+291
+00:18:09.063 --> 00:18:11.120
+So, what to decide first?
+
+292
+00:18:11.870 --> 00:18:16.045
+Six decisions, each with a named
+owner, and the table shows who.
+
+293
+00:18:16.045 --> 00:18:20.661
+Two stand out: the verification ladder,
+because it protects every reset,
+
+294
+00:18:20.661 --> 00:18:24.807
+and the SaaS threshold, because
+it's a gate nothing else replaces.
+
+295
+00:18:24.807 --> 00:18:28.508
+The first step needs no procurement:
+measure before you build.
+
+296
+00:18:28.508 --> 00:18:33.352
+Run the read-only inventories and collectors
+against a test scope, size the work
+
+297
+00:18:33.352 --> 00:18:38.196
+from what they find, and start the move
+off the AWS connector before its deadline.
+
+298
+00:18:38.196 --> 00:18:41.507
+Then build only what the native
+tools don't already provide.
+
+299
+00:18:41.507 --> 00:18:46.721
+Operations is where modernization either
+becomes routine or quietly reverts.
+
+300
+00:18:46.721 --> 00:18:50.345
+The book has the detail,
+with every claim footnoted.
+
+301
+00:18:50.345 --> 00:18:51.160
+Thank you.

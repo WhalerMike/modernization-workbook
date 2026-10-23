@@ -1,0 +1,48 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.962
+A setting someone clicked once has no
+history, no review and no drift check.
+
+2
+00:00:04.962 --> 00:00:07.522
+So the program deploys this one from code,
+
+3
+00:00:07.522 --> 00:00:11.963
+and keeps its list of logged categories
+in the repository as the record.
+
+4
+00:00:11.963 --> 00:00:13.025
+Then retention.
+
+5
+00:00:13.025 --> 00:00:15.583
+Here's a trap that catches
+a lot of templates:
+
+6
+00:00:15.583 --> 00:00:19.988
+the retention field on a diagnostic
+setting no longer does anything at all.
+
+7
+00:00:19.988 --> 00:00:22.795
+Retention is set per
+table in the workspace,
+
+8
+00:00:22.795 --> 00:00:27.863
+at least six months searchable and a year
+retrievable, to meet the logging memo.
+
+9
+00:00:27.863 --> 00:00:31.988
+Of course, a setting that saved
+isn't proof anything is arriving.
+
+10
+00:00:31.988 --> 00:00:33.100
+That's next.

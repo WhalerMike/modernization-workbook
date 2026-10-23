@@ -1,0 +1,53 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.625
+This one surprises people.
+
+2
+00:00:01.625 --> 00:00:05.772
+How long a Microsoft 365 audit
+record survives depends on the
+
+3
+00:00:05.772 --> 00:00:09.513
+license of the person who did
+the thing, not on the tenant.
+
+4
+00:00:09.513 --> 00:00:13.355
+Fully licensed users get a
+year for the core workloads;
+
+5
+00:00:13.355 --> 00:00:17.112
+everyone else, including
+every guest, gets six months.
+
+6
+00:00:17.112 --> 00:00:19.088
+Most federal tenants are mixed,
+
+7
+00:00:19.088 --> 00:00:23.038
+so they have a split retention
+horizon that no dashboard shows.
+
+8
+00:00:23.038 --> 00:00:27.163
+The program's answer is to stop treating
+that tier as the evidence store.
+
+9
+00:00:27.163 --> 00:00:31.058
+Collect everything into your own
+workspace, set retention there,
+
+10
+00:00:31.058 --> 00:00:34.088
+and write the license split
+into the security plan.
+
+11
+00:00:34.088 --> 00:00:36.100
+Now, what do we do with all this data?

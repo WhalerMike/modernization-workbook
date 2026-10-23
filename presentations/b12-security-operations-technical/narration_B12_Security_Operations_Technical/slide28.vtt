@@ -1,0 +1,50 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.430
+When someone says bring your
+own key, ask which one,
+
+2
+00:00:03.430 --> 00:00:07.388
+because in Microsoft 365 it
+means three different things.
+
+3
+00:00:07.388 --> 00:00:10.513
+One protects every
+encrypted label at the root.
+
+4
+00:00:10.513 --> 00:00:12.812
+One encrypts the services at rest.
+
+5
+00:00:12.812 --> 00:00:17.289
+And one, double key encryption,
+protects only the content you choose,
+
+6
+00:00:17.289 --> 00:00:21.687
+at the cost of search, eDiscovery
+and co-authoring for that content.
+
+7
+00:00:21.687 --> 00:00:25.701
+The program uses that last one
+only for the narrowest categories.
+
+8
+00:00:25.701 --> 00:00:30.216
+One operational trap: Customer
+Key keys must never expire,
+
+9
+00:00:30.216 --> 00:00:35.862
+so a rotation policy that sets an expiry
+date can take Microsoft 365 down.
+
+10
+00:00:35.862 --> 00:00:38.660
+Which brings us to
+people, and who decides.

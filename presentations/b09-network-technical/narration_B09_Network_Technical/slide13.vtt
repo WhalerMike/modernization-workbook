@@ -1,0 +1,45 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.625
+SD-WAN decides paths; it
+doesn't inspect anything.
+
+2
+00:00:03.625 --> 00:00:08.899
+Boundary protection, web policy, malware
+inspection and private-app access come from
+
+3
+00:00:08.899 --> 00:00:13.950
+the SASE services above it, and this table
+shows which layer closes which control.
+
+4
+00:00:13.950 --> 00:00:15.462
+Two practical points.
+
+5
+00:00:15.462 --> 00:00:20.141
+The enforcement point has a location,
+so a distant or poorly peered point
+
+6
+00:00:20.141 --> 00:00:24.663
+of presence is just a hairpin with a
+new name; measure it before cutover.
+
+7
+00:00:24.663 --> 00:00:27.941
+And FedRAMP status is per
+offering, not per vendor,
+
+8
+00:00:27.941 --> 00:00:31.938
+and it covers the cloud service,
+not the boxes in your offices.
+
+9
+00:00:31.938 --> 00:00:35.830
+Which raises the question nobody
+likes: who protects the governor?

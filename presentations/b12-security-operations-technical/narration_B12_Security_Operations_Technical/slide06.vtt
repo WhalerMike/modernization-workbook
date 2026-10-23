@@ -1,0 +1,47 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.266
+A missing patch, a drifted setting,
+
+2
+00:00:02.266 --> 00:00:07.568
+an exposed storage account and a labeled
+file leaving the agency are all the same
+
+3
+00:00:07.568 --> 00:00:12.475
+kind of statement as a threat alert: this
+asset isn't in the state it should be.
+
+4
+00:00:12.475 --> 00:00:14.112
+So they all go in one queue.
+
+5
+00:00:14.112 --> 00:00:15.325
+Two lessons here.
+
+6
+00:00:15.325 --> 00:00:19.323
+Queue membership can change underneath
+you; a vendor default recently
+
+7
+00:00:19.323 --> 00:00:23.525
+moved data loss alerts out of the
+incident queue without anything failing.
+
+8
+00:00:23.525 --> 00:00:27.949
+And only two things close a record:
+a later observation showing the fix,
+
+9
+00:00:27.949 --> 00:00:31.000
+or the authorizing official
+accepting the risk.
+
+10
+00:00:31.000 --> 00:00:32.260
+Now, identity.

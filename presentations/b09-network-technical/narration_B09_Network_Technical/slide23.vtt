@@ -1,0 +1,43 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.450
+Every device lands in one of five
+segments, and this flow shows how.
+
+2
+00:00:04.450 --> 00:00:06.925
+No valid certificate means quarantine.
+
+3
+00:00:06.925 --> 00:00:11.689
+A good certificate but failed compliance
+means remediation, where the device
+
+4
+00:00:11.689 --> 00:00:16.013
+can fix itself and come back, and
+never drifts silently into production.
+
+5
+00:00:16.013 --> 00:00:20.212
+Devices that can't run a supplicant,
+like badge readers and printers,
+
+6
+00:00:20.212 --> 00:00:22.087
+are classified by MAC address,
+
+7
+00:00:22.087 --> 00:00:26.437
+and the book is blunt that this is
+classification, not authentication.
+
+8
+00:00:26.437 --> 00:00:30.675
+The eight-hour re-authentication is
+the backstop when nothing else fires.
+
+9
+00:00:30.675 --> 00:00:33.100
+Next, hardening RADIUS itself.

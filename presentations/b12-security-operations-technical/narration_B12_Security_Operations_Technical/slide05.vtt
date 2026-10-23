@@ -1,0 +1,50 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.094
+Two records only describe
+the same server if they
+
+2
+00:00:03.094 --> 00:00:06.138
+carry the same identity,
+and every tool has its own.
+
+3
+00:00:06.138 --> 00:00:08.950
+So the join key can't
+come from any one tool.
+
+4
+00:00:08.950 --> 00:00:14.200
+It comes from the naming plane, your
+authoritative inventory of names and addresses.
+
+5
+00:00:14.200 --> 00:00:17.924
+Time is the other half, and it's
+easier to get wrong than it sounds:
+
+6
+00:00:17.924 --> 00:00:21.289
+join on when data arrived
+instead of when it was observed,
+
+7
+00:00:21.289 --> 00:00:24.512
+and you match the wrong
+records without a single error.
+
+8
+00:00:24.512 --> 00:00:29.545
+One caution worth knowing: the fully
+correlated trail is a High-baseline control,
+
+9
+00:00:29.545 --> 00:00:32.549
+so at Moderate the program
+chooses it on purpose.
+
+10
+00:00:32.549 --> 00:00:34.850
+Next, where all these records go.

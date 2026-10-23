@@ -1,0 +1,52 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.912
+Only the platform that runs
+a workload can fix it.
+
+2
+00:00:02.912 --> 00:00:06.374
+So the program lets each
+platform patch with the tools
+
+3
+00:00:06.374 --> 00:00:09.988
+its support model expects, in
+every cloud and on premises.
+
+4
+00:00:09.988 --> 00:00:13.564
+What's unified is the record
+every one of them sends back,
+
+5
+00:00:13.564 --> 00:00:15.663
+keyed to the same asset identity.
+
+6
+00:00:15.663 --> 00:00:20.238
+One thing no single tool can reach is
+the hypervisor and firmware layer,
+
+7
+00:00:20.238 --> 00:00:22.875
+so don't let an overlay promise otherwise.
+
+8
+00:00:22.875 --> 00:00:26.769
+And remember, a finding closes
+only when both halves agree:
+
+9
+00:00:26.769 --> 00:00:31.637
+the platform says what it applied, and
+a later scan no longer sees the flaw.
+
+10
+00:00:31.637 --> 00:00:33.224
+Patching is half the job.
+
+11
+00:00:33.224 --> 00:00:35.140
+Configuration is the other.

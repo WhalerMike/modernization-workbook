@@ -1,0 +1,54 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.755
+The governor deserves
+its own security program,
+
+2
+00:00:02.755 --> 00:00:06.475
+because it becomes the most
+consequential network system you own.
+
+3
+00:00:06.475 --> 00:00:09.924
+SD-WAN trades a few hardened
+egress points for hundreds of
+
+4
+00:00:09.924 --> 00:00:14.163
+internet-facing edges and one
+controller that can reroute everything.
+
+5
+00:00:14.163 --> 00:00:16.986
+This isn't hypothetical: in February 2026,
+
+6
+00:00:16.986 --> 00:00:22.053
+CISA issued an emergency directive
+for one vendor's SD-WAN control plane,
+
+7
+00:00:22.053 --> 00:00:25.625
+and its sequence makes a
+good drill whatever you run.
+
+8
+00:00:25.625 --> 00:00:31.425
+Inventory, preserve the logs, patch,
+hunt, rebuild if needed, harden.
+
+9
+00:00:31.425 --> 00:00:33.863
+The table is the minimum control set.
+
+10
+00:00:33.863 --> 00:00:37.737
+Be able to run that drill before
+production traffic depends on it.
+
+11
+00:00:37.737 --> 00:00:41.260
+Next, where the program would
+like to take the path itself.

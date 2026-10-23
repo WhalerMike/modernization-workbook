@@ -1,0 +1,48 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:05.550
+In June 2026, CISA replaced the old
+severity buckets with a smarter clock.
+
+2
+00:00:05.550 --> 00:00:09.254
+Four questions about each
+vulnerable asset set the deadline:
+
+3
+00:00:09.254 --> 00:00:12.667
+is it exposed to the internet,
+is the flaw being exploited,
+
+4
+00:00:12.667 --> 00:00:17.025
+can the attack be automated, and how
+much control does it give an attacker.
+
+5
+00:00:17.025 --> 00:00:19.207
+The answers range from three days,
+
+6
+00:00:19.207 --> 00:00:22.713
+plus a forensic check, down to
+fix it at the next upgrade.
+
+7
+00:00:22.713 --> 00:00:24.212
+Two points to hold onto.
+
+8
+00:00:24.212 --> 00:00:28.062
+The clock starts at the earliest
+moment, and there are no waivers.
+
+9
+00:00:28.062 --> 00:00:32.650
+By December, every externally
+reachable asset needs an exposure tag.
+
+10
+00:00:32.650 --> 00:00:34.660
+So, how do you run that daily?

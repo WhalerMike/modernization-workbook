@@ -1,0 +1,49 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.577
+Every source reaches Sentinel by its
+own path and lands in its own table,
+
+2
+00:00:04.577 --> 00:00:07.263
+and each path has one
+gotcha worth knowing.
+
+3
+00:00:07.263 --> 00:00:11.289
+Appliances like DNS and SASE
+come through a forwarder that
+
+4
+00:00:11.289 --> 00:00:14.913
+stamps its own time, which
+matters when you join on time.
+
+5
+00:00:14.913 --> 00:00:20.162
+Write DNS rules against the normalized
+parser, so they survive a vendor change.
+
+6
+00:00:20.162 --> 00:00:22.150
+And plan in the Defender portal,
+
+7
+00:00:22.150 --> 00:00:26.813
+because that's the only place Sentinel
+will be supported after March 2027.
+
+8
+00:00:26.813 --> 00:00:28.236
+In the government clouds,
+
+9
+00:00:28.236 --> 00:00:31.762
+check each connector in your own
+portal before you design on it.
+
+10
+00:00:31.762 --> 00:00:34.030
+But how do you know a
+connector's still working?

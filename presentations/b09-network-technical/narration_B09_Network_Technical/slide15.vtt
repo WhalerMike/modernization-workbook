@@ -1,0 +1,44 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.975
+This slide is a proposal,
+and it's labeled that way.
+
+2
+00:00:02.975 --> 00:00:07.058
+The idea: today identity is
+checked on every call to the data,
+
+3
+00:00:07.058 --> 00:00:10.725
+but a network session is
+trusted once and then coasts.
+
+4
+00:00:10.725 --> 00:00:15.762
+The proposed governed path treats the
+path itself like a token, leased for one
+
+5
+00:00:15.762 --> 00:00:20.800
+purpose and expiring with it, so a flow
+with no token behind it shows up as drift.
+
+6
+00:00:20.800 --> 00:00:25.420
+Whether or not that's adopted, one
+part applies now: SD-WAN and SASE
+
+7
+00:00:25.420 --> 00:00:30.638
+decisions should land as records, with
+identity, policy and time attached.
+
+8
+00:00:30.638 --> 00:00:32.062
+That's your evidence later.
+
+9
+00:00:32.062 --> 00:00:34.390
+Now, what breaks when paths change.

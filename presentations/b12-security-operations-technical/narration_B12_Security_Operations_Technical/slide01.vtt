@@ -1,0 +1,58 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:00.763
+Welcome.
+
+2
+00:00:00.763 --> 00:00:04.323
+This is the technical deep dive
+for Book 12 of the Federal
+
+3
+00:00:04.323 --> 00:00:08.187
+Modernization Workbook, Security
+Operations and Telemetry.
+
+4
+00:00:08.187 --> 00:00:11.266
+It's for the people who
+build and run the SOC:
+
+5
+00:00:11.266 --> 00:00:15.750
+detection engineers, SOC
+engineers and security architects.
+
+6
+00:00:15.750 --> 00:00:18.112
+The whole book comes down to one idea.
+
+7
+00:00:18.112 --> 00:00:20.263
+You can't defend what you can't see,
+
+8
+00:00:20.263 --> 00:00:24.801
+and a finding only closes when the
+thing is actually fixed, with proof.
+
+9
+00:00:24.801 --> 00:00:29.500
+Part 1 is about getting evidence to
+arrive and turning it into detections.
+
+10
+00:00:29.500 --> 00:00:33.263
+Part 2 is about the findings that
+pile up, and who acts on them.
+
+11
+00:00:33.263 --> 00:00:36.801
+The code lives in the chapters;
+I'll stick to what matters.
+
+12
+00:00:36.801 --> 00:00:39.340
+Let's start with why this
+is harder than it looks.

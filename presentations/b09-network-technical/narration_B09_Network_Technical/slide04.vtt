@@ -1,0 +1,34 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.963
+Module 1 is TIC 3.0 in practice.
+
+2
+00:00:02.963 --> 00:00:05.761
+Branch decisions get
+argued in policy terms,
+
+3
+00:00:05.761 --> 00:00:10.300
+and most of those arguments don't
+survive a careful read of the documents.
+
+4
+00:00:10.300 --> 00:00:12.755
+But the opposite mistake
+is just as common:
+
+5
+00:00:12.755 --> 00:00:15.912
+assuming technology-neutral
+means requirement-free.
+
+6
+00:00:15.912 --> 00:00:17.495
+We'll read what's really there,
+
+7
+00:00:17.495 --> 00:00:20.980
+and finish with how token security
+changes where data can live.

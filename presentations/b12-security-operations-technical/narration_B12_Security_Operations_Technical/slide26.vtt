@@ -1,0 +1,52 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.594
+Network and identity controls
+can all pass while a sensitive
+
+2
+00:00:03.594 --> 00:00:07.138
+file walks out the door, because
+nothing said what the file was.
+
+3
+00:00:07.138 --> 00:00:11.500
+A sensitivity label supplies that
+signal, and other tools can read it.
+
+4
+00:00:11.500 --> 00:00:16.160
+The federal rules are simpler than
+people think: there are only two levels,
+
+5
+00:00:16.160 --> 00:00:20.209
+Basic and Specified, and the CUI
+Registry decides which applies,
+
+6
+00:00:20.209 --> 00:00:22.425
+not how sensitive something feels.
+
+7
+00:00:22.425 --> 00:00:25.450
+Privacy Act records,
+for example, are Basic,
+
+8
+00:00:25.450 --> 00:00:28.475
+while taxpayer information is Specified.
+
+9
+00:00:28.475 --> 00:00:30.932
+The program maps those levels to labels,
+
+10
+00:00:30.932 --> 00:00:35.325
+encrypts to groups rather than people,
+and deploys the whole set as code.
+
+11
+00:00:35.325 --> 00:00:37.420
+Then the labels have to be enforced.
