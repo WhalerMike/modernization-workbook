@@ -1,50 +1,44 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:02.000
-Part 1: build the platform.
+00:00:00.050 --> 00:00:03.403
+This short section answers
+the question people ask first:
 
 2
-00:00:02.000 --> 00:00:04.728
-We'll start with the
-architecture: the cluster,
+00:00:03.403 --> 00:00:05.150
+what actually is the platform?
 
 3
-00:00:04.728 --> 00:00:08.175
-its components, how to size it
-and make it highly available.
+00:00:05.150 --> 00:00:07.375
+Not a box, and not one server.
 
 4
-00:00:08.175 --> 00:00:12.263
-Then the FIPS posture, where you have
-to be careful about what you claim.
+00:00:07.375 --> 00:00:11.515
+It's a set of Windows servers running
+the same CyberArk software against
 
 5
-00:00:12.263 --> 00:00:15.074
-Then how administrators
-sign in to the console.
+00:00:11.515 --> 00:00:15.725
+one shared database, with different
+jobs switched on in different places.
 
 6
-00:00:15.074 --> 00:00:18.636
-And finally hardening,
-least-privilege service accounts,
+00:00:15.725 --> 00:00:19.047
+We'll look at those server roles,
+the web tier you sign in to,
 
 7
-00:00:18.636 --> 00:00:21.900
-and backup and recovery for
-the database and its keys.
+00:00:19.047 --> 00:00:21.732
+the back end that does
+the work, the components,
 
 8
-00:00:21.900 --> 00:00:27.799
-Sources: CyberArk 26.1 System Requirements,
-Installation and Upgrade Guide,
+00:00:21.732 --> 00:00:25.973
+the drivers that reach other systems,
+what it all connects to, a reference
 
 9
-00:00:27.799 --> 00:00:33.136
-security hardening and disaster
-recovery documentation; NIST CMVP;
-
-10
-00:00:33.136 --> 00:00:37.610
-the Federal Modernization
-Workbook's Book 07, Chapter 05.
+00:00:25.973 --> 00:00:30.700
+layout for two sites, and finally one
+certificate's journey from start to finish.

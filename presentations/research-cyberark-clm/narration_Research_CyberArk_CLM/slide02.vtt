@@ -1,124 +1,56 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:05.178
-The Federal Modernization Workbook's Book
-07's target gives each class of subject
+00:00:00.050 --> 00:00:04.238
+Before we build anything, here's the
+idea that frames this whole guide.
 
 2
-00:00:05.178 --> 00:00:08.119
-its own issuer, and a
-lifecycle platform covers
+00:00:04.238 --> 00:00:08.512
+Book 07 doesn't use one certificate
+authority for everything.
 
 3
-00:00:08.119 --> 00:00:11.362
-the issuers that don't renew
-their own certificates.
+00:00:08.512 --> 00:00:13.087
+It gives each kind of certificate its
+own source and its own way of renewing.
 
 4
-00:00:11.362 --> 00:00:16.862
-Intune-managed devices get user and device
-certificates from Microsoft Cloud PKI
+00:00:13.087 --> 00:00:15.513
+Intune looks after device certificates.
 
 5
-00:00:16.862 --> 00:00:22.201
-through SCEP, or during the bridge period
-from AD CS through the Intune connector.
+00:00:15.513 --> 00:00:17.900
+PIV cards have their own card system.
 
 6
-00:00:22.201 --> 00:00:26.262
-Intune renews them, so the CLM
-platform doesn't manage them.
+00:00:17.900 --> 00:00:21.725
+Domain controllers keep renewing
+themselves the way they always have.
 
 7
-00:00:26.262 --> 00:00:29.288
-PIV cards come from a
-Federal PKI shared service
+00:00:21.725 --> 00:00:26.795
+What's left — servers, VPN and RADIUS,
+SQL, internal websites, appliances,
 
 8
-00:00:29.288 --> 00:00:32.162
-provider through the
-card management system.
+00:00:26.795 --> 00:00:28.841
+and anything public-facing —
 
 9
-00:00:32.162 --> 00:00:36.928
-Domain controller, KDC and LDAPS
-certificates stay on retained AD CS
+00:00:28.841 --> 00:00:34.000
+has nobody renewing it today except
+a person with a calendar reminder.
 
 10
-00:00:36.928 --> 00:00:41.776
-with autoenrollment; the platform
-watches them but never renews them.
+00:00:34.000 --> 00:00:36.100
+That's the gap the platform fills.
 
 11
-00:00:41.776 --> 00:00:43.987
-Everything else lands on the platform.
+00:00:36.100 --> 00:00:38.759
+It becomes the system of record for every
 
 12
-00:00:43.987 --> 00:00:48.471
-RADIUS and NPS servers, VPN and
-Remote Desktop gateways, SQL Server,
-
-13
-00:00:48.471 --> 00:00:53.770
-internal web servers and appliances get
-certificates from the retained AD CS
-
-14
-00:00:53.770 --> 00:00:58.173
-hierarchy, which becomes a standalone
-CA after Active Directory,
-
-15
-00:00:58.173 --> 00:01:02.412
-requested and renewed through
-CyberArk Certificate Manager.
-
-16
-00:01:02.412 --> 00:01:08.047
-Public-facing TLS comes from a public CA
-the agency authorizes in its CAA records,
-
-17
-00:01:08.047 --> 00:01:12.588
-renewed by the platform, with ACME
-where the endpoint supports it.
-
-18
-00:01:12.588 --> 00:01:14.592
-And for the hierarchy itself,
-
-19
-00:01:14.592 --> 00:01:19.351
-the platform's revocation monitoring
-checks CRL and OCSP endpoints.
-
-20
-00:01:19.351 --> 00:01:23.076
-So the platform's job is simple
-to state: it's the system of
-
-21
-00:01:23.076 --> 00:01:27.612
-record for every certificate Intune
-and the PIV system don't manage.
-
-22
-00:01:27.612 --> 00:01:33.597
-Sources: Book 07, Chapter 04 (issuer
-map; certificate lifecycle management),
-
-23
-00:01:33.597 --> 00:01:40.171
-Chapter 05 (renewal ownership per certificate
-class), Chapter 08 (renewal engines);
-
-24
-00:01:40.171 --> 00:01:44.587
-research brief section 10;
-CyberArk 26.1 Installation
-
-25
-00:01:44.587 --> 00:01:49.150
-and Upgrade Guide (Certificate
-Revocation Monitoring).
+00:00:38.759 --> 00:00:41.950
+certificate Intune and
+PIV don't already manage.

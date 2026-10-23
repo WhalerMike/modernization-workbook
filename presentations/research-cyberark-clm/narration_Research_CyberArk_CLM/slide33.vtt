@@ -1,0 +1,41 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.122
+Eventually the old certificate
+authorities retire,
+
+2
+00:00:03.122 --> 00:00:05.775
+and the platform is the
+evidence that it's safe.
+
+3
+00:00:05.775 --> 00:00:10.587
+Before a CA goes, its inventory has to
+show that nothing still depends on it.
+
+4
+00:00:10.587 --> 00:00:14.908
+Then you stop new issuance — after
+pointing the platform's templates at a
+
+5
+00:00:14.908 --> 00:00:19.375
+CA that's staying — publish the last
+revocation list, and remove the service.
+
+6
+00:00:19.375 --> 00:00:23.638
+The records and endpoints stay up
+until the last certificate expires.
+
+7
+00:00:23.638 --> 00:00:27.126
+After Active Directory, server
+certificates come from a
+
+8
+00:00:27.126 --> 00:00:31.060
+standalone CA under the same root,
+still driven by the platform.

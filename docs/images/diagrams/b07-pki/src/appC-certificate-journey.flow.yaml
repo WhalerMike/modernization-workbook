@@ -1,0 +1,24 @@
+# Appendix C — one certificate's life through the platform's components, and the evidence each step leaves.
+rankdir: TB
+graph: {nodesep: 0.22, ranksep: 0.4}
+nodes:
+  d: {tone: slate, width: 175, tag: "1 Find", title: "Discover", body: ["Network Discovery, CA Import, Server Agent"], size: 12}
+  o: {tone: violet, width: 175, tag: "2 Own", title: "Place and own", body: ["Placement rules put it in a policy folder with a named Server Owner"], size: 12}
+  e: {tone: blue, width: 175, tag: "3 Issue", title: "Enroll", body: ["The lifecycle engine asks the CA through its CA template driver"], size: 12}
+  i: {tone: green, width: 175, tag: "4 Install", title: "Provision", body: ["An application driver or agent installs it on the target"], size: 12}
+  v: {tone: green, width: 175, tag: "5 Check", title: "Validate and monitor", body: ["Validation scans, revocation monitoring, expiry notices"], size: 12}
+  r: {tone: amber, width: 175, tag: "6 Repeat", title: "Renew", body: ["Before expiry, back to step 3: no one has to remember a date"], size: 12}
+  x: {tone: red, width: 175, tag: "7 End", title: "Revoke or retire", body: ["Revoked through the CA template; the object is retired"], size: 12}
+  ev: {kind: pill, tone: slate, text: "Every step is logged: events go to the SIEM, and the inventory is the evidence an assessor reads"}
+order:
+  - [d, o, e, i]
+  - [x, r, v]
+edges:
+  - [d, o]
+  - [o, e]
+  - [e, i]
+  - [i, v]
+  - [r, v, {attrs: "dir=back"}]
+  - [r, e, {style: dashed, tone: amber, label: "every renewal", lw: 90}]
+  - [x, r, {label: "when no longer needed", lw: 110, attrs: "dir=back"}]
+  - [r, ev, {style: invis}]

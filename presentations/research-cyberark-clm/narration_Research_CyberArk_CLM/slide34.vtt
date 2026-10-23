@@ -1,0 +1,58 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:00.925
+To wrap up.
+
+2
+00:00:00.925 --> 00:00:05.077
+The decisions are yours: which
+servers run in FIPS mode,
+
+3
+00:00:05.077 --> 00:00:09.413
+HSM or software key, and a
+handful of integration choices.
+
+4
+00:00:09.413 --> 00:00:13.250
+There are a few questions to
+put to CyberArk in writing,
+
+5
+00:00:13.250 --> 00:00:17.600
+mainly around FIPS, Windows Server
+2025, and Azure Government.
+
+6
+00:00:17.600 --> 00:00:22.683
+And the next steps are concrete: stand up
+the test cluster, create the CA account
+
+7
+00:00:22.683 --> 00:00:27.688
+under the ESC7 controls, and prove in the
+lab that it can't do more than it should.
+
+8
+00:00:27.688 --> 00:00:32.742
+The program's view is clear — this is
+the right platform for Book 07's design,
+
+9
+00:00:32.742 --> 00:00:35.438
+and its risks are known and manageable.
+
+10
+00:00:35.438 --> 00:00:38.329
+This is the program's
+research, under review,
+
+11
+00:00:38.329 --> 00:00:41.300
+and not an endorsement
+by any federal agency.
+
+12
+00:00:41.300 --> 00:00:42.460
+Thanks for watching.

@@ -1,134 +1,50 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:01.550
-Backup and recovery.
+00:00:00.050 --> 00:00:03.137
+Drivers are how the platform
+reaches the outside world.
 
 2
-00:00:01.550 --> 00:00:04.662
-The database and its
-encryption key are a pair.
+00:00:03.137 --> 00:00:08.938
+CA drivers request certificates
+from AD CS, public CAs or AWS.
 
 3
-00:00:04.662 --> 00:00:07.700
-Back up the database on
-the FULL recovery model.
+00:00:08.938 --> 00:00:13.125
+Application drivers install
+certificates on IIS, F5,
 
 4
-00:00:07.700 --> 00:00:12.712
-Export the software key with the configuration
-tool's key-export option, and keep
+00:00:13.125 --> 00:00:17.788
+NetScaler, Key Vault and the
+rest, usually without any agent.
 
 5
-00:00:12.712 --> 00:00:17.425
-it safe: CyberArk says that without it,
-you cannot access data in the database.
+00:00:17.788 --> 00:00:19.324
+Where a driver can't reach,
 
 6
-00:00:17.425 --> 00:00:21.104
-If an HSM holds the key,
-use the HSM vendor's backup,
+00:00:19.324 --> 00:00:22.688
+a small Server Agent checks
+in and does the work locally.
 
 7
-00:00:21.104 --> 00:00:25.794
-and run the HSMs in high
-availability, because if the HSM stays
+00:00:22.688 --> 00:00:25.809
+Everything is stored in
+one SQL Server database,
 
 8
-00:00:25.794 --> 00:00:30.300
-unreachable the platform retries,
-logs, and then shuts down.
+00:00:25.809 --> 00:00:29.007
+and that database's secrets
+are protected by a key —
 
 9
-00:00:30.300 --> 00:00:33.912
-CyberArk's disaster recovery
-procedure has five steps.
+00:00:29.007 --> 00:00:33.376
+either a software key you must back
+up, or a hardware security module.
 
 10
-00:00:33.912 --> 00:00:39.346
-First, the prerequisites: local master
-admin credentials, the database backup,
-
-11
-00:00:39.346 --> 00:00:44.026
-the database connection details,
-and the software key or HSM access.
-
-12
-00:00:44.026 --> 00:00:47.500
-Second, stop the services
-on every platform server.
-
-13
-00:00:47.500 --> 00:00:51.163
-Third, restore the database
-and recover its users.
-
-14
-00:00:51.163 --> 00:00:54.907
-Fourth, re-enable SQL Service
-Broker on the restored database,
-
-15
-00:00:54.907 --> 00:00:58.725
-which is easy to forget and stops
-the platform working if you do.
-
-16
-00:00:58.725 --> 00:01:02.995
-Fifth, import the software key,
-or reconnect the HSM through the
-
-17
-00:01:02.995 --> 00:01:07.512
-Configuration Console or the
-configuration tool's HSM PIN option.
-
-18
-00:01:07.512 --> 00:01:12.291
-On the CA side, Microsoft recommends
-backing up the CA with Backup-CARoleService
-
-19
-00:01:12.291 --> 00:01:14.359
-before you change its permissions,
-
-20
-00:01:14.359 --> 00:01:17.425
-which you're about to do for
-the platform's CA account.
-
-21
-00:01:17.425 --> 00:01:21.873
-The program's guidance is to rehearse
-a full restore before Wave 2 exits,
-
-22
-00:01:21.873 --> 00:01:27.074
-and the Federal Modernization Workbook's
-Book 07 Chapter 08's rule applies to every
-
-23
-00:01:27.074 --> 00:01:32.200
-key backup: store the backup and its
-password through separate approved channels.
-
-24
-00:01:32.200 --> 00:01:37.380
-Sources: CyberArk 26.1 Software
-key backup; HSM configuration;
-
-25
-00:01:37.380 --> 00:01:42.459
-Using HSM-protected keys;
-Disaster recovery prerequisites,
-
-26
-00:01:42.459 --> 00:01:48.756
-database recovery and HSM recovery;
-System Requirements; Microsoft Learn,
-
-27
-00:01:48.756 --> 00:01:54.910
-Secure, delegate and audit a certification
-authority; Book 07, Chapter 08.
+00:00:33.376 --> 00:00:38.020
+Lose that key and you lose the data,
+which is why it's treated as Tier 0.

@@ -1,0 +1,36 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.850
+Monitoring is where
+the inventory pays off.
+
+2
+00:00:02.850 --> 00:00:07.347
+The platform sends its events to the SIEM
+and watches for four kinds of drift:
+
+3
+00:00:07.347 --> 00:00:10.465
+a certificate close to expiry
+with no way to renew it,
+
+4
+00:00:10.465 --> 00:00:14.889
+a certificate issued outside policy,
+a revocation list that's going stale,
+
+5
+00:00:14.889 --> 00:00:18.588
+and trust stores that have picked
+up roots they shouldn't have.
+
+6
+00:00:18.588 --> 00:00:22.914
+The checks run at least weekly, and the
+results are kept, because an assessor
+
+7
+00:00:22.914 --> 00:00:27.020
+will ask how long a problem stayed
+open, not just whether it's open today.

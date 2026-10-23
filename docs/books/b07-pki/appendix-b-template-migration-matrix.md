@@ -85,7 +85,7 @@ For BRIDGE rows, record the event that ends them (the last domain controller, th
 
 ::: {.callout-tip}
 ## Continue the book
-[← Previous: Appendix A — Cloud PKI and CBA Deployment Checklists](appendix-a-deployment-checklists.md) · [Book index](index.md)
+[← Previous: Appendix A — Cloud PKI and CBA Deployment Checklists](appendix-a-deployment-checklists.md) · [Next: Appendix C — Anatomy of the CLM Platform →](appendix-c-anatomy-of-the-clm-platform.md) · [Book index](index.md)
 :::
 
 [^aB-cpki]: Microsoft Learn, "Overview of Microsoft Cloud PKI for Microsoft Intune," <https://learn.microsoft.com/intune/cloud-pki/> (accessed Oct 20, 2026).

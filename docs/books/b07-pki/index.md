@@ -50,7 +50,7 @@ Every other migration in this workbook changes which system answers "who is this
 | **Who** | Who decides and who does the work for the certificate estate | [05](05-who-owns-the-certificate-estate.md) |
 | **How** | Issue device and user certificates, run both PKIs through the migration, and keep the estate renewed and checkable until the old CAs retire | [06](06-device-and-user-certificates.md), [07](07-coexistence-and-migration.md), [08](08-lifecycle-monitoring-and-decommissioning.md) |
 
-Appendices: [A — Cloud PKI and CBA deployment checklists](appendix-a-deployment-checklists.md) · [B — Certificate template migration matrix](appendix-b-template-migration-matrix.md)
+Appendices: [A — Cloud PKI and CBA deployment checklists](appendix-a-deployment-checklists.md) · [B — Certificate template migration matrix](appendix-b-template-migration-matrix.md) · [C — Anatomy of the CLM platform](appendix-c-anatomy-of-the-clm-platform.md)
 
 ## Reading paths
 

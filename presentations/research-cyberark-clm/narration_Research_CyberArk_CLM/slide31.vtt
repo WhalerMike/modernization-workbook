@@ -1,0 +1,39 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.488
+Here's why this can't wait.
+
+2
+00:00:01.488 --> 00:00:06.643
+Public certificate lifetimes are
+shrinking fast: two hundred days today,
+
+3
+00:00:06.643 --> 00:00:09.938
+a hundred next year, and
+forty-seven days by 2029.
+
+4
+00:00:09.938 --> 00:00:13.442
+For a thousand certificates,
+that's roughly seven
+
+5
+00:00:13.442 --> 00:00:17.288
+renewals every working day
+now, and over thirty in 2029.
+
+6
+00:00:17.288 --> 00:00:19.288
+No team can keep that up by hand.
+
+7
+00:00:19.288 --> 00:00:24.702
+That's why Book 07's rule is that no
+certificate may depend on a person remembering
+
+8
+00:00:24.702 --> 00:00:29.450
+a date — every one runs through Intune,
+autoenrollment, or this platform.

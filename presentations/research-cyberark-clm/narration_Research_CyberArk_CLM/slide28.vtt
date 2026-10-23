@@ -1,0 +1,45 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.200
+Three integrations, each
+with a boundary question.
+
+2
+00:00:03.200 --> 00:00:07.210
+Kubernetes discovery only works
+through CyberArk's cloud service,
+
+3
+00:00:07.210 --> 00:00:11.076
+which isn't authorized, so inside
+the boundary we use cert-manager,
+
+4
+00:00:11.076 --> 00:00:14.012
+which talks straight to
+the self-hosted platform.
+
+5
+00:00:14.012 --> 00:00:17.965
+ServiceNow has no CyberArk-built
+app, only a third-party one,
+
+6
+00:00:17.965 --> 00:00:20.950
+so assess it like any
+supply-chain component.
+
+7
+00:00:20.950 --> 00:00:25.717
+And the SIEM gets the platform's events
+over syslog with TLS — with one gotcha:
+
+8
+00:00:25.717 --> 00:00:29.469
+the SIEM collector's certificate
+needs its IP address in it,
+
+9
+00:00:29.469 --> 00:00:31.250
+even if you connect by name.

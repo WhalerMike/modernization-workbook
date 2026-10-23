@@ -1,50 +1,50 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:02.213
-Part 2: connect the issuers.
+00:00:00.050 --> 00:00:03.300
+Now the bigger picture:
+everything the platform touches.
 
 2
-00:00:02.213 --> 00:00:05.215
-First the AD CS driver:
-what it needs on the CA,
+00:00:03.300 --> 00:00:07.137
+On the left, the certificate
+authorities it asks for certificates.
 
 3
-00:00:05.215 --> 00:00:09.887
-how templates map, and which Windows
-Server versions are confirmed.
+00:00:07.137 --> 00:00:09.938
+On the right, the systems
+it installs them on.
 
 4
-00:00:09.887 --> 00:00:13.798
-Then how to scope its privileged
-account under the ESC7 review,
+00:00:09.938 --> 00:00:12.786
+Above, Entra ID for
+signing in to the console,
 
 5
-00:00:13.798 --> 00:00:19.137
-which includes the first correction to the
-Federal Modernization Workbook's Book 07.
+00:00:12.786 --> 00:00:16.663
+and CyberArk's own vault for
+the passwords its drivers need.
 
 6
-00:00:19.137 --> 00:00:24.637
-Then the public and cloud CA drivers,
-where release 26.1 changed one.
+00:00:16.663 --> 00:00:20.888
+Below, the SIEM for events and
+ServiceNow for owners and tickets.
 
 7
-00:00:24.637 --> 00:00:29.812
-And finally how the platform coexists with
-Intune, which owns device certificates.
+00:00:20.888 --> 00:00:26.137
+Two lines are dashed on purpose: Kubernetes
+and ServiceNow both need extra care,
 
 8
-00:00:29.812 --> 00:00:36.692
-Sources: CyberArk 26.1 CA driver
-documentation, Supported integrations,
+00:00:26.137 --> 00:00:29.239
+because one depends on
+a cloud service outside
 
 9
-00:00:36.692 --> 00:00:40.820
-Deprecated features;
-Microsoft Learn AD CS,
+00:00:29.239 --> 00:00:32.262
+the boundary and the other
+is a third-party app.
 
 10
-00:00:40.820 --> 00:00:46.390
-Intune and Microsoft Graph pages;
-Book 07, Chapters 03 to 07.
+00:00:32.262 --> 00:00:33.650
+We'll come back to both.

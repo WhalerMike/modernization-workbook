@@ -1,157 +1,48 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:00.738
-Hardening.
+00:00:00.050 --> 00:00:02.362
+This table is the platform's parts list.
 
 2
-00:00:00.738 --> 00:00:04.473
-CyberArk's hardening section
-currently covers IIS only:
+00:00:02.362 --> 00:00:05.401
+Each component is a job
+you switch on per server:
 
 3
-00:00:04.473 --> 00:00:07.493
-a rewrite rule against
-host-header injection;
+00:00:05.401 --> 00:00:08.283
+the lifecycle engine
+that issues and renews,
 
 4
-00:00:07.493 --> 00:00:13.057
-web configuration settings with debugging
-off, cookies marked HTTP-only and secure,
+00:00:08.283 --> 00:00:11.633
+CA Import that pulls in what
+your CAs already issued,
 
 5
-00:00:13.057 --> 00:00:17.110
-request filtering to GET and
-POST, strict transport security,
+00:00:11.633 --> 00:00:14.906
+discovery that finds
+certificates on the network,
 
 6
-00:00:17.110 --> 00:00:22.276
-frame and content security policy headers;
-and the X-Powered-By header removed.
+00:00:14.906 --> 00:00:20.593
+validation and revocation monitoring that
+keep checking, and the enrollment services
 
 7
-00:00:22.276 --> 00:00:23.425
-Apply all of it.
+00:00:20.593 --> 00:00:25.112
+— ACME, EST and SCEP — that devices and
+scripts use to ask for certificates.
 
 8
-00:00:23.425 --> 00:00:26.042
-Every platform server
-ships with a self-signed
+00:00:25.112 --> 00:00:27.113
+You don't need to memorize the list.
 
 9
-00:00:26.042 --> 00:00:29.263
-certificate called the Venafi
-Operational Certificate.
+00:00:27.113 --> 00:00:29.461
+The point is that the design is modular,
 
 10
-00:00:29.263 --> 00:00:33.837
-Replace it on every server with one
-issued by your CA before production.
-
-11
-00:00:33.837 --> 00:00:39.290
-The database needs two accounts: a DBO
-account used only to install and upgrade,
-
-12
-00:00:39.290 --> 00:00:42.562
-and an operational account
-the services run as.
-
-13
-00:00:42.562 --> 00:00:47.294
-CyberArk documents that the operational
-account needs Log on as a Service and local
-
-14
-00:00:47.294 --> 00:00:49.998
-administrator rights on
-every platform server,
-
-15
-00:00:49.998 --> 00:00:52.837
-and group managed service
-accounts are supported.
-
-16
-00:00:52.837 --> 00:00:56.125
-The provisioning drivers need
-privilege on the targets too.
-
-17
-00:00:56.125 --> 00:00:59.846
-For Windows CAPI and IIS,
-CyberArk says the account
-
-18
-00:00:59.846 --> 00:01:03.213
-must be a Windows
-administrator on the target.
-
-19
-00:01:03.213 --> 00:01:07.349
-The program's guidance is to keep those
-credentials in CyberArk's Enterprise
-
-20
-00:01:07.349 --> 00:01:11.550
-Password Vault, which the platform can
-query through the Credential Provider.
-
-21
-00:01:11.550 --> 00:01:15.325
-And the installation answer
-files contain the admin password,
-
-22
-00:01:15.325 --> 00:01:19.100
-the database credentials and the
-software key, so encrypt them.
-
-23
-00:01:19.100 --> 00:01:24.063
-So the platform concentrates privilege:
-certificate-manager rights on CAs,
-
-24
-00:01:24.063 --> 00:01:28.475
-administrator on Windows targets,
-and private keys in its database.
-
-25
-00:01:28.475 --> 00:01:31.695
-The program therefore
-treats the Master Admins,
-
-26
-00:01:31.695 --> 00:01:35.075
-the software key and the
-database backups as Tier 0.
-
-27
-00:01:35.075 --> 00:01:40.397
-Sources: CyberArk 26.1 Security hardening
-best practices and IIS hardening;
-
-28
-00:01:40.397 --> 00:01:44.875
-Securing the web server; Windows
-authentication requirements;
-
-29
-00:01:44.875 --> 00:01:49.690
-Group managed service accounts;
-Rolling upgrades; CAPI permissions;
-
-30
-00:01:49.690 --> 00:01:52.816
-CyberArk credential best-practice example;
-
-31
-00:01:52.816 --> 00:01:57.293
-Securing credential objects;
-Installation and Upgrade Guide p.
-
-32
-00:01:57.293 --> 00:01:57.530
-86.
+00:00:29.461 --> 00:00:33.910
+so you place each job where its network
+access and its security rules fit.

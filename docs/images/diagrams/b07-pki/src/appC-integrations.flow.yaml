@@ -1,0 +1,36 @@
+# Appendix C — what the platform connects to: the issuers it requests from, the systems it installs on,
+# identity for its console, and where its events and evidence go.
+rankdir: LR
+graph: {nodesep: 0.22, ranksep: 0.55}
+clusters:
+  - {id: issuers, label: "Issuers (CA template drivers)", tone: blue, nodes: [adcs, pub, aws]}
+  - {id: targets, label: "Where certificates are installed", tone: green, nodes: [win, app, keys, cloud, k8s]}
+nodes:
+  adcs: {tone: blue, width: 175, title: "AD CS", body: ["Enterprise or standalone CA, over DCOM"], size: 12}
+  pub: {tone: blue, width: 175, title: "Public CAs", body: ["DigiCert, Sectigo, GlobalSign, HID"], size: 12}
+  aws: {tone: blue, width: 175, title: "AWS Private CA and ACM", body: ["Issue; import via S3 audit reports"], size: 12}
+  idp: {tone: violet, width: 190, tag: "Console sign-in", title: "Microsoft Entra ID", body: ["SAML or OIDC single sign-on", "SCIM for users and groups"], size: 12}
+  vault: {tone: violet, width: 190, tag: "Target credentials", title: "CyberArk vault", body: ["Credential Provider for driver accounts"], size: 12}
+  cm: {tone: amber, width: 200, tag: "The platform", title: "CyberArk Certificate Manager", body: ["Inventory, owners, policy", "Request, renew, install, revoke"], size: 12}
+  clients: {tone: slate, width: 190, tag: "Clients request", title: "ACME, EST, SCEP, REST", body: ["certbot, win-acme, vCert, network devices"], size: 12}
+  win: {tone: green, width: 185, title: "Windows: IIS and CAPI", body: ["Agentless; admin on the target"], size: 12}
+  app: {tone: green, width: 185, title: "Appliances", body: ["F5, NetScaler, Palo Alto NGFW"], size: 12}
+  keys: {tone: green, width: 185, title: "Keystores", body: ["Apache/PEM, Java, PKCS#12; Server Agent"], size: 12}
+  cloud: {tone: green, width: 185, title: "Cloud stores", body: ["Azure Key Vault, AWS, HashiCorp Vault"], size: 12}
+  k8s: {tone: green, width: 185, title: "Kubernetes", body: ["cert-manager CyberArk issuer"], size: 12}
+  siem: {tone: slate, width: 190, tag: "Events and evidence", title: "SIEM", body: ["Syslog over TLS (6514), CEF or JSON"], size: 12}
+  itsm: {tone: slate, width: 190, tag: "Owners and tickets", title: "ServiceNow", body: ["Third-party app via a MID Server"], size: 12}
+edges:
+  - [adcs, cm, {both: true}]
+  - [pub, cm, {both: true}]
+  - [aws, cm, {both: true}]
+  - [idp, cm]
+  - [vault, cm]
+  - [clients, cm]
+  - [cm, win]
+  - [cm, app]
+  - [cm, keys]
+  - [cm, cloud]
+  - [cm, k8s, {style: dashed}]
+  - [cm, siem]
+  - [cm, itsm, {style: dashed}]

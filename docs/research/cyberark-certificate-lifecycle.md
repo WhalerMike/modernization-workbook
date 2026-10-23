@@ -1,11 +1,11 @@
 ---
 title: "Certificate Lifecycle on CyberArk Certificate Manager"
 subtitle: "An implementation guide: building Book 07's certificate lifecycle on CyberArk Certificate Manager, Self-Hosted, from platform build to the six migration waves"
-description: "Research under review: a narrated implementation guide for running Book 07's certificate lifecycle management on CyberArk Certificate Manager, Self-Hosted: platform build, FIPS posture, issuer integrations, Intune coexistence, discovery and ownership, enrollment automation, and the migration waves."
+description: "Research under review: a narrated implementation guide for running Book 07's certificate lifecycle management on CyberArk Certificate Manager, Self-Hosted: what the platform is made of, platform build, FIPS posture, issuer integrations, Intune coexistence, discovery and ownership, enrollment automation, and the migration waves."
 research-status: in review
 research-type: implementation guide
 research-book: "Book 07"
-date-modified: 2026-10-22
+date-modified: 2026-10-23
 ---
 
 # Certificate Lifecycle on CyberArk Certificate Manager {.unnumbered}
@@ -17,20 +17,33 @@ date-modified: 2026-10-22
 | Edition | File |
 |---|---|
 | Deck | [Research_CyberArk_CLM.pptx](../../presentations/research-cyberark-clm/Research_CyberArk_CLM.pptx) |
-| Narrated, self-running (about 44 minutes, captions) | [Research_CyberArk_CLM_Narrated.pptx](../../presentations/research-cyberark-clm/Research_CyberArk_CLM_Narrated.pptx) |
+| Narrated, self-running (about 20 minutes, captions) | [Research_CyberArk_CLM_Narrated.pptx](../../presentations/research-cyberark-clm/Research_CyberArk_CLM_Narrated.pptx) |
 | Narration script and caption track | [Script](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/research-cyberark-clm/Research_CyberArk_CLM_Narration_Script.md) · [Captions](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/research-cyberark-clm/Research_CyberArk_CLM_Narrated.vtt) |
 
 ## What it covers
 
 | Part | Content |
 |---|---|
-| Orientation | Book 07's issuer map and the CLM's role; prerequisites and decisions: the self-hosted edition (no FedRAMP package exists for the SaaS edition), version 26.1, Windows Server and SQL Server requirements |
+| Orientation | Book 07's issuer map and the CLM's role, and what "the platform" means; prerequisites and decisions: the self-hosted edition (no FedRAMP package exists for the SaaS edition), version 26.1, Windows Server and SQL Server requirements |
+| Inside the platform | What the platform is made of: its server roles, the web tier, the back end (processing engines, log servers, the Message Bus), the components switched on per server, drivers, agents, the database and keys, what it connects to, a two-site reference topology, and one certificate's journey through it |
 | 1. Build the platform | Architecture and high availability; FIPS posture, and what can't be claimed; console sign-in through Entra single sign-on with certificate-based authentication (design guidance); hardening and least-privilege service accounts; backup and recovery of the database and keys |
 | 2. Connect the issuers | The AD CS driver, its permissions and scoping the CA account under ESC7; public and cloud CA drivers in 26.1 (the Entrust driver is gone); Intune coexistence: Intune keeps device certificates, and the CLM's own SCEP-CA option is documented but rejected as a second issuer |
 | 3. Discover, own and automate | Discovery scans and CA import; ownership through policy folders tied to identity and CMDB owners; enrollment automation (ACME, EST, SCEP, REST, agents); Kubernetes through cert-manager inside the boundary; ServiceNow (only a third-party Store app) and SIEM |
 | 4. Migrate and operate | The build mapped to Book 07's six waves (design guidance); renewal as public TLS lifetimes shrink; monitoring and drift; decommissioning AD CS with the CLM inventory; decisions, vendor asks and next steps |
 
 The backup section holds an assessor's evidence checklist, a risks register, what couldn't be verified or sits behind a login, and the full source list.
+
+## Inside the platform
+
+"The platform" in this guide is CyberArk Certificate Manager, Self-Hosted: a cluster of Windows servers running the same software against one SQL Server database, with a role for each server set by the components switched on. [Book 07, Appendix C — Anatomy of the CLM Platform](../books/b07-pki/appendix-c-anatomy-of-the-clm-platform.md) describes each component, with notes to CyberArk's 26.1 documentation; the deck's "Inside the platform" section walks through the same four diagrams.
+
+![The platform's server roles: web services and separate non-FIPS ACME servers behind a load balancer, back-end and log servers, the Message Bus, one SQL Server Always On database and an HSM pair.](../images/diagrams/b07-pki/svg/appC-server-roles.svg){fig-alt="Server roles of CyberArk Certificate Manager: a load balancer in front of web services servers and separate ACME servers not in FIPS mode; back-end processing servers and log and event servers; all linked by the Message Bus, MQTT over TLS on 8883 between every server, to one SQL Server Always On database and an HSM pair. Book 07 Appendix C describes the figure in full."}
+
+![What the platform connects to: issuers, installation targets, Entra ID, the CyberArk vault, enrollment clients, the SIEM and ServiceNow.](../images/diagrams/b07-pki/svg/appC-integrations.svg){fig-alt="Integrations of CyberArk Certificate Manager: AD CS, public CAs and AWS as issuers; Windows IIS and CAPI, appliances, keystores, cloud stores and Kubernetes as installation targets; Entra ID for sign-in, the CyberArk vault for driver credentials, ACME, EST, SCEP and REST clients, the SIEM over syslog-TLS and ServiceNow through a third-party app. Book 07 Appendix C describes the figure in full."}
+
+![A two-site reference topology (program design guidance).](../images/diagrams/b07-pki/svg/appC-reference-topology.svg){fig-alt="A two-site layout: each site has a web services server, a non-FIPS ACME server, a back-end server and a log server behind shared load-balancer names, a Message Bus mesh between all eight servers, one SQL Server Always On availability group across the sites and an HSM pair. Book 07 Appendix C describes the figure in full."}
+
+![One certificate's journey through the platform.](../images/diagrams/b07-pki/svg/appC-certificate-journey.svg){fig-alt="Discover, place and own, enroll, provision, validate and monitor, renew back to enrollment before expiry, and revoke or retire when no longer needed; every step is logged. Book 07 Appendix C describes the figure in full."}
 
 ## What the research changed in Book 07
 

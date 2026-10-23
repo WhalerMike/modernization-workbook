@@ -1,39 +1,45 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:02.362
-Part 4: migrate and operate.
+00:00:00.050 --> 00:00:05.712
+The most important connection is to AD CS,
+the agency's own certificate authority.
 
 2
-00:00:02.362 --> 00:00:06.778
-First, how the platform build fits
-into the Federal Modernization
+00:00:05.712 --> 00:00:07.800
+The platform talks to it over DCOM,
 
 3
-00:00:06.778 --> 00:00:11.274
-Workbook's Book 07's six migration
-waves, as program design guidance.
+00:00:07.800 --> 00:00:11.825
+using an account with the right
+to issue and manage certificates.
 
 4
-00:00:11.274 --> 00:00:14.173
-Then renewal as public
-TLS lifetimes shrink,
+00:00:11.825 --> 00:00:15.767
+The cleanest pattern is one
+platform template for each
 
 5
-00:00:14.173 --> 00:00:18.012
-and how the platform feeds
-monitoring and drift detection.
+00:00:15.767 --> 00:00:19.538
+AD CS template it issues from,
+so policy is easy to read.
 
 6
-00:00:18.012 --> 00:00:21.137
-Then its role in decommissioning AD CS.
+00:00:19.538 --> 00:00:24.130
+After Active Directory retires,
+Book 07 moves server certificates
 
 7
-00:00:21.137 --> 00:00:25.862
-And finally the decisions to take, the
-questions for the vendor, and next steps.
+00:00:24.130 --> 00:00:27.738
+to a standalone CA, and the
+platform handles that fine.
 
 8
-00:00:25.862 --> 00:00:36.430
-Sources: Book 07, Chapters 01, 05, 07
-and 08; CyberArk 26.1 documentation.
+00:00:27.738 --> 00:00:32.999
+One open item: CyberArk's support
+table stops at Windows Server 2022,
+
+9
+00:00:32.999 --> 00:00:37.100
+so if your CA runs 2025, get
+that confirmed in writing.

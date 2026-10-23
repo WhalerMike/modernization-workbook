@@ -1,0 +1,45 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.575
+Here's the build laid
+onto Book 07's six waves.
+
+2
+00:00:03.575 --> 00:00:07.119
+Wave one is a small test
+cluster and read-only discovery,
+
+3
+00:00:07.119 --> 00:00:08.737
+so you learn what you have.
+
+4
+00:00:08.737 --> 00:00:13.268
+Wave two builds production properly
+— two of everything, keys backed up,
+
+5
+00:00:13.268 --> 00:00:18.188
+sign-in and logging done — and doesn't
+close until a restore has been rehearsed.
+
+6
+00:00:18.188 --> 00:00:22.399
+Wave three pilots automatic
+renewal on a handful of servers,
+
+7
+00:00:22.399 --> 00:00:25.263
+with the old method left
+on as a safety net.
+
+8
+00:00:25.263 --> 00:00:29.102
+Then you scale ring by ring,
+move public certificates over,
+
+9
+00:00:29.102 --> 00:00:33.310
+and finally retire CAs using the
+platform's inventory as proof.

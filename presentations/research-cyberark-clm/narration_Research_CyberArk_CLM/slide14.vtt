@@ -1,152 +1,45 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:01.800
-Intune coexistence.
+00:00:00.050 --> 00:00:02.200
+Sizing is refreshingly simple.
 
 2
-00:00:01.800 --> 00:00:04.162
-Intune owns device certificates.
+00:00:02.200 --> 00:00:05.787
+Two servers handle up to about
+fifty thousand certificates.
 
 3
-00:00:04.162 --> 00:00:08.631
-Cloud PKI issues to Intune-managed
-devices through SCEP,
+00:00:05.787 --> 00:00:10.668
+Past that, CyberArk's guide splits the
+work across six — two each for web, back
 
 4
-00:00:08.631 --> 00:00:11.199
-and Intune's profiles renew them.
+00:00:10.668 --> 00:00:15.949
+end and logging — and beyond a million
+certificates CyberArk designs it with you.
 
 5
-00:00:11.199 --> 00:00:13.238
-The platform's role there is narrow.
+00:00:15.949 --> 00:00:20.774
+For availability, the rules are what you'd
+expect: at least two servers per role,
 
 6
-00:00:13.238 --> 00:00:14.820
-During the bridge period,
+00:00:20.774 --> 00:00:23.487
+a load balancer in front
+of the web services,
 
 7
-00:00:14.820 --> 00:00:19.188
-some Intune certificates still come
-from AD CS through the connector.
+00:00:23.487 --> 00:00:26.200
+and an availability
+group for the database.
 
 8
-00:00:19.188 --> 00:00:23.167
-Because a Microsoft CA import
-brings in mobile, user and client
+00:00:26.200 --> 00:00:30.200
+One nice touch for the certificate
+authorities: a CA pool lets the
 
 9
-00:00:23.167 --> 00:00:27.988
-certificates the platform didn't enroll,
-those will appear in its inventory.
-
-10
-00:00:27.988 --> 00:00:31.577
-The program's guidance is to
-import them as monitor-only,
-
-11
-00:00:31.577 --> 00:00:35.400
-with no renewal binding, so
-Intune stays the renewal engine.
-
-12
-00:00:35.400 --> 00:00:38.962
-There's an option CyberArk
-documents that the program rejects.
-
-13
-00:00:38.962 --> 00:00:44.045
-The platform can act as an Intune
-third-party SCEP CA: Intune profiles point at
-
-14
-00:00:44.045 --> 00:00:49.287
-its SCEP endpoint, and it validates
-challenges with Intune through an Entra app.
-
-15
-00:00:49.287 --> 00:00:54.623
-But the Federal Modernization Workbook's
-Book 07 chose Cloud PKI for these devices,
-
-16
-00:00:54.623 --> 00:00:59.493
-and this would make the platform a second
-issuer for a migrating population,
-
-17
-00:00:59.493 --> 00:01:02.663
-which breaks Chapter 07's
-first coexistence rule.
-
-18
-00:01:02.663 --> 00:01:06.536
-It also adds a tenant-wide
-consent, and Microsoft notes that
-
-19
-00:01:06.536 --> 00:01:10.251
-revocation after a wipe depends
-on each third party's API.
-
-20
-00:01:10.251 --> 00:01:11.825
-Here's the second correction.
-
-21
-00:01:11.825 --> 00:01:18.713
-Book 07 Chapter 04 says the platform
-reads Cloud PKI's inventory for reporting.
-
-22
-00:01:18.713 --> 00:01:22.151
-CyberArk documents no Cloud PKI import.
-
-23
-00:01:22.151 --> 00:01:27.344
-What exists is Microsoft Graph's beta
-Cloud PKI leaf-certificate report,
-
-24
-00:01:27.344 --> 00:01:30.200
-and the platform's Discovery Import API.
-
-25
-00:01:30.200 --> 00:01:33.613
-Joining them is a custom
-job, on a beta API.
-
-26
-00:01:33.613 --> 00:01:35.945
-Book 07 has been updated to say that,
-
-27
-00:01:35.945 --> 00:01:40.450
-and that Intune's certificates
-report remains the system of record.
-
-28
-00:01:40.450 --> 00:01:45.223
-Sources: CyberArk 26.1
-Integrating with Microsoft Intune;
-
-29
-00:01:45.223 --> 00:01:51.885
-Importing certificates from a CA; WebSDK
-POST Discovery/Import; Microsoft Learn,
-
-30
-00:01:51.885 --> 00:01:58.846
-Third-party CA SCEP partners; Graph beta
-retrieveCloudPkiLeafCertificateReport;
-
-31
-00:01:58.846 --> 00:02:02.525
-Create SCEP certificate
-profiles in Intune;
-
-32
-00:02:02.525 --> 00:02:07.060
-device-naming research brief;
-Book 07, Chapters 04 to 07.
+00:00:30.200 --> 00:00:34.250
+platform fail over to a second CA
+if the first one stops answering.

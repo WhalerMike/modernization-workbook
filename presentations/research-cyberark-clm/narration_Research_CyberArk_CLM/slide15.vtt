@@ -1,53 +1,45 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:03.213
-Part 3: discover, own and automate.
+00:00:00.050 --> 00:00:04.275
+FIPS is where it's easy to
+overclaim, so let's be precise.
 
 2
-00:00:03.213 --> 00:00:08.550
-First, how the platform finds certificates:
-discovery scans and CA import.
+00:00:04.275 --> 00:00:08.254
+The platform runs on Windows
+servers that can be in FIPS mode,
 
 3
-00:00:08.550 --> 00:00:11.109
-Then how each certificate gets an owner,
+00:00:08.254 --> 00:00:09.687
+and that's documented.
 
 4
-00:00:11.109 --> 00:00:14.675
-through policy folders tied
-to identity and to the CMDB.
+00:00:09.687 --> 00:00:13.779
+What isn't documented is a FIPS
+certificate for the platform itself —
 
 5
-00:00:14.675 --> 00:00:18.284
-Then the enrollment protocols,
-where the third correction
+00:00:13.779 --> 00:00:17.213
+none of CyberArk's validated
+modules names this product.
 
 6
-00:00:18.284 --> 00:00:21.525
-to the Federal Modernization
-Workbook's Book 07 sits.
+00:00:17.213 --> 00:00:20.362
+So the honest evidence
+is FIPS-mode Windows,
 
 7
-00:00:21.525 --> 00:00:24.723
-And finally three
-integrations: Kubernetes,
+00:00:20.362 --> 00:00:24.387
+plus the HSM's own certificate
+for the database secrets.
 
 8
-00:00:24.723 --> 00:00:28.525
-ServiceNow and the SIEM, each
-with a boundary question.
+00:00:24.387 --> 00:00:28.007
+And remember the catch from
+earlier: the ACME servers can't
 
 9
-00:00:28.525 --> 00:00:35.501
-Sources: CyberArk 26.1 discovery, policy,
-permissions, ACME, EST, SCEP, OAuth,
-
-10
-00:00:35.501 --> 00:00:40.384
-Kubernetes discovery and
-logging documentation;
-
-11
-00:00:40.384 --> 00:00:44.040
-vCert; cert-manager; ServiceNow Store.
+00:00:28.007 --> 00:00:31.460
+be in FIPS mode at all, which
+is why they're kept separate.

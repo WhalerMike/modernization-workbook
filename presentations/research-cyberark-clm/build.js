@@ -15,15 +15,37 @@ const { pres, HEX, txt, box, icon, tag, bullets, tableOpts, head, callout } = D;
 const OUT = process.argv[2] || "Research_CyberArk_CLM.pptx";
 
 // ------------------------------------------------------------------ helpers (as in the Infoblox research deck)
-const WPM = 142;
+// Notes are written in two parts. The spoken narration (narration.js, keyed by slide title) carries the
+// slide's intent and highpoints; the "Detail:" block keeps the full speaker-note detail, and narrate.py
+// speaks only the narration.
+const NARR = require("./narration.js");
+const used = new Set();
+const WPM = 160;   // the voice's measured pace for conversational narration
 let clock = 0, words = 0;
 const per = [];
 const titles = [];
 const mmss = (t) => `${Math.floor(t / 60)}:${String(Math.round(t % 60)).padStart(2, "0")}`;
 const notes = (s, body, ref) => {
-  const n = body.trim().split(/\s+/).length;
-  const start = clock; clock += (n / WPM) * 60; words += n; per.push({ slide: pres.slides.length, n, title: titles[titles.length - 1] });
-  s.addNotes(`[${mmss(start)}–${mmss(clock)}]  ${body.trim()}\n\nSources: ${ref}`);
+  const title = titles[titles.length - 1];
+  const say = NARR[title];
+  if (!say) throw new Error(`no narration for slide: ${title}`);
+  used.add(title);
+  const n = say.trim().split(/\s+/).length;
+  const start = clock; clock += (n / WPM) * 60; words += n; per.push({ slide: pres.slides.length, n, title });
+  s.addNotes(`[${mmss(start)}–${mmss(clock)}]  ${say.trim()}\n\nDetail: ${body.trim()}\n\nSources: ${ref}`);
+};
+
+// A diagram placed inside a box, keeping the PNG's aspect ratio (read from its header).
+const fs = require("fs");
+const DIAG = path.join(__dirname, "..", "..", "docs", "images", "diagrams", "b07-pki", "png");
+const img = (s, name, alt, x, y, maxW, maxH) => {
+  const file = path.join(DIAG, `${name}.png`);
+  const b = fs.readFileSync(file);
+  const ar = b.readUInt32BE(16) / b.readUInt32BE(20);
+  let w = maxW, h = maxW / ar;
+  if (h > maxH) { h = maxH; w = maxH * ar; }
+  s.addImage({ path: file, x: x + (maxW - w) / 2, y, w, h, altText: alt });
+  return { w, h };
 };
 const checkTitle = (t) => {
   if (t.length > 58) throw new Error(`title over 58 characters (${t.length}): ${t}`);
@@ -115,6 +137,7 @@ const divider = (sec, title, sub, items, mins, src) => {
 
 const SUB = "Implementation guide  ·  Research — under review";
 const OR = "Orientation";
+const IN = "Inside the platform";
 const P1 = "Part 1 — Build the platform";
 const P2 = "Part 2 — Connect the issuers";
 const P3 = "Part 3 — Discover, own and automate";
@@ -124,8 +147,8 @@ const P4 = "Part 4 — Migrate and operate";
 {
   const s = titleSlide(OR, "Certificate Lifecycle on CyberArk Certificate Manager", SUB);
   txt(s, "Session map", [
-    { text: "IMPLEMENTING BOOK 07'S CERTIFICATE LIFECYCLE, SELF-HOSTED  ·  ABOUT 44 MINUTES", options: { bold: true, color: HEX.slate, fontSize: 12, breakLine: true } },
-    { text: "Orientation  ·  Part 1 Build the platform  ·  Part 2 Connect the issuers", options: { color: HEX.ink, breakLine: true } },
+    { text: "IMPLEMENTING BOOK 07'S CERTIFICATE LIFECYCLE, SELF-HOSTED  ·  ABOUT 20 MINUTES", options: { bold: true, color: HEX.slate, fontSize: 12, breakLine: true } },
+    { text: "Orientation  ·  Inside the platform  ·  Part 1 Build the platform  ·  Part 2 Connect the issuers", options: { color: HEX.ink, breakLine: true } },
     { text: "Part 3 Discover, own and automate  ·  Part 4 Migrate and operate", options: { color: HEX.ink } },
   ], { x: 0.8, y: 4.75, w: 8.6, h: 1.2, fontSize: 15, paraSpaceAfter: 2 });
   sources(s, "Sources: CyberArk Certificate Manager, Self-Hosted 26.1 docs; Microsoft Learn; FedRAMP Marketplace; NIST CMVP; Book 07. All opened Oct. 22, 2026.", 6.08);
@@ -191,10 +214,169 @@ The servers run Windows Server 2016 through 2025, with the desktop experience, f
   "FedRAMP Marketplace products.json (last_change Oct. 22, 2026); CyberArk 26.1 System Requirements, Always On high availability, Choosing SQL Server Enterprise or Standard, Important Considerations, Installation and Upgrade Guide; Palo Alto Networks Next-Gen Trust Security page; Book 07, Chapter 04.");
 }
 
+// ================================================================== Inside the platform (component reference)
+// Facts from the component brief (C:\tmp\ib\research_cyberark_components.md; CyberArk 26.1 docs opened Oct. 23, 2026).
+{
+  const s = divider(IN, "Inside the platform: what it is made of", "Implementation guide  ·  Inside the platform",
+    ["Server roles, web tier and back end", "Components, drivers, the database and keys", "Integrations, a two-site layout and one certificate's journey"], 6,
+    "Sources: CyberArk 26.1 System Requirements, components, services, Message Bus, Policy Tree, Configuration Console, drivers and integration pages.");
+  notes(s,
+`This section describes what CyberArk Certificate Manager, Self-Hosted 26.1 is made of, so the build in Part 1 has a picture to hang on: the server roles and the Windows services they run, the web tier, the back-end services, the components switched on per server, drivers and agents, the database and its keys, the integrations, a two-site reference layout (program design guidance), and one certificate's journey through the components.`,
+  "CyberArk Trust Protection Foundation 26.1 documentation: System Requirements, Services, Components, Message Bus, Policy Tree, Configuration Console, drivers and integrations; component research brief (Oct. 23, 2026).");
+}
+
+{
+  const s = content(IN, "Inside the platform: the server roles");
+  tag(s, "What");
+  img(s, "appC-server-roles", "The platform's server roles: web services servers and separate non-FIPS ACME servers behind a load balancer; back-end processing servers and log and event servers; all linked by the MQTT message bus to one SQL Server Always On database and an HSM pair.", 0.6, 1.45, 4.3, 5.05);
+  panel(s, "Cluster", 5.1, 1.5, 7.65, 3.0, HEX.navy, HEX.navyTint, "HOW A CLUSTER WORKS", null, [
+    "Servers on one database form a cluster; every module is installed on every server and enabled per server",
+    "Roles are just the components switched on: web services, back end, log and event, agent handlers",
+    "Windows services: CyberArk Platform (hosts the modules and the Message Bus), Logging, API Host (local, port 689), IIS, EST",
+    "Each server: 4 cores, 16 GB RAM, 5 GB disk; Windows Server 2016–2025 with the desktop experience",
+  ], 11.5);
+  table(s, "Sizing", 4.65, [3.1, 4.55], ["Active certificates", "Servers"], [
+    ["Up to 50,000", "2 (all in-use features on both)"],
+    ["Up to 250,000", "6: 2 log and event, 2 web services, 2 back end"],
+    ["1 million or more", "Designed by CyberArk"],
+    ["Agent-managed servers", "2 more servers per 40,000"],
+  ], { x: 5.1, fontSize: 11 });
+  sources(s, "Sources: CyberArk 26.1 System Requirements (cluster, sizing); Services; Components; Platform objects; Message Bus; Deployment considerations.");
+  notes(s,
+`Servers that share one database form a cluster. Every module is installed on every server; the Product node of each server's Configuration Console enables or disables components for that server only, so a "role" is the set of components switched on. The Windows services are CyberArk Platform (also called VPlatform or the VED service), which hosts the service modules and the Message Bus; Logging, the CyberArk Log Server, which processes log events and delivers notifications; API Host, a local WCF service on port 689 for the MMC snap-ins; IIS; and the EST service. CyberArk's sizing table: two servers up to 50,000 active certificates; six servers at 250,000 or more, as two dedicated logging event processing servers, two web services servers and two back-end processing servers; a million or more is professionally designed by CyberArk. Agents doing certificate work need two more servers per 40,000 managed servers. Each server needs four cores, 16 GB of memory and 5 GB of disk. With three or more servers, the installation uses a custom answer file per server type. ACME servers are kept separate because "you cannot have FIPS enabled on any server that is used for ACMEv2."`,
+  "CyberArk 26.1 System Requirements (cluster definition; server sizing; hardware); Windows services; Components (Product node); Platform objects; Message Bus; Deployment considerations (FIPS and ACMEv2); Installation and Upgrade Guide p. 107 (answer files per server type).");
+}
+
+{
+  const s = content(IN, "The web tier: consoles, API and sign-in");
+  tag(s, "How");
+  table(s, "Web", 1.5, [2.6, 5.6, 3.95], ["Piece", "What it does", "Where and how"], [
+    ["Web console", "Day-to-day certificate, SSH and agent work; dashboards (formerly Aperture)", "Web Console component, on at least two servers; HTTPS 443"],
+    ["Policy Tree", "Advanced configuration: CAs, applications, policy, reports. A web console, not MMC", "Installed with the Web Console; trees: Policy, Platforms, Roots, Encryption, Reports, Workflow and more"],
+    ["Web SDK", "The REST API (/vedsdk) for automation and integrations", "OAuth bearer tokens"],
+    ["Authentication Server", "Issues tokens for the web components (/vedauth)", "SAML or OIDC SSO; Entra ID supported"],
+    ["Configuration Console", "Per-server MMC: database, components, connectors, sign-in, Message Bus, logging", "Runs through the local API Host; a remote snap-in collection exists"],
+  ], { fontSize: 11 });
+  callout(s, "LB", 5.2, 1.3, "FaTriangleExclamation", HEX.amber, "Load balancer rules: ",
+    "every web service behind one name; that name in the servers' operational certificate (or SAML breaks); X-Forwarded-For logged; drain servers during rolling upgrades.");
+  sources(s, "Sources: CyberArk 26.1 Components; Policy Tree and management trees; Configuration Console nodes; remote MMC; server settings (FQDN macros); load balancer; rolling upgrades.");
+  notes(s,
+`The Web Console component is a "Web-based management interface" that "Installs both Policy Tree and Aperture"; CyberArk now calls Aperture the web console and WebAdmin the Policy Tree, and both are web consoles. The older Windows console is deprecated, and in 26.1 its Logging tree moved into the Configuration Console's Tools > Logging node. CyberArk says at least two servers need the Web Console enabled. The web console handles dashboards and certificate, SSH and agent tasks; "You must use the Policy Tree to perform advanced certificate tasks such as configuring a CA, creating and configuring applications," and reports. The Policy Tree's management trees are Credentials, Discoveries, Encryption, Identity, Logging, Platforms, Policy, Reports, Roots and Workflow. The Web SDK is the REST API at /vedsdk; the Authentication Server at /vedauth provides token authentication for REST access. The Configuration Console is MMC-based; its nodes include Attention Required, Database, Product, Connectors, System Roles, Authentication, Recycle Bin, Access Management, Events, Statistics, Message Bus and Tools > Logging. A remote MMC snap-in collection connects to /vedsdk and /vedauth. All web services should sit behind an application delivery controller, which rolling upgrades require; the Aperture FQDN must match the CN or DNS SAN of the CA-issued Venafi Operational Certificate for SAML SSO; configure X-Forwarded-For so login notifications don't show the load balancer's address. CyberArk documents no persistence or health-check settings.`,
+  "CyberArk 26.1 Components; Policy Tree (WebAdmin) and management trees; web console (Aperture); Configuration Console nodes; Remote MMC snap-in installation; Server settings (FQDN macros); Load balancer client IP; Rolling upgrades.");
+}
+
+{
+  const s = content(IN, "The back end: engines, log servers and message bus");
+  tag(s, "How");
+  panel(s, "Engines", 0.6, 1.5, 3.95, 4.95, HEX.teal, HEX.tealTint, "PROCESSING ENGINES", null, [
+    "Every server registers as an engine",
+    "Assign engines to policy folders to keep work on chosen servers",
+    "Work hands off by stage: certificate, enrollment (by CA template), provisioning (by application), revocation",
+    "So a DMZ engine can do public-CA enrollment only",
+  ], 11.5);
+  panel(s, "Log", 4.7, 1.5, 3.95, 4.95, HEX.navy, HEX.navyTint, "LOG AND EVENT SERVERS", null, [
+    "The Logging service: audit trail (SQL channel by default) and notifications",
+    "About 10 events per renewal; a separate log database for large volumes",
+    "Only these need paths to the SIEM, email and SNMP",
+    "Out of disk space, the log server stops",
+  ], 11.5);
+  panel(s, "Bus", 8.8, 1.5, 3.95, 2.6, HEX.navy, HEX.navyTint, "MESSAGE BUS (MQTT)", null, [
+    "Mandatory; tells servers about changes",
+    "TLS 8883, every server to every other, across sites",
+  ], 11.5);
+  table(s, "Latency", 4.25, [2.0, 1.95], ["Delay to the DB", "One renewal"], [
+    ["0 ms", "about 2 s"], ["15 ms", "about 7 s"], ["30 ms", "about 15 s"], ["60 ms", "about 30 s"],
+  ], { x: 8.8, fontSize: 11 });
+  sources(s, "Sources: CyberArk 26.1 Platform objects; management zones and partitions; Log server; SQL channel; Message Bus; System Requirements (latency).");
+  notes(s,
+`Every installed server registers as an engine under \\VED\\Engines. "You can assign different servers, or 'processing engines,' to each Policy object. That server will then run the services for the Policy's subordinate objects"; with the list empty, any engine can process the folder. The lifecycle hands off between engines by stage: certificate work keys off the certificate object, enrollment off the CA template (so a DMZ engine can do public-CA enrollment only), provisioning off each application object, and revocation off the CA template; CDP monitoring and revocation checking don't honor partitioning. Daily tasks are best scheduled to start at the same time across servers. The log server monitors events, keeps the audit trail ("Every event gets logged to the default channel," a SQL Server channel by default) and acts on channels; it generates about ten events per certificate renewal, and "If the server runs out of disk space, the log server cannot operate." Each server with event processing must reach the configured channels. The Message Bus sends "near-instant notifications to other servers in the cluster about significant changes to the database" through an MQTT broker; "Message Bus is not optional"; in the default mesh mode "All servers must be able to communicate with each other over the configured port," TLS 8883 by default; a central MQTTv5 broker is the alternative. CyberArk's latency table for two minimum-spec servers: about 2 seconds per renewal at 0 ms, 7 at 15 ms, 15 at 30 ms, 30 at 60 ms and 60 at 120 ms.`,
+  "CyberArk 26.1 Platform objects; Management zones; Engine partitioning; Server settings (daily tasks); Log server overview and configuration; SQL Server channel requirements; Network requirements; Message Bus overview, configuration and health; System Requirements (latency table).");
+}
+
+{
+  const s = content(IN, "Components: switched on server by server");
+  tag(s, "What");
+  table(s, "Comp", 1.5, [3.0, 5.35, 3.8], ["Component", "What it does", "Placement"], [
+    ["Certificate Lifecycle and Monitoring", "Issue, renew, revoke, install; expiry notices", "Back end"],
+    ["CA Import", "Imports what Microsoft CAs and Amazon Private CA issued", "Needs reach to the CA"],
+    ["Network and Onboard Discovery", "Scan for TLS listeners; import from F5, NetScaler, IIS, Key Vault, AWS", "Discovery zones per server"],
+    ["Validation; Revocation Monitoring", "Check installed certificates; CRL and OCSP endpoints at least daily", "Equal endpoint reach on every engine"],
+    ["Automatic Layout; Bulk Provisioning", "Placement rules and reconciliation; install to many devices at once", "Layout on some servers only"],
+    ["ACME; EST; SCEP", "Enrollment for web servers, devices and MDM", "ACME non-FIPS; EST 50443; SCEP 80"],
+    ["Web Console, Web SDK, Auth Server, Client REST", "Consoles, API, tokens, agent check-in", "Web servers"],
+    ["Reporting; Object Monitoring", "Reports; SSH key and credential expiry", "Back end"],
+  ], { fontSize: 10.5 });
+  sources(s, "Sources: CyberArk 26.1 Components (Product node, answer-file keys); Discovery zones; Revocation monitoring; Automatic layout; System Requirements (ports).");
+  notes(s,
+`From CyberArk's component list, with answer-file keys: Certificate Lifecycle and Monitoring (Certificates) handles "expiration notifications, issuance, renewal and revocation, and ... provisioning of certificates to devices." CA Import (CAImport) imports from Microsoft CAs over DCOM, Amazon Private CA through S3 audit reports, and the SaaS. Network Discovery (Discovery) scans IPv4 ranges and ports, with Discovery Zones per server; IPv6 isn't supported for discovery jobs. Onboard Discovery (OBDDiscovery) imports agentlessly with application configuration from AWS, Azure Key Vault, NetScaler, F5 LTM Advanced, DataPower, IIS and Adaptable sources. Validation runs network and onboard validation. Certificate Revocation Monitoring (Revocation) monitors CRL distribution points at least daily and OCSP; on multiple engines "all must have equal access to all CDP and OCSP endpoints," and it ignores partitioning. Automatic Layout Manager runs placement jobs and duplicate reconciliation, and CyberArk suggests enabling it on some servers only. Bulk Provisioning installs to many devices in batches of 10 to 1,000. ACME Service, EST service (TCP 50443, only on servers that handle it) and Network Device Enrollment (SCEP, port 80) handle enrollment. Web Console, Web SDK, Authentication Server and Client REST (agent communication) are web services. Reporting and Object Monitoring run on the back end. Kubernetes Discovery Manager imports only from clusters registered to the SaaS. Cloud Instance Monitoring was removed in 24.3.`,
+  "CyberArk 26.1 Components; Discovery zones; Network connection requirements; Certificate revocation monitoring; Automatic layout; Bulk provisioning; ACME; EST; SCEP; Deprecated features (Cloud Instance Monitoring); System Requirements (ports).");
+}
+
+{
+  const s = content(IN, "Drivers, agents, the database and the keys");
+  tag(s, "How");
+  table(s, "Parts", 1.5, [2.4, 9.75], ["Part", "What the documentation says"], [
+    ["CA template drivers", "One object per CA and certificate type: Microsoft Enterprise or Standalone CA (DCOM), DigiCert, Sectigo, GlobalSign, HID, ACM; a CA pool of up to three Microsoft CAs fails over"],
+    ["Application drivers", "Agentless installs: IIS and CAPI (Windows admin on the target), F5, NetScaler, Palo Alto, Apache/PEM, Java, PKCS#12, Key Vault, AWS, HashiCorp Vault; licensed per instance"],
+    ["Adaptable drivers", "PowerShell-scripted CA, application, discovery, log-channel and credential drivers for anything else"],
+    ["Server Agent", "Checks in to the platform (it can't be pushed to) and reports only changes; Windows, RHEL, AIX, Solaris, SLES"],
+    ["SQL Server", "2014–2022, English; one active database for all servers; Always On; Service Broker on; DBO and operational accounts (gMSA supported)"],
+    ["Keys", "An AES-256 software key in every server's registry, an HSM (Luna, nShield), or both; export the software key or lose the data"],
+    ["Operational certificate", "Every server ships a self-signed one: replace it with a CA-issued certificate that includes the load balancer's name"],
+  ], { fontSize: 10.5 });
+  sources(s, "Sources: CyberArk 26.1 CA drivers; System Requirements (applications, agents, SQL); Adaptable drivers; agent FAQ; Always On; software key; HSM configuration; operational certificate.");
+  notes(s,
+`CA template drivers: one CA template object per CA instance or account, and separate objects per certificate type. Internal CAs include Microsoft Enterprise and Standalone CA, Adaptable CA, OpenSSL, Red Hat Certificate System and DigiCert PKI Platform; public CAs include ACM, Sectigo SCM, DigiCert CertCentral, GlobalSign MSSL, HID PKIaaS, QuoVadis and VikingCloud; Entrust Certificate Services is no longer supported in 26.1. A Microsoft CA Pool holds up to three MSCA templates with 60-minute failover. Application drivers are agentless and licensed per endpoint: keystores (Apache/PEM, JKS/JCEKS, CAPI, IIS, NSS, PKCS#12, GSK) and appliances and cloud (AWS, Azure Key Vault, NetScaler, F5 LTM Advanced, Google Cloud load balancer, HashiCorp Vault PKI, DataPower, Palo Alto NGFW and others); CAPI needs a Windows administration account on the target. Adaptable drivers "depend on a Microsoft PowerShell script hosted in your local environment." The Server Agent scans file systems and keystores; "The Trust Protection Foundation server cannot push work to the agent," which "can only receive work when it checks in" and "only reports deltas." SQL Server 2014 to 2022, English only, not on a platform server except in test, FULL recovery recommended, Enterprise recommended; "All Trust Protection Foundation servers must connect to the same instance of the database"; Service Broker must be enabled after a restore; a DBO account for installs and an operational account for everyday work, gMSA supported. Encryption uses a software key, an HSM, or both; the AES-256 software key is stored in the registry, and "Without it, you cannot access data in the database." The Venafi Operational Certificate secures TLS to the web server and the log server; a self-signed one should never be used in production.`,
+  "CyberArk 26.1 CA template drivers and support matrix; Microsoft CA Pool; System Requirements (applications, agents, SQL, HSMs); CAPI permissions; Adaptable drivers; Agent discovery and FAQ; Always On; Database recovery; Microsoft SQL accounts; gMSA; Encryption keys and software key; HSM configuration; Venafi Operational Certificate.");
+}
+
+{
+  const s = content(IN, "What the platform connects to");
+  tag(s, "What");
+  img(s, "appC-integrations", "Integrations of CyberArk Certificate Manager: issuers on the left (AD CS, public CAs, AWS Private CA and ACM); Entra ID, the CyberArk vault and enrollment clients feeding in; installation targets on the right (Windows IIS and CAPI, appliances, keystores, cloud stores, Kubernetes); the SIEM and ServiceNow receiving events and owners.", 0.6, 1.45, 6.3, 5.05);
+  panel(s, "Bound", 7.1, 1.5, 5.65, 4.95, HEX.amber, HEX.amberTint, "BOUNDARY QUESTIONS (DASHED LINES)", null, [
+    "Kubernetes discovery runs only through CyberArk's SaaS: use cert-manager's CyberArk issuer against the self-hosted API instead",
+    "ServiceNow: no CyberArk-built app; a third-party app connects through a MID Server",
+    "Intune's SCEP integration needs outbound HTTPS to Azure from every server; no government-cloud endpoints are documented",
+    "SIEM over syslog-TLS: the collector's certificate needs its IP address in the SAN",
+  ], 11.5);
+  sources(s, "Sources: CyberArk 26.1 CA drivers; SSO and SCIM; Credential Provider; Kubernetes discovery; Intune integration; syslog channel; cert-manager CyberArk issuer; ServiceNow Store.");
+  notes(s,
+`Issuers: AD CS over DCOM with an account holding Read, Issue and Manage Certificates and Request Certificates; DigiCert, Sectigo, GlobalSign and HID drivers; AWS Certificate Manager, including Amazon Private CA, with CA Import through S3 audit reports. Identity: in 26.1 the web console supports SSO through OIDC or SAML per identity connector, MMC snap-ins use the OIDC device flow, and Entra ID is listed as supported for SAML, OIDC and SCIM; SCIM 2.0 pushes users and groups to /vedscim and "doesn't authenticate users." Target credentials come from the CyberArk vault through the Credential Provider. Clients request through ACME, EST, SCEP or the Web SDK; vCert 5.13.9 is compatible with self-hosted 17.3 and later. Targets: the application drivers, Onboard Discovery, Bulk Provisioning and the Server Agent. Kubernetes issuance uses cert-manager's CyberArk issuer ("formerly known as the Venafi Issuer"), one issuer per zone, with no refresh-token support; Kubernetes discovery needs TCP 443 to api.venafi.cloud. ServiceNow: no CyberArk-authored integration in the 26.1 docs; the third-party AEYRiX Machine Identity Protection app requires a MID Server. SIEM: the syslog channel over TCP with TLS, CEF or JSON, 6514 recommended; the receiver certificate needs an iPAddress SAN. Intune: the platform can act as a third-party SCEP CA, which the program rejects, and the integration needs outbound HTTPS to Azure from all servers, with no government-cloud endpoint mentioned.`,
+  "CyberArk 26.1 Microsoft ADCS CA template; DigiCert, GlobalSign, ACM drivers; Importing from Amazon Private CA; SSO, login experience and SSO vendor support; SCIM; CyberArk vault connector and Credential Provider; vCert README; Kubernetes discovery; Intune integration; Syslog channel; cert-manager CyberArk issuer documentation; ServiceNow Store (AEYRiX).");
+}
+
+{
+  const s = content(IN, "A two-site reference topology");
+  tag(s, "How");
+  label(s, "Design label", "PROGRAM DESIGN GUIDANCE — BUILT FROM DOCUMENTED CONSTRAINTS", 0.6, 1.4, 12.15);
+  img(s, "appC-reference-topology", "A two-site reference topology: in each site a web services server, a separate non-FIPS ACME server, a back-end server and a log server, behind shared load-balancer names; a Message Bus mesh between all eight servers; one SQL Server Always On availability group across the sites; and an HSM pair.", 0.6, 1.75, 7.3, 4.75);
+  panel(s, "Cautions", 8.1, 1.75, 4.65, 4.75, HEX.red, HEX.redTint, "CONFIRM BEFORE YOU BUILD", null, [
+    "CyberArk doesn't say whether FIPS and non-FIPS servers can share one cluster; if not, ACME is its own small cluster",
+    "Keep site B close: every renewal round-trips to the one active database",
+    "Port 8883 open between all servers, both ways, across sites",
+    "Whether non-web servers need IIS: the vendor's pages disagree",
+  ], 11.5);
+  sources(s, "Sources: component research brief §4 (design guidance); CyberArk 26.1 Deployment considerations; Always On; Message Bus; System Requirements; HSM configuration.");
+  notes(s,
+`This layout is the program's design guidance; every element traces to a documented constraint. Site A holds the primary database replica; site B the secondary. Web services servers in each site (Web Console, Web SDK, Auth Server, Client REST, SCEP and EST if used) sit behind one load-balancer name, with FIPS mode per policy and the FQDN macros set to the load balancer's name. ACME servers in each site run only the ACME service with FIPS mode off, behind their own name, because "you cannot have FIPS enabled on any server that is used for ACMEv2"; CyberArk doesn't state that FIPS and non-FIPS servers can share a cluster, so get that confirmed, and if it isn't, run ACME as a separate non-FIPS cluster with its own database. Back-end servers carry the lifecycle, import, validation, discovery and reporting components, with processing-engine assignments keeping site-local work on site-local engines and a DMZ or egress engine for public-CA enrollment. Log servers run the Logging service and are the only servers with paths to the SIEM, email and SNMP. The Message Bus mesh needs TLS 8883 all-to-all, including across sites. SQL Server Always On, Enterprise edition, one replica per site behind a listener with MultiSubnetFailover, Service Broker enabled; all servers connect to the same instance. An HSM pair in the vendor's HA group, presenting one partition label, with the client at the same path on every server. Hardening: outbound certificate verification set to Strict instead of the default None, TLS 1.2 and 1.3 only, and the operational certificates CA-issued with the load-balancer name in the SAN.`,
+  "Component research brief section 4 (two-site reference topology, design guidance); CyberArk 26.1 Deployment considerations; Always On high availability; answer file (MultiSubnetFailover); Message Bus; Engine partitioning; System Requirements (latency); HSM configuration; Server settings (outbound verification).");
+}
+
+{
+  const s = content(IN, "One certificate's journey through the platform");
+  tag(s, "How");
+  img(s, "appC-certificate-journey", "One certificate's journey: discover, place and own, enroll, provision, validate and monitor, renew back to enrollment before expiry, and revoke or retire when no longer needed; every step is logged to the SIEM and the inventory is the assessor's evidence.", 0.6, 1.5, 12.15, 4.6);
+  sources(s, "Sources: CyberArk 26.1 Components; Engine partitioning (lifecycle stages); Discovery; Placement rules; Validation; Revocation monitoring; Log server; Book 07, Ch 08.");
+  notes(s,
+`The journey follows the lifecycle stages CyberArk's engine partitioning describes. Discover: Network Discovery, CA Import or the Server Agent finds the certificate. Place and own: placement rules and the Automatic Layout Manager put it in a policy folder, whose policy supplies the CA template and settings, with a named Server Owner (Book 07 Chapter 05). Enroll: the Certificate Lifecycle and Monitoring component requests a certificate through the CA template driver (enrollment stages 500 to 700). Provision: an application driver or the agent installs it on the target (stages 800 to 1200). Validate and monitor: validation scans confirm it's in place, revocation monitoring checks CRL and OCSP endpoints at least daily, and expiry notifications fire. Renew: before expiry, the cycle returns to enrollment; Book 07 Chapter 08's rule is that no certificate class depends on a person remembering a date. Revoke or retire: revocation (stage 1400) goes through the CA template, and the object is retired. Every event reaches the log server's default channel and, through the syslog channel, the SIEM.`,
+  "CyberArk 26.1 Engine partitioning (lifecycle stages); Components; Placement rules; Validation; Certificate revocation monitoring; Log server; Book 07, Chapters 05 and 08.");
+}
+
 // ================================================================== Part 1 divider
 {
   const s = divider(P1, "Part 1: Build the platform", "Implementation guide  ·  Part 1 of 4",
-    ["Architecture, sizing and high availability", "FIPS posture and console sign-in", "Hardening, service accounts, backup and recovery"], 8,
+    ["Architecture, sizing and high availability", "FIPS posture and console sign-in", "Hardening, service accounts, backup and recovery"], 3,
     "Sources: CyberArk 26.1 System Requirements, Installation Guide, security hardening and disaster recovery pages; NIST CMVP; Book 07 Ch 05.");
   notes(s,
 `Part 1: build the platform.
@@ -309,6 +491,7 @@ Then the API. Automation authenticates with OAuth tokens from the platform's aut
   table(s, "Harden", 1.5, [2.6, 9.55], ["Area", "What to do"], [
     ["IIS (vendor guidance)", "Host-header rewrite rule; debug off; httpOnlyCookies and requireSSL; GET and POST only; HSTS, X-Frame-Options, CSP; remove X-Powered-By"],
     ["Server certificate", "Replace the self-signed Venafi Operational Certificate on every server with a CA-issued one"],
+    ["Outbound TLS checks", "Certificate verification for outbound connections defaults to None: set it to Strict, with revocation checking"],
     ["Database accounts", "Separate DBO account (install, upgrade) from the operational account; the operational account needs Log on as a Service and local Administrators on every server; gMSA supported"],
     ["Target credentials", "CAPI/IIS provisioning needs Windows administrator on the target; keep these in CyberArk's password vault via the Credential Provider (design guidance)"],
     ["Answer files", "They hold the admin password, database credentials and the software key: encrypt them"],
@@ -317,7 +500,7 @@ Then the API. Automation authenticates with OAuth tokens from the platform's aut
     "Master Admins, the software key and database backups. The platform holds certificate-manager rights on CAs, admin on Windows targets and private keys.");
   sources(s, "Sources: CyberArk 26.1 IIS hardening; web server security; Windows auth requirements; gMSA; CAPI permissions; credential pages; Installation Guide p. 86.");
   notes(s,
-`Hardening. CyberArk's hardening section currently covers IIS only: a rewrite rule against host-header injection; web configuration settings with debugging off, cookies marked HTTP-only and secure, request filtering to GET and POST, strict transport security, frame and content security policy headers; and the X-Powered-By header removed. Apply all of it.
+`Hardening. CyberArk's hardening section currently covers IIS only: a rewrite rule against host-header injection; web configuration settings with debugging off, cookies marked HTTP-only and secure, request filtering to GET and POST, strict transport security, frame and content security policy headers; and the X-Powered-By header removed. Apply all of it. Also set outbound certificate verification, which defaults to "None (Not Recommended)," to Strict, with revocation checking.
 
 Every platform server ships with a self-signed certificate called the Venafi Operational Certificate. Replace it on every server with one issued by your CA before production.
 
@@ -326,7 +509,7 @@ The database needs two accounts: a DBO account used only to install and upgrade,
 The provisioning drivers need privilege on the targets too. For Windows CAPI and IIS, CyberArk says the account must be a Windows administrator on the target. The program's guidance is to keep those credentials in CyberArk's Enterprise Password Vault, which the platform can query through the Credential Provider. And the installation answer files contain the admin password, the database credentials and the software key, so encrypt them.
 
 So the platform concentrates privilege: certificate-manager rights on CAs, administrator on Windows targets, and private keys in its database. The program therefore treats the Master Admins, the software key and the database backups as Tier 0.`,
-  "CyberArk 26.1 Security hardening best practices and IIS hardening; Securing the web server; Windows authentication requirements; Group managed service accounts; Rolling upgrades; CAPI permissions; CyberArk credential best-practice example; Securing credential objects; Installation and Upgrade Guide p. 86.");
+  "CyberArk 26.1 Security hardening best practices and IIS hardening; Securing the web server; Windows authentication requirements; Group managed service accounts; Rolling upgrades; CAPI permissions; CyberArk credential best-practice example; Securing credential objects; Server settings (outbound certificate verification); Installation and Upgrade Guide p. 86.");
 }
 
 // ================================================================== 8 Backup and DR
@@ -365,7 +548,7 @@ On the CA side, Microsoft recommends backing up the CA with Backup-CARoleService
 // ================================================================== Part 2 divider
 {
   const s = divider(P2, "Part 2: Connect the issuers", "Implementation guide  ·  Part 2 of 4",
-    ["The AD CS driver, and scoping its account under ESC7", "Public and cloud CA drivers in 26.1", "Intune coexistence: who owns device certificates"], 7,
+    ["The AD CS driver, and scoping its account under ESC7", "Public and cloud CA drivers in 26.1", "Intune coexistence: who owns device certificates"], 3,
     "Sources: CyberArk 26.1 CA driver pages; Supported integrations; Deprecated features; Microsoft Learn (AD CS, Intune, Graph); Book 07 Ch 03–07.");
   notes(s,
 `Part 2: connect the issuers.
@@ -509,7 +692,7 @@ Here's the second correction. Book 07 Chapter 04 says the platform reads Cloud P
 // ================================================================== Part 3 divider
 {
   const s = divider(P3, "Part 3: Discover, own and automate", "Implementation guide  ·  Part 3 of 4",
-    ["Discovery scans and CA import", "Ownership: policy folders, owners and the CMDB", "Enrollment automation; Kubernetes, ServiceNow and SIEM"], 7,
+    ["Discovery scans and CA import", "Ownership: policy folders, owners and the CMDB", "Enrollment automation; Kubernetes, ServiceNow and SIEM"], 3,
     "Sources: CyberArk 26.1 discovery, policy, permissions, ACME, EST, SCEP, OAuth, Kubernetes and logging pages; vCert; cert-manager; ServiceNow Store.");
   notes(s,
 `Part 3: discover, own and automate.
@@ -643,7 +826,7 @@ SIEM. The platform's log server has a syslog channel with BSD, CEF or JSON forma
 // ================================================================== Part 4 divider
 {
   const s = divider(P4, "Part 4: Migrate and operate", "Implementation guide  ·  Part 4 of 4",
-    ["The build mapped onto Book 07's six waves", "Renewal at shrinking public lifetimes; monitoring and drift", "Decommissioning, decisions and next steps"], 9,
+    ["The build mapped onto Book 07's six waves", "Renewal at shrinking public lifetimes; monitoring and drift", "Decommissioning, decisions and next steps"], 3,
     "Sources: Book 07 Ch 01, Ch 05, Ch 07, Ch 08; CA/Browser Forum Baseline Requirements (via Book 07); CyberArk 26.1 docs.");
   notes(s,
 `Part 4: migrate and operate.
@@ -898,6 +1081,8 @@ srcSlide("Sources: Microsoft, government, standards and Book 07", [
 const narrated = per.reduce((a, p) => a + p.n, 0);
 console.log(`slides: ${pres.slides.length}; narrated notes: ${narrated} words, about ${(narrated / WPM).toFixed(1)} minutes at ${WPM} wpm`);
 console.log("per slide:\n" + per.map((p) => `  ${p.slide}  ${(p.n / WPM).toFixed(1)} min  ${p.n} w  ${p.title}`).join("\n"));
+const unused = Object.keys(NARR).filter((t) => !used.has(t));
+if (unused.length) throw new Error("narration with no slide: " + unused.join(" | "));
 const dup = titles.filter((t, i) => titles.indexOf(t) !== i);
 if (dup.length) throw new Error("duplicate titles: " + dup.join(", "));
 D.save(OUT).catch((e) => { console.error(e); process.exit(1); });
