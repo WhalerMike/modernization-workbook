@@ -335,3 +335,47 @@ section.footnotes h2.fmw-notes-title {
 .landscape th:not(:first-child) {
   text-align: center;
 }
+
+// Diagrams fill the text column instead of stopping at their drawn size, so they grow with the page;
+// clicking one opens it full screen (Quarto lightbox) to zoom in. SVG stays sharp at any size.
+.quarto-figure img[src$=".svg"],
+figure img[src$=".svg"] {
+  width: 100%;
+  height: auto;
+}
+
+// Tables that adapt to the screen (labels and scroll boxes added by assets/table-cards.html).
+.fmw-table-scroll {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+@media (max-width: 640px) {
+  table.fmw-stack thead {
+    display: none;
+  }
+  table.fmw-stack,
+  table.fmw-stack tbody,
+  table.fmw-stack tr,
+  table.fmw-stack td {
+    display: block;
+    width: 100% !important;
+  }
+  table.fmw-stack tr {
+    border: 1px solid $fmw-line;
+    border-radius: 6px;
+    margin-bottom: 0.75rem;
+    padding: 0.35rem 0.6rem;
+  }
+  table.fmw-stack td {
+    border: none !important;
+    padding: 0.2rem 0 !important;
+  }
+  table.fmw-stack td[data-label]::before {
+    content: attr(data-label);
+    display: block;
+    font-size: 0.78rem;
+    font-weight: 600;
+    color: $fmw-muted;
+    text-transform: none;
+  }
+}
