@@ -1,0 +1,58 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:05.461
+The book runs one loop on every platform:
+test with the native tool, detect drift,
+
+2
+00:00:05.461 --> 00:00:10.788
+raise a typed task against the asset, fix
+it natively, and close on the next test.
+
+3
+00:00:10.788 --> 00:00:12.349
+Two rules matter most.
+
+4
+00:00:12.349 --> 00:00:16.536
+The ticketing platform reads
+control state but never writes it,
+
+5
+00:00:16.536 --> 00:00:19.063
+and a task closes on a
+re-test, not a click.
+
+6
+00:00:19.063 --> 00:00:22.819
+On Microsoft 365, CISA's
+ScubaGear is the main test,
+
+7
+00:00:22.819 --> 00:00:28.275
+and its stable policy IDs let the mapping
+from failure to task live as data.
+
+8
+00:00:28.275 --> 00:00:31.571
+Conditional Access exceptions
+get the same treatment,
+
+9
+00:00:31.571 --> 00:00:33.363
+with an approver and an expiry.
+
+10
+00:00:33.363 --> 00:00:35.228
+Compliance Manager is useful,
+
+11
+00:00:35.228 --> 00:00:38.512
+but it's a readiness signal,
+not the evidence of record.
+
+12
+00:00:38.512 --> 00:00:41.830
+Azure works the same way,
+with its own caveats.

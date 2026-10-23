@@ -1,0 +1,62 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.530
+Five built-in roles carry
+most help desk identity work,
+
+2
+00:00:03.530 --> 00:00:05.850
+and all five are labeled privileged.
+
+3
+00:00:05.850 --> 00:00:09.687
+The column people get wrong is
+whose account each role can touch.
+
+4
+00:00:09.687 --> 00:00:13.249
+Most can act only on users with
+no admin role, and members of
+
+5
+00:00:13.249 --> 00:00:17.700
+role-assignable groups are protected
+from everyone except the top tier.
+
+6
+00:00:17.700 --> 00:00:19.506
+That protection is deliberate:
+
+7
+00:00:19.506 --> 00:00:23.325
+whoever took over a member's account
+would inherit the group's role.
+
+8
+00:00:23.325 --> 00:00:26.588
+The other lesson is that
+capability isn't authority.
+
+9
+00:00:26.588 --> 00:00:28.954
+Some of these roles can delete users,
+
+10
+00:00:28.954 --> 00:00:32.425
+and one can grant consent,
+which the desk must never do.
+
+11
+00:00:32.425 --> 00:00:36.948
+So the platform's limits aren't the
+policy; the ticket and monitoring enforce
+
+12
+00:00:36.948 --> 00:00:41.400
+the rest, and the desk gets a narrow
+custom role for app assignments instead.
+
+13
+00:00:41.400 --> 00:00:42.700
+Next, scope.

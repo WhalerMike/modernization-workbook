@@ -1,0 +1,54 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.150
+The hardest test at a branch is
+often one the agency wrote itself.
+
+2
+00:00:04.150 --> 00:00:07.695
+Once a branch breaks out locally,
+it's an external boundary,
+
+3
+00:00:07.695 --> 00:00:11.830
+and the security plan makes promises
+about it: boundary monitoring,
+
+4
+00:00:11.830 --> 00:00:15.375
+a traffic-flow policy per
+service, continuous monitoring.
+
+5
+00:00:15.375 --> 00:00:20.487
+Lacking SD-WAN isn't a finding; being
+unable to produce that evidence is.
+
+6
+00:00:20.487 --> 00:00:23.126
+On encryption, the book is precise.
+
+7
+00:00:23.126 --> 00:00:27.850
+The controls accept TLS or IPsec,
+and nothing in the baselines demands
+
+8
+00:00:27.850 --> 00:00:32.250
+an encrypted WAN when the payload
+is already protected end to end.
+
+9
+00:00:32.250 --> 00:00:35.747
+Where encryption really
+matters is cleartext protocols,
+
+10
+00:00:35.747 --> 00:00:39.463
+so inventory those and treat the
+list as an exposure register.
+
+11
+00:00:39.463 --> 00:00:42.430
+Now, what happens to DNS and telemetry.

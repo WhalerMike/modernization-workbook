@@ -1,0 +1,48 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.850
+Saving a setting proves nothing.
+
+2
+00:00:01.850 --> 00:00:05.894
+So the program runs a completeness
+check a day after any change,
+
+3
+00:00:05.894 --> 00:00:10.950
+again at three days, and then daily, against
+a named list of the tables it expects.
+
+4
+00:00:10.950 --> 00:00:16.475
+The result to fear is stale: it worked,
+then stopped, and old data hides the gap.
+
+5
+00:00:16.475 --> 00:00:18.692
+Microsoft Graph is useful here,
+
+6
+00:00:18.692 --> 00:00:23.212
+but as a magnifying glass for one
+specific question, not as a feed.
+
+7
+00:00:23.212 --> 00:00:26.511
+And watch one silent trap:
+without the right permission,
+
+8
+00:00:26.511 --> 00:00:30.312
+sign-in records quietly drop
+their Conditional Access results.
+
+9
+00:00:30.312 --> 00:00:31.425
+That's identity.
+
+10
+00:00:31.425 --> 00:00:34.750
+Module 2 moves to the
+platform and the mailbox.

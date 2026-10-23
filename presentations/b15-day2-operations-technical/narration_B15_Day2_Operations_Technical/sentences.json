@@ -1,0 +1,1015 @@
+{
+ "1": [
+  [
+   0.05,
+   0.713,
+   "Welcome."
+  ],
+  [
+   0.762,
+   8.425,
+   "This is the technical deep dive for Book 15 of the Federal Modernization Workbook, Compliance Automation and Day-2 Operations."
+  ],
+  [
+   9.188,
+   8.475,
+   "It's for help desk leads, cloud and platform engineers, and the people who automate controls: the teams who run the estate after cutover."
+  ],
+  [
+   17.663,
+   8.588,
+   "Part 1 is the front door and the authority: how a request comes in, gets routed and verified, and what the help desk may do in Entra ID."
+  ],
+  [
+   26.25,
+   11.075,
+   "Part 2 is catalogs, records and controls: typed requests, SaaS integrations, the CMDB, and control automation across four platforms, then who runs it all."
+  ],
+  [
+   37.325,
+   2.712,
+   "Let's start with why day two matters so much."
+  ]
+ ],
+ "2": [
+  [
+   0.05,
+   1.387,
+   "Here's why this matters."
+  ],
+  [
+   1.438,
+   5.987,
+   "A modernized estate isn't judged at cutover; it's judged the first Monday someone can't sign in."
+  ],
+  [
+   7.425,
+   4.213,
+   "And the most dangerous routine action on the help desk is a single button."
+  ],
+  [
+   11.637,
+   7.188,
+   "Requiring a user to re-register for M F A wipes their methods, and whoever signs in next sets up new ones."
+  ],
+  [
+   18.825,
+   6.438,
+   "So a reset done on an unverified request doesn't fix an account; it hands it to whoever asked."
+  ],
+  [
+   25.262,
+   4.088,
+   "Attackers know this, and they call help desks to do exactly that."
+  ],
+  [
+   29.35,
+   6.763,
+   "Federal guidance agrees: recovery is a bypass, and it needs high friction and a notice to the real owner."
+  ],
+  [
+   36.112,
+   3.763,
+   "So this book treats every reset as an account transfer."
+  ],
+  [
+   39.875,
+   2.575,
+   "Next, the model that makes that workable."
+  ]
+ ],
+ "3": [
+  [
+   0.05,
+   8.45,
+   "Every day-two request has to answer three questions before anything changes: where does it go, who may say yes, and what proves it happened."
+  ],
+  [
+   8.5,
+   10.938,
+   "The book answers them with platforms the agency already runs: the service management platform routes, the identity governance tool approves, and Entra ID is where the change lands."
+  ],
+  [
+   19.438,
+   11.65,
+   "Underneath sits a contract, not a product: every task has an owner, every change has an approval on record, automation runs under a narrow identity, and evidence comes out the other end."
+  ],
+  [
+   31.087,
+   3.6,
+   "The five rules along the bottom apply to every request."
+  ],
+  [
+   34.688,
+   4.513,
+   "If any one is missing, the change may be right, but it can't be attested."
+  ],
+  [
+   39.2,
+   2.087,
+   "Module 1 starts at the front door."
+  ]
+ ],
+ "4": [
+  [
+   0.05,
+   6.85,
+   "Module 1 is intake, triage and routing: the everyday mechanics that make the authority model real."
+  ],
+  [
+   6.9,
+   8.213,
+   "An estate with a clean role model still slides backward if the team keeps answering email, or if a manager's 'just do it' counts as approval."
+  ],
+  [
+   15.113,
+   1.938,
+   "So we start with how work comes in."
+  ]
+ ],
+ "5": [
+  [
+   0.05,
+   2.325,
+   "The rule is simple: one front door."
+  ],
+  [
+   2.375,
+   3.425,
+   "Nothing is handled as ad hoc email to the cloud team."
+  ],
+  [
+   5.8,
+   10.35,
+   "The team mailbox gets a mail-flow rule that redirects into the ticketing platform, and the detail matters: a blind copy leaves two queues, a redirect leaves one."
+  ],
+  [
+   16.15,
+   4.125,
+   "Run the rule in audit mode first, compare, then enforce."
+  ],
+  [
+   20.275,
+   10.088,
+   "New mail becomes a triage record with nobody assigned, and a reroute rule pulls back anything sent straight to cloud services, because old habits survive a redirect."
+  ],
+  [
+   30.363,
+   4.138,
+   "Cloud services is the escalation tier, not a second inbox."
+  ],
+  [
+   34.5,
+   4.787,
+   "Approvals carry due dates that reject, so silence never grants access."
+  ],
+  [
+   39.288,
+   3.575,
+   "Once a request is in, triage decides where it goes."
+  ]
+ ],
+ "6": [
+  [
+   0.05,
+   4.037,
+   "Triage asks one question: what authority does this task need?"
+  ],
+  [
+   4.088,
+   4.85,
+   "Not who received it, not how urgent the caller sounds, and not how senior they are."
+  ],
+  [
+   8.938,
+   16.15,
+   "The checks run in a fixed order, and the first match wins, so the dangerous cases are caught first: anything claiming to come from Microsoft, and any target that holds an admin role, because a role that can reset ordinary users can't safely reset an administrator."
+  ],
+  [
+   25.087,
+   2.0,
+   "One rule deserves emphasis."
+  ],
+  [
+   27.087,
+   4.5,
+   "Nothing is approved from an email, even a convincing one from Microsoft."
+  ],
+  [
+   31.587,
+   3.237,
+   "A sender address is a quick filter, not proof."
+  ],
+  [
+   34.825,
+   4.987,
+   "The check that counts is the tenant's own audit log, matched to an approved ticket."
+  ],
+  [
+   39.812,
+   2.65,
+   "Next, what automation can actually carry."
+  ]
+ ],
+ "7": [
+  [
+   0.05,
+   6.838,
+   "Wherever a connector action exists, the ticket should authorize the machine, and the person's role stops at approval."
+  ],
+  [
+   6.888,
+   2.4,
+   "But check what the connector really documents."
+  ],
+  [
+   9.287,
+   5.925,
+   "The book checked ServiceNow's Entra ID spoke and found the older design had mapped too much to it."
+  ],
+  [
+   15.213,
+   3.663,
+   "Its password reset works only for cloud-only users."
+  ],
+  [
+   18.875,
+   8.287,
+   "There's no action at all for an M F A reset, so that stays a person's task, which makes verification the control that matters most."
+  ],
+  [
+   27.163,
+   6.612,
+   "And the connection type decides which actions run at all, because some of them work only with delegated permissions."
+  ],
+  [
+   33.775,
+   4.275,
+   "Coverage changes by release, so validate it against what you've installed."
+  ],
+  [
+   38.05,
+   2.2,
+   "Which brings us to verifying the person."
+  ]
+ ],
+ "8": [
+  [
+   0.05,
+   2.425,
+   "Approval answers whether something should be done."
+  ],
+  [
+   2.475,
+   5.2,
+   "It doesn't answer whether the caller is who they claim to be, and that's the gap attackers exploit."
+  ],
+  [
+   7.675,
+   5.975,
+   "So the book builds a verification ladder, and it's the see-so's decision, not the help desk's."
+  ],
+  [
+   13.65,
+   5.275,
+   "If someone can still sign in with a phishing-resistant method, that session proves who they are."
+  ],
+  [
+   18.925,
+   8.675,
+   "If they've lost everything, it takes real identity proofing, in person or through Entra's new account recovery, followed by a one-time pass."
+  ],
+  [
+   27.6,
+   5.8,
+   "What never counts: email, caller ID, knowledge questions or a manager's say-so."
+  ],
+  [
+   33.4,
+   4.162,
+   "The ticket records which rung was used, never the evidence itself."
+  ],
+  [
+   37.562,
+   2.075,
+   "Then the ticket has to close properly."
+  ]
+ ],
+ "9": [
+  [
+   0.05,
+   2.837,
+   "A ticket closed with 'done' is just an assertion."
+  ],
+  [
+   2.888,
+   8.613,
+   "The book wants three records that agree: the ticket shows the decision, the elevation record shows the privilege, and the audit log shows the change."
+  ],
+  [
+   11.5,
+   3.938,
+   "Two gaps have to be built, because Entra won't close them for you."
+  ],
+  [
+   15.438,
+   8.338,
+   "Privileged Identity Management asks for a ticket number but never checks it, so a detection rule has to match every activation to a real ticket."
+  ],
+  [
+   23.775,
+   4.25,
+   "And Entra keeps its logs for only thirty days, so they go to the sim."
+  ],
+  [
+   28.025,
+   5.713,
+   "The service levels on the right are program defaults, and a shorter outside clock always wins."
+  ],
+  [
+   33.737,
+   3.263,
+   "Module 2 turns to the roles behind all this."
+  ]
+ ],
+ "10": [
+  [
+   0.05,
+   3.487,
+   "Module 2 is help desk authority in Entra ID."
+  ],
+  [
+   3.538,
+   5.225,
+   "In Active Directory, the directory tree answered whose password the desk could reset."
+  ],
+  [
+   8.762,
+   10.863,
+   "Entra answers it in three parts: the role decides what a technician can do, the target decides whether it applies, and administrative units (A U's) narrow the population."
+  ],
+  [
+   19.625,
+   4.463,
+   "Get any one wrong, and the desk either can't work or can do far too much."
+  ]
+ ],
+ "11": [
+  [
+   0.05,
+   5.8,
+   "Five built-in roles carry most help desk identity work, and all five are labeled privileged."
+  ],
+  [
+   5.85,
+   3.837,
+   "The column people get wrong is whose account each role can touch."
+  ],
+  [
+   9.688,
+   8.012,
+   "Most can act only on users with no admin role, and members of role-assignable groups are protected from everyone except the top tier."
+  ],
+  [
+   17.7,
+   5.625,
+   "That protection is deliberate: whoever took over a member's account would inherit the group's role."
+  ],
+  [
+   23.325,
+   3.263,
+   "The other lesson is that capability isn't authority."
+  ],
+  [
+   26.587,
+   5.838,
+   "Some of these roles can delete users, and one can grant consent, which the desk must never do."
+  ],
+  [
+   32.425,
+   8.975,
+   "So the platform's limits aren't the policy; the ticket and monitoring enforce the rest, and the desk gets a narrow custom role for app assignments instead."
+  ],
+  [
+   41.4,
+   1.238,
+   "Next, scope."
+  ]
+ ],
+ "12": [
+  [
+   0.05,
+   2.075,
+   "Scope is what keeps those roles narrow."
+  ],
+  [
+   2.125,
+   6.312,
+   "Help desk roles are assigned over A U's, and at that scope they reach only members with no admin role."
+  ],
+  [
+   8.438,
+   9.3,
+   "Executives go further, into a restricted unit that only a small, approved support group can touch; even tenant-wide admins can't edit them."
+  ],
+  [
+   17.738,
+   5.925,
+   "One caution: don't put the technicians themselves in one, because governance features stop working there."
+  ],
+  [
+   23.663,
+   8.812,
+   "Roles reach technicians through one group per role and scope, eligible rather than active, and activated with a justification that cites the ticket."
+  ],
+  [
+   32.475,
+   6.388,
+   "Those groups also protect their members, so one technician can't reset another and inherit their access."
+  ],
+  [
+   38.862,
+   2.837,
+   "Now, recovering someone who's lost everything."
+  ]
+ ],
+ "13": [
+  [
+   0.05,
+   8.088,
+   "When a user has lost their only strong method, re-registration alone leaves a gap: whoever signs in next sets up the new method."
+  ],
+  [
+   8.137,
+   2.875,
+   "A Temporary Access Pass closes that gap."
+  ],
+  [
+   11.012,
+   13.238,
+   "The sequence on the slide is the heart of it: re-proof the person, revoke their sessions, remove the lost method, then issue a one-time pass with the shortest lifetime the handover allows, straight to the verified person."
+  ],
+  [
+   24.25,
+   8.512,
+   "Stay with them while they register something phishing-resistant, then tell them on another channel, so a victim learns about a reset they never asked for."
+  ],
+  [
+   32.763,
+   3.125,
+   "The table shows the pass's own limits worth knowing."
+  ],
+  [
+   35.888,
+   3.263,
+   "Some tasks, though, need more than one approver."
+  ]
+ ],
+ "14": [
+  [
+   0.05,
+   9.15,
+   "Some tasks are high-risk because one person could use them to take over an identity, break its link to the source of truth, or open an app to the wrong people."
+  ],
+  [
+   9.2,
+   7.987,
+   "For those, the book requires two approvers besides the person doing the work, both recorded before any role is activated."
+  ],
+  [
+   17.188,
+   7.062,
+   "The second approver checks that the requester was verified, the change is exactly specified, and the urgency is real."
+  ],
+  [
+   24.25,
+   9.3,
+   "ImmutableID repair is the telling example: it left the help desk entirely, because the right fix is usually in Active Directory, not the cloud."
+  ],
+  [
+   33.55,
+   3.35,
+   "And three detection rules watch everything the desk does."
+  ],
+  [
+   36.9,
+   1.0,
+   "That's Part 1."
+  ]
+ ],
+ "15": [
+  [
+   0.05,
+   5.0,
+   "Part 2 begins with Module 3: catalogs, SaaS and the CMDB."
+  ],
+  [
+   5.05,
+   7.225,
+   "Hundreds of identity changes a week, each done as a portal click, are the biggest steady source of control erosion."
+  ],
+  [
+   12.275,
+   8.588,
+   "The answer is a catalog of typed requests, plus two things it leans on: governed SaaS integrations and a CMDB you can trust."
+  ]
+ ],
+ "16": [
+  [
+   0.05,
+   13.75,
+   "Every catalog item runs the same loop: a typed request against a named target, the approval its control needs, execution under a narrow identity, and a record that closes only when a check confirms the change."
+  ],
+  [
+   13.8,
+   8.775,
+   "Every identity change is one of five verbs: add, move, change, delete or reset, and each has its own closing check."
+  ],
+  [
+   22.575,
+   2.525,
+   "The one that fails audits is the leaver."
+  ],
+  [
+   25.1,
+   8.662,
+   "Disabling the account isn't enough; sessions, connected applications and everything the person owned all have to be handled and recorded."
+  ],
+  [
+   33.763,
+   6.825,
+   "Apps without automatic provisioning become manual tasks, with no automatic check that the account is really gone."
+  ],
+  [
+   40.587,
+   3.35,
+   "Telephony has its own catalog, with real stakes."
+  ]
+ ],
+ "17": [
+  [
+   0.05,
+   8.637,
+   "Teams Phone is where a silent configuration error has physical consequences: a wrong emergency address sends responders to the wrong building."
+  ],
+  [
+   8.688,
+   5.112,
+   "And the federal rules bind whoever operates the phone system, which includes an agency."
+  ],
+  [
+   13.8,
+   10.2,
+   "Kari's Law requires direct 911 dialing and a notice to someone such as a front desk, and the FCC's rules require a dispatchable location with every call."
+  ],
+  [
+   24.0,
+   4.925,
+   "Teams provides the mechanisms, but someone has to configure them and keep them current."
+  ],
+  [
+   28.925,
+   9.5,
+   "So a validated address becomes a gate on every number, network changes raise their own mapping item, and a 933 test call closes it."
+  ],
+  [
+   38.425,
+   4.088,
+   "Counsel decides compliance; the catalog keeps the evidence."
+  ],
+  [
+   42.513,
+   1.3,
+   "Next, SaaS."
+  ]
+ ],
+ "18": [
+  [
+   0.05,
+   9.863,
+   "An administrator can connect a third-party SaaS service in about fifteen minutes, and nothing along the vendor's path asks whether that service is authorized to hold federal data."
+  ],
+  [
+   9.912,
+   1.663,
+   "That's the point of this slide."
+  ],
+  [
+   11.575,
+   6.612,
+   "Consent controls decide who may approve an integration; they don't decide whether the service should get the data at all."
+  ],
+  [
+   18.188,
+   5.263,
+   "So the book puts a gate first: no authorization verdict, no configuration."
+  ],
+  [
+   23.45,
+   7.475,
+   "Its default for identity data is a fed-ramp certification at Class C or higher, read from the Marketplace's own dataset."
+  ],
+  [
+   30.925,
+   4.75,
+   "Name matching only ever creates a review queue, never an automatic no."
+  ],
+  [
+   35.675,
+   3.312,
+   "Then the question is how to configure it with least privilege."
+  ]
+ ],
+ "19": [
+  [
+   0.05,
+   7.938,
+   "The catalog configures integrations through Microsoft Graph, and the book checked the older design's permissions against Microsoft's reference."
+  ],
+  [
+   7.987,
+   2.962,
+   "The operations were right; the permissions weren't."
+  ],
+  [
+   10.95,
+   9.762,
+   "One narrow permission, limited to applications the connector owns, covers almost everything, and adding the broad synchronization permission would undo that boundary."
+  ],
+  [
+   20.712,
+   8.512,
+   "The real trap is assignment: the permission it needs can grant anything to anyone, which turns the connector into a privileged administrator."
+  ],
+  [
+   29.225,
+   6.45,
+   "So it stays off the connector, and a person binds the access group once, under a just-in-time role."
+  ],
+  [
+   35.675,
+   3.3,
+   "After that, access changes are just group membership."
+  ],
+  [
+   38.975,
+   5.263,
+   "Every integration also has to land correctly in the CMDB, so that's next."
+  ]
+ ],
+ "20": [
+  [
+   0.05,
+   6.062,
+   "Every ticket names an asset, so the help desk can only be as right as the inventory behind it."
+  ],
+  [
+   6.112,
+   5.15,
+   "The book's position is clear: the CMDB is a projection, not the authority."
+  ],
+  [
+   11.262,
+   7.888,
+   "Discovery and connectors fill it, but identity comes from the naming plane, the IP address management and D N S records."
+  ],
+  [
+   19.15,
+   5.925,
+   "ServiceNow's engine already decides whether a record is new and which source may write each field."
+  ],
+  [
+   25.075,
+   8.475,
+   "The book adds one more pass: match each asset to the naming plane, bind that identity, and flag anything that doesn't match."
+  ],
+  [
+   33.55,
+   5.925,
+   "A shadow asset is a finding, and a gap gets fixed upstream, never patched in the CMDB."
+  ],
+  [
+   39.475,
+   2.125,
+   "Then come the everyday defects."
+  ]
+ ],
+ "21": [
+  [
+   0.05,
+   3.538,
+   "This slide shows why CMDB hygiene isn't a nicety."
+  ],
+  [
+   3.587,
+   7.237,
+   "A missing, duplicate or stale record breaks patching and evidence in different ways, and the table walks through each."
+  ],
+  [
+   10.825,
+   5.688,
+   "Duplicates come from the sources themselves, from reimaged devices to merged records."
+  ],
+  [
+   16.512,
+   8.588,
+   "The rule is to bind, not delete: keep the record that carries the authoritative identity, and move its tickets and findings over first."
+  ],
+  [
+   25.1,
+   9.213,
+   "Stale records follow a sequence: detect, have the owner confirm, retire, and only then delete, because some deletions can't be undone."
+  ],
+  [
+   34.312,
+   4.825,
+   "A deleted device, for example, takes its BitLocker recovery keys with it."
+  ],
+  [
+   39.138,
+   1.863,
+   "That closes Module 3."
+  ],
+  [
+   41.0,
+   2.875,
+   "Module 4 turns to control automation."
+  ]
+ ],
+ "22": [
+  [
+   0.05,
+   3.275,
+   "Module 4 is control automation, and who runs it."
+  ],
+  [
+   3.325,
+   4.312,
+   "The vendors already test most of the settings an assessor asks about."
+  ],
+  [
+   7.638,
+   9.05,
+   "The gap is everything around the test: who owns the finding, what clock they work against, who approved the fix, and what re-test proved it closed."
+  ]
+ ],
+ "23": [
+  [
+   0.05,
+   10.738,
+   "The book runs one loop on every platform: test with the native tool, detect drift, raise a typed task against the asset, fix it natively, and close on the next test."
+  ],
+  [
+   10.787,
+   1.562,
+   "Two rules matter most."
+  ],
+  [
+   12.35,
+   6.713,
+   "The ticketing platform reads control state but never writes it, and a task closes on a re-test, not a click."
+  ],
+  [
+   19.062,
+   9.213,
+   "On Microsoft 365, sis-uh's ScubaGear is the main test, and its stable policy IDs let the mapping from failure to task live as data."
+  ],
+  [
+   28.275,
+   5.088,
+   "Conditional Access exceptions get the same treatment, with an approver and an expiry."
+  ],
+  [
+   33.362,
+   5.15,
+   "Compliance Manager is useful, but it's a readiness signal, not the evidence of record."
+  ],
+  [
+   38.513,
+   3.263,
+   "Azure works the same way, with its own caveats."
+  ]
+ ],
+ "24": [
+  [
+   0.05,
+   5.088,
+   "Azure ships a lot of help here, and Microsoft is unusually candid about its limits."
+  ],
+  [
+   5.138,
+   8.213,
+   "Azure Policy's fed-ramp initiative reports compliant only for the settings it can test, which is a partial view, not a verdict on a control."
+  ],
+  [
+   13.35,
+   4.7,
+   "Results arrive on a daily cycle, so closures lag the fix by up to a day."
+  ],
+  [
+   18.05,
+   5.925,
+   "Exceptions have a native form with an expiry, and the book allows them only from an approved request."
+  ],
+  [
+   23.975,
+   7.475,
+   "Defender for Cloud adds dashboards and exports, but an export only fires on change, so silence isn't proof."
+  ],
+  [
+   31.45,
+   2.737,
+   "Resource Graph is the simple read path."
+  ],
+  [
+   34.188,
+   2.175,
+   "So how do results reach the ticket queue?"
+  ]
+ ],
+ "25": [
+  [
+   0.05,
+   9.1,
+   "There are three routes from a native result into the ticketing platform: the vendor's own connector, the platform's import, or the program's read-only collector."
+  ],
+  [
+   9.15,
+   6.625,
+   "Which one you can use depends on your cloud; the Defender connector, for instance, isn't available in Azure Government."
+  ],
+  [
+   15.775,
+   6.8,
+   "The important rule is one route per source, because two routes give you two tasks and two clocks for the same finding."
+  ],
+  [
+   22.575,
+   1.775,
+   "And the clock itself matters."
+  ],
+  [
+   24.35,
+   12.012,
+   "For vulnerabilities it's sis-uh's new directive on prioritizing security updates, set by exposure and known exploitation, not fed-ramp's timeframes, which bind cloud providers, not agencies."
+  ],
+  [
+   36.362,
+   3.775,
+   "Next, AWS, where the ground shifted this year."
+  ]
+ ],
+ "26": [
+  [
+   0.05,
+   4.2,
+   "On AWS, the evidence path has changed under people's feet."
+  ],
+  [
+   4.25,
+   8.262,
+   "Config conformance packs and Security Hub's posture checks are the foundation, and both run in GovCloud, though with differences you need to test."
+  ],
+  [
+   12.512,
+   4.925,
+   "Security Hub keeps findings for only ninety days, so copy them out first."
+  ],
+  [
+   17.438,
+   10.613,
+   "The big correction is Audit Manager: it closed to new customers in April 2026, has no GovCloud endpoint, and its fed-ramp framework is still on the old revision."
+  ],
+  [
+   28.05,
+   2.925,
+   "Nobody should start a federal evidence program on it."
+  ],
+  [
+   30.975,
+   6.95,
+   "And the ServiceNow connector most agencies used loses support in March 2027, so plan that move now."
+  ],
+  [
+   37.925,
+   1.837,
+   "VMware is harder still."
+  ]
+ ],
+ "27": [
+  [
+   0.05,
+   3.675,
+   "In the agency's own data center, there's nothing to inherit."
+  ],
+  [
+   3.725,
+   8.675,
+   "No provider operates the hypervisor, no one publishes a control mapping, and an agent inside a virtual machine can't see the host underneath it."
+  ],
+  [
+   12.4,
+   3.525,
+   "So every piece of evidence is the agency's to produce."
+  ],
+  [
+   15.925,
+   11.75,
+   "The tools exist, but they're moving: Broadcom replaced its compliance feature between versions 9.0 and 9.1, and the new one doesn't list an 800-53 benchmark."
+  ],
+  [
+   27.675,
+   4.825,
+   "Moving clusters to images unlocks both the patch and configuration tests."
+  ],
+  [
+   32.5,
+   5.4,
+   "And where no machine can reach, a recorded, time-boxed session is a declared exception."
+  ],
+  [
+   37.9,
+   2.087,
+   "Finally, who runs all of this."
+  ]
+ ],
+ "28": [
+  [
+   0.05,
+   8.912,
+   "Day two is run by the people who touch the estate most and decide the least, so the design puts every decision with someone who isn't holding the keyboard."
+  ],
+  [
+   8.963,
+   10.325,
+   "The slide shows one decider per row, from the see-so's verification procedure to the change advisory board, which authorizes changes even to the approval rules themselves."
+  ],
+  [
+   19.288,
+   3.487,
+   "Only the authorizing official accepts open-ended risk."
+  ],
+  [
+   22.775,
+   5.037,
+   "The separations on the right are the ones the platform should enforce rather than leave to memory."
+  ],
+  [
+   27.812,
+   5.412,
+   "Above all, nobody approves their own work, and nobody changes the gate they pass through."
+  ],
+  [
+   33.225,
+   6.638,
+   "Contractors can prepare every decision here except the authorizing official's, which is a government-only role."
+  ],
+  [
+   39.862,
+   1.688,
+   "So, what to decide first?"
+  ]
+ ],
+ "29": [
+  [
+   0.05,
+   4.175,
+   "Six decisions, each with a named owner, and the table shows who."
+  ],
+  [
+   4.225,
+   8.762,
+   "Two stand out: the verification ladder, because it protects every reset, and the SaaS threshold, because it's a gate nothing else replaces."
+  ],
+  [
+   12.988,
+   3.7,
+   "The first step needs no procurement: measure before you build."
+  ],
+  [
+   16.688,
+   9.688,
+   "Run the read-only inventories and collectors against a test scope, size the work from what they find, and start the move off the AWS connector before its deadline."
+  ],
+  [
+   26.375,
+   3.312,
+   "Then build only what the native tools don't already provide."
+  ],
+  [
+   29.688,
+   5.213,
+   "Operations is where modernization either becomes routine or quietly reverts."
+  ],
+  [
+   34.9,
+   3.625,
+   "The book has the detail, with every claim footnoted."
+  ],
+  [
+   38.525,
+   0.762,
+   "Thank you."
+  ]
+ ]
+}

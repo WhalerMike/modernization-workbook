@@ -1,0 +1,53 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.627
+Azure Policy can make logging
+a property of the platform,
+
+2
+00:00:03.627 --> 00:00:06.063
+so new resources are never born silent.
+
+3
+00:00:06.063 --> 00:00:07.887
+But here's what catches teams out.
+
+4
+00:00:07.887 --> 00:00:11.596
+The policy fixes new and
+changed resources automatically,
+
+5
+00:00:11.596 --> 00:00:16.213
+and for everything that already existed,
+it only marks them non-compliant.
+
+6
+00:00:16.213 --> 00:00:19.900
+Nothing gets deployed until
+someone runs a remediation task.
+
+7
+00:00:19.900 --> 00:00:23.988
+So the dashboard trends green
+while the old estate stays dark.
+
+8
+00:00:23.988 --> 00:00:27.707
+The program's habit is simple:
+assign, run the remediation,
+
+9
+00:00:27.707 --> 00:00:31.426
+then compare the compliant
+count against the inventory.
+
+10
+00:00:31.426 --> 00:00:34.100
+That comparison is the
+real coverage number.
+
+11
+00:00:34.100 --> 00:00:37.870
+Next, the Microsoft 365 audit log.

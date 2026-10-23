@@ -1,0 +1,57 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.475
+Approval answers whether
+something should be done.
+
+2
+00:00:02.475 --> 00:00:05.675
+It doesn't answer whether the
+caller is who they claim to be,
+
+3
+00:00:05.675 --> 00:00:07.675
+and that's the gap attackers exploit.
+
+4
+00:00:07.675 --> 00:00:10.497
+So the book builds a verification ladder,
+
+5
+00:00:10.497 --> 00:00:13.650
+and it's the CISO's decision,
+not the help desk's.
+
+6
+00:00:13.650 --> 00:00:17.099
+If someone can still sign in with
+a phishing-resistant method,
+
+7
+00:00:17.099 --> 00:00:18.925
+that session proves who they are.
+
+8
+00:00:18.925 --> 00:00:22.720
+If they've lost everything, it
+takes real identity proofing,
+
+9
+00:00:22.720 --> 00:00:27.600
+in person or through Entra's new account
+recovery, followed by a one-time pass.
+
+10
+00:00:27.600 --> 00:00:33.400
+What never counts: email, caller ID,
+knowledge questions or a manager's say-so.
+
+11
+00:00:33.400 --> 00:00:37.562
+The ticket records which rung was
+used, never the evidence itself.
+
+12
+00:00:37.562 --> 00:00:39.700
+Then the ticket has to close properly.

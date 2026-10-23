@@ -1,0 +1,50 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:05.028
+Some tasks are high-risk because one person
+could use them to take over an identity,
+
+2
+00:00:05.028 --> 00:00:09.200
+break its link to the source of truth,
+or open an app to the wrong people.
+
+3
+00:00:09.200 --> 00:00:14.283
+For those, the book requires two approvers
+besides the person doing the work,
+
+4
+00:00:14.283 --> 00:00:17.187
+both recorded before
+any role is activated.
+
+5
+00:00:17.187 --> 00:00:20.866
+The second approver checks that
+the requester was verified,
+
+6
+00:00:20.866 --> 00:00:24.250
+the change is exactly specified,
+and the urgency is real.
+
+7
+00:00:24.250 --> 00:00:29.141
+ImmutableID repair is the telling
+example: it left the help desk entirely,
+
+8
+00:00:29.141 --> 00:00:33.550
+because the right fix is usually in
+Active Directory, not the cloud.
+
+9
+00:00:33.550 --> 00:00:36.900
+And three detection rules
+watch everything the desk does.
+
+10
+00:00:36.900 --> 00:00:37.970
+That's Part 1.

@@ -1,0 +1,44 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.767
+The daily job joins four things: what
+the scanner found, CISA's list of
+
+2
+00:00:04.767 --> 00:00:10.312
+exploited flaws, CISA's data on automation
+and impact, and your own exposure tags.
+
+3
+00:00:10.312 --> 00:00:12.700
+Two design choices make it trustworthy.
+
+4
+00:00:12.700 --> 00:00:16.812
+When data is missing, the program
+assumes the stricter answer.
+
+5
+00:00:16.812 --> 00:00:19.908
+And it remembers when each
+finding was first seen,
+
+6
+00:00:19.908 --> 00:00:24.362
+because recalculating that every
+morning quietly resets every clock.
+
+7
+00:00:24.362 --> 00:00:28.408
+Report how many findings closed on
+time and how many are past due,
+
+8
+00:00:28.408 --> 00:00:33.675
+never a percentage of the open queue, which
+improves every time new findings arrive.
+
+9
+00:00:33.675 --> 00:00:36.430
+Next, proving the scanner sees everything.

@@ -1,0 +1,57 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.934
+Every ticket names an asset,
+
+2
+00:00:01.934 --> 00:00:06.112
+so the help desk can only be as
+right as the inventory behind it.
+
+3
+00:00:06.112 --> 00:00:11.262
+The book's position is clear: the CMDB
+is a projection, not the authority.
+
+4
+00:00:11.262 --> 00:00:16.304
+Discovery and connectors fill it, but
+identity comes from the naming plane,
+
+5
+00:00:16.304 --> 00:00:19.150
+the IP address management and DNS records.
+
+6
+00:00:19.150 --> 00:00:22.003
+ServiceNow's engine
+already decides whether a
+
+7
+00:00:22.003 --> 00:00:25.075
+record is new and which
+source may write each field.
+
+8
+00:00:25.075 --> 00:00:29.572
+The book adds one more pass: match
+each asset to the naming plane,
+
+9
+00:00:29.572 --> 00:00:33.550
+bind that identity, and flag
+anything that doesn't match.
+
+10
+00:00:33.550 --> 00:00:35.496
+A shadow asset is a finding,
+
+11
+00:00:35.496 --> 00:00:39.475
+and a gap gets fixed upstream,
+never patched in the CMDB.
+
+12
+00:00:39.475 --> 00:00:41.660
+Then come the everyday defects.

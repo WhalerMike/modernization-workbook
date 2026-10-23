@@ -33,6 +33,8 @@ This book replaces the workbook's three-part SIEM telemetry emission guide and i
 **[b12-security-operations-bundle.docx](../../../downloads/b12-security-operations-bundle.docx)**: the whole book as one Word document, regenerated on every site deploy.
 
 **15-minute presentation (about 13 minutes narrated)**: the Why / What / Who / How deck is on the [Presentations](../../presentations/index.md#book-12) page.
+
+**Technical deep dive (about 50 minutes live, 18 narrated)**: the evidence contract, telemetry to detection, vulnerability, patch and posture, and data protection, in modules on the [Presentations](../../presentations/index.md#technical-b12) page.
 :::
 
 Detection and response are only as good as the telemetry that reaches them. A log warehouse isn't a detection engine: storing everything satisfies nobody's requirement to analyze it, and the gaps that matter most, a plane that never emitted, a connector that shows green while no data arrives, a log tier that raises no alerts, stay silent until an incident finds them. Book 12 starts from that problem. Telemetry has to be emitted deliberately from every plane, identity, cloud platform, Microsoft 365, endpoints, network and data, under one evidence contract whose join key is authoritative asset identity plus time. Vulnerability, patch, configuration, posture and data-protection findings then land in the same queue, against federal clocks such as BOD 26-04's remediation timelines and M-26-14's logging requirements. Detections need rules, rules need response, and both need evidence an assessor can verify. And remediation has no substitute: a finding closes only when the thing is fixed, with proof.

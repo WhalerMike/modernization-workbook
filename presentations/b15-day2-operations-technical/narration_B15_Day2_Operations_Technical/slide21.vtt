@@ -1,0 +1,58 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.588
+This slide shows why CMDB
+hygiene isn't a nicety.
+
+2
+00:00:03.588 --> 00:00:07.094
+A missing, duplicate or stale
+record breaks patching and
+
+3
+00:00:07.094 --> 00:00:10.824
+evidence in different ways, and
+the table walks through each.
+
+4
+00:00:10.824 --> 00:00:13.827
+Duplicates come from
+the sources themselves,
+
+5
+00:00:13.827 --> 00:00:16.513
+from reimaged devices to merged records.
+
+6
+00:00:16.513 --> 00:00:20.530
+The rule is to bind, not delete:
+keep the record that carries the
+
+7
+00:00:20.530 --> 00:00:25.100
+authoritative identity, and move
+its tickets and findings over first.
+
+8
+00:00:25.100 --> 00:00:29.577
+Stale records follow a sequence:
+detect, have the owner confirm,
+
+9
+00:00:29.577 --> 00:00:34.313
+retire, and only then delete, because
+some deletions can't be undone.
+
+10
+00:00:34.313 --> 00:00:39.137
+A deleted device, for example, takes
+its BitLocker recovery keys with it.
+
+11
+00:00:39.137 --> 00:00:41.001
+That closes Module 3.
+
+12
+00:00:41.001 --> 00:00:43.940
+Module 4 turns to control automation.

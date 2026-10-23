@@ -1,0 +1,1096 @@
+{
+ "1": [
+  [
+   0.05,
+   0.713,
+   "Welcome."
+  ],
+  [
+   0.762,
+   7.425,
+   "This is the technical deep dive for Book 12 of the Federal Modernization Workbook, Security Operations and Telemetry."
+  ],
+  [
+   8.188,
+   7.562,
+   "It's for the people who build and run the SOC: detection engineers, SOC engineers and security architects."
+  ],
+  [
+   15.75,
+   2.362,
+   "The whole book comes down to one idea."
+  ],
+  [
+   18.113,
+   6.688,
+   "You can't defend what you can't see, and a finding only closes when the thing is actually fixed, with proof."
+  ],
+  [
+   24.8,
+   4.7,
+   "Part 1 is about getting evidence to arrive and turning it into detections."
+  ],
+  [
+   29.5,
+   3.763,
+   "Part 2 is about the findings that pile up, and who acts on them."
+  ],
+  [
+   33.263,
+   3.538,
+   "The code lives in the chapters; I'll stick to what matters."
+  ],
+  [
+   36.8,
+   2.475,
+   "Let's start with why this is harder than it looks."
+  ]
+ ],
+ "2": [
+  [
+   0.05,
+   1.775,
+   "Here's the uncomfortable part."
+  ],
+  [
+   1.825,
+   2.663,
+   "Every dashboard you own measures what arrived."
+  ],
+  [
+   4.487,
+   1.512,
+   "Nothing measures what didn't."
+  ],
+  [
+   6.0,
+   11.55,
+   "A source that was never connected, a connector that looks green but isn't delivering, data parked where no rule can run, or logging an attacker switched off: all four look exactly like a quiet day."
+  ],
+  [
+   17.55,
+   2.45,
+   "And the federal yardstick has moved with this."
+  ],
+  [
+   20.0,
+   6.7,
+   "The new logging memo scores agencies on how much of their baseline produces real alerts, not on how much they store."
+  ],
+  [
+   26.7,
+   5.6,
+   "So visibility has to be designed, plane by plane, and checked against what you expected to see."
+  ],
+  [
+   32.3,
+   1.9,
+   "That's what Module 1 builds."
+  ]
+ ],
+ "3": [
+  [
+   0.05,
+   2.112,
+   "Module 1 is the foundation."
+  ],
+  [
+   2.163,
+   6.688,
+   "First, one record shape that every tool agrees to, so findings from different stacks can actually be joined."
+  ],
+  [
+   8.85,
+   5.525,
+   "Then we apply it to identity, where the default quietly throws history away after a month."
+  ]
+ ],
+ "4": [
+  [
+   0.05,
+   4.213,
+   "Five tools can't give you one compliance picture just by sharing a dashboard."
+  ],
+  [
+   4.263,
+   3.875,
+   "They have to agree, ahead of time, on what a record says."
+  ],
+  [
+   8.137,
+   12.262,
+   "That's the evidence contract: eight fields every source emits, covering what nist already asks an audit record to establish, plus which control it proves, whether it passed, and whether it's closed."
+  ],
+  [
+   20.4,
+   3.763,
+   "That last field matters most, because it's where closure lives."
+  ],
+  [
+   24.163,
+   6.513,
+   "Microsoft's normalization model gets you part of the way, but it can't tell you which real asset a record is about."
+  ],
+  [
+   30.675,
+   3.087,
+   "And that turns out to be the hard part, so let's look at it."
+  ]
+ ],
+ "5": [
+  [
+   0.05,
+   6.088,
+   "Two records only describe the same server if they carry the same identity, and every tool has its own."
+  ],
+  [
+   6.138,
+   2.812,
+   "So the join key can't come from any one tool."
+  ],
+  [
+   8.95,
+   5.25,
+   "It comes from the naming plane, your authoritative inventory of names and addresses."
+  ],
+  [
+   14.2,
+   10.312,
+   "Time is the other half, and it's easier to get wrong than it sounds: join on when data arrived instead of when it was observed, and you match the wrong records without a single error."
+  ],
+  [
+   24.512,
+   8.037,
+   "One caution worth knowing: the fully correlated trail is a High-baseline control, so at Moderate the program chooses it on purpose."
+  ],
+  [
+   32.55,
+   2.237,
+   "Next, where all these records go."
+  ]
+ ],
+ "6": [
+  [
+   0.05,
+   12.425,
+   "A missing patch, a drifted setting, an exposed storage account and a labeled file leaving the agency are all the same kind of statement as a threat alert: this asset isn't in the state it should be."
+  ],
+  [
+   12.475,
+   1.637,
+   "So they all go in one queue."
+  ],
+  [
+   14.113,
+   1.212,
+   "Two lessons here."
+  ],
+  [
+   15.325,
+   8.2,
+   "Queue membership can change underneath you; a vendor default recently moved data loss alerts out of the incident queue without anything failing."
+  ],
+  [
+   23.525,
+   7.475,
+   "And only two things close a record: a later observation showing the fix, or the authorizing official accepting the risk."
+  ],
+  [
+   31.0,
+   1.2,
+   "Now, identity."
+  ]
+ ],
+ "7": [
+  [
+   0.05,
+   4.275,
+   "Identity looks instrumented out of the box, which is exactly the trap."
+  ],
+  [
+   4.325,
+   6.8,
+   "Entra keeps its own sign-in and audit history for about a month, and once it's gone, no license brings it back."
+  ],
+  [
+   11.125,
+   3.75,
+   "The fix is one tenant-level setting that streams the logs out."
+  ],
+  [
+   14.875,
+   5.275,
+   "The detail that bites people is that the category you tick isn't always the table you query."
+  ],
+  [
+   20.15,
+   8.262,
+   "The big decision is to treat all four sign-in streams as core, because the non-interactive ones are where unattended credentials do their work."
+  ],
+  [
+   28.413,
+   4.2,
+   "Manage the cost with table plans, never by switching a stream off."
+  ],
+  [
+   32.612,
+   2.263,
+   "Next, how to deploy it properly."
+  ]
+ ],
+ "8": [
+  [
+   0.05,
+   4.912,
+   "A setting someone clicked once has no history, no review and no drift check."
+  ],
+  [
+   4.963,
+   7.0,
+   "So the program deploys this one from code, and keeps its list of logged categories in the repository as the record."
+  ],
+  [
+   11.963,
+   1.062,
+   "Then retention."
+  ],
+  [
+   13.025,
+   6.963,
+   "Here's a trap that catches a lot of templates: the retention field on a diagnostic setting no longer does anything at all."
+  ],
+  [
+   19.988,
+   7.875,
+   "Retention is set per table in the workspace, at least six months searchable and a year retrievable, to meet the logging memo."
+  ],
+  [
+   27.863,
+   4.125,
+   "Of course, a setting that saved isn't proof anything is arriving."
+  ],
+  [
+   31.988,
+   1.038,
+   "That's next."
+  ]
+ ],
+ "9": [
+  [
+   0.05,
+   1.8,
+   "Saving a setting proves nothing."
+  ],
+  [
+   1.85,
+   9.1,
+   "So the program runs a completeness check a day after any change, again at three days, and then daily, against a named list of the tables it expects."
+  ],
+  [
+   10.95,
+   5.525,
+   "The result to fear is stale: it worked, then stopped, and old data hides the gap."
+  ],
+  [
+   16.475,
+   6.737,
+   "Microsoft Graph is useful here, but as a magnifying glass for one specific question, not as a feed."
+  ],
+  [
+   23.212,
+   7.1,
+   "And watch one silent trap: without the right permission, sign-in records quietly drop their Conditional Access results."
+  ],
+  [
+   30.312,
+   1.113,
+   "That's identity."
+  ],
+  [
+   31.425,
+   3.275,
+   "Module 2 moves to the platform and the mailbox."
+  ]
+ ],
+ "10": [
+  [
+   0.05,
+   8.838,
+   "Module 2 covers the two planes the identity setting never touches, Azure resources and the Microsoft 365 audit log."
+  ],
+  [
+   8.887,
+   5.925,
+   "Then it asks the real question: what turns all this stored data into detections someone can show?"
+  ]
+ ],
+ "11": [
+  [
+   0.05,
+   3.375,
+   "Azure has two planes, and they behave very differently."
+  ],
+  [
+   3.425,
+   7.95,
+   "The activity log is on by default and records who created and changed things, but it's deleted after ninety days unless you export it."
+  ],
+  [
+   11.375,
+   8.012,
+   "Resource logs, what actually happened inside a key vault or a database, aren't collected at all until each resource gets its own setting."
+  ],
+  [
+   19.387,
+   4.388,
+   "The engineering choice that pays off later is sending them to dedicated tables."
+  ],
+  [
+   23.775,
+   6.15,
+   "The shared table runs out of columns, and when it does, a detection rule silently stops matching."
+  ],
+  [
+   29.925,
+   2.675,
+   "So how do you keep every new resource emitting?"
+  ],
+  [
+   32.6,
+   0.85,
+   "Policy."
+  ]
+ ],
+ "12": [
+  [
+   0.05,
+   6.013,
+   "Azure Policy can make logging a property of the platform, so new resources are never born silent."
+  ],
+  [
+   6.062,
+   1.825,
+   "But here's what catches teams out."
+  ],
+  [
+   7.888,
+   8.325,
+   "The policy fixes new and changed resources automatically, and for everything that already existed, it only marks them non-compliant."
+  ],
+  [
+   16.212,
+   3.688,
+   "Nothing gets deployed until someone runs a remediation task."
+  ],
+  [
+   19.9,
+   4.088,
+   "So the dashboard trends green while the old estate stays dark."
+  ],
+  [
+   23.988,
+   7.438,
+   "The program's habit is simple: assign, run the remediation, then compare the compliant count against the inventory."
+  ],
+  [
+   31.425,
+   2.675,
+   "That comparison is the real coverage number."
+  ],
+  [
+   34.1,
+   3.712,
+   "Next, the Microsoft 365 audit log."
+  ]
+ ],
+ "13": [
+  [
+   0.05,
+   6.263,
+   "The Microsoft 365 audit log is the plane most often assumed and least often checked."
+  ],
+  [
+   6.312,
+   6.55,
+   "Verify it's actually on, and do it in the right PowerShell session, because the other one always says off."
+  ],
+  [
+   12.863,
+   13.075,
+   "Collecting it through Microsoft's API has a few rules that break almost every first attempt: patience when you subscribe, a seven-day window to fetch content, events that arrive out of order, and duplicates by design."
+  ],
+  [
+   25.938,
+   6.312,
+   "So the collector tracks what it's fetched, deduplicates, and looks back over a trailing window every run."
+  ],
+  [
+   32.25,
+   2.237,
+   "Then there's how long Microsoft keeps it."
+  ]
+ ],
+ "14": [
+  [
+   0.05,
+   1.575,
+   "This one surprises people."
+  ],
+  [
+   1.625,
+   7.888,
+   "How long a Microsoft 365 audit record survives depends on the license of the person who did the thing, not on the tenant."
+  ],
+  [
+   9.512,
+   7.6,
+   "Fully licensed users get a year for the core workloads; everyone else, including every guest, gets six months."
+  ],
+  [
+   17.113,
+   5.925,
+   "Most federal tenants are mixed, so they have a split retention horizon that no dashboard shows."
+  ],
+  [
+   23.038,
+   4.125,
+   "The program's answer is to stop treating that tier as the evidence store."
+  ],
+  [
+   27.163,
+   6.925,
+   "Collect everything into your own workspace, set retention there, and write the license split into the security plan."
+  ],
+  [
+   34.087,
+   1.938,
+   "Now, what do we do with all this data?"
+  ]
+ ],
+ "15": [
+  [
+   0.05,
+   1.5,
+   "Here's the heart of the book."
+  ],
+  [
+   1.55,
+   4.362,
+   "A place where logs are kept isn't the same as a capability that reads them."
+  ],
+  [
+   5.912,
+   4.475,
+   "A workspace with no rules can prove storage; it can't prove analysis."
+  ],
+  [
+   10.387,
+   6.95,
+   "So the program's rule is that no source counts as monitored until an enabled rule reads it and someone owns what it raises."
+  ],
+  [
+   17.337,
+   4.55,
+   "The rule types also set a floor on how fast you can possibly detect anything."
+  ],
+  [
+   21.887,
+   6.05,
+   "And get ready for the assessor's favorite request: show me an alert from last month, and what you did about it."
+  ],
+  [
+   27.938,
+   2.075,
+   "Next, how the data gets in."
+  ]
+ ],
+ "16": [
+  [
+   0.05,
+   7.213,
+   "Every source reaches Sentinel by its own path and lands in its own table, and each path has one gotcha worth knowing."
+  ],
+  [
+   7.263,
+   7.65,
+   "Appliances like D N S and sassy come through a forwarder that stamps its own time, which matters when you join on time."
+  ],
+  [
+   14.912,
+   5.25,
+   "Write D N S rules against the normalized parser, so they survive a vendor change."
+  ],
+  [
+   20.163,
+   6.65,
+   "And plan in the Defender portal, because that's the only place Sentinel will be supported after March 2027."
+  ],
+  [
+   26.812,
+   4.95,
+   "In the government clouds, check each connector in your own portal before you design on it."
+  ],
+  [
+   31.762,
+   2.212,
+   "But how do you know a connector's still working?"
+  ]
+ ],
+ "17": [
+  [
+   0.05,
+   5.775,
+   "A connector that silently stops is worse than one you never set up, because you believe you're covered."
+  ],
+  [
+   5.825,
+   9.625,
+   "Microsoft's health table only covers some connectors, so the program checks the data itself: when did each table last hear something, and is that longer than it should be?"
+  ],
+  [
+   15.45,
+   3.65,
+   "Make that check a rule, so a quiet source opens an incident."
+  ],
+  [
+   19.1,
+   2.625,
+   "Then divide the work with Defender XDR."
+  ],
+  [
+   21.725,
+   5.75,
+   "Let Defender detect what its own sensors see, and point Sentinel at everything Defender can't."
+  ],
+  [
+   27.475,
+   1.0,
+   "That's Part 1."
+  ],
+  [
+   28.475,
+   2.225,
+   "Part 2 starts with vulnerabilities."
+  ]
+ ],
+ "18": [
+  [
+   0.05,
+   3.225,
+   "Module 3 is about findings and the clock."
+  ],
+  [
+   3.275,
+   8.113,
+   "A vulnerability program is judged on one record: which flaw, which asset, found when, due when, fixed when."
+  ],
+  [
+   11.387,
+   6.537,
+   "We'll see the new federal clock, hand the work to the platforms that can fix it, and finish in the cloud control plane."
+  ]
+ ],
+ "19": [
+  [
+   0.05,
+   5.5,
+   "In June 2026, sis-uh replaced the old severity buckets with a smarter clock."
+  ],
+  [
+   5.55,
+   11.475,
+   "Four questions about each vulnerable asset set the deadline: is it exposed to the internet, is the flaw being exploited, can the attack be automated, and how much control does it give an attacker."
+  ],
+  [
+   17.025,
+   5.688,
+   "The answers range from three days, plus a forensic check, down to fix it at the next upgrade."
+  ],
+  [
+   22.712,
+   1.5,
+   "Two points to hold onto."
+  ],
+  [
+   24.212,
+   3.85,
+   "The clock starts at the earliest moment, and there are no waivers."
+  ],
+  [
+   28.062,
+   4.588,
+   "By December, every externally reachable asset needs an exposure tag."
+  ],
+  [
+   32.65,
+   1.938,
+   "So, how do you run that daily?"
+  ]
+ ],
+ "20": [
+  [
+   0.05,
+   10.262,
+   "The daily job joins four things: what the scanner found, sis-uh's list of exploited flaws, sis-uh's data on automation and impact, and your own exposure tags."
+  ],
+  [
+   10.312,
+   2.388,
+   "Two design choices make it trustworthy."
+  ],
+  [
+   12.7,
+   4.112,
+   "When data is missing, the program assumes the stricter answer."
+  ],
+  [
+   16.812,
+   7.55,
+   "And it remembers when each finding was first seen, because recalculating that every morning quietly resets every clock."
+  ],
+  [
+   24.363,
+   9.312,
+   "Report how many findings closed on time and how many are past due, never a percentage of the open queue, which improves every time new findings arrive."
+  ],
+  [
+   33.675,
+   2.7,
+   "Next, proving the scanner sees everything."
+  ]
+ ],
+ "21": [
+  [
+   0.05,
+   4.713,
+   "The scanner choice comes down to one property: the sensor follows the inventory."
+  ],
+  [
+   4.763,
+   4.737,
+   "Enroll a server in Azure Arc, in a covered subscription, and it's scanned."
+  ],
+  [
+   9.5,
+   1.988,
+   "But enrollment isn't coverage."
+  ],
+  [
+   11.488,
+   10.175,
+   "An extension can fail, a sensor can go unhealthy, so the program checks daily that every enrolled server is actually reporting, and treats any gap as a finding."
+  ],
+  [
+   21.663,
+   7.4,
+   "And lifecycle sets a hard edge: a server whose security updates have ended can still be scanned, but nothing can fix it."
+  ],
+  [
+   29.062,
+   4.612,
+   "That's a decision for the authorizing official, not a row that ages forever."
+  ],
+  [
+   33.675,
+   1.913,
+   "Now, who actually does the fixing?"
+  ]
+ ],
+ "22": [
+  [
+   0.05,
+   2.862,
+   "Only the platform that runs a workload can fix it."
+  ],
+  [
+   2.913,
+   7.075,
+   "So the program lets each platform patch with the tools its support model expects, in every cloud and on premises."
+  ],
+  [
+   9.988,
+   5.675,
+   "What's unified is the record every one of them sends back, keyed to the same asset identity."
+  ],
+  [
+   15.662,
+   7.213,
+   "One thing no single tool can reach is the hypervisor and firmware layer, so don't let an overlay promise otherwise."
+  ],
+  [
+   22.875,
+   8.762,
+   "And remember, a finding closes only when both halves agree: the platform says what it applied, and a later scan no longer sees the flaw."
+  ],
+  [
+   31.637,
+   1.587,
+   "Patching is half the job."
+  ],
+  [
+   33.225,
+   1.85,
+   "Configuration is the other."
+  ]
+ ],
+ "23": [
+  [
+   0.05,
+   4.138,
+   "A patch that drifts back out of its hardened settings hasn't stayed fixed."
+  ],
+  [
+   4.188,
+   6.5,
+   "So baselines are written as code, rolled out in audit mode first, and every drift becomes a record."
+  ],
+  [
+   10.688,
+   1.913,
+   "There's one setting worth knowing well."
+  ],
+  [
+   12.6,
+   6.987,
+   "Azure's auto-correct mode fixes drift silently, and Microsoft says it can't report that the drift ever happened."
+  ],
+  [
+   19.587,
+   4.675,
+   "That means an attacker's change can be quietly undone and leave no trace."
+  ],
+  [
+   24.262,
+   5.987,
+   "So use auto-correct only for low-risk settings, and keep visible drift wherever you need the evidence."
+  ],
+  [
+   30.25,
+   3.862,
+   "And a server that drops out of the report isn't clean; it's a gap."
+  ],
+  [
+   34.112,
+   1.837,
+   "Next, the cloud itself."
+  ]
+ ],
+ "24": [
+  [
+   0.05,
+   4.537,
+   "A public storage bucket has no missing patch, so no scanner will ever flag it."
+  ],
+  [
+   4.588,
+   3.5,
+   "Cloud posture tools read the cloud's own settings instead."
+  ],
+  [
+   8.088,
+   11.412,
+   "The program's rule for choosing them is practical: where you already own a platform's native tool, it's primary for that platform, and a coordinating tool earns its role only where it actually reaches."
+  ],
+  [
+   19.5,
+   8.075,
+   "Check every listing against the fed-ramp Marketplace, not memory, and know the gaps, like no Oracle coverage from Microsoft's tool."
+  ],
+  [
+   27.575,
+   6.5,
+   "For containers, enforce at the gate: refuse the privileged or unscanned workload before it ever runs."
+  ],
+  [
+   34.075,
+   2.125,
+   "Module 4 turns to data."
+  ]
+ ],
+ "25": [
+  [
+   0.05,
+   3.275,
+   "Module 4 closes the book with two questions."
+  ],
+  [
+   3.325,
+   1.6,
+   "What is actually in the file?"
+  ],
+  [
+   4.925,
+   3.675,
+   "And who decides what the security team sees, keeps and lets go?"
+  ]
+ ],
+ "26": [
+  [
+   0.05,
+   7.088,
+   "Network and identity controls can all pass while a sensitive file walks out the door, because nothing said what the file was."
+  ],
+  [
+   7.138,
+   4.362,
+   "A sensitivity label supplies that signal, and other tools can read it."
+  ],
+  [
+   11.5,
+   10.925,
+   "The federal rules are simpler than people think: there are only two levels, Basic and Specified, and the CUI Registry decides which applies, not how sensitive something feels."
+  ],
+  [
+   22.425,
+   6.05,
+   "Privacy Act records, for example, are Basic, while taxpayer information is Specified."
+  ],
+  [
+   28.475,
+   6.85,
+   "The program maps those levels to labels, encrypts to groups rather than people, and deploys the whole set as code."
+  ],
+  [
+   35.325,
+   2.038,
+   "Then the labels have to be enforced."
+  ]
+ ],
+ "27": [
+  [
+   0.05,
+   2.388,
+   "Labels only matter if something acts on them."
+  ],
+  [
+   2.438,
+   8.75,
+   "Data loss prevention acts in three places: inside the Microsoft 365 services, on the device, and at the cloud session."
+  ],
+  [
+   11.188,
+   3.275,
+   "The program's minimum set of policies is on the slide."
+  ],
+  [
+   14.463,
+   2.475,
+   "The rollout discipline is the part to copy."
+  ],
+  [
+   16.938,
+   11.375,
+   "Every policy starts in simulation, measured against real content, because a false-positive storm that stamps CUI on routine files becomes an agency-wide help desk event."
+  ],
+  [
+   28.312,
+   3.95,
+   "And once enforcement starts, watch the people who keep overriding it."
+  ],
+  [
+   32.263,
+   2.95,
+   "Next, the encryption keys behind all this."
+  ]
+ ],
+ "28": [
+  [
+   0.05,
+   7.338,
+   "When someone says bring your own key, ask which one, because in Microsoft 365 it means three different things."
+  ],
+  [
+   7.388,
+   3.125,
+   "One protects every encrypted label at the root."
+  ],
+  [
+   10.512,
+   2.3,
+   "One encrypts the services at rest."
+  ],
+  [
+   12.812,
+   8.875,
+   "And one, double key encryption, protects only the content you choose, at the cost of search, eDiscovery and co-authoring for that content."
+  ],
+  [
+   21.688,
+   4.013,
+   "The program uses that last one only for the narrowest categories."
+  ],
+  [
+   25.7,
+   10.162,
+   "One operational trap: Customer Key keys must never expire, so a rotation policy that sets an expiry date can take Microsoft 365 down."
+  ],
+  [
+   35.862,
+   2.75,
+   "Which brings us to people, and who decides."
+  ]
+ ],
+ "29": [
+  [
+   0.05,
+   8.262,
+   "Most agencies can name their SOC. Fewer can say who decided a log source is collected, or who accepted the risk when it went quiet."
+  ],
+  [
+   8.312,
+   2.45,
+   "In practice it's whoever holds the console."
+  ],
+  [
+   10.762,
+   5.662,
+   "The book separates three things: who decides, who does the work, and who's consulted."
+  ],
+  [
+   16.425,
+   2.538,
+   "The C I O decides scope and funding."
+  ],
+  [
+   18.962,
+   2.125,
+   "The see-so sets the requirements."
+  ],
+  [
+   21.087,
+   4.85,
+   "Only the authorizing official accepts risk, including the risk of not seeing."
+  ],
+  [
+   25.938,
+   4.062,
+   "And the SOC runs the queue and owns the one-hour notice to sis-uh."
+  ],
+  [
+   30.0,
+   2.375,
+   "Let's look at the decisions that matter most."
+  ]
+ ],
+ "30": [
+  [
+   0.05,
+   5.125,
+   "These are the decisions that quietly shrink what the agency can see, each with one owner."
+  ],
+  [
+   5.175,
+   5.425,
+   "The pattern to notice is that the person who can make a change is rarely the person who should decide it."
+  ],
+  [
+   10.6,
+   4.075,
+   "Lowering retention looks like a slider, but it's a records decision."
+  ],
+  [
+   14.675,
+   8.463,
+   "Silencing a noisy rule with an end date is the see-so's call; silencing it forever is a risk acceptance for the authorizing official."
+  ],
+  [
+   23.137,
+   4.263,
+   "And a playbook that disables accounts needs approval before it ever runs."
+  ],
+  [
+   27.4,
+   3.812,
+   "Next, how roles and separations keep the evidence honest."
+  ]
+ ],
+ "31": [
+  [
+   0.05,
+   9.262,
+   "Every rule and playbook gets exactly one named owner, with a test and a review date, so a silent table can be traced to the rules it blinds."
+  ],
+  [
+   9.312,
+   5.65,
+   "Each team gets the least access it needs, with powerful roles activated only when needed."
+  ],
+  [
+   14.963,
+   6.45,
+   "And because security operations keeps the record of what everyone else did, its own separations matter most."
+  ],
+  [
+   21.413,
+   2.487,
+   "Nobody quietly shortens the record."
+  ],
+  [
+   23.9,
+   2.95,
+   "Platform owners can't silence their own logs."
+  ],
+  [
+   26.85,
+   2.575,
+   "The SOC doesn't assess itself."
+  ],
+  [
+   29.425,
+   3.975,
+   "And a contractor can prepare a risk acceptance, but never sign it."
+  ],
+  [
+   33.4,
+   1.837,
+   "Let's close with the decisions."
+  ]
+ ],
+ "32": [
+  [
+   0.05,
+   2.625,
+   "So here are the decisions, each with an owner."
+  ],
+  [
+   2.675,
+   3.138,
+   "Name what must emit and check it against what arrives."
+  ],
+  [
+   5.812,
+   2.862,
+   "Build the naming plane before the evidence pipeline."
+  ],
+  [
+   8.675,
+   2.888,
+   "Tag every exposed asset before December."
+  ],
+  [
+   11.562,
+   3.6,
+   "Decide your key strategy before labels encrypt anything."
+  ],
+  [
+   15.162,
+   4.588,
+   "And send every blind spot to the authorizing official with an end date."
+  ],
+  [
+   19.75,
+   7.037,
+   "The good news is that the first steps cost nothing: run the checks from this session on Monday, and put an owner on every rule."
+  ],
+  [
+   26.788,
+   5.662,
+   "You can't defend what you can't see, and a finding closes only when it's fixed, with proof."
+  ],
+  [
+   32.45,
+   0.762,
+   "Thank you."
+  ]
+ ]
+}

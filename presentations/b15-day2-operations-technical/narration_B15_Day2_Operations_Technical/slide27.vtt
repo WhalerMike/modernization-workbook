@@ -1,0 +1,50 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.725
+In the agency's own data center,
+there's nothing to inherit.
+
+2
+00:00:03.725 --> 00:00:08.174
+No provider operates the hypervisor,
+no one publishes a control mapping,
+
+3
+00:00:08.174 --> 00:00:12.400
+and an agent inside a virtual machine
+can't see the host underneath it.
+
+4
+00:00:12.400 --> 00:00:15.925
+So every piece of evidence
+is the agency's to produce.
+
+5
+00:00:15.925 --> 00:00:21.990
+The tools exist, but they're moving:
+Broadcom replaced its compliance feature
+
+6
+00:00:21.990 --> 00:00:27.675
+between versions 9.0 and 9.1, and the
+new one doesn't list an 800-53 benchmark.
+
+7
+00:00:27.675 --> 00:00:32.500
+Moving clusters to images unlocks both
+the patch and configuration tests.
+
+8
+00:00:32.500 --> 00:00:35.123
+And where no machine
+can reach, a recorded,
+
+9
+00:00:35.123 --> 00:00:37.900
+time-boxed session is
+a declared exception.
+
+10
+00:00:37.900 --> 00:00:40.060
+Finally, who runs all of this.

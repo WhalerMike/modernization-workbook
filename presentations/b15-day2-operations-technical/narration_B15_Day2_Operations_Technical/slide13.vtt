@@ -1,0 +1,50 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.984
+When a user has lost
+their only strong method,
+
+2
+00:00:02.984 --> 00:00:08.138
+re-registration alone leaves a gap: whoever
+signs in next sets up the new method.
+
+3
+00:00:08.138 --> 00:00:11.012
+A Temporary Access Pass closes that gap.
+
+4
+00:00:11.012 --> 00:00:14.826
+The sequence on the slide is the
+heart of it: re-proof the person,
+
+5
+00:00:14.826 --> 00:00:19.538
+revoke their sessions, remove the lost
+method, then issue a one-time pass with
+
+6
+00:00:19.538 --> 00:00:24.250
+the shortest lifetime the handover
+allows, straight to the verified person.
+
+7
+00:00:24.250 --> 00:00:28.506
+Stay with them while they register
+something phishing-resistant, then tell
+
+8
+00:00:28.506 --> 00:00:32.762
+them on another channel, so a victim
+learns about a reset they never asked for.
+
+9
+00:00:32.762 --> 00:00:35.888
+The table shows the pass's
+own limits worth knowing.
+
+10
+00:00:35.888 --> 00:00:39.220
+Some tasks, though, need
+more than one approver.

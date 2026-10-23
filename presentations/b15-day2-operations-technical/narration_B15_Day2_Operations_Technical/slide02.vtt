@@ -1,0 +1,63 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.437
+Here's why this matters.
+
+2
+00:00:01.437 --> 00:00:04.274
+A modernized estate
+isn't judged at cutover;
+
+3
+00:00:04.274 --> 00:00:07.425
+it's judged the first Monday
+someone can't sign in.
+
+4
+00:00:07.425 --> 00:00:11.638
+And the most dangerous routine action
+on the help desk is a single button.
+
+5
+00:00:11.638 --> 00:00:15.881
+Requiring a user to re-register
+for MFA wipes their methods,
+
+6
+00:00:15.881 --> 00:00:18.825
+and whoever signs in
+next sets up new ones.
+
+7
+00:00:18.825 --> 00:00:23.262
+So a reset done on an unverified
+request doesn't fix an account;
+
+8
+00:00:23.262 --> 00:00:25.263
+it hands it to whoever asked.
+
+9
+00:00:25.263 --> 00:00:29.350
+Attackers know this, and they call
+help desks to do exactly that.
+
+10
+00:00:29.350 --> 00:00:32.409
+Federal guidance agrees:
+recovery is a bypass,
+
+11
+00:00:32.409 --> 00:00:36.113
+and it needs high friction and
+a notice to the real owner.
+
+12
+00:00:36.113 --> 00:00:39.875
+So this book treats every
+reset as an account transfer.
+
+13
+00:00:39.875 --> 00:00:42.500
+Next, the model that makes that workable.

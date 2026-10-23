@@ -1,0 +1,59 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.609
+Wherever a connector action exists, the
+ticket should authorize the machine,
+
+2
+00:00:04.609 --> 00:00:06.888
+and the person's role stops at approval.
+
+3
+00:00:06.888 --> 00:00:09.288
+But check what the
+connector really documents.
+
+4
+00:00:09.288 --> 00:00:12.287
+The book checked ServiceNow's
+Entra ID spoke and
+
+5
+00:00:12.287 --> 00:00:15.212
+found the older design
+had mapped too much to it.
+
+6
+00:00:15.212 --> 00:00:18.876
+Its password reset works
+only for cloud-only users.
+
+7
+00:00:18.876 --> 00:00:23.343
+There's no action at all for an MFA
+reset, so that stays a person's task,
+
+8
+00:00:23.343 --> 00:00:27.162
+which makes verification the
+control that matters most.
+
+9
+00:00:27.162 --> 00:00:30.400
+And the connection type decides
+which actions run at all,
+
+10
+00:00:30.400 --> 00:00:33.775
+because some of them work only
+with delegated permissions.
+
+11
+00:00:33.775 --> 00:00:38.050
+Coverage changes by release, so validate
+it against what you've installed.
+
+12
+00:00:38.050 --> 00:00:40.320
+Which brings us to verifying the person.

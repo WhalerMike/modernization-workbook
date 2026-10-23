@@ -1,0 +1,52 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.195
+Most agencies can name their SOC.
+
+2
+00:00:02.195 --> 00:00:05.532
+Fewer can say who decided
+a log source is collected,
+
+3
+00:00:05.532 --> 00:00:08.312
+or who accepted the risk
+when it went quiet.
+
+4
+00:00:08.312 --> 00:00:10.762
+In practice it's whoever
+holds the console.
+
+5
+00:00:10.762 --> 00:00:13.889
+The book separates three
+things: who decides,
+
+6
+00:00:13.889 --> 00:00:16.424
+who does the work, and who's consulted.
+
+7
+00:00:16.424 --> 00:00:18.963
+The CIO decides scope and funding.
+
+8
+00:00:18.963 --> 00:00:21.087
+The CISO sets the requirements.
+
+9
+00:00:21.087 --> 00:00:25.937
+Only the authorizing official accepts
+risk, including the risk of not seeing.
+
+10
+00:00:25.937 --> 00:00:30.000
+And the SOC runs the queue and
+owns the one-hour notice to CISA.
+
+11
+00:00:30.000 --> 00:00:32.420
+Let's look at the
+decisions that matter most.

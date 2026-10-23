@@ -1,0 +1,44 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.375
+When traffic stops passing the old
+access point, three things move with it.
+
+2
+00:00:04.375 --> 00:00:08.788
+DNS still has to end at CISA, and
+the trap is quietly forwarding to a
+
+3
+00:00:08.788 --> 00:00:13.762
+vendor's look-alike resolver: everything
+works, and you're out of compliance.
+
+4
+00:00:13.762 --> 00:00:20.450
+Logging now runs under M-26-14, with
+maturity dates already on the calendar.
+
+5
+00:00:20.450 --> 00:00:24.672
+And CISA's telemetry, which used to
+come from sensors on the MTIPS path,
+
+6
+00:00:24.672 --> 00:00:26.638
+has to come through CLAW instead.
+
+7
+00:00:26.638 --> 00:00:29.004
+The rule the book recommends is simple:
+
+8
+00:00:29.004 --> 00:00:33.887
+don't turn off MTIPS until CISA confirms
+the replacement telemetry is flowing.
+
+9
+00:00:33.887 --> 00:00:36.460
+Then a quick check on which
+policies are still current.

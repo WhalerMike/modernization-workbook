@@ -1,0 +1,49 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.357
+Let's read TIC 3.0 from
+the documents themselves,
+
+2
+00:00:03.357 --> 00:00:05.275
+not from what people say about them.
+
+3
+00:00:05.275 --> 00:00:08.379
+There are four use cases,
+and no SASE use case;
+
+4
+00:00:08.379 --> 00:00:12.825
+CISA's SASE guide describes an
+approach, it doesn't require one.
+
+5
+00:00:12.825 --> 00:00:15.200
+What constrains a branch are two rules.
+
+6
+00:00:15.200 --> 00:00:20.813
+First, policy enforcement parity: if you
+need a capability anywhere, you need it on
+
+7
+00:00:20.813 --> 00:00:26.175
+every path, and that's the only place TIC
+mentions SD-WAN, as something to govern.
+
+8
+00:00:26.175 --> 00:00:30.550
+Second, CISA keeps its visibility
+when branches break out locally.
+
+9
+00:00:30.550 --> 00:00:34.825
+So technology-neutral gives you
+discretion, with an obligation attached.
+
+10
+00:00:34.825 --> 00:00:37.940
+And binding instruments
+sit right beside TIC.

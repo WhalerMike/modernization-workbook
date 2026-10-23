@@ -1,0 +1,48 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.825
+Here's the honest version
+of what SD-WAN does.
+
+2
+00:00:02.825 --> 00:00:07.769
+It can't beat the speed of light, but most
+real paths run well above that floor,
+
+3
+00:00:07.769 --> 00:00:10.400
+and the gap is where
+SD-WAN earns its keep.
+
+4
+00:00:10.400 --> 00:00:14.605
+It separates lean, latency-sensitive
+traffic from bulk transfers,
+
+5
+00:00:14.605 --> 00:00:17.663
+and it recovers some of
+the detour in real routes.
+
+6
+00:00:17.663 --> 00:00:19.663
+The underrated part is the tail.
+
+7
+00:00:19.663 --> 00:00:24.099
+A quorum commit or a voice call is
+only as good as its unluckiest packet,
+
+8
+00:00:24.099 --> 00:00:29.300
+and tools like forward error correction
+and packet duplication shrink that tail.
+
+9
+00:00:29.300 --> 00:00:31.600
+What it never does is go below the floor.
+
+10
+00:00:31.600 --> 00:00:33.550
+So what does SASE add on top?

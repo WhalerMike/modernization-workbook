@@ -1,0 +1,31 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.375
+Module 3 is network access
+control after Active Directory.
+
+2
+00:00:04.375 --> 00:00:07.675
+Sign-in controls can't stop
+someone who simply plugs a
+
+3
+00:00:07.675 --> 00:00:10.900
+laptop into a conference-room
+jack; only the port can.
+
+4
+00:00:10.900 --> 00:00:14.101
+And the RADIUS server checking
+that port is usually the
+
+5
+00:00:14.101 --> 00:00:17.650
+last piece of the network still
+standing on Active Directory.
+
+6
+00:00:17.650 --> 00:00:22.460
+So this module is about proving devices,
+and retiring that dependency safely.

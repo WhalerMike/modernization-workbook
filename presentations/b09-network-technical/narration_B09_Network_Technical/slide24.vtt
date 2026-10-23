@@ -1,0 +1,53 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.262
+RADIUS has a weakness of its own.
+
+2
+00:00:02.262 --> 00:00:06.212
+Over plain UDP it relies on
+MD5, and the 2024 Blast-RADIUS
+
+3
+00:00:06.212 --> 00:00:10.763
+research showed an attacker in
+the middle could forge an accept.
+
+4
+00:00:10.763 --> 00:00:13.829
+EAP is largely protected,
+but the fix is cheap:
+
+5
+00:00:13.829 --> 00:00:19.052
+require the message authenticator
+everywhere, use strong rotated secrets,
+
+6
+00:00:19.052 --> 00:00:22.700
+and move to RADIUS over TLS
+where the hardware allows.
+
+7
+00:00:22.700 --> 00:00:27.161
+On the wire, one certificate
+serves wired and wireless,
+
+8
+00:00:27.161 --> 00:00:29.937
+and WPA3-Enterprise is the target.
+
+9
+00:00:29.937 --> 00:00:36.063
+And don't forget the server certificates:
+they renew through the lifecycle platform,
+
+10
+00:00:36.063 --> 00:00:39.301
+and one, the NPS MFA
+extension's, is easy to miss.
+
+11
+00:00:39.301 --> 00:00:41.900
+Now, rolling this out without an outage.

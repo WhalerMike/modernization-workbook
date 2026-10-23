@@ -1,0 +1,49 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.425
+Azure has two planes, and
+they behave very differently.
+
+2
+00:00:03.425 --> 00:00:08.062
+The activity log is on by default and
+records who created and changed things,
+
+3
+00:00:08.062 --> 00:00:11.375
+but it's deleted after ninety
+days unless you export it.
+
+4
+00:00:11.375 --> 00:00:15.561
+Resource logs, what actually happened
+inside a key vault or a database,
+
+5
+00:00:15.561 --> 00:00:19.387
+aren't collected at all until each
+resource gets its own setting.
+
+6
+00:00:19.387 --> 00:00:23.775
+The engineering choice that pays off
+later is sending them to dedicated tables.
+
+7
+00:00:23.775 --> 00:00:27.165
+The shared table runs out of
+columns, and when it does,
+
+8
+00:00:27.165 --> 00:00:29.925
+a detection rule silently stops matching.
+
+9
+00:00:29.925 --> 00:00:32.600
+So how do you keep every
+new resource emitting?
+
+10
+00:00:32.600 --> 00:00:33.500
+Policy.

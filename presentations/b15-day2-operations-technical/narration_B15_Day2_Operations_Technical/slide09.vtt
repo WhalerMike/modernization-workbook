@@ -1,0 +1,50 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.887
+A ticket closed with 'done'
+is just an assertion.
+
+2
+00:00:02.887 --> 00:00:07.017
+The book wants three records that
+agree: the ticket shows the decision,
+
+3
+00:00:07.017 --> 00:00:11.501
+the elevation record shows the privilege,
+and the audit log shows the change.
+
+4
+00:00:11.501 --> 00:00:15.438
+Two gaps have to be built, because
+Entra won't close them for you.
+
+5
+00:00:15.438 --> 00:00:19.960
+Privileged Identity Management asks for
+a ticket number but never checks it,
+
+6
+00:00:19.960 --> 00:00:23.776
+so a detection rule has to match
+every activation to a real ticket.
+
+7
+00:00:23.776 --> 00:00:28.025
+And Entra keeps its logs for only
+thirty days, so they go to the SIEM.
+
+8
+00:00:28.025 --> 00:00:31.290
+The service levels on the
+right are program defaults,
+
+9
+00:00:31.290 --> 00:00:33.738
+and a shorter outside clock always wins.
+
+10
+00:00:33.738 --> 00:00:37.060
+Module 2 turns to the
+roles behind all this.

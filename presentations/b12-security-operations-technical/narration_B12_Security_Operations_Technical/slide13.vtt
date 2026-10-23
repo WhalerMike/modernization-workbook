@@ -1,0 +1,44 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:06.313
+The Microsoft 365 audit log is the plane
+most often assumed and least often checked.
+
+2
+00:00:06.313 --> 00:00:10.445
+Verify it's actually on, and do it
+in the right PowerShell session,
+
+3
+00:00:10.445 --> 00:00:12.862
+because the other one always says off.
+
+4
+00:00:12.862 --> 00:00:17.989
+Collecting it through Microsoft's API has
+a few rules that break almost every first
+
+5
+00:00:17.989 --> 00:00:22.446
+attempt: patience when you subscribe,
+a seven-day window to fetch content,
+
+6
+00:00:22.446 --> 00:00:25.938
+events that arrive out of order,
+and duplicates by design.
+
+7
+00:00:25.938 --> 00:00:29.354
+So the collector tracks what
+it's fetched, deduplicates,
+
+8
+00:00:29.354 --> 00:00:32.250
+and looks back over a
+trailing window every run.
+
+9
+00:00:32.250 --> 00:00:34.540
+Then there's how long Microsoft keeps it.

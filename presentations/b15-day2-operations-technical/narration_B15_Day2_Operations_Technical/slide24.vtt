@@ -1,0 +1,49 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:05.138
+Azure ships a lot of help here, and Microsoft
+is unusually candid about its limits.
+
+2
+00:00:05.138 --> 00:00:09.171
+Azure Policy's FedRAMP initiative
+reports compliant only for the
+
+3
+00:00:09.171 --> 00:00:13.351
+settings it can test, which is a partial
+view, not a verdict on a control.
+
+4
+00:00:13.351 --> 00:00:18.050
+Results arrive on a daily cycle, so
+closures lag the fix by up to a day.
+
+5
+00:00:18.050 --> 00:00:20.723
+Exceptions have a native
+form with an expiry,
+
+6
+00:00:20.723 --> 00:00:23.975
+and the book allows them only
+from an approved request.
+
+7
+00:00:23.975 --> 00:00:27.452
+Defender for Cloud adds
+dashboards and exports,
+
+8
+00:00:27.452 --> 00:00:31.450
+but an export only fires on
+change, so silence isn't proof.
+
+9
+00:00:31.450 --> 00:00:34.187
+Resource Graph is the simple read path.
+
+10
+00:00:34.187 --> 00:00:36.430
+So how do results reach the ticket queue?

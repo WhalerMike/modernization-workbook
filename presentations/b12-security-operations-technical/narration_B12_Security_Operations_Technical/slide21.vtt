@@ -1,0 +1,44 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.763
+The scanner choice comes down to one
+property: the sensor follows the inventory.
+
+2
+00:00:04.763 --> 00:00:09.500
+Enroll a server in Azure Arc, in a
+covered subscription, and it's scanned.
+
+3
+00:00:09.500 --> 00:00:11.488
+But enrollment isn't coverage.
+
+4
+00:00:11.488 --> 00:00:16.378
+An extension can fail, a sensor can go
+unhealthy, so the program checks daily
+
+5
+00:00:16.378 --> 00:00:21.663
+that every enrolled server is actually
+reporting, and treats any gap as a finding.
+
+6
+00:00:21.663 --> 00:00:25.132
+And lifecycle sets a hard
+edge: a server whose security
+
+7
+00:00:25.132 --> 00:00:29.063
+updates have ended can still be
+scanned, but nothing can fix it.
+
+8
+00:00:29.063 --> 00:00:33.674
+That's a decision for the authorizing
+official, not a row that ages forever.
+
+9
+00:00:33.674 --> 00:00:35.640
+Now, who actually does the fixing?

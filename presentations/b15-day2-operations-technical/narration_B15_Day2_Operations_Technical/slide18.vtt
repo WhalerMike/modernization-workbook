@@ -1,0 +1,54 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.582
+An administrator can connect a third-party
+SaaS service in about fifteen minutes,
+
+2
+00:00:04.582 --> 00:00:07.247
+and nothing along the
+vendor's path asks whether
+
+3
+00:00:07.247 --> 00:00:09.913
+that service is authorized
+to hold federal data.
+
+4
+00:00:09.913 --> 00:00:11.575
+That's the point of this slide.
+
+5
+00:00:11.575 --> 00:00:14.714
+Consent controls decide who
+may approve an integration;
+
+6
+00:00:14.714 --> 00:00:18.187
+they don't decide whether the
+service should get the data at all.
+
+7
+00:00:18.187 --> 00:00:23.451
+So the book puts a gate first: no
+authorization verdict, no configuration.
+
+8
+00:00:23.451 --> 00:00:28.382
+Its default for identity data is a FedRAMP
+certification at Class C or higher,
+
+9
+00:00:28.382 --> 00:00:30.925
+read from the Marketplace's own dataset.
+
+10
+00:00:30.925 --> 00:00:35.675
+Name matching only ever creates a
+review queue, never an automatic no.
+
+11
+00:00:35.675 --> 00:00:39.050
+Then the question is how to
+configure it with least privilege.

@@ -1,0 +1,49 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.587
+A public storage bucket has no missing
+patch, so no scanner will ever flag it.
+
+2
+00:00:04.587 --> 00:00:08.088
+Cloud posture tools read the
+cloud's own settings instead.
+
+3
+00:00:08.088 --> 00:00:10.976
+The program's rule for
+choosing them is practical:
+
+4
+00:00:10.976 --> 00:00:15.414
+where you already own a platform's native
+tool, it's primary for that platform,
+
+5
+00:00:15.414 --> 00:00:19.500
+and a coordinating tool earns its
+role only where it actually reaches.
+
+6
+00:00:19.500 --> 00:00:23.614
+Check every listing against the
+FedRAMP Marketplace, not memory,
+
+7
+00:00:23.614 --> 00:00:27.575
+and know the gaps, like no Oracle
+coverage from Microsoft's tool.
+
+8
+00:00:27.575 --> 00:00:29.846
+For containers, enforce at the gate:
+
+9
+00:00:29.846 --> 00:00:34.075
+refuse the privileged or unscanned
+workload before it ever runs.
+
+10
+00:00:34.075 --> 00:00:36.260
+Module 4 turns to data.

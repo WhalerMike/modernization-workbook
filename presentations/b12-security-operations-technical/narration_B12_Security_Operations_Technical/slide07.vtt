@@ -1,0 +1,49 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.325
+Identity looks instrumented out of
+the box, which is exactly the trap.
+
+2
+00:00:04.325 --> 00:00:08.358
+Entra keeps its own sign-in and
+audit history for about a month,
+
+3
+00:00:08.358 --> 00:00:11.125
+and once it's gone, no
+license brings it back.
+
+4
+00:00:11.125 --> 00:00:14.875
+The fix is one tenant-level
+setting that streams the logs out.
+
+5
+00:00:14.875 --> 00:00:17.798
+The detail that bites
+people is that the category
+
+6
+00:00:17.798 --> 00:00:20.150
+you tick isn't always the table you query.
+
+7
+00:00:20.150 --> 00:00:23.610
+The big decision is to treat all
+four sign-in streams as core,
+
+8
+00:00:23.610 --> 00:00:28.412
+because the non-interactive ones are where
+unattended credentials do their work.
+
+9
+00:00:28.412 --> 00:00:32.613
+Manage the cost with table plans,
+never by switching a stream off.
+
+10
+00:00:32.613 --> 00:00:34.940
+Next, how to deploy it properly.

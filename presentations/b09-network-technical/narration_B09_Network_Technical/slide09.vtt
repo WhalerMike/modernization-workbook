@@ -1,0 +1,54 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.018
+A lot of network documents carry
+at least one stale citation,
+
+2
+00:00:04.018 --> 00:00:06.875
+so here's where things
+stand in October 2026.
+
+3
+00:00:06.875 --> 00:00:11.943
+M-21-31 is gone, older vulnerability
+directives have been replaced,
+
+4
+00:00:11.943 --> 00:00:15.537
+and the legacy telecom
+contracts have expired.
+
+5
+00:00:15.537 --> 00:00:17.937
+The FedRAMP point matters most day to day.
+
+6
+00:00:17.937 --> 00:00:22.026
+FedRAMP certifies a cloud service,
+not the route you take to reach it.
+
+7
+00:00:22.026 --> 00:00:25.800
+So when someone refuses a network
+change for FedRAMP reasons,
+
+8
+00:00:25.800 --> 00:00:27.650
+ask which control it violates.
+
+9
+00:00:27.650 --> 00:00:30.303
+There isn't one, and the
+book treats a refusal
+
+10
+00:00:30.303 --> 00:00:33.250
+without a control basis
+as a governance problem.
+
+11
+00:00:33.250 --> 00:00:36.770
+Now the data-side idea that
+makes centralization safe.

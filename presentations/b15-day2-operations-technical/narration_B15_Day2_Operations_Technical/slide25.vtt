@@ -1,0 +1,54 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.460
+There are three routes from a native
+result into the ticketing platform: the
+
+2
+00:00:04.460 --> 00:00:09.150
+vendor's own connector, the platform's
+import, or the program's read-only collector.
+
+3
+00:00:09.150 --> 00:00:12.946
+Which one you can use depends on
+your cloud; the Defender connector,
+
+4
+00:00:12.946 --> 00:00:15.775
+for instance, isn't available
+in Azure Government.
+
+5
+00:00:15.775 --> 00:00:18.280
+The important rule is
+one route per source,
+
+6
+00:00:18.280 --> 00:00:22.575
+because two routes give you two tasks
+and two clocks for the same finding.
+
+7
+00:00:22.575 --> 00:00:24.350
+And the clock itself matters.
+
+8
+00:00:24.350 --> 00:00:29.586
+For vulnerabilities it's CISA's new
+directive on prioritizing security updates,
+
+9
+00:00:29.586 --> 00:00:33.744
+set by exposure and known
+exploitation, not FedRAMP's timeframes,
+
+10
+00:00:33.744 --> 00:00:36.362
+which bind cloud providers, not agencies.
+
+11
+00:00:36.362 --> 00:00:40.200
+Next, AWS, where the
+ground shifted this year.

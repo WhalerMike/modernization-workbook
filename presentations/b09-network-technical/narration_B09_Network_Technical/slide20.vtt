@@ -1,0 +1,44 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.591
+Port admission has three
+players: software on the device,
+
+2
+00:00:03.591 --> 00:00:08.187
+the switch or access point that relays,
+and the RADIUS server that decides.
+
+3
+00:00:08.187 --> 00:00:12.219
+The method that matters is EAP-TLS,
+a certificate on each side,
+
+4
+00:00:12.219 --> 00:00:16.975
+so neither the device nor the network
+can be faked without a private key.
+
+5
+00:00:16.975 --> 00:00:19.450
+The urgency comes from Windows itself.
+
+6
+00:00:19.450 --> 00:00:25.232
+Password-based methods like PEAP with
+MS-CHAPv2 are being cut off from single
+
+7
+00:00:25.232 --> 00:00:30.563
+sign-on, first by Credential Guard
+and now by the October 2026 hardening.
+
+8
+00:00:30.563 --> 00:00:35.224
+So agencies still on password-based
+Wi-Fi have a deadline they didn't choose.
+
+9
+00:00:35.224 --> 00:00:37.580
+Next, the server doing the checking.

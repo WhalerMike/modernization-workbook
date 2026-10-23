@@ -1,0 +1,53 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.087
+Triage asks one question: what
+authority does this task need?
+
+2
+00:00:04.087 --> 00:00:08.938
+Not who received it, not how urgent the
+caller sounds, and not how senior they are.
+
+3
+00:00:08.938 --> 00:00:12.366
+The checks run in a fixed order,
+and the first match wins,
+
+4
+00:00:12.366 --> 00:00:17.546
+so the dangerous cases are caught first:
+anything claiming to come from Microsoft,
+
+5
+00:00:17.546 --> 00:00:19.984
+and any target that holds an admin role,
+
+6
+00:00:19.984 --> 00:00:25.088
+because a role that can reset ordinary
+users can't safely reset an administrator.
+
+7
+00:00:25.088 --> 00:00:27.087
+One rule deserves emphasis.
+
+8
+00:00:27.087 --> 00:00:31.587
+Nothing is approved from an email,
+even a convincing one from Microsoft.
+
+9
+00:00:31.587 --> 00:00:34.824
+A sender address is a
+quick filter, not proof.
+
+10
+00:00:34.824 --> 00:00:39.812
+The check that counts is the tenant's own
+audit log, matched to an approved ticket.
+
+11
+00:00:39.812 --> 00:00:42.530
+Next, what automation can actually carry.

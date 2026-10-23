@@ -1,0 +1,53 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.188
+A patch that drifts back out of its
+hardened settings hasn't stayed fixed.
+
+2
+00:00:04.188 --> 00:00:06.410
+So baselines are written as code,
+
+3
+00:00:06.410 --> 00:00:10.688
+rolled out in audit mode first,
+and every drift becomes a record.
+
+4
+00:00:10.688 --> 00:00:12.601
+There's one setting worth knowing well.
+
+5
+00:00:12.601 --> 00:00:15.594
+Azure's auto-correct mode
+fixes drift silently,
+
+6
+00:00:15.594 --> 00:00:19.587
+and Microsoft says it can't report
+that the drift ever happened.
+
+7
+00:00:19.587 --> 00:00:24.262
+That means an attacker's change can
+be quietly undone and leave no trace.
+
+8
+00:00:24.262 --> 00:00:27.003
+So use auto-correct only
+for low-risk settings,
+
+9
+00:00:27.003 --> 00:00:30.249
+and keep visible drift wherever
+you need the evidence.
+
+10
+00:00:30.249 --> 00:00:34.112
+And a server that drops out of the
+report isn't clean; it's a gap.
+
+11
+00:00:34.112 --> 00:00:36.000
+Next, the cloud itself.

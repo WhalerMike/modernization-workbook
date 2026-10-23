@@ -1,0 +1,59 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.498
+The catalog configures integrations
+through Microsoft Graph,
+
+2
+00:00:03.498 --> 00:00:07.988
+and the book checked the older design's
+permissions against Microsoft's reference.
+
+3
+00:00:07.988 --> 00:00:10.949
+The operations were right;
+the permissions weren't.
+
+4
+00:00:10.949 --> 00:00:15.658
+One narrow permission, limited to applications
+the connector owns, covers almost
+
+5
+00:00:15.658 --> 00:00:18.566
+everything, and adding
+the broad synchronization
+
+6
+00:00:18.566 --> 00:00:20.712
+permission would undo that boundary.
+
+7
+00:00:20.712 --> 00:00:25.586
+The real trap is assignment: the permission
+it needs can grant anything to anyone,
+
+8
+00:00:25.586 --> 00:00:29.224
+which turns the connector into
+a privileged administrator.
+
+9
+00:00:29.224 --> 00:00:31.235
+So it stays off the connector,
+
+10
+00:00:31.235 --> 00:00:35.675
+and a person binds the access group
+once, under a just-in-time role.
+
+11
+00:00:35.675 --> 00:00:38.975
+After that, access changes
+are just group membership.
+
+12
+00:00:38.975 --> 00:00:44.300
+Every integration also has to land
+correctly in the CMDB, so that's next.

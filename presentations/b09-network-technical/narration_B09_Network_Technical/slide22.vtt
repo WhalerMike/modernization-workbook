@@ -1,0 +1,49 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.300
+The program doesn't add a separate
+posture probe; it reads Intune.
+
+2
+00:00:04.300 --> 00:00:10.233
+A NAC product registers with Entra ID,
+the device certificate carries its Intune
+
+3
+00:00:10.233 --> 00:00:15.812
+device ID, and on connect the NAC asks
+Intune whether the device is compliant.
+
+4
+00:00:15.812 --> 00:00:17.899
+Two realities to plan for.
+
+5
+00:00:17.899 --> 00:00:22.863
+Posture is only as fresh as Intune's
+last check-in, which can be hours old.
+
+6
+00:00:22.863 --> 00:00:25.665
+And when a device falls out
+of compliance mid-shift,
+
+7
+00:00:25.665 --> 00:00:29.201
+something has to move the port,
+which is Change of Authorization.
+
+8
+00:00:29.201 --> 00:00:33.118
+NPS can't send it, and building
+your own is real engineering,
+
+9
+00:00:33.118 --> 00:00:36.138
+which is a strong argument
+for a NAC platform.
+
+10
+00:00:36.138 --> 00:00:37.940
+So where do devices land?

@@ -1,0 +1,44 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.550
+Here's the heart of the book.
+
+2
+00:00:01.550 --> 00:00:05.912
+A place where logs are kept isn't the
+same as a capability that reads them.
+
+3
+00:00:05.912 --> 00:00:10.387
+A workspace with no rules can prove
+storage; it can't prove analysis.
+
+4
+00:00:10.387 --> 00:00:13.757
+So the program's rule is that
+no source counts as monitored
+
+5
+00:00:13.757 --> 00:00:17.337
+until an enabled rule reads it
+and someone owns what it raises.
+
+6
+00:00:17.337 --> 00:00:21.887
+The rule types also set a floor on how
+fast you can possibly detect anything.
+
+7
+00:00:21.887 --> 00:00:24.738
+And get ready for the
+assessor's favorite request:
+
+8
+00:00:24.738 --> 00:00:27.937
+show me an alert from last month,
+and what you did about it.
+
+9
+00:00:27.937 --> 00:00:30.070
+Next, how the data gets in.

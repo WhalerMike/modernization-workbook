@@ -1,0 +1,51 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.807
+A connector that silently stops is
+worse than one you never set up,
+
+2
+00:00:03.807 --> 00:00:05.825
+because you believe you're covered.
+
+3
+00:00:05.825 --> 00:00:08.964
+Microsoft's health table
+only covers some connectors,
+
+4
+00:00:08.964 --> 00:00:11.126
+so the program checks the data itself:
+
+5
+00:00:11.126 --> 00:00:15.450
+when did each table last hear something,
+and is that longer than it should be?
+
+6
+00:00:15.450 --> 00:00:19.100
+Make that check a rule, so a
+quiet source opens an incident.
+
+7
+00:00:19.100 --> 00:00:21.725
+Then divide the work with Defender XDR.
+
+8
+00:00:21.725 --> 00:00:24.488
+Let Defender detect what
+its own sensors see,
+
+9
+00:00:24.488 --> 00:00:27.475
+and point Sentinel at
+everything Defender can't.
+
+10
+00:00:27.475 --> 00:00:28.475
+That's Part 1.
+
+11
+00:00:28.475 --> 00:00:30.770
+Part 2 starts with vulnerabilities.

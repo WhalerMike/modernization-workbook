@@ -1,0 +1,52 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.125
+Windows NPS works today because
+devices are hybrid-joined.
+
+2
+00:00:04.125 --> 00:00:07.734
+The trouble is that it leans on
+Active Directory computer objects,
+
+3
+00:00:07.734 --> 00:00:09.900
+and Entra-joined devices don't have them.
+
+4
+00:00:09.900 --> 00:00:13.189
+Entra ID offers no RADIUS
+service of its own,
+
+5
+00:00:13.189 --> 00:00:16.113
+and NPS has no way to read device health.
+
+6
+00:00:16.113 --> 00:00:19.776
+So NPS gets less useful
+with every device you move.
+
+7
+00:00:19.776 --> 00:00:24.831
+The options are an on-premises NAC platform,
+a cloud RADIUS service with the right
+
+8
+00:00:24.831 --> 00:00:29.888
+FedRAMP status for that function, or taking
+RADIUS out of remote access entirely.
+
+9
+00:00:29.888 --> 00:00:33.656
+The program's rule: tie the
+switch to the migration timeline,
+
+10
+00:00:33.656 --> 00:00:35.887
+and authorize cloud devices first.
+
+11
+00:00:35.887 --> 00:00:38.350
+Next, where the health signal comes from.

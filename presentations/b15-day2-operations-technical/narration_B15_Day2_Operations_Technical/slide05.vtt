@@ -1,0 +1,50 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.375
+The rule is simple: one front door.
+
+2
+00:00:02.375 --> 00:00:05.800
+Nothing is handled as ad
+hoc email to the cloud team.
+
+3
+00:00:05.800 --> 00:00:11.214
+The team mailbox gets a mail-flow rule that
+redirects into the ticketing platform,
+
+4
+00:00:11.214 --> 00:00:16.150
+and the detail matters: a blind copy
+leaves two queues, a redirect leaves one.
+
+5
+00:00:16.150 --> 00:00:20.275
+Run the rule in audit mode
+first, compare, then enforce.
+
+6
+00:00:20.275 --> 00:00:25.393
+New mail becomes a triage record with nobody
+assigned, and a reroute rule pulls back
+
+7
+00:00:25.393 --> 00:00:30.363
+anything sent straight to cloud services,
+because old habits survive a redirect.
+
+8
+00:00:30.363 --> 00:00:34.501
+Cloud services is the escalation
+tier, not a second inbox.
+
+9
+00:00:34.501 --> 00:00:39.287
+Approvals carry due dates that reject,
+so silence never grants access.
+
+10
+00:00:39.287 --> 00:00:42.910
+Once a request is in, triage
+decides where it goes.

@@ -1,0 +1,58 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.125
+Scope is what keeps those roles narrow.
+
+2
+00:00:02.125 --> 00:00:04.571
+Help desk roles are assigned over AUs,
+
+3
+00:00:04.571 --> 00:00:08.437
+and at that scope they reach
+only members with no admin role.
+
+4
+00:00:08.437 --> 00:00:12.756
+Executives go further, into a
+restricted unit that only a small,
+
+5
+00:00:12.756 --> 00:00:17.738
+approved support group can touch; even
+tenant-wide admins can't edit them.
+
+6
+00:00:17.738 --> 00:00:20.871
+One caution: don't put the
+technicians themselves in one,
+
+7
+00:00:20.871 --> 00:00:23.663
+because governance features
+stop working there.
+
+8
+00:00:23.663 --> 00:00:27.890
+Roles reach technicians through one
+group per role and scope, eligible
+
+9
+00:00:27.890 --> 00:00:32.475
+rather than active, and activated with
+a justification that cites the ticket.
+
+10
+00:00:32.475 --> 00:00:35.000
+Those groups also protect their members,
+
+11
+00:00:35.000 --> 00:00:38.863
+so one technician can't reset
+another and inherit their access.
+
+12
+00:00:38.863 --> 00:00:41.760
+Now, recovering someone
+who's lost everything.

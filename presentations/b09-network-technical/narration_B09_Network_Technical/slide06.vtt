@@ -1,0 +1,51 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.950
+This slide is the answer to
+"TIC doesn't require anything."
+
+2
+00:00:03.950 --> 00:00:07.675
+Four binding obligations land
+directly on branch equipment.
+
+3
+00:00:07.675 --> 00:00:11.084
+Egress DNS has to reach
+CISA's Protective DNS.
+
+4
+00:00:11.084 --> 00:00:15.300
+Management interfaces can't
+sit exposed on the internet.
+
+5
+00:00:15.300 --> 00:00:18.875
+End-of-support edge devices
+come out on a dated schedule.
+
+6
+00:00:18.875 --> 00:00:24.850
+And anything terminating TLS or IPsec
+has to support post-quantum key exchange.
+
+7
+00:00:24.850 --> 00:00:28.375
+None of them picks a product,
+but together they shape the box.
+
+8
+00:00:28.375 --> 00:00:32.689
+The big takeaway is the refresh:
+replacing branch hardware is already a
+
+9
+00:00:32.689 --> 00:00:37.150
+dated obligation, so that purchase is
+where the architecture gets chosen.
+
+10
+00:00:37.150 --> 00:00:41.160
+Next, the controls an agency
+asserts about its own boundary.

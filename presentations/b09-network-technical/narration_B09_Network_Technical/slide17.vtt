@@ -1,0 +1,53 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.342
+This is the slide behind the
+classic help-desk report:
+
+2
+00:00:03.342 --> 00:00:05.587
+everything works except signing in.
+
+3
+00:00:05.587 --> 00:00:09.839
+A handful of operations still need
+a reachable domain controller,
+
+4
+00:00:09.839 --> 00:00:13.163
+like first logon, Group
+Policy and password changes.
+
+5
+00:00:13.163 --> 00:00:16.735
+A branch on local breakout
+reaches the internet just fine,
+
+6
+00:00:16.735 --> 00:00:21.424
+but if nobody planned its path to a
+domain controller, those operations fail.
+
+7
+00:00:21.424 --> 00:00:24.378
+Worse, Windows quietly falls back to NTLM,
+
+8
+00:00:24.378 --> 00:00:28.200
+which is exactly what the
+program is trying to retire.
+
+9
+00:00:28.200 --> 00:00:32.319
+So give every branch a defined
+path, through a private link,
+
+10
+00:00:32.319 --> 00:00:37.038
+a connector or a KDC proxy, or remove
+the dependency with Entra join.
+
+11
+00:00:37.038 --> 00:00:39.720
+Then, a reality check on performance.
