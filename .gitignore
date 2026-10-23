@@ -21,6 +21,8 @@ __pycache__/
 
 # Narrated MP4 exports exceed GitHub limits; attach them to a release instead
 presentations/**/*.mp4
+# Except the Start Here web video (720p, embedded on docs/start-here.md)
+!presentations/start-here/Start_Here_720p.mp4
 
 # Source watcher: the state lives on the source-watch-state branch, never main
 # (see scripts/source_watch/README.md); a local run's copy and its output stay untracked.

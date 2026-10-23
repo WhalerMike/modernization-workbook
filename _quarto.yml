@@ -27,6 +27,9 @@ project:
   # Slide decks are published so the Presentations page can link them.
   resources:
     - "presentations/**/*.pptx"
+    - "presentations/start-here/Start_Here_720p.mp4"
+    - "presentations/start-here/Start_Here_Narrated.vtt"
+    - "presentations/start-here/Start_Here_poster.png"
     - "docs/inspiration/*.pdf"
 
 website:
