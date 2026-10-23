@@ -1,74 +1,69 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:02.025
-Why is modernization so hard?
+00:00:00.050 --> 00:00:01.338
+Why is it so hard?
 
 2
-00:00:02.025 --> 00:00:04.125
-The estate got here in four eras.
+00:00:01.338 --> 00:00:05.551
+Because the estate was built in four
+eras, and each one solved a real
 
 3
-00:00:04.125 --> 00:00:05.879
-Each solved a real problem,
-
-4
-00:00:05.879 --> 00:00:10.263
-and none replaced what the first
+00:00:05.551 --> 00:00:10.224
+problem without keeping what the first
 era had: one authoritative answer.
 
-5
-00:00:10.263 --> 00:00:14.700
+4
+00:00:10.224 --> 00:00:14.600
 On the mainframe, one machine held
-the data and enforced access to it.
+the data and controlled access to it.
+
+5
+00:00:14.600 --> 00:00:17.665
+By the late 1980s, that
+truth was spread across
 
 6
-00:00:14.700 --> 00:00:18.185
-By the late 1980s, regional
-databases and directories
+00:00:17.665 --> 00:00:20.650
+a dozen regional
+databases and directories.
 
 7
-00:00:18.185 --> 00:00:21.050
-had spread that truth
-across a dozen systems.
+00:00:20.650 --> 00:00:25.167
+Then the direction reversed, and
+data center consolidation wired
 
 8
-00:00:21.050 --> 00:00:23.925
-From 2010 the direction reversed.
+00:00:25.167 --> 00:00:29.437
+offices back to distant facilities;
+the slide has OMB's numbers.
 
 9
-00:00:23.925 --> 00:00:31.213
-OMB reported that federal data centers had
-grown from 432 in 1998 to more than 1,100
-
-10
-00:00:31.213 --> 00:00:38.180
-in 2009, and the December 2010 reform plan
-targeted closing at least 800 by 2015,
-
-11
-00:00:38.180 --> 00:00:42.038
-wiring offices back to distant facilities.
-
-12
-00:00:42.038 --> 00:00:45.176
-Then email and collaboration
+00:00:29.437 --> 00:00:32.954
+Finally, email and collaboration
 moved to the cloud,
 
-13
-00:00:45.176 --> 00:00:48.001
-while identity stayed in regional domains.
+10
+00:00:32.954 --> 00:00:36.388
+while identity stayed
+behind in regional domains.
 
-14
-00:00:48.001 --> 00:00:50.650
-And each fix assumes the last one is done.
+11
+00:00:36.388 --> 00:00:39.263
+And each fix assumes the
+last one is finished.
 
-15
-00:00:50.650 --> 00:00:56.054
+12
+00:00:39.263 --> 00:00:44.667
 Zero Trust assumes governed identity,
 governed identity assumes a clean directory,
 
-16
-00:00:56.054 --> 00:00:59.040
+13
+00:00:44.667 --> 00:00:47.601
 and a clean directory
 assumes someone owns it.
+
+14
+00:00:47.601 --> 00:00:49.340
+Trust itself changed too.

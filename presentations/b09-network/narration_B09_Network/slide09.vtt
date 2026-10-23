@@ -1,76 +1,73 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:03.398
-Chapter 08 puts the pieces
-together with one rule:
+00:00:00.050 --> 00:00:02.621
+The pieces come together under one rule:
 
 2
-00:00:03.398 --> 00:00:07.563
-align each flow's consistency
-class with its transport class.
+00:00:02.621 --> 00:00:06.438
+match each flow's consistency
+needs to its transport class.
 
 3
-00:00:07.563 --> 00:00:11.888
+00:00:06.438 --> 00:00:10.764
 Only authoritative writes and
 in-region quorum ride the lean path,
 
 4
-00:00:11.888 --> 00:00:14.799
+00:00:10.764 --> 00:00:13.675
 and neither crosses a
 region synchronously.
 
 5
-00:00:14.799 --> 00:00:17.537
+00:00:13.675 --> 00:00:16.412
 At the branch, four
 patterns cover practice.
 
 6
-00:00:17.537 --> 00:00:22.138
-A, the hairpin: assessed, but
+00:00:16.412 --> 00:00:20.313
+The hairpin is assessed, but
 every flow pays the detour.
 
 7
-00:00:22.138 --> 00:00:26.712
-B, bare local breakout: not an
+00:00:20.313 --> 00:00:24.374
+Bare local breakout isn't an
 option in the TIC use case at all.
 
 8
-00:00:26.712 --> 00:00:29.957
-C, governed local breakout,
-an SD-WAN edge plus a
+00:00:24.374 --> 00:00:26.071
+Governed local breakout,
 
 9
-00:00:29.957 --> 00:00:33.800
-nearby SASE point of presence:
-the reference pattern.
+00:00:26.071 --> 00:00:30.350
+an SD-WAN edge plus a nearby SASE
+point, is the reference pattern.
 
 10
-00:00:33.800 --> 00:00:37.112
-D, agent-delivered SASE,
-for small and roaming sites,
+00:00:30.350 --> 00:00:34.175
+And agent-delivered SASE
+suits small and roaming sites.
 
 11
-00:00:37.112 --> 00:00:41.425
-if the point of presence is close
-and agentless devices are covered.
+00:00:34.175 --> 00:00:38.216
+Then five decisions carry most of
+the risk: one writer per region,
 
 12
-00:00:41.425 --> 00:00:47.060
-Five decisions carry most of the risk: one
-writer per region; a written path policy,
+00:00:38.216 --> 00:00:41.877
+a written path policy, the
+boundary change before cutover,
 
 13
-00:00:47.060 --> 00:00:51.517
-which SC-7(4) already asks for;
-the boundary change before cutover;
+00:00:41.877 --> 00:00:47.062
+the governor protected before it carries
+traffic, and the path made into evidence.
 
 14
-00:00:51.517 --> 00:00:56.900
-the governor protected before it carries
-traffic; and the path made evidence.
-
-15
-00:00:56.900 --> 00:00:59.880
+00:00:47.062 --> 00:00:49.975
 Each fails quietly, so
 each comes with a check.
+
+15
+00:00:49.975 --> 00:00:51.620
+Who makes those decisions?

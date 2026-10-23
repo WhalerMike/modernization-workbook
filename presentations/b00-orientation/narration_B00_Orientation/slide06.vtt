@@ -1,87 +1,74 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:01.187
-What is the program?
+00:00:00.050 --> 00:00:01.925
+The program starts with a charter.
 
 2
-00:00:01.187 --> 00:00:05.465
-It starts with a charter: short on
-purpose, the page the sponsor signs,
+00:00:01.925 --> 00:00:05.093
+It's short on purpose: it's
+the page the sponsor signs,
 
 3
-00:00:05.465 --> 00:00:08.826
+00:00:05.093 --> 00:00:08.563
 and the page every later
-decision is checked against.
+decision gets checked against.
 
 4
-00:00:08.826 --> 00:00:14.075
+00:00:08.563 --> 00:00:13.992
 Its purpose is to move the organization
 from fragmented, legacy-dependent identity,
 
 5
-00:00:14.075 --> 00:00:16.850
-policy and addressing
-systems to a governed,
+00:00:13.992 --> 00:00:16.319
+policy and addressing to a governed,
 
 6
-00:00:16.850 --> 00:00:22.100
-attribute-driven hybrid-cloud operating
-model, without rip-and-replace disruption.
+00:00:16.319 --> 00:00:20.275
+attribute-driven hybrid-cloud
+model, without rip-and-replace.
 
 7
-00:00:22.100 --> 00:00:27.272
-It has six objectives: one authoritative
-origin for organizational structure and
+00:00:20.275 --> 00:00:23.262
+It has six objectives,
+and the slide lists them.
 
 8
-00:00:27.272 --> 00:00:31.920
-identity attributes; governance
-rebuilt explicitly, through attributes,
+00:00:23.262 --> 00:00:28.260
+At their heart: one authoritative source
+for structure and identity attributes,
 
 9
-00:00:31.920 --> 00:00:36.718
-dynamic membership and scoped policy;
-drift treated as a classified finding;
+00:00:28.260 --> 00:00:33.406
+governance rebuilt explicitly instead of
+implied, drift treated as a real finding,
 
 10
-00:00:36.718 --> 00:00:41.890
-change in controlled waves that close with
-evidence; domain transformations that
+00:00:33.406 --> 00:00:36.912
+and change in controlled waves
+that close with evidence.
 
 11
-00:00:41.890 --> 00:00:46.838
-can each proceed on their own schedule;
-and continuous, machine-usable evidence.
+00:00:36.912 --> 00:00:40.741
+The scope is the method:
+discovery, the target model,
 
 12
-00:00:46.838 --> 00:00:48.349
-The scope is the method.
+00:00:40.741 --> 00:00:44.751
+wave plans, change control,
+drift detection and gates.
 
 13
-00:00:48.349 --> 00:00:51.134
-Discovery, the target model, wave plans,
+00:00:44.751 --> 00:00:49.787
+Inline enforcement and the agency's
+own cutover are out, at least at first.
 
 14
-00:00:51.134 --> 00:00:54.613
-change control, drift
-detection and gates are in.
-
-15
-00:00:54.613 --> 00:00:56.966
-Replacing compliance frameworks,
-
-16
-00:00:56.966 --> 00:01:02.000
-inline enforcement and the agency's
-own cutover execution are out at first.
-
-17
-00:01:02.000 --> 00:01:06.466
-And one platform fact shapes the
+00:00:49.787 --> 00:00:54.566
+And one platform fact shapes the whole
 plan: for synced users, the extension
 
-18
-00:01:06.466 --> 00:01:11.140
+15
+00:00:54.566 --> 00:00:59.180
 attributes are mastered in Active
 Directory and read-only in the cloud.

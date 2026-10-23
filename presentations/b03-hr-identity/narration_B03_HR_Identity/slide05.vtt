@@ -2,83 +2,73 @@ WEBVTT
 
 1
 00:00:00.050 --> 00:00:03.450
-What does "HR as the source
-of truth" actually mean?
+What does “HR as the source
+of truth” actually mean?
 
 2
-00:00:03.450 --> 00:00:05.812
-It means one owner for every fact.
+00:00:03.450 --> 00:00:05.337
+One owner for every fact.
 
 3
-00:00:05.812 --> 00:00:10.012
-The HR system of record is
-authoritative for employment status,
+00:00:05.337 --> 00:00:08.956
+HR is authoritative for
+employment status, position,
 
 4
-00:00:10.012 --> 00:00:13.737
-position, organization,
-supervisor and effective dates.
+00:00:08.956 --> 00:00:12.163
+organization, supervisor
+and effective dates.
 
 5
-00:00:13.737 --> 00:00:17.505
+00:00:12.163 --> 00:00:15.929
 The identity platform stays
 authoritative for what it does:
 
 6
-00:00:17.505 --> 00:00:21.875
+00:00:15.929 --> 00:00:20.299
 credentials, authentication, sessions,
 directory objects and policy.
 
 7
-00:00:21.875 --> 00:00:24.855
+00:00:20.299 --> 00:00:23.583
 And contractors, whom
 HR 2.0 doesn't cover,
 
 8
-00:00:24.855 --> 00:00:29.550
-get their own authoritative source
+00:00:23.583 --> 00:00:27.462
+get their own source,
 mapped into the same model.
 
 9
-00:00:29.550 --> 00:00:32.650
-That model is the canonical
-workforce identity model.
+00:00:27.462 --> 00:00:31.827
+That model uses OPM's standard
+personnel data elements as its contract,
 
 10
-00:00:32.650 --> 00:00:36.991
-Its contract is OPM's standard data
-elements and nature-of-action codes,
+00:00:31.827 --> 00:00:35.749
+so vendor field names stay at the
+boundary and can be swapped out.
 
 11
-00:00:36.991 --> 00:00:39.861
-the government-wide
-personnel data standards,
+00:00:35.749 --> 00:00:40.192
+It's keyed on a person key the agency
+controls, and that key has to fit
 
 12
-00:00:39.861 --> 00:00:43.613
-so vendor field names stay at
-the boundary and can be replaced.
+00:00:40.192 --> 00:00:45.037
+Entra ID's employeeId attribute, which
+holds at most sixteen characters.
 
 13
-00:00:43.613 --> 00:00:48.417
-It's keyed on an enterprise person key
-the agency controls, and that key has
+00:00:45.037 --> 00:00:48.939
+The rule that makes it all work:
+every attribute has one name,
 
 14
-00:00:48.417 --> 00:00:53.537
-to fit Entra ID's employeeId attribute,
-which holds at most sixteen characters.
-
-15
-00:00:53.537 --> 00:00:57.228
-The rule that makes it work:
-every attribute gets one name,
-
-16
-00:00:57.228 --> 00:00:59.976
+00:00:48.939 --> 00:00:51.726
 one definition and one accountable owner.
 
-17
-00:00:59.976 --> 00:01:04.900
-When a fact is wrong, it gets fixed in its
+15
+00:00:51.726 --> 00:00:56.590
+When a fact is wrong, it gets fixed at the
 source, never patched in the directory.

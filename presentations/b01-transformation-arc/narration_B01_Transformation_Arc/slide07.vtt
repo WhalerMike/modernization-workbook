@@ -1,69 +1,59 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:04.925
+00:00:00.050 --> 00:00:04.862
 Identity comes first, because every
-later control reads the attributes.
+later control reads its attributes.
 
 2
-00:00:04.925 --> 00:00:09.784
+00:00:04.862 --> 00:00:09.387
 For the workforce, the authoritative
-source is the HR system of record,
+source is the HR system of record.
 
 3
-00:00:09.784 --> 00:00:15.900
-and OMB M-22-09 requires centralized
-identity management for agency users.
-
-4
-00:00:15.900 --> 00:00:20.837
+00:00:09.387 --> 00:00:14.327
 Four mechanisms rebuild what the OU tree
 did: attributes replace OU placement,
 
+4
+00:00:14.327 --> 00:00:19.724
+dynamic groups replace OU-based groups,
+administrative units replace OU delegation,
+
 5
-00:00:20.837 --> 00:00:25.622
-dynamic groups replace OU-derived
-groups, administrative units replace OU
+00:00:19.724 --> 00:00:23.524
+and Conditional Access replaces
+Group Policy inheritance.
 
 6
-00:00:25.622 --> 00:00:30.863
-delegation, and Conditional Access
-targeting replaces Group Policy inheritance.
+00:00:23.524 --> 00:00:28.403
+The program's contribution is what ties
+them together: one HR-sourced stamp
 
 7
-00:00:30.863 --> 00:00:36.048
-The program's contribution is the contract
-that binds them: one HR-sourced stamp
-
-8
-00:00:36.048 --> 00:00:41.625
-drives membership, delegated scope, policy
+00:00:28.403 --> 00:00:33.675
+drives membership, delegation, policy
 targeting, licensing and drift detection.
 
-9
-00:00:41.625 --> 00:00:42.788
+8
+00:00:33.675 --> 00:00:34.838
 Two cautions.
 
-10
-00:00:42.788 --> 00:00:46.450
+9
+00:00:34.838 --> 00:00:38.259
 Dynamic membership usually
-updates within a few hours but
+updates within a few hours,
+
+10
+00:00:38.259 --> 00:00:42.350
+but it can take more than a day, so
+design job moves around that delay.
 
 11
-00:00:46.450 --> 00:00:49.963
-can take more than 24, so design
-movers around that window.
+00:00:42.350 --> 00:00:46.788
+And HR provisioning must be the only
+thing that writes those attributes.
 
 12
-00:00:49.963 --> 00:00:54.112
-And HR provisioning must be the
-only writer of those attributes.
-
-13
-00:00:54.112 --> 00:00:56.324
-Tokens only work if this is right.
-
-14
-00:00:56.324 --> 00:01:02.620
-The Federal Modernization Workbook's
+00:00:46.788 --> 00:00:51.140
 Books 02 and 03 carry identity in depth.

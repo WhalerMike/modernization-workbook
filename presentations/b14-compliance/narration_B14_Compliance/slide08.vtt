@@ -1,90 +1,75 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:03.475
-Privacy and training are
-the agency's, end to end.
+00:00:00.050 --> 00:00:03.813
+Privacy and training belong
+to the agency, end to end.
 
 2
-00:00:03.475 --> 00:00:07.926
-NIST's privacy baseline applies whatever
-the impact level, so a Low system
+00:00:03.813 --> 00:00:07.000
+The privacy baseline applies
+at every impact level,
 
 3
-00:00:07.926 --> 00:00:12.450
-holding the same personal information
-carries the same privacy controls.
+00:00:07.000 --> 00:00:10.856
+so a Low system holding the same
+personal information carries
 
 4
-00:00:12.450 --> 00:00:15.572
-No privacy control
-carries a FedRAMP class,
+00:00:10.856 --> 00:00:14.712
+the same privacy controls, and
+FedRAMP doesn't cover any of them.
 
 5
-00:00:15.572 --> 00:00:19.475
-and none of the 2026 indicator
-themes is about privacy.
+00:00:14.712 --> 00:00:17.419
+The questions are about
+authority and purpose:
 
 6
-00:00:19.475 --> 00:00:23.581
-The controls ask by what authority
-the agency collects the information,
+00:00:17.419 --> 00:00:21.304
+why the agency collects the information,
+whether it told the person,
 
 7
-00:00:23.581 --> 00:00:26.045
-for what purpose, whether
-it told the person,
-
-8
-00:00:26.045 --> 00:00:29.125
+00:00:21.304 --> 00:00:24.426
 and whether it published the
 system of records notice.
 
+8
+00:00:24.426 --> 00:00:29.150
+The senior privacy official approves
+the privacy plan before authorization.
+
 9
-00:00:29.125 --> 00:00:31.605
-The senior agency official for privacy
-
-10
-00:00:31.605 --> 00:00:34.687
-approves the privacy plan
-before authorization.
-
-11
-00:00:34.687 --> 00:00:38.513
+00:00:29.150 --> 00:00:32.975
 Training is the one family
 no configuration can close.
 
+10
+00:00:32.975 --> 00:00:37.575
+Training comes before access, and
+awareness is refreshed at least yearly.
+
+11
+00:00:37.575 --> 00:00:40.491
+Here's the trap: a dashboard
+showing ninety-eight
+
 12
-00:00:38.513 --> 00:00:42.657
-OMB's Circular A-130 requires
-training before access,
+00:00:40.491 --> 00:00:43.625
+percent completion is a
+number with no denominator.
 
 13
-00:00:42.657 --> 00:00:46.425
-and OPM's rule sets an
-annual floor for awareness.
-
-14
-00:00:46.425 --> 00:00:49.994
-Social engineering awareness
-is required at Moderate;
-
-15
-00:00:49.994 --> 00:00:53.563
-phishing exercises are
-optional, tailored in by choice.
-
-16
-00:00:53.563 --> 00:00:58.599
-A dashboard showing 98 percent completion
-is a number with no denominator.
-
-17
-00:00:58.599 --> 00:01:02.573
+00:00:43.625 --> 00:00:47.638
 The proof is counts per population,
 measured against a stated roster,
 
-18
-00:01:02.573 --> 00:01:05.570
-which someone who didn't
+14
+00:00:47.638 --> 00:00:50.525
+that someone who didn't
 produce them can re-derive.
+
+15
+00:00:50.525 --> 00:00:52.220
+So who owns all of this?

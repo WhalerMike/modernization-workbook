@@ -1,78 +1,64 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:02.525
-How do you handle a
-capability that's outside?
+00:00:00.050 --> 00:00:03.225
+So what do you do with a capability
+that's outside the boundary?
 
 2
-00:00:02.525 --> 00:00:06.914
-NIST SP 800-37 names four
-options: compensating controls,
+00:00:03.225 --> 00:00:07.057
+NIST gives four options:
+compensate, accept more risk,
 
 3
-00:00:06.914 --> 00:00:13.263
-accepting greater risk, a more trustworthy
-provider, or not obtaining the service.
+00:00:07.057 --> 00:00:11.325
+choose a more trustworthy
+provider, or don't use the service.
 
 4
-00:00:13.263 --> 00:00:18.012
-Build a register, one feature per row,
-each with the provider's own statement.
+00:00:11.325 --> 00:00:14.495
+The work starts with a
+register, one feature per row,
 
 5
-00:00:18.012 --> 00:00:22.450
+00:00:14.495 --> 00:00:17.062
+each tied to the provider's own statement.
+
+6
+00:00:17.062 --> 00:00:21.500
 Only vendor-confirmed rows support a
 claim to a provider or an assessor.
 
-6
-00:00:22.450 --> 00:00:25.628
-Probe what actually works in
-your tenant, on a schedule,
-
 7
-00:00:25.628 --> 00:00:28.312
-testing for the output
-rather than the switch.
+00:00:21.500 --> 00:00:24.110
+Then probe what actually
+works in your tenant,
 
 8
-00:00:28.312 --> 00:00:33.200
+00:00:24.110 --> 00:00:27.475
+on a schedule, testing for the
+output rather than the switch.
+
+9
+00:00:27.475 --> 00:00:32.363
 Where a gap is real, build an in-boundary
 equivalent and say it's derived.
 
-9
-00:00:33.200 --> 00:00:34.550
-Or take an exception.
-
 10
-00:00:34.550 --> 00:00:40.042
-ExpressRoute for Microsoft 365 is authorized
-only when a regulatory requirement
+00:00:32.363 --> 00:00:37.412
+Or take an exception, where the authorizing
+official signs a dated risk acceptance.
 
 11
-00:00:40.042 --> 00:00:42.111
-mandates direct connectivity,
+00:00:37.412 --> 00:00:41.426
+And one practical warning: buy
+the capability, not the badge.
 
 12
-00:00:42.111 --> 00:00:46.250
-and the book found no FedRAMP rule
-or FISMA provision that does.
+00:00:41.426 --> 00:00:46.638
+Microsoft's Network Provider Program,
+for example, is closed to new providers.
 
 13
-00:00:46.250 --> 00:00:50.400
-Otherwise the authorizing official
-signs a dated risk acceptance.
-
-14
-00:00:50.400 --> 00:00:55.000
-The 2026 rules add four scope
-arguments, each with a limit.
-
-15
-00:00:55.000 --> 00:00:57.317
-And buy the capability, not the badge:
-
-16
-00:00:57.317 --> 00:01:01.540
-Microsoft's Network Provider
-Program is closed to new providers.
+00:00:46.638 --> 00:00:48.220
+Next, a third path.

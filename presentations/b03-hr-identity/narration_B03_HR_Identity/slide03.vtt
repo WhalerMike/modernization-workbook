@@ -10,80 +10,70 @@ Because two migrations
 open one design window.
 
 3
-00:00:04.050 --> 00:00:11.092
-On the HR side: the December 10, 2025 memo
-from OMB and OPM creates Federal HR 2.0,
+00:00:04.050 --> 00:00:09.095
+On the HR side, an OMB and OPM
+memo creates Federal HR 2.0,
 
 4
-00:00:11.092 --> 00:00:15.675
-one government-wide core
-human capital platform.
+00:00:09.095 --> 00:00:12.650
+one government-wide core HR platform.
 
 5
-00:00:15.675 --> 00:00:19.951
+00:00:12.650 --> 00:00:16.729
 OPM awarded the platform
-contract on June 10, 2026,
+contract in June 2026,
 
 6
-00:00:19.951 --> 00:00:25.375
-and the first agencies begin
-moving as fiscal year 2027 starts.
+00:00:16.729 --> 00:00:21.750
+and the first agencies start
+moving as fiscal 2027 begins.
 
 7
-00:00:25.375 --> 00:00:29.036
-The memo's sample timeline runs
-about eight months per agency,
+00:00:21.750 --> 00:00:24.887
+The sample timeline is about
+eight months per agency,
 
 8
-00:00:29.036 --> 00:00:32.912
+00:00:24.887 --> 00:00:28.737
 with the agency's interconnections
 going live around month five.
 
 9
-00:00:32.912 --> 00:00:38.623
-On the identity side: agencies are moving
-from Active Directory to Entra ID anyway,
+00:00:28.737 --> 00:00:34.800
+On the identity side, agencies are already
+moving to Entra ID, which is Book 02.
 
 10
-00:00:38.623 --> 00:00:42.401
-which is the Federal
-Modernization Workbook's Book 02.
-
-11
-00:00:42.401 --> 00:00:47.312
-In Entra ID, attributes drive Conditional
+00:00:34.800 --> 00:00:39.182
+There, attributes drive Conditional
 Access, groups and delegation,
 
+11
+00:00:39.182 --> 00:00:42.625
+and feeding them from an HR
+system is a supported path.
+
 12
-00:00:47.312 --> 00:00:52.388
-and inbound provisioning from an HR
-system is a documented, supported path.
+00:00:42.625 --> 00:00:47.138
+So the window is this: design the
+identity feed in during HR onboarding,
 
 13
-00:00:52.388 --> 00:00:53.538
-So there's a window.
-
-14
-00:00:53.538 --> 00:00:57.042
-The identity feed has to be
-designed in during onboarding,
-
-15
-00:00:57.042 --> 00:01:00.838
-before the interconnection goes
+00:00:47.138 --> 00:00:51.262
+before those interconnections go
 live, not bolted on afterward.
 
-16
-00:01:00.838 --> 00:01:06.162
-One honest limit: Federal HR 2.0
+14
+00:00:51.262 --> 00:00:56.163
+One honest limit: HR 2.0
 covers federal employees only.
 
-17
-00:01:06.162 --> 00:01:09.877
-Contractors and vendors need
-their own authoritative source,
+15
+00:00:56.163 --> 00:00:59.194
+Contractors need their
+own authoritative source,
 
-18
-00:01:09.877 --> 00:01:13.010
-and the onboarding is the
-right time to decide it too.
+16
+00:00:59.194 --> 00:01:02.280
+and onboarding is the right
+time to decide that too.

@@ -1,96 +1,80 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:00.900
-Who owns it?
+00:00:00.050 --> 00:00:04.976
+In an AD estate, DNS belonged to
+whoever ran the domain controllers,
 
 2
-00:00:00.900 --> 00:00:06.014
-In an AD estate, DNS belonged to
-whoever ran the domain controllers;
+00:00:04.976 --> 00:00:07.125
+and nobody really chose that.
 
 3
-00:00:06.014 --> 00:00:10.013
-DnsAdmins has full control
-of every zone by default.
-
-4
-00:00:10.013 --> 00:00:13.071
+00:00:07.125 --> 00:00:10.222
 A single policy plane
 concentrates that authority,
 
-5
-00:00:13.071 --> 00:00:16.912
+4
+00:00:10.222 --> 00:00:14.400
 so its owners have to be named on
-purpose, one decider per decision.
+purpose, with one decider per decision.
 
-6
-00:00:16.912 --> 00:00:20.219
+5
+00:00:14.400 --> 00:00:17.706
 The sponsor and CIO decide the platform
 
-7
-00:00:20.219 --> 00:00:23.926
+6
+00:00:17.706 --> 00:00:21.413
 model and when AD DNS
 and Windows DHCP retire.
 
+7
+00:00:21.413 --> 00:00:24.427
+The CISO and ISSO set the requirements,
+
 8
-00:00:23.926 --> 00:00:26.982
-The CISO and ISSO set the requirements:
+00:00:24.427 --> 00:00:27.988
+like designated resolvers,
+DNSSEC and logging.
 
 9
-00:00:26.982 --> 00:00:31.800
-designated resolvers, allowed
-transports, DNSSEC and logging.
-
-10
-00:00:31.800 --> 00:00:37.287
+00:00:27.988 --> 00:00:33.475
 The authorizing official accepts residual
 risk, including every standing exception.
 
+10
+00:00:33.475 --> 00:00:38.575
+The DNS and DDI team runs the plane
+and decides what the edge points at.
+
 11
-00:00:37.287 --> 00:00:42.855
-The DNS/DDI team runs the policy plane
-and decides what the edge points at;
+00:00:38.575 --> 00:00:42.375
+Network engineering configures
+it, and cloud teams consume it.
 
 12
-00:00:42.855 --> 00:00:45.638
-network engineering configures it.
-
-13
-00:00:45.638 --> 00:00:50.200
-AD administrators own the
-inventory until AD DNS retires,
-
-14
-00:00:50.200 --> 00:00:54.476
-and cloud teams run their DNS
-as consumers of the plane.
-
-15
-00:00:54.476 --> 00:00:56.837
+00:00:42.375 --> 00:00:44.737
 Record changes come in three classes.
 
-16
-00:00:56.837 --> 00:01:00.925
-Standard changes inside a delegated
+13
+00:00:44.737 --> 00:00:48.400
+Routine changes in a delegated
 namespace are pre-approved.
 
-17
-00:01:00.925 --> 00:01:04.403
-Policy-driven records, like
-private endpoint entries,
+14
+00:00:48.400 --> 00:00:51.625
+Policy-driven records follow
+a change-controlled policy.
 
-18
-00:01:04.403 --> 00:01:08.962
-need no per-change approval, but the
-policy itself is change-controlled.
+15
+00:00:51.625 --> 00:00:53.887
+And high-impact changes, like zones,
 
-19
-00:01:08.962 --> 00:01:13.262
-High-impact changes, zones,
-delegations, forwarding, SRV,
-
-20
-00:01:13.262 --> 00:01:17.420
-wildcards and response policy,
+16
+00:00:53.887 --> 00:00:57.162
+delegations and forwarding,
 go to the change board.
+
+17
+00:00:57.162 --> 00:00:58.490
+So how do we get there?

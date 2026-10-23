@@ -1,41 +1,66 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:04.689
-This briefing comes from Book 12 of
-the Federal Modernization Workbook,
+00:00:00.050 --> 00:00:00.763
+Welcome.
 
 2
-00:00:04.689 --> 00:00:09.792
-Security Operations and Telemetry: how
-an agency makes every part of its estate
+00:00:00.763 --> 00:00:04.960
+This briefing is Book 12 of the
+Federal Modernization Workbook,
 
 3
-00:00:09.792 --> 00:00:14.663
-emit evidence, turns it into detection
-and response, and proves that it works.
+00:00:04.960 --> 00:00:07.337
+Security Operations and Telemetry.
 
 4
-00:00:14.663 --> 00:00:18.408
-I'll take four questions: why you
-can't defend what you can't see,
+00:00:07.337 --> 00:00:11.818
+It's about how an agency makes every
+part of its estate emit evidence,
 
 5
-00:00:18.408 --> 00:00:22.004
-what each plane must emit and
-how findings reach one queue,
+00:00:11.818 --> 00:00:16.938
+turns that evidence into detection and
+response, and then proves it all works.
 
 6
-00:00:22.004 --> 00:00:26.949
-who runs security operations, and how to
-run detection, response and monitoring.
+00:00:16.938 --> 00:00:18.313
+We'll take four questions.
 
 7
-00:00:26.949 --> 00:00:30.847
+00:00:18.313 --> 00:00:20.475
+Why can't you defend what you can't see?
+
+8
+00:00:20.475 --> 00:00:24.425
+What must each plane emit, and
+how do findings reach one queue?
+
+9
+00:00:24.425 --> 00:00:26.487
+Who runs security operations?
+
+10
+00:00:26.487 --> 00:00:29.638
+And how do you run detection,
+response and monitoring?
+
+11
+00:00:29.638 --> 00:00:33.493
 The short version: design
 visibility instead of assuming it,
 
-8
-00:00:30.847 --> 00:00:34.660
-and close a finding only when
-the thing is fixed, with proof.
+12
+00:00:33.493 --> 00:00:37.812
+and close a finding only when the
+thing is actually fixed, with proof.
+
+13
+00:00:37.812 --> 00:00:42.887
+The slides and notes carry every detail
+and source; I'll stick to what matters.
+
+14
+00:00:42.887 --> 00:00:45.790
+Let's start with why
+visibility can't be assumed.

@@ -1,85 +1,79 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:04.649
+00:00:00.050 --> 00:00:04.801
 Agencies run two free, read-only
 assessments of their Microsoft cloud,
 
 2
-00:00:04.649 --> 00:00:07.662
+00:00:04.801 --> 00:00:08.488
 and often drop one because
-it covers identity.
+both seem to cover identity.
 
 3
-00:00:07.662 --> 00:00:09.337
-They answer different questions.
+00:00:08.488 --> 00:00:10.313
+But they answer different questions.
 
 4
-00:00:09.337 --> 00:00:14.488
+00:00:10.313 --> 00:00:15.462
 ScubaGear is CISA's tool, and asks whether
 the tenant meets the federal baseline.
 
 5
-00:00:14.488 --> 00:00:22.176
-Version 1.8.0 shipped May 7,
-2026, with 2.0.0 in preview.
-
-6
-00:00:22.176 --> 00:00:25.211
+00:00:15.462 --> 00:00:18.499
 Microsoft's Zero Trust
 Assessment asks how mature
 
-7
-00:00:25.211 --> 00:00:28.175
+6
+00:00:18.499 --> 00:00:21.463
 the environment is against
 Microsoft's guidance.
 
-8
-00:00:28.175 --> 00:00:35.587
-Release 3.1.0 shipped October
-20, 2026, with 364 tests.
-
-9
-00:00:35.587 --> 00:00:39.243
+7
+00:00:21.463 --> 00:00:25.128
 It's a community project
 maintained by Microsoft employees,
 
+8
+00:00:25.128 --> 00:00:28.574
+not an official product, and
+no support program covers it.
+
+9
+00:00:28.574 --> 00:00:32.225
+They overlap on Entra ID
+and some Defender policies.
+
 10
-00:00:39.243 --> 00:00:43.337
-not an official product, and no
-Microsoft support program covers it.
+00:00:32.225 --> 00:00:35.681
+But only ScubaGear covers
+Exchange Online, Teams,
 
 11
-00:00:43.337 --> 00:00:50.199
-They overlap on Entra ID identity and,
-in 3.1.0, on Defender threat policies.
+00:00:35.681 --> 00:00:41.075
+SharePoint and Power Platform, and 22 of
+the 50 mandatory policies live there.
 
 12
-00:00:50.199 --> 00:00:55.682
-Only ScubaGear covers Exchange Online,
-Teams, SharePoint and Power Platform,
+00:00:41.075 --> 00:00:44.744
+Drop ScubaGear and you leave
+mandatory policies unassessed,
 
 13
-00:00:55.682 --> 00:01:00.050
-and 22 of the 50 mandatory policies
-sit in those four products.
-
-14
-00:01:00.050 --> 00:01:03.584
-Dropping ScubaGear leaves
-mandatory policies unassessed
-
-15
-00:01:03.584 --> 00:01:06.412
-and stops the reporting
+00:00:44.744 --> 00:00:47.550
+and stop the reporting
 the directive requires.
 
-16
-00:01:06.412 --> 00:01:09.148
+14
+00:00:47.550 --> 00:00:50.294
 So run both, and reconcile
 at the control level:
 
-17
-00:01:09.148 --> 00:01:14.900
-the tenant setting and the SP
+15
+00:00:50.294 --> 00:00:56.000
+the tenant setting, and the SP
 800-53 control it supports.
+
+16
+00:00:56.000 --> 00:00:59.860
+Next, everything beyond Microsoft 365.

@@ -5,79 +5,74 @@ WEBVTT
 Next, access.
 
 2
-00:00:01.300 --> 00:00:05.537
-Once the attributes are trustworthy,
+00:00:01.300 --> 00:00:05.550
+Once the attributes can be trusted,
 access is derived from them.
 
 3
-00:00:05.537 --> 00:00:10.246
-A personnel record becomes a canonical
+00:00:05.550 --> 00:00:09.738
+A personnel record becomes an
 attribute, a rule or access package
 
 4
-00:00:10.246 --> 00:00:14.500
-turns that into an entitlement, and
+00:00:09.738 --> 00:00:13.925
+turns it into an entitlement, and
 an evidence record captures why.
 
 5
-00:00:14.500 --> 00:00:18.870
-Every entitlement then traces back
-to a rule, an approved exception,
+00:00:13.925 --> 00:00:18.781
+So every entitlement traces back to
+something: a rule, an approved exception,
 
 6
-00:00:18.870 --> 00:00:22.850
+00:00:18.781 --> 00:00:22.712
 an authoritative attribute, or
 a privileged-access decision.
 
 7
-00:00:22.850 --> 00:00:25.100
+00:00:22.712 --> 00:00:24.962
 That's what makes access explainable.
 
 8
-00:00:25.100 --> 00:00:28.109
+00:00:24.962 --> 00:00:27.971
 Drift is found by
 comparison, not by complaint:
 
 9
-00:00:28.109 --> 00:00:31.988
+00:00:27.971 --> 00:00:31.850
 scheduled checks compare HR,
 the model and the directories.
 
 10
-00:00:31.988 --> 00:00:36.637
-It's measured in business terms
-leadership can read: time from separation
+00:00:31.850 --> 00:00:34.493
+And it's measured in
+terms leadership can read,
 
 11
-00:00:36.637 --> 00:00:40.676
-to blocked access, orphaned accounts,
-and access ready on day one.
+00:00:34.493 --> 00:00:37.275
+like the time from separation
+to blocked access.
 
 12
-00:00:40.676 --> 00:00:43.000
-And the records have to
-be kept long enough.
+00:00:37.275 --> 00:00:41.656
+One practical catch: Entra ID keeps
+audit and provisioning logs for
 
 13
-00:00:43.000 --> 00:00:47.988
-Entra ID keeps audit and provisioning
-logs for thirty days with P1 or P2,
+00:00:41.656 --> 00:00:45.725
+only thirty days, so the book
+exports them from the pilot onward.
 
 14
-00:00:47.988 --> 00:00:51.200
-so the book exports them
-from the pilot onward.
+00:00:45.725 --> 00:00:47.962
+And the evidence is a byproduct.
 
 15
-00:00:51.200 --> 00:00:53.400
-The evidence comes as a byproduct.
+00:00:47.962 --> 00:00:51.292
+The same records answer the
+auditor's oldest question:
 
 16
-00:00:53.400 --> 00:00:57.900
-The same records that run the lifecycle
-answer the auditor's oldest question:
-
-17
-00:00:57.900 --> 00:01:01.900
+00:00:51.292 --> 00:00:55.490
 does every account belong to a
-current person with a current reason?
+current person, with a current reason?

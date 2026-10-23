@@ -2,140 +2,60 @@
 
 ## Slide 1 — Why Does the Authorization Boundary Decide What You Can Use?
 
-This briefing comes from Book 10 of the Federal Modernization Workbook, Cloud Boundary and Landing Zone: how the authorization boundary, not the product catalog, decides which cloud features an agency can use,.
-
-I'll take four questions: why the boundary decides what you can use, what has to change, who owns the boundary, and how to get there.
-
-The short version: treat the boundary as a list you can read, not a perimeter you can only accept, and evidence every choice in your own package.
+Welcome. This briefing is Book 10 of the Federal Modernization Workbook, Cloud Boundary and Landing Zone. Its argument is simple: the authorization boundary, not the product catalog, decides which cloud features an agency can actually use. We'll take four questions in turn. Why does the boundary decide what you can use? What has to change? Who owns the boundary? And how do you get there? If you remember one thing, make it this: treat the boundary as a list you can read, not a perimeter you can only accept, and evidence every choice in your own package. The slides and notes carry every detail and citation; I'll stick to what matters. Let's start with why the boundary decides.
 
 ## Slide 2 — Three checks, three owners decide what you can use
 
-Why does the authorization boundary decide what you can use? Start with two agencies holding the same Microsoft 365 license. One runs a commercial tenant and sees per-location network assessments, informed network routing and an Adoption Score. The other runs a GCC tenant and sees none of them, because Microsoft documents each one as unavailable there.
-
-Three decisions, made by three parties, have to line up. FedRAMP certifies a specific offering at a certification class, and the Marketplace is the record. The provider publishes, feature by feature, what each government environment leaves out. And the agency authorizes its own system: its authorizing official accepts the risk of the configuration selected and the integrations enabled. FedRAMP says an agency should never create a standalone authorization to operate for a cloud service.
-
-What the agency can use is the overlap of all three. A feature with no citation is unverified, not available.
+Here's why the boundary matters, in one example. Two agencies hold the same Microsoft 365 license. One runs a commercial tenant and gets network assessments, smarter routing and Adoption Score. The other runs GCC and gets none of them, because Microsoft documents each one as unavailable there. Same license, different product. That happens because three parties make three separate decisions. FedRAMP certifies a specific offering, and the Marketplace is the record. The provider publishes, feature by feature, what each government environment leaves out. And the agency authorizes its own system, with its authorizing official accepting the risk of what it configures and connects. What you can use is where all three overlap. So a feature with no citation isn't available. It's unverified. Next, why that gap stays hidden for so long.
 
 ## Slide 3 — The invisible boundary, and the example corrected
 
-Chapter 02 explains why the gap stays invisible until a design depends on it. Surfaces are shared: Intune in GCC is the same instance as commercial Intune. Exclusions are scattered, one sentence per feature page. Features move: Microsoft retired Adoption Score's technology-experience categories for every tenant in early 2026. And absence doesn't announce itself. A detection whose input never arrives looks exactly like a quiet day.
-
-The book then corrects a widely repeated example. Five features were said to be silently missing from GCC. Checked against Microsoft's documentation, one is: the Locations view of network connectivity in the admin center. Device Health Attestation and expedited updates are GCC High and DoD gaps. Endpoint analytics isn't a documented GCC gap. And Azure Arc is an Azure service, in Azure's FedRAMP High scope.
-
-An unverified boundary story sends an agency to build compensations it doesn't need.
+So why don't people see the gap sooner? Because it's invisible until a design depends on it. The surfaces are shared: Intune in GCC is the same instance as commercial Intune. The exclusions are scattered, one sentence per feature page. And absence doesn't announce itself. A detection whose input never arrives looks exactly like a quiet day. The book then tests a widely repeated example, that five features are silently missing from GCC. Checked against Microsoft's documentation, only one is: the Locations view of network connectivity in the admin center. The others turn out to be GCC High and DoD gaps, not documented gaps at all, or inside Azure's own scope. The lesson: an unverified boundary story sends an agency off to build compensations it doesn't need. Now, what actually changes across a boundary.
 
 ## Slide 4 — Four things change across any boundary
 
-The book models a boundary as any surface across which four things change. It's the book's own model, not a FedRAMP or Microsoft construct.
-
-Telemetry fidelity asks which signals actually arrive on this side. In GCC, admin-center network connectivity, informed network routing and Adoption Score are documented as unavailable. Identity authority asks who a claim's issuer resolves to: GCC pairs with Entra ID in commercial Azure, GCC High and DoD with Azure Government. Enforcement responsibility asks who must enforce a control: without Microsoft's per-circuit feedback, path selection rests on the agency's own SD-WAN measurements. Provenance classification asks whether a claim is still authoritative, or only derived.
-
-Each dimension raises its own drift class. Detection is shipped for two classes, partial for one and design only for two.
-
-And FedRAMP's definition of federal customer data excludes the analytics and telemetry a provider generates. No certification promises you a signal.
+To reason about any boundary, the book uses its own model. A boundary is any surface across which four things change. Telemetry: which signals actually arrive on your side. Identity: who a claim's issuer resolves to, and GCC pairs with Entra ID in commercial Azure, while GCC High and DoD pair with Azure Government. Enforcement: who has to enforce a control, which in GCC often means the agency's own measurements. And provenance: whether a claim is still authoritative, or only derived. Each of these raises its own kind of drift, and detection for them is at different stages; the slide shows where each stands. One more point worth holding onto. FedRAMP's definition of federal customer data excludes the telemetry a provider generates. No certification promises you a signal. Next, what changed at FedRAMP.
 
 ## Slide 5 — FedRAMP 2026: classes, obligations, business days
 
-What changed at FedRAMP? Three things.
-
-First, services are now certified, in Classes A to D. FedRAMP's February 2026 notice says Class C includes the current Moderate baseline and Class D the current High, and that agencies may authorize at any security category they deem appropriate.
-
-Second, the rules have no provider authorization boundary. In the machine-readable ruleset, version 2026.10.13.01, that phrase occurs zero times. The word boundary appears eight times, four of them as a tag on rule families: minimum assessment scope, cryptographic module use, vulnerability detection and response, and certification data sharing. Security category may vary by resource.
-
-Third, change is notified, not re-approved, and the deadlines are in business days. Routine recurring changes need no notice. Adaptive changes, within 10 business days after finishing. Transformative changes, initial plans 30 business days before.
-
-Adoption is mandatory on January 1, 2027, and new Rev5 requests stop on June 11, 2027.
+FedRAMP itself changed in 2026, and three changes matter here. First, services are now certified in classes, A through D. Class C covers today's Moderate baseline and Class D today's High, and agencies can still authorize at whatever security category they judge appropriate. Second, the new rules have no provider authorization boundary at all. The phrase doesn't appear once in the machine-readable ruleset, and security category may vary by resource. Third, change is notified rather than re-approved, and the deadlines are counted in business days. Routine changes need no notice; bigger ones have set notice windows, and the slide lists them. Two dates are worth writing down: adoption is mandatory on January 1, 2027, and new Rev5 requests stop on June 11, 2027. Now let's read what GCC actually is.
 
 ## Slide 6 — GCC is the worldwide service, minus a list
 
-Chapter 04 reads GCC from Microsoft's own documents. It's the worldwide service with a published list of exclusions, and the list isn't a ladder. Network connectivity in the admin center, Adoption Score, the Office 365 CDN and informed network routing are missing in GCC, GCC High and DoD alike. Windows release health and Excel Office Scripts reach GCC and stop there.
-
-The largest documented loss is the network connectivity layer: a daily assessment from 0 to 100 for each location, with 80 as the healthy baseline, and performance attributed to named network providers. A GCC agency funds its own measurement instead.
-
-On the Marketplace, read October 21, 2026, the GCC package, MSO365MT, is FedRAMP Certified at Class C, Moderate, with 100 authorizations. A second package with the identical name is In Process at Class D. But GCC High is already Class D, and still lacks network connectivity. A higher class doesn't restore an excluded feature.
+Chapter 04 reads GCC from Microsoft's own documents. GCC is the worldwide service, minus a published list of exclusions. And that list isn't a ladder. Some features, like network connectivity in the admin center and Adoption Score, are missing in GCC, GCC High and DoD alike. Others reach GCC and stop there. The biggest documented loss is the network connectivity layer: a daily score for each location, with performance attributed to named network providers. A GCC agency has to fund its own measurement instead. On the Marketplace, the GCC package is certified at Class C, Moderate, and a second package with the same name is in process at Class D. But GCC High is already Class D, and it still lacks network connectivity. A higher class doesn't bring back an excluded feature. Next, the landing zone.
 
 ## Slide 7 — The landing zone turns the boundary into policy
 
-The landing zone is where the boundary stops being a diagram. Each workload landing zone is a subscription placed in a management group that carries its policy.
-
-The baseline hierarchy puts an intermediate root under the tenant root, and that's where boundary policy goes. Platform groups hold security, management, connectivity and identity. Landing zone groups hold corporate, online and local workloads. Make Sandbox the default, so no new subscription lands outside the boundary policy.
-
-Each boundary decision gets a mechanism: the cloud choice; Allowed locations with Deny; allowed resource types, checked against Microsoft's audit-scope list; the FedRAMP regulatory compliance initiative, which Microsoft calls only a partial view; and exemptions, Mitigated or Waiver, with an expiry date. Roll each policy out in audit mode first.
-
-One catch: Microsoft's accelerators are supported only in public Azure. In Azure Government, the platform team adapts the code by hand.
+The landing zone is where the boundary stops being a diagram and becomes policy. Each workload gets a subscription, placed in a management group that carries its rules. The baseline hierarchy puts an intermediate root under the tenant root, and that's where boundary policy lives. Platform groups hold shared services like security and connectivity; landing zone groups hold the workloads. Make Sandbox the default, so no new subscription lands outside the boundary policy. Each boundary decision then gets a mechanism, from allowed locations and resource types to exemptions that carry an expiry date; the slide maps them. Roll every policy out in audit mode first. One catch: Microsoft's accelerators are supported only in public Azure, so in Azure Government the platform team adapts the code by hand. Next, the address plan.
 
 ## Slide 8 — The address plan is the join key the evidence needs
 
-Chapter 06 makes the address plan the join key. A scan finds what answered; the IPAM records what was allocated, so every inventory reconciles against it. BOD 23-01 already asks for automated discovery every 7 days across the entire IPv4 space the agency uses.
-
-In Azure the enterprise IPAM stays the authority. Reserve the block there first. Mirror it into Virtual Network Manager pools, entering ranges used elsewhere as static CIDRs. Then assign an Azure Policy that denies any virtual network without a pool allocation, and reconcile by discovery. Virtual Network Manager isn't named in Microsoft's FedRAMP audit-scope tables, so record it as a dependency until coverage is confirmed.
-
-Build it as five layered modules, each writing its state as evidence. And treat outside inputs as code. There's no separate GCC endpoint list: a GCC tenant uses the Worldwide instance, updated monthly, with 30 days' notice of new endpoints.
+Chapter 06 makes the address plan the join key for the evidence. A scan tells you what answered; the IPAM tells you what was allocated. So every inventory reconciles against it, and BOD 23-01 already asks for automated discovery every seven days. In Azure, the enterprise IPAM stays the authority. Reserve the block there first, mirror it into Virtual Network Manager pools, then use policy to deny any virtual network without an allocation, and reconcile by discovery. Virtual Network Manager isn't named in Microsoft's FedRAMP audit scope, so record it as a dependency until coverage is confirmed. The book builds all this as layered modules, each writing its state as evidence. And it treats outside inputs as code too, like the monthly Microsoft endpoint list a GCC tenant uses. Next, the front door.
 
 ## Slide 9 — The front door: no landing zone without a request
 
-Code anyone can apply from a laptop isn't change control. Chapter 07 adds the front door: the governed request into the landing zone, which Microsoft calls subscription vending.
-
-The loop has six steps: request, approve, plan, apply, reconcile and close. The requester can't approve their own request, which is AC-5, separation of duties. The approver reviews the actual plan before anything changes. And step 5 carries the most weight: the pipeline writes the address allocation back to the enterprise IPAM and fails the run if the two disagree, because an unreconciled block is shadow inventory the moment it exists.
-
-The pipeline is inside the boundary question too. Terraform state is sensitive data. On October 21, 2026, the Marketplace had no listing for HCP Terraform; GitHub Enterprise Cloud was listed at Class B, and GitLab Dedicated for Government at Class C. The default is a self-hosted runner and state inside the agency's boundary.
+Code anyone can apply from a laptop isn't change control. So Chapter 07 adds a front door: a governed request into the landing zone, which Microsoft calls subscription vending. The loop runs from request, through approval, plan, apply and reconcile, to close. The requester can't approve their own request, and the approver reviews the actual plan before anything changes. The reconcile step carries the most weight. The pipeline writes the address allocation back to the enterprise IPAM, and fails the run if the two disagree, because an unreconciled block is shadow inventory the moment it exists. The pipeline sits inside the boundary question too. Terraform state is sensitive data, and not every pipeline service is on the Marketplace. So the default is a self-hosted runner, with state kept inside the agency's boundary. Next, who owns all this.
 
 ## Slide 10 — Who decides, who keeps the record, who does the work
 
-Who owns the boundary? The rule is one decider per row.
-
-The authorizing official determines the boundary, signs every documented exception and decides whether a change requires reauthorization. Under SP 800-37, explicit risk acceptance can't be delegated, and for federal agencies the role is assigned to government personnel only. The system owner is the boundary owner: keeper of the boundary record and the package, and the decider on placing a new workload, because vending an unrecorded subscription is the cheapest way to turn an authorized system into an unauthorized one. The CISO sets control requirements, and the ISSO reads provider change notices against the record.
-
-The platform team builds the hierarchy, policy, vending and probe, but doesn't decide whether a gap is acceptable. And the contract is a boundary decision: the GCC listing says customers must buy a GCC SKU to be covered. Only a contracting officer changes what the agency bought.
+Who owns the boundary? The rule is one decider per row. The authorizing official determines the boundary, signs every exception, and decides whether a change needs reauthorization. That risk acceptance can't be delegated, and in federal agencies it's held by government personnel only. The system owner is the boundary owner. They keep the boundary record and the package, and they decide where a new workload goes. That matters, because vending an unrecorded subscription is the cheapest way to turn an authorized system into an unauthorized one. The CISO sets control requirements, and the ISSO reads provider change notices against the record. The platform team builds everything, but doesn't decide whether a gap is acceptable. And the contract is a boundary decision too: only a contracting officer changes what the agency bought. Next, handling what's outside.
 
 ## Slide 11 — Inventory, probe, then compensate or except
 
-How do you handle a capability that's outside? NIST SP 800-37 names four options: compensating controls, accepting greater risk, a more trustworthy provider, or not obtaining the service.
-
-Build a register, one feature per row, each with the provider's own statement. Only vendor-confirmed rows support a claim to a provider or an assessor. Probe what actually works in your tenant, on a schedule, testing for the output rather than the switch. Where a gap is real, build an in-boundary equivalent and say it's derived. Or take an exception. ExpressRoute for Microsoft 365 is authorized only when a regulatory requirement mandates direct connectivity, and the book found no FedRAMP rule or FISMA provision that does. Otherwise the authorizing official signs a dated risk acceptance.
-
-The 2026 rules add four scope arguments, each with a limit. And buy the capability, not the badge: Microsoft's Network Provider Program is closed to new providers.
+So what do you do with a capability that's outside the boundary? NIST gives four options: compensate, accept more risk, choose a more trustworthy provider, or don't use the service. The work starts with a register, one feature per row, each tied to the provider's own statement. Only vendor-confirmed rows support a claim to a provider or an assessor. Then probe what actually works in your tenant, on a schedule, testing for the output rather than the switch. Where a gap is real, build an in-boundary equivalent and say it's derived. Or take an exception, where the authorizing official signs a dated risk acceptance. And one practical warning: buy the capability, not the badge. Microsoft's Network Provider Program, for example, is closed to new providers. Next, a third path.
 
 ## Slide 12 — Change the suite, keep the identity plane
 
-The third answer is an alternative path: a different certified service for the workload, with the identity plane left where it is.
-
-Read the Marketplace, not the announcement. Google Workspace is listed at Class D, while Gemini for Government is a separate listing at Class B. Which AI features sit inside which certification is a question for the package.
-
-The public record shows both outcomes. In September 2025 a cabinet-level department awarded a five-year agreement worth up to 89 million dollars to move more than 50,000 employees to Google Workspace, under a GSA agreement with a temporary 71 percent price reduction. A military department went the other way, ending about 150,000 Google email licenses after an audit found about 16 percent in use.
-
-Keep Entra ID as the source: provision users, federate sign-in, apply Conditional Access there. Then close the gaps: Google super administrators sign in outside it, and Google's directory is derived, so report drift.
+The third answer is an alternative path: move the workload to a different certified service, and leave the identity plane where it is. Google Workspace and Gemini for Government are separate listings at different classes, so which AI features sit inside which certification is a question for the package. The public record shows both outcomes. One cabinet-level department moved more than 50,000 employees to Google Workspace in 2025. A military department went the other way, ending about 150,000 Google email licenses after an audit found few in use. Whichever way you go, keep Entra ID as the source. Provision users, federate sign-in and apply Conditional Access there. Then close the gaps: Google super administrators sign in outside it, and Google's directory is derived, so report drift. Next, the evidence.
 
 ## Slide 13 — Write the boundary once; cite it everywhere
 
-Finally, evidence the boundary in the agency's own package. The agency never authorizes a cloud service; it authorizes its system that uses one, and its plan should only contain what the agency is responsible for. FedRAMP's Rev5 guidance is blunt: don't copy and paste provider controls into the agency plan.
-
-Write the boundary down once, as a boundary record the system owner keeps, and cite it everywhere: the system description under PL-2, each external service under SA-9 with its Marketplace package, class and SKU, each crossing under CA-3, the gaps the agency will close on the POA&M, and each equivalent in an OSCAL component definition.
-
-Know whose package you're reading. The GCC listing says the service leverages Azure Government as its infrastructure, so the inheritance chain runs through two provider packages.
-
-A compensating narrative takes four sentences: what the control needs, what's unavailable with its citation, what runs instead marked derived, and where the remaining gap is recorded.
+Finally, the boundary has to show up in the agency's own package. The agency never authorizes a cloud service; it authorizes its own system that uses one. So its plan should hold only what the agency is responsible for, and FedRAMP is blunt: don't copy and paste provider controls into it. Instead, write the boundary down once, as a record the system owner keeps, and cite it everywhere: the system description, each external service, each crossing, the POA&M and the component definitions. Know whose package you're reading, too. GCC runs on Azure Government, so the inheritance chain runs through two provider packages. And a compensating narrative takes just four sentences: what the control needs, what's unavailable, what runs instead, and where the remaining gap is recorded. Next, what to ask your provider for.
 
 ## Slide 14 — What to ask a cloud provider for
 
-Appendix A turns all of this into requests. Three habits make a request hard to deflect: name one item, cite the basis with a link, and ask for data, not documents.
-
-Eight requests follow. Publish the per-feature exclusion list as data. Name the exception path for each feature. Restore the network observability layer in GCC, or publish the specific obstacle. Explain the two same-named GCC packages, and what Class D would and wouldn't change. List the agents and clients that sit outside the certified offering. Provide a FedRAMP-compatible trust center with programmatic access: on October 21, 2026, only 110 of 781 Marketplace listings had a trust-center entry, and none of the three Microsoft 365 government packages did. Deliver change notices as a JSON feed. And document the cryptographic modules for each service.
-
-Five of the eight rest on obligations the rules already place on providers. A documented no is evidence too.
+Appendix A turns all of this into requests to the provider. Three habits make a request hard to deflect: name one item, cite the basis with a link, and ask for data, not documents. The book makes eight requests, and the slide lists them. One number shows why trust centers made the list: when the book checked, only 110 of 781 Marketplace listings had a trust-center entry, and none of the Microsoft 365 government packages did. Five of the eight requests rest on obligations the rules already place on providers. And if the answer is no, a documented no is evidence too. Let's close with the decisions.
 
 ## Slide 15 — Decisions to make, and next steps
 
-So, four decisions.
-
-Build the feature register on cited rows only, one row per feature and environment, and drop or relabel anything without a vendor page.
-
-Name the boundary owner: the authorizing official decides the boundary, and the system owner keeps the record and gates every new subscription.
-
-Enforce the boundary in the landing zone: policy at the intermediate root, audit before deny, and the governed front door.
-
-And evidence every response, whether equivalent, exception or alternative path, in the agency's own package.
-
-The next step needs no award: before the next architecture review, list every cloud feature your designs depend on, with its Marketplace package, its availability in your environment and the page that says so. Then put Appendix A's requests to your provider.
-
-The license says what you bought; the boundary says what you may use. The Federal Modernization Workbook's Book 10 has the detail, every claim footnoted. Thank you.
+So, four decisions. Build the feature register on cited rows only, and drop or relabel anything without a vendor page. Name the boundary owner: the authorizing official decides the boundary, and the system owner keeps the record and gates every new subscription. Enforce the boundary in the landing zone, with policy at the intermediate root, audit before deny, and the governed front door. And evidence every response, whether it's an equivalent, an exception or an alternative path, in the agency's own package. Before your next architecture review, list every cloud feature your designs depend on, with its package, its availability in your environment, and the page that says so. Then put Appendix A's requests to your provider. The license says what you bought; the boundary says what you may use. Book 10 has the detail, every claim footnoted. Thank you.

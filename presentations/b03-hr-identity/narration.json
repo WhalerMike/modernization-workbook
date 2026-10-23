@@ -1,0 +1,57 @@
+[
+  {
+    "slide": 1,
+    "title": "Why Should HR Decide Who Exists?",
+    "say": "Welcome. This briefing comes from Book 03 of the Federal Modernization Workbook, HR-Driven Identity. It makes one proposal, and we'll take it through four questions, the way you'd take it to leadership: why it matters, what to do, who has to be involved, and how to carry it out and know it's working. Book 02 made the case that identity is now where every access decision gets made. This book asks the follow-up question: where should the facts behind that identity come from? The answer is the HR system of record, and the time to start is now. Let's begin with how identity gets built today."
+  },
+  {
+    "slide": 2,
+    "title": "Identity is built by hand, and the mission is outgrowing it",
+    "say": "In many agencies, nothing connects HR to identity. Accounts, access and credentials are created and removed by ticket, and that costs in three ways. First, access outlives the job. When someone leaves, removal waits for a ticket, yet the PIV standard says a card that can't be collected must be terminated within eighteen hours of notification. A ticket queue struggles with that. Second, records drift: the phone book, the manager and the approval routing stay wrong until someone files a ticket. And third, every joiner, mover and leaver is help-desk work. Zero Trust makes the gap obvious. A token proves who signed it, but not that the claim is still true: that the person still works here, in the same position, for the same supervisor. Those are HR facts. And if we do nothing, we'll rebuild the same manual process twice, on two new platforms."
+  },
+  {
+    "slide": 3,
+    "title": "Why now: two migrations open one design window",
+    "say": "Why now? Because two migrations open one design window. On the HR side, an OMB and OPM memo creates Federal HR 2.0, one government-wide core HR platform. OPM awarded the platform contract in June 2026, and the first agencies start moving as fiscal 2027 begins. The sample timeline is about eight months per agency, with the agency's interconnections going live around month five. On the identity side, agencies are already moving to Entra ID, which is Book 02. There, attributes drive Conditional Access, groups and delegation, and feeding them from an HR system is a supported path. So the window is this: design the identity feed in during HR onboarding, before those interconnections go live, not bolted on afterward. One honest limit: HR 2.0 covers federal employees only. Contractors need their own authoritative source, and onboarding is the right time to decide that too."
+  },
+  {
+    "slide": 4,
+    "title": "Four options, weighed against what leadership must balance",
+    "say": "So what should we do? There are four realistic options, weighed against what leadership has to balance: the mission and the public, security, cost and resilience. Compliance matters, but on its own it isn't a reason to invest. Option A keeps ticket-driven identity: no new spending, but the risk and the manual work stay put. Option B scripts automation inside the directories. It's quick and cheap, but it automates a source that isn't authoritative, so bad data spreads faster. Option C waits for HR 2.0 and integrates afterward. That's defensible, but the interconnection decisions are made during onboarding, so waiting means retrofitting. Option D starts now, with HR as the source of truth, designed into both migrations. It costs design effort up front. The judgment call: if HR 2.0 slipped a long way, C becomes reasonable. But D's first step, data standards, ownership and a person key, is no-regret either way."
+  },
+  {
+    "slide": 5,
+    "title": "One owner per fact, one model, one person key",
+    "say": "What does “HR as the source of truth” actually mean? One owner for every fact. HR is authoritative for employment status, position, organization, supervisor and effective dates. The identity platform stays authoritative for what it does: credentials, authentication, sessions, directory objects and policy. And contractors, whom HR 2.0 doesn't cover, get their own source, mapped into the same model. That model uses OPM's standard personnel data elements as its contract, so vendor field names stay at the boundary and can be swapped out. It's keyed on a person key the agency controls, and that key has to fit Entra ID's employeeId attribute, which holds at most sixteen characters. The rule that makes it all work: every attribute has one name, one definition and one accountable owner. When a fact is wrong, it gets fixed at the source, never patched in the directory."
+  },
+  {
+    "slide": 6,
+    "title": "Provisioning: personnel records in, governed identities out",
+    "say": "Provisioning is where personnel records turn into governed identities. The HR platform publishes worker records and personnel actions. A small middleware, inside the agency's own authorization boundary, validates each event, applies events in order, normalizes them to the SCIM standard, records where they came from, and reconciles the result. Entra ID's inbound provisioning then creates and updates the accounts, in Entra ID and in Active Directory. The book sizes that interface's daily limits against the agency's population. The key design choice is that it fails closed. Unknown worker types are refused. A failed record is retried and recorded, never silently skipped. And every event leaves a provenance record, which is where the evidence comes from later. The technology is the example, not the point. Today it's Oracle Core HCM feeding Entra ID. If the vendors change, the model and the rules still hold."
+  },
+  {
+    "slide": 7,
+    "title": "Who owns, who uses, who guards",
+    "say": "Who has to be involved? This is an organizational change as much as a technical one, and it helps to think in three groups. Owners: HR owns the personnel data and its quality, the HR 2.0 program owns the platform and the standards, and each contractor source owns its own records. Users: the identity team runs the directories and access from that data, security owns the Zero Trust policy and the leaver path, and the help desk moves from routine tickets to exceptions. And guards. The privacy office is in from the start, and decides the legal basis for each leg of sharing HR records with identity, along with the privacy impact assessment and minimization. The PIV office owns issuance and termination, and the ISSO and authorizing official own the evidence and any accepted risk. A data architect ties it together, owning the standards and the person key."
+  },
+  {
+    "slide": 8,
+    "title": "Personnel actions drive joiner, mover and leaver",
+    "say": "Now, how. Personnel actions drive the three identity events, by code, not by ticket. A joiner gets an account and baseline access, ready on day one. A mover loses the old assignment's access, gets the new baseline, and has any exceptions reviewed. And a leaver is blocked first, the account disabled and sessions revoked at the effective separation time; then credentials, devices and access are removed in parallel. The book is precise about what the platform really does. Revoking sessions stops new tokens, but tokens already issued last until they expire. Privileged leavers need their own block path, because the built-in disable task doesn't support users with admin roles. And synced users have to be deleted in Active Directory too, or the next sync brings them back. Credentials follow the same events, from PIV issuance through to termination."
+  },
+  {
+    "slide": 9,
+    "title": "From attributes to access, with evidence built in",
+    "say": "Next, access. Once the attributes can be trusted, access is derived from them. A personnel record becomes an attribute, a rule or access package turns it into an entitlement, and an evidence record captures why. So every entitlement traces back to something: a rule, an approved exception, an authoritative attribute, or a privileged-access decision. That's what makes access explainable. Drift is found by comparison, not by complaint: scheduled checks compare HR, the model and the directories. And it's measured in terms leadership can read, like the time from separation to blocked access. One practical catch: Entra ID keeps audit and provisioning logs for only thirty days, so the book exports them from the pilot onward. And the evidence is a byproduct. The same records answer the auditor's oldest question: does every account belong to a current person, with a current reason?"
+  },
+  {
+    "slide": 10,
+    "title": "Seven phases, each gate the next phase's precondition",
+    "say": "The execution plan has seven phases, and each gate is the next phase's precondition. It runs from aligning the program, through settling who owns each attribute, building and testing the pipeline, and a pilot, to automating the lifecycle, cutting over, and then sustaining it. Four rules run through it. Start now, with the HR data the agency already has, and switch the source to the new platform when it arrives. Run in shadow mode first, comparing what HR says with what the directories hold. Cut over one population at a time, with a signed validation report and a rollback. And close the ticket path only when the data proves HR is the sole source. The gate thresholds, like ninety-nine percent correlation, are proposals for the agency to approve, not federal requirements. Chapter 13 walks an illustrative agency through all seven phases."
+  },
+  {
+    "slide": 11,
+    "title": "How we'll know it works, and what we need",
+    "say": "So how will we know it's working, and what do we need? Five measures, each baselined in phase one and each one something leadership can read: hours from separation to blocked access, orphaned accounts trending to zero, fewer joiner and mover tickets, managers and organizations in the directory matching HR, and every exception with an owner and an age. From leadership, we need one decision: start HR-driven identity now, as a design requirement of both the HR 2.0 onboarding and the Entra ID migration. To act on it: a sponsor across HR, identity and privacy; identity named as a consumer in the HR 2.0 interconnection plan; data owners designated and the person key confirmed; and a small team for the pre-onboarding data work. Book 03 has the full design, every claim footnoted, and Book 02 covers the directory migration it builds on. Thank you."
+  }
+]

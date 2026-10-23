@@ -1,88 +1,83 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:03.212
-Once it's running, one policy
-plane is only an improvement
+00:00:00.050 --> 00:00:03.013
+One policy plane is only an
+improvement if divisions
 
 2
-00:00:03.212 --> 00:00:06.375
-if divisions can still run
-their own networks through it.
+00:00:03.013 --> 00:00:05.438
+can still run their own
+networks through it.
 
 3
-00:00:06.375 --> 00:00:11.692
-So each division gets a scope covering
-its own zones, IP spaces and DHCP scopes,
+00:00:05.438 --> 00:00:08.960
+So each division gets a
+scope over its own zones,
 
 4
-00:00:11.692 --> 00:00:14.516
-with manager, operator and auditor roles,
+00:00:08.960 --> 00:00:13.475
+addresses and DHCP, with manager,
+operator and auditor roles.
 
 5
-00:00:14.516 --> 00:00:18.088
-and automation accounts are
-held to the same scopes.
+00:00:13.475 --> 00:00:15.925
+Automation is held to the same scopes.
 
 6
-00:00:18.088 --> 00:00:22.615
-Infrastructure as code, ITSM
-workflows and ACME DNS-01
+00:00:15.925 --> 00:00:20.143
+Infrastructure as code, ticketing
+workflows and certificate
 
 7
-00:00:22.615 --> 00:00:28.149
-certificate automation all go
-through one API and one audit trail.
+00:00:20.143 --> 00:00:23.712
+automation all go through
+one API and one audit trail.
 
 8
-00:00:28.149 --> 00:00:32.038
-Locator records are resolved
-every 15 minutes from every site
+00:00:23.712 --> 00:00:26.522
+Locator records are
+checked from every site,
 
 9
-00:00:32.038 --> 00:00:35.925
-and virtual network until the
+00:00:26.522 --> 00:00:30.624
+every fifteen minutes, until the
 last domain controller retires.
 
 10
-00:00:35.925 --> 00:00:39.668
+00:00:30.624 --> 00:00:34.345
 Drift reports compare the source
 of truth with every copy,
 
 11
-00:00:39.668 --> 00:00:43.412
-and hygiene jobs catch stale
-records and dangling CNAMEs.
+00:00:34.345 --> 00:00:37.600
+and hygiene jobs catch
+stale and dangling records.
 
 12
-00:00:43.412 --> 00:00:47.201
-The evidence floor is M-26-14.
+00:00:37.600 --> 00:00:40.388
+The evidence floor is
+the federal logging memo.
 
 13
-00:00:47.201 --> 00:00:51.841
-It doesn't name DNS, but it requires
-logs that show source and destination
+00:00:40.388 --> 00:00:44.313
+It doesn't name DNS, but its
+retention rules apply to it.
 
 14
-00:00:51.841 --> 00:00:57.177
-addresses, ports and sessions, searchable
-for six months and retrievable for a year,
+00:00:44.313 --> 00:00:47.107
+Query logs, including encrypted queries,
 
 15
-00:00:57.177 --> 00:01:02.050
-and readily available to the agency's
-top-level security operations center.
+00:00:47.107 --> 00:00:50.724
+and DHCP lease history are
+how the name layer meets it.
 
 16
-00:01:02.050 --> 00:01:04.807
-Query logs, encrypted queries included,
+00:00:50.724 --> 00:00:54.363
+And lease history is what
+turns an address into a device.
 
 17
-00:01:04.807 --> 00:01:10.238
-and DHCP lease history with MAC and IP
-addresses are how the name layer meets it.
-
-18
-00:01:10.238 --> 00:01:13.870
-The lease history is what
-turns an address into a device.
+00:00:54.363 --> 00:00:56.300
+Now, choosing the platform.

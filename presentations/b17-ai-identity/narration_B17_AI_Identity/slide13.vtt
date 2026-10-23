@@ -1,78 +1,72 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:02.825
+00:00:00.050 --> 00:00:03.013
 Everything ends in the
-authorization package.
+authorization package,
 
 2
-00:00:02.825 --> 00:00:07.946
-It has to answer five questions about each
-AI system's identity: who owns it, how
+00:00:03.013 --> 00:00:07.874
+and it has to answer five questions about
+each AI system's identity: who owns it,
 
 3
-00:00:07.946 --> 00:00:12.987
-it authenticates, what it can reach, who's
-watching it, and when its access ends.
+00:00:07.874 --> 00:00:10.305
+how it authenticates, what it can reach,
 
 4
-00:00:12.987 --> 00:00:15.738
-Each has an artifact
-and controls behind it.
+00:00:10.305 --> 00:00:12.888
+who's watching it, and
+when its access ends.
 
 5
-00:00:15.738 --> 00:00:17.088
-Two points stand out.
+00:00:12.888 --> 00:00:16.099
+Each answer has an artifact
+and controls behind it.
 
 6
-00:00:17.088 --> 00:00:21.846
-First, service identification and
-authentication, control I A nine,
+00:00:16.099 --> 00:00:17.450
+Two points stand out.
 
 7
-00:00:21.846 --> 00:00:26.011
-describes an AI system calling
-a tool with its own identity,
+00:00:17.450 --> 00:00:23.031
+First, the control for service identification
+and authentication describes exactly
 
 8
-00:00:26.011 --> 00:00:29.325
-and it's in no NIST baseline
-and no FedRAMP class.
+00:00:23.031 --> 00:00:26.132
+an AI system calling a tool
+with its own identity,
 
 9
-00:00:29.325 --> 00:00:31.100
-So the program tailors it in.
+00:00:26.132 --> 00:00:30.938
+yet it's in no NIST baseline and no FedRAMP
+class, so the program tailors it in.
 
 10
-00:00:31.100 --> 00:00:35.814
-Second, three of the seven high-impact
-practices can be evidenced by the identity
+00:00:30.938 --> 00:00:35.975
+Second, the identity program can evidence
+three of the high-impact practices,
 
 11
-00:00:35.814 --> 00:00:39.543
-program: monitoring from the
-system's own logs, training checked
+00:00:35.975 --> 00:00:39.438
+for example a fail-safe that's
+simply a tested disable.
 
 12
-00:00:39.543 --> 00:00:43.412
-against the operators' group, and a
-fail-safe that's a tested disable.
+00:00:39.438 --> 00:00:44.151
+The package can be machine-readable in
+OSCAL, with nothing AI-specific needed.
 
 13
-00:00:43.412 --> 00:00:48.676
-The package can be machine-readable in OSCAL,
-with no AI-specific structures needed.
+00:00:44.151 --> 00:00:46.546
+NIST's AI overlays aren't drafted yet,
 
 14
-00:00:48.676 --> 00:00:50.773
-NIST's overlays for AI systems,
+00:00:46.546 --> 00:00:50.300
+so tailor the baseline now and
+compare when they're final.
 
 15
-00:00:50.773 --> 00:00:55.138
-renamed under the new executive
-order, have no public draft yet.
-
-16
-00:00:55.138 --> 00:00:58.660
-So tailor the baseline now,
-and compare when they're final.
+00:00:50.300 --> 00:00:52.220
+That brings us to the decisions.

@@ -1,0 +1,57 @@
+[
+  {
+    "slide": 1,
+    "title": "Why Is the Database Where Legacy Authentication Hides?",
+    "say": "Welcome. This briefing is Book 06 of the Federal Modernization Workbook, the Data Platform. It's about moving the SQL Server estate from Windows Authentication to cloud identity. Here's why it gets its own book. Every identity program eventually reaches the database, and that's where it finds the most Windows authentication still in use. We'll go in four steps: why the database is where legacy authentication hides, what replaces it, who owns the work, and how to do it, from the first inventory of the estate to a closed state you can keep proving. Let's start with how SQL Server decides who you are."
+  },
+  {
+    "slide": 2,
+    "title": "SQL Server trusts whatever Windows tells it",
+    "say": "The short answer is that SQL Server trusts whatever Windows tells it. A connection reaches the engine in one of four ways: Kerberos, NTLM, a SQL login with a password, or Entra authentication. Only Entra is ever seen by Conditional Access. Three facts make this hard to see. You can't turn Windows Authentication off in SQL Server, because the engine hands it to Windows. The protocol a connection used isn't written to any log; you only see it in a live system view. And NTLM shows up silently, for example when a service principal name is missing. The book is fair about one thing. Windows Authentication was good engineering for a domain-joined estate. The case for replacing it is that that world is ending, not that it was a mistake. So what's pushing it to end?"
+  },
+  {
+    "slide": 3,
+    "title": "Three drivers, and what is really due in 2027",
+    "say": "Three drivers make the change unavoidable. First, NTLM is on its way out. Microsoft deprecated it in 2024 and plans to disable it by default someday, and the program sets its own backstop, April 1, 2027, for the domain-wide block. Second, Zero Trust. Federal policy puts phishing-resistant MFA and the Entra identity plane in front of human access, and Windows Authentication goes around both. Third, the directory modernization in Book 02 ends the domain-joined world that the service accounts depend on. There's no external NTLM deadline. The real dates are support dates for older SQL Server and Windows Server versions, running through 2026 and 2027, and the slide lists them. SQL Server 2014 and 2017 can't use Entra authentication at all, so they only get to the closed state by upgrade or retirement. The work starts with the estate itself."
+  },
+  {
+    "slide": 4,
+    "title": "Rationalize the estate before migrating it",
+    "say": "Before touching authentication, every instance gets one of three verdicts. Retain it, if it's supported or can be upgraded and carries real work. Consolidate it, moving its workload to a target platform and retiring the old instance. Or retire it, if there's no live workload left. The inventory has to cover the whole forest, not one domain. Usage, versions and dependencies are read together. And the book warns that usage counters reset when SQL Server restarts, so they can't prove an instance is unused on their own. The assessment uses the migration tooling in SQL Server Management Studio, because the older Data Migration Assistant has been retired. This is the gate for the whole program. Migrating an instance that should have been retired is the most expensive mistake it can make. Once we know what stays, each instance needs a cloud identity."
+  },
+  {
+    "slide": 5,
+    "title": "Azure Arc gives each instance an Entra identity",
+    "say": "What replaces the domain join is Azure Arc, which gives each instance an Entra identity. On SQL Server 2025, that's a managed identity; on 2022, it's an app registration with a certificate. The limits matter, and the old documents missed several. Failover cluster instances can't use Entra authentication at all. Entra authentication through Arc isn't available in the US Government Virginia region, so a GCC tenant uses a commercial subscription in the same tenant. The old runbook's government-cloud setup would never have produced Entra logins. FIDO2 isn't supported here. And granting the instance its Graph permissions takes a privileged role administrator, so that step can't sit with the DBAs. Arc isn't the only path, but it wins because it also brings inventory, policy, updates and Defender for the host, which is Book 05. Next, the logins themselves."
+  },
+  {
+    "slide": 6,
+    "title": "Logins move to Entra principals, in parallel",
+    "say": "The logins move to Entra principals, and they move in parallel, never in one jump. People become Entra users, ideally granted through groups, so they pick up phishing-resistant MFA and Conditional Access. Windows groups become Entra groups, with membership driven by HR attributes from Book 03. Applications become service principals and managed identities, and the book is clear that Conditional Access doesn't cover managed identities. The parallel run is simple. Create the Entra user beside the Windows user and copy its permissions. Keep both until the audit shows no remaining Windows sessions, then disable the old one. The old runbook had a one-step conversion shortcut, but it only works on Azure SQL Managed Instance, not on SQL Server. And one trap: when you change the instance's Entra administrator, the old one stays sysadmin until a DBA removes it. So who does all this?"
+  },
+  {
+    "slide": 7,
+    "title": "Who decides, who does the work for the data platform",
+    "say": "The book's ownership chapter separates deciding from doing. On the deciding side, the CIO and data leadership decide whether each instance is retained, consolidated or retired. The CISO, ISSO and authorizing official decide exceptions for NTLM and SQL logins, and sign off closure. Application and data owners pick each application's cutover window. On the doing side, the data platform team runs logins, roles, the audit and the parallel run. The identity team creates Entra logins and groups, and grants the permissions the DBAs can't. The server team onboards hosts to Arc. Developers, the help desk and security operations support. And watch for hidden administrators. Someone with contributor rights on an Arc server is, in effect, an administrator of SQL Server on that host, and can even switch password logins back on. Azure roles need the same care as sysadmin. Now, the NTLM plan."
+  },
+  {
+    "slide": 8,
+    "title": "Eliminate NTLM in three phases",
+    "say": "NTLM is eliminated in three phases. First discover, with the authentication audit and Windows NTLM logging. Then restrict: fix service principal names, move connections to Kerberos or Entra, and migrate what's left. Then eliminate, with the domain-wide block on the program's April 2027 backstop. The highest LAN Manager authentication level still accepts NTLM version two, so it isn't an NTLM block; the real block is the Restrict NTLM policies. Their exceptions are server-name lists on clients and domain controllers, not the program's own exception register. And Microsoft's upcoming NTLM change for Wi-Fi and VPN doesn't touch SQL Server traffic. The good news is that the fastest exit is the migration itself. An instance whose logins have moved to Entra isn't affected by the block, so login migration and NTLM elimination are the same work. Then access and applications follow."
+  },
+  {
+    "slide": 9,
+    "title": "Access by attribute, applications by driver",
+    "say": "With the logins moved, access is granted by attribute, and applications move by driver. On access, dynamic Entra groups driven by HR attributes grant database access, so no DBA hands it out manually. Privileged database roles go through just-in-time elevation from Book 04, and reviews cover the groups, not just the logins. On applications, the book sorts them into four classes, each with its own migration path. Connection strings name a specific Entra authentication mode in production, rather than a catch-all default. All the common database drivers support Entra, and the book has a table of minimum versions. The last mile is the connection string. Any application that still says Integrated Security keeps the Windows path alive. So the application inventory is part of closure, not a follow-up. And closure is the last big idea."
+  },
+  {
+    "slide": 10,
+    "title": "Closure is a posture you keep proving",
+    "say": "The book's last idea is that a transformation doesn't finish; it reaches a posture, and a posture is something you keep proving. The closed state has five conditions that hold together. Every in-scope instance uses Entra-only authentication, SQL logins exist only as approved exceptions, and the continuous audit shows no NTLM sessions. Any drift, like someone switching back to mixed mode, is caught and treated as a violation. And the evidence is regenerated from the instance's own audit, not assembled into a binder. One correction matters for assessors. Entra sign-in logs can't prove per-instance access or the absence of NTLM, so the proof has to come from the instance itself. And there's a certificate layer underneath. SQL Server's TLS certificates usually still come from AD Certificate Services, and Cloud PKI can't issue to servers. So the server certificate issuer is its own decision. That leads to the asks."
+  },
+  {
+    "slide": 11,
+    "title": "What we need",
+    "say": "So, four asks. First, run the inventory and the gate: a retain, consolidate or retire verdict for every instance before any authentication work starts. Second, fund the Arc bridge, which means a commercial subscription in the GCC tenant, with SQL Server 2022 or later as the target. Third, plan for the support dates, upgrading or retiring the 2014, 2016 and 2017 instances on time, because they can't use Entra authentication. And fourth, decide the certificate issuer for server TLS, because the AD Certificate Services dependency needs its own answer. The database is where legacy authentication hides longest. Bringing it into Entra is what finally lets Conditional Access, phishing-resistant sign-in and continuous evidence reach the data. Book 06 has the narrative and ten runbooks, with every external claim footnoted. Book 05 covers Arc on servers, and Book 04 the access policy it plugs into. Thank you."
+  }
+]

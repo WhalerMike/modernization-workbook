@@ -1,0 +1,72 @@
+[
+ {
+  "slide": 1,
+  "title": "Every AI System Needs an Identity",
+  "say": "Welcome. This briefing comes from Book 17 of the Federal Modernization Workbook, AI Identity Governance, the last book in the series. It's written for Chief AI Officers, CIOs and CISOs, identity and security operations teams, ISSOs, and authorizing officials. I'll take four questions. Why do AI agents need identities and owners? What does governing them involve? Who owns AI identity? And how do you scan the inventory and evidence AI systems for authorization? The short version: an AI system that can act is an account with permissions. Most were deployed outside the identity program, and there's no separate AI authorization to fall back on. Let's start with what makes an agent an account."
+ },
+ {
+  "slide": 2,
+  "title": "An agent that acts is an account",
+  "say": "A chat assistant that drafts a memo is a tool. Nothing it does reaches a record until a person reads the draft and acts. An agent is different. It sends replies from a mailbox, closes tickets, updates case records. Each of those is an action against agency data, taken by something that signed in and holds permissions. That makes it an identity. An AI system can reach data in one of four ways: for a signed-in user, as itself, as its own user account, or with an API key. The first three run through the identity provider. The fourth skips it entirely, so no sign-in is ever evaluated. Today the agentic share of federal AI is small, only a small fraction of the thousands of reported use cases. But it's the share growing fastest. So how did AI get in?"
+ },
+ {
+  "slide": 3,
+  "title": "AI arrived outside the identity program",
+  "say": "People join through a pipeline the identity program built, from an HR record all the way to a leaver process. AI mostly came in another way. A mission office ran a pilot with a vendor. A developer put an API key in a config file. A product the agency already licensed shipped an assistant. None of those paths produces an owner, a placement, a governed credential or an end date. And the risk is identity-shaped. Take prompt injection, where planted input makes a system misbehave. Against an agent with broad permissions, a successful injection is an action, a message sent or a record changed, under a legitimate identity. The blast radius is whatever access it holds. The good news is that no new control family is needed. The gap is coverage: the AI system's account is often missing from the inventory those controls are tested against."
+ },
+ {
+  "slide": 4,
+  "title": "What federal AI rules require, and don't",
+  "say": "Federal AI policy was rewritten in 2025. One OMB memo governs use, with a Chief AI Officer, an annual use-case inventory, and minimum practices for high-impact AI. Its companion governs acquisition, and says AI run as an information system needs an authorization to operate before it deploys. What the rules don't do matters just as much. There's no AI-specific authorization. Agencies keep following their existing authorization process, the memo's own risk acceptance doesn't replace it, and it sets no identity requirements at all. So a high-impact use case needs two decisions before it deploys: the signed risk acceptance on its impact assessment, and the system's authorization. One footnote: a recent executive order changes the preferred term in some documents, but Book 17 keeps saying AI, because the instruments it applies still do. Next, the inventory."
+ },
+ {
+  "slide": 5,
+  "title": "The inventory is a seed list, not an identity source",
+  "say": "The use-case inventory is the only government-wide list of federal AI, so the program reads it as identity data. A few fields are solid anchors. The use-case ID is stable and never reused, so it can key a record. The bureau gives a placement. And a stage of Retired is a leaver event. Other fields are only leads; the contact, for example, may be a public inbox. But the facts that decide access aren't there at all: what the system signs in as, its credential, its permissions, and the person accountable. The high-impact fields report status, not evidence, and in the published file a large share of deployed high-impact use cases answered none of them. And a use case isn't an identity, so the program records the link on the directory side. Next, how to tell what kind of identity an AI system is."
+ },
+ {
+  "slide": 6,
+  "title": "Whose token does it present?",
+  "say": "Here's the key idea: an AI system's kind of identity is decided by whose token it presents, not by the model it runs. Acting for a signed-in user, the user's policies apply, and the agent can reach everything that user can. Acting as itself, the only Conditional Access option is to block it. Acting as its own user account, it slips past policies aimed at all users. And with a stored API key, Entra ID issues no token at all. Microsoft Entra Agent ID adds identity types built for agents, including a blueprint that holds the credentials and a required human sponsor. But it only governs agents that use it. Most AI still runs as ordinary service principals and managed identities, and the same governance applies to them. Next, what's actually available, and where."
+ },
+ {
+  "slide": 7,
+  "title": "Release stage and government cloud, October 2026",
+  "say": "The agency's cloud decides what it can use, so Book 17 dates every product statement to October 2026. The core Agent ID platform, with blueprints, agent identities and sponsors, was announced as generally available in April 2026. But several controls are still preview, including agent targeting in Conditional Access. The slide lists them. The government clouds are the bigger issue. GCC has a partial, documented subset: identity and access governance for agents, but not Microsoft's audit, data loss prevention or network controls. GCC High and DOD have no published availability, so treat agent identities as unavailable there until Microsoft confirms otherwise in writing, and govern AI as workload identities. The rule is simple: build on what's generally available in your own cloud, and keep preview features as watch items. Next, the person behind each agent."
+ },
+ {
+  "slide": 8,
+  "title": "A named human, and a lifecycle that ends",
+  "say": "An agent has no hire date and no separation date, so its lifecycle has to hang from a person who does. Agent ID separates the owner, who manages credentials, from the sponsor, who's accountable for purpose and lifecycle. Left to defaults, the sponsor is just whoever built the agent. The program decides instead: the sponsor is a federal employee mastered in HR, a small group of stewards is the backup, and the technical owner is never the sponsor. The lifecycle then follows that person. When the sponsor moves or leaves, the HR event triggers a transfer, and the new sponsor has a short window to confirm the agent is still needed. Access comes with end dates, so a sponsor who does nothing removes it. And an orphaned agent is disabled by a person, never by an automatic rule. Next, credentials and privilege."
+ },
+ {
+  "slide": 9,
+  "title": "No stored secrets, no standing privilege",
+  "say": "An agent can't be asked for a second factor, so everything it may do has to be decided in advance. Start with the credential. In Agent ID it lives on the blueprint and is shared by every agent made from it, so the blueprint is the credential boundary. The order of preference is settled: federated credentials first, a certificate in a vault only where that won't work, and a client secret only for development and test. Then privilege. Microsoft blocks agents from Global Administrator, but still allows some other powerful admin roles. That's a floor, not least privilege, so the program's rule is that no AI identity holds a standing privileged role. And in GCC, where Purview's agent controls aren't available, scoped permissions are the data boundary. Next, watching for drift."
+ },
+ {
+  "slide": 10,
+  "title": "Watch it, find what nobody declared, raise findings",
+  "say": "Every AI identity drifts once it exists. A sponsor changes jobs, a developer adds a secret, an agent gets a new tool. Federal policy asks that high-impact AI be monitored for changes after deployment, and the identity logs are where those changes show up first. So the program collects every AI identity's sign-ins, audit events and risk signals, and ties each one to its identity record, because nothing in a service principal's sign-in says it's AI. Discovery is a standing input too. Shadow AI turns up in several places, from services people use to agents on endpoints, and anything found without a record is a finding. An agentic system with no governed identity is the finding this book exists to prevent. It halts, alerts a named person, and is never fixed automatically. And API keys stay invisible to all of it. So who owns these decisions?"
+ },
+ {
+  "slide": 11,
+  "title": "Two decision tracks, one identity record",
+  "say": "Ask who owns an AI agent's identity and three offices answer at once. The way out is to separate the decisions and give each one a single decider. AI adds one new executive and one new kind of decision. The Chief AI Officer owns the inventory, the high-impact determinations and waivers. The official accountable for the mission signs the use-case risk acceptance. Neither one authorizes the system; the authorizing official alone accepts its security and privacy risk. For the identity itself, the sponsor, an agency employee, decides whether the agent should exist. The technical owner, who may be a contractor, keeps it running. And the identity governance officer decides consent, transfers and orphans. Two signatures stay two, even when one person holds both roles. Now, the inventory scan."
+ },
+ {
+  "slide": 12,
+  "title": "Run the inventory scan",
+  "say": "The inventory scan is the program's own method, not a federal requirement, and it's cheap because it reads answers agencies already gave. Load the file, detect the gaps, put agentic systems first, route each finding to a named role, and close it only on a later observation. The scale is real. In the published 2025 file, most piloted or deployed use cases trip at least one check, often a missing authorization answer or a missing contact. Those are answers to reconcile, not findings against agencies. The checks that matter most need the directory, so only the agency can run them. Is there an identity record? An accountable sponsor? A retired use case whose identities still hold access? A central scan of the public file could start that conversation, but it can't see a credential. Finally, the evidence."
+ },
+ {
+  "slide": 13,
+  "title": "Evidence the authorizing official can use",
+  "say": "Everything ends in the authorization package, and it has to answer five questions about each AI system's identity: who owns it, how it authenticates, what it can reach, who's watching it, and when its access ends. Each answer has an artifact and controls behind it. Two points stand out. First, the control for service identification and authentication describes exactly an AI system calling a tool with its own identity, yet it's in no NIST baseline and no FedRAMP class, so the program tailors it in. Second, the identity program can evidence three of the high-impact practices, for example a fail-safe that's simply a tested disable. The package can be machine-readable in OSCAL, with nothing AI-specific needed. NIST's AI overlays aren't drafted yet, so tailor the baseline now and compare when they're final. That brings us to the decisions."
+ },
+ {
+  "slide": 14,
+  "title": "Decisions to make, and next steps",
+  "say": "So, four decisions. Count AI identities, not AI projects: no use case is recorded as piloted or deployed without a link to its identity record, created before any credential is issued. Put a person's name on every one, an agency employee as sponsor, with HR's mover and leaver events reaching the agent. Take away stored secrets and standing privilege, and keep the block-unless-approved policy in report-only mode while agent targeting is preview. And authorize AI through the process you already run, with two signatures for high-impact AI and the service authentication control tailored in. The next step needs no new tooling. Run the inventory checks on the agency's own submission, start with agentic systems and missing authorizations, and confirm each agent capability in your own cloud first. Every AI system needs an identity and an owner. Book 17 has the detail, every claim footnoted. Thank you."
+ }
+]

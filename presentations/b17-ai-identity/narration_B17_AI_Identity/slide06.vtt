@@ -1,76 +1,64 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:03.032
-An AI system's kind of
-identity is decided by
+00:00:00.050 --> 00:00:03.667
+Here's the key idea: an AI
+system's kind of identity is
 
 2
-00:00:03.032 --> 00:00:06.263
-whose token it presents,
-not by the model it runs.
+00:00:03.667 --> 00:00:07.800
+decided by whose token it
+presents, not by the model it runs.
 
 3
-00:00:06.263 --> 00:00:07.676
-There are four answers.
+00:00:07.800 --> 00:00:11.187
+Acting for a signed-in user,
+the user's policies apply,
 
 4
-00:00:07.676 --> 00:00:12.691
-Acting for a signed-in user, the user is
-the token's subject and the agent is the
+00:00:11.187 --> 00:00:14.337
+and the agent can reach
+everything that user can.
 
 5
-00:00:12.691 --> 00:00:14.920
-actor, so the user's policies apply,
+00:00:14.337 --> 00:00:18.738
+Acting as itself, the only Conditional
+Access option is to block it.
 
 6
-00:00:14.920 --> 00:00:18.025
-and the agent can reach
-everything the user can.
+00:00:18.738 --> 00:00:23.725
+Acting as its own user account, it
+slips past policies aimed at all users.
 
 7
-00:00:18.025 --> 00:00:21.810
-Acting as itself, the agent's
-own identity is the subject,
-
-8
-00:00:21.810 --> 00:00:25.512
-and the only Conditional
-Access control is to block it.
-
-9
-00:00:25.512 --> 00:00:30.587
-Acting as its own user account, it isn't
-covered by policies aimed at all users.
-
-10
-00:00:30.587 --> 00:00:35.374
-And with a stored A P I key,
+00:00:23.725 --> 00:00:28.450
+And with a stored API key,
 Entra ID issues no token at all.
 
+8
+00:00:28.450 --> 00:00:32.400
+Microsoft Entra Agent ID adds
+identity types built for agents,
+
+9
+00:00:32.400 --> 00:00:37.413
+including a blueprint that holds the
+credentials and a required human sponsor.
+
+10
+00:00:37.413 --> 00:00:39.676
+But it only governs agents that use it.
+
 11
-00:00:35.374 --> 00:00:40.668
-Microsoft Entra Agent ID adds identity
-types built for agents: a blueprint that
-
-12
-00:00:40.668 --> 00:00:44.438
-holds the credentials, agent
-identities created from it,
-
-13
-00:00:44.438 --> 00:00:46.363
-and a required human sponsor.
-
-14
-00:00:46.363 --> 00:00:48.762
-It governs only agents that use it.
-
-15
-00:00:48.762 --> 00:00:53.331
+00:00:39.676 --> 00:00:44.243
 Most AI still runs as ordinary service
 principals and managed identities,
 
-16
-00:00:53.331 --> 00:00:55.820
+12
+00:00:44.243 --> 00:00:46.675
 and the same governance applies to them.
+
+13
+00:00:46.675 --> 00:00:49.540
+Next, what's actually
+available, and where.

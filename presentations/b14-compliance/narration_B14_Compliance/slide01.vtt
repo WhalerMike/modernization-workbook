@@ -1,54 +1,74 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:04.396
+00:00:00.050 --> 00:00:00.763
+Welcome.
+
+2
+00:00:00.763 --> 00:00:05.141
 This briefing comes from Book 14 of
 the Federal Modernization Workbook,
 
-2
-00:00:04.396 --> 00:00:06.787
+3
+00:00:05.141 --> 00:00:07.549
 Federal Compliance and Authorization.
 
-3
-00:00:06.787 --> 00:00:09.612
+4
+00:00:07.549 --> 00:00:10.217
 It's written for authorizing officials,
 
-4
-00:00:09.612 --> 00:00:13.037
-information system security
-officers and C I Os.
-
 5
-00:00:13.037 --> 00:00:17.558
-I'll take four questions: why every
-control needs proof rather than a promise,
+00:00:10.217 --> 00:00:13.450
+information system security
+officers and CIOs.
 
 6
-00:00:17.558 --> 00:00:20.931
-and what the federal clock now
-asks for; what the baseline,
+00:00:13.450 --> 00:00:14.863
+I'll take four questions.
 
 7
-00:00:20.931 --> 00:00:24.735
-the closure rule and the agency-level
-control families require;
+00:00:14.863 --> 00:00:18.103
+Why does every control need
+proof rather than a promise,
 
 8
-00:00:24.735 --> 00:00:29.687
-who owns compliance; and how to build the
-authorization package and keep it current.
+00:00:18.103 --> 00:00:20.638
+and what is the federal
+clock asking for now?
 
 9
-00:00:29.687 --> 00:00:32.483
-The short version: a control
-is closed when the thing
+00:00:20.638 --> 00:00:21.876
+What do the baseline,
 
 10
-00:00:32.483 --> 00:00:35.538
-that closes it is running and
-the record shows it working.
+00:00:21.876 --> 00:00:25.737
+the closure rule and the agency-level
+control families require?
 
 11
-00:00:35.538 --> 00:00:38.880
+00:00:25.737 --> 00:00:27.176
+Who owns compliance?
+
+12
+00:00:27.176 --> 00:00:30.588
+And how do you build the authorization
+package and keep it current?
+
+13
+00:00:30.588 --> 00:00:34.178
+If you remember one thing, make
+it this: a control is closed when
+
+14
+00:00:34.178 --> 00:00:38.050
+the thing that closes it is running,
+and the record shows it working.
+
+15
+00:00:38.050 --> 00:00:41.338
 Everything else is a
 promise, and promises age.
+
+16
+00:00:41.338 --> 00:00:43.540
+Let's start with who owes which proof.

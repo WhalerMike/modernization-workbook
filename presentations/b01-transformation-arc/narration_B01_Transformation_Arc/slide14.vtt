@@ -1,74 +1,65 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:04.300
+00:00:00.050 --> 00:00:04.537
 Chapter 11 turns the inventory
-into change in three stages.
+into change, in three stages.
 
 2
-00:00:04.300 --> 00:00:08.462
-Analyze builds current-state and
-target-state graphs and a diff.
+00:00:04.537 --> 00:00:08.587
+Analyze compares the current state
+with the target and produces a diff.
 
 3
-00:00:08.462 --> 00:00:12.875
-Plan expands the diff into typed
+00:00:08.587 --> 00:00:12.681
+Plan expands that diff into
 actions, each scoped to one object,
 
 4
-00:00:12.875 --> 00:00:16.325
-ordered by dependency and
+00:00:12.681 --> 00:00:16.213
+put in dependency order, and
 paired with its rollback.
 
 5
-00:00:16.325 --> 00:00:18.163
-A plan must pass validation,
+00:00:16.213 --> 00:00:20.550
+A plan has to pass validation, then
+approval by someone who didn't write it.
 
 6
-00:00:18.163 --> 00:00:22.400
-then authorization by an approver
-of record who isn't the author.
+00:00:20.550 --> 00:00:24.988
+Then a separate identity carries it
+out and closes with an evidence packet.
 
 7
-00:00:22.400 --> 00:00:25.889
-Only then does a separate
-execution identity deliver it,
+00:00:24.988 --> 00:00:29.620
+How far automation may go is capped
+by a ladder, from simply recording,
 
 8
-00:00:25.889 --> 00:00:29.600
-verifying every action and
-closing with an evidence packet.
+00:00:29.620 --> 00:00:32.951
+up to autonomy for a short
+list of low-risk changes.
 
 9
-00:00:29.600 --> 00:00:34.951
-The actuation ladder caps how far
-automation may go: record, observe,
+00:00:32.951 --> 00:00:35.451
+The default ceiling is gated actuation,
 
 10
-00:00:34.951 --> 00:00:40.875
-advise, gated actuation, and autonomy
-only for enumerated low-risk classes.
-
-11
-00:00:40.875 --> 00:00:43.397
-Gated actuation is the default ceiling,
-
-12
-00:00:43.397 --> 00:00:46.912
+00:00:35.451 --> 00:00:38.937
 because it's a posture an
 authorizing official can sign.
 
-13
-00:00:46.912 --> 00:00:50.071
+11
+00:00:38.937 --> 00:00:42.096
 CISA calls its maturity
 model a general guide,
 
-14
-00:00:50.071 --> 00:00:54.200
+12
+00:00:42.096 --> 00:00:46.225
 not a strict set of requirements,
 so this is design, not mandate.
 
-15
-00:00:54.200 --> 00:00:58.460
-When nothing has drifted, the next
-run produces a zero-action plan.
+13
+00:00:46.225 --> 00:00:50.400
+And when nothing has drifted,
+the next run plans zero actions.

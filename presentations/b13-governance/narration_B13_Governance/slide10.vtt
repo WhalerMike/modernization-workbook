@@ -5,75 +5,70 @@ WEBVTT
 None of this machinery decides anything.
 
 2
-00:00:02.438 --> 00:00:08.100
-A drift finding asks: change the estate,
-change the record, or carry the difference?
+00:00:02.438 --> 00:00:05.796
+A drift finding asks a
+question: change the estate,
 
 3
-00:00:08.100 --> 00:00:12.863
+00:00:05.796 --> 00:00:08.663
+change the record, or
+carry the difference?
+
+4
+00:00:08.663 --> 00:00:13.425
 Only people can answer the last two, so
 the program names one decider for each.
 
-4
-00:00:12.863 --> 00:00:18.313
-The steward keeps the record: its protections,
-merge rights, checks and backups.
-
 5
-00:00:18.313 --> 00:00:23.825
-The steward doesn't decide what the facts
-mean; HR, application and data owners do.
+00:00:13.425 --> 00:00:17.019
+The steward keeps the record,
+its protections and backups,
 
 6
-00:00:23.825 --> 00:00:26.424
-The CISO decides control requirements,
+00:00:17.019 --> 00:00:20.763
+but doesn't decide what the facts
+mean; the business owners do.
 
 7
-00:00:26.424 --> 00:00:30.400
-even when they're written as code,
-and decides on drift evidence.
+00:00:20.763 --> 00:00:25.237
+The CISO decides control requirements,
+even when they're written as code.
 
 8
-00:00:30.400 --> 00:00:35.425
+00:00:25.237 --> 00:00:29.072
 The governance board is the change
-control element NIST's CM-3 calls for.
+control body NIST calls for,
 
 9
-00:00:35.425 --> 00:00:38.718
-It meets every two weeks and
-reviews rather than votes,
+00:00:29.072 --> 00:00:33.938
+and it reviews rather than votes, so every
+decision keeps one accountable owner.
 
 10
-00:00:38.718 --> 00:00:41.425
-so every decision has
-one accountable owner.
+00:00:33.938 --> 00:00:37.729
+The authorizing official, the
+only one who can accept risk,
 
 11
-00:00:41.425 --> 00:00:45.743
-The authorizing official, the only
-official who can accept risk,
+00:00:37.729 --> 00:00:42.863
+signs every open-ended gap and every
+class of change allowed to run unattended.
 
 12
-00:00:45.743 --> 00:00:50.550
-signs every open-ended gap and every
-class of change allowed to run at L4.
+00:00:42.863 --> 00:00:48.724
+A bounded exception, with an end date, is
+the CISO's, and none renews automatically.
 
 13
-00:00:50.550 --> 00:00:54.864
-A bounded exception, with an end
-date and a compensating control,
+00:00:48.724 --> 00:00:51.568
+And because the repository
+is a federal record,
 
 14
-00:00:54.864 --> 00:00:57.875
-is the CISO's, and none
-renews automatically.
+00:00:51.568 --> 00:00:55.212
+its history is never rewritten
+without the records officer.
 
 15
-00:00:57.875 --> 00:01:02.809
-And the repository is a federal record:
-the records officer decides retention,
-
-16
-00:01:02.809 --> 00:01:06.290
-and history is never rewritten
-without that decision.
+00:00:55.212 --> 00:00:56.540
+Next, tempo.

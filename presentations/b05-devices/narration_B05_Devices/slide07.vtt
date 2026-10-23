@@ -1,74 +1,71 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:01.338
-Who owns the endpoint?
+00:00:00.050 --> 00:00:03.338
+Ownership matters because the
+work crosses several teams,
 
 2
-00:00:01.338 --> 00:00:04.212
-The book separates who decides
-from who does the work.
+00:00:03.338 --> 00:00:06.425
+so the book separates who
+decides from who does the work.
 
 3
-00:00:04.212 --> 00:00:10.713
-Deciding: the CISO and ISSO own the
-baselines, the exceptions and the evidence.
+00:00:06.425 --> 00:00:13.200
+On the deciding side, the CISO and ISSO
+own the baselines, exceptions and evidence.
 
 4
-00:00:10.713 --> 00:00:14.713
-The endpoint engineering lead owns
-policy design and the rollout.
+00:00:13.200 --> 00:00:17.150
+The endpoint engineering lead
+owns policy design and rollout.
 
 5
-00:00:14.713 --> 00:00:19.976
-And the change board owns the update
-rings, the migration waves and any pause.
+00:00:17.150 --> 00:00:22.325
+The change board owns the update rings,
+the migration waves and any pause.
 
 6
-00:00:19.976 --> 00:00:23.834
-Doing: endpoint engineering
-builds the Intune policies,
+00:00:22.325 --> 00:00:27.578
+On the doing side, endpoint engineering
+builds the Intune policies and Autopilot
 
 7
-00:00:23.834 --> 00:00:26.625
-Autopilot profiles and app deployments.
+00:00:27.578 --> 00:00:30.745
+profiles, the server team
+onboards servers to Arc,
 
 8
-00:00:26.625 --> 00:00:31.513
-The server team onboards servers to
-Azure Arc and owns machine configuration.
+00:00:30.745 --> 00:00:34.375
+and security operations runs
+Defender and the response.
 
 9
-00:00:31.513 --> 00:00:36.025
-Security operations runs Defender,
-the alerts and the response.
+00:00:34.375 --> 00:00:37.990
+Application owners, the help
+desk and pilot users are
 
 10
-00:00:36.025 --> 00:00:41.687
-Consulted and affected: application owners
-supply test results and app packaging.
+00:00:37.990 --> 00:00:41.687
+consulted and affected; pilot
+users tell us what broke.
 
 11
-00:00:41.687 --> 00:00:45.101
-The help desk handles
-enrollment, wipe and recovery.
+00:00:41.687 --> 00:00:46.225
+And one rule applies to people as
+much as devices: least privilege.
 
 12
-00:00:45.101 --> 00:00:48.375
-And end users join pilot
-waves and tell us what broke.
+00:00:46.225 --> 00:00:51.337
+Daily work runs on scoped Intune roles,
+not the broad Intune Administrator role,
 
 13
-00:00:48.375 --> 00:00:52.875
-One rule applies to the people as
-much as the devices: least privilege.
+00:00:51.337 --> 00:00:54.512
+which Microsoft advises
+against for routine use.
 
 14
-00:00:52.875 --> 00:00:57.197
-Day-to-day work runs on scoped Intune
-roles, not Intune Administrator;
-
-15
-00:00:57.197 --> 00:01:02.110
-Microsoft advises against using the
-broad role for routine administration.
+00:00:54.512 --> 00:00:57.620
+With owners named, here's
+how the sunset runs.

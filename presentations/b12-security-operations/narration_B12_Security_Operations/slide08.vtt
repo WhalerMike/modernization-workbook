@@ -1,79 +1,68 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:05.783
+00:00:00.050 --> 00:00:05.514
 Vulnerability management fails at three
 points assessors probe: a stale inventory,
 
 2
-00:00:05.783 --> 00:00:10.288
-prioritization by score alone, and
-no record of found, due and fixed.
+00:00:05.514 --> 00:00:07.387
+prioritizing by score alone,
 
 3
-00:00:10.288 --> 00:00:12.637
-The program's answer is a daily queue.
+00:00:07.387 --> 00:00:10.900
+and no record of when something
+was found, due and fixed.
 
 4
-00:00:12.637 --> 00:00:15.224
-Pull the KEV feed before
-the morning review.
+00:00:10.900 --> 00:00:13.250
+The program's answer is a daily queue.
 
 5
-00:00:15.224 --> 00:00:18.200
-Pull findings from Defender
-Vulnerability Management.
+00:00:13.250 --> 00:00:17.747
+Pull the Known Exploited Vulnerabilities
+feed and the scanner's findings,
 
 6
-00:00:18.200 --> 00:00:22.975
-Join each device to the authoritative
-asset record and its exposure tag.
+00:00:17.747 --> 00:00:22.100
+join each device to the authoritative
+asset record and its exposure tag,
 
 7
-00:00:22.975 --> 00:00:27.590
-Look up CISA's automation and impact
-data, apply the directive's table,
+00:00:22.100 --> 00:00:26.887
+apply the directive's table, and keep the
+first-detected date, never resetting it.
 
 8
-00:00:27.590 --> 00:00:31.012
-and keep the first-detected
-date, never resetting it.
+00:00:26.887 --> 00:00:31.828
+Two practical rules: treat an asset with
+no exposure tag as publicly exposed,
 
 9
-00:00:31.012 --> 00:00:32.771
-Use the catalog's due date,
+00:00:31.828 --> 00:00:35.750
+and keep your own history, because
+the scanner's exports don't.
 
 10
-00:00:32.771 --> 00:00:36.874
-because Defender's vulnerability
-data carries no KEV flag.
+00:00:35.750 --> 00:00:40.487
+The key idea is that a scanner authors
+no state; it just measures a gap.
 
 11
-00:00:36.874 --> 00:00:40.850
-Treat an asset with no exposure
-tag as publicly exposed.
+00:00:40.487 --> 00:00:43.650
+Each platform patches with
+its own native tools,
 
 12
-00:00:40.850 --> 00:00:45.387
-And Defender's exports carry no
-history, so the program keeps its own.
+00:00:43.650 --> 00:00:48.474
+but every one returns the same remediation
+record, keyed to the same asset.
 
 13
-00:00:45.387 --> 00:00:48.625
-A scanner authors no
-state; it measures a gap.
-
-14
-00:00:48.625 --> 00:00:51.746
-Each platform patches with
-its own native stack,
-
-15
-00:00:51.746 --> 00:00:56.662
-and every stack returns the same
-remediation record, keyed to the same asset.
-
-16
-00:00:56.662 --> 00:01:01.370
+00:00:48.474 --> 00:00:53.113
 A finding closes when the fix is recorded
 and the next scan no longer sees it.
+
+14
+00:00:53.113 --> 00:00:55.200
+Next, three more streams.

@@ -1,84 +1,72 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:00.700
-Why.
+00:00:00.050 --> 00:00:02.225
+Why does identity matter so much now?
 
 2
-00:00:00.700 --> 00:00:04.412
-Federal Zero Trust policy
-moved the access decision.
+00:00:02.225 --> 00:00:06.475
+Because federal Zero Trust policy
+moved where access gets decided.
 
 3
-00:00:04.412 --> 00:00:10.026
-OMB memorandum M-22-09 requires agency
-staff to use enterprise-managed
+00:00:06.475 --> 00:00:12.041
+M-22-09 requires enterprise-managed
+identities and phishing-resistant MFA.
 
 4
-00:00:10.026 --> 00:00:14.437
-identities and phishing-resistant
-multifactor authentication.
+00:00:12.041 --> 00:00:17.756
+NIST 800-207 removes the trust that
+used to come from being on the network:
 
 5
-00:00:14.437 --> 00:00:19.841
-NIST Special Publication 800-207
-removes implicit trust based
+00:00:17.756 --> 00:00:20.088
+every request is evaluated on its own.
 
 6
-00:00:19.841 --> 00:00:23.600
-on network location: every
-request is evaluated on its own.
-
-7
-00:00:23.600 --> 00:00:29.050
-And CISA's Zero Trust Maturity Model puts
+00:00:20.088 --> 00:00:24.775
+And CISA's maturity model puts
 identity first among its five pillars.
 
+7
+00:00:24.775 --> 00:00:29.062
+In practice, the identity provider
+enforces whatever it believes.
+
 8
-00:00:29.050 --> 00:00:31.261
-What that means in practice is that the
-
-9
-00:00:31.261 --> 00:00:34.162
-identity provider enforces
-whatever it believes.
-
-10
-00:00:34.162 --> 00:00:36.838
+00:00:29.062 --> 00:00:31.737
 Who is this person,
 and is that still true?
 
-11
-00:00:36.838 --> 00:00:39.625
+9
+00:00:31.737 --> 00:00:34.526
 Which groups and roles
 do they hold, and why?
 
+10
+00:00:34.526 --> 00:00:36.525
+Is their device managed and healthy?
+
+11
+00:00:36.525 --> 00:00:40.329
+Conditional Access, Privileged
+Identity Management and
+
 12
-00:00:39.625 --> 00:00:42.063
-Is the device they're
-using managed and healthy?
+00:00:40.329 --> 00:00:43.975
+device compliance all read
+those facts, on every sign-in.
 
 13
-00:00:42.063 --> 00:00:46.233
-Conditional Access, Privileged
-Identity Management and device
+00:00:43.975 --> 00:00:45.589
+So if the facts are wrong,
 
 14
-00:00:46.233 --> 00:00:50.250
-compliance all read those facts
-and act on them, on every sign-in.
+00:00:45.589 --> 00:00:49.300
+every policy built on them is
+wrong too, at machine speed.
 
 15
-00:00:50.250 --> 00:00:55.375
-So if the facts are wrong, every policy
-built on them is wrong, at machine speed.
-
-16
-00:00:55.375 --> 00:01:00.075
-That's why moving from Active Directory
-to Entra ID isn't a directory upgrade.
-
-17
-00:01:00.075 --> 00:01:04.320
-It decides whether every later
-control has true facts to act on.
+00:00:49.300 --> 00:00:54.340
+That's why this move decides whether every
+later control has true facts to act on.

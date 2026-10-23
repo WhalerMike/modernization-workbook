@@ -1,84 +1,77 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:01.514
-With the logins moved,
+00:00:00.050 --> 00:00:03.745
+With the logins moved, access
+is granted by attribute,
 
 2
-00:00:01.514 --> 00:00:05.825
-access is granted by attribute
+00:00:03.745 --> 00:00:06.013
 and applications move by driver.
 
 3
-00:00:05.825 --> 00:00:10.717
-Access control: dynamic Entra
-groups, driven by HR attributes,
+00:00:06.013 --> 00:00:10.172
+On access, dynamic Entra
+groups driven by HR attributes
 
 4
-00:00:10.717 --> 00:00:14.938
+00:00:10.172 --> 00:00:14.150
 grant database access, so no
-DBA provisions it by hand.
+DBA hands it out manually.
 
 5
-00:00:14.938 --> 00:00:18.012
-Administrative units
-delegate group management,
+00:00:14.150 --> 00:00:19.012
+Privileged database roles go through
+just-in-time elevation from Book 04,
 
 6
-00:00:18.012 --> 00:00:22.550
-privileged database roles go through
-PIM from the Federal Modernization
+00:00:19.012 --> 00:00:22.200
+and reviews cover the
+groups, not just the logins.
 
 7
-00:00:22.550 --> 00:00:26.575
-Workbook's Book 04, and reviews cover
-the groups, not just the logins.
+00:00:22.200 --> 00:00:25.856
+On applications, the book
+sorts them into four classes,
 
 8
-00:00:26.575 --> 00:00:29.944
-The application chain: the
-book sorts SQL-consuming
-
-9
-00:00:29.944 --> 00:00:34.175
-applications into four classes,
+00:00:25.856 --> 00:00:28.050
 each with its own migration path.
 
-10
-00:00:34.175 --> 00:00:37.468
+9
+00:00:28.050 --> 00:00:31.570
 Connection strings name a
 specific Entra authentication
 
+10
+00:00:31.570 --> 00:00:34.587
+mode in production, rather
+than a catch-all default.
+
 11
-00:00:37.468 --> 00:00:40.425
-mode in production rather
-than the catch-all default.
+00:00:34.587 --> 00:00:37.499
+All the common database
+drivers support Entra,
 
 12
-00:00:40.425 --> 00:00:46.280
-Microsoft.Data.SqlClient, ODBC, OLE
-DB and JDBC all support Entra modes,
+00:00:37.499 --> 00:00:40.187
+and the book has a table
+of minimum versions.
 
 13
-00:00:46.280 --> 00:00:51.025
-and the book has a driver table
-with the minimum versions.
-
-14
-00:00:51.025 --> 00:00:55.663
-Managed identities on Arc hosts get their
-tokens from the local agent service.
-
-15
-00:00:55.663 --> 00:00:57.888
+00:00:40.187 --> 00:00:42.413
 The last mile is the connection string.
 
-16
-00:00:57.888 --> 00:01:03.350
-Every application that still says Integrated
-Security keeps the Windows path alive,
+14
+00:00:42.413 --> 00:00:47.725
+Any application that still says Integrated
+Security keeps the Windows path alive.
 
-17
-00:01:03.350 --> 00:01:07.420
-so the application inventory is
+15
+00:00:47.725 --> 00:00:51.962
+So the application inventory is
 part of closure, not a follow-up.
+
+16
+00:00:51.962 --> 00:00:54.260
+And closure is the last big idea.

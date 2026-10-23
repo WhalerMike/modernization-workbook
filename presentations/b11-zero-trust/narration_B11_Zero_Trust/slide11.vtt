@@ -1,88 +1,78 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:02.887
-Then run the assessment
-and keep the evidence.
+00:00:00.050 --> 00:00:03.050
+Then run the assessment,
+and keep the evidence clean.
 
 2
-00:00:02.887 --> 00:00:06.901
-Five things are decided before either
+00:00:03.050 --> 00:00:07.075
+A few things are decided before either
 tool touches a production tenant.
 
 3
-00:00:06.901 --> 00:00:11.350
+00:00:07.075 --> 00:00:11.525
 Scope comes from the BOD
 25-01 tenant inventory.
 
 4
-00:00:11.350 --> 00:00:15.728
-The host is a dedicated Windows machine
-inside the authorization boundary,
+00:00:11.525 --> 00:00:15.002
+Each tool gets its own dedicated
+host inside the boundary,
 
 5
-00:00:15.728 --> 00:00:19.550
-a separate one for each tool,
-because their dependencies conflict.
+00:00:15.002 --> 00:00:18.913
+because their dependencies conflict,
+and its own reader account.
 
 6
-00:00:19.550 --> 00:00:24.175
-Each tool gets a reader account, with
-consent granted once, separately.
+00:00:18.913 --> 00:00:21.178
+Output is handled as controlled data,
 
 7
-00:00:24.175 --> 00:00:26.463
-Output is handled as controlled data.
+00:00:21.178 --> 00:00:25.051
+and the assessment accounts belong
+in the agency's logging plan.
 
 8
-00:00:26.463 --> 00:00:31.933
-And the assessment accounts belong
-in the M-26-14 Agency Logging Plan,
+00:00:25.051 --> 00:00:29.081
+For ScubaGear, the configuration
+file is the exception record:
 
 9
-00:00:31.933 --> 00:00:36.637
-due 90 days after CISA's August
-20 reference architecture.
+00:00:29.081 --> 00:00:32.337
+omissions with a rationale
+and an expiration date.
 
 10
-00:00:36.637 --> 00:00:40.188
-ScubaGear runs in Windows PowerShell 5.1.
+00:00:32.337 --> 00:00:35.670
+It's versioned, and its hash
+is recorded with every run,
 
 11
-00:00:40.188 --> 00:00:45.083
-Its configuration file is the exception
-record: annotations, omissions with
+00:00:35.670 --> 00:00:37.412
+along with the tool version.
 
 12
-00:00:45.083 --> 00:00:49.825
-a rationale and an expiration date,
-and exclusions for emergency accounts.
-
-13
-00:00:49.825 --> 00:00:51.859
-It's versioned in the repository,
-
-14
-00:00:51.859 --> 00:00:55.625
-and its hash is recorded with
-every run, like the tool version.
-
-15
-00:00:55.625 --> 00:01:00.700
+00:00:37.412 --> 00:00:42.488
 The results file is never renamed
 or edited, only hashed and copied.
 
+13
+00:00:42.488 --> 00:00:45.875
+The Zero Trust Assessment can
+take more than a day to run.
+
+14
+00:00:45.875 --> 00:00:50.586
+And one caution: install the program's
+toolkit only from its own repository,
+
+15
+00:00:50.586 --> 00:00:54.613
+because a public Python package
+with the same name is unrelated.
+
 16
-00:01:00.700 --> 00:01:05.975
-The Zero Trust Assessment needs PowerShell
-7 and can take more than 24 hours.
-
-17
-00:01:05.975 --> 00:01:10.370
-And install the program's toolkit
-only from its own repository:
-
-18
-00:01:10.370 --> 00:01:14.570
-a package named fmp on the public
-Python index is unrelated.
+00:00:54.613 --> 00:00:56.900
+Next, ingesting the evidence.

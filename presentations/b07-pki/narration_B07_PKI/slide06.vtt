@@ -1,87 +1,79 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:01.325
-So what is the target?
+00:00:00.050 --> 00:00:04.575
+The target isn't simply
+Cloud PKI instead of AD CS.
 
 2
-00:00:01.325 --> 00:00:04.687
-Not Cloud PKI instead of AD CS.
-
-3
-00:00:04.687 --> 00:00:07.788
+00:00:04.575 --> 00:00:07.675
 That's true for devices
 and wrong for the estate.
 
+3
+00:00:07.675 --> 00:00:11.412
+The target is four issuers,
+each serving what only it can.
+
 4
-00:00:07.788 --> 00:00:11.937
-The target is four issuers, each
-for the subjects only it can serve.
+00:00:11.412 --> 00:00:15.875
+Cloud PKI issues to Intune-managed
+devices, and only to them.
 
 5
-00:00:11.937 --> 00:00:18.413
-Microsoft Cloud PKI issues to Intune-managed
-devices, and only to them, through
+00:00:15.875 --> 00:00:20.194
+A smaller, hardened AD CS
+stays for domain controllers,
 
 6
-00:00:18.413 --> 00:00:24.788
-SCEP, with three CAs per tenant, a CRL
-valid for seven days and no OCSP responder.
+00:00:20.194 --> 00:00:25.088
+RADIUS, internal server TLS,
+network devices and code signing.
 
 7
-00:00:24.788 --> 00:00:31.161
-A smaller, hardened AD CS stays for domain
-controllers and LDAPS, NPS and RADIUS,
+00:00:25.088 --> 00:00:30.512
+The Federal PKI keeps issuing PIV,
+and the target's job is to trust it.
 
 8
-00:00:31.161 --> 00:00:37.338
-internal server TLS, network devices
-through NDES, and HSM-held code signing.
-
-9
-00:00:37.338 --> 00:00:41.779
-The Federal PKI keeps issuing PIV;
-the target's job is to trust it,
-
-10
-00:00:41.779 --> 00:00:46.649
-by distributing the federal root
-and uploading the chain to Entra ID.
-
-11
-00:00:46.649 --> 00:00:50.212
+00:00:30.512 --> 00:00:34.074
 And a public CA serves names
 the internet must trust.
 
-12
-00:00:50.212 --> 00:00:52.937
+9
+00:00:34.074 --> 00:00:36.800
 One decision ties them together: the root.
 
-13
-00:00:52.937 --> 00:00:58.369
+10
+00:00:36.800 --> 00:00:41.440
 For an established hierarchy, the
 program recommends bring-your-own-CA,
 
+11
+00:00:41.440 --> 00:00:45.687
+where the cloud issuing CA is signed
+by the existing offline root.
+
+12
+00:00:45.687 --> 00:00:46.884
+That keeps the chain,
+
+13
+00:00:46.884 --> 00:00:50.613
+but it makes the root's revocation
+list a production dependency.
+
 14
-00:00:58.369 --> 00:01:02.051
-a Cloud PKI issuing CA
-signed by the offline root.
+00:00:50.613 --> 00:00:55.358
+And check the licensing: the 2026
+change that bundles Cloud PKI into
 
 15
-00:01:02.051 --> 00:01:07.200
-It keeps the existing chain, and makes
-the root's CRL a production dependency.
+00:00:55.358 --> 00:01:00.274
+E5 covers commercial customers, so
+confirm it for a government tenant.
 
 16
-00:01:07.200 --> 00:01:08.762
-Check the entitlement too.
-
-17
-00:01:08.762 --> 00:01:14.151
-The July 2026 change that puts
-Cloud PKI in Microsoft 365 E5 and E7
-
-18
-00:01:14.151 --> 00:01:19.800
-covers commercial customers, so
-confirm it for a government tenant.
+00:01:00.274 --> 00:01:03.000
+Four issuers need one
+way to keep them renewed.

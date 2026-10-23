@@ -1,92 +1,77 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:00.663
-How.
+00:00:00.050 --> 00:00:00.850
+Now, how.
 
 2
-00:00:00.663 --> 00:00:05.687
+00:00:00.850 --> 00:00:05.875
 Personnel actions drive the three
 identity events, by code, not by ticket.
 
 3
-00:00:05.687 --> 00:00:09.413
+00:00:05.875 --> 00:00:09.837
 A joiner gets an account and
-baseline access ready on day one.
+baseline access, ready on day one.
 
 4
-00:00:09.413 --> 00:00:12.453
-A mover has the old
-assignment's access removed,
+00:00:09.837 --> 00:00:12.539
+A mover loses the old assignment's access,
 
 5
-00:00:12.453 --> 00:00:15.962
-the new baseline applied,
-and any exceptions reviewed.
+00:00:12.539 --> 00:00:16.113
+gets the new baseline, and
+has any exceptions reviewed.
 
 6
-00:00:15.962 --> 00:00:17.869
-And a leaver is blocked first:
+00:00:16.113 --> 00:00:21.123
+And a leaver is blocked first, the account
+disabled and sessions revoked at the
 
 7
-00:00:17.869 --> 00:00:22.951
-the account disabled and sessions
-revoked at the effective separation time,
+00:00:21.123 --> 00:00:24.051
+effective separation
+time; then credentials,
 
 8
-00:00:22.951 --> 00:00:28.113
-then credentials, devices and access
-removed in parallel, each one reconciled.
+00:00:24.051 --> 00:00:26.826
+devices and access are
+removed in parallel.
 
 9
-00:00:28.113 --> 00:00:31.288
+00:00:26.826 --> 00:00:29.838
 The book is precise about what
-the platform actually does.
+the platform really does.
 
 10
-00:00:31.288 --> 00:00:34.181
-Lifecycle Workflows run on one tenant-wide
+00:00:29.838 --> 00:00:32.341
+Revoking sessions stops new tokens,
 
 11
-00:00:34.181 --> 00:00:37.476
-schedule and need an Entra
-ID Governance license.
-
-12
-00:00:37.476 --> 00:00:40.750
-Revoking sessions stops
-new tokens being issued,
-
-13
-00:00:40.750 --> 00:00:44.025
+00:00:32.341 --> 00:00:35.762
 but tokens already issued
 last until they expire.
 
-14
-00:00:44.025 --> 00:00:47.421
-Privileged leavers need their
-own verified block path,
+12
+00:00:35.762 --> 00:00:38.565
+Privileged leavers need
+their own block path,
 
-15
-00:00:47.421 --> 00:00:51.850
+13
+00:00:38.565 --> 00:00:42.988
 because the built-in disable task
 doesn't support users with admin roles.
 
-16
-00:00:51.850 --> 00:00:55.236
-And synced users must be
-deleted in Active Directory,
+14
+00:00:42.988 --> 00:00:46.605
+And synced users have to be
+deleted in Active Directory too,
 
-17
-00:00:55.236 --> 00:00:57.313
+15
+00:00:46.605 --> 00:00:48.599
 or the next sync brings them back.
 
-18
-00:00:57.313 --> 00:01:02.189
-Credentials follow the same events:
-PIV issuance, certificate binding and
-
-19
-00:01:02.189 --> 00:01:07.300
-termination, and device certificates
-retired before the account is deleted.
+16
+00:00:48.599 --> 00:00:53.690
+Credentials follow the same events, from
+PIV issuance through to termination.

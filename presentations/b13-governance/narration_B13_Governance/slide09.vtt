@@ -6,78 +6,75 @@ The program doesn't replace
 the platforms an agency runs.
 
 2
-00:00:03.713 --> 00:00:05.980
-It reaches each one through an adapter:
+00:00:03.713 --> 00:00:07.785
+It reaches each one through an
+adapter: a translator that reads the
 
 3
-00:00:05.980 --> 00:00:09.950
-a translator that reads the platform's
-native state through its own
+00:00:07.785 --> 00:00:12.524
+platform's native state and writes it
+into the common record, with provenance.
 
 4
-00:00:09.950 --> 00:00:14.274
-interface and writes it into the
-program's common record, with provenance.
-
-5
-00:00:14.274 --> 00:00:18.301
+00:00:12.524 --> 00:00:16.551
 The rules, the drift engine and
 the evidence chain see one record,
 
-6
-00:00:18.301 --> 00:00:20.200
+5
+00:00:16.551 --> 00:00:18.450
 whichever vendor produced it.
 
-7
-00:00:20.200 --> 00:00:23.463
-Adapters hold no rules
+6
+00:00:18.450 --> 00:00:21.762
+And adapters hold no rules
 and make no decisions.
 
-8
-00:00:23.463 --> 00:00:27.087
-Adapters come in two kinds,
+7
+00:00:21.762 --> 00:00:24.712
+There are two kinds,
 kept in separate lists.
 
+8
+00:00:24.712 --> 00:00:26.987
+Conformance adapters are read-only.
+
 9
-00:00:27.087 --> 00:00:30.912
-Conformance adapters are
-read-only and sit at L1.
+00:00:26.987 --> 00:00:29.555
+Modernization adapters change state,
 
 10
-00:00:30.912 --> 00:00:37.113
-Modernization adapters change state, only
-on authorized plans, at L3 by default.
+00:00:29.555 --> 00:00:33.326
+only on authorized plans, and
+with an approver by default.
 
 11
-00:00:37.113 --> 00:00:41.924
-Each declares one of five missions,
-and every one inherits four invariants.
-
-12
-00:00:41.924 --> 00:00:45.100
+00:00:33.326 --> 00:00:36.500
 Read-only comes first,
 and it has to be verified.
 
+12
+00:00:36.500 --> 00:00:38.578
+ScubaGear is read-only in purpose,
+
 13
-00:00:45.100 --> 00:00:49.211
-CISA's ScubaGear is read-only in
-purpose, yet its documentation
+00:00:38.578 --> 00:00:42.511
+yet a Global Administrator always
+has the permissions it needs,
 
 14
-00:00:49.211 --> 00:00:53.788
-notes that a Global Administrator
-always has the permissions it needs.
+00:00:42.511 --> 00:00:47.037
+so the program compares what an identity
+is granted with what it declares.
 
 15
-00:00:53.788 --> 00:00:58.501
-So the program compares what an identity
-is actually granted with what it declares.
-
-16
-00:00:58.501 --> 00:01:00.337
+00:00:47.037 --> 00:00:48.875
 Lock-in doesn't disappear.
 
-17
-00:01:00.337 --> 00:01:05.420
-It moves to small, replaceable adapters
+16
+00:00:48.875 --> 00:00:53.950
+It moves to small, replaceable adapters,
 and to a record the agency owns.
+
+17
+00:00:53.950 --> 00:00:55.610
+Next, who decides.

@@ -10,75 +10,63 @@ most ambitious delivery system,
 and its most network-bound.
 
 3
-00:00:05.938 --> 00:00:09.812
-A client applies it only when it
-can reach a domain controller,
+00:00:05.938 --> 00:00:09.188
+A client only gets it when it
+can reach a domain controller.
 
 4
-00:00:09.812 --> 00:00:11.863
-and every refresh is a trip to one.
-
-5
-00:00:11.863 --> 00:00:17.188
-A cloud-native endpoint, Entra joined
+00:00:09.188 --> 00:00:14.475
+A cloud-native device, Entra joined
 and in Intune, has no such dependency.
 
+5
+00:00:14.475 --> 00:00:16.000
+Don't copy it across.
+
 6
-00:00:17.188 --> 00:00:20.465
-Don't port a fifty-setting
-GPO as fifty settings;
+00:00:16.000 --> 00:00:20.201
+A fifty-setting GPO ported as
+fifty settings carries dead weight,
 
 7
-00:00:20.465 --> 00:00:24.750
-that carries dead weight, old
-conflicts and manual targeting.
+00:00:20.201 --> 00:00:25.725
+old conflicts and manual targeting, and
+Microsoft itself recommends starting fresh.
 
 8
-00:00:24.750 --> 00:00:28.800
-Microsoft's recommended option is
-to start new rather than migrate.
-
-9
-00:00:28.800 --> 00:00:34.421
-So the program regenerates one canonical
+00:00:25.725 --> 00:00:30.997
+So the program regenerates one clean
 policy per category, keyed to attributes,
 
-10
-00:00:34.421 --> 00:00:37.680
+9
+00:00:30.997 --> 00:00:34.241
 into Intune, Conditional
 Access and, for servers,
 
-11
-00:00:37.680 --> 00:00:42.812
+10
+00:00:34.241 --> 00:00:39.350
 Azure machine configuration, because
 Intune doesn't manage Windows Server.
 
-12
-00:00:42.812 --> 00:00:46.105
+11
+00:00:39.350 --> 00:00:42.643
 Every change passes four
 stages: validation,
 
-13
-00:00:46.105 --> 00:00:50.200
+12
+00:00:42.643 --> 00:00:46.738
 a simulated tenant, a report-only
 pilot, then production.
 
+13
+00:00:46.738 --> 00:00:48.660
+And prefer require over block,
+
 14
-00:00:50.200 --> 00:00:53.894
-And prefer require to block,
+00:00:48.660 --> 00:00:52.274
 except where the federal SCuBA
+baseline demands a block.
 
 15
-00:00:53.894 --> 00:00:57.362
-baseline demands a block, as
-for legacy authentication.
-
-16
-00:00:57.362 --> 00:01:02.902
-The Federal Modernization Workbook's Book
-05 covers the device detail in depth,
-
-17
-00:01:02.902 --> 00:01:05.980
-and Book 04 the
-Conditional Access library.
+00:00:52.274 --> 00:00:55.900
+Books 05 and 04 carry the detail.

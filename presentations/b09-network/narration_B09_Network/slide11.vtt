@@ -1,81 +1,75 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:02.713
-How do you get there when
-the target is years away?
+00:00:00.050 --> 00:00:04.438
+When the target is years away, the
+book makes the case by elimination.
 
 2
-00:00:02.713 --> 00:00:04.587
-Make the case by elimination.
+00:00:04.438 --> 00:00:07.076
+The legacy telecom contracts have ended.
 
 3
-00:00:04.587 --> 00:00:10.138
-The legacy telecom contracts
-had all ended by May 31, 2026.
+00:00:07.076 --> 00:00:08.871
+The hairpin is still allowed,
 
 4
-00:00:10.138 --> 00:00:11.981
-The hairpin is still permitted,
+00:00:08.871 --> 00:00:12.463
+but CISA itself says it raises
+the cost of using the cloud.
 
 5
-00:00:11.981 --> 00:00:16.237
-but CISA's own guidebook says it raised
-the cost of using cloud services.
+00:00:12.463 --> 00:00:15.603
+A new access point is a
+big capital commitment,
 
 6
-00:00:16.237 --> 00:00:21.008
-A new access point is a capital
-commitment, VPN backhaul is a hairpin,
+00:00:15.603 --> 00:00:18.413
+and VPN backhaul is just another hairpin.
 
 7
-00:00:21.008 --> 00:00:25.863
-and Microsoft no longer recommends
-ExpressRoute for Microsoft 365.
-
-8
-00:00:25.863 --> 00:00:27.659
+00:00:18.413 --> 00:00:20.197
 What's left is local breakout,
 
+8
+00:00:20.197 --> 00:00:23.838
+a cloud security stack and a
+policy layer at the branch edge.
+
 9
-00:00:27.659 --> 00:00:30.951
-a cloud security stack and
-a branch-edge policy layer.
+00:00:23.838 --> 00:00:27.787
+Meanwhile several federal deadlines
+compete for the same staff.
 
 10
-00:00:30.951 --> 00:00:37.051
-Meanwhile three deadlines
-compete for the same staff:
+00:00:27.787 --> 00:00:28.951
+Here's the fork.
 
 11
-00:00:37.051 --> 00:00:44.100
-the M-26-14 logging plan, the M-26-15
-post-quantum plan and BOD 26-04.
+00:00:28.951 --> 00:00:33.233
+A directive requires end-of-support
+edge devices off agency
 
 12
-00:00:44.100 --> 00:00:47.662
-BOD 26-02 is the fork.
+00:00:33.233 --> 00:00:37.688
+networks by about August 2027, so
+a refresh is happening anyway.
 
 13
-00:00:47.662 --> 00:00:53.310
-End-of-support edge devices must be
-off agency networks by about August 5,
-
-14
-00:00:53.310 --> 00:00:55.851
-2027, so a refresh happens anyway.
-
-15
-00:00:55.851 --> 00:00:59.625
+00:00:37.688 --> 00:00:41.463
 Tell whoever scopes it, in
 writing, what the target needs.
 
-16
-00:00:59.625 --> 00:01:02.306
-Like-for-like spends the
-same money and closes
+14
+00:00:41.463 --> 00:00:44.366
+A like-for-like refresh
+spends the same money and
 
-17
-00:01:02.306 --> 00:01:04.820
-the question for the
-life of the equipment.
+15
+00:00:44.366 --> 00:00:47.487
+locks in the old design for
+the life of the equipment.
+
+16
+00:00:47.487 --> 00:00:49.900
+A worked example shows what's at stake.

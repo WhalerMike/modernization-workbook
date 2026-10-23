@@ -1,102 +1,82 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:01.050
-What should we do?
+00:00:00.050 --> 00:00:01.187
+So what should we do?
 
 2
-00:00:01.050 --> 00:00:06.372
+00:00:01.187 --> 00:00:06.510
 There are four realistic options, weighed
 against what leadership has to balance:
 
 3
-00:00:06.372 --> 00:00:10.050
+00:00:06.510 --> 00:00:10.188
 the mission and the public,
 security, cost and resilience.
 
 4
-00:00:10.050 --> 00:00:14.250
+00:00:10.188 --> 00:00:14.388
 Compliance matters, but on its
 own it isn't a reason to invest.
 
 5
-00:00:14.250 --> 00:00:16.850
-Option A keeps ticket-driven identity.
+00:00:14.388 --> 00:00:18.065
+Option A keeps ticket-driven
+identity: no new spending,
 
 6
-00:00:16.850 --> 00:00:19.625
-No new investment, but
-the risk and the manual
+00:00:18.065 --> 00:00:20.762
+but the risk and the manual work stay put.
 
 7
-00:00:19.625 --> 00:00:22.700
-work stay where they are:
-the cost of doing nothing.
+00:00:20.762 --> 00:00:24.187
+Option B scripts automation
+inside the directories.
 
 8
-00:00:22.700 --> 00:00:27.225
-Option B automates inside the
-directories with scripts and exports.
+00:00:24.187 --> 00:00:26.969
+It's quick and cheap,
+but it automates a source
 
 9
-00:00:27.225 --> 00:00:31.764
-It's quick and cheap, but it automates
-a source that isn't authoritative,
+00:00:26.969 --> 00:00:30.201
+that isn't authoritative,
+so bad data spreads faster.
 
 10
-00:00:31.764 --> 00:00:36.850
-so it spreads bad data faster, and it has
-to be rebuilt when HR changes platforms.
-
-11
-00:00:36.850 --> 00:00:41.212
+00:00:30.201 --> 00:00:34.562
 Option C waits for HR 2.0
 and integrates afterward.
 
+11
+00:00:34.562 --> 00:00:37.651
+That's defensible, but the
+interconnection decisions are
+
 12
-00:00:41.212 --> 00:00:43.912
-That's defensible, and
-it's less work this year.
+00:00:37.651 --> 00:00:40.612
+made during onboarding, so
+waiting means retrofitting.
 
 13
-00:00:43.912 --> 00:00:47.277
-But the interconnection decisions
-are made during onboarding,
+00:00:40.612 --> 00:00:47.000
+Option D starts now, with HR as the source
+of truth, designed into both migrations.
 
 14
-00:00:47.277 --> 00:00:49.626
-so waiting means
-retrofitting after go-live.
+00:00:47.000 --> 00:00:49.212
+It costs design effort up front.
 
 15
-00:00:49.626 --> 00:00:54.816
-Option D starts now: HR as the source
-of truth, expressed in OPM's standard
-
-16
-00:00:54.816 --> 00:01:00.887
-personnel data and designed into both the
-HR onboarding and the Entra ID migration.
-
-17
-00:01:00.887 --> 00:01:04.654
-It costs design effort up front
-and needs shared governance,
-
-18
-00:01:04.654 --> 00:01:06.913
-which is why it's only partial on cost.
-
-19
-00:01:06.913 --> 00:01:12.387
+00:00:49.212 --> 00:00:54.687
 The judgment call: if HR 2.0 slipped
 a long way, C becomes reasonable.
 
-20
-00:01:12.387 --> 00:01:14.857
+16
+00:00:54.687 --> 00:00:57.224
 But D's first step, data standards,
 
-21
-00:01:14.857 --> 00:01:18.840
-ownership and the person key,
+17
+00:00:57.224 --> 00:01:01.130
+ownership and a person key,
 is no-regret either way.

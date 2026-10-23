@@ -1,92 +1,77 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:02.150
-Finally, run it and prove it.
+00:00:00.050 --> 00:00:03.787
+Once the fleet is moved, the
+job is to run it and prove it.
 
 2
-00:00:02.150 --> 00:00:05.402
-In run-state, compliance
-feeds Conditional Access,
+00:00:03.787 --> 00:00:08.051
+Device compliance feeds Conditional
+Access, which is Book 04.
 
 3
-00:00:05.402 --> 00:00:08.887
-which is the Federal
-Modernization Workbook's Book 04.
-
-4
-00:00:08.887 --> 00:00:12.238
+00:00:08.051 --> 00:00:11.511
 Updates flow through rings
 and Windows Autopatch,
 
-5
-00:00:12.238 --> 00:00:17.504
+4
+00:00:11.511 --> 00:00:16.950
 and in a GCC tenant the update evidence
-comes from Intune and Autopatch reports,
+comes from Intune and Autopatch reports.
+
+5
+00:00:16.950 --> 00:00:20.136
+The inventory is reconciled
+across all the systems,
 
 6
-00:00:17.504 --> 00:00:22.212
-because Windows Update for Business
-reports don't meet GCC compliance.
+00:00:20.136 --> 00:00:23.027
+devices are wiped before
+accounts are deleted,
 
 7
-00:00:22.212 --> 00:00:29.150
-The inventory is reconciled across Entra
-ID, Intune, Autopilot, Arc and the CMDB.
+00:00:23.027 --> 00:00:28.362
+and the evidence maps to the configuration-management
+and flaw-remediation controls.
 
 8
-00:00:29.150 --> 00:00:33.025
-Devices are retired and wiped
-before the account is deleted.
+00:00:28.362 --> 00:00:30.638
+From leadership, we need four things.
 
 9
-00:00:33.025 --> 00:00:39.654
-And the evidence maps to the
-configuration-management and
-
-10
-00:00:39.654 --> 00:00:45.200
-flaw-remediation controls:
-CM-2, CM-6, CM-7, CM-8 and SI-2.
-
-11
-00:00:45.200 --> 00:00:47.738
-What we need from
-leadership is four things.
-
-12
-00:00:47.738 --> 00:00:50.650
+00:00:30.638 --> 00:00:33.550
 Approve Intune-first for every new device.
 
-13
-00:00:50.650 --> 00:00:54.937
-Fund the Group Policy inventory
-and the Group Policy analytics run.
+10
+00:00:33.550 --> 00:00:37.050
+Fund the Group Policy
+inventory and analytics run.
 
-14
-00:00:54.937 --> 00:01:00.638
+11
+00:00:37.050 --> 00:00:42.750
 Set the Windows 11 24H2 floor and a plan
 for servers reaching end of support.
 
-15
-00:01:00.638 --> 00:01:04.450
+12
+00:00:42.750 --> 00:00:46.562
 And name the owners for
 endpoints, servers and security.
 
-16
-00:01:04.450 --> 00:01:09.750
+13
+00:00:46.562 --> 00:00:51.862
 Book 05 has the full migration, with
 every external claim footnoted.
 
-17
-00:01:09.750 --> 00:01:13.627
+14
+00:00:51.862 --> 00:00:55.333
 Book 04 covers what a
-compliant device may reach,
+compliant device can reach,
 
-18
-00:01:13.627 --> 00:01:16.438
-and Book 02 the identity it rests on.
+15
+00:00:55.333 --> 00:00:57.937
+and Book 02 the identity underneath.
 
-19
-00:01:16.438 --> 00:01:17.260
+16
+00:00:57.937 --> 00:00:58.750
 Thank you.

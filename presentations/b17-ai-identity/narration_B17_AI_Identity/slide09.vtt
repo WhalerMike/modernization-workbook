@@ -1,87 +1,71 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:02.780
+00:00:00.050 --> 00:00:02.701
 An agent can't be asked
 for a second factor,
 
 2
-00:00:02.780 --> 00:00:05.750
-so everything it may do
-is decided in advance.
+00:00:02.701 --> 00:00:05.975
+so everything it may do has
+to be decided in advance.
 
 3
-00:00:05.750 --> 00:00:07.188
+00:00:05.975 --> 00:00:07.413
 Start with the credential.
 
 4
-00:00:07.188 --> 00:00:12.306
+00:00:07.413 --> 00:00:12.263
 In Agent ID it lives on the blueprint and
-is shared by every agent created from it,
+is shared by every agent made from it,
 
 5
-00:00:12.306 --> 00:00:15.175
+00:00:12.263 --> 00:00:15.112
 so the blueprint is the
 credential boundary.
 
 6
-00:00:15.175 --> 00:00:20.076
-The order is settled: a managed identity
-federated to the blueprint where the agent
+00:00:15.112 --> 00:00:20.231
+The order of preference is settled: federated
+credentials first, a certificate in a
 
 7
-00:00:20.076 --> 00:00:24.621
-runs on Azure, workload identity federation
-from its own platform elsewhere,
+00:00:20.231 --> 00:00:25.201
+vault only where that won't work, and a
+client secret only for development and test.
 
 8
-00:00:24.621 --> 00:00:27.675
-a certificate in a vault
-only where neither applies,
-
-9
-00:00:27.675 --> 00:00:30.587
-and a client secret only
-for development and test.
-
-10
-00:00:30.587 --> 00:00:31.762
+00:00:25.201 --> 00:00:26.375
 Then privilege.
 
-11
-00:00:31.762 --> 00:00:34.924
+9
+00:00:26.375 --> 00:00:29.552
 Microsoft blocks agents
 from Global Administrator,
 
-12
-00:00:34.924 --> 00:00:38.374
-but still allows Exchange
-and SharePoint Administrator.
+10
+00:00:29.552 --> 00:00:32.513
+but still allows some
+other powerful admin roles.
 
-13
-00:00:38.374 --> 00:00:40.579
+11
+00:00:32.513 --> 00:00:34.717
 That's a floor, not least privilege,
 
-14
-00:00:40.579 --> 00:00:45.537
+12
+00:00:34.717 --> 00:00:39.675
 so the program's rule is that no AI
 identity holds a standing privileged role.
 
+13
+00:00:39.675 --> 00:00:43.420
+And in GCC, where Purview's
+agent controls aren't available,
+
+14
+00:00:43.420 --> 00:00:46.150
+scoped permissions are the data boundary.
+
 15
-00:00:45.537 --> 00:00:48.762
-Last, an agent's reach is
-bounded by its tokens,
-
-16
-00:00:48.762 --> 00:00:51.638
-its approved tools, and data protection.
-
-17
-00:00:51.638 --> 00:00:54.930
-In GCC, Purview's agent
-controls aren't available,
-
-18
-00:00:54.930 --> 00:00:58.030
-so scoped permissions
-are the data boundary.
+00:00:46.150 --> 00:00:48.100
+Next, watching for drift.

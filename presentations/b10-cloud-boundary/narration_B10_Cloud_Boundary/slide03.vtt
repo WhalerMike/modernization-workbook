@@ -1,75 +1,74 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:05.100
-Chapter 02 explains why the gap stays
-invisible until a design depends on it.
+00:00:00.050 --> 00:00:02.025
+So why don't people see the gap sooner?
 
 2
-00:00:05.100 --> 00:00:11.313
-Surfaces are shared: Intune in GCC is
-the same instance as commercial Intune.
+00:00:02.025 --> 00:00:05.012
+Because it's invisible until
+a design depends on it.
 
 3
-00:00:11.313 --> 00:00:14.924
-Exclusions are scattered, one
-sentence per feature page.
+00:00:05.012 --> 00:00:11.276
+The surfaces are shared: Intune in GCC is
+the same instance as commercial Intune.
 
 4
-00:00:14.924 --> 00:00:18.573
-Features move: Microsoft
-retired Adoption Score's
+00:00:11.276 --> 00:00:14.987
+The exclusions are scattered,
+one sentence per feature page.
 
 5
-00:00:18.573 --> 00:00:23.350
-technology-experience categories
-for every tenant in early 2026.
-
-6
-00:00:23.350 --> 00:00:25.550
+00:00:14.987 --> 00:00:17.188
 And absence doesn't announce itself.
 
-7
-00:00:25.550 --> 00:00:29.750
+6
+00:00:17.188 --> 00:00:21.388
 A detection whose input never arrives
 looks exactly like a quiet day.
 
-8
-00:00:29.750 --> 00:00:32.913
-The book then corrects a
-widely repeated example.
+7
+00:00:21.388 --> 00:00:24.429
+The book then tests a
+widely repeated example,
 
-9
-00:00:32.913 --> 00:00:36.600
-Five features were said to be
+8
+00:00:24.429 --> 00:00:27.711
+that five features are
 silently missing from GCC.
 
-10
-00:00:36.600 --> 00:00:39.965
+9
+00:00:27.711 --> 00:00:31.394
 Checked against Microsoft's
-documentation, one is:
+documentation, only one is:
 
-11
-00:00:39.965 --> 00:00:44.213
+10
+00:00:31.394 --> 00:00:35.637
 the Locations view of network
 connectivity in the admin center.
 
+11
+00:00:35.637 --> 00:00:39.258
+The others turn out to be
+GCC High and DoD gaps,
+
 12
-00:00:44.213 --> 00:00:49.862
-Device Health Attestation and expedited
-updates are GCC High and DoD gaps.
+00:00:39.258 --> 00:00:43.563
+not documented gaps at all,
+or inside Azure's own scope.
 
 13
-00:00:49.862 --> 00:00:53.500
-Endpoint analytics isn't
-a documented GCC gap.
+00:00:43.563 --> 00:00:46.912
+The lesson: an unverified
+boundary story sends an
 
 14
-00:00:53.500 --> 00:00:57.825
-And Azure Arc is an Azure service,
-in Azure's FedRAMP High scope.
+00:00:46.912 --> 00:00:50.262
+agency off to build
+compensations it doesn't need.
 
 15
-00:00:57.825 --> 00:01:03.700
-An unverified boundary story sends an agency
-to build compensations it doesn't need.
+00:00:50.262 --> 00:00:53.180
+Now, what actually
+changes across a boundary.

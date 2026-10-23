@@ -2,216 +2,211 @@
  "1": [
   [
    0.05,
-   13.363,
-   "This briefing comes from Book 01 of the Federal Modernization Workbook, The Transformation Arc: the move from a domain-joined client-server estate to cloud identity, cloud device management and governed hybrid operations."
+   0.713,
+   "Welcome."
   ],
   [
-   13.412,
-   5.95,
-   "Book 01 is the workbook's overview, and each part of it points to the book that carries the detail."
+   0.762,
+   5.825,
+   "This briefing comes from Book 01 of the Federal Modernization Workbook, The Transformation Arc."
   ],
   [
-   19.363,
-   7.025,
-   "I'll take four questions: why modernization is so hard, what has to change, who leads it, and how to get there."
+   6.588,
+   7.925,
+   "It's about the move from a domain-joined client-server estate to cloud identity, cloud device management and governed hybrid operations."
   ],
   [
-   26.387,
-   5.05,
-   "The short version: modernization is a governance rebuild, not a platform swap."
+   14.512,
+   7.888,
+   "Book 01 is the workbook's overview: each part of it points to the book that carries the detail, so think of it as the map."
+  ],
+  [
+   22.4,
+   7.5,
+   "We'll take four questions: why modernization is so hard, what actually has to change, who leads it, and how to get there."
+  ],
+  [
+   29.9,
+   6.65,
+   "And if you remember one thing, make it this: modernization is a governance rebuild, not a platform swap."
+  ],
+  [
+   36.55,
+   2.138,
+   "Let's start with how the estate got here."
   ]
  ],
  "2": [
   [
    0.05,
-   1.975,
-   "Why is modernization so hard?"
+   1.288,
+   "Why is it so hard?"
   ],
   [
-   2.025,
-   2.1,
-   "The estate got here in four eras."
+   1.337,
+   8.887,
+   "Because the estate was built in four eras, and each one solved a real problem without keeping what the first era had: one authoritative answer."
   ],
   [
-   4.125,
-   6.138,
-   "Each solved a real problem, and none replaced what the first era had: one authoritative answer."
+   10.225,
+   4.375,
+   "On the mainframe, one machine held the data and controlled access to it."
   ],
   [
-   10.262,
-   4.438,
-   "On the mainframe, one machine held the data and enforced access to it."
+   14.6,
+   6.05,
+   "By the late 1980s, that truth was spread across a dozen regional databases and directories."
   ],
   [
-   14.7,
-   6.35,
-   "By the late 1980s, regional databases and directories had spread that truth across a dozen systems."
+   20.65,
+   8.787,
+   "Then the direction reversed, and data center consolidation wired offices back to distant facilities; the slide has O M B's numbers."
   ],
   [
-   21.05,
+   29.438,
+   6.95,
+   "Finally, email and collaboration moved to the cloud, while identity stayed behind in regional domains."
+  ],
+  [
+   36.388,
    2.875,
-   "From 2010 the direction reversed."
+   "And each fix assumes the last one is finished."
   ],
   [
-   23.925,
-   18.113,
-   "O M B reported that federal data centers had grown from 432 in 1998 to more than 1,100 in 2009, and the December 2010 reform plan targeted closing at least 800 by 2015, wiring offices back to distant facilities."
-  ],
-  [
-   42.038,
-   5.963,
-   "Then email and collaboration moved to the cloud, while identity stayed in regional domains."
-  ],
-  [
-   48.0,
-   2.65,
-   "And each fix assumes the last one is done."
-  ],
-  [
-   50.65,
+   39.263,
    8.338,
    "Zero Trust assumes governed identity, governed identity assumes a clean directory, and a clean directory assumes someone owns it."
+  ],
+  [
+   47.6,
+   1.688,
+   "Trust itself changed too."
   ]
  ],
  "3": [
   [
    0.05,
-   2.263,
-   "Second, trust itself changed."
+   1.775,
+   "Trust used to come from a session."
   ],
   [
-   2.312,
-   8.887,
-   "In Active Directory a user signs in once and gets a Kerberos ticket-granting ticket that lasts 10 hours by default and renews for 7 days."
+   1.825,
+   5.763,
+   "In Active Directory, you sign in once and get a Kerberos ticket that lasts ten hours by default."
   ],
   [
-   11.2,
-   8.025,
-   "An open connection isn't interrupted when its ticket expires, and an account disabled during the day can keep using tickets issued before."
+   7.588,
+   4.125,
+   "An account disabled during the day can keep using tickets it got earlier."
   ],
   [
-   19.225,
-   3.775,
-   "Zero Trust decides each request against current policy."
+   11.713,
+   3.825,
+   "Zero Trust decides every request against current policy."
   ],
   [
-   23.0,
-   13.6,
-   "An Entra access token lasts one hour by default, or up to 28 hours with continuous access evaluation, because the service subscribes to events such as a disabled account and stops honoring the token in near real time."
+   15.537,
+   13.075,
+   "An Entra access token lasts an hour by default, or up to 28 hours with continuous access evaluation, because the service listens for events like a disabled account and stops honoring the token in near real time."
   ],
   [
-   36.6,
-   2.0,
-   "It's a badge checked at every door."
+   28.613,
+   2.525,
+   "Think of it as a badge checked at every door."
   ],
   [
-   38.6,
-   1.85,
-   "Distance doesn't break tickets."
+   31.137,
+   5.375,
+   "And distance doesn't break tickets, but it does slow every trip to a domain controller."
   ],
   [
-   40.45,
-   5.237,
-   "It hurts the trips to a domain controller: sign-in, password changes and policy."
-  ],
-  [
-   45.688,
-   7.825,
-   "On the book's worked arithmetic, Portland to Washington has a floor of about 45 milliseconds round trip, whatever the bandwidth."
+   36.513,
+   7.237,
+   "On the book's arithmetic, Portland to Washington can't beat about 45 milliseconds round trip, whatever the bandwidth."
   ]
  ],
  "4": [
   [
    0.05,
-   2.325,
-   "Chapter 02 names the problem."
+   2.575,
+   "Chapter 02 names the core problem."
   ],
   [
-   2.375,
-   6.525,
-   "Active Directory was the implicit governance model for every Windows-era service, and nobody wrote it down."
+   2.625,
+   5.688,
+   "Active Directory was the governance model for every Windows-era service, and nobody wrote it down."
   ],
   [
-   8.9,
-   9.188,
-   "Microsoft's design guidance says organizational units exist to apply Group Policy and delegate authority, and that both inherit down the tree."
+   8.312,
+   7.075,
+   "Organizational units exist to apply Group Policy and delegate authority, and both inherit down the tree."
   ],
   [
-   18.087,
-   5.713,
-   "So placing one user in an organizational unit (O U) did five things at once."
+   15.387,
+   14.675,
+   "So placing one user in an organizational unit (O U) did five things at once: it chose their administrators, applied every policy along the path, fed the groups built from position, set delegation, and drew an audit boundary."
   ],
   [
-   23.8,
-   12.738,
-   "It handed the account to that branch's administrators, applied every policy linked along the path, fed the tools that built groups from position, bound it to the branch's delegation authority, and drew an audit boundary."
-  ],
-  [
-   36.538,
+   30.062,
    2.275,
    "Entra ID has no O U tree."
   ],
   [
-   38.812,
-   6.287,
-   "Dynamic groups follow attributes, and administrative units scope delegated roles but can't be nested."
+   32.337,
+   5.513,
+   "Dynamic groups follow attributes, and administrative units scope roles but can't be nested."
   ],
   [
-   45.1,
-   4.763,
-   "Neither rebuilds the tree on its own; the rebuild has to be written down."
+   37.85,
+   4.912,
+   "Neither rebuilds the tree on its own; that has to be written down on purpose."
   ],
   [
-   49.862,
-   7.575,
-   "And Microsoft still supports and enhances Active Directory, so retiring it is an agency decision, not a vendor deadline."
+   42.763,
+   6.787,
+   "And Microsoft still supports Active Directory, so retiring it is the agency's decision, not a vendor deadline."
   ]
  ],
  "5": [
   [
    0.05,
-   7.112,
-   "Most \"A D to Entra ID\" projects are scoped around users, groups and mailboxes, the visible part."
+   6.3,
+   "Most A D-to-Entra projects are scoped around users, groups and mailboxes: the visible part."
   ],
   [
-   7.162,
-   17.438,
-   "The program counts eleven categories of object that Active Directory governs: users, computers, service accounts, security groups, Group Policy, D N S and DHCP, certificate services, radius, el-dap, service principal names and trusts."
+   6.35,
+   10.825,
+   "But the program counts eleven categories of object that Active Directory governs, from service accounts and Group Policy to D N S, certificates, radius and trusts."
   ],
   [
-   24.6,
-   6.088,
-   "Migrate the users into a flat directory, declare victory, and the rest are left behind."
+   17.175,
+   4.588,
+   "Migrate the users, declare victory, and the rest gets left behind."
   ],
   [
-   30.688,
-   2.725,
-   "These failures rarely throw clear errors."
+   21.762,
+   2.175,
+   "Worse, those failures are quiet."
   ],
   [
-   33.413,
-   3.888,
-   "A certificate doesn't renew because enrollment was never re-pointed."
+   23.938,
+   4.2,
+   "A certificate doesn't renew, because enrollment was never re-pointed."
   ],
   [
-   37.3,
-   4.15,
-   "A device fails network access because a group lookup comes back empty."
+   28.137,
+   4.225,
+   "A device can't get on the network, because a group lookup comes back empty."
   ],
   [
-   41.45,
-   4.75,
-   "An el-dap application stops because its bind account was deleted with the domain."
+   32.362,
+   5.062,
+   "An el-dap application stops, because its bind account was deleted with the domain."
   ],
   [
-   46.2,
-   3.788,
-   "Organizations rarely fail because they can't list objects."
-  ],
-  [
-   49.987,
-   11.975,
-   "They fail because nobody treats five steps as a discipline: enumerate, map each dependency to a target, keep delegation continuous, deliver through a governed pipeline, and detect drift."
+   37.425,
+   12.838,
+   "Projects fail because nobody treats five steps as a discipline: enumerate everything, map each dependency to a target, keep delegation continuous, deliver through a governed pipeline, and watch for drift."
   ]
  ],
  "6": [
@@ -227,90 +222,80 @@
   ],
   [
    8.9,
-   9.912,
-   "Chapter 03 describes a reference platform host: one Windows Server 2025 server, supported to November 2034, with a standby."
+   7.263,
+   "Chapter 03 describes a reference host for that: one Windows Server 2025 server, with a standby."
   ],
   [
-   18.812,
-   15.15,
-   "The host has five roles: a version-controlled source of truth with signed commits; a reverse proxy for TLS and client certificates; an authentication bridge to the legacy forest; the transformation engine; and an adapter per dependency category."
+   16.163,
+   8.9,
+   "It carries five roles, from a version-controlled source of truth with signed commits to an adapter for each dependency category; the slide lists them all."
   ],
   [
-   33.962,
-   2.888,
-   "What matters is a single authoritative writer."
+   25.062,
+   3.712,
+   "What matters most is that there's a single authoritative writer."
   ],
   [
-   36.85,
-   2.638,
-   "Governance and execution never mix."
+   28.775,
+   2.925,
+   "And governance and execution never mix."
   ],
   [
-   39.487,
-   4.062,
-   "One layer validates and signs plans but never touches a target."
+   31.7,
+   4.15,
+   "One layer validates and signs plans, but never touches a target."
   ],
   [
-   43.55,
-   6.75,
-   "The other runs authorized plans but decides nothing, under separate accounts, credentials and logs."
+   35.85,
+   6.812,
+   "The other runs authorized plans, but decides nothing, with separate accounts, credentials and logs."
   ],
   [
-   50.3,
-   4.838,
-   "The host reads Active Directory read-only and is protected as Tier 0."
-  ],
-  [
-   55.138,
-   9.3,
-   "The Federal Modernization Workbook's Book 05 covers servers under Azure Arc in depth, and Book 04 covers change as code with evidence."
+   42.663,
+   4.912,
+   "The host reads Active Directory read-only, and it's protected as Tier 0."
   ]
  ],
  "7": [
   [
    0.05,
-   4.875,
-   "Identity comes first, because every later control reads the attributes."
+   4.812,
+   "Identity comes first, because every later control reads its attributes."
   ],
   [
-   4.925,
-   10.975,
-   "For the workforce, the authoritative source is the HR system of record, and O M B M twenty-two oh-nine requires centralized identity management for agency users."
+   4.862,
+   4.525,
+   "For the workforce, the authoritative source is the HR system of record."
   ],
   [
-   15.9,
-   14.963,
-   "Four mechanisms rebuild what the O U tree did: attributes replace O U placement, dynamic groups replace O U-derived groups, administrative units replace O U delegation, and Conditional Access targeting replaces Group Policy inheritance."
+   9.387,
+   14.137,
+   "Four mechanisms rebuild what the O U tree did: attributes replace O U placement, dynamic groups replace O U-based groups, administrative units replace O U delegation, and Conditional Access replaces Group Policy inheritance."
   ],
   [
-   30.863,
-   10.762,
-   "The program's contribution is the contract that binds them: one HR-sourced stamp drives membership, delegated scope, policy targeting, licensing and drift detection."
+   23.525,
+   10.15,
+   "The program's contribution is what ties them together: one HR-sourced stamp drives membership, delegation, policy targeting, licensing and drift detection."
   ],
   [
-   41.625,
+   33.675,
    1.163,
    "Two cautions."
   ],
   [
-   42.788,
-   7.175,
-   "Dynamic membership usually updates within a few hours but can take more than 24, so design movers around that window."
+   34.837,
+   7.513,
+   "Dynamic membership usually updates within a few hours, but it can take more than a day, so design job moves around that delay."
   ],
   [
-   49.962,
-   4.15,
-   "And HR provisioning must be the only writer of those attributes."
+   42.35,
+   4.438,
+   "And HR provisioning must be the only thing that writes those attributes."
   ],
   [
-   54.112,
-   2.212,
-   "Tokens only work if this is right."
-  ],
-  [
-   56.325,
-   6.237,
-   "The Federal Modernization Workbook's Books 02 and 03 carry identity in depth."
+   46.788,
+   4.287,
+   "Books 02 and 03 carry identity in depth."
   ]
  ],
  "8": [
@@ -321,142 +306,132 @@
   ],
   [
    5.938,
-   5.925,
-   "A client applies it only when it can reach a domain controller, and every refresh is a trip to one."
+   3.25,
+   "A client only gets it when it can reach a domain controller."
   ],
   [
-   11.863,
-   5.325,
-   "A cloud-native endpoint, Entra joined and in Intune, has no such dependency."
+   9.188,
+   5.287,
+   "A cloud-native device, Entra joined and in Intune, has no such dependency."
   ],
   [
-   17.188,
-   7.562,
-   "Don't port a fifty-setting G P O as fifty settings; that carries dead weight, old conflicts and manual targeting."
+   14.475,
+   1.525,
+   "Don't copy it across."
   ],
   [
-   24.75,
-   4.05,
-   "Microsoft's recommended option is to start new rather than migrate."
+   16.0,
+   9.725,
+   "A fifty-setting G P O ported as fifty settings carries dead weight, old conflicts and manual targeting, and Microsoft itself recommends starting fresh."
   ],
   [
-   28.8,
-   14.012,
-   "So the program regenerates one canonical policy per category, keyed to attributes, into Intune, Conditional Access and, for servers, Azure machine configuration, because Intune doesn't manage Windows Server."
+   25.725,
+   13.625,
+   "So the program regenerates one clean policy per category, keyed to attributes, into Intune, Conditional Access and, for servers, Azure machine configuration, because Intune doesn't manage Windows Server."
   ],
   [
-   42.812,
+   39.35,
    7.388,
    "Every change passes four stages: validation, a simulated tenant, a report-only pilot, then production."
   ],
   [
-   50.2,
-   7.162,
-   "And prefer require to block, except where the federal scuba baseline demands a block, as for legacy authentication."
+   46.737,
+   5.537,
+   "And prefer require over block, except where the federal scuba baseline demands a block."
   ],
   [
-   57.362,
-   8.562,
-   "The Federal Modernization Workbook's Book 05 covers the device detail in depth, and Book 04 the Conditional Access library."
+   52.275,
+   3.562,
+   "Books 05 and 04 carry the detail."
   ]
  ],
  "9": [
   [
    0.05,
-   6.75,
-   "D N S, DHCP and address management are what agencies most often defer, because they still work."
+   6.938,
+   "D N S, DHCP and address management are what agencies most often put off, because they still work."
   ],
   [
-   6.8,
-   2.487,
-   "That's how they keep the old directory alive."
+   6.987,
+   3.138,
+   "That's exactly how they keep the old directory alive."
   ],
   [
-   9.287,
-   13.475,
-   "A D-integrated zones replicate with Active Directory, and domain-joined clients find domain controllers through records Netlogon registers in D N S, so D N S and A D retirement must be sequenced together."
+   10.125,
+   12.537,
+   "A D-integrated zones replicate with Active Directory, and domain-joined clients find their domain controllers through records in D N S, so D N S and A D have to be retired together, in sequence."
   ],
   [
-   22.762,
-   10.675,
-   "The target is a governed authority outside A D, Azure D N S Private Resolver as a forwarding bridge rather than an authority, and Azure private zones for cloud workloads."
+   22.663,
+   11.787,
+   "The target is a governed D N S authority outside A D. Windows DHCP servers check in with A D every hour, but that only stops a rogue Windows server, not a rogue device."
   ],
   [
-   33.438,
-   5.075,
-   "A Windows DHCP server checks its authorization in A D every hour."
+   34.45,
+   7.1,
+   "And one address-management authority owns the address space, with D N S and DHCP following from it."
   ],
   [
-   38.513,
-   4.125,
-   "That stops an unauthorized Windows server, not a rogue device."
+   41.55,
+   3.888,
+   "Leave these three for \u201cPhase 2,\u201d and it rarely comes."
   ],
   [
-   42.638,
-   5.975,
-   "And one eye-pam authority owns the address space; D N S and DHCP derive from it."
-  ],
-  [
-   48.612,
-   3.487,
-   "Leave the three for \"Phase 2\" and it rarely comes."
-  ],
-  [
-   52.1,
+   45.438,
    3.975,
    "A forest that still hosts D N S hasn't been retired."
   ],
   [
-   56.075,
-   7.25,
-   "The Federal Modernization Workbook's Book 08 covers the design in depth, and Book 09 the network underneath."
+   49.413,
+   3.237,
+   "Books 08 and 09 carry the detail."
   ]
  ],
  "10": [
   [
    0.05,
-   7.388,
-   "Once identity, policy and services have moved, domain-joined PCs and servers are the largest remaining dependency."
+   7.075,
+   "Once identity, policy and services have moved, the biggest remaining dependency is the domain join itself."
   ],
   [
-   7.438,
-   3.388,
-   "User PCs end Entra joined and in Intune."
+   7.125,
+   3.487,
+   "User PCs end up Entra joined and in Intune."
   ],
   [
-   10.825,
+   10.613,
    3.425,
    "Servers come under Azure Arc and machine configuration."
   ],
   [
-   14.25,
-   1.975,
-   "Hybrid join is a waypoint."
+   14.037,
+   3.163,
+   "Hybrid join is a waypoint, not a destination."
   ],
   [
-   16.225,
-   11.762,
-   "Microsoft says it shouldn't be anyone's end state, and there's no supported way to convert a hybrid-joined device to Entra join without resetting Windows, so time the move to a hardware refresh."
+   17.2,
+   7.525,
+   "And there's no supported way to convert a hybrid-joined device without resetting Windows, so time the move to a hardware refresh."
   ],
   [
-   27.988,
-   13.287,
-   "Every service principal name is an application that expects Kerberos, and each needs a decision: migrate it to modern authentication, retire it, or, as a last resort, island it with an end-of-life date."
+   24.725,
+   12.662,
+   "Every service principal name is an application that expects Kerberos, and each needs a decision: move it to modern authentication, retire it, or, as a last resort, isolate it with an end date."
   ],
   [
-   41.275,
-   6.787,
-   "No server leaves the domain until every SPN on it is resolved, and N T L M goes in the same pass."
+   37.388,
+   6.263,
+   "No server leaves the domain until every one is resolved, and N T L M goes in the same pass."
   ],
   [
-   48.062,
-   4.912,
-   "And compute stays with its data until profiling shows the round trips are reduced."
+   43.65,
+   3.875,
+   "And compute stays with its data until the round trips are cut down."
   ],
   [
-   52.975,
-   6.4,
-   "The Federal Modernization Workbook's Books 05 and 06 carry the detail in depth."
+   47.525,
+   3.2,
+   "Books 05 and 06 have the detail."
   ]
  ],
  "11": [
@@ -467,43 +442,38 @@
   ],
   [
    5.125,
-   5.812,
-   "O M B M twenty-two oh-nine says users should log into applications rather than networks."
+   5.938,
+   "M twenty-two oh-nine puts it simply: users should log into applications, not networks."
   ],
   [
-   10.938,
-   11.512,
-   "The replacement has four surfaces: Zero Trust as the model, Conditional Access as the per-request decision, sassy as the edge, and phishing-resistant M F A as the proof."
+   11.062,
+   11.113,
+   "The replacement has four parts: Zero Trust as the model, Conditional Access as the per-request decision, sassy at the edge, and phishing-resistant M F A as the proof."
   ],
   [
-   22.45,
-   10.938,
-   "M twenty-two oh-nine requires that M F A for staff, contractors and partners, and B O D twenty-five oh-one makes blocking legacy authentication mandatory."
+   22.175,
+   5.162,
+   "B O D twenty-five oh-one makes blocking legacy authentication mandatory."
   ],
   [
-   33.388,
+   27.337,
    1.188,
    "Smart cards stay."
   ],
   [
-   34.575,
-   11.662,
-   "Entra certificate-based authentication moves validation from the domain controller to Entra ID, but a card counts as phishing-resistant only if the binding policy makes it multifactor."
+   28.525,
+   11.213,
+   "Entra certificate-based authentication moves card validation from the domain controller to Entra ID, though a card only counts as phishing-resistant if it's set up as multifactor."
   ],
   [
-   46.237,
-   5.612,
-   "And issuance needs a successor first, because an enterprise CA depends on A D DS."
+   39.737,
+   12.375,
+   "And card issuance needs a successor first, because an enterprise CA depends on A D. Administrators hold no standing privilege: roles are activated just in time, and a vault covers what can't be."
   ],
   [
-   51.85,
-   8.65,
-   "Administrators hold no standing privilege: roles are eligible in Privileged Identity Management, and a vault covers what can't be made just in time."
-  ],
-  [
-   60.5,
-   8.4,
-   "The Federal Modernization Workbook's Book 04 covers the policy and privilege model in depth, and Book 07 the certificates."
+   52.112,
+   5.325,
+   "Book 04 covers policy and privilege, and Book 07 the certificates."
   ]
  ],
  "12": [
@@ -514,48 +484,38 @@
   ],
   [
    0.912,
-   7.037,
-   "Chapter 09 puts it in one line: Microsoft provides the instruments; the program provides the orchestra."
+   7.287,
+   "Chapter 09 sums it up in one line: Microsoft provides the instruments; the program provides the orchestra."
   ],
   [
-   7.95,
-   10.175,
-   "The tools are each excellent, but none of them decides what the organizational structure should become, or what to do with the findings, and no vendor deadline forces the decision."
+   8.2,
+   10.387,
+   "The tools are each excellent, but none of them decides what the organization's structure should become, or what to do with what they find, and no vendor deadline forces that decision."
   ],
   [
-   18.125,
-   1.8,
-   "So name one decider per row."
+   18.587,
+   2.812,
+   "So name one decider for each kind of decision."
   ],
   [
-   19.925,
-   6.088,
-   "The sponsor and C I O own scope, funding, sequence and when A D components retire."
+   21.4,
+   6.312,
+   "The sponsor and C I O own scope, funding, sequence, and when A D components retire."
   ],
   [
-   26.012,
-   7.412,
-   "The authorizing official is the only official who can accept risk, so every deferred cutoff and Kerberos island reaches them."
+   27.712,
+   5.963,
+   "The authorizing official is the only one who can accept risk, so every deferred cutoff lands with them."
   ],
   [
-   33.425,
-   2.4,
-   "The see-so sets control requirements."
+   33.675,
+   6.188,
+   "The see-so sets control requirements, and the steward holds the repository and clears most gates."
   ],
   [
-   35.825,
-   4.812,
-   "The program office and its steward hold the repository and clear most gates."
-  ],
-  [
-   40.638,
-   10.562,
-   "HR decides what worker attributes mean, application owners sign off their cutovers, and the records officer is consulted before any domain controller is decommissioned."
-  ],
-  [
-   51.2,
-   5.6,
-   "Each month, ask about the drift trend, signed changes and open risk acceptances."
+   39.862,
+   8.287,
+   "Then, each month, ask three things: how drift is trending, whether changes are signed, and what risk acceptances are open."
   ]
  ],
  "13": [
@@ -571,41 +531,36 @@
   ],
   [
    2.612,
-   7.763,
-   "You can't modernize what you haven't enumerated, and nothing is retired until it's written down, read-only, with proof of how it was read."
+   7.688,
+   "You can't modernize what you haven't counted, and nothing gets retired until it's written down: read-only, with proof of how it was read."
   ],
   [
-   10.375,
-   6.862,
-   "The assessment account holds no write rights, the code imports no write commands, and every call is logged."
+   10.3,
+   6.4,
+   "The assessment account has no write rights, the code can't issue write commands, and every call is logged."
   ],
   [
-   17.238,
-   10.662,
-   "A default authenticated account already reads more than most teams expect: the topology, the O U tree, most Group Policy, users, groups and certificate templates."
+   16.7,
+   9.338,
+   "An ordinary signed-in account already sees more than most teams expect: the topology, the O U tree, most Group Policy, users and groups."
   ],
   [
-   27.9,
-   4.725,
-   "A narrow second tier adds only server-side exports, never secrets."
-  ],
-  [
-   32.625,
+   26.038,
    5.425,
    "Every run records who, when, against what, and a hash of every file."
   ],
   [
-   38.05,
+   31.462,
    2.388,
    "Eleven streams feed the risk scoring."
   ],
   [
-   40.438,
-   16.312,
-   "One example: Windows Server 2012 extended updates through Arc ended on October 13, 2026, and Windows Server 2016 reaches end of support on January 12, 2027, so every such server needs a disposition."
+   33.85,
+   9.525,
+   "One example: Windows Server 2016 reaches end of support on January 12, 2027, so every such server needs a disposition."
   ],
   [
-   56.75,
+   43.375,
    4.237,
    "And no application leaves its data until its transactions are profiled."
   ]
@@ -613,95 +568,95 @@
  "14": [
   [
    0.05,
-   4.25,
-   "Chapter 11 turns the inventory into change in three stages."
+   4.487,
+   "Chapter 11 turns the inventory into change, in three stages."
   ],
   [
-   4.3,
-   4.162,
-   "Analyze builds current-state and target-state graphs and a diff."
+   4.537,
+   4.05,
+   "Analyze compares the current state with the target and produces a diff."
   ],
   [
-   8.463,
-   7.862,
-   "Plan expands the diff into typed actions, each scoped to one object, ordered by dependency and paired with its rollback."
+   8.588,
+   7.625,
+   "Plan expands that diff into actions, each scoped to one object, put in dependency order, and paired with its rollback."
   ],
   [
-   16.325,
-   6.075,
-   "A plan must pass validation, then authorization by an approver of record who isn't the author."
+   16.212,
+   4.338,
+   "A plan has to pass validation, then approval by someone who didn't write it."
   ],
   [
-   22.4,
-   7.2,
-   "Only then does a separate execution identity deliver it, verifying every action and closing with an evidence packet."
+   20.55,
+   4.438,
+   "Then a separate identity carries it out and closes with an evidence packet."
   ],
   [
-   29.6,
-   11.275,
-   "The actuation ladder caps how far automation may go: record, observe, advise, gated actuation, and autonomy only for enumerated low-risk classes."
+   24.988,
+   7.963,
+   "How far automation may go is capped by a ladder, from simply recording, up to autonomy for a short list of low-risk changes."
   ],
   [
-   40.875,
-   6.037,
-   "Gated actuation is the default ceiling, because it's a posture an authorizing official can sign."
+   32.95,
+   5.987,
+   "The default ceiling is gated actuation, because it's a posture an authorizing official can sign."
   ],
   [
-   46.913,
+   38.938,
    7.287,
    "sis-uh calls its maturity model a general guide, not a strict set of requirements, so this is design, not mandate."
   ],
   [
-   54.2,
-   4.213,
-   "When nothing has drifted, the next run produces a zero-action plan."
+   46.225,
+   4.125,
+   "And when nothing has drifted, the next run plans zero actions."
   ]
  ],
  "15": [
   [
    0.05,
-   10.6,
-   "Chapter 12 sequences everything as an illustrative fifty-two-week program: seven phases, from pre-flight to steady state, with five workstreams running in parallel."
+   10.25,
+   "Chapter 12 puts it all in sequence: an illustrative fifty-two-week program, seven phases from pre-flight to steady state, with five workstreams in parallel."
   ],
   [
-   10.65,
+   10.3,
    6.237,
-   "Large federal estates typically run multi-year; the weeks are a sequencing model, not a commitment."
+   "Large federal estates usually take several years; the weeks are a sequencing model, not a promise."
   ],
   [
-   16.887,
-   8.85,
-   "A phase opens only when the last gate clears, and gates read from data: \"zero drift for fourteen days\" is a query, not a signature."
+   16.538,
+   4.8,
+   "A phase opens only when the previous gate clears, and gates read from data."
   ],
   [
-   25.738,
-   7.062,
-   "The steward clears most gates; the sponsor and C I O sign the one that says Active Directory is retired."
+   21.337,
+   4.3,
+   "\u201cZero drift for fourteen days\u201d is a query, not a signature."
   ],
   [
-   32.8,
-   4.575,
-   "Under it all is one structural move: separate truth from enforcement."
+   25.637,
+   4.9,
+   "Underneath it all is one structural move: separate truth from enforcement."
   ],
   [
-   37.375,
-   7.862,
-   "A governance layer holds and reconciles authoritative state, while identity, network and device platforms enforce at runtime."
+   30.538,
+   8.338,
+   "A governance layer holds and reconciles the authoritative state, while the identity, network and device platforms enforce it at runtime."
   ],
   [
-   45.237,
-   10.075,
-   "Five principles follow: one authoritative source, application-aware networking, token-based identity, governing actively, and fewer synchronous round trips."
+   38.875,
+   6.325,
+   "And read one clock carefully: fed-ramp's 2027 date is about certifying cloud providers."
   ],
   [
-   55.312,
-   6.425,
-   "And read one clock correctly: fed-ramp's 2027 date governs cloud providers' certification."
-  ],
-  [
-   61.737,
+   45.2,
    2.95,
    "The agency still authorizes its own systems."
+  ],
+  [
+   48.15,
+   1.863,
+   "That brings us to the decisions."
   ]
  ],
  "16": [
@@ -712,46 +667,46 @@
   ],
   [
    1.425,
-   12.188,
-   "Name the owners: one decider per row, starting with the sponsor, the authorizing official and the steward, and confirm who holds the zero trust implementation lead role M twenty-two oh-nine required."
+   11.95,
+   "First, name the owners, one decider per decision, starting with the sponsor, the authorizing official and the steward, and confirm who holds the Zero Trust lead role that M twenty-two oh-nine required."
   ],
   [
-   13.613,
-   5.862,
-   "Run the read-only assessment, across all eleven categories, committed with provenance."
+   13.375,
+   5.662,
+   "Second, run the read-only assessment across all eleven categories, with provenance."
   ],
   [
-   19.475,
-   4.537,
-   "Stand up the platform host, so every change has one writer and a plan."
+   19.038,
+   5.237,
+   "Third, stand up the platform host, so every change has one writer and a plan."
   ],
   [
-   24.012,
-   6.975,
-   "And set the dates: gate dates on the sponsor's calendar, and every exception's end date on the authorizing official's."
+   24.275,
+   7.525,
+   "And fourth, set the dates: gate dates on the sponsor's calendar, and every exception's end date on the authorizing official's."
   ],
   [
-   30.988,
-   3.087,
-   "None of this requires a vendor decision on day one."
+   31.8,
+   2.638,
+   "None of this needs a vendor decision on day one."
   ],
   [
-   34.075,
+   34.438,
    3.087,
    "Start with an inventory, an owner, and a date."
   ],
   [
-   37.163,
+   37.525,
    3.975,
    "Modernization is a governance rebuild, not a platform swap."
   ],
   [
-   41.138,
-   9.525,
-   "The Federal Modernization Workbook's Book 01 is the map, and Books 02 to 09 carry each part in depth, every claim footnoted."
+   41.5,
+   7.862,
+   "Book 01 is the map, and Books 02 to 09 carry each part in depth, with every claim footnoted."
   ],
   [
-   50.663,
+   49.362,
    0.762,
    "Thank you."
   ]

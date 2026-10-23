@@ -2,204 +2,214 @@
  "1": [
   [
    0.05,
-   6.737,
+   0.713,
+   "Welcome."
+  ],
+  [
+   0.762,
+   6.787,
    "This briefing comes from Book 14 of the Federal Modernization Workbook, Federal Compliance and Authorization."
   ],
   [
-   6.787,
-   6.25,
-   "It's written for authorizing officials, information system security officers and C I Os."
+   7.55,
+   5.9,
+   "It's written for authorizing officials, information system security officers and CIOs."
   ],
   [
-   13.037,
-   16.65,
-   "I'll take four questions: why every control needs proof rather than a promise, and what the federal clock now asks for; what the baseline, the closure rule and the agency-level control families require; who owns compliance; and how to build the authorization package and keep it current."
+   13.45,
+   1.413,
+   "I'll take four questions."
   ],
   [
-   29.688,
-   5.85,
-   "The short version: a control is closed when the thing that closes it is running and the record shows it working."
+   14.863,
+   5.775,
+   "Why does every control need proof rather than a promise, and what is the federal clock asking for now?"
   ],
   [
-   35.538,
+   20.637,
+   5.1,
+   "What do the baseline, the closure rule and the agency-level control families require?"
+  ],
+  [
+   25.738,
+   1.438,
+   "Who owns compliance?"
+  ],
+  [
+   27.175,
+   3.413,
+   "And how do you build the authorization package and keep it current?"
+  ],
+  [
+   30.587,
+   7.463,
+   "If you remember one thing, make it this: a control is closed when the thing that closes it is running, and the record shows it working."
+  ],
+  [
+   38.05,
    3.288,
    "Everything else is a promise, and promises age."
+  ],
+  [
+   41.337,
+   2.138,
+   "Let's start with who owes which proof."
   ]
  ],
  "2": [
   [
    0.05,
-   4.287,
-   "Federal compliance is usually described as a list of obligations."
+   4.013,
+   "Compliance usually gets described as a long list of obligations."
   ],
   [
-   4.338,
-   8.3,
-   "What an authorizing official needs is narrower: to know that each control is working today, and to be able to show anyone who asks how they know."
+   4.062,
+   8.088,
+   "What an authorizing official actually needs is narrower: to know each control is working today, and to show anyone who asks how they know."
   ],
   [
-   12.637,
+   12.15,
    2.55,
    "That's the difference between a promise and proof."
   ],
   [
-   15.188,
-   6.763,
-   "A promise is a statement in the security plan, backed by evidence someone gathered by hand for the last assessment."
+   14.7,
+   6.525,
+   "A promise is a line in the security plan, backed by evidence someone gathered by hand for the last assessment."
   ],
   [
-   21.95,
-   3.65,
-   "It was true the day it was signed, and it has been aging since."
+   21.225,
+   3.788,
+   "It was true the day it was signed, and it's been aging ever since."
   ],
   [
-   25.6,
-   6.3,
-   "Proof is a record the system itself produces, which another reviewer can check again and get the same answer."
+   25.012,
+   6.088,
+   "Proof is a record the system produces itself, one another reviewer can check and get the same answer."
   ],
   [
-   31.9,
-   2.45,
-   "So start by asking who owes which proof."
+   31.1,
+   1.25,
+   "So who owes what?"
   ],
   [
-   34.35,
-   4.55,
-   "The cloud provider proves its service under fed-ramp's 2026 rules."
+   32.35,
+   3.513,
+   "The cloud provider proves its service under fed-ramp's rules."
   ],
   [
-   38.9,
-   8.037,
-   "The agency proves its own system and its side of the boundary: its configuration, identities, data and integrations."
+   35.862,
+   3.962,
+   "The agency proves its own system and its side of the boundary."
   ],
   [
-   46.938,
-   8.45,
-   "fed-ramp is plain that each agency still authorizes its own systems, and should never issue a standalone authorization for a cloud service."
+   39.825,
+   9.575,
+   "A provider's package is presumed adequate, but the agency still authorizes its own system, and only its authorizing official accepts the remaining risk."
   ],
   [
-   55.388,
-   10.025,
-   "O M B's M-24-15 gives a provider's package a presumption of adequacy, but the authorizing official must still issue an authorization."
-  ],
-  [
-   65.412,
-   4.112,
-   "And only that official decides whether the remaining risk is acceptable."
+   49.4,
+   1.337,
+   "Next, the clock."
   ]
  ],
  "3": [
   [
    0.05,
-   6.487,
-   "The dates that drive this work belong to fed-ramp, sis-uh and O M B, and each binds a different party."
+   6.525,
+   "The dates driving this work come from fed-ramp, sis-uh and O M B, and each one binds a different party."
   ],
   [
-   6.537,
-   6.225,
-   "Every date here was checked against its issuing document on October 21, 2026."
+   6.575,
+   8.475,
+   "Every date on the slide was checked against its issuing document, and where a document gives a period instead of a date, the date is counted from it."
   ],
   [
+   15.05,
+   6.088,
+   "The nearest one is the post-quantum migration plan, due October 22, 2026."
+  ],
+  [
+   21.137,
    12.762,
-   4.713,
-   "Where a document gives a period rather than a date, the date is counted from it."
+   "Logging plans, sis-uh's remediation timelines and fed-ramp's vulnerability rules follow over the next few months, and fed-ramp's 2026 rules become mandatory on January 1, 2027."
   ],
   [
-   17.475,
-   12.938,
-   "The nearest is O M B's M-26-15: each agency's post-quantum migration plan is due within 120 days, which is October 22, 2026."
+   33.9,
+   4.4,
+   "Further out, there's TLS 1.3 support by 2030."
   ],
   [
-   30.413,
-   10.412,
-   "The same memorandum sets TLS 1.3 support by January 2, 2030, and mitigation of as much quantum risk as feasible by the end of 2030."
+   38.3,
+   1.425,
+   "Some things also moved."
   ],
   [
-   40.825,
-   6.963,
-   "Under M-26-14, on logging, the Agency Logging Plan falls on November 18."
+   39.725,
+   7.025,
+   "Software bills of materials became a contract choice, but the software and hardware inventory is still required."
   ],
   [
-   47.788,
-   10.912,
-   "On December 7, sis-uh's BOD 26-04 holds agencies to its remediation timelines, and fed-ramp's vulnerability rules become mandatory for providers."
+   46.75,
+   5.938,
+   "The practical advice is simple: keep one dated register, and re-verify it at every gate."
   ],
   [
-   58.7,
-   10.9,
-   "fed-ramp's 2026 rules take mandatory effect on January 1, 2027, and listed end-of-support edge devices must be out by February 5."
-  ],
-  [
-   69.6,
-   1.175,
-   "Some things moved."
-  ],
-  [
-   70.775,
-   9.55,
-   "M-26-05 made software bills of materials and attestation forms contract choices, but kept the software and hardware inventory."
-  ],
-  [
-   80.325,
-   4.088,
-   "So keep one dated register, and re-verify it at every gate."
+   52.688,
+   2.013,
+   "Now, what does Moderate actually mean?"
   ]
  ],
  "4": [
   [
    0.05,
-   4.875,
-   "Most civilian cloud systems are authorized at Moderate, and the word does real work."
+   5.4,
+   "Most civilian cloud systems are authorized at Moderate, and that word is doing real work."
   ],
   [
-   4.925,
-   9.75,
-   "Under FIPS 199, the agency rates the impact of losing confidentiality, integrity and availability for each kind of information."
+   5.45,
+   7.562,
+   "The agency rates the impact of losing confidentiality, integrity and availability, and the highest rating wins."
   ],
   [
-   14.675,
-   7.075,
-   "FIPS 200 takes the high-water mark: at least one objective at moderate and none at high makes a moderate system."
+   13.012,
+   4.4,
+   "If nothing is high and at least one thing is moderate, it's a Moderate system."
   ],
   [
-   21.75,
-   8.9,
-   "The agency then selects and tailors nist's Moderate baseline, which in the current release holds 287 controls and enhancements."
+   17.413,
+   6.138,
+   "The agency then tailors nist's Moderate baseline, which is the size of the promise that system makes."
   ],
   [
-   30.65,
-   3.112,
-   "That's the size of the promise a Moderate system makes."
-  ],
-  [
-   33.763,
+   23.55,
    2.737,
    "fed-ramp's Class C is a separate fact."
   ],
   [
-   36.5,
-   9.887,
-   "It includes the current Moderate baseline, but fed-ramp lists 322 controls and enhancements for it, 36 of them outside nist's Moderate baseline."
+   26.288,
+   6.963,
+   "It includes the Moderate baseline, but it lists more controls, a few dozen of them outside nist's Moderate set."
   ],
   [
-   46.388,
-   10.45,
-   "Automated access enforcement for changes, for example, is nist High only, yet fed-ramp lists it for Class C. Non-repudiation is High only on both lists."
-  ],
-  [
-   56.837,
+   33.25,
    1.738,
    "So cite the two separately."
   ],
   [
-   58.575,
+   34.987,
    6.025,
    "A Moderate system built on a Class C service inherits the provider's evidence for the provider's side."
   ],
   [
-   64.6,
+   41.013,
    4.438,
    "It still has to prove its own side, against its own tailored baseline."
+  ],
+  [
+   45.45,
+   3.925,
+   "Which raises the real question: when is a control actually closed?"
   ]
  ],
  "5": [
@@ -220,251 +230,246 @@
   ],
   [
    12.125,
-   2.5,
-   "The book applies two tests, in order."
+   2.925,
+   "Book 14 applies two tests, in order."
   ],
   [
-   14.625,
-   8.838,
-   "First, the mechanism exists: the thing that closes the control is deployed, running, and reaches the part of the estate the control covers."
+   15.05,
+   7.075,
+   "First, the mechanism exists: it's deployed, running, and reaches the part of the estate the control covers."
   ],
   [
-   23.462,
-   3.638,
-   "A purchase order, an ended pilot or a roadmap fails."
+   22.125,
+   2.525,
+   "A purchase order or a roadmap fails."
   ],
   [
-   27.1,
-   8.35,
-   "Second, its proof is recorded: the closure carries a machine-readable verification, a time, and the identity of what checked it."
+   24.65,
+   6.3,
+   "Second, its proof is recorded: a machine-readable verification, a time, and what checked it."
   ],
   [
-   35.45,
-   5.638,
-   "A control that fails the first test is open, and belongs in the plan of action with a milestone."
+   30.95,
+   5.312,
+   "Fail the first test and the control is open, with a milestone in the plan of action."
   ],
   [
-   41.087,
-   6.062,
-   "One that passes the first but fails the second is worse: it looks closed and can't be shown to be."
+   36.263,
+   5.75,
+   "Pass the first but fail the second and it's worse: it looks closed and can't be shown to be."
   ],
   [
-   47.15,
-   8.387,
-   "A person clicking complete is an exception, flagged and counted separately, and reports are derived from closure records, never compiled."
-  ],
-  [
-   55.538,
+   42.013,
    2.45,
    "And a vendor roadmap is not a commitment."
   ],
   [
-   57.987,
-   7.213,
-   "Date every claim, confirm it before a plan or contract rests on it, and write the capability into the contract."
+   44.462,
+   4.175,
+   "Date every claim, and write the capability into the contract."
+  ],
+  [
+   48.638,
+   2.975,
+   "Next, the families no provider can close for you."
   ]
  ],
  "6": [
   [
    0.05,
-   3.362,
-   "Some control families no cloud provider can close for you."
+   6.162,
+   "Some control families no cloud provider can ever close for you, and program management is the first."
   ],
   [
-   3.413,
-   1.95,
-   "The first is program management."
+   6.213,
+   8.488,
+   "nist treats the whole family as organization-wide, outside any system baseline, and fed-ramp doesn't assign it to any class."
   ],
   [
-   5.362,
-   13.062,
-   "nist marks the whole family as deployed organization-wide, outside the system baselines and independent of impact level, and fed-ramp lists no class for any of its 37 controls and enhancements."
+   14.7,
+   6.7,
+   "It comes from FISMA and O M B, and it binds the agency whether or not it uses a single cloud service."
   ],
   [
-   18.425,
-   9.525,
-   "The obligation comes from FISMA and O M B's Circular A-130, and it binds the agency whether or not it uses a single cloud service."
+   21.4,
+   4.888,
+   "No tool can write an organization's risk tolerance or appoint its senior official."
   ],
   [
-   27.95,
-   7.463,
-   "No resolver, overlay or enforcement point can write an organization's risk tolerance or appoint its senior official."
+   26.288,
+   7.362,
+   "These controls close when the artifact exists, a named official has approved it, and the agency can show it's still followed."
   ],
   [
-   35.413,
-   21.875,
-   "These controls close when the artifact exists, a named official has approved it, and the agency can show it is still followed: the security program plan, the appointed senior agency information security officer, a risk strategy with a signed tolerance statement, a process that keeps every system's plan of action comparable, and one organization-wide monitoring strategy."
+   33.65,
+   8.838,
+   "Think of the security program plan, the appointed senior security officer, a signed risk tolerance, and one organization-wide monitoring strategy."
   ],
   [
-   57.288,
-   2.288,
-   "One distinction matters to an assessor."
+   42.487,
+   7.775,
+   "One distinction matters to an assessor: the program inventory lists systems, and each system's inventory lists what's inside it."
   ],
   [
-   59.575,
-   6.062,
-   "The program inventory lists systems; each system's component inventory lists what's inside it."
-  ],
-  [
-   65.638,
+   50.263,
    1.275,
    "The two must agree."
+  ],
+  [
+   51.538,
+   2.2,
+   "Two more families close the same way."
   ]
  ],
  "7": [
   [
    0.05,
-   3.538,
-   "Two more families close through governance rather than technology."
+   5.25,
+   "Contingency planning and supply chain also close through governance, not technology."
   ],
   [
-   3.587,
+   5.3,
    3.625,
    "Contingency planning asks for a plan, not a capability."
   ],
   [
-   7.213,
-   14.575,
-   "An agency can have tested failover, two circuits and good backups, and still carry an open contingency plan finding, because nothing says who declares a contingency, who is told, what comes back first, or when operations are back to normal."
+   8.925,
+   12.25,
+   "You can have tested failover, two circuits and good backups, and still carry an open finding, because nothing says who declares a contingency, who gets told, what comes back first, or when you're back to normal."
   ],
   [
-   21.788,
-   8.488,
-   "The business impact analysis sets the numbers, and the mission owner, not the database administrator, sets the maximum tolerable downtime."
+   21.175,
+   5.638,
+   "And the mission owner, not the database administrator, sets the maximum tolerable downtime."
   ],
   [
-   30.275,
-   7.925,
-   "For a Moderate system, nist's contingency guide recommends a functional exercise with a restore from backup, not just a tabletop."
+   26.812,
+   6.525,
+   "For a Moderate system, nist recommends a real exercise with a restore from backup, not just a tabletop."
   ],
   [
-   38.2,
-   1.738,
-   "Supply chain moved this year."
+   33.337,
+   1.9,
+   "Supply chain shifted this year."
   ],
   [
-   39.938,
-   5.713,
-   "M-26-05 rescinded the secure-development attestation mandate."
+   35.237,
+   6.8,
+   "The secure-development attestation mandate was rescinded, and software bills of materials became a contract choice."
   ],
   [
-   45.65,
-   11.65,
-   "The software and hardware inventory is still required; software bills of materials are now a contract choice, and for a cloud platform the one to ask for covers the runtime production environment."
+   42.038,
+   6.0,
+   "But the inventory is still required, and supply chain policy and controls are in every baseline."
   ],
   [
-   57.3,
-   8.3,
-   "Even so, a supply chain policy, plan, controls, acquisition terms and notification agreements are in every nist baseline."
+   48.038,
+   6.412,
+   "Providers report their vulnerabilities; the agency reads those reports into its own plan of action."
   ],
   [
-   65.6,
-   7.05,
-   "And fed-ramp's vulnerability rules bind providers; the agency reads their reports into its own plan of action."
+   54.45,
+   2.025,
+   "Next, privacy and training."
   ]
  ],
  "8": [
   [
    0.05,
-   3.425,
-   "Privacy and training are the agency's, end to end."
+   3.763,
+   "Privacy and training belong to the agency, end to end."
   ],
   [
-   3.475,
-   8.975,
-   "nist's privacy baseline applies whatever the impact level, so a Low system holding the same personal information carries the same privacy controls."
+   3.812,
+   10.9,
+   "The privacy baseline applies at every impact level, so a Low system holding the same personal information carries the same privacy controls, and fed-ramp doesn't cover any of them."
   ],
   [
-   12.45,
-   7.025,
-   "No privacy control carries a fed-ramp class, and none of the 2026 indicator themes is about privacy."
+   14.713,
+   9.713,
+   "The questions are about authority and purpose: why the agency collects the information, whether it told the person, and whether it published the system of records notice."
   ],
   [
-   19.475,
-   9.65,
-   "The controls ask by what authority the agency collects the information, for what purpose, whether it told the person, and whether it published the system of records notice."
+   24.425,
+   4.725,
+   "The senior privacy official approves the privacy plan before authorization."
   ],
   [
-   29.125,
-   5.562,
-   "The senior agency official for privacy approves the privacy plan before authorization."
-  ],
-  [
-   34.688,
+   29.15,
    3.825,
    "Training is the one family no configuration can close."
   ],
   [
-   38.513,
-   7.912,
-   "O M B's Circular A-130 requires training before access, and OPM's rule sets an annual floor for awareness."
+   32.975,
+   4.6,
+   "Training comes before access, and awareness is refreshed at least yearly."
   ],
   [
-   46.425,
-   7.138,
-   "Social engineering awareness is required at Moderate; phishing exercises are optional, tailored in by choice."
+   37.575,
+   6.05,
+   "Here's the trap: a dashboard showing ninety-eight percent completion is a number with no denominator."
   ],
   [
-   53.562,
-   5.037,
-   "A dashboard showing 98 percent completion is a number with no denominator."
-  ],
-  [
-   58.6,
+   43.625,
    6.9,
-   "The proof is counts per population, measured against a stated roster, which someone who didn't produce them can re-derive."
+   "The proof is counts per population, measured against a stated roster, that someone who didn't produce them can re-derive."
+  ],
+  [
+   50.525,
+   1.637,
+   "So who owns all of this?"
   ]
  ],
  "9": [
   [
    0.05,
-   6.188,
-   "Ask who owns compliance and the answer is often the security office, which means nobody in particular."
+   6.562,
+   "Ask who owns compliance and the answer is often the security office, which really means nobody in particular."
   ],
   [
-   6.237,
+   6.612,
    3.812,
    "The Risk Management Framework names an owner for every task."
   ],
   [
-   10.05,
-   12.113,
-   "The system owner owns more of those tasks than any other role: categorizing, selecting and implementing controls, remediating findings, keeping the plan of action, and assembling the package."
+   10.425,
+   9.238,
+   "The system owner carries the most: categorizing, implementing controls, fixing findings, keeping the plan of action, and assembling the package."
   ],
   [
-   22.163,
-   8.775,
-   "The see-so sets control requirements and the common controls that systems inherit, and reviews providers' quarterly reports or names a delegate."
+   19.663,
+   4.275,
+   "The see-so sets requirements and the common controls systems inherit."
   ],
   [
-   30.938,
-   6.812,
-   "The privacy official approves the categorization and the privacy plan of any system with personal information."
+   23.938,
+   4.062,
+   "The privacy official approves anything touching personal information."
   ],
   [
-   37.75,
-   6.237,
-   "The authorizing official is the only official who can accept the risk, and that acceptance can't be delegated."
+   28.0,
+   5.425,
+   "The authorizing official is the only one who can accept the risk, and that can't be delegated."
   ],
   [
-   43.987,
-   10.613,
-   "The official, or the designated representative, also approves the categorization, the plans and the assessment plan, and selects the assessor, before the assessment starts."
+   33.425,
+   4.7,
+   "They also approve the plans and select the assessor before the assessment starts."
   ],
   [
-   54.6,
-   6.263,
-   "Six roles are government-only, among them the authorizing official, the C I O and the see-so."
+   38.125,
+   8.525,
+   "Several of these roles are government-only, so a contractor-heavy team can prepare every plan and package, but can't sign those decisions."
   ],
   [
-   60.862,
-   5.888,
-   "A contractor-heavy team can prepare every plan and package, but can't sign those decisions."
+   46.65,
+   3.612,
+   "And keep the roles apart: nobody assesses their own work."
   ],
   [
-   66.75,
-   6.75,
-   "And keep the roles apart: nobody assesses their own work, and the authorizing official isn't the system owner."
+   50.263,
+   1.863,
+   "Now, the package itself."
   ]
  ],
  "10": [
@@ -475,58 +480,48 @@
   ],
   [
    3.462,
-   2.212,
-   "They read a package that summarizes it."
+   8.787,
+   "They read a package that summarizes it: the security and privacy plans, the assessment reports, the plan of action, and an executive summary."
   ],
   [
-   5.675,
-   10.2,
-   "nist defines the package by its contents: the security and privacy plans, the assessment reports, the plans of action and milestones, and an executive summary."
+   12.25,
+   9.725,
+   "nist says the package may be generated from a tool, and fed-ramp's 2026 rules now expect machine-readable artifacts, at least OSCAL and JSON."
   ],
   [
-   15.875,
-   3.812,
-   "Each comes from a Risk Management Framework task with a named owner."
+   21.975,
+   10.012,
+   "In OSCAL the pieces link together: the assessment plan points to the security plan, the results point to the assessment plan, and the plan of action hangs from the security plan."
   ],
   [
-   19.688,
-   13.637,
-   "nist also says the package may be generated from a tool, and fed-ramp's 2026 agency rules require governance and inventory tools that produce and ingest machine-readable artifacts, at least OSCAL and JSON."
-  ],
-  [
-   33.325,
-   11.65,
-   "OSCAL gives each artifact a model, and the models link: the assessment plan imports the security plan, the results import the assessment plan, and the plan of action hangs from the security plan."
-  ],
-  [
-   44.975,
+   31.988,
    2.538,
    "Every failing item gets a disposition."
   ],
   [
-   47.513,
-   4.1,
-   "Actionable drift is an open item with an owner and a deadline."
+   34.525,
+   3.75,
+   "Real drift is an open item with an owner and a deadline."
   ],
   [
-   51.612,
-   4.05,
-   "A governed exception carries an in-date acceptance and its expiry."
+   38.275,
+   5.175,
+   "An accepted exception carries its expiry, and when that lapses, it's open again."
   ],
   [
-   55.663,
-   2.212,
-   "A lapsed acceptance reverts to open."
-  ],
-  [
-   57.875,
+   43.45,
    1.825,
    "Nothing is always satisfied."
   ],
   [
-   59.7,
-   5.975,
-   "And an empty plan of action on a Moderate system should prompt a question: what didn't the assessment look at?"
+   45.275,
+   5.525,
+   "And an empty plan of action on a Moderate system should make you ask what the assessment didn't look at."
+  ],
+  [
+   50.8,
+   1.8,
+   "Next, keeping it current."
   ]
  ],
  "11": [
@@ -542,105 +537,110 @@
   ],
   [
    6.213,
-   1.925,
-   "The law already sets the floor."
+   5.45,
+   "The law sets the floor: testing at least annually, and there's no federal three-year rule."
   ],
   [
-   8.137,
-   5.237,
-   "FISMA requires testing no less than annually, and there's no federal three-year rule."
+   11.662,
+   6.75,
+   "Once monitoring is mature, ongoing authorization replaces a fixed end date with a review frequency."
   ],
   [
-   13.375,
-   12.225,
-   "O M B's Circular A-130 tells agencies to move to ongoing authorization when a system is eligible, and once monitoring is mature enough, a review frequency replaces the end date."
+   18.413,
+   3.562,
+   "The program's own cadence is monthly, quarterly and annual."
   ],
   [
-   25.6,
-   4.463,
-   "nist is clear that controls which can't be automated must still be assessed."
+   21.975,
+   6.062,
+   "Each month, regenerate the results and plan of action and report posture to the authorizing official."
   ],
   [
-   30.062,
-   9.113,
-   "The program's cadence, as its own design: monthly, regenerate the results and the plan of action, and report posture to the authorizing official."
+   28.038,
+   5.95,
+   "Each quarter, review every provider's ongoing report, with a named senior official doing it."
   ],
   [
-   39.175,
-   8.887,
-   "Quarterly, review each provider's Ongoing Certification Report; fed-ramp's rule says agencies must, and they should name a senior official to do it."
+   33.987,
+   4.1,
+   "Each year, an independent assessor re-assesses every control."
   ],
   [
-   48.062,
-   4.062,
-   "Annually, the independent assessor re-assesses every control."
+   38.087,
+   3.875,
+   "One caution: vendor posture scores aren't assessment evidence."
   ],
   [
-   52.125,
-   7.213,
-   "Agencies must also notify fed-ramp when a report raises a concern likely to lead to rescinding the authorization."
-  ],
-  [
-   59.337,
-   3.087,
-   "And vendor posture scores aren't assessment evidence."
-  ],
-  [
-   62.425,
+   41.962,
    3.55,
    "A score measures progress against a vendor's recommendations."
   ],
   [
-   65.975,
+   45.513,
    4.713,
    "An assessment result says whether an objective is satisfied, and on what evidence."
+  ],
+  [
+   50.225,
+   1.587,
+   "Let's step back to the map."
   ]
  ],
  "12": [
   [
    0.05,
-   7.263,
-   "The Federal Compliance series arranged its material by layer; the workbook books arrange it by the question a reader brings."
+   3.862,
+   "The older Federal Compliance series arranged its material by layer."
   ],
   [
-   7.312,
-   8.012,
-   "Chapter 12 maps each part of the series to the book that carries it now, and Appendix A indexes 149 controls."
+   3.913,
+   7.175,
+   "The workbook arranges it by the question a reader brings, and a chapter maps each part of the series to the book that carries it now."
   ],
   [
-   15.325,
-   5.4,
-   "Where a book and the older series disagree, the book is the later, footnoted text."
+   11.088,
+   3.763,
+   "Where they disagree, the book is the later, footnoted text."
   ],
   [
-   20.725,
-   2.438,
-   "Two dependency claims explain the map."
+   14.85,
+   2.0,
+   "Two ideas explain the order."
   ],
   [
-   23.163,
-   4.838,
-   "The naming and identity floor comes first: you can't inventory what you can't name."
+   16.85,
+   4.737,
+   "Naming and identity come first, because you can't inventory what you can't name."
   ],
   [
-   28.0,
+   21.587,
    5.725,
    "Assurance comes last, because the package can only report what the earlier books made observable."
   ],
   [
-   33.725,
-   21.613,
-   "Build everything on the map and risk still remains, in six kinds: self-assessment, until an independent assessor confirms it; what automation can't see; risk inherited from providers; evidence that stops arriving; risks outside control evaluation, such as insider threat; and design not yet built, or features not yet shipped."
+   27.312,
+   3.788,
+   "And even after you build everything on the map, risk remains."
   ],
   [
-   55.337,
-   1.337,
-   "Write the remainder down."
+   31.1,
+   7.95,
+   "The slide lists six kinds, from self-assessment that no independent assessor has confirmed yet, to features not yet shipped."
   ],
   [
-   56.675,
-   7.675,
-   "A package that lists what's proven, asserted, inherited and accepted gives the authorizing official a risk they can see."
+   39.05,
+   1.413,
+   "Write that remainder down."
+  ],
+  [
+   40.462,
+   7.6,
+   "A package that says what's proven, asserted, inherited and accepted gives the authorizing official a risk they can see."
+  ],
+  [
+   48.062,
+   1.738,
+   "That leads to the decisions."
   ]
  ],
  "13": [
@@ -651,61 +651,51 @@
   ],
   [
    1.425,
-   9.588,
-   "Name the owners in writing: signed appointments, a person in every decide and do cell of the matrix, and the authorizing official selecting the assessor."
+   6.125,
+   "Name the owners in writing, with signed appointments and the authorizing official selecting the assessor."
   ],
   [
-   11.012,
-   1.562,
-   "Keep one dated clock."
+   7.55,
+   8.463,
+   "Keep one dated clock: submit the post-quantum migration plan, and re-check every federal date against its source at each gate."
   ],
   [
-   12.575,
-   7.175,
-   "Submit the post-quantum migration plan, and re-verify every federal date against its source at each gate."
+   16.012,
+   8.438,
+   "Fund the mechanisms that produce records before the tools that measure them, because assessment tools confirm a design; they can't stand in for one."
   ],
   [
-   19.75,
-   4.15,
-   "Fund the mechanisms that produce records before the tools that measure them."
+   24.45,
+   7.675,
+   "And generate the package, with a disposition on every failing item and a named reviewer for every provider's quarterly report."
   ],
   [
-   23.9,
-   3.825,
-   "Assessment tools confirm a design; they can't stand in for one."
-  ],
-  [
-   27.725,
-   9.275,
-   "And generate the package: machine-readable records, a disposition on every failing item, and a named reviewer for every provider's quarterly report."
-  ],
-  [
-   37.0,
+   32.125,
    2.2,
    "The next step needs no procurement."
   ],
   [
-   39.2,
-   10.75,
-   "Fill the product inventory questionnaire against the estate as it is, verify each fed-ramp status on the day you record it, and decide every flag before the security plan is written."
+   34.325,
+   8.062,
+   "Fill in the product inventory questionnaire against the estate as it is today, and settle every flag before the security plan is written."
   ],
   [
-   49.95,
+   42.388,
    2.438,
    "A promise is true on the day it's signed."
   ],
   [
-   52.388,
+   44.825,
    1.725,
    "Proof keeps showing itself."
   ],
   [
-   54.112,
-   5.75,
-   "The Federal Modernization Workbook's Book 14 has the detail, every claim footnoted."
+   46.55,
+   4.075,
+   "Book 14 has the detail, with every claim footnoted."
   ],
   [
-   59.862,
+   50.625,
    0.762,
    "Thank you."
   ]

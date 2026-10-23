@@ -1,82 +1,71 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:04.239
+00:00:00.050 --> 00:00:04.503
 The inventory scan is the program's
-method, not a federal requirement,
+own method, not a federal requirement,
 
 2
-00:00:04.239 --> 00:00:07.988
+00:00:04.503 --> 00:00:08.288
 and it's cheap because it reads
 answers agencies already gave.
 
 3
-00:00:07.988 --> 00:00:10.662
-Load one vintage and
-record what's missing.
+00:00:08.288 --> 00:00:12.221
+Load the file, detect the gaps,
+put agentic systems first,
 
 4
-00:00:10.662 --> 00:00:14.149
-Detect gaps, from the answers
-and then the directory.
+00:00:12.221 --> 00:00:17.437
+route each finding to a named role, and
+close it only on a later observation.
 
 5
-00:00:14.149 --> 00:00:16.163
-Put agentic systems first.
-
-6
-00:00:16.163 --> 00:00:19.851
-Report one row per finding,
-routed to a named role.
-
-7
-00:00:19.851 --> 00:00:22.888
-And close a finding only
-on a later observation.
-
-8
-00:00:22.888 --> 00:00:24.199
+00:00:17.437 --> 00:00:18.750
 The scale is real.
 
-9
-00:00:24.199 --> 00:00:31.672
-Of the 1,480 use cases recorded as piloted
-or deployed in the published 2025 file,
+6
+00:00:18.750 --> 00:00:23.546
+In the published 2025 file, most
+piloted or deployed use cases trip at
 
-10
-00:00:31.672 --> 00:00:36.993
-799 give no authorization
-answer and 488 have no contact;
+7
+00:00:23.546 --> 00:00:28.762
+least one check, often a missing
+authorization answer or a missing contact.
 
-11
-00:00:36.993 --> 00:00:40.163
-72 percent trip at least one check.
-
-12
-00:00:40.163 --> 00:00:44.251
-These are answers to reconcile,
+8
+00:00:28.762 --> 00:00:32.900
+Those are answers to reconcile,
 not findings against agencies.
 
-13
-00:00:44.251 --> 00:00:49.450
+9
+00:00:32.900 --> 00:00:37.488
 The checks that matter most need the
-directory, so only the agency can run them:
+directory, so only the agency can run them.
 
-14
-00:00:49.450 --> 00:00:54.650
-no identity record, no accountable sponsor,
-an identity with no inventory row,
+10
+00:00:37.488 --> 00:00:39.074
+Is there an identity record?
 
-15
-00:00:54.650 --> 00:00:58.550
-and a retired use case whose
-identities still hold access.
+11
+00:00:39.074 --> 00:00:40.525
+An accountable sponsor?
 
-16
-00:00:58.550 --> 00:01:02.273
+12
+00:00:40.525 --> 00:00:44.175
+A retired use case whose
+identities still hold access?
+
+13
+00:00:44.175 --> 00:00:47.898
 A central scan of the public file
 could start that conversation,
 
-17
-00:01:02.273 --> 00:01:03.940
+14
+00:00:47.898 --> 00:00:49.513
 but it can't see a credential.
+
+15
+00:00:49.513 --> 00:00:51.340
+Finally, the evidence.

@@ -1,86 +1,76 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:02.063
-Who runs security operations?
-
-2
-00:00:02.063 --> 00:00:04.137
+00:00:00.050 --> 00:00:02.115
 Most agencies can name their SOC.
 
-3
-00:00:04.137 --> 00:00:08.748
+2
+00:00:02.115 --> 00:00:06.704
 Fewer can say who decided that a log
 source is collected, how long it's kept,
 
-4
-00:00:08.748 --> 00:00:12.437
+3
+00:00:06.704 --> 00:00:10.375
 or who accepted the risk when
 it went quiet for three weeks.
 
+4
+00:00:10.375 --> 00:00:12.788
+The program assigns those decisions.
+
 5
-00:00:12.437 --> 00:00:13.926
-The program assigns them.
+00:00:12.788 --> 00:00:15.124
+The CIO sets scope and funding.
 
 6
-00:00:13.926 --> 00:00:18.662
-The CIO sets scope and funding
-and designates the top-level SOC.
+00:00:15.124 --> 00:00:19.407
+The CISO decides what each plane
+must emit, owns the logging plan,
 
 7
-00:00:18.662 --> 00:00:23.472
-The CISO decides what each plane must
-emit, owns the Agency Logging Plan,
-
-8
-00:00:23.472 --> 00:00:26.838
+00:00:19.407 --> 00:00:22.737
 and approves any playbook
 that acts on production.
 
-9
-00:00:26.838 --> 00:00:29.512
+8
+00:00:22.737 --> 00:00:25.463
 Platform owners keep
-their own planes emitting.
+their planes emitting,
+
+9
+00:00:25.463 --> 00:00:29.588
+security engineering builds the
+tooling, and the SOC runs the queue.
 
 10
-00:00:29.512 --> 00:00:32.691
-Security engineering builds
-the SIEM, the rules,
-
-11
-00:00:32.691 --> 00:00:35.462
-the playbooks and the evidence pipeline.
-
-12
-00:00:35.462 --> 00:00:39.787
-The SOC runs the queue, and CISA's
-one-hour clock starts there.
-
-13
-00:00:39.787 --> 00:00:41.701
+00:00:29.588 --> 00:00:31.500
 Two roles are easy to forget.
 
+11
+00:00:31.500 --> 00:00:35.504
+The records officer must agree
+before anyone shortens retention,
+
+12
+00:00:35.504 --> 00:00:38.125
+because evidence that's
+gone can't come back.
+
+13
+00:00:38.125 --> 00:00:42.253
+And the authorizing official,
+the only one who can accept risk,
+
 14
-00:00:41.701 --> 00:00:46.041
-The records officer decides disposition,
-and must concur before anyone
-
-15
-00:00:46.041 --> 00:00:49.875
-shortens retention, because evidence
-that's gone can't come back.
-
-16
-00:00:49.875 --> 00:00:54.387
-And the authorizing official, the
-only official who can accept risk,
-
-17
-00:00:54.387 --> 00:00:58.577
+00:00:42.253 --> 00:00:46.462
 accepts the risk of not seeing:
 a gap carried rather than closed,
 
-18
-00:00:58.577 --> 00:01:01.850
+15
+00:00:46.462 --> 00:00:49.700
 a suppression with no end
 date, a missed deadline.
+
+16
+00:00:49.700 --> 00:00:52.010
+Next, how detections get built.

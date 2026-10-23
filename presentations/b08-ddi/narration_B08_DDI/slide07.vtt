@@ -1,79 +1,79 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:05.352
+00:00:00.050 --> 00:00:05.263
 A certificate can be valid, unrevoked and
-issued for the right name, and still fail,
+issued for the right name, and still fail.
 
 2
-00:00:05.352 --> 00:00:10.020
-because every check that makes it
-trustworthy starts with a DNS lookup:
+00:00:05.263 --> 00:00:10.101
+That's because every check that makes it
+trustworthy starts with a DNS lookup.
 
 3
-00:00:10.020 --> 00:00:14.372
-the endpoint, the revocation
-endpoints, the FQDN that policy names,
+00:00:10.101 --> 00:00:11.437
+Here's a real pattern.
 
 4
-00:00:14.372 --> 00:00:17.300
-and the sign-in endpoint
-for the token's cloud.
+00:00:11.437 --> 00:00:16.550
+An agency's revocation list
+name exists only in AD DNS.
 
 5
-00:00:17.300 --> 00:00:20.777
-If an agency CRL name
-exists only in AD DNS,
-
-6
-00:00:20.777 --> 00:00:25.788
-a workload in AWS can't resolve
+00:00:16.550 --> 00:00:20.600
+A workload in AWS can't resolve
 it without a forwarding rule.
 
+6
+00:00:20.600 --> 00:00:25.235
+The revocation check fails, a ticket
+gets opened against the PKI team,
+
 7
-00:00:25.788 --> 00:00:30.026
-The revocation check fails, the
-ticket is opened against PKI,
+00:00:25.235 --> 00:00:27.837
+and the real cause can take days to find.
 
 8
-00:00:30.026 --> 00:00:32.738
-and the root cause can take days to find.
+00:00:27.837 --> 00:00:29.674
+DNSSEC is the other half.
 
 9
-00:00:32.738 --> 00:00:37.299
-DNSSEC adds origin authentication
-and integrity, not encryption.
+00:00:29.674 --> 00:00:33.138
+It proves where an answer came
+from and that it wasn't changed,
 
 10
-00:00:37.299 --> 00:00:39.905
-The program's position follows NIST:
+00:00:33.138 --> 00:00:34.938
+but it doesn't encrypt anything.
 
 11
-00:00:39.905 --> 00:00:43.900
-sign external zones and the
-dot-gov delegations, always.
+00:00:34.938 --> 00:00:36.825
+The program follows NIST.
 
 12
-00:00:43.900 --> 00:00:48.225
-Validate on every agency resolver,
-with the root trust anchor.
+00:00:36.825 --> 00:00:40.525
+Always sign external zones
+and the dot-gov delegations.
 
 13
-00:00:48.225 --> 00:00:52.830
-And sign internal zones only where the
-system's authorization requires it;
+00:00:40.525 --> 00:00:43.112
+Validate on every agency resolver.
 
 14
-00:00:52.830 --> 00:00:57.137
-NIST calls internal signing of
-limited value for most organizations.
+00:00:43.112 --> 00:00:47.300
+Sign internal zones only where the
+system's authorization requires it.
 
 15
-00:00:57.137 --> 00:01:01.978
-Validation stays on agency resolvers
-because Azure DNS and Route 53
+00:00:47.300 --> 00:00:49.839
+Validation stays on agency resolvers,
 
 16
-00:01:01.978 --> 00:01:07.060
-sign public zones only, and the default
-Azure resolver doesn't validate.
+00:00:49.839 --> 00:00:53.013
+because the cloud resolvers
+don't fully cover it.
+
+17
+00:00:53.013 --> 00:00:55.940
+Next, the most common
+source of split-brain.

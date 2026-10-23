@@ -1,1176 +1,1074 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:04.720
-This briefing comes from Book 09 of
-the Federal Modernization Workbook,
+00:00:00.050 --> 00:00:00.763
+Welcome.
 
 2
-00:00:04.720 --> 00:00:08.690
-Network and Transport: how to
-move branch traffic off the long
+00:00:00.763 --> 00:00:05.179
+This briefing is Book 09 of the
+Federal Modernization Workbook,
 
 3
-00:00:08.690 --> 00:00:12.738
-hairpin without turning a latency
-gain into a compliance loss.
+00:00:05.179 --> 00:00:06.762
+Network and Transport.
 
 4
-00:00:12.738 --> 00:00:16.651
-I'll take four questions: why
-physics decides the architecture,
+00:00:06.762 --> 00:00:11.885
+It's about moving branch traffic off the
+long hairpin through a distant data center,
 
 5
-00:00:16.651 --> 00:00:20.263
+00:00:11.885 --> 00:00:15.226
+without turning a latency
+gain into a compliance loss.
+
+6
+00:00:15.226 --> 00:00:19.100
+Faster and governed are different
+things, and the branch needs both.
+
+7
+00:00:19.100 --> 00:00:22.914
+We'll go in four steps: why
+physics decides the architecture,
+
+8
+00:00:22.914 --> 00:00:26.650
 what has to change, who owns the
 network, and how to get there.
 
-6
-00:00:20.263 --> 00:00:23.555
-The short version: no product
-shortens a fiber path,
-
-7
-00:00:23.555 --> 00:00:27.520
-so buy transport on physics,
-and govern it as compliance.
-
-8
-00:00:28.270 --> 00:00:30.620
-Why does physics decide the architecture?
-
 9
-00:00:30.620 --> 00:00:33.519
-Because part of every
-delay on a wide-area path
+00:00:26.650 --> 00:00:28.462
+Here's the short version up front.
 
 10
-00:00:33.519 --> 00:00:36.495
-is the time light takes
-to travel through glass.
+00:00:28.462 --> 00:00:30.799
+No product shortens a fiber path.
 
 11
-00:00:36.495 --> 00:00:41.201
-ITU-T G.114 plans on 5 microseconds
-per kilometer of fiber,
+00:00:30.799 --> 00:00:34.287
+So buy transport on physics,
+and govern it as compliance.
 
 12
-00:00:41.201 --> 00:00:45.807
-about one millisecond for
-every 200 kilometers, one way.
+00:00:34.287 --> 00:00:36.230
+Let's start with the physics.
 
 13
-00:00:45.807 --> 00:00:48.782
-New York to London has
-a round-trip floor of 56
+00:00:36.980 --> 00:00:41.068
+Physics decides the architecture
+because part of every delay on a
 
 14
-00:00:48.782 --> 00:00:52.320
+00:00:41.068 --> 00:00:45.305
+wide-area path is simply the time
+light takes to travel through glass.
+
+15
+00:00:45.305 --> 00:00:50.405
+Roughly, it's one millisecond for every
+two hundred kilometers of fiber, one way.
+
+16
+00:00:50.405 --> 00:00:53.593
+New York to London has a
+round-trip floor of fifty-six
+
+17
+00:00:53.593 --> 00:00:56.855
 milliseconds before any
 equipment touches a packet.
 
-15
-00:00:52.320 --> 00:00:56.470
-Optimization works on the gap above
-that floor, never on the floor.
-
-16
-00:00:56.470 --> 00:01:02.620
-G.114's 150 milliseconds is often
-quoted as the network's voice budget.
-
-17
-00:01:02.620 --> 00:01:03.445
-It isn't.
-
 18
-00:01:03.445 --> 00:01:08.231
-It's mouth to ear, and the terminals
-take 50 to 80 milliseconds of it,
+00:00:56.855 --> 00:01:01.342
+Optimization works on the gap above
+that floor, never on the floor itself.
 
 19
-00:01:08.231 --> 00:01:11.333
-which leaves the network
-roughly 70 to 100.
+00:01:01.342 --> 00:01:03.131
+There's a common misreading too.
 
 20
-00:01:11.333 --> 00:01:15.968
-On the book's worked arithmetic, a Seattle
-office hairpinning through northern
+00:01:03.131 --> 00:01:07.055
+The often-quoted 150-millisecond
+voice budget is mouth to ear,
 
 21
-00:01:15.968 --> 00:01:20.744
-Virginia spends about 60 milliseconds one
-way on the detour: most of the allowance.
+00:01:07.055 --> 00:01:09.980
+and the phones themselves
+use a big share of it.
 
 22
-00:01:20.744 --> 00:01:25.645
-A synchronous commit pays a round trip
-every time, and no bandwidth changes that.
+00:01:09.980 --> 00:01:13.249
+So a West Coast office hairpinning
+through northern Virginia
 
 23
-00:01:25.645 --> 00:01:31.110
-So the answer is to need less global
-synchronization, not faster synchronization.
+00:01:13.249 --> 00:01:16.392
+can spend most of the network's
+allowance on the detour alone.
 
 24
-00:01:31.860 --> 00:01:36.048
-Chapter 02 pulls apart two decisions
-that programs keep merging.
+00:01:16.392 --> 00:01:20.892
+And a synchronous commit pays a round
+trip every time, whatever the bandwidth.
 
 25
-00:01:36.048 --> 00:01:40.234
-Choosing a pipe, whether
-fiber, MPLS, low earth orbit,
+00:01:20.892 --> 00:01:25.792
+The answer is needing less global
+synchronization, not faster synchronization.
 
 26
-00:01:40.234 --> 00:01:44.422
-5G or direct internet access,
-is a physics decision.
+00:01:25.792 --> 00:01:28.130
+Which leads to a key distinction.
 
 27
-00:01:44.422 --> 00:01:47.673
+00:01:28.880 --> 00:01:32.367
+Programs keep merging two decisions
+that should stay separate.
+
+28
+00:01:32.367 --> 00:01:36.142
+Choosing a pipe, whether
+fiber, MPLS, satellite,
+
+29
+00:01:36.142 --> 00:01:39.718
+5G or direct internet,
+is a physics decision.
+
+30
+00:01:39.718 --> 00:01:42.967
 Choosing what governs the pipe
 is a compliance decision.
 
-28
-00:01:47.673 --> 00:01:51.998
-Direct internet access solves one
-problem, the geographic hairpin.
-
-29
-00:01:51.998 --> 00:01:57.190
-It satisfies none of the protection controls:
-boundary protection, flow enforcement,
-
-30
-00:01:57.190 --> 00:01:59.165
-transmission confidentiality,
-
 31
-00:01:59.165 --> 00:02:03.260
-malware inspection and monitoring
-all come from the control layer.
+00:01:42.967 --> 00:01:47.180
+Direct internet access solves
+exactly one problem, the hairpin.
 
 32
-00:02:03.260 --> 00:02:08.723
-Transport closes exactly one control
-family, telecommunications diversity.
+00:01:47.180 --> 00:01:49.984
+It satisfies none of
+the protection controls,
 
 33
-00:02:08.723 --> 00:02:11.844
-So a branch moved from a
-governed hairpin to bare local
+00:01:49.984 --> 00:01:53.305
+like boundary protection,
+inspection and monitoring.
 
 34
-00:02:11.844 --> 00:02:15.173
+00:01:53.305 --> 00:01:56.510
+So moving a branch from a
+governed hairpin to bare local
+
+35
+00:01:56.510 --> 00:01:59.855
 breakout is a compliance
 regression with better latency.
 
-35
-00:02:15.173 --> 00:02:17.822
+36
+00:01:59.855 --> 00:02:02.505
 And the governor is itself attack surface.
 
-36
-00:02:17.822 --> 00:02:24.086
-BOD 26-02 targets end-of-support
-edge devices on the agency boundary.
-
 37
-00:02:24.086 --> 00:02:30.029
-On February 25, 2026, Emergency Directive
-26-03 ordered action on Cisco SD-WAN
+00:02:02.505 --> 00:02:06.573
+Federal directives already target
+end-of-support edge devices,
 
 38
-00:02:30.029 --> 00:02:36.823
-systems after actors were found compromising
-them and keeping long-term persistence.
+00:02:06.573 --> 00:02:10.410
+and an emergency directive in
+February 2026 ordered action
 
 39
-00:02:36.823 --> 00:02:41.130
-Protect the controller and every
-edge before they carry traffic.
+00:02:10.410 --> 00:02:14.017
+on SD-WAN systems after
+attackers were found inside them.
 
 40
-00:02:41.880 --> 00:02:44.280
-What does federal policy actually require?
+00:02:14.017 --> 00:02:18.143
+So protect the controller and every
+edge before they carry traffic.
 
 41
-00:02:44.280 --> 00:02:49.442
-Read from the documents, TIC 3.0
-is descriptive, not prescriptive.
+00:02:18.143 --> 00:02:21.070
+Next, what policy actually requires.
 
 42
-00:02:49.442 --> 00:02:53.260
-There are four use cases,
-Traditional, Branch Office,
+00:02:21.820 --> 00:02:27.607
+Read from the documents, TIC 3.0 describes
+goals; it doesn't prescribe methods.
 
 43
-00:02:53.260 --> 00:02:56.367
-Remote User and Cloud,
-and no SASE use case.
+00:02:27.607 --> 00:02:30.633
+It has four use cases,
+and none of them is SASE.
 
 44
-00:02:56.367 --> 00:03:02.417
-The Security Capabilities Catalog,
-version 3.3, sets goals, not methods.
+00:02:30.633 --> 00:02:35.962
+Two statements matter most for a branch:
+the same policy enforcement on every path,
 
 45
-00:03:02.417 --> 00:03:07.546
-Two statements constrain a branch:
-policy enforcement parity on every path,
-
-46
-00:03:07.546 --> 00:03:11.942
-and preserving CISA's visibility
+00:02:35.962 --> 00:02:39.958
+and keeping CISA's visibility
 as branches connect directly.
 
+46
+00:02:39.958 --> 00:02:41.595
+Logging is the other half.
+
 47
-00:03:11.942 --> 00:03:20.580
-OMB M-26-14 rescinded
-M-21-31 on May 22, 2026.
+00:02:41.595 --> 00:02:46.488
+The current federal logging memo
+sets retention and content rules,
 
 48
-00:03:20.580 --> 00:03:24.545
-Logs must be searchable for six
-months and retrievable for a year,
+00:02:46.488 --> 00:02:50.595
+and the first agency logging
+plan is due November 18, 2026.
 
 49
-00:03:24.545 --> 00:03:29.318
-and must show source and destination
-addresses, ports and session attributes.
+00:02:50.595 --> 00:02:51.670
+Here's the trap.
 
 50
-00:03:29.318 --> 00:03:34.317
-The first agency logging plan
-is due November 18, 2026.
+00:02:51.670 --> 00:02:55.242
+When branches leave the managed
+trusted internet service,
 
 51
-00:03:34.317 --> 00:03:39.080
-When branches leave MTIPS, the sensor
-telemetry CISA received stops.
+00:02:55.242 --> 00:02:57.720
+the telemetry CISA was receiving stops.
 
 52
-00:03:39.080 --> 00:03:43.770
-The replacement is CLAW, CISA's
-Comprehensive Log Aggregation Warehouse,
+00:02:57.720 --> 00:03:00.989
+The replacement is CISA's
+log aggregation warehouse,
 
 53
-00:03:43.770 --> 00:03:47.855
-and onboarding needs the agency,
-CISA and the provider together.
+00:03:00.989 --> 00:03:05.420
+and onboarding needs the agency, CISA
+and the provider working together.
 
 54
-00:03:47.855 --> 00:03:50.667
-Keep MTIPS until CISA confirms parity.
+00:03:05.420 --> 00:03:08.757
+So keep the old service
+until CISA confirms parity.
 
 55
-00:03:50.667 --> 00:03:53.320
-Technology-neutral isn't requirement-free:
+00:03:08.757 --> 00:03:11.382
+Technology-neutral isn't requirement-free.
 
 56
-00:03:53.320 --> 00:03:57.230
-four binding obligations still
+00:03:11.382 --> 00:03:14.820
+Four binding obligations still
 land on branch equipment.
 
 57
-00:03:57.980 --> 00:04:01.692
-Chapter 04 separates two
-meanings of centralize.
+00:03:14.820 --> 00:03:17.750
+Now, where data and trust should live.
 
 58
-00:04:01.692 --> 00:04:05.636
-Logical centralization, one
-authoritative source of truth
+00:03:18.500 --> 00:03:21.337
+The book separates two
+meanings of centralize.
 
 59
-00:04:05.636 --> 00:04:09.105
-with every other copy derived,
-is almost always right.
+00:03:21.337 --> 00:03:25.489
+Logical centralization means one
+authoritative source of truth,
 
 60
-00:04:09.105 --> 00:04:14.114
-Physical centralization, one server
-in one place, stops at three walls:
+00:03:25.489 --> 00:03:29.263
+with every other copy derived,
+and that's almost always right.
 
 61
-00:04:14.114 --> 00:04:17.742
-the speed of light, blast
-radius and data residency.
+00:03:29.263 --> 00:03:33.137
+Physical centralization means
+one server in one place,
 
 62
-00:04:17.742 --> 00:04:22.417
-Token-based security removes the
-strongest old reason to fragment.
+00:03:33.137 --> 00:03:38.612
+and it runs into three walls: the speed of
+light, blast radius and data residency.
 
 63
-00:04:22.417 --> 00:04:26.128
+00:03:38.612 --> 00:03:42.388
+Tokens remove the strongest
+old reason to fragment.
+
+64
+00:03:42.388 --> 00:03:46.102
 When every request carries
 a verifiable identity,
 
-64
-00:04:26.128 --> 00:04:28.955
-one store can serve many trust domains.
-
 65
-00:04:28.955 --> 00:04:32.499
-Inbound, a multitenant service
-checks each Entra token's
+00:03:46.102 --> 00:03:49.463
+one store can safely
+serve many trust domains.
 
 66
-00:04:32.499 --> 00:04:35.893
-tenant ID against the tenant
-the data was stored under.
+00:03:49.463 --> 00:03:53.945
+Going out, a service can sign in to
+its database with a short-lived token,
 
 67
-00:04:35.893 --> 00:04:40.842
-Outbound, the service signs in to its
-database with a short-lived token in the
-
-68
-00:04:40.842 --> 00:04:43.199
-password field, valid 5 to 60 minutes,
-
-69
-00:04:43.199 --> 00:04:46.342
+00:03:53.945 --> 00:03:57.037
 so the long-lived database
 password disappears.
 
+68
+00:03:57.037 --> 00:03:59.887
+The price is that isolation
+now lives in code.
+
+69
+00:03:59.887 --> 00:04:03.631
+Then pick the weakest consistency
+each flow can tolerate,
+
 70
-00:04:46.342 --> 00:04:48.918
-The price is that isolation lives in code.
+00:04:03.631 --> 00:04:07.375
+because strong consistency
+across regions is expensive.
 
 71
-00:04:48.918 --> 00:04:52.517
-Then choose the weakest
-consistency each flow tolerates.
+00:04:07.375 --> 00:04:10.300
+Next, the tools that govern the path.
 
 72
-00:04:52.517 --> 00:04:55.454
-Azure Cosmos DB, as
-one documented example,
-
-73
-00:04:55.454 --> 00:05:00.994
-puts multi-region strong write latency
-at twice the farthest round trip plus 10
-
-74
-00:05:00.994 --> 00:05:06.970
-milliseconds, and blocks strong consistency
-beyond 8,000 kilometers by default.
-
-75
-00:05:07.720 --> 00:05:10.220
+00:04:11.050 --> 00:04:13.550
 SD-WAN is the governor's first layer.
 
+73
+00:04:13.550 --> 00:04:18.652
+It splits traffic into a lean class, like
+voice and sign-in, and a bulk class, like
+
+74
+00:04:18.652 --> 00:04:23.913
+backups and patches, so big transfers
+don't queue ahead of time-critical packets.
+
+75
+00:04:23.913 --> 00:04:28.066
+It also recovers wasted routing:
+Microsoft measured paths well
+
 76
-00:05:10.220 --> 00:05:15.702
-It splits traffic into a lean class, consensus,
-voice and sign-in, and a bulk class,
+00:04:28.066 --> 00:04:31.750
+above the fiber floor, and SD-WAN
+can close much of that gap.
 
 77
-00:05:15.702 --> 00:05:17.726
-backups, patches and re-syncs,
-
-78
-00:05:17.726 --> 00:05:22.870
-and keeps bulk transfers from queuing
-ahead of latency-critical packets.
-
-79
-00:05:22.870 --> 00:05:27.621
-It recovers route inflation:
-Microsoft measured a median 78
-
-80
-00:05:27.621 --> 00:05:33.132
-milliseconds from UK South to East
-US, against a fiber floor of about 62.
-
-81
-00:05:33.132 --> 00:05:36.589
-And it tightens the tail with
-forward error correction,
-
-82
-00:05:36.589 --> 00:05:38.994
-packet duplication and fast failover.
-
-83
-00:05:38.994 --> 00:05:41.908
+00:04:31.750 --> 00:04:34.663
 It reaches the floor;
 it never goes below it.
 
-84
-00:05:41.908 --> 00:05:45.142
-SASE sits above it: secure web gateway,
+78
+00:04:34.663 --> 00:04:39.926
+SASE sits on top, with web gateway,
+firewall and zero trust access.
 
-85
-00:05:45.142 --> 00:05:48.882
-CASB, firewall and zero
-trust network access.
+79
+00:04:39.926 --> 00:04:44.014
+CISA mentions SD-WAN as part
+of SASE but mandates neither,
 
-86
-00:05:48.882 --> 00:05:53.917
-CISA lists SD-WAN among SASE's
-networking tools, but mandates neither,
-
-87
-00:05:53.917 --> 00:05:58.782
+80
+00:04:44.014 --> 00:04:48.687
 and SD-WAN alone doesn't close the
-boundary, flow and malware controls.
+boundary and inspection controls.
 
-88
-00:05:58.782 --> 00:05:59.945
+81
+00:04:48.687 --> 00:04:49.851
 Two cautions.
 
-89
-00:05:59.945 --> 00:06:02.150
+82
+00:04:49.851 --> 00:04:52.030
 The enforcement point has a location,
 
-90
-00:06:02.150 --> 00:06:05.920
+83
+00:04:52.030 --> 00:04:56.038
 so a distant point of presence is
-a hairpin with a different name.
+just a hairpin with a different name.
 
-91
-00:06:05.920 --> 00:06:09.057
+84
+00:04:56.038 --> 00:04:59.090
 And FedRAMP status differs
 by offering, not by vendor,
 
-92
-00:06:09.057 --> 00:06:12.770
-so read the Marketplace when
-the requirement is written.
+85
+00:04:59.090 --> 00:05:02.350
+so check the Marketplace when
+you write the requirement.
 
-93
-00:06:13.520 --> 00:06:17.120
+86
+00:05:02.350 --> 00:05:06.020
+Re-routing also breaks
+things, for known reasons.
+
+87
+00:05:06.770 --> 00:05:10.346
 Re-routing a branch breaks things
 for a short list of reasons,
 
+88
+00:05:10.346 --> 00:05:11.920
+so design around that list.
+
+89
+00:05:11.920 --> 00:05:16.460
+Proxies drop idle connections, TLS
+inspection breaks pinned certificates,
+
+90
+00:05:16.460 --> 00:05:20.783
+and changing a client's apparent
+source address resets its connections.
+
+91
+00:05:20.783 --> 00:05:23.244
+Address continuity is what matters.
+
+92
+00:05:23.244 --> 00:05:24.945
+Two myths get cleared up here.
+
+93
+00:05:24.945 --> 00:05:29.257
+Kerberos works through address
+translation under Windows defaults.
+
 94
-00:06:17.120 --> 00:06:18.632
-so design around the list.
-
-95
-00:06:18.632 --> 00:06:20.421
-Proxies reap idle connections,
-
-96
-00:06:20.421 --> 00:06:24.961
-TLS inspection breaks pinned certificates
-and channel-bound authentication,
-
-97
-00:06:24.961 --> 00:06:29.845
-and a change in the client's apparent source
-address resets established connections.
-
-98
-00:06:29.845 --> 00:06:33.445
-A path change doesn't
-break TCP sequence numbers.
-
-99
-00:06:33.445 --> 00:06:36.583
-Address continuity is the
-property that matters.
-
-100
-00:06:36.583 --> 00:06:39.700
-Kerberos tolerates NAT
-under Windows defaults:
-
-101
-00:06:39.700 --> 00:06:44.608
-the domain controller doesn't put client
-addresses in tickets or check them.
-
-102
-00:06:44.608 --> 00:06:47.336
+00:05:29.257 --> 00:05:31.987
 And there's no
 five-millisecond requirement;
 
-103
-00:06:47.336 --> 00:06:49.844
+95
+00:05:31.987 --> 00:05:34.495
 the five is minutes of allowed clock skew.
 
-104
-00:06:49.844 --> 00:06:55.384
-What genuinely needs a reachable domain
-controller is short: initial logon, service
+96
+00:05:34.495 --> 00:05:37.908
+What really needs a reachable
+domain controller is short,
 
-105
-00:06:55.384 --> 00:07:00.607
-tickets for on-premises services, Group
-Policy, password change and hybrid join.
+97
+00:05:37.908 --> 00:05:39.970
+like first sign-in and Group Policy.
 
-106
-00:07:00.607 --> 00:07:04.830
+98
+00:05:39.970 --> 00:05:44.192
 Leave that path out and everything
 works except signing in,
 
-107
-00:07:04.830 --> 00:07:07.845
+99
+00:05:44.192 --> 00:05:47.207
 while Kerberos quietly falls back to NTLM.
 
-108
-00:07:07.845 --> 00:07:10.620
-Round trips dominate chatty applications.
+100
+00:05:47.207 --> 00:05:50.482
+And for chatty applications,
+round trips dominate.
 
-109
-00:07:10.620 --> 00:07:16.073
-In the book's illustrative arithmetic, a
-better branch path saves 17 to 25 percent;
+101
+00:05:50.482 --> 00:05:54.581
+On the book's illustrative numbers,
+a better path saves maybe a fifth,
 
-110
-00:07:16.073 --> 00:07:21.640
-cutting 30 sequential round trips to
-three saves about an order of magnitude.
+102
+00:05:54.581 --> 00:05:59.045
+but cutting thirty round trips to three
+saves about an order of magnitude.
 
-111
-00:07:22.390 --> 00:07:25.110
+103
+00:05:59.045 --> 00:06:01.910
+Next, proving the device on the wire.
+
+104
+00:06:02.660 --> 00:06:05.380
 Every token in this
 book assumes the device
 
-112
-00:07:25.110 --> 00:07:27.528
+105
+00:06:05.380 --> 00:06:07.798
 on the wire is the device it claims to be.
 
-113
-00:07:27.528 --> 00:07:32.440
+106
+00:06:07.798 --> 00:06:12.773
 802.1X turns that assumption
-into a proof at the switch port.
+into proof at the switch port.
 
-114
-00:07:32.440 --> 00:07:38.240
-Use EAP-TLS, mutual certificate
-authentication, for every managed device.
+107
+00:06:12.773 --> 00:06:16.516
+Use certificate-based authentication
+for every managed device;
 
-115
-00:07:38.240 --> 00:07:41.530
-Password methods are failing on their own:
+108
+00:06:16.516 --> 00:06:20.885
+the password methods are already being
+broken by Windows security changes.
 
-116
-00:07:41.530 --> 00:07:45.761
-Credential Guard blocks
-PEAP-MSCHAPv2 single sign-on,
-
-117
-00:07:45.761 --> 00:07:51.965
-and the October 2026 Windows update
-restricts NTLMv1-derived credentials too.
-
-118
-00:07:51.965 --> 00:07:54.597
+109
+00:06:20.885 --> 00:06:23.619
 The RADIUS server is
-usually the last piece
+usually the last piece of
 
-119
-00:07:54.597 --> 00:07:57.303
-of the network standing
+110
+00:06:23.619 --> 00:06:26.497
+the network still standing
 on Active Directory.
 
+111
+00:06:26.497 --> 00:06:29.905
+Windows NPS checks against
+AD computer objects,
+
+112
+00:06:29.905 --> 00:06:32.547
+which Entra-joined devices don't have.
+
+113
+00:06:32.547 --> 00:06:36.948
+There's no Entra RADIUS product,
+and NPS has no device health engine.
+
+114
+00:06:36.948 --> 00:06:43.008
+So posture comes from Intune compliance,
+read by a network access control platform,
+
+115
+00:06:43.008 --> 00:06:45.907
+and each device lands in the right place:
+
+116
+00:06:45.907 --> 00:06:49.509
+production, remediation,
+quarantine, guest or IoT.
+
+117
+00:06:49.509 --> 00:06:54.210
+And after the Blast-RADIUS attack,
+require message authentication everywhere.
+
+118
+00:06:54.210 --> 00:06:56.480
+Now we can put the pieces together.
+
+119
+00:06:57.230 --> 00:06:59.801
+The pieces come together under one rule:
+
 120
-00:07:57.303 --> 00:08:00.987
-Windows NPS authorizes
-against AD computer objects,
+00:06:59.801 --> 00:07:03.618
+match each flow's consistency
+needs to its transport class.
 
 121
-00:08:00.987 --> 00:08:04.002
-and Entra joined devices
-don't support that.
-
-122
-00:08:04.002 --> 00:08:08.914
-There's no Entra RADIUS product;
-the NPS extension adds MFA,
-
-123
-00:08:08.914 --> 00:08:12.290
-but NPS still authenticates against AD.
-
-124
-00:08:12.290 --> 00:08:14.545
-And NPS has no posture engine:
-
-125
-00:08:14.545 --> 00:08:20.277
-Network Access Protection was deprecated
-back in Windows Server 2012 R2.
-
-126
-00:08:20.277 --> 00:08:26.349
-So posture comes from Intune's compliance
-retrieval service, read by a NAC platform,
-
-127
-00:08:26.349 --> 00:08:31.716
-and each device lands in production,
-remediation, quarantine, guest or IoT.
-
-128
-00:08:31.716 --> 00:08:36.580
-After the Blast-RADIUS attack, require
-Message-Authenticator everywhere.
-
-129
-00:08:37.330 --> 00:08:40.678
-Chapter 08 puts the pieces
-together with one rule:
-
-130
-00:08:40.678 --> 00:08:44.843
-align each flow's consistency
-class with its transport class.
-
-131
-00:08:44.843 --> 00:08:49.168
+00:07:03.618 --> 00:07:07.944
 Only authoritative writes and
 in-region quorum ride the lean path,
 
-132
-00:08:49.168 --> 00:08:52.079
+122
+00:07:07.944 --> 00:07:10.855
 and neither crosses a
 region synchronously.
 
-133
-00:08:52.079 --> 00:08:54.817
+123
+00:07:10.855 --> 00:07:13.592
 At the branch, four
 patterns cover practice.
 
-134
-00:08:54.817 --> 00:08:59.418
-A, the hairpin: assessed, but
+124
+00:07:13.592 --> 00:07:17.493
+The hairpin is assessed, but
 every flow pays the detour.
 
-135
-00:08:59.418 --> 00:09:03.992
-B, bare local breakout: not an
+125
+00:07:17.493 --> 00:07:21.554
+Bare local breakout isn't an
 option in the TIC use case at all.
 
-136
-00:09:03.992 --> 00:09:07.237
-C, governed local breakout,
-an SD-WAN edge plus a
+126
+00:07:21.554 --> 00:07:23.251
+Governed local breakout,
 
-137
-00:09:07.237 --> 00:09:11.080
-nearby SASE point of presence:
-the reference pattern.
+127
+00:07:23.251 --> 00:07:27.530
+an SD-WAN edge plus a nearby SASE
+point, is the reference pattern.
 
-138
-00:09:11.080 --> 00:09:14.392
-D, agent-delivered SASE,
-for small and roaming sites,
+128
+00:07:27.530 --> 00:07:31.355
+And agent-delivered SASE
+suits small and roaming sites.
 
-139
-00:09:14.392 --> 00:09:18.705
-if the point of presence is close
-and agentless devices are covered.
+129
+00:07:31.355 --> 00:07:35.396
+Then five decisions carry most of
+the risk: one writer per region,
 
-140
-00:09:18.705 --> 00:09:24.340
-Five decisions carry most of the risk: one
-writer per region; a written path policy,
+130
+00:07:35.396 --> 00:07:39.057
+a written path policy, the
+boundary change before cutover,
 
-141
-00:09:24.340 --> 00:09:28.797
-which SC-7(4) already asks for;
-the boundary change before cutover;
-
-142
-00:09:28.797 --> 00:09:34.180
+131
+00:07:39.057 --> 00:07:44.242
 the governor protected before it carries
-traffic; and the path made evidence.
+traffic, and the path made into evidence.
 
-143
-00:09:34.180 --> 00:09:37.460
+132
+00:07:44.242 --> 00:07:47.155
 Each fails quietly, so
 each comes with a check.
 
-144
-00:09:38.210 --> 00:09:39.060
-Who owns it?
+133
+00:07:47.155 --> 00:07:49.100
+Who makes those decisions?
 
-145
-00:09:39.060 --> 00:09:42.632
+134
+00:07:49.850 --> 00:07:53.475
 The most expensive mistakes in
-this book are ownership gaps:
+this book are ownership gaps.
 
-146
-00:09:42.632 --> 00:09:45.632
-a circuit bought before
-anyone owned the governor,
+135
+00:07:53.475 --> 00:07:56.350
+A circuit bought before
+anyone owned the governor.
 
-147
-00:09:45.632 --> 00:09:48.632
-a cutover before anyone
-filed the boundary change,
+136
+00:07:56.350 --> 00:07:59.700
+A cutover before anyone
+filed the boundary change.
 
-148
-00:09:48.632 --> 00:09:52.847
-a telemetry contract cancelled before
+137
+00:07:59.700 --> 00:08:03.662
+A telemetry contract cancelled before
 its replacement was confirmed.
 
-149
-00:09:52.847 --> 00:09:55.236
-So the rule is one decider per row.
+138
+00:08:03.662 --> 00:08:06.288
+So the rule is one decider per decision.
 
-150
-00:09:55.236 --> 00:10:00.535
-The sponsor and CIO decide the governor
+139
+00:08:06.288 --> 00:08:11.551
+The sponsor and CIO choose the governor
 platforms and the order of branch waves.
 
-151
-00:10:00.535 --> 00:10:04.778
-The authorizing official
-decides the boundary change,
+140
+00:08:11.551 --> 00:08:16.587
+The authorizing official decides the boundary
+change and every standing exception.
 
-152
-00:10:04.778 --> 00:10:08.560
-the SC-7(4) exception and
-every standing exception.
-
-153
-00:10:08.560 --> 00:10:13.948
+141
+00:08:16.587 --> 00:08:21.526
 The CISO sets the control requirements
-and owns confirming CISA telemetry parity.
+and confirms CISA telemetry parity.
 
-154
-00:10:13.948 --> 00:10:16.446
+142
+00:08:21.526 --> 00:08:24.023
 The system owner decides, site by site,
 
-155
-00:10:16.446 --> 00:10:20.636
+143
+00:08:24.023 --> 00:08:28.213
 whether the governor is live and
 logging before traffic moves.
 
-156
-00:10:20.636 --> 00:10:24.022
+144
+00:08:28.213 --> 00:08:31.630
 Security architecture
 decides TIC conformance
 
-157
-00:10:24.022 --> 00:10:27.410
-and writes target attributes
-into every refresh.
+145
+00:08:31.630 --> 00:08:34.463
+and writes the target into every refresh.
 
-158
-00:10:27.410 --> 00:10:32.130
-And under the Federal Acquisition
-Regulation only a contracting officer
+146
+00:08:34.463 --> 00:08:38.812
+And only a contracting officer
+can enter into or end a contract,
 
-159
-00:10:32.130 --> 00:10:36.773
-can enter into or terminate a contract,
+147
+00:08:38.812 --> 00:08:41.238
 so no engineer can cancel a circuit.
 
-160
-00:10:36.773 --> 00:10:40.840
-Network engineering and security
-operations do the work.
+148
+00:08:41.238 --> 00:08:44.820
+Next, how to get there when
+the target is years away.
 
-161
-00:10:41.590 --> 00:10:44.253
-How do you get there when
-the target is years away?
+149
+00:08:45.570 --> 00:08:49.958
+When the target is years away, the
+book makes the case by elimination.
 
-162
-00:10:44.253 --> 00:10:46.127
-Make the case by elimination.
+150
+00:08:49.958 --> 00:08:52.596
+The legacy telecom contracts have ended.
 
-163
-00:10:46.127 --> 00:10:51.678
-The legacy telecom contracts
-had all ended by May 31, 2026.
+151
+00:08:52.596 --> 00:08:54.391
+The hairpin is still allowed,
 
-164
-00:10:51.678 --> 00:10:53.521
-The hairpin is still permitted,
+152
+00:08:54.391 --> 00:08:57.983
+but CISA itself says it raises
+the cost of using the cloud.
 
-165
-00:10:53.521 --> 00:10:57.777
-but CISA's own guidebook says it raised
-the cost of using cloud services.
+153
+00:08:57.983 --> 00:09:01.123
+A new access point is a
+big capital commitment,
 
-166
-00:10:57.777 --> 00:11:02.548
-A new access point is a capital
-commitment, VPN backhaul is a hairpin,
+154
+00:09:01.123 --> 00:09:03.933
+and VPN backhaul is just another hairpin.
 
-167
-00:11:02.548 --> 00:11:07.403
-and Microsoft no longer recommends
-ExpressRoute for Microsoft 365.
-
-168
-00:11:07.403 --> 00:11:09.199
+155
+00:09:03.933 --> 00:09:05.717
 What's left is local breakout,
 
-169
-00:11:09.199 --> 00:11:12.491
-a cloud security stack and
-a branch-edge policy layer.
+156
+00:09:05.717 --> 00:09:09.358
+a cloud security stack and a
+policy layer at the branch edge.
 
-170
-00:11:12.491 --> 00:11:18.591
-Meanwhile three deadlines
-compete for the same staff:
+157
+00:09:09.358 --> 00:09:13.307
+Meanwhile several federal deadlines
+compete for the same staff.
 
-171
-00:11:18.591 --> 00:11:25.640
-the M-26-14 logging plan, the M-26-15
-post-quantum plan and BOD 26-04.
+158
+00:09:13.307 --> 00:09:14.471
+Here's the fork.
 
-172
-00:11:25.640 --> 00:11:29.202
-BOD 26-02 is the fork.
+159
+00:09:14.471 --> 00:09:18.753
+A directive requires end-of-support
+edge devices off agency
 
-173
-00:11:29.202 --> 00:11:34.850
-End-of-support edge devices must be
-off agency networks by about August 5,
+160
+00:09:18.753 --> 00:09:23.208
+networks by about August 2027, so
+a refresh is happening anyway.
 
-174
-00:11:34.850 --> 00:11:37.391
-2027, so a refresh happens anyway.
-
-175
-00:11:37.391 --> 00:11:41.165
+161
+00:09:23.208 --> 00:09:26.983
 Tell whoever scopes it, in
 writing, what the target needs.
 
+162
+00:09:26.983 --> 00:09:29.886
+A like-for-like refresh
+spends the same money and
+
+163
+00:09:29.886 --> 00:09:33.007
+locks in the old design for
+the life of the equipment.
+
+164
+00:09:33.007 --> 00:09:35.720
+A worked example shows what's at stake.
+
+165
+00:09:36.470 --> 00:09:41.447
+This worked case is a large field-office
+estate, about fifteen hundred offices,
+
+166
+00:09:41.447 --> 00:09:44.433
+asked to fund a
+fifty-million-dollar refresh of
+
+167
+00:09:44.433 --> 00:09:47.495
+a software distribution
+server in every office.
+
+168
+00:09:47.495 --> 00:09:50.990
+Microsoft's published limit
+means the whole estate needs
+
+169
+00:09:50.990 --> 00:09:54.120
+only about two dozen of those
+servers, at a dozen hubs.
+
+170
+00:09:54.120 --> 00:09:57.595
+The rest exist only to make
+up for slow branch circuits.
+
+171
+00:09:57.595 --> 00:10:01.794
+So fix the circuit instead:
+right-sized internet access,
+
+172
+00:10:01.794 --> 00:10:04.533
+a 5G backup path and an SD-WAN overlay.
+
+173
+00:10:04.533 --> 00:10:08.426
+On the book's planning assumptions,
+the network program needs about
+
+174
+00:10:08.426 --> 00:10:12.320
+ten million dollars of first-year
+capital and pays back in year four.
+
+175
+00:10:12.320 --> 00:10:16.645
+But the case turns on one number,
+the current MPLS cost per office.
+
 176
-00:11:41.165 --> 00:11:43.846
-Like-for-like spends the
-same money and closes
+00:10:16.645 --> 00:10:20.645
+Below the breakeven, argue
+capability, not savings.
 
 177
-00:11:43.846 --> 00:11:46.660
-the question for the
-life of the equipment.
-
-178
-00:11:47.410 --> 00:11:51.528
-Chapter 11 is a worked case:
-a large field-office estate,
-
-179
-00:11:51.528 --> 00:11:57.019
-about 1,500 offices and 70,000 endpoints,
-asked to fund a 50-million-dollar
-
-180
-00:11:57.019 --> 00:12:02.510
-refresh of a Configuration Manager
-distribution point in every office.
-
-181
-00:12:02.510 --> 00:12:06.948
-Microsoft's published limit is 4,000
-clients per distribution point.
-
-182
-00:12:06.948 --> 00:12:13.997
-On capacity, the estate needs 24, two
-at each of 12 hubs, for 96,000 clients.
-
-183
-00:12:13.997 --> 00:12:19.997
-The other 1,476 exist only to
-compensate for slow branch circuits.
-
-184
-00:12:19.997 --> 00:12:24.641
-So fix the circuit: dedicated
-internet access sized to seats,
-
-185
-00:12:24.641 --> 00:12:27.798
-a 5G continuity path,
-and an SD-WAN overlay.
-
-186
-00:12:27.798 --> 00:12:32.317
-On the book's planning assumptions, the
-network program needs about 10 million
-
-187
-00:12:32.317 --> 00:12:34.751
-dollars of first-year capital and reaches
-
-188
-00:12:34.751 --> 00:12:37.323
-a positive cumulative
-position in year four.
-
-189
-00:12:37.323 --> 00:12:39.872
-But the financial case
-turns on one number.
-
-190
-00:12:39.872 --> 00:12:45.481
-Breakeven is 873 dollars of current
-MPLS cost per office per month;
-
-191
-00:12:45.481 --> 00:12:48.948
-below that, argue capability, not savings.
-
-192
-00:12:48.948 --> 00:12:54.600
+00:10:20.645 --> 00:10:25.945
 And no office's MPLS is retired until
 its replacement telemetry is confirmed.
 
-193
-00:12:55.350 --> 00:12:58.247
-Microsoft says to send
-its Optimize traffic
+178
+00:10:25.945 --> 00:10:29.060
+Next, one exception
+that needs a signature.
 
-194
-00:12:58.247 --> 00:13:01.300
-straight to Microsoft,
+179
+00:10:29.810 --> 00:10:33.163
+Microsoft says to send
+its most latency-sensitive
+
+180
+00:10:33.163 --> 00:10:36.835
+traffic straight to Microsoft,
 without TLS inspection.
 
-195
-00:13:01.300 --> 00:13:03.512
+181
+00:10:36.835 --> 00:10:39.047
 The boundary says inspect everything.
 
-196
-00:13:03.512 --> 00:13:07.825
-Both positions hold up, so the
-gap is a decision someone signs.
+182
+00:10:39.047 --> 00:10:43.322
+Both positions hold up, so the gap
+is a decision someone has to sign.
 
-197
-00:13:07.825 --> 00:13:13.231
-Optimize is small: three endpoint sets,
-for Exchange Online, SharePoint and
+183
+00:10:43.322 --> 00:10:48.934
+The Optimize traffic is small: Exchange,
+SharePoint and OneDrive, and Teams media.
 
-198
-00:13:13.231 --> 00:13:18.637
-OneDrive, and Teams media, which has no
-names and must be steered by IP prefix.
-
-199
-00:13:18.637 --> 00:13:22.396
-Exempting only Optimize is
+184
+00:10:48.934 --> 00:10:52.285
+Exempting only that is
 narrower than Microsoft asks,
 
-200
-00:13:22.396 --> 00:13:25.137
-and it leaves sign-in
+185
+00:10:52.285 --> 00:10:54.873
+and it keeps sign-in
 on the inspected path.
 
-201
-00:13:25.137 --> 00:13:34.162
-Name what the bypass punctures: SI-3,
-SI-4(10) where it's selected, AC-4 and AU-3.
+186
+00:10:54.873 --> 00:10:59.572
+The book names exactly which controls
+the bypass weakens, and the vehicle
 
-202
-00:13:34.162 --> 00:13:36.237
-SC-8 is not a gap.
+187
+00:10:59.572 --> 00:11:04.348
+is a documented boundary exception,
+with mission need, duration and review.
 
-203
-00:13:36.237 --> 00:13:39.872
-The vehicle is SC-7(4):
-each exception documented
+188
+00:11:04.348 --> 00:11:08.110
+An assessor's main worry will be
+data leaving to another tenant.
 
-204
-00:13:39.872 --> 00:13:43.600
-with its mission need and
-duration, and reviewed.
+189
+00:11:08.110 --> 00:11:11.638
+Only device-side tenant
+restrictions reach that data path,
 
-205
-00:13:43.600 --> 00:13:47.025
-The assessor's attack is
-tenant-to-tenant exfiltration.
+190
+00:11:11.638 --> 00:11:13.798
+so they're a precondition to cutover.
 
-206
-00:13:47.025 --> 00:13:50.826
-Only Windows device-side tenant
-restrictions v2 reaches the
+191
+00:11:13.798 --> 00:11:17.573
+Three signed documents carry the
+decision, and the notes name them.
 
-207
-00:13:50.826 --> 00:13:55.075
-SharePoint and Exchange data plane,
-so it's a precondition to cutover.
+192
+00:11:17.573 --> 00:11:20.290
+All of this depends on
+getting the order right.
 
-208
-00:13:55.075 --> 00:13:59.334
-Three instruments carry the decision:
-the authorizing official's memo,
-
-209
-00:13:59.334 --> 00:14:04.740
-the system owner's site register and the
-architecture review board's determination.
-
-210
-00:14:05.490 --> 00:14:09.378
+193
+00:11:21.040 --> 00:11:24.928
 Order decides whether modernization
 is a gain or a regression.
 
-211
-00:14:09.378 --> 00:14:13.387
-Step zero: bring the governor
+194
+00:11:24.928 --> 00:11:29.246
+Step zero is bringing the governor
 under vulnerability management,
 
-212
-00:14:13.387 --> 00:14:15.391
+195
+00:11:29.246 --> 00:11:31.215
 privileged access and logging.
 
-213
-00:14:15.391 --> 00:14:17.712
+196
+00:11:31.215 --> 00:11:33.564
 Then buy the pipe on measured physics,
 
-214
-00:14:17.712 --> 00:14:20.707
+197
+00:11:33.564 --> 00:11:36.596
 deploy the governor before
 production traffic,
 
-215
-00:14:20.707 --> 00:14:24.003
-decide the boundary change
-before the first cutover,
+198
+00:11:36.596 --> 00:11:41.826
+decide the boundary change before the
+first cutover, handle Microsoft 365 through
 
-216
-00:14:24.003 --> 00:14:28.646
-handle Microsoft 365 through its own
-exception, and register the evidence,
+199
+00:11:41.826 --> 00:11:46.752
+its own exception, and confirm CISA
+telemetry before any legacy circuit ends.
 
-217
-00:14:28.646 --> 00:14:32.840
-confirming CISA telemetry parity
-before any legacy circuit ends.
-
-218
-00:14:32.840 --> 00:14:36.753
+200
+00:11:46.752 --> 00:11:50.665
 No memo mandates that order;
 it's an engineering dependency.
 
-219
-00:14:36.753 --> 00:14:41.202
-Phase inversion is what happens when
-cloud migration runs ahead of transport.
+201
+00:11:50.665 --> 00:11:55.838
+Get it wrong and you get phase inversion:
+cloud migration runs ahead of transport,
 
-220
-00:14:41.202 --> 00:14:45.291
-With no transport metrics, slowness
-is attributed to the cloud,
+202
+00:11:55.838 --> 00:11:59.235
+slowness gets blamed on the
+cloud, cloud spend goes up,
 
-221
-00:14:45.291 --> 00:14:49.615
-the remedies raise cloud spend, and
-the cause never enters the data.
+203
+00:11:59.235 --> 00:12:02.015
+and the real cause never
+shows up in the data.
 
-222
-00:14:49.615 --> 00:14:53.090
-The book labels that an inference
-built on documented parts,
+204
+00:12:02.015 --> 00:12:05.915
+The book is careful to call that
+an inference, not a proven fact.
 
-223
-00:14:53.090 --> 00:14:55.453
-and names better-evidenced competitors.
-
-224
-00:14:55.453 --> 00:14:57.215
+205
+00:12:05.915 --> 00:12:07.677
 So measure in your own estate.
 
-225
-00:14:57.215 --> 00:15:02.191
-A paired-branch study, two comparable
-branches instrumented for 30 days before
+206
+00:12:07.677 --> 00:12:12.772
+Instrument two comparable branches for thirty
+days before and after a change at one,
 
-226
-00:15:02.191 --> 00:15:07.230
-and after a change at one, gives an effect
-size a budget examiner will accept.
+207
+00:12:12.772 --> 00:12:15.828
+and you get evidence a
+budget examiner will accept.
 
-227
-00:15:07.980 --> 00:15:09.355
-So, four decisions.
+208
+00:12:15.828 --> 00:12:17.810
+So, the decisions.
 
-228
-00:15:09.355 --> 00:15:14.302
-Adopt the sequence as policy: the
+209
+00:12:18.560 --> 00:12:20.160
+Here are the four decisions.
+
+210
+00:12:20.160 --> 00:12:25.459
+First, adopt the sequence as policy: the
 governor secured and live before traffic,
 
-229
-00:15:14.302 --> 00:15:17.254
+211
+00:12:25.459 --> 00:12:28.385
 the boundary change
 decided before cutover,
 
-230
-00:15:17.254 --> 00:15:22.280
+212
+00:12:28.385 --> 00:12:32.972
 and CISA telemetry parity confirmed
-before any MTIPS or MPLS circuit ends.
+before any legacy circuit ends.
 
-231
-00:15:22.280 --> 00:15:27.842
-Put the target attributes in writing
-for every BOD 26-02 replacement,
+213
+00:12:32.972 --> 00:12:37.497
+Second, put the target in writing
+for every edge-device replacement,
 
-232
-00:15:27.842 --> 00:15:32.917
+214
+00:12:37.497 --> 00:12:41.698
 before the August 2027 deadline
 spends the money like for like.
 
-233
-00:15:32.917 --> 00:15:37.105
-Decide the Microsoft 365
-Optimize exception with tenant
+215
+00:12:41.698 --> 00:12:45.682
+Third, decide the Microsoft
+365 Optimize exception,
 
-234
-00:15:37.105 --> 00:15:40.768
-restrictions v2 from the
-device as a precondition.
+216
+00:12:45.682 --> 00:12:50.036
+with device-side tenant
+restrictions as a precondition.
 
-235
-00:15:40.768 --> 00:15:42.448
-And name one decider per row,
+217
+00:12:50.036 --> 00:12:52.559
+And fourth, name one decider per decision,
 
-236
-00:15:42.448 --> 00:15:46.030
+218
+00:12:52.559 --> 00:12:56.197
 from the authorizing official
 to the contracting officer.
 
-237
-00:15:46.030 --> 00:15:47.830
-The next step needs no award:
+219
+00:12:56.197 --> 00:13:00.807
+The next step is to write the
+application-to-path policy the boundary controls
 
-238
-00:15:47.830 --> 00:15:51.977
-write the application-to-path policy
-that SC-7(4) already asks for,
+220
+00:13:00.807 --> 00:13:04.636
+already ask for, and to instrument
+a sample of branches before the
 
-239
-00:15:51.977 --> 00:15:56.359
-and instrument a sample of branches
-before the next migration wave,
+221
+00:13:04.636 --> 00:13:08.748
+next migration wave, because that
+baseline can't be rebuilt afterward.
 
-240
-00:15:56.359 --> 00:15:59.567
-because that baseline
-can't be rebuilt afterward.
-
-241
-00:15:59.567 --> 00:16:02.606
+222
+00:13:08.748 --> 00:13:11.785
 Buy transport on physics
 and govern it as compliance,
 
-242
-00:16:02.606 --> 00:16:05.506
+223
+00:13:11.785 --> 00:13:14.685
 and the branch gets faster
 without getting weaker.
 
-243
-00:16:05.506 --> 00:16:11.292
-The Federal Modernization Workbook's Book
-09 has the detail, every claim footnoted.
+224
+00:13:14.685 --> 00:13:18.710
+Book 09 has the detail,
+every claim footnoted.
 
-244
-00:16:11.292 --> 00:16:12.110
+225
+00:13:18.710 --> 00:13:19.540
 Thank you.

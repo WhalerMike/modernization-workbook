@@ -1,89 +1,75 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:04.550
-Azure private endpoints are the commonest
-source of private-IP split-brain.
+00:00:00.050 --> 00:00:04.763
+Azure private endpoints are the most common
+source of private-address split-brain.
 
 2
-00:00:04.550 --> 00:00:08.865
-When a private endpoint is created,
-Azure writes its A record into
+00:00:04.763 --> 00:00:09.020
+When you create one, Azure writes
+its record into a private zone,
 
 3
-00:00:08.865 --> 00:00:13.100
-a privatelink zone, and public DNS
-carries a CNAME into that name.
+00:00:09.020 --> 00:00:11.476
+and public DNS points into that name.
 
 4
-00:00:13.100 --> 00:00:15.525
-The private answer
-comes back only when the
+00:00:11.476 --> 00:00:13.626
+You only get the private answer if your
 
 5
-00:00:15.525 --> 00:00:17.950
+00:00:13.626 --> 00:00:16.113
 query reaches a resolver
-linked to the zone.
+linked to that zone.
 
 6
-00:00:17.950 --> 00:00:22.679
-So every origin, on-premises, the
-other clouds and the branch path,
+00:00:16.113 --> 00:00:17.625
+So the rule is simple.
 
 7
-00:00:22.679 --> 00:00:27.408
-forwards the service's public
-zone, such as database.windows.net,
+00:00:17.625 --> 00:00:21.958
+Every origin, whether on-premises,
+another cloud or the branch,
 
 8
-00:00:27.408 --> 00:00:30.888
-to the DNS Private
-Resolver's inbound endpoint.
+00:00:21.958 --> 00:00:26.800
+forwards the service's public zone
+to the Azure DNS Private Resolver.
 
 9
-00:00:30.888 --> 00:00:32.362
-Not the privatelink zone.
+00:00:26.800 --> 00:00:28.075
+Not the private zone.
 
 10
-00:00:32.362 --> 00:00:37.000
-Azure Government uses different zone names,
-so commercial rules don't carry over.
+00:00:28.075 --> 00:00:30.840
+And Azure Government uses
+different zone names,
 
 11
-00:00:37.000 --> 00:00:39.988
-The Private Resolver
-is a recursive bridge,
+00:00:30.840 --> 00:00:32.913
+so commercial rules don't carry over.
 
 12
-00:00:39.988 --> 00:00:44.138
-not an authority: reach it by
-forwarding, never by delegation.
+00:00:32.913 --> 00:00:36.242
+The Private Resolver is a
+bridge, not an authority,
 
 13
-00:00:44.138 --> 00:00:48.179
-Give each endpoint a dedicated
-subnet and a static address,
+00:00:36.242 --> 00:00:41.276
+so you reach it by forwarding, never by
+delegation, and deploy one per region.
 
 14
-00:00:48.179 --> 00:00:51.313
-avoid ruleset loops, and
-deploy one per region.
-
-15
-00:00:51.313 --> 00:00:53.467
+00:00:41.276 --> 00:00:43.525
 Addresses need the same discipline,
 
+15
+00:00:43.525 --> 00:00:48.625
+with the enterprise IPAM as the authority
+and the clouds reconciled against it.
+
 16
-00:00:53.467 --> 00:00:57.275
-with the enterprise IPAM as the
-authority for address blocks.
-
-17
-00:00:57.275 --> 00:01:03.141
-AWS VPC IPAM can allocate from an external
-IPAM in commercial Regions, but not
-
-18
-00:01:03.141 --> 00:01:08.710
-in GovCloud; on Azure and Google Cloud,
-mirror the reservations and reconcile.
+00:00:48.625 --> 00:00:51.650
+Put it together, and you
+get one governed path.

@@ -6,74 +6,68 @@ Coverage gaps don't announce themselves,
 and there are four ways they stay quiet.
 
 2
-00:00:04.675 --> 00:00:08.361
-Some sources are never connected:
+00:00:04.675 --> 00:00:08.317
+Some sources are never connected;
 Azure resource logs aren't
 
 3
-00:00:08.361 --> 00:00:11.825
+00:00:08.317 --> 00:00:11.813
 collected until each resource
-has a diagnostic setting.
+gets a diagnostic setting.
 
 4
-00:00:11.825 --> 00:00:16.623
-Some connected sources aren't flowing:
-Microsoft says the AWS connector's
+00:00:11.813 --> 00:00:14.252
+Some connected sources aren't flowing;
 
 5
-00:00:16.623 --> 00:00:20.950
-green status means a collection
+00:00:14.252 --> 00:00:18.599
+a green connector status can mean a
 rule exists, not that data arrived.
 
 6
-00:00:20.950 --> 00:00:23.738
+00:00:18.599 --> 00:00:21.388
 Some collected data is never analyzed.
 
 7
-00:00:23.738 --> 00:00:26.245
+00:00:21.388 --> 00:00:23.936
 And some sources are
-switched off on purpose;
+switched off on purpose,
 
 8
-00:00:26.245 --> 00:00:30.513
-CISA calls tampering with logging
-well-documented threat actor behavior.
+00:00:23.936 --> 00:00:27.037
+which CISA calls well-documented
+attacker behavior.
 
 9
-00:00:30.513 --> 00:00:36.198
-In the 2023 Exchange Online intrusion, a
-federal victim caught it with its own alert
+00:00:27.037 --> 00:00:32.238
+In the 2023 Exchange Online intrusion,
+a federal victim caught it with its own
 
 10
-00:00:36.198 --> 00:00:41.637
-on mailbox-access events that, at the time,
-came only with a premium audit license.
+00:00:32.238 --> 00:00:37.113
+alert on mailbox events that, at the
+time, came only with a premium license.
 
 11
-00:00:41.637 --> 00:00:44.763
+00:00:37.113 --> 00:00:40.237
 Agencies without those events
 had nothing to look at.
 
 12
-00:00:44.763 --> 00:00:47.333
+00:00:40.237 --> 00:00:42.862
 None of these gaps shows
 up in what arrived,
 
 13
-00:00:47.333 --> 00:00:50.638
-only in comparing what arrived
+00:00:42.862 --> 00:00:45.562
+only in comparing it
 with what was expected.
 
 14
-00:00:50.638 --> 00:00:57.978
-That's why M-26-14 tells agencies to use
-CDM and asset data to confirm log coverage,
+00:00:45.562 --> 00:00:48.212
+That's why the inventory
+is the denominator.
 
 15
-00:00:57.978 --> 00:01:03.650
-and why BOD 23-01 calls asset
-visibility a basic pre-condition.
-
-16
-00:01:03.650 --> 00:01:06.020
-The inventory is the denominator.
+00:00:48.212 --> 00:00:50.380
+Next, the evidence contract.

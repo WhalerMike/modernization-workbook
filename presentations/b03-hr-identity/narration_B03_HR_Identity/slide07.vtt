@@ -2,104 +2,71 @@ WEBVTT
 
 1
 00:00:00.050 --> 00:00:01.375
-Who has to be involved.
+Who has to be involved?
 
 2
-00:00:01.375 --> 00:00:05.038
+00:00:01.375 --> 00:00:04.950
 This is an organizational change
-as much as a technical one.
+as much as a technical one,
 
 3
-00:00:05.038 --> 00:00:05.887
-Owners.
+00:00:04.950 --> 00:00:07.138
+and it helps to think in three groups.
 
 4
-00:00:05.887 --> 00:00:09.888
-HR owns the personnel data and
-its quality, at the source.
+00:00:07.138 --> 00:00:12.442
+Owners: HR owns the personnel data and
+its quality, the HR 2.0 program owns
 
 5
-00:00:09.888 --> 00:00:16.225
-The OPM HR 2.0 program owns the platform,
-the standards and the interconnection.
+00:00:12.442 --> 00:00:18.376
+the platform and the standards, and each
+contractor source owns its own records.
 
 6
-00:00:16.225 --> 00:00:18.875
-And each contractor source
-owns its own record.
+00:00:18.376 --> 00:00:23.030
+Users: the identity team runs the
+directories and access from that data,
 
 7
-00:00:18.875 --> 00:00:19.775
-Users.
+00:00:23.030 --> 00:00:26.659
+security owns the Zero Trust
+policy and the leaver path,
 
 8
-00:00:19.775 --> 00:00:25.850
-The CIO's identity team runs Entra ID,
-Active Directory and access from that data.
+00:00:26.659 --> 00:00:30.525
+and the help desk moves from
+routine tickets to exceptions.
 
 9
-00:00:25.850 --> 00:00:30.125
-Security sets the Zero Trust
-policy and owns the leaver path.
+00:00:30.525 --> 00:00:31.537
+And guards.
 
 10
-00:00:30.125 --> 00:00:34.162
-And the help desk moves from routine
-tickets to handling exceptions.
+00:00:31.537 --> 00:00:33.946
+The privacy office is in from the start,
 
 11
-00:00:34.162 --> 00:00:34.975
-Guards.
+00:00:33.946 --> 00:00:38.687
+and decides the legal basis for each
+leg of sharing HR records with identity,
 
 12
-00:00:34.975 --> 00:00:37.475
-The privacy office is in from the start.
-
-13
-00:00:37.475 --> 00:00:42.652
-Sharing HR records with identity inside
-the agency normally rests on the Privacy
-
-14
-00:00:42.652 --> 00:00:44.403
-Act's need-to-know provision,
-
-15
-00:00:44.403 --> 00:00:47.982
-while disclosures outside the
-agency need a routine use,
-
-16
-00:00:47.982 --> 00:00:51.255
-so the privacy office decides
-the basis for each leg,
-
-17
-00:00:51.255 --> 00:00:55.062
+00:00:38.687 --> 00:00:42.450
 along with the privacy impact
 assessment and minimization.
 
-18
-00:00:55.062 --> 00:00:58.225
+13
+00:00:42.450 --> 00:00:45.896
 The PIV office owns
-issuance and termination.
+issuance and termination,
 
-19
-00:00:58.225 --> 00:01:04.150
-And the ISSO and authorizing official
+14
+00:00:45.896 --> 00:00:51.700
+and the ISSO and authorizing official
 own the evidence and any accepted risk.
 
-20
-00:01:04.150 --> 00:01:07.660
-The data architect ties it
-together: owning the standards,
-
-21
-00:01:07.660 --> 00:01:12.632
-the crosswalk and the person key, making
-sure every attribute has one accountable
-
-22
-00:01:12.632 --> 00:01:17.380
-owner, and carrying the standard to the
-interagency forums where it's adopted.
+15
+00:00:51.700 --> 00:00:56.620
+A data architect ties it together,
+owning the standards and the person key.

@@ -1,81 +1,68 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:03.952
-The drift engine compares observed
-state with a versioned record,
+00:00:00.050 --> 00:00:03.983
+The drift engine compares what it
+observes with the versioned record,
 
 2
-00:00:03.952 --> 00:00:05.725
-not a last-known-good snapshot.
+00:00:03.983 --> 00:00:05.950
+not with a last-known-good snapshot.
 
 3
-00:00:05.725 --> 00:00:09.613
+00:00:05.950 --> 00:00:09.838
 An approved change updates the
 record first, so it isn't drift.
 
 4
-00:00:09.613 --> 00:00:13.463
-There's one drift model, with
-five classes, each a question.
+00:00:09.838 --> 00:00:15.069
+There's one drift model, with five classes,
+each asking one question, like whether
 
 5
-00:00:13.463 --> 00:00:15.700
-Schema: is the shape still valid?
+00:00:15.069 --> 00:00:20.063
+a value is still true, or whether every
+change traces to an authorized source.
 
 6
-00:00:15.700 --> 00:00:18.037
-Semantic: is the value still true?
-
-7
-00:00:18.037 --> 00:00:22.025
-Provenance: does every change
-trace to an authorized source?
-
-8
-00:00:22.025 --> 00:00:26.100
-Authorization: did anything act
-outside what it was authorized to do?
-
-9
-00:00:26.100 --> 00:00:29.600
-Identity: does every object
-resolve to the record?
-
-10
-00:00:29.600 --> 00:00:34.412
+00:00:20.063 --> 00:00:24.874
 The drift checks in the other books are
 instances of these five, not separate lists.
 
-11
-00:00:34.412 --> 00:00:36.761
+7
+00:00:24.874 --> 00:00:27.223
 Severity is computed, not argued,
 
-12
-00:00:36.761 --> 00:00:40.501
+8
+00:00:27.223 --> 00:00:30.963
 from the class and whether
 the claim is in active use.
 
-13
-00:00:40.501 --> 00:00:45.050
-P1 halts and alerts a named role,
-and is never fixed automatically.
+9
+00:00:30.963 --> 00:00:33.881
+The top severity halts
+and alerts a named role,
 
-14
-00:00:45.050 --> 00:00:49.037
-P2 has an hour, P3 a day, P4 three days.
+10
+00:00:33.881 --> 00:00:38.337
+and is never fixed automatically;
+the others get set response windows.
 
-15
-00:00:49.037 --> 00:00:53.563
-Severity sets the clock; the
+11
+00:00:38.337 --> 00:00:42.987
+Severity sets the clock, and the
 actuation ladder decides who may act.
 
-16
-00:00:53.563 --> 00:00:58.718
-And be precise with an assessor about what's
-built: schema and provenance detection
+12
+00:00:42.987 --> 00:00:46.197
+And be precise with an
+assessor about what's built:
 
-17
-00:00:58.718 --> 00:01:03.720
-are built, semantic is partial, and
-authorization and identity are still design.
+13
+00:00:46.197 --> 00:00:50.112
+two classes are built, one is
+partial, and two are still design.
+
+14
+00:00:50.112 --> 00:00:52.730
+Next, evidence versus attestation.

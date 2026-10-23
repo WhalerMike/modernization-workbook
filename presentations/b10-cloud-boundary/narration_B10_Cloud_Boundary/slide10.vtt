@@ -9,78 +9,71 @@ Who owns the boundary?
 The rule is one decider per row.
 
 3
-00:00:03.612 --> 00:00:07.980
+00:00:03.612 --> 00:00:07.991
 The authorizing official determines
-the boundary, signs every documented
+the boundary, signs every exception,
 
 4
-00:00:07.980 --> 00:00:11.862
-exception and decides whether a
-change requires reauthorization.
+00:00:07.991 --> 00:00:11.099
+and decides whether a change
+needs reauthorization.
 
 5
-00:00:11.862 --> 00:00:16.156
-Under SP 800-37, explicit risk
-acceptance can't be delegated,
+00:00:11.099 --> 00:00:13.517
+That risk acceptance can't be delegated,
 
 6
-00:00:16.156 --> 00:00:21.675
-and for federal agencies the role is
-assigned to government personnel only.
+00:00:13.517 --> 00:00:17.325
+and in federal agencies it's held
+by government personnel only.
 
 7
-00:00:21.675 --> 00:00:24.004
-The system owner is the boundary owner:
+00:00:17.325 --> 00:00:19.750
+The system owner is the boundary owner.
 
 8
-00:00:24.004 --> 00:00:26.770
-keeper of the boundary
+00:00:19.750 --> 00:00:22.580
+They keep the boundary
 record and the package,
 
 9
-00:00:26.770 --> 00:00:31.137
-and the decider on placing a new
-workload, because vending an unrecorded
+00:00:22.580 --> 00:00:25.112
+and they decide where a new workload goes.
 
 10
-00:00:31.137 --> 00:00:33.757
-subscription is the
-cheapest way to turn an
+00:00:25.112 --> 00:00:29.022
+That matters, because vending an
+unrecorded subscription is the
 
 11
-00:00:33.757 --> 00:00:36.450
-authorized system into
-an unauthorized one.
+00:00:29.022 --> 00:00:33.076
+cheapest way to turn an authorized
+system into an unauthorized one.
 
 12
-00:00:36.450 --> 00:00:38.883
+00:00:33.076 --> 00:00:35.508
 The CISO sets control requirements,
 
 13
-00:00:38.883 --> 00:00:42.963
+00:00:35.508 --> 00:00:39.588
 and the ISSO reads provider change
 notices against the record.
 
 14
-00:00:42.963 --> 00:00:46.147
-The platform team builds
-the hierarchy, policy,
+00:00:39.588 --> 00:00:44.837
+The platform team builds everything, but
+doesn't decide whether a gap is acceptable.
 
 15
-00:00:46.147 --> 00:00:50.475
-vending and probe, but doesn't
-decide whether a gap is acceptable.
+00:00:44.837 --> 00:00:47.495
+And the contract is a
+boundary decision too:
 
 16
-00:00:50.475 --> 00:00:53.480
-And the contract is a boundary decision:
+00:00:47.495 --> 00:00:51.112
+only a contracting officer
+changes what the agency bought.
 
 17
-00:00:53.480 --> 00:00:58.125
-the GCC listing says customers
-must buy a GCC SKU to be covered.
-
-18
-00:00:58.125 --> 00:01:01.440
-Only a contracting officer
-changes what the agency bought.
+00:00:51.112 --> 00:00:53.210
+Next, handling what's outside.

@@ -1,48 +1,58 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:04.778
-This briefing comes from Book 02 of
-the Federal Modernization Workbook,
+00:00:00.050 --> 00:00:00.763
+Welcome.
 
 2
-00:00:04.778 --> 00:00:09.112
-Identity and Directory: the move
-from Active Directory to Entra ID.
+00:00:00.763 --> 00:00:03.809
+This briefing comes from
+Book 02 of the Federal
 
 3
-00:00:09.112 --> 00:00:10.888
-I'll take it through four questions.
+00:00:03.809 --> 00:00:07.012
+Modernization Workbook,
+Identity and Directory.
 
 4
-00:00:10.888 --> 00:00:12.587
-Why identity matters now.
+00:00:07.012 --> 00:00:10.426
+It's about the move from
+Active Directory to Entra ID.
 
 5
-00:00:12.587 --> 00:00:15.738
-What actually changes when a
-directory moves to the cloud.
+00:00:10.426 --> 00:00:13.934
+We'll take it through four
+questions: why identity matters now,
 
 6
-00:00:15.738 --> 00:00:17.676
-Who has to own which decisions.
+00:00:13.934 --> 00:00:17.237
+what actually changes when a
+directory moves to the cloud,
 
 7
-00:00:17.676 --> 00:00:20.413
-And how to do it without
-losing the governance that
+00:00:17.237 --> 00:00:20.884
+who has to own which decisions,
+and how to do it without losing the
 
 8
-00:00:20.413 --> 00:00:23.412
-twenty-five years of Active
-Directory quietly carried.
+00:00:20.884 --> 00:00:25.013
+governance that twenty-five years of
+Active Directory quietly carried.
 
 9
-00:00:23.412 --> 00:00:26.351
-The short version: this is
-not a directory upgrade.
+00:00:25.013 --> 00:00:28.131
+Here's the short version,
+and it's worth holding onto:
 
 10
-00:00:26.351 --> 00:00:30.020
-It decides whether every
-security control after it works.
+00:00:28.131 --> 00:00:29.987
+this isn't a directory upgrade.
+
+11
+00:00:29.987 --> 00:00:34.350
+It decides whether every security control
+that comes after it actually works.
+
+12
+00:00:34.350 --> 00:00:35.660
+Let's start with why.

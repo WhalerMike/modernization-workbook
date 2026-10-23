@@ -2,242 +2,192 @@
  "1": [
   [
    0.05,
-   9.062,
-   "This briefing comes from Book 02 of the Federal Modernization Workbook, Identity and Directory: the move from Active Directory to Entra ID."
+   0.713,
+   "Welcome."
   ],
   [
-   9.113,
-   1.775,
-   "I'll take it through four questions."
+   0.762,
+   6.25,
+   "This briefing comes from Book 02 of the Federal Modernization Workbook, Identity and Directory."
   ],
   [
-   10.887,
-   1.7,
-   "Why identity matters now."
+   7.013,
+   3.413,
+   "It's about the move from Active Directory to Entra ID."
   ],
   [
-   12.588,
-   3.15,
-   "What actually changes when a directory moves to the cloud."
+   10.425,
+   14.588,
+   "We'll take it through four questions: why identity matters now, what actually changes when a directory moves to the cloud, who has to own which decisions, and how to do it without losing the governance that twenty-five years of Active Directory quietly carried."
   ],
   [
-   15.738,
-   1.938,
-   "Who has to own which decisions."
+   25.012,
+   4.975,
+   "Here's the short version, and it's worth holding onto: this isn't a directory upgrade."
   ],
   [
-   17.675,
-   5.737,
-   "And how to do it without losing the governance that twenty-five years of Active Directory quietly carried."
+   29.988,
+   4.362,
+   "It decides whether every security control that comes after it actually works."
   ],
   [
-   23.413,
-   2.938,
-   "The short version: this is not a directory upgrade."
-  ],
-  [
-   26.35,
-   3.625,
-   "It decides whether every security control after it works."
+   34.35,
+   1.25,
+   "Let's start with why."
   ]
  ],
  "2": [
   [
    0.05,
-   0.65,
-   "Why."
+   2.175,
+   "Why does identity matter so much now?"
   ],
   [
-   0.7,
-   3.712,
-   "Federal Zero Trust policy moved the access decision."
+   2.225,
+   4.25,
+   "Because federal Zero Trust policy moved where access gets decided."
   ],
   [
-   4.412,
-   10.025,
-   "O M B memorandum M twenty-two oh-nine requires agency staff to use enterprise-managed identities and phishing-resistant multifactor authentication."
+   6.475,
+   13.613,
+   "M twenty-two oh-nine requires enterprise-managed identities and phishing-resistant M F A. nist eight hundred two-oh-seven removes the trust that used to come from being on the network: every request is evaluated on its own."
   ],
   [
-   14.438,
-   9.162,
-   "nist Special Publication eight hundred two-oh-seven removes implicit trust based on network location: every request is evaluated on its own."
+   20.087,
+   4.688,
+   "And sis-uh's maturity model puts identity first among its five pillars."
   ],
   [
-   23.6,
-   5.45,
-   "And sis-uh's Zero Trust Maturity Model puts identity first among its five pillars."
+   24.775,
+   4.287,
+   "In practice, the identity provider enforces whatever it believes."
   ],
   [
-   29.05,
-   5.112,
-   "What that means in practice is that the identity provider enforces whatever it believes."
-  ],
-  [
-   34.163,
+   29.062,
    2.675,
    "Who is this person, and is that still true?"
   ],
   [
-   36.837,
+   31.738,
    2.788,
    "Which groups and roles do they hold, and why?"
   ],
   [
-   39.625,
-   2.438,
-   "Is the device they're using managed and healthy?"
+   34.525,
+   2.0,
+   "Is their device managed and healthy?"
   ],
   [
-   42.062,
-   8.188,
-   "Conditional Access, Privileged Identity Management and device compliance all read those facts and act on them, on every sign-in."
+   36.525,
+   7.45,
+   "Conditional Access, Privileged Identity Management and device compliance all read those facts, on every sign-in."
   ],
   [
-   50.25,
-   5.125,
-   "So if the facts are wrong, every policy built on them is wrong, at machine speed."
+   43.975,
+   5.325,
+   "So if the facts are wrong, every policy built on them is wrong too, at machine speed."
   ],
   [
-   55.375,
-   4.7,
-   "That's why moving from Active Directory to Entra ID isn't a directory upgrade."
-  ],
-  [
-   60.075,
-   4.175,
-   "It decides whether every later control has true facts to act on."
+   49.3,
+   4.975,
+   "That's why this move decides whether every later control has true facts to act on."
   ]
  ],
  "3": [
   [
    0.05,
-   2.8,
-   "Microsoft isn't retiring Active Directory."
+   4.763,
+   "Microsoft isn't retiring Active Directory; it still supports and develops it."
   ],
   [
-   2.85,
-   3.3,
-   "It still supports and develops Windows Server A D."
+   4.812,
+   4.075,
+   "But every road now points to the cloud, and some of the dates are real."
   ],
   [
-   6.15,
-   3.837,
-   "But every road now points to the cloud, and the dates are real."
+   8.887,
+   9.1,
+   "N T L M is deprecated, and its first version is already gone from Windows 11 24H2 and Windows Server 2025."
   ],
   [
-   9.988,
-   11.863,
-   "In June 2024 Microsoft deprecated all versions of N T L M, and NTLMv1 is removed from Windows 11 24H2 and Windows Server 2025."
+   17.988,
+   4.525,
+   "Entra ID now blocks sync from taking over privileged cloud accounts."
   ],
   [
-   21.85,
-   8.325,
-   "On July 1, 2026, Entra ID began blocking sync from taking over privileged or already-mapped cloud accounts."
+   22.512,
+   11.7,
+   "And the date to circle is April 7, 2027: by then every Connect Sync server has to be on a current version with application-based authentication, or synchronization stops."
   ],
   [
-   30.175,
-   8.387,
-   "This month's security update restricts NTLMv1-derived single sign-on credentials by default on devices without Credential Guard."
+   34.212,
+   7.737,
+   "Behind the dates is a direction: Cloud Sync replacing Connect Sync, and cloud authentication instead of A D FS."
   ],
   [
-   38.562,
-   12.65,
-   "And by April 7, 2027, every Connect Sync server must run version 2.6.84.0 or later with application-based authentication, or synchronization stops."
+   41.95,
+   1.9,
+   "The trap is lift and shift."
   ],
   [
-   51.212,
-   11.65,
-   "Behind those dates is a direction: Cloud Sync replacing Connect Sync, cloud authentication instead of A D FS, and sources of authority converted to the cloud one object at a time."
+   43.85,
+   9.9,
+   "Sync the forest as it stands, and twenty-five years of organizational units (O U's), stale accounts and undocumented trusts arrive in the tenant."
   ],
   [
-   62.862,
-   2.062,
-   "The trap is the lift and shift."
-  ],
-  [
-   64.925,
-   9.287,
-   "Synchronize the forest as it stands, and twenty-five years of organizational units, stale accounts and undocumented trusts arrive in the tenant."
-  ],
-  [
-   74.213,
-   12.025,
-   "Meanwhile the governance that the hierarchy carried, who could manage what and where policy applied, is left behind, because Entra ID has no organizational unit (O U) tree to carry it."
+   53.75,
+   9.838,
+   "Meanwhile the governance that hierarchy carried, who could manage what and where policy applied, gets left behind, because Entra ID has no O U tree to carry it."
   ]
  ],
  "4": [
   [
    0.05,
-   1.025,
-   "What changes."
+   1.137,
+   "So what changes?"
   ],
   [
-   1.075,
+   1.188,
    3.562,
    "These are two different models, not two versions of one product."
   ],
   [
-   4.638,
-   6.375,
-   "Active Directory is a hierarchy: a forest, domains, and nested organizational units."
+   4.75,
+   5.688,
+   "Active Directory is a hierarchy: a forest, domains, and nested O U's."
   ],
   [
-   11.012,
-   2.45,
-   "Entra ID is one flat tenant."
+   10.438,
+   6.487,
+   "Entra ID is one flat tenant, where structure comes from attributes and administrative units."
   ],
   [
-   13.463,
-   3.913,
-   "Structure comes from attributes and administrative units instead."
+   16.925,
+   3.425,
+   "In A D, much of who you are is where you sit in the tree."
   ],
   [
-   17.375,
-   4.0,
-   "In A D, much of what you are is where you sit in the O U tree."
+   20.35,
+   13.275,
+   "In Entra ID, it should come from attributes supplied by an authoritative source, and for the workforce that means HR. Policy moves from Group Policy to Conditional Access and Intune, targeted by those attributes."
   ],
   [
-   21.375,
-   6.025,
-   "In Entra ID it should be attributes from an authoritative source, which for the workforce means HR."
+   33.625,
+   9.262,
+   "The protocols change, standing Domain Admin gives way to just-in-time roles, and management moves to Microsoft Graph; the slide lays out each pair."
   ],
   [
-   27.4,
-   3.938,
-   "Policy in A D is Group Policy linked to O U's."
+   42.888,
+   2.337,
+   "But the key idea is the bottom line."
   ],
   [
-   31.337,
-   5.075,
-   "In the cloud it's Conditional Access and Intune, targeted by those attributes."
-  ],
-  [
-   36.413,
-   9.025,
-   "The protocols change too: Kerberos, N T L M and el-dap give way to OpenID Connect, OAuth, sam-ul and skim."
-  ],
-  [
-   45.438,
-   7.75,
-   "Standing Domain Admin membership gives way to least-privilege roles activated just in time through Privileged Identity Management."
-  ],
-  [
-   53.188,
-   4.463,
-   "And management moves from the ActiveDirectory module to Microsoft Graph."
-  ],
-  [
-   57.65,
-   2.2,
-   "The key idea is the bottom line."
-  ],
-  [
-   59.85,
+   45.225,
    4.237,
    "In Active Directory, governance is implied by where an object sits."
   ],
   [
-   64.088,
+   49.462,
    6.525,
    "In Entra ID it has to be stated explicitly, as data and rules, or it simply doesn't exist."
   ]
@@ -255,63 +205,38 @@
   ],
   [
    6.112,
-   3.45,
-   "But Active Directory has also been holding the estate together."
+   19.938,
+   "But Active Directory has also been holding the rest of the estate together: D N S and DHCP, the certificate services behind smart cards, Wi-Fi, VPN and servers, radius sign-in, applications that bind over el-dap, the sync engine itself, domain-joined devices, time, and file permissions."
   ],
   [
-   9.562,
-   6.287,
-   "D N S, DHCP and IP address management, with the zones applications depend on."
+   26.05,
+   2.0,
+   "You don't need to memorize the list."
   ],
   [
-   15.85,
-   5.287,
-   "Certificate Services, behind smart cards, Wi-Fi, VPN and servers."
+   28.05,
+   4.138,
+   "The point is that none of it moves just because users sync to the cloud."
   ],
   [
-   21.137,
-   4.525,
-   "radius through the Network Policy Server for Wi-Fi and VPN sign-in."
+   32.188,
+   7.575,
+   "Some interim steps, like the NPS extension for Entra M F A, are useful, but they still depend on A D."
   ],
   [
-   25.663,
-   3.462,
-   "Applications that bind to the directory over el-dap."
+   39.763,
+   7.713,
+   "So the program gives each dependency its own adapter: an owner, a target, a cutover test and a validation check."
   ],
   [
-   29.125,
-   3.5,
-   "The sync engine itself, which is a tier zero asset."
+   47.475,
+   3.375,
+   "And they retire in priority order, not all at once."
   ],
   [
-   32.625,
-   3.7,
-   "Devices that are domain-joined and governed by Group Policy."
-  ],
-  [
-   36.325,
-   3.663,
-   "Time, because Kerberos depends on synchronized clocks."
-  ],
-  [
-   39.987,
-   3.85,
-   "And file services, whose permissions are bound to A D groups."
-  ],
-  [
-   43.837,
-   3.425,
-   "None of those move just because users sync to the cloud."
-  ],
-  [
-   47.263,
-   7.775,
-   "Some, like the NPS extension for Entra multifactor authentication, are useful interim steps that still depend on A D."
-  ],
-  [
-   55.038,
-   11.0,
-   "The program's answer is an adapter for each dependency: an owner, a target, a cutover test and a validation check, retired in priority order rather than all at once."
+   50.85,
+   1.525,
+   "Next, delegation."
   ]
  ],
  "6": [
@@ -322,73 +247,38 @@
   ],
   [
    2.087,
-   4.475,
-   "In Active Directory, who can manage what was largely expressed by O U's."
+   4.612,
+   "In Active Directory, who could manage what was mostly expressed through O U's."
   ],
   [
-   6.562,
-   5.338,
-   "Entra ID has no O U's, so delegation has to be rebuilt on purpose."
+   6.7,
+   4.85,
+   "Entra ID has none, so delegation has to be rebuilt on purpose."
   ],
   [
-   11.9,
-   2.212,
-   "The program uses three tiers."
+   11.55,
+   13.2,
+   "The program uses three tiers: tenant-wide control at Tier 0, service administration like Exchange or Intune at Tier 1, and departmental work like the help desk at Tier 2, scoped to administrative units."
   ],
   [
-   14.113,
-   8.65,
-   "Tier zero is tenant-wide control: Global Administrator and similar roles, plus break-glass accounts, all activated just in time."
+   24.75,
+   4.812,
+   "The platform has real limits, and the old design documents got several of them wrong."
   ],
   [
-   22.762,
-   4.963,
-   "Tier one is service administration, such as Exchange, Intune and security."
+   29.562,
+   8.975,
+   "Administrative units can't be nested, role-holding groups can't be dynamic, and restricted management has to be chosen when a unit is created."
   ],
   [
-   27.725,
-   5.912,
-   "Tier two is departmental administration, like the help desk, scoped to administrative units."
+   38.538,
+   7.338,
+   "That last one also takes its users out of Entra ID Governance, so no access reviews or lifecycle workflows for them."
   ],
   [
-   33.638,
-   4.675,
-   "The platform sets real limits, and the old design documents got several wrong."
-  ],
-  [
-   38.312,
-   2.413,
-   "Administrative units can't be nested."
-  ],
-  [
-   40.725,
-   3.013,
-   "Groups that hold roles can't have dynamic membership."
-  ],
-  [
-   43.737,
-   3.362,
-   "Reader roles like Global Reader apply to the whole tenant."
-  ],
-  [
-   47.1,
-   5.362,
-   "And restricted management is chosen when a unit is created; it can't be added later."
-  ],
-  [
-   52.462,
-   7.675,
-   "It also takes those users and groups out of Entra ID Governance: no access reviews or lifecycle workflows for them."
-  ],
-  [
-   60.138,
-   4.987,
-   "So the program's decision is that administrative units are unrestricted by default."
-  ],
-  [
-   65.125,
-   7.05,
-   "Restricted management is a per-unit choice for sensitive accounts, recorded in the registry before the unit exists."
+   45.875,
+   7.8,
+   "So the program's default is unrestricted units, with restricted management a deliberate, recorded choice for sensitive accounts."
   ]
  ],
  "7": [
@@ -399,73 +289,43 @@
   ],
   [
    4.388,
-   9.275,
-   "O M B M twenty-two oh-nine requires phishing-resistant multifactor authentication for agency staff, and it names piv as the simplest route."
+   6.688,
+   "M twenty-two oh-nine requires phishing-resistant M F A, and it names piv as the simplest route."
   ],
   [
-   13.662,
-   2.212,
-   "That reorders the usual roadmap."
+   11.075,
+   1.988,
+   "That flips the usual roadmap."
   ],
   [
-   15.875,
+   13.062,
+   3.112,
+   "Older plans saved smart-card sign-in for last."
+  ],
+  [
+   16.175,
+   12.25,
+   "But federal staff already carry piv or CAC cards, so certificate-based authentication in Entra ID is the fastest path: the credential's already issued, and no federation server is needed."
+  ],
+  [
+   28.425,
+   10.312,
+   "The book runs four waves: privileged accounts first, then card holders, then managed Windows devices with Windows Hello, and finally everyone else with passkeys."
+  ],
+  [
+   38.737,
+   7.638,
+   "Along the way, SMS and voice codes go for staff, and so do legacy protocols that send a password with every request."
+  ],
+  [
+   46.375,
+   5.2,
+   "Those are found in the sign-in logs, fixed, blocked, and watched for thirty days."
+  ],
+  [
+   51.575,
    5.9,
-   "Earlier plans treated smart-card sign-in as the last phase, for high-security users only."
-  ],
-  [
-   21.775,
-   14.25,
-   "But a federal workforce already carries piv or CAC cards, so Entra certificate-based authentication is the fastest path: the credential is already issued, and it works directly against Entra ID without a federation server."
-  ],
-  [
-   36.025,
-   1.7,
-   "The book runs four waves."
-  ],
-  [
-   37.725,
-   5.025,
-   "Privileged accounts first, on fido two security keys, or their piv card."
-  ],
-  [
-   42.75,
-   5.287,
-   "Then everyone who holds a piv or CAC card, through certificate-based authentication."
-  ],
-  [
-   48.038,
-   4.088,
-   "Then managed Windows devices, with Windows Hello for Business."
-  ],
-  [
-   52.125,
-   6.05,
-   "And finally everyone else, including mobile users, with passkeys in Microsoft Authenticator."
-  ],
-  [
-   58.175,
-   4.338,
-   "All four meet Entra's built-in phishing-resistant authentication strength."
-  ],
-  [
-   62.513,
-   11.863,
-   "Some things go away: SMS and voice codes for staff, which the memo requires agencies to stop using for routine access, and legacy protocols that send a password with every request."
-  ],
-  [
-   74.375,
-   5.562,
-   "Those are found in the sign-in logs, fixed, then blocked, and watched for thirty days."
-  ],
-  [
-   79.938,
-   2.8,
-   "One thing stays on: password hash sync."
-  ],
-  [
-   82.737,
-   7.037,
-   "It enables leaked-credential detection, and it's the manual fallback if pass-through agents or A D FS fail."
+   "One thing stays on: password hash sync, for leaked-credential detection and as a fallback."
   ]
  ],
  "8": [
@@ -476,145 +336,75 @@
   ],
   [
    0.65,
-   7.737,
-   "A directory migration fails more often on ownership than on technology, so the book separates who decides from who does the work."
+   7.875,
+   "Directory migrations fail more often on ownership than on technology, so the book separates who decides from who does the work."
   ],
   [
-   8.387,
-   5.725,
-   "Deciding: the C I O and executive sponsor set scope, funding and sequence."
+   8.525,
+   15.375,
+   "Deciding: the C I O and sponsor set scope, funding and sequence; the see-so sets the control requirements; and the authorizing official accepts any risk the program carries instead of removing, like a service account that can't be converted yet."
   ],
   [
-   14.113,
-   3.7,
-   "The see-so sets the control requirements the target has to meet."
+   23.9,
+   15.05,
+   "Building and running: identity engineering builds the target, from sync and authentication to pim and administrative units; A D administrators clean up the source and eventually retire it, and the I S S O assembles the evidence."
   ],
   [
-   17.812,
-   8.95,
-   "And the authorizing official accepts any risk the program proposes to carry instead of remove, such as a service account that can't be converted yet."
+   38.95,
+   6.662,
+   "Then come the people who supply and accept: HR, application owners, the help desk and users."
   ],
   [
-   26.762,
-   10.025,
-   "Building and running: identity engineering designs and builds the target: sync, authentication, Conditional Access, pim and administrative units."
+   45.612,
+   2.05,
+   "But one owner is usually missing."
   ],
   [
-   36.788,
-   4.713,
-   "A D administrators clean the source and, at the end, retire it."
+   47.663,
+   7.362,
+   "Microsoft's tools each own a slice of the picture, and nobody owns the gaps between them unless the program names someone."
   ],
   [
-   41.5,
-   4.525,
-   "The I S S O assembles the evidence and tracks findings to closure."
-  ],
-  [
-   46.025,
-   9.463,
-   "Supplying and accepting: HR supplies the facts the directory can't verify on its own, which is the subject of the HR-driven identity book."
-  ],
-  [
-   55.487,
-   4.112,
-   "Application owners accept test results and cutover windows."
-  ],
-  [
-   59.6,
-   5.263,
-   "And the help desk and users carry recovery, registration and wave readiness."
-  ],
-  [
-   64.862,
-   1.775,
-   "One owner is usually missing."
-  ],
-  [
-   66.638,
-   3.788,
-   "Microsoft's native tools each own a slice of the picture."
-  ],
-  [
-   70.425,
-   3.913,
-   "Nobody owns the gaps between them unless the program names someone."
+   55.025,
+   1.637,
+   "Next, how it's done."
   ]
  ],
  "9": [
   [
    0.05,
-   0.613,
-   "How."
+   6.513,
+   "The book's How chapters follow five steps: discover, assess, build, migrate and prove."
   ],
   [
-   0.662,
-   2.6,
-   "The book's How chapters follow five steps."
+   6.562,
+   9.088,
+   "Discovery starts with the read-only access every employee already has, and only then asks for narrow, time-bound access to what you still can't see."
   ],
   [
-   3.263,
-   1.212,
-   "One, discover."
+   15.65,
+   5.412,
+   "The assessment covers the whole forest without ever requesting rights that expose secrets."
   ],
   [
-   4.475,
-   8.838,
-   "Start with read-only access, which every employee already has, and learn the topology, O U tree, groups and Group Policy links."
+   21.062,
+   11.025,
+   "For the build, the book recommends Cloud Sync unless something needs Connect Sync, password hash sync everywhere, pim for every admin role, and a tested Conditional Access baseline."
   ],
   [
-   13.312,
-   4.225,
-   "Then ask for narrow, time-bound access for only what you couldn't see."
+   32.087,
+   6.662,
+   "Migration runs in waves, moving to phishing-resistant sign-in and switching off legacy authentication."
   ],
   [
-   17.538,
-   10.225,
-   "Two, assess: the full forest inventory, including certificate templates, trusts and delegation, without ever requesting the rights that expose secrets."
+   38.75,
+   5.388,
+   "And proof means drift checks and an evidence bundle the authorizing official can rely on."
   ],
   [
-   27.762,
-   1.725,
-   "Three, build the target."
-  ],
-  [
-   29.488,
-   11.925,
-   "The book recommends Cloud Sync unless a Connect-only requirement applies, password hash sync everywhere, Privileged Identity Management for every admin role, and a tested Conditional Access baseline."
-  ],
-  [
-   41.413,
-   10.325,
-   "Four, migrate in waves: phishing-resistant authentication, including piv and CAC through certificate-based authentication, and legacy authentication turned off."
-  ],
-  [
-   51.737,
-   7.112,
-   "Five, prove it: drift checks against the baseline and an evidence bundle the authorizing official can rely on."
-  ],
-  [
-   58.85,
-   2.25,
-   "A few rules hold for every wave."
-  ],
-  [
-   61.1,
-   3.438,
-   "Never enforce an untested policy on all users."
-  ],
-  [
-   64.537,
-   4.513,
-   "Keep two cloud-only break-glass accounts on phishing-resistant credentials."
-  ],
-  [
-   69.05,
-   3.862,
-   "Convert service accounts to managed or workload identities."
-  ],
-  [
-   72.912,
-   4.162,
-   "And treat every closure as unproven until it carries its evidence."
+   44.138,
+   12.025,
+   "A few rules hold every time: never enforce an untested policy on everyone, keep two cloud-only break-glass accounts, and treat any closure as unproven until it carries its evidence."
   ]
  ],
  "10": [
@@ -630,123 +420,98 @@
   ],
   [
    13.088,
-   3.112,
-   "The figures are illustrative; the mechanics are real."
+   3.188,
+   "The figures are illustrative, but the mechanics are real."
   ],
   [
-   16.2,
-   1.913,
-   "It runs in five phases."
+   16.275,
+   6.112,
+   "It runs in five phases: discover, normalize, map, migrate and validate."
   ],
   [
-   18.113,
-   9.463,
-   "Discover: a read-only survey of both forests, including the service accounts and every service principal name the SQL Server work will depend on."
+   22.387,
+   1.413,
+   "Two moments stand out."
   ],
   [
-   27.575,
-   11.213,
-   "Normalize: an organizational registry built from that survey and checked against the agency's own chart, with a finding raised for every account the registry can't attribute to a real owner."
+   23.8,
+   4.3,
+   "Every account the registry can't tie to a real owner becomes a finding."
   ],
   [
-   38.788,
-   8.9,
-   "Map: one adapter per surface, and four carry most of the risk here: synchronization, certificates, radius and SQL Server."
+   28.1,
+   5.713,
+   "And every change is recorded with who asked for it, on what authority, and a hash of the result."
   ],
   [
-   47.688,
-   6.838,
-   "Migrate: every change recorded with who asked for it, on what authority, and a hash of the resulting state."
+   33.812,
+   6.888,
+   "What comes out is an evidence bundle for the authorizing official and the assessor, who authorize the agency's own system."
   ],
   [
-   54.525,
-   6.5,
-   "And Validate: the before and after inventories compared, and every drift finding closed with evidence."
-  ],
-  [
-   61.025,
-   2.237,
-   "What comes out is an evidence bundle."
-  ],
-  [
-   63.263,
-   8.438,
-   "It goes to the authorizing official and the security control assessor, who authorize the agency's own system under the Risk Management Framework."
-  ],
-  [
-   71.7,
+   40.7,
    1.913,
    "And it belongs to the agency."
   ],
   [
-   73.612,
-   7.963,
-   "When the integrator leaves, the registry, the schemas, the findings and the evidence stay behind for the next authorization cycle."
+   42.612,
+   7.112,
+   "When the integrator leaves, the registry, the findings and the evidence stay behind for the next authorization cycle."
+  ],
+  [
+   49.725,
+   1.562,
+   "So, what are we asking for?"
   ]
  ],
  "11": [
   [
    0.05,
-   1.225,
-   "So, four asks."
+   0.95,
+   "Four asks."
   ],
   [
-   1.275,
-   9.3,
-   "Name the owners: the sponsor, the see-so, the authorizing official, the identity engineering lead, and someone who owns the gaps between the tools."
+   1.0,
+   4.263,
+   "Name the owners, including someone who owns the gaps between the tools."
   ],
   [
-   10.575,
+   5.263,
    2.1,
    "Start read-only discovery now."
   ],
   [
-   12.675,
-   7.5,
-   "It needs no elevated access to begin, and the request for more access then follows the evidence rather than preceding it."
+   7.362,
+   6.925,
+   "It needs no elevated access to begin, so any request for more can follow the evidence instead of coming first."
   ],
   [
-   20.175,
-   1.488,
-   "Put the dates on the plan."
+   14.287,
+   12.062,
+   "Put the dates on the plan: Connect Sync has to be upgraded by April 7, 2027, and N T L M and legacy authentication should come off wave by wave, not in one weekend."
   ],
   [
-   21.663,
-   4.463,
-   "Connect Sync has to be upgraded by April 7, 2027."
-  ],
-  [
-   26.125,
-   6.412,
-   "N T L M and legacy authentication should come off wave by wave, not in one weekend."
-  ],
-  [
-   32.538,
+   26.35,
    6.7,
    "And agree what done means: every control backed by evidence an assessor can read, not a status in a ticket."
   ],
   [
-   39.237,
-   4.263,
-   "Identity matters because it is now where every access decision is made."
+   33.05,
+   4.3,
+   "Identity matters because it's now where every access decision gets made."
   ],
   [
-   43.5,
-   7.175,
-   "Getting it right once, while the platform is being rebuilt anyway, is far cheaper than rebuilding the same gaps twice."
+   37.35,
+   7.438,
+   "Getting it right once, while the platform is being rebuilt anyway, costs far less than rebuilding the same gaps twice."
   ],
   [
-   50.675,
-   7.65,
-   "The Federal Modernization Workbook's Book 02 has the full argument and the runbooks, with every external claim footnoted."
+   44.788,
+   8.812,
+   "Book 02 has the full argument and the runbooks, every claim footnoted, and Book 03 picks up where the directory's facts should come from."
   ],
   [
-   58.325,
-   6.05,
-   "Book 03, HR-Driven Identity, picks up where the facts in the directory should come from."
-  ],
-  [
-   64.375,
+   53.6,
    0.762,
    "Thank you."
   ]

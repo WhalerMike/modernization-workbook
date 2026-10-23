@@ -10,78 +10,72 @@ Intune and Cloud PKI renew what
 they put on managed devices.
 
 3
-00:00:06.988 --> 00:00:11.688
-Nothing Microsoft-native does that
-for AD CS server certificates,
+00:00:06.988 --> 00:00:11.827
+But nothing Microsoft-native does
+that for AD CS server certificates,
 
 4
-00:00:11.688 --> 00:00:15.962
-public TLS, appliances, or
+00:00:11.827 --> 00:00:16.249
+public TLS, appliances, or the
 certificates nobody inventoried.
 
 5
-00:00:15.962 --> 00:00:19.385
+00:00:16.249 --> 00:00:19.513
 That's the job of certificate
 lifecycle management:
 
 6
-00:00:19.385 --> 00:00:23.363
-discovery, ownership and
-automated renewal across issuers.
+00:00:19.513 --> 00:00:23.763
+find every certificate, give it an
+owner, and renew it automatically.
 
 7
-00:00:23.363 --> 00:00:26.977
+00:00:23.763 --> 00:00:27.162
 The program's platform is
-CyberArk Certificate Manager,
+CyberArk Certificate Manager.
 
 8
-00:00:26.977 --> 00:00:28.900
-now part of Palo Alto Networks.
+00:00:27.162 --> 00:00:29.874
+CyberArk is the program's existing vendor,
 
 9
-00:00:28.900 --> 00:00:31.061
-It's the program's existing vendor,
+00:00:29.874 --> 00:00:33.438
+so it consolidates there
+instead of adding a second one.
 
 10
-00:00:31.061 --> 00:00:35.613
-so the program consolidates there
-and adds no second lifecycle vendor.
+00:00:33.438 --> 00:00:36.281
+The names have shifted over
+the last couple of years,
 
 11
-00:00:35.613 --> 00:00:40.699
-The names have moved: Venafi became
-part of CyberArk in October 2024,
+00:00:36.281 --> 00:00:38.000
+and the notes trace the history.
 
 12
-00:00:40.699 --> 00:00:46.240
-Palo Alto Networks completed its
-acquisition of CyberArk on February 11,
-
-13
-00:00:46.240 --> 00:00:51.600
-2026, and the SaaS edition is now sold
-as Next-Generation Trust Security.
-
-14
-00:00:51.600 --> 00:00:53.538
+00:00:38.000 --> 00:00:39.938
 Two facts shape the deployment.
 
-15
-00:00:53.538 --> 00:00:58.449
-The FedRAMP Marketplace has no listing for
-the certificate product, so the program
+13
+00:00:39.938 --> 00:00:43.318
+There's no FedRAMP listing
+for the certificate product,
 
-16
-00:00:58.449 --> 00:01:03.075
-runs Certificate Manager, Self-Hosted
+14
+00:00:43.318 --> 00:00:48.388
+so the program runs the self-hosted edition
 inside its own authorization boundary.
 
-17
-00:01:03.075 --> 00:01:07.151
-And its AD CS account holds the
-certificate-manager permission,
+15
+00:00:48.388 --> 00:00:52.147
+And its AD CS account holds
+certificate-manager rights,
 
-18
-00:01:07.151 --> 00:01:11.210
-so it's scoped and reviewed like
-any other certificate manager.
+16
+00:00:52.147 --> 00:00:55.988
+so it's scoped and reviewed
+like any certificate manager.
+
+17
+00:00:55.988 --> 00:00:57.820
+Which raises the people question.

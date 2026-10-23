@@ -1,83 +1,68 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:03.263
-A sponsor can't sign off an
-outcome with no test attached,
+00:00:00.050 --> 00:00:03.066
+A sponsor can't sign off on
+an outcome that has no test,
 
 2
-00:00:03.263 --> 00:00:06.617
-so each of the charter's six
-success criteria has a measure,
+00:00:03.066 --> 00:00:06.853
+so each of the charter's six success
+criteria comes with a measure,
 
 3
-00:00:06.617 --> 00:00:09.900
+00:00:06.853 --> 00:00:10.150
 the evidence that shows it, and
 the gate where it's checked.
 
 4
-00:00:09.900 --> 00:00:15.055
-The current-state assessment covers
-every forest in scope and all eleven
+00:00:10.150 --> 00:00:11.325
+Two examples.
 
 5
-00:00:15.055 --> 00:00:19.787
-dependency object types, with zero
-open priority-one findings, at G0.
+00:00:11.325 --> 00:00:16.476
+The current-state assessment is done
+when it covers every forest in scope and
 
 6
-00:00:19.787 --> 00:00:23.496
-The target model is agreed
-when every attribute that
+00:00:16.476 --> 00:00:21.788
+all eleven types of dependency, with no
+open priority-one findings, checked at G0.
 
 7
-00:00:23.496 --> 00:00:27.288
-drives access has exactly
-one designated source, at G1.
+00:00:21.788 --> 00:00:25.562
+And the target model is agreed
+when every attribute that
 
 8
-00:00:27.288 --> 00:00:29.565
-One domain has a complete playbook,
+00:00:25.562 --> 00:00:29.738
+drives access has exactly one
+designated source, checked at G1.
 
 9
-00:00:29.565 --> 00:00:33.413
-whose entry and exit criteria
-are queries the pilot passes.
+00:00:29.738 --> 00:00:34.854
+The others cover a working pilot playbook,
+change control on every pilot change,
 
 10
-00:00:33.413 --> 00:00:36.616
-The change-control pattern
-is in use when every pilot
+00:00:34.854 --> 00:00:37.024
+a response for every kind of drift,
 
 11
-00:00:36.616 --> 00:00:40.038
-change carries all five clauses
-of the change lifecycle.
+00:00:37.024 --> 00:00:40.900
+and leadership being able to
+explain the path in plain terms.
 
 12
-00:00:40.038 --> 00:00:44.638
-Every drift class has a detection
-signal, a severity and a response.
-
-13
-00:00:44.638 --> 00:00:49.233
-And leadership can describe the path,
-the risks and how success is measured,
-
-14
-00:00:49.233 --> 00:00:51.901
-without citing internal decision records.
-
-15
-00:00:51.901 --> 00:00:54.100
+00:00:40.900 --> 00:00:43.100
 The numbers are illustrative defaults.
 
-16
-00:00:54.100 --> 00:00:59.600
-The agency sets its own, records them, and
-doesn't change them silently afterwards.
+13
+00:00:43.100 --> 00:00:48.762
+The agency sets its own, writes them down,
+and never quietly changes them later.
 
-17
-00:00:59.600 --> 00:01:04.510
-And these criteria stop at the pilot;
-Chapter 10 measures the rest of the program.
+14
+00:00:48.762 --> 00:00:53.160
+And these criteria stop at the
+pilot; Chapter 10 measures the rest.

@@ -1,85 +1,81 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:03.250
-Why does the authorization
-boundary decide what you can use?
+00:00:00.050 --> 00:00:02.925
+Here's why the boundary
+matters, in one example.
 
 2
-00:00:03.250 --> 00:00:08.350
-Start with two agencies holding
-the same Microsoft 365 license.
+00:00:02.925 --> 00:00:07.263
+Two agencies hold the same
+Microsoft 365 license.
 
 3
-00:00:08.350 --> 00:00:12.655
-One runs a commercial tenant and sees
-per-location network assessments,
+00:00:07.263 --> 00:00:10.845
+One runs a commercial tenant
+and gets network assessments,
 
 4
-00:00:12.655 --> 00:00:15.525
-informed network routing
-and an Adoption Score.
+00:00:10.845 --> 00:00:13.038
+smarter routing and Adoption Score.
 
 5
-00:00:15.525 --> 00:00:18.937
-The other runs a GCC tenant
-and sees none of them,
+00:00:13.038 --> 00:00:15.637
+The other runs GCC and gets none of them,
 
 6
-00:00:18.937 --> 00:00:23.312
+00:00:15.637 --> 00:00:19.699
 because Microsoft documents
 each one as unavailable there.
 
 7
-00:00:23.312 --> 00:00:27.024
-Three decisions, made by three
-parties, have to line up.
+00:00:19.699 --> 00:00:21.812
+Same license, different product.
 
 8
-00:00:27.024 --> 00:00:31.083
-FedRAMP certifies a specific
-offering at a certification class,
+00:00:21.812 --> 00:00:25.637
+That happens because three parties
+make three separate decisions.
 
 9
-00:00:31.083 --> 00:00:33.187
+00:00:25.637 --> 00:00:30.400
+FedRAMP certifies a specific offering,
 and the Marketplace is the record.
 
 10
-00:00:33.187 --> 00:00:35.712
+00:00:30.400 --> 00:00:32.924
 The provider publishes,
 feature by feature,
 
 11
-00:00:35.712 --> 00:00:38.376
+00:00:32.924 --> 00:00:35.588
 what each government
 environment leaves out.
 
 12
-00:00:38.376 --> 00:00:42.937
-And the agency authorizes its own
-system: its authorizing official accepts
+00:00:35.588 --> 00:00:37.975
+And the agency authorizes its own system,
 
 13
-00:00:42.937 --> 00:00:47.137
-the risk of the configuration selected
-and the integrations enabled.
+00:00:37.975 --> 00:00:42.962
+with its authorizing official accepting the
+risk of what it configures and connects.
 
 14
-00:00:47.137 --> 00:00:49.994
-FedRAMP says an agency
-should never create a
+00:00:42.962 --> 00:00:45.437
+What you can use is
+where all three overlap.
 
 15
-00:00:49.994 --> 00:00:53.700
-standalone authorization to
-operate for a cloud service.
+00:00:45.437 --> 00:00:48.451
+So a feature with no
+citation isn't available.
 
 16
-00:00:53.700 --> 00:00:57.350
-What the agency can use is
-the overlap of all three.
+00:00:48.451 --> 00:00:49.725
+It's unverified.
 
 17
-00:00:57.350 --> 00:01:01.510
-A feature with no citation is
-unverified, not available.
+00:00:49.725 --> 00:00:52.730
+Next, why that gap stays
+hidden for so long.

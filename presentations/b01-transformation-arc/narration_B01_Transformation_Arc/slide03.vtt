@@ -1,68 +1,64 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:02.313
-Second, trust itself changed.
+00:00:00.050 --> 00:00:01.825
+Trust used to come from a session.
 
 2
-00:00:02.313 --> 00:00:06.235
-In Active Directory a user signs
-in once and gets a Kerberos
+00:00:01.825 --> 00:00:04.594
+In Active Directory, you
+sign in once and get a
 
 3
-00:00:06.235 --> 00:00:11.199
-ticket-granting ticket that lasts 10
-hours by default and renews for 7 days.
+00:00:04.594 --> 00:00:07.588
+Kerberos ticket that lasts
+ten hours by default.
 
 4
-00:00:11.199 --> 00:00:14.790
-An open connection isn't
-interrupted when its ticket expires,
+00:00:07.588 --> 00:00:11.713
+An account disabled during the day
+can keep using tickets it got earlier.
 
 5
-00:00:14.790 --> 00:00:19.225
-and an account disabled during the day
-can keep using tickets issued before.
-
-6
-00:00:19.225 --> 00:00:23.000
-Zero Trust decides each
+00:00:11.713 --> 00:00:15.538
+Zero Trust decides every
 request against current policy.
 
-7
-00:00:23.000 --> 00:00:25.997
+6
+00:00:15.538 --> 00:00:18.426
 An Entra access token
-lasts one hour by default,
+lasts an hour by default,
+
+7
+00:00:18.426 --> 00:00:23.519
+or up to 28 hours with continuous access
+evaluation, because the service listens
 
 8
-00:00:25.997 --> 00:00:31.375
-or up to 28 hours with continuous access
-evaluation, because the service subscribes
-
-9
-00:00:31.375 --> 00:00:36.600
-to events such as a disabled account and
+00:00:23.519 --> 00:00:28.612
+for events like a disabled account and
 stops honoring the token in near real time.
 
+9
+00:00:28.612 --> 00:00:31.138
+Think of it as a badge
+checked at every door.
+
 10
-00:00:36.600 --> 00:00:38.600
-It's a badge checked at every door.
+00:00:31.138 --> 00:00:33.364
+And distance doesn't break tickets,
 
 11
-00:00:38.600 --> 00:00:40.450
-Distance doesn't break tickets.
+00:00:33.364 --> 00:00:36.512
+but it does slow every trip
+to a domain controller.
 
 12
-00:00:40.450 --> 00:00:45.687
-It hurts the trips to a domain controller:
-sign-in, password changes and policy.
+00:00:36.512 --> 00:00:40.131
+On the book's arithmetic,
+Portland to Washington can't beat
 
 13
-00:00:45.687 --> 00:00:49.414
-On the book's worked arithmetic,
-Portland to Washington has a
-
-14
-00:00:49.414 --> 00:00:53.570
-floor of about 45 milliseconds
-round trip, whatever the bandwidth.
+00:00:40.131 --> 00:00:43.800
+about 45 milliseconds round
+trip, whatever the bandwidth.

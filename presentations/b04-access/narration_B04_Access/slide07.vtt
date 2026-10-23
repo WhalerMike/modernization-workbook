@@ -5,80 +5,70 @@ WEBVTT
 How.
 
 2
-00:00:00.663 --> 00:00:03.974
-The policy library is
-rolled out in five waves.
+00:00:00.663 --> 00:00:03.624
+The policy library
+rolls out in five waves.
 
 3
-00:00:03.974 --> 00:00:08.650
-Wave one is the foundation, starting
-with blocking legacy authentication.
+00:00:03.624 --> 00:00:07.413
+It starts with the foundation,
+blocking legacy authentication.
 
 4
-00:00:08.650 --> 00:00:12.714
-Wave two is administrators:
-phishing-resistant authentication
+00:00:07.413 --> 00:00:10.122
+Then administrators,
+with phishing-resistant
 
 5
-00:00:12.714 --> 00:00:16.100
-and sign-in only from
-privileged access workstations.
+00:00:10.122 --> 00:00:12.762
+sign-in from privileged
+access workstations.
 
 6
-00:00:16.100 --> 00:00:22.038
-Wave three is everyone: an MFA
-baseline plus device and app controls.
+00:00:12.762 --> 00:00:17.562
+Then everyone, with an MFA baseline
+and device and app controls.
 
 7
-00:00:22.038 --> 00:00:26.188
-Wave four is risk: blocking
+00:00:17.562 --> 00:00:21.037
+Then risk, blocking
 high-risk users and sign-ins.
 
 8
-00:00:26.188 --> 00:00:29.046
-And wave five covers
-the remaining segments,
+00:00:21.037 --> 00:00:25.513
+And finally the remaining segments,
+like guests and workload identities.
 
 9
-00:00:29.046 --> 00:00:32.213
-guests and workload
-identities, and the end state.
-
-10
-00:00:32.213 --> 00:00:36.808
+00:00:25.513 --> 00:00:29.945
 Every policy passes the same gates:
 two to four weeks in report-only,
 
-11
-00:00:36.808 --> 00:00:41.487
-then a pilot ring, then expanding
-rings, then enforced and monitored.
+10
+00:00:29.945 --> 00:00:34.137
+a pilot ring, wider rings, and
+then enforcement with monitoring.
 
-12
-00:00:41.487 --> 00:00:45.762
-A wave starts only after the previous
+11
+00:00:34.137 --> 00:00:38.313
+A wave only starts after the previous
 one has run a week without incident.
 
-13
-00:00:45.762 --> 00:00:51.125
+12
+00:00:38.313 --> 00:00:43.674
 And rollback means switching a policy off
 or back to report-only, never deleting it.
 
-14
-00:00:51.125 --> 00:00:53.850
+13
+00:00:43.674 --> 00:00:46.400
 The library is built to CISA's baseline.
 
+14
+00:00:46.400 --> 00:00:50.199
+It keeps Book 02's policies
+and adds new ones for the
+
 15
-00:00:53.850 --> 00:01:00.746
-It keeps the Federal Modernization Workbook's
-Book 02's policies CA001 to CA017 and
-
-16
-00:01:00.746 --> 00:01:07.542
-adds CA018 to CA038 for the BOD 25-01
-Entra ID requirements, including
-
-17
-00:01:07.542 --> 00:01:14.210
-blocking high-risk users and requiring
-phishing-resistant MFA for all members.
+00:00:50.199 --> 00:00:55.220
+BOD 25-01 requirements; the
+slide shows the numbering.

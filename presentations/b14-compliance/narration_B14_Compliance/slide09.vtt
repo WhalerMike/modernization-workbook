@@ -1,101 +1,68 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:04.175
+00:00:00.050 --> 00:00:04.133
 Ask who owns compliance and the
 answer is often the security office,
 
 2
-00:00:04.175 --> 00:00:06.238
-which means nobody in particular.
+00:00:04.133 --> 00:00:06.612
+which really means nobody in particular.
 
 3
-00:00:06.238 --> 00:00:10.049
+00:00:06.612 --> 00:00:10.424
 The Risk Management Framework
 names an owner for every task.
 
 4
-00:00:10.049 --> 00:00:14.803
-The system owner owns more of those
-tasks than any other role: categorizing,
+00:00:10.424 --> 00:00:15.083
+The system owner carries the most:
+categorizing, implementing controls,
 
 5
-00:00:14.803 --> 00:00:18.713
-selecting and implementing
-controls, remediating findings,
+00:00:15.083 --> 00:00:19.663
+fixing findings, keeping the plan of
+action, and assembling the package.
 
 6
-00:00:18.713 --> 00:00:22.163
-keeping the plan of action,
-and assembling the package.
+00:00:19.663 --> 00:00:23.938
+The CISO sets requirements and the
+common controls systems inherit.
 
 7
-00:00:22.163 --> 00:00:27.209
-The CISO sets control requirements and
-the common controls that systems inherit,
+00:00:23.938 --> 00:00:28.000
+The privacy official approves anything
+touching personal information.
 
 8
-00:00:27.209 --> 00:00:30.938
-and reviews providers' quarterly
-reports or names a delegate.
+00:00:28.000 --> 00:00:31.834
+The authorizing official is the
+only one who can accept the risk,
 
 9
-00:00:30.938 --> 00:00:34.272
-The privacy official approves
-the categorization and
+00:00:31.834 --> 00:00:33.425
+and that can't be delegated.
 
 10
-00:00:34.272 --> 00:00:37.750
-the privacy plan of any system
-with personal information.
+00:00:33.425 --> 00:00:38.125
+They also approve the plans and select
+the assessor before the assessment starts.
 
 11
-00:00:37.750 --> 00:00:41.769
-The authorizing official is the only
-official who can accept the risk,
+00:00:38.125 --> 00:00:42.540
+Several of these roles are government-only,
+so a contractor-heavy team
 
 12
-00:00:41.769 --> 00:00:43.987
-and that acceptance can't be delegated.
-
-13
-00:00:43.987 --> 00:00:49.108
-The official, or the designated representative,
-also approves the categorization,
-
-14
-00:00:49.108 --> 00:00:51.186
-the plans and the assessment plan,
-
-15
-00:00:51.186 --> 00:00:54.600
-and selects the assessor,
-before the assessment starts.
-
-16
-00:00:54.600 --> 00:00:56.745
-Six roles are government-only,
-
-17
-00:00:56.745 --> 00:01:00.863
-among them the authorizing
-official, the C I O and the CISO.
-
-18
-00:01:00.863 --> 00:01:04.761
-A contractor-heavy team can
-prepare every plan and package,
-
-19
-00:01:04.761 --> 00:01:06.750
+00:00:42.540 --> 00:00:46.650
+can prepare every plan and package,
 but can't sign those decisions.
 
-20
-00:01:06.750 --> 00:01:10.239
+13
+00:00:46.650 --> 00:00:50.262
 And keep the roles apart:
-nobody assesses their own work,
+nobody assesses their own work.
 
-21
-00:01:10.239 --> 00:01:13.560
-and the authorizing official
-isn't the system owner.
+14
+00:00:50.262 --> 00:00:52.180
+Now, the package itself.

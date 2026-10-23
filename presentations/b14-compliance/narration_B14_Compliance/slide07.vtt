@@ -1,95 +1,81 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:03.588
-Two more families close through
-governance rather than technology.
+00:00:00.050 --> 00:00:05.300
+Contingency planning and supply chain also
+close through governance, not technology.
 
 2
-00:00:03.588 --> 00:00:07.212
+00:00:05.300 --> 00:00:08.925
 Contingency planning asks
 for a plan, not a capability.
 
 3
-00:00:07.212 --> 00:00:11.270
-An agency can have tested failover,
+00:00:08.925 --> 00:00:12.498
+You can have tested failover,
 two circuits and good backups,
 
 4
-00:00:11.270 --> 00:00:14.350
-and still carry an open
-contingency plan finding,
+00:00:12.498 --> 00:00:17.383
+and still carry an open finding, because
+nothing says who declares a contingency,
 
 5
-00:00:14.350 --> 00:00:18.107
-because nothing says who declares
-a contingency, who is told,
+00:00:17.383 --> 00:00:21.175
+who gets told, what comes back first,
+or when you're back to normal.
 
 6
-00:00:18.107 --> 00:00:21.788
-what comes back first, or when
-operations are back to normal.
+00:00:21.175 --> 00:00:24.513
+And the mission owner, not
+the database administrator,
 
 7
-00:00:21.788 --> 00:00:25.995
-The business impact analysis sets
-the numbers, and the mission owner,
+00:00:24.513 --> 00:00:26.813
+sets the maximum tolerable downtime.
 
 8
-00:00:25.995 --> 00:00:30.276
-not the database administrator, sets
-the maximum tolerable downtime.
+00:00:26.813 --> 00:00:30.350
+For a Moderate system, NIST
+recommends a real exercise
 
 9
-00:00:30.276 --> 00:00:34.013
-For a Moderate system, NIST's
-contingency guide recommends a
+00:00:30.350 --> 00:00:33.337
+with a restore from backup,
+not just a tabletop.
 
 10
-00:00:34.013 --> 00:00:38.200
-functional exercise with a restore
-from backup, not just a tabletop.
+00:00:33.337 --> 00:00:35.237
+Supply chain shifted this year.
 
 11
-00:00:38.200 --> 00:00:39.938
-Supply chain moved this year.
+00:00:35.237 --> 00:00:38.706
+The secure-development
+attestation mandate was rescinded,
 
 12
-00:00:39.938 --> 00:00:45.651
-M-26-05 rescinded the
-secure-development attestation mandate.
+00:00:38.706 --> 00:00:42.037
+and software bills of materials
+became a contract choice.
 
 13
-00:00:45.651 --> 00:00:48.958
-The software and hardware
-inventory is still required;
+00:00:42.037 --> 00:00:44.316
+But the inventory is still required,
 
 14
-00:00:48.958 --> 00:00:53.057
-software bills of materials are now
-a contract choice, and for a cloud
+00:00:44.316 --> 00:00:48.038
+and supply chain policy and
+controls are in every baseline.
 
 15
-00:00:53.057 --> 00:00:57.300
-platform the one to ask for covers
-the runtime production environment.
+00:00:48.038 --> 00:00:50.742
+Providers report their vulnerabilities;
 
 16
-00:00:57.300 --> 00:01:00.318
-Even so, a supply chain
-policy, plan, controls,
+00:00:50.742 --> 00:00:54.450
+the agency reads those reports
+into its own plan of action.
 
 17
-00:01:00.318 --> 00:01:05.600
-acquisition terms and notification
-agreements are in every NIST baseline.
-
-18
-00:01:05.600 --> 00:01:08.890
-And FedRAMP's vulnerability
-rules bind providers;
-
-19
-00:01:08.890 --> 00:01:12.720
-the agency reads their reports
-into its own plan of action.
+00:00:54.450 --> 00:00:56.540
+Next, privacy and training.

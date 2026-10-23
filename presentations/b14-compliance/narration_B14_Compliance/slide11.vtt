@@ -11,83 +11,68 @@ Continuous monitoring
 keeps that day recent.
 
 3
-00:00:06.212 --> 00:00:08.138
-The law already sets the floor.
+00:00:06.212 --> 00:00:09.283
+The law sets the floor:
+testing at least annually,
 
 4
-00:00:08.138 --> 00:00:11.021
-FISMA requires testing
-no less than annually,
-
-5
-00:00:11.021 --> 00:00:13.374
+00:00:09.283 --> 00:00:11.663
 and there's no federal three-year rule.
 
+5
+00:00:11.663 --> 00:00:15.078
+Once monitoring is mature,
+ongoing authorization
+
 6
-00:00:13.374 --> 00:00:19.188
-OMB's Circular A-130 tells agencies to move
-to ongoing authorization when a system
+00:00:15.078 --> 00:00:18.412
+replaces a fixed end date
+with a review frequency.
 
 7
-00:00:19.188 --> 00:00:22.693
-is eligible, and once
-monitoring is mature enough,
+00:00:18.412 --> 00:00:21.975
+The program's own cadence is
+monthly, quarterly and annual.
 
 8
-00:00:22.693 --> 00:00:25.600
-a review frequency replaces the end date.
+00:00:21.975 --> 00:00:24.717
+Each month, regenerate
+the results and plan of
 
 9
-00:00:25.600 --> 00:00:30.063
-NIST is clear that controls which can't
-be automated must still be assessed.
+00:00:24.717 --> 00:00:28.037
+action and report posture to
+the authorizing official.
 
 10
-00:00:30.063 --> 00:00:34.657
-The program's cadence, as its own
-design: monthly, regenerate the results
+00:00:28.037 --> 00:00:31.529
+Each quarter, review every
+provider's ongoing report,
 
 11
-00:00:34.657 --> 00:00:39.175
-and the plan of action, and report
-posture to the authorizing official.
+00:00:31.529 --> 00:00:33.988
+with a named senior official doing it.
 
 12
-00:00:39.175 --> 00:00:43.174
-Quarterly, review each provider's
-Ongoing Certification Report;
-
-13
-00:00:43.174 --> 00:00:48.062
-FedRAMP's rule says agencies must, and they
-should name a senior official to do it.
-
-14
-00:00:48.062 --> 00:00:52.124
-Annually, the independent assessor
+00:00:33.988 --> 00:00:38.087
+Each year, an independent assessor
 re-assesses every control.
 
-15
-00:00:52.124 --> 00:00:55.655
-Agencies must also notify
-FedRAMP when a report raises
-
-16
-00:00:55.655 --> 00:00:59.338
-a concern likely to lead to
-rescinding the authorization.
-
-17
-00:00:59.338 --> 00:01:02.424
-And vendor posture scores
+13
+00:00:38.087 --> 00:00:41.962
+One caution: vendor posture scores
 aren't assessment evidence.
 
-18
-00:01:02.424 --> 00:01:05.975
+14
+00:00:41.962 --> 00:00:45.512
 A score measures progress against
 a vendor's recommendations.
 
-19
-00:01:05.975 --> 00:01:10.750
+15
+00:00:45.512 --> 00:00:50.226
 An assessment result says whether an
 objective is satisfied, and on what evidence.
+
+16
+00:00:50.226 --> 00:00:51.860
+Let's step back to the map.

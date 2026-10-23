@@ -5,91 +5,73 @@ WEBVTT
 So, four decisions.
 
 2
-00:00:01.425 --> 00:00:05.014
-Put the identity-verification
-procedure under the CISO,
+00:00:01.425 --> 00:00:04.169
+Put identity verification under the CISO,
 
 3
-00:00:05.014 --> 00:00:08.752
+00:00:04.169 --> 00:00:07.980
 and treat every authenticator
-reset as an account transfer:
+reset as an account transfer,
 
 4
-00:00:08.752 --> 00:00:13.462
-the most friction on the most sensitive
-accounts, and an alert on every reset.
+00:00:07.980 --> 00:00:13.087
+with the most friction on the most sensitive
+accounts and an alert on every reset.
 
 5
-00:00:13.462 --> 00:00:14.850
-Build one front door.
+00:00:13.087 --> 00:00:16.326
+Build one front door:
+redirect the team mailbox,
 
 6
-00:00:14.850 --> 00:00:18.019
-Redirect the team mailbox,
-triage by authority,
+00:00:16.326 --> 00:00:20.976
+triage by authority, and let
+unanswered approvals expire to reject.
 
 7
-00:00:18.019 --> 00:00:21.188
-and let unanswered
-approvals expire to reject.
+00:00:20.976 --> 00:00:25.802
+Buy the platform's native compliance
+applications first, record an authorization
 
 8
-00:00:21.188 --> 00:00:24.588
-Buy the platform's native
-compliance applications first,
+00:00:25.802 --> 00:00:30.350
+verdict before any SaaS integration, and
+check every feature in your own cloud.
 
 9
-00:00:24.588 --> 00:00:26.288
-and build only what they lack.
-
-10
-00:00:26.288 --> 00:00:30.941
-Record an authorization verdict before
-any SaaS integration is configured,
-
-11
-00:00:30.941 --> 00:00:33.413
-and check every feature in your own cloud.
-
-12
-00:00:33.413 --> 00:00:36.253
+00:00:30.350 --> 00:00:33.190
 And fund the third
 layer: an owner, a gate,
 
-13
-00:00:36.253 --> 00:00:39.626
+10
+00:00:33.190 --> 00:00:36.563
 a clock and an evidence
 feed for every control.
 
-14
-00:00:39.626 --> 00:00:41.825
+11
+00:00:36.563 --> 00:00:38.762
 The next step needs no procurement.
 
-15
-00:00:41.825 --> 00:00:46.741
-Measure before you build: run the
-read-only integration inventory and
+12
+00:00:38.762 --> 00:00:44.374
+Measure before you build, with a read-only
+inventory and sync probe in a test
 
-16
-00:00:46.741 --> 00:00:52.081
-synchronization probe in a test tenant,
-size the catalog from what they find,
+13
+00:00:44.374 --> 00:00:50.075
+tenant, and plan the move off AWS's
+ServiceNow connector before March 31, 2027.
 
-17
-00:00:52.081 --> 00:00:56.913
-and plan the move off AWS's ServiceNow
-connector before March 31, 2027.
-
-18
-00:00:56.913 --> 00:01:01.613
+14
+00:00:50.075 --> 00:00:54.775
 Operations is where modernization
 becomes routine or quietly reverts.
 
-19
-00:01:01.613 --> 00:01:07.224
-The Federal Modernization Workbook's Book
-15 has the detail, every claim footnoted.
+15
+00:00:54.775 --> 00:00:58.500
+Book 15 has the detail,
+every claim footnoted.
 
-20
-00:01:07.224 --> 00:01:08.040
+16
+00:00:58.500 --> 00:00:59.330
 Thank you.

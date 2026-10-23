@@ -1,36 +1,65 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:04.575
-This briefing comes from Book 11 of
-the Federal Modernization Workbook,
+00:00:00.050 --> 00:00:00.763
+Welcome.
 
 2
-00:00:04.575 --> 00:00:09.100
-Zero Trust and Assessment: how an
-agency measures its Zero Trust posture
+00:00:00.763 --> 00:00:05.046
+This briefing is Book 11 of the
+Federal Modernization Workbook,
 
 3
-00:00:09.100 --> 00:00:13.550
-across every estate it runs, and turns
-what the tools find into a program.
+00:00:05.046 --> 00:00:06.824
+Zero Trust and Assessment.
 
 4
-00:00:13.550 --> 00:00:18.231
-I'll take four questions: why Zero Trust
-is a whole-agency property, what the
+00:00:06.824 --> 00:00:10.987
+It's about how an agency measures
+its Zero Trust posture across every
 
 5
-00:00:18.231 --> 00:00:22.988
-mandates and tools actually cover, who
-owns the posture, and how to assess it.
+00:00:10.987 --> 00:00:15.075
+estate it runs, and then turns what
+the tools find into a real program.
 
 6
-00:00:22.988 --> 00:00:26.482
-The short version: unify
-first, assess second,
+00:00:15.075 --> 00:00:16.450
+We'll take four questions.
 
 7
-00:00:26.482 --> 00:00:30.700
+00:00:16.450 --> 00:00:19.250
+Why is Zero Trust a whole-agency property?
+
+8
+00:00:19.250 --> 00:00:21.763
+What do the mandates and
+tools actually cover?
+
+9
+00:00:21.763 --> 00:00:23.162
+Who owns the posture?
+
+10
+00:00:23.162 --> 00:00:24.500
+And how do you assess it?
+
+11
+00:00:24.500 --> 00:00:29.268
+If you keep one idea, keep this
+one: unify first, assess second,
+
+12
+00:00:29.268 --> 00:00:33.550
 and treat every tool as
 evidence, never as the verdict.
+
+13
+00:00:33.550 --> 00:00:38.625
+The slides and notes carry every detail
+and source; I'll stick to what matters.
+
+14
+00:00:38.625 --> 00:00:42.050
+Let's start with why one score
+has to cover the whole agency.

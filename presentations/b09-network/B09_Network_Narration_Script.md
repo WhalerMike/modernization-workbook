@@ -2,136 +2,60 @@
 
 ## Slide 1 — Why Does Physics Decide the Architecture?
 
-This briefing comes from Book 09 of the Federal Modernization Workbook, Network and Transport: how to move branch traffic off the long hairpin without turning a latency gain into a compliance loss.
-
-I'll take four questions: why physics decides the architecture, what has to change, who owns the network, and how to get there.
-
-The short version: no product shortens a fiber path, so buy transport on physics, and govern it as compliance.
+Welcome. This briefing is Book 09 of the Federal Modernization Workbook, Network and Transport. It's about moving branch traffic off the long hairpin through a distant data center, without turning a latency gain into a compliance loss. Faster and governed are different things, and the branch needs both. We'll go in four steps: why physics decides the architecture, what has to change, who owns the network, and how to get there. Here's the short version up front. No product shortens a fiber path. So buy transport on physics, and govern it as compliance. Let's start with the physics.
 
 ## Slide 2 — Distance sets a latency floor no product moves
 
-Why does physics decide the architecture? Because part of every delay on a wide-area path is the time light takes to travel through glass. ITU-T G.114 plans on 5 microseconds per kilometer of fiber, about one millisecond for every 200 kilometers, one way. New York to London has a round-trip floor of 56 milliseconds before any equipment touches a packet. Optimization works on the gap above that floor, never on the floor.
-
-G.114's 150 milliseconds is often quoted as the network's voice budget. It isn't. It's mouth to ear, and the terminals take 50 to 80 milliseconds of it, which leaves the network roughly 70 to 100. On the book's worked arithmetic, a Seattle office hairpinning through northern Virginia spends about 60 milliseconds one way on the detour: most of the allowance.
-
-A synchronous commit pays a round trip every time, and no bandwidth changes that. So the answer is to need less global synchronization, not faster synchronization.
+Physics decides the architecture because part of every delay on a wide-area path is simply the time light takes to travel through glass. Roughly, it's one millisecond for every two hundred kilometers of fiber, one way. New York to London has a round-trip floor of fifty-six milliseconds before any equipment touches a packet. Optimization works on the gap above that floor, never on the floor itself. There's a common misreading too. The often-quoted 150-millisecond voice budget is mouth to ear, and the phones themselves use a big share of it. So a West Coast office hairpinning through northern Virginia can spend most of the network's allowance on the detour alone. And a synchronous commit pays a round trip every time, whatever the bandwidth. The answer is needing less global synchronization, not faster synchronization. Which leads to a key distinction.
 
 ## Slide 3 — Transport is physics; control is compliance
 
-Chapter 02 pulls apart two decisions that programs keep merging. Choosing a pipe, whether fiber, MPLS, low earth orbit, 5G or direct internet access, is a physics decision. Choosing what governs the pipe is a compliance decision.
-
-Direct internet access solves one problem, the geographic hairpin. It satisfies none of the protection controls: boundary protection, flow enforcement, transmission confidentiality, malware inspection and monitoring all come from the control layer. Transport closes exactly one control family, telecommunications diversity. So a branch moved from a governed hairpin to bare local breakout is a compliance regression with better latency.
-
-And the governor is itself attack surface. BOD 26-02 targets end-of-support edge devices on the agency boundary. On February 25, 2026, Emergency Directive 26-03 ordered action on Cisco SD-WAN systems after actors were found compromising them and keeping long-term persistence. Protect the controller and every edge before they carry traffic.
+Programs keep merging two decisions that should stay separate. Choosing a pipe, whether fiber, MPLS, satellite, 5G or direct internet, is a physics decision. Choosing what governs the pipe is a compliance decision. Direct internet access solves exactly one problem, the hairpin. It satisfies none of the protection controls, like boundary protection, inspection and monitoring. So moving a branch from a governed hairpin to bare local breakout is a compliance regression with better latency. And the governor is itself attack surface. Federal directives already target end-of-support edge devices, and an emergency directive in February 2026 ordered action on SD-WAN systems after attackers were found inside them. So protect the controller and every edge before they carry traffic. Next, what policy actually requires.
 
 ## Slide 4 — TIC 3.0 sets goals, but it isn't requirement-free
 
-What does federal policy actually require? Read from the documents, TIC 3.0 is descriptive, not prescriptive. There are four use cases, Traditional, Branch Office, Remote User and Cloud, and no SASE use case. The Security Capabilities Catalog, version 3.3, sets goals, not methods. Two statements constrain a branch: policy enforcement parity on every path, and preserving CISA's visibility as branches connect directly.
-
-OMB M-26-14 rescinded M-21-31 on May 22, 2026. Logs must be searchable for six months and retrievable for a year, and must show source and destination addresses, ports and session attributes. The first agency logging plan is due November 18, 2026.
-
-When branches leave MTIPS, the sensor telemetry CISA received stops. The replacement is CLAW, CISA's Comprehensive Log Aggregation Warehouse, and onboarding needs the agency, CISA and the provider together. Keep MTIPS until CISA confirms parity.
-
-Technology-neutral isn't requirement-free: four binding obligations still land on branch equipment.
+Read from the documents, TIC 3.0 describes goals; it doesn't prescribe methods. It has four use cases, and none of them is SASE. Two statements matter most for a branch: the same policy enforcement on every path, and keeping CISA's visibility as branches connect directly. Logging is the other half. The current federal logging memo sets retention and content rules, and the first agency logging plan is due November 18, 2026. Here's the trap. When branches leave the managed trusted internet service, the telemetry CISA was receiving stops. The replacement is CISA's log aggregation warehouse, and onboarding needs the agency, CISA and the provider working together. So keep the old service until CISA confirms parity. Technology-neutral isn't requirement-free. Four binding obligations still land on branch equipment. Now, where data and trust should live.
 
 ## Slide 5 — Centralize the truth; let tokens carry the trust
 
-Chapter 04 separates two meanings of centralize. Logical centralization, one authoritative source of truth with every other copy derived, is almost always right. Physical centralization, one server in one place, stops at three walls: the speed of light, blast radius and data residency.
-
-Token-based security removes the strongest old reason to fragment. When every request carries a verifiable identity, one store can serve many trust domains. Inbound, a multitenant service checks each Entra token's tenant ID against the tenant the data was stored under. Outbound, the service signs in to its database with a short-lived token in the password field, valid 5 to 60 minutes, so the long-lived database password disappears. The price is that isolation lives in code.
-
-Then choose the weakest consistency each flow tolerates. Azure Cosmos DB, as one documented example, puts multi-region strong write latency at twice the farthest round trip plus 10 milliseconds, and blocks strong consistency beyond 8,000 kilometers by default.
+The book separates two meanings of centralize. Logical centralization means one authoritative source of truth, with every other copy derived, and that's almost always right. Physical centralization means one server in one place, and it runs into three walls: the speed of light, blast radius and data residency. Tokens remove the strongest old reason to fragment. When every request carries a verifiable identity, one store can safely serve many trust domains. Going out, a service can sign in to its database with a short-lived token, so the long-lived database password disappears. The price is that isolation now lives in code. Then pick the weakest consistency each flow can tolerate, because strong consistency across regions is expensive. Next, the tools that govern the path.
 
 ## Slide 6 — SD-WAN reaches the floor; SASE makes it lawful
 
-SD-WAN is the governor's first layer. It splits traffic into a lean class, consensus, voice and sign-in, and a bulk class, backups, patches and re-syncs, and keeps bulk transfers from queuing ahead of latency-critical packets. It recovers route inflation: Microsoft measured a median 78 milliseconds from UK South to East US, against a fiber floor of about 62. And it tightens the tail with forward error correction, packet duplication and fast failover. It reaches the floor; it never goes below it.
-
-SASE sits above it: secure web gateway, CASB, firewall and zero trust network access. CISA lists SD-WAN among SASE's networking tools, but mandates neither, and SD-WAN alone doesn't close the boundary, flow and malware controls.
-
-Two cautions. The enforcement point has a location, so a distant point of presence is a hairpin with a different name. And FedRAMP status differs by offering, not by vendor, so read the Marketplace when the requirement is written.
+SD-WAN is the governor's first layer. It splits traffic into a lean class, like voice and sign-in, and a bulk class, like backups and patches, so big transfers don't queue ahead of time-critical packets. It also recovers wasted routing: Microsoft measured paths well above the fiber floor, and SD-WAN can close much of that gap. It reaches the floor; it never goes below it. SASE sits on top, with web gateway, firewall and zero trust access. CISA mentions SD-WAN as part of SASE but mandates neither, and SD-WAN alone doesn't close the boundary and inspection controls. Two cautions. The enforcement point has a location, so a distant point of presence is just a hairpin with a different name. And FedRAMP status differs by offering, not by vendor, so check the Marketplace when you write the requirement. Re-routing also breaks things, for known reasons.
 
 ## Slide 7 — On re-routed paths, design around the real list
 
-Re-routing a branch breaks things for a short list of reasons, so design around the list. Proxies reap idle connections, TLS inspection breaks pinned certificates and channel-bound authentication, and a change in the client's apparent source address resets established connections. A path change doesn't break TCP sequence numbers. Address continuity is the property that matters.
-
-Kerberos tolerates NAT under Windows defaults: the domain controller doesn't put client addresses in tickets or check them. And there's no five-millisecond requirement; the five is minutes of allowed clock skew. What genuinely needs a reachable domain controller is short: initial logon, service tickets for on-premises services, Group Policy, password change and hybrid join. Leave that path out and everything works except signing in, while Kerberos quietly falls back to NTLM.
-
-Round trips dominate chatty applications. In the book's illustrative arithmetic, a better branch path saves 17 to 25 percent; cutting 30 sequential round trips to three saves about an order of magnitude.
+Re-routing a branch breaks things for a short list of reasons, so design around that list. Proxies drop idle connections, TLS inspection breaks pinned certificates, and changing a client's apparent source address resets its connections. Address continuity is what matters. Two myths get cleared up here. Kerberos works through address translation under Windows defaults. And there's no five-millisecond requirement; the five is minutes of allowed clock skew. What really needs a reachable domain controller is short, like first sign-in and Group Policy. Leave that path out and everything works except signing in, while Kerberos quietly falls back to NTLM. And for chatty applications, round trips dominate. On the book's illustrative numbers, a better path saves maybe a fifth, but cutting thirty round trips to three saves about an order of magnitude. Next, proving the device on the wire.
 
 ## Slide 8 — 802.1X proves the device; NPS is the last AD tie
 
-Every token in this book assumes the device on the wire is the device it claims to be. 802.1X turns that assumption into a proof at the switch port. Use EAP-TLS, mutual certificate authentication, for every managed device. Password methods are failing on their own: Credential Guard blocks PEAP-MSCHAPv2 single sign-on, and the October 2026 Windows update restricts NTLMv1-derived credentials too.
-
-The RADIUS server is usually the last piece of the network standing on Active Directory. Windows NPS authorizes against AD computer objects, and Entra joined devices don't support that. There's no Entra RADIUS product; the NPS extension adds MFA, but NPS still authenticates against AD. And NPS has no posture engine: Network Access Protection was deprecated back in Windows Server 2012 R2.
-
-So posture comes from Intune's compliance retrieval service, read by a NAC platform, and each device lands in production, remediation, quarantine, guest or IoT. After the Blast-RADIUS attack, require Message-Authenticator everywhere.
+Every token in this book assumes the device on the wire is the device it claims to be. 802.1X turns that assumption into proof at the switch port. Use certificate-based authentication for every managed device; the password methods are already being broken by Windows security changes. The RADIUS server is usually the last piece of the network still standing on Active Directory. Windows NPS checks against AD computer objects, which Entra-joined devices don't have. There's no Entra RADIUS product, and NPS has no device health engine. So posture comes from Intune compliance, read by a network access control platform, and each device lands in the right place: production, remediation, quarantine, guest or IoT. And after the Blast-RADIUS attack, require message authentication everywhere. Now we can put the pieces together.
 
 ## Slide 9 — One rule, four branch patterns, five decisions
 
-Chapter 08 puts the pieces together with one rule: align each flow's consistency class with its transport class. Only authoritative writes and in-region quorum ride the lean path, and neither crosses a region synchronously.
-
-At the branch, four patterns cover practice. A, the hairpin: assessed, but every flow pays the detour. B, bare local breakout: not an option in the TIC use case at all. C, governed local breakout, an SD-WAN edge plus a nearby SASE point of presence: the reference pattern. D, agent-delivered SASE, for small and roaming sites, if the point of presence is close and agentless devices are covered.
-
-Five decisions carry most of the risk: one writer per region; a written path policy, which SC-7(4) already asks for; the boundary change before cutover; the governor protected before it carries traffic; and the path made evidence. Each fails quietly, so each comes with a check.
+The pieces come together under one rule: match each flow's consistency needs to its transport class. Only authoritative writes and in-region quorum ride the lean path, and neither crosses a region synchronously. At the branch, four patterns cover practice. The hairpin is assessed, but every flow pays the detour. Bare local breakout isn't an option in the TIC use case at all. Governed local breakout, an SD-WAN edge plus a nearby SASE point, is the reference pattern. And agent-delivered SASE suits small and roaming sites. Then five decisions carry most of the risk: one writer per region, a written path policy, the boundary change before cutover, the governor protected before it carries traffic, and the path made into evidence. Each fails quietly, so each comes with a check. Who makes those decisions?
 
 ## Slide 10 — Who decides, who does the work for the network
 
-Who owns it? The most expensive mistakes in this book are ownership gaps: a circuit bought before anyone owned the governor, a cutover before anyone filed the boundary change, a telemetry contract cancelled before its replacement was confirmed. So the rule is one decider per row.
-
-The sponsor and CIO decide the governor platforms and the order of branch waves. The authorizing official decides the boundary change, the SC-7(4) exception and every standing exception. The CISO sets the control requirements and owns confirming CISA telemetry parity.
-
-The system owner decides, site by site, whether the governor is live and logging before traffic moves. Security architecture decides TIC conformance and writes target attributes into every refresh. And under the Federal Acquisition Regulation only a contracting officer can enter into or terminate a contract, so no engineer can cancel a circuit.
-
-Network engineering and security operations do the work.
+The most expensive mistakes in this book are ownership gaps. A circuit bought before anyone owned the governor. A cutover before anyone filed the boundary change. A telemetry contract cancelled before its replacement was confirmed. So the rule is one decider per decision. The sponsor and CIO choose the governor platforms and the order of branch waves. The authorizing official decides the boundary change and every standing exception. The CISO sets the control requirements and confirms CISA telemetry parity. The system owner decides, site by site, whether the governor is live and logging before traffic moves. Security architecture decides TIC conformance and writes the target into every refresh. And only a contracting officer can enter into or end a contract, so no engineer can cancel a circuit. Next, how to get there when the target is years away.
 
 ## Slide 11 — The long interim: the refresh is the fork
 
-How do you get there when the target is years away? Make the case by elimination. The legacy telecom contracts had all ended by May 31, 2026. The hairpin is still permitted, but CISA's own guidebook says it raised the cost of using cloud services. A new access point is a capital commitment, VPN backhaul is a hairpin, and Microsoft no longer recommends ExpressRoute for Microsoft 365. What's left is local breakout, a cloud security stack and a branch-edge policy layer.
-
-Meanwhile three deadlines compete for the same staff: the M-26-14 logging plan, the M-26-15 post-quantum plan and BOD 26-04.
-
-BOD 26-02 is the fork. End-of-support edge devices must be off agency networks by about August 5, 2027, so a refresh happens anyway. Tell whoever scopes it, in writing, what the target needs. Like-for-like spends the same money and closes the question for the life of the equipment.
+When the target is years away, the book makes the case by elimination. The legacy telecom contracts have ended. The hairpin is still allowed, but CISA itself says it raises the cost of using the cloud. A new access point is a big capital commitment, and VPN backhaul is just another hairpin. What's left is local breakout, a cloud security stack and a policy layer at the branch edge. Meanwhile several federal deadlines compete for the same staff. Here's the fork. A directive requires end-of-support edge devices off agency networks by about August 2027, so a refresh is happening anyway. Tell whoever scopes it, in writing, what the target needs. A like-for-like refresh spends the same money and locks in the old design for the life of the equipment. A worked example shows what's at stake.
 
 ## Slide 12 — Field offices: fix the circuit, not the content
 
-Chapter 11 is a worked case: a large field-office estate, about 1,500 offices and 70,000 endpoints, asked to fund a 50-million-dollar refresh of a Configuration Manager distribution point in every office.
-
-Microsoft's published limit is 4,000 clients per distribution point. On capacity, the estate needs 24, two at each of 12 hubs, for 96,000 clients. The other 1,476 exist only to compensate for slow branch circuits. So fix the circuit: dedicated internet access sized to seats, a 5G continuity path, and an SD-WAN overlay.
-
-On the book's planning assumptions, the network program needs about 10 million dollars of first-year capital and reaches a positive cumulative position in year four. But the financial case turns on one number. Breakeven is 873 dollars of current MPLS cost per office per month; below that, argue capability, not savings.
-
-And no office's MPLS is retired until its replacement telemetry is confirmed.
+This worked case is a large field-office estate, about fifteen hundred offices, asked to fund a fifty-million-dollar refresh of a software distribution server in every office. Microsoft's published limit means the whole estate needs only about two dozen of those servers, at a dozen hubs. The rest exist only to make up for slow branch circuits. So fix the circuit instead: right-sized internet access, a 5G backup path and an SD-WAN overlay. On the book's planning assumptions, the network program needs about ten million dollars of first-year capital and pays back in year four. But the case turns on one number, the current MPLS cost per office. Below the breakeven, argue capability, not savings. And no office's MPLS is retired until its replacement telemetry is confirmed. Next, one exception that needs a signature.
 
 ## Slide 13 — Microsoft 365 Optimize: a signed SC-7(4) exception
 
-Microsoft says to send its Optimize traffic straight to Microsoft, without TLS inspection. The boundary says inspect everything. Both positions hold up, so the gap is a decision someone signs.
-
-Optimize is small: three endpoint sets, for Exchange Online, SharePoint and OneDrive, and Teams media, which has no names and must be steered by IP prefix. Exempting only Optimize is narrower than Microsoft asks, and it leaves sign-in on the inspected path.
-
-Name what the bypass punctures: SI-3, SI-4(10) where it's selected, AC-4 and AU-3. SC-8 is not a gap. The vehicle is SC-7(4): each exception documented with its mission need and duration, and reviewed.
-
-The assessor's attack is tenant-to-tenant exfiltration. Only Windows device-side tenant restrictions v2 reaches the SharePoint and Exchange data plane, so it's a precondition to cutover. Three instruments carry the decision: the authorizing official's memo, the system owner's site register and the architecture review board's determination.
+Microsoft says to send its most latency-sensitive traffic straight to Microsoft, without TLS inspection. The boundary says inspect everything. Both positions hold up, so the gap is a decision someone has to sign. The Optimize traffic is small: Exchange, SharePoint and OneDrive, and Teams media. Exempting only that is narrower than Microsoft asks, and it keeps sign-in on the inspected path. The book names exactly which controls the bypass weakens, and the vehicle is a documented boundary exception, with mission need, duration and review. An assessor's main worry will be data leaving to another tenant. Only device-side tenant restrictions reach that data path, so they're a precondition to cutover. Three signed documents carry the decision, and the notes name them. All of this depends on getting the order right.
 
 ## Slide 14 — Governor before traffic, boundary before cutover
 
-Order decides whether modernization is a gain or a regression. Step zero: bring the governor under vulnerability management, privileged access and logging. Then buy the pipe on measured physics, deploy the governor before production traffic, decide the boundary change before the first cutover, handle Microsoft 365 through its own exception, and register the evidence, confirming CISA telemetry parity before any legacy circuit ends. No memo mandates that order; it's an engineering dependency.
-
-Phase inversion is what happens when cloud migration runs ahead of transport. With no transport metrics, slowness is attributed to the cloud, the remedies raise cloud spend, and the cause never enters the data. The book labels that an inference built on documented parts, and names better-evidenced competitors.
-
-So measure in your own estate. A paired-branch study, two comparable branches instrumented for 30 days before and after a change at one, gives an effect size a budget examiner will accept.
+Order decides whether modernization is a gain or a regression. Step zero is bringing the governor under vulnerability management, privileged access and logging. Then buy the pipe on measured physics, deploy the governor before production traffic, decide the boundary change before the first cutover, handle Microsoft 365 through its own exception, and confirm CISA telemetry before any legacy circuit ends. No memo mandates that order; it's an engineering dependency. Get it wrong and you get phase inversion: cloud migration runs ahead of transport, slowness gets blamed on the cloud, cloud spend goes up, and the real cause never shows up in the data. The book is careful to call that an inference, not a proven fact. So measure in your own estate. Instrument two comparable branches for thirty days before and after a change at one, and you get evidence a budget examiner will accept. So, the decisions.
 
 ## Slide 15 — Decisions to make, and next steps
 
-So, four decisions.
-
-Adopt the sequence as policy: the governor secured and live before traffic, the boundary change decided before cutover, and CISA telemetry parity confirmed before any MTIPS or MPLS circuit ends.
-
-Put the target attributes in writing for every BOD 26-02 replacement, before the August 2027 deadline spends the money like for like.
-
-Decide the Microsoft 365 Optimize exception with tenant restrictions v2 from the device as a precondition.
-
-And name one decider per row, from the authorizing official to the contracting officer.
-
-The next step needs no award: write the application-to-path policy that SC-7(4) already asks for, and instrument a sample of branches before the next migration wave, because that baseline can't be rebuilt afterward.
-
-Buy transport on physics and govern it as compliance, and the branch gets faster without getting weaker. The Federal Modernization Workbook's Book 09 has the detail, every claim footnoted. Thank you.
+Here are the four decisions. First, adopt the sequence as policy: the governor secured and live before traffic, the boundary change decided before cutover, and CISA telemetry parity confirmed before any legacy circuit ends. Second, put the target in writing for every edge-device replacement, before the August 2027 deadline spends the money like for like. Third, decide the Microsoft 365 Optimize exception, with device-side tenant restrictions as a precondition. And fourth, name one decider per decision, from the authorizing official to the contracting officer. The next step is to write the application-to-path policy the boundary controls already ask for, and to instrument a sample of branches before the next migration wave, because that baseline can't be rebuilt afterward. Buy transport on physics and govern it as compliance, and the branch gets faster without getting weaker. Book 09 has the detail, every claim footnoted. Thank you.

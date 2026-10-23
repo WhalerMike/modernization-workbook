@@ -1,93 +1,83 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:03.428
+00:00:00.050 --> 00:00:03.421
 A platform that detects
-perfectly and closes slowly
+perfectly but closes slowly
 
 2
-00:00:03.428 --> 00:00:06.575
+00:00:03.421 --> 00:00:06.563
 produces an accurate list
 of things nobody fixed.
 
 3
-00:00:06.575 --> 00:00:08.300
+00:00:06.563 --> 00:00:08.287
 Tempo keeps that list short.
 
 4
-00:00:08.300 --> 00:00:12.643
-The program declares a response
-window for each severity:
+00:00:08.287 --> 00:00:13.087
+The program sets a response window for
+each severity, and external clocks win,
 
 5
-00:00:12.643 --> 00:00:16.263
-immediate for P1, then an
-hour, a day and three days.
+00:00:13.087 --> 00:00:16.912
+like the vulnerability directive
+or CISA's incident notice.
 
 6
-00:00:16.263 --> 00:00:22.183
-External clocks win: a known exploited
-vulnerability runs on BOD 26-04,
-
-7
-00:00:22.183 --> 00:00:26.062
-and an incident runs on
-CISA's one-hour notice.
-
-8
-00:00:26.062 --> 00:00:28.934
+00:00:16.912 --> 00:00:19.763
 The usual ticket sends
 a person to a console,
 
-9
-00:00:28.934 --> 00:00:31.487
-and their reply of done is an assertion.
+7
+00:00:19.763 --> 00:00:22.613
+and their reply of done
+is just an assertion.
 
-10
-00:00:31.487 --> 00:00:35.596
+8
+00:00:22.613 --> 00:00:26.721
 The program's rule is that wherever
 a machine can reach the surface,
 
-11
-00:00:35.596 --> 00:00:37.613
+9
+00:00:26.721 --> 00:00:28.738
 the ticket authorizes a machine.
 
+10
+00:00:28.738 --> 00:00:33.427
+A person approves, and the platform
+executes from a versioned plan,
+
+11
+00:00:33.427 --> 00:00:36.838
+after a dry run, then re-reads
+the object to verify.
+
 12
-00:00:37.613 --> 00:00:42.351
-A person approves; the platform
-executes from a versioned plan under
+00:00:36.838 --> 00:00:40.562
+By default, a named approver
+releases each instance.
 
 13
-00:00:42.351 --> 00:00:46.924
-a service identity, after a dry run,
-and re-reads the object to verify.
+00:00:40.562 --> 00:00:45.539
+Only classes the authorizing official
+accepts in advance run on their own,
 
 14
-00:00:46.924 --> 00:00:49.925
-A class qualifies when
-it passes six tests.
+00:00:45.539 --> 00:00:48.349
+and some, like Conditional
+Access, never do.
 
 15
-00:00:49.925 --> 00:00:54.800
-At L3, the default, a named
-approver releases each instance.
-
-16
-00:00:54.800 --> 00:00:59.050
-At L4 the authorizing official
-accepts the whole class in advance.
-
-17
-00:00:59.050 --> 00:01:03.750
-Conditional Access and tenant-wide
-role changes stay at L3 permanently.
-
-18
-00:01:03.750 --> 00:01:07.136
+00:00:48.349 --> 00:00:51.736
 Where no machine can reach,
 the fallback is a declared,
 
-19
-00:01:07.136 --> 00:01:11.210
+16
+00:00:51.736 --> 00:00:55.738
 recorded privileged session,
 never a quiet trip to the console.
+
+17
+00:00:55.738 --> 00:00:57.500
+Next, reciprocity.

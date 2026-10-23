@@ -2,70 +2,105 @@
  "1": [
   [
    0.05,
-   6.875,
+   0.713,
+   "Welcome."
+  ],
+  [
+   0.762,
+   6.925,
    "This briefing comes from Book 16 of the Federal Modernization Workbook, People: Training and Education."
   ],
   [
-   6.925,
-   7.275,
-   "It's written for C I Os and CISOs, workforce and training leads, I S S Os, and help desk leads."
+   7.688,
+   6.625,
+   "It's written for CIOs and CISOs, workforce and training leads, ISSOs, and help desk leads."
   ],
   [
-   14.2,
-   11.162,
-   "I'll take four questions: why people, not tools, close the gap; what the program teaches; who owns workforce readiness; and how to run the curriculum and measure whether it worked."
+   14.312,
+   1.413,
+   "I'll take four questions."
   ],
   [
-   25.363,
+   15.725,
+   3.05,
+   "Why do people, not tools, close the gap?"
+  ],
+  [
+   18.775,
+   1.6,
+   "What does the program teach?"
+  ],
+  [
+   20.375,
+   1.788,
+   "Who owns workforce readiness?"
+  ],
+  [
+   22.163,
+   3.212,
+   "And how do you run the curriculum and measure whether it worked?"
+  ],
+  [
+   25.375,
    4.1,
    "The short version: every book before this one changes what someone does."
   ],
   [
-   29.462,
+   29.475,
    6.487,
    "Tools enforce the new rules, but people run the estate, and a program that trains last pays twice."
+  ],
+  [
+   35.962,
+   1.988,
+   "Let's start with what tools can't do."
   ]
  ],
  "2": [
   [
    0.05,
-   5.088,
+   1.9,
+   "Here's the gap in one example."
+  ],
+  [
+   1.95,
+   5.138,
    "A Conditional Access policy can require phishing-resistant sign-in for every user."
   ],
   [
-   5.138,
-   6.513,
-   "It can't decide what happens when a caller tells the help desk their security key is lost and they need to sign in now."
+   7.088,
+   7.013,
+   "What it can't do is decide what happens when a caller tells the help desk their security key is lost and they need in right now."
   ],
   [
-   11.65,
-   5.688,
-   "An entitlement review can list everyone with access, but it can't make the owner read the list."
+   14.1,
+   5.5,
+   "An access review can list everyone with access, but it can't make the owner read the list."
   ],
   [
-   17.337,
-   6.775,
-   "A drift check can find a server that left its baseline, but it can't say whether the exception behind it was ever approved."
+   19.6,
+   5.188,
+   "The program's view is that this technology moves risk from configuration to judgment."
   ],
   [
-   24.113,
-   5.35,
-   "The program's position is that this technology moves risk from configuration to judgment."
+   24.788,
+   4.15,
+   "There are fewer human decisions left, but each one carries more weight."
   ],
   [
-   29.462,
-   4.013,
-   "What's left is a smaller number of human decisions that carry more weight."
+   28.938,
+   9.45,
+   "And almost every book splits a job into deciding and doing, and hands some decisions to people outside IT, like HR staff and application owners."
   ],
   [
-   33.475,
-   9.738,
-   "And almost every book splits a job into deciding and doing, and moves some decisions to people outside I T, such as HR staff and application owners."
+   38.388,
+   6.85,
+   "Someone who doesn't know the new rule falls back on the old habit, which is exactly what the modernization was meant to remove."
   ],
   [
-   43.212,
-   6.925,
-   "A person who doesn't know the new rule falls back on the old habit, which is exactly what the modernization was meant to remove."
+   45.237,
+   1.6,
+   "So why not train at the end?"
   ]
  ],
  "3": [
@@ -76,256 +111,236 @@
   ],
   [
    4.55,
-   3.562,
-   "The program's observation is that this is paid for twice."
+   3.075,
+   "The program's point is that this gets paid for twice."
   ],
   [
-   8.113,
+   7.625,
    2.025,
    "The first payment comes at cutover."
   ],
   [
-   10.137,
+   9.65,
    3.3,
    "Users who weren't taught the new sign-in call the help desk."
   ],
   [
-   13.438,
-   8.975,
-   "A help desk that wasn't taught the new verification either refuses legitimate callers or resets accounts without the checks meant to stop impersonation."
+   12.95,
+   8.588,
+   "A help desk that wasn't taught the new verification either turns away real callers or resets accounts without the checks meant to stop impersonation."
   ],
   [
-   22.413,
+   21.538,
    6.938,
    "Administrators ask for standing roles until things settle, and exceptions granted under pressure tend to stay."
   ],
   [
-   29.35,
-   2.112,
-   "The second payment comes afterward."
+   28.475,
+   7.475,
+   "The second payment comes afterward, finding and removing the workarounds and unlearning the habits, which is slower than learning."
   ],
   [
-   31.462,
-   7.125,
-   "The workarounds have to be found and removed, people retrained, and habits unlearned, which is slower than learning."
+   35.95,
+   7.375,
+   "And federal rules already put training before the change: before access, and whenever the environment changes significantly."
   ],
   [
-   38.587,
-   3.4,
-   "Federal rules already put training before the change."
-  ],
-  [
-   41.987,
-   8.2,
-   "OPM's rule requires awareness material before access, and training whenever the system environment or procedures change significantly."
-  ],
-  [
-   50.188,
-   10.275,
-   "nist's controls ask for training when system changes require it, and O M B Circular A-130 requires role-based training before access is authorized."
-  ],
-  [
-   60.462,
+   43.325,
    4.6,
    "So training last also puts the agency behind requirements it already has."
+  ],
+  [
+   47.925,
+   1.762,
+   "Let's look at those requirements."
   ]
  ],
  "4": [
   [
    0.05,
-   12.075,
-   "FISMA is a staffing requirement as much as a course requirement: the agency head must have trained personnel sufficient to comply, and the C I O trains and oversees people with significant security duties."
+   3.625,
+   "FISMA is a staffing requirement as much as a course requirement."
   ],
   [
-   12.125,
-   5.412,
-   "OPM's rule names five audiences, from every user to I T operations staff."
+   3.675,
+   8.113,
+   "The agency head must have enough trained people to comply, and the C I O trains and oversees those with significant security duties."
   ],
   [
-   17.538,
-   7.3,
-   "Circular A-130 has the chief human capital officer and the C I O set competency requirements together."
+   11.787,
+   11.713,
+   "OPM's rule names five audiences, from every user to IT operations staff, and agencies must code their cyber positions to the NICE Framework, nist's vocabulary of work roles."
   ],
   [
-   24.837,
-   12.363,
-   "And the Federal Cybersecurity Workforce Assessment Act requires every agency to identify its cyber positions and code each one to the NICE Framework, nist's vocabulary of forty-two work roles."
+   23.5,
+   2.163,
+   "But those codes haven't been reliable."
   ],
   [
-   37.2,
-   1.887,
-   "The codes haven't been reliable."
+   25.663,
+   9.925,
+   "GAO found most agencies had miscoded a share of their IT management positions, so the program treats codes as one roster input, not settled fact."
   ],
   [
-   39.087,
-   10.213,
-   "In 2019, GAO found that 22 of 24 agencies had given a non-I T code to about nineteen percent of their I T management positions."
+   35.587,
+   2.875,
+   "Just as important is what the rules don't require."
   ],
   [
-   49.3,
-   4.425,
-   "So the program treats codes as one roster input, not settled fact."
+   38.462,
+   7.562,
+   "There's no civilian certification mandate, and the Defense Department's certification program doesn't apply to civilian agencies."
   ],
   [
-   53.725,
-   10.325,
-   "Just as important is what the rules don't require: no civilian certification mandate, and the Defense Department's eighty-one forty program doesn't apply to civilian agencies."
+   46.025,
+   2.475,
+   "Now, what the program actually teaches."
   ]
  ],
  "5": [
   [
    0.05,
-   1.675,
-   "Now what the program teaches."
+   2.525,
+   "The program separates education from training."
   ],
   [
-   1.725,
-   2.263,
-   "It separates education from training."
+   2.575,
+   5.5,
+   "Education builds the mental model, for everyone, before anyone touches a tool."
   ],
   [
-   3.987,
-   9.662,
-   "Education builds the mental model, for everyone, before any tool, and it teaches six ideas in order, because each depends on the one before."
+   8.075,
+   4.55,
+   "It teaches six ideas in order, because each depends on the one before."
   ],
   [
-   13.65,
-   3.0,
-   "Governance is a system that runs continuously."
+   12.625,
+   8.05,
+   "For example: identity is the starting point, one map replaces many inventories, and drift is the feedback signal."
   ],
   [
-   16.65,
-   2.062,
-   "Identity is the starting point."
-  ],
-  [
-   18.712,
-   2.837,
-   "One map replaces many inventories."
-  ],
-  [
-   21.55,
-   3.212,
-   "Every derived record names its source and version."
-  ],
-  [
-   24.762,
-   5.112,
-   "Modernization is a lifecycle under change control, not a project that ends."
-  ],
-  [
-   29.875,
-   2.163,
-   "And drift is the feedback signal."
-  ],
-  [
-   32.038,
+   20.675,
    9.912,
    "Someone who holds those ideas understands why the help desk now asks for verification, why a role is activated instead of held, and why a screenshot isn't evidence."
   ],
   [
-   41.95,
-   8.325,
-   "Orientation comes as a ninety-minute walkthrough, a self-serve written path, and a forty-five-minute briefing for auditors and assessors."
+   30.587,
+   8.35,
+   "Orientation comes in a few forms, including a walkthrough, a self-serve written path, and a short briefing for auditors and assessors."
   ],
   [
-   50.275,
-   13.488,
-   "Training comes after, by role, in four tracks: compliance, for people who evidence controls; implementation, for people who build; vendor training and labs; and end-user training for everyone who signs in."
+   38.938,
+   13.55,
+   "Then training follows, by role, in four tracks: compliance, for people who evidence controls; implementation, for people who build; vendor training and labs; and end-user training for everyone who signs in."
+  ],
+  [
+   52.487,
+   2.188,
+   "Let's take the compliance track first."
   ]
  ],
  "6": [
   [
    0.05,
-   9.85,
-   "The compliance track is for the people who read evidence rather than build it: I S S Os, compliance staff, control assessors and authorizing officials."
+   8.8,
+   "The compliance track is for the people who read evidence rather than build it: ISSOs, compliance staff, assessors and authorizing officials."
   ],
   [
-   9.9,
-   3.075,
-   "It teaches one skill above the others, tracing."
+   8.85,
+   2.825,
+   "It teaches one skill above all, tracing."
   ],
   [
-   12.975,
-   9.287,
-   "Given a control, name the mechanism that closes it, the book that built it, the record it emits and where that record sits in the authorization package."
+   11.675,
+   9.188,
+   "Given a control, name the mechanism that closes it, the book that built it, the record it emits, and where that record sits in the authorization package."
   ],
   [
-   22.262,
-   4.287,
-   "Given a record, work back to its control and say whether it's current."
+   20.863,
+   4.55,
+   "Given a record, work back to its control and say whether it's still current."
   ],
   [
-   26.55,
-   20.275,
-   "The orientation module carries four ideas: the Risk Management Framework's seven steps; who owes which proof, with only the authorizing official accepting residual risk; Moderate and fed-ramp's Class C as two facts, not one; and fed-ramp's forty-six key security indicators binding providers, not agencies."
+   25.413,
+   10.15,
+   "Orientation covers the essentials, like the Risk Management Framework, who owes which proof, and why Moderate and fed-ramp's Class C are two facts, not one."
   ],
   [
-   46.825,
-   5.225,
-   "Eight modules then follow the program's evidence areas, from identity to training."
+   35.562,
+   4.688,
+   "Then the modules follow the program's evidence areas, and each teaches a discipline."
   ],
   [
-   52.05,
-   7.925,
-   "Each one teaches a discipline: a policy screenshot can't show that a sign-in was phishing-resistant; only the sign-in record can."
+   40.25,
+   6.912,
+   "For example, a policy screenshot can't show a sign-in was phishing-resistant; only the sign-in record can."
   ],
   [
-   59.975,
+   47.163,
    3.987,
    "The capstone is a continuous-monitoring narrative for one system."
+  ],
+  [
+   51.15,
+   1.637,
+   "Next, the builders."
   ]
  ],
  "7": [
   [
    0.05,
-   9.512,
-   "The implementation track teaches the same estate from the engineer's chair, in ten build modules from D N S and address management to day-two operations."
+   9.488,
+   "The implementation track teaches the same estate from the engineer's chair, in build modules from D N S and address management through to day-two operations."
   ],
   [
-   9.562,
-   11.775,
-   "The order is a real dependency chain: address before you identify, identify before you shape transport, transport before you place data, and certificates before the network enforces."
+   9.537,
+   2.275,
+   "The order is a real dependency chain."
   ],
   [
-   21.337,
-   6.213,
-   "Devices, the cloud platform and security operations run in parallel once identity exists."
+   11.812,
+   9.325,
+   "You address before you identify, identify before you shape transport, and so on, and day two comes last because it runs what everything else built."
   ],
   [
-   27.55,
-   3.75,
-   "Day two comes last, because it runs what everything else built."
+   21.137,
+   6.825,
+   "Every module ends the same way: done means it works and its evidence has landed where an assessor can read it."
   ],
   [
-   31.3,
-   2.188,
-   "Every module ends the same way."
+   27.962,
+   2.4,
+   "And every lab teaches three habits."
   ],
   [
-   33.487,
-   4.463,
-   "Done means it works and its evidence has landed where an assessor can read it."
+   30.363,
+   1.837,
+   "Observe before you enforce."
   ],
   [
-   37.95,
-   14.238,
-   "Every lab teaches three habits: observe before you enforce, with report-only, monitor and shadow modes; keep a way back in, with emergency access accounts created first; and export the record, not a screenshot."
+   32.2,
+   4.263,
+   "Keep a way back in, with emergency access accounts created first."
   ],
   [
-   52.188,
+   36.462,
+   2.663,
+   "And export the record, not a screenshot."
+  ],
+  [
+   39.125,
    3.85,
    "Certifications are examples, not proof, and they change."
   ],
   [
-   56.038,
-   8.4,
-   "Microsoft retired AZ-500 on August 31, 2026, and SC-500 replaced it."
+   42.975,
+   8.162,
+   "One major Microsoft security exam was just retired and replaced, so the program re-checks its certification list at every gate."
   ],
   [
-   64.438,
-   4.088,
-   "So the program re-checks its certification table at every gate."
+   51.138,
+   2.15,
+   "So how does the program certify people?"
   ]
  ],
  "8": [
@@ -336,105 +351,95 @@
   ],
   [
    2.825,
-   8.725,
-   "A-130 asks agencies to test users' knowledge, and nist's learning-program guide recommends practical assessments that mimic the work role."
+   6.2,
+   "It asks agencies to test knowledge, ideally with practical assessments that mimic the actual work."
   ],
   [
-   11.55,
+   9.025,
    5.5,
    "So the program certifies only what a person can show, with an artifact someone else could check."
   ],
   [
-   17.05,
+   14.525,
    3.35,
    "Every capstone is scored on one four-level scale."
   ],
   [
-   20.4,
-   1.275,
-   "Zero is missing."
+   17.875,
+   1.712,
+   "At the bottom, it's missing."
   ],
   [
-   21.675,
-   4.125,
-   "One names the right books but gets the controls or the evidence wrong."
+   19.587,
+   6.737,
+   "In the middle, it names the right books but gets the controls or evidence wrong, or it traces the chain correctly."
   ],
   [
-   25.8,
-   3.7,
-   "Two traces the chain from book to control to evidence source."
+   26.325,
+   7.375,
+   "At the top, it's assessor-ready: a real, dated result, with an honest statement of what isn't evaluated yet."
   ],
   [
-   29.5,
-   7.05,
-   "Three is assessor-ready: a real, dated result, with an honest statement of what isn't evaluated yet."
-  ],
-  [
-   36.55,
-   8.025,
-   "The compliance capstone passes with every area at two or better, at least three at three, and all four whole-submission checks."
-  ],
-  [
-   44.575,
+   33.7,
    7.438,
    "An after-action report with no findings scores zero, and so does a training percentage with no per-person records behind it."
   ],
   [
-   52.013,
-   5.075,
-   "Two credentials follow: practitioner for builders, assessor for compliance staff."
+   41.138,
+   6.013,
+   "Two credentials follow, one for builders and one for assessors, and both expire after a year."
   ],
   [
-   57.087,
-   2.125,
-   "Both expire after twelve months."
-  ],
-  [
-   59.212,
+   47.15,
    4.088,
    "An industry certification can waive a module, but never a capstone."
+  ],
+  [
+   51.237,
+   2.425,
+   "Next, vendor training and labs."
   ]
  ],
  "9": [
   [
    0.05,
-   5.362,
-   "Vendors teach their products, and the book names them as examples, never endorsements."
+   5.775,
+   "Vendors teach their products, and Book 16 names them as examples, never endorsements."
   ],
   [
-   5.412,
-   12.25,
-   "A vendor course earns a place only if it passes four tests: it maps to a book procedure; it's current; the agency can keep its completion record; and the agency knows how the vendor handles learner data."
+   5.825,
+   10.562,
+   "A vendor course earns a place only if it maps to a book procedure, it's current, the agency can keep the completion record, and the agency knows how the vendor handles learner data."
   ],
   [
-   17.663,
-   6.45,
-   "Exam records tied to a work account are lost when the person leaves, so the agency keeps its own record."
+   16.387,
+   5.963,
+   "That record point matters, because exam records tied to a work account vanish when the person leaves."
   ],
   [
-   24.113,
+   22.35,
    3.587,
    "Lab environments are harder to get than most programs expect."
   ],
   [
-   27.7,
-   2.712,
-   "Microsoft Learn's free sandboxes are gone."
+   25.938,
+   5.7,
+   "The free sandboxes are gone, and the developer sandbox isn't offered in any government cloud."
   ],
   [
-   30.413,
-   8.875,
-   "The developer sandbox has eligibility limits and isn't offered in any government cloud, and there's no free sandbox in G C C High at all."
-  ],
-  [
-   39.288,
+   31.637,
    8.25,
    "So the program office arranges lab tenants, and before each gate the team rehearses once in the agency's own non-production government tenant."
   ],
   [
-   47.538,
-   13.188,
-   "Every lab follows the same rules: never production; emergency access first; observe before enforcing; no sync or federation with production; synthetic data only; and tear it down at the end."
+   39.888,
+   7.2,
+   "And every lab follows the same rules, starting with never production, synthetic data only, and tear it down at the end."
+  ],
+  [
+   47.087,
+   1.45,
+   "Now, everyone else."
   ]
  ],
  "10": [
@@ -445,43 +450,38 @@
   ],
   [
    2.15,
-   2.225,
-   "Federal policy sets the target."
+   9.438,
+   "Federal policy requires phishing-resistant sign-in for staff, contractors and partners, and passwords, one-time codes and push approvals don't qualify."
   ],
   [
-   4.375,
-   12.438,
-   "O M B's zero trust memo and nist's authentication guideline require phishing-resistant sign-in for staff, contractors and partners, and passwords, one-time codes and push approvals don't qualify."
-  ],
-  [
-   16.812,
+   11.588,
    7.037,
    "So users learn a piv card, Windows Hello for Business or a passkey, with at least two methods registered."
   ],
   [
-   23.85,
-   10.863,
-   "The course has six short modules: sign-in; reset and recovery; devices; where files now live; reporting; and what the help desk will and won't ask."
+   18.625,
+   7.9,
+   "The course is a handful of short modules, covering sign-in, recovery, devices, where files now live, and reporting."
   ],
   [
-   34.712,
+   26.525,
    4.537,
-   "Password lessons teach length and passphrases, not character classes."
+   "The last module matters most: what the help desk will and won't ask."
   ],
   [
-   39.25,
-   5.875,
-   "The last module matters most, because the help desk becomes a target the moment users trust it."
+   31.062,
+   6.975,
+   "The help desk becomes a target the moment users trust it, and attackers have posed as IT staff to exploit that."
   ],
   [
-   45.125,
-   5.138,
-   "sis-uh's Scattered Spider advisory describes attackers posing as I T staff."
+   38.038,
+   10.938,
+   "So users learn that the real help desk never asks for a password, a pin or a code, never asks you to approve a prompt for them, and never sends a pass to an address you give on the call."
   ],
   [
-   50.263,
-   9.838,
-   "The real help desk never asks for a password, a pin or a code, never asks you to approve a prompt for them, and never sends a pass to an address you give on the call."
+   48.975,
+   1.788,
+   "Next, who owns all this."
   ]
  ],
  "11": [
@@ -507,80 +507,85 @@
   ],
   [
    16.35,
-   8.8,
-   "The see-so owns the training policy, the completion threshold, and the exact words users are taught about sign-in, reporting and the help desk."
+   8.0,
+   "The see-so owns the training policy, the completion threshold, and the exact words users are taught about sign-in and the help desk."
   ],
   [
-   25.15,
-   8.113,
-   "The chief human capital officer's office owns workforce strategy, position coding, the facts behind the rosters, and labor relations."
+   24.35,
+   6.05,
+   "The human capital office owns workforce strategy, position coding, and the facts behind the rosters."
   ],
   [
-   33.263,
+   30.4,
    5.388,
    "The training lead builds the curriculum and reports the numbers, but never declares a wave ready."
   ],
   [
-   38.65,
-   2.925,
-   "The I S S O reviews the training record."
+   35.788,
+   5.312,
+   "Supervisors own completion, and the help desk manager decides whether the desk is ready."
   ],
   [
-   41.575,
-   3.337,
-   "The program office puts training into every gate."
-  ],
-  [
-   44.913,
-   7.888,
-   "Supervisors own completion; the help desk manager decides whether the desk is ready; communications owns one sender."
-  ],
-  [
-   52.8,
+   41.1,
    5.213,
    "Contractors can build and deliver it all, but government officials make the decisions."
+  ],
+  [
+   46.312,
+   1.65,
+   "Next, the calendar."
   ]
  ],
  "12": [
   [
    0.05,
-   2.6,
-   "The curriculum runs on the roadmap's calendar."
+   4.375,
+   "The curriculum runs on the roadmap's calendar, and the planning rule is simple."
   ],
   [
-   2.65,
-   9.688,
-   "The planning rule is simple: no gate is scheduled without its training dates, and no wave without its training window, so a wave that slips moves its training with it."
+   4.425,
+   8.075,
+   "No gate is scheduled without its training dates, and no wave without its training window, so a wave that slips moves its training with it."
   ],
   [
-   12.338,
+   12.5,
    3.55,
    "Each gate carries a training check beside its technical exit."
   ],
   [
-   15.887,
-   6.838,
-   "At the foundation gate, the help desk is trained on verification and administrators on just-in-time activation."
+   16.05,
+   6.5,
+   "Early on, the help desk is trained on verification and administrators on just-in-time activation."
   ],
   [
-   22.725,
-   3.288,
-   "Pilot and division users are trained before their waves."
+   22.55,
+   2.275,
+   "Users are trained before their waves."
   ],
   [
-   26.012,
+   24.825,
    4.487,
    "And by the last gate, no course still teaches an Active Directory procedure."
   ],
   [
-   30.5,
-   8.65,
-   "The help desk goes first: no technician is made eligible for a help desk role until their training and verification check are on record."
+   29.312,
+   7.575,
+   "The help desk goes first: no technician gets a help desk role until their training and verification check are on record."
   ],
   [
-   39.15,
-   14.262,
-   "Before each wave, champions and managers start sixty to forty-five days out, the help desk is trained by thirty days, users are assigned their modules at thirty, with reminders at fifteen and seven, and then the readiness check."
+   36.888,
+   9.0,
+   "Before each wave there's a countdown, starting with champions and managers, then the help desk, then users with reminders, and finally the readiness check."
+  ],
+  [
+   45.888,
+   1.65,
+   "The timings are on the slide."
+  ],
+  [
+   47.538,
+   1.425,
+   "So how do you know it worked?"
   ]
  ],
  "13": [
@@ -596,33 +601,38 @@
   ],
   [
    6.425,
-   16.812,
-   "Following nist's learning guide, the program measures four levels: reaction, from surveys; learning, from assessments and labs; behavior, from help desk ticket trends, sign-in method registration and verification audits; and results, from gate outcomes."
+   9.6,
+   "The program measures four levels, following nist's learning guide: how people reacted, what they learned, how their behavior changed, and what results the gates saw."
   ],
   [
-   23.238,
-   14.325,
-   "The rule is completion for everyone, and competence for every role where a mistake is a security event: help desk technicians, privileged administrators, I S S Os, and the people named in incident and contingency plans."
+   16.025,
+   9.45,
+   "The rule is completion for everyone, and competence wherever a mistake is a security event, like help desk technicians and privileged administrators."
   ],
   [
-   37.562,
+   25.475,
    3.737,
    "For them, completion without a passing assessment doesn't count."
   ],
   [
-   41.3,
-   5.612,
-   "Registration by wave is the most direct end-user measure, and it costs nothing to collect."
+   29.212,
+   7.1,
+   "For end users, the most direct measure is sign-in method registration by wave, and it costs nothing to collect."
   ],
   [
-   46.913,
-   5.812,
-   "A wave that isn't ready moves its date, not its threshold, and the pilot sets the baselines."
+   36.312,
+   3.675,
+   "A wave that isn't ready moves its date, not its threshold."
   ],
   [
-   52.725,
-   9.2,
-   "The steering committee gets one page at every meeting, in counts, not names, with privileged gaps as a count, because each one is a finding."
+   39.987,
+   9.137,
+   "And the steering committee gets one page at every meeting, in counts, not names, with privileged gaps counted, because each one is a finding."
+  ],
+  [
+   49.125,
+   1.863,
+   "That brings us to the decisions."
   ]
  ],
  "14": [
@@ -633,51 +643,46 @@
   ],
   [
    1.425,
-   6.688,
-   "Put training in every gate, measured against a roster from HR and identity records, not a headcount."
+   10.988,
+   "Put training in every gate, measured against a roster from HR and identity records, not a headcount, and let a gate pass with a gap only as a named, dated exception."
   ],
   [
-   8.113,
-   4.213,
-   "A gate passes with a gap only as a named, dated exception."
+   12.412,
+   5.688,
+   "Train and verify the help desk first, before any new role and before every wave."
   ],
   [
-   12.325,
-   6.175,
-   "Train and verify the help desk first, before any new role is assigned and before every wave."
+   18.1,
+   11.213,
+   "Name the owners and keep them apart: the human capital office and the C I O set competencies, the see-so owns the security words, and the training lead reports while others decide."
   ],
   [
-   18.5,
-   11.787,
-   "Name the owners and keep them apart: the chief human capital officer and the C I O set competencies, the see-so owns the security words, and the training lead reports while others decide."
+   29.312,
+   3.413,
+   "And certify with artifacts, renewed every year."
   ],
   [
-   30.288,
-   5.425,
-   "And certify with artifacts: capstones and two credentials, renewed every year."
-  ],
-  [
-   35.712,
+   32.725,
    2.2,
    "The next step needs no procurement."
   ],
   [
-   37.913,
-   15.625,
-   "Build the role roster from HR records, coded positions and eligible-role assignments; name a training lead and an owner for each track; and brief the workforce office, labor relations and the Section 508 program manager before the first gate."
+   34.925,
+   13.6,
+   "Build the role roster from HR records and role assignments, name a training lead and an owner for each track, and brief the workforce office, labor relations and the Section 508 program manager before the first gate."
   ],
   [
-   53.538,
+   48.525,
    2.763,
    "People, not tools, close the gap."
   ],
   [
-   56.3,
-   5.763,
-   "The Federal Modernization Workbook's Book 16 has the detail, every claim footnoted."
+   51.288,
+   3.725,
+   "Book 16 has the detail, every claim footnoted."
   ],
   [
-   62.062,
+   55.013,
    0.762,
    "Thank you."
   ]

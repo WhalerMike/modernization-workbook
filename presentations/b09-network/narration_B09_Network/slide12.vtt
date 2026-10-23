@@ -1,74 +1,70 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:04.168
-Chapter 11 is a worked case:
-a large field-office estate,
+00:00:00.050 --> 00:00:05.027
+This worked case is a large field-office
+estate, about fifteen hundred offices,
 
 2
-00:00:04.168 --> 00:00:09.659
-about 1,500 offices and 70,000 endpoints,
-asked to fund a 50-million-dollar
+00:00:05.027 --> 00:00:08.013
+asked to fund a
+fifty-million-dollar refresh of
 
 3
-00:00:09.659 --> 00:00:15.150
-refresh of a Configuration Manager
-distribution point in every office.
+00:00:08.013 --> 00:00:11.075
+a software distribution
+server in every office.
 
 4
-00:00:15.150 --> 00:00:19.588
-Microsoft's published limit is 4,000
-clients per distribution point.
+00:00:11.075 --> 00:00:14.570
+Microsoft's published limit
+means the whole estate needs
 
 5
-00:00:19.588 --> 00:00:26.637
-On capacity, the estate needs 24, two
-at each of 12 hubs, for 96,000 clients.
+00:00:14.570 --> 00:00:17.700
+only about two dozen of those
+servers, at a dozen hubs.
 
 6
-00:00:26.637 --> 00:00:32.637
-The other 1,476 exist only to
-compensate for slow branch circuits.
+00:00:17.700 --> 00:00:21.175
+The rest exist only to make
+up for slow branch circuits.
 
 7
-00:00:32.637 --> 00:00:37.281
-So fix the circuit: dedicated
-internet access sized to seats,
+00:00:21.175 --> 00:00:25.374
+So fix the circuit instead:
+right-sized internet access,
 
 8
-00:00:37.281 --> 00:00:40.438
-a 5G continuity path,
-and an SD-WAN overlay.
+00:00:25.374 --> 00:00:28.113
+a 5G backup path and an SD-WAN overlay.
 
 9
-00:00:40.438 --> 00:00:44.957
-On the book's planning assumptions, the
-network program needs about 10 million
+00:00:28.113 --> 00:00:32.007
+On the book's planning assumptions,
+the network program needs about
 
 10
-00:00:44.957 --> 00:00:47.391
-dollars of first-year capital and reaches
+00:00:32.007 --> 00:00:35.900
+ten million dollars of first-year
+capital and pays back in year four.
 
 11
-00:00:47.391 --> 00:00:49.963
-a positive cumulative
-position in year four.
+00:00:35.900 --> 00:00:40.225
+But the case turns on one number,
+the current MPLS cost per office.
 
 12
-00:00:49.963 --> 00:00:52.512
-But the financial case
-turns on one number.
+00:00:40.225 --> 00:00:44.225
+Below the breakeven, argue
+capability, not savings.
 
 13
-00:00:52.512 --> 00:00:58.121
-Breakeven is 873 dollars of current
-MPLS cost per office per month;
-
-14
-00:00:58.121 --> 00:01:01.588
-below that, argue capability, not savings.
-
-15
-00:01:01.588 --> 00:01:06.940
+00:00:44.225 --> 00:00:49.525
 And no office's MPLS is retired until
 its replacement telemetry is confirmed.
+
+14
+00:00:49.525 --> 00:00:52.340
+Next, one exception
+that needs a signature.

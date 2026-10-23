@@ -1,79 +1,65 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:03.150
-Now what day two runs on,
-starting at the front door.
+00:00:00.050 --> 00:00:03.240
+Day two starts at the front
+door, and the rule is that
 
 2
-00:00:03.150 --> 00:00:07.187
-Nothing is handled as ad hoc
+00:00:03.240 --> 00:00:07.037
+nothing is handled as ad hoc
 email to the cloud services team.
 
 3
-00:00:07.187 --> 00:00:11.930
+00:00:07.037 --> 00:00:12.009
 Self-service requests, the team mailbox,
-the identity governance platform and
+the governance platform and monitoring
 
 4
-00:00:11.930 --> 00:00:16.963
-monitoring alerts all land in one triage
-queue in the service management platform.
+00:00:12.009 --> 00:00:16.387
+alerts all land in one triage queue
+in the service management platform.
 
 5
-00:00:16.963 --> 00:00:20.453
-The mailbox rule has to
-redirect, not blind-copy,
+00:00:16.387 --> 00:00:21.350
+The mailbox rule has to redirect, not
+copy, or you end up with two queues.
 
 6
-00:00:20.453 --> 00:00:24.212
-or there are two queues;
-pilot it in audit mode first.
-
-7
-00:00:24.212 --> 00:00:28.462
-A reroute rule pulls back anything
-assigned straight to cloud services.
-
-8
-00:00:28.462 --> 00:00:32.550
-Triage asks one question: what
+00:00:21.350 --> 00:00:25.800
+Triage then asks one question: what
 authority does this task need?
 
+7
+00:00:25.800 --> 00:00:29.745
+The book sorts requests into classes,
+from no access change at all,
+
+8
+00:00:29.745 --> 00:00:32.814
+through changes the
+requester's manager approves,
+
 9
-00:00:32.550 --> 00:00:35.025
-No access change is class A0.
+00:00:32.814 --> 00:00:37.125
+up to governance actions like admin
+consent, which are never automated.
 
 10
-00:00:35.025 --> 00:00:39.600
-A change to the requester's own account
-is A1, and the manager approves.
+00:00:37.125 --> 00:00:41.715
+The checks run in a fixed order, so the
+dangerous cases get caught first, such
 
 11
-00:00:39.600 --> 00:00:41.800
-Access an owner governs is A2.
+00:00:41.715 --> 00:00:46.675
+as anything claiming to come from Microsoft,
+or a target holding a directory role.
 
 12
-00:00:41.800 --> 00:00:46.900
-Governance actions, such as admin
-consent, are A3 and never automated.
-
-13
-00:00:46.900 --> 00:00:50.088
-Conditional Access and
-directory roles escalate.
-
-14
-00:00:50.088 --> 00:00:54.442
-The checks run in a fixed order, so
-the dangerous cases are caught first:
-
-15
-00:00:54.442 --> 00:00:59.624
-anything claiming to come from Microsoft,
-then any target holding a directory role.
-
-16
-00:00:59.624 --> 00:01:04.100
+00:00:46.675 --> 00:00:51.100
 And an approval nobody answers
 expires to reject, never to approve.
+
+13
+00:00:51.100 --> 00:00:52.300
+Next, roles.

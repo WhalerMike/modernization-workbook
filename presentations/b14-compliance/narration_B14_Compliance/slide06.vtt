@@ -1,87 +1,72 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:03.412
+00:00:00.050 --> 00:00:03.958
 Some control families no cloud
-provider can close for you.
+provider can ever close for you,
 
 2
-00:00:03.412 --> 00:00:05.363
-The first is program management.
+00:00:03.958 --> 00:00:06.212
+and program management is the first.
 
 3
-00:00:05.363 --> 00:00:09.387
-NIST marks the whole family as
-deployed organization-wide,
+00:00:06.212 --> 00:00:09.778
+NIST treats the whole family
+as organization-wide,
 
 4
-00:00:09.387 --> 00:00:13.659
-outside the system baselines
-and independent of impact level,
+00:00:09.778 --> 00:00:14.701
+outside any system baseline, and
+FedRAMP doesn't assign it to any class.
 
 5
-00:00:13.659 --> 00:00:18.424
-and FedRAMP lists no class for any
-of its 37 controls and enhancements.
+00:00:14.701 --> 00:00:16.590
+It comes from FISMA and OMB,
 
 6
-00:00:18.424 --> 00:00:22.721
-The obligation comes from
-FISMA and OMB's Circular A-130,
-
-7
-00:00:22.721 --> 00:00:27.950
+00:00:16.590 --> 00:00:21.400
 and it binds the agency whether or
 not it uses a single cloud service.
 
+7
+00:00:21.400 --> 00:00:26.288
+No tool can write an organization's risk
+tolerance or appoint its senior official.
+
 8
-00:00:27.950 --> 00:00:31.412
-No resolver, overlay or
-enforcement point can write an
+00:00:26.288 --> 00:00:29.131
+These controls close when
+the artifact exists,
 
 9
-00:00:31.412 --> 00:00:35.413
-organization's risk tolerance
-or appoint its senior official.
+00:00:29.131 --> 00:00:33.650
+a named official has approved it, and
+the agency can show it's still followed.
 
 10
-00:00:35.413 --> 00:00:40.116
-These controls close when the artifact
-exists, a named official has approved it,
+00:00:33.650 --> 00:00:38.141
+Think of the security program plan,
+the appointed senior security officer,
 
 11
-00:00:40.116 --> 00:00:44.249
-and the agency can show it is still
-followed: the security program plan,
+00:00:38.141 --> 00:00:42.488
+a signed risk tolerance, and one
+organization-wide monitoring strategy.
 
 12
-00:00:44.249 --> 00:00:47.811
-the appointed senior agency
-information security officer,
+00:00:42.488 --> 00:00:47.226
+One distinction matters to an assessor:
+the program inventory lists systems,
 
 13
-00:00:47.811 --> 00:00:52.371
-a risk strategy with a signed tolerance
-statement, a process that keeps every
+00:00:47.226 --> 00:00:50.262
+and each system's inventory
+lists what's inside it.
 
 14
-00:00:52.371 --> 00:00:57.288
-system's plan of action comparable, and
-one organization-wide monitoring strategy.
+00:00:50.262 --> 00:00:51.538
+The two must agree.
 
 15
-00:00:57.288 --> 00:00:59.576
-One distinction matters to an assessor.
-
-16
-00:00:59.576 --> 00:01:01.984
-The program inventory lists systems;
-
-17
-00:01:01.984 --> 00:01:05.637
-each system's component
-inventory lists what's inside it.
-
-18
-00:01:05.637 --> 00:01:06.980
-The two must agree.
+00:00:51.538 --> 00:00:53.810
+Two more families close the same way.

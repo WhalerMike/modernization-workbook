@@ -1,81 +1,80 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:01.425
-So, four decisions.
+00:00:00.050 --> 00:00:01.650
+Here are the four decisions.
 
 2
-00:00:01.425 --> 00:00:05.907
-Authorize a single authoritative DDI
-policy plane, and assign an owner,
+00:00:01.650 --> 00:00:06.496
+First, authorize a single authoritative
+DDI policy plane and give it an owner,
 
 3
-00:00:05.907 --> 00:00:10.237
+00:00:06.496 --> 00:00:10.812
 typically the enterprise architecture
 or network operations lead.
 
 4
-00:00:10.237 --> 00:00:14.446
-Have that owner settle the five
-configuration decisions within 90 days,
+00:00:10.812 --> 00:00:15.691
+Second, have that owner settle the five
+configuration decisions within ninety days,
 
 5
-00:00:14.446 --> 00:00:17.813
+00:00:15.691 --> 00:00:19.037
 and report the residual risk
 to the authorizing official.
 
 6
-00:00:17.813 --> 00:00:20.250
-Choose the platform model on evidence:
+00:00:19.037 --> 00:00:21.619
+Third, choose the platform on evidence:
 
 7
-00:00:20.250 --> 00:00:25.049
+00:00:21.619 --> 00:00:26.700
 authorization at the right impact level,
 and quotes on the same assumptions.
 
 8
-00:00:25.049 --> 00:00:28.274
-And name the owners, one decider per row,
+00:00:26.700 --> 00:00:30.388
+And fourth, name the owners,
+one decider per decision.
 
 9
-00:00:28.274 --> 00:00:33.513
-with the DNS/DDI team deciding
-what every branch edge points at.
+00:00:30.388 --> 00:00:33.300
+The next step is Phase 1, the inventory.
 
 10
-00:00:33.513 --> 00:00:39.181
-The next step is Phase 1, the inventory:
-export every AD DNS zone, SRV record,
+00:00:33.300 --> 00:00:39.266
+Export every AD DNS zone, locator record,
+forwarder and DHCP scope, every edge
 
 11
-00:00:39.181 --> 00:00:44.566
-conditional forwarder and DHCP
-scope, and every redirect-dns target
+00:00:39.266 --> 00:00:43.053
+redirect target and every
+revocation endpoint,
 
 12
-00:00:44.566 --> 00:00:49.951
-and revocation endpoint, before
-anyone touches a domain controller.
+00:00:43.053 --> 00:00:46.462
+before anyone touches a domain controller.
 
 13
-00:00:49.951 --> 00:00:54.425
+00:00:46.462 --> 00:00:50.937
 It's read-only, and it's the one step
 whose omission can't be repaired later.
 
 14
-00:00:54.425 --> 00:00:56.757
+00:00:50.937 --> 00:00:53.270
 Govern the name layer as one plane,
 
 15
-00:00:56.757 --> 00:01:00.837
+00:00:53.270 --> 00:00:57.350
 and it can carry the cloud,
 branch and identity transitions.
 
 16
-00:01:00.837 --> 00:01:06.887
-The Federal Modernization Workbook's Book
-08 has the detail, every claim footnoted.
+00:00:57.350 --> 00:01:01.425
+Book 08 has the detail,
+every claim footnoted.
 
 17
-00:01:06.887 --> 00:01:07.700
+00:01:01.425 --> 00:01:02.260
 Thank you.

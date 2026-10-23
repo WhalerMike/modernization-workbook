@@ -1,64 +1,63 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:02.975
+00:00:00.050 --> 00:00:02.807
 Servers come under governance
 through Azure Arc.
 
 2
-00:00:02.975 --> 00:00:06.852
+00:00:02.807 --> 00:00:06.573
 Onboarding uses the Connected
 Machine agent with least privilege:
 
 3
-00:00:06.852 --> 00:00:11.213
-a certificate-based onboarding identity
-that's needed only at connect time.
+00:00:06.573 --> 00:00:10.675
+a certificate-based identity that's
+needed only when the server connects.
 
 4
-00:00:11.213 --> 00:00:14.317
-Configuration comes through
-Azure Policy machine
+00:00:10.675 --> 00:00:14.888
+Configuration comes from Azure Policy
+machine configuration baselines,
 
 5
-00:00:14.317 --> 00:00:16.988
-configuration baselines,
-assigned by scope.
+00:00:14.888 --> 00:00:19.100
+and patching and protection from Update
+Manager and Defender for Servers.
 
 6
-00:00:16.988 --> 00:00:21.600
-And patching and protection come from
-Update Manager and Defender for Servers.
-
-7
-00:00:21.600 --> 00:00:23.263
+00:00:19.100 --> 00:00:20.763
 Two dates make this urgent.
 
-8
-00:00:23.263 --> 00:00:31.097
+7
+00:00:20.763 --> 00:00:28.405
 Extended security updates for Windows Server
 2012 and 2012 R2 ended on October 13,
 
-9
-00:00:31.097 --> 00:00:36.512
-2026, a week ago, so any remaining
-2012 host is a red finding.
+8
+00:00:28.405 --> 00:00:33.125
+2026, so any 2012 host still
+running is a red finding.
 
-10
-00:00:36.512 --> 00:00:42.863
+9
+00:00:33.125 --> 00:00:39.475
 And Windows Server 2016 reaches
 end of support on January 12, 2027.
 
-11
-00:00:42.863 --> 00:00:45.172
-The book is careful about rollback too:
+10
+00:00:39.475 --> 00:00:41.787
+The book is careful about rollback too.
 
-12
-00:00:45.172 --> 00:00:49.719
-remove extensions before disconnecting
+11
+00:00:41.787 --> 00:00:46.381
+Remove extensions before you disconnect
 the agent, because disconnecting
 
+12
+00:00:46.381 --> 00:00:50.901
+deletes the Azure resource, and the
+onboarding role isn't allowed to do that.
+
 13
-00:00:49.719 --> 00:00:54.120
-deletes the Azure resource, which the
-onboarding role isn't allowed to do.
+00:00:50.901 --> 00:00:53.520
+Last, how do we run all this and prove it?

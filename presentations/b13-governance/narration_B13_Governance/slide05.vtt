@@ -11,76 +11,71 @@ Most drift isn't malicious;
 it's a hotfix during an outage.
 
 3
-00:00:06.975 --> 00:00:12.229
-So the program allows one path for every
-operational change, whether it moves,
+00:00:06.975 --> 00:00:10.797
+So the program allows one path
+for every operational change,
 
 4
-00:00:12.229 --> 00:00:17.400
-adds, changes, deletes or resets something,
+00:00:10.797 --> 00:00:12.938
 and no second path for urgent work.
 
 5
-00:00:17.400 --> 00:00:19.263
-The path has five clauses.
+00:00:12.938 --> 00:00:16.857
+The path has five clauses:
+originate from the source of truth,
 
 6
-00:00:19.263 --> 00:00:21.487
-Originate from the source of truth.
+00:00:16.857 --> 00:00:21.951
+authorize from the authority model,
+execute with just-in-time least privilege,
 
 7
-00:00:21.487 --> 00:00:25.388
-Authorize from the authority
-model, not from whoever is nearby.
+00:00:21.951 --> 00:00:26.026
+close with verification, and
+emit the evidence automatically.
 
 8
-00:00:25.388 --> 00:00:29.112
-Execute under least privilege,
-elevated just in time.
+00:00:26.026 --> 00:00:29.237
+Skip a clause, and it's not
+a change with a missing form.
 
 9
-00:00:29.112 --> 00:00:31.938
-Close with the verification
-that justified it.
+00:00:29.237 --> 00:00:30.575
+It's a drift finding.
 
 10
-00:00:31.938 --> 00:00:34.226
-And emit the evidence automatically.
+00:00:30.575 --> 00:00:34.356
+Changes to the record itself
+travel as reviewed pull requests,
 
 11
-00:00:34.226 --> 00:00:37.107
-Skip a clause and the
-operation isn't a change
+00:00:34.356 --> 00:00:38.137
+with two people and protections
+that bind administrators too.
 
 12
-00:00:37.107 --> 00:00:39.600
-with a missing form; it's a drift finding.
-
-13
-00:00:39.600 --> 00:00:43.854
-Changes to the record travel as
-reviewed pull requests: two people,
-
-14
-00:00:43.854 --> 00:00:48.262
-a signed merge, and branch protection
-that binds administrators too.
-
-15
-00:00:48.262 --> 00:00:51.687
+00:00:38.137 --> 00:00:41.562
 Emergencies are back-ported
 within one business day,
 
-16
-00:00:51.687 --> 00:00:53.788
+13
+00:00:41.562 --> 00:00:43.663
 and reported as drift until then.
 
-17
-00:00:53.788 --> 00:00:58.676
+14
+00:00:43.663 --> 00:00:44.938
+Two rules sum it up.
+
+15
+00:00:44.938 --> 00:00:49.826
 The identity that decides never acts,
 and the one that acts never decides.
 
-18
-00:00:58.676 --> 00:01:01.700
+16
+00:00:49.826 --> 00:00:52.787
 And no closure counts unless
 it carries its proof.
+
+17
+00:00:52.787 --> 00:00:54.480
+Next, determinism.

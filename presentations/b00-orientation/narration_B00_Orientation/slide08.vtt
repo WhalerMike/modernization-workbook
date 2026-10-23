@@ -1,93 +1,69 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:05.631
-The charter carries six principles in short
-form; Chapter 04 sets out all fifteen,
+00:00:00.050 --> 00:00:03.671
+Behind the charter sit fifteen
+principles, in five groups,
 
 2
-00:00:05.631 --> 00:00:09.712
-in five groups, each tied to the
-book that carries it in depth.
+00:00:03.671 --> 00:00:06.462
+each tied to the book
+that carries it in depth.
 
 3
-00:00:09.712 --> 00:00:14.404
-Foundation principles apply to every
-change: a single source of truth,
+00:00:06.462 --> 00:00:10.706
+The foundation group applies to
+every change: one source of truth,
 
 4
-00:00:14.404 --> 00:00:17.963
+00:00:10.706 --> 00:00:14.163
 change control with provenance,
 and drift detection.
 
 5
-00:00:17.963 --> 00:00:19.650
-The change rule is strict.
+00:00:14.163 --> 00:00:16.237
+The change rule is the strict one.
 
 6
-00:00:19.650 --> 00:00:24.011
-Every move, add, change, deletion
-and reset travels five clauses:
+00:00:16.237 --> 00:00:21.165
+Every move, add, change, deletion or
+reset starts at the source of truth,
 
 7
-00:00:24.011 --> 00:00:29.630
-it originates with the source of truth,
-carries an authoritative authorization,
+00:00:21.165 --> 00:00:26.091
+carries a real authorization, runs
+with just-in-time least privilege,
 
 8
-00:00:29.630 --> 00:00:32.398
-runs under just-in-time least privilege,
+00:00:26.091 --> 00:00:30.413
+closes with proof, and produces
+its evidence automatically.
 
 9
-00:00:32.398 --> 00:00:36.088
-closes with proof, and emits
-evidence automatically.
+00:00:30.413 --> 00:00:34.138
+Put simply, no closure counts
+unless it carries its proof.
 
 10
-00:00:36.088 --> 00:00:38.899
-No closure counts unless
-it carries its proof.
+00:00:34.138 --> 00:00:39.219
+The other groups say what replaces the
+OU tree, how devices and policy move,
 
 11
-00:00:38.899 --> 00:00:43.338
-Directory and structure principles
-say what replaces the OU tree.
+00:00:39.219 --> 00:00:43.800
+how the HR feed and SQL Server fit
+in, and how the program itself runs.
 
 12
-00:00:43.338 --> 00:00:46.656
-Devices and policy cover
-hybrid join, servers,
-
-13
-00:00:46.656 --> 00:00:50.149
-Conditional Access and
-the Group Policy sunset.
-
-14
-00:00:50.149 --> 00:00:54.187
-Identity and data cover
-the HR feed and SQL Server.
-
-15
-00:00:54.187 --> 00:00:56.492
-And the program group covers training,
-
-16
-00:00:56.492 --> 00:00:59.300
-Zero Trust governance
-and the overall journey.
-
-17
-00:00:59.300 --> 00:01:03.700
-Two source rules were corrected
+00:00:43.800 --> 00:00:48.382
+Two source rules were also corrected
 against Microsoft's documentation,
 
-18
-00:01:03.700 --> 00:01:08.024
-including token lifetimes:
-continuous access evaluation revokes
+13
+00:00:48.382 --> 00:00:51.837
+including token lifetimes;
+the details are in the notes.
 
-19
-00:01:08.024 --> 00:01:11.640
-sessions on events, and its
-tokens can last up to 28 hours.
+14
+00:00:51.837 --> 00:00:54.020
+Next, the phases and gates.

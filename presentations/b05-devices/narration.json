@@ -1,0 +1,57 @@
+[
+  {
+    "slide": 1,
+    "title": "Why Can't Group Policy Come to the Cloud?",
+    "say": "Welcome. This briefing is Book 05 of the Federal Modernization Workbook, Devices and Endpoints. It's about moving devices from Group Policy to Intune, and moving servers to Azure Arc. The question in the title sounds technical, but the answer turns out to be about governance. Group Policy did a lot of quiet work that nobody wrote down, and that work doesn't come along for the ride. So we'll go in four steps: why Group Policy can't simply be carried to the cloud, what replaces it, who owns the endpoint, and how to migrate a fleet without losing what Group Policy quietly gave you. Here's the short version up front. This isn't a settings migration. It's a governance rebuild. Let's start with why."
+  },
+  {
+    "slide": 2,
+    "title": "Group Policy governed by position. Intune has no position.",
+    "say": "Here's the core problem. Group Policy governed by position, and an Intune device has no position. Where a computer sat in the OU tree quietly did five jobs. It decided which settings applied, which setting won, who could change it, when it refreshed, and what evidence you had of what applied. An Entra-joined, Intune-managed device has none of that. Policy goes flatly to groups, and nothing reads the tree. When two policies set the same thing, Intune reports a conflict instead of resolving it. Some jobs, like mapped drives, have no built-in equivalent at all. That's why Microsoft advises against copying GPOs one for one. Teams that do it find the governance gap only after the targeting model has already changed. Every job the tree did implicitly has to be rebuilt explicitly. So what about the obvious shortcut?"
+  },
+  {
+    "slide": 3,
+    "title": "Hybrid join is a waypoint, not a destination",
+    "say": "The obvious shortcut is hybrid join, and the book calls it a trap. Microsoft's guidance is two-sided. New or reset Windows devices should be Entra joined by default. Existing domain-joined devices can be hybrid joined, with little impact on users. But Microsoft is clear that hybrid join isn't meant to be the long-term end state. The trap is how easy it looks. Turning it on is close to a single tenant-wide switch, so something assessments treat as a multi-quarter program can look finished in a week. Meanwhile the fleet keeps every on-premises dependency it had. And there's no supported way to convert a hybrid device to Entra join without resetting Windows. So the governed path uses hybrid join where it helps, then moves each device to Entra join at a natural event, like a hardware refresh or a rebuild. Now, what actually replaces Group Policy?"
+  },
+  {
+    "slide": 4,
+    "title": "Devices and servers take different roads",
+    "say": "What replaces it depends on what you're managing, because devices and servers take different roads. For endpoints, the Entra device object carries the identity, Intune carries configuration and compliance, Autopilot does zero-touch provisioning, and Defender covers threats. Servers are different, and the old design documents got this wrong. Intune doesn't manage Windows Server. A server comes under governance through Azure Arc, which makes it an Azure resource, and Azure Policy machine configuration sets its configuration. Patching and protection come from Update Manager and Defender for Servers. Each of these systems is authoritative for one thing. So the program ties them together on stable keys and reconciles the inventory continuously. That way the fleet has one answer to a simple question: what do we have, and is it governed? For brand-new devices, the book goes further."
+  },
+  {
+    "slide": 5,
+    "title": "Intune-first: no ungoverned device, ever",
+    "say": "For new devices, the doctrine is Intune-first, and the headline is the slide title: no ungoverned device, ever. Every device is enrolled in governance before it's used in production. Governance starts at procurement, so the device's organizational assignment is set when the order is placed, not when the box arrives. That's the same idea as HR feeding user provisioning. Enrollment is zero-touch, and manual enrollment is a justified, time-limited, audited exception. Each asset gets one management plane, and there's no new Group Policy or hybrid join. And if onboarding fails, the device goes to quarantine with a ticket, never into production half-configured. One practical note for GCC tenants: the book defaults to classic Autopilot, because manufacturer registration can carry a group tag and the newer device preparation can't. That covers new devices. The existing fleet takes one of three paths."
+  },
+  {
+    "slide": 6,
+    "title": "Three paths to the same governed state",
+    "say": "There are three ways to get the existing fleet to the same governed state, and the book uses each on purpose. The governed path is orchestrated by the program, with every step recorded, approved and evidenced. It's the default. The manual path uses the native tools by hand, for when the orchestration platform isn't ready yet. It works, but more of the evidence has to be collected by hand. And the retrofit path takes an estate someone already modernized by hand and brings it under governance after the fact. All three end in the same place: enrolled, baselined and reconciled. The difference is how much of the proof comes automatically. The chapter also fixes a few errors in the old guides. For example, the highest LAN Manager authentication level still accepts NTLM version two, so it doesn't block NTLM. Next, who owns all this?"
+  },
+  {
+    "slide": 7,
+    "title": "Who decides, who does the work for the endpoint",
+    "say": "Ownership matters because the work crosses several teams, so the book separates who decides from who does the work. On the deciding side, the CISO and ISSO own the baselines, exceptions and evidence. The endpoint engineering lead owns policy design and rollout. The change board owns the update rings, the migration waves and any pause. On the doing side, endpoint engineering builds the Intune policies and Autopilot profiles, the server team onboards servers to Arc, and security operations runs Defender and the response. Application owners, the help desk and pilot users are consulted and affected; pilot users tell us what broke. And one rule applies to people as much as devices: least privilege. Daily work runs on scoped Intune roles, not the broad Intune Administrator role, which Microsoft advises against for routine use. With owners named, here's how the sunset runs."
+  },
+  {
+    "slide": 8,
+    "title": "Sunset Group Policy as a program, setting by setting",
+    "say": "The Group Policy sunset runs as a program, one setting at a time, in seven steps from inventory to retirement. Every setting ends one of three ways: migrate it to Intune, replace it with a cloud-native pattern, or retire it. The coexistence rules matter most, and the old guides had them wrong. While a device is under both, Group Policy wins by default. There's a setting that flips that, but it only covers part of the policy surface. Defender settings and Windows Hello for Business have to be removed from Group Policy, not overridden. Group Policy preferences can leave settings behind after a GPO is unlinked, so each one needs a planned cleanup. And populations are unlinked one at a time, because that's scoped and reversible. Finally, measure, don't assume. The program runs Group Policy analytics on its own exports. Then the fleet itself migrates."
+  },
+  {
+    "slide": 9,
+    "title": "Migrate the fleet in seven phases, about 34 weeks",
+    "say": "The existing fleet migrates in seven phases, about thirty-four weeks on the book's planning estimates. It runs from inventory and coexistence planning, through baselines and a small pilot, to cutover in waves, verification, and finally retiring the GPOs. Each wave is watched before the next one starts, and old GPOs are kept for a while before they're deleted. The slide has the details for each phase. The book also sets a floor: Windows 11 version 24H2. Windows 10 is already out of support, and Windows 11 23H2 Enterprise stops getting updates on November 10, 2026. Keep in mind these are planning estimates for a large fleet, not promises. Every gate is the next phase's precondition, and every phase can roll back while it's open. That's the devices. Servers have their own road, and their own deadlines."
+  },
+  {
+    "slide": 10,
+    "title": "Servers under Azure Arc, and the dates that matter",
+    "say": "Servers come under governance through Azure Arc. Onboarding uses the Connected Machine agent with least privilege: a certificate-based identity that's needed only when the server connects. Configuration comes from Azure Policy machine configuration baselines, and patching and protection from Update Manager and Defender for Servers. Two dates make this urgent. Extended security updates for Windows Server 2012 and 2012 R2 ended on October 13, 2026, so any 2012 host still running is a red finding. And Windows Server 2016 reaches end of support on January 12, 2027. The book is careful about rollback too. Remove extensions before you disconnect the agent, because disconnecting deletes the Azure resource, and the onboarding role isn't allowed to do that. Last, how do we run all this and prove it?"
+  },
+  {
+    "slide": 11,
+    "title": "Run it, prove it, and what we need",
+    "say": "Once the fleet is moved, the job is to run it and prove it. Device compliance feeds Conditional Access, which is Book 04. Updates flow through rings and Windows Autopatch, and in a GCC tenant the update evidence comes from Intune and Autopatch reports. The inventory is reconciled across all the systems, devices are wiped before accounts are deleted, and the evidence maps to the configuration-management and flaw-remediation controls. From leadership, we need four things. Approve Intune-first for every new device. Fund the Group Policy inventory and analytics run. Set the Windows 11 24H2 floor and a plan for servers reaching end of support. And name the owners for endpoints, servers and security. Book 05 has the full migration, with every external claim footnoted. Book 04 covers what a compliant device can reach, and Book 02 the identity underneath. Thank you."
+  }
+]

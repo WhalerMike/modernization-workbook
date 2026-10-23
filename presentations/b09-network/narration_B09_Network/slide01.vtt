@@ -1,36 +1,56 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:04.720
-This briefing comes from Book 09 of
-the Federal Modernization Workbook,
+00:00:00.050 --> 00:00:00.763
+Welcome.
 
 2
-00:00:04.720 --> 00:00:08.690
-Network and Transport: how to
-move branch traffic off the long
+00:00:00.763 --> 00:00:05.179
+This briefing is Book 09 of the
+Federal Modernization Workbook,
 
 3
-00:00:08.690 --> 00:00:12.738
-hairpin without turning a latency
-gain into a compliance loss.
+00:00:05.179 --> 00:00:06.762
+Network and Transport.
 
 4
-00:00:12.738 --> 00:00:16.651
-I'll take four questions: why
-physics decides the architecture,
+00:00:06.762 --> 00:00:11.885
+It's about moving branch traffic off the
+long hairpin through a distant data center,
 
 5
-00:00:16.651 --> 00:00:20.263
+00:00:11.885 --> 00:00:15.226
+without turning a latency
+gain into a compliance loss.
+
+6
+00:00:15.226 --> 00:00:19.100
+Faster and governed are different
+things, and the branch needs both.
+
+7
+00:00:19.100 --> 00:00:22.914
+We'll go in four steps: why
+physics decides the architecture,
+
+8
+00:00:22.914 --> 00:00:26.650
 what has to change, who owns the
 network, and how to get there.
 
-6
-00:00:20.263 --> 00:00:23.555
-The short version: no product
-shortens a fiber path,
+9
+00:00:26.650 --> 00:00:28.462
+Here's the short version up front.
 
-7
-00:00:23.555 --> 00:00:27.220
-so buy transport on physics,
+10
+00:00:28.462 --> 00:00:30.799
+No product shortens a fiber path.
+
+11
+00:00:30.799 --> 00:00:34.287
+So buy transport on physics,
 and govern it as compliance.
+
+12
+00:00:34.287 --> 00:00:35.930
+Let's start with the physics.

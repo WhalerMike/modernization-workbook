@@ -1,88 +1,73 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:02.800
-Why is Zero Trust a whole-agency property?
+00:00:00.050 --> 00:00:02.325
+Picture the usual assessment calendar.
 
 2
-00:00:02.800 --> 00:00:05.050
-Look at the usual assessment calendar.
-
-3
-00:00:05.050 --> 00:00:08.575
+00:00:02.325 --> 00:00:05.850
 The network team reviews the
 boundary, keyed by address.
 
-4
-00:00:08.575 --> 00:00:13.575
+3
+00:00:05.850 --> 00:00:10.850
 The cloud team runs each provider's
 posture scan, keyed by resource tags.
 
-5
-00:00:13.575 --> 00:00:16.781
+4
+00:00:10.850 --> 00:00:14.056
 The virtualization team
 works a hypervisor checklist,
 
-6
-00:00:16.781 --> 00:00:19.987
+5
+00:00:14.056 --> 00:00:17.262
 keyed by whatever the management
 plane calls a machine.
 
-7
-00:00:19.987 --> 00:00:23.050
-At year end someone puts
+6
+00:00:17.262 --> 00:00:20.413
+At year end, someone puts
 the three reports behind
 
-8
-00:00:23.050 --> 00:00:26.038
+7
+00:00:20.413 --> 00:00:23.487
 one cover page and calls
 it the agency's maturity.
 
-9
-00:00:26.038 --> 00:00:28.775
-It's three partial
+8
+00:00:23.487 --> 00:00:26.626
+It's really three partial
 assessments with one title.
 
+9
+00:00:26.626 --> 00:00:28.712
+And the failure is architectural.
+
 10
-00:00:28.775 --> 00:00:30.725
-The failure is architectural.
+00:00:28.712 --> 00:00:33.807
+One database server, running as a virtual
+machine, on an agency subnet, backing
 
 11
-00:00:30.725 --> 00:00:36.104
-A database server that runs as a virtual
-machine, sits on an agency subnet and backs
+00:00:33.807 --> 00:00:39.062
+up to a cloud bucket, can show up as three
+unrelated objects scored by three tools.
 
 12
-00:00:36.104 --> 00:00:41.325
-up to a cloud bucket can appear as three
-unrelated objects, scored by three tools.
-
-13
-00:00:41.325 --> 00:00:44.725
-A total across them counts
-objects, not architecture.
-
-14
-00:00:44.725 --> 00:00:47.850
+00:00:39.062 --> 00:00:42.187
 The guidance describes the
 enterprise, not a tenant.
 
-15
-00:00:47.850 --> 00:00:52.825
-Executive Order 14028 says throughout
-all aspects of the infrastructure,
-
-16
-00:00:52.825 --> 00:01:00.688
-and NIST SP 800-207 grants no implicit
-trust from network location or ownership.
-
-17
-00:01:00.688 --> 00:01:04.570
+13
+00:00:42.187 --> 00:00:46.193
 So unify first, then assess,
-and defend the unified plane,
+and defend that unified plane,
 
-18
-00:01:04.570 --> 00:01:08.520
+14
+00:00:46.193 --> 00:00:50.113
 because it becomes a complete
 map of the attack surface.
+
+15
+00:00:50.113 --> 00:00:52.510
+Next, two incidents that show why.

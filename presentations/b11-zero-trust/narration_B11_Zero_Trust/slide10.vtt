@@ -9,87 +9,70 @@ How do you get there?
 First, close before you assess.
 
 3
-00:00:03.400 --> 00:00:07.159
-Agencies met BOD 25-01's early dates:
+00:00:03.400 --> 00:00:07.638
+Many agencies met BOD
+25-01's early dates and
 
 4
-00:00:07.159 --> 00:00:11.575
-tenants inventoried, ScubaGear
-deployed and reporting.
+00:00:07.638 --> 00:00:10.975
+now treat ScubaGear
+reporting as the answer.
 
 5
-00:00:11.575 --> 00:00:13.575
-Many now treat that as the answer.
+00:00:10.975 --> 00:00:15.500
+But ScubaGear measures deviation from
+a baseline; it doesn't close any.
 
 6
-00:00:13.575 --> 00:00:16.910
-But ScubaGear measures
-deviation from a baseline;
-
-7
-00:00:16.910 --> 00:00:21.038
-it doesn't close any, and neither
-does the Zero Trust Assessment.
-
-8
-00:00:21.038 --> 00:00:25.088
+00:00:15.500 --> 00:00:19.550
 A thermometer that reports a fever
 every day isn't a treatment plan.
 
-9
-00:00:25.088 --> 00:00:29.537
+7
+00:00:19.550 --> 00:00:24.029
 So the program's six-phase sequence
 puts the assessors at step five,
 
-10
-00:00:29.537 --> 00:00:34.230
+8
+00:00:24.029 --> 00:00:28.753
 as confirmation rather than discovery:
 understand, design, implement,
 
+9
+00:00:28.753 --> 00:00:32.825
+govern, validate, and then the
+authorizing official decides.
+
+10
+00:00:32.825 --> 00:00:35.525
+That's the Risk Management
+Framework's own order.
+
 11
-00:00:34.230 --> 00:00:38.599
-govern, then validate, and then
-the authorizing official decides.
+00:00:35.525 --> 00:00:39.167
+Before validating, build the
+layers a finding depends on,
 
 12
-00:00:38.599 --> 00:00:42.248
-That's the Risk Management
-Framework's own order:
+00:00:39.167 --> 00:00:43.738
+like naming, certificates, workload
+identity and governed exceptions.
 
 13
-00:00:42.248 --> 00:00:45.075
-implement, assess, authorize, monitor.
+00:00:43.738 --> 00:00:49.158
+Meanwhile, route every current finding
+to exactly one response: a configuration
 
 14
-00:00:45.075 --> 00:00:50.203
-Before validating, build the layers a
-finding depends on: naming and certificates,
+00:00:49.158 --> 00:00:54.175
+change now, architectural work with an
+owner and a date, or a risk acceptance.
 
 15
-00:00:50.203 --> 00:00:52.088
-device and workload identity,
-
-16
-00:00:52.088 --> 00:00:56.612
-a phased retirement of legacy
-authentication, and governed exceptions.
-
-17
-00:00:56.612 --> 00:01:00.747
-Meanwhile, route every current
-finding to exactly one response:
-
-18
-00:01:00.747 --> 00:01:05.351
-a configuration change now, architectural
-work with an owner and a date,
-
-19
-00:01:05.351 --> 00:01:08.550
-or a risk acceptance by
-the authorizing official.
-
-20
-00:01:08.550 --> 00:01:11.620
+00:00:54.175 --> 00:00:57.175
 A finding with no response
 is the only failure.
+
+16
+00:00:57.175 --> 00:00:59.160
+Next, running the assessment.

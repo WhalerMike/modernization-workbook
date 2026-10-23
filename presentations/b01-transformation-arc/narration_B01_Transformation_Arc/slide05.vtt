@@ -1,73 +1,59 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:04.128
-Most "AD to Entra ID" projects
+00:00:00.050 --> 00:00:03.588
+Most AD-to-Entra projects
 are scoped around users,
 
 2
-00:00:04.128 --> 00:00:07.162
-groups and mailboxes, the visible part.
+00:00:03.588 --> 00:00:06.350
+groups and mailboxes: the visible part.
 
 3
-00:00:07.162 --> 00:00:13.678
-The program counts eleven categories of
-object that Active Directory governs: users,
+00:00:06.350 --> 00:00:11.924
+But the program counts eleven categories
+of object that Active Directory governs,
 
 4
-00:00:13.678 --> 00:00:19.093
-computers, service accounts, security
-groups, Group Policy, DNS and DHCP,
+00:00:11.924 --> 00:00:17.175
+from service accounts and Group Policy
+to DNS, certificates, RADIUS and trusts.
 
 5
-00:00:19.093 --> 00:00:24.600
-certificate services, RADIUS, LDAP,
-service principal names and trusts.
+00:00:17.175 --> 00:00:21.763
+Migrate the users, declare victory,
+and the rest gets left behind.
 
 6
-00:00:24.600 --> 00:00:27.470
-Migrate the users into a flat directory,
+00:00:21.763 --> 00:00:23.937
+Worse, those failures are quiet.
 
 7
-00:00:27.470 --> 00:00:30.688
-declare victory, and the
-rest are left behind.
-
-8
-00:00:30.688 --> 00:00:33.413
-These failures rarely throw clear errors.
-
-9
-00:00:33.413 --> 00:00:37.301
-A certificate doesn't renew because
+00:00:23.937 --> 00:00:28.138
+A certificate doesn't renew, because
 enrollment was never re-pointed.
 
-10
-00:00:37.301 --> 00:00:41.450
-A device fails network access because
-a group lookup comes back empty.
+8
+00:00:28.138 --> 00:00:32.362
+A device can't get on the network,
+because a group lookup comes back empty.
 
-11
-00:00:41.450 --> 00:00:46.200
-An LDAP application stops because its
+9
+00:00:32.362 --> 00:00:37.424
+An LDAP application stops, because its
 bind account was deleted with the domain.
 
+10
+00:00:37.424 --> 00:00:41.451
+Projects fail because nobody
+treats five steps as a discipline:
+
+11
+00:00:41.451 --> 00:00:46.693
+enumerate everything, map each dependency
+to a target, keep delegation continuous,
+
 12
-00:00:46.200 --> 00:00:49.988
-Organizations rarely fail
-because they can't list objects.
-
-13
-00:00:49.988 --> 00:00:54.527
-They fail because nobody treats five
-steps as a discipline: enumerate,
-
-14
-00:00:54.527 --> 00:00:58.440
-map each dependency to a target,
-keep delegation continuous,
-
-15
-00:00:58.440 --> 00:01:02.020
+00:00:46.693 --> 00:00:50.330
 deliver through a governed
-pipeline, and detect drift.
+pipeline, and watch for drift.

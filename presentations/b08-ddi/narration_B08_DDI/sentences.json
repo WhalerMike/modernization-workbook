@@ -2,241 +2,271 @@
  "1": [
   [
    0.05,
-   14.625,
-   "This briefing comes from Book 08 of the Federal Modernization Workbook, D N S, DHCP and eye-pam: governing the name and address layer as one control plane across the data center, every cloud and the branch edge."
+   0.713,
+   "Welcome."
   ],
   [
-   14.675,
-   7.963,
-   "I'll take four questions: why D N S is now the control plane, what has to change, who owns it, and how to migrate and run it."
+   0.762,
+   7.362,
+   "This briefing is Book 08 of the Federal Modernization Workbook, D N S, DHCP and eye-pam."
   ],
   [
-   22.637,
-   6.662,
-   "The short version: every connection starts with a name, so whoever governs the name layer governs the enterprise."
+   8.125,
+   8.0,
+   "It's about governing the name and address layer as one control plane, across the data center, every cloud and the branch edge."
+  ],
+  [
+   16.125,
+   4.237,
+   "That may sound like plumbing, but here's the idea that drives the whole book."
+  ],
+  [
+   20.363,
+   2.138,
+   "Every connection starts with a name."
+  ],
+  [
+   22.5,
+   3.3,
+   "So whoever governs the name layer governs the enterprise."
+  ],
+  [
+   25.8,
+   8.175,
+   "We'll go in four steps: why D N S is now the control plane, what has to change, who owns it, and how to migrate it and run it."
+  ],
+  [
+   33.975,
+   7.4,
+   "Along the way you'll hear about failures that don't look like D N S failures at all, which is exactly why they're so hard to find."
+  ],
+  [
+   41.375,
+   1.25,
+   "Let's start with why."
   ]
  ],
  "2": [
   [
    0.05,
-   2.525,
-   "Why is D N S now the control plane?"
+   4.3,
+   "Almost every network connection begins with a D N S query."
   ],
   [
-   2.575,
-   6.838,
-   "O M B said it back in 2008: almost every network connection begins with a D N S query."
+   4.35,
+   1.863,
+   "That's been true for a long time."
   ],
   [
-   9.412,
-   2.6,
-   "What has changed is how much the answer decides."
+   6.213,
+   2.737,
+   "What's changed is how much the answer now decides."
   ],
   [
-   12.012,
-   6.412,
-   "In a hybrid multi-cloud agency, D N S does six jobs its designers never anticipated."
+   8.95,
+   6.162,
+   "In a hybrid, multi-cloud estate, D N S does six jobs its designers never planned for."
   ],
   [
-   18.425,
-   7.412,
-   "It publishes private endpoints: one storage name answers privately inside its network and publicly everywhere else."
+   15.113,
+   6.237,
+   "For example, one storage name can answer privately inside its network and publicly everywhere else."
   ],
   [
-   25.837,
-   3.038,
-   "It selects which SaaS front door a user reaches."
+   21.35,
+   12.475,
+   "D N S also picks which SaaS front door a user reaches, blocks known-bad domains before a connection is made, and carries certificate checks, because revocation endpoints are D N S names."
   ],
   [
-   28.875,
-   5.388,
-   "It enforces security policy, blocking a known-bad domain before the connection is made."
+   33.825,
+   1.863,
+   "The slide lists all six."
   ],
   [
-   34.263,
-   7.75,
-   "It carries certificate validation, because OCSP responders and CRL distribution points are D N S names."
+   35.688,
+   7.3,
+   "nist's 2026 guide puts it plainly: D N S has become more than a service; it's a security control."
   ],
   [
-   42.013,
-   4.9,
-   "It's the stable service identity that Zero Trust policy is written against."
+   42.987,
+   4.85,
+   "Yet many estates run it on as many as five platforms that share no state."
   ],
   [
-   46.913,
-   3.95,
-   "And a wildcard declares a whole namespace of applications."
+   47.837,
+   5.588,
+   "The answer is one authoritative D D I policy plane, a requirement, not a product."
   ],
   [
-   50.862,
-   6.925,
-   "nist's 2026 deployment guide says D N S has become more than a service; it's a security control."
-  ],
-  [
-   57.788,
-   4.8,
-   "Yet most agencies run it on as many as five platforms that share no state."
-  ],
-  [
-   62.587,
-   5.575,
-   "The answer is one authoritative D D I policy plane, a requirement rather than a product."
+   53.425,
+   2.013,
+   "Here's what goes wrong without one."
   ]
  ],
  "3": [
   [
    0.05,
-   8.488,
-   "Run those platforms independently and you get split-brain D N S: the same name returning different answers depending on where the query starts."
+   7.975,
+   "Run those platforms separately and you get split-brain D N S: the same name giving different answers depending on where the query starts."
   ],
   [
-   8.537,
-   2.112,
-   "Designed split-horizon is fine."
+   8.025,
+   1.613,
+   "A designed split is fine."
   ],
   [
-   10.65,
-   4.737,
-   "The problem is unintentional drift between systems with no shared state."
+   9.637,
+   4.45,
+   "The problem is unplanned drift between systems with no shared state."
   ],
   [
-   15.387,
-   1.637,
-   "It takes three forms."
+   14.088,
+   1.587,
+   "Here's the classic case."
   ],
   [
-   17.025,
-   8.675,
-   "Private-IP split-brain: an EC2 instance gets an Azure private endpoint's private address only through a Route 53 forwarding rule."
+   15.675,
+   6.162,
+   "A workload in AWS only gets an Azure private endpoint's private address through a forwarding rule."
   ],
   [
-   25.7,
-   5.388,
-   "If the rule is missing or stale, the name still resolves, to the public address."
+   21.837,
+   5.662,
+   "If that rule is missing or stale, the name still resolves, just to the public address."
   ],
   [
-   31.087,
+   27.5,
    6.575,
-   "Microsoft attributes roughly 70 percent of private-endpoint access-denied cases to exactly that."
+   "Microsoft attributes roughly seventy percent of private-endpoint access-denied cases to exactly that."
   ],
   [
-   37.663,
-   10.375,
-   "SaaS split-brain: G C C uses the Worldwide endpoint list, so the risk is path consistency, a stale forwarder or browser DoH to a public resolver."
+   34.075,
+   6.362,
+   "The same drift happens with SaaS paths, and with security blocks that only apply on the resolver that answers."
   ],
   [
-   48.038,
-   8.812,
-   "And security-policy split-brain: a block applies only on the resolver that answers, so the posture is the weakest resolver a client can reach."
+   40.438,
+   4.312,
+   "Either way, the failure is silent, and it shows up as something else."
   ],
   [
-   56.85,
-   6.75,
-   "The failure is silent, the change rate outruns any manual process, and every system has its own timing."
+   44.75,
+   3.612,
+   "Changes come faster than any manual process can track."
   ],
   [
-   63.6,
-   4.088,
-   "Only a control plane that holds the policy objects keeps them in step."
+   48.362,
+   4.025,
+   "Only a control plane that holds the policy keeps everything in step."
+  ],
+  [
+   52.388,
+   2.263,
+   "So what do the mandates actually require?"
   ]
  ],
  "4": [
   [
    0.05,
-   5.25,
-   "The federal mandates never name a product, but together they describe a governed name layer."
+   5.9,
+   "The federal mandates never name a product, but read together they describe one governed name layer."
   ],
   [
-   5.3,
+   5.95,
    2.75,
    "It's worth being precise about who requires what."
   ],
   [
-   8.05,
-   10.975,
-   "O M B M twenty-two oh-nine requires encrypted D N S wherever it's technically supported, with endpoints explicitly configured to use agency-designated resolvers."
+   8.7,
+   7.463,
+   "O M B requires encrypted D N S wherever it's supported, with endpoints pointed at designated resolvers."
   ],
   [
-   19.025,
-   5.4,
-   "It also notes that D N S must already be routed through sis-uh-operated infrastructure."
+   16.163,
+   6.675,
+   "The requirement to send outbound resolution through Protective D N S comes from sis-uh's own guidance."
   ],
   [
-   24.425,
-   8.475,
-   "The requirement that all egress resolution go through Protective D N S comes from sis-uh's own guidance, which cites the statute."
+   22.837,
+   9.475,
+   "The current logging memo, M-26-14, doesn't name D N S, but its logging and retention requirements land squarely on it."
   ],
   [
-   32.9,
-   18.625,
-   "O M B M-26-14, which rescinded M-21-31 in May 2026, doesn't name D N S, but it requires logs that show source and destination addresses, protocols, ports and sessions, searchable for six months and retrievable for a year."
+   32.312,
+   7.25,
+   "Other sources carry DNSSEC, and the latest tick three point oh catalog lists five D N S capabilities."
   ],
   [
-   51.525,
-   6.338,
-   "M-08-23 and special publication eight hundred fifty-three carry DNSSEC."
+   39.562,
+   1.8,
+   "The slide has the full list."
   ],
   [
-   57.862,
-   11.662,
-   "And version 3.3 of the tick three point oh catalog, published in September 2026, lists five D N S capabilities, from sinkholing to Protective D N S."
+   41.362,
+   7.975,
+   "nist's March 2026 revision of its D N S deployment guide ties it together, but it's guidance, not a mandate."
   ],
   [
-   69.525,
-   11.488,
-   "nist SP 800-81 Revision 3, final on March 19, 2026, is the practical guide to all of this: guidance, not a mandate."
+   49.337,
+   7.263,
+   "And fed-ramp certifies a cloud service, not an architecture, so the agency still authorizes its own D D I system."
   ],
   [
-   81.013,
-   7.125,
-   "And fed-ramp certifies a cloud service, not an architecture; the agency still authorizes its own D D I system."
+   56.6,
+   3.812,
+   "Now, the biggest thing that has to change: Active Directory."
   ]
  ],
  "5": [
   [
    0.05,
-   2.5,
-   "What has to change starts with Active Directory."
+   6.138,
+   "For twenty years, Active Directory has been the hidden D N S service of the on-premises network."
   ],
   [
-   2.55,
-   12.6,
-   "For twenty years A D has been the hidden D N S service of the on-premises network: a domain's name becomes a zone, and every domain-joined machine points at the domain controllers for all of its resolution."
+   6.188,
+   6.225,
+   "A domain's name becomes a zone, and every domain-joined machine points at the domain controllers for everything."
   ],
   [
-   15.15,
-   9.037,
-   "Netlogon on each domain controller registers the SRV locator records that clients use to find el-dap, Kerberos and the global catalog."
+   12.412,
+   7.112,
+   "Each domain controller registers the locator records clients use to find it, and secure dynamic updates keep them current."
   ],
   [
-   24.188,
-   3.125,
-   "Secure dynamic update keeps those records current."
+   19.525,
+   2.625,
+   "Entra ID inherits none of that."
   ],
   [
-   27.312,
-   4.95,
-   "Forwarders, GlobalNames, reverse and signed zones each need a decision."
+   22.15,
+   3.575,
+   "It hosts no zones and publishes no locator records."
   ],
   [
-   32.263,
-   3.175,
-   "Microsoft Entra ID inherits none of it."
+   25.725,
+   4.0,
+   "Yet hybrid-joined devices still go looking for a domain controller."
   ],
   [
-   35.438,
-   11.188,
-   "It hosts no zones and publishes no locator records, yet hybrid-joined devices still look for a domain controller, and Entra Domain Services adds a D N S authority of its own."
+   29.725,
+   1.5,
+   "So the plan is careful."
   ],
   [
-   46.625,
-   12.713,
-   "So the locator records stay where domain controllers can register them securely, on A D D N S or a D D I platform that accepts GSS-TSIG updates, until the last domain controller goes."
+   31.225,
+   12.162,
+   "The locator records stay where domain controllers can register them securely, either on A D D N S or a D D I platform that accepts secure updates, until the last domain controller goes."
   ],
   [
-   59.337,
-   3.75,
-   "Everything else moves zone by zone, once it's inventoried."
+   43.388,
+   3.95,
+   "Everything else moves zone by zone, once it's been inventoried."
+  ],
+  [
+   47.337,
+   4.375,
+   "But even a well-designed name layer only works if queries actually reach it."
   ]
  ],
  "6": [
@@ -247,477 +277,537 @@
   ],
   [
    4.088,
-   5.463,
-   "Three ordinary mechanisms decide whether it does, and none of them reports when it doesn't."
+   4.862,
+   "Three ordinary things decide whether it does, and none of them tells you when it doesn't."
   ],
   [
-   9.55,
-   1.387,
-   "First, the edge."
+   8.95,
+   1.875,
+   "First, the branch edge."
   ],
   [
-   10.938,
-   11.225,
-   "Cisco Catalyst SD-WAN's redirect-dns action, as one example, sends branch D N S to a policy-designated resolver, IPv4 and UDP only."
+   10.825,
+   10.662,
+   "SD-WAN can redirect branch D N S to a designated resolver, but that target has to be a real agency resolver on the network, not an agent on the device itself."
   ],
   [
-   22.163,
-   8.275,
-   "It must be a network-addressable agency resolver, not a loopback agent on the device, and any sassy resolver belongs behind it."
+   21.488,
+   2.525,
+   "Second, encrypted D N S."
   ],
   [
-   30.438,
-   10.863,
-   "Second, encrypted D N S. D N S over TLS and D N S over QUIC use port 853, so block them except to approved resolvers."
+   24.012,
+   4.175,
+   "Some forms can be blocked at the firewall except to approved resolvers."
   ],
   [
-   41.3,
-   14.562,
-   "D N S over HTTPS shares port 443 with all web traffic, so it's governed at the endpoint: Windows DoH policy, the Edge and Chrome DoH mode, and an NXDOMAIN answer for Firefox's canary domain."
+   28.188,
+   9.137,
+   "D N S over HTTPS hides inside normal web traffic, so it has to be governed on the endpoint, through browser and Windows policy."
   ],
   [
-   55.862,
+   37.325,
    2.325,
    "Third, rogue DHCP."
   ],
   [
-   58.188,
-   8.875,
-   "One rogue server handing out its own resolver in option 6 moves a whole subnet at once, and rogue IPv6 router advertisements do the same."
+   39.65,
+   4.537,
+   "One rogue server handing out its own resolver can move a whole subnet at once."
   ],
   [
-   67.062,
-   6.125,
-   "A D authorization doesn't stop them; DHCP snooping and RA Guard on the switches do."
+   44.188,
+   4.1,
+   "A D authorization doesn't stop that; switch protections do."
+  ],
+  [
+   48.288,
+   3.975,
+   "Next, a dependency that surprises people: certificates."
   ]
  ],
  "7": [
   [
    0.05,
-   17.25,
-   "A certificate can be valid, unrevoked and issued for the right name, and still fail, because every check that makes it trustworthy starts with a D N S lookup: the endpoint, the revocation endpoints, the FQDN that policy names, and the sign-in endpoint for the token's cloud."
+   5.213,
+   "A certificate can be valid, unrevoked and issued for the right name, and still fail."
   ],
   [
-   17.3,
-   8.488,
-   "If an agency CRL name exists only in A D D N S, a workload in AWS can't resolve it without a forwarding rule."
+   5.263,
+   4.838,
+   "That's because every check that makes it trustworthy starts with a D N S lookup."
   ],
   [
-   25.788,
-   6.95,
-   "The revocation check fails, the ticket is opened against P K I, and the root cause can take days to find."
+   10.1,
+   1.337,
+   "Here's a real pattern."
   ],
   [
-   32.737,
-   4.562,
-   "DNSSEC adds origin authentication and integrity, not encryption."
+   11.438,
+   5.112,
+   "An agency's revocation list name exists only in A D D N S."
   ],
   [
-   37.3,
-   6.6,
-   "The program's position follows nist: sign external zones and the dot-gov delegations, always."
+   16.55,
+   4.05,
+   "A workload in AWS can't resolve it without a forwarding rule."
   ],
   [
-   43.9,
-   4.325,
-   "Validate on every agency resolver, with the root trust anchor."
+   20.6,
+   7.237,
+   "The revocation check fails, a ticket gets opened against the P K I team, and the real cause can take days to find."
   ],
   [
-   48.225,
-   8.912,
-   "And sign internal zones only where the system's authorization requires it; nist calls internal signing of limited value for most organizations."
+   27.837,
+   1.837,
+   "DNSSEC is the other half."
   ],
   [
-   57.138,
-   9.85,
-   "Validation stays on agency resolvers because Azure D N S and Route 53 sign public zones only, and the default Azure resolver doesn't validate."
+   29.675,
+   5.263,
+   "It proves where an answer came from and that it wasn't changed, but it doesn't encrypt anything."
+  ],
+  [
+   34.938,
+   1.887,
+   "The program follows nist."
+  ],
+  [
+   36.825,
+   3.7,
+   "Always sign external zones and the dot-gov delegations."
+  ],
+  [
+   40.525,
+   2.587,
+   "Validate on every agency resolver."
+  ],
+  [
+   43.112,
+   4.188,
+   "Sign internal zones only where the system's authorization requires it."
+  ],
+  [
+   47.3,
+   5.713,
+   "Validation stays on agency resolvers, because the cloud resolvers don't fully cover it."
+  ],
+  [
+   53.013,
+   2.862,
+   "Next, the most common source of split-brain."
   ]
  ],
  "8": [
   [
    0.05,
-   4.5,
-   "Azure private endpoints are the commonest source of private-IP split-brain."
+   4.713,
+   "Azure private endpoints are the most common source of private-address split-brain."
   ],
   [
-   4.55,
-   8.55,
-   "When a private endpoint is created, Azure writes its A record into a privatelink zone, and public D N S carries a CNAME into that name."
+   4.763,
+   6.713,
+   "When you create one, Azure writes its record into a private zone, and public D N S points into that name."
   ],
   [
-   13.1,
-   4.85,
-   "The private answer comes back only when the query reaches a resolver linked to the zone."
-  ],
-  [
-   17.95,
-   12.938,
-   "So every origin, on-premises, the other clouds and the branch path, forwards the service's public zone, such as database.windows.net, to the D N S Private Resolver's inbound endpoint."
-  ],
-  [
-   30.887,
-   1.475,
-   "Not the privatelink zone."
-  ],
-  [
-   32.362,
+   11.475,
    4.638,
-   "Azure Government uses different zone names, so commercial rules don't carry over."
+   "You only get the private answer if your query reaches a resolver linked to that zone."
   ],
   [
-   37.0,
-   7.138,
-   "The Private Resolver is a recursive bridge, not an authority: reach it by forwarding, never by delegation."
+   16.113,
+   1.512,
+   "So the rule is simple."
   ],
   [
-   44.138,
-   7.175,
-   "Give each endpoint a dedicated subnet and a static address, avoid ruleset loops, and deploy one per region."
+   17.625,
+   9.175,
+   "Every origin, whether on-premises, another cloud or the branch, forwards the service's public zone to the Azure D N S Private Resolver."
   ],
   [
-   51.312,
-   5.963,
-   "Addresses need the same discipline, with the enterprise eye-pam as the authority for address blocks."
+   26.8,
+   1.275,
+   "Not the private zone."
   ],
   [
-   57.275,
-   11.387,
-   "AWS VPC eye-pam can allocate from an external eye-pam in commercial Regions, but not in GovCloud; on Azure and Google Cloud, mirror the reservations and reconcile."
+   28.075,
+   4.838,
+   "And Azure Government uses different zone names, so commercial rules don't carry over."
+  ],
+  [
+   32.913,
+   8.363,
+   "The Private Resolver is a bridge, not an authority, so you reach it by forwarding, never by delegation, and deploy one per region."
+  ],
+  [
+   41.275,
+   7.35,
+   "Addresses need the same discipline, with the enterprise eye-pam as the authority and the clouds reconciled against it."
+  ],
+  [
+   48.625,
+   2.962,
+   "Put it together, and you get one governed path."
   ]
  ],
  "9": [
   [
    0.05,
-   13.65,
-   "A branch client's query passes the SD-WAN edge to an agency-controlled resolver, then the D D I policy plane, with its response policy zones, DNSSEC, eye-pam and forwarding rules, then the per-cloud private zones."
+   2.212,
+   "Here's the whole path in one picture."
   ],
   [
-   13.7,
-   4.213,
-   "Internet-bound recursion leaves through sis-uh's Protective D N S."
+   2.263,
+   9.1,
+   "A branch client's query goes from the SD-WAN edge to an agency resolver, then through the D D I policy plane, then to each cloud's private zones."
   ],
   [
-   17.913,
-   3.725,
-   "Five decisions carry almost all of the operational risk."
+   11.363,
+   4.088,
+   "Internet-bound lookups leave through sis-uh's Protective D N S."
   ],
   [
-   21.637,
-   5.162,
-   "One: the redirect-dns target is a network-addressable agency resolver."
+   15.45,
+   3.575,
+   "Five decisions carry almost all the operational risk."
   ],
   [
-   26.8,
-   5.737,
-   "Two: the agency resolver is the first hop, and any other resolver is its forwarder."
+   19.025,
+   2.763,
+   "The edge points at a real agency resolver."
   ],
   [
-   32.538,
-   4.838,
-   "Three: the policy plane holds every per-cloud conditional forwarding rule."
+   21.788,
+   2.625,
+   "That resolver is always the first hop."
   ],
   [
-   37.375,
-   6.263,
-   "Four: A D D N S is inventoried and reprovisioned before any domain controller goes."
+   24.413,
+   3.263,
+   "The policy plane holds every cloud forwarding rule."
   ],
   [
-   43.638,
-   4.95,
-   "Five: OCSP and CRL endpoints resolve from every origin."
+   27.675,
+   5.562,
+   "A D D N S is inventoried and rebuilt before any domain controller goes."
   ],
   [
-   48.587,
-   6.3,
-   "Each fails silently: the query still resolves, just outside policy or to the wrong address."
+   33.237,
+   2.938,
+   "And revocation endpoints resolve from everywhere."
   ],
   [
-   54.888,
-   8.188,
-   "So each comes with a check, run in the live configuration rather than the design document, before the next SD-WAN or D D I change."
+   36.175,
+   3.638,
+   "What makes these dangerous is that each one fails silently."
+  ],
+  [
+   39.812,
+   4.65,
+   "The query still resolves, just outside policy or to the wrong address."
+  ],
+  [
+   44.462,
+   7.375,
+   "So each decision comes with a check, run against the live configuration rather than the design document, before the next change."
+  ],
+  [
+   51.837,
+   2.15,
+   "Which brings us to who owns all this."
   ]
  ],
  "10": [
   [
    0.05,
-   0.85,
-   "Who owns it?"
+   7.075,
+   "In an A D estate, D N S belonged to whoever ran the domain controllers, and nobody really chose that."
   ],
   [
-   0.9,
-   9.113,
-   "In an A D estate, D N S belonged to whoever ran the domain controllers; DnsAdmins has full control of every zone by default."
+   7.125,
+   7.275,
+   "A single policy plane concentrates that authority, so its owners have to be named on purpose, with one decider per decision."
   ],
   [
-   10.012,
-   6.9,
-   "A single policy plane concentrates that authority, so its owners have to be named on purpose, one decider per decision."
-  ],
-  [
-   16.913,
+   14.4,
    7.013,
    "The sponsor and C I O decide the platform model and when A D D N S and Windows DHCP retire."
   ],
   [
-   23.925,
-   7.875,
-   "The see-so and I S S O set the requirements: designated resolvers, allowed transports, DNSSEC and logging."
+   21.413,
+   6.575,
+   "The see-so and I S S O set the requirements, like designated resolvers, DNSSEC and logging."
   ],
   [
-   31.8,
+   27.988,
    5.487,
    "The authorizing official accepts residual risk, including every standing exception."
   ],
   [
-   37.288,
-   8.35,
-   "The D N S/D D I team runs the policy plane and decides what the edge points at; network engineering configures it."
+   33.475,
+   5.1,
+   "The D N S and D D I team runs the plane and decides what the edge points at."
   ],
   [
-   45.638,
-   8.838,
-   "A D administrators own the inventory until A D D N S retires, and cloud teams run their D N S as consumers of the plane."
+   38.575,
+   3.8,
+   "Network engineering configures it, and cloud teams consume it."
   ],
   [
-   54.475,
+   42.375,
    2.362,
    "Record changes come in three classes."
   ],
   [
-   56.837,
-   4.088,
-   "Standard changes inside a delegated namespace are pre-approved."
+   44.737,
+   3.663,
+   "Routine changes in a delegated namespace are pre-approved."
   ],
   [
-   60.925,
-   8.037,
-   "Policy-driven records, like private endpoint entries, need no per-change approval, but the policy itself is change-controlled."
+   48.4,
+   3.225,
+   "Policy-driven records follow a change-controlled policy."
   ],
   [
-   68.963,
-   8.412,
-   "High-impact changes, zones, delegations, forwarding, SRV, wildcards and response policy, go to the change board."
+   51.625,
+   5.537,
+   "And high-impact changes, like zones, delegations and forwarding, go to the change board."
+  ],
+  [
+   57.163,
+   1.262,
+   "So how do we get there?"
   ]
  ],
  "11": [
   [
    0.05,
-   1.025,
-   "How do you get there?"
+   10.312,
+   "The migration runs in six phases, from inventory and coexistence through to decommissioning A D D N S and DHCP, then hardening and evidence."
   ],
   [
-   1.075,
-   11.312,
-   "In six phases: inventory, coexist, migrate authority, federate the clouds, decommission A D D N S and DHCP, then harden and evidence."
-  ],
-  [
-   12.387,
+   10.363,
    6.162,
    "Each phase ends with a rollback point and a resolution test from every origin, not a calendar date."
   ],
   [
-   18.55,
-   7.85,
-   "Every move of authority, whether a zone, a forwarder, a DHCP scope or a wave of clients, runs the same loop."
+   16.525,
+   7.362,
+   "Every move, whether it's a zone, a forwarder, a DHCP scope or a wave of clients, runs the same loop."
   ],
   [
-   26.4,
-   4.55,
-   "Lower the TTL to 300 seconds at least 48 hours ahead."
+   23.887,
+   2.112,
+   "Lower the time-to-live well ahead."
   ],
   [
-   30.95,
-   6.763,
-   "Import with a dry run, never moving the S O A, apex NS or A D locator records."
+   26.0,
+   4.737,
+   "Import with a dry run, never moving the core zone or locator records."
   ],
   [
-   37.712,
-   2.062,
-   "Validate from every origin."
+   30.738,
+   1.613,
+   "Validate from everywhere."
   ],
   [
-   39.775,
-   4.575,
-   "Switch, then hold and observe, while the old authority keeps answering."
+   32.35,
+   3.913,
+   "Then switch, and watch, while the old authority keeps answering."
   ],
   [
-   44.35,
-   9.225,
-   "In Azure Private D N S, removing a virtual network link deletes the records autoregistered through it, and Microsoft says they can't be restored."
+   36.263,
+   6.875,
+   "One warning from Azure: removing a network link deletes the records registered through it, and they can't be restored."
   ],
   [
-   53.575,
-   4.037,
-   "So unlinking is safe only for zones without autoregistration."
+   43.138,
+   2.812,
+   "And decommissioning is gated, never scheduled."
   ],
   [
-   57.612,
-   15.4,
-   "Decommissioning is gated, never scheduled: the inventory reconciles, every critical SRV record resolves for 30 consecutive days, 90 days of parallel operation pass cleanly, failover is tested, and the old servers are idle."
+   45.95,
+   8.738,
+   "The old servers retire only after the records resolve cleanly for a sustained period, parallel operation passes, and failover is tested."
+  ],
+  [
+   54.688,
+   2.237,
+   "Then the plane has to run every day."
   ]
  ],
  "12": [
   [
    0.05,
-   6.325,
-   "Once it's running, one policy plane is only an improvement if divisions can still run their own networks through it."
+   5.388,
+   "One policy plane is only an improvement if divisions can still run their own networks through it."
   ],
   [
-   6.375,
-   11.713,
-   "So each division gets a scope covering its own zones, IP spaces and DHCP scopes, with manager, operator and auditor roles, and automation accounts are held to the same scopes."
+   5.438,
+   8.037,
+   "So each division gets a scope over its own zones, addresses and DHCP, with manager, operator and auditor roles."
   ],
   [
-   18.087,
-   10.062,
-   "Infrastructure as code, ITSM workflows and ACME D N S-01 certificate automation all go through one API and one audit trail."
+   13.475,
+   2.45,
+   "Automation is held to the same scopes."
   ],
   [
-   28.15,
-   7.775,
-   "Locator records are resolved every 15 minutes from every site and virtual network until the last domain controller retires."
+   15.925,
+   7.787,
+   "Infrastructure as code, ticketing workflows and certificate automation all go through one API and one audit trail."
   ],
   [
-   35.925,
-   7.487,
-   "Drift reports compare the source of truth with every copy, and hygiene jobs catch stale records and dangling CNAMEs."
+   23.712,
+   6.912,
+   "Locator records are checked from every site, every fifteen minutes, until the last domain controller retires."
   ],
   [
-   43.413,
-   3.788,
-   "The evidence floor is M-26-14."
+   30.625,
+   6.975,
+   "Drift reports compare the source of truth with every copy, and hygiene jobs catch stale and dangling records."
   ],
   [
-   47.2,
-   14.85,
-   "It doesn't name D N S, but it requires logs that show source and destination addresses, ports and sessions, searchable for six months and retrievable for a year, and readily available to the agency's top-level security operations center."
+   37.6,
+   2.788,
+   "The evidence floor is the federal logging memo."
   ],
   [
-   62.05,
-   8.188,
-   "Query logs, encrypted queries included, and DHCP lease history with MAC and IP addresses are how the name layer meets it."
+   40.388,
+   3.925,
+   "It doesn't name D N S, but its retention rules apply to it."
   ],
   [
-   70.237,
-   3.575,
-   "The lease history is what turns an address into a device."
+   44.312,
+   6.412,
+   "Query logs, including encrypted queries, and DHCP lease history are how the name layer meets it."
+  ],
+  [
+   50.725,
+   3.638,
+   "And lease history is what turns an address into a device."
+  ],
+  [
+   54.362,
+   1.887,
+   "Now, choosing the platform."
   ]
  ],
  "13": [
   [
    0.05,
-   3.913,
-   "Choose the platform on the evidence it produces for your own boundary."
+   5.175,
+   "Choose the platform on the evidence it produces for your own boundary, not on a brochure."
   ],
   [
-   3.962,
-   6.225,
-   "Commercial D D I licensing is quoted per agency, so get every quote on the same assumptions."
+   5.225,
+   5.975,
+   "Commercial D D I pricing is quoted per agency, so get every quote on the same assumptions."
   ],
   [
-   10.188,
-   4.675,
-   "The cloud-native pieces have public meters, and appear in every model."
+   11.2,
+   4.562,
+   "The cloud-native pieces have public prices and show up in every model."
   ],
   [
-   14.863,
-   11.325,
-   "Azure D N S Private Resolver charges per endpoint: 180 dollars a month for each inbound endpoint and each outbound endpoint, plus 2 dollars 50 per ruleset."
+   15.762,
+   10.338,
+   "As one example, a hub with one inbound and one outbound Azure resolver endpoint costs about 362 dollars a month per region, and a second region doubles it."
   ],
   [
-   26.188,
-   6.938,
-   "A hub with one of each is about 362 dollars 50 a month per region, and a second region doubles it."
+   26.1,
+   4.487,
+   "Remember that authorization belongs to a specific offering, not a vendor."
   ],
   [
-   33.125,
-   3.288,
-   "Authorization belongs to an offering, not a vendor."
+   30.587,
+   6.825,
+   "The slide shows which D D I offerings have a fed-ramp authorization and which run inside the agency's own boundary."
   ],
   [
-   36.413,
-   7.675,
-   "As one example, Infoblox Government Cloud has been fed-ramp Certified at Moderate since December 15, 2022."
-  ],
-  [
-   44.087,
-   6.062,
-   "BlueCat and EfficientIP have no Marketplace listing, so they run inside the agency's boundary."
-  ],
-  [
-   50.15,
+   37.413,
    4.35,
    "And a Moderate authorization doesn't cover G C C High or DoD."
   ],
   [
-   54.5,
-   1.413,
-   "Some risk remains."
+   41.763,
+   1.863,
+   "Some risk remains either way."
   ],
   [
-   55.913,
+   43.625,
    3.112,
    "Sync lag becomes the new source of divergence."
   ],
   [
-   59.025,
-   5.312,
-   "A management-plane outage blocks changes, though resolution continues from local state."
+   46.737,
+   4.025,
+   "A management outage blocks changes, though resolution keeps working."
   ],
   [
-   64.338,
-   5.787,
-   "And encrypted D N S bypass stays possible wherever endpoint controls are incomplete."
+   50.763,
+   5.513,
+   "And encrypted D N S bypass stays possible where endpoint controls are incomplete."
+  ],
+  [
+   56.275,
+   1.625,
+   "So, the decisions."
   ]
  ],
  "14": [
   [
    0.05,
-   1.375,
-   "So, four decisions."
+   1.6,
+   "Here are the four decisions."
   ],
   [
-   1.425,
-   8.812,
-   "Authorize a single authoritative D D I policy plane, and assign an owner, typically the enterprise architecture or network operations lead."
+   1.65,
+   9.162,
+   "First, authorize a single authoritative D D I policy plane and give it an owner, typically the enterprise architecture or network operations lead."
   ],
   [
-   10.238,
-   7.575,
-   "Have that owner settle the five configuration decisions within 90 days, and report the residual risk to the authorizing official."
+   10.812,
+   8.225,
+   "Second, have that owner settle the five configuration decisions within ninety days, and report the residual risk to the authorizing official."
   ],
   [
-   17.812,
-   7.237,
-   "Choose the platform model on evidence: authorization at the right impact level, and quotes on the same assumptions."
+   19.038,
+   7.662,
+   "Third, choose the platform on evidence: authorization at the right impact level, and quotes on the same assumptions."
   ],
   [
-   25.05,
-   8.463,
-   "And name the owners, one decider per row, with the D N S/D D I team deciding what every branch edge points at."
+   26.7,
+   3.688,
+   "And fourth, name the owners, one decider per decision."
   ],
   [
-   33.513,
-   16.438,
-   "The next step is Phase 1, the inventory: export every A D D N S zone, SRV record, conditional forwarder and DHCP scope, and every redirect-dns target and revocation endpoint, before anyone touches a domain controller."
+   30.387,
+   2.913,
+   "The next step is Phase 1, the inventory."
   ],
   [
-   49.95,
+   33.3,
+   13.162,
+   "Export every A D D N S zone, locator record, forwarder and DHCP scope, every edge redirect target and every revocation endpoint, before anyone touches a domain controller."
+  ],
+  [
+   46.462,
    4.475,
    "It's read-only, and it's the one step whose omission can't be repaired later."
   ],
   [
-   54.425,
+   50.938,
    6.412,
    "Govern the name layer as one plane, and it can carry the cloud, branch and identity transitions."
   ],
   [
-   60.837,
-   6.05,
-   "The Federal Modernization Workbook's Book 08 has the detail, every claim footnoted."
+   57.35,
+   4.075,
+   "Book 08 has the detail, every claim footnoted."
   ],
   [
-   66.888,
+   61.425,
    0.762,
    "Thank you."
   ]

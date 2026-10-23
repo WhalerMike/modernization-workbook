@@ -1,82 +1,67 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:02.125
-What do the mandates actually require?
+00:00:00.050 --> 00:00:03.475
+Four documents get cited as if
+they were one, and they're not.
 
 2
-00:00:02.125 --> 00:00:04.788
-Four documents get cited
-as if they were one.
+00:00:03.475 --> 00:00:06.288
+Executive Order 14028 is binding,
 
 3
-00:00:04.788 --> 00:00:09.442
-Executive Order 14028 is binding,
-and required each agency
+00:00:06.288 --> 00:00:11.413
+and required each agency to plan
+its Zero Trust architecture.
 
 4
-00:00:09.442 --> 00:00:13.812
-to develop a plan to implement
-Zero Trust Architecture.
+00:00:11.413 --> 00:00:17.572
+OMB M-22-09 is binding too, and it's the
+one that sets specific actions by pillar,
 
 5
-00:00:13.812 --> 00:00:19.025
-OMB M-22-09 is binding and sets
-specific actions by pillar:
+00:00:17.572 --> 00:00:21.900
+like phishing-resistant MFA and
+reliable device inventories.
 
 6
-00:00:19.025 --> 00:00:24.778
-phishing-resistant MFA for staff,
-contractors and partners, reliable device
+00:00:21.900 --> 00:00:25.721
+CISA's maturity model is
+guidance; it says so itself,
 
 7
-00:00:24.778 --> 00:00:28.464
-inventories through CDM,
-encrypted DNS and HTTPS,
+00:00:25.721 --> 00:00:28.475
+and CISA's page for it is now archived.
 
 8
-00:00:28.464 --> 00:00:31.250
-and an environmental isolation plan.
-
-9
-00:00:31.250 --> 00:00:36.263
-CISA's Zero Trust Maturity
-Model, version 2.0, is guidance.
-
-10
-00:00:36.263 --> 00:00:40.973
-It says it should not be viewed as a strict
-set of requirements but as a general
-
-11
-00:00:40.973 --> 00:00:45.388
-guide, and CISA's page for it is now
-marked archived, with no later version.
-
-12
-00:00:45.388 --> 00:00:50.188
+00:00:28.475 --> 00:00:33.275
 NIST SP 800-207 supplies the architecture.
 
-13
-00:00:50.188 --> 00:00:55.945
-M-22-09's FY 2024 deadlines have
-passed, but OMB hasn't rescinded it,
+9
+00:00:33.275 --> 00:00:37.753
+M-22-09's deadlines have passed,
+but it hasn't been rescinded,
 
-14
-00:00:55.945 --> 00:00:59.363
+10
+00:00:37.753 --> 00:00:40.637
 and a passed deadline
 doesn't retire an action.
 
-15
-00:00:59.363 --> 00:01:05.863
-One adjustment: its logging
-action pointed to M-21-31,
+11
+00:00:40.637 --> 00:00:46.438
+One adjustment: its logging action pointed
+to a memo that was rescinded in May 2026.
 
-16
-00:01:05.863 --> 00:01:10.399
-which M-26-14 rescinded on May 22, 2026.
+12
+00:00:46.438 --> 00:00:48.263
+And here's the point people miss.
 
-17
-00:01:10.399 --> 00:01:16.010
-And no federal document defines a Zero
-Trust score, or requires a maturity stage.
+13
+00:00:48.263 --> 00:00:53.613
+No federal document defines a Zero Trust
+score, or requires a maturity stage.
+
+14
+00:00:53.613 --> 00:00:58.750
+Next, the directive that
+is concrete: BOD 25-01.

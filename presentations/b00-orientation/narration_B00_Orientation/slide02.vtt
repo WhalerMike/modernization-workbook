@@ -1,101 +1,76 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:01.338
-Why modernize now?
+00:00:00.050 --> 00:00:01.088
+Start with why.
 
 2
-00:00:01.338 --> 00:00:03.662
-Start with what the
-directory has been doing.
+00:00:01.088 --> 00:00:05.087
+Most federal estates still run
+the client/server model they
 
 3
-00:00:03.662 --> 00:00:07.960
-Most federal estates still run
-the client/server model they built
+00:00:05.087 --> 00:00:09.087
+built in the early 2000s, with
+Active Directory at the center.
 
 4
-00:00:07.960 --> 00:00:12.101
-in the early 2000s, with an Active
-Directory forest at the center.
+00:00:09.087 --> 00:00:12.413
+And the directory has been doing
+more than anyone wrote down.
 
 5
-00:00:12.101 --> 00:00:16.238
-Since Windows 2000, the organizational
-unit has grouped objects
+00:00:12.413 --> 00:00:17.925
+Putting a user or a computer in an organizational
+unit, an organizational unit (OU),
 
 6
-00:00:16.238 --> 00:00:20.300
-for delegating administrative
-rights and assigning policies.
+00:00:17.925 --> 00:00:21.958
+quietly decided several things
+at once: who administers it,
 
 7
-00:00:20.300 --> 00:00:23.338
-So placing a user or
-computer in the tree decided
+00:00:21.958 --> 00:00:26.319
+which Group Policy applies, what it
+can reach, how it's named in DNS,
 
 8
-00:00:23.338 --> 00:00:26.300
-several things at once,
-with no separate record.
+00:00:26.319 --> 00:00:29.775
+and whether it's trusted
+through its certificates.
 
 9
-00:00:26.300 --> 00:00:30.925
-Who administers it, through the permissions
-on the organizational unit (OU).
-
-10
-00:00:30.925 --> 00:00:36.575
-Which policy applies, through Group
-Policy linked to sites, domains and OUs.
-
-11
-00:00:36.575 --> 00:00:38.900
-What it can reach,
-through group membership.
-
-12
-00:00:38.900 --> 00:00:42.813
-How it's named, through DNS
-zones stored in the directory.
-
-13
-00:00:42.813 --> 00:00:46.937
-And whether it's trusted, through
-certificates enrolled by Group Policy.
-
-14
-00:00:46.937 --> 00:00:48.150
+00:00:29.775 --> 00:00:30.987
 None of that was wrong.
 
-15
-00:00:48.150 --> 00:00:49.875
-It just was never written down.
+10
+00:00:30.987 --> 00:00:35.376
+It just was never recorded anywhere
+else, and the cloud doesn't inherit it.
 
-16
-00:00:49.875 --> 00:00:51.888
-And the cloud doesn't inherit it.
-
-17
-00:00:51.888 --> 00:00:55.052
+11
+00:00:35.376 --> 00:00:38.708
 Entra ID's administrative
 units can't be nested,
 
-18
-00:00:55.052 --> 00:00:59.351
-and policy is assigned to groups,
-not inherited from a container.
+12
+00:00:38.708 --> 00:00:41.700
+and policy follows groups, not containers.
 
-19
-00:00:59.351 --> 00:01:03.076
-An agency that moves the users
+13
+00:00:41.700 --> 00:00:45.618
+So an agency that moves the users
 and retires the forest without
 
-20
-00:01:03.076 --> 00:01:06.875
-recovering those decisions
-doesn't modernize its governance.
+14
+00:00:45.618 --> 00:00:49.463
+recovering those decisions isn't
+modernizing its governance.
 
-21
-00:01:06.875 --> 00:01:07.990
-It deletes it.
+15
+00:00:49.463 --> 00:00:50.587
+It's deleting it.
+
+16
+00:00:50.587 --> 00:00:52.730
+The second reason is the calendar.

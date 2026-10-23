@@ -1,83 +1,72 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:00.900
-Who owns it?
+00:00:00.050 --> 00:00:03.675
+The most expensive mistakes in
+this book are ownership gaps.
 
 2
-00:00:00.900 --> 00:00:04.472
-The most expensive mistakes in
-this book are ownership gaps:
+00:00:03.675 --> 00:00:06.550
+A circuit bought before
+anyone owned the governor.
 
 3
-00:00:04.472 --> 00:00:07.472
-a circuit bought before
-anyone owned the governor,
+00:00:06.550 --> 00:00:09.900
+A cutover before anyone
+filed the boundary change.
 
 4
-00:00:07.472 --> 00:00:10.472
-a cutover before anyone
-filed the boundary change,
-
-5
-00:00:10.472 --> 00:00:14.687
-a telemetry contract cancelled before
+00:00:09.900 --> 00:00:13.862
+A telemetry contract cancelled before
 its replacement was confirmed.
 
-6
-00:00:14.687 --> 00:00:17.076
-So the rule is one decider per row.
+5
+00:00:13.862 --> 00:00:16.488
+So the rule is one decider per decision.
 
-7
-00:00:17.076 --> 00:00:22.375
-The sponsor and CIO decide the governor
+6
+00:00:16.488 --> 00:00:21.751
+The sponsor and CIO choose the governor
 platforms and the order of branch waves.
 
+7
+00:00:21.751 --> 00:00:26.787
+The authorizing official decides the boundary
+change and every standing exception.
+
 8
-00:00:22.375 --> 00:00:26.618
-The authorizing official
-decides the boundary change,
+00:00:26.787 --> 00:00:31.726
+The CISO sets the control requirements
+and confirms CISA telemetry parity.
 
 9
-00:00:26.618 --> 00:00:30.400
-the SC-7(4) exception and
-every standing exception.
-
-10
-00:00:30.400 --> 00:00:35.788
-The CISO sets the control requirements
-and owns confirming CISA telemetry parity.
-
-11
-00:00:35.788 --> 00:00:38.286
+00:00:31.726 --> 00:00:34.223
 The system owner decides, site by site,
 
-12
-00:00:38.286 --> 00:00:42.476
+10
+00:00:34.223 --> 00:00:38.413
 whether the governor is live and
 logging before traffic moves.
 
-13
-00:00:42.476 --> 00:00:45.863
+11
+00:00:38.413 --> 00:00:41.830
 Security architecture
 decides TIC conformance
 
+12
+00:00:41.830 --> 00:00:44.663
+and writes the target into every refresh.
+
+13
+00:00:44.663 --> 00:00:49.012
+And only a contracting officer
+can enter into or end a contract,
+
 14
-00:00:45.863 --> 00:00:49.250
-and writes target attributes
-into every refresh.
-
-15
-00:00:49.250 --> 00:00:53.970
-And under the Federal Acquisition
-Regulation only a contracting officer
-
-16
-00:00:53.970 --> 00:00:58.613
-can enter into or terminate a contract,
+00:00:49.012 --> 00:00:51.438
 so no engineer can cancel a circuit.
 
-17
-00:00:58.613 --> 00:01:02.380
-Network engineering and security
-operations do the work.
+15
+00:00:51.438 --> 00:00:54.720
+Next, how to get there when
+the target is years away.

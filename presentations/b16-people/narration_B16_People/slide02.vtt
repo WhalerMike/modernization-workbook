@@ -1,69 +1,66 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:05.138
+00:00:00.050 --> 00:00:01.950
+Here's the gap in one example.
+
+2
+00:00:01.950 --> 00:00:07.088
 A Conditional Access policy can require
 phishing-resistant sign-in for every user.
 
-2
-00:00:05.138 --> 00:00:08.325
-It can't decide what happens
-when a caller tells the help
-
 3
-00:00:08.325 --> 00:00:11.651
-desk their security key is lost
-and they need to sign in now.
+00:00:07.088 --> 00:00:10.560
+What it can't do is decide what
+happens when a caller tells the
 
 4
-00:00:11.651 --> 00:00:14.943
-An entitlement review can
-list everyone with access,
+00:00:10.560 --> 00:00:14.101
+help desk their security key is
+lost and they need in right now.
 
 5
-00:00:14.943 --> 00:00:17.338
-but it can't make the owner read the list.
+00:00:14.101 --> 00:00:17.121
+An access review can list
+everyone with access,
 
 6
-00:00:17.338 --> 00:00:20.379
-A drift check can find a
-server that left its baseline,
+00:00:17.121 --> 00:00:19.600
+but it can't make the owner read the list.
 
 7
-00:00:20.379 --> 00:00:24.112
-but it can't say whether the
-exception behind it was ever approved.
+00:00:19.600 --> 00:00:22.157
+The program's view is that this technology
 
 8
-00:00:24.112 --> 00:00:26.895
-The program's position
-is that this technology
-
-9
-00:00:26.895 --> 00:00:29.463
+00:00:22.157 --> 00:00:24.788
 moves risk from configuration to judgment.
 
+9
+00:00:24.788 --> 00:00:28.938
+There are fewer human decisions left,
+but each one carries more weight.
+
 10
-00:00:29.463 --> 00:00:33.475
-What's left is a smaller number of
-human decisions that carry more weight.
+00:00:28.938 --> 00:00:32.815
+And almost every book splits
+a job into deciding and doing,
 
 11
-00:00:33.475 --> 00:00:38.385
-And almost every book splits a job into
-deciding and doing, and moves some
+00:00:32.815 --> 00:00:38.388
+and hands some decisions to people outside
+IT, like HR staff and application owners.
 
 12
-00:00:38.385 --> 00:00:43.213
-decisions to people outside I T, such
-as HR staff and application owners.
-
-13
-00:00:43.213 --> 00:00:46.742
-A person who doesn't know the new
+00:00:38.388 --> 00:00:41.880
+Someone who doesn't know the new
 rule falls back on the old habit,
 
-14
-00:00:46.742 --> 00:00:50.210
+13
+00:00:41.880 --> 00:00:45.238
 which is exactly what the
 modernization was meant to remove.
+
+14
+00:00:45.238 --> 00:00:46.900
+So why not train at the end?

@@ -2,95 +2,100 @@
  "1": [
   [
    0.05,
-   15.637,
-   "This briefing comes from Book 07 of the Federal Modernization Workbook, P K I and Certificates: the move from Active Directory Certificate Services to Microsoft Cloud P K I, Entra certificate-based authentication and the Federal P K I."
+   0.713,
+   "Welcome."
   ],
   [
-   15.688,
-   4.963,
-   "Every other migration changes which system answers the question \"who is this?\""
+   0.762,
+   6.638,
+   "This briefing is Book 07 of the Federal Modernization Workbook, P K I and Certificates."
   ],
   [
-   20.65,
+   7.4,
+   9.662,
+   "It covers the move from Active Directory Certificate Services to Microsoft Cloud P K I, Entra certificate-based authentication and the Federal P K I."
+  ],
+  [
+   17.062,
+   2.013,
+   "Here's why it deserves its own book."
+  ],
+  [
+   19.075,
+   4.925,
+   "Every other migration changes which system answers the question, who is this?"
+  ],
+  [
+   24.0,
    2.513,
    "Certificates are how that answer gets proved."
   ],
   [
-   23.163,
-   10.387,
-   "I'll cover why certificates outlive every migration, what the target P K I is, who owns the certificate estate, and how to move it without stranding a single certificate."
+   26.512,
+   5.475,
+   "So when they're handled as an afterthought, things break long after everyone thought the work was done."
+  ],
+  [
+   31.988,
+   11.25,
+   "We'll go in four steps: why certificates outlive every migration, what the target P K I looks like, who owns the certificate estate, and how to move it without stranding a single certificate."
+  ],
+  [
+   43.237,
+   1.387,
+   "Let's start with the why."
   ]
  ],
  "2": [
   [
    0.05,
-   2.8,
-   "Why do certificates outlive every migration?"
+   5.188,
+   "Certificates outlive migrations because a certificate isn't a record in a directory."
   ],
   [
-   2.85,
-   3.163,
-   "Because a certificate isn't a record in a directory."
+   5.237,
+   3.125,
+   "It's a signed statement that's already been handed out."
   ],
   [
-   6.013,
-   6.513,
-   "It's a signed statement that's already been handed out: the holder of this private key is entitled to this name."
-  ],
-  [
-   12.525,
+   8.363,
    3.112,
    "When the directory moves, the certificate doesn't."
   ],
   [
-   15.637,
+   11.475,
    4.375,
    "It keeps working until it expires, and then whatever relied on it stops."
   ],
   [
-   20.012,
-   1.738,
-   "A great deal relies on it."
+   15.85,
+   10.775,
+   "And a lot relies on it: domain controllers, smart card and piv logon, Wi-Fi and VPN, TLS listeners like SQL Server, code signing and encryption."
   ],
   [
-   21.75,
-   3.975,
-   "Domain controllers need KDC certificates and LDAPS."
-  ],
-  [
-   25.725,
-   8.3,
-   "Smart card and piv logon need the issuing CA in the forest's NTAuth store and a certificate on every domain controller."
-  ],
-  [
-   34.025,
-   5.175,
-   "802.1X and VPN need NPS and device certificates."
-  ],
-  [
-   39.2,
-   6.8,
-   "TLS listeners, including SQL Server, need them, and so do code signing and encryption keys."
-  ],
-  [
-   46.0,
+   26.625,
    2.05,
    "That gives the program two clocks."
   ],
   [
-   48.05,
-   8.688,
-   "On the directory's clock, cutover is declared complete and the first expiry wave finds no issuer, months later, far from its cause."
+   28.675,
+   8.5,
+   "On the directory's clock, cutover is declared complete, and months later the first expiry wave finds no issuer, far from its cause."
   ],
   [
-   56.737,
+   37.175,
    7.412,
    "On the certificate's clock, the replacement issuer is live before the first expiry, and A D CS retires last."
   ],
   [
-   64.15,
-   10.375,
-   "So the estate outlives the directory twice over: issued certificates run until they expire, and the forest needs an issuer until its last domain controller retires."
+   44.587,
+   2.587,
+   "The program runs on the certificate's clock."
+  ],
+  [
+   47.175,
+   3.2,
+   "And the rules certificates live under are already changing."
   ]
  ],
  "3": [
@@ -111,100 +116,100 @@
   ],
   [
    10.375,
-   14.812,
-   "Under the CA/Browser Forum's ballot SC-081v3, adopted in April 2025, the maximum validity fell from 398 days to 200 days on March 15, 2026."
+   10.275,
+   "The maximum fell to 200 days in March 2026, drops to 100 days in March 2027, and to 47 days in March 2029."
   ],
   [
-   25.188,
-   8.188,
-   "It drops to 100 days on March 15, 2027, and to 47 days on March 15, 2029."
+   20.65,
+   8.613,
+   "On the book's arithmetic, a thousand certificates means about seven renewals every working day today, and about thirty-one at 47 days."
   ],
   [
-   33.375,
-   8.6,
-   "On the book's arithmetic, a thousand certificates means about seven renewals every working day now, and about thirty-one at 47 days."
+   29.262,
+   6.125,
+   "Second, the rules for mapping certificates to accounts changed under certificates already in use."
   ],
   [
-   41.975,
-   4.15,
-   "Second, mapping rules changed under certificates already in use."
+   35.388,
+   5.162,
+   "Domain controllers moved to full enforcement in 2025, with no way back."
   ],
   [
-   46.125,
-   12.55,
-   "Under KB5014754, domain controllers moved to Full Enforcement on February 11, 2025, with no way back after the September 9, 2025 update."
-  ],
-  [
-   58.675,
+   40.55,
    2.612,
    "Third, the algorithms have a horizon."
   ],
   [
-   61.288,
-   10.65,
-   "nist's draft transition plan would deprecate RSA-2048 after 2030 and disallow RSA and ECDSA signatures after 2035."
+   43.163,
+   10.05,
+   "nist's draft plan would deprecate RSA-2048 after 2030 and disallow RSA and ECDSA signatures after 2035."
   ],
   [
-   71.938,
-   6.487,
-   "So manual lifecycle management can't keep up, and the move off A D CS runs as its own program."
+   53.212,
+   6.338,
+   "Put together, manual renewal can't keep up, so the move off A D CS runs as its own program."
+  ],
+  [
+   59.55,
+   2.487,
+   "First, what does A D CS hold up?"
   ]
  ],
  "4": [
   [
    0.05,
-   2.05,
-   "What does A D CS hold up today?"
+   5.112,
+   "Before you can move A D CS, you need to know what it holds up, and it isn't just one server."
   ],
   [
-   2.1,
-   1.363,
-   "It isn't one server."
+   5.162,
+   9.588,
+   "It's a hierarchy of CAs, a set of forest-wide objects like templates and the NTAuth store, and Group Policy autoenrollment on every domain member."
   ],
   [
-   3.462,
-   16.75,
-   "It's a hierarchy, usually an offline root and enterprise issuing CAs; a set of forest-wide objects in the Public Key Services container, including the templates and the NTAuth store; and Group Policy autoenrollment, which runs on domain members every eight hours."
-  ],
-  [
-   20.212,
+   14.75,
    7.588,
    "The inventory has four layers: the CAs, the templates, the certificates actually issued, and the relying parties."
   ],
   [
-   27.8,
-   8.4,
-   "The relying parties set the order of work, because a new issuer is useful only once everything that validates its certificates trusts it."
+   22.337,
+   7.975,
+   "The relying parties set the order of work, because a new issuer is useful only once everything that checks its certificates trusts it."
   ],
   [
-   36.2,
+   30.312,
    3.688,
    "Then every template and use case gets one of four verdicts."
   ],
   [
-   39.888,
-   5.775,
-   "MIGRATE, where Cloud P K I or Entra certificate-based authentication replaces it."
+   34.0,
+   1.488,
+   "Migrate it to the cloud."
   ],
   [
-   45.663,
-   8.5,
-   "BRIDGE, where both issuers run because the consumer depends on A D or a server: domain controllers, LDAPS, NPS."
+   35.487,
+   6.062,
+   "Bridge it, running both issuers, where the consumer depends on A D, like domain controllers."
   ],
   [
-   54.163,
-   4.725,
-   "RETAIN, where there's no cloud equivalent, like HSM-held code signing."
+   41.55,
+   4.388,
+   "Retain it where there's no cloud equivalent, like HSM-held code signing."
   ],
   [
-   58.888,
-   2.837,
-   "And RETIRE, where the consumer is going away."
+   45.938,
+   1.125,
+   "Or retire it."
   ],
   [
-   61.725,
-   10.863,
-   "The book corrects its source here: internal web and SQL Server TLS can't move to Cloud P K I, and S/MIME stays BRIDGE because its key history has to survive."
+   47.062,
+   7.088,
+   "The book also corrects its source here: internal web and SQL Server TLS can't move to Cloud P K I."
+  ],
+  [
+   54.15,
+   2.05,
+   "And whatever stays has to be hardened."
   ]
  ],
  "5": [
@@ -215,105 +220,110 @@
   ],
   [
    9.325,
-   3.862,
-   "The book frames hardening strictly as a detect-and-fix checklist."
+   5.138,
+   "The book treats hardening as a detect-and-fix checklist of eight known weakness classes."
   ],
   [
-   13.188,
-   29.137,
-   "The eight classes carry the ESC labels that Microsoft Defender for Identity also uses: requester-supplied subjects on authentication templates; Any Purpose or no-EKU templates; open enrollment agent templates; writable template permissions; writable Public Key Services objects such as NTAuth; the CA-wide flag that lets any request supply a subject alternative name; unprivileged CA permissions; and web enrollment without HTTPS and Extended Protection."
+   14.463,
+   6.8,
+   "Think of things like templates that let a requester name any subject, or permissions that let the wrong people change a template."
   ],
   [
-   42.325,
-   5.475,
-   "Defender for Identity detects most of them, and the CA-level checks need its sensor on the CA."
+   21.262,
+   1.75,
+   "The slide lists all eight."
   ],
   [
-   47.8,
-   6.912,
-   "The fifth class has no assessment, so it's a manual review backed by directory-change event 5136."
+   23.012,
+   5.013,
+   "Defender for Identity detects most of them, as long as its sensor is on the CA."
   ],
   [
-   54.712,
-   2.087,
-   "The ratings are the program's own scoring."
+   28.025,
+   3.725,
+   "One class has no automated check, so it's a manual review."
   ],
   [
-   56.8,
-   10.438,
-   "The gate is simple: every Critical and High finding is fixed and verified before any workload migrates, because the recommended cloud issuer chains to this hierarchy."
+   31.75,
+   1.275,
+   "The gate is simple."
   ],
   [
-   67.237,
-   5.463,
-   "And none of it has evidence until CA auditing is on, which takes two settings together."
+   33.025,
+   9.463,
+   "Every Critical and High finding is fixed and verified before any workload migrates, because the recommended cloud issuer chains to this same hierarchy."
+  ],
+  [
+   42.487,
+   5.7,
+   "And none of it has evidence until CA auditing is turned on, which takes two settings together."
+  ],
+  [
+   48.188,
+   2.788,
+   "With the old side secured, what are we moving to?"
   ]
  ],
  "6": [
   [
    0.05,
-   1.275,
-   "So what is the target?"
+   4.525,
+   "The target isn't simply Cloud P K I instead of A D CS."
   ],
   [
-   1.325,
-   3.362,
-   "Not Cloud P K I instead of A D CS."
-  ],
-  [
-   4.688,
+   4.575,
    3.1,
    "That's true for devices and wrong for the estate."
   ],
   [
-   7.787,
-   4.15,
-   "The target is four issuers, each for the subjects only it can serve."
+   7.675,
+   3.737,
+   "The target is four issuers, each serving what only it can."
   ],
   [
-   11.938,
-   12.85,
-   "Microsoft Cloud P K I issues to Intune-managed devices, and only to them, through SCEP, with three CAs per tenant, a CRL valid for seven days and no OCSP responder."
+   11.412,
+   4.463,
+   "Cloud P K I issues to Intune-managed devices, and only to them."
   ],
   [
-   24.788,
-   12.55,
-   "A smaller, hardened A D CS stays for domain controllers and LDAPS, NPS and radius, internal server TLS, network devices through NDES, and HSM-held code signing."
+   15.875,
+   9.213,
+   "A smaller, hardened A D CS stays for domain controllers, radius, internal server TLS, network devices and code signing."
   ],
   [
-   37.337,
-   9.312,
-   "The Federal P K I keeps issuing piv; the target's job is to trust it, by distributing the federal root and uploading the chain to Entra ID."
+   25.087,
+   5.425,
+   "The Federal P K I keeps issuing piv, and the target's job is to trust it."
   ],
   [
-   46.65,
+   30.512,
    3.562,
    "And a public CA serves names the internet must trust."
   ],
   [
-   50.212,
+   34.075,
    2.725,
    "One decision ties them together: the root."
   ],
   [
-   52.938,
-   9.113,
-   "For an established hierarchy, the program recommends bring-your-own-CA, a Cloud P K I issuing CA signed by the offline root."
+   36.8,
+   8.887,
+   "For an established hierarchy, the program recommends bring-your-own-CA, where the cloud issuing CA is signed by the existing offline root."
   ],
   [
-   62.05,
-   5.15,
-   "It keeps the existing chain, and makes the root's CRL a production dependency."
+   45.688,
+   4.925,
+   "That keeps the chain, but it makes the root's revocation list a production dependency."
   ],
   [
-   67.2,
-   1.562,
-   "Check the entitlement too."
+   50.612,
+   9.662,
+   "And check the licensing: the 2026 change that bundles Cloud P K I into E5 covers commercial customers, so confirm it for a government tenant."
   ],
   [
-   68.763,
-   10.975,
-   "The July 2026 change that puts Cloud P K I in Microsoft 365 E5 and E7 covers commercial customers, so confirm it for a government tenant."
+   60.275,
+   2.663,
+   "Four issuers need one way to keep them renewed."
   ]
  ],
  "7": [
@@ -329,311 +339,281 @@
   ],
   [
    6.987,
-   8.975,
-   "Nothing Microsoft-native does that for A D CS server certificates, public TLS, appliances, or certificates nobody inventoried."
+   9.262,
+   "But nothing Microsoft-native does that for A D CS server certificates, public TLS, appliances, or the certificates nobody inventoried."
   ],
   [
-   15.963,
-   7.4,
-   "That's the job of certificate lifecycle management: discovery, ownership and automated renewal across issuers."
+   16.25,
+   7.513,
+   "That's the job of certificate lifecycle management: find every certificate, give it an owner, and renew it automatically."
   ],
   [
-   23.363,
-   5.537,
-   "The program's platform is CyberArk Certificate Manager, now part of Palo Alto Networks."
+   23.762,
+   3.4,
+   "The program's platform is CyberArk Certificate Manager."
   ],
   [
-   28.9,
-   6.713,
-   "It's the program's existing vendor, so the program consolidates there and adds no second lifecycle vendor."
+   27.163,
+   6.275,
+   "CyberArk is the program's existing vendor, so it consolidates there instead of adding a second one."
   ],
   [
-   35.612,
-   15.988,
-   "The names have moved: Venafi became part of CyberArk in October 2024, Palo Alto Networks completed its acquisition of CyberArk on February 11, 2026, and the SaaS edition is now sold as Next-Generation Trust Security."
+   33.438,
+   4.562,
+   "The names have shifted over the last couple of years, and the notes trace the history."
   ],
   [
-   51.6,
+   38.0,
    1.938,
    "Two facts shape the deployment."
   ],
   [
-   53.538,
-   9.537,
-   "The fed-ramp Marketplace has no listing for the certificate product, so the program runs Certificate Manager, Self-Hosted inside its own authorization boundary."
+   39.938,
+   8.45,
+   "There's no fed-ramp listing for the certificate product, so the program runs the self-hosted edition inside its own authorization boundary."
   ],
   [
-   63.075,
-   8.075,
-   "And its A D CS account holds the certificate-manager permission, so it's scoped and reviewed like any other certificate manager."
+   48.388,
+   7.6,
+   "And its A D CS account holds certificate-manager rights, so it's scoped and reviewed like any certificate manager."
+  ],
+  [
+   55.987,
+   1.775,
+   "Which raises the people question."
   ]
  ],
  "8": [
   [
    0.05,
-   1.812,
-   "Who owns the certificate estate?"
+   2.075,
+   "Who owns the certificate estate today?"
   ],
   [
-   1.863,
-   8.75,
-   "In most forests, whoever installed the CA. Domain Admins and Enterprise Admins are CA administrators by default, and nobody decided that."
+   2.125,
+   8.875,
+   "In most forests, whoever installed the CA. Domain and enterprise admins are CA administrators by default, and nobody ever decided that."
   ],
   [
-   10.613,
-   2.237,
-   "The book separates deciding from doing."
+   11.0,
+   3.163,
+   "The book fixes it by separating deciding from doing."
   ],
   [
-   12.85,
-   9.512,
-   "The sponsor and C I O decide the target hierarchy, when each A D CS component retires, and who owns renewal for each certificate class."
+   14.162,
+   9.325,
+   "The sponsor and C I O decide the target hierarchy, when each piece of A D CS retires, and who owns renewal for each class of certificate."
   ],
   [
-   22.363,
+   23.488,
    6.812,
    "The see-so and I S S O decide issuance policy, trust anchors and the minimum binding strength."
   ],
   [
-   29.175,
-   5.062,
-   "The authorizing official accepts standing exceptions, such as a low-affinity binding."
+   30.3,
+   3.225,
+   "The authorizing official accepts standing exceptions."
   ],
   [
-   34.237,
-   6.625,
-   "P K I and CA administrators run the CAs, templates, CRLs and key ceremonies."
+   33.525,
+   14.238,
+   "On the doing side, P K I administrators run the CAs, the identity team owns the Entra trust store, endpoint engineering owns the Intune profiles, and the lifecycle platform owner runs discovery and server renewal."
   ],
   [
-   40.862,
-   10.9,
-   "The identity team owns the Entra trust store and bindings, endpoint engineering owns the Intune profiles, and the CLM platform owner runs discovery and server renewal."
-  ],
-  [
-   51.763,
-   6.463,
-   "Server, network and application owners, the piv office and security operations are consulted."
-  ],
-  [
-   58.225,
+   47.763,
    2.5,
    "The principle is separation of duties."
   ],
   [
-   60.725,
+   50.263,
    5.125,
    "Whoever can change a CA must never be the only person who decides what it issues."
   ],
   [
-   65.85,
-   5.275,
-   "And whoever administers directory sync can change which account a certificate signs in as."
+   55.388,
+   2.862,
+   "Now, how the certificates actually get delivered."
   ]
  ],
  "9": [
   [
    0.05,
-   0.613,
-   "How."
-  ],
-  [
-   0.662,
-   1.475,
+   1.425,
    "Start with devices."
   ],
   [
-   2.138,
-   6.9,
-   "Intune delivers certificates by three paths, and each needs the trusted certificate profile deployed first."
+   1.475,
+   6.275,
+   "Intune delivers certificates three ways, and each needs the trusted root profile deployed first."
   ],
   [
-   9.037,
-   21.262,
-   "SCEP from Cloud P K I is the cleanest: the device makes its own key pair, with no NDES server, connector or on-premises CA. SCEP from A D CS runs through NDES and the Certificate Connector; its template lets the request supply the subject, so its Enroll permission stays limited to the NDES account."
+   7.75,
+   7.713,
+   "SCEP from Cloud P K I is the cleanest: the device makes its own key, with no on-premises server in the path."
   ],
   [
-   30.3,
+   15.463,
+   6.763,
+   "SCEP from A D CS runs through an NDES server and a connector, so its permissions are kept tight."
+  ],
+  [
+   22.225,
    6.575,
    "PKCS makes the key on the connector server and exports it, which is why the program prefers SCEP."
   ],
   [
-   36.875,
-   2.587,
-   "Strong mapping is no longer optional."
+   28.8,
+   3.587,
+   "The big change is strong mapping, and it's no longer optional."
   ],
   [
-   39.462,
-   6.588,
-   "KB5014754 began in compatibility mode in May 2022."
+   32.388,
+   5.412,
+   "Domain controllers have been in full enforcement since 2025, and there's no way back."
   ],
   [
-   46.05,
-   11.662,
-   "Domain controllers moved to Full Enforcement on February 11, 2025, and since the September 9, 2025 update the registry key is ignored, so there's no way back."
+   37.8,
+   5.537,
+   "A certificate used against a domain controller without a strong mapping is simply rejected now."
   ],
   [
-   57.712,
-   5.188,
-   "A certificate used against a domain controller without a strong mapping is rejected now."
+   43.337,
+   6.85,
+   "So the SCEP profiles add the user's or device's on-premises security identifier to the certificate."
   ],
   [
-   62.9,
-   11.037,
-   "So SCEP profiles add the on-premises security identifier as a SAN URI, for user certificates on every platform and device certificates on hybrid-joined Windows."
+   50.188,
+   5.175,
+   "Pilot that in a new profile, because editing an existing one revokes what it issued."
   ],
   [
-   73.938,
-   4.537,
-   "Pilot it in a new profile, because editing one revokes what it issued."
+   55.362,
+   1.425,
+   "That's the device side."
+  ],
+  [
+   56.788,
+   2.975,
+   "On the user side, Entra checks certificates."
   ]
  ],
  "10": [
   [
    0.05,
-   4.787,
-   "On the user side, Entra certificate-based authentication is a relying party."
+   3.55,
+   "Entra certificate-based authentication is a relying party."
   ],
   [
-   4.838,
-   7.787,
-   "It validates certificates and issues none, so its risk is the opposite: a certificate that should fail might pass."
+   3.6,
+   7.325,
+   "It checks certificates and issues none, so its risk runs the other way: a certificate that should fail might pass."
   ],
   [
-   12.625,
-   2.112,
-   "Trust and revocation first."
+   10.925,
+   2.388,
+   "Trust and revocation come first."
   ],
   [
-   14.738,
-   4.513,
-   "Upload every CA in the chain to the P K I-based trust store."
+   13.312,
+   8.488,
+   "Upload every CA in the chain, give each one a revocation list Entra can reach quickly, and turn on Require CRL validation."
   ],
   [
-   19.25,
-   7.787,
-   "Each CA gets one HTTP CRL, which Entra ID must download within ten seconds or the sign-in fails."
+   21.8,
+   4.525,
+   "A CA uploaded without a CRL lets revoked certificates keep working."
   ],
   [
-   27.038,
-   2.663,
-   "There's no OCSP and no el-dap."
+   26.325,
+   4.1,
+   "Then binding, meaning how a certificate is matched to a user."
   ],
   [
-   29.7,
-   7.312,
-   "Turn on Require CRL validation, because a CA uploaded without a CRL lets revoked certificates keep working."
+   30.425,
+   4.1,
+   "Some bindings are high affinity, like issuer and serial number."
   ],
   [
-   37.013,
-   1.0,
-   "Then binding."
+   34.525,
+   5.237,
+   "Others, like a name or email, are low, and the old guide got one of those wrong."
   ],
   [
-   38.013,
-   6.0,
-   "Issuer and serial number, subject key identifier and public-key hash are high affinity."
+   39.763,
+   6.425,
+   "A certificate counts as multifactor only when a pin or biometric protects it, like a piv card."
   ],
   [
-   44.013,
-   7.263,
-   "Principal name, email, subject, and issuer plus subject are low; the old guide called issuer plus subject high."
-  ],
-  [
-   51.275,
-   8.238,
-   "A certificate counts as multifactor only when a pin or biometric protects it: a piv card, not a software certificate."
-  ],
-  [
-   59.513,
-   4.237,
-   "And staged rollout is a temporary test, limited to ten groups."
-  ],
-  [
-   63.75,
+   46.188,
    6.088,
    "Production requires high affinity, because CBA is only as strong as its weakest binding."
   ],
   [
-   69.838,
-   6.2,
-   "But switch only once every user's certificate user IDs are right, or those users are locked out."
+   52.275,
+   4.975,
+   "But only switch once every user's certificate IDs are right, or they're locked out."
+  ],
+  [
+   57.25,
+   2.8,
+   "Next, running both PKIs at once."
   ]
  ],
  "11": [
   [
    0.05,
-   3.462,
-   "For most of the migration, both PKIs are production."
+   3.6,
+   "For most of the migration, both PKIs are in production."
   ],
   [
-   3.513,
+   3.65,
    5.625,
    "Devices carry certificates from both issuers, and relying parties trust both chains."
   ],
   [
-   9.137,
-   2.55,
-   "Three coexistence rules carry the weight."
+   9.275,
+   1.762,
+   "Three rules make that safe."
   ],
   [
-   11.688,
+   11.037,
    2.362,
    "Trust goes up before issuance moves."
   ],
   [
-   14.05,
+   13.4,
    4.55,
    "Nothing is revoked to force a move; old certificates leave at renewal."
   ],
   [
-   18.6,
-   9.963,
-   "And every CRL must be reachable from inside the network, from the internet and from Entra ID, because most coexistence outages are revocation outages."
+   17.95,
+   9.662,
+   "And every revocation list must be reachable from inside, from the internet and from Entra, because most coexistence outages are really revocation outages."
   ],
   [
-   28.562,
+   27.613,
    7.15,
    "The migration runs in six gated waves, about forty-four weeks on the program's planning figures for a single forest."
   ],
   [
-   35.712,
-   5.362,
-   "Assess ends when every template is classified and Critical and High findings are fixed."
+   34.763,
+   10.15,
+   "It goes from assessment, through a foundation and pilot, to scaling across every managed device, cutting over sign-in, and finally decommissioning what's no longer needed."
   ],
   [
-   41.075,
-   5.325,
-   "Foundation puts the cloud CA live, with trust on ninety-nine percent of devices."
+   44.913,
+   2.225,
+   "The slide shows each wave's gate."
   ],
   [
-   46.4,
-   3.275,
-   "Pilot needs ninety-five percent issuance success."
+   47.138,
+   6.612,
+   "Every wave has a rehearsed rollback, and A D FS stays restorable for thirty days after cutover."
   ],
   [
-   49.675,
-   2.487,
-   "Scale moves every managed device."
-  ],
-  [
-   52.163,
-   6.325,
-   "Cutover converts federated domains and turns off A D FS certificate authentication."
-  ],
-  [
-   58.487,
-   3.962,
-   "And Decommission retires what served only migrated workloads."
-  ],
-  [
-   62.45,
-   2.275,
-   "Every wave has a rehearsed rollback."
-  ],
-  [
-   64.725,
-   8.512,
-   "Autoenrollment stays on through the pilot, and A D FS stays restorable for thirty days after cutover, with a four-hour recovery objective."
+   53.75,
+   2.587,
+   "But the migration ending isn't the end."
   ]
  ],
  "12": [
@@ -644,118 +624,108 @@
   ],
   [
    3.325,
-   9.512,
-   "With public TLS at 200 days today and 47 days from March 2029, no certificate class may depend on someone remembering a date."
+   7.388,
+   "With public TLS lifetimes heading to 47 days, no certificate class can depend on someone remembering a date."
   ],
   [
-   12.838,
+   10.713,
    2.362,
    "Three renewal engines cover the target."
   ],
   [
-   15.2,
-   5.688,
-   "Intune profiles renew managed devices at the profile's threshold, with a new key pair."
+   13.075,
+   2.312,
+   "Intune renews managed devices."
   ],
   [
-   20.887,
-   6.65,
-   "A D CS autoenrollment renews domain controllers, LDAPS and radius while the forest stays."
+   15.387,
+   5.85,
+   "A D CS autoenrollment renews domain controllers and radius while the forest stays."
   ],
   [
-   27.538,
-   8.162,
-   "And CyberArk Certificate Manager renews server, appliance and public TLS, using ACME where the endpoint supports it."
+   21.238,
+   8.463,
+   "And CyberArk Certificate Manager renews servers, appliances and public TLS, using ACME where the endpoint supports it."
   ],
   [
-   35.7,
-   9.85,
-   "Monitoring watches signals, not outages: expiry with no renewal path, a stale CRL, issuance outside policy, trust-store drift."
+   29.7,
+   9.713,
+   "Monitoring watches for warning signs, not outages: a certificate with no renewal path, a stale revocation list, issuance outside policy."
   ],
   [
-   45.55,
+   39.413,
    4.025,
    "The checks run at least weekly, and their history is the evidence."
   ],
   [
-   49.575,
-   3.038,
-   "Retiring an A D CS CA comes last."
+   43.438,
+   5.162,
+   "Retiring an A D CS CA comes last, and the slide walks through the steps."
   ],
   [
-   52.612,
-   1.738,
-   "Confirm nothing depends on it."
+   48.6,
+   7.55,
+   "The key one is easy to forget: keep its revocation endpoints serving until the last certificate it issued expires."
   ],
   [
-   54.35,
-   3.062,
-   "Stop issuance, and back up the database and key."
+   56.15,
+   4.138,
+   "Under bring-your-own-CA, the root that signed the cloud issuer stays."
   ],
   [
-   57.413,
-   4.888,
-   "Revoke what's left for cessation of operation and publish a final CRL."
-  ],
-  [
-   62.3,
-   3.6,
-   "Remove the role services and clean every trust store."
-  ],
-  [
-   65.9,
-   5.438,
-   "And keep the CRL and AIA endpoints serving until the last certificate expires."
-  ],
-  [
-   71.338,
-   4.312,
-   "Under bring-your-own-CA, the CA that signed the cloud issuer stays."
+   60.288,
+   1.575,
+   "So, what do we need decided?"
   ]
  ],
  "13": [
   [
    0.05,
-   1.375,
-   "So, four decisions."
+   1.6,
+   "Here are the four decisions."
   ],
   [
-   1.425,
-   7.65,
-   "Confirm the root decision: bring-your-own-CA, signed by the offline root, once the hierarchy has passed the hardening gate."
+   1.65,
+   7.537,
+   "First, confirm the root: bring-your-own-CA, signed by the offline root, once the hierarchy passes the hardening gate."
   ],
   [
-   9.075,
-   7.213,
-   "Settle the Cloud P K I entitlement for the government tenant, rather than assuming the commercial E5 change applies."
+   9.188,
+   7.237,
+   "Second, settle the Cloud P K I licensing for the government tenant, rather than assuming the commercial change applies."
   ],
   [
-   16.288,
-   7.825,
-   "Stand up CyberArk Certificate Manager, Self-Hosted, inside the authorization boundary, as the single lifecycle tool."
+   16.425,
+   8.1,
+   "Third, stand up the self-hosted CyberArk Certificate Manager inside the authorization boundary as the single lifecycle tool."
   ],
   [
-   24.113,
-   7.938,
-   "And name the owners: issuance policy and trust anchors with the see-so, and one renewal owner for every certificate class."
+   24.525,
+   8.637,
+   "And fourth, name the owners: issuance policy and trust anchors with the see-so, and one renewal owner for every class of certificate."
   ],
   [
-   32.05,
-   12.387,
-   "The next step is wave one, Assess: four weeks to inventory every CA and template, close the Critical and High findings, classify every use case, and list every relying party."
+   33.163,
+   2.7,
+   "The next step is wave one, Assess."
   ],
   [
-   44.438,
+   35.862,
+   9.925,
+   "That's four weeks to inventory every CA and template, close the Critical and High findings, classify every use case, and list every relying party."
+  ],
+  [
+   45.788,
    5.425,
    "Run certificates on their own clock, and the old CAs can retire without stranding anything."
   ],
   [
-   49.862,
-   9.338,
-   "The Federal Modernization Workbook's Book 07 has the detail, every claim footnoted, with deployment checklists and a template-by-template matrix."
+   51.212,
+   7.562,
+   "Book 07 has the detail, every claim footnoted, with deployment checklists and a template-by-template matrix."
   ],
   [
-   59.2,
+   58.775,
    0.762,
    "Thank you."
   ]

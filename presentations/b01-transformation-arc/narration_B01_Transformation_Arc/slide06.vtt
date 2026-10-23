@@ -15,65 +15,50 @@ every decision is written
 down, signed and replayable.
 
 4
-00:00:08.899 --> 00:00:12.826
+00:00:08.899 --> 00:00:12.579
 Chapter 03 describes a
-reference platform host:
+reference host for that:
 
 5
-00:00:12.826 --> 00:00:18.812
-one Windows Server 2025 server, supported
-to November 2034, with a standby.
+00:00:12.579 --> 00:00:16.163
+one Windows Server 2025
+server, with a standby.
 
 6
-00:00:18.812 --> 00:00:23.837
-The host has five roles: a version-controlled
-source of truth with signed commits;
+00:00:16.163 --> 00:00:20.613
+It carries five roles, from a
+version-controlled source of truth with signed
 
 7
-00:00:23.837 --> 00:00:28.862
-a reverse proxy for TLS and client
-certificates; an authentication bridge to the
+00:00:20.613 --> 00:00:25.063
+commits to an adapter for each dependency
+category; the slide lists them all.
 
 8
-00:00:28.862 --> 00:00:33.962
-legacy forest; the transformation engine;
-and an adapter per dependency category.
+00:00:25.063 --> 00:00:28.774
+What matters most is that there's
+a single authoritative writer.
 
 9
-00:00:33.962 --> 00:00:36.850
-What matters is a single
-authoritative writer.
+00:00:28.774 --> 00:00:31.700
+And governance and execution never mix.
 
 10
-00:00:36.850 --> 00:00:39.488
-Governance and execution never mix.
+00:00:31.700 --> 00:00:35.850
+One layer validates and signs
+plans, but never touches a target.
 
 11
-00:00:39.488 --> 00:00:43.549
-One layer validates and signs
-plans but never touches a target.
+00:00:35.850 --> 00:00:39.505
+The other runs authorized
+plans, but decides nothing,
 
 12
-00:00:43.549 --> 00:00:47.128
-The other runs authorized
-plans but decides nothing,
-
-13
-00:00:47.128 --> 00:00:50.300
-under separate accounts,
+00:00:39.505 --> 00:00:42.662
+with separate accounts,
 credentials and logs.
 
-14
-00:00:50.300 --> 00:00:55.138
+13
+00:00:42.662 --> 00:00:47.640
 The host reads Active Directory
-read-only and is protected as Tier 0.
-
-15
-00:00:55.138 --> 00:00:59.873
-The Federal Modernization Workbook's
-Book 05 covers servers under
-
-16
-00:00:59.873 --> 00:01:04.490
-Azure Arc in depth, and Book 04
-covers change as code with evidence.
+read-only, and it's protected as Tier 0.

@@ -1,84 +1,78 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:01.075
-How do you get there?
+00:00:00.050 --> 00:00:04.935
+The migration runs in six phases,
+from inventory and coexistence
 
 2
-00:00:01.075 --> 00:00:07.539
-In six phases: inventory, coexist,
-migrate authority, federate the clouds,
+00:00:04.935 --> 00:00:10.362
+through to decommissioning AD DNS and
+DHCP, then hardening and evidence.
 
 3
-00:00:07.539 --> 00:00:12.387
-decommission AD DNS and DHCP,
-then harden and evidence.
-
-4
-00:00:12.387 --> 00:00:15.083
+00:00:10.362 --> 00:00:13.059
 Each phase ends with
 a rollback point and a
 
-5
-00:00:15.083 --> 00:00:18.549
+4
+00:00:13.059 --> 00:00:16.525
 resolution test from every
 origin, not a calendar date.
 
-6
-00:00:18.549 --> 00:00:22.522
-Every move of authority,
-whether a zone, a forwarder,
+5
+00:00:16.525 --> 00:00:19.862
+Every move, whether it's
+a zone, a forwarder,
 
-7
-00:00:22.522 --> 00:00:26.400
+6
+00:00:19.862 --> 00:00:23.887
 a DHCP scope or a wave of
 clients, runs the same loop.
 
+7
+00:00:23.887 --> 00:00:25.999
+Lower the time-to-live well ahead.
+
 8
-00:00:26.400 --> 00:00:30.950
-Lower the TTL to 300 seconds
-at least 48 hours ahead.
+00:00:25.999 --> 00:00:30.737
+Import with a dry run, never moving
+the core zone or locator records.
 
 9
-00:00:30.950 --> 00:00:37.713
-Import with a dry run, never moving
-the SOA, apex NS or AD locator records.
+00:00:30.737 --> 00:00:32.351
+Validate from everywhere.
 
 10
-00:00:37.713 --> 00:00:39.774
-Validate from every origin.
+00:00:32.351 --> 00:00:36.263
+Then switch, and watch, while the
+old authority keeps answering.
 
 11
-00:00:39.774 --> 00:00:44.350
-Switch, then hold and observe, while
-the old authority keeps answering.
+00:00:36.263 --> 00:00:39.772
+One warning from Azure: removing
+a network link deletes the
 
 12
-00:00:44.350 --> 00:00:49.119
-In Azure Private DNS, removing a
-virtual network link deletes the records
+00:00:39.772 --> 00:00:43.138
+records registered through it,
+and they can't be restored.
 
 13
-00:00:49.119 --> 00:00:53.575
-autoregistered through it, and
-Microsoft says they can't be restored.
+00:00:43.138 --> 00:00:45.950
+And decommissioning is
+gated, never scheduled.
 
 14
-00:00:53.575 --> 00:00:57.612
-So unlinking is safe only for
-zones without autoregistration.
+00:00:45.950 --> 00:00:50.280
+The old servers retire only after
+the records resolve cleanly for a
 
 15
-00:00:57.612 --> 00:01:02.493
-Decommissioning is gated, never
-scheduled: the inventory reconciles,
+00:00:50.280 --> 00:00:54.688
+sustained period, parallel operation
+passes, and failover is tested.
 
 16
-00:01:02.493 --> 00:01:08.047
-every critical SRV record resolves for
-30 consecutive days, 90 days of parallel
-
-17
-00:01:08.047 --> 00:01:13.080
-operation pass cleanly, failover is
-tested, and the old servers are idle.
+00:00:54.688 --> 00:00:56.980
+Then the plane has to run every day.
