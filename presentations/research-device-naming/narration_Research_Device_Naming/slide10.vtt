@@ -10,119 +10,46 @@ tokens, why do names still matter?
 Four reasons.
 
 3
-00:00:05.075 --> 00:00:07.063
-First, Kerberos islands.
+00:00:05.075 --> 00:00:10.735
+First, Kerberos islands: an Entra-joined
+device reaching on-premises resources still
 
 4
-00:00:07.063 --> 00:00:12.209
-Microsoft says an Entra-joined device
-signing in to on-premises resources needs
+00:00:10.735 --> 00:00:14.960
+finds domain controllers through
+DNS, and Book 08 explains that
 
 5
-00:00:12.209 --> 00:00:17.587
-line-of-sight to domain controllers, which
-clients find through DNS service records.
+00:00:14.960 --> 00:00:19.025
+a name pointing at the wrong host
+gets a valid ticket rejected.
 
 6
-00:00:17.587 --> 00:00:22.751
-And the Federal Modernization Workbook's
-Book 08 explains that if a name resolves to
+00:00:19.025 --> 00:00:23.254
+Second, certificates bind a name
+to a key, so, as an inference,
 
 7
-00:00:22.751 --> 00:00:25.333
-the wrong host, a
-perfectly valid ticket is
+00:00:23.254 --> 00:00:28.452
+after AD the certificate's name has
+to be built from the device name plus
 
 8
-00:00:25.333 --> 00:00:28.062
-presented to the wrong
-machine and rejected.
+00:00:28.452 --> 00:00:33.650
+a fixed agency suffix, and it only
+matches DNS if that name is registered.
 
 9
-00:00:28.062 --> 00:00:29.824
-Second, certificates.
+00:00:33.650 --> 00:00:38.007
+Third, logs: Book 12 joins
+evidence on the device's identity,
 
 10
-00:00:29.824 --> 00:00:32.375
-A certificate binds a name to a key.
+00:00:38.007 --> 00:00:41.637
+so a missing or duplicated
+name breaks that join.
 
 11
-00:00:32.375 --> 00:00:34.784
-Intune's SCEP certificate profiles,
-
-12
-00:00:34.784 --> 00:00:39.923
-the protocol Intune uses to request
-device certificates, offer a device-name
-
-13
-00:00:39.923 --> 00:00:42.814
-variable, but the full
-domain name variable
-
-14
-00:00:42.814 --> 00:00:45.625
-is only for Windows domain-joined devices.
-
-15
-00:00:45.625 --> 00:00:51.481
-As an inference, after AD the certificate's
-DNS name has to be built from the device
-
-16
-00:00:51.481 --> 00:00:53.754
-name plus a fixed agency suffix,
-
-17
-00:00:53.754 --> 00:00:57.687
-and it only matches DNS if
-that same name is registered.
-
-18
-00:00:57.687 --> 00:00:58.963
-Third, logs.
-
-19
-00:00:58.963 --> 00:01:04.050
-Book 12 joins every evidence record on
-an asset identity from the naming plane.
-
-20
-00:01:04.050 --> 00:01:09.263
-Microsoft's own log model calls a hostname
-used as a device ID a last resort.
-
-21
-00:01:09.263 --> 00:01:13.875
-As an inference, an unregistered or
-duplicated name breaks that join.
-
-22
-00:01:13.875 --> 00:01:19.737
-Fourth, duplicates: Microsoft says its
-naming macros don't guarantee unique names.
-
-23
-00:01:19.737 --> 00:01:28.671
-Sources: Microsoft Learn: How SSO to
-on-premises resources works on Microsoft Entra
-
-24
-00:01:28.671 --> 00:01:37.086
-joined devices [S55]; Create and assign
-SCEP certificate profiles in Intune [S54];
-
-25
-00:01:37.086 --> 00:01:44.078
-Accounts CSP [S6]; Infoblox NIOS 9.1
-About the Client FQDN Option [S41];
-
-26
-00:01:44.078 --> 00:01:51.846
-Book 08 Ch04 (What Kerberos needs from
-DNS); Book 12 Ch02 (evidence contract,
-
-27
-00:01:51.846 --> 00:01:56.690
-ASIM); Book 15 Ch07 (CMDB
-reconcile); Book 07 Ch01.
+00:00:41.637 --> 00:00:46.680
+Fourth, Microsoft says its naming
+macros don't guarantee unique names.

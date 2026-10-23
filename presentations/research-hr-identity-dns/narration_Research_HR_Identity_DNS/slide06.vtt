@@ -1,160 +1,62 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:02.300
-Now Oracle, and a common mistake.
+00:00:00.050 --> 00:00:04.020
+Oracle Fusion offers private
+access from on-premises,
 
 2
-00:00:02.300 --> 00:00:06.226
-Oracle Fusion offers private access
-from on-premises, which Oracle
+00:00:04.020 --> 00:00:06.313
+and it sounds like a DNS feature.
 
 3
-00:00:06.226 --> 00:00:10.712
-describes as reaching your environment
-without going through the internet.
+00:00:06.313 --> 00:00:07.850
+It isn't; it's routing.
 
 4
-00:00:10.712 --> 00:00:13.213
-It sounds like a DNS feature.
+00:00:07.850 --> 00:00:13.264
+Traffic rides Oracle's private circuit or
+a VPN into an Oracle network and on to
 
 5
-00:00:13.213 --> 00:00:14.038
-It isn't.
+00:00:13.264 --> 00:00:18.762
+Oracle's public address ranges, and neither
+Oracle page says anything about DNS.
 
 6
-00:00:14.038 --> 00:00:14.937
-It's routing.
+00:00:18.762 --> 00:00:22.219
+As an inference, the Fusion
+name keeps its public answer,
 
 7
-00:00:14.937 --> 00:00:19.309
-Traffic goes over FastConnect,
-Oracle's private circuit,
+00:00:22.219 --> 00:00:24.324
+so don't build a private zone for it.
 
 8
-00:00:19.309 --> 00:00:24.051
-or a site-to-site VPN, into an
-Oracle virtual cloud network, a VCN.
+00:00:24.324 --> 00:00:30.129
+A second point: Oracle says its change
+feeds can be periodically purged, so, as an
 
 9
-00:00:24.051 --> 00:00:27.211
-From there it goes through
-the VCN's Service Gateway
+00:00:30.129 --> 00:00:36.112
+inference, if the middleware loses DNS
+longer than that window, HR events are lost.
 
 10
-00:00:27.211 --> 00:00:30.225
-to the Oracle Services
-Network's public IP ranges.
+00:00:36.112 --> 00:00:39.441
+That makes middleware
+DNS a correctness issue,
 
 11
-00:00:30.225 --> 00:00:32.988
-You add an access rule
-for the VCN and turn
+00:00:39.441 --> 00:00:43.112
+not just uptime, so reconcile
+against full extracts.
 
 12
-00:00:32.988 --> 00:00:35.913
-off content acceleration,
-Oracle's caching.
+00:00:43.112 --> 00:00:46.162
+Oracle Fusion is listed
+at FedRAMP Moderate.
 
 13
-00:00:35.913 --> 00:00:39.875
-Neither Oracle page says
-anything about DNS.
-
-14
-00:00:39.875 --> 00:00:43.388
-As an inference, the Fusion
-name keeps its public answer.
-
-15
-00:00:43.388 --> 00:00:45.725
-So don't build a private zone for Fusion.
-
-16
-00:00:45.725 --> 00:00:47.388
-Second, Atom feeds.
-
-17
-00:00:47.388 --> 00:00:50.490
-Oracle says Atom data can
-be periodically purged,
-
-18
-00:00:50.490 --> 00:00:54.425
-and Microsoft warns that delaying
-Atom feeds can lose changes.
-
-19
-00:00:54.425 --> 00:00:58.285
-As an inference, if the
-middleware loses DNS or internet
-
-20
-00:00:58.285 --> 00:01:02.313
-access for longer than the purge
-window, HR events are lost.
-
-21
-00:01:02.313 --> 00:01:06.212
-Middleware DNS is a correctness
-issue, not just uptime.
-
-22
-00:01:06.212 --> 00:01:08.638
-Reconcile against full extracts.
-
-23
-00:01:08.638 --> 00:01:10.150
-Third, FedRAMP.
-
-24
-00:01:10.150 --> 00:01:14.275
-The Marketplace lists Oracle
-Fusion Cloud at FedRAMP Moderate.
-
-25
-00:01:14.275 --> 00:01:18.927
-Oracle's government cloud regions
-support private DNS zones,
-
-26
-00:01:18.927 --> 00:01:21.663
-but public DNS isn't available there.
-
-27
-00:01:21.663 --> 00:01:26.199
-Which Oracle environment hosts a
-given agency's tenant wasn't verified.
-
-28
-00:01:26.199 --> 00:01:30.131
-Sources: Oracle: OCI Fusion Applications,
-
-29
-00:01:30.131 --> 00:01:34.524
-Securely Accessing Fusion
-Applications [S21];
-
-30
-00:01:34.524 --> 00:01:40.188
-Transit Routing for Private
-Access to Oracle Services [S22];
-
-31
-00:01:40.188 --> 00:01:45.044
-REST API for Fusion Cloud
-HCM, Working with Atom [S18];
-
-32
-00:01:45.044 --> 00:01:51.749
-US Government Cloud with FedRAMP
-authorization [S26]; Microsoft Learn,
-
-33
-00:01:51.749 --> 00:01:55.333
-Oracle HCM provisioning tutorial [S1];
-
-34
-00:01:55.333 --> 00:02:01.180
-FedRAMP Marketplace products.json,
-record F1603257882 [S40].
+00:00:46.162 --> 00:00:48.290
+Next, two more components.

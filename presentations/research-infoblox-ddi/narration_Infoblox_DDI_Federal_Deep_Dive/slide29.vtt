@@ -1,51 +1,16 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:04.975
-Module 4: divisions on Universal
+00:00:00.050 --> 00:00:05.100
+Module 4 covers divisions on Universal
 DDI, and the operating model.
 
 2
-00:00:04.975 --> 00:00:09.406
-Universal DDI has its own
-divisional construct, access views,
+00:00:05.100 --> 00:00:10.573
+We'll look at its access views and IPAM
+Federation, then four delegation patterns,
 
 3
-00:00:09.406 --> 00:00:15.487
-and its own answer to overlapping address
-space, IPAM Federation, which NIOS lacks.
-
-4
-00:00:15.487 --> 00:00:18.973
-We'll cover those and their
-limits, including a conflict in
-
-5
-00:00:18.973 --> 00:00:22.676
-Infoblox's own documentation
-you'll need to resolve with them.
-
-6
-00:00:22.676 --> 00:00:26.585
-Then we'll step back to four delegation
-patterns and their trade-offs,
-
-7
-00:00:26.585 --> 00:00:30.976
-walk through an illustrative design for
-four divisions, set out who does what,
-
-8
-00:00:30.976 --> 00:00:34.475
-and end with a rollout sequence
-and the decisions to take next.
-
-9
-00:00:34.475 --> 00:00:39.417
-Sources: Infoblox Portal and
-Universal DDI documentation;
-
-10
-00:00:39.417 --> 00:00:44.830
-the Federal Modernization Workbook's
-Book 08, Chapters 09 and 10.
+00:00:10.573 --> 00:00:14.110
+a worked example, who does
+what, and a rollout sequence.

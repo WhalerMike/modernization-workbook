@@ -1,138 +1,50 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:01.575
-What does this guide implement?
+00:00:00.050 --> 00:00:02.593
+Here's the frame for the whole guide:
 
 2
-00:00:01.575 --> 00:00:05.360
-The Federal Modernization
-Workbook's Book 08's design,
+00:00:02.593 --> 00:00:06.275
+Book 08's design, mapped
+onto the way Infoblox works.
 
 3
-00:00:05.360 --> 00:00:07.800
-mapped onto the way Infoblox works.
+00:00:06.275 --> 00:00:11.369
+Book 08 wants governed DNS and address
+management, and on NIOS that's a Grid,
 
 4
-00:00:07.800 --> 00:00:13.275
-Book 08 wants governed authoritative
-DNS and IP address management.
+00:00:11.369 --> 00:00:14.626
+one Grid Master holding
+the database and every
 
 5
-00:00:13.275 --> 00:00:17.021
-On NIOS that's a Grid: one Grid
-Master holds the database,
-
-6
-00:00:17.021 --> 00:00:20.850
-and every member gets its copy
+00:00:14.626 --> 00:00:18.050
+member getting its copy
 over an encrypted tunnel.
 
+6
+00:00:18.050 --> 00:00:23.169
+Book 08 wants a period of coexistence
+with Microsoft, so NIOS first manages
+
 7
-00:00:20.850 --> 00:00:22.050
-Part 1 builds it.
+00:00:23.169 --> 00:00:28.288
+the Windows servers read-only, then takes
+over zones and scopes one at a time.
 
 8
-00:00:22.050 --> 00:00:27.688
-Book 08 wants a coexistence period
-with Microsoft DNS and DHCP.
+00:00:28.288 --> 00:00:33.713
+Book 08 requires DNSSEC, so the Grid
+Master signs as a hidden primary.
 
 9
-00:00:27.688 --> 00:00:31.863
-On NIOS, managing members
-synchronize the Windows servers over
+00:00:33.713 --> 00:00:38.949
+And its evidence becomes syslog, audit
+logs, backups and the STIG checklist.
 
 10
-00:00:31.863 --> 00:00:35.801
-Microsoft's remote procedure
-call protocol, read-only first.
-
-11
-00:00:35.801 --> 00:00:40.849
-Book 08 moves zones and scopes one at
-a time; on NIOS that's zone import
-
-12
-00:00:40.849 --> 00:00:45.988
-by transfer, and a DHCP takeover
-done by changing server assignments.
-
-13
-00:00:45.988 --> 00:00:51.397
-Book 08's default keeps the Active Directory
-locator records on AD DNS until the
-
-14
-00:00:51.397 --> 00:00:55.659
-last domain controller goes, and
-this guide keeps that default,
-
-15
-00:00:55.659 --> 00:00:59.512
-showing NIOS hosting the AD
-zone only as the alternative.
-
-16
-00:00:59.512 --> 00:01:01.275
-Part 2 covers all of that.
-
-17
-00:01:01.275 --> 00:01:04.788
-Book 08 Chapter 06 requires DNSSEC.
-
-18
-00:01:04.788 --> 00:01:08.275
-On NIOS, the Grid Master
-signs as a hidden primary,
-
-19
-00:01:08.275 --> 00:01:12.287
-with keys in its database or
-a hardware security module.
-
-20
-00:01:12.287 --> 00:01:13.412
-That's Part 3.
-
-21
-00:01:13.412 --> 00:01:17.715
-And Chapter 11's evidence becomes
-secure syslog to the SIEM,
-
-22
-00:01:17.715 --> 00:01:22.287
-a copy of the audit log, backups
-and the STIG checklist, in Part 4.
-
-23
-00:01:22.287 --> 00:01:25.187
-Book 08's six phases still govern.
-
-24
-00:01:25.187 --> 00:01:27.814
-This guide adds a Phase 0 of decisions,
-
-25
-00:01:27.814 --> 00:01:31.288
-because some NIOS choices
-can't be undone cheaply.
-
-26
-00:01:31.288 --> 00:01:36.685
-Sources: Book 08, Chapters 04
-(AD DNS departure), 06 (DNSSEC),
-
-27
-00:01:36.685 --> 00:01:42.084
-08 (reference architecture),
-10 (six phases, cutover loop),
-
-28
-00:01:42.084 --> 00:01:49.881
-11 (operations and evidence); Infoblox
-NIOS 9.1.x About Grids, Managing Microsoft
-
-29
-00:01:49.881 --> 00:01:57.860
-Windows servers, Importing zone data, DNSSEC
-on a Grid; research brief section 10.
+00:00:38.949 --> 00:00:44.900
+Book 08's six phases still govern, but
+this guide adds a Phase 0 of decisions.

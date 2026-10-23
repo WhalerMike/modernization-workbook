@@ -1,98 +1,64 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:02.815
-This explainer answers
-a question architects
+00:00:00.050 --> 00:00:00.763
+Welcome.
 
 2
-00:00:02.815 --> 00:00:05.225
-hit as soon as workloads
-move to the cloud.
+00:00:00.763 --> 00:00:03.448
+This is research from
+the Federal Modernization
 
 3
-00:00:05.225 --> 00:00:11.223
+00:00:03.448 --> 00:00:06.462
+Workbook's Research section,
+and it's still under review.
+
+4
+00:00:06.462 --> 00:00:10.926
+It answers a question architects hit as
+soon as workloads move to the cloud.
+
+5
+00:00:10.926 --> 00:00:16.737
 If we already run Infoblox Trinzic
 appliances on premises, can they handle DNS,
 
-4
-00:00:11.223 --> 00:00:17.037
-DHCP and IP address management for AWS,
-Azure and Google Cloud by themselves?
-
-5
-00:00:17.037 --> 00:00:19.900
-Or do we need to add some
-form of cloud-based DDI?
-
 6
-00:00:19.900 --> 00:00:22.466
-It's built for someone still learning DDI,
+00:00:16.737 --> 00:00:22.013
+DHCP and address management for AWS,
+Azure and Google Cloud on their own?
 
 7
-00:00:22.466 --> 00:00:25.712
-so every term is explained
-the first time it appears.
+00:00:22.013 --> 00:00:25.050
+Or do we need some form of
+cloud-based DDI as well?
 
 8
-00:00:25.712 --> 00:00:27.429
-We start with the vocabulary,
+00:00:25.050 --> 00:00:29.643
+It's written for someone still learning
+DDI, so we'll start with the vocabulary,
 
 9
-00:00:27.429 --> 00:00:31.150
-then what Trinzic does well and
-where it stops at the cloud edge.
+00:00:29.643 --> 00:00:32.298
+look at where Trinzic
+stops at the cloud edge,
 
 10
-00:00:31.150 --> 00:00:35.896
-Then three options: Infoblox
-virtual appliances in each cloud,
+00:00:32.298 --> 00:00:35.025
+then weigh three options
+and a decision table.
 
 11
-00:00:35.896 --> 00:00:40.825
-Infoblox's cloud service, and native
-cloud DNS alongside the Grid.
-
-12
-00:00:40.825 --> 00:00:43.564
-Then the rules that keep
-answers consistent,
-
-13
-00:00:43.564 --> 00:00:46.600
-a decision table, and where
-this fits the workbook.
-
-14
-00:00:46.600 --> 00:00:48.400
-This is research under review.
-
-15
-00:00:48.400 --> 00:00:53.591
+00:00:35.025 --> 00:00:40.309
 Every fact comes from vendor or government
 documentation opened on October
 
-16
-00:00:53.591 --> 00:00:56.593
-twenty-second, 2026,
-and recommendations are
+12
+00:00:40.309 --> 00:00:45.263
+twenty-second, 2026, and recommendations
+are labeled as design guidance.
 
-17
-00:00:56.593 --> 00:00:59.675
-labeled as design
-guidance, not endorsements.
-
-18
-00:00:59.675 --> 00:01:05.788
-Sources: Infoblox NIOS 9.1.x, vNIOS
-and Universal DDI documentation; AWS,
-
-19
-00:01:05.788 --> 00:01:10.109
-Microsoft Learn and Google
-Cloud documentation;
-
-20
-00:01:10.109 --> 00:01:17.330
-FedRAMP Marketplace products.json; the
-Federal Modernization Workbook's Book 08.
+13
+00:00:45.263 --> 00:00:46.870
+Let's start with the words.

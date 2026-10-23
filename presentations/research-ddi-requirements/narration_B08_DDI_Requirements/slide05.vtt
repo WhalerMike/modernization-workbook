@@ -1,126 +1,59 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:04.287
-Third, DNS security: two layers in series.
+00:00:00.050 --> 00:00:05.138
+The third capability is DNS security,
+and it's two layers in series.
 
 2
-00:00:04.287 --> 00:00:08.290
-The agency's own resolvers
-apply the agency's policy,
+00:00:05.138 --> 00:00:09.782
+The agency's own resolvers apply the
+agency's policy and log every hit,
 
 3
-00:00:08.290 --> 00:00:13.037
-response policy zones or a DNS
-firewall, with every hit logged.
+00:00:09.782 --> 00:00:14.751
+and then all outbound queries go
+upstream through CISA's Protective DNS.
 
 4
-00:00:13.037 --> 00:00:17.921
-Then all egress recursion goes upstream
-through CISA's Protective DNS,
+00:00:14.751 --> 00:00:17.337
+The order matters more
+than having the pieces.
 
 5
-00:00:17.921 --> 00:00:23.049
-which blocks, redirects or sinkholes
-queries that match threat indicators.
+00:00:17.337 --> 00:00:22.265
+Book 08's Decision 2 is that the agency
+resolver is always the first hop,
 
 6
-00:00:23.049 --> 00:00:26.393
-So the platform has to forward
-to it, preferably encrypted,
+00:00:22.265 --> 00:00:26.173
+so a SASE provider's DNS
+service is a forwarding target,
 
 7
-00:00:26.393 --> 00:00:30.363
-and that's worth testing: CISA's
-own guidance notes that some vendors
+00:00:26.173 --> 00:00:29.487
+never the place the branch
+sends queries first.
 
 8
-00:00:30.363 --> 00:00:34.263
-don't support the protocols for
-forwarding queries to its resolver.
+00:00:29.487 --> 00:00:33.912
+Get the order wrong and you quietly
+lose the agency's own policy,
 
 9
-00:00:34.263 --> 00:00:36.363
-Order matters more than presence.
+00:00:33.912 --> 00:00:35.613
+validation and logging.
 
 10
-00:00:36.363 --> 00:00:40.285
-The Federal Modernization
-Workbook's Book 08's Decision
+00:00:35.613 --> 00:00:39.753
+Encrypted DNS completes the
+picture: the platform terminates
 
 11
-00:00:40.285 --> 00:00:43.875
-2 is that the agency resolver
-is always the first hop.
+00:00:39.753 --> 00:00:43.337
+it on its resolvers, and
+clients mustn't route around it.
 
 12
-00:00:43.875 --> 00:00:49.354
-If the agency also uses a SASE provider's
-DNS service, that service is a forwarding
-
-13
-00:00:49.354 --> 00:00:54.350
-target of the agency resolver, never
-the place the branch edge redirects to.
-
-14
-00:00:54.350 --> 00:00:57.449
-Every component present,
-in the wrong order,
-
-15
-00:00:57.449 --> 00:01:02.012
-quietly removes the agency's own
-policy, validation and logging.
-
-16
-00:01:02.012 --> 00:01:04.663
-Encrypted DNS completes it.
-
-17
-00:01:04.663 --> 00:01:10.501
-M-22-09 requires encrypted DNS wherever
-technically supported, with endpoints
-
-18
-00:01:10.501 --> 00:01:16.037
-explicitly configured to agency-designated
-resolvers rather than ones they discover.
-
-19
-00:01:16.037 --> 00:01:19.928
-So the platform must
-terminate DNS over HTTPS
-
-20
-00:01:19.928 --> 00:01:23.512
-or TLS on its resolvers
-and use it upstream.
-
-21
-00:01:23.512 --> 00:01:26.092
-And clients mustn't route around it:
-
-22
-00:01:26.092 --> 00:01:32.851
-TIC 3.0 includes filtering that blocks
-unauthorized DNS over HTTPS resolvers.
-
-23
-00:01:32.851 --> 00:01:34.650
-One product detail to check.
-
-24
-00:01:34.650 --> 00:01:39.788
-Endpoint DNS agents commonly listen
-on the device's loopback address.
-
-25
-00:01:39.788 --> 00:01:44.009
-They protect a roaming laptop, but an
-SD-WAN edge can't redirect to them,
-
-26
-00:01:44.009 --> 00:01:47.780
-so they don't replace a
-network-addressable branch resolver.
+00:00:43.337 --> 00:00:44.810
+Next, addresses.

@@ -1,114 +1,59 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:03.205
-Federal HR 2.0, the program OPM runs,
+00:00:00.050 --> 00:00:00.763
+Welcome.
 
 2
-00:00:03.205 --> 00:00:08.500
-moves agencies' core HR records
-onto one Oracle platform.
+00:00:00.763 --> 00:00:03.448
+This is research from
+the Federal Modernization
 
 3
-00:00:08.500 --> 00:00:12.051
+00:00:03.448 --> 00:00:06.462
+Workbook's Research section,
+and it's still under review.
+
+4
+00:00:06.462 --> 00:00:13.075
+Federal HR 2.0 moves agencies' core
+HR records onto one Oracle platform.
+
+5
+00:00:13.075 --> 00:00:16.666
 If an agency builds HR-driven
 identity on top of it,
 
-4
-00:00:12.051 --> 00:00:17.335
-so that a hire in HR becomes an account
-and a departure removes one, the data
-
-5
-00:00:17.335 --> 00:00:20.280
-crosses Oracle's cloud, Microsoft's cloud,
-
 6
-00:00:20.280 --> 00:00:23.225
-the agency's own network,
-and possibly AWS.
+00:00:16.666 --> 00:00:22.008
+so a hire becomes an account and a
+departure removes one, that data crosses
 
 7
-00:00:23.225 --> 00:00:26.950
-Every one of those hops
-starts with a DNS lookup.
+00:00:22.008 --> 00:00:27.087
+Oracle's cloud, Microsoft's cloud, the
+agency's own network, and maybe AWS.
 
 8
-00:00:26.950 --> 00:00:32.163
-DNS, the domain name system, turns
-a name into a network address.
+00:00:27.087 --> 00:00:30.250
+Every hop starts with a DNS lookup.
 
 9
-00:00:32.163 --> 00:00:34.750
-This explainer answers three questions.
+00:00:30.250 --> 00:00:33.102
+So we'll ask which names
+must resolve where,
 
 10
-00:00:34.750 --> 00:00:36.562
-Which names must resolve where?
+00:00:33.102 --> 00:00:36.850
+what breaks, and when you need
+private DNS or forwarding.
 
 11
-00:00:36.562 --> 00:00:37.574
-What breaks?
+00:00:36.850 --> 00:00:42.131
+Facts come from sources opened on October
+twenty-second, 2026, a few Microsoft ones
 
 12
-00:00:37.574 --> 00:00:43.038
-And when do you need private DNS or
-forwarding, instead of ordinary public DNS?
-
-13
-00:00:43.038 --> 00:00:47.163
-It's built for architects still
-learning, so terms are defined as we go.
-
-14
-00:00:47.163 --> 00:00:48.963
-This is research under review.
-
-15
-00:00:48.963 --> 00:00:53.447
-Every fact comes from sources
-opened on October twenty-second,
-
-16
-00:00:53.447 --> 00:00:55.949
-2026, mostly vendor documentation.
-
-17
-00:00:55.949 --> 00:00:59.950
-A few Microsoft facts come from
-search excerpts of Microsoft Learn
-
-18
-00:00:59.950 --> 00:01:03.450
-pages rather than full pages, and
-I'll say so when they come up.
-
-19
-00:01:03.450 --> 00:01:08.250
-Where I drew a conclusion that no source
-states directly, I'll call it an inference.
-
-20
-00:01:08.250 --> 00:01:11.638
-And recommendations are labeled
-program design guidance.
-
-21
-00:01:11.638 --> 00:01:18.132
-Sources: Research brief, DNS for
-HR-driven identity across Oracle,
-
-22
-00:01:18.132 --> 00:01:23.182
-Microsoft, on-premises,
-VMware and AWS (verified Oct.
-
-23
-00:01:23.182 --> 00:01:30.036
-22, 2026), Method and Bottom line;
-the Federal Modernization Workbook's
-
-24
-00:01:30.036 --> 00:01:35.740
-Book 03 Ch03 (OPM as the Federal
-HR 2.0 program owner); Book 08.
+00:00:42.131 --> 00:00:47.470
+from search excerpts, and I'll flag inferences
+and program design guidance as we go.

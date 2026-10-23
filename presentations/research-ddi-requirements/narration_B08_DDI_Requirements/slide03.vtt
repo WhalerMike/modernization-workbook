@@ -1,134 +1,67 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:04.615
-First, before any procurement:
-no OMB memorandum, directive,
+00:00:00.050 --> 00:00:04.350
+Before any procurement, one thing
+to know: no memo, directive,
 
 2
-00:00:04.615 --> 00:00:08.901
+00:00:04.350 --> 00:00:08.387
 executive order or NIST
 publication names a DDI vendor,
 
 3
-00:00:08.901 --> 00:00:13.000
-or requires a product category
-called a DDI platform.
+00:00:08.387 --> 00:00:12.600
+or even requires a product
+category called a DDI platform.
 
 4
-00:00:13.000 --> 00:00:14.812
+00:00:12.600 --> 00:00:14.412
 They require capabilities.
 
 5
-00:00:14.812 --> 00:00:22.298
-SP 800-53's SC-20, SC-21 and
-SC-22 ask for signed answers,
+00:00:14.412 --> 00:00:17.300
+Signed answers and validating resolvers.
 
 6
-00:00:22.298 --> 00:00:28.187
-validating resolvers and fault-tolerant,
-role-separated name service.
+00:00:17.300 --> 00:00:20.838
+Encrypted DNS wherever it's
+technically supported.
 
 7
-00:00:28.187 --> 00:00:34.576
-OMB M-08-23 still requires
-DNSSEC on applicable systems.
+00:00:20.838 --> 00:00:25.600
+Protective DNS for all egress
+resolution at civilian agencies.
 
 8
-00:00:34.576 --> 00:00:39.879
-M-22-09 requires encrypted DNS
-wherever it's technically supported,
+00:00:25.600 --> 00:00:28.822
+Regular discovery of
+agency address space and
 
 9
-00:00:39.879 --> 00:00:43.362
-to agency-designated resolvers
-that log the queries.
+00:00:28.822 --> 00:00:31.962
+attestation of public
+addresses and domains.
 
 10
-00:00:43.362 --> 00:00:50.018
-Executive Order 14144's section on encrypted
-DNS survived the June 2025 amendments:
+00:00:31.962 --> 00:00:37.738
+On logging, be precise: the current memo
+sets retention but doesn't mention DNS,
 
 11
-00:00:50.018 --> 00:00:56.008
-agencies enable it within 180 days
-wherever clients and servers support it,
+00:00:37.738 --> 00:00:43.874
+so DNS logging rests on guidance mapped to
+that baseline, not a standalone mandate.
 
 12
-00:00:56.008 --> 00:01:00.096
-and CISA is directed to
-publish contract language
+00:00:43.874 --> 00:00:46.482
+And NIST's DNS guide is guidance too,
 
 13
-00:01:00.096 --> 00:01:03.424
-for any product that
-acts as a DNS resolver.
+00:00:46.482 --> 00:00:50.437
+with two of its three authors
+working for a DDI vendor.
 
 14
-00:01:03.424 --> 00:01:09.200
-Civilian agencies must use CISA's
-Protective DNS for all egress resolution.
-
-15
-00:01:09.200 --> 00:01:13.788
-And TIC 3.0 lists the
-matching DNS capabilities.
-
-16
-00:01:13.788 --> 00:01:15.787
-On logging, be precise.
-
-17
-00:01:15.787 --> 00:01:24.912
-M-26-14 rescinded M-21-31 in May 2026,
-and it doesn't mention DNS at all.
-
-18
-00:01:24.912 --> 00:01:28.949
-It sets retention: six months
-searchable, twelve retrievable.
-
-19
-00:01:28.949 --> 00:01:33.616
-CISA's Logging Reference
-Architecture then maps the old DNS,
-
-20
-00:01:33.616 --> 00:01:39.837
-DHCP and passive DNS categories to network
-activity, and calls them foundational.
-
-21
-00:01:39.837 --> 00:01:45.125
-That's guidance mapped to a baseline,
-not a standalone DNS mandate.
-
-22
-00:01:45.125 --> 00:01:53.035
-For addresses, BOD 23-01 asks for discovery
-across all agency IPv4 space every seven
-
-23
-00:01:53.035 --> 00:02:00.715
-days, BOD 26-04 asks for quarterly attestation
-of public IP addresses and domains,
-
-24
-00:02:00.715 --> 00:02:07.937
-M-21-07's IPv6 milestones have all passed,
-and CM-8 wants an accurate inventory.
-
-25
-00:02:07.937 --> 00:02:12.951
-NIST SP 800-81 Revision
-3 ties these together.
-
-26
-00:02:12.951 --> 00:02:17.913
-It's guidance, not a mandate, and two of
-its three authors work for a DDI vendor,
-
-27
-00:02:17.913 --> 00:02:20.930
-which is worth knowing
-when a vendor cites it.
+00:00:50.437 --> 00:00:52.540
+Now the capabilities themselves.

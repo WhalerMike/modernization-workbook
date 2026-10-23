@@ -1,108 +1,65 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:02.587
-When an agency retires Active Directory,
+00:00:00.050 --> 00:00:00.763
+Welcome.
 
 2
-00:00:02.587 --> 00:00:07.587
+00:00:00.763 --> 00:00:03.448
+This is research from
+the Federal Modernization
+
+3
+00:00:03.448 --> 00:00:06.462
+Workbook's Research section,
+and it's still under review.
+
+4
+00:00:06.462 --> 00:00:09.017
+When an agency retires Active Directory,
+
+5
+00:00:09.017 --> 00:00:14.051
 two questions come up that nobody owned
 before, because AD answered them quietly.
 
-3
-00:00:07.587 --> 00:00:09.300
+6
+00:00:14.051 --> 00:00:15.762
 Who gives a device its name?
 
-4
-00:00:09.300 --> 00:00:12.718
-And who puts that name into
-DNS, the system that turns
-
-5
-00:00:12.718 --> 00:00:16.612
-names into network addresses,
+7
+00:00:15.762 --> 00:00:20.049
+And who puts that name into DNS,
 so other machines can find it?
 
-6
-00:00:16.612 --> 00:00:18.563
-This explainer walks through both.
-
-7
-00:00:18.563 --> 00:00:20.735
-It's built for someone still learning,
-
 8
-00:00:20.735 --> 00:00:23.750
-so every term is explained
-the first time it appears.
+00:00:20.049 --> 00:00:24.482
+We'll look at the two jobs AD did at
+once, who names each kind of device now,
 
 9
-00:00:23.750 --> 00:00:26.438
-We start with the two jobs AD did at once.
+00:00:24.482 --> 00:00:28.455
+why devices can't register their
+own names securely without AD,
 
 10
-00:00:26.438 --> 00:00:28.813
-Then who names each kind of device now.
+00:00:28.455 --> 00:00:30.900
+what takes over, and where nothing does.
 
 11
-00:00:28.813 --> 00:00:33.319
-Then why devices can't register
-their own names securely without AD,
+00:00:30.900 --> 00:00:32.075
+Then a checklist.
 
 12
-00:00:33.319 --> 00:00:37.987
-what takes over, and where nothing
-does, such as IPv6 and remote clients.
+00:00:32.075 --> 00:00:36.337
+Every fact comes from sources
+opened on October twenty-second,
 
 13
-00:00:37.987 --> 00:00:42.728
-Then why names still matter, and a
-checklist of what the agency must do,
+00:00:36.337 --> 00:00:40.763
+2026, and I'll flag inferences and
+program design guidance as we go.
 
 14
-00:00:42.728 --> 00:00:44.974
-before, during and after cutover.
-
-15
-00:00:44.974 --> 00:00:46.775
-This is research under review.
-
-16
-00:00:46.775 --> 00:00:51.950
-Every fact comes from sources opened
-on October twenty-second, 2026.
-
-17
-00:00:51.950 --> 00:00:56.750
-Where I drew a conclusion that no source
-states directly, I'll call it an inference.
-
-18
-00:00:56.750 --> 00:01:01.725
-And recommendations are labeled program
-design guidance, not vendor requirements.
-
-19
-00:01:01.725 --> 00:01:08.646
-Sources: Research brief, After
-Active Directory: Who Names Devices,
-
-20
-00:01:08.646 --> 00:01:16.070
-Who Registers Their DNS Records, and
-What an Agency Must Do (verified Oct.
-
-21
-00:01:16.070 --> 00:01:23.872
-22, 2026); Microsoft Learn, Apple,
-freedesktop.org, cloud-init, NetworkManager,
-
-22
-00:01:23.872 --> 00:01:29.912
-FreeIPA, AWS and Infoblox NIOS
-9.1 documentation; IETF RFCs;
-
-23
-00:01:29.912 --> 00:01:37.510
-the Federal Modernization Workbook's
-Book 05 Ch04; Book 08 Ch04, Ch07, Ch10.
+00:00:40.763 --> 00:00:42.500
+Let's start with what AD did.

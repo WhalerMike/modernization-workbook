@@ -1,159 +1,55 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:04.075
+00:00:00.050 --> 00:00:03.800
 Now the risks, stated plainly,
-with how to manage each one.
+with how to manage each.
 
 2
-00:00:04.075 --> 00:00:06.513
-First, cryptographic validation.
+00:00:03.800 --> 00:00:08.875
+First, cryptographic validation:
+no active FIPS certificate today.
 
 3
-00:00:06.513 --> 00:00:09.875
-There's no active FIPS
-140 certificate today.
+00:00:08.875 --> 00:00:12.303
+If your system needs validated
+cryptography at award,
 
 4
-00:00:09.875 --> 00:00:15.519
-The 140-2 certificates went Historical
-with the September 21 sunset,
+00:00:12.303 --> 00:00:16.872
+tie go-live to the issued certificate,
+or carry the gap as a dated POA&M item,
 
 5
-00:00:15.519 --> 00:00:18.787
-and four 140-3 modules are in NIST review.
+00:00:16.872 --> 00:00:20.300
+and ask which NIOS versions
+the pending modules cover.
 
 6
-00:00:18.787 --> 00:00:20.963
-BlueCat holds an active certificate.
+00:00:20.300 --> 00:00:22.804
+Second, no current NIAP certificate,
 
 7
-00:00:20.963 --> 00:00:25.809
-If your system requires validated
-cryptography at award, make go-live depend
+00:00:22.804 --> 00:00:27.563
+and the CDM product list is closed,
+so don't promise anyone that status.
 
 8
-00:00:25.809 --> 00:00:29.974
-on the issued certificate, or carry
-the gap as a POA&M item with a date.
+00:00:27.563 --> 00:00:33.281
+Third, vulnerabilities: NIOS has had CVEs
+rated as high as 9.8, though none is
 
 9
-00:00:29.974 --> 00:00:33.590
-Ask Infoblox which NIOS versions
-the pending modules cover,
+00:00:33.281 --> 00:00:39.374
+in CISA's known exploited catalog, so
+write the patch cadence into the ATO plan.
 
 10
-00:00:33.590 --> 00:00:36.988
-because a certificate for the
-wrong version doesn't help.
+00:00:39.374 --> 00:00:44.088
+Fourth, NIOS runs on BIND, so ask
+for a BIND advisory commitment.
 
 11
-00:00:36.988 --> 00:00:43.262
-Second, there's no current NIAP
-certificate; NIOS 9.0 is in evaluation.
-
-12
-00:00:43.262 --> 00:00:46.757
-And Infoblox isn't on the
-CDM Approved Products List,
-
-13
-00:00:46.757 --> 00:00:49.113
-which is closed to new submissions.
-
-14
-00:00:49.113 --> 00:00:54.012
-Track the NIAP evaluation, and
-don't promise anyone APL status.
-
-15
-00:00:54.012 --> 00:00:56.013
-Third, vulnerabilities.
-
-16
-00:00:56.013 --> 00:01:02.553
-NVD lists four NIOS CVEs from February
-2025 rated between 9.1 and 9.8,
-
-17
-00:01:02.553 --> 00:01:09.925
-including improper authentication for
-Grids, and a remote-code-execution
-
-18
-00:01:09.925 --> 00:01:15.513
-deserialization flaw,
-CVE-2025-61880, from February 2026.
-
-19
-00:01:15.513 --> 00:01:20.851
-None of the Infoblox CVEs is in CISA's
-Known Exploited Vulnerabilities catalog.
-
-20
-00:01:20.851 --> 00:01:25.488
-Write the patch cadence and the Long-Term
-Support train into the ATO plan,
-
-21
-00:01:25.488 --> 00:01:29.275
-and keep the Grid management
-plane off untrusted networks.
-
-22
-00:01:29.275 --> 00:01:31.325
-Fourth, the BIND dependency.
-
-23
-00:01:31.325 --> 00:01:35.461
-NIOS and NIOS-X run on
-BIND, and NIOS-X updates in
-
-24
-00:01:35.461 --> 00:01:40.250
-September 2026 shipped to
-address lists of BIND CVEs.
-
-25
-00:01:40.250 --> 00:01:48.975
-On October eighth CISA added an old BIND
-flaw, CVE-2015-5477, to the KEV catalog.
-
-26
-00:01:48.975 --> 00:01:54.193
-Ask Infoblox for its BIND advisory SLA
-and a written attestation that current
-
-27
-00:01:54.193 --> 00:01:57.405
-releases aren't affected
-by KEV-listed BIND CVEs,
-
-28
-00:01:57.405 --> 00:01:59.813
-and track ISC's advisories yourself.
-
-29
-00:01:59.813 --> 00:02:03.787
-Fifth, the SaaS ceiling is
-Moderate, and reuse is zero.
-
-30
-00:02:03.787 --> 00:02:10.149
-Use agency-operated vNIOS for High or
-DoD systems, and budget a full ATO.
-
-31
-00:02:10.149 --> 00:02:19.110
-Sources: NIST CMVP certificates 4531,
-4535, 5506 and modules-in-process list;
-
-32
-00:02:19.110 --> 00:02:25.180
-NIAP PCL; CISA CDM APL; NVD
-CVE API (keyword Infoblox);
-
-33
-00:02:25.180 --> 00:02:34.920
-CISA KEV catalog 2026.10.21; Infoblox
-Cloud release notes; FedRAMP products.json.
+00:00:44.088 --> 00:00:47.950
+And fifth, the SaaS tops out
+at Moderate with zero reuse.

@@ -6,125 +6,57 @@ Here's what those checks returned for
 four DDI products on October 22, 2026.
 
 2
-00:00:06.000 --> 00:00:08.376
-It's a status snapshot, not a ranking,
+00:00:06.000 --> 00:00:10.050
+It's a snapshot, not a ranking,
+so confirm on the day you decide.
 
 3
-00:00:08.376 --> 00:00:12.062
-and any cell can change, so
-confirm on the day you decide.
+00:00:10.050 --> 00:00:14.467
+Only Infoblox Government Cloud has
+a FedRAMP listing, at Moderate,
 
 4
-00:00:12.062 --> 00:00:12.900
-FedRAMP.
+00:00:14.467 --> 00:00:18.000
+and it covers the SaaS, not
+the on-premises appliances.
 
 5
-00:00:12.900 --> 00:00:18.623
-One of the four has a listing: Infoblox
-Government Cloud, Certified at Class C,
+00:00:18.000 --> 00:00:21.125
+The others run inside the
+agency's own boundary.
 
 6
-00:00:18.623 --> 00:00:23.437
-Moderate, as SaaS in AWS GovCloud,
-with one agency authorization.
+00:00:21.125 --> 00:00:24.013
+Only Infoblox has vendor-specific STIGs.
 
 7
-00:00:23.437 --> 00:00:27.588
-It covers the SaaS, not
-on-premises NIOS appliances.
+00:00:24.013 --> 00:00:27.876
+Only BlueCat holds an active
+FIPS 140-3 certificate,
 
 8
-00:00:27.588 --> 00:00:31.362
-BlueCat, EfficientIP and
-Micetro have no listing.
+00:00:27.876 --> 00:00:32.549
+while Infoblox's newer modules
+are still in NIST's review queue.
 
 9
-00:00:31.362 --> 00:00:36.206
-Their products run as software or appliances
-inside the agency's own boundary,
+00:00:32.549 --> 00:00:36.084
+None of the four has a
+current NIAP certification,
 
 10
-00:00:36.206 --> 00:00:39.038
-where the agency's
-authorization covers them.
+00:00:36.084 --> 00:00:38.412
+and none is on the latest CDM list.
 
 11
-00:00:39.038 --> 00:00:39.950
-STIGs.
+00:00:38.412 --> 00:00:40.992
+So every candidate has a gap to close,
 
 12
-00:00:39.950 --> 00:00:45.635
-DISA publishes vendor-specific
-STIGs for Infoblox: NIOS 9.x,
+00:00:40.992 --> 00:00:44.688
+in the contract or in a plan
+of action and milestones.
 
 13
-00:00:45.635 --> 00:00:51.087
-version 1 release 1, and the 8.x
-DNS STIG, version 1 release 4.
-
-14
-00:00:51.087 --> 00:00:53.025
-None was found for the other three.
-
-15
-00:00:53.025 --> 00:00:54.500
-FIPS 140.
-
-16
-00:00:54.500 --> 00:01:00.164
-BlueCat holds an active FIPS
-140-3 certificate, number 5506,
-
-17
-00:01:00.164 --> 00:01:05.250
-a Level 1 software module
-that sunsets in August 2029.
-
-18
-00:01:05.250 --> 00:01:10.153
-Infoblox's FIPS 140-2
-certificates are now historical,
-
-19
-00:01:10.153 --> 00:01:14.838
-and four FIPS 140-3 modules
-are in NIST's review queue.
-
-20
-00:01:14.838 --> 00:01:18.263
-No certificate was found
-for EfficientIP or Micetro,
-
-21
-00:01:18.263 --> 00:01:22.700
-and it wasn't verified whether
-BlueCat's certificate covers Micetro.
-
-22
-00:01:22.700 --> 00:01:23.600
-NIAP.
-
-23
-00:01:23.600 --> 00:01:26.075
-None of the four has a
-current certification.
-
-24
-00:01:26.075 --> 00:01:32.375
-Infoblox's NIOS 9.0 is in evaluation,
-and BlueCat's entries are archived.
-
-25
-00:01:32.375 --> 00:01:36.200
-And none appears on the
-April 2025 CDM list.
-
-26
-00:01:36.200 --> 00:01:41.170
-So every candidate has a gap to close,
-in the contract or in a plan of action
-
-27
-00:01:41.170 --> 00:01:46.440
-and milestones, whether that's an
-authorization, a STIG or a validated module.
+00:00:44.688 --> 00:00:45.940
+Now, who runs it.

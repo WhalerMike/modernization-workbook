@@ -1,170 +1,61 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:02.425
-A fair comparison, column by column.
+00:00:00.050 --> 00:00:01.512
+Here's a fair comparison.
 
 2
-00:00:02.425 --> 00:00:08.662
-FedRAMP: Infoblox is the only dedicated DDI
-vendor here with a listing, at Moderate.
+00:00:01.512 --> 00:00:06.032
+On FedRAMP, Infoblox is the only
+dedicated DDI vendor with a listing,
 
 3
-00:00:08.662 --> 00:00:11.012
-BlueCat and EfficientIP have none.
+00:00:06.032 --> 00:00:10.875
+though the hyperscalers' government
+clouds sit at High, a higher ceiling.
 
 4
-00:00:11.012 --> 00:00:15.109
-But the hyperscalers' government
-clouds are all FedRAMP High,
+00:00:10.875 --> 00:00:19.125
+On FIPS 140, BlueCat leads with an active
+FIPS 140-3 certificate valid to 2029.
 
 5
-00:00:15.109 --> 00:00:17.600
-a higher ceiling than Infoblox's SaaS.
+00:00:19.125 --> 00:00:24.063
+Infoblox leads on STIGs and has
+the broadest DNS security set.
 
 6
-00:00:17.600 --> 00:00:20.738
-FIPS 140: BlueCat leads.
+00:00:24.063 --> 00:00:26.549
+On automation, it has the deepest.
 
 7
-00:00:20.738 --> 00:00:28.463
-It holds an active FIPS 140-3
-certificate, number 5506, valid to 2029.
+00:00:26.549 --> 00:00:32.238
+DHCPv6 failover is missing everywhere
+we checked, so it's no differentiator.
 
 8
-00:00:28.463 --> 00:00:32.487
-Infoblox's is still in review,
-and EfficientIP has none.
+00:00:32.238 --> 00:00:34.479
+And alternatives do win in places:
 
 9
-00:00:32.487 --> 00:00:36.518
-STIGs: Infoblox has two
-current vendor-specific STIGs;
+00:00:34.479 --> 00:00:39.123
+BlueCat's Micetro manages existing
+Windows and BIND servers in place,
 
 10
-00:00:36.518 --> 00:00:41.087
-BlueCat and EfficientIP have
-none, and Windows DNS has its own.
+00:00:39.123 --> 00:00:43.287
+and a single-cloud workload may
+need no third-party plane at all.
 
 11
-00:00:41.087 --> 00:00:45.180
-Multi-cloud DNS: Infoblox
-manages Route 53,
+00:00:43.287 --> 00:00:47.440
+So the fair claim is a strong
+default for a hybrid federal estate,
 
 12
-00:00:45.180 --> 00:00:49.974
-Azure DNS and Google Cloud
-DNS from one interface.
+00:00:47.440 --> 00:00:49.163
+not the only viable choice.
 
 13
-00:00:49.974 --> 00:00:54.325
-BlueCat and EfficientIP claim similar
-coverage on their product pages.
-
-14
-00:00:54.325 --> 00:00:59.075
-Each cloud's native service covers only
-that cloud, and Windows covers none.
-
-15
-00:00:59.075 --> 00:01:02.256
-DNS security: Infoblox
-has the broadest set,
-
-16
-00:01:02.256 --> 00:01:08.087
-response policy zones plus TIDE intelligence
-and tunneling and DGA analytics.
-
-17
-00:01:08.087 --> 00:01:11.296
-Azure uses domain lists
-and a Microsoft feed,
-
-18
-00:01:11.296 --> 00:01:16.931
-AWS DNS Firewall Advanced adds DGA and
-tunneling detection, Google's response
-
-19
-00:01:16.931 --> 00:01:22.826
-policies are passthrough only, and Windows
-DNS policies have no feed integration.
-
-20
-00:01:22.826 --> 00:01:26.240
-DHCPv6 failover is missing
-everywhere we checked,
-
-21
-00:01:26.240 --> 00:01:30.225
-Infoblox and Windows included,
-so it's not a differentiator.
-
-22
-00:01:30.225 --> 00:01:35.800
-EfficientIP claims extra DHCP
-high-availability modes; that's a vendor claim.
-
-23
-00:01:35.800 --> 00:01:39.215
-Automation: two partner-tier
-Terraform providers,
-
-24
-00:01:39.215 --> 00:01:44.013
-two Ansible collections and ServiceNow
-give Infoblox the deepest set.
-
-25
-00:01:44.013 --> 00:01:47.475
-EfficientIP's Terraform
-provider is community tier.
-
-26
-00:01:47.475 --> 00:01:52.537
-Where alternatives win: BlueCat's
-Micetro manages existing Windows and BIND
-
-27
-00:01:52.537 --> 00:01:57.362
-servers in place, and a single-cloud
-workload may need no third-party plane.
-
-28
-00:01:57.362 --> 00:01:59.911
-So the fair claim is the one on the slide:
-
-29
-00:01:59.911 --> 00:02:04.612
-a strong default for a hybrid federal
-estate, not the only viable choice.
-
-30
-00:02:04.612 --> 00:02:10.660
-Sources: FedRAMP Marketplace
-products.json; NIST CMVP certificate 5506;
-
-31
-00:02:10.660 --> 00:02:15.095
-DISA STIG store; BlueCat
-Integrity and Micetro pages,
-
-32
-00:02:15.095 --> 00:02:18.825
-EfficientIP SOLIDserver
-datasheet (vendor);
-
-33
-00:02:18.825 --> 00:02:25.075
-Microsoft Learn DNS Policies and DHCP
-failover; Azure DNS resolver policy;
-
-34
-00:02:25.075 --> 00:02:31.526
-Route 53 DNS Firewall Advanced; Google
-Cloud response policies and DNS Armor;
-
-35
-00:02:31.526 --> 00:02:34.610
-Terraform Registry; Ansible Galaxy.
+00:00:49.163 --> 00:00:50.380
+Now the risks.

@@ -1,128 +1,54 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:03.387
-FIPS mode: the procedure,
-and what it changes.
+00:00:00.050 --> 00:00:05.026
+Turning on FIPS mode is a short
+procedure built around a factory reset,
 
 2
-00:00:03.387 --> 00:00:05.275
-The procedure has five steps.
+00:00:05.026 --> 00:00:08.200
+a longer shared secret,
+and a self-test reboot.
 
 3
-00:00:05.275 --> 00:00:07.900
-Run reset all, the factory reset.
+00:00:08.200 --> 00:00:12.205
+The order matters: on a high-availability
+pair, set it on each node
 
 4
-00:00:07.900 --> 00:00:10.288
-Configure the network and licenses.
+00:00:12.205 --> 00:00:16.587
+before forming the pair, and join
+special members before you enable it.
 
 5
-00:00:10.288 --> 00:00:14.162
-Change the Grid's shared
-secret, which in FIPS or Common
+00:00:16.587 --> 00:00:21.262
+After an upgrade, there's one extra
+command to make Grid traffic compliant.
 
 6
-00:00:14.162 --> 00:00:18.037
-Criteria mode must be twenty
-to sixty-four characters.
+00:00:21.262 --> 00:00:23.112
+What changes is significant.
 
 7
-00:00:18.037 --> 00:00:20.988
-Run set fips mode, or set cc mode.
+00:00:23.112 --> 00:00:27.906
+Only modern TLS stays on, weak algorithms
+are flagged, and portal and cloud
 
 8
-00:00:20.988 --> 00:00:23.847
-The appliance reboots and runs self-tests,
+00:00:27.906 --> 00:00:33.250
+connections are disabled, and they aren't
+restored if FIPS mode is later turned off.
 
 9
-00:00:23.847 --> 00:00:26.951
-and if a self-test fails,
-it loops on the console.
+00:00:33.250 --> 00:00:35.750
+Threat updates have to
+be uploaded by hand.
 
 10
-00:00:26.951 --> 00:00:31.275
-On an HA pair, set the mode on each
-node before you form the pair.
-
-11
-00:00:31.275 --> 00:00:35.463
-Join any reporting or other special
-members before you enable it.
-
-12
-00:00:35.463 --> 00:00:40.122
-And after you upgrade a FIPS Grid,
-run the distributed Grid communication
-
-13
-00:00:40.122 --> 00:00:45.012
-mode command to make Grid traffic compliant;
-a banner reminds you until you do.
-
-14
-00:00:45.012 --> 00:00:46.088
-What changes.
-
-15
-00:00:46.088 --> 00:00:52.809
-Only TLS 1.2 and 1.3 stay
-enabled, and Infoblox flags DES,
-
-16
-00:00:52.809 --> 00:00:59.837
-DSA, RSA with SHA-1 and MD5 as
-not compliant with FIPS 140-3.
-
-17
-00:00:59.837 --> 00:01:02.487
-Portal and cloud connections are disabled,
-
-18
-00:01:02.487 --> 00:01:05.874
-and they aren't restored if
-FIPS mode is later turned off.
-
-19
-00:01:05.874 --> 00:01:09.612
-Threat rulesets and module sets
-have to be uploaded by hand.
-
-20
-00:01:09.612 --> 00:01:13.162
-In Common Criteria mode the
-command line is console-only.
-
-21
-00:01:13.162 --> 00:01:16.787
-The local admin password must
-be changed on first login.
-
-22
-00:01:16.787 --> 00:01:23.225
-On the STIG side, the rule against RSA with
-SHA-1 doesn't apply to a FIPS-mode Grid.
-
-23
-00:01:23.225 --> 00:01:27.300
-But remember slide three: the certificates
+00:00:35.750 --> 00:00:39.787
+And remember slide three: the certificates
 themselves are still pending.
 
-24
-00:01:27.300 --> 00:01:36.126
-Sources: Infoblox NIOS FIPS and CC mode:
-Enabling FIPS or CC mode (procedure, HA,
-
-25
-00:01:36.126 --> 00:01:45.512
-shared secret, distributed Grid communication
-mode); Guidelines for FIPS/CC mode
-
-26
-00:01:45.512 --> 00:01:49.715
-(algorithms, TLS, portal, rulesets, CLI);
-
-27
-00:01:49.715 --> 00:01:54.410
-DISA Infoblox NIOS 9.x
-STIG V1R1, V-285274.
+11
+00:00:39.787 --> 00:00:42.100
+Next, administrator access.

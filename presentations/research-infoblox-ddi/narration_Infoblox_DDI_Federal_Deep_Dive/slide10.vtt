@@ -1,167 +1,59 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:02.938
-Automation and logging,
-the two things that decide
+00:00:00.050 --> 00:00:04.488
+Automation and logging decide whether
+the platform can be governed at scale.
 
 2
-00:00:02.938 --> 00:00:05.550
-whether the platform can
-be governed at scale.
-
-3
-00:00:05.550 --> 00:00:09.988
+00:00:04.488 --> 00:00:08.925
 On automation, Infoblox is
 ahead of the other DDI vendors.
 
+3
+00:00:08.925 --> 00:00:12.364
+NIOS has a REST API with
+modern sign-in from 9.1,
+
 4
-00:00:09.988 --> 00:00:17.249
-NIOS's REST API, WAPI, shows version
-2.14 in the 9.1.0 examples, and 9.1 adds
+00:00:12.364 --> 00:00:18.498
+and the Terraform provider moved to a 3.0
+beta on October thirteenth that covers
 
 5
-00:00:17.249 --> 00:00:24.900
-OAuth 2.0 and OpenID Connect sign-in
-for the API and immutable object IDs.
+00:00:18.498 --> 00:00:24.725
+both NIOS and Universal DDI but isn't
+backward compatible, so plan that migration.
 
 6
-00:00:24.900 --> 00:00:29.838
-Universal DDI has its own
-REST API with API-key tokens.
+00:00:24.725 --> 00:00:27.750
+Ansible and ServiceNow
+integrations exist too.
 
 7
-00:00:29.838 --> 00:00:33.762
-There's also a WAPI-compatible
-API for Universal DDI,
-
-8
-00:00:33.762 --> 00:00:38.599
-but Infoblox says it's for migration
-only and isn't a long-term API.
-
-9
-00:00:38.599 --> 00:00:40.639
-For infrastructure as code,
-
-10
-00:00:40.639 --> 00:00:46.137
-the infobloxopen/infoblox Terraform
-provider went to a 3.0 beta on October
-
-11
-00:00:46.137 --> 00:00:51.546
-thirteenth: one provider for both NIOS
-and Universal DDI, replacing three
-
-12
-00:00:51.546 --> 00:00:56.600
-older ones, and not backward compatible,
-so state has to be re-imported.
-
-13
-00:00:56.600 --> 00:01:00.675
-Plan that migration; don't build
-new work on the older providers.
-
-14
-00:01:00.675 --> 00:01:05.016
-Ansible has current collections
-for both, and ServiceNow publishes
-
-15
-00:01:05.016 --> 00:01:08.900
-an Infoblox spoke that needs
-IntegrationHub and a MID Server.
-
-16
-00:01:08.900 --> 00:01:10.588
+00:00:27.750 --> 00:00:29.438
 Logging has sharper edges.
 
-17
-00:01:10.588 --> 00:01:15.302
-Query and response capture rolls files
-every ten minutes or hundred megabytes,
+8
+00:00:29.438 --> 00:00:34.601
+Full query logging adds load, the dnstap
+stream drops logs if its receiver is down,
 
-18
-00:01:15.302 --> 00:01:19.016
-with local retention capped by
-model, and Infoblox recommends
+9
+00:00:34.601 --> 00:00:37.760
+and the built-in reporting
+appliances lock after
 
-19
-00:01:19.016 --> 00:01:22.801
-not logging queries and responses
-together because of the load.
+10
+00:00:37.760 --> 00:00:40.688
+repeated overruns of
+their daily ingest caps.
 
-20
-00:01:22.801 --> 00:01:26.414
-dnstap runs on BIND in 9.1,
-but drops logs rather than
+11
+00:00:40.688 --> 00:00:45.626
+So for federal retention, send logs to
+the SIEM and size reporting deliberately.
 
-21
-00:01:26.414 --> 00:01:30.888
-buffering them if the receiver is
-down, so monitor the receiver.
-
-22
-00:01:30.888 --> 00:01:33.600
-RPZ hits go to syslog in CEF.
-
-23
-00:01:33.600 --> 00:01:38.413
-Cloud logs reach Splunk or Microsoft
-Sentinel through the Data Connector;
-
-24
-00:01:38.413 --> 00:01:40.975
-Splunk's own Infoblox add-on is archived.
-
-25
-00:01:40.975 --> 00:01:45.041
-And the built-in Reporting
-appliances have daily ingest caps:
-
-26
-00:01:45.041 --> 00:01:48.150
-ten gigabytes on the
-largest, five on the others.
-
-27
-00:01:48.150 --> 00:01:51.055
-Exceed the cap five
-times in thirty days and
-
-28
-00:01:51.055 --> 00:01:54.363
-reporting locks until
-Infoblox Support steps in.
-
-29
-00:01:54.363 --> 00:01:59.149
-For federal retention, send logs to the
-SIEM and size Reporting deliberately.
-
-30
-00:01:59.149 --> 00:02:04.513
-Sources: Infoblox NIOS 9.1.0 What's
-New; Universal DDI API Guide;
-
-31
-00:02:04.513 --> 00:02:11.593
-WAPI 2.0 for Universal DDI; infobloxopen
-terraform-provider-infoblox releases;
-
-32
-00:02:11.593 --> 00:02:18.029
-infoblox-ansible and universal-ddi-ansible;
-ServiceNow Infoblox spoke;
-
-33
-00:02:18.029 --> 00:02:22.212
-DNS Query and Response
-Captures; dnstap limits;
-
-34
-00:02:22.212 --> 00:02:28.180
-Data Connector; Supported Reporting
-Appliances; Splunkbase 2934.
+12
+00:00:45.626 --> 00:00:47.300
+That completes the platform.

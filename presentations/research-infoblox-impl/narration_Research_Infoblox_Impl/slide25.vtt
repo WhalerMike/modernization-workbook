@@ -1,142 +1,53 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:03.637
-Backup, restore, and
-recovering the Grid Master.
+00:00:00.050 --> 00:00:02.841
+Backup is off by default, so schedule it,
 
 2
-00:00:03.637 --> 00:00:04.813
-Backup first.
+00:00:02.841 --> 00:00:07.988
+and send it by SCP rather than FTP,
+which sends credentials in clear text.
 
 3
-00:00:04.813 --> 00:00:08.187
-Automatic backup is off by
-default, so schedule it.
+00:00:07.988 --> 00:00:11.662
+Back up before every
+upgrade, restore or revert.
 
 4
-00:00:08.187 --> 00:00:11.279
-Send it by SCP, over SSH version two,
+00:00:11.662 --> 00:00:16.983
+Restoring has a wrinkle: SCP isn't listed
+as a restore source, so, as an inference,
 
 5
-00:00:11.279 --> 00:00:15.475
-not FTP, which sends
-credentials in clear text.
+00:00:16.983 --> 00:00:22.387
+copy backups back to the management
+system and rehearse restoring from there.
 
 6
-00:00:15.475 --> 00:00:20.330
-One detail: SCP uses LAN1 even when
-the management port is enabled,
+00:00:22.387 --> 00:00:26.525
+Losing the Grid Master means promoting
+the candidate from its console.
 
 7
-00:00:20.330 --> 00:00:22.938
-so the firewall path has to allow it.
+00:00:26.525 --> 00:00:31.491
+Notify members one at a time, which
+Infoblox says can minimize DNS outages,
 
 8
-00:00:22.938 --> 00:00:28.177
-Back up before every upgrade, restore or
-revert, and again after changing the Grid's
+00:00:31.491 --> 00:00:34.422
+then confirm every member has reconnected,
 
 9
-00:00:28.177 --> 00:00:33.338
-IP mode, because restoring an older backup
-afterward can stop members rejoining.
+00:00:34.422 --> 00:00:39.388
+and update anything that pointed at
+the old Grid Master, including the HSM.
 
 10
-00:00:33.338 --> 00:00:34.249
-Restore.
-
-11
-00:00:34.249 --> 00:00:39.628
-SCP isn't listed as a restore source;
-the choices are your computer,
-
-12
-00:00:39.628 --> 00:00:43.113
-TFTP, FTP or the Grid
-Master's local backups.
-
-13
-00:00:43.113 --> 00:00:46.739
-My inference is to copy SCP
-backups back to the management
-
-14
-00:00:46.739 --> 00:00:49.912
-system and restore from
-there, and to rehearse that.
-
-15
-00:00:49.912 --> 00:00:54.176
-You can restore to the same version,
-or to a later one on a supported path.
-
-16
-00:00:54.176 --> 00:00:57.173
-A restore overwrites
-everything and reboots,
-
-17
-00:00:57.173 --> 00:01:02.538
-and a backup taken in Common Criteria mode
-restores only to compliant appliances.
-
-18
-00:01:02.538 --> 00:01:06.825
-Recovering from the loss of the Grid
-Master means promoting the candidate.
-
-19
-00:01:06.825 --> 00:01:13.275
-Confirm UDP 1194 and 2114 are open
-from the candidate to every member.
-
-20
-00:01:13.275 --> 00:01:17.800
-On the candidate's console or
-SSH, run set promote master.
-
-21
-00:01:17.800 --> 00:01:23.477
-Choose to notify members sequentially, which
-Infoblox says can minimize DNS outages;
-
-22
-00:01:23.477 --> 00:01:26.675
-the default spacing is a
-hundred twenty seconds.
-
-23
-00:01:26.675 --> 00:01:31.087
-Then log in to the new Grid Master and
-check every member has reconnected.
-
-24
-00:01:31.087 --> 00:01:36.290
-Afterward, wait up to two hours before
-any further promotion, and update anything
-
-25
-00:01:36.290 --> 00:01:41.026
-that points at the old Grid Master's
-address, including HSM registrations.
-
-26
-00:01:41.026 --> 00:01:45.413
+00:00:39.388 --> 00:00:43.776
 Written down, those steps are the
 STIG's documented promotion procedure.
 
-27
-00:01:45.413 --> 00:01:53.059
-Sources: Infoblox NIOS Backing up
-and restoring configuration files;
-
-28
-00:01:53.059 --> 00:02:02.157
-Restoring backups; Database snapshots; NIOS
-9.1.x Promoting a Grid Master Candidate;
-
-29
-00:02:02.157 --> 00:02:10.250
-DISA Infoblox NIOS 9.x STIG V1R1, V-285271
-and V-285273 (mapping is inference).
+11
+00:00:43.776 --> 00:00:44.980
+Next, logging.

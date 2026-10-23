@@ -1,121 +1,48 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:00.788
-Patching.
+00:00:00.050 --> 00:00:01.850
+Patching has a couple of catches.
 
 2
-00:00:00.788 --> 00:00:03.459
-Infoblox's hotfix
-procedure: back up first,
+00:00:01.850 --> 00:00:04.757
+Hotfixes go to the Grid
+Master and every member,
 
 3
-00:00:03.459 --> 00:00:08.040
-then in Grid Manager apply the hotfix
-to the Grid Master and every member,
+00:00:04.757 --> 00:00:07.962
+and members that join later
+need them applied again.
 
 4
-00:00:08.040 --> 00:00:10.866
-upload it, and use the
-show action to activate
+00:00:07.962 --> 00:00:12.476
+Common Criteria Grids need a different
+upgrade image, so check which one you upload.
 
 5
-00:00:10.866 --> 00:00:14.225
-hotfix command to see whether
-a member needs a reboot.
+00:00:12.476 --> 00:00:14.437
+The bigger point is what to watch.
 
 6
-00:00:14.225 --> 00:00:15.338
-Two catches.
+00:00:14.437 --> 00:00:20.226
+CISA's catalog of known exploited
+vulnerabilities lists no Infoblox product,
 
 7
-00:00:15.338 --> 00:00:19.288
-Members that join the Grid after a
-hotfix must have it applied again.
+00:00:20.226 --> 00:00:25.401
+but it does list an old BIND vulnerability,
+added on October eighth, 2026.
 
 8
-00:00:19.288 --> 00:00:22.926
-And a custom hotfix has to go
-through Infoblox Support first.
+00:00:25.401 --> 00:00:30.702
+Because NIOS ships BIND, the program's
+patch watch covers BIND advisories too,
 
 9
-00:00:22.926 --> 00:00:24.666
-On a Common Criteria Grid,
+00:00:30.702 --> 00:00:35.175
+not only Infoblox's own notices,
+mapped against the release notes.
 
 10
-00:00:24.666 --> 00:00:28.563
-upload the dot bin two upgrade
-image, not the plain dot bin.
-
-11
-00:00:28.563 --> 00:00:32.738
-And in 9.1.0, if the Grid has
-Threat Insight or flex licenses,
-
-12
-00:00:32.738 --> 00:00:37.624
-use the image that includes Threat
-Insight, or distribution fails.
-
-13
-00:00:37.624 --> 00:00:44.337
-For known exploited vulnerabilities,
-I checked CISA's catalog,
-
-14
-00:00:44.337 --> 00:00:48.137
-version 2026.10.21, with 1,754 entries.
-
-15
-00:00:48.137 --> 00:00:50.338
-It lists no Infoblox product.
-
-16
-00:00:50.338 --> 00:00:56.081
-It does list an old ISC BIND
-vulnerability, CVE-2015-5477,
-
-17
-00:00:56.081 --> 00:01:02.700
-added on October eighth, 2026,
-with a short remediation deadline.
-
-18
-00:01:02.700 --> 00:01:08.675
-Because NIOS 9.1 ships BIND 9.20, the
-program's patch watch covers ISC's BIND
-
-19
-00:01:08.675 --> 00:01:14.750
-advisories and the catalog's BIND
-entries, not only Infoblox's own notices.
-
-20
-00:01:14.750 --> 00:01:18.650
-Map each against the release
-notes' list of addressed CVEs.
-
-21
-00:01:18.650 --> 00:01:25.318
-Sources: Infoblox NIOS upgrade guide:
-Applying consolidated hotfixes;
-
-22
-00:01:25.318 --> 00:01:29.613
-NIOS 9.1.x uploading upgrade
-images (bin2 for CC);
-
-23
-00:01:29.613 --> 00:01:34.699
-Upgrade guidelines for NIOS
-9.1.0 (Threat Insight image);
-
-24
-00:01:34.699 --> 00:01:40.237
-CISA Known Exploited
-Vulnerabilities catalog JSON feed,
-
-25
-00:01:40.237 --> 00:01:45.840
-catalog version 2026.10.21;
-earlier platform brief (BIND 9.20).
+00:00:35.175 --> 00:00:37.540
+Next, backup and recovery.

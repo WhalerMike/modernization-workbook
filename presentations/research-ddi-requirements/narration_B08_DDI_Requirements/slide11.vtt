@@ -9,117 +9,54 @@ Three constructs keep divisions apart.
 First, separate address spaces.
 
 3
-00:00:04.788 --> 00:00:09.970
+00:00:04.788 --> 00:00:09.825
 When a lab's private range overlaps
 headquarters and renumbering isn't practical,
 
 4
-00:00:09.970 --> 00:00:14.849
-IPAM needs a separate routing domain,
-so the same addresses can exist twice.
+00:00:09.825 --> 00:00:14.937
+the platform needs a separate routing domain
+so the same addresses can exist twice,
 
 5
-00:00:14.849 --> 00:00:20.625
-Infoblox calls these network views;
-Universal DDI uses IP spaces.
+00:00:14.937 --> 00:00:17.975
+and that division then
+needs its own DHCP servers.
 
 6
-00:00:20.625 --> 00:00:22.313
-Two consequences follow.
+00:00:17.975 --> 00:00:22.738
+Second, DNS views, which give
+different answers to different clients.
 
 7
-00:00:22.313 --> 00:00:26.227
-In NIOS, a DHCP server serves
-only one network view,
+00:00:22.738 --> 00:00:25.575
+The first match wins,
+so the order matters.
 
 8
-00:00:26.227 --> 00:00:31.287
-so a division with overlapping
-space needs its own DHCP servers.
+00:00:25.575 --> 00:00:29.850
+Third, tags for ownership,
+like division or cost center.
 
 9
-00:00:31.287 --> 00:00:34.660
-And NIOS doesn't enforce
-uniqueness across views;
+00:00:29.850 --> 00:00:33.733
+They drive reports, not permissions,
+and a required tag can be
 
 10
-00:00:34.660 --> 00:00:40.417
-Universal DDI's IPAM Federation does,
-recording which blocks are globally unique,
+00:00:33.733 --> 00:00:37.538
+skipped through the API, so the
+automation has to enforce it.
 
 11
-00:00:40.417 --> 00:00:44.776
-which are delegated, and which
-overlap deliberately behind NAT.
+00:00:37.538 --> 00:00:41.609
+One trap to watch: report data
+may ignore object permissions,
 
 12
-00:00:44.776 --> 00:00:47.953
-Second, DNS views, which
-give different answers
+00:00:41.609 --> 00:00:43.888
+so share dashboards per division.
 
 13
-00:00:47.953 --> 00:00:51.050
-to different clients by
-source address or key.
-
-14
-00:00:51.050 --> 00:00:52.826
-The first matching view wins,
-
-15
-00:00:52.826 --> 00:00:56.600
-so an external catch-all placed
-first hides the internal view.
-
-16
-00:00:56.600 --> 00:00:59.085
-Cloud services have their own versions;
-
-17
-00:00:59.085 --> 00:01:02.850
-an Azure private zone answers
-only the networks linked to it.
-
-18
-00:01:02.850 --> 00:01:07.650
-Third, tags for ownership:
-division, cost center, site.
-
-19
-00:01:07.650 --> 00:01:13.325
-Infoblox calls them extensible
-attributes; Universal DDI calls them tags.
-
-20
-00:01:13.325 --> 00:01:16.763
-They drive filtering and
-reports, not permissions.
-
-21
-00:01:16.763 --> 00:01:21.026
-And a required tag is enforced
-only in the graphical interface.
-
-22
-00:01:21.026 --> 00:01:24.865
-Objects created through the API
-or a CSV import can skip it,
-
-23
-00:01:24.865 --> 00:01:28.625
-so the automation has to
-enforce the division tag itself.
-
-24
-00:01:28.625 --> 00:01:33.825
-One trap: in NIOS, report data isn't
-filtered by object permissions.
-
-25
-00:01:33.825 --> 00:01:39.041
-Granting a division the reporting app
-shows it agency-wide DNS and DHCP data,
-
-26
-00:01:39.041 --> 00:01:42.000
-so share dashboards per division instead.
+00:00:43.888 --> 00:00:45.770
+Next, change control.

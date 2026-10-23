@@ -1,135 +1,54 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:03.063
-Administrator access,
-and two upgrade gates.
+00:00:00.050 --> 00:00:05.591
+Administrators should sign in with PIV,
+checked by OCSP, or with SAML through Entra,
 
 2
-00:00:03.063 --> 00:00:06.665
-Administrators sign in
-with PIV through X.509
-
-3
-00:00:06.665 --> 00:00:10.837
-client-certificate
-authentication, checked by OCSP.
-
-4
-00:00:10.837 --> 00:00:15.322
-The administrator's name must match
-the certificate's common name,
-
-5
-00:00:15.322 --> 00:00:19.888
-or NIOS can match on the UPN or email
-in the subject alternative name.
-
-6
-00:00:19.888 --> 00:00:23.014
-SAML works too, with
-Entra and group mapping,
-
-7
-00:00:23.014 --> 00:00:25.887
-but SAML-only users have no command line.
-
-8
-00:00:25.887 --> 00:00:28.769
-Put the GUI and API on
-the management port;
-
-9
-00:00:28.769 --> 00:00:32.837
-serving them on both management
-and LAN1 is off by default.
-
-10
-00:00:32.837 --> 00:00:38.025
-Use the set security command to restrict
-which source addresses can reach the GUI.
-
-11
-00:00:38.025 --> 00:00:42.450
-Add the notice and consent banner, which
-can be up to ten thousand characters.
-
-12
-00:00:42.450 --> 00:00:46.175
-And keep the local admin as
+00:00:05.591 --> 00:00:09.687
+keeping the local admin as
 break-glass for directory outages.
 
-13
-00:00:46.175 --> 00:00:50.613
-Now two gates in the 9.1.0
+3
+00:00:09.687 --> 00:00:12.265
+Put the GUI and API on
+the management port,
+
+4
+00:00:12.265 --> 00:00:15.675
+restrict who can reach them,
+and add the consent banner.
+
+5
+00:00:15.675 --> 00:00:20.225
+Now the two gates in the 9.1.0
 upgrade that can lock people out.
 
-14
-00:00:50.613 --> 00:00:54.690
+6
+00:00:20.225 --> 00:00:24.403
 The test upgrade fails on administrator
 usernames that don't comply,
 
-15
-00:00:54.690 --> 00:00:58.552
-for example ones that don't start
-with a letter or that mix scripts,
+7
+00:00:24.403 --> 00:00:28.287
+and those users can't log in after
+the upgrade, so check them first.
 
-16
-00:00:58.552 --> 00:01:01.700
-and non-compliant users can't
-log in after the upgrade.
+8
+00:00:28.287 --> 00:00:32.076
+And older TLS versions must be
+turned off before you upgrade.
 
-17
-00:01:01.700 --> 00:01:05.238
-Check first with the show
-non-compliant usernames command.
+9
+00:00:32.076 --> 00:00:37.366
+For the STIG, the evidence is an
+authentication policy with a remote service,
 
-18
-00:01:05.238 --> 00:01:10.612
-And TLS 1.0 and 1.1 must be
-turned off before the upgrade.
+10
+00:00:37.366 --> 00:00:40.137
+a password policy, and only approved CAs.
 
-19
-00:01:10.612 --> 00:01:15.694
-For the STIG, the evidence is an authentication
-policy that includes at least one
-
-20
-00:01:15.694 --> 00:01:18.879
-remote service, with the
-two-factor banner showing,
-
-21
-00:01:18.879 --> 00:01:22.899
-a password policy, and only approved
-CAs in the certificate list.
-
-22
-00:01:22.899 --> 00:01:25.809
-The STIG names the
-Department of War's PKI;
-
-23
-00:01:25.809 --> 00:01:31.113
-my inference is that a civilian agency
-reads that as its own approved CA set.
-
-24
-00:01:31.113 --> 00:01:40.489
-Sources: Earlier divisions brief (CAC/PIV
-and SAML authentication on NIOS);
-
-25
-00:01:40.489 --> 00:01:47.899
-Infoblox NIOS 9.1.x set security
-command; Using the MGMT port;
-
-26
-00:01:47.899 --> 00:01:56.671
-Notice and consent banner; NIOS upgrade
-guidelines for 9.1.0 (usernames,
-
-27
-00:01:56.671 --> 00:02:04.750
-TLS); DISA Infoblox NIOS 9.x STIG
-V1R1, V-285296, V-285297 and V-285260.
+11
+00:00:40.137 --> 00:00:41.710
+That closes Part 3.

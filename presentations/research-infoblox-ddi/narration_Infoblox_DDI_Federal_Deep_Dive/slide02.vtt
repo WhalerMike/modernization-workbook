@@ -1,132 +1,63 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:01.238
-Why this matters.
+00:00:00.050 --> 00:00:01.437
+Here's why this matters.
 
 2
-00:00:01.238 --> 00:00:05.662
+00:00:01.437 --> 00:00:05.862
 Almost every connection an agency
 makes starts with a DNS lookup,
 
 3
-00:00:05.662 --> 00:00:10.988
+00:00:05.862 --> 00:00:11.188
 and in a hybrid, multi-cloud estate that
 answer decides far more than an address.
 
 4
-00:00:10.988 --> 00:00:15.025
-DHCP and IP address management
-sit right beside it.
+00:00:11.188 --> 00:00:14.378
+DHCP and address management
+sit right beside it,
 
 5
-00:00:15.025 --> 00:00:21.338
-NIST's Secure DNS Deployment Guide,
-SP 800-81 Revision 3, tells agencies
+00:00:14.378 --> 00:00:18.047
+because lease history is how
+an address maps to a device,
 
 6
-00:00:21.338 --> 00:00:27.325
-to keep DHCP lease history so an IP
-address can be mapped to an asset.
+00:00:18.047 --> 00:00:22.513
+and the address plan is the record
+behind the inventory directives.
 
 7
-00:00:27.325 --> 00:00:30.808
-And the address plan is the
-record behind everything the
+00:00:22.513 --> 00:00:25.987
+So this deck treats all
+three as one control plane.
 
 8
-00:00:30.808 --> 00:00:34.588
-inventory directives ask for,
-which we'll see on the next slide.
+00:00:25.987 --> 00:00:30.876
+Book 08 of the workbook describes that
+plane: on-premises servers that answer,
 
 9
-00:00:34.588 --> 00:00:36.931
-That's why this deck treats DNS,
+00:00:30.876 --> 00:00:34.084
+a management plane that
+holds the system of record,
 
 10
-00:00:36.931 --> 00:00:41.899
-DHCP and IPAM as one control
-plane rather than three services.
+00:00:34.084 --> 00:00:37.750
+and local resolvers that keep
+working if it's unreachable.
 
 11
-00:00:41.899 --> 00:00:45.838
-The Federal Modernization
-Workbook's Book 08 of the workbook
+00:00:37.750 --> 00:00:39.925
+The argument of the session is simple.
 
 12
-00:00:45.838 --> 00:00:49.312
-describes what that plane is
-made of, and it isn't one box.
+00:00:39.925 --> 00:00:42.593
+The rules need one governed DDI plane,
 
 13
-00:00:49.312 --> 00:00:54.605
-There's an authoritative and recursive
-layer on premises that hosts internal zones,
-
-14
-00:00:54.605 --> 00:00:58.537
-answers clients, and applies
-response policy zones and DNSSEC.
-
-15
-00:00:58.537 --> 00:01:03.110
-There's a management plane, more and
-more often delivered as a cloud service,
-
-16
-00:01:03.110 --> 00:01:05.617
-that holds the system of record for zones,
-
-17
-00:01:05.617 --> 00:01:08.788
-forwarding rules, address
-data and security policy.
-
-18
-00:01:08.788 --> 00:01:12.124
-And there are local resolvers
-and agents that keep answering
-
-19
-00:01:12.124 --> 00:01:15.199
-from local state if the management
-plane can't be reached.
-
-20
-00:01:15.199 --> 00:01:19.625
-Cloud DNS isn't replaced;
-it's managed as an overlay.
-
-21
-00:01:19.625 --> 00:01:22.000
-So here is the argument
-of the whole session.
-
-22
-00:01:22.000 --> 00:01:25.413
-Federal rules require
-capabilities, not products.
-
-23
-00:01:25.413 --> 00:01:30.925
-Those capabilities, taken together, need
-one authoritative and governed DDI plane.
-
-24
-00:01:30.925 --> 00:01:34.667
-Infoblox is one of the strongest
-ways to deliver that plane,
-
-25
-00:01:34.667 --> 00:01:38.638
-with evidence, and it also carries
-real risks you have to manage.
-
-26
-00:01:38.638 --> 00:01:39.788
-We'll cover both.
-
-27
-00:01:39.788 --> 00:01:48.290
-Sources: NIST SP 800-81r3;
-Book 08, Chapters 01 and 08.
+00:00:42.593 --> 00:00:48.170
+and Infoblox is one of the strongest ways
+to build it, with real risks to manage.

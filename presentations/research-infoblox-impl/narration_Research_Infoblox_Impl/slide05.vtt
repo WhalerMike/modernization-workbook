@@ -1,146 +1,58 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:01.288
-The Grid Master.
+00:00:00.050 --> 00:00:01.861
+The Grid Master comes first,
 
 2
-00:00:01.288 --> 00:00:05.329
-Infoblox's sequence is simple:
-create the Grid Master first,
+00:00:01.861 --> 00:00:05.563
+built as a high-availability
+pair, and members come after.
 
 3
-00:00:05.329 --> 00:00:10.113
-then add members, and build the Grid
-Master as a high-availability pair.
+00:00:05.563 --> 00:00:08.828
+The pair depends on the switch
+being set up right, so the physical
 
 4
-00:00:10.113 --> 00:00:13.845
-Physically, cable each node's
-LAN1 and HA ports to the switch,
+00:00:08.828 --> 00:00:12.525
+cabling and switch-port settings on
+the slide matter more than they look.
 
 5
-00:00:13.845 --> 00:00:17.501
-and put the nodes on separate
-power circuits where you can.
+00:00:12.525 --> 00:00:15.275
+You run a wizard on node
+one to create the Grid,
 
 6
-00:00:17.501 --> 00:00:20.862
-The pair uses VRRP, so
-the switch ports matter.
+00:00:15.275 --> 00:00:19.659
+then join node two with the same name,
+virtual address and shared secret,
 
 7
-00:00:20.862 --> 00:00:23.138
-Spanning tree off, or Portfast.
+00:00:19.659 --> 00:00:23.375
+and manage the pair through the
+virtual address from then on.
 
 8
-00:00:23.138 --> 00:00:25.412
-No EtherChannel or port channeling.
+00:00:23.375 --> 00:00:26.156
+The step people skip is
+the defaults: the login,
 
 9
-00:00:25.412 --> 00:00:26.951
-IGMP snooping off.
+00:00:26.156 --> 00:00:30.985
+the Grid name and the shared secret all
+ship with default values you must change,
 
 10
-00:00:26.951 --> 00:00:29.275
-Trunking off unless you tag VLANs.
+00:00:30.985 --> 00:00:34.863
+and escrow the new secret, because
+Infoblox says if you forget it,
 
 11
-00:00:29.275 --> 00:00:31.175
-Speed and duplex matched.
-
-12
-00:00:31.175 --> 00:00:34.318
-And DHCP snooping disabled or trusted;
-
-13
-00:00:34.318 --> 00:00:38.837
-Infoblox says it must be disabled
-to run DHCP on the Grid.
-
-14
-00:00:38.837 --> 00:00:42.500
-On node one, run the wizard
-to configure a Grid Master.
-
-15
-00:00:42.500 --> 00:00:45.355
-It enters the Grid
-name, the shared secret,
-
-16
-00:00:45.355 --> 00:00:49.973
-a virtual router ID that's unique
-on the subnet, the virtual address,
-
-17
-00:00:49.973 --> 00:00:54.088
-and each node's addresses, plus
-the time zone and NTP servers.
-
-18
-00:00:54.088 --> 00:00:57.767
-On node two, run Join Existing
-Grid with the same name,
-
-19
-00:00:57.767 --> 00:01:00.249
-the virtual address and the secret.
-
-20
-00:01:00.249 --> 00:01:03.525
-After that, manage the pair
-through the virtual address.
-
-21
-00:01:03.525 --> 00:01:08.198
-Now the defaults, which you must
-change: the login is admin and infoblox,
-
-22
-00:01:08.198 --> 00:01:12.388
-the Grid name is Infoblox, and the
-shared secret is the word test.
-
-23
-00:01:12.388 --> 00:01:15.674
-Escrow the new secret; Infoblox
-says if you forget it,
-
-24
-00:01:15.674 --> 00:01:17.813
+00:00:34.863 --> 00:00:36.912
 you have to contact their support.
 
-25
-00:01:17.813 --> 00:01:22.639
-Two more rules: no IPv6 high availability
-on public clouds, and appliances
-
-26
-00:01:22.639 --> 00:01:27.624
-with less than two hundred fifty gigabytes
-of disk shouldn't be Grid Masters.
-
-27
-00:01:27.624 --> 00:01:31.751
-Sources: Infoblox NIOS 9.1.x
-Creating a Grid Master;
-
-28
-00:01:31.751 --> 00:01:36.079
-Setting up an HA Grid Master
-(physical placement, LCD);
-
-29
-00:01:36.079 --> 00:01:42.520
-Guidelines for switch ports in an HA
-pair; Configure a Grid Master wizard; Join
-
-30
-00:01:42.520 --> 00:01:44.331
-Existing Grid wizard;
-
-31
-00:01:44.331 --> 00:01:49.420
-NIOS 9.x guide (disk size rule)
-from the earlier platform brief.
+12
+00:00:36.912 --> 00:00:39.340
+Next, the backup Grid Master.

@@ -1,118 +1,67 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:03.488
-Fourth, IPAM as the
-authority, with discovery.
+00:00:00.050 --> 00:00:03.100
+The fourth and fifth capabilities
+are about addresses.
 
 2
-00:00:03.488 --> 00:00:07.802
+00:00:03.100 --> 00:00:07.003
 Left alone, each cloud's address
-manager allocates independently,
+manager allocates on its own,
 
 3
-00:00:07.802 --> 00:00:10.312
-recreating split-brain for addresses.
+00:00:07.003 --> 00:00:09.813
+which recreates split-brain for addresses.
 
 4
-00:00:10.312 --> 00:00:13.619
-The book's rule is that every
-block is reserved in the
+00:00:09.813 --> 00:00:13.112
+So the book's rule is simple:
+every block is reserved in
 
 5
-00:00:13.619 --> 00:00:17.387
-enterprise IPAM before a cloud
-or NSX network is created.
+00:00:13.112 --> 00:00:16.787
+the enterprise IPAM before
+any cloud network is created.
 
 6
-00:00:17.387 --> 00:00:22.465
-Where a cloud lets an external
-IPAM hold allocation authority,
+00:00:16.787 --> 00:00:19.688
+Discovery is where IPAM
+meets the directives,
 
 7
-00:00:22.465 --> 00:00:27.825
-use it; AWS VPC IPAM can, but only
-in commercial Regions, not GovCloud.
+00:00:19.688 --> 00:00:22.588
+because you can't scan
+space you haven't recorded.
 
 8
-00:00:27.825 --> 00:00:33.463
-Elsewhere, mirror the reservations into the
-native pools and reconcile continuously.
-
-9
-00:00:33.463 --> 00:00:36.737
-Discovery is where IPAM
-meets the directives.
-
-10
-00:00:36.737 --> 00:00:42.397
-BOD 23-01 asks for automated
-discovery across all agency IPv4 space
-
-11
-00:00:42.397 --> 00:00:47.450
-every seven days, and you can't
-scan space you haven't recorded.
-
-12
-00:00:47.450 --> 00:00:50.881
-BOD 26-04 asks agencies to attest their
-
-13
-00:00:50.881 --> 00:00:55.062
-public IP addresses and
-domains every quarter.
-
-14
-00:00:55.062 --> 00:00:59.924
-And M-21-07's IPv6-only
-milestones mean IPv4
-
-15
-00:00:59.924 --> 00:01:04.787
-and IPv6 have to be
+00:00:22.588 --> 00:00:26.937
+And IPv4 and IPv6 have to be
 planned in the same tool.
 
-16
-00:01:04.787 --> 00:01:08.349
-Fifth, DHCP that stays
-up and stays honest.
+9
+00:00:26.937 --> 00:00:29.813
+DHCP has to stay up and stay honest.
 
-17
-00:01:08.349 --> 00:01:12.715
-Failover partners move and are tested
-together, and both use the same
+10
+00:00:29.813 --> 00:00:33.920
+Failover partners share the
+same DNS update credentials,
 
-18
-00:01:12.715 --> 00:01:17.387
-DNS update credentials, or a takeover
-leaves names that nobody can update.
+11
+00:00:33.920 --> 00:00:37.087
+or a takeover leaves
+names nobody can update.
 
-19
-00:01:17.387 --> 00:01:23.503
-Ask how DHCPv6 stays available: in the
-two products checked, Windows Server and
+12
+00:00:37.087 --> 00:00:42.058
+And in the two products checked,
+failover is documented for IPv4 only,
 
-20
-00:01:23.503 --> 00:01:29.900
-NIOS, failover is documented for DHCPv4
-only, which matters under the IPv6 targets.
+13
+00:00:42.058 --> 00:00:44.762
+which matters under the IPv6 targets.
 
-21
-00:01:29.900 --> 00:01:32.901
-Set option 6, the
-resolver list, centrally,
-
-22
-00:01:32.901 --> 00:01:38.550
-detect rogue DHCP servers and router
-advertisements, and keep lease history.
-
-23
-00:01:38.550 --> 00:01:40.107
-NIST's guide calls for it,
-
-24
-00:01:40.107 --> 00:01:44.060
-because it's what turns an address
-in a query log into a device.
+14
+00:00:44.762 --> 00:00:46.970
+Then, automation and logging.

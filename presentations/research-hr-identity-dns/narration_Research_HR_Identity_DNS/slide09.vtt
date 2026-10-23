@@ -1,151 +1,49 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:01.175
-How does this break?
+00:00:00.050 --> 00:00:04.475
+The brief lists sixteen ways this
+breaks, and the slide picks seven.
 
 2
-00:00:01.175 --> 00:00:04.525
-Here are seven failures from
-the brief's table of sixteen.
+00:00:04.475 --> 00:00:09.512
+Shadowing is the classic: someone creates
+a private zone for a vendor's domain,
 
 3
-00:00:04.525 --> 00:00:06.550
-The full table is in the backup.
+00:00:09.512 --> 00:00:14.313
+say oraclecloud dot com, and every name
+not copied into it stops resolving.
 
 4
-00:00:06.550 --> 00:00:07.750
-One, shadowing.
+00:00:14.313 --> 00:00:16.166
+Silent fallback is sneakier:
 
 5
-00:00:07.750 --> 00:00:11.210
-Someone creates a private
-zone for a vendor's domain,
+00:00:16.166 --> 00:00:21.186
+a private name resolves to the public
+address because a rule is missing or slow,
 
 6
-00:00:11.210 --> 00:00:16.200
-say oraclecloud dot com, and every name
-not copied into it returns NXDOMAIN.
+00:00:21.186 --> 00:00:25.974
+which is why Windows forwarders to
+Azure need a timeout above four seconds.
 
 7
-00:00:16.200 --> 00:00:17.912
-Two, silent fallback.
+00:00:25.974 --> 00:00:30.938
+The Grid itself can fall back to the internet's
+root servers if its forwarders fail.
 
 8
-00:00:17.912 --> 00:00:21.391
-A private endpoint name
-resolves to the public address,
+00:00:30.938 --> 00:00:35.991
+Then there are loops, certificate name
+mismatches, the wrong cloud's endpoints,
 
 9
-00:00:21.391 --> 00:00:24.188
-because a forwarding
-rule is missing or slow.
+00:00:35.991 --> 00:00:40.500
+and capacity, so size resolver
+endpoints before each onboarding wave.
 
 10
-00:00:24.188 --> 00:00:26.083
-Per a Microsoft Learn excerpt,
-
-11
-00:00:26.083 --> 00:00:30.328
-Windows DNS servers that forward
-to Azure need a forwarder timeout
-
-12
-00:00:30.328 --> 00:00:34.801
-above four seconds, or private records
-may resolve to public addresses.
-
-13
-00:00:34.801 --> 00:00:37.012
-Three, the Grid's own fallback.
-
-14
-00:00:37.012 --> 00:00:41.646
-Infoblox documents that if Use Forwarders
-Only is off and the forwarders fail,
-
-15
-00:00:41.646 --> 00:00:45.638
-the member falls back to resolving
-from the internet's root servers.
-
-16
-00:00:45.638 --> 00:00:47.990
-As an inference, a failed forward can then
-
-17
-00:00:47.990 --> 00:00:50.550
-return the public answer
-instead of failing.
-
-18
-00:00:50.550 --> 00:00:51.625
-Four, loops.
-
-19
-00:00:51.625 --> 00:00:55.367
-Azure warns that a ruleset rule
-that targets an inbound endpoint
-
-20
-00:00:55.367 --> 00:00:58.763
-must not be linked to the network
-where that endpoint lives.
-
-21
-00:00:58.763 --> 00:01:01.276
-Five, TLS name mismatch.
-
-22
-00:01:01.276 --> 00:01:04.134
-Keep the public name in
-every connection string,
-
-23
-00:01:04.134 --> 00:01:06.850
-because the service's
-certificate carries it.
-
-24
-00:01:06.850 --> 00:01:11.688
-Six, the wrong cloud's endpoints, as
-we saw on the government-cloud slide.
-
-25
-00:01:11.688 --> 00:01:13.263
-Seven, capacity.
-
-26
-00:01:13.263 --> 00:01:18.295
-A Route 53 Resolver endpoint address handles
-about ten thousand queries per second,
-
-27
-00:01:18.295 --> 00:01:21.601
-but as few as fifteen hundred
-with connection tracking.
-
-28
-00:01:21.601 --> 00:01:24.638
-Size endpoints before
-each onboarding wave.
-
-29
-00:01:24.638 --> 00:01:33.216
-Sources: Research brief §6, failure
-modes F1, F4, F5, F6, F9, F10, F11:
-
-30
-00:01:33.216 --> 00:01:43.370
-Microsoft Learn [S2, S10 (excerpt), S10b
-(excerpt), S12 (excerpt), S14b (excerpt)];
-
-31
-00:01:43.370 --> 00:01:52.998
-AWS [S25, S32]; Oracle [S23]; Infoblox
-NIOS 9.1, Specifying Forwarders [S37];
-
-32
-00:01:52.998 --> 00:02:01.630
-the Federal Modernization
-Workbook's Book 08 Ch02 and Ch10.
+00:00:40.500 --> 00:00:42.530
+So how should forwarding be wired?

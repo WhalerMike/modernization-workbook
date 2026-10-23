@@ -1,171 +1,62 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:01.838
-First, the words you need.
+00:00:00.050 --> 00:00:03.563
+A few words first, because the
+rest of the deck leans on them.
 
 2
-00:00:01.838 --> 00:00:06.525
-DDI stands for DNS, DHCP and IPAM.
+00:00:03.563 --> 00:00:08.637
+DDI means DNS, DHCP and IPAM:
+names, addresses handed out,
 
 3
-00:00:06.525 --> 00:00:09.612
-DNS turns names into addresses.
+00:00:08.637 --> 00:00:12.849
+and the record of who owns
+which address ranges.
 
 4
-00:00:09.612 --> 00:00:13.650
-DHCP hands addresses to devices
-when they join a network.
+00:00:12.849 --> 00:00:17.671
+An Infoblox Grid is a set of appliances
+sharing one database, run from the
 
 5
-00:00:13.650 --> 00:00:15.876
-And IPAM, IP address management,
+00:00:17.671 --> 00:00:22.250
+Grid Master, which is also the only
+one that can sign zones with DNSSEC.
 
 6
-00:00:15.876 --> 00:00:19.850
-is the record of which address
-ranges exist and who owns them.
+00:00:22.250 --> 00:00:28.544
+Trinzic is the physical appliance, vNIOS
+is the same software as a virtual machine,
 
 7
-00:00:19.850 --> 00:00:23.833
-An authoritative server holds
-the official answer for a zone,
+00:00:28.544 --> 00:00:32.062
+and Universal DDI is
+Infoblox's cloud service.
 
 8
-00:00:23.833 --> 00:00:26.801
-a block of names such as
-corp dot agency dot gov.
+00:00:32.062 --> 00:00:34.188
+On the cloud side, think resolvers,
 
 9
-00:00:26.801 --> 00:00:30.862
-A resolver is the server your
-computer asks; it finds the answer.
+00:00:34.188 --> 00:00:38.137
+endpoints and private zones that
+only linked networks can see.
 
 10
-00:00:30.862 --> 00:00:33.743
-A Grid is two or more
-Infoblox appliances that
+00:00:38.137 --> 00:00:40.525
+And the word to remember is split-brain:
 
 11
-00:00:33.743 --> 00:00:36.850
-share one database and are
-managed from one place.
+00:00:40.525 --> 00:00:45.000
+two systems each believing they own
+a name, and giving different answers.
 
 12
-00:00:36.850 --> 00:00:40.423
-That place is the Grid Master,
-which holds the master copy,
-
-13
-00:00:40.423 --> 00:00:45.213
-serves the console, and is the only
-appliance that can sign zones with DNSSEC.
-
-14
-00:00:45.213 --> 00:00:47.312
-Every other appliance is a member.
-
-15
-00:00:47.312 --> 00:00:52.862
-Trinzic is Infoblox's physical
-appliance line; the current one is X6.
-
-16
-00:00:52.862 --> 00:00:56.376
-vNIOS is the same software
-as a virtual machine,
-
-17
-00:00:56.376 --> 00:01:01.062
-including in AWS, Azure and Google
-Cloud, and it can join the Grid.
-
-18
-00:01:01.062 --> 00:01:06.340
-NIOS-X is a newer kind of server,
-managed from Infoblox's cloud service,
-
-19
-00:01:06.340 --> 00:01:10.599
-Universal DDI, whose web
-console is the Infoblox Portal.
-
-20
-00:01:10.599 --> 00:01:11.825
-The cloud words.
-
-21
-00:01:11.825 --> 00:01:17.293
-In AWS, the resolver built into
-every virtual private cloud,
-
-22
-00:01:17.293 --> 00:01:21.087
-or VPC, is now called
-Route 53 VPC Resolver.
-
-23
-00:01:21.087 --> 00:01:24.034
-Its endpoints are
-addresses that let queries
-
-24
-00:01:24.034 --> 00:01:26.438
-come in from outside, or go out by rules.
-
-25
-00:01:26.438 --> 00:01:30.981
-A private hosted zone in AWS, or
-a private zone in Azure or Google,
-
-26
-00:01:30.981 --> 00:01:34.475
-is a zone that only linked
-cloud networks can see.
-
-27
-00:01:34.475 --> 00:01:37.937
-VPC IPAM is AWS's address planner.
-
-28
-00:01:37.937 --> 00:01:43.163
-And Azure DNS Private Resolver is
-Azure's version of those endpoints.
-
-29
-00:01:43.163 --> 00:01:46.564
-Last, split-brain: two systems
-each believe they own a
-
-30
-00:01:46.564 --> 00:01:50.125
-name and give different
-answers depending on who asks.
-
-31
-00:01:50.125 --> 00:01:52.250
+00:00:45.000 --> 00:00:47.125
 Avoiding it is the point of this deck.
 
-32
-00:01:52.250 --> 00:01:54.795
-Sources: Research glossary:
-
-33
-00:01:54.795 --> 00:02:01.212
-Infoblox NIOS 9.1.x About Grids and
-Grid Master Candidate; vNIOS for AWS,
-
-34
-00:02:01.212 --> 00:02:06.301
-Azure and Google Cloud; Universal
-DDI What's New (renames);
-
-35
-00:02:06.301 --> 00:02:12.607
-AWS What is Route 53 VPC Resolver,
-private hosted zones, What is IPAM;
-
-36
-00:02:12.607 --> 00:02:19.750
-Microsoft Learn Azure DNS Private
-Resolver; Google Cloud DNS best practices.
+13
+00:00:47.125 --> 00:00:48.790
+So what does Trinzic do well?

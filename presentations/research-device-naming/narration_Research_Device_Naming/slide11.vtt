@@ -1,109 +1,58 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:01.312
-Here's the whole picture.
+00:00:00.050 --> 00:00:04.238
+Here's the whole picture on one page,
+with the full version in the backup.
 
 2
-00:00:01.312 --> 00:00:04.424
-The full version, with
-notes, is in the backup.
+00:00:04.238 --> 00:00:07.704
+Entra-joined Windows is
+named by Autopilot or Intune
 
 3
-00:00:04.424 --> 00:00:09.647
-For Windows devices joined to Entra,
-Autopilot or Intune names the device,
+00:00:07.704 --> 00:00:11.250
+and registered by the DHCP
+server with signed updates.
 
 4
-00:00:09.647 --> 00:00:13.413
-and the DHCP server registers
-it, with signed updates.
+00:00:11.250 --> 00:00:15.300
+Hybrid-joined Windows keeps working
+through AD until it's rebuilt.
 
 5
-00:00:13.413 --> 00:00:18.442
-Hybrid-joined Windows, during the
-transition, keeps working as it does today,
+00:00:15.300 --> 00:00:17.157
+Macs are renamed in Intune,
 
 6
-00:00:18.442 --> 00:00:21.875
-through AD; it moves to the
-first row when it's rebuilt.
+00:00:17.157 --> 00:00:21.125
+and DHCP should register them,
+though that's an inference.
 
 7
-00:00:21.875 --> 00:00:24.788
-Macs are renamed in
-Intune after enrollment.
+00:00:21.125 --> 00:00:25.287
+Linux is registered by DHCP
+unless it signs its own updates.
 
 8
-00:00:24.788 --> 00:00:28.941
-The DHCP server should register
-them, but that's an inference:
+00:00:25.287 --> 00:00:28.029
+On-premises servers get static records,
 
 9
-00:00:28.941 --> 00:00:32.513
-I couldn't verify how macOS
-behaves with dynamic DNS.
+00:00:28.029 --> 00:00:33.263
+Azure VMs are autoregistered within
+limits, and AWS needs your own pipeline.
 
 10
-00:00:32.513 --> 00:00:37.533
-Linux gets its name from cloud-init or a
-static hostname, and DHCP registers it,
+00:00:33.263 --> 00:00:37.057
+And printers and other unmanaged
+devices get names from a
 
 11
-00:00:37.533 --> 00:00:41.376
-unless it's in an identity domain
-that signs its own updates.
+00:00:37.057 --> 00:00:41.325
+reservation or the device itself,
+with DHCP registering for them.
 
 12
-00:00:41.376 --> 00:00:45.250
-On-premises servers with fixed
-addresses get static records.
-
-13
-00:00:45.250 --> 00:00:50.450
-Azure VMs are named at create time and
-autoregistered, within the limits we saw.
-
-14
-00:00:50.450 --> 00:00:52.565
-AWS instances get AWS names,
-
-15
-00:00:52.565 --> 00:00:57.713
-and anything custom needs your
-own pipeline or IPAM integration.
-
-16
-00:00:57.713 --> 00:01:02.057
-And printers and other devices that
-can't be managed get their names from
-
-17
-00:01:02.057 --> 00:01:06.474
-a reservation or the device itself,
-with DHCP registering on their behalf.
-
-18
-00:01:06.474 --> 00:01:16.590
-Sources: Research brief, Per-platform
-table, and the sources cited in each row:
-
-19
-00:01:16.590 --> 00:01:25.903
-Autopilot and Rename [S1, S3–S5], Accounts
-CSP [S6], macOS ADE and Apple MDM [S7,
-
-20
-00:01:25.903 --> 00:01:35.858
-S9], systemd, cloud-init, NetworkManager,
-FreeIPA [S10–S14], Arc and Azure [S15–S17,
-
-21
-00:01:35.858 --> 00:01:45.170
-S19, S20], AWS [S21–S23], Dynamic update
-and ADMX_DnsClient [S26, S27], aging [S30],
-
-22
-00:01:45.170 --> 00:01:55.180
-NIOS [S41, S42, S48]; the Federal
-Modernization Workbook's Book 08 Ch04 and Ch10.
+00:00:41.325 --> 00:00:43.540
+Now, what the agency must do.

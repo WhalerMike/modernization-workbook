@@ -2,540 +2,255 @@
  "1": [
   [
    0.05,
-   8.45,
-   "Federal HR 2.0, the program OPM runs, moves agencies' core HR records onto one Oracle platform."
+   0.713,
+   "Welcome."
   ],
   [
-   8.5,
-   14.725,
-   "If an agency builds HR-driven identity on top of it, so that a hire in HR becomes an account and a departure removes one, the data crosses Oracle's cloud, Microsoft's cloud, the agency's own network, and possibly AWS."
+   0.762,
+   5.7,
+   "This is research from the Federal Modernization Workbook's Research section, and it's still under review."
   ],
   [
-   23.225,
-   3.725,
-   "Every one of those hops starts with a D N S lookup."
+   6.463,
+   6.612,
+   "Federal HR 2.0 moves agencies' core HR records onto one Oracle platform."
   ],
   [
-   26.95,
-   5.213,
-   "D N S, the domain name system, turns a name into a network address."
+   13.075,
+   14.012,
+   "If an agency builds HR-driven identity on top of it, so a hire becomes an account and a departure removes one, that data crosses Oracle's cloud, Microsoft's cloud, the agency's own network, and maybe AWS."
   ],
   [
-   32.163,
-   2.587,
-   "This explainer answers three questions."
+   27.087,
+   3.163,
+   "Every hop starts with a D N S lookup."
   ],
   [
-   34.75,
-   1.812,
-   "Which names must resolve where?"
+   30.25,
+   6.6,
+   "So we'll ask which names must resolve where, what breaks, and when you need private D N S or forwarding."
   ],
   [
-   36.562,
-   1.012,
-   "What breaks?"
-  ],
-  [
-   37.575,
-   5.463,
-   "And when do you need private D N S or forwarding, instead of ordinary public D N S?"
-  ],
-  [
-   43.038,
-   4.125,
-   "It's built for architects still learning, so terms are defined as we go."
-  ],
-  [
-   47.163,
-   1.8,
-   "This is research under review."
-  ],
-  [
-   48.962,
-   6.987,
-   "Every fact comes from sources opened on October twenty-second, 2026, mostly vendor documentation."
-  ],
-  [
-   55.95,
-   7.5,
-   "A few Microsoft facts come from search excerpts of Microsoft Learn pages rather than full pages, and I'll say so when they come up."
-  ],
-  [
-   63.45,
-   4.8,
-   "Where I drew a conclusion that no source states directly, I'll call it an inference."
-  ],
-  [
-   68.25,
-   3.388,
-   "And recommendations are labeled program design guidance."
-  ],
-  [
-   71.638,
-   24.05,
-   "Sources: Research brief, D N S for HR-driven identity across Oracle, Microsoft, on-premises, VMware and AWS (verified Oct. 22, 2026), Method and Bottom line; the Federal Modernization Workbook's Book 03 Ch03 (OPM as the Federal HR 2.0 program owner); Book 08."
+   36.85,
+   10.562,
+   "Facts come from sources opened on October twenty-second, 2026, a few Microsoft ones from search excerpts, and I'll flag inferences and program design guidance as we go."
   ]
  ],
  "2": [
   [
    0.05,
-   7.912,
-   "Here's the chain end to end, as Microsoft's Oracle tutorial and the Federal Modernization Workbook's Book 03 describe it."
+   1.913,
+   "Let's walk the chain end to end."
   ],
   [
-   7.963,
+   1.962,
    6.312,
    "It starts in Oracle Fusion Cloud H C M, the HR system Oracle runs as a service."
   ],
   [
-   14.275,
-   2.763,
-   "H C M means human capital management."
+   8.275,
+   13.9,
+   "Changes leave Fusion as extracts or change feeds, and middleware, running in Oracle's integration cloud or in Azure, pulls them, turns them into a standard format called skim, and posts them to Microsoft Graph."
   ],
   [
-   17.038,
-   7.162,
-   "Changes leave Fusion as extracts, or as Atom feeds, which are lists of recent changes that another program polls."
+   22.175,
+   12.675,
+   "Entra then writes the user into Entra ID, and for users still in Active Directory, a small on-premises agent writes the change into A D. Lifecycle Workflows run the joiner and leaver tasks."
   ],
   [
-   24.2,
-   2.987,
-   "In this pattern, the middleware pulls from Oracle."
+   34.85,
+   9.75,
+   "Now notice the D N S pattern: every hop in the top row crosses a vendor's public name, and only the agent-to-A D hop needs internal D N S."
   ],
   [
-   27.188,
-   2.362,
-   "The middleware is the program in the middle."
-  ],
-  [
-   29.55,
-   10.062,
-   "Microsoft says it can run in Oracle Integration Cloud, called OIC, or in Azure as an Azure Function, a Logic App, or a Data Factory pipeline."
-  ],
-  [
-   39.612,
-   9.875,
-   "It turns HR records into a standard format called skim and posts them to Microsoft Graph, Microsoft's main API, at an endpoint called bulkUpload."
-  ],
-  [
-   49.487,
-   3.288,
-   "That's Entra's API-driven inbound provisioning."
-  ],
-  [
-   52.775,
-   4.162,
-   "The Entra provisioning service then writes the user into Entra ID."
-  ],
-  [
-   56.938,
-   16.613,
-   "For users who still live in Active Directory, it hands the change to a provisioning agent: a small service on an on-premises server that makes outbound connections only, and writes into A D. Lifecycle Workflows then run joiner and leaver tasks on the hire and leave dates."
-  ],
-  [
-   73.55,
-   2.05,
-   "Notice the D N S pattern."
-  ],
-  [
-   75.6,
-   3.612,
-   "Every arrow in the top row crosses a vendor's public name."
-  ],
-  [
-   79.213,
-   3.888,
-   "Only the agent-to-A D hop needs internal D N S."
-  ],
-  [
-   83.1,
-   30.812,
-   "Sources: Microsoft Learn: Configure Oracle H C M for automatic user provisioning [S1], Perform bulkUpload [S5], On-premises application provisioning architecture [S6 (excerpt)], Plan cloud HR application to Entra user provisioning [S8 (excerpt)], Lifecycle workflows attribute sync [S11 (excerpt)]; Oracle, Working with Atom [S18]; Book 03 Ch05, Provisioning Services."
+   44.6,
+   2.663,
+   "That's the key idea, so let's look closer."
   ]
  ],
  "3": [
   [
    0.05,
-   2.362,
-   "That leads to the key idea of this talk."
+   2.625,
+   "Here's the idea the rest of the talk builds on."
   ],
   [
-   2.413,
-   3.987,
-   "Almost every name in this path is public and owned by a vendor."
+   2.675,
+   11.812,
+   "Almost every name in this path is public and owned by a vendor: Oracle's Fusion host, Microsoft Graph and sign-in, the agent's relay names, the Amazon Connect names."
   ],
   [
-   6.4,
-   9.675,
-   "The Fusion host, which looks like your environment's name, then dot f-a dot o-c-s dot oraclecloud dot com. Microsoft Graph and the Entra sign-in hosts."
+   14.488,
+   8.988,
+   "The agency's job is to resolve those correctly from every resolver a component can reach, and never to host or shadow them in a private zone of its own."
   ],
   [
-   16.075,
-   2.388,
-   "The provisioning agent's relay names."
+   23.475,
+   17.212,
+   "Private D N S and forwarding are needed in only four places: names the agency owns, like A D domains, cloud private endpoints the middleware uses, cloud private zones on-premises systems must read, and AWS interface endpoints with private D N S."
   ],
   [
-   18.462,
-   4.338,
-   "And the Amazon Connect names that contact-center agents' browsers use."
-  ],
-  [
-   22.8,
-   5.487,
-   "The agency's job is to resolve those correctly from every resolver a component can reach."
-  ],
-  [
-   28.288,
-   3.55,
-   "A resolver is the D N S server a machine asks."
-  ],
-  [
-   31.837,
-   5.263,
-   "The agency must never host or shadow those names in a private zone of its own."
-  ],
-  [
-   37.1,
-   1.988,
-   "We'll see why on the failure slide."
-  ],
-  [
-   39.087,
-   9.162,
-   "Private D N S is needed, along with forwarding, which means one resolver passing a query to another that knows the answer, in only four places."
-  ],
-  [
-   48.25,
-   11.137,
-   "One: names the agency owns, like A D domains and their service records, the middleware's evidence store, internal HR or identity APIs, and VMware hosts."
-  ],
-  [
-   59.388,
-   9.912,
-   "Two: cloud private endpoints the middleware uses, such as a storage account behind Azure Private Link, which gives a cloud service a private address in your network."
-  ],
-  [
-   69.3,
-   4.2,
-   "Three: cloud private zones that on-premises systems must read."
-  ],
-  [
-   73.5,
-   4.263,
-   "Four: AWS interface endpoints with private D N S."
-  ],
-  [
-   77.763,
+   40.688,
    3.038,
    "Everything else is ordinary public resolution."
   ],
   [
-   80.8,
-   28.425,
-   "Sources: Research brief, Bottom line items 1 and 2, citing Microsoft Learn [S2, S4, S10], Oracle [S20, S23], AWS [S27\u2013S29, S31], Broadcom [S36]; the Federal Modernization Workbook's Book 08 Ch07 and Ch08; research_multicloud.md [prior-M S57]."
+   43.725,
+   1.975,
+   "So where does each component look?"
   ]
  ],
  "4": [
   [
    0.05,
+   5.713,
+   "This table maps each component to what it must resolve, and the full version is in the backup."
+  ],
+  [
+   5.763,
+   12.787,
+   "The HR middleware resolves Fusion, Graph and sign-in publicly, but its evidence store and key vault sit behind private endpoints, so it needs a linked private zone or a resolver that forwards to Azure."
+  ],
+  [
+   18.55,
+   5.138,
+   "Lifecycle Workflow extensions, as an inference, can reach only public names."
+  ],
+  [
+   23.688,
+   6.062,
+   "The provisioning agent needs domain controller records internally and Microsoft's relay names publicly."
+  ],
+  [
+   29.75,
+   7.338,
+   "On-premises systems reach cloud private names by forwarding from the Infoblox Grid to each cloud's inbound endpoint."
+  ],
+  [
+   37.087,
    4.013,
-   "This table condenses the brief's what-must-resolve-where table."
+   "And VMware hosts need forward and reverse records in the Grid."
   ],
   [
-   4.062,
-   2.087,
-   "The full version is in the backup."
-  ],
-  [
-   6.15,
-   11.775,
-   "The HR middleware, if it runs as Azure Functions or Logic Apps Standard joined to a virtual network, resolves the Fusion host, Graph and sign-in publicly, through the agency's resolver."
-  ],
-  [
-   17.925,
-   8.3,
-   "Its evidence store and key vault sit behind private endpoints, so it needs a linked private zone, or a resolver that forwards to Azure."
-  ],
-  [
-   26.225,
-   7.537,
-   "Microsoft documents an app setting, WEBSITE_DNS_SERVER, for pointing the app at your own D N S server."
-  ],
-  [
-   33.763,
-   5.487,
-   "Lifecycle Workflow extensions run in Consumption Logic Apps, the multitenant kind."
-  ],
-  [
-   39.25,
-   3.275,
-   "As an inference, they can reach only public names."
-  ],
-  [
-   42.525,
-   7.95,
-   "The provisioning agent resolves domain controller locator records internally, and Microsoft's relay and sign-in names publicly."
-  ],
-  [
-   50.475,
-   12.838,
-   "On-premises systems reach cloud private names by forwarding from the Grid, meaning the Infoblox appliances, to each cloud's inbound endpoint: an address inside the cloud network that accepts queries from outside."
-  ],
-  [
-   63.312,
-   5.75,
-   "Fusion users on Oracle's private access still get Fusion's public D N S answer."
-  ],
-  [
-   69.062,
-   7.65,
-   "A Lambda function in a VPC, a virtual private cloud, reaches agency APIs through an outbound rule to the Grid."
-  ],
-  [
-   76.713,
-   6.013,
-   "And vCenter and ESXi need forward and reverse records, A and PTR, in the Grid."
-  ],
-  [
-   82.725,
-   38.575,
-   "Sources: Research brief \u00a78, What must resolve where, and the sources in each row: Microsoft Learn [S2, S4, S4b (excerpt), S8 (excerpt), S11b (excerpt), S13\u2013S15 (excerpts)]; Oracle [S20\u2013S24]; AWS [S29, S30]; Broadcom [S36]; the Federal Modernization Workbook's Book 08 Ch07 and Ch08; research_multicloud.md [prior-M S31, S57]."
+   41.1,
+   2.425,
+   "Next, a trap that fails quietly."
   ]
  ],
  "5": [
   [
    0.05,
-   5.225,
-   "Next, the government clouds use different names, and getting this wrong fails quietly."
+   4.525,
+   "The government clouds use different names, and getting this wrong fails quietly."
   ],
   [
-   5.275,
-   3.075,
-   "Microsoft Graph has a separate address per cloud."
+   4.575,
+   13.35,
+   "A G C C tenant keeps using the worldwide Graph and sign-in endpoints, while G C C High uses dot-us addresses, and Microsoft says access tokens from one national cloud aren't interchangeable with another's."
   ],
   [
-   8.35,
-   17.462,
-   "A G C C tenant, Microsoft's government community cloud, keeps using the worldwide endpoints: graph dot microsoft dot com, and login dot microsoftonline dot com. A G C C High tenant uses graph dot microsoft dot us, and login dot microsoftonline dot us."
+   17.925,
+   5.3,
+   "The provisioning agent has its own list of relay names that change in the government cloud too."
   ],
   [
-   25.812,
-   4.737,
-   "The higher government cloud has its own Graph host and the same dot-us sign-in."
+   23.225,
+   8.2,
+   "It needs no inbound ports, and Microsoft's guidance, from search excerpts, is to avoid inline TLS inspection on that path."
   ],
   [
-   30.55,
-   5.638,
-   "Microsoft says access tokens from one national cloud aren't interchangeable with another's."
+   31.425,
+   6.45,
+   "The practical lesson is simple: keep a per-cloud list of names, and test through the real egress path."
   ],
   [
-   36.188,
-   2.325,
-   "The provisioning agent has its own list."
-  ],
-  [
-   38.513,
-   9.3,
-   "In the public cloud, which G C C tenants also use, it reaches relay names under msappproxy dot net and servicebus dot windows dot net."
-  ],
-  [
-   47.812,
-   8.963,
-   "In the U.S. Government cloud those become msappproxy dot us and servicebus dot usgovcloudapi dot net, with dot-us certificate-check names too."
-  ],
-  [
-   56.775,
-   9.412,
-   "The agent uses outbound port 443 for service traffic and port 80 for certificate revocation lists, and needs no inbound ports."
-  ],
-  [
-   66.188,
-   16.462,
-   "Per Microsoft Learn, from search excerpts: public D N S for these names is a chain of CNAME records, you should avoid inline TLS inspection, meaning a proxy that decrypts the traffic, and the agent installs to the default Azure environment unless told otherwise."
-  ],
-  [
-   82.65,
-   4.45,
-   "So keep a per-cloud list of names, and test through the real egress path."
-  ],
-  [
-   87.1,
-   26.863,
-   "Sources: Microsoft Learn: Microsoft Graph national cloud deployments [S2]; Prerequisites for Microsoft Entra Cloud Sync, firewall and proxy requirements [S4]; Cloud sync troubleshooting [S4b (excerpt)]; On-premises application provisioning architecture [S6 (excerpt)]; Install the provisioning agent and Hybrid identity considerations for Azure Government [S7 (excerpt)]."
+   37.875,
+   2.55,
+   "Now to Oracle, and a common mistake."
   ]
  ],
  "6": [
   [
    0.05,
-   2.25,
-   "Now Oracle, and a common mistake."
+   6.263,
+   "Oracle Fusion offers private access from on-premises, and it sounds like a D N S feature."
   ],
   [
-   2.3,
-   8.412,
-   "Oracle Fusion offers private access from on-premises, which Oracle describes as reaching your environment without going through the internet."
+   6.312,
+   1.538,
+   "It isn't; it's routing."
   ],
   [
-   10.713,
-   2.5,
-   "It sounds like a D N S feature."
+   7.85,
+   10.912,
+   "Traffic rides Oracle's private circuit or a VPN into an Oracle network and on to Oracle's public address ranges, and neither Oracle page says anything about D N S."
   ],
   [
-   13.213,
-   0.825,
-   "It isn't."
+   18.762,
+   5.562,
+   "As an inference, the Fusion name keeps its public answer, so don't build a private zone for it."
   ],
   [
-   14.037,
-   0.9,
-   "It's routing."
+   24.325,
+   11.787,
+   "A second point: Oracle says its change feeds can be periodically purged, so, as an inference, if the middleware loses D N S longer than that window, HR events are lost."
   ],
   [
-   14.938,
-   9.113,
-   "Traffic goes over FastConnect, Oracle's private circuit, or a site-to-site VPN, into an Oracle virtual cloud network, a VCN."
+   36.112,
+   7.0,
+   "That makes middleware D N S a correctness issue, not just uptime, so reconcile against full extracts."
   ],
   [
-   24.05,
-   6.175,
-   "From there it goes through the VCN's Service Gateway to the Oracle Services Network's public IP ranges."
+   43.112,
+   3.05,
+   "Oracle Fusion is listed at fed-ramp Moderate."
   ],
   [
-   30.225,
-   5.688,
-   "You add an access rule for the VCN and turn off content acceleration, Oracle's caching."
-  ],
-  [
-   35.913,
-   3.962,
-   "Neither Oracle page says anything about D N S."
-  ],
-  [
-   39.875,
-   3.513,
-   "As an inference, the Fusion name keeps its public answer."
-  ],
-  [
-   43.388,
-   2.337,
-   "So don't build a private zone for Fusion."
-  ],
-  [
-   45.725,
-   1.663,
-   "Second, Atom feeds."
-  ],
-  [
-   47.388,
-   7.037,
-   "Oracle says Atom data can be periodically purged, and Microsoft warns that delaying Atom feeds can lose changes."
-  ],
-  [
-   54.425,
-   7.888,
-   "As an inference, if the middleware loses D N S or internet access for longer than the purge window, HR events are lost."
-  ],
-  [
-   62.312,
-   3.9,
-   "Middleware D N S is a correctness issue, not just uptime."
-  ],
-  [
-   66.213,
-   2.425,
-   "Reconcile against full extracts."
-  ],
-  [
-   68.638,
-   1.512,
-   "Third, fed-ramp."
-  ],
-  [
-   70.15,
-   4.125,
-   "The Marketplace lists Oracle Fusion Cloud at fed-ramp Moderate."
-  ],
-  [
-   74.275,
-   7.388,
-   "Oracle's government cloud regions support private D N S zones, but public D N S isn't available there."
-  ],
-  [
-   81.662,
-   4.537,
-   "Which Oracle environment hosts a given agency's tenant wasn't verified."
-  ],
-  [
-   86.2,
-   34.913,
-   "Sources: Oracle: OCI Fusion Applications, Securely Accessing Fusion Applications [S21]; Transit Routing for Private Access to Oracle Services [S22]; REST API for Fusion Cloud H C M, Working with Atom [S18]; US Government Cloud with fed-ramp authorization [S26]; Microsoft Learn, Oracle H C M provisioning tutorial [S1]; fed-ramp Marketplace products.json, record F1603257882 [S40]."
+   46.163,
+   2.075,
+   "Next, two more components."
   ]
  ],
  "7": [
   [
    0.05,
-   5.838,
-   "Two more components: Amazon Connect, AWS's contact center service, and VMware."
+   1.35,
+   "Two more components."
   ],
   [
-   5.888,
-   7.875,
-   "Connect agents work in a browser, in the Contact Control Panel, and AWS says that traffic traverses the public network."
+   1.4,
+   8.225,
+   "Amazon Connect agents work in a browser, and AWS says that traffic traverses the public network and prefers a domain allowlist."
   ],
   [
-   13.762,
-   15.7,
-   "AWS prefers a domain allowlist: the instance name under my dot connect dot aws, plus telemetry, participant and transport names, and media names for TURN, a relay that carries the call audio, on UDP port 3478."
+   9.625,
+   8.15,
+   "If agents can't resolve the media relay names, the softphone can't set up its media channel, so don't over-restrict their D N S."
   ],
   [
-   29.462,
-   6.088,
-   "If agents' D N S can't resolve those TURN names, the softphone can't set up its media channel."
+   17.775,
+   7.375,
+   "In GovCloud, Connect is available only in the US-West region, uses its own names, and lacks several features."
   ],
   [
-   35.55,
-   3.075,
-   "So don't over-restrict D N S for agents."
+   25.15,
+   9.287,
+   "Private API access covers only a subset of Connect, and, as an inference, helps API calls, not the agent or voice path."
   ],
   [
-   38.625,
-   5.05,
-   "In AWS GovCloud, Connect is available only in the US-West region."
+   34.438,
+   7.925,
+   "On VMware, a Broadcom article says changing vCenter's name or address is blocked if the name doesn't fully resolve."
   ],
   [
-   43.675,
-   13.125,
-   "It uses names under govcloud dot connect dot aws, has no cross-partition integration with commercial regions, and lacks several features, including Customer Profiles, Cases and outbound campaigns."
+   42.362,
+   2.125,
+   "So keep those records right in the Grid."
   ],
   [
-   56.8,
-   9.225,
-   "AWS PrivateLink, which gives an AWS API a private address inside your network, covers only a subset of Connect APIs."
-  ],
-  [
-   66.025,
-   5.85,
-   "As an inference, that helps workloads making API calls, not the agent or voice path."
-  ],
-  [
-   71.875,
-   7.5,
-   "A Lambda function attached to a VPC can reach only that VPC unless you add NAT or interface endpoints."
-  ],
-  [
-   79.375,
-   11.738,
-   "VMware: a Broadcom knowledge article says changing vCenter's hostname or address runs forward and reverse D N S lookups, and the change is blocked if the name doesn't fully resolve."
-  ],
-  [
-   91.112,
-   1.975,
-   "Keep those records right in the Grid."
-  ],
-  [
-   93.088,
-   30.337,
-   "Sources: AWS: Amazon Connect, Set up your network for the CCP [S27]; AWS GovCloud (US) User Guide, Connect Customer [S28]; Amazon Connect and interface VPC endpoints [S29]; AWS Lambda, Giving functions access to resources in a VPC [S30]; Broadcom KB 440783, VAMI hostname or IP change fails [S36]."
+   44.487,
+   1.7,
+   "Next, the subtle one."
   ]
  ],
  "8": [
@@ -561,461 +276,171 @@
   ],
   [
    8.975,
-   5.825,
-   "In AWS, the Route 53 Resolver rule wins over the private hosted zone."
+   2.225,
+   "In AWS the rule wins."
   ],
   [
-   14.8,
-   8.588,
-   "In Azure, a linked private D N S zone wins, and, per Microsoft Learn, the forwarding-ruleset rule is silently ignored."
+   11.2,
+   4.438,
+   "In Azure the private zone wins, and the rule is silently ignored."
   ],
   [
-   23.387,
-   4.787,
-   "In Oracle Cloud, the attached private views are checked before resolver rules."
+   15.637,
+   5.325,
+   "In Oracle the private view wins, and evaluation stops even on a negative answer."
   ],
   [
-   28.175,
-   4.725,
-   "Once a view answers, evaluation stops, even if the answer is negative."
+   20.962,
+   7.675,
+   "And a private zone that covers a name but has no record for it says the name doesn't exist, instead of asking anyone else."
   ],
   [
-   32.9,
-   1.712,
-   "That word negative matters."
+   28.637,
+   5.9,
+   "So, as an inference, the only design that behaves the same everywhere is one owner per name."
   ],
   [
-   34.612,
-   2.038,
-   "A private zone can shadow a name."
+   34.538,
+   6.287,
+   "The Grid owns agency zones, each cloud owns its own private zones, and everything else forwards."
   ],
   [
-   36.65,
-   9.012,
-   "If the zone covers a name but has no record for it, it returns NXDOMAIN, which means the name doesn't exist, instead of asking anyone else."
-  ],
-  [
-   45.663,
-   2.65,
-   "All three clouds document that behavior."
-  ],
-  [
-   48.312,
-   5.85,
-   "So, as an inference, the same zone and the same rule give different answers in each cloud."
-  ],
-  [
-   54.163,
-   4.025,
-   "The only design that behaves the same everywhere is one owner per name."
-  ],
-  [
-   58.188,
-   2.163,
-   "The Grid owns agency zones."
-  ],
-  [
-   60.35,
-   2.425,
-   "Each cloud owns its own private zones."
-  ],
-  [
-   62.775,
-   2.112,
-   "Everything else forwards to the owner."
-  ],
-  [
-   64.888,
-   10.4,
-   "Never put a zone and a rule for the same name in one network, and test resolution from every origin, because a configuration that works in one cloud can fail in the next."
-  ],
-  [
-   75.287,
-   22.85,
-   "Sources: AWS, Route 53, Considerations when working with a private hosted zone [S25]; Microsoft Learn, Troubleshoot NXDOMAIN from an Azure Private D N S zone [S12 (excerpt)]; Oracle, OCI Private D N S [S23]; research brief, Bottom line 4 and failure mode F3."
+   40.825,
+   1.225,
+   "So how does it break?"
   ]
  ],
  "9": [
   [
    0.05,
-   1.125,
-   "How does this break?"
+   4.425,
+   "The brief lists sixteen ways this breaks, and the slide picks seven."
   ],
   [
-   1.175,
-   3.35,
-   "Here are seven failures from the brief's table of sixteen."
+   4.475,
+   9.838,
+   "Shadowing is the classic: someone creates a private zone for a vendor's domain, say oraclecloud dot com, and every name not copied into it stops resolving."
   ],
   [
-   4.525,
-   2.025,
-   "The full table is in the backup."
+   14.312,
+   11.662,
+   "Silent fallback is sneakier: a private name resolves to the public address because a rule is missing or slow, which is why Windows forwarders to Azure need a timeout above four seconds."
   ],
   [
-   6.55,
-   1.2,
-   "One, shadowing."
+   25.975,
+   4.963,
+   "The Grid itself can fall back to the internet's root servers if its forwarders fail."
   ],
   [
-   7.75,
-   8.45,
-   "Someone creates a private zone for a vendor's domain, say oraclecloud dot com, and every name not copied into it returns NXDOMAIN."
+   30.938,
+   9.562,
+   "Then there are loops, certificate name mismatches, the wrong cloud's endpoints, and capacity, so size resolver endpoints before each onboarding wave."
   ],
   [
-   16.2,
-   1.712,
-   "Two, silent fallback."
-  ],
-  [
-   17.913,
-   6.275,
-   "A private endpoint name resolves to the public address, because a forwarding rule is missing or slow."
-  ],
-  [
-   24.188,
-   10.613,
-   "Per a Microsoft Learn excerpt, Windows D N S servers that forward to Azure need a forwarder timeout above four seconds, or private records may resolve to public addresses."
-  ],
-  [
-   34.8,
-   2.212,
-   "Three, the Grid's own fallback."
-  ],
-  [
-   37.013,
-   8.625,
-   "Infoblox documents that if Use Forwarders Only is off and the forwarders fail, the member falls back to resolving from the internet's root servers."
-  ],
-  [
-   45.638,
-   4.912,
-   "As an inference, a failed forward can then return the public answer instead of failing."
-  ],
-  [
-   50.55,
-   1.075,
-   "Four, loops."
-  ],
-  [
-   51.625,
-   7.138,
-   "Azure warns that a ruleset rule that targets an inbound endpoint must not be linked to the network where that endpoint lives."
-  ],
-  [
-   58.763,
-   2.513,
-   "Five, TLS name mismatch."
-  ],
-  [
-   61.275,
-   5.575,
-   "Keep the public name in every connection string, because the service's certificate carries it."
-  ],
-  [
-   66.85,
-   4.838,
-   "Six, the wrong cloud's endpoints, as we saw on the government-cloud slide."
-  ],
-  [
-   71.688,
-   1.575,
-   "Seven, capacity."
-  ],
-  [
-   73.263,
-   8.338,
-   "A Route 53 Resolver endpoint address handles about ten thousand queries per second, but as few as fifteen hundred with connection tracking."
-  ],
-  [
-   81.6,
-   3.038,
-   "Size endpoints before each onboarding wave."
-  ],
-  [
-   84.638,
-   36.938,
-   "Sources: Research brief \u00a76, failure modes F1, F4, F5, F6, F9, F10, F11: Microsoft Learn [S2, S10 (excerpt), S10b (excerpt), S12 (excerpt), S14b (excerpt)]; AWS [S25, S32]; Oracle [S23]; Infoblox NIOS 9.1, Specifying Forwarders [S37]; the Federal Modernization Workbook's Book 08 Ch02 and Ch10."
+   40.5,
+   1.962,
+   "So how should forwarding be wired?"
   ]
  ],
  "10": [
   [
    0.05,
-   2.9,
-   "With several clouds, how do you wire the forwarding?"
+   4.938,
+   "With several clouds, every vendor documents a hub, and none recommends a mesh."
   ],
   [
-   2.95,
-   1.837,
-   "Every vendor documents a hub."
-  ],
-  [
-   4.787,
-   1.575,
-   "None recommends a mesh."
-  ],
-  [
-   6.362,
-   8.713,
-   "Azure documents two hub designs: link one forwarding ruleset to every spoke network, or point the spokes at the hub's inbound endpoint."
-  ],
-  [
-   15.075,
-   5.15,
-   "AWS shares Resolver rules from one account through Resource Access Manager."
-  ],
-  [
-   20.225,
-   3.325,
-   "Oracle shares a view across networks in a region."
-  ],
-  [
-   23.55,
+   4.987,
    2.138,
    "Here's some illustrative arithmetic."
   ],
   [
-   25.688,
-   6.737,
-   "Take five environments: on-premises, Azure, AWS, Oracle Cloud and VMware."
+   7.125,
+   6.375,
+   "With five environments, a full mesh needs up to twenty one-way rule sets, while a hub needs about five."
   ],
   [
-   32.425,
-   7.787,
-   "In a full mesh, each forwards directly to every other, so you need up to twenty one-way rule sets, five times four."
-  ],
-  [
-   40.212,
-   4.5,
-   "With a hub, you need about five, one per environment pointing at the hub."
-  ],
-  [
-   44.712,
+   13.5,
    6.925,
    "As an inference, every extra path is one more place for the precedence, fallback and loop failures we just saw."
   ],
   [
-   51.638,
-   1.65,
-   "Where does Infoblox fit?"
+   20.425,
+   9.575,
+   "The Infoblox Grid is a natural hub for agency names, and Infoblox's reference design puts its virtual appliance in a shared-services hub network."
   ],
   [
-   53.288,
-   3.275,
-   "The Grid is a natural hub for agency names."
+   30.0,
+   11.688,
+   "The earlier multi-cloud research, as design guidance, recommends the Grid plus each cloud's native resolver as the baseline, with customer-operated appliances for fed-ramp High workloads."
   ],
   [
-   56.562,
-   11.375,
-   "Each Grid member can have its own forwarders for a forward zone, and Infoblox's reference design puts vNIOS, its virtual appliance, in a shared-services hub network as a Grid member."
-  ],
-  [
-   67.938,
-   18.025,
-   "The earlier multi-cloud research, labeled as design guidance, recommends a baseline of the Grid plus each cloud's native resolver, forwarding both ways, with customer-operated appliances for fed-ramp High workloads, because Infoblox's software-as-a-service offering is fed-ramp Moderate only."
-  ],
-  [
-   85.963,
-   40.05,
-   "Sources: Microsoft Learn, Azure D N S Private Resolver endpoints and rulesets [S10 (excerpt)] and Private resolver architecture [S10c (excerpt)]; AWS, Route 53, Managing forwarding rules [S33]; Oracle, OCI Private D N S [S23]; Infoblox NIOS 9.1, Configuring a Forward Zone [S38]; research_multicloud.md, Bottom line and Option A (Infoblox Shared-Services VPC Deployments [S27]); mesh-versus-hub arithmetic is illustrative."
+   41.688,
+   1.962,
+   "So what does the agency actually do?"
   ]
  ],
  "11": [
   [
    0.05,
-   1.65,
-   "So what must the agency do?"
+   7.775,
+   "Here's what the agency must do, condensed from a thirteen-step checklist, and it's program design guidance, not a vendor requirement."
   ],
   [
-   1.7,
-   6.062,
-   "This is program design guidance, not a vendor requirement, condensed from a thirteen-step checklist."
+   7.825,
+   11.475,
+   "Start with names and owners: inventory every name in the HR path per cloud, never create a private zone for a vendor's domain, and give each agency namespace one owner."
   ],
   [
-   7.763,
-   1.762,
-   "Names and owners first."
+   19.3,
+   11.787,
+   "Then forwarding: forward from the Grid to inbound endpoints in two regions, raise Windows forwarder timeouts, run a hub in each cloud, and size endpoints before each onboarding wave."
   ],
   [
-   9.525,
-   3.888,
-   "Inventory every name in the HR path, per cloud."
+   31.087,
+   9.45,
+   "Then the components: run at least two provisioning agents, treat middleware D N S as a data-integrity control, and keep VMware records in the Grid."
   ],
   [
-   13.412,
-   2.925,
-   "Never create a private zone for a vendor's domain."
-  ],
-  [
-   16.337,
-   4.5,
-   "Give each agency namespace one owner, and forward everything else."
-  ],
-  [
-   20.837,
-   4.838,
-   "And never let a zone and a rule for the same name exist in one network."
-  ],
-  [
-   25.675,
-   0.838,
-   "Forwarding."
-  ],
-  [
-   26.512,
-   10.55,
-   "From the Grid, forward each Azure service's public zone, not its privatelink zone, to inbound endpoints in two regions, and set Use Forwarders Only on those zones."
-  ],
-  [
-   37.062,
-   3.725,
-   "Raise Windows forwarder timeouts above four seconds."
-  ],
-  [
-   40.788,
-   5.737,
-   "Run a hub in each cloud, and review the forwarding graph for loops at every change."
-  ],
-  [
-   46.525,
-   5.088,
-   "Size resolver endpoints before each HR 2.0 onboarding wave."
-  ],
-  [
-   51.612,
-   1.038,
-   "Components."
-  ],
-  [
-   52.65,
-   11.287,
-   "Put the middleware in a Logic Apps Standard or Functions plan joined to a virtual network, using the agency resolver path, and keep Lifecycle Workflow extensions to public targets."
-  ],
-  [
-   63.938,
-   8.175,
-   "Run at least two provisioning agents dedicated to HR provisioning, near preferred domain controllers, with no TLS inspection."
-  ],
-  [
-   72.112,
-   6.237,
-   "Treat middleware D N S as a data-integrity control, and reconcile against full extracts."
-  ],
-  [
-   78.35,
-   2.675,
-   "For Connect, let the TURN names resolve."
-  ],
-  [
-   81.025,
-   3.688,
-   "For VMware, keep A and PTR records in the Grid."
-  ],
-  [
-   84.713,
+   40.538,
    1.913,
    "And test from every origin."
   ],
   [
-   86.625,
-   4.213,
-   "Any public answer or NXDOMAIN for a private name is a defect."
-  ],
-  [
-   90.838,
-   55.25,
-   "Sources: Research brief \u00a79, Agency checklist steps 1\u201313 (all PROGRAM DESIGN GUIDANCE) and the facts each step cites: Microsoft Learn [S1, S2, S4, S4b, S7b, S8, S10, S10c, S11b, S12, S12b, S13\u2013S15, S14b]; Oracle [S18, S21\u2013S23]; AWS [S25, S27\u2013S30, S32, S33]; Broadcom [S36]; Infoblox [S37]; the Federal Modernization Workbook's Book 03 Ch03, Ch05; Book 08 Ch02, Ch07, Ch08, Ch10."
+   42.45,
+   4.112,
+   "Any public answer or missing name for a private name is a defect."
   ]
  ],
  "12": [
   [
    0.05,
-   1.137,
-   "The decisions."
+   0.925,
+   "To close."
   ],
   [
-   1.188,
-   3.45,
-   "Who owns each namespace, the Grid or a cloud."
+   0.975,
+   13.838,
+   "The decisions are who owns each namespace, which middleware platform and so which resolver path, the hub design in each cloud, and whether Oracle's private access is needed at all, remembering that it's routing, not D N S."
   ],
   [
-   4.638,
-   4.3,
-   "Which middleware platform, and so which network and resolver path it uses."
+   14.812,
+   10.488,
+   "The next steps are the things that couldn't be verified, such as which Oracle environment the agency's tenant will use and what's available in the government clouds; they're all listed in the backup."
   ],
   [
-   8.938,
-   1.962,
-   "The hub design in each cloud."
+   25.3,
+   12.438,
+   "In the workbook, Book 03 covers HR-driven identity and Book 08 covers D N S, DHCP and address management, and three related research items sit beside this one."
   ],
   [
-   10.9,
-   5.875,
-   "And whether Oracle's private access is needed at all, remembering that it's routing, not D N S."
+   37.737,
+   4.925,
+   "This is research under review, not an endorsement by any federal agency."
   ],
   [
-   16.775,
-   2.475,
-   "The next steps are the things I couldn't verify."
-  ],
-  [
-   19.25,
-   5.825,
-   "Which Oracle environment and hostnames the agency's Core H C M tenant will use."
-  ],
-  [
-   25.075,
-   5.525,
-   "Whether API-driven inbound provisioning is available in the U.S. Government Graph cloud."
-  ],
-  [
-   30.6,
-   8.6,
-   "Whether Azure's D N S Private Resolver, Lifecycle Workflows and Connect private endpoints are available in the government clouds."
-  ],
-  [
-   39.2,
-   6.5,
-   "And the VMware install guides' D N S rules and Oracle's own connectivity patterns, which I couldn't open."
-  ],
-  [
-   45.7,
-   1.675,
-   "They're all listed in the backup."
-  ],
-  [
-   47.375,
-   1.137,
-   "Where does this fit?"
-  ],
-  [
-   48.513,
-   11.85,
-   "The Federal Modernization Workbook's Book 03 covers HR-driven identity, with Federal HR 2.0 in Chapter 03 and the provisioning pipeline in Chapter 05."
-  ],
-  [
-   60.362,
-   16.95,
-   "Book 08 covers D N S, DHCP and IP address management: split-brain D N S in Chapter 02, cloud private endpoints in Chapter 07, the reference architecture in Chapter 08, and the migration sequence in Chapter 10."
-  ],
-  [
-   77.312,
-   11.637,
-   "Three research items sit beside this one: Trinzic Alone, or Trinzic Plus Cloud D D I; Infoblox D D I for Federal Agencies; and Who Names the Device After A D."
-  ],
-  [
-   88.95,
-   6.325,
-   "One note on standing: this is research under review, not an endorsement by any federal agency."
-  ],
-  [
-   95.275,
+   42.663,
    0.762,
    "Thank you."
-  ],
-  [
-   96.037,
-   23.613,
-   "Sources: Research brief, Couldn't verify and Agency checklist; Book 03 Ch03 and Ch05; Book 08 Ch02, Ch07, Ch08 and Ch10; research items Trinzic Alone, or Trinzic Plus Cloud D D I?, Infoblox D D I for Federal Agencies, and Who Names the Device After A D?"
   ]
  ]
 }

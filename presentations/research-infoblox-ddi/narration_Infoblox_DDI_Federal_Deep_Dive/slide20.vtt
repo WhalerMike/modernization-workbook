@@ -1,59 +1,16 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:03.075
-Part 2: divisions under
-central governance.
+00:00:00.050 --> 00:00:04.813
+Part 2 is about divisions under
+central governance, starting with NIOS.
 
 2
-00:00:03.075 --> 00:00:06.300
-Module 3 covers divisions on NIOS.
+00:00:04.813 --> 00:00:09.397
+Most agencies aren't one network, and a
+central plane only works if divisions can
 
 3
-00:00:06.300 --> 00:00:08.425
-Most agencies aren't one network.
-
-4
-00:00:08.425 --> 00:00:13.429
-Bureaus, regional offices and labs run
-their own address space and often their own
-
-5
-00:00:13.429 --> 00:00:17.845
-DNS, and a central policy plane only
-works if those divisions can still do
-
-6
-00:00:17.845 --> 00:00:22.113
-their jobs through it, because a
+00:00:09.397 --> 00:00:13.970
+still do their jobs through it, because a
 division that can't will work around it.
-
-7
-00:00:22.113 --> 00:00:25.626
-NIOS has a detailed permission
-model for exactly this.
-
-8
-00:00:25.626 --> 00:00:30.750
-We'll go through how it decides access, how
-to scope an admin group to one division,
-
-9
-00:00:30.750 --> 00:00:36.031
-the views and attributes that separate
-divisions, approvals and their one big gap,
-
-10
-00:00:36.031 --> 00:00:40.613
-sign-in, Microsoft servers, what stays
-central, and a reporting surprise.
-
-11
-00:00:40.613 --> 00:00:46.000
-Sources: Infoblox NIOS 9.1.x
-and 9.0 administration guides;
-
-12
-00:00:46.000 --> 00:00:51.460
-the Federal Modernization
-Workbook's Book 08, Chapter 11.

@@ -1,141 +1,58 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:02.950
-With several clouds, how do
-you wire the forwarding?
+00:00:00.050 --> 00:00:04.988
+With several clouds, every vendor documents
+a hub, and none recommends a mesh.
 
 2
-00:00:02.950 --> 00:00:04.787
-Every vendor documents a hub.
-
-3
-00:00:04.787 --> 00:00:06.362
-None recommends a mesh.
-
-4
-00:00:06.362 --> 00:00:11.907
-Azure documents two hub designs: link one
-forwarding ruleset to every spoke network,
-
-5
-00:00:11.907 --> 00:00:15.075
-or point the spokes at the
-hub's inbound endpoint.
-
-6
-00:00:15.075 --> 00:00:20.225
-AWS shares Resolver rules from one
-account through Resource Access Manager.
-
-7
-00:00:20.225 --> 00:00:23.550
-Oracle shares a view across
-networks in a region.
-
-8
-00:00:23.550 --> 00:00:25.688
+00:00:04.988 --> 00:00:07.125
 Here's some illustrative arithmetic.
 
-9
-00:00:25.688 --> 00:00:32.425
-Take five environments: on-premises,
-Azure, AWS, Oracle Cloud and VMware.
+3
+00:00:07.125 --> 00:00:10.116
+With five environments,
+a full mesh needs up to
 
-10
-00:00:32.425 --> 00:00:36.187
-In a full mesh, each forwards
-directly to every other,
+4
+00:00:10.116 --> 00:00:13.500
+twenty one-way rule sets,
+while a hub needs about five.
 
-11
-00:00:36.187 --> 00:00:40.212
-so you need up to twenty one-way
-rule sets, five times four.
-
-12
-00:00:40.212 --> 00:00:44.712
-With a hub, you need about five, one
-per environment pointing at the hub.
-
-13
-00:00:44.712 --> 00:00:49.147
+5
+00:00:13.500 --> 00:00:17.935
 As an inference, every extra path is
 one more place for the precedence,
 
-14
-00:00:49.147 --> 00:00:51.637
+6
+00:00:17.935 --> 00:00:20.425
 fallback and loop failures we just saw.
 
-15
-00:00:51.637 --> 00:00:53.288
-Where does Infoblox fit?
+7
+00:00:20.425 --> 00:00:24.770
+The Infoblox Grid is a natural hub
+for agency names, and Infoblox's
 
-16
-00:00:53.288 --> 00:00:56.563
-The Grid is a natural
-hub for agency names.
+8
+00:00:24.770 --> 00:00:30.000
+reference design puts its virtual
+appliance in a shared-services hub network.
 
-17
-00:00:56.563 --> 00:01:00.586
-Each Grid member can have its own
-forwarders for a forward zone,
+9
+00:00:30.000 --> 00:00:33.318
+The earlier multi-cloud
+research, as design guidance,
 
-18
-00:01:00.586 --> 00:01:04.842
-and Infoblox's reference design
-puts vNIOS, its virtual appliance,
+10
+00:00:33.318 --> 00:00:37.691
+recommends the Grid plus each cloud's
+native resolver as the baseline,
 
-19
-00:01:04.842 --> 00:01:07.937
-in a shared-services hub
-network as a Grid member.
+11
+00:00:37.691 --> 00:00:41.688
+with customer-operated appliances
+for FedRAMP High workloads.
 
-20
-00:01:07.937 --> 00:01:11.752
-The earlier multi-cloud research,
-labeled as design guidance,
-
-21
-00:01:11.752 --> 00:01:15.941
-recommends a baseline of the Grid
-plus each cloud's native resolver,
-
-22
-00:01:15.941 --> 00:01:21.251
-forwarding both ways, with customer-operated
-appliances for FedRAMP High workloads,
-
-23
-00:01:21.251 --> 00:01:25.963
-because Infoblox's software-as-a-service
-offering is FedRAMP Moderate only.
-
-24
-00:01:25.963 --> 00:01:34.119
-Sources: Microsoft Learn, Azure DNS Private
-Resolver endpoints and rulesets [S10
-
-25
-00:01:34.119 --> 00:01:41.180
-(excerpt)] and Private resolver architecture
-[S10c (excerpt)]; AWS, Route 53,
-
-26
-00:01:41.180 --> 00:01:48.727
-Managing forwarding rules [S33]; Oracle,
-OCI Private DNS [S23]; Infoblox NIOS 9.1,
-
-27
-00:01:48.727 --> 00:01:54.327
-Configuring a Forward Zone
-[S38]; research_multicloud.md,
-
-28
-00:01:54.327 --> 00:02:01.509
-Bottom line and Option A (Infoblox
-Shared-Services VPC Deployments [S27]);
-
-29
-00:02:01.509 --> 00:02:06.070
-mesh-versus-hub arithmetic
-is illustrative.
+12
+00:00:41.688 --> 00:00:43.700
+So what does the agency actually do?

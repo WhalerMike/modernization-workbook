@@ -1,1620 +1,685 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:03.205
-Federal HR 2.0, the program OPM runs,
+00:00:00.050 --> 00:00:00.763
+Welcome.
 
 2
-00:00:03.205 --> 00:00:08.500
-moves agencies' core HR records
-onto one Oracle platform.
+00:00:00.763 --> 00:00:03.448
+This is research from
+the Federal Modernization
 
 3
-00:00:08.500 --> 00:00:12.051
+00:00:03.448 --> 00:00:06.462
+Workbook's Research section,
+and it's still under review.
+
+4
+00:00:06.462 --> 00:00:13.075
+Federal HR 2.0 moves agencies' core
+HR records onto one Oracle platform.
+
+5
+00:00:13.075 --> 00:00:16.666
 If an agency builds HR-driven
 identity on top of it,
 
-4
-00:00:12.051 --> 00:00:17.335
-so that a hire in HR becomes an account
-and a departure removes one, the data
-
-5
-00:00:17.335 --> 00:00:20.280
-crosses Oracle's cloud, Microsoft's cloud,
-
 6
-00:00:20.280 --> 00:00:23.225
-the agency's own network,
-and possibly AWS.
+00:00:16.666 --> 00:00:22.008
+so a hire becomes an account and a
+departure removes one, that data crosses
 
 7
-00:00:23.225 --> 00:00:26.950
-Every one of those hops
-starts with a DNS lookup.
+00:00:22.008 --> 00:00:27.087
+Oracle's cloud, Microsoft's cloud, the
+agency's own network, and maybe AWS.
 
 8
-00:00:26.950 --> 00:00:32.163
-DNS, the domain name system, turns
-a name into a network address.
+00:00:27.087 --> 00:00:30.250
+Every hop starts with a DNS lookup.
 
 9
-00:00:32.163 --> 00:00:34.750
-This explainer answers three questions.
+00:00:30.250 --> 00:00:33.102
+So we'll ask which names
+must resolve where,
 
 10
-00:00:34.750 --> 00:00:36.562
-Which names must resolve where?
+00:00:33.102 --> 00:00:36.850
+what breaks, and when you need
+private DNS or forwarding.
 
 11
-00:00:36.562 --> 00:00:37.574
-What breaks?
+00:00:36.850 --> 00:00:42.131
+Facts come from sources opened on October
+twenty-second, 2026, a few Microsoft ones
 
 12
-00:00:37.574 --> 00:00:43.038
-And when do you need private DNS or
-forwarding, instead of ordinary public DNS?
+00:00:42.131 --> 00:00:47.770
+from search excerpts, and I'll flag inferences
+and program design guidance as we go.
 
 13
-00:00:43.038 --> 00:00:47.163
-It's built for architects still
-learning, so terms are defined as we go.
+00:00:48.520 --> 00:00:50.433
+Let's walk the chain end to end.
 
 14
-00:00:47.163 --> 00:00:48.963
-This is research under review.
-
-15
-00:00:48.963 --> 00:00:53.447
-Every fact comes from sources
-opened on October twenty-second,
-
-16
-00:00:53.447 --> 00:00:55.949
-2026, mostly vendor documentation.
-
-17
-00:00:55.949 --> 00:00:59.950
-A few Microsoft facts come from
-search excerpts of Microsoft Learn
-
-18
-00:00:59.950 --> 00:01:03.450
-pages rather than full pages, and
-I'll say so when they come up.
-
-19
-00:01:03.450 --> 00:01:08.250
-Where I drew a conclusion that no source
-states directly, I'll call it an inference.
-
-20
-00:01:08.250 --> 00:01:11.638
-And recommendations are labeled
-program design guidance.
-
-21
-00:01:11.638 --> 00:01:18.132
-Sources: Research brief, DNS for
-HR-driven identity across Oracle,
-
-22
-00:01:18.132 --> 00:01:23.182
-Microsoft, on-premises,
-VMware and AWS (verified Oct.
-
-23
-00:01:23.182 --> 00:01:30.036
-22, 2026), Method and Bottom line;
-the Federal Modernization Workbook's
-
-24
-00:01:30.036 --> 00:01:36.040
-Book 03 Ch03 (OPM as the Federal
-HR 2.0 program owner); Book 08.
-
-25
-00:01:36.790 --> 00:01:40.585
-Here's the chain end to end,
-as Microsoft's Oracle tutorial
-
-26
-00:01:40.585 --> 00:01:44.702
-and the Federal Modernization
-Workbook's Book 03 describe it.
-
-27
-00:01:44.702 --> 00:01:51.015
+00:00:50.433 --> 00:00:56.744
 It starts in Oracle Fusion Cloud HCM,
 the HR system Oracle runs as a service.
 
-28
-00:01:51.015 --> 00:01:53.778
-HCM means human capital management.
+15
+00:00:56.744 --> 00:01:01.160
+Changes leave Fusion as extracts
+or change feeds, and middleware,
 
-29
-00:01:53.778 --> 00:01:56.970
-Changes leave Fusion as
-extracts, or as Atom feeds,
+16
+00:01:01.160 --> 00:01:05.249
+running in Oracle's integration
+cloud or in Azure, pulls them,
 
-30
-00:01:56.970 --> 00:02:00.940
-which are lists of recent changes
-that another program polls.
+17
+00:01:05.249 --> 00:01:10.645
+turns them into a standard format called
+SCIM, and posts them to Microsoft Graph.
 
-31
-00:02:00.940 --> 00:02:03.927
-In this pattern, the
-middleware pulls from Oracle.
+18
+00:01:10.645 --> 00:01:16.149
+Entra then writes the user into Entra ID,
+and for users still in Active Directory,
 
-32
-00:02:03.927 --> 00:02:06.290
-The middleware is the
-program in the middle.
+19
+00:01:16.149 --> 00:01:19.651
+a small on-premises agent
+writes the change into AD.
 
-33
-00:02:06.290 --> 00:02:11.185
-Microsoft says it can run in Oracle
-Integration Cloud, called OIC,
+20
+00:01:19.651 --> 00:01:23.320
+Lifecycle Workflows run the
+joiner and leaver tasks.
 
-34
-00:02:11.185 --> 00:02:16.352
-or in Azure as an Azure Function, a
-Logic App, or a Data Factory pipeline.
+21
+00:01:23.320 --> 00:01:29.507
+Now notice the DNS pattern: every hop in
+the top row crosses a vendor's public name,
 
-35
-00:02:16.352 --> 00:02:21.290
-It turns HR records into a standard
-format called SCIM and posts them to
-
-36
-00:02:21.290 --> 00:02:26.227
-Microsoft Graph, Microsoft's main API,
-at an endpoint called bulkUpload.
-
-37
-00:02:26.227 --> 00:02:29.515
-That's Entra's API-driven
-inbound provisioning.
-
-38
-00:02:29.515 --> 00:02:33.677
-The Entra provisioning service then
-writes the user into Entra ID.
-
-39
-00:02:33.677 --> 00:02:36.472
-For users who still live
-in Active Directory,
-
-40
-00:02:36.472 --> 00:02:40.474
-it hands the change to a provisioning
-agent: a small service on an
-
-41
-00:02:40.474 --> 00:02:45.232
-on-premises server that makes outbound
-connections only, and writes into AD.
-
-42
-00:02:45.232 --> 00:02:50.291
-Lifecycle Workflows then run joiner and
-leaver tasks on the hire and leave dates.
-
-43
-00:02:50.291 --> 00:02:52.340
-Notice the DNS pattern.
-
-44
-00:02:52.340 --> 00:02:55.952
-Every arrow in the top row
-crosses a vendor's public name.
-
-45
-00:02:55.952 --> 00:02:59.841
-Only the agent-to-AD
+22
+00:01:29.507 --> 00:01:33.070
+and only the agent-to-AD
 hop needs internal DNS.
 
-46
-00:02:59.841 --> 00:03:07.146
-Sources: Microsoft Learn: Configure Oracle
-HCM for automatic user provisioning [S1],
+23
+00:01:33.070 --> 00:01:36.100
+That's the key idea, so let's look closer.
 
-47
-00:03:07.146 --> 00:03:14.134
-Perform bulkUpload [S5], On-premises
-application provisioning architecture [S6
+24
+00:01:36.850 --> 00:01:39.475
+Here's the idea the rest
+of the talk builds on.
 
-48
-00:03:14.134 --> 00:03:20.593
-(excerpt)], Plan cloud HR application to
-Entra user provisioning [S8 (excerpt)],
+25
+00:01:39.475 --> 00:01:45.199
+Almost every name in this path is public
+and owned by a vendor: Oracle's Fusion
 
-49
-00:03:20.593 --> 00:03:25.570
-Lifecycle workflows attribute
-sync [S11 (excerpt)]; Oracle,
+26
+00:01:45.199 --> 00:01:47.653
+host, Microsoft Graph and sign-in,
 
-50
-00:03:25.570 --> 00:03:31.020
-Working with Atom [S18]; Book
-03 Ch05, Provisioning Services.
+27
+00:01:47.653 --> 00:01:51.287
+the agent's relay names,
+the Amazon Connect names.
 
-51
-00:03:31.770 --> 00:03:34.132
-That leads to the key idea of this talk.
+28
+00:01:51.287 --> 00:01:56.116
+The agency's job is to resolve those
+correctly from every resolver a component
 
-52
-00:03:34.132 --> 00:03:38.120
-Almost every name in this path
-is public and owned by a vendor.
+29
+00:01:56.116 --> 00:02:00.276
+can reach, and never to host or shadow
+them in a private zone of its own.
 
-53
-00:03:38.120 --> 00:03:41.974
-The Fusion host, which looks
-like your environment's name,
+30
+00:02:00.276 --> 00:02:06.041
+Private DNS and forwarding are needed in
+only four places: names the agency owns,
 
-54
-00:03:41.974 --> 00:03:44.843
-then dot f-a dot o-c-s
-dot oraclecloud dot com.
+31
+00:02:06.041 --> 00:02:11.546
+like AD domains, cloud private endpoints
+the middleware uses, cloud private
 
-55
-00:03:44.843 --> 00:03:47.795
-Microsoft Graph and the
-Entra sign-in hosts.
+32
+00:02:11.546 --> 00:02:17.487
+zones on-premises systems must read, and
+AWS interface endpoints with private DNS.
 
-56
-00:03:47.795 --> 00:03:50.183
-The provisioning agent's relay names.
-
-57
-00:03:50.183 --> 00:03:54.520
-And the Amazon Connect names that
-contact-center agents' browsers use.
-
-58
-00:03:54.520 --> 00:03:57.376
-The agency's job is to
-resolve those correctly
-
-59
-00:03:57.376 --> 00:04:00.007
-from every resolver a component can reach.
-
-60
-00:04:00.007 --> 00:04:03.558
-A resolver is the DNS
-server a machine asks.
-
-61
-00:04:03.558 --> 00:04:08.820
-The agency must never host or shadow
-those names in a private zone of its own.
-
-62
-00:04:08.820 --> 00:04:10.808
-We'll see why on the failure slide.
-
-63
-00:04:10.808 --> 00:04:15.468
-Private DNS is needed, along with
-forwarding, which means one resolver
-
-64
-00:04:15.468 --> 00:04:19.969
-passing a query to another that knows
-the answer, in only four places.
-
-65
-00:04:19.969 --> 00:04:25.124
-One: names the agency owns, like AD
-domains and their service records,
-
-66
-00:04:25.124 --> 00:04:31.107
-the middleware's evidence store, internal
-HR or identity APIs, and VMware hosts.
-
-67
-00:04:31.107 --> 00:04:36.101
-Two: cloud private endpoints the middleware
-uses, such as a storage account behind
-
-68
-00:04:36.101 --> 00:04:41.020
-Azure Private Link, which gives a cloud
-service a private address in your network.
-
-69
-00:04:41.020 --> 00:04:45.220
-Three: cloud private zones that
-on-premises systems must read.
-
-70
-00:04:45.220 --> 00:04:49.483
-Four: AWS interface
-endpoints with private DNS.
-
-71
-00:04:49.483 --> 00:04:52.521
+33
+00:02:17.487 --> 00:02:20.526
 Everything else is ordinary
 public resolution.
 
-72
-00:04:52.521 --> 00:05:02.627
-Sources: Research brief, Bottom line items
-1 and 2, citing Microsoft Learn [S2, S4,
+34
+00:02:20.526 --> 00:02:22.870
+So where does each component look?
 
-73
-00:05:02.627 --> 00:05:10.207
-S10], Oracle [S20, S23], AWS [S27–S29,
-S31], Broadcom [S36]; the Federal
+35
+00:02:23.620 --> 00:02:27.048
+This table maps each component
+to what it must resolve,
 
-74
-00:05:10.207 --> 00:05:16.365
-Modernization Workbook's
-Book 08 Ch07 and Ch08;
+36
+00:02:27.048 --> 00:02:29.333
+and the full version is in the backup.
 
-75
-00:05:16.365 --> 00:05:21.320
-research_multicloud.md [prior-M S57].
-
-76
-00:05:22.070 --> 00:05:26.083
-This table condenses the brief's
-what-must-resolve-where table.
-
-77
-00:05:26.083 --> 00:05:28.169
-The full version is in the backup.
-
-78
-00:05:28.169 --> 00:05:33.465
-The HR middleware, if it runs as Azure
-Functions or Logic Apps Standard joined to a
-
-79
-00:05:33.465 --> 00:05:36.231
-virtual network, resolves the Fusion host,
-
-80
-00:05:36.231 --> 00:05:39.945
+37
+00:02:29.333 --> 00:02:33.334
+The HR middleware resolves Fusion,
 Graph and sign-in publicly,
-through the agency's resolver.
 
-81
-00:05:39.945 --> 00:05:43.905
-Its evidence store and key vault
-sit behind private endpoints,
+38
+00:02:33.334 --> 00:02:37.648
+but its evidence store and key
+vault sit behind private endpoints,
 
-82
-00:05:43.905 --> 00:05:48.245
-so it needs a linked private zone, or
+39
+00:02:37.648 --> 00:02:42.120
+so it needs a linked private zone or
 a resolver that forwards to Azure.
 
-83
-00:05:48.245 --> 00:05:52.525
-Microsoft documents an app
-setting, WEBSITE_DNS_SERVER,
+40
+00:02:42.120 --> 00:02:47.258
+Lifecycle Workflow extensions, as an
+inference, can reach only public names.
 
-84
-00:05:52.525 --> 00:05:55.782
-for pointing the app at
-your own DNS server.
+41
+00:02:47.258 --> 00:02:50.527
+The provisioning agent needs
+domain controller records
 
-85
-00:05:55.782 --> 00:06:01.270
-Lifecycle Workflow extensions run in
-Consumption Logic Apps, the multitenant kind.
+42
+00:02:50.527 --> 00:02:53.320
+internally and Microsoft's
+relay names publicly.
 
-86
-00:06:01.270 --> 00:06:04.545
-As an inference, they can
-reach only public names.
+43
+00:02:53.320 --> 00:02:57.178
+On-premises systems reach cloud
+private names by forwarding
 
-87
-00:06:04.545 --> 00:06:09.551
-The provisioning agent resolves domain
-controller locator records internally,
+44
+00:02:57.178 --> 00:03:00.658
+from the Infoblox Grid to each
+cloud's inbound endpoint.
 
-88
-00:06:09.551 --> 00:06:12.495
-and Microsoft's relay and
-sign-in names publicly.
+45
+00:03:00.658 --> 00:03:04.670
+And VMware hosts need forward
+and reverse records in the Grid.
 
-89
-00:06:12.495 --> 00:06:17.017
-On-premises systems reach cloud private
-names by forwarding from the Grid,
+46
+00:03:04.670 --> 00:03:07.450
+Next, a trap that fails quietly.
 
-90
-00:06:17.017 --> 00:06:21.029
-meaning the Infoblox appliances,
-to each cloud's inbound endpoint:
-
-91
-00:06:21.029 --> 00:06:25.333
-an address inside the cloud network
-that accepts queries from outside.
-
-92
-00:06:25.333 --> 00:06:31.082
-Fusion users on Oracle's private access
-still get Fusion's public DNS answer.
-
-93
-00:06:31.082 --> 00:06:34.646
-A Lambda function in a VPC,
-a virtual private cloud,
-
-94
-00:06:34.646 --> 00:06:38.732
-reaches agency APIs through
-an outbound rule to the Grid.
-
-95
-00:06:38.732 --> 00:06:44.746
-And vCenter and ESXi need forward and
-reverse records, A and PTR, in the Grid.
-
-96
-00:06:44.746 --> 00:06:54.956
-Sources: Research brief §8, What must
-resolve where, and the sources in each row:
-
-97
-00:06:54.956 --> 00:07:02.736
-Microsoft Learn [S2, S4, S4b (excerpt),
-S8 (excerpt), S11b (excerpt),
-
-98
-00:07:02.736 --> 00:07:10.192
-S13–S15 (excerpts)]; Oracle [S20–S24];
-AWS [S29, S30]; Broadcom [S36];
-
-99
-00:07:10.192 --> 00:07:18.133
-the Federal Modernization
-Workbook's Book 08 Ch07 and Ch08;
-
-100
-00:07:18.133 --> 00:07:23.690
-research_multicloud.md [prior-M S31, S57].
-
-101
-00:07:24.440 --> 00:07:27.384
-Next, the government clouds
-use different names,
-
-102
-00:07:27.384 --> 00:07:29.665
+47
+00:03:08.200 --> 00:03:12.725
+The government clouds use different names,
 and getting this wrong fails quietly.
 
-103
-00:07:29.665 --> 00:07:32.740
-Microsoft Graph has a
-separate address per cloud.
+48
+00:03:12.725 --> 00:03:17.175
+A GCC tenant keeps using the
+worldwide Graph and sign-in endpoints,
 
-104
-00:07:32.740 --> 00:07:38.474
-A GCC tenant, Microsoft's government
-community cloud, keeps using the worldwide
+49
+00:03:17.175 --> 00:03:21.382
+while GCC High uses dot-us
+addresses, and Microsoft says access
 
-105
-00:07:38.474 --> 00:07:44.034
-endpoints: graph dot microsoft dot com,
-and login dot microsoftonline dot com.
+50
+00:03:21.382 --> 00:03:26.075
+tokens from one national cloud aren't
+interchangeable with another's.
 
-106
-00:07:44.034 --> 00:07:47.509
-A GCC High tenant uses
-graph dot microsoft dot us,
+51
+00:03:26.075 --> 00:03:28.793
+The provisioning agent
+has its own list of relay
 
-107
-00:07:47.509 --> 00:07:50.202
-and login dot microsoftonline dot us.
+52
+00:03:28.793 --> 00:03:31.375
+names that change in the
+government cloud too.
 
-108
-00:07:50.202 --> 00:07:54.939
-The higher government cloud has its own
-Graph host and the same dot-us sign-in.
+53
+00:03:31.375 --> 00:03:34.889
+It needs no inbound ports,
+and Microsoft's guidance,
 
-109
-00:07:54.939 --> 00:07:57.869
-Microsoft says access
-tokens from one national
+54
+00:03:34.889 --> 00:03:39.575
+from search excerpts, is to avoid
+inline TLS inspection on that path.
 
-110
-00:07:57.869 --> 00:08:00.578
-cloud aren't interchangeable
-with another's.
+55
+00:03:39.575 --> 00:03:43.556
+The practical lesson is simple:
+keep a per-cloud list of names,
 
-111
-00:08:00.578 --> 00:08:02.903
-The provisioning agent has its own list.
-
-112
-00:08:02.903 --> 00:08:06.206
-In the public cloud, which
-GCC tenants also use,
-
-113
-00:08:06.206 --> 00:08:12.203
-it reaches relay names under msappproxy
-dot net and servicebus dot windows dot net.
-
-114
-00:08:12.203 --> 00:08:12.743
-In the U.S.
-
-115
-00:08:12.743 --> 00:08:16.915
-Government cloud those become
-msappproxy dot us and servicebus
-
-116
-00:08:16.915 --> 00:08:21.165
-dot usgovcloudapi dot net, with
-dot-us certificate-check names too.
-
-117
-00:08:21.165 --> 00:08:25.780
-The agent uses outbound port
-443 for service traffic and port
-
-118
-00:08:25.780 --> 00:08:30.577
-80 for certificate revocation
-lists, and needs no inbound ports.
-
-119
-00:08:30.577 --> 00:08:33.283
-Per Microsoft Learn, from search excerpts:
-
-120
-00:08:33.283 --> 00:08:36.684
-public DNS for these names
-is a chain of CNAME records,
-
-121
-00:08:36.684 --> 00:08:41.939
-you should avoid inline TLS inspection,
-meaning a proxy that decrypts the traffic,
-
-122
-00:08:41.939 --> 00:08:47.040
-and the agent installs to the default
-Azure environment unless told otherwise.
-
-123
-00:08:47.040 --> 00:08:51.490
-So keep a per-cloud list of names,
+56
+00:03:43.556 --> 00:03:46.025
 and test through the real egress path.
 
-124
-00:08:51.490 --> 00:08:56.898
-Sources: Microsoft Learn: Microsoft
-Graph national cloud deployments [S2];
+57
+00:03:46.025 --> 00:03:48.940
+Now to Oracle, and a common mistake.
 
-125
-00:08:56.898 --> 00:09:03.015
-Prerequisites for Microsoft Entra Cloud
-Sync, firewall and proxy requirements [S4];
+58
+00:03:49.690 --> 00:03:53.660
+Oracle Fusion offers private
+access from on-premises,
 
-126
-00:09:03.015 --> 00:09:06.030
-Cloud sync troubleshooting
-[S4b (excerpt)];
+59
+00:03:53.660 --> 00:03:55.953
+and it sounds like a DNS feature.
 
-127
-00:09:06.030 --> 00:09:11.704
-On-premises application provisioning
-architecture [S6 (excerpt)]; Install the
+60
+00:03:55.953 --> 00:03:57.490
+It isn't; it's routing.
 
-128
-00:09:11.704 --> 00:09:14.718
-provisioning agent and Hybrid identity
+61
+00:03:57.490 --> 00:04:02.904
+Traffic rides Oracle's private circuit or
+a VPN into an Oracle network and on to
 
-129
-00:09:14.718 --> 00:09:18.710
-considerations for Azure
-Government [S7 (excerpt)].
+62
+00:04:02.904 --> 00:04:08.402
+Oracle's public address ranges, and neither
+Oracle page says anything about DNS.
 
-130
-00:09:19.460 --> 00:09:21.710
-Now Oracle, and a common mistake.
-
-131
-00:09:21.710 --> 00:09:25.636
-Oracle Fusion offers private access
-from on-premises, which Oracle
-
-132
-00:09:25.636 --> 00:09:30.122
-describes as reaching your environment
-without going through the internet.
-
-133
-00:09:30.122 --> 00:09:32.623
-It sounds like a DNS feature.
-
-134
-00:09:32.623 --> 00:09:33.448
-It isn't.
-
-135
-00:09:33.448 --> 00:09:34.347
-It's routing.
-
-136
-00:09:34.347 --> 00:09:38.719
-Traffic goes over FastConnect,
-Oracle's private circuit,
-
-137
-00:09:38.719 --> 00:09:43.461
-or a site-to-site VPN, into an
-Oracle virtual cloud network, a VCN.
-
-138
-00:09:43.461 --> 00:09:46.621
-From there it goes through
-the VCN's Service Gateway
-
-139
-00:09:46.621 --> 00:09:49.635
-to the Oracle Services
-Network's public IP ranges.
-
-140
-00:09:49.635 --> 00:09:52.398
-You add an access rule
-for the VCN and turn
-
-141
-00:09:52.398 --> 00:09:55.323
-off content acceleration,
-Oracle's caching.
-
-142
-00:09:55.323 --> 00:09:59.285
-Neither Oracle page says
-anything about DNS.
-
-143
-00:09:59.285 --> 00:10:02.798
+63
+00:04:08.402 --> 00:04:11.859
 As an inference, the Fusion
-name keeps its public answer.
+name keeps its public answer,
 
-144
-00:10:02.798 --> 00:10:05.135
-So don't build a private zone for Fusion.
+64
+00:04:11.859 --> 00:04:13.964
+so don't build a private zone for it.
 
-145
-00:10:05.135 --> 00:10:06.798
-Second, Atom feeds.
+65
+00:04:13.964 --> 00:04:19.769
+A second point: Oracle says its change
+feeds can be periodically purged, so, as an
 
-146
-00:10:06.798 --> 00:10:09.900
-Oracle says Atom data can
-be periodically purged,
+66
+00:04:19.769 --> 00:04:25.752
+inference, if the middleware loses DNS
+longer than that window, HR events are lost.
 
-147
-00:10:09.900 --> 00:10:13.835
-and Microsoft warns that delaying
-Atom feeds can lose changes.
+67
+00:04:25.752 --> 00:04:29.081
+That makes middleware
+DNS a correctness issue,
 
-148
-00:10:13.835 --> 00:10:17.695
-As an inference, if the
-middleware loses DNS or internet
+68
+00:04:29.081 --> 00:04:32.752
+not just uptime, so reconcile
+against full extracts.
 
-149
-00:10:17.695 --> 00:10:21.723
-access for longer than the purge
-window, HR events are lost.
+69
+00:04:32.752 --> 00:04:35.802
+Oracle Fusion is listed
+at FedRAMP Moderate.
 
-150
-00:10:21.723 --> 00:10:25.622
-Middleware DNS is a correctness
-issue, not just uptime.
+70
+00:04:35.802 --> 00:04:38.230
+Next, two more components.
 
-151
-00:10:25.622 --> 00:10:28.048
-Reconcile against full extracts.
+71
+00:04:38.980 --> 00:04:40.330
+Two more components.
 
-152
-00:10:28.048 --> 00:10:29.560
-Third, FedRAMP.
+72
+00:04:40.330 --> 00:04:44.560
+Amazon Connect agents work in a
+browser, and AWS says that traffic
 
-153
-00:10:29.560 --> 00:10:33.685
-The Marketplace lists Oracle
-Fusion Cloud at FedRAMP Moderate.
+73
+00:04:44.560 --> 00:04:48.555
+traverses the public network
+and prefers a domain allowlist.
 
-154
-00:10:33.685 --> 00:10:38.337
-Oracle's government cloud regions
-support private DNS zones,
+74
+00:04:48.555 --> 00:04:51.601
+If agents can't resolve
+the media relay names,
 
-155
-00:10:38.337 --> 00:10:41.073
-but public DNS isn't available there.
+75
+00:04:51.601 --> 00:04:56.705
+the softphone can't set up its media
+channel, so don't over-restrict their DNS.
 
-156
-00:10:41.073 --> 00:10:45.609
-Which Oracle environment hosts a
-given agency's tenant wasn't verified.
+76
+00:04:56.705 --> 00:05:00.859
+In GovCloud, Connect is available
+only in the US-West region,
 
-157
-00:10:45.609 --> 00:10:49.541
-Sources: Oracle: OCI Fusion Applications,
+77
+00:05:00.859 --> 00:05:04.080
+uses its own names, and
+lacks several features.
 
-158
-00:10:49.541 --> 00:10:53.934
-Securely Accessing Fusion
-Applications [S21];
+78
+00:05:04.080 --> 00:05:08.574
+Private API access covers only
+a subset of Connect, and,
 
-159
-00:10:53.934 --> 00:10:59.598
-Transit Routing for Private
-Access to Oracle Services [S22];
+79
+00:05:08.574 --> 00:05:13.367
+as an inference, helps API calls,
+not the agent or voice path.
 
-160
-00:10:59.598 --> 00:11:04.454
-REST API for Fusion Cloud
-HCM, Working with Atom [S18];
+80
+00:05:13.367 --> 00:05:17.458
+On VMware, a Broadcom article
+says changing vCenter's name
 
-161
-00:11:04.454 --> 00:11:11.159
-US Government Cloud with FedRAMP
-authorization [S26]; Microsoft Learn,
+81
+00:05:17.458 --> 00:05:21.293
+or address is blocked if the
+name doesn't fully resolve.
 
-162
-00:11:11.159 --> 00:11:14.743
-Oracle HCM provisioning tutorial [S1];
+82
+00:05:21.293 --> 00:05:23.417
+So keep those records right in the Grid.
 
-163
-00:11:14.743 --> 00:11:20.890
-FedRAMP Marketplace products.json,
-record F1603257882 [S40].
+83
+00:05:23.417 --> 00:05:25.480
+Next, the subtle one.
 
-164
-00:11:21.640 --> 00:11:27.478
-Two more components: Amazon Connect,
-AWS's contact center service, and VMware.
-
-165
-00:11:27.478 --> 00:11:31.618
-Connect agents work in a browser,
-in the Contact Control Panel,
-
-166
-00:11:31.618 --> 00:11:35.353
-and AWS says that traffic
-traverses the public network.
-
-167
-00:11:35.353 --> 00:11:41.369
-AWS prefers a domain allowlist: the
-instance name under my dot connect dot aws,
-
-168
-00:11:41.369 --> 00:11:47.103
-plus telemetry, participant and transport
-names, and media names for TURN,
-
-169
-00:11:47.103 --> 00:11:51.052
-a relay that carries the call
-audio, on UDP port 3478.
-
-170
-00:11:51.052 --> 00:11:54.096
-If agents' DNS can't
-resolve those TURN names,
-
-171
-00:11:54.096 --> 00:11:57.140
-the softphone can't set
-up its media channel.
-
-172
-00:11:57.140 --> 00:12:00.215
-So don't over-restrict DNS for agents.
-
-173
-00:12:00.215 --> 00:12:05.265
-In AWS GovCloud, Connect is
-available only in the US-West region.
-
-174
-00:12:05.265 --> 00:12:08.466
-It uses names under govcloud
-dot connect dot aws,
-
-175
-00:12:08.466 --> 00:12:13.188
-has no cross-partition integration
-with commercial regions, and lacks
-
-176
-00:12:13.188 --> 00:12:18.390
-several features, including Customer
-Profiles, Cases and outbound campaigns.
-
-177
-00:12:18.390 --> 00:12:24.671
-AWS PrivateLink, which gives an AWS API
-a private address inside your network,
-
-178
-00:12:24.671 --> 00:12:27.615
-covers only a subset of Connect APIs.
-
-179
-00:12:27.615 --> 00:12:33.465
-As an inference, that helps workloads making
-API calls, not the agent or voice path.
-
-180
-00:12:33.465 --> 00:12:37.170
-A Lambda function attached
-to a VPC can reach only
-
-181
-00:12:37.170 --> 00:12:40.965
-that VPC unless you add
-NAT or interface endpoints.
-
-182
-00:12:40.965 --> 00:12:46.395
-VMware: a Broadcom knowledge article says
-changing vCenter's hostname or address
-
-183
-00:12:46.395 --> 00:12:48.870
-runs forward and reverse DNS lookups,
-
-184
-00:12:48.870 --> 00:12:52.703
-and the change is blocked if
-the name doesn't fully resolve.
-
-185
-00:12:52.703 --> 00:12:54.677
-Keep those records right in the Grid.
-
-186
-00:12:54.677 --> 00:13:01.494
-Sources: AWS: Amazon Connect, Set
-up your network for the CCP [S27];
-
-187
-00:13:01.494 --> 00:13:06.840
-AWS GovCloud (US) User Guide,
-Connect Customer [S28];
-
-188
-00:13:06.840 --> 00:13:13.388
-Amazon Connect and interface
-VPC endpoints [S29]; AWS Lambda,
-
-189
-00:13:13.388 --> 00:13:18.867
-Giving functions access to
-resources in a VPC [S30];
-
-190
-00:13:18.867 --> 00:13:25.370
-Broadcom KB 440783, VAMI hostname
-or IP change fails [S36].
-
-191
-00:13:26.120 --> 00:13:27.395
+84
+00:05:26.230 --> 00:05:27.505
 Here's the subtle one.
 
-192
-00:13:27.395 --> 00:13:29.792
+85
+00:05:27.505 --> 00:05:29.902
 Suppose a cloud network has both a private
 
-193
-00:13:29.792 --> 00:13:32.257
+86
+00:05:29.902 --> 00:05:32.367
 zone and a forwarding
 rule for the same name.
 
-194
-00:13:32.257 --> 00:13:33.296
+87
+00:05:32.367 --> 00:05:33.406
 Which wins?
 
-195
-00:13:33.296 --> 00:13:35.045
+88
+00:05:33.406 --> 00:05:35.155
 The three clouds disagree.
 
-196
-00:13:35.045 --> 00:13:40.870
-In AWS, the Route 53 Resolver rule
-wins over the private hosted zone.
+89
+00:05:35.155 --> 00:05:37.380
+In AWS the rule wins.
 
-197
-00:13:40.870 --> 00:13:45.672
-In Azure, a linked private DNS zone
-wins, and, per Microsoft Learn,
+90
+00:05:37.380 --> 00:05:41.818
+In Azure the private zone wins,
+and the rule is silently ignored.
 
-198
-00:13:45.672 --> 00:13:49.458
-the forwarding-ruleset
-rule is silently ignored.
+91
+00:05:41.818 --> 00:05:47.142
+In Oracle the private view wins, and
+evaluation stops even on a negative answer.
 
-199
-00:13:49.458 --> 00:13:54.244
-In Oracle Cloud, the attached private
-views are checked before resolver rules.
+92
+00:05:47.142 --> 00:05:50.900
+And a private zone that covers
+a name but has no record for
 
-200
-00:13:54.244 --> 00:13:58.970
-Once a view answers, evaluation stops,
-even if the answer is negative.
-
-201
-00:13:58.970 --> 00:14:00.682
-That word negative matters.
-
-202
-00:14:00.682 --> 00:14:02.720
-A private zone can shadow a name.
-
-203
-00:14:02.720 --> 00:14:07.350
-If the zone covers a name but has no
-record for it, it returns NXDOMAIN,
-
-204
-00:14:07.350 --> 00:14:11.732
-which means the name doesn't exist,
+93
+00:05:50.900 --> 00:05:54.817
+it says the name doesn't exist,
 instead of asking anyone else.
 
-205
-00:14:11.732 --> 00:14:14.383
-All three clouds document that behavior.
+94
+00:05:54.817 --> 00:05:57.403
+So, as an inference, the only design that
 
-206
-00:14:14.383 --> 00:14:17.019
-So, as an inference, the same zone and the
+95
+00:05:57.403 --> 00:06:00.717
+behaves the same everywhere
+is one owner per name.
 
-207
-00:14:17.019 --> 00:14:20.232
-same rule give different
-answers in each cloud.
+96
+00:06:00.717 --> 00:06:04.990
+The Grid owns agency zones, each
+cloud owns its own private zones,
 
-208
-00:14:20.232 --> 00:14:24.258
-The only design that behaves the same
-everywhere is one owner per name.
+97
+00:06:04.990 --> 00:06:07.005
+and everything else forwards.
 
-209
-00:14:24.258 --> 00:14:26.421
-The Grid owns agency zones.
+98
+00:06:07.005 --> 00:06:08.600
+So how does it break?
 
-210
-00:14:26.421 --> 00:14:28.845
-Each cloud owns its own private zones.
+99
+00:06:09.350 --> 00:06:13.775
+The brief lists sixteen ways this
+breaks, and the slide picks seven.
 
-211
-00:14:28.845 --> 00:14:30.957
-Everything else forwards to the owner.
+100
+00:06:13.775 --> 00:06:18.812
+Shadowing is the classic: someone creates
+a private zone for a vendor's domain,
 
-212
-00:14:30.957 --> 00:14:34.579
-Never put a zone and a rule for
-the same name in one network,
-
-213
-00:14:34.579 --> 00:14:37.044
-and test resolution from every origin,
-
-214
-00:14:37.044 --> 00:14:41.358
-because a configuration that works
-in one cloud can fail in the next.
-
-215
-00:14:41.358 --> 00:14:48.743
-Sources: AWS, Route 53, Considerations
-when working with a private hosted zone
-
-216
-00:14:48.743 --> 00:14:56.244
-[S25]; Microsoft Learn, Troubleshoot
-NXDOMAIN from an Azure Private DNS zone [S12
-
-217
-00:14:56.244 --> 00:14:59.591
-(excerpt)]; Oracle, OCI Private DNS [S23];
-
-218
-00:14:59.591 --> 00:15:04.580
-research brief, Bottom line
-4 and failure mode F3.
-
-219
-00:15:05.330 --> 00:15:06.455
-How does this break?
-
-220
-00:15:06.455 --> 00:15:09.805
-Here are seven failures from
-the brief's table of sixteen.
-
-221
-00:15:09.805 --> 00:15:11.830
-The full table is in the backup.
-
-222
-00:15:11.830 --> 00:15:13.030
-One, shadowing.
-
-223
-00:15:13.030 --> 00:15:16.490
-Someone creates a private
-zone for a vendor's domain,
-
-224
-00:15:16.490 --> 00:15:21.480
+101
+00:06:18.812 --> 00:06:23.613
 say oraclecloud dot com, and every name
-not copied into it returns NXDOMAIN.
+not copied into it stops resolving.
 
-225
-00:15:21.480 --> 00:15:23.192
-Two, silent fallback.
+102
+00:06:23.613 --> 00:06:25.466
+Silent fallback is sneakier:
 
-226
-00:15:23.192 --> 00:15:26.671
-A private endpoint name
-resolves to the public address,
+103
+00:06:25.466 --> 00:06:30.486
+a private name resolves to the public
+address because a rule is missing or slow,
 
-227
-00:15:26.671 --> 00:15:29.468
-because a forwarding
-rule is missing or slow.
+104
+00:06:30.486 --> 00:06:35.274
+which is why Windows forwarders to
+Azure need a timeout above four seconds.
 
-228
-00:15:29.468 --> 00:15:31.363
-Per a Microsoft Learn excerpt,
+105
+00:06:35.274 --> 00:06:40.238
+The Grid itself can fall back to the internet's
+root servers if its forwarders fail.
 
-229
-00:15:31.363 --> 00:15:35.608
-Windows DNS servers that forward
-to Azure need a forwarder timeout
+106
+00:06:40.238 --> 00:06:45.291
+Then there are loops, certificate name
+mismatches, the wrong cloud's endpoints,
 
-230
-00:15:35.608 --> 00:15:40.081
-above four seconds, or private records
-may resolve to public addresses.
+107
+00:06:45.291 --> 00:06:49.800
+and capacity, so size resolver
+endpoints before each onboarding wave.
 
-231
-00:15:40.081 --> 00:15:42.292
-Three, the Grid's own fallback.
+108
+00:06:49.800 --> 00:06:52.130
+So how should forwarding be wired?
 
-232
-00:15:42.292 --> 00:15:46.926
-Infoblox documents that if Use Forwarders
-Only is off and the forwarders fail,
+109
+00:06:52.880 --> 00:06:57.818
+With several clouds, every vendor documents
+a hub, and none recommends a mesh.
 
-233
-00:15:46.926 --> 00:15:50.918
-the member falls back to resolving
-from the internet's root servers.
-
-234
-00:15:50.918 --> 00:15:53.270
-As an inference, a failed forward can then
-
-235
-00:15:53.270 --> 00:15:55.830
-return the public answer
-instead of failing.
-
-236
-00:15:55.830 --> 00:15:56.905
-Four, loops.
-
-237
-00:15:56.905 --> 00:16:00.647
-Azure warns that a ruleset rule
-that targets an inbound endpoint
-
-238
-00:16:00.647 --> 00:16:04.043
-must not be linked to the network
-where that endpoint lives.
-
-239
-00:16:04.043 --> 00:16:06.556
-Five, TLS name mismatch.
-
-240
-00:16:06.556 --> 00:16:09.414
-Keep the public name in
-every connection string,
-
-241
-00:16:09.414 --> 00:16:12.130
-because the service's
-certificate carries it.
-
-242
-00:16:12.130 --> 00:16:16.968
-Six, the wrong cloud's endpoints, as
-we saw on the government-cloud slide.
-
-243
-00:16:16.968 --> 00:16:18.543
-Seven, capacity.
-
-244
-00:16:18.543 --> 00:16:23.575
-A Route 53 Resolver endpoint address handles
-about ten thousand queries per second,
-
-245
-00:16:23.575 --> 00:16:26.881
-but as few as fifteen hundred
-with connection tracking.
-
-246
-00:16:26.881 --> 00:16:29.918
-Size endpoints before
-each onboarding wave.
-
-247
-00:16:29.918 --> 00:16:38.496
-Sources: Research brief §6, failure
-modes F1, F4, F5, F6, F9, F10, F11:
-
-248
-00:16:38.496 --> 00:16:48.650
-Microsoft Learn [S2, S10 (excerpt), S10b
-(excerpt), S12 (excerpt), S14b (excerpt)];
-
-249
-00:16:48.650 --> 00:16:58.278
-AWS [S25, S32]; Oracle [S23]; Infoblox
-NIOS 9.1, Specifying Forwarders [S37];
-
-250
-00:16:58.278 --> 00:17:07.210
-the Federal Modernization
-Workbook's Book 08 Ch02 and Ch10.
-
-251
-00:17:07.960 --> 00:17:10.860
-With several clouds, how do
-you wire the forwarding?
-
-252
-00:17:10.860 --> 00:17:12.697
-Every vendor documents a hub.
-
-253
-00:17:12.697 --> 00:17:14.272
-None recommends a mesh.
-
-254
-00:17:14.272 --> 00:17:19.817
-Azure documents two hub designs: link one
-forwarding ruleset to every spoke network,
-
-255
-00:17:19.817 --> 00:17:22.985
-or point the spokes at the
-hub's inbound endpoint.
-
-256
-00:17:22.985 --> 00:17:28.135
-AWS shares Resolver rules from one
-account through Resource Access Manager.
-
-257
-00:17:28.135 --> 00:17:31.460
-Oracle shares a view across
-networks in a region.
-
-258
-00:17:31.460 --> 00:17:33.598
+110
+00:06:57.818 --> 00:06:59.955
 Here's some illustrative arithmetic.
 
-259
-00:17:33.598 --> 00:17:40.335
-Take five environments: on-premises,
-Azure, AWS, Oracle Cloud and VMware.
+111
+00:06:59.955 --> 00:07:02.946
+With five environments,
+a full mesh needs up to
 
-260
-00:17:40.335 --> 00:17:44.097
-In a full mesh, each forwards
-directly to every other,
+112
+00:07:02.946 --> 00:07:06.330
+twenty one-way rule sets,
+while a hub needs about five.
 
-261
-00:17:44.097 --> 00:17:48.122
-so you need up to twenty one-way
-rule sets, five times four.
-
-262
-00:17:48.122 --> 00:17:52.622
-With a hub, you need about five, one
-per environment pointing at the hub.
-
-263
-00:17:52.622 --> 00:17:57.057
+113
+00:07:06.330 --> 00:07:10.765
 As an inference, every extra path is
 one more place for the precedence,
 
-264
-00:17:57.057 --> 00:17:59.547
+114
+00:07:10.765 --> 00:07:13.255
 fallback and loop failures we just saw.
 
-265
-00:17:59.547 --> 00:18:01.198
-Where does Infoblox fit?
+115
+00:07:13.255 --> 00:07:17.600
+The Infoblox Grid is a natural hub
+for agency names, and Infoblox's
 
-266
-00:18:01.198 --> 00:18:04.473
-The Grid is a natural
-hub for agency names.
+116
+00:07:17.600 --> 00:07:22.830
+reference design puts its virtual
+appliance in a shared-services hub network.
 
-267
-00:18:04.473 --> 00:18:08.496
-Each Grid member can have its own
-forwarders for a forward zone,
+117
+00:07:22.830 --> 00:07:26.148
+The earlier multi-cloud
+research, as design guidance,
 
-268
-00:18:08.496 --> 00:18:12.752
-and Infoblox's reference design
-puts vNIOS, its virtual appliance,
+118
+00:07:26.148 --> 00:07:30.521
+recommends the Grid plus each cloud's
+native resolver as the baseline,
 
-269
-00:18:12.752 --> 00:18:15.847
-in a shared-services hub
-network as a Grid member.
+119
+00:07:30.521 --> 00:07:34.518
+with customer-operated appliances
+for FedRAMP High workloads.
 
-270
-00:18:15.847 --> 00:18:19.662
-The earlier multi-cloud research,
-labeled as design guidance,
+120
+00:07:34.518 --> 00:07:36.830
+So what does the agency actually do?
 
-271
-00:18:19.662 --> 00:18:23.851
-recommends a baseline of the Grid
-plus each cloud's native resolver,
+121
+00:07:37.580 --> 00:07:41.867
+Here's what the agency must do,
+condensed from a thirteen-step checklist,
 
-272
-00:18:23.851 --> 00:18:29.161
-forwarding both ways, with customer-operated
-appliances for FedRAMP High workloads,
+122
+00:07:41.867 --> 00:07:45.355
+and it's program design guidance,
+not a vendor requirement.
 
-273
-00:18:29.161 --> 00:18:33.873
-because Infoblox's software-as-a-service
-offering is FedRAMP Moderate only.
+123
+00:07:45.355 --> 00:07:50.921
+Start with names and owners: inventory
+every name in the HR path per cloud, never
 
-274
-00:18:33.873 --> 00:18:42.029
-Sources: Microsoft Learn, Azure DNS Private
-Resolver endpoints and rulesets [S10
+124
+00:07:50.921 --> 00:07:53.918
+create a private zone
+for a vendor's domain,
 
-275
-00:18:42.029 --> 00:18:49.090
-(excerpt)] and Private resolver architecture
-[S10c (excerpt)]; AWS, Route 53,
+125
+00:07:53.918 --> 00:07:56.830
+and give each agency namespace one owner.
 
-276
-00:18:49.090 --> 00:18:56.637
-Managing forwarding rules [S33]; Oracle,
-OCI Private DNS [S23]; Infoblox NIOS 9.1,
+126
+00:07:56.830 --> 00:08:01.735
+Then forwarding: forward from the Grid
+to inbound endpoints in two regions,
 
-277
-00:18:56.637 --> 00:19:02.237
-Configuring a Forward Zone
-[S38]; research_multicloud.md,
+127
+00:08:01.735 --> 00:08:05.453
+raise Windows forwarder timeouts,
+run a hub in each cloud,
 
-278
-00:19:02.237 --> 00:19:09.419
-Bottom line and Option A (Infoblox
-Shared-Services VPC Deployments [S27]);
+128
+00:08:05.453 --> 00:08:08.617
+and size endpoints before
+each onboarding wave.
 
-279
-00:19:09.419 --> 00:19:14.280
-mesh-versus-hub arithmetic
-is illustrative.
+129
+00:08:08.617 --> 00:08:13.662
+Then the components: run at least two
+provisioning agents, treat middleware
 
-280
-00:19:15.030 --> 00:19:16.680
-So what must the agency do?
+130
+00:08:13.662 --> 00:08:18.067
+DNS as a data-integrity control,
+and keep VMware records in the Grid.
 
-281
-00:19:16.680 --> 00:19:20.186
-This is program design guidance,
-not a vendor requirement,
-
-282
-00:19:20.186 --> 00:19:22.742
-condensed from a thirteen-step checklist.
-
-283
-00:19:22.742 --> 00:19:24.505
-Names and owners first.
-
-284
-00:19:24.505 --> 00:19:28.393
-Inventory every name in
-the HR path, per cloud.
-
-285
-00:19:28.393 --> 00:19:31.317
-Never create a private zone
-for a vendor's domain.
-
-286
-00:19:31.317 --> 00:19:35.817
-Give each agency namespace one
-owner, and forward everything else.
-
-287
-00:19:35.817 --> 00:19:40.655
-And never let a zone and a rule for
-the same name exist in one network.
-
-288
-00:19:40.655 --> 00:19:41.493
-Forwarding.
-
-289
-00:19:41.493 --> 00:19:46.807
-From the Grid, forward each Azure service's
-public zone, not its privatelink zone,
-
-290
-00:19:46.807 --> 00:19:52.042
-to inbound endpoints in two regions, and
-set Use Forwarders Only on those zones.
-
-291
-00:19:52.042 --> 00:19:55.767
-Raise Windows forwarder
-timeouts above four seconds.
-
-292
-00:19:55.767 --> 00:20:01.505
-Run a hub in each cloud, and review the
-forwarding graph for loops at every change.
-
-293
-00:20:01.505 --> 00:20:06.593
-Size resolver endpoints before
-each HR 2.0 onboarding wave.
-
-294
-00:20:06.593 --> 00:20:07.630
-Components.
-
-295
-00:20:07.630 --> 00:20:12.705
-Put the middleware in a Logic Apps Standard
-or Functions plan joined to a virtual
-
-296
-00:20:12.705 --> 00:20:15.205
-network, using the agency resolver path,
-
-297
-00:20:15.205 --> 00:20:18.917
-and keep Lifecycle Workflow
-extensions to public targets.
-
-298
-00:20:18.917 --> 00:20:23.278
-Run at least two provisioning agents
-dedicated to HR provisioning,
-
-299
-00:20:23.278 --> 00:20:27.093
-near preferred domain controllers,
-with no TLS inspection.
-
-300
-00:20:27.093 --> 00:20:30.644
-Treat middleware DNS as
-a data-integrity control,
-
-301
-00:20:30.644 --> 00:20:33.329
-and reconcile against full extracts.
-
-302
-00:20:33.329 --> 00:20:36.005
-For Connect, let the TURN names resolve.
-
-303
-00:20:36.005 --> 00:20:39.693
-For VMware, keep A and
-PTR records in the Grid.
-
-304
-00:20:39.693 --> 00:20:41.606
+131
+00:08:18.067 --> 00:08:19.981
 And test from every origin.
 
-305
-00:20:41.606 --> 00:20:45.818
-Any public answer or NXDOMAIN
+132
+00:08:19.981 --> 00:08:24.460
+Any public answer or missing name
 for a private name is a defect.
 
-306
-00:20:45.818 --> 00:20:50.099
-Sources: Research brief §9,
+133
+00:08:25.210 --> 00:08:26.135
+To close.
 
-307
-00:20:50.099 --> 00:21:03.555
-Agency checklist steps 1–13 (all PROGRAM
-DESIGN GUIDANCE) and the facts each step
+134
+00:08:26.135 --> 00:08:28.871
+The decisions are who owns each namespace,
 
-308
-00:21:03.555 --> 00:21:13.953
-cites: Microsoft Learn [S1, S2, S4, S4b,
-S7b, S8, S10, S10c, S11b, S12, S12b,
+135
+00:08:28.871 --> 00:08:34.188
+which middleware platform and so which
+resolver path, the hub design in each cloud,
 
-309
-00:21:13.953 --> 00:21:24.962
-S13–S15, S14b]; Oracle [S18, S21–S23]; AWS
-[S25, S27–S30, S32, S33]; Broadcom [S36];
-
-310
-00:21:24.962 --> 00:21:35.767
-Infoblox [S37]; the Federal
-Modernization Workbook's Book 03 Ch03,
-
-311
-00:21:35.767 --> 00:21:41.420
-Ch05; Book 08 Ch02, Ch07, Ch08, Ch10.
-
-312
-00:21:42.170 --> 00:21:43.307
-The decisions.
-
-313
-00:21:43.307 --> 00:21:46.758
-Who owns each namespace,
-the Grid or a cloud.
-
-314
-00:21:46.758 --> 00:21:51.058
-Which middleware platform, and so which
-network and resolver path it uses.
-
-315
-00:21:51.058 --> 00:21:53.020
-The hub design in each cloud.
-
-316
-00:21:53.020 --> 00:21:56.434
-And whether Oracle's private
+136
+00:08:34.188 --> 00:08:37.549
+and whether Oracle's private
 access is needed at all,
 
-317
-00:21:56.434 --> 00:21:58.895
+137
+00:08:37.549 --> 00:08:39.973
 remembering that it's routing, not DNS.
 
-318
-00:21:58.895 --> 00:22:01.370
-The next steps are the
-things I couldn't verify.
+138
+00:08:39.973 --> 00:08:42.922
+The next steps are the things
+that couldn't be verified,
 
-319
-00:22:01.370 --> 00:22:07.195
-Which Oracle environment and hostnames
-the agency's Core HCM tenant will use.
+139
+00:08:42.922 --> 00:08:46.789
+such as which Oracle environment the
+agency's tenant will use and what's
 
-320
-00:22:07.195 --> 00:22:11.206
-Whether API-driven inbound
-provisioning is available in the U.S.
+140
+00:08:46.789 --> 00:08:50.460
+available in the government clouds;
+they're all listed in the backup.
 
-321
-00:22:11.206 --> 00:22:12.720
-Government Graph cloud.
+141
+00:08:50.460 --> 00:08:56.238
+In the workbook, Book 03 covers HR-driven
+identity and Book 08 covers DNS,
 
-322
-00:22:12.720 --> 00:22:16.861
-Whether Azure's DNS Private
-Resolver, Lifecycle Workflows and
+142
+00:08:56.238 --> 00:09:02.898
+DHCP and address management, and three
+related research items sit beside this one.
 
-323
-00:22:16.861 --> 00:22:21.320
-Connect private endpoints are
-available in the government clouds.
+143
+00:09:02.898 --> 00:09:07.822
+This is research under review, not an
+endorsement by any federal agency.
 
-324
-00:22:21.320 --> 00:22:24.687
-And the VMware install
-guides' DNS rules and Oracle's
-
-325
-00:22:24.687 --> 00:22:27.820
-own connectivity patterns,
-which I couldn't open.
-
-326
-00:22:27.820 --> 00:22:29.495
-They're all listed in the backup.
-
-327
-00:22:29.495 --> 00:22:30.632
-Where does this fit?
-
-328
-00:22:30.632 --> 00:22:36.413
-The Federal Modernization Workbook's
-Book 03 covers HR-driven identity,
-
-329
-00:22:36.413 --> 00:22:42.483
-with Federal HR 2.0 in Chapter 03 and
-the provisioning pipeline in Chapter 05.
-
-330
-00:22:42.483 --> 00:22:49.119
-Book 08 covers DNS, DHCP and IP address
-management: split-brain DNS in Chapter 02,
-
-331
-00:22:49.119 --> 00:22:55.960
-cloud private endpoints in Chapter 07,
-the reference architecture in Chapter 08,
-
-332
-00:22:55.960 --> 00:22:59.432
-and the migration sequence in Chapter 10.
-
-333
-00:22:59.432 --> 00:23:05.771
-Three research items sit beside this one:
-Trinzic Alone, or Trinzic Plus Cloud DDI;
-
-334
-00:23:05.771 --> 00:23:11.069
-Infoblox DDI for Federal Agencies;
-and Who Names the Device After AD.
-
-335
-00:23:11.069 --> 00:23:14.565
-One note on standing: this
-is research under review,
-
-336
-00:23:14.565 --> 00:23:17.395
-not an endorsement by any federal agency.
-
-337
-00:23:17.395 --> 00:23:18.157
+144
+00:09:07.822 --> 00:09:08.650
 Thank you.
-
-338
-00:23:18.157 --> 00:23:24.333
-Sources: Research brief, Couldn't
-verify and Agency checklist;
-
-339
-00:23:24.333 --> 00:23:29.419
-Book 03 Ch03 and Ch05; Book
-08 Ch02, Ch07, Ch08 and Ch10;
-
-340
-00:23:29.419 --> 00:23:34.989
-research items Trinzic Alone,
-or Trinzic Plus Cloud DDI?,
-
-341
-00:23:34.989 --> 00:23:41.830
-Infoblox DDI for Federal Agencies,
-and Who Names the Device After AD?

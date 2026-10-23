@@ -1,133 +1,58 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:03.238
-DHCP failover, and IPv6.
+00:00:00.050 --> 00:00:05.250
+DHCP failover pairs two servers,
+and at least one must be NIOS.
 
 2
-00:00:03.238 --> 00:00:06.500
-The rules, from Infoblox's failover page.
+00:00:05.250 --> 00:00:09.483
+A mixed Windows and NIOS pair
+isn't offered, which is why Book 08
 
 3
-00:00:06.500 --> 00:00:08.770
-Peers are two NIOS servers,
+00:00:09.483 --> 00:00:14.463
+says to move both partners of a
+Windows failover relationship together.
 
 4
-00:00:08.770 --> 00:00:13.825
-or NIOS and an ISC-compliant
-server; at least one must be NIOS.
+00:00:14.463 --> 00:00:18.774
+Leave the default settings alone unless
+you understand the consequences,
 
 5
-00:00:13.825 --> 00:00:16.638
-A mixed pair of Windows
-and NIOS isn't offered,
+00:00:18.774 --> 00:00:21.625
+and configure everything
+before you turn DHCP on.
 
 6
-00:00:16.638 --> 00:00:20.667
-and that's why the Federal
-Modernization Workbook's Book 08 says
+00:00:21.625 --> 00:00:23.693
+One common assumption is wrong:
 
 7
-00:00:20.667 --> 00:00:24.925
-to move both partners of a Windows
-failover relationship together.
+00:00:23.693 --> 00:00:27.987
+the Grid Master plays no part in
+failover; the peers talk directly.
 
 8
-00:00:24.925 --> 00:00:27.963
-Peers talk on TCP 647 by default,
+00:00:27.987 --> 00:00:29.913
+IPv6 is different.
 
 9
-00:00:27.963 --> 00:00:34.975
-or 519 on Grids upgraded from older
-versions, and on 7911 for partner down.
+00:00:29.913 --> 00:00:33.739
+An IPv6 range is served by a
+single member with no failover,
 
 10
-00:00:34.975 --> 00:00:39.537
-The defaults are a fifty-fifty load balance
-and a maximum client lead time of one
+00:00:33.739 --> 00:00:38.363
+so redundancy comes from making that
+member a high-availability pair.
 
 11
-00:00:39.537 --> 00:00:44.237
-hour, and Infoblox says not to change them
-unless you understand the consequences.
+00:00:38.363 --> 00:00:43.537
+That's not a regression, since
+Microsoft's DHCPv6 has no failover either.
 
 12
-00:00:44.237 --> 00:00:48.078
-Each pair of servers can be
-in only one association,
-
-13
-00:00:48.078 --> 00:00:51.187
-covering IPv4 ranges in one network view.
-
-14
-00:00:51.187 --> 00:00:54.601
-And configure everything
-before you enable DHCP.
-
-15
-00:00:54.601 --> 00:00:59.825
-One correction to a common assumption:
-the Grid Master plays no part in failover.
-
-16
-00:00:59.825 --> 00:01:01.375
-The peers talk directly.
-
-17
-00:01:01.375 --> 00:01:04.577
-On Azure, failover
-doesn't work behind NAT,
-
-18
-00:01:04.577 --> 00:01:09.850
-and Universal DDI's portal can't
-manage NIOS failover associations.
-
-19
-00:01:09.850 --> 00:01:11.737
-Then IPv6.
-
-20
-00:01:11.737 --> 00:01:15.062
-An IPv6 range is served
-by a single Grid member;
-
-21
-00:01:15.062 --> 00:01:17.862
-there's no failover association for it.
-
-22
-00:01:17.862 --> 00:01:22.927
-So redundancy comes from making that
-member an HA pair, served through its
-
-23
-00:01:22.927 --> 00:01:28.325
-virtual address, or, by my inference, from
-non-overlapping ranges on two members.
-
-24
-00:01:28.325 --> 00:01:33.475
-That isn't a regression: Microsoft's
-DHCPv6 has no failover either.
-
-25
-00:01:33.475 --> 00:01:40.925
-Sources: Infoblox NIOS 9.1.x Configuring
-DHCP failover associations (rules, ports,
-
-26
-00:01:40.925 --> 00:01:47.596
-load balance, MCLT); IPv6 range wizard;
-About bloxHA; DHCPv6 lease affinity;
-
-27
-00:01:47.596 --> 00:01:53.489
-vNIOS for Azure limitations;
-earlier platform brief (Universal
-
-28
-00:01:53.489 --> 00:01:58.990
-DDI hybrid limits); Microsoft
-Learn DHCP failover overview.
+00:00:43.537 --> 00:00:44.950
+Now, how to back out.

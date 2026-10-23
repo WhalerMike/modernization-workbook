@@ -1,137 +1,57 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:03.275
-Method B: import zones by zone transfer.
+00:00:00.050 --> 00:00:02.675
+Method B moves zones by zone transfer.
 
 2
-00:00:03.275 --> 00:00:06.600
-On NIOS, zone import is a zone transfer.
+00:00:02.675 --> 00:00:06.629
+You let the Windows server transfer
+each zone to the Grid Master,
 
 3
-00:00:06.600 --> 00:00:11.142
-The Windows server must be authoritative
-and must allow transfers to the
+00:00:06.629 --> 00:00:10.209
+create the same zone on NIOS,
+import it, and check the record
 
 4
-00:00:11.142 --> 00:00:14.566
-destination, which on a Grid
-is the Grid Master's address,
+00:00:10.209 --> 00:00:14.312
+counts and answers before you
+change any delegation or forwarder.
 
 5
-00:00:14.566 --> 00:00:16.800
-or its virtual address for an HA pair.
+00:00:14.312 --> 00:00:16.624
+That's Book 08's cutover loop.
 
 6
-00:00:16.800 --> 00:00:21.764
-On Windows, that's one PowerShell command
-per zone, Set DNS Server Primary Zone,
+00:00:16.624 --> 00:00:19.261
+The import brings in the ordinary records,
 
 7
-00:00:21.764 --> 00:00:25.875
-with the secure secondaries
-setting pointed at the Grid Master.
+00:00:19.261 --> 00:00:24.156
+but recreates the zone's own name server
+and start-of-authority records rather
 
 8
-00:00:25.875 --> 00:00:29.526
-Then create the zone on NIOS
-with the same name, import it,
+00:00:24.156 --> 00:00:28.900
+than copying them, which matches Book
+08's rule never to migrate the zone apex.
 
 9
-00:00:29.526 --> 00:00:33.574
-one zone with its subzones per
-run, and validate record counts
-
-10
-00:00:33.574 --> 00:00:37.463
-and answers before you change
-any delegation or forwarder.
-
-11
-00:00:37.463 --> 00:00:42.012
-That's the Federal Modernization
-Workbook's Book 08's cutover loop.
-
-12
-00:00:42.012 --> 00:00:45.939
-What the import does: it
-brings in address, alias,
-
-13
-00:00:45.939 --> 00:00:49.563
-service, text, mail,
-pointer and host records.
-
-14
-00:00:49.563 --> 00:00:55.402
-It recreates the NS and SOA records for
-the new primary rather than copying them,
-
-15
-00:00:55.402 --> 00:00:59.650
-which matches Book 08's rule to
-never migrate the zone apex.
-
-16
-00:00:59.650 --> 00:01:01.475
-Subzones become delegations,
-
-17
-00:01:01.475 --> 00:01:05.125
-and their records aren't imported,
+00:00:28.900 --> 00:00:32.650
+Subzones come in as delegations,
 so import them separately.
 
-18
-00:01:05.125 --> 00:01:08.337
-If an import fails, the
-zone is left disabled.
+10
+00:00:32.650 --> 00:00:36.518
+For bulk data there's an import
+wizard, but Infoblox warns mass
 
-19
-00:01:08.337 --> 00:01:13.163
-And records with a blank name need
-superuser rights or an explicit permission.
+11
+00:00:36.518 --> 00:00:40.538
+imports can cause a service outage,
+so run them in a change window.
 
-20
-00:01:13.163 --> 00:01:17.976
-For bulk data, Infoblox's Data Import
-Wizard, from the support site,
-
-21
-00:01:17.976 --> 00:01:21.363
-reads Microsoft, ISC,
-VitalQIP and CSV formats,
-
-22
-00:01:21.363 --> 00:01:26.712
-and the CSV Import Manager can verify
-a file before it replaces anything.
-
-23
-00:01:26.712 --> 00:01:31.828
-Infoblox warns that mass imports will
-significantly affect member performance,
-
-24
-00:01:31.828 --> 00:01:35.438
-resulting in service outage, so
-run them in a change window.
-
-25
-00:01:35.438 --> 00:01:40.944
-Sources: Infoblox NIOS 9.1.x Importing
-zone data; Data Import Wizard;
-
-26
-00:01:40.944 --> 00:01:44.749
-CSV Import Manager; Mass
-operations guidance;
-
-27
-00:01:44.749 --> 00:01:51.156
-Microsoft Learn Set-DnsServerPrimaryZone
-(Windows Server 2025 PowerShell)
-
-28
-00:01:51.156 --> 00:01:57.020
-and Configure zone transfer settings;
-Book 08, Chapter 10 (cutover loop).
+12
+00:00:40.538 --> 00:00:42.860
+Next, Active Directory zones.
