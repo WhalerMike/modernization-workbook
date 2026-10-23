@@ -5,148 +5,63 @@ WEBVTT
 Why does the library look this way?
 
 2
-00:00:01.913 --> 00:00:07.962
-Much of it is the answer to CISA's BOD
-25-01, which requires federal civilian
+00:00:01.913 --> 00:00:05.314
+Much of it answers CISA's BOD 25-01,
 
 3
-00:00:07.962 --> 00:00:13.763
+00:00:05.314 --> 00:00:10.722
+which requires federal civilian
 agencies to implement CISA's mandatory
-configurations for in-scope cloud tenants.
 
 4
-00:00:13.763 --> 00:00:19.174
-The deadline for the configurations
-effective at issuance was June 20, 2025.
+00:00:10.722 --> 00:00:13.862
+configurations for in-scope cloud tenants,
 
 5
-00:00:19.174 --> 00:00:23.425
-The table lists the Entra ID items
-that Conditional Access answers.
+00:00:13.862 --> 00:00:17.263
+with a deadline of June
+20, 2025 for the first set.
 
 6
-00:00:23.425 --> 00:00:27.375
-Legacy authentication blocked: CA001.
+00:00:17.263 --> 00:00:21.491
+The table maps each Entra ID item
+to the policy that meets it,
 
 7
-00:00:27.375 --> 00:00:30.900
-High-risk users blocked: CA013.
+00:00:21.491 --> 00:00:27.100
+from blocking legacy authentication to
+phishing-resistant MFA for everyone.
 
 8
-00:00:30.900 --> 00:00:34.438
-High-risk sign-ins blocked: CA019.
-
-9
-00:00:34.438 --> 00:00:42.988
-Phishing-resistant MFA for all users:
-CA022, with CA003 for administrators.
-
-10
-00:00:42.988 --> 00:00:51.975
-Another MFA method until then: CA006,
-CA009 and CA018, as the interim.
-
-11
-00:00:51.975 --> 00:00:57.925
-And phishing-resistant MFA for
-highly privileged roles: CA003.
-
-12
-00:00:57.925 --> 00:01:03.925
-Two SHOULD items from the SCuBA
-baseline are met by CA007 and CA020.
-
-13
-00:01:03.925 --> 00:01:08.145
-The other mandatory Entra items, such
-as authentication methods settings,
-
-14
-00:01:08.145 --> 00:01:11.071
-application consent and
-the privileged-role rules,
-
-15
-00:01:11.071 --> 00:01:15.087
-aren't Conditional Access settings,
-and the book covers them elsewhere.
-
-16
-00:01:15.087 --> 00:01:17.338
+00:00:27.100 --> 00:00:29.350
 One conflict is worth understanding.
 
-17
-00:01:17.338 --> 00:01:21.469
-The Federal Modernization Workbook's
-Book 02 adopted Microsoft's
+9
+00:00:29.350 --> 00:00:34.565
+Book 02 adopted Microsoft's current
+advice for high-risk users, require risk
 
-18
-00:01:21.469 --> 00:01:25.900
-current recommendation for high-risk
-users, require risk remediation.
+10
+00:00:34.565 --> 00:00:39.862
+remediation, but the directive says block
+them, and when both apply, block wins.
 
-19
-00:01:25.900 --> 00:01:30.413
-BOD 25-01 says high-risk
-users shall be blocked.
+11
+00:00:39.862 --> 00:00:42.303
+So in a tenant within
+the directive's scope,
 
-20
-00:01:30.413 --> 00:01:34.186
-Both can't win, because when
-several risk policies apply,
+12
+00:00:42.303 --> 00:00:46.000
+high-risk users are blocked and
+recovered through the help desk.
 
-21
-00:01:34.186 --> 00:01:36.237
-block overrides remediation.
+13
+00:00:46.000 --> 00:00:50.730
+Last, Microsoft creates some policies
+itself and turns them on later,
 
-22
-00:01:36.237 --> 00:01:40.751
-So in any tenant within the directive's
-scope, CA013's grant is Block,
-
-23
-00:01:40.751 --> 00:01:43.952
-it includes all users
-rather than only members,
-
-24
-00:01:43.952 --> 00:01:49.369
-and recovery runs through the help desk:
-an administrator confirms the account,
-
-25
-00:01:49.369 --> 00:01:52.324
-resets credentials and dismisses the risk.
-
-26
-00:01:52.324 --> 00:01:57.862
-Where the directive doesn't apply,
-CA013 uses remediation for members.
-
-27
-00:01:57.862 --> 00:02:00.437
-Last, Microsoft-managed policies.
-
-28
-00:02:00.437 --> 00:02:04.925
-Microsoft creates some policies itself,
-in report-only, and turns them on
-
-29
-00:02:04.925 --> 00:02:09.338
-no less than thirty days later unless
-an administrator sets them to Off.
-
-30
-00:02:09.338 --> 00:02:13.541
-The program writes down a decision
-for each, adopt or supersede,
-
-31
-00:02:13.541 --> 00:02:19.038
-because a policy Microsoft enables on a
-schedule is a change the agency didn't make.
-
-32
-00:02:19.038 --> 00:02:21.910
-Five are superseded by library policies.
+14
+00:00:50.730 --> 00:00:55.030
+so the program records a decision
+for each: adopt or supersede.

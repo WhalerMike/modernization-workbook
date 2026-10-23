@@ -1,134 +1,63 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:04.758
-DNS identity, the authoritative
-mapping of names to addresses,
+00:00:00.050 --> 00:00:05.261
+DNS identity, the authoritative mapping
+of names to addresses and owners,
 
 2
-00:00:04.758 --> 00:00:09.013
-owners and lifecycle, is the
-first link in the trust chain.
+00:00:05.261 --> 00:00:07.738
+is the first link in the trust chain.
 
 3
-00:00:09.013 --> 00:00:13.479
-Certificates, FQDN-based policy
+00:00:07.738 --> 00:00:11.410
+Certificates, policies
 and tokens all name their
 
 4
-00:00:13.479 --> 00:00:17.574
+00:00:11.410 --> 00:00:15.262
 subject by FQDN and trust
-DNS to take the caller there.
+DNS to get the caller there.
 
 5
-00:00:17.574 --> 00:00:21.161
-Moving from Kerberos to
-Entra ID tokens removes the
+00:00:15.262 --> 00:00:20.113
+Moving to Entra ID tokens removes the
+domain controller but adds names that must
 
 6
-00:00:21.161 --> 00:00:24.663
-KDC but adds names that
-must resolve consistently.
+00:00:20.113 --> 00:00:24.674
+resolve consistently, like the right
+sign-in endpoint for the cloud you're in.
 
 7
-00:00:24.663 --> 00:00:30.671
-The token endpoint: GCC uses the global
-login dot microsoftonline dot com;
+00:00:24.674 --> 00:00:27.991
+Here's the certificate
+version of split-brain:
 
 8
-00:00:30.671 --> 00:00:36.088
-Azure Government, serving GCC High
-and DoD, uses the dot us endpoint.
+00:00:27.991 --> 00:00:33.663
+a CA's revocation names exist only in AD
+DNS, and a cloud caller can't resolve them.
 
 9
-00:00:36.088 --> 00:00:40.312
-The whitepaper grouped GCC with
-dot us; the book corrected it.
+00:00:33.663 --> 00:00:37.789
+One client breaks the handshake,
+another quietly skips the check,
 
 10
-00:00:40.312 --> 00:00:45.260
-The token audience in v2.0 tokens
-is the API's client ID, a GUID,
+00:00:37.789 --> 00:00:41.075
+nothing is logged, and the
+ticket goes to the PKI team.
 
 11
-00:00:45.260 --> 00:00:51.824
-so a host rename clients don't pick up
-fails as an audience or redirect-URI error.
-
-12
-00:00:51.824 --> 00:00:54.963
-SANs must contain the name
-the client asked for.
-
-13
-00:00:54.963 --> 00:01:00.245
-Entra certificate-based
-authentication checks one HTTP
-
-14
-00:01:00.245 --> 00:01:04.537
-CRL per CA and no OCSP, so
-the CRL URL must resolve.
-
-15
-00:01:04.537 --> 00:01:09.447
-And ACME dns-01 makes the zone
-the gate for automated issuance,
-
-16
-00:01:09.447 --> 00:01:15.512
-exercised constantly as public TLS
-lifetimes fall toward forty-seven days.
-
-17
-00:01:15.512 --> 00:01:22.313
-Certificate split-brain: a service's
-OCSP and CRL names exist only in AD DNS,
-
-18
-00:01:22.313 --> 00:01:26.438
-and an EC2 caller has no
-Route 53 rule for them.
-
-19
-00:01:26.438 --> 00:01:30.913
-A hard-fail client breaks the handshake;
-a soft-fail client skips the check.
-
-20
-00:01:30.913 --> 00:01:35.375
-The agency resolver logs nothing,
-and the ticket goes to PKI.
-
-21
-00:01:35.375 --> 00:01:36.788
+00:00:41.075 --> 00:00:42.488
 That's Decision 5.
 
-22
-00:01:36.788 --> 00:01:42.723
-Geographic scoping: RFC 9525 allows a
-certificate wildcard only as the whole
+12
+00:00:42.488 --> 00:00:46.211
+And for regional naming,
+certificate wildcards are narrow,
 
-23
-00:01:42.723 --> 00:01:45.413
-leftmost label, matching one label,
-
-24
-00:01:45.413 --> 00:01:49.587
-so application dot star dot
-agency dot gov doesn't work.
-
-25
-00:01:49.587 --> 00:01:54.241
-Use per-region names, per-region
-SANs, and name constraints,
-
-26
-00:01:54.241 --> 00:01:58.991
-the only cryptographic layer;
-RFC 5280 says clients should,
-
-27
-00:01:58.991 --> 00:02:03.120
-not must, process them, so
-test your relying parties.
+13
+00:00:46.211 --> 00:00:48.240
+so use per-region names instead.

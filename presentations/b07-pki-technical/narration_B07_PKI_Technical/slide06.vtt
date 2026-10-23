@@ -1,138 +1,65 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:02.400
-The template classes, as a checklist.
+00:00:00.050 --> 00:00:02.700
+The template classes work
+best as a checklist.
 
 2
-00:00:02.400 --> 00:00:07.674
-ESC1: a template lets the requester supply
-the subject or subject alternative name,
+00:00:02.700 --> 00:00:07.172
+ESC1 is the big one: a template that
+lets the requester name the subject,
 
 3
-00:00:07.674 --> 00:00:12.413
-permits client authentication, and
-broad unprivileged groups can enroll,
+00:00:07.172 --> 00:00:09.947
+allows sign-in, and lets
+broad groups enroll,
 
 4
-00:00:12.413 --> 00:00:16.388
-so a member could obtain a
-certificate that names someone else.
+00:00:09.947 --> 00:00:13.725
+so someone could get a certificate
+in another person's name.
 
 5
-00:00:16.388 --> 00:00:19.630
-Detect it with Defender
-for Identity, and by hand:
+00:00:13.725 --> 00:00:16.755
+Any single fix closes it,
+like building the subject
 
 6
-00:00:19.630 --> 00:00:22.631
-Supply in the request on
-the Subject Name tab,
+00:00:16.755 --> 00:00:19.712
+from the directory or
+restricting who can enroll.
 
 7
-00:00:22.631 --> 00:00:27.739
-an authentication purpose such as Client
-Authentication, Smart Card Logon,
+00:00:19.712 --> 00:00:23.962
+ESC2 is a template that allows
+any purpose to broad groups.
 
 8
-00:00:27.739 --> 00:00:32.118
-PKINIT or Any Purpose, and Enroll
-granted to Authenticated Users,
+00:00:23.962 --> 00:00:27.524
+ESC3 is a broadly available
+enrollment agent template,
 
 9
-00:00:32.118 --> 00:00:35.037
-Domain Users, Domain
-Computers or Everyone.
+00:00:27.524 --> 00:00:31.087
+which you should treat as an
+impersonation capability.
 
 10
-00:00:35.037 --> 00:00:39.324
-On the CA, events 4886
-and 4887 show requests
+00:00:31.087 --> 00:00:33.823
+And ESC4 is anyone other than the PKI
 
 11
-00:00:39.324 --> 00:00:44.325
-where the requester and
-the issued subject differ.
+00:00:33.823 --> 00:00:37.562
+administrators being able
+to write to a template.
 
 12
-00:00:44.325 --> 00:00:49.098
-Any one remediation closes it: build
-the subject from Active Directory,
+00:00:37.562 --> 00:00:42.615
+One trap when you fix that: if you remove
+Authenticated Users from a template,
 
 13
-00:00:49.098 --> 00:00:54.436
-remove authentication EKUs the template
-doesn't need, restrict Enroll, require
-
-14
-00:00:54.436 --> 00:00:59.775
-CA certificate manager approval, or take
-the template off every CA if it's unused.
-
-15
-00:00:59.775 --> 00:01:05.125
-ESC2 is Any Purpose or no EKU on
-a broadly enrollable template.
-
-16
-00:01:05.125 --> 00:01:08.649
-A no-EKU template restricted
-to PKI administrators,
-
-17
-00:01:08.649 --> 00:01:12.500
-such as a subordinate CA
-template, isn't the same exposure.
-
-18
-00:01:12.500 --> 00:01:16.750
-ESC3 is a broadly enrollable
-enrollment agent template.
-
-19
-00:01:16.750 --> 00:01:21.062
-Treat an enrollment agent certificate
-as an impersonation capability.
-
-20
-00:01:21.062 --> 00:01:25.856
-Microsoft doesn't publish a Windows
-Server 2025 procedure for enrollment
-
-21
-00:01:25.856 --> 00:01:30.650
-agent restrictions, so validate the
-existing configuration in a lab first.
-
-22
-00:01:30.650 --> 00:01:34.161
-ESC4 is write rights or
-ownership on a template
-
-23
-00:01:34.161 --> 00:01:37.312
-held by anyone but the PKI administrators.
-
-24
-00:01:37.312 --> 00:01:41.375
-Changes are logged as event
-5136 only when directory
-
-25
-00:01:41.375 --> 00:01:45.900
-change auditing is on and the
-objects carry a matching SACL.
-
-26
-00:01:45.900 --> 00:01:51.204
-One trap when you fix it: if you remove
-Authenticated Users from a template ACL,
-
-27
-00:01:51.204 --> 00:01:54.353
-grant each issuing CA's
-computer account Read,
-
-28
-00:01:54.353 --> 00:01:57.140
-or the CA can no longer read the template.
+00:00:42.615 --> 00:00:47.260
+give each issuing CA read access, or
+it can no longer read the template.

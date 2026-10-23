@@ -1,139 +1,58 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:01.238
-Why this matters.
+00:00:00.050 --> 00:00:01.437
+Here's why this matters.
 
 2
-00:00:01.238 --> 00:00:06.363
+00:00:01.437 --> 00:00:06.563
 Federal policy moved the access decision
 off the network and onto identity.
 
 3
-00:00:06.363 --> 00:00:10.480
-OMB M-22-09 requires
-centralized identity management,
+00:00:06.563 --> 00:00:12.776
+OMB M-22-09, NIST's zero trust architecture
+and CISA's maturity model all point
 
 4
-00:00:10.480 --> 00:00:15.776
-phishing-resistant multifactor authentication
-for staff, contractors and partners,
+00:00:12.776 --> 00:00:17.912
+the same way: no trust from network
+location, and phishing-resistant sign-in.
 
 5
-00:00:15.776 --> 00:00:17.982
-and at least one device-level signal,
-
-6
-00:00:17.982 --> 00:00:22.174
-and it says users should log into
-applications rather than networks.
-
-7
-00:00:22.174 --> 00:00:28.881
-NIST SP 800-207 grants no implicit
-trust from network location:
-
-8
-00:00:28.881 --> 00:00:32.075
-access is decided per
-session by dynamic policy.
-
-9
-00:00:32.075 --> 00:00:37.471
-And CISA's Zero Trust Maturity Model makes
-identity the first of its five pillars,
-
-10
-00:00:37.471 --> 00:00:40.487
-validated continuously
-at the optimal level.
-
-11
-00:00:40.487 --> 00:00:44.737
-So the identity provider is the policy
+00:00:17.912 --> 00:00:22.363
+That makes the identity provider the policy
 decision point for the whole estate.
 
-12
-00:00:44.737 --> 00:00:47.142
-Whatever it believes about a person,
+6
+00:00:22.363 --> 00:00:27.263
+Whatever it believes about a person, a
+group or a device gets enforced everywhere.
 
-13
-00:00:47.142 --> 00:00:51.712
-a group or a device is what gets
-enforced, everywhere, at machine speed.
+7
+00:00:27.263 --> 00:00:32.261
+Microsoft isn't retiring Active
+Directory, but its investment is clearly
 
-14
-00:00:51.712 --> 00:00:54.546
-Microsoft isn't retiring Active Directory;
+8
+00:00:32.261 --> 00:00:37.424
+moving to the cloud, from the sync engine
+to sign-in to the deprecation of NTLM.
 
-15
-00:00:54.546 --> 00:00:57.537
-it says it continues to
-support and enhance it.
-
-16
-00:00:57.537 --> 00:01:00.576
-The forcing comes from the
-direction of its investment.
-
-17
-00:01:00.576 --> 00:01:03.008
-Cloud Sync is replacing Connect Sync,
-
-18
-00:01:03.008 --> 00:01:07.088
-which retires once Cloud Sync
-reaches full functional parity.
-
-19
-00:01:07.088 --> 00:01:09.979
-Microsoft recommends moving from AD FS to
-
-20
-00:01:09.979 --> 00:01:13.200
-cloud authentication
-with password hash sync.
-
-21
-00:01:13.200 --> 00:01:18.151
-All versions of NTLM were
-deprecated in June 2024,
-
-22
-00:01:18.151 --> 00:01:24.550
-and NTLMv1 is removed in Windows
-11 24H2 and Windows Server 2025.
-
-23
-00:01:24.550 --> 00:01:27.889
-And since January 2026
-you can convert a synced
-
-24
-00:01:27.889 --> 00:01:30.800
-user to cloud-managed,
-one object at a time.
-
-25
-00:01:30.800 --> 00:01:32.862
+9
+00:00:37.424 --> 00:00:39.487
 The trap is the lift and shift.
 
-26
-00:01:32.862 --> 00:01:36.400
-Synchronize the forest as it
-stands, and stale accounts,
+10
+00:00:39.487 --> 00:00:41.413
+Sync the forest as it stands,
 
-27
-00:01:36.400 --> 00:01:41.170
-undocumented trusts and synced privileged
-accounts arrive in the tenant,
+11
+00:00:41.413 --> 00:00:45.601
+and the stale accounts and
+undocumented trusts come with it,
 
-28
-00:01:41.170 --> 00:01:44.247
-while the delegation and
-policy intent that the
-
-29
-00:01:44.247 --> 00:01:47.930
-organizational unit (OU) tree
-carried has nowhere to land.
+12
+00:00:45.601 --> 00:00:51.020
+while the intent the organizational unit
+(OU) tree carried has nowhere to land.

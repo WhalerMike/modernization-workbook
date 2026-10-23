@@ -1,158 +1,65 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:05.200
-Privileged access has one core rule: no
-standing access to privileged roles.
+00:00:00.050 --> 00:00:04.012
+Privileged access has one core
+rule: no standing access.
 
 2
-00:00:05.200 --> 00:00:09.700
+00:00:04.012 --> 00:00:08.342
 Every privileged assignment is
-eligible and activated just in time.
+eligible and activated just in time,
 
 3
-00:00:09.700 --> 00:00:13.600
-The only permanent active assignments
+00:00:08.342 --> 00:00:12.063
+and the only permanent ones
 are the two emergency accounts.
 
 4
-00:00:13.600 --> 00:00:18.150
-The mapping from AD groups is the
-program's design, not an equivalence.
+00:00:12.063 --> 00:00:16.422
+Domain Admins maps to Global
+Administrator, held by very few,
 
 5
-00:00:18.150 --> 00:00:23.235
-Domain Admins maps to Global
-Administrator, held by very few; Microsoft
+00:00:16.422 --> 00:00:19.562
+and most of its duties
+map to narrower roles.
 
 6
-00:00:23.235 --> 00:00:28.838
-recommends fewer than five, and most
-Domain Admin duties map to narrower roles.
+00:00:19.562 --> 00:00:21.504
+The slide has the full mapping,
 
 7
-00:00:28.838 --> 00:00:32.478
-Enterprise Admins maps to
-Privileged Role Administrator,
+00:00:21.504 --> 00:00:25.000
+which is the program's design,
+not an exact equivalence.
 
 8
-00:00:32.478 --> 00:00:34.187
-with its own approval chain.
+00:00:25.000 --> 00:00:28.578
+Activation is short, four hours
+at most for the top roles,
 
 9
-00:00:34.187 --> 00:00:38.905
-Account Operators becomes User Administrator
-scoped to administrative units;
+00:00:28.578 --> 00:00:33.400
+with approval and a ticket, and it forces
+a fresh phishing-resistant sign-in.
 
 10
-00:00:38.905 --> 00:00:42.143
-Conditional Access can't
-target AU-scoped assignments,
+00:00:33.400 --> 00:00:36.296
+Name approvers outside
+the requester's chain,
 
 11
-00:00:42.143 --> 00:00:45.663
-so put those administrators in
-a group for policy targeting.
+00:00:36.296 --> 00:00:39.650
+because with none configured,
+PIM can lock the tenant.
 
 12
-00:00:45.663 --> 00:00:49.602
-Server Operators moves to Intune
-or Azure role-based access,
+00:00:39.650 --> 00:00:44.768
+The emergency accounts are cloud-only,
+excluded from restrictive policies,
 
 13
-00:00:49.602 --> 00:00:52.517
-Backup Operators to
-service-specific roles,
-
-14
-00:00:52.517 --> 00:00:57.638
-and Group Policy Creator Owners to the
-Intune Policy and Profile Manager role.
-
-15
-00:00:57.638 --> 00:01:02.353
-The PIM standards: Global Administrator
-and Privileged Role Administrator
-
-16
-00:01:02.353 --> 00:01:07.288
-activate for at most four hours, with
-approval, justification and a ticket number.
-
-17
-00:01:07.288 --> 00:01:10.562
-Security Administrator gets
-eight hours with approval.
-
-18
-00:01:10.562 --> 00:01:13.860
-Most other admin roles get
-eight hours without approval,
-
-19
-00:01:13.860 --> 00:01:15.474
-and the reader roles twelve.
-
-20
-00:01:15.474 --> 00:01:20.637
-Eligibility expires within twelve months
-and renews through an access review.
-
-21
-00:01:20.637 --> 00:01:25.071
-And because PIM's own MFA setting can
-be satisfied by an earlier sign-in,
-
-22
-00:01:25.071 --> 00:01:29.427
-the program uses PIM's authentication
-context option to force fresh,
-
-23
-00:01:29.427 --> 00:01:32.713
-phishing-resistant
-authentication at activation.
-
-24
-00:01:32.713 --> 00:01:37.000
-Configure named approvers outside
-the requester's chain, because with
-
-25
-00:01:37.000 --> 00:01:41.288
-none configured, PIM falls back to
-active admins and can lock the tenant.
-
-26
-00:01:41.288 --> 00:01:45.631
-Emergency access: two cloud-only
-accounts in the onmicrosoft domain,
-
-27
-00:01:45.631 --> 00:01:49.976
-permanent active Global Administrator,
-on a passkey security key or
-
-28
-00:01:49.976 --> 00:01:54.549
-certificate-based authentication,
-each credential stored separately.
-
-29
-00:01:54.549 --> 00:01:59.376
-Microsoft's mandatory MFA for
-admin portals applies to them too,
-
-30
-00:01:59.376 --> 00:02:01.925
-so a password in a safe isn't enough.
-
-31
-00:02:01.925 --> 00:02:05.089
-Exclude them from every
-restrictive policy,
-
-32
-00:02:05.089 --> 00:02:09.500
-alert on every sign-in, and test
-them at least every ninety days.
+00:00:44.768 --> 00:00:48.980
+alerted on every sign-in, and
+tested at least every ninety days.

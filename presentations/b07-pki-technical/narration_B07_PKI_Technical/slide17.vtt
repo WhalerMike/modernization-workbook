@@ -1,62 +1,24 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:03.350
-Module 3: device and user certificates.
+00:00:00.050 --> 00:00:03.225
+Module 3 is device and user certificates.
 
 2
-00:00:03.350 --> 00:00:05.850
-Intune puts certificates on devices.
+00:00:03.225 --> 00:00:05.568
+Intune puts certificates on devices,
 
 3
-00:00:05.850 --> 00:00:09.763
-Entra ID decides whether a
+00:00:05.568 --> 00:00:09.650
+and Entra ID decides whether a
 certificate proves who someone is.
 
 4
-00:00:09.763 --> 00:00:13.062
-Those are two jobs, and
-each one fails differently.
+00:00:09.650 --> 00:00:13.444
+Those are two jobs that fail
+differently: one fails visibly,
 
 5
-00:00:13.062 --> 00:00:17.799
-When Intune delivery fails, a device
-has no certificate and Wi-Fi,
-
-6
-00:00:17.799 --> 00:00:20.212
-VPN or an application refuses it.
-
-7
-00:00:20.212 --> 00:00:23.862
-The failure is local and
-visible in the profile report.
-
-8
-00:00:23.862 --> 00:00:29.331
-When Entra certificate-based authentication
-goes wrong, the danger is the opposite:
-
-9
-00:00:29.331 --> 00:00:34.564
-a certificate that should fail might pass,
-because the trust store holds too much,
-
-10
-00:00:34.564 --> 00:00:37.688
-revocation isn't configured,
-or a binding is weak.
-
-11
-00:00:37.688 --> 00:00:39.775
-Keep the two jobs apart in planning.
-
-12
-00:00:39.775 --> 00:00:44.055
-They meet at one point, a user
-certificate delivered by Intune and then
-
-13
-00:00:44.055 --> 00:00:48.170
-used to sign in, and that's where
-most migration surprises come from.
+00:00:13.444 --> 00:00:16.920
+the other can quietly let
+the wrong certificate pass.

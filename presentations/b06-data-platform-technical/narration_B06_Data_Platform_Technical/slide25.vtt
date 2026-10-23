@@ -15,142 +15,50 @@ a stored password has moved its front
 door and left the back door where it was.
 
 4
-00:00:12.200 --> 00:00:18.500
-Phase 1 inventories the LDAP-bind
-dependency with the read-only D1.9 script.
+00:00:12.200 --> 00:00:15.942
+Phase 1 inventories which
+applications still bind to LDAP,
 
 5
-00:00:18.500 --> 00:00:26.131
-It combines account heuristics with domain
-controller evidence: event 4624 with
+00:00:15.942 --> 00:00:19.909
+using domain controller logs, and
+joins that to the audit so each
 
 6
-00:00:26.131 --> 00:00:28.824
-logon type 8, a clear-text bind,
+00:00:19.909 --> 00:00:23.950
+application gets a class and a
+planned connection-string change.
 
 7
-00:00:28.824 --> 00:00:33.762
-and events 2887 and 2889 in
-the Directory Service log.
+00:00:23.950 --> 00:00:27.425
+Phase 2 is the simplest
+change and the most gated.
 
 8
-00:00:33.762 --> 00:00:35.772
-Event 2889 names each client,
-
-9
-00:00:35.772 --> 00:00:40.711
-but only after the LDAP interface
-diagnostic setting is raised to two,
-
-10
-00:00:40.711 --> 00:00:43.306
-and nothing is logged retroactively,
-
-11
-00:00:43.306 --> 00:00:47.575
-so start the window after the
-change and set it back afterward.
-
-12
-00:00:47.575 --> 00:00:50.945
-D1.9 doesn't say which
-instance an application uses,
-
-13
-00:00:50.945 --> 00:00:56.241
-so the program's connection-plan function
-joins it to the D1.8 audit, assigns each
-
-14
-00:00:56.241 --> 00:01:01.938
-application a class from observable signals,
-and emits the connection-string change.
-
-15
-00:01:01.938 --> 00:01:05.188
-Phase 2 is the simplest
-change and the most gated,
-
-16
-00:01:05.188 --> 00:01:09.250
-and it's made in application
+00:00:27.425 --> 00:00:31.100
+It's made in application
 configuration, never by a script.
 
-17
-00:01:09.250 --> 00:01:14.287
-In production, name a specific mode, such
-as Active Directory Managed Identity.
+9
+00:00:31.100 --> 00:00:35.600
+In production, name a specific
+authentication mode rather than the default,
 
-18
-00:01:14.287 --> 00:01:17.645
-The Default mode tries credential
-providers in sequence,
+10
+00:00:35.600 --> 00:00:39.100
+which tries providers in sequence
+and can switch identity.
 
-19
-00:01:17.645 --> 00:01:22.262
-which slows the first connection and can
-switch identity when the host changes.
+11
+00:00:39.100 --> 00:00:43.389
+Three gates come before cutover: the
+login exists, it has the right role,
 
-20
-00:01:22.262 --> 00:01:25.043
-Service principal mode
-takes its secret from
+12
+00:00:43.389 --> 00:00:47.012
+and the change was tested on
+a production-equivalent stack.
 
-21
-00:01:25.043 --> 00:01:27.750
-protected configuration,
-never from source.
-
-22
-00:01:27.750 --> 00:01:32.688
-Setting the mode turns on encryption, so
-the server certificate must be trusted.
-
-23
-00:01:32.688 --> 00:01:37.386
-On an Arc host the driver gets the machine's
-token from the local metadata service,
-
-24
-00:01:37.386 --> 00:01:41.663
-and the process must be in the hybrid
-agent extension applications group.
-
-25
-00:01:41.663 --> 00:01:45.268
-Every application on that host
-is then the same principal,
-
-26
-00:01:45.268 --> 00:01:48.949
-so give each its own service
-principal where grants differ.
-
-27
-00:01:48.949 --> 00:01:53.989
-Three gates before cutover: the Entra
-login exists, the identity holds the right
-
-28
-00:01:53.989 --> 00:01:58.875
-database role, and the change was tested
-on a production-equivalent Arc stack.
-
-29
-00:01:58.875 --> 00:02:03.395
-The audience is database.windows.net,
-not the Azure Government one,
-
-30
-00:02:03.395 --> 00:02:07.175
-and pooled applications use
-the access-token callback.
-
-31
-00:02:07.175 --> 00:02:09.731
-Rollback is the prior connection string,
-
-32
-00:02:09.731 --> 00:02:12.500
-with the legacy login
-disabled, not dropped.
+13
+00:00:47.012 --> 00:00:49.370
+Rollback is the old connection string.

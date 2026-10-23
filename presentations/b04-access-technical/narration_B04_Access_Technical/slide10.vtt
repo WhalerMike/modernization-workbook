@@ -6,158 +6,56 @@ Every policy, in every
 wave, passes the same gates.
 
 2
-00:00:03.963 --> 00:00:08.114
-The Federal Modernization Workbook's
-Book 02 set the durations,
+00:00:03.963 --> 00:00:08.999
+First report-only for two to four weeks,
+while impact and gaps are reviewed.
 
 3
-00:00:08.114 --> 00:00:12.737
-and Microsoft's own minimum is a week
-in report-only before enforcement.
+00:00:08.999 --> 00:00:12.500
+Then a two-week pilot with
+IT and security staff.
 
 4
-00:00:12.737 --> 00:00:15.551
-Gate one is report-only,
-two to four weeks,
+00:00:12.500 --> 00:00:17.900
+Then expansion ring by ring, and finally
+steady state, enforced and monitored.
 
 5
-00:00:15.551 --> 00:00:18.876
-while impact, gaps and
-exclusions are reviewed.
+00:00:17.900 --> 00:00:21.869
+Inside that runs a seven-step
+cycle: check the prerequisites,
 
 6
-00:00:18.876 --> 00:00:23.537
-Gate two is a pilot ring of IT
-and security staff for two weeks.
+00:00:21.869 --> 00:00:25.758
+create the policy in report-only,
+measure for at least a week,
 
 7
-00:00:23.537 --> 00:00:27.444
-Gate three expands ring by
-ring, one to two weeks each:
+00:00:25.758 --> 00:00:31.314
+fix the causes rather than adding exclusions,
+get owner approval as change evidence,
 
 8
-00:00:27.444 --> 00:00:32.350
-headquarters, then field and remote
-staff, then everyone in scope.
+00:00:31.314 --> 00:00:35.362
+enforce ring by ring, and watch
+each ring for forty-eight hours.
 
 9
-00:00:32.350 --> 00:00:36.587
-Then steady state: enforced,
-monitored, with drift alerts.
+00:00:35.362 --> 00:00:40.012
+Turning an all-users policy straight
+from off to on is never allowed.
 
 10
-00:00:36.587 --> 00:00:40.412
-Inside that, the chapter
-consolidates a seven-step cycle.
+00:00:40.012 --> 00:00:43.591
+And the readiness gates are
+measured numbers, not estimates:
 
 11
-00:00:40.412 --> 00:00:45.352
-One, a pre-deployment check: prerequisites
-exist, readiness gates are met, the
+00:00:43.591 --> 00:00:47.168
+ninety-five percent of users
+ready for the policy's strength,
 
 12
-00:00:45.352 --> 00:00:47.469
-emergency exclusion is present,
-
-13
-00:00:47.469 --> 00:00:51.075
-and the policy JSON has been
-reviewed in source control.
-
-14
-00:00:51.075 --> 00:00:53.912
-Two, create the policy in report-only.
-
-15
-00:00:53.912 --> 00:00:59.460
-One detail: a report-only policy that
-requires a compliant device can prompt users
-
-16
-00:00:59.460 --> 00:01:02.560
-on macOS, iOS and Android
-to pick a certificate,
-
-17
-00:01:02.560 --> 00:01:06.313
-so leave those platforms out
-of the report-only version.
-
-18
-00:01:06.313 --> 00:01:08.975
-Three, measure for at least seven days.
-
-19
-00:01:08.975 --> 00:01:12.815
-Four, analyze and remediate:
-missing registrations,
-
-20
-00:01:12.815 --> 00:01:17.637
-noncompliant devices, untagged
-applications, empty attributes.
-
-21
-00:01:17.637 --> 00:01:21.888
-Fix the cause; add an exclusion
-only as a governed object.
-
-22
-00:01:21.888 --> 00:01:25.974
-Five, security and business owners
-approve the impact analysis,
-
-23
-00:01:25.974 --> 00:01:28.826
-and that approval is
-kept as change evidence.
-
-24
-00:01:28.826 --> 00:01:32.125
-Six, enforce for the
-pilot ring and expand.
-
-25
-00:01:32.125 --> 00:01:37.425
-Turning a policy that targets all users
-straight from off to on is never allowed.
-
-26
-00:01:37.425 --> 00:01:40.700
-Seven, watch for forty-eight
-hours after each ring.
-
-27
-00:01:40.700 --> 00:01:43.416
-The readiness gates are
-the program's numbers:
-
-28
-00:01:43.416 --> 00:01:48.063
-at least ninety-five percent of in-scope
-users have a method that satisfies the
-
-29
-00:01:48.063 --> 00:01:51.422
-policy's strength, and at
-least ninety percent of devices
-
-30
-00:01:51.422 --> 00:01:54.925
-are enrolled and compliant,
-with the attributes populated.
-
-31
-00:01:54.925 --> 00:01:59.075
-The point is that each wave starts with
-a measured number, not an estimate.
-
-32
-00:01:59.075 --> 00:02:01.526
-And a wave starts only
-after the previous one
-
-33
-00:02:01.526 --> 00:02:04.220
-has been enforced for a
-week without an incident.
+00:00:47.168 --> 00:00:50.450
+and ninety percent of devices
+enrolled and compliant.

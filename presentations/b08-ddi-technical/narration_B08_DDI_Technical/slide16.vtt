@@ -6,130 +6,59 @@ Operating DNSSEC is mostly key
 management, automated and audited.
 
 2
-00:00:04.462 --> 00:00:09.810
-NIST recommends a hardware security module
-for important keys, usually the KSK,
+00:00:04.462 --> 00:00:08.711
+NIST recommends a hardware security
+module for the important keys,
 
 3
-00:00:09.810 --> 00:00:12.970
-signature validity of
+00:00:08.711 --> 00:00:11.593
+signatures valid for
 about five to seven days,
 
 4
-00:00:12.970 --> 00:00:15.563
-and key lifetimes of one to three years.
+00:00:11.593 --> 00:00:15.613
+and it prefers ECDSA, because
+smaller keys keep responses small.
 
 5
-00:00:15.563 --> 00:00:23.867
-Its acceptable algorithms include RSA with
-SHA-256 at 2,048 bits or more and ECDSA
+00:00:15.613 --> 00:00:17.688
+The slide has the full parameters.
 
 6
-00:00:23.867 --> 00:00:31.800
-P-256 and P-384, and it prefers ECDSA,
-because smaller keys keep responses small.
+00:00:17.688 --> 00:00:22.300
+Moving a signed zone has its own
+careful sequence, run in Phase 3.
 
 7
-00:00:31.800 --> 00:00:37.204
-On denial of existence, Windows
-labels NSEC3 recommended,
+00:00:22.300 --> 00:00:24.700
+Don't start a key
+rollover during the move.
 
 8
-00:00:37.204 --> 00:00:44.522
-while NIST notes NSEC3 relies on SHA-1
-and calls NSEC the more prudent approach;
+00:00:24.700 --> 00:00:29.383
+Keep the old signing until the new chain
+validates from an independent checker,
 
 9
-00:00:44.522 --> 00:00:50.038
-compact denial of existence, RFC
-9824, is what Azure DNS uses.
-
-10
-00:00:50.038 --> 00:00:55.363
-Signing grows responses, so EDNS zero
-and fragmentation handling matter.
-
-11
-00:00:55.363 --> 00:00:57.959
-And a zone signed in
-one view but not another
-
-12
-00:00:57.959 --> 00:01:00.700
-fails as an application
-or certificate error.
-
-13
-00:01:00.700 --> 00:01:04.719
-Moving a signed zone has its own
-sequence, run during Chapter 10's
-
-14
-00:01:04.719 --> 00:01:08.737
-Phase 3 so the new chain validates
-before the decommission gate.
-
-15
-00:01:08.737 --> 00:01:13.237
-First, finish any rollover in progress
-and start none during the move.
-
-16
-00:01:13.237 --> 00:01:16.871
-Second, keep the old signing
-until the new chain validates:
-
-17
-00:01:16.871 --> 00:01:20.353
-sign on the new platform,
-publish the new DS at the parent,
-
-18
-00:01:20.353 --> 00:01:25.350
-confirm from an independent validator,
+00:00:29.383 --> 00:00:31.725
 and only then stop signing at the source.
 
-19
-00:01:25.350 --> 00:01:30.337
-Third, watch the validators, because
-clients see only generic failures.
+10
+00:00:31.725 --> 00:00:35.988
+Watch the validators, because
+clients only see generic failures.
 
-20
-00:01:30.337 --> 00:01:34.909
-Fourth, an AD-signed internal zone
-landing on Azure Private DNS,
+11
+00:00:35.988 --> 00:00:39.978
+An AD-signed internal zone
+moving to Azure Private DNS,
 
-21
-00:01:34.909 --> 00:01:38.250
+12
+00:00:39.978 --> 00:00:43.349
 which can't sign, is a
 documented risk decision.
 
-22
-00:01:38.250 --> 00:01:41.969
-The book corrects two compensations
-the source guide listed:
-
-23
-00:01:41.969 --> 00:01:45.469
-Azure virtual network traffic
-isn't encrypted by default,
-
-24
-00:01:45.469 --> 00:01:49.188
-and Private Link doesn't make
-in-network answers tamper-proof.
-
-25
-00:01:49.188 --> 00:01:54.036
-Removing DNSSEC is the reverse:
-Microsoft documents that the DS record
-
-26
-00:01:54.036 --> 00:01:58.638
-comes off the parent and its TTL
-expires before the zone is unsigned.
-
-27
-00:01:58.638 --> 00:02:03.550
-Fifth, remove retired trust anchors
-after the ninety-day validation period.
+13
+00:00:43.349 --> 00:00:47.690
+And retire old trust anchors after
+the ninety-day validation period.

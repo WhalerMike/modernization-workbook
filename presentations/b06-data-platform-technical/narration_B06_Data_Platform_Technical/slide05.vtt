@@ -11,139 +11,54 @@ because a twenty-year estate
 doesn't know what it has.
 
 3
-00:00:06.875 --> 00:00:11.602
+00:00:06.875 --> 00:00:11.887
 The instances that matter most are the ones
 nobody manages, so they're discovered,
 
 4
-00:00:11.602 --> 00:00:13.083
-not retrieved from a list,
+00:00:11.887 --> 00:00:16.300
+not pulled from a list, using three
+instruments that each catch what the
 
 5
-00:00:13.083 --> 00:00:16.963
-with three instruments that are
-each blind to what the others find.
+00:00:16.300 --> 00:00:21.088
+others miss: a network sweep, the SPN
+trail, and Microsoft's assessment tooling.
 
 6
-00:00:16.963 --> 00:00:22.735
-A network and directory sweep listens:
-the default instance on TCP 1433,
-
-7
-00:00:22.735 --> 00:00:28.312
-named instances on dynamic ports,
-and the Browser service on UDP 1434.
-
-8
-00:00:28.312 --> 00:00:32.880
-The community dbatools module's
-Find-DbaInstance combines those signals,
-
-9
-00:00:32.880 --> 00:00:35.237
-after the program's software approval.
-
-10
-00:00:35.237 --> 00:00:40.474
-The SPN trail is independent: a forest-wide
-SetSPN query lists every instance
-
-11
-00:00:40.474 --> 00:00:45.712
-ever registered for Kerberos, though
-not the ones whose registration failed.
-
-12
-00:00:45.712 --> 00:00:51.541
-And Microsoft's assessment tooling adds
-workload and dependency data: Azure Migrate,
-
-13
-00:00:51.541 --> 00:00:56.056
-the MAP Toolkit, and the migration
-component in Management Studio,
-
-14
-00:00:56.056 --> 00:01:00.325
-since the Data Migration Assistant
-was retired on July 16, 2025.
-
-15
-00:01:00.325 --> 00:01:01.863
+00:00:21.088 --> 00:00:22.625
 Then three lenses.
 
-16
-00:01:01.863 --> 00:01:06.125
-Utilization finds zombies: no
-connections in over a year,
+7
+00:00:22.625 --> 00:00:24.685
+Utilization finds the zombies,
 
-17
-00:01:06.125 --> 00:01:09.300
-no restores, a retired owning application.
+8
+00:00:24.685 --> 00:00:28.250
+and retiring them is the
+fastest way to shrink the work.
 
-18
-00:01:09.300 --> 00:01:13.425
-Retiring them is the fastest way
-to shrink the migration surface.
+9
+00:00:28.250 --> 00:00:33.650
+Version matters, because Entra logins
+need SQL Server 2022 or later.
 
-19
-00:01:13.425 --> 00:01:20.429
-Version is a primary input, because Entra
-logins need SQL Server 2022 or later,
+10
+00:00:33.650 --> 00:00:37.560
+And dependencies, like linked
+servers and that quarterly
 
-20
-00:01:20.429 --> 00:01:24.150
-and 2008 and 2008 R2
-can't upgrade in place.
+11
+00:00:37.560 --> 00:00:41.225
+cross-database query, most
+often overturn a naive plan.
 
-21
-00:01:24.150 --> 00:01:28.947
-Dependencies most often overturn
-a naive plan: linked servers,
+12
+00:00:41.225 --> 00:00:45.988
+Each instance then gets one verdict:
+retain, consolidate or retire.
 
-22
-00:01:28.947 --> 00:01:34.113
-replication, SSIS packages and the
-quarterly cross-database query.
-
-23
-00:01:34.113 --> 00:01:37.212
-The lenses resolve into
-one verdict per instance.
-
-24
-00:01:37.212 --> 00:01:39.188
-Retain goes straight to the audit.
-
-25
-00:01:39.188 --> 00:01:42.738
-Consolidate moves the workload
-and retires the source.
-
-26
-00:01:42.738 --> 00:01:46.562
-Retire removes the instance
-and every login it carries.
-
-27
-00:01:46.562 --> 00:01:49.344
-Targets are chosen during the assessment,
-
-28
-00:01:49.344 --> 00:01:53.158
-standalone or availability-group
-SQL Server on Arc hosts,
-
-29
-00:01:53.158 --> 00:01:57.529
-since failover cluster instances
-can't use Entra authentication,
-
-30
-00:01:57.529 --> 00:02:01.900
-or Azure SQL, so authentication is
+13
+00:00:45.988 --> 00:00:50.470
+That way, authentication is
 migrated once, in its final shape.
-
-31
-00:02:01.900 --> 00:02:04.030
-And record the constraints honestly.

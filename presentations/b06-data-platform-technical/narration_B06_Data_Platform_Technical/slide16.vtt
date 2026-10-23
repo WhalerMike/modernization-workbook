@@ -1,53 +1,25 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:02.775
-Part 2: the runbooks for DBAs.
+00:00:00.050 --> 00:00:01.925
+Part 2 is the runbooks.
 
 2
-00:00:02.775 --> 00:00:08.390
-Module 4 covers the first five: prerequisites,
-discovery and the consolidation gate,
+00:00:01.925 --> 00:00:07.200
+Module 4 covers the first five, from
+prerequisites to login migration.
 
 3
-00:00:08.390 --> 00:00:12.080
-the authentication audit,
-Arc and the managed identity,
+00:00:07.200 --> 00:00:11.276
+One rule runs through all ten:
+anything that changes state plans
 
 4
-00:00:12.080 --> 00:00:14.888
-and login migration with its parallel run.
+00:00:11.276 --> 00:00:15.737
+first or writes a reviewable script,
+then goes through change control.
 
 5
-00:00:14.888 --> 00:00:18.166
-For each, the steps, the
-gate that has to hold before
-
-6
-00:00:18.166 --> 00:00:21.525
-the next runbook starts,
-and the evidence it leaves.
-
-7
-00:00:21.525 --> 00:00:26.467
-One rule runs through all ten: read-only
-and derivation functions run directly,
-
-8
-00:00:26.467 --> 00:00:30.192
-and anything that changes state
-plans by default or writes
-
-9
-00:00:30.192 --> 00:00:33.613
-a reviewable script, then
-goes through change control.
-
-10
-00:00:33.613 --> 00:00:38.179
-The commands are illustrative and
-untested against a production estate,
-
-11
-00:00:38.179 --> 00:00:40.700
-so each runs first in a test environment.
+00:00:15.737 --> 00:00:19.130
+The commands are illustrative,
+so run them in test first.

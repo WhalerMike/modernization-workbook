@@ -1,46 +1,25 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:03.550
-Module one: the Conditional
+00:00:00.050 --> 00:00:03.500
+Module one is the Conditional
 Access policy library.
 
 2
-00:00:03.550 --> 00:00:07.304
-The chapter sets a clear standard
-for when a library is finished:
+00:00:03.500 --> 00:00:07.857
+The chapter's test for a finished library:
+every sign-in in the tenant meets a
 
 3
-00:00:07.304 --> 00:00:10.775
-every sign-in in the tenant
-meets a policy that someone owns,
+00:00:07.857 --> 00:00:12.425
+policy that someone owns, and nothing
+depends on another policy running first.
 
 4
-00:00:10.775 --> 00:00:14.175
-and nothing in it depends on
-another policy running first.
+00:00:12.425 --> 00:00:14.757
+We'll cover numbering, personas,
 
 5
-00:00:14.175 --> 00:00:19.430
-In the next four slides we'll cover how
-the library is numbered and what it assumes
-
-6
-00:00:19.430 --> 00:00:24.841
-already exists; the personas that every
-policy targets; the five enforcement waves,
-
-7
-00:00:24.841 --> 00:00:27.743
-policy by policy; and
-how the library answers
-
-8
-00:00:27.743 --> 00:00:31.900
-the configurations that
-CISA's BOD 25-01 requires.
-
-9
-00:00:31.900 --> 00:00:36.430
-The deployable JSON template for
-every policy is in Appendix A.
+00:00:14.757 --> 00:00:19.660
+the five enforcement waves,
+and the BOD 25-01 answers.

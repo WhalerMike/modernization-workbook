@@ -6,134 +6,55 @@ The library is enforced in five
 waves, each closing a class of risk.
 
 2
-00:00:04.837 --> 00:00:06.709
-Wave one is the foundation,
+00:00:04.837 --> 00:00:10.075
+Wave one is the foundation, and anyone
+already on modern clients won't notice it.
 
 3
-00:00:06.709 --> 00:00:11.301
-and it has no visible effect for
-anyone already on modern clients.
+00:00:10.075 --> 00:00:14.148
+It blocks legacy authentication,
+after at least two weeks of hunting
 
 4
-00:00:11.301 --> 00:00:18.513
-CA001 blocks legacy authentication, which
-can't do MFA or present device state.
-
-5
-00:00:18.513 --> 00:00:23.384
-Run the legacy query for at least two weeks
-first and move every remaining client,
-
-6
-00:00:23.384 --> 00:00:27.674
-including service accounts and
+00:00:14.148 --> 00:00:18.150
+down remaining clients like
 multifunction devices that send mail.
 
+5
+00:00:18.150 --> 00:00:23.030
+It also stops an attacker with a password
+from registering their own MFA method,
+
+6
+00:00:23.030 --> 00:00:26.062
+and blocks the flows used
+in device-code phishing.
+
 7
-00:00:27.674 --> 00:00:32.045
-CA020 requires a managed device
-to register security information,
+00:00:26.062 --> 00:00:30.928
+Wave two is administrators: phishing-resistant
+strength, compliant devices,
 
 8
-00:00:32.045 --> 00:00:36.025
-so an attacker with a password
-can't register their own method.
+00:00:30.928 --> 00:00:36.250
+trusted locations, and admin portals
+reachable only from privileged workstations.
 
 9
-00:00:36.025 --> 00:00:40.430
-CA021 blocks device code flow
-and authentication transfer,
+00:00:36.250 --> 00:00:40.925
+Wave three is the one users
+notice, the workforce MFA baseline,
 
 10
-00:00:40.430 --> 00:00:43.250
-the flows used in device-code phishing.
+00:00:40.925 --> 00:00:45.050
+managed devices, partners and
+guests, and the catch-all.
 
 11
-00:00:43.250 --> 00:00:47.087
-And CA090, the probe, never moves to On.
-
-12
-00:00:47.087 --> 00:00:49.237
-Wave two is administrators.
-
-13
-00:00:49.237 --> 00:00:54.116
-CA003 requires the separate-device strength
-with a four-hour sign-in frequency,
-
-14
-00:00:54.116 --> 00:00:58.477
-targeting the Admins persona and the
-highly privileged built-in roles,
-
-15
-00:00:58.477 --> 00:01:03.725
-because role targeting also catches an
-assignment made outside the persona process.
-
-16
-00:01:03.725 --> 00:01:10.952
-CA004 requires a compliant device, CA005
-blocks untrusted locations, and CA025
-
-17
-00:01:10.952 --> 00:01:17.850
-blocks the admin portals and Azure
-management from anything that isn't a PAW.
-
-18
-00:01:17.850 --> 00:01:21.941
-That block is written as an
-exclusion of devices labeled PAW:
-
-19
-00:01:21.941 --> 00:01:26.442
-a positive-operator filter never
-matches an unregistered device,
-
-20
-00:01:26.442 --> 00:01:30.288
-so an unregistered device isn't
-excluded, and it's blocked.
-
-21
-00:01:30.288 --> 00:01:36.193
-CA026 gives server and Arc administration
-the same assurance, and CA027 blocks
-
-22
-00:01:36.193 --> 00:01:42.099
-the Azure management plane for everyone
-who isn't an administrator or operator.
-
-23
-00:01:42.099 --> 00:01:48.489
-Wave three is the one users notice: the
-workforce MFA baseline, managed devices,
-
-24
-00:01:48.489 --> 00:01:54.878
-the country block, partner and guest
-policies, mobile app protection, the CA018
-
-25
-00:01:54.878 --> 00:01:56.451
-catch-all, and CA038,
-
-26
-00:01:56.451 --> 00:02:01.562
-without which CA011's limited
-guest access isn't limited at all.
-
-27
-00:02:01.562 --> 00:02:03.924
+00:00:45.050 --> 00:00:47.412
 Wave four is risk and workloads.
 
-28
-00:02:03.924 --> 00:02:07.536
-Wave five is segments and the end state:
-
-29
-00:02:07.536 --> 00:02:12.000
-CA022, phishing-resistant
-MFA for every member.
+12
+00:00:47.412 --> 00:00:53.140
+And wave five is the end state:
+phishing-resistant MFA for every member.

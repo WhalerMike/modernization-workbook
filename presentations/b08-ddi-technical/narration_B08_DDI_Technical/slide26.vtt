@@ -1,156 +1,60 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:05.107
+00:00:00.050 --> 00:00:05.128
 Phase 3 is where zones, forwarders,
 DHCP scopes and clients actually move,
 
 2
-00:00:05.107 --> 00:00:08.562
-and each move is one pass
+00:00:05.128 --> 00:00:08.175
+each move one pass
 through the cutover loop.
 
 3
-00:00:08.562 --> 00:00:12.292
-Records follow the loop, then
-observe for at least thirty days,
+00:00:08.175 --> 00:00:11.857
+Records move, then you observe
+for at least thirty days,
 
 4
-00:00:12.292 --> 00:00:16.900
-with the old copy left in place as the
-rollback point until decommissioning.
+00:00:11.857 --> 00:00:15.375
+with the old copy left in
+place as the rollback point.
 
 5
-00:00:16.900 --> 00:00:21.025
-Signed zones move here too,
-by Chapter 06's sequence.
+00:00:15.375 --> 00:00:19.937
+Three patterns cover almost every
+zone, and each has its own rollback.
 
 6
-00:00:21.025 --> 00:00:23.713
-Three patterns cover almost every zone.
+00:00:19.937 --> 00:00:23.992
+Check the record types that behave
+differently on the new platform;
 
 7
-00:00:23.713 --> 00:00:27.915
-Split horizon, a private answer
-inside and a public one outside,
+00:00:23.992 --> 00:00:28.119
+SRV records are the most consequential
+and the most underestimated,
 
 8
-00:00:27.915 --> 00:00:30.824
-rolls back by withdrawing
-the private view.
+00:00:28.119 --> 00:00:30.725
+because nothing moves
+them when AD retires.
 
 9
-00:00:30.824 --> 00:00:34.773
-Subdomain delegation, a child
-moving while the parent stays,
+00:00:30.725 --> 00:00:36.400
+DHCP moves scope by scope, with its
+options, and failover stays on throughout.
 
 10
-00:00:34.773 --> 00:00:37.300
-rolls back by removing the delegation.
+00:00:36.400 --> 00:00:38.650
+Clients move last, in waves.
 
 11
-00:00:37.300 --> 00:00:42.101
-Progressive migration with conditional
-forwarding moves whole zones one at a
+00:00:38.650 --> 00:00:43.012
+One trap to plan for: removing a
+network link from an Azure private zone
 
 12
-00:00:42.101 --> 00:00:46.975
-time and rolls back by restoring the
-archived export and repointing forwarders.
-
-13
-00:00:46.975 --> 00:00:51.361
-Check record types the target
-handles differently before importing;
-
-14
-00:00:51.361 --> 00:00:53.100
-Appendix A is the reference.
-
-15
-00:00:53.100 --> 00:00:57.988
-SRV records are the most security-consequential
-type in Active Directory
-
-16
-00:00:57.988 --> 00:01:02.325
-and the most underestimated: nothing
-moves them when AD is retired.
-
-17
-00:01:02.325 --> 00:01:06.322
-PTR records are the most
-neglected in cloud private space,
-
-18
-00:01:06.322 --> 00:01:09.487
-so IPAM should create
-the A and PTR together.
-
-19
-00:01:09.487 --> 00:01:13.987
-A CNAME pointing at a deprovisioned
-resource invites subdomain takeover.
-
-20
-00:01:13.987 --> 00:01:19.012
-ALIAS and ANAME are provider-specific,
-absent from the IANA registry.
-
-21
-00:01:19.012 --> 00:01:22.988
-Re-test SPF, DKIM and
-DMARC after the move.
-
-22
-00:01:22.988 --> 00:01:28.712
-And HTTPS records missing from private zones
-make clients behave differently inside.
-
-23
-00:01:28.712 --> 00:01:32.450
-DHCP moves scope by
-scope, with its options.
-
-24
-00:01:32.450 --> 00:01:35.648
-Option 6 moves clients onto
-the governed resolvers,
-
-25
-00:01:35.648 --> 00:01:38.325
-so set it per scope and
-check it after import.
-
-26
-00:01:38.325 --> 00:01:42.336
-Keep failover through the move,
-hot standby or load balance,
-
-27
-00:01:42.336 --> 00:01:45.038
-and re-establish dynamic registration.
-
-28
-00:01:45.038 --> 00:01:50.212
-Clients move last, in waves: pilot,
-a department, then everyone.
-
-29
-00:01:50.212 --> 00:01:54.126
-VMs keep old settings until
-restart or lease renewal.
-
-30
-00:01:54.126 --> 00:01:58.218
-And removing a VNet link from an
-Azure Private DNS zone deletes
-
-31
-00:01:58.218 --> 00:02:02.625
-its autoregistered records, which
-Microsoft says can't be restored.
-
-32
-00:02:02.625 --> 00:02:04.370
-Plan that rollback first.
+00:00:43.012 --> 00:00:47.950
+deletes its auto-registered records, and
+Microsoft says they can't be restored.

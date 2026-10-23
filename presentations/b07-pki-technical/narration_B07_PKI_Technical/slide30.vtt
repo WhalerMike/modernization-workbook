@@ -1,145 +1,59 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:04.612
-Last, retiring AD CS, which
-is the program's sixth wave.
+00:00:00.050 --> 00:00:03.637
+Last, retiring AD CS, the sixth wave.
 
 2
-00:00:04.612 --> 00:00:09.902
-It applies only to the CAs and role services
-that no longer serve a retained class;
+00:00:03.637 --> 00:00:08.727
+It applies only to CAs that no longer
+serve a retained use; domain controllers
 
 3
-00:00:09.902 --> 00:00:14.244
-domain controller, LDAPS and RADIUS
-certificates usually keep at
+00:00:08.727 --> 00:00:13.101
+usually keep at least one issuing
+CA alive for as long as they exist.
 
 4
-00:00:14.244 --> 00:00:18.587
-least one issuing CA alive for as
-long as domain controllers exist.
+00:00:13.101 --> 00:00:17.274
+The gate is a finished cutover, a
+clean thirty-day rollback window,
 
 5
-00:00:18.587 --> 00:00:23.784
-The gate: cutover complete, the thirty-day
-rollback window passed with no incidents,
+00:00:17.274 --> 00:00:20.675
+and every retained use running
+on the CAs that remain.
 
 6
-00:00:23.784 --> 00:00:27.249
-and every retained class
-running on the CAs that remain.
+00:00:20.675 --> 00:00:24.999
+Then confirm nothing depends on the
+CA, stop new issuance, back it up,
 
 7
-00:00:27.249 --> 00:00:29.565
-Confirm nothing depends on the CA,
+00:00:24.999 --> 00:00:29.087
+publish a final revocation list,
+and clean up trust everywhere.
 
 8
-00:00:29.565 --> 00:00:33.037
-using the lifecycle inventory
-and the CA database.
+00:00:29.087 --> 00:00:33.525
+Keep the published endpoints serving
+until the last certificate expires.
 
 9
-00:00:33.037 --> 00:00:35.909
-Stop new issuance: remove the templates,
+00:00:33.525 --> 00:00:39.113
+The assessor reads the result
+as NIST SP 800-53 evidence.
 
 10
-00:00:35.909 --> 00:00:39.301
-unlink autoenrollment,
-deny pending requests.
+00:00:39.113 --> 00:00:45.023
+So, from Monday: harden first, choose
+the root deliberately, issue strongly
 
 11
-00:00:39.301 --> 00:00:40.915
-Back up the database and key,
-
-12
-00:00:40.915 --> 00:00:44.425
-with the backup and its password
-through separate channels.
-
-13
-00:00:44.425 --> 00:00:48.257
-Revoke outstanding certificates
-for cessation of operation,
-
-14
-00:00:48.257 --> 00:00:52.900
-set the CRL lifetime past the remaining
-certificates' lifetime, and publish.
-
-15
-00:00:52.900 --> 00:00:56.816
-Remove NDES and the web
-services before the CA,
-
-16
-00:00:56.816 --> 00:01:00.525
-and move any OCSP
-consumers to CRL checking.
-
-17
-00:01:00.525 --> 00:01:07.025
-Clean up trust in Entra, Intune, Group
-Policy, NTAuth and the lifecycle platform.
-
-18
-00:01:07.025 --> 00:01:12.648
-Keep the CDP and AIA endpoints serving
-until the last certificate expires, delete
-
-19
-00:01:12.648 --> 00:01:16.122
-templates only after every
-CA in the forest is gone,
-
-20
-00:01:16.122 --> 00:01:18.437
-and commit a decommission record.
-
-21
-00:01:18.437 --> 00:01:24.651
-Under BYOCA, the root and any CA that
-signed the Cloud PKI issuing CA stay.
-
-22
-00:01:24.651 --> 00:01:30.378
-The assessor reads NIST
-SP 800-53 evidence:
-
-23
-00:01:30.378 --> 00:01:34.421
-key storage and binding settings
-for IA-5 enhancement two,
-
-24
-00:01:34.421 --> 00:01:39.896
-the trust store and CRL configuration
-for path validation, HSM key protection
-
-25
-00:01:39.896 --> 00:01:44.950
-for SC-12, and the certificate policy
-and approved trust anchors for SC-17.
-
-26
-00:01:44.950 --> 00:01:50.464
-So, from Monday: harden first and gate
-on it, choose the root deliberately,
-
-27
-00:01:50.464 --> 00:01:55.978
-issue strongly mapped certificates,
-run both PKIs with reachable CRLs,
-
-28
-00:01:55.978 --> 00:01:58.688
+00:00:45.023 --> 00:00:51.225
+mapped certificates, keep CRLs reachable,
 and retire AD CS last, with evidence.
 
-29
-00:01:58.688 --> 00:02:03.438
-Chapters 03 through 08 and the
-appendices carry the detail.
-
-30
-00:02:03.438 --> 00:02:04.250
+12
+00:00:51.225 --> 00:00:52.060
 Thank you.

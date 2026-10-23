@@ -1,3605 +1,1550 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:04.053
+00:00:00.050 --> 00:00:00.763
+Welcome.
+
+2
+00:00:00.763 --> 00:00:04.789
 This is the technical deep dive
 for Book 06 of the Federal
 
-2
-00:00:04.053 --> 00:00:08.312
-Modernization Workbook: Data
-Platform, SQL Server Identity.
-
 3
-00:00:08.312 --> 00:00:13.493
+00:00:04.789 --> 00:00:09.074
+Modernization Workbook, Data
+Platform: SQL Server Identity.
+
+4
+00:00:09.074 --> 00:00:14.256
 The book moves the SQL Server estate off
 Windows Authentication and onto Microsoft
 
-4
-00:00:13.493 --> 00:00:17.638
+5
+00:00:14.256 --> 00:00:18.401
 Entra ID, and this session is for
 the people who do that work: database
 
-5
-00:00:17.638 --> 00:00:21.265
+6
+00:00:18.401 --> 00:00:22.028
 administrators, the identity
 and server teams beside them,
 
-6
-00:00:21.265 --> 00:00:23.412
+7
+00:00:22.028 --> 00:00:24.175
 and the security staff who sign off.
 
-7
-00:00:23.412 --> 00:00:26.363
-It runs about fifty minutes, in two parts.
-
 8
-00:00:26.363 --> 00:00:28.902
-Part 1 is the strategy, in three modules:
+00:00:24.175 --> 00:00:25.737
+It comes in two parts.
 
 9
-00:00:28.902 --> 00:00:33.108
-why the inheritance must end and
-how the estate is rationalized;
+00:00:25.737 --> 00:00:29.371
+Part 1 is the strategy: why
+the inheritance has to end,
 
 10
-00:00:33.108 --> 00:00:38.664
-the authentication audit, the three
-principal types and the engine-authentication
+00:00:29.371 --> 00:00:35.201
+how the estate is rationalized, the
+authentication decision, and how NTLM goes away.
 
 11
-00:00:38.664 --> 00:00:43.425
-decision; and NTLM elimination,
-applications and the closure condition.
-
-12
-00:00:43.425 --> 00:00:47.275
+00:00:35.201 --> 00:00:39.050
 Part 2 walks the ten runbooks
 in the order a DBA runs them.
 
+12
+00:00:39.050 --> 00:00:44.885
+One convention throughout: April 1, 2027
+is the program's own NTLM backstop,
+
 13
-00:00:47.275 --> 00:00:52.450
-For each one: what it does, the gate it
-must pass, and the evidence it leaves.
-
-14
-00:00:52.450 --> 00:00:54.063
-One convention throughout.
-
-15
-00:00:54.063 --> 00:00:57.958
-April 1, 2027 is the
-program's own NTLM backstop,
-
-16
-00:00:57.958 --> 00:01:03.540
+00:00:44.885 --> 00:00:50.120
 not a Microsoft deadline, and I'll
 say which dates are external.
 
-17
-00:01:04.290 --> 00:01:07.465
-Module 1: the inheritance and the estate.
+14
+00:00:50.870 --> 00:00:53.544
+Module 1 is the
+inheritance and the estate:
 
-18
-00:01:07.465 --> 00:01:08.640
-Three slides.
+15
+00:00:53.544 --> 00:00:58.358
+what Windows Authentication in SQL Server
+really is, the drivers that end it,
 
-19
-00:01:08.640 --> 00:01:13.177
-First, what Windows Authentication
-in SQL Server actually is,
-
-20
-00:01:13.177 --> 00:01:16.202
-precisely enough to see where NTLM hides.
-
-21
-00:01:16.202 --> 00:01:21.053
-Second, the three drivers that end
-it, and the 2027 dates that are real.
-
-22
-00:01:21.053 --> 00:01:26.097
-Third, the inventory, the rationalization
-lenses and the retain, consolidate
-
-23
-00:01:26.097 --> 00:01:30.827
-or retire gate, which decides which
+16
+00:00:58.358 --> 00:01:03.095
+and the inventory that decides which
 instances enter the migration at all.
 
-24
-00:01:30.827 --> 00:01:35.176
-The book's whole order, assess
-and consolidate, enable Arc,
+17
+00:01:03.095 --> 00:01:05.860
+The book's whole order
+comes out of this module.
 
-25
-00:01:35.176 --> 00:01:40.160
-migrate logins, then eliminate
-NTLM, comes out of this module.
-
-26
-00:01:40.910 --> 00:01:43.135
+18
+00:01:06.610 --> 00:01:08.835
 Start with what the engine actually does.
 
-27
-00:01:43.135 --> 00:01:46.722
+19
+00:01:08.835 --> 00:01:12.422
 SQL Server doesn't check the
 password for a Windows login.
 
+20
+00:01:12.422 --> 00:01:17.147
+It trusts the Windows token, and Windows
+Authentication can't be switched off.
+
+21
+00:01:17.147 --> 00:01:20.739
+Normally the client gets a
+Kerberos ticket for the instance's
+
+22
+00:01:20.739 --> 00:01:24.260
+service principal name, and no
+password crosses the network.
+
+23
+00:01:24.260 --> 00:01:27.198
+The table on the slide
+is the one to remember.
+
+24
+00:01:27.198 --> 00:01:31.034
+When the SPN is right, remote
+connections use Kerberos.
+
+25
+00:01:31.034 --> 00:01:34.973
+When it's missing, they
+quietly fall back to NTLM.
+
+26
+00:01:34.973 --> 00:01:37.748
+When it's on the wrong
+account, they fail outright.
+
+27
+00:01:37.748 --> 00:01:41.989
+That silent fallback is the most
+consequential fault in the inheritance,
+
 28
-00:01:46.722 --> 00:01:49.234
-It trusts the Windows principal token,
+00:01:41.989 --> 00:01:45.396
+because nothing logs which
+protocol each connection used,
 
 29
-00:01:49.234 --> 00:01:53.709
-and Windows Authentication is always
-available; it can't be disabled.
+00:01:45.396 --> 00:01:49.498
+and none of these paths gives
+Conditional Access anything to evaluate.
 
 30
-00:01:53.709 --> 00:01:57.147
-With Integrated Security,
-the driver hands off to SSPI,
-
-31
-00:01:57.147 --> 00:01:59.820
-the Security Support Provider Interface,
-
-32
-00:01:59.820 --> 00:02:04.785
-and its Negotiate package picks Kerberos
-unless one of the systems can't use it.
-
-33
-00:02:04.785 --> 00:02:09.853
-The client asks the KDC on a domain
-controller for a service ticket to the
-
-34
-00:02:09.853 --> 00:02:14.244
-instance's SPN, which for TCP
-names the SQL Server service class,
-
-35
-00:02:14.244 --> 00:02:17.285
-the host's fully qualified
-name and the port.
-
-36
-00:02:17.285 --> 00:02:20.597
-The engine validates the ticket
-with the service account's key.
-
-37
-00:02:20.597 --> 00:02:25.272
-No password crosses the network, and
-Kerberos authenticates both ends.
-
-38
-00:02:25.272 --> 00:02:30.010
-The table is Microsoft's authentication
-defaults, and it's the one to remember.
-
-39
-00:02:30.010 --> 00:02:32.850
-When the SPN maps to the correct account,
-
-40
-00:02:32.850 --> 00:02:37.497
-remote connections use Kerberos,
-but local connections use NTLM.
-
-41
-00:02:37.497 --> 00:02:42.648
-When the SPN is missing or the
-lookup fails, both use NTLM.
-
-42
-00:02:42.648 --> 00:02:46.210
-When it's on the wrong account,
-authentication fails outright.
-
-43
-00:02:46.210 --> 00:02:50.510
-That silent fallback is the most
-consequential fault in the inheritance.
-
-44
-00:02:50.510 --> 00:02:55.522
-The engine logs a failed SPN registration
-at startup, but not which protocol each
-
-45
-00:02:55.522 --> 00:03:00.385
-connection used; only the auth scheme
-column of the connections DMV shows that.
-
-46
-00:03:00.385 --> 00:03:03.524
-And none of these paths
-produces an Entra sign-in,
-
-47
-00:03:03.524 --> 00:03:06.585
-so Conditional Access
-has nothing to evaluate.
-
-48
-00:03:06.585 --> 00:03:09.675
-The identities are anchored
-in Active Directory too:
-
-49
-00:03:09.675 --> 00:03:12.344
-a domain account with a
-hand-rotated password,
-
-50
-00:03:12.344 --> 00:03:17.260
-a group managed service account the domain
-controller rotates every thirty days by
-
-51
-00:03:17.260 --> 00:03:22.035
-default, or the virtual account, which
-reaches the network as the computer account.
-
-52
-00:03:22.035 --> 00:03:25.676
-And the SA login, created
-disabled in Windows mode,
-
-53
-00:03:25.676 --> 00:03:28.873
-is often left enabled
-as an emergency way in.
-
-54
-00:03:28.873 --> 00:03:30.448
+00:01:49.498 --> 00:01:51.073
 None of this was a mistake.
 
-55
-00:03:30.448 --> 00:03:35.140
+31
+00:01:51.073 --> 00:01:55.770
 It was correct engineering for a
 domain-joined world that no longer exists.
 
-56
-00:03:35.890 --> 00:03:38.198
-Three drivers end the inheritance,
+32
+00:01:56.520 --> 00:01:58.870
+Three drivers end the inheritance.
 
-57
-00:03:38.198 --> 00:03:41.540
-and each is as well reasoned
-as the original design.
+33
+00:01:58.870 --> 00:02:01.607
+The first is NTLM itself.
 
-58
-00:03:41.540 --> 00:03:43.154
-The first is NTLM.
+34
+00:02:01.607 --> 00:02:05.579
+Microsoft deprecated every
+version in June 2024,
 
-59
-00:03:43.154 --> 00:03:46.728
-Microsoft deprecated every version,
+35
+00:02:05.579 --> 00:02:11.583
+version 1 is already removed from current
+Windows, and network NTLM is next.
 
-60
-00:03:46.728 --> 00:03:51.340
-LAN Manager and NTLM versions
-1 and 2, in June 2024.
-
-61
-00:03:51.340 --> 00:03:56.137
-Version 1 is already removed
-from Windows Server 2025
-
-62
-00:03:56.137 --> 00:04:01.040
-and Windows 11 version 24H2;
-version 2 still works there.
-
-63
-00:04:01.040 --> 00:04:05.436
-Microsoft's next step is to disable
-network NTLM by default in the
-
-64
-00:04:05.436 --> 00:04:10.240
-next major Windows release, subject
-to change and with no calendar date.
-
-65
-00:04:10.240 --> 00:04:14.158
+36
+00:02:11.583 --> 00:02:16.018
 So the program set its
 own backstop: on April 1,
 
-66
-00:04:14.158 --> 00:04:19.240
-2027 its enforcement phase
-blocks NTLM across the estate.
+37
+00:02:16.018 --> 00:02:19.733
+2027, it blocks NTLM across the estate.
 
-67
-00:04:19.240 --> 00:04:20.928
-That isn't the completion date.
+38
+00:02:19.733 --> 00:02:24.759
+The second driver is zero trust:
+Conditional Access only acts on an
 
-68
-00:04:20.928 --> 00:04:23.525
-It's the date by which consolidation, Arc,
+39
+00:02:24.759 --> 00:02:29.695
+Entra token request, and a Kerberos
+or NTLM exchange never asks it.
 
-69
-00:04:23.525 --> 00:04:27.539
-login migration and connection
-strings must already be done.
+40
+00:02:29.695 --> 00:02:33.500
+The third is the engine's own
+identity, which needs an Entra anchor,
 
-70
-00:04:27.539 --> 00:04:29.665
-The second is zero trust.
+41
+00:02:33.500 --> 00:02:36.107
+and on premises that
+comes through Azure Arc.
 
-71
-00:04:29.665 --> 00:04:33.900
-M-22-09 requires
-phishing-resistant MFA enforced at
+42
+00:02:36.107 --> 00:02:40.023
+The dates that are really due
+in 2027 are lifecycle dates for
 
-72
-00:04:33.900 --> 00:04:37.115
-the application layer, with
-a device-level signal.
+43
+00:02:40.023 --> 00:02:44.095
+older Windows and SQL Server
+versions, and the slide lists them.
 
-73
-00:04:37.115 --> 00:04:41.790
-Conditional Access can act only
-on an Entra token request;
+44
+00:02:44.095 --> 00:02:47.460
+Those versions become
+consolidation candidates.
 
-74
-00:04:41.790 --> 00:04:45.102
-a Kerberos or NTLM exchange never asks it.
-
-75
-00:04:45.102 --> 00:04:48.178
-Risk-based policies need Entra ID P2.
-
-76
-00:04:48.178 --> 00:04:50.553
-The third is the engine's own identity.
-
-77
-00:04:50.553 --> 00:04:53.721
-When Active Directory stops
-being the identity source,
-
-78
-00:04:53.721 --> 00:04:58.196
-the engine's service accounts lose their
-governance foundation, so the engine
-
-79
-00:04:58.196 --> 00:05:02.328
-needs an Entra identity first, which
-on premises comes through Azure Arc.
-
-80
-00:05:02.328 --> 00:05:05.977
-What's actually due in
-2027 are lifecycle dates.
-
-81
-00:05:05.977 --> 00:05:11.153
-Windows Server 2016 leaves
-extended support on January 12.
-
-82
-00:05:11.153 --> 00:05:17.793
-SQL Server 2014's final
-extended-security-update year ends on July 12,
-
-83
-00:05:17.793 --> 00:05:21.289
-and SQL Server 2016's first on July 13.
-
-84
-00:05:21.289 --> 00:05:25.952
-SQL Server 2017 leaves
-support on October 12.
-
-85
-00:05:25.952 --> 00:05:28.659
-None of those versions
-can take Entra logins,
-
-86
-00:05:28.659 --> 00:05:32.390
-so they're consolidation
-candidates, not in-place migrations.
-
-87
-00:05:32.390 --> 00:05:36.767
-The dependencies set the
-order: assess and consolidate,
-
-88
-00:05:36.767 --> 00:05:40.840
-enable Arc, migrate logins,
-then eliminate NTLM.
-
-89
-00:05:41.590 --> 00:05:45.259
+45
+00:02:48.210 --> 00:02:51.879
 Before any authentication work,
 the estate has to be counted,
 
-90
-00:05:45.259 --> 00:05:48.415
+46
+00:02:51.879 --> 00:02:55.035
 because a twenty-year estate
 doesn't know what it has.
 
-91
-00:05:48.415 --> 00:05:53.142
+47
+00:02:55.035 --> 00:03:00.047
 The instances that matter most are the ones
 nobody manages, so they're discovered,
 
-92
-00:05:53.142 --> 00:05:54.623
-not retrieved from a list,
+48
+00:03:00.047 --> 00:03:04.460
+not pulled from a list, using three
+instruments that each catch what the
 
-93
-00:05:54.623 --> 00:05:58.503
-with three instruments that are
-each blind to what the others find.
+49
+00:03:04.460 --> 00:03:09.248
+others miss: a network sweep, the SPN
+trail, and Microsoft's assessment tooling.
 
-94
-00:05:58.503 --> 00:06:04.275
-A network and directory sweep listens:
-the default instance on TCP 1433,
-
-95
-00:06:04.275 --> 00:06:09.852
-named instances on dynamic ports,
-and the Browser service on UDP 1434.
-
-96
-00:06:09.852 --> 00:06:14.420
-The community dbatools module's
-Find-DbaInstance combines those signals,
-
-97
-00:06:14.420 --> 00:06:16.777
-after the program's software approval.
-
-98
-00:06:16.777 --> 00:06:22.014
-The SPN trail is independent: a forest-wide
-SetSPN query lists every instance
-
-99
-00:06:22.014 --> 00:06:27.252
-ever registered for Kerberos, though
-not the ones whose registration failed.
-
-100
-00:06:27.252 --> 00:06:33.081
-And Microsoft's assessment tooling adds
-workload and dependency data: Azure Migrate,
-
-101
-00:06:33.081 --> 00:06:37.596
-the MAP Toolkit, and the migration
-component in Management Studio,
-
-102
-00:06:37.596 --> 00:06:41.865
-since the Data Migration Assistant
-was retired on July 16, 2025.
-
-103
-00:06:41.865 --> 00:06:43.403
+50
+00:03:09.248 --> 00:03:10.785
 Then three lenses.
 
-104
-00:06:43.403 --> 00:06:47.665
-Utilization finds zombies: no
-connections in over a year,
+51
+00:03:10.785 --> 00:03:12.845
+Utilization finds the zombies,
 
-105
-00:06:47.665 --> 00:06:50.840
-no restores, a retired owning application.
+52
+00:03:12.845 --> 00:03:16.410
+and retiring them is the
+fastest way to shrink the work.
 
-106
-00:06:50.840 --> 00:06:54.965
-Retiring them is the fastest way
-to shrink the migration surface.
+53
+00:03:16.410 --> 00:03:21.810
+Version matters, because Entra logins
+need SQL Server 2022 or later.
 
-107
-00:06:54.965 --> 00:07:01.969
-Version is a primary input, because Entra
-logins need SQL Server 2022 or later,
+54
+00:03:21.810 --> 00:03:25.720
+And dependencies, like linked
+servers and that quarterly
 
-108
-00:07:01.969 --> 00:07:05.690
-and 2008 and 2008 R2
-can't upgrade in place.
+55
+00:03:25.720 --> 00:03:29.385
+cross-database query, most
+often overturn a naive plan.
 
-109
-00:07:05.690 --> 00:07:10.487
-Dependencies most often overturn
-a naive plan: linked servers,
+56
+00:03:29.385 --> 00:03:34.148
+Each instance then gets one verdict:
+retain, consolidate or retire.
 
-110
-00:07:10.487 --> 00:07:15.653
-replication, SSIS packages and the
-quarterly cross-database query.
-
-111
-00:07:15.653 --> 00:07:18.752
-The lenses resolve into
-one verdict per instance.
-
-112
-00:07:18.752 --> 00:07:20.728
-Retain goes straight to the audit.
-
-113
-00:07:20.728 --> 00:07:24.278
-Consolidate moves the workload
-and retires the source.
-
-114
-00:07:24.278 --> 00:07:28.102
-Retire removes the instance
-and every login it carries.
-
-115
-00:07:28.102 --> 00:07:30.884
-Targets are chosen during the assessment,
-
-116
-00:07:30.884 --> 00:07:34.698
-standalone or availability-group
-SQL Server on Arc hosts,
-
-117
-00:07:34.698 --> 00:07:39.069
-since failover cluster instances
-can't use Entra authentication,
-
-118
-00:07:39.069 --> 00:07:43.440
-or Azure SQL, so authentication is
+57
+00:03:34.148 --> 00:03:38.930
+That way, authentication is
 migrated once, in its final shape.
 
-119
-00:07:43.440 --> 00:07:45.870
-And record the constraints honestly.
-
-120
-00:07:46.620 --> 00:07:50.633
-Module 2: the audit, the
-principals and the decision.
-
-121
-00:07:50.633 --> 00:07:51.745
-Four slides.
-
-122
-00:07:51.745 --> 00:07:55.449
-What the authentication audit
-reads on every surviving instance,
-
-123
-00:07:55.449 --> 00:07:59.220
-and why its output is a compliance
-record rather than a spreadsheet.
-
-124
-00:07:59.220 --> 00:08:02.652
-The three Arc-eligibility
-categories, and the distinction
-
-125
-00:08:02.652 --> 00:08:06.295
-between the engine and the
-operating system moving to Entra ID.
-
-126
-00:08:06.295 --> 00:08:10.357
-The three principal types that
-replace Windows and SQL logins.
-
-127
-00:08:10.357 --> 00:08:13.330
-And the parallel run, with
-the five decisions that
-
-128
-00:08:13.330 --> 00:08:16.870
-turn the migration pattern
-into enforceable policy.
-
-129
-00:08:17.620 --> 00:08:22.352
-The audit runs only on what the gate
-kept, retain instances and consolidation
-
-130
-00:08:22.352 --> 00:08:26.345
-targets, and its deliverable is
-a per-instance compliance record.
-
-131
-00:08:26.345 --> 00:08:31.046
-For each host it records every instance,
-with version, edition and build,
-
-132
-00:08:31.046 --> 00:08:34.870
-and the host operating system,
-which sets the Arc envelope.
-
-133
-00:08:34.870 --> 00:08:40.658
-The Connected Machine agent runs on
-Windows Server 2012 through 2025,
-
-134
-00:08:40.658 --> 00:08:46.646
-SQL Server enabled by Arc needs 2016
-or later, and the program sets its own
-
-135
-00:08:46.646 --> 00:08:52.733
-floor at Windows Server 2019, because
-2016 leaves support in January 2027.
-
-136
-00:08:52.733 --> 00:08:55.521
-It records domain-join
-state and whether the
-
-137
-00:08:55.521 --> 00:08:58.233
-Arc agent and managed
-identity are present.
-
-138
-00:08:58.233 --> 00:08:59.971
-Then the authentication mode.
-
-139
-00:08:59.971 --> 00:09:02.617
-The registry value LoginMode is one for
-
-140
-00:09:02.617 --> 00:09:05.745
-Windows Authentication
-mode and two for mixed.
-
-141
-00:09:05.745 --> 00:09:10.355
-The audit cross-checks it against the
-running instance with the Is Integrated
-
-142
-00:09:10.355 --> 00:09:14.894
-Security Only server property, because
-a mode change takes effect only after
-
-143
-00:09:14.894 --> 00:09:19.220
-a restart, and any disagreement is an
-anomaly to resolve before migrating.
-
-144
-00:09:19.220 --> 00:09:25.025
-On SQL Server 2025 enabled by Arc it also
-reads Is External Authentication Only,
-
-145
-00:09:25.025 --> 00:09:28.895
-which shows the Disable
-SQL Authentication setting.
-
-146
-00:09:28.895 --> 00:09:36.332
-Every login is classified by its type in
-sys.server_principals: U, a Windows user;
-
-147
-00:09:36.332 --> 00:09:39.650
-G, a Windows group; S,
-a SQL login; C and K,
-
-148
-00:09:39.650 --> 00:09:46.058
-certificate- and key-mapped; and E
-and X, Entra logins already present.
-
-149
-00:09:46.058 --> 00:09:49.245
-The letters are the view's
-values, not mnemonics.
-
-150
-00:09:49.245 --> 00:09:52.257
-There's no type W, and
-a query written against
-
-151
-00:09:52.257 --> 00:09:55.770
-one returns zero rows and
-reports a clean instance.
-
-152
-00:09:55.770 --> 00:10:00.017
-Active SQL logins are a critical
-finding, and an enabled SA with
-
-153
-00:10:00.017 --> 00:10:04.182
-a non-rotated password is the
-highest-priority finding of all.
-
-154
-00:10:04.182 --> 00:10:08.120
-The audit captures the engine's
-service account and checks its SPN.
-
-155
-00:10:08.120 --> 00:10:13.187
-And each run is compared with the last:
-a new SQL login, a revert to mixed mode,
-
-156
-00:10:13.187 --> 00:10:19.020
-or a new passthrough linked server is
-drift, and drift is a compliance violation.
-
-157
-00:10:19.770 --> 00:10:24.189
-The audit's most consequential output
-is a category for every instance,
-
-158
-00:10:24.189 --> 00:10:28.907
-framed around Arc because Arc is the
-program's path to Entra authentication.
-
-159
-00:10:28.907 --> 00:10:33.880
-Category 1 is Entra-auth-ready: the
-Connected Machine agent is running,
-
-160
-00:10:33.880 --> 00:10:37.223
-the Azure extension for
-SQL Server is deployed,
-
-161
-00:10:37.223 --> 00:10:42.795
-Entra authentication is configured and
-the engine is SQL Server 2022 or later.
-
-162
-00:10:42.795 --> 00:10:47.733
-There the audit's job is a precise login
-inventory, and migration starts now.
-
-163
-00:10:47.733 --> 00:10:51.032
-Category 2 is Arc-eligible
-but not enabled.
-
-164
-00:10:51.032 --> 00:10:55.679
-Prioritize by the audit: instances
-with many Windows logins,
-
-165
-00:10:55.679 --> 00:10:58.932
-active SQL logins or
-missing SPNs go first.
-
-166
-00:10:58.932 --> 00:11:04.039
-The deployment is a server action, not a
-SQL Server change; when the agent connects
-
-167
-00:11:04.039 --> 00:11:08.994
-a server with SQL Server installed, Arc
-installs the extension automatically.
-
-168
-00:11:08.994 --> 00:11:11.804
-Once Entra authentication is configured,
-
-169
-00:11:11.804 --> 00:11:14.933
-the instance becomes
-Category 1 on the next run.
-
-170
-00:11:14.933 --> 00:11:17.482
-Category 3 isn't yet eligible.
-
-171
-00:11:17.482 --> 00:11:22.861
-An engine older than 2022 can't accept
-Entra logins, with or without Arc, so it
-
-172
-00:11:22.861 --> 00:11:25.810
-upgrades and follows the Category 2 path,
-
-173
-00:11:25.810 --> 00:11:28.846
-or carries an exception
-with a sunset date.
-
-174
-00:11:28.846 --> 00:11:32.440
-Failover cluster instances
-belong here on any version,
-
-175
-00:11:32.440 --> 00:11:35.957
-because Entra authentication
-isn't supported on them.
-
-176
-00:11:35.957 --> 00:11:40.398
-And an exception doesn't save an
-instance from the program's NTLM block,
-
-177
-00:11:40.398 --> 00:11:45.145
-which is applied in the operating system's
-security layer, not in the engine.
-
-178
-00:11:45.145 --> 00:11:49.020
-Then the distinction the book calls
-the most common misunderstanding.
-
-179
-00:11:49.020 --> 00:11:54.364
-Layer 1 is the engine accepting Entra
-tokens: SQL Server 2022 or later,
-
-180
-00:11:54.364 --> 00:11:58.208
-not a cluster instance,
-plus Arc and the extension.
-
-181
-00:11:58.208 --> 00:12:02.487
-It doesn't need the server
-unjoined or Windows Server 2025;
-
-182
-00:12:02.487 --> 00:12:07.570
-a domain-joined Windows Server 2019
-host can have Entra logins today.
-
-183
-00:12:07.570 --> 00:12:12.557
+58
+00:03:39.680 --> 00:03:43.077
+Module 2 is the audit, the
+principals and the decision:
+
+59
+00:03:43.077 --> 00:03:46.243
+what the audit reads on
+every surviving instance,
+
+60
+00:03:46.243 --> 00:03:50.875
+the three Arc-eligibility categories,
+the principal types that replace
+
+61
+00:03:50.875 --> 00:03:55.790
+Windows and SQL logins, and the parallel
+run that makes the cutover safe.
+
+62
+00:03:56.540 --> 00:03:58.998
+The audit runs only on what the gate kept,
+
+63
+00:03:58.998 --> 00:04:03.915
+and its deliverable is a compliance record
+for each instance, not a spreadsheet.
+
+64
+00:04:03.915 --> 00:04:09.090
+It checks the authentication mode, both in
+the registry and on the running instance,
+
+65
+00:04:09.090 --> 00:04:12.540
+because a mode change only
+takes effect after a restart.
+
+66
+00:04:12.540 --> 00:04:15.015
+It classifies every login by type.
+
+67
+00:04:15.015 --> 00:04:19.620
+One trap here: the type letters are the
+view's own values, and a query written
+
+68
+00:04:19.620 --> 00:04:24.603
+against a type that doesn't exist returns
+zero rows and reports a clean instance.
+
+69
+00:04:24.603 --> 00:04:27.403
+Active SQL logins are a critical finding,
+
+70
+00:04:27.403 --> 00:04:31.603
+and an enabled SA with an old
+password is the top finding of all.
+
+71
+00:04:31.603 --> 00:04:35.840
+Each run is compared with the
+last, and drift is a violation.
+
+72
+00:04:36.590 --> 00:04:40.715
+The audit's most important output
+is a category for every instance.
+
+73
+00:04:40.715 --> 00:04:46.039
+Category 1 is ready now: Arc
+connected, the SQL extension deployed,
+
+74
+00:04:46.039 --> 00:04:50.377
+Entra authentication on, and
+SQL Server 2022 or later.
+
+75
+00:04:50.377 --> 00:04:53.458
+Category 2 is eligible
+but not yet enabled,
+
+76
+00:04:53.458 --> 00:04:56.978
+and that's a server action,
+not a SQL Server change.
+
+77
+00:04:56.978 --> 00:05:00.278
+Category 3 isn't eligible
+yet: older engines,
+
+78
+00:05:00.278 --> 00:05:03.853
+and failover cluster
+instances on any version.
+
+79
+00:05:03.853 --> 00:05:07.571
+They upgrade, or carry an
+exception with a sunset date,
+
+80
+00:05:07.571 --> 00:05:11.290
+and an exception doesn't save
+them from the NTLM block.
+
+81
+00:05:11.290 --> 00:05:13.890
+Then the book's most
+common misunderstanding.
+
+82
+00:05:13.890 --> 00:05:17.096
+Layer 1 is the engine
+accepting Entra tokens,
+
+83
+00:05:17.096 --> 00:05:21.515
+and a domain-joined Windows Server
+2019 host can do that today.
+
+84
+00:05:21.515 --> 00:05:26.502
 Layer 2 is administrators signing in
 to the server itself with Entra ID.
 
-184
-00:12:12.557 --> 00:12:18.265
-That needs Windows Server 2025 with Desktop
-Experience and Entra-joins the server,
+85
+00:05:26.502 --> 00:05:31.060
+That needs Windows Server 2025,
+and it's a separate program.
 
-185
-00:12:18.265 --> 00:12:21.770
-so it's a separate program,
-sequenced on its own.
+86
+00:05:31.810 --> 00:05:35.303
+This is where the engine
+stops accepting Kerberos
 
-186
-00:12:22.520 --> 00:12:27.463
-This is where the engine stops
-accepting Kerberos tickets and NTLM
+87
+00:05:35.303 --> 00:05:38.797
+and NTLM and starts accepting
+Entra-issued tokens.
 
-187
-00:12:27.463 --> 00:12:32.495
-exchanges and starts accepting
-Entra-issued OAuth 2.0 access tokens.
+88
+00:05:38.797 --> 00:05:42.832
+On SQL Server 2022 and later,
+you create a passwordless login
 
-188
-00:12:32.495 --> 00:12:39.170
-The mechanism is CREATE LOGIN FROM EXTERNAL
-PROVIDER, on SQL Server 2022 and later.
+89
+00:05:42.832 --> 00:05:46.947
+from the external provider, and
+the engine maps the token to it.
 
-189
-00:12:39.170 --> 00:12:42.708
-The login is a passwordless
-external principal in master.
+90
+00:05:46.947 --> 00:05:52.015
+Two practical points: the instance's identity
+needs Graph read permission or login
 
-190
-00:12:42.708 --> 00:12:46.681
-At connection time the client
-presents a token whose audience is
+91
+00:05:52.015 --> 00:05:55.686
+creation fails, and Entra
+connections are always encrypted,
 
-191
-00:12:46.681 --> 00:12:51.095
-database.windows.net, and the engine
-validates it and maps it to the login.
+92
+00:05:55.686 --> 00:05:58.036
+so clients must trust the certificate.
 
-192
-00:12:51.095 --> 00:12:56.043
-CREATE LOGIN looks the principal up
-through Microsoft Graph, so the instance's
+93
+00:05:58.036 --> 00:05:59.360
+There are three types.
 
-193
-00:12:56.043 --> 00:13:01.295
-identity needs Graph read permissions with
-admin consent, or login creation fails.
+94
+00:05:59.360 --> 00:06:03.938
+An Entra user login, where
+Conditional Access enforces MFA
 
-194
-00:13:01.295 --> 00:13:08.295
-On SQL Server 2025, WITH OBJECT_ID pins
-a login when display names aren't unique.
+95
+00:06:03.938 --> 00:06:08.235
+before the token is even issued,
+with no SQL-level bypass.
 
-195
-00:13:08.295 --> 00:13:11.016
-And Entra connections
-are always encrypted,
+96
+00:06:08.235 --> 00:06:13.239
+An Entra group login, the familiar AD
+group pattern; with a dynamic group,
 
-196
-00:13:11.016 --> 00:13:14.032
-so clients must trust the
-instance's certificate.
+97
+00:06:13.239 --> 00:06:17.310
+people gain and lose access as
+their HR attributes change.
 
-197
-00:13:14.032 --> 00:13:15.070
-Three types.
+98
+00:06:17.310 --> 00:06:21.902
+And an application login, for a
+managed identity or service principal,
 
-198
-00:13:15.070 --> 00:13:19.133
-An Entra user login, type E,
-named by the user principal name;
-
-199
-00:13:19.133 --> 00:13:24.720
-UPNs can differ from SAM account names,
-so the audit captures that mapping first.
-
-200
-00:13:24.720 --> 00:13:27.370
-The engine has no MFA logic.
-
-201
-00:13:27.370 --> 00:13:32.956
-Conditional Access enforces MFA, device
-compliance and sign-in risk before
-
-202
-00:13:32.956 --> 00:13:37.833
-the token is issued, with no SQL-level
-prompt and no SQL-level bypass.
-
-203
-00:13:37.833 --> 00:13:41.333
-One limit: FIDO2 security
-keys aren't yet supported
-
-204
-00:13:41.333 --> 00:13:44.357
-for Entra authentication
-to SQL Server on Arc.
-
-205
-00:13:44.357 --> 00:13:49.083
-An Entra group login, type X, is
-the familiar AD group pattern.
-
-206
-00:13:49.083 --> 00:13:53.708
-With a dynamic group driven by HR
-attributes, people gain and lose
-
-207
-00:13:53.708 --> 00:13:58.420
-access as their attributes change,
-with no CREATE USER or DROP USER.
-
-208
-00:13:58.420 --> 00:14:00.793
-That needs a P1 license per member,
-
-209
-00:14:00.793 --> 00:14:05.707
-and access is only as strong as the
-write controls on those attributes.
-
-210
-00:14:05.707 --> 00:14:11.322
-And an application login, also type E, for
-a managed identity or service principal,
-
-211
-00:14:11.322 --> 00:14:14.507
+99
+00:06:21.902 --> 00:06:25.270
 replacing a SQL login
 and its stored password.
 
-212
-00:14:14.507 --> 00:14:18.107
-Conditional Access doesn't cover
-these; service principals are
-
-213
-00:14:18.107 --> 00:14:22.319
-reachable only through separately
-licensed workload-identity policies.
-
-214
-00:14:22.319 --> 00:14:26.212
-On an Arc server the managed
-identity belongs to the server,
-
-215
-00:14:26.212 --> 00:14:30.310
-so one login per server is the
-honest unit of attribution.
-
-216
-00:14:31.060 --> 00:14:35.510
+100
+00:06:26.020 --> 00:06:30.108
 No Windows login is dropped until
-its Entra replacement is validated.
-
-217
-00:14:35.510 --> 00:14:38.178
-The engine-authentication decision makes a
-
-218
-00:14:38.178 --> 00:14:41.135
-three-phase parallel run
-required in production.
-
-219
-00:14:41.135 --> 00:14:44.279
-Create: for every migrating
-user or group login,
-
-220
-00:14:44.279 --> 00:14:48.310
-create the external-provider
-login for its Entra principal.
-
-221
-00:14:48.310 --> 00:14:53.191
-Verify each mapping first; a principal
-with no confirmed Entra equivalent is
-
-222
-00:14:53.191 --> 00:14:58.148
-a blocking finding, and building that
-mapping is the most labor-intensive step.
-
-223
-00:14:58.148 --> 00:15:01.825
-Validate: test each new login
-with the principal's real
-
-224
-00:15:01.825 --> 00:15:05.422
-Entra credential before any
-legacy login is touched.
-
-225
-00:15:05.422 --> 00:15:09.405
-Then disable, don't drop, the
-legacy Windows and SQL logins,
-
-226
-00:15:09.405 --> 00:15:12.710
-observe for thirty days,
-and only then drop them.
-
-227
-00:15:12.710 --> 00:15:15.623
-Observation needs evidence, not silence.
-
-228
-00:15:15.623 --> 00:15:20.612
-Login metadata says what exists; only
-auditing says what's used, and Microsoft's
-
-229
-00:15:20.612 --> 00:15:25.372
-own sequence uses SQL Server Audit with
-the successful-login action group.
-
-230
-00:15:25.372 --> 00:15:28.894
-Disable-and-observe keeps
-every cutover reversible,
-
-231
-00:15:28.894 --> 00:15:31.135
-so a wrong mapping locks no one out.
-
-232
-00:15:31.135 --> 00:15:33.760
-Around the pattern sit five decisions.
-
-233
-00:15:33.760 --> 00:15:36.298
-One, consolidation gates migration.
-
-234
-00:15:36.298 --> 00:15:38.534
-Two, the parallel run is required;
-
-235
-00:15:38.534 --> 00:15:43.672
-non-production may shorten the window
-only with documented owner sign-off.
-
-236
-00:15:43.672 --> 00:15:46.464
-Three, SQL Authentication is eliminated:
-
-237
-00:15:46.464 --> 00:15:51.637
-every active SQL login migrates to a
-service principal or managed identity,
-
-238
-00:15:51.637 --> 00:15:56.975
-or carries an exception with a compensating
-control and a sunset date, and SA is
-
-239
-00:15:56.975 --> 00:16:02.559
-disabled and renamed, with emergency access
-as a monitored break-glass procedure.
-
-240
-00:16:02.559 --> 00:16:07.592
-On SQL Server 2025 with Arc, the
-Disable SQL Authentication setting
-
-241
-00:16:07.592 --> 00:16:12.085
-closes the door for every SQL
-login at once, without a restart.
-
-242
-00:16:12.085 --> 00:16:16.393
-Four, pre-2022 instances and
-failover cluster instances upgrade,
-
-243
-00:16:16.393 --> 00:16:19.425
-re-platform or carry a
-sunset-dated exception;
-
-244
-00:16:19.425 --> 00:16:23.573
-connections that can't reach
-Kerberos or Entra by the backstop
-
-245
-00:16:23.573 --> 00:16:27.722
-use certificate-based authentication
-as the interim posture.
-
-246
-00:16:27.722 --> 00:16:31.739
-Five, the per-instance compliance
-record is the closure artifact,
-
-247
-00:16:31.739 --> 00:16:35.440
-so done becomes a queryable
-posture instead of a claim.
-
-248
-00:16:36.190 --> 00:16:42.227
-Module 3: NTLM, applications and
-closure, the last of the strategy.
-
-249
-00:16:42.227 --> 00:16:43.341
-Four slides.
-
-250
-00:16:43.341 --> 00:16:47.856
-The four connection patterns that
-generate NTLM at the SQL layer,
-
-251
-00:16:47.856 --> 00:16:52.790
-because NTLM is a protocol, not a
-setting, and no single switch removes it.
-
-252
-00:16:52.790 --> 00:16:57.640
-The three phases that do remove
-it: discover, restrict, eliminate.
-
-253
-00:16:57.640 --> 00:17:00.499
-The four-class pattern
-for the applications
-
-254
-00:17:00.499 --> 00:17:03.127
-upstream of the database,
-read on two axes.
-
-255
-00:17:03.127 --> 00:17:08.530
-And the closure condition: five conditions
-that must hold at once, and keep holding.
-
-256
-00:17:09.280 --> 00:17:14.153
-Microsoft has deprecated every version
-of NTLM and removed version 1 from
-
-257
-00:17:14.153 --> 00:17:18.868
-current Windows, but nothing in its
-timeline is a deadline for SQL Server.
-
-258
-00:17:18.868 --> 00:17:22.239
-Eliminating NTLM means
-naming every connection
-
-259
-00:17:22.239 --> 00:17:25.529
-pattern that produces it,
-and the book finds four.
-
-260
-00:17:25.529 --> 00:17:30.192
-Pattern one, a missing or incorrect
-SPN, the most common cause.
-
-261
-00:17:30.192 --> 00:17:35.617
-If the driver can't get a ticket for the
-SPN it builds, it falls back to NTLM.
-
-262
-00:17:35.617 --> 00:17:40.742
-The fix is SetSPN with the dash S switch,
-which checks for duplicates before adding.
-
-263
-00:17:40.742 --> 00:17:45.892
-Two neighbors behave differently: an SPN
-on the wrong account doesn't fall back,
-
-264
-00:17:45.892 --> 00:17:49.458
-it fails, typically with
-"Cannot generate SSPI context",
-
-265
-00:17:49.458 --> 00:17:54.054
-and a duplicate SPN breaks Kerberos
-with a principal-not-unique error.
-
-266
-00:17:54.054 --> 00:17:56.493
-Pattern two, cross-site connections.
-
-267
-00:17:56.493 --> 00:17:58.881
-The client needs a
-domain controller of the
-
-268
-00:17:58.881 --> 00:18:01.468
-domain that holds the
-server's service account.
-
-269
-00:18:01.468 --> 00:18:06.860
-If port 88 is blocked or DNS doesn't
-resolve it, Negotiate falls back to NTLM
-
-270
-00:18:06.860 --> 00:18:12.430
-where a trust lets the server validate
-the account, and fails where it doesn't.
-
-271
-00:18:12.430 --> 00:18:15.605
-Confirm with klist before
-changing firewall rules.
-
-272
-00:18:15.605 --> 00:18:19.394
-Cloud Kerberos trust isn't a
-fix, because its partial ticket
-
-273
-00:18:19.394 --> 00:18:23.105
-is still exchanged with an
-on-premises domain controller.
-
-274
-00:18:23.105 --> 00:18:25.605
-Pattern three, linked-server passthrough.
-
-275
-00:18:25.605 --> 00:18:30.344
-Presenting the caller's identity to
-a second instance is a double hop,
-
-276
-00:18:30.344 --> 00:18:35.167
-and NTLM can't make it; the symptom is
-a failed login for anonymous logon.
-
-277
-00:18:35.167 --> 00:18:41.101
-Move each definition to a mapped login,
-an Entra identity on 2022 and later,
-
-278
-00:18:41.101 --> 00:18:46.256
-a managed identity on 2025, or
-Kerberos constrained delegation.
-
-279
-00:18:46.256 --> 00:18:49.180
-Pattern four, clients
-with no domain ticket.
-
-280
-00:18:49.180 --> 00:18:54.760
-An application on an unjoined host still
-using Integrated Security falls back
-
-281
-00:18:54.760 --> 00:18:59.918
-to NTLM or fails, so its connection
-string moves to managed identity first.
-
-282
-00:18:59.918 --> 00:19:03.789
-Connections on the instance's
-own host always use NTLM,
-
-283
-00:19:03.789 --> 00:19:07.143
-and legacy providers over
-named pipes force it.
-
-284
-00:19:07.143 --> 00:19:13.250
+its Entra replacement is proven.
+
+101
+00:06:30.108 --> 00:06:32.445
+The parallel run has three steps.
+
+102
+00:06:32.445 --> 00:06:37.262
+Create the Entra login, after confirming
+the person or group really maps to it,
+
+103
+00:06:37.262 --> 00:06:39.670
+which is the most labor-intensive part.
+
+104
+00:06:39.670 --> 00:06:41.833
+Validate it with the real credential.
+
+105
+00:06:41.833 --> 00:06:46.171
+Then disable the old login, don't
+drop it, and watch for thirty days.
+
+106
+00:06:46.171 --> 00:06:51.745
+And watching means evidence, not silence:
+only auditing shows what's actually used.
+
+107
+00:06:51.745 --> 00:06:56.620
+Because the old login is only disabled,
+a wrong mapping locks no one out.
+
+108
+00:06:56.620 --> 00:07:01.846
+Around that pattern sit five decisions, on
+the slide: consolidation gates migration,
+
+109
+00:07:01.846 --> 00:07:05.802
+the parallel run is required,
+SQL Authentication is eliminated,
+
+110
+00:07:05.802 --> 00:07:09.610
+older and clustered instances
+get a path or a dated exception,
+
+111
+00:07:09.610 --> 00:07:13.190
+and the per-instance record
+is how you prove it's done.
+
+112
+00:07:13.940 --> 00:07:19.058
+Module 3 finishes the strategy: the four
+connection patterns that generate NTLM,
+
+113
+00:07:19.058 --> 00:07:24.023
+the three phases that remove it, how
+applications upstream of the database are
+
+114
+00:07:24.023 --> 00:07:29.430
+classified, and the closure condition,
+which has to hold at once and keep holding.
+
+115
+00:07:30.180 --> 00:07:35.105
+NTLM is a protocol, not a setting,
+so no single switch removes it.
+
+116
+00:07:35.105 --> 00:07:39.730
+You have to name every connection pattern
+that produces it, and the book finds four.
+
+117
+00:07:39.730 --> 00:07:42.634
+The most common is a missing or wrong SPN:
+
+118
+00:07:42.634 --> 00:07:46.505
+the client can't get a Kerberos
+ticket, so it falls back.
+
+119
+00:07:46.505 --> 00:07:48.379
+Second, cross-site connections,
+
+120
+00:07:48.379 --> 00:07:51.768
+where the client can't reach
+the right domain controller.
+
+121
+00:07:51.768 --> 00:07:54.655
+Check with klist before
+you touch firewall rules.
+
+122
+00:07:54.655 --> 00:07:59.425
+Third, linked-server passthrough,
+which is a double hop NTLM can't make,
+
+123
+00:07:59.425 --> 00:08:04.530
+so each definition moves to a mapped
+login or an Entra or managed identity.
+
+124
+00:08:04.530 --> 00:08:09.478
+Fourth, clients with no domain ticket,
+like an application on an unjoined host,
+
+125
+00:08:09.478 --> 00:08:12.030
+which moves to a managed identity first.
+
+126
+00:08:12.030 --> 00:08:18.140
 And NTLM version 1 found anywhere is a
 critical finding, not a migration item.
 
-285
-00:19:14.000 --> 00:19:17.850
-The program's three phases
-apply to SQL Server unchanged.
+127
+00:08:18.890 --> 00:08:21.932
+The program removes NTLM in three phases,
 
-286
-00:19:17.850 --> 00:19:19.668
+128
+00:08:21.932 --> 00:08:25.153
+and it's worth knowing
+why the order matters.
+
+129
+00:08:25.153 --> 00:08:29.655
 After the April 2027 block,
+any connection that needs NTLM
 
-287
-00:19:19.668 --> 00:19:24.625
-any connection that needs NTLM fails
-in the Windows security subsystem,
+130
+00:08:29.655 --> 00:08:33.877
+fails in Windows itself, before
+the engine ever sees it.
 
-288
-00:19:24.625 --> 00:19:30.325
-where the Local Security Authority enforces
-the policy, so the engine never sees it.
+131
+00:08:33.877 --> 00:08:38.390
+So every pattern has to be fixed
+before the last phase, not after.
 
-289
-00:19:30.325 --> 00:19:34.500
-Every pattern has to be resolved
-before Phase C, not after.
+132
+00:08:38.390 --> 00:08:40.866
+Phase A discovers, using the audit and the
 
-290
-00:19:34.500 --> 00:19:35.875
-Phase A discovers.
+133
+00:08:40.866 --> 00:08:43.415
+Windows logs to show what really happened.
 
-291
-00:19:35.875 --> 00:19:39.719
-The authentication audit
-is the primary instrument,
+134
+00:08:43.415 --> 00:08:46.603
+Phase B restricts, and
+here precision matters.
 
-292
-00:19:39.719 --> 00:19:43.563
-and Windows logging records
-what actually happened:
+135
+00:08:46.603 --> 00:08:51.036
+The first setting blocks only the
+oldest versions, not NTLM as a whole,
 
-293
-00:19:43.563 --> 00:19:49.154
-events 4624 and 4625 with logon type 3
-and the NTLM package on SQL Server hosts;
+136
+00:08:51.036 --> 00:08:56.014
+and the deny settings for version 2 have
+no exception list for the server role.
 
-294
-00:19:49.154 --> 00:19:55.095
-the auth scheme column for per-connection
-proof; the Restrict NTLM audit policies,
+137
+00:08:56.014 --> 00:08:57.628
+Then comes the pattern work.
 
-295
-00:19:55.095 --> 00:19:57.890
-which log what a later deny would block,
+138
+00:08:57.628 --> 00:09:00.266
+Phase C blocks NTLM on every host,
 
-296
-00:19:57.890 --> 00:20:01.996
-with event 8004 on domain
-controllers naming the server;
+139
+00:09:00.266 --> 00:09:04.566
+which is safe only after
+login migration is complete.
 
-297
-00:20:01.996 --> 00:20:07.675
-and enhanced NTLM logging, which says who
-used NTLM and why Kerberos wasn't used.
+140
+00:09:04.566 --> 00:09:09.880
+The book leaves one decision open: whether
+the date holds for the older long tail.
 
-298
-00:20:07.675 --> 00:20:09.237
-Phase B restricts.
+141
+00:09:10.630 --> 00:09:13.268
+The database is only half of the path.
 
-299
-00:20:09.237 --> 00:20:13.088
-First, the LAN Manager
-authentication level set to five.
-
-300
-00:20:13.088 --> 00:20:19.974
-Be precise: domain controllers then refuse
-LM and version 1 but still accept version
-
-301
-00:20:19.974 --> 00:20:22.926
-2, so level five is the version-1 block,
-
-302
-00:20:22.926 --> 00:20:27.451
-targeted for the third quarter
-of 2026, not an NTLM block.
-
-303
-00:20:27.451 --> 00:20:33.177
-Microsoft's October 2026 update is a
-different control again; it blocks only NTLM
-
-304
-00:20:33.177 --> 00:20:39.075
-version 1 derived single sign-on credentials,
-on devices without Credential Guard.
-
-305
-00:20:39.075 --> 00:20:43.111
-Then the pattern work: SPNs,
-domain-controller reachability,
-
-306
-00:20:43.111 --> 00:20:45.775
-linked servers and connection strings.
-
-307
-00:20:45.775 --> 00:20:49.908
-Version 2 is restricted with
-the Restrict NTLM deny settings,
-
-308
-00:20:49.908 --> 00:20:55.500
-whose exceptions are lists of server names
-on clients and domain controllers only.
-
-309
-00:20:55.500 --> 00:20:58.012
-There's no list for the server role,
-
-310
-00:20:58.012 --> 00:21:03.125
-so an instance that must keep accepting
-NTLM can't deny incoming NTLM.
-
-311
-00:21:03.125 --> 00:21:08.687
-Phase C eliminates: Restrict
-NTLM set to deny on every host.
-
-312
-00:21:08.687 --> 00:21:12.145
-It's safe only after login
-migration is complete,
-
-313
-00:21:12.145 --> 00:21:16.987
-and an instance on Entra logins is
-immune, because it isn't using NTLM.
-
-314
-00:21:16.987 --> 00:21:19.499
-The book leaves one decision open:
-
-315
-00:21:19.499 --> 00:21:23.440
-whether the date holds for
-the pre-2022 long tail.
-
-316
-00:21:24.190 --> 00:21:27.740
-The database is only half
-of the authentication path.
-
-317
-00:21:27.740 --> 00:21:31.597
-An application that moved its
+142
+00:09:13.268 --> 00:09:16.894
+An application that moved
 user sign-in to Entra ID but
 
-318
-00:21:31.597 --> 00:21:35.453
+143
+00:09:16.894 --> 00:09:20.768
 still reaches SQL Server with
 a SQL login hasn't finished.
 
-319
-00:21:35.453 --> 00:21:38.731
-The chain runs from user to
-application to database,
+144
+00:09:20.768 --> 00:09:24.770
+Both legs, user to application
+and application to database,
 
-320
-00:21:38.731 --> 00:21:41.552
-and both legs have to
-leave Active Directory.
+145
+00:09:24.770 --> 00:09:26.893
+have to leave Active Directory.
 
-321
-00:21:41.552 --> 00:21:46.996
-The program's LDAP-dependent-application
-plan sorts applications into four classes,
+146
+00:09:26.893 --> 00:09:29.854
+For the user leg, the
+program sorts applications
 
-322
-00:21:46.996 --> 00:21:51.153
-in strict preference order; the
-numbers are identifiers, not ranks.
+147
+00:09:29.854 --> 00:09:32.667
+into four classes in
+strict preference order.
 
-323
-00:21:51.153 --> 00:21:56.417
-Class 3, OpenID Connect, is the
-destination: Entra ID issues the tokens,
+148
+00:09:32.667 --> 00:09:36.068
+OpenID Connect is the
+destination; SAML is next;
 
-324
-00:21:56.417 --> 00:21:59.096
-there's no LDAP bind and no AD query,
+149
+00:09:36.068 --> 00:09:41.425
+Application Proxy fronts an application
+that can't change; and Entra Domain
 
-325
-00:21:59.096 --> 00:22:04.177
-and the application reaches SQL
-Server with its managed identity.
+150
+00:09:41.425 --> 00:09:46.867
+Services is the last resort, which still
+uses NTLM and needs a dated exception.
 
-326
-00:22:04.177 --> 00:22:09.637
-Class 2, SAML, removes the LDAP
-dependency but ranks below OIDC,
+151
+00:09:46.867 --> 00:09:51.447
+The database leg is a second axis,
+set by evidence: can the driver and
 
-327
-00:22:09.637 --> 00:22:14.478
-because Microsoft recommends
-OIDC for new development.
+152
+00:09:51.447 --> 00:09:55.943
+the vendor support Entra, and is it
+a config change or a code change?
 
-328
-00:22:14.478 --> 00:22:18.913
-Class 1, Application Proxy, fronts
-an application that can't change;
+153
+00:09:55.943 --> 00:10:00.510
+Together they tell you what moves now
+and what gets scheduled or excepted.
 
-329
-00:22:18.913 --> 00:22:23.108
-Entra preauthenticates users,
-so Conditional Access applies,
-
-330
-00:22:23.108 --> 00:22:27.302
-but the application's own AD
-dependency stays behind the proxy.
-
-331
-00:22:27.302 --> 00:22:31.547
-Class 4, Entra Domain
-Services, is the last resort:
-
-332
-00:22:31.547 --> 00:22:35.578
-a managed domain with
-LDAP, Kerberos and NTLM.
-
-333
-00:22:35.578 --> 00:22:41.138
-Its NTLM is still NTLM, and an instance
-serving a Class 4 application can't
-
-334
-00:22:41.138 --> 00:22:46.791
-reach the Entra-exclusive posture, so
-it carries a sunset-dated exception.
-
-335
-00:22:46.791 --> 00:22:49.728
-The class describes only the user axis.
-
-336
-00:22:49.728 --> 00:22:53.201
-The database connection is a
-second axis, set by evidence:
-
-337
-00:22:53.201 --> 00:22:56.157
-does the deployed driver
-support the Entra mode,
-
-338
-00:22:56.157 --> 00:23:00.738
-can the application use a managed
-identity or must its code refresh tokens,
-
-339
-00:23:00.738 --> 00:23:04.950
-does pooling survive per-identity
-tokens, does the vendor support it,
-
-340
-00:23:04.950 --> 00:23:08.053
-and does the platform have
-an Entra-capable driver.
-
-341
-00:23:08.053 --> 00:23:13.679
-That places each application in
-column A, configuration only;
-
-342
-00:23:13.679 --> 00:23:18.202
-B, code change; C, vendor-dependent;
-or D, no Entra path.
-
-343
-00:23:18.202 --> 00:23:22.305
-OIDC or SAML in column A
-moves now; B is scheduled;
-
-344
-00:23:22.305 --> 00:23:27.127
-C gets a dated exception; D
-means exception or retirement.
-
-345
-00:23:27.127 --> 00:23:31.135
-The application audit supplies the
-user axis, and it has to be joined
-
-346
-00:23:31.135 --> 00:23:35.580
-to the authentication audit before
-an instance shows its full chain.
-
-347
-00:23:36.330 --> 00:23:41.180
+154
+00:10:01.260 --> 00:10:05.644
 A transformation that reaches its end
-state and stops monitoring will regress.
+state and stops watching will slide back,
 
-348
-00:23:41.180 --> 00:23:46.093
-Any administrator with permission can
-switch an instance back to mixed mode or
+155
+00:10:05.644 --> 00:10:10.360
+because any administrator with permission
+can switch an instance back to mixed mode.
 
-349
-00:23:46.093 --> 00:23:50.188
-create a new login, so closure is a
-posture, kept by continuous audit,
+156
+00:10:10.360 --> 00:10:12.898
+So closure is a posture, not a date.
 
-350
-00:23:50.188 --> 00:23:54.580
-drift detection and governance that
-treats regression as a violation.
+157
+00:10:12.898 --> 00:10:17.784
+It holds when five conditions are true
+at once on every production instance:
 
-351
-00:23:54.580 --> 00:23:57.615
-The transformation is
-closed when five conditions
+158
+00:10:17.784 --> 00:10:22.127
+no usable Windows logins apart from
+a documented break-glass group,
 
-352
-00:23:57.615 --> 00:24:00.580
-hold at the same time on
-every production instance.
+159
+00:10:22.127 --> 00:10:24.221
+SQL Authentication eliminated,
 
-353
-00:24:00.580 --> 00:24:05.300
-One: no usable Windows-backed
-principal, meaning zero enabled user or
+160
+00:10:24.221 --> 00:10:29.185
+Entra authentication observed working
+and nothing else, the engine holding
 
-354
-00:24:05.300 --> 00:24:10.268
-group logins with CONNECT SQL, apart
-from a documented break-glass group.
+161
+00:10:29.185 --> 00:10:33.761
+a cloud identity, and every human
+using MFA through Conditional Access.
 
-355
-00:24:10.268 --> 00:24:16.732
-Two: SQL Authentication eliminated: no
-SQL logins outside the exception registry,
+162
+00:10:33.761 --> 00:10:36.989
+No single setting does this,
+which is why the book names
 
-356
-00:24:16.732 --> 00:24:18.823
-SA disabled, LoginMode one,
-
-357
-00:24:18.823 --> 00:24:23.767
-and on SQL Server 2025 Is External
-Authentication Only as well.
-
-358
-00:24:23.767 --> 00:24:27.480
-Disabling SQL authentication
-doesn't remove logins
-
-359
-00:24:27.480 --> 00:24:30.855
-or end live sessions, so
-the census still matters.
-
-360
-00:24:30.855 --> 00:24:35.376
-Three: Entra authentication
-observed working, and nothing else:
-
-361
-00:24:35.376 --> 00:24:37.594
-every usable login is type E or X,
-
-362
-00:24:37.594 --> 00:24:42.287
-the sign-in logs and SQL Server
-Audit show the expected principals,
-
-363
-00:24:42.287 --> 00:24:47.917
-and the auth scheme column shows no NTLM
-or Kerberos over the validation period.
-
-364
-00:24:47.917 --> 00:24:52.050
-Four: the engine has a cloud identity,
-with the Arc agent connected,
-
-365
-00:24:52.050 --> 00:24:56.028
-the extension deployed and
-Entra authentication configured;
-
-366
-00:24:56.028 --> 00:24:59.318
-a failover cluster instance
-can't meet this as built.
-
-367
-00:24:59.318 --> 00:25:04.505
-Five: every human authenticates with
-MFA through Conditional Access.
-
-368
-00:25:04.505 --> 00:25:06.267
-No single setting does this.
-
-369
-00:25:06.267 --> 00:25:09.557
-SQL Server can't turn
-Windows Authentication off,
-
-370
-00:25:09.557 --> 00:25:13.329
-so LoginMode one proves only
-that SQL logins are refused.
-
-371
-00:25:13.329 --> 00:25:17.855
-The book calls the combined state the
+163
+00:10:36.989 --> 00:10:40.648
+the combined state the
 Entra-exclusive operational posture.
 
-372
-00:25:17.855 --> 00:25:20.643
-Two details govern how evidence is read.
+164
+00:10:40.648 --> 00:10:45.861
+And drift, like a new SQL login or an
+offline Arc agent, is a violation.
 
-373
-00:25:20.643 --> 00:25:25.601
-Every SQL resource shares one token
-audience, so a sign-in log can't say which
-
-374
-00:25:25.601 --> 00:25:30.880
-instance a principal reached; the per-instance
-proof is the instance's own audit.
-
-375
-00:25:30.880 --> 00:25:36.855
-And local connections always report
-NTLM, so separate them from remote ones.
-
-376
-00:25:36.855 --> 00:25:41.183
-Drift is a violation: LoginMode
-moving from one to two,
-
-377
-00:25:41.183 --> 00:25:45.905
-a new SQL, user or group login,
-or the Arc agent going offline.
-
-378
-00:25:45.905 --> 00:25:51.650
-And the final months before April 2027
+165
+00:10:45.861 --> 00:10:51.430
+The final months before April 2027
 are for validation, not migration.
 
-379
-00:25:52.400 --> 00:25:55.125
-Part 2: the runbooks for DBAs.
+166
+00:10:52.180 --> 00:10:54.055
+Part 2 is the runbooks.
 
-380
-00:25:55.125 --> 00:26:00.740
-Module 4 covers the first five: prerequisites,
-discovery and the consolidation gate,
+167
+00:10:54.055 --> 00:10:59.330
+Module 4 covers the first five, from
+prerequisites to login migration.
 
-381
-00:26:00.740 --> 00:26:04.430
-the authentication audit,
-Arc and the managed identity,
+168
+00:10:59.330 --> 00:11:03.406
+One rule runs through all ten:
+anything that changes state plans
 
-382
-00:26:04.430 --> 00:26:07.238
-and login migration with its parallel run.
+169
+00:11:03.406 --> 00:11:07.867
+first or writes a reviewable script,
+then goes through change control.
 
-383
-00:26:07.238 --> 00:26:10.516
-For each, the steps, the
-gate that has to hold before
+170
+00:11:07.867 --> 00:11:11.560
+The commands are illustrative,
+so run them in test first.
 
-384
-00:26:10.516 --> 00:26:13.875
-the next runbook starts,
-and the evidence it leaves.
+171
+00:11:12.310 --> 00:11:15.585
+Runbook R01 changes nothing in production.
 
-385
-00:26:13.875 --> 00:26:18.817
-One rule runs through all ten: read-only
-and derivation functions run directly,
-
-386
-00:26:18.817 --> 00:26:22.542
-and anything that changes state
-plans by default or writes
-
-387
-00:26:22.542 --> 00:26:25.963
-a reviewable script, then
-goes through change control.
-
-388
-00:26:25.963 --> 00:26:30.529
-The commands are illustrative and
-untested against a production estate,
-
-389
-00:26:30.529 --> 00:26:33.350
-so each runs first in a test environment.
-
-390
-00:26:34.100 --> 00:26:38.688
-Runbook R01 provisions nothing
-and changes no production state.
-
-391
-00:26:38.688 --> 00:26:40.701
+172
+00:11:15.585 --> 00:11:17.598
 It sets up what the other nine assume.
 
-392
-00:26:40.701 --> 00:26:42.537
-Step one, the toolchain.
+173
+00:11:17.598 --> 00:11:19.853
+First, the toolchain: PowerShell 7,
 
-393
-00:26:42.537 --> 00:26:45.476
-PowerShell 7 or later is the runtime.
+174
+00:11:19.853 --> 00:11:25.491
+a plain Python interpreter for computing
+integrity seals, and the program's modules,
 
-394
-00:26:45.476 --> 00:26:50.369
-The one external dependency is a Python
-interpreter with only the standard library,
-
-395
-00:26:50.369 --> 00:26:54.075
-which the modules call to compute
-the canonical integrity seal.
-
-396
-00:26:54.075 --> 00:26:59.576
-The discovery Spec scripts are plain
-PowerShell, and three modules are imported from
-
-397
-00:26:59.576 --> 00:27:05.000
-the repository root: SQL Server migration,
-identity assessment and plan generators.
-
-398
-00:27:05.000 --> 00:27:09.613
-Live Azure and Graph operations
-need the Arc agent's command-line
-
-399
-00:27:09.613 --> 00:27:14.312
-tool and the Azure CLI, and run only
+175
+00:11:25.491 --> 00:11:29.760
+with live Azure and Graph calls
 behind an explicit opt-in switch.
 
-400
-00:27:14.312 --> 00:27:16.438
-Step two, the evidence model.
+176
+00:11:29.760 --> 00:11:31.722
+Second, the evidence model.
 
-401
-00:27:16.438 --> 00:27:21.598
-Every derivation and validation function
-emits a provenance-sealed envelope:
+177
+00:11:31.722 --> 00:11:36.628
+Every function emits a sealed envelope
+with its records, counts and provenance,
 
-402
-00:27:21.598 --> 00:27:25.507
-the schema and artifact type,
-the records and summary counts,
-
-403
-00:27:25.507 --> 00:27:30.276
-and provenance with the module, version,
-a UTC timestamp and a content hash.
-
-404
-00:27:30.276 --> 00:27:34.988
-The seal leaves out the timestamp, so
+178
+00:11:36.628 --> 00:11:41.609
+and the seal leaves out the timestamp, so
 identical inputs give an identical hash.
 
-405
-00:27:34.988 --> 00:27:38.807
-Artifacts are reproducible,
-and a broken or unattributed
+179
+00:11:41.609 --> 00:11:46.448
+That makes every artifact reproducible,
+and runs comparable over time.
 
-406
-00:27:38.807 --> 00:27:42.388
-envelope is a provenance-drift
-finding by definition.
+180
+00:11:46.448 --> 00:11:50.237
+Third, the safety model:
+read-only functions run directly,
 
-407
-00:27:42.388 --> 00:27:46.732
-Write each step's envelope to a
-dated folder under version control;
+181
+00:11:50.237 --> 00:11:55.073
+and anything that changes state plans
+by default or only writes a script.
 
-408
-00:27:46.732 --> 00:27:49.813
-that's what makes Runbook
-R09's runs comparable.
+182
+00:11:55.073 --> 00:11:58.148
+Fourth, every function
+accepts captured snapshots,
 
-409
-00:27:49.813 --> 00:27:51.951
-Step three, the safety model.
-
-410
-00:27:51.951 --> 00:27:55.262
-Read-only and derivation
-functions run directly.
-
-411
-00:27:55.262 --> 00:28:00.335
-State-changing functions either plan by
-default and execute only with an execute
-
-412
-00:28:00.335 --> 00:28:04.437
-switch and confirmation, or generate
-a script and execute nothing;
-
-413
-00:28:04.437 --> 00:28:08.763
-the login and group script generators
-have no server parameter at all.
-
-414
-00:28:08.763 --> 00:28:10.376
-No secrets are embedded.
-
-415
-00:28:10.376 --> 00:28:14.806
-A GCC-Moderate tenant is an Entra
-tenant in the commercial cloud,
-
-416
-00:28:14.806 --> 00:28:17.900
-so its Arc resources
-use the AzureCloud name.
-
-417
-00:28:17.900 --> 00:28:22.470
-Step four, offline snapshots: every
-function accepts captured input,
-
-418
-00:28:22.470 --> 00:28:26.238
-so the chain can be tested
+183
+00:11:58.148 --> 00:12:02.170
+so you can test the whole chain
 without touching a live estate.
 
-419
-00:28:26.238 --> 00:28:29.424
-The run order is on the
-right, and nothing touches
-
-420
-00:28:29.424 --> 00:28:33.680
-production until R02 has defined
-the retain and target set.
-
-421
-00:28:34.430 --> 00:28:40.455
-Runbook R02 is Phase 0: count everything
+184
+00:12:02.920 --> 00:12:07.720
+Runbook R02 is count everything
 first, decide what survives second.
 
-422
-00:28:40.455 --> 00:28:43.937
-Discovery is read-only; the
-consolidation it leads to
+185
+00:12:07.720 --> 00:12:12.144
+The program's scripts find instances
+from their SPNs and a target list,
 
-423
-00:28:43.937 --> 00:28:47.418
-is review-required and
-belongs to the migration plan.
+186
+00:12:12.144 --> 00:12:14.509
+but they miss anything without an SPN,
 
-424
-00:28:47.418 --> 00:28:50.254
-The inventory starts from
-the program's scripts.
-
-425
-00:28:50.254 --> 00:28:53.704
-The D1.8 audit script, run
-in discovery-only form,
-
-426
-00:28:53.704 --> 00:28:59.629
-finds instances from their SQL Server SPNs
-and an explicit target list and reads
-
-427
-00:28:59.629 --> 00:29:03.344
-each host's services over
-CIM; without a connection,
-
-428
-00:29:03.344 --> 00:29:06.793
-version and authentication
-mode read Unknown.
-
-429
-00:29:06.793 --> 00:29:13.626
-The D1.5 SPN inventory gives the domain's
-SPN trail, with duplicates and orphans:
-
-430
-00:29:13.626 --> 00:29:19.093
-SPNs on disabled objects, or on
-objects with no logon in 180 days.
-
-431
-00:29:19.093 --> 00:29:21.286
-Those scripts miss what has no SPN,
-
-432
-00:29:21.286 --> 00:29:25.988
+187
+00:12:14.509 --> 00:12:19.620
 like an Express instance an installer
-dropped on an application server,
+quietly dropped on an application server.
 
-433
-00:29:25.988 --> 00:29:30.063
-so cast wider with Find-DbaInstance,
-a forest-wide SetSPN query,
+188
+00:12:19.620 --> 00:12:22.908
+So cast a wider net with
+the other discovery tools.
 
-434
-00:29:30.063 --> 00:29:33.354
-and Azure Migrate or the
-Arc migration assessment.
+189
+00:12:22.908 --> 00:12:27.672
+The inventory function then merges
+every source, collapses duplicates,
 
-435
-00:29:33.354 --> 00:29:37.205
-Then the program's estate-inventory
-function fuses the sources.
+190
+00:12:27.672 --> 00:12:32.038
+records which tool found each
+instance, and makes a first-pass call:
 
-436
-00:29:37.205 --> 00:29:42.667
-It keys every instance on host and
-instance name, so duplicates collapse,
+191
+00:12:32.038 --> 00:12:37.358
+long unused means retire, older engines
+consolidate, and newer ones are retained.
 
-437
-00:29:42.667 --> 00:29:48.767
-records which instruments found each one,
-and applies a first pass on two signals:
+192
+00:12:37.358 --> 00:12:41.957
+Anything unclear lands in
+review, never silently in retain.
 
-438
-00:29:48.767 --> 00:29:52.136
-last access at or above
-400 days means retire,
+193
+00:12:41.957 --> 00:12:46.223
+One caution: usage statistics
+reset whenever the engine restarts,
 
-439
-00:29:52.136 --> 00:29:57.143
-a pre-2022 engine means consolidate,
-and 2022 or later means retain.
+194
+00:12:46.223 --> 00:12:48.395
+so read the start time beside them.
 
-440
-00:29:57.143 --> 00:30:02.168
-Anything without enough signal lands
-in review, never silently in retain.
+195
+00:12:48.395 --> 00:12:53.182
+Architects confirm or override each
+verdict, with the reason recorded.
 
-441
-00:30:02.168 --> 00:30:04.729
-The lenses come next, with one caution.
+196
+00:12:53.182 --> 00:12:56.910
+And warn security operations
+before network sweeps.
 
-442
-00:30:04.729 --> 00:30:08.397
-The index-usage DMV resets
-whenever the engine starts,
-
-443
-00:30:08.397 --> 00:30:13.205
-so it can't prove 400 days of disuse
-unless the instance has run that long.
-
-444
-00:30:13.205 --> 00:30:18.151
-Read the start time beside it, and take
-long-horizon evidence from login auditing,
-
-445
-00:30:18.151 --> 00:30:21.030
-backup history and the
-application portfolio.
-
-446
-00:30:21.030 --> 00:30:25.327
-For dependencies, read
-sys.servers and the linked logins,
-
-447
-00:30:25.327 --> 00:30:28.892
-plus the Agent, replication
-and SSIS footprint.
-
-448
-00:30:28.892 --> 00:30:34.368
-Finally the architects confirm or override
-each verdict, with the reason recorded.
-
-449
-00:30:34.368 --> 00:30:36.671
-The evidence is the sealed inventory,
-
-450
-00:30:36.671 --> 00:30:39.942
-with its classification
-counts and its denominator.
-
-451
-00:30:39.942 --> 00:30:43.035
-And schedule network sweeps
-with security operations,
-
-452
-00:30:43.035 --> 00:30:45.820
-because intrusion detection can flag them.
-
-453
-00:30:46.570 --> 00:30:49.858
+197
+00:12:57.660 --> 00:13:00.948
 Runbook R03 is the audit script itself.
 
-454
-00:30:49.858 --> 00:30:53.482
+198
+00:13:00.948 --> 00:13:04.572
 It changes nothing, so run
 it first and run it often.
 
-455
-00:30:53.482 --> 00:30:58.357
-The prerequisites are the ActiveDirectory
-module for the live SPN query and the
+199
+00:13:04.572 --> 00:13:07.839
+Watch one trap: an
+under-privileged audit account
 
-456
-00:30:58.357 --> 00:31:02.722
-orphaned-login check, remote CIM to
-each host, and SQL Server permissions
+200
+00:13:07.839 --> 00:13:10.786
+sees only part of the
+login list, with no error.
 
-457
-00:31:02.722 --> 00:31:07.596
-only for the deep audit, which connects
-with Windows integrated authentication.
-
-458
-00:31:07.596 --> 00:31:08.783
-Watch one trap.
-
-459
-00:31:08.783 --> 00:31:12.145
-Catalog views show only what
-the caller has permission on,
-
-460
-00:31:12.145 --> 00:31:16.769
-so an under-privileged audit account
-returns a partial login list with no error.
-
-461
-00:31:16.769 --> 00:31:19.726
-Grant the narrowest read
+201
+00:13:10.786 --> 00:13:13.880
+So grant the narrowest read
 that sees every login,
 
-462
-00:31:19.726 --> 00:31:22.682
-and confirm the count
+202
+00:13:13.880 --> 00:13:16.673
+and check the count
 against a known instance.
 
-463
-00:31:22.682 --> 00:31:27.953
-There are three passes, in order: discovery
-only, which opens no SQL connection;
+203
+00:13:16.673 --> 00:13:20.972
+It runs in three passes, from
+discovery only up to the deep audit,
 
-464
-00:31:27.953 --> 00:31:31.494
-then adding target servers
-for hosts without an SPN;
+204
+00:13:20.972 --> 00:13:24.197
+and produces a readiness
+verdict per instance,
 
-465
-00:31:31.494 --> 00:31:35.858
-then the deep audit with query
-instances and test connectivity.
+205
+00:13:24.197 --> 00:13:28.910
+flagging blockers like mixed mode,
+an enabled SA and orphaned logins.
 
-466
-00:31:35.858 --> 00:31:40.581
-The output is a JSON file per run,
-an instances CSV and a logins CSV,
-
-467
-00:31:40.581 --> 00:31:44.057
-and the script computes
-the readiness verdict.
-
-468
-00:31:44.057 --> 00:31:49.496
-Major version sixteen and later gets
-"enable Entra ID auth via Azure Arc".
-
-469
-00:31:49.496 --> 00:31:55.907
-2019 and earlier gets "upgrade to
-2022 plus Arc", which is Category 3.
-
-470
-00:31:55.907 --> 00:31:58.564
-The blockers it flags are mixed mode,
-
-471
-00:31:58.564 --> 00:32:02.195
-an enabled SA, orphaned
-logins and linked servers.
-
-472
-00:32:02.195 --> 00:32:05.085
-It doesn't detect failover
+206
+00:13:28.910 --> 00:13:31.520
+It doesn't spot failover
 cluster instances,
 
-473
-00:32:05.085 --> 00:32:09.420
-so flag those from the cluster
-inventory and treat them as Category 3.
+207
+00:13:31.520 --> 00:13:33.985
+so flag those from the cluster inventory.
 
-474
-00:32:09.420 --> 00:32:11.732
-Two input defects to work around.
+208
+00:13:33.985 --> 00:13:37.173
+The slide notes two input
+defects to work around.
 
-475
-00:32:11.732 --> 00:32:15.965
-The SPN-inventory input file
-doesn't match what D1.5 writes,
+209
+00:13:37.173 --> 00:13:39.659
+And the script degrades
+rather than crashing.
 
-476
-00:32:15.965 --> 00:32:21.696
-so passing it yields no instances and
-suppresses the live query; run without it.
-
-477
-00:32:21.696 --> 00:32:25.807
-And the service-account input expects
-a script that isn't published yet.
-
-478
-00:32:25.807 --> 00:32:34.107
-The run order for SQL Server is D1.5 and
-D1.7, then D1.8, then the owner matrix.
-
-479
-00:32:34.107 --> 00:32:36.893
-The script degrades rather than crashing:
-
-480
-00:32:36.893 --> 00:32:41.508
-a failed connection is recorded as
-Query Failed, a slow port as Timeout.
-
-481
-00:32:41.508 --> 00:32:44.172
+210
+00:13:39.659 --> 00:13:42.574
 Keep every run under version control,
 
-482
-00:32:44.172 --> 00:32:50.200
-because the audit JSON is the raw input
-to continuous monitoring in Runbook R09.
+211
+00:13:42.574 --> 00:13:46.510
+because it's the raw input
+to monitoring in R09.
 
-483
-00:32:50.950 --> 00:32:54.400
+212
+00:13:47.260 --> 00:13:50.710
 Runbook R04 gives the
 host its cloud identity.
 
-484
-00:32:54.400 --> 00:32:58.864
-Connecting a server to Arc creates
-a system-assigned managed identity
+213
+00:13:50.710 --> 00:13:54.517
+Connecting a server to Arc
+creates a managed identity with no
 
-485
-00:32:58.864 --> 00:33:03.025
-with no secret anyone manages, and
+214
+00:13:54.517 --> 00:13:58.473
+secret anyone has to manage, and
 without it there's no Entra login.
 
-486
-00:33:03.025 --> 00:33:09.113
-SQL Server 2025 uses that identity
-directly as its primary managed identity.
-
-487
-00:33:09.113 --> 00:33:13.882
-SQL Server 2022 authenticates with an
-app registration and a certificate
-
-488
-00:33:13.882 --> 00:33:18.499
-in Key Vault, and the machine identity
-is what downloads the certificate.
-
-489
-00:33:18.499 --> 00:33:20.712
+215
+00:13:58.473 --> 00:14:00.684
 The prerequisites carry the traps.
 
-490
-00:33:20.712 --> 00:33:24.387
-A GCC-Moderate tenant's Entra
-ID is in the commercial cloud,
+216
+00:14:00.684 --> 00:14:03.999
+In a GCC-Moderate tenant,
+the Arc resources live
 
-491
-00:33:24.387 --> 00:33:29.670
-so the Arc resources live in a commercial
-subscription in the same tenant, and Entra
+217
+00:14:03.999 --> 00:14:07.398
+in a commercial subscription
+in the same tenant.
 
-492
-00:33:29.670 --> 00:33:34.724
-authentication isn't available for SQL
-Server on Arc in US Government Virginia.
+218
+00:14:07.398 --> 00:14:11.966
+And the engine contacts Entra ID
+directly, not through the agent's proxy,
 
-493
-00:33:34.724 --> 00:33:37.881
-The instance can't be a
-failover cluster instance,
+219
+00:14:11.966 --> 00:14:16.998
+which is the one people miss: the agent
+shows Connected while Entra logins fail.
 
-494
-00:33:37.881 --> 00:33:42.729
-NT AUTHORITY SYSTEM must be able to
-connect or the extension can't provision,
+220
+00:14:16.998 --> 00:14:21.844
+Then four steps: enroll, validate
+the token, confirm the extension,
 
-495
-00:33:42.729 --> 00:33:45.500
-and clients must trust
-the TLS certificate.
+221
+00:14:21.844 --> 00:14:25.523
+and turn on Entra
+authentication, on a pilot first.
 
-496
-00:33:45.500 --> 00:33:48.837
-The agent and extension need outbound 443,
-
-497
-00:33:48.837 --> 00:33:54.175
-and the engine contacts Entra ID
-directly, without the agent's proxy.
-
-498
-00:33:54.175 --> 00:33:58.750
-That's the one to miss: the agent shows
-Connected while Entra logins fail.
-
-499
-00:33:58.750 --> 00:33:59.975
-Then four steps.
-
-500
-00:33:59.975 --> 00:34:03.853
-Enroll with a certificate-based
-onboarding service principal;
-
-501
-00:34:03.853 --> 00:34:07.950
-the SQL extension installs
-automatically unless a tag disables it.
-
-502
-00:34:07.950 --> 00:34:12.916
-Validate the token from the local
-identity endpoint, a two-call challenge:
-
-503
-00:34:12.916 --> 00:34:17.394
-the audience must be database.windows.net,
-the expiry in the future,
-
-504
-00:34:17.394 --> 00:34:20.325
-and the object ID the
-machine's principal ID.
-
-505
-00:34:20.325 --> 00:34:21.700
-Never log the token.
-
-506
-00:34:21.700 --> 00:34:24.075
-Confirm the extension shows Succeeded.
-
-507
-00:34:24.075 --> 00:34:27.092
-Then turn on Entra
-authentication, on a pilot first;
-
-508
-00:34:27.092 --> 00:34:30.899
-a Privileged Role Administrator
-grants the Graph permissions,
-
-509
-00:34:30.899 --> 00:34:34.563
-and setting the Entra admin
-creates the first sysadmin login.
-
-510
-00:34:34.563 --> 00:34:38.686
+222
+00:14:25.523 --> 00:14:29.410
 Two program functions need correcting
-before you execute with them:
+before you run them for real.
 
-511
-00:34:38.686 --> 00:34:43.461
-the onboarding wrapper adds a proxy flag
-the agent doesn't have and falls back to
+223
+00:14:29.410 --> 00:14:33.383
+And rollback has a catch:
+reconnecting creates a new identity,
 
-512
-00:34:43.461 --> 00:34:46.210
-interactive sign-in, and
-the token validator's
+224
+00:14:33.383 --> 00:14:36.160
+so permissions must be granted again.
 
-513
-00:34:46.210 --> 00:34:48.525
-live mode queries the Azure VM address.
-
-514
-00:34:48.525 --> 00:34:53.500
-Rollback runs in order: remove
-extensions, disconnect, uninstall.
-
-515
-00:34:53.500 --> 00:34:57.725
-Reconnecting creates a new identity,
-so permissions are granted again.
-
-516
-00:34:57.725 --> 00:35:03.100
-On SQL Server 2025, treat Entra
-authentication as one-way.
-
-517
-00:35:03.850 --> 00:35:07.707
+225
+00:14:36.910 --> 00:14:40.767
 Runbook R05 adds the Entra
 login beside the Windows one,
 
-518
-00:35:07.707 --> 00:35:11.900
+226
+00:14:40.767 --> 00:14:44.960
 watches both for thirty days,
 and disables rather than drops.
 
-519
-00:35:11.900 --> 00:35:16.212
-Every step that runs T-SQL against
-an instance is review-required.
-
-520
-00:35:16.212 --> 00:35:20.369
+227
+00:14:44.960 --> 00:14:49.247
 Don't start until the instance
 is on SQL Server 2022 or later,
 
-521
-00:35:20.369 --> 00:35:24.526
-Arc-connected with a validated
-token and an Entra admin set;
+228
+00:14:49.247 --> 00:14:52.747
+connected to Arc, and the
+estate is consolidated.
 
-522
-00:35:24.526 --> 00:35:29.277
-until the estate is consolidated;
-until you have the R03 logins file;
+229
+00:14:52.747 --> 00:14:57.984
+The one piece of real judgment is mapping
+each Windows login to an Entra principal.
 
-523
-00:35:29.277 --> 00:35:32.162
-and until clients trust the certificate.
+230
+00:14:57.984 --> 00:15:01.642
+The program builds that from
+the identity reconciliation,
 
-524
-00:35:32.162 --> 00:35:35.951
-Step one generates the
-statements, dry run first.
+231
+00:15:01.642 --> 00:15:05.673
+not a spreadsheet, prefers groups,
+and flags anything unresolved.
 
-525
-00:35:35.951 --> 00:35:38.901
-The mapping from each
-Windows login to an Entra
+232
+00:15:05.673 --> 00:15:09.360
+Then create matching database
+users with the same permissions.
 
-526
-00:35:38.901 --> 00:35:41.625
-principal is the one
-piece of real judgment.
+233
+00:15:09.360 --> 00:15:13.175
+During the thirty days, capture
+logins with SQL Server Audit,
 
-527
-00:35:41.625 --> 00:35:46.409
-The program's mapping function builds
-it from the identity reconciliation,
-
-528
-00:35:46.409 --> 00:35:50.131
-not a spreadsheet: it maps only
-cleanly matched principals,
-
-529
-00:35:50.131 --> 00:35:53.700
-prefers an Entra group, and
-flags every unresolved login.
-
-530
-00:35:53.700 --> 00:35:57.887
-The script generator then writes
-an idempotent CREATE LOGIN file,
-
-531
-00:35:57.887 --> 00:36:03.063
-with unresolved entries as commented-out
-to-do lines, and never opens a connection.
-
-532
-00:36:03.063 --> 00:36:07.688
-Step two creates an Entra database
-user beside each Windows user,
-
-533
-00:36:07.688 --> 00:36:13.513
-with CREATE USER FROM LOGIN and the same
-roles, permissions, schemas and ownership.
-
-534
-00:36:13.513 --> 00:36:17.964
-Don't convert with ALTER USER WITH
-LOGIN; on SQL Server it can't change a
-
-535
-00:36:17.964 --> 00:36:22.650
-user's type, and the exception applies
-only to Azure SQL Managed Instance.
-
-536
-00:36:22.650 --> 00:36:25.625
-Step three is the thirty-day parallel run.
-
-537
-00:36:25.625 --> 00:36:29.850
-Capture successful logins for the
-whole window with SQL Server Audit,
-
-538
-00:36:29.850 --> 00:36:33.200
+234
+00:15:13.175 --> 00:15:16.685
 because a point-in-time query
 misses short connections.
 
-539
-00:36:33.200 --> 00:36:38.851
-The exit criteria: every application
-and job also appears on its Entra login,
+235
+00:15:16.685 --> 00:15:20.948
+You exit when every application
+also shows up on its Entra login.
 
-540
-00:36:38.851 --> 00:36:43.875
-no remote NTLM remains, and nothing
-arrives only on the legacy login.
+236
+00:15:20.948 --> 00:15:25.722
+Cutover is disabling the old login,
+so rollback is just re-enabling it.
 
-541
-00:36:43.875 --> 00:36:47.074
-Two cautions: local
-connections always report NTLM,
+237
+00:15:25.722 --> 00:15:28.110
+And close an enabled SA here.
 
-542
-00:36:47.074 --> 00:36:52.207
-and Microsoft doesn't document what an
-Entra connection reports in the auth scheme
-
-543
-00:36:52.207 --> 00:36:54.216
-column, so confirm it on the pilot,
-
-544
-00:36:54.216 --> 00:36:57.787
-and pre-filter local sessions
-before the readiness check.
-
-545
-00:36:57.787 --> 00:37:01.698
-Step four cuts over by disabling,
-including any group logins
-
-546
-00:37:01.698 --> 00:37:05.687
-a principal also arrives through,
-and rollback is re-enabling.
-
-547
-00:37:05.687 --> 00:37:11.880
-And close an enabled SA here: confirm another
-sysadmin can sign in, then disable it.
-
-548
-00:37:12.630 --> 00:37:17.875
+238
+00:15:28.860 --> 00:15:34.029
 Module 5 covers the last five runbooks:
-NTLM detection and remediation; groups,
+NTLM, groups and the Conditional
 
-549
-00:37:17.875 --> 00:37:21.990
-administrative units and the
-Conditional Access perimeter;
+239
+00:15:34.029 --> 00:15:39.460
+Access perimeter, applications,
+continuous monitoring, and certificates.
 
-550
-00:37:21.990 --> 00:37:25.137
-the application chain
-and connection strings;
+240
+00:15:39.460 --> 00:15:44.710
+Detection stays read-only, and every change
+is dry-run first through change control.
 
-551
-00:37:25.137 --> 00:37:30.705
-continuous monitoring and the closure
-record; and certificate discovery for AD CS.
+241
+00:15:44.710 --> 00:15:49.100
+By the end, the posture is
+provable on every scheduled run.
 
-552
-00:37:30.705 --> 00:37:32.005
-The pattern holds.
+242
+00:15:49.850 --> 00:15:52.604
+Runbook R06 is detect, then remediate,
 
-553
-00:37:32.005 --> 00:37:37.209
-Detection and inventory are read-only
-and script-backed, and every remediation,
+243
+00:15:52.604 --> 00:15:58.200
+and most of what you find is a missing or
+misplaced name, not a protocol choice.
 
-554
-00:37:37.209 --> 00:37:41.073
-provisioning or configuration
-change is review-required,
+244
+00:15:58.200 --> 00:16:01.956
+In the program's experience,
+a missing SPN is the most
 
-555
-00:37:41.073 --> 00:37:43.517
-dry run first, through change control.
+245
+00:16:01.956 --> 00:16:06.062
+common cause of silent NTLM,
+and a duplicate is the second.
 
-556
-00:37:43.517 --> 00:37:47.126
-By the end of this module the
-posture isn't just reached;
+246
+00:16:06.062 --> 00:16:11.562
+Three read-only audits map the SPNs, the
+collisions and the delegation settings.
 
-557
-00:37:47.126 --> 00:37:49.890
-it's provable on every scheduled run.
+247
+00:16:11.562 --> 00:16:16.587
+Remediation changes production, so the
+tools only produce reviewable plans.
 
-558
-00:37:50.640 --> 00:37:54.957
-Runbook R06 is detect, then
-remediate, and most of what you find
+248
+00:16:16.587 --> 00:16:21.299
+Register missing SPNs, leave each
+one with exactly one enabled owner,
 
-559
-00:37:54.957 --> 00:37:59.190
-is a missing or misplaced name
-rather than a protocol choice.
+249
+00:16:21.299 --> 00:16:24.357
+and move linked servers
+to Entra or Kerberos,
 
-560
-00:37:59.190 --> 00:38:01.777
-Detection is three read-only audits.
+250
+00:16:24.357 --> 00:16:28.076
+with a stored password only
+as a documented exception.
 
-561
-00:38:01.777 --> 00:38:06.853
-The D1.5 SPN inventory
-maps every SQL Server SPN.
+251
+00:16:28.076 --> 00:16:31.630
+The Group Policy steps tighten in stages,
 
-562
-00:38:06.853 --> 00:38:11.807
-In the program's experience a missing one
-is the most common cause of silent NTLM
+252
+00:16:31.630 --> 00:16:34.975
+with the full block
+last, on April 1, 2027.
 
-563
-00:38:11.807 --> 00:38:15.336
-and a duplicate the second,
-and an instance under a domain
+253
+00:16:34.975 --> 00:16:39.012
+Verify from a remote client that
+the connection reads Kerberos.
 
-564
-00:38:15.336 --> 00:38:19.465
-account with no SPN usually means
-registration failed at startup.
+254
+00:16:39.012 --> 00:16:44.630
+Because the block comes last, the fixes
+are proven long before anything is refused.
 
-565
-00:38:19.465 --> 00:38:25.655
-The D1.7 collision report classifies five
-collision types and marks as critical any
-
-566
-00:38:25.655 --> 00:38:31.315
-SPN held by two or more enabled accounts,
-or by both a computer and a user object.
-
-567
-00:38:31.315 --> 00:38:34.325
-Run it against Active Directory directly,
-
-568
-00:38:34.325 --> 00:38:38.453
-because its input-file handoff
-has the same defect as R03's.
-
-569
-00:38:38.453 --> 00:38:44.277
-And D1.4 finds delegation settings
-and NTLM-dependency indicators.
-
-570
-00:38:44.277 --> 00:38:48.409
-Remediation changes production,
-and the program's SPN plan
-
-571
-00:38:48.409 --> 00:38:52.540
-and GPO report enforce nothing;
-they emit reviewable plans.
-
-572
-00:38:52.540 --> 00:38:58.040
-Register a missing SPN with SetSPN
-dash S, in the fully qualified form.
-
-573
-00:38:58.040 --> 00:39:02.852
-Repair a collision by removing the SPN
-from the disabled or wrong account,
-
-574
-00:39:02.852 --> 00:39:05.140
-leaving exactly one enabled owner.
-
-575
-00:39:05.140 --> 00:39:07.026
-For linked-server passthrough,
-
-576
-00:39:07.026 --> 00:39:11.233
-the order of preference is Entra
-authentication on the linked server,
-
-577
-00:39:11.233 --> 00:39:15.513
-then Kerberos with constrained
-delegation, then a mapped remote login
-
-578
-00:39:15.513 --> 00:39:19.865
-only as a documented exception, because
-it brings back a stored password.
-
-579
-00:39:19.865 --> 00:39:24.369
-Then the Group Policy phases: level
-five refuses LM and version 1;
-
-580
-00:39:24.369 --> 00:39:27.684
-the Restrict NTLM policies
-restrict version 2,
-
-581
-00:39:27.684 --> 00:39:32.529
-with server-name exceptions at the
-domain controller and the client;
-
-582
-00:39:32.529 --> 00:39:36.778
-and the full block comes on the
-program's April 2027 backstop.
-
-583
-00:39:36.778 --> 00:39:41.953
-The GPO report classifies each policy's
-posture and never sets anything.
-
-584
-00:39:41.953 --> 00:39:44.843
-Verify with klist purge,
-reconnect and klist,
-
-585
-00:39:44.843 --> 00:39:49.140
-and check that the auth scheme
-reads KERBEROS from a remote client.
-
-586
-00:39:49.140 --> 00:39:53.985
-Rollback is SetSPN dash D and the
-prior policy values, and because the
-
-587
-00:39:53.985 --> 00:39:59.700
-block is last, the Kerberos fixes are
-proven long before anything is refused.
-
-588
-00:40:00.450 --> 00:40:04.187
+255
+00:16:45.380 --> 00:16:49.117
 Runbook R07 moves the
 access-control layer.
 
-589
-00:40:04.187 --> 00:40:08.478
-The group model survives; what
-changes is who maintains membership,
+256
+00:16:49.117 --> 00:16:50.818
+The group model survives.
 
-590
-00:40:08.478 --> 00:40:12.538
-who may administer it, and the
-boundary every sign-in has to cross.
+257
+00:16:50.818 --> 00:16:54.799
+What changes is who maintains
+membership, who can administer it,
 
-591
-00:40:12.538 --> 00:40:14.225
-Phase 1 is read-only.
+258
+00:16:54.799 --> 00:16:57.429
+and the boundary every
+sign-in has to cross.
 
-592
-00:40:14.225 --> 00:40:18.600
-The program's group export reads
-Entra groups through Microsoft Graph
+259
+00:16:57.429 --> 00:17:02.642
+Phase 1 is read-only: export the groups
+and the Conditional Access policies,
 
-593
-00:40:18.600 --> 00:40:23.050
-or replays a snapshot, and the dynamic
-switch captures membership rules.
+260
+00:17:02.642 --> 00:17:08.359
+and classify every group into one of four
+types, from organizational unit (OU)-based
 
-594
-00:40:23.050 --> 00:40:26.850
-A GCC tenant keeps the
-worldwide Graph endpoint.
+261
+00:17:08.359 --> 00:17:13.655
+groups that become dynamic, to distribution
+lists that never get a SQL login.
 
-595
-00:40:26.850 --> 00:40:30.522
-The Conditional Access export
-confirms the perimeter,
+262
+00:17:13.655 --> 00:17:15.380
+Phase 2 has a fixed order.
 
-596
-00:40:30.522 --> 00:40:33.795
-but a policy's state only
-says on, off or report-only;
+263
+00:17:15.380 --> 00:17:19.223
+Create the DBA administrative
+unit with restricted management
 
-597
-00:40:33.795 --> 00:40:39.063
-whether it covers SQL Server sign-ins
-depends on its users and target resources.
-
-598
-00:40:39.063 --> 00:40:43.088
-The classification function gives
-every group one of four types.
-
-599
-00:40:43.088 --> 00:40:46.223
-Type 1, organizational unit (OU)-derived,
-
-600
-00:40:46.223 --> 00:40:50.338
-becomes a dynamic security
-group and a group login.
-
-601
-00:40:50.338 --> 00:40:55.613
-Type 2, explicit role assignment, becomes
-an assigned group and a group login.
-
-602
-00:40:55.613 --> 00:40:57.911
-Type 3, a distribution list,
-
-603
-00:40:57.911 --> 00:41:03.137
-becomes a Microsoft 365 group
-with no SQL Server login at all.
-
-604
-00:41:03.137 --> 00:41:08.212
-Type 4, mail-enabled security, splits
-into a mail group and an access group,
-
-605
-00:41:08.212 --> 00:41:10.749
-and only the access half gets a login.
-
-606
-00:41:10.749 --> 00:41:13.438
-Group logins are type X, not type E.
-
-607
-00:41:13.438 --> 00:41:17.187
-Phase 2 is review-required,
-and its order is fixed.
-
-608
-00:41:17.187 --> 00:41:21.135
-First the DBA administrative
-unit, with restricted management
-
-609
-00:41:21.135 --> 00:41:24.487
+264
+00:17:19.223 --> 00:17:22.568
 turned on at creation, because
-it can't be changed later.
+that can't be changed later.
 
-610
-00:41:24.487 --> 00:41:28.680
-Second, Groups Administrator scoped
-to that unit for the DBA lead,
+265
+00:17:22.568 --> 00:17:27.255
+Then scope the DBA lead's admin role
+to it through PIM, and add the groups.
 
-611
-00:41:28.680 --> 00:41:31.475
-eligible through PIM rather than standing.
+266
+00:17:27.255 --> 00:17:32.222
+The payoff: once every login is an Entra
+principal, Conditional Access becomes
 
-612
-00:41:31.475 --> 00:41:36.226
-Third, the groups inside it, added
-explicitly, with logins generated by the
+267
+00:17:32.222 --> 00:17:37.090
+the perimeter for human access, which
+the pilot needs to confirm for Arc.
 
-613
-00:41:36.226 --> 00:41:40.900
-group-login script, which can never
-turn a distribution list into a login.
-
-614
-00:41:40.900 --> 00:41:46.075
-Know the costs: tenant administrators can
-still assign themselves over the unit,
-
-615
-00:41:46.075 --> 00:41:49.473
-though it's audited; its
-members can't be covered by PIM,
-
-616
-00:41:49.473 --> 00:41:54.725
-access reviews or entitlement management;
-and a tenant gets at most 100 such units.
-
-617
-00:41:54.725 --> 00:41:58.127
-The dividend: once every
-login is an Entra principal,
-
-618
-00:41:58.127 --> 00:42:01.688
-Conditional Access is the
-perimeter for human access.
-
-619
-00:42:01.688 --> 00:42:06.924
-Microsoft documents targeting the Azure
-SQL Database application; that it governs
-
-620
-00:42:06.924 --> 00:42:12.012
-Arc-enabled SQL Server is the program's
-working assumption, to confirm in the pilot.
-
-621
-00:42:12.012 --> 00:42:16.080
-It reaches users only, and
-risk conditions need P2.
-
-622
-00:42:16.830 --> 00:42:19.493
+268
+00:17:37.840 --> 00:17:40.503
 Runbook R08 is the last mile.
 
-623
-00:42:19.493 --> 00:42:24.310
+269
+00:17:40.503 --> 00:17:45.320
 An application that signs users in with
 Entra ID but reaches the database with
 
-624
-00:42:24.310 --> 00:42:28.980
+270
+00:17:45.320 --> 00:17:49.990
 a stored password has moved its front
 door and left the back door where it was.
 
-625
-00:42:28.980 --> 00:42:35.280
-Phase 1 inventories the LDAP-bind
-dependency with the read-only D1.9 script.
+271
+00:17:49.990 --> 00:17:53.732
+Phase 1 inventories which
+applications still bind to LDAP,
 
-626
-00:42:35.280 --> 00:42:42.911
-It combines account heuristics with domain
-controller evidence: event 4624 with
+272
+00:17:53.732 --> 00:17:57.699
+using domain controller logs, and
+joins that to the audit so each
 
-627
-00:42:42.911 --> 00:42:45.604
-logon type 8, a clear-text bind,
+273
+00:17:57.699 --> 00:18:01.740
+application gets a class and a
+planned connection-string change.
 
-628
-00:42:45.604 --> 00:42:50.542
-and events 2887 and 2889 in
-the Directory Service log.
-
-629
-00:42:50.542 --> 00:42:52.552
-Event 2889 names each client,
-
-630
-00:42:52.552 --> 00:42:57.491
-but only after the LDAP interface
-diagnostic setting is raised to two,
-
-631
-00:42:57.491 --> 00:43:00.086
-and nothing is logged retroactively,
-
-632
-00:43:00.086 --> 00:43:04.355
-so start the window after the
-change and set it back afterward.
-
-633
-00:43:04.355 --> 00:43:07.725
-D1.9 doesn't say which
-instance an application uses,
-
-634
-00:43:07.725 --> 00:43:13.021
-so the program's connection-plan function
-joins it to the D1.8 audit, assigns each
-
-635
-00:43:13.021 --> 00:43:18.718
-application a class from observable signals,
-and emits the connection-string change.
-
-636
-00:43:18.718 --> 00:43:21.968
+274
+00:18:01.740 --> 00:18:05.215
 Phase 2 is the simplest
-change and the most gated,
+change and the most gated.
 
-637
-00:43:21.968 --> 00:43:26.030
-and it's made in application
+275
+00:18:05.215 --> 00:18:08.890
+It's made in application
 configuration, never by a script.
 
-638
-00:43:26.030 --> 00:43:31.067
-In production, name a specific mode, such
-as Active Directory Managed Identity.
+276
+00:18:08.890 --> 00:18:13.390
+In production, name a specific
+authentication mode rather than the default,
 
-639
-00:43:31.067 --> 00:43:34.425
-The Default mode tries credential
-providers in sequence,
+277
+00:18:13.390 --> 00:18:16.890
+which tries providers in sequence
+and can switch identity.
 
-640
-00:43:34.425 --> 00:43:39.042
-which slows the first connection and can
-switch identity when the host changes.
+278
+00:18:16.890 --> 00:18:21.179
+Three gates come before cutover: the
+login exists, it has the right role,
 
-641
-00:43:39.042 --> 00:43:41.823
-Service principal mode
-takes its secret from
+279
+00:18:21.179 --> 00:18:24.802
+and the change was tested on
+a production-equivalent stack.
 
-642
-00:43:41.823 --> 00:43:44.530
-protected configuration,
-never from source.
+280
+00:18:24.802 --> 00:18:27.460
+Rollback is the old connection string.
 
-643
-00:43:44.530 --> 00:43:49.468
-Setting the mode turns on encryption, so
-the server certificate must be trusted.
-
-644
-00:43:49.468 --> 00:43:54.166
-On an Arc host the driver gets the machine's
-token from the local metadata service,
-
-645
-00:43:54.166 --> 00:43:58.443
-and the process must be in the hybrid
-agent extension applications group.
-
-646
-00:43:58.443 --> 00:44:02.048
-Every application on that host
-is then the same principal,
-
-647
-00:44:02.048 --> 00:44:05.729
-so give each its own service
-principal where grants differ.
-
-648
-00:44:05.729 --> 00:44:10.769
-Three gates before cutover: the Entra
-login exists, the identity holds the right
-
-649
-00:44:10.769 --> 00:44:15.655
-database role, and the change was tested
-on a production-equivalent Arc stack.
-
-650
-00:44:15.655 --> 00:44:20.175
-The audience is database.windows.net,
-not the Azure Government one,
-
-651
-00:44:20.175 --> 00:44:23.955
-and pooled applications use
-the access-token callback.
-
-652
-00:44:23.955 --> 00:44:26.511
-Rollback is the prior connection string,
-
-653
-00:44:26.511 --> 00:44:29.580
-with the legacy login
-disabled, not dropped.
-
-654
-00:44:30.330 --> 00:44:33.455
+281
+00:18:28.210 --> 00:18:31.335
 Runbook R09 keeps proving the posture.
 
-655
-00:44:33.455 --> 00:44:35.716
+282
+00:18:31.335 --> 00:18:33.596
 Closure isn't a day on the calendar;
 
-656
-00:44:35.716 --> 00:44:40.643
+283
+00:18:33.596 --> 00:18:38.523
 it's a record that keeps coming back
 clean, and everything here is read-only.
 
-657
-00:44:40.643 --> 00:44:45.379
-Step one runs the D1.8 deep audit
-on a schedule against the retain
+284
+00:18:38.523 --> 00:18:40.577
+The deep audit runs on a schedule,
 
-658
-00:44:45.379 --> 00:44:50.205
-and target estate, keeping every
-run's JSON under version control.
+285
+00:18:40.577 --> 00:18:45.294
+and each run is projected onto the
+per-instance closure record, which comes
 
-659
-00:44:50.205 --> 00:44:54.093
-It's the same script as R03,
-on a different cadence.
+286
+00:18:45.294 --> 00:18:49.935
+out closed, closed with an exception,
+or open, with the failing fields named.
 
-660
-00:44:54.093 --> 00:44:58.305
-Step two projects each run onto
-the per-instance closure record.
+287
+00:18:49.935 --> 00:18:53.387
+The difference between two
+runs becomes drift events,
 
-661
-00:44:58.305 --> 00:45:01.440
-The fields are Windows
-Authentication mode,
+288
+00:18:53.387 --> 00:18:57.222
+like mixed mode turned back on
+or the Arc agent going offline.
 
-662
-00:45:01.440 --> 00:45:04.661
-which proves only that
-SQL logins are refused;
+289
+00:18:57.222 --> 00:19:02.060
+One caution: a registry change is
+invisible until the service restarts.
 
-663
-00:45:04.661 --> 00:45:08.559
-zero active SQL logins outside
-the exception registry;
+290
+00:19:02.060 --> 00:19:04.796
+On top of that sits a behavioral layer,
 
-664
-00:45:08.559 --> 00:45:10.931
-zero active user and group logins;
-
-665
-00:45:10.931 --> 00:45:16.185
-every Entra login reconciled to a known
-principal; SA disabled and renamed;
-
-666
-00:45:16.185 --> 00:45:20.337
-the Arc agent connected; Entra
-authentication configured,
-
-667
-00:45:20.337 --> 00:45:25.083
-through the managed identity on 2025
-or an app registration on 2022;
-
-668
-00:45:25.083 --> 00:45:30.930
-and MFA through Conditional Access, joined
-from the sign-in logs rather than copied.
-
-669
-00:45:30.930 --> 00:45:34.464
-The program's closure-record
-function returns closed,
-
-670
-00:45:34.464 --> 00:45:37.605
-closed-excepted or open,
-with the failing fields.
-
-671
-00:45:37.605 --> 00:45:42.377
-Step three turns the difference
-between two runs into drift events:
-
-672
-00:45:42.377 --> 00:45:47.830
-mixed mode enabled, a new SQL login, a new
-Windows login or the Arc agent offline,
-
-673
-00:45:47.830 --> 00:45:51.920
-each a violation, plus instances
-that appear or disappear,
-
-674
-00:45:51.920 --> 00:45:53.880
-which may be a discovery gap.
-
-675
-00:45:53.880 --> 00:45:56.865
-One caution: the audit
-reads the running mode,
-
-676
-00:45:56.865 --> 00:46:00.980
-so a registry change is invisible
-until the service restarts.
-
-677
-00:46:00.980 --> 00:46:04.018
-Add a registry check if
-earlier warning matters.
-
-678
-00:46:04.018 --> 00:46:08.492
-Step four is the behavioral layer,
-three sources with distinct jobs.
-
-679
-00:46:08.492 --> 00:46:13.131
-Defender for SQL raises threat alerts
-but isn't an authentication log.
-
-680
-00:46:13.131 --> 00:46:16.119
-Entra sign-in logs record
-each token issued,
-
-681
-00:46:16.119 --> 00:46:19.192
-and a token can be reused
-across connections.
-
-682
-00:46:19.192 --> 00:46:22.693
-The instance and host
-record the protocol itself,
-
-683
-00:46:22.693 --> 00:46:26.792
-and any NTLM or Kerberos
+291
+00:19:04.796 --> 00:19:09.210
+where any NTLM or Kerberos
 connection is an immediate alert.
 
-684
-00:46:26.792 --> 00:46:32.263
-The transformation is closed when six
-evidence sets hold together across the
+292
+00:19:09.210 --> 00:19:14.197
+When six evidence sets hold together
+across the validation period,
 
-685
-00:46:32.263 --> 00:46:37.059
-validation period: closure records,
-sign-in logs, protocol telemetry,
+293
+00:19:14.197 --> 00:19:19.560
+the transformation is closed, and
+April 1, 2027 arrives as a non-event.
 
-686
-00:46:37.059 --> 00:46:40.930
-the SA report, the MFA report
-and the exception registry.
+294
+00:19:20.310 --> 00:19:23.547
+Runbook R10 is discovery,
+not provisioning.
 
-687
-00:46:40.930 --> 00:46:45.480
-Then April 1, 2027 arrives as a non-event.
-
-688
-00:46:46.230 --> 00:46:50.405
-Runbook R10 is discovery and
-analysis, not provisioning.
-
-689
-00:46:50.405 --> 00:46:54.255
+295
+00:19:23.547 --> 00:19:27.398
 Before anyone sets a date to switch
 off the certificate authority,
 
-690
-00:46:54.255 --> 00:46:56.705
+296
+00:19:27.398 --> 00:19:29.848
 someone has to find out
 what it still signs.
 
-691
-00:46:56.705 --> 00:47:01.029
-The program has no decision yet on
-the move from AD CS to a cloud PKI,
+297
+00:19:29.848 --> 00:19:34.125
+The program hasn't decided yet on
+moving from AD CS to a cloud PKI,
 
-692
-00:47:01.029 --> 00:47:05.193
-so this runbook produces the
-evidence that decision will need.
+298
+00:19:34.125 --> 00:19:38.073
+so this runbook gathers the
+evidence that decision needs.
 
-693
-00:47:05.193 --> 00:47:10.601
-Step one runs the read-only D1.10
-certificate audit across Active Directory:
+299
+00:19:38.073 --> 00:19:42.192
+A read-only audit records the
+issuing CA on every certificate,
 
-694
-00:47:10.601 --> 00:47:16.268
-the PKI inventory, machine and user
-certificates, smart-card-required accounts,
+300
+00:19:42.192 --> 00:19:44.535
+with a few checks inside the engine.
 
-695
-00:47:16.268 --> 00:47:21.592
-and service dependencies, including
-LDAP over TLS on domain controllers.
+301
+00:19:44.535 --> 00:19:46.273
+Then three dependencies.
 
-696
-00:47:21.592 --> 00:47:24.952
-It records the issuing
-CA on every certificate,
+302
+00:19:46.273 --> 00:19:48.935
+The engine's TLS certificate matters most,
 
-697
-00:47:24.952 --> 00:47:28.655
-which is exactly the signal
-for what depends on AD CS.
+303
+00:19:48.935 --> 00:19:52.360
+because every Entra connection
+requires encryption.
 
-698
-00:47:28.655 --> 00:47:33.080
-It doesn't reach into an instance, so
-three in-engine reads supplement it.
+304
+00:19:52.360 --> 00:19:56.260
+Certificate-mapped logins carry
+less risk than the source claimed.
 
-699
-00:47:33.080 --> 00:47:36.143
-Join certificates to
-their logins on the SID,
+305
+00:19:56.260 --> 00:19:58.365
+And certificate-based sign-in,
 
-700
-00:47:36.143 --> 00:47:39.205
-not the principal ID,
-and read the issuer name.
+306
+00:19:58.365 --> 00:20:03.247
+the interim answer for the NTLM long
+tail, needs a replacement CA first.
 
-701
-00:47:39.205 --> 00:47:44.004
-An empty certificate setting doesn't mean
-no certificate, because SQL Server picks
+307
+00:20:03.247 --> 00:20:05.762
+The finding comes down to one question:
 
-702
-00:47:44.004 --> 00:47:48.455
-one from the machine store or generates
-its own; check the error log at startup.
+308
+00:20:05.762 --> 00:20:08.984
+does AD CS retire before
+its replacement is ready?
 
-703
-00:47:48.455 --> 00:47:52.538
-And check mirroring and
-availability-group endpoints;
+309
+00:20:08.984 --> 00:20:13.140
+If so, the interim posture is
+lost exactly when it's needed.
 
-704
-00:47:52.538 --> 00:47:55.555
-one reporting NTLM is also an R06 finding.
-
-705
-00:47:55.555 --> 00:47:58.993
-Step two maps the results
-to three dependencies.
-
-706
-00:47:58.993 --> 00:48:03.577
-The engine's TLS certificate: every
-Entra connection requires encryption,
-
-707
-00:48:03.577 --> 00:48:06.534
-so if the CA is gone when
-the certificate expires,
-
-708
-00:48:06.534 --> 00:48:09.492
-encryption becomes what
-breaks the connection.
-
-709
-00:48:09.492 --> 00:48:14.226
-Certificate-mapped logins and endpoints
-carry less risk than the source claimed,
-
-710
-00:48:14.226 --> 00:48:17.150
-because certificate logins
-are used only for code
-
-711
-00:48:17.150 --> 00:48:20.004
-signing and can't connect,
-and most are self-signed.
-
-712
-00:48:20.004 --> 00:48:25.495
-And certificate-based sign-in, the
-interim posture for the NTLM long tail,
-
-713
-00:48:25.495 --> 00:48:29.430
-needs a replacement CA
-issuing before AD CS retires.
-
-714
-00:48:29.430 --> 00:48:33.672
-Step three orders the CA migration,
-roots before issuing CAs,
-
-715
-00:48:33.672 --> 00:48:38.168
-with cycles and cross-domain
-dependencies flagged as blockers.
-
-716
-00:48:38.168 --> 00:48:43.499
-One fact for the decision: Microsoft Cloud
-PKI issues to Intune-managed devices,
-
-717
-00:48:43.499 --> 00:48:46.326
-and Intune doesn't support Windows Server,
-
-718
-00:48:46.326 --> 00:48:50.042
-so SQL Server hosts would
-need another enrollment path.
-
-719
-00:48:50.042 --> 00:48:51.903
-The finding is one question:
-
-720
-00:48:51.903 --> 00:48:56.029
-does the AD CS decommission run
-earlier than its replacement?
-
-721
-00:48:56.029 --> 00:49:00.400
-If it does, the interim posture
-is lost exactly when it's needed.
-
-722
-00:49:01.150 --> 00:49:04.100
+310
+00:20:13.890 --> 00:20:16.840
 To close, five things to
 take back to the estate.
 
-723
-00:49:04.100 --> 00:49:06.312
-First, count before you migrate.
+311
+00:20:16.840 --> 00:20:20.053
+Count before you migrate,
+because migrating an instance
 
-724
-00:49:06.312 --> 00:49:08.084
-The inventory and the retain,
+312
+00:20:20.053 --> 00:20:23.402
+you should have retired is wasted
+work against a fixed date.
 
-725
-00:49:08.084 --> 00:49:13.028
-consolidate or retire gate decide where
-every hour of authentication work goes;
+313
+00:20:23.402 --> 00:20:29.877
+Measure, don't assume, because a missing
+SPN turns Kerberos into NTLM silently.
 
-726
-00:49:13.028 --> 00:49:17.676
-migrating an instance you should have
-retired is waste against a fixed date.
+314
+00:20:29.877 --> 00:20:36.290
+Keep it reversible: create, validate,
+disable, observe for thirty days, then drop.
 
-727
-00:49:17.676 --> 00:49:20.113
-Second, measure, don't assume.
+315
+00:20:36.290 --> 00:20:39.484
+Finish the chain, because an
+instance isn't closed while
 
-728
-00:49:20.113 --> 00:49:23.801
-A missing SPN turns Kerberos
-into NTLM silently,
+316
+00:20:39.484 --> 00:20:42.678
+an application still reaches
+it with a stored password.
 
-729
-00:49:23.801 --> 00:49:29.612
-and only the auth scheme column, the
-Windows logs and SQL Server Audit show it.
+317
+00:20:42.678 --> 00:20:47.427
+And prove it continuously, so done is a
+queryable posture rather than a claim.
 
-730
-00:49:29.612 --> 00:49:31.550
-Third, keep it reversible.
-
-731
-00:49:31.550 --> 00:49:36.575
-Create, validate, disable, observe
-for thirty days, then drop.
-
-732
-00:49:36.575 --> 00:49:39.312
-A disabled login is an instant rollback.
-
-733
-00:49:39.312 --> 00:49:40.975
-Fourth, finish the chain.
-
-734
-00:49:40.975 --> 00:49:45.698
-An instance isn't closed while any
-application still reaches it with Integrated
-
-735
-00:49:45.698 --> 00:49:47.461
-Security or a stored password,
-
-736
-00:49:47.461 --> 00:49:51.338
-or while a Class 4 application
-holds it on Windows Authentication.
-
-737
-00:49:51.338 --> 00:49:53.399
-Fifth, prove it continuously.
-
-738
-00:49:53.399 --> 00:49:58.318
-The closure record, drift detection and
-the six evidence sets make done a queryable
-
-739
-00:49:58.318 --> 00:50:01.525
-posture rather than a claim,
-and the certificate layer
-
-740
-00:50:01.525 --> 00:50:04.875
-underneath needs its own
-decision before AD CS goes away.
-
-741
-00:50:04.875 --> 00:50:08.825
+318
+00:20:47.427 --> 00:20:51.377
 April 1, 2027 is the program's backstop.
 
-742
-00:50:08.825 --> 00:50:12.151
-If the work is finished well
-before it and the evidence
+319
+00:20:51.377 --> 00:20:53.669
+If the work is finished well before it,
 
-743
-00:50:12.151 --> 00:50:15.625
-has been clean for months, the
-block arrives as a non-event.
+320
+00:20:53.669 --> 00:20:58.178
+and the evidence has been clean for
+months, the block arrives as a non-event.
 
-744
-00:50:15.625 --> 00:50:19.746
-The Federal Modernization Workbook's
-Book 06 has the narrative
+321
+00:20:58.178 --> 00:21:04.615
+Book 06 has the chapters and all ten
+runbooks, with every external claim footnoted.
 
-745
-00:50:19.746 --> 00:50:24.100
-chapters and the ten runbooks, with
-every external claim footnoted.
-
-746
-00:50:24.100 --> 00:50:24.930
+322
+00:21:04.615 --> 00:21:05.440
 Thank you.

@@ -1,48 +1,21 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:05.295
+00:00:00.050 --> 00:00:05.219
 Module 5 covers the last five runbooks:
-NTLM detection and remediation; groups,
+NTLM, groups and the Conditional
 
 2
-00:00:05.295 --> 00:00:09.410
-administrative units and the
-Conditional Access perimeter;
+00:00:05.219 --> 00:00:10.650
+Access perimeter, applications,
+continuous monitoring, and certificates.
 
 3
-00:00:09.410 --> 00:00:12.557
-the application chain
-and connection strings;
+00:00:10.650 --> 00:00:15.900
+Detection stays read-only, and every change
+is dry-run first through change control.
 
 4
-00:00:12.557 --> 00:00:18.125
-continuous monitoring and the closure
-record; and certificate discovery for AD CS.
-
-5
-00:00:18.125 --> 00:00:19.425
-The pattern holds.
-
-6
-00:00:19.425 --> 00:00:24.629
-Detection and inventory are read-only
-and script-backed, and every remediation,
-
-7
-00:00:24.629 --> 00:00:28.493
-provisioning or configuration
-change is review-required,
-
-8
-00:00:28.493 --> 00:00:30.937
-dry run first, through change control.
-
-9
-00:00:30.937 --> 00:00:34.546
-By the end of this module the
-posture isn't just reached;
-
-10
-00:00:34.546 --> 00:00:37.010
-it's provable on every scheduled run.
+00:00:15.900 --> 00:00:19.990
+By the end, the posture is
+provable on every scheduled run.

@@ -1,135 +1,59 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:02.412
-The directory and CA classes.
+00:00:00.050 --> 00:00:03.012
+Next, the directory and CA classes.
 
 2
-00:00:02.412 --> 00:00:08.313
-ESC5 is unprivileged write access on the
-forest's Public Key Services objects.
+00:00:03.012 --> 00:00:06.536
+ESC5 is write access to
+the forest's PKI objects,
 
 3
-00:00:08.313 --> 00:00:13.204
-The NTAuth certificates object holds the
-CAs trusted to issue logon and domain
+00:00:06.536 --> 00:00:12.588
+including the NTAuth store that decides
+which CAs can issue logon certificates.
 
 4
-00:00:13.204 --> 00:00:16.687
-controller certificates,
-and each enrollment services
+00:00:12.588 --> 00:00:15.724
+Write access there is
+control over authentication,
 
 5
-00:00:16.687 --> 00:00:19.874
-object records what a CA can
-issue and who can enroll.
+00:00:15.724 --> 00:00:20.538
+and Defender for Identity doesn't assess
+it, so review those permissions by hand.
 
 6
-00:00:19.874 --> 00:00:23.288
-Write access to either is
-control over authentication.
+00:00:20.538 --> 00:00:26.700
+ESC6 is a CA-wide flag that lets anyone
+supply alternate names on any template.
 
 7
-00:00:23.288 --> 00:00:29.030
-Defender for Identity has no ESC5
-assessment, so review the ACLs, compare the
+00:00:26.700 --> 00:00:30.139
+A common belief is that strong
+mapping makes it harmless;
 
 8
-00:00:29.030 --> 00:00:34.863
-NTAuth store with your approved CA list,
-and audit changes through event 5136.
+00:00:30.139 --> 00:00:34.163
+it doesn't change what the CA will
+sign, so clear the flag regardless.
 
 9
-00:00:34.863 --> 00:00:38.425
-ESC6 is the CA-wide flag
-that lets any requester
+00:00:34.163 --> 00:00:36.397
+ESC7 is broad CA management rights,
 
 10
-00:00:38.425 --> 00:00:42.262
-supply subject alternative
-names on any template.
+00:00:36.397 --> 00:00:41.251
+and remember that service accounts like
+the Intune connector hold them too.
 
 11
-00:00:42.262 --> 00:00:46.632
-Find out why it was turned on, since
-some old workflows depended on it,
+00:00:41.251 --> 00:00:46.425
+ESC8 is web enrollment accepting
+NTLM without protection.
 
 12
-00:00:46.632 --> 00:00:49.050
-then clear it and restart the service.
-
-13
-00:00:49.050 --> 00:00:54.351
-The book corrects a common belief here:
-KB5014754 introduced strong mapping,
-
-14
-00:00:54.351 --> 00:00:59.651
-which reduces what a forged name can do
-against Kerberos, but it doesn't change
-
-15
-00:00:59.651 --> 00:01:04.538
-what the CA will sign, and other relying
-parties may still trust the name.
-
-16
-00:01:04.538 --> 00:01:06.275
-Clear the flag regardless.
-
-17
-00:01:06.275 --> 00:01:11.762
-ESC7 is unprivileged Manage CA or
-Issue and Manage Certificates.
-
-18
-00:01:11.762 --> 00:01:16.244
-Build separate groups for CA
-administrators, certificate managers,
-
-19
-00:01:16.244 --> 00:01:19.625
-enrollment agents, auditors
-and backup custodians.
-
-20
-00:01:19.625 --> 00:01:21.340
-Service accounts count too:
-
-21
-00:01:21.340 --> 00:01:25.889
-the Intune Certificate Connector and
-lifecycle tooling both hold Issue
-
-22
-00:01:25.889 --> 00:01:30.363
-and Manage Certificates, so each is a
-certificate manager in all but name.
-
-23
-00:01:30.363 --> 00:01:34.788
-ESC8 is an HTTP enrollment
-endpoint that accepts
-
-24
-00:01:34.788 --> 00:01:38.674
-NTLM without HTTPS or Extended Protection.
-
-25
-00:01:38.674 --> 00:01:43.717
-Microsoft's advisory: Extended
-Protection set to Required,
-
-26
-00:01:43.717 --> 00:01:48.450
-Require SSL, restart IIS, and
-restrict NTLM where you can.
-
-27
-00:01:48.450 --> 00:01:52.770
-Better still, remove Web Enrollment
-wherever nothing depends on it,
-
-28
-00:01:52.770 --> 00:01:54.840
-and apply the same rules to NDES.
+00:00:46.425 --> 00:00:50.540
+Better still, remove web enrollment
+wherever nothing depends on it.

@@ -6,135 +6,60 @@ Chapter 08's architecture
 is simple to draw.
 
 2
-00:00:02.975 --> 00:00:07.933
-A branch query goes through the SD-WAN
-edge to a network-addressable agency
+00:00:02.975 --> 00:00:07.117
+A branch query goes through the
+SD-WAN edge to an agency resolver,
 
 3
-00:00:07.933 --> 00:00:12.251
-resolver, into the policy plane
-for policy, response policy zones,
+00:00:07.117 --> 00:00:10.790
+into the policy plane, and on
+to each cloud's private zones,
 
 4
-00:00:12.251 --> 00:00:15.850
-DNSSEC and IPAM, and on to
-the per-cloud private zones.
+00:00:10.790 --> 00:00:14.775
+while internet lookups leave
+through CISA's Protective DNS.
 
 5
-00:00:15.850 --> 00:00:20.819
-Internet-bound recursion leaves
-through CISA's Protective DNS Resolver,
-
-6
-00:00:20.819 --> 00:00:25.788
-which blocks, redirects or sinkholes
-queries matching threat indicators.
-
-7
-00:00:25.788 --> 00:00:29.534
-On-premises clients reach
-the agency resolver directly;
-
-8
-00:00:29.534 --> 00:00:34.476
-cloud workloads reach the plane through
-Chapter 07's per-cloud forwarding.
-
-9
-00:00:34.476 --> 00:00:40.000
+00:00:14.775 --> 00:00:20.300
 Five decisions carry almost all of the
 operational risk, and each fails silently:
 
-10
-00:00:40.000 --> 00:00:44.700
+6
+00:00:20.300 --> 00:00:25.000
 the query still resolves, just outside
 policy or to the wrong address.
 
-11
-00:00:44.700 --> 00:00:48.271
-So each has a check to run
+7
+00:00:25.000 --> 00:00:29.663
+They are the redirect-dns destination,
+the order of the forwarding chain,
+
+8
+00:00:29.663 --> 00:00:33.239
+per-cloud conditional
+forwarding, the AD DNS inventory,
+
+9
+00:00:33.239 --> 00:00:37.125
+and reachability of the
+certificate revocation endpoints.
+
+10
+00:00:37.125 --> 00:00:40.479
+Each has a check you run
 in the live configuration,
 
-12
-00:00:48.271 --> 00:00:52.437
+11
+00:00:40.479 --> 00:00:44.487
 not the design document, before
 the next SD-WAN or DDI change.
 
+12
+00:00:44.487 --> 00:00:48.647
+For example, resolve one name
+per namespace from every origin;
+
 13
-00:00:52.437 --> 00:00:57.698
-Decision 1, the redirect-dns destination:
-a DDI resolver or forwarding
-
-14
-00:00:57.698 --> 00:01:02.051
-proxy at the branch or a regional
-hub, never a loopback stub.
-
-15
-00:01:02.051 --> 00:01:04.662
-Check every branch's running data policy.
-
-16
-00:01:04.662 --> 00:01:08.425
-Decision 2, forwarding chain
-order: a SASE resolver is a
-
-17
-00:01:08.425 --> 00:01:13.087
-forwarding target of the agency
-resolver, never the redirect target.
-
-18
-00:01:13.087 --> 00:01:16.019
-The common failure is
-every component present
-
-19
-00:01:16.019 --> 00:01:18.950
-with the SASE service
-first, so trace the order.
-
-20
-00:01:18.950 --> 00:01:23.526
-Decision 3, per-cloud conditional
-forwarding: the plane holds every
-
-21
-00:01:23.526 --> 00:01:28.675
-private namespace's rule and pushes it
-to every resolver, branches included.
-
-22
-00:01:28.675 --> 00:01:32.511
-Check: resolve one name per
-namespace from on-premises,
-
-23
-00:01:32.511 --> 00:01:37.625
-each cloud and a branch; a public
-address or NXDOMAIN means a missing rule.
-
-24
-00:01:37.625 --> 00:01:43.684
-Decision 4, the AD DNS inventory, reprovisioned
-before any domain controller goes,
-
-25
-00:01:43.684 --> 00:01:49.387
-because once the last one holding a zone
-is gone, its records can't be recovered.
-
-26
-00:01:49.387 --> 00:01:52.950
-Check for a dated, reconciled
-export before approval.
-
-27
-00:01:52.950 --> 00:01:58.150
-Decision 5, OCSP and CRL
-reachability from every origin.
-
-28
-00:01:58.150 --> 00:02:04.080
-Check: resolve each endpoint in the issuing
-CA certificates, and fetch a response.
+00:00:48.647 --> 00:00:51.240
+a public address means a missing rule.

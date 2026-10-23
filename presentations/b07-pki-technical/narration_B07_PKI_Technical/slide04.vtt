@@ -1,44 +1,24 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:02.600
-Module 1: hardening what stays.
+00:00:00.050 --> 00:00:02.325
+Module 1 is hardening what stays.
 
 2
-00:00:02.600 --> 00:00:07.962
-A migration off AD CS takes months, and
-for some workloads it never finishes.
+00:00:02.325 --> 00:00:05.963
+The migration takes months,
+and some workloads never leave.
 
 3
-00:00:07.962 --> 00:00:13.453
-Throughout that time the enterprise CA
-keeps issuing certificates that domain
+00:00:05.963 --> 00:00:10.662
+All that time the CA keeps minting
+credentials the whole environment trusts,
 
 4
-00:00:13.453 --> 00:00:19.025
-controllers, VPN gateways, RADIUS servers
-and Entra ID accept as proof of identity.
+00:00:10.662 --> 00:00:14.113
+so one bad setting can undo
+every other identity control.
 
 5
-00:00:19.025 --> 00:00:23.942
-A CA can create credentials the whole
-environment trusts, so one over-privileged
-
-6
-00:00:23.942 --> 00:00:28.713
-account or misconfigured setting on it
-can undo every other identity control.
-
-7
-00:00:28.713 --> 00:00:33.550
-That makes hardening the first technical
-workstream, not a cleanup task at the end.
-
-8
-00:00:33.550 --> 00:00:36.219
-Everything in this module is defensive:
-
-9
-00:00:36.219 --> 00:00:40.490
-what each misconfiguration is, how
-to detect it, and how to fix it.
+00:00:14.113 --> 00:00:16.580
+Hardening comes first, not last.

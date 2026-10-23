@@ -2,264 +2,149 @@
  "1": [
   [
    0.05,
-   7.075,
+   0.713,
+   "Welcome."
+  ],
+  [
+   0.762,
+   7.125,
    "This is the technical deep dive for Book 05 of the Federal Modernization Workbook, Devices and Endpoints."
   ],
   [
-   7.125,
-   6.737,
+   7.888,
+   6.75,
    "It's for the architects and engineers who move a domain-joined fleet onto Intune, and its servers onto Azure Arc."
   ],
   [
-   13.863,
-   5.463,
-   "It comes in two parts of about twenty-five minutes each, and four modules you can watch separately."
+   14.637,
+   1.562,
+   "It comes in two parts."
   ],
   [
-   19.325,
-   1.712,
-   "Part 1 is the endpoints."
+   16.2,
+   13.262,
+   "Part 1 is the endpoints: how a new device is governed from the moment it powers on, the three paths an existing estate can take to the same end state, and then the Group Policy sunset and the policy library that replaces it."
   ],
   [
-   21.038,
-   8.037,
-   "First, how a new device is governed from the moment it powers on, and the three paths an existing estate can take to the same end state."
+   29.462,
+   8.55,
+   "Part 2 is servers and the run state: bringing servers under Arc with a day-one baseline, then operating and evidencing the whole fleet."
   ],
   [
-   29.075,
-   9.875,
-   "Then the Group Policy sunset: how every G P O is inventoried, classified, replaced and retired, and the policy library that replaces it."
+   38.013,
+   6.75,
+   "The scripts and policy payloads live in the chapters and Appendix A, marked as illustrative and untested."
   ],
   [
-   38.95,
-   10.838,
-   "Part 2 is servers and the run state: bringing servers under Azure Arc with a day-one baseline, and then operating and evidencing the whole fleet once Intune is the authority."
-  ],
-  [
-   49.788,
-   3.75,
-   "The slides show tables, flows and decision matrices."
-  ],
-  [
-   53.538,
-   11.225,
-   "The scripts and policy payloads live in the chapters and in Appendix A; they're marked there as illustrative and untested against a production tenant, and I'll point you to them rather than put them on screen."
+   44.763,
+   1.525,
+   "I'll stick to what matters."
   ]
  ],
  "2": [
   [
    0.05,
-   1.188,
-   "Why this matters."
+   1.387,
+   "Here's why this matters."
   ],
   [
-   1.238,
-   5.062,
-   "For twenty years Group Policy did a great deal of governance without anyone writing it down."
+   1.438,
+   5.4,
+   "For twenty years, Group Policy did a great deal of governance without anyone writing it down."
   ],
   [
-   6.3,
-   9.675,
-   "A computer sat in an organizational unit (O U), GPOs linked to that O U and its parents applied in a fixed order, and the closest container won."
+   6.838,
+   11.525,
+   "A computer sat in an organizational unit (O U), the linked GPOs applied in a fixed order, and that one structure was the targeting, the precedence, the delegation and the evidence."
   ],
   [
-   15.975,
-   7.812,
-   "That one structure was the targeting model, the precedence model, the delegation model, a timing guarantee and an evidence source."
+   18.363,
+   5.975,
+   "Microsoft says it plainly: Group Policy enforcement isn't possible on cloud-native endpoints."
   ],
   [
-   23.788,
-   10.088,
-   "Microsoft's planning guidance says it plainly: Group Policy enforcement isn't possible on cloud-native endpoints, which are joined to Entra ID, not to a domain."
+   24.337,
+   4.3,
+   "Intune can deliver most of the settings, but every mechanism changes."
   ],
   [
-   33.875,
-   4.175,
-   "Intune can deliver most of the settings, but each mechanism changes."
+   28.637,
+   9.55,
+   "Targeting is flat, devices check in about every eight hours instead of every ninety minutes, and when two policies disagree, the setting may not apply at all."
   ],
   [
-   38.05,
-   1.913,
-   "Assignment to groups is flat."
+   38.188,
+   3.575,
+   "On a hybrid device, Group Policy wins by default."
   ],
   [
-   39.962,
-   6.275,
-   "Assignment filters evaluate device properties at enrollment and check-in, up to two hundred per tenant."
-  ],
-  [
-   46.237,
-   7.575,
-   "A platform script runs once and times out after thirty minutes; Remediations rerun every twenty-four hours by default."
-  ],
-  [
-   53.812,
-   2.638,
-   "There's no built-in answer for mapped drives."
-  ],
-  [
-   56.45,
-   4.162,
-   "Devices check in about every eight hours instead of every ninety minutes."
-  ],
-  [
-   60.612,
-   3.938,
-   "And per-setting status is reported after check-in, so it can lag."
-  ],
-  [
-   64.55,
-   1.837,
-   "The conflict rules change too."
-  ],
-  [
-   66.388,
-   7.638,
-   "When two Intune configuration policies set one setting differently, the conflict is reported and the setting may not apply at all."
-  ],
-  [
-   74.025,
-   3.087,
-   "Compliance policies take the most restrictive value."
-  ],
-  [
-   77.112,
-   6.912,
-   "And on a hybrid device that gets both a G P O and an MDM policy, Group Policy wins by default."
-  ],
-  [
-   84.025,
-   10.562,
-   "MDM wins over GP reverses that only for the Policy CSP; for other CSPs, such as Defender, Microsoft warns of a race with no guaranteed winner."
-  ],
-  [
-   94.588,
-   3.075,
-   "So the program's rule is regenerate, not copy."
-  ],
-  [
-   97.662,
-   9.325,
-   "Microsoft's own guidance is not to lift and shift: identify the mandatory settings, compare them with MDM, and treat the gaps as blockers."
+   41.763,
+   9.075,
+   "So the program's rule is regenerate, not copy: identify the mandatory settings, compare them with MDM, and treat the gaps as blockers."
   ]
  ],
  "3": [
   [
    0.05,
-   4.35,
-   "Two more ideas from the first part of the book frame everything in this session."
+   3.112,
+   "Two more ideas frame everything in this session."
   ],
   [
-   4.4,
+   3.163,
    2.138,
    "First, the hybrid-join trap."
   ],
   [
-   6.537,
-   4.85,
-   "Converting a domain-joined fleet to hybrid join is close to a tenant-wide switch."
+   5.3,
+   11.875,
+   "Converting a domain-joined fleet to hybrid join is close to a tenant-wide switch: extend the sync scope, and every Windows device registers itself, with nothing checking ownership or approval."
   ],
   [
-   11.387,
-   15.838,
-   "Extend the sync scope to the computer O U's, publish a service connection point in each forest, or push the same two values by G P O, and every Windows device's Automatic Device Join task reads it and registers itself, retrying every hour."
+   17.175,
+   8.287,
+   "Microsoft's guidance is that Entra join is the default for new or reset devices, and hybrid join is a waypoint, not the end goal."
   ],
   [
-   27.225,
-   4.588,
-   "Nothing in that path checks ownership, organizational position or approval."
-  ],
-  [
-   31.812,
-   14.887,
-   "Microsoft's guidance has two halves: Entra join is the default for new, refurbished or reset devices; hybrid join gives existing domain-joined devices a cloud identity with minimal impact, but it shouldn't be long term or the end goal."
-  ],
-  [
-   46.7,
-   8.312,
-   "Converting a hybrid device to Entra join later needs a reset, and hybrid devices need periodic line of sight to a domain controller."
-  ],
-  [
-   55.013,
+   25.462,
    3.612,
    "Done ungoverned, the waypoint becomes the destination."
   ],
   [
-   58.625,
+   29.075,
    2.138,
    "Second, where the truth lives."
   ],
   [
-   60.763,
-   12.137,
-   "A modern laptop is described by a procurement record, an Autopilot registration, an Entra ID device object, an Intune record and a Defender machine; a server adds an Arc resource."
+   31.212,
+   8.075,
+   "A laptop is described by procurement, Autopilot, Entra ID, Intune and Defender records, and a server adds Arc."
   ],
   [
-   72.9,
-   4.388,
-   "The program decides, fact by fact, which one is authoritative."
+   39.288,
+   6.175,
+   "The program decides, fact by fact, which one is authoritative, and correlates on the right key."
   ],
   [
-   77.287,
-   2.375,
-   "Procurement owns the business facts."
-  ],
-  [
-   79.662,
-   3.075,
-   "The Entra object owns identity and join type."
-  ],
-  [
-   82.737,
-   6.287,
-   "Intune owns management and evaluates compliance; Entra's is-compliant flag only reports it."
-  ],
-  [
-   89.025,
-   2.388,
-   "Defender owns threat and exposure."
-  ],
-  [
-   91.412,
-   1.988,
-   "Arc owns management for servers."
-  ],
-  [
-   93.4,
-   9.037,
-   "Correlate on the right key: the Entra device ID across Microsoft records, the serial number to procurement, and the Azure resource ID for Arc."
-  ],
-  [
-   102.438,
-   5.688,
-   "And delete the Entra object last, because deleting it deletes the BitLocker recovery keys."
+   45.462,
+   6.875,
+   "And one rule to remember: delete the Entra object last, because that deletes the BitLocker recovery keys."
   ]
  ],
  "4": [
   [
    0.05,
-   3.812,
-   "Module 1: Intune-first onboarding and the paths."
+   4.275,
+   "Module 1 is Intune-first onboarding and the migration paths."
   ],
   [
-   3.862,
-   4.5,
-   "Migration takes a device that already exists and brings it under governance."
+   4.325,
+   7.513,
+   "Migration brings an existing device under governance; Intune-first refuses to let an ungoverned device exist at all."
   ],
   [
-   8.363,
-   4.95,
-   "Intune-first refuses to let an ungoverned device exist in the first place."
-  ],
-  [
-   13.312,
-   13.3,
-   "Chapter 04 covers devices bought after the modernization decision, net-new only; the program keeps the phrase Intune-first for that doctrine and doesn't use it for replacing Group Policy on the existing fleet."
-  ],
-  [
-   26.613,
-   8.812,
-   "Chapter 05 then covers how existing workstations and servers reach the same end state, by one of three paths that share a single runbook."
+   11.838,
+   6.263,
+   "Chapter 04 covers new devices, and Chapter 05 the three paths for the existing estate."
   ]
  ],
  "5": [
@@ -270,466 +155,201 @@
   ],
   [
    2.013,
-   7.475,
-   "A net-new asset is governed from the moment it first powers on: by Intune for endpoints, and by Azure Arc for servers."
+   7.338,
+   "A new asset is governed from the moment it first powers on: by Intune for endpoints, and by Azure Arc for servers."
   ],
   [
-   9.488,
-   14.525,
-   "There is no state where it joins on-premises Active Directory to wait for a migration, gets provisioned by Configuration Manager and co-managed later, runs without an organizational assignment, or reaches production without a compliance evaluation."
+   9.35,
+   6.362,
+   "There's no waiting room where it joins Active Directory first, or reaches production without a compliance check."
   ],
   [
-   24.012,
+   15.713,
    5.388,
    "Five pillars carry it, and they're the program's doctrine, not Microsoft requirements."
   ],
   [
-   29.4,
-   4.7,
-   "No ungoverned device, ever; quarantine is the safety valve."
+   21.1,
+   15.262,
+   "The ones to remember: no ungoverned device, ever; procurement is the first governance step, the way HR feeds user provisioning; and an onboarding failure produces a quarantine entry and a ticket, never a degraded production device."
   ],
   [
-   34.1,
-   8.113,
-   "Procurement is the first governance step: the assignment is set when the purchase order is issued, the way HR feeds user provisioning."
+   36.362,
+   6.013,
+   "Every asset then follows the same five phases, from procure through provision and validate."
   ],
   [
-   42.212,
-   1.337,
-   "Zero-touch only."
-  ],
-  [
-   43.55,
-   6.737,
-   "One management plane per asset, so no greenfield Configuration Manager, Group Policy or hybrid join."
-  ],
-  [
-   50.288,
-   7.787,
-   "And quarantine on failure: an onboarding failure produces a quarantine entry and a ticket, never a degraded production device."
-  ],
-  [
-   58.075,
-   3.112,
-   "Every asset follows the same five phases."
-  ],
-  [
-   61.188,
-   4.513,
-   "Procure, with the assignment validated against the organizational registry."
-  ],
-  [
-   65.7,
-   2.837,
-   "Pre-stage, where the vendor record carries it."
-  ],
-  [
-   68.537,
-   4.963,
-   "Position, where the governance pipeline commits a mapping keyed on the serial number."
-  ],
-  [
-   73.5,
-   11.625,
-   "Note that phase 3 doesn't pre-stage an Entra object; classic Autopilot creates that automatically at registration, so phase 3 confirms the registration carries the right group tag."
-  ],
-  [
-   85.125,
-   1.837,
-   "Provision, zero-touch."
-  ],
-  [
-   86.963,
-   1.087,
-   "And validate."
-  ],
-  [
-   88.05,
-   10.562,
-   "The assignment comes from the first source that can supply it: procurement, then the vendor carrier, then derivation from the user, and finally an explicit unpositioned marker."
-  ],
-  [
-   98.612,
-   3.362,
-   "A known nowhere is still a value a rule can match."
-  ],
-  [
-   101.975,
-   5.775,
-   "The latency target is fourteen calendar days from purchase order, five for expedited orders."
+   42.375,
+   6.8,
+   "The organizational assignment comes from the first source that can supply it, and the target is fourteen days from purchase order."
   ]
  ],
  "6": [
   [
    0.05,
-   3.65,
-   "Microsoft now ships two Windows provisioning solutions."
+   3.45,
+   "Microsoft now ships two ways to provision Windows."
   ],
   [
-   3.7,
-   10.325,
-   "Windows Autopilot device preparation is a re-architecture with simpler configuration and near real-time reporting; classic Windows Autopilot remains more feature-rich."
+   3.5,
+   5.675,
+   "Autopilot device preparation is the newer, simpler one, with near real-time reporting."
   ],
   [
-   14.025,
-   2.75,
-   "The rows on the left are the differences that matter."
+   9.175,
+   2.612,
+   "Classic Autopilot is more feature-rich."
   ],
   [
-   16.775,
-   4.562,
-   "Device preparation needs no registration, so it has no group tag."
+   11.787,
+   6.562,
+   "The difference that matters most here is registration: device preparation has none, so it has no group tag."
   ],
   [
-   21.337,
-   4.188,
-   "It can't do hybrid join, pre-provisioning or self-deploying mode."
+   18.35,
+   6.225,
+   "In a G C C tenant both are available, because G C C uses the commercial Intune service."
   ],
   [
-   25.525,
-   9.613,
-   "It applies up to ten apps and ten scripts during setup, can't hold the desktop until user configuration lands, and doesn't use the Enrollment Status Page."
+   24.575,
+   13.863,
+   "The program's default for standard hardware is classic Autopilot, user-driven, with Entra join, because its registration carries the procurement attribute and the purchase order from the vendor to the device before it's ever powered on."
   ],
   [
-   35.138,
-   5.487,
-   "But it's available in G C C High and DoD, where classic Autopilot isn't."
-  ],
-  [
-   40.625,
-   4.975,
-   "The workbook assumes a Microsoft 365 G C C tenant."
-  ],
-  [
-   45.6,
-   8.2,
-   "Intune has no separate G C C instance: G C C uses the commercial Intune service, so both solutions are available."
-  ],
-  [
-   53.8,
-   4.675,
-   "Only G C C High and DoD use the separate government instance."
-  ],
-  [
-   58.475,
-   11.35,
-   "The program's default for standard hardware in G C C is classic Windows Autopilot, user-driven, with Entra join, and OEM or reseller registration carrying a group tag."
-  ],
-  [
-   69.825,
-   1.575,
-   "The reason is pillar 2."
-  ],
-  [
-   71.4,
-   11.113,
-   "Classic Autopilot's registration carries the procurement attribute, the group tag and the purchase order ID, from the vendor to the Entra device object before the device is powered on."
-  ],
-  [
-   82.513,
-   7.7,
-   "Device preparation adds devices to a group at enrollment, so the assignment has to come from the procurement mapping table afterward."
-  ],
-  [
-   90.213,
+   38.438,
    8.075,
    "Use device preparation where its advantages matter, such as faster provisioning or a tenant that might later move to G C C High."
   ],
   [
-   98.287,
-   10.588,
-   "It needs Windows 11 24H2, or 23H2 or 22H2 with KB5035942, and automatic enrollment."
-  ],
-  [
-   108.875,
-   7.513,
-   "And the first user must be allowed to join devices: on that path, the user's own join permission brings the device in."
-  ],
-  [
-   116.388,
-   3.163,
-   "Never use either with hybrid join for new devices."
+   46.513,
+   3.263,
+   "And never use either with hybrid join for new devices."
   ]
  ],
  "7": [
   [
    0.05,
-   5.213,
-   "Here's how the procurement decision reaches a device's configuration without anyone touching it."
+   5.188,
+   "Here's how a procurement decision reaches a device's configuration without anyone touching it."
   ],
   [
-   5.263,
-   4.55,
-   "The purchase order carries an organizational node code and the serial number."
+   5.237,
+   4.287,
+   "The purchase order carries an organizational code and the serial number."
   ],
   [
-   9.812,
-   7.025,
-   "The OEM, reseller or distributor registers the hardware hash at purchase, which is also what makes it zero-touch."
+   9.525,
+   8.713,
+   "The supplier registers the device at purchase, which is also what makes it zero-touch, after a one-time recorded approval by a Global Administrator."
   ],
   [
-   16.837,
-   13.738,
-   "A supplier can register devices only after the organization's Global Administrator authorizes it; Microsoft calls out that this one feature needs that role, so plan the consent as a one-time, recorded approval per supplier."
+   18.238,
+   8.55,
+   "That group tag shows up on the Entra device, a dynamic group matches on it, and the profile, compliance and configuration follow the group."
   ],
   [
-   30.575,
-   9.438,
-   "The group tag Intune stores on the registration appears on the Entra device as an Order ID physical ID, and the purchase order as a Purchase Order ID."
+   26.788,
+   9.4,
+   "The tag holds a node identifier, never a free-text department name, so a reorganization changes a mapping table, not thousands of registrations."
   ],
   [
-   40.013,
-   7.338,
-   "A dynamic group rule matches on them, and the Autopilot profile, compliance and configuration are assigned to that group."
+   36.188,
+   10.912,
+   "Enrollment restrictions are the enforcement point: block personal Windows enrollment, and an unregistered device simply fails to enroll, which is the quarantine pillar in practice."
   ],
   [
-   47.35,
-   11.225,
-   "The program's convention is that the tag holds the node identifier, never a free-text department name, so a reorganization changes the mapping table, not thousands of registrations."
-  ],
-  [
-   58.575,
-   3.625,
-   "Enrollment restrictions give the doctrine its enforcement point."
-  ],
-  [
-   62.2,
-   8.787,
-   "Block personally owned Windows enrollment, and Intune authorizes corporate enrollment only through approved paths, of which Autopilot is one."
-  ],
-  [
-   70.987,
-   7.625,
-   "Device preparation devices are blocked unless they're pre-identified with corporate identifiers or bound by device association."
-  ],
-  [
-   78.612,
-   6.213,
-   "An unregistered device then fails with an enrollment restriction error, which is pillar 5 in practice."
-  ],
-  [
-   84.825,
-   6.275,
-   "Naming: fifteen characters or fewer, letters, numbers and hyphens, not all numbers."
-  ],
-  [
-   91.1,
-   7.287,
-   "The program uses a short asset-class prefix plus the serial macro, because the serial is the procurement join key."
-  ],
-  [
-   98.388,
-   1.663,
-   "Position goes in the tag."
-  ],
-  [
-   100.05,
-   9.0,
-   "And the Enrollment Status Page: use a custom one, block on a Selected list of security-critical items, and don't let users bypass it for those."
+   47.1,
+   3.413,
+   "The slide covers naming and the Enrollment Status Page."
   ]
  ],
  "8": [
   [
    0.05,
-   5.513,
-   "A net-new device should arrive at a known baseline before anyone uses it, in two halves."
+   5.138,
+   "A new device should arrive at a known baseline before anyone uses it, in two halves."
   ],
   [
-   5.562,
+   5.188,
    1.95,
    "Compliance decides access."
   ],
   [
-   7.513,
-   14.125,
-   "First set the tenant-wide setting, mark devices with no compliance policy assigned as Not compliant, so an unassigned device can't pass Conditional Access by default; Microsoft recommends this whenever compliance feeds Conditional Access."
+   7.138,
+   9.9,
+   "The first step is a tenant-wide setting: mark devices with no compliance policy as not compliant, so an unassigned device can't pass Conditional Access by default."
   ],
   [
-   21.637,
-   13.162,
-   "The Windows policy typically requires BitLocker, Secure Boot and code integrity; firewall, TPM, antivirus and antispyware; current Defender intelligence with real-time protection; and a minimum OS."
+   17.038,
+   6.525,
+   "The Windows policy then requires the usual protections, like BitLocker, Secure Boot and current Defender."
   ],
   [
-   34.8,
-   4.15,
-   "With Defender for Endpoint connected, add a machine risk score ceiling."
+   23.562,
+   5.05,
+   "Configuration sets the device up, starting from Microsoft's security baselines."
   ],
   [
-   38.95,
-   2.275,
-   "Configuration sets the device up."
+   28.613,
+   5.775,
+   "Because these devices never had Group Policy, there's nothing to conflict with, and that's the payoff."
   ],
   [
-   41.225,
-   7.487,
-   "Start from the Windows security baseline, version 25H2 being the latest, and the Defender for Endpoint baseline."
+   34.388,
+   7.138,
+   "Four exception paths cover what can't follow the main path, from personal devices to Windows machines that can't enroll at all."
   ],
   [
-   48.712,
-   9.162,
-   "Existing baseline profiles don't move to a new version automatically, and different baselines can set the same setting differently, so review overlaps."
-  ],
-  [
-   57.875,
-   6.625,
-   "Then BitLocker with escrow to Entra ID, Windows Hello for Business, firewall and Windows LAPS."
-  ],
-  [
-   64.5,
-   4.463,
-   "Because these devices never had Group Policy, there's nothing to conflict with."
-  ],
-  [
-   68.963,
-   1.15,
-   "That's the payoff."
-  ],
-  [
-   70.112,
-   8.325,
-   "Four exception paths cover what can't follow the main path, each with written justification, a compensating control and an audit entry."
-  ],
-  [
-   78.438,
-   3.612,
-   "A: personal devices, governed at lower assurance."
-  ],
-  [
-   82.05,
-   11.325,
-   "B: Linux that Intune can't manage, under Arc. C: Server 2019 and 2022, under Arc without Entra sign-in, which is Microsoft's support boundary."
-  ],
-  [
-   93.375,
-   5.713,
-   "D: Windows that can't enroll, such as instrument PCs or disconnected enclaves."
-  ],
-  [
-   99.088,
-   2.975,
-   "Path D can't pass a compliant-device policy."
-  ],
-  [
-   102.062,
-   1.512,
-   "So isolate it first."
-  ],
-  [
-   103.575,
-   5.3,
-   "Manage its Defender settings through security settings management, which doesn't make it compliant."
-  ],
-  [
-   108.875,
-   9.65,
-   "And if its users must reach a protected resource, record a named exclusion, paired with a policy that blocks that group from every device not on the approved list."
+   41.525,
+   7.638,
+   "Each needs written justification, a compensating control and an audit entry, and the last one is isolated first."
   ]
  ],
  "9": [
   [
    0.05,
-   3.75,
-   "Chapter 05 is about how the existing estate gets there."
+   3.4,
+   "Chapter 05 is how the existing estate gets there."
   ],
   [
-   3.8,
-   18.675,
-   "The workbook's sources described three separate kits that repeated most of the same steps, because the destination is the same: servers in Arc, workstations in Intune, N T L M restricted after it's measured, clean service principal names, hardened SQL Server, and Conditional Access enforced."
+   3.45,
+   14.625,
+   "The sources described three separate kits that repeated most of the same steps, because the destination is the same: servers in Arc, workstations in Intune, N T L M restricted after it's measured, and Conditional Access enforced."
   ],
   [
-   22.475,
+   18.075,
    2.5,
    "What differs is who holds the decision record."
   ],
   [
-   24.975,
+   20.575,
    5.6,
    "The rule all three obey: the control plane governs, the data plane executes."
   ],
   [
-   30.575,
-   5.825,
-   "The program holds desired state, observes, classifies drift and reconciles."
+   26.175,
+   8.65,
+   "Every path runs four phases in order, observe, onboard, harden and watch, and nothing is restricted until it's been measured."
   ],
   [
-   36.4,
-   5.6,
-   "Entra ID, Intune, Azure Policy and Active Directory do the runtime work."
+   34.825,
+   3.1,
+   "The manual path suits small estates and pilots."
   ],
   [
-   42.0,
-   4.875,
-   "An adapter may call a management API; it never sits inline in a sign-in."
+   37.925,
+   3.875,
+   "The governed path puts an approval reference on every change."
   ],
   [
-   46.875,
-   5.562,
-   "Every path runs four phases in order, and nothing is restricted until it has been measured."
+   41.8,
+   5.888,
+   "The retrofit adopts a hand-modernized estate, at the risk of blessing whatever drift is there."
   ],
   [
-   52.438,
-   1.688,
-   "Observe is read-only."
-  ],
-  [
-   54.125,
-   2.675,
-   "Onboard attaches the management planes."
-  ],
-  [
-   56.8,
-   4.588,
-   "Harden closes the identity gaps, only after Phase 1 is signed off."
-  ],
-  [
-   61.388,
-   2.475,
-   "Watch keeps the estate from drifting back."
-  ],
-  [
-   63.862,
-   11.863,
-   "Budget at least two weeks of assessment, treat every first run as a dry run, deploy Conditional Access report-only first, and exclude the emergency access accounts before enforcing."
-  ],
-  [
-   75.725,
-   2.562,
-   "Domain unjoin is a separate decision."
-  ],
-  [
-   78.287,
-   5.275,
-   "The manual path suits small estates and pilots; the operator owns the change record."
-  ],
-  [
-   83.562,
-   8.625,
-   "The governed path is for larger estates, or where an authorizing official must sign: every state-changing step carries an approval reference."
-  ],
-  [
-   92.188,
-   4.2,
-   "The retrofit adopts a hand-modernized estate without re-enrollment."
-  ],
-  [
-   96.388,
-   5.3,
-   "Its risk is that registering the current state as desired blesses whatever drift is there."
-  ],
-  [
-   101.688,
-   2.462,
-   "Every governed operation declares a rung."
-  ],
-  [
-   104.15,
-   5.85,
-   "The federal ceiling is L3, human approval, and autonomous L4 is refused."
-  ],
-  [
-   110.0,
-   5.25,
-   "Where Intune Multi Admin Approval covers a workload, it is the L3 approval."
+   47.688,
+   4.713,
+   "And the federal ceiling is human approval; autonomous action is refused."
   ]
  ],
  "10": [
@@ -745,505 +365,270 @@
   ],
   [
    5.138,
-   10.85,
-   "Moving the existing fleet into Intune usually goes through Group Policy triggered automatic enrollment of hybrid joined devices: no reimage, no user interaction."
+   5.525,
+   "Existing devices usually enroll in Intune through Group Policy, with no reimage."
   ],
   [
-   15.988,
-   5.325,
-   "Confirm with dsregcmd that the device shows both Azure A D joined and domain joined."
+   10.662,
+   9.213,
+   "But while the GPOs are still linked, overlaps are dangerous: Group Policy usually wins, and for some settings it's a race with no guaranteed winner."
   ],
   [
-   21.312,
-   3.9,
-   "But while the GPOs are still linked, overlaps are dangerous."
-  ],
-  [
-   25.212,
-   4.425,
-   "When the same policy is set in both, Group Policy takes precedence."
-  ],
-  [
-   29.637,
-   4.612,
-   "MDM wins over GP reverses that only for the Policy CSP."
-  ],
-  [
-   34.25,
-   3.475,
-   "For the Defender CSP and others, it's a race."
-  ],
-  [
-   37.725,
-   8.05,
-   "And Windows Hello for Business, in the PassportForWork CSP, won't take the Intune settings until the Group Policy settings are cleared."
-  ],
-  [
-   45.775,
+   19.875,
    4.2,
    "So document every overlap before Intune enforces anything."
   ],
   [
-   49.975,
+   24.075,
    1.962,
    "N T L M second."
   ],
   [
-   51.938,
-   8.225,
-   "It's deprecated in all versions, and NTLMv1 is removed in Windows 11 24H2 and Server 2025."
+   26.038,
+   18.163,
+   "A common mistake is treating the strictest LAN Manager level as blocking N T L M; it doesn't, because domain controllers still accept NTLMv2. Blocking takes the Restrict N T L M policies, staged, and only after a fourteen to thirty day audit and owner sign-off."
   ],
   [
-   60.163,
-   15.787,
-   "A common mistake is treating LAN Manager level 5 as block all N T L M. Level 5 makes domain controllers refuse LM and NTLMv1, but they still accept NTLMv2. Blocking is done by the Restrict N T L M policies."
+   44.2,
+   1.462,
+   "And SPNs third."
   ],
   [
-   75.95,
-   12.75,
-   "So stage it: audit, refuse the legacy variants, then deny all, removing exceptions as each dependency retires, and only after a fourteen to thirty day audit and application owner sign-off."
-  ],
-  [
-   88.7,
-   7.2,
-   "Conditional Access can't help here: a Kerberos or N T L M exchange with a domain controller never reaches it."
-  ],
-  [
-   95.9,
-   1.25,
-   "SPNs third."
-  ],
-  [
-   97.15,
-   9.637,
-   "A missing SPN is the silent case: Kerberos isn't attempted, and N T L M usually succeeds, until stage 3 makes it an outage."
-  ],
-  [
-   106.787,
-   2.05,
-   "A duplicate is the loud case."
-  ],
-  [
-   108.838,
-   5.912,
-   "Validate each repair by purging the ticket cache and checking that SQL Server reports Kerberos."
+   45.663,
+   10.075,
+   "A missing SPN is the silent case: Kerberos isn't tried and N T L M quietly works, until the N T L M block turns it into an outage."
   ]
  ],
  "11": [
   [
    0.05,
-   4.088,
-   "Module 2: the G P O sunset and policy migration."
+   4.838,
+   "Module 2 is the G P O sunset, the program for the existing fleet."
   ],
   [
-   4.138,
-   2.1,
-   "This is the existing-fleet program."
+   4.888,
+   8.625,
+   "It replaces Group Policy on endpoints already deployed, and it's measured by GPOs retired with evidence, not by settings copied."
   ],
   [
-   6.237,
-   7.562,
-   "It replaces Group Policy Objects on endpoints that are already deployed, and it ends when those GPOs are formally retired."
-  ],
-  [
-   13.8,
-   5.112,
-   "The program measures it by GPOs retired with evidence, not by settings copied."
-  ],
-  [
-   18.913,
-   13.025,
-   "Chapter 07 runs it as a program, Chapter 08 is what an endpoint engineer works from inside those rules, and Appendix A is the crosswalk: where a control lands in Intune, not what its value should be."
+   13.512,
+   5.5,
+   "Chapters 07 and 08 run it, and Appendix A is the crosswalk."
   ]
  ],
  "12": [
   [
    0.05,
-   13.213,
-   "Three efforts touch Intune and the program keeps them apart: Intune-first onboarding for new devices, this sunset for the existing fleet, and regenerate-not-copy, the philosophy for authoring the replacements."
+   10.575,
+   "The program keeps three efforts apart: Intune-first for new devices, this sunset for the existing fleet, and regenerate-not-copy as the way replacements are written."
   ],
   [
-   13.262,
-   10.775,
-   "Microsoft's own guidance is that assessing every G P O and every setting is likely impractical; identify the mandatory settings and treat the gaps as blockers."
+   10.625,
+   8.9,
+   "Microsoft's own advice is that assessing every setting is likely impractical, so the program runs seven steps, each with an exit condition."
   ],
   [
-   24.038,
-   4.438,
-   "The program turns that into seven steps, each with an exit condition."
+   19.525,
+   8.863,
+   "Step one: nothing is translated or retired until it's inventoried, including its targeting, because that's the part that doesn't survive the move."
   ],
   [
-   28.475,
-   4.475,
-   "Step 1: nothing is translated or retired until it's inventoried."
+   28.387,
+   7.188,
+   "Group Policy analytics then shows, setting by setting, what's ready to migrate, what isn't supported and what's deprecated."
   ],
   [
-   32.95,
-   11.275,
-   "Get-G P O-Report produces each G P O's links, security filtering, WMI filtering and settings as XML, which is the shape Group Policy analytics imports."
+   35.575,
+   2.788,
+   "Plan around its limits, which are on the slide."
   ],
   [
-   44.225,
-   4.562,
-   "Record the targeting too, because it's the part that doesn't survive the move."
+   38.362,
+   4.162,
+   "Its migrate step is, in Microsoft's words, best effort."
   ],
   [
-   48.788,
-   14.512,
-   "The program's triage script sorts each live G P O onto a target plane, Intune for workstations and Arc for servers, using two classifiers side by side, so disagreements surface instead of hiding behind one guess."
-  ],
-  [
-   63.3,
-   9.95,
-   "Group Policy analytics shows, per setting, the CSP and OMA-URI behind it, and sorts settings into ready for migration, not supported or deprecated."
-  ],
-  [
-   73.25,
-   14.9,
-   "Plan around its limits: each export under four megabytes with proper Unicode, the five CSPs plus preferences it parses, non-ADMX settings read accurately only in English, and scope tags that hide imports from admins without them."
-  ],
-  [
-   88.15,
-   4.088,
-   "The Migrate step is, in Microsoft's words, best effort."
-  ],
-  [
-   92.237,
-   3.05,
-   "Firewall rules and AppLocker can't move that way."
-  ],
-  [
-   95.287,
-   10.0,
-   "And when several GPOs set one setting differently, migration stops and asks you to pick, which usefully surfaces the conflicts O U precedence used to hide."
-  ],
-  [
-   105.287,
-   6.55,
-   "The program treats the readiness report as evidence that an equivalent exists, never that a setting is needed."
-  ],
-  [
-   111.838,
-   3.55,
-   "And it quotes no percentage: Microsoft publishes none."
+   42.525,
+   6.362,
+   "So the program treats the readiness report as proof that an equivalent exists, never that a setting is needed."
   ]
  ],
  "13": [
   [
    0.05,
-   3.575,
-   "Step 2 gives every setting in the inventory one tag."
+   6.275,
+   "Step two gives every setting one tag: required, obsolete, high-risk or redundant."
   ],
   [
-   3.625,
-   4.375,
-   "Required: still needed, so it's translated to a modern control."
+   6.325,
+   2.013,
+   "Only required settings move on."
   ],
   [
-   8.0,
-   7.725,
-   "Obsolete: an old Windows version, a retired product, a network assumption that no longer holds, so it's retired."
+   8.338,
+   4.575,
+   "Each one then faces four questions in order, and the first yes decides."
   ],
   [
-   15.725,
-   5.325,
-   "High-risk: it weakens security, so it's retired or replaced with something stronger."
+   12.912,
+   2.138,
+   "Is it still needed in the target model?"
   ],
   [
-   21.05,
-   5.825,
-   "Redundant: already enforced by another control or a Windows default, so it's retired."
-  ],
-  [
-   26.875,
-   6.763,
-   "A required setting then gets a disposition from four questions, asked in order, where the first yes decides."
-  ],
-  [
-   33.638,
-   2.812,
-   "Is it still required in the target operating model?"
-  ],
-  [
-   36.45,
+   15.05,
    4.5,
    "Group Policy accumulated settings that existed only because it could set them."
   ],
   [
-   40.95,
-   2.562,
-   "Does a native Intune equivalent exist?"
+   19.55,
+   2.263,
+   "Does Intune have a native equivalent?"
   ],
   [
-   43.513,
+   21.812,
    0.912,
    "Most do."
   ],
   [
-   44.425,
-   2.35,
-   "Does a cloud-native pattern remove the need?"
+   22.725,
+   2.1,
+   "Does a cloud pattern remove the need?"
   ],
   [
-   46.775,
-   9.3,
-   "Folder redirection becomes OneDrive Known Folder Move, mapped printers become Universal Print, WSUS targeting becomes update rings."
+   24.825,
+   7.25,
+   "Folder redirection, for example, becomes OneDrive Known Folder Move, and mapped printers become Universal Print."
   ],
   [
-   56.075,
+   32.075,
    2.038,
    "And can a script enforce and prove it?"
   ],
   [
-   58.112,
-   3.888,
-   "Then it's a Remediation, reviewed later for a native replacement."
+   34.112,
+   6.662,
+   "A setting that fails all four becomes a dated exception, and its G P O stays linked for that population only."
   ],
   [
-   62.0,
-   6.975,
-   "A setting that fails all four is a dated exception, and its G P O stays linked for that population and no other."
-  ],
-  [
-   68.975,
-   6.562,
-   "For each one, also record whether it's configuration, compliance, or both, and what evidence proves it."
-  ],
-  [
-   75.537,
-   3.062,
-   "The questions send settings to four landing zones."
-  ],
-  [
-   78.6,
-   10.162,
-   "The settings catalog holds most ADMX and security settings; the old Administrative Templates profile has been read-only since the 2412 release."
-  ],
-  [
-   88.763,
-   7.95,
-   "Imported ADMX is for third-party templates: public preview, twenty files of a megabyte or less, en-us only."
-  ],
-  [
-   96.713,
-   11.213,
-   "Endpoint security owns antivirus, encryption, firewall, attack surface reduction, account protection and EDR, and Microsoft's practice is one method per setting."
-  ],
-  [
-   107.925,
-   6.925,
-   "Remediations need Enterprise, Education or VDA licensing, up to two hundred packages per tenant."
+   40.775,
+   5.537,
+   "The answers send settings to four landing zones in Intune, and the slide has their limits."
   ]
  ],
  "14": [
   [
    0.05,
-   8.15,
-   "While a population has both GPOs and Intune policies, three conflict systems are in play, and the program plans against each one."
+   5.775,
+   "While a population has both GPOs and Intune policies, three conflict systems are in play."
   ],
   [
-   8.2,
-   17.488,
-   "Inside Intune: two compliance policies take the most restrictive value; a compliance setting beats the same setting in a configuration policy; and between configuration policies of any type, settings catalog, endpoint security, security baselines, there is no precedence."
+   5.825,
+   4.688,
+   "Inside Intune, configuration policies have no precedence over each other."
   ],
   [
-   25.688,
-   4.162,
-   "The conflict is reported and the setting might not apply until it's fixed."
+   10.512,
+   6.225,
+   "A conflict is reported and the setting might not apply, so each setting gets exactly one owning policy."
   ],
   [
-   29.85,
-   11.0,
-   "The chapter states two corrections to earlier program material: profiles don't resolve by last write wins, and endpoint security doesn't automatically beat configuration profiles."
+   16.738,
+   9.238,
+   "The chapter also corrects earlier program material: there's no last-write-wins, and endpoint security doesn't automatically beat configuration profiles."
   ],
   [
-   40.85,
-   3.2,
-   "So each setting has exactly one owning policy."
+   25.975,
+   8.387,
+   "Between Group Policy and MDM, Group Policy keeps winning unless you change that, and outside the core policy settings it's a race."
   ],
   [
-   44.05,
-   15.787,
-   "Between Group Policy and MDM: in the Policy CSP, Group Policy keeps winning unless MDM wins over GP is set to one; set it where a population is in transition and remove the G P O copy as Intune takes the setting."
+   34.362,
+   6.912,
+   "Between Configuration Manager and Intune, the co-management slider decides, with a couple of traps on the slide."
   ],
   [
-   59.837,
-   7.062,
-   "Outside the Policy CSP it's a race, and Windows Hello for Business shouldn't be configured through both at all."
-  ],
-  [
-   66.9,
-   11.912,
-   "For Windows Update, Microsoft recommends Ignore Windows Update Group Policies instead, on Windows 11 24H2 with KB5101684 and later."
-  ],
-  [
-   78.812,
-   6.188,
-   "Between Configuration Manager and Intune, the co-management slider sets one authority per workload."
-  ],
-  [
-   85.0,
-   12.65,
-   "Note two traps: switching device configuration also moves resource access and Endpoint Protection; and with Pilot Intune selected, Intune deploys policies but doesn't remove them on unassignment."
-  ],
-  [
-   97.65,
-   4.388,
-   "Disabling a link is the moment production behavior changes, so it's gated."
-  ],
-  [
-   102.037,
-   9.488,
-   "Freeze the G P O, back it up, prove the replacement reports success, then disable the link, not the G P O, with one reversible command."
-  ],
-  [
-   111.525,
-   5.287,
-   "And remember that preference items stay on the device unless configured to remove themselves."
+   41.275,
+   11.463,
+   "Disabling a G P O link is the moment production behavior changes, so it's gated: freeze, back up, prove the replacement works, then disable the link with one reversible command."
   ]
  ],
  "15": [
   [
    0.05,
-   4.375,
-   "Chapter 08 breaks the seven phases into working tasks."
+   10.4,
+   "Chapter 08 breaks the seven phases into working tasks, with durations from the program's reference plan for a large fleet that already runs Configuration Manager."
   ],
   [
-   4.425,
-   9.412,
-   "The durations come from the program's reference plan for a large fleet with an existing Configuration Manager estate; a fleet without one skips most of Phase 2."
-  ],
-  [
-   13.838,
-   16.35,
-   "Phase 1, three to five weeks: export and import every G P O, find the G P O-on-G P O conflicts that O U precedence hid, classify every setting, and capture an effective-policy baseline per device tier with gpresult on a sample."
-  ],
-  [
-   30.188,
-   11.4,
-   "Phase 2, two to three weeks: enable co-management for a pilot collection, set the first workloads to Pilot Intune, and decide MDM wins over GP per population."
-  ],
-  [
-   41.587,
-   8.188,
-   "The matching Intune policy must already exist, because a co-managed device syncs MDM policy as soon as a workload moves."
-  ],
-  [
-   49.775,
-   16.188,
-   "Phase 3, three to four weeks, can overlap it: build every policy unassigned, with attack surface reduction and controlled folder access in audit mode, and peer review that every setting traces to a decision record and no setting appears twice."
-  ],
-  [
-   65.963,
+   10.45,
    9.825,
-   "Phase 4 is the pilot, about five percent of the fleet, representative across tiers, regions and departments, with a seven-day grace period instead of one."
+   "First comes the inventory and classification, then co-management for a pilot, then building every policy unassigned, with the riskier protections in audit mode."
   ],
   [
-   75.787,
-   6.9,
-   "GPOs stay linked: the pilot measures conflicts by comparing gpresult with Intune's per-setting status."
+   20.275,
+   8.738,
+   "The pilot is about five percent of the fleet, representative across tiers and regions, and the GPOs stay linked so conflicts can be measured."
   ],
   [
-   82.688,
-   4.963,
-   "Phase 5 is four waves of three weeks each, watched for seventy-two hours."
+   29.012,
+   8.075,
+   "Then four waves of three weeks each, and finally the links and GPOs are disabled, kept ninety days, backed up and deleted."
   ],
   [
-   87.65,
-   8.825,
-   "Endpoint Protection goes before device configuration, because moving device configuration drags Endpoint Protection and resource access with it."
+   37.087,
+   5.338,
+   "On these estimates, the program reaches the last phase in roughly thirty-four weeks."
   ],
   [
-   96.475,
-   11.037,
-   "Phases 6 and 7 disable the remaining links, clear tattooed preferences, then disable each G P O, keep it ninety days, back it up, archive and delete."
-  ],
-  [
-   107.513,
-   7.6,
-   "On these estimates the program reaches Phase 7 in roughly thirty-four weeks, with the last deletions about three months later."
-  ],
-  [
-   115.112,
-   6.9,
-   "Remember that rolling back a pilot means reassigning a policy with the old value, not just removing the assignment."
+   42.425,
+   7.325,
+   "One reminder: rolling back a pilot means reassigning a policy with the old value, not just removing the assignment."
   ]
  ],
  "16": [
   [
    0.05,
-   15.5,
-   "The policy library has five types, each with an ID prefix: compliance policies, CP; settings catalog profiles, SC; endpoint security, ES; app protection, AP; and app configuration, AC."
+   9.387,
+   "The policy library has five types, and every policy is assigned to dynamic device groups built from attributes, which replaces O U-based scoping."
   ],
   [
-   15.55,
-   6.763,
-   "Every one is assigned to dynamic device groups built from attributes, which replaces O U-linked scoping."
+   9.438,
+   8.588,
+   "Those attributes are the device's own extension attributes, written through Microsoft Graph, with one numbering and one fixed spelling per value."
   ],
   [
-   22.312,
-   13.225,
-   "Entra dynamic rules for devices can use extension attributes one through fifteen, but the values have to be written to the device object through Microsoft Graph first; they're the device's own set, not the user attributes."
+   18.025,
+   4.85,
+   "The correction that matters: assignment filters can't read extension attributes."
   ],
   [
-   35.538,
-   11.55,
-   "The program uses one numbering: one for region, three for department, eleven for security tier, twelve for device role and thirteen for environment, with one fixed spelling per value."
+   22.875,
+   6.662,
+   "Attribute targeting belongs in the group rule; filters work on Intune properties like join type or model."
   ],
   [
-   47.087,
-   5.438,
-   "Assignments then add exclude groups for break-glass and staging, and assignment filters."
+   29.538,
+   3.413,
+   "Three Microsoft facts shape every compliance policy."
   ],
   [
-   52.525,
-   4.362,
-   "The correction that matters: filters can't read extension attributes."
+   32.95,
+   3.525,
+   "Noncompliance actions are scheduled in days, not hours."
   ],
   [
-   56.888,
-   3.1,
-   "A filter on attribute eleven doesn't evaluate."
+   36.475,
+   5.6,
+   "There's no block action; blocking is what Conditional Access does with a noncompliant device."
   ],
   [
-   59.987,
-   8.562,
-   "Attribute targeting belongs in the group rule; filters work on Intune properties such as join type, ownership, model and OS edition."
+   42.075,
+   5.888,
+   "And encryption and boot checks are measured at boot, so a newly encrypted device needs a restart."
   ],
   [
-   68.55,
-   3.362,
-   "Three Microsoft facts shape every compliance template."
-  ],
-  [
-   71.912,
-   5.9,
-   "Noncompliance actions are scheduled in days, zero to three hundred sixty-five, not hours."
-  ],
-  [
-   77.812,
-   9.3,
-   "Windows supports only three actions: mark noncompliant, email the user, and add to the retire list, which retires nothing by itself."
-  ],
-  [
-   87.112,
-   5.725,
-   "There is no block action; blocking is what Conditional Access does with a noncompliant device."
-  ],
-  [
-   92.838,
-   7.25,
-   "And BitLocker, Secure Boot and code integrity are measured at boot, so a newly encrypted device needs a restart."
-  ],
-  [
-   100.088,
-   13.213,
-   "The set: a workstation baseline with a 24H2 floor; a strict Tier 0 policy with a 25H2 floor, a Clear risk score and no grace period; a Tier 2 policy; and a kiosk policy."
-  ],
-  [
-   113.3,
-   7.362,
-   "The server baseline, CP-004, can't be built in Intune, so it moves to Chapter 09."
+   47.962,
+   4.45,
+   "The slide has the compliance set, including a strict Tier 0 policy."
   ]
  ],
  "17": [
@@ -1254,259 +639,149 @@
   ],
   [
    6.8,
-   17.5,
-   "In the program's library they own every Defender, BitLocker, firewall, account protection and LAPS setting, and the four settings catalog IDs that duplicated them, SC-002, 006, 007 and 008, are retired and never reused."
+   11.55,
+   "In the program's library, though, they own every Defender, BitLocker, firewall, account protection and LAPS setting, and the settings catalog profiles that duplicated them are retired."
   ],
   [
-   24.3,
-   10.7,
-   "ES-001, antivirus: cloud block level High, a fifty-second extended timeout, which is the maximum, and safe samples sent automatically."
+   18.35,
+   2.062,
+   "The slide walks through each one."
   ],
   [
-   35.0,
-   6.188,
-   "Sending all samples can upload documents with organizational data, so that's the data owner's decision."
+   20.413,
+   1.225,
+   "A few highlights."
   ],
   [
-   41.188,
-   7.688,
-   "Tamper protection needs Defender onboarding and isn't supported this way on co-managed devices until Endpoint Protection moves."
+   21.637,
+   6.35,
+   "Sending every file sample to Microsoft can upload organizational data, so that's the data owner's call."
   ],
   [
-   48.875,
-   15.5,
-   "ES-002, BitLocker: silent encryption and a TPM pin can't apply to the same device, so standard and kiosk devices encrypt silently with TPM only, and Tier 0 uses TPM plus pin in a separate policy."
+   27.988,
+   6.912,
+   "Silent encryption and a TPM pin can't apply to the same device, so Tier 0 gets its own BitLocker policy."
   ],
   [
-   64.375,
-   13.625,
-   "ES-003, firewall: on an Entra-joined device the domain profile doesn't apply, so management rules need a private-profile equivalent, and Group Policy analytics can't migrate firewall rules."
+   34.9,
+   4.537,
+   "On an Entra-joined device, the firewall's domain profile doesn't apply."
   ],
   [
-   78.0,
-   10.287,
-   "ES-004, EDR: automated investigation, live response and web content filtering are set in the Defender portal, not here."
+   39.438,
+   4.925,
+   "And attack surface reduction rules run in audit for thirty days before blocking."
   ],
   [
-   88.287,
-   13.838,
-   "ES-005: attack surface reduction rules in audit for thirty days, then block; the PSExec and WMI rule stays off Configuration Manager devices, because its client depends on WMI."
-  ],
-  [
-   102.125,
-   10.812,
-   "ES-006: Credential Guard, which needs Enterprise or Education, Hello for Business, and Windows LAPS with an eight-hour post-authentication reset."
-  ],
-  [
-   112.938,
-   2.3,
-   "Appendix A flags the traps."
-  ],
-  [
-   115.237,
-   3.663,
-   "Account lockout maps to the DeviceLock lockout policy."
-  ],
-  [
-   118.9,
-   3.175,
-   "Audit Logon sits under the logon-logoff path."
-  ],
-  [
-   122.075,
-   3.2,
-   "A logon message breaks Autopilot pre-provisioning."
-  ],
-  [
-   125.275,
-   6.612,
-   "And Known Folder Move won't carry folders redirected to a share: copy them first with Migration Manager."
+   44.362,
+   6.362,
+   "Appendix A flags the crosswalk traps, such as a logon message breaking Autopilot pre-provisioning."
   ]
  ],
  "18": [
   [
    0.05,
-   8.113,
-   "Module 3: servers under Azure Arc. Group Policy reached servers through O U placement, the same way it reached workstations."
+   8.175,
+   "Module 3 is servers under Azure Arc. Intune doesn't support Windows Server, so Arc takes over the job Group Policy did for servers."
   ],
   [
-   8.162,
-   6.213,
-   "Intune doesn't take over that job, because Intune's supported platforms don't include Windows Server."
-  ],
-  [
-   14.375,
-   2.388,
-   "The cloud equivalent is Azure Arc."
-  ],
-  [
-   16.762,
-   7.987,
-   "A server outside Azure runs the Connected Machine agent and appears as an Azure resource, managed the way native virtual machines are."
-  ],
-  [
-   24.75,
-   7.112,
-   "Arc gives the server an address in the control plane; everything that makes it governed is what you then attach to that address."
+   8.225,
+   6.525,
+   "Arc gives a server an address in the control plane; what governs it is everything you then attach to that address."
   ]
  ],
  "19": [
   [
    0.05,
-   1.663,
-   "Arc is the management plane."
+   3.288,
+   "Arc is the management plane, not the identity plane."
   ],
   [
-   1.712,
-   7.475,
-   "It isn't the identity plane, and onboarding doesn't change how the server authenticates users or whether it's joined to a domain."
+   3.337,
+   7.737,
+   "Onboarding doesn't change how a server authenticates users or whether it's domain-joined, so keep the two separate in every plan."
   ],
   [
-   9.188,
-   2.337,
-   "Keep the two separate in every plan."
+   11.075,
+   9.225,
+   "What changes: the server becomes an Azure resource, with role-based access, tags and Azure Policy, and extensions that run with full privileges."
   ],
   [
-   11.525,
-   18.725,
-   "What changes: the server gets an Azure resource ID in a resource group alongside other Azure resources; Azure R-back, tags and Azure Policy apply to it; it gets a system-assigned managed identity in Entra ID; and extensions can be installed from Azure, running with full privileges on the server."
+   20.3,
+   4.312,
+   "What doesn't: its domain membership, its workload and where it runs."
   ],
   [
-   30.25,
-   12.512,
-   "What doesn't: its domain membership; how users and services authenticate to it, unless you enable Entra ID sign-in; the workload, since an Arc outage impairs management only; and where it runs."
-  ],
-  [
-   42.763,
+   24.613,
    1.975,
    "Arc isn't a migration to Azure."
   ],
   [
-   44.737,
-   2.638,
-   "Two properties shape the operating model."
+   26.587,
+   2.1,
+   "Two properties shape operations."
   ],
   [
-   47.375,
-   12.363,
-   "Azure is the source of truth for the agent: the only way to tell it to do something is to act on the server's Azure representation, so R-back and policy are evaluated before any change reaches the server."
+   28.688,
+   5.175,
+   "Azure is the source of truth, so every change is checked before it reaches the server."
   ],
   [
-   59.737,
+   33.862,
    2.25,
    "And connection state is evidence."
   ],
   [
-   61.987,
-   2.888,
-   "The agent sends a heartbeat every five minutes."
+   36.112,
+   6.838,
+   "A server disconnected for fourteen days loses its baseline assignments, and after forty-five days it can expire."
   ],
   [
-   64.875,
-   11.688,
-   "A server that stops shows Disconnected within fifteen to thirty minutes, and one disconnected for forty-five days can become Expired, unmanageable until an administrator disconnects and reconnects it."
-  ],
-  [
-   76.562,
-   9.2,
-   "If a server disconnects, its guest assignments are kept for fourteen days and then deleted, so a long outage silently removes its baseline evaluation."
-  ],
-  [
-   85.763,
-   2.763,
-   "Plan cost by service, not by connection."
-  ],
-  [
-   88.525,
-   14.662,
-   "If the Windows Server licenses carry Software Assurance, or are subscription or pay-as-you-go, Windows Server Management enabled by Arc provides Update Manager, Change Tracking and Inventory and machine configuration at no extra cost."
-  ],
-  [
-   103.188,
-   6.675,
-   "But it isn't automatic: you attest each server's licensing, and that becomes a recorded step in the runbook."
+   42.95,
+   8.162,
+   "Plan cost by service, too; with the right licensing, several management services come at no extra cost, once you attest it."
   ]
  ],
  "20": [
   [
    0.05,
-   5.112,
-   "Before the first server connects, settle roles, network, tags and images."
+   3.138,
+   "Before the first server connects, settle four things."
   ],
   [
-   5.162,
-   2.237,
-   "Use the narrowest built-in roles."
+   3.188,
+   1.125,
+   "Roles first."
   ],
   [
-   7.4,
-   10.287,
-   "Azure Connected Machine Onboarding goes to the onboarding service principal only: it can read and create Arc server resources, but not delete them or manage extensions."
+   4.312,
+   6.275,
+   "Use the narrowest built-in roles, and remember that extensions run arbitrary scripts with full privileges."
   ],
   [
-   17.688,
-   4.487,
-   "Azure Connected Machine Resource Administrator is for the server operations team."
+   10.588,
+   11.088,
+   "Microsoft says to treat any Contributor on an Arc resource as an indirect administrator of the server, so scope those roles tightly and hold them through Privileged Identity Management."
   ],
   [
-   22.175,
-   9.3,
-   "And Virtual Machine Administrator Login or User Login are for people who sign in with Entra ID; Owner and Contributor don't confer sign-in."
+   21.675,
+   9.713,
+   "Network: the agent only talks outbound over 443, with no inbound rule, and a private link scope keeps that traffic off public networks."
   ],
   [
-   31.475,
-   2.062,
-   "Then remember what extensions can do."
+   31.387,
+   4.0,
+   "Run the agent's connectivity check from a representative server first."
   ],
   [
-   33.538,
-   17.1,
-   "They run arbitrary scripts with full privileges, so Microsoft says to treat any Contributor on the Arc resource as an indirect administrator of the server, and the Cloud Adoption Framework warns that Contributor, Owner and the resource administrator role can effectively delegate root access."
+   35.388,
+   7.325,
+   "Tags: settle one taxonomy at connection time, because tags drive policy scope, patching and cost reporting."
   ],
   [
-   50.638,
-   6.025,
-   "Scope those roles to the resource groups a team owns, and hold them through Privileged Identity Management."
-  ],
-  [
-   56.663,
-   6.388,
-   "Network: the agent communicates outbound over TCP 443, with no inbound rule."
-  ],
-  [
-   63.05,
-   11.3,
-   "Allow the Azure Active Directory, Traffic Manager, Resource Manager, Arc Infrastructure and Storage service tags and, as of April 2026, Azure Front Door Frontend."
-  ],
-  [
-   74.35,
-   8.025,
-   "A proxy doesn't add security, because the traffic is already encrypted; a private link scope keeps it off public networks."
-  ],
-  [
-   82.375,
-   6.15,
-   "Run azcmagent check from a representative server first, adding the cloud parameter for Azure Government."
-  ],
-  [
-   88.525,
-   8.15,
-   "Tags: one taxonomy at connection time, which drives policy scope, Update Manager's dynamic scoping and cost reporting."
-  ],
-  [
-   96.675,
-   2.438,
-   "They're plain text, so nothing sensitive."
-  ],
-  [
-   99.112,
-   7.05,
-   "A server with SQL Server installed connects its instances to Arc automatically; opt out with a tag when you connect."
-  ],
-  [
-   106.162,
-   8.05,
-   "And images: install the agent in a golden image, but never connect the image, or every clone shares one resource ID."
+   42.712,
+   7.875,
+   "And images: install the agent in your golden image, but never connect the image, or every clone shares one resource ID."
   ]
  ],
  "21": [
@@ -1517,68 +792,38 @@
   ],
   [
    1.837,
-   10.2,
-   "Each wave creates its credential, connects a defined set of servers, attaches the baseline on the same change, verifies, and closes by removing what onboarding needed."
+   9.062,
+   "Each wave creates its credential, connects a set of servers, attaches the baseline on the same change, verifies, and then removes what onboarding needed."
   ],
   [
-   12.037,
-   17.062,
-   "Microsoft supports many methods: a portal-generated script, PowerShell, a service principal with the installation script, Ansible, Arc-enabled VMware vSphere, the multicloud connector for AWS, Windows Admin Center, Configuration Manager, and Group Policy."
+   10.9,
+   2.35,
+   "Microsoft supports many methods."
   ],
   [
-   29.1,
-   9.475,
-   "The program's recommendation is a dedicated service principal that authenticates with a certificate, deployed through the automation tool the server team already runs."
+   13.25,
+   8.55,
+   "The program recommends a dedicated service principal that signs in with a certificate, deployed through the automation the server team already runs."
   ],
   [
-   38.575,
-   3.962,
-   "The interactive script is for a handful of servers or a pilot."
+   21.8,
+   5.85,
+   "That credential is needed only while the connect command runs, so keep its life short and its scope small."
   ],
   [
-   42.538,
-   10.562,
-   "The service principal exists only to connect machines, and the credential is needed only while azcmagent connect runs; if it expires afterward, the server stays connected."
+   27.65,
+   5.112,
+   "Someone holding it could connect servers outside your organization into your subscription."
   ],
   [
-   53.1,
-   5.9,
-   "So keep its lifetime short and its scope small: the onboarding role, on the target resource group."
+   32.763,
+   7.588,
+   "Protect it in deployment, too: a secret in a hand-built startup script is readable by every domain user through SYSVOL."
   ],
   [
-   59.0,
-   7.2,
-   "Microsoft recommends a certificate over a secret, because a certificate credential can be controlled with Conditional Access."
-  ],
-  [
-   66.2,
-   7.525,
-   "If you must use a secret, Microsoft's examples create one valid for a year; set it shorter and rotate it after each wave."
-  ],
-  [
-   73.725,
-   8.675,
-   "A stolen onboarding credential lets an attacker connect servers outside your organization into your subscription, and private endpoints close that path."
-  ],
-  [
-   82.4,
-   2.062,
-   "Protect the credential in deployment."
-  ],
-  [
-   84.463,
-   5.5,
-   "A secret in a hand-built startup script is readable by every domain user through SYSVOL."
-  ],
-  [
-   89.963,
-   15.375,
-   "Microsoft's Group Policy method encrypts its configuration file so only computer accounts can decrypt it, which still means any computer account, so scope the G P O, rotate after the wave, and disable the G P O once servers connect."
-  ],
-  [
-   105.338,
-   8.075,
-   "For sensitive servers, set local controls that Azure can't override: an extension allowlist, and disabling remote connections."
+   40.35,
+   6.112,
+   "And for sensitive servers, set local controls Azure can't override, like an extension allowlist."
   ]
  ],
  "22": [
@@ -1589,565 +834,225 @@
   ],
   [
    3.312,
-   2.475,
-   "Attach three things on the same change."
+   2.587,
+   "Three things get attached on the same change."
   ],
   [
-   5.787,
-   5.287,
-   "Govern with Azure machine configuration, formerly Azure Policy Guest Configuration."
+   5.9,
+   19.562,
+   "Configuration, through Azure machine configuration, which audits or sets operating system settings and reports compliance per machine, scoped by Azure resource rather than by O U. Keep the customized baseline in the governance repository as policy-as-code, and treat noncompliance as a finding, not a failed deployment."
   ],
   [
-   11.075,
-   9.625,
-   "It extends Azure Policy inside the operating system, using Desired State Configuration to audit or set OS settings, and reports compliance per machine."
+   25.462,
+   7.3,
+   "Patching, through Azure Update Manager, which assesses daily, patches in maintenance windows and groups servers by tag."
   ],
   [
-   20.7,
-   7.612,
-   "Unlike Group Policy it's scoped by Azure resource scope, subscription, resource group or machine, not by O U."
+   32.763,
+   2.65,
+   "And protection, through Defender for Servers."
   ],
   [
-   28.312,
-   4.575,
-   "The agent includes the service natively, so there's no extension to deploy."
+   35.413,
+   6.013,
+   "The program's fed-ramp Moderate scope uses Plan 2, plus Defender for SQL on SQL hosts."
   ],
   [
-   32.888,
-   11.15,
-   "The Windows and Linux audit baselines are built-in definitions against the Azure compute security baseline, both customizable, and a CIS benchmark definition for Linux is in preview."
-  ],
-  [
-   44.038,
-   11.35,
-   "Deploy the prerequisite initiative first, keep the customized baseline in the governance repository as policy-as-code, and treat noncompliance as a finding, not a failed deployment."
-  ],
-  [
-   55.388,
-   2.125,
-   "Patch with Azure Update Manager."
-  ],
-  [
-   57.513,
-   11.887,
-   "It assesses every twenty-four hours when periodic assessment is on, patches in maintenance windows, and groups machines by tag through dynamic scoping, which is where the patch group tag earns its keep."
-  ],
-  [
-   69.4,
-   13.363,
-   "It's charged per Arc server per month, except when the server is enabled for ESUs through Arc, when Defender for Servers Plan 2 covers the subscription, or with Software Assurance, a subscription or pay-as-you-go license."
-  ],
-  [
-   82.763,
-   2.062,
-   "Protect with Defender for Servers."
-  ],
-  [
-   84.825,
-   12.725,
-   "Plan 1 centers on endpoint detection and response; Plan 2 adds agentless scanning, regulatory compliance, premium vulnerability management, configuration assessment and file integrity monitoring."
-  ],
-  [
-   97.55,
-   6.8,
-   "The program's fed-ramp Moderate scope uses Plan 2, plus Defender for SQL on Arc-connected SQL hosts."
-  ],
-  [
-   104.35,
-   5.562,
-   "Onboard through Arc rather than installing Defender directly, which gives only Plan 1 function."
-  ],
-  [
-   109.912,
-   6.662,
-   "And if your only Defender entitlement comes through Defender for Servers, security settings management isn't available."
+   41.425,
+   6.188,
+   "Onboard Defender through Arc, rather than installing it directly, which gives you only Plan 1 function."
   ]
  ],
  "23": [
   [
    0.05,
-   5.25,
-   "Arc is also how many organizations keep end-of-support servers patched while they migrate."
+   6.838,
+   "Arc is also how many organizations keep end-of-support servers patched while they migrate, and the dates are the point here."
   ],
   [
-   5.3,
-   12.438,
-   "As of October twentieth, 2026: the Windows Server 2012 and 2012 R2 ESU period ended on October thirteenth, and Arc ESU licenses deactivated the next day."
+   6.888,
+   16.175,
+   "As of October twentieth, 2026, Windows Server 2012 and 2012 R2 receive no further security updates through any channel, so any still running is a red finding: migrate, upgrade, or isolate it and record the risk."
   ],
   [
-   17.738,
-   5.062,
-   "Any such host still running receives no further security updates through any channel."
+   23.062,
+   10.35,
+   "Windows Server 2016 reaches end of support on January twelfth, 2027, so enroll those hosts in ESUs before then if they won't be upgraded."
   ],
   [
-   22.8,
-   6.312,
-   "Treat it as a red finding: migrate, upgrade, or isolate it and record the risk acceptance."
+   33.413,
+   13.575,
+   "Arc servers can also use Entra ID for Remote Desktop, but only on Server 2025 or Windows 11 24H2, and Conditional Access isn't supported there; the control is role-based access held through pim."
   ],
   [
-   29.113,
-   12.9,
-   "Windows Server 2016 reaches end of support on January twelfth, 2027, with ESUs for up to three years; connect and enroll those hosts before then if they won't be upgraded in time."
-  ],
-  [
-   42.013,
-   11.1,
-   "SQL Server 2014 is in its third ESU year, until July 2027, and SQL Server 2016 in its first, until July 2029."
-  ],
-  [
-   53.112,
-   5.638,
-   "ESUs through Arc are billed monthly, need no product keys, and show coverage per server."
-  ],
-  [
-   58.75,
-   1.762,
-   "Entra ID sign-in."
-  ],
-  [
-   60.513,
-   7.25,
-   "Arc-enabled Windows servers can use Entra ID for Remote Desktop, with Azure R-back deciding who signs in."
-  ],
-  [
-   67.763,
-   12.738,
-   "It needs Windows Server 2025 or later with Desktop Experience, or Windows 11 24H2; 2019 and 2022 aren't supported, which is exception C from Module 1."
-  ],
-  [
-   80.5,
-   3.275,
-   "It's available in Azure Global and Azure Government."
-  ],
-  [
-   83.775,
-   6.188,
-   "Installing the sign-in extension Entra-joins the server, so it's for servers that won't be domain-joined."
-  ],
-  [
-   89.963,
-   3.188,
-   "Only member users of the same tenant can sign in."
-  ],
-  [
-   93.15,
-   4.737,
-   "And Conditional Access isn't supported with the join extension on Arc servers."
-  ],
-  [
-   97.888,
-   8.338,
-   "That corrects a common assumption: the control you get is R-back on who may sign in, held through pim, not workstation Conditional Access."
-  ],
-  [
-   106.225,
-   4.675,
-   "Linux uses SSH through Arc with its own extension and the same roles."
-  ],
-  [
-   110.9,
-   11.463,
-   "Rollback order matters: remove extensions first, because uninstalling the agent leaves them behind; then disconnect, which needs the resource administrator role; then uninstall."
+   46.987,
+   5.362,
+   "And rollback has an order: remove extensions, disconnect, then uninstall."
   ]
  ],
  "24": [
   [
    0.05,
-   3.538,
-   "Module 4: operating and evidencing the fleet."
+   3.388,
+   "Module 4 is operating and evidencing the fleet."
   ],
   [
-   3.587,
-   5.463,
-   "Once the GPOs are gone, a device's state is no longer explained by where it sits."
+   3.438,
+   10.363,
+   "Once the GPOs are gone, a device's state has to be proved from three records: the policy library, the status Intune and Defender report, and the audit log."
   ],
   [
-   9.05,
-   5.15,
-   "It has to be proved, continuously, from records the services already keep."
-  ],
-  [
-   14.2,
-   14.887,
-   "The run state replaces the O U answer with three records: the policy library from Chapter 08, which says what each device should be; the status Intune and Defender report per device, which says what it is; and the audit log of every change."
-  ],
-  [
-   29.087,
-   3.663,
-   "Operating the fleet means keeping those three in agreement."
-  ],
-  [
-   32.75,
-   5.5,
-   "Evidencing it means handing an assessor the same records, not a document written for the audit."
+   13.8,
+   2.288,
+   "Operating means keeping them in agreement."
   ]
  ],
  "25": [
   [
    0.05,
-   7.475,
-   "The compliance policies decide whether a device is compliant; Conditional Access decides what a noncompliant device can reach."
+   9.262,
+   "Compliance policies decide whether a device is compliant; Conditional Access decides what a noncompliant device can reach, and Book 04 owns that part."
   ],
   [
-   7.525,
-   4.9,
-   "The Federal Modernization Workbook's Book 04 owns that second decision."
+   9.312,
+   2.763,
+   "This book's job is making the signal accurate."
   ],
   [
-   12.425,
-   10.988,
-   "This book's side of the hand-off is making sure the compliance signal is accurate, and remember that the compliant-device grant works only for devices registered in Entra ID and enrolled in Intune."
-  ],
-  [
-   23.413,
+   12.075,
    3.075,
    "Two tenant settings sit above every policy."
   ],
   [
-   26.488,
-   13.575,
-   "Devices with no compliance policy assigned default to Compliant; the program sets Not compliant, so a device that falls outside every group, a missing tier attribute for example, can't pass Conditional Access by default."
+   15.15,
+   9.25,
+   "Devices with no compliance policy default to compliant, and the program flips that, so a device that falls outside every group can't pass by default."
   ],
   [
-   40.062,
-   8.425,
-   "And the compliance status validity period defaults to thirty days, with a range of one to a hundred twenty; the program uses fourteen."
+   24.4,
+   11.537,
+   "And compliance status stays valid for thirty days by default; the program uses fourteen, short enough that a device left in a drawer loses access, long enough not to catch staff on leave."
   ],
   [
-   48.487,
-   10.15,
-   "That's a program choice: short enough that a device left in a drawer loses access before its posture is stale by a whole patch cycle, long enough not to catch staff on leave."
+   35.938,
+   5.6,
+   "Read the dashboard carefully, because some statuses hide devices from the noncompliant count."
   ],
   [
-   58.638,
-   1.863,
-   "Read the dashboard carefully."
-  ],
-  [
-   60.5,
-   5.963,
-   "In grace period means noncompliant, but inside the schedule on the mark noncompliant action."
-  ],
-  [
-   66.463,
-   5.075,
-   "Not evaluated is a new device, or one that hasn't checked in since a policy changed."
-  ],
-  [
-   71.537,
-   7.537,
-   "A compliance setting that returns Error keeps the existing status for up to seven days, then the device becomes noncompliant."
-  ],
-  [
-   79.075,
-   6.45,
-   "The program reviews Not evaluated and Error weekly, because both hide devices from the noncompliant count."
-  ],
-  [
-   85.525,
-   9.15,
-   "Configuration status is per device and per setting: Succeeded, Error, or Conflict, which means another policy sets the same setting differently."
-  ],
-  [
-   94.675,
-   2.538,
-   "A conflict is a defect in the library."
-  ],
-  [
-   97.213,
-   3.075,
-   "Move the setting into the one policy that owns it."
-  ],
-  [
-   100.287,
-   10.825,
-   "And on Tier 0, the risk score requirement means a Defender detection on a privileged access workstation becomes a compliance failure, and through Conditional Access, a loss of access."
+   41.538,
+   6.037,
+   "And on Tier 0, a Defender detection becomes a compliance failure, and so a loss of access."
   ]
  ],
  "26": [
   [
    0.05,
-   19.95,
-   "Intune manages Windows updates through four policy types built on the Windows Update client policies: update rings for deferrals, deadlines and restarts; feature update policies that pin a Windows version; quality update policies, which can expedite a critical update or deliver hotpatches; and driver update policies."
+   6.662,
+   "Intune manages Windows updates through four policy types, and the rings stage each month's quality update."
   ],
   [
-   20.0,
-   2.587,
-   "Rings stage each month's quality update."
+   6.713,
+   8.0,
+   "The ring names follow Windows Autopatch, Test, First, Fast and Broad, from the engineering lab out to everyone else."
   ],
   [
-   22.587,
-   7.35,
-   "The names follow Windows Autopatch, Test, First, Fast and Broad; the values are the program's design."
+   14.713,
+   2.062,
+   "The values are the program's design."
   ],
   [
-   29.938,
-   4.5,
-   "Test is the engineering lab, with no deferral and a two-day deadline."
+   16.775,
+   9.863,
+   "With them, a quality update reaches every online device within about sixteen days of release, and an update that breaks an early ring can be paused before Broad."
   ],
   [
-   34.438,
-   3.2,
-   "First is the pilot cohort, about five percent."
+   26.637,
+   9.613,
+   "Autopatch automates all of this, and it's included for G C C customers with G3 or G5, though not in G C C High or DoD."
   ],
   [
-   37.638,
-   2.125,
-   "Fast is about a quarter of the fleet."
+   36.25,
+   4.025,
+   "It maintains its own rings, so don't assign yours to its devices."
   ],
   [
-   39.763,
-   6.537,
-   "Broad is everyone else, with a seven-day deferral, a seven-day deadline and a two-day grace period."
-  ],
-  [
-   46.3,
-   6.612,
-   "Rings allow deferrals of zero to thirty days, deadlines of two to thirty and grace of zero to seven."
-  ],
-  [
-   52.913,
-   10.188,
-   "With these values a quality update reaches every online device within about sixteen days of release, and an update that breaks Test or First can be paused before Broad."
-  ],
-  [
-   63.1,
-   5.662,
-   "Feature deferral is zero everywhere, because a feature update policy pins the version."
-  ],
-  [
-   68.763,
-   4.588,
-   "Windows Autopatch automates ring management, sequencing and reporting."
-  ],
-  [
-   73.35,
-   12.575,
-   "For government tenants, it's included for G C C customers with Microsoft 365 G3 G C C or G5 G C C, and isn't supported in G C C High or DoD."
-  ],
-  [
-   85.925,
-   9.213,
-   "Devices must be Entra joined or hybrid joined, and co-managed devices need the update and device configuration workloads at Intune or Pilot Intune."
-  ],
-  [
-   95.138,
-   5.362,
-   "Autopatch creates and maintains its own rings, so don't assign yours to its devices."
-  ],
-  [
-   100.5,
-   6.812,
-   "The program's position: use it where licensed, and keep the ring table as the specification its groups are configured to."
-  ],
-  [
-   107.312,
-   8.15,
-   "Version currency: 23H2 Enterprise and Education stop receiving updates on November tenth, 2026."
-  ],
-  [
-   115.463,
-   7.763,
-   "So the feature update policy targets 25H2 now, and the compliance floor of 24H2 rises each year."
+   40.275,
+   10.225,
+   "And version currency: 23H2 Enterprise stops receiving updates on November tenth, 2026, so feature updates target 25H2 now."
   ]
  ],
  "27": [
   [
    0.05,
-   5.312,
-   "Three services keep their own device inventory, and they disagree in predictable ways."
+   7.525,
+   "Intune, Entra ID and Defender each keep their own device inventory, and they disagree in predictable ways."
   ],
   [
-   5.362,
-   5.487,
-   "Intune's managed devices drift when devices stop checking in, and cleanup rules hide them."
-  ],
-  [
-   10.85,
-   7.263,
-   "Entra ID accumulates stale objects from reimaging, broken hybrid trust, or devices that never enrolled."
-  ],
-  [
-   18.113,
-   5.287,
-   "Defender has devices onboarded but not enrolled, or enrolled but never onboarded."
-  ],
-  [
-   23.4,
+   7.575,
    3.712,
    "The program reconciles them weekly on the Entra device ID."
   ],
   [
-   27.113,
-   7.888,
-   "Every enrolled device must have an Entra object with its tier, role and environment attributes set, and a healthy Defender sensor."
+   11.287,
+   8.713,
+   "Every enrolled device needs an Entra object with its attributes set and a healthy Defender sensor, and a device missing from any one is a finding."
   ],
   [
-   35.0,
-   4.725,
-   "Every Entra object for a corporate Windows device must have an Intune enrollment."
+   20.0,
+   3.675,
+   "That same comparison is the evidence for a complete inventory."
   ],
   [
-   39.725,
-   9.312,
-   "A device missing from any one is a finding, and the same comparison is the evidence for CM-8's requirement of a complete inventory with no duplicates."
+   23.675,
+   10.162,
+   "Treat stale records with care: cleanup rules hide devices but don't delete them, and Entra's sign-in date isn't updated every time, so disable before deleting."
   ],
   [
-   49.038,
-   1.688,
-   "Stale records need care."
-  ],
-  [
-   50.725,
-   8.075,
-   "Intune cleanup rules hide devices after thirty to two hundred seventy days, per platform; the program uses ninety for Windows."
-  ],
-  [
-   58.8,
-   5.088,
-   "They don't wipe or retire anything, and hidden devices stay in Entra ID."
-  ],
-  [
-   63.888,
-   11.125,
-   "Entra's last sign-in timestamp isn't updated on every sign-in, so Microsoft advises not treating anything newer than about twenty-one days as stale, and disabling before deleting."
-  ],
-  [
-   75.013,
-   4.475,
-   "Hybrid devices are removed in Active Directory, and the change syncs."
-  ],
-  [
-   79.487,
+   33.837,
    5.075,
    "Retirement follows a fixed order, because the order decides what can still be recovered."
   ],
   [
-   84.562,
-   4.537,
-   "Record first: export the BitLocker keys and the LAPS password."
-  ],
-  [
-   89.1,
-   7.388,
-   "Retiring or deleting the Intune object of an Entra-joined BitLocker device suspends BitLocker, so back up first."
-  ],
-  [
-   96.487,
-   6.875,
-   "Then act on the device: wipe a corporate device, retire a personal one; actions run at next check-in."
-  ],
-  [
-   103.362,
-   2.913,
-   "Deregister from Autopilot if it's leaving for good."
-  ],
-  [
-   106.275,
-   1.812,
-   "Delete the Intune record."
-  ],
-  [
-   108.088,
-   6.275,
-   "And delete the Entra object last, after a disable period, because that permanently deletes its keys."
-  ],
-  [
-   114.362,
-   6.862,
-   "Plan mass refreshes in daily batches: the tenant limit is a thousand retires and a thousand deletes a day."
+   38.913,
+   10.363,
+   "Export the BitLocker keys and LAPS password first, then wipe, deregister and delete, and delete the Entra object last, because that permanently removes its keys."
   ]
  ],
  "28": [
   [
    0.05,
-   12.262,
-   "Drift is a difference between the policy library and a device's reported state that the policy should have prevented: BitLocker off, tamper protection off, an OS below the floor, a setting stuck in Conflict."
+   9.162,
+   "Drift is a gap between the policy library and what a device reports, one the policy should have prevented, like BitLocker off or an OS below the floor."
   ],
   [
-   12.312,
-   7.438,
-   "The program detects it with the same loop Chapter 05 describes for the governed path, applied to Intune and Defender."
+   9.213,
+   11.875,
+   "The program finds it with the same loop as the governed path: a daily export, a comparison with the library, classification, and remediation, with policy changes going through change control."
   ],
   [
-   19.75,
-   4.6,
-   "A daily export of compliance, configuration and inventory status."
+   21.087,
+   1.312,
+   "The catch is timing."
   ],
   [
-   24.35,
-   3.65,
-   "A comparison against the template values in Chapter 08."
+   22.4,
+   9.762,
+   "Intune's audit logs arrive in Log Analytics right away, but compliance and inventory data are exported once a day and can take up to forty-eight hours to land."
   ],
   [
-   28.0,
-   7.438,
-   "Classification as a policy gap, a device fault, a conflict or an inventory mismatch, alerted by severity."
-  ],
-  [
-   35.438,
-   8.425,
-   "And remediation: a device sync or a Remediation script, or a policy change through change control when the library itself is wrong."
-  ],
-  [
-   43.862,
-   4.55,
-   "On the governed path every remediating write carries an approval reference."
-  ],
-  [
-   48.413,
-   2.75,
-   "Know what Log Analytics receives, and when."
-  ],
-  [
-   51.163,
-   8.6,
-   "Intune's diagnostic settings send audit logs, operational logs, compliance organizational logs and the Intune devices inventory."
-  ],
-  [
-   59.763,
-   2.975,
-   "Audit and operational logs are sent immediately."
-  ],
-  [
-   62.737,
-   10.312,
-   "Compliance and inventory are exported once every twenty-four hours and can take up to forty-eight to arrive, and Microsoft says not to rely on a fixed delivery time."
-  ],
-  [
-   73.05,
+   32.163,
    4.138,
    "So those tables are for trends and evidence, not minute-level alerts."
   ],
   [
-   77.188,
-   7.362,
-   "And per-setting configuration status isn't among them, so the configuration comparison comes from Microsoft Graph reports."
+   36.3,
+   7.15,
+   "That's why fleet-wide alerts come from the daily export, but Tier 0 noncompliance is polled from Graph every hour."
   ],
   [
-   84.55,
-   11.075,
-   "Three query pitfalls: don't hard-code compliance state strings, don't join the operational logs on a device ID column it doesn't have, and don't look for configuration conflicts there."
-  ],
-  [
-   95.625,
-   1.575,
-   "The alerts follow from that."
-  ],
-  [
-   97.2,
-   4.412,
-   "Fleet-wide noncompliance above ten percent comes from the daily export."
-  ],
-  [
-   101.612,
-   7.4,
-   "But Tier 0 noncompliance is polled from Graph hourly: from the export, the alert would arrive two days late."
-  ],
-  [
-   109.013,
-   6.862,
-   "Meanwhile Conditional Access blocks the device, because CP-002 has no grace period."
+   43.45,
+   2.95,
+   "Otherwise the alert would arrive two days late."
   ]
  ],
  "29": [
@@ -2158,76 +1063,41 @@
   ],
   [
    1.925,
-   9.95,
-   "The program's evidence is the records the services keep, exported on a schedule and retained, for the configuration management and flaw remediation controls."
+   13.175,
+   "The evidence is the records the services already keep, exported on a schedule and retained, mapped to the configuration management and flaw remediation controls in nist special publication eight hundred fifty-three."
   ],
   [
-   11.875,
-   13.312,
-   "The control wording is from nist special publication eight hundred fifty-three Revision 5, release 5.2.0, which fed-ramp's 2026 catalog uses without adding parameter values to these controls."
+   15.1,
+   4.312,
+   "Baseline configuration is the policy library under version control."
   ],
   [
-   25.188,
-   8.7,
-   "CM-2, baseline configuration: the policy library exported from Graph, under version control, with its review history."
+   19.413,
+   2.862,
+   "Inventory is the weekly reconciliation."
   ],
   [
-   33.888,
-   9.3,
-   "CM-6, configuration settings: per-setting status, the exception register with approvals, and the Intune audit log of every change."
+   22.275,
+   5.725,
+   "Flaw remediation is the ring table, whose deadlines set the organization's patch period."
   ],
   [
-   43.188,
-   8.637,
-   "CM-7, least functionality: attack surface reduction in block, the firewall rule set, the Edge extension allow list."
+   28.0,
+   2.138,
+   "Two G C C facts matter."
   ],
   [
-   51.825,
-   4.287,
-   "CM-8, inventory: the weekly reconciliation."
+   30.137,
+   11.787,
+   "Intune in G C C uses the commercial service, and Windows Update for Business reports don't meet G C C compliance requirements, so patch evidence comes from Intune and Autopatch reports."
   ],
   [
-   56.112,
-   5.475,
-   "SI-2, flaw remediation: the ring table and per-ring compliance."
+   41.925,
+   13.95,
+   "So, from Monday: inventory and triage every G P O, set the compliance defaults, carry procurement into the group tag, onboard servers with a short-lived certificate principal, and reconcile inventories weekly."
   ],
   [
-   61.587,
-   5.825,
-   "SI-2's defined period is the organization's parameter, and the ring deadlines are what set it."
-  ],
-  [
-   67.412,
-   4.075,
-   "Two G C C facts change where data and endpoints live."
-  ],
-  [
-   71.487,
-   12.062,
-   "Intune in a G C C tenant isn't a separate government instance: G C C uses the commercial service and worldwide Graph, and only G C C High and DoD are separate."
-  ],
-  [
-   83.55,
-   18.312,
-   "Defender for Endpoint for US Government is built in Azure US Government, with the G C C portal at security dot microsoft dot com. And Windows Update for Business reports don't meet G C C compliance requirements, so SI-2 evidence comes from Intune and Autopatch reports."
-  ],
-  [
-   101.862,
-   10.363,
-   "The program also maps this evidence to fed-ramp twenty X Key Security Indicators, as its own claim, written for cloud service offerings, not an agency fleet."
-  ],
-  [
-   112.225,
-   14.525,
-   "So, from Monday: inventory and triage every G P O; set the tenant compliance defaults; carry procurement into the group tag; onboard servers with a short-lived certificate principal; and reconcile inventories weekly."
-  ],
-  [
-   126.75,
-   4.275,
-   "Chapters 04 to 10 and Appendix A carry the detail."
-  ],
-  [
-   131.025,
+   55.875,
    0.762,
    "Thank you."
   ]

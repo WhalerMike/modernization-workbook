@@ -1,148 +1,70 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:03.150
-The second decision is where
-passwords are validated.
+00:00:00.050 --> 00:00:02.875
+The second decision is
+where passwords are checked.
 
 2
-00:00:03.150 --> 00:00:08.376
-With password hash sync, validation happens
-in the cloud against a synchronized hash
+00:00:02.875 --> 00:00:05.971
+With password hash sync,
+it happens in the cloud,
 
 3
-00:00:08.376 --> 00:00:11.468
-of the password hash, with
-no extra infrastructure,
+00:00:05.971 --> 00:00:10.338
+needs no extra infrastructure, and
+survives an on-premises outage.
 
 4
-00:00:11.468 --> 00:00:13.750
-and it survives an on-premises outage.
+00:00:10.338 --> 00:00:14.258
+Pass-through authentication
+depends on on-premises agents,
 
 5
-00:00:13.750 --> 00:00:19.112
-Pass-through authentication validates in
-the cloud after an on-premises agent checks
+00:00:14.258 --> 00:00:17.551
+and federation with AD FS
+needs whole server farms.
 
 6
-00:00:19.112 --> 00:00:22.911
-AD; Microsoft recommends at
-least three agents in production,
+00:00:17.551 --> 00:00:22.174
+Microsoft recommends turning on password
+hash sync whichever method you choose,
 
 7
-00:00:22.911 --> 00:00:26.113
-treated as tier zero, and it
-doesn't survive an outage.
+00:00:22.174 --> 00:00:25.439
+because it's the fallback, and
+organizations that had it on
 
 8
-00:00:26.113 --> 00:00:30.963
-Federation with AD FS validates
-on-premises and needs AD FS and
+00:00:25.439 --> 00:00:28.975
+recovered from ransomware outages
+in hours rather than weeks.
 
 9
-00:00:30.963 --> 00:00:35.813
-Web Application Proxy farms,
-load balancers and certificates.
+00:00:28.975 --> 00:00:34.125
+So the program prefers it everywhere,
+and AD FS becomes a decommission target.
 
 10
-00:00:35.813 --> 00:00:39.000
-Leaked-credential detection
-needs password hash sync.
-
-11
-00:00:39.000 --> 00:00:42.854
-Microsoft recommends enabling
-it whichever method you choose:
-
-12
-00:00:42.854 --> 00:00:47.072
-it's the fallback if agents or
-federation fail, and organizations that
-
-13
-00:00:47.072 --> 00:00:51.363
-had it on recovered from ransomware
-outages in hours rather than weeks.
-
-14
-00:00:51.363 --> 00:00:53.187
-The failover is manual.
-
-15
-00:00:53.187 --> 00:00:57.795
-So the program's position is password
-hash sync preferred everywhere,
-
-16
-00:00:57.795 --> 00:01:01.688
-pass-through transitional, and
-AD FS a decommission target.
-
-17
-00:01:01.688 --> 00:01:02.950
+00:00:34.125 --> 00:00:35.387
 Then, matching.
 
-18
-00:01:02.950 --> 00:01:07.137
-When sync adds an object that
-might already exist in the cloud,
+11
+00:00:35.387 --> 00:00:39.361
+When sync meets an object that
+already exists in the cloud,
 
-19
-00:01:07.137 --> 00:01:10.586
-Entra ID tries a hard match
-first: the source anchor,
+12
+00:00:39.361 --> 00:00:42.838
+a match overwrites the cloud
+copy, so clean AD first.
 
-20
-00:01:10.586 --> 00:01:15.512
-by default the consistency GUID,
-against the cloud object's immutable ID.
+13
+00:00:42.838 --> 00:00:47.151
+And since July 1, 2026, sync can't
+hard-match onto cloud accounts
 
-21
-00:01:15.512 --> 00:01:19.606
-Without one, a soft match on
-UPN or primary SMTP address,
-
-22
-00:01:19.606 --> 00:01:24.063
-which only works if the cloud
-object has no immutable ID yet.
-
-23
-00:01:24.063 --> 00:01:27.523
-Either one overwrites the
-cloud object's attributes,
-
-24
-00:01:27.523 --> 00:01:30.512
-including the password
-hash, so clean AD first.
-
-25
-00:01:30.512 --> 00:01:34.305
-Two tenant settings block soft
-match and hard-match takeover;
-
-26
-00:01:34.305 --> 00:01:39.063
-Microsoft advises leaving both blocked
-except in a planned matching window.
-
-27
-00:01:39.063 --> 00:01:44.486
-And since July 1, 2026, Entra ID blocks
-a hard match onto a cloud account that
-
-28
-00:01:44.486 --> 00:01:47.865
-already has an on-premises
-object identifier,
-
-29
-00:01:47.865 --> 00:01:52.400
-or holds or is eligible for a
-privileged role, for both engines.
-
-30
-00:01:52.400 --> 00:01:55.990
-Don't plan to take over cloud
-administrator accounts by sync.
+14
+00:00:47.151 --> 00:00:51.600
+with privileged roles, so don't
+plan to take over admins that way.

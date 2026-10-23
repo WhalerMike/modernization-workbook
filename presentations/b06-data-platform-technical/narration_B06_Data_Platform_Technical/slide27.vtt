@@ -1,168 +1,76 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:04.225
-Runbook R10 is discovery and
-analysis, not provisioning.
+00:00:00.050 --> 00:00:03.287
+Runbook R10 is discovery,
+not provisioning.
 
 2
-00:00:04.225 --> 00:00:08.075
+00:00:03.287 --> 00:00:07.138
 Before anyone sets a date to switch
 off the certificate authority,
 
 3
-00:00:08.075 --> 00:00:10.525
+00:00:07.138 --> 00:00:09.588
 someone has to find out
 what it still signs.
 
 4
-00:00:10.525 --> 00:00:14.849
-The program has no decision yet on
-the move from AD CS to a cloud PKI,
+00:00:09.588 --> 00:00:13.865
+The program hasn't decided yet on
+moving from AD CS to a cloud PKI,
 
 5
-00:00:14.849 --> 00:00:19.013
-so this runbook produces the
-evidence that decision will need.
+00:00:13.865 --> 00:00:17.813
+so this runbook gathers the
+evidence that decision needs.
 
 6
-00:00:19.013 --> 00:00:24.421
-Step one runs the read-only D1.10
-certificate audit across Active Directory:
+00:00:17.813 --> 00:00:21.932
+A read-only audit records the
+issuing CA on every certificate,
 
 7
-00:00:24.421 --> 00:00:30.088
-the PKI inventory, machine and user
-certificates, smart-card-required accounts,
+00:00:21.932 --> 00:00:24.275
+with a few checks inside the engine.
 
 8
-00:00:30.088 --> 00:00:35.412
-and service dependencies, including
-LDAP over TLS on domain controllers.
+00:00:24.275 --> 00:00:26.013
+Then three dependencies.
 
 9
-00:00:35.412 --> 00:00:38.772
-It records the issuing
-CA on every certificate,
+00:00:26.013 --> 00:00:28.675
+The engine's TLS certificate matters most,
 
 10
-00:00:38.772 --> 00:00:42.475
-which is exactly the signal
-for what depends on AD CS.
+00:00:28.675 --> 00:00:32.100
+because every Entra connection
+requires encryption.
 
 11
-00:00:42.475 --> 00:00:46.900
-It doesn't reach into an instance, so
-three in-engine reads supplement it.
+00:00:32.100 --> 00:00:36.000
+Certificate-mapped logins carry
+less risk than the source claimed.
 
 12
-00:00:46.900 --> 00:00:49.962
-Join certificates to
-their logins on the SID,
+00:00:36.000 --> 00:00:38.105
+And certificate-based sign-in,
 
 13
-00:00:49.962 --> 00:00:53.025
-not the principal ID,
-and read the issuer name.
+00:00:38.105 --> 00:00:42.987
+the interim answer for the NTLM long
+tail, needs a replacement CA first.
 
 14
-00:00:53.025 --> 00:00:57.824
-An empty certificate setting doesn't mean
-no certificate, because SQL Server picks
+00:00:42.987 --> 00:00:45.502
+The finding comes down to one question:
 
 15
-00:00:57.824 --> 00:01:02.275
-one from the machine store or generates
-its own; check the error log at startup.
+00:00:45.502 --> 00:00:48.724
+does AD CS retire before
+its replacement is ready?
 
 16
-00:01:02.275 --> 00:01:06.358
-And check mirroring and
-availability-group endpoints;
-
-17
-00:01:06.358 --> 00:01:09.375
-one reporting NTLM is also an R06 finding.
-
-18
-00:01:09.375 --> 00:01:12.813
-Step two maps the results
-to three dependencies.
-
-19
-00:01:12.813 --> 00:01:17.397
-The engine's TLS certificate: every
-Entra connection requires encryption,
-
-20
-00:01:17.397 --> 00:01:20.354
-so if the CA is gone when
-the certificate expires,
-
-21
-00:01:20.354 --> 00:01:23.312
-encryption becomes what
-breaks the connection.
-
-22
-00:01:23.312 --> 00:01:28.046
-Certificate-mapped logins and endpoints
-carry less risk than the source claimed,
-
-23
-00:01:28.046 --> 00:01:30.970
-because certificate logins
-are used only for code
-
-24
-00:01:30.970 --> 00:01:33.824
-signing and can't connect,
-and most are self-signed.
-
-25
-00:01:33.824 --> 00:01:39.315
-And certificate-based sign-in, the
-interim posture for the NTLM long tail,
-
-26
-00:01:39.315 --> 00:01:43.250
-needs a replacement CA
-issuing before AD CS retires.
-
-27
-00:01:43.250 --> 00:01:47.492
-Step three orders the CA migration,
-roots before issuing CAs,
-
-28
-00:01:47.492 --> 00:01:51.988
-with cycles and cross-domain
-dependencies flagged as blockers.
-
-29
-00:01:51.988 --> 00:01:57.319
-One fact for the decision: Microsoft Cloud
-PKI issues to Intune-managed devices,
-
-30
-00:01:57.319 --> 00:02:00.146
-and Intune doesn't support Windows Server,
-
-31
-00:02:00.146 --> 00:02:03.862
-so SQL Server hosts would
-need another enrollment path.
-
-32
-00:02:03.862 --> 00:02:05.723
-The finding is one question:
-
-33
-00:02:05.723 --> 00:02:09.849
-does the AD CS decommission run
-earlier than its replacement?
-
-34
-00:02:09.849 --> 00:02:13.920
-If it does, the interim posture
-is lost exactly when it's needed.
+00:00:48.724 --> 00:00:52.580
+If so, the interim posture is
+lost exactly when it's needed.

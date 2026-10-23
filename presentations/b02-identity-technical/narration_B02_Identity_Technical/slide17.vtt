@@ -11,142 +11,50 @@ Connect Sync is the long-standing,
 full-featured engine on a Windows Server.
 
 3
-00:00:08.050 --> 00:00:13.267
-Cloud Sync is a lightweight agent with its
-configuration in the cloud, and Microsoft
+00:00:08.050 --> 00:00:11.712
+Cloud Sync is a lightweight
+agent configured from the cloud,
 
 4
-00:00:13.267 --> 00:00:17.962
-now calls it the strategic direction:
-new features are built primarily on it.
+00:00:11.712 --> 00:00:14.862
+and Microsoft now calls it
+the strategic direction.
 
 5
-00:00:17.962 --> 00:00:20.481
-Here's the comparison from Microsoft's
+00:00:14.862 --> 00:00:17.075
+The slide compares them side by side.
 
 6
-00:00:20.481 --> 00:00:23.550
-decision guide as of its
-October 2026 revision.
+00:00:17.075 --> 00:00:22.376
+The short version: Cloud Sync runs multiple
+active agents with automatic failover,
 
 7
-00:00:23.550 --> 00:00:27.284
-Connect Sync runs on a server;
-Cloud Sync runs as agents,
+00:00:22.376 --> 00:00:26.063
+while Connect Sync still wins
+on scale and advanced rules.
 
 8
-00:00:27.284 --> 00:00:30.438
-which can sit on existing
-domain controllers.
+00:00:26.063 --> 00:00:29.626
+Cloud Sync now covers group
+provisioning back to AD and
 
 9
-00:00:30.438 --> 00:00:32.720
-Both handle connected multi-forest;
+00:00:29.626 --> 00:00:33.500
+Exchange hybrid writeback, so
+those no longer force Connect.
 
 10
-00:00:32.720 --> 00:00:37.513
-only Cloud Sync handles disconnected
-forests, which matters after mergers.
-
-11
-00:00:37.513 --> 00:00:41.964
-For availability, Connect has one
-active server with a staging standby;
-
-12
-00:00:41.964 --> 00:00:46.038
-Cloud Sync runs multiple active
-agents with automatic failover.
-
-13
-00:00:46.038 --> 00:00:51.169
-Scale: Cloud Sync supports up to a hundred
-fifty thousand objects per AD domain and
-
-14
-00:00:51.169 --> 00:00:54.790
-groups up to fifty thousand
-members; Connect has no stated
-
-15
-00:00:54.790 --> 00:00:58.563
-object limit and goes to two
-hundred fifty thousand members.
-
-16
-00:00:58.563 --> 00:01:03.887
-Connect has advanced sync rules and cross-forest
-references; Cloud Sync has neither.
-
-17
-00:01:03.887 --> 00:01:07.812
-And Cloud Sync can provision
-groups from Entra ID back to AD,
-
-18
-00:01:07.812 --> 00:01:11.175
-and test with on-demand
-provisioning; Connect can't.
-
-19
-00:01:11.175 --> 00:01:13.387
-Two corrections to older guidance.
-
-20
-00:01:13.387 --> 00:01:18.695
-Group Writeback version two in Connect
-Sync was a preview that Microsoft
-
-21
-00:01:18.695 --> 00:01:24.351
-discontinued on June 30, 2024; Cloud Sync's
-group provisioning to AD replaces it.
-
-22
-00:01:24.351 --> 00:01:27.767
-And Cloud Sync now handles
-Exchange hybrid writeback,
-
-23
-00:01:27.767 --> 00:01:30.500
-so Exchange alone no
-longer forces Connect.
-
-24
-00:01:30.500 --> 00:01:33.587
-The program's rule: Cloud
+00:00:33.500 --> 00:00:36.528
+The program's rule is Cloud
 Sync for new deployments,
 
-25
-00:01:33.587 --> 00:01:36.900
-and plan to migrate existing
-Connect installations.
+11
+00:00:36.528 --> 00:00:40.400
+and Connect only where a forest
+needs something Cloud Sync can't do.
 
-26
-00:01:36.900 --> 00:01:41.454
-Stay on Connect only where a forest
-needs something Cloud Sync doesn't do:
-
-27
-00:01:41.454 --> 00:01:46.615
-more than a hundred fifty thousand objects
-in a domain, groups over fifty thousand,
-
-28
-00:01:46.615 --> 00:01:50.562
-advanced rules, cross-forest
-references, or attribute merging.
-
-29
-00:01:50.562 --> 00:01:54.797
-Both engines can run in one forest
-with mutually exclusive scopes,
-
-30
-00:01:54.797 --> 00:01:56.337
-so you can move in stages.
-
-31
-00:01:56.337 --> 00:02:00.600
-And never run two Connect servers
-in active mode against one tenant.
+12
+00:00:40.400 --> 00:00:44.880
+Both can run in one forest with separate
+scopes, so you can move in stages.

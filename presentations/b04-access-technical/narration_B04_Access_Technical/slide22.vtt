@@ -1,161 +1,69 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:02.606
-Access reviews are recurring attestation
+00:00:00.050 --> 00:00:05.108
+Access reviews are recurring proof that
+each person still needs what they hold,
 
 2
-00:00:02.606 --> 00:00:05.162
-that each person still
-needs what they hold.
+00:00:05.108 --> 00:00:08.940
+on a schedule set by risk:
+privileged roles monthly for Tier 0,
 
 3
-00:00:05.162 --> 00:00:08.810
-Each instance captures a snapshot
-of access when it starts,
+00:00:08.940 --> 00:00:12.465
+sensitive application groups
+quarterly in two stages,
 
 4
-00:00:08.810 --> 00:00:12.012
-and changes during a review
-show up in the next cycle.
+00:00:12.465 --> 00:00:16.450
+lower tiers less often, and guests
+quarterly by their sponsors.
 
 5
-00:00:12.012 --> 00:00:14.000
-The schedule is set by risk.
-
-6
-00:00:14.000 --> 00:00:19.180
-Privileged roles are reviewed in PIM,
-monthly for Tier 0 by the Tier 0 approver
-
-7
-00:00:19.180 --> 00:00:24.037
-group, and quarterly for the other
-tiers, with removal if nobody responds.
-
-8
-00:00:24.037 --> 00:00:28.800
-Tier 1 application groups are reviewed
-quarterly in two stages of seven days:
-
-9
-00:00:28.800 --> 00:00:31.851
-the manager first, then
-the application owner for
-
-10
-00:00:31.851 --> 00:00:34.976
-everyone the manager approved
-or marked don't know.
-
-11
-00:00:34.976 --> 00:00:37.962
-That replaces the old
-manual escalation step.
-
-12
-00:00:37.962 --> 00:00:41.280
-Tier 2 groups are semiannual
-and Tier 3 annual,
-
-13
-00:00:41.280 --> 00:00:44.162
-by the application or department owner.
-
-14
-00:00:44.162 --> 00:00:47.084
-Guests are reviewed
-quarterly by their sponsors,
-
-15
-00:00:47.084 --> 00:00:49.863
-and denied guests are
-blocked and then removed.
-
-16
-00:00:49.863 --> 00:00:51.662
+00:00:16.450 --> 00:00:18.250
 Four rules make reviews bite.
 
-17
-00:00:51.662 --> 00:00:55.025
-First, review the groups,
-not the applications.
+6
+00:00:18.250 --> 00:00:21.926
+Review the groups, not the
+applications, because reviewing an
 
-18
-00:00:55.025 --> 00:00:59.586
-Microsoft notes that reviewing an application
-that uses group assignment doesn't
+7
+00:00:21.926 --> 00:00:26.250
+application doesn't remove the people
+who get access through its groups.
 
-19
-00:00:59.586 --> 00:01:03.750
-remove the members of those groups; they
-keep their access through the group.
+8
+00:00:26.250 --> 00:00:29.325
+Add a fallback reviewer
+for users with no manager.
 
-20
-00:01:03.750 --> 00:01:07.514
-Second, whenever reviewers
-are managers or group owners,
+9
+00:00:29.325 --> 00:00:31.957
+Choose the no-response default on purpose:
 
-21
-00:01:07.514 --> 00:01:12.400
-add a fallback reviewer for users with
-no manager and groups with no owner.
+10
+00:00:31.957 --> 00:00:35.642
+remove access where an unreviewed
+grant is the bigger risk,
 
-22
-00:01:12.400 --> 00:01:15.850
-Third, choose the no-response
-default deliberately.
+11
+00:00:35.642 --> 00:00:39.327
+like privileged roles and
+guests, and escalate instead for
 
-23
-00:01:15.850 --> 00:01:19.889
-Microsoft warns that combining
-remove access with auto-apply
+12
+00:00:39.327 --> 00:00:43.087
+business applications, where a
+mass removal would stop work.
 
-24
-00:01:19.889 --> 00:01:23.850
-can revoke all access to a resource
-if reviewers don't respond.
+13
+00:00:43.087 --> 00:00:46.212
+And require a justification
+on every decision.
 
-25
-00:01:23.850 --> 00:01:28.737
-So the program sets remove only where an
-unreviewed grant is riskier than a lost
-
-26
-00:01:28.737 --> 00:01:32.588
-one, privileged roles and guests,
-and no change with escalation
-
-27
-00:01:32.588 --> 00:01:36.512
-for business applications, where
-a mass removal would stop work.
-
-28
-00:01:36.512 --> 00:01:39.333
-Fourth, justification on every decision,
-
-29
-00:01:39.333 --> 00:01:42.401
-and no bulk decisions
-on privileged reviews.
-
-30
-00:01:42.401 --> 00:01:46.124
-The service can't prevent a bulk
-action, so the history is checked
-
-31
-00:01:46.124 --> 00:01:50.200
-for one reviewer recording many
-identical decisions within minutes.
-
-32
-00:01:50.200 --> 00:01:54.746
-The records: results download as a
-CSV, and review history reports stay
-
-33
-00:01:54.746 --> 00:02:00.140
-downloadable for only thirty days, so each
-one goes straight to the evidence store.
+14
+00:00:46.212 --> 00:00:51.260
+Review history only stays downloadable for
+thirty days, so export it straight away.

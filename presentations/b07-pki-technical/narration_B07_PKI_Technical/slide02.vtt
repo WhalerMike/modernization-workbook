@@ -1,112 +1,63 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:01.238
-Why this matters.
+00:00:00.050 --> 00:00:01.437
+Here's why this matters.
 
 2
-00:00:01.238 --> 00:00:05.300
-A certificate is a signed naming claim
-that has already been handed out.
+00:00:01.437 --> 00:00:05.038
+A certificate is a signed claim
+that's already been handed out.
 
 3
-00:00:05.300 --> 00:00:07.795
-It sits in device stores, on smart cards,
+00:00:05.038 --> 00:00:06.972
+It sits on devices, smart cards,
 
 4
-00:00:07.795 --> 00:00:12.238
-in load balancers and in trust
-stores nobody remembers configuring.
+00:00:06.972 --> 00:00:11.074
+load balancers and trust stores
+nobody remembers configuring.
 
 5
-00:00:12.238 --> 00:00:14.638
+00:00:11.074 --> 00:00:13.475
 It doesn't move when the directory moves.
 
 6
-00:00:14.638 --> 00:00:19.012
+00:00:13.475 --> 00:00:17.850
 It keeps working until it expires,
 and then whatever relied on it stops.
 
 7
-00:00:19.012 --> 00:00:23.775
-Three properties make AD CS the hardest
-part of Active Directory to leave.
+00:00:17.850 --> 00:00:23.051
+AD CS is the hardest part of Active Directory
+to leave: it's wired into the forest,
 
 8
-00:00:23.775 --> 00:00:28.975
-An enterprise CA is wired into the forest:
-its templates, enrollment services,
+00:00:23.051 --> 00:00:26.572
+the cloud replacements cover
+only part of the estate,
 
 9
-00:00:28.975 --> 00:00:34.013
-NTAuth trust and publication points
-live in the configuration partition.
+00:00:26.572 --> 00:00:30.813
+and domain controllers need
+certificates as long as they exist.
 
 10
-00:00:34.013 --> 00:00:38.884
-The cloud replacements cover only
-part of the estate: Cloud PKI issues
+00:00:30.813 --> 00:00:34.423
+Meanwhile the rules keep moving,
+from shrinking public TLS
 
 11
-00:00:38.884 --> 00:00:43.588
-to Intune-managed devices, and Intune
-doesn't manage Windows Server.
+00:00:34.423 --> 00:00:38.549
+lifetimes to strong-mapping
+enforcement to post-quantum planning.
 
 12
-00:00:43.588 --> 00:00:48.487
-And domain controllers need certificates
-for as long as domain controllers exist.
+00:00:38.549 --> 00:00:42.523
+So this runs as its own program,
+because it fails at expiry,
 
 13
-00:00:48.487 --> 00:00:52.299
-Meanwhile the rules are moving
-under certificates already issued.
-
-14
-00:00:52.299 --> 00:00:57.092
-Public TLS maximum validity
-is two hundred days today,
-
-15
-00:00:57.092 --> 00:01:03.375
-a hundred days from March 15, 2027, and
-forty-seven days from March 15, 2029.
-
-16
-00:01:03.375 --> 00:01:09.946
-KB5014754 put domain controllers in
-Full Enforcement on February 11,
-
-17
-00:01:09.946 --> 00:01:16.063
-2025, and Compatibility mode has
-been gone since September 9, 2025.
-
-18
-00:01:16.063 --> 00:01:23.815
-NIST's draft post-quantum transition plan
-proposes deprecating RSA-2048 signatures
-
-19
-00:01:23.815 --> 00:01:31.240
-after 2030 and disallowing RSA and ECDSA
-signatures after 2035, and OMB M-26-15 gave
-
-20
-00:01:31.240 --> 00:01:38.337
-agencies a hundred and twenty days from
-June 24, 2026 to submit a migration plan.
-
-21
-00:01:38.337 --> 00:01:41.638
-So the move off AD CS
-runs as its own program.
-
-22
-00:01:41.638 --> 00:01:43.970
-It fails at expiry, not at cutover,
-
-23
-00:01:43.970 --> 00:01:47.400
-which can be months later
-and far from its cause.
+00:00:42.523 --> 00:00:46.460
+not at cutover, often months
+later and far from the cause.

@@ -1,133 +1,59 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:03.575
-Every other profile depends on
+00:00:00.050 --> 00:00:03.938
+Everything in Intune starts with
 the trusted certificate profile.
 
 2
-00:00:03.575 --> 00:00:06.823
-It deploys the public
-certificate of the root and of
+00:00:03.938 --> 00:00:07.546
+It puts the root and issuing
+CA certificates on the device,
 
 3
-00:00:06.823 --> 00:00:10.675
-intermediate or issuing CAs, so
-the device can build the chain.
+00:00:07.546 --> 00:00:09.576
+so the device can build the chain.
 
 4
-00:00:10.675 --> 00:00:14.078
-Export each CA certificate
-as a DER-encoded file,
+00:00:09.576 --> 00:00:13.488
+If the device doesn't trust the
+root, every other profile fails.
 
 5
-00:00:14.078 --> 00:00:18.162
-never the private key, and
-create one profile per platform.
+00:00:13.488 --> 00:00:15.563
+Then there are three delivery paths.
 
 6
-00:00:18.162 --> 00:00:23.338
-With Cloud PKI, that's the
-Cloud PKI root and issuing CAs.
+00:00:15.563 --> 00:00:19.259
+SCEP with Cloud PKI, where
+the device makes its own key,
 
 7
-00:00:23.338 --> 00:00:27.349
-With BYOCA, it's every CA
-in the private hierarchy
+00:00:19.259 --> 00:00:24.300
+contrary to what the old guide said,
+and no on-premises servers are needed.
 
 8
-00:00:27.349 --> 00:00:31.362
-as well as the BYOCA issuing
-CA, on every platform.
+00:00:24.300 --> 00:00:29.302
+SCEP with AD CS, which runs through
+NDES and the Intune connector,
 
 9
-00:00:31.362 --> 00:00:36.763
-If a device doesn't trust the root,
-the SCEP or PKCS profile fails.
+00:00:29.302 --> 00:00:32.700
+with the key still never
+leaving the device.
 
 10
-00:00:36.763 --> 00:00:38.251
-Then three paths.
+00:00:32.700 --> 00:00:38.375
+And PKCS, where the connector generates the
+key on its own server and hands it over.
 
 11
-00:00:38.251 --> 00:00:43.487
-SCEP with Cloud PKI: the device
-generates its own key pair and request;
+00:00:38.375 --> 00:00:43.662
+That means the private key exists, however
+briefly, somewhere other than the device.
 
 12
-00:00:43.487 --> 00:00:47.438
-the old guide said Intune
-generates it, and it doesn't.
-
-13
-00:00:47.438 --> 00:00:51.232
-The Cloud PKI registration
-authority checks the request
-
-14
-00:00:51.232 --> 00:00:54.788
-against the Intune challenge,
-and the issuing CA signs.
-
-15
-00:00:54.788 --> 00:00:58.663
-No on-premises CA, NDES
-server or connector.
-
-16
-00:00:58.663 --> 00:01:04.088
-Don't mix NDES and Cloud PKI
-SCEP URLs in one profile.
-
-17
-00:01:04.088 --> 00:01:09.216
-SCEP with AD CS runs through two pieces
-of on-premises software: NDES as the
-
-18
-00:01:09.216 --> 00:01:13.166
-registration authority, and
-the Certificate Connector,
-
-19
-00:01:13.166 --> 00:01:15.688
-which adds the Intune policy module.
-
-20
-00:01:15.688 --> 00:01:18.688
-The private key still
-never leaves the device.
-
-21
-00:01:18.688 --> 00:01:21.650
-PKCS doesn't use NDES.
-
-22
-00:01:21.650 --> 00:01:25.252
-The connector generates the
-key pair on its own server,
-
-23
-00:01:25.252 --> 00:01:30.375
-requests the certificate, and hands the
-certificate and key to Intune as a PFX.
-
-24
-00:01:30.375 --> 00:01:34.175
-So the template must allow export,
-and the private key exists,
-
-25
-00:01:34.175 --> 00:01:38.050
-however briefly, somewhere other
-than the device that uses it.
-
-26
-00:01:38.050 --> 00:01:41.422
-That's the trade PKCS
-makes for not needing NDES,
-
-27
-00:01:41.422 --> 00:01:46.490
-and it's why the program prefers SCEP
-wherever a use case allows either.
+00:00:43.662 --> 00:00:47.660
+That trade is why the program
+prefers SCEP wherever it can.

@@ -1,47 +1,24 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:02.219
-Module 3: servers under Azure Arc.
+00:00:00.050 --> 00:00:02.308
+Module 3 is servers under Azure Arc.
 
 2
-00:00:02.219 --> 00:00:05.673
-Group Policy reached servers
-through OU placement,
+00:00:02.308 --> 00:00:04.799
+Intune doesn't support Windows Server,
 
 3
-00:00:05.673 --> 00:00:08.163
-the same way it reached workstations.
+00:00:04.799 --> 00:00:08.225
+so Arc takes over the job
+Group Policy did for servers.
 
 4
-00:00:08.163 --> 00:00:10.183
-Intune doesn't take over that job,
-
-5
-00:00:10.183 --> 00:00:14.375
-because Intune's supported platforms
-don't include Windows Server.
-
-6
-00:00:14.375 --> 00:00:16.763
-The cloud equivalent is Azure Arc.
-
-7
-00:00:16.763 --> 00:00:20.863
-A server outside Azure runs the
-Connected Machine agent and appears
-
-8
-00:00:20.863 --> 00:00:24.749
-as an Azure resource, managed the
-way native virtual machines are.
-
-9
-00:00:24.749 --> 00:00:27.691
-Arc gives the server an
+00:00:08.225 --> 00:00:11.133
+Arc gives a server an
 address in the control plane;
 
-10
-00:00:27.691 --> 00:00:31.920
-everything that makes it governed is
-what you then attach to that address.
+5
+00:00:11.133 --> 00:00:14.810
+what governs it is everything
+you then attach to that address.

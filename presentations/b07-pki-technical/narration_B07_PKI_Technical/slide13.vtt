@@ -1,127 +1,55 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:05.900
-Cloud PKI offers two ways to anchor trust,
-and both can coexist in one tenant.
+00:00:00.050 --> 00:00:05.300
+Cloud PKI gives you two ways to anchor
+trust, and both can live in one tenant.
 
 2
-00:00:05.900 --> 00:00:12.375
-The Cloud PKI root CA: you create a root
-and one or more issuing CAs in the cloud.
+00:00:05.300 --> 00:00:09.540
+With a Cloud PKI root, you create
+the whole hierarchy in the cloud,
 
 3
-00:00:12.375 --> 00:00:14.250
-It's a two-tier hierarchy.
+00:00:09.540 --> 00:00:12.900
+but every relying party has
+to be given the new root.
 
 4
-00:00:14.250 --> 00:00:20.042
-In the admin center the root's validity is
-five to twenty-five years and an issuing
+00:00:12.900 --> 00:00:17.881
+With bring your own CA, you create an
+issuing CA in the cloud and your existing
 
 5
-00:00:20.042 --> 00:00:25.662
-CA's is two to ten, never longer than its
-root; the Graph API allows custom periods.
+00:00:17.881 --> 00:00:22.863
+private CA signs it, so the chain relying
+parties already trust is preserved.
 
 6
-00:00:25.662 --> 00:00:29.563
-The catch is that every relying
-party has to be given the new root.
+00:00:22.863 --> 00:00:26.425
+A few details matter, like
+making sure the signing
 
 7
-00:00:29.563 --> 00:00:33.280
-Bring your own CA: you create
-an issuing CA in the cloud,
+00:00:26.425 --> 00:00:29.813
+CA publishes its chain
+over HTTP, not just LDAP.
 
 8
-00:00:33.280 --> 00:00:38.687
-Intune generates a certificate signing
-request, and your private CA signs it.
+00:00:29.813 --> 00:00:32.350
+But one consequence outweighs the rest.
 
 9
-00:00:38.687 --> 00:00:40.075
-Four details matter.
+00:00:32.350 --> 00:00:36.744
+Under bring your own CA, the private
+root's CRL stays where it is,
 
 10
-00:00:40.075 --> 00:00:44.486
-The signer doesn't have to be the root;
-Microsoft says it can be a root or
+00:00:36.744 --> 00:00:41.225
+and every relying party, Entra ID
+included, still has to fetch it.
 
 11
-00:00:44.486 --> 00:00:49.825
-issuing CA from any tier, using the
-Subordinate Certification Authority template.
-
-12
-00:00:49.825 --> 00:00:55.695
-The signer sets the terms: validity and
-hash algorithm come from the signing CA,
-
-13
-00:00:55.695 --> 00:00:59.939
-the key size you choose caps
-the SCEP profiles that use it,
-
-14
-00:00:59.939 --> 00:01:03.100
-and 1024-bit keys and
-SHA-1 aren't supported.
-
-15
-00:01:03.100 --> 00:01:08.145
-The AIA comes from your CA, and AD
-CS defaults to an LDAP location,
-
-16
-00:01:08.145 --> 00:01:11.287
-so configure an HTTP AIA before signing;
-
-17
-00:01:11.287 --> 00:01:16.237
-Android doesn't follow AIA paths,
-so deploy the full chain there.
-
-18
-00:01:16.237 --> 00:01:19.584
-And relying parties still
-get one new certificate:
-
-19
-00:01:19.584 --> 00:01:24.525
-Microsoft recommends deploying the
-BYOCA issuing CA certificate to them,
-
-20
-00:01:24.525 --> 00:01:28.350
-because AIA retrieval isn't
-guaranteed on every platform.
-
-21
-00:01:28.350 --> 00:01:30.138
-Renewal repeats the signing.
-
-22
-00:01:30.138 --> 00:01:33.113
-One consequence matters
-more than any of these.
-
-23
-00:01:33.113 --> 00:01:36.917
-Under BYOCA the private
-root CRL stays where it is,
-
-24
-00:01:36.917 --> 00:01:41.649
-and every relying party, Entra ID
-included, must still fetch it.
-
-25
-00:01:41.649 --> 00:01:46.027
-An offline root that publishes
-its CRL only over LDAP, or late,
-
-26
-00:01:46.027 --> 00:01:50.040
-breaks the cloud issuer as
-surely as the on-premises one.
+00:00:41.225 --> 00:00:44.590
+A root that publishes late
+breaks the cloud issuer too.

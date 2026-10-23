@@ -1,65 +1,67 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:03.236
+00:00:00.050 --> 00:00:00.763
+Welcome.
+
+2
+00:00:00.763 --> 00:00:03.971
 This is the technical deep
 dive for Book 04 of the
 
-2
-00:00:03.236 --> 00:00:06.900
+3
+00:00:03.971 --> 00:00:07.662
 Federal Modernization
 Workbook, Access and Privilege.
 
-3
-00:00:06.900 --> 00:00:09.588
-The fifteen-minute briefing
-made the argument.
-
 4
-00:00:09.588 --> 00:00:13.860
+00:00:07.662 --> 00:00:09.899
+The short briefing made the argument.
+
+5
+00:00:09.899 --> 00:00:14.172
 This session is for the people who
 build and run it: identity engineers,
 
-5
-00:00:13.860 --> 00:00:18.500
+6
+00:00:14.172 --> 00:00:18.812
 architects, and the security and assessment
 staff who have to prove it works.
 
-6
-00:00:18.500 --> 00:00:21.290
-It runs about fifty
-minutes in five modules,
-
 7
-00:00:21.290 --> 00:00:25.088
-and each module stands on its own,
-so you can watch it in parts.
+00:00:18.812 --> 00:00:22.395
+It comes in five modules, and
+each one stands on its own,
 
 8
-00:00:25.088 --> 00:00:30.432
-After a two-slide orientation, we'll cover
-the Conditional Access policy library;
+00:00:22.395 --> 00:00:24.187
+so you can watch it in parts.
 
 9
-00:00:30.432 --> 00:00:35.778
-its rollout, exclusions and break-glass
-accounts; PIM self-request with approval;
+00:00:24.187 --> 00:00:29.095
+After a short orientation, we'll cover
+the Conditional Access policy library,
 
 10
-00:00:35.778 --> 00:00:40.724
-access governance; and finally access
-as code, and the evidence it produces.
+00:00:29.095 --> 00:00:34.002
+then rollout, exclusions and break-glass
+accounts, then PIM self-request with
 
 11
-00:00:40.724 --> 00:00:44.056
-Every fact comes from a
-footnoted chapter of the book,
+00:00:34.002 --> 00:00:36.149
+approval, then access governance,
 
 12
-00:00:44.056 --> 00:00:46.100
-and each slide names its chapter.
+00:00:36.149 --> 00:00:39.676
+and finally access as code
+and the evidence it produces.
 
 13
-00:00:46.100 --> 00:00:50.140
-Code and JSON stay in the book;
-the slides carry the design.
+00:00:39.676 --> 00:00:42.838
+Every fact comes from a
+footnoted chapter of the book.
+
+14
+00:00:42.838 --> 00:00:47.020
+The code and JSON stay in the
+book; the slides carry the design.

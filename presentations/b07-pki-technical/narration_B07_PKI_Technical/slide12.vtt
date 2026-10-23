@@ -1,144 +1,60 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:05.800
-Cloud PKI is a Microsoft-hosted PKI
+00:00:00.050 --> 00:00:05.825
+Cloud PKI is Microsoft's hosted PKI,
 managed in the Intune admin center.
 
 2
-00:00:05.800 --> 00:00:08.111
-It hosts the root and issuing CAs,
+00:00:05.825 --> 00:00:09.744
+For device certificates, it
+replaces the on-premises CA,
 
 3
-00:00:08.111 --> 00:00:11.707
-a SCEP registration authority
-for each issuing CA,
+00:00:09.744 --> 00:00:12.725
+the NDES server and the
+connector in one go.
 
 4
-00:00:11.707 --> 00:00:17.100
-the CRL distribution point and the AIA
-endpoint, which together replace the
+00:00:12.725 --> 00:00:17.808
+It issues client certificates to
+Intune-enrolled devices through SCEP,
 
 5
-00:00:17.100 --> 00:00:22.750
-on-premises CA, NDES server and Certificate
-Connector for device certificates.
+00:00:17.808 --> 00:00:21.875
+publishes its own CRLs, and
+hosts up to three CAs per tenant.
 
 6
-00:00:22.750 --> 00:00:23.700
-What it can do.
+00:00:21.875 --> 00:00:24.050
+Just as important is what it can't do.
 
 7
-00:00:23.700 --> 00:00:28.369
-Issue client-authentication certificates
-to Intune-enrolled Android,
+00:00:24.050 --> 00:00:28.950
+It can't issue to anything not enrolled
+in Intune, and Intune doesn't manage
 
 8
-00:00:28.369 --> 00:00:30.937
-Apple and Windows devices, through SCEP.
+00:00:28.950 --> 00:00:34.413
+Windows Server, so no domain controller or
+web server gets a Cloud PKI certificate.
 
 9
-00:00:30.937 --> 00:00:33.875
-Publish a CRL per CA, valid seven days,
+00:00:34.413 --> 00:00:39.664
+It doesn't do PKCS or OCSP, and a CA's
+purposes can't change after creation,
 
 10
-00:00:33.875 --> 00:00:39.063
-republished every three and a half
-days and on every revocation.
-
-11
-00:00:39.063 --> 00:00:41.437
-And host up to three CAs per tenant.
-
-12
-00:00:41.437 --> 00:00:42.363
-What it can't.
-
-13
-00:00:42.363 --> 00:00:48.202
-Issue to anything not enrolled in Intune;
-Intune doesn't support Windows Server,
-
-14
-00:00:48.202 --> 00:00:50.768
-so no domain controller, NPS server,
-
-15
-00:00:50.768 --> 00:00:54.662
-web server or SQL Server gets
-a Cloud PKI certificate.
-
-16
-00:00:54.662 --> 00:00:59.276
-Issue the server certificates
-RADIUS and VPN gateways present;
-
-17
-00:00:59.276 --> 00:01:02.670
-Microsoft says those must
-come from another CA.
-
-18
-00:01:02.670 --> 00:01:04.063
-Issue through PKCS.
-
-19
-00:01:04.063 --> 00:01:05.675
-Answer OCSP.
-
-20
-00:01:05.675 --> 00:01:08.600
-And change a CA's EKUs after creation.
-
-21
-00:01:08.600 --> 00:01:11.488
-Plan the three-CA count
+00:00:39.664 --> 00:00:43.376
+so plan your three CAs
 before you create anything.
 
-22
-00:01:11.488 --> 00:01:14.543
-Keys: licensed CAs use Azure Managed HSM;
+11
+00:00:43.376 --> 00:00:47.763
+On licensing and government
+availability, the slide has the details.
 
-23
-00:01:14.543 --> 00:01:19.637
-trial CAs use software keys that
-can't be converted after purchase.
-
-24
-00:01:19.637 --> 00:01:25.226
-Licensing: Cloud PKI is a subscription
-on top of Intune Plan 1 or 2.
-
-25
-00:01:25.226 --> 00:01:30.486
-From July 2026, Microsoft 365 E5 and E7
-include it for commercial customers;
-
-26
-00:01:30.486 --> 00:01:35.917
-Microsoft says Government plans are
-planned to align, subject to compliance
-
-27
-00:01:35.917 --> 00:01:41.263
-and regulatory requirements, so confirm
-the entitlement on the current SKU.
-
-28
-00:01:41.263 --> 00:01:45.394
-And availability: GCC uses
-the commercial Intune service,
-
-29
-00:01:45.394 --> 00:01:49.525
-so availability follows it
-and licensing is the question.
-
-30
-00:01:49.525 --> 00:01:55.421
-Cloud PKI became available in GCC
-High in the week of September 28,
-
-31
-00:01:55.421 --> 00:01:58.200
-2026, and isn't supported in DoD.
+12
+00:00:47.763 --> 00:00:50.380
+Confirm the entitlement
+on your current plan.

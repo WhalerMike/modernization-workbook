@@ -1,126 +1,61 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:03.869
-Three efforts touch Intune and
-the program keeps them apart:
+00:00:00.050 --> 00:00:05.220
+The program keeps three efforts apart:
+Intune-first for new devices, this sunset
 
 2
-00:00:03.869 --> 00:00:08.680
-Intune-first onboarding for new devices,
-this sunset for the existing fleet,
+00:00:05.220 --> 00:00:10.625
+for the existing fleet, and regenerate-not-copy
+as the way replacements are written.
 
 3
-00:00:08.680 --> 00:00:13.263
-and regenerate-not-copy, the philosophy
-for authoring the replacements.
+00:00:10.625 --> 00:00:15.700
+Microsoft's own advice is that assessing
+every setting is likely impractical,
 
 4
-00:00:13.263 --> 00:00:18.773
-Microsoft's own guidance is that assessing
-every GPO and every setting is likely
+00:00:15.700 --> 00:00:19.525
+so the program runs seven steps,
+each with an exit condition.
 
 5
-00:00:18.773 --> 00:00:24.037
-impractical; identify the mandatory
-settings and treat the gaps as blockers.
+00:00:19.525 --> 00:00:23.581
+Step one: nothing is translated or
+retired until it's inventoried,
 
 6
-00:00:24.037 --> 00:00:28.476
-The program turns that into seven
-steps, each with an exit condition.
-
-7
-00:00:28.476 --> 00:00:32.950
-Step 1: nothing is translated or
-retired until it's inventoried.
-
-8
-00:00:32.950 --> 00:00:38.775
-Get-GPO-Report produces each GPO's
-links, security filtering, WMI filtering
-
-9
-00:00:38.775 --> 00:00:44.225
-and settings as XML, which is the
-shape Group Policy analytics imports.
-
-10
-00:00:44.225 --> 00:00:48.787
-Record the targeting too, because it's
+00:00:23.581 --> 00:00:28.388
+including its targeting, because that's
 the part that doesn't survive the move.
 
-11
-00:00:48.787 --> 00:00:53.428
-The program's triage script sorts
-each live GPO onto a target plane,
+7
+00:00:28.388 --> 00:00:31.654
+Group Policy analytics then
+shows, setting by setting,
 
-12
-00:00:53.428 --> 00:00:58.997
-Intune for workstations and Arc for servers,
-using two classifiers side by side,
+8
+00:00:31.654 --> 00:00:35.575
+what's ready to migrate, what isn't
+supported and what's deprecated.
 
-13
-00:00:58.997 --> 00:01:03.300
-so disagreements surface instead
-of hiding behind one guess.
+9
+00:00:35.575 --> 00:00:38.363
+Plan around its limits,
+which are on the slide.
 
-14
-00:01:03.300 --> 00:01:08.150
-Group Policy analytics shows, per
-setting, the CSP and OMA-URI behind it,
-
-15
-00:01:08.150 --> 00:01:13.250
-and sorts settings into ready for
-migration, not supported or deprecated.
-
-16
-00:01:13.250 --> 00:01:18.322
-Plan around its limits: each export
-under four megabytes with proper Unicode,
-
-17
-00:01:18.322 --> 00:01:23.315
-the five CSPs plus preferences it
-parses, non-ADMX settings read accurately
-
-18
-00:01:23.315 --> 00:01:28.150
-only in English, and scope tags that
-hide imports from admins without them.
-
-19
-00:01:28.150 --> 00:01:32.238
-The Migrate step is, in
+10
+00:00:38.363 --> 00:00:42.524
+Its migrate step is, in
 Microsoft's words, best effort.
 
-20
-00:01:32.238 --> 00:01:35.287
-Firewall rules and AppLocker
-can't move that way.
+11
+00:00:42.524 --> 00:00:45.847
+So the program treats the
+readiness report as proof that
 
-21
-00:01:35.287 --> 00:01:40.248
-And when several GPOs set one setting
-differently, migration stops and asks
-
-22
-00:01:40.248 --> 00:01:45.287
-you to pick, which usefully surfaces the
-conflicts OU precedence used to hide.
-
-23
-00:01:45.287 --> 00:01:48.742
-The program treats the readiness
-report as evidence that
-
-24
-00:01:48.742 --> 00:01:51.837
+12
+00:00:45.847 --> 00:00:48.940
 an equivalent exists, never
 that a setting is needed.
-
-25
-00:01:51.837 --> 00:01:55.440
-And it quotes no percentage:
-Microsoft publishes none.

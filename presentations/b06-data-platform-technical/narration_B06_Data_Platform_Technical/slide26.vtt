@@ -14,153 +14,49 @@ it's a record that keeps coming back
 clean, and everything here is read-only.
 
 4
-00:00:10.363 --> 00:00:15.099
-Step one runs the D1.8 deep audit
-on a schedule against the retain
+00:00:10.363 --> 00:00:12.417
+The deep audit runs on a schedule,
 
 5
-00:00:15.099 --> 00:00:19.925
-and target estate, keeping every
-run's JSON under version control.
+00:00:12.417 --> 00:00:17.134
+and each run is projected onto the
+per-instance closure record, which comes
 
 6
-00:00:19.925 --> 00:00:23.813
-It's the same script as R03,
-on a different cadence.
+00:00:17.134 --> 00:00:21.775
+out closed, closed with an exception,
+or open, with the failing fields named.
 
 7
-00:00:23.813 --> 00:00:28.025
-Step two projects each run onto
-the per-instance closure record.
+00:00:21.775 --> 00:00:25.227
+The difference between two
+runs becomes drift events,
 
 8
-00:00:28.025 --> 00:00:31.160
-The fields are Windows
-Authentication mode,
+00:00:25.227 --> 00:00:29.062
+like mixed mode turned back on
+or the Arc agent going offline.
 
 9
-00:00:31.160 --> 00:00:34.381
-which proves only that
-SQL logins are refused;
+00:00:29.062 --> 00:00:33.900
+One caution: a registry change is
+invisible until the service restarts.
 
 10
-00:00:34.381 --> 00:00:38.279
-zero active SQL logins outside
-the exception registry;
+00:00:33.900 --> 00:00:36.636
+On top of that sits a behavioral layer,
 
 11
-00:00:38.279 --> 00:00:40.651
-zero active user and group logins;
-
-12
-00:00:40.651 --> 00:00:45.905
-every Entra login reconciled to a known
-principal; SA disabled and renamed;
-
-13
-00:00:45.905 --> 00:00:50.057
-the Arc agent connected; Entra
-authentication configured,
-
-14
-00:00:50.057 --> 00:00:54.803
-through the managed identity on 2025
-or an app registration on 2022;
-
-15
-00:00:54.803 --> 00:01:00.650
-and MFA through Conditional Access, joined
-from the sign-in logs rather than copied.
-
-16
-00:01:00.650 --> 00:01:04.184
-The program's closure-record
-function returns closed,
-
-17
-00:01:04.184 --> 00:01:07.325
-closed-excepted or open,
-with the failing fields.
-
-18
-00:01:07.325 --> 00:01:12.097
-Step three turns the difference
-between two runs into drift events:
-
-19
-00:01:12.097 --> 00:01:17.550
-mixed mode enabled, a new SQL login, a new
-Windows login or the Arc agent offline,
-
-20
-00:01:17.550 --> 00:01:21.640
-each a violation, plus instances
-that appear or disappear,
-
-21
-00:01:21.640 --> 00:01:23.600
-which may be a discovery gap.
-
-22
-00:01:23.600 --> 00:01:26.585
-One caution: the audit
-reads the running mode,
-
-23
-00:01:26.585 --> 00:01:30.700
-so a registry change is invisible
-until the service restarts.
-
-24
-00:01:30.700 --> 00:01:33.738
-Add a registry check if
-earlier warning matters.
-
-25
-00:01:33.738 --> 00:01:38.212
-Step four is the behavioral layer,
-three sources with distinct jobs.
-
-26
-00:01:38.212 --> 00:01:42.851
-Defender for SQL raises threat alerts
-but isn't an authentication log.
-
-27
-00:01:42.851 --> 00:01:45.839
-Entra sign-in logs record
-each token issued,
-
-28
-00:01:45.839 --> 00:01:48.912
-and a token can be reused
-across connections.
-
-29
-00:01:48.912 --> 00:01:52.413
-The instance and host
-record the protocol itself,
-
-30
-00:01:52.413 --> 00:01:56.512
-and any NTLM or Kerberos
+00:00:36.636 --> 00:00:41.050
+where any NTLM or Kerberos
 connection is an immediate alert.
 
-31
-00:01:56.512 --> 00:02:01.983
-The transformation is closed when six
-evidence sets hold together across the
+12
+00:00:41.050 --> 00:00:46.037
+When six evidence sets hold together
+across the validation period,
 
-32
-00:02:01.983 --> 00:02:06.779
-validation period: closure records,
-sign-in logs, protocol telemetry,
-
-33
-00:02:06.779 --> 00:02:10.650
-the SA report, the MFA report
-and the exception registry.
-
-34
-00:02:10.650 --> 00:02:14.900
-Then April 1, 2027 arrives as a non-event.
+13
+00:00:46.037 --> 00:00:51.100
+the transformation is closed, and
+April 1, 2027 arrives as a non-event.

@@ -5,170 +5,68 @@ WEBVTT
 Last, what all this produces.
 
 2
-00:00:01.963 --> 00:00:06.425
-During migration the program
-classifies drift into five classes.
+00:00:01.963 --> 00:00:05.998
+During migration, the program
+classifies drift into five kinds,
 
 3
-00:00:06.425 --> 00:00:11.337
-Schema drift: an attribute encoding that
-doesn't match the current schema version.
+00:00:05.998 --> 00:00:10.338
+and it's honest about maturity: two
+are detected automatically today,
 
 4
-00:00:11.337 --> 00:00:13.802
-Provenance drift: a state change with no
+00:00:10.338 --> 00:00:14.450
+one partly, and two still rely on
+people reviewing the assessment.
 
 5
-00:00:13.802 --> 00:00:16.863
-provenance event in the
-chain, which halts the run.
+00:00:14.450 --> 00:00:19.610
+From Phase 2 on, the agency can produce
+an evidence bundle at any time, with the
 
 6
-00:00:16.863 --> 00:00:21.813
-Semantic drift: a value slipping back
-into a deprecated naming pattern.
+00:00:19.610 --> 00:00:22.313
+readiness bundles, the SPN inventories,
 
 7
-00:00:21.813 --> 00:00:25.007
-Authorization drift: a
-Conditional Access policy that
+00:00:22.313 --> 00:00:25.425
+the provenance chain
+and every drift finding.
 
 8
-00:00:25.007 --> 00:00:28.549
-contradicts the assurance level
-recorded for the principal,.
+00:00:25.425 --> 00:00:29.691
+It goes to the security control
+assessor and the authorizing official
 
 9
-00:00:28.549 --> 00:00:33.612
-And identity drift: a principal in the
-tenant with no counterpart in the registry.
-
-10
-00:00:33.612 --> 00:00:35.212
-Be honest about maturity.
-
-11
-00:00:35.212 --> 00:00:39.387
-Schema and provenance detection
-are shipped, semantic is partial,
-
-12
-00:00:39.387 --> 00:00:43.106
-and authorization and identity
-detection are design-only;
-
-13
-00:00:43.106 --> 00:00:46.825
-today, people reviewing the
-assessment modules find those.
-
-14
-00:00:46.825 --> 00:00:51.224
-From Phase 2 on, the agency can
-produce an evidence bundle at any time:
-
-15
-00:00:51.224 --> 00:00:53.660
-each phase's signed readiness bundle,
-
-16
-00:00:53.660 --> 00:00:57.352
-both phase-tagged SPN
-inventories and their comparison,
-
-17
-00:00:57.352 --> 00:01:00.651
-the provenance chain for
-every adapter operation,
-
-18
-00:01:00.651 --> 00:01:04.736
-every drift finding with its
-remediation, and the GCC boundary
-
-19
-00:01:04.736 --> 00:01:09.450
-finding with its compensating controls
-and when each was last verified.
-
-20
-00:01:09.450 --> 00:01:10.813
-Who reads it matters.
-
-21
-00:01:10.813 --> 00:01:13.513
-FedRAMP authorizes
-cloud service offerings,
-
-22
-00:01:13.513 --> 00:01:17.137
-and third-party assessment
-organizations assess providers.
-
-23
-00:01:17.137 --> 00:01:22.538
-The agency's own system is authorized
-by its authorizing official under the
-
-24
-00:01:22.538 --> 00:01:27.938
-Risk Management Framework, SP 800-37,
-which supports ongoing authorization.
-
-25
-00:01:27.938 --> 00:01:32.883
-So the bundle goes to the security control
-assessor and the authorizing official,
-
-26
-00:01:32.883 --> 00:01:36.301
-as it happens, not assembled
+00:00:29.691 --> 00:00:33.450
+as the work happens, not assembled
 over most of a year afterward.
 
-27
-00:01:36.301 --> 00:01:38.213
+10
+00:00:33.450 --> 00:00:35.363
 And it belongs to the agency.
 
-28
-00:01:38.213 --> 00:01:41.438
-When the integrator leaves,
-the registry, schemas,
+11
+00:00:35.363 --> 00:00:38.300
+When the integrator
+leaves, the evidence stays.
 
-29
-00:01:41.438 --> 00:01:45.450
-findings and evidence stay for
-the next authorization cycle.
-
-30
-00:01:45.450 --> 00:01:49.828
+12
+00:00:38.300 --> 00:00:43.905
 So, from Monday: start read-only
-discovery with a pre-flight;
+discovery, keep the access request narrow,
 
-31
-00:01:49.828 --> 00:01:53.295
-turn the gaps into a
-narrow, time-bound request;
+13
+00:00:43.905 --> 00:00:47.362
+make every run evidence,
+and gate every phase.
 
-32
-00:01:53.295 --> 00:01:58.038
-make every run evidence; and gate
-every phase on its validation.
+14
+00:00:47.362 --> 00:00:51.587
+Book 03, HR-Driven
+Identity, picks up next.
 
-33
-00:01:58.038 --> 00:02:03.587
-Chapters 07 through 11 and the appendices
-carry the full detail and the code.
-
-34
-00:02:03.587 --> 00:02:08.117
-The Federal Modernization Workbook's
-Book 03, HR-Driven Identity,
-
-35
-00:02:08.117 --> 00:02:11.388
-picks up where the
-attributes should come from.
-
-36
-00:02:11.388 --> 00:02:12.220
+15
+00:00:51.587 --> 00:00:52.420
 Thank you.

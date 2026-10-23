@@ -1,147 +1,64 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:04.367
-Runbook R06 is detect, then
-remediate, and most of what you find
+00:00:00.050 --> 00:00:02.804
+Runbook R06 is detect, then remediate,
 
 2
-00:00:04.367 --> 00:00:08.600
-is a missing or misplaced name
-rather than a protocol choice.
+00:00:02.804 --> 00:00:08.400
+and most of what you find is a missing or
+misplaced name, not a protocol choice.
 
 3
-00:00:08.600 --> 00:00:11.187
-Detection is three read-only audits.
+00:00:08.400 --> 00:00:12.156
+In the program's experience,
+a missing SPN is the most
 
 4
-00:00:11.187 --> 00:00:16.263
-The D1.5 SPN inventory
-maps every SQL Server SPN.
+00:00:12.156 --> 00:00:16.262
+common cause of silent NTLM,
+and a duplicate is the second.
 
 5
-00:00:16.263 --> 00:00:21.217
-In the program's experience a missing one
-is the most common cause of silent NTLM
+00:00:16.262 --> 00:00:21.762
+Three read-only audits map the SPNs, the
+collisions and the delegation settings.
 
 6
-00:00:21.217 --> 00:00:24.746
-and a duplicate the second,
-and an instance under a domain
+00:00:21.762 --> 00:00:26.787
+Remediation changes production, so the
+tools only produce reviewable plans.
 
 7
-00:00:24.746 --> 00:00:28.875
-account with no SPN usually means
-registration failed at startup.
+00:00:26.787 --> 00:00:31.499
+Register missing SPNs, leave each
+one with exactly one enabled owner,
 
 8
-00:00:28.875 --> 00:00:35.065
-The D1.7 collision report classifies five
-collision types and marks as critical any
+00:00:31.499 --> 00:00:34.557
+and move linked servers
+to Entra or Kerberos,
 
 9
-00:00:35.065 --> 00:00:40.725
-SPN held by two or more enabled accounts,
-or by both a computer and a user object.
+00:00:34.557 --> 00:00:38.276
+with a stored password only
+as a documented exception.
 
 10
-00:00:40.725 --> 00:00:43.735
-Run it against Active Directory directly,
+00:00:38.276 --> 00:00:41.830
+The Group Policy steps tighten in stages,
 
 11
-00:00:43.735 --> 00:00:47.863
-because its input-file handoff
-has the same defect as R03's.
+00:00:41.830 --> 00:00:45.175
+with the full block
+last, on April 1, 2027.
 
 12
-00:00:47.863 --> 00:00:53.687
-And D1.4 finds delegation settings
-and NTLM-dependency indicators.
+00:00:45.175 --> 00:00:49.212
+Verify from a remote client that
+the connection reads Kerberos.
 
 13
-00:00:53.687 --> 00:00:57.819
-Remediation changes production,
-and the program's SPN plan
-
-14
-00:00:57.819 --> 00:01:01.950
-and GPO report enforce nothing;
-they emit reviewable plans.
-
-15
-00:01:01.950 --> 00:01:07.450
-Register a missing SPN with SetSPN
-dash S, in the fully qualified form.
-
-16
-00:01:07.450 --> 00:01:12.262
-Repair a collision by removing the SPN
-from the disabled or wrong account,
-
-17
-00:01:12.262 --> 00:01:14.550
-leaving exactly one enabled owner.
-
-18
-00:01:14.550 --> 00:01:16.436
-For linked-server passthrough,
-
-19
-00:01:16.436 --> 00:01:20.643
-the order of preference is Entra
-authentication on the linked server,
-
-20
-00:01:20.643 --> 00:01:24.923
-then Kerberos with constrained
-delegation, then a mapped remote login
-
-21
-00:01:24.923 --> 00:01:29.275
-only as a documented exception, because
-it brings back a stored password.
-
-22
-00:01:29.275 --> 00:01:33.779
-Then the Group Policy phases: level
-five refuses LM and version 1;
-
-23
-00:01:33.779 --> 00:01:37.094
-the Restrict NTLM policies
-restrict version 2,
-
-24
-00:01:37.094 --> 00:01:41.939
-with server-name exceptions at the
-domain controller and the client;
-
-25
-00:01:41.939 --> 00:01:46.188
-and the full block comes on the
-program's April 2027 backstop.
-
-26
-00:01:46.188 --> 00:01:51.363
-The GPO report classifies each policy's
-posture and never sets anything.
-
-27
-00:01:51.363 --> 00:01:54.253
-Verify with klist purge,
-reconnect and klist,
-
-28
-00:01:54.253 --> 00:01:58.550
-and check that the auth scheme
-reads KERBEROS from a remote client.
-
-29
-00:01:58.550 --> 00:02:03.395
-Rollback is SetSPN dash D and the
-prior policy values, and because the
-
-30
-00:02:03.395 --> 00:02:08.810
-block is last, the Kerberos fixes are
-proven long before anything is refused.
+00:00:49.212 --> 00:00:54.530
+Because the block comes last, the fixes
+are proven long before anything is refused.

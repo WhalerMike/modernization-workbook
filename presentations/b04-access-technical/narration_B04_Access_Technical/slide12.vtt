@@ -1,137 +1,60 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:05.347
-Because an exclusion overrides everything,
+00:00:00.050 --> 00:00:05.136
+An exclusion overrides everything, so
 each one is a standing hole in policy,
 
 2
-00:00:05.347 --> 00:00:09.538
-and exclusions accumulate the
-way Group Policy exceptions did.
+00:00:05.136 --> 00:00:08.663
+and they pile up the way
+Group Policy exceptions did.
 
 3
-00:00:09.538 --> 00:00:13.374
-So the program treats every
+00:00:08.663 --> 00:00:12.737
+That's why the program treats every
 exclusion as a governed object.
 
 4
-00:00:13.374 --> 00:00:18.207
-The only exclusion that's permanent by
-design is the emergency access group,
+00:00:12.737 --> 00:00:16.188
+The only permanent one is
+the emergency access group.
 
 5
-00:00:18.207 --> 00:00:20.662
-which every enforced policy excludes.
+00:00:16.188 --> 00:00:20.350
+Every other exclusion is tied
+to one policy and one reason.
 
 6
-00:00:20.662 --> 00:00:25.075
-The others in the library are each
-tied to one policy and one reason.
+00:00:20.350 --> 00:00:24.683
+Approved travel, for example, lets
+a traveler past the country block
 
 7
-00:00:25.075 --> 00:00:29.304
-Approved travel lets a traveler
-past CA008's country block,
+00:00:24.683 --> 00:00:29.325
+for at most fourteen days, granted
+through PIM after an approved request.
 
 8
-00:00:29.304 --> 00:00:33.447
-granted through PIM for Groups
-after an approved request,
+00:00:29.325 --> 00:00:33.422
+The rules apply to all of
+them: an exclusion is a group,
 
 9
-00:00:33.447 --> 00:00:38.712
-for at most fourteen days, and the
-traveler must still meet CA006 and CA018.
+00:00:33.422 --> 00:00:38.663
+never a named user, and it has an owner,
+a reason, an expiry and a review.
 
 10
-00:00:38.712 --> 00:00:43.104
-The device code flow group holds
-Teams Rooms and similar devices that
+00:00:38.663 --> 00:00:41.400
+Test the exclusion, not just the policy.
 
 11
-00:00:43.104 --> 00:00:47.724
-genuinely need that flow, ideally
-narrowed further in a companion policy.
+00:00:41.400 --> 00:00:45.037
+And remember the quieter
+failure, an empty attribute that
 
 12
-00:00:47.724 --> 00:00:52.778
-The onboarding group lets remote new
-hires who don't have a managed device yet
-
-13
-00:00:52.778 --> 00:00:54.514
-register MFA for a few days,
-
-14
-00:00:54.514 --> 00:00:58.225
-using a Temporary Access Pass
-from the pre-hire workflow.
-
-15
-00:00:58.225 --> 00:01:02.576
-And the not-ready group for
-CA022 is the enrollment backlog:
-
-16
-00:01:02.576 --> 00:01:06.750
-it shrinks as users enroll,
-and every member has an expiry.
-
-17
-00:01:06.750 --> 00:01:09.038
-The rules on the right
-apply to all of them.
-
-18
-00:01:09.038 --> 00:01:13.099
-An exclusion is a group, never
-a user named in a policy.
-
-19
-00:01:13.099 --> 00:01:18.450
-It has an owner, a reason, an expiry, and
-a place in the access review schedule.
-
-20
-00:01:18.450 --> 00:01:23.956
-Where a script or tool signs in as a user,
-the fix is a managed identity or workload
-
-21
-00:01:23.956 --> 00:01:29.712
-identity, not an exclusion; the directory
-sync account is the documented exception.
-
-22
-00:01:29.712 --> 00:01:32.436
-And test the exclusion,
-not just the policy,
-
-23
-00:01:32.436 --> 00:01:36.638
-because an excluded user can still
-be prompted by another policy.
-
-24
-00:01:36.638 --> 00:01:38.663
-The opposite failure is quieter.
-
-25
-00:01:38.663 --> 00:01:44.250
-A policy that includes a dynamic group
-misses every user whose attribute is empty.
-
-26
-00:01:44.250 --> 00:01:46.433
-That's an exclusion nobody approved,
-
-27
-00:01:46.433 --> 00:01:51.381
-which is why the baseline policies include
-all users and exclude narrowly, and why
-
-28
-00:01:51.381 --> 00:01:56.540
-attribute completeness is checked before
-any attribute-scoped policy is enforced.
+00:00:45.037 --> 00:00:48.890
+drops someone out of a dynamic
+group nobody meant to exclude.

@@ -1,154 +1,58 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:04.500
+00:00:00.050 --> 00:00:04.138
 No Windows login is dropped until
-its Entra replacement is validated.
+its Entra replacement is proven.
 
 2
-00:00:04.500 --> 00:00:07.168
-The engine-authentication decision makes a
+00:00:04.138 --> 00:00:06.475
+The parallel run has three steps.
 
 3
-00:00:07.168 --> 00:00:10.125
-three-phase parallel run
-required in production.
+00:00:06.475 --> 00:00:11.292
+Create the Entra login, after confirming
+the person or group really maps to it,
 
 4
-00:00:10.125 --> 00:00:13.269
-Create: for every migrating
-user or group login,
+00:00:11.292 --> 00:00:13.700
+which is the most labor-intensive part.
 
 5
-00:00:13.269 --> 00:00:17.300
-create the external-provider
-login for its Entra principal.
+00:00:13.700 --> 00:00:15.863
+Validate it with the real credential.
 
 6
-00:00:17.300 --> 00:00:22.181
-Verify each mapping first; a principal
-with no confirmed Entra equivalent is
+00:00:15.863 --> 00:00:20.201
+Then disable the old login, don't
+drop it, and watch for thirty days.
 
 7
-00:00:22.181 --> 00:00:27.138
-a blocking finding, and building that
-mapping is the most labor-intensive step.
+00:00:20.201 --> 00:00:25.775
+And watching means evidence, not silence:
+only auditing shows what's actually used.
 
 8
-00:00:27.138 --> 00:00:30.815
-Validate: test each new login
-with the principal's real
+00:00:25.775 --> 00:00:30.650
+Because the old login is only disabled,
+a wrong mapping locks no one out.
 
 9
-00:00:30.815 --> 00:00:34.412
-Entra credential before any
-legacy login is touched.
+00:00:30.650 --> 00:00:35.876
+Around that pattern sit five decisions, on
+the slide: consolidation gates migration,
 
 10
-00:00:34.412 --> 00:00:38.395
-Then disable, don't drop, the
-legacy Windows and SQL logins,
+00:00:35.876 --> 00:00:39.832
+the parallel run is required,
+SQL Authentication is eliminated,
 
 11
-00:00:38.395 --> 00:00:41.700
-observe for thirty days,
-and only then drop them.
+00:00:39.832 --> 00:00:43.640
+older and clustered instances
+get a path or a dated exception,
 
 12
-00:00:41.700 --> 00:00:44.613
-Observation needs evidence, not silence.
-
-13
-00:00:44.613 --> 00:00:49.602
-Login metadata says what exists; only
-auditing says what's used, and Microsoft's
-
-14
-00:00:49.602 --> 00:00:54.362
-own sequence uses SQL Server Audit with
-the successful-login action group.
-
-15
-00:00:54.362 --> 00:00:57.884
-Disable-and-observe keeps
-every cutover reversible,
-
-16
-00:00:57.884 --> 00:01:00.125
-so a wrong mapping locks no one out.
-
-17
-00:01:00.125 --> 00:01:02.750
-Around the pattern sit five decisions.
-
-18
-00:01:02.750 --> 00:01:05.288
-One, consolidation gates migration.
-
-19
-00:01:05.288 --> 00:01:07.524
-Two, the parallel run is required;
-
-20
-00:01:07.524 --> 00:01:12.662
-non-production may shorten the window
-only with documented owner sign-off.
-
-21
-00:01:12.662 --> 00:01:15.454
-Three, SQL Authentication is eliminated:
-
-22
-00:01:15.454 --> 00:01:20.627
-every active SQL login migrates to a
-service principal or managed identity,
-
-23
-00:01:20.627 --> 00:01:25.965
-or carries an exception with a compensating
-control and a sunset date, and SA is
-
-24
-00:01:25.965 --> 00:01:31.549
-disabled and renamed, with emergency access
-as a monitored break-glass procedure.
-
-25
-00:01:31.549 --> 00:01:36.582
-On SQL Server 2025 with Arc, the
-Disable SQL Authentication setting
-
-26
-00:01:36.582 --> 00:01:41.075
-closes the door for every SQL
-login at once, without a restart.
-
-27
-00:01:41.075 --> 00:01:45.383
-Four, pre-2022 instances and
-failover cluster instances upgrade,
-
-28
-00:01:45.383 --> 00:01:48.415
-re-platform or carry a
-sunset-dated exception;
-
-29
-00:01:48.415 --> 00:01:52.563
-connections that can't reach
-Kerberos or Entra by the backstop
-
-30
-00:01:52.563 --> 00:01:56.712
-use certificate-based authentication
-as the interim posture.
-
-31
-00:01:56.712 --> 00:02:00.729
-Five, the per-instance compliance
-record is the closure artifact,
-
-32
-00:02:00.729 --> 00:02:04.130
-so done becomes a queryable
-posture instead of a claim.
+00:00:43.640 --> 00:00:46.920
+and the per-instance record
+is how you prove it's done.

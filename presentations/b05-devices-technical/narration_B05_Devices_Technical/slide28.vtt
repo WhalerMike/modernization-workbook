@@ -1,145 +1,60 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:05.086
-Drift is a difference between the policy
-library and a device's reported state that
+00:00:00.050 --> 00:00:04.215
+Drift is a gap between the policy
+library and what a device reports,
 
 2
-00:00:05.086 --> 00:00:09.392
-the policy should have prevented:
-BitLocker off, tamper protection off,
+00:00:04.215 --> 00:00:09.212
+one the policy should have prevented, like
+BitLocker off or an OS below the floor.
 
 3
-00:00:09.392 --> 00:00:12.312
-an OS below the floor, a
-setting stuck in Conflict.
+00:00:09.212 --> 00:00:13.856
+The program finds it with the same loop
+as the governed path: a daily export,
 
 4
-00:00:12.312 --> 00:00:16.341
-The program detects it with the
-same loop Chapter 05 describes
+00:00:13.856 --> 00:00:17.891
+a comparison with the library,
+classification, and remediation,
 
 5
-00:00:16.341 --> 00:00:19.750
-for the governed path, applied
-to Intune and Defender.
+00:00:17.891 --> 00:00:21.088
+with policy changes going
+through change control.
 
 6
-00:00:19.750 --> 00:00:24.350
-A daily export of compliance,
-configuration and inventory status.
+00:00:21.088 --> 00:00:22.399
+The catch is timing.
 
 7
-00:00:24.350 --> 00:00:28.000
-A comparison against the
-template values in Chapter 08.
+00:00:22.399 --> 00:00:27.052
+Intune's audit logs arrive in Log
+Analytics right away, but compliance and
 
 8
-00:00:28.000 --> 00:00:31.325
-Classification as a policy
-gap, a device fault,
+00:00:27.052 --> 00:00:32.162
+inventory data are exported once a day and
+can take up to forty-eight hours to land.
 
 9
-00:00:31.325 --> 00:00:35.438
-a conflict or an inventory
-mismatch, alerted by severity.
-
-10
-00:00:35.438 --> 00:00:38.981
-And remediation: a device
-sync or a Remediation script,
-
-11
-00:00:38.981 --> 00:00:43.863
-or a policy change through change
-control when the library itself is wrong.
-
-12
-00:00:43.863 --> 00:00:48.412
-On the governed path every remediating
-write carries an approval reference.
-
-13
-00:00:48.412 --> 00:00:51.163
-Know what Log Analytics
-receives, and when.
-
-14
-00:00:51.163 --> 00:00:55.345
-Intune's diagnostic settings send
-audit logs, operational logs,
-
-15
-00:00:55.345 --> 00:00:59.763
-compliance organizational logs
-and the Intune devices inventory.
-
-16
-00:00:59.763 --> 00:01:02.738
-Audit and operational logs
-are sent immediately.
-
-17
-00:01:02.738 --> 00:01:08.047
-Compliance and inventory are exported once
-every twenty-four hours and can take up
-
-18
-00:01:08.047 --> 00:01:13.049
-to forty-eight to arrive, and Microsoft
-says not to rely on a fixed delivery time.
-
-19
-00:01:13.049 --> 00:01:17.188
+00:00:32.162 --> 00:00:36.301
 So those tables are for trends and
 evidence, not minute-level alerts.
 
-20
-00:01:17.188 --> 00:01:20.404
-And per-setting configuration
-status isn't among them,
+10
+00:00:36.301 --> 00:00:39.797
+That's why fleet-wide alerts
+come from the daily export,
 
-21
-00:01:20.404 --> 00:01:24.550
-so the configuration comparison
-comes from Microsoft Graph reports.
+11
+00:00:39.797 --> 00:00:43.450
+but Tier 0 noncompliance is
+polled from Graph every hour.
 
-22
-00:01:24.550 --> 00:01:28.441
-Three query pitfalls: don't
-hard-code compliance state strings,
-
-23
-00:01:28.441 --> 00:01:32.557
-don't join the operational logs on
-a device ID column it doesn't have,
-
-24
-00:01:32.557 --> 00:01:35.625
-and don't look for
-configuration conflicts there.
-
-25
-00:01:35.625 --> 00:01:37.200
-The alerts follow from that.
-
-26
-00:01:37.200 --> 00:01:41.612
-Fleet-wide noncompliance above ten
-percent comes from the daily export.
-
-27
-00:01:41.612 --> 00:01:45.355
-But Tier 0 noncompliance is
-polled from Graph hourly:
-
-28
-00:01:45.355 --> 00:01:49.012
-from the export, the alert
-would arrive two days late.
-
-29
-00:01:49.012 --> 00:01:55.940
-Meanwhile Conditional Access blocks the
-device, because CP-002 has no grace period.
+12
+00:00:43.450 --> 00:00:46.460
+Otherwise the alert would
+arrive two days late.

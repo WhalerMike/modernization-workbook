@@ -1,36 +1,26 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:03.738
-Module two: getting the
+00:00:00.050 --> 00:00:03.675
+Module two is getting the
 library into production safely.
 
 2
-00:00:03.738 --> 00:00:06.523
+00:00:03.675 --> 00:00:06.461
 A policy that targets
 all users can lock out
 
 3
-00:00:06.523 --> 00:00:09.774
+00:00:06.461 --> 00:00:09.712
 the whole organization,
 administrators included.
 
 4
-00:00:09.774 --> 00:00:12.981
-So this module is about the
-gates every policy passes,
+00:00:09.712 --> 00:00:14.248
+So this module covers the gates,
+reading report-only and rolling back,
 
 5
-00:00:12.981 --> 00:00:17.353
-how to read report-only results and
-roll back without deleting anything,
-
-6
-00:00:17.353 --> 00:00:21.798
-why every exclusion is a governed
-object, how the break-glass accounts are
-
-7
-00:00:21.798 --> 00:00:26.450
-built and watched, and what the sign-in
-logs must show once the policies are on.
+00:00:14.248 --> 00:00:18.910
+governed exclusions, break-glass
+accounts, and what the logs must show.
