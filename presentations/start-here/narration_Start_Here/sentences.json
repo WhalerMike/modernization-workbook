@@ -1,0 +1,347 @@
+{
+ "1": [
+  [
+   0.05,
+   2.675,
+   "Welcome to the Federal Modernization Workbook."
+  ],
+  [
+   2.725,
+   5.55,
+   "If you lead an agency's technology, security or workforce, this is the place to start."
+  ],
+  [
+   8.275,
+   9.338,
+   "In under ten minutes, I'll make one case: that modernization should begin with identity, and that the first step is small, bounded and can start now."
+  ],
+  [
+   17.613,
+   5.0,
+   "There are four reasons, and then one specific ask, with a finish line you can check."
+  ],
+  [
+   22.613,
+   4.7,
+   "Everything I say is sourced in the workbook's books, and I'll point you to them at the end."
+  ]
+ ],
+ "2": [
+  [
+   0.05,
+   2.212,
+   "Here are the four reasons on one page."
+  ],
+  [
+   2.263,
+   1.988,
+   "There are deadlines nobody can move."
+  ],
+  [
+   4.25,
+   4.138,
+   "Every other decision depends on identity, so it has to come first."
+  ],
+  [
+   8.387,
+   7.088,
+   "The HR side of government is being rebuilt anyway, which makes this the cheapest moment to connect identity to it."
+  ],
+  [
+   15.475,
+   2.938,
+   "And the access risk is already on the books today."
+  ],
+  [
+   18.413,
+   3.225,
+   "None of this requires a large commitment to begin."
+  ],
+  [
+   21.637,
+   3.125,
+   "Let's take them one at a time, starting with the clocks."
+  ]
+ ],
+ "3": [
+  [
+   0.05,
+   3.587,
+   "Modernization is usually treated as a choice of timing."
+  ],
+  [
+   3.638,
+   3.288,
+   "It isn't, because the dates are set outside the agency."
+  ],
+  [
+   6.925,
+   5.425,
+   "Federal directives already require secure cloud configurations and better logging."
+  ],
+  [
+   12.35,
+   4.287,
+   "fed-ramp's new rules become mandatory in January 2027."
+  ],
+  [
+   16.637,
+   7.987,
+   "And the closest date is Windows Server 2016, which reaches end of support on January twelfth, 2027."
+  ],
+  [
+   24.625,
+   4.713,
+   "In many estates that's where domain controllers and certificate authorities run."
+  ],
+  [
+   29.337,
+   6.237,
+   "Count your own 2016 servers before the meeting; that number will do more than any slide."
+  ],
+  [
+   35.575,
+   2.425,
+   "So with time short, where do you begin?"
+  ]
+ ],
+ "4": [
+  [
+   0.05,
+   3.825,
+   "You begin with identity, because everything else decides on it."
+  ],
+  [
+   3.875,
+   6.925,
+   "Access policy, devices, data, certificates: each one asks who or what is making the request."
+  ],
+  [
+   10.8,
+   4.912,
+   "If the answer to that question isn't trustworthy, nothing built on top of it can be either."
+  ],
+  [
+   15.713,
+   9.162,
+   "That's why the workbook numbers its books in this order, with identity first and infrastructure next, then the cloud boundary, assurance and operations."
+  ],
+  [
+   24.875,
+   2.375,
+   "Skipping ahead only moves the problem."
+  ],
+  [
+   27.25,
+   4.037,
+   "And right now there's an unusual opportunity on the identity side."
+  ]
+ ],
+ "5": [
+  [
+   0.05,
+   6.662,
+   "Federal HR 2.0 is moving agencies onto one government-wide human resources platform."
+  ],
+  [
+   6.713,
+   11.238,
+   "The O M B and OPM memo came in December 2025, Oracle won the contract in June 2026, and agencies move in waves through fiscal 2027."
+  ],
+  [
+   17.95,
+   4.463,
+   "Each agency's move includes new connections, designed during onboarding."
+  ],
+  [
+   22.413,
+   5.612,
+   "OPM rebuilds the HR side, but the identity side is left to the agency."
+  ],
+  [
+   28.025,
+   3.663,
+   "If identity rides along, the agency connects once."
+  ],
+  [
+   31.688,
+   2.15,
+   "If it waits, it builds twice."
+  ],
+  [
+   33.837,
+   4.7,
+   "That's why the workbook calls HR 2.0 the opening, not the project."
+  ],
+  [
+   38.538,
+   3.212,
+   "Which brings us to the risk agencies already carry."
+  ]
+ ],
+ "6": [
+  [
+   0.05,
+   6.638,
+   "Today, who gets an account, and when access ends, often lives in tickets, spreadsheets and email."
+  ],
+  [
+   6.688,
+   3.55,
+   "A contractor roster is out of date the moment it's saved."
+  ],
+  [
+   10.238,
+   8.9,
+   "Quarterly access reviews can't see a transition when it happens, so a review ninety days after someone leaves ends up approving an account nobody should have."
+  ],
+  [
+   19.137,
+   4.537,
+   "Assessors know this pattern well; it's where account-management findings come from."
+  ],
+  [
+   23.675,
+   7.513,
+   "HR-driven identity fixes the cause: the HR record becomes the source of who works here, and access follows it."
+  ],
+  [
+   31.188,
+   1.775,
+   "So what exactly is the ask?"
+  ]
+ ],
+ "7": [
+  [
+   0.05,
+   1.262,
+   "The ask is small."
+  ],
+  [
+   1.312,
+   4.912,
+   "Phase zero is a four-week pre-flight, and it doesn't require choosing a vendor."
+  ],
+  [
+   6.225,
+   15.637,
+   "It needs three things: an inventory, from a read-only assessment of the current estate; an owner, meaning a named executive sponsor and a steward who runs the program; and a date, with the first gate on the calendar next to those external deadlines."
+  ],
+  [
+   21.863,
+   6.85,
+   "At the end of four weeks, leadership sees the estate as it really is, and decides the next step from facts."
+  ],
+  [
+   28.712,
+   2.362,
+   "Then comes the first real milestone."
+  ]
+ ],
+ "8": [
+  [
+   0.05,
+   7.025,
+   "Phase one, the foundation, runs about four more weeks and ends at a gate leadership can check, not just sign."
+  ],
+  [
+   7.075,
+   3.862,
+   "Groups and administrative units are in place, with no drift."
+  ],
+  [
+   10.938,
+   6.675,
+   "Everyone is under multifactor authentication, except a few emergency accounts that are vaulted and tested."
+  ],
+  [
+   17.613,
+   3.075,
+   "The core infrastructure is covered by address management."
+  ],
+  [
+   20.688,
+   3.15,
+   "And the HR feed is live for a first group of people."
+  ],
+  [
+   23.837,
+   2.025,
+   "Each of those is measured from data."
+  ],
+  [
+   25.863,
+   4.188,
+   "When the gate passes, everything else has something solid to stand on."
+  ],
+  [
+   30.05,
+   1.6,
+   "So who needs to be in the room?"
+  ]
+ ],
+ "9": [
+  [
+   0.05,
+   2.225,
+   "The decision belongs to a few people."
+  ],
+  [
+   2.275,
+   5.625,
+   "The executive sponsor, with the C I O, owns scope, funding and sequence."
+  ],
+  [
+   7.9,
+   3.525,
+   "The steward owns the target design and the early gates."
+  ],
+  [
+   11.425,
+   3.163,
+   "And workstream leads say when their area is ready."
+  ],
+  [
+   14.588,
+   15.05,
+   "To make the conversation concrete, bring four local numbers: how many 2016 servers you run, how many contractors sit outside the HR system, how long it takes a departing person to lose access, and your HR 2.0 wave."
+  ],
+  [
+   29.637,
+   6.3,
+   "Then ask for one decision: approve the four-week pre-flight, with a named owner and a start date."
+  ]
+ ],
+ "10": [
+  [
+   0.05,
+   6.737,
+   "To go deeper, start with the Book 00 executive briefing, which lays out the decisions with owners and timing."
+  ],
+  [
+   6.787,
+   5.05,
+   "Book 01, Chapter 12 is the roadmap, with every phase and gate."
+  ],
+  [
+   11.838,
+   7.487,
+   "Book 02 covers identity and the directory, and Book 03 makes the full case for HR-driven identity."
+  ],
+  [
+   19.325,
+   5.062,
+   "Every claim in this briefing is footnoted to a primary source in those books."
+  ],
+  [
+   24.387,
+   5.8,
+   "The workbook is independent analysis, not an official publication of any agency."
+  ],
+  [
+   30.188,
+   1.45,
+   "Thank you for starting here."
+  ]
+ ]
+}
