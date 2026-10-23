@@ -10,6 +10,9 @@
 --    whose author set unequal widths on purpose are left alone.
 -- 3. Automatic landscape. A table with 7 or more columns, or 5 or more with heavy text, goes on
 --    landscape pages of its own; everything else stays portrait.
+-- 4. Smaller type for large tables. Landscape tables, tables of 6 or more columns and text-heavy
+--    tables set their cell text in the "Table Small" character style (10 pt; body text is 12 pt),
+--    and their columns are balanced for the extra width that gives.
 --
 -- The added sections number footnotes continuously, like the reference document.
 
@@ -86,8 +89,18 @@ local function widths_set_on_purpose(tbl)
   return false
 end
 
--- Characters of body text that fit across the page at 10 pt: portrait, landscape.
-local PORTRAIT_CHARS, LANDSCAPE_CHARS = 88, 125
+-- Characters of table text that fit across the page: portrait, landscape; and the gain from the
+-- 10 pt "Table Small" style over the 12 pt body text.
+local PORTRAIT_CHARS, LANDSCAPE_CHARS, SMALL_GAIN = 88, 125, 1.2
+local SMALL = "Table Small"
+
+-- Set every cell's text in the small table style.
+local function shrink(tbl)
+  return tbl:walk({
+    Plain = function(b) return pandoc.Plain({ pandoc.Span(b.content, { ["custom-style"] = SMALL }) }) end,
+    Para = function(b) return pandoc.Para({ pandoc.Span(b.content, { ["custom-style"] = SMALL }) }) end,
+  })
+end
 
 -- Every column gets room for its longest word (so nothing breaks mid-word); the space left over goes
 -- to the columns whose cells are longer than that, in proportion to how much longer.
@@ -128,8 +141,11 @@ local function layout_table(tbl)
   -- page, or when rows carry a lot of text.
   local wide = n >= 7 or (n >= 5 and (sum_min > 0.6 * PORTRAIT_CHARS or (rows > 0 and chars / rows > 260)))
   local landscape = inside_landscape or wide
-  local w = shares(mean, longest, landscape and LANDSCAPE_CHARS or PORTRAIT_CHARS)
+  local small = landscape or n >= 6 or (rows > 0 and chars / rows > 180)
+  local capacity = (landscape and LANDSCAPE_CHARS or PORTRAIT_CHARS) * (small and SMALL_GAIN or 1)
+  local w = shares(mean, longest, capacity)
   for i = 1, n do tbl.colspecs[i] = { tbl.colspecs[i][1], w[i] } end
+  if small then tbl = shrink(tbl) end
   if inside_landscape or not wide then return tbl end
   return { section_end(PORTRAIT), tbl, section_end(LANDSCAPE) }
 end

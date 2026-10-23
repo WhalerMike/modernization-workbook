@@ -10,6 +10,7 @@
     if (!head) return;
     var names = Array.prototype.map.call(head.children, function (th) { return th.textContent.trim(); });
     var cols = names.length;
+    if (cols >= 6) table.classList.add("fmw-dense");
     if (cols > 10) {
       if (!table.parentElement.classList.contains("fmw-table-scroll")) {
         var box = document.createElement("div");

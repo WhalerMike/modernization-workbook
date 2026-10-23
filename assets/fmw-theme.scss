@@ -379,3 +379,11 @@ figure img[src$=".svg"] {
     text-transform: none;
   }
 }
+
+// Large tables (6 or more columns) use slightly smaller text on wide screens so columns balance
+// (class added by assets/table-cards.html).
+@media (min-width: 641px) {
+  table.fmw-dense {
+    font-size: 0.86rem;
+  }
+}
