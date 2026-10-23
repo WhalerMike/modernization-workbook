@@ -119,3 +119,13 @@ Internal vocabulary translated: "SAM (Systems Access Management)" → "the ident
 - `docs/images/diagrams/b15-day2-operations/src/ch03-verify-before-acting.flow.yaml` — preconditions, verification gate, PIM, execute/re-read/notify, evidence.
 
 Both validated as YAML only; not rendered (editor renders).
+
+## Additions, October 23, 2026 (federal framework crosswalk follow-up)
+
+Every claim was checked against the primary source on October 23, 2026. Sources: research briefs on investment and acquisition, and on service, accessibility and records (program working files).
+
+| # | Claim (short) | Where | Verdict | Source |
+|---|---|---|---|---|
+| 1 | Help desks and self-service support conform to 603; accommodate communication needs; forms are covered | One front door | verified (quoted) | 36 CFR 1194 App. C 603.1, 603.3; App. A E205.3(G), E208.1 |
+| 2 | IDEA §3(c) for post-2018 intranets | One front door | verified (quoted) | Pub. L. 115-336 §3(c) |
+| 3 | Train help-desk staff on assistive technology | One front door | verified (quoted) | OMB M-24-08 §III.F |

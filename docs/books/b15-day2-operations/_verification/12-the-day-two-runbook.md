@@ -71,3 +71,11 @@ Writer W7. Sources: `docs/compliance/Operator_Runbook_Day2_Compliant.md`, `docs/
 | Harnesses — Controls Operationalized | Which controls this supports | SI-6 added per assignment with High-only caveat |
 | Harnesses — Honest Limits | What the harnesses can't prove | Added "harnesses are automation too" |
 | Harnesses — Cross-References, Provenance | Links to Book 12 Ch11, Book 13 Ch06 | |
+
+## Additions, October 23, 2026 (federal framework crosswalk follow-up)
+
+Every claim was checked against the primary source on October 23, 2026. Sources: research briefs on investment and acquisition, and on service, accessibility and records (program working files).
+
+| # | Claim (short) | Where | Verdict | Source |
+|---|---|---|---|---|
+| 1 | Web self-service support documentation to WCAG 2.0 A and AA; scan intranets at a set frequency; manual testing | Validation harnesses | verified (quoted) | 36 CFR 1194 App. C 602.3; M-24-08 §III.E, n.30 |

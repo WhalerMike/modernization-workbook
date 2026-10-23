@@ -370,9 +370,12 @@ SR-6 asks the agency to assess suppliers; SR-8 asks for agreements under which s
 | Advisory channel | Where the supplier publishes advisories, and in what machine-readable format (CSAF, CycloneDX, OpenVEX, or none) |
 | SBOM availability | Whether the supplier provides SBOMs, in which format, and whether the contract requires one on request |
 | Notification agreement | The clause or terms under which the supplier must report compromises and assessment results (SR-8) |
+| Utilization and pricing | Whether the agency has asked the vendor for its utilization rates and prices paid, and whether contracts issued after March 31, 2026 carry the disclosure provision OMB M-26-10 requires |
 | Last review | Date and outcome of the most recent supplier assessment (SR-6) |
 
 : The supplier record. Program design. {.striped .hover}
+
+The utilization and pricing row comes from OMB M-26-10. Effective March 31, 2026, agencies must request that current vendors, "This includes resellers, third-party vendors, and manufacturers," provide the agency's utilization rates and prices paid for IT products and services, and must "Include appropriate provisions in solicitations and contracts issued after the date of this memorandum to require IT vendors to disclose utilization and pricing information to the Government, without limiting the extent to which that information may be shared across agencies."[^c07-m2610] The memo gives no clause wording, so the contracting officer drafts it; [Book 00, Appendix C](../b00-orientation/appendix-c-funding-and-acquisition.md) has the acquisition checklist this fits into.
 
 Machine-readable advisories make the record cheaper to keep. Microsoft, for example, began publishing CSAF files for its CVEs on November 12, 2024, listed through a provider metadata file,[^c07-msrc-csaf] and in September 2026 began publishing VEX statements for all Microsoft-assigned CVEs.[^c07-msrc-vex] A supplier that publishes CSAF or OpenVEX can feed the exploitability step directly; one that publishes only web pages costs the agency analyst time on every advisory, which is a fair factor in an SR-6 review.
 
@@ -483,3 +486,4 @@ The charter left the sponsor and lead "to be named" and asked only that supply c
 [^c07-msrc-vex]: Microsoft Security Response Center, "Toward greater transparency: Expanding machine-readable Vulnerability Exploitability eXchange (VEX)," September 8, 2026, <https://www.microsoft.com/en-us/msrc/blog/2026/09/toward-greater-transparency-expanding-machine-readable-vulnerability-exploitable-exchange> (accessed Oct 21, 2026).
 [^c07-slsa-build]: SLSA, "Build track basics," SLSA specification version 1.2, <https://slsa.dev/spec/v1.2/build-track-basics> (accessed Oct 21, 2026).
 [^c07-slsa-source]: SLSA, "Source track: requirements," SLSA specification version 1.2, <https://slsa.dev/spec/v1.2/source-requirements> (accessed Oct 21, 2026).
+[^c07-m2610]: Office of Management and Budget, M-26-10, *Reinforcing Transparency, Accountability, and Oversight of Federal Technology*, March 31, 2026, §2 Requirements and note 8, <https://www.whitehouse.gov/wp-content/uploads/2026/03/M-26-10-Reinforcing-Transparency-Accountability-and-Oversight-of-Federal-Technology.pdf> (accessed Oct 23, 2026).

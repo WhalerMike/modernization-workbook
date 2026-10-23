@@ -78,3 +78,11 @@ Diagram source edited: `book-07-ch02-attribute-pipeline.flow.yaml` ("Chapter 1" 
 | Date | Change |
 |---|---|
 | 2026-10-21 | Extension attribute reconciliation: example rule moved from directory extension properties (`extension_<appId>_orgCode`/`positionCategory`) to the program carriers `extensionAttribute10`/`12`, value `ANALYST` as in Book 03 Ch 10; added the program attribute map link; callout no longer mentions `<appId>`. |
+
+## Corrections, October 23, 2026 (federal-sources inventory)
+
+Found by the workbook-wide sweep of federal citations for the Federal Framework Crosswalk; each was checked against the primary source on October 23, 2026.
+
+| # | Claim (short) | Where | Verdict | Source |
+|---|---|---|---|---|
+| 1 | Azure public cloud 'holds a FedRAMP High P-ATO' | What the cloud authorization covers | restated: authorized at High; P-ATO flagged as Microsoft's pre-2026 term | FedRAMP 2026 rules via B10 Ch03 |

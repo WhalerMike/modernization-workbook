@@ -113,3 +113,11 @@ Applied from the verified review findings (critique claims re-checked against pr
 | # | Change | Where | Verdict | Source |
 |---|---|---|---|---|
 | RF-1 | Clarified that the Zscaler entry is the Moderate listing (FR1720454205, Class C) and that the High offering in Chapter 05 is a separate listing (FR2227062482, Class D); `[^c11-fr-sse]` annotated | line 231 | verified | <https://www.fedramp.gov/marketplace/products.json> |
+
+## Corrections, October 23, 2026 (federal-sources inventory)
+
+Found by the workbook-wide sweep of federal citations for the Federal Framework Crosswalk; each was checked against the primary source on October 23, 2026.
+
+| # | Claim (short) | Where | Verdict | Source |
+|---|---|---|---|---|
+| 1 | Intune in scope for the Azure commercial FedRAMP High P-ATO | Authorization boundary row | restated: 'High authorization (a P-ATO, in Microsoft's pre-2026 term)' | B10 Ch03 |

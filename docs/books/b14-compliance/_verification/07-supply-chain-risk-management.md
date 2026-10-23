@@ -106,3 +106,12 @@ Checked October 21, 2026 by writer W4. Sources: `docs/compliance/Vol_IV_Book_02_
 | Charter §6 Success Criteria; §7 Approach; Plan §2–4 | Who owns what (sequence) | Merged into the five-step sequence |
 | Charter §8 Risks and Assumptions | Supplier disclosure; Federal position | Vendor-format risk addressed by accepting SPDX, CycloneDX, CSAF, OpenVEX |
 | Charter §9 Governance; §10 Next Steps | Who owns what | Owners named by role; AO as risk owner |
+
+## Additions, October 23, 2026 (federal framework crosswalk follow-up)
+
+Every claim was checked against the primary source on October 23, 2026. Sources: research briefs on investment and acquisition, and on service, accessibility and records (program working files).
+
+| # | Claim (short) | Where | Verdict | Source |
+|---|---|---|---|---|
+| 1 | M-26-10 §2: request vendor utilization and pricing; disclosure provisions in solicitations and contracts after Mar 31, 2026; vendors include resellers | Supplier disclosure | verified (quoted, page images) | OMB M-26-10 §2, n.8 |
+| 2 | M-26-10 gives no clause wording | Supplier disclosure | verified (absence in memo) | OMB M-26-10 p.4 |

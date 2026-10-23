@@ -53,7 +53,7 @@ Most federal IT estates still run on a client/server model built around Active D
 | **Who** | Who runs the program, and who decides what | [07](07-who-runs-the-program.md) |
 | **How** | Pre-flight and the assessment; design, pilot and rollout; retirement, steady state and measuring success | [08](08-pre-flight-and-assessment.md), [09](09-design-pilot-and-rollout.md), [10](10-retirement-steady-state-and-success.md) |
 
-Appendices: [A — Risk register and control traceability](appendix-a-risk-register-and-traceability.md) · [B — The engagement archetype (illustrative)](appendix-b-engagement-archetype.md)
+Appendices: [A — Risk register and control traceability](appendix-a-risk-register-and-traceability.md) · [B — The engagement archetype (illustrative)](appendix-b-engagement-archetype.md) · [C — Funding and acquiring the program](appendix-c-funding-and-acquisition.md)
 
 ## Reading paths
 

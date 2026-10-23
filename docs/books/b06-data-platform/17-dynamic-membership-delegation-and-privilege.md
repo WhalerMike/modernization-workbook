@@ -127,7 +127,7 @@ The continuous audit described in [Chapter 20](20-the-closure-condition.md) shou
 
 The series assumes Microsoft's commercial cloud (Entra ID at `login.microsoftonline.com`, Azure public US regions) under an agency authorization at FedRAMP Moderate.
 
-**What the cloud authorization covers.** Azure's public cloud holds a FedRAMP High P-ATO for its US regions.[^c17-fedramp] The Moderate baseline is a subset of the High baseline, so a Moderate system can draw on High-authorized services; whether it inherits them is the agency's call. The public-cloud audit-scope list includes the services this chapter relies on:[^c17-scope]
+**What the cloud authorization covers.** Azure's public cloud is authorized at FedRAMP High for its US regions; Microsoft's documentation calls this a High P-ATO, the term FedRAMP used before its 2026 rules replaced authorization designations with certification classes ([Book 10, Chapter 03](../b10-cloud-boundary/03-what-changed-at-fedramp.md)).[^c17-fedramp] The Moderate baseline is a subset of the High baseline, so a Moderate system can draw on High-authorized services; whether it inherits them is the agency's call. The public-cloud audit-scope list includes the services this chapter relies on:[^c17-scope]
 
 - Microsoft Entra ID (Free, P1 and P2), Microsoft Entra ID Governance, the Microsoft Entra provisioning service and Microsoft Entra multifactor authentication
 - Microsoft Graph

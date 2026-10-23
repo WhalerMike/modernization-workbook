@@ -158,6 +158,8 @@ Two rules keep the portfolio coherent. First, a project never designates a secon
 
 Every charter ends the same way: a sponsor and a lead "to be named," four domain leads by function, and five next steps that begin with an inventory. That is deliberate. The charters define the method and the contract, and the adopting agency supplies the people, the source systems and the risk decisions. Only the identity charter states decision rights, giving source-of-truth designation and the attribute model to the project lead and sponsor. In the program's model the meaning of those attributes is HR's decision and the flow is identity engineering's ([Chapter 07](07-who-runs-the-program.md)). Filling in the names is the first act of each project, and Chapter 07 says who they answer to.
 
+A charter is also the natural unit for funding. [Appendix C](appendix-c-funding-and-acquisition.md) maps a charter's sections to the Technology Modernization Fund's initial proposal, whose milestone-gated phases have the same shape as the charters' pilots.
+
 ## Key takeaways
 
 1. Seven chartered projects turn the program's most common gaps into executable work, each with its own sponsor, lead and pilot-scale success criteria.

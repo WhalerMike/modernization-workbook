@@ -72,3 +72,18 @@ Checked October 21, 2026. Book 00's chapters were reconciled with each other; ea
 | # | Claim (short) | Where | Verdict | Source |
 |---|---|---|---|---|
 | X1 | M-045 drift assessment = daily drift detection plus weekly reassessment diff; checklist item 19 likewise | Operating cadence milestones; cutover item 19 | aligned with the operating cadence table (detection daily, reassessment weekly) | Internal |
+
+## Additions, October 23, 2026 (federal framework crosswalk follow-up)
+
+Every claim was checked against the primary source on October 23, 2026. Sources: research briefs on investment and acquisition, and on service, accessibility and records (program working files).
+
+| # | Claim (short) | Where | Verdict | Source |
+|---|---|---|---|---|
+| 1 | Agency heads shall make and preserve records | Records checklist | verified (quoted) | 44 U.S.C. §3101 |
+| 2 | No destruction except under schedule; unlawful destruction defined; report to NARA | Records checklist | verified | 36 CFR 1230.3, 1230.10(a), 1230.14 |
+| 3 | All records covered by a NARA-approved schedule or GRS | Records checklist | verified | 36 CFR 1225.10, 1226.10 |
+| 4 | GRS 3.2 items 010, 030/031 (6 years), 036 (30 months), 060–062; GRS 3.1 items 011, 030 (5 years); GRS 3.1 doesn't cover system data | Records checklist | verified | GRS 3.1 (Transmittal 30), GRS 3.2 (Transmittal 33) |
+| 5 | NARA revising GRS 3.2 items 035–036 (M-21-31 rescission) | Records checklist | verified (quoted) | NARA GRS Status Updates, Oct 2026 |
+| 6 | Migrate before retirement; backups not the archive; keep full names on directories | Records checklist | verified (quoted) | 36 CFR 1236.14(a), (b)(3); 1236.20(c); 1236.22(a)(3) |
+| 7 | Permanent records transferred electronically with metadata since June 30, 2024 | Records checklist | verified | M-23-07 §1.2 (archives.gov copy) |
+| 8 | Checklist ordering | Records checklist | restated-as-design | — |

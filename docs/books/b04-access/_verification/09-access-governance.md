@@ -135,3 +135,14 @@ Applied from the verified review of Books 02–05. Sources were opened again on 
 The body now states the guidance directly. These were the earlier positions it used to narrate:
 
 - The program's older guidance put native Entra retention at 30 days for Free and 90 days for P1 and P2.
+
+## Additions, October 23, 2026 (federal framework crosswalk follow-up)
+
+Every claim was checked against the primary source on October 23, 2026. Sources: research briefs on investment and acquisition, and on service, accessibility and records (program working files).
+
+| # | Claim (short) | Where | Verdict | Source |
+|---|---|---|---|---|
+| 1 | Section 508: comparable access for federal employees | Request portal and 508 | verified (quoted) | 29 U.S.C. §794d(a)(1)(A)(i) |
+| 2 | Revised 508 Standards scope E201.1; WCAG 2.0 A and AA (E207.2); best meets with written market research (E202.7, E202.7.1) | Request portal and 508 | verified | 36 CFR 1194 App. A |
+| 3 | Validate vendor conformance documentation before purchase and after change | Request portal and 508 | verified | OMB M-24-08 §III.B |
+| 4 | Test the whole flow with assistive technology; record the ACR | Request portal and 508 | restated-as-design | — |
