@@ -32,9 +32,9 @@ This book replaces the workbook's PKI Modernization Guide with one ordered book.
 ## Download and present
 **[b07-pki-bundle.docx](../../../downloads/b07-pki-bundle.docx)**: the whole book as one Word document, regenerated on every site deploy.
 
-**15-minute presentation**: the Why / What / Who / How deck and its narrated, self-running edition, with built-in captions, are on the [Presentations](../../presentations/index.md#book-07) page.
+**15-minute presentation (about 13 minutes narrated)**: the Why / What / Who / How deck and its narrated, self-running edition, with built-in captions, are on the [Presentations](../../presentations/index.md#book-07) page.
 
-**Technical deep dive (about 50 minutes)**: hardening AD CS, the target PKI, device and user certificates and decommissioning, in modules on the [Presentations](../../presentations/index.md#technical-b07) page.
+**Technical deep dive (about 50 minutes live, 23 narrated)**: hardening AD CS, the target PKI, device and user certificates and decommissioning, in modules on the [Presentations](../../presentations/index.md#technical-b07) page.
 
 **Research (under review)**: an implementation guide, [Certificate Lifecycle on CyberArk Certificate Manager](../../research/cyberark-certificate-lifecycle.md), builds this book's certificate lifecycle on the program's CLM platform; it's on the [Research](../../research/index.md) page. A research explainer, [Certificates, Tokens and Keys Across the Hybrid Estate](../../research/hybrid-credentials.md), follows SQL Server with Entra ID, the clouds' key vaults, PIV and RADIUS through coexistence to after AD, with who issues and who renews each credential.
 :::

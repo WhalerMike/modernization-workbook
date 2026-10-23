@@ -32,9 +32,9 @@ This book consolidates the workbook's device and server modernization pages (the
 ## Download and present
 **[b05-devices-bundle.docx](../../../downloads/b05-devices-bundle.docx)**: the whole book as one Word document, regenerated on every site deploy.
 
-**15-minute presentation**: the Why / What / Who / How deck and its narrated, self-running edition are on the [Presentations](../../presentations/index.md#book-05) page.
+**15-minute presentation (about 10 minutes narrated)**: the Why / What / Who / How deck and its narrated, self-running edition are on the [Presentations](../../presentations/index.md#book-05) page.
 
-**Technical deep dive (about 50 minutes)**: onboarding, the GPO sunset, Azure Arc and operating the fleet, in modules on the [Presentations](../../presentations/index.md#technical-b05) page.
+**Technical deep dive (about 50 minutes live, 23 narrated)**: onboarding, the GPO sunset, Azure Arc and operating the fleet, in modules on the [Presentations](../../presentations/index.md#technical-b05) page.
 
 **Research (under review)**: [Who Names the Device After AD?](../../research/device-naming-after-ad.md) explains device naming and DNS registration once Active Directory retires; it's on the [Research](../../research/index.md) page.
 :::

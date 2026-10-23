@@ -32,7 +32,7 @@ This book replaces the Federal Compliance series' orientation volume (its execut
 ## Download and present
 **[b14-compliance-bundle.docx](../../../downloads/b14-compliance-bundle.docx)**: the whole book as one Word document, regenerated on every site deploy.
 
-**15-minute presentation**: the Why / What / Who / How deck is on the [Presentations](../../presentations/index.md#book-14) page.
+**15-minute presentation (about 11 minutes narrated)**: the Why / What / Who / How deck is on the [Presentations](../../presentations/index.md#book-14) page.
 :::
 
 A control that is described in a plan but can't be shown working is a promise. An authorization built on promises decays the day after the assessment. Book 14 is about the proof. It starts with who owes which proof: the cloud provider proves its service under FedRAMP's 2026 rules, the agency proves its own system and its own controls, and the authorizing official alone decides whether the residual risk is acceptable. It sets out the federal clock that now drives the work, from BOD 26-04's remediation timelines to M-26-15's post-quantum plan. It keeps two facts apart that are often blurred: what NIST's Moderate baseline contains and what FedRAMP's classes contain. Then it works through the control families the other books don't carry in depth: program management, contingency planning, supply chain risk management, privacy and PII processing, and training and awareness. The rule throughout is that a control closes only when the mechanism that closes it exists and its proof is recorded. The book ends with the authorization package itself, continuous monitoring and ongoing authorization, and a map of the whole Federal Compliance series to the books that carry it.

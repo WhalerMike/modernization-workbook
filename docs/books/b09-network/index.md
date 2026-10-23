@@ -32,9 +32,9 @@ This book brings together the workbook's *Physics of a Single Source of Truth* s
 ## Download and present
 **[b09-network-bundle.docx](../../../downloads/b09-network-bundle.docx)**: the whole book as one Word document, regenerated on every site deploy.
 
-**15-minute presentation**: the Why / What / Who / How deck and its narrated, self-running edition, with built-in captions, are on the [Presentations](../../presentations/index.md#book-09) page.
+**15-minute presentation (about 13 minutes narrated)**: the Why / What / Who / How deck and its narrated, self-running edition, with built-in captions, are on the [Presentations](../../presentations/index.md#book-09) page.
 
-**Executive briefing (about 30 minutes)**: the decisions, their owners and timing, on the [Presentations](../../presentations/index.md#executive-b09) page.
+**Executive briefing (about 30 minutes live, 22 narrated)**: the decisions, their owners and timing, on the [Presentations](../../presentations/index.md#executive-b09) page.
 :::
 
 Every other book in this workbook moves something: identities, devices, databases, certificates, names. This one is about the paths they move over, and the one constraint no product removes. Light in fiber covers about 200 kilometers per millisecond, and conversational voice leaves the network roughly 70 to 100 milliseconds one way. A field office that hairpins through a distant data center spends much of that on the detour, and a faster circuit doesn't straighten the path. So the architecture follows physics: centralize the source of truth logically, then need less global synchronization rather than trying to make it faster. The second idea is the book's spine: **transport is a physics decision; control is a compliance decision.** Direct internet access, MPLS, satellite and 5G are pipes that close one control family, telecommunications diversity. The governor above them, SD-WAN and the security service edge enforcing TIC 3.0 policy, closes the protection controls and is itself attack surface. Done in the wrong order, lighting up fast connections before the governor is live, modernization becomes a compliance regression with better latency.
