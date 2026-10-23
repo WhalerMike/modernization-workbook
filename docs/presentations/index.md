@@ -22,6 +22,8 @@ Every workbook book has a 15-minute briefing (its narrated edition runs 9 to 13 
 Every narrated deck is also available as a 1080p MP4 video, with its matching `.vtt` caption file, in the [narrated presentation videos release](https://github.com/WhalerMike/modernization-workbook/releases/tag/videos-2026-10-22) on GitHub: the eighteen book briefings, the executive briefings, the technical deep dives and the HR-driven identity talk set, about twelve hours in all. Download a video and its caption file and play them together in any player that loads WebVTT captions.
 :::
 
+New here? Start with the six-minute narrated executive briefing on the [Start Here](../start-here.md) page: why modernization begins with identity, and the first step leadership can approve.
+
 Research presentations that are still under review, such as product deep dives, are on the [Research](../research/index.md) page, not here.
 
 ## Book presentations

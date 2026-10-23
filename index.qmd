@@ -249,7 +249,8 @@ format:
   <h1>Every migration is a <em>governance</em> migration.</h1>
   <p class="hero-sub">The Federal Modernization Workbook is a set of topic books for moving a federal IT estate from Active Directory, Group Policy and on-premises infrastructure to cloud identity and governed hybrid operations. Each book opens with one question, answers it in four parts, and footnotes every external claim to a primary source.</p>
   <div class="hero-actions">
-    <a class="btn-primary" href="#books">Browse the books</a>
+    <a class="btn-primary" href="docs/start-here.html">Start here: 6-minute briefing</a>
+    <a class="btn-ghost" href="#books">Browse the books</a>
     <a class="btn-ghost" href="docs/presentations/index.html">Presentations</a>
   </div>
 </section>

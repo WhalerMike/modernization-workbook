@@ -17,6 +17,7 @@ project:
     - "index.qmd"
     - "sitemap.qmd"
     - "404.qmd"
+    - "docs/start-here.md"
     - "docs/books/**/*.md"
     - "docs/presentations/**/*.md"
     - "docs/inspiration/**/*.md"
@@ -43,6 +44,8 @@ website:
     left:
       - href: index.qmd
         text: "Home"
+      - href: docs/start-here.md
+        text: "Start here"
       - text: "Books"
         menu:
           - href: docs/books/index.md

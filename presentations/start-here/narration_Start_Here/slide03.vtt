@@ -1,0 +1,49 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.637
+Modernization is usually
+treated as a choice of timing.
+
+2
+00:00:03.637 --> 00:00:06.926
+It isn't, because the dates
+are set outside the agency.
+
+3
+00:00:06.926 --> 00:00:12.350
+Federal directives already require secure
+cloud configurations and better logging.
+
+4
+00:00:12.350 --> 00:00:16.637
+FedRAMP's new rules become
+mandatory in January 2027.
+
+5
+00:00:16.637 --> 00:00:20.231
+And the closest date is
+Windows Server 2016,
+
+6
+00:00:20.231 --> 00:00:24.624
+which reaches end of support
+on January twelfth, 2027.
+
+7
+00:00:24.624 --> 00:00:29.338
+In many estates that's where domain
+controllers and certificate authorities run.
+
+8
+00:00:29.338 --> 00:00:32.763
+Count your own 2016
+servers before the meeting;
+
+9
+00:00:32.763 --> 00:00:35.574
+that number will do more than any slide.
+
+10
+00:00:35.574 --> 00:00:38.060
+So with time short, where do you begin?
