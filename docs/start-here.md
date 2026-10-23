@@ -8,10 +8,23 @@ description: "The starting point for the Federal Modernization Workbook: a six-m
 
 New to the workbook? Start with this six-minute briefing. It makes one case: modernization should begin with identity, and the first step is small, bounded and can start now. It is written for the people who decide: the executive sponsor, the CIO, the CISO, the chief human capital officer and the authorizing official.
 
-## Watch or download
+## Watch
+
+```{=html}
+<video controls preload="metadata" playsinline poster="../presentations/start-here/Start_Here_poster.png" style="width:100%;max-width:960px;height:auto;border:1px solid #dfe5ec;border-radius:6px" aria-label="Start Here: Where Modernization Begins, a six-minute narrated executive briefing">
+  <source src="../presentations/start-here/Start_Here_720p.mp4" type="video/mp4">
+  <track kind="captions" src="../presentations/start-here/Start_Here_Narrated.vtt" srclang="en" label="English">
+  Your browser can't play this video. Download the <a href="../presentations/start-here/Start_Here_720p.mp4">MP4</a> or the narrated deck below.
+</video>
+```
+
+Captions are available from the player's captions button. The full narration is in the script below.
+
+## Download
 
 | Edition | File |
 |---|---|
+| Video (MP4, 720p, 6 minutes) | [Start_Here_720p.mp4](../presentations/start-here/Start_Here_720p.mp4) |
 | Narrated, self-running (about 6 minutes, captions) | [Start_Here_Narrated.pptx](../presentations/start-here/Start_Here_Narrated.pptx) |
 | Deck, for presenting live | [Start_Here.pptx](../presentations/start-here/Start_Here.pptx) |
 | Narration script and caption track | [Script](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/start-here/Start_Here_Narration_Script.md) · [Captions](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/start-here/Start_Here_Narrated.vtt) |
