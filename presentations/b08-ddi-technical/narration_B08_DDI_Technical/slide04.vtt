@@ -1,45 +1,26 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:05.550
-Module 1: split-brain DNS and the
-Active Directory DNS departure.
+00:00:00.050 --> 00:00:04.950
+Module 1 is split-brain DNS and
+leaving Active Directory DNS.
 
 2
-00:00:05.550 --> 00:00:10.832
-Chapter 02 defines the structural problem:
-the same name returning different answers
+00:00:04.950 --> 00:00:08.842
+For twenty years AD was quietly
+the agency's DNS service,
 
 3
-00:00:10.832 --> 00:00:15.600
-depending on where the query starts,
-silently, because the name still resolves.
+00:00:08.842 --> 00:00:13.750
+and the records it kept for itself
+don't follow identities to the cloud.
 
 4
-00:00:15.600 --> 00:00:20.050
-Chapter 04 takes the surface
-most agencies underestimate.
+00:00:13.750 --> 00:00:16.372
+So leaving it is an
+inventory problem first,
 
 5
-00:00:20.050 --> 00:00:24.445
-Active Directory never presented
-itself as the agency's DNS service,
-
-6
-00:00:24.445 --> 00:00:26.372
-but for twenty years it was one,
-
-7
-00:00:26.372 --> 00:00:31.075
-and the records it kept for itself don't
-follow the identities to the cloud.
-
-8
-00:00:31.075 --> 00:00:35.679
-Leaving AD DNS is an inventory problem
-before it is a migration problem,
-
-9
-00:00:35.679 --> 00:00:41.110
-and the inventory has to be finished before
-the first domain controller is retired.
+00:00:16.372 --> 00:00:19.700
+finished before the first
+domain controller retires.

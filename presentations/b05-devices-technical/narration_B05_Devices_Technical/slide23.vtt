@@ -1,151 +1,60 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:02.360
-Arc is also how many organizations keep
+00:00:00.050 --> 00:00:03.571
+Arc is also how many organizations
+keep end-of-support servers
 
 2
-00:00:02.360 --> 00:00:05.300
-end-of-support servers
-patched while they migrate.
+00:00:03.571 --> 00:00:06.888
+patched while they migrate, and
+the dates are the point here.
 
 3
-00:00:05.300 --> 00:00:11.519
-As of October twentieth, 2026: the
-Windows Server 2012 and 2012 R2 ESU period
+00:00:06.888 --> 00:00:09.185
+As of October twentieth, 2026,
 
 4
-00:00:11.519 --> 00:00:17.738
-ended on October thirteenth, and Arc
-ESU licenses deactivated the next day.
+00:00:09.185 --> 00:00:15.598
+Windows Server 2012 and 2012 R2 receive
+no further security updates through any
 
 5
-00:00:17.738 --> 00:00:20.058
-Any such host still running receives no
+00:00:15.598 --> 00:00:19.139
+channel, so any still
+running is a red finding:
 
 6
-00:00:20.058 --> 00:00:22.800
-further security updates
-through any channel.
+00:00:19.139 --> 00:00:23.063
+migrate, upgrade, or isolate
+it and record the risk.
 
 7
-00:00:22.800 --> 00:00:25.823
-Treat it as a red finding:
-migrate, upgrade,
-
-8
-00:00:25.823 --> 00:00:29.112
-or isolate it and record
-the risk acceptance.
-
-9
-00:00:29.112 --> 00:00:34.165
+00:00:23.063 --> 00:00:28.331
 Windows Server 2016 reaches end of
 support on January twelfth, 2027,
 
+8
+00:00:28.331 --> 00:00:33.412
+so enroll those hosts in ESUs before
+then if they won't be upgraded.
+
+9
+00:00:33.412 --> 00:00:37.155
+Arc servers can also use
+Entra ID for Remote Desktop,
+
 10
-00:00:34.165 --> 00:00:37.863
-with ESUs for up to three
-years; connect and enroll
+00:00:37.155 --> 00:00:41.854
+but only on Server 2025 or Windows
+11 24H2, and Conditional Access
 
 11
-00:00:37.863 --> 00:00:42.013
-those hosts before then if they
-won't be upgraded in time.
+00:00:41.854 --> 00:00:46.988
+isn't supported there; the control is
+role-based access held through PIM.
 
 12
-00:00:42.013 --> 00:00:47.959
-SQL Server 2014 is in its third
-ESU year, until July 2027,
-
-13
-00:00:47.959 --> 00:00:53.113
-and SQL Server 2016 in its
-first, until July 2029.
-
-14
-00:00:53.113 --> 00:00:55.494
-ESUs through Arc are billed monthly,
-
-15
-00:00:55.494 --> 00:00:58.750
-need no product keys, and
-show coverage per server.
-
-16
-00:00:58.750 --> 00:01:00.512
-Entra ID sign-in.
-
-17
-00:01:00.512 --> 00:01:05.034
-Arc-enabled Windows servers can
-use Entra ID for Remote Desktop,
-
-18
-00:01:05.034 --> 00:01:07.763
-with Azure RBAC deciding who signs in.
-
-19
-00:01:07.763 --> 00:01:14.875
-It needs Windows Server 2025 or later with
-Desktop Experience, or Windows 11 24H2;
-
-20
-00:01:14.875 --> 00:01:20.501
-2019 and 2022 aren't supported,
-which is exception C from Module 1.
-
-21
-00:01:20.501 --> 00:01:23.775
-It's available in Azure
-Global and Azure Government.
-
-22
-00:01:23.775 --> 00:01:27.237
-Installing the sign-in extension
-Entra-joins the server,
-
-23
-00:01:27.237 --> 00:01:29.963
-so it's for servers that
-won't be domain-joined.
-
-24
-00:01:29.963 --> 00:01:33.151
-Only member users of the
-same tenant can sign in.
-
-25
-00:01:33.151 --> 00:01:37.887
-And Conditional Access isn't supported
-with the join extension on Arc servers.
-
-26
-00:01:37.887 --> 00:01:42.846
-That corrects a common assumption: the
-control you get is RBAC on who may sign in,
-
-27
-00:01:42.846 --> 00:01:46.226
-held through PIM, not
-workstation Conditional Access.
-
-28
-00:01:46.226 --> 00:01:50.900
-Linux uses SSH through Arc with its
-own extension and the same roles.
-
-29
-00:01:50.900 --> 00:01:54.054
-Rollback order matters:
-remove extensions first,
-
-30
-00:01:54.054 --> 00:01:58.439
-because uninstalling the agent
-leaves them behind; then disconnect,
-
-31
-00:01:58.439 --> 00:02:02.420
-which needs the resource
-administrator role; then uninstall.
+00:00:46.988 --> 00:00:52.420
+And rollback has an order: remove
+extensions, disconnect, then uninstall.

@@ -1,147 +1,64 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:03.683
-The compliance policies decide
-whether a device is compliant;
+00:00:00.050 --> 00:00:04.940
+Compliance policies decide whether a
+device is compliant; Conditional Access
 
 2
-00:00:03.683 --> 00:00:07.525
-Conditional Access decides what
-a noncompliant device can reach.
+00:00:04.940 --> 00:00:09.312
+decides what a noncompliant device
+can reach, and Book 04 owns that part.
 
 3
-00:00:07.525 --> 00:00:12.425
-The Federal Modernization Workbook's
-Book 04 owns that second decision.
+00:00:09.312 --> 00:00:12.075
+This book's job is making
+the signal accurate.
 
 4
-00:00:12.425 --> 00:00:16.929
-This book's side of the hand-off is making
-sure the compliance signal is accurate,
-
-5
-00:00:16.929 --> 00:00:20.137
-and remember that the
-compliant-device grant works only
-
-6
-00:00:20.137 --> 00:00:23.413
-for devices registered in Entra
-ID and enrolled in Intune.
-
-7
-00:00:23.413 --> 00:00:26.488
+00:00:12.075 --> 00:00:15.150
 Two tenant settings
 sit above every policy.
 
+5
+00:00:15.150 --> 00:00:20.425
+Devices with no compliance policy default
+to compliant, and the program flips that,
+
+6
+00:00:20.425 --> 00:00:24.400
+so a device that falls outside
+every group can't pass by default.
+
+7
+00:00:24.400 --> 00:00:28.297
+And compliance status stays
+valid for thirty days by default;
+
 8
-00:00:26.488 --> 00:00:30.613
-Devices with no compliance policy
-assigned default to Compliant;
+00:00:28.297 --> 00:00:32.117
+the program uses fourteen, short
+enough that a device left in
 
 9
-00:00:30.613 --> 00:00:35.188
-the program sets Not compliant, so a
-device that falls outside every group,
+00:00:32.117 --> 00:00:35.937
+a drawer loses access, long enough
+not to catch staff on leave.
 
 10
-00:00:35.188 --> 00:00:40.063
-a missing tier attribute for example,
-can't pass Conditional Access by default.
+00:00:35.937 --> 00:00:37.710
+Read the dashboard carefully,
 
 11
-00:00:40.063 --> 00:00:44.390
-And the compliance status validity
-period defaults to thirty days,
-
-12
-00:00:44.390 --> 00:00:48.487
-with a range of one to a hundred
-twenty; the program uses fourteen.
-
-13
-00:00:48.487 --> 00:00:53.268
-That's a program choice: short enough that
-a device left in a drawer loses access
-
-14
-00:00:53.268 --> 00:00:56.283
-before its posture is stale
-by a whole patch cycle,
-
-15
-00:00:56.283 --> 00:00:58.637
-long enough not to catch staff on leave.
-
-16
-00:00:58.637 --> 00:01:00.501
-Read the dashboard carefully.
-
-17
-00:01:00.501 --> 00:01:02.823
-In grace period means noncompliant,
-
-18
-00:01:02.823 --> 00:01:06.463
-but inside the schedule on
-the mark noncompliant action.
-
-19
-00:01:06.463 --> 00:01:11.538
-Not evaluated is a new device, or one that
-hasn't checked in since a policy changed.
-
-20
-00:01:11.538 --> 00:01:15.161
-A compliance setting that
-returns Error keeps the existing
-
-21
-00:01:15.161 --> 00:01:19.074
-status for up to seven days, then
-the device becomes noncompliant.
-
-22
-00:01:19.074 --> 00:01:22.191
-The program reviews Not
-evaluated and Error weekly,
-
-23
-00:01:22.191 --> 00:01:25.525
-because both hide devices
+00:00:37.710 --> 00:00:41.538
+because some statuses hide devices
 from the noncompliant count.
 
-24
-00:01:25.525 --> 00:01:29.908
-Configuration status is per device
-and per setting: Succeeded, Error,
+12
+00:00:41.538 --> 00:00:46.044
+And on Tier 0, a Defender detection
+becomes a compliance failure,
 
-25
-00:01:29.908 --> 00:01:34.675
-or Conflict, which means another policy
-sets the same setting differently.
-
-26
-00:01:34.675 --> 00:01:37.213
-A conflict is a defect in the library.
-
-27
-00:01:37.213 --> 00:01:40.288
-Move the setting into the
-one policy that owns it.
-
-28
-00:01:40.288 --> 00:01:45.234
-And on Tier 0, the risk score requirement
-means a Defender detection on a privileged
-
-29
-00:01:45.234 --> 00:01:48.244
-access workstation becomes
-a compliance failure,
-
-30
-00:01:48.244 --> 00:01:51.170
-and through Conditional
-Access, a loss of access.
+13
+00:00:46.044 --> 00:00:47.640
+and so a loss of access.

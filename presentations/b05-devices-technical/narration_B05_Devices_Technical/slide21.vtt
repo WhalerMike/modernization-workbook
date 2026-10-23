@@ -5,147 +5,63 @@ WEBVTT
 Onboarding runs in waves.
 
 2
-00:00:01.838 --> 00:00:06.825
-Each wave creates its credential, connects
-a defined set of servers, attaches the
+00:00:01.838 --> 00:00:06.187
+Each wave creates its credential,
+connects a set of servers, attaches the
 
 3
-00:00:06.825 --> 00:00:09.133
+00:00:06.187 --> 00:00:10.899
 baseline on the same change, verifies,
+and then removes what onboarding needed.
 
 4
-00:00:09.133 --> 00:00:12.037
-and closes by removing
-what onboarding needed.
+00:00:10.899 --> 00:00:13.250
+Microsoft supports many methods.
 
 5
-00:00:12.037 --> 00:00:16.866
-Microsoft supports many methods: a
-portal-generated script, PowerShell,
+00:00:13.250 --> 00:00:17.491
+The program recommends a dedicated
+service principal that signs in with a
 
 6
-00:00:16.866 --> 00:00:20.809
-a service principal with the
-installation script, Ansible,
+00:00:17.491 --> 00:00:21.800
+certificate, deployed through the
+automation the server team already runs.
 
 7
-00:00:20.809 --> 00:00:24.914
-Arc-enabled VMware vSphere, the
-multicloud connector for AWS,
+00:00:21.800 --> 00:00:25.337
+That credential is needed only
+while the connect command runs,
 
 8
-00:00:24.914 --> 00:00:29.099
-Windows Admin Center, Configuration
-Manager, and Group Policy.
+00:00:25.337 --> 00:00:27.650
+so keep its life short
+and its scope small.
 
 9
-00:00:29.099 --> 00:00:33.771
-The program's recommendation is a dedicated
-service principal that authenticates
+00:00:27.650 --> 00:00:29.944
+Someone holding it could connect servers
 
 10
-00:00:33.771 --> 00:00:36.039
-with a certificate, deployed through the
+00:00:29.944 --> 00:00:32.762
+outside your organization
+into your subscription.
 
 11
-00:00:36.039 --> 00:00:38.575
-automation tool the
-server team already runs.
+00:00:32.762 --> 00:00:36.162
+Protect it in deployment,
+too: a secret in a hand-built
 
 12
-00:00:38.575 --> 00:00:42.537
-The interactive script is for a
-handful of servers or a pilot.
+00:00:36.162 --> 00:00:40.351
+startup script is readable by
+every domain user through SYSVOL.
 
 13
-00:00:42.537 --> 00:00:45.959
-The service principal exists
-only to connect machines,
+00:00:40.351 --> 00:00:44.605
+And for sensitive servers, set
+local controls Azure can't override,
 
 14
-00:00:45.959 --> 00:00:49.902
-and the credential is needed only
-while azcmagent connect runs;
-
-15
-00:00:49.902 --> 00:00:53.100
-if it expires afterward,
-the server stays connected.
-
-16
-00:00:53.100 --> 00:00:55.938
-So keep its lifetime
-short and its scope small:
-
-17
-00:00:55.938 --> 00:00:59.000
-the onboarding role, on
-the target resource group.
-
-18
-00:00:59.000 --> 00:01:01.826
-Microsoft recommends a
-certificate over a secret,
-
-19
-00:01:01.826 --> 00:01:06.200
-because a certificate credential can
-be controlled with Conditional Access.
-
-20
-00:01:06.200 --> 00:01:10.873
-If you must use a secret, Microsoft's
-examples create one valid for a year;
-
-21
-00:01:10.873 --> 00:01:13.725
-set it shorter and rotate
-it after each wave.
-
-22
-00:01:13.725 --> 00:01:18.129
-A stolen onboarding credential lets an
-attacker connect servers outside your
-
-23
-00:01:18.129 --> 00:01:22.400
-organization into your subscription,
-and private endpoints close that path.
-
-24
-00:01:22.400 --> 00:01:24.462
-Protect the credential in deployment.
-
-25
-00:01:24.462 --> 00:01:27.060
-A secret in a hand-built startup script is
-
-26
-00:01:27.060 --> 00:01:29.963
-readable by every domain
-user through SYSVOL.
-
-27
-00:01:29.963 --> 00:01:35.636
-Microsoft's Group Policy method encrypts
-its configuration file so only computer
-
-28
-00:01:35.636 --> 00:01:39.994
-accounts can decrypt it, which
-still means any computer account,
-
-29
-00:01:39.994 --> 00:01:45.338
-so scope the GPO, rotate after the wave,
-and disable the GPO once servers connect.
-
-30
-00:01:45.338 --> 00:01:49.645
-For sensitive servers, set local
-controls that Azure can't override:
-
-31
-00:01:49.645 --> 00:01:53.470
-an extension allowlist, and
-disabling remote connections.
+00:00:44.605 --> 00:00:46.510
+like an extension allowlist.

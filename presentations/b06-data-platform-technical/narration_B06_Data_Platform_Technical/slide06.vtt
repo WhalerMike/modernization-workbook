@@ -1,45 +1,21 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:04.063
-Module 2: the audit, the
-principals and the decision.
+00:00:00.050 --> 00:00:03.447
+Module 2 is the audit, the
+principals and the decision:
 
 2
-00:00:04.063 --> 00:00:05.175
-Four slides.
+00:00:03.447 --> 00:00:06.612
+what the audit reads on
+every surviving instance,
 
 3
-00:00:05.175 --> 00:00:08.879
-What the authentication audit
-reads on every surviving instance,
+00:00:06.612 --> 00:00:11.245
+the three Arc-eligibility categories,
+the principal types that replace
 
 4
-00:00:08.879 --> 00:00:12.650
-and why its output is a compliance
-record rather than a spreadsheet.
-
-5
-00:00:12.650 --> 00:00:16.082
-The three Arc-eligibility
-categories, and the distinction
-
-6
-00:00:16.082 --> 00:00:19.725
-between the engine and the
-operating system moving to Entra ID.
-
-7
-00:00:19.725 --> 00:00:23.787
-The three principal types that
-replace Windows and SQL logins.
-
-8
-00:00:23.787 --> 00:00:26.760
-And the parallel run, with
-the five decisions that
-
-9
-00:00:26.760 --> 00:00:30.000
-turn the migration pattern
-into enforceable policy.
+00:00:11.245 --> 00:00:15.860
+Windows and SQL logins, and the parallel
+run that makes the cutover safe.

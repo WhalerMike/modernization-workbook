@@ -1,151 +1,59 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:04.241
-Phase 4 brings each cloud's DNS
-and address data under the plane,
+00:00:00.050 --> 00:00:04.851
+Phase 4 brings each cloud under the
+plane, and its real contribution is the
 
 2
-00:00:04.241 --> 00:00:07.706
-with private endpoint zones
-published once and the
+00:00:04.851 --> 00:00:09.888
+validation matrix: every class of name
+resolves correctly from every origin.
 
 3
-00:00:07.706 --> 00:00:11.413
-per-cloud forwarding rules
-held in one place, Decision 3.
+00:00:09.888 --> 00:00:13.323
+A private endpoint name
+returning a public address from
 
 4
-00:00:11.413 --> 00:00:14.364
-Its contribution is the validation matrix:
+00:00:13.323 --> 00:00:17.124
+anywhere is a failed test, even
+if the application seems to work.
 
 5
-00:00:14.364 --> 00:00:18.300
-every class of name resolves
-correctly from every origin.
+00:00:17.124 --> 00:00:21.361
+Phase 5 is the one step whose
+mistakes can't be cheaply undone,
 
 6
-00:00:18.300 --> 00:00:22.669
-On-premises names resolve natively
-on premises, through the outbound
-
-7
-00:00:22.669 --> 00:00:26.812
-rule from each cloud, and through
-the agency resolver from a branch.
-
-8
-00:00:26.812 --> 00:00:31.062
-Cloud names resolve through the
-inbound endpoint from on premises.
-
-9
-00:00:31.062 --> 00:00:34.887
-Private endpoint names return the
-private address from all three.
-
-10
-00:00:34.887 --> 00:00:39.863
-Locator records resolve from each cloud
-through the rule to the domain controllers.
-
-11
-00:00:39.863 --> 00:00:44.137
-And OCSP and CRL endpoints
-resolve everywhere.
-
-12
-00:00:44.137 --> 00:00:47.925
-A private endpoint name returning
-a public address from any
-
-13
-00:00:47.925 --> 00:00:51.863
-origin is a failed test, even if
-the application appears to work.
-
-14
-00:00:51.863 --> 00:00:56.151
-Phase 5 is the one step whose mistakes
-can't be rolled back cheaply,
-
-15
-00:00:56.151 --> 00:00:57.899
+00:00:21.361 --> 00:00:23.225
 so it's gated, not scheduled.
 
-16
-00:00:57.899 --> 00:00:59.737
-All five gates must pass.
+7
+00:00:23.225 --> 00:00:28.501
+All five gates must pass, including locator
+records resolving at one hundred percent
 
-17
-00:00:59.737 --> 00:01:05.091
-The inventory reconciles in both directions:
-nothing missing, nothing unexplained,
+8
+00:00:28.501 --> 00:00:30.284
+for thirty consecutive days,
 
-18
-00:01:05.091 --> 00:01:10.062
-and every signed zone validating on its
-new chain with the old signing stopped.
+9
+00:00:30.284 --> 00:00:34.000
+and ninety days of parallel
+running with no critical alerts.
 
-19
-00:01:10.062 --> 00:01:14.063
-Every critical locator record
-resolves from every VNet and site,
+10
+00:00:34.000 --> 00:00:37.829
+Then decommission in order,
+archiving the final exports
 
-20
-00:01:14.063 --> 00:01:19.175
-checked every fifteen minutes, at one
-hundred percent for thirty consecutive days.
-
-21
-00:01:19.175 --> 00:01:24.487
-Ninety days of parallel operation with
-no critical alerts or unresolved drift.
-
-22
-00:01:24.487 --> 00:01:25.737
-Failover tested.
-
-23
-00:01:25.737 --> 00:01:30.575
-And a final query-log review shows
-nothing still querying the legacy servers.
-
-24
-00:01:30.575 --> 00:01:36.324
-Then decommission in order: remove
-legacy DNS addresses from DHCP options,
-
-25
-00:01:36.324 --> 00:01:40.774
-Group Policy and VNets; remove
-forwarders for moved zones;
-
-26
-00:01:40.774 --> 00:01:45.410
-archive the final exports;
-de-authorize the old DHCP servers;
-
-27
-00:01:45.410 --> 00:01:49.212
-only then remove the roles,
+11
+00:00:37.829 --> 00:00:41.250
+before anything is removed,
 with a seven-day burn-in.
 
-28
-00:01:49.212 --> 00:01:53.155
-The burn-in rollback reinstalls
-the role from the archived exports,
-
-29
-00:01:53.155 --> 00:01:56.463
-which is why they're archived
-before anything is removed.
-
-30
-00:01:56.463 --> 00:01:59.619
-Losing locator records
-early causes forest-wide
-
-31
-00:01:59.619 --> 00:02:02.380
-authentication and domain-join failures.
+12
+00:00:41.250 --> 00:00:46.990
+Losing locator records early causes
+forest-wide sign-in and domain-join failures.

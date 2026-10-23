@@ -1,153 +1,72 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:05.063
-Policies target populations, never
-people, and the populations are personas.
+00:00:00.050 --> 00:00:03.131
+Policies target populations, never people,
 
 2
-00:00:05.063 --> 00:00:07.827
-They're defined in the
-Federal Modernization
+00:00:03.131 --> 00:00:07.325
+and the populations are personas,
+kept identical to Book 02.
 
 3
-00:00:07.827 --> 00:00:10.374
-Workbook's Book 02 and
-kept identical here.
+00:00:07.325 --> 00:00:10.912
+Admins carry the most risk and
+get the strictest policies.
 
 4
-00:00:10.374 --> 00:00:14.068
-Admins are users eligible for
-or holding privileged roles,
+00:00:10.912 --> 00:00:13.524
+Internals are employees and contractors.
 
 5
-00:00:14.068 --> 00:00:18.063
-from the account-type attribute
-or the PIM-eligible population.
+00:00:13.524 --> 00:00:17.730
+Externals are partner guests, Guests
+are everyone else from outside,
 
 6
-00:00:18.063 --> 00:00:23.665
-They carry the highest risk and get the
-strictest policies: phishing-resistant MFA,
+00:00:17.730 --> 00:00:20.754
+and workload identities
+are service principals,
 
 7
-00:00:23.665 --> 00:00:28.212
-a compliant device, trusted networks,
-and privileged workstations.
+00:00:20.754 --> 00:00:24.738
+which have to be assigned to a policy
+directly, not through a group.
 
 8
-00:00:28.212 --> 00:00:31.971
-Internals are employees and
-contractors with standard access,
+00:00:24.738 --> 00:00:27.624
+And break-glass, the
+two emergency accounts,
 
 9
-00:00:31.971 --> 00:00:34.949
-built dynamically from
-the worker-type attribute.
+00:00:27.624 --> 00:00:30.350
+are excluded from every enforced policy.
 
 10
-00:00:34.949 --> 00:00:38.833
-Externals are B2B guests
-from partner organizations;
+00:00:30.350 --> 00:00:32.925
+Here's the failure mode
+that shapes the design.
 
 11
-00:00:38.833 --> 00:00:42.463
-Guests are ad hoc external
-users from anywhere else.
+00:00:32.925 --> 00:00:36.750
+Persona groups are built from
+attributes, so a user with an empty
 
 12
-00:00:42.463 --> 00:00:45.837
-Workload identities are
-single-tenant service principals.
-
-13
-00:00:45.837 --> 00:00:48.755
-They must be assigned
-to a policy directly,
-
-14
-00:00:48.755 --> 00:00:53.673
-because a policy assigned to a group
-that contains a service principal
-
-15
-00:00:53.673 --> 00:00:58.425
-isn't enforced for it, and only two
-policies reach them, CA015 and CA037.
-
-16
-00:00:58.425 --> 00:01:04.358
-And break-glass: the two emergency accounts,
-excluded from every enforced policy,
-
-17
-00:01:04.358 --> 00:01:07.900
-and still recorded by CA090,
-which is report-only.
-
-18
-00:01:07.900 --> 00:01:11.741
-The library adds named
-sub-populations inside the personas:
-
-19
-00:01:11.741 --> 00:01:16.273
-web-only users without a managed
-device, shared-device frontline staff,
-
-20
-00:01:16.273 --> 00:01:20.575
-server administrators, Azure
-operators and production operators.
-
-21
-00:01:20.575 --> 00:01:22.000
-Each is a governed group.
-
-22
-00:01:22.000 --> 00:01:26.900
-Now the failure mode that drives one of the
-library's most important design choices.
-
-23
-00:01:26.900 --> 00:01:30.288
-Persona groups are dynamic,
-built from attributes.
-
-24
-00:01:30.288 --> 00:01:34.262
-A user whose attribute is empty
-falls outside every persona group,
-
-25
-00:01:34.262 --> 00:01:38.237
-and therefore outside every policy
+00:00:36.750 --> 00:00:40.863
+attribute falls outside every policy
 that includes only that group.
 
-26
-00:01:38.237 --> 00:01:40.512
+13
+00:00:40.863 --> 00:00:43.137
 That's an exclusion nobody approved.
 
-27
-00:01:40.512 --> 00:01:46.534
-So the library includes all users and
-excludes narrowly, and it adds CA018,
+14
+00:00:43.137 --> 00:00:47.240
+So the library includes all
+users, excludes narrowly,
 
-28
-00:01:46.534 --> 00:01:51.469
-deliberately redundant: MFA for
-all users and all resources,
-
-29
-00:01:51.469 --> 00:01:53.838
-with no resource exclusions.
-
-30
-00:01:53.838 --> 00:01:57.852
-It uses the plain require-MFA
-control rather than a strength,
-
-31
-00:01:57.852 --> 00:02:02.640
-so guests who sign in with email
-one-time passcodes can still satisfy it.
+15
+00:00:47.240 --> 00:00:53.350
+and adds a deliberately redundant catch-all:
+MFA for all users on all resources.

@@ -1,35 +1,21 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:04.500
-Module five: access as code,
+00:00:00.050 --> 00:00:04.212
+Module five is access as code,
 and the evidence it produces.
 
 2
-00:00:04.500 --> 00:00:09.037
-An access policy that exists only
-as portal clicks can't be diffed,
+00:00:04.212 --> 00:00:08.248
+A policy that exists only as
+portal clicks can't be diffed,
 
 3
-00:00:09.037 --> 00:00:12.062
+00:00:08.248 --> 00:00:11.338
 reviewed or replayed, so
 it can't be assessed.
 
 4
-00:00:12.062 --> 00:00:17.465
-The invariant this module enforces: every
-access decision has a reviewable source of
-
-5
-00:00:17.465 --> 00:00:22.487
-truth, a pipeline applies that source, and
-a monitor checks the tenant against it.
-
-6
-00:00:22.487 --> 00:00:25.248
-Then the evidence is
-produced by doing the work,
-
-7
-00:00:25.248 --> 00:00:27.580
-not reconstructed for the assessment.
+00:00:11.338 --> 00:00:15.890
+So every decision gets a source of
+truth, a pipeline, and a monitor.

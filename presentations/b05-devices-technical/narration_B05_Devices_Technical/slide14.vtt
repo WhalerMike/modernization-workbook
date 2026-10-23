@@ -1,138 +1,69 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:03.465
+00:00:00.050 --> 00:00:03.531
 While a population has both
 GPOs and Intune policies,
 
 2
-00:00:03.465 --> 00:00:08.200
-three conflict systems are in play,
-and the program plans against each one.
+00:00:03.531 --> 00:00:05.825
+three conflict systems are in play.
 
 3
-00:00:08.200 --> 00:00:12.843
-Inside Intune: two compliance policies
-take the most restrictive value;
+00:00:05.825 --> 00:00:10.513
+Inside Intune, configuration policies
+have no precedence over each other.
 
 4
-00:00:12.843 --> 00:00:17.408
-a compliance setting beats the same
-setting in a configuration policy;
+00:00:10.513 --> 00:00:13.847
+A conflict is reported and
+the setting might not apply,
 
 5
-00:00:17.408 --> 00:00:21.664
-and between configuration policies
-of any type, settings catalog,
+00:00:13.847 --> 00:00:16.737
+so each setting gets
+exactly one owning policy.
 
 6
-00:00:21.664 --> 00:00:25.688
-endpoint security, security
-baselines, there is no precedence.
+00:00:16.737 --> 00:00:21.429
+The chapter also corrects earlier program
+material: there's no last-write-wins,
 
 7
-00:00:25.688 --> 00:00:29.850
-The conflict is reported and the setting
-might not apply until it's fixed.
-
-8
-00:00:29.850 --> 00:00:33.784
-The chapter states two corrections
-to earlier program material:
-
-9
-00:00:33.784 --> 00:00:36.261
-profiles don't resolve by last write wins,
-
-10
-00:00:36.261 --> 00:00:40.850
+00:00:21.429 --> 00:00:25.976
 and endpoint security doesn't
 automatically beat configuration profiles.
 
-11
-00:00:40.850 --> 00:00:44.050
-So each setting has
-exactly one owning policy.
+8
+00:00:25.976 --> 00:00:31.247
+Between Group Policy and MDM, Group Policy
+keeps winning unless you change that,
 
-12
-00:00:44.050 --> 00:00:47.642
-Between Group Policy and
-MDM: in the Policy CSP,
+9
+00:00:31.247 --> 00:00:34.362
+and outside the core policy
+settings it's a race.
 
-13
-00:00:47.642 --> 00:00:53.598
-Group Policy keeps winning unless MDM wins
-over GP is set to one; set it where a
-
-14
-00:00:53.598 --> 00:00:59.837
-population is in transition and remove
-the GPO copy as Intune takes the setting.
-
-15
-00:00:59.837 --> 00:01:01.979
-Outside the Policy CSP it's a race,
-
-16
-00:01:01.979 --> 00:01:06.899
-and Windows Hello for Business shouldn't
-be configured through both at all.
-
-17
-00:01:06.899 --> 00:01:12.748
-For Windows Update, Microsoft
-recommends Ignore Windows Update
-
-18
-00:01:12.748 --> 00:01:18.812
-Group Policies instead, on Windows
-11 24H2 with KB5101684 and later.
-
-19
-00:01:18.812 --> 00:01:21.464
+10
+00:00:34.362 --> 00:00:37.067
 Between Configuration Manager and Intune,
 
-20
-00:01:21.464 --> 00:01:25.000
-the co-management slider sets
-one authority per workload.
+11
+00:00:37.067 --> 00:00:41.274
+the co-management slider decides,
+with a couple of traps on the slide.
 
-21
-00:01:25.000 --> 00:01:30.091
-Note two traps: switching device
-configuration also moves resource access and
+12
+00:00:41.274 --> 00:00:46.397
+Disabling a GPO link is the moment
+production behavior changes, so it's gated:
 
-22
-00:01:30.091 --> 00:01:33.485
-Endpoint Protection; and
-with Pilot Intune selected,
+13
+00:00:46.397 --> 00:00:49.323
+freeze, back up, prove
+the replacement works,
 
-23
-00:01:33.485 --> 00:01:37.650
-Intune deploys policies but doesn't
-remove them on unassignment.
-
-24
-00:01:37.650 --> 00:01:42.038
-Disabling a link is the moment production
-behavior changes, so it's gated.
-
-25
-00:01:42.038 --> 00:01:46.872
-Freeze the GPO, back it up, prove
-the replacement reports success,
-
-26
-00:01:46.872 --> 00:01:51.525
-then disable the link, not the
-GPO, with one reversible command.
-
-27
-00:01:51.525 --> 00:01:54.135
-And remember that preference
-items stay on the
-
-28
-00:01:54.135 --> 00:01:56.880
-device unless configured
-to remove themselves.
+14
+00:00:49.323 --> 00:00:52.800
+then disable the link with
+one reversible command.

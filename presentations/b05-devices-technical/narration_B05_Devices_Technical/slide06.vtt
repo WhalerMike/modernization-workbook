@@ -1,133 +1,64 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:03.700
+00:00:00.050 --> 00:00:03.500
 Microsoft now ships two
-Windows provisioning solutions.
+ways to provision Windows.
 
 2
-00:00:03.700 --> 00:00:09.043
-Windows Autopilot device preparation is a
-re-architecture with simpler configuration
+00:00:03.500 --> 00:00:06.377
+Autopilot device preparation is the newer,
 
 3
-00:00:09.043 --> 00:00:14.025
-and near real-time reporting; classic
-Windows Autopilot remains more feature-rich.
+00:00:06.377 --> 00:00:09.175
+simpler one, with near
+real-time reporting.
 
 4
-00:00:14.025 --> 00:00:16.775
-The rows on the left are
-the differences that matter.
+00:00:09.175 --> 00:00:11.787
+Classic Autopilot is more feature-rich.
 
 5
-00:00:16.775 --> 00:00:21.337
-Device preparation needs no
-registration, so it has no group tag.
+00:00:11.787 --> 00:00:15.257
+The difference that matters
+most here is registration:
 
 6
-00:00:21.337 --> 00:00:25.525
-It can't do hybrid join,
-pre-provisioning or self-deploying mode.
+00:00:15.257 --> 00:00:18.349
+device preparation has none,
+so it has no group tag.
 
 7
-00:00:25.525 --> 00:00:30.331
-It applies up to ten apps and ten scripts
-during setup, can't hold the desktop
+00:00:18.349 --> 00:00:24.575
+In a GCC tenant both are available, because
+GCC uses the commercial Intune service.
 
 8
-00:00:30.331 --> 00:00:35.138
-until user configuration lands, and
-doesn't use the Enrollment Status Page.
+00:00:24.575 --> 00:00:29.196
+The program's default for standard hardware
+is classic Autopilot, user-driven,
 
 9
-00:00:35.138 --> 00:00:40.625
-But it's available in GCC High and
-DoD, where classic Autopilot isn't.
+00:00:29.196 --> 00:00:34.030
+with Entra join, because its registration
+carries the procurement attribute and
 
 10
-00:00:40.625 --> 00:00:45.600
-The workbook assumes a
-Microsoft 365 GCC tenant.
+00:00:34.030 --> 00:00:38.438
+the purchase order from the vendor to
+the device before it's ever powered on.
 
 11
-00:00:45.600 --> 00:00:48.333
-Intune has no separate GCC instance:
-
-12
-00:00:48.333 --> 00:00:53.800
-GCC uses the commercial Intune service,
-so both solutions are available.
-
-13
-00:00:53.800 --> 00:00:58.475
-Only GCC High and DoD use the
-separate government instance.
-
-14
-00:00:58.475 --> 00:01:04.108
-The program's default for standard hardware
-in GCC is classic Windows Autopilot,
-
-15
-00:01:04.108 --> 00:01:09.825
-user-driven, with Entra join, and OEM or
-reseller registration carrying a group tag.
-
-16
-00:01:09.825 --> 00:01:11.400
-The reason is pillar 2.
-
-17
-00:01:11.400 --> 00:01:15.714
-Classic Autopilot's registration
-carries the procurement attribute,
-
-18
-00:01:15.714 --> 00:01:18.053
-the group tag and the purchase order ID,
-
-19
-00:01:18.053 --> 00:01:22.513
-from the vendor to the Entra device
-object before the device is powered on.
-
-20
-00:01:22.513 --> 00:01:25.843
-Device preparation adds devices
-to a group at enrollment,
-
-21
-00:01:25.843 --> 00:01:30.213
-so the assignment has to come from the
-procurement mapping table afterward.
-
-22
-00:01:30.213 --> 00:01:33.629
+00:00:38.438 --> 00:00:41.854
 Use device preparation
 where its advantages matter,
 
-23
-00:01:33.629 --> 00:01:38.288
+12
+00:00:41.854 --> 00:00:46.513
 such as faster provisioning or a tenant
 that might later move to GCC High.
 
-24
-00:01:38.288 --> 00:01:48.875
-It needs Windows 11 24H2, or 23H2 or 22H2
-with KB5035942, and automatic enrollment.
-
-25
-00:01:48.875 --> 00:01:52.187
-And the first user must be
-allowed to join devices:
-
-26
-00:01:52.187 --> 00:01:56.388
-on that path, the user's own join
-permission brings the device in.
-
-27
-00:01:56.388 --> 00:01:59.620
-Never use either with hybrid
-join for new devices.
+13
+00:00:46.513 --> 00:00:49.820
+And never use either with
+hybrid join for new devices.

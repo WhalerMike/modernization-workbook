@@ -1,164 +1,59 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:03.825
+00:00:00.050 --> 00:00:03.899
 The assessment report should never
 claim coverage it doesn't have,
 
 2
-00:00:03.825 --> 00:00:07.462
-so you need to know exactly where
-the default read boundary sits.
+00:00:03.899 --> 00:00:07.188
+so you need to know exactly
+where that read boundary sits.
 
 3
-00:00:07.462 --> 00:00:11.113
-Four mechanisms set it, and
-several are commonly misstated.
+00:00:07.188 --> 00:00:08.676
+Four mechanisms set it.
 
 4
-00:00:11.113 --> 00:00:13.200
-Protected accounts and groups.
+00:00:08.676 --> 00:00:13.513
+Protected accounts: the admin count flag
+marks accounts that are or were privileged,
 
 5
-00:00:13.200 --> 00:00:18.367
-The AdminSDHolder object holds template
-permissions for Domain Admins,
+00:00:13.513 --> 00:00:17.937
+which makes it a good clean-up list, but
+not the current privileged population.
 
 6
-00:00:18.367 --> 00:00:23.450
-Enterprise Admins, Schema Admins, the
-operator groups, krbtgt and others.
+00:00:17.937 --> 00:00:22.011
+Confidential attributes, like LAPS
+passwords: you can't read them,
 
 7
-00:00:23.450 --> 00:00:27.064
-A process called S D Prop
-runs every sixty minutes by
+00:00:22.011 --> 00:00:26.688
+but the presence and age of the expiration
+attribute still shows coverage.
 
 8
-00:00:27.064 --> 00:00:31.350
-default on the PDC emulator and
-resets those objects to match.
+00:00:26.688 --> 00:00:31.662
+Password secrets, which leave a domain
+controller only through replication rights
 
 9
-00:00:31.350 --> 00:00:33.288
-It acts on current members only.
+00:00:31.662 --> 00:00:33.439
+the assessment never asks for,
 
 10
-00:00:33.288 --> 00:00:36.181
-An account removed from
-a protected group keeps
+00:00:33.439 --> 00:00:36.850
+though who already holds those
+rights is a key later check.
 
 11
-00:00:36.181 --> 00:00:39.001
-admin count set to one
-unless someone clears it.
+00:00:36.850 --> 00:00:39.800
+And restricted containers
+like Deleted Objects.
 
 12
-00:00:39.001 --> 00:00:42.495
-So admin count lists accounts
-that are or were privileged:
-
-13
-00:00:42.495 --> 00:00:46.062
-a good clean-up list, not the
-current privileged population.
-
-14
-00:00:46.062 --> 00:00:47.787
-Confidential attributes.
-
-15
-00:00:47.787 --> 00:00:50.749
-Setting bit seven, value
-one hundred twenty-eight,
-
-16
-00:00:50.749 --> 00:00:54.649
-of an attribute's search flags
-means reading it needs the control
-
-17
-00:00:54.649 --> 00:00:58.476
-access right as well, which by
-default only administrators hold.
-
-18
-00:00:58.476 --> 00:01:02.907
-You can still show where a capability
-is deployed without seeing the secret:
-
-19
-00:01:02.907 --> 00:01:05.511
-with Windows LAPS, the
-presence and age of the
-
-20
-00:01:05.511 --> 00:01:08.325
-password expiration
-attribute shows coverage.
-
-21
-00:01:08.325 --> 00:01:12.504
-Legacy Microsoft LAPS is
-deprecated as of Windows 11 23H2,
-
-22
-00:01:12.504 --> 00:01:18.337
-so a forest still on it has a finding before
-the assessment even reaches identity.
-
-23
-00:01:18.337 --> 00:01:19.313
-Secrets.
-
-24
-00:01:19.313 --> 00:01:23.413
-Password hashes leave a domain
-controller only through replication,
-
-25
-00:01:23.413 --> 00:01:28.362
-which needs Replicating Directory Changes
-and Replicating Directory Changes All.
-
-26
-00:01:28.362 --> 00:01:30.674
-The assessment never requests those.
-
-27
-00:01:30.674 --> 00:01:33.978
-But which accounts already hold
-them is a key later check:
-
-28
-00:01:33.978 --> 00:01:38.687
-any holder that isn't a domain controller
-or the sync service account is a finding.
-
-29
-00:01:38.687 --> 00:01:40.338
-Restricted containers.
-
-30
-00:01:40.338 --> 00:01:44.676
-Deleted Objects is visible only
-to System and Administrators.
-
-31
-00:01:44.676 --> 00:01:49.050
-Restoring needs Reanimate Tombstone,
-which an assessment never needs.
-
-32
-00:01:49.050 --> 00:01:52.498
-Fine-grained password policies
-belong to Domain Admins,
-
-33
-00:01:52.498 --> 00:01:55.725
-so record them as not seen
-rather than inferring them.
-
-34
-00:01:55.725 --> 00:01:58.630
-Finally, report only measured coverage.
+00:00:39.800 --> 00:00:44.420
+The rule that ties it together is simple:
+report only what you actually measured.

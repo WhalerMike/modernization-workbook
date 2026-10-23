@@ -1,154 +1,64 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:03.600
-The database is only half
-of the authentication path.
+00:00:00.050 --> 00:00:02.688
+The database is only half of the path.
 
 2
-00:00:03.600 --> 00:00:07.457
-An application that moved its
+00:00:02.688 --> 00:00:06.314
+An application that moved
 user sign-in to Entra ID but
 
 3
-00:00:07.457 --> 00:00:11.313
+00:00:06.314 --> 00:00:10.188
 still reaches SQL Server with
 a SQL login hasn't finished.
 
 4
-00:00:11.313 --> 00:00:14.591
-The chain runs from user to
-application to database,
+00:00:10.188 --> 00:00:14.190
+Both legs, user to application
+and application to database,
 
 5
-00:00:14.591 --> 00:00:17.412
-and both legs have to
-leave Active Directory.
+00:00:14.190 --> 00:00:16.313
+have to leave Active Directory.
 
 6
-00:00:17.412 --> 00:00:22.856
-The program's LDAP-dependent-application
-plan sorts applications into four classes,
+00:00:16.313 --> 00:00:19.274
+For the user leg, the
+program sorts applications
 
 7
-00:00:22.856 --> 00:00:27.013
-in strict preference order; the
-numbers are identifiers, not ranks.
+00:00:19.274 --> 00:00:22.087
+into four classes in
+strict preference order.
 
 8
-00:00:27.013 --> 00:00:32.277
-Class 3, OpenID Connect, is the
-destination: Entra ID issues the tokens,
+00:00:22.087 --> 00:00:25.488
+OpenID Connect is the
+destination; SAML is next;
 
 9
-00:00:32.277 --> 00:00:34.956
-there's no LDAP bind and no AD query,
+00:00:25.488 --> 00:00:30.845
+Application Proxy fronts an application
+that can't change; and Entra Domain
 
 10
-00:00:34.956 --> 00:00:40.037
-and the application reaches SQL
-Server with its managed identity.
+00:00:30.845 --> 00:00:36.287
+Services is the last resort, which still
+uses NTLM and needs a dated exception.
 
 11
-00:00:40.037 --> 00:00:45.497
-Class 2, SAML, removes the LDAP
-dependency but ranks below OIDC,
+00:00:36.287 --> 00:00:40.867
+The database leg is a second axis,
+set by evidence: can the driver and
 
 12
-00:00:45.497 --> 00:00:50.338
-because Microsoft recommends
-OIDC for new development.
+00:00:40.867 --> 00:00:45.363
+the vendor support Entra, and is it
+a config change or a code change?
 
 13
-00:00:50.338 --> 00:00:54.773
-Class 1, Application Proxy, fronts
-an application that can't change;
-
-14
-00:00:54.773 --> 00:00:58.968
-Entra preauthenticates users,
-so Conditional Access applies,
-
-15
-00:00:58.968 --> 00:01:03.162
-but the application's own AD
-dependency stays behind the proxy.
-
-16
-00:01:03.162 --> 00:01:07.407
-Class 4, Entra Domain
-Services, is the last resort:
-
-17
-00:01:07.407 --> 00:01:11.438
-a managed domain with
-LDAP, Kerberos and NTLM.
-
-18
-00:01:11.438 --> 00:01:16.998
-Its NTLM is still NTLM, and an instance
-serving a Class 4 application can't
-
-19
-00:01:16.998 --> 00:01:22.651
-reach the Entra-exclusive posture, so
-it carries a sunset-dated exception.
-
-20
-00:01:22.651 --> 00:01:25.588
-The class describes only the user axis.
-
-21
-00:01:25.588 --> 00:01:29.061
-The database connection is a
-second axis, set by evidence:
-
-22
-00:01:29.061 --> 00:01:32.017
-does the deployed driver
-support the Entra mode,
-
-23
-00:01:32.017 --> 00:01:36.598
-can the application use a managed
-identity or must its code refresh tokens,
-
-24
-00:01:36.598 --> 00:01:40.810
-does pooling survive per-identity
-tokens, does the vendor support it,
-
-25
-00:01:40.810 --> 00:01:43.913
-and does the platform have
-an Entra-capable driver.
-
-26
-00:01:43.913 --> 00:01:49.539
-That places each application in
-column A, configuration only;
-
-27
-00:01:49.539 --> 00:01:54.062
-B, code change; C, vendor-dependent;
-or D, no Entra path.
-
-28
-00:01:54.062 --> 00:01:58.165
-OIDC or SAML in column A
-moves now; B is scheduled;
-
-29
-00:01:58.165 --> 00:02:02.987
-C gets a dated exception; D
-means exception or retirement.
-
-30
-00:02:02.987 --> 00:02:06.995
-The application audit supplies the
-user axis, and it has to be joined
-
-31
-00:02:06.995 --> 00:02:11.140
-to the authentication audit before
-an instance shows its full chain.
+00:00:45.363 --> 00:00:49.630
+Together they tell you what moves now
+and what gets scheduled or excepted.

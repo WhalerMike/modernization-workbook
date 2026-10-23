@@ -6,149 +6,55 @@ Migration ends on a
 date; certificates don't.
 
 2
-00:00:03.325 --> 00:00:09.187
-Public TLS validity falls to
-forty-seven days from March 15, 2029.
+00:00:03.325 --> 00:00:08.506
+Public TLS validity falls to forty-seven
+days from March 15, 2029, and the
 
 3
-00:00:09.187 --> 00:00:12.517
-The schedule binds publicly
-trusted certificates,
-
-4
-00:00:12.517 --> 00:00:17.626
-but the program aligns internal lifetimes
-with it as automation proves itself.
-
-5
-00:00:17.626 --> 00:00:22.550
-The design rule: no certificate class may
+00:00:08.506 --> 00:00:14.038
+design rule is that no certificate may
 depend on a person remembering a date.
 
+4
+00:00:14.038 --> 00:00:19.005
+So the target has three renewal engines:
+Intune profiles for managed devices,
+
+5
+00:00:19.005 --> 00:00:21.955
+AD CS autoenrollment
+for domain controllers,
+
 6
-00:00:22.550 --> 00:00:25.000
-The target has three renewal engines.
+00:00:21.955 --> 00:00:27.312
+and CyberArk Certificate Manager for server
+certificates, each with a named owner.
 
 7
-00:00:25.000 --> 00:00:29.285
-Intune profiles renew certificates
-on managed devices at the
+00:00:27.312 --> 00:00:30.074
+Neither Microsoft issuer offers ACME,
 
 8
-00:00:29.285 --> 00:00:33.075
-profile's renewal threshold,
-with a new key pair for SCEP.
+00:00:30.074 --> 00:00:35.425
+so the lifecycle platform provides it,
+on its own servers outside FIPS mode.
 
 9
-00:00:33.075 --> 00:00:38.084
-On Apple platforms, renewal happens only
-inside the threshold window with the device
+00:00:35.425 --> 00:00:38.767
+Drift checks run at least weekly
+and are kept as evidence,
 
 10
-00:00:38.084 --> 00:00:40.482
-unlocked, and a failed renewal leaves the
-
-11
-00:00:40.482 --> 00:00:43.163
-expired certificate in
-place without a retry.
-
-12
-00:00:43.163 --> 00:00:47.587
-AD CS autoenrollment renews
-domain controller certificates,
-
-13
-00:00:47.587 --> 00:00:52.351
-which also serve LDAPS, so the CA
-must stay online and its CRL current.
-
-14
-00:00:52.351 --> 00:00:57.775
-And CyberArk Certificate Manager
-discovers, tracks and renews server TLS,
-
-15
-00:00:57.775 --> 00:01:01.100
-including NPS and RADIUS
-servers, appliances,
-
-16
-00:01:01.100 --> 00:01:06.350
-public TLS and network devices, with
-a Server Owner on every certificate.
-
-17
-00:01:06.350 --> 00:01:09.429
-Neither Microsoft issuer
-in the target offers ACME,
-
-18
-00:01:09.429 --> 00:01:12.938
-so the program provides it
-through the lifecycle platform.
-
-19
-00:01:12.938 --> 00:01:19.313
-CyberArk documents the
-http-01 and dns-01 challenges.
-
-20
-00:01:19.313 --> 00:01:25.140
-One federal limit: CyberArk's installation
-guide says FIPS mode isn't supported for
-
-21
-00:01:25.140 --> 00:01:28.518
-its ACME service at all,
-so run the ACME service on
-
-22
-00:01:28.518 --> 00:01:32.150
-dedicated servers outside
-the FIPS-mode server set.
-
-23
-00:01:32.150 --> 00:01:36.773
-The drift checks run at least weekly and
-are committed to the evidence repository,
-
-24
-00:01:36.773 --> 00:01:39.900
+00:00:38.767 --> 00:00:42.037
 because an assessor asks how
 long a finding stayed open.
 
-25
-00:01:39.900 --> 00:01:45.010
-Watch for certificates within two renewal
-windows of expiry with no engine bound,
+11
+00:00:42.037 --> 00:00:46.105
+And treat a mismatched identifier in
+a certificate as a security event,
 
-26
-00:01:45.010 --> 00:01:48.091
-issuance outside policy,
-missing strong mapping,
-
-27
-00:01:48.091 --> 00:01:52.900
-trust store anchors that aren't approved,
-stale CRLs, and posture regressions.
-
-28
-00:01:52.900 --> 00:01:55.793
-And treat a SID mismatch
-as a security event:
-
-29
-00:01:55.793 --> 00:01:59.650
-it can mean the certificate
-was issued to a different user.
-
-30
-00:01:59.650 --> 00:02:03.841
-That's event 41 on current
-domain controllers,
-
-31
-00:02:03.841 --> 00:02:10.300
-but event 49 on Server 2008 and 2008
-R2, where 41 means no strong mapping.
+12
+00:00:46.105 --> 00:00:49.610
+because it can mean the certificate
+went to a different user.

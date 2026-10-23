@@ -1,141 +1,60 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:02.991
-SD-WAN edges can intercept DNS regardless
+00:00:00.050 --> 00:00:05.638
+SD-WAN edges can intercept DNS no matter
+which resolver a client was given.
 
 2
-00:00:02.991 --> 00:00:06.100
-of the resolver a client
-was configured with.
+00:00:05.638 --> 00:00:09.688
+In the book's Cisco example,
+that's the redirect-dns action.
 
 3
-00:00:06.100 --> 00:00:09.523
-In Cisco Catalyst SD-WAN,
-the book's worked example,
+00:00:09.688 --> 00:00:12.417
+The point of this slide
+is that the destination
 
 4
-00:00:09.523 --> 00:00:13.697
-this is the redirect-dns action
-of a centralized data policy:
+00:00:12.417 --> 00:00:15.076
+decides whether agency
+policy applies at all.
 
 5
-00:00:13.697 --> 00:00:18.789
-the edge matches DNS traffic and sends
-it to a policy-designated resolver,
+00:00:15.076 --> 00:00:18.558
+Sent to an agency resolver,
+the query gets block lists,
 
 6
-00:00:18.789 --> 00:00:22.713
-either unconditionally, or
-only for named applications.
+00:00:18.558 --> 00:00:23.546
+validation and logging, and internet
+lookups leave through Protective DNS.
 
 7
-00:00:22.713 --> 00:00:26.475
-The destination decides whether
-agency policy applies at all.
+00:00:23.546 --> 00:00:27.900
+Sent to an outside resolver, it gets
+none of that, and nothing alerts.
 
 8
-00:00:26.475 --> 00:00:31.452
-On the correct path the query goes through
-the edge to a network-addressable agency
+00:00:27.900 --> 00:00:33.962
+The feature has limits too; it handles
+only IPv4 over UDP, for instance.
 
 9
-00:00:31.452 --> 00:00:34.914
-resolver, into the policy plane
-for response policy zones,
+00:00:33.962 --> 00:00:38.289
+Two refinements: the target must
+be a server the edge can address,
 
 10
-00:00:34.914 --> 00:00:39.675
-validation and logging, and internet
-recursion leaves through Protective DNS.
+00:00:38.289 --> 00:00:40.412
+not a loopback agent on a laptop.
 
 11
-00:00:39.675 --> 00:00:45.228
-On the bypassed path the edge hands it
-to an external resolver: no log entry,
+00:00:40.412 --> 00:00:45.842
+And even a FedRAMP-listed SASE resolver
+bypasses the agency's own plane, so the
 
 12
-00:00:45.228 --> 00:00:50.325
-no RPZ, no validation under agency
-trust anchors, and nothing alerts.
-
-13
-00:00:50.325 --> 00:00:52.437
-The feature has documented limits.
-
-14
-00:00:52.437 --> 00:00:57.963
-Service-side redirect
-arrived in IOS XE 17.8.1a.
-
-15
-00:00:57.963 --> 00:01:02.204
-It's IPv4 and UDP only, so
-TCP DNS isn't redirected,
-
-16
-00:01:02.204 --> 00:01:08.512
-and it skips overlay-tunnel DNS,
-fragments and the router's own queries.
-
-17
-00:01:08.512 --> 00:01:13.326
-Cisco's Umbrella integration is a
-separate mechanism whose local bypass
-
-18
-00:01:13.326 --> 00:01:18.138
-list is effectively a second copy of
-the internal namespace on every edge.
-
-19
-00:01:18.138 --> 00:01:19.450
-Two refinements.
-
-20
-00:01:19.450 --> 00:01:23.820
-The target must be a server the edge
-can address; a loopback agent such as
-
-21
-00:01:23.820 --> 00:01:28.413
-Infoblox Endpoint protects the roaming
-device but isn't a redirect target.
-
-22
-00:01:28.413 --> 00:01:33.751
-And a SASE resolver, even Cisco's Umbrella
-for Government in an offering listed
-
-23
-00:01:33.751 --> 00:01:38.604
-FedRAMP Certified at High, which
-describes Protective DNS integration,
-
-24
-00:01:38.604 --> 00:01:41.112
-still bypasses the agency's own plane.
-
-25
-00:01:41.112 --> 00:01:44.779
-So the redirect target is
-always the agency resolver,
-
-26
-00:01:44.779 --> 00:01:47.112
-with any SASE resolver behind it.
-
-27
-00:01:47.112 --> 00:01:52.316
-Microsoft 365 informed network
-routing supports Worldwide
-
-28
-00:01:52.316 --> 00:01:57.112
-commercial tenants only, not
-GCC Moderate, GCC High or DoD.
-
-29
-00:01:57.112 --> 00:02:01.010
-It's a traffic optimization,
-not a DNS dependency.
+00:00:45.842 --> 00:00:51.500
+redirect target is always the agency
+resolver, with any SASE resolver behind it.

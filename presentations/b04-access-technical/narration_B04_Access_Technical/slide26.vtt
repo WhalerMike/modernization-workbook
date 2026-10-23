@@ -1,162 +1,70 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:03.525
+00:00:00.050 --> 00:00:03.364
 The repository is the only
-normal path to production.
+normal path to production,
 
 2
-00:00:03.525 --> 00:00:08.803
-Six change-control rules, which together
-are how the program meets CM-3 and
+00:00:03.364 --> 00:00:06.075
+and six change-control
+rules make that true.
 
 3
-00:00:08.803 --> 00:00:14.513
-CM-5 for the identity plane and FedRAMP
-20x's change-management indicators.
+00:00:06.075 --> 00:00:10.575
+Two people per change, with a
+security approver for Tier 0 objects.
 
 4
-00:00:14.513 --> 00:00:18.963
-One, two people per change: the author
-of a pull request can't approve it,
+00:00:10.575 --> 00:00:12.550
+Automated checks before merge.
 
 5
-00:00:18.963 --> 00:00:23.570
-and Tier 0 objects, such as emergency
-exclusions and Tier 0 PIM settings,
+00:00:12.550 --> 00:00:17.750
+Report-only first, then enabled in a second
+change that cites the impact review.
 
 6
-00:00:23.570 --> 00:00:26.537
-need a second approver
-from the security team.
+00:00:17.750 --> 00:00:21.422
+A pipeline identity with no
+secret, treated as Tier 0,
 
 7
-00:00:26.537 --> 00:00:31.656
-Two, checks before merge: schema
-validation, the emergency exclusion check,
+00:00:21.422 --> 00:00:24.838
+because it can change
+every policy in the tenant.
 
 8
-00:00:31.656 --> 00:00:36.113
-the safety rules, and a plan or dry
-run attached to the pull request.
+00:00:24.838 --> 00:00:28.662
+Emergency portal changes
+back-ported within one business day.
 
 9
-00:00:36.113 --> 00:00:40.977
-Three, report-only first; a policy runs
-at least a week against the sign-in
+00:00:28.662 --> 00:00:32.250
+And rollback as a revert, so
+it leaves the same record.
 
 10
-00:00:40.977 --> 00:00:45.924
-logs and is enabled in a second pull
-request that cites the impact review.
-
-11
-00:00:45.924 --> 00:00:49.117
-Four, the pipeline signs
-in as a service principal
-
-12
-00:00:49.117 --> 00:00:52.075
-with workload identity
-federation, no secret.
-
-13
-00:00:52.075 --> 00:00:56.338
-It can change every access policy in
-the tenant, so it's a Tier 0 asset,
-
-14
-00:00:56.338 --> 00:00:59.672
-with two owners, quarterly
-permission reviews and a
-
-15
-00:00:59.672 --> 00:01:03.625
-workload identity policy
-restricting where it signs in from.
-
-16
-00:01:03.625 --> 00:01:08.546
-Five, emergency changes in the portal happen
-under a PIM activation with a ticket,
-
-17
-00:01:08.546 --> 00:01:11.190
-and are back-ported
-within one business day;
-
-18
-00:01:11.190 --> 00:01:14.863
-until then the drift monitor
-reports them, which is the point.
-
-19
-00:01:14.863 --> 00:01:19.649
-Six, rollback is a revert, so it
-has the same record as the change.
-
-20
-00:01:19.649 --> 00:01:22.196
+00:00:32.250 --> 00:00:34.806
 Drift detection catches
 what code can't stop,
 
-21
-00:01:22.196 --> 00:01:26.187
-because a Global Administrator can
+11
+00:00:34.806 --> 00:00:38.675
+since a Global Administrator can
 still change the tenant directly.
 
-22
-00:01:26.187 --> 00:01:29.163
-The tenant monitor's limits
-shape how it's used.
+12
+00:00:38.675 --> 00:00:43.287
+The monitor's results expire, so export
+them before changing a baseline.
 
-23
-00:01:29.163 --> 00:01:31.862
-It runs every six hours, fixed.
+13
+00:00:43.287 --> 00:00:46.695
+Every drift is either
+redeployed or back-ported,
 
-24
-00:01:31.862 --> 00:01:36.937
-Snapshots expire after seven days, resolved
-drifts are deleted thirty days after
-
-25
-00:01:36.937 --> 00:01:41.937
-they're resolved, and updating a baseline
-deletes that monitor's earlier results.
-
-26
-00:01:41.937 --> 00:01:44.356
-Those are evidence rules in disguise:
-
-27
-00:01:44.356 --> 00:01:47.475
-export every result before
-changing a baseline.
-
-28
-00:01:47.475 --> 00:01:49.750
-Every drift is one of two things.
-
-29
-00:01:49.750 --> 00:01:51.693
-Unauthorized or accidental:
-
-30
-00:01:51.693 --> 00:01:56.388
-redeploy the repository's version
-and investigate from the audit log.
-
-31
-00:01:56.388 --> 00:02:00.601
-Intended but not yet in code:
-back-port it by pull request.
-
-32
-00:02:00.601 --> 00:02:04.948
-A drift open more than one business
-day goes to the governance office,
-
-33
-00:02:04.948 --> 00:02:08.140
+14
+00:00:46.695 --> 00:00:50.260
 and drift on a Tier 0 object
 is a security incident.

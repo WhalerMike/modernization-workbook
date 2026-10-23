@@ -10,161 +10,58 @@ of the planning weight.
 Topology first.
 
 3
-00:00:04.038 --> 00:00:07.300
-Active Directory has five
-operations master roles.
+00:00:04.038 --> 00:00:09.127
+Record every operations master role,
+and remember there are three per domain
 
 4
-00:00:07.300 --> 00:00:11.950
-Two are forest-wide, the schema
-master and the domain naming master.
+00:00:09.127 --> 00:00:14.137
+plus two for the forest, so a three-domain
+forest has eleven to record, not five.
 
 5
-00:00:11.950 --> 00:00:15.335
-Three exist in every
-domain: the PDC emulator,
+00:00:14.137 --> 00:00:17.987
+Flag any functional level
+below Windows Server 2016,
 
 6
-00:00:15.335 --> 00:00:18.812
-the RID master and the
-infrastructure master.
+00:00:17.987 --> 00:00:21.575
+because it blocks the
+domain controller refresh.
 
 7
-00:00:18.812 --> 00:00:23.512
-So a three-domain forest has eleven
-role holders to record, not five.
+00:00:21.575 --> 00:00:23.363
+Second, the OU tree.
 
 8
-00:00:23.512 --> 00:00:26.239
-The PDC emulator in
-the forest root is also
+00:00:23.363 --> 00:00:25.899
+The goal is to capture what it encodes,
 
 9
-00:00:26.239 --> 00:00:29.200
-the authoritative time
-source for the forest.
+00:00:25.899 --> 00:00:29.826
+so the attribute design
+reproduces intent, not structure.
 
 10
-00:00:29.200 --> 00:00:33.037
-Record every functional level
-and flag two conditions.
+00:00:29.826 --> 00:00:34.475
+The delegations someone made by hand
+become the administrative unit candidates.
 
 11
-00:00:33.037 --> 00:00:38.806
-A level below Windows Server 2016
-blocks the domain controller refresh,
+00:00:34.475 --> 00:00:37.850
+Third, Group Policy, the biggest artifact.
 
 12
-00:00:38.806 --> 00:00:44.575
-because a Server 2025 controller can
-join only a domain at 2016 or higher.
+00:00:37.850 --> 00:00:41.992
+Every live setting moves to Intune,
+moves elsewhere, or retires,
 
 13
-00:00:44.575 --> 00:00:46.225
-And mixed domain levels.
+00:00:41.992 --> 00:00:45.418
+and overlapping settings
+have to be resolved first,
 
 14
-00:00:46.225 --> 00:00:51.625
-Server 2025 is the first new
-functional level since 2016.
-
-15
-00:00:51.625 --> 00:00:55.505
-Capture site links with cost and
-interval, and the subnet map:
-
-16
-00:00:55.505 --> 00:00:59.850
-an unmapped subnet sends clients
-to arbitrary domain controllers.
-
-17
-00:00:59.850 --> 00:01:02.025
-Second, the OU hierarchy.
-
-18
-00:01:02.025 --> 00:01:05.259
-The goal is to capture what
-the tree encodes so the
-
-19
-00:01:05.259 --> 00:01:08.650
-attribute design reproduces
-intent, not structure.
-
-20
-00:01:08.650 --> 00:01:11.948
-For each OU, record placement
-and size; its GPO links,
-
-21
-00:01:11.948 --> 00:01:17.051
-preferably through Get-GP-Inheritance,
-which returns link order, enforcement,
-
-22
-00:01:17.051 --> 00:01:22.469
-enabled state and inheritance blocking;
-its non-inherited access control entries,
-
-23
-00:01:22.469 --> 00:01:27.730
-with built-in principals dropped, which
-are the delegations someone made by hand
-
-24
-00:01:27.730 --> 00:01:32.912
-and become the administrative unit
-candidates; and a text rendering for review.
-
-25
-00:01:32.912 --> 00:01:37.762
-Third, Group Policy, the largest
-and most consequential artifact.
-
-26
-00:01:37.762 --> 00:01:42.363
-Every live setting moves to Intune,
-moves elsewhere, or retires.
-
-27
-00:01:42.363 --> 00:01:44.837
-Sort GPOs into three groups.
-
-28
-00:01:44.837 --> 00:01:48.013
-Unlinked or empty ones
-are retirement candidates.
-
-29
-00:01:48.013 --> 00:01:50.919
-Overlapping settings
-must be resolved first,
-
-30
-00:01:50.919 --> 00:01:54.513
+00:00:45.418 --> 00:00:49.220
 because Intune's migration
 refuses conflicting values.
-
-31
-00:01:54.513 --> 00:01:56.288
-Live settings need a decision.
-
-32
-00:01:56.288 --> 00:02:00.948
-One correction: the source searched
-only OUs and the domain root,
-
-33
-00:02:00.948 --> 00:02:03.587
-so site-linked GPOs looked unlinked.
-
-34
-00:02:03.587 --> 00:02:07.557
-And Intune's Group Policy
-analytics imports XML reports
-
-35
-00:02:07.557 --> 00:02:11.260
-under four megabytes, so
-check sizes in the manifest.

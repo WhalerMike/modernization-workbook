@@ -1,41 +1,25 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:03.862
-Module 1: Intune-first
-onboarding and the paths.
+00:00:00.050 --> 00:00:04.325
+Module 1 is Intune-first onboarding
+and the migration paths.
 
 2
-00:00:03.862 --> 00:00:08.362
-Migration takes a device that already
-exists and brings it under governance.
+00:00:04.325 --> 00:00:07.888
+Migration brings an existing
+device under governance;
 
 3
-00:00:08.362 --> 00:00:13.313
-Intune-first refuses to let an ungoverned
-device exist in the first place.
+00:00:07.888 --> 00:00:11.838
+Intune-first refuses to let an
+ungoverned device exist at all.
 
 4
-00:00:13.313 --> 00:00:18.493
-Chapter 04 covers devices bought after
-the modernization decision, net-new only;
+00:00:11.838 --> 00:00:14.075
+Chapter 04 covers new devices,
 
 5
-00:00:18.493 --> 00:00:22.591
-the program keeps the phrase
-Intune-first for that doctrine and
-
-6
-00:00:22.591 --> 00:00:26.612
-doesn't use it for replacing Group
-Policy on the existing fleet.
-
-7
-00:00:26.612 --> 00:00:31.098
-Chapter 05 then covers how existing
-workstations and servers reach
-
-8
-00:00:31.098 --> 00:00:35.500
-the same end state, by one of three
-paths that share a single runbook.
+00:00:14.075 --> 00:00:18.170
+and Chapter 05 the three
+paths for the existing estate.

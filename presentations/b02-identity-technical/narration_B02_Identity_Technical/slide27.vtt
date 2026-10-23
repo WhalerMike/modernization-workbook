@@ -1,164 +1,66 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:03.813
-Chapter 11 puts it together
+00:00:00.050 --> 00:00:04.075
+Chapter 11 puts it all together
 on one representative estate.
 
 2
-00:00:03.813 --> 00:00:07.320
-It's a framing pattern, not a
-report on a real engagement:
+00:00:04.075 --> 00:00:08.637
+It's a composite, not a real engagement,
+and the counts are illustrative.
 
 3
-00:00:07.320 --> 00:00:12.387
-the agency is a composite and the counts
-are illustrative orders of magnitude.
+00:00:08.637 --> 00:00:12.798
+Picture about fifty thousand
+users in two forests,
 
 4
-00:00:12.387 --> 00:00:17.428
-The archetype has about fifty thousand
-users in two forests, one inherited
+00:00:12.798 --> 00:00:19.237
+joined by a forest trust nobody documented
+or owns, moving to Microsoft 365 GCC.
 
 5
-00:00:17.428 --> 00:00:22.712
-from an absorbed component, joined by a
-forest trust nobody documented or owns.
+00:00:19.237 --> 00:00:22.004
+There are five phases, and
+each ends with a signed
 
 6
-00:00:22.712 --> 00:00:26.752
-About seventy thousand computer
-accounts, twelve thousand groups,
+00:00:22.004 --> 00:00:24.701
+readiness bundle that
+the next one starts from.
 
 7
-00:00:26.752 --> 00:00:31.224
-several thousand service accounts,
-and about ninety SQL Server instances.
+00:00:24.701 --> 00:00:29.941
+Discovery finds about four hundred
+accounts with service principal names, and
 
 8
-00:00:31.224 --> 00:00:35.663
-The destination is Microsoft 365 GCC.
+00:00:29.941 --> 00:00:35.340
+every SQL Server one is captured, because
+a missing one silently falls back to NTLM.
 
 9
-00:00:35.663 --> 00:00:38.388
-Each phase ends with a
-signed readiness bundle,
+00:00:35.340 --> 00:00:39.152
+Normalizing resolves a clash
+between two Operations OUs
 
 10
-00:00:38.388 --> 00:00:41.113
-and the next phase starts
-only from that bundle.
-
-11
-00:00:41.113 --> 00:00:46.537
-Discover: the read-only survey of both
-forests, plus the service account scan.
-
-12
-00:00:46.537 --> 00:00:49.249
-About four hundred accounts carry SPNs;
-
-13
-00:00:49.249 --> 00:00:52.288
-about sixty rate critical
-and a hundred high.
-
-14
-00:00:52.288 --> 00:00:56.802
-Every SQL Server SPN is captured
-with a pre-migration tag,
-
-15
-00:00:56.802 --> 00:01:01.413
-because a missing or wrong SPN
-silently falls back to NTLM.
-
-16
-00:01:01.413 --> 00:01:03.909
-About ten instances raise findings because
-
-17
-00:01:03.909 --> 00:01:06.338
-their service accounts
-can't be attributed.
-
-18
-00:01:06.338 --> 00:01:10.913
-Normalize: both forests have an
-Operations OU holding different people.
-
-19
-00:01:10.913 --> 00:01:13.995
-The agency builds an
-organizational registry and
-
-20
-00:01:13.995 --> 00:01:17.224
-resolves the collision there,
+00:00:39.152 --> 00:00:42.725
+in an organizational registry,
 not by renaming groups.
 
-21
-00:01:17.224 --> 00:01:21.706
-About two thousand users and several
-hundred service accounts get findings,
+11
+00:00:42.725 --> 00:00:46.138
+Mapping finds four adapters
+that carry the risk,
 
-22
-00:01:21.706 --> 00:01:24.787
-resolved by the governance
-team, never auto-assigned.
+12
+00:00:46.138 --> 00:00:49.550
+including PKI and RADIUS,
+which move in lockstep.
 
-23
-00:01:24.787 --> 00:01:27.874
-Map: an adapter contract for each surface.
-
-24
-00:01:27.874 --> 00:01:29.238
-Four carry the risk.
-
-25
-00:01:29.238 --> 00:01:32.918
-Sync, where cross-forest manager
-chains decide the engine,
-
-26
-00:01:32.918 --> 00:01:36.599
-since Cloud Sync doesn't
-support cross-forest references.
-
-27
-00:01:36.599 --> 00:01:40.116
-PKI and RADIUS, which move in lockstep
-
-28
-00:01:40.116 --> 00:01:44.200
-because 802.1X EAP-TLS
-depends on the same CA.
-
-29
-00:01:44.200 --> 00:01:48.612
-And SQL Server, whose Entra
-authentication needs SQL Server
-
-30
-00:01:48.612 --> 00:01:53.288
-2022 or later and isn't supported
-on failover cluster instances.
-
-31
-00:01:53.288 --> 00:01:57.087
-Migrate: every operation is
-a provenance-chained record.
-
-32
-00:01:57.087 --> 00:02:00.061
-About three hundred drift findings appear;
-
-33
-00:02:00.061 --> 00:02:04.851
-one P1 stops a SQL Server migration
-until a role assignment is reduced.
-
-34
-00:02:04.851 --> 00:02:10.970
-Validate compares the SPN inventories;
-about three P1 findings are re-registered.
+13
+00:00:49.550 --> 00:00:53.830
+Then migration and validation,
+with every operation recorded.

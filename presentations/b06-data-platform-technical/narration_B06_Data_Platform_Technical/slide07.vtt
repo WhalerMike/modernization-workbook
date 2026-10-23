@@ -1,139 +1,48 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:04.782
-The audit runs only on what the gate
-kept, retain instances and consolidation
+00:00:00.050 --> 00:00:02.508
+The audit runs only on what the gate kept,
 
 2
-00:00:04.782 --> 00:00:08.775
-targets, and its deliverable is
-a per-instance compliance record.
+00:00:02.508 --> 00:00:07.425
+and its deliverable is a compliance record
+for each instance, not a spreadsheet.
 
 3
-00:00:08.775 --> 00:00:13.476
-For each host it records every instance,
-with version, edition and build,
+00:00:07.425 --> 00:00:12.600
+It checks the authentication mode, both in
+the registry and on the running instance,
 
 4
-00:00:13.476 --> 00:00:17.300
-and the host operating system,
-which sets the Arc envelope.
+00:00:12.600 --> 00:00:16.050
+because a mode change only
+takes effect after a restart.
 
 5
-00:00:17.300 --> 00:00:23.088
-The Connected Machine agent runs on
-Windows Server 2012 through 2025,
+00:00:16.050 --> 00:00:18.525
+It classifies every login by type.
 
 6
-00:00:23.088 --> 00:00:29.076
-SQL Server enabled by Arc needs 2016
-or later, and the program sets its own
+00:00:18.525 --> 00:00:23.130
+One trap here: the type letters are the
+view's own values, and a query written
 
 7
-00:00:29.076 --> 00:00:35.163
-floor at Windows Server 2019, because
-2016 leaves support in January 2027.
+00:00:23.130 --> 00:00:28.113
+against a type that doesn't exist returns
+zero rows and reports a clean instance.
 
 8
-00:00:35.163 --> 00:00:37.951
-It records domain-join
-state and whether the
+00:00:28.113 --> 00:00:30.913
+Active SQL logins are a critical finding,
 
 9
-00:00:37.951 --> 00:00:40.663
-Arc agent and managed
-identity are present.
+00:00:30.913 --> 00:00:35.113
+and an enabled SA with an old
+password is the top finding of all.
 
 10
-00:00:40.663 --> 00:00:42.401
-Then the authentication mode.
-
-11
-00:00:42.401 --> 00:00:45.047
-The registry value LoginMode is one for
-
-12
-00:00:45.047 --> 00:00:48.175
-Windows Authentication
-mode and two for mixed.
-
-13
-00:00:48.175 --> 00:00:52.785
-The audit cross-checks it against the
-running instance with the Is Integrated
-
-14
-00:00:52.785 --> 00:00:57.324
-Security Only server property, because
-a mode change takes effect only after
-
-15
-00:00:57.324 --> 00:01:01.650
-a restart, and any disagreement is an
-anomaly to resolve before migrating.
-
-16
-00:01:01.650 --> 00:01:07.455
-On SQL Server 2025 enabled by Arc it also
-reads Is External Authentication Only,
-
-17
-00:01:07.455 --> 00:01:11.325
-which shows the Disable
-SQL Authentication setting.
-
-18
-00:01:11.325 --> 00:01:18.762
-Every login is classified by its type in
-sys.server_principals: U, a Windows user;
-
-19
-00:01:18.762 --> 00:01:22.080
-G, a Windows group; S,
-a SQL login; C and K,
-
-20
-00:01:22.080 --> 00:01:28.488
-certificate- and key-mapped; and E
-and X, Entra logins already present.
-
-21
-00:01:28.488 --> 00:01:31.675
-The letters are the view's
-values, not mnemonics.
-
-22
-00:01:31.675 --> 00:01:34.687
-There's no type W, and
-a query written against
-
-23
-00:01:34.687 --> 00:01:38.200
-one returns zero rows and
-reports a clean instance.
-
-24
-00:01:38.200 --> 00:01:42.447
-Active SQL logins are a critical
-finding, and an enabled SA with
-
-25
-00:01:42.447 --> 00:01:46.612
-a non-rotated password is the
-highest-priority finding of all.
-
-26
-00:01:46.612 --> 00:01:50.550
-The audit captures the engine's
-service account and checks its SPN.
-
-27
-00:01:50.550 --> 00:01:55.617
-And each run is compared with the last:
-a new SQL login, a revert to mixed mode,
-
-28
-00:01:55.617 --> 00:02:01.150
-or a new passthrough linked server is
-drift, and drift is a compliance violation.
+00:00:35.113 --> 00:00:39.050
+Each run is compared with the
+last, and drift is a violation.

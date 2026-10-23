@@ -6,160 +6,59 @@ Runbook R04 gives the
 host its cloud identity.
 
 2
-00:00:03.500 --> 00:00:07.964
-Connecting a server to Arc creates
-a system-assigned managed identity
+00:00:03.500 --> 00:00:07.307
+Connecting a server to Arc
+creates a managed identity with no
 
 3
-00:00:07.964 --> 00:00:12.125
-with no secret anyone manages, and
+00:00:07.307 --> 00:00:11.263
+secret anyone has to manage, and
 without it there's no Entra login.
 
 4
-00:00:12.125 --> 00:00:18.213
-SQL Server 2025 uses that identity
-directly as its primary managed identity.
-
-5
-00:00:18.213 --> 00:00:22.982
-SQL Server 2022 authenticates with an
-app registration and a certificate
-
-6
-00:00:22.982 --> 00:00:27.599
-in Key Vault, and the machine identity
-is what downloads the certificate.
-
-7
-00:00:27.599 --> 00:00:29.812
+00:00:11.263 --> 00:00:13.474
 The prerequisites carry the traps.
 
+5
+00:00:13.474 --> 00:00:16.789
+In a GCC-Moderate tenant,
+the Arc resources live
+
+6
+00:00:16.789 --> 00:00:20.188
+in a commercial subscription
+in the same tenant.
+
+7
+00:00:20.188 --> 00:00:24.756
+And the engine contacts Entra ID
+directly, not through the agent's proxy,
+
 8
-00:00:29.812 --> 00:00:33.487
-A GCC-Moderate tenant's Entra
-ID is in the commercial cloud,
+00:00:24.756 --> 00:00:29.788
+which is the one people miss: the agent
+shows Connected while Entra logins fail.
 
 9
-00:00:33.487 --> 00:00:38.770
-so the Arc resources live in a commercial
-subscription in the same tenant, and Entra
+00:00:29.788 --> 00:00:34.634
+Then four steps: enroll, validate
+the token, confirm the extension,
 
 10
-00:00:38.770 --> 00:00:43.824
-authentication isn't available for SQL
-Server on Arc in US Government Virginia.
+00:00:34.634 --> 00:00:38.313
+and turn on Entra
+authentication, on a pilot first.
 
 11
-00:00:43.824 --> 00:00:46.981
-The instance can't be a
-failover cluster instance,
+00:00:38.313 --> 00:00:42.200
+Two program functions need correcting
+before you run them for real.
 
 12
-00:00:46.981 --> 00:00:51.829
-NT AUTHORITY SYSTEM must be able to
-connect or the extension can't provision,
+00:00:42.200 --> 00:00:46.173
+And rollback has a catch:
+reconnecting creates a new identity,
 
 13
-00:00:51.829 --> 00:00:54.600
-and clients must trust
-the TLS certificate.
-
-14
-00:00:54.600 --> 00:00:57.937
-The agent and extension need outbound 443,
-
-15
-00:00:57.937 --> 00:01:03.275
-and the engine contacts Entra ID
-directly, without the agent's proxy.
-
-16
-00:01:03.275 --> 00:01:07.850
-That's the one to miss: the agent shows
-Connected while Entra logins fail.
-
-17
-00:01:07.850 --> 00:01:09.075
-Then four steps.
-
-18
-00:01:09.075 --> 00:01:12.953
-Enroll with a certificate-based
-onboarding service principal;
-
-19
-00:01:12.953 --> 00:01:17.050
-the SQL extension installs
-automatically unless a tag disables it.
-
-20
-00:01:17.050 --> 00:01:22.016
-Validate the token from the local
-identity endpoint, a two-call challenge:
-
-21
-00:01:22.016 --> 00:01:26.494
-the audience must be database.windows.net,
-the expiry in the future,
-
-22
-00:01:26.494 --> 00:01:29.425
-and the object ID the
-machine's principal ID.
-
-23
-00:01:29.425 --> 00:01:30.800
-Never log the token.
-
-24
-00:01:30.800 --> 00:01:33.175
-Confirm the extension shows Succeeded.
-
-25
-00:01:33.175 --> 00:01:36.192
-Then turn on Entra
-authentication, on a pilot first;
-
-26
-00:01:36.192 --> 00:01:39.999
-a Privileged Role Administrator
-grants the Graph permissions,
-
-27
-00:01:39.999 --> 00:01:43.663
-and setting the Entra admin
-creates the first sysadmin login.
-
-28
-00:01:43.663 --> 00:01:47.786
-Two program functions need correcting
-before you execute with them:
-
-29
-00:01:47.786 --> 00:01:52.561
-the onboarding wrapper adds a proxy flag
-the agent doesn't have and falls back to
-
-30
-00:01:52.561 --> 00:01:55.310
-interactive sign-in, and
-the token validator's
-
-31
-00:01:55.310 --> 00:01:57.625
-live mode queries the Azure VM address.
-
-32
-00:01:57.625 --> 00:02:02.600
-Rollback runs in order: remove
-extensions, disconnect, uninstall.
-
-33
-00:02:02.600 --> 00:02:06.825
-Reconnecting creates a new identity,
-so permissions are granted again.
-
-34
-00:02:06.825 --> 00:02:11.900
-On SQL Server 2025, treat Entra
-authentication as one-way.
+00:00:46.173 --> 00:00:48.650
+so permissions must be granted again.

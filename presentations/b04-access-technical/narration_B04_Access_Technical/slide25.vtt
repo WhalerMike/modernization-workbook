@@ -11,147 +11,50 @@ one per object, and the safety
 rules travel with the files.
 
 3
-00:00:07.962 --> 00:00:12.540
-Every blocking or grant policy
-excludes the emergency access group,
+00:00:07.962 --> 00:00:10.836
+Every policy excludes the emergency group,
 
 4
-00:00:12.540 --> 00:00:15.913
-and new and changed policies
-deploy as report-only.
+00:00:10.836 --> 00:00:15.625
+every package has an expiry, and leaver
+workflows revoke refresh tokens.
 
 5
-00:00:15.913 --> 00:00:21.739
-PIM settings require an authentication
-context or MFA, justification, and approval
+00:00:15.625 --> 00:00:20.437
+Several tools can manage those objects,
+and they all end in Microsoft Graph.
 
 6
-00:00:21.739 --> 00:00:27.150
-for Tier 0, with no permanent active
-assignment except the emergency accounts.
+00:00:20.437 --> 00:00:23.763
+They differ in coverage, and
+the slide shows the gaps.
 
 7
-00:00:27.150 --> 00:00:30.737
-Groups follow the naming
-convention with no nested members.
+00:00:23.763 --> 00:00:28.525
+The program's reference choice is
+Microsoft365DSC as the writer,
 
 8
-00:00:30.737 --> 00:00:35.650
-Packages have an expiry, and incompatible
-packages are listed both ways.
+00:00:28.525 --> 00:00:33.112
+because it's the only declarative
+tool that covers every class.
 
 9
-00:00:35.650 --> 00:00:39.262
-Review definitions have a
-fallback reviewer and auto-apply.
+00:00:33.112 --> 00:00:37.325
+It's a community project, so pin its
+version and read the release notes.
 
 10
-00:00:39.262 --> 00:00:44.288
-Leaver workflows remove all package
-assignments and revoke refresh tokens.
+00:00:37.325 --> 00:00:41.187
+A team already invested in Terraform
+can use it where it covers.
 
 11
-00:00:44.288 --> 00:00:48.963
-Four tools can hold those objects,
-and every one ends in Microsoft Graph.
+00:00:41.187 --> 00:00:44.402
+The rule that matters is
+one writer per object class,
 
 12
-00:00:48.963 --> 00:00:51.831
-Graph covers everything,
-but holds no state,
-
-13
-00:00:51.831 --> 00:00:57.249
-so desired state has to live in the repository
-and the comparison has to be written.
-
-14
-00:00:57.249 --> 00:01:02.305
-The Terraform azuread provider, at
-version 3.10.0 as of October 2026,
-
-15
-00:01:02.305 --> 00:01:06.717
-covers most classes but has
-no access review definitions,
-
-16
-00:01:06.717 --> 00:01:12.875
-no Lifecycle Workflows, and no role
-management policy for Entra directory roles.
-
-17
-00:01:12.875 --> 00:01:20.000
-Microsoft365DSC, an open-source community
-module, covers every class in the table.
-
-18
-00:01:20.000 --> 00:01:24.345
-And Microsoft Entra Tenant
-Governance configuration management,
-
-19
-00:01:24.345 --> 00:01:26.984
-built on generally available Graph APIs,
-
-20
-00:01:26.984 --> 00:01:31.562
-monitors a baseline but doesn't cover
-review definitions or workflows.
-
-21
-00:01:31.562 --> 00:01:34.250
-The program's reference
-choice minimizes write
-
-22
-00:01:34.250 --> 00:01:36.737
-paths while keeping
-drift detection native.
-
-23
-00:01:36.737 --> 00:01:42.467
-Microsoft365DSC writes, because it's the
-only declarative tool that covers every
-
-24
-00:01:42.467 --> 00:01:45.079
-class; treat it as a community project,
-
-25
-00:01:45.079 --> 00:01:48.112
-check its release notes,
-and pin its version.
-
-26
-00:01:48.112 --> 00:01:51.866
-A team already invested in Terraform
-can use it where it covers,
-
-27
-00:01:51.866 --> 00:01:53.887
-and Graph PowerShell for the rest.
-
-28
-00:01:53.887 --> 00:01:59.113
-The rule that matters is one writer per
-object class, recorded in the repository.
-
-29
-00:01:59.113 --> 00:02:02.412
-The tenant monitor detects
-drift where it covers;
-
-30
-00:02:02.412 --> 00:02:06.437
-a daily read-only comparison
-handles reviews and workflows.
-
-31
-00:02:06.437 --> 00:02:09.062
-And Entra Exporter takes a weekly backup,
-
-32
-00:02:09.062 --> 00:02:12.670
-kept separate from the
-baselines, as Microsoft advises.
+00:00:44.402 --> 00:00:48.860
+recorded in the repository, with
+drift detection running alongside it.

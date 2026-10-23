@@ -10,115 +10,55 @@ module depends on evidence,
 and AD CS produces none by default.
 
 3
-00:00:06.000 --> 00:00:09.300
-Two settings are needed, and
-neither works without the other.
+00:00:06.000 --> 00:00:10.594
+Two settings are needed, and neither works
+without the other: the CA's own audit
 
 4
-00:00:09.300 --> 00:00:13.250
-The CA's audit filter selects
-which CA operations are audited.
+00:00:10.594 --> 00:00:15.475
+filter, and the operating system's audit
+subcategory for Certification Services.
 
 5
-00:00:13.250 --> 00:00:16.326
-The Audit Certification
-Services advanced audit
+00:00:15.475 --> 00:00:17.939
+Turn both on, and test restarts first,
 
 6
-00:00:16.326 --> 00:00:19.987
-subcategory lets the operating
-system generate the events.
+00:00:17.939 --> 00:00:21.225
+because full auditing can
+slow them on a large CA.
 
 7
-00:00:19.987 --> 00:00:25.231
-Set the subcategory to Success and Failure
-in a dedicated GPO linked to the CA
+00:00:21.225 --> 00:00:26.326
+Then watch Microsoft's focused baseline
+of events: requests issued and denied,
 
 8
-00:00:25.231 --> 00:00:28.836
-servers, set the audit filter
-to cover every category,
+00:00:26.326 --> 00:00:29.779
+revocations, permission
+changes, CA setting changes,
 
 9
-00:00:28.836 --> 00:00:32.113
-and restart the service
-in a maintenance window.
+00:00:29.779 --> 00:00:33.075
+and anyone tampering with
+the audit filter itself.
 
 10
-00:00:32.113 --> 00:00:35.534
-Full auditing includes the
-start and stop category,
+00:00:33.075 --> 00:00:37.024
+Microsoft recommends generating
+each event in a test first,
 
 11
-00:00:35.534 --> 00:00:40.149
-which can slow restarts on a CA with
-a large database, so test that first.
+00:00:37.024 --> 00:00:40.025
+so an assumed event doesn't
+become a blind spot.
 
 12
-00:00:40.149 --> 00:00:42.625
-Then watch Microsoft's focused baseline.
+00:00:40.025 --> 00:00:43.779
+Forward everything to the SIEM,
+and size the local log for the
 
 13
-00:00:42.625 --> 00:00:49.428
-4886, 4887 and 4888 are requests received,
-issued and denied: issuance volume per
-
-14
-00:00:49.428 --> 00:00:52.418
-template, every credential issued,
-
-15
-00:00:52.418 --> 00:00:56.850
-and probing of templates
-that should be restricted.
-
-16
-00:00:56.850 --> 00:00:59.725
-4870 is revocation evidence.
-
-17
-00:00:59.725 --> 00:01:07.050
-4882 and 4890 are permission and certificate
-manager changes, which is ESC7 drift.
-
-18
-00:01:07.050 --> 00:01:10.450
-4885 is someone changing the audit filter.
-
-19
-00:01:10.450 --> 00:01:15.950
-4892 is a CA property change,
-which catches the ESC6 flag.
-
-20
-00:01:15.950 --> 00:01:20.088
-4896 is rows deleted from the CA database.
-
-21
-00:01:20.088 --> 00:01:23.513
-4897 is role separation enabled.
-
-22
-00:01:23.513 --> 00:01:28.110
-Microsoft recommends generating each
-event in a nonproduction test before
-
-23
-00:01:28.110 --> 00:01:32.563
-writing the collection rule, so an
-assumed event doesn't become a blind spot.
-
-24
-00:01:32.563 --> 00:01:36.637
-Forward through Windows Event
-Forwarding to a collector and the SIEM.
-
-25
-00:01:36.637 --> 00:01:40.940
-Forwarding doesn't stop a full
-local log from overwriting evidence,
-
-26
-00:01:40.940 --> 00:01:45.700
-so size the CA's Security log for the
-longest plausible collection outage.
+00:00:43.779 --> 00:00:47.740
+longest outage you can imagine,
+so evidence isn't overwritten.

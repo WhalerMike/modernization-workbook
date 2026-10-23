@@ -1,122 +1,61 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:05.493
-The program carries one rule forward
-unchanged: misconfigurations rated Critical
+00:00:00.050 --> 00:00:04.240
+The program carries one rule
+forward unchanged: Critical and High
 
 2
-00:00:05.493 --> 00:00:10.625
-or High are remediated and verified
+00:00:04.240 --> 00:00:09.725
+misconfigurations are fixed and verified
 before any certificate workload migrates.
 
 3
-00:00:10.625 --> 00:00:14.730
-Migrating from a CA that can be
-made to issue arbitrary credentials
+00:00:09.725 --> 00:00:12.833
+Migrating from a CA that
+can be tricked into issuing
 
 4
-00:00:14.730 --> 00:00:18.762
-propagates the weakness into
-whatever trusts the hierarchy next.
+00:00:12.833 --> 00:00:16.375
+arbitrary credentials just
+carries the weakness forward.
 
 5
-00:00:18.762 --> 00:00:23.030
-And under the bring-your-own-CA
-model the program recommends,
+00:00:16.375 --> 00:00:20.950
+And under the bring-your-own-CA model
+the program recommends, the new cloud
 
 6
-00:00:23.030 --> 00:00:27.725
-the new Cloud PKI issuing CA chains
-to the existing AD CS hierarchy,
+00:00:20.950 --> 00:00:25.975
+issuer chains to the existing hierarchy,
+so it inherits every weakness on day one.
 
 7
-00:00:27.725 --> 00:00:31.225
-so it inherits every weakness
-the day it goes live.
+00:00:25.975 --> 00:00:30.932
+The ESC labels from SpecterOps' 2021
+research are the shared vocabulary,
 
 8
-00:00:31.225 --> 00:00:36.400
-The ESC names come from SpecterOps' 2021
-research; Microsoft adopted the same
+00:00:30.932 --> 00:00:34.237
+and the book uses them
+only for defensive checks.
 
 9
-00:00:36.400 --> 00:00:41.413
-labels in Defender for Identity, which
-is why they're the shared vocabulary.
+00:00:34.237 --> 00:00:38.800
+They live in four places: templates,
+the forest's PKI objects,
 
 10
-00:00:41.413 --> 00:00:44.713
-The book uses them only as
-labels for defensive checks.
+00:00:38.800 --> 00:00:42.712
+the CA's own settings, and
+web enrollment endpoints.
 
 11
-00:00:44.713 --> 00:00:47.400
-The classes live in four control points.
+00:00:42.712 --> 00:00:46.687
+Put a Defender for Identity
+sensor on every CA that stays.
 
 12
-00:00:47.400 --> 00:00:51.112
-Template objects hold ESC1 through ESC4.
-
-13
-00:00:51.112 --> 00:00:57.320
-The Public Key Services objects hold
-ESC5, which Defender for Identity doesn't
-
-14
-00:00:57.320 --> 00:01:03.624
-assess, so detection is an ACL review plus
-directory change auditing, event 5136.
-
-15
-00:01:03.624 --> 00:01:08.026
-The CA's own configuration
-holds ESC6 and ESC7,
-
-16
-00:01:08.026 --> 00:01:11.963
-and HTTP enrollment endpoints hold ESC8.
-
-17
-00:01:11.963 --> 00:01:17.194
-Certificate template assessments are
-available to every customer with AD CS;
-
-18
-00:01:17.194 --> 00:01:21.861
-CA assessments need a Defender for
-Identity sensor on the AD CS server,
-
-19
-00:01:21.861 --> 00:01:25.000
-so install it on every
-enterprise CA that stays.
-
-20
-00:01:25.000 --> 00:01:26.700
-Two caveats from the book.
-
-21
-00:01:26.700 --> 00:01:32.346
-In GCC, Defender for Identity uses the
-security dot microsoft dot com portal;
-
-22
-00:01:32.346 --> 00:01:37.813
-Microsoft says new features reach GCC,
-GCC High and DoD within ninety days
-
-23
-00:01:37.813 --> 00:01:43.100
-of commercial release, but preview
-features may not be supported there.
-
-24
-00:01:43.100 --> 00:01:46.877
-The ESC1 and ESC6 assessments
-are still labeled preview,
-
-25
-00:01:46.877 --> 00:01:52.150
-so confirm they appear in your tenant,
-and run the manual checks in the meantime.
+00:00:46.687 --> 00:00:52.200
+In GCC, some of these assessments are still
+preview, so run the manual checks too.

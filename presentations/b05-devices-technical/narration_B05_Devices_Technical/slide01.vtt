@@ -1,88 +1,67 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:03.303
+00:00:00.050 --> 00:00:00.763
+Welcome.
+
+2
+00:00:00.763 --> 00:00:04.038
 This is the technical deep
 dive for Book 05 of the
 
-2
-00:00:03.303 --> 00:00:07.125
+3
+00:00:04.038 --> 00:00:07.887
 Federal Modernization Workbook,
 Devices and Endpoints.
 
-3
-00:00:07.125 --> 00:00:10.901
+4
+00:00:07.887 --> 00:00:11.671
 It's for the architects and
 engineers who move a domain-joined
 
-4
-00:00:10.901 --> 00:00:13.862
+5
+00:00:11.671 --> 00:00:14.638
 fleet onto Intune, and its
 servers onto Azure Arc.
 
-5
-00:00:13.862 --> 00:00:16.936
-It comes in two parts of about
-twenty-five minutes each,
-
 6
-00:00:16.936 --> 00:00:19.326
-and four modules you can watch separately.
+00:00:14.638 --> 00:00:16.199
+It comes in two parts.
 
 7
-00:00:19.326 --> 00:00:21.037
-Part 1 is the endpoints.
+00:00:16.199 --> 00:00:21.043
+Part 1 is the endpoints: how a new device
+is governed from the moment it powers on,
 
 8
-00:00:21.037 --> 00:00:24.869
-First, how a new device is governed
-from the moment it powers on,
+00:00:21.043 --> 00:00:24.992
+the three paths an existing estate
+can take to the same end state,
 
 9
-00:00:24.869 --> 00:00:29.075
-and the three paths an existing estate
-can take to the same end state.
+00:00:24.992 --> 00:00:29.462
+and then the Group Policy sunset and
+the policy library that replaces it.
 
 10
-00:00:29.075 --> 00:00:34.330
-Then the Group Policy sunset: how
-every GPO is inventoried, classified,
+00:00:29.462 --> 00:00:33.776
+Part 2 is servers and the run state:
+bringing servers under Arc with
 
 11
-00:00:34.330 --> 00:00:38.950
-replaced and retired, and the
-policy library that replaces it.
+00:00:33.776 --> 00:00:38.012
+a day-one baseline, then operating
+and evidencing the whole fleet.
 
 12
-00:00:38.950 --> 00:00:41.102
-Part 2 is servers and the run state:
+00:00:38.012 --> 00:00:42.358
+The scripts and policy payloads live
+in the chapters and Appendix A,
 
 13
-00:00:41.102 --> 00:00:44.715
-bringing servers under Azure
-Arc with a day-one baseline,
+00:00:42.358 --> 00:00:44.763
+marked as illustrative and untested.
 
 14
-00:00:44.715 --> 00:00:49.788
-and then operating and evidencing the
-whole fleet once Intune is the authority.
-
-15
-00:00:49.788 --> 00:00:53.538
-The slides show tables,
-flows and decision matrices.
-
-16
-00:00:53.538 --> 00:00:57.390
-The scripts and policy payloads live
-in the chapters and in Appendix A;
-
-17
-00:00:57.390 --> 00:01:01.774
-they're marked there as illustrative and
-untested against a production tenant,
-
-18
-00:01:01.774 --> 00:01:04.820
-and I'll point you to them
-rather than put them on screen.
+00:00:44.763 --> 00:00:46.340
+I'll stick to what matters.

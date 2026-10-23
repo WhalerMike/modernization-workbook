@@ -1,3876 +1,1591 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:03.209
+00:00:00.050 --> 00:00:00.763
+Welcome.
+
+2
+00:00:00.763 --> 00:00:03.944
 This is the technical deep
 dive for Book 02 of the
 
-2
-00:00:03.209 --> 00:00:07.000
+3
+00:00:03.944 --> 00:00:07.762
 Federal Modernization Workbook,
 Identity and Directory.
 
-3
-00:00:07.000 --> 00:00:10.197
+4
+00:00:07.762 --> 00:00:10.960
 It's for the architects and
 engineers who will actually
 
-4
-00:00:10.197 --> 00:00:13.463
+5
+00:00:10.960 --> 00:00:14.226
 run the move from Active
 Directory to Microsoft Entra ID.
 
-5
-00:00:13.463 --> 00:00:16.536
-It comes in two parts of about
-twenty-five minutes each,
-
 6
-00:00:16.536 --> 00:00:18.926
-and four modules you can watch separately.
+00:00:14.226 --> 00:00:15.787
+It comes in two parts.
 
 7
-00:00:18.926 --> 00:00:20.723
+00:00:15.787 --> 00:00:17.620
 Part 1 is assessing the forest:
 
 8
-00:00:20.723 --> 00:00:24.824
-first what a standard account can
+00:00:17.620 --> 00:00:21.872
+first what an ordinary account can
 learn without any elevated access,
 
 9
-00:00:24.824 --> 00:00:29.212
+00:00:21.872 --> 00:00:26.125
 then the full privileged assessment
-and the evidence pipeline behind it.
+and the evidence trail behind it.
 
 10
-00:00:29.212 --> 00:00:34.016
-Part 2 is building the Entra ID target
-and migrating onto it: the sync, sign-in,
+00:00:26.125 --> 00:00:31.129
+Part 2 is building the Entra ID target and
+moving onto it: the big design decisions,
 
 11
-00:00:34.016 --> 00:00:38.976
-group, service account, privileged
-access and Conditional Access decisions,
+00:00:31.129 --> 00:00:33.518
+governance, the eleven-phase playbook,
 
 12
-00:00:38.976 --> 00:00:41.765
-then governance, the
-eleven-phase playbook,
-
-13
-00:00:41.765 --> 00:00:46.337
-and a reference deployment that shows
+00:00:33.518 --> 00:00:37.850
+and a reference deployment that runs
 the whole sequence on one estate.
 
+13
+00:00:37.850 --> 00:00:41.019
+The slides carry the tables
+and decision matrices,
+
 14
-00:00:46.337 --> 00:00:50.087
-The slides show tables,
-flows and decision matrices.
+00:00:41.019 --> 00:00:44.113
+and the code lives in the
+chapters and appendices.
 
 15
-00:00:50.087 --> 00:00:52.781
-The code lives in the
-chapters and appendices;
+00:00:44.113 --> 00:00:46.000
+I'll stick to what matters.
 
 16
-00:00:52.781 --> 00:00:55.840
-I'll point you to it rather
-than put it on screen.
+00:00:46.750 --> 00:00:48.137
+Here's why this matters.
 
 17
-00:00:56.590 --> 00:00:57.778
-Why this matters.
-
-18
-00:00:57.778 --> 00:01:02.903
+00:00:48.137 --> 00:00:53.263
 Federal policy moved the access decision
 off the network and onto identity.
 
+18
+00:00:53.263 --> 00:00:59.476
+OMB M-22-09, NIST's zero trust architecture
+and CISA's maturity model all point
+
 19
-00:01:02.903 --> 00:01:07.020
-OMB M-22-09 requires
-centralized identity management,
+00:00:59.476 --> 00:01:04.612
+the same way: no trust from network
+location, and phishing-resistant sign-in.
 
 20
-00:01:07.020 --> 00:01:12.316
-phishing-resistant multifactor authentication
-for staff, contractors and partners,
-
-21
-00:01:12.316 --> 00:01:14.522
-and at least one device-level signal,
-
-22
-00:01:14.522 --> 00:01:18.714
-and it says users should log into
-applications rather than networks.
-
-23
-00:01:18.714 --> 00:01:25.421
-NIST SP 800-207 grants no implicit
-trust from network location:
-
-24
-00:01:25.421 --> 00:01:28.615
-access is decided per
-session by dynamic policy.
-
-25
-00:01:28.615 --> 00:01:34.011
-And CISA's Zero Trust Maturity Model makes
-identity the first of its five pillars,
-
-26
-00:01:34.011 --> 00:01:37.027
-validated continuously
-at the optimal level.
-
-27
-00:01:37.027 --> 00:01:41.277
-So the identity provider is the policy
+00:01:04.612 --> 00:01:09.063
+That makes the identity provider the policy
 decision point for the whole estate.
 
-28
-00:01:41.277 --> 00:01:43.682
-Whatever it believes about a person,
+21
+00:01:09.063 --> 00:01:13.963
+Whatever it believes about a person, a
+group or a device gets enforced everywhere.
 
-29
-00:01:43.682 --> 00:01:48.252
-a group or a device is what gets
-enforced, everywhere, at machine speed.
+22
+00:01:13.963 --> 00:01:18.961
+Microsoft isn't retiring Active
+Directory, but its investment is clearly
 
-30
-00:01:48.252 --> 00:01:51.086
-Microsoft isn't retiring Active Directory;
+23
+00:01:18.961 --> 00:01:24.124
+moving to the cloud, from the sync engine
+to sign-in to the deprecation of NTLM.
 
-31
-00:01:51.086 --> 00:01:54.077
-it says it continues to
-support and enhance it.
-
-32
-00:01:54.077 --> 00:01:57.116
-The forcing comes from the
-direction of its investment.
-
-33
-00:01:57.116 --> 00:01:59.548
-Cloud Sync is replacing Connect Sync,
-
-34
-00:01:59.548 --> 00:02:03.628
-which retires once Cloud Sync
-reaches full functional parity.
-
-35
-00:02:03.628 --> 00:02:06.519
-Microsoft recommends moving from AD FS to
-
-36
-00:02:06.519 --> 00:02:09.740
-cloud authentication
-with password hash sync.
-
-37
-00:02:09.740 --> 00:02:14.691
-All versions of NTLM were
-deprecated in June 2024,
-
-38
-00:02:14.691 --> 00:02:21.090
-and NTLMv1 is removed in Windows
-11 24H2 and Windows Server 2025.
-
-39
-00:02:21.090 --> 00:02:24.429
-And since January 2026
-you can convert a synced
-
-40
-00:02:24.429 --> 00:02:27.340
-user to cloud-managed,
-one object at a time.
-
-41
-00:02:27.340 --> 00:02:29.402
+24
+00:01:24.124 --> 00:01:26.187
 The trap is the lift and shift.
 
-42
-00:02:29.402 --> 00:02:32.940
-Synchronize the forest as it
-stands, and stale accounts,
+25
+00:01:26.187 --> 00:01:28.113
+Sync the forest as it stands,
 
-43
-00:02:32.940 --> 00:02:37.710
-undocumented trusts and synced privileged
-accounts arrive in the tenant,
+26
+00:01:28.113 --> 00:01:32.301
+and the stale accounts and
+undocumented trusts come with it,
 
-44
-00:02:37.710 --> 00:02:40.787
-while the delegation and
-policy intent that the
+27
+00:01:32.301 --> 00:01:38.020
+while the intent the organizational unit
+(OU) tree carried has nowhere to land.
 
-45
-00:02:40.787 --> 00:02:44.770
-organizational unit (OU) tree
-carried has nowhere to land.
+28
+00:01:38.770 --> 00:01:40.395
+So what actually has to move?
 
-46
-00:02:45.520 --> 00:02:46.595
-What has to move.
+29
+00:01:40.395 --> 00:01:42.995
+Two points drive everything
+in this session.
 
-47
-00:02:46.595 --> 00:02:52.320
-Chapters 02 through 04 make two points
-that drive everything in this session.
-
-48
-00:02:52.320 --> 00:02:54.932
+30
+00:01:42.995 --> 00:01:45.607
 First, placement becomes attributes.
 
-49
-00:02:54.932 --> 00:02:58.442
-In Active Directory, an object's
-position in the forest,
+31
+00:01:45.607 --> 00:01:48.821
+In Active Directory, where
+an object sits in the OU
 
-50
-00:02:58.442 --> 00:03:03.433
-domain and OU tree decides who administers
-it and which Group Policy applies.
+32
+00:01:48.821 --> 00:01:52.270
+tree decides who manages it
+and which policy applies.
 
-51
-00:03:03.433 --> 00:03:06.632
-Move a user to another OU
-and its administrators,
-
-52
-00:03:06.632 --> 00:03:12.232
-inherited policies and often its access
-all change without anyone editing the user.
-
-53
-00:03:12.232 --> 00:03:14.057
+33
+00:01:52.270 --> 00:01:54.095
 Entra ID has no tree.
 
-54
-00:03:14.057 --> 00:03:17.227
-It governs objects by what
-they carry: attributes,
+34
+00:01:54.095 --> 00:01:58.907
+It governs objects by what they carry:
+attributes, memberships and roles.
 
-55
-00:03:17.227 --> 00:03:20.707
-memberships, role assignments
-and policy conditions.
+35
+00:01:58.907 --> 00:02:01.637
+Administrative units
+help, but they can't nest,
 
-56
-00:03:20.707 --> 00:03:25.557
-Two limits decide how far the usual
-answer, administrative units, gets you.
+36
+00:02:01.637 --> 00:02:05.945
+and for synced users the attribute
+values are still written on-premises.
 
-57
-00:03:25.557 --> 00:03:30.757
-Administrative units can't nest, so an
-OU tree becomes a flat set of units.
-
-58
-00:03:30.757 --> 00:03:33.396
-An object can belong to
-at most thirty of them.
-
-59
-00:03:33.396 --> 00:03:37.854
-And for synced users, Graph treats
-the extension attributes as read-only,
-
-60
-00:03:37.854 --> 00:03:41.645
-because their source of authority
-is still Active Directory.
-
-61
-00:03:41.645 --> 00:03:44.268
-So the values your rules
-match on are written
-
-62
-00:03:44.268 --> 00:03:46.820
-on-premises and arrive
-with each sync cycle.
-
-63
-00:03:46.820 --> 00:03:50.245
+37
+00:02:05.945 --> 00:02:09.370
 Second, the surface is bigger
 than users and groups.
 
-64
-00:03:50.245 --> 00:03:53.945
-The program's inventory names
-eleven dependency types.
+38
+00:02:09.370 --> 00:02:14.857
+The program's inventory names eleven
+dependency types, and some, like PKI,
 
-65
-00:03:53.945 --> 00:03:56.483
-The first five are what
-plans usually count.
-
-66
-00:03:56.483 --> 00:04:03.094
-Types six through nine, DNS and DHCP, PKI,
-RADIUS and the Network Policy Server,
-
-67
-00:04:03.094 --> 00:04:08.446
-and LDAP-bound applications,
+39
+00:02:14.857 --> 00:02:20.070
+RADIUS and LDAP-bound applications,
 fail silently when AD goes away.
 
-68
-00:04:08.446 --> 00:04:12.669
-Types ten and eleven, service
-principal names and trusts,
+40
+00:02:20.070 --> 00:02:24.432
+Each dependency gets an adapter,
+and the sync engine finishes last.
 
-69
-00:04:12.669 --> 00:04:15.545
-have no direct counterpart in Entra ID.
-
-70
-00:04:15.545 --> 00:04:17.607
-Each dependency gets an adapter.
-
-71
-00:04:17.607 --> 00:04:23.546
-The PKI, RADIUS and LDAP proxy adapters
-are critical, because they fail silently.
-
-72
-00:04:23.546 --> 00:04:25.401
-The sync engine finishes last,
-
-73
-00:04:25.401 --> 00:04:29.857
-because it's what keeps AD in production
-until everything else has moved.
-
-74
-00:04:29.857 --> 00:04:34.830
+41
+00:02:24.432 --> 00:02:29.400
 The rest of this session is how you find
 all of that, rebuild it, and prove it.
 
-75
-00:04:35.580 --> 00:04:38.155
-Module 1: read-only discovery.
+42
+00:02:30.150 --> 00:02:32.750
+Module 1 is read-only discovery.
 
-76
-00:04:38.155 --> 00:04:41.655
-An assessment team rarely gets
-privileged access on day one.
+43
+00:02:32.750 --> 00:02:36.865
+An assessment team rarely gets privileged
+access on day one, so the program
 
-77
-00:04:41.655 --> 00:04:47.017
-Authorization paperwork, security review
-and trust between teams all take time.
+44
+00:02:36.865 --> 00:02:41.512
+spends that waiting time learning what the
+directory already tells every employee.
 
-78
-00:04:47.017 --> 00:04:49.602
-The program spends that
-window learning what
+45
+00:02:41.512 --> 00:02:44.579
+It changes nothing, and
+it turns the request for
 
-79
-00:04:49.602 --> 00:04:52.118
-the directory already
-tells every employee.
+46
+00:02:44.579 --> 00:02:48.090
+elevated access into a
+list built from evidence.
 
-80
-00:04:52.118 --> 00:04:55.789
-A standard domain account, with
-no rights beyond the default,
+47
+00:02:48.840 --> 00:02:52.052
+It's surprising how much an
+ordinary domain account can read.
 
-81
-00:04:55.789 --> 00:04:58.580
-can read most of what
-the migration plan needs.
+48
+00:02:52.052 --> 00:02:54.991
+Topology, sites and domain controllers.
 
-82
-00:04:58.580 --> 00:05:03.298
-Starting there changes nothing in the
-directory, applies least privilege,
+49
+00:02:54.991 --> 00:02:57.339
+The OU tree and its Group Policy links,
 
-83
-00:05:03.298 --> 00:05:09.309
-NIST SP 800-53 control AC-6,
-to the assessment team itself,
+50
+00:02:57.339 --> 00:03:00.977
+which is the structure the
+attribute design will replace.
 
-84
-00:05:09.309 --> 00:05:13.037
-and turns the request for
-elevated access into a list built
+51
+00:03:00.977 --> 00:03:03.266
+Most GPOs and their settings.
 
-85
-00:05:13.037 --> 00:05:17.210
-from evidence instead of a
-general request for Domain Admin.
+52
+00:03:03.266 --> 00:03:06.886
+Users, groups, computers
+and service principal names,
 
-86
-00:05:17.960 --> 00:05:20.510
-Here's what a standard
-account typically reads.
+53
+00:03:06.886 --> 00:03:09.190
+which is your identity inventory.
 
-87
-00:05:20.510 --> 00:05:25.806
-Forest and domain topology, domain
-controllers, sites, subnets and site links are
+54
+00:03:09.190 --> 00:03:11.027
+Even the certificate templates.
 
-88
-00:05:25.806 --> 00:05:31.022
-readable, which gives you scope, functional
-levels and the shape of replication.
+55
+00:03:11.027 --> 00:03:15.589
+What you usually can't see is replication
+health and DNS server settings;
 
-89
-00:05:31.022 --> 00:05:34.508
-The OU hierarchy and Group
-Policy links are readable:
+56
+00:03:15.589 --> 00:03:17.565
+those become a delegation item.
 
-90
-00:05:34.508 --> 00:05:38.310
-that's the structure the
-attribute design later replaces.
+57
+00:03:17.565 --> 00:03:21.453
+The default is broad because of a
+handful of built-in read grants,
 
-91
-00:05:38.310 --> 00:05:41.685
-GPOs and their settings
-reports are usually readable,
+58
+00:03:21.453 --> 00:03:25.928
+and exactly how broad depends on choices
+made when the domain was created.
 
-92
-00:05:41.685 --> 00:05:45.135
-unless security filtering
-restricts a particular GPO.
+59
+00:03:25.928 --> 00:03:30.105
+So the first step is a pre-flight that
+tests what this account can really
 
-93
-00:05:45.135 --> 00:05:49.260
-Users, groups, computers and service
-principal names are readable,
+60
+00:03:30.105 --> 00:03:34.930
+read in this forest, and every later
+export records which access it relied on.
 
-94
-00:05:49.260 --> 00:05:54.060
-which is your identity inventory and
-the start of service account discovery.
-
-95
-00:05:54.060 --> 00:05:59.857
-Certificate templates and enrollment
-services sit in the configuration partition,
-
-96
-00:05:59.857 --> 00:06:02.960
-so the AD CS dependency
-surface is visible too.
-
-97
-00:06:02.960 --> 00:06:07.223
-AD-integrated DNS zones are
-often readable; test it.
-
-98
-00:06:07.223 --> 00:06:10.064
-What you usually can't
-see is replication health
-
-99
-00:06:10.064 --> 00:06:12.622
-and DNS server settings
-such as scavenging.
-
-100
-00:06:12.622 --> 00:06:14.801
-Those need a right or server access,
-
-101
-00:06:14.801 --> 00:06:19.159
-so they become a delegation item or
-an administrator-provided export.
-
-102
-00:06:19.159 --> 00:06:21.010
-Why is the default so broad?
-
-103
-00:06:21.010 --> 00:06:24.210
-Read access is the sum of
-several default grants.
-
-104
-00:06:24.210 --> 00:06:27.662
-Authenticated Users receives
-the general, public,
-
-105
-00:06:27.662 --> 00:06:31.772
-personal and web information
-property sets on user objects.
-
-106
-00:06:31.772 --> 00:06:36.755
-Pre–Windows 2000 Compatible Access
-receives list, read-all-properties
-
-107
-00:06:36.755 --> 00:06:41.822
-and read-permissions rights on users,
-groups and InetOrgPerson objects.
-
-108
-00:06:41.822 --> 00:06:46.094
-Its membership depends on a choice
-made when the domain was created:
-
-109
-00:06:46.094 --> 00:06:50.366
-in the Windows 2000-and-later mode
-it contains Authenticated Users;
-
-110
-00:06:50.366 --> 00:06:53.722
-in the older compatible
-mode, Everyone and Anonymous.
-
-111
-00:06:53.722 --> 00:06:58.544
-So in most domains a standard account
-reads most attributes of users and groups,
-
-112
-00:06:58.544 --> 00:07:01.685
-but the exact result depends
-on the domain's history.
-
-113
-00:07:01.685 --> 00:07:04.566
-The first step is therefore
-a pre-flight that tests
-
-114
-00:07:04.566 --> 00:07:07.448
-what this account can
-actually read in this forest.
-
-115
-00:07:07.448 --> 00:07:11.300
-Every later export records
-which access it relied on.
-
-116
-00:07:12.050 --> 00:07:15.825
+61
+00:03:35.680 --> 00:03:39.529
 The assessment report should never
 claim coverage it doesn't have,
 
-117
-00:07:15.825 --> 00:07:19.462
-so you need to know exactly where
-the default read boundary sits.
+62
+00:03:39.529 --> 00:03:42.818
+so you need to know exactly
+where that read boundary sits.
 
-118
-00:07:19.462 --> 00:07:23.113
-Four mechanisms set it, and
-several are commonly misstated.
+63
+00:03:42.818 --> 00:03:44.306
+Four mechanisms set it.
 
-119
-00:07:23.113 --> 00:07:25.200
-Protected accounts and groups.
+64
+00:03:44.306 --> 00:03:49.143
+Protected accounts: the admin count flag
+marks accounts that are or were privileged,
 
-120
-00:07:25.200 --> 00:07:30.367
-The AdminSDHolder object holds template
-permissions for Domain Admins,
+65
+00:03:49.143 --> 00:03:53.567
+which makes it a good clean-up list, but
+not the current privileged population.
 
-121
-00:07:30.367 --> 00:07:35.450
-Enterprise Admins, Schema Admins, the
-operator groups, krbtgt and others.
+66
+00:03:53.567 --> 00:03:57.641
+Confidential attributes, like LAPS
+passwords: you can't read them,
 
-122
-00:07:35.450 --> 00:07:39.064
-A process called S D Prop
-runs every sixty minutes by
+67
+00:03:57.641 --> 00:04:02.318
+but the presence and age of the expiration
+attribute still shows coverage.
 
-123
-00:07:39.064 --> 00:07:43.350
-default on the PDC emulator and
-resets those objects to match.
+68
+00:04:02.318 --> 00:04:07.292
+Password secrets, which leave a domain
+controller only through replication rights
 
-124
-00:07:43.350 --> 00:07:45.288
-It acts on current members only.
+69
+00:04:07.292 --> 00:04:09.069
+the assessment never asks for,
 
-125
-00:07:45.288 --> 00:07:48.181
-An account removed from
-a protected group keeps
+70
+00:04:09.069 --> 00:04:12.480
+though who already holds those
+rights is a key later check.
 
-126
-00:07:48.181 --> 00:07:51.001
-admin count set to one
-unless someone clears it.
+71
+00:04:12.480 --> 00:04:15.430
+And restricted containers
+like Deleted Objects.
 
-127
-00:07:51.001 --> 00:07:54.495
-So admin count lists accounts
-that are or were privileged:
+72
+00:04:15.430 --> 00:04:20.350
+The rule that ties it together is simple:
+report only what you actually measured.
 
-128
-00:07:54.495 --> 00:07:58.062
-a good clean-up list, not the
-current privileged population.
+73
+00:04:21.100 --> 00:04:26.038
+Every gap that read-only discovery couldn't
+close gets written down: what's missing,
 
-129
-00:07:58.062 --> 00:07:59.787
-Confidential attributes.
+74
+00:04:26.038 --> 00:04:28.724
+the narrowest right or
+export that closes it,
 
-130
-00:07:59.787 --> 00:08:02.749
-Setting bit seven, value
-one hundred twenty-eight,
-
-131
-00:08:02.749 --> 00:08:06.649
-of an attribute's search flags
-means reading it needs the control
-
-132
-00:08:06.649 --> 00:08:10.476
-access right as well, which by
-default only administrators hold.
-
-133
-00:08:10.476 --> 00:08:14.908
-You can still show where a capability
-is deployed without seeing the secret:
-
-134
-00:08:14.908 --> 00:08:17.511
-with Windows LAPS, the
-presence and age of the
-
-135
-00:08:17.511 --> 00:08:20.325
-password expiration
-attribute shows coverage.
-
-136
-00:08:20.325 --> 00:08:24.504
-Legacy Microsoft LAPS is
-deprecated as of Windows 11 23H2,
-
-137
-00:08:24.504 --> 00:08:30.337
-so a forest still on it has a finding before
-the assessment even reaches identity.
-
-138
-00:08:30.337 --> 00:08:31.313
-Secrets.
-
-139
-00:08:31.313 --> 00:08:35.413
-Password hashes leave a domain
-controller only through replication,
-
-140
-00:08:35.413 --> 00:08:40.362
-which needs Replicating Directory Changes
-and Replicating Directory Changes All.
-
-141
-00:08:40.362 --> 00:08:42.674
-The assessment never requests those.
-
-142
-00:08:42.674 --> 00:08:45.978
-But which accounts already hold
-them is a key later check:
-
-143
-00:08:45.978 --> 00:08:50.687
-any holder that isn't a domain controller
-or the sync service account is a finding.
-
-144
-00:08:50.687 --> 00:08:52.338
-Restricted containers.
-
-145
-00:08:52.338 --> 00:08:56.676
-Deleted Objects is visible only
-to System and Administrators.
-
-146
-00:08:56.676 --> 00:09:01.050
-Restoring needs Reanimate Tombstone,
-which an assessment never needs.
-
-147
-00:09:01.050 --> 00:09:04.498
-Fine-grained password policies
-belong to Domain Admins,
-
-148
-00:09:04.498 --> 00:09:07.725
-so record them as not seen
-rather than inferring them.
-
-149
-00:09:07.725 --> 00:09:10.930
-Finally, report only measured coverage.
-
-150
-00:09:11.680 --> 00:09:16.135
-Every gap read-only discovery couldn't
-close gets recorded with four facts:
-
-151
-00:09:16.135 --> 00:09:19.943
-what's missing, the narrowest right
-or export that would close it,
-
-152
-00:09:19.943 --> 00:09:23.680
+75
+00:04:28.724 --> 00:04:32.500
 why the plan needs it, and whether
 there's a read-only substitute.
 
-153
-00:09:23.680 --> 00:09:29.725
-Replication health and domain controller
-event logs come from an administrator-run
+76
+00:04:32.500 --> 00:04:35.573
+Some come as exports from
+the right administrator,
 
-154
-00:09:29.725 --> 00:09:34.918
-summary, a log export, or SIEM access;
-the event logs are where you see NTLM use.
+77
+00:04:35.573 --> 00:04:39.525
+like replication health or the
+CA's issued-certificate database.
 
-155
-00:09:34.918 --> 00:09:40.739
-DNS server settings like aging and scavenging
-come from a DNS administrator export,
+78
+00:04:39.525 --> 00:04:44.150
+Some, like LAPS and BitLocker recovery
+data, are never requested at all.
 
-156
-00:09:40.739 --> 00:09:44.730
-because zone reads cover
-records but not server settings.
-
-157
-00:09:44.730 --> 00:09:48.609
-The issued-certificate database
-comes from a CA administrator,
-
-158
-00:09:48.609 --> 00:09:52.487
-and tells you which certificates
-must be reissued from a new PKI.
-
-159
-00:09:52.487 --> 00:09:56.805
-Deleted Objects needs read on that
-one container for one named account.
-
-160
-00:09:56.805 --> 00:10:00.767
-Fine-grained password policies
-need a Domain Admin export.
-
-161
-00:10:00.767 --> 00:10:04.677
-And confidential attributes like
-LAPS and BitLocker recovery
-
-162
-00:10:04.677 --> 00:10:08.143
-data are never requested at
-all: you report coverage only.
-
-163
-00:10:08.143 --> 00:10:12.451
+79
+00:04:44.150 --> 00:04:49.056
 The gap list becomes a short written
-request, and it follows fixed rules,
+request with firm rules: read only,
 
-164
-00:10:12.451 --> 00:10:16.905
-because the request is what makes the
-least-privilege position credible.
+80
+00:04:49.056 --> 00:04:52.185
+specific to an object
+and a reason, time-bound,
 
-165
-00:10:16.905 --> 00:10:20.829
-Read only: no write, create,
-delete or permission rights,
+81
+00:04:52.185 --> 00:04:55.738
+one named account, and an
+export wherever possible.
 
-166
-00:10:20.829 --> 00:10:23.793
-and never the rights that expose secrets.
-
-167
-00:10:23.793 --> 00:10:29.291
-Specific: each line names the right, the
-exact object path and the business reason;
-
-168
-00:10:29.291 --> 00:10:33.230
-"Domain Admin for the assessment"
+82
+00:04:55.738 --> 00:04:59.325
+Domain Admin for the assessment
 is not an acceptable line.
 
-169
-00:10:33.230 --> 00:10:37.517
-Time-bound: each delegation
-expires with the assessment window,
+83
+00:04:59.325 --> 00:05:00.563
+And run it safely.
 
-170
-00:10:37.517 --> 00:10:40.105
-and the account's expiry is set to match.
-
-171
-00:10:40.105 --> 00:10:44.618
-One named, dedicated account with
-no existing elevated memberships.
-
-172
-00:10:44.618 --> 00:10:48.217
-And preferably an export: if
-the directory team can run the
-
-173
-00:10:48.217 --> 00:10:51.892
-report and hand over the output,
-that beats granting a right.
-
-174
-00:10:51.892 --> 00:10:56.193
-The directory team implements the
-delegation with its own change process.
-
-175
-00:10:56.193 --> 00:10:57.305
-Run it safely.
-
-176
-00:10:57.305 --> 00:11:02.054
+84
+00:05:00.563 --> 00:05:05.139
 Tell security operations first, because
-broad LDAP enumeration looks like
+broad directory queries look like
 
-177
-00:11:02.054 --> 00:11:06.655
-reconnaissance, and Defender for
-Identity raises discovery alerts for it.
+85
+00:05:05.139 --> 00:05:10.140
+reconnaissance, and keep the output
+encrypted, because it's a map of the estate.
 
-178
-00:11:06.655 --> 00:11:12.406
-The output is a map of the estate, so keep
-it encrypted on a dedicated workstation,
+86
+00:05:10.890 --> 00:05:14.002
+Module 2 is the full
+assessment of the forest.
 
-179
-00:11:12.406 --> 00:11:15.107
-record a SHA-256 hash of every file in a
+87
+00:05:14.002 --> 00:05:18.703
+Chapter 08 fills the gap list with
+the privileged half of discovery.
 
-180
-00:11:15.107 --> 00:11:19.030
-manifest and disable the
-account when you're done.
+88
+00:05:18.703 --> 00:05:23.945
+The program's position is that the assessment
+produces evidence, not just script
 
-181
-00:11:19.780 --> 00:11:22.293
-Module 2: assessing the forest.
+89
+00:05:23.945 --> 00:05:29.000
+output: fixed artifacts, a hashed
+manifest, and every run committed to Git.
 
-182
-00:11:22.293 --> 00:11:25.167
-Chapter 07 ends with a gap list.
+90
+00:05:29.750 --> 00:05:33.192
+The full assessment covers
+eight areas in a fixed order,
 
-183
-00:11:25.167 --> 00:11:29.462
-Chapter 08 fills it with the
-privileged half of discovery:
+91
+00:05:33.192 --> 00:05:35.662
+from forest topology through to trusts.
 
-184
-00:11:29.462 --> 00:11:34.830
-the configuration partition, ACLs on
-OUs, every GPO's settings, DNS server
-
-185
-00:11:34.830 --> 00:11:38.587
-configuration, the PKI
-containers and CA settings,
-
-186
-00:11:38.587 --> 00:11:41.718
-and the delegation flags on every account.
-
-187
-00:11:41.718 --> 00:11:44.620
-The program's position is
-that the assessment is
-
-188
-00:11:44.620 --> 00:11:47.668
-an evidence-producing process,
-not a set of scripts.
-
-189
-00:11:47.668 --> 00:11:52.921
-Every run collects a fixed set of
-artifacts into a fixed directory layout,
-
-190
-00:11:52.921 --> 00:11:56.451
-writes a manifest with a
-SHA-256 hash of every file,
-
-191
-00:11:56.451 --> 00:12:00.068
-and commits the run to the
-program's Git repository.
-
-192
-00:12:00.068 --> 00:12:04.528
-Appendix B carries the complete
-module, restored and corrected;
-
-193
-00:12:04.528 --> 00:12:08.010
-Appendix C carries the
-identity-side module.
-
-194
-00:12:08.760 --> 00:12:15.501
-The full assessment covers eight areas,
-run in a fixed order: forest topology,
-
-195
-00:12:15.501 --> 00:12:22.348
-the OU hierarchy, Group Policy, DNS, AD CS,
-computers, users and groups, and trusts.
-
-196
-00:12:22.348 --> 00:12:26.247
+92
+00:05:35.662 --> 00:05:39.331
 Most of the forest is readable
-by any authenticated user.
+by any authenticated user,
 
-197
-00:12:26.247 --> 00:12:29.379
-The parts that aren't are
-the reason Chapter 08 exists,
-
-198
-00:12:29.379 --> 00:12:32.723
+93
+00:05:39.331 --> 00:05:42.999
 so each collector runs on the
-narrowest right that works.
+narrowest right that works,
 
-199
-00:12:32.723 --> 00:12:37.575
-Topology, computers, and users and
-groups need only an authenticated user;
+94
+00:05:42.999 --> 00:05:47.526
+like read on the OU security descriptors,
+or read on the PKI containers.
 
-200
-00:12:37.575 --> 00:12:40.758
-delegation attributes
-are readable by default,
-
-201
-00:12:40.758 --> 00:12:44.497
-though recursive group expansion
-is slow in big forests.
-
-202
-00:12:44.497 --> 00:12:49.168
-The OU collector needs read permission
-on the OUs' security descriptors,
-
-203
-00:12:49.168 --> 00:12:52.048
-because some ACLs aren't
-readable by default.
-
-204
-00:12:52.048 --> 00:12:54.998
-Group Policy needs read
-on the GPOs and SYSVOL,
-
-205
-00:12:54.998 --> 00:12:59.347
-plus the backup right through
-Group Policy Management delegation.
-
-206
-00:12:59.347 --> 00:13:04.523
-DNS needs read on each DNS server,
-delegated on the server object.
-
-207
-00:13:04.523 --> 00:13:09.710
-AD CS needs read on the Public Key
-Services containers and on each CA.
-
-208
-00:13:09.710 --> 00:13:11.827
-And trusts: any user can list them,
-
-209
-00:13:11.827 --> 00:13:15.747
-but verification needs domain
-administrator credentials.
-
-210
-00:13:15.747 --> 00:13:18.697
+95
+00:05:47.526 --> 00:05:50.475
 Two rights the source design
 asked for are refused.
 
-211
-00:13:18.697 --> 00:13:24.414
-DnsAdmins: Microsoft treats it as privileged,
-because its members control the DNS
+96
+00:05:50.475 --> 00:05:54.725
+DnsAdmins membership, because
+Microsoft treats it as privileged.
 
-212
-00:13:24.414 --> 00:13:30.047
-Server service, and Defender for Identity
-flags non-privileged members as a risk.
+97
+00:05:54.725 --> 00:05:57.937
+And standing Domain Admin,
+because no run needs it.
 
-213
-00:13:30.047 --> 00:13:34.423
-Grant read on the DNS server object
-to a dedicated group instead.
+98
+00:05:57.937 --> 00:06:00.999
+Trust verification is
+the only step that does,
 
-214
-00:13:34.423 --> 00:13:38.248
-And standing Domain Admin:
-no assessment run uses one.
-
-215
-00:13:38.248 --> 00:13:42.112
-Trust verification is the only
-step that needs those rights,
-
-216
-00:13:42.112 --> 00:13:45.435
+99
+00:06:00.999 --> 00:06:04.463
 and it runs separately under
 just-in-time elevation.
 
-217
-00:13:45.435 --> 00:13:50.754
-The host is a domain-joined Windows
-Server 2025 or Windows 11 machine
+100
+00:06:04.463 --> 00:06:09.763
+Collection runs from a domain-joined
+Windows Server 2025 or Windows 11 host,
 
-218
-00:13:50.754 --> 00:13:56.072
-with the Remote Server Administration
-Tools, at build 26100 or later.
+101
+00:06:09.763 --> 00:06:14.475
+under a group managed service account,
+so no password is ever stored.
 
-219
-00:13:56.072 --> 00:13:59.194
-The account is a group
-managed service account,
+102
+00:06:14.475 --> 00:06:18.500
+Next, the three areas that carry
+most of the planning weight.
 
-220
-00:13:59.194 --> 00:14:03.597
-with delegated read and nothing
-more, so no password is ever stored.
-
-221
-00:14:03.597 --> 00:14:05.520
-Two corrections from review:
-
-222
-00:14:05.520 --> 00:14:10.727
-the AD CS administration module the source
-required isn't used by any function,
-
-223
-00:14:10.727 --> 00:14:13.130
-and the PSPKI module is now optional,
-
-224
-00:14:13.130 --> 00:14:17.100
-because its publisher no
-longer actively supports it.
-
-225
-00:14:17.850 --> 00:14:20.437
+103
+00:06:19.250 --> 00:06:21.837
 Three areas carry most
 of the planning weight.
 
-226
-00:14:20.437 --> 00:14:21.838
+104
+00:06:21.837 --> 00:06:23.238
 Topology first.
 
-227
-00:14:21.838 --> 00:14:25.100
-Active Directory has five
-operations master roles.
+105
+00:06:23.238 --> 00:06:28.327
+Record every operations master role,
+and remember there are three per domain
 
-228
-00:14:25.100 --> 00:14:29.750
-Two are forest-wide, the schema
-master and the domain naming master.
+106
+00:06:28.327 --> 00:06:33.337
+plus two for the forest, so a three-domain
+forest has eleven to record, not five.
 
-229
-00:14:29.750 --> 00:14:33.135
-Three exist in every
-domain: the PDC emulator,
+107
+00:06:33.337 --> 00:06:37.187
+Flag any functional level
+below Windows Server 2016,
 
-230
-00:14:33.135 --> 00:14:36.612
-the RID master and the
-infrastructure master.
+108
+00:06:37.187 --> 00:06:40.775
+because it blocks the
+domain controller refresh.
 
-231
-00:14:36.612 --> 00:14:41.312
-So a three-domain forest has eleven
-role holders to record, not five.
+109
+00:06:40.775 --> 00:06:42.563
+Second, the OU tree.
 
-232
-00:14:41.312 --> 00:14:44.039
-The PDC emulator in
-the forest root is also
+110
+00:06:42.563 --> 00:06:45.099
+The goal is to capture what it encodes,
 
-233
-00:14:44.039 --> 00:14:47.000
-the authoritative time
-source for the forest.
+111
+00:06:45.099 --> 00:06:49.026
+so the attribute design
+reproduces intent, not structure.
 
-234
-00:14:47.000 --> 00:14:50.837
-Record every functional level
-and flag two conditions.
+112
+00:06:49.026 --> 00:06:53.675
+The delegations someone made by hand
+become the administrative unit candidates.
 
-235
-00:14:50.837 --> 00:14:56.607
-A level below Windows Server 2016
-blocks the domain controller refresh,
+113
+00:06:53.675 --> 00:06:57.050
+Third, Group Policy, the biggest artifact.
 
-236
-00:14:56.607 --> 00:15:02.375
-because a Server 2025 controller can
-join only a domain at 2016 or higher.
-
-237
-00:15:02.375 --> 00:15:04.025
-And mixed domain levels.
-
-238
-00:15:04.025 --> 00:15:09.425
-Server 2025 is the first new
-functional level since 2016.
-
-239
-00:15:09.425 --> 00:15:13.305
-Capture site links with cost and
-interval, and the subnet map:
-
-240
-00:15:13.305 --> 00:15:17.650
-an unmapped subnet sends clients
-to arbitrary domain controllers.
-
-241
-00:15:17.650 --> 00:15:19.825
-Second, the OU hierarchy.
-
-242
-00:15:19.825 --> 00:15:23.059
-The goal is to capture what
-the tree encodes so the
-
-243
-00:15:23.059 --> 00:15:26.450
-attribute design reproduces
-intent, not structure.
-
-244
-00:15:26.450 --> 00:15:29.748
-For each OU, record placement
-and size; its GPO links,
-
-245
-00:15:29.748 --> 00:15:34.851
-preferably through Get-GP-Inheritance,
-which returns link order, enforcement,
-
-246
-00:15:34.851 --> 00:15:40.269
-enabled state and inheritance blocking;
-its non-inherited access control entries,
-
-247
-00:15:40.269 --> 00:15:45.530
-with built-in principals dropped, which
-are the delegations someone made by hand
-
-248
-00:15:45.530 --> 00:15:50.712
-and become the administrative unit
-candidates; and a text rendering for review.
-
-249
-00:15:50.712 --> 00:15:55.562
-Third, Group Policy, the largest
-and most consequential artifact.
-
-250
-00:15:55.562 --> 00:16:00.163
+114
+00:06:57.050 --> 00:07:01.192
 Every live setting moves to Intune,
-moves elsewhere, or retires.
+moves elsewhere, or retires,
 
-251
-00:16:00.163 --> 00:16:02.637
-Sort GPOs into three groups.
+115
+00:07:01.192 --> 00:07:04.618
+and overlapping settings
+have to be resolved first,
 
-252
-00:16:02.637 --> 00:16:05.813
-Unlinked or empty ones
-are retirement candidates.
-
-253
-00:16:05.813 --> 00:16:08.719
-Overlapping settings
-must be resolved first,
-
-254
-00:16:08.719 --> 00:16:12.313
+116
+00:07:04.618 --> 00:07:08.720
 because Intune's migration
 refuses conflicting values.
 
-255
-00:16:12.313 --> 00:16:14.088
-Live settings need a decision.
-
-256
-00:16:14.088 --> 00:16:18.748
-One correction: the source searched
-only OUs and the domain root,
-
-257
-00:16:18.748 --> 00:16:21.387
-so site-linked GPOs looked unlinked.
-
-258
-00:16:21.387 --> 00:16:25.357
-And Intune's Group Policy
-analytics imports XML reports
-
-259
-00:16:25.357 --> 00:16:29.360
-under four megabytes, so
-check sizes in the manifest.
-
-260
-00:16:30.110 --> 00:16:32.860
+117
+00:07:09.470 --> 00:07:12.220
 AD CS matters twice in a migration.
 
-261
-00:16:32.860 --> 00:16:38.095
+118
+00:07:12.220 --> 00:07:17.335
 It issues the certificates devices, domain
-controllers and smart cards depend on,
+controllers and smart cards rely on,
 
-262
-00:16:38.095 --> 00:16:41.020
+119
+00:07:17.335 --> 00:07:20.280
 and its misconfigurations
 are among the most
 
-263
-00:16:41.020 --> 00:16:44.022
-direct privilege-escalation
-paths in a forest.
+120
+00:07:20.280 --> 00:07:23.458
+direct paths to privilege
+escalation in a forest.
 
-264
-00:16:44.022 --> 00:16:48.269
-The ESC naming comes from
-SpecterOps' 2021 research,
+121
+00:07:23.458 --> 00:07:29.030
+The assessment checks the known patterns it
+can see, the ESC family from SpecterOps'
 
-265
-00:16:48.269 --> 00:16:54.785
-which defined ESC1 through ESC8; its
-tooling now covers patterns through ESC16.
+122
+00:07:29.030 --> 00:07:33.957
+2021 research, with Defender for
+Identity's definitions as the reference.
 
-266
-00:16:54.785 --> 00:16:58.345
-Defender for Identity's definitions
-are the program's reference,
-
-267
-00:16:58.345 --> 00:17:00.785
-and the assessment checks
-the ones it can see.
-
-268
-00:17:00.785 --> 00:17:04.597
-ESC1 is a template where the
-enrollee supplies the subject,
-
-269
-00:17:04.597 --> 00:17:09.109
-an authentication extended key usage
-is allowed, no manager approval
-
-270
-00:17:09.109 --> 00:17:13.310
-or authorized signature is required,
-and broad groups can enroll.
-
-271
-00:17:13.310 --> 00:17:17.660
-ESC2 is a template with the Any
-Purpose usage, or none at all.
-
-272
-00:17:17.660 --> 00:17:20.713
-ESC4 is a template ACL that gives a broad
-
-273
-00:17:20.713 --> 00:17:24.322
-group rights such as Full
-Control or Write DACL.
-
-274
-00:17:24.322 --> 00:17:30.245
-ESC6 is the CA flag that lets every requester
-specify the subject alternative name
-
-275
-00:17:30.245 --> 00:17:35.823
-for every template; Microsoft's fix is to
-clear the flag and restart the service.
-
-276
-00:17:35.823 --> 00:17:40.698
-ESC7 is broad groups holding
-Manage CA or Manage Certificates.
-
-277
-00:17:40.698 --> 00:17:45.347
-That one needs the CA's own security
-settings, which Appendix B's collector
-
-278
-00:17:45.347 --> 00:17:50.073
-doesn't read; Defender for Identity
-assesses it where a sensor runs on the CA.
-
-279
-00:17:50.073 --> 00:17:52.240
+123
+00:07:33.957 --> 00:07:38.293
 The correction that matters most:
+the source's ESC1 check looked for
 
-280
-00:17:52.240 --> 00:17:56.498
-the source's ESC1 check tested for
-the Digital Signature key usage.
+124
+00:07:38.293 --> 00:07:42.783
+a key usage almost every template
+has, so it flagged nearly everything.
 
-281
-00:17:56.498 --> 00:18:00.411
-Almost every template has that,
-so it flagged nearly everything.
+125
+00:07:42.783 --> 00:07:47.384
+The real test is whether the template
+allows an authentication purpose, and a
 
-282
-00:18:00.411 --> 00:18:05.485
-The check has to test the extended key
-usage for an authentication purpose: client
+126
+00:07:47.384 --> 00:07:52.057
+template only counts if a CA actually
+publishes it and broad groups can enroll.
 
-283
-00:18:05.485 --> 00:18:10.410
-authentication, smart card logon, PKINIT
-client authentication, or Any Purpose.
+127
+00:07:52.057 --> 00:07:53.458
+This is report only.
 
-284
-00:18:10.410 --> 00:18:13.521
-And a template that passes
-is a candidate only if a
+128
+00:07:53.458 --> 00:07:58.340
+Fixing it belongs to the
+PKI owner, through Book 07.
 
-285
-00:18:13.521 --> 00:18:16.860
-CA actually publishes it
-and broad groups can enroll.
-
-286
-00:18:16.860 --> 00:18:17.860
-Report only.
-
-287
-00:18:17.860 --> 00:18:20.557
-Remediation belongs to the PKI owner,
-
-288
-00:18:20.557 --> 00:18:24.472
-through the Federal
-Modernization Workbook's Book 07.
-
-289
-00:18:24.472 --> 00:18:27.901
-The same inventory also tells
-you whether user certificates
-
-290
-00:18:27.901 --> 00:18:31.220
-can move to Entra
-certificate-based authentication.
-
-291
-00:18:31.970 --> 00:18:36.055
+129
+00:07:59.090 --> 00:08:03.322
 Every computer object is a
 migration decision: Entra join,
 
-292
-00:18:36.055 --> 00:18:40.395
-hybrid join, Azure Arc, retirement,
+130
+00:08:03.322 --> 00:08:07.465
+hybrid join, Azure Arc, retire,
 or keep in Active Directory.
 
-293
-00:18:40.395 --> 00:18:44.875
-The inventory carries the delegation
-attributes, and the source got two
+131
+00:08:07.465 --> 00:08:12.502
+Delegation is where the source got things
+wrong, so classify by what's actually set.
 
-294
-00:18:44.875 --> 00:18:48.907
-things wrong here, so classify by
-what's actually set, in this order.
+132
+00:08:12.502 --> 00:08:17.853
+Unconstrained delegation lets a service
+impersonate any user to any service.
 
-295
-00:18:48.907 --> 00:18:53.270
-Trusted for delegation set to
-true is unconstrained delegation.
+133
+00:08:17.853 --> 00:08:22.527
+Domain controllers are expected to have
+it; anywhere else, it's a critical issue.
 
-296
-00:18:53.270 --> 00:18:58.570
-It lets a service impersonate any user
-who authenticates to it, to any service.
+134
+00:08:22.527 --> 00:08:27.786
+Treat a computer as stale only when both
+its last logon and its password are old,
 
-297
-00:18:58.570 --> 00:19:02.875
-Domain controllers are expected to
-have it, so exclude them as Defender
+135
+00:08:27.786 --> 00:08:30.940
+because the logon date can
+lag by up to two weeks.
 
-298
-00:19:02.875 --> 00:19:07.545
-for Identity does; every other unconstrained
-entry becomes a critical issue.
+136
+00:08:30.940 --> 00:08:34.287
+For users, expand the
+privileged groups recursively,
 
-299
-00:19:07.545 --> 00:19:11.096
-A target list plus
-trusted-to-authenticate-for-delegation
+137
+00:08:34.287 --> 00:08:36.265
+so nested members aren't missed.
 
-300
-00:19:11.096 --> 00:19:14.357
-is constrained delegation
-with protocol transition.
+138
+00:08:36.265 --> 00:08:40.402
+And among service accounts, user
+accounts with service principal names
 
-301
-00:19:14.357 --> 00:19:17.908
-A target list alone is
-constrained, Kerberos only.
+139
+00:08:40.402 --> 00:08:44.770
+are Kerberoastable, which makes them
+the highest priority to replace.
 
-302
-00:19:17.908 --> 00:19:21.995
-The source labeled protocol transition
-even without a target list.
-
-303
-00:19:21.995 --> 00:19:24.632
-And resource-based constrained delegation,
-
-304
-00:19:24.632 --> 00:19:28.695
-which the source missed entirely,
-is configured on the resource side.
-
-305
-00:19:28.695 --> 00:19:34.328
-Staleness: Last Logon Date is a converted
-timestamp that can lag the true last logon
-
-306
-00:19:34.328 --> 00:19:39.308
-by up to two weeks, so it's good enough
-for a ninety-day test, not a seven-day one.
-
-307
-00:19:39.308 --> 00:19:41.262
-Pair it with Password Last Set,
-
-308
-00:19:41.262 --> 00:19:44.545
-and treat a computer as
-stale only when both are old.
-
-309
-00:19:44.545 --> 00:19:49.474
-For users, expand the eight privileged
-groups recursively: Domain Admins,
-
-310
-00:19:49.474 --> 00:19:54.807
-Enterprise Admins, Schema Admins,
-Administrators and the four operator groups.
-
-311
-00:19:54.807 --> 00:19:59.375
-Then report orphaned admin count
-accounts, using recursive membership;
-
-312
-00:19:59.375 --> 00:20:04.095
-the source's direct match missed nested
-members and over-reported orphans.
-
-313
-00:20:04.095 --> 00:20:06.320
-Service accounts come in four kinds.
-
-314
-00:20:06.320 --> 00:20:09.177
-User accounts with service
-principal names are
-
-315
-00:20:09.177 --> 00:20:12.320
-Kerberoastable and the
-highest priority to replace.
-
-316
-00:20:12.320 --> 00:20:15.065
-Group managed service
-accounts span servers
-
-317
-00:20:15.065 --> 00:20:17.882
-and stay the default for
-multi-server services.
-
-318
-00:20:17.882 --> 00:20:21.474
-Delegated managed service
-accounts exist only in
-
-319
-00:20:21.474 --> 00:20:25.408
-Server 2025 domains and
-disable the original password.
-
-320
-00:20:25.408 --> 00:20:27.683
-Two limits matter in large forests:
-
-321
-00:20:27.683 --> 00:20:33.256
-a domain controller returns at most five
-thousand values of a multivalued attribute
-
-322
-00:20:33.256 --> 00:20:38.410
-per response, and a principal can be in
-at most one thousand fifteen groups.
-
-323
-00:20:39.160 --> 00:20:42.772
+140
+00:08:45.520 --> 00:08:49.132
 Trusts are where undocumented
 history usually hides.
 
-324
-00:20:42.772 --> 00:20:47.481
-Each trust is a trusted domain object
-in its domain's System container,
+141
+00:08:49.132 --> 00:08:54.661
+The trust attributes are bit flags, so decode
+them from the published specification,
 
-325
-00:20:47.481 --> 00:20:49.673
-and Get-AD-Trust returns them all.
+142
+00:08:54.661 --> 00:08:59.321
+not from memory, and keep the raw value
+too, so bits added later aren't lost.
 
-326
-00:20:49.673 --> 00:20:53.362
-Decode the trust attributes from
-the published bit values in
+143
+00:08:59.321 --> 00:09:03.459
+Then state direction plainly,
+because it's easy to get backwards:
 
-327
-00:20:53.362 --> 00:20:57.197
-the Active Directory technical
-specification, not from memory.
+144
+00:09:03.459 --> 00:09:05.958
+access flows the opposite way to trust.
 
-328
-00:20:57.197 --> 00:20:58.822
-One means non-transitive.
+145
+00:09:05.958 --> 00:09:07.983
+The source design had it reversed.
 
-329
-00:20:58.822 --> 00:21:03.085
-Two, uplevel only: Windows
-2000 and later clients.
-
-330
-00:21:03.085 --> 00:21:06.910
-Four, quarantined domain:
-SID filtering applies.
-
-331
-00:21:06.910 --> 00:21:12.048
-Eight, forest transitive: a cross-forest
-trust between forest root domains.
-
-332
-00:21:12.048 --> 00:21:16.873
-Hex ten, cross-organization: the
-partner isn't part of your organization.
-
-333
-00:21:16.873 --> 00:21:18.985
-Hex twenty, within forest.
-
-334
-00:21:18.985 --> 00:21:24.760
-And hex forty, treat as external: a forest
-trust filtered as if it were external.
-
-335
-00:21:24.760 --> 00:21:29.294
-The specification also defines
-later bits, for AES keys,
-
-336
-00:21:29.294 --> 00:21:35.897
-RC4 and TGT delegation control, so record
-the raw value as well as the decoded list.
-
-337
-00:21:35.897 --> 00:21:38.498
-That way, bits added later aren't lost.
-
-338
-00:21:38.498 --> 00:21:42.777
-Direction is relative, and access
-flows the opposite way to trust:
-
-339
-00:21:42.777 --> 00:21:47.611
-members of the trusted domain can
-reach resources in the trusting domain.
-
-340
-00:21:47.611 --> 00:21:52.641
-Seen from one domain, an inbound trust lets
-this domain's users reach the partner's
-
-341
-00:21:52.641 --> 00:21:57.522
-resources, and an outbound trust lets
-the partner's users reach resources here.
-
-342
-00:21:57.522 --> 00:21:59.234
-The source had this reversed.
-
-343
-00:21:59.234 --> 00:22:02.229
+146
+00:09:07.983 --> 00:09:11.200
 So for each trust, the
-assessment states plainly
+assessment says in plain words
 
-344
-00:22:02.229 --> 00:22:05.373
+147
+00:09:11.200 --> 00:09:14.344
 which side's users can reach
 which side's resources.
 
-345
-00:22:05.373 --> 00:22:06.623
-Then rate posture.
+148
+00:09:14.344 --> 00:09:19.470
+Selective authentication and SID
+filtering are posture, not findings.
 
-346
-00:22:06.623 --> 00:22:09.210
-Selective authentication on is hardened.
+149
+00:09:19.470 --> 00:09:25.320
+Verification needs administrative credentials,
+so it runs as its own elevated step.
 
-347
-00:22:09.210 --> 00:22:11.148
-SID filtering on is standard.
-
-348
-00:22:11.148 --> 00:22:12.447
-Neither is a finding.
-
-349
-00:22:12.447 --> 00:22:15.536
-Verification: the source
-called Test-AD-Trust,
-
-350
-00:22:15.536 --> 00:22:18.948
-which isn't a cmdlet in
-the ActiveDirectory module.
-
-351
-00:22:18.948 --> 00:22:24.023
-Use netdom trust with the verify switch,
-which checks the secure channel secrets,
-
-352
-00:22:24.023 --> 00:22:27.735
-or netdom query trust with
-verify for every outbound trust.
-
-353
-00:22:27.735 --> 00:22:30.288
-Both need administrative credentials,
-
-354
-00:22:30.288 --> 00:22:35.472
-so verification runs as its own elevated
-step, outside the scheduled collection.
-
-355
-00:22:35.472 --> 00:22:40.472
-Finally, a forest trust doesn't
+150
+00:09:25.320 --> 00:09:29.607
+And a forest trust doesn't
 convert into anything in Entra ID.
 
-356
-00:22:40.472 --> 00:22:44.065
-It identifies a partner whose
-access has to be redesigned
+151
+00:09:29.607 --> 00:09:34.900
+It marks a partner whose access has to
+be redesigned, which Module 4 covers.
 
-357
-00:22:44.065 --> 00:22:47.950
-with cross-tenant access
-settings, which Module 4 covers.
-
-358
-00:22:48.700 --> 00:22:52.225
+152
+00:09:35.650 --> 00:09:39.175
 What makes a run evidence is the
 pipeline around the collectors.
 
-359
-00:22:52.225 --> 00:22:58.434
-The orchestrator runs them in the fixed
-order and writes the assessment manifest:
+153
+00:09:39.175 --> 00:09:43.885
+Every run writes a manifest with a
+SHA-256 hash of every output file,
 
-360
-00:22:58.434 --> 00:23:04.095
-a new GUID for the run; the domain, host
-and account; the start, end and duration;
+154
+00:09:43.885 --> 00:09:47.995
+and a failed step is recorded
+rather than stopping the run,
 
-361
-00:23:04.095 --> 00:23:10.213
-the staleness threshold; and every output
-file with its size, time and SHA-256 hash.
-
-362
-00:23:10.213 --> 00:23:14.587
-A failed step is recorded in the
-manifest rather than stopping the run,
-
-363
-00:23:14.587 --> 00:23:16.925
+155
+00:09:47.995 --> 00:09:50.650
 so a partial run is visible as partial.
 
-364
-00:23:16.925 --> 00:23:19.839
+156
+00:09:50.650 --> 00:09:53.564
 Anyone holding the
 repository can recompute the
 
-365
-00:23:19.839 --> 00:23:22.825
+157
+00:09:53.564 --> 00:09:56.550
 hashes and show nothing
 changed after collection.
 
-366
-00:23:22.825 --> 00:23:24.850
-Then one run, one commit.
+158
+00:09:56.550 --> 00:10:01.575
+Each run becomes a single commit on its
+own branch, not hundreds of commits.
 
-367
-00:23:24.850 --> 00:23:28.650
-The reference design uses a
-self-hosted Gitea instance.
+159
+00:10:01.575 --> 00:10:04.975
+Issues are raised automatically
+for only two classes,
 
-368
-00:23:28.650 --> 00:23:33.929
-Each run gets its own branch, named for the
-domain and timestamp, and the multi-file
+160
+00:10:04.975 --> 00:10:10.415
+critical PKI patterns and unconstrained
+delegation outside the domain controllers;
 
-369
-00:23:33.929 --> 00:23:39.050
-contents endpoint commits the whole run,
-manifest included, as a single commit.
+161
+00:10:10.415 --> 00:10:13.362
+everything else feeds
+the planning documents.
 
-370
-00:23:39.050 --> 00:23:43.787
-The source committed one file per API
-call, hundreds of commits per run.
-
-371
-00:23:43.787 --> 00:23:48.575
-Issues are raised automatically for two
-classes only: critical PKI patterns,
-
-372
-00:23:48.575 --> 00:23:53.213
-and unconstrained delegation on accounts
-that aren't domain controllers.
-
-373
-00:23:53.213 --> 00:23:58.422
-Everything else goes to the planning
-documents: GPO reports to the Intune plan,
-
-374
-00:23:58.422 --> 00:24:00.346
-computers to the device plan,
-
-375
-00:24:00.346 --> 00:24:04.594
-the PKI report to certificate-based
-authentication readiness,
-
-376
-00:24:04.594 --> 00:24:09.724
-trusts to the partner access plan, and
-users and groups to the identity design.
-
-377
-00:24:09.724 --> 00:24:12.888
-Drift: run weekly and
-compare with the last run.
-
-378
-00:24:12.888 --> 00:24:15.437
-A changed hash tells you
-that something changed.
-
-379
-00:24:15.437 --> 00:24:19.523
-To say what, compare parsed
+162
+00:10:13.362 --> 00:10:16.892
+Run it weekly, and compare
 objects by a stable key,
 
-380
-00:24:19.523 --> 00:24:22.512
-a GUID or SID, and exclude timestamps.
+163
+00:10:16.892 --> 00:10:19.451
+not timestamps, to see what drifted.
 
-381
-00:24:22.512 --> 00:24:26.549
-Schedule under the managed service
-account, so no password is stored.
+164
+00:10:19.451 --> 00:10:23.640
+And handle the data carefully,
+because it's a map for an attacker.
 
-382
-00:24:26.549 --> 00:24:29.662
-Handling: the data is
-a map for an attacker.
+165
+00:10:24.390 --> 00:10:28.099
+Part 2 builds the Entra ID
+target and migrates onto it,
 
-383
-00:24:29.662 --> 00:24:32.182
-Encrypt it, restrict the repository,
+166
+00:10:28.099 --> 00:10:30.965
+starting with Module 3, the target design.
 
-384
-00:24:32.182 --> 00:24:37.725
-keep runs at least twelve months and delete
-after thirty-six unless a legal hold
+167
+00:10:30.965 --> 00:10:36.230
+The premise fits in one sentence: in
+Active Directory, where an object sits
 
-385
-00:24:37.725 --> 00:24:39.404
-applies, sign the module,
+168
+00:10:36.230 --> 00:10:42.210
+decides what applies to it; in Entra ID,
+what an object says about itself decides.
 
-386
-00:24:39.404 --> 00:24:43.351
-and keep the API token in a
-credential store, never in a URL.
+169
+00:10:42.960 --> 00:10:46.746
+Before any object moves, break
+the AD model into its parts,
 
-387
-00:24:43.351 --> 00:24:47.630
-Appendix B lists sixteen corrections
-made to the source design.
+170
+00:10:46.746 --> 00:10:49.485
+because each lands somewhere different.
 
-388
-00:24:48.380 --> 00:24:52.593
-Part 2: building the Entra ID
-target and migrating onto it.
-
-389
-00:24:52.593 --> 00:24:55.031
-Module 3 is the target design.
-
-390
-00:24:55.031 --> 00:24:57.842
-The chapter's premise
-fits in one sentence.
-
-391
-00:24:57.842 --> 00:25:02.055
-In Active Directory, where an object
-sits decides what applies to it.
-
-392
-00:25:02.055 --> 00:25:05.855
-In Entra ID, what an object
-says about itself decides.
-
-393
-00:25:05.855 --> 00:25:10.430
-So the target has to be built from
-attributes, not copied from containers.
-
-394
-00:25:10.430 --> 00:25:16.212
-The environment throughout is a Microsoft
-365 Government Community Cloud tenant,
-
-395
-00:25:16.212 --> 00:25:19.815
-which uses the worldwide
-Microsoft Graph endpoint,
-
-396
-00:25:19.815 --> 00:25:23.418
-not the separate endpoints
-that GCC High and DoD use.
-
-397
-00:25:23.418 --> 00:25:27.481
-Check each feature against the
-government service descriptions,
-
-398
-00:25:27.481 --> 00:25:29.620
-because some reach GCC later.
-
-399
-00:25:30.370 --> 00:25:35.612
-Before any object moves, decompose
-the AD identity model into its parts,
-
-400
-00:25:35.612 --> 00:25:37.745
-because each has its own path.
-
-401
-00:25:37.745 --> 00:25:41.008
-OUs do three jobs, and each
-goes somewhere different.
-
-402
-00:25:41.008 --> 00:25:45.648
-Group Policy scoping becomes
+171
+00:10:49.485 --> 00:10:54.831
+OUs do three jobs: policy scoping becomes
 Conditional Access and Intune profiles,
 
-403
-00:25:45.648 --> 00:25:48.558
-targeted by group
-membership, not container.
+172
+00:10:54.831 --> 00:10:57.661
+delegation becomes administrative units,
 
-404
-00:25:48.558 --> 00:25:54.114
-Administrative delegation becomes
-administrative units, which are free to create,
-
-405
-00:25:54.114 --> 00:25:58.558
-though each administrative unit
-(AU)-scoped administrator needs P1.
-
-406
-00:25:58.558 --> 00:26:02.670
-Logical organization becomes
+173
+00:10:57.661 --> 00:11:01.435
+and organization becomes
 dynamic groups and attributes.
 
-407
-00:26:02.670 --> 00:26:07.646
-The forest maps to the tenant: one trust
-boundary, no domain trusts inside it,
+174
+00:11:01.435 --> 00:11:05.599
+The forest becomes the tenant, trusts
+become cross-tenant access, and
 
-408
-00:26:07.646 --> 00:26:12.220
-and verified domains are routing
-suffixes, not security boundaries.
+175
+00:11:05.599 --> 00:11:08.595
+AdminSDHolder's purpose
+is served by Privileged
 
-409
-00:26:12.220 --> 00:26:16.145
-Trusts become B2B and
-cross-tenant access settings.
+176
+00:11:08.595 --> 00:11:11.298
+Identity Management and protected actions.
 
-410
-00:26:16.145 --> 00:26:20.149
-AdminSDHolder has no equivalent;
-Privileged Identity Management,
+177
+00:11:11.298 --> 00:11:14.922
+The design principle is that
+Entra ID inverts the model.
 
-411
-00:26:20.149 --> 00:26:24.439
-which makes assignments eligible and
-time-bound, and protected actions,
-
-412
-00:26:24.439 --> 00:26:28.014
-which demand an authentication
-context before high-impact
-
-413
-00:26:28.014 --> 00:26:30.945
-permissions are used,
-together serve its purpose.
-
-414
-00:26:30.945 --> 00:26:34.895
-And Schema Admins has none:
-Microsoft manages the schema.
-
-415
-00:26:34.895 --> 00:26:39.457
-This is the design principle: Entra
-ID inverts the governance model.
-
-416
-00:26:39.457 --> 00:26:43.520
+178
+00:11:14.922 --> 00:11:18.681
 Attributes decide memberships,
-and memberships decide policy.
+and memberships decide policy,
 
-417
-00:26:43.520 --> 00:26:46.545
-That's why attribute quality
+179
+00:11:18.681 --> 00:11:22.085
+which is why attribute quality
 gates everything after it.
 
-418
-00:26:46.545 --> 00:26:48.882
-Licensing gates the governance features.
+180
+00:11:22.085 --> 00:11:26.035
+Licensing gates the governance
+features, and the slide has the map.
 
-419
-00:26:48.882 --> 00:26:51.045
-Conditional Access needs P1.
-
-420
-00:26:51.045 --> 00:26:54.170
-Dynamic groups need P1 per unique member.
-
-421
-00:26:54.170 --> 00:26:59.295
-PIM, including PIM for Groups, and
-risk-based Conditional Access need P2.
-
-422
-00:26:59.295 --> 00:27:04.301
-As of October 2026, access reviews and
-entitlement management need Entra ID
-
-423
-00:27:04.301 --> 00:27:07.083
-Governance for the member users involved,
-
-424
-00:27:07.083 --> 00:27:12.645
-with only some capabilities left under P2,
-and Lifecycle Workflows need Governance.
-
-425
-00:27:12.645 --> 00:27:15.485
-Conditional Access for
-workload identities is
-
-426
-00:27:15.485 --> 00:27:18.395
-a separate Workload
-Identities Premium license.
-
-427
-00:27:18.395 --> 00:27:23.495
-The chapters assume P2 for everyone and
-Governance for the governed populations.
-
-428
-00:27:23.495 --> 00:27:29.495
+181
+00:11:26.035 --> 00:11:31.235
 One date to act on: the preview
-member-of operator ends November 3, 2026.
+member-of operator ends November 3,
 
-429
-00:27:29.495 --> 00:27:32.732
-After that, dynamic groups,
-dynamic administrative
+182
+00:11:31.235 --> 00:11:34.830
+2026, so replace any
+rules that use it now.
 
-430
-00:27:32.732 --> 00:27:36.120
-units and auto-assignment
-policies that use it freeze.
-
-431
-00:27:36.120 --> 00:27:37.990
-Replace those rules now.
-
-432
-00:27:38.740 --> 00:27:41.827
+183
+00:11:35.580 --> 00:11:38.667
 The first hybrid-period
 decision is the sync engine.
 
-433
-00:27:41.827 --> 00:27:46.740
+184
+00:11:38.667 --> 00:11:43.580
 Connect Sync is the long-standing,
 full-featured engine on a Windows Server.
 
-434
-00:27:46.740 --> 00:27:51.957
-Cloud Sync is a lightweight agent with its
-configuration in the cloud, and Microsoft
+185
+00:11:43.580 --> 00:11:47.242
+Cloud Sync is a lightweight
+agent configured from the cloud,
 
-435
-00:27:51.957 --> 00:27:56.652
-now calls it the strategic direction:
-new features are built primarily on it.
+186
+00:11:47.242 --> 00:11:50.392
+and Microsoft now calls it
+the strategic direction.
 
-436
-00:27:56.652 --> 00:27:59.171
-Here's the comparison from Microsoft's
+187
+00:11:50.392 --> 00:11:52.605
+The slide compares them side by side.
 
-437
-00:27:59.171 --> 00:28:02.240
-decision guide as of its
-October 2026 revision.
+188
+00:11:52.605 --> 00:11:57.906
+The short version: Cloud Sync runs multiple
+active agents with automatic failover,
 
-438
-00:28:02.240 --> 00:28:05.974
-Connect Sync runs on a server;
-Cloud Sync runs as agents,
+189
+00:11:57.906 --> 00:12:01.593
+while Connect Sync still wins
+on scale and advanced rules.
 
-439
-00:28:05.974 --> 00:28:09.128
-which can sit on existing
-domain controllers.
+190
+00:12:01.593 --> 00:12:05.156
+Cloud Sync now covers group
+provisioning back to AD and
 
-440
-00:28:09.128 --> 00:28:11.410
-Both handle connected multi-forest;
+191
+00:12:05.156 --> 00:12:09.030
+Exchange hybrid writeback, so
+those no longer force Connect.
 
-441
-00:28:11.410 --> 00:28:16.203
-only Cloud Sync handles disconnected
-forests, which matters after mergers.
-
-442
-00:28:16.203 --> 00:28:20.654
-For availability, Connect has one
-active server with a staging standby;
-
-443
-00:28:20.654 --> 00:28:24.728
-Cloud Sync runs multiple active
-agents with automatic failover.
-
-444
-00:28:24.728 --> 00:28:29.859
-Scale: Cloud Sync supports up to a hundred
-fifty thousand objects per AD domain and
-
-445
-00:28:29.859 --> 00:28:33.480
-groups up to fifty thousand
-members; Connect has no stated
-
-446
-00:28:33.480 --> 00:28:37.253
-object limit and goes to two
-hundred fifty thousand members.
-
-447
-00:28:37.253 --> 00:28:42.577
-Connect has advanced sync rules and cross-forest
-references; Cloud Sync has neither.
-
-448
-00:28:42.577 --> 00:28:46.502
-And Cloud Sync can provision
-groups from Entra ID back to AD,
-
-449
-00:28:46.502 --> 00:28:49.865
-and test with on-demand
-provisioning; Connect can't.
-
-450
-00:28:49.865 --> 00:28:52.077
-Two corrections to older guidance.
-
-451
-00:28:52.077 --> 00:28:57.385
-Group Writeback version two in Connect
-Sync was a preview that Microsoft
-
-452
-00:28:57.385 --> 00:29:03.041
-discontinued on June 30, 2024; Cloud Sync's
-group provisioning to AD replaces it.
-
-453
-00:29:03.041 --> 00:29:06.457
-And Cloud Sync now handles
-Exchange hybrid writeback,
-
-454
-00:29:06.457 --> 00:29:09.190
-so Exchange alone no
-longer forces Connect.
-
-455
-00:29:09.190 --> 00:29:12.277
-The program's rule: Cloud
+192
+00:12:09.030 --> 00:12:12.058
+The program's rule is Cloud
 Sync for new deployments,
 
-456
-00:29:12.277 --> 00:29:15.590
-and plan to migrate existing
-Connect installations.
+193
+00:12:12.058 --> 00:12:15.930
+and Connect only where a forest
+needs something Cloud Sync can't do.
 
-457
-00:29:15.590 --> 00:29:20.144
-Stay on Connect only where a forest
-needs something Cloud Sync doesn't do:
+194
+00:12:15.930 --> 00:12:20.710
+Both can run in one forest with separate
+scopes, so you can move in stages.
 
-458
-00:29:20.144 --> 00:29:25.305
-more than a hundred fifty thousand objects
-in a domain, groups over fifty thousand,
+195
+00:12:21.460 --> 00:12:24.285
+The second decision is
+where passwords are checked.
 
-459
-00:29:25.305 --> 00:29:29.252
-advanced rules, cross-forest
-references, or attribute merging.
+196
+00:12:24.285 --> 00:12:27.381
+With password hash sync,
+it happens in the cloud,
 
-460
-00:29:29.252 --> 00:29:33.487
-Both engines can run in one forest
-with mutually exclusive scopes,
+197
+00:12:27.381 --> 00:12:31.748
+needs no extra infrastructure, and
+survives an on-premises outage.
 
-461
-00:29:33.487 --> 00:29:35.027
-so you can move in stages.
+198
+00:12:31.748 --> 00:12:35.668
+Pass-through authentication
+depends on on-premises agents,
 
-462
-00:29:35.027 --> 00:29:39.590
-And never run two Connect servers
-in active mode against one tenant.
+199
+00:12:35.668 --> 00:12:38.961
+and federation with AD FS
+needs whole server farms.
 
-463
-00:29:40.340 --> 00:29:43.440
-The second decision is where
-passwords are validated.
+200
+00:12:38.961 --> 00:12:43.584
+Microsoft recommends turning on password
+hash sync whichever method you choose,
 
-464
-00:29:43.440 --> 00:29:48.666
-With password hash sync, validation happens
-in the cloud against a synchronized hash
+201
+00:12:43.584 --> 00:12:46.849
+because it's the fallback, and
+organizations that had it on
 
-465
-00:29:48.666 --> 00:29:51.758
-of the password hash, with
-no extra infrastructure,
+202
+00:12:46.849 --> 00:12:50.385
+recovered from ransomware outages
+in hours rather than weeks.
 
-466
-00:29:51.758 --> 00:29:54.040
-and it survives an on-premises outage.
+203
+00:12:50.385 --> 00:12:55.535
+So the program prefers it everywhere,
+and AD FS becomes a decommission target.
 
-467
-00:29:54.040 --> 00:29:59.402
-Pass-through authentication validates in
-the cloud after an on-premises agent checks
-
-468
-00:29:59.402 --> 00:30:03.201
-AD; Microsoft recommends at
-least three agents in production,
-
-469
-00:30:03.201 --> 00:30:06.403
-treated as tier zero, and it
-doesn't survive an outage.
-
-470
-00:30:06.403 --> 00:30:11.253
-Federation with AD FS validates
-on-premises and needs AD FS and
-
-471
-00:30:11.253 --> 00:30:16.103
-Web Application Proxy farms,
-load balancers and certificates.
-
-472
-00:30:16.103 --> 00:30:19.290
-Leaked-credential detection
-needs password hash sync.
-
-473
-00:30:19.290 --> 00:30:23.144
-Microsoft recommends enabling
-it whichever method you choose:
-
-474
-00:30:23.144 --> 00:30:27.362
-it's the fallback if agents or
-federation fail, and organizations that
-
-475
-00:30:27.362 --> 00:30:31.653
-had it on recovered from ransomware
-outages in hours rather than weeks.
-
-476
-00:30:31.653 --> 00:30:33.477
-The failover is manual.
-
-477
-00:30:33.477 --> 00:30:38.085
-So the program's position is password
-hash sync preferred everywhere,
-
-478
-00:30:38.085 --> 00:30:41.978
-pass-through transitional, and
-AD FS a decommission target.
-
-479
-00:30:41.978 --> 00:30:43.240
+204
+00:12:55.535 --> 00:12:56.797
 Then, matching.
 
-480
-00:30:43.240 --> 00:30:47.427
-When sync adds an object that
-might already exist in the cloud,
+205
+00:12:56.797 --> 00:13:00.771
+When sync meets an object that
+already exists in the cloud,
 
-481
-00:30:47.427 --> 00:30:50.876
-Entra ID tries a hard match
-first: the source anchor,
+206
+00:13:00.771 --> 00:13:04.248
+a match overwrites the cloud
+copy, so clean AD first.
 
-482
-00:30:50.876 --> 00:30:55.802
-by default the consistency GUID,
-against the cloud object's immutable ID.
+207
+00:13:04.248 --> 00:13:08.561
+And since July 1, 2026, sync can't
+hard-match onto cloud accounts
 
-483
-00:30:55.802 --> 00:30:59.896
-Without one, a soft match on
-UPN or primary SMTP address,
+208
+00:13:08.561 --> 00:13:13.310
+with privileged roles, so don't
+plan to take over admins that way.
 
-484
-00:30:59.896 --> 00:31:04.353
-which only works if the cloud
-object has no immutable ID yet.
-
-485
-00:31:04.353 --> 00:31:07.813
-Either one overwrites the
-cloud object's attributes,
-
-486
-00:31:07.813 --> 00:31:10.802
-including the password
-hash, so clean AD first.
-
-487
-00:31:10.802 --> 00:31:14.595
-Two tenant settings block soft
-match and hard-match takeover;
-
-488
-00:31:14.595 --> 00:31:19.353
-Microsoft advises leaving both blocked
-except in a planned matching window.
-
-489
-00:31:19.353 --> 00:31:24.776
-And since July 1, 2026, Entra ID blocks
-a hard match onto a cloud account that
-
-490
-00:31:24.776 --> 00:31:28.155
-already has an on-premises
-object identifier,
-
-491
-00:31:28.155 --> 00:31:32.690
-or holds or is eligible for a
-privileged role, for both engines.
-
-492
-00:31:32.690 --> 00:31:36.580
-Don't plan to take over cloud
-administrator accounts by sync.
-
-493
-00:31:37.330 --> 00:31:41.630
+209
+00:13:14.060 --> 00:13:18.360
 Groups and service accounts each get
 one recorded decision per object.
 
-494
-00:31:41.630 --> 00:31:45.494
-For groups, the AGDLP model
-doesn't map one to one,
+210
+00:13:18.360 --> 00:13:24.597
+Entra ID has no group scope, so the classic
+AD nesting model doesn't map one to one.
 
-495
-00:31:45.494 --> 00:31:48.367
-because Entra ID has no group scope.
+211
+00:13:24.597 --> 00:13:28.861
+Every security group gets one of
+five outcomes: keep it in AD,
 
-496
-00:31:48.367 --> 00:31:51.955
-So every AD security group
-gets one of five decisions.
+212
+00:13:28.861 --> 00:13:33.123
+sync it, convert it to cloud-only,
+make it dynamic, or retire it.
 
-497
-00:31:51.955 --> 00:31:54.822
-Used only for on-premises resource ACLs:
+213
+00:13:33.123 --> 00:13:37.852
+Nesting also works for fewer things
+in Entra ID, since app assignment and
 
-498
-00:31:54.822 --> 00:31:59.080
-keep it in AD and don't sync it,
-since a cloud copy adds nothing.
+214
+00:13:37.852 --> 00:13:42.423
+licensing don't cascade, so flatten
+deep chains and record the mapping.
 
-499
-00:31:59.080 --> 00:32:02.543
-Used for both on-premises
-and cloud: synchronize it,
-
-500
-00:32:02.543 --> 00:32:06.418
-with AD as the source of
-authority during the transition.
-
-501
-00:32:06.418 --> 00:32:10.254
-Used only for cloud resources:
-convert it to cloud-only.
-
-502
-00:32:10.254 --> 00:32:15.067
-Membership follows attributes exactly:
-convert it to a dynamic group.
-
-503
-00:32:15.067 --> 00:32:18.318
-No members or no assignments: retire it.
-
-504
-00:32:18.318 --> 00:32:22.511
-Where a cloud-only group still has
-to guard a Kerberos application,
-
-505
-00:32:22.511 --> 00:32:26.018
-Cloud Sync provisions it back
-to AD as a universal group.
-
-506
-00:32:26.018 --> 00:32:28.979
-Nesting works for fewer
-things in Entra ID.
-
-507
-00:32:28.979 --> 00:32:33.439
-Conditional Access follows nested
-members, but group-based application
-
-508
-00:32:33.439 --> 00:32:37.605
-assignment and group-based licensing
-don't cascade to nested groups.
-
-509
-00:32:37.605 --> 00:32:42.143
-So flatten deep AGDLP chains to
-direct membership or a dynamic rule,
-
-510
-00:32:42.143 --> 00:32:44.980
-and record the mapping
-for the audit trail.
-
-511
-00:32:44.980 --> 00:32:49.080
+215
+00:13:42.423 --> 00:13:46.523
 For service accounts, the rule
 is to eliminate stored secrets.
 
-512
-00:32:49.080 --> 00:32:54.930
-A traditional account that calls Microsoft
-365 or other Entra-protected APIs becomes
+216
+00:13:46.523 --> 00:13:51.213
+Accounts that call cloud APIs become
+app registrations with certificates or
 
-513
-00:32:54.930 --> 00:32:58.261
-an application registration
-with a certificate,
+217
+00:13:51.213 --> 00:13:55.110
+federated credentials, Azure
+workloads get managed identities,
 
-514
-00:32:58.261 --> 00:33:02.242
-or a federated credential where
-the host has an OIDC issuer.
+218
+00:13:55.110 --> 00:13:59.511
+and on-premises Kerberos workloads go
+to group managed service accounts.
 
-515
-00:33:02.242 --> 00:33:04.915
-One whose workload runs
-on an Azure resource
-
-516
-00:33:04.915 --> 00:33:08.093
-becomes a managed identity,
-user-assigned preferred.
-
-517
-00:33:08.093 --> 00:33:11.861
-On-premises Kerberos workloads,
-and standalone MSAs,
-
-518
-00:33:11.861 --> 00:33:14.517
-go to a group managed service account.
-
-519
-00:33:14.517 --> 00:33:19.742
-A gMSA whose workload moves to the cloud
-goes to workload identity federation.
-
-520
-00:33:19.742 --> 00:33:23.704
-A federated credential has
-three working parts: the issuer,
-
-521
-00:33:23.704 --> 00:33:28.231
-a subject that must match exactly
-with no wildcards, and an audience.
-
-522
-00:33:28.231 --> 00:33:30.783
-An application holds at most twenty,
-
-523
-00:33:30.783 --> 00:33:35.292
-and a wrong subject fails only at
-token exchange, so test each one.
-
-524
-00:33:35.292 --> 00:33:40.580
-Every application gets two human owners,
+219
+00:13:59.511 --> 00:14:04.370
+Every app gets two human owners,
 and no client secrets in production.
 
-525
-00:33:41.330 --> 00:33:46.480
-Privileged access has one core rule: no
-standing access to privileged roles.
+220
+00:14:05.120 --> 00:14:09.082
+Privileged access has one core
+rule: no standing access.
 
-526
-00:33:46.480 --> 00:33:50.980
+221
+00:14:09.082 --> 00:14:13.412
 Every privileged assignment is
-eligible and activated just in time.
+eligible and activated just in time,
 
-527
-00:33:50.980 --> 00:33:54.880
-The only permanent active assignments
+222
+00:14:13.412 --> 00:14:17.133
+and the only permanent ones
 are the two emergency accounts.
 
-528
-00:33:54.880 --> 00:33:59.430
-The mapping from AD groups is the
-program's design, not an equivalence.
-
-529
-00:33:59.430 --> 00:34:04.515
+223
+00:14:17.133 --> 00:14:21.492
 Domain Admins maps to Global
-Administrator, held by very few; Microsoft
+Administrator, held by very few,
 
-530
-00:34:04.515 --> 00:34:10.118
-recommends fewer than five, and most
-Domain Admin duties map to narrower roles.
+224
+00:14:21.492 --> 00:14:24.632
+and most of its duties
+map to narrower roles.
 
-531
-00:34:10.118 --> 00:34:13.758
-Enterprise Admins maps to
-Privileged Role Administrator,
+225
+00:14:24.632 --> 00:14:26.574
+The slide has the full mapping,
 
-532
-00:34:13.758 --> 00:34:15.467
-with its own approval chain.
+226
+00:14:26.574 --> 00:14:30.070
+which is the program's design,
+not an exact equivalence.
 
-533
-00:34:15.467 --> 00:34:20.185
-Account Operators becomes User Administrator
-scoped to administrative units;
+227
+00:14:30.070 --> 00:14:33.648
+Activation is short, four hours
+at most for the top roles,
 
-534
-00:34:20.185 --> 00:34:23.423
-Conditional Access can't
-target AU-scoped assignments,
+228
+00:14:33.648 --> 00:14:38.470
+with approval and a ticket, and it forces
+a fresh phishing-resistant sign-in.
 
-535
-00:34:23.423 --> 00:34:26.943
-so put those administrators in
-a group for policy targeting.
+229
+00:14:38.470 --> 00:14:41.366
+Name approvers outside
+the requester's chain,
 
-536
-00:34:26.943 --> 00:34:30.882
-Server Operators moves to Intune
-or Azure role-based access,
+230
+00:14:41.366 --> 00:14:44.720
+because with none configured,
+PIM can lock the tenant.
 
-537
-00:34:30.882 --> 00:34:33.797
-Backup Operators to
-service-specific roles,
+231
+00:14:44.720 --> 00:14:49.838
+The emergency accounts are cloud-only,
+excluded from restrictive policies,
 
-538
-00:34:33.797 --> 00:34:38.918
-and Group Policy Creator Owners to the
-Intune Policy and Profile Manager role.
+232
+00:14:49.838 --> 00:14:54.350
+alerted on every sign-in, and
+tested at least every ninety days.
 
-539
-00:34:38.918 --> 00:34:43.633
-The PIM standards: Global Administrator
-and Privileged Role Administrator
+233
+00:14:55.100 --> 00:14:58.549
+Conditional Access replaces
+the logon restrictions
 
-540
-00:34:43.633 --> 00:34:48.568
-activate for at most four hours, with
-approval, justification and a ticket number.
-
-541
-00:34:48.568 --> 00:34:51.842
-Security Administrator gets
-eight hours with approval.
-
-542
-00:34:51.842 --> 00:34:55.140
-Most other admin roles get
-eight hours without approval,
-
-543
-00:34:55.140 --> 00:34:56.754
-and the reader roles twelve.
-
-544
-00:34:56.754 --> 00:35:01.917
-Eligibility expires within twelve months
-and renews through an access review.
-
-545
-00:35:01.917 --> 00:35:06.351
-And because PIM's own MFA setting can
-be satisfied by an earlier sign-in,
-
-546
-00:35:06.351 --> 00:35:10.707
-the program uses PIM's authentication
-context option to force fresh,
-
-547
-00:35:10.707 --> 00:35:13.993
-phishing-resistant
-authentication at activation.
-
-548
-00:35:13.993 --> 00:35:18.280
-Configure named approvers outside
-the requester's chain, because with
-
-549
-00:35:18.280 --> 00:35:22.568
-none configured, PIM falls back to
-active admins and can lock the tenant.
-
-550
-00:35:22.568 --> 00:35:26.911
-Emergency access: two cloud-only
-accounts in the onmicrosoft domain,
-
-551
-00:35:26.911 --> 00:35:31.256
-permanent active Global Administrator,
-on a passkey security key or
-
-552
-00:35:31.256 --> 00:35:35.829
-certificate-based authentication,
-each credential stored separately.
-
-553
-00:35:35.829 --> 00:35:40.656
-Microsoft's mandatory MFA for
-admin portals applies to them too,
-
-554
-00:35:40.656 --> 00:35:43.205
-so a password in a safe isn't enough.
-
-555
-00:35:43.205 --> 00:35:46.369
-Exclude them from every
-restrictive policy,
-
-556
-00:35:46.369 --> 00:35:51.080
-alert on every sign-in, and test
-them at least every ninety days.
-
-557
-00:35:51.830 --> 00:35:55.586
-Conditional Access replaces the
-logon restrictions and network
-
-558
-00:35:55.586 --> 00:35:59.205
-controls that Active Directory
+234
+00:14:58.549 --> 00:15:02.075
+and network controls AD
 enforced through Group Policy.
 
-559
-00:35:59.205 --> 00:36:04.893
-The program organizes it around personas:
-populations with distinct needs and risk.
+235
+00:15:02.075 --> 00:15:04.985
+The program organizes it around personas,
 
-560
-00:36:04.893 --> 00:36:09.805
-Internals are employees and contractors,
-identified by the worker type code.
+236
+00:15:04.985 --> 00:15:09.642
+populations with different needs
+and risks: internal staff, admins,
 
-561
-00:36:09.805 --> 00:36:13.711
-Admins are users eligible for
-or holding privileged roles,
+237
+00:15:09.642 --> 00:15:13.800
+partners, guests, service accounts,
+and the break-glass group.
 
-562
-00:36:13.711 --> 00:36:18.972
-identified by account type or a group of
-PIM-eligible users; target them by group,
+238
+00:15:13.800 --> 00:15:15.846
+One tip: target admins by group,
 
-563
-00:36:18.972 --> 00:36:23.197
-because role targeting supports
-built-in directory roles only,
+239
+00:15:15.846 --> 00:15:19.938
+because role targeting doesn't
+cover scoped or custom roles.
 
-564
-00:36:23.197 --> 00:36:25.030
-not AU-scoped or custom ones.
+240
+00:15:19.938 --> 00:15:24.932
+The baseline set, CA001 through
+CA017, runs from blocking legacy
 
-565
-00:36:25.030 --> 00:36:30.183
-Externals are guests from partner organizations,
-Guests are ad hoc external users,
+241
+00:15:24.932 --> 00:15:30.775
+sign-in for everyone to requiring
+phishing-resistant strength for admins.
 
-566
-00:36:30.183 --> 00:36:33.768
-Service accounts are
-single-tenant workload identities,
+242
+00:15:30.775 --> 00:15:36.300
+Book 04's library is the authoritative
+set and extends it for the CISA baseline.
 
-567
-00:36:33.768 --> 00:36:36.830
-and Break-glass is the
-dedicated exclusion group.
+243
+00:15:36.300 --> 00:15:39.456
+Rollout is staged:
+report-only, then a pilot,
 
-568
-00:36:36.830 --> 00:36:41.855
-The baseline set runs
-from CA001 through CA017.
+244
+00:15:39.456 --> 00:15:43.063
+then phased waves, each
+behind a monitoring gate.
 
-569
-00:36:41.855 --> 00:36:43.067
-A few anchors.
-
-570
-00:36:43.067 --> 00:36:47.893
-CA001 blocks legacy
-authentication for all users.
-
-571
-00:36:47.893 --> 00:36:53.301
-CA003 requires the phishing-resistant
-authentication strength for admins,
-
-572
-00:36:53.301 --> 00:36:55.667
-with a four-hour sign-in frequency.
-
-573
-00:36:55.667 --> 00:37:02.343
-CA006 requires MFA for internals,
-phishing-resistant as the end state.
-
-574
-00:37:02.343 --> 00:37:06.892
-CA008 blocks internals
-outside trusted countries.
-
-575
-00:37:06.892 --> 00:37:13.448
-CA013 uses Microsoft's newer require risk
-remediation control for high user risk;
-
-576
-00:37:13.448 --> 00:37:19.330
-it isn't supported for guests, so CA012
-blocks risky guest sign-ins instead.
-
-577
-00:37:19.330 --> 00:37:24.418
-CA015 blocks workload identities
-outside trusted networks.
-
-578
-00:37:24.418 --> 00:37:29.630
-CA002, the old break-glass grant
-policy, is retired: a policy can't
-
-579
-00:37:29.630 --> 00:37:35.743
-create an exemption; the exclusion on
-every other policy is the exemption.
-
-580
-00:37:35.743 --> 00:37:41.405
-Appendix C carries Graph JSON templates,
-all created in report-only state.
-
-581
-00:37:41.405 --> 00:37:47.249
-The Federal Modernization Workbook's
-Book 04's library is authoritative
-
-582
-00:37:47.249 --> 00:37:53.093
-and adds CA018 through CA038
-for the CISA BOD 25-01 baseline.
-
-583
-00:37:53.093 --> 00:37:58.544
-Authentication strengths name what's
-accepted: phishing-resistant MFA is Windows
-
-584
-00:37:58.544 --> 00:38:04.392
-Hello for Business, FIDO2 passkeys, or
-multifactor certificate-based authentication.
-
-585
-00:38:04.392 --> 00:38:08.805
-Authenticator push and phone sign-in
-aren't phishing-resistant on their own.
-
-586
-00:38:08.805 --> 00:38:13.846
-Rollout has three stages: report-only
-for two to four weeks, a two-week pilot,
-
-587
-00:38:13.846 --> 00:38:18.805
-then phased waves over four to eight
-weeks, each behind a monitoring gate.
-
-588
-00:38:18.805 --> 00:38:22.318
+245
+00:15:43.063 --> 00:15:46.462
 And never switch an all-users
-policy straight from off to on.
+policy straight from off to
 
-589
-00:38:22.318 --> 00:38:27.860
-Confirm the break-glass exclusion, and that
-both emergency accounts still sign in.
+246
+00:15:46.462 --> 00:15:50.500
+on without confirming both
+emergency accounts still sign in.
 
-590
-00:38:28.610 --> 00:38:32.310
-Module 4: migrating,
-governing, and proving it.
+247
+00:15:51.250 --> 00:15:54.900
+Module 4 is migrating,
+governing and proving it.
 
-591
-00:38:32.310 --> 00:38:34.500
+248
+00:15:54.900 --> 00:15:57.090
 Chapter 10 states the finish line:
 
-592
-00:38:34.500 --> 00:38:37.785
+249
+00:15:57.090 --> 00:16:00.375
 the migration ends when
 governance runs on its own.
 
-593
-00:38:37.785 --> 00:38:41.931
-Joiners, movers and leavers flow
-from the HR record without a ticket,
+250
+00:16:00.375 --> 00:16:04.214
+Joiners, movers and leavers
+flow from HR without a ticket,
 
-594
-00:38:41.931 --> 00:38:46.374
-every privileged session starts with
-a phishing-resistant credential,
-
-595
-00:38:46.374 --> 00:38:49.410
+251
+00:16:04.214 --> 00:16:07.920
 and drift shows up in a diff
 instead of an incident.
 
-596
-00:38:49.410 --> 00:38:51.507
-We'll cover the governance machinery,
-
-597
-00:38:51.507 --> 00:38:55.700
-the authentication roadmap and the
-eleven-phase playbook from Chapter 10,
-
-598
-00:38:55.700 --> 00:38:59.961
-then Chapter 11's reference deployment,
-which runs the whole sequence on one
-
-599
-00:38:59.961 --> 00:39:04.910
-representative two-forest estate and shows
-what the assessor receives at the end.
-
-600
-00:39:05.660 --> 00:39:09.045
+252
+00:16:08.670 --> 00:16:12.117
 Governance in Active Directory
 was mostly a ticket queue:
 
-601
-00:39:09.045 --> 00:39:13.135
-someone asked for membership, someone
+253
+00:16:12.117 --> 00:16:15.995
+someone asked for access, someone
 added it, and nobody took it away.
 
-602
-00:39:13.135 --> 00:39:15.323
+254
+00:16:15.995 --> 00:16:18.183
 The target replaces that with a loop.
 
-603
-00:39:15.323 --> 00:39:18.986
-HR-driven provisioning creates
-and updates the account.
+255
+00:16:18.183 --> 00:16:23.503
+HR-driven provisioning creates the account,
+Lifecycle Workflows run the joiner,
 
-604
-00:39:18.986 --> 00:39:23.235
-Lifecycle Workflows run the
-joiner, mover and leaver tasks.
+256
+00:16:23.503 --> 00:16:27.950
+mover and leaver tasks, access
+packages grant access with an expiry,
 
-605
-00:39:23.235 --> 00:39:26.373
-Access packages grant
-access with an expiry.
-
-606
-00:39:26.373 --> 00:39:29.747
-And access reviews remove
+257
+00:16:27.950 --> 00:16:31.444
+and access reviews remove
 what's no longer justified.
 
-607
-00:39:29.747 --> 00:39:34.534
-Lifecycle Workflows act on accounts that
-already exist; they don't create them.
+258
+00:16:31.444 --> 00:16:36.258
+For example, seven days before the hire
+date the manager is emailed a Temporary
 
-608
-00:39:34.534 --> 00:39:38.485
-The time-based triggers key on
-the native employee hire date and
-
-609
-00:39:38.485 --> 00:39:42.585
-leave date attributes, with an offset
-of up to a hundred eighty days.
-
-610
-00:39:42.585 --> 00:39:47.322
-For synced users, those dates must
-be synced into Entra ID first.
-
-611
-00:39:47.322 --> 00:39:52.541
-Pre-hire runs seven days before the hire
-date: confirm the account exists, disabled;
-
-612
-00:39:52.541 --> 00:39:55.073
-request the onboarding access package;
-
-613
-00:39:55.073 --> 00:39:58.911
-and generate a Temporary Access
-Pass emailed to the manager,
-
-614
-00:39:58.911 --> 00:40:03.285
-so the new hire registers a
+259
+00:16:36.258 --> 00:16:41.220
+Access Pass, so the new hire registers a
 phishing-resistant credential on day one.
 
-615
-00:40:03.285 --> 00:40:07.764
-Joiner runs on the day: enable the
-account, assign licenses by group,
+260
+00:16:41.220 --> 00:16:45.507
+On the leave date, the account is
+disabled and its sessions revoked.
 
-616
-00:40:07.764 --> 00:40:11.510
-send the welcome email,
-request the department package.
+261
+00:16:45.507 --> 00:16:49.983
+Two cautions: remove privileged
+access before the delete task runs,
 
-617
-00:40:11.510 --> 00:40:16.306
-Mover fires on a change to department,
-division code or position category:
+262
+00:16:49.983 --> 00:16:54.058
+and delete synced users in AD, or
+they come back on the next sync.
 
-618
-00:40:16.306 --> 00:40:19.923
-remove the old department's
-package, request the new one,
+263
+00:16:54.058 --> 00:16:56.580
+Quarterly reviews close the loop.
 
-619
-00:40:19.923 --> 00:40:25.348
-let dynamic groups and a dynamic administrative
-unit adjust, and review what's left.
-
-620
-00:40:25.348 --> 00:40:28.554
-Leaver runs on the leave
-date: disable the account,
-
-621
-00:40:28.554 --> 00:40:30.823
-revoke refresh and session tokens,
-
-622
-00:40:30.823 --> 00:40:35.595
-remove access packages and then licenses
-after the mailbox is converted,
-
-623
-00:40:35.595 --> 00:40:39.585
-remove group memberships at
-thirty days and delete at ninety.
-
-624
-00:40:39.585 --> 00:40:40.748
-Two cautions.
-
-625
-00:40:40.748 --> 00:40:44.521
-The delete task doesn't support
-users holding Entra roles or
-
-626
-00:40:44.521 --> 00:40:48.898
-role-assignable group membership,
-so remove privileged access first.
-
-627
-00:40:48.898 --> 00:40:51.776
-And a synced user
-deleted only in the cloud
-
-628
-00:40:51.776 --> 00:40:54.572
-comes back on the next
-sync; delete it in AD.
-
-629
-00:40:54.572 --> 00:40:56.160
-Reviews close the loop.
-
-630
-00:40:56.160 --> 00:41:01.067
-PIM-eligible role assignments are
-reviewed quarterly by the security team,
-
-631
-00:41:01.067 --> 00:41:04.883
-not by self-review, which leaves
-role-assignable groups out;
-
-632
-00:41:04.883 --> 00:41:08.310
-that review is the AC-6(7) evidence.
-
-633
-00:41:08.310 --> 00:41:13.300
-Sensitive groups go quarterly to
-owners, guests quarterly to sponsors.
-
-634
-00:41:14.050 --> 00:41:17.775
+264
+00:16:57.330 --> 00:17:01.055
 Authentication modernization starts
 from the federal requirement.
 
-635
-00:41:17.775 --> 00:41:24.140
-OMB M-22-09 requires phishing-resistant
-MFA for staff, contractors and partners,
+265
+00:17:01.055 --> 00:17:05.391
+OMB M-22-09 requires
+phishing-resistant MFA,
 
-636
-00:41:24.140 --> 00:41:29.597
-and requires agencies to stop supporting
-methods that fail to resist phishing,
+266
+00:17:05.391 --> 00:17:10.280
+and an end to methods like SMS and
+voice codes for routine access.
 
-637
-00:41:29.597 --> 00:41:32.738
-such as SMS and voice
-codes, for routine access.
-
-638
-00:41:32.738 --> 00:41:35.300
-It names PIV as the simplest route.
-
-639
-00:41:35.300 --> 00:41:39.348
+267
+00:17:10.280 --> 00:17:13.920
 Its targets were set for
 the end of fiscal year 2024,
 
-640
-00:41:39.348 --> 00:41:44.263
-so as of October 2026 these are
-requirements to meet, not goals.
+268
+00:17:13.920 --> 00:17:16.780
+so these are requirements now, not goals.
 
-641
-00:41:44.263 --> 00:41:46.012
+269
+00:17:16.780 --> 00:17:18.530
 That reorders the roadmap.
 
-642
-00:41:46.012 --> 00:41:48.763
-Older plans put smart-card sign-in last.
+270
+00:17:18.530 --> 00:17:20.693
+Older plans put smart cards last,
 
-643
-00:41:48.763 --> 00:41:52.411
-But a federal workforce already
+271
+00:17:20.693 --> 00:17:24.459
+but a federal workforce already
 carries PIV or CAC cards,
 
-644
-00:41:52.411 --> 00:41:57.534
-so Entra certificate-based authentication
-is the fastest path: the credential
+272
+00:17:24.459 --> 00:17:30.067
+so certificate-based authentication straight
+against Entra ID is the fastest path.
 
-645
-00:41:57.534 --> 00:42:02.501
-is issued, and it works directly against
-Entra ID without a federation server.
+273
+00:17:30.067 --> 00:17:35.513
+The program goes in four phases: privileged
+accounts first, then every card holder,
 
-646
-00:42:02.501 --> 00:42:07.689
-Phase one, privileged accounts: FIDO2
-passkeys with attestation enforced,
+274
+00:17:35.513 --> 00:17:40.718
+then managed Windows devices on Windows
+Hello, then everyone else on passkeys.
 
-647
-00:42:07.689 --> 00:42:11.663
-plus PIV or CAC through
-certificate-based authentication
+275
+00:17:40.718 --> 00:17:44.545
+Then the legacy cutoff: find
+the remaining legacy sign-ins,
 
-648
-00:42:11.663 --> 00:42:14.825
-where the admin holds a
-card, in four to six weeks.
+276
+00:17:44.545 --> 00:17:49.300
+move them, block them, and watch for
+thirty days until there are none.
 
-649
-00:42:14.825 --> 00:42:19.950
-Phase two, every PIV and CAC holder
-through certificate-based authentication.
-
-650
-00:42:19.950 --> 00:42:24.500
-Phase three, managed Windows devices
-on Windows Hello for Business.
-
-651
-00:42:24.500 --> 00:42:30.088
-Phase four, everyone else, including mobile,
-on passkeys in Microsoft Authenticator.
-
-652
-00:42:30.088 --> 00:42:32.813
-Those last three are eight
-to twelve weeks each,
-
-653
-00:42:32.813 --> 00:42:36.726
-and all four methods meet the
-built-in phishing-resistant strength.
-
-654
-00:42:36.726 --> 00:42:40.642
-For NIST control IA-2(6), separate device,
-
-655
-00:42:40.642 --> 00:42:45.392
-the program counts PIV cards and
-FIDO2 keys; Windows Hello lives in
-
-656
-00:42:45.392 --> 00:42:50.225
-the device gaining access, so it
-isn't counted for privileged accounts.
-
-657
-00:42:50.225 --> 00:42:54.950
-The authentication methods policy:
-SMS and voice off for staff.
-
-658
-00:42:54.950 --> 00:42:58.862
-Temporary Access Pass is one-time
-use with a one-hour life,
-
-659
-00:42:58.862 --> 00:43:01.525
-against Microsoft's multi-use default.
-
-660
-00:43:01.525 --> 00:43:06.050
-Passkey registration needs
-MFA in the last five minutes.
-
-661
-00:43:06.050 --> 00:43:07.650
-Then the legacy cutoff.
-
-662
-00:43:07.650 --> 00:43:10.913
-Discover remaining legacy
-sign-ins in the logs.
-
-663
-00:43:10.913 --> 00:43:15.887
-Remediate onto OAuth, the Graph
-mail APIs, or a supported relay.
-
-664
-00:43:15.887 --> 00:43:18.250
-Block with CA001.
-
-665
-00:43:18.250 --> 00:43:23.520
-And monitor for thirty days until there
-are zero successful legacy sign-ins.
-
-666
-00:43:24.270 --> 00:43:28.020
+277
+00:17:50.050 --> 00:17:53.556
 The migration runs in eleven
-phases, zero through ten.
+phases, zero through ten,
 
-667
-00:43:28.020 --> 00:43:31.373
-Each has prerequisites,
-steps, validation criteria,
-
-668
-00:43:31.373 --> 00:43:34.336
-a rollback procedure
-and a duration estimate,
-
-669
-00:43:34.336 --> 00:43:39.170
-and a phase starts only when the previous
+278
+00:17:53.556 --> 00:17:58.575
+and each one starts only when the previous
 one's validation criteria are met.
 
-670
-00:43:39.170 --> 00:43:41.679
-The durations are planning estimates,
+279
+00:17:58.575 --> 00:18:01.350
+Every phase also has a rollback procedure.
 
-671
-00:43:41.679 --> 00:43:45.520
-not measured results; the total
-runs forty to seventy weeks.
+280
+00:18:01.350 --> 00:18:05.152
+The durations are planning
+estimates, not measured results,
 
-672
-00:43:45.520 --> 00:43:50.764
-Phase zero is assessment: the forest
-and identity inventories in Git, a UPN
+281
+00:18:05.152 --> 00:18:07.738
+and the total runs forty to seventy weeks.
 
-673
-00:43:50.764 --> 00:43:54.632
-remediation plan, a recorded
-decision for every group,
+282
+00:18:07.738 --> 00:18:11.048
+It starts with the assessment,
+then the sync deployment,
 
-674
-00:43:54.632 --> 00:43:57.383
-and every service account classified.
+283
+00:18:11.048 --> 00:18:13.926
+with object counts matching
+within one percent.
 
-675
-00:43:57.383 --> 00:44:02.841
-Phase one deploys sync: at least two Cloud
-Sync agents, or Connect where required,
+284
+00:18:13.926 --> 00:18:16.799
+Then sign-in, groups,
+service accounts and PIM,
 
-676
-00:44:02.841 --> 00:44:04.329
-password hash sync on,
+285
+00:18:16.799 --> 00:18:21.925
+which ends with no permanent admin
+assignments except the emergency accounts.
 
-677
-00:44:04.329 --> 00:44:08.795
-validated by object counts within
-one percent and no sync errors.
+286
+00:18:21.925 --> 00:18:25.305
+Conditional Access is
+enforced only after MFA
 
-678
-00:44:08.795 --> 00:44:13.157
-Rollback removes objects from
-scope, recoverable for thirty days.
-
-679
-00:44:13.157 --> 00:44:17.755
-Phase two sets the sign-in method and
-puts every Conditional Access policy
-
-680
-00:44:17.755 --> 00:44:21.908
-in report-only, with the emergency
-account sign-in tested and logged.
-
-681
-00:44:21.908 --> 00:44:27.421
-Phase three migrates groups, with dynamic
-membership validated within two percent.
-
-682
-00:44:27.421 --> 00:44:31.054
-Phase four modernizes service
-accounts, high-risk first,
-
-683
-00:44:31.054 --> 00:44:34.920
-running old and new credentials
-in parallel for thirty days.
-
-684
-00:44:34.920 --> 00:44:36.466
-Phase five rolls out PIM:
-
-685
-00:44:36.466 --> 00:44:40.795
-zero permanent active assignments
-except the emergency accounts.
-
-686
-00:44:40.795 --> 00:44:45.408
-Phase six enforces Conditional
-Access in waves, but only after MFA
-
-687
-00:44:45.408 --> 00:44:50.357
+287
+00:18:25.305 --> 00:18:29.725
 registration passes ninety-five
-percent in each targeted population.
+percent in each population.
 
-688
-00:44:50.357 --> 00:44:53.175
-Phase seven is the
-phishing-resistant roadmap,
+288
+00:18:29.725 --> 00:18:34.719
+Then come the phishing-resistant roadmap,
+the legacy cutoff, retiring federation,
 
-689
-00:44:53.175 --> 00:44:58.520
-validated by every privileged account on
-FIDO2 or certificate-based authentication,
-
-690
-00:44:58.520 --> 00:45:02.204
-over eighty percent of managed-device
-users on Windows Hello,
-
-691
-00:45:02.204 --> 00:45:06.321
-and over seventy percent of all
-users on a phishing-resistant method.
-
-692
-00:45:06.321 --> 00:45:09.657
-Phase eight cuts off legacy
-authentication after
-
-693
-00:45:09.657 --> 00:45:12.995
-thirty consecutive days
-with zero legacy sign-ins.
-
-694
-00:45:12.995 --> 00:45:16.703
-Phase nine decommissions
-federation, where it exists:
-
-695
-00:45:16.703 --> 00:45:20.658
-staged rollout moves users to
-password hash sync in waves,
-
-696
-00:45:20.658 --> 00:45:25.026
-then each domain is converted to
-managed with Graph PowerShell,
-
-697
-00:45:25.026 --> 00:45:30.382
-never the retired MSOnline cmdlet, and
-AD FS stays recoverable for ninety days.
-
-698
-00:45:30.382 --> 00:45:34.670
-Phase ten is steady-state governance:
-workflows, access packages,
-
-699
-00:45:34.670 --> 00:45:40.430
-reviews and drift detection running, and
+289
+00:18:34.719 --> 00:18:40.150
+and finally steady-state governance, with
 the operations runbook committed to Git.
 
-700
-00:45:41.180 --> 00:45:45.792
-Proving it starts with logs, because
-Entra ID keeps them only briefly.
+290
+00:18:40.900 --> 00:18:46.662
+Proving it starts with logs, because Entra
+ID keeps them only briefly: seven days
 
-701
-00:45:45.792 --> 00:45:51.755
-Sign-in and audit logs are kept seven days
-on the free tier and thirty on P1 or P2.
+291
+00:18:46.662 --> 00:18:51.988
+on the free tier, thirty on P1 or P2,
+and upgrading doesn't recover older data.
 
-702
-00:45:51.755 --> 00:45:55.405
-Risky sign-ins reach
-ninety days only with P2.
+292
+00:18:51.988 --> 00:18:55.593
+So stream everything to Log
+Analytics and keep sign-in
 
-703
-00:45:55.405 --> 00:46:00.043
-Microsoft Graph activity logs aren't
-retained at all; they're export only.
+293
+00:18:55.593 --> 00:18:58.799
+and audit logs for three
+hundred sixty-five days.
 
-704
-00:46:00.043 --> 00:46:03.030
-And upgrading a license
-doesn't recover older data.
+294
+00:18:58.799 --> 00:19:03.138
+On top of that, scheduled detections
+watch for things like stale accounts,
 
-705
-00:46:03.030 --> 00:46:06.921
-So stream every category to
-a Log Analytics workspace and
+295
+00:19:03.138 --> 00:19:07.263
+late-night privileged activations,
+and any emergency account sign-in.
 
-706
-00:46:06.921 --> 00:46:10.730
-keep sign-in and audit logs
-three hundred sixty-five days.
+296
+00:19:07.263 --> 00:19:12.493
+For compliance, the controls map to
+FedRAMP 20x Key Security Indicators,
 
-707
-00:46:10.730 --> 00:46:15.023
-On top of that, scheduled detections:
-stale accounts over ninety days;
+297
+00:19:12.493 --> 00:19:16.825
+evidenced by the workflows, reviews
+and PIM you've already built.
 
-708
-00:46:15.023 --> 00:46:18.639
-PIM activation between ten at
-night and six in the morning,
+298
+00:19:16.825 --> 00:19:18.462
+And drift lives in Git.
 
-709
-00:46:18.639 --> 00:46:23.911
-after converting from UTC; interactive
-sign-ins with no Conditional Access applied;
+299
+00:19:18.462 --> 00:19:22.957
+A weekly scan compares against a baseline
+and opens an issue with the diff,
 
-710
-00:46:23.911 --> 00:46:29.259
-application credentials expiring within
-thirty days; any emergency account sign-in,
-
-711
-00:46:29.259 --> 00:46:34.230
-which is critical; and more than fifty
-membership changes to one group in an hour.
-
-712
-00:46:34.230 --> 00:46:39.564
-For compliance, Compliance Manager has
-templates for NIST 800-53 Revision 5 and
-
-713
-00:46:39.564 --> 00:46:43.604
-FedRAMP Moderate, but they don't
-produce indicator evidence,
-
-714
-00:46:43.604 --> 00:46:45.867
-so treat them as a readiness check.
-
-715
-00:46:45.867 --> 00:46:49.907
-Under FedRAMP 20x's
-Consolidated Rules for 2026,
-
-716
-00:46:49.907 --> 00:46:53.305
-the controls map to Key
-Security Indicators.
-
-717
-00:46:53.305 --> 00:46:56.882
-Account management maps to
-automating account management,
-
-718
-00:46:56.882 --> 00:46:59.243
-evidenced by the workflows and reviews.
-
-719
-00:46:59.243 --> 00:47:02.737
-Least privilege maps to
-ensuring least privilege and
-
-720
-00:47:02.737 --> 00:47:06.154
-authorizing just-in-time,
-evidenced by groups and PIM.
-
-721
-00:47:06.154 --> 00:47:09.867
-Authentication maps to
-adopting passwordless methods.
-
-722
-00:47:09.867 --> 00:47:14.249
-Non-user authentication maps to
-securing non-user authentication,
-
-723
-00:47:14.249 --> 00:47:15.892
-the service account work.
-
-724
-00:47:15.892 --> 00:47:20.193
-And event logging maps to logging
-event types and reviewing logs.
-
-725
-00:47:20.193 --> 00:47:21.605
-Drift lives in Git.
-
-726
-00:47:21.605 --> 00:47:26.012
-The identity assessment commits its
-JSON to an identity baseline branch,
-
-727
-00:47:26.012 --> 00:47:29.841
-a weekly scan on Sunday at two in
-the morning compares against it,
-
-728
-00:47:29.841 --> 00:47:32.080
-and drift opens an issue with the diff.
-
-729
-00:47:32.080 --> 00:47:36.617
-The rule: close each finding at the
+300
+00:19:22.957 --> 00:19:26.862
+and each finding is fixed at the
 source, never by editing the copy.
 
-730
-00:47:36.617 --> 00:47:41.931
-Be clear about maturity: the comparison
-covers user additions and removals today;
+301
+00:19:26.862 --> 00:19:31.810
+Today that covers user additions
+and removals; the rest is planned.
 
-731
-00:47:41.931 --> 00:47:45.650
-attribute, membership and
-policy diffs are planned.
-
-732
-00:47:46.400 --> 00:47:50.163
-Chapter 11 puts it together
+302
+00:19:32.560 --> 00:19:36.585
+Chapter 11 puts it all together
 on one representative estate.
 
-733
-00:47:50.163 --> 00:47:53.670
-It's a framing pattern, not a
-report on a real engagement:
+303
+00:19:36.585 --> 00:19:41.147
+It's a composite, not a real engagement,
+and the counts are illustrative.
 
-734
-00:47:53.670 --> 00:47:58.737
-the agency is a composite and the counts
-are illustrative orders of magnitude.
+304
+00:19:41.147 --> 00:19:45.308
+Picture about fifty thousand
+users in two forests,
 
-735
-00:47:58.737 --> 00:48:03.778
-The archetype has about fifty thousand
-users in two forests, one inherited
+305
+00:19:45.308 --> 00:19:51.747
+joined by a forest trust nobody documented
+or owns, moving to Microsoft 365 GCC.
 
-736
-00:48:03.778 --> 00:48:09.062
-from an absorbed component, joined by a
-forest trust nobody documented or owns.
+306
+00:19:51.747 --> 00:19:54.514
+There are five phases, and
+each ends with a signed
 
-737
-00:48:09.062 --> 00:48:13.102
-About seventy thousand computer
-accounts, twelve thousand groups,
+307
+00:19:54.514 --> 00:19:57.211
+readiness bundle that
+the next one starts from.
 
-738
-00:48:13.102 --> 00:48:17.574
-several thousand service accounts,
-and about ninety SQL Server instances.
+308
+00:19:57.211 --> 00:20:02.451
+Discovery finds about four hundred
+accounts with service principal names, and
 
-739
-00:48:17.574 --> 00:48:22.013
-The destination is Microsoft 365 GCC.
+309
+00:20:02.451 --> 00:20:07.850
+every SQL Server one is captured, because
+a missing one silently falls back to NTLM.
 
-740
-00:48:22.013 --> 00:48:24.738
-Each phase ends with a
-signed readiness bundle,
+310
+00:20:07.850 --> 00:20:11.662
+Normalizing resolves a clash
+between two Operations OUs
 
-741
-00:48:24.738 --> 00:48:27.463
-and the next phase starts
-only from that bundle.
-
-742
-00:48:27.463 --> 00:48:32.887
-Discover: the read-only survey of both
-forests, plus the service account scan.
-
-743
-00:48:32.887 --> 00:48:35.599
-About four hundred accounts carry SPNs;
-
-744
-00:48:35.599 --> 00:48:38.638
-about sixty rate critical
-and a hundred high.
-
-745
-00:48:38.638 --> 00:48:43.152
-Every SQL Server SPN is captured
-with a pre-migration tag,
-
-746
-00:48:43.152 --> 00:48:47.763
-because a missing or wrong SPN
-silently falls back to NTLM.
-
-747
-00:48:47.763 --> 00:48:50.259
-About ten instances raise findings because
-
-748
-00:48:50.259 --> 00:48:52.688
-their service accounts
-can't be attributed.
-
-749
-00:48:52.688 --> 00:48:57.263
-Normalize: both forests have an
-Operations OU holding different people.
-
-750
-00:48:57.263 --> 00:49:00.345
-The agency builds an
-organizational registry and
-
-751
-00:49:00.345 --> 00:49:03.574
-resolves the collision there,
+311
+00:20:11.662 --> 00:20:15.235
+in an organizational registry,
 not by renaming groups.
 
-752
-00:49:03.574 --> 00:49:08.056
-About two thousand users and several
-hundred service accounts get findings,
+312
+00:20:15.235 --> 00:20:18.648
+Mapping finds four adapters
+that carry the risk,
 
-753
-00:49:08.056 --> 00:49:11.137
-resolved by the governance
-team, never auto-assigned.
+313
+00:20:18.648 --> 00:20:22.060
+including PKI and RADIUS,
+which move in lockstep.
 
-754
-00:49:11.137 --> 00:49:14.224
-Map: an adapter contract for each surface.
+314
+00:20:22.060 --> 00:20:26.640
+Then migration and validation,
+with every operation recorded.
 
-755
-00:49:14.224 --> 00:49:15.588
-Four carry the risk.
-
-756
-00:49:15.588 --> 00:49:19.268
-Sync, where cross-forest manager
-chains decide the engine,
-
-757
-00:49:19.268 --> 00:49:22.949
-since Cloud Sync doesn't
-support cross-forest references.
-
-758
-00:49:22.949 --> 00:49:26.466
-PKI and RADIUS, which move in lockstep
-
-759
-00:49:26.466 --> 00:49:30.550
-because 802.1X EAP-TLS
-depends on the same CA.
-
-760
-00:49:30.550 --> 00:49:34.962
-And SQL Server, whose Entra
-authentication needs SQL Server
-
-761
-00:49:34.962 --> 00:49:39.638
-2022 or later and isn't supported
-on failover cluster instances.
-
-762
-00:49:39.638 --> 00:49:43.437
-Migrate: every operation is
-a provenance-chained record.
-
-763
-00:49:43.437 --> 00:49:46.411
-About three hundred drift findings appear;
-
-764
-00:49:46.411 --> 00:49:51.201
-one P1 stops a SQL Server migration
-until a role assignment is reduced.
-
-765
-00:49:51.201 --> 00:49:57.620
-Validate compares the SPN inventories;
-about three P1 findings are re-registered.
-
-766
-00:49:58.370 --> 00:50:00.283
+315
+00:20:27.390 --> 00:20:29.303
 Last, what all this produces.
 
-767
-00:50:00.283 --> 00:50:04.745
-During migration the program
-classifies drift into five classes.
+316
+00:20:29.303 --> 00:20:33.338
+During migration, the program
+classifies drift into five kinds,
 
-768
-00:50:04.745 --> 00:50:09.657
-Schema drift: an attribute encoding that
-doesn't match the current schema version.
+317
+00:20:33.338 --> 00:20:37.678
+and it's honest about maturity: two
+are detected automatically today,
 
-769
-00:50:09.657 --> 00:50:12.122
-Provenance drift: a state change with no
+318
+00:20:37.678 --> 00:20:41.790
+one partly, and two still rely on
+people reviewing the assessment.
 
-770
-00:50:12.122 --> 00:50:15.183
-provenance event in the
-chain, which halts the run.
+319
+00:20:41.790 --> 00:20:46.950
+From Phase 2 on, the agency can produce
+an evidence bundle at any time, with the
 
-771
-00:50:15.183 --> 00:50:20.133
-Semantic drift: a value slipping back
-into a deprecated naming pattern.
+320
+00:20:46.950 --> 00:20:49.653
+readiness bundles, the SPN inventories,
 
-772
-00:50:20.133 --> 00:50:23.327
-Authorization drift: a
-Conditional Access policy that
+321
+00:20:49.653 --> 00:20:52.765
+the provenance chain
+and every drift finding.
 
-773
-00:50:23.327 --> 00:50:26.869
-contradicts the assurance level
-recorded for the principal,.
+322
+00:20:52.765 --> 00:20:57.031
+It goes to the security control
+assessor and the authorizing official
 
-774
-00:50:26.869 --> 00:50:31.932
-And identity drift: a principal in the
-tenant with no counterpart in the registry.
-
-775
-00:50:31.932 --> 00:50:33.532
-Be honest about maturity.
-
-776
-00:50:33.532 --> 00:50:37.707
-Schema and provenance detection
-are shipped, semantic is partial,
-
-777
-00:50:37.707 --> 00:50:41.426
-and authorization and identity
-detection are design-only;
-
-778
-00:50:41.426 --> 00:50:45.145
-today, people reviewing the
-assessment modules find those.
-
-779
-00:50:45.145 --> 00:50:49.544
-From Phase 2 on, the agency can
-produce an evidence bundle at any time:
-
-780
-00:50:49.544 --> 00:50:51.980
-each phase's signed readiness bundle,
-
-781
-00:50:51.980 --> 00:50:55.672
-both phase-tagged SPN
-inventories and their comparison,
-
-782
-00:50:55.672 --> 00:50:58.971
-the provenance chain for
-every adapter operation,
-
-783
-00:50:58.971 --> 00:51:03.056
-every drift finding with its
-remediation, and the GCC boundary
-
-784
-00:51:03.056 --> 00:51:07.770
-finding with its compensating controls
-and when each was last verified.
-
-785
-00:51:07.770 --> 00:51:09.133
-Who reads it matters.
-
-786
-00:51:09.133 --> 00:51:11.833
-FedRAMP authorizes
-cloud service offerings,
-
-787
-00:51:11.833 --> 00:51:15.457
-and third-party assessment
-organizations assess providers.
-
-788
-00:51:15.457 --> 00:51:20.858
-The agency's own system is authorized
-by its authorizing official under the
-
-789
-00:51:20.858 --> 00:51:26.258
-Risk Management Framework, SP 800-37,
-which supports ongoing authorization.
-
-790
-00:51:26.258 --> 00:51:31.203
-So the bundle goes to the security control
-assessor and the authorizing official,
-
-791
-00:51:31.203 --> 00:51:34.621
-as it happens, not assembled
+323
+00:20:57.031 --> 00:21:00.790
+as the work happens, not assembled
 over most of a year afterward.
 
-792
-00:51:34.621 --> 00:51:36.533
+324
+00:21:00.790 --> 00:21:02.703
 And it belongs to the agency.
 
-793
-00:51:36.533 --> 00:51:39.758
-When the integrator leaves,
-the registry, schemas,
+325
+00:21:02.703 --> 00:21:05.640
+When the integrator
+leaves, the evidence stays.
 
-794
-00:51:39.758 --> 00:51:43.770
-findings and evidence stay for
-the next authorization cycle.
-
-795
-00:51:43.770 --> 00:51:48.148
+326
+00:21:05.640 --> 00:21:11.245
 So, from Monday: start read-only
-discovery with a pre-flight;
+discovery, keep the access request narrow,
 
-796
-00:51:48.148 --> 00:51:51.615
-turn the gaps into a
-narrow, time-bound request;
+327
+00:21:11.245 --> 00:21:14.702
+make every run evidence,
+and gate every phase.
 
-797
-00:51:51.615 --> 00:51:56.358
-make every run evidence; and gate
-every phase on its validation.
+328
+00:21:14.702 --> 00:21:18.927
+Book 03, HR-Driven
+Identity, picks up next.
 
-798
-00:51:56.358 --> 00:52:01.907
-Chapters 07 through 11 and the appendices
-carry the full detail and the code.
-
-799
-00:52:01.907 --> 00:52:06.437
-The Federal Modernization Workbook's
-Book 03, HR-Driven Identity,
-
-800
-00:52:06.437 --> 00:52:09.708
-picks up where the
-attributes should come from.
-
-801
-00:52:09.708 --> 00:52:10.540
+329
+00:21:18.927 --> 00:21:19.760
 Thank you.

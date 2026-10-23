@@ -6,149 +6,58 @@ Authentication modernization starts
 from the federal requirement.
 
 2
-00:00:03.775 --> 00:00:10.140
-OMB M-22-09 requires phishing-resistant
-MFA for staff, contractors and partners,
+00:00:03.775 --> 00:00:08.111
+OMB M-22-09 requires
+phishing-resistant MFA,
 
 3
-00:00:10.140 --> 00:00:15.597
-and requires agencies to stop supporting
-methods that fail to resist phishing,
+00:00:08.111 --> 00:00:13.000
+and an end to methods like SMS and
+voice codes for routine access.
 
 4
-00:00:15.597 --> 00:00:18.738
-such as SMS and voice
-codes, for routine access.
-
-5
-00:00:18.738 --> 00:00:21.300
-It names PIV as the simplest route.
-
-6
-00:00:21.300 --> 00:00:25.348
+00:00:13.000 --> 00:00:16.640
 Its targets were set for
 the end of fiscal year 2024,
 
-7
-00:00:25.348 --> 00:00:30.263
-so as of October 2026 these are
-requirements to meet, not goals.
+5
+00:00:16.640 --> 00:00:19.500
+so these are requirements now, not goals.
 
-8
-00:00:30.263 --> 00:00:32.012
+6
+00:00:19.500 --> 00:00:21.250
 That reorders the roadmap.
 
-9
-00:00:32.012 --> 00:00:34.763
-Older plans put smart-card sign-in last.
+7
+00:00:21.250 --> 00:00:23.413
+Older plans put smart cards last,
 
-10
-00:00:34.763 --> 00:00:38.411
-But a federal workforce already
+8
+00:00:23.413 --> 00:00:27.179
+but a federal workforce already
 carries PIV or CAC cards,
 
+9
+00:00:27.179 --> 00:00:32.787
+so certificate-based authentication straight
+against Entra ID is the fastest path.
+
+10
+00:00:32.787 --> 00:00:38.233
+The program goes in four phases: privileged
+accounts first, then every card holder,
+
 11
-00:00:38.411 --> 00:00:43.534
-so Entra certificate-based authentication
-is the fastest path: the credential
+00:00:38.233 --> 00:00:43.438
+then managed Windows devices on Windows
+Hello, then everyone else on passkeys.
 
 12
-00:00:43.534 --> 00:00:48.501
-is issued, and it works directly against
-Entra ID without a federation server.
+00:00:43.438 --> 00:00:47.265
+Then the legacy cutoff: find
+the remaining legacy sign-ins,
 
 13
-00:00:48.501 --> 00:00:53.689
-Phase one, privileged accounts: FIDO2
-passkeys with attestation enforced,
-
-14
-00:00:53.689 --> 00:00:57.663
-plus PIV or CAC through
-certificate-based authentication
-
-15
-00:00:57.663 --> 00:01:00.825
-where the admin holds a
-card, in four to six weeks.
-
-16
-00:01:00.825 --> 00:01:05.950
-Phase two, every PIV and CAC holder
-through certificate-based authentication.
-
-17
-00:01:05.950 --> 00:01:10.500
-Phase three, managed Windows devices
-on Windows Hello for Business.
-
-18
-00:01:10.500 --> 00:01:16.088
-Phase four, everyone else, including mobile,
-on passkeys in Microsoft Authenticator.
-
-19
-00:01:16.088 --> 00:01:18.813
-Those last three are eight
-to twelve weeks each,
-
-20
-00:01:18.813 --> 00:01:22.726
-and all four methods meet the
-built-in phishing-resistant strength.
-
-21
-00:01:22.726 --> 00:01:26.642
-For NIST control IA-2(6), separate device,
-
-22
-00:01:26.642 --> 00:01:31.392
-the program counts PIV cards and
-FIDO2 keys; Windows Hello lives in
-
-23
-00:01:31.392 --> 00:01:36.225
-the device gaining access, so it
-isn't counted for privileged accounts.
-
-24
-00:01:36.225 --> 00:01:40.950
-The authentication methods policy:
-SMS and voice off for staff.
-
-25
-00:01:40.950 --> 00:01:44.862
-Temporary Access Pass is one-time
-use with a one-hour life,
-
-26
-00:01:44.862 --> 00:01:47.525
-against Microsoft's multi-use default.
-
-27
-00:01:47.525 --> 00:01:52.050
-Passkey registration needs
-MFA in the last five minutes.
-
-28
-00:01:52.050 --> 00:01:53.650
-Then the legacy cutoff.
-
-29
-00:01:53.650 --> 00:01:56.913
-Discover remaining legacy
-sign-ins in the logs.
-
-30
-00:01:56.913 --> 00:02:01.887
-Remediate onto OAuth, the Graph
-mail APIs, or a supported relay.
-
-31
-00:02:01.887 --> 00:02:04.250
-Block with CA001.
-
-32
-00:02:04.250 --> 00:02:09.220
-And monitor for thirty days until there
-are zero successful legacy sign-ins.
+00:00:47.265 --> 00:00:51.720
+move them, block them, and watch for
+thirty days until there are none.

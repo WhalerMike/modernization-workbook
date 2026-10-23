@@ -1,53 +1,24 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:02.825
-Module 2: the target PKI.
+00:00:00.050 --> 00:00:02.738
+Module 2 is the target PKI.
 
 2
-00:00:02.825 --> 00:00:07.624
-The guide this book replaces said
-Microsoft Cloud PKI eliminates
-
-3
-00:00:07.624 --> 00:00:11.987
-the need for on-premises AD CS
-for most certificate use cases.
-
-4
-00:00:11.987 --> 00:00:15.088
-That's true for devices
-and wrong for the estate.
-
-5
-00:00:15.088 --> 00:00:18.163
+00:00:02.738 --> 00:00:05.812
 There's no single replacement for AD CS.
 
-6
-00:00:18.163 --> 00:00:23.176
-The target is four issuers, each chosen
-for the subjects only it can serve:
+3
+00:00:05.812 --> 00:00:10.984
+The target is four issuers, each
+serving what only it can: Cloud PKI,
 
-7
-00:00:23.176 --> 00:00:25.766
-Cloud PKI for Intune-managed devices,
+4
+00:00:10.984 --> 00:00:14.719
+a smaller hardened AD CS,
+the Federal PKI for PIV,
 
-8
-00:00:25.766 --> 00:00:30.696
-a smaller and hardened AD CS for what
-still depends on Active Directory,
-
-9
-00:00:30.696 --> 00:00:35.625
-the Federal PKI for PIV, and public
-CAs for names the internet must trust.
-
-10
-00:00:35.625 --> 00:00:40.513
-Entra ID sits beside all of them
-as a relying party, not an issuer.
-
-11
-00:00:40.513 --> 00:00:45.120
-One root-of-trust decision and one
-lifecycle platform hold them together.
+5
+00:00:14.719 --> 00:00:20.040
+and public CAs, with one lifecycle
+platform holding them together.

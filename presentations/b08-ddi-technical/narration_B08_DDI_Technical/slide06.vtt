@@ -1,129 +1,62 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:03.363
-When a domain is deployed,
-its DNS name becomes a zone,
+00:00:00.050 --> 00:00:05.088
+When a domain is deployed, its name
+becomes a DNS zone, its domain controllers
 
 2
-00:00:03.363 --> 00:00:08.910
-the domain controllers running the DNS Server
-role become its authoritative servers,
+00:00:05.088 --> 00:00:10.525
+become the authoritative servers, and
+every domain-joined machine points at them.
 
 3
-00:00:08.910 --> 00:00:13.763
-and every domain-joined machine is
-pointed at them for all of its resolution.
-
-4
-00:00:13.763 --> 00:00:17.812
+00:00:10.525 --> 00:00:14.575
 Nobody chose that as a DNS
 architecture, but it is one.
 
+4
+00:00:14.575 --> 00:00:19.559
+Storing zones in AD brings secure dynamic
+updates and multi-master operation,
+
 5
-00:00:17.812 --> 00:00:22.968
-A zone stored in Active Directory exists
-only on domain controllers that run DNS,
+00:00:19.559 --> 00:00:22.013
+and both disappear with the directory.
 
 6
-00:00:22.968 --> 00:00:27.970
-and storing it there brings two things
-a file-backed zone lacks: secure dynamic
+00:00:22.013 --> 00:00:27.875
+So the AD DNS estate breaks into seven
+components, each needing its own decision:
 
 7
-00:00:27.970 --> 00:00:30.278
-updates, and multi-master operation,
+00:00:27.875 --> 00:00:30.984
+integrated zones,
+file-backed zones, stubs,
 
 8
-00:00:30.278 --> 00:00:33.587
-where every hosting domain
-controller is a primary.
+00:00:30.984 --> 00:00:36.137
+conditional forwarders, GlobalNames,
+reverse zones and signed zones.
 
 9
-00:00:33.587 --> 00:00:39.510
-Replication rides on AD replication, and
-the replication scope, exposed as Domain,
+00:00:36.137 --> 00:00:40.917
+One correction to the source: conditional
+forwarders are easy to export,
 
 10
-00:00:39.510 --> 00:00:44.737
-Forest, Legacy or Custom, decides
-which domain controllers hold the zone.
+00:00:40.917 --> 00:00:43.625
+because Windows stores each one as a zone.
 
 11
-00:00:44.737 --> 00:00:48.925
-The rest decomposes into
-components, each needing a decision.
+00:00:43.625 --> 00:00:45.400
+The hard part isn't finding them.
 
 12
-00:00:48.925 --> 00:00:52.342
-The AD-integrated zones,
-including underscore msdcs,
+00:00:45.400 --> 00:00:49.686
+It's deciding which of the forwarders
+built up over the years for partners,
 
 13
-00:00:52.342 --> 00:00:55.992
-lose multi-master and secure
-updates with the directory,
-
-14
-00:00:55.992 --> 00:01:00.962
-so each is re-created on a platform that
-gives its clients what they still need.
-
-15
-00:01:00.962 --> 00:01:06.062
-File-backed zones are the simplest to
-move; watch clients pointed at a secondary.
-
-16
-00:01:06.062 --> 00:01:08.899
-Stub zones usually
-become forwarding rules.
-
-17
-00:01:08.899 --> 00:01:13.488
-Conditional forwarders carry trusts,
-partners and cloud namespaces.
-
-18
-00:01:13.488 --> 00:01:16.687
-GlobalNames then depends
-on suffix search lists.
-
-19
-00:01:16.687 --> 00:01:20.826
-Reverse zones must align with
-IPAM or fill with orphans.
-
-20
-00:01:20.826 --> 00:01:23.437
-And signed zones move
-on their own sequence.
-
-21
-00:01:23.437 --> 00:01:26.151
-One correction: the
-source whitepaper called
-
-22
-00:01:26.151 --> 00:01:28.863
-conditional forwarders
-not easily exported.
-
-23
-00:01:28.863 --> 00:01:34.300
-Windows stores each one as a zone,
-so Get-DNS-Server-Zone lists it.
-
-24
-00:01:34.300 --> 00:01:36.900
-Forwarders accumulate for partners,
-
-25
-00:01:36.900 --> 00:01:40.675
-trusts and retired systems,
-often with no record of why.
-
-26
-00:01:40.675 --> 00:01:44.590
-Finding them is easy; deciding
-which still matter is the work.
+00:00:49.686 --> 00:00:52.130
+trusts and retired systems still matter.

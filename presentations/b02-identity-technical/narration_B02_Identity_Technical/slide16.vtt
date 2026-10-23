@@ -1,160 +1,68 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:05.292
-Before any object moves, decompose
-the AD identity model into its parts,
+00:00:00.050 --> 00:00:03.836
+Before any object moves, break
+the AD model into its parts,
 
 2
-00:00:05.292 --> 00:00:07.425
-because each has its own path.
+00:00:03.836 --> 00:00:06.575
+because each lands somewhere different.
 
 3
-00:00:07.425 --> 00:00:10.688
-OUs do three jobs, and each
-goes somewhere different.
-
-4
-00:00:10.688 --> 00:00:15.328
-Group Policy scoping becomes
+00:00:06.575 --> 00:00:11.921
+OUs do three jobs: policy scoping becomes
 Conditional Access and Intune profiles,
 
+4
+00:00:11.921 --> 00:00:14.751
+delegation becomes administrative units,
+
 5
-00:00:15.328 --> 00:00:18.238
-targeted by group
-membership, not container.
-
-6
-00:00:18.238 --> 00:00:23.794
-Administrative delegation becomes
-administrative units, which are free to create,
-
-7
-00:00:23.794 --> 00:00:28.238
-though each administrative unit
-(AU)-scoped administrator needs P1.
-
-8
-00:00:28.238 --> 00:00:32.350
-Logical organization becomes
+00:00:14.751 --> 00:00:18.525
+and organization becomes
 dynamic groups and attributes.
 
+6
+00:00:18.525 --> 00:00:22.689
+The forest becomes the tenant, trusts
+become cross-tenant access, and
+
+7
+00:00:22.689 --> 00:00:25.685
+AdminSDHolder's purpose
+is served by Privileged
+
+8
+00:00:25.685 --> 00:00:28.388
+Identity Management and protected actions.
+
 9
-00:00:32.350 --> 00:00:37.326
-The forest maps to the tenant: one trust
-boundary, no domain trusts inside it,
+00:00:28.388 --> 00:00:32.012
+The design principle is that
+Entra ID inverts the model.
 
 10
-00:00:37.326 --> 00:00:41.900
-and verified domains are routing
-suffixes, not security boundaries.
+00:00:32.012 --> 00:00:35.771
+Attributes decide memberships,
+and memberships decide policy,
 
 11
-00:00:41.900 --> 00:00:45.825
-Trusts become B2B and
-cross-tenant access settings.
-
-12
-00:00:45.825 --> 00:00:49.829
-AdminSDHolder has no equivalent;
-Privileged Identity Management,
-
-13
-00:00:49.829 --> 00:00:54.119
-which makes assignments eligible and
-time-bound, and protected actions,
-
-14
-00:00:54.119 --> 00:00:57.694
-which demand an authentication
-context before high-impact
-
-15
-00:00:57.694 --> 00:01:00.625
-permissions are used,
-together serve its purpose.
-
-16
-00:01:00.625 --> 00:01:04.575
-And Schema Admins has none:
-Microsoft manages the schema.
-
-17
-00:01:04.575 --> 00:01:09.137
-This is the design principle: Entra
-ID inverts the governance model.
-
-18
-00:01:09.137 --> 00:01:13.200
-Attributes decide memberships,
-and memberships decide policy.
-
-19
-00:01:13.200 --> 00:01:16.225
-That's why attribute quality
+00:00:35.771 --> 00:00:39.175
+which is why attribute quality
 gates everything after it.
 
-20
-00:01:16.225 --> 00:01:18.562
-Licensing gates the governance features.
+12
+00:00:39.175 --> 00:00:43.125
+Licensing gates the governance
+features, and the slide has the map.
 
-21
-00:01:18.562 --> 00:01:20.725
-Conditional Access needs P1.
-
-22
-00:01:20.725 --> 00:01:23.850
-Dynamic groups need P1 per unique member.
-
-23
-00:01:23.850 --> 00:01:28.975
-PIM, including PIM for Groups, and
-risk-based Conditional Access need P2.
-
-24
-00:01:28.975 --> 00:01:33.981
-As of October 2026, access reviews and
-entitlement management need Entra ID
-
-25
-00:01:33.981 --> 00:01:36.762
-Governance for the member users involved,
-
-26
-00:01:36.762 --> 00:01:42.325
-with only some capabilities left under P2,
-and Lifecycle Workflows need Governance.
-
-27
-00:01:42.325 --> 00:01:45.165
-Conditional Access for
-workload identities is
-
-28
-00:01:45.165 --> 00:01:48.075
-a separate Workload
-Identities Premium license.
-
-29
-00:01:48.075 --> 00:01:53.175
-The chapters assume P2 for everyone and
-Governance for the governed populations.
-
-30
-00:01:53.175 --> 00:01:59.175
+13
+00:00:43.125 --> 00:00:48.325
 One date to act on: the preview
-member-of operator ends November 3, 2026.
+member-of operator ends November 3,
 
-31
-00:01:59.175 --> 00:02:02.412
-After that, dynamic groups,
-dynamic administrative
-
-32
-00:02:02.412 --> 00:02:05.800
-units and auto-assignment
-policies that use it freeze.
-
-33
-00:02:05.800 --> 00:02:07.370
-Replace those rules now.
+14
+00:00:48.325 --> 00:00:51.620
+2026, so replace any
+rules that use it now.

@@ -1,144 +1,58 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:04.923
-Microsoft has deprecated every version
-of NTLM and removed version 1 from
+00:00:00.050 --> 00:00:04.975
+NTLM is a protocol, not a setting,
+so no single switch removes it.
 
 2
-00:00:04.923 --> 00:00:09.638
-current Windows, but nothing in its
-timeline is a deadline for SQL Server.
+00:00:04.975 --> 00:00:09.600
+You have to name every connection pattern
+that produces it, and the book finds four.
 
 3
-00:00:09.638 --> 00:00:13.009
-Eliminating NTLM means
-naming every connection
+00:00:09.600 --> 00:00:12.504
+The most common is a missing or wrong SPN:
 
 4
-00:00:13.009 --> 00:00:16.299
-pattern that produces it,
-and the book finds four.
+00:00:12.504 --> 00:00:16.375
+the client can't get a Kerberos
+ticket, so it falls back.
 
 5
-00:00:16.299 --> 00:00:20.962
-Pattern one, a missing or incorrect
-SPN, the most common cause.
+00:00:16.375 --> 00:00:18.249
+Second, cross-site connections,
 
 6
-00:00:20.962 --> 00:00:26.387
-If the driver can't get a ticket for the
-SPN it builds, it falls back to NTLM.
+00:00:18.249 --> 00:00:21.638
+where the client can't reach
+the right domain controller.
 
 7
-00:00:26.387 --> 00:00:31.512
-The fix is SetSPN with the dash S switch,
-which checks for duplicates before adding.
+00:00:21.638 --> 00:00:24.525
+Check with klist before
+you touch firewall rules.
 
 8
-00:00:31.512 --> 00:00:36.662
-Two neighbors behave differently: an SPN
-on the wrong account doesn't fall back,
+00:00:24.525 --> 00:00:29.295
+Third, linked-server passthrough,
+which is a double hop NTLM can't make,
 
 9
-00:00:36.662 --> 00:00:40.228
-it fails, typically with
-"Cannot generate SSPI context",
+00:00:29.295 --> 00:00:34.400
+so each definition moves to a mapped
+login or an Entra or managed identity.
 
 10
-00:00:40.228 --> 00:00:44.824
-and a duplicate SPN breaks Kerberos
-with a principal-not-unique error.
+00:00:34.400 --> 00:00:39.348
+Fourth, clients with no domain ticket,
+like an application on an unjoined host,
 
 11
-00:00:44.824 --> 00:00:47.263
-Pattern two, cross-site connections.
+00:00:39.348 --> 00:00:41.900
+which moves to a managed identity first.
 
 12
-00:00:47.263 --> 00:00:49.651
-The client needs a
-domain controller of the
-
-13
-00:00:49.651 --> 00:00:52.238
-domain that holds the
-server's service account.
-
-14
-00:00:52.238 --> 00:00:57.630
-If port 88 is blocked or DNS doesn't
-resolve it, Negotiate falls back to NTLM
-
-15
-00:00:57.630 --> 00:01:03.200
-where a trust lets the server validate
-the account, and fails where it doesn't.
-
-16
-00:01:03.200 --> 00:01:06.375
-Confirm with klist before
-changing firewall rules.
-
-17
-00:01:06.375 --> 00:01:10.164
-Cloud Kerberos trust isn't a
-fix, because its partial ticket
-
-18
-00:01:10.164 --> 00:01:13.875
-is still exchanged with an
-on-premises domain controller.
-
-19
-00:01:13.875 --> 00:01:16.375
-Pattern three, linked-server passthrough.
-
-20
-00:01:16.375 --> 00:01:21.114
-Presenting the caller's identity to
-a second instance is a double hop,
-
-21
-00:01:21.114 --> 00:01:25.937
-and NTLM can't make it; the symptom is
-a failed login for anonymous logon.
-
-22
-00:01:25.937 --> 00:01:31.871
-Move each definition to a mapped login,
-an Entra identity on 2022 and later,
-
-23
-00:01:31.871 --> 00:01:37.026
-a managed identity on 2025, or
-Kerberos constrained delegation.
-
-24
-00:01:37.026 --> 00:01:39.950
-Pattern four, clients
-with no domain ticket.
-
-25
-00:01:39.950 --> 00:01:45.530
-An application on an unjoined host still
-using Integrated Security falls back
-
-26
-00:01:45.530 --> 00:01:50.688
-to NTLM or fails, so its connection
-string moves to managed identity first.
-
-27
-00:01:50.688 --> 00:01:54.559
-Connections on the instance's
-own host always use NTLM,
-
-28
-00:01:54.559 --> 00:01:57.913
-and legacy providers over
-named pipes force it.
-
-29
-00:01:57.913 --> 00:02:03.720
+00:00:41.900 --> 00:00:47.710
 And NTLM version 1 found anywhere is a
 critical finding, not a migration item.

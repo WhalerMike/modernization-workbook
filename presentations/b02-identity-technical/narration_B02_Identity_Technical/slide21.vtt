@@ -1,163 +1,69 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:03.806
-Conditional Access replaces the
-logon restrictions and network
+00:00:00.050 --> 00:00:03.499
+Conditional Access replaces
+the logon restrictions
 
 2
-00:00:03.806 --> 00:00:07.425
-controls that Active Directory
+00:00:03.499 --> 00:00:07.025
+and network controls AD
 enforced through Group Policy.
 
 3
-00:00:07.425 --> 00:00:13.113
-The program organizes it around personas:
-populations with distinct needs and risk.
+00:00:07.025 --> 00:00:09.935
+The program organizes it around personas,
 
 4
-00:00:13.113 --> 00:00:18.025
-Internals are employees and contractors,
-identified by the worker type code.
+00:00:09.935 --> 00:00:14.592
+populations with different needs
+and risks: internal staff, admins,
 
 5
-00:00:18.025 --> 00:00:21.931
-Admins are users eligible for
-or holding privileged roles,
+00:00:14.592 --> 00:00:18.750
+partners, guests, service accounts,
+and the break-glass group.
 
 6
-00:00:21.931 --> 00:00:27.192
-identified by account type or a group of
-PIM-eligible users; target them by group,
+00:00:18.750 --> 00:00:20.796
+One tip: target admins by group,
 
 7
-00:00:27.192 --> 00:00:31.417
-because role targeting supports
-built-in directory roles only,
+00:00:20.796 --> 00:00:24.888
+because role targeting doesn't
+cover scoped or custom roles.
 
 8
-00:00:31.417 --> 00:00:33.250
-not AU-scoped or custom ones.
+00:00:24.888 --> 00:00:29.882
+The baseline set, CA001 through
+CA017, runs from blocking legacy
 
 9
-00:00:33.250 --> 00:00:38.403
-Externals are guests from partner organizations,
-Guests are ad hoc external users,
+00:00:29.882 --> 00:00:35.725
+sign-in for everyone to requiring
+phishing-resistant strength for admins.
 
 10
-00:00:38.403 --> 00:00:41.988
-Service accounts are
-single-tenant workload identities,
+00:00:35.725 --> 00:00:41.250
+Book 04's library is the authoritative
+set and extends it for the CISA baseline.
 
 11
-00:00:41.988 --> 00:00:45.050
-and Break-glass is the
-dedicated exclusion group.
+00:00:41.250 --> 00:00:44.406
+Rollout is staged:
+report-only, then a pilot,
 
 12
-00:00:45.050 --> 00:00:50.075
-The baseline set runs
-from CA001 through CA017.
+00:00:44.406 --> 00:00:48.013
+then phased waves, each
+behind a monitoring gate.
 
 13
-00:00:50.075 --> 00:00:51.287
-A few anchors.
+00:00:48.013 --> 00:00:51.412
+And never switch an all-users
+policy straight from off to
 
 14
-00:00:51.287 --> 00:00:56.113
-CA001 blocks legacy
-authentication for all users.
-
-15
-00:00:56.113 --> 00:01:01.521
-CA003 requires the phishing-resistant
-authentication strength for admins,
-
-16
-00:01:01.521 --> 00:01:03.887
-with a four-hour sign-in frequency.
-
-17
-00:01:03.887 --> 00:01:10.563
-CA006 requires MFA for internals,
-phishing-resistant as the end state.
-
-18
-00:01:10.563 --> 00:01:15.112
-CA008 blocks internals
-outside trusted countries.
-
-19
-00:01:15.112 --> 00:01:21.668
-CA013 uses Microsoft's newer require risk
-remediation control for high user risk;
-
-20
-00:01:21.668 --> 00:01:27.550
-it isn't supported for guests, so CA012
-blocks risky guest sign-ins instead.
-
-21
-00:01:27.550 --> 00:01:32.638
-CA015 blocks workload identities
-outside trusted networks.
-
-22
-00:01:32.638 --> 00:01:37.850
-CA002, the old break-glass grant
-policy, is retired: a policy can't
-
-23
-00:01:37.850 --> 00:01:43.963
-create an exemption; the exclusion on
-every other policy is the exemption.
-
-24
-00:01:43.963 --> 00:01:49.625
-Appendix C carries Graph JSON templates,
-all created in report-only state.
-
-25
-00:01:49.625 --> 00:01:55.469
-The Federal Modernization Workbook's
-Book 04's library is authoritative
-
-26
-00:01:55.469 --> 00:02:01.313
-and adds CA018 through CA038
-for the CISA BOD 25-01 baseline.
-
-27
-00:02:01.313 --> 00:02:06.764
-Authentication strengths name what's
-accepted: phishing-resistant MFA is Windows
-
-28
-00:02:06.764 --> 00:02:12.612
-Hello for Business, FIDO2 passkeys, or
-multifactor certificate-based authentication.
-
-29
-00:02:12.612 --> 00:02:17.025
-Authenticator push and phone sign-in
-aren't phishing-resistant on their own.
-
-30
-00:02:17.025 --> 00:02:22.066
-Rollout has three stages: report-only
-for two to four weeks, a two-week pilot,
-
-31
-00:02:22.066 --> 00:02:27.025
-then phased waves over four to eight
-weeks, each behind a monitoring gate.
-
-32
-00:02:27.025 --> 00:02:30.538
-And never switch an all-users
-policy straight from off to on.
-
-33
-00:02:30.538 --> 00:02:35.780
-Confirm the break-glass exclusion, and that
-both emergency accounts still sign in.
+00:00:51.412 --> 00:00:55.150
+on without confirming both
+emergency accounts still sign in.

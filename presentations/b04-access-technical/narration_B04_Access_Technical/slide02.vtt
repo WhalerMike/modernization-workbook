@@ -1,146 +1,70 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:02.628
-Start with why, because
-every design choice
+00:00:00.050 --> 00:00:04.000
+Start with why, because every design
+choice that follows comes from it.
 
 2
-00:00:02.628 --> 00:00:05.350
-in the next forty-five
-minutes follows from it.
+00:00:04.000 --> 00:00:09.950
+OMB M-22-09 says federal applications
+can't rely on the network perimeter.
 
 3
-00:00:05.350 --> 00:00:10.909
-OMB M-22-09 says federal applications
-can't rely on the network perimeter,
+00:00:09.950 --> 00:00:12.839
+Every request for access
+should be evaluated,
 
 4
-00:00:10.909 --> 00:00:14.432
-and that every request for
-access should be evaluated,
+00:00:12.839 --> 00:00:16.413
+and an active session should
+be evaluated continuously.
 
 5
-00:00:14.432 --> 00:00:18.425
-with the ability to evaluate an
-active session continuously.
+00:00:16.413 --> 00:00:21.524
+NIST's zero trust architecture adds the
+shape: no trust from network location,
 
 6
-00:00:18.425 --> 00:00:20.115
-When undue risk appears,
+00:00:21.524 --> 00:00:24.558
+access per session,
+decided by dynamic policy,
 
 7
-00:00:20.115 --> 00:00:24.425
-the answer can be re-authentication,
-limited access or denial.
+00:00:24.558 --> 00:00:27.513
+with deciding kept
+separate from enforcing.
 
 8
-00:00:24.425 --> 00:00:28.784
-It also asks agencies to move past
-static roles toward more granular,
+00:00:27.513 --> 00:00:29.974
+The program maps that onto Entra ID.
 
 9
-00:00:28.784 --> 00:00:34.138
-dynamic permissions, and to use at least
-one device-level signal alongside identity.
+00:00:29.974 --> 00:00:34.767
+Conditional Access is the policy engine,
+token issuance carries the decision out,
 
 10
-00:00:34.138 --> 00:00:38.675
-NIST SP 800-207 gives the architecture.
+00:00:34.767 --> 00:00:38.219
+the applications and gateways
+are the enforcement points,
 
 11
-00:00:38.675 --> 00:00:43.996
-Three of its tenets carry this book:
-network location alone doesn't imply trust;
+00:00:38.219 --> 00:00:41.813
+and Continuous Access Evaluation
+covers the active session.
 
 12
-00:00:43.996 --> 00:00:47.515
-access is granted per session,
-with least privilege;
+00:00:41.813 --> 00:00:47.112
+That mapping is the program's interpretation,
+not one Microsoft or NIST publishes.
 
 13
-00:00:47.515 --> 00:00:50.462
-and access is determined
-by dynamic policy.
+00:00:47.112 --> 00:00:49.853
+But it's why this session
+treats a Conditional
 
 14
-00:00:50.462 --> 00:00:53.049
-It also separates deciding from enforcing.
-
-15
-00:00:53.049 --> 00:00:57.728
-A policy decision point, made of a policy
-engine and a policy administrator,
-
-16
-00:00:57.728 --> 00:01:01.425
-decides; policy enforcement
-points carry the decision out.
-
-17
-00:01:01.425 --> 00:01:04.787
-The table is how the program
-maps that onto Entra ID.
-
-18
-00:01:04.787 --> 00:01:07.337
-Conditional Access is the policy engine.
-
-19
-00:01:07.337 --> 00:01:11.505
-Entra ID's token issuance
-plays the policy administrator:
-
-20
-00:01:11.505 --> 00:01:15.325
-it issues the token the
-decision allows, or it refuses.
-
-21
-00:01:15.325 --> 00:01:18.764
-The applications that accept
-only Entra-issued tokens,
-
-22
-00:01:18.764 --> 00:01:23.475
-and the gateways in front of older
-applications, are the enforcement points.
-
-23
-00:01:23.475 --> 00:01:29.475
-And Continuous Access Evaluation answers
-M-22-09's active-session requirement,
-
-24
-00:01:29.475 --> 00:01:33.370
-re-evaluating on critical events,
-such as a disabled account,
-
-25
-00:01:33.370 --> 00:01:37.500
-a password reset or token revocation,
-and when location changes.
-
-26
-00:01:37.500 --> 00:01:40.925
-Be careful how you state that
-mapping in a security plan.
-
-27
-00:01:40.925 --> 00:01:45.875
-It's the program's interpretation, not
-a mapping Microsoft or NIST publishes.
-
-28
-00:01:45.875 --> 00:01:51.269
-But it explains why the rest of this session
-treats a Conditional Access policy as
-
-29
-00:01:51.269 --> 00:01:53.013
-the unit of access control:
-
-30
-00:01:53.013 --> 00:01:56.710
-one policy set the agency can
-read, test, change and prove.
+00:00:49.853 --> 00:00:52.510
+Access policy as the
+unit of access control.

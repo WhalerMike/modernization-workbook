@@ -1,102 +1,64 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:03.238
+00:00:00.050 --> 00:00:03.338
 The program scores each
-class for prioritization.
+class to set priorities.
 
 2
-00:00:03.238 --> 00:00:04.900
-Be clear about what's whose.
+00:00:03.338 --> 00:00:07.155
+To be clear about what's whose: the
+risk and priority columns are the
 
 3
-00:00:04.900 --> 00:00:08.594
-The risk level, domain-compromise
-and priority columns are
+00:00:07.155 --> 00:00:11.112
+program's own scoring, and the
+detection column comes from Microsoft.
 
 4
-00:00:08.594 --> 00:00:12.363
-the program's own scoring, carried
-forward from its PKI guide.
+00:00:11.112 --> 00:00:18.563
+Four classes are Critical and
+Immediate: ESC1, ESC2, ESC6 and ESC8.
 
 5
-00:00:12.363 --> 00:00:15.626
-The detection column is from
-Microsoft's documentation.
+00:00:18.563 --> 00:00:21.200
+Four are High, to fix within two weeks.
 
 6
-00:00:15.626 --> 00:00:23.550
-Four classes are Critical with Immediate
-priority: ESC1, ESC2, ESC6 and ESC8.
+00:00:21.200 --> 00:00:25.558
+One change from the original guide:
+ESC2 drops from yes to possible
 
 7
-00:00:23.550 --> 00:00:31.712
-Four are High, to be fixed within
-two weeks: ESC3, ESC4, ESC5 and ESC7.
+00:00:25.558 --> 00:00:30.313
+for domain compromise, following
+Microsoft's description of its effect.
 
 8
-00:00:31.712 --> 00:00:33.937
-One change from the original guide:
+00:00:30.313 --> 00:00:34.385
+Every row is a migration blocker
+until it's verified closed,
 
 9
-00:00:33.937 --> 00:00:37.926
-ESC2 is downgraded from Yes to
-Possible for domain compromise,
+00:00:34.385 --> 00:00:38.042
+and verified has a definition:
+Defender for Identity
 
 10
-00:00:37.926 --> 00:00:42.375
-because Microsoft describes its
-main effect as undermining trust in
+00:00:38.042 --> 00:00:41.699
+shows nothing exposed, plus
+a manual re-check for ESC5.
 
 11
-00:00:42.375 --> 00:00:46.825
-other certificate consumers rather
-than direct user impersonation.
-
-12
-00:00:46.825 --> 00:00:50.732
-Immediate means the finding is
-fixed, or the template or endpoint
-
-13
-00:00:50.732 --> 00:00:54.350
-is taken out of service, before
-the next change window closes.
-
-14
-00:00:54.350 --> 00:00:58.363
-And every row is a migration
-blocker until it's verified closed.
-
-15
-00:00:58.363 --> 00:01:03.750
-Verified has a definition: the Defender
-for Identity assessment shows no exposed
-
-16
-00:01:03.750 --> 00:01:08.979
-entities, remembering that scores and
-statuses update every twenty-four hours,
-
-17
-00:01:08.979 --> 00:01:13.812
-plus a manual re-check for ESC5, which
-Defender for Identity doesn't assess.
-
-18
-00:01:13.812 --> 00:01:15.737
+00:00:41.699 --> 00:00:43.625
 That's the record the gate reads.
 
-19
-00:01:15.737 --> 00:01:20.976
-Chapter 07's first wave doesn't exit
-until every Critical and High finding is
+12
+00:00:43.625 --> 00:00:46.757
+The first wave doesn't
+exit until every Critical
 
-20
-00:01:20.976 --> 00:01:22.722
-remediated and re-tested,
-
-21
-00:01:22.722 --> 00:01:27.530
-and the PKI owner and the security
-team have approved the assessment.
+13
+00:00:46.757 --> 00:00:49.940
+and High finding is fixed,
+re-tested and approved.

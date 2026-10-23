@@ -1,133 +1,61 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:05.525
-Before May 2022, a domain controller mapped
-a certificate to an account by name.
+00:00:00.050 --> 00:00:04.475
+Strong certificate mapping isn't a
+future deadline; it's the present.
 
 2
-00:00:05.525 --> 00:00:11.325
-KB5014754 changed the KDC
-to want a strong mapping.
+00:00:04.475 --> 00:00:10.813
+KB5014754 moved domain controllers
+from matching certificates by name to
 
 3
-00:00:11.325 --> 00:00:16.963
-The old guide said enforcement began in
-February 2025; that was one step of four.
+00:00:10.813 --> 00:00:16.950
+wanting a strong link to the account, in
+four steps, ending September 9, 2025.
 
 4
-00:00:16.963 --> 00:00:19.712
-May 2022, Compatibility mode.
-
-5
-00:00:19.712 --> 00:00:23.612
-April 2023, the Disabled
-setting is ignored.
-
-6
-00:00:23.612 --> 00:00:29.751
-February 11, 2025, Full Enforcement for
-domain controllers with no value set.
-
-7
-00:00:29.751 --> 00:00:34.912
-September 9, 2025, the registry
-key is no longer honored.
-
-8
-00:00:34.912 --> 00:00:38.471
+00:00:16.950 --> 00:00:20.649
 As of October 2026, every
 current domain controller
 
+5
+00:00:20.649 --> 00:00:24.175
+is in Full Enforcement,
+with no supported way back.
+
+6
+00:00:24.175 --> 00:00:26.778
+One form of that strong
+link is the account's
+
+7
+00:00:26.778 --> 00:00:29.525
+security identifier
+inside the certificate.
+
+8
+00:00:29.525 --> 00:00:34.065
+For Intune SCEP profiles, you have to
+add it yourself; the old guide said
+
 9
-00:00:38.471 --> 00:00:41.863
-is in Full Enforcement with
-no supported way back.
+00:00:34.065 --> 00:00:39.075
+Cloud PKI does it automatically, and
+Microsoft's instructions say otherwise.
 
 10
-00:00:41.863 --> 00:00:48.142
-A strong mapping is the SID extension AD
-CS adds, the SID in a tagged SAN URL,
-
-11
-00:00:48.142 --> 00:00:53.690
-which is Intune's form, or an
-explicit strong value on the account,
-
-12
-00:00:53.690 --> 00:00:58.400
-such as issuer and serial
-number, SKI or SHA-1 public key.
-
-13
-00:00:58.400 --> 00:01:00.338
-What Intune profiles need.
-
-14
-00:01:00.338 --> 00:01:05.695
-It applies to user certificates on all
-platforms and to device certificates only
-
-15
-00:01:05.695 --> 00:01:10.737
-on hybrid joined Windows devices, and the
-user or device must be synced from AD.
-
-16
-00:01:10.737 --> 00:01:14.079
-For SCEP, add a SAN
-attribute of type URI with
-
-17
-00:01:14.079 --> 00:01:17.700
-the on-premises security
-identifier variable.
-
-18
-00:01:17.700 --> 00:01:20.983
-The old guide said Cloud
-PKI adds it automatically;
-
-19
-00:01:20.983 --> 00:01:23.875
-Microsoft's instructions
-say you must add it.
-
-20
-00:01:23.875 --> 00:01:27.172
-For PKCS, run the
-current connector and set
-
-21
-00:01:27.172 --> 00:01:30.563
-the SID security extension registry value.
-
-22
-00:01:30.563 --> 00:01:34.650
-Logon certificates need
-their issuing CA in NTAuth.
-
-23
-00:01:34.650 --> 00:01:39.925
+00:00:39.075 --> 00:00:44.350
 Pilot with a new profile, because editing
 a SCEP profile revokes what it issued.
 
-24
-00:01:39.925 --> 00:01:46.638
-To find weak certificates, sweep the
-KDC's System log for events 39, 40 and 41.
+11
+00:00:44.350 --> 00:00:48.136
+Then sweep the domain controller
+logs to find weak certificates,
 
-25
-00:01:46.638 --> 00:01:51.498
-One trap on a mixed estate:
-on Server 2008 and 2008 R2,
-
-26
-00:01:51.498 --> 00:01:58.326
-event 41 means no strong mapping, and
-the other two are logged as 48 and 49.
-
-27
-00:01:58.326 --> 00:02:01.370
-Read the event text before
-you classify a hit.
+12
+00:00:48.136 --> 00:00:52.460
+and read each event's text, because
+older servers number them differently.

@@ -1,63 +1,21 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:02.563
-Module 2: assessing the forest.
+00:00:00.050 --> 00:00:03.162
+Module 2 is the full
+assessment of the forest.
 
 2
-00:00:02.563 --> 00:00:05.437
-Chapter 07 ends with a gap list.
+00:00:03.162 --> 00:00:07.863
+Chapter 08 fills the gap list with
+the privileged half of discovery.
 
 3
-00:00:05.437 --> 00:00:09.732
-Chapter 08 fills it with the
-privileged half of discovery:
+00:00:07.863 --> 00:00:13.105
+The program's position is that the assessment
+produces evidence, not just script
 
 4
-00:00:09.732 --> 00:00:15.100
-the configuration partition, ACLs on
-OUs, every GPO's settings, DNS server
-
-5
-00:00:15.100 --> 00:00:18.857
-configuration, the PKI
-containers and CA settings,
-
-6
-00:00:18.857 --> 00:00:21.988
-and the delegation flags on every account.
-
-7
-00:00:21.988 --> 00:00:24.890
-The program's position is
-that the assessment is
-
-8
-00:00:24.890 --> 00:00:27.938
-an evidence-producing process,
-not a set of scripts.
-
-9
-00:00:27.938 --> 00:00:33.191
-Every run collects a fixed set of
-artifacts into a fixed directory layout,
-
-10
-00:00:33.191 --> 00:00:36.721
-writes a manifest with a
-SHA-256 hash of every file,
-
-11
-00:00:36.721 --> 00:00:40.338
-and commits the run to the
-program's Git repository.
-
-12
-00:00:40.338 --> 00:00:44.798
-Appendix B carries the complete
-module, restored and corrected;
-
-13
-00:00:44.798 --> 00:00:47.980
-Appendix C carries the
-identity-side module.
+00:00:13.105 --> 00:00:17.860
+output: fixed artifacts, a hashed
+manifest, and every run committed to Git.

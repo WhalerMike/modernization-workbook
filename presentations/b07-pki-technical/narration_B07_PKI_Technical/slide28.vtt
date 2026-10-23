@@ -1,161 +1,58 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:03.775
-Appendix B is the starting
-matrix that seeds wave 1.
+00:00:00.050 --> 00:00:04.272
+Appendix B is the starting matrix
+that seeds wave 1, and the rule is
 
 2
-00:00:03.775 --> 00:00:07.800
-Classify each template by what it
+00:00:04.272 --> 00:00:08.650
+to classify each template by what it
 actually issued, not by its name.
 
 3
-00:00:07.800 --> 00:00:09.862
-Three facts drive most rows.
+00:00:08.650 --> 00:00:10.825
+A few facts decide most rows.
 
 4
-00:00:09.862 --> 00:00:14.916
-Cloud PKI issues only through SCEP,
-only to Intune-enrolled devices,
+00:00:10.825 --> 00:00:16.223
+Cloud PKI issues only to Intune devices,
+and Intune doesn't manage servers,
 
 5
-00:00:14.916 --> 00:00:17.983
-and Intune doesn't manage Windows Server,
+00:00:16.223 --> 00:00:20.825
+so every server certificate is
+bridge or retain, never migrate.
 
 6
-00:00:17.983 --> 00:00:22.675
-so every server certificate is
-BRIDGE or RETAIN, never MIGRATE.
+00:00:20.825 --> 00:00:25.558
+For example, the old guide moved Web
+Server to Cloud PKI, but web servers
 
 7
-00:00:22.675 --> 00:00:28.850
-And PKCS profiles move delivery to
-Intune, not issuance off AD CS.
+00:00:25.558 --> 00:00:31.025
+aren't Intune devices, so it stays, renewed
+through CyberArk Certificate Manager.
 
 8
-00:00:28.850 --> 00:00:35.092
-So: User, Computer and Workstation
-Authentication are MIGRATE for Intune-managed
+00:00:31.025 --> 00:00:36.450
+Some templates even carry two verdicts,
+migrating delivery while the issuer stays.
 
 9
-00:00:35.092 --> 00:00:38.948
-devices, to Cloud PKI SCEP,
-with the SID URI where the
+00:00:36.450 --> 00:00:40.270
+Before any migrate row moves,
+it has to pass four checks,
 
 10
-00:00:38.948 --> 00:00:43.813
-certificate is used against AD;
-servers stay on autoenrollment.
+00:00:40.270 --> 00:00:42.987
+which become wave 4's per-ring exit test.
 
 11
-00:00:43.813 --> 00:00:48.587
-Web Server is RETAIN, on AD CS or a
-public CA for internet-facing names,
+00:00:42.987 --> 00:00:46.164
+And every bridge row records
+the event that ends it,
 
 12
-00:00:48.587 --> 00:00:53.362
-with lifecycle automation through
-CyberArk Certificate Manager.
-
-13
-00:00:53.362 --> 00:00:59.237
-The old guide had it as MIGRATE to Cloud
-PKI; web servers aren't Intune devices.
-
-14
-00:00:59.237 --> 00:01:04.183
-Kerberos Authentication and LDAPS are BRIDGE
-until the last domain controller; the
-
-15
-00:01:04.183 --> 00:01:09.200
-domain controller certificate from the
-Kerberos Authentication copy serves LDAPS.
-
-16
-00:01:09.200 --> 00:01:13.791
-The older Domain Controller templates
-lack the KDC Authentication OID,
-
-17
-00:01:13.791 --> 00:01:17.388
-so they're superseded by a
-Kerberos Authentication copy.
-
-18
-00:01:17.388 --> 00:01:20.077
-RAS and IAS Server stays while NPS runs,
-
-19
-00:01:20.077 --> 00:01:23.438
-renewed through CyberArk
-Certificate Manager.
-
-20
-00:01:23.438 --> 00:01:26.338
-Exchange Signature Only migrates delivery.
-
-21
-00:01:26.338 --> 00:01:31.846
-Exchange User carries two verdicts: MIGRATE
-for delivery, because Intune delivers
-
-22
-00:01:31.846 --> 00:01:36.875
-it, and RETAIN for the issuer, because
-the existing CA and its key history stay.
-
-23
-00:01:36.875 --> 00:01:40.569
-EFS retires, but the
-recovery agent retires last:
-
-24
-00:01:40.569 --> 00:01:45.463
-keep its certificates and keys
-until no encrypted data remains.
-
-25
-00:01:45.463 --> 00:01:49.372
-Before any MIGRATE row moves,
-four things must be true,
-
-26
-00:01:49.372 --> 00:01:52.038
-and they're wave 4's per-ring exit test.
-
-27
-00:01:52.038 --> 00:01:56.387
-Every relying party trusts the
-new chain and can reach its CRL.
-
-28
-00:01:56.387 --> 00:02:00.176
-The Intune profile issues at
-the program's success threshold.
-
-29
-00:02:00.176 --> 00:02:04.287
-Certificates used against Active
-Directory carry a strong mapping.
-
-30
-00:02:04.287 --> 00:02:08.627
-And the template's remaining certificates
-are on a dated path to expiry,
-
-31
-00:02:08.627 --> 00:02:12.525
-with autoenrollment removed only
-after the profile is issuing.
-
-32
-00:02:12.525 --> 00:02:15.456
-For BRIDGE rows, record
-the event that ends them,
-
-33
-00:02:15.456 --> 00:02:18.670
-so retirement is scheduled
-rather than forgotten.
+00:00:46.164 --> 00:00:48.860
+so retirement is scheduled, not forgotten.

@@ -1,132 +1,71 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:05.525
-Client-side encrypted DNS to a public
-resolver is the most common bypass.
+00:00:00.050 --> 00:00:03.277
+The most common bypass
+is the endpoint itself,
 
 2
-00:00:05.525 --> 00:00:12.180
-M-22-09 wants encrypted DNS wherever
-supported and endpoints set explicitly to
+00:00:03.277 --> 00:00:07.013
+sending encrypted DNS straight
+to a public resolver.
 
 3
-00:00:12.180 --> 00:00:17.019
-agency resolvers; CISA's target
-state has Protective DNS upstream
+00:00:07.013 --> 00:00:09.768
+Federal policy wants encrypted DNS,
 
 4
-00:00:17.019 --> 00:00:21.600
-and endpoints unable to reach
-third-party DNS over any protocol.
+00:00:09.768 --> 00:00:13.901
+but terminated at agency
+resolvers or Protective DNS.
 
 5
-00:00:21.600 --> 00:00:27.712
-So encrypted DNS must terminate at an
-agency resolver or Protective DNS.
+00:00:13.901 --> 00:00:16.250
+Each transport gives
+you a different handle.
 
 6
-00:00:27.712 --> 00:00:30.062
-Each transport leaves a different handle.
+00:00:16.250 --> 00:00:18.837
+Plain DNS can be redirected.
 
 7
-00:00:30.062 --> 00:00:35.662
-Plain DNS on 53 can be intercepted,
-redirected and blocked by port.
+00:00:18.837 --> 00:00:24.412
+DNS over TLS or QUIC can be blocked
+except to approved resolvers.
 
 8
-00:00:35.662 --> 00:00:42.070
-DNS over TLS and DNS over QUIC, on port
-853, can't be redirected without breaking
+00:00:24.412 --> 00:00:28.484
+DNS over HTTPS hides inside
+ordinary web traffic,
 
 9
-00:00:42.070 --> 00:00:48.376
-the session, but are straightforward
-to block except to approved resolvers.
+00:00:28.484 --> 00:00:31.463
+so an edge-only design can't govern it.
 
 10
-00:00:48.376 --> 00:00:54.579
-DNS over HTTPS shares 443 with all web
-traffic, so redirect-dns can't see it;
+00:00:31.463 --> 00:00:33.287
+That's why the endpoint matters.
 
 11
-00:00:54.579 --> 00:01:00.265
-NIST suggests RPZ entries for known
-DoH names plus firewall rules,
+00:00:33.287 --> 00:00:37.396
+On Windows, add the agency's
+resolvers to the known DoH list,
 
 12
-00:01:00.265 --> 00:01:02.850
-and CISA adds TLS inspection.
+00:00:37.396 --> 00:00:41.419
+and note that since June 2026
+the Windows Server 2025 DNS
 
 13
-00:01:02.850 --> 00:01:06.550
-An edge-only design can't
-govern encrypted DNS.
+00:00:41.419 --> 00:00:46.126
+Server accepts client DoH, though
+its upstream stays unencrypted.
 
 14
-00:01:06.550 --> 00:01:11.281
-On Windows, the client uses DoH only
-with servers on its known list,
+00:00:46.126 --> 00:00:48.556
+Browsers resolve names themselves,
 
 15
-00:01:11.281 --> 00:01:16.013
-which ships with Cloudflare, Google
-and Quad9; add the agency's own.
-
-16
-00:01:16.013 --> 00:01:21.584
-Since June 2026 the Windows Server
-2025 DNS Server accepts client DoH,
-
-17
-00:01:21.584 --> 00:01:25.138
-but its upstream traffic
-stays unencrypted.
-
-18
-00:01:25.138 --> 00:01:30.385
-CISA says IPsec isn't an acceptable
-substitute, suggests an encrypting proxy,
-
-19
-00:01:30.385 --> 00:01:34.260
-requires root hints disabled,
-and allows public fallback
-
-20
-00:01:34.260 --> 00:01:38.700
-resolvers only when Protective
-DNS is unavailable, with alerting.
-
-21
-00:01:38.700 --> 00:01:42.678
-Zero Trust DNS, on Windows
-11 Enterprise and Education,
-
-22
-00:01:42.678 --> 00:01:48.688
-permits outbound traffic only to addresses
-its Protective DNS servers resolved.
-
-23
-00:01:48.688 --> 00:01:51.113
-Browsers resolve names themselves.
-
-24
-00:01:51.113 --> 00:01:56.879
-The program adopts CISA's configuration:
-the OS resolver, or DoH only to agency
-
-25
-00:01:56.879 --> 00:02:02.912
-resolvers, as mandatory policy, and an
-NXDOMAIN answer for Firefox's canary domain.
-
-26
-00:02:02.912 --> 00:02:07.357
-Microsoft documents that on a
-managed device with the policy unset,
-
-27
-00:02:07.357 --> 00:02:09.100
-Edge sends no DoH queries.
+00:00:48.556 --> 00:00:53.570
+so the program adopts CISA's browser
+configuration as mandatory policy.

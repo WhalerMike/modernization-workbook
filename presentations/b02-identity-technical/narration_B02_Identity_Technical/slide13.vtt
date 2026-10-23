@@ -6,161 +6,54 @@ Trusts are where undocumented
 history usually hides.
 
 2
-00:00:03.662 --> 00:00:08.371
-Each trust is a trusted domain object
-in its domain's System container,
+00:00:03.662 --> 00:00:09.191
+The trust attributes are bit flags, so decode
+them from the published specification,
 
 3
-00:00:08.371 --> 00:00:10.563
-and Get-AD-Trust returns them all.
+00:00:09.191 --> 00:00:13.851
+not from memory, and keep the raw value
+too, so bits added later aren't lost.
 
 4
-00:00:10.563 --> 00:00:14.252
-Decode the trust attributes from
-the published bit values in
+00:00:13.851 --> 00:00:17.989
+Then state direction plainly,
+because it's easy to get backwards:
 
 5
-00:00:14.252 --> 00:00:18.087
-the Active Directory technical
-specification, not from memory.
+00:00:17.989 --> 00:00:20.488
+access flows the opposite way to trust.
 
 6
-00:00:18.087 --> 00:00:19.712
-One means non-transitive.
+00:00:20.488 --> 00:00:22.513
+The source design had it reversed.
 
 7
-00:00:19.712 --> 00:00:23.975
-Two, uplevel only: Windows
-2000 and later clients.
+00:00:22.513 --> 00:00:25.730
+So for each trust, the
+assessment says in plain words
 
 8
-00:00:23.975 --> 00:00:27.800
-Four, quarantined domain:
-SID filtering applies.
-
-9
-00:00:27.800 --> 00:00:32.938
-Eight, forest transitive: a cross-forest
-trust between forest root domains.
-
-10
-00:00:32.938 --> 00:00:37.763
-Hex ten, cross-organization: the
-partner isn't part of your organization.
-
-11
-00:00:37.763 --> 00:00:39.875
-Hex twenty, within forest.
-
-12
-00:00:39.875 --> 00:00:45.650
-And hex forty, treat as external: a forest
-trust filtered as if it were external.
-
-13
-00:00:45.650 --> 00:00:50.184
-The specification also defines
-later bits, for AES keys,
-
-14
-00:00:50.184 --> 00:00:56.787
-RC4 and TGT delegation control, so record
-the raw value as well as the decoded list.
-
-15
-00:00:56.787 --> 00:00:59.388
-That way, bits added later aren't lost.
-
-16
-00:00:59.388 --> 00:01:03.667
-Direction is relative, and access
-flows the opposite way to trust:
-
-17
-00:01:03.667 --> 00:01:08.501
-members of the trusted domain can
-reach resources in the trusting domain.
-
-18
-00:01:08.501 --> 00:01:13.531
-Seen from one domain, an inbound trust lets
-this domain's users reach the partner's
-
-19
-00:01:13.531 --> 00:01:18.412
-resources, and an outbound trust lets
-the partner's users reach resources here.
-
-20
-00:01:18.412 --> 00:01:20.124
-The source had this reversed.
-
-21
-00:01:20.124 --> 00:01:23.119
-So for each trust, the
-assessment states plainly
-
-22
-00:01:23.119 --> 00:01:26.263
+00:00:25.730 --> 00:00:28.874
 which side's users can reach
 which side's resources.
 
-23
-00:01:26.263 --> 00:01:27.513
-Then rate posture.
+9
+00:00:28.874 --> 00:00:34.000
+Selective authentication and SID
+filtering are posture, not findings.
 
-24
-00:01:27.513 --> 00:01:30.100
-Selective authentication on is hardened.
+10
+00:00:34.000 --> 00:00:39.850
+Verification needs administrative credentials,
+so it runs as its own elevated step.
 
-25
-00:01:30.100 --> 00:01:32.038
-SID filtering on is standard.
-
-26
-00:01:32.038 --> 00:01:33.337
-Neither is a finding.
-
-27
-00:01:33.337 --> 00:01:36.425
-Verification: the source
-called Test-AD-Trust,
-
-28
-00:01:36.425 --> 00:01:39.838
-which isn't a cmdlet in
-the ActiveDirectory module.
-
-29
-00:01:39.838 --> 00:01:44.913
-Use netdom trust with the verify switch,
-which checks the secure channel secrets,
-
-30
-00:01:44.913 --> 00:01:48.625
-or netdom query trust with
-verify for every outbound trust.
-
-31
-00:01:48.625 --> 00:01:51.178
-Both need administrative credentials,
-
-32
-00:01:51.178 --> 00:01:56.362
-so verification runs as its own elevated
-step, outside the scheduled collection.
-
-33
-00:01:56.362 --> 00:02:01.362
-Finally, a forest trust doesn't
+11
+00:00:39.850 --> 00:00:44.137
+And a forest trust doesn't
 convert into anything in Entra ID.
 
-34
-00:02:01.362 --> 00:02:04.955
-It identifies a partner whose
-access has to be redesigned
-
-35
-00:02:04.955 --> 00:02:08.540
-with cross-tenant access
-settings, which Module 4 covers.
+12
+00:00:44.137 --> 00:00:49.130
+It marks a partner whose access has to
+be redesigned, which Module 4 covers.

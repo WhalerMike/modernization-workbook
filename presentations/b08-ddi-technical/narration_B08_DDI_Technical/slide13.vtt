@@ -5,138 +5,55 @@ WEBVTT
 The third bypass sits on the access layer.
 
 2
-00:00:02.738 --> 00:00:08.201
-A rogue DHCP server that hands out a malicious
-resolver in option 6 can move a whole
+00:00:02.738 --> 00:00:07.704
+A rogue DHCP server handing out a
+malicious resolver can move a whole
 
 3
-00:00:08.201 --> 00:00:11.255
-subnet onto an attacker's
-resolver in one step,
+00:00:07.704 --> 00:00:12.149
+subnet onto an attacker's DNS in
+one step, past every block list.
 
 4
-00:00:11.255 --> 00:00:15.675
-past every response policy zone
-and every Protective DNS control.
+00:00:12.149 --> 00:00:16.475
+In IPv6, rogue router advertisements
+do the same, and they're often
 
 5
-00:00:15.675 --> 00:00:20.294
-MITRE ATT&CK catalogs it as
-DHCP Spoofing, T1557.003;
+00:00:16.475 --> 00:00:20.800
+the bigger surface, because many
+networks don't govern them at all.
 
 6
-00:00:20.294 --> 00:00:27.663
-the whitepaper's claim of federal incidents
-couldn't be verified and was removed.
+00:00:20.800 --> 00:00:26.238
+Other DHCP options steer traffic too, like
+the search list and the proxy setting.
 
 7
-00:00:27.663 --> 00:00:32.703
-In IPv6, rogue router advertisements
-carrying the RDNSS option do the same,
+00:00:26.238 --> 00:00:29.201
+The Windows safeguard is
+narrower than it looks:
 
 8
-00:00:32.703 --> 00:00:35.142
-and they're often the larger surface,
+00:00:29.201 --> 00:00:34.238
+it stops a misconfigured Windows server,
+not a home router plugged into a wall port.
 
 9
-00:00:35.142 --> 00:00:39.450
-because many networks govern
-router advertisements not at all.
+00:00:34.238 --> 00:00:38.007
+That takes DHCP snooping and
+RA Guard on the switches,
 
 10
-00:00:39.450 --> 00:00:44.879
-M-22-09's instruction to configure
-agency resolvers explicitly
+00:00:38.007 --> 00:00:43.662
+central option management, and IPAM so
+an unexpected lease is visible at once.
 
 11
-00:00:44.879 --> 00:00:48.950
-is the federal answer to
-discovery channels like RFC 9463.
+00:00:43.662 --> 00:00:46.128
+And since prevention is never complete,
 
 12
-00:00:48.950 --> 00:00:52.375
-Option 6 isn't the only
-option that moves traffic.
-
-13
-00:00:52.375 --> 00:00:57.112
-Option 15, the default domain,
-must match the authoritative zone.
-
-14
-00:00:57.112 --> 00:01:01.812
-Option 119, the search list,
-misdirects queries when stale.
-
-15
-00:01:01.812 --> 00:01:05.549
-Option 81 decides who
-registers the client's records.
-
-16
-00:01:05.549 --> 00:01:10.138
-Option 82 identifies the switch
-port for IPAM attribution.
-
-17
-00:01:10.138 --> 00:01:14.476
-And 252 for WPAD is a
-convention, not an assignment;
-
-18
-00:01:14.476 --> 00:01:17.651
-a wrong value bypasses the web proxy.
-
-19
-00:01:17.651 --> 00:01:20.400
-The Windows control is
-narrower than it looks.
-
-20
-00:01:20.400 --> 00:01:23.758
-An unauthorized Windows
-DHCP server checks its
-
-21
-00:01:23.758 --> 00:01:27.200
-own status in Active
-Directory and stops leasing.
-
-22
-00:01:27.200 --> 00:01:30.244
-That stops a misconfigured Windows server,
-
-23
-00:01:30.244 --> 00:01:34.388
-not a rogue appliance, a home
-router in a wall port, or malware.
-
-24
-00:01:34.388 --> 00:01:38.375
-Those need DHCP snooping and RA
-Guard on the access switches,
-
-25
-00:01:38.375 --> 00:01:42.282
-centralized scope and option
-management, rogue detection,
-
-26
-00:01:42.282 --> 00:01:46.588
-and IPAM integration so an
-unexpected lease is visible at once.
-
-27
-00:01:46.588 --> 00:01:50.172
-Prevention is never complete,
-so watch for failure:
-
-28
-00:01:50.172 --> 00:01:55.378
-hosts whose queries never reach the
-governed logs, fallback resolver use,
-
-29
-00:01:55.378 --> 00:02:00.480
-port 853 to unapproved destinations,
-and DoH to known public endpoints.
+00:00:46.128 --> 00:00:49.920
+watch for hosts whose queries
+never reach the governed logs.

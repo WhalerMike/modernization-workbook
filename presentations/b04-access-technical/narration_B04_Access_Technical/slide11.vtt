@@ -6,148 +6,66 @@ Report-only is a policy state,
 not a test environment.
 
 2
-00:00:03.775 --> 00:00:08.340
+00:00:03.775 --> 00:00:08.222
 The policy is evaluated at every
-sign-in and its result is logged,
+sign-in and the result is logged,
 
 3
-00:00:08.340 --> 00:00:10.062
+00:00:08.222 --> 00:00:09.900
 but nothing is enforced.
 
 4
-00:00:10.062 --> 00:00:13.362
-There are four results, and you'll
-see them in the sign-in logs
+00:00:09.900 --> 00:00:11.362
+There are four results.
 
 5
-00:00:13.362 --> 00:00:16.662
-and in Microsoft Graph under
-the names in the middle column.
+00:00:11.362 --> 00:00:14.638
+Success means the controls
+were already satisfied.
 
 6
-00:00:16.662 --> 00:00:21.831
-Success means the conditions matched
-and the controls were already satisfied,
+00:00:14.638 --> 00:00:16.812
+Failure means a block would have happened.
 
 7
-00:00:21.831 --> 00:00:24.963
-for example an MFA claim
-was already in the token.
+00:00:16.812 --> 00:00:20.312
+User action required means the
+user would have been prompted.
 
 8
-00:00:24.963 --> 00:00:28.506
-Failure means the conditions
-matched and a non-interactive
-
-9
-00:00:28.506 --> 00:00:30.987
-control failed: that's
-what a block would do.
-
-10
-00:00:30.987 --> 00:00:34.906
-User action required, which Graph
-calls report-only interrupted,
-
-11
-00:00:34.906 --> 00:00:37.300
-means the user would have been prompted.
-
-12
-00:00:37.300 --> 00:00:40.383
+00:00:20.312 --> 00:00:23.395
 And not applied means the
 conditions didn't match,
 
-13
-00:00:40.383 --> 00:00:42.563
+9
+00:00:23.395 --> 00:00:25.575
 often because the user is excluded.
 
+10
+00:00:25.575 --> 00:00:29.156
+To change an enforced policy,
+make a report-only copy,
+
+11
+00:00:29.156 --> 00:00:31.987
+compare the two, then update the original.
+
+12
+00:00:31.987 --> 00:00:36.243
+Rollback has four sizes, from
+reverting one policy to report-only
+
+13
+00:00:36.243 --> 00:00:39.788
+up to setting a whole wave
+back and opening an incident.
+
 14
-00:00:42.563 --> 00:00:46.988
-Two limits: user-action policies
-can't run in report-only at all,
+00:00:39.788 --> 00:00:44.400
+What's never on the list is deletion, because
+it breaks the policy's change history.
 
 15
-00:00:46.988 --> 00:00:51.500
-and GPS-based named locations
-still prompt users for location.
-
-16
-00:00:51.500 --> 00:00:56.319
-To change an enforced policy, Microsoft's
-practice is to create a report-only
-
-17
-00:00:56.319 --> 00:01:00.450
-copy with the change, compare the
-two, and then update the original.
-
-18
-00:01:00.450 --> 00:01:04.150
-Rollback has four forms,
-from smallest to largest.
-
-19
-00:01:04.150 --> 00:01:08.575
-Revert one policy to report-only when
-you need data while you investigate.
-
-20
-00:01:08.575 --> 00:01:13.511
-Reduce scope with a time-bound exclusion
-group when one population is blocked,
-
-21
-00:01:13.511 --> 00:01:15.713
-fix the cause, then remove the group.
-
-22
-00:01:15.713 --> 00:01:19.113
-Turn a policy Off when it's
-causing widespread blocks.
-
-23
-00:01:19.113 --> 00:01:22.506
-And when several policies
-in a wave interact badly,
-
-24
-00:01:22.506 --> 00:01:26.062
-set the whole wave to
-report-only and open an incident.
-
-25
-00:01:26.062 --> 00:01:28.350
-What's never on the list is deletion.
-
-26
-00:01:28.350 --> 00:01:33.285
-Microsoft does let you restore a deleted
-policy or named location within thirty
-
-27
-00:01:33.285 --> 00:01:37.704
-days, but a deletion breaks the policy's
-change history in source control,
-
-28
-00:01:37.704 --> 00:01:39.987
-and the drift record has to explain it.
-
-29
-00:01:39.987 --> 00:01:42.317
-If the tenant is locked out entirely,
-
-30
-00:01:42.317 --> 00:01:45.812
-an emergency account signs
-in and reverses the change.
-
-31
-00:01:45.812 --> 00:01:47.325
-If no administrator can,
-
-32
-00:01:47.325 --> 00:01:51.840
-Microsoft support can update the
-blocking policy after verification.
+00:00:44.400 --> 00:00:49.320
+And if the tenant locks out entirely, an
+emergency account reverses the change.

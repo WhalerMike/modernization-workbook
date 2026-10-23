@@ -1,77 +1,63 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:04.053
+00:00:00.050 --> 00:00:00.763
+Welcome.
+
+2
+00:00:00.763 --> 00:00:04.789
 This is the technical deep dive
 for Book 06 of the Federal
 
-2
-00:00:04.053 --> 00:00:08.312
-Modernization Workbook: Data
-Platform, SQL Server Identity.
-
 3
-00:00:08.312 --> 00:00:13.493
+00:00:04.789 --> 00:00:09.074
+Modernization Workbook, Data
+Platform: SQL Server Identity.
+
+4
+00:00:09.074 --> 00:00:14.256
 The book moves the SQL Server estate off
 Windows Authentication and onto Microsoft
 
-4
-00:00:13.493 --> 00:00:17.638
+5
+00:00:14.256 --> 00:00:18.401
 Entra ID, and this session is for
 the people who do that work: database
 
-5
-00:00:17.638 --> 00:00:21.265
+6
+00:00:18.401 --> 00:00:22.028
 administrators, the identity
 and server teams beside them,
 
-6
-00:00:21.265 --> 00:00:23.412
+7
+00:00:22.028 --> 00:00:24.175
 and the security staff who sign off.
 
-7
-00:00:23.412 --> 00:00:26.363
-It runs about fifty minutes, in two parts.
-
 8
-00:00:26.363 --> 00:00:28.902
-Part 1 is the strategy, in three modules:
+00:00:24.175 --> 00:00:25.737
+It comes in two parts.
 
 9
-00:00:28.902 --> 00:00:33.108
-why the inheritance must end and
-how the estate is rationalized;
+00:00:25.737 --> 00:00:29.371
+Part 1 is the strategy: why
+the inheritance has to end,
 
 10
-00:00:33.108 --> 00:00:38.664
-the authentication audit, the three
-principal types and the engine-authentication
+00:00:29.371 --> 00:00:35.201
+how the estate is rationalized, the
+authentication decision, and how NTLM goes away.
 
 11
-00:00:38.664 --> 00:00:43.425
-decision; and NTLM elimination,
-applications and the closure condition.
-
-12
-00:00:43.425 --> 00:00:47.275
+00:00:35.201 --> 00:00:39.050
 Part 2 walks the ten runbooks
 in the order a DBA runs them.
 
+12
+00:00:39.050 --> 00:00:44.885
+One convention throughout: April 1, 2027
+is the program's own NTLM backstop,
+
 13
-00:00:47.275 --> 00:00:52.450
-For each one: what it does, the gate it
-must pass, and the evidence it leaves.
-
-14
-00:00:52.450 --> 00:00:54.063
-One convention throughout.
-
-15
-00:00:54.063 --> 00:00:57.958
-April 1, 2027 is the
-program's own NTLM backstop,
-
-16
-00:00:57.958 --> 00:01:03.240
+00:00:44.885 --> 00:00:49.820
 not a Microsoft deadline, and I'll
 say which dates are external.

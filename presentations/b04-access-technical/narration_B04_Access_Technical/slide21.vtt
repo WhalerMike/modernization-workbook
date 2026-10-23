@@ -1,159 +1,61 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:05.132
-Entitlement management automates access
-requests, assignments, reviews and
+00:00:00.050 --> 00:00:03.295
+Entitlement management
+turns access into requests
 
 2
-00:00:05.132 --> 00:00:08.964
-expiration for groups,
-applications and SharePoint sites,
+00:00:03.295 --> 00:00:05.950
+that someone approves
+and that end on a date.
 
 3
-00:00:08.964 --> 00:00:11.075
-for internal and external users.
+00:00:05.950 --> 00:00:11.558
+A catalog holds the resources for one
+business domain, an access package bundles
 
 4
-00:00:11.075 --> 00:00:12.962
-It has three building blocks.
+00:00:11.558 --> 00:00:16.413
+them, and a policy says who may request,
+who approves, and when it expires.
 
 5
-00:00:12.962 --> 00:00:16.198
-A catalog is the container
-and the unit of delegation;
+00:00:16.413 --> 00:00:19.750
+The approval chain follows
+the application's risk tier.
 
 6
-00:00:16.198 --> 00:00:20.535
-the program creates one per business
-domain, with the domain's business
+00:00:19.750 --> 00:00:24.707
+Low-risk access goes to the manager and
+lasts a year, while the most sensitive tier
 
 7
-00:00:20.535 --> 00:00:24.725
-owner as catalog owner, and doesn't
-use the automatic General catalog.
+00:00:24.707 --> 00:00:29.812
+adds a second stage with the identity
+governance office and expires in ninety days.
 
 8
-00:00:24.725 --> 00:00:27.537
-An access package bundles resource roles.
+00:00:29.812 --> 00:00:34.512
+External users get a stricter policy,
+and nothing ever lasts forever.
 
 9
-00:00:27.537 --> 00:00:32.501
-And a policy says who may request, who
-approves, and when the assignment ends.
+00:00:34.512 --> 00:00:38.452
+Underneath, applications are
+assigned to groups, never users,
 
 10
-00:00:32.501 --> 00:00:37.425
-The approval chains follow the application's
-risk tier, as design positions.
+00:00:38.452 --> 00:00:43.163
+and nested groups are prohibited,
+because only direct members get access.
 
 11
-00:00:37.425 --> 00:00:39.116
-Tier 3: the department owner,
+00:00:43.163 --> 00:00:48.088
+And privileged roles arrive through PIM
+eligibility, never through a package.
 
 12
-00:00:39.116 --> 00:00:44.262
-which is the requestor's manager with a
-fallback approver for anyone with no manager
-
-13
-00:00:44.262 --> 00:00:47.790
-in the directory, seven days to
-decide, and a one-year expiry
-
-14
-00:00:47.790 --> 00:00:51.613
-that extends without approval
-while the user is still in scope.
-
-15
-00:00:51.613 --> 00:00:56.145
-Tier 2: the application owner, with
-the backup owner as alternate,
-
-16
-00:00:56.145 --> 00:00:58.625
-five days, a hundred and eighty days.
-
-17
-00:00:58.625 --> 00:01:00.410
-Tier 1 adds a second stage,
-
-18
-00:01:00.410 --> 00:01:04.575
-the identity governance office,
-and expires in ninety days.
-
-19
-00:01:04.575 --> 00:01:08.555
-The earlier procedure only notified
-the office of Tier 1 grants;
-
-20
-00:01:08.555 --> 00:01:13.587
-a second stage costs a few hours and leaves
-an approval record instead of an email.
-
-21
-00:01:13.587 --> 00:01:18.038
-External users get a separate,
-stricter policy and at most a year.
-
-22
-00:01:18.038 --> 00:01:22.838
-The program never uses "never."
-Underneath is the group substrate.
-
-23
-00:01:22.838 --> 00:01:26.938
-Applications are assigned to
-groups, never to users directly.
-
-24
-00:01:26.938 --> 00:01:28.788
-Nested groups are prohibited,
-
-25
-00:01:28.788 --> 00:01:33.747
-because group assignment to an application
-gives access only to direct members,
-
-26
-00:01:33.747 --> 00:01:38.188
-and a group review shows nested users
-but can only remove direct members.
-
-27
-00:01:38.188 --> 00:01:43.263
-And names follow one convention, so a
-group's purpose and tier can be read from it.
-
-28
-00:01:43.263 --> 00:01:48.286
-Separation of duties: a package can
-list incompatible packages and groups,
-
-29
-00:01:48.286 --> 00:01:52.175
-but the check is one-way, so each
-package must list the other.
-
-30
-00:01:52.175 --> 00:01:55.081
-A legitimate exception
-becomes its own combined
-
-31
-00:01:55.081 --> 00:01:58.412
-package with a shorter expiry
-and more frequent reviews.
-
-32
-00:01:58.412 --> 00:02:01.785
-And privileged access arrives
-through PIM eligibility,
-
-33
-00:02:01.785 --> 00:02:04.850
-never through a package
-that grants an active role.
+00:00:48.088 --> 00:00:51.140
+Next, keeping those
+grants honest over time.

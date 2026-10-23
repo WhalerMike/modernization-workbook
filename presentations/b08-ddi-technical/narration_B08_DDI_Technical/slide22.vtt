@@ -5,132 +5,64 @@ WEBVTT
 The policy plane isn't one box.
 
 2
-00:00:02.350 --> 00:00:05.750
-It has three parts, which
-products package differently.
+00:00:02.350 --> 00:00:07.442
+It has three parts: an on-premises DNS
+and DHCP layer that replaces AD DNS,
 
 3
-00:00:05.750 --> 00:00:11.747
-An on-premises DNS and DHCP layer hosts
-the internal zones that replace AD DNS,
+00:00:07.442 --> 00:00:10.895
+a management plane holding
+the system of record,
 
 4
-00:00:11.747 --> 00:00:16.713
-serves recursion, and applies
-response policy zones and DNSSEC.
+00:00:10.895 --> 00:00:15.987
+and local resolvers that keep
+answering if management is unreachable.
 
 5
-00:00:16.713 --> 00:00:19.083
-Grid members answer from local copies,
+00:00:15.987 --> 00:00:19.363
+It overlays the cloud services;
+it doesn't replace them.
 
 6
-00:00:19.083 --> 00:00:23.974
-so the program's position is that changes
-converge in seconds, not milliseconds,
+00:00:19.363 --> 00:00:22.377
+Changes converge in
+seconds, not milliseconds,
 
 7
-00:00:23.974 --> 00:00:29.162
-and an emergency block must be verified on
-the members serving the affected clients.
+00:00:22.377 --> 00:00:26.551
+so an emergency block has to be
+verified where clients are served.
 
 8
-00:00:29.162 --> 00:00:32.336
-A management plane,
-increasingly a cloud service,
+00:00:26.551 --> 00:00:28.383
+Infoblox is the book's example,
 
 9
-00:00:32.336 --> 00:00:35.663
-holds the system of record
-and pushes it everywhere.
+00:00:28.383 --> 00:00:32.050
+and its government cloud offering
+is certified at Moderate.
 
 10
-00:00:35.663 --> 00:00:38.619
-And local resolvers and
-agents keep resolving
+00:00:32.050 --> 00:00:35.269
+The architecture stays the
+same in federal clouds;
 
 11
-00:00:38.619 --> 00:00:41.575
-from local state if
-management is unreachable.
-
-12
-00:00:41.575 --> 00:00:43.836
-It's overlay, not replacement:
-
-13
-00:00:43.836 --> 00:00:48.075
-Route 53 and Azure Private
-DNS still serve their zones.
-
-14
-00:00:48.075 --> 00:00:54.513
-Infoblox is the book's example: the NIOS
-grid, and Universal DDI as the cloud plane.
-
-15
-00:00:54.513 --> 00:00:59.861
-Its FedRAMP-listed offering is Infoblox
-Government Cloud, certified at Moderate;
-
-16
-00:00:59.861 --> 00:01:02.772
-on-premises NIOS appliances
-aren't a FedRAMP
-
-17
-00:01:02.772 --> 00:01:06.075
-cloud service and sit inside
-the agency's boundary.
-
-18
-00:01:06.075 --> 00:01:10.463
-Chapter 12 evaluates other platforms
-against the same requirements.
-
-19
-00:01:10.463 --> 00:01:15.700
-The architecture is the same everywhere;
+00:00:35.269 --> 00:00:37.875
 authorization and integrations change.
 
-20
-00:01:15.700 --> 00:01:19.727
-A plane certified at Moderate, plus
-the agency's own authorization,
+12
+00:00:37.875 --> 00:00:42.168
+A Moderate plane doesn't cover High
+systems, so use a service authorized
 
-21
-00:01:19.727 --> 00:01:24.487
-suffices for Moderate systems but doesn't
-cover High: use a service authorized
-
-22
-00:01:24.487 --> 00:01:28.587
-at the required level or keep the
+13
+00:00:42.168 --> 00:00:46.025
+at the right level, or keep the
 plane inside the agency's boundary.
 
-23
-00:01:28.587 --> 00:01:30.776
-Azure Government's zone names differ.
-
-24
-00:01:30.776 --> 00:01:34.600
-VPC IPAM's external
-authority isn't in GovCloud.
-
-25
-00:01:34.600 --> 00:01:40.276
-The Private Resolver is at FedRAMP
-High in Azure Government and forecast,
-
-26
-00:01:40.276 --> 00:01:42.788
-not yet authorized, at IL4 and IL5.
-
-27
-00:01:42.788 --> 00:01:46.287
-Azure Private DNS can't
-be signed anywhere.
-
-28
-00:01:46.287 --> 00:01:52.580
-And informed network routing isn't
-available in GCC-Moderate, GCC High or DoD.
+14
+00:00:46.025 --> 00:00:48.910
+The slide lists the other
+government-cloud gaps.

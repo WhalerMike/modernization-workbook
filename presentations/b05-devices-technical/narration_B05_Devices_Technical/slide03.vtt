@@ -1,137 +1,73 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:04.400
-Two more ideas from the first part of the
-book frame everything in this session.
+00:00:00.050 --> 00:00:03.162
+Two more ideas frame
+everything in this session.
 
 2
-00:00:04.400 --> 00:00:06.538
+00:00:03.162 --> 00:00:05.301
 First, the hybrid-join trap.
 
 3
-00:00:06.538 --> 00:00:11.387
+00:00:05.301 --> 00:00:10.260
 Converting a domain-joined fleet to hybrid
-join is close to a tenant-wide switch.
+join is close to a tenant-wide switch:
 
 4
-00:00:11.387 --> 00:00:14.221
-Extend the sync scope to the computer OUs,
+00:00:10.260 --> 00:00:14.319
+extend the sync scope, and every
+Windows device registers itself,
 
 5
-00:00:14.221 --> 00:00:17.722
-publish a service connection
-point in each forest,
+00:00:14.319 --> 00:00:17.175
+with nothing checking
+ownership or approval.
 
 6
-00:00:17.722 --> 00:00:22.557
-or push the same two values by GPO,
-and every Windows device's Automatic
+00:00:17.175 --> 00:00:22.456
+Microsoft's guidance is that Entra join
+is the default for new or reset devices,
 
 7
-00:00:22.557 --> 00:00:27.225
-Device Join task reads it and
-registers itself, retrying every hour.
+00:00:22.456 --> 00:00:25.462
+and hybrid join is a
+waypoint, not the end goal.
 
 8
-00:00:27.225 --> 00:00:31.813
-Nothing in that path checks ownership,
-organizational position or approval.
-
-9
-00:00:31.813 --> 00:00:36.278
-Microsoft's guidance has two halves:
-Entra join is the default for new,
-
-10
-00:00:36.278 --> 00:00:41.606
-refurbished or reset devices; hybrid join
-gives existing domain-joined devices a
-
-11
-00:00:41.606 --> 00:00:46.699
-cloud identity with minimal impact, but it
-shouldn't be long term or the end goal.
-
-12
-00:00:46.699 --> 00:00:50.548
-Converting a hybrid device to
-Entra join later needs a reset,
-
-13
-00:00:50.548 --> 00:00:55.012
-and hybrid devices need periodic line
-of sight to a domain controller.
-
-14
-00:00:55.012 --> 00:00:58.625
+00:00:25.462 --> 00:00:29.074
 Done ungoverned, the waypoint
 becomes the destination.
 
-15
-00:00:58.625 --> 00:01:00.763
+9
+00:00:29.074 --> 00:00:31.213
 Second, where the truth lives.
 
-16
-00:01:00.763 --> 00:01:06.371
-A modern laptop is described by a procurement
-record, an Autopilot registration,
+10
+00:00:31.213 --> 00:00:35.525
+A laptop is described by
+procurement, Autopilot, Entra ID,
 
-17
-00:01:06.371 --> 00:01:10.891
-an Entra ID device object, an Intune
-record and a Defender machine;
+11
+00:00:35.525 --> 00:00:39.287
+Intune and Defender records,
+and a server adds Arc.
 
-18
-00:01:10.891 --> 00:01:12.900
-a server adds an Arc resource.
+12
+00:00:39.287 --> 00:00:41.482
+The program decides, fact by fact,
 
-19
-00:01:12.900 --> 00:01:17.288
-The program decides, fact by
-fact, which one is authoritative.
+13
+00:00:41.482 --> 00:00:45.463
+which one is authoritative, and
+correlates on the right key.
 
-20
-00:01:17.288 --> 00:01:19.662
-Procurement owns the business facts.
+14
+00:00:45.463 --> 00:00:48.979
+And one rule to remember:
+delete the Entra object last,
 
-21
-00:01:19.662 --> 00:01:22.737
-The Entra object owns
-identity and join type.
-
-22
-00:01:22.737 --> 00:01:26.211
-Intune owns management
-and evaluates compliance;
-
-23
-00:01:26.211 --> 00:01:29.024
-Entra's is-compliant flag only reports it.
-
-24
-00:01:29.024 --> 00:01:31.413
-Defender owns threat and exposure.
-
-25
-00:01:31.413 --> 00:01:33.400
-Arc owns management for servers.
-
-26
-00:01:33.400 --> 00:01:38.115
-Correlate on the right key: the Entra
-device ID across Microsoft records,
-
-27
-00:01:38.115 --> 00:01:42.437
-the serial number to procurement,
-and the Azure resource ID for Arc.
-
-28
-00:01:42.437 --> 00:01:44.486
-And delete the Entra object last,
-
-29
-00:01:44.486 --> 00:01:48.190
-because deleting it deletes
-the BitLocker recovery keys.
+15
+00:00:48.979 --> 00:00:52.390
+because that deletes the
+BitLocker recovery keys.

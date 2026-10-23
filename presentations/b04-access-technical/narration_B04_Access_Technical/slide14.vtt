@@ -6,160 +6,66 @@ Once policies are on, the
 sign-in logs are the instrument.
 
 2
-00:00:03.575 --> 00:00:06.838
-The queries run against the
-SigninLogs table in a Log
+00:00:03.575 --> 00:00:05.558
+The chapter gives the queries in full,
 
 3
-00:00:06.838 --> 00:00:10.175
-Analytics workspace that
-receives Entra sign-in logs.
+00:00:05.558 --> 00:00:09.843
+but they're illustrative and haven't been
+tested against a production workspace,
 
 4
-00:00:10.175 --> 00:00:11.838
-The chapter gives them in full;
+00:00:09.843 --> 00:00:12.913
+so check them against your own
+data before you rely on them.
 
 5
-00:00:11.838 --> 00:00:16.230
-they're illustrative and haven't been
-tested against a production workspace, so
-
-6
-00:00:16.230 --> 00:00:18.692
-confirm column values
-against your own data
-
-7
-00:00:18.692 --> 00:00:21.087
-before using them for
-alerting or evidence.
-
-8
-00:00:21.087 --> 00:00:22.562
+00:00:12.913 --> 00:00:14.387
 Six signals matter.
 
+6
+00:00:14.387 --> 00:00:16.664
+Per-policy results, blocked sign-ins,
+
+7
+00:00:16.664 --> 00:00:19.851
+the users who would still
+fail the end-state policy,
+
+8
+00:00:19.851 --> 00:00:24.783
+which drives the enrollment campaign,
+any legacy authentication still in use,
+
 9
-00:00:22.562 --> 00:00:27.587
-Per-policy results over seven days, including
-report-only outcomes; after wave two,
+00:00:24.783 --> 00:00:27.515
+successful sign-ins
+that no policy touched,
 
 10
-00:00:27.587 --> 00:00:30.173
-members of the Admins group should show no
+00:00:27.515 --> 00:00:31.537
+and emergency account use, which
+should be zero outside testing.
 
 11
-00:00:30.173 --> 00:00:33.425
-not-applied results for
-the administrator policies.
-
-12
-00:00:33.425 --> 00:00:38.228
-Blocked sign-ins, error 53003, which
-is blocked by Conditional Access;
-
-13
-00:00:38.228 --> 00:00:42.020
-a spike on a single application
-usually means a client
-
-14
-00:00:42.020 --> 00:00:45.812
-that can't do modern
-authentication or app protection.
-
-15
-00:00:45.812 --> 00:00:51.262
-The end-state gap: users who would
-fail CA022 while it's in report-only.
-
-16
-00:00:51.262 --> 00:00:54.138
-That's the list that drives
-the enrollment campaign.
-
-17
-00:00:54.138 --> 00:00:58.440
-Legacy authentication still
-in use, over fourteen days,
-
-18
-00:00:58.440 --> 00:01:01.901
-which must be empty
-before CA001 is enforced.
-
-19
-00:01:01.901 --> 00:01:06.189
-Coverage gaps: successful sign-ins
-that no policy applied to,
-
-20
-00:01:06.189 --> 00:01:10.650
-which should be empty for interactive
-sign-ins once CA018 is on.
-
-21
-00:01:10.650 --> 00:01:13.879
-And emergency account use,
-matched on object IDs,
-
-22
-00:01:13.879 --> 00:01:17.350
-which should be zero outside
-scheduled validation.
-
-23
-00:01:17.350 --> 00:01:18.313
+00:00:31.537 --> 00:00:32.501
 Then drift.
 
-24
-00:01:18.313 --> 00:01:22.769
-The policy set in the tenant must
-equal the policy set in source control,
+12
+00:00:32.501 --> 00:00:37.542
+The policies in the tenant must match the
+policies in source control, and any change
 
-25
-00:01:22.769 --> 00:01:27.680
-and the drift check alerts on a policy
-whose state changed without an approved
+13
+00:00:37.542 --> 00:00:42.438
+outside the pipeline raises an alert,
+especially a change to the emergency group.
 
-26
-00:01:27.680 --> 00:01:30.929
-change; a change to any
-exclusion group's membership,
+14
+00:00:42.438 --> 00:00:45.626
+Protected actions narrow
+who can cause drift at all.
 
-27
-00:01:30.929 --> 00:01:35.915
-especially the emergency access group;
-a change to conditions, named locations,
-
-28
-00:01:35.915 --> 00:01:38.408
-authentication strengths or controls;
-
-29
-00:01:38.408 --> 00:01:41.505
-a policy created or deleted
-outside the pipeline,
-
-30
-00:01:41.505 --> 00:01:45.963
-including a Microsoft-managed policy
-that Microsoft added or enabled;
-
-31
-00:01:45.963 --> 00:01:50.312
-and users or devices missing the
-attributes that put them in scope.
-
-32
-00:01:50.312 --> 00:01:54.893
-Protected actions, which require
-fresh strong authentication to change
-
-33
-00:01:54.893 --> 00:01:59.550
-policies and named locations, narrow
-who can cause drift in the first place.
-
-34
-00:01:59.550 --> 00:02:01.320
+15
+00:00:45.626 --> 00:00:47.380
 Module three builds them.

@@ -1,43 +1,21 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:03.225
-Module 1: the inheritance and the estate.
+00:00:00.050 --> 00:00:02.724
+Module 1 is the
+inheritance and the estate:
 
 2
-00:00:03.225 --> 00:00:04.400
-Three slides.
+00:00:02.724 --> 00:00:07.538
+what Windows Authentication in SQL Server
+really is, the drivers that end it,
 
 3
-00:00:04.400 --> 00:00:08.937
-First, what Windows Authentication
-in SQL Server actually is,
-
-4
-00:00:08.937 --> 00:00:11.962
-precisely enough to see where NTLM hides.
-
-5
-00:00:11.962 --> 00:00:16.813
-Second, the three drivers that end
-it, and the 2027 dates that are real.
-
-6
-00:00:16.813 --> 00:00:21.857
-Third, the inventory, the rationalization
-lenses and the retain, consolidate
-
-7
-00:00:21.857 --> 00:00:26.587
-or retire gate, which decides which
+00:00:07.538 --> 00:00:12.275
+and the inventory that decides which
 instances enter the migration at all.
 
-8
-00:00:26.587 --> 00:00:30.936
-The book's whole order, assess
-and consolidate, enable Arc,
-
-9
-00:00:30.936 --> 00:00:35.620
-migrate logins, then eliminate
-NTLM, comes out of this module.
+4
+00:00:12.275 --> 00:00:14.740
+The book's whole order
+comes out of this module.
