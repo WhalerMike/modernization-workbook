@@ -1,117 +1,49 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:02.930
-In Active Directory,
-a Windows PC joined to
+00:00:00.050 --> 00:00:05.050
+In Active Directory, a domain-joined
+PC gets two jobs done almost for free.
 
 2
-00:00:02.930 --> 00:00:05.975
-the domain gets two jobs
-done almost for free.
+00:00:05.050 --> 00:00:10.200
+Job one is the name: a computer name plus
+the domain's suffix makes its full name.
 
 3
-00:00:05.975 --> 00:00:07.325
-Job one is the name.
+00:00:10.200 --> 00:00:12.094
+Job two is the DNS record,
 
 4
-00:00:07.325 --> 00:00:11.007
-The PC has a computer name,
-say pc-zero-zero-four-two,
+00:00:12.094 --> 00:00:16.638
+the entries that map that name
+to an address and back again.
 
 5
-00:00:11.007 --> 00:00:16.575
-and a primary DNS suffix, which is usually
-the name of the AD domain it joined.
+00:00:16.638 --> 00:00:21.952
+In AD, the zone lives on the domain
+controllers and by default accepts only secure
 
 6
-00:00:16.575 --> 00:00:19.438
-Put them together and
-you get its full name,
+00:00:21.952 --> 00:00:27.187
+updates, signed with Kerberos, and once a
+name exists only its owner can change it.
 
 7
-00:00:19.438 --> 00:00:22.137
-its FQDN, or fully qualified domain name.
+00:00:27.187 --> 00:00:30.201
+The PC has a machine
+account, so it can sign.
 
 8
-00:00:22.137 --> 00:00:24.662
-Job two is the DNS record.
+00:00:30.201 --> 00:00:32.575
+It registers its own forward record,
 
 9
-00:00:24.662 --> 00:00:27.783
-An A record maps a name
-to an IPv4 address;
+00:00:32.575 --> 00:00:36.138
+and the Windows DHCP server
+registers the reverse one.
 
 10
-00:00:27.783 --> 00:00:33.833
-an AAAA record maps a name to an IPv6
-address; and a PTR record goes the other way,
-
-11
-00:00:33.833 --> 00:00:37.425
-address to name, in what's
-called a reverse zone.
-
-12
-00:00:37.425 --> 00:00:42.313
-Dynamic update is the standard way to add
-or change those records over the network.
-
-13
-00:00:42.313 --> 00:00:47.631
-In AD, the domain's DNS zone lives in
-the directory, on domain controllers,
-
-14
-00:00:47.631 --> 00:00:51.687
-and by default it accepts
-only secure dynamic updates.
-
-15
-00:00:51.687 --> 00:00:57.225
-Secure means the update is signed with
-Kerberos, AD's ticket-based sign-in protocol,
-
-16
-00:00:57.225 --> 00:01:00.563
-and once a name exists, only
-its owner can change it.
-
-17
-00:01:00.563 --> 00:01:04.912
-The domain-joined PC has a machine
-account in AD, so it can sign.
-
-18
-00:01:04.912 --> 00:01:08.214
-By default, the PC
-registers its own A record
-
-19
-00:01:08.214 --> 00:01:11.699
-and the Windows DHCP
-server registers the PTR.
-
-20
-00:01:11.699 --> 00:01:16.675
+00:00:36.138 --> 00:00:41.180
 When AD retires, both jobs need a new
 owner, and the second one is harder.
-
-21
-00:01:16.675 --> 00:01:22.834
-Sources: the Federal Modernization
-Workbook's Book 08, Chapter 04,
-
-22
-00:01:22.834 --> 00:01:30.589
-What AD-integrated DNS actually is, and
-Secure dynamic updates and the DHCP server;
-
-23
-00:01:30.589 --> 00:01:35.836
-Microsoft Learn, Dynamic update
-(Windows Server DNS) [S26];
-
-24
-00:01:35.836 --> 00:01:38.740
-Policy CSP ADMX_DnsClient [S27].

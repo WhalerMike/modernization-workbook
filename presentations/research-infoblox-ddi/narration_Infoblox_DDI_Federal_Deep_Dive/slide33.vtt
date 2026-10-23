@@ -1,138 +1,62 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:01.000
-Who does what.
+00:00:00.050 --> 00:00:00.975
+Who does what?
 
 2
-00:00:01.000 --> 00:00:05.934
-This matrix is adapted from the Federal
-Modernization Workbook's Book 08's
+00:00:00.975 --> 00:00:03.444
+This matrix is adapted from Book 08's,
 
 3
-00:00:05.934 --> 00:00:09.992
-responsibility matrix, which
-separates deciding from doing:
+00:00:03.444 --> 00:00:08.300
+which separates deciding from doing,
+with a column added for divisions.
 
 4
-00:00:09.992 --> 00:00:13.812
-D decides and is accountable, R
-does the work, C is consulted.
+00:00:08.300 --> 00:00:11.971
+The CIO decides the platform
+and how divisions are scoped,
 
 5
-00:00:13.812 --> 00:00:16.762
-I've added a Division column
-for the delegated model.
+00:00:11.971 --> 00:00:15.796
+and the central DDI team builds
+it, with divisions consulted,
 
 6
-00:00:16.762 --> 00:00:21.903
-The CIO decides the platform and deployment
-model, NIOS, the SaaS, or hybrid,
+00:00:15.796 --> 00:00:19.238
+because a scope they can't
+work in becomes a workaround.
 
 7
-00:00:21.903 --> 00:00:27.212
-with the central DDI team doing the
-evaluation and everyone else consulted.
+00:00:19.238 --> 00:00:23.926
+The authorizing official decides whether
+a cloud management plane is authorized.
 
 8
-00:00:27.212 --> 00:00:30.560
-The authorizing official decides
-whether a cloud-delivered
+00:00:23.926 --> 00:00:26.877
+The CISO decides the control requirements,
 
 9
-00:00:30.560 --> 00:00:33.712
-management plane is authorized
-at the right impact level.
+00:00:26.877 --> 00:00:30.787
+like signing and security policy,
+and central DDI runs them.
 
 10
-00:00:33.712 --> 00:00:38.460
-The CIO also decides how divisions
-are scoped in the policy plane,
+00:00:30.787 --> 00:00:34.373
+Standard record changes are
+where delegation pays off:
 
 11
-00:00:38.460 --> 00:00:43.912
-and the central DDI team builds it: admin
-groups, network views, access views.
+00:00:34.373 --> 00:00:38.113
+central defines them in advance,
+and divisions do the work.
 
 12
-00:00:43.912 --> 00:00:48.676
-Divisions are consulted, because a scope
-they can't work in becomes a workaround.
+00:00:38.113 --> 00:00:40.287
+High-impact changes stay central.
 
 13
-00:00:48.676 --> 00:00:51.789
-Central DDI owns the
-top-level address blocks
-
-14
-00:00:51.789 --> 00:00:54.575
-and namespace design, deciding and doing.
-
-15
-00:00:54.575 --> 00:00:59.767
-DNSSEC signing and key rollover, and
-response policy and Threat Defense policy,
-
-16
-00:00:59.767 --> 00:01:04.802
-are control requirements, so the CISO
-decides them and central DDI runs them,
-
-17
-00:01:04.802 --> 00:01:08.500
-with security operations
-consulted on response policy.
-
-18
-00:01:08.500 --> 00:01:12.975
-Standard record changes in a division's
-zone are where delegation pays off.
-
-19
-00:01:12.975 --> 00:01:17.864
-Central decided in advance what a standard
-change is; the division does the work,
-
-20
-00:01:17.864 --> 00:01:21.938
-inside its scope, through the
-approval workflow where one applies.
-
-21
-00:01:21.938 --> 00:01:27.094
-High-impact changes, such as zones,
-NS and SRV records, apex records,
-
-22
-00:01:27.094 --> 00:01:33.301
-wildcards and RPZ, stay with central to
-decide and do, with divisions consulted.
-
-23
-00:01:33.301 --> 00:01:36.677
-And an encrypted DNS exception
-that has no end date,
-
-24
-00:01:36.677 --> 00:01:41.181
-or has outlived the agency's limit,
-goes to the authorizing official,
-
-25
-00:01:41.181 --> 00:01:45.925
-because at that point it's a risk
-acceptance, not a configuration choice.
-
-26
-00:01:45.925 --> 00:01:48.155
-Sources: Book 08, Chapter 09,
-
-27
-00:01:48.155 --> 00:01:54.642
-"Decision rights and work are different
-things," "The roles," "The responsibility
-
-28
-00:01:54.642 --> 00:02:00.890
-matrix"; Infoblox NIOS approval
-workflows; Universal DDI access policies.
+00:00:40.287 --> 00:00:46.130
+And an encrypted DNS exception with no
+end date goes to the authorizing official.

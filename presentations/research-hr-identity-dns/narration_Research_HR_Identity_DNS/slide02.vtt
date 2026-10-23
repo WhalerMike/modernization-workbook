@@ -1,129 +1,54 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:03.845
-Here's the chain end to end,
-as Microsoft's Oracle tutorial
+00:00:00.050 --> 00:00:01.963
+Let's walk the chain end to end.
 
 2
-00:00:03.845 --> 00:00:07.962
-and the Federal Modernization
-Workbook's Book 03 describe it.
-
-3
-00:00:07.962 --> 00:00:14.275
+00:00:01.963 --> 00:00:08.274
 It starts in Oracle Fusion Cloud HCM,
 the HR system Oracle runs as a service.
 
+3
+00:00:08.274 --> 00:00:12.690
+Changes leave Fusion as extracts
+or change feeds, and middleware,
+
 4
-00:00:14.275 --> 00:00:17.038
-HCM means human capital management.
+00:00:12.690 --> 00:00:16.779
+running in Oracle's integration
+cloud or in Azure, pulls them,
 
 5
-00:00:17.038 --> 00:00:20.230
-Changes leave Fusion as
-extracts, or as Atom feeds,
+00:00:16.779 --> 00:00:22.175
+turns them into a standard format called
+SCIM, and posts them to Microsoft Graph.
 
 6
-00:00:20.230 --> 00:00:24.200
-which are lists of recent changes
-that another program polls.
+00:00:22.175 --> 00:00:27.679
+Entra then writes the user into Entra ID,
+and for users still in Active Directory,
 
 7
-00:00:24.200 --> 00:00:27.187
-In this pattern, the
-middleware pulls from Oracle.
+00:00:27.679 --> 00:00:31.181
+a small on-premises agent
+writes the change into AD.
 
 8
-00:00:27.187 --> 00:00:29.550
-The middleware is the
-program in the middle.
+00:00:31.181 --> 00:00:34.850
+Lifecycle Workflows run the
+joiner and leaver tasks.
 
 9
-00:00:29.550 --> 00:00:34.445
-Microsoft says it can run in Oracle
-Integration Cloud, called OIC,
+00:00:34.850 --> 00:00:41.038
+Now notice the DNS pattern: every hop in
+the top row crosses a vendor's public name,
 
 10
-00:00:34.445 --> 00:00:39.612
-or in Azure as an Azure Function, a
-Logic App, or a Data Factory pipeline.
-
-11
-00:00:39.612 --> 00:00:44.550
-It turns HR records into a standard
-format called SCIM and posts them to
-
-12
-00:00:44.550 --> 00:00:49.487
-Microsoft Graph, Microsoft's main API,
-at an endpoint called bulkUpload.
-
-13
-00:00:49.487 --> 00:00:52.775
-That's Entra's API-driven
-inbound provisioning.
-
-14
-00:00:52.775 --> 00:00:56.937
-The Entra provisioning service then
-writes the user into Entra ID.
-
-15
-00:00:56.937 --> 00:00:59.732
-For users who still live
-in Active Directory,
-
-16
-00:00:59.732 --> 00:01:03.734
-it hands the change to a provisioning
-agent: a small service on an
-
-17
-00:01:03.734 --> 00:01:08.492
-on-premises server that makes outbound
-connections only, and writes into AD.
-
-18
-00:01:08.492 --> 00:01:13.551
-Lifecycle Workflows then run joiner and
-leaver tasks on the hire and leave dates.
-
-19
-00:01:13.551 --> 00:01:15.600
-Notice the DNS pattern.
-
-20
-00:01:15.600 --> 00:01:19.212
-Every arrow in the top row
-crosses a vendor's public name.
-
-21
-00:01:19.212 --> 00:01:23.101
-Only the agent-to-AD
+00:00:41.038 --> 00:00:44.600
+and only the agent-to-AD
 hop needs internal DNS.
 
-22
-00:01:23.101 --> 00:01:30.406
-Sources: Microsoft Learn: Configure Oracle
-HCM for automatic user provisioning [S1],
-
-23
-00:01:30.406 --> 00:01:37.394
-Perform bulkUpload [S5], On-premises
-application provisioning architecture [S6
-
-24
-00:01:37.394 --> 00:01:43.853
-(excerpt)], Plan cloud HR application to
-Entra user provisioning [S8 (excerpt)],
-
-25
-00:01:43.853 --> 00:01:48.830
-Lifecycle workflows attribute
-sync [S11 (excerpt)]; Oracle,
-
-26
-00:01:48.830 --> 00:01:53.980
-Working with Atom [S18]; Book
-03 Ch05, Provisioning Services.
+11
+00:00:44.600 --> 00:00:47.330
+That's the key idea, so let's look closer.

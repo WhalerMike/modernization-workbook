@@ -10,147 +10,50 @@ which group they land in,
 is the other half of division scoping.
 
 3
-00:00:05.013 --> 00:00:09.719
-NIOS supports local accounts,
-RADIUS, Active Directory,
+00:00:05.013 --> 00:00:10.130
+NIOS maps directory groups to its own
+admin groups, with the first match winning,
 
 4
-00:00:09.719 --> 00:00:13.300
-LDAP, TACACS+ and SAML,
-in any combination.
+00:00:10.130 --> 00:00:14.626
+so an AD group per division can decide
+where an administrator belongs.
 
 5
-00:00:13.300 --> 00:00:17.183
-The authentication policy is an
-ordered list of server groups,
+00:00:14.626 --> 00:00:18.544
+For federal staff, the
+important path is certificate
 
 6
-00:00:17.183 --> 00:00:21.738
-plus an ordered list that maps remote
-groups to local admin groups by name.
+00:00:18.544 --> 00:00:21.750
+sign-in with CAC or PIV,
+checked against OCSP.
 
 7
-00:00:21.738 --> 00:00:25.075
-The first match wins, and there's
-an optional default group.
+00:00:21.750 --> 00:00:24.328
+SAML works too, including with Entra,
 
 8
-00:00:25.075 --> 00:00:29.865
-So a directory, for example an AD security
-group per division, decides which
+00:00:24.328 --> 00:00:28.487
+where the user lands in the
+group whose name exactly matches.
 
 9
-00:00:29.865 --> 00:00:35.350
-division an administrator belongs to, and
-AD nested groups are resolved recursively.
+00:00:28.487 --> 00:00:33.721
+A few things to test: certificate sign-in
+to the API can conflict with certain cloud
 
 10
-00:00:35.350 --> 00:00:39.100
-For federal staff the important
-one is certificate authentication.
+00:00:33.721 --> 00:00:36.645
+licenses, SAML-only users
+get no command line,
 
 11
-00:00:39.100 --> 00:00:44.030
-NIOS authenticates administrators
-by X.509 client certificate,
+00:00:36.645 --> 00:00:40.800
+and it's not confirmed whether Entra
+sends the group name or its ID.
 
 12
-00:00:44.030 --> 00:00:49.600
-and its documentation names CAC and
-PIV smart-card holders as the example.
-
-13
-00:00:49.600 --> 00:00:54.674
-Certificate status is checked against
-an ordered list of OCSP responders,
-
-14
-00:00:54.674 --> 00:00:59.012
-and both the authentication policy
-and the OCSP check must pass.
-
-15
-00:00:59.012 --> 00:01:03.851
-The admin name is matched from the
-certificate's UPN, email or subject.
-
-16
-00:01:03.851 --> 00:01:09.100
-SAML 2.0 lists Azure SSO among
-its identity provider types.
-
-17
-00:01:09.100 --> 00:01:13.563
-The provider sends a group attribute,
-and the user lands in the NIOS
-
-18
-00:01:13.563 --> 00:01:18.188
-group whose name exactly matches;
-otherwise in a default SAML group.
-
-19
-00:01:18.188 --> 00:01:19.351
-Four things to check.
-
-20
-00:01:19.351 --> 00:01:24.074
-Certificate-based sign-in to the API
-doesn't work if the Grid Master holds a
-
-21
-00:01:24.074 --> 00:01:29.262
-Cloud Network Automation or Cloud API
-license, so decide that before you license.
-
-22
-00:01:29.262 --> 00:01:32.401
-SAML-only users can't run CLI commands.
-
-23
-00:01:32.401 --> 00:01:37.267
-Infoblox's Universal DDI guide
-says Entra sends group object IDs,
-
-24
-00:01:37.267 --> 00:01:40.422
-while NIOS needs an
-exact group name match,
-
-25
-00:01:40.422 --> 00:01:45.650
-and we couldn't confirm which the NIOS
-Azure SSO type expects, so test it.
-
-26
-00:01:45.650 --> 00:01:47.958
-And because the first mapping wins,
-
-27
-00:01:47.958 --> 00:01:51.937
-order mappings so a user in two
-groups lands where you intend.
-
-28
-00:01:51.937 --> 00:01:54.376
-Keep the local admin as break-glass.
-
-29
-00:01:54.376 --> 00:01:58.538
-Sources: Infoblox NIOS:
-Authenticating Administrators;
-
-30
-00:01:58.538 --> 00:02:02.789
-Defining the Authentication
-Policy; About Remote Admins;
-
-31
-00:02:02.789 --> 00:02:08.900
-Two-Factor and Certificate Authentication
-Services; SAML pages; AD Nested Groups;
-
-32
-00:02:08.900 --> 00:02:14.180
-Creating Limited-Access Admin Groups;
-Universal DDI SAML for Entra ID.
+00:00:40.800 --> 00:00:44.590
+Order mappings carefully, and
+keep a local break-glass admin.

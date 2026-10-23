@@ -1,142 +1,54 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:03.037
-Here's the whole build
-mapped onto the Federal
+00:00:00.050 --> 00:00:03.178
+Here's the whole build laid
+onto Book 08's phases,
 
 2
-00:00:03.037 --> 00:00:06.025
-Modernization Workbook's
-Book 08's six phases.
+00:00:03.178 --> 00:00:06.225
+and the order is the
+program's design guidance.
 
 3
-00:00:06.025 --> 00:00:10.296
-This is the program's design guidance:
-the order is a recommendation,
+00:00:06.225 --> 00:00:08.650
+Phase 0 makes the four decisions.
 
 4
-00:00:10.296 --> 00:00:13.575
-and each step rests on the
-facts from earlier slides.
+00:00:08.650 --> 00:00:13.794
+Phase 1 builds a lab Grid, then production
+in order, from the Grid Master pair and
 
 5
-00:00:13.575 --> 00:00:18.264
-Phase 0, decide: FIPS mode,
-the long-term-support train,
-
-6
-00:00:18.264 --> 00:00:21.100
-the DNSSEC defaults, and the HSM.
-
-7
-00:00:21.100 --> 00:00:25.725
-Phase 1, inventory and baseline:
-build a lab Grid first.
-
-8
-00:00:25.725 --> 00:00:30.656
-Then production in order: the Grid Master
-pair with NTP set at the Grid level,
-
-9
-00:00:30.656 --> 00:00:35.587
-the candidate with a promote test,
-permanent licenses, PIV and SAML sign-in
-
-10
-00:00:35.587 --> 00:00:40.438
-with the banner and the management
-port, syslog, and scheduled SCP backups.
-
-11
-00:00:40.438 --> 00:00:44.223
-Then physical managing members
-next to the domain controllers,
-
-12
-00:00:44.223 --> 00:00:46.651
+00:00:13.794 --> 00:00:19.175
+candidate to sign-in, logging and backups,
 with the Windows servers added read-only.
 
-13
-00:00:46.651 --> 00:00:52.691
-Phase 2, coexist: DNS and DHCP members
-on-premises, and vNIOS in each cloud hub,
+6
+00:00:19.175 --> 00:00:24.100
+Phase 2 coexists, adding members
+on premises and in each cloud hub.
 
-14
-00:00:52.691 --> 00:00:57.562
-with high availability only
-where the region is documented.
+7
+00:00:24.100 --> 00:00:28.053
+Phase 3 moves authority zone
+by zone and scope by scope,
 
-15
-00:00:57.562 --> 00:01:01.350
-Recreate the forwarders,
-and load AES keytabs.
+8
+00:00:28.053 --> 00:00:30.337
+re-signing signed zones on NIOS.
 
-16
-00:01:01.350 --> 00:01:07.412
-Phase 3, migrate authority: import each
-zone, validate, and flip delegation.
-
-17
-00:01:07.412 --> 00:01:11.512
-Re-sign signed zones on NIOS
-and publish the new DS.
-
-18
-00:01:11.512 --> 00:01:16.951
-For DHCP, scope by scope: lower lease
-times, take the scope over, create the
-
-19
-00:01:16.951 --> 00:01:21.007
-failover association, confirm
-the DNS server option,
-
-20
-00:01:21.007 --> 00:01:23.588
-and deactivate the Windows scope.
-
-21
-00:01:23.588 --> 00:01:29.776
-Phase 4, federate the clouds, with
+9
+00:00:30.337 --> 00:00:36.287
+Phase 4 federates the clouds, with
 Universal DDI only on non-FIPS scopes.
 
-22
-00:01:29.776 --> 00:01:36.087
-Phase 5, decommission, behind Book 08's
-five gates, with the locator zones last.
+10
+00:00:36.287 --> 00:00:41.188
+Phase 5 decommissions behind Book
+08's gates, locator zones last.
 
-23
-00:01:36.087 --> 00:01:39.312
-Disable sync, remove the managed servers,
-
-24
-00:01:39.312 --> 00:01:43.863
-archive the exports, and
-de-authorize the old DHCP servers.
-
-25
-00:01:43.863 --> 00:01:48.615
-And Phase 6: the remaining STIG items,
-the approved long-term-support build
-
-26
-00:01:48.615 --> 00:01:53.212
-through a test upgrade, and the evidence
-checklist in the backup slides.
-
-27
-00:01:53.212 --> 00:01:58.564
-Sources: Research brief section 10
-(phase-by-phase build sequence,
-
-28
-00:01:58.564 --> 00:02:04.114
-program design guidance); Book 08,
-Chapter 10 (six phases, Phase 5 gates,
-
-29
-00:02:04.114 --> 00:02:09.820
-cutover loop); Infoblox NIOS and DISA
-STIG sources cited in Parts 1 to 3.
+11
+00:00:41.188 --> 00:00:44.780
+And Phase 6 finishes the
+STIG items and evidence.

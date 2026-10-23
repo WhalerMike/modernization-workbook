@@ -1,146 +1,46 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:03.813
+00:00:00.050 --> 00:00:05.800
 Virtual appliances, vNIOS,
-in each environment.
+run on VMware, Azure and AWS.
 
 2
-00:00:03.813 --> 00:00:09.174
-On VMware, the OVA comes from Infoblox's
-support site, which needs a login.
+00:00:05.800 --> 00:00:09.354
+On VMware, the advice is to
+leave the VM's settings alone,
 
 3
-00:00:09.174 --> 00:00:12.777
-Infoblox says not to change
-the VM's settings in vSphere,
+00:00:09.354 --> 00:00:14.250
+because changing them may violate the
+licensing terms and stop it joining.
 
 4
-00:00:12.777 --> 00:00:17.788
-because that may violate the virtual
-licensing terms and stop the VM joining.
+00:00:14.250 --> 00:00:20.961
+On Azure and AWS, high availability arrived
+in 9.0.4, with limits to plan around,
 
 5
-00:00:17.788 --> 00:00:21.479
-Mixed SR-IOV and regular
-network cards aren't supported,
+00:00:20.961 --> 00:00:26.713
+such as both nodes in the same region
+and zone, and no IPv6 failover.
 
 6
-00:00:21.479 --> 00:00:23.325
-and cloned VMs aren't either.
+00:00:26.713 --> 00:00:31.195
+Here's the gap that matters for
+government: the HA prerequisites list only
 
 7
-00:00:23.325 --> 00:00:26.826
-On Azure, marketplace deployment
-is supported on Azure
+00:00:31.195 --> 00:00:35.825
+commercial cloud endpoints, with nothing
+for GovCloud or Azure Government.
 
 8
-00:00:26.826 --> 00:00:30.175
-public and Azure Government,
-with managed disks only.
+00:00:35.825 --> 00:00:41.225
+So ask Infoblox, in writing, before
+you rely on vNIOS failover there.
 
 9
-00:00:30.175 --> 00:00:36.375
-High availability arrived in 9.0.4, and
-needs a custom role and a managed identity.
-
-10
-00:00:36.375 --> 00:00:42.439
-The limits to plan around: DHCP failover
-doesn't work behind NAT, there's no LAN2,
-
-11
-00:00:42.439 --> 00:00:47.839
-no IPv6 high availability, and both
-HA nodes must be in the same region,
-
-12
-00:00:47.839 --> 00:00:51.250
-resource group,
-availability zone and size.
-
-13
-00:00:51.250 --> 00:00:57.975
-On AWS, high availability also starts at
-9.0.4, and needs the VPC and subnets,
-
-14
-00:00:57.975 --> 00:01:05.037
-an HA IAM role, and a Grid DNS resolver
-that can reach the IAM and EC2 endpoints.
-
-15
-00:01:05.037 --> 00:01:10.712
-Same limits: no IPv6 HA, same
-region, zone and instance type.
-
-16
-00:01:10.712 --> 00:01:11.701
-Now the gap.
-
-17
-00:01:11.701 --> 00:01:15.350
-The HA prerequisites list
-only commercial endpoints.
-
-18
-00:01:15.350 --> 00:01:19.863
-AWS lists the global and
-China endpoints, not GovCloud.
-
-19
-00:01:19.863 --> 00:01:25.040
-Azure lists management dot azure dot com
-and login dot microsoftonline dot com,
-
-20
-00:01:25.040 --> 00:01:27.550
-with no Azure Government equivalents.
-
-21
-00:01:27.550 --> 00:01:30.938
-And failover time depends
-on the cloud's own API.
-
-22
-00:01:30.938 --> 00:01:32.889
-So ask Infoblox, in writing,
-
-23
-00:01:32.889 --> 00:01:37.413
-before you rely on vNIOS failover
-in either government cloud.
-
-24
-00:01:37.413 --> 00:01:40.063
-One more constraint that shapes Part 2:
-
-25
-00:01:40.063 --> 00:01:43.212
-vNIOS members can't
-manage Microsoft servers.
-
-26
-00:01:43.212 --> 00:01:50.308
-Sources: Infoblox vNIOS for VMware
-installation guide (OVA, VM settings, SR-IOV);
-
-27
-00:01:50.308 --> 00:01:56.738
-vNIOS for Azure (Marketplace support,
-managed disks, HA prerequisites,
-
-28
-00:01:56.738 --> 00:02:02.835
-custom role and managed identity,
-limitations page version 19, Aug.
-
-29
-00:02:02.835 --> 00:02:07.935
-31, 2026); vNIOS for AWS (HA
-prerequisites and limitations);
-
-30
-00:02:07.935 --> 00:02:12.860
-NIOS 9.1.x Guidelines for
-managing Microsoft servers.
+00:00:41.225 --> 00:00:47.020
+And one constraint that shapes Part 2: vNIOS
+members can't manage Microsoft servers.

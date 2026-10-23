@@ -1,136 +1,58 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:01.700
-DNSSEC on NIOS.
+00:00:00.050 --> 00:00:05.063
+On a Grid, only the Grid Master
+signs, acting as a hidden primary.
 
 2
-00:00:01.700 --> 00:00:06.149
-On a Grid, only the Grid Master
-signs, acting as a hidden primary,
+00:00:05.063 --> 00:00:08.577
+The key rule is to set the
+parameters before you sign anything,
 
 3
-00:00:06.149 --> 00:00:09.900
-and signing a zone makes it
-the zone's primary server.
-
-4
-00:00:09.900 --> 00:00:13.233
-You set the parameters in
-the Grid's DNS properties,
-
-5
-00:00:13.233 --> 00:00:16.962
-in advanced mode, and individual
-zones can override them.
-
-6
-00:00:16.962 --> 00:00:21.100
-Set them before you sign anything,
+00:00:08.577 --> 00:00:10.575
 because the defaults fail the STIG.
 
+4
+00:00:10.575 --> 00:00:17.191
+Change the algorithm from RSA with SHA-1
+to SHA-256 or an elliptic curve option,
+
+5
+00:00:17.191 --> 00:00:21.635
+and raise the zone-signing
+key from 1024 bits to 2048,
+
+6
+00:00:21.635 --> 00:00:25.150
+which lines up with
+Book 08's own guidance.
+
 7
-00:00:21.100 --> 00:00:26.200
-The default algorithm is RSA
-with SHA-1, for both keys.
+00:00:25.150 --> 00:00:29.238
+The other defaults are fine,
+including automatic key rollovers.
 
 8
-00:00:26.200 --> 00:00:34.962
-Change it to RSA with SHA-256,
-or ECDSA with P-256 or P-384.
-
-9
-00:00:34.962 --> 00:00:40.227
-The default zone-signing key is 1024
-bits; raise it to 2048 for RSA,
-
-10
-00:00:40.227 --> 00:00:46.387
-and keep the key-signing key at least as
-large, which is Infoblox's own advice.
-
-11
-00:00:46.387 --> 00:00:51.786
-The Federal Modernization Workbook's
-Book 08 Chapter 06, citing NIST,
-
-12
-00:00:51.786 --> 00:00:56.900
-says RSA keys of at least 2048
-bits, with elliptic curve preferred.
-
-13
-00:00:56.900 --> 00:00:58.475
-The other defaults are fine.
-
-14
-00:00:58.475 --> 00:01:03.525
-Signature validity is four days, inside
-the STIG's two-to-seven-day window.
-
-15
-00:01:03.525 --> 00:01:09.250
-Denial of existence is NSEC3, which
-the STIG requires for external zones.
-
-16
-00:01:09.250 --> 00:01:13.342
-Zone-signing keys roll every
-thirty days by pre-publication,
-
-17
-00:01:13.342 --> 00:01:15.225
-which Infoblox recommends.
-
-18
-00:01:15.225 --> 00:01:18.064
-Key-signing keys roll
-yearly, automatically,
-
-19
-00:01:18.064 --> 00:01:22.438
-with notifications when the parent's
-DS record needs a manual update.
-
-20
-00:01:22.438 --> 00:01:27.823
+00:00:29.238 --> 00:00:34.360
 One decision to document: Book 08
 records NIST's preference for NSEC,
 
-21
-00:01:27.823 --> 00:01:31.188
-while the STIG requires NSEC3 externally.
+9
+00:00:34.360 --> 00:00:40.488
+while the STIG requires NSEC3 for external
+zones, so decide it for internal zones.
 
-22
-00:01:31.188 --> 00:01:33.101
-Decide it for internal zones.
+10
+00:00:40.488 --> 00:00:43.316
+And if you ever change a
+signed zone's algorithm,
 
-23
-00:01:33.101 --> 00:01:37.909
-And if you ever change a signed zone's
-algorithm: add the new one, wait longer
+11
+00:00:43.316 --> 00:00:45.637
+add the new one before removing the old.
 
-24
-00:01:37.909 --> 00:01:43.112
-than the record lifetimes, update the parent's
-DS, and only then remove the old one.
-
-25
-00:01:43.112 --> 00:01:52.817
-Sources: Infoblox NIOS 9.1.x Configuring
-DNSSEC parameters (defaults and
-
-26
-00:01:52.817 --> 00:02:03.331
-recommendations); Signing a zone; ZSK
-rollover; KSK rollover and notifications;
-
-27
-00:02:03.331 --> 00:02:12.389
-Changing algorithms; DISA Infoblox
-NIOS 9.x STIG V1R1 rules V-285246,
-
-28
-00:02:12.389 --> 00:02:20.860
-V-285265, V-285274 and V-285279; Book
-08, Chapter 06 (NIST SP 800-81r3).
+12
+00:00:45.637 --> 00:00:47.400
+Next, the HSM.

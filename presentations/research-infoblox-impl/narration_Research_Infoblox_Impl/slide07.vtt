@@ -1,150 +1,65 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:03.088
-Two quiet failure modes,
-time and licenses.
+00:00:00.050 --> 00:00:03.387
+Two things fail quietly
+here: time and licenses.
 
 2
-00:00:03.088 --> 00:00:04.162
-Time first.
+00:00:03.387 --> 00:00:07.921
+Set NTP at the Grid level first, with
+at least three external servers as
 
 3
-00:00:04.162 --> 00:00:07.681
-Enable NTP and set the external
-servers at the Grid level
+00:00:07.921 --> 00:00:12.376
+the STIG recommends, and let the Grid
+Master serve time to the members.
 
 4
-00:00:07.681 --> 00:00:11.425
-before you configure the Grid
-Master and members as clients.
+00:00:12.376 --> 00:00:14.450
+Time isn't cosmetic: Grid sync,
 
 5
-00:00:11.425 --> 00:00:16.014
-The Grid Master then serves time to the
-members inside the encrypted tunnel,
-
-6
-00:00:16.014 --> 00:00:20.675
-and if it goes offline, the candidate
-and members sync to the external servers.
-
-7
-00:00:20.675 --> 00:00:23.093
-The STIG requires the external servers at
-
-8
-00:00:23.093 --> 00:00:25.650
-the Grid level and
-recommends at least three.
-
-9
-00:00:25.650 --> 00:00:29.198
-A clock more than five minutes
-off is stepped immediately;
-
-10
-00:00:29.198 --> 00:00:30.750
-a smaller error is slewed.
-
-11
-00:00:30.750 --> 00:00:34.057
-Time isn't cosmetic here:
-Grid synchronization,
-
-12
-00:00:34.057 --> 00:00:38.213
-Kerberos-signed updates, and
+00:00:14.450 --> 00:00:18.687
+Kerberos-signed updates and
 DHCP failover all depend on it.
 
-13
-00:00:38.213 --> 00:00:42.021
-One gap to note for your control mapping:
+6
+00:00:18.687 --> 00:00:21.461
+One gap for your control mapping:
 
-14
-00:00:42.021 --> 00:00:49.524
-NIOS lists NTP authentication keys of MD5,
-DES and SHA-1 only, with no SHA-2 option.
+7
+00:00:21.461 --> 00:00:25.876
+NIOS offers no SHA-2 key
+type for NTP authentication.
 
-15
-00:00:49.524 --> 00:00:50.550
-Licenses.
+8
+00:00:25.876 --> 00:00:27.100
+Then licenses.
 
-16
-00:00:50.550 --> 00:00:54.993
-Member licenses bind to a hardware
-ID, Grid-wide licenses bind to the
-
-17
-00:00:54.993 --> 00:00:59.675
-Grid Master and replicate, and
-subscriptions expire with the contract.
-
-18
-00:00:59.675 --> 00:01:01.850
+9
+00:00:27.100 --> 00:00:29.275
 The trap is the temporary license.
 
-19
-00:01:01.850 --> 00:01:05.744
-It lasts sixty days and can't be
-renewed, and when it expires,
+10
+00:00:29.275 --> 00:00:31.629
+It lasts sixty days, can't be renewed,
 
-20
-00:01:05.744 --> 00:01:09.475
-the member's services stop and
-it's evicted from the Grid.
+11
+00:00:31.629 --> 00:00:36.663
+and when it expires the member's services
+stop and it's evicted from the Grid.
 
-21
-00:01:09.475 --> 00:01:12.163
+12
+00:00:36.663 --> 00:00:39.351
 So never let a production
 member run on one.
 
-22
-00:01:12.163 --> 00:01:15.228
-Install licenses on both
-nodes of an HA pair,
+13
+00:00:39.351 --> 00:00:44.387
+And if the Microsoft Management license
+lapses, sync to the Windows servers stops.
 
-23
-00:01:15.228 --> 00:01:19.912
-and expect the NIOS and some add-on
-licenses to restart the product.
-
-24
-00:01:19.912 --> 00:01:22.737
-If the Microsoft Management
-license expires,
-
-25
-00:01:22.737 --> 00:01:25.637
-synchronization to the
-Windows servers stops.
-
-26
-00:01:25.637 --> 00:01:29.084
-For VMware, get permanent
-keys by submitting
-
-27
-00:01:29.084 --> 00:01:32.250
-each VM's hardware ID,
-and allow a day or two.
-
-28
-00:01:32.250 --> 00:01:40.379
-Sources: Infoblox NIOS 9.1.x Configuring
-NTP (Grid and member), NTP clock behavior,
-
-29
-00:01:40.379 --> 00:01:48.758
-NTP authentication keys; License types,
-Expiring licenses, Installing licenses;
-
-30
-00:01:48.758 --> 00:01:53.760
-vNIOS for VMware obtaining
-permanent licenses;
-
-31
-00:01:53.760 --> 00:01:57.940
-DISA Infoblox NIOS 9.x
-STIG V1R1, V-285309.
+14
+00:00:44.387 --> 00:00:46.630
+Now, the virtual appliances.

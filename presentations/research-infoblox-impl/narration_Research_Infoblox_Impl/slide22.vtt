@@ -1,53 +1,16 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:02.450
-Part 4: operate and evidence.
+00:00:00.050 --> 00:00:02.838
+Part 4 is running it
+and producing evidence.
 
 2
-00:00:02.450 --> 00:00:04.393
-First upgrades: the five steps,
+00:00:02.838 --> 00:00:08.169
+We'll cover upgrades and the point of no
+return, patching, backup and recovery,
 
 3
-00:00:04.393 --> 00:00:08.512
-the point at which you can no longer
-go back, and long-term support.
-
-4
-00:00:08.512 --> 00:00:09.524
-Then patching.
-
-5
-00:00:09.524 --> 00:00:13.950
-Then backup and restore, and how to
-recover if the Grid Master is lost.
-
-6
-00:00:13.950 --> 00:00:17.475
-Then logging to the SIEM, and
-what can and can't be automated.
-
-7
-00:00:17.475 --> 00:00:21.974
-And finally the whole build mapped
-onto the Federal Modernization
-
-8
-00:00:21.974 --> 00:00:26.875
-Workbook's Book 08's six phases, with
-the decisions and vendor asks to close.
-
-9
-00:00:26.875 --> 00:00:32.598
-Sources: Infoblox NIOS upgrade, backup
-and restore, Grid Master Candidate,
-
-10
-00:00:32.598 --> 00:00:38.227
-logging and Data Connector documentation;
-terraform-provider-nios and
-
-11
-00:00:38.227 --> 00:00:44.210
-infoblox-ansible repositories; CISA KEV
-catalog; Book 08, Chapters 10 and 11.
+00:00:08.169 --> 00:00:13.220
+logging, automation, and the whole
+build mapped onto Book 08's six phases.

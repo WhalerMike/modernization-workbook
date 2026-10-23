@@ -1,150 +1,59 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:01.700
-So what must the agency do?
+00:00:00.050 --> 00:00:04.337
+Here's what the agency must do,
+condensed from a thirteen-step checklist,
 
 2
-00:00:01.700 --> 00:00:05.206
-This is program design guidance,
-not a vendor requirement,
+00:00:04.337 --> 00:00:07.825
+and it's program design guidance,
+not a vendor requirement.
 
 3
-00:00:05.206 --> 00:00:07.762
-condensed from a thirteen-step checklist.
+00:00:07.825 --> 00:00:13.391
+Start with names and owners: inventory
+every name in the HR path per cloud, never
 
 4
-00:00:07.762 --> 00:00:09.525
-Names and owners first.
+00:00:13.391 --> 00:00:16.388
+create a private zone
+for a vendor's domain,
 
 5
-00:00:09.525 --> 00:00:13.413
-Inventory every name in
-the HR path, per cloud.
+00:00:16.388 --> 00:00:19.300
+and give each agency namespace one owner.
 
 6
-00:00:13.413 --> 00:00:16.337
-Never create a private zone
-for a vendor's domain.
+00:00:19.300 --> 00:00:24.205
+Then forwarding: forward from the Grid
+to inbound endpoints in two regions,
 
 7
-00:00:16.337 --> 00:00:20.837
-Give each agency namespace one
-owner, and forward everything else.
+00:00:24.205 --> 00:00:27.923
+raise Windows forwarder timeouts,
+run a hub in each cloud,
 
 8
-00:00:20.837 --> 00:00:25.675
-And never let a zone and a rule for
-the same name exist in one network.
+00:00:27.923 --> 00:00:31.087
+and size endpoints before
+each onboarding wave.
 
 9
-00:00:25.675 --> 00:00:26.513
-Forwarding.
+00:00:31.087 --> 00:00:36.132
+Then the components: run at least two
+provisioning agents, treat middleware
 
 10
-00:00:26.513 --> 00:00:31.827
-From the Grid, forward each Azure service's
-public zone, not its privatelink zone,
+00:00:36.132 --> 00:00:40.537
+DNS as a data-integrity control,
+and keep VMware records in the Grid.
 
 11
-00:00:31.827 --> 00:00:37.062
-to inbound endpoints in two regions, and
-set Use Forwarders Only on those zones.
-
-12
-00:00:37.062 --> 00:00:40.787
-Raise Windows forwarder
-timeouts above four seconds.
-
-13
-00:00:40.787 --> 00:00:46.525
-Run a hub in each cloud, and review the
-forwarding graph for loops at every change.
-
-14
-00:00:46.525 --> 00:00:51.613
-Size resolver endpoints before
-each HR 2.0 onboarding wave.
-
-15
-00:00:51.613 --> 00:00:52.650
-Components.
-
-16
-00:00:52.650 --> 00:00:57.725
-Put the middleware in a Logic Apps Standard
-or Functions plan joined to a virtual
-
-17
-00:00:57.725 --> 00:01:00.225
-network, using the agency resolver path,
-
-18
-00:01:00.225 --> 00:01:03.937
-and keep Lifecycle Workflow
-extensions to public targets.
-
-19
-00:01:03.937 --> 00:01:08.298
-Run at least two provisioning agents
-dedicated to HR provisioning,
-
-20
-00:01:08.298 --> 00:01:12.113
-near preferred domain controllers,
-with no TLS inspection.
-
-21
-00:01:12.113 --> 00:01:15.664
-Treat middleware DNS as
-a data-integrity control,
-
-22
-00:01:15.664 --> 00:01:18.349
-and reconcile against full extracts.
-
-23
-00:01:18.349 --> 00:01:21.025
-For Connect, let the TURN names resolve.
-
-24
-00:01:21.025 --> 00:01:24.713
-For VMware, keep A and
-PTR records in the Grid.
-
-25
-00:01:24.713 --> 00:01:26.626
+00:00:40.537 --> 00:00:42.451
 And test from every origin.
 
-26
-00:01:26.626 --> 00:01:30.838
-Any public answer or NXDOMAIN
+12
+00:00:42.451 --> 00:00:46.630
+Any public answer or missing name
 for a private name is a defect.
-
-27
-00:01:30.838 --> 00:01:35.119
-Sources: Research brief §9,
-
-28
-00:01:35.119 --> 00:01:48.575
-Agency checklist steps 1–13 (all PROGRAM
-DESIGN GUIDANCE) and the facts each step
-
-29
-00:01:48.575 --> 00:01:58.973
-cites: Microsoft Learn [S1, S2, S4, S4b,
-S7b, S8, S10, S10c, S11b, S12, S12b,
-
-30
-00:01:58.973 --> 00:02:09.982
-S13–S15, S14b]; Oracle [S18, S21–S23]; AWS
-[S25, S27–S30, S32, S33]; Broadcom [S36];
-
-31
-00:02:09.982 --> 00:02:20.787
-Infoblox [S37]; the Federal
-Modernization Workbook's Book 03 Ch03,
-
-32
-00:02:20.787 --> 00:02:26.140
-Ch05; Book 08 Ch02, Ch07, Ch08, Ch10.

@@ -6,128 +6,54 @@ Servers and cloud machines don't
 follow the endpoint pattern.
 
 2
-00:00:03.575 --> 00:00:06.336
+00:00:03.575 --> 00:00:08.707
 On premises, servers with fixed addresses
+get static records in the IPAM and DDI
 
 3
-00:00:06.336 --> 00:00:09.413
-get static records in
-the IPAM and DDI system.
+00:00:08.707 --> 00:00:11.122
+system, and, as program design guidance,
 
 4
-00:00:09.413 --> 00:00:12.295
-Static records aren't
-removed by scavenging,
+00:00:11.122 --> 00:00:15.575
+the pipeline that builds a server
+should create and delete its records.
 
 5
-00:00:12.295 --> 00:00:15.100
-the cleanup job that
-deletes stale entries.
+00:00:15.575 --> 00:00:19.305
+Linux servers in an identity
+domain can sign their own updates,
 
 6
-00:00:15.100 --> 00:00:18.970
-As program design guidance,
-the build pipeline that creates
+00:00:19.305 --> 00:00:24.112
+but watch for a fallback to unauthenticated
+updates if signing fails at install.
 
 7
-00:00:18.970 --> 00:00:22.762
-a server should also create and
-delete its A and PTR records.
+00:00:24.112 --> 00:00:29.840
+In Azure, private DNS autoregistration
+does the job, with real limits: VMs only,
 
 8
-00:00:22.762 --> 00:00:27.690
-Linux servers in an identity domain
-can register themselves with GSS-TSIG,
+00:00:29.840 --> 00:00:33.509
+forward records only, and
+records that disappear
 
 9
-00:00:27.690 --> 00:00:32.061
-but watch for one documented
-behavior: if signing fails at install,
+00:00:33.509 --> 00:00:37.088
+when the VM is stopped or
+the network is unlinked.
 
 10
-00:00:32.061 --> 00:00:35.399
-the client falls back to
-unauthenticated updates.
+00:00:37.088 --> 00:00:40.877
+In AWS, this research found
+no built-in registration
 
 11
-00:00:35.399 --> 00:00:38.961
-For Azure Arc, set the
-resource name to match the DNS
+00:00:40.877 --> 00:00:43.962
+into your own zones, so
+you build a pipeline.
 
 12
-00:00:38.961 --> 00:00:42.437
-name at connect time, because
-it can't change later.
-
-13
-00:00:42.437 --> 00:00:47.111
-In Azure, private DNS autoregistration
-does the job, with limits:
-
-14
-00:00:47.111 --> 00:00:52.489
-virtual machines only, the primary
-network interface only, A records only,
-
-15
-00:00:52.489 --> 00:00:57.338
-no PTR records, and one autoregistration
-zone per virtual network.
-
-16
-00:00:57.338 --> 00:01:00.603
-Records disappear when the
-VM is deleted or stopped,
-
-17
-00:01:00.603 --> 00:01:05.237
-deleted records can't be restored, and
-unlinking the network deletes them.
-
-18
-00:01:05.237 --> 00:01:09.262
-In AWS, instances get AWS-made names.
-
-19
-00:01:09.262 --> 00:01:14.939
-An AWS blog from 2016 says VPC DNS
-doesn't create records dynamically,
-
-20
-00:01:14.939 --> 00:01:18.425
-and offers a sample event-driven pipeline.
-
-21
-00:01:18.425 --> 00:01:24.650
-I found no built-in registration into
-your own Route 53 zones in AWS's docs.
-
-22
-00:01:24.650 --> 00:01:32.380
-Sources: Microsoft Learn: DNS aging and
-scavenging [S30], azcmagent connect [S15],
-
-23
-00:01:32.380 --> 00:01:40.714
-Rename Azure Arc-enabled servers [S16],
-VirtualMachineOSProfile.ComputerName [S17],
-
-24
-00:01:40.714 --> 00:01:48.566
-Azure DNS private zones autoregistration
-[S20]; FreeIPA ipa-client-install [S14];
-
-25
-00:01:48.566 --> 00:01:56.054
-AWS: EC2 instance hostname types [S21],
-Working with private hosted zones [S22],
-
-26
-00:01:56.054 --> 00:02:02.094
-AWS Compute Blog, Building a Dynamic
-DNS for Route 53 (2016) [S23];
-
-27
-00:02:02.094 --> 00:02:08.060
-the Federal Modernization
-Workbook's Book 08 Ch07 and Ch10.
+00:00:43.962 --> 00:00:45.860
+Now, remote workers.

@@ -17,7 +17,7 @@ date-modified: 2026-10-23
 | Edition | File |
 |---|---|
 | Deck | [Research_Infoblox_Impl.pptx](../../presentations/research-infoblox-impl/Research_Infoblox_Impl.pptx) |
-| Narrated, self-running (about 52 minutes, captions) | [Research_Infoblox_Impl_Narrated.pptx](../../presentations/research-infoblox-impl/Research_Infoblox_Impl_Narrated.pptx) |
+| Narrated, self-running (about 20 minutes, captions) | [Research_Infoblox_Impl_Narrated.pptx](../../presentations/research-infoblox-impl/Research_Infoblox_Impl_Narrated.pptx) |
 | Narration script and caption track | [Script](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/research-infoblox-impl/Research_Infoblox_Impl_Narration_Script.md) · [Captions](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/research-infoblox-impl/Research_Infoblox_Impl_Narrated.vtt) |
 
 ## What it covers

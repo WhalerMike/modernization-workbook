@@ -10,132 +10,49 @@ The short answer: whatever
 provisions it, at build time.
 
 3
-00:00:05.013 --> 00:00:10.088
-For Windows, that's usually Autopilot,
-which sets up a new PC out of the box.
+00:00:05.013 --> 00:00:07.250
+For Windows that's usually Autopilot.
 
 4
-00:00:10.088 --> 00:00:13.148
-Classic Autopilot with
-Microsoft Entra join,
+00:00:07.250 --> 00:00:10.865
+Classic Autopilot with Entra
+join has a name template,
 
 5
-00:00:13.148 --> 00:00:17.979
-which joins the PC to Microsoft's cloud
-directory instead of AD, has a name
+00:00:10.865 --> 00:00:15.525
+fifteen characters or fewer, using
+the serial number or random digits.
 
 6
-00:00:17.979 --> 00:00:20.556
-template: fifteen characters or fewer,
+00:00:15.525 --> 00:00:21.097
+The newer device preparation has a template
+too, but only for devices with device
 
 7
-00:00:20.556 --> 00:00:23.938
-with macros for the serial
-number or random digits.
+00:00:21.097 --> 00:00:26.087
+association, so, as an inference, Book
+05's description of it needs a review.
 
 8
-00:00:23.938 --> 00:00:27.338
-Hybrid join, which
-joins both AD and Entra,
+00:00:26.087 --> 00:00:30.624
+After enrollment, Intune can rename
+corporate Windows PCs and Macs,
 
 9
-00:00:27.338 --> 00:00:30.638
-gets only a prefix,
-and the rest is random.
+00:00:30.624 --> 00:00:32.649
+though not hybrid-joined ones.
 
 10
-00:00:30.638 --> 00:00:35.082
-The newer Autopilot device preparation
-now has a name template too,
+00:00:32.649 --> 00:00:36.250
+Macs have no enrollment-time
+template that this research found.
 
 11
-00:00:35.082 --> 00:00:36.987
-up to sixty-three characters.
+00:00:36.250 --> 00:00:41.550
+Linux, Azure Arc servers and cloud VMs take
+their names from their own build tools.
 
 12
-00:00:36.987 --> 00:00:41.257
-The caveat matters: it works only
-for devices with device association,
-
-13
-00:00:41.257 --> 00:00:45.675
-and has no effect on devices onboarded
-with corporate identifiers only.
-
-14
-00:00:45.675 --> 00:00:49.711
-As an inference, the Federal
-Modernization Workbook's Book 05's
-
-15
-00:00:49.711 --> 00:00:53.825
-description of device preparation
-needs a review against this.
-
-16
-00:00:53.825 --> 00:00:58.658
-After enrollment, Intune's Rename action
-can rename corporate-owned Windows
-
-17
-00:00:58.658 --> 00:01:02.962
-PCs and Macs, but not hybrid-joined
-devices, which need domain methods.
-
-18
-00:01:02.962 --> 00:01:06.354
-Macs have no enrollment-time
-name template that I found;
-
-19
-00:01:06.354 --> 00:01:08.124
-you rename after enrollment.
-
-20
-00:01:08.124 --> 00:01:11.587
-Linux takes its name from
-cloud-init or a static hostname.
-
-21
-00:01:11.587 --> 00:01:15.563
-Azure Arc keeps the server's
-hostname as a fixed resource name.
-
-22
-00:01:15.563 --> 00:01:18.112
-Cloud VMs get names at create time.
-
-23
-00:01:18.112 --> 00:01:25.693
-Sources: Microsoft Learn: Autopilot device
-preparation Entra join policy [S1],
-
-24
-00:01:25.693 --> 00:01:33.393
-Compare device preparation and Autopilot
-[S2], Entra join Autopilot profile [S3],
-
-25
-00:01:33.393 --> 00:01:39.553
-Hybrid join Domain Join profile
-[S4], Rename a device in Intune [S5],
-
-26
-00:01:39.553 --> 00:01:44.884
-Accounts CSP [S6], macOS
-automated device enrollment [S7];
-
-27
-00:01:44.884 --> 00:01:51.044
-hostnamectl and hostname(5) [S10,
-S11]; cloud-init Set Hostname [S12];
-
-28
-00:01:51.044 --> 00:01:57.441
-azcmagent connect and Arc rename
-[S15, S16]; Azure ComputerName [S17];
-
-29
-00:01:57.441 --> 00:02:01.660
-EC2 hostname types [S21];
-Book 05 Ch04, Naming.
+00:00:41.550 --> 00:00:44.710
+Naming has an owner;
+registering is the hard part.

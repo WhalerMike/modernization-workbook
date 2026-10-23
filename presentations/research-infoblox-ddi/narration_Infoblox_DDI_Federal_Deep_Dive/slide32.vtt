@@ -1,159 +1,64 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:01.437
-Here's a worked example.
+00:00:00.050 --> 00:00:04.076
+Here's an illustrative design,
+not a validated configuration,
 
 2
-00:00:01.437 --> 00:00:05.113
-It's an illustrative design,
-not a validated configuration.
+00:00:04.076 --> 00:00:06.287
+for an agency with four divisions.
 
 3
-00:00:05.113 --> 00:00:10.287
-The agency owns ten slash eight and
-agency dot gov, with four divisions.
+00:00:06.287 --> 00:00:08.999
+Headquarters is the
+central operations team.
 
 4
-00:00:10.287 --> 00:00:13.162
-HQ is the central network operations team.
+00:00:08.999 --> 00:00:12.236
+A law-enforcement bureau
+needs confidentiality,
 
 5
-00:00:13.162 --> 00:00:18.500
-LEB is a law-enforcement bureau that needs
-confidentiality from the other divisions.
+00:00:12.236 --> 00:00:14.525
+so it gets its own servers, pattern B.
 
 6
-00:00:18.500 --> 00:00:23.662
-REG is a regional office still
-running Windows DNS and DHCP.
+00:00:14.525 --> 00:00:18.012
+A regional office still
+runs Windows DNS and DHCP,
 
 7
-00:00:23.662 --> 00:00:29.288
-And LAB is a research lab whose ten
-dot zero slash sixteen overlaps HQ.
+00:00:18.012 --> 00:00:21.925
+managed from the Grid with
+rights on those servers only.
 
 8
-00:00:29.288 --> 00:00:34.060
-HQ, LEB and REG share the network
-view called agency, each with its own
+00:00:21.925 --> 00:00:27.347
+And a research lab whose range overlaps
+headquarters gets its own network view
 
 9
-00:00:34.060 --> 00:00:39.513
-slash twelve container tagged with a
-Division attribute that inherits down.
+00:00:27.347 --> 00:00:32.687
+and DHCP servers, pattern C, with its zone
+delegated to its own servers, pattern D.
 
 10
-00:00:39.513 --> 00:00:43.436
-HQ's group gets read-write on
-its container and zones and
+00:00:32.687 --> 00:00:35.693
+Across the Grid: object
+permissions turned on,
 
 11
-00:00:43.436 --> 00:00:48.126
-read-only on the internal view;
-central keeps agency dot gov itself.
+00:00:35.693 --> 00:00:39.409
+so headquarters can't point a
+name into the bureau's space,
 
 12
-00:00:48.126 --> 00:00:52.659
-LEB adds pattern (b): its zone
-is served by its own members,
+00:00:39.409 --> 00:00:43.205
+no CSV import for any division,
+one approval workflow each,
 
 13
-00:00:52.659 --> 00:00:56.588
-with member DNS, DHCP and
-restart rights on them.
-
-14
-00:00:56.588 --> 00:01:00.893
-REG's Windows servers are managed from
-the Grid, and its group gets rights
-
-15
-00:01:00.893 --> 00:01:04.912
-on those server objects and its
-zone, not the system Microsoft roles.
-
-16
-00:01:04.912 --> 00:01:06.812
-LAB is the overlap case.
-
-17
-00:01:06.812 --> 00:01:09.599
-It gets its own network view, nv-lab,
-
-18
-00:01:09.599 --> 00:01:14.775
-with its own DHCP members, because
-a DHCP member serves one view.
-
-19
-00:01:14.775 --> 00:01:18.596
-And its zone is delegated to
-two lab-run BIND servers,
-
-20
-00:01:18.596 --> 00:01:22.151
-pattern (d), inside the
-Grid-primary agency dot gov.
-
-21
-00:01:22.151 --> 00:01:26.950
-If agency dot gov is signed, the
-lab hands its DS records to central.
-
-22
-00:01:26.950 --> 00:01:31.466
-Grid-wide controls: turn
-on DNS object permissions,
-
-23
-00:01:31.466 --> 00:01:34.800
-so HQ can't point a name into LEB's space.
-
-24
-00:01:34.800 --> 00:01:37.713
-No CSV import for any division group.
-
-25
-00:01:37.713 --> 00:01:39.930
-One approval workflow per division,
-
-26
-00:01:39.930 --> 00:01:43.476
-approved by a central group,
-with a ticket number required.
-
-27
-00:01:43.476 --> 00:01:48.413
-SAML group names that match exactly,
-and the local admin as break-glass.
-
-28
-00:01:48.413 --> 00:01:51.979
-For LEB, keep its data out of
-other divisions' dashboards,
-
-29
-00:01:51.979 --> 00:01:57.174
-and consider a bureau-lead approver group
-if central shouldn't see change detail.
-
-30
-00:01:57.174 --> 00:02:02.873
-Sources: Illustrative design synthesized
-from Infoblox NIOS: Network Views,
-
-31
-00:02:02.873 --> 00:02:06.879
-DNS Views, Extensible
-Attributes, Object Permissions,
-
-32
-00:02:06.879 --> 00:02:12.399
-DNS Resources in Networks and Ranges,
-Delegated Zones, Approval Workflows,
-
-33
-00:02:12.399 --> 00:02:16.820
-SAML, Managing Microsoft
-Servers, Reporting permissions.
+00:00:43.205 --> 00:00:46.580
+and the bureau's data kept
+out of shared dashboards.

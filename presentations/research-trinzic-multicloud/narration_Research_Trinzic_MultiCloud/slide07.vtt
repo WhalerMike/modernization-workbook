@@ -11,139 +11,53 @@ and lets each cloud's native
 DNS own its own private zones.
 
 3
-00:00:07.988 --> 00:00:12.024
-The two connect by conditional
+00:00:07.988 --> 00:00:12.145
+The two meet through conditional
 forwarding: a rule that says,
 
 4
-00:00:12.024 --> 00:00:15.237
+00:00:12.145 --> 00:00:15.325
 for names ending in this
 domain, ask that server.
 
 5
-00:00:15.237 --> 00:00:20.936
-Inward: the Grid forwards cloud domains
-to an inbound endpoint in AWS or Azure,
+00:00:15.325 --> 00:00:19.347
+The Grid forwards cloud domains
+inward to the cloud's endpoints,
 
 6
-00:00:20.936 --> 00:00:24.498
-or to an inbound server
-policy address in Google,
+00:00:19.347 --> 00:00:22.838
+and each cloud forwards agency
+domains back to the Grid.
 
 7
-00:00:24.498 --> 00:00:27.525
-over Direct Connect, ExpressRoute or VPN.
+00:00:22.838 --> 00:00:25.262
+Google recommends exactly this design.
 
 8
-00:00:27.525 --> 00:00:32.788
-Outward: each cloud forwards agency
-domains to the Grid, with an outbound
+00:00:25.262 --> 00:00:28.927
+One fact to keep in mind: a
+Route 53 private zone asked from
 
 9
-00:00:32.788 --> 00:00:38.138
-endpoint and rules in AWS, a ruleset in
-Azure, or a forwarding zone in Google.
+00:00:28.927 --> 00:00:33.450
+outside its linked networks resolves
+on the public internet instead.
 
 10
-00:00:38.138 --> 00:00:39.101
-Facts to know.
-
-11
-00:00:39.101 --> 00:00:42.846
-A Route 53 private hosted
-zone answers only inside
-
-12
-00:00:42.846 --> 00:00:46.325
-its linked VPCs or through
-an inbound endpoint.
-
-13
-00:00:46.325 --> 00:00:50.763
-Asked from anywhere else, the name
-resolves on the public internet instead.
-
-14
-00:00:50.763 --> 00:00:56.336
-In Azure, a network using Azure-provided
-DNS checks linked private zones first,
-
-15
-00:00:56.336 --> 00:00:59.251
-then forwarding rulesets, then Azure DNS.
-
-16
-00:00:59.251 --> 00:01:04.052
-Google recommends exactly this
-design: two authoritative systems,
-
-17
-00:01:04.052 --> 00:01:07.138
-conditional forwarding, no zone transfers.
-
-18
-00:01:07.138 --> 00:01:10.652
-In GovCloud, Route 53 public
-and private DNS work,
-
-19
-00:01:10.652 --> 00:01:16.363
-and Resolver endpoints and rules are
-available, but Resolver delegation isn't.
-
-20
-00:01:16.363 --> 00:01:18.287
+00:00:33.450 --> 00:00:35.375
 Addresses follow the same idea.
 
-21
-00:01:18.287 --> 00:01:22.737
-The Grid owns the agency's address
-blocks and hands each cloud a block.
+11
+00:00:35.375 --> 00:00:39.697
+The Grid owns the agency's blocks
+and hands each cloud a block,
 
-22
-00:01:22.737 --> 00:01:27.925
-On commercial AWS, that handoff can
-be automated through Universal DDI.
+12
+00:00:39.697 --> 00:00:44.625
+automated on commercial AWS and
+manual in GovCloud, Azure and Google.
 
-23
-00:01:27.925 --> 00:01:32.459
-In GovCloud, Azure and Google, it's
-manual: reserve the block in the Grid,
-
-24
-00:01:32.459 --> 00:01:37.312
-create the cloud pool with that range,
-and let vDiscovery check the result.
-
-25
-00:01:37.312 --> 00:01:43.799
-Sources: AWS Working with private hosted
-zones, What is Route 53 VPC Resolver,
-
-26
-00:01:43.799 --> 00:01:47.403
-Forwarding inbound and outbound queries,
-
-27
-00:01:47.403 --> 00:01:54.096
-Resolving queries between VPCs and your
-network, GovCloud Route 53 user guide,
-
-28
-00:01:54.096 --> 00:02:00.583
-Route 53 endpoints; Microsoft Learn DNS
-Private Resolver, Azure Private DNS,
-
-29
-00:02:00.583 --> 00:02:06.143
-AVNM IPAM; Google Cloud DNS best
-practices and server policies;
-
-30
-00:02:06.143 --> 00:02:10.982
-AWS Integrate VPC IPAM with
-Infoblox and What's New Nov.
-
-31
-00:02:10.982 --> 00:02:11.660
-17, 2025.
+13
+00:00:44.625 --> 00:00:46.990
+Whichever you pick, some rules apply.

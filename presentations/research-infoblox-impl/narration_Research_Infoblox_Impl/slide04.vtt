@@ -1,50 +1,19 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:01.800
-Part 1: build the Grid.
+00:00:00.050 --> 00:00:01.788
+Part 1 is building the Grid.
 
 2
-00:00:01.800 --> 00:00:05.750
-We'll start with the Grid Master,
-built as a high-availability pair,
+00:00:01.788 --> 00:00:06.018
+We'll cover the Grid Master pair
+and its candidate, how members join,
 
 3
-00:00:05.750 --> 00:00:10.212
-and its candidate, the appliance that
-takes over if the Grid Master is lost.
+00:00:06.018 --> 00:00:09.941
+time and licensing, including
+one trap that can evict a member,
 
 4
-00:00:10.212 --> 00:00:14.525
-Then how members join, the ports
-the Grid needs, time, and licenses,
-
-5
-00:00:14.525 --> 00:00:19.000
-including one licensing trap that
-can evict a member from the Grid.
-
-6
-00:00:19.000 --> 00:00:22.854
-And finally the virtual
-appliances, vNIOS, on VMware,
-
-7
-00:00:22.854 --> 00:00:27.963
-Azure and AWS, where the government
-regions have a documentation gap.
-
-8
-00:00:27.963 --> 00:00:33.781
-Sources: Infoblox NIOS 9.1.x Grid
-setup, HA, joining members, ports,
-
-9
-00:00:33.781 --> 00:00:41.502
-NTP and license documentation; vNIOS for
-VMware, Azure and AWS installation guides;
-
-10
-00:00:41.502 --> 00:00:46.820
-the Federal Modernization
-Workbook's Book 08, Chapter 08.
+00:00:09.941 --> 00:00:12.380
+and virtual appliances in the clouds.

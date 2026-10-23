@@ -11,128 +11,51 @@ plus its address record, all
 managed from the Grid Master.
 
 3
-00:00:09.362 --> 00:00:13.576
-Changes made there replicate to
-every member over encrypted tunnels.
+00:00:09.362 --> 00:00:10.601
+It does a lot well.
 
 4
-00:00:13.576 --> 00:00:15.087
-It does several things well.
+00:00:10.601 --> 00:00:16.440
+DNS views give internal and outside
+clients different answers on purpose, DNS
 
 5
-00:00:15.087 --> 00:00:18.512
-DNS views let one Grid
-give internal clients one
+00:00:16.440 --> 00:00:20.752
+Firewall blocks bad names,
+DNSSEC signing is centralized,
 
 6
-00:00:18.512 --> 00:00:21.851
-answer and outside clients
-another, on purpose.
+00:00:20.752 --> 00:00:23.088
+and DHCP runs as failover pairs.
 
 7
-00:00:21.851 --> 00:00:26.179
-Response policy zones, which
-Infoblox calls DNS Firewall,
-
-8
-00:00:26.179 --> 00:00:31.950
-block or redirect bad names, up to thirty-two
-of them, with hits logged to syslog.
-
-9
-00:00:31.950 --> 00:00:34.121
-DNSSEC signing is centralized:
-
-10
-00:00:34.121 --> 00:00:37.710
-only the Grid Master can be
-primary for a signed zone,
-
-11
-00:00:37.710 --> 00:00:42.886
-and keys live on the Grid Master or on
-an external hardware security module,
-
-12
-00:00:42.886 --> 00:00:45.975
-a Thales Luna or Entrust
-nShield, but not both.
-
-13
-00:00:45.975 --> 00:00:49.834
-One caution: the default
+00:00:23.088 --> 00:00:27.454
+One caution: the default signing
 algorithm is RSA with SHA-1,
 
-14
-00:00:49.834 --> 00:00:53.050
+8
+00:00:27.454 --> 00:00:30.574
 which a federal deployment should change.
 
-15
-00:00:53.050 --> 00:00:55.938
-DHCP runs as failover pairs.
+9
+00:00:30.574 --> 00:00:36.191
+This matters because Book 08 of the
+workbook argues for one DDI policy plane,
 
-16
-00:00:55.938 --> 00:01:01.838
-And the Grid can manage existing Windows
-DNS and DHCP servers without agents.
+10
+00:00:36.191 --> 00:00:40.737
+a single system of record with
+cloud DNS managed as an overlay.
 
-17
-00:01:01.838 --> 00:01:03.025
-Why does that matter?
+11
+00:00:40.737 --> 00:00:43.089
+On premises, the Grid fits that role,
 
-18
-00:01:03.025 --> 00:01:08.648
-The Federal Modernization Workbook's Book
-08 of the workbook argues for one DDI
+12
+00:00:43.089 --> 00:00:47.875
+inside the agency's own boundary rather
+than as a FedRAMP cloud service.
 
-19
-00:01:08.648 --> 00:01:13.931
-policy plane: a single system of record
-for zones, forwarding rules, address
-
-20
-00:01:13.931 --> 00:01:19.213
-data and security policy, with cloud
-DNS managed as an overlay, not replaced.
-
-21
-00:01:19.213 --> 00:01:21.775
-On premises, the Grid fits that role.
-
-22
-00:01:21.775 --> 00:01:23.825
-The question is the cloud edge.
-
-23
-00:01:23.825 --> 00:01:28.025
-And note that on-premises appliances
-aren't a FedRAMP cloud service;
-
-24
-00:01:28.025 --> 00:01:30.575
-they sit inside the agency's own boundary.
-
-25
-00:01:30.575 --> 00:01:36.741
-Sources: Infoblox NIOS 9.1.x:
-About Grids, Configuring DNS Views,
-
-26
-00:01:36.741 --> 00:01:42.544
-About Infoblox DNS Firewall,
-Configuring DNSSEC on a Grid,
-
-27
-00:01:42.544 --> 00:01:51.127
-Setting DNSSEC Parameters, DHCP Failover,
-About Managing Microsoft Windows Servers;
-
-28
-00:01:51.127 --> 00:01:56.205
-Book 08, Chapter 08, What a
-DDI policy plane is made of;
-
-29
-00:01:56.205 --> 00:02:01.940
-FedRAMP Marketplace products.json
-(FR2017257053 scope).
+13
+00:00:47.875 --> 00:00:50.330
+The open question is the cloud edge.

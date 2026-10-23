@@ -2,160 +2,85 @@
  "1": [
   [
    0.05,
-   5.175,
-   "This explainer answers a question architects hit as soon as workloads move to the cloud."
+   0.713,
+   "Welcome."
   ],
   [
-   5.225,
-   11.812,
-   "If we already run Infoblox Trinzic appliances on premises, can they handle D N S, DHCP and IP address management for AWS, Azure and Google Cloud by themselves?"
+   0.762,
+   5.7,
+   "This is research from the Federal Modernization Workbook's Research section, and it's still under review."
   ],
   [
-   17.038,
-   2.862,
-   "Or do we need to add some form of cloud-based D D I?"
+   6.463,
+   4.463,
+   "It answers a question architects hit as soon as workloads move to the cloud."
   ],
   [
-   19.9,
-   5.812,
-   "It's built for someone still learning D D I, so every term is explained the first time it appears."
+   10.925,
+   11.088,
+   "If we already run Infoblox Trinzic appliances on premises, can they handle D N S, DHCP and address management for AWS, Azure and Google Cloud on their own?"
   ],
   [
-   25.712,
-   5.438,
-   "We start with the vocabulary, then what Trinzic does well and where it stops at the cloud edge."
+   22.012,
+   3.038,
+   "Or do we need some form of cloud-based D D I as well?"
   ],
   [
-   31.15,
-   9.675,
-   "Then three options: Infoblox virtual appliances in each cloud, Infoblox's cloud service, and native cloud D N S alongside the Grid."
+   25.05,
+   9.975,
+   "It's written for someone still learning D D I, so we'll start with the vocabulary, look at where Trinzic stops at the cloud edge, then weigh three options and a decision table."
   ],
   [
-   40.825,
-   5.775,
-   "Then the rules that keep answers consistent, a decision table, and where this fits the workbook."
+   35.025,
+   10.238,
+   "Every fact comes from vendor or government documentation opened on October twenty-second, 2026, and recommendations are labeled as design guidance."
   ],
   [
-   46.6,
-   1.8,
-   "This is research under review."
-  ],
-  [
-   48.4,
-   11.275,
-   "Every fact comes from vendor or government documentation opened on October twenty-second, 2026, and recommendations are labeled as design guidance, not endorsements."
-  ],
-  [
-   59.675,
-   17.6,
-   "Sources: Infoblox NIOS 9.1.x, vNIOS and Universal D D I documentation; AWS, Microsoft Learn and Google Cloud documentation; fed-ramp Marketplace products.json; the Federal Modernization Workbook's Book 08."
+   45.263,
+   1.55,
+   "Let's start with the words."
   ]
  ],
  "2": [
   [
    0.05,
-   1.788,
-   "First, the words you need."
+   3.513,
+   "A few words first, because the rest of the deck leans on them."
   ],
   [
-   1.837,
-   4.688,
-   "D D I stands for D N S, DHCP and eye-pam."
+   3.562,
+   9.287,
+   "D D I means D N S, DHCP and eye-pam: names, addresses handed out, and the record of who owns which address ranges."
   ],
   [
-   6.525,
-   3.087,
-   "D N S turns names into addresses."
+   12.85,
+   9.4,
+   "An Infoblox Grid is a set of appliances sharing one database, run from the Grid Master, which is also the only one that can sign zones with DNSSEC."
   ],
   [
-   9.613,
-   4.037,
-   "DHCP hands addresses to devices when they join a network."
+   22.25,
+   9.812,
+   "Trinzic is the physical appliance, vNIOS is the same software as a virtual machine, and Universal D D I is Infoblox's cloud service."
   ],
   [
-   13.65,
-   6.2,
-   "And eye-pam, IP address management, is the record of which address ranges exist and who owns them."
+   32.062,
+   6.075,
+   "On the cloud side, think resolvers, endpoints and private zones that only linked networks can see."
   ],
   [
-   19.85,
-   11.012,
-   "An authoritative server holds the official answer for a zone, a block of names such as corp dot agency dot gov. A resolver is the server your computer asks; it finds the answer."
+   38.138,
+   6.862,
+   "And the word to remember is split-brain: two systems each believing they own a name, and giving different answers."
   ],
   [
-   30.863,
-   5.987,
-   "A Grid is two or more Infoblox appliances that share one database and are managed from one place."
-  ],
-  [
-   36.85,
-   8.363,
-   "That place is the Grid Master, which holds the master copy, serves the console, and is the only appliance that can sign zones with DNSSEC."
-  ],
-  [
-   45.212,
-   2.1,
-   "Every other appliance is a member."
-  ],
-  [
-   47.312,
-   5.55,
-   "Trinzic is Infoblox's physical appliance line; the current one is X6."
-  ],
-  [
-   52.862,
-   8.2,
-   "vNIOS is the same software as a virtual machine, including in AWS, Azure and Google Cloud, and it can join the Grid."
-  ],
-  [
-   61.062,
-   9.537,
-   "NIOS-X is a newer kind of server, managed from Infoblox's cloud service, Universal D D I, whose web console is the Infoblox Portal."
-  ],
-  [
-   70.6,
-   1.225,
-   "The cloud words."
-  ],
-  [
-   71.825,
-   9.262,
-   "In AWS, the resolver built into every virtual private cloud, or VPC, is now called Route 53 VPC Resolver."
-  ],
-  [
-   81.088,
-   5.35,
-   "Its endpoints are addresses that let queries come in from outside, or go out by rules."
-  ],
-  [
-   86.438,
-   8.037,
-   "A private hosted zone in AWS, or a private zone in Azure or Google, is a zone that only linked cloud networks can see."
-  ],
-  [
-   94.475,
-   3.462,
-   "VPC eye-pam is AWS's address planner."
-  ],
-  [
-   97.938,
-   5.225,
-   "And Azure D N S Private Resolver is Azure's version of those endpoints."
-  ],
-  [
-   103.162,
-   6.963,
-   "Last, split-brain: two systems each believe they own a name and give different answers depending on who asks."
-  ],
-  [
-   110.125,
+   45.0,
    2.125,
    "Avoiding it is the point of this deck."
   ],
   [
-   112.25,
-   27.438,
-   "Sources: Research glossary: Infoblox NIOS 9.1.x About Grids and Grid Master Candidate; vNIOS for AWS, Azure and Google Cloud; Universal D D I What's New (renames); AWS What is Route 53 VPC Resolver, private hosted zones, What is eye-pam; Microsoft Learn Azure D N S Private Resolver; Google Cloud D N S best practices."
+   47.125,
+   1.6,
+   "So what does Trinzic do well?"
   ]
  ],
  "3": [
@@ -166,374 +91,144 @@
   ],
   [
    9.363,
-   4.213,
-   "Changes made there replicate to every member over encrypted tunnels."
+   1.238,
+   "It does a lot well."
   ],
   [
-   13.575,
-   1.512,
-   "It does several things well."
+   10.6,
+   12.488,
+   "D N S views give internal and outside clients different answers on purpose, D N S Firewall blocks bad names, DNSSEC signing is centralized, and DHCP runs as failover pairs."
   ],
   [
-   15.088,
-   6.763,
-   "D N S views let one Grid give internal clients one answer and outside clients another, on purpose."
+   23.087,
+   7.487,
+   "One caution: the default signing algorithm is RSA with SHA-1, which a federal deployment should change."
   ],
   [
-   21.85,
-   10.1,
-   "Response policy zones, which Infoblox calls D N S Firewall, block or redirect bad names, up to thirty-two of them, with hits logged to syslog."
+   30.575,
+   10.162,
+   "This matters because Book 08 of the workbook argues for one D D I policy plane, a single system of record with cloud D N S managed as an overlay."
   ],
   [
-   31.95,
-   14.025,
-   "DNSSEC signing is centralized: only the Grid Master can be primary for a signed zone, and keys live on the Grid Master or on an external hardware security module, a Thales Luna or Entrust nShield, but not both."
+   40.737,
+   7.138,
+   "On premises, the Grid fits that role, inside the agency's own boundary rather than as a fed-ramp cloud service."
   ],
   [
-   45.975,
-   7.075,
-   "One caution: the default algorithm is RSA with SHA-1, which a federal deployment should change."
-  ],
-  [
-   53.05,
-   2.888,
-   "DHCP runs as failover pairs."
-  ],
-  [
-   55.938,
-   5.9,
-   "And the Grid can manage existing Windows D N S and DHCP servers without agents."
-  ],
-  [
-   61.837,
-   1.188,
-   "Why does that matter?"
-  ],
-  [
-   63.025,
-   16.188,
-   "The Federal Modernization Workbook's Book 08 of the workbook argues for one D D I policy plane: a single system of record for zones, forwarding rules, address data and security policy, with cloud D N S managed as an overlay, not replaced."
-  ],
-  [
-   79.213,
-   2.562,
-   "On premises, the Grid fits that role."
-  ],
-  [
-   81.775,
-   2.05,
-   "The question is the cloud edge."
-  ],
-  [
-   83.825,
-   6.75,
-   "And note that on-premises appliances aren't a fed-ramp cloud service; they sit inside the agency's own boundary."
-  ],
-  [
-   90.575,
-   31.312,
-   "Sources: Infoblox NIOS 9.1.x: About Grids, Configuring D N S Views, About Infoblox D N S Firewall, Configuring DNSSEC on a Grid, Setting DNSSEC Parameters, DHCP Failover, About Managing Microsoft Windows Servers; Book 08, Chapter 08, What a D D I policy plane is made of; fed-ramp Marketplace products.json (FR2017257053 scope)."
+   47.875,
+   2.4,
+   "The open question is the cloud edge."
   ]
  ],
  "4": [
   [
    0.05,
-   0.875,
-   "It can see."
+   4.162,
+   "At the cloud edge, Trinzic alone can see, but it can't control."
   ],
   [
-   0.925,
-   8.938,
-   "vDiscovery logs in to AWS, Azure, Google Cloud or VMware on a schedule and pulls back networks and virtual machines."
+   4.213,
+   10.812,
+   "It can discover cloud networks and virtual machines on a schedule, including GovCloud and Azure Government, and it can import cloud zones so on-premises clients resolve cloud names."
   ],
   [
-   9.863,
-   4.812,
-   "AWS jobs have a GovCloud option, and Azure jobs cover Azure Government."
+   15.025,
+   4.362,
+   "But that import is one way, and edits made in NIOS get overwritten."
   ],
   [
-   14.675,
-   7.338,
-   "Discovered subnets become managed networks, and the Grid can create records for discovered machines in zones it already has."
+   19.387,
+   13.512,
+   "It can't create or own a cloud private zone, manage cloud resolver rules, act as the outside authority for AWS VPC eye-pam, or run DHCP for cloud subnets; the clouds hand out their own addresses."
   ],
   [
-   22.012,
-   2.612,
-   "It's a scheduled pull, not a live feed."
+   32.9,
+   9.475,
+   "So, as an inference: in the cloud, Infoblox's job is D N S and eye-pam, and the cloud's own resolver still answers cloud private zones."
   ],
   [
-   24.625,
-   2.0,
-   "It can also import cloud zones."
-  ],
-  [
-   26.625,
-   12.05,
-   "With a Cloud Network Automation license, NIOS copies Route 53, Azure D N S and Google Cloud D N S zones into the Grid, so on-premises clients can resolve cloud names."
-  ],
-  [
-   38.675,
-   1.413,
-   "The import is one way."
-  ],
-  [
-   40.087,
-   9.012,
-   "For Route 53, Infoblox says the sync runs into NIOS, not vice versa, and NIOS edits to those records are overwritten."
-  ],
-  [
-   49.1,
-   1.45,
-   "Now what it can't control."
-  ],
-  [
-   50.55,
-   2.95,
-   "It can't create or own a cloud private zone."
-  ],
-  [
-   53.5,
-   8.625,
-   "No NIOS document describes managing Route 53 VPC Resolver endpoints or rules, or Azure's forwarding rulesets."
-  ],
-  [
-   62.125,
-   6.575,
-   "It can't be the outside authority for AWS VPC eye-pam; that's a Universal D D I feature."
-  ],
-  [
-   68.7,
-   3.1,
-   "And it can't run DHCP for cloud subnets."
-  ],
-  [
-   71.8,
-   4.138,
-   "AWS hands out addresses from its own DHCP servers."
-  ],
-  [
-   75.938,
-   8.95,
-   "Google limits vNIOS DHCP to on-premises networks, and Azure doesn't support running DHCP in Azure for on-premises networks."
-  ],
-  [
-   84.888,
-   9.25,
-   "So, as an inference: in the cloud, Infoblox's job is D N S and eye-pam, and the cloud's resolver still answers cloud private zones."
-  ],
-  [
-   94.138,
-   31.425,
-   "Sources: Infoblox NIOS 9.1.x Selecting the Endpoint Server, vDiscovery AWS, Guidelines for vDiscovery Jobs, Creating D N S Records for Discovered VMs, Cloud Network Automation; Amazon Route 53 Integration Overview; Integrating Azure D N S and Google Cloud D N S with NIOS and their limitations pages; AWS DHCP option sets; Limitations of vNIOS for Google Cloud; About vNIOS for Azure."
+   42.375,
+   1.85,
+   "That leads to three options."
   ]
  ],
  "5": [
   [
    0.05,
-   6.638,
-   "Option A puts vNIOS members inside each cloud, as Grid members and high-availability pairs."
+   8.988,
+   "Option A puts vNIOS members inside each cloud, as Grid members in high-availability pairs, usually in a shared-services hub."
   ],
   [
-   6.688,
-   8.088,
-   "Infoblox's AWS reference design puts the pair in a shared-services hub VPC that syncs with the on-premises Grid Master."
+   9.037,
+   3.962,
+   "Signed zones stay signed, with the keys kept on the Grid Master."
   ],
   [
-   14.775,
-   5.475,
-   "Signed zones stay signed: the members serve them, but the keys stay on the Grid Master."
+   13.0,
+   3.325,
+   "Workloads reach vNIOS in one of two ways."
   ],
   [
-   20.25,
-   2.638,
-   "How do cloud workloads reach vNIOS?"
+   16.325,
+   10.8,
+   "Either you point the network's D N S straight at vNIOS, which is simple, but in Azure it means vNIOS must forward Azure-private names back to Azure D N S."
   ],
   [
-   22.887,
-   1.725,
-   "Two documented patterns."
+   27.125,
+   6.325,
+   "Or you keep the cloud's own resolver and forward chosen domains to vNIOS, so clients change nothing."
   ],
   [
-   24.613,
-   4.263,
-   "Pattern one: point the network's D N S at vNIOS."
+   33.45,
+   10.188,
+   "One AWS caution: to resolve Route 53 private zones for other networks, forward to an inbound endpoint, not the built-in resolver address."
   ],
   [
-   28.875,
-   7.175,
-   "In AWS that's a DHCP option set; in Azure, the virtual network's custom D N S setting."
+   43.638,
+   5.963,
+   "And every vNIOS member is agency-operated, with no fed-ramp authorization covering it."
   ],
   [
-   36.05,
-   1.663,
-   "Simple, with a catch."
-  ],
-  [
-   37.712,
-   6.2,
-   "In Azure, queries then go straight to vNIOS, and Azure private zones aren't consulted first."
-  ],
-  [
-   43.913,
-   11.787,
-   "So vNIOS has to forward Azure-private names back to Azure D N S at 168.63.129.16, or to a Private Resolver inbound endpoint."
-  ],
-  [
-   55.7,
-   5.562,
-   "Pattern two: keep the cloud's own resolver and forward chosen domains to vNIOS."
-  ],
-  [
-   61.263,
-   7.275,
-   "In AWS, that's an outbound endpoint and one forwarding rule per domain, and rules can be shared across accounts."
-  ],
-  [
-   68.537,
-   5.4,
-   "In Azure, it's an outbound endpoint and a forwarding ruleset, and clients change nothing."
-  ],
-  [
-   73.938,
-   3.587,
-   "In Google, it's a forwarding zone, which Google prefers."
-  ],
-  [
-   77.525,
-   1.925,
-   "One AWS caution."
-  ],
-  [
-   79.45,
-   7.025,
-   "If vNIOS has to resolve Route 53 private zones for other networks, forward to an inbound endpoint."
-  ],
-  [
-   86.475,
-   7.625,
-   "AWS says forwarding to a VPC's built-in plus-two resolver address from outside that VPC isn't supported."
-  ],
-  [
-   94.1,
-   7.825,
-   "And every vNIOS member is agency-operated and inside the agency's boundary; no fed-ramp authorization covers it."
-  ],
-  [
-   101.925,
-   35.938,
-   "Sources: Infoblox About vNIOS for AWS, Shared-Services VPC Deployments, About vNIOS for Azure, Configure vNIOS as Primary D N S for Azure VNets, vNIOS for Google Cloud; AWS DHCP option sets, What is Route 53 VPC Resolver, Forwarding outbound queries, Resolving queries between VPCs and your network; Microsoft Learn D N S Private Resolver and VNet name resolution; Google Cloud D N S best practices; research_platform (DNSSEC on a Grid)."
+   49.6,
+   1.95,
+   "Next, the cloud service."
   ]
  ],
  "6": [
   [
    0.05,
-   6.5,
-   "Option B joins the Grid to Universal D D I, Infoblox's software-as-a-service control plane."
+   9.975,
+   "Option B joins the Grid to Universal D D I, Infoblox's software-as-a-service control plane, while the Grid stays primary for its D N S data."
   ],
   [
-   6.55,
-   6.862,
-   "You add a join token from the Infoblox Portal to the Grid, then turn on eye-pam Federation and Cloud Grid Management."
+   10.025,
+   7.925,
+   "What it adds is the one thing the others lack: it's the only documented Infoblox mechanism that writes back to cloud D N S."
   ],
   [
-   13.412,
-   7.35,
-   "Federation, which needs NIOS 9.0.4 or later, keeps address space unique everywhere."
+   17.95,
+   10.512,
+   "It syncs Route 53, Azure D N S and Google Cloud D N S both ways, and on commercial AWS it can be the outside authority for VPC eye-pam."
   ],
   [
-   20.762,
-   3.538,
-   "The Grid stays primary for its D N S data."
+   28.462,
+   1.65,
+   "The limits are real, though."
   ],
   [
-   24.3,
-   1.012,
-   "What does it add?"
+   30.113,
+   7.188,
+   "DNSSEC records aren't synced, some zones can't be created from the portal, and the Grid Master stays the recovery console."
   ],
   [
-   25.312,
-   5.438,
-   "It's the only documented Infoblox mechanism that writes back to cloud D N S."
+   37.3,
+   7.825,
+   "The government edition is fed-ramp Certified at Moderate, but with narrower cloud discovery, so confirm the details with Infoblox."
   ],
   [
-   30.75,
-   10.562,
-   "It syncs Route 53, Azure D N S and Google Cloud D N S read-write, and it discovers resolver endpoints and rules in AWS and Azure."
-  ],
-  [
-   41.312,
-   6.338,
-   "Cloud forwarders take queries in from a cloud, and cloud to cloud only between AWS and Azure."
-  ],
-  [
-   47.65,
-   8.162,
-   "And on commercial AWS, Infoblox can be the outside authority for a VPC eye-pam private scope, on the Advanced Tier."
-  ],
-  [
-   55.812,
-   1.637,
-   "The limits are documented."
-  ],
-  [
-   57.45,
-   4.2,
-   "Route 53 sync doesn't support non-simple routing policies."
-  ],
-  [
-   61.65,
-   3.575,
-   "Azure and Google private zones can't be created from the portal."
-  ],
-  [
-   65.225,
-   1.825,
-   "DNSSEC records aren't synced."
-  ],
-  [
-   67.05,
-   7.45,
-   "And the portal can't promote a Grid Master Candidate or manage DHCP failover, so the Grid Master stays the recovery console."
-  ],
-  [
-   74.5,
-   1.15,
-   "Two more notes."
-  ],
-  [
-   75.65,
-   8.4,
-   "The cloud forwarding and private-zone features run on NIOS-X servers, not classic Trinzic, so you'd need NIOS-X capacity."
-  ],
-  [
-   84.05,
-   7.438,
-   "And the government edition: Infoblox Government Cloud is fed-ramp Certified at Moderate, hosted in AWS GovCloud."
-  ],
-  [
-   91.487,
-   5.638,
-   "Its cloud discovery is limited: single AWS accounts and no Azure tenants."
-  ],
-  [
-   97.125,
-   6.9,
-   "The VPC eye-pam handoff isn't in its release notes, and AWS excludes GovCloud from that integration."
-  ],
-  [
-   104.025,
-   2.05,
-   "Confirm the rest with Infoblox."
-  ],
-  [
-   106.075,
-   38.5,
-   "Sources: Infoblox Onboarding NIOS Services, NIOS Grid Connector, Managing NIOS from Infoblox Portal, Universal D D I and NIOS Grid Hybrid Deployment, Limitations of AWS Route 53 Integration, Microsoft Azure Integration, Google Cloud Platform Integration, Cloud Forwarders and prerequisites, Discovering Cloud Forwarder Endpoints, Limitations of Universal D D I; AWS Integrate VPC eye-pam with Infoblox and What's New Nov. 17, 2025; What's New in Universal D D I for fed-ramp; Universal Asset"
-  ],
-  [
-   144.575,
-   10.3,
-   "Insights AWS, Azure, GCP discovery pages; fed-ramp Marketplace FR2017257053."
+   45.125,
+   1.45,
+   "Now the simplest option."
   ]
  ],
  "7": [
@@ -544,299 +239,149 @@
   ],
   [
    7.987,
-   7.25,
-   "The two connect by conditional forwarding: a rule that says, for names ending in this domain, ask that server."
+   7.338,
+   "The two meet through conditional forwarding: a rule that says, for names ending in this domain, ask that server."
   ],
   [
-   15.238,
-   12.287,
-   "Inward: the Grid forwards cloud domains to an inbound endpoint in AWS or Azure, or to an inbound server policy address in Google, over Direct Connect, ExpressRoute or VPN."
+   15.325,
+   7.513,
+   "The Grid forwards cloud domains inward to the cloud's endpoints, and each cloud forwards agency domains back to the Grid."
   ],
   [
-   27.525,
-   10.613,
-   "Outward: each cloud forwards agency domains to the Grid, with an outbound endpoint and rules in AWS, a ruleset in Azure, or a forwarding zone in Google."
+   22.837,
+   2.425,
+   "Google recommends exactly this design."
   ],
   [
-   38.138,
-   0.963,
-   "Facts to know."
+   25.262,
+   8.188,
+   "One fact to keep in mind: a Route 53 private zone asked from outside its linked networks resolves on the public internet instead."
   ],
   [
-   39.1,
-   7.225,
-   "A Route 53 private hosted zone answers only inside its linked VPCs or through an inbound endpoint."
-  ],
-  [
-   46.325,
-   4.438,
-   "Asked from anywhere else, the name resolves on the public internet instead."
-  ],
-  [
-   50.763,
-   16.375,
-   "In Azure, a network using Azure-provided D N S checks linked private zones first, then forwarding rulesets, then Azure D N S. Google recommends exactly this design: two authoritative systems, conditional forwarding, no zone transfers."
-  ],
-  [
-   67.138,
-   9.225,
-   "In GovCloud, Route 53 public and private D N S work, and Resolver endpoints and rules are available, but Resolver delegation isn't."
-  ],
-  [
-   76.362,
+   33.45,
    1.925,
    "Addresses follow the same idea."
   ],
   [
-   78.287,
-   4.45,
-   "The Grid owns the agency's address blocks and hands each cloud a block."
+   35.375,
+   9.25,
+   "The Grid owns the agency's blocks and hands each cloud a block, automated on commercial AWS and manual in GovCloud, Azure and Google."
   ],
   [
-   82.737,
-   5.188,
-   "On commercial AWS, that handoff can be automated through Universal D D I."
-  ],
-  [
-   87.925,
-   9.387,
-   "In GovCloud, Azure and Google, it's manual: reserve the block in the Grid, create the cloud pool with that range, and let vDiscovery check the result."
-  ],
-  [
-   97.312,
-   34.288,
-   "Sources: AWS Working with private hosted zones, What is Route 53 VPC Resolver, Forwarding inbound and outbound queries, Resolving queries between VPCs and your network, GovCloud Route 53 user guide, Route 53 endpoints; Microsoft Learn D N S Private Resolver, Azure Private D N S, AVNM eye-pam; Google Cloud D N S best practices and server policies; AWS Integrate VPC eye-pam with Infoblox and What's New Nov. 17, 2025."
+   44.625,
+   2.312,
+   "Whichever you pick, some rules apply."
   ]
  ],
  "8": [
   [
    0.05,
-   3.425,
-   "Whatever option you pick, four rules prevent split-brain."
+   3.538,
+   "Whatever option you pick, four rules keep split-brain away."
   ],
   [
-   3.475,
-   3.438,
-   "One: every zone has exactly one writable owner."
+   3.587,
+   8.075,
+   "First, every zone has exactly one writable owner, never two, and everything else forwards to it or holds a read-only copy."
   ],
   [
-   6.912,
-   6.225,
-   "That's the Grid, Route 53, Azure Private D N S or Cloud D N S, never two."
+   11.662,
+   4.25,
+   "Decide ownership before you turn sync on, because sync overwrites."
   ],
   [
-   13.137,
-   5.588,
-   "Everything else reaches the owner by forwarding, or holds a copy that is explicitly read-only."
+   15.912,
+   2.763,
+   "Second, divide the namespace by owner."
   ],
   [
-   18.725,
-   7.075,
-   "NIOS overwrites edits to imported cloud zones, and portal-owned resolver rules overwrite cloud-side changes."
+   18.675,
+   7.963,
+   "For example, corp dot agency dot gov lives on the Grid, and aws dot corp dot agency dot gov lives in Route 53."
   ],
   [
-   25.8,
-   2.587,
-   "So decide ownership before you turn sync on."
+   26.637,
+   8.012,
+   "Third, DNSSEC keys stay on the Grid Master or its hardware security module, and validation belongs on agency resolvers."
   ],
   [
-   28.387,
-   2.725,
-   "Two: divide the namespace by owner."
+   34.65,
+   6.662,
+   "Fourth, address authority stays on the Grid, with clouds getting delegated blocks so overlaps get caught."
   ],
   [
-   31.113,
-   9.488,
-   "For example, corp dot agency dot gov lives on the Grid, and aws dot corp dot agency dot gov lives in a Route 53 private hosted zone."
-  ],
-  [
-   40.6,
-   6.65,
-   "On-premises resolvers forward the child to AWS, and AWS forwards the parent to the Grid."
-  ],
-  [
-   47.25,
-   6.588,
-   "AWS also allows inbound delegation, but Resolver delegation isn't available in GovCloud."
-  ],
-  [
-   53.837,
-   6.575,
-   "And don't create a cloud private zone with the same name as a Grid zone unless it's a deliberate split-horizon view."
-  ],
-  [
-   60.413,
-   5.162,
-   "Three: DNSSEC keys stay on the Grid Master or its hardware security module."
-  ],
-  [
-   65.575,
-   10.262,
-   "Route 53 can't sign private hosted zones, and Universal D D I doesn't sync DNSSEC records, so don't sign in one system and manage through sync from another."
-  ],
-  [
-   75.838,
-   5.763,
-   "Validation belongs on agency resolvers; the Azure-provided resolver doesn't validate."
-  ],
-  [
-   81.6,
-   2.825,
-   "Four: eye-pam authority stays on the Grid."
-  ],
-  [
-   84.425,
-   6.487,
-   "Clouds get delegated blocks, and one network view for routable space lets the Grid catch overlaps."
-  ],
-  [
-   90.912,
-   35.575,
-   "Sources: Research synthesis, Avoiding split-brain, DNSSEC keys and eye-pam authority: Infoblox Route 53, Azure D N S and GCP sync pages; Discovering Cloud Forwarder Endpoints; AWS private hosted zones, Resolver, GovCloud Route 53, DNSSEC signing; Microsoft Learn D N S Private Resolver and Azure DNSSEC; Google Cloud D N S best practices; Infoblox DNSSEC on a Grid and Network Views; the Federal Modernization Workbook's Book 08, Chapter 02."
+   41.312,
+   2.663,
+   "With those rules in place, here's how to choose."
   ]
  ],
  "9": [
   [
    0.05,
-   1.337,
-   "The decision table."
+   5.225,
+   "Here's the decision table, and every row is design guidance, not an endorsement."
   ],
   [
-   1.387,
-   5.2,
-   "Every row is design guidance, not an endorsement, resting on the facts we've covered."
+   5.275,
+   8.688,
+   "If you're mostly on premises with a small cloud footprint, Trinzic plus native cloud resolvers and conditional forwarding is the lowest-cost start."
   ],
   [
-   6.588,
-   9.238,
-   "Mostly on premises, with a small cloud footprint: Trinzic with native cloud resolvers and conditional forwarding, the minimal form of Option C."
+   13.963,
+   7.125,
+   "Hybrid with one cloud, add a vNIOS pair in a hub network so resolution stays local if the WAN fails."
   ],
   [
-   15.825,
-   6.162,
-   "It's the lowest cost, needs no new SaaS authorization, and NIOS can't own cloud zones anyway."
+   21.087,
+   5.737,
+   "Multi-cloud at fed-ramp Moderate and below, add Universal D D I through Government Cloud."
   ],
   [
-   21.988,
-   8.037,
-   "Hybrid with one cloud, commercial or government: add an HA vNIOS pair in a hub network, Option A plus C."
+   26.825,
+   10.6,
+   "And for GovCloud, Azure Government, fed-ramp High or Defense Impact Levels 4 and 5, stay with options A and C, because Infoblox's service is Moderate-only."
   ],
   [
-   30.025,
-   7.537,
-   "It keeps resolution local if the WAN fails and extends response policy, signed zones and Grid eye-pam into the cloud."
-  ],
-  [
-   37.562,
-   4.175,
-   "vNIOS is documented for both GovCloud and Azure Government."
-  ],
-  [
-   41.737,
-   7.175,
-   "Multi-cloud at fed-ramp Moderate and below: add Universal D D I on top, through Government Cloud for federal work."
-  ],
-  [
-   48.913,
-   6.525,
-   "It's the only Infoblox mechanism that writes to cloud D N S, within the Government Cloud limits."
-  ],
-  [
-   55.438,
-   8.238,
-   "GovCloud, Azure Government, fed-ramp High, or Defense Impact Levels 4 and 5: stay with options A and C only."
-  ],
-  [
-   63.675,
-   9.363,
-   "Infoblox's SaaS is Moderate-only, the VPC eye-pam integration excludes GovCloud, and native services carry the higher authorizations."
-  ],
-  [
-   73.037,
-   6.225,
-   "Google lists Cloud D N S for High, IL4 and IL5 under Assured Workloads."
-  ],
-  [
-   79.263,
-   5.312,
-   "For Azure Government, confirm D N S Private Resolver is available first."
-  ],
-  [
-   84.575,
-   10.688,
-   "In short, the design guidance is: Trinzic plus native cloud resolvers as the baseline, with vNIOS and Universal D D I added only where they earn their place."
-  ],
-  [
-   95.263,
-   28.775,
-   "Sources: Research decision guidance table and its cited sources: Infoblox vDiscovery, vNIOS for AWS and Azure, Route 53 sync, Universal D D I integrations and fed-ramp release notes, Universal Asset Insights discovery pages; AWS Resolver, VPC eye-pam + Infoblox, GovCloud Route 53; Google Assured Workloads supported products; fed-ramp Marketplace products.json."
+   37.425,
+   8.887,
+   "In short: Trinzic plus native resolvers as the baseline, with vNIOS and Universal D D I added only where they earn their place."
   ]
  ],
  "10": [
   [
    0.05,
-   1.087,
-   "Where does this fit?"
+   1.9,
+   "To close, where this fits."
   ],
   [
-   1.137,
-   4.95,
-   "The Federal Modernization Workbook's Book 08 makes the vendor-neutral case."
+   1.95,
+   10.463,
+   "Book 08 of the workbook makes the vendor-neutral case, from split-brain to the policy plane, and the research deep dive on Infoblox D D I covers the platform itself."
   ],
   [
-   6.088,
-   13.775,
-   "Chapter 02 explains split-brain, Chapter 07 covers cloud private endpoints and eye-pam, Chapter 08 describes the policy plane that overlays cloud D N S, and Chapter 12 covers platform selection."
+   12.412,
+   10.238,
+   "The decisions to take are which option for each cloud and impact level, one named owner for every zone, where DNSSEC keys live, and how address blocks reach each cloud."
   ],
   [
-   19.863,
-   9.537,
-   "The research deep dive, Infoblox D D I for Federal Agencies, covers the platform, its fed-ramp scope, its risks, and how divisions share it."
+   22.65,
+   7.025,
+   "The next steps start with Infoblox: ask for the Government Cloud boundary and a feature matrix for government accounts."
   ],
   [
-   29.4,
-   10.55,
-   "The decisions to take: which option for each cloud and impact level; one named owner for every zone; where DNSSEC keys live; and how address blocks reach each cloud."
+   29.675,
+   8.588,
+   "Then confirm Azure Government availability, size NIOS-X capacity if you want cloud forwarders, and test forwarding in both directions."
   ],
   [
-   39.95,
-   1.163,
-   "The next steps."
+   38.263,
+   4.925,
+   "This is research under review, not an endorsement by any federal agency."
   ],
   [
-   41.112,
-   7.425,
-   "Ask Infoblox for the Government Cloud authorization boundary and a feature matrix for GovCloud and Azure Government accounts."
-  ],
-  [
-   48.538,
-   6.95,
-   "Confirm that D N S Private Resolver and Virtual Network Manager eye-pam are available in Azure Government."
-  ],
-  [
-   55.487,
-   3.638,
-   "Size NIOS-X capacity if you want cloud forwarders."
-  ],
-  [
-   59.125,
-   3.663,
-   "And test forwarding in both directions from every origin."
-  ],
-  [
-   62.788,
-   6.325,
-   "One note on standing: this is research under review, not an endorsement by any federal agency."
-  ],
-  [
-   69.112,
+   43.188,
    0.762,
    "Thank you."
-  ],
-  [
-   69.875,
-   13.775,
-   "Sources: Book 08, Chapters 02, 07, 08 and 12; research item Infoblox D D I for Federal Agencies; research_multicloud, Couldn't verify."
   ]
  ]
 }

@@ -1,109 +1,54 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:05.103
-Here's an illustrative design, not a
-validated configuration, for an agency
+00:00:00.050 --> 00:00:04.076
+Here's an illustrative design,
+not a validated configuration,
 
 2
-00:00:05.103 --> 00:00:10.075
-that owns ten dot zero slash eight and
-example dot gov, with four divisions.
+00:00:04.076 --> 00:00:06.287
+for an agency with four divisions.
 
 3
-00:00:10.075 --> 00:00:13.088
-Headquarters is the central
-network operations team.
+00:00:06.287 --> 00:00:09.308
+Headquarters is the
+central operations team,
 
 4
-00:00:13.088 --> 00:00:17.388
-It holds its own slash-twelve block
-and its own zone under pattern A,
+00:00:09.308 --> 00:00:14.237
+holding its own block and zone under
+pattern A, plus the central superusers.
 
 5
-00:00:17.388 --> 00:00:21.688
-and it hosts the central superusers
-and a read-only approver group.
+00:00:14.237 --> 00:00:19.024
+A law-enforcement bureau needs confidentiality
+from the other divisions, so it
 
 6
-00:00:21.688 --> 00:00:23.459
-If example dot gov is signed,
+00:00:19.024 --> 00:00:23.738
+gets its own block, zone and servers, and
+its data stays out of shared dashboards.
 
 7
-00:00:23.459 --> 00:00:27.000
-the central management node
-signs it as hidden primary.
+00:00:23.738 --> 00:00:29.167
+A regional office still runs Windows DNS
+and DHCP, which the platform manages,
 
 8
-00:00:27.000 --> 00:00:31.088
-The law-enforcement bureau needs
-confidentiality from the other divisions.
+00:00:29.167 --> 00:00:33.238
+with the region's group given
+rights on those servers only.
 
 9
-00:00:31.088 --> 00:00:35.561
-It gets its own block and its own
-zone, served from its own two servers,
+00:00:33.238 --> 00:00:38.033
+And a research lab that numbered itself
+into an overlapping range gets its
 
 10
-00:00:35.561 --> 00:00:40.275
-patterns A and B, and nothing else,
-because everything else stays denied.
+00:00:38.033 --> 00:00:42.675
+own network view and DHCP pair, with
+its zone delegated to its own servers.
 
 11
-00:00:40.275 --> 00:00:42.625
-Its data stays out of shared dashboards.
-
-12
-00:00:42.625 --> 00:00:46.124
-If its change detail shouldn't
-reach headquarters approvers,
-
-13
-00:00:46.124 --> 00:00:48.937
-a bureau-lead approver
-group can own its workflow.
-
-14
-00:00:48.937 --> 00:00:53.688
-The regional office still
-runs Windows DNS and DHCP.
-
-15
-00:00:53.688 --> 00:00:59.177
-The platform manages those servers, and the
-region's group gets rights on them only,
-
-16
-00:00:59.177 --> 00:01:03.051
-never the platform-wide DNS
-and DHCP administrator roles.
-
-17
-00:01:03.051 --> 00:01:06.188
-Each server's network view
-is fixed at first sync.
-
-18
-00:01:06.188 --> 00:01:10.488
-The research lab numbered itself in
-a range that overlaps headquarters.
-
-19
-00:01:10.488 --> 00:01:15.189
-It gets its own network view or
-IP space and its own DHCP pair,
-
-20
-00:01:15.189 --> 00:01:20.562
-pattern C, and its zone is delegated
-to lab-run BIND servers, pattern D.
-
-21
-00:01:20.562 --> 00:01:24.174
-The lab hands central the DS
-records for its signed zone,
-
-22
-00:01:24.174 --> 00:01:28.700
-and federation records its space as
-an overlapping block behind NAT.
+00:00:42.675 --> 00:00:44.810
+Then the question is who decides.

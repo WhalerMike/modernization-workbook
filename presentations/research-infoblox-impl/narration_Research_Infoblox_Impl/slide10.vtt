@@ -1,137 +1,55 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:05.009
-Method A, which the Federal Modernization
-Workbook's Book 08's coexistence
+00:00:00.050 --> 00:00:03.937
+Method A is the one Book 08's
+coexistence phase leans on:
 
 2
-00:00:05.009 --> 00:00:09.488
-phase leans on: manage the Windows
-servers first, then take them over.
+00:00:03.937 --> 00:00:07.738
+manage the Windows servers
+first, then take them over.
 
 3
-00:00:09.488 --> 00:00:14.752
-Grid members manage Windows DNS
-and DHCP servers without an agent,
+00:00:07.738 --> 00:00:13.530
+Grid members manage Windows DNS and DHCP
+without an agent, read-only or read-write,
 
 4
-00:00:14.752 --> 00:00:19.538
-over Microsoft's RPC protocol,
-in read-only or read-write mode.
+00:00:13.530 --> 00:00:18.112
+using a physical member with the
+Microsoft Management license.
 
 5
-00:00:19.538 --> 00:00:21.863
-Edits sync in both directions.
+00:00:18.112 --> 00:00:22.484
+Most zone types and records sync,
+but conditional forwarders don't,
 
 6
-00:00:21.863 --> 00:00:26.050
-It needs the Microsoft Management
-license on the managing member,
+00:00:22.484 --> 00:00:26.538
+so you still need Book 08's
+PowerShell export to recreate them.
 
 7
-00:00:26.050 --> 00:00:29.400
-and as we saw, that member
-must be a physical appliance.
+00:00:26.538 --> 00:00:31.398
+A few rules bite: each Windows server
+syncs into one view, the first sync
 
 8
-00:00:29.400 --> 00:00:33.015
-Infoblox recommends dedicated
-managing members close to
+00:00:31.398 --> 00:00:36.425
+belongs off-hours, and a failover
+mid-sync loses recent Grid-side changes.
 
 9
-00:00:33.015 --> 00:00:36.262
-the Windows servers, not the
-Grid Master or candidate.
+00:00:36.425 --> 00:00:40.869
+The design guidance is to add the
+Windows servers read-only in Phase 1,
 
 10
-00:00:36.262 --> 00:00:41.539
-The service account needs DnsAdmins
-for DNS, DHCP Administrators for DHCP,
+00:00:40.869 --> 00:00:43.675
+so the synced views
+become a live inventory.
 
 11
-00:00:41.539 --> 00:00:46.900
-and the right to start and stop the
-services, rather than full administrator.
-
-12
-00:00:46.900 --> 00:00:52.083
-What syncs: forward and reverse zones,
-Active Directory-integrated zones,
-
-13
-00:00:52.083 --> 00:00:55.312
-stub zones, delegations
-and most record types.
-
-14
-00:00:55.312 --> 00:00:58.891
-What doesn't: conditional
-forwarders, trust anchors,
-
-15
-00:00:58.891 --> 00:01:02.387
-cached and root zones, and
-a few legacy record types.
-
-16
-00:01:02.387 --> 00:01:07.550
-So you still need Book 08's PowerShell
-export to recreate every forwarder.
-
-17
-00:01:07.550 --> 00:01:08.900
-Three rules that bite.
-
-18
-00:01:08.900 --> 00:01:13.287
-Each Windows server syncs into
-one network view and one DNS view,
-
-19
-00:01:13.287 --> 00:01:16.350
-so overlapping servers
-need separate views.
-
-20
-00:01:16.350 --> 00:01:18.587
-Schedule the first sync off-hours.
-
-21
-00:01:18.587 --> 00:01:22.915
-And if an HA managing member fails
-over mid-sync, that sync aborts,
-
-22
-00:01:22.915 --> 00:01:26.588
-and Grid-side changes made
-since the last sync are lost.
-
-23
-00:01:26.588 --> 00:01:31.485
-The program's design guidance: in Phase
-1, add the Windows servers read-only,
-
-24
-00:01:31.485 --> 00:01:35.900
-and the synced views become a live
-inventory alongside the export.
-
-25
-00:01:35.900 --> 00:01:40.816
-Sources: Infoblox NIOS 9.1.x
-Managing Microsoft Windows servers;
-
-26
-00:01:40.816 --> 00:01:44.248
-Guidelines for managing Microsoft servers;
-
-27
-00:01:44.248 --> 00:01:50.000
-Requirements for the Microsoft server
-account; Synchronized data; Book 08,
-
-28
-00:01:50.000 --> 00:01:55.340
-Chapter 10 (Phase 1 illustrative
-commands); research brief section 2.1.
+00:00:43.675 --> 00:00:45.240
+Then you move the zones.

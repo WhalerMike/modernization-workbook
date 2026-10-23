@@ -22,107 +22,47 @@ Which wins?
 The three clouds disagree.
 
 6
-00:00:08.975 --> 00:00:14.800
-In AWS, the Route 53 Resolver rule
-wins over the private hosted zone.
+00:00:08.975 --> 00:00:11.200
+In AWS the rule wins.
 
 7
-00:00:14.800 --> 00:00:19.602
-In Azure, a linked private DNS zone
-wins, and, per Microsoft Learn,
+00:00:11.200 --> 00:00:15.638
+In Azure the private zone wins,
+and the rule is silently ignored.
 
 8
-00:00:19.602 --> 00:00:23.388
-the forwarding-ruleset
-rule is silently ignored.
+00:00:15.638 --> 00:00:20.962
+In Oracle the private view wins, and
+evaluation stops even on a negative answer.
 
 9
-00:00:23.388 --> 00:00:28.174
-In Oracle Cloud, the attached private
-views are checked before resolver rules.
+00:00:20.962 --> 00:00:24.720
+And a private zone that covers
+a name but has no record for
 
 10
-00:00:28.174 --> 00:00:32.900
-Once a view answers, evaluation stops,
-even if the answer is negative.
-
-11
-00:00:32.900 --> 00:00:34.612
-That word negative matters.
-
-12
-00:00:34.612 --> 00:00:36.650
-A private zone can shadow a name.
-
-13
-00:00:36.650 --> 00:00:41.280
-If the zone covers a name but has no
-record for it, it returns NXDOMAIN,
-
-14
-00:00:41.280 --> 00:00:45.662
-which means the name doesn't exist,
+00:00:24.720 --> 00:00:28.637
+it says the name doesn't exist,
 instead of asking anyone else.
 
+11
+00:00:28.637 --> 00:00:31.223
+So, as an inference, the only design that
+
+12
+00:00:31.223 --> 00:00:34.537
+behaves the same everywhere
+is one owner per name.
+
+13
+00:00:34.537 --> 00:00:38.810
+The Grid owns agency zones, each
+cloud owns its own private zones,
+
+14
+00:00:38.810 --> 00:00:40.825
+and everything else forwards.
+
 15
-00:00:45.662 --> 00:00:48.313
-All three clouds document that behavior.
-
-16
-00:00:48.313 --> 00:00:50.949
-So, as an inference, the same zone and the
-
-17
-00:00:50.949 --> 00:00:54.162
-same rule give different
-answers in each cloud.
-
-18
-00:00:54.162 --> 00:00:58.188
-The only design that behaves the same
-everywhere is one owner per name.
-
-19
-00:00:58.188 --> 00:01:00.351
-The Grid owns agency zones.
-
-20
-00:01:00.351 --> 00:01:02.775
-Each cloud owns its own private zones.
-
-21
-00:01:02.775 --> 00:01:04.887
-Everything else forwards to the owner.
-
-22
-00:01:04.887 --> 00:01:08.509
-Never put a zone and a rule for
-the same name in one network,
-
-23
-00:01:08.509 --> 00:01:10.974
-and test resolution from every origin,
-
-24
-00:01:10.974 --> 00:01:15.288
-because a configuration that works
-in one cloud can fail in the next.
-
-25
-00:01:15.288 --> 00:01:22.673
-Sources: AWS, Route 53, Considerations
-when working with a private hosted zone
-
-26
-00:01:22.673 --> 00:01:30.174
-[S25]; Microsoft Learn, Troubleshoot
-NXDOMAIN from an Azure Private DNS zone [S12
-
-27
-00:01:30.174 --> 00:01:33.521
-(excerpt)]; Oracle, OCI Private DNS [S23];
-
-28
-00:01:33.521 --> 00:01:38.210
-research brief, Bottom line
-4 and failure mode F3.
+00:00:40.825 --> 00:00:42.120
+So how does it break?

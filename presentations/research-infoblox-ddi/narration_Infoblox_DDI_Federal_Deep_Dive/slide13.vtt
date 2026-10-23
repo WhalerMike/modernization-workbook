@@ -10,152 +10,50 @@ part of any Infoblox proposal,
 so let's read the record.
 
 3
-00:00:05.650 --> 00:00:12.096
-The Marketplace lists Infoblox
-Government Cloud, package FR2017257053,
+00:00:05.650 --> 00:00:11.522
+The Marketplace lists Infoblox Government
+Cloud as FedRAMP Certified at Moderate,
 
 4
-00:00:12.096 --> 00:00:18.648
-as FedRAMP Certified at Moderate, which
-the Marketplace now labels Class C,
+00:00:11.522 --> 00:00:16.975
+as SaaS in AWS GovCloud, with one agency
+authorization and a reuse count of zero.
 
 5
-00:00:18.648 --> 00:00:22.875
-on the agency path, as SaaS
-hosted in AWS GovCloud.
+00:00:16.975 --> 00:00:20.443
+It covers Universal DDI
+and some security services,
 
 6
-00:00:22.875 --> 00:00:28.713
-It was certified in December 2022 through
-the agency path, with Kratos as assessor.
+00:00:20.443 --> 00:00:25.362
+but not everything; ask Infoblox for
+the authorization boundary diagram.
 
 7
-00:00:28.713 --> 00:00:32.650
-It shows one agency authorization
-and a reuse count of zero.
+00:00:25.362 --> 00:00:29.691
+And the biggest point: NIOS appliances
+and virtual appliances on agency
 
 8
-00:00:32.650 --> 00:00:37.200
-There's no High listing, and we
-couldn't verify any DoD impact level.
+00:00:29.691 --> 00:00:34.451
+infrastructure aren't a cloud service,
+so no FedRAMP authorization covers them.
 
 9
-00:00:37.200 --> 00:00:38.238
-What's in scope?
+00:00:34.451 --> 00:00:37.332
+They sit inside the agency's own boundary,
 
 10
-00:00:38.238 --> 00:00:42.320
-The listing names Universal
-DDI, Universal Asset Insights,
+00:00:37.332 --> 00:00:40.213
+and that's the path for
+High or DoD systems.
 
 11
-00:00:42.320 --> 00:00:46.487
-and the Threat Defense component
-services TIDE and Dossier.
+00:00:40.213 --> 00:00:44.012
+With reuse at zero, expect
+to do your own ATO work.
 
 12
-00:00:46.487 --> 00:00:51.721
-Infoblox's July 2026 blog says the
-offering now includes NIOS-X servers;
-
-13
-00:00:51.721 --> 00:00:55.624
-treat that as a vendor claim
-until the package says so.
-
-14
-00:00:55.624 --> 00:00:58.909
-What isn't named: the Threat
-Defense cloud resolver,
-
-15
-00:00:58.909 --> 00:01:02.037
-the DNS Forwarding Proxy
-and the Data Connector.
-
-16
-00:01:02.037 --> 00:01:07.013
-Ask Infoblox for the authorization boundary
-diagram before you design around them.
-
-17
-00:01:07.013 --> 00:01:10.596
-And the biggest point: NIOS
-appliances and vNIOS running
-
-18
-00:01:10.596 --> 00:01:14.026
-on agency infrastructure
-aren't a cloud service at all.
-
-19
-00:01:14.026 --> 00:01:16.350
-No FedRAMP authorization covers them.
-
-20
-00:01:16.350 --> 00:01:21.317
-They sit inside the agency's own
-boundary and its own ATO, so a statement
-
-21
-00:01:21.317 --> 00:01:26.713
-like "Infoblox's FedRAMP authorization
-covers the DDI layer" is an overclaim.
-
-22
-00:01:26.713 --> 00:01:30.825
-For High or DoD systems, the
-path is agency-operated vNIOS,
-
-23
-00:01:30.825 --> 00:01:36.513
-for example from the Azure Government
-Marketplace, which Infoblox documents.
-
-24
-00:01:36.513 --> 00:01:37.975
-Two practical notes.
-
-25
-00:01:37.975 --> 00:01:41.055
-With reuse at zero,
-expect to do your own ATO
-
-26
-00:01:41.055 --> 00:01:44.400
-work rather than ride a
-widely reused package.
-
-27
-00:01:44.400 --> 00:01:49.011
-And Infoblox keeps separate FedRAMP
-release notes whose latest entry is March
-
-28
-00:01:49.011 --> 00:01:52.923
-fourteenth, while the commercial
-notes run to October seventeenth,
-
-29
-00:01:52.923 --> 00:01:56.625
-which suggests the FedRAMP
-instance lags commercial features.
-
-30
-00:01:56.625 --> 00:01:58.225
-Ask for the parity list.
-
-31
-00:01:58.225 --> 00:02:07.360
-Sources: FedRAMP Marketplace
-products.json, FR2017257053 (accessed Oct.
-
-32
-00:02:07.360 --> 00:02:12.537
-22, 2026); Infoblox blog,
-July 22, 2026 (vendor);
-
-33
-00:02:12.537 --> 00:02:19.440
-What's New in Universal DDI
-for FedRAMP; vNIOS for Azure.
+00:00:44.012 --> 00:00:48.910
+Ask, too, for a list of features the
+FedRAMP instance has versus commercial.

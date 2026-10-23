@@ -1,120 +1,54 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:05.225
-The decisions: which tool names each kind
-of device, and how long names may be.
+00:00:00.050 --> 00:00:00.975
+To close.
 
 2
-00:00:05.225 --> 00:00:08.554
-The DHCP server as the
-registrant for endpoints,
+00:00:00.975 --> 00:00:04.461
+The decisions are which tool
+names each kind of device,
 
 3
-00:00:08.554 --> 00:00:11.550
-and exactly which keys
-may update each zone.
+00:00:04.461 --> 00:00:08.645
+the DHCP server as registrant and
+which keys may update each zone,
 
 4
-00:00:11.550 --> 00:00:14.025
-DHCID or TXT ownership records.
+00:00:08.645 --> 00:00:13.913
+which ownership-record format, and whether
+Entra-joined PCs try to register at all.
 
 5
-00:00:14.025 --> 00:00:17.775
-And whether Entra-joined Windows
-PCs try to register at all.
+00:00:13.913 --> 00:00:18.724
+The next steps are the things that couldn't
+be verified, such as how Macs handle
 
 6
-00:00:17.775 --> 00:00:20.250
-The next steps are the
-things I couldn't verify.
+00:00:18.724 --> 00:00:23.687
+rename and DHCP names, and a recheck of
+Book 05's device preparation description.
 
 7
-00:00:20.250 --> 00:00:24.024
-Which Apple setting Intune's
-Mac rename actually sends,
-
-8
-00:00:24.024 --> 00:00:26.075
-and how Macs handle DHCP names.
-
-9
-00:00:26.075 --> 00:00:30.850
-Whether an Entra-joined device's
-display name follows an Intune rename.
-
-10
-00:00:30.850 --> 00:00:35.885
-The Federal Modernization Workbook's Book
-05's description of device preparation,
-
-11
-00:00:35.885 --> 00:00:40.775
-and its note on availability in the higher
-government clouds, both need a recheck.
-
-12
-00:00:40.775 --> 00:00:45.762
-And ask any third-party VPN vendor whether
+00:00:23.687 --> 00:00:28.588
+Ask any third-party VPN vendor whether
 its concentrator registers clients.
 
-13
-00:00:45.762 --> 00:00:46.900
-Where does this fit?
+8
+00:00:28.588 --> 00:00:33.761
+In the workbook, Book 05 covers
+onboarding and naming, Book 08 covers
 
-14
-00:00:46.900 --> 00:00:52.925
-Book 05, Chapter 04 covers Intune-first
-onboarding and the naming convention.
+9
+00:00:33.761 --> 00:00:39.212
+the AD DNS departure, and two related
+research items sit beside this one.
 
-15
-00:00:52.925 --> 00:00:57.255
-Book 08 covers the AD DNS
-departure in Chapter 04,
+10
+00:00:39.212 --> 00:00:44.137
+This is research under review, not an
+endorsement by any federal agency.
 
-16
-00:00:57.255 --> 00:01:03.750
-cloud private DNS in Chapter 07, and
-the migration sequence in Chapter 10.
-
-17
-00:01:03.750 --> 00:01:08.285
-And two research items sit
-beside this one: Trinzic Alone,
-
-18
-00:01:08.285 --> 00:01:13.400
-or Trinzic Plus Cloud DDI, and
-Infoblox DDI for Federal Agencies.
-
-19
-00:01:13.400 --> 00:01:16.895
-One note on standing: this
-is research under review,
-
-20
-00:01:16.895 --> 00:01:19.725
-not an endorsement by any federal agency.
-
-21
-00:01:19.725 --> 00:01:20.487
+11
+00:00:44.137 --> 00:00:44.950
 Thank you.
-
-22
-00:01:20.487 --> 00:01:27.749
-Sources: Research brief, Couldn't verify
-and Agency checklist; Book 05 Ch04,
-
-23
-00:01:27.749 --> 00:01:32.749
-Intune-First Onboarding;
-Book 08 Ch04, Ch07 and Ch10;
-
-24
-00:01:32.749 --> 00:01:38.225
-research items Trinzic Alone,
-or Trinzic Plus Cloud DDI?
-
-25
-00:01:38.225 --> 00:01:41.500
-and Infoblox DDI for Federal Agencies.

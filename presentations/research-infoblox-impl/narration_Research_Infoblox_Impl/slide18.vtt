@@ -2,131 +2,58 @@ WEBVTT
 
 1
 00:00:00.050 --> 00:00:03.787
-The hardware security module,
-and publishing DS records.
+The hardware security module keeps
+the signing keys off the Grid.
 
 2
-00:00:03.787 --> 00:00:06.615
-The HSM is configured by a superuser,
+00:00:03.787 --> 00:00:07.363
+NIOS supports Thales Luna
+and Entrust nShield.
 
 3
-00:00:06.615 --> 00:00:10.950
-one HSM group at a time, and
-deleting a group is permanent.
+00:00:07.363 --> 00:00:11.573
+The important step is registering both
+the Grid Master and the candidate,
 
 4
-00:00:10.950 --> 00:00:19.325
-NIOS supports Thales Luna, on TCP
-1792, and Entrust nShield, on TCP 9004.
-
-5
-00:00:19.325 --> 00:00:22.583
-Register both the Grid Master
-and the candidate with it,
-
-6
-00:00:22.583 --> 00:00:26.125
+00:00:11.573 --> 00:00:15.024
 because the candidate becomes
 the signer after a promotion.
 
+5
+00:00:15.024 --> 00:00:18.332
+Signing moves to the HSM
+at the next key rollover,
+
+6
+00:00:18.332 --> 00:00:21.887
+not immediately, and NIOS
+never deletes keys from it.
+
 7
-00:00:26.125 --> 00:00:29.283
-For Luna, generate client
-certificates for both,
+00:00:21.887 --> 00:00:24.675
+Then you publish DS
+records to the parent zone.
 
 8
-00:00:29.283 --> 00:00:34.100
-give HA nodes distinct names, and add
-a route for the Grid's virtual address.
+00:00:24.675 --> 00:00:28.709
+If the parent is in the same
+Grid, that's automatic;
 
 9
-00:00:34.100 --> 00:00:36.863
-For nShield, enroll both addresses.
+00:00:28.709 --> 00:00:35.062
+otherwise you export them, and, as an
+inference, submit only the SHA-256 digest.
 
 10
-00:00:36.863 --> 00:00:40.637
-Then enable HSM signing,
-which is a Grid-level setting.
-
-11
-00:00:40.637 --> 00:00:45.050
-Signing moves to the HSM at the
-next key rollover, not immediately.
-
-12
-00:00:45.050 --> 00:00:50.000
-Key lifecycle lives on the HSM, and
-NIOS never deletes keys from it.
-
-13
-00:00:50.000 --> 00:00:54.162
-The Grid sends SNMP traps on
-signing success or failure.
-
-14
-00:00:54.162 --> 00:00:56.038
-Publishing DS records.
-
-15
-00:00:56.038 --> 00:01:01.900
-If the parent zone is in the same Grid,
-NIOS inserts the DS records automatically.
-
-16
-00:01:01.900 --> 00:01:08.038
-Otherwise, export the trust anchors,
-as DNSKEY, DS, or BIND format.
-
-17
-00:01:08.038 --> 00:01:13.950
-The exported DS file carries
-both SHA-1 and SHA-256 digests;
-
-18
-00:01:13.950 --> 00:01:19.862
-my inference is to submit only
-the SHA-256 one to the parent.
-
-19
-00:01:19.862 --> 00:01:24.399
-And the Check KSK Rollover Due
-tool lists keys due within a week.
-
-20
-00:01:24.399 --> 00:01:27.063
+00:00:35.062 --> 00:00:37.414
 For zones already signed on Windows,
 
-21
-00:01:27.063 --> 00:01:32.301
-follow the Federal Modernization
-Workbook's Book 08 Chapter 06's order:
+11
+00:00:37.414 --> 00:00:41.099
+sign on NIOS and validate before
+you stop the old signing.
 
-22
-00:01:32.301 --> 00:01:36.029
-finish any rollover, sign on
-NIOS, publish the new DS,
-
-23
-00:01:36.029 --> 00:01:39.225
-validate, and only then
-stop the old signing.
-
-24
-00:01:39.225 --> 00:01:43.325
-NIOS doesn't sync Windows trust
-anchors, so recreate them.
-
-25
-00:01:43.325 --> 00:01:50.176
-Sources: Infoblox NIOS 9.1.x HSM groups
-overview, Thales Luna configuration,
-
-26
-00:01:50.176 --> 00:01:57.469
-Entrust nShield configuration, Enabling
-HSM signing; Exporting trust anchors;
-
-27
-00:01:57.469 --> 00:02:04.060
-Check KSK rollover due; Source and
-destination ports; Book 08, Chapter 06.
+12
+00:00:41.099 --> 00:00:42.310
+Now, the STIG.

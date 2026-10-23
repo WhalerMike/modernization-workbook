@@ -1,0 +1,82 @@
+[
+  {
+    "slide": 1,
+    "title": "What a Federal DDI Platform Must Do",
+    "say": "Welcome. This is research from the Federal Modernization Workbook's Research section, and it's still under review. It's a companion to Book 08 of the workbook, on DNS, DHCP and IPAM, and it asks one question: if an agency is going to buy or build a platform for its name and address layer, what does that platform actually have to do? We'll cover why that layer is now a control plane, what a platform has to deliver and what to check before buying, who runs it, including how divisions can manage their own piece, and how to decide. Vendors appear only as examples, nothing here ranks a product, and every claim comes from Book 08 or from primary sources checked in October 2026."
+  },
+  {
+    "slide": 2,
+    "title": "DNS, DHCP and IPAM now form a control plane",
+    "say": "Here's why this layer deserves attention. Almost every connection starts with a DNS query, and in a hybrid multi-cloud agency the answer decides far more than an address. NIST's 2026 DNS deployment guide puts it plainly: DNS has become more than a service; it's a security control. Yet most agencies run it across as many as five separate platforms that share no state. The result is split-brain DNS, the same name giving different answers depending on where you ask, and it fails quietly, as certificate errors and access denials. IPAM and DHCP are the address half of the same problem. The book's answer is one authoritative DDI policy plane, a requirement, not a product. So what do the rules ask for?"
+  },
+  {
+    "slide": 3,
+    "title": "No rule names a vendor; the rules name capabilities",
+    "say": "Before any procurement, one thing to know: no memo, directive, executive order or NIST publication names a DDI vendor, or even requires a product category called a DDI platform. They require capabilities. Signed answers and validating resolvers. Encrypted DNS wherever it's technically supported. Protective DNS for all egress resolution at civilian agencies. Regular discovery of agency address space and attestation of public addresses and domains. On logging, be precise: the current memo sets retention but doesn't mention DNS, so DNS logging rests on guidance mapped to that baseline, not a standalone mandate. And NIST's DNS guide is guidance too, with two of its three authors working for a DDI vendor. Now the capabilities themselves."
+  },
+  {
+    "slide": 4,
+    "title": "Authoritative DNS across clouds, with DNSSEC kept central",
+    "say": "There are seven capabilities, and the first two are about authority and trust. First, authoritative DNS across every environment without split-brain. The platform holds each zone, forwarding rule and policy once, and pushes it to every cloud. Book 08 calls that overlay management, not replacement. When you evaluate a product, ask whether each cloud integration actually writes to the cloud, or only reads from it. Second, DNSSEC with central key custody: sign external zones always, validate on every agency resolver, and keep rollover automated and audited in one place. The clouds don't fill this gap, and check the defaults: Windows Server's default signing key is below NIST's floor, and NIOS defaults to RSA with SHA-1. Next, security."
+  },
+  {
+    "slide": 5,
+    "title": "DNS security: agency policy first, Protective DNS upstream",
+    "say": "The third capability is DNS security, and it's two layers in series. The agency's own resolvers apply the agency's policy and log every hit, and then all outbound queries go upstream through CISA's Protective DNS. The order matters more than having the pieces. Book 08's Decision 2 is that the agency resolver is always the first hop, so a SASE provider's DNS service is a forwarding target, never the place the branch sends queries first. Get the order wrong and you quietly lose the agency's own policy, validation and logging. Encrypted DNS completes the picture: the platform terminates it on its resolvers, and clients mustn't route around it. Next, addresses."
+  },
+  {
+    "slide": 6,
+    "title": "IPAM as the address authority, DHCP that stays up",
+    "say": "The fourth and fifth capabilities are about addresses. Left alone, each cloud's address manager allocates on its own, which recreates split-brain for addresses. So the book's rule is simple: every block is reserved in the enterprise IPAM before any cloud network is created. Discovery is where IPAM meets the directives, because you can't scan space you haven't recorded. And IPv4 and IPv6 have to be planned in the same tool. DHCP has to stay up and stay honest. Failover partners share the same DNS update credentials, or a takeover leaves names nobody can update. And in the two products checked, failover is documented for IPv4 only, which matters under the IPv6 targets. Then, automation and logging."
+  },
+  {
+    "slide": 7,
+    "title": "Automation and logging: every change and query on record",
+    "say": "The last two capabilities are automation and logging. No rule requires an API, but Book 08's operating model depends on one. Every object should be reachable through a documented API, so infrastructure as code, ticketing and pipelines all go through the same authority and audit trail, with service accounts held to the same scopes as people. Logging to the SIEM has to meet the retention rule: six months searchable and a year retrievable. Capacity is where designs fail. Full query logging costs performance, reporting appliances can lock after repeated ingest overruns, and some log streams drop records when the receiver is down. So size for peak, and test with the SIEM unreachable. Next, buying."
+  },
+  {
+    "slide": 8,
+    "title": "Before you buy: check the evidence, not the brochure",
+    "say": "Before buying anything, check the evidence an assessor will ask for, not the brochure. Start with FedRAMP, and read a listing's scope, not just its badge. It covers a specific cloud offering, not the software or appliances the agency runs itself, and Moderate doesn't cover High or DoD workloads. Then ask about the STIG, and ask for an active FIPS 140-3 certificate, checking its status yourself. FIPS 140-2 certificates moved to NIST's historical list on September 21, 2026, so a new deployment can't cite one. Ask how the vendor tracks the open-source DNS code underneath. And understand what's metered, then model the cost over three to five years. Here's what those checks returned."
+  },
+  {
+    "slide": 9,
+    "title": "Product evidence status, as of October 22, 2026",
+    "say": "Here's what those checks returned for four DDI products on October 22, 2026. It's a snapshot, not a ranking, so confirm on the day you decide. Only Infoblox Government Cloud has a FedRAMP listing, at Moderate, and it covers the SaaS, not the on-premises appliances. The others run inside the agency's own boundary. Only Infoblox has vendor-specific STIGs. Only BlueCat holds an active FIPS 140-3 certificate, while Infoblox's newer modules are still in NIST's review queue. None of the four has a current NIAP certification, and none is on the latest CDM list. So every candidate has a gap to close, in the contract or in a plan of action and milestones. Now, who runs it."
+  },
+  {
+    "slide": 10,
+    "title": "Divisions get a fenced scope; everything else is denied",
+    "say": "Now the question many agencies care about most: can divisions run their own DNS, DHCP and IPAM without breaking central governance? Book 08 says yes, if the platform supports the right model. Corporate administrators see everything, and each division gets a fenced scope of its own zones, address blocks and DHCP scopes, with everything else denied by default. In Infoblox, for example, one setting stops a division with access to a shared zone from pointing a name into another division's address space. Only central superusers create groups and roles, so a division can't widen its own rights. Administrators sign in with PIV or CAC, or single sign-on, and you keep a local break-glass account. So how are divisions kept apart?"
+  },
+  {
+    "slide": 11,
+    "title": "Overlapping space, views and tags keep divisions apart",
+    "say": "Three constructs keep divisions apart. First, separate address spaces. When a lab's private range overlaps headquarters and renumbering isn't practical, the platform needs a separate routing domain so the same addresses can exist twice, and that division then needs its own DHCP servers. Second, DNS views, which give different answers to different clients. The first match wins, so the order matters. Third, tags for ownership, like division or cost center. They drive reports, not permissions, and a required tag can be skipped through the API, so the automation has to enforce it. One trap to watch: report data may ignore object permissions, so share dashboards per division. Next, change control."
+  },
+  {
+    "slide": 12,
+    "title": "Approvals work only if nothing goes around them",
+    "say": "Delegation needs change control, and the useful pattern is an approval workflow. A division submits a change with a ticket number, a central group approves it, and the task runs with the submitter's own permissions, so approval can't grant rights the division doesn't have. The weakness of any workflow is what goes around it. In NIOS, for example, CSV imports and service restarts skip approval, so remove import rights from every division group. And a zone delegated to a division's own servers leaves the platform entirely. So decide what stays central in every pattern: superusers, roles, approvals, sign-in policy, DNSSEC keys, security policy, top-level address blocks, and logging. Those pieces make four patterns."
+  },
+  {
+    "slide": 13,
+    "title": "Four delegation patterns, four sets of trade-offs",
+    "say": "Those pieces make four delegation patterns, each with a cost, and they apply to any comparable platform. Pattern A is one central platform with delegated admin groups: one database, one audit log, but a risk of permission sprawl. Pattern B adds division-owned servers inside the platform, for local resilience, while signed zones still keep a central primary. Pattern C gives a division its own network view, the only way to hold overlapping address space. And pattern D delegates a zone to servers the division runs itself: full autonomy, but central loses the audit trail, policy coverage and signing for that zone. The patterns combine, and the worked example uses all four."
+  },
+  {
+    "slide": 14,
+    "title": "Worked example: four divisions, one governed platform",
+    "say": "Here's an illustrative design, not a validated configuration, for an agency with four divisions. Headquarters is the central operations team, holding its own block and zone under pattern A, plus the central superusers. A law-enforcement bureau needs confidentiality from the other divisions, so it gets its own block, zone and servers, and its data stays out of shared dashboards. A regional office still runs Windows DNS and DHCP, which the platform manages, with the region's group given rights on those servers only. And a research lab that numbered itself into an overlapping range gets its own network view and DHCP pair, with its zone delegated to its own servers. Then the question is who decides."
+  },
+  {
+    "slide": 15,
+    "title": "Who decides, under Book 08's responsibility matrix",
+    "say": "Who decides all this? Book 08's Chapter 09 gives one decider per row, and separates deciding from doing. The sponsor and CIO choose the platform and how divisions are scoped. The authorizing official decides whether a cloud-delivered management plane is authorized, and accepts the standing exceptions. The CISO and ISSO set the control requirements. And the DNS and DDI team owns the namespace and the address plan, and approves high-impact changes, while routine record changes inside a division's own space are pre-approved. Because that team holds the most powerful roles, the book scopes its automation, adds a second approver for the riskiest changes, and keeps its privileged roles eligible, not standing."
+  },
+  {
+    "slide": 16,
+    "title": "Decisions to make, and the next steps",
+    "say": "To wrap up, the decisions and next steps. The sponsor and CIO authorize one authoritative DDI policy plane, and the DNS and DDI team settles Book 08's five configuration decisions within 90 days. Write the requirement as capabilities, each mapped to its rule, because no rule names a product. Ask every candidate for the same evidence pack, and record every gap with an owner. Pick a delegation pattern per division, and pilot it, ideally with one that has overlapping address space. And size logging for retention, tested at peak. The next step needs no award: list every DNS, DHCP and IPAM requirement your systems inherit, and the evidence that would prove it. Thank you."
+  }
+]

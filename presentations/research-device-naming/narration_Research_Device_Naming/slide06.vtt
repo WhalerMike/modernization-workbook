@@ -1,138 +1,65 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:01.550
-Now the migration trap.
-
-2
-00:00:01.550 --> 00:00:05.800
+00:00:00.050 --> 00:00:04.250
 Ownership records only help if the
 old and new systems agree on them.
 
+2
+00:00:04.250 --> 00:00:07.321
+Infoblox has two modes,
+Interim and Standard,
+
 3
-00:00:05.800 --> 00:00:10.875
-Infoblox's default mode, Interim,
-checks ownership with TXT records.
+00:00:07.321 --> 00:00:10.725
+and documents that checking
+fails in three cases.
 
 4
-00:00:10.875 --> 00:00:15.963
-Its Standard mode uses DHCID records,
-the format the standards define.
+00:00:10.725 --> 00:00:14.616
+The big one is migration from
+Microsoft systems, where,
 
 5
-00:00:15.963 --> 00:00:20.000
-Infoblox documents three cases
-where TXT checking fails.
-
-6
-00:00:20.000 --> 00:00:25.454
-First, migration from Microsoft-based
-systems: those records have no TXT,
-
-7
-00:00:25.454 --> 00:00:30.363
-and, in Infoblox's words, new DDNS
+00:00:14.616 --> 00:00:19.025
+in Infoblox's words, new DDNS
 updates fail after the migration.
 
+6
+00:00:19.025 --> 00:00:22.535
+The others are mixed DHCP
+vendors and laptops whose
+
+7
+00:00:22.535 --> 00:00:25.800
+wired and Wi-Fi interfaces
+look like two clients.
+
 8
-00:00:30.363 --> 00:00:34.738
-Second, a mix of Microsoft
-and ISC DHCP servers.
+00:00:25.800 --> 00:00:29.684
+Macs add a twist: private Wi-Fi
+addresses can rotate, and,
 
 9
-00:00:34.738 --> 00:00:37.572
-Third, mobility: a
-laptop's wired and Wi-Fi
+00:00:29.684 --> 00:00:34.862
+as an inference, that changes the
+identity the ownership record rests on.
 
 10
-00:00:37.572 --> 00:00:40.750
-interfaces look like
-two different clients.
-
-11
-00:00:40.750 --> 00:00:42.875
-The second trap is on Macs.
-
-12
-00:00:42.875 --> 00:00:46.035
-Apple's private Wi-Fi
-address feature gives a Mac a
-
-13
-00:00:46.035 --> 00:00:49.888
-different hardware address, its
-MAC address, on each network.
-
-14
-00:00:49.888 --> 00:00:53.484
-Fixed is the default on
-WPA2 or better networks;
-
-15
-00:00:53.484 --> 00:00:56.988
-Rotating changes the
-address every two weeks.
-
-16
-00:00:56.988 --> 00:01:01.438
-An MDM, mobile device management,
-profile can turn it off with a key
-
-17
-00:01:01.438 --> 00:01:06.549
-called DisableAssociationMACRandomization,
+00:00:34.862 --> 00:00:39.149
+An MDM profile can turn it off
 on macOS fifteen and later.
 
-18
-00:01:06.549 --> 00:01:10.839
-As an inference, a rotating
-address changes the DHCP identity
+11
+00:00:39.149 --> 00:00:43.489
+The design guidance: pick one
+mode once, migrate deliberately,
 
-19
-00:01:10.839 --> 00:01:14.875
-that ownership records rest
-on, the same mobility failure.
+12
+00:00:43.489 --> 00:00:47.062
+and turn off address
+randomization on agency Wi-Fi.
 
-20
-00:01:14.875 --> 00:01:18.125
-I didn't verify the Android
-or Windows equivalents.
-
-21
-00:01:18.125 --> 00:01:22.145
-The program design guidance:
-pick Standard or Interim once,
-
-22
-00:01:22.145 --> 00:01:27.150
-migrate deliberately, and turn off
-address randomization on agency Wi-Fi.
-
-23
-00:01:27.150 --> 00:01:29.637
-Sources: Infoblox NIOS 9.1:
-
-24
-00:01:29.637 --> 00:01:36.388
-Enabling DDNS for IPv4 and IPv6 DHCP
-Clients (Interim vs Standard) [S45],
-
-25
-00:01:36.388 --> 00:01:42.074
-Configuring DDNS Update
-Verification [S46]; Apple Support,
-
-26
-00:01:42.074 --> 00:01:46.811
-Use private Wi-Fi addresses
-on Apple devices [S49];
-
-27
-00:01:46.811 --> 00:01:52.378
-apple/device-management
-com.apple.wifi.managed.yaml [S50];
-
-28
-00:01:52.378 --> 00:01:58.130
-research checklist steps 6 and
-7 (program design guidance).
+13
+00:00:47.062 --> 00:00:49.060
+Next, IPv6.

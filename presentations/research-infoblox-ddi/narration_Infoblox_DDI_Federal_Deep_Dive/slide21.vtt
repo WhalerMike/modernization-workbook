@@ -1,142 +1,58 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:05.425
-The NIOS permission model has three
-levels: read-write, read-only and deny.
+00:00:00.050 --> 00:00:04.126
+The NIOS permission model starts
+from the right place: everything is
 
 2
-00:00:05.425 --> 00:00:09.556
-Deny is the default for every resource,
-which is the right starting point
-
-3
-00:00:09.556 --> 00:00:13.412
-for divisions: a new group sees
+00:00:04.126 --> 00:00:08.488
+denied by default, so a new group sees
 nothing until you grant it something.
 
+3
+00:00:08.488 --> 00:00:13.256
+Permissions can cover every object of a
+type, or one specific object and what's
+
 4
-00:00:13.412 --> 00:00:15.337
-Permissions come in two scopes.
+00:00:13.256 --> 00:00:18.025
+inside it, and they inherit downward,
+with more specific settings overriding.
 
 5
-00:00:15.337 --> 00:00:21.150
-Global permissions cover every object of
-a type, for example every DHCP network.
+00:00:18.025 --> 00:00:21.288
+When permissions overlap,
+the first match wins.
 
 6
-00:00:21.150 --> 00:00:26.326
-Object permissions cover one specific
-member, zone, response policy zone,
+00:00:21.288 --> 00:00:25.275
+So if one role grants read-only
+and a later role grants read-write
 
 7
-00:00:26.326 --> 00:00:30.738
-network, record or fixed address,
-together with what's inside it.
+00:00:25.275 --> 00:00:29.413
+on the same records, the admin gets
+read-only, which can surprise you.
 
 8
-00:00:30.738 --> 00:00:33.225
-Inheritance runs from parent to child,
+00:00:29.413 --> 00:00:33.190
+Be careful with the built-in
+DNS and DHCP admin roles,
 
 9
-00:00:33.225 --> 00:00:37.577
-and you override it by setting a
-permission at a more specific level,
+00:00:33.190 --> 00:00:35.913
+which are far too broad for a division.
 
 10
-00:00:37.577 --> 00:00:41.463
-such as deny on one fixed address
-inside a read-write network.
+00:00:35.913 --> 00:00:40.409
+And the governance lever: only
+superusers create groups and roles,
 
 11
-00:00:41.463 --> 00:00:45.762
-When permissions overlap, NIOS
-resolves them in a fixed order.
+00:00:40.409 --> 00:00:43.025
+so a division can't widen its own rights.
 
 12
-00:00:45.762 --> 00:00:48.926
-It starts at the most
-specific object and works up.
-
-13
-00:00:48.926 --> 00:00:52.964
-At each level it checks permissions
-assigned directly to the group first,
-
-14
-00:00:52.964 --> 00:00:55.613
-then the group's roles in
-the order they're listed.
-
-15
-00:00:55.613 --> 00:00:59.687
-The first permission it finds wins,
-and everything after it is ignored.
-
-16
-00:00:59.687 --> 00:01:03.421
-So if one role grants read-only
-on A records and a later role
-
-17
-00:01:03.421 --> 00:01:07.388
-grants read-write on the same
-records, the admin gets read-only.
-
-18
-00:01:07.388 --> 00:01:12.463
-Grid Manager flags overlaps with a See
-Conflicts link and an Overlaps filter.
-
-19
-00:01:12.463 --> 00:01:16.413
-Roles are reusable permission
-sets, up to twenty-one per group.
-
-20
-00:01:16.413 --> 00:01:21.608
-Be careful with the system roles: DNS
-Admin and DHCP Admin grant read-write
-
-21
-00:01:21.608 --> 00:01:27.400
-across all members and all managed Microsoft
-servers, far too broad for a division.
-
-22
-00:01:27.400 --> 00:01:29.512
-The governance lever is on the left.
-
-23
-00:01:29.512 --> 00:01:32.905
-Only superusers can create
-admin groups and roles,
-
-24
-00:01:32.905 --> 00:01:37.751
-or define extensible attributes, so a
-division can't widen its own rights.
-
-25
-00:01:37.751 --> 00:01:40.712
-And a local admin superuser always exists,
-
-26
-00:01:40.712 --> 00:01:44.775
-so someone can still log in if
-the directory or OCSP is down.
-
-27
-00:01:44.775 --> 00:01:49.963
-Sources: Infoblox NIOS: About Administrative
-Permissions, About Admin Groups,
-
-28
-00:01:49.963 --> 00:01:54.193
-About Admin Roles, Applying
-Permissions and Managing Overlaps,
-
-29
-00:01:54.193 --> 00:01:58.730
-Creating Superuser Admin Groups,
-Managing Extensible Attributes.
+00:00:43.025 --> 00:00:44.620
+Next, the recipe.

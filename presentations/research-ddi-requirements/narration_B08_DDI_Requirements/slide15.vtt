@@ -5,120 +5,55 @@ WEBVTT
 Who decides all this?
 
 2
-00:00:01.350 --> 00:00:05.342
-The Federal Modernization
-Workbook's Book 08's Chapter 09
+00:00:01.350 --> 00:00:07.525
+Book 08's Chapter 09 gives one decider per
+row, and separates deciding from doing.
 
 3
-00:00:05.342 --> 00:00:09.500
-gives one decider per row, and
-separates deciding from doing.
+00:00:07.525 --> 00:00:11.800
+The sponsor and CIO choose the
+platform and how divisions are scoped.
 
 4
-00:00:09.500 --> 00:00:14.077
-The sponsor and CIO decide the
-platform and its deployment model,
+00:00:11.800 --> 00:00:15.210
+The authorizing official decides
+whether a cloud-delivered
 
 5
-00:00:14.077 --> 00:00:17.977
-with the DNS/DDI team doing
-the evaluation and the CISO,
+00:00:15.210 --> 00:00:19.087
+management plane is authorized, and
+accepts the standing exceptions.
 
 6
-00:00:17.977 --> 00:00:22.300
-the authorizing official and
-the operating teams consulted.
+00:00:19.087 --> 00:00:22.924
+The CISO and ISSO set
+the control requirements.
 
 7
-00:00:22.300 --> 00:00:27.150
-They also decide how divisions are scoped,
-and break ties over the resolver path.
+00:00:22.924 --> 00:00:27.129
+And the DNS and DDI team owns the
+namespace and the address plan,
 
 8
-00:00:27.150 --> 00:00:32.281
-The authorizing official decides whether
-a cloud-delivered management plane is
+00:00:27.129 --> 00:00:29.393
+and approves high-impact changes,
 
 9
-00:00:32.281 --> 00:00:36.582
-authorized for the agency's use,
-and accepts the standing exceptions:
+00:00:29.393 --> 00:00:34.487
+while routine record changes inside a
+division's own space are pre-approved.
 
 10
-00:00:36.582 --> 00:00:39.675
-an internal zone that loses
-DNSSEC in its new home,
+00:00:34.487 --> 00:00:39.104
+Because that team holds the most powerful
+roles, the book scopes its automation,
 
 11
-00:00:39.675 --> 00:00:43.825
-or an encrypted DNS exception that
-has outlived the agency's limit.
+00:00:39.104 --> 00:00:41.901
+adds a second approver
+for the riskiest changes,
 
 12
-00:00:43.825 --> 00:00:47.360
-The CISO and ISSO set
-the control requirements:
-
-13
-00:00:47.360 --> 00:00:52.310
-DNSSEC signing of public zones and
-validation on agency resolvers,
-
-14
-00:00:52.310 --> 00:00:57.525
-encrypted DNS policy, and Protective
-DNS forwarding and query logging.
-
-15
-00:00:57.525 --> 00:01:03.554
-The DNS/DDI team decides the namespace and
-the delegation of zones to divisions and
-
-16
-00:01:03.554 --> 00:01:07.923
-applications, owns the address
-plan and its top-level blocks,
-
-17
-00:01:07.923 --> 00:01:12.030
-and approves high-impact changes:
-zones, NS and DS records,
-
-18
-00:01:12.030 --> 00:01:15.612
-forwarding rules, wildcards
-and response policy.
-
-19
-00:01:15.612 --> 00:01:20.484
-Standard record changes inside a division's
-delegated namespace are pre-approved,
-
-20
-00:01:20.484 --> 00:01:23.450
-so the division or application
-owner does the work
-
-21
-00:01:23.450 --> 00:01:26.274
-through a scoped account,
-without a change board.
-
-22
-00:01:26.274 --> 00:01:29.401
-That team holds the most
-powerful roles in the design,
-
-23
-00:01:29.401 --> 00:01:33.663
-so the book scopes its automation, puts
-a second approver in front of zone,
-
-24
-00:01:33.663 --> 00:01:35.794
-delegation and forwarding changes,
-
-25
-00:01:35.794 --> 00:01:39.550
-and keeps its privileged roles
-eligible rather than standing.
+00:00:41.901 --> 00:00:45.120
+and keeps its privileged
+roles eligible, not standing.

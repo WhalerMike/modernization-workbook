@@ -1,121 +1,58 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:02.088
-This is an implementation guide.
+00:00:00.050 --> 00:00:00.763
+Welcome.
 
 2
-00:00:02.088 --> 00:00:07.385
-The Federal Modernization Workbook's Book
-08 sets the program's design for DNS,
+00:00:00.763 --> 00:00:04.575
+This is an implementation guide,
+and it's research from the Federal
 
 3
-00:00:07.385 --> 00:00:11.623
-DHCP and IP address management,
-and the Research section's deep
+00:00:04.575 --> 00:00:08.249
+Modernization Workbook's Research
+section, still under review.
 
 4
-00:00:11.623 --> 00:00:16.187
-dive explains why Infoblox is one
-of the strongest platforms for it.
+00:00:08.249 --> 00:00:12.450
+Book 08 of the workbook sets
+the program's design for DNS,
 
 5
-00:00:16.187 --> 00:00:21.200
-This guide shows how to build that
-design on Infoblox NIOS, version 9.1,
+00:00:12.450 --> 00:00:14.642
+DHCP and address management,
 
 6
-00:00:21.200 --> 00:00:26.213
+00:00:14.642 --> 00:00:20.120
+and this guide shows how to build that
+design on Infoblox NIOS, version 9.1,
+
+7
+00:00:20.120 --> 00:00:25.325
 and how to move off Microsoft DNS
 and DHCP without breaking anything.
 
-7
-00:00:26.213 --> 00:00:29.424
-It runs in four parts
-after a short orientation.
-
 8
-00:00:29.424 --> 00:00:33.354
-Part 1 builds the Grid: the
-Grid Master, its candidate,
+00:00:25.325 --> 00:00:29.794
+After a short orientation, it runs
+in four parts: build the Grid,
 
 9
-00:00:33.354 --> 00:00:38.013
-members, time, licensing, and
-virtual appliances in the clouds.
+00:00:29.794 --> 00:00:34.087
+migrate from Microsoft, sign and
+harden, and run it day to day.
 
 10
-00:00:38.013 --> 00:00:42.514
-Part 2 migrates from Microsoft:
-managing the Windows servers first,
+00:00:34.087 --> 00:00:39.711
+Every fact comes from a primary source, the
+new ones opened on October twenty-third,
 
 11
-00:00:42.514 --> 00:00:47.900
-importing zones, Active Directory zones
-and secure updates, and taking over DHCP.
+00:00:39.711 --> 00:00:43.599
+2026, and I'll flag design
+guidance and inferences as we go.
 
 12
-00:00:47.900 --> 00:00:52.993
-Part 3 signs and hardens: DNSSEC,
-the hardware security module,
-
-13
-00:00:52.993 --> 00:00:57.088
-the DISA STIG, FIPS mode
-and administrator access.
-
-14
-00:00:57.088 --> 00:01:01.452
-And Part 4 covers running it:
-upgrades, backup and recovery,
-
-15
-00:01:01.452 --> 00:01:06.362
-logging, automation, and the build
-mapped onto Book 08's six phases.
-
-16
-00:01:06.362 --> 00:01:10.087
-The ground rules are the same as
-the other implementation guides.
-
-17
-00:01:10.087 --> 00:01:12.936
-Every fact comes from a primary source;
-
-18
-00:01:12.936 --> 00:01:16.851
-the new ones were opened on
-October twenty-third, 2026.
-
-19
-00:01:16.851 --> 00:01:20.394
-Sequencing recommendations
-are labeled design guidance,
-
-20
-00:01:20.394 --> 00:01:22.925
-and inferences are labeled as inferences.
-
-21
-00:01:22.925 --> 00:01:25.736
-Sources: Research brief,
-
-22
-00:01:25.736 --> 00:01:33.185
-Implementing Book 08's DDI design
-on Infoblox NIOS (verified Oct.
-
-23
-00:01:33.185 --> 00:01:42.321
-23, 2026), with the earlier verified Infoblox
-briefs it reuses; Infoblox NIOS 9.1.x,
-
-24
-00:01:42.321 --> 00:01:46.959
-NIOS upgrade and FIPS/CC documentation;
-
-25
-00:01:46.959 --> 00:01:54.050
-DISA Infoblox NIOS 9.x STIG V1R1;
-Book 08, Chapters 04, 06, 08 to 11.
+00:00:43.599 --> 00:00:46.180
+The slides and notes carry the detail.

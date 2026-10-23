@@ -1,179 +1,59 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:03.029
-Option B joins the Grid to Universal DDI,
+00:00:00.050 --> 00:00:05.541
+Option B joins the Grid to Universal
+DDI, Infoblox's software-as-a-service
 
 2
-00:00:03.029 --> 00:00:06.550
-Infoblox's software-as-a-service
-control plane.
+00:00:05.541 --> 00:00:10.025
+control plane, while the Grid
+stays primary for its DNS data.
 
 3
-00:00:06.550 --> 00:00:09.908
-You add a join token from the
-Infoblox Portal to the Grid,
+00:00:10.025 --> 00:00:12.966
+What it adds is the one
+thing the others lack:
 
 4
-00:00:09.908 --> 00:00:13.412
-then turn on IPAM Federation
-and Cloud Grid Management.
-
-5
-00:00:13.412 --> 00:00:20.762
-Federation, which needs NIOS 9.0.4 or later,
-keeps address space unique everywhere.
-
-6
-00:00:20.762 --> 00:00:24.300
-The Grid stays primary for its DNS data.
-
-7
-00:00:24.300 --> 00:00:25.312
-What does it add?
-
-8
-00:00:25.312 --> 00:00:30.750
-It's the only documented Infoblox
+00:00:12.966 --> 00:00:17.950
+it's the only documented Infoblox
 mechanism that writes back to cloud DNS.
 
-9
-00:00:30.750 --> 00:00:35.820
+5
+00:00:17.950 --> 00:00:22.747
 It syncs Route 53, Azure DNS
-and Google Cloud DNS read-write,
+and Google Cloud DNS both ways,
 
-10
-00:00:35.820 --> 00:00:41.312
-and it discovers resolver endpoints
-and rules in AWS and Azure.
+6
+00:00:22.747 --> 00:00:28.462
+and on commercial AWS it can be
+the outside authority for VPC IPAM.
 
-11
-00:00:41.312 --> 00:00:44.523
-Cloud forwarders take
-queries in from a cloud,
+7
+00:00:28.462 --> 00:00:30.112
+The limits are real, though.
 
-12
-00:00:44.523 --> 00:00:47.650
-and cloud to cloud only
-between AWS and Azure.
+8
+00:00:30.112 --> 00:00:34.440
+DNSSEC records aren't synced, some
+zones can't be created from the portal,
 
-13
-00:00:47.650 --> 00:00:51.287
-And on commercial AWS,
-Infoblox can be the outside
-
-14
-00:00:51.287 --> 00:00:55.812
-authority for a VPC IPAM private
-scope, on the Advanced Tier.
-
-15
-00:00:55.812 --> 00:00:57.449
-The limits are documented.
-
-16
-00:00:57.449 --> 00:01:01.650
-Route 53 sync doesn't support
-non-simple routing policies.
-
-17
-00:01:01.650 --> 00:01:05.225
-Azure and Google private zones
-can't be created from the portal.
-
-18
-00:01:05.225 --> 00:01:07.050
-DNSSEC records aren't synced.
-
-19
-00:01:07.050 --> 00:01:11.697
-And the portal can't promote a Grid
-Master Candidate or manage DHCP failover,
-
-20
-00:01:11.697 --> 00:01:14.500
-so the Grid Master stays
+9
+00:00:34.440 --> 00:00:37.301
+and the Grid Master stays
 the recovery console.
 
-21
-00:01:14.500 --> 00:01:15.650
-Two more notes.
+10
+00:00:37.301 --> 00:00:40.778
+The government edition is
+FedRAMP Certified at Moderate,
 
-22
-00:01:15.650 --> 00:01:20.586
-The cloud forwarding and private-zone
-features run on NIOS-X servers,
+11
+00:00:40.778 --> 00:00:45.125
+but with narrower cloud discovery, so
+confirm the details with Infoblox.
 
-23
-00:01:20.586 --> 00:01:24.050
-not classic Trinzic, so
-you'd need NIOS-X capacity.
-
-24
-00:01:24.050 --> 00:01:27.729
-And the government edition:
-Infoblox Government Cloud
-
-25
-00:01:27.729 --> 00:01:31.488
-is FedRAMP Certified at
-Moderate, hosted in AWS GovCloud.
-
-26
-00:01:31.488 --> 00:01:37.125
-Its cloud discovery is limited: single
-AWS accounts and no Azure tenants.
-
-27
-00:01:37.125 --> 00:01:40.532
-The VPC IPAM handoff isn't
-in its release notes,
-
-28
-00:01:40.532 --> 00:01:44.025
-and AWS excludes GovCloud
-from that integration.
-
-29
-00:01:44.025 --> 00:01:46.075
-Confirm the rest with Infoblox.
-
-30
-00:01:46.075 --> 00:01:51.260
-Sources: Infoblox Onboarding NIOS
-Services, NIOS Grid Connector,
-
-31
-00:01:51.260 --> 00:01:57.884
-Managing NIOS from Infoblox Portal, Universal
-DDI and NIOS Grid Hybrid Deployment,
-
-32
-00:01:57.884 --> 00:02:03.549
-Limitations of AWS Route 53 Integration,
-Microsoft Azure Integration,
-
-33
-00:02:03.549 --> 00:02:09.405
-Google Cloud Platform Integration,
-Cloud Forwarders and prerequisites,
-
-34
-00:02:09.405 --> 00:02:15.070
-Discovering Cloud Forwarder Endpoints,
-Limitations of Universal DDI;
-
-35
-00:02:15.070 --> 00:02:19.582
-AWS Integrate VPC IPAM with
-Infoblox and What's New Nov.
-
-36
-00:02:19.582 --> 00:02:26.373
-17, 2025; What's New in Universal DDI for
-FedRAMP; Universal Asset Insights AWS,
-
-37
-00:02:26.373 --> 00:02:34.940
-Azure, GCP discovery pages;
-FedRAMP Marketplace FR2017257053.
+12
+00:00:45.125 --> 00:00:46.630
+Now the simplest option.

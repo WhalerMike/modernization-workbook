@@ -1,109 +1,62 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:03.984
-Almost every network connection
-begins with a DNS query,
+00:00:00.050 --> 00:00:02.100
+Here's why this layer deserves attention.
 
 2
-00:00:03.984 --> 00:00:09.425
-and in a hybrid multi-cloud agency the
-answer decides much more than an address.
+00:00:02.100 --> 00:00:05.538
+Almost every connection
+starts with a DNS query,
 
 3
-00:00:09.425 --> 00:00:14.227
-The Federal Modernization Workbook's
-Book 08 counts six jobs DNS now does:
+00:00:05.538 --> 00:00:11.038
+and in a hybrid multi-cloud agency the
+answer decides far more than an address.
 
 4
-00:00:14.227 --> 00:00:18.714
-publishing private endpoint addresses,
-selecting SaaS front doors,
-
-5
-00:00:18.714 --> 00:00:24.461
-enforcing security policy, anchoring
-certificate revocation checks, and carrying the
-
-6
-00:00:24.461 --> 00:00:30.050
-service identity and application surface
-that Zero Trust policy is written against.
-
-7
-00:00:30.050 --> 00:00:34.027
+00:00:11.038 --> 00:00:15.014
 NIST's 2026 DNS deployment
 guide puts it plainly:
 
-8
-00:00:34.027 --> 00:00:38.700
+5
+00:00:15.014 --> 00:00:19.687
 DNS has become more than a
 service; it's a security control.
 
+6
+00:00:19.687 --> 00:00:22.310
+Yet most agencies run it across as many as
+
+7
+00:00:22.310 --> 00:00:25.163
+five separate platforms
+that share no state.
+
+8
+00:00:25.163 --> 00:00:30.308
+The result is split-brain DNS, the same
+name giving different answers depending
+
 9
-00:00:38.700 --> 00:00:44.640
-Yet most agencies run it across as
-many as five independent platforms:
+00:00:30.308 --> 00:00:35.376
+on where you ask, and it fails quietly,
+as certificate errors and access denials.
 
 10
-00:00:44.640 --> 00:00:48.326
-Active Directory DNS or
-an on-premises grid,
-
-11
-00:00:48.326 --> 00:00:52.525
-Route 53, Azure DNS, Google
-Cloud DNS and VMware NSX.
-
-12
-00:00:52.525 --> 00:00:54.425
-None shares state with the others.
-
-13
-00:00:54.425 --> 00:00:56.269
-The result is split-brain DNS,
-
-14
-00:00:56.269 --> 00:01:01.338
-the same name giving different answers
-depending on where the query starts, and
-
-15
-00:01:01.338 --> 00:01:06.562
-it fails quietly, as certificate errors
-and access denials rather than DNS errors.
-
-16
-00:01:06.562 --> 00:01:11.025
-And the forwarding rules that join the
-platforms usually belong to no team at all.
-
-17
-00:01:11.025 --> 00:01:15.137
+00:00:35.376 --> 00:00:39.487
 IPAM and DHCP are the address
 half of the same problem.
 
-18
-00:01:15.137 --> 00:01:18.020
-IPAM is the record of
-who owns which block,
-
-19
-00:01:18.020 --> 00:01:23.063
-and DHCP lease data is how an address
-becomes a device in the asset inventory.
-
-20
-00:01:23.063 --> 00:01:26.825
+11
+00:00:39.487 --> 00:00:43.478
 The book's answer is one
-authoritative DDI policy plane.
+authoritative DDI policy plane,
 
-21
-00:01:26.825 --> 00:01:29.719
-That's an architectural
-requirement, not a product,
+12
+00:00:43.478 --> 00:00:45.474
+a requirement, not a product.
 
-22
-00:01:29.719 --> 00:01:32.660
-and it's the yardstick for
-everything that follows.
+13
+00:00:45.474 --> 00:00:47.230
+So what do the rules ask for?

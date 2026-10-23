@@ -1,166 +1,58 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:03.025
-Service teams and divisions
-aren't alternatives.
+00:00:00.050 --> 00:00:04.750
+Service teams and divisions aren't
+alternatives; most agencies combine them,
 
 2
-00:00:03.025 --> 00:00:04.779
-Most agencies combine them,
-
-3
-00:00:04.779 --> 00:00:09.050
+00:00:04.750 --> 00:00:08.862
 because a grant can be scoped by
 service and by address space at once.
 
+3
+00:00:08.862 --> 00:00:10.825
+Again, it's illustrative.
+
 4
-00:00:09.050 --> 00:00:13.600
-Again, it's illustrative, using the
-worked example's four divisions.
+00:00:10.825 --> 00:00:15.410
+The central DNS team keeps the
+agency's top zone and DNSSEC signing,
 
 5
-00:00:13.600 --> 00:00:18.441
-The central DNS team keeps agency
-dot gov, internal and external,
+00:00:15.410 --> 00:00:21.078
+the central IPAM team keeps the top-level
+blocks and hands each division its own,
 
 6
-00:00:18.441 --> 00:00:23.100
-and DNSSEC signing, which only
-the Grid Master or its HSM can do.
+00:00:21.078 --> 00:00:24.663
+and divisions take over DHCP
+inside their own space.
 
 7
-00:00:23.100 --> 00:00:27.028
-The central IPAM team keeps
-the top-level blocks as network
+00:00:24.663 --> 00:00:27.100
+On Universal DDI the picture changes,
 
 8
-00:00:27.028 --> 00:00:30.725
-containers and allocates each
-division its slash twelve.
+00:00:27.100 --> 00:00:31.502
+and there's a documentation conflict
+over whether separate DNS and
 
 9
-00:00:30.725 --> 00:00:36.489
-Divisions take over DHCP: each division's
-admins get Member DHCP and restart on
+00:00:31.502 --> 00:00:35.825
+DHCP roles are supported in this
+release, so confirm with Infoblox.
 
 10
-00:00:36.489 --> 00:00:42.075
-their own DHCP members, and read-write
-on their ranges, inside their own space.
+00:00:35.825 --> 00:00:41.121
+And one caution applies however you split:
+on NIOS, reports ignore permissions,
 
 11
-00:00:42.075 --> 00:00:43.537
-Read the grid by row.
+00:00:41.121 --> 00:00:44.788
+so anyone with the reporting
+app sees agency-wide data.
 
 12
-00:00:43.537 --> 00:00:47.438
-HQ's DHCP admins work in ten slash twelve.
-
-13
-00:00:47.438 --> 00:00:53.613
-LEB serves its own zone from its own
-members, with Member DNS and DHCP on them.
-
-14
-00:00:53.613 --> 00:00:56.463
-REG's Windows servers are
-managed from the Grid,
-
-15
-00:00:56.463 --> 00:00:59.387
-so its admins get rights
-on those server objects.
-
-16
-00:00:59.387 --> 00:01:03.500
-And LAB, with overlapping space,
-has its own network view,
-
-17
-00:01:03.500 --> 00:01:08.775
-its own DHCP members, and a delegated
-zone whose DS records go to central.
-
-18
-00:01:08.775 --> 00:01:11.625
-On Universal DDI the picture changes.
-
-19
-00:01:11.625 --> 00:01:16.013
-An access policy binds a role,
-a user group and an access view.
-
-20
-00:01:16.013 --> 00:01:22.161
-Whether a division can have separate DNS
-and DHCP roles depends on a documentation
-
-21
-00:01:22.161 --> 00:01:26.795
-conflict: one Infoblox page lists
-DDI IPAM, DNS and DHCP roles,
-
-22
-00:01:26.795 --> 00:01:32.676
-while another says only the four DDI IPAM
-roles are supported in this release.
-
-23
-00:01:32.676 --> 00:01:34.475
-Confirm with Infoblox.
-
-24
-00:01:34.475 --> 00:01:38.760
-DHCP objects can't be assigned to
-access views directly; ranges,
-
-25
-00:01:38.760 --> 00:01:43.787
-subnets and fixed addresses inherit
-their access view from their parent.
-
-26
-00:01:43.787 --> 00:01:47.475
-And divisions can't administer
-their own users or roles.
-
-27
-00:01:47.475 --> 00:01:50.425
-One reporting caution
-applies however you split.
-
-28
-00:01:50.425 --> 00:01:54.804
-On NIOS, report and search data
-ignore object permissions,
-
-29
-00:01:54.804 --> 00:02:00.825
-so any team or division with the Reporting
-app sees agency-wide DNS and DHCP data.
-
-30
-00:02:00.825 --> 00:02:06.767
-Sources: Illustrative design synthesized
-from Infoblox NIOS: Object Permissions,
-
-31
-00:02:06.767 --> 00:02:12.193
-DNS and DHCP Permissions on Grid Members,
-Network Views, Network Containers,
-
-32
-00:02:12.193 --> 00:02:17.533
-Delegated Zones, Configuring DNSSEC on
-a Grid, Managing Microsoft Servers,
-
-33
-00:02:17.533 --> 00:02:22.614
-Reporting permissions; Infoblox
-Portal: About Access Views, Supported
-
-34
-00:02:22.614 --> 00:02:28.270
-Objects for Access Views, Setting Up
-Access Control, Creating Access Policies.
+00:00:44.788 --> 00:00:46.800
+Now Universal DDI.

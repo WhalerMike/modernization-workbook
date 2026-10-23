@@ -1,59 +1,20 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:02.500
-Part 2: migrate from Microsoft.
+00:00:00.050 --> 00:00:04.034
+Part 2 is the migration from
+Microsoft, and it's the longest part,
 
 2
-00:00:02.500 --> 00:00:06.500
-This is the longest part, because
-it's where a mistake hurts users.
+00:00:04.034 --> 00:00:06.563
+because it's where a mistake hurts users.
 
 3
-00:00:06.500 --> 00:00:10.987
-We'll start with the method the Federal
-Modernization Workbook's Book 08's
+00:00:06.563 --> 00:00:09.980
+We'll cover managing,
+importing, signed updates,
 
 4
-00:00:10.987 --> 00:00:12.753
-coexistence phase relies on:
-
-5
-00:00:12.753 --> 00:00:16.725
-Infoblox managing the Windows
-servers before it takes them over.
-
-6
-00:00:16.725 --> 00:00:21.862
-Then zone import, Active Directory zones
-and Kerberos-signed dynamic updates,
-
-7
-00:00:21.862 --> 00:00:26.287
-where a Microsoft change from July
-2026 breaks the vendor's example.
-
-8
-00:00:26.287 --> 00:00:31.469
-Then the DHCP takeover, which has
-one destructive step to avoid,
-
-9
-00:00:31.469 --> 00:00:36.550
-DHCP failover and IPv6, and
-finally how each method rolls back.
-
-10
-00:00:36.550 --> 00:00:42.848
-Sources: Infoblox NIOS 9.1.x
-Managing Microsoft Windows servers,
-
-11
-00:00:42.848 --> 00:00:49.027
-Importing zone data, GSS-TSIG
-and DHCP failover documentation;
-
-12
-00:00:49.027 --> 00:00:55.630
-Microsoft Learn DNS, DHCP and Kerberos
-RC4 pages; Book 08, Chapter 10.
+00:00:09.980 --> 00:00:15.120
+the DHCP takeover and its one
+destructive trap, failover, and rollback.

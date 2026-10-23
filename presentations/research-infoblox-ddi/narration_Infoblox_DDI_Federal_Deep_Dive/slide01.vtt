@@ -1,109 +1,60 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:05.884
-This is a technical deep dive on
-Infoblox DDI for federal agencies: DNS,
+00:00:00.050 --> 00:00:00.763
+Welcome.
 
 2
-00:00:05.884 --> 00:00:10.511
-DHCP and IP address management,
-delivered on Infoblox's
+00:00:00.763 --> 00:00:04.173
+This is a technical deep dive
+from the Federal Modernization
 
 3
-00:00:10.511 --> 00:00:15.238
-NIOS Grid and on its cloud-managed
-service, Universal DDI.
+00:00:04.173 --> 00:00:07.249
+Workbook's Research section,
+and it's still under review.
 
 4
-00:00:15.238 --> 00:00:19.372
-It's for the architects and engineers
-who will decide whether to build an
+00:00:07.249 --> 00:00:13.184
+It's about Infoblox DDI, meaning
+DNS, DHCP and IP address management,
 
 5
-00:00:19.372 --> 00:00:23.438
-agency's name and address layer on
-Infoblox, and how to run it once they do.
+00:00:13.184 --> 00:00:19.225
+on Infoblox's NIOS Grid and its
+cloud-managed service, Universal DDI.
 
 6
-00:00:23.438 --> 00:00:27.063
-After a five-minute orientation,
-it comes in two parts of about
+00:00:19.225 --> 00:00:23.135
+It's for the architects and engineers
+deciding whether to build an
 
 7
-00:00:27.063 --> 00:00:30.901
-twenty-two minutes each, in four
-modules you can watch on their own.
+00:00:23.135 --> 00:00:27.188
+agency's name and address layer on
+Infoblox, and how to run it if they do.
 
 8
-00:00:30.901 --> 00:00:33.690
-Part 1 covers the platform,
-then the case for it:
+00:00:27.188 --> 00:00:31.915
+After a short orientation, Part 1 covers
+the platform and the case for it,
 
 9
-00:00:33.690 --> 00:00:38.683
-which federal requirements it answers,
-what its FedRAMP listing actually covers,
+00:00:31.915 --> 00:00:35.600
+including FedRAMP scope, the
+competition and the risks.
 
 10
-00:00:38.683 --> 00:00:43.749
-how it compares with BlueCat, EfficientIP,
-Microsoft and the native cloud services,
+00:00:35.600 --> 00:00:41.250
+Part 2 covers how a central team hands
+DDI to divisions without losing control.
 
 11
-00:00:43.749 --> 00:00:46.613
-and the risks you have to
-manage if you choose it.
+00:00:41.250 --> 00:00:46.110
+Every fact comes from a primary source
+opened on October twenty-second,
 
 12
-00:00:46.613 --> 00:00:50.561
-Part 2 covers divisions: how
-a central team hands DNS,
-
-13
-00:00:50.561 --> 00:00:56.622
-DHCP and address management to bureaus
-and offices, on NIOS and on Universal DDI,
-
-14
-00:00:56.622 --> 00:01:00.939
-without losing control, and it
-ends with a worked example,
-
-15
-00:01:00.939 --> 00:01:04.612
-a responsibility matrix
-and a rollout sequence.
-
-16
-00:01:04.612 --> 00:01:05.924
-Two ground rules.
-
-17
-00:01:05.924 --> 00:01:11.962
-Every fact here comes from a primary source
-opened on October twenty-second, 2026.
-
-18
-00:01:11.962 --> 00:01:14.773
-And anything that is
-only Infoblox marketing
-
-19
-00:01:14.773 --> 00:01:17.213
-is called a vendor claim when it appears.
-
-20
-00:01:17.213 --> 00:01:21.855
-Sources: Infoblox NIOS 9.1.x
-and Universal DDI docs;
-
-21
-00:01:21.855 --> 00:01:28.082
-FedRAMP Marketplace products.json;
-NIST CMVP; DISA STIG file store;
-
-22
-00:01:28.082 --> 00:01:35.040
-OMB and CISA publications; the Federal
-Modernization Workbook's Book 08.
+00:00:46.110 --> 00:00:49.130
+2026, and marketing is
+called a vendor claim.
