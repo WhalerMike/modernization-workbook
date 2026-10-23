@@ -158,11 +158,11 @@ For each leaver: the HR effective date; the disable and token-revocation timesta
 | Derived PIV credentials | PIV | Federal PKI | PIV card system | Nothing |
 | Device certificates through Intune | Device and user auth (Intune) | Cloud PKI or AD CS through the connector | Intune | Nothing: Intune renews and revokes them |
 | TLS on agency-hosted HR middleware (Core HCM to Graph) | Internal server TLS | Retained AD CS | CyberArk Certificate Manager | Renews it on the host, if the middleware is agency-hosted (inference) |
-| Middleware service principal certificate | Not a Book 07 class | The app's owner | Entra ID or the app's owner | Nothing: an Entra credential |
+| Middleware service principal certificate | Not a Book 07 class | The app's owner | The app's owner or Key Vault | Nothing: an Entra credential |
 
-![This book's certificates and the engine that renews each.](../../images/diagrams/b03-hr-identity/svg/certs-clm.svg){fig-alt="PIV authentication certificates bound to the Entra user, Derived PIV credentials go to PIV card system (renews piv credentials); Device certificates through Intune go to Intune (renews device certificates); TLS on agency-hosted HR middleware (Core HCM to Graph) go to CyberArk Certificate Manager (renews and installs); Middleware service principal certificate go to Entra ID or the app's owner (outside book 07's classes)."}
+![This book's certificates and the engine that renews each.](../../images/diagrams/b03-hr-identity/svg/certs-clm.svg){fig-alt="PIV authentication certificates bound to the Entra user, Derived PIV credentials go to PIV card system (renews piv credentials); Device certificates through Intune go to Intune (renews device certificates); TLS on agency-hosted HR middleware (Core HCM to Graph) go to CyberArk Certificate Manager (renews and installs); Middleware service principal certificate go to the app's owner or Key Vault (outside book 07's classes)."}
 
-The leaver sequence's certificate steps touch PIV and Intune only; the CLM platform holds none of a worker's personal certificates. Book 07 owns the issuer and renewal decisions for every class above ([Chapter 04](../b07-pki/04-the-target-pki.md), [Chapter 05](../b07-pki/05-who-owns-the-certificate-estate.md)).
+The leaver sequence's certificate steps touch PIV and Intune only; the CLM platform holds none of a worker's personal certificates. Book 07 owns the issuer and renewal decisions for every class above ([Chapter 04](../b07-pki/04-the-target-pki.md), [Chapter 05](../b07-pki/05-who-owns-the-certificate-estate.md)). The research explainer [Certificates, Tokens and Keys Across the Hybrid Estate](../../research/hybrid-credentials.md) follows the PIV card from AD to Entra, including who writes `certificateUserIds` once Entra Connect no longer syncs it.
 
 
 ::: {.callout-tip}

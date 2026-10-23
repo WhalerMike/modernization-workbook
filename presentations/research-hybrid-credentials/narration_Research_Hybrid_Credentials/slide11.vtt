@@ -1,0 +1,50 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.450
+During coexistence, Entra ID
+learns to check the card itself.
+
+2
+00:00:04.450 --> 00:00:07.472
+You load the PIV issuers
+into its trust store,
+
+3
+00:00:07.472 --> 00:00:10.657
+give it a revocation list
+it can reach over HTTP,
+
+4
+00:00:10.657 --> 00:00:15.475
+and users can sign in to Windows with
+their card on Entra-joined devices.
+
+5
+00:00:15.475 --> 00:00:19.670
+The binding between card and person
+lives in certificate user IDs,
+
+6
+00:00:19.670 --> 00:00:22.950
+and for synced users only
+Entra Connect can write it.
+
+7
+00:00:22.950 --> 00:00:27.734
+There's one tension worth naming: the
+federal guide suggests a looser binding,
+
+8
+00:00:27.734 --> 00:00:30.575
+while Microsoft says use
+only the strict kind.
+
+9
+00:00:30.575 --> 00:00:35.300
+The program uses the strict kind,
+tied to one specific certificate.
+
+10
+00:00:35.300 --> 00:00:37.390
+So what happens when sync goes away?

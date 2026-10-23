@@ -1,0 +1,54 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.688
+Today, there's a deadline
+that already passed.
+
+2
+00:00:02.688 --> 00:00:06.188
+Since September 2025,
+domain controllers refuse a
+
+3
+00:00:06.188 --> 00:00:09.938
+certificate that isn't strongly
+mapped to its account.
+
+4
+00:00:09.938 --> 00:00:14.781
+Microsoft's easy fix, a security
+identifier stamped inside the certificate,
+
+5
+00:00:14.781 --> 00:00:18.087
+only works for certificates
+from Microsoft's own CA.
+
+6
+00:00:18.087 --> 00:00:22.776
+PIV certificates come from the Federal
+PKI, so they need a different route.
+
+7
+00:00:22.776 --> 00:00:28.238
+One is an explicit mapping on each account,
+which IDManagement dot gov recommends.
+
+8
+00:00:28.238 --> 00:00:31.803
+The other is a government-specific
+policy Microsoft added,
+
+9
+00:00:31.803 --> 00:00:35.513
+which trusts name-based mappings
+from named federal issuers.
+
+10
+00:00:35.513 --> 00:00:37.150
+The books now cover both.
+
+11
+00:00:37.150 --> 00:00:39.460
+Next, the coexistence years.

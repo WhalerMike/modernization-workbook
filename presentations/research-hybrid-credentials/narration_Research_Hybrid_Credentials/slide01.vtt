@@ -1,0 +1,49 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:00.763
+Welcome.
+
+2
+00:00:00.763 --> 00:00:04.932
+This is a research explainer from
+the Federal Modernization Workbook,
+
+3
+00:00:04.932 --> 00:00:09.456
+and it answers a question that comes up
+in every Active Directory retirement:
+
+4
+00:00:09.456 --> 00:00:12.354
+when AD goes, what happens
+to all the certificates,
+
+5
+00:00:12.354 --> 00:00:14.687
+tokens and keys it quietly looked after?
+
+6
+00:00:14.687 --> 00:00:19.729
+We'll follow four paths: SQL
+Server signing in with Entra ID,
+
+7
+00:00:19.729 --> 00:00:25.926
+the clouds' own key vaults, the PIV card,
+and the network's RADIUS and 802.1X.
+
+8
+00:00:25.926 --> 00:00:31.057
+For each one we'll look at today, the
+years of coexistence, and life after AD,
+
+9
+00:00:31.057 --> 00:00:36.275
+and then put it all on one page: who
+issues each credential, and who renews it.
+
+10
+00:00:36.275 --> 00:00:39.860
+The slides and notes carry
+the detail and the sources.

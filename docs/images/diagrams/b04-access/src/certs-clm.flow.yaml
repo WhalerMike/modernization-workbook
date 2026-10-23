@@ -7,7 +7,7 @@ nodes:
   g_piv: {tone: plain, width: 270, title: "Renewed by the card system", body: ["PIV and CAC in authentication strengths and break-glass"], size: 12}
   e_piv: {tone: violet, width: 210, tag: "Renews PIV credentials", title: "PIV card system", size: 12}
   g_entra: {tone: plain, width: 270, title: "Rotated by the app's owner", body: ["Certificate credentials on app registrations and service principals"], size: 12}
-  e_entra: {tone: red, width: 210, tag: "Outside Book 07's classes", title: "Entra ID or the app's owner", size: 12}
+  e_entra: {tone: red, width: 210, tag: "Outside Book 07's classes", title: "The app's owner or Key Vault", size: 12}
 edges:
   - [g_intune, e_intune]
   - [g_piv, e_piv]

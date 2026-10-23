@@ -210,11 +210,11 @@ The Conditional Access rows for GCC need care. Microsoft's Agent 365 service des
 
 | Certificate | Book 07 class | Issued by | Renewed by | What the CLM platform does |
 |---|---|---|---|---|
-| Agent blueprint and service principal certificates | Not a Book 07 class | A CA, key in Key Vault or an HSM | Entra ID or the app's owner | Can provision into Key Vault (inference); doesn't renew Entra credentials |
+| Agent blueprint and service principal certificates | Not a Book 07 class | A CA, key in Key Vault or an HSM | The app's owner or Key Vault | Can provision into Key Vault (inference); doesn't renew Entra credentials |
 | Global Secure Access TLS inspection | Not a Book 07 class | Not stated | Platform-managed, or not X.509 | Not a Book 07 class |
 | Google agent identities (SPIFFE certificates) | Not a Book 07 class | Google | Platform-managed, or not X.509 | Nothing: vendor-managed |
 
-![This book's certificates and the engine that renews each.](../../images/diagrams/b17-ai-identity/svg/certs-clm.svg){fig-alt="Agent blueprint and service principal certificates go to Entra ID or the app's owner (outside book 07's classes); Global Secure Access TLS inspection, Google agent identities (SPIFFE certificates) go to Platform-managed, or not X.509 (no clm lifecycle)."}
+![This book's certificates and the engine that renews each.](../../images/diagrams/b17-ai-identity/svg/certs-clm.svg){fig-alt="Agent blueprint and service principal certificates go to the app's owner or Key Vault (outside book 07's classes); Global Secure Access TLS inspection, Google agent identities (SPIFFE certificates) go to Platform-managed, or not X.509 (no clm lifecycle)."}
 
 None of this book's certificates is renewed by the CLM platform. Agent and service-principal certificates aren't one of Book 07's classes; this book's annual rotation and the 180-day app policy govern them, and the platform at most places the certificate in Key Vault (inference).[^clm-drivers]
 

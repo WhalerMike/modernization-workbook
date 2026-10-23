@@ -1,0 +1,641 @@
+{
+ "1": [
+  [
+   0.05,
+   0.713,
+   "Welcome."
+  ],
+  [
+   0.762,
+   13.925,
+   "This is a research explainer from the Federal Modernization Workbook, and it answers a question that comes up in every Active Directory retirement: when A D goes, what happens to all the certificates, tokens and keys it quietly looked after?"
+  ],
+  [
+   14.688,
+   11.238,
+   "We'll follow four paths: SQL Server signing in with Entra ID, the clouds' own key vaults, the piv card, and the network's radius and 802.1X."
+  ],
+  [
+   25.925,
+   10.35,
+   "For each one we'll look at today, the years of coexistence, and life after A D, and then put it all on one page: who issues each credential, and who renews it."
+  ],
+  [
+   36.275,
+   3.525,
+   "The slides and notes carry the detail and the sources."
+  ]
+ ],
+ "2": [
+  [
+   0.05,
+   4.1,
+   "Start with what A D actually does, because most of it is invisible."
+  ],
+  [
+   4.15,
+   4.737,
+   "It trusts the piv card's issuer and maps each card to an account."
+  ],
+  [
+   8.887,
+   4.987,
+   "It hands out Kerberos tickets, so SQL Server never has to think about tokens."
+  ],
+  [
+   13.875,
+   3.95,
+   "It autoenrolls certificates for domain controllers and servers."
+  ],
+  [
+   17.825,
+   4.25,
+   "And through NPS, it answers the network when a laptop plugs in."
+  ],
+  [
+   22.075,
+   5.05,
+   "Each of those jobs needs a new owner, and the right-hand column shows who takes each one."
+  ],
+  [
+   27.125,
+   1.562,
+   "Some answers are obvious."
+  ],
+  [
+   28.688,
+   2.825,
+   "Others, like radius, surprise people."
+  ],
+  [
+   31.512,
+   1.512,
+   "Let's go through them in order."
+  ]
+ ],
+ "3": [
+  [
+   0.05,
+   1.925,
+   "Here's how the explainer is laid out."
+  ],
+  [
+   1.975,
+   2.513,
+   "Every path is shown at three stages."
+  ],
+  [
+   4.487,
+   2.3,
+   "Today, with A D at the center."
+  ],
+  [
+   6.787,
+   6.763,
+   "Coexistence, which is the long middle, when A D and the cloud run side by side and both have to work."
+  ],
+  [
+   13.55,
+   3.525,
+   "And after A D, when the last domain controller is gone."
+  ],
+  [
+   17.075,
+   5.812,
+   "The four paths are SQL Server, the cloud key vaults, piv, and network access."
+  ],
+  [
+   22.887,
+   2.15,
+   "The fifth part is the summary table."
+  ],
+  [
+   25.038,
+   6.537,
+   "One rule runs through all of it: every credential has exactly one renewer, and we write down who that is."
+  ],
+  [
+   31.575,
+   1.8,
+   "First, SQL Server."
+  ]
+ ],
+ "4": [
+  [
+   0.05,
+   6.537,
+   "SQL Server can now accept Entra ID tokens on premises, through Azure Arc, instead of Kerberos."
+  ],
+  [
+   6.588,
+   2.413,
+   "That sounds like it removes certificates."
+  ],
+  [
+   9.0,
+   0.887,
+   "It doesn't."
+  ],
+  [
+   9.887,
+   4.9,
+   "Around one SQL Server there are three different credentials, with three different owners."
+  ],
+  [
+   14.787,
+   4.35,
+   "The TLS certificate, which CyberArk Certificate Manager renews."
+  ],
+  [
+   19.137,
+   5.987,
+   "On SQL Server 2022, an app-registration certificate that lives in Key Vault."
+  ],
+  [
+   25.125,
+   7.875,
+   "And on SQL Server 2025, a managed identity that the Arc agent looks after, with no certificate to manage at all."
+  ],
+  [
+   33.0,
+   4.9,
+   "The next slide explains why the TLS certificate suddenly matters more than it used to."
+  ]
+ ],
+ "5": [
+  [
+   0.05,
+   1.125,
+   "Here's the catch."
+  ],
+  [
+   1.175,
+   3.987,
+   "Every connection authenticated by Entra ID is encrypted."
+  ],
+  [
+   5.162,
+   8.225,
+   "If the server only has its own self-signed certificate, clients have to be told to trust it blindly, which gives up checking who the server is."
+  ],
+  [
+   13.387,
+   5.3,
+   "So the day Entra logins start, every instance needs a real, CA-issued certificate."
+  ],
+  [
+   18.688,
+   2.5,
+   "The CLM installs and renews it."
+  ],
+  [
+   21.188,
+   11.688,
+   "There's one technical trap to test first: SQL Server only accepts a certificate whose key was made the older way, and CyberArk's driver documentation doesn't say which way it makes keys."
+  ],
+  [
+   32.875,
+   1.2,
+   "Prove it in the lab."
+  ],
+  [
+   34.075,
+   6.013,
+   "And on 2022, the app certificate can rotate itself, if you set it up as service-managed."
+  ]
+ ],
+ "6": [
+  [
+   0.05,
+   3.438,
+   "Put the stages side by side and the direction is clear."
+  ],
+  [
+   3.487,
+   3.975,
+   "Today, Windows authentication, and TLS is optional."
+  ],
+  [
+   7.463,
+   10.713,
+   "During coexistence, Windows and Entra logins run together, TLS becomes mandatory, and SQL Server 2022 carries an app certificate in Key Vault."
+  ],
+  [
+   18.175,
+   9.5,
+   "After A D, it's Entra logins only, applications use managed identities, and the TLS certificate comes from the standalone CA under the same root."
+  ],
+  [
+   27.675,
+   6.938,
+   "The program's advice is simple: move to SQL Server 2025, so one whole certificate disappears."
+  ],
+  [
+   34.612,
+   2.138,
+   "Next, the clouds' key vaults."
+  ]
+ ],
+ "7": [
+  [
+   0.05,
+   6.1,
+   "Every cloud has its own certificate service, and each one can issue and renew certificates by itself."
+  ],
+  [
+   6.15,
+   5.287,
+   "Azure has Key Vault, AWS has Certificate Manager, and Google has its own."
+  ],
+  [
+   11.438,
+   2.975,
+   "Nobody coordinates them unless the program does."
+  ],
+  [
+   14.412,
+   6.013,
+   "So the rule is: for each certificate, decide one renewer, and record it in the CLM."
+  ],
+  [
+   20.425,
+   6.912,
+   "Either the CLM issues it and pushes it into the cloud, or the cloud issues it and the CLM just watches."
+  ],
+  [
+   27.337,
+   1.438,
+   "And notice the red band."
+  ],
+  [
+   28.775,
+   2.2,
+   "Keys and secrets are a different job."
+  ],
+  [
+   30.975,
+   3.525,
+   "They stay with each cloud's own key and secret services."
+  ],
+  [
+   34.5,
+   3.25,
+   "The CLM manages certificates, not secrets."
+  ]
+ ],
+ "8": [
+  [
+   0.05,
+   2.2,
+   "The details differ a little by cloud."
+  ],
+  [
+   2.25,
+   13.95,
+   "Key Vault only renews by itself for its two partner CAs and for self-signed certificates, so a certificate from the program's own CA comes from the CLM, and the good news is that the CLM's Key Vault driver supports Azure Government."
+  ],
+  [
+   16.2,
+   9.787,
+   "In AWS, Certificate Manager renews what it issues, but never what you import, so imported certificates belong to the CLM. Google is similar."
+  ],
+  [
+   25.988,
+   6.3,
+   "One thing to confirm with CyberArk in writing: its AWS driver pages don't mention GovCloud."
+  ],
+  [
+   32.288,
+   1.8,
+   "Now, the piv card."
+  ]
+ ],
+ "9": [
+  [
+   0.05,
+   3.125,
+   "The piv card is the credential that changes least."
+  ],
+  [
+   3.175,
+   6.775,
+   "The card, the Federal P K I issuer behind it, and the card management system all stay exactly as they are."
+  ],
+  [
+   9.95,
+   2.6,
+   "What changes is the system that checks the card."
+  ],
+  [
+   12.55,
+   7.75,
+   "Today that's A D: the domain controllers, the NTAuth store that trusts the issuer, and the mapping from card to account."
+  ],
+  [
+   20.3,
+   3.188,
+   "All of that, shown in red, ends with A D."
+  ],
+  [
+   23.488,
+   10.55,
+   "On the right is what replaces it: Entra certificate-based authentication, an attribute called certificate user IDs that binds the card to the person, and Conditional Access."
+  ],
+  [
+   34.038,
+   2.038,
+   "Let's take the stages one at a time."
+  ]
+ ],
+ "10": [
+  [
+   0.05,
+   2.638,
+   "Today, there's a deadline that already passed."
+  ],
+  [
+   2.688,
+   7.25,
+   "Since September 2025, domain controllers refuse a certificate that isn't strongly mapped to its account."
+  ],
+  [
+   9.938,
+   12.838,
+   "Microsoft's easy fix, a security identifier stamped inside the certificate, only works for certificates from Microsoft's own CA. piv certificates come from the Federal P K I, so they need a different route."
+  ],
+  [
+   22.775,
+   5.463,
+   "One is an explicit mapping on each account, which IDManagement dot gov recommends."
+  ],
+  [
+   28.238,
+   7.275,
+   "The other is a government-specific policy Microsoft added, which trusts name-based mappings from named federal issuers."
+  ],
+  [
+   35.513,
+   1.637,
+   "The books now cover both."
+  ],
+  [
+   37.15,
+   2.25,
+   "Next, the coexistence years."
+  ]
+ ],
+ "11": [
+  [
+   0.05,
+   4.4,
+   "During coexistence, Entra ID learns to check the card itself."
+  ],
+  [
+   4.45,
+   11.025,
+   "You load the piv issuers into its trust store, give it a revocation list it can reach over HTTP, and users can sign in to Windows with their card on Entra-joined devices."
+  ],
+  [
+   15.475,
+   7.475,
+   "The binding between card and person lives in certificate user IDs, and for synced users only Entra Connect can write it."
+  ],
+  [
+   22.95,
+   7.625,
+   "There's one tension worth naming: the federal guide suggests a looser binding, while Microsoft says use only the strict kind."
+  ],
+  [
+   30.575,
+   4.725,
+   "The program uses the strict kind, tied to one specific certificate."
+  ],
+  [
+   35.3,
+   2.025,
+   "So what happens when sync goes away?"
+  ]
+ ],
+ "12": [
+  [
+   0.05,
+   5.112,
+   "After A D, there's no sync to carry the binding, so it has to be written in the cloud."
+  ],
+  [
+   5.162,
+   6.912,
+   "The program's design is that the card management system writes it, at the moment a card is issued, through Microsoft Graph."
+  ],
+  [
+   12.075,
+   5.2,
+   "That's the only moment anyone knows the new certificate's serial number before it's first used."
+  ],
+  [
+   17.275,
+   4.675,
+   "HR can't do this job: HR knows the person, not the certificate."
+  ],
+  [
+   21.95,
+   5.862,
+   "Microsoft doesn't document this pattern, so it's design guidance, and it needs proving in a pilot."
+  ],
+  [
+   27.812,
+   3.775,
+   "Windows Hello stays the backup for when a card isn't practical."
+  ],
+  [
+   31.587,
+   3.138,
+   "Now, the one that surprises people: radius."
+  ]
+ ],
+ "13": [
+  [
+   0.05,
+   5.45,
+   "When a laptop plugs into a switch, the switch asks a radius server whether to let it on."
+  ],
+  [
+   5.5,
+   5.375,
+   "Today that's usually NPS, and NPS checks with A D, so it ends with A D."
+  ],
+  [
+   10.875,
+   4.425,
+   "People expect Microsoft to offer a radius service in Entra ID."
+  ],
+  [
+   15.3,
+   0.887,
+   "It doesn't."
+  ],
+  [
+   16.188,
+   1.538,
+   "So there are four choices."
+  ],
+  [
+   17.725,
+   1.875,
+   "Keep NPS as a bridge."
+  ],
+  [
+   19.6,
+   5.812,
+   "Move to a network access control platform that checks Intune, which is the program's default."
+  ],
+  [
+   25.413,
+   4.275,
+   "A cloud radius service, except none is fed-ramp-authorized yet."
+  ],
+  [
+   29.688,
+   7.675,
+   "Or, for remote users, Global Secure Access, which replaces the VPN, but not the switch on the campus network."
+  ]
+ ],
+ "14": [
+  [
+   0.05,
+   1.575,
+   "Here's how the default works."
+  ],
+  [
+   1.625,
+   4.812,
+   "The device gets a certificate from Intune with its Intune device ID inside."
+  ],
+  [
+   6.438,
+   2.375,
+   "It presents that certificate to the switch."
+  ],
+  [
+   8.812,
+   8.7,
+   "The switch passes it to the access control platform, Cisco ISE or Aruba ClearPass, which asks Intune: is this device compliant?"
+  ],
+  [
+   17.512,
+   3.962,
+   "Then it tells the switch to let it on, restrict it, or block it."
+  ],
+  [
+   21.475,
+   1.262,
+   "Two things to watch."
+  ],
+  [
+   22.738,
+   3.513,
+   "ISE needs a recent patch, or these certificates fail."
+  ],
+  [
+   26.25,
+   5.175,
+   "And the platform's own server certificate isn't Intune's, so the CLM renews it."
+  ],
+  [
+   31.425,
+   4.575,
+   "Today's NPS also hides a certificate of its own that nobody tracked."
+  ]
+ ],
+ "15": [
+  [
+   0.05,
+   3.6,
+   "Across the stages, the network story is a handover."
+  ],
+  [
+   3.65,
+   4.438,
+   "Today, NPS against A D, plus a VPN that relies on it."
+  ],
+  [
+   8.088,
+   8.375,
+   "During coexistence, Intune devices move to the access control platform while older hybrid devices still go through NPS."
+  ],
+  [
+   16.462,
+   8.062,
+   "After A D, the platform handles the campus network, and Global Secure Access or a federated VPN handles remote users."
+  ],
+  [
+   24.525,
+   5.688,
+   "Device certificates come from Intune throughout, and the server certificates come from the CLM."
+  ],
+  [
+   30.212,
+   2.7,
+   "Now let's put all four paths on one page."
+  ]
+ ],
+ "16": [
+  [
+   0.05,
+   1.512,
+   "This is the page to keep."
+  ],
+  [
+   1.562,
+   6.537,
+   "Each row is a credential, each column a stage, and each cell says who issues it and who renews it."
+  ],
+  [
+   8.1,
+   1.65,
+   "Read it for three patterns."
+  ],
+  [
+   9.75,
+   2.487,
+   "The piv row barely changes."
+  ],
+  [
+   12.238,
+   3.475,
+   "The domain controller and NPS rows simply end."
+  ],
+  [
+   15.713,
+   7.188,
+   "And the CLM's rows stay steady while the CA behind them moves from the retained A D CS to the standalone one."
+  ],
+  [
+   22.9,
+   5.775,
+   "Wherever two systems could renew the same certificate, the program picks one, and writes it down."
+  ]
+ ],
+ "17": [
+  [
+   0.05,
+   18.025,
+   "Finally, this research changed the books in five places: the SQL Server and application chapters on how certificates rotate and who renews them, Book 07 on federal smart card mapping, and Book 09 on the forgotten NPS certificate and the access control server's certificate."
+  ],
+  [
+   18.075,
+   8.963,
+   "The next steps are tests, not more reading: prove the SQL key type, prove the card system can write the binding, and get CyberArk's answer on GovCloud."
+  ],
+  [
+   27.038,
+   5.862,
+   "This is the program's research, under review, and not an endorsement by any federal agency."
+  ],
+  [
+   32.9,
+   1.1,
+   "Thanks for watching."
+  ]
+ ]
+}

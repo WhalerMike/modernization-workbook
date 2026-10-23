@@ -1,0 +1,44 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.488
+Put the stages side by side
+and the direction is clear.
+
+2
+00:00:03.488 --> 00:00:07.462
+Today, Windows authentication,
+and TLS is optional.
+
+3
+00:00:07.462 --> 00:00:13.689
+During coexistence, Windows and Entra
+logins run together, TLS becomes mandatory,
+
+4
+00:00:13.689 --> 00:00:18.176
+and SQL Server 2022 carries an
+app certificate in Key Vault.
+
+5
+00:00:18.176 --> 00:00:22.803
+After AD, it's Entra logins only,
+applications use managed identities,
+
+6
+00:00:22.803 --> 00:00:27.675
+and the TLS certificate comes from
+the standalone CA under the same root.
+
+7
+00:00:27.675 --> 00:00:31.745
+The program's advice is simple:
+move to SQL Server 2025,
+
+8
+00:00:31.745 --> 00:00:34.613
+so one whole certificate disappears.
+
+9
+00:00:34.613 --> 00:00:36.820
+Next, the clouds' key vaults.

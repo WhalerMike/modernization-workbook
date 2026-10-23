@@ -140,3 +140,12 @@ At the user's request, every certificate-dependent book maps its certificates to
 | 4 | CyberArk mechanism (drivers) | Same section | verified (noted) | CyberArk 26.1 docs, note clm-drivers |
 | 5 | CyberArk mechanism (pan) | Same section | verified (noted) | CyberArk 26.1 docs, note clm-pan |
 | 6 | RADIUS server certificate issuer stated, renewal owner not | Certificates and supplicant profiles | added: renewed through CyberArk Certificate Manager, network team owns it | Book 07 Ch05 |
+
+## Addition, October 23, 2026: hybrid credentials research
+
+From the research explainer *Certificates, Tokens and Keys Across the Hybrid Estate* (docs/research/hybrid-credentials.md), sources opened October 23, 2026.
+
+| # | Claim (short) | Where | Verdict | Source |
+|---|---|---|---|---|
+| 1 | NPS MFA extension creates a self-signed certificate valid for two years; own certificates with Client Authentication EKU allowed | Certificates section table and text | added (inventory row; replacement is design guidance) | NPS extension for Entra MFA, note hc-npsmfa |
+| 2 | ISE's own certificates are enrolled by signing request and bind, or import; no SCEP or EST enrollment found | Certificates section table | corrected (was "EST, SCEP or an Adaptable driver"); Adaptable route is inference | ISE 3.4 admin guide, note hc-ise34 |

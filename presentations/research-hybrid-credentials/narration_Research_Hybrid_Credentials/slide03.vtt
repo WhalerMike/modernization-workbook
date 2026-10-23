@@ -1,0 +1,49 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.975
+Here's how the explainer is laid out.
+
+2
+00:00:01.975 --> 00:00:04.488
+Every path is shown at three stages.
+
+3
+00:00:04.488 --> 00:00:06.787
+Today, with AD at the center.
+
+4
+00:00:06.787 --> 00:00:09.475
+Coexistence, which is the long middle,
+
+5
+00:00:09.475 --> 00:00:13.550
+when AD and the cloud run side
+by side and both have to work.
+
+6
+00:00:13.550 --> 00:00:17.075
+And after AD, when the last
+domain controller is gone.
+
+7
+00:00:17.075 --> 00:00:22.887
+The four paths are SQL Server, the cloud
+key vaults, PIV, and network access.
+
+8
+00:00:22.887 --> 00:00:25.037
+The fifth part is the summary table.
+
+9
+00:00:25.037 --> 00:00:27.007
+One rule runs through all of it:
+
+10
+00:00:27.007 --> 00:00:31.575
+every credential has exactly one
+renewer, and we write down who that is.
+
+11
+00:00:31.575 --> 00:00:33.430
+First, SQL Server.

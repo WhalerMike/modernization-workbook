@@ -1,0 +1,20 @@
+# Hybrid credentials explainer — one SQL Server on an Arc host and the three credentials around it:
+# the TLS certificate (CLM), the 2022 app-registration certificate (Key Vault), the 2025 managed identity (Arc agent).
+rankdir: LR
+graph: {nodesep: 0.25, ranksep: 0.6}
+nodes:
+  client: {tone: slate, width: 180, tag: "Client", title: "Application or user", body: ["Entra token: managed identity, service principal certificate, or user sign-in"], size: 12}
+  sql: {tone: blue, width: 200, tag: "Arc-enabled host", title: "SQL Server 2022 or 2025", body: ["Entra logins FROM EXTERNAL PROVIDER", "TLS certificate in the machine store"], size: 12}
+  entra: {tone: violet, width: 185, tag: "Identity", title: "Microsoft Entra ID", body: ["Issues and validates tokens", "Holds the app registration (2022)"], size: 12}
+  clm: {tone: amber, width: 185, tag: "Renews the TLS certificate", title: "CyberArk Certificate Manager", body: ["CAPI driver installs it; test KeySpec first"], size: 12}
+  kv: {tone: amber, width: 185, tag: "2022 only", title: "Azure Key Vault", body: ["App-registration certificate; the extension checks daily"], size: 12}
+  agent: {tone: green, width: 185, tag: "2025", title: "Connected Machine agent", body: ["Managed identity: no certificate to manage"], size: 12}
+  ca: {tone: slate, width: 175, title: "AD CS", body: ["Retained, then standalone under the same root"], size: 12}
+edges:
+  - [client, sql, {label: "token over TLS, always encrypted", lw: 120}]
+  - [sql, entra, {label: "validate token", lw: 80}]
+  - [ca, clm, {both: true}]
+  - [clm, sql, {tone: amber}]
+  - [kv, sql, {style: dashed, tone: amber}]
+  - [kv, entra, {style: dashed, label: "auto-upload only when service-managed", lw: 120}]
+  - [agent, sql, {tone: green}]

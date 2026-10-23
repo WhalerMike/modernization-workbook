@@ -1,0 +1,47 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.562
+This is the page to keep.
+
+2
+00:00:01.562 --> 00:00:04.658
+Each row is a credential,
+each column a stage,
+
+3
+00:00:04.658 --> 00:00:08.099
+and each cell says who
+issues it and who renews it.
+
+4
+00:00:08.099 --> 00:00:09.750
+Read it for three patterns.
+
+5
+00:00:09.750 --> 00:00:12.237
+The PIV row barely changes.
+
+6
+00:00:12.237 --> 00:00:15.713
+The domain controller
+and NPS rows simply end.
+
+7
+00:00:15.713 --> 00:00:19.391
+And the CLM's rows stay steady
+while the CA behind them
+
+8
+00:00:19.391 --> 00:00:22.901
+moves from the retained AD
+CS to the standalone one.
+
+9
+00:00:22.901 --> 00:00:26.263
+Wherever two systems could
+renew the same certificate,
+
+10
+00:00:26.263 --> 00:00:28.730
+the program picks one, and writes it down.

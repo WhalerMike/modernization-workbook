@@ -1,0 +1,53 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.175
+The PIV card is the credential
+that changes least.
+
+2
+00:00:03.175 --> 00:00:05.950
+The card, the Federal
+PKI issuer behind it,
+
+3
+00:00:05.950 --> 00:00:09.950
+and the card management system
+all stay exactly as they are.
+
+4
+00:00:09.950 --> 00:00:12.550
+What changes is the system
+that checks the card.
+
+5
+00:00:12.550 --> 00:00:15.161
+Today that's AD: the domain controllers,
+
+6
+00:00:15.161 --> 00:00:20.300
+the NTAuth store that trusts the issuer,
+and the mapping from card to account.
+
+7
+00:00:20.300 --> 00:00:23.488
+All of that, shown in red, ends with AD.
+
+8
+00:00:23.488 --> 00:00:27.988
+On the right is what replaces it:
+Entra certificate-based authentication,
+
+9
+00:00:27.988 --> 00:00:31.235
+an attribute called
+certificate user IDs that binds
+
+10
+00:00:31.235 --> 00:00:34.038
+the card to the person,
+and Conditional Access.
+
+11
+00:00:34.038 --> 00:00:36.140
+Let's take the stages one at a time.

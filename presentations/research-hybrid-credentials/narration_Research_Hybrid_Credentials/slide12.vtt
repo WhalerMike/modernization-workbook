@@ -1,0 +1,54 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.925
+After AD, there's no sync
+to carry the binding,
+
+2
+00:00:02.925 --> 00:00:05.162
+so it has to be written in the cloud.
+
+3
+00:00:05.162 --> 00:00:08.932
+The program's design is that the
+card management system writes it,
+
+4
+00:00:08.932 --> 00:00:12.074
+at the moment a card is issued,
+through Microsoft Graph.
+
+5
+00:00:12.074 --> 00:00:14.439
+That's the only moment
+anyone knows the new
+
+6
+00:00:14.439 --> 00:00:17.275
+certificate's serial number
+before it's first used.
+
+7
+00:00:17.275 --> 00:00:21.950
+HR can't do this job: HR knows
+the person, not the certificate.
+
+8
+00:00:21.950 --> 00:00:24.505
+Microsoft doesn't document this pattern,
+
+9
+00:00:24.505 --> 00:00:27.812
+so it's design guidance, and
+it needs proving in a pilot.
+
+10
+00:00:27.812 --> 00:00:31.587
+Windows Hello stays the backup
+for when a card isn't practical.
+
+11
+00:00:31.587 --> 00:00:34.780
+Now, the one that
+surprises people: RADIUS.

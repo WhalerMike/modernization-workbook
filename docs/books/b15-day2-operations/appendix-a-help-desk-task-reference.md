@@ -290,9 +290,9 @@ Copy the relevant rows into the ticket as text. Don't export log data to files o
 | Expired or missing device certificate; quarantined 802.1X device | Device and user auth (Intune) | Cloud PKI | Intune | Nothing: resync the Intune profile |
 | CBA sign-in failure with a PIV card | PIV | Federal PKI | PIV card system | Nothing: route to the PIV issuer's process |
 | Server certificate expiring or failing | Internal server TLS | Retained AD CS | CyberArk Certificate Manager | Route to the certificate's Server Owner in the platform, not a manual renewal |
-| SAML signing certificate rotation for an enterprise app | Not a Book 07 class | Entra | Entra ID or the app's owner | Nothing, unless the agency uploads a CA-issued certificate |
+| SAML signing certificate rotation for an enterprise app | Not a Book 07 class | Entra | The app's owner or Key Vault | Nothing, unless the agency uploads a CA-issued certificate |
 
-![This book's certificates and the engine that renews each.](../../images/diagrams/b15-day2-operations/svg/certs-clm.svg){fig-alt="Expired or missing device certificate; quarantined 802.1X device go to Intune (renews device certificates); CBA sign-in failure with a PIV card go to PIV card system (renews piv credentials); Server certificate expiring or failing go to CyberArk Certificate Manager (renews and installs); SAML signing certificate rotation for an enterprise app go to Entra ID or the app's owner (outside book 07's classes)."}
+![This book's certificates and the engine that renews each.](../../images/diagrams/b15-day2-operations/svg/certs-clm.svg){fig-alt="Expired or missing device certificate; quarantined 802.1X device go to Intune (renews device certificates); CBA sign-in failure with a PIV card go to PIV card system (renews piv credentials); Server certificate expiring or failing go to CyberArk Certificate Manager (renews and installs); SAML signing certificate rotation for an enterprise app go to the app's owner or Key Vault (outside book 07's classes)."}
 
 The help desk renews no certificates by hand: device certificates come back through Intune, PIV through its card system, and server certificates through the CLM platform's owner and drivers ([Book 07, Chapter 05](../b07-pki/05-who-owns-the-certificate-estate.md)).
 

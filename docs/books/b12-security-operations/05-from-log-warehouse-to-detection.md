@@ -297,9 +297,9 @@ The control-by-control treatment, including the incident-response controls, is i
 | The CLM platform's own events and expiry findings | - | - | CyberArk Certificate Manager | Sends them to the SIEM over syslog with TLS |
 | Syslog collector certificate, if TLS is used | Internal server TLS | Retained AD CS | CyberArk Certificate Manager | Renews it; it needs the collector's IP address in the SAN |
 | Private keys in local stores with no owner | Internal server TLS | Mixed | CyberArk Certificate Manager | Network and agent discovery find them |
-| Service principal and Graph app certificates | Not a Book 07 class | The app's owner | Entra ID or the app's owner | Nothing |
+| Service principal and Graph app certificates | Not a Book 07 class | The app's owner | The app's owner or Key Vault | Nothing |
 
-![This book's certificates and the engine that renews each.](../../images/diagrams/b12-security-operations/svg/certs-clm.svg){fig-alt="The CLM platform's own events and expiry findings, Syslog collector certificate, if TLS is used, Private keys in local stores with no owner go to CyberArk Certificate Manager (renews and installs); Service principal and Graph app certificates go to Entra ID or the app's owner (outside book 07's classes)."}
+![This book's certificates and the engine that renews each.](../../images/diagrams/b12-security-operations/svg/certs-clm.svg){fig-alt="The CLM platform's own events and expiry findings, Syslog collector certificate, if TLS is used, Private keys in local stores with no owner go to CyberArk Certificate Manager (renews and installs); Service principal and Graph app certificates go to the app's owner or Key Vault (outside book 07's classes)."}
 
 Book 07 gives security operations the certificate alerts ([Chapter 05](../b07-pki/05-who-owns-the-certificate-estate.md)), so the CLM platform is a SIEM source like any other. Its syslog channel sends BSD, CEF or JSON over TCP with TLS, and the receiving collector's certificate must carry an IP-address subject alternative name.[^clm-syslog]
 

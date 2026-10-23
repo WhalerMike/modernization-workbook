@@ -1,0 +1,53 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.769
+Every cloud has its own
+certificate service,
+
+2
+00:00:02.769 --> 00:00:06.150
+and each one can issue and
+renew certificates by itself.
+
+3
+00:00:06.150 --> 00:00:11.437
+Azure has Key Vault, AWS has Certificate
+Manager, and Google has its own.
+
+4
+00:00:11.437 --> 00:00:14.413
+Nobody coordinates them
+unless the program does.
+
+5
+00:00:14.413 --> 00:00:20.425
+So the rule is: for each certificate, decide
+one renewer, and record it in the CLM.
+
+6
+00:00:20.425 --> 00:00:24.094
+Either the CLM issues it and
+pushes it into the cloud,
+
+7
+00:00:24.094 --> 00:00:27.337
+or the cloud issues it
+and the CLM just watches.
+
+8
+00:00:27.337 --> 00:00:28.775
+And notice the red band.
+
+9
+00:00:28.775 --> 00:00:30.975
+Keys and secrets are a different job.
+
+10
+00:00:30.975 --> 00:00:34.500
+They stay with each cloud's
+own key and secret services.
+
+11
+00:00:34.500 --> 00:00:37.800
+The CLM manages certificates, not secrets.

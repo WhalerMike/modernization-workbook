@@ -1,0 +1,55 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.835
+SQL Server can now accept
+Entra ID tokens on premises,
+
+2
+00:00:03.835 --> 00:00:06.587
+through Azure Arc, instead of Kerberos.
+
+3
+00:00:06.587 --> 00:00:09.001
+That sounds like it removes certificates.
+
+4
+00:00:09.001 --> 00:00:09.887
+It doesn't.
+
+5
+00:00:09.887 --> 00:00:13.219
+Around one SQL Server there are
+three different credentials,
+
+6
+00:00:13.219 --> 00:00:14.787
+with three different owners.
+
+7
+00:00:14.787 --> 00:00:19.137
+The TLS certificate, which CyberArk
+Certificate Manager renews.
+
+8
+00:00:19.137 --> 00:00:25.124
+On SQL Server 2022, an app-registration
+certificate that lives in Key Vault.
+
+9
+00:00:25.124 --> 00:00:30.346
+And on SQL Server 2025, a managed
+identity that the Arc agent looks after,
+
+10
+00:00:30.346 --> 00:00:33.000
+with no certificate to manage at all.
+
+11
+00:00:33.000 --> 00:00:35.761
+The next slide explains
+why the TLS certificate
+
+12
+00:00:35.761 --> 00:00:37.970
+suddenly matters more than it used to.
