@@ -1,0 +1,56 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:02.183
+When a laptop plugs into a switch,
+
+2
+00:00:02.183 --> 00:00:05.500
+the switch asks a RADIUS
+server whether to let it on.
+
+3
+00:00:05.500 --> 00:00:10.875
+Today that's usually NPS, and NPS
+checks with AD, so it ends with AD.
+
+4
+00:00:10.875 --> 00:00:15.300
+People expect Microsoft to offer
+a RADIUS service in Entra ID.
+
+5
+00:00:15.300 --> 00:00:16.187
+It doesn't.
+
+6
+00:00:16.187 --> 00:00:17.726
+So there are four choices.
+
+7
+00:00:17.726 --> 00:00:19.600
+Keep NPS as a bridge.
+
+8
+00:00:19.600 --> 00:00:23.500
+Move to a network access control
+platform that checks Intune,
+
+9
+00:00:23.500 --> 00:00:25.412
+which is the program's default.
+
+10
+00:00:25.412 --> 00:00:29.688
+A cloud RADIUS service, except
+none is FedRAMP-authorized yet.
+
+11
+00:00:29.688 --> 00:00:32.722
+Or, for remote users,
+Global Secure Access,
+
+12
+00:00:32.722 --> 00:00:37.420
+which replaces the VPN, but not
+the switch on the campus network.

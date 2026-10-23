@@ -1,0 +1,25 @@
+# Hybrid credentials explainer — the PIV card through AD retirement: AD's relying-party pieces disappear;
+# the card, its issuer and Entra CBA remain.
+rankdir: LR
+graph: {nodesep: 0.22, ranksep: 0.5}
+clusters:
+  - {id: today, label: "Today: smart card logon to AD (ends with AD)", tone: red, nodes: [kdc, nta, map, sync]}
+  - {id: after, label: "After AD: Entra certificate-based authentication", tone: blue, nodes: [cba, cuid, ca]}
+nodes:
+  card: {tone: green, width: 170, tag: "Unchanged", title: "PIV card", body: ["PIV Authentication certificate", "Federal PKI issuer"], size: 12}
+  cms: {tone: green, width: 170, tag: "Unchanged", title: "Card management system", body: ["Issues, reissues and revokes", "After AD: its issuance event writes the binding (design guidance)"], size: 12}
+  kdc: {tone: red, width: 175, title: "Domain controllers", body: ["Kerberos PKINIT; DC certificates"], size: 12}
+  nta: {tone: red, width: 175, title: "NTAuth store", body: ["Trusts the PIV issuing CAs"], size: 12}
+  map: {tone: red, width: 175, title: "Strong mapping", body: ["altSecurityIdentities, or the federal name-based tuple"], size: 12}
+  sync: {tone: amber, width: 175, title: "Entra Connect Sync", body: ["Coexistence only: flows the mapping to certificateUserIds"], size: 12}
+  cba: {tone: blue, width: 185, title: "Entra CBA", body: ["PKI trust store, HTTP CRL", "Windows sign-in on Entra-joined devices"], size: 12}
+  cuid: {tone: blue, width: 185, title: "certificateUserIds", body: ["High-affinity values, written by Graph from the issuance event"], size: 12}
+  ca: {tone: blue, width: 185, title: "Conditional Access", body: ["Phishing-resistant authentication strength"], size: 12}
+edges:
+  - [card, kdc, {tone: slate}]
+  - [kdc, nta, {style: invis}]
+  - [card, cba]
+  - [map, sync]
+  - [sync, cuid, {style: dashed}]
+  - [cms, cuid]
+  - [cba, ca]

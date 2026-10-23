@@ -3,7 +3,7 @@ rankdir: LR
 graph: {nodesep: 0.2, ranksep: 0.6}
 nodes:
   g_entra: {tone: plain, width: 270, title: "Rotated by the app's owner", body: ["SAML signing certificate rotation for an enterprise app"], size: 12}
-  e_entra: {tone: red, width: 210, tag: "Outside Book 07's classes", title: "Entra ID or the app's owner", size: 12}
+  e_entra: {tone: red, width: 210, tag: "Outside Book 07's classes", title: "The app's owner or Key Vault", size: 12}
   g_clm: {tone: plain, width: 270, title: "Renewed by the platform", body: ["Server certificate expiring or failing"], size: 12}
   e_clm: {tone: amber, width: 210, tag: "Renews and installs", title: "CyberArk Certificate Manager", size: 12}
   g_piv: {tone: plain, width: 270, title: "Renewed by the card system", body: ["CBA sign-in failure with a PIV card"], size: 12}

@@ -1,0 +1,47 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:04.150
+Start with what AD actually does,
+because most of it is invisible.
+
+2
+00:00:04.150 --> 00:00:08.887
+It trusts the PIV card's issuer
+and maps each card to an account.
+
+3
+00:00:08.887 --> 00:00:13.874
+It hands out Kerberos tickets, so SQL
+Server never has to think about tokens.
+
+4
+00:00:13.874 --> 00:00:17.825
+It autoenrolls certificates for
+domain controllers and servers.
+
+5
+00:00:17.825 --> 00:00:22.075
+And through NPS, it answers the
+network when a laptop plugs in.
+
+6
+00:00:22.075 --> 00:00:24.167
+Each of those jobs needs a new owner,
+
+7
+00:00:24.167 --> 00:00:27.125
+and the right-hand column
+shows who takes each one.
+
+8
+00:00:27.125 --> 00:00:28.687
+Some answers are obvious.
+
+9
+00:00:28.687 --> 00:00:31.513
+Others, like RADIUS, surprise people.
+
+10
+00:00:31.513 --> 00:00:33.100
+Let's go through them in order.

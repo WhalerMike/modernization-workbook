@@ -1,0 +1,49 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.625
+Here's how the default works.
+
+2
+00:00:01.625 --> 00:00:06.437
+The device gets a certificate from
+Intune with its Intune device ID inside.
+
+3
+00:00:06.437 --> 00:00:08.813
+It presents that
+certificate to the switch.
+
+4
+00:00:08.813 --> 00:00:12.444
+The switch passes it to the
+access control platform,
+
+5
+00:00:12.444 --> 00:00:17.512
+Cisco ISE or Aruba ClearPass, which
+asks Intune: is this device compliant?
+
+6
+00:00:17.512 --> 00:00:21.474
+Then it tells the switch to let
+it on, restrict it, or block it.
+
+7
+00:00:21.474 --> 00:00:22.737
+Two things to watch.
+
+8
+00:00:22.737 --> 00:00:26.251
+ISE needs a recent patch,
+or these certificates fail.
+
+9
+00:00:26.251 --> 00:00:31.425
+And the platform's own server certificate
+isn't Intune's, so the CLM renews it.
+
+10
+00:00:31.425 --> 00:00:36.050
+Today's NPS also hides a certificate
+of its own that nobody tracked.

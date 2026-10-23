@@ -5,7 +5,7 @@ nodes:
   g_none: {tone: plain, width: 270, title: "No CLM lifecycle", body: ["Global Secure Access TLS inspection", "Google agent identities (SPIFFE certificates)"], size: 12}
   e_none: {tone: slate, width: 210, tag: "No CLM lifecycle", title: "Platform-managed, or not X.509", size: 12}
   g_entra: {tone: plain, width: 270, title: "Rotated by the app's owner", body: ["Agent blueprint and service principal certificates"], size: 12}
-  e_entra: {tone: red, width: 210, tag: "Outside Book 07's classes", title: "Entra ID or the app's owner", size: 12}
+  e_entra: {tone: red, width: 210, tag: "Outside Book 07's classes", title: "The app's owner or Key Vault", size: 12}
 edges:
   - [g_none, e_none]
   - [g_entra, e_entra]

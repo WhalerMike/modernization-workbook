@@ -160,7 +160,7 @@ The program follows those recommendations and adds one rule. The Owners list hol
 
 An application that isn't a public client needs a credential to prove its identity. Microsoft's guidance gives a clear order of preference:[^c05-best-practice]
 
-1. **A managed identity**, used directly or configured as the credential on an app registration. It's the most secure option and needs no credential management, but it's available only when the workload runs on Azure.
+1. **A managed identity**, used directly or configured as the credential on an app registration. It's the most secure option and needs no credential management, but it's available only when the workload runs on Azure or on an Azure Arc-enabled server, where the server's managed identity is reachable locally to processes in the right local group.[^hc-arcmi]
 2. **A federated identity credential** that trusts the workload's own platform, such as a GitHub Actions workflow or a Kubernetes service account. Microsoft warns that an app is only as secure as the identity platform it trusts.
 3. **A certificate**, kept in a key vault and issued by a trusted certificate authority rather than self-signed, though a self-signed certificate is still better than a password.
 4. **Never a client secret.** Microsoft's guidance is not to use password credentials, because they're often mismanaged and easily compromised.
@@ -329,11 +329,11 @@ Rows flagged `NeedsAttention` have fewer than two owners, hold a client secret, 
 
 | Certificate | Book 07 class | Issued by | Renewed by | What the CLM platform does |
 |---|---|---|---|---|
-| Certificate credentials on app registrations and service principals | Not a Book 07 class | A trusted CA, kept in a key vault | Entra ID or the app's owner | Can place the certificate in Azure Key Vault; documents no driver that uploads it to the app registration |
+| Certificate credentials on app registrations and service principals | Not a Book 07 class | A trusted CA, kept in a key vault | The app's owner, or Key Vault's renewal where the service rotates it; Entra ID itself renews nothing | Can place the certificate in Azure Key Vault; documents no driver that uploads it to the app registration |
 | PIV and CAC in authentication strengths and break-glass | PIV | Federal PKI | PIV card system | Nothing |
 | Device certificates behind compliance checks | Device and user auth (Intune) | Cloud PKI | Intune | Nothing |
 
-![This book's certificates and the engine that renews each.](../../images/diagrams/b04-access/svg/certs-clm.svg){fig-alt="Certificate credentials on app registrations and service principals go to Entra ID or the app's owner (outside book 07's classes); PIV and CAC in authentication strengths and break-glass go to PIV card system (renews piv credentials); Device certificates behind compliance checks go to Intune (renews device certificates)."}
+![This book's certificates and the engine that renews each.](../../images/diagrams/b04-access/svg/certs-clm.svg){fig-alt="Certificate credentials on app registrations and service principals go to the app's owner or Key Vault (outside book 07's classes); PIV and CAC in authentication strengths and break-glass go to PIV card system (renews piv credentials); Device certificates behind compliance checks go to Intune (renews device certificates)."}
 
 None of this book's certificates is renewed by the CLM platform. App-registration certificates are not one of Book 07's certificate classes; their lifetime is this book's 180-day policy, and their rotation belongs to the app's owner. Where they come from a CA, Book 07 is the authority for which one ([Chapter 04](../b07-pki/04-the-target-pki.md)), and the platform can at most provision them into Key Vault (inference).[^clm-drivers]
 
@@ -367,6 +367,7 @@ None of this book's certificates is renewed by the CLM platform. App-registratio
 [^c05-graph-amp]: Microsoft Learn, "Microsoft Entra application management policies API overview," <https://learn.microsoft.com/graph/api/resources/applicationauthenticationmethodpolicy?view=graph-rest-1.0> (accessed Oct 20, 2026).
 [^c05-secret-tutorial]: Microsoft Learn, "Tutorial: Enforce secret and certificate standards using application management policies," <https://learn.microsoft.com/entra/identity/enterprise-apps/tutorial-enforce-secret-standards> (accessed Oct 20, 2026).
 [^c05-wid-faq]: Microsoft Learn, "Frequently asked questions about Microsoft Entra Workload ID," <https://learn.microsoft.com/entra/workload-id/workload-identities-faqs> (accessed Oct 20, 2026).
+[^hc-arcmi]: Microsoft Learn, "Access Azure resources by using managed identity on Azure Arc-enabled servers" (updated February 5, 2026): the token endpoint is `localhost:40342`, readable on Windows by local Administrators or the "Hybrid Agent Extension Applications" group, <https://learn.microsoft.com/en-us/azure/azure-arc/servers/managed-identity-authentication> (accessed Oct 23, 2026).
 [^c05-mi]: Microsoft Learn, "What are managed identities for Azure resources?," <https://learn.microsoft.com/entra/identity/managed-identities-azure-resources/overview> (accessed Oct 20, 2026).
 [^c05-mi-best]: Microsoft Learn, "Managed identity best practice recommendations," <https://learn.microsoft.com/entra/identity/managed-identities-azure-resources/managed-identity-best-practice-recommendations> (accessed Oct 20, 2026).
 [^c05-wif]: Microsoft Learn, "Workload identity federation concepts," <https://learn.microsoft.com/entra/workload-id/workload-identity-federation> (accessed Oct 20, 2026).

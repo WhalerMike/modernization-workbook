@@ -114,3 +114,12 @@ At the user's request, every certificate-dependent book maps its certificates to
 |---|---|---|---|---|
 | 1 | Certificates section: class, issuer and renewal engine per certificate | Certificates in this book and the CLM platform | restated-as-design (Book 07's classes applied); items marked inference are labeled | Book 07 Ch04, Ch05 |
 | 2 | CyberArk mechanism (drivers) | Same section | verified (noted) | CyberArk 26.1 docs, note clm-drivers |
+
+## Addition, October 23, 2026: hybrid credentials research
+
+From the research explainer *Certificates, Tokens and Keys Across the Hybrid Estate* (docs/research/hybrid-credentials.md), sources opened October 23, 2026.
+
+| # | Claim (short) | Where | Verdict | Source |
+|---|---|---|---|---|
+| 1 | Managed identities also work on Azure Arc-enabled servers (localhost:40342; local Administrators or Hybrid Agent Extension Applications) | Credential order of preference | corrected (was "only when the workload runs on Azure") | Managed identity on Arc-enabled servers (Feb. 5, 2026), note hc-arcmi |
+| 2 | Entra ID doesn't renew certificate credentials; the owner, or Key Vault where a service rotates it | Certificates section table | corrected (was "Entra ID or the app's owner") | Rotate certificates; Key Vault certificates |

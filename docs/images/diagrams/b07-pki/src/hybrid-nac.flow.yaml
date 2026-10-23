@@ -1,0 +1,18 @@
+# Hybrid credentials explainer — a managed device on the wire: EAP-TLS with an Intune certificate, then a compliance check.
+rankdir: TB
+graph: {nodesep: 0.4, ranksep: 0.45}
+nodes:
+  pki: {tone: green, width: 175, title: "Cloud PKI or AD CS", body: ["Issues device certificates; Intune renews them"], size: 12}
+  dev: {tone: green, width: 185, tag: "Intune-managed", title: "Device", body: ["SCEP or PKCS certificate with the Intune device ID in the SAN"], size: 12}
+  sw: {tone: slate, width: 150, title: "Switch or access point", body: ["802.1X authenticator"], size: 12}
+  nac: {tone: blue, width: 190, tag: "RADIUS server", title: "NAC platform", body: ["Cisco ISE (patched) or ClearPass v6+"], size: 12}
+  intune: {tone: green, width: 190, title: "Intune compliance retrieval", body: ["Looks up the device ID: compliant or not"], size: 12}
+  clm: {tone: amber, width: 190, title: "CyberArk Certificate Manager", body: ["NAC server certificate: Adaptable driver or manual CSR"], size: 12}
+  nps: {tone: amber, width: 190, tag: "The bridge today", title: "NPS and the MFA extension", body: ["Needs AD; its own 2-year self-signed certificate"], size: 12}
+edges:
+  - [pki, dev]
+  - [dev, sw, {label: "EAP-TLS", lw: 60, both: true}]
+  - [sw, nac, {label: "RADIUS; change of authorization back", lw: 110, both: true}]
+  - [nac, intune, {label: "by device ID", lw: 70}]
+  - [clm, nac, {tone: amber}]
+  - [sw, nps, {style: dashed}]

@@ -7,8 +7,11 @@ nodes:
   g_intune: {tone: plain, width: 270, title: "Renewed by Intune", body: ["EAP-TLS machine certificates on devices"], size: 12}
   e_intune: {tone: blue, width: 210, tag: "Renews device certificates", title: "Intune", size: 12}
   g_clm: {tone: plain, width: 270, title: "Renewed by the platform", body: ["RADIUS server certificate presented in EAP-TLS", "Replacement NAC servers (ISE, ClearPass and others)", "RadSec, SD-WAN edge and network-device certificates", "Firewalls, VPN concentrators and load balancers"], size: 12}
+  g_owner: {tone: plain, width: 270, title: "Renewed by its owner", body: ["NPS extension for Entra MFA client certificate"], size: 12}
+  e_owner: {tone: red, width: 210, tag: "Outside Book 07's classes", title: "The NPS administrator", size: 12}
   e_clm: {tone: amber, width: 210, tag: "Renews and installs", title: "CyberArk Certificate Manager", size: 12}
 edges:
   - [g_none, e_none]
   - [g_intune, e_intune]
   - [g_clm, e_clm]
+  - [g_owner, e_owner]

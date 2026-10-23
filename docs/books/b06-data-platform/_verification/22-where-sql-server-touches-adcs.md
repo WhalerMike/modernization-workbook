@@ -56,3 +56,12 @@ At the user's request, every certificate-dependent book maps its certificates to
 | 1 | Certificates section: class, issuer and renewal engine per certificate | Certificates in this book and the CLM platform | restated-as-design (Book 07's classes applied); items marked inference are labeled | Book 07 Ch04, Ch05 |
 | 2 | CyberArk mechanism (capi) | Same section | verified (noted) | CyberArk 26.1 docs, note clm-capi |
 | 3 | Issuer decision 'Not Yet Defined'; 'Which new CA is an open question' | Callout; TLS section; takeaway 4 | corrected by a callout and two sentences: retained AD CS through the CLM, standalone after AD; DCs keep autoenrollment | Book 07 Ch04, Ch07 |
+
+## Addition, October 23, 2026: hybrid credentials research
+
+From the research explainer *Certificates, Tokens and Keys Across the Hybrid Estate* (docs/research/hybrid-credentials.md), sources opened October 23, 2026.
+
+| # | Claim (short) | Where | Verdict | Source |
+|---|---|---|---|---|
+| 1 | Renewer of the 2022 app-registration certificate is Key Vault and the Arc extension when service-managed, else the app's owner; Entra ID renews nothing | Certificates section table | corrected (was "Entra ID or the app's owner") | Rotate certificates, note hc-sqlrot |
+| 2 | SQL Server needs KeySpec AT_KEYEXCHANGE; KSP keys aren't compatible; the CAPI driver doesn't document CSP vs KSP, so a test gate | Certificates section | added; test gate is design guidance | Certificate requirements (Mar. 3, 2026), note hc-keyspec; CAPI object settings, note clm-capi |

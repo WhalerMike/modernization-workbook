@@ -1,0 +1,14 @@
+# Hybrid credentials explainer — what answers RADIUS when AD retires. There is no Entra RADIUS service.
+rankdir: LR
+graph: {nodesep: 0.25, ranksep: 0.5}
+nodes:
+  q: {kind: pill, tone: slate, text: "When AD retires, what answers the switch's RADIUS request?"}
+  a: {tone: amber, width: 210, tag: "Bridge only", title: "Keep NPS", body: ["Authorizes against AD, so it ends with AD", "The MFA extension adds a second factor only"], size: 12}
+  b: {tone: blue, width: 210, tag: "Program default", title: "NAC platform with Intune", body: ["ISE or ClearPass; EAP-TLS with Intune certificates", "Compliance retrieval decides access"], size: 12}
+  c: {tone: red, width: 210, tag: "Not yet authorized", title: "Cloud RADIUS service", body: ["None FedRAMP-authorized on October 23, 2026"], size: 12}
+  d: {tone: green, width: 210, tag: "Remote access", title: "Global Secure Access", body: ["Replaces the VPN's RADIUS; in GCC, not GCC High or DoD", "Not for 802.1X on the LAN"], size: 12}
+edges:
+  - [q, a]
+  - [q, b]
+  - [q, c]
+  - [q, d, {style: dashed}]

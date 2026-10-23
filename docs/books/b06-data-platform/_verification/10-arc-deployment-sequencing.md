@@ -51,3 +51,11 @@ All seven original footnotes were re-opened and reformatted; none was broken.
 | (none) | Continue the book | added |
 
 Diagram source edited: `book-04-ch02-arc-deployment-sequence` step 3 (claim 10: "Separate install, ideally by Azure Policy…" → "Installed automatically when a server with SQL Server connects (opt out by tag)…"; title "Deploy" → "Let … deploy"), plus "Book 07" → "Chapter 16" and "Book 03" → "Chapter 07". The chapter's fig-alt was updated to match.
+
+## Addition, October 23, 2026: hybrid credentials research
+
+From the research explainer *Certificates, Tokens and Keys Across the Hybrid Estate* (docs/research/hybrid-credentials.md), sources opened October 23, 2026.
+
+| # | Claim (short) | Where | Verdict | Source |
+|---|---|---|---|---|
+| 1 | SQL Server 2022 Key Vault certificate rotates automatically when the certificate and app registration are service-managed and the Arc identity has Key Vault Sign; customer-managed needs the owner's upload | Credential table; paragraph after it | corrected (was "not rotated automatically"; the older automation tutorial still says so) | Rotate certificates (June 23, 2026), note hc-sqlrot |

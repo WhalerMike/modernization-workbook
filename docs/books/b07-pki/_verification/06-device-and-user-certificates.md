@@ -156,3 +156,14 @@ Cross-chapter consistency pass. Every changed external fact was re-checked on th
 | # | Change | Where | Verdict | Source |
 |---|---|---|---|---|
 | CF-1 | Server-certificate cross-reference now points to Chapter 04 (where the decision is made) and Chapter 07 (coexistence) | Constraints, first bullet | wording-only | — |
+
+## Addition, October 23, 2026: hybrid credentials research
+
+From the research explainer *Certificates, Tokens and Keys Across the Hybrid Estate* (docs/research/hybrid-credentials.md), sources opened October 23, 2026.
+
+| # | Claim (short) | Where | Verdict | Source |
+|---|---|---|---|---|
+| 1 | Non-Microsoft CAs aren't protected by the SID extension | Strong mapping | verified (quoted) | KB5014754 |
+| 2 | Government name-based strong mapping policy (September 2024 update; issuer thumbprint plus policy OID; Federal PKI OID example) | Strong mapping | added | Microsoft Public Sector Blog, note hc-govmap |
+| 3 | IDManagement.gov recommends altSecurityIdentities over UPN mapping for smart card logon | Strong mapping | added | IDManagement.gov, note hc-idmscl |
+| 4 | IDManagement.gov's CBA guide v2.0 says select low affinity; the program follows Microsoft's high-affinity advice | Username bindings and affinity | added (the departure is design guidance) | IDManagement.gov CBA guide, note hc-idmcba; note c06-cba-howto |

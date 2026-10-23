@@ -538,9 +538,9 @@ Anything outside that list is a finding: `DRIFT-SCHEMA` if a plane appeared with
 | Optional API TLS and WinRM over HTTPS | Internal server TLS | Retained AD CS | CyberArk Certificate Manager | Renews them |
 | Gitea's LDAPS connection to domain controllers | Domain controller and LDAPS | Retained AD CS | AD CS autoenrollment | Watches the DC certificates |
 | Hook signing | Code signing | CA chosen by the CISO | Platform-managed, or not X.509 | At most watches; signing is a separate CyberArk product |
-| Google's trust of Entra's SAML signing certificate | Not a Book 07 class | Entra | Entra ID or the app's owner | Nothing |
+| Google's trust of Entra's SAML signing certificate | Not a Book 07 class | Entra | The app's owner or Key Vault | Nothing |
 
-![This book's certificates and the engine that renews each.](../../images/diagrams/b10-cloud-boundary/svg/certs-clm.svg){fig-alt="HTTPS Git (Gitea) TLS on 443, Optional API TLS and WinRM over HTTPS go to CyberArk Certificate Manager (renews and installs); Gitea's LDAPS connection to domain controllers go to AD CS autoenrollment (renews; the platform only watches); Hook signing go to Platform-managed, or not X.509 (no clm lifecycle); Google's trust of Entra's SAML signing certificate go to Entra ID or the app's owner (outside book 07's classes)."}
+![This book's certificates and the engine that renews each.](../../images/diagrams/b10-cloud-boundary/svg/certs-clm.svg){fig-alt="HTTPS Git (Gitea) TLS on 443, Optional API TLS and WinRM over HTTPS go to CyberArk Certificate Manager (renews and installs); Gitea's LDAPS connection to domain controllers go to AD CS autoenrollment (renews; the platform only watches); Hook signing go to Platform-managed, or not X.509 (no clm lifecycle); Google's trust of Entra's SAML signing certificate go to the app's owner or Key Vault (outside book 07's classes)."}
 
 The conformance adapter's TLS inventory (D.4) duplicates what the CLM platform already holds; reconcile the two, or read the platform's inventory through its API (inference).[^clm-capi]
 

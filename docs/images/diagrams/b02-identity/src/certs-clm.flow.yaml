@@ -3,7 +3,7 @@ rankdir: LR
 graph: {nodesep: 0.2, ranksep: 0.6}
 nodes:
   g_entra: {tone: plain, width: 270, title: "Rotated by the app's owner", body: ["Service principal certificates"], size: 12}
-  e_entra: {tone: red, width: 210, tag: "Outside Book 07's classes", title: "Entra ID or the app's owner", size: 12}
+  e_entra: {tone: red, width: 210, tag: "Outside Book 07's classes", title: "The app's owner or Key Vault", size: 12}
   g_none: {tone: plain, width: 270, title: "No CLM lifecycle", body: ["AD FS token-signing and decrypting"], size: 12}
   e_none: {tone: slate, width: 210, tag: "No CLM lifecycle", title: "Platform-managed, or not X.509", size: 12}
   g_intune: {tone: plain, width: 270, title: "Renewed by Intune", body: ["Intune device certificates (SCEP or PKCS)"], size: 12}

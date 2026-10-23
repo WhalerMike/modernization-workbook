@@ -203,9 +203,9 @@ Assessment and planning are deliberately separate steps. An assessment without a
 | RADIUS and NPS server certificates | RADIUS and 802.1X servers | Retained AD CS | CyberArk Certificate Manager | Renews them on the NPS hosts |
 | AD CS templates, CAs and issued-certificate inventory (Stream 10) | CA certificates and CRLs | AD CS | AD CS autoenrollment | CA Import becomes the long-term inventory the stream starts |
 | Smart-card sign-in to Entra CBA | PIV | Federal PKI | PIV card system | Nothing: the card system renews PIV |
-| Arc onboarding service principal certificate | Not a Book 07 class | Generated for onboarding | Entra ID or the app's owner | Nothing: an Entra credential, rotated by its owner |
+| Arc onboarding service principal certificate | Not a Book 07 class | Generated for onboarding | The app's owner or Key Vault | Nothing: an Entra credential, rotated by its owner |
 
-![This book's certificates and the engine that renews each.](../../images/diagrams/b01-transformation-arc/svg/certs-clm.svg){fig-alt="Platform host TLS behind the IIS reverse proxy, RADIUS and NPS server certificates go to CyberArk Certificate Manager (renews and installs); AD CS templates, CAs and issued-certificate inventory (Stream 10) go to AD CS autoenrollment (renews; the platform only watches); Smart-card sign-in to Entra CBA go to PIV card system (renews piv credentials); Arc onboarding service principal certificate go to Entra ID or the app's owner (outside book 07's classes)."}
+![This book's certificates and the engine that renews each.](../../images/diagrams/b01-transformation-arc/svg/certs-clm.svg){fig-alt="Platform host TLS behind the IIS reverse proxy, RADIUS and NPS server certificates go to CyberArk Certificate Manager (renews and installs); AD CS templates, CAs and issued-certificate inventory (Stream 10) go to AD CS autoenrollment (renews; the platform only watches); Smart-card sign-in to Entra CBA go to PIV card system (renews piv credentials); Arc onboarding service principal certificate go to the app's owner or Key Vault (outside book 07's classes)."}
 
 Stream 10's read-only inventory is a snapshot; the CLM platform keeps it current after the assessment through CA Import and network discovery.[^clm-disc]
 

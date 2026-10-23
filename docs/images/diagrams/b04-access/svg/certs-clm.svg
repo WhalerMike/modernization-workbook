@@ -68,10 +68,13 @@
 <path d="M1.7 -6.45L3.38 -6.45L3.59 -11L1.47 -11ZM1.7 -6.45 "/>
 </g>
 <g id="glyph-0-22">
-<path d="M0.98 0L8.3 0L8.3 -1.84L3.22 -1.84L3.22 -5L7.91 -5L7.91 -6.81L3.22 -6.81L3.22 -9.14L8.28 -9.14L8.28 -11L0.98 -11ZM0.98 0 "/>
+<path d="M0.55 -9.14L3.88 -9.14L3.88 0L6.12 0L6.12 -9.14L9.45 -9.14L9.45 -11L0.55 -11ZM0.55 -9.14 "/>
 </g>
 <g id="glyph-0-23">
-<path d="M4.81 0C8.14 0 10.14 -2.05 10.14 -5.5C10.14 -8.94 8.14 -11 4.86 -11L0.98 -11L0.98 0ZM3.22 -1.92L3.22 -9.06L4.72 -9.06C6.81 -9.06 7.91 -7.97 7.91 -5.5C7.91 -3.02 6.81 -1.92 4.7 -1.92ZM3.22 -1.92 "/>
+<path d="M0.98 0L3.22 0L3.22 -3.14L4.67 -4.75L7.77 0L10.41 0L6.2 -6.23L10.3 -11L7.56 -11L4.89 -7.83C4.16 -6.95 3.66 -6.25 3.17 -5.48L3.22 -7.98L3.22 -11L0.98 -11ZM0.98 0 "/>
+</g>
+<g id="glyph-0-24">
+<path d="M3.12 -11L0.94 -11L0.94 0L3.12 0ZM3.12 -11 "/>
 </g>
 <g id="glyph-1-0">
 <path d="M3.38 -2.25C4.41 -2.25 5.25 -3.08 5.25 -4.12C5.25 -5.16 4.41 -6 3.38 -6C2.33 -6 1.5 -5.16 1.5 -4.12C1.5 -3.08 2.33 -2.25 3.38 -2.25ZM3.38 -2.25 "/>
@@ -616,33 +619,34 @@
 </g>
 <g fill="#b91c1c">
 <use xlink:href="#glyph-0-22" x="337" y="55.5"/>
-<use xlink:href="#glyph-0-2" x="346" y="55.5"/>
-<use xlink:href="#glyph-0-9" x="355" y="55.5"/>
-<use xlink:href="#glyph-0-14" x="360.25" y="55.5"/>
-<use xlink:href="#glyph-0-13" x="366.25" y="55.5"/>
-<use xlink:href="#glyph-0-5" x="375.25" y="55.5"/>
-<use xlink:href="#glyph-0-8" x="379" y="55.5"/>
-<use xlink:href="#glyph-0-23" x="383.5" y="55.5"/>
-<use xlink:href="#glyph-0-5" x="394" y="55.5"/>
-<use xlink:href="#glyph-0-19" x="397.75" y="55.5"/>
-<use xlink:href="#glyph-0-14" x="406.75" y="55.5"/>
-<use xlink:href="#glyph-0-5" x="412.75" y="55.5"/>
-<use xlink:href="#glyph-0-9" x="416.5" y="55.5"/>
-<use xlink:href="#glyph-0-11" x="421.75" y="55.5"/>
-<use xlink:href="#glyph-0-1" x="430.75" y="55.5"/>
-<use xlink:href="#glyph-0-5" x="439.75" y="55.5"/>
-<use xlink:href="#glyph-0-13" x="443.5" y="55.5"/>
-<use xlink:href="#glyph-0-20" x="452.5" y="55.5"/>
-<use xlink:href="#glyph-0-20" x="462.25" y="55.5"/>
-<use xlink:href="#glyph-0-21" x="471.25" y="55.5"/>
-<use xlink:href="#glyph-0-15" x="476.5" y="55.5"/>
+<use xlink:href="#glyph-0-11" x="346.75" y="55.5"/>
+<use xlink:href="#glyph-0-1" x="355.75" y="55.5"/>
+<use xlink:href="#glyph-0-5" x="364.75" y="55.5"/>
+<use xlink:href="#glyph-0-13" x="368.5" y="55.5"/>
+<use xlink:href="#glyph-0-20" x="377.5" y="55.5"/>
+<use xlink:href="#glyph-0-20" x="387.25" y="55.5"/>
+<use xlink:href="#glyph-0-21" x="396.25" y="55.5"/>
+<use xlink:href="#glyph-0-15" x="401.5" y="55.5"/>
+<use xlink:href="#glyph-0-5" x="409.75" y="55.5"/>
+<use xlink:href="#glyph-0-19" x="413.5" y="55.5"/>
+<use xlink:href="#glyph-0-3" x="422.5" y="55.5"/>
+<use xlink:href="#glyph-0-2" x="435.25" y="55.5"/>
+<use xlink:href="#glyph-0-1" x="444.25" y="55.5"/>
+<use xlink:href="#glyph-0-14" x="453.25" y="55.5"/>
+<use xlink:href="#glyph-0-5" x="459.25" y="55.5"/>
+<use xlink:href="#glyph-0-19" x="463" y="55.5"/>
+<use xlink:href="#glyph-0-14" x="472" y="55.5"/>
+<use xlink:href="#glyph-0-5" x="478" y="55.5"/>
+<use xlink:href="#glyph-0-23" x="481.75" y="55.5"/>
+<use xlink:href="#glyph-0-1" x="492.25" y="55.5"/>
+<use xlink:href="#glyph-0-7" x="501.25" y="55.5"/>
 </g>
 <g fill="#b91c1c">
-<use xlink:href="#glyph-0-19" x="337" y="70.5"/>
-<use xlink:href="#glyph-0-3" x="346" y="70.5"/>
-<use xlink:href="#glyph-0-2" x="358.75" y="70.5"/>
-<use xlink:href="#glyph-0-1" x="367.75" y="70.5"/>
-<use xlink:href="#glyph-0-14" x="376.75" y="70.5"/>
+<use xlink:href="#glyph-0-18" x="337" y="70.5"/>
+<use xlink:href="#glyph-0-13" x="347.5" y="70.5"/>
+<use xlink:href="#glyph-0-10" x="356.5" y="70.5"/>
+<use xlink:href="#glyph-0-24" x="365.5" y="70.5"/>
+<use xlink:href="#glyph-0-9" x="370" y="70.5"/>
 </g>
 <path fill="none" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter" stroke="#dc2626" stroke-miterlimit="10" d="M325 -154.5C325 -154.5 511 -154.5 511 -154.5C517 -154.5 523 -160.5 523 -166.5C523 -166.5 523 -204.5 523 -204.5C523 -210.5 517 -216.5 511 -216.5C511 -216.5 325 -216.5 325 -216.5C319 -216.5 313 -210.5 313 -204.5C313 -204.5 313 -166.5 313 -166.5C313 -160.5 319 -154.5 325 -154.5 " transform="matrix(1, 0, 0, 1, 18, 235)"/>
 <path fill="none" stroke-width="1.5" stroke-linecap="butt" stroke-linejoin="miter" stroke="#64748b" stroke-miterlimit="10" d="M270.33 -185.5C282.02 -185.5 293.77 -185.5 305.25 -185.5 " transform="matrix(1, 0, 0, 1, 18, 235)"/>

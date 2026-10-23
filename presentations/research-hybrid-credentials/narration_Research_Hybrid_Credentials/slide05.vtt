@@ -1,0 +1,56 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:01.175
+Here's the catch.
+
+2
+00:00:01.175 --> 00:00:05.162
+Every connection authenticated
+by Entra ID is encrypted.
+
+3
+00:00:05.162 --> 00:00:09.347
+If the server only has its own
+self-signed certificate, clients have to
+
+4
+00:00:09.347 --> 00:00:13.387
+be told to trust it blindly, which
+gives up checking who the server is.
+
+5
+00:00:13.387 --> 00:00:18.687
+So the day Entra logins start, every instance
+needs a real, CA-issued certificate.
+
+6
+00:00:18.687 --> 00:00:21.188
+The CLM installs and renews it.
+
+7
+00:00:21.188 --> 00:00:23.759
+There's one technical trap to test first:
+
+8
+00:00:23.759 --> 00:00:28.279
+SQL Server only accepts a certificate
+whose key was made the older way,
+
+9
+00:00:28.279 --> 00:00:32.876
+and CyberArk's driver documentation
+doesn't say which way it makes keys.
+
+10
+00:00:32.876 --> 00:00:34.075
+Prove it in the lab.
+
+11
+00:00:34.075 --> 00:00:37.648
+And on 2022, the app
+certificate can rotate itself,
+
+12
+00:00:37.648 --> 00:00:40.150
+if you set it up as service-managed.
