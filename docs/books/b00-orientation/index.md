@@ -37,9 +37,9 @@ The Federal Modernization Workbook is independent technical guidance. Where it s
 ## Download and present
 **[b00-orientation-bundle.docx](../../../downloads/b00-orientation-bundle.docx)**: the whole book as one Word document, regenerated on every site deploy.
 
-**15-minute presentation**: the Why / What / Who / How deck is on the [Presentations](../../presentations/index.md#book-00) page.
+**15-minute presentation (about 12 minutes narrated)**: the Why / What / Who / How deck is on the [Presentations](../../presentations/index.md#book-00) page.
 
-**Executive briefing (about 30 minutes)**: the decisions leadership must make, with owners and timing, on the [Presentations](../../presentations/index.md#executive-b00) page.
+**Executive briefing (about 30 minutes live, 23 narrated)**: the decisions leadership must make, with owners and timing, on the [Presentations](../../presentations/index.md#executive-b00) page.
 :::
 
 Most federal IT estates still run on a client/server model built around Active Directory, and for twenty years that directory quietly did governance nobody wrote down: where an account or a computer sat in the tree decided what it could reach and who could change it. Federal policy and vendor lifecycles now set clocks the estate can't ignore, from Zero Trust and cloud-configuration directives to logging rules and end-of-support dates. Meeting them one product at a time rebuilds the same governance gaps in a new place. Book 00 makes the case for running modernization as one governed program, explains how the workbook is built and how to read it, and sets out that program: a charter with measurable success criteria, fifteen principles, a plan of seven phases and six gates, seven complementary projects, clear decision rights, and the work from pre-flight to steady state. The other books carry each domain in depth.

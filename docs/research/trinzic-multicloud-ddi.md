@@ -16,7 +16,7 @@ Trinzic is Infoblox's line of physical appliances that run NIOS, its DNS, DHCP a
 
 | Edition | File |
 |---|---|
-| Deck | [Research_Trinzic_MultiCloud.pptx](../../presentations/research-trinzic-multicloud/Research_Trinzic_MultiCloud.pptx) |
+| Deck, presented live (about 15 minutes) | [Research_Trinzic_MultiCloud.pptx](../../presentations/research-trinzic-multicloud/Research_Trinzic_MultiCloud.pptx) |
 | Narrated, self-running (about 8 minutes, captions) | [Research_Trinzic_MultiCloud_Narrated.pptx](../../presentations/research-trinzic-multicloud/Research_Trinzic_MultiCloud_Narrated.pptx) |
 | Narration script and caption track | [Script](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/research-trinzic-multicloud/Research_Trinzic_MultiCloud_Narration_Script.md) · [Captions](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/research-trinzic-multicloud/Research_Trinzic_MultiCloud_Narrated.vtt) |
 

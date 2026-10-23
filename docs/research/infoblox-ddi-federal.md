@@ -16,7 +16,7 @@ This research item asks a narrower question than [Book 08](../books/b08-ddi/inde
 
 | Edition | File |
 |---|---|
-| Deck | [Infoblox_DDI_Federal_Deep_Dive.pptx](../../presentations/research-infoblox-ddi/Infoblox_DDI_Federal_Deep_Dive.pptx) |
+| Deck, presented live (about 50 minutes) | [Infoblox_DDI_Federal_Deep_Dive.pptx](../../presentations/research-infoblox-ddi/Infoblox_DDI_Federal_Deep_Dive.pptx) |
 | Narrated, self-running (about 26 minutes, captions) | [Infoblox_DDI_Federal_Deep_Dive_Narrated.pptx](../../presentations/research-infoblox-ddi/Infoblox_DDI_Federal_Deep_Dive_Narrated.pptx) |
 | Narration script and caption track | [Script](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/research-infoblox-ddi/Infoblox_DDI_Federal_Deep_Dive_Narration_Script.md) · [Captions](https://github.com/WhalerMike/modernization-workbook/blob/main/presentations/research-infoblox-ddi/Infoblox_DDI_Federal_Deep_Dive_Narrated.vtt) |
 

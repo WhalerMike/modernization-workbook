@@ -34,9 +34,9 @@ This book brings together the workbook's Next Generation DDI series, the Next Ge
 ## Download and present
 **[b08-ddi-bundle.docx](../../../downloads/b08-ddi-bundle.docx)**: the whole book as one Word document, regenerated on every site deploy.
 
-**15-minute presentation**: the Why / What / Who / How deck and its narrated, self-running edition, with built-in captions, are on the [Presentations](../../presentations/index.md#book-08) page.
+**15-minute presentation (about 13 minutes narrated)**: the Why / What / Who / How deck and its narrated, self-running edition, with built-in captions, are on the [Presentations](../../presentations/index.md#book-08) page.
 
-**Technical deep dive (about 50 minutes)**: the AD DNS departure, DNSSEC, private endpoints and IPAM and the migration sequence, in modules on the [Presentations](../../presentations/index.md#technical-b08) page.
+**Technical deep dive (about 50 minutes live, 22 narrated)**: the AD DNS departure, DNSSEC, private endpoints and IPAM and the migration sequence, in modules on the [Presentations](../../presentations/index.md#technical-b08) page.
 
 **Research (under review)**: a vendor-neutral briefing, [What a Federal DDI Platform Must Do](../../research/ddi-platform-requirements.md), and a product deep dive, [Infoblox DDI for Federal Agencies](../../research/infoblox-ddi-federal.md), and an implementation guide, [Implementing Book 08 on Infoblox NIOS](../../research/infoblox-nios-implementation.md), are on the [Research](../../research/index.md) page.
 :::
