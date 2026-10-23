@@ -244,6 +244,9 @@ format:
     link-external-icon: true
   docx:
     reference-doc: assets/reference-mslearn.docx
+    filters:
+      # Landscape sections for ::: {.landscape} blocks (wide tables).
+      - assets/landscape.lua
     toc: true
     toc-depth: 3
     fig-width: 6

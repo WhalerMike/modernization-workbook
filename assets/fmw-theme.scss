@@ -317,3 +317,21 @@ section.footnotes h2.fmw-notes-title {
 .navbar .menu-text {
   white-space: nowrap;
 }
+
+// Wide tables: ::: {.landscape} blocks print (and save as PDF) on landscape
+// pages; the Word editions get landscape sections from assets/landscape.lua.
+@page fmw-landscape {
+  size: letter landscape;
+}
+@media print {
+  .landscape {
+    page: fmw-landscape;
+  }
+}
+.landscape table {
+  font-size: 0.85rem;
+}
+.landscape td:not(:first-child),
+.landscape th:not(:first-child) {
+  text-align: center;
+}
