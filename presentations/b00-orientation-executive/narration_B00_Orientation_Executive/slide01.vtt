@@ -1,93 +1,87 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:03.314
+00:00:00.050 --> 00:00:00.763
+Welcome.
+
+2
+00:00:00.763 --> 00:00:04.048
 This is the executive
 briefing for Book 00 of the
 
-2
-00:00:03.314 --> 00:00:07.313
+3
+00:00:04.048 --> 00:00:08.074
 Federal Modernization Workbook,
 Orientation and Program.
 
-3
-00:00:07.313 --> 00:00:12.097
+4
+00:00:08.074 --> 00:00:12.860
 It runs about thirty minutes, and it's
 for the people who sponsor, fund and
 
-4
-00:00:12.097 --> 00:00:17.612
+5
+00:00:12.860 --> 00:00:18.375
 answer for modernization: executive
 sponsors, CIOs, CISOs and program executives.
 
-5
-00:00:17.612 --> 00:00:18.825
-One point first.
-
 6
-00:00:18.825 --> 00:00:23.062
+00:00:18.375 --> 00:00:19.563
+One point up front.
+
+7
+00:00:19.563 --> 00:00:23.799
 The workbook is independent technical
 guidance, not federal policy.
 
-7
-00:00:23.062 --> 00:00:25.826
-Where it says a law,
-memorandum or directive
-
 8
-00:00:25.826 --> 00:00:28.437
-requires something, it cites that source.
+00:00:23.799 --> 00:00:28.162
+Where it says a law or directive
+requires something, it cites the source.
 
 9
-00:00:28.437 --> 00:00:31.986
-Everything else, including
-the program's phases, gates,
+00:00:28.162 --> 00:00:32.852
+The phases, gates, principles and
+decision rights are the workbook's own
 
 10
-00:00:31.986 --> 00:00:36.558
-principles and decision rights, is
-the workbook's own recommendation:
+00:00:32.852 --> 00:00:37.938
+recommendation: one way to meet those
+requirements, not a requirement itself.
 
 11
-00:00:36.558 --> 00:00:40.500
-one way to meet those requirements,
-not a requirement itself.
-
-12
-00:00:40.500 --> 00:00:41.925
+00:00:37.938 --> 00:00:39.363
 The argument is short.
 
-13
-00:00:41.925 --> 00:00:46.462
+12
+00:00:39.363 --> 00:00:43.899
 For twenty years Active Directory
 quietly did governance nobody wrote down.
 
-14
-00:00:46.462 --> 00:00:51.612
-Federal policy and vendor lifecycles
+13
+00:00:43.899 --> 00:00:49.163
+Federal policy and vendor support dates
 now set clocks the estate can't ignore.
 
-15
-00:00:51.612 --> 00:00:56.950
-Meeting them one product at a time rebuilds
-the same governance gaps in a new place,
+14
+00:00:49.163 --> 00:00:53.848
+Meeting them one product at a time
+rebuilds the same gaps somewhere new,
 
-16
-00:00:56.950 --> 00:01:00.325
+15
+00:00:53.848 --> 00:00:57.263
 so modernization has to run
 as one governed program.
 
+16
+00:00:57.263 --> 00:01:01.951
+I'll cover why now, what the program
+is, who decides, and how it runs.
+
 17
-00:01:00.325 --> 00:01:04.265
-I'll take four questions in order:
-why now, what the program is,
-
-18
-00:01:04.265 --> 00:01:08.125
-who decides, and how it runs
-from pre-flight to steady state.
-
-19
-00:01:08.125 --> 00:01:12.740
+00:01:01.951 --> 00:01:06.500
 Every decision slide names the decision,
 its owner, and when it's needed.
+
+18
+00:01:06.500 --> 00:01:07.800
+Let's start with why.

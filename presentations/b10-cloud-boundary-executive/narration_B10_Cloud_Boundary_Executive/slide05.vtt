@@ -6,136 +6,100 @@ The rules also changed what
 the word boundary means.
 
 2
-00:00:03.000 --> 00:00:05.996
-They're published as one
-machine-readable ruleset,
+00:00:03.000 --> 00:00:05.624
+In the current machine-readable ruleset,
 
 3
-00:00:05.996 --> 00:00:09.562
-so the vocabulary can be counted
-rather than characterized.
+00:00:05.624 --> 00:00:09.175
+the phrase authorization
+boundary appears zero times.
 
 4
-00:00:09.562 --> 00:00:18.599
-In version 2026.10.13.01, the phrase
-authorization boundary occurs zero times.
+00:00:09.175 --> 00:00:13.685
+A provider's boundary is now four
+sets of obligations: what's in scope,
 
 5
-00:00:18.599 --> 00:00:23.695
-The word boundary occurs eight times:
-three times about the agency's own system,
+00:00:13.685 --> 00:00:18.275
+cryptography, vulnerability response,
+and how evidence reaches you.
 
 6
-00:00:23.695 --> 00:00:28.162
-four times as a tag on rule families,
-and once in supply-chain guidance.
-
-7
-00:00:28.162 --> 00:00:31.625
-Those four families say what
-a provider's boundary now is.
-
-8
-00:00:31.625 --> 00:00:34.550
-Minimum Assessment Scope,
-what is in the offering.
-
-9
-00:00:34.550 --> 00:00:36.600
-Cryptographic Module Use.
-
-10
-00:00:36.600 --> 00:00:39.225
-Vulnerability Detection and Response.
-
-11
-00:00:39.225 --> 00:00:42.812
-And Certification Data Sharing,
-how the evidence reaches you.
-
-12
-00:00:42.812 --> 00:00:46.299
-Four sets of obligations,
-not a line on a diagram.
-
-13
-00:00:46.299 --> 00:00:50.075
+00:00:18.275 --> 00:00:22.050
 The only boundary the rules name
 is the agency's own system.
 
-14
-00:00:50.075 --> 00:00:54.025
-Minimum Assessment Scope is a
-test about data, not topology.
+7
+00:00:22.050 --> 00:00:25.675
+The scope test is about
+data, not network diagrams.
 
-15
-00:00:54.025 --> 00:00:57.312
+8
+00:00:25.675 --> 00:00:28.962
 A resource is in the offering
 if it's likely to handle
 
-16
-00:00:57.312 --> 00:01:01.288
+9
+00:00:28.962 --> 00:00:32.938
 federal customer data or affect
 its security, wherever it sits.
 
-17
-00:01:01.288 --> 00:01:06.348
-And resources may vary by security category,
-so a refusal that rests on "it would
+10
+00:00:32.938 --> 00:00:36.398
+So a refusal that rests on
+raising the whole environment's
 
-18
-00:01:06.348 --> 00:01:11.563
-raise the whole environment's level" now
-has to show which resource and which data.
+11
+00:00:36.398 --> 00:00:39.425
+level now has to show which
+resource and which data.
 
-19
-00:01:11.563 --> 00:01:14.850
-One line in that guidance
-matters to every estate.
+12
+00:00:39.425 --> 00:00:41.662
+One line matters to every estate.
 
-20
-00:01:14.850 --> 00:01:18.455
-Software delivered for
-installation on agency systems,
+13
+00:00:41.662 --> 00:00:45.455
+Software installed on agency
+systems, typically agents,
 
-21
-00:01:18.455 --> 00:01:22.827
-and not operated in a shared-responsibility
-model, typically agents,
+14
+00:00:45.455 --> 00:00:50.376
+application clients and mobile apps,
+is entirely outside FedRAMP's scope.
 
-22
-00:01:22.827 --> 00:01:27.813
-application clients and mobile apps, is
-entirely outside the scope of FedRAMP.
-
-23
-00:01:27.813 --> 00:01:29.574
+15
+00:00:50.376 --> 00:00:52.137
 That doesn't make it unassessed.
 
-24
-00:01:29.574 --> 00:01:30.763
+16
+00:00:52.137 --> 00:00:53.326
 It makes it yours.
 
-25
-00:01:30.763 --> 00:01:35.533
+17
+00:00:53.326 --> 00:00:58.095
 So decide who owns each agent and
 client, and cover it in the agency's
 
-26
-00:01:35.533 --> 00:01:40.650
+18
+00:00:58.095 --> 00:01:03.212
 own authorization: its configuration,
 its updates and the data it sends.
 
-27
-00:01:40.650 --> 00:01:45.575
+19
+00:01:03.212 --> 00:01:08.137
 The authorizing official draws the boundary;
 endpoint engineering does the work.
 
-28
-00:01:45.575 --> 00:01:48.328
+20
+00:01:08.137 --> 00:01:10.891
 Settle it at the next package update,
 
-29
-00:01:48.328 --> 00:01:52.610
+21
+00:01:10.891 --> 00:01:15.113
 and before the rules become
 mandatory on January 1, 2027.
+
+22
+00:01:15.113 --> 00:01:17.230
+Next, how changes are handled.

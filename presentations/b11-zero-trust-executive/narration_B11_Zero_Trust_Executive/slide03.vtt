@@ -11,137 +11,110 @@ security property and not
 a reporting preference.
 
 3
-00:00:05.738 --> 00:00:10.202
-In May and June 2023, an actor
-used a Microsoft consumer signing
+00:00:05.738 --> 00:00:09.727
+In 2023, an attacker used a
+Microsoft consumer signing
 
 4
-00:00:10.202 --> 00:00:14.925
-key to forge authentication tokens
-and read Exchange Online mail.
+00:00:09.727 --> 00:00:13.362
+key to forge tokens and
+read Exchange Online mail.
 
 5
-00:00:14.925 --> 00:00:20.279
-The federal Cyber Safety Review Board
-counted 22 enterprise organizations and 503
+00:00:13.362 --> 00:00:18.095
+The Cyber Safety Review Board counted
+22 enterprise organizations affected,
 
 6
-00:00:20.279 --> 00:00:23.951
-related personal accounts,
-with access to some mailboxes
+00:00:18.095 --> 00:00:20.425
+and called the intrusion preventable.
 
 7
-00:00:23.951 --> 00:00:27.775
-for at least six weeks, and
-called the intrusion preventable.
+00:00:20.425 --> 00:00:24.050
+The forged tokens were valid to
+every system that checked them.
 
 8
-00:00:27.775 --> 00:00:31.000
-The tokens were valid to every
-system that checked them.
-
-9
-00:00:31.000 --> 00:00:33.679
+00:00:24.050 --> 00:00:26.729
 What caught it was a
 custom alert one federal
 
-10
-00:00:33.679 --> 00:00:36.575
+9
+00:00:26.729 --> 00:00:29.625
 department had built on
 mailbox logs it paid for.
 
-11
-00:00:36.575 --> 00:00:40.425
+10
+00:00:29.625 --> 00:00:33.475
 The agency's own evidence found what
 the provider's platform didn't.
 
-12
-00:00:40.425 --> 00:00:42.487
+11
+00:00:33.475 --> 00:00:35.537
 The second sits beneath the guest.
 
-13
-00:00:42.487 --> 00:00:48.565
+12
+00:00:35.537 --> 00:00:39.329
 In February 2023, the ESXiArgs campaign
-compromised more than 3,800 VMware ESXi
+
+13
+00:00:39.329 --> 00:00:43.925
+compromised more than
+3,800 VMware ESXi servers.
 
 14
-00:00:48.565 --> 00:00:55.012
-servers by encrypting the configuration
-files of the virtual machines on each host.
+00:00:43.925 --> 00:00:46.866
+And Microsoft noted that
+many security products
 
 15
-00:00:55.012 --> 00:01:02.067
-In 2024, CVE-2024-37085 gave full hypervisor
-control to members of a directory
+00:00:46.866 --> 00:00:49.950
+have limited visibility
+into the hypervisor at all.
 
 16
-00:01:02.067 --> 00:01:08.900
-group named ESX Admins, matched by name
-rather than by security identifier.
-
-17
-00:01:08.900 --> 00:01:11.953
-Microsoft noted that many
-security products have
-
-18
-00:01:11.953 --> 00:01:14.788
-limited visibility into
-the hypervisor at all.
-
-19
-00:01:14.788 --> 00:01:17.737
+00:00:49.950 --> 00:00:52.900
 Both cases make the same
 point from opposite ends.
 
-20
-00:01:17.737 --> 00:01:19.987
-The most consequential failures happened
+17
+00:00:52.900 --> 00:00:56.637
+The worst failures happened where no
+single platform's tool was looking.
 
-21
-00:01:19.987 --> 00:01:22.237
-where no single platform's
-tool was looking.
+18
+00:00:56.637 --> 00:00:59.000
+There's a consequence for the fix, too.
 
-22
-00:01:22.237 --> 00:01:24.324
-And there's a consequence for the fix.
-
-23
-00:01:24.324 --> 00:01:28.593
+19
+00:00:59.000 --> 00:01:03.268
 Once one plane names and identifies
 everything the agency runs,
 
-24
-00:01:28.593 --> 00:01:31.250
+20
+00:01:03.268 --> 00:01:05.925
 it's a complete map of the attack surface.
 
-25
-00:01:31.250 --> 00:01:34.656
-NIST already calls the policy
-engine and administrator
-
-26
-00:01:34.656 --> 00:01:37.338
-the key components of
-the entire enterprise.
-
-27
-00:01:37.338 --> 00:01:42.400
-So the decision: govern the unified plane
+21
+00:01:05.925 --> 00:01:11.094
+So the decision: govern that unified plane
 as a Tier 0 asset from the day it exists,
 
-28
-00:01:42.400 --> 00:01:46.995
-with eligible, time-boxed administration,
+22
+00:01:11.094 --> 00:01:15.089
+with time-boxed administration,
 its own monitored telemetry,
 
-29
-00:01:46.995 --> 00:01:50.500
-and a design that assumes it
-will be attacked directly.
+23
+00:01:15.089 --> 00:01:17.987
+and a design that assumes
+it will be attacked.
 
-30
-00:01:50.500 --> 00:01:54.790
+24
+00:01:17.987 --> 00:01:22.212
 Identity engineering and
 the DNS and DDI team own it.
+
+25
+00:01:22.212 --> 00:01:24.100
+Next, why programs stall.

@@ -6,128 +6,103 @@ The third response is a different
 certified service for the workload.
 
 2
-00:00:03.662 --> 00:00:06.171
-Chapter 10 works through collaboration,
+00:00:03.662 --> 00:00:05.982
+The book works through collaboration,
 
 3
-00:00:06.171 --> 00:00:10.376
+00:00:05.982 --> 00:00:10.113
 and its first rule is to read the
 certification, not the announcement.
 
 4
-00:00:10.376 --> 00:00:14.345
+00:00:10.113 --> 00:00:14.032
 On the Marketplace, Google
-Workspace is certified at Class D.
+Workspace is certified at Class D,
 
 5
-00:00:14.345 --> 00:00:18.156
-Gemini for Government is a
+00:00:14.032 --> 00:00:18.185
+while Gemini for Government is a
 separate listing at Class B, Low,
 
 6
-00:00:18.156 --> 00:00:23.238
+00:00:18.185 --> 00:00:23.201
 even though Google says Gemini in
 Workspace apps is FedRAMP High authorized.
 
 7
-00:00:23.238 --> 00:00:28.163
-Which AI features sit inside which
-certification is a question for the package.
+00:00:23.201 --> 00:00:27.454
+Which features sit inside which
+certification is a question for the package,
 
 8
-00:00:28.163 --> 00:00:33.914
-And the Workspace listing marks some services
-as not meeting a control enhancement,
-
-9
-00:00:33.914 --> 00:00:37.200
-SA-9 five, on where processing
-and storage happen.
-
-10
-00:00:37.200 --> 00:00:39.812
-Details like those decide
+00:00:27.454 --> 00:00:30.112
+and details like that decide
 what you can turn on.
 
-11
-00:00:39.812 --> 00:00:42.162
+9
+00:00:30.112 --> 00:00:32.463
 The public record shows both outcomes.
 
-12
-00:00:42.162 --> 00:00:48.055
+10
+00:00:32.463 --> 00:00:38.193
 In September 2025 a cabinet-level department
-awarded a five-year agreement worth up
+signed a five-year agreement worth up
 
-13
-00:00:48.055 --> 00:00:53.358
+11
+00:00:38.193 --> 00:00:43.426
 to 89 million dollars to move more than
 50,000 employees to Google Workspace,
 
+12
+00:00:43.426 --> 00:00:46.499
+with a temporary 71
+percent price reduction.
+
+13
+00:00:46.499 --> 00:00:49.638
+So a five-year model has to
+price the renewal years.
+
 14
-00:00:53.358 --> 00:00:57.988
-under a GSA agreement with a
-temporary 71 percent price reduction.
-
-15
-00:00:57.988 --> 00:01:02.912
-So a five-year cost model has to price
-the renewal years, not the launch price.
-
-16
-00:01:02.912 --> 00:01:07.286
+00:00:49.638 --> 00:00:54.011
 A military department went the
 other way, ending about 150,000
 
-17
-00:01:07.286 --> 00:01:12.001
+15
+00:00:54.011 --> 00:00:58.726
 Google email licenses after an
 audit found about 16 percent in use.
 
-18
-00:01:12.001 --> 00:01:15.362
-Adoption has to be measured
-in the pilot, not assumed.
+16
+00:00:58.726 --> 00:01:01.675
+Measure adoption in the
+pilot; don't assume it.
 
-19
-00:01:15.362 --> 00:01:19.162
+17
+00:01:01.675 --> 00:01:05.475
 The choice is only safe if
 the identity plane stays put.
 
+18
+00:01:05.475 --> 00:01:09.509
+Entra ID remains the source,
+and the suite consumes identity,
+
+19
+00:01:09.509 --> 00:01:12.413
+with Conditional Access
+applied at sign-in.
+
 20
-00:01:19.162 --> 00:01:24.359
-Entra ID remains the source, and the suite
-is a workload that consumes identity:
+00:01:12.413 --> 00:01:16.924
+The sponsor and CIO make the suite
+decision as its own approval, separate
 
 21
-00:01:24.359 --> 00:01:28.837
-provisioned, federated, with
-Conditional Access applied at sign-in.
+00:01:16.924 --> 00:01:21.812
+from identity modernization, and read
+the listing again on the day they decide.
 
 22
-00:01:28.837 --> 00:01:30.438
-Then close two gaps.
-
-23
-00:01:30.438 --> 00:01:33.587
-Google super administrators
-sign in outside it,
-
-24
-00:01:33.587 --> 00:01:37.288
-and Google's own directory is
-derived, so report its drift.
-
-25
-00:01:37.288 --> 00:01:41.387
-The sponsor and CIO decide
-which services the agency uses.
-
-26
-00:01:41.387 --> 00:01:46.302
-Make the suite decision its own approval,
-separate from identity modernization,
-
-27
-00:01:46.302 --> 00:01:49.220
-and read the listing again
-on the day you decide.
+00:01:21.812 --> 00:01:24.020
+Next, what to ask your provider.

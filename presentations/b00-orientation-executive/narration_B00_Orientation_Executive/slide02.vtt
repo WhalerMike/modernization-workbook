@@ -15,108 +15,82 @@ in the early 2000s, with an Active
 Directory forest at the center.
 
 4
-00:00:09.525 --> 00:00:13.671
-Since Windows 2000, the organizational
-unit has grouped objects
+00:00:09.525 --> 00:00:12.607
+Placing a user or a computer
+in the tree decided,
 
 5
-00:00:13.671 --> 00:00:17.587
-for delegating administrative
-rights and assigning policy.
+00:00:12.607 --> 00:00:16.400
+all at once and with no separate
+record, who administers it,
 
 6
-00:00:17.587 --> 00:00:20.686
-So placing a user or a
-computer in the tree decided,
+00:00:16.400 --> 00:00:19.878
+which Group Policy applies,
+what its groups can reach,
 
 7
-00:00:20.686 --> 00:00:24.769
-at the same moment and with no
-separate record, who administers it,
+00:00:19.878 --> 00:00:23.513
+how it's named in DNS, and
+which certificates it receives.
 
 8
-00:00:24.769 --> 00:00:28.548
-which Group Policy applies to
-it, what its groups let it reach,
-
-9
-00:00:28.548 --> 00:00:33.462
-how it's named in directory-integrated
-DNS, and which certificates it receives.
-
-10
-00:00:33.462 --> 00:00:36.394
-It was efficient, and for
-a quarter century agencies
-
-11
-00:00:36.394 --> 00:00:39.462
-got governance as a side
+00:00:23.513 --> 00:00:27.187
+Agencies got governance as a side
 effect of running a directory.
 
+9
+00:00:27.187 --> 00:00:29.588
+The cost is that it
+was never written down.
+
+10
+00:00:29.588 --> 00:00:31.375
+The cloud doesn't inherit it.
+
+11
+00:00:31.375 --> 00:00:34.425
+Entra ID's administrative
+units can't be nested,
+
 12
-00:00:39.462 --> 00:00:41.562
-The cost is that it was never stated.
+00:00:34.425 --> 00:00:37.945
+and Intune applies policy to
+groups with no hierarchy,
 
 13
-00:00:41.562 --> 00:00:43.700
-The cloud estate doesn't inherit it.
+00:00:37.945 --> 00:00:42.950
+where two policies that disagree produce
+a conflict, not an inheritance rule.
 
 14
-00:00:43.700 --> 00:00:47.062
-Entra ID's administrative
-units can't be nested.
-
-15
-00:00:47.062 --> 00:00:51.448
-Intune applies policy to groups
-with no hierarchy, and two policies
-
-16
-00:00:51.448 --> 00:00:55.912
-that disagree produce a conflict to
-resolve, not an inheritance rule.
-
-17
-00:00:55.912 --> 00:01:02.613
-Access, names and trust move to Conditional
-Access, a DDI platform and a target PKI.
-
-18
-00:01:02.613 --> 00:01:06.199
-Each replacement needs someone to
+00:00:42.950 --> 00:00:46.900
+So every replacement needs someone to
 decide what the old placement meant.
 
+15
+00:00:46.900 --> 00:00:50.037
+Retire the forest without
+recovering those decisions,
+
+16
+00:00:50.037 --> 00:00:52.288
+and you don't modernize your governance.
+
+17
+00:00:52.288 --> 00:00:53.288
+You delete it.
+
+18
+00:00:53.288 --> 00:00:57.181
+The first decision is the sponsor's,
+when the charter is signed:
+
 19
-00:01:06.199 --> 00:01:09.680
-An agency that moves users
-and retires the forest without
+00:00:57.181 --> 00:01:01.838
+treat this as governance reconstruction,
+not only a technical migration.
 
 20
-00:01:09.680 --> 00:01:13.450
-recovering those decisions
-doesn't modernize its governance.
-
-21
-00:01:13.450 --> 00:01:14.500
-It deletes it.
-
-22
-00:01:14.500 --> 00:01:18.437
-So the first decision is the
-sponsor's, when the charter is signed:
-
-23
-00:01:18.437 --> 00:01:23.637
-treat modernization as governance
-reconstruction, not only a technical migration.
-
-24
-00:01:23.637 --> 00:01:26.983
-If stakeholders don't accept
-that, the charter says,
-
-25
-00:01:26.983 --> 00:01:29.900
-resistance becomes the
-program's main risk.
+00:01:01.838 --> 00:01:04.200
+Next, the dates that make it urgent.

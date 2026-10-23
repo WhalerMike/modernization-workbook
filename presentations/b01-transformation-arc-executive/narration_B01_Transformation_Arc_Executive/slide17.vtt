@@ -20,101 +20,80 @@ Zero drift for fourteen days is a
 query; so is every PC cloud-joined.
 
 5
-00:00:14.012 --> 00:00:16.924
-The engine reports green,
-the steward concurs,
-
-6
-00:00:16.924 --> 00:00:20.525
-and the record that merges the
-decision shows who made it.
-
-7
-00:00:20.525 --> 00:00:23.950
+00:00:14.012 --> 00:00:17.412
 A gate the engine can't evaluate
 needs a better criterion.
 
-8
-00:00:23.950 --> 00:00:26.785
+6
+00:00:17.412 --> 00:00:20.337
 Second, rollback triggers are thresholds,
 
+7
+00:00:20.337 --> 00:00:23.763
+not judgment calls, and
+the agency sets the values.
+
+8
+00:00:23.763 --> 00:00:26.462
+Drift above the threshold halts the phase.
+
 9
-00:00:26.785 --> 00:00:30.512
-not judgment calls, and the
-values are the agency's to set.
+00:00:26.462 --> 00:00:29.720
+Conditional Access blocking
+too many legitimate
 
 10
-00:00:30.512 --> 00:00:34.137
-Drift above the threshold for
-more than a day halts the phase.
+00:00:29.720 --> 00:00:32.124
+sign-ins means the policy is reverted.
 
 11
-00:00:34.137 --> 00:00:37.337
-Conditional Access blocking
-more than a set share
-
-12
-00:00:37.337 --> 00:00:40.613
-of legitimate sign-ins means
-the policy is reverted.
-
-13
-00:00:40.613 --> 00:00:44.437
+00:00:32.124 --> 00:00:35.950
 If drift detection stops
 reporting, all phase work halts.
 
+12
+00:00:35.950 --> 00:00:38.022
+Authority is fixed in advance,
+
+13
+00:00:38.022 --> 00:00:42.663
+from the steward on the early gates
+to the sponsor and CIO on the last.
+
 14
-00:00:44.437 --> 00:00:46.601
-Authority is fixed in advance.
-
-15
-00:00:46.601 --> 00:00:50.525
-The steward clears G0, G1 and G4.
-
-16
-00:00:50.525 --> 00:00:53.337
-The steward and the sponsor co-sign G2.
-
-17
-00:00:53.337 --> 00:00:56.637
-The sponsor and the steering
-committee clear G3.
-
-18
-00:00:56.637 --> 00:01:01.651
-And the sponsor and the CIO clear
-G5, Active Directory retired.
-
-19
-00:01:01.651 --> 00:01:03.237
+00:00:42.663 --> 00:00:44.250
 And be clear about the end.
 
-20
-00:01:03.237 --> 00:01:06.544
+15
+00:00:44.250 --> 00:00:47.557
 A forest in backup isn't
 a lasting fallback:
 
-21
-00:01:06.544 --> 00:01:12.212
+16
+00:00:47.557 --> 00:00:53.225
 a backup is valid only within the
 tombstone lifetime, 180 days by default.
 
-22
-00:01:12.212 --> 00:01:16.700
+17
+00:00:53.225 --> 00:00:57.712
 The real rollback point is the last
 moment a domain controller still runs.
 
-23
-00:01:16.700 --> 00:01:20.701
+18
+00:00:57.712 --> 00:01:01.713
 So G5 is the sponsor's and the
 CIO's decision, made on evidence:
 
-24
-00:01:20.701 --> 00:01:25.356
+19
+00:01:01.713 --> 00:01:06.368
 no live production dependency on
 Active Directory authentication,
 
-25
-00:01:25.356 --> 00:01:29.180
+20
+00:01:06.368 --> 00:01:10.124
 or a documented Kerberos island
 with an end-of-life date.
+
+21
+00:01:10.124 --> 00:01:12.310
+Next, the external clocks.

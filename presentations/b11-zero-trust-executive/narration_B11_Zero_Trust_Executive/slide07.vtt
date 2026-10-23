@@ -5,148 +5,108 @@ WEBVTT
 BOD 25-01 is narrower and more concrete.
 
 2
-00:00:03.925 --> 00:00:07.787
-CISA issued it on December 17, 2024.
+00:00:03.925 --> 00:00:09.162
+CISA issued it on December 17, 2024,
+and it binds federal civilian agencies
 
 3
-00:00:07.787 --> 00:00:10.057
-It binds federal civilian agencies,
-
-4
-00:00:10.057 --> 00:00:15.050
+00:00:09.162 --> 00:00:14.737
 for every production cloud tenant of a
 product with a finalized SCuBA baseline.
 
+4
+00:00:14.737 --> 00:00:16.589
+It has six required actions,
+
 5
-00:00:15.050 --> 00:00:17.075
-It has six required actions.
+00:00:16.589 --> 00:00:22.223
+from inventorying tenants and deploying
+the assessment tools to implementing the
 
 6
-00:00:17.075 --> 00:00:21.082
-Inventory the in-scope
-tenants, by February 21,
+00:00:22.223 --> 00:00:24.558
+mandatory policies by June 20, 2025,
 
 7
-00:00:21.082 --> 00:00:24.562
-2025, and every year in the first quarter.
-
-8
-00:00:24.562 --> 00:00:30.662
-Deploy the SCuBA assessment tools and
-begin reporting, by April 25, 2025.
-
-9
-00:00:30.662 --> 00:00:35.413
-Implement the mandatory
-policies, by June 20, 2025.
-
-10
-00:00:35.413 --> 00:00:38.801
-Implement later policy
-updates on CISA's timelines.
-
-11
-00:00:38.801 --> 00:00:42.635
-Baseline every new tenant, and
-begin continuous monitoring,
-
-12
-00:00:42.635 --> 00:00:45.013
+00:00:24.558 --> 00:00:29.226
+and baselining every new tenant
 before its authorization to operate.
 
-13
-00:00:45.013 --> 00:00:47.638
-And explain deviations with each report.
+8
+00:00:29.226 --> 00:00:35.925
+The mandatory list is a subset of the
+baselines: 50 policies for Microsoft 365.
 
-14
-00:00:47.638 --> 00:00:51.026
-The mandatory list is a
-subset of the baselines.
+9
+00:00:35.925 --> 00:00:40.124
+And the scope is software as a
+service only, so Azure subscriptions,
 
-15
-00:00:51.026 --> 00:00:57.136
-For Microsoft 365, CISA's Required
-Configurations page lists 50 policies;
-
-16
-00:00:57.136 --> 00:01:01.375
-in Entra ID, that's 20 of the
-30 in the current baseline.
-
-17
-00:01:01.375 --> 00:01:04.603
-CISA's guidance limits scope
-to software as a service,
-
-18
-00:01:04.603 --> 00:01:08.333
-so Azure subscriptions are out
-even when they share the tenant,
-
-19
-00:01:08.333 --> 00:01:12.637
-and on-premises Active Directory,
+10
+00:00:40.124 --> 00:00:44.475
+on-premises Active Directory,
 endpoints and networks are untouched.
 
-20
-00:01:12.637 --> 00:01:14.875
+11
+00:00:44.475 --> 00:00:46.712
 Google Workspace is now in scope.
 
-21
-00:01:14.875 --> 00:01:21.088
+12
+00:00:46.712 --> 00:00:52.925
 Its tenant inventory is due November
 2, 2026, and the tools by December 1.
 
-22
-00:01:21.088 --> 00:01:24.911
-CISA's two pages disagree
-on the policy date,
+13
+00:00:52.925 --> 00:00:57.763
+CISA's pages disagree on the policy
+date, so plan to December 1.
 
-23
-00:01:24.911 --> 00:01:28.838
-December 1 or December
-31, so plan to December 1.
-
-24
-00:01:28.838 --> 00:01:33.650
+14
+00:00:57.763 --> 00:01:02.575
 Even a small tenant used by one
 component carries all six obligations.
 
-25
-00:01:33.650 --> 00:01:34.925
+15
+00:01:02.575 --> 00:01:03.850
 Now count honestly.
 
-26
-00:01:34.925 --> 00:01:38.450
-Inventory, deployment and
-explanations take days.
+16
+00:01:03.850 --> 00:01:06.375
+Inventory and reporting take days.
 
-27
-00:01:38.450 --> 00:01:43.250
-Actions three to five are architecture,
-and they're what the directive exists for.
+17
+00:01:06.375 --> 00:01:09.717
+Implementing and holding the
+policies is architecture,
 
-28
-00:01:43.250 --> 00:01:48.221
-So measure compliance by the substantive
-work: how many mandatory policies hold,
+18
+00:01:09.717 --> 00:01:12.063
+and that's what the directive exists for.
 
-29
-00:01:48.221 --> 00:01:51.857
+19
+00:01:12.063 --> 00:01:15.764
+So measure compliance by how
+many mandatory policies hold,
+
+20
+00:01:15.764 --> 00:01:19.768
 and whether every open deviation
-is being fixed on a date or
+is either being fixed on a date
 
-30
-00:01:51.857 --> 00:01:56.012
-carried as the authorizing official's
-documented risk acceptance.
+21
+00:01:19.768 --> 00:01:24.150
+or carried as the authorizing
+official's documented risk acceptance.
 
-31
-00:01:56.012 --> 00:01:59.468
-The CISO owns the inventory
-and the reporting route,
+22
+00:01:24.150 --> 00:01:27.209
+The CISO owns the inventory and reporting,
 
-32
-00:01:59.468 --> 00:02:02.520
+23
+00:01:27.209 --> 00:01:30.437
 and the Workspace inventory
 is due November 2.
+
+24
+00:01:30.437 --> 00:01:31.850
+Next, reporting.

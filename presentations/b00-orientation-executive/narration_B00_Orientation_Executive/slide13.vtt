@@ -10,116 +10,83 @@ said about decisions holds.
 Three items don't.
 
 3
-00:00:04.700 --> 00:00:06.012
-Residual risk.
+00:00:04.700 --> 00:00:06.350
+Residual risk first.
 
 4
-00:00:06.012 --> 00:00:09.763
+00:00:06.350 --> 00:00:10.100
 The plans let the security lead
 and the steward accept it jointly.
 
 5
-00:00:09.763 --> 00:00:13.303
-Under the Risk Management
-Framework, only the authorizing
+00:00:10.100 --> 00:00:14.450
+Under the Risk Management Framework,
+only the authorizing official can.
 
 6
-00:00:13.303 --> 00:00:17.350
-official can accept security and
-privacy risk to the organization.
+00:00:14.450 --> 00:00:19.619
+The others prepare and recommend, and
+the acceptance carries a justification,
 
 7
-00:00:17.350 --> 00:00:20.945
-So the security lead and
-steward prepare and recommend,
-
-8
-00:00:20.945 --> 00:00:26.338
-and the acceptance carries a justification,
+00:00:19.619 --> 00:00:22.163
 compensating controls and an end date.
 
+8
+00:00:22.163 --> 00:00:26.290
+Second, budget and licenses
+belong to the sponsor and CIO,
+
 9
-00:00:26.338 --> 00:00:27.799
-Budget and licenses.
+00:00:26.290 --> 00:00:29.626
+who own funding; the
+steward prepares the case.
 
 10
-00:00:27.799 --> 00:00:31.400
-They belong to the sponsor
-and CIO, who own funding.
-
-11
-00:00:31.400 --> 00:00:33.325
-The steward prepares the case.
-
-12
-00:00:33.325 --> 00:00:34.575
-Gate decisions.
-
-13
-00:00:34.575 --> 00:00:38.850
-The master plan made the steward
+00:00:29.626 --> 00:00:34.662
+Third, the master plan made the steward
 the sole signatory at every gate.
 
-14
-00:00:38.850 --> 00:00:44.194
-The Federal Modernization Workbook's Book
-01 spreads the gates across the steward,
+11
+00:00:34.662 --> 00:00:37.785
+Book 01 spreads the
+gates across the steward,
 
-15
-00:00:44.194 --> 00:00:47.215
+12
+00:00:37.785 --> 00:00:41.075
 the sponsor, the steering
-committee and the CIO,
+committee and the CIO.
 
-16
-00:00:47.215 --> 00:00:49.538
-in proportion to what each gate ends.
-
-17
-00:00:49.538 --> 00:00:52.051
-Four separations keep
+13
+00:00:41.075 --> 00:00:43.713
+A few separations keep
 the governance honest.
 
-18
-00:00:52.051 --> 00:00:57.115
+14
+00:00:43.713 --> 00:00:48.225
 The authorizing official is a government
-official, the decision can't be delegated,
+official, and the decision can't
+
+15
+00:00:48.225 --> 00:00:52.737
+be delegated: contractors can prepare
+a risk acceptance, but can't sign one.
+
+16
+00:00:52.737 --> 00:00:55.462
+And requesters don't
+approve their own changes.
+
+17
+00:00:55.462 --> 00:00:58.813
+So from G0 onward, every
+risk acceptance comes from
+
+18
+00:00:58.813 --> 00:01:02.324
+the authorizing official in
+writing, with an end date.
 
 19
-00:00:57.115 --> 00:00:59.905
-and the role stays outside
-the program office:
-
-20
-00:00:59.905 --> 00:01:03.575
-contractors can prepare a risk
-acceptance, but can't sign one.
-
-21
-00:01:03.575 --> 00:01:05.975
-No one holds two roles
-that check each other.
-
-22
-00:01:05.975 --> 00:01:08.550
-Requesters don't approve
-their own changes.
-
-23
-00:01:08.550 --> 00:01:12.000
-And the component that decides
-isn't the one that acts.
-
-24
-00:01:12.000 --> 00:01:15.921
-The decision sits with the
-authorizing official from G0 onward,
-
-25
-00:01:15.921 --> 00:01:20.435
-where an unremediated Critical finding
-needs the official's acceptance:
-
-26
-00:01:20.435 --> 00:01:23.900
-every risk acceptance comes
-in writing, with an end date.
+00:01:02.324 --> 00:01:04.680
+Next, the people and the rhythm.

@@ -11,132 +11,101 @@ modernization most often
 goes wrong quietly.
 
 3
-00:00:05.850 --> 00:00:14.487
-OMB M-26-14 rescinded
-M-21-31 on May 22, 2026.
+00:00:05.850 --> 00:00:13.800
+M-26-14 rescinded M-21-31 on May 22, 2026.
 
 4
-00:00:14.487 --> 00:00:18.611
+00:00:13.800 --> 00:00:18.067
 Logs must be searchable for six
 months and retrievable for a year,
 
 5
-00:00:18.611 --> 00:00:22.353
-and among the minimum content,
-agencies must be able to show
+00:00:18.067 --> 00:00:22.650
+and agencies must be able to show
+addresses, ports and session details.
 
 6
-00:00:22.353 --> 00:00:26.476
-source and destination addresses,
-ports and session attributes.
+00:00:22.650 --> 00:00:26.075
+A branch with nothing at its edge
+doesn't produce that record.
 
 7
-00:00:26.476 --> 00:00:31.150
-That's the transport-layer record a branch
-with nothing at its edge doesn't produce.
-
-8
-00:00:31.150 --> 00:00:34.725
-The first agency logging
-plan is due November 18.
-
-9
-00:00:34.725 --> 00:00:37.711
+00:00:26.075 --> 00:00:29.047
 When branches leave the
 managed TIC service,
 
-10
-00:00:37.711 --> 00:00:41.262
-the sensor telemetry CISA
-has been receiving stops.
+8
+00:00:29.047 --> 00:00:32.100
+the telemetry CISA has
+been receiving stops.
 
-11
-00:00:41.262 --> 00:00:44.263
-CISA's SASE guide says so in plain terms.
-
-12
-00:00:44.263 --> 00:00:48.894
+9
+00:00:32.100 --> 00:00:35.825
 The replacement is CLAW, CISA's
-Comprehensive Log Aggregation Warehouse,
+log aggregation warehouse,
 
-13
-00:00:48.894 --> 00:00:53.451
-and onboarding needs the agency, CISA
+10
+00:00:35.825 --> 00:00:40.463
+and onboarding takes the agency, CISA
 and the provider working together.
 
-14
-00:00:53.451 --> 00:00:56.750
+11
+00:00:40.463 --> 00:00:44.106
 That's a three-party dependency
 with its own lead time,
 
-15
-00:00:56.750 --> 00:00:59.675
-not a configuration change
-one team completes.
+12
+00:00:44.106 --> 00:00:47.749
+so it belongs on the critical
+path, starting in Phase 0.
 
-16
-00:00:59.675 --> 00:01:03.785
-It belongs on the critical path
-beside the authorization package,
+13
+00:00:47.749 --> 00:00:48.950
+Here's the decision.
 
-17
-00:01:03.785 --> 00:01:06.550
-and the field-office case
-starts it in Phase 0.
-
-18
-00:01:06.550 --> 00:01:07.850
-Here is the decision.
-
-19
-00:01:07.850 --> 00:01:12.600
+14
+00:00:48.950 --> 00:00:53.941
 The exit criterion for leaving MTIPS,
 and for ending each branch's MPLS,
 
-20
-00:01:12.600 --> 00:01:16.450
-is confirmed CLAW parity, not
-branch cutover completion.
+15
+00:00:53.941 --> 00:00:57.125
+is confirmed CLAW parity,
+not branch cutover.
 
-21
-00:01:16.450 --> 00:01:20.515
+16
+00:00:57.125 --> 00:01:01.250
 Cutting circuits first trades a
-transport gap for a visibility gap,
+transport gap for a visibility gap.
 
-22
-00:01:20.515 --> 00:01:23.200
-which is worse than the
-position being fixed.
-
-23
-00:01:23.200 --> 00:01:25.937
+17
+00:01:01.250 --> 00:01:03.987
 Ownership splits three ways on purpose.
 
-24
-00:01:25.937 --> 00:01:29.851
-The CISO decides CLAW onboarding
-and when parity is reached.
+18
+00:01:03.987 --> 00:01:06.737
+The CISO decides when parity is reached.
 
-25
-00:01:29.851 --> 00:01:33.975
-Security operations does the
-confirming, branch by branch.
+19
+00:01:06.737 --> 00:01:10.362
+Security operations confirms
+it, branch by branch.
 
-26
-00:01:33.975 --> 00:01:38.521
-And under the Federal Acquisition
-Regulation only a contracting officer can
+20
+00:01:10.362 --> 00:01:13.747
+And only a contracting officer
+can terminate a contract,
 
-27
-00:01:38.521 --> 00:01:42.367
-terminate a contract, so the
-contracting officer ends the circuit,
+21
+00:01:13.747 --> 00:01:18.212
+so the contracting officer ends the
+circuit, only after that confirmation.
 
-28
-00:01:42.367 --> 00:01:44.325
-and only after that confirmation.
-
-29
-00:01:44.325 --> 00:01:48.380
+22
+00:01:18.212 --> 00:01:22.213
 No engineer can cancel a circuit,
 however redundant it looks.
+
+23
+00:01:22.213 --> 00:01:24.070
+Next, the long interim.

@@ -10,123 +10,96 @@ Order decides whether branch
 modernization is a gain or a regression.
 
 3
-00:00:06.650 --> 00:00:08.962
-Step zero: secure the governor.
+00:00:06.650 --> 00:00:08.575
+First, secure the governor.
 
 4
-00:00:08.962 --> 00:00:13.715
-The SD-WAN controller and its edges are
-internet-facing with estate-wide authority,
+00:00:08.575 --> 00:00:12.609
+The SD-WAN controller is internet-facing
+with estate-wide authority,
 
 5
-00:00:13.715 --> 00:00:16.332
-so they come under
+00:00:12.609 --> 00:00:15.228
+so it comes under
 vulnerability management,
 
 6
-00:00:16.332 --> 00:00:20.051
+00:00:15.228 --> 00:00:19.050
 privileged access and off-box
-logging before they carry traffic.
+logging before it carries traffic.
 
 7
-00:00:20.051 --> 00:00:22.821
-Step one: buy the pipe
-on measured physics,
+00:00:19.050 --> 00:00:21.262
+Then buy the pipe on measured physics.
 
 8
-00:00:22.821 --> 00:00:26.325
-latency and loss recorded
-per site before the order.
+00:00:21.262 --> 00:00:24.282
+Deploy the governor before
+production traffic:
 
 9
-00:00:26.325 --> 00:00:30.062
-Step two: deploy the governor
-before production traffic;
-
-10
-00:00:30.062 --> 00:00:34.913
+00:00:24.282 --> 00:00:28.887
 a site whose control layer isn't live
 and logging doesn't get its new egress.
 
+10
+00:00:28.887 --> 00:00:32.400
+Treat the boundary change as
+the significant change it is,
+
 11
-00:00:34.913 --> 00:00:39.241
-Step three: treat the boundary change
-as the significant change it is,
+00:00:32.400 --> 00:00:34.449
+decided before the first cutover.
 
 12
-00:00:39.241 --> 00:00:42.126
-decided before the first
-production cutover.
-
-13
-00:00:42.126 --> 00:00:48.388
-Step four: handle Microsoft 365 Optimize
-traffic through its own signed exception.
-
-14
-00:00:48.388 --> 00:00:50.661
-Step five: register the evidence,
-
-15
-00:00:50.661 --> 00:00:55.375
-and confirm CISA telemetry parity
+00:00:34.449 --> 00:00:38.963
+And confirm CISA telemetry parity
 before any legacy circuit ends.
 
-16
-00:00:55.375 --> 00:01:00.888
-The book is candid that no memo, directive
-or executive order sets this sequence.
+13
+00:00:38.963 --> 00:00:43.137
+The book is candid that no memo
+or directive sets this sequence.
 
-17
-00:01:00.888 --> 00:01:05.738
+14
+00:00:43.137 --> 00:00:47.988
 It's an engineering dependency, and saying
 so is what makes it survive review.
 
-18
-00:01:05.738 --> 00:01:10.854
-Doing it out of order, above all lighting
-up fast circuits before the security layer
+15
+00:00:47.988 --> 00:00:51.971
+Lighting up fast circuits before
+the security layer is live is,
 
-19
-00:01:10.854 --> 00:01:15.600
-is live, is in the program's experience
-the most common and most costly mistake.
+16
+00:00:51.971 --> 00:00:56.262
+in the program's experience, the
+most common and most costly mistake.
 
-20
-00:01:15.600 --> 00:01:21.054
-The boundary package carries the evidence:
-the path policy, failover test records,
-
-21
-00:01:21.054 --> 00:01:24.903
-path telemetry, each exception
-with its need and duration,
-
-22
-00:01:24.903 --> 00:01:28.512
-CISA parity, and the known
-limitations stated openly.
-
-23
-00:01:28.512 --> 00:01:32.475
-And when funding becomes possible,
+17
+00:00:56.262 --> 00:01:00.038
+When funding becomes possible,
 prove the case in your own estate.
 
-24
-00:01:32.475 --> 00:01:37.900
-Instrument two comparable branches for
-30 days, change one, measure 30 more.
+18
+00:01:00.038 --> 00:01:05.613
+Instrument two comparable branches for 30
+days, change one, and measure 30 more.
 
-25
-00:01:37.900 --> 00:01:42.462
-The difference in differences is an effect
-size a budget examiner will accept.
+19
+00:01:05.613 --> 00:01:08.699
+That's an effect size a
+budget examiner will accept.
 
-26
-00:01:42.462 --> 00:01:45.055
+20
+00:01:08.699 --> 00:01:11.292
 The decision: adopt this order as program
 
-27
-00:01:45.055 --> 00:01:47.930
+21
+00:01:11.292 --> 00:01:14.112
 policy before the first
 production cutover.
+
+22
+00:01:14.112 --> 00:01:16.060
+Finally, what can start now.

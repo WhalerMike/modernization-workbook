@@ -16,119 +16,100 @@ last piece of the network still
 standing on Active Directory.
 
 4
-00:00:10.025 --> 00:00:14.300
+00:00:10.025 --> 00:00:14.131
 Windows Network Policy Server, the
 RADIUS server built into Windows,
 
 5
-00:00:14.300 --> 00:00:18.350
+00:00:14.131 --> 00:00:18.020
 authorizes devices against Active
-Directory computer objects.
+Directory computer objects,
 
 6
-00:00:18.350 --> 00:00:22.975
-Microsoft's Entra join guidance says
-Entra joined devices don't support that.
+00:00:18.020 --> 00:00:20.613
+and Entra joined devices
+don't support that.
 
 7
-00:00:22.975 --> 00:00:27.137
-There's no Entra RADIUS service,
-and NPS has no posture engine.
+00:00:20.613 --> 00:00:22.638
+There's no Entra RADIUS service.
 
 8
-00:00:27.137 --> 00:00:31.737
+00:00:22.638 --> 00:00:27.237
 So as the Entra migration
 progresses, NPS becomes less useful.
 
 9
-00:00:31.737 --> 00:00:35.697
-And if NPS goes away before
+00:00:27.237 --> 00:00:30.681
+And if it goes away before
 its replacement is validated,
 
 10
-00:00:35.697 --> 00:00:40.750
-the result isn't a degraded experience;
-it's a total loss of network access.
+00:00:30.681 --> 00:00:33.076
+the result isn't a degraded experience.
 
 11
-00:00:40.750 --> 00:00:43.950
-The older password methods are
-breaking on their own schedule.
+00:00:33.076 --> 00:00:35.425
+It's a total loss of network access.
 
 12
-00:00:43.950 --> 00:00:49.158
-Credential Guard, on by default
-on eligible Windows 11 devices,
+00:00:35.425 --> 00:00:39.063
+The older password methods are
+breaking on their own schedule, too.
 
 13
-00:00:49.158 --> 00:00:53.465
-blocks single sign-on for
-PEAP-MSCHAPv2 Wi-Fi and VPN,
+00:00:39.063 --> 00:00:43.666
+Credential Guard and the October 2026
+Windows update are closing them off,
 
 14
-00:00:53.465 --> 00:01:00.075
-and the October 2026 Windows update
-restricts NTLMv1-derived credentials too.
+00:00:43.666 --> 00:00:47.824
+so agencies on older guidance now
+have a deadline they didn't choose.
 
 15
-00:01:00.075 --> 00:01:04.425
-Agencies that followed older guidance
-now have a deadline they didn't choose.
+00:00:47.824 --> 00:00:53.310
+The target is certificate-based
+authentication for every managed device, with
 
 16
-00:01:04.425 --> 00:01:09.728
-The program's target is certificate-based
-EAP-TLS for every managed device,
+00:00:53.310 --> 00:00:55.056
+posture read from Intune,
 
 17
-00:01:09.728 --> 00:01:14.604
-with posture read from Intune's
-compliance service by a NAC platform,
+00:00:55.056 --> 00:00:58.962
+rolled out over roughly 90 to
+180 days, monitor mode first.
 
 18
-00:01:14.604 --> 00:01:19.650
-rolled out in four phases over roughly
-90 to 180 days, monitor mode first.
+00:00:58.962 --> 00:01:04.019
+One caution: as of October 21, 2026,
+several well-known cloud RADIUS
 
 19
-00:01:19.650 --> 00:01:23.742
-One caution for cloud-delivered
-RADIUS: as of October 21, 2026,
+00:01:04.019 --> 00:01:09.825
+offerings have no FedRAMP listing, so
+confirm before designing around one.
 
 20
-00:01:23.742 --> 00:01:29.061
-several well-known cloud RADIUS offerings
-have no FedRAMP listing, so confirm
+00:01:09.825 --> 00:01:14.887
+The sponsor and CIO choose the
+platform and decide when NPS retires.
 
 21
-00:01:29.061 --> 00:01:34.625
-the specific function is inside a certified
-offering before designing around it.
+00:01:14.887 --> 00:01:17.753
+The trigger is the Entra
+migration, not a date,
 
 22
-00:01:34.625 --> 00:01:37.919
-The decision sits with
-the sponsor and CIO:
+00:01:17.753 --> 00:01:20.463
+and the replacement
+must be in place first.
 
 23
-00:01:37.919 --> 00:01:41.025
-which NAC platform, and when NPS retires.
+00:01:20.463 --> 00:01:22.825
+The CISO sets the posture requirement.
 
 24
-00:01:41.025 --> 00:01:45.492
-The book's rule is that the retirement
-is triggered by the Entra migration,
-
-25
-00:01:45.492 --> 00:01:48.860
-not by a date, and the replacement
-must be in place before
-
-26
-00:01:48.860 --> 00:01:52.888
-cloud-native cutover retires the
-computer objects NPS depends on.
-
-27
-00:01:52.888 --> 00:01:55.320
-The CISO sets the posture requirement.
+00:01:22.825 --> 00:01:24.820
+Next, who owns all of this.

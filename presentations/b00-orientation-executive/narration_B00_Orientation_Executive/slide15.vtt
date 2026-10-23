@@ -1,124 +1,82 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:02.950
-Now, how it runs,
-starting with pre-flight.
+00:00:00.050 --> 00:00:04.388
+It starts with pre-flight, and one
+rule: assessment before action.
 
 2
-00:00:02.950 --> 00:00:07.638
-The program adopts one rule
-unchanged: assessment before action.
-
-3
-00:00:07.638 --> 00:00:12.300
+00:00:04.388 --> 00:00:09.050
 No migration work starts until the
 whole forest is inventoried, classified
 
-4
-00:00:12.300 --> 00:00:16.888
+3
+00:00:09.050 --> 00:00:13.638
 and committed to the repository, and
 every plan is generated from that data.
 
-5
-00:00:16.888 --> 00:00:21.616
-First, the program builds the place where
-every decision will be written down:
+4
+00:00:13.638 --> 00:00:18.266
+First, the program builds the place
+where every decision gets written down:
 
-6
-00:00:21.616 --> 00:00:25.162
+5
+00:00:18.266 --> 00:00:21.850
 a platform host with one
 authoritative, protected writer.
 
+6
+00:00:21.850 --> 00:00:25.464
+It's a Tier 0 system, and a
+branch protection the steward
+
 7
-00:00:25.162 --> 00:00:28.927
-The reference design is
-Gitea on Windows Server 2025,
+00:00:25.464 --> 00:00:28.837
+can quietly override is a
+convention, not a control.
 
 8
-00:00:28.927 --> 00:00:32.263
-one way to meet the
-requirement, not the only one.
+00:00:28.837 --> 00:00:31.550
+Then it reads the estate, read-only first,
 
 9
-00:00:32.263 --> 00:00:35.906
-The host is a Tier 0 system,
-and a branch protection the
+00:00:31.550 --> 00:00:37.224
+and the phase delivers twenty-three artifacts,
+fifteen of them committed before G0.
 
 10
-00:00:35.906 --> 00:00:39.963
-steward can quietly override is
-a convention, not a control.
-
-11
-00:00:39.963 --> 00:00:43.813
-Then it reads the estate:
-read-only first, at default rights,
-
-12
-00:00:43.813 --> 00:00:47.824
-then narrow delegated additions
-and a security assessment.
-
-13
-00:00:47.824 --> 00:00:52.565
-The master plan's twelve Active
-Directory domains are joined by the DHCP,
-
-14
-00:00:52.565 --> 00:00:58.017
-LDAP-binding and service-principal-name
-streams that the Federal Modernization
-
-15
-00:00:58.017 --> 00:01:01.888
-Workbook's Book 01 adds, and by
-an inventory of RADIUS and NPS,
-
-16
-00:01:01.888 --> 00:01:04.100
-which depend on the directory too.
-
-17
-00:01:04.100 --> 00:01:08.852
-The phase delivers twenty-three
-artifacts: fifteen committed before G0,
-
-18
-00:01:08.852 --> 00:01:12.100
-and eight generated plans
-approved just after it.
-
-19
-00:01:12.100 --> 00:01:16.080
+00:00:37.224 --> 00:00:41.205
 G0 has three conditions: the
 platform host is operational,
 
-20
-00:01:16.080 --> 00:01:20.475
+11
+00:00:41.205 --> 00:00:45.600
 the assessment is committed, and
 no priority-one finding is open.
 
-21
-00:01:20.475 --> 00:01:23.395
+12
+00:00:45.600 --> 00:00:48.520
 Every finding is classed Critical, High,
 
-22
-00:01:23.395 --> 00:01:27.200
+13
+00:00:48.520 --> 00:00:52.325
 Medium or Low, and each class
 has a gate that closes it.
 
-23
-00:01:27.200 --> 00:01:30.188
-A Critical finding is
-remediated before G0,
+14
+00:00:52.325 --> 00:00:54.850
+The decision point is
+the Critical finding.
 
-24
-00:01:30.188 --> 00:01:33.675
-or formally accepted by
-the authorizing official.
+15
+00:00:54.850 --> 00:01:00.271
+It's remediated before G0, or formally
+accepted by the authorizing official,
 
-25
-00:01:33.675 --> 00:01:38.830
-The steward clears G0 on that basis,
-with the executive sponsor as backup.
+16
+00:01:00.271 --> 00:01:03.025
+and the steward clears G0 on that basis.
+
+17
+00:01:03.025 --> 00:01:05.280
+Next, foundation and pilot.

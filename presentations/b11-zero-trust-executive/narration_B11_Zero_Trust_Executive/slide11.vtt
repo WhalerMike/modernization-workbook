@@ -1,135 +1,99 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:00.900
-Who owns it?
-
-2
-00:00:00.900 --> 00:00:04.487
+00:00:00.050 --> 00:00:03.588
 Zero Trust programs rarely
 fail for lack of owners.
 
-3
-00:00:04.487 --> 00:00:07.425
+2
+00:00:03.588 --> 00:00:06.525
 They fail because every
 owner is a pillar owner.
 
-4
-00:00:07.425 --> 00:00:12.293
+3
+00:00:06.525 --> 00:00:11.393
 Nobody owns the question this book keeps
 asking: what is the agency's posture across
 
-5
-00:00:12.293 --> 00:00:16.737
+4
+00:00:11.393 --> 00:00:15.837
 all five pillars, and what does the number
 on the cover page actually measure?
 
-6
-00:00:16.737 --> 00:00:19.313
-The book's model separates
-deciding from doing.
-
-7
-00:00:19.313 --> 00:00:24.924
+5
+00:00:15.837 --> 00:00:21.450
 The CIO and executive sponsor set strategy,
 scope and funding, and break ties.
 
-8
-00:00:24.924 --> 00:00:30.024
+6
+00:00:21.450 --> 00:00:26.671
 Three CIO decisions matter here: which
 estates the whole-agency score covers,
 
-9
-00:00:30.024 --> 00:00:34.964
-stated in writing so it can't quietly
-shrink to the estates that assess well;
+7
+00:00:26.671 --> 00:00:31.238
+in writing, so it can't quietly shrink
+to the estates that assess well;
 
-10
-00:00:34.964 --> 00:00:41.019
-the sequence, since closing BOD 25-01
-findings competes for the same engineers
-
-11
-00:00:41.019 --> 00:00:45.800
-as every other deadline; and which team
+8
+00:00:31.238 --> 00:00:35.888
+the sequence of work; and which team
 owns a control that spans pillars.
 
-12
-00:00:45.800 --> 00:00:50.341
+9
+00:00:35.888 --> 00:00:40.494
 The Zero Trust program lead owns the
 posture: the definition of the score,
 
-13
-00:00:50.341 --> 00:00:55.488
-cross-pillar correlation, the assessment
-calendar and the prioritized worklist.
+10
+00:00:40.494 --> 00:00:44.025
+the assessment calendar and
+the prioritized worklist.
 
-14
-00:00:55.488 --> 00:00:59.173
-Many agencies will give this
-role to the implementation
+11
+00:00:44.025 --> 00:00:49.650
+Many agencies will give this to the
+implementation lead M-22-09 required.
 
-15
-00:00:59.173 --> 00:01:03.487
-lead M-22-09 required them
-to designate within 30 days.
-
-16
-00:01:03.487 --> 00:01:06.528
+12
+00:00:49.650 --> 00:00:52.691
 The lead decides priority
 but doesn't accept risk,
 
-17
-00:01:06.528 --> 00:01:11.349
+13
+00:00:52.691 --> 00:00:57.512
 and shouldn't also own the agency's
 relationship with its largest cloud vendor.
 
-18
-00:01:11.349 --> 00:01:13.788
+14
+00:00:57.512 --> 00:00:59.951
 That independence is
 the point of the role.
 
-19
-00:01:13.788 --> 00:01:17.532
-The CISO sets the control requirements
-and the evidence standard,
+15
+00:00:59.951 --> 00:01:04.205
+The CISO sets the evidence standard,
+and the authorizing officials
 
-20
-00:01:17.532 --> 00:01:20.475
-and approves the tools and
-the accounts that run them.
-
-21
-00:01:20.475 --> 00:01:23.550
-The authorizing official
-accepts residual risk,
-
-22
-00:01:23.550 --> 00:01:28.350
-approves each plan of action and
-milestones, and sets assessor independence.
-
-23
-00:01:28.350 --> 00:01:31.463
-Most agencies have several,
-so the lead aggregates,
-
-24
-00:01:31.463 --> 00:01:35.613
-and each official accepts risk only
+16
+00:01:04.205 --> 00:01:08.087
+accept residual risk, each only
 for the systems they authorize.
 
-25
-00:01:35.613 --> 00:01:39.343
-The decision is the CIO's, and
-the book puts it in this quarter:
+17
+00:01:08.087 --> 00:01:10.504
+The decision is the CIO's, this quarter:
 
-26
-00:01:39.343 --> 00:01:42.618
+18
+00:01:10.504 --> 00:01:13.855
 name an agency-level owner
 of the Zero Trust posture,
 
-27
-00:01:42.618 --> 00:01:48.100
+19
+00:01:13.855 --> 00:01:19.388
 and a cross-pillar correlation owner, separate
 from any cloud provider relationship.
+
+20
+00:01:19.388 --> 00:01:21.310
+Next, the pillar owners.

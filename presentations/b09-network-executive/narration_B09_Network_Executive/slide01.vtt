@@ -1,64 +1,76 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:03.222
+00:00:00.050 --> 00:00:00.763
+Welcome.
+
+2
+00:00:00.763 --> 00:00:03.957
 This is the executive
 briefing for Book 09 of the
 
-2
-00:00:03.222 --> 00:00:06.950
+3
+00:00:03.957 --> 00:00:07.712
 Federal Modernization Workbook,
 Network and Transport.
 
-3
-00:00:06.950 --> 00:00:12.323
-It's written for the people who fund,
-authorize and answer for the branch network:
-
 4
-00:00:12.323 --> 00:00:16.638
+00:00:07.712 --> 00:00:12.618
+It's for the people who fund, authorize
+and answer for the branch network:
+
+5
+00:00:12.618 --> 00:00:17.025
 the CIO, the CISO, network program
 executives and budget owners.
 
-5
-00:00:16.638 --> 00:00:19.712
+6
+00:00:17.025 --> 00:00:20.100
 It's built around decisions,
 not configuration.
 
-6
-00:00:19.712 --> 00:00:24.300
-For each one I'll say what has to be
+7
+00:00:20.100 --> 00:00:25.125
+For each one, I'll say what has to be
 decided, who owns it, and when it's needed.
 
-7
-00:00:24.300 --> 00:00:26.675
+8
+00:00:25.125 --> 00:00:27.500
 Four questions organize the half hour.
 
-8
-00:00:26.675 --> 00:00:30.150
+9
+00:00:27.500 --> 00:00:30.975
 Why act now, when the target
 architecture is years away.
 
-9
-00:00:30.150 --> 00:00:34.488
+10
+00:00:30.975 --> 00:00:35.313
 What federal policy actually requires,
 and where the money should go first.
 
-10
-00:00:34.488 --> 00:00:36.150
+11
+00:00:35.313 --> 00:00:36.975
 Who decides each step.
 
-11
-00:00:36.150 --> 00:00:40.163
+12
+00:00:36.975 --> 00:00:40.988
 And how to proceed without turning
 a faster network into a weaker one.
 
-12
-00:00:40.163 --> 00:00:45.269
-The short version: no product shortens a
-fiber path, so buy transport on physics,
-
 13
-00:00:45.269 --> 00:00:48.790
-govern it as compliance, and
-decide in the right order.
+00:00:40.988 --> 00:00:42.324
+Here's the short version.
+
+14
+00:00:42.324 --> 00:00:44.662
+No product shortens a fiber path.
+
+15
+00:00:44.662 --> 00:00:49.813
+So buy transport on physics, govern it as
+compliance, and decide in the right order.
+
+16
+00:00:49.813 --> 00:00:52.900
+Let's start with the decisions
+this briefing asks for.

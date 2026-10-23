@@ -1,127 +1,98 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:02.912
-Chapter 02 states the problem precisely.
-
-2
-00:00:02.912 --> 00:00:07.575
+00:00:00.050 --> 00:00:04.662
 Active Directory shipped with Windows
 2000 as an identity directory.
 
-3
-00:00:07.575 --> 00:00:12.056
+2
+00:00:04.662 --> 00:00:09.031
 Over twenty-five years every Windows-era
 service wired itself into it,
 
-4
-00:00:12.056 --> 00:00:17.387
-because it was the only enterprise-wide,
-governed, replicated namespace available.
+3
+00:00:09.031 --> 00:00:13.174
+because it was the only governed,
+replicated namespace available.
 
-5
-00:00:17.387 --> 00:00:19.925
+4
+00:00:13.174 --> 00:00:15.713
 Nobody wrote down how much
 governance it carried.
 
-6
-00:00:19.925 --> 00:00:24.200
+5
+00:00:15.713 --> 00:00:19.988
 The organizational unit (OU)
 tree wasn't a folder system.
 
+6
+00:00:19.988 --> 00:00:24.386
+Placing one user in a branch set their
+administrators, their Group Policy,
+
 7
-00:00:24.200 --> 00:00:28.478
-Placing one user in a branch handed
-the account to that branch's delegated
+00:00:24.386 --> 00:00:27.775
+their groups, their delegation
+and their audit boundary.
 
 8
-00:00:28.478 --> 00:00:32.335
-administrators, applied every
-Group Policy linked along the path,
-
-9
-00:00:32.335 --> 00:00:35.000
-fed the tools that built
-groups from position,
-
-10
-00:00:35.000 --> 00:00:39.138
-bound the account to the branch's
-delegation, and drew an audit boundary.
-
-11
-00:00:39.138 --> 00:00:41.025
+00:00:27.775 --> 00:00:29.662
 One act, five effects.
 
-12
-00:00:41.025 --> 00:00:46.437
+9
+00:00:29.662 --> 00:00:35.075
 Entra ID has no OU tree, so each
 effect has to be rebuilt on purpose.
 
-13
-00:00:46.437 --> 00:00:51.425
+10
+00:00:35.075 --> 00:00:40.062
 Most migration plans count users,
 computers, groups and Group Policy.
 
+11
+00:00:40.062 --> 00:00:45.853
+The program counts eleven categories,
+adding service accounts, DNS and DHCP,
+
+12
+00:00:45.853 --> 00:00:51.000
+certificate services, RADIUS,
+LDAP-bound applications and trusts.
+
+13
+00:00:51.000 --> 00:00:52.438
+Those fail silently.
+
 14
-00:00:51.425 --> 00:00:54.982
-The program's inventory
-counts eleven categories,
-
-15
-00:00:54.982 --> 00:00:59.641
-adding service accounts and service
-principal names, DNS and DHCP,
-
-16
-00:00:59.641 --> 00:01:05.400
-certificate services, RADIUS, LDAP-bound
-applications and trust relationships.
-
-17
-00:01:05.400 --> 00:01:08.751
-Those fail silently: a
-certificate that doesn't renew,
-
-18
-00:01:08.751 --> 00:01:12.712
-an application whose bind account
-was deleted with the domain.
-
-19
-00:01:12.712 --> 00:01:15.188
+00:00:52.438 --> 00:00:54.913
 No log line says governance has failed.
 
-20
-00:01:15.188 --> 00:01:18.126
+15
+00:00:54.913 --> 00:00:58.011
 Microsoft hasn't deprecated
-Active Directory.
+Active Directory,
 
-21
-00:01:18.126 --> 00:01:20.169
-It still supports and enhances it,
-
-22
-00:01:20.169 --> 00:01:24.475
-while pointing customers toward a
-cloud-first model reached in phases.
-
-23
-00:01:24.475 --> 00:01:28.813
-So there's no vendor deadline;
+16
+00:00:58.011 --> 00:01:02.301
+so there's no vendor deadline;
 retiring it is the agency's decision.
 
-24
-00:01:28.813 --> 00:01:32.289
+17
+00:01:02.301 --> 00:01:05.748
 That makes scope a decision
-for the sponsor and the CIO:
+for the sponsor and the CIO,
 
-25
-00:01:32.289 --> 00:01:36.924
-fund this as a governance transformation
+18
+00:01:05.748 --> 00:01:10.344
+when scope and funding are set: fund
+this as a governance transformation
+
+19
+00:01:10.344 --> 00:01:14.175
 across all eleven categories,
+not a users-and-groups project.
 
-26
-00:01:36.924 --> 00:01:40.850
-not a users-and-groups project,
-when scope and funding are set.
+20
+00:01:14.175 --> 00:01:17.350
+Next, what has to be true
+for the target to hold.

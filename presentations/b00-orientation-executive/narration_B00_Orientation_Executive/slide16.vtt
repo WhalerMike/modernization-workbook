@@ -1,101 +1,84 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:03.043
-Phase 1, Foundation, opens
-by generating the eight
+00:00:00.050 --> 00:00:06.272
+Phase 1, Foundation, generates the plans
+from the committed assessment and designs
 
 2
-00:00:03.043 --> 00:00:06.475
-plans from the committed
-assessment and approving them.
+00:00:06.272 --> 00:00:10.150
+every surface from them:
+attributes, dynamic groups,
 
 3
-00:00:06.475 --> 00:00:12.135
-It then designs every surface from
-those plans, attributes, dynamic groups,
+00:00:10.150 --> 00:00:13.937
+Intune policy, Conditional
+Access, sync, DNS and PKI.
 
 4
-00:00:12.135 --> 00:00:15.970
-Intune policy, Conditional
-Access, sync, DNS and PKI,
+00:00:13.937 --> 00:00:18.363
+One planning note: group processing
+is planned in hours, not minutes.
 
 5
-00:00:15.970 --> 00:00:19.713
-and builds the shared
-foundation the pilot needs.
+00:00:18.363 --> 00:00:21.649
+The steward clears G1 when
+the designs are approved,
 
 6
-00:00:19.713 --> 00:00:22.962
-Group processing is planned
-in hours, not minutes.
-
-7
-00:00:22.962 --> 00:00:26.849
-The steward clears G1 when the
-plans and designs are approved,
-
-8
-00:00:26.849 --> 00:00:31.878
+00:00:21.649 --> 00:00:26.694
 the baseline Conditional Access policies
 are enforced after at least a week in
 
-9
-00:00:31.878 --> 00:00:36.070
+7
+00:00:26.694 --> 00:00:30.897
 report-only, the emergency access
 accounts are vaulted and tested,
 
-10
-00:00:36.070 --> 00:00:39.575
+8
+00:00:30.897 --> 00:00:34.413
 the HR feed is live, and every
 High finding is remediated.
 
-11
-00:00:39.575 --> 00:00:42.350
+9
+00:00:34.413 --> 00:00:37.689
 Phase 2 proves the whole
-pattern on real people.
+pattern on real people:
 
-12
-00:00:42.350 --> 00:00:47.827
-The Federal Modernization Workbook's Book
-01 sets the pilot's scope as one division,
+10
+00:00:37.689 --> 00:00:41.888
+one division, typically IT,
+which tolerates disruption best.
 
-13
-00:00:47.827 --> 00:00:50.922
-typically IT, which
-tolerates disruption best,
-
-14
-00:00:50.922 --> 00:00:55.050
-and the master plan's sizes are a
-floor for what it must exercise.
-
-15
-00:00:55.050 --> 00:00:59.975
+11
+00:00:41.888 --> 00:00:46.813
 It's measured against eight criteria,
 from sign-in success to help desk volume.
 
-16
-00:00:59.975 --> 00:01:04.895
-The values are illustrative: set them in
-the decision log before the pilot opens,
+12
+00:00:46.813 --> 00:00:50.490
+Set the thresholds in the decision
+log before the pilot opens,
 
-17
-00:01:04.895 --> 00:01:08.100
-and evaluate them from the
+13
+00:00:50.490 --> 00:00:53.374
+and judge them from the
 systems, not from opinion.
 
-18
-00:01:08.100 --> 00:01:11.500
-Every surface has a rollback
-trigger and a procedure.
+14
+00:00:53.374 --> 00:00:55.712
+Every surface has a rollback trigger.
 
-19
-00:01:11.500 --> 00:01:17.008
+15
+00:00:55.712 --> 00:01:01.220
 G2 is signed jointly by the steward and
 the executive sponsor: zero drift for the
 
-20
-00:01:17.008 --> 00:01:22.660
+16
+00:01:01.220 --> 00:01:06.812
 agreed hold period, every criterion met,
 and no hybrid-joined PC without a cut date.
+
+17
+00:01:06.812 --> 00:01:09.100
+Next, rollout and retirement.

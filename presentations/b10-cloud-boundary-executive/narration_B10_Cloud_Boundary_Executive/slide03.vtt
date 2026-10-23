@@ -5,140 +5,101 @@ WEBVTT
 Why does nobody see this coming?
 
 2
-00:00:01.750 --> 00:00:04.400
-Chapter 02 gives four reasons.
+00:00:01.750 --> 00:00:03.750
+The book gives four reasons.
 
 3
-00:00:04.400 --> 00:00:05.813
-Surfaces are shared.
+00:00:03.750 --> 00:00:06.672
+Commercial and government
+tenants share the same
 
 4
-00:00:05.813 --> 00:00:10.932
-Commercial and government tenants use
-the same admin centers and much of the
+00:00:06.672 --> 00:00:09.525
+admin centers and much of
+the same documentation.
 
 5
-00:00:10.932 --> 00:00:16.212
-same documentation, and Intune in GCC is
-the same instance as commercial Intune.
-
-6
-00:00:16.212 --> 00:00:21.124
+00:00:09.525 --> 00:00:14.437
 Exclusions are scattered, usually one
 sentence on each feature's own page.
 
+6
+00:00:14.437 --> 00:00:18.776
+Features move, so a gap list
+from 2025 can be wrong today.
+
 7
-00:00:21.124 --> 00:00:27.838
-Features move: Microsoft retired Adoption
-Score's technology-experience categories
-
-8
-00:00:27.838 --> 00:00:31.941
-for every tenant in early
-2026, so a gap list written in
-
-9
-00:00:31.941 --> 00:00:35.950
-2025 can name a GCC loss that's
-now a loss for everyone.
-
-10
-00:00:35.950 --> 00:00:38.150
+00:00:18.776 --> 00:00:20.975
 And absence doesn't announce itself.
 
+8
+00:00:20.975 --> 00:00:24.950
+A detection whose input never
+arrives looks just like a quiet day.
+
+9
+00:00:24.950 --> 00:00:29.317
+Build a Zero Trust control on a signal
+your environment doesn't deliver,
+
+10
+00:00:29.317 --> 00:00:31.463
+and you haven't built a weak control.
+
 11
-00:00:38.150 --> 00:00:43.250
-A detection whose input never arrives
-produces the same dashboard as a quiet day.
+00:00:31.463 --> 00:00:34.437
+You've built no control,
+and nothing tells you so.
 
 12
-00:00:43.250 --> 00:00:46.870
-An agency that builds a Zero
-Trust control on a signal its
-
-13
-00:00:46.870 --> 00:00:50.412
-environment doesn't deliver
-hasn't built a weak control.
-
-14
-00:00:50.412 --> 00:00:53.576
-It has built no control,
-and nothing tells it so.
-
-15
-00:00:53.576 --> 00:00:55.877
-That's why discovery tends to come late,
-
-16
-00:00:55.877 --> 00:00:59.187
-during an authorization cycle
-or an analytics rollout.
-
-17
-00:00:59.187 --> 00:01:00.946
-And the problem is structural:
-
-18
-00:01:00.946 --> 00:01:04.813
-no tenant setting turns on a feature
-the environment doesn't offer.
-
-19
-00:01:04.813 --> 00:01:07.200
+00:00:34.437 --> 00:00:36.826
 But the opposite error is just as costly.
 
-20
-00:01:07.200 --> 00:01:12.443
+13
+00:00:36.826 --> 00:00:42.221
 A widely repeated example listed five
 features as silently missing from GCC.
 
-21
-00:01:12.443 --> 00:01:15.883
+14
+00:00:42.221 --> 00:00:46.100
 Checked against Microsoft's
-documentation, one is:
+documentation, only one is.
 
-22
-00:01:15.883 --> 00:01:20.225
-the Locations view of network
-connectivity in the admin center.
+15
+00:00:46.100 --> 00:00:48.988
+The others are gaps in
+higher environments,
 
-23
-00:01:20.225 --> 00:01:25.875
-Device Health Attestation and expedited
-updates are GCC High and DoD gaps.
+16
+00:00:48.988 --> 00:00:52.438
+aren't documented gaps, or
+belong to Azure's own scope.
 
-24
-00:01:25.875 --> 00:01:29.513
-Endpoint analytics isn't
-a documented GCC gap.
-
-25
-00:01:29.513 --> 00:01:33.838
-And Azure Arc is an Azure service,
-in Azure's FedRAMP High scope.
-
-26
-00:01:33.838 --> 00:01:39.650
+17
+00:00:52.438 --> 00:00:58.250
 An unverified boundary story sends an agency
 to build compensations it doesn't need.
 
-27
-00:01:39.650 --> 00:01:44.725
+18
+00:00:58.250 --> 00:01:03.325
 The program's own register of
 GCC telemetry gaps has 26 rows.
 
-28
-00:01:44.725 --> 00:01:48.212
+19
+00:01:03.325 --> 00:01:06.812
 Eight are vendor-confirmed;
 fifteen are inference.
 
-29
-00:01:48.212 --> 00:01:53.438
+20
+00:01:06.812 --> 00:01:12.037
 So rebuild any gap list you rely on
 so every row cites a vendor page.
 
-30
-00:01:53.438 --> 00:01:57.790
+21
+00:01:12.037 --> 00:01:16.324
 The system owner keeps it, and the
 CISO decides what counts as evidence.
+
+22
+00:01:16.324 --> 00:01:18.550
+Next, what changed at FedRAMP.

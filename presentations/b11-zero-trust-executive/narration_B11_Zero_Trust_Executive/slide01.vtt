@@ -1,71 +1,79 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:03.161
+00:00:00.050 --> 00:00:00.763
+Welcome.
+
+2
+00:00:00.763 --> 00:00:03.895
 This is the executive
 briefing for Book 11 of the
 
-2
-00:00:03.161 --> 00:00:07.050
+3
+00:00:03.895 --> 00:00:07.812
 Federal Modernization Workbook,
 Zero Trust and Assessment.
 
-3
-00:00:07.050 --> 00:00:12.147
-It runs about thirty minutes, and it's
-built for the people who make the calls: the
-
 4
-00:00:12.147 --> 00:00:17.400
-CISO, the authorizing officials, the CIO,
-and the Zero Trust implementation lead.
+00:00:07.812 --> 00:00:12.911
+It runs about thirty minutes, and it's for
+the people who make the calls: the CISO,
 
 5
-00:00:17.400 --> 00:00:20.212
-The book's argument fits
-in three sentences.
+00:00:12.911 --> 00:00:17.775
+the authorizing officials, the CIO,
+and the Zero Trust implementation lead.
 
 6
-00:00:20.212 --> 00:00:25.812
+00:00:17.775 --> 00:00:20.487
+The argument fits in three sentences.
+
+7
+00:00:20.487 --> 00:00:26.088
 Zero Trust maturity is a property of the
 whole agency, not of any product or tenant.
 
-7
-00:00:25.812 --> 00:00:29.951
+8
+00:00:26.088 --> 00:00:30.226
 The federal documents set specific
 actions and configurations,
 
-8
-00:00:29.951 --> 00:00:34.474
+9
+00:00:30.226 --> 00:00:34.749
 but none of them defines a Zero Trust
 score or requires a maturity stage.
 
-9
-00:00:34.474 --> 00:00:37.316
+10
+00:00:34.749 --> 00:00:37.591
 And the assessment tools
 produce evidence for
 
-10
-00:00:37.316 --> 00:00:40.012
+11
+00:00:37.591 --> 00:00:40.287
 named people to act on,
 not verdicts to report.
 
-11
-00:00:40.012 --> 00:00:44.534
+12
+00:00:40.287 --> 00:00:44.855
 I'll take four questions in order: why
 Zero Trust belongs to the whole agency,
 
-12
-00:00:44.534 --> 00:00:48.763
-what the mandates and the tools
-actually require, who owns the posture,
-
 13
-00:00:48.763 --> 00:00:53.138
+00:00:44.855 --> 00:00:48.906
+what the mandates and tools actually
+require, who owns the posture,
+
+14
+00:00:48.906 --> 00:00:53.325
 and how to turn findings into a program
 the authorizing official can see.
 
-14
-00:00:53.138 --> 00:00:57.740
+15
+00:00:53.325 --> 00:00:57.875
 Every decision slide names the decision,
 its owner, and when it's needed.
+
+16
+00:00:57.875 --> 00:01:00.600
+Let's start with the
+usual assessment calendar.

@@ -5,128 +5,107 @@ WEBVTT
 Not acting doesn't mean standing still.
 
 2
-00:00:02.225 --> 00:00:04.562
-It means three things happen by default.
+00:00:02.225 --> 00:00:03.950
+Three things happen by default.
 
 3
-00:00:04.562 --> 00:00:07.725
+00:00:03.950 --> 00:00:07.113
 First, money gets spent
 without a choice being made.
 
 4
-00:00:07.725 --> 00:00:12.837
+00:00:07.113 --> 00:00:12.224
 The BOD 26-02 refresh will
 happen on a directive clock.
 
 5
-00:00:12.837 --> 00:00:14.738
+00:00:12.224 --> 00:00:15.889
 Run as like-for-like replacement,
+it spends the money and closes
 
 6
-00:00:14.738 --> 00:00:19.454
-the same device class with the same absence
-of policy and telemetry, it spends the
+00:00:15.889 --> 00:00:19.413
+the architecture question for
+the life of the new equipment.
 
 7
-00:00:19.454 --> 00:00:22.058
-money and closes the architecture question
+00:00:19.413 --> 00:00:21.426
+Deferral has a measured price too.
 
 8
-00:00:22.058 --> 00:00:24.451
-for the service life of the new equipment.
+00:00:21.426 --> 00:00:28.354
+GAO reported that billing for six agencies'
+legacy Networx contracts rose from about
 
 9
-00:00:24.451 --> 00:00:26.638
-Deferral also has a measured price.
+00:00:28.354 --> 00:00:32.062
+13.4 million dollars in
+February 2025 to about
 
 10
-00:00:26.638 --> 00:00:33.626
-GAO reported in August 2026 that billing
-for six agencies' legacy Networx contracts
+00:00:32.062 --> 00:00:35.575
+40.9 million in March,
+a 206 percent increase.
 
 11
-00:00:33.626 --> 00:00:38.019
-rose from about 13.4 million
-dollars in February 2025
-
-12
-00:00:38.019 --> 00:00:42.312
-to about 40.9 million in
-March, a 206 percent increase.
-
-13
-00:00:42.312 --> 00:00:46.724
-The book calls that the strongest
-cost-of-delay number in the federal record.
-
-14
-00:00:46.724 --> 00:00:50.913
+00:00:35.575 --> 00:00:39.763
 Second, gaps surface as findings
 rather than accepted risks.
 
+12
+00:00:39.763 --> 00:00:44.238
+The technical situation is identical;
+the institutional position isn't.
+
+13
+00:00:44.238 --> 00:00:48.663
+And cutting managed TIC circuits
+before CISA confirms replacement
+
+14
+00:00:48.663 --> 00:00:53.012
+telemetry trades a transport gap for
+a visibility gap, which is worse.
+
 15
-00:00:50.913 --> 00:00:56.038
-The technical situation is identical either
-way; the institutional position isn't.
-
-16
-00:00:56.038 --> 00:01:01.311
-And cutting managed TIC circuits before
-CISA confirms replacement telemetry
-
-17
-00:01:01.311 --> 00:01:05.876
-trades a gap in transport for a gap
-in CISA's visibility, which is worse.
-
-18
-00:01:05.876 --> 00:01:08.413
+00:00:53.012 --> 00:00:55.551
 Third, cost gets blamed on the cloud.
 
-19
-00:01:08.413 --> 00:01:12.483
+16
+00:00:55.551 --> 00:00:58.758
 When workloads migrate before
-transport is governed and measured,
+transport is measured,
+
+17
+00:00:58.758 --> 00:01:03.250
+slowness gets blamed on the only thing
+being measured, and cloud spend rises.
+
+18
+00:01:03.250 --> 00:01:08.275
+The book labels that its own inference,
+a hypothesis to test in your estate.
+
+19
+00:01:08.275 --> 00:01:11.825
+And under all three, the
+governor is attack surface.
 
 20
-00:01:12.483 --> 00:01:15.899
-slowness is attributed to the
-only thing being measured.
+00:01:11.825 --> 00:01:16.744
+In February 2026, Emergency
+Directive 26-03 ordered action
 
 21
-00:01:15.899 --> 00:01:20.462
-The remedies, more instances and
-more caching, raise cloud spend.
+00:01:16.744 --> 00:01:21.563
+on Cisco SD-WAN systems after
+attackers compromised them.
 
 22
-00:01:20.462 --> 00:01:24.353
-The book is careful to label
-that pattern its own inference,
-
-23
-00:01:24.353 --> 00:01:29.275
-built on documented parts, so treat it
-as a hypothesis to test in your estate.
-
-24
-00:01:29.275 --> 00:01:31.325
-And one risk sits under all of them.
-
-25
-00:01:31.325 --> 00:01:33.412
-The governor is attack surface.
-
-26
-00:01:33.412 --> 00:01:39.502
-In February 2026, Emergency Directive 26-03
-ordered action on Cisco SD-WAN systems
-
-27
-00:01:39.502 --> 00:01:45.324
-after actors were found compromising
-them and keeping long-term persistence.
-
-28
-00:01:45.324 --> 00:01:48.620
+00:01:21.563 --> 00:01:24.799
 Whatever you buy, protect it
 before it carries traffic.
+
+23
+00:01:24.799 --> 00:01:28.030
+Next, what TIC 3.0 actually requires.

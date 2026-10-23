@@ -1,120 +1,93 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:03.955
-Inside the phases, five
-workstreams carry the work:
+00:00:00.050 --> 00:00:06.088
+Five workstreams carry the work: identity,
+policy, services, compute and access.
 
 2
-00:00:03.955 --> 00:00:07.488
-identity, policy, services,
-compute and access.
+00:00:06.088 --> 00:00:08.804
+They run together, because
+finishing one before
 
 3
-00:00:07.488 --> 00:00:09.825
-They run together; finishing one before
-
-4
-00:00:09.825 --> 00:00:12.587
+00:00:08.804 --> 00:00:11.421
 starting the next roughly
 doubles the program.
 
-5
-00:00:12.587 --> 00:00:13.900
+4
+00:00:11.421 --> 00:00:12.717
 They still have an order.
 
+5
+00:00:12.717 --> 00:00:16.033
+Identity comes first,
+because policy, access,
+
 6
-00:00:13.900 --> 00:00:16.832
-Identity comes first, the attribute model,
+00:00:16.033 --> 00:00:20.352
+devices and data all decide
+based on who or what is asking.
 
 7
-00:00:16.832 --> 00:00:21.606
-dynamic membership and the lifecycle
-origin, because policy, access,
-
-8
-00:00:21.606 --> 00:00:25.962
-devices and data all decide on the
-basis of who or what is asking.
-
-9
-00:00:25.962 --> 00:00:27.674
+00:00:20.352 --> 00:00:22.089
 Policy follows identity.
 
+8
+00:00:22.089 --> 00:00:25.809
+Services, naming and
+addressing, can run in parallel.
+
+9
+00:00:25.809 --> 00:00:29.091
+Compute comes mid to late,
+and access comes later,
+
 10
-00:00:27.674 --> 00:00:32.525
-Services, naming and addressing,
-can run in parallel and may bridge.
-
-11
-00:00:32.525 --> 00:00:36.175
-Compute, the device and server
-work, comes mid to late.
-
-12
-00:00:36.175 --> 00:00:39.937
-Access, token-based and
-application-aware, comes later,
-
-13
-00:00:39.937 --> 00:00:43.113
+00:00:29.091 --> 00:00:32.176
 because it consumes both
 identity and policy.
 
-14
-00:00:43.113 --> 00:00:47.286
+11
+00:00:32.176 --> 00:00:36.367
 The master plan organized the same
 work as five technology pillars,
 
+12
+00:00:36.367 --> 00:00:39.839
+and that left two gaps: nobody
+owned the question of which
+
+13
+00:00:39.839 --> 00:00:43.533
+policy surface owns a setting,
+and access had no pillar at all.
+
+14
+00:00:43.533 --> 00:00:47.373
+Book 01 closes them, with a
+security-engineering lead for
+
 15
-00:00:47.286 --> 00:00:49.075
-and that view leaves two gaps.
+00:00:47.373 --> 00:00:51.312
+policy and a joint identity
+and security lead for access.
 
 16
-00:00:49.075 --> 00:00:53.119
-Nobody owns the question of which
-policy surface owns a setting,
+00:00:51.312 --> 00:00:56.478
+Every week lost in assessment or
+attribute design moves every later gate,
 
 17
-00:00:53.119 --> 00:00:55.637
-and the access plane has no pillar at all.
-
-18
-00:00:55.637 --> 00:01:00.651
-The Federal Modernization Workbook's
-Book 01 closes them by giving policy
-
-19
-00:01:00.651 --> 00:01:05.663
-a security-engineering lead and access
-a joint identity and security lead.
-
-20
-00:01:05.663 --> 00:01:09.460
-The critical path runs through
-the platform, the assessment,
-
-21
-00:01:09.460 --> 00:01:14.474
-attribute and group design, the pilot,
-each rollout wave, and cutover validation.
-
-22
-00:01:14.474 --> 00:01:19.363
-Every week lost in assessment or
-attribute design moves every later gate.
-
-23
-00:01:19.363 --> 00:01:23.662
-And one dependency never
+00:00:56.478 --> 00:01:00.468
+and one dependency never
 relaxes: PKI waits for identity.
 
-24
-00:01:23.662 --> 00:01:28.808
-The decision, made while Phase 0's stakeholders
-and decision rights are confirmed:
+18
+00:01:00.468 --> 00:01:06.173
+The decision, during Phase 0: name the five
+workstream leads, including those two.
 
-25
-00:01:28.808 --> 00:01:32.110
-name the five workstream
-leads, including those two.
+19
+00:01:06.173 --> 00:01:07.476
+Next, the projects.

@@ -1,154 +1,111 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:03.267
-Chapter 02 explains why
-programs stall at the
+00:00:00.050 --> 00:00:04.637
+Programs stall low on CISA's maturity
+model because they read it as a
 
 2
-00:00:03.267 --> 00:00:06.738
-maturity model's Initial
-stage, or low in Advanced.
+00:00:04.637 --> 00:00:09.788
+five-pillar shopping list: identity,
+devices, networks, applications and data.
 
 3
-00:00:06.738 --> 00:00:11.803
-They read CISA's Zero Trust Maturity
-Model as a five-pillar shopping list:
+00:00:09.788 --> 00:00:14.666
+But the model runs those pillars through
+three cross-cutting capabilities, and the
 
 4
-00:00:11.803 --> 00:00:16.287
-identity, devices, networks,
-applications and workloads, and data.
+00:00:14.666 --> 00:00:19.687
+one programs fund least is governance:
+defining and enforcing policy across pillars.
 
 5
-00:00:16.287 --> 00:00:20.854
-But the model runs those pillars through
-three cross-cutting capabilities:
+00:00:19.687 --> 00:00:22.000
+No single pillar's tool delivers that.
 
 6
-00:00:20.854 --> 00:00:25.276
-visibility and analytics, automation
-and orchestration, and governance.
-
-7
-00:00:25.276 --> 00:00:29.726
-Governance is the one programs fund
-least, and the model defines it
-
-8
-00:00:29.726 --> 00:00:34.500
-as the definition and enforcement of
-policy, within and across pillars.
-
-9
-00:00:34.500 --> 00:00:39.300
-Traditional reads like a failure list:
-siloed pillars of policy enforcement,
-
-10
-00:00:39.300 --> 00:00:42.225
-and limited correlation
-of logs and telemetry.
-
-11
-00:00:42.225 --> 00:00:44.942
-Advanced calls for
-cross-pillar coordination
-
-12
-00:00:44.942 --> 00:00:47.938
-and policy enforcement
-integrated across pillars.
-
-13
-00:00:47.938 --> 00:00:50.363
-No single pillar's tool delivers either.
-
-14
-00:00:50.363 --> 00:00:52.312
+00:00:22.000 --> 00:00:23.950
 Three failure patterns recur.
 
-15
-00:00:52.312 --> 00:00:54.799
+7
+00:00:23.950 --> 00:00:26.437
 Pillars are administered, not governed.
 
-16
-00:00:54.799 --> 00:00:58.806
+8
+00:00:26.437 --> 00:00:30.444
 Evidence is shaped by each tool
 rather than by the claim it supports,
 
-17
-00:00:58.806 --> 00:01:01.238
+9
+00:00:30.444 --> 00:00:32.876
 so every assessment starts from scratch.
 
-18
-00:01:01.238 --> 00:01:04.762
+10
+00:00:32.876 --> 00:00:36.400
 And drift is found at audit
 time, months after it opened.
 
-19
-00:01:04.762 --> 00:01:07.063
-The book answers with five principles.
+11
+00:00:36.400 --> 00:00:38.975
+The book's answer rests
+on a few principles.
 
-20
-00:01:07.063 --> 00:01:10.765
+12
+00:00:38.975 --> 00:00:42.634
 Identity is the anchor, but
 it isn't self-authenticating,
 
-21
-00:01:10.765 --> 00:01:14.387
-so sessions are re-evaluated
-and the plane is defended.
+13
+00:00:42.634 --> 00:00:46.850
+so sessions are re-evaluated and
+the identity plane is defended.
 
-22
-00:01:14.387 --> 00:01:17.276
+14
+00:00:46.850 --> 00:00:49.738
 Privileged identity gets
 controls of its own.
 
-23
-00:01:17.276 --> 00:01:21.488
-Evidence must be reproducible,
-machine-readable and regenerable.
+15
+00:00:49.738 --> 00:00:53.025
+Evidence must be reproducible
+and machine-readable.
 
-24
-00:01:21.488 --> 00:01:24.393
-Governance must enforce, not only observe:
+16
+00:00:53.025 --> 00:00:56.087
+And governance must
+enforce, not only observe.
 
-25
-00:01:24.393 --> 00:01:29.125
-a policy whose only consequence is
+17
+00:00:56.087 --> 00:01:00.662
+A policy whose only consequence is
 next quarter's finding is a report.
 
-26
-00:01:29.125 --> 00:01:31.120
-And the cloud boundary is modeled,
-
-27
-00:01:31.120 --> 00:01:35.325
-with each government-cloud feature
-gap recorded as a governed finding.
-
-28
-00:01:35.325 --> 00:01:39.507
-The decision for the CISO, with
+18
+00:01:00.662 --> 00:01:04.913
+The decision is the CISO's, with
 identity engineering, this quarter:
 
-29
-00:01:39.507 --> 00:01:43.465
+19
+00:01:04.913 --> 00:01:08.934
 time-box privileged access,
 including the assessment accounts,
 
-30
-00:01:43.465 --> 00:01:46.975
+20
+00:01:08.934 --> 00:01:12.501
 and convert one detective
 control into a preventive one.
 
-31
-00:01:46.975 --> 00:01:51.283
+21
+00:01:12.501 --> 00:01:16.808
 Microsoft's own guidance is zero
 permanently active admin assignments,
 
-32
-00:01:51.283 --> 00:01:56.300
+22
+00:01:16.808 --> 00:01:21.762
 other than emergency accounts that are
 monitored and tested at least every 90 days.
+
+23
+00:01:21.762 --> 00:01:24.480
+Next, what the mandates actually require.

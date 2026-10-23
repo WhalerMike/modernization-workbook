@@ -1,135 +1,97 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:01.250
-Here is where we're going.
+00:00:00.050 --> 00:00:04.112
+This briefing asks for seven
+decisions, each with a named owner.
 
 2
-00:00:01.250 --> 00:00:04.013
-Seven decisions, each with a named owner.
+00:00:04.112 --> 00:00:07.625
+None is a product choice, and
+none needs an award to start.
 
 3
-00:00:04.013 --> 00:00:08.363
-None of them is a product choice, and
-none of them requires an award to start.
+00:00:07.625 --> 00:00:11.675
+Several cost nothing but a signature
+and a few weeks of staff time.
 
 4
-00:00:08.363 --> 00:00:12.631
-Several of them cost nothing but a
-signature and a few weeks of staff time;
-
-5
-00:00:12.631 --> 00:00:16.756
-the expensive mistakes come from
+00:00:11.675 --> 00:00:15.783
+The expensive mistakes come from
 leaving them unmade while circuits,
 
-6
-00:00:16.756 --> 00:00:20.313
+5
+00:00:15.783 --> 00:00:19.325
 refreshes and migrations move
 ahead on their own schedules.
 
+6
+00:00:19.325 --> 00:00:22.322
+In short: the CISO ends
+managed TIC circuits
+
 7
-00:00:20.313 --> 00:00:21.237
-Here they are.
+00:00:22.322 --> 00:00:25.887
+only when CISA confirms
+the replacement telemetry.
 
 8
-00:00:21.237 --> 00:00:25.875
-One: the CISO decides that managed
-TIC circuits end only when CISA
-
-9
-00:00:25.875 --> 00:00:30.263
-confirms the replacement telemetry,
-not when a branch cuts over.
-
-10
-00:00:30.263 --> 00:00:34.928
-Two: the authorizing official records
+00:00:25.887 --> 00:00:29.998
+The authorizing official records
 today's gap as an accepted risk,
 
+9
+00:00:29.998 --> 00:00:31.749
+before an assessor finds it.
+
+10
+00:00:31.749 --> 00:00:35.678
+Security architecture
+writes the target into the
+
 11
-00:00:34.928 --> 00:00:40.412
-with compensating measures and a funded
-plan, so an assessor doesn't find it first.
-
-12
-00:00:40.412 --> 00:00:45.007
-Three: security architecture
-writes the target attributes
-
-13
-00:00:45.007 --> 00:00:49.601
-into the edge-device refresh that
+00:00:35.678 --> 00:00:39.700
+edge-device refresh that
 BOD 26-02 is forcing anyway.
 
+12
+00:00:39.700 --> 00:00:44.235
+The sponsor and CIO put staff time
+and requirements work before capital,
+
+13
+00:00:44.235 --> 00:00:49.374
+test the field-office refresh request
+against published capacity limits, and tie
+
 14
-00:00:49.601 --> 00:00:52.920
-Four: the sponsor and CIO
-set the investment order,
+00:00:49.374 --> 00:00:54.362
+the retirement of the Windows RADIUS server
+to the Entra migration, not to a date.
 
 15
-00:00:52.920 --> 00:00:56.725
-so staff time and requirements
-work come before capital.
+00:00:54.362 --> 00:00:58.815
+And the authorizing official and
+system owner hold the line on order:
 
 16
-00:00:56.725 --> 00:01:00.249
-Five: the same pair tests the
-field-office refresh request
+00:00:58.815 --> 00:01:01.550
+the governor is live before traffic moves.
 
 17
-00:01:00.249 --> 00:01:04.287
-against published capacity limits
-before the money is committed.
+00:01:01.550 --> 00:01:03.787
+The thread through all seven is simple.
 
 18
-00:01:04.287 --> 00:01:09.127
-Six: they choose the network access
-control platform, and tie the retirement
+00:01:03.787 --> 00:01:07.068
+Policy names no product, but
+it isn't requirement-free,
 
 19
-00:01:09.127 --> 00:01:13.199
-of the Windows RADIUS server to
-the Entra migration, not to a date.
-
-20
-00:01:13.199 --> 00:01:18.200
-Seven: the authorizing official and the
-system owner hold the line on order.
-
-21
-00:01:18.200 --> 00:01:20.737
-The governor is live before traffic moves,
-
-22
-00:01:20.737 --> 00:01:24.362
-and the boundary change is
-decided before the first cutover.
-
-23
-00:01:24.362 --> 00:01:26.749
-The thread running through all seven:
-
-24
-00:01:26.749 --> 00:01:30.137
-policy names no product, but
-it isn't requirement-free.
-
-25
-00:01:30.137 --> 00:01:33.038
-A directive is already
-spending the refresh money.
-
-26
-00:01:33.038 --> 00:01:35.837
-And order and ownership
+00:01:07.068 --> 00:01:09.751
+and order and ownership
 decide the outcome.
 
-27
-00:01:35.837 --> 00:01:40.085
-The rest of the briefing gives
-the evidence behind each one,
-
-28
-00:01:40.085 --> 00:01:42.410
-in the order why, what, who and how.
+20
+00:01:09.751 --> 00:01:11.350
+First, why act at all.

@@ -1,111 +1,91 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:00.900
-Who leads?
-
-2
-00:00:00.900 --> 00:00:02.838
+00:00:00.050 --> 00:00:01.937
 The book's framing is simple.
 
-3
-00:00:02.838 --> 00:00:07.175
+2
+00:00:01.937 --> 00:00:06.276
 Microsoft provides the instruments;
 the program provides the orchestra.
 
-4
-00:00:07.175 --> 00:00:10.552
-Cloud identity, device
-management, Conditional Access,
+3
+00:00:06.276 --> 00:00:08.424
+Cloud identity, device management,
 
-5
-00:00:10.552 --> 00:00:15.325
-privileged identity management and the
+4
+00:00:08.424 --> 00:00:12.425
+Conditional Access and the
 assessment tools are each excellent.
 
-6
-00:00:15.325 --> 00:00:17.375
+5
+00:00:12.425 --> 00:00:14.475
 But look at what each one doesn't decide.
 
-7
-00:00:17.375 --> 00:00:21.800
+6
+00:00:14.475 --> 00:00:18.900
 Cloud identity doesn't decide what your
 organizational structure should become.
 
-8
-00:00:21.800 --> 00:00:25.150
-Hybrid management doesn't
-decide which servers retire.
-
-9
-00:00:25.150 --> 00:00:28.575
+7
+00:00:18.900 --> 00:00:22.325
 The assessment tools don't decide
 what to do with the findings.
 
+8
+00:00:22.325 --> 00:00:25.875
+Every one of those gaps is a
+decision someone has to own.
+
+9
+00:00:25.875 --> 00:00:30.570
+And with no vendor deadline forcing
+it, organizations without leadership
+
 10
-00:00:28.575 --> 00:00:32.287
-Every entry in that column is
-a decision someone has to own.
+00:00:30.570 --> 00:00:35.113
+migrate in pieces and end up unable to
+answer last year's audit questions.
 
 11
-00:00:32.287 --> 00:00:37.214
-And no vendor deadline forces it, so
-without leadership organizations migrate in
+00:00:35.113 --> 00:00:40.250
+The program needs no license of its own,
+but the services it orchestrates do.
 
 12
-00:00:37.214 --> 00:00:41.850
-pieces and finish with a surface that
-can't answer last year's audit questions.
-
-13
-00:00:41.850 --> 00:00:45.908
-And the program isn't a product:
-it needs no license of its own,
-
-14
-00:00:45.908 --> 00:00:49.718
-but the services it orchestrates
-do, from Entra ID P1 for
-
-15
-00:00:49.718 --> 00:00:54.438
-Conditional Access to Entra ID
-Governance for lifecycle workflows.
-
-16
-00:00:54.438 --> 00:00:58.826
+00:00:40.250 --> 00:00:44.638
 Federal policy already says this
 belongs to more than the IT shop.
 
-17
-00:00:58.826 --> 00:01:04.665
-M-22-09 says the whole C-suite must be
-aligned and committed, and it required
+13
+00:00:44.638 --> 00:00:48.598
+M-22-09 says the whole
+C-suite must be aligned,
 
-18
-00:01:04.665 --> 00:01:09.612
-each agency to designate a zero trust
+14
+00:00:48.598 --> 00:00:53.063
+and it required a zero trust
 implementation lead within 30 days.
 
-19
-00:01:09.612 --> 00:01:15.841
+15
+00:00:53.063 --> 00:00:59.291
 M-19-17 requires an agency-wide identity
 governance structure that includes HR,
 
-20
-00:01:15.841 --> 00:01:18.600
+16
+00:00:59.291 --> 00:01:02.050
 general counsel, privacy and acquisition.
 
-21
-00:01:18.600 --> 00:01:22.835
-So the first Who decision, for the
-sponsor and the CIO before Phase 0:
+17
+00:01:02.050 --> 00:01:06.912
+So the first decision for the sponsor
+and the CIO, before Phase 0: confirm who
 
-22
-00:01:22.835 --> 00:01:25.300
-confirm who already holds those roles,
+18
+00:01:06.912 --> 00:01:12.087
+already holds those roles, and decide
+whether one becomes the program's steward.
 
-23
-00:01:25.300 --> 00:01:29.210
-and decide whether one of them
-becomes the program's steward.
+19
+00:01:12.087 --> 00:01:14.330
+Next, the decision matrix.

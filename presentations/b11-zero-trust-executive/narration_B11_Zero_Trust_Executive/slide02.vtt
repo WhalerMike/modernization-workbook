@@ -1,138 +1,107 @@
 WEBVTT
 
 1
-00:00:00.050 --> 00:00:02.550
-Start with the usual assessment calendar.
+00:00:00.050 --> 00:00:02.075
+Here's how assessment usually works.
 
 2
-00:00:02.550 --> 00:00:06.075
+00:00:02.075 --> 00:00:05.600
 The network team reviews the
 boundary, keyed by address.
 
 3
-00:00:06.075 --> 00:00:11.075
+00:00:05.600 --> 00:00:10.600
 The cloud team runs each provider's
 posture scan, keyed by resource tags.
 
 4
-00:00:11.075 --> 00:00:14.281
+00:00:10.600 --> 00:00:14.075
 The virtualization team
-works a hypervisor checklist,
+works a hypervisor checklist.
 
 5
-00:00:14.281 --> 00:00:17.487
-keyed by whatever the management
-plane calls a machine.
+00:00:14.075 --> 00:00:17.504
+At year end someone puts
+the three reports behind one
 
 6
-00:00:17.487 --> 00:00:21.220
-At year end someone puts the
-three reports behind one cover
-
-7
-00:00:21.220 --> 00:00:24.876
-page and calls the result the
+00:00:17.504 --> 00:00:21.088
+cover page and calls it the
 agency's Zero Trust maturity.
 
-8
-00:00:24.876 --> 00:00:27.612
+7
+00:00:21.088 --> 00:00:23.824
 It's three partial
 assessments with one title.
 
-9
-00:00:27.612 --> 00:00:30.913
+8
+00:00:23.824 --> 00:00:27.125
 The failure is architectural,
 not organizational.
 
-10
-00:00:30.913 --> 00:00:34.824
-A policy decision evaluates a
-subject, a device and a resource,
+9
+00:00:27.125 --> 00:00:29.723
+A policy decision can only treat a user,
 
-11
-00:00:34.824 --> 00:00:40.038
-and it can only do that consistently if
+10
+00:00:29.723 --> 00:00:35.325
+a device and a resource consistently if
 every platform describes them the same way.
 
-12
-00:00:40.038 --> 00:00:45.417
-A database server that runs as a virtual
-machine, sits on an agency subnet and backs
-
-13
-00:00:45.417 --> 00:00:50.638
-up to a cloud bucket can appear as three
+11
+00:00:35.325 --> 00:00:40.600
+One database server can show up as three
 unrelated objects, scored by three tools.
 
-14
-00:00:50.638 --> 00:00:54.038
+12
+00:00:40.600 --> 00:00:44.000
 A total across them counts
 objects, not architecture.
 
-15
-00:00:54.038 --> 00:00:57.551
+13
+00:00:44.000 --> 00:00:47.513
 The federal guidance describes
 the enterprise, not a tenant.
 
+14
+00:00:47.513 --> 00:00:51.303
+Executive Order 14028, M-22-09,
+
+15
+00:00:51.303 --> 00:00:56.825
+CISA's maturity model and NIST
+all speak in agency-wide terms.
+
 16
-00:00:57.551 --> 00:01:01.706
-Executive Order 14028 defines
-zero trust architecture
-
-17
-00:01:01.706 --> 00:01:05.950
-as working throughout all
-aspects of the infrastructure.
-
-18
-00:01:05.950 --> 00:01:09.936
-M-22-09 asks for enterprise-managed
-identities and a
-
-19
-00:01:09.936 --> 00:01:13.700
-complete inventory of every
-device the government operates.
-
-20
-00:01:13.700 --> 00:01:18.713
-CISA's maturity model asks for agency-wide
-buy-in for a common architecture.
-
-21
-00:01:18.713 --> 00:01:25.938
-And NIST SP 800-207 grants no implicit
-trust from network location or ownership.
-
-22
-00:01:25.938 --> 00:01:30.663
+00:00:56.825 --> 00:01:01.550
 A scan can confirm that an architecture
 is unified; it can't make it unified.
 
-23
-00:01:30.663 --> 00:01:35.749
+17
+00:01:01.550 --> 00:01:06.637
 So the first decision: reconcile the
 network, every cloud and the virtualization
 
-24
-00:01:35.749 --> 00:01:40.912
+18
+00:01:06.637 --> 00:01:11.800
 estate to one authoritative asset and
 identity record before scoring any of them.
 
-25
-00:01:40.912 --> 00:01:44.609
-The book gives that to the owner
-of the naming and identity plane,
+19
+00:01:11.800 --> 00:01:16.375
+The book gives that to the owner of the
+naming and identity plane, this quarter.
 
-26
-00:01:44.609 --> 00:01:46.074
-as a step for this quarter.
-
-27
-00:01:46.074 --> 00:01:48.690
+20
+00:01:16.375 --> 00:01:18.990
 Until it's done, report any whole-agency
 
-28
-00:01:48.690 --> 00:01:51.770
+21
+00:01:18.990 --> 00:01:22.013
 figure as partial
 assessments, not one score.
+
+22
+00:01:22.013 --> 00:01:26.090
+Next, why this is a security
+issue, not a reporting preference.

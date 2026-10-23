@@ -11,131 +11,97 @@ BOD 26-02, issued February 5, 2026, puts
 branch edge hardware on a directive clock.
 
 3
-00:00:11.625 --> 00:00:13.488
-Inventory came due in May.
+00:00:11.625 --> 00:00:17.622
+Devices whose support ends by February
+2027 come out then, and all identified
 
 4
-00:00:13.488 --> 00:00:17.800
-Devices whose support ends by
-February 2027 come out then.
+00:00:17.622 --> 00:00:23.150
+end-of-support edge devices must be
+off agency networks by August 5, 2027.
 
 5
-00:00:17.800 --> 00:00:21.413
-All identified end-of-support edge devices
+00:00:23.150 --> 00:00:26.116
+It covers internet-reachable
+boundary devices,
 
 6
-00:00:21.413 --> 00:00:25.025
-must be off agency networks
-by August 5, 2027.
+00:00:26.116 --> 00:00:29.750
+so a branch router with its
+own internet circuit qualifies.
 
 7
-00:00:25.025 --> 00:00:27.950
-After that, discovery is continuous.
-
-8
-00:00:27.950 --> 00:00:32.402
-The directive covers devices on the
-network boundary that are reachable from
-
-9
-00:00:32.402 --> 00:00:36.512
-the internet, so a branch router with
-its own internet circuit qualifies.
-
-10
-00:00:36.512 --> 00:00:38.702
+00:00:29.750 --> 00:00:31.939
 An interior access switch may not,
 
-11
-00:00:38.702 --> 00:00:42.063
+8
+00:00:31.939 --> 00:00:35.300
 so don't assume the directive
 funds the access layer.
 
-12
-00:00:42.063 --> 00:00:44.722
+9
+00:00:35.300 --> 00:00:40.248
 For an agency with aging branch equipment,
-
-13
-00:00:44.722 --> 00:00:49.131
 part of the capital it assumed it didn't
-have is going to be spent anyway,
 
-14
-00:00:49.131 --> 00:00:53.312
-on a compliance basis, inside the
-window everyone calls years away.
+10
+00:00:40.248 --> 00:00:44.900
+have is going to be spent anyway, inside
+the window everyone calls years away.
 
-15
-00:00:53.312 --> 00:00:58.037
-And a refresh is exactly the moment a
-branch architecture gets chosen again.
+11
+00:00:44.900 --> 00:00:49.250
+And a refresh is exactly when a branch
+architecture gets chosen again.
 
-16
-00:00:58.037 --> 00:01:01.240
-The default choice is like-for-like,
+12
+00:00:49.250 --> 00:00:52.131
+The default is like-for-like,
 which spends the money
 
-17
-00:01:01.240 --> 00:01:04.376
+13
+00:00:52.131 --> 00:00:55.150
 and closes the question for
-the life of the new equipment.
+the life of the equipment.
 
-18
-00:01:04.376 --> 00:01:07.100
+14
+00:00:55.150 --> 00:00:57.875
 The recommendation is narrow and cheap.
 
-19
-00:01:07.100 --> 00:01:11.112
+15
+00:00:57.875 --> 00:01:01.510
 Tell whoever is scoping the
 replacements, in writing,
 
+16
+00:01:01.510 --> 00:01:06.715
+what the eventual target needs from a
+branch device, from application-aware
+
+17
+00:01:06.715 --> 00:01:12.250
+steering and telemetry to post-quantum
+key exchange and a FIPS 140-3 expectation.
+
+18
+00:01:12.250 --> 00:01:17.143
+Security architecture owns that decision,
+before the replacements are scoped,
+
+19
+00:01:17.143 --> 00:01:19.812
+and acquisition writes
+it into every order.
+
 20
-00:01:11.112 --> 00:01:15.033
-what the eventual target
-needs from a branch device:
+00:01:19.812 --> 00:01:21.987
+It costs requirements-writing time.
 
 21
-00:01:15.033 --> 00:01:20.595
-application-aware steering and path
-measurement, deterministic egress,
+00:01:21.987 --> 00:01:25.362
+Not doing it spends the same
+money and closes the option.
 
 22
-00:01:20.595 --> 00:01:24.607
-per-application telemetry
-the log pipeline can take,
-
-23
-00:01:24.607 --> 00:01:27.525
-post-quantum key exchange under M-26-15,
-
-24
-00:01:27.525 --> 00:01:33.725
-a management plane that satisfies BOD 23-02,
-and an explicit FIPS 140-3 expectation.
-
-25
-00:01:33.725 --> 00:01:36.385
-Security architecture owns that decision,
-
-26
-00:01:36.385 --> 00:01:41.113
-because the refresh row in the book's
-matrix fixes the branch design for years.
-
-27
-00:01:41.113 --> 00:01:43.737
-Acquisition writes it into every order.
-
-28
-00:01:43.737 --> 00:01:46.324
-It's needed before the
-replacements are scoped.
-
-29
-00:01:46.324 --> 00:01:48.452
-It costs requirements-writing time,
-
-30
-00:01:48.452 --> 00:01:51.980
-and not doing it spends the same
-money and closes the option.
+00:01:25.362 --> 00:01:27.220
+Next, where to invest.

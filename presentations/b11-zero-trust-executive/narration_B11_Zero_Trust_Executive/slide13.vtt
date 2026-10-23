@@ -9,135 +9,93 @@ How do you get there?
 First, close before you assess.
 
 3
-00:00:03.400 --> 00:00:07.159
-Agencies met BOD 25-01's early dates:
+00:00:03.400 --> 00:00:08.688
+Agencies met BOD 25-01's early
+dates, with tenants inventoried
 
 4
-00:00:07.159 --> 00:00:11.575
-tenants inventoried, ScubaGear
-deployed and reporting.
+00:00:08.688 --> 00:00:13.037
+and ScubaGear reporting, and many
+now treat that as the answer.
 
 5
-00:00:11.575 --> 00:00:13.575
-Many now treat that as the answer.
+00:00:13.037 --> 00:00:16.162
+But the tools measure deviation;
+they don't close any.
 
 6
-00:00:13.575 --> 00:00:16.910
-But ScubaGear measures
-deviation from a baseline;
-
-7
-00:00:16.910 --> 00:00:21.038
-it doesn't close any, and neither
-does the Zero Trust Assessment.
-
-8
-00:00:21.038 --> 00:00:25.663
+00:00:16.162 --> 00:00:20.788
 A thermometer that reports a fever every
 day for a year isn't a treatment plan.
 
+7
+00:00:20.788 --> 00:00:23.523
+Without an architecture to absorb the fix,
+
+8
+00:00:23.523 --> 00:00:28.525
+remediation collapses into re-running
+the scan and filing another plan line.
+
 9
-00:00:25.663 --> 00:00:29.885
-Without an architecture to absorb
-the fix, remediation collapses
+00:00:28.525 --> 00:00:33.326
+So the program's sequence puts the
+assessors at step five, as confirmation,
 
 10
-00:00:29.885 --> 00:00:33.876
-into re-running the scan and filing
-another plan-of-action line.
+00:00:33.326 --> 00:00:38.049
+not discovery: understand the gaps,
+design the fix, implement it, govern it,
 
 11
-00:00:33.876 --> 00:00:37.949
-So the program's six-phase sequence
-puts the assessors at step five,
-
-12
-00:00:37.949 --> 00:00:42.987
-as confirmation rather than discovery:
-understand the gaps and their root causes,
-
-13
-00:00:42.987 --> 00:00:47.431
-design the closure pattern, implement
-it, govern it with owners and plans,
-
-14
-00:00:47.431 --> 00:00:51.950
+00:00:38.049 --> 00:00:42.850
 then validate, and then the authorizing
 official decides on the evidence.
 
-15
-00:00:51.950 --> 00:00:55.598
+12
+00:00:42.850 --> 00:00:45.550
 That's the Risk Management
-Framework's own order:
+Framework's own order.
 
-16
-00:00:55.598 --> 00:00:58.425
-implement, assess, authorize, monitor.
-
-17
-00:00:58.425 --> 00:01:02.181
-BOD 25-01 says the same for new tenants:
-
-18
-00:01:02.181 --> 00:01:05.938
-baseline first, then the
-authorization to operate.
-
-19
-00:01:05.938 --> 00:01:10.080
-Before validating, build the layers
-a finding depends on: naming,
-
-20
-00:01:10.080 --> 00:01:13.987
-addressing and certificates;
-device and workload identity;
-
-21
-00:01:13.987 --> 00:01:18.676
-a phased retirement of legacy
-authentication; and governed exceptions.
-
-22
-00:01:18.676 --> 00:01:21.188
+13
+00:00:45.550 --> 00:00:48.063
 Not every finding waits for architecture.
 
-23
-00:01:21.188 --> 00:01:26.249
-Route each one to exactly one response:
-a configuration change that closes now;
+14
+00:00:48.063 --> 00:00:52.671
+Each gets exactly one response: a
+configuration change that closes now,
 
-24
-00:01:26.249 --> 00:01:29.519
-architectural work with an
-owner and a target date;
+15
+00:00:52.671 --> 00:00:55.484
+architectural work with
+an owner and a date,
 
-25
-00:01:29.519 --> 00:01:34.813
-or a risk acceptance by the authorizing
-official, marked Omitted with a rationale.
+16
+00:00:55.484 --> 00:00:58.687
+or a risk acceptance by
+the authorizing official.
 
-26
-00:01:34.813 --> 00:01:37.531
+17
+00:00:58.687 --> 00:01:03.925
 A finding with no response recorded is the
+only state the program treats as failure.
 
-27
-00:01:37.531 --> 00:01:40.250
-only state the program
-treats as a failure.
-
-28
-00:01:40.250 --> 00:01:46.198
+18
+00:01:03.925 --> 00:01:09.873
 This is the CIO's sequence decision:
 close the BOD 25-01 findings before the
 
-29
-00:01:46.198 --> 00:01:51.650
+19
+00:01:09.873 --> 00:01:15.325
 maturity assessment, and staff that order
 against the agency's other deadlines.
 
-30
-00:01:51.650 --> 00:01:54.910
+20
+00:01:15.325 --> 00:01:18.537
 It's needed before the maturity
 assessment is scheduled.
+
+21
+00:01:18.537 --> 00:01:20.760
+Next, how to read the results.
