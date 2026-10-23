@@ -19,7 +19,7 @@ lifecycle_review: 2027-04-01
 
 ::: {.callout-note}
 ## In this chapter
-How the Federal Modernization Workbook is organized into eighteen topic books and why each one follows the same Why / What / Who / How shape. How claims are verified and footnoted, and how to tell an external fact from a program design position or an illustrative example. What the diagrams, Word editions and presentations are, and how they stay in step with the chapters. What happened to the workbook's earlier pages. Reading paths for each role, and a map of the books.
+How the Federal Modernization Workbook is organized into eighteen topic books and why each one follows the same Why / What / Who / How shape. How claims are verified and footnoted, and how to tell an external fact from a program design position or an illustrative example. What the diagrams, Word editions and presentations are, and how they stay in step with the chapters. What happened to the workbook's earlier pages. What the workbook covers and what it doesn't, reading paths for each role, and a map of the books, including one by Cybersecurity Framework Function.
 :::
 
 The workbook grew the way most program material grows: as whitepapers, operational guides, executive briefs, case studies and series, each written when a question came up. That produced depth on many topics and no reliable way through them. The same subject could appear in four places, in four states of currency, with no sign of which one to trust.
@@ -140,6 +140,12 @@ Nobody needs to read the whole workbook. These paths start with the chapters tha
 
 Training and education have their own book, [Book 16, People: Training & Education](../b16-people/index.md). For a quick team briefing, the narrated presentations are the fastest route.
 
+## What the workbook covers, and what it doesn't
+
+The workbook covers workforce identity and the internal systems that federal employees and contractors use: the directory, devices, access, certificates, naming, the network, security operations and the day-two help desk. It doesn't cover public-facing digital services or the sign-on the public uses for them. OMB M-26-18 governs that side: it requires agencies to offer Login.gov on in-scope public-facing websites with authentication, defines "public-facing" as "intended to be accessed and used by members of the public, rather than by Federal Government employees or contractors acting on behalf of an agency," and says agencies "remain responsible for applying appropriate digital identity controls for enterprise identity."[^c02-m2618] The statute behind it draws the same line: 6 U.S.C. §1523(b)(1) requires a single sign-on platform for public websites that require authentication and, in the next clause, multi-factor authentication for remote access and for every account with elevated privileges.[^c02-1523] The workbook carries the second of those, not the first. Likewise, OMB M-23-22 applies to websites and digital services "intended for use by the public," and only encourages agencies to apply it to internal-facing ones, with one internal requirement: HTTPS on all web traffic, internal and public.[^c02-m2322]
+
+Two federal obligations do reach the internal systems the program builds, and the books apply them where they arise. The 21st Century IDEA Act requires each agency to ensure, "to the greatest extent practicable, that any Intranet established after the date of enactment of this Act" meets the Act's criteria for websites and digital services, among them Section 508 accessibility, a secure connection, a search function and usability on mobile devices.[^c02-idea] And Section 508 applies to the information technology federal employees use, not only what the public uses; [Book 04, Chapter 09](../b04-access/09-access-governance.md) and [Book 15, Chapter 03](../b15-day2-operations/03-intake-triage-and-routing.md) apply it to self-service portals and the help desk.[^c02-794d] The [Federal Framework Crosswalk](../../research/federal-framework-crosswalk.md) in the Research section maps the books against the wider set of federal frameworks.
+
 ## Map of the books
 
 | Book | Topic | Opening question | Group |
@@ -165,6 +171,21 @@ Training and education have their own book, [Book 16, People: Training & Educati
 
 The [book index](../index.md) shows each book's status and when it was last updated.
 
+### The books by NIST Cybersecurity Framework Function
+
+NIST's Cybersecurity Framework 2.0 organizes cybersecurity outcomes under six Functions.[^c02-csf] The table gives each Function's definition in NIST's words and the books that carry it as a primary subject. It is the workbook's own reading of the books, not a NIST mapping.
+
+| Function | NIST's definition | Primary books |
+|---|---|---|
+| GOVERN | "The organization's cybersecurity risk management strategy, expectations, and policy are established, communicated, and monitored." | B00, B01, B10, B13, B14, B17 |
+| IDENTIFY | "The organization's current cybersecurity risks are understood." | B01, B11, B17 |
+| PROTECT | "Safeguards to manage the organization's cybersecurity risks are used." | B02 to B09, B16 |
+| DETECT | "Possible cybersecurity attacks and compromises are found and analyzed." | B12 |
+| RESPOND | "Actions regarding a detected cybersecurity incident are taken." | B12 |
+| RECOVER | "Assets and operations affected by a cybersecurity incident are restored." | B14 ([Chapter 06](../b14-compliance/06-contingency-and-continuity.md)) |
+
+RECOVER is the thinnest. The program's rollback points and gates recover from a failed change, not from an incident, so incident recovery rests on Book 14's contingency planning.
+
 ## If you find a problem
 
 The workbook is maintained in public. If a claim is wrong, a source has changed, a link is broken or something in a deck or a page isn't accessible to you, open an issue in the [repository](https://github.com/WhalerMike/modernization-workbook/issues). Name the book, chapter and claim, and the source you think is right. Corrections go through the same check as the original: the claim is re-verified against the primary source, the footnote and the verification file are updated, and the Word edition and deck are rebuilt from the corrected chapter.
@@ -178,3 +199,9 @@ The workbook is maintained in public. If a claim is wrong, a source has changed,
 [^c02-webvtt]: World Wide Web Consortium, *WebVTT: The Web Video Text Tracks Format*, Candidate Recommendation Draft, May 20, 2026, <https://www.w3.org/TR/webvtt1/> (accessed Oct 21, 2026).
 [^c02-ppt-captions]: Microsoft Support, "Add closed captions or subtitles to media in PowerPoint" (WebVTT caption files for video and audio; supported versions on Windows and Mac), <https://support.microsoft.com/office/add-closed-captions-or-subtitles-to-media-in-powerpoint-df091537-fb22-4507-898f-2358ddc0df18> (accessed Oct 21, 2026).
 [^c02-508]: U.S. Access Board, *Information and Communication Technology (ICT) Standards and Guidelines* (Revised 508 Standards), E205.4 and 702.10.1 (electronic content conforms to WCAG 2.0 Level A and AA success criteria, incorporated by reference), <https://www.access-board.gov/ict/> (accessed Oct 21, 2026).
+[^c02-m2618]: Office of Management and Budget, M-26-18, *Scaling Use of Login.gov to Deliver a Universal Sign-on for Public Services*, August 31, 2026, Scope and Applicability and note 3, <https://www.whitehouse.gov/wp-content/uploads/2026/08/M-26-18-Scaling-Use-of-Login.gov-to-Deliver-a-Universal-Sign-on-for-Public-Services.pdf> (accessed Oct 23, 2026).
+[^c02-1523]: 6 U.S.C. §1523(b)(1)(D)–(E) (2023 edition), <https://www.govinfo.gov/content/pkg/USCODE-2023-title6/html/USCODE-2023-title6-chap6-subchapII-sec1523.htm> (accessed Oct 23, 2026).
+[^c02-m2322]: Office of Management and Budget, M-23-22, *Delivering a Digital-First Public Experience*, September 22, 2023, §II (scope) and §III.A.5 ("Agencies shall encrypt all web traffic across their websites and digital services as HTTPS, including both public-facing (internet-facing) and internal-facing traffic"), <https://www.whitehouse.gov/wp-content/uploads/2023/09/M-23-22-Delivering-a-Digital-First-Public-Experience.pdf> (accessed Oct 23, 2026).
+[^c02-idea]: 21st Century Integrated Digital Experience Act, Pub. L. 115-336, §3(a) and §3(c), December 20, 2018, <https://www.govinfo.gov/content/pkg/PLAW-115publ336/html/PLAW-115publ336.htm> (accessed Oct 23, 2026).
+[^c02-794d]: 29 U.S.C. §794d(a)(1)(A)(i) (2023 edition), <https://www.govinfo.gov/content/pkg/USCODE-2023-title29/html/USCODE-2023-title29-chap16-subchapV-sec794d.htm> (accessed Oct 23, 2026).
+[^c02-csf]: NIST, *The NIST Cybersecurity Framework (CSF) 2.0*, CSWP 29, February 26, 2024, §2, <https://nvlpubs.nist.gov/nistpubs/CSWP/NIST.CSWP.29.pdf> (accessed Oct 23, 2026).

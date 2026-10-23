@@ -89,3 +89,12 @@ Checked October 21, 2026 by writer W4. Source: `docs/compliance/Vol_IX_Book_05_S
 | Honest Limits 1–7 | Honest limits 1–6 | Limit 3 (internal app skeleton) dropped; limit 5 (Li-SaaS) resolved (#27); limit 6 (no API) corrected (#28); others carried |
 | Cross-References | Links to Book 03, 04, 07, 10, 12, 14 and Chapters 02, 05, 07, 10, 11 | Internal volume references replaced |
 | Provenance | Verification header | Internal; gallery detection constant verified (#40) |
+
+## Additions, October 23, 2026 (federal framework crosswalk follow-up)
+
+Every claim was checked against the primary source on October 23, 2026. Sources: research briefs on investment and acquisition, and on service, accessibility and records (program working files).
+
+| # | Claim (short) | Where | Verdict | Source |
+|---|---|---|---|---|
+| 1 | Require a written ACR per ICT item; 'Partially Supports' means non-conformance | Phase 1 | verified (quoted) | Section508.gov request and claims pages |
+| 2 | Validate vendor conformance before purchase and after change | Phase 1 | verified | OMB M-24-08 §III.B |

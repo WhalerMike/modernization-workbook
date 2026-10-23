@@ -100,3 +100,19 @@ Checked October 21, 2026 against gao.gov (GAO-14-63, GAO-19-58, GAO-22-106195, G
 ### *The Long Interim* §§2.7 and 8
 
 See the ledger in `10-the-long-interim.md`; every row marked "Ch13" is carried here.
+
+## Additions, October 23, 2026 (federal framework crosswalk follow-up)
+
+Every claim was checked against the primary source on October 23, 2026. Sources: research briefs on investment and acquisition, and on service, accessibility and records (program working files).
+
+| # | Claim (short) | Where | Verdict | Source |
+|---|---|---|---|---|
+| 1 | Cost structure maps to capital planning's investment record | Measuring cost | restated-as-design; requirements verified in B00 App. C | 40 U.S.C. §11312; A-11 §55; TMF FPP App. B |
+
+## Corrections, October 23, 2026 (federal-sources inventory)
+
+Found by the workbook-wide sweep of federal citations for the Federal Framework Crosswalk; each was checked against the primary source on October 23, 2026.
+
+| # | Claim (short) | Where | Verdict | Source |
+|---|---|---|---|---|
+| 1 | TIC Program Guidebook cited as v1.2, July 2025 | Note c13-guidebook | corrected to the September 2026 reissue (v1.2); quoted passage confirmed unchanged | CISA TIC 3.0 Program Guidebook, Sept 2026 |

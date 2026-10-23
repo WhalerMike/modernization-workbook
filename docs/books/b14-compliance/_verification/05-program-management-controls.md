@@ -105,3 +105,12 @@ Writer W3. Sources: `docs/compliance/Vol_IV_Book_00_Governance_Assurance_Overvie
 | Vol IV Book 03 — SCRM Governance Charter (PM-30): purpose, structure, risk categories, assessment process, supplier requirements, EO 14028 evidence posture, cadence, approval | PM-30 section (governance shape, triggers, corrections) | Risk categories, supplier contract terms and evidence tiers go to Ch07 (W4's chapter); BOD 26-04 tier and submission claims corrected |
 | Vol IV Book 03 — Appendix A, PM Control Traceability Matrix | "The controls at a glance"; requirement/design table | Status checkmarks not carried |
 | Vol IV Book 03 — Appendix B, Integration with Compliance Technical Series | Cross-links throughout (Book 02, 05, 12, 13; Ch06–Ch09) | Volume/book identifiers replaced by workbook links |
+
+## Additions, October 23, 2026 (federal framework crosswalk follow-up)
+
+Every claim was checked against the primary source on October 23, 2026. Sources: research briefs on investment and acquisition, and on service, accessibility and records (program working files).
+
+| # | Claim (short) | Where | Verdict | Source |
+|---|---|---|---|---|
+| 1 | A-130 §5.a(2): EA with baseline, target, transition plan aligned to IRM Strategic Plan | PM-11, PM-7 | verified (quoted) | OMB Circular A-130 §5.a(2) |
+| 2 | Program's assessment, target and phase plan are the EA's three parts | PM-11, PM-7 | restated-as-design | B00 App. C |

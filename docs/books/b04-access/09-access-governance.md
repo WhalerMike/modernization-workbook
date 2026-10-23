@@ -174,6 +174,10 @@ The *Application role assignment activity* workbook, with entitlement activity o
 
 With Entra ID Governance, an automatic assignment policy assigns a package to everyone who matches a rule on user attributes (such as department or cost center) and removes the assignment when they stop matching.[^c09-em-overview][^c09-licensing] This is the mechanism for department packages, and it depends on the attributes the HR feed maintains ([Book 03](../b03-hr-identity/index.md)). Book 02 notes one time-sensitive caution: don't build automatic assignment rules on the preview `memberOf` operator ([Book 02, Chapter 10](../b02-identity/10-migrating-and-governing.md#entitlement-management-and-access-packages)).
 
+### The request portal is covered by Section 508
+
+The people who request access, approve it and review it are federal employees, and Section 508 requires that the technology agencies use give employees with disabilities access to information and data "comparable to the access to and use of the information and data by Federal employees who are not individuals with disabilities."[^c09-794d] The Revised 508 Standards apply to "ICT that is procured, developed, maintained, or used by agencies," and require user interfaces and content to conform to WCAG 2.0 Level A and AA.[^c09-1194] As the workbook's practice, the program tests the whole request, approval and review flow with assistive technology, not just its first page, and records the vendor's Accessibility Conformance Report for the portal it uses. OMB asks agencies to validate vendor conformance documentation before purchase and after a product changes.[^c09-m2408] Where a conforming product isn't commercially available, the agency buys what best meets the standard and documents the market research in writing.[^c09-1194]
+
 ## Access reviews
 
 Access reviews are recurring attestation that each person still needs what they hold. A review captures a snapshot of access when each instance starts; changes made during a review show up in the next cycle.[^c09-create-review]
@@ -356,3 +360,6 @@ Every deviation (a combined package that overrides separation of duties, a revie
 [^c09-deploy-reviews]: Microsoft Learn, "Plan a Microsoft Entra access reviews deployment," <https://learn.microsoft.com/entra/id-governance/deploy-access-reviews> (accessed Oct 20, 2026).
 [^c09-em-reports]: Microsoft Learn, "View reports and logs in entitlement management," <https://learn.microsoft.com/entra/id-governance/entitlement-management-reports> (accessed Oct 20, 2026).
 [^c09-retention]: Microsoft Learn, "Microsoft Entra data retention," <https://learn.microsoft.com/entra/identity/monitoring-health/reference-reports-data-retention> (accessed Oct 20, 2026).
+[^c09-794d]: 29 U.S.C. §794d(a)(1)(A)(i) (2023 edition), <https://www.govinfo.gov/content/pkg/USCODE-2023-title29/html/USCODE-2023-title29-chap16-subchapV-sec794d.htm> (accessed Oct 23, 2026).
+[^c09-1194]: U.S. Access Board, Revised 508 Standards, 36 CFR part 1194, Appendix A, E201.1, E202.7 and E202.7.1 (best meets), and E207.2, <https://www.ecfr.gov/current/title-36/chapter-XI/part-1194> (accessed Oct 23, 2026).
+[^c09-m2408]: Office of Management and Budget, M-24-08, *Strengthening Digital Accessibility and the Management of Section 508 of the Rehabilitation Act*, December 21, 2023, §III.B, <https://www.whitehouse.gov/wp-content/uploads/2023/12/M-24-08-Strengthening-Digital-Accessibility-and-the-Management-of-Section-508-of-the-Rehabilitation-Act.pdf> (accessed Oct 23, 2026).

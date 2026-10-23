@@ -56,3 +56,11 @@ Checked October 21, 2026. Book 00's chapters were reconciled with each other; ea
 | # | Claim (short) | Where | Verdict | Source |
 |---|---|---|---|---|
 | X1 | "Short-lived tokens" replaced by token/managed-identity auth with event-driven revocation (CAE where the resource supports it); CAE tokens up to 28 hours; reduced lifetimes degrade UX without eliminating risk; CAE initially Exchange, Teams, SharePoint Online | P6 Data Platform Identity, principles | corrected; aligned with Ch04 "Token lifetimes, corrected" | Learn, "Continuous access evaluation," Overview and Token lifetime, searched Oct 21, 2026 |
+
+## Additions, October 23, 2026 (federal framework crosswalk follow-up)
+
+Every claim was checked against the primary source on October 23, 2026. Sources: research briefs on investment and acquisition, and on service, accessibility and records (program working files).
+
+| # | Claim (short) | Where | Verdict | Source |
+|---|---|---|---|---|
+| 1 | A charter is the natural unit for a TMF proposal | What the charters leave to the agency | restated-as-design | Appendix C; TMF FPP Appendix A |

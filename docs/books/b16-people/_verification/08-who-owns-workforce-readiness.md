@@ -44,3 +44,11 @@ Writer W4. New chapter; no source page. All primary sources opened October 21, 2
 | Source page § | Went to | Or why not carried |
 |---|---|---|
 | (new chapter; no source page) | — | Built from new research and the published Who chapters listed above |
+
+## Corrections, October 23, 2026 (federal-sources inventory)
+
+Found by the workbook-wide sweep of federal citations for the Federal Framework Crosswalk; each was checked against the primary source on October 23, 2026.
+
+| # | Claim (short) | Where | Verdict | Source |
+|---|---|---|---|---|
+| 1 | Description cites 'SP 800-50' | Front matter | corrected to SP 800-50 Rev. 1 (the 2003 edition is superseded) | B14 Ch09; NIST SP 800-50 Rev. 1 |

@@ -109,7 +109,7 @@ The pattern becomes a case study only when three conditions hold: engagement mat
 
 ::: {.callout-tip}
 ## Continue the book
-[← Previous: Appendix A — Risk Register and Control Traceability](appendix-a-risk-register-and-traceability.md) · [Book index](index.md)
+[← Previous: Appendix A — Risk Register and Control Traceability](appendix-a-risk-register-and-traceability.md) · [Next: Appendix C — Funding and Acquiring the Program →](appendix-c-funding-and-acquisition.md) · [Book index](index.md)
 :::
 
 [^aB-fedramp-use]: FedRAMP, "Using a FedRAMP Certified Cloud Service," *FedRAMP Consolidated Rules for 2026*, <https://www.fedramp.gov/2026/agencies/use/> (accessed Oct 21, 2026).

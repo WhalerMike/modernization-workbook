@@ -46,3 +46,18 @@ Diagram sources: `docs/images/diagrams/b00-orientation/src/ch02-map-of-the-books
 | reading-guide.md (reference only) — six tracks and reading paths | Ch02 Reading paths (role-based) | Used as reference for path design; track tables not carried (they list whitepapers that are being consolidated into books) |
 | reading-guide.md — Problem / Solution / Ask box convention | — | Whitepaper convention, not a book convention; not carried |
 | books/index.md (read only) — book table and build description | Ch02 Eighteen books; Map; archive; Word; presentations | Carried; this page is not archived |
+
+## Additions, October 23, 2026 (federal framework crosswalk follow-up)
+
+Every claim was checked against the primary source on October 23, 2026. Sources: research briefs on investment and acquisition, and on service, accessibility and records (program working files).
+
+| # | Claim (short) | Where | Verdict | Source |
+|---|---|---|---|---|
+| 1 | Workbook scope: workforce identity and internal systems; public-facing services out of scope | What the workbook covers | restated-as-design | — |
+| 2 | M-26-18 requires Login.gov on in-scope public-facing sites; 'public-facing' excludes employees and contractors; agencies remain responsible for enterprise identity | Scope | verified (quoted) | OMB M-26-18, Scope and Applicability, n.3 |
+| 3 | 6 U.S.C. §1523(b)(1)(D) single sign-on for public sites; (E) MFA for remote and privileged access | Scope | verified | 6 U.S.C. §1523 (2023 ed.) |
+| 4 | M-23-22 applies to public services, encourages internal; HTTPS covers internal traffic | Scope | verified (quoted) | OMB M-23-22 §II, §III.A.5 |
+| 5 | IDEA §3(c): intranets established after Dec 20, 2018 meet §3(a) to the greatest extent practicable | Scope | verified (quoted) | Pub. L. 115-336 §3(a), §3(c) |
+| 6 | Section 508 covers ICT federal employees use | Scope | verified | 29 U.S.C. §794d(a)(1)(A)(i) |
+| 7 | CSF 2.0 six Functions and definitions | CSF table | verified (quoted) | NIST CSWP 29 §2 |
+| 8 | Function-to-book primary homes; RECOVER thinnest | CSF table | restated-as-design (workbook reading) | Book landing pages; B14 Ch06 |

@@ -56,3 +56,11 @@ Editor W4. Verified October 21, 2026. Sources: the series chapter as copied in (
 | Whitepaper §Principle 4: "What this means for authorizing officials" callout | CISO and AO subsection (gated actuation, permanently gated high-blast-radius ops) | Claim that M-22-09/FedRAMP require Advanced maturity corrected (claim 18); L0–L4 ladder table not carried (W5/Chapter 11–12 territory) |
 | Whitepaper §Call to Action | What to do next | Deadline framing not carried (claim 29) |
 | Whitepaper other sections | Not carried here | Owned by W1, W3, W5, and Chapter 08 (access parts) |
+
+## Additions, October 23, 2026 (federal framework crosswalk follow-up)
+
+Every claim was checked against the primary source on October 23, 2026. Sources: research briefs on investment and acquisition, and on service, accessibility and records (program working files).
+
+| # | Claim (short) | Where | Verdict | Source |
+|---|---|---|---|---|
+| 1 | Migrate records before retiring a system; backups aren't the archive | Records management and privacy | verified | 36 CFR 1236.14(a), 1236.20(c) |

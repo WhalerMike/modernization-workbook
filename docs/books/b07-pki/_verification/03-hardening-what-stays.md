@@ -126,3 +126,11 @@ Applied from the verified review findings (critique claims re-checked against pr
 |---|---|---|---|---|
 | RF-1 | CRL wording "HTTP (or HTTPS; HTTP recommended)"; `[^c03-cba-crl]` added beside `[^c03-cba-overview]` | Make revocation real (line 263) | verified (same source conflict as Chapter 02, noted in the footnote) | <https://learn.microsoft.com/en-us/entra/identity/authentication/concept-certificate-based-authentication-certificate-revocation-list> |
 | RF-2 | Duplicate footnotes for the configure-ca page merged: `[^c03-cpki-scep-eku]` removed, its one use (line 57) now cites `[^c03-cpki-configure]`, whose annotation now quotes the Intune Administrator and Any Purpose EKU text | Footnotes | verified (page re-opened; quotes checked) | <https://learn.microsoft.com/intune/cloud-pki/configure-ca> |
+
+## Corrections, October 23, 2026 (federal-sources inventory)
+
+Found by the workbook-wide sweep of federal citations for the Federal Framework Crosswalk; each was checked against the primary source on October 23, 2026.
+
+| # | Claim (short) | Where | Verdict | Source |
+|---|---|---|---|---|
+| 1 | 'FIPS 140-2 or 140-3' modules for every CA | Protect the CA keys | corrected: 140-3 for new CAs; 140-2 modules on retained CAs are existing systems (Historical List after Sept 21, 2026) | NIST CMVP project page; B14 Ch02 |

@@ -1,6 +1,6 @@
 ---
 title: "Chapter 08 — Who Owns Workforce Readiness"
-description: "Who owns the workforce's readiness for the modernized estate: the sponsor and CIO, the CISO, the Chief Human Capital Officer and workforce office, the training lead, managers and supervisors, the ISSO and system owner, the program office and its readiness gates, the help desk and the communications office; where each duty comes from in FISMA, the CHCO Act, OPM's rules at 5 CFR 410 and 930.301, OPM's cybersecurity coding guidance and NIST SP 800-37 and SP 800-50; and a responsibility matrix consistent with the program's other Who chapters."
+description: "Who owns the workforce's readiness for the modernized estate: the sponsor and CIO, the CISO, the Chief Human Capital Officer and workforce office, the training lead, managers and supervisors, the ISSO and system owner, the program office and its readiness gates, the help desk and the communications office; where each duty comes from in FISMA, the CHCO Act, OPM's rules at 5 CFR 410 and 930.301, OPM's cybersecurity coding guidance and NIST SP 800-37 and SP 800-50 Rev. 1; and a responsibility matrix consistent with the program's other Who chapters."
 doc-type: workbook-chapter
 audience: [Executive, Technical, Customer]
 family: b16-people

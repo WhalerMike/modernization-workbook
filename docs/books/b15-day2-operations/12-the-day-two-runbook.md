@@ -230,6 +230,7 @@ Everything above depends on automation: log sources, detection rules, deployment
 | Telemetry completeness | Is every expected source still sending? | A source's newest record is older than its freshness limit | CA-7; SI-4 |
 | Detection efficacy | Do the detection rules still catch what they should? | A replayed known-bad event doesn't raise its rule | CA-2; SI-4 |
 | Deployment smoke tests | Did the infrastructure-as-code change actually close the control? | A post-deployment assertion fails | CA-2 |
+| Accessibility checks | Do the self-service pages, forms and help articles still meet Section 508? | A scheduled scan, or a manual check after a change, finds a WCAG 2.0 AA failure | Section 508 (M-24-08)[^c12-508] |
 | Baseline conformance re-check | Does configuration still match the intended baseline after reconciliation? | Drift survives a reconciliation cycle | CM-6 |
 | Workflow tests | Do the ITSM flows still route, approve, escalate and close as designed? | A test in the non-production instance fails | CA-2; CM-3 |
 
@@ -334,3 +335,4 @@ As with the compliance application, the agency should use what its platforms shi
 [^c12-kql-union]: Microsoft Learn, "union operator," parameters `isfuzzy` and `withsource`, <https://learn.microsoft.com/kusto/query/union-operator?view=microsoft-fabric> (accessed Oct 21, 2026).
 [^c12-snow-atf]: ServiceNow, "Test your apps with the ATF," Xanadu release documentation, <https://www.servicenow.com/docs/r/a3E8xg0zsiQLBPKbKO15Mg/cP2Njdzlu6Zs5j5aasYMIg> (accessed Oct 21, 2026).
 [^c12-sentinel-health]: Microsoft Learn, "Monitor the health of your data connectors" (data collection health monitoring workbook; `SentinelHealth` table and its supported connectors; Azure Monitor alert rules), <https://learn.microsoft.com/azure/sentinel/monitor-data-connector-health> (accessed Oct 21, 2026).
+[^c12-508]: 36 CFR part 1194, Appendix C, 602.3 (web-based self-service support documentation conforms to WCAG 2.0 Level A and AA), <https://www.ecfr.gov/current/title-36/chapter-XI/part-1194>; Office of Management and Budget, M-24-08, *Strengthening Digital Accessibility and the Management of Section 508 of the Rehabilitation Act*, December 21, 2023, §III.E and note 30 (scan web content at a set frequency, "including internal-facing web content on intranets," and add manual testing), <https://www.whitehouse.gov/wp-content/uploads/2023/12/M-24-08-Strengthening-Digital-Accessibility-and-the-Management-of-Section-508-of-the-Rehabilitation-Act.pdf> (both accessed Oct 23, 2026).

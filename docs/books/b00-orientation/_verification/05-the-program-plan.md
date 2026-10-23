@@ -91,3 +91,11 @@ Checked October 21, 2026. Book 00's chapters were reconciled with each other; ea
 |---|---|---|---|---|
 | X1 | Jan 1, 2027 mandatory "for all stakeholders" (not only CSPs), subject to area-specific dates; CSPs have the following year to comply to keep certification | §External clocks | corrected (was "mandatory for cloud service providers"); aligned with Ch01 | FedRAMP, "Important Dates for the Consolidated Rules for 2026" (fedramp.gov/2026/timeline), Mandatory Adoption entry, fetched Oct 21, 2026 |
 | X2 | Assessment workstation sanitized under SP 800-88 Rev. 2, not just "destroyed" | §Infrastructure | corrected; aligned with Appendix A R-021 | csrc.nist.gov SP 800-88 r2 final page (Date Published September 2025; history 09/26/25 Final; supersedes Rev. 1, 12/17/2014; no withdrawal or successor listed), fetched Oct 21, 2026 |
+
+## Additions, October 23, 2026 (federal framework crosswalk follow-up)
+
+Every claim was checked against the primary source on October 23, 2026. Sources: research briefs on investment and acquisition, and on service, accessibility and records (program working files).
+
+| # | Claim (short) | Where | Verdict | Source |
+|---|---|---|---|---|
+| 1 | Purchases need CIO approval under FITARA; M-26-10 vendor utilization and pricing requests and disclosure provisions after Mar 31, 2026 | Licenses | verified | OMB M-26-10 §1 (40 U.S.C. §11319(b)(1)(C)), §2 |

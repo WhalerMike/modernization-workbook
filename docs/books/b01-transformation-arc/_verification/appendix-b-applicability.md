@@ -36,3 +36,19 @@ Editor: W5. Source: the series page in place (old 00a, "Applicability and Scope"
 | What this series is, and isn't | "What this book is, and isn't"; data and encrypted DNS bullet added from Appendix A's old gap list | — |
 | Authoritative references | Footnotes | List removed |
 | Previous/Next links | "Continue the book" callout (Appendix A; no Next) | — |
+
+## Additions, October 23, 2026 (federal framework crosswalk follow-up)
+
+Every claim was checked against the primary source on October 23, 2026. Sources: research briefs on investment and acquisition, and on service, accessibility and records (program working files).
+
+| # | Claim (short) | Where | Verdict | Source |
+|---|---|---|---|---|
+| 1 | Scope pointer: workforce identity, not public services or Login.gov | What this book is, and isn't | restated-as-design | B00 Ch02 |
+
+## Corrections, October 23, 2026 (federal-sources inventory)
+
+Found by the workbook-wide sweep of federal citations for the Federal Framework Crosswalk; each was checked against the primary source on October 23, 2026.
+
+| # | Claim (short) | Where | Verdict | Source |
+|---|---|---|---|---|
+| 1 | Footnote: Azure holds a P-ATO at High | Notes | clarified as Microsoft's pre-2026 term | B10 Ch03 |

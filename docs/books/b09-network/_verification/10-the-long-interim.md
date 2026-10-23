@@ -105,3 +105,11 @@ Applied from the verified review findings (critique claims re-checked against pr
 |---|---|---|---|---|
 | RF-1 | "GSA's EIS service list doesn't name SD-WAN" conflicted with Chapter 05. Both GSA pages re-opened: the TIC page lists "SD-WAN Service as fully managed, co-managed, or do-it-yourself implementations" among EIS services; the main EIS page's summary list doesn't name SD-WAN. Sentence rewritten to say both, with the TIC page leading, so Chapter 05 stands | line 41 | corrected | <https://www.gsa.gov/technology/it-contract-vehicles-and-purchasing-programs/enterprise-infrastructure-solutions/trusted-internet-connections>; <https://www.gsa.gov/technology/it-contract-vehicles-and-purchasing-programs/telecommunications-and-network-services/enterprise-infrastructure-solutions> |
 | RF-2 | `[^c10-gsa-tic]` URL updated to the canonical page (the old URL 301-redirects) and annotated with the SD-WAN quote | Footnote | verified | <https://www.gsa.gov/technology/it-contract-vehicles-and-purchasing-programs/enterprise-infrastructure-solutions/trusted-internet-connections> |
+
+## Corrections, October 23, 2026 (federal-sources inventory)
+
+Found by the workbook-wide sweep of federal citations for the Federal Framework Crosswalk; each was checked against the primary source on October 23, 2026.
+
+| # | Claim (short) | Where | Verdict | Source |
+|---|---|---|---|---|
+| 1 | TIC Program Guidebook cited as v1.2, July 2025 | Note c10-guidebook | corrected to the September 2026 reissue (v1.2); quoted passage confirmed unchanged in the new PDF | CISA TIC 3.0 Program Guidebook, Sept 2026 |

@@ -169,6 +169,8 @@ The example is deliberately unflattering. Compute savings alone rarely justify a
 - analyst hours spent on alerts closed as benign network behavior;
 - the risk cost of control assertions that can't be evidenced.
 
+This cost structure is also the core of the investment record federal capital planning asks for: full life-cycle cost split into development and operations, risk-adjusted return, and milestones measured on cost, capability, timeliness and quality. [Book 00, Appendix C](../b00-orientation/appendix-c-funding-and-acquisition.md) maps it to 40 U.S.C. §11312, Circular A-11 Section 55 and the Technology Modernization Fund's financial template.
+
 ## What to stop doing
 
 - **Stop putting a routing-attributable percentage into a TCO model on the authority of a white paper, including this book.** Put in a measured figure with its method attached, or a range with the assumption labeled as an assumption. A migration business case that omits routing architecture as a cost variable is incomplete; one that includes an invented figure for it is worse, because it will be checked.
@@ -235,7 +237,7 @@ An agency that runs these has either evidence or a disproof, and either is worth
 [^c13-gao1958]: Government Accountability Office, GAO-19-58, *Cloud Computing: Agencies Have Increased Usage and Realized Benefits, but Cost and Savings Data Need to Be Better Tracked*, April 4, 2019, <https://www.gao.gov/products/gao-19-58> (accessed Oct 21, 2026).
 [^c13-gao22106195]: Government Accountability Office, GAO-22-106195, *Cloud Computing: Federal Agencies Face Four Challenges*, September 28, 2022, <https://www.gao.gov/products/gao-22-106195> (accessed Oct 21, 2026).
 [^c13-gao26107530]: Government Accountability Office, GAO-26-107530, *Cloud Computing: Federal Government Needs to Address Procurement Challenges*, June 23, 2026, <https://www.gao.gov/products/gao-26-107530>; Commerce passage in the report body, <https://www.gao.gov/assets/gao-26-107530.pdf> (accessed Oct 21, 2026).
-[^c13-guidebook]: Cybersecurity and Infrastructure Security Agency, *Trusted Internet Connections 3.0, TIC Core Guidance Volume 1: Program Guidebook*, Version 1.2, July 2025, <https://www.cisa.gov/sites/default/files/2025-07/CISA%20TIC%203.0%20Program%20Guidebook.pdf> (accessed Oct 21, 2026).
+[^c13-guidebook]: Cybersecurity and Infrastructure Security Agency, *Trusted Internet Connections 3.0, TIC Core Guidance Volume 1: Program Guidebook*, Version 1.2, September 2026 (the reissue of the July 2025 edition; the quoted passage is unchanged), <https://www.cisa.gov/sites/default/files/2026-09/TIC_3.0_Program_Guidebook_September_2026_47.pdf> (accessed Oct 23, 2026).
 [^c13-oig251]: Government Accountability Office, Office of Inspector General, OIG-25-1, *Data Egress: Opportunities Exist for GAO to Strengthen Procedures for Management of Data Egress Fees*, February 24, 2025, <https://gao.gov/products/oig-25-1> (accessed Oct 21, 2026).
 [^c13-tr914]: Diana Andreea Popescu, Noa Zilberman and Andrew W. Moore, *Characterizing the impact of network latency on cloud-based applications' performance*, University of Cambridge Computer Laboratory Technical Report UCAM-CL-TR-914, November 2017, <https://www.cl.cam.ac.uk/techreports/UCAM-CL-TR-914.pdf> (accessed Oct 21, 2026).
 [^c13-a16z]: **Third-party source (investor analysis).** Sarah Wang and Martin Casado, "The Cost of Cloud, a Trillion Dollar Paradox," Andreessen Horowitz, May 27, 2021, <https://a16z.com/the-cost-of-cloud-a-trillion-dollar-paradox/> (accessed Oct 21, 2026).

@@ -106,3 +106,11 @@ Cross-chapter consistency pass. Every changed external fact was re-checked on th
 | Claim | Result | Source |
 |---|---|---|
 | Only win-acme needs FIPS mode off | corrected after the CyberArk implementation-guide research | CyberArk 26.1 Installation Guide p.50: FIPS not supported for ACMEv2 on any server |
+
+## Additions, October 23, 2026 (federal framework crosswalk follow-up)
+
+Every claim was checked against the primary source on October 23, 2026. Sources: research briefs on investment and acquisition, and on service, accessibility and records (program working files).
+
+| # | Claim (short) | Where | Verdict | Source |
+|---|---|---|---|---|
+| 1 | GRS 3.2 items 060–062 cover PKI records incl. terminating a PKI; 7y6m to 20y6m by CA level | Decommissioning AD CS, step 9 | verified | GRS 3.2 (Transmittal 33) |
